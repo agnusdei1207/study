@@ -1,5 +1,7 @@
 import type { NoteStatus, NoteBadgeData } from '../types/note';
 
+export type { NoteStatus, NoteBadgeData };
+
 /**
  * 출제 상태 문자열을 시맨틱한 NoteStatus('기출' | '미출')로 정규화합니다.
  */
