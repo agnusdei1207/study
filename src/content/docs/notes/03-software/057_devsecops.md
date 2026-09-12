@@ -149,7 +149,16 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 네이티브 및 소프트웨어 공급망 보안(Software Supply Chain Security)의 **핵심 보안 내재화 표준 프레임워크**로 확립되었으며, 실무 운영 시에는 **Pre-commit 시크릿 검사(Gitleaks), CI 단계 SAST(SonarQube) 및 오픈소스 SBOM/CVE 분석(SCA - Snyk), 컨테이너 이미지 스캔(Trivy), 쿠버네티스 Policy as Code(Kyverno/OPA), 런타임 위협 방어(Falco/RASP), 보안 챔피언(Security Champion) 제도**를 유기적으로 결합하여 개발 생산성과 보안 통제를 조화
+<details><summary>용어 설명</summary>
+
+- **소프트웨어 공급망 보안(Software Supply Chain Security)**: 오픈소스 라이브러리, 빌드 파이프라인, 컨테이너 레지스트리 등 소프트웨어 생성부터 배포 전반의 무결성을 보장하고 위변조를 방지하는 체계(예: SLSA 표준).
+- **런타임 애플리케이션 자가 보호(Runtime Application Self-Protection, RASP)**: 애플리케이션 런타임 엔진 내부에 상주하여 악의적인 페이로드 실행을 실시간 탐지하고 즉시 차단하는 보안 기술.
+- **공통 취약점 및 노출(Common Vulnerabilities and Exposures, CVE)**: 널리 알려진 소프트웨어 및 라이브러리의 보안 결함에 표준화된 고유 번호를 부여하여 관리하는 공개 보안 데이터베이스.
+
+</details>
+
+- **차세대 발전 전망**: SLSA 프레임워크 기반의 **소프트웨어 공급망 보안** 체계 및 eBPF 커널 레벨 실시간 위협 탐지와 **런타임 애플리케이션 자가 보호(RASP)** 기술이 통합된 지능형 보안 플랫폼으로 진화하는 추세.
+- **실무 공학적 통찰**: 보안 도구의 높은 오탐률(False Positive)로 인한 개발 병목을 차단하기 위해, **보안 챔피언(Security Champion)** 제도를 운영하고 **CVE** 위험도(CVSS)에 따른 유연하고 실효성 있는 품질 게이트 거버넌스 수립 필요.
 
 #### 한줄 요약
-- DevSecOps는 보안을 파이프라인의 걸림돌이 아닌 자동화된 안전장치로 전환하여 출시 속도와 보안성을 동시에 달성하는 필수 공학 체계다.
+- DevSecOps는 공급망 무결성(SLSA) 및 eBPF 런타임 방어와 융합되어 보안을 가속하되, 오탐 튜닝과 보안 챔피언 중심의 팀 거버넌스가 안착의 핵심이다.

@@ -22,7 +22,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **하이퍼바이저(Hypervisor / VMM)**: 단일 물리 서버에서 복수의 가상 머신(VM)과 게스트 OS를 독립적으로 실행하도록 하드웨어 자원을 중재하는 가상화 계층.
-- **가상 머신(VM, Virtual Machine)**: 하이퍼바이저로부터 가상 CPU, 메모리, 디스크를 독점 할당받아 구동되는 독립된 가상 컴퓨터 인스턴스.
+- **가상 머신(Virtual Machine, VM)**: 하이퍼바이저로부터 가상 CPU, 메모리, 디스크를 독점 할당받아 구동되는 독립된 가상 컴퓨터 인스턴스.
 
 </details>
 
@@ -52,7 +52,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **EPT(Extended Page Tables)**: 게스트 가상 주소(GVA) $\to$ 게스트 물리 주소(GPA) $\to$ 호스트 물리 주소(HPA)의 2단계 주소 변환을 CPU 하드웨어가 직접 처리하는 2단계 페이징 기술.
+- **확장 페이지 테이블(Extended Page Tables, EPT)**: 게스트 가상 주소(GVA) $\to$ 게스트 물리 주소(GPA) $\to$ 호스트 물리 주소(HPA)의 2단계 주소 변환을 CPU 하드웨어가 직접 처리하는 2단계 페이징 기술.
 
 </details>
 
@@ -135,14 +135,14 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **SR-IOV(Single Root I/O Virtualization)**: 단일 물리 PCIe 디바이스(NIC)를 여러 가상 기능(VF)으로 분할하여 VM이 하이퍼바이저 없이 직접 통신하는 하드웨어 가속 기술.
+- **단일 루트 입출력 가상화(Single Root I/O Virtualization, SR-IOV)**: 단일 물리 PCIe 디바이스(NIC)를 여러 가상 기능(VF)으로 분할하여 VM이 하이퍼바이저 없이 직접 통신하는 하드웨어 가속 기술.
 
 </details>
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
-| 네트워크 I/O 시 VM Exit 빈발로 인한 지연 증가 | **SR-IOV(PCIe Passthrough) 및 virtio 드라이버** 적용 | 하이퍼바이저 오버헤드 제거 및 베어메탈 99% 네트워크 처리율 달성 |
-| 2단계 페이징으로 인한 메모리 접근 지연 | CPU 하드웨어 **EPT/NPT 및 HugePages** 활성화 | TLB 미스 및 메모리 워크 시간 70% 단축 |
+| 네트워크 I/O 시 VM Exit 빈발로 인한 지연 증가 | **단일 루트 입출력 가상화(SR-IOV)** 및 virtio 드라이버 적용 | 하이퍼바이저 오버헤드 제거 및 베어메탈 99% 네트워크 처리율 달성 |
+| 2단계 페이징으로 인한 메모리 접근 지연 | CPU 하드웨어 **확장 페이지 테이블(EPT)** 및 HugePages 활성화 | TLB 미스 및 메모리 워크 시간 70% 단축 |
 | 과도한 vCPU/메모리 오버서브스크립션(Overcommit) | **동적 자원 조절(Ballooning) 및 CPU Quota** 상한 통제 | 특정 VM의 자원 독점 방지 및 시스템 안정성 보장 |
 | 물리 노드 장애 시 전체 VM 다운 위험 | **실시간 라이브 마이그레이션(Live Migration)** 구축 | 무중단 서비스 이전 및 고가용성(HA) 완성 |
 
@@ -151,7 +151,15 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 인프라(AWS EC2, OpenStack) 및 데이터센터 서버 가상화의 **핵심 근간 플랫폼 아키텍처**로 확립되었으며, 실무에서는 **엔터프라이즈 IaaS 환경에 베어메탈 직결 Type 1(KVM, ESXi)과 하드웨어 가속(Intel VT-x, EPT, SR-IOV)을 적용하고, 서비스 마이크로서비스 계층에는 초경량 컨테이너(Docker/K8s)와 경량 마이크로VM(Firecracker/Kata Containers)**을 결합하여 강력한 격리와 고성능을 양립
+<details><summary>용어 설명</summary>
+
+- **마이크로 가상 머신(MicroVM)**: Firecracker나 Kata Containers처럼 최소 디바이스만 에뮬레이션하여 밀리초 단위 기동과 하드웨어 수준 격리를 동시 제공하는 경량 가상화 기술.
+- **서비스형 인프라(Infrastructure as a Service, IaaS)**: 서버, 스토리지, 네트워크 등 컴퓨팅 자원을 가상화하여 주문형 API로 제공하는 클라우드 서비스 모델.
+
+</details>
+
+- 엔터프라이즈 **서비스형 인프라(IaaS)**의 성숙 표준인 Type 1 하이퍼바이저는 서버리스 환경의 요구에 대응하여 밀리초 단위 기동을 지원하는 **마이크로 가상 머신(MicroVM)** 아키텍처로 진화 추세
+- 대규모 멀티테넌트 환경 구축 시 하드웨어 수준의 안전한 보안 경계를 확보하기 위해 **단일 루트 입출력 가상화(SR-IOV)** 패스스루와 경량 격리 기술을 결합하는 인프라 설계 결단 필요
 
 #### 한줄 요약
-- 하이퍼바이저는 서버 가상화와 클라우드 컴퓨팅의 기반 기술이며, 하드웨어 가속과의 결합을 통해 베어메탈급 성능을 제공한다.
+- 하드웨어 가속 기제와 MicroVM 기술을 결합하여 가상화 오버헤드를 극소화하고 멀티테넌트 보안 격리를 완성해야 한다.

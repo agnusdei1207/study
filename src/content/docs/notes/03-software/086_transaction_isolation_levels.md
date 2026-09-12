@@ -145,7 +145,15 @@ extra:
 
 ## Ⅶ. 결론
 
-- 엔터프라이즈 RDBMS 트랜잭션 동시성 제어 및 병행 처리의 **핵심 표준 격리 메커니즘**으로 확립되었으며, 실무 운영 시에는 **높은 동시성을 제공하는 Read Committed(Oracle/PostgreSQL) 또는 MVCC 기반 Repeatable Read(MySQL)를 기본값으로 운용하고, 동시 갱신 분실(Lost Update) 및 비즈니스 정합성 훼손을 방지하기 위해 애플리케이션 레벨의 낙관적 락(`@Version`) 또는 비관적 락(`SELECT FOR UPDATE`)을 선별 결합**하여 시스템 처리량과 무결성을 극대화
+<details><summary>용어 설명</summary>
+
+- **다중 버전 동시성 제어(Multi-Version Concurrency Control, MVCC)**: 데이터 변경 시 이전 스냅샷 버전을 유지하여 읽기와 쓰기 작업이 상호 락 없이 병행 실행되도록 지원하는 동시성 기법.
+- **초당 트랜잭션 수(Transactions Per Second, TPS)**: 데이터베이스 엔진이 1초 동안 성공적으로 처리하고 커밋한 트랜잭션의 빈도.
+
+</details>
+
+- **MVCC 기반 스냅샷 격리 및 SSI 알고리즘 결합 진화**: 전통적 락 기반 격리는 언두 로그(Undo Log)를 활용하는 **다중 버전 동시성 제어(MVCC)**로 표준화되었으며, 최신 분산 RDBMS 및 CockroachDB 등에서는 직렬화 잠금 오버헤드 없이 쓰기 왜곡(Write Skew)을 차단하는 직렬화 가능 스냅샷 격리(SSI)로 발전 추세.
+- **동시 처리 성능(TPS)과 데이터 무결성의 트레이드오프 통제 결단**: 무조건적인 최고 격리 수준 설정은 락 경합과 교착 상태를 유발하므로, Read Committed 또는 Repeatable Read를 기본 채택하고 갱신 분실 위험 구역에만 비관적 락(`SELECT FOR UPDATE`)이나 낙관적 락(`@Version`)을 국소 적용하는 공학적 절충 필요.
 
 #### 한줄 요약
-- 트랜잭션 격리 수준은 성능과 정합성의 균형점을 결정하는 핵심 척도이며, MVCC와 락 기법을 적절히 결합하여 최적화해야 한다.
+- 트랜잭션 격리 수준은 MVCC와 SSI 기반의 무잠금 직렬화로 진화하고 있으며, TPS 극대화와 정합성 보장을 위한 선택적 락킹 절충이 핵심이다.

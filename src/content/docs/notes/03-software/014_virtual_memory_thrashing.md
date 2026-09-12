@@ -36,8 +36,8 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **다중프로그래밍 정도(DOM, Degree of Multiprogramming)**: 물리 메모리에 동시에 적재되어 실행 중인 활성 프로세스의 총 수.
-- **PFF(Page Fault Frequency)**: 프로세스별 페이지 폴트 발생 빈도를 측정하여 상한/하한 임계값에 따라 프레임을 동적 배분하는 기법.
+- **다중프로그래밍 정도(Degree of Multiprogramming, DOM)**: 물리 메모리에 동시에 적재되어 실행 중인 활성 프로세스의 총 수.
+- **페이지 부재 빈도(Page Fault Frequency, PFF)**: 프로세스별 페이지 폴트 발생 빈도를 측정하여 상한/하한 임계값에 따라 프레임을 동적 배분하는 기법.
 
 </details>
 
@@ -150,7 +150,15 @@ CPU 유휴로 오판하여 DOM 추가 증가       PFF 상한 초과 감지 및 
 
 ## Ⅶ. 결론
 
-- 가상 메모리 관리 및 대규모 클라우드 노드 안정성의 **핵심 성능 붕괴 방지 메커니즘**으로 확립되었으며, 현대 실무 운영 환경에서는 **프로세스별 워킹 셋 보장과 PFF 제어를 기본으로, K8s/Docker 환경의 cgroups v2 `memory.min`/`memory.high` 워킹 셋 보호, 느린 디스크 스왑 병목을 압축 RAM으로 대체하는 zswap/zRAM 적용 및 커널 `vm.swappiness`/`vm.watermark_scale_factor` 튜닝**을 결합하여 고부하 메모리 스파이크에 대응
+<details><summary>용어 설명</summary>
+
+- **메모리 압축 스왑(Compressed RAM Swap, zswap/zRAM)**: 물리 디스크 I/O 대신 RAM의 일부를 압축 풀로 활용하여 스왑 인/아웃 지연을 극소화하는 커널 메모리 가속 기술.
+- **제어 그룹 v2 메모리 제어기(cgroups v2 Memory Controller)**: 컨테이너별 메모리 사용량에 대해 최소 보장선(memory.min)과 능동 회수선(memory.high)을 지정하여 노드 스레싱 전파를 차단하는 리눅스 자원 격리 기제.
+
+</details>
+
+- 클라우드 컨테이너 노드 환경에서 디스크 I/O 병목을 RAM 압축으로 대체하는 **메모리 압축 스왑(zswap/zRAM)** 기술과 비동기 회수 데몬(kswapd)이 통합되는 아키텍처로 진화 추세
+- 쿠버네티스 파드 밀집 환경에서 단일 프로세스의 메모리 폭증이 노드 전체 스레싱으로 전파되지 않도록 **제어 그룹 v2 메모리 제어기**의 상하한선을 정밀 설정하는 운영적 결단 필요
 
 #### 한줄 요약
-- 프로세스 스레싱은 워킹 셋 크기만큼의 물리 프레임을 보장하고 부하 초과 시 DOM을 통제함으로써 완벽히 제어할 수 있다.
+- 압축 RAM 스왑으로 디스크 병목을 우회하고 cgroups v2 상하한선 통제로 노드 단위 스레싱 전파를 차단해야 한다.

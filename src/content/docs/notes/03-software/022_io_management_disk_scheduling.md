@@ -38,7 +38,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **회전 지연(Rotational Latency)**: 헤드가 트랙에 도달한 후 플래터가 회전하여 대상 섹터가 헤드 아래로 올 때까지 걸리는 시간.
-- **blk-mq(Multi-Queue Block Layer)**: 멀티코어 환경에서 CPU 코어별 소프트웨어 큐와 하드웨어 큐를 매핑하여 수백만 IOPS를 처리하는 리눅스 블록 계층.
+- **다중 큐 블록 계층(Multi-Queue Block Layer, blk-mq)**: 멀티코어 환경에서 CPU 코어별 소프트웨어 큐와 하드웨어 큐를 매핑하여 수백만 IOPS를 처리하는 리눅스 블록 계층.
 
 </details>
 
@@ -134,14 +134,14 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **Tail Latency(꼬리 지연시간)**: 대량의 쓰기 I/O로 인해 특정 읽기 I/O가 큐에서 장시간 지연되는 P99/P99.9 지연 현상.
+- **꼬리 지연시간(Tail Latency)**: 대량의 쓰기 I/O로 인해 특정 읽기 I/O가 큐에서 장시간 지연되는 P99/P99.9 지연 현상.
 
 </details>
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
 | NVMe SSD에 복잡한 HDD 스케줄러 적용 시 CPU 락 병목 | 스케줄러를 **`none`(No-op) 또는 `mq-deadline`** 으로 설정 | CPU 오버헤드 제거 및 100만 IOPS 병렬 처리 지원 |
-| 대용량 배치 쓰기로 인한 **읽기 요청 지연(Tail Latency)** | **`mq-deadline` 튜닝(read_expire: 100ms, write_expire: 2s)** | 대화형 읽기 요청 우선 처리 및 지연시간 안정화 |
+| 대용량 배치 쓰기로 인한 **읽기 요청 지연(꼬리 지연시간)** | **`mq-deadline` 튜닝(read_expire: 100ms, write_expire: 2s)** | 대화형 읽기 요청 우선 처리 및 지연시간 안정화 |
 | HDD 환경에서 특정 프로세스의 I/O 독점으로 인한 기아 | 프로세스별 I/O 가중치를 부여하는 **`bfq`(Budget Fair Queueing)** 적용 | 프로세스 간 I/O 대역폭 공정 분배 |
 | 스토리지 I/O 부하 모니터링 미흡 | `iostat -xz 1` 기반 **`%util`, `await`, `svctm`** 지표 실시간 감시 | I/O 포화도 파악 및 조기 병목 해소 |
 
@@ -150,7 +150,15 @@ extra:
 
 ## Ⅶ. 결론
 
-- 운영체제 블록 스토리지 서브시스템의 **핵심 미디어별 I/O 최적화 제어 표준 기술**로 확립되었으며, 실무 환경에서는 **기계식 HDD에는 공정성과 탐색을 균형화한 BFQ/C-LOOK, 초고속 NVMe SSD에는 CPU 오버헤드를 제거하는 blk-mq `none`(kyber/mq-deadline) 스케줄러를 적용하고, `iostat` 지표 모니터링을 통한 큐 튜닝**을 결합하여 고부하 스토리지 성능을 최적화
+<details><summary>용어 설명</summary>
+
+- **다중 큐 데드라인 스케줄러(Multi-Queue Deadline Scheduler, mq-deadline)**: 멀티큐 블록 계층 상에서 읽기와 쓰기 요청에 개별 만료 기한을 부여하여 꼬리 지연을 방지하는 스케줄러.
+- **예산 공정 큐잉(Budget Fair Queueing, BFQ)**: 프로세스별로 I/O 대역폭과 디스크 타임 예산을 비례 배분하여 대화형 작업의 응답성을 보장하는 스케줄러.
+
+</details>
+
+- 회전형 HDD 중심의 기계적 탐색 정렬 기법에서 NVMe 및 고속 패브릭의 병렬 대역폭을 극대화하는 **다중 큐 블록 계층(blk-mq)** 및 커널 바이패스 아키텍처로 전면 진화 추세
+- 초고속 SSD 환경에서는 스케줄링 오버헤드를 배제하는 `none` 또는 **다중 큐 데드라인 스케줄러(mq-deadline)**를 선택하고, 대용량 스토리지에는 **예산 공정 큐잉(BFQ)**을 적용하는 미디어 맞춤형 스케줄러 선정 결단 필요
 
 #### 한줄 요약
-- 디스크 스케줄링은 미디어의 물리적 구조(회전체 vs 플래시)에 맞춘 최적화 전략을 선택함으로써 I/O 병목을 완벽히 해소한다.
+- NVMe 환경에서는 blk-mq 기반 무스케줄링(none)으로 오버헤드를 없애고 대화형 HDD 환경은 BFQ 공정 제어로 병목을 해소해야 한다.

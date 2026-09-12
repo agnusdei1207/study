@@ -135,14 +135,14 @@ VM 가상화 채택   컨테이너 가상화 채택 (Docker / Kubernetes)
 
 <details><summary>용어 설명</summary>
 
-- **Rootless Container**: root 권한 없이 일반 유저 계정(User Namespace)으로 컨테이너 엔진을 구동하여 호스트 탈옥 공격을 무력화하는 보안 기법.
+- **루트리스 컨테이너(Rootless Container)**: root 권한 없이 일반 유저 계정(User Namespace)으로 컨테이너 엔진을 구동하여 호스트 탈옥 공격을 무력화하는 보안 기법.
 
 </details>
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
-| 컨테이너 탈옥(Container Escape)으로 호스트 커널 장악 | **Rootless Container 및 seccomp / AppArmor** 프로파일 강제 | 유해 시스템 콜 차단 및 호스트 침해 원천 차단 |
-| 전가상화 환경에서 디스크/네트워크 I/O 병목 | **virtio 반가상화 디바이스 드라이버** 설치 | I/O 에뮬레이션 제거 및 처리 속도 3배 향상 |
+| 컨테이너 탈옥(Container Escape)으로 호스트 커널 장악 | **루트리스 컨테이너(Rootless Container)** 및 seccomp / AppArmor 프로파일 강제 | 유해 시스템 콜 차단 및 호스트 침해 원천 차단 |
+| 전가상화 환경에서 디스크/네트워크 I/O 병목 | **virtio** 반가상화 디바이스 드라이버 설치 | I/O 에뮬레이션 제거 및 처리 속도 3배 향상 |
 | 멀티테넌트 SaaS 환경에서 컨테이너 간 자원 간섭 | **마이크로VM(Kata Containers / Firecracker)** 도입 | 하드웨어 레벨 테넌트 완전 격리 및 100ms 콜드스타트 |
 | 컨테이너 메모리 폭증으로 인한 노드 다운 | cgroups v2 `memory.max` 및 OOM 점수 조정 | 특정 컨테이너 단독 OOM-Kill로 시스템 가용성 보호 |
 
@@ -151,7 +151,15 @@ VM 가상화 채택   컨테이너 가상화 채택 (Docker / Kubernetes)
 
 ## Ⅶ. 결론
 
-- 클라우드 컴퓨팅 및 현대 마이크로서비스 인프라의 **핵심 3대 가상화 실행 패러다임**으로 정립되었으며, 실무에서는 **동일 OS 고밀도 MSA 배포에는 컨테이너(Docker/K8s), 이종 OS 및 인프라 IaaS에는 하드웨어 가속 전가상화(KVM/ESXi + virtio), 멀티테넌트 서버리스(FaaS) 및 민감 금융/보안 워크로드에는 마이크로VM(AWS Firecracker/Kata Containers)**을 선별 적용
+<details><summary>용어 설명</summary>
+
+- **서비스형 함수(Function as a Service, FaaS)**: 서버 관리 없이 이벤트 발생 시에만 코드를 실행하고 자원을 즉시 회수하는 서버리스 컴퓨팅 모델.
+- **마이크로 가상 머신(MicroVM)**: Firecracker나 Kata Containers처럼 최소 가상 디바이스만 탑재하여 밀리초 단위 기동과 하드웨어 격리를 동시 보장하는 경량 가상화 기술.
+
+</details>
+
+- 순수 컨테이너의 커널 공유 보안 취약점과 전통적 전가상화의 무거운 기동 지연을 극복하기 위해, **서비스형 함수(FaaS)** 및 멀티테넌트 환경을 지탱하는 **마이크로 가상 머신(MicroVM)** 융합 런타임으로 진화 추세
+- 내부 신뢰 서비스는 고밀도 컨테이너로 배포하되, 외부 untrusted 코드가 유입되는 도메인은 하드웨어 격리 경계를 강제하는 다계층 샌드박스 아키텍처 결단 필요
 
 #### 한줄 요약
-- 가상화 기술은 격리성과 성능의 트레이드오프 관계에 있으며, 서비스 특성에 따른 맞춤형 계층 배치가 필수적이다.
+- 고밀도 내부 배포는 컨테이너로, 외부 멀티테넌트 FaaS는 MicroVM 하드웨어 격리로 분리 수용하는 다계층 설계가 핵심이다.

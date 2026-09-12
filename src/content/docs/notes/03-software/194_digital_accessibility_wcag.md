@@ -22,8 +22,8 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **디지털 접근성 (WCAG 2.1)**: 장애인과 고령자를 포함한 모든 사용자가 제약 없이 디지털 정보와 기능을 동등하게 이용할 수 있도록 보장하는 W3C 웹 콘텐츠 접근성 지침.
-- **POUR 4대 원칙**: Perceivable(인식 용이성), Operable(운용 용이성), Understandable(이해 용이성), Robust(견고성).
+- **웹 콘텐츠 접근성 지침(Web Content Accessibility Guidelines, WCAG)**: 장애인과 고령자를 포함한 모든 사용자가 제약 없이 디지털 정보와 기능에 동등하게 접근할 수 있도록 W3C가 제정한 웹 표준 지침.
+- **POUR 4대 원칙(Perceivable, Operable, Understandable, Robust, POUR)**: 웹 접근성을 달성하기 위한 인식 용이성, 운용 용이성, 이해 용이성, 견고성의 4대 핵심 기본 원칙.
 
 </details>
 

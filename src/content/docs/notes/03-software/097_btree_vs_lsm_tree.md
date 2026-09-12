@@ -143,7 +143,15 @@ LSM-Tree 쓰기 및 읽기 처리 파이프라인
 
 ## Ⅶ. 결론
 
-- 현대 데이터베이스 스토리지 엔진의 **양대 핵심 읽기/쓰기 상충(Read vs Write) 아키텍처**로 확립되었으며, 실무 아키텍처 선정 시에는 **예측 가능한 낮은 읽기 지연(Latency)과 엄격한 트랜잭션이 요구되는 전통적 OLTP에는 B-Tree(MySQL InnoDB/PostgreSQL), IoT 시계열 데이터·분산 로그 수집·대규모 쓰기 중심 NoSQL/NewSQL 스토리지에는 블룸 필터(Bloom Filter)와 컴팩션 튜닝을 결합한 LSM-Tree(RocksDB/Cassandra)**를 워크로드 특성에 맞추어 전략적으로 선택
+<details><summary>용어 설명</summary>
+
+- **로그 구조화 병합 트리(Log-Structured Merge-Tree, LSM-Tree)**: 쓰기를 메모리 버퍼(MemTable)에 흡수한 후 디스크(SSTable)에 순차 기록하고 백그라운드 컴팩션을 수행하는 스토리지 엔진.
+- **블룸 필터(Bloom Filter)**: 특정 키가 SSTable 파일에 존재하는지 여부를 메모리 해시 비트맵으로 사전 판정하여 무작위 디스크 조회를 억제하는 확률적 자료구조.
+
+</details>
+
+- **뉴SQL 분산 스토리지 및 하이브리드 엔진 결합 진화**: 전통적 In-Place 업데이트 기반 B-Tree와 추가 전용(Append-Only) 기반 **로그 구조화 병합 트리(LSM-Tree)**는 TiKV, CockroachDB 등 뉴SQL 분산 엔진의 기본 하부 스토리지(RocksDB, Pebble)로 융합되어, 고속 분산 복제와 대규모 쓰기 대역폭을 흡수하는 핵심 구조로 진화 추세.
+- **쓰기 증폭과 컴팩션 스톨(Compaction Stall) 통제 결단**: 낮은 읽기 지연시간이 절대적인 금융 OLTP는 B-Tree를 채택하되, IoT 및 로그 수집 등 초고주기 쓰기 환경은 LSM-Tree를 선택하고 **블룸 필터(Bloom Filter)** 캐싱과 백그라운드 컴팩션 스레드 튜닝을 통해 쓰기 일시정지를 방지하는 공학적 워크로드 절충 필요.
 
 #### 한줄 요약
-- B-Tree(읽기 최적화)와 LSM-Tree(쓰기 최적화)는 워크로드의 Read/Write 특성에 따라 상호 보완적으로 선택되는 스토리지 엔진의 핵심 아키텍처다.
+- 스토리지 엔진은 뉴SQL 분산 하부 계층으로 진화하고 있으며, OLTP 읽기용 B-Tree와 초고속 쓰기용 LSM-Tree의 컴팩션 통제 절충이 핵심이다.
