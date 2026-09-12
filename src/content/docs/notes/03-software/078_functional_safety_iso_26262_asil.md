@@ -91,18 +91,22 @@ extra:
 </details>
 
 ```text
-차량 아이템 정의(Item Definition) 및 HARA 위험 분석 수행 -> Safety Goal (ASIL D) 도출
-        │
-   기능안전요구사항(FSR) -> 기술안전요구사항(TSR) -> SW 안전요구사항(SSR) 계층화
-        │
-   SW 안전 아키텍처 설계 (메모리 파티셔닝 MPU, 워치독 타이머, 이중화 설계)
-        │
-   MISRA-C 표준 준수 코딩 및 단위 테스트 (ASIL D: MC/DC 커버리지 100% 달성)
-        │
-   HIL(Hardware-in-the-Loop) 시뮬레이션 기반 결함 주입(Fault Injection) 통합 테스트
-        │
-   Safety Case 안전성 보고서 작성 및 TÜV SÜD 공인 인증 획득
+[ISO 26262 안전 개발 흐름] (진행 ①→⑥, Safety Case 보고서·TÜV SÜD 공인 인증 획득)
+  │
+  ├─ [아이템 정의·위험 분석] (① Item Definition·HARA 수행, Safety Goal(ASIL D) 도출)
+  │
+  ├─ [안전 요구 계층화] (② FSR에서 TSR, 이어서 SSR로 요구사항 계층화)
+  │
+  ├─ [SW 안전 아키텍처 설계] (③ 메모리 파티셔닝(MPU)·워치독 타이머·이중화 설계)
+  │
+  ├─ [코딩·단위 테스트] (④ MISRA-C 표준 준수 코딩, ASIL D 대상 MC/DC 커버리지 100% 달성)
+  │
+  ├─ [HIL 통합 테스트] (⑤ Hardware-in-the-Loop 시뮬레이션 기반 결함 주입(Fault Injection) 수행)
+  │
+  └─ [Safety Case·인증] (⑥ 안전성 보고서 작성 후 TÜV SÜD 공인 인증 획득)
 ```
+
+분기 결과: HARA로 산정된 ASIL 등급이 갈래를 가르며, 저등급(QM·ASIL A/B)은 동료 리뷰·분기 커버리지라는 낮은 검증 비용을, 고등급(ASIL C/D)은 MC/DC 100%·독립 제3자 검토라는 높은 검증 공수를 치르는 대신 인명 사고와 대규모 리콜 위험을 낮춘다
 
 #### 한줄 요약
 - 안전 요구는 Safety Goal에서 코드로 내려갈수록 구체화되는 만큼 검증 단가도 함께 오르므로, 결함을 하류에서 발견할수록 상위 요구까지 되돌아가는 재작업 비용이 자릿수 단위로 커진다.
