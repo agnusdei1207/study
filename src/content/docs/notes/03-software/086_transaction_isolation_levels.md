@@ -89,20 +89,18 @@ extra:
 </details>
 
 ```text
-트랜잭션 시작 (TRX_ID 할당)
-        │
-   [Read View 생성] Repeatable Read는 최초 SELECT 시 1회 고정, Read Committed는 매 쿼리마다 생성
-        │
-   [레코드 조회] 테이블 레코드의 생성 트랜잭션 ID(`DB_TRX_ID`) 확인
-        │
-   레코드의 TRX_ID가 현재 Read View보다 최신(미커밋)인가?
-   ┌────┴───────────────────────────┐
-  예 (아직 커밋 안 됨)              아니오 (이미 커밋 완료됨)
-   │                                 │
-[Undo Log 역추적]                 [현재 레코드 즉시 반환]
-`DB_ROLL_PTR`을 따라 과거          일관된 데이터 읽기 완료
-스냅샷 버전을 찾아 반환
+[MVCC 가시성 판정 경로] (진행 ①→④, ③·④ 분기 반환)
+  │
+  ├─ [Read View 생성] (① Repeatable Read는 최초 SELECT 시 1회 고정, Read Committed는 매 쿼리마다 생성)
+  │
+  ├─ [레코드 조회] (② 테이블 레코드의 생성 트랜잭션 ID(`DB_TRX_ID`) 확인)
+  │
+  ├─ [현재 레코드 반환] (③ TRX_ID가 Read View보다 오래된 커밋 상태이면 변경 없이 즉시 반환)
+  │
+  └─ [Undo Log 역추적] (④ TRX_ID가 Read View보다 최신(미커밋)이면 `DB_ROLL_PTR` 따라 과거 스냅샷 버전을 찾아 반환)
 ```
+
+분기 결과: 가시 버전이 곧바로 커밋 상태면 레코드 접근 한 번으로 끝나지만, 미커밋 변경에 부딪히면 Undo 체인을 몇 단계 되짚어야 하므로 스냅샷을 오래 유지할수록 체인 길이만큼 조회 비용이 누적된다
 
 #### 한줄 요약
 - Read View를 트랜잭션 시작 시 한 번만 뜨느냐 문장마다 새로 뜨느냐가 REPEATABLE READ와 READ COMMITTED를 가르며, 스냅샷을 오래 유지할수록 Undo 체인을 길게 되짚는 조회 비용을 대가로 치른다.

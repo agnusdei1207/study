@@ -58,15 +58,18 @@ extra:
 </details>
 
 ```text
-[데이터베이스 복제 구조 (Replication)]
-├─ [Primary 노드 (쓰기 원본)]
-│  ├─ CUD 트랜잭션 전담 (SSOT)
-│  └─ Binary Log (Binlog 변경 기록)
-├─ [Replica 노드 (읽기 복제본)]
-│  ├─ I/O Thread (Binlog 수신 ➔ Relay Log)
-│  └─ SQL Thread (Relay Log ➔ 엔진 재생)
-└─ [고가용성 관리]
-   └─ 장애 감지기 (Orchestrator 페일오버)
+[데이터베이스 복제 구조 (Replication) 체계]
+  │
+  ├─ [Primary 노드 (쓰기 원본)]
+  │     ├─ [CUD 트랜잭션 전담] (SSOT)
+  │     └─ [Binary Log] (Binlog 변경 기록)
+  │
+  ├─ [Replica 노드 (읽기 복제본)]
+  │     ├─ [I/O Thread] (Binlog 수신 ➔ Relay Log)
+  │     └─ [SQL Thread] (Relay Log ➔ 엔진 재생)
+  │
+  └─ [고가용성 관리]
+        └─ [장애 감지기] (Orchestrator 페일오버)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -90,22 +93,20 @@ extra:
 </details>
 
 ```text
-클라이언트가 Primary 노드에 데이터 쓰기 요청 (`UPDATE Balance ...`)
-        │
-   [Primary 트랜잭션] InnoDB 스토리지에 커밋 후 Binary Log에 이벤트 기록
-        │
-   [네트워크 전송] Dump Thread가 변경된 Binlog 이벤트를 Replica로 전송
-        │
-   [Relay Log 저장] Replica의 I/O Thread가 수신하여 로컬 Relay Log에 기록
-        │
-   [복제 동기화 방식 판정]
-   ┌────┴───────────────────────────┐
-[Asynchronous (비동기)]         [Semi-Synchronous (반동기)]
-Primary가 Replica 응답을         Replica가 Relay Log 기록 후 ACK 전송
-기다리지 않고 즉시 클라이언트에 응답   Primary가 ACK 수신 후 클라이언트에 응답
-        │                                 │
-   Replica의 SQL Thread가 Relay Log를 순차 재생하여 로컬 데이터 동기화 완료
+[복제 전파 경로] (진행 ①→⑤, ④·⑤ 동기화 방식 분기 후 Relay Log 재생)
+  │
+  ├─ [Primary 트랜잭션] (① InnoDB 스토리지에 커밋 후 Binary Log에 이벤트 기록)
+  │
+  ├─ [네트워크 전송] (② Dump Thread가 변경된 Binlog 이벤트를 Replica로 전송)
+  │
+  ├─ [Relay Log 저장] (③ Replica의 I/O Thread가 수신하여 로컬 Relay Log에 기록)
+  │
+  ├─ [비동기 복제] (④ Replica 응답 대기 없음, Primary가 즉시 클라이언트에 응답 후 재생)
+  │
+  └─ [반동기 복제] (⑤ 최소 1개 Replica ACK 대기, Replica가 Relay Log 기록 후 ACK 전송, Primary가 수신 후 응답 후 재생)
 ```
+
+분기 결과: 분기 기준은 데이터 유실 허용치(RPO)이며, 커밋 응답을 로컬 커밋 시점에 돌려주는 비동기는 쓰기 지연 대신 장애 시 미전송 로그 유실 위험을, ACK 수신까지 기다리는 반동기는 매 커밋에 네트워크 왕복 1회를 얹어 안전성을 산다
 
 #### 한줄 요약
 - 커밋 응답을 이 경로의 어느 지점에서 돌려주느냐가 복제 방식을 가르며, 비동기는 응답 지연을 없애는 대신 장애 시 미전송 로그를 잃고 동기는 그 손실을 없애는 대신 커밋마다 네트워크 왕복을 더한다.
@@ -148,7 +149,8 @@ Primary가 Replica 응답을         Replica가 Relay Log 기록 후 ACK 전송
 
 ## Ⅶ. 결론
 
-- 엔터프라이즈 영속성 계층의 가용성 보장 및 고트래픽 읽기 분산을 위한 **핵심 표준 이중화 아키텍처**로 확립되었으며, 실무 운영 시에는 **데이터 유실 위험을 억제하면서 쓰기 지연을 최소화하는 반동기(Semi-Synchronous) 복제 채택, 복제 지연(Lag)에 따른 정합성 훼손을 방지하는 Read-Your-Own-Writes 라우팅 및 Multi-Threaded Slave(MTS) 병렬 재생, 장애 시 스플릿 브레인(Split-Brain)을 원천 차단하는 Orchestrator 쿼럼 기반 자동 승격 체계**를 결합하여 서비스 연속성과 데이터 일관성을 동시 보증
+- 엔터프라이즈 영속성 계층의 가용성 보장 및 고트래픽 읽기 분산을 위한 **핵심 표준 이중화 아키텍처**로 확립.
+- 실무 운영 시에는 **데이터 유실 위험을 억제하면서 쓰기 지연을 최소화하는 반동기(Semi-Synchronous) 복제 채택**, **복제 지연(Lag)에 따른 정합성 훼손을 방지하는 Read-Your-Own-Writes 라우팅 및 Multi-Threaded Slave(MTS) 병렬 재생**, **장애 시 스플릿 브레인(Split-Brain)을 원천 차단하는 Orchestrator 쿼럼 기반 자동 승격 체계**를 결합하여 서비스 연속성과 데이터 일관성을 동시 보증.
 
 #### 한줄 요약
 - 데이터베이스 복제는 변경 로그 전파를 통해 데이터 가용성과 읽기 확장성을 확보하는 현대 데이터 플랫폼의 필수 인프라 아키텍처다.

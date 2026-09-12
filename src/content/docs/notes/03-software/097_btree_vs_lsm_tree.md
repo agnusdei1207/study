@@ -58,17 +58,19 @@ extra:
 </details>
 
 ```text
-[스토리지 엔진 구조: B-Tree vs LSM-Tree]
-├─ [B-Tree 계열 (읽기 최적화)]
-│  ├─ 제자리 덮어쓰기 (In-Place Update)
-│  ├─ 페이지 단위 관리 (Root, Branch, Leaf)
-│  └─ 결정론적 읽기 지연 (O(log N))
-└─ [LSM-Tree 계열 (쓰기 최적화)]
-   ├─ 순차 추가 기록 (Append-Only)
-   ├─ 메모리 계층: WAL & MemTable (버퍼)
-   ├─ 디스크 계층: SSTable (불변 정렬 파일)
-   ├─ 탐색 가속: Bloom Filter (존재 여부 판정)
-   └─ 백그라운드 정리: 컴팩션 (Compaction)
+[스토리지 엔진 구조: B-Tree vs LSM-Tree 체계]
+  │
+  ├─ [B-Tree 계열 (읽기 최적화)]
+  │     ├─ [제자리 덮어쓰기] (In-Place Update)
+  │     ├─ [페이지 단위 관리] (Root, Branch, Leaf)
+  │     └─ [결정론적 읽기 지연] (O(log N))
+  │
+  └─ [LSM-Tree 계열 (쓰기 최적화)]
+        ├─ [순차 추가 기록] (Append-Only)
+        ├─ [메모리 계층: WAL & MemTable] (버퍼)
+        ├─ [디스크 계층: SSTable] (불변 정렬 파일)
+        ├─ [탐색 가속: Bloom Filter] (존재 여부 판정)
+        └─ [백그라운드 정리: 컴팩션] (Compaction)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -92,14 +94,22 @@ extra:
 </details>
 
 ```text
-LSM-Tree 쓰기 및 읽기 처리 파이프라인
-        │
-   [쓰기 경로] WAL 디스크 기록 ➔ MemTable(RAM) 삽입 ➔ 메모리 가득 차면 L0 SSTable로 Flush
-        │
-   [컴팩션] 백그라운드 스레드가 L0 ➔ L1 ➔ L2 SSTable들을 병합 정렬하며 톰스톤(Tombstone) 제거
-        │
-   [읽기 경로] 1. MemTable 검색 ➔ 2. 불변 MemTable 검색 ➔ 3. Bloom Filter 검사 ➔ 4. SSTable 탐색
+[LSM-Tree 쓰기·읽기 처리 파이프라인] (진행 ①→⑥, 읽기 ③~⑥ 순차 탐색)
+  │
+  ├─ [쓰기 경로] (① WAL 디스크 기록, MemTable(RAM) 삽입, 메모리 가득 차면 L0 SSTable로 Flush)
+  │
+  ├─ [컴팩션] (② 백그라운드 스레드가 L0·L1·L2 SSTable들을 병합 정렬하며 톰스톤 제거)
+  │
+  ├─ [MemTable 검색] (③ 활성 MemTable 검색)
+  │
+  ├─ [불변 MemTable 검색] (④ 플러시 대기 중인 불변 MemTable 검색)
+  │
+  ├─ [Bloom Filter 검사] (⑤ SSTable 존재 여부 사전 판정)
+  │
+  └─ [SSTable 탐색] (⑥ 대상 SSTable을 찾아 키 탐색)
 ```
+
+분기 결과: 쓰기는 메모리 도달 시점에 완료 응답하므로 지연이 짧게 보이지만 정렬 병합 비용이 사라지지 않고 컴팩션으로 이월되며, 읽기 갈래는 Bloom Filter에서 부재가 판정되면 SSTable 탐색을 건너뛸 수 있어 필터 메모리를 키울수록 디스크 I/O를 적게 치른다
 
 #### 한줄 요약
 - 쓰기는 메모리 도달 시점에 완료로 응답해 지연을 감추지만 정렬 병합 비용은 사라지지 않고 컴팩션으로 이월되므로, LSM-Tree의 지연 급증은 쓰기 순간이 아니라 컴팩션이 밀린 시점에 나타난다.
