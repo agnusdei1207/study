@@ -58,15 +58,18 @@ extra:
 </details>
 
 ```text
-[Apache Flink 아키텍처]
-├─ [관리 계층 (JobManager)]
-│  ├─ JobGraph 분석 및 스케줄링
-│  └─ Checkpoint Coordinator (ABS 조율)
-├─ [실행 계층 (TaskManager)]
-│  ├─ TaskSlot (연산자 병렬 실행 단위)
-│  └─ State Backend (메모리/RocksDB 상태)
-└─ [스토리지 계층]
-   └─ Checkpoint Storage (S3/HDFS 스냅샷 영구 저장)
+[Apache Flink 아키텍처 체계]
+  │
+  ├─ [관리 계층 (JobManager)]
+  │     ├─ [JobGraph 분석 및 스케줄링]
+  │     └─ [Checkpoint Coordinator] (ABS 조율)
+  │
+  ├─ [실행 계층 (TaskManager)]
+  │     ├─ [TaskSlot] (연산자 병렬 실행 단위)
+  │     └─ [State Backend] (메모리/RocksDB 상태)
+  │
+  └─ [스토리지 계층]
+        └─ [Checkpoint Storage] (S3/HDFS 스냅샷 영구 저장)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -91,18 +94,20 @@ extra:
 </details>
 
 ```text
-스트림 처리 도중 주기적 Checkpoint 트리거
-        │
-   [Barrier 주입] JobManager의 지시로 Source 연산자가 이벤트 스트림 사이에 Checkpoint Barrier 삽입
-        │
-   [입력 정렬] 다중 입력 채널을 가진 연산자가 모든 채널의 동일 Barrier 번호 정렬 대기
-        │
-   [비동기 상태 스냅샷] 연산자가 로컬 RocksDB State를 복사하여 백그라운드로 S3/HDFS에 비동기 업로드
-        │
-   [Barrier 하류 전파] Barrier를 다음 Downstream 연산자로 전달
-        │
-   모든 연산자의 스냅샷 완료 ACK를 수신한 JobManager가 최신 체크포인트 메타데이터를 영구 확정
+[주기적 체크포인트 스냅샷 경로] (진행 ①→⑤, Barrier 정렬 후 비동기 상태 업로드)
+  │
+  ├─ [Barrier 주입] (① JobManager 지시로 Source 연산자가 이벤트 스트림 사이에 Checkpoint Barrier 삽입)
+  │
+  ├─ [입력 정렬] (② 다중 입력 채널 연산자가 모든 채널의 동일 Barrier 번호 정렬 대기)
+  │
+  ├─ [비동기 상태 스냅샷] (③ 연산자가 로컬 RocksDB State를 복사해 S3/HDFS에 백그라운드 비동기 업로드)
+  │
+  ├─ [Barrier 하류 전파] (④ Barrier를 다음 Downstream 연산자로 전달)
+  │
+  └─ [체크포인트 확정] (⑤ 전 연산자의 스냅샷 완료 ACK를 수신한 JobManager가 최신 체크포인트 메타데이터 영구 확정)
 ```
+
+분기 결과: Barrier를 흘려보내 비동기로 스냅샷을 떠 처리를 멈추지 않고 정합성을 얻지만, 입력 정렬을 기다리는 구간에서는 가장 느린 채널 하나가 체크포인트 전체를 지연시키므로 병목 채널이 주기 비용을 결정한다
 
 #### 한줄 요약
 - Barrier를 흘려보내 비동기로 스냅샷을 뜨기에 처리를 멈추지 않고도 정합성을 얻지만, 입력 정렬을 기다리는 구간에서는 가장 느린 경로 하나가 체크포인트 전체를 지연시킨다.
@@ -145,7 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 글로벌 금융 이상거래 탐지(FDS), 실시간 추천 및 초저지연 스트림 분석의 **가장 진보된 표준 상태 기반(Stateful) 스트림 처리 프레임워크**로 확립되었으며, 실무 운영 시에는 **워터마크 지연 데이터 누락을 방지하는 `allowedLateness` 및 Side Output 격리, 상태 메모리 폭증을 제어하는 State TTL과 증분 체크포인트(Incremental Checkpoint), 하류 병목으로 인한 Backpressure 해소를 위한 연산자 병렬도(Parallelism) 튜닝**을 결합하여 무중단 고성능 스트리밍 파이프라인을 완성
+- 글로벌 금융 이상거래 탐지(FDS), 실시간 추천 및 초저지연 스트림 분석의 **가장 진보된 표준 상태 기반(Stateful) 스트림 처리 프레임워크**로 확립.
+- 실무 운영 시에는 **워터마크 지연 데이터 누락을 방지하는 `allowedLateness` 및 Side Output 격리**, **상태 메모리 폭증을 제어하는 State TTL과 증분 체크포인트(Incremental Checkpoint)**, **하류 병목으로 인한 Backpressure 해소를 위한 연산자 병렬도(Parallelism) 튜닝**을 결합하여 무중단 고성능 스트리밍 파이프라인을 완성.
 
 #### 한줄 요약
 - 체크포인트 주기·상태 크기·허용 지연을 SLO에 맞춰 조정한다.

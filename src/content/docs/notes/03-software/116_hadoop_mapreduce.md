@@ -58,14 +58,17 @@ extra:
 </details>
 
 ```text
-[Apache Hadoop 생태계]
-├─ [분산 처리 계층]
-│  └─ MapReduce (Map·Shuffle·Reduce 배치)
-├─ [자원 관리 계층]
-│  └─ YARN (클러스터 자원·컨테이너 관리)
-└─ [분산 저장 계층 (HDFS)]
-   ├─ NameNode (메타데이터·블록 맵 관리)
-   └─ DataNode (실제 블록 저장·복제본 유지)
+[Apache Hadoop 생태계 체계]
+  │
+  ├─ [분산 처리 계층]
+  │     └─ [MapReduce] (Map·Shuffle·Reduce 배치)
+  │
+  ├─ [자원 관리 계층]
+  │     └─ [YARN] (클러스터 자원·컨테이너 관리)
+  │
+  └─ [분산 저장 계층 (HDFS)]
+        ├─ [NameNode] (메타데이터·블록 맵 관리)
+        └─ [DataNode] (실제 블록 저장·복제본 유지)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -89,18 +92,20 @@ extra:
 </details>
 
 ```text
-클라이언트가 MapReduce 대용량 배치 작업 제출
-        │
-   [입력 분할] HDFS 블록 단위로 InputSplit 생성 후 Data Locality 노드에 Mapper 할당
-        │
-   [Map 연산] 각 Mapper가 블록 데이터를 읽어 중간 `<Key, Value>` 쌍으로 변환 후 로컬 디스크 기록
-        │
-   [Shuffle & Sort] 동일한 Key를 가진 데이터들이 네트워크를 통해 특정 Reducer 노드로 이동 및 정렬
-        │
-   [Reduce 연산] Reducer가 정렬된 `<Key, List<Value>>` 집합을 받아 최종 집계 및 변환 연산 수행
-        │
-   [HDFS 기록] 결과를 설정된 복제 정책으로 저장
+[MapReduce 배치 처리 파이프라인] (진행 ①→⑤, Shuffle 후 집계·결과 저장)
+  │
+  ├─ [입력 분할] (① HDFS 블록 단위 InputSplit 생성 후 Data Locality 노드에 Mapper 할당)
+  │
+  ├─ [Map 연산] (② 각 Mapper가 블록 데이터를 읽어 중간 `<Key, Value>` 쌍으로 변환 후 로컬 디스크 기록)
+  │
+  ├─ [Shuffle & Sort] (③ 동일 Key 데이터들이 네트워크를 통해 특정 Reducer 노드로 이동 및 정렬)
+  │
+  ├─ [Reduce 연산] (④ Reducer가 정렬된 `<Key, List<Value>>` 집합을 받아 최종 집계·변환 연산 수행)
+  │
+  └─ [HDFS 기록] (⑤ 결과를 설정된 복제 정책으로 저장)
 ```
+
+분기 결과: Map과 Reduce 사이의 Shuffle만이 유일하게 네트워크를 가로지르는 구간이므로 중간 결과는 디스크 기록과 전송 비용을 동시에 치르며, 특정 키로 데이터가 쏠리면 해당 Reducer 하나가 병목이 되어 전체 작업 지연을 결정한다
 
 #### 한줄 요약
 - Map과 Reduce 사이의 Shuffle만이 유일하게 네트워크를 가로지르는 구간이므로, MapReduce의 성능 문제는 대개 연산량이 아니라 이 지점에 쏠린 키 편중에서 발생한다.
@@ -143,7 +148,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 빅데이터 분산 컴퓨팅의 효시이자 페타바이트급 대규모 배치 아카이빙 및 ETL의 **기초 표준 프레임워크**로 확립되었으며, 현대 데이터 엔지니어링 실무에서는 **단순 반복 디스크 배치는 점진적으로 인메모리 Spark로 전환하되, HDFS/오브젝트 스토리지 기반의 저비용 대용량 영속성 계층 활용, Shuffle 네트워크 병목을 완화하는 Combiner 및 Key Salting 설계, NameNode 메모리 고갈을 방지하는 Small File 병합(HAR/Parquet)**을 결합하여 배치 시스템의 효율성을 극대화
+- 빅데이터 분산 컴퓨팅의 효시이자 페타바이트급 대규모 배치 아카이빙 및 ETL의 **기초 표준 프레임워크**로 확립.
+- 현대 데이터 엔지니어링 실무에서는 **단순 반복 디스크 배치는 점진적으로 인메모리 Spark로 전환**, **HDFS/오브젝트 스토리지 기반의 저비용 대용량 영속성 계층 활용**, **Shuffle 네트워크 병목을 완화하는 Combiner 및 Key Salting 설계**, **NameNode 메모리 고갈을 방지하는 Small File 병합(HAR/Parquet)**을 결합하여 배치 시스템의 효율성을 극대화.
 
 #### 한줄 요약
 - Hadoop은 HDFS의 분산 내구성과 MapReduce의 병렬 연산 모델을 통해 빅데이터 배치의 신뢰성을 완성하는 분산 컴퓨팅의 기초 프레임워크다.

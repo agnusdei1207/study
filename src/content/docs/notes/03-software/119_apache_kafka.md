@@ -58,15 +58,18 @@ extra:
 </details>
 
 ```text
-[Apache Kafka 아키텍처]
-├─ [발행 계층 (Producer)]
-│  └─ 메시지 키 기반 파티셔너 라우팅
-├─ [브로커 클러스터 (Broker Cluster)]
-│  ├─ KRaft 컨트롤러 (쿼럼 메타데이터 관리)
-│  ├─ Topic & Partition (Append-Only 로그)
-│  └─ ISR 복제본 (Leader-Follower 동기화)
-└─ [소비 계층 (Consumer Group)]
-   └─ 파티션 1:1 매핑 병렬 소비 및 오프셋 관리
+[Apache Kafka 아키텍처 체계]
+  │
+  ├─ [발행 계층 (Producer)]
+  │     └─ [메시지 키 기반 파티셔너 라우팅]
+  │
+  ├─ [브로커 클러스터 (Broker Cluster)]
+  │     ├─ [KRaft 컨트롤러] (쿼럼 메타데이터 관리)
+  │     ├─ [Topic & Partition] (Append-Only 로그)
+  │     └─ [ISR 복제본] (Leader-Follower 동기화)
+  │
+  └─ [소비 계층 (Consumer Group)]
+        └─ [파티션 1:1 매핑 병렬 소비 및 오프셋 관리]
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -91,18 +94,20 @@ extra:
 </details>
 
 ```text
-클라이언트 프로듀서의 이벤트 발행 요청 (`acks=all`)
-        │
-   [파티션 라우팅] Producer가 Key 해시를 계산하여 대상 Broker의 Partition Leader로 전송
-        │
-   [리더 로그 기록] Partition Leader가 OS PageCache 디스크 로그 끝에 순차 추가 (Append-Only)
-        │
-   [ISR 복제] 팔로워 브로커들이 리더로부터 변경 오프셋을 즉시 Fetch하여 로컬 복제
-        │
-   [ACK 판정] 현재 ISR의 복제 확인 후 리더가 Producer에 ACK 반환
-        │
-   컨슈머 그룹이 최신 High Watermark 오프셋을 읽어 비즈니스 로직을 병렬 소비
+[이벤트 발행·복제·소비 경로] (진행 ①→⑤, `acks=all` 발행, ISR 복제 확인 후 ACK·병렬 소비)
+  │
+  ├─ [파티션 라우팅] (① Producer가 Key 해시를 계산해 대상 Broker의 Partition Leader로 전송)
+  │
+  ├─ [리더 로그 기록] (② Partition Leader가 OS PageCache 디스크 로그 끝에 순차 추가)
+  │
+  ├─ [ISR 복제] (③ 팔로워 브로커들이 리더의 변경 오프셋을 즉시 Fetch해 로컬 복제)
+  │
+  ├─ [ACK 판정] (④ 현재 ISR의 복제 확인 후 리더가 Producer에 ACK 반환)
+  │
+  └─ [병렬 소비] (⑤ 컨슈머 그룹이 최신 High Watermark 오프셋을 읽어 비즈니스 로직 병렬 소비)
 ```
+
+분기 결과: ACK를 리더 기록 시점에 돌려줄지 ISR 복제 완료까지 기다릴지가 이 경로의 유일한 조절 지점이므로, 발행 지연을 줄이는 선택은 장애 시 유실 가능성을, 복제까지 기다리는 선택은 발행 지연을 각각 치른다
 
 #### 한줄 요약
 - ACK를 리더 기록 시점에 돌려줄지 ISR 복제 완료까지 기다릴지가 이 경로의 유일한 조절 지점이므로, 발행 지연을 줄이는 선택과 장애 시 유실을 없애는 선택이 여기서 갈린다.
@@ -145,7 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 이벤트 주도 아키텍처(EDA), 실시간 데이터 파이프라인 및 분산 메시징의 **글로벌 백본(Backbone) 플랫폼**으로 확립되었으며, 엔터프라이즈 운영 시에는 **데이터 유실 0을 보장하는 `acks=all` 및 `min.insync.replicas=2` 설정, 파티션별 순서 보장과 멱등성(Idempotent Producer) 활성화, 컨슈머 리밸런싱 중단을 최소화하는 협력적 스티키(Cooperative Sticky) 프로토콜 및 실시간 Consumer Lag 모니터링**을 결합하여 고가용성과 데이터 완결성을 동시 확보
+- 현대 이벤트 주도 아키텍처(EDA), 실시간 데이터 파이프라인 및 분산 메시징의 **글로벌 백본(Backbone) 플랫폼**으로 확립.
+- 엔터프라이즈 운영 시에는 **데이터 유실 0을 보장하는 `acks=all` 및 `min.insync.replicas=2` 설정**, **파티션별 순서 보장과 멱등성(Idempotent Producer) 활성화**, **컨슈머 리밸런싱 중단을 최소화하는 협력적 스티키(Cooperative Sticky) 프로토콜 및 실시간 Consumer Lag 모니터링**을 결합하여 고가용성과 데이터 완결성을 동시 확보.
 
 #### 한줄 요약
 - Apache Kafka는 디스크 순차 로그와 Zero-Copy 전송을 기반으로 초고성능 이벤트 스트리밍과 메시지 재생을 실현하는 현대 분산 데이터 인프라의 핵심 플랫폼이다.

@@ -58,16 +58,19 @@ extra:
 </details>
 
 ```text
-[Apache Spark 클러스터 아키텍처]
-├─ [드라이버 프로그램 (Driver)]
-│  ├─ SparkSession (진입점)
-│  ├─ Catalyst Optimizer (쿼리 최적화)
-│  └─ DAG Scheduler (Stage/Task 분할)
-├─ [클러스터 관리자 (Cluster Manager)]
-│  └─ YARN / Kubernetes (자원 할당)
-└─ [워커 노드 (Worker Nodes)]
-   ├─ Executor (태스크 병렬 실행)
-   └─ RDD BlockManager (인메모리 캐시)
+[Apache Spark 클러스터 아키텍처 체계]
+  │
+  ├─ [드라이버 프로그램 (Driver)]
+  │     ├─ [SparkSession] (진입점)
+  │     ├─ [Catalyst Optimizer] (쿼리 최적화)
+  │     └─ [DAG Scheduler] (Stage/Task 분할)
+  │
+  ├─ [클러스터 관리자 (Cluster Manager)]
+  │     └─ [YARN / Kubernetes] (자원 할당)
+  │
+  └─ [워커 노드 (Worker Nodes)]
+        ├─ [Executor] (태스크 병렬 실행)
+        └─ [RDD BlockManager] (인메모리 캐시)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -91,18 +94,20 @@ extra:
 </details>
 
 ```text
-DataFrame / Spark SQL 쿼리 선언
-        │
-   [논리 계획 수립] 파서와 카탈로그를 통해 Unresolved Plan을 Analyzed Logical Plan으로 변환
-        │
-   [Catalyst 최적화] Filter Pushdown 및 Column Pruning을 적용하여 최적화된 논리 계획 도출
-        │
-   [물리 계획 생성] 브로드캐스트 해시 조인 등 최소 비용 물리 전략 선택 및 Stage 분할
-        │
-   [Tungsten 코드 생성] JVM 바이트코드를 런타임 동적 컴파일(Whole-Stage CodeGen)
-        │
-   Executor 메모리 상에서 Task 병렬 실행 및 AQE 기반 런타임 파티션 동적 보정
+[DataFrame / Spark SQL 쿼리 실행 경로] (진행 ①→⑤, 최적화 후 Stage 단위 병렬 실행)
+  │
+  ├─ [논리 계획 수립] (① 파서·카탈로그를 통해 Unresolved Plan을 Analyzed Logical Plan으로 변환)
+  │
+  ├─ [Catalyst 최적화] (② Filter Pushdown·Column Pruning 적용으로 최적화된 논리 계획 도출)
+  │
+  ├─ [물리 계획 생성] (③ 브로드캐스트 해시 조인 등 최소 비용 물리 전략 선택 및 Stage 분할)
+  │
+  ├─ [Tungsten 코드 생성] (④ JVM 바이트코드를 런타임 동적 컴파일(Whole-Stage CodeGen))
+  │
+  └─ [병렬 실행] (⑤ Executor 메모리에서 Task 병렬 실행 및 AQE 기반 런타임 파티션 동적 보정)
 ```
+
+분기 결과: 지연 평가 덕분에 최적화기가 전체 계획을 한 번에 보고 연산을 재배치할 수 있지만, 결과를 드라이버로 끌어오는 Action이 끼어드는 순간 최적화 범위는 거기서 잘리고 셔플·네트워크 비용이 그 경계에서 실현된다
 
 #### 한줄 요약
 - 지연 실행 덕분에 최적화기가 전체 계획을 한꺼번에 보고 연산을 재배치할 수 있지만, 결과를 드라이버로 끌어오는 액션이 끼어드는 순간 그 최적화 범위는 거기서 잘린다.
@@ -145,7 +150,8 @@ DataFrame / Spark SQL 쿼리 선언
 
 ## Ⅶ. 결론
 
-- 현대 빅데이터 엔지니어링, 대규모 분산 데이터 파이프라인 및 AI/ML 데이터 전처리의 **사실상 표준(De-facto Standard) 인메모리 분산 컴퓨팅 엔진**으로 확립되었으며, 실무 운영 시에는 **Driver OOM을 유발하는 `collect()` 금지, 셔플 네트워크 병목을 완화하는 Broadcast Hash Join 및 Adaptive Query Execution(AQE) 런타임 최적화, GC 부하를 억제하는 Off-Heap 메모리 관리(Tungsten) 및 Kryo 직렬화**를 결합하여 대규모 클러스터 자원 효율성과 처리량을 극대화
+- 현대 빅데이터 엔지니어링, 대규모 분산 데이터 파이프라인 및 AI/ML 데이터 전처리의 **사실상 표준(De-facto Standard) 인메모리 분산 컴퓨팅 엔진**으로 확립.
+- 실무 운영 시에는 **Driver OOM을 유발하는 `collect()` 금지**, **셔플 네트워크 병목을 완화하는 Broadcast Hash Join 및 Adaptive Query Execution(AQE) 런타임 최적화**, **GC 부하를 억제하는 Off-Heap 메모리 관리(Tungsten) 및 Kryo 직렬화**를 결합하여 대규모 클러스터 자원 효율성과 처리량을 극대화.
 
 #### 한줄 요약
 - 재사용 데이터는 캐시하고 Wide 변환의 셔플 비용을 줄인다.

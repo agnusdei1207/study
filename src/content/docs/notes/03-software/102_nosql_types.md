@@ -58,19 +58,23 @@ extra:
 </details>
 
 ```text
-[NoSQL 4대 데이터 모델]
-├─ [Key-Value Store]
-│  ├─ O(1) 단순 키 룩업
-│  └─ 대표: Redis, DynamoDB
-├─ [Document Store]
-│  ├─ JSON/BSON 중첩 객체 저장
-│  └─ 대표: MongoDB, Couchbase
-├─ [Wide-Column Store]
-│  ├─ 동적 컬럼 패밀리·시계열 분산
-│  └─ 대표: Cassandra, HBase
-└─ [Graph Store]
-   ├─ 노드·간선 기반 고속 관계 순회
-   └─ 대표: Neo4j, Amazon Neptune
+[NoSQL 4대 데이터 모델 체계]
+  │
+  ├─ [Key-Value Store]
+  │     ├─ [O(1) 단순 키 룩업]
+  │     └─ [대표: Redis, DynamoDB]
+  │
+  ├─ [Document Store]
+  │     ├─ [JSON/BSON 중첩 객체 저장]
+  │     └─ [대표: MongoDB, Couchbase]
+  │
+  ├─ [Wide-Column Store]
+  │     ├─ [동적 컬럼 패밀리·시계열 분산]
+  │     └─ [대표: Cassandra, HBase]
+  │
+  └─ [Graph Store]
+        ├─ [노드·간선 기반 고속 관계 순회]
+        └─ [대표: Neo4j, Amazon Neptune]
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -94,18 +98,20 @@ extra:
 </details>
 
 ```text
-데이터 저장소 선정 의사결정 파이프라인
-        │
-   [단순 Key 기반 초고속 읽기/쓰기가 필요한가?] ──예──► Key-Value Store (Redis)
-        │ 아니오
-   [중첩된 복합 도메인 객체와 유연한 스키마가 필요한가?] ──예──► Document Store (MongoDB)
-        │ 아니오
-   [대규모 시계열/로그 데이터의 초당 수만 건 쓰기가 필요한가?] ──예──► Wide-Column (Cassandra)
-        │ 아니오
-   [다단계 관계 순회(Graph Traversal)와 경로 탐색이 필요한가?] ──예──► Graph Store (Neo4j)
-        │ 아니오
-   엄격한 다중 테이블 Join과 ACID가 필수인가? ──────► 관계형 RDBMS (PostgreSQL)
+[데이터 저장소 선정 파이프라인] (진행 ①→④ 순차 판정, 전부 아니오 시 RDBMS로 수렴)
+  │
+  ├─ [Key-Value Store] (① O(1) 단순 키 초고속 읽기·쓰기 필요, Redis)
+  │
+  ├─ [Document Store] (② 중첩 복합 객체·유연한 스키마 필요, MongoDB)
+  │
+  ├─ [Wide-Column Store] (③ 초당 수만 건 시계열·로그 쓰기 필요, Cassandra)
+  │
+  ├─ [Graph Store] (④ 다단계 관계 순회·경로 탐색 필요, Neo4j)
+  │
+  └─ [관계형 RDBMS] (①~④ 모두 부정 시 최종 선택, PostgreSQL)
 ```
+
+분기 결과: 질문은 '예'를 얻는 즉시 남은 판정을 건너뛰므로 첫 번째로 만족된 접근 패턴이 모델을 고정하며, 이후 접근 패턴이 바뀌면 질의 수정이 아니라 기존 적재 데이터의 재적재 비용을 치른다
 
 #### 한줄 요약
 - 모델 선택은 데이터의 모양이 아니라 질의 패턴에서 결정되므로, 접근 패턴이 나중에 바뀌면 RDBMS처럼 질의만 고치는 것으로 끝나지 않고 데이터를 다시 적재해야 하는 비용이 발생한다.
@@ -148,7 +154,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 분산 클라우드 아키텍처 및 대용량 데이터 처리의 **핵심 비관계형 영속성 모델**로 확립되었으며, 실무 구축 시에는 **단일 만능 DB 사상을 탈피하여 RDBMS(결제/원장)와 함께 Key-Value(캐시/세션: Redis), Document(카탈로그/콘텐츠: MongoDB), Wide-Column(시계열/로그: Cassandra), Graph(추천/관계망: Neo4j)를 유기적으로 조합하는 폴리글랏 지속성(Polyglot Persistence) 전략**을 수립하여 시스템 확장성과 개발 민첩성을 극대화
+- 현대 분산 클라우드 아키텍처 및 대용량 데이터 처리의 **핵심 비관계형 영속성 모델**로 확립.
+- 실무 구축 시에는 **단일 만능 DB 사상 탈피**, **RDBMS(결제/원장)와 함께 Key-Value(캐시/세션: Redis), Document(카탈로그/콘텐츠: MongoDB), Wide-Column(시계열/로그: Cassandra), Graph(추천/관계망: Neo4j)의 유기적 조합**, **폴리글랏 지속성(Polyglot Persistence) 전략 수립**을 결합하여 시스템 확장성과 개발 민첩성을 극대화.
 
 #### 한줄 요약
 - 4대 NoSQL 모델은 데이터 구조와 접근 패턴에 특화된 비관계형 솔루션이며, 폴리글랏 아키텍처를 통해 최적의 시스템 확장을 실현한다.
