@@ -89,20 +89,22 @@ extra:
 </details>
 
 ```text
-개발자가 배포 매니페스트 Git 저장소에 PR 병합 (예: image.tag: v2.0)
-        │
-   ArgoCD가 Webhook 또는 Polling을 통해 Git 신규 커밋 감지
-        │
-   Git 목표 상태(v2.0)와 클러스터 실제 상태(v1.0)를 비교하여 OutOfSync 판정
-        │
-   K8s API Server를 호출하여 신규 ReplicaSet 생성 및 롤링 배포 수행
-        │
-   클러스터 상태가 목표 상태(v2.0)와 일치(Synced)됨을 확인
-        │
-   (누군가 수동으로 kubectl delete pod 실행 시)
-   ┌────┴─────┐
-   │ 즉각 자가 치유(Self-Healing) 작동하여 Git 매니페스트 기준으로 원상 복구
+[GitOps 동기화 흐름] (진행 ①→⑥, 수동 조작 발생 시 자가 치유 갈래로 수렴)
+  │
+  ├─ [매니페스트 병합] (① 개발자가 배포 Git 저장소에 PR 병합(image.tag v2.0 등))
+  │
+  ├─ [커밋 감지] (② ArgoCD가 Webhook 또는 Polling으로 Git 신규 커밋 감지)
+  │
+  ├─ [Drift 판정] (③ Git 목표 상태(v2.0)와 클러스터 실제 상태(v1.0)를 비교, OutOfSync 판정)
+  │
+  ├─ [동기화 수행] (④ K8s API Server 호출로 신규 ReplicaSet 생성·롤링 배포)
+  │
+  ├─ [Synced 확인] (⑤ 클러스터 상태가 목표 상태(v2.0)와 일치(Synced)됨을 확인)
+  │
+  └─ [자가 치유] (⑥ 누군가 kubectl로 수동 조작 시 즉각 Self-Healing이 Git 매니페스트 기준으로 원상 복구)
 ```
+
+분기 결과: 조정 루프 판정에서 갈리므로, Git과 일치하는 갈래는 배포가 차이 수렴으로 끝나 감사 가능성을 얻는 반면, 수동 조작 갈래는 Self-Healing 복구가 즉시 작동해 사람의 임의 변경이 무효화된다
 
 #### 한줄 요약
 - 사람이 클러스터를 직접 바꿔도 조정 루프가 다시 Git 상태로 되돌리므로, 자가치유는 곧 수동 개입을 무효로 만드는 성질이기도 하다.

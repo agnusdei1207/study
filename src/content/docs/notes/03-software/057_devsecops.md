@@ -92,21 +92,22 @@ extra:
 </details>
 
 ```text
-개발자 Git 코드 커밋 시도 (Pre-commit: Secret 스캔 통과)
-        │
-   [CI 단계] SonarQube(SAST) 소스 분석 & Snyk(SCA) 오픈소스 CVE 스캔 실행
-        │
-   [패키징 단계] Docker 빌드 후 Trivy가 컨테이너 이미지 스캔 수행
-        │
-   Critical 취약점(CVSS >= 9.0) 또는 미승인 라이선스(GPL 등)가 발견되었는가?
-   ┌────┴─────┐
-  예           아니오
-   │             │
-[파이프라인 즉시 차단]  [CD 단계로 진행]
-보안 이슈 리포트 발행     ArgoCD가 K8s 클러스터에 배포 실행 (OPA Gatekeeper 검증)
-개발자에게 즉시 피드백    │
-                 [Ops 단계] OWASP ZAP(DAST) 동적 침투 및 Falco 런타임 감시
+[DevSecOps 보안 게이트 흐름] (진행 ①→⑥, CVSS 심각도·라이선스 판정에서 갈림)
+  │
+  ├─ [커밋 단계] (① Pre-commit이 Secret 스캔 통과 후 Git 코드 커밋)
+  │
+  ├─ [CI 단계] (② SonarQube(SAST) 소스 분석 & Snyk(SCA) 오픈소스 CVE 스캔 실행)
+  │
+  ├─ [패키징 단계] (③ Docker 빌드 후 Trivy가 컨테이너 이미지 스캔 수행)
+  │
+  ├─ [보안 게이트 판정] (④ Critical 취약점(CVSS 9.0 이상)·미승인 라이선스(GPL 등) 발견 시 Fail-Secure로 즉시 차단)
+  │
+  ├─ [CD 단계] (⑤ 통과 시 ArgoCD가 K8s 클러스터에 배포 실행, OPA Gatekeeper로 정책 검증)
+  │
+  └─ [Ops 단계] (⑥ OWASP ZAP(DAST) 동적 침투 및 Falco 런타임 감시, 이상이면 보안 이슈 리포트와 함께 개발자 피드백)
 ```
+
+분기 결과: 보안 게이트에서 갈리므로, 미승인·심각도 발견 갈래는 빌드를 즉각 차단해 취약 코드의 운영 유입 비용을 막는 대신, 오탐이 반복되면 개발 흐름이 멈추는 대기 비용이 함께 커진다
 
 #### 한줄 요약
 - 커밋·CI·CD·운영 네 지점은 각각 다른 결함을 잡으므로, 앞 지점에서 막을수록 수정은 싸지지만 오탐으로 개발을 멈추는 비용은 함께 커진다.

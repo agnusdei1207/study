@@ -92,18 +92,18 @@ extra:
 </details>
 
 ```text
-Istiod가 xDS gRPC 프로토콜로 Envoy에 라우팅 룰 및 mTLS 인증서 배포
-        │
-   주문 서비스가 결제 서비스로 HTTP 호출 (iptables에 의해 Envoy로 가로채짐)
-        │
-   발신 Envoy가 결제 Envoy와 상호 X.509 인증서 검증 및 mTLS 암호화 터널 수립
-        │
-   발신 Envoy가 카나리 가중치(90:10)에 맞춰 목적지 결제 Pod 선택 및 전달
-        │
-   수신 Envoy가 권한 정책(AuthorizationPolicy) 검증 후 결제 컨테이너로 전달
-        │
-   양측 Envoy가 Jaeger로 분산 트레이싱 Span 데이터 비동기 전송
+[서비스 메시 요청 경유 흐름] (진행 ①→④, 응답은 mTLS 터널 역순 반환)
+  │
+  ├─ [Istiod] (① xDS gRPC로 Envoy에 라우팅 룰·mTLS 인증서 배포)
+  │
+  ├─ [발신 Envoy] (② 주문 서비스 HTTP 호출을 iptables로 가로채 결제 Envoy와 상호 X.509 검증·mTLS 터널 수립)
+  │
+  ├─ [수신 Envoy] (③ 카나리 가중치 90:10으로 결제 Pod 선정, AuthorizationPolicy 검증 후 컨테이너 전달)
+  │
+  └─ [Jaeger] (④ 양측 Envoy의 분산 트레이싱 Span 데이터 비동기 전송)
 ```
+
+분기 결과: 카나리 가중치가 90:10으로 갈라 신규 Pod에는 10% 트래픽만 실리고 문제 감지 시 나머지도 기존 경로로 회귀하며, 홉마다 mTLS·인가 검증이 반복되는 고정 비용이 서비스 코드에는 노출되지 않는다
 
 #### 한줄 요약
 - mTLS 수립과 인가 검증이 홉마다 반복되는 고정 비용이지만, 그 대가로 서비스 코드는 인증서와 정책을 전혀 알지 않아도 된다.
@@ -112,7 +112,7 @@ Istiod가 xDS gRPC 프로토콜로 Envoy에 라우팅 룰 및 mTLS 인증서 배
 
 <details><summary>용어 설명</summary>
 
-- **사이드카 모드 vs 앰비언트 메시(Ambient Mesh)**: Pod마다 프록시를 띄우는 전통 방식과 노드당 L4 프록시(ztunnel)와 선택적 Waypoint(L7)를 쓰는 차세대 무사이드카(Sidecarless) 방식.
+- **사이드카 모드 vs 앰비언트 메시(Ambient Mesh)**: Pod마다 프록시를 띄우는 전통 방식과 노드당 L4 프록시(ztunnel)와 선택적 Waypoint(L7)를 사용하는 차세대 무사이드카(Sidecarless) 방식.
 
 </details>
 
