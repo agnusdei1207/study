@@ -100,33 +100,20 @@ extra:
 </details>
 
 ```text
-[시스템 통신 매트릭스 및 DBC/LDF 기반 ARXML 시스템 모델링]
-                         │
-                         ▼
-1. ECU 추출 파일(ECU Extract) 기반 타깃 MCU 및 BSW 모듈 파라미터 구성
-                         │
-                         ▼
-2. AUTOSAR 코드 생성기(Code Generator)를 통한 RTE 및 BSW C 소스 코드 자동 빌드
-                         │
-                         ▼
-3. 제어 알고리즘 SWC 코드와 생성된 BSW/MCAL 바이너리 통합 정적 링크
-                         │
-                         ▼
-4. 컴파일 바이너리 ECU 플래시 메모리 기록 및 OSEK/VDX OS 부팅
-                         │
-                         ▼
-5. RTE 스케줄러에 의한 러너블(Runnable Entity) 주기적 디스패치 및 MCAL 구동
+[AUTOSAR 모델링·생성·기동 경로] (진행 ①→⑤, ARXML 모델링 변경 시 코드 재생성만으로 갱신 완수, SWC 비즈니스 로직은 타깃 MCU 교체에도 재사용)
+  │
+  ├─ [ARXML 시스템 모델·ECU 추출(ECU Extract)] (① OEM 통신 매트릭스 기반 단일 ECU 분할 후 타깃 MCU·BSW 모듈 파라미터 구성)
+  │
+  ├─ [AUTOSAR 코드 생성기] (② ARXML 파싱으로 SWC-BSW 결합 최적화 RTE·BSW C 소스 코드 자동 생성)
+  │
+  ├─ [크로스 컴파일러] (③ 제어 알고리즘 SWC 코드와 생성 BSW/RTE/MCAL 코드의 통합 정적 링크 빌드)
+  │
+  ├─ [ECU 플래시·OSEK/VDX OS] (④ 완성 바이너리 플래시 기록 후 OS 부팅 및 타이머 틱 공급)
+  │
+  └─ [RTE 스케줄러·MCAL] (⑤ SWC 러너블(Runnable Entity) 주기 디스패치, 표준 계층 우회 시 CDD가 MCU 레지스터 직접 구동)
 ```
 
-- 분기 결과: 모델링 변경 시 ARXML 수정과 코드 재성성만으로 소프트웨어가 갱신되며, SWC 비즈니스 로직은 타깃 MCU 교체 시에도 재사용됨
-
-**동작 원리**
-
-1. OEM의 통신 매트릭스 및 인터페이스 요구사항 기반 ARXML 표준 메타모델 정의 및 Tier-1 부품사 전달
-2. 타깃 MCU 사양에 맞춘 OS 태스크 주기, CAN 통신 버퍼, NVRAM 블록 등 세부 BSW 파라미터 구성
-3. AUTOSAR 코드 생성 툴의 ARXML 파싱을 통한 SWC-BSW 결합 최적화 RTE C 소스 코드 자동 생성
-4. 제어 알고리즘 SWC 소스 코드와 자동 생성 BSW/RTE/MCAL 코드의 크로스 컴파일러 통합 정적 빌드
-5. 완성 바이너리 ECU 플래시 기록 후 OS 타이머 틱 기반 SWC 러너블(Runnable) 주기 호출 및 MCAL 하드웨어 제어
+분기 결과: 모델링 변경 시 ARXML 수정과 코드 재생성만으로 소프트웨어가 갱신되며, SWC 비즈니스 로직은 타깃 MCU 교체 시에도 재사용됨
 
 #### 한줄 요약
 - 계층화는 하드웨어 교체 비용을 RTE 재생성으로 흡수하는 대신 ARXML 설정과 툴체인 복잡도를 새로 떠안으므로, 재사용할 ECU 자산이 많을수록 그 고정 비용이 회수된다.
@@ -140,7 +127,7 @@ extra:
 | 한계 | 정적 빌드 구조로 인한 동적 서비스 갱신 불가 및 대규모 비전/AI 연산 처리 한계 | POSIX 지연으로 마이크로초 단위 하드 실시간 보장 불가 및 고사양 고비용 하드웨어 필수 |
 
 #### 한줄 요약
-- 딥 임베디드 실시간 제어에는 Classic Platform이 쓰이고, 자율주행 및 SDV 중앙 집중형 제어기에는 Adaptive Platform이 쓰인다.
+- 딥 임베디드 실시간 제어에는 Classic Platform이 사용되고, 자율주행 및 SDV 중앙 집중형 제어기에는 Adaptive Platform이 사용된다.
 
 ## Ⅵ. 실무 고려사항 및 대책
 
