@@ -61,17 +61,17 @@ extra:
 [TCP 4-Way Handshake 연결 해제 체계]
   │
   ├─ [능동 종료 호스트 (Active Close)] (송신 채널 선제 종료)
-  │     ├─ FIN_WAIT_1 (자체 FIN 전송 후 상대 ACK 대기)
-  │     ├─ FIN_WAIT_2 (상대 ACK 수신 후 상대 FIN 대기)
-  │     └─ TIME_WAIT (상대 FIN에 최종 ACK 전송 후 2MSL 대기)
+  │     ├─ [FIN_WAIT_1] (자체 FIN 전송 후 상대 ACK 대기)
+  │     ├─ [FIN_WAIT_2] (상대 ACK 수신 후 상대 FIN 대기)
+  │     └─ [TIME_WAIT] (상대 FIN에 최종 ACK 전송 후 2MSL 대기)
   │
   ├─ [수동 종료 호스트 (Passive Close)] (수신 및 잔여 처리)
-  │     ├─ CLOSE_WAIT (상대 FIN 수신 후 잔여 데이터 송신 처리)
-  │     └─ LAST_ACK (자체 FIN 전송 후 최종 ACK 수신 대기)
+  │     ├─ [CLOSE_WAIT] (상대 FIN 수신 후 잔여 데이터 송신 처리)
+  │     └─ [LAST_ACK] (자체 FIN 전송 후 최종 ACK 수신 대기)
   │
   └─ [정합성 및 자원 회수 제어] (Reliability & Clean-up)
-        ├─ Half-Close 메커니즘 (단방향 송신 채널만 독립 폐쇄)
-        └─ 2MSL 타이머 (지연 패킷 소멸 대기 및 최종 ACK 유실 대비)
+        ├─ [Half-Close 메커니즘] (단방향 송신 채널만 독립 폐쇄)
+        └─ [2MSL 타이머] (지연 패킷 소멸 대기 및 최종 ACK 유실 대비)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -95,27 +95,16 @@ extra:
 </details>
 
 ```text
-TCP 4-Way Handshake 연결 해제 파이프라인
-        │
-   1. [능동 FIN 전송] 클라이언트 `close()` 호출 -> FIN(Seq=u) 전송 [클라이언트: FIN_WAIT_1]
-        │
-   2. [수동 ACK 회신] 서버가 ACK(Ack=u+1) 전송 [서버: CLOSE_WAIT, 클라이언트: FIN_WAIT_2]
-        │
-   3. [수동 FIN 전송] 서버 애플리케이션 잔여 데이터 송신 완료 후 FIN(Seq=v) 전송 [서버: LAST_ACK]
-        │
-   4. [능동 최종 ACK 전송] 클라이언트가 ACK(Ack=v+1) 회신 [클라이언트: TIME_WAIT 진입]
-   ┌────┴───────────────────────────┐
-  서버 측 즉시 CLOSED 전이          클라이언트 2MSL 타이머 만료
-   │                                 │
-   ▼                                 ▼
-[서버 소켓 자원 회수 완료]          [클라이언트 소켓 완전 해제 (CLOSED)]
+[TCP 연결 해제 4-Way Handshake 흐름] (진행 ①→④, 진입, ④ 이후 능동 측 2MSL 대기로 완전 종료)
+  │
+  ├─ [능동 종료 호스트] (① close()로 FIN(Seq=u) 전송·FIN_WAIT_1, ② ACK 수신·FIN_WAIT_2, ④ 최종 ACK 회신 후 TIME_WAIT 진입)
+  │
+  ├─ [수동 종료 호스트] (② ACK(Ack=u+1) 회신·CLOSE_WAIT, ③ 잔여 데이터 송신 완료 후 FIN(Seq=v) 전송·LAST_ACK)
+  │
+  └─ [2MSL 타이머] (④ TIME_WAIT 구간 동안 지연 패킷 소멸 대기 및 재전송 FIN에 재응답)
 ```
 
-#### 동작 원리
-- 1. 능동 FIN 전송: 능동 측의 **송신 채널 종료**
-- 2. 수동 ACK 회신: 반쪽 종료 후 **잔여 데이터 송신**
-- 3. 수동 FIN 전송: 수동 측의 **송신 채널 종료**
-- 4. 능동 최종 ACK 전송: **TIME_WAIT 진입**
+분기 결과: **4-Way 핸드셰이크 4단계**가 끝나도 두 종단의 종료 시점은 갈라져, 수동 측은 최종 ACK 수신 즉시 CLOSED로 소켓 자원을 회수하지만 능동 측은 2MSL 타이머를 더 버티며 최종 ACK 유실에 대비한 FIN 재전송 응답 의무를 떠안는다.
 
 ## Ⅴ. 종류 및 비교
 
@@ -155,7 +144,8 @@ TCP 4-Way Handshake 연결 해제 파이프라인
 
 ## Ⅶ. 결론
 
-- TCP 프로토콜의 신뢰성 있는 세션 생애주기를 완결하고 시스템 소켓/포트 자원을 안전하게 회수하는 **가장 본질적인 전송 계층 연결 종료 표준 메커니즘**으로 자리잡았으며, 실무 운영 시에는 **대규모 마이크로서비스 및 웹 환경에서 빈번한 종료로 인한 TIME_WAIT 임시 포트 고갈을 방지하는 HTTP Keep-Alive/커넥션 풀링(Connection Pooling)과 소켓 SO_REUSEADDR 적용, 애플리케이션 버그로 인한 파일 디스크립터(FD) 누수를 막는 철저한 CLOSE_WAIT 예외 처리(Try-with-resources)**를 결합하여 안정적인 시스템 자원 관리를 완성
+- TCP 프로토콜의 신뢰성 있는 세션 생애주기를 완결하고 시스템 소켓/포트 자원을 안전하게 회수하는 **가장 본질적인 전송 계층 연결 종료 표준 메커니즘**으로 자리잡음.
+- 실무 운영 시에는 **대규모 마이크로서비스 및 웹 환경에서 빈번한 종료로 인한 TIME_WAIT 임시 포트 고갈을 방지하는 HTTP Keep-Alive/커넥션 풀링(Connection Pooling)과 소켓 SO_REUSEADDR 적용**, **애플리케이션 버그로 인한 파일 디스크립터(FD) 누수를 막는 철저한 CLOSE_WAIT 예외 처리(Try-with-resources)**를 결합하여 안정적인 시스템 자원 관리를 완성.
 
 #### 한줄 요약
 - TCP 4-Way Handshake는 FIN과 ACK 4단계 교환을 통해 양방향 데이터를 손실 없이 정리하고 소켓 자원을 안전하게 회수하는 핵심 연결 종료 기술이다.

@@ -62,17 +62,17 @@ extra:
 [TCP 3-Way Handshake 연결 수립 아키텍처]
   │
   ├─ [호스트 상태 전이부] (FSM Engine)
-  │     ├─ 클라이언트 상태 (CLOSED -> SYN_SENT -> ESTABLISHED)
-  │     └─ 서버 상태 (LISTEN -> SYN_RCVD -> ESTABLISHED)
+  │     ├─ [클라이언트 상태] (CLOSED -> SYN_SENT -> ESTABLISHED)
+  │     └─ [서버 상태] (LISTEN -> SYN_RCVD -> ESTABLISHED)
   │
   ├─ [커널 소켓 대기열] (Kernel Connection Queues)
-  │     ├─ SYN 큐 (Half-Open 상태 소켓 임시 보관, SYN Cookie 완화)
-  │     └─ Accept 큐 (3-Way 완료 소켓 보관, accept() 시스템콜 인계)
+  │     ├─ [SYN 큐] (Half-Open 상태 소켓 임시 보관, SYN Cookie 완화)
+  │     └─ [Accept 큐] (3-Way 완료 소켓 보관, accept() 시스템콜 인계)
   │
   └─ [동기화 매개변수 협상] (Parameter Negotiation)
-        ├─ ISN 동기화 (난수 기반 32비트 시작 순서 번호 합의)
-        ├─ MSS 협상 (경로 MTU 맞춤 최대 세그먼트 크기 결정)
-        └─ 전송 옵션 합의 (Window Scaling, SACK, 타임스탬프)
+        ├─ [ISN 동기화] (난수 기반 32비트 시작 순서 번호 합의)
+        ├─ [MSS 협상] (경로 MTU 맞춤 최대 세그먼트 크기 결정)
+        └─ [전송 옵션 합의] (Window Scaling, SACK, 타임스탬프)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -96,17 +96,18 @@ extra:
 </details>
 
 ```text
-TCP 3-Way Handshake 상태 머신
-        │
-   1. [SYN 전송] 클라이언트 -> 서버 (Seq=x, SYN=1) [클라이언트: SYN_SENT]
-        │
-   2. [SYN-ACK 응답] 서버 -> 클라이언트 (Seq=y, Ack=x+1, SYN=1, ACK=1) [서버: SYN_RCVD]
-        │
-   3. [최종 ACK 전송] 클라이언트 -> 서버 (Seq=x+1, Ack=y+1, ACK=1) [클라이언트: ESTABLISHED]
-        │
-    ▼
-[서버 연결 확정] 서버 Accept 큐 적재 및 ESTABLISHED 전이 후 양방향 데이터 통신 개시
+[TCP 연결 수립 3-Way Handshake 흐름] (진행 ①→③, 진입, ③ 최종 ACK 도달로 양방향 통신 개시)
+  │
+  ├─ [클라이언트 소켓] (① SYN(Seq=x) 전송 후 SYN_SENT 전이)
+  │
+  ├─ [서버 리슨 소켓] (② SYN-ACK(Seq=y, Ack=x+1) 응답 및 SYN_RCVD 전이)
+  │
+  ├─ [SYN 큐] (② 최종 ACK를 기다리는 Half-Open 소켓 임시 보관)
+  │
+  └─ [Accept 큐] (③ Ack=y+1 도달로 ESTABLISHED 적재 후 accept()에 인계)
 ```
+
+분기 결과: **TCP 상태 전이 3단계**의 갈래는 ③ 최종 ACK 도달 여부에서 열려, 도달하면 SYN 큐의 소켓이 Accept 큐로 승격돼 응용 인계까지 끝나지만 도달하지 못한 Half-Open 소켓은 SYN 큐에 누적되므로 SYN Flood 시 큐 고갈이 곧 신규 접속 거부가 된다.
 
 #### 한줄 요약
 - 클라이언트 SYN 전송 → 서버 SYN-ACK 응답 → 클라이언트 최종 ACK 전송 순으로 세션이 확립된다.
@@ -150,7 +151,8 @@ TCP 3-Way Handshake 상태 머신
 
 ## Ⅶ. 결론
 
-- 인터넷과 엔터프라이즈 환경에서 웹, 데이터베이스, API 통신을 지탱하는 **가장 기본적이고 확고한 전송 계층 연결 수립 표준 프로토콜**로 확립되었으며, 최근 1-RTT 지연을 줄이기 위해 TLS 1.3 0-RTT 및 UDP 기반 QUIC(HTTP/3)으로의 진화가 가속화되고 있는 한편, 전통적인 TCP 운영 시에는 **대규모 SYN Flood DoS 공격을 방어하는 Linux 커널 SYN Cookie(tcp_syncookies=1) 활성화, 패킷 단편화를 방지하는 MSS Clamping 설정, Half-Open 세션 누적을 제어하는 SYN-ACK 재시도 튜닝**을 결합하여 고가용성 네트워크 세션을 완성
+- 인터넷과 엔터프라이즈 환경에서 웹, 데이터베이스, API 통신을 지탱하는 **가장 기본적이고 확고한 전송 계층 연결 수립 표준 프로토콜**로 확립.
+- 최근 1-RTT 지연을 줄이기 위해 **TLS 1.3 0-RTT 및 UDP 기반 QUIC(HTTP/3)으로의 진화가 가속화되고 있는 한편**, 전통적인 TCP 운영 시에는 **대규모 SYN Flood DoS 공격을 방어하는 Linux 커널 SYN Cookie(tcp_syncookies=1) 활성화**, **패킷 단편화를 방지하는 MSS Clamping 설정**, **Half-Open 세션 누적을 제어하는 SYN-ACK 재시도 튜닝**을 결합하여 고가용성 네트워크 세션을 완성.
 
 #### 한줄 요약
 - TCP 3-Way Handshake는 SYN-ACK 3단계를 통해 양방향 도달성과 전송 옵션을 동기화하는 핵심 연결 수립 기술이다.

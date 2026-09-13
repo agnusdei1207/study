@@ -61,17 +61,17 @@ extra:
 [TCP 이중 전송 제어 아키텍처]
   │
   ├─ [흐름 제어부] ── Flow Control (수신단 보호)
-  │     ├─ 수신 버퍼 계측 (가용 공간 크기 측정)
-  │     └─ 수신 윈도우 통보 (rwnd 헤더 피드백)
+  │     ├─ [수신 버퍼 계측] (가용 공간 크기 측정)
+  │     └─ [수신 윈도우 통보] (rwnd 헤더 피드백)
   │
   ├─ [혼잡 제어부] ── Congestion Control (네트워크 보호)
-  │     ├─ 혼잡 윈도우 조절 (cwnd, Slow Start & AIMD)
-  │     ├─ 임계치 관리 (ssthresh 동적 갱신)
-  │     └─ 조기 혼잡 감지 (3 Dup ACK, ECN 마킹 수신)
+  │     ├─ [혼잡 윈도우 조절] (cwnd, Slow Start & AIMD)
+  │     ├─ [임계치 관리] (ssthresh 동적 갱신)
+  │     └─ [조기 혼잡 감지] (3 Dup ACK, ECN 마킹 수신)
   │
   └─ [유효 전송 제어] ── Effective Window Engine
-        ├─ 전송 상한 산출 (min(rwnd, cwnd) 계산)
-        └─ 파이프라인 송출 (슬라이딩 윈도우 패킷 방출)
+        ├─ [전송 상한 산출] (min(rwnd, cwnd) 계산)
+        └─ [파이프라인 송출] (슬라이딩 윈도우 패킷 방출)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -95,24 +95,20 @@ extra:
 </details>
 
 ```text
-TCP 이중 전송 제어 파이프라인
-        │
-   [유효 윈도우 계산] $\min(\text{rwnd}, \text{cwnd})$ 산출 후 패킷 연속 송출
-        │
-   [수신단 피드백 수신] 새로운 rwnd 및 ECN 신호 / ACK 수신
-   ┌────┴───────────────────────────┐
-  정상 수신 (ACK 연속 도착)       패킷 손실 또는 ECN 신호 감지
-   │                                 │
-   ├─ cwnd < ssthresh (Slow Start)      [혼잡 회피 발동]
-   │  • RTT마다 cwnd 2배 지수 증가       • ssthresh = cwnd / 2 설정
-   │                                 • 3 Dup ACK: Fast Retransmit & Recovery
-   └─ cwnd >= ssthresh (혼잡 회피)   • RTO Timeout: cwnd = 1 초기화
-      • RTT마다 1 MSS 선형 증가
-        │                                 │
-        └────────────────┬────────────────┘
-                         ▼
-   안정적인 종단 간 처리량 및 네트워크 공평성 유지
+[TCP 이중 전송 제어 흐름] (진행 ①→④, 산출에서 진입, ④ 피드백 신호 종류로 cwnd 갱신 분기)
+  │
+  ├─ [유효 윈도우 엔진] (① min(rwnd, cwnd) 산출 후 패킷 연속 송출)
+  │
+  ├─ [수신단 피드백] (② 새로운 rwnd·ECN 마킹·ACK 수신)
+  │
+  ├─ [ssthresh 임계치 관리기] (③ cwnd<ssthresh면 Slow Start로 RTT마다 2배, 이상이면 혼잡 회피로 1 MSS 선형 증가)
+  │
+  ├─ [Fast Retransmit/Recovery] (④ 3중 중복 ACK 감지 시 재전송, ssthresh=cwnd/2 설정 및 **AIMD** 곱셈 감소)
+  │
+  └─ [RTO 타이머] (④ 타임아웃 만료 시 cwnd=1로 초기화 후 Slow Start 재진입)
 ```
+
+분기 결과: 혼잠을 알아채는 신호가 ④ 갈래를 가르는데, 패킷 손실로 알아채면 이미 잃은 패킷의 재전송 비용까지 치르지만 ECN 갈래는 드롭 이전 마킹 통보로 같은 **AIMD** 감속을 재전송 없이 얻는다.
 
 #### 한줄 요약
 - 손실을 혼잡 신호로 삼는 갈래는 패킷 하나를 잃고서야 cwnd를 접지만, ECN 갈래는 드롭 이전에 통보를 받아 재전송 비용 없이 같은 감속을 얻는다.
@@ -155,7 +151,8 @@ TCP 이중 전송 제어 파이프라인
 
 ## Ⅶ. 결론
 
-- 글로벌 인터넷의 안정적인 동작과 통신 품질(QoS)을 지탱하는 **가장 핵심적이고 정교한 종단 간/네트워크 전송 제어 아키텍처**로 확립되었으며, 최근에는 단순 손실 기반(Loss-based: Reno/CUBIC)의 한계인 버퍼블로트(Bufferbloat) 문제를 극복하기 위해 실제 대역폭과 최소 RTT를 모델링하는 **Google BBR(Bottleneck Bandwidth and RTT) 및 ECN/AQM(FQ-CoDel) 기반 모델 기반 혼잡 제어로 진화함과 동시에, 실무 운영 시에는 rwnd 소켓 버퍼 오토튜닝과 BBR 알고리즘 결합**을 통해 고지연·대용량 링크의 전송 성능을 완성
+- 글로벌 인터넷의 안정적인 동작과 통신 품질(QoS)을 지탱하는 **가장 핵심적이고 정교한 종단 간/네트워크 전송 제어 아키텍처**로 확립.
+- 최근에는 단순 손실 기반(Loss-based: Reno/CUBIC)의 한계인 버퍼블로트(Bufferbloat) 문제를 극복하기 위해 실제 대역폭과 최소 RTT를 모델링하는 **Google BBR(Bottleneck Bandwidth and RTT) 및 ECN/AQM(FQ-CoDel) 기반 모델 기반 혼잡 제어로 진화함과 동시에**, 실무 운영 시에는 **rwnd 소켓 버퍼 오토튜닝과 BBR 알고리즘 결합**을 통해 고지연·대용량 링크의 전송 성능을 완성.
 
 #### 한줄 요약
 - TCP 흐름·혼잡 제어는 $\min(\text{rwnd}, \text{cwnd})$을 통해 수신 버퍼와 망 큐를 이중 보호하며, BBR과 AQM을 결합하여 버퍼블로트를 극복하는 핵심 전송 기술이다.

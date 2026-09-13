@@ -62,18 +62,18 @@ extra:
 [mTLS 상호 인증 아키텍처]
   │
   ├─ [신뢰 인프라] ── Trust Infrastructure
-  │     ├─ 공통 Root CA (사설 PKI / SPIFFE Trust Anchor)
-  │     └─ 인증서 발급 관리 (X.509 SVID 수명주기 갱신)
+  │     ├─ [공통 Root CA] (사설 PKI / SPIFFE Trust Anchor)
+  │     └─ [인증서 발급 관리] (X.509 SVID 수명주기 갱신)
   │
   ├─ [상호 엔드포인트] ── Mutual Endpoints
-  │     ├─ 클라이언트 워크로드 (Client Cert & 개인키 전자서명)
-  │     ├─ 서버 워크로드 (Server Cert & 개인키 키 교환)
-  │     └─ 신뢰 저장소 Trust Store (로컬 보관 Root CA 목록)
+  │     ├─ [클라이언트 워크로드] (Client Cert & 개인키 전자서명)
+  │     ├─ [서버 워크로드] (Server Cert & 개인키 키 교환)
+  │     └─ [신뢰 저장소 Trust Store] (로컬 보관 Root CA 목록)
   │
   └─ [암호 통신 채널] ── Secure Channel
-        ├─ 양방향 검증 (CertRequest / CertVerify 핸드셰이크)
-        ├─ 키 교환 (ECDHE 기반 임시 키 교환)
-        └─ 데이터 암호화 (AES-256-GCM 고속 대칭 암호화)
+        ├─ [양방향 검증] (CertRequest / CertVerify 핸드셰이크)
+        ├─ [키 교환] (ECDHE 기반 임시 키 교환)
+        └─ [데이터 암호화] (AES-256-GCM 고속 대칭 암호화)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -98,18 +98,18 @@ extra:
 </details>
 
 ```text
-mTLS 양방향 핸드셰이크 파이프라인
-        │
-   1. [ClientHello] 클라이언트가 지원 암호 스위트(ECDHE-RSA-AES-GCM) 및 TLS 버전 전송
-        │
-   2. [ServerHello & CertRequest] 서버 인증서 제시 및 `CertificateRequest`로 클라이언트 인증 요구
-        │
-   3. [서버 인증서 검증] 클라이언트가 Trust Store를 참조하여 서버 인증서 체인/만료 검증
-        │
-   4. [클라이언트 인증서 및 서명 송출] `Certificate` + 개인키 서명 `CertificateVerify` 전송
-        │
-   5. [서버 검증 및 보안 채널 확립] 서버가 클라이언트 서명 검증 -> AES-GCM 세션 키 암호화 통신 개시
+[mTLS 양방향 핸드셰이크 흐름] (진행 ①→⑤, 진입, ⑤ 상호 검증 통과 시에만 암호화 채널 개시)
+  │
+  ├─ [클라이언트 워크로드] (① ClientHello로 암호 스위트·TLS 버전 제안, ④ Certificate + CertificateVerify 개인키 서명 송출)
+  │
+  ├─ [서버 워크로드] (② ServerHello·서버 인증서 제시 후 CertificateRequest로 클라이언트 인증 요구, ⑤ 클라이언트 서명 검증)
+  │
+  ├─ [Trust Store] (③ 클라이언트가 공통 CA 체인으로 서버 인증서 유효성·만료 검증)
+  │
+  └─ [세션 키] (⑤ ECDHE 키 교환으로 AES-GCM 암호화 통신 개시)
 ```
+
+분기 결과: **mTLS 5단계 핸드셰이크**가 단방향 TLS와 갈리는 지점은 ② CertificateRequest로, 그 한 요구 때문에 클라이언트가 ④ 인증서 제시·개인키 서명 비용을 핸드셰이크마다 추가 치르고 ⑤ 서명 검증까지 통과해야만 채널이 열리며 어느 쪽 검증이든 실패하면 연결이 즉시 끊긴다.
 
 #### 한줄 요약
 - 단방향 TLS와 갈리는 지점은 서버가 `CertificateRequest`를 덧붙이는 2단계이며, 그 한 요구 때문에 클라이언트도 인증서 제시와 개인키 서명 검증 비용을 핸드셰이크마다 추가로 치른다.
@@ -152,7 +152,8 @@ mTLS 양방향 핸드셰이크 파이프라인
 
 ## Ⅶ. 결론
 
-- 클라우드 네이티브 쿠버네티스 환경과 서비스 메시(Istio/Linkerd), 마이크로서비스 및 금융/핀테크 오픈 API의 **가장 핵심적인 기계 대 기계(M2M) 제로트러스트 보안 표준 프로토콜**로 자리잡았으며, 실무 구축 시에는 **수백~수천 개 워크로드의 인증서 만료 사고를 방지하기 위해 SPIFFE/SPIRE 기반 SVID 자동 발급 및 단기 인증서(Short-Lived Cert) 자동 갱신 체계를 구축하고, L4/L7 인증(mTLS)과 L7 인가(OPA/RBAC 세부 권한 제어)를 분리 설계**하여 고가용성 보안 거버넌스를 완성
+- 클라우드 네이티브 쿠버네티스 환경과 서비스 메시(Istio/Linkerd), 마이크로서비스 및 금융/핀테크 오픈 API의 **가장 핵심적인 기계 대 기계(M2M) 제로트러스트 보안 표준 프로토콜**로 자리잡음.
+- 실무 구축 시에는 **수백~수천 개 워크로드의 인증서 만료 사고를 방지하기 위해 SPIFFE/SPIRE 기반 SVID 자동 발급 및 단기 인증서(Short-Lived Cert) 자동 갱신 체계를 구축하고**, **L4/L7 인증(mTLS)과 L7 인가(OPA/RBAC 세부 권한 제어)를 분리 설계**하여 고가용성 보안 거버넌스를 완성.
 
 #### 한줄 요약
 - mTLS는 양방향 X.509 인증서 검증을 통해 기계 신원을 보증하며, 서비스 메시 자동화와 결합하여 제로 트러스트를 실현하는 핵심 전송 보안 기술이다.

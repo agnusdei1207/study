@@ -61,19 +61,19 @@ extra:
 [포트 및 소켓 아키텍처]
   │
   ├─ [포트 분류 체계] ── 16비트 포트 체계 (0~65535)
-  │     ├─ 잘 알려진 포트 Well-Known (0~1023, HTTP/HTTPS 등)
-  │     ├─ 등록 포트 Registered (1024~49151, 사용자/벤더 등록)
-  │     └─ 동적/사설 포트 Dynamic (49152~65535, 클라이언트 임시)
+  │     ├─ [잘 알려진 포트 Well-Known] (0~1023, HTTP/HTTPS 등)
+  │     ├─ [등록 포트 Registered] (1024~49151, 사용자/벤더 등록)
+  │     └─ [동적/사설 포트 Dynamic] (49152~65535, 클라이언트 임시)
   │
   ├─ [소켓 추상화 엔진] ── Kernel Socket Subsystem
-  │     ├─ 5-튜플 식별자 (Proto, Src IP, Src Port, Dst IP, Dst Port)
-  │     ├─ 파일 디스크립터 FD (프로세스 내 소켓 파일 참조)
-  │     └─ 소켓 버퍼 (송수신 커널 링 버퍼)
+  │     ├─ [5-튜플 식별자] (Proto, Src IP, Src Port, Dst IP, Dst Port)
+  │     ├─ [파일 디스크립터 FD] (프로세스 내 소켓 파일 참조)
+  │     └─ [소켓 버퍼] (송수신 커널 링 버퍼)
   │
   └─ [서버 소켓 생명주기] ── Server Connection Handling
-        ├─ 리슨 소켓 Listen Socket (바인딩 및 SYN 연결 청취)
-        ├─ 백로그 큐 Backlog Queue (SYN/ESTABLISHED 대기 큐)
-        └─ 연결 소켓 Connected Socket (accept() 후 1:1 세션 전담)
+        ├─ [리슨 소켓 Listen Socket] (바인딩 및 SYN 연결 청취)
+        ├─ [백로그 큐 Backlog Queue] (SYN/ESTABLISHED 대기 큐)
+        └─ [연결 소켓 Connected Socket] (accept() 후 1:1 세션 전담)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -97,20 +97,18 @@ extra:
 </details>
 
 ```text
-POSIX 소켓 통신 수립 및 데이터 I/O 파이프라인
-        │
-   [socket()] 커널에 소켓 엔드포인트 구조체 및 FD 생성
-        │
-   [bind()] 서버의 로컬 IP 주소 및 서비스 포트(Port 80)를 소켓에 결합
-        │
-   [listen()] 수신 대기 모드로 전환하고 백로그 큐(`somaxconn`) 크기 지정
-        │
-   [accept()] 3-Way Handshake 완료 세션을 꺼내 신규 Connected Socket FD 반환
-        │
-   [read() / write()] 연결 소켓을 통해 양방향 전이중 데이터 스트림 송수신
-        │
-   [close()] 통신 완료 후 소켓 자원 및 FD 해제 (4-Way Handshake 개시)
+[POSIX 소켓 통신 수립·I/O 흐름] (진행 ①→⑥, 준비에서 진입, ④ accept 기점, ⑤ 데이터 I/O와 ⑥ close로 종결)
+  │
+  ├─ [커널 소켓 서브시스템] (① socket()으로 엔드포인트 구조체·FD 생성, ② bind()로 로컬 IP·포트 80 결합)
+  │
+  ├─ [리슨 소켓] (③ listen()으로 수신 대기 전환 및 백로그 큐 somaxconn 크기 지정)
+  │
+  ├─ [백로그 큐] (④ 3-Way Handshake 완료 세션 보관 후 accept()가 꺼내 신규 Connected FD 반환)
+  │
+  └─ [연결 소켓] (⑤ read()/write()로 양방향 전이중 스트림 송수신, ⑥ close()로 FD 해제·4-Way 개시)
 ```
+
+분기 결과: **POSIX 소켓 6단계 시스템 콜**은 ④ accept()를 기점으로 갈라져, 그 전까지는 포트당 하나뿐인 리슨 소켓과 백로그 큐가 모든 신규 접속을 대신 치르지만 그 후부터는 5-튜플별 연결 소켓 FD가 세션마다 독립 자원을 점유해 동시 접속 수만큼 커널 메모리 비용이 늘어난다.
 
 #### 한줄 요약
 - socket → bind → listen → accept 순으로 연결을 수립하고, 독립 연결 소켓으로 데이터를 송수신한다.
@@ -153,7 +151,8 @@ POSIX 소켓 통신 수립 및 데이터 I/O 파이프라인
 
 ## Ⅶ. 결론
 
-- 네트워크 하드웨어/커널 프로토콜 스택과 사용자 공간 애플리케이션을 매끄럽게 연결하는 **가장 기초적이면서도 핵심적인 운영체제 네트워크 I/O 표준 인터페이스**로 자리잡았으며, 실무 고성능 서버 구축 시에는 **C10K/C1000K 동시 접속 처리를 위한 epoll/kqueue 기반 논블로킹 비동기 이벤트 루프(Netty, Node.js, Nginx) 아키텍처 채택, OS 파일 디스크립터(ulimit -n) 및 백로그 큐(somaxconn) 확장, 임시 포트(Ephemeral Port) 고갈을 방지하는 커넥션 풀링**을 결합하여 고성능·고처리량 서버 인프라를 완성
+- 네트워크 하드웨어/커널 프로토콜 스택과 사용자 공간 애플리케이션을 매끄럽게 연결하는 **가장 기초적이면서도 핵심적인 운영체제 네트워크 I/O 표준 인터페이스**로 자리잡음.
+- 실무 고성능 서버 구축 시에는 **C10K/C1000K 동시 접속 처리를 위한 epoll/kqueue 기반 논블로킹 비동기 이벤트 루프(Netty, Node.js, Nginx) 아키텍처 채택**, **OS 파일 디스크립터(ulimit -n) 및 백로그 큐(somaxconn) 확장**, **임시 포트(Ephemeral Port) 고갈을 방지하는 커넥션 풀링**을 결합하여 고성능·고처리량 서버 인프라를 완성.
 
 #### 한줄 요약
 - 포트 번호와 소켓 통신은 16비트 식별자와 5-튜플 엔드포인트를 통해 다중 통신을 제어하며, epoll 논블로킹 I/O와 결합하여 고성능을 실현하는 핵심 통신 인터페이스다.

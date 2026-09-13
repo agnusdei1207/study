@@ -63,17 +63,17 @@ extra:
 [5G 슬라이스 식별 및 관리 체계]
   │
   ├─ [단말 요청 식별자] ── NSSAI Parameters
-  │     ├─ SST Slice/Service Type (8-bit, 서비스 유형 식별)
-  │     └─ SD Slice Differentiator (24-bit, 테넌트 분별자)
+  │     ├─ [SST Slice/Service Type] (8-bit, 서비스 유형 식별)
+  │     └─ [SD Slice Differentiator] (24-bit, 테넌트 분별자)
   │
   ├─ [E2E 슬라이스 인스턴스] ── NSI (End-to-End Slice)
-  │     ├─ SLA 보장 가상망 (단말부터 데이터망까지 E2E 결합)
-  │     └─ NSMF 총괄 관리 (수명주기 오케스트레이션)
+  │     ├─ [SLA 보장 가상망] (단말부터 데이터망까지 E2E 결합)
+  │     └─ [NSMF 총괄 관리] (수명주기 오케스트레이션)
   │
   └─ [도메인별 서브넷 인스턴스] ── NSSI (Subnet Slices)
-        ├─ RAN NSSI (무선 기지국 자원 및 가변 슬롯)
-        ├─ Transport NSSI (FlexE 및 SRv6 전송 터널)
-        └─ Core NSSI (AMF/SMF/UPF 가상화 코어 자원)
+        ├─ [RAN NSSI] (무선 기지국 자원 및 가변 슬롯)
+        ├─ [Transport NSSI] (FlexE 및 SRv6 전송 터널)
+        └─ [Core NSSI] (AMF/SMF/UPF 가상화 코어 자원)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -97,19 +97,18 @@ extra:
 </details>
 
 ```text
-S-NSSAI 기반 슬라이스 인스턴스 매핑 파이프라인
-        │
-   1. [S-NSSAI 요청 제출] 단말이 망 등록(Registration) 시 요청 S-NSSAI 목록 전송
-        │
-   2. [AMF / NSSF 검증] 가입자 UDM 프로파일을 대조하여 허용된 NSSAI(Allowed NSSAI) 결정
-        │
-   3. [가용 NSI 인스턴스 매핑] NSSF가 정책에 따라 최적의 E2E NSI 인스턴스 식별자 매핑
-        │
-   4. [NSSI 자원 정합성 확인] NSI를 구성하는 RAN/Transport/Core NSSI 정상 가용 상태 확인
-        │
-   ▼
-5. [PDU 세션 개통] 격리된 전용 UPF 경로를 통해 사용자 데이터 송수신 시작
+[S-NSSAI 슬라이스 바인딩 흐름] (진행 ①→⑤, 요청에서 진입, ①→③ 매핑, ④ 자원 정합성 확인, ⑤ PDU 세션 개통)
+  │
+  ├─ [단말 UE] (① 망 등록 시 요청 S-NSSAI 목록 제출)
+  │
+  ├─ [AMF·NSSF] (② UDM 가입자 프로파일 대조로 Allowed NSSAI 결정, ③ 정책상 최적 E2E NSI 매핑)
+  │
+  ├─ [NSSI 자원 풀] (④ NSI를 구성하는 RAN·Transport·Core 서브넷 정상 가용 확인)
+  │
+  └─ [전용 UPF 경로] (⑤ 격리된 PDU 세션으로 사용자 데이터 송수신 개시)
 ```
+
+분기 결과: **슬라이스 바인딩 5단계**의 갈래는 ② 검증에서 열려 Allowed NSSAI에 든 요청만 ③ 이후로 진행되고 탈락 요청은 기본 슬라이스로 강등되며, ④ 정합성 확인에서 Shared NSSI는 재사용으로 즉시 통과하지만 Dedicated NSSI는 신규 할당 비용을 더 치른다.
 
 #### 한줄 요약
 - S-NSSAI는 식별자일 뿐이어서 NSSF가 실제 NSI에 붙이기 전까지 아무 자원도 잡지 않으므로, 요청과 자원 사이의 한 겹 매핑이 슬라이스 재배치를 단말 설정 변경 없이 흡수한다.
@@ -147,7 +146,8 @@ S-NSSAI 기반 슬라이스 인스턴스 매핑 파이프라인
 
 ## Ⅶ. 결론
 
-- 5G/6G 네트워크 슬라이싱을 실무 시스템에서 실제로 구현하고 오케스트레이션하기 위한 가장 근본적이고 정교한 3GPP 표준 슬라이스 식별·조립·관리 프레임워크로 확립되었으며, 실무 망 운영 시에는 단말의 S-NSSAI 요청을 분석하여 최적의 인스턴스를 지정하는 NSSF(Network Slice Selection Function) 정밀 정책 설계, 비인가 슬라이스 접속을 차단하는 2차 슬라이스 인증(Secondary Authentication), NSMF-NSSMF 간 연쇄 자원 자동 회수(고아 자원 방지) 및 도메인별 동적 쿼터(Quota) 제어를 결합하여 완벽한 다중 테넌트 슬라이싱 운영 환경을 완성
+- 5G/6G 네트워크 슬라이싱을 실무 시스템에서 실제로 구현하고 오케스트레이션하기 위한 가장 근본적이고 정교한 3GPP 표준 슬라이스 식별·조립·관리 프레임워크로 확립.
+- 실무 망 운영 시에는 **단말의 S-NSSAI 요청을 분석하여 최적의 인스턴스를 지정하는 NSSF(Network Slice Selection Function) 정밀 정책 설계**, **비인가 슬라이스 접속을 차단하는 2차 슬라이스 인증(Secondary Authentication)**, **NSMF-NSSMF 간 연쇄 자원 자동 회수(고아 자원 방지)**, **도메인별 동적 쿼터(Quota) 제어**를 결합하여 완벽한 다중 테넌트 슬라이싱 운영 환경을 완성.
 
 #### 한줄 요약
 - NSSAI, NSI, NSSI는 5G 네트워크 슬라이싱의 식별, 종단간 조립, 서브넷 관리를 전담하는 핵심 3대 아키텍처 요소다.

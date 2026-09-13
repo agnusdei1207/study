@@ -62,21 +62,21 @@ extra:
 [5G 종단간 네트워크 슬라이싱 구조]
   │
   ├─ [오케스트레이션 계층] ── Orchestration & Management
-  │     ├─ CSMF / NSMF (B2B SLA 접수 및 E2E 슬라이스 생성)
-  │     ├─ NSSMF (RAN, Transport, Core 도메인별 서브넷 제어)
-  │     └─ NSSF (S-NSSAI 분석 기반 최적 슬라이스/AMF 선택)
+  │     ├─ [CSMF / NSMF] (B2B SLA 접수 및 E2E 슬라이스 생성)
+  │     ├─ [NSSMF] (RAN, Transport, Core 도메인별 서브넷 제어)
+  │     └─ [NSSF] (S-NSSAI 분석 기반 최적 슬라이스/AMF 선택)
   │
   ├─ [무선 접속망 슬라이싱] ── RAN Slicing (gNB)
-  │     ├─ PRB 자원 분할 (하드 슬라이싱 물리 자원 블록 할당)
-  │     └─ 가변 뉴머롤로지 (SCS 15/30/60kHz 스케줄링 격리)
+  │     ├─ [PRB 자원 분할] (하드 슬라이싱 물리 자원 블록 할당)
+  │     └─ [가변 뉴머롤로지] (SCS 15/30/60kHz 스케줄링 격리)
   │
   ├─ [전송망 슬라이싱] ── Transport Slicing
-  │     ├─ FlexE 타임슬롯 분할 (TDM 기반 물리적 하드 격리)
-  │     └─ SRv6 터널링 (Segment Routing 기반 QoS 경로 보장)
+  │     ├─ [FlexE 타임슬롯 분할] (TDM 기반 물리적 하드 격리)
+  │     └─ [SRv6 터널링] (Segment Routing 기반 QoS 경로 보장)
   │
   └─ [코어망 슬라이싱] ── 5G Core Slicing
-        ├─ 제어 평면 공유/전용 (AMF/SMF 인스턴스 격리)
-        └─ 사용자 평면 분기 (eMBB 대용량 UPF / URLLC 로컬 UPF)
+        ├─ [제어 평면 공유/전용] (AMF/SMF 인스턴스 격리)
+        └─ [사용자 평면 분기] (eMBB 대용량 UPF / URLLC 로컬 UPF)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -101,22 +101,20 @@ extra:
 </details>
 
 ```text
-5G E2E 네트워크 슬라이스 생성 및 세션 매핑 파이프라인
-        │
-   1. [SLA 요구사항 접수] CSMF가 B2B 고객의 대역폭/지연 SLA 요구 접수
-        │
-   2. [슬라이스 템플릿 생성] NSMF가 E2E 템플릿(NEST)을 생성하고 도메인별 NSSMF에 하달
-        │
-   3. [다중 도메인 자원 프로비저닝]
-      • RAN: gNB 무선 PRB 하드 예약
-      • Transport: FlexE / SRv6 전송 터널 구성
-      • Core: 컨테이너 기반 전용 UPF/SMF 인스턴스 기동
-        │
-   4. [단말 접속 및 세션 매핑] NSSF가 S-NSSAI 식별자를 검증하고 전용 슬라이스에 바인딩
-        │
-   ▼
-5. [NWDAF AI 폐루프 보증] 실시간 SLA 모니터링 및 트래픽 폭증 시 자동 Auto-scaling
+[E2E 네트워크 슬라이스 생성·보증 흐름] (진행 ①→⑤, 생성에서 진입, 세션 매핑 ④, ⑤ 폐루프 보증으로 상시 유지)
+  │
+  ├─ [CSMF] (① B2B 고객의 대역폭·지연 SLA 요구 접수)
+  │
+  ├─ [NSMF] (② E2E 슬라이스 템플릿(NEST) 생성 후 도메인별 NSSMF에 하달)
+  │
+  ├─ [도메인 NSSMF] (③ RAN PRB 하드 예약·Transport FlexE/SRv6 터널·Core 전용 UPF/SMF 인스턴스 기동)
+  │
+  ├─ [NSSF] (④ 접속 단말의 S-NSSAI 검증 후 전용 슬라이스·AMF 바인딩)
+  │
+  └─ [NWDAF] (⑤ 실시간 SLA 모니터링 **Closed-Loop Assurance**로 트래픽 폭증 시 Auto-scaling)
 ```
+
+분기 결과: **Closed-Loop Assurance**가 ③ 예약 방식의 양단을 메우는데, 하드 예약 갈래는 SLA를 확정하는 대신 다른 슬라이스가 쓸 몫을 미리 깎아 두고 NWDAF 폐루프가 과예약과 부족 사이를 사후 스케일링으로 조정해 그 낭비를 회수한다.
 
 #### 한줄 요약
 - 슬라이스를 열 때 자원을 미리 예약해 두므로 SLA는 확보되지만 그만큼 다른 슬라이스가 쓸 몫이 줄고, NWDAF 폐루프가 그 과예약과 부족 사이를 사후에 메운다.
@@ -160,7 +158,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- B2B 기업 특화망, 자율주행 V2X, 국가 공공안전망(PS-LTE/5G) 및 원격 의료 등 미션 크리티컬 산업 서비스를 지탱하는 **5G 및 차세대 6G 통신의 가장 핵심적인 비즈니스 인에이블러(Business Enabler) 기술**로 자리잡았으며, 향후 AI 기반 자율 제어 통신망으로 발전해 나가는 가운데, 실무 구축 시에는 **미션 크리티컬 워크로드의 PRB 하드 예약(Hard Slicing), 전송 구간 FlexE/SRv6 터널링, 5GC NSSF/S-NSSAI 매핑, NWDAF(네트워크 데이터 분석) 연계 폐루프(Closed-Loop) 자동 스케일링**을 결합하여 무결점 엔드투엔드 SLA를 완성
+- B2B 기업 특화망, 자율주행 V2X, 국가 공공안전망(PS-LTE/5G) 및 원격 의료 등 미션 크리티컬 산업 서비스를 지탱하는 **5G 및 차세대 6G 통신의 가장 핵심적인 비즈니스 인에이블러(Business Enabler) 기술**로 자리잡음.
+- 향후 AI 기반 자율 제어 통신망으로 발전해 나가는 가운데, 실무 구축 시에는 **미션 크리티컬 워크로드의 PRB 하드 예약(Hard Slicing)**, **전송 구간 FlexE/SRv6 터널링**, **5GC NSSF/S-NSSAI 매핑**, **NWDAF(네트워크 데이터 분석) 연계 폐루프(Closed-Loop) 자동 스케일링**을 결합하여 무결점 엔드투엔드 SLA를 완성.
 
 #### 한줄 요약
 - 5G 네트워크 슬라이싱은 RAN-Transport-Core 전 구간을 가상화하여 서비스별 SLA를 100% 보장하는 차세대 핵심 통신 가상화 기술이다.

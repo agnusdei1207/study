@@ -61,18 +61,18 @@ extra:
 [TCP TIME_WAIT 메커니즘]
   │
   ├─ [대기 제어 엔진] ── Wait Control
-  │     ├─ 능동 종료 감지 (Active Close 후 진입)
-  │     ├─ 2MSL 타이머 (Maximum Segment Lifetime 2배 대기)
-  │     └─ 4-튜플 바인딩 보류 (소켓 제어 블록 TCB 일시 보존)
+  │     ├─ [능동 종료 감지] (Active Close 후 진입)
+  │     ├─ [2MSL 타이머] (Maximum Segment Lifetime 2배 대기)
+  │     └─ [4-튜플 바인딩 보류] (소켓 제어 블록 TCB 일시 보존)
   │
   ├─ [보호 기능] ── Protection Facilities
-  │     ├─ 최종 ACK 보장 (상대방 재전송 FIN에 ACK 즉시 재응답)
-  │     └─ 지연 패킷 소멸 (이전 연결 Ghost Packet 완전 폐기)
+  │     ├─ [최종 ACK 보장] (상대방 재전송 FIN에 ACK 즉시 재응답)
+  │     └─ [지연 패킷 소멸] (이전 연결 Ghost Packet 완전 폐기)
   │
   └─ [커널 튜닝 및 부작용 대응] ── Kernel Optimization
-        ├─ 포트 고갈 방지 (Ephemeral Port 고갈 완화)
-        ├─ tcp_tw_reuse (안전한 타임스탬프 기반 소켓 재활용)
-        └─ SO_LINGER 제어 (필요 시 RST 강제 종료)
+        ├─ [포트 고갈 방지] (Ephemeral Port 고갈 완화)
+        ├─ [tcp_tw_reuse] (안전한 타임스탬프 기반 소켓 재활용)
+        └─ [SO_LINGER 제어] (필요 시 RST 강제 종료)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -96,21 +96,18 @@ extra:
 </details>
 
 ```text
-TIME_WAIT 생명주기 및 예외 복구 흐름
-        │
-   [최종 ACK 전송] 능동 종료 측이 서버의 FIN 수신 후 최종 ACK(Ack=v+1) 전송
-        │
-   [TIME_WAIT 진입] 능동 종료 측이 TIME_WAIT 전이 및 2MSL(60초) 타이머 가동
-   ┌────┴───────────────────────────┐
-  최종 ACK 유실 (서버의 FIN 재수신)  정상 종료 진행 (지연 세그먼트 도달)
-   │                                 │
- [ACK 즉시 재전송]                   [지연 패킷 폐기 (Drop)]
-   서버를 LAST_ACK에서 CLOSED로 구제     신규 세션 침범 방지
-   │                                 │
-   └────────────────┬────────────────┘
-                    ▼
-   [2MSL 타이머 만료] 소켓 자원 및 4-튜플 완전 해제 (CLOSED 전이)
+[TIME_WAIT 생명주기 흐름] (진행 ①→③, 진입, ② 2MSL 대기 중 ACK 유실 여부로 분기, ③ 타이머 만료로 완전 해제)
+  │
+  ├─ [능동 종료 호스트] (① 서버 FIN 수신 후 최종 ACK(Ack=v+1) 전송, ② TIME_WAIT 진입)
+  │
+  ├─ [2MSL 타이머] (② 60초×2 대기 가동, ③ 만료 시 4-튜플·소켓 자원 해제 및 CLOSED 전이)
+  │
+  ├─ [ACK 재전송기] (② 유실로 서버 FIN이 재도착하면 ACK 즉시 재응답으로 **LAST_ACK 탈출** 구제)
+  │
+  └─ [Ghost Packet 폐기기] (② 정상 대기 중 이전 세션 지연 세그먼트는 무음 Drop로 신규 세션 침범 차단)
 ```
+
+분기 결과: **LAST_ACK 탈출** 능력이 ② 갈래를 결정하는데, 최종 ACK 유실 시엔 남아 있던 소켓이 재응답으로 상대를 구제하지만 그 능력을 유지하는 대가로 정상 종료 갈래에서도 4-튜플을 2MSL 내내 붙들어 단기 연결이 폭증하면 임시 포트 고갈이 온다.
 
 #### 한줄 요약
 - 최종 ACK가 유실된 갈래에서는 남아 있던 소켓이 ACK를 다시 보내 상대를 LAST_ACK에서 꺼내 주지만, 그 구제 능력을 유지하려면 자원을 2MSL 내내 붙들고 있어야 한다.
@@ -153,7 +150,8 @@ TIME_WAIT 생명주기 및 예외 복구 흐름
 
 ## Ⅶ. 결론
 
-- TCP 프로토콜의 신뢰성과 데이터 정합성을 담보하는 **가장 필수적인 정상 안전 상태(Safety State)**로 자리잡고 있으나, 단기 연결(Short-lived HTTP)이 폭증하는 MSA 프록시 환경에서는 수만 개의 소켓이 누적되어 로컬 임시 포트 고갈(Ephemeral Port Exhaustion)을 유발할 수 있으므로, 실무 시스템 운영 시에는 **TIME_WAIT을 임의로 강제 삭제(SO_LINGER 0)하지 않고 HTTP Keep-Alive 커넥션 풀링을 최우선 적용하며, Linux 커널 tcp_tw_reuse=1(TCP Timestamp 검증 기반) 활성화 및 ip_local_port_range 확장**을 결합하여 가용성과 통신 신뢰성을 동시에 확보
+- TCP 프로토콜의 신뢰성과 데이터 정합성을 담보하는 **가장 필수적인 정상 안전 상태(Safety State)**로 자리잡음.
+- 단기 연결(Short-lived HTTP)이 폭증하는 MSA 프록시 환경에서는 수만 개의 소켓이 누적되어 로컬 임시 포트 고갈(Ephemeral Port Exhaustion)을 유발할 수 있으므로, 실무 시스템 운영 시에는 **TIME_WAIT을 임의로 강제 삭제(SO_LINGER 0)하지 않고 HTTP Keep-Alive 커넥션 풀링을 최우선 적용하며**, **Linux 커널 tcp_tw_reuse=1(TCP Timestamp 검증 기반) 활성화 및 ip_local_port_range 확장**을 결합하여 가용성과 통신 신뢰성을 동시에 확보.
 
 #### 한줄 요약
 - TIME_WAIT은 지연 패킷을 격리하고 정상 세션 종료를 보장하는 필수 안전 상태이며, 커넥션 풀링과 tcp_tw_reuse를 통해 포트 고갈을 방어한다.
