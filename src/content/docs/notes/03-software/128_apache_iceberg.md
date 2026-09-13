@@ -58,15 +58,18 @@ extra:
 </details>
 
 ```text
-[Apache Iceberg 3계층 메타데이터]
-├─ [카탈로그 계층 (Catalog)]
-│  └─ REST / Glue (현재 스냅샷 포인터 관리)
-├─ [메타데이터 계층 (Metadata Tree)]
-│  ├─ Metadata File (테이블 스키마·스냅샷 목록)
-│  ├─ Manifest List (스냅샷별 Manifest 요약)
-│  └─ Manifest File (파일 경로 및 Min/Max 통계)
-└─ [데이터 계층 (Data Files)]
-   └─ Parquet / ORC (불변 데이터 파일)
+[Apache Iceberg 3계층 메타데이터 체계]
+  │
+  ├─ [카탈로그 계층 (Catalog)]
+  │     └─ [REST / Glue] (현재 스냅샷 포인터 관리)
+  │
+  ├─ [메타데이터 계층 (Metadata Tree)]
+  │     ├─ [Metadata File] (테이블 스키마·스냅샷 목록)
+  │     ├─ [Manifest List] (스냅샷별 Manifest 요약)
+  │     └─ [Manifest File] (파일 경로 및 Min/Max 통계)
+  │
+  └─ [데이터 계층 (Data Files)]
+        └─ [Parquet / ORC] (불변 데이터 파일)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -91,18 +94,20 @@ extra:
 </details>
 
 ```text
-클라이언트가 Iceberg 테이블에 트랜잭션 쓰기 커밋
-        │
-   [기준 스냅샷 확인] 트랜잭션 시작 시점의 테이블 스냅샷 ID 및 최신 파티션 규격 획득
-        │
-   [데이터 파일 기록] 변경/추가된 데이터를 새로운 불변 Parquet 파일로 S3에 기록
-        │
-   [Manifest 생성] 기록된 데이터 파일 경로와 컬럼별 Min/Max 통계를 담은 AVRO 파일 작성
-        │
-   [Metadata JSON 생성] 신규 스냅샷 ID를 부여하고 새 Manifest List와 연결된 메타데이터 생성
-        │
-   [Catalog 원자 교체] 카탈로그의 현재 테이블 포인터를 신규 Metadata 파일 경로로 원자적 갱신
+[Apache Iceberg 원자 커밋 경로] (진행 ①→⑤, 클라이언트 쓰기 트랜잭션 요청 후, 카탈로그 포인터 교체로 공개)
+  │
+  ├─ [기준 스냅샷 확인] (① 트랜잭션 시작 시점의 테이블 스냅샷 ID 및 최신 파티션 규격 획득)
+  │
+  ├─ [데이터 파일 기록] (② 변경/추가 데이터를 새로운 불변 Parquet 파일로 S3에 기록)
+  │
+  ├─ [Manifest 생성] (③ 기록된 파일 경로와 컬럼별 Min/Max 통계를 담은 AVRO 파일 작성)
+  │
+  ├─ [Metadata JSON 생성] (④ 신규 스냅샷 ID를 부여하고 새 Manifest List와 연결된 메타데이터 생성)
+  │
+  └─ [Catalog 원자 교체] (⑤ 카탈로그의 현재 테이블 포인터를 신규 Metadata 파일 경로로 원자적 갱신)
 ```
+
+분기 결과: 같은 테이블에 동시 커밋이 몰리면 카탈로그 포인터 교체라는 한 지점에서 하나만 성공하고 나머지가 재시도되므로, 커밋 밀도가 낮을 때는 잠금 비용이 0이라는 이득을 누리지만 밀도가 높아지면 재시도로 버려지는 쓰기 비용이 늘어난다
 
 #### 한줄 요약
 - 새 스냅샷을 만든 뒤 카탈로그 포인터만 교체하기에 커밋이 원자적으로 성립하지만, 동시 커밋이 몰리면 바로 그 한 지점에서 충돌해 재시도 비용이 발생한다.
@@ -145,7 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 엔터프라이즈 멀티 엔진 레이크하우스 및 클라우드 분석 플랫폼의 **글로벌 표준 오픈 테이블 포맷(Open Table Format)**으로 확립되었으며, 실무 운영 시에는 **매니페스트 탐색 지연을 제거하는 `rewrite_manifests()`, 소형 파일 I/O를 최적화하는 `rewrite_data_files()`, 스토리지 비용을 절감하는 `expire_snapshots()` 및 `remove_orphan_files()` 정기 유지보수 자동화**를 결합하여 페타바이트급 데이터에 대한 초고속 쿼리 성능과 비용 통제를 동시 달성
+- 엔터프라이즈 멀티 엔진 레이크하우스 및 클라우드 분석 플랫폼의 **글로벌 표준 오픈 테이블 포맷(Open Table Format)**으로 확립.
+- 실무 운영 시에는 **매니페스트 탐색 지연을 제거하는 `rewrite_manifests()`**, **소형 파일 I/O를 최적화하는 `rewrite_data_files()`**, **스토리지 비용을 절감하는 `expire_snapshots()` 및 `remove_orphan_files()` 정기 유지보수 자동화**를 결합하여 페타바이트급 데이터에 대한 초고속 쿼리 성능과 비용 통제를 동시 달성.
 
 #### 한줄 요약
 - Apache Iceberg는 3계층 Manifest 트리와 숨겨진 파티셔닝을 기반으로 엔진 중립적인 고성능 레이크하우스를 완성하는 차세대 표준 오픈 테이블 포맷이다.

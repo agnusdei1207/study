@@ -58,16 +58,20 @@ extra:
 </details>
 
 ```text
-[실시간 스트리밍 플랫폼 파이프라인]
-├─ [1. 수집 계층 (Ingestion)]
-│  └─ Debezium CDC / Kafka Connect
-├─ [2. 이벤트 브로커 (Broker)]
-│  └─ Apache Kafka / Apache Pulsar
-├─ [3. 스트림 처리기 (Processing)]
-│  └─ Apache Flink / Spark Streaming
-└─ [4. 서빙 저장소 (Serving)]
-   ├─ Redis (초저지연 인메모리 서빙)
-   └─ Elasticsearch (실시간 검색·색인)
+[실시간 스트리밍 플랫폼 파이프라인 체계]
+  │
+  ├─ [1. 수집 계층 (Ingestion)]
+  │     └─ [Debezium CDC / Kafka Connect]
+  │
+  ├─ [2. 이벤트 브로커 (Broker)]
+  │     └─ [Apache Kafka / Apache Pulsar]
+  │
+  ├─ [3. 스트림 처리기 (Processing)]
+  │     └─ [Apache Flink / Spark Streaming]
+  │
+  └─ [4. 서빙 저장소 (Serving)]
+        ├─ [Redis] (초저지연 인메모리 서빙)
+        └─ [Elasticsearch] (실시간 검색·색인)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -91,18 +95,20 @@ extra:
 </details>
 
 ```text
-서비스 DB 트랜잭션 및 사용자 액션 발생
-        │
-   [CDC 수집] Debezium이 DB Binlog를 실시간 감지하여 JSON 이벤트로 변환
-        │
-   [브로커 버퍼링] Apache Kafka의 특정 파티션에 Append-Only 순차 기록 및 ISR 복제
-        │
-   [스트림 연산] Apache Flink가 Event Time Watermark 기준으로 5분 슬라이딩 윈도우 집계
-        │
-   [서빙 저장소 멱등 쓰기] 가공된 집계 결과를 Redis / Elasticsearch에 UPSERT 반영
-        │
-   웹소켓을 통해 프론트엔드 관제 대시보드 및 실시간 FDS 차단 엔진에 즉시 푸시
+[실시간 스트리밍 플랫폼] (진행 ①→⑤, 서비스 DB 트랜잭션·사용자 액션 발생 후, 가공 결과를 웹소켓으로 대시보드·FDS 차단 엔진에 출력)
+  │
+  ├─ [CDC 수집] (① Debezium이 DB Binlog를 실시간 감지하여 JSON 이벤트로 변환)
+  │
+  ├─ [브로커 버퍼링] (② Kafka 특정 파티션에 Append-Only 순차 기록 및 ISR 복제)
+  │
+  ├─ [스트림 연산] (③ Apache Flink가 Event Time Watermark 기준 5분 슬라이딩 윈도우 집계)
+  │
+  ├─ [서빙 저장소 멱등 쓰기] (④ 가공 집계 결과를 Redis/Elasticsearch에 UPSERT 반영)
+  │
+  └─ [관제 대시보드·FDS 푸시] (⑤ 웹소켓으로 프론트엔드 관제 대시보드 및 실시간 FDS 차단 엔진에 즉시 전달)
 ```
+
+분기 결과: 하류 소비 속도가 상류 생산 속도를 따라잡는 동안에는 브로커 버퍼링이 시차 비용을 흡수하지만, 소비가 느려 역압이 보존 용량 한계를 넘는 순간 유실 정리 또는 파이프라인 정지 비용을 치르게 된다
 
 #### 한줄 요약
 - 계층마다 지연이 조금씩 더해지므로 종단 지연은 한 구간을 빠르게 해서가 아니라 계층 수와 각 구간의 버퍼링 정책을 함께 줄여야 낮아진다.
@@ -145,7 +151,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 디지털 비즈니스의 실시간 의사결정 및 이벤트 주도 엔터프라이즈(EDE)의 **가장 핵심적인 데이터 파이프라인 아키텍처**로 확립되었으며, 실무 아키텍처 구현 시에는 **다운스트림 쓰기 병목을 해소하는 Async I/O 및 인메모리 서빙 캐시 배치, 네트워크 지연에 대응하는 워터마크(Watermark) 튜닝, 엔드투엔드 데이터 무결성을 보장하는 Kafka-Flink-DB 간 Exactly-Once(EOS) 결합**을 통해 서비스 복원력과 초저지연 성능을 동시 보증
+- 현대 디지털 비즈니스의 실시간 의사결정 및 이벤트 주도 엔터프라이즈(EDE)의 **가장 핵심적인 데이터 파이프라인 아키텍처**로 확립.
+- 실무 아키텍처 구현 시에는 **다운스트림 쓰기 병목을 해소하는 Async I/O 및 인메모리 서빙 캐시 배치**, **네트워크 지연에 대응하는 워터마크(Watermark) 튜닝**, **엔드투엔드 데이터 무결성을 보장하는 Kafka-Flink-DB 간 Exactly-Once(EOS) 결합**을 통해 서비스 복원력과 초저지연 성능을 동시 보증.
 
 #### 한줄 요약
 - 실시간 스트리밍 플랫폼은 수집, 버퍼링, 연산, 서빙의 4대 계층을 유기적으로 결합하여 이벤트 발생 즉시 비즈니스 가치를 창출하는 현대 데이터 인프라의 핵심이다.
