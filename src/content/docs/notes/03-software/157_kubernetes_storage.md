@@ -58,14 +58,18 @@ extra:
 </details>
 
 ```text
-[쿠버네티스 스토리지 구성]
-|-- PVC
-|-- PV
-|-- 스토리지 클래스
-`-- CSI 드라이버
+[쿠버네티스 스토리지 구성 체계]
+  │
+  ├─ [PVC]
+  │
+  ├─ [PV]
+  │
+  ├─ [스토리지 클래스]
+  │
+  └─ [CSI 드라이버]
 ```
 
-선의 의미: 계층 및 개발자가 PVC를 신청하면 StorageClass와 CSI 드라이버가 물리 디스크를 생성해 PV와 1:1 바인딩하는 구조
+- 선의 의미: 계층 및 개발자가 PVC를 신청하면 StorageClass와 CSI 드라이버가 물리 디스크를 생성해 PV와 1:1 바인딩하는 구조
 
 | 구성요소 | 책임 | 주요 특징 |
 |:---|:---|:---|
@@ -86,18 +90,20 @@ extra:
 </details>
 
 ```text
-StatefulSet 데이터베이스 파드의 PVC 제출
-        │
-   [PVC 검증] API 서버가 PVC 명세(용량: 100Gi, AccessMode: RWO) 접수 및 유효성 검증
-        │
-   [StorageClass 선택] 명시된 `gp3-sc` 스토리지 클래스의 Provisioner(`ebs.csi.aws.com`) 호출
-        │
-   [CSI 볼륨 동적 생성] CSI 드라이버가 AWS API를 호출하여 실제 100Gi EBS gp3 디스크 생성
-        │
-   [PV 생성 및 바인딩] 생성된 EBS 디스크를 기반으로 PV 객체를 생성하고 PVC와 1:1 Bound 결합
-        │
-   파드가 배치된 워커 노드에 EBS를 Attach하고 컨테이너 디렉터리로 Mount 완료
+[동적 볼륨 프로비저닝] (진행 ①→⑤, PVC 제출, 워커 노드 마운트 완료)
+  │
+  ├─ [PVC 검증] (① API 서버가 PVC 명세(용량 100Gi·AccessMode RWO) 접수 및 유효성 검증)
+  │
+  ├─ [StorageClass 선택] (② 명시된 `gp3-sc` 스토리지 클래스의 Provisioner(`ebs.csi.aws.com`) 호출)
+  │
+  ├─ [CSI 볼륨 동적 생성] (③ CSI 드라이버가 AWS API 호출, 실제 100Gi EBS gp3 디스크 생성)
+  │
+  ├─ [PV 생성·바인딩] (④ 생성된 EBS 디스크 기반 PV 객체 생성, PVC와 1:1 Bound 결합)
+  │
+  └─ [Attach·Mount] (⑤ 파드가 배치된 워커 노드에 EBS Attach 후 컨테이너 디렉터리로 Mount 완료)
 ```
+
+분기 결과: 파드가 자리를 잡기 전에 볼륨이 먼저 생성되면 다른 AZ에 생겨 Attach 실패를 치르므로, 물리 디스크 생성 시점을 파드 배치 뒤로 미루는 바인딩 모드 선택이 곧 마운트 성공률을 결정한다
 
 #### 한줄 요약
 - 물리 디스크 생성이라는 되돌리기 비싼 작업이 PVC 제출 시점이 아니라 CSI 호출 시점으로 미뤄져 있어, 바인딩 모드만 바꿔도 파드가 배치될 위치에 맞춰 볼륨을 만들 수 있다.
@@ -140,7 +146,8 @@ StatefulSet 데이터베이스 파드의 PVC 제출
 
 ## Ⅶ. 결론
 
-- 쿠버네티스 상에서 데이터베이스, 메시지 브로커(Kafka) 등 상태 유지(StatefulSet) 워크로드를 안정적으로 운영하기 위한 가장 핵심적인 영속 스토리지 추상화 프레임워크로 확립되었으며, 실무 구축 시에는 파드가 스케줄링된 동일 가용 영역(AZ)에 볼륨을 동적 생성하는 `volumeBindingMode: WaitForFirstConsumer`, PVC 실수 삭제 시 실제 디스크를 보호하는 `reclaimPolicy: Retain`, 무중단 디스크 확장을 보장하는 `allowVolumeExpansion: true` 및 RWO(EBS)/RWX(EFS)의 워크로드별 정밀 분리를 결합하여 데이터 손실 위험을 원천 차단하고 스토리지 운영 민첩성을 완성
+- 쿠버네티스 상에서 데이터베이스, 메시지 브로커(Kafka) 등 상태 유지(StatefulSet) 워크로드를 안정적으로 운영하기 위한 **가장 핵심적인 영속 스토리지 추상화 프레임워크**로 확립.
+- 실무 구축 시에는 **파드가 스케줄링된 동일 가용 영역(AZ)에 볼륨을 동적 생성하는 `volumeBindingMode: WaitForFirstConsumer`**, **PVC 실수 삭제 시 실제 디스크를 보호하는 `reclaimPolicy: Retain`**, **무중단 디스크 확장을 보장하는 `allowVolumeExpansion: true` 및 RWO(EBS)/RWX(EFS)의 워크로드별 정밀 분리**를 결합하여 데이터 손실 위험을 원천 차단하고 스토리지 운영 민첩성을 완성.
 
 #### 한줄 요약
 - 쿠버네티스 스토리지는 PVC, PV, StorageClass의 3단계 추상화를 통해 인프라와 애플리케이션을 완벽히 분리하고 데이터 영속성을 보장하는 핵심 기술이다.

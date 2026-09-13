@@ -58,16 +58,18 @@ extra:
 </details>
 
 ```text
-[쿠버네티스 분산 아키텍처]
-├─ [Control Plane (마스터 제어면)]
-│  ├─ kube-apiserver (중앙 통신 창구)
-│  ├─ etcd (Raft 기반 상태 저장소)
-│  ├─ kube-scheduler (노드 필터링·스코어링)
-│  └─ kube-controller-manager (조정 루프)
-└─ [Worker Node (작업 노드)]
-   ├─ kubelet (CRI 연동 Pod 수명주기 관리)
-   ├─ kube-proxy (L4 iptables/IPVS 라우팅)
-   └─ Container Runtime (containerd/CRI-O)
+[쿠버네티스 분산 아키텍처 체계]
+  │
+  ├─ [Control Plane (마스터 제어면)]
+  │     ├─ [kube-apiserver] (중앙 통신 창구)
+  │     ├─ [etcd] (Raft 기반 상태 저장소)
+  │     ├─ [kube-scheduler] (노드 필터링·스코어링)
+  │     └─ [kube-controller-manager] (조정 루프)
+  │
+  └─ [Worker Node (작업 노드)]
+        ├─ [kubelet] (CRI 연동 Pod 수명주기 관리)
+        ├─ [kube-proxy] (L4 iptables/IPVS 라우팅)
+        └─ [Container Runtime] (containerd/CRI-O)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -94,18 +96,20 @@ extra:
 </details>
 
 ```text
-개발자의 kubectl apply -f pod.yaml 배포 요청
-        │
-   [요청 접수 및 인증] kube-apiserver가 요청자의 권한을 인증(RBAC)하고 스키마 유효성 검증
-        │
-   [etcd 영속 저장] 검증 완료된 Pod 명세를 etcd에 기록 (상태: Pending)
-        │
-   [노드 스케줄링] kube-scheduler가 노드 리소스와 어피니티를 평가하여 최적 노드 선정 및 바인딩
-        │
-   [워커 노드 파드 기동] 대상 노드의 kubelet이 이벤트를 감지하고 CRI(containerd)로 컨테이너 실행
-        │
-   [상태 동기화] kubelet이 파드의 Running 상태를 apiserver에 보고하여 etcd에 최종 갱신
+[파드 프로비저닝] (진행 ①→⑤, kubectl apply, Pod Running 상태 확정)
+  │
+  ├─ [요청 접수·인증] (① kube-apiserver가 요청자 권한을 인증(RBAC)하고 스키마 유효성 검증)
+  │
+  ├─ [etcd 영속 저장] (② 검증 완료된 Pod 명세를 etcd에 기록, 상태 Pending)
+  │
+  ├─ [노드 스케줄링] (③ kube-scheduler가 노드 리소스·어피니티를 평가, 최적 노드 선정 및 바인딩)
+  │
+  ├─ [워커 노드 파드 기동] (④ 대상 노드 kubelet이 이벤트 감지, CRI(containerd)로 컨테이너 실행)
+  │
+  └─ [상태 동기화] (⑤ kubelet이 Running 상태를 apiserver에 보고, etcd에 최종 갱신)
 ```
+
+분기 결과: 조건을 만족하는 노드를 찾으면 곧바로 기동되지만, 리소스·어피니티 요건이 맞는 노드가 없으면 Pending으로 재평가를 반복하므로 자원이 부족한 선언은 만족 시점까지 etcd 갱신과 스케줄링 시도를 되풀이 치른다
 
 #### 한줄 요약
 - 모든 요청이 API 서버를 거쳐 etcd에 기록된 뒤에야 실행되므로 etcd의 쓰기 성능이 클러스터 전체 변경 속도의 상한이 되고, 노드 수보다 오브젝트 수가 먼저 확장 한계를 만든다.
@@ -148,7 +152,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 네이티브 컴퓨팅 및 현대 엔터프라이즈 인프라의 가장 지배적인 분산 컨테이너 오케스트레이션 사실상 표준(De-facto Standard)으로 확립되었으며, 실무 구축 시에는 etcd 3/5대 홀수 쿼럼(Quorum) Multi-AZ 분산 및 고속 NVMe 스토리지 배치, kube-apiserver 수평 스케일아웃, 워커 노드 OOM 시 에이전트 다운을 방지하는 kubelet `system-reserved` 자원 예약 격리, 대규모 파드 스케줄링 병목을 해소하는 Karpenter 연동을 결합하여 무결점 제어면 고가용성과 대규모 분산 탄력성을 보증
+- 클라우드 네이티브 컴퓨팅 및 현대 엔터프라이즈 인프라의 **가장 지배적인 분산 컨테이너 오케스트레이션 사실상 표준(De-facto Standard)**으로 확립.
+- 실무 구축 시에는 **etcd 3/5대 홀수 쿼럼(Quorum) Multi-AZ 분산 및 고속 NVMe 스토리지 배치**, **kube-apiserver 수평 스케일아웃**, **워커 노드 OOM 시 에이전트 다운을 방지하는 kubelet `system-reserved` 자원 예약 격리**, **대규모 파드 스케줄링 병목을 해소하는 Karpenter 연동**을 결합하여 무결점 제어면 고가용성과 대규모 분산 탄력성을 보증.
 
 #### 한줄 요약
 - 쿠버네티스는 제어면과 워커 노드의 명확한 이원화와 선언적 자가 치유를 통해 대규모 컨테이너를 무결점으로 오케스트레이션하는 클라우드 네이티브의 핵심 운영체제다.

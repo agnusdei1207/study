@@ -58,15 +58,20 @@ extra:
 </details>
 
 ```text
-[Istio 서비스 메시 구성]
-|-- istiod
-|-- Envoy 프록시
-|-- VirtualService
-|-- DestinationRule
-`-- Ingress / Egress Gateway
+[Istio 서비스 메시 구성 체계]
+  │
+  ├─ [istiod]
+  │
+  ├─ [Envoy 프록시]
+  │
+  ├─ [VirtualService]
+  │
+  ├─ [DestinationRule]
+  │
+  └─ [Ingress / Egress Gateway]
 ```
 
-선의 의미: 계층 및 istiod 제어면이 Envoy 프록시들에 xDS 설정과 mTLS 인증서를 배포하고 프록시 간 암호화 통신을 중계하는 구조
+- 선의 의미: 계층 및 istiod 제어면이 Envoy 프록시들에 xDS 설정과 mTLS 인증서를 배포하고 프록시 간 암호화 통신을 중계하는 구조
 
 | 구성요소 | 책임 | 주요 특징 |
 |:---|:---|:---|
@@ -88,18 +93,20 @@ extra:
 </details>
 
 ```text
-Order 서비스에서 Payment 서비스로 결제 요청 발생
-        │
-   [요청 가로채기] iptables 규칙에 의해 Order 앱의 아웃바운드 패킷이 Envoy 사이드카로 리다이렉트
-        │
-   [mTLS 상호 인증] Citadel 발급 X.509 인증서로 Payment 측 Envoy와 mTLS 세션 수립
-        │
-   [가중치 룰 평가] VirtualService 명세를 대조하여 신규 v2 버전으로 10% 트래픽 분기 결정
-        │
-   [서브셋 전달] DestinationRule에 정의된 v2 Payment Pod IP로 암호화 gRPC 요청 전송
-        │
-   Envoy가 W3C Trace Context(`traceparent`) 헤더를 주입하고 실행 통계를 Jaeger로 회신
+[mTLS 카나리 라우팅] (진행 ①→⑤, 결제 요청 발생, 분산 추적 Span 기록)
+  │
+  ├─ [요청 가로채기] (① iptables 규칙에 의해 Order 앱의 아웃바운드 패킷이 Envoy 사이드카로 리다이렉트)
+  │
+  ├─ [mTLS 상호 인증] (② Citadel 발급 X.509 인증서로 Payment 측 Envoy와 mTLS 세션 수립)
+  │
+  ├─ [가중치 룰 평가] (③ VirtualService 명세 대조, 신규 v2 버전으로 10% 트래픽 분기 결정)
+  │
+  ├─ [서브셋 전달] (④ DestinationRule에 정의된 v2 Payment Pod IP로 암호화 gRPC 요청 전송)
+  │
+  └─ [분산 추적 기록] (⑤ Envoy가 W3C Trace Context 헤더 주입, 실행 통계를 Jaeger로 회신)
 ```
+
+분기 결과: 가중치 평가 결과가 기존 v1 서브셋으로 떨어지면 안정 버전으로 전달되지만 v2로 떨어지면 신규 버전의 결함 위험을 소수 트래픽으로 치르므로, 카나리 비율이 곧 검증 속도와 장애 반경의 교환 지점이다
 
 #### 한줄 요약
 - 가로채기·암호화·라우팅·추적이 프록시 한 계층에 모여 앱의 구현 비용은 0이 되지만, 그 대가로 모든 요청이 프록시 홉을 왕복하는 고정 지연을 새로 부담한다.
@@ -142,7 +149,8 @@ Order 서비스에서 Payment 서비스로 결제 요청 발생
 
 ## Ⅶ. 결론
 
-- 대규모 마이크로서비스 아키텍처(MSA) 및 제로 트러스트(Zero Trust) 네트워킹의 가장 지배적인 서비스 메시 표준 플랫폼으로 확립되었으며, 실무 구축 시에는 서비스 간 자동 mTLS 암호화(PeerAuthentication)의 단계별(PERMISSIVE $\to$ STRICT) 전환, 사이드카 메모리 팽창을 방어하는 `Sidecar` CRD 네임스페이스 통신 스코프 제한, 연쇄 장애를 차단하는 DestinationRule 서킷 브레이커, 리소스 오버헤드를 극적으로 절감하는 차세대 사이드카리스(Sidecarless) Ambient Mesh(ztunnel)를 결합하여 보안 완결성과 초저지연 운영 효율을 동시 달성
+- 대규모 마이크로서비스 아키텍처(MSA) 및 제로 트러스트(Zero Trust) 네트워킹의 **가장 지배적인 서비스 메시 표준 플랫폼**으로 확립.
+- 실무 구축 시에는 **서비스 간 자동 mTLS 암호화(PeerAuthentication)의 단계별(PERMISSIVE $\to$ STRICT) 전환**, **사이드카 메모리 팽창을 방어하는 `Sidecar` CRD 네임스페이스 통신 스코프 제한**, **연쇄 장애를 차단하는 DestinationRule 서킷 브레이커**, **리소스 오버헤드를 극적으로 절감하는 차세대 사이드카리스(Sidecarless) Ambient Mesh(ztunnel)**를 결합하여 보안 완결성과 초저지연 운영 효율을 동시 달성.
 
 #### 한줄 요약
 - Istio 서비스 메시는 Envoy 프록시와 istiod 제어면을 통해 애플리케이션 코드 변경 없이 제로 트러스트 보안과 지능형 트래픽 라우팅을 실현하는 핵심 마이크로서비스 네트워킹 기술이다.

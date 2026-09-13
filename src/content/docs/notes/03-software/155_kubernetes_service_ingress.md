@@ -58,14 +58,18 @@ extra:
 </details>
 
 ```text
-[쿠버네티스 서비스·인그레스 구성]
-|-- 인그레스 컨트롤러
-|-- 쿠버네티스 서비스
-|-- 엔드포인트슬라이스
-`-- kube-proxy
+[쿠버네티스 서비스·인그레스 구성 체계]
+  │
+  ├─ [인그레스 컨트롤러]
+  │
+  ├─ [쿠버네티스 서비스]
+  │
+  ├─ [엔드포인트슬라이스]
+  │
+  └─ [kube-proxy]
 ```
 
-선의 의미: 계층 및 외부 HTTPS 요청이 Ingress Controller(L7)에서 경로 매핑 후 Service(L4)와 Endpoints를 거쳐 파드로 전달되는 구조
+- 선의 의미: 계층 및 외부 HTTPS 요청이 Ingress Controller(L7)에서 경로 매핑 후 Service(L4)와 Endpoints를 거쳐 파드로 전달되는 구조
 
 | 구성요소 | 책임 | 주요 특징 |
 |:---|:---|:---|
@@ -86,18 +90,20 @@ extra:
 </details>
 
 ```text
-외부 사용자의 서비스 접근 요청 (HTTPS)
-        │
-   [HTTPS 도메인 요청 수신] 사용자가 `https://api.com/order` URL로 Ingress ALB에 접속
-        │
-   [TLS 복호화] Ingress Controller가 보유한 TLS 인증서(Secret)로 HTTPS 암호화 해제
-        │
-   [URL Path 룰 매칭] Ingress 규칙을 대조하여 `/order` 경로에 지정된 `order-service` 선정
-        │
-   [Pod IP 선정] EndpointSlice에서 정상 작동 중인 백엔드 파드 IP(`10.244.1.5`)를 IPVS로 선택
-        │
-   선택된 백엔드 파드 컨테이너의 8080 포트로 평문 HTTP 요청 즉시 프록시 전달
+[인그레스 트래픽 라우팅] (진행 ①→⑤, HTTPS 요청, 백엔드 파드 수신)
+  │
+  ├─ [HTTPS 요청 수신] (① 사용자가 `https://api.com/order` URL로 Ingress ALB에 접속)
+  │
+  ├─ [TLS 복호화] (② Ingress Controller가 보유한 TLS 인증서(Secret)로 HTTPS 암호화 해제)
+  │
+  ├─ [URL Path 룰 매칭] (③ Ingress 규칙을 대조, `/order` 경로에 지정된 order-service 선정)
+  │
+  ├─ [Pod IP 선정] (④ EndpointSlice에서 정상 작동 중인 백엔드 파드 IP를 IPVS로 선택)
+  │
+  └─ [파드 프록시 전달] (⑤ 선택된 백엔드 파드 컨테이너의 8080 포트로 평문 HTTP 요청 즉시 프록시 전달)
 ```
+
+분기 결과: 경로 룰과 일치하는 서비스가 있으면 IPVS로 선택된 파드에 직전달되지만, 일치하는 룰이 없으면 404를 치르므로 모든 경로·인증서 관리가 한 지점에 집중된 만큼 그 지점이 트래픽과 장애의 단일 지점이 된다
 
 #### 한줄 요약
 - TLS 복호화와 경로 매칭 비용은 인그레스 한 지점에서 한 번만 치르고 이후 구간은 커널 레벨 L4 전달로 끝나므로, 암호화 연산이 백엔드 파드 수만큼 반복되지 않는다.
@@ -140,7 +146,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 네이티브 마이크로서비스(MSA) 네트워킹 및 외부 트래픽 유입 제어의 핵심 표준 라우팅 아키텍처로 정립되었으며, 실무 구축 시에는 불필요한 네트워크 홉(Hop)을 제거하는 AWS ALB `target-type: ip` 직접 라우팅, 대규모 파드 환경에서 iptables 부하를 극복하는 IPVS/eBPF(Cilium) 기반 kube-proxy 가속, Let's Encrypt 인증서 생명주기를 자동화하는 cert-manager 연동 및 차세대 Gateway API로의 점진적 진화를 결합하여 고성능 통신과 보안 거버넌스를 완벽히 보증
+- 클라우드 네이티브 마이크로서비스(MSA) 네트워킹 및 외부 트래픽 유입 제어의 **핵심 표준 라우팅 아키텍처**로 정립.
+- 실무 구축 시에는 **불필요한 네트워크 홉(Hop)을 제거하는 AWS ALB `target-type: ip` 직접 라우팅**, **대규모 파드 환경에서 iptables 부하를 극복하는 IPVS/eBPF(Cilium) 기반 kube-proxy 가속**, **Let's Encrypt 인증서 생명주기를 자동화하는 cert-manager 연동 및 차세대 Gateway API로의 점진적 진화**를 결합하여 고성능 통신과 보안 거버넌스를 완벽히 보증.
 
 #### 한줄 요약
 - 쿠버네티스 서비스와 인그레스는 L4 가상 IP 로드밸런싱과 L7 경로 기반 라우팅을 결합하여 컨테이너 트래픽을 무결점으로 제어하는 핵심 네트워킹 기술이다.

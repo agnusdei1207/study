@@ -58,17 +58,20 @@ extra:
 </details>
 
 ```text
-[쿠버네티스 Pod 수명주기 및 헬스체크]
-├─ [초기화 및 기동 단계]
-│  ├─ 초기화 컨테이너 (Init Container)
-│  └─ 스타트업 프로브 (Startup Probe)
-├─ [실행 및 서비스 단계]
-│  ├─ 라이브니스 프로브 (Liveness: 데드락 재시작)
-│  └─ 레디니스 프로브 (Readiness: 트래픽 투입·격리)
-└─ [안전 종료 단계 (Graceful Shutdown)]
-   ├─ preStop 훅 (트래픽 차단 및 드레인)
-   ├─ SIGTERM (유예 시간 내 커넥션 정리)
-   └─ SIGKILL (강제 프로세스 종료)
+[쿠버네티스 Pod 수명주기 및 헬스체크 체계]
+  │
+  ├─ [초기화 및 기동 단계]
+  │     ├─ [초기화 컨테이너] (Init Container)
+  │     └─ [스타트업 프로브] (Startup Probe)
+  │
+  ├─ [실행 및 서비스 단계]
+  │     ├─ [라이브니스 프로브] (Liveness: 데드락 재시작)
+  │     └─ [레디니스 프로브] (Readiness: 트래픽 투입·격리)
+  │
+  └─ [안전 종료 단계 (Graceful Shutdown)]
+        ├─ [preStop 훅] (트래픽 차단 및 드레인)
+        ├─ [SIGTERM] (유예 시간 내 커넥션 정리)
+        └─ [SIGKILL] (강제 프로세스 종료)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -93,18 +96,20 @@ extra:
 </details>
 
 ```text
-Deployment 롤링 배포 또는 파드 삭제 요청 수신
-        │
-   [종료 이벤트 수신] API 서버가 파드 상태를 Terminating으로 전환
-        │
-   [Endpoints IP 제거] kube-proxy 및 Ingress 컨트롤러가 라우팅 테이블에서 파드 IP 제외
-        │
-   [preStop 훅 실행] 네트워크 갱신 지연을 고려하여 `sleep 10` 훅을 실행해 안전 대기
-        │
-   [SIGTERM 전달] 메인 프로세스에 SIGTERM을 전송하여 처리 중이던 세션 정상 완료 유도
-        │
-   `terminationGracePeriodSeconds`(기본 30초) 초과 시 SIGKILL로 잔여 프로세스 강제 정리
+[Graceful Shutdown] (진행 ①→⑤, 롤링 배포·삭제 요청, 잔여 프로세스 정리 후 종료)
+  │
+  ├─ [종료 이벤트 수신] (① API 서버가 파드 상태를 Terminating으로 전환)
+  │
+  ├─ [Endpoints IP 제거] (② kube-proxy·Ingress 컨트롤러가 라우팅 테이블에서 파드 IP 제외)
+  │
+  ├─ [preStop 훅 실행] (③ 네트워크 갱신 지연을 고려한 `sleep 10` 훅 실행으로 안전 대기)
+  │
+  ├─ [SIGTERM 전달] (④ 메인 프로세스에 SIGTERM 전송, 처리 중이던 세션 정상 완료 유도)
+  │
+  └─ [SIGKILL 강제 정리] (⑤ `terminationGracePeriodSeconds`(기본 30초) 초과 시 SIGKILL로 잔여 프로세스 강제 정리)
 ```
+
+분기 결과: 요청이 유예 시간 안에 정리되면 SIGTERM만으로 커넥션이 마무리되지만, 처리 중인 세션이 길어지면 SIGKILL 강제 종료로 유실을 치르므로 유예 시간이 곧 종료 신뢰도와 배포 지연의 교환 지점이다
 
 #### 한줄 요약
 - 엔드포인트에서 빠지는 일과 종료 신호를 받는 일이 동시에 진행되기에 그 사이에 도착한 요청이 오류가 되며, preStop의 대기 시간은 그 경쟁 구간을 메우는 대가로 종료를 늦추는 선택이다.
@@ -147,7 +152,8 @@ Deployment 롤링 배포 또는 파드 삭제 요청 수신
 
 ## Ⅶ. 결론
 
-- 마이크로서비스 애플리케이션의 무중단 배포 및 고가용성 서비스 연속성을 보장하는 가장 핵심적인 파드 런타임 제어 메커니즘으로 확립되었으며, 실무 운영 시에는 부팅 타임아웃을 방어하는 StartupProbe, 내부 데드락 복구 전용 LivenessProbe와 외부 의존성 장애 시 트래픽만 선별 격리하는 ReadinessProbe의 엄격한 역할 분리, 엔드포인트 전파 지연을 보정하는 `preStop: sleep 10` 훅 및 `terminationGracePeriodSeconds` 유예 설정을 결합하여 롤링 업데이트 시 다운타임과 커넥션 단절을 0으로 통제
+- 마이크로서비스 애플리케이션의 무중단 배포 및 고가용성 서비스 연속성을 보장하는 **가장 핵심적인 파드 런타임 제어 메커니즘**으로 확립.
+- 실무 운영 시에는 **부팅 타임아웃을 방어하는 StartupProbe**, **내부 데드락 복구 전용 LivenessProbe와 외부 의존성 장애 시 트래픽만 선별 격리하는 ReadinessProbe의 엄격한 역할 분리**, **엔드포인트 전파 지연을 보정하는 `preStop: sleep 10` 훅 및 `terminationGracePeriodSeconds` 유예 설정**을 결합하여 롤링 업데이트 시 다운타임과 커넥션 단절을 0으로 통제.
 
 #### 한줄 요약
 - 파드 생명주기 관리는 3대 프로브와 정상 종료 절차를 정밀 제어하여 무중단 배포와 안정적 자가 치유를 실현하는 쿠버네티스의 핵심 운영 기술이다.

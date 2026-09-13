@@ -58,15 +58,18 @@ extra:
 </details>
 
 ```text
-[쿠버네티스 오토스케일링]
-├─ [지표 수집 계층]
-│  └─ Metrics Provider (CPU·메모리·QPS)
-├─ [스케일링 제어 계층]
-│  ├─ HPA Controller (수평: 복제본 개수)
-│  └─ VPA Controller (수직: 요청 스펙)
-└─ [반영 및 인프라 계층]
-   ├─ Workload Controller (Deployment 갱신)
-   └─ Node Autoscaler (Pending 시 노드 증설)
+[쿠버네티스 오토스케일링 체계]
+  │
+  ├─ [지표 수집 계층]
+  │     └─ [Metrics Provider] (CPU·메모리·QPS)
+  │
+  ├─ [스케일링 제어 계층]
+  │     ├─ [HPA Controller] (수평: 복제본 개수)
+  │     └─ [VPA Controller] (수직: 요청 스펙)
+  │
+  └─ [반영 및 인프라 계층]
+        ├─ [Workload Controller] (Deployment 갱신)
+        └─ [Node Autoscaler] (Pending 시 노드 증설)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -91,18 +94,20 @@ extra:
 </details>
 
 ```text
-대외 트래픽 유입으로 애플리케이션 부하 급증
-        │
-   [지표 수집] Metrics Server가 Pod별 평균 CPU 사용률(예: 85%) 관측
-        │
-   [목표 편차 계산] HPA 설정 목표값(50%) 대비 초과 편차 비율 계산
-        │
-   [복제본 산출] Desired Replicas 공식에 따라 Pod 복제본을 3개에서 6개로 증설 결정
-        │
-   [Deployment 반영] Deployment의 `replicas: 6`으로 갱신하여 신규 Pod 3개 생성 요청
-        │
-   노드 자원이 부족할 경우 Karpenter가 새 EC2 노드를 즉시 기동하여 신규 Pod 스케줄링 완료
+[HPA 오토스케일링 수행] (진행 ①→⑤, 부하 급증, 신규 Pod 스케줄링 완료)
+  │
+  ├─ [지표 수집] (① Metrics Server가 Pod별 평균 CPU 사용률(예: 85%) 관측)
+  │
+  ├─ [목표 편차 계산] (② HPA 설정 목표값 50% 대비 초과 편차 비율 계산)
+  │
+  ├─ [복제본 산출] (③ Desired Replicas 공식에 따라 Pod 복제본을 3개에서 6개로 증설 결정)
+  │
+  ├─ [Deployment 반영] (④ Deployment `replicas: 6` 갱신, 신규 Pod 3개 생성 요청)
+  │
+  └─ [노드 용량 확보] (⑤ 노드 자원 부족 시 Karpenter가 새 EC2 노드 즉시 기동, 신규 Pod 스케줄링 완료)
 ```
+
+분기 결과: 노드에 배치 여유가 있으면 Deployment 갱신만으로 확장이 끝나고, Pending이 쌓이면 Karpenter 노드 증설 비용을 치르므로, 사후 반응형 스케일링은 급격한 스파이크에서 선제 트리거와 짝을 이뤄야 한다
 
 #### 한줄 요약
 - 지표 수집과 반영 사이의 시차 때문에 조정은 언제나 부하보다 늦게 도착하므로, 급격한 스파이크에서는 사후 반응형 스케일링만으로 부족하고 선제 트리거가 함께 필요해진다.
@@ -145,7 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 쿠버네티스(Kubernetes) 기반 컨테이너 오케스트레이션 및 마이크로서비스 아키텍처의 가장 핵심적인 자동 탄력성(Elasticity) 제어 메커니즘으로 확립되었으며, 실무 구축 시에는 무상태(Stateless) 웹/API 워크로드에 HPA + KEDA(이벤트 기반 사전 확장) 적용, 단일 프로세스 배치/Stateful 워크로드에는 VPA 자원 추천 모드(Off/Initial) 적용, 스케일다운 시 진동(Flapping)을 방지하는 안정화 윈도우(Stabilization Window) 튜닝 및 노드 병목을 제거하는 Karpenter 초고속 프로비저너 연동을 결합하여 무결점 확장성과 리소스 최적화를 완성
+- 쿠버네티스(Kubernetes) 기반 컨테이너 오케스트레이션 및 마이크로서비스 아키텍처의 **가장 핵심적인 자동 탄력성(Elasticity) 제어 메커니즘**으로 확립.
+- 실무 구축 시에는 **무상태(Stateless) 웹/API 워크로드에 HPA + KEDA(이벤트 기반 사전 확장) 적용**, **단일 프로세스 배치/Stateful 워크로드에는 VPA 자원 추천 모드(Off/Initial) 적용**, **스케일다운 시 진동(Flapping)을 방지하는 안정화 윈도우(Stabilization Window) 튜닝 및 노드 병목을 제거하는 Karpenter 초고속 프로비저너 연동**을 결합하여 무결점 확장성과 리소스 최적화를 완성.
 
 #### 한줄 요약
 - HPA와 VPA는 부하 특성에 따라 수평 및 수직으로 자원을 동적 조정하여 시스템 가용성과 비용 효율을 동시에 보장하는 쿠버네티스의 핵심 탄력성 기술이다.
