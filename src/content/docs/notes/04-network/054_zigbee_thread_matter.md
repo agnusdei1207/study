@@ -63,19 +63,19 @@ extra:
 [스마트홈 IoT 프로토콜 아키텍처]
   │
   ├─ [애플리케이션 계층] ── Matter (CSA 표준)
-  │     ├─ 공통 데이터 모델 (제조사 무관 통합 명령 제어)
-  │     ├─ Multi-Admin 제어 (다중 스마트홈 플랫폼 동시 연동)
-  │     └─ 기기 보안 인증 (DAC 하드웨어 인증서 검증)
+  │     ├─ [공통 데이터 모델] (제조사 무관 통합 명령 제어)
+  │     ├─ [Multi-Admin 제어] (다중 스마트홈 플랫폼 동시 연동)
+  │     └─ [기기 보안 인증] (DAC 하드웨어 인증서 검증)
   │
   ├─ [네트워크 및 전송 계층] ── Transport Layer
-  │     ├─ Thread (6LoWPAN 기반 저전력 IPv6 메시)
-  │     ├─ Wi-Fi / Ethernet (대용량 고속 IP 전송)
-  │     └─ Thread Border Router (메시망-LAN 무변환 라우팅)
+  │     ├─ [Thread] (6LoWPAN 기반 저전력 IPv6 메시)
+  │     ├─ [Wi-Fi / Ethernet] (대용량 고속 IP 전송)
+  │     └─ [Thread Border Router] (메시망-LAN 무변환 라우팅)
   │
   └─ [물리 및 링크 계층] ── PHY & MAC
-        ├─ IEEE 802.15.4 (2.4GHz 저전력 무선 메시)
-        ├─ IEEE 802.11 (초고속 무선 LAN)
-        └─ 레거시 Zigbee 브리지 (비-IP 기기 Matter 연동)
+        ├─ [IEEE 802.15.4] (2.4GHz 저전력 무선 메시)
+        ├─ [IEEE 802.11] (초고속 무선 LAN)
+        └─ [레거시 Zigbee 브리지] (비-IP 기기 Matter 연동)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -101,19 +101,20 @@ extra:
 </details>
 
 ```text
-Matter 기기 커미셔닝(Commissioning) 및 패브릭 가입 파이프라인
-        │
-   1. [QR 온보딩 스캔] 스마트폰 앱으로 신규 기기의 QR 코드 페이로드 스캔
-        │
-   2. [BLE PASE 세션 수립] BLE 통신을 통해 SPAKE2+ 기반 PASE 암호화 채널 수립
-        │
-   3. [DAC 기기 증명서 검증] 컨트롤러가 기기의 DAC 유효성 및 CSA 공인 인증 여부 검증
-        │
-   4. [네트워크 자격 증명 주입] Wi-Fi 또는 Thread 네트워크 접속 크리덴셜을 기기에 전송
-        │
-   ▼
-5. [Matter 패브릭 가입 완료] 기기가 Thread/Wi-Fi 메시망에 접속하여 IPv6 기반 상호 운용 개시
+[Matter 커미셔닝·패브릭 가입 흐름] (진행 ①→⑤, QR 스캔에서 진입, ①→② PASE 채널, ③ 증명 검증, ④ 크리덴셜 주입, ⑤ 메시 가입)
+  │
+  ├─ [스마트폰 컨트롤러] (① 신규 기기의 QR 코드 페이로드 스캔)
+  │
+  ├─ [BLE PASE 세션] (② SPAKE2+ 기반 **PASE** 암호화 채널 수립)
+  │
+  ├─ [DAC 검증기] (③ 기기 **DAC** 유효성 및 CSA 공인 인증 여부 검증)
+  │
+  ├─ [크리덴셜 주입기] (④ Wi-Fi·Thread 접속 자격 증명을 기기에 전송)
+  │
+  └─ [Thread·Wi-Fi 메시망] (⑤ 기기가 메시에 접속해 IPv6 기반 상호 운용 개시)
 ```
+
+분기 결과: ③ DAC 검증이 위조 기기 가름막으로 작동해 통과 기기만 ④ 네트워크 자격을 받으므로, 사용자는 QR로 임시 채널만 여는 대신 신원 증명 책임을 제조 시 심긴 인증서 쪽으로 넘기고 검증 실패 기기는 온보딩이 그 자리에서 중단된다.
 
 #### 한줄 요약
 - 제조 시 심어 둔 **DAC**가 기기 신원을 대신 증명하므로 사용자는 QR로 임시 채널만 열면 되고, 위조 기기를 가려내는 책임은 인증 체계 쪽으로 옮겨간다.
@@ -152,7 +153,8 @@ Matter 기기 커미셔닝(Commissioning) 및 패브릭 가입 파이프라인
 
 ## Ⅶ. 결론
 
-- Apple, Google, Amazon, Samsung 등 글로벌 빅테크 기업들이 단일 표준에 합의함으로써 스마트홈 및 빌딩 IoT 시장의 파편화를 종식시킨 가장 지배적인 글로벌 표준 아키텍처로 정립되었으며, 실무 스마트홈 인프라 구축 시에는 레거시 Zigbee/Z-Wave 기기를 수용하기 위한 Matter Bridge 연동, 단일 장애점(SPOF)을 제거하는 다중 Thread Border Router(Apple TV/스마트홈 허브) 페일오버 구성, 공급망 위조 기기를 원천 차단하는 DAC(Device Attestation Certificate) 공인 검증, 2.4GHz Wi-Fi 간섭을 회피하는 Thread 25/26번 채널 우선 배치를 결합하여 완벽한 상호운용성 스마트홈 환경을 완성
+- Apple, Google, Amazon, Samsung 등 글로벌 빅테크 기업들이 단일 표준에 합의함으로써 스마트홈 및 빌딩 IoT 시장의 파편화를 종식시킨 가장 지배적인 글로벌 표준 아키텍처로 정립.
+- 실무 스마트홈 인프라 구축 시에는 **레거시 Zigbee/Z-Wave 기기를 수용하기 위한 Matter Bridge 연동**, **단일 장애점(SPOF)을 제거하는 다중 Thread Border Router(Apple TV/스마트홈 허브) 페일오버 구성**, **공급망 위조 기기를 원천 차단하는 DAC(Device Attestation Certificate) 공인 검증**, **2.4GHz Wi-Fi 간섭을 회피하는 Thread 25/26번 채널 우선 배치**를 결합하여 완벽한 상호운용성 스마트홈 환경을 완성.
 
 #### 한줄 요약
 - Thread IPv6 메시 인프라와 Matter 공통 응용 프로토콜을 결합하여 제조사 종속 없는 스마트홈 표준 환경을 완성한다.

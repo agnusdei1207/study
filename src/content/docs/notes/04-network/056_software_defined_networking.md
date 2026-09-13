@@ -62,17 +62,17 @@ extra:
 [SDN 3계층 아키텍처]
   │
   ├─ [응용 계층] ── Application Layer
-  │     ├─ 네트워크 비즈니스 앱 (트래픽 엔지니어링, 보안 모니터링)
-  │     └─ 노스바운드 API (NBI: RESTful, gRPC 프로그램 인터페이스)
+  │     ├─ [네트워크 비즈니스 앱] (트래픽 엔지니어링, 보안 모니터링)
+  │     └─ [노스바운드 API] (NBI: RESTful, gRPC 프로그램 인터페이스)
   │
   ├─ [제어 계층] ── Control Layer (Network OS)
-  │     ├─ 중앙 집중 컨트롤러 (ONOS, OpenDaylight, 전역 토폴로지)
-  │     ├─ 경로 연산 및 흐름 제어 (최적 플로우 규칙 산출)
-  │     └─ 사우스바운드 API (SBI: OpenFlow, P4Runtime, NETCONF)
+  │     ├─ [중앙 집중 컨트롤러] (ONOS, OpenDaylight, 전역 토폴로지)
+  │     ├─ [경로 연산 및 흐름 제어] (최적 플로우 규칙 산출)
+  │     └─ [사우스바운드 API] (SBI: OpenFlow, P4Runtime, NETCONF)
   │
   └─ [인프라 계층] ── Data Plane Infrastructure
-        ├─ 플로우 테이블 (Flow Table, TCAM 기반 라인 레이트 매칭)
-        └─ 화이트박스 스위치 (Open vSwitch, COTS 하드웨어 스위치)
+        ├─ [플로우 테이블] (Flow Table, TCAM 기반 라인 레이트 매칭)
+        └─ [화이트박스 스위치] (Open vSwitch, COTS 하드웨어 스위치)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -97,19 +97,20 @@ extra:
 </details>
 
 ```text
-SDN Flow Table 매칭 및 Packet-In/Flow-Mod 파이프라인
-        │
-   1. [패킷 인입 및 룩업] 신규 패킷이 스위치 포트에 인입 -> Flow Table 매칭 검색
-        │
-   2. [Table-Miss Packet-In] 일치 규칙 부재 시 스위치가 OpenFlow로 컨트롤러에 Packet-In 전송
-        │
-   3. [전역 최적 경로 연산] SDN 컨트롤러가 전역 토폴로지 및 QoS 정책을 기반으로 경로 산출
-        │
-   4. [Flow-Mod 규칙 설치] 컨트롤러가 경로상 스위치 TCAM에 Flow-Mod 주입 및 Packet-Out 하달
-        │
-   ▼
-5. [라인 레이트 고속 전달] 이후 동일 플로우 패킷은 컨트롤러 개입 없이 스위치 단독 고속 포워딩
+[SDN 플로우 처리 흐름] (진행 ①→⑤, 인입에서 진입, ① 매칭, ② 미적중 시 컨트롤러 왕복, ③④ 규칙 주입, ⑤ 고속 전달)
+  │
+  ├─ [화이트박스 스위치] (① 신규 패킷 인입 후 Flow Table 매칭 검색)
+  │
+  ├─ [OpenFlow Packet-In 채널] (② 일치 규칙 부재(Table-Miss) 시 **Packet-In**으로 컨트롤러에 보고)
+  │
+  ├─ [SDN 컨트롤러] (③ 전역 토폴로지·QoS 정책 기반 최적 경로 연산)
+  │
+  ├─ [TCAM Flow Table] (④ **Flow-Mod**로 경로상 스위치에 규칙 주입 후 **Packet-Out** 하달)
+  │
+  └─ [라인 레이트 포워딩 경로] (⑤ 이후 동일 플로우는 컨트롤러 개입 없이 스위치 단독 고속 전달)
 ```
+
+분기 결과: ① 매칭에서 갈라져 적중 플로우는 ⑤ 규칙 재사용으로 컨트롤러 왕복 없이 지나가고 미적중만 **Packet-In** 왕복이라는 비싼 판단 비용을 치르는데, 그 비용은 ④ 설치된 규칙이 플로우 수명 동안 재사용되며 상환된다.
 
 #### 한줄 요약
 - 첫 패킷만 컨트롤러 왕복이라는 비싼 판단 비용을 치르고 이후 같은 플로우는 설치된 규칙을 재사용하므로, 제어와 전달의 분리 비용이 그 한 번에 상환된다.
@@ -149,7 +150,8 @@ SDN Flow Table 매칭 및 Packet-In/Flow-Mod 파이프라인
 
 ## Ⅶ. 결론
 
-- 하이퍼스케일 클라우드 데이터센터(SDDC), 광역 통신망(SD-WAN), 이동통신 코어망(5G SBA)에 이르기까지 현대 IT 네트워크 인프라의 운영 패러다임을 하드웨어에서 소프트웨어 코드로 완전히 전환시킨 핵심 아키텍처로 자리매김하였으며, 향후 생성형 AI 및 NetDevOps와 결합된 IBN(Intent-Based Networking)으로 진화해 나가는 가운데, 실무 아키텍처 구축 시에는 컨트롤러 단일 장애점(SPOF)을 제거하는 Raft 합의 기반 클러스터링(ONOS/ODL), Packet-In 폭풍을 방지하는 Proactive 룰 사전 주입, 하드웨어 TCAM 한계를 극복하는 유효 수명(Idle/Hard Timeout) 관리, 제어 채널 보안을 위한 mTLS 상호 인증을 결합하여 완벽한 네트워크 프로그래머빌리티와 고가용성을 완성
+- 하이퍼스케일 클라우드 데이터센터(SDDC), 광역 통신망(SD-WAN), 이동통신 코어망(5G SBA)에 이르기까지 현대 IT 네트워크 인프라의 운영 패러다임을 하드웨어에서 소프트웨어 코드로 완전히 전환시킨 핵심 아키텍처로 자리매김.
+- 향후 생성형 AI 및 NetDevOps와 결합된 IBN(Intent-Based Networking)으로 진화해 나가는 가운데, 실무 아키텍처 구축 시에는 **컨트롤러 단일 장애점(SPOF)을 제거하는 Raft 합의 기반 클러스터링(ONOS/ODL)**, **Packet-In 폭풍을 방지하는 Proactive 룰 사전 주입**, **하드웨어 TCAM 한계를 극복하는 유효 수명(Idle/Hard Timeout) 관리**, **제어 채널 보안을 위한 mTLS 상호 인증**을 결합하여 완벽한 네트워크 프로그래머빌리티와 고가용성을 완성.
 
 #### 한줄 요약
 - SDN은 제어와 데이터 평면을 분리하여 전역 가시성과 소프트웨어 자동화를 실현하는 핵심 네트워크 기술이다.

@@ -61,19 +61,19 @@ extra:
 [ETSI NFV 표준 아키텍처]
   │
   ├─ [MANO 오케스트레이션] ── Management & Orchestration
-  │     ├─ NFVO (NFV Orchestrator, E2E 서비스 조율 및 자원 인가)
-  │     ├─ VNFM (VNF Manager, 개별 VNF 생애주기 LCM 제어)
-  │     └─ VIM (Virtualised Infrastructure Manager, 자원 할당)
+  │     ├─ [NFVO] (NFV Orchestrator, E2E 서비스 조율 및 자원 인가)
+  │     ├─ [VNFM] (VNF Manager, 개별 VNF 생애주기 LCM 제어)
+  │     └─ [VIM] (Virtualised Infrastructure Manager, 자원 할당)
   │
   ├─ [가상 네트워크 기능] ── VNF / CNF Layer
-  │     ├─ VNF 인스턴스 (vFirewall, vRouter, vUPF 가상 머신)
-  │     ├─ CNF 클라우드 네이티브 (마이크로서비스 컨테이너)
-  │     └─ SFC 체이닝 (Service Function Chaining 경로 조향)
+  │     ├─ [VNF 인스턴스] (vFirewall, vRouter, vUPF 가상 머신)
+  │     ├─ [CNF 클라우드 네이티브] (마이크로서비스 컨테이너)
+  │     └─ [SFC 체이닝] (Service Function Chaining 경로 조향)
   │
   └─ [가상화 인프라 계층] ── NFVI (NFV Infrastructure)
-        ├─ 하드웨어 자원 (COTS x86/ARM 서버, 스토리지, 고속 NIC)
-        ├─ 가상화 계층 (KVM, ESXi 하이퍼바이저 / K8s 컨테이너 런타임)
-        └─ 하드웨어 가속 (DPDK 커널 우회 및 SR-IOV 직접 매핑)
+        ├─ [하드웨어 자원] (COTS x86/ARM 서버, 스토리지, 고속 NIC)
+        ├─ [가상화 계층] (KVM, ESXi 하이퍼바이저 / K8s 컨테이너 런타임)
+        └─ [하드웨어 가속] (DPDK 커널 우회 및 SR-IOV 직접 매핑)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -98,19 +98,20 @@ extra:
 </details>
 
 ```text
-NFV 서비스 배포 및 수명주기 관리 파이프라인
-        │
-   1. [서비스 요청 인입] 운용자(OSS/BSS)가 서비스 청사진(NSD)을 NFVO로 전달
-        │
-   2. [가상 자원 예약] NFVO가 무결성 검증 후 VIM에 필요한 vCPU/RAM/vNIC 예약 요청
-        │
-   3. [NFVI 인프라 프로비저닝] VIM이 물리 COTS 서버에서 가상 머신/컨테이너 슬롯 할당
-        │
-   4. [VNF 인스턴스화] VNFM이 VNF 이미지를 로드하여 부팅 및 초기 설정(VNFD 주입)
-        │
-   ▼
-5. [SFC 체이닝 및 감시] NFVO가 VNF 간 서비스 체이닝 경로를 확정하고 텔레메트리 감시 개시
+[NFV 서비스 배포·수명주기 흐름] (진행 ①→⑤, 요청에서 진입, ①→② 자원 예약, ③ 프로비저닝, ④ 인스턴스화, ⑤ 체이닝·감시)
+  │
+  ├─ [OSS·BSS] (① 서비스 청사진 **NSD**를 NFVO로 전달)
+  │
+  ├─ [NFVO] (② NSD 무결성 검증 후 VIM에 vCPU·RAM·vNIC 예약 요청)
+  │
+  ├─ [VIM·NFVI] (③ COTS 서버 위 가상 머신·컨테이너 슬롯 할당)
+  │
+  ├─ [VNFM] (④ VNF 이미지 로드·부팅 후 VNFD 초기 설정 주입)
+  │
+  └─ [SFC 체이닝·텔레메트리] (⑤ VNF 간 서비스 체이닝 경로 확정 및 감시 개시)
 ```
+
+분기 결과: 배포가 ①~⑤ 자동화 파이프라인으로 흘러 어플라이언스 반입·셋팅의 주 단위 작업이 소프트웨어 배포 시간 문제로 바뀌는 대가로, 처리 성능은 ③ 프로비저닝된 범용 서버와 가상화 계층 한계에 묶여 DPDK·SR-IOV 같은 가속 기법을 별도로 얹어야 한다.
 
 #### 한줄 요약
 - 장비 반입 대신 자원 예약으로 기능을 세우므로 증설이 배포 시간 문제로 바뀌지만, 그 대가로 성능은 범용 서버와 가상화 계층의 처리 한계에 묶인다.
@@ -150,7 +151,8 @@ NFV 서비스 배포 및 수명주기 관리 파이프라인
 
 ## Ⅶ. 결론
 
-- 5G 코어망(SBA), vRAN/Open RAN 및 클라우드 네이티브 네트워크 인프라의 근간을 이루며 통신 사업자(Telco) 및 대규모 엔터프라이즈의 네트워크 민첩성과 비용 효율성을 혁신한 핵심 가상화 표준으로 정립되었으며, 가상 머신 기반 VNF에서 쿠버네티스 마이크로서비스 기반 CNF(Cloud-native Network Function)로 진화하는 가운데, 실무 구축 시에는 가상화 오버헤드를 극복하는 DPDK 커널 바이패스 및 SR-IOV 하드웨어 가속, NUMA 노드 및 CPU Pinning을 통한 결정론적 저지연 보장, 복잡한 서비스 경로를 일관되게 제어하는 NSH 기반 서비스 기능 체이닝(SFC)을 결합하여 통신사급 캐리어 그레이드 고성능과 고가용성을 완성
+- 5G 코어망(SBA), vRAN/Open RAN 및 클라우드 네이티브 네트워크 인프라의 근간을 이루며 통신 사업자(Telco) 및 대규모 엔터프라이즈의 네트워크 민첩성과 비용 효율성을 혁신한 핵심 가상화 표준으로 정립.
+- 가상 머신 기반 VNF에서 쿠버네티스 마이크로서비스 기반 CNF(Cloud-native Network Function)로 진화하는 가운데, 실무 구축 시에는 **가상화 오버헤드를 극복하는 DPDK 커널 바이패스 및 SR-IOV 하드웨어 가속**, **NUMA 노드 및 CPU Pinning을 통한 결정론적 저지연 보장**, **복잡한 서비스 경로를 일관되게 제어하는 NSH 기반 서비스 기능 체이닝(SFC)**을 결합하여 통신사급 캐리어 그레이드 고성능과 고가용성을 완성.
 
 #### 한줄 요약
 - NFV는 네트워크 기능을 범용 COTS 서버 위 소프트웨어로 전환하여 MANO로 자동화 제어하는 핵심 통신 가상화 패러다임이다.

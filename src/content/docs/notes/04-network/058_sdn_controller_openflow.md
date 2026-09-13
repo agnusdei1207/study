@@ -61,19 +61,19 @@ extra:
 [SDN 컨트롤러 및 OpenFlow 구조]
   │
   ├─ [제어 평면 두뇌] ── SDN Controller
-  │     ├─ 전역 토폴로지 분석기 (LLDP 기반 망 구조 인지)
-  │     ├─ 경로 연산 엔진 (Dijkstra 최적 플로우 경로 산출)
-  │     └─ Flow-Mod 생성기 (스위치 하향 규칙 생성기)
+  │     ├─ [전역 토폴로지 분석기] (LLDP 기반 망 구조 인지)
+  │     ├─ [경로 연산 엔진] (Dijkstra 최적 플로우 경로 산출)
+  │     └─ [Flow-Mod 생성기] (스위치 하향 규칙 생성기)
   │
   ├─ [보안 사우스바운드 채널] ── Secure Channel
-  │     ├─ TLS 상호 인증 채널 (TCP 6653 포트 보안 링크)
-  │     ├─ 비동기 메시지 (Packet-In, Port-Status 이벤트)
-  │     └─ 동기 제어 메시지 (Flow-Mod, Packet-Out 명령)
+  │     ├─ [TLS 상호 인증 채널] (TCP 6653 포트 보안 링크)
+  │     ├─ [비동기 메시지] (Packet-In, Port-Status 이벤트)
+  │     └─ [동기 제어 메시지] (Flow-Mod, Packet-Out 명령)
   │
   └─ [데이터 평면 파이프라인] ── Multi-Table Pipeline
-        ├─ 흐름 테이블 Flow Table (Match-Action TCAM 검색)
-        ├─ 그룹 테이블 Group Table (Fast-Failover 및 복제)
-        └─ 미터 테이블 Meter Table (Rate Limiting QoS 대역폭 측정)
+        ├─ [흐름 테이블 Flow Table] (Match-Action TCAM 검색)
+        ├─ [그룹 테이블 Group Table] (Fast-Failover 및 복제)
+        └─ [미터 테이블 Meter Table] (Rate Limiting QoS 대역폭 측정)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -98,19 +98,20 @@ extra:
 </details>
 
 ```text
-OpenFlow Table-Miss 및 Flow-Mod 파이프라인
-        │
-   1. [패킷 인입 및 다중 매칭] 패킷 인입 -> Table 0부터 순차적 Match-Action 파이프라인 검색
-        │
-   2. [Table-Miss Packet-In] 일치 규칙 부재 시 스위치가 OpenFlow Packet-In 메시지 송출
-        │
-   3. [전역 경로 연산] SDN 컨트롤러가 전역 토폴로지 기반 최적 전송 경로 산출
-        │
-   4. [Flow-Mod 규칙 설치] 컨트롤러가 스위치로 Flow-Mod(TCAM 룰 주입) 및 Packet-Out 하달
-        │
-   ▼
-5. [라인 레이트 고속 포워딩] 스위치 하드웨어 TCAM에 규칙이 적재되어 후속 패킷부터 고속 전달
+[OpenFlow Table-Miss·Flow-Mod 흐름] (진행 ①→⑤, 인입에서 진입, ① 다중 테이블 매칭, ② 미적중 보고, ③④ 규칙 설치, ⑤ 고속 포워딩)
+  │
+  ├─ [Multi-Table 파이프라인] (① Table 0부터 Goto-Table 순차 Match-Action 검색)
+  │
+  ├─ [Packet-In 채널] (② Table-Miss 시 스위치가 OpenFlow 채널로 원본 패킷 보고)
+  │
+  ├─ [SDN 컨트롤러] (③ LLDP 전역 토폴로지 기반 최적 전송 경로 산출)
+  │
+  ├─ [**Flow-Mod** 설치기] (④ 스위치 TCAM에 룰 주입 후 Packet-Out 하달)
+  │
+  └─ [TCAM 하드웨어 포워딩] (⑤ 후속 패킷부터 컨트롤러 개입 없이 라인 레이트 전달)
 ```
+
+분기 결과: ① 매칭이 갈림길로, Table-Miss에 걸린 첫 패킷만 ②~④ 컨트롤러 RTT 왕복 지연을 치르고 **Flow-Mod**로 규칙을 남긴 뒤 ⑤ 고속 경로로 바뀌며, 선제적 주입 비율을 키우면 첫 패킷 지연이 줄지만 그만큼 TCAM 점유가 늘어난다.
 
 #### 한줄 요약
 - Table-Miss가 난 패킷만 컨트롤러까지 올라가고 나머지는 TCAM에 남은 규칙으로 처리되므로, 규칙을 미리 깔아 둘수록 첫 패킷 지연은 줄고 테이블 자원은 더 든다.
@@ -149,7 +150,8 @@ OpenFlow Table-Miss 및 Flow-Mod 파이프라인
 
 ## Ⅶ. 결론
 
-- 소프트웨어 정의 네트워킹의 기초를 확립하고 데이터센터 가상 스위치(OVS) 및 통신사 연구망에서 SDN 사우스바운드 표준 인터페이스의 상징적 레퍼런스 모델로 기여하였으며, 최근 P4(Programming Protocol-independent Packet Processors) 및 gNMI/NETCONF 등 차세대 프로그래머블 데이터 플레인으로 확장·발전하는 가운데, 실무 컨트롤러-스위치 연동 설계 시에는 Packet-In 폭풍을 억제하는 스위치 CoPP 레이트 리미팅, 하드웨어 TCAM 고갈을 방지하는 유휴 수명(Idle/Hard Timeout) 최적화, 제어 채널 단절 시 망 마비를 방지하는 Fail-Standalone 모드 및 컨트롤러 다중 연결, 상호 인증 TLS 암호화를 결합하여 완벽한 제어 평면 안정성을 완성
+- 소프트웨어 정의 네트워킹의 기초를 확립하고 데이터센터 가상 스위치(OVS) 및 통신사 연구망에서 SDN 사우스바운드 표준 인터페이스의 상징적 레퍼런스 모델로 기여.
+- 최근 P4(Programming Protocol-independent Packet Processors) 및 gNMI/NETCONF 등 차세대 프로그래머블 데이터 플레인으로 확장·발전하는 가운데, 실무 컨트롤러-스위치 연동 설계 시에는 **Packet-In 폭풍을 억제하는 스위치 CoPP 레이트 리미팅**, **하드웨어 TCAM 고갈을 방지하는 유휴 수명(Idle/Hard Timeout) 최적화**, **제어 채널 단절 시 망 마비를 방지하는 Fail-Standalone 모드 및 컨트롤러 다중 연결**, **상호 인증 TLS 암호화**를 결합하여 완벽한 제어 평면 안정성을 완성.
 
 #### 한줄 요약
 - SDN 컨트롤러와 OpenFlow의 Match-Action 파이프라인을 결합하여 고신뢰 제어 평면을 구현한다.
