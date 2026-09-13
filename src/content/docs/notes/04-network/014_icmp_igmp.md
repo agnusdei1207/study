@@ -62,15 +62,15 @@ extra:
 [ICMP 및 IGMP 제어 프로토콜 아키텍처]
   │
   ├─ [ICMP 제어 및 진단 체계] (오류 피드백 & 상태 진단)
-  │     ├─ 오류 보고 메시지 (Type 3 도달불가, Type 11 시간초과)
-  │     ├─ 진단 질의/응답 메시지 (Type 8/0 Echo Ping, Traceroute)
-  │     └─ 경로 MTU 탐색 PMTUD (Type 3 Code 4 단편화 필요)
+  │     ├─ [오류 보고 메시지] (Type 3 도달불가, Type 11 시간초과)
+  │     ├─ [진단 질의/응답 메시지] (Type 8/0 Echo Ping, Traceroute)
+  │     └─ [경로 MTU 탐색 PMTUD] (Type 3 Code 4 단편화 필요)
   │
   └─ [IGMP 멀티캐스트 제어 체계] (로컬 서브넷 그룹 관리)
-        ├─ IGMP 라우터 (Querier: 주기적 Membership Query 발송)
-        ├─ 호스트 멤버십 (Report 가입 보고, Leave 신속 탈퇴)
-        ├─ IGMP Snooping (L2 스위치 감청 및 선별 포워딩)
-        └─ IGMPv3 확장 (Source-Specific Multicast SSM 지원)
+        ├─ [IGMP 라우터] (Querier: 주기적 Membership Query 발송)
+        ├─ [호스트 멤버십] (Report 가입 보고, Leave 신속 탈퇴)
+        ├─ [IGMP Snooping] (L2 스위치 감청 및 선별 포워딩)
+        └─ [IGMPv3 확장] (Source-Specific Multicast SSM 지원)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -94,23 +94,18 @@ extra:
 </details>
 
 ```text
-ICMP 오류 처리(PMTUD) 및 IGMP 그룹 관리
-        │
-   1. [대형 패킷 전송] 송신 호스트가 DF=1 설정 후 1500B 패킷 송출
-        │
-   2. [라우터 MTU 초과 폐기] 중간 라우터(MTU 1400B)에서 패킷 폐기 -> Next-Hop MTU 담아 ICMP Type 3 Code 4 반환
-        │
-   3. [송신단 MSS 재조정] 송신 호스트가 통보받은 MTU 1400B로 MSS 축소 후 재전송 완료
-   ┌────┴───────────────────────────┐
-  IGMP 그룹 가입                   IGMP 신속 탈퇴 (Fast-Leave)
-   │                                 │
-4A. [호스트 Membership Report 송출]  4B. [호스트 Leave Group 메시지 송출]
-   스위치가 Snooping 테이블에 포트 등록   스위치가 즉시 해당 포트 포워딩 차단 (대역폭 회수)
-   │                                 │
-   └────┬────────────────────────────┘
-        ▼
-   안정적인 L3 오류 진단 및 L2 멀티캐스트 스트리밍 완료
+[ICMP 진단·IGMP 멤버십 제어 흐름] (진행 ①→④, PMTUD에서 진입, 멤버십 ④ 가입·탈퇴 분기)
+  │
+  ├─ [송신 호스트] (① DF=1로 1500B 대형 패킷 송출, ③ 통보받은 MTU 1400B로 MSS 축소 재전송)
+  │
+  ├─ [중간 라우터] (② Next-Hop MTU 초과 패킷을 폐기하고 ICMP Type 3 Code 4로 Next-Hop MTU 반환)
+  │
+  ├─ [IGMP Querier] (④ Membership Query 발송으로 활성 수신자 상태 확인)
+  │
+  └─ [IGMP Snooping 스위치] (④ Report면 포트를 Snooping 테이블에 등록, Fast-Leave면 해당 포트 즉시 차단)
 ```
+
+분기 결과: **PMTUD 3단계**는 ② 폐기 통보를 받아 ③ MSS 축소 재전송으로 이어지고, 멤버십 ④는 Report를 보내면 포트가 열리고 Fast-Leave를 보내면 즉시 닫혀 미가입 포트의 플러딩 대역폭이 회수된다.
 
 #### 한줄 요약
 - ICMP PMTUD로 MTU를 동적 조정하고, IGMP Report/Leave로 멀티캐스트 포워딩을 최적화한다.
@@ -154,7 +149,8 @@ ICMP 오류 처리(PMTUD) 및 IGMP 그룹 관리
 
 ## Ⅶ. 결론
 
-- IP 네트워크의 상태 진단/오류 보고(ICMP)와 IPTV·금융 시세 피드 등 실시간 대규모 미디어 배포(IGMP)를 지탱하는 **가장 핵심적인 L3 제어 및 그룹 통신 표준 프로토콜**로 확립되었으며, 실무 운영 시에는 **PMTUD 장애로 인한 TCP 블랙홀을 방지하기 위한 ICMP Type 3 Code 4 선별 허용, 제어 평면 보호를 위한 CoPP(Control Plane Policing) Rate Limiting, L2 스위치 전 포트 IGMP Snooping 및 Fast-Leave 활성화, 특정 송신원 스트림만 수신하는 IGMPv3 SSM(Source-Specific Multicast) 구성**을 결합하여 안정성과 전송 효율을 극대화
+- IP 네트워크의 상태 진단/오류 보고(ICMP)와 IPTV·금융 시세 피드 등 실시간 대규모 미디어 배포(IGMP)를 지탱하는 **가장 핵심적인 L3 제어 및 그룹 통신 표준 프로토콜**로 확립.
+- 실무 운영 시에는 **PMTUD 장애로 인한 TCP 블랙홀을 방지하기 위한 ICMP Type 3 Code 4 선별 허용**, **제어 평면 보호를 위한 CoPP(Control Plane Policing) Rate Limiting**, **L2 스위치 전 포트 IGMP Snooping 및 Fast-Leave 활성화**, **특정 송신원 스트림만 수신하는 IGMPv3 SSM(Source-Specific Multicast) 구성**을 결합하여 안정성과 전송 효율을 극대화.
 
 #### 한줄 요약
 - ICMP 오류 피드백과 IGMP/Snooping 멀티캐스트 최적화를 통해 고신뢰 네트워크 제어 및 고효율 미디어 전송을 실현한다.

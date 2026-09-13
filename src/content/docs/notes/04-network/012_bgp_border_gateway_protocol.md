@@ -61,18 +61,18 @@ extra:
 [BGP 정책 기반 라우팅 아키텍처]
   │
   ├─ [세션 및 피어링 계층] (BGP Peering)
-  │     ├─ eBGP 피어 (상이한 AS 간 외부 피어링, TTL=1)
-  │     ├─ iBGP 피어 (동일 AS 내부 피어링, Full-Mesh/Route Reflector)
-  │     └─ TCP 179 전송 세션 (Keepalive 및 점진적 Update)
+  │     ├─ [eBGP 피어] (상이한 AS 간 외부 피어링, TTL=1)
+  │     ├─ [iBGP 피어] (동일 AS 내부 피어링, Full-Mesh/Route Reflector)
+  │     └─ [TCP 179 전송 세션] (Keepalive 및 점진적 Update)
   │
   ├─ [정책 제어 및 필터링] (Policy Engine)
-  │     ├─ 인바운드 정책 필터 (Local_Pref 조작 -> 송신 트래픽 제어)
-  │     ├─ BGP 경로 속성군 (Weight, Local_Pref, AS_PATH, MED)
-  │     └─ 아웃바운드 정책 필터 (AS_PATH Prepending -> 수신 트래픽 제어)
+  │     ├─ [인바운드 정책 필터] (Local_Pref 조작 -> 송신 트래픽 제어)
+  │     ├─ [BGP 경로 속성군] (Weight, Local_Pref, AS_PATH, MED)
+  │     └─ [아웃바운드 정책 필터] (AS_PATH Prepending -> 수신 트래픽 제어)
   │
   └─ [최선 경로 선발 엔진] (Best Path Selection)
-        ├─ BGP 의사결정 프로세스 (Weight -> Local_Pref -> AS_PATH -> MED)
-        └─ BGP 라우팅 테이블 (Adj-RIB-In -> Loc-RIB -> Adj-RIB-Out)
+        ├─ [BGP 의사결정 프로세스] (Weight -> Local_Pref -> AS_PATH -> MED)
+        └─ [BGP 라우팅 테이블] (Adj-RIB-In -> Loc-RIB -> Adj-RIB-Out)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -97,27 +97,20 @@ extra:
 </details>
 
 ```text
-BGP 라우팅 업데이트 수신 및 처리
-        │
-   1. [UPDATE 수신] BGP 피어로부터 TCP 179 세션을 통해 NLRI 및 경로 속성 수신
-        │
-   2. [인바운드 필터링] RPKI 유효성(Valid) 검증 및 Inbound Route-Map (Local_Pref=200 부여)
-        │
-   3. [최선 경로 선출] BGP Best Path 알고리즘 가동 -> 최단 AS_PATH 경로를 Loc-RIB에 등록
-   ┌────┴───────────────────────────┐
-  최적 경로 선발 완료              경로 무효/루프 감지 (AS_PATH에 내 ASN 존재)
-   │                                 │
-4A. [FIB 하드웨어 주입]             4B. [즉시 경로 폐기 (Drop)]
-   메인 라우팅 테이블 및 TCAM FIB 반영     라우팅 루프 방지
-   │                                 │
-   ▼                                 │
-5. [아웃바운드 재전파]               │
-   AS_PATH Prepend 적용 후 피어 광고 │
-   │                                 │
-   └────┬────────────────────────────┘
-        ▼
-   글로벌 인터넷 AS 간 최적 패킷 포워딩 수행
+[BGP 경로 수신·재광고 흐름] (진행 ①→⑤, 수신에서 진입, ④ FIB 적재 후 ⑤ 재광고)
+  │
+  ├─ [BGP 피어 세션] (① TCP 179 세션으로 NLRI와 경로 속성을 담은 UPDATE 수신)
+  │
+  ├─ [인바운드 정책 필터] (② RPKI 유효성 검증과 Local_Pref=200 부여 등 유입 경로 가공)
+  │
+  ├─ [최선 경로 선발 엔진] (③ Weight→Local_Pref→AS_PATH 순 의사결정으로 Loc-RIB 등록)
+  │
+  ├─ [FIB] (④ 선발 경로를 TCAM에 반영해 포워딩 개시)
+  │
+  └─ [아웃바운드 정책 필터] (⑤ AS_PATH Prepend 적용 후 피어에 재광고)
 ```
+
+분기 결과: **BGP 의사결정 5단계** 중 ③ 선출에서 AS_PATH에 자기 ASN이 보이는 경로는 루프로 판정해 즉시 폐기하므로 ④ FIB 적재와 ⑤ 피어 재광고 단계를 아예 치르지 않고, 유효 경로만 후속 단계로 진행한다.
 
 #### 한줄 요약
 - AS_PATH에 자기 ASN이 보이는 경로는 선출 단계에서 즉시 폐기되어 FIB 주입과 재광고 비용을 아끼고, 살아남은 경로만 TCAM 적재와 Prepend 재광고라는 비싼 단계를 통과한다.
@@ -161,7 +154,8 @@ BGP 라우팅 업데이트 수신 및 처리
 
 ## Ⅶ. 결론
 
-- 전 세계 인터넷 백본과 글로벌 클라우드(AWS Direct Connect, Azure ExpressRoute) 상호 연결의 유일무이한 **글로벌 라우팅 표준이자 사실상 인터넷을 동작시키는 핵심 통신 프로토콜**로 확립되었으며, 실무 구축 시에는 **eBGP를 통한 외부 ISP 다중 회선 멀티호밍, Local_Pref(아웃바운드) 및 AS_PATH Prepending(인바운드)을 통한 트래픽 엔지니어링, 풀 메시 부담을 완화하는 iBGP Route Reflector(RR) 이중화, 허위 경로 탈취를 방어하는 RPKI(Resource Public Key Infrastructure) 기반 ROA 검증**을 결합하여 고신뢰 EGP 라우팅 생태계를 완성
+- 전 세계 인터넷 백본과 글로벌 클라우드(AWS Direct Connect, Azure ExpressRoute) 상호 연결의 유일무이한 **글로벌 라우팅 표준이자 사실상 인터넷을 동작시키는 핵심 통신 프로토콜**로 확립.
+- 실무 구축 시에는 **eBGP를 통한 외부 ISP 다중 회선 멀티호밍**, **Local_Pref(아웃바운드) 및 AS_PATH Prepending(인바운드)을 통한 트래픽 엔지니어링**, **풀 메시 부담을 완화하는 iBGP Route Reflector(RR) 이중화**, **허위 경로 탈취를 방어하는 RPKI(Resource Public Key Infrastructure) 기반 ROA 검증**을 결합하여 고신뢰 EGP 라우팅 생태계를 완성.
 
 #### 한줄 요약
 - BGP는 TCP 179 기반의 경로 벡터 알고리즘과 다양한 속성을 통해 자율 시스템 간 정책 라우팅을 수행하며, RPKI 보안 검증과 결합하여 안전한 인터넷 통신을 보장하는 핵심 기술이다.

@@ -62,18 +62,18 @@ extra:
 [MPLS 레이블 스위칭 아키텍처]
   │
   ├─ [에지 영역] (LER, Label Edge Router)
-  │     ├─ 인입 LER (Ingress: FEC 분류 및 32비트 레이블 Push)
-  │     └─ 송출 LER (Egress: 최종 레이블 Pop 및 L3 IP 복원)
+  │     ├─ [인입 LER] (Ingress: FEC 분류 및 32비트 레이블 Push)
+  │     └─ [송출 LER] (Egress: 최종 레이블 Pop 및 L3 IP 복원)
   │
   ├─ [코어 영역] (LSR, Label Switching Router)
-  │     ├─ 코어 LSR (LFIB 기반 초고속 레이블 Swap)
-  │     └─ 직전 홉 라우터 (PHP: 송출 LER 부하 경감 선제 제거)
+  │     ├─ [코어 LSR] (LFIB 기반 초고속 레이블 Swap)
+  │     └─ [직전 홉 라우터] (PHP: 송출 LER 부하 경감 선제 제거)
   │
   └─ [32비트 Shim Header 포맷] (2.5계층 헤더)
-        ├─ Label ID (20비트: 실제 포워딩 식별자)
-        ├─ TC / Exp (3비트: QoS 및 트래픽 클래스)
-        ├─ S 비트 (1비트: Bottom of Stack 스택 종료 표시)
-        └─ TTL (8비트: 루프 방지 Time To Live)
+        ├─ [Label ID] (20비트: 실제 포워딩 식별자)
+        ├─ [TC / Exp] (3비트: QoS 및 트래픽 클래스)
+        ├─ [S 비트] (1비트: Bottom of Stack 스택 종료 표시)
+        └─ [TTL] (8비트: 루프 방지 Time To Live)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -98,18 +98,18 @@ extra:
 </details>
 
 ```text
-MPLS LSP 패킷 전달 파이프라인
-        │
-   1. [패킷 인입 및 FEC 분류] 인입 LER에 IP 패킷 도착 -> 목적지 IP 기반 FEC 매핑
-        │
-   2. [Label Push] 32비트 MPLS Shim Header(레이블 101)를 L2와 L3 사이에 삽입
-        │
-   3. [Core LSR LFIB Swap] 코어 라우터가 LFIB 테이블 조회 -> 레이블 101을 202로 교환하여 송출
-        │
-   4. [직전 홉 PHP Pop] 송출 LER 직전 LSR에서 외곽 레이블 선제 제거 (Label 3 수신)
-        │
-   5. [Egress LER IP 전달] 잔여 레이블 제거 후 순수 IP 패킷으로 최종 목적지 네트워크 전달
+[MPLS LSP 레이블 전달 흐름] (진행 ①→⑤, Push에서 진입, Swap ③·Pop ④→⑤ IP 복원)
+  │
+  ├─ [인입 LER] (① 목적지 IP로 FEC 분류, ② 32비트 Shim Header 레이블 101을 L2·L3 사이에 Push)
+  │
+  ├─ [코어 LSR] (③ LFIB 조회로 레이블 101을 202로 Swap해 송출)
+  │
+  ├─ [직전 홉 LSR] (④ Implicit Null 레이블 3 수신 시 외곽 레이블을 선제 Pop하는 PHP 수행)
+  │
+  └─ [송출 LER] (⑤ 잔여 레이블 제거 후 순수 IP 패킷을 목적지 네트워크에 전달)
 ```
+
+분기 결과: **MPLS 패킷 전송 5단계**에서 ④ PHP가 적용되면 송출 LER은 레이블 제거 부담 없이 IP 전달만 남지만, 미적용 구간에서는 Egress가 Pop과 IP 룩업을 모두 치르는 이중 부하가 경로 끝단에 몰린다.
 
 #### 한줄 요약
 - PHP는 송출 LER에 몰릴 레이블 제거와 IP 룩업의 이중 부하를 직전 홉으로 앞당겨 경로 끝단의 비용을 코어로 분산하며, 그 대가로 경계에서의 레이블 정보는 미리 사라진다.
@@ -153,7 +153,8 @@ MPLS LSP 패킷 전달 파이프라인
 
 ## Ⅶ. 결론
 
-- 통신사 코어 백본망과 엔터프라이즈 전용선 서비스(L3VPN/L2VPN)의 인프라 표준으로 오랜 기간 검증되었으며, 최근에는 복잡한 LDP/RSVP-TE 프로토콜 상태 유지를 배제하고 IPv6 확장 헤더를 활용하는 **세그먼트 라우팅(Segment Routing: SR-MPLS / SRv6)으로의 진화와 함께, 50ms 미만 무순단 절체를 위한 MPLS Fast Reroute(FRR), 다중 레이블 추가 시 패킷 드롭을 방지하는 점보 프레임(MTU 1522B 이상) 및 PHP(Penultimate Hop Popping) 최적화**를 결합하여 차세대 캐리어급 SDN 패브릭을 완성
+- 통신사 코어 백본망과 엔터프라이즈 전용선 서비스(L3VPN/L2VPN)의 인프라 표준으로 오랜 기간 검증.
+- 최근에는 복잡한 LDP/RSVP-TE 프로토콜 상태 유지를 배제하고 IPv6 확장 헤더를 활용하는 **세그먼트 라우팅(Segment Routing: SR-MPLS / SRv6)으로의 진화와 함께**, **50ms 미만 무순단 절체를 위한 MPLS Fast Reroute(FRR)**, **다중 레이블 추가 시 패킷 드롭을 방지하는 점보 프레임(MTU 1522B 이상) 및 PHP(Penultimate Hop Popping) 최적화**를 결합하여 차세대 캐리어급 SDN 패브릭을 완성.
 
 #### 한줄 요약
 - MPLS는 2.5계층 32비트 고정 레이블과 LFIB 스위칭을 통해 초고속 전달과 FRR 고속 복구 및 완벽한 VPN 테넌트 격리를 제공하는 백본 핵심 기술이다.
