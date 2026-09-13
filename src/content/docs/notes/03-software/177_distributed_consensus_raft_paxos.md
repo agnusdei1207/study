@@ -58,15 +58,20 @@ extra:
 </details>
 
 ```text
-[Raft 분산 합의 클러스터 구조]
-├── Leader
-├── Follower
-├── Candidate
-├── Replicated Log
-└── Replicated State Machine
+[Raft 분산 합의 클러스터 체계]
+  │
+  ├─ [Leader]
+  │
+  ├─ [Follower]
+  │
+  ├─ [Candidate]
+  │
+  ├─ [Replicated Log]
+  │
+  └─ [Replicated State Machine]
 ```
 
-선의 의미: 계층 및 리더가 클라이언트 요청을 받아 Replicated Log에 기록하고 과반수 팔로워에 복제하여 상태 머신을 동기화하는 구조
+- 선의 의미: 계층 및 리더가 클라이언트 요청을 받아 Replicated Log에 기록하고 과반수 팔로워에 복제하여 상태 머신을 동기화하는 구조
 
 | 구성요소 | 책임 |
 |:---|:---|
@@ -88,25 +93,18 @@ extra:
 </details>
 
 ```text
-클라이언트의 상태 갱신 쓰기 요청
-        │
-   1. [로컬 로그 기록] Leader가 현재 Term의 명령어를 자신의 Replicated Log에 미커밋 추가
-        │
-   2. [복제 RPC 브로드캐스트] Leader가 팔로워들에게 `AppendEntries` RPC를 병렬 전송
-        │
-   3. [과반수 승인 집계] 리더를 포함한 과반수 복제본의 기록 확인
-        │
-   4. [Commit 확정] Leader가 `commitIndex`를 전진시키고 상태 머신(State Machine)에 실제 반영
-        │
-   클라이언트에게 성공 회신을 보내고, 후속 Heartbeat를 통해 팔로워들에게 최종 Commit 전파
+[Raft 로그 복제 커밋] (진행 ①→④, 클라이언트의 상태 갱신 쓰기 요청, 클라이언트 성공 회신·Heartbeat Commit 전파)
+  │
+  ├─ [로컬 로그 기록] (① Leader가 현재 Term의 명령어를 자신의 Replicated Log에 미커밋 추가)
+  │
+  ├─ [복제 RPC 브로드캐스트] (② Leader가 팔로워들에게 `AppendEntries` RPC를 병렬 전송)
+  │
+  ├─ [과반수 승인 집계] (③ 리더를 포함한 과반수 복제본의 기록 확인)
+  │
+  └─ [Commit 확정] (④ Leader가 `commitIndex`를 전진시키고 상태 머신(State Machine)에 실제 반영)
 ```
 
-동작 원리:
-
-1. 로컬 로그 기록: 리더가 현재 Term 명령 추가
-2. 복제 RPC 브로드캐스트: AppendEntries 전송
-3. 과반수 승인 집계: 정족수의 기록 완료 확인
-4. Commit 확정: commitIndex 전진과 상태 적용
+분기 결과: 과반수 복제본의 기록 확인 전이면 로그는 미커밋 상태로 언제든 덮어써질 수 있고, 과반수 승인으로 commitIndex가 전진하면 Commit이 확정되어 상태 머신(State Machine)에 반영된다.
 
 #### 한줄 요약
 - 과반수 승인 이전의 로그는 언제든 덮어써질 수 있고 이후에는 되돌릴 수 없으므로, 커밋 확정 시점이 곧 안전성과 응답 지연을 맞바꾸는 경계가 된다.
@@ -149,7 +147,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 클라우드 네이티브 인프라의 핵심 제어면(etcd, Kubernetes, Kafka KRaft, Consul, TiKV)을 지탱하는 가장 핵심적인 분산 합의 및 고가용성 메타데이터 관리의 사실상 표준(de facto standard)으로 확립되었으며, 실무 구축 시에는 동시 출마 충돌을 방지하는 150~300ms 무작위 선거 타임아웃(Randomized Election Timeout), 디스크 고갈을 방지하는 Log Compaction/Snapshotting, 홀수 노드(3대 또는 5대) 쿼럼 클러스터링, 구 리더의 오동작을 방어하는 Term/Fencing 검증을 결합하여 무결점 분산 합의 인프라를 완성
+- 현대 클라우드 네이티브 인프라의 핵심 제어면(etcd, Kubernetes, Kafka KRaft, Consul, TiKV)을 지탱하는 **가장 핵심적인 분산 합의 및 고가용성 메타데이터 관리의 사실상 표준(de facto standard)**으로 확립.
+- 실무 구축 시에는 **동시 출마 충돌을 방지하는 150~300ms 무작위 선거 타임아웃(Randomized Election Timeout)**, **디스크 고갈을 방지하는 Log Compaction/Snapshotting**, **홀수 노드(3대 또는 5대) 쿼럼 클러스터링**, **구 리더의 오동작을 방어하는 Term/Fencing 검증**을 결합하여 무결점 분산 합의 인프라를 완성.
 
 #### 한줄 요약
 - 과반수 상실 시 쓰기 가용성을 포기하고 커밋 안전성을 유지한다.

@@ -56,18 +56,22 @@ extra:
 </details>
 
 ```text
-[RESTful API 표준 계층 아키텍처 및 자원 조작 구조]
-|-- Resource Identification Layer
-|-- Standard HTTP Methods Layer
-|   |-- GET (조회: Safe & Idempotent) / POST (생성: Non-Idempotent)
-|   `-- PUT (전체교체: Idempotent) / PATCH (부분수정) / DELETE (삭제: Idempotent)
-|-- Representation & Headers Layer
-    |-- Headers: `Content-Type: application/json`, `If-Match: "eTag123"`, `Cache-Control`
-    `-- Body: JSON Representation (`{ "orderId": 100, "status": "PAID" }`)
-`-- Standard Response Status Layer
+[RESTful API 표준 계층 아키텍처 및 자원 조작 체계]
+  │
+  ├─ [Resource Identification Layer]
+  │
+  ├─ [Standard HTTP Methods Layer]
+  │     ├─ [GET] (조회: Safe & Idempotent) / [POST] (생성: Non-Idempotent)
+  │     └─ [PUT] (전체교체: Idempotent) / [PATCH] (부분수정) / [DELETE] (삭제: Idempotent)
+  │
+  ├─ [Representation & Headers Layer]
+  │     ├─ [Headers] (`Content-Type: application/json`, `If-Match: "eTag123"`, `Cache-Control`)
+  │     └─ [Body] (JSON Representation (`{ "orderId": 100, "status": "PAID" }`))
+  │
+  └─ [Standard Response Status Layer]
 ```
 
-선의 의미: 계층 및 명사형 URI로 자원을 특정하고 HTTP 메서드로 조작하여 표준 상태 코드와 JSON 표현을 반환하는 구조
+- 선의 의미: 계층 및 명사형 URI로 자원을 특정하고 HTTP 메서드로 조작하여 표준 상태 코드와 JSON 표현을 반환하는 구조
 
 | 구성요소 | 책임 |
 |:---|:---|
@@ -87,25 +91,18 @@ extra:
 </details>
 
 ```text
-클라이언트의 주문 자원 수정 요청 수신
-        │
-   1. [자원 식별] 요청 URI(`/orders/101`)를 파싱하여 대상 엔터티 식별
-        │
-   2. [메서드 및 권한 검증] `PATCH` 메서드의 유효성과 JWT Bearer 토큰의 인가 권한 확인
-        │
-   3. [조건부 동시성 검사] `If-Match: "eTag-v1"` 헤더를 대조하여 동시 수정 덮어쓰기(Lost Update) 방지
-        │
-   4. [도메인 로직 수행] 주문 상태를 업데이트하고 최신 상태를 JSON 객체로 직렬화
-        │
-   클라이언트에 HTTP `200 OK`와 다음 상태 전이 HATEOAS 링크를 포함한 JSON 응답 반환
+[주문 자원 수정 처리] (진행 ①→④, 주문 자원 수정 요청 수신, HTTP `200 OK`·HATEOAS 링크 포함 JSON 응답 반환)
+  │
+  ├─ [자원 식별] (① 요청 URI(`/orders/101`)를 파싱하여 대상 엔터티 식별)
+  │
+  ├─ [메서드 및 권한 검증] (② `PATCH` 메서드의 유효성과 JWT Bearer 토큰의 인가 권한 확인)
+  │
+  ├─ [조건부 동시성 검사] (③ `If-Match: "eTag-v1"` 헤더를 대조하여 동시 수정 덮어쓰기(Lost Update) 방지)
+  │
+  └─ [도메인 로직 수행] (④ 주문 상태를 업데이트하고 최신 상태를 JSON 객체로 직렬화)
 ```
 
-동작 원리:
-
-1. 자원 식별: URI에서 대상 엔터티 확인
-2. 메서드 및 권한 검증: HTTP 의미와 인가 확인
-3. 조건부 동시성 검사: ETag로 변경 충돌 검증
-4. 도메인 로직 수행: 상태 변경과 표현 생성
+분기 결과: `If-Match` ETag 대조에서 조건부 요청이 적중하면 도메인 로직 실행과 JSON 본문 전송을 모두 생략하고 304 응답만 남기며, 불일치 시에만 도메인 로직 수행까지 진행된다.
 
 #### 한줄 요약
 - 비용이 갈리는 지점은 ETag 검사이며, 조건부 요청이 적중하면 로직 실행과 본문 전송을 모두 생략하고 304 응답만 남는다.
@@ -147,7 +144,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 대고객 웹/모바일 오픈 API 및 클라우드 마이크로서비스 간 통신 인터페이스의 가장 지배적인 글로벌 표준 아키텍처 스타일로 정립되었으며, 실무 설계 시에는 명사형 URI 복수형 표현, 멱등성(Idempotency) 보장을 위한 ETag/If-Match 조건부 갱신, 대규모 데이터 조회를 최적화하는 Cursor 기반 페이징, 하위 호환성을 유지하는 URI 버저닝(`/v1`) 및 표준 HTTP 상태 코드(2xx/4xx/5xx)의 엄격한 매핑을 결합하여 프로토콜 수준의 캐싱 효율성과 엔터프라이즈 API 확장성을 완성
+- 대고객 웹/모바일 오픈 API 및 클라우드 마이크로서비스 간 통신 인터페이스의 **가장 지배적인 글로벌 표준 아키텍처 스타일**로 정립.
+- 실무 설계 시에는 **명사형 URI 복수형 표현**, **멱등성(Idempotency) 보장을 위한 ETag/If-Match 조건부 갱신**, **대규모 데이터 조회를 최적화하는 Cursor 기반 페이징**, **하위 호환성을 유지하는 URI 버저닝(`/v1`) 및 표준 HTTP 상태 코드(2xx/4xx/5xx)의 엄격한 매핑**을 결합하여 프로토콜 수준의 캐싱 효율성과 엔터프라이즈 API 확장성을 완성.
 
 #### 한줄 요약
 - 공개 자원 계약은 HTTP 의미론과 조건부 요청으로 설계한다.

@@ -58,18 +58,22 @@ extra:
 </details>
 
 ```text
-[gRPC 프로토콜 버퍼 및 HTTP/2 통신 아키텍처]
-|-- Interface Definition Layer
-|-- Code Generation Layer
-|-- Client Channel & Stub Layer
-|   |-- Client Stub (로컬 메서드 호출 추상화)
-|   `-- Channel (HTTP/2 Multiplexing Connection Pool, TLS 관리)
-`-- Server Runtime Layer
-    |-- Netty / HTTP/2 Server Handler (이진 패킷 역직렬화)
-    `-- Service Implementation (실제 비즈니스 서비스 로직 실행)
+[gRPC 프로토콜 버퍼 및 HTTP/2 통신 아키텍처 체계]
+  │
+  ├─ [Interface Definition Layer]
+  │
+  ├─ [Code Generation Layer]
+  │
+  ├─ [Client Channel & Stub Layer]
+  │     ├─ [Client Stub] (로컬 메서드 호출 추상화)
+  │     └─ [Channel] (HTTP/2 Multiplexing Connection Pool, TLS 관리)
+  │
+  └─ [Server Runtime Layer]
+        ├─ [Netty / HTTP/2 Server Handler] (이진 패킷 역직렬화)
+        └─ [Service Implementation] (실제 비즈니스 서비스 로직 실행)
 ```
 
-선의 의미: 계층 및 `.proto` 명세로부터 생성된 Client Stub이 Channel을 통해 HTTP/2 이진 패킷을 서버로 전송하여 비즈니스 로직을 실행하는 구조
+- 선의 의미: 계층 및 `.proto` 명세로부터 생성된 Client Stub이 Channel을 통해 HTTP/2 이진 패킷을 서버로 전송하여 비즈니스 로직을 실행하는 구조
 
 | 구성요소 | 책임 |
 |:---|:---|
@@ -90,25 +94,18 @@ extra:
 </details>
 
 ```text
-클라이언트의 gRPC 원격 메서드 호출
-        │
-   1. [채널 및 세션 수립] HTTP/2 다중화 커넥션을 통해 타깃 서버와 TLS 세션 수립
-        │
-   2. [Deadline 전파] 요청 메타데이터에 인증 토큰(JWT) 및 타임아웃 기한(Deadline) 주입
-        │
-   3. [이진 직렬화 및 전송] 요청 객체를 Protobuf 바이트로 직렬화해 전송
-        │
-   4. [서버 로직 처리] 서버가 이진 패킷을 역직렬화하고 비즈니스 핸들러 연산 수행
-        │
-   처리 결과와 함께 gRPC Status Code(OK) 및 Trailer 메타데이터를 클라이언트에 회신
+[gRPC 원격 메서드 호출] (진행 ①→④, 클라이언트의 gRPC 원격 메서드 호출, gRPC Status Code(OK) 및 Trailer 메타데이터 회신)
+  │
+  ├─ [채널 및 세션 수립] (① HTTP/2 다중화 커넥션을 통해 타깃 서버와 TLS 세션 수립)
+  │
+  ├─ [Deadline 전파] (② 요청 메타데이터에 인증 토큰(JWT) 및 타임아웃 기한(Deadline) 주입)
+  │
+  ├─ [이진 직렬화 및 전송] (③ 요청 객체를 Protobuf 바이트로 직렬화해 전송)
+  │
+  └─ [서버 로직 처리] (④ 서버가 이진 패킷을 역직렬화하고 비즈니스 핸들러 연산 수행)
 ```
 
-동작 원리:
-
-1. 채널 및 세션 수립: HTTP/2와 TLS 연결 준비
-2. Deadline 전파: 인증 정보와 남은 기한 전달
-3. 이진 직렬화 및 전송: Protobuf 메시지 송신
-4. 서버 로직 처리: 핸들러 실행과 결과 생성
+분기 결과: Deadline이 하위로 전파되면 연쇄 호출 전체가 하나의 시간 예산을 공유하므로, 상위가 포기한 뒤에도 하위 작업이 자원을 계속 소모하는 낭비가 차단되고 처리 결과는 Status Code(OK)와 Trailer 메타데이터로 회신된다.
 
 #### 한줄 요약
 - Deadline이 최초 호출 지점에서 하위로 전파되어 연쇄 호출 전체가 하나의 시간 예산을 공유하므로, 상위가 포기한 뒤에도 하위 작업이 자원을 계속 소모하는 낭비가 차단된다.
@@ -152,7 +149,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 네이티브 마이크로서비스 아키텍처(MSA) 및 데이터 집약적 백엔드 시스템 간 내부 통신의 가장 지배적인 고성능 분산 RPC 표준 프레임워크로 확립되었으며, 실무 구축 시에는 HTTP/2 단일 TCP 편중을 해소하는 Envoy/Istio 기반 L7 스트림 로드밸런싱, 연쇄 지연을 차단하는 Deadline 전파 및 지수 백오프 재시도, 스키마 호환성 붕괴를 방지하는 `reserved` 필드 관리, 웹 브라우저 연동을 지원하는 gRPC-Web/Envoy 트랜스코딩을 결합하여 고속 처리 성능과 분산 시스템 회복 탄력성을 완벽히 조화
+- 클라우드 네이티브 마이크로서비스 아키텍처(MSA) 및 데이터 집약적 백엔드 시스템 간 내부 통신의 **가장 지배적인 고성능 분산 RPC 표준 프레임워크**로 확립.
+- 실무 구축 시에는 **HTTP/2 단일 TCP 편중을 해소하는 Envoy/Istio 기반 L7 스트림 로드밸런싱**, **연쇄 지연을 차단하는 Deadline 전파 및 지수 백오프 재시도**, **스키마 호환성 붕괴를 방지하는 `reserved` 필드 관리**, **웹 브라우저 연동을 지원하는 gRPC-Web/Envoy 트랜스코딩**을 결합하여 고속 처리 성능과 분산 시스템 회복 탄력성을 완벽히 조화.
 
 #### 한줄 요약
 - 내부 RPC에는 Deadline·재시도·로드밸런싱 정책을 함께 설계한다.

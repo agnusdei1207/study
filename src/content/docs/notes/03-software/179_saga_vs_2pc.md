@@ -58,16 +58,18 @@ extra:
 </details>
 
 ```text
-[분산 트랜잭션 제어 구조]
-├── 2PC
-│   ├── XA Coordinator
-│   └── Resource Managers
-└── Saga
-    ├── Saga Orchestrator
-    └── Local Transaction Services
+[분산 트랜잭션 제어 체계]
+  │
+  ├─ [2PC]
+  │     ├─ [XA Coordinator]
+  │     └─ [Resource Managers]
+  │
+  └─ [Saga]
+        ├─ [Saga Orchestrator]
+        └─ [Local Transaction Services]
 ```
 
-선의 의미: 계층 및 2PC의 중앙 잠금 동기 구조와 Saga의 오케스트레이터 기반 단계별 비차단 실행 및 역순 보상 구조
+- 선의 의미: 계층 및 2PC의 중앙 잠금 동기 구조와 Saga의 오케스트레이터 기반 단계별 비차단 실행 및 역순 보상 구조
 
 | 구성요소 | 책임 |
 |:---|:---|
@@ -88,25 +90,18 @@ extra:
 </details>
 
 ```text
-주문 프로세스 시작 (Saga Orchestrator)
-        │
-   1. [로컬 트랜잭션 실행] Order Service가 주문 데이터를 로컬 DB에 커밋 (상태: `PENDING`)
-        │
-   2. [다음 커맨드 전달] Orchestrator가 Payment Service에 결제 승인 요청 및 로컬 커밋 완료
-        │
-   3. [후속 단계 실패 감지] Inventory Service에서 재고 부족으로 트랜잭션 실패(Error) 발생
-        │
-   4. [역순 보상 트랜잭션 실행] Orchestrator가 Payment Service에 `결제 취소` 보상 API 호출
-        │
-   Order Service의 주문 상태를 `CANCELLED`로 변경하고 사용자에게 실패 통지 완료
+[Saga 오케스트레이션 주문 처리] (진행 ①→④, 주문 프로세스 시작 (Saga Orchestrator), 주문 상태 `CANCELLED` 변경·사용자 실패 통지 완료)
+  │
+  ├─ [로컬 트랜잭션 실행] (① Order Service가 주문 데이터를 로컬 DB에 커밋 (상태: `PENDING`))
+  │
+  ├─ [다음 커맨드 전달] (② Orchestrator가 Payment Service에 결제 승인 요청 및 로컬 커밋 완료)
+  │
+  ├─ [후속 단계 실패 감지] (③ Inventory Service에서 재고 부족으로 트랜잭션 실패(Error) 발생)
+  │
+  └─ [역순 보상 트랜잭션 실행] (④ Orchestrator가 Payment Service에 `결제 취소` 보상 API 호출)
 ```
 
-동작 원리:
-
-1. 로컬 트랜잭션 실행: 주문을 PENDING으로 커밋
-2. 다음 커맨드 전달: 결제 서비스에 작업 요청
-3. 후속 단계 실패 감지: 재고 실패 결과 수신
-4. 역순 보상 트랜잭션 실행: 결제 취소 호출
+분기 결과: 후속 단계 실패가 감지되면 완료된 순서를 역순으로 거슬러 `결제 취소` 보상 API를 호출하고 주문 상태를 `CANCELLED`로 변경하며, 보상이 불가능한 단계를 흐름의 어디에 두는가가 실패 시 감당할 비용의 상한을 정한다.
 
 #### 한줄 요약
 - 실패 이후는 롤백이 아니라 역순 보상으로 되돌려야 하므로, 보상이 불가능한 단계를 흐름의 어디에 두느냐가 실패 시 감당할 비용의 상한을 정한다.
@@ -149,7 +144,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 마이크로서비스(MSA) 및 대규모 분산 e커머스/핀테크 시스템에서 가장 핵심적이고 사실상의 표준으로 자리잡은 분산 데이터 정합성 보장 패턴으로 확립되었으며, 실무 구축 시에는 단일 데이터베이스 내 초단기 금융 원장에는 ACID를 보장하는 2PC를 유지하되, 이기종 서비스 간 결제/주문/배송 연계에는 가시성과 제어력이 우수한 오케스트레이션 사가(Orchestration Saga)를 적용하고, 보상 실패를 방어하는 멱등성 보장과 중간 상태 오염을 방지하는 Semantic Lock(`PENDING`)을 결합하여 무결점 비즈니스 트랜잭션을 완성
+- 클라우드 마이크로서비스(MSA) 및 대규모 분산 e커머스/핀테크 시스템에서 **가장 핵심적이고 사실상의 표준으로 자리잡은 분산 데이터 정합성 보장 패턴**으로 확립.
+- 실무 구축 시에는 **단일 데이터베이스 내 초단기 금융 원장의 ACID를 보장하는 2PC 유지**, **이기종 서비스 간 결제/주문/배송 연계의 가시성과 제어력이 우수한 오케스트레이션 사가(Orchestration Saga) 적용**, **보상 실패를 방어하는 멱등성 보장과 중간 상태 오염을 방지하는 Semantic Lock(`PENDING`) 결합**을 통해 무결점 비즈니스 트랜잭션을 완성.
 
 #### 한줄 요약
 - Saga에는 멱등성·Semantic Lock·수동 복구 경로를 설계한다.

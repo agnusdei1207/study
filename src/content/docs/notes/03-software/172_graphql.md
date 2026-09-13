@@ -58,18 +58,20 @@ extra:
 </details>
 
 ```text
-[GraphQL 엔진 아키텍처 및 리졸버 실행 구조]
-|-- Client Request Layer
-|   `-- `query { user(id: 1) { name, posts { title, comments { text } } } }`
-`-- GraphQL Engine Core Layer
-    |-- Schema Definition (Type, Field, Query, Mutation 계약 명세)
-    |-- Parser & Validator (AST 구문 변환, 쿼리 Depth 및 비용 검증)
-    `-- Execution Engine (필드별 계층형 Resolver 실행 트리 조립)
-        |-- DataLoader Batching Layer
-        `-- Multi-Data Source Layer
+[GraphQL 엔진 아키텍처 및 리졸버 실행 체계]
+  │
+  ├─ [Client Request Layer]
+  │     └─ [`query { user(id: 1) { name, posts { title, comments { text } } } }`]
+  │
+  └─ [GraphQL Engine Core Layer]
+        ├─ [Schema Definition] (Type, Field, Query, Mutation 계약 명세)
+        ├─ [Parser & Validator] (AST 구문 변환, 쿼리 Depth 및 비용 검증)
+        └─ [Execution Engine] (필드별 계층형 Resolver 실행 트리 조립)
+              ├─ [DataLoader Batching Layer]
+              └─ [Multi-Data Source Layer]
 ```
 
-선의 의미: 계층 및 클라이언트의 선언적 쿼리를 엔진이 파싱하여 DataLoader를 거쳐 다중 데이터 소스에서 필드를 조립 반환하는 구조
+- 선의 의미: 계층 및 클라이언트의 선언적 쿼리를 엔진이 파싱하여 DataLoader를 거쳐 다중 데이터 소스에서 필드를 조립 반환하는 구조
 
 | 구성요소 | 책임 |
 |:---|:---|
@@ -90,25 +92,18 @@ extra:
 </details>
 
 ```text
-클라이언트의 GraphQL 쿼리 요청 수신
-        │
-   1. [쿼리 파싱 (Parsing)] 문자열 쿼리를 추상 구문 트리(AST: Abstract Syntax Tree)로 변환
-        │
-   2. [스키마 및 비용 검증] 스키마 타입 일치 여부와 최대 Depth/Query Cost 상한선 초과 검사
-        │
-   3. [실행 계획 수립] 필드 간 의존성과 병렬 실행 가능한 리졸버 트리 생성
-        │
-   4. [DataLoader 배치 실행] 요청 키를 모아 데이터 소스별 배치 조회
-        │
-   클라이언트가 요구한 Selection Set JSON 구조로 데이터를 조립하여 단일 응답 회신
+[GraphQL 쿼리 실행] (진행 ①→④, GraphQL 쿼리 요청 수신, Selection Set JSON 단일 응답 회신)
+  │
+  ├─ [쿼리 파싱] (① 문자열 쿼리를 추상 구문 트리(AST: Abstract Syntax Tree)로 변환)
+  │
+  ├─ [스키마 및 비용 검증] (② 스키마 타입 일치 여부와 최대 Depth/Query Cost 상한선 초과 검사)
+  │
+  ├─ [실행 계획 수립] (③ 필드 간 의존성과 병렬 실행 가능한 리졸버 트리 생성)
+  │
+  └─ [DataLoader 배치 실행] (④ 요청 키를 모아 데이터 소스별 배치 조회)
 ```
 
-동작 원리:
-
-1. 쿼리 파싱: 요청을 AST로 변환
-2. 스키마 및 비용 검증: 타입·깊이·비용 확인
-3. 실행 계획 수립: 필드 의존성과 병렬성 결정
-4. DataLoader 배치 실행: 요청 키를 묶어 조회
+분기 결과: 스키마 타입과 최대 Depth·Query Cost 상한 검사를 통과한 질의만 실행 계획 수립과 DataLoader 배치 실행으로 나아가며, 검증에서 걸러지지 못한 깊은 질의는 실행 단계에서 자원 고갈로 되돌아온다.
 
 #### 한줄 요약
 - 질의 자유도를 클라이언트에 넘긴 대신 비용 검증과 배치 실행을 서버가 떠안으므로, 검증 단계에서 걸러내지 못한 깊은 질의는 실행 단계에서 자원 고갈로 되돌아온다.
@@ -152,7 +147,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 복잡한 연관 데이터를 다루는 대고객 모바일/웹 프론트엔드(BFF 계층) 및 다기종 클라이언트 환경의 핵심 데이터 페칭(Fetching) 표준 플랫폼으로 정립되었으며, 실무 구축 시에는 계층형 리졸버의 N+1 쿼리 폭증을 방어하는 DataLoader 배치/캐싱, 악의적 중첩 질의를 차단하는 Max Depth/Query Complexity 제한, HTTP 캐싱 한계를 극복하는 Persisted Queries(APQ) 적용, MSA 환경의 스키마 통합을 지원하는 Apollo Federation을 결합하여 백엔드 부하를 통제하면서 클라이언트 중심의 최적 UX를 완성
+- 복잡한 연관 데이터를 다루는 대고객 모바일/웹 프론트엔드(BFF 계층) 및 다기종 클라이언트 환경의 **핵심 데이터 페칭(Fetching) 표준 플랫폼**으로 정립.
+- 실무 구축 시에는 **계층형 리졸버의 N+1 쿼리 폭증을 방어하는 DataLoader 배치/캐싱**, **악의적 중첩 질의를 차단하는 Max Depth/Query Complexity 제한**, **HTTP 캐싱 한계를 극복하는 Persisted Queries(APQ) 적용**, **MSA 환경의 스키마 통합을 지원하는 Apollo Federation**을 결합하여 백엔드 부하를 통제하면서 클라이언트 중심의 최적 UX를 완성.
 
 #### 한줄 요약
 - GraphQL에는 N+1 완화와 쿼리 비용 제한을 함께 적용한다.

@@ -58,19 +58,23 @@ extra:
 </details>
 
 ```text
-[OAuth 2.0 및 OIDC 신뢰 경계 및 4대 엔티티 구조]
-|-- Resource Owner
-|-- Client Application
-|   |-- PKCE Engine (code_verifier 생성 및 code_challenge S256 해시)
-|   `-- Token Storage (ID Token 및 Bearer Access Token 보관)
-|-- Authorization Server / IdP
-|   |-- Login & Consent UI (사용자 인증 및 스코프 동의 화면 제공)
-|   |-- Token Issuer (Authorization Code 발급 및 ID/Access Token JWT 서명)
-|   `-- JWKS Endpoint (토큰 검증용 공개키 제공)
-`-- Resource Server
+[OAuth 2.0 및 OIDC 신뢰 경계 및 4대 엔티티 체계]
+  │
+  ├─ [Resource Owner]
+  │
+  ├─ [Client Application]
+  │     ├─ [PKCE Engine] (code_verifier 생성 및 code_challenge S256 해시)
+  │     └─ [Token Storage] (ID Token 및 Bearer Access Token 보관)
+  │
+  ├─ [Authorization Server / IdP]
+  │     ├─ [Login & Consent UI] (사용자 인증 및 스코프 동의 화면 제공)
+  │     ├─ [Token Issuer] (Authorization Code 발급 및 ID/Access Token JWT 서명)
+  │     └─ [JWKS Endpoint] (토큰 검증용 공개키 제공)
+  │
+  └─ [Resource Server]
 ```
 
-선의 의미: 계층 및 사용자가 인가 서버에서 로그인하면 클라이언트가 인가 코드로 토큰을 교환받아 리소스 서버에 접근하는 구조
+- 선의 의미: 계층 및 사용자가 인가 서버에서 로그인하면 클라이언트가 인가 코드로 토큰을 교환받아 리소스 서버에 접근하는 구조
 
 | 구성요소 | 책임 |
 |:---|:---|
@@ -91,25 +95,18 @@ extra:
 </details>
 
 ```text
-클라이언트의 소셜 로그인 및 API 접근 요청
-        │
-   1. [인가 요청] Client가 PKCE(code_challenge)와 state/nonce를 생성하여 `/authorize`로 리다이렉트
-        │
-   2. [사용자 인증 및 동의] 사용자가 IdP 화면에서 로그인하고 프로필 접근 권한(Scope) 동의
-        │
-   3. [인가 코드 회신] Auth Server가 사전에 등록된 Redirect URI로 일회용 Authorization Code 회신
-        │
-   4. [토큰 교환] Client가 `/token`으로 Code와 원본 `code_verifier`를 전송하여 PKCE 일치 검증
-        │
-   Client는 ID Token으로 로그인 처리하고, Access Token을 API 요청 헤더에 담아 자원 수신
+[소셜 로그인 및 API 접근 인가] (진행 ①→④, 소셜 로그인 및 API 접근 요청, ID Token 로그인 처리·Access Token 자원 수신)
+  │
+  ├─ [인가 요청] (① Client가 PKCE(code_challenge)와 state/nonce를 생성하여 `/authorize`로 리다이렉트)
+  │
+  ├─ [사용자 인증 및 동의] (② 사용자가 IdP 화면에서 로그인하고 프로필 접근 권한(Scope) 동의)
+  │
+  ├─ [인가 코드 회신] (③ Auth Server가 사전에 등록된 Redirect URI로 일회용 Authorization Code 회신)
+  │
+  └─ [토큰 교환] (④ Client가 `/token`으로 Code와 원본 `code_verifier`를 전송하여 PKCE 일치 검증)
 ```
 
-동작 원리:
-
-1. 인가 요청: PKCE·state·nonce와 요청 전송
-2. 사용자 인증 및 동의: IdP 인증과 Scope 승인
-3. 인가 코드 회신: 등록 Redirect URI로 코드 전달
-4. 토큰 교환: code_verifier 검증 후 토큰 발급
+분기 결과: PKCE 검증에서 `code_verifier`가 일치해야 토큰 교환이 완료되므로, 인가 코드가 리다이렉트 구간에서 가로채이더라도 verifier 없이는 ID Token과 Access Token으로 교환되지 않는다.
 
 #### 한줄 요약
 - 코드 발급과 토큰 교환을 분리해 브라우저 구간에는 한 번만 쓰이는 코드만 노출되므로, 리다이렉트가 가로채여도 공격자가 얻는 값어치가 크게 줄어든다.
@@ -152,7 +149,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 웹, 모바일, SaaS 및 마이크로서비스 생태계에서 가장 기본적이고 필수적인 글로벌 표준 인증·인가(AuthN/AuthZ) 인프라 프레임워크로 확립되었으며, 실무 구축 시에는 공개 클라이언트(SPA/Mobile)의 코드 탈취를 방어하는 PKCE(S256) 강제, CSRF 및 재생 공격을 차단하는 `state`/`nonce` 검증, 신원 확인용 ID Token과 API 인가용 Access Token의 엄격한 역할 분리, Access Token의 초단기 수명(15분) 및 Refresh Token Rotation(RTR)을 결합하여 무결점 제로 트러스트 API 보안을 완성
+- 현대 웹, 모바일, SaaS 및 마이크로서비스 생태계에서 **가장 기본적이고 필수적인 글로벌 표준 인증·인가(AuthN/AuthZ) 인프라 프레임워크**로 확립.
+- 실무 구축 시에는 **공개 클라이언트(SPA/Mobile)의 코드 탈취를 방어하는 PKCE(S256) 강제**, **CSRF 및 재생 공격을 차단하는 `state`/`nonce` 검증**, **신원 확인용 ID Token과 API 인가용 Access Token의 엄격한 역할 분리**, **Access Token의 초단기 수명(15분) 및 Refresh Token Rotation(RTR)**을 결합하여 무결점 제로 트러스트 API 보안을 완성.
 
 #### 한줄 요약
 - ID Token은 클라이언트, Access Token은 자원 서버에서 검증한다.

@@ -58,20 +58,24 @@ extra:
 </details>
 
 ```text
-[이벤트 기반 아키텍처(EDA) 및 Transactional Outbox 구조]
-|-- Event Producer Service
-|   |-- Business Database (RDBMS: `Orders` 테이블 데이터 저장)
-|   `-- Transactional Outbox (`Outbox` 테이블에 이벤트를 동일 트랜잭션으로 원자적 커밋)
-|-- CDC & Event Ingestion Layer
-|-- Event Channel / Message Broker
-|   |-- Topics & Partitioning (주문 파티션 로그 영속 보관 및 재생 지원)
-|   `-- Schema Registry (Avro / JSON Schema 계약 검증)
-`-- Event Consumer Services
-    |-- Payment Service
-    `-- Inventory Service
+[이벤트 기반 아키텍처(EDA) 및 Transactional Outbox 체계]
+  │
+  ├─ [Event Producer Service]
+  │     ├─ [Business Database] (RDBMS: `Orders` 테이블 데이터 저장)
+  │     └─ [Transactional Outbox] (`Outbox` 테이블에 이벤트를 동일 트랜잭션으로 원자적 커밋)
+  │
+  ├─ [CDC & Event Ingestion Layer]
+  │
+  ├─ [Event Channel / Message Broker]
+  │     ├─ [Topics & Partitioning] (주문 파티션 로그 영속 보관 및 재생 지원)
+  │     └─ [Schema Registry] (Avro / JSON Schema 계약 검증)
+  │
+  └─ [Event Consumer Services]
+        ├─ [Payment Service]
+        └─ [Inventory Service]
 ```
 
-선의 의미: 계층 및 비즈니스 데이터와 이벤트를 Outbox에 원자 저장하고 CDC를 통해 Kafka로 발행하여 구독자가 멱등 처리하는 구조
+- 선의 의미: 계층 및 비즈니스 데이터와 이벤트를 Outbox에 원자 저장하고 CDC를 통해 Kafka로 발행하여 구독자가 멱등 처리하는 구조
 
 | 구성요소 | 책임 |
 |:---|:---|
@@ -94,25 +98,18 @@ extra:
 </details>
 
 ```text
-주문 생성 비즈니스 요청 발생
-        │
-   1. [원자적 커밋] 비즈니스 데이터(`Orders`)와 이벤트(`Outbox`)를 단일 로컬 트랜잭션으로 DB 커밋
-        │
-   2. [CDC 로그 감지] Debezium이 DB 트랜잭션 로그(WAL/Binlog)를 읽어 Outbox 변경분 실시간 추출
-        │
-   3. [브로커 발행] 추출된 `OrderCreated` 이벤트를 Kafka 토픽 파티션으로 안정적 발행
-        │
-   4. [Consumer 멱등 처리] 결제 서비스가 이벤트를 읽고 고유 `event_id` 중복 여부를 DB에서 검증 후 처리
-        │
-   비즈니스 상태를 갱신하고 Kafka 오프셋을 커밋하여 비동기 상태 반영 완료
+[주문 이벤트 비동기 처리] (진행 ①→④, 주문 생성 비즈니스 요청 발생, Kafka 오프셋 커밋·비동기 상태 반영 완료)
+  │
+  ├─ [원자적 커밋] (① 비즈니스 데이터(`Orders`)와 이벤트(`Outbox`)를 단일 로컬 트랜잭션으로 DB 커밋)
+  │
+  ├─ [CDC 로그 감지] (② Debezium이 DB 트랜잭션 로그(WAL/Binlog)를 읽어 Outbox 변경분 실시간 추출)
+  │
+  ├─ [브로커 발행] (③ 추출된 `OrderCreated` 이벤트를 Kafka 토픽 파티션으로 안정적 발행)
+  │
+  └─ [Consumer 멱등 처리] (④ 결제 서비스가 이벤트를 읽고 고유 `event_id` 중복 여부를 DB에서 검증 후 처리)
 ```
 
-동작 원리:
-
-1. 원자적 커밋: 업무 데이터와 Outbox 동시 저장
-2. CDC 로그 감지: Outbox 변경분 추출
-3. 브로커 발행: 이벤트를 토픽에 전달
-4. Consumer 멱등 처리: 중복 확인 후 업무 반영
+분기 결과: `event_id` 중복 검증에서 이미 처리된 이벤트면 재반영을 생략하고 신규 이벤트만 비즈니스 상태 갱신과 Kafka 오프셋 커밋으로 나아가므로, 재처리 범위가 오프셋 커밋 지점을 경계로 갈린다.
 
 #### 한줄 요약
 - 이중 쓰기 대신 로컬 커밋과 CDC를 거치면 발행 누락이 유실이 아니라 지연으로 바뀌며, 오프셋 커밋 지점이 재처리해야 할 범위의 경계를 정한다.
@@ -155,7 +152,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 대규모 분산 클라우드 환경 및 실시간 데이터 스트리밍 시스템의 가장 지배적인 비동기 마이크로서비스 확장 아키텍처 패러다임으로 정립되었으며, 실무 구축 시에는 DB 쓰기와 메시지 발행의 원자성을 보장하는 Transactional Outbox 및 Debezium CDC 패턴, 네트워크 재시도 시 부작용을 방지하는 컨슈머 멱등성(Idempotent Consumer) 보장, 독성 메시지(Poison Pill)를 격리하는 DLQ(Dead Letter Queue), 스키마 붕괴를 막는 Confluent Schema Registry를 결합하여 데이터 유실 없는 안정적인 최종 일관성 비동기 시스템을 완성
+- 대규모 분산 클라우드 환경 및 실시간 데이터 스트리밍 시스템의 **가장 지배적인 비동기 마이크로서비스 확장 아키텍처 패러다임**으로 정립.
+- 실무 구축 시에는 **DB 쓰기와 메시지 발행의 원자성을 보장하는 Transactional Outbox 및 Debezium CDC 패턴**, **네트워크 재시도 시 부작용을 방지하는 컨슈머 멱등성(Idempotent Consumer) 보장**, **독성 메시지(Poison Pill)를 격리하는 DLQ(Dead Letter Queue)**, **스키마 붕괴를 막는 Confluent Schema Registry**를 결합하여 데이터 유실 없는 안정적인 최종 일관성 비동기 시스템을 완성.
 
 #### 한줄 요약
 - EDA에는 Outbox·멱등성·계약 호환성 정책을 함께 적용한다.

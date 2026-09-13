@@ -58,18 +58,22 @@ extra:
 </details>
 
 ```text
-[WebSocket 및 SSE 실시간 스트리밍 아키텍처]
-├── Client Layer (Browser / Mobile App)
-│   ├── WebSocket: ws.send() / ws.onmessage() (양방향 프레임 통신)
-│   └── SSE: new EventSource('/stream') (단방향 이벤트 수신)
-├── Real-time Gateway & Protocol Handler Layer
-│   ├── WebSocket Handler (HTTP Upgrade 101 전환 및 양방향 TCP 소켓 관리)
-│   └── SSE Handler (MIME: text/event-stream 청크 응답 유지)
-├── Message Broker & Fan-out Layer (Redis Pub/Sub / Apache Kafka)
-└── Replay Store Layer (Event ID별 누락 메시지 임시 버퍼링)
+[WebSocket 및 SSE 실시간 스트리밍 아키텍처 체계]
+  │
+  ├─ [Client Layer] (Browser / Mobile App)
+  │     ├─ [WebSocket: ws.send() / ws.onmessage()] (양방향 프레임 통신)
+  │     └─ [SSE: new EventSource('/stream')] (단방향 이벤트 수신)
+  │
+  ├─ [Real-time Gateway & Protocol Handler Layer]
+  │     ├─ [WebSocket Handler] (HTTP Upgrade 101 전환 및 양방향 TCP 소켓 관리)
+  │     └─ [SSE Handler] (MIME: text/event-stream 청크 응답 유지)
+  │
+  ├─ [Message Broker & Fan-out Layer] (Redis Pub/Sub / Apache Kafka)
+  │
+  └─ [Replay Store Layer] (Event ID별 누락 메시지 임시 버퍼링)
 ```
 
-선의 의미: 계층 및 클라이언트의 연결을 게이트웨이가 수립하고 백엔드 Redis Pub/Sub을 통해 다중 인스턴스 간 실시간 이벤트를 전파하는 구조
+- 선의 의미: 계층 및 클라이언트의 연결을 게이트웨이가 수립하고 백엔드 Redis Pub/Sub을 통해 다중 인스턴스 간 실시간 이벤트를 전파하는 구조
 
 | 구성요소 | 책임 |
 |:---|:---|
@@ -90,25 +94,18 @@ extra:
 </details>
 
 ```text
-클라이언트의 실시간 피드 구독 요청
-        │
-   1. [Event Stream 수립] 클라이언트가 `GET /events` 요청 후 서버가 `text/event-stream` 응답 유지
-        │
-   2. [이벤트 푸시] 서버가 단조 증가 `id: 101`을 포함한 JSON 이벤트를 지속 전송
-        │
-   3. [네트워크 단절] 모바일 음영지역 진입으로 TCP 연결 일시 단절 발생
-        │
-   4. [자동 재접속] 브라우저 EventSource가 헤더에 `Last-Event-ID: 101`을 담아 자동 재연결
-        │
-   서버가 재생 저장소에서 `id: 102~105` 누락분을 즉시 회신하고 라이브 스트림으로 복귀
+[SSE 구독 및 Last-Event-ID 재접속] (진행 ①→④, 클라이언트의 실시간 피드 구독 요청, 재생 저장소 `id: 102~105` 누락분 회신 후 라이브 스트림 복귀)
+  │
+  ├─ [Event Stream 수립] (① 클라이언트가 `GET /events` 요청 후 서버가 `text/event-stream` 응답 유지)
+  │
+  ├─ [이벤트 푸시] (② 서버가 단조 증가 `id: 101`을 포함한 JSON 이벤트를 지속 전송)
+  │
+  ├─ [네트워크 단절] (③ 모바일 음영지역 진입으로 TCP 연결 일시 단절 발생)
+  │
+  └─ [자동 재접속] (④ 브라우저 EventSource가 헤더에 `Last-Event-ID: 101`을 담아 자동 재연결)
 ```
 
-동작 원리:
-
-1. Event Stream 수립: text/event-stream 연결 유지
-2. 이벤트 푸시: Event ID와 데이터 전송
-3. 네트워크 단절: 연결 종료 감지
-4. 자동 재접속: Last-Event-ID와 다시 연결
+분기 결과: 자동 재접속 시 `Last-Event-ID`가 있으면 재생 저장소에서 `id: 102~105` 누락분만 회신하여 라이브 스트림으로 복귀하고, 이 기록이 없으면 전체 재동기화 비용을 치른다.
 
 #### 한줄 요약
 - Last-Event-ID를 남겨 두면 재접속 비용이 전체 재동기화가 아니라 누락 구간 재생으로 줄지만, 그만큼 서버가 이벤트를 일정 기간 보관하는 비용을 대신 진다.
@@ -153,7 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 실시간 대화형 서비스, 금융 시세 호가창 및 생성형 AI LLM 응답 스트리밍 환경에서 가장 핵심적인 실시간 웹 통신(Real-time Web Communication)의 양대 기술 표준으로 확립되었으며, 실무 구축 시에는 양방향 상호작용(채팅/게임)에는 WebSocket + Redis Pub/Sub 백엔드 Fan-out을 적용하고, 단방향 알림/피드 및 LLM 토큰 스트리밍에는 표준 HTTP/2 기반 SSE + Last-Event-ID 자동 복구를 적용하며, 인프라 재기동 시 커넥션 폭주를 방어하는 Connection Draining 및 지수 백오프 Jitter를 결합하여 인프라 부하 없는 무결점 실시간 서비스를 완성
+- 실시간 대화형 서비스, 금융 시세 호가창 및 생성형 AI LLM 응답 스트리밍 환경에서 **가장 핵심적인 실시간 웹 통신(Real-time Web Communication)의 양대 기술 표준**으로 확립.
+- 실무 구축 시에는 **양방향 상호작용(채팅/게임)의 WebSocket + Redis Pub/Sub 백엔드 Fan-out 적용**, **단방향 알림/피드 및 LLM 토큰 스트리밍의 표준 HTTP/2 기반 SSE + Last-Event-ID 자동 복구 적용**, **인프라 재기동 시 커넥션 폭주를 방어하는 Connection Draining 및 지수 백오프 Jitter 결합**을 통해 인프라 부하 없는 무결점 실시간 서비스를 완성.
 
 #### 한줄 요약
 - 재접속·재생·하트비트 정책을 프록시 타임아웃과 함께 설계한다.

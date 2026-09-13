@@ -58,17 +58,21 @@ extra:
 </details>
 
 ```text
-[OpenTelemetry 파이프라인 아키텍처 구조]
-|-- OTel API
-|   `-- 벤더 비종속 계측 추상화 인터페이스 제공
-|-- OTel SDK
-|   `-- 인메모리 버퍼링 및 OTLP 패킷 직렬화 전송
-|-- OTel Collector
-|   |-- Receiver (OTLP, Prometheus 등 다중 신호 수신)
-|   |-- Processor (PII 토큰 마스킹 및 메모리 상한 제어)
-|   `-- Exporter (Tempo, Loki 등 다중 백엔드 저장소 라우팅)
-`-- OTLP 프로토콜
-    `-- 메트릭, 로그, 추적 신호 초고속 압축 전송
+[OpenTelemetry 파이프라인 아키텍처 체계]
+  │
+  ├─ [OTel API]
+  │     └─ [벤더 비종속 계측 추상화 인터페이스 제공]
+  │
+  ├─ [OTel SDK]
+  │     └─ [인메모리 버퍼링 및 OTLP 패킷 직렬화 전송]
+  │
+  ├─ [OTel Collector]
+  │     ├─ [Receiver] (OTLP, Prometheus 등 다중 신호 수신)
+  │     ├─ [Processor] (PII 토큰 마스킹 및 메모리 상한 제어)
+  │     └─ [Exporter] (Tempo, Loki 등 다중 백엔드 저장소 라우팅)
+  │
+  └─ [OTLP 프로토콜]
+        └─ [메트릭, 로그, 추적 신호 초고속 압축 전송]
 ```
 
 | 구성요소 | 책임 | 주요 특징 |
@@ -90,18 +94,20 @@ extra:
 </details>
 
 ```text
-애플리케이션에서 OTLP 텔레메트리 패킷 방출
-        │
-   1. [Receiver 수신] 포트 4317로 OTLP gRPC 패킷 접수
-        │
-   2. [Processor 메타 보강] 파드 이름 및 네임스페이스 라벨 주입
-        │
-   3. [Processor PII 마스킹] 정규식 기반 토큰 및 민감 헤더 마스킹 정제
-        │
-   4. [Processor 배치 제어] 메모리 리미터 기반 OOM 방지 및 배치 패킹
-        │
-   5. [Exporter 다중 전송] 메트릭, 트레이스, 로그를 각 저장소로 병렬 전송
+[OTel 텔레메트리 수집·전송 흐름] (진행 ①→⑤, 패킷 방출, 백엔드 저장)
+  │
+  ├─ [Receiver 수신] (① 포트 4317 OTLP gRPC 패킷 접수)
+  │
+  ├─ [Processor 메타 보강] (② K8s 파드 이름·네임스페이스 라벨 주입)
+  │
+  ├─ [Processor PII 마스킹] (③ 정규식 기반 토큰·민감 헤더 마스킹 정제)
+  │
+  ├─ [Processor 배치 제어] (④ 메모리 리미터로 OOM 방지·배치 패킹)
+  │
+  └─ [Exporter 다중 전송] (⑤ 메트릭·트레이스·로그를 각 저장소로 병렬 전송)
 ```
+
+분기 결과: 신호가 메트릭·트레이스·로그로 나뉘어 각 백엔드에 병렬 전송되며, 한 백엔드가 장애면 재시도 큐가 유실을 막아주는 대신 배치가 지연되어 수집기 메모리 상한에 걸리면 오래된 배치가 드롭되는 비용을 치른다.
 
 #### 한줄 요약
 - 수집기가 마스킹·배치·재전송을 대신 떠맡아 애플리케이션은 백엔드 장애를 알 필요가 없어지지만, 그만큼 수집기 자체가 새로운 병목이자 메모리 상한 관리 대상이 된다.
@@ -144,7 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 네이티브 관측성(Observability) 생태계의 가장 지배적인 글로벌 텔레메트리 사실상 표준(CNCF Graduate 프로젝트)으로 확립되었으며, 실무 구축 시에는 소스코드 무수정 Java/eBPF 자동 계측(Auto-Instrumentation), PII 민감정보 마스킹 및 OOM을 방어하는 OTel Collector `memory_limiter` 파이프라인, 노드 데몬셋(Agent)과 중앙 집계(Gateway) 2계층 토폴로지 구성, OTLP gRPC(포트 4317) 초고속 직렬화 전송을 결합하여 애플리케이션 오버헤드를 최소화하면서 완전한 데이터 이식성과 보안 거버넌스를 달성
+- 클라우드 네이티브 관측성(Observability) 생태계의 **가장 지배적인 글로벌 텔레메트리 사실상 표준(CNCF Graduate 프로젝트)**으로 확립.
+- 실무 구축 시에는 **소스코드 무수정 Java/eBPF 자동 계측(Auto-Instrumentation)**, **PII 민감정보 마스킹 및 OOM을 방어하는 OTel Collector `memory_limiter` 파이프라인**, **노드 데몬셋(Agent)과 중앙 집계(Gateway) 2계층 토폴로지 구성**, **OTLP gRPC(포트 4317) 초고속 직렬화 전송**을 결합하여 애플리케이션 오버헤드를 최소화하면서 완전한 데이터 이식성과 보안 거버넌스를 달성.
 
 #### 한줄 요약
 - OpenTelemetry는 단일 표준 API/SDK와 3단계 Collector 파이프라인을 통해 텔레메트리를 벤더 독립적으로 수집하는 핵심 기술이다.
