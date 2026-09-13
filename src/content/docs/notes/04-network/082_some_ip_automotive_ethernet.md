@@ -59,14 +59,13 @@ extra:
 
 ```text
 [SOME/IP 통신 체계]
-  ├── [클라이언트] ───────── [클라이언트 ECU (RTE)]
-  │                           │
-  ├── [전송 매체] ───────── [차량용 이더넷(UDP/TCP)]
-  │                           │
-  └── [서버 스택] ───────── [서버 ECU]
-        ├── [메시징 코어] ─ [SOME/IP Core]
-        ├── [동적 탐색] ─── [SOME/IP-SD]
-        └── [기능 안전] ─── [E2E Protection]
+  │
+  ├─ [클라이언트] ── Client Side
+  │     └─ [AUTOSAR RTE] (응용과 통신 스택 사이 인터페이스 제공)
+  └─ [서버 스택] ── Server Stack
+        ├─ [SOME/IP Core] (SOME/IP Header 직렬화와 RPC·이벤트 메시지 처리)
+        ├─ [SOME/IP-SD] (서비스 광고·탐색·구독 관리)
+        └─ [E2E Protection] (카운터·Data ID·CRC 오류 검출)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -90,21 +89,20 @@ extra:
 </details>
 
 ```text
-SOME/IP-SD 서비스 탐색, 구독 및 이벤트 전송 파이프라인
-        │
-   1. [OfferService 공지] 서버가 부팅 후 자신의 ServiceID 및 엔드포인트(IP/Port) 멀티캐스트 송출
-        │
-   2. [인터페이스 버전 대조] 클라이언트가 수신된 OfferService의 Major/Minor 버전 호환성 검증
-        │
-   3. [이벤트 그룹 구독] 클라이언트가 SubscribeEventGroup 유니캐스트 요청 전송
-        │
-   4. [Subscribe-ACK 승인] 서버가 구독 승인 회신 ➔ 상태 변경 발생 시 E2E 보호된 Event 메시지 송출
-        │
-   ▼
-5. [TTL 수명주기 관리] 만료 전 주기적 갱신(Refresh) ➔ 장애로 인한 TTL 만료 시 세션 자동 폐기
+[SOME/IP-SD 탐색·구독 흐름] (진행 ①→⑤, 광고에서 진입, ①→② 버전 대조 분기, ③ 구독, ④ 승인·이벤트, ⑤ TTL 수명주기)
+  │
+  ├─ [서버 ECU SOME/IP-SD] (① 부팅 후 ServiceID와 엔드포인트(IP·Port)를 멀티캐스트 OfferService)
+  │
+  ├─ [클라이언트 버전 검증기] (② Major·Minor 버전 호환성 대조, 불일치 시 구독 단계 차단)
+  │
+  ├─ [구독 요청부] (③ **Event Group** 단위 SubscribeEventGroup 유니캐스트)
+  │
+  ├─ [Subscribe-ACK·Event 송출기] (④ 구독 승인 회신 후 상태 변경 시 **E2E Protection** 적용 Event 발행)
+  │
+  └─ [TTL 수명주기 관리기] (⑤ 만료 전 주기 Refresh, 장애로 만료되면 세션 자동 폐기)
 ```
 
-분기 결과: 버전 대조에 실패한 OfferService는 구독 단계로 넘어가지 못하고, 통과한 클라이언트만 **Event Group** 단위로 일괄 구독한 뒤 TTL 갱신 여부에 따라 세션이 유지되거나 폐기된다.
+분기 결과: ② 버전 대조에 실패한 OfferService는 구독 단계로 넘어가지 못하고, 통과한 클라이언트만 **Event Group** 단위로 일괄 구독한 뒤 ⑤ TTL 갱신 여부에 따라 세션이 유지되거나 폐기된다.
 
 #### 한줄 요약
 - TTL 갱신 성공 여부에서 서비스 유지와 해제로 갈리며, 주기적 광고 트래픽을 지불하는 대가로 ECU 교체·추가를 재구성 없이 흡수한다.
@@ -148,7 +146,8 @@ SOME/IP-SD 서비스 탐색, 구독 및 이벤트 전송 파이프라인
 
 ## Ⅶ. 결론
 
-- 전통적인 분산 ECU 제어 방식에서 중앙 집중형 존(Zonal) 아키텍처와 소프트웨어 정의 차량(SDV: Software-Defined Vehicle)으로 전환되는 자동차 산업의 가장 핵심적인 차량용 이더넷 서비스 지향 통신(SOA) 미들웨어 표준으로 확립되었으며, 고성능 자율주행 컴퓨터의 DDS(Data Distribution Service) 및 차량-클라우드(V2C) 연동 프로토콜과 융합하는 가운데, 실무 SDV 플랫폼 구축 시에는 차량 시동 시 브로드캐스트 스톰을 방지하는 **SOME/IP-SD** 지수 백오프(Exponential Backoff) 적용, 인터페이스 파편화 크래시를 방지하는 엄격한 Major/Minor 버전 **계약 테스트**(Contract Testing), ISO 26262 ASIL-D 기능 안전 무결성을 만족하는 AUTOSAR E2E Profile(CRC+Counter) 및 SecOC 암호화 인증, 대용량 센서 데이터 처리를 위한 **SOME/IP-TP** 세그멘테이션을 결합하여 완벽한 차세대 차량 네트워크 신뢰성을 완성
+- 전통적인 분산 ECU 제어 방식에서 중앙 집중형 존(Zonal) 아키텍처와 소프트웨어 정의 차량(SDV: Software-Defined Vehicle)으로 전환되는 자동차 산업의 가장 핵심적인 차량용 이더넷 서비스 지향 통신(SOA) 미들웨어 표준으로 확립.
+- 고성능 자율주행 컴퓨터의 DDS(Data Distribution Service) 및 차량-클라우드(V2C) 연동 프로토콜과 융합하는 가운데, 실무 SDV 플랫폼 구축 시에는 **차량 시동 시 브로드캐스트 스톰을 방지하는 SOME/IP-SD 지수 백오프(Exponential Backoff) 적용**, **인터페이스 파편화 크래시를 방지하는 엄격한 Major/Minor 버전 계약 테스트(Contract Testing)**, **ISO 26262 ASIL-D 기능 안전 무결성을 만족하는 AUTOSAR E2E Profile(CRC+Counter) 및 SecOC 암호화 인증**, **대용량 센서 데이터 처리를 위한 SOME/IP-TP 세그멘테이션**을 결합하여 완벽한 차세대 차량 네트워크 신뢰성을 완성.
 
 #### 한줄 요약
 - SOME/IP 미들웨어와 SOME/IP-SD 및 E2E 보호 기술을 결합하여 SDV 시대의 차량용 SOA 네트워크를 실현한다.
