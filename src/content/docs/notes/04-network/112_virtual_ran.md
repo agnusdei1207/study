@@ -60,20 +60,17 @@ extra:
 ```text
 [vRAN 아키텍처]
   │
-  ├─ [하드웨어 계층]
-  │    ├─ COTS x86/ARM 서버
-  │    └─ 하드웨어 가속기 (FPGA/ASIC)
-  │
-  ├─ [실시간 가상화 플랫폼]
-  │    ├─ PREEMPT_RT / K8s
-  │    └─ DPDK & SR-IOV (커널 우회)
-  │
-  ├─ [가상 기지국 소프트웨어]
-  │    ├─ vCU (RRC / PDCP CNF)
-  │    └─ vDU (RLC / MAC / High-PHY)
-  │
-  └─ [무선 종단]
-       └─ RU (Open Fronthaul eCPRI)
+  ├─ [하드웨어 계층] ── Hardware Layer
+  │     ├─ [COTS Server] (범용 연산·메모리·PCIe 자원 제공)
+  │     └─ [Accelerator] (LDPC·FFT 연산 오프로드)
+  ├─ [실시간 가상화 플랫폼] ── Real-Time Virtualization Platform
+  │     ├─ [Real-Time Platform] (PREEMPT_RT와 Kubernetes 실행)
+  │     └─ [DPDK and SR-IOV] (커널 우회·VF 격리 패킷 처리)
+  ├─ [가상 기지국 소프트웨어] ── Virtualized Base Station Software
+  │     ├─ [vCU] (RRC·PDCP 비실시간 처리)
+  │     └─ [vDU] (RLC·MAC·High-PHY 실시간 처리)
+  └─ [무선 종단] ── Radio Termination
+        └─ [RU] (프론트홀 종단과 무선 송수신)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -100,24 +97,18 @@ extra:
 </details>
 
 ```text
-vRAN SmartNIC 패킷 수신, 하드웨어 오프로드 및 vCU 라우팅 파이프라인
-        │
-       [eCPRI 프레임 인입]
-        │
-   1. [커널 우회 제로 카피]
-        │
-   2. [하드웨어 FEC 가속 요청]
-        │
-   3. [복호화 및 MAC 스케줄링]
-        │
-   ▼
-   4. [vCU 및 5GC 라우팅]
+[vRAN 상향 패킷 처리 파이프라인] (진행 ①→④, eCPRI 프레임 인입에서 진입, vCU·5GC 라우팅으로 종료)
+  │
+  ├─ [커널 우회 제로 카피] (① DPDK로 커널 스택 우회, 패킷 유저 공간 직접 수신)
+  │
+  ├─ [하드웨어 FEC 가속 요청] (② LDPC·FFT 가속기 오프로드 성공 여부를 판정, 미장착·장애 시 CPU 소프트웨어 연산으로 대체)
+  │
+  ├─ [복호화 및 MAC 스케줄링] (③ 처리 완료된 프레임을 vDU에서 복호·스케줄링)
+  │
+  └─ [vCU 및 5GC 라우팅] (④ PDCP·RRC 처리 후 5GC 코어망으로 전달)
 ```
 
-- 1. 커널 우회 제로 카피
-- 2. 하드웨어 FEC 가속 요청
-- 3. 복호화 및 MAC 스케줄링
-- 4. vCU 및 5GC 라우팅
+분기 결과: FEC 가속기 유무가 PCIe 오프로드와 CPU 소프트웨어 연산을 가르며, 오프로드는 고밀도 연산을 대신 수행해 CPU를 아끼는 대가로 PCIe 왕복 지연을 치르고, CPU 연산은 경로 지연을 줄이는 대신 코어 전용화·시한 위반 위험을 감수한다.
 
 #### 한줄 요약
 - 서브프레임 마감 준수 여부가 통화 품질을 가르며, 범용 하드웨어의 유연성은 CPU 고정 할당과 가속기 전용화라는 자원 낭비를 대가로만 유지된다.
@@ -161,7 +152,8 @@ vRAN SmartNIC 패킷 수신, 하드웨어 오프로드 및 vCU 라우팅 파이�
 
 ## Ⅶ. 결론
 
-- 하드웨어 중심의 통신망을 완전한 소프트웨어 및 클라우드 플랫폼 중심의 통신 인프라로 전환시키는 **5G-Advanced 및 6G 클라우드 네이티브 기지국의 절대적 핵심 표준 아키텍처**로 자리 잡았으며, O-RAN 개방형 인터페이스 및 AI 기반 기지국 에너지 절감 알고리즘과의 융합으로 진화하는 가운데, 실무 vRAN 인프라 구축 시에는 **5G 무선 슬롯 시한($500\mu\text{s}$) 내 처리를 보장하는 PREEMPT_RT 실시간 리눅스 커널 패치 및 전용 코어 격리(CPU Pinning/Isolation), vDU의 복잡한 L1 High-PHY(LDPC/FFT) 연산 부하를 전담하는 인라인(Inline) 하드웨어 가속 카드(FPGA/eASIC) 장착, 네트워크 패킷 인터럽트 병목을 제거하는 DPDK 및 SR-IOV 기반 제로카피 고속 패킷 처리**를 결합하여 완벽한 통신사급 가상 기지국 안정성을 완성
+- 하드웨어 중심의 통신망을 완전한 소프트웨어 및 클라우드 플랫폼 중심의 통신 인프라로 전환시키는 **5G-Advanced 및 6G 클라우드 네이티브 기지국의 절대적 핵심 표준 아키텍처**로 자리 잡음.
+- O-RAN 개방형 인터페이스 및 AI 기반 기지국 에너지 절감 알고리즘과의 융합으로 진화하는 가운데, 실무 vRAN 인프라 구축 시에는 **5G 무선 슬롯 시한($500\mu\text{s}$) 내 처리를 보장하는 PREEMPT_RT 실시간 리눅스 커널 패치 및 전용 코어 격리(CPU Pinning/Isolation)**, **vDU의 복잡한 L1 High-PHY(LDPC/FFT) 연산 부하를 전담하는 인라인(Inline) 하드웨어 가속 카드(FPGA/eASIC) 장착**, **네트워크 패킷 인터럽트 병목을 제거하는 DPDK 및 SR-IOV 기반 제로카피 고속 패킷 처리**를 결합하여 완벽한 통신사급 가상 기지국 안정성을 완성.
 
 #### 한줄 요약
 - vRAN은 COTS 서버 상의 컨테이너 가상화와 하드웨어 가속기 및 RTOS를 결합하여 고효율 5G/6G 기지국을 실현하는 핵심 기술이다.

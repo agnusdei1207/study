@@ -60,17 +60,14 @@ extra:
 ```text
 [5G 기지국 기능 분리]
   │
-  ├─ [중앙 장치: CU]
-  │    ├─ RRC / SDAP / PDCP 계층
-  │    └─ F1 인터페이스 (Midhaul)
-  │
-  ├─ [분산 장치: DU]
-  │    ├─ RLC / MAC / High-PHY
-  │    └─ eCPRI 프론트홀 (7-2x)
-  │
-  └─ [무선 장치: RU]
-       ├─ Low-PHY 디지털 빔포밍
-       └─ RF 송수신 및 안테나 방사
+  ├─ [중앙 장치] ── Centralized Unit
+  │     ├─ [CU] (RRC·SDAP·PDCP 처리)
+  │     └─ [F1] (CU-DU 제어·사용자 평면 연결)
+  ├─ [분산 장치] ── Distributed Unit
+  │     ├─ [DU] (RLC·MAC·High-PHY 처리)
+  │     └─ [Open Fronthaul] (Option 7-2x 기반 DU-RU 연결)
+  └─ [무선 장치] ── Radio Unit
+        └─ [RU] (Low-PHY·RF 처리)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -95,24 +92,18 @@ extra:
 </details>
 
 ```text
-5G 기능 분리 기지국 패킷 수신, 변복조 및 무선 방사 파이프라인
-        │
-        [코어망 패킷 수신]
-        │
-   1. [PDCP 보호 및 F1 전달]
-        │
-   2. [MAC 스케줄링 및 High-PHY 처리]
-        │
-   3. [eCPRI 프론트홀 전송]
-        │
-   ▼
-   4. [Low-PHY 빔포밍 및 RF 방사]
+[기능 분리 기지국 전송 파이프라인] (진행 ①→④, 코어망 패킷 수신에서 진입, Low-PHY 빔포밍 후 RF 방사로 종료)
+  │
+  ├─ [PDCP 보호 및 F1 전달] (① 코어망 패킷을 PDCP에서 보호·처리 후 F1 미드홀로 전송)
+  │
+  ├─ [MAC 스케줄링 및 High-PHY 처리] (② DU에서 실시간 스케줄링·인코딩 수행)
+  │
+  ├─ [eCPRI 프론트홀 전송] (③ Option 7-2x로 IQ 데이터를 RU에 실시간 전송)
+  │
+  └─ [Low-PHY 빔포밍 및 RF 방사] (④ RU에서 디지털 빔포밍 후 안테나로 방사)
 ```
 
-- 1. PDCP 보호 및 F1 전달
-- 2. MAC 스케줄링 및 High-PHY 처리
-- 3. eCPRI 프론트홀 전송
-- 4. Low-PHY 빔포밍 및 RF 방사
+분기 결과: 분할 지점이 7-2x(High-PHY·Low-PHY 경계)와 레거시 Option 8(PHY·RF 경계) 사이에서 갈리며, eCPRI는 사용자 트래픽에 비례하는 대역폭으로 광회선 비용을 아끼는 대가로 DU-RU 간 ±65ns 정밀 시간 동기 요건을 치르고, Option 8은 무선 대역폭·안테나 수에 비례하는 원시 IQ 전송을 감당하는 대신 계층 간 실시간 제약이 단순해진다.
 
 #### 한줄 요약
 - 기능 분할 지점 선택에서 프론트홀 대역폭과 중앙 집중 이득이 맞바뀌며, RU 쪽으로 밀수록 회선 비용이, CU 쪽으로 당길수록 자원 풀링 효과가 커진다.
@@ -156,7 +147,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 폐쇄적인 통신사 장비 독점 구조를 타파하고 소프트웨어 중심의 클라우드 네이티브 기지국 시대를 여는 **5G Advanced 및 6G 개방형 무선망(O-RAN / vRAN)의 가장 핵심적인 기지국 아키텍처 표준 기술**로 정립되었으며, AI 기반 RIC(RAN Intelligent Controller) 및 클라우드 엣지 오케스트레이션과의 결합으로 진화하는 가운데, 실무 기능 분리 기지국 구축 시에는 **비실시간 제어 자원 풀링을 위한 Option 2(F1 미드홀)와 멀티벤더 DU-RU 개방을 지원하는 Option 7-2x(eCPRI 프론트홀)의 최적 조합 설계, TDD 프레임 간섭을 방지하는 IEEE 1588v2 PTP(Telecom Profile G.8275.1) 및 SyncE 기반 $\pm 65\text{ns}$ 정밀 시간 동기화, vDU의 High-PHY 계층 연산 병목을 제거하는 인라인(Inline) 하드웨어 가속기(FPGA/ASIC/GPU) 연동**을 결합하여 완벽한 개방형 무선망 성능을 완성
+- 폐쇄적인 통신사 장비 독점 구조를 타파하고 소프트웨어 중심의 클라우드 네이티브 기지국 시대를 여는 **5G Advanced 및 6G 개방형 무선망(O-RAN / vRAN)의 가장 핵심적인 기지국 아키텍처 표준 기술**로 정립.
+- AI 기반 RIC(RAN Intelligent Controller) 및 클라우드 엣지 오케스트레이션과의 결합으로 진화하는 가운데, 실무 기능 분리 기지국 구축 시에는 **비실시간 제어 자원 풀링을 위한 Option 2(F1 미드홀)와 멀티벤더 DU-RU 개방을 지원하는 Option 7-2x(eCPRI 프론트홀)의 최적 조합 설계**, **TDD 프레임 간섭을 방지하는 IEEE 1588v2 PTP(Telecom Profile G.8275.1) 및 SyncE 기반 $\pm 65\text{ns}$ 정밀 시간 동기화**, **vDU의 High-PHY 계층 연산 병목을 제거하는 인라인(Inline) 하드웨어 가속기(FPGA/ASIC/GPU) 연동**을 결합하여 완벽한 개방형 무선망 성능을 완성.
 
 #### 한줄 요약
 - 네트워크 기능 분리는 3GPP F1 및 O-RAN 7-2x 기반의 CU/DU/RU 분할과 정밀 동기화를 통해 개방형 고효율 기지국을 실현하는 핵심 기술이다.

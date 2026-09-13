@@ -60,16 +60,14 @@ extra:
 ```text
 [IP 멀티캐스트 아키텍처]
   │
-  ├─ [호스트 접속 계층]
-  │    ├─ IGMP 프로토콜 (v1/v2/v3)
-  │    └─ L2 IGMP Snooping 스위치
-  │
-  ├─ [코어 라우팅 계층: PIM]
-  │    ├─ PIM 라우터 (SM/SSM)
-  │    └─ 랑데부 포인트 (RP 집결점)
-  │
-  └─ [루프 방어 계층]
-       └─ RPF 검증 엔진 (FIB 대조)
+  ├─ [호스트 접속 계층] ── Host Access Layer
+  │     ├─ [IGMP] (호스트-라우터 간 그룹 가입 관리)
+  │     └─ [IGMP Snooping] (L2 가입 포트 선택 전달)
+  ├─ [코어 라우팅 계층] ── Core Routing Layer
+  │     ├─ [PIM Router] (라우터 간 분배 트리 구성)
+  │     └─ [RP] (PIM-SM 송신원 등록과 가입 중계)
+  └─ [루프 방어 계층] ── Loop Defense Layer
+        └─ [RPF Engine] (유니캐스트 FIB 기반 인입 경로 검사)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -94,24 +92,18 @@ extra:
 </details>
 
 ```text
-IGMP 가입, PIM 공유 트리 구축, RPF 검증 및 SPT 전환 파이프라인
-        │
-        [IGMP 그룹 가입]
-        │
-   1. [IGMP Snooping 등록]
-        │
-   2. [PIM 공유 트리 구축]
-        │
-   3. [RPF 검사 및 RP 경유 전송]
-        │
-   ▼
-   4. [SPT 스위치오버]
+[멀티캐스트 분배 경로] (진행 ①→④, IGMP 그룹 가입에서 진입, SPT 전환 후 가입자 분기점 복제 전송)
+  │
+  ├─ [IGMP Snooping 등록] (① L2 스위치가 Join 패킷 감청, 가입 포트 식별)
+  │
+  ├─ [PIM 공유 트리 구축] (② 송신원 등록·가입 중계로 (*,G) 공유 트리 수립)
+  │
+  ├─ [RPF 검사 및 RP 경유 전송] (③ 유니캐스트 FIB 대조로 루프 위험 인입 패킷 폐기, RP 경유 분배)
+  │
+  └─ [SPT 스위치오버] (④ 대역폭 임계치 초과 여부를 판정, 초과 시 송신원 직결 (S,G) 소스 트리로 전환)
 ```
 
-- 1. IGMP Snooping 등록
-- 2. PIM 공유 트리 구축
-- 3. RPF 검사 및 RP 경유 전송
-- 4. SPT 스위치오버
+분기 결과: 대역폭 임계치 초과 여부가 RP 경유 공유 트리와 송신원 직결 소스 트리를 가르며, 공유 트리는 라우터 상태량을 절약하는 대가로 RP 경유 지연을 치르고, 소스 트리는 최단 경로 직결을 얻는 대가로 송신원별 가입 상태와 트리 전환 연산 부담을 감수한다.
 
 #### 한줄 요약
 - 공유 트리에서 최단 경로 트리로 넘어가는 지점에서 RP 경유 지연과 라우터가 보관할 상태량이 맞바뀐다.
@@ -156,7 +148,8 @@ IGMP 가입, PIM 공유 트리 구축, RPF 검증 및 SPT 전환 파이프라인
 
 ## Ⅶ. 결론
 
-- 대규모 동시 다발적 실시간 스트리밍 및 초저지연 금융 시장 데이터 전송에서 네트워크 회선 비용을 획기적으로 절감하는 **전통적이면서도 가장 핵심적인 1:N 패킷 전송 및 라우팅 표준 기술(IETF RFC 3376 IGMPv3 및 RFC 7761 PIM)**로 확고히 정립되었으며, 클라우드 오버레이(VXLAN/EVPN Multicast) 및 BIER(Bit Indexed Explicit Replication) 무상태 멀티캐스트로 진화하는 가운데, 실무 IP 멀티캐스트 망 구축 시에는 **RP 경유 오버헤드를 제거하고 보안과 성능을 극대화하는 PIM-SSM(Source-Specific Multicast) 우선 적용, L2 스위치 브로드캐스트 플러딩을 방지하는 IGMP Snooping 및 Querier 활성화, 비대칭 라우팅 환경의 RPF(Reverse Path Forwarding) 실패를 방지하는 멀티캐스트 정적 경로(M-Route) 및 Anycast RP 이중화**를 결합하여 완벽한 실시간 멀티캐스트 전송 가용성을 완성
+- 대규모 동시 다발적 실시간 스트리밍 및 초저지연 금융 시장 데이터 전송에서 네트워크 회선 비용을 획기적으로 절감하는 **전통적이면서도 가장 핵심적인 1:N 패킷 전송 및 라우팅 표준 기술(IETF RFC 3376 IGMPv3 및 RFC 7761 PIM)**로 확고히 정립.
+- 클라우드 오버레이(VXLAN/EVPN Multicast) 및 BIER(Bit Indexed Explicit Replication) 무상태 멀티캐스트로 진화하는 가운데, 실무 IP 멀티캐스트 망 구축 시에는 **RP 경유 오버헤드를 제거하고 보안과 성능을 극대화하는 PIM-SSM(Source-Specific Multicast) 우선 적용**, **L2 스위치 브로드캐스트 플러딩을 방지하는 IGMP Snooping 및 Querier 활성화**, **비대칭 라우팅 환경의 RPF(Reverse Path Forwarding) 실패를 방지하는 멀티캐스트 정적 경로(M-Route) 및 Anycast RP 이중화**를 결합하여 완벽한 실시간 멀티캐스트 전송 가용성을 완성.
 
 #### 한줄 요약
 - IP 멀티캐스트는 IGMPv3와 PIM-SSM/SM 및 Anycast RP 이중화를 결합하여 고효율 무중단 1:N 스트리밍을 실현하는 핵심 네트워크 기술이다.

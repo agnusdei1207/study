@@ -60,17 +60,14 @@ extra:
 ```text
 [BGP 경로 검증 체계]
   │
-  ├─ [공인 인증 계층]
-  │    ├─ RIR Trust Anchor
-  │    └─ ROA 암호 서명 객체
-  │
-  ├─ [검증 및 전송 평면]
-  │    ├─ RPKI Validator (VRP 생성)
-  │    └─ RTR 프로토콜 (RFC 8210)
-  │
-  └─ [라우터 필터 평면]
-       ├─ ROV 필터 엔진 (Drop Invalid)
-       └─ BGPsec (AS-Path 검증)
+  ├─ [공인 인증 계층] ── Certified Trust Layer
+  │     └─ [RIR Trust Anchor] (루트 인증서와 ROA 저장소)
+  ├─ [검증 및 전송 평면] ── Validation-Transport Plane
+  │     ├─ [RPKI Validator] (서명 검증과 VRP 생성)
+  │     └─ [RTR 프로토콜] (VRP 증분 동기화)
+  └─ [라우터 필터 평면] ── Router Filter Plane
+        ├─ [ROV 필터 엔진] (Origin AS·Prefix 검증)
+        └─ [BGPsec] (AS-Path 서명 검증)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -95,27 +92,20 @@ extra:
 </details>
 
 ```text
-주소 소유자 등록
-    |
-1. ROA 서명 등록
-    |
-2. BGP Update 수신
-    |
-3. ROV·VRP 대조
-    +-- 불일치: Invalid
-    |
-4. Drop Invalid 차단
-    |
-5. 정상 경로 수렴
-    |
-라우팅 결과
+[BGP 경로 검증 경로] (진행 ①→⑤, 소유권 등록에서 진입, 무효 경로는 폐기·유효 경로만 RIB 수렴)
+  │
+  ├─ [ROA 서명 등록] (① RIR 인증서로 Prefix·Origin AS 소유권을 암호 서명)
+  │
+  ├─ [BGP Update 수신] (② 인접 AS로부터 경로 광고 수신)
+  │
+  ├─ [ROV·VRP 대조] (③ Origin AS·Prefix의 ROA 일치 여부를 판정, 불일치 시 Invalid·일치 시 Valid)
+  │
+  ├─ [Drop Invalid 차단] (④ 무효 경로: RIB 적재 없이 즉시 폐기)
+  │
+  └─ [정상 경로 수렴] (⑤ 유효 경로: RIB 적재 후 라우팅 테이블 수렴)
 ```
 
-- 1. ROA 서명 등록
-- 2. BGP Update 수신
-- 3. ROV·VRP 대조
-- 4. Drop Invalid 차단
-- 5. 정상 경로 수렴
+분기 결과: Origin AS·Prefix의 ROA 일치 여부가 무효 폐기와 정상 수렴을 가르며, Drop Invalid는 위조 경로의 확산을 막는 대가로 ROA 등록이 누락된 정상 경로까지 오차단할 위험을 감수한다.
 
 #### 한줄 요약
 - ROV 판정에서 수용과 즉시 폐기로 갈리며, Drop Invalid를 켜는 대가로 ROA 등록이 누락된 정상 경로까지 함께 끊길 위험을 감수한다.
@@ -158,7 +148,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 인터넷의 가장 근본적인 통신 인프라인 전 세계 BGP 라우팅 생태계를 가짜 공시와 경로 하이재킹으로부터 수호하는 **글로벌 ISP 및 엔터프라이즈 인터넷 보안의 가장 필수적이고 표준적인 라우팅 보안 프레임워크(IETF RPKI/ROV 및 MANRS)**로 확립되었으며, AS-Path 전체 변조를 방어하는 BGPsec 및 자율 경로 이상 감지 AI와의 결합으로 진화하는 가운데, 실무 BGP 보안 구축 시에는 **보유 IP 대역에 대한 RIR ROA 전자서명 발행, 보더 라우터 상의 RPKI Validator(RTR 프로토콜) 연동 및 Invalid 경로를 즉시 폐기하는 Drop Invalid 정책 의무 적용, 잘못된 상류 재광고로 인한 경로 누출을 차단하는 RFC 9234 OTC(Only to Customer) 속성 활성화**를 결합하여 완벽한 인터넷 경로 무결성을 완성
+- 인터넷의 가장 근본적인 통신 인프라인 전 세계 BGP 라우팅 생태계를 가짜 공시와 경로 하이재킹으로부터 수호하는 **글로벌 ISP 및 엔터프라이즈 인터넷 보안의 가장 필수적이고 표준적인 라우팅 보안 프레임워크(IETF RPKI/ROV 및 MANRS)**로 확립.
+- AS-Path 전체 변조를 방어하는 BGPsec 및 자율 경로 이상 감지 AI와의 결합으로 진화하는 가운데, 실무 BGP 보안 구축 시에는 **보유 IP 대역에 대한 RIR ROA 전자서명 발행**, **보더 라우터 상의 RPKI Validator(RTR 프로토콜) 연동 및 Invalid 경로를 즉시 폐기하는 Drop Invalid 정책 의무 적용**, **잘못된 상류 재광고로 인한 경로 누출을 차단하는 RFC 9234 OTC(Only to Customer) 속성 활성화**를 결합하여 완벽한 인터넷 경로 무결성을 완성.
 
 #### 한줄 요약
 - BGP 하이재킹 방지는 RPKI/ROA 전자서명과 에지 라우터 ROV 검증 및 OTC 필터를 통해 고신뢰 BGP 라우팅을 실현하는 핵심 기술이다.

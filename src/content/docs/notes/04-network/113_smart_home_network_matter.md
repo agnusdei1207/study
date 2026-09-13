@@ -60,17 +60,15 @@ extra:
 ```text
 [Matter 홈 네트워크]
   │
-  ├─ [관리 및 신뢰 평면]
-  │    ├─ Matter Controller
-  │    └─ DCL (분산 컴플라이언스 원장)
-  │
-  ├─ [IPv6 전송 패브릭]
-  │    ├─ Wi-Fi / Ethernet 서브넷
-  │    └─ Thread Border Router (802.15.4)
-  │
-  └─ [스마트 홈 기기 계층]
-       ├─ Matter Endpoint (공통 데이터 모델)
-       └─ Matter Bridge (Zigbee/Z-Wave 변환)
+  ├─ [관리 및 신뢰 평면] ── Management and Trust Plane
+  │     ├─ [Controller] (패브릭 관리와 제어 명령 송신)
+  │     └─ [DCL] (제조사 인증서와 제품 정보 제공)
+  ├─ [IPv6 전송 패브릭] ── IPv6 Transport Fabric
+  │     ├─ [IPv6 Network] (Wi-Fi·Thread·Ethernet 연결)
+  │     └─ [Thread Border Router] (Thread와 LAN 간 IPv6 라우팅)
+  └─ [스마트 홈 기기 계층] ── Smart Home Device Tier
+        ├─ [Endpoint] (클러스터·속성·명령 구현)
+        └─ [Matter Bridge] (레거시 기기를 Matter 모델로 변환)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -96,24 +94,18 @@ extra:
 </details>
 
 ```text
-Matter 기기 커미셔닝, DAC 정품 검증 및 패브릭 가입 파이프라인
-        │
-        [QR 페이로드 스캔]
-        │
-   1. [PASE 채널 수립]
-        │
-   2. [DAC 기기 증명 검증]
-        │
-   3. [네트워크 자격 증명 전달]
-        │
-   ▼
-   4. [NOC 발급 및 패브릭 가입]
+[Matter 기기 커미셔닝 경로] (진행 ①→④, QR 페이로드 스캔에서 진입, NOC 발급·패브릭 가입으로 종료)
+  │
+  ├─ [PASE 채널 수립] (① QR 패스코드 기반의 1회용 초기 보안 채널 수립)
+  │
+  ├─ [DAC 기기 증명 검증] (② 제조사 DAC 서명·인증서 체인 검증 여부를 판정, 실패 시 거부)
+  │
+  ├─ [네트워크 자격 증명 전달] (③ 검증 성공 시 Wi-Fi/Thread 자격 증명을 기기에 전달)
+  │
+  └─ [NOC 발급 및 패브릭 가입] (④ 운영 인증서 NOC 발급 후 패브릭에 가입, 제어 가능)
 ```
 
-- 1. PASE 채널 수립
-- 2. DAC 기기 증명 검증
-- 3. 네트워크 자격 증명 전달
-- 4. NOC 발급 및 패브릭 가입
+분기 결과: DAC 서명·인증서 체인 검증 여부가 패브릭 가입과 거부를 가르며, 제조 단계 증명을 요구하는 대가로 위조 기기의 진입을 원천 차단하는 대신 DCL 조회와 인증서 검증 왕복 지연이 커미셔닝 시간에 더해진다.
 
 #### 한줄 요약
 - DAC 검증에서 패브릭 가입과 거부로 갈리며, 제조 단계 인증서를 요구하는 대가로 위조 기기의 진입을 원천 차단한다.
@@ -157,7 +149,8 @@ Matter 기기 커미셔닝, DAC 정품 검증 및 패브릭 가입 파이프라�
 
 ## Ⅶ. 결론
 
-- 제조사별 파편화와 전용 허브의 장벽을 허물고 전 세계 가전 및 IoT 기기를 단일 표준 생태계로 통합하는 **차세대 스마트 홈 및 건물 IoT 자동화의 절대적 사실상 표준(De-facto Standard) 상호운용성 프로토콜(CSA Matter)**로 안착하였으며, 에너지 관리(Matter 1.3+) 및 공간 지능 AI와의 결합으로 진화하는 가운데, 실무 Matter 네트워크 구축 시에는 **저전력 센서 노드를 위한 Thread 메시망과 고대역 Wi-Fi/Ethernet을 무단절 연결하는 Thread Border Router 배치, mDNS 멀티캐스트 폭주를 차단하는 DNS-SD Discovery Proxy 적용, 위조 기기 진입을 방지하는 Secure Element 기반 DAC(Device Attestation Certificate) 및 분산 컴플라이언스 원장(DCL) 검증 체계**를 결합하여 완벽한 스마트 홈 신뢰성을 완성
+- 제조사별 파편화와 전용 허브의 장벽을 허물고 전 세계 가전 및 IoT 기기를 단일 표준 생태계로 통합하는 **차세대 스마트 홈 및 건물 IoT 자동화의 절대적 사실상 표준(De-facto Standard) 상호운용성 프로토콜(CSA Matter)**로 안착.
+- 에너지 관리(Matter 1.3+) 및 공간 지능 AI와의 결합으로 진화하는 가운데, 실무 Matter 네트워크 구축 시에는 **저전력 센서 노드를 위한 Thread 메시망과 고대역 Wi-Fi/Ethernet을 무단절 연결하는 Thread Border Router 배치**, **mDNS 멀티캐스트 폭주를 차단하는 DNS-SD Discovery Proxy 적용**, **위조 기기 진입을 방지하는 Secure Element 기반 DAC(Device Attestation Certificate) 및 분산 컴플라이언스 원장(DCL) 검증 체계**를 결합하여 완벽한 스마트 홈 신뢰성을 완성.
 
 #### 한줄 요약
 - Matter는 IPv6 기반 공통 데이터 모델과 Multi-Admin 및 Thread 메시망을 통해 플랫폼 종속 없는 차세대 스마트 홈 표준을 완성한다.

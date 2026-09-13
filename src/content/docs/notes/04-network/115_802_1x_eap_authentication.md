@@ -60,17 +60,16 @@ extra:
 ```text
 [IEEE 802.1X 인증 체계]
   │
-  ├─ [단말: Supplicant]
-  │    └─ EAPOL 클라이언트
-  │
-  ├─ [인증자: Authenticator]
-  │    ├─ Uncontrolled Port (EAPOL 허용)
-  │    └─ Controlled Port (데이터 인가)
-  │
-  └─ [인증 서버: RADIUS]
-       ├─ EAP 인증 엔진 (TLS/PEAP)
-       ├─ Identity Store (PKI/AD)
-       └─ Port Policy (VLAN/dACL 하달)
+  ├─ [단말] ── Supplicant Side
+  │     └─ [Supplicant] (자격 증명 또는 인증서 제시)
+  ├─ [인증자] ── Authenticator Side
+  │     ├─ [Authenticator] (EAPOL과 RADIUS 중계)
+  │     ├─ [Uncontrolled Port] (인증 전 EAPOL 전달)
+  │     └─ [Controlled Port] (인증 후 데이터 전달)
+  └─ [인증 서버] ── Authentication Server Side
+        ├─ [Authentication Server] (EAP 검증과 접근 인가)
+        ├─ [Identity Store] (PKI·AD·LDAP 정보 제공)
+        └─ [Port Policy] (VLAN·dACL 적용)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -97,24 +96,18 @@ extra:
 </details>
 
 ```text
-802.1X EAPOL 시작, EAP-TLS 상호 검증 및 포트 개방 파이프라인
-        │
-        [EAPOL-Start 송출]
-        │
-   1. [Identity 질의 및 응답]
-        │
-   2. [RADIUS 캡슐화 중계]
-        │
-   3. [EAP-TLS 상호 인증]
-        │
-   ▼
-   4. [Access-Accept 및 포트 개방]
+[802.1X 포트 개방 경로] (진행 ①→④, EAPOL-Start 송출에서 진입, Access-Accept 시 포트 개방·Reject 시 차단 유지)
+  │
+  ├─ [Identity 질의 및 응답] (① 스위치가 EAPOL-Request로 단말 식별자 질의·응답)
+  │
+  ├─ [RADIUS 캡슐화 중계] (② 스위치가 EAP 메시지를 RADIUS 요청으로 캡슐화·중계)
+  │
+  ├─ [EAP-TLS 상호 인증] (③ 단말-서버 간 X.509 인증서 상호 검증, 64바이트 MSK 생성)
+  │
+  └─ [Access-Accept 및 포트 개방] (④ 인증 성공 여부를 판정, 성공 시 제어 포트 개방·실패 시 차단 유지)
 ```
 
-- 1. Identity 질의 및 응답
-- 2. RADIUS 캡슐화 중계
-- 3. EAP-TLS 상호 인증
-- 4. Access-Accept 및 포트 개방
+분기 결과: EAP-TLS 인증 성공 여부가 제어 포트 개방과 차단 유지를 가르며, 상호 인증서 검증은 비밀번호 탈취·MITM을 원천 차단하는 대가로 인증서 수명 관리와 중계 왕복 지연을 치르고, 인증서 미지원 기기는 MAB 예외로 접속을 얻는 대가로 MAC 위조 위험을 감수한다.
 
 #### 한줄 요약
 - RADIUS 응답에서 포트 개방과 차단이 갈리며, 인증서를 다룰 수 없는 IoT는 MAB 예외를 허용하는 대가로 MAC 위조 위험을 떠안는다.
@@ -157,7 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 유무선 네트워크의 가장 기초적인 L2 포트 레벨에서 비인가 접근을 원천 차단하고 엔터프라이즈 신원 기반 접근 제어를 구현하는 **국제 표준 포트 기반 네트워크 보안 통제 기술(IEEE 802.1X 및 IETF RFC 3748/5216 EAP)**로 확고히 안착하였으며, 제로 트러스트 NAC 및 클라우드 IdP 연동과의 결합으로 진화하는 가운데, 실무 802.1X 인프라 구축 시에는 **피싱 및 Evil Twin 공격을 원천 차단하는 X.509 단말/서버 상호 인증서 기반 EAP-TLS 표준화, 인증서 만료로 인한 접속 마비를 방지하는 SCEP/EST 무선 자동 발급·갱신 체계 구축, 인증서 미지원 레거시 IoT 단말을 위한 MAB(MAC Authentication Bypass) 최소화 및 격리 VLAN/프로파일링 정책 연계**를 결합하여 완벽한 포트 보안 신뢰성을 완성
+- 유무선 네트워크의 가장 기초적인 L2 포트 레벨에서 비인가 접근을 원천 차단하고 엔터프라이즈 신원 기반 접근 제어를 구현하는 **국제 표준 포트 기반 네트워크 보안 통제 기술(IEEE 802.1X 및 IETF RFC 3748/5216 EAP)**로 확고히 안착.
+- 제로 트러스트 NAC 및 클라우드 IdP 연동과의 결합으로 진화하는 가운데, 실무 802.1X 인프라 구축 시에는 **피싱 및 Evil Twin 공격을 원천 차단하는 X.509 단말/서버 상호 인증서 기반 EAP-TLS 표준화**, **인증서 만료로 인한 접속 마비를 방지하는 SCEP/EST 무선 자동 발급·갱신 체계 구축**, **인증서 미지원 레거시 IoT 단말을 위한 MAB(MAC Authentication Bypass) 최소화 및 격리 VLAN/프로파일링 정책 연계**를 결합하여 완벽한 포트 보안 신뢰성을 완성.
 
 #### 한줄 요약
 - IEEE 802.1X와 EAP-TLS 상호 인증 및 RADIUS 동적 정책 할당을 결합하여 고신뢰 포트 보안을 실현한다.
