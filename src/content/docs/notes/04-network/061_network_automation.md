@@ -59,13 +59,16 @@ extra:
 
 ```text
 [네트워크 자동화]
-  ├── [정의 계층] ───────── [진실의 원천(SoT)]
-  │                           │
-  ├── [오케스트레이션] ──── [자동화 오케스트레이터]
-  │                           │
-  ├── [데이터 모델] ─────── [YANG 데이터 모델]
-  │                           │
-  └── [전송 프로토콜] ───── [NETCONF / RESTCONF]
+  │
+  ├─ [정의 계층] ── Definition Layer
+  │     └─ [진실의 원천(SoT)] (IP·VLAN·라우팅의 단일 목표 상태 유지)
+  ├─ [오케스트레이션] ── Orchestration
+  │     └─ [자동화 오케스트레이터] (장비 설정의 멱등 배포)
+  ├─ [데이터 모델] ── Data Model
+  │     └─ [YANG 데이터 모델] (자료형·계층·유효성 규칙 정의)
+  └─ [전송 프로토콜] ── Transport Protocol
+        ├─ [NETCONF] (Candidate·Running의 트랜잭션 제어)
+        └─ [RESTCONF] (YANG 모델의 RESTful CRUD 제공)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -90,20 +93,20 @@ extra:
 </details>
 
 ```text
-NetDevOps Confirmed Commit 및 자동 롤백 파이프라인
-        │
-   [코드 작성 및 PR 생성] 엔지니어가 Git에 구성 코드(YAML/YANG) 커밋 및 PR 생성
-        │
-   [CI 사전 검증] YANG 린팅 및 가상 네트워크(Containerlab) 시뮬레이션 자동 테스트
-        │
-   [후보 저장소 전송] Ansible이 NETCONF로 대상 장비의 Candidate Datastore에 주입
-        │
-   [Confirmed Commit 실행] `commit confirmed 120` 명령으로 120초 동안 헬스체크 수행
-        │
-   ├─ [정상 헬스체크 통과] ➔ 최종 `commit` 확정 ➔ 배포 성공 완료
-    ▼
-[단선/장애 발생] ➔ 120초 타임아웃 만료 시 장비가 이전 정상 설정으로 자동 롤백
+[NetDevOps 변경 배포 흐름] (진행 ①→⑤, 커밋에서 진입, ①→② CI 검증, ③ 주입, ④ Confirmed Commit, ⑤ 통과·롤백 분기)
+  │
+  ├─ [Git SoT 저장소] (① 엔지니어가 구성 코드(YAML·YANG)를 커밋하고 PR 생성)
+  │
+  ├─ [CI 파이프라인] (② YANG 린팅 및 Containerlab 가상 시뮬레이션 자동 테스트)
+  │
+  ├─ [자동화 오케스트레이터] (③ NETCONF로 대상 장비 Candidate Datastore에 설정 주입)
+  │
+  ├─ [Confirmed Commit 타이머] (④ `commit confirmed 120`으로 120초 헬스체크 유예 구간 확보)
+  │
+  └─ [장비 헬스체크 판정] (⑤ 통과 시 최종 `commit` 확정, 이상 시 **Confirmed Commit** 타임아웃 만료와 함께 자동 롤백)
 ```
+
+분기 결과: ⑤ 헬스체크 판정에서 갈라져 통과하면 배포가 확정되고 단절·이상이면 **Confirmed Commit** 타이머가 만료되며 장비가 스스로 Candidate를 폐기하고 이전 설정으로 되돌리므로, 관리자가 접속조차 못 하는 고립 상황에서도 복구가 보장되는 대가로 모든 변경이 최소 120초의 관찰 시간을 의무 지불한다.
 
 #### 한줄 요약
 - **Confirmed Commit** 시점에서 확정과 자동 롤백으로 갈리므로, 변경 실패 비용이 야간 수작업 복구가 아니라 타이머 만료 시간으로 한정된다.
@@ -148,7 +151,8 @@ NetDevOps Confirmed Commit 및 자동 롤백 파이프라인
 
 ## Ⅶ. 결론
 
-- 수작업 CLI 중심의 장인적 운영에서 소프트웨어 엔지니어링 기반의 IaC(Infrastructure as Code)로 데이터센터 및 통신 인프라 엔지니어링의 표준 운영 패러다임(NetDevOps)으로 완전히 진화하였으며, 향후 LLM 기반 AI Agent 및 생성형 IBN(Intent-Based Networking)과 융합하는 가운데, 실무 엔터프라이즈 환경 구축 시에는 네트워크 단선 시 자동 원복을 보장하는 Confirmed Commit 타임아웃 필수 적용, 대규모 셧다운을 방지하는 카나리(Canary) 점진적 배포, 비인가 수동 변경을 실시간 감지하여 원복하는 Drift Detection 데몬 가동, 사전 모의 검증을 위한 가상 테스트베드(Containerlab/Batfish) CI 연계를 결합하여 완벽한 무중단 네트워크 신뢰성을 완성
+- 수작업 CLI 중심의 장인적 운영에서 소프트웨어 엔지니어링 기반의 IaC(Infrastructure as Code)로 데이터센터 및 통신 인프라 엔지니어링의 표준 운영 패러다임(NetDevOps)으로 완전히 진화.
+- 향후 LLM 기반 AI Agent 및 생성형 IBN(Intent-Based Networking)과 융합하는 가운데, 실무 엔터프라이즈 환경 구축 시에는 **네트워크 단선 시 자동 원복을 보장하는 Confirmed Commit 타임아웃 필수 적용**, **대규모 셧다운을 방지하는 카나리(Canary) 점진적 배포**, **비인가 수동 변경을 실시간 감지하여 원복하는 Drift Detection 데몬 가동**, **사전 모의 검증을 위한 가상 테스트베드(Containerlab/Batfish) CI 연계**를 결합하여 완벽한 무중단 네트워크 신뢰성을 완성.
 
 #### 한줄 요약
 - SoT와 NETCONF/YANG 및 Confirmed Commit을 결합하여 고신뢰 네트워크 운영 자동화를 실현한다.

@@ -59,13 +59,16 @@ extra:
 
 ```text
 [쿠버네티스 네트워킹]
-  ├── [외부 진입] ───────── [Ingress / Gateway API]
-  │                           │
-  ├── [서비스 추상화] ───── [Service VIP / Endpoint]
-  │                           │
-  ├── [보안 정책] ───────── [NetworkPolicy]
-  │                           │
-  └── [데이터 평면] ─────── [CNI / eBPF 엔진]
+  │
+  ├─ [외부 진입] ── Ingress
+  │     └─ [Ingress·Gateway API] (TLS 종단과 L7 경로 라우팅)
+  ├─ [서비스 추상화] ── Service Abstraction
+  │     └─ [Service VIP / Endpoint] (고정 VIP와 EndpointSlice 부하 분산)
+  ├─ [보안 정책] ── Security Policy
+  │     └─ [NetworkPolicy] (레이블 기반 인그레스·이그레스 인가)
+  └─ [데이터 평면] ── Data Plane
+        ├─ [CNI 플러그인] (veth·IPAM과 노드 간 라우팅)
+        └─ [eBPF 커널 엔진] (iptables 대체와 고속 포워딩)
 ```
 
 - 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
@@ -90,19 +93,20 @@ extra:
 </details>
 
 ```text
-쿠버네티스 외부 요청 인입 및 파드 전달 파이프라인
-        │
-   [외부 요청 인입] 외부 클라이언트가 도메인 주소로 Ingress 공인 VIP에 HTTPS 요청 전송
-        │
-   [Ingress L7 라우팅] Ingress Controller가 TLS 복호화 및 Host/Path 분석 후 대상 Service 매핑
-        │
-   [EndpointSlice 조회] Service가 Readiness Probe를 통과한 정상 파드(Pod IP) 목록 조회
-        │
-   [eBPF / IPVS 부하 분산] 커널 eBPF 맵이 Service ClusterIP를 목적지 Pod IP로 고속 DNAT 변환
-        │
-   ▼
-[CNI 전달 및 수신] NetworkPolicy 검증을 거쳐 노드 내부 veth 인터페이스를 통해 파드 소켓으로 전달
+[쿠버네티스 외부 요청 전달 흐름] (진행 ①→⑤, 인입에서 진입, ①→② L7 라우팅, ③ 백엔드 조회, ④ DNAT·인가 분기, ⑤ 파드 수신)
+  │
+  ├─ [Ingress Controller] (① TLS 복호화 후 Host·Path 분석으로 대상 Service 매핑)
+  │
+  ├─ [Service·EndpointSlice] (② Readiness Probe 통과 파드 IP·포트 목록을 **EndpointSlice**에서 분할 조회)
+  │
+  ├─ [eBPF·IPVS 커널 엔진] (③ Service ClusterIP를 목적지 Pod IP로 고속 DNAT 변환)
+  │
+  ├─ [NetworkPolicy 검증부] (④ 레이블 기반 인그레스 인가 통과 시에만 전달 허용)
+  │
+  └─ [veth·파드 소켓] (⑤ 노드 내 veth 인터페이스로 파드 애플리케이션 소켓 수신)
 ```
+
+분기 결과: ④ NetworkPolicy 검증이 통과 여부의 갈림길이어서 Default-Deny 체계에서는 인가된 파드만 ⑤ 소켓에 도달하고 비인가 요청은 커널에서 폐기되며, 판단 비용은 ① Ingress에서 요청당 한 번만 치르고 그 뒤는 eBPF 변환만 남는다.
 
 #### 한줄 요약
 - L7까지 열어 경로를 고르는 비용은 진입점에서 요청당 한 번만 치르고 그 뒤는 커널 eBPF 변환만 남으므로, 판단은 Ingress에 몰고 전달은 커널에 맡기는 배치가 된다.
@@ -141,7 +145,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 모놀리식에서 마이크로서비스 아키텍처(MSA)로 전환된 현대 클라우드 네이티브 생태계의 가장 핵심적인 분산 애플리케이션 연결 및 통신 기반 구조로 확립되었으며, 기존 iptables 기반 kube-proxy의 성능 병목을 극복하고 사이드카 없는(Sidecarless) 서비스 메시를 실현하는 Cilium eBPF CNI 및 Ingress를 고도화한 Gateway API로 진화하는 가운데, 실무 프로덕션 클러스터 운영 시에는 대규모 노드에서의 $O(1)$ 초고속 패킷 처리를 위한 eBPF CNI 채택, 간헐적 5초 DNS 지연을 원천 방지하는 NodeLocal DNSCache 구성, 비인가 파드 횡적 이동을 차단하는 Default-Deny NetworkPolicy 선제 적용, 무중단 파드 롤링 업데이트를 위한 Readiness Probe 헬스체크 정밀 튜닝을 결합하여 완벽한 쿠버네티스 네트워킹 가용성과 보안성을 완성
+- 모놀리식에서 마이크로서비스 아키텍처(MSA)로 전환된 현대 클라우드 네이티브 생태계의 가장 핵심적인 분산 애플리케이션 연결 및 통신 기반 구조로 확립.
+- 기존 iptables 기반 kube-proxy의 성능 병목을 극복하고 사이드카 없는(Sidecarless) 서비스 메시를 실현하는 Cilium eBPF CNI 및 Ingress를 고도화한 Gateway API로 진화하는 가운데, 실무 프로덕션 클러스터 운영 시에는 **대규모 노드에서의 $O(1)$ 초고속 패킷 처리를 위한 eBPF CNI 채택**, **간헐적 5초 DNS 지연을 원천 방지하는 NodeLocal DNSCache 구성**, **비인가 파드 횡적 이동을 차단하는 Default-Deny NetworkPolicy 선제 적용**, **무중단 파드 롤링 업데이트를 위한 Readiness Probe 헬스체크 정밀 튜닝**을 결합하여 완벽한 쿠버네티스 네트워킹 가용성과 보안성을 완성.
 
 #### 한줄 요약
 - 쿠버네티스 네트워킹은 CNI, Service, Gateway API 및 eBPF 가속을 결합하여 고성능 컨테이너 통신을 실현하는 핵심 클라우드 인프라다.
