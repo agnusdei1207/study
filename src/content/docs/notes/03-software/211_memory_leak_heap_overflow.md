@@ -54,6 +54,8 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **메모리 누수 진단 4대 체계**: Real-Time APM(힙 점유율 감시), Dump Snapshot Collector(hprof 덤프 수집), MAT Analyzer(Dominator 역추적), Code Remediation(참조 해제).
+- **hprof**: 자원 프로파일링 및 힙 메모리 스냅샷 데이터를 바이너리 형태로 기록하는 파일 형식.
+- **MAT (Memory Analyzer Tool)**: 이클립스 재단에서 제공하는 대용량 힙 덤프 분석 및 도미네이터 트리 분석 도구.
 
 </details>
 
@@ -86,6 +88,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **메모리 누수 진단 5단계**: 부하 인가 후 Full GC $\to$ 시점별 힙 덤프 추출 $\to$ Dominator Tree 분석 $\to$ 누수 vs 정상 고점유 판정 $\to$ 수정 후 회귀 검증.
+- **Retained Heap**: 특정 객체가 GC에 의해 수거될 때 함께 회수될 수 있는 하위 참조 객체들의 총 메모리 크기.
 
 </details>
 
@@ -131,23 +134,31 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **HeapDumpOnOutOfMemoryError**: JVM 프로세스가 OOM으로 사망하기 직전 자동으로 힙 덤프 파일을 남기도록 설정하는 필수 파라미터.
+- **스트리밍 청크 처리**: 대용량 데이터를 메모리에 일괄 로드하지 않고 일정 크기의 청크 단위로 나누어 순차 처리하는 기법.
 
 </details>
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
 | 순간 트래픽 폭주에 따른 GC 지연을 코드 누수 버그로 오판 | 실시간 초당 할당률(Allocation Rate)과 Full GC 후 기저선 추세 교차 검증 | 오진단 방지 및 트래픽/버그 원인 분리 |
-| OOM 발생 후 프로세스가 즉시 종료되어 원인 분석 불가 | **HeapDumpOnOutOfMemoryError** 옵션(`-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/log`) 필수 적용 | 장애 시점 100% 사후 분석 증적 확보 |
-| 스레드 풀 환경에서 ThreadLocal 미해제로 사용자 정보 유출 및 누수 | 서블릿 필터/인터셉터의 `finally` 블록에서 `ThreadLocal.remove()` 강제 호출 | 스레드 풀 오염 및 누수 원천 차단 |
-| 대용량 파일 업로드 시 힙에 바이트 배열 전체를 올려 OOM 유발 | 스트리밍 방식(InputStream) 및 청크 단위 버퍼 처리 전환 | 대용량 I/O 힙 점유율 극소화 |
+| OOM 발생 후 프로세스가 즉시 종료되어 원인 분석 불가 | **HeapDumpOnOutOfMemoryError** 옵션(`-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/log`) 필수 적용 | 장애 시점 사후 분석 증적 확보 |
+| 스레드 풀 환경에서 ThreadLocal 미해제로 사용자 정보 유출 및 누수 | 서블릿 필터/인터셉터의 `finally` 블록에서 `ThreadLocal.remove()` 강제 호출 | 스레드 풀 오염 및 누수 방지 |
+| 대용량 파일 업로드 시 힙에 바이트 배열 전체를 올려 OOM 유발 | 스트리밍 방식(InputStream) 및 청크 단위 버퍼 처리 전환 | 대용량 I/O 힙 점유율 완화 |
 
 #### 한줄 요약
 - 네 대책은 진단 근거를 미리 남기고 참조 수명을 코드에서 명시적으로 끊는 비용이며, 스트리밍 전환은 구현 복잡도를 힙 안정성과 맞바꾼다.
 
 ## Ⅶ. 결론
 
-- 대규모 트래픽을 처리하는 엔터프라이즈 백엔드 및 컨테이너(K8s) 환경에서 예기치 않은 파드 OOMKilled 강제 종료를 방어하는 **가장 핵심적인 런타임 신뢰성 및 애플리케이션 성능 엔지니어링**(APM) **역량으로 요구**
-- 실무 조치 시에는 **단순 힙 증설(-Xmx)에 의존하지 않고 Full GC 후 최저 기저선 우상향 패턴 판정**, **MAT 도미네이터 트리 기반 누수 객체**(Retained Heap) **및 GC Root 추적**, **ThreadLocal의 `finally` 내 `remove()` 명시적 해제**, **대용량 파일 I/O의 스트리밍(청크) 처리 전환**을 결합하여 근본적인 코드 레벨 메모리 건전성 완성
+<details><summary>용어 설명</summary>
+
+- **OOMKilled**: 쿠버네티스 등 컨테이너 환경에서 파드가 메모리 한계(Memory Limit)를 초과하여 OS OOM Killer에 의해 강제 종료되는 상태 코드(137).
+- **GC Root**: 가비지 컬렉터가 도달 가능성(Reachability)을 판단하기 위해 시작점으로 삼는 객체(정적 변수, 활성 스레드 스택의 로컬 변수 등).
+
+</details>
+
+- 대규모 트래픽을 처리하는 엔터프라이즈 백엔드 및 컨테이너(K8s) 환경에서 예기치 않은 파드 OOMKilled 강제 종료를 방어하는 **핵심적인 런타임 신뢰성 및 애플리케이션 성능 엔지니어링(APM) 역량으로 요구된다.**
+- 실무 조치 시에는 **단순 힙 증설(-Xmx)에 의존하지 않고 Full GC 후 최저 기저선 우상향 패턴 판정**, **MAT 도미네이터 트리 기반 누수 객체(Retained Heap) 및 GC Root 추적**, **ThreadLocal의 `finally` 내 `remove()` 명시적 해제**, **대용량 파일 I/O의 스트리밍(청크) 처리 전환**을 결합하여 근본적인 코드 레벨 메모리 건전성을 완성해야 한다.
 
 #### 한줄 요약
-- Full GC 후 기저선 추적, 힙 덤프 Dominator 분석, 명시적 참조 해제를 통해 OOM을 방어하는 시스템 성능 엔지니어링 체계 구축
+- Full GC 후 기저선 추적, 힙 덤프 Dominator 분석, 명시적 참조 해제를 통해 OOM을 방어하는 시스템 성능 엔지니어링 체계를 구축해야 한다.

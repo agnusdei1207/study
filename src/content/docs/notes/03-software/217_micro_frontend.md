@@ -47,13 +47,14 @@ extra:
 - 특정 마이크로 앱의 런타임 오류가 전체 화면으로 전파되지 않는 **Error Boundary 장애 격리**
 
 #### 한줄 요약
-- 독립 배포, 애플리케이션 셸, Error Boundary 장애 격리를 통해 프론트엔드 민첩성을 극대화한다.
+- 독립 배포, 애플리케이션 셸, Error Boundary 장애 격리를 통해 프론트엔드 민첩성을 향상한다.
 
 ## Ⅲ. 구조 및 구성요소
 
 <details><summary>용어 설명</summary>
 
 - **마이크로프론트엔드 4대 아키텍처**: Application Shell(라우팅/인증), Micro Apps(도메인 UI), Integration Contract(이벤트 버스), Design System(공통 UI 토큰).
+- **Design System**: 색상, 폰트, 공통 컴포넌트(버튼, 입력창 등)를 정의하여 여러 마이크로 앱 간 일관된 사용자 경험을 유지하도록 돕는 규약.
 
 </details>
 
@@ -89,6 +90,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **마이크로 앱 로딩 5단계**: URL 라우팅 변경 감지 $\to$ 원격 JS 번들 비동기 인출 $\to$ DOM 마운트 및 이벤트 바인딩 $\to$ 조합 화면 렌더링 $\to$ 에러 발생 시 폴백 격리.
+- **DOM 마운트**: 비동기로 로드된 마이크로 앱 자바스크립트 컴포넌트를 브라우저의 실제 문서 객체 모델(DOM) 트리에 부착하는 과정.
 
 </details>
 
@@ -135,14 +137,15 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **Shared Dependencies**: 리액트(React) 등 대용량 공통 라이브러리를 각 마이크로 앱이 중복 다운로드하지 않고 싱글톤(Singleton)으로 공유하는 설정.
+- **Shadow DOM**: 웹 컴포넌트 내부의 스타일과 DOM 트리를 캡슐화하여 외부 CSS 간섭을 방지하는 표준 브라우저 기술.
 
 </details>
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
-| 중복 라이브러리(React 등) 다운로드로 번들 크기 폭증 | **Module Federation**의 **Shared Dependencies** 싱글톤(`singleton: true`) 강제 | 초기 다운로드 페이로드 60% 절감 |
-| 팀별 CSS 프레임워크 충돌로 화면 스타일 오염 현상 | `CSS Modules / Shadow DOM` 기반 스타일 스코프 격리 | 스타일 간섭 및 UI 깨짐 완벽 방지 |
-| 특정 마이크로 앱 스크립트 에러로 전체 웹페이지 백화 | 각 마이크로 앱 마운트 지점에 `React Error Boundary` 필수 적용 | 런타임 오류 격리 및 서비스 가용성 사수 |
+| 중복 라이브러리(React 등) 다운로드로 번들 크기 폭증 | **Module Federation**의 **Shared Dependencies** 싱글톤(`singleton: true`) 강제 | 초기 다운로드 페이로드 절감 |
+| 팀별 CSS 프레임워크 충돌로 화면 스타일 오염 현상 | `CSS Modules / Shadow DOM` 기반 스타일 스코프 격리 | 스타일 간섭 및 UI 깨짐 방지 |
+| 특정 마이크로 앱 스크립트 에러로 전체 웹페이지 백화 | 각 마이크로 앱 마운트 지점에 `React Error Boundary` 필수 적용 | 런타임 오류 격리 및 서비스 가용성 확보 |
 | 마이크로 앱 간 과도한 직접 호출로 강결합 발생 | 직접 참조를 금지하고 `CustomEvent 기반 브라우저 이벤트 버스` 통신 | 팀 간 의존성 최소화 및 느슨한 결합 |
 
 #### 한줄 요약
@@ -150,8 +153,15 @@ extra:
 
 ## Ⅶ. 결론
 
-- 대규모 조직에서 백엔드 MSA와 프론트엔드 개발 조직의 온전한 콘웨이 법칙(Conway's Law) 정렬을 달성하는 **가장 핵심적인 엔터프라이즈 프론트엔드 아키텍처 표준 패러다임**으로 정립.
-- 실무 구축 시에는 **Webpack 5 Module Federation 기반 런타임 동적 조합**, **공통 React 라이브러리 싱글톤(Shared Dependencies) 공유를 통한 번들 최적화**, **Shadow DOM/CSS Modules를 활용한 스타일 오염 차단**, **React Error Boundary 기반 국소 장애 격리**, **CustomEvent 브라우저 이벤트 버스를 통한 느슨한 결합**을 결합하여 자율성과 일관된 사용자 경험(UX)을 완벽히 조화.
+<details><summary>용어 설명</summary>
+
+- **Conway's Law**: 시스템의 구조가 해당 시스템을 개발하는 조직의 소통 구조를 반영한다는 법칙.
+- **CustomEvent**: 브라우저 표준 DOM 이벤트 체계를 활용하여 컴포넌트 간 비동기 메시지를 주고받는 이벤트 객체.
+
+</details>
+
+- 대규모 조직에서 백엔드 MSA와 프론트엔드 개발 조직의 온전한 콘웨이 법칙(Conway's Law) 정렬을 달성하는 **엔터프라이즈 프론트엔드 아키텍처의 핵심 표준 패러다임으로 정립되었다.**
+- 실무 구축 시에는 **Webpack 5 Module Federation 기반 런타임 동적 조합**, **공통 React 라이브러리 싱글톤(Shared Dependencies) 공유를 통한 번들 최적화**, **Shadow DOM/CSS Modules를 활용한 스타일 오염 차단**, **React Error Boundary 기반 국소 장애 격리**, **CustomEvent 브라우저 이벤트 버스를 통한 느슨한 결합**을 결합하여 자율성과 일관된 사용자 경험(UX)을 체계적으로 조화시켜 완성해야 한다.
 
 #### 한줄 요약
 - 마이크로프론트엔드는 도메인별 화면 분할과 런타임 조합을 통해 팀별 자율 독립 배포와 장애 격리를 실현하는 핵심 웹 아키텍처 기술이다.
