@@ -3,10 +3,10 @@ sidebar:
   order: 41
   label: "041. 서킷 브레이커 패턴"
   badge:
-    text: "미출 · 50%"
+    text: "기출 · 50%"
     variant: note
 title: "서킷 브레이커 패턴 (Circuit Breaker Pattern)"
-date: "2026-09-07T10:00:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 41
@@ -156,8 +156,8 @@ extra:
 
 </details>
 
-- **차세대 발전 전망**: 인프라 프록시(Envoy/Istio) 및 eBPF 계층으로의 오프로딩과 결합되어, 런타임 트래픽과 이상 징후를 실시간 감지하여 임계치를 자동 튜닝하는 **적응형 회복탄력성(Adaptive Resilience)** 모델로 진화 추세.
-- **실무 공학적 통찰**: 오차단 방지를 위한 표본수 튜닝 및 정교한 **점진적 성능 저하(Graceful Degradation)** 용 Fallback을 구현하고, **카오스 엔지니어링(Chaos Engineering)** 기반 장애 주입 시험을 통해 서킷 동작과 격벽(Bulkhead) 격리 상태를 사전에 실증하는 엔지니어링 검증 필수.
+- **차세대 발전 전망**: 인프라 프록시(Envoy/Istio) 및 eBPF 계층으로의 오프로딩과 결합되어, 런타임 트래픽과 이상 징후를 실시간 감지하여 임계치를 자동 튜닝하는 **적응형 회복탄력성**(Adaptive Resilience) 모델로 진화
+- **실무 공학적 통찰**: 오차단 방지를 위한 표본수 튜닝 및 정교한 **점진적 성능 저하**(Graceful Degradation)용 Fallback을 구현하고, **카오스 엔지니어링**(Chaos Engineering) 기반 장애 주입 시험을 통해 서킷 동작과 격벽(Bulkhead) 격리 상태를 사전에 실증하는 엔지니어링 검증 체계 수립
 
 #### 한줄 요약
-- 서킷 브레이커는 서비스 메시 및 적응형 회복탄력성으로 고도화되되, 실질적인 Fallback 구축과 카오스 엔지니어링 기반의 실증적 검증이 시스템 연쇄 붕괴를 막는 핵심이다.
+- 서킷 브레이커는 서비스 메시 및 적응형 회복탄력성으로 고도화되되, 실질적인 Fallback 구축과 카오스 엔지니어링 기반의 실증적 검증 체계 구축

@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "쿠버네티스 Pod 스케줄링 (Kubernetes Pod Scheduling)"
-date: "2026-09-07T10:05:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 154
@@ -151,8 +151,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 엔터프라이즈 컨테이너 클러스터의 자원 균형 및 고가용성 아키텍처를 완성하는 **가장 핵심적인 워크로드 배치 두뇌**로 확립.
-- 실무 구축 시에는 **GPU 등 특수 리소스 보호를 위한 Taints & Tolerations**, **다중 가용 영역(Multi-AZ) 간 파드 쏠림을 원천 방어하는 `topologySpreadConstraints(maxSkew: 1)`**, **중요 워크로드의 배치 우선권을 보장하는 PriorityClass & Preemption**, **대규모 배치 지연을 해소하는 Just-in-Time 노드 프로비저너 Karpenter 연동**을 결합하여 무결점 자원 효율성과 인프라 가용성을 완성.
+- 엔터프라이즈 컨테이너 클러스터의 자원 균형 및 고가용성 아키텍처를 완성하는 **가장 핵심적인 워크로드 배치 두뇌**로 확립
+- 실무 구축 시에는 **GPU 등 특수 리소스 보호를 위한 Taints & Tolerations**, **다중 가용 영역**(Multi-AZ) **간 파드 쏠림을 원천 방어하는 `topologySpreadConstraints(maxSkew: 1)`**, **중요 워크로드의 배치 우선권을 보장하는 PriorityClass & Preemption**, **대규모 배치 지연을 해소하는 Just-in-Time 노드 프로비저너 Karpenter 연동**을 결합하여 무결점 자원 효율성과 인프라 가용성을 완성
 
 #### 한줄 요약
-- 쿠버네티스 파드 스케줄링은 2단계 평가와 선언적 배치 제약을 통해 자원 균형과 장애 격리를 달성하는 핵심 오케스트레이션 엔진이다.
+- 쿠버네티스 파드 스케줄링은 2단계 평가와 선언적 배치 제약을 통해 자원 균형과 장애 격리를 달성하는 핵심 오케스트레이션 엔진 구축

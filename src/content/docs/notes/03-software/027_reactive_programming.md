@@ -3,10 +3,10 @@ sidebar:
   order: 27
   label: "027. 리액티브 프로그래밍"
   badge:
-    text: "미출 · 50%"
+    text: "기출 · 50%"
     variant: note
 title: "리액티브 프로그래밍 (Reactive Programming)"
-date: "2026-09-07T09:55:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 27
@@ -155,7 +155,7 @@ extra:
 ## Ⅶ. 결론
 
 - 대규모 실시간 데이터 스트리밍(Kafka, WebSockets) 및 고동시성 마이크로서비스의 **핵심 비동기 스트림 처리 패러다임**으로 정립
-- 실무 엔터프라이즈 환경에서는 **완벽한 논블로킹 I/O(R2DBC, Netty) 기반 파이프라인 구축을 기본으로, 레거시 블로킹 구간의 `Schedulers.boundedElastic()` 격리, BlockHound 런타임 검증, Kotlin Coroutines(Flow)를 통한 코드 가독성 개선**을 결합하여 운영
+- 실무 엔터프라이즈 환경에서는 완벽한 **논블로킹 I/O**(R2DBC, Netty) 기반 파이프라인 구축을 기본으로, 레거시 블로킹 구간의 Schedulers.boundedElastic() 격리, BlockHound 런타임 검증, Kotlin Coroutines(Flow)를 통한 코드 가독성 개선을 결합한 운영 체계 수립
 
 #### 한줄 요약
-- 리액티브 프로그래밍은 역압 제어와 비차단 스트림을 통해 시스템 과부하를 방지하고 무중단 반응성을 실현하는 현대 분산 시스템의 핵심 패러다임이다.
+- 역압 제어와 비차단 스트림 기반 시스템 과부하 방지 및 무중단 반응성 실현 아키텍처 수립 체계 구축

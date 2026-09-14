@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "알파•베타•인수 테스트 (Alpha Beta Acceptance Testing)"
-date: "2026-09-07T10:00:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 62
@@ -151,8 +151,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 소프트웨어 릴리즈 및 엔터프라이즈 프로젝트 검수의 **최종 관문(Quality Gate) 사용자 중심 검증 프로세스**로 확립.
-- 실무에서는 착수 단계의 정량적 **수용 기준(Acceptance Criteria)** 명문화, TestFlight/Play Console 기반 베타 원격 텔레메트리(Crashlytics/RUM) 수집, 운영 인수(OAT) 단계의 백업/DR 복구 훈련 강제를 결합하여 계약 분쟁을 예방하고 제품 신뢰성을 확보.
+- 소프트웨어 릴리즈 및 엔터프라이즈 프로젝트 검수의 **최종 관문**(Quality Gate) 사용자 중심 검증 프로세스로 확립
+- 실무에서는 착수 단계의 정량적 **수용 기준**(Acceptance Criteria) 명문화, TestFlight/Play Console 기반 베타 원격 텔레메트리(Crashlytics/RUM) 수집, 운영 인수(OAT) 단계의 백업/DR 복구 훈련 강제를 결합하여 계약 분쟁을 예방하고 제품 신뢰성 확보
 
 #### 한줄 요약
-- 알파·베타·인수 테스트는 내부 기술 검증에서 출발하여 외부 시장성 검증과 고객사 계약 승인까지 연결하는 사용자 중심 품질 보증 체계다.
+- 알파·베타·인수 테스트는 내부 기술 검증에서 출발하여 외부 시장성 검증과 고객사 계약 승인까지 연결하는 사용자 중심 품질 보증 체계 구축

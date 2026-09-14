@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "OpenTelemetry (OpenTelemetry)"
-date: "2026-08-31T10:48:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 162
@@ -150,8 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 네이티브 관측성(Observability) 생태계의 **가장 지배적인 글로벌 텔레메트리 사실상 표준(CNCF Graduate 프로젝트)**으로 확립.
-- 실무 구축 시에는 **소스코드 무수정 Java/eBPF 자동 계측(Auto-Instrumentation)**, **PII 민감정보 마스킹 및 OOM을 방어하는 OTel Collector `memory_limiter` 파이프라인**, **노드 데몬셋(Agent)과 중앙 집계(Gateway) 2계층 토폴로지 구성**, **OTLP gRPC(포트 4317) 초고속 직렬화 전송**을 결합하여 애플리케이션 오버헤드를 최소화하면서 완전한 데이터 이식성과 보안 거버넌스를 달성.
+- 클라우드 네이티브 관측성(Observability) 생태계의 **가장 지배적인 글로벌 텔레메트리 사실상 표준**(CNCF Graduate 프로젝트)으로 확립
+- 실무 구축 시에는 **소스코드 무수정 Java/eBPF 자동 계측**(Auto-Instrumentation), **PII 민감정보 마스킹 및 OOM을 방어하는 OTel Collector `memory_limiter` 파이프라인**, **노드 데몬셋**(Agent)**과 중앙 집계**(Gateway) **2계층 토폴로지 구성**, **OTLP gRPC(포트 4317) 초고속 직렬화 전송**을 결합하여 애플리케이션 오버헤드를 최소화하면서 완전한 데이터 이식성과 보안 거버넌스를 달성
 
 #### 한줄 요약
-- OpenTelemetry는 단일 표준 API/SDK와 3단계 Collector 파이프라인을 통해 텔레메트리를 벤더 독립적으로 수집하는 핵심 기술이다.
+- OpenTelemetry는 단일 표준 API/SDK와 3단계 Collector 파이프라인을 통해 텔레메트리를 벤더 독립적으로 수집하는 핵심 기술 확립

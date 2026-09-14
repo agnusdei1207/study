@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "Redis 인메모리 데이터베이스 (Redis In-Memory Database)"
-date: "2026-09-07T10:05:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 107
@@ -156,8 +156,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 분산 시스템 및 클라우드 애플리케이션의 **표준 인메모리 캐시 및 데이터 구조 서버**로 확립.
-- 실무 운영 시에는 **단일 스레드 락업을 방지하는 `KEYS *` 금지 및 `SCAN` 커서 순회 원칙 준수**, **Cache Stampede를 방어하는 TTL 랜덤 지터(Random Jitter) 부여**, **데이터 안전성을 위한 AOF `everysec` 및 Redis Sentinel 기반 자동 페일오버**, **Redis Cluster 수평 샤딩**을 결합하여 고성능과 무중단 영속성을 동시 보증.
+- 현대 분산 시스템 및 클라우드 애플리케이션의 **표준 인메모리 캐시 및 데이터 구조 서버**로 확립
+- 실무 운영 시에는 **단일 스레드 락업을 방지하는 `KEYS *` 금지 및 `SCAN` 커서 순회 원칙 준수**, **Cache Stampede를 방어하는 TTL 랜덤 지터**(Random Jitter) 부여, **데이터 안전성을 위한 AOF `everysec` 및 Redis Sentinel 기반 자동 페일오버**, **Redis Cluster 수평 샤딩**을 결합하여 고성능과 무중단 영속성을 동시 보증
 
 #### 한줄 요약
-- Redis는 단일 스레드 기반 인메모리 자료구조와 RDB/AOF 영속성을 활용하여 서브밀리초 응답 속도를 완성하는 핵심 인메모리 데이터 플랫폼이다.
+- 단일 스레드 기반 인메모리 자료구조와 RDB/AOF 영속성을 활용하여 서브밀리초 응답 성능과 고가용성을 달성하는 인메모리 데이터 플랫폼 체계 구축

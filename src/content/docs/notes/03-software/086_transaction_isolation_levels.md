@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "트랜잭션 격리 수준 4단계 (Transaction Isolation Levels)"
-date: "2026-09-07T10:05:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 86
@@ -150,8 +150,8 @@ extra:
 
 </details>
 
-- **MVCC 기반 스냅샷 격리 및 SSI 알고리즘 결합 진화**: 전통적 락 기반 격리는 언두 로그(Undo Log)를 활용하는 **다중 버전 동시성 제어(MVCC)**로 표준화되었으며, 최신 분산 RDBMS 및 CockroachDB 등에서는 직렬화 잠금 오버헤드 없이 쓰기 왜곡(Write Skew)을 차단하는 직렬화 가능 스냅샷 격리(SSI)로 발전 추세.
-- **동시 처리 성능(TPS)과 데이터 무결성의 트레이드오프 통제 결단**: 무조건적인 최고 격리 수준 설정은 락 경합과 교착 상태를 유발하므로, Read Committed 또는 Repeatable Read를 기본 채택하고 갱신 분실 위험 구역에만 비관적 락(`SELECT FOR UPDATE`)이나 낙관적 락(`@Version`)을 국소 적용하는 공학적 절충 필요.
+- **MVCC 기반 스냅샷 격리 및 SSI 알고리즘 결합 진화**: 전통적 락 기반 격리는 언두 로그(Undo Log)를 활용하는 **다중 버전 동시성 제어**(MVCC)로 표준화되었으며, 최신 분산 RDBMS 및 CockroachDB 등에서는 직렬화 잠금 오버헤드 없이 쓰기 왜곡(Write Skew)을 차단하는 직렬화 가능 스냅샷 격리(SSI)로 발전 추세
+- **동시 처리 성능(TPS)과 데이터 무결성의 트레이드오프 통제 결단**: 무조건적인 최고 격리 수준 설정은 락 경합과 교착 상태를 유발하므로, Read Committed 또는 Repeatable Read를 기본 채택하고 갱신 분실 위험 구역에만 비관적 락(`SELECT FOR UPDATE`)이나 낙관적 락(`@Version`)을 국소 적용하는 공학적 절충 기준 확립
 
 #### 한줄 요약
-- 트랜잭션 격리 수준은 MVCC와 SSI 기반의 무잠금 직렬화로 진화하고 있으며, TPS 극대화와 정합성 보장을 위한 선택적 락킹 절충이 핵심이다.
+- 트랜잭션 격리 수준은 MVCC와 SSI 기반의 무잠금 직렬화로 진화하고 있으며, TPS 극대화와 정합성 보장을 위한 선택적 락킹 절충 기준 확립

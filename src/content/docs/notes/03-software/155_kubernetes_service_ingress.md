@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "쿠버네티스 서비스•인그레스 (Kubernetes Service Ingress)"
-date: "2026-08-31T10:48:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 155
@@ -146,8 +146,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 클라우드 네이티브 마이크로서비스(MSA) 네트워킹 및 외부 트래픽 유입 제어의 **핵심 표준 라우팅 아키텍처**로 정립.
-- 실무 구축 시에는 **불필요한 네트워크 홉(Hop)을 제거하는 AWS ALB `target-type: ip` 직접 라우팅**, **대규모 파드 환경에서 iptables 부하를 극복하는 IPVS/eBPF(Cilium) 기반 kube-proxy 가속**, **Let's Encrypt 인증서 생명주기를 자동화하는 cert-manager 연동 및 차세대 Gateway API로의 점진적 진화**를 결합하여 고성능 통신과 보안 거버넌스를 완벽히 보증.
+- 클라우드 네이티브 마이크로서비스(MSA) 네트워킹 및 외부 트래픽 유입 제어의 **핵심 표준 라우팅 아키텍처**로 정립
+- 실무 구축 시에는 **불필요한 네트워크 홉**(Hop)**을 제거하는 AWS ALB `target-type: ip` 직접 라우팅**, **대규모 파드 환경에서 iptables 부하를 극복하는 IPVS/eBPF**(Cilium) **기반 kube-proxy 가속**, **Let's Encrypt 인증서 생명주기를 자동화하는 cert-manager 연동 및 차세대 Gateway API로의 점진적 진화**를 결합하여 고성능 통신과 보안 거버넌스를 완벽히 보증
 
 #### 한줄 요약
-- 쿠버네티스 서비스와 인그레스는 L4 가상 IP 로드밸런싱과 L7 경로 기반 라우팅을 결합하여 컨테이너 트래픽을 무결점으로 제어하는 핵심 네트워킹 기술이다.
+- 쿠버네티스 서비스와 인그레스는 L4 가상 IP 로드밸런싱과 L7 경로 기반 라우팅을 결합하여 컨테이너 트래픽을 무결점으로 제어하는 핵심 네트워킹 기술 확립

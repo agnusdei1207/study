@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "OAuth 2.0•OIDC (OAuth 2.0 OIDC)"
-date: "2026-08-31T10:48:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 174
@@ -149,8 +149,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 웹, 모바일, SaaS 및 마이크로서비스 생태계에서 **가장 기본적이고 필수적인 글로벌 표준 인증·인가(AuthN/AuthZ) 인프라 프레임워크**로 확립.
-- 실무 구축 시에는 **공개 클라이언트(SPA/Mobile)의 코드 탈취를 방어하는 PKCE(S256) 강제**, **CSRF 및 재생 공격을 차단하는 `state`/`nonce` 검증**, **신원 확인용 ID Token과 API 인가용 Access Token의 엄격한 역할 분리**, **Access Token의 초단기 수명(15분) 및 Refresh Token Rotation(RTR)**을 결합하여 무결점 제로 트러스트 API 보안을 완성.
+- 현대 웹, 모바일, SaaS 및 마이크로서비스 생태계에서 **가장 기본적이고 필수적인 글로벌 표준 인증·인가**(AuthN/AuthZ) **인프라 프레임워크**로 확립
+- 실무 구축 시에는 **공개 클라이언트**(SPA/Mobile)의 **코드 탈취를 방어하는 PKCE**(S256) **강제**, **CSRF 및 재생 공격을 차단하는 `state`/`nonce` 검증**, **신원 확인용 ID Token과 API 인가용 Access Token의 엄격한 역할 분리**, **Access Token의 초단기 수명**(15분) 및 **Refresh Token Rotation**(RTR)을 결합하여 무결점 제로 트러스트 API 보안 완성
 
 #### 한줄 요약
-- ID Token은 클라이언트, Access Token은 자원 서버에서 검증한다.
+- 클라이언트의 ID Token 신원 증명 및 자원 서버의 Access Token 인가 검증 분리 체계 확립

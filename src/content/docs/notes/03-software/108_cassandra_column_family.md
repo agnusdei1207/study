@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 30%"
     variant: note
 title: "Cassandra 컬럼 패밀리 데이터베이스 (Cassandra Column Family)"
-date: "2026-09-07T10:05:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 108
@@ -152,8 +152,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 초대용량 시계열 센서 데이터, 글로벌 메시징 및 분산 로깅 시스템의 **대표적인 Wide-Column NoSQL 분산 스토리지**로 확립.
-- 실무 구축 시에는 **조인을 배제하고 화면 조회 요건마다 1:1 전용 비정규화 테이블을 구성하는 쿼리 주도 모델링(Query-Driven Modeling)**, **핫 파티션을 방지하는 시간 버킷 복합 파티션 키 설계**, **비즈니스 요건에 맞춘 Tunable Consistency($R+W>N$, Quorum) 설정**, **주기적인 Nodetool Repair/Tombstone 컴팩션 관리**를 결합하여 시스템 확장성과 데이터 신뢰성을 동시 달성.
+- 초대용량 시계열 센서 데이터, 글로벌 메시징 및 분산 로깅 시스템의 **대표적인 Wide-Column NoSQL 분산 스토리지**로 확립
+- 실무 구축 시에는 **조인을 배제하고 화면 조회 요건마다 1:1 전용 비정규화 테이블을 구성하는 쿼리 주도 모델링**(Query-Driven Modeling), **핫 파티션을 방지하는 시간 버킷 복합 파티션 키 설계**, **비즈니스 요건에 맞춘 Tunable Consistency($R+W>N$, Quorum) 설정**, **주기적인 Nodetool Repair/Tombstone 컴팩션 관리**를 결합하여 시스템 확장성과 데이터 신뢰성을 동시 달성
 
 #### 한줄 요약
-- Apache Cassandra는 마스터리스 P2P 아키텍처와 쿼리 주도 비정규화 모델링을 통해 무중단 대용량 쓰기를 완성하는 대표적인 Wide-Column NoSQL이다.
+- 마스터리스 P2P 아키텍처와 쿼리 주도 비정규화 모델링을 통해 무중단 대용량 쓰기와 고가용성을 보장하는 Wide-Column NoSQL 운영 체계 구축

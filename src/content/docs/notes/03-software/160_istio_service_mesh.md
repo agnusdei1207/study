@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 85%"
     variant: note
 title: "서비스 메시 Istio (Service Mesh Istio)"
-date: "2026-08-31T10:48:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 160
@@ -149,8 +149,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 대규모 마이크로서비스 아키텍처(MSA) 및 제로 트러스트(Zero Trust) 네트워킹의 **가장 지배적인 서비스 메시 표준 플랫폼**으로 확립.
-- 실무 구축 시에는 **서비스 간 자동 mTLS 암호화(PeerAuthentication)의 단계별(PERMISSIVE $\to$ STRICT) 전환**, **사이드카 메모리 팽창을 방어하는 `Sidecar` CRD 네임스페이스 통신 스코프 제한**, **연쇄 장애를 차단하는 DestinationRule 서킷 브레이커**, **리소스 오버헤드를 극적으로 절감하는 차세대 사이드카리스(Sidecarless) Ambient Mesh(ztunnel)**를 결합하여 보안 완결성과 초저지연 운영 효율을 동시 달성.
+- 대규모 마이크로서비스 아키텍처(MSA) 및 제로 트러스트(Zero Trust) 네트워킹의 **가장 지배적인 서비스 메시 표준 플랫폼**으로 확립
+- 실무 구축 시에는 **서비스 간 자동 mTLS 암호화**(PeerAuthentication)**의 단계별**(PERMISSIVE $\to$ STRICT) **전환**, **사이드카 메모리 팽창을 방어하는 `Sidecar` CRD 네임스페이스 통신 스코프 제한**, **연쇄 장애를 차단하는 DestinationRule 서킷 브레이커**, **리소스 오버헤드를 극적으로 절감하는 차세대 사이드카리스**(Sidecarless) **Ambient Mesh**(ztunnel)를 결합하여 보안 완결성과 초저지연 운영 효율을 동시 달성
 
 #### 한줄 요약
-- Istio 서비스 메시는 Envoy 프록시와 istiod 제어면을 통해 애플리케이션 코드 변경 없이 제로 트러스트 보안과 지능형 트래픽 라우팅을 실현하는 핵심 마이크로서비스 네트워킹 기술이다.
+- Istio 서비스 메시는 Envoy 프록시와 istiod 제어면을 통해 애플리케이션 코드 변경 없이 제로 트러스트 보안과 지능형 트래픽 라우팅을 실현하는 핵심 마이크로서비스 네트워킹 기술 확립

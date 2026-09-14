@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "쿠버네티스 NetworkPolicy•CNI (Kubernetes NetworkPolicy CNI)"
-date: "2026-08-31T10:48:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 156
@@ -146,8 +146,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 엔터프라이즈 컨테이너 보안 및 ISMS-P/금융 망분리 컴플라이언스를 충족하는 **가장 핵심적인 내부 통신 격리 표준**으로 확립.
-- 실무 구축 시에는 **모든 네임스페이스에 기본 적용하는 Default-Deny-All 화이트리스트 정책**, **대규모 파드 통신 시 iptables 오버헤드를 제거하는 eBPF 기반 Cilium CNI 도입**, **실시간 패킷 드롭 및 서비스 의존성을 관측하는 Hubble UI 연동**, **AWS VPC CNI IP 고갈을 방어하는 Secondary CIDR 커스텀 네트워킹**을 결합하여 초고속 패킷 처리 성능과 무결점 제로 트러스트 보안을 완성.
+- 엔터프라이즈 컨테이너 보안 및 ISMS-P/금융 망분리 컴플라이언스를 충족하는 **가장 핵심적인 내부 통신 격리 표준**으로 확립
+- 실무 구축 시에는 **모든 네임스페이스에 기본 적용하는 Default-Deny-All 화이트리스트 정책**, **대규모 파드 통신 시 iptables 오버헤드를 제거하는 eBPF 기반 Cilium CNI 도입**, **실시간 패킷 드롭 및 서비스 의존성을 관측하는 Hubble UI 연동**, **AWS VPC CNI IP 고갈을 방어하는 Secondary CIDR 커스텀 네트워킹**을 결합하여 초고속 패킷 처리 성능과 무결점 제로 트러스트 보안을 완성
 
 #### 한줄 요약
-- CNI와 NetworkPolicy는 파드 간 연결성과 제로 트러스트 미세 격리 방화벽을 제공하여 클러스터 내부 보안을 완성하는 핵심 네트워킹 기술이다.
+- CNI와 NetworkPolicy는 파드 간 연결성과 제로 트러스트 미세 격리 방화벽을 제공하여 클러스터 내부 보안을 완성하는 핵심 네트워킹 기술 확립

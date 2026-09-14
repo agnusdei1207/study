@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "예약 인스턴스•스팟 인스턴스 (Reserved and Spot Instances)"
-date: "2026-09-07T10:05:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 148
@@ -146,8 +146,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 모던 클라우드 FinOps 및 대규모 컨테이너(Kubernetes) 인프라 비용 최적화의 **가장 실효적인 핵심 요율 전략**으로 확립.
-- 실무 구축 시에는 **인스턴스 타입 변경 유연성을 보장하는 Compute Savings Plans로 베이스라인 방어**, **자원 회수 시 2분 경보 핸들러(AWS Node Termination Handler) 기반 Graceful Cordon/Drain 자동화**, **단일 타입 고갈을 방지하는 다중 인스턴스 패밀리 `capacity-optimized` Spot Fleet 구성 및 온디맨드 폴백 버퍼**를 결합하여 서비스 SLA 무결성과 최대 80% 비용 절감을 동시 실현.
+- 모던 클라우드 FinOps 및 대규모 컨테이너(Kubernetes) 인프라 비용 최적화의 **가장 실효적인 핵심 요율 전략**으로 확립
+- 실무 구축 시에는 **인스턴스 타입 변경 유연성을 보장하는 Compute Savings Plans로 베이스라인 방어**, **자원 회수 시 2분 경보 핸들러**(AWS Node Termination Handler) **기반 Graceful Cordon/Drain 자동화**, **단일 타입 고갈을 방지하는 다중 인스턴스 패밀리 `capacity-optimized` Spot Fleet 구성 및 온디맨드 폴백 버퍼**를 결합하여 서비스 SLA 무결성과 최대 80% 비용 절감을 동시 실현
 
 #### 한줄 요약
-- 예약 및 스팟 인스턴스는 워크로드의 특성과 중단 허용도에 맞추어 비용을 극대화하는 엔터프라이즈 클라우드 요율 최적화의 핵심 기법이다.
+- 예약 및 스팟 인스턴스는 워크로드의 특성과 중단 허용도에 맞추어 비용을 극대화하는 엔터프라이즈 클라우드 요율 최적화의 핵심 기법 확립

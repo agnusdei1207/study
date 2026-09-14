@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 30%"
     variant: note
 title: "서버리스 컴퓨팅•FaaS (Serverless Computing•FaaS)"
-date: "2026-08-31T10:48:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 159
@@ -146,8 +146,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 이벤트 기반 아키텍처(EDA) 및 클라우드 네이티브 비즈니스 로직 고속 출시를 위한 **가장 진보된 서버리스 컴퓨팅 패러다임**으로 정립.
-- 실무 구축 시에는 **초기 응답 지연을 제거하는 Lambda SnapStart/Provisioned Concurrency 적용**, **대규모 동시 실행 시 RDBMS 커넥션 고갈을 방어하는 RDS Proxy 연동**, **15분 실행 한계를 극복하는 Step Functions 오케스트레이션 및 이벤트 유실을 방어하는 SQS DLQ(Dead Letter Queue)**를 결합하여 개발 생산성과 운영 안정성을 완벽히 조화.
+- 이벤트 기반 아키텍처(EDA) 및 클라우드 네이티브 비즈니스 로직 고속 출시를 위한 **가장 진보된 서버리스 컴퓨팅 패러다임**으로 정립
+- 실무 구축 시에는 **초기 응답 지연을 제거하는 Lambda SnapStart/Provisioned Concurrency 적용**, **대규모 동시 실행 시 RDBMS 커넥션 고갈을 방어하는 RDS Proxy 연동**, **15분 실행 한계를 극복하는 Step Functions 오케스트레이션 및 이벤트 유실을 방어하는 SQS DLQ**(Dead Letter Queue)를 결합하여 개발 생산성과 운영 안정성을 완벽히 조화
 
 #### 한줄 요약
-- 서버리스 FaaS는 인프라 관리 제로화와 이벤트 구동 초정밀 종량 과금을 통해 비즈니스 민첩성을 극대화하는 클라우드 네이티브의 핵심 컴퓨팅 모델이다.
+- 서버리스 FaaS는 인프라 관리 제로화와 이벤트 구동 초정밀 종량 과금을 통해 비즈니스 민첩성을 극대화하는 클라우드 네이티브의 핵심 컴퓨팅 모델 확립

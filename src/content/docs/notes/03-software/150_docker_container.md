@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "Docker 컨테이너 (Docker Container)"
-date: "2026-09-07T10:05:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 150
@@ -152,8 +152,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 클라우드 네이티브 컴퓨팅, 마이크로서비스 아키텍처(MSA) 및 CI/CD 배포 파이프라인의 **가장 지배적인 표준 패키징·실행 단위 기술**로 확립.
-- 실무 구축 시에는 **공격 표면을 최소화하는 Multi-stage 빌드 및 Distroless/Alpine 경량 베이스 이미지 채택**, **컨테이너 탈출(Container Escape)을 방어하는 Non-root 유저 실행과 Seccomp/AppArmor 프로파일 적용**, **리소스 독점을 방어하는 cgroups 메모리/CPU Limit 설정**을 결합하여 고속 배포성과 프로덕션 보안성을 동시 보증.
+- 현대 클라우드 네이티브 컴퓨팅, 마이크로서비스 아키텍처(MSA) 및 CI/CD 배포 파이프라인의 **가장 지배적인 표준 패키징·실행 단위 기술**로 확립
+- 실무 구축 시에는 **공격 표면을 최소화하는 Multi-stage 빌드 및 Distroless/Alpine 경량 베이스 이미지 채택**, **컨테이너 탈출**(Container Escape)**을 방어하는 Non-root 유저 실행과 Seccomp/AppArmor 프로파일 적용**, **리소스 독점을 방어하는 cgroups 메모리/CPU Limit 설정**을 결합하여 고속 배포성과 프로덕션 보안성을 동시 보증
 
 #### 한줄 요약
-- Docker 컨테이너는 리눅스 커널 격리와 레이어드 불변 이미지를 통해 환경 일치성과 경량 배포를 실현하는 클라우드 네이티브의 핵심 배포 기술이다.
+- Docker 컨테이너는 리눅스 커널 격리와 레이어드 불변 이미지를 통해 환경 일치성과 경량 배포를 실현하는 클라우드 네이티브의 핵심 배포 기술 확립

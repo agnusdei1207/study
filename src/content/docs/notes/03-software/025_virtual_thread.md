@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "가상 스레드: Java Project Loom (Virtual Thread)"
-date: "2026-09-07T09:55:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-software"
 weight: 25
@@ -152,7 +152,7 @@ extra:
 ## Ⅶ. 결론
 
 - 현대 Java 21+ 및 고성능 백엔드 아키텍처의 **표준 초경량 동시성 실행 모델**로 확립
-- 실무 엔터프라이즈 환경에서는 **I/O 블로킹 중심 웹/마이크로서비스에 가상 스레드(Thread-per-Request)를 기본 적용하고, 캐리어 스레드 고착을 막기 위한 `synchronized` $\to$ `ReentrantLock` 전환, 하위 DB 커넥션 보호를 위한 세마포어 유량 제어, 불변 컨텍스트 전파를 위한 Scoped Values**를 결합한 시스템 설계
+- 실무 엔터프라이즈 환경에서는 I/O 블로킹 중심 웹/마이크로서비스에 **가상 스레드**(Thread-per-Request)를 기본 적용하고, 캐리어 스레드 고착을 막기 위한 `synchronized` $\to$ `ReentrantLock` 전환, 하위 DB 커넥션 보호를 위한 세마포어 유량 제어, 불변 컨텍스트 전파를 위한 Scoped Values를 결합한 시스템 설계 체계 구축
 
 #### 한줄 요약
-- 가상 스레드는 Java 21의 혁신적 경량 동시성 모델이며, 동기식 코드의 단순함으로 수백만 동시성을 실현한다.
+- 동기식 코드의 직관성을 유지하며 대규모 I/O 처리를 지원하는 Java 21 가상 스레드 기반 수백만 동시성 실현 체계 구축
