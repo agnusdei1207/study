@@ -128,7 +128,7 @@ extra:
 | 주요 역할 | 경계 **접근 통제** | 웹 공격 방어와 **가상 패치** | 취약점 **근본 제거** |
 
 #### 한줄 요약
-- 네트워크 방화벽은 경계 L3/L4 통제, WAF는 L7 공격 실시간 방어, 시큐어 코딩은 소프트웨어 결함 원천 제거를 담당한다.
+- 네트워크 방화벽은 경계 L3/L4 통제, WAF는 L7 공격 실시간 방어, 시큐어 코딩은 소프트웨어 결함의 근본적 제거를 담당한다.
 
 ## Ⅵ. 실무 고려사항 및 대책
 
@@ -150,8 +150,15 @@ extra:
 
 ## Ⅶ. 결론
 
+<details><summary>용어 설명</summary>
+
+- **WAAP (Web Application & API Protection)**: 기존 WAF 기능에 API 보안, 봇 완화, DDoS 방어를 통합한 클라우드 네이티브 웹 애플리케이션 보호 플랫폼.
+- **RASP (Runtime Application Self-Protection)**: 애플리케이션 런타임 내부에 상주하며 입력값과 동작 맥락을 분석하여 악성 행위를 실시간 탐지·차단하는 기술.
+
+</details>
+
 - 인터넷 대고객 서비스와 클라우드 웹 인프라를 지키는 **가장 필수적이고 보편적인 L7 애플리케이션 보안 통제 솔루션**으로 확고히 정립.
-- 단순 시그니처 매칭의 한계를 넘어 API 보안(WAAP: Web Application & API Protection), 머신러닝 기반 봇(Bot) 탐지 및 RASP(Runtime Application Self-Protection)와의 결합으로 진화하는 가운데, 실무 WAF 운영 시에는 **신규 룰 배포 시 오탐(False Positive)으로 인한 서비스 중단을 방지하는 탐지 모드(Detection Only) 검증 및 예외 튜닝**, **소스코드 긴급 수정을 대신하는 가상 패치(Virtual Patch) 즉시 적용**, **REST API 트래픽 보호를 위한 OpenAPI/JSON 스키마 검증 연동**, **TLS 복호화 연산 부하를 해소하는 하드웨어 SSL 오프로딩**을 결합하여 완벽한 웹 보안 신뢰성을 완성.
+- 단순 시그니처 매칭의 한계를 넘어 API 보안(WAAP: Web Application & API Protection), 머신러닝 기반 봇(Bot) 탐지 및 RASP(Runtime Application Self-Protection)와의 결합으로 진화하는 가운데, 실무 WAF 운영 시에는 **신규 룰 배포 시 오탐(False Positive)으로 인한 서비스 중단을 방지하는 탐지 모드(Detection Only) 검증 및 예외 튜닝**, **소스코드 긴급 수정을 대신하는 가상 패치(Virtual Patch) 즉시 적용**, **REST API 트래픽 보호를 위한 OpenAPI/JSON 스키마 검증 연동**, **TLS 복호화 연산 부하를 해소하는 하드웨어 SSL 오프로딩**을 결합하여 견고한 웹 보안 신뢰성을 확보해야 한다.
 
 #### 한줄 요약
-- WAF는 L7 심층 검사와 가상 패치 및 정규화를 통해 웹 애플리케이션을 안전하게 보호하는 핵심 방어 인프라다.
+- WAF는 L7 심층 검사와 가상 패치 및 정규화를 통해 웹 애플리케이션의 취약점 노출을 최소화하도록 운영 체계를 수립해야 한다.

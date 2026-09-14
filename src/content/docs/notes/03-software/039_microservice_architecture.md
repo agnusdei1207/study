@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "마이크로서비스 아키텍처 MSA (Microservice Architecture)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T15:50:00+09:00"
 tags:
   - "notes-software"
 weight: 39
@@ -161,4 +161,4 @@ extra:
 - **실무 공학적 통찰**: 결합도만 높은 분산 모놀리스(Distributed Monolith)로의 전락을 방지하기 위해, **도메인 주도 설계**(DDD)의 **경계 지어진 문맥**(Bounded Context)에 입각한 데이터 격리와 분산 트레이싱 기반 관측성 거버넌스 확립
 
 #### 한줄 요약
-- MSA는 플랫폼 엔지니어링 및 GitOps와 결합하여 전달 속도를 극대화하되, DDD 기반의 엄격한 Bounded Context 분리와 분산 관측성 체계 구축
+- Bounded Context와 Database-per-Service의 자율성 원리를 바탕으로, Saga 패턴과 서킷 브레이커를 적용하여 분산 모놀리스를 방지하고 서비스 독립 확장성을 확보하도록 설계한다.

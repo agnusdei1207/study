@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "전가상화•반가상화•컨테이너 (Virtualization Comparison)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T15:13:00+09:00"
 tags: [notes-software]
 weight: 19
 extra:
@@ -43,10 +43,10 @@ extra:
 
 - **전가상화(Full Virtualization)**: 게스트 OS 수정 없이 하드웨어 가상화(Intel VT-x)를 통해 완전한 독립 이종 OS 구동
 - **반가상화(Para-virtualization)**: 게스트 OS 커널을 수정하여 **하이퍼콜(Hypercall)** 직결로 에뮬레이션 오버헤드 최소화
-- **컨테이너(Container)**: 게스트 OS 없이 **Namespaces 및 cgroups**를 통해 프로세스 수준 초경량 격리 달성
+- **컨테이너(Container)**: 게스트 OS 없이 **Namespaces 및 cgroups**를 통해 프로세스 수준 경량 격리 달성
 
 #### 한줄 요약
-- 전가상화는 호환성, 반가상화는 I/O 성능, 컨테이너는 경량성과 초고속 배포에 특화된다.
+- 전가상화는 호환성, 반가상화는 I/O 성능, 컨테이너는 경량성과 고속 배포에 특화된다.
 
 ## Ⅲ. 구조 및 구성요소
 
@@ -88,7 +88,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **마이크로VM(MicroVM)**: Firecracker, Kata Containers처럼 컨테이너마다 초경량 KVM VM을 1:1로 씌워 컨테이너의 속도와 VM의 보안 격리를 결합한 기술.
+- **마이크로VM(MicroVM)**: Firecracker, Kata Containers처럼 컨테이너마다 경량 KVM VM을 1:1로 씌워 컨테이너의 속도와 VM의 보안 격리를 결합한 기술.
 
 </details>
 
@@ -102,7 +102,7 @@ extra:
   │     └─ [전가상화] (② 커널 수정 불가 시 미수정 게스트를 하드웨어 가속으로 구동(KVM/ESXi))
   │
   ├─ [보안 격리 판정] (③ 동일 커널 진입 시 멀티테넌트 커널 레벨 격리 필요 여부 판정)
-  │     ├─ [마이크로VM] (③ 격리 필요 시 초경량 KVM VM을 1:1로 씌워 하드웨어 격리(Kata/Firecracker))
+  │     ├─ [마이크로VM] (③ 격리 필요 시 경량 KVM VM을 1:1로 씌워 하드웨어 격리(Kata/Firecracker))
   │     └─ [순수 리눅스 컨테이너] (③ 격리 완화 시 Namespaces·cgroups로 경량 격리(Docker))
   │
   └─ [서비스 배포] (④ 선택된 가상화 계층 위 애플리케이션 구동)
@@ -117,7 +117,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **Kata Containers**: OCI 호환 컨테이너 런타임으로, 각 Pod/컨테이너를 초경량 QEMU/Cloud-Hypervisor VM 안에서 격리 실행하는 보안 런타임.
+- **Kata Containers**: OCI 호환 컨테이너 런타임으로, 각 Pod/컨테이너를 경량 QEMU/Cloud-Hypervisor VM 안에서 격리 실행하는 보안 런타임.
 
 </details>
 
@@ -163,4 +163,4 @@ extra:
 - 내부 신뢰 서비스는 고밀도 컨테이너로 배포하되, 외부 untrusted 코드가 유입되는 도메인은 하드웨어 격리 경계를 강제하는 다계층 샌드박스 아키텍처 수립 체계 구축
 
 #### 한줄 요약
-- 고밀도 내부 배포는 컨테이너로 처리하고 외부 멀티테넌트 FaaS는 MicroVM 하드웨어 격리로 분리 수용하는 다계층 설계 체계 구축
+- 격리 수준과 오버헤드의 가상화 계층 원리를 바탕으로, 고밀도 내부 배포는 컨테이너로 처리하고 외부 멀티테넌트 FaaS는 MicroVM 하드웨어 격리로 분리 수용하도록 설계한다.

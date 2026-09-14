@@ -28,10 +28,10 @@ extra:
 </details>
 
 - 정의/개념: 송수신 호스트 간 **SYN, SYN-ACK, ACK 3단계 교환을 통해 양방향 도달성을 검증하고 ISN 및 옵션을 동기화하는 TCP 연결 설정 프로토콜**
-- 배경/필요성: 신뢰성 없는 비연결형 IP 네트워크 위에서 송수신 호스트 간의 수신 준비 상태, 포트 개방 여부, 양방향 도달 가능성을 사전에 확인하지 않고 데이터를 송신할 때 발생하는 패킷 유실, 순서 뒤바뀜 및 세션 하이재킹 위험을 원천 방지하기 위해, SYN, SYN-ACK, ACK 3단계 메시지 교환을 통해 난수 기반 초기 순서 번호(ISN: Initial Sequence Number)를 동기화하고 MSS, Window Scale, SACK 등 필수 전송 파라미터를 상호 협상하는 TCP 3-Way Handshake를 도입하여 **신뢰성 있는 가상 전이중(Full-Duplex) 연결 채널 확립과 안전한 스트림 전송 보증**을 달성할 필요
+- 배경/필요성: 신뢰성 없는 비연결형 IP 네트워크 위에서 송수신 호스트 간의 수신 준비 상태, 포트 개방 여부, 양방향 도달 가능성을 사전에 확인하지 않고 데이터를 송신할 때 발생하는 패킷 유실, 순서 뒤바뀜 및 세션 하이재킹 위험을 방지하기 위해, SYN, SYN-ACK, ACK 3단계 메시지 교환을 통해 난수 기반 초기 순서 번호(ISN: Initial Sequence Number)를 동기화하고 MSS, Window Scale, SACK 등 필수 전송 파라미터를 상호 협상하는 TCP 3-Way Handshake를 도입하여 **신뢰성 있는 가상 전이중(Full-Duplex) 연결 채널 확립과 안전한 스트림 전송 보증**을 달성할 필요
 
 #### 한줄 요약
-- SYN-SYN+ACK-ACK 3단계를 통해 양방향 가용성과 난수 ISN을 동기화하여 신뢰성 세션을 연다.
+- SYN-SYN+ACK-ACK 3단계를 통해 양방향 가용성과 난수 ISN을 동기화하여 신뢰성 있는 세션을 수립해야 한다.
 
 ## Ⅱ. 특징
 
@@ -47,7 +47,7 @@ extra:
 - 대용량 대역폭 활용을 위한 **Window Scaling 및 SACK(선택적 재전송) 기능 상호 합의**
 
 #### 한줄 요약
-- ISN 무작위화, MSS 크기 합의, 윈도우 스케일링 협상을 통해 최적의 전송 파라미터를 확정한다.
+- ISN 무작위화, MSS 크기 합의, 윈도우 스케일링 협상을 통해 최적의 전송 파라미터를 확정해야 한다.
 
 ## Ⅲ. 구조 및 구성요소
 
@@ -85,7 +85,7 @@ extra:
 | TCP 제어 플래그 | SYN, ACK, FIN, RST 플래그를 통한 세션 라이프사이클 전이 제어 |
 
 #### 한줄 요약
-- SYN 큐가 리슨 소켓과 응용의 수락 사이에 끼어들어 반개방 상태를 커널이 대신 보관하므로, 응용이 즉시 받아내지 못해도 연결은 유지되지만 그 큐 길이가 곧 감당 한계가 된다.
+- 커널의 SYN 큐와 Accept 큐를 통해 반개방 상태와 연결 완료 상태를 분리 관리해야 한다.
 
 ## Ⅳ. 흐름도
 
@@ -107,10 +107,10 @@ extra:
   └─ [Accept 큐] (③ Ack=y+1 도달로 ESTABLISHED 적재 후 accept()에 인계)
 ```
 
-분기 결과: **TCP 상태 전이 3단계**의 갈래는 ③ 최종 ACK 도달 여부에서 열려, 도달하면 SYN 큐의 소켓이 Accept 큐로 승격돼 응용 인계까지 끝나지만 도달하지 못한 Half-Open 소켓은 SYN 큐에 누적되므로 SYN Flood 시 큐 고갈이 곧 신규 접속 거부가 된다.
+분기 결과: TCP 상태 전이는 최종 ACK 도달 시 ESTABLISHED로 승격되어 Accept 큐로 분기되고, ACK 미도달 시 타임아웃 재전송 후 소멸 경로로 분기된다.
 
 #### 한줄 요약
-- 클라이언트 SYN 전송 → 서버 SYN-ACK 응답 → 클라이언트 최종 ACK 전송 순으로 세션이 확립된다.
+- 클라이언트 SYN 전송, 서버 SYN-ACK 응답, 클라이언트 최종 ACK 전송을 거쳐 세션을 확립해야 한다.
 
 ## Ⅴ. 종류 및 비교
 
@@ -128,7 +128,7 @@ extra:
 | 핵심 상태 전이 | `CLOSED` $\to$ `SYN_SENT` $\to$ `ESTABLISHED` | `ESTABLISHED` $\to$ `FIN_WAIT` $\to$ `TIME_WAIT` $\to$ `CLOSED` |
 
 #### 한줄 요약
-- 연결 수립은 3회 교환으로 동기화하고, 연결 종료는 잔여 데이터 처리를 위해 4회 교환으로 분리 종료한다.
+- 연결 수립은 3회 교환으로 신속히 동기화하고, 연결 종료는 잔여 데이터 처리를 위해 4회로 분리 제어해야 한다.
 
 ## Ⅵ. 실무 고려사항 및 대책
 
@@ -141,18 +141,24 @@ extra:
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
-| 공격자의 대량 SYN 요청으로 서버 SYN 큐 고갈(SYN Flood) | **리눅스 커널 `SYN Cookie (tcp_syncookies=1)` 활성화** | 상태 저장 없이 정상 유저 접속 100% 보장 |
+| 공격자의 대량 SYN 요청으로 서버 SYN 큐 고갈(SYN Flood) | **리눅스 커널 `SYN Cookie (tcp_syncookies=1)` 활성화** | 상태 저장 없이 정상 유저 접속 보장 |
 | 합의된 MSS가 중간 경로 MTU보다 커서 발생하는 패킷 드롭 | **경로 MTU 탐색(PMTUD) 및 `TCP MSS Clamping` 값 최적화** | 패킷 단편화 오버헤드 및 블랙홀 방지 |
 | 모바일 전파 음영 지역 진입 시 미완료 Half-Open 소켓 누적 | **`tcp_synack_retries` 횟수 축소 및 백오프 타임아웃 단축** | 커널 메모리 자원 신속 회수 |
 | 중간 보안 장비의 TCP 옵션 제거로 인한 처리량 저하 | **엔드투엔드 패킷 캡처를 통한 `Window Scale / SACK 옵션 보존`** | 대용량 고속 전송 성능 정상 유지 |
 
 #### 한줄 요약
-- SYN Cookie 활성화, MSS Clamping, 재시도 타이머 튜닝, TCP 옵션 보존으로 운영한다.
+- SYN Cookie 활성화, MSS Clamping, 재시도 타이머 튜닝, TCP 옵션 보존을 체계적으로 적용해야 한다.
 
 ## Ⅶ. 결론
 
-- 인터넷과 엔터프라이즈 환경에서 웹, 데이터베이스, API 통신을 지탱하는 **가장 기본적이고 확고한 전송 계층 연결 수립 표준 프로토콜**로 확립.
-- 최근 1-RTT 지연을 줄이기 위해 **TLS 1.3 0-RTT 및 UDP 기반 QUIC(HTTP/3)으로의 진화가 가속화되고 있는 한편**, 전통적인 TCP 운영 시에는 **대규모 SYN Flood DoS 공격을 방어하는 Linux 커널 SYN Cookie(tcp_syncookies=1) 활성화**, **패킷 단편화를 방지하는 MSS Clamping 설정**, **Half-Open 세션 누적을 제어하는 SYN-ACK 재시도 튜닝**을 결합하여 고가용성 네트워크 세션을 완성.
+<details><summary>용어 설명</summary>
+
+- **QUIC (Quick UDP Internet Connections)**: TCP의 3-Way Handshake 및 TLS 협상 지연을 단축하기 위해 UDP 기반으로 설계된 0-RTT/1-RTT 연결 수립 전송 프로토콜.
+
+</details>
+
+- 인터넷과 엔터프라이즈 환경에서 웹, 데이터베이스, API 통신을 지탱하는 전송 계층 연결 수립 표준 프로토콜로 확립.
+- 최근 1-RTT 지연을 줄이기 위해 TLS 1.3 0-RTT 및 UDP 기반 QUIC(HTTP/3)으로의 진화가 가속화되고 있는 한편, 전통적인 TCP 운영 시에는 대규모 SYN Flood DoS 공격을 방어하는 Linux 커널 SYN Cookie(tcp_syncookies=1) 활성화, 패킷 단편화를 방지하는 MSS Clamping 설정, Half-Open 세션 누적을 제어하는 SYN-ACK 재시도 튜닝을 결합하여 고가용성 네트워크 세션을 구축.
 
 #### 한줄 요약
-- TCP 3-Way Handshake는 SYN-ACK 3단계를 통해 양방향 도달성과 전송 옵션을 동기화하는 핵심 연결 수립 기술이다.
+- TCP 3-Way Handshake는 SYN-ACK 3단계를 통해 양방향 도달성과 전송 옵션을 동기화하는 핵심 연결 수립 기술로 운용해야 한다.

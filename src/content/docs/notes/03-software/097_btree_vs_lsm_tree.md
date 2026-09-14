@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "B-Tree vs LSM-Tree 비교 (B-Tree vs LSM-Tree)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T16:54:00+09:00"
 tags:
   - "notes-software"
 weight: 97
@@ -43,11 +43,11 @@ extra:
 </details>
 
 - 제자리 수정(In-Place) 기반으로 결정론적 읽기 지연(Read Latency)이 짧은 **B-Tree**
-- 순차 추가(Append-Only) 기반으로 초고속 쓰기 처리량(Write Throughput)을 보장하는 **LSM-Tree**
+- 순차 추가(Append-Only) 기반으로 고속 쓰기 처리량(Write Throughput)을 보장하는 **LSM-Tree**
 - 쓰기 증폭(Write Amplification)과 읽기 증폭(Read Amplification) 간의 명확한 트레이드오프
 
 #### 한줄 요약
-- B-Tree는 읽기 경로가 짧고 예측 가능하며, LSM-Tree는 순차 I/O로 쓰기 처리량을 극대화한다.
+- B-Tree는 읽기 경로가 짧고 예측 가능하며, LSM-Tree는 순차 I/O로 쓰기 처리량을 향상시킨다.
 
 ## Ⅲ. 구조 및 구성요소
 
@@ -161,7 +161,7 @@ extra:
 </details>
 
 - **뉴SQL 분산 스토리지 및 하이브리드 엔진 결합 진화**: 전통적 In-Place 업데이트 기반 B-Tree와 추가 전용(Append-Only) 기반 **로그 구조화 병합 트리**(LSM-Tree)는 TiKV, CockroachDB 등 뉴SQL 분산 엔진의 기본 하부 스토리지(RocksDB, Pebble)로 융합되어, 고속 분산 복제와 대규모 쓰기 대역폭을 흡수하는 핵심 구조로 진화 추세
-- **쓰기 증폭과 컴팩션 스톨(Compaction Stall) 통제 결단**: 낮은 읽기 지연시간이 절대적인 금융 OLTP는 B-Tree를 채택하되, IoT 및 로그 수집 등 초고주기 쓰기 환경은 LSM-Tree를 선택하고 **블룸 필터**(Bloom Filter) 캐싱과 백그라운드 컴팩션 스레드 튜닝을 통해 쓰기 일시정지를 방지하는 공학적 워크로드 절충 기준 확립
+- **쓰기 증폭과 컴팩션 스톨(Compaction Stall) 통제 결단**: 낮은 읽기 지연시간이 요구되는 금융 OLTP는 B-Tree를 채택하되, IoT 및 로그 수집 등 고주기 대량 쓰기 환경은 LSM-Tree를 선택하고 **블룸 필터**(Bloom Filter) 캐싱과 백그라운드 컴팩션 스레드 튜닝을 통해 쓰기 일시정지를 방지하는 공학적 워크로드 절충 기준 확립
 
 #### 한줄 요약
-- 스토리지 엔진은 뉴SQL 분산 하부 계층으로 진화하고 있으며, OLTP 읽기용 B-Tree와 초고속 쓰기용 LSM-Tree의 컴팩션 통제 절충 기준 확립
+- 읽기와 쓰기 워크로드 특성을 바탕으로 B-Tree와 LSM-Tree를 선별 적용하고, 블룸 필터와 컴팩션 튜닝을 통해 I/O 증폭과 응답 지연을 균형 있게 최적화한다.

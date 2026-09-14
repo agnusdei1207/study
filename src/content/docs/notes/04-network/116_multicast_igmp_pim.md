@@ -28,7 +28,7 @@ extra:
 </details>
 
 - 정의/개념: **IGMP 가입·PIM 트리** 기반 1:N 전송 기술
-- 배경/필요성: 실시간 IPTV 방송, 금융 거래 시세(Tick Data) 피드 및 대규모 화상 세미나와 같이 동일한 고용량 미디어/데이터 스트림을 수만 명의 수신자에게 동시 전송할 때, 유니캐스트(1:1) 방식을 사용하면 수신자 수에 비례하여 송신 서버 대역폭과 백본 링크 트래픽이 선형 폭증(Network Congestion)하고, 브로드캐스트(1:All) 방식을 사용하면 네트워크 전체에 불필요한 패킷 범람(Flooding)을 초래함에 따라, 호스트-라우터 간 그룹 가입 관리(IGMPv1/v2/v3)와 라우터 간 분배 트리 구축(PIM-SM/SSM) 및 RPF(Reverse Path Forwarding) 루프 방지 기술을 결합한 IP 멀티캐스트(1:N) 아키텍처를 도입하여 **송신원 단일 패킷 송출 및 분기 라우터 선별 복제를 통한 네트워크 대역폭 극대화, 수신자 최단 경로 분배 트리 수립 및 L2 스위치 IGMP Snooping 기반 비가입 포트 플러딩 원천 차단**을 달성할 필요
+- 배경/필요성: 실시간 IPTV 방송, 금융 거래 시세(Tick Data) 피드 및 대규모 화상 세미나와 같이 동일한 고용량 미디어/데이터 스트림을 수만 명의 수신자에게 동시 전송할 때, 유니캐스트(1:1) 방식을 사용하면 수신자 수에 비례하여 송신 서버 대역폭과 백본 링크 트래픽이 선형 폭증(Network Congestion)하고, 브로드캐스트(1:All) 방식을 사용하면 네트워크 전체에 불필요한 패킷 범람(Flooding)을 초래함에 따라, 호스트-라우터 간 그룹 가입 관리(IGMPv1/v2/v3)와 라우터 간 분배 트리 구축(PIM-SM/SSM) 및 RPF(Reverse Path Forwarding) 루프 방지 기술을 결합한 IP 멀티캐스트(1:N) 아키텍처를 도입하여 **송신원 단일 패킷 송출 및 분기 라우터 선별 복제를 통한 네트워크 대역폭 효율 제고, 수신자 최단 경로 분배 트리 수립 및 L2 스위치 IGMP Snooping 기반 비가입 포트 플러딩 선제 차단**을 달성할 필요
 
 #### 한줄 요약
 - IGMP 그룹 관리와 PIM 분배 트리를 통해 가입자 분기점에서만 패킷을 복제 전송한다.
@@ -37,7 +37,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **RPF (Reverse Path Forwarding) Check**: 인입된 멀티캐스트 패킷의 송신지 IP에 대해 유니캐스트 최적 역방향 인터페이스와 일치하는지 검사하여 루프를 원천 방지하는 메커니즘.
+- **RPF (Reverse Path Forwarding) Check**: 인입된 멀티캐스트 패킷의 송신지 IP에 대해 유니캐스트 최적 역방향 인터페이스와 일치하는지 검사하여 루프를 선제적으로 방지하는 메커니즘.
 - **IGMP Snooping**: L2 스위치가 IGMP Join/Leave 패킷을 감청하여 멀티캐스트 트래픽을 실제 가입 포트로만 선별 전달하는 기술.
 
 </details>
@@ -148,8 +148,16 @@ extra:
 
 ## Ⅶ. 결론
 
+<details><summary>용어 설명</summary>
+
+- **VXLAN (Virtual Extensible LAN)**: L3 UDP 패킷(포트 4789) 내에 L2 이더넷 프레임을 캡슐화하여 최대 1,600만 개의 가상 네트워크 오버레이를 제공하는 표준 터널링 기술.
+- **EVPN (Ethernet VPN)**: MP-BGP 라우팅 프로토콜을 제어 평면으로 활용하여 데이터센터 오버레이(VXLAN 등)의 MAC/IP 주소 학습과 멀티캐스트 포워딩을 일원화하는 기술.
+- **BIER (Bit Indexed Explicit Replication, RFC 8279)**: 중간 라우터에 멀티캐스트 상태(State) 테이블을 생성하지 않고, 패킷 헤더의 비트스트링(Bitstring)에 목적지 집합을 인코딩하여 포워딩하는 차세대 무상태 멀티캐스트 아키텍처.
+
+</details>
+
 - 대규모 동시 다발적 실시간 스트리밍 및 초저지연 금융 시장 데이터 전송에서 네트워크 회선 비용을 획기적으로 절감하는 **전통적이면서도 가장 핵심적인 1:N 패킷 전송 및 라우팅 표준 기술(IETF RFC 3376 IGMPv3 및 RFC 7761 PIM)**로 확고히 정립.
-- 클라우드 오버레이(VXLAN/EVPN Multicast) 및 BIER(Bit Indexed Explicit Replication) 무상태 멀티캐스트로 진화하는 가운데, 실무 IP 멀티캐스트 망 구축 시에는 **RP 경유 오버헤드를 제거하고 보안과 성능을 극대화하는 PIM-SSM(Source-Specific Multicast) 우선 적용**, **L2 스위치 브로드캐스트 플러딩을 방지하는 IGMP Snooping 및 Querier 활성화**, **비대칭 라우팅 환경의 RPF(Reverse Path Forwarding) 실패를 방지하는 멀티캐스트 정적 경로(M-Route) 및 Anycast RP 이중화**를 결합하여 완벽한 실시간 멀티캐스트 전송 가용성을 완성.
+- 클라우드 오버레이(VXLAN/EVPN Multicast) 및 BIER(Bit Indexed Explicit Replication) 무상태 멀티캐스트로 진화하는 가운데, 실무 IP 멀티캐스트 망 구축 시에는 **RP 경유 오버헤드를 제거하고 보안과 성능을 향상시키는 PIM-SSM(Source-Specific Multicast) 우선 적용**, **L2 스위치 브로드캐스트 플러딩을 방지하는 IGMP Snooping 및 Querier 활성화**, **비대칭 라우팅 환경의 RPF(Reverse Path Forwarding) 실패를 방지하는 멀티캐스트 정적 경로(M-Route) 및 Anycast RP 이중화**를 결합하여 실시간 멀티캐스트 전송의 가용성과 신뢰성을 확보해야 한다.
 
 #### 한줄 요약
-- IP 멀티캐스트는 IGMPv3와 PIM-SSM/SM 및 Anycast RP 이중화를 결합하여 고효율 무중단 1:N 스트리밍을 실현하는 핵심 네트워크 기술이다.
+- IP 멀티캐스트는 IGMPv3와 PIM-SSM/SM 및 Anycast RP 이중화를 결합하여 고효율 무중단 1:N 스트리밍을 실현하는 핵심 네트워크 아키텍처로 구축해야 한다.

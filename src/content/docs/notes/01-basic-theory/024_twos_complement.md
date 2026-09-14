@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 15%"
     variant: note
 title: "2의 보수•부호 표현 (Two's Complement)"
-date: "2026-09-14T09:07:00+09:00"
+date: "2026-09-14T14:34:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 24
@@ -177,4 +177,4 @@ extra:
 
 #### 한줄 요약
 
-- 2의 보수는 벡터 SIMD 및 AI 정수 양자화 가속으로 확장되고 있으며 실무에서는 INT_MIN 비대칭 예외 방어와 UBSan 기반 오버플로 통제 체계 정립
+- 2의 보수는 벡터 SIMD 및 AI 정수 양자화 가속으로 확장되고 있으며 실무에서는 INT_MIN 비대칭 예외를 방어하고 UBSan으로 오버플로를 통제한다.

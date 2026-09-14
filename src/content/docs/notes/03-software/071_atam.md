@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "ATAM 아키텍처 트레이드오프 분석 방법 (Architecture Tradeoff Analysis Method)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T16:33:00+09:00"
 tags:
   - "notes-software"
 weight: 71
@@ -152,7 +152,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **아키텍처 트레이드오프 분석 방법(Architecture Tradeoff Analysis Method, ATAM)**: 유틸리티 트리를 통해 상충하는 품질 속성 시나리오를 구체화하고 민감점과 절충점을 식별하는 아키텍처 평가 방법론.
-- **비용 편익 분석 방법(Cost Benefit Analysis Method, CBAM)**: ATAM의 후속 단계로 아키텍처 전략별 구현 비용과 효용을 정량화하여 투자 대비 수익을 극대화하는 의사결정 모델.
+- **비용 편익 분석 방법(Cost Benefit Analysis Method, CBAM)**: ATAM의 후속 단계로 아키텍처 전략별 구현 비용과 효용을 정량화하여 투자 대비 수익을 높이는 의사결정 모델.
 - **아키텍처 의사결정 기록(Architecture Decision Record, ADR)**: 아키텍처 설계 과정에서 합의된 기술적 절충점과 결정 배경을 코드 저장소에 영구 기록하는 문서 체계.
 
 </details>
@@ -161,4 +161,4 @@ extra:
 - **유틸리티 트리 기반 정량화와 ADR 자산화 결단**: 품질 속성 6요소(자극원·자극·환경·대상·응답·응답측정치)로 주관성을 배제하고, 평가를 통해 발굴된 민감점과 절충점을 **아키텍처 의사결정 기록**(ADR) 및 기술 부채 백로그에 명문화하여 설계 왜곡을 방지하는 아키텍처 거버넌스 확보
 
 #### 한줄 요약
-- ATAM은 Mini-ATAM과 CBAM 연계를 통해 경제성과 신속성을 겸비한 평가로 진화하고 있으며, 6요소 시나리오 정량화와 ADR 자산화 체계 구축
+- 유틸리티 트리 기반 품질 시나리오를 정량화하고 도출된 절충점을 ADR로 자산화하여, 아키텍처 위험을 조기에 완화하는 거버넌스 체계를 구축한다.

@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "XGBoost·LightGBM (XGBoost and LightGBM)"
-date: "2026-09-14T09:14:00+09:00"
+date: "2026-09-14T14:45:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 53
@@ -23,7 +23,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **XGBoost(Extreme Gradient Boosting)**: 2차 테일러 전개와 정규화 항을 목적 함수에 도입하여 과적합을 방지하고 병렬 처리를 지원하는 고성능 GBM 프레임워크.
-- **LightGBM**: 히스토그램 기반 분할, GOSS, EFB 기법을 통해 대규모 데이터의 학습 속도와 메모리 효율을 극대화한 GBM 프레임워크.
+- **LightGBM**: 히스토그램 기반 분할, GOSS, EFB 기법을 통해 대규모 데이터의 학습 속도와 메모리 효율을 높인 GBM 프레임워크.
 - **테일러 2차 전개(Second-order Taylor Expansion)**: 손실 함수를 1차 도함수(기울기)와 2차 도함수(헤시안)로 근사하여 최적 분기 이득을 계산하는 수학적 기법.
 
 </details>
@@ -46,7 +46,7 @@ extra:
 </details>
 
 - XGBoost: **2차 미분(Hessian) 손실 근사** 및 트리 구조 복잡도 정규화($\gamma, \lambda$) 기반 과적합 방지
-- LightGBM: **GOSS·EFB 알고리즘** 기반 대용량 데이터 초고속 학습 및 메모리 사용량 절감
+- LightGBM: **GOSS·EFB 알고리즘** 기반 대용량 데이터 고속 학습 및 메모리 사용량 절감
 - 분할 전략: XGBoost의 균형 잡힌 **Level-wise(수평)** 분할과 LightGBM의 최대 손실 감소 **Leaf-wise(수직)** 분할
 
 #### 한줄 요약
@@ -169,4 +169,4 @@ extra:
 
 #### 한줄 요약
 
-- GBDT 생태계는 정형 데이터의 핵심 엔진이며, 데이터 규모와 추론 제약에 따라 XGBoost의 엄밀성과 LightGBM의 고속 연산 특성을 전략적으로 선택하는 기준 정립
+- 2차 손실 근사와 히스토그램 분할 원리를 바탕으로, 데이터 규모에 따라 XGBoost의 정밀 정규화와 LightGBM의 고속 분할을 선별 적용하도록 설계한다.

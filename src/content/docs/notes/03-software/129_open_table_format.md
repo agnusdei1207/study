@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "오픈 테이블 포맷 비교 (Open Table Format)"
-date: "2026-09-07T10:05:00+09:00"
+date: "2026-09-14T17:15:00+09:00"
 tags:
   - "notes-software"
 weight: 129
@@ -42,7 +42,7 @@ extra:
 
 </details>
 
-- 객체 스토리지 기반의 100% ACID 트랜잭션 및 스냅샷 격리 보장
+- 객체 스토리지 기반의 ACID 트랜잭션 및 스냅샷 격리 보장
 - 과거 특정 시점의 데이터 상태를 쿼리하고 원복하는 타임 트래블(Time Travel) 지원
 - Spark, Trino, Presto, Flink 등 다양한 연산 엔진이 단일 테이블을 직접 공유(Engine-Agnostic)
 
@@ -118,7 +118,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **Delta vs Iceberg vs Hudi**: Spark 최적화(Delta), 다중 엔진 중립 표준(Iceberg), 초저지연 스트리밍 CDC(Hudi).
+- **Delta vs Iceberg vs Hudi**: Spark 최적화(Delta), 다중 엔진 중립 표준(Iceberg), 저지연 스트리밍 CDC(Hudi).
 
 </details>
 
@@ -127,7 +127,7 @@ extra:
 | 핵심 메타데이터 | JSON Log + Checkpoint Parquet | 3계층 AVRO Manifest 트리 | Timeline Commit Log (AVRO) |
 | 파티셔닝 유연성 | 물리 디렉터리 경로 매핑 의존 | Hidden Partitioning (완전 가상화) | 디렉터리 경로 매핑 의존 |
 | 최적 연동 생태계 | Apache Spark 및 Databricks 플랫폼| Trino, Snowflake, Flink, Spark 등 | Apache Flink / Spark CDC 스트리밍|
-| 갱신 처리 모델 | Copy-on-Write (CoW) 중심 | CoW / Merge-on-Read (MoR) 지원 | **Merge-on-Read** (MoR) 초고속 쓰기 |
+| 갱신 처리 모델 | Copy-on-Write (CoW) 중심 | CoW / Merge-on-Read (MoR) 지원 | **Merge-on-Read** (MoR) 쓰기 최적화 |
 
 #### 한줄 요약
 - Spark 중심은 Delta Lake, 다중 엔진 중립성은 Iceberg, 실시간 CDC 스트리밍은 Hudi를 선택한다.
@@ -142,18 +142,18 @@ extra:
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
-| 스트리밍 인서트로 인한 Small Files 누적으로 쿼리 지연 | 정기적인 백그라운드 `Compaction` (Bin-packing) 배치 실행 | 파일 크기 512MB 표준화 및 스캔 속도 5배 향상 |
+| 스트리밍 인서트로 인한 Small Files 누적으로 쿼리 지연 | 정기적인 백그라운드 `Compaction` (Bin-packing) 배치 실행 | 파일 크기 512MB 표준화 및 스캔 속도 향상 |
 | 타임 트래블 구버전 파일 누적으로 인한 S3 비용 폭증 | 보존 기간(7일) 기준 `VACUUM` / `Expire Snapshots` 자동화 | 미사용 불변 파일 삭제 및 스토리지 비용 절감 |
 | MoR 삭제 파일 누적으로 읽기 시점 조인 오버헤드 증가 | 주기적인 CoW 변환 및 데이터 파일 Rewrite 작업 수행 | 읽기 성능 저하 해소 |
-| 이종 엔진 간 메타데이터 동기화 불일치 | REST Catalog 표준 채택 및 UniForm 메타데이터 자동 변환 | 멀티 엔진 간 무결점 상호 운용성 확보 |
+| 이종 엔진 간 메타데이터 동기화 불일치 | REST Catalog 표준 채택 및 UniForm 메타데이터 자동 변환 | 멀티 엔진 간 상호 운용성 확보 |
 
 #### 한줄 요약
 - 정기 컴팩션, 스냅샷 만료 자동화, 파일 재작성, REST Catalog로 오픈 테이블 포맷을 최적화한다.
 
 ## Ⅶ. 결론
 
-- 모던 데이터 스택 및 클라우드 레이크하우스 아키텍처의 **가장 핵심적인 기반 영속성 표준 계층**으로 확립.
-- 실무 도입 시에는 **완전한 다중 엔진 중립성과 가상 파티셔닝이 필요한 엔터프라이즈 DW 환경에는 Apache Iceberg**, **Databricks/Spark 중심 배치 환경에는 Delta Lake(UniForm 연계)**, **초저지연 스트리밍 CDC/UPSERT 환경에는 Apache Hudi(MoR)를 선정하고**, **정기 파일 컴팩션 및 REST Catalog 표준화**를 결합하여 데이터 아키텍처의 유연성과 처리 성능을 동시 보증.
+- 모던 데이터 스택 및 클라우드 레이크하우스 아키텍처의 **핵심 기반 영속성 표준 계층**으로 자리 잡았다.
+- 실무 도입 시에는 **다중 엔진 중립성과 가상 파티셔닝이 필요한 엔터프라이즈 DW 환경의** Apache Iceberg, **Databricks/Spark 중심 배치 환경의** Delta Lake(UniForm 연계), **저지연 스트리밍 CDC/UPSERT 환경의** Apache Hudi(MoR) 선정 및 **정기 파일 컴팩션과 REST Catalog 표준화** 결합을 통해 데이터 아키텍처 유연성과 처리 성능을 동시에 확보해야 한다.
 
 #### 한줄 요약
-- 오픈 테이블 포맷은 객체 스토리지 상에서 ACID 트랜잭션과 엔진 독립성을 보장하여 데이터 레이크하우스의 성공을 견인하는 핵심 메타데이터 기술이다.
+- 객체 스토리지 불변 파일 위에 메타데이터 계층을 두어 ACID 트랜잭션과 타임 트래블을 구현하고, 워크로드에 맞춰 Iceberg·Delta·Hudi를 선별하여 엔진 독립성과 처리 성능을 확보한다.

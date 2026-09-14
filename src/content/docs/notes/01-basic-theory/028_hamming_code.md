@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "해밍 코드•오류 검출•정정 (Hamming Code Error Detection and Correction)"
-date: "2026-09-14T09:07:00+09:00"
+date: "2026-09-14T14:34:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 28
@@ -160,8 +160,8 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **오류 정정 부호(Error-Correcting Code, ECC)**: 데이터 저장이나 통신 과정에서 발생한 비트 왜곡 오류를 수신단에서 자율 검출 및 복구하는 부호화 기술.
-- **고대역폭 메모리(High Bandwidth Memory, HBM)**: 다수의 DRAM 실리콘 다이를 수직 적층하여 데이터 처리 대역폭을 획기적으로 확장한 초고속 메모리.
-- **컴퓨트 익스프레스 링크(Compute Express Link, CXL)**: 호스트 프로세서와 가속기 및 메모리 풀 간의 캐시 일관성과 초저지연 연결을 지원하는 차세대 표준 인터커넥트.
+- **고대역폭 메모리(High Bandwidth Memory, HBM)**: 다수의 DRAM 실리콘 다이를 수직 적층하여 데이터 처리 대역폭을 대폭 확장한 고속 메모리.
+- **컴퓨트 익스프레스 링크(Compute Express Link, CXL)**: 호스트 프로세서와 가속기 및 메모리 풀 간의 캐시 일관성과 저지연 연결을 지원하는 차세대 표준 인터커넥트.
 - **신뢰성·가용성·정비성(Reliability, Availability, and Serviceability, RAS)**: 엔터프라이즈 서버 아키텍처에서 하드웨어 오류 내성을 확보하고 무중단 운영을 보장하는 핵심 공학 지표.
 
 </details>
@@ -171,4 +171,4 @@ extra:
 
 #### 한줄 요약
 
-- 해밍 코드는 HBM4 및 CXL 2계층 ECC 구조로 확장되고 있으며 실무에서는 SECDED 채택과 메모리 스크러빙을 통한 다중 오류 예방 체계 정립
+- 해밍 코드는 HBM4 및 CXL 2계층 ECC 구조로 확장되고 있으며 실무에서는 SECDED를 채택하고 메모리 스크러빙으로 다중 오류를 예방한다.

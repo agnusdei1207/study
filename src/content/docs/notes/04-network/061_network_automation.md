@@ -28,10 +28,10 @@ extra:
 </details>
 
 - 정의/개념: YANG·NETCONF·RESTCONF·Ansible로 장비 설정을 코드화한 NetDevOps
-- 배경/필요성: 수천 대의 이종 네트워크 스위치와 라우터를 운영자가 장비별 CLI(Telnet/SSH)로 수동 입력하고 텍스트 스크랩(Screen Scraping) 방식으로 관리하는 전통적 방식은 잦은 휴먼 에러로 인한 대형 방송사고 유발, 펌웨어 버전에 따른 명령어 구문 불일치, 설정 이력 관리의 부재 및 잘못된 설정 배포 시 신속한 원복(Rollback)이 불가능한 한계를 노출함에 따라, Git/NetBox를 단일 진실의 원천(SoT: **Source of Truth**)으로 삼고 IETF 표준 모델링 언어(YANG)와 프로그래머블 인터페이스(NETCONF/RESTCONF/gNMI) 및 CI/CD 파이프라인(Ansible/Terraform)을 결합한 NetDevOps 자동화 아키텍처를 도입하여 선언적 멱등성(Idempotency) 보장, 트랜잭션 기반 자동 롤백(Confirmed Commit) 및 구성 드리프트(Configuration Drift) 제로화를 달성할 필요
+- 배경/필요성: 수천 대의 이종 네트워크 스위치와 라우터를 운영자가 장비별 CLI(Telnet/SSH)로 수동 입력하고 텍스트 스크랩(Screen Scraping) 방식으로 관리하는 전통적 방식은 잦은 휴먼 에러로 인한 대형 방송사고 유발, 펌웨어 버전에 따른 명령어 구문 불일치, 설정 이력 관리의 부재 및 잘못된 설정 배포 시 신속한 원복(Rollback)이 불가능한 한계를 노출함에 따라, Git/NetBox를 단일 진실의 원천(SoT: **Source of Truth**)으로 삼고 IETF 표준 모델링 언어(YANG)와 프로그래머블 인터페이스(NETCONF/RESTCONF/gNMI) 및 CI/CD 파이프라인(Ansible/Terraform)을 결합한 NetDevOps 자동화 아키텍처를 도입하여 선언적 멱등성(Idempotency) 보장, 트랜잭션 기반 자동 롤백(Confirmed Commit) 및 구성 드리프트(Configuration Drift) 최소화를 달성할 필요
 
 #### 한줄 요약
-- Git 기반 SoT와 NETCONF/YANG 트랜잭션을 통해 무중단 자동 프로비저닝 및 자동 롤백을 실현한다.
+- Git 기반 SoT와 NETCONF/YANG 트랜잭션을 통해 무중단 자동 프로비저닝 및 자동 롤백을 실현해야 한다.
 
 ## Ⅱ. 특징
 
@@ -42,12 +42,12 @@ extra:
 
 </details>
 
-- 진실의 원천(SoT) 기반 선언적 관리: Git 저장소의 코드를 단일 기준값으로 삼아 인프라 드리프트(Drift) 원천 차단
+- 진실의 원천(SoT) 기반 선언적 관리: Git 저장소의 코드를 단일 기준값으로 삼아 인프라 드리프트(Drift) 방지
 - 트랜잭션 ACID 및 자동 롤백: 설정 오류 또는 통신 단절 시 Confirmed Commit 기능을 통한 자동 롤백(Rollback)
 - 구조화된 표준 데이터 모델(YANG): 벤더별 상이한 CLI 텍스트 파싱을 탈피하여 NETCONF/RESTCONF 표준 API로 통합 제어
 
 #### 한줄 요약
-- SoT 선언적 관리, YANG 표준 데이터 모델링, Confirmed Commit 기반 트랜잭션 및 자동 롤백을 제공한다.
+- SoT 선언적 관리, YANG 표준 데이터 모델링, Confirmed Commit 기반 트랜잭션 및 자동 롤백을 제공해야 한다.
 
 ## Ⅲ. 구조 및 구성요소
 
@@ -128,7 +128,7 @@ extra:
 | 주요 적용 영역 | **코어 백본, 미션 크리티컬 망** | 웹 대시보드 연동, 클라우드 연동 | API 미지원 레거시 장비 수동 제어 |
 
 #### 한줄 요약
-- NETCONF는 고신뢰 트랜잭션 백본 제어용, RESTCONF는 경량 웹 API 연동용, **CLI 파싱**은 레거시용이다.
+- NETCONF는 고신뢰 트랜잭션 백본 제어용, RESTCONF는 경량 웹 API 연동용, CLI 파싱은 레거시용으로 구분하여 적용해야 한다.
 
 ## Ⅵ. 실무 고려사항 및 대책
 
@@ -144,15 +144,22 @@ extra:
 | 자동화 스크립트 오작동으로 인한 대규모 장비 동시 셧다운 | 카나리(Canary) 단계별 배포 및 배치 단위 순차 롤아웃 | 오류 시 영향 범위 국소화 및 전면 장애 방지 |
 | 장비 펌웨어 업그레이드 시 CLI 구문 변경으로 스크립트 전면 실패 | 비구조적 CLI 파싱을 배제하고 표준 YANG/NETCONF로 전환 | 장비 OS 변경에 무관한 데이터 모델 정합성 확보 |
 | 설정 적용 후 라우팅 고립으로 인한 원격 접속 단절 및 장애 방치 | Confirmed Commit (자동 타임아웃 롤백) 기능 의무화 | 통신 단절 시 자동 이전 설정 복구 및 원격 관리 유지 |
-| Git 저장소와 실제 장비 설정 간의 불일치(Configuration Drift) | 주기적 Drift Detection 배치 잡 및 자동 동기화 트리거 | SoT와 실제 인프라 간의 100% 정합성 유지 |
+| Git 저장소와 실제 장비 설정 간의 불일치(Configuration Drift) | 주기적 Drift Detection 배치 잡 및 자동 동기화 트리거 | SoT와 실제 인프라 간의 정합성 유지 |
 
 #### 한줄 요약
-- **카나리 배포**, YANG/NETCONF 표준화, Confirmed Commit, Drift 감지 배치로 운영한다.
+- 카나리 배포, YANG/NETCONF 표준화, Confirmed Commit, Drift 감지 배치를 적용하여 운영 안정성을 확보해야 한다.
 
 ## Ⅶ. 결론
 
-- 수작업 CLI 중심의 장인적 운영에서 소프트웨어 엔지니어링 기반의 IaC(Infrastructure as Code)로 데이터센터 및 통신 인프라 엔지니어링의 표준 운영 패러다임(NetDevOps)으로 완전히 진화.
-- 향후 LLM 기반 AI Agent 및 생성형 IBN(Intent-Based Networking)과 융합하는 가운데, 실무 엔터프라이즈 환경 구축 시에는 **네트워크 단선 시 자동 원복을 보장하는 Confirmed Commit 타임아웃 필수 적용**, **대규모 셧다운을 방지하는 카나리(Canary) 점진적 배포**, **비인가 수동 변경을 실시간 감지하여 원복하는 Drift Detection 데몬 가동**, **사전 모의 검증을 위한 가상 테스트베드(Containerlab/Batfish) CI 연계**를 결합하여 완벽한 무중단 네트워크 신뢰성을 완성.
+<details><summary>용어 설명</summary>
+
+- **IaC (Infrastructure as Code)**: 수동 프로세스 대신 코드를 통해 인프라를 정의하고 프로비저닝 및 관리하는 엔지니어링 패러다임.
+- **Batfish**: 네트워크 설정 파일을 분석하여 배포 전 데이터 플레인 포워딩 동작과 보안 ACL 정책을 사전 시뮬레이션 검증하는 정적 분석 도구.
+
+</details>
+
+- 수작업 CLI 중심의 장인적 운영에서 소프트웨어 엔지니어링 기반의 IaC(Infrastructure as Code)로 데이터센터 및 통신 인프라 엔지니어링의 표준 운영 패러다임(NetDevOps)으로 진화.
+- 향후 LLM 기반 AI Agent 및 생성형 IBN(Intent-Based Networking)과 융합하는 가운데, 실무 엔터프라이즈 환경 구축 시에는 **네트워크 단선 시 자동 원복을 보장하는 Confirmed Commit 타임아웃 필수 적용**, **대규모 셧다운을 방지하는 카나리(Canary) 점진적 배포**, **비인가 수동 변경을 실시간 감지하여 원복하는 Drift Detection 데몬 가동**, **사전 모의 검증을 위한 가상 테스트베드(Containerlab/Batfish) CI 연계**를 결합하여 무중단 네트워크 신뢰성을 확보해야 한다.
 
 #### 한줄 요약
-- SoT와 NETCONF/YANG 및 Confirmed Commit을 결합하여 고신뢰 네트워크 운영 자동화를 실현한다.
+- SoT와 NETCONF/YANG 및 Confirmed Commit을 결합하여 고신뢰 네트워크 운영 자동화를 실현해야 한다.

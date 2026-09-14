@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "실행 계획•쿼리 최적화 (Query Execution Plan Optimization)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T16:52:00+09:00"
 tags:
   - "notes-software"
 weight: 95
@@ -141,10 +141,10 @@ extra:
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
-| 통계 정보 노후화로 인한 비효율 Full Table Scan(`type: ALL`) | 정기적인 `ANALYZE TABLE` 실행 및 자동 통계 수집 스케줄링 | CBO 카디널리티 산출 정확도 100% 유지 |
+| 통계 정보 노후화로 인한 비효율 Full Table Scan(`type: ALL`) | 정기적인 `ANALYZE TABLE` 실행 및 자동 통계 수집 스케줄링 | CBO 카디널리티 산출 정확도 유지 |
 | `Using filesort`, `Using temporary` 발생으로 CPU/메모리 폭증 | `ORDER BY / GROUP BY` 순서에 일치하는 복합 인덱스 생성 | 별도 정렬/임시테이블 소멸 및 쿼리 속도 10배 개선 |
 | CBO가 통계 오류로 잘못된 인덱스를 선택하여 지연 | `USE INDEX` 또는 Optimizer Hint(`/*+ INDEX(t idx) */`) 제한적 명시| 실행 계획 강제 고정 및 안정화 |
-| 예측 행 수와 실제 처리 행 수가 극단적으로 다름 | `EXPLAIN ANALYZE`로 실제 실행 시간(Actual Time) 대조 튜닝 | 숨겨진 데이터 스큐(Skew) 병목 조기 식별 |
+| 예측 행 수와 실제 처리 행 수가 현저히 다름 | `EXPLAIN ANALYZE`로 실제 실행 시간(Actual Time) 대조 튜닝 | 숨겨진 데이터 스큐(Skew) 병목 조기 식별 |
 
 #### 한줄 요약
 - 통계 최신화, 정렬 복합 인덱스 설계, 옵티마이저 힌트 활용, `EXPLAIN ANALYZE` 진단으로 튜닝한다.
@@ -162,4 +162,4 @@ extra:
 - **통계 정확도 확보와 런타임 프로파일링 거버넌스 결단**: 옵티마이저 오판으로 인한 풀 테이블 스캔을 방지하기 위해 정기 통계 수집(`ANALYZE TABLE`)을 제도화하고, 정렬·집계 인덱스를 선별 구축하여 디스크 임시테이블 생성을 차단하되 `EXPLAIN ANALYZE` 실측 프로파일링으로 오차를 상시 모니터링하는 공학적 운영 거버넌스 확보
 
 #### 한줄 요약
-- 쿼리 최적화는 AQE 및 AI 자율 튜닝 체계로 진화하고 있으며, CBO 통계 최신화와 `EXPLAIN ANALYZE` 기반의 실측 검증 거버넌스 체계 구축
+- CBO 비용 산출 원리와 EXPLAIN 실행 계획을 바탕으로 접근 유형과 조인 순서를 최적화하고, 주기적인 통계 갱신과 실측 프로파일링을 통해 쿼리 처리 성능을 체계적으로 확보한다.

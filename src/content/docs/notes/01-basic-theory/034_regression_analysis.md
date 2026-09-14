@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 30%"
     variant: note
 title: "회귀 분석 (Regression Analysis)"
-date: "2026-09-14T09:07:00+09:00"
+date: "2026-09-14T14:35:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 34
@@ -160,7 +160,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **기울기 부스팅 결정 트리(Gradient Boosted Decision Tree, GBDT)**: 이전 트리의 예측 잔차를 순차적으로 보정하는 다수의 약한 결정 트리를 결합하여 비선형 회귀 성능을 극대화하는 앙상블 알고리즘.
+- **기울기 부스팅 결정 트리(Gradient Boosted Decision Tree, GBDT)**: 이전 트리의 예측 잔차를 순차적으로 보정하는 다수의 약한 결정 트리를 결합하여 비선형 회귀 성능을 높이는 앙상블 알고리즘.
 - **설명 가능한 인공지능(Explainable Artificial Intelligence, XAI)**: 머신러닝 모델의 복잡한 예측 과정과 피처별 영향력을 엔지니어 및 비즈니스 의사결정자가 이해할 수 있도록 해석성을 제공하는 기술 체계.
 - **샤플리 가산 설명(SHapley Additive exPlanations, SHAP)**: 협동 게임 이론의 샤플리 값을 기반으로 모델의 개별 예측치에 대한 각 독립 변수의 한계 기여도를 공정하게 산출하는 사후 해석 기법.
 
@@ -171,4 +171,4 @@ extra:
 
 #### 한줄 요약
 
-- GBDT 및 SHAP 기반 XAI로 확장되는 회귀 분석 원리를 바탕으로 잔차 가정을 엄격히 진단하고 외삽 예측을 거부하는 리스크 통제 체계 정립
+- GBDT 및 SHAP 기반 XAI로 확장되는 회귀 분석 원리를 바탕으로, 잔차 가정을 엄격히 진단하고 외삽 예측을 제어한다.

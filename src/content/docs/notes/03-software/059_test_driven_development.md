@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "테스트 주도 개발 (Test-Driven Development)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T16:21:00+09:00"
 tags:
   - "notes-software"
 weight: 59
@@ -23,7 +23,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **TDD(Test-Driven Development)**: 켄트 벡(Kent Beck)이 정립한 기법으로, 실제 코드를 작성하기 전에 실패하는 단위 테스트를 먼저 작성하는 개발 방법론.
-- **Red-Green-Refactor**: 실패 테스트 작성(Red) $\to$ 최소한의 통과 코드 작성(Green) $\to$ 중복 제거 및 구조 개선(Refactor)의 초단기 순환 주기.
+- **Red-Green-Refactor**: 실패 테스트 작성(Red) $\to$ 최소한의 통과 코드 작성(Green) $\to$ 중복 제거 및 구조 개선(Refactor)의 단기 순환 주기.
 
 </details>
 
@@ -42,7 +42,7 @@ extra:
 
 </details>
 
-- **Red $\to$ Green $\to$ Refactor** 초단기(수 분 단위) 마이크로 사이클 기반 개발
+- **Red $\to$ Green $\to$ Refactor** 단기(수 분 단위) 마이크로 사이클 기반 개발
 - 테스트 가능한 설계를 강제하는 **Test-First Development** 및 자연스러운 결합도 완화
 - 개발과 동시에 구축되는 **자동화된 회귀 방탄조끼(Regression Safety Net)** 확보
 
@@ -138,7 +138,7 @@ extra:
 |:---|:---|:---|
 | TDD 초기 도입 시 개발 리드타임 20~30% 증가 저항 | **복잡한 핵심 도메인 로직에 우선 선별 적용** | 핵심 비즈니스 결함 조기 차단 및 성공 체험 |
 | 구현 세부사항에 과도하게 결합된 취약한 테스트 | **상태(State)와 행위의 결과(Outcome) 중심 검증** | 내부 리팩토링 시 테스트 깨짐 방지 |
-| Green 단계에서 완벽한 설계를 하려다 리듬 상실 | **Baby Steps 준수 (일단 통과시키고 Refactor에서 개선)** | TDD 고유의 개발 리듬 및 집중력 유지 |
+| Green 단계에서 지나치게 정교한 설계를 하려다 리듬 상실 | **Baby Steps 준수 (일단 통과시키고 Refactor에서 개선)** | TDD 고유의 개발 리듬 및 집중력 유지 |
 | DB 및 외부 API 연계 시 단위 테스트 불가 | **Repository 인터페이스 분리 및 Mockito/Test Double 주입** | 외부 네트워크 의존 없는 1초 미만 고속 검증 |
 
 #### 한줄 요약
@@ -158,4 +158,4 @@ extra:
 - **실무 공학적 통찰**: 모든 코드에 TDD를 강박적으로 강제하는 교조주의적 안티패턴을 경계하고, 복잡한 비즈니스 규칙이 집중된 핵심 영역을 선별하여 내부 구현이 아닌 행위 중심의 **리팩토링 내성**(Refactoring Resistance)을 확보하는 공학적 절충 방안 마련
 
 #### 한줄 요약
-- TDD는 AI 어시스턴트 및 속성 기반 테스팅과 결합하여 설계 속도를 극대화하되, 핵심 도메인 선별 적용과 리팩토링 내성을 갖춘 행위 중심 테스트 체계 구축
+- 핵심 도메인 로직에 TDD를 선별 적용하고 행위 중심으로 리팩토링 내성을 확보하여, 코드 품질 향상과 안정적인 유지보수 체계를 구축한다.

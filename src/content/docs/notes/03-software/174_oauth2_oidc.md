@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "OAuth 2.0•OIDC (OAuth 2.0 OIDC)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T17:45:00+09:00"
 tags:
   - "notes-software"
 weight: 174
@@ -44,7 +44,7 @@ extra:
 
 - 사용자 비밀번호를 클라이언트에 제공하지 않는 안전한 권한 위임(Delegated Authorization)
 - 표준 JWT 클레임(iss, sub, aud, exp)을 포함하는 사용자 신원 확인(ID Token / SSO)
-- 모바일/SPA 등 공개 클라이언트(Public Client)의 코드 탈취를 차단하는 **PKCE 보안 확장**
+- 모바일/SPA 등 공개 클라이언트(Public Client)의 코드 탈취 위험을 완화하는 **PKCE 보안 확장**
 
 #### 한줄 요약
 - Access Token과 ID Token의 분리 및 PKCE 챌린지를 통해 웹/모바일 환경의 인증·인가를 통제한다.
@@ -149,8 +149,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 웹, 모바일, SaaS 및 마이크로서비스 생태계에서 **가장 기본적이고 필수적인 글로벌 표준 인증·인가**(AuthN/AuthZ) **인프라 프레임워크**로 확립
-- 실무 구축 시에는 **공개 클라이언트**(SPA/Mobile)의 **코드 탈취를 방어하는 PKCE**(S256) **강제**, **CSRF 및 재생 공격을 차단하는 `state`/`nonce` 검증**, **신원 확인용 ID Token과 API 인가용 Access Token의 엄격한 역할 분리**, **Access Token의 초단기 수명**(15분) 및 **Refresh Token Rotation**(RTR)을 결합하여 무결점 제로 트러스트 API 보안 완성
+- 현대 웹, 모바일, SaaS 및 마이크로서비스 생태계에서 대표적인 글로벌 표준 인증·인가(AuthN/AuthZ) 인프라 프레임워크로 자리 잡았다.
+- 실무 구축 시에는 공개 클라이언트(SPA/Mobile)의 코드 탈취를 방어하는 PKCE(S256) 적용, CSRF 및 재생 공격을 방어하는 `state`/`nonce` 검증, 신원 확인용 ID Token과 API 인가용 Access Token의 명확한 역할 분리, Access Token의 단기 수명(15분) 및 Refresh Token Rotation(RTR)을 결합하여 제로 트러스트 API 보안 체계를 확립해야 한다.
 
 #### 한줄 요약
-- 클라이언트의 ID Token 신원 증명 및 자원 서버의 Access Token 인가 검증 분리 체계 확립
+- 클라이언트의 ID Token 신원 증명과 자원 서버의 Access Token 인가 검증 역할을 분리하여 안전한 인증·인가 체계를 확립한다.

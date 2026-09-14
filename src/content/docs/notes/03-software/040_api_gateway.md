@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "API 게이트웨이 (API Gateway)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T15:50:00+09:00"
 tags:
   - "notes-software"
 weight: 40
@@ -111,16 +111,16 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **Spring Cloud Gateway vs Kong vs AWS API Gateway**: Spring 생태계 전용 Netty 게이트웨이, C/Lua 기반 초고성능 Kong, 완전 관리형 클라우드 서비스 AWS API Gateway.
+- **Spring Cloud Gateway vs Kong vs AWS API Gateway**: Spring 생태계 전용 Netty 게이트웨이, C/Lua 기반 고성능 Kong, 완전 관리형 클라우드 서비스 AWS API Gateway.
 
 </details>
 
 | 구현 솔루션 | 기반 기술 스택 | 핵심 특징 | 주 적용 환경 |
 |:---|:---|:---|:---|
-| Spring Cloud Gateway | Java / Spring WebFlux (Netty) | Spring 생태계 완벽 통합, 비동기 논블로킹 | Java/Spring 백엔드 엔터프라이즈 |
-| Kong Gateway | Nginx / OpenResty / Lua | **초저지연, 수만 RPS 초고성능**, 풍부한 플러그인 | 폴리글랏 환경, 대규모 글로벌 트래픽 |
+| Spring Cloud Gateway | Java / Spring WebFlux (Netty) | Spring 생태계 원활한 통합, 비동기 논블로킹 | Java/Spring 백엔드 엔터프라이즈 |
+| Kong Gateway | Nginx / OpenResty / Lua | **저지연, 수만 RPS 고성능**, 풍부한 플러그인 | 폴리글랏 환경, 대규모 글로벌 트래픽 |
 | AWS API Gateway | AWS 완전 관리형 클라우드 | 서버리스 연동(Lambda), 인프라 관리 0화 | AWS 클라우드 네이티브 서버리스 |
-| Envoy Proxy | C++ | 초경량 고성능, Service Mesh 사이드카 표준 | Kubernetes 이스티오(Istio) 인프라 |
+| Envoy Proxy | C++ | 경량 고성능, Service Mesh 사이드카 표준 | Kubernetes 이스티오(Istio) 인프라 |
 
 #### 한줄 요약
 - Java 환경은 Spring Cloud Gateway, 고성능 폴리글랏은 Kong, 서버리스는 AWS API Gateway를 채택한다.
@@ -157,4 +157,4 @@ extra:
 - **실무 공학적 통찰**: **단일 장애점**(SPOF) 리스크를 해소하기 위해 **다중 가용 영역**(Multi-AZ) 기반 분산 배치를 강제하고, 비즈니스 로직이 침투하는 비대 게이트웨이(Fat Gateway)를 방지하여 순수 횡단 관심사만 격리하는 엄격한 아키텍처 거버넌스 확립
 
 #### 한줄 요약
-- API 게이트웨이는 쿠버네티스 Gateway API 및 WAF 통합 엣지 보안으로 진화하되, Multi-AZ 다중화와 Fat Gateway 방지를 위한 횡단 관심사 격리 기준 확립
+- 리버스 프록시와 필터 체인 파이프라인 원리를 바탕으로, 엣지 인증과 분산 Rate Limiting을 적용하여 단일 장애점(SPOF)을 방지하고 백엔드 서비스 가용성을 확보하도록 설계한다.

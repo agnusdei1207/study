@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 30%"
     variant: note
 title: "MPLS 레이블 스위칭 (Multiprotocol Label Switching)"
-date: "2026-09-07T14:00:00+09:00"
+date: "2026-09-14T14:55:00+09:00"
 tags:
   - "notes-network"
 weight: 13
@@ -29,7 +29,7 @@ extra:
 </details>
 
 - 정의/개념: L2와 L3 사이에 32비트 **고정 레이블(Shim Header)을 삽입하여 LFIB 기반 고속 포워딩과 트래픽 엔지니어링을 제공하는 2.5계층 스위칭 기술**
-- 배경/필요성: 전통적인 홉 단위(Hop-by-Hop) IP 라우팅에서 코어 라우터가 매 패킷마다 가변 길이 L3 IP 헤더를 검사하고 소프트웨어/하드웨어 최장 프리픽스 일치(LPM) 검색을 반복 수행함에 따른 포워딩 지연 오버헤드와 트래픽 엔지니어링(명시적 경로 지정) 및 고객사별 독립 가상망(VPN) 격리가 불가능한 한계를 극복하기 위해, L2와 L3 사이에 32비트 고정 길이 Shim Header 레이블을 삽입하고 인입 LER에서 1회 FEC 분류 후 코어 영역에서는 단순 20비트 레이블 스왑(LFIB Swap)만으로 고속 포워딩하는 MPLS(Multiprotocol Label Switching)를 도입하여 **백본 패킷 처리량 극대화, RSVP-TE 기반 명시적 트래픽 제어 및 BGP/MPLS L3VPN을 통한 완벽한 멀티테넌트 격리**를 달성할 필요
+- 배경/필요성: 전통적인 홉 단위(Hop-by-Hop) IP 라우팅에서 코어 라우터가 매 패킷마다 가변 길이 L3 IP 헤더를 검사하고 소프트웨어/하드웨어 최장 프리픽스 일치(LPM) 검색을 반복 수행함에 따른 포워딩 지연 오버헤드와 트래픽 엔지니어링(명시적 경로 지정) 및 고객사별 독립 가상망(VPN) 격리가 불가능한 한계를 극복하기 위해, L2와 L3 사이에 32비트 고정 길이 Shim Header 레이블을 삽입하고 인입 LER에서 1회 FEC 분류 후 코어 영역에서는 단순 20비트 레이블 스왑(LFIB Swap)만으로 고속 포워딩하는 MPLS(Multiprotocol Label Switching)를 도입하여 **백본 패킷 처리량 제고, RSVP-TE 기반 명시적 트래픽 제어 및 BGP/MPLS L3VPN을 통한 멀티테넌트 격리**를 달성할 필요
 
 #### 한줄 요약
 - 32비트 Shim Header 레이블을 활용하여 IP 룩업 오버헤드를 없애고 50ms 미만 고속 복구를 실현한다.
@@ -66,7 +66,7 @@ extra:
   │     └─ [송출 LER] (Egress: 최종 레이블 Pop 및 L3 IP 복원)
   │
   ├─ [코어 영역] (LSR, Label Switching Router)
-  │     ├─ [코어 LSR] (LFIB 기반 초고속 레이블 Swap)
+  │     ├─ [코어 LSR] (LFIB 기반 고속 레이블 Swap)
   │     └─ [직전 홉 라우터] (PHP: 송출 LER 부하 경감 선제 제거)
   │
   └─ [32비트 Shim Header 포맷] (2.5계층 헤더)
@@ -128,7 +128,7 @@ extra:
 | 패킷 룩업 위치 | **2.5계층 32비트 Shim Header** | 3계층 IP 헤더 내부 (20~60바이트 가변) |
 | 트래픽 경로 제어 | **RSVP-TE 기반 명시적 엔지니어링 경로 지정 (TE)** | 메트릭 최단 경로(IGP)로만 트래픽 편중 발생 |
 | 장애 복구 시간 | **MPLS Fast Reroute (FRR) 적용 시 50ms 이내 절체** | IGP 재수렴 대기로 수 초~수십 초 소요 |
-| 멀티테넌트 격리 | **BGP/MPLS L3VPN (VRF) 기반 완벽한 오버레이 격리** | 일반 IP 라우팅으로는 고객망 간 독립 격리 불가 |
+| 멀티테넌트 격리 | **BGP/MPLS L3VPN (VRF) 기반 오버레이 격리** | 일반 IP 라우팅으로는 고객망 간 독립 격리 불가 |
 
 #### 한줄 요약
 - LPM 검색 기반 IP 라우팅 대비 고속 포워딩, 트래픽 엔지니어링(TE), 50ms 미만 고속 복구(FRR)를 제공한다.
@@ -137,24 +137,30 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **MPLS L3VPN (RFC 4364)**: Outer Transport Label과 Inner VPN Label의 2계층 레이블 스택을 사용하여 통신사 단일 물리망에서 다수 기업 고객의 사설 IP 망(VRF)을 완전 격리하는 기술.
+- **MPLS L3VPN (RFC 4364)**: Outer Transport Label과 Inner VPN Label의 2계층 레이블 스택을 사용하여 통신사 단일 물리망에서 다수 기업 고객의 사설 IP 망(VRF)을 격리하는 기술.
 
 </details>
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
 | 다중 레이블 추가로 인한 기본 MTU(1500B) 초과 및 단편화/패킷 드롭 | **백본 인터페이스 `점보 프레임(MTU 1522B 이상) 및 PMTU 확장`** | 단편화 오버헤드 방지 및 레이블 전송 무결성 보증 |
-| 백본 링크 단선 시 라우팅 수렴 지연으로 음성/실시간 트래픽 유실 | **`BFD 연동 MPLS RSVP-TE Fast Reroute(FRR)` 50ms 절체** | 무순단 서브세컨드(Sub-second) 고속 우회 완료 |
-| 다수 고객사 간 동일 사설 IP 대역(`192.168.0.0/16`) 사용 시 주소 충돌 | **`MPLS L3VPN (VRF)` 및 `2계층 레이블 스택(Outer + Inner)` 적용** | 통신사 단일 백본 내 완벽한 고객사별 트래픽 격리 |
-| 레이블 분배 프로토콜(LDP) 세션 단절로 인한 블랙홀 발생 | **LDP 세션 보호(Session Protection) 및 LDP-IGP Sync 활성화** | 라우팅 경로와 LSP 불일치 원천 방지 |
+| 백본 링크 단선 시 라우팅 수렴 지연으로 음성/실시간 트래픽 유실 | **`BFD 연동 MPLS RSVP-TE Fast Reroute(FRR)` 50ms 절체** | 무중단 서브세컨드(Sub-second) 고속 우회 완료 |
+| 다수 고객사 간 동일 사설 IP 대역(`192.168.0.0/16`) 사용 시 주소 충돌 | **`MPLS L3VPN (VRF)` 및 `2계층 레이블 스택(Outer + Inner)` 적용** | 통신사 단일 백본 내 독립된 고객사별 트래픽 격리 |
+| 레이블 분배 프로토콜(LDP) 세션 단절로 인한 블랙홀 발생 | **LDP 세션 보호(Session Protection) 및 LDP-IGP Sync 활성화** | 라우팅 경로와 LSP 불일치 방지 |
 
 #### 한줄 요약
 - 인터페이스 MTU 확장, BFD/FRR 50ms 절체, VRF 다층 레이블, LDP-IGP 동기화로 운영한다.
 
 ## Ⅶ. 결론
 
-- 통신사 코어 백본망과 엔터프라이즈 전용선 서비스(L3VPN/L2VPN)의 인프라 표준으로 오랜 기간 검증.
-- 최근에는 복잡한 LDP/RSVP-TE 프로토콜 상태 유지를 배제하고 IPv6 확장 헤더를 활용하는 **세그먼트 라우팅(Segment Routing: SR-MPLS / SRv6)으로의 진화와 함께**, **50ms 미만 무순단 절체를 위한 MPLS Fast Reroute(FRR)**, **다중 레이블 추가 시 패킷 드롭을 방지하는 점보 프레임(MTU 1522B 이상) 및 PHP(Penultimate Hop Popping) 최적화**를 결합하여 차세대 캐리어급 SDN 패브릭을 완성.
+<details><summary>용어 설명</summary>
+
+- **세그먼트 라우팅(Segment Routing, SR-MPLS / SRv6)**: 중간 노드의 라우팅 상태를 유지하지 않고 소스 라우터가 헤더에 명시적 경로 세그먼트 목록을 삽입하여 전달하는 차세대 소스 라우팅 기술.
+
+</details>
+
+- 통신사 코어 백본망과 엔터프라이즈 전용선 서비스(**L3VPN/L2VPN**) 인프라 표준으로 오랜 기간 검증
+- 복잡한 **LDP/RSVP-TE** 프로토콜 상태 유지 배제 및 **IPv6** 확장 헤더 활용 세그먼트 라우팅(**Segment Routing: SR-MPLS / SRv6**) 진화, 50ms 미만 무중단 절체 **MPLS Fast Reroute**(FRR), 다중 레이블 추가 시 패킷 드롭 방지 점보 프레임(**MTU 1522B 이상**) 및 **PHP**(Penultimate Hop Popping)** 최적화**를 결합하여 차세대 캐리어급 **SDN** 패브릭을 구축해야 함
 
 #### 한줄 요약
-- MPLS는 2.5계층 32비트 고정 레이블과 LFIB 스위칭을 통해 초고속 전달과 FRR 고속 복구 및 완벽한 VPN 테넌트 격리를 제공하는 백본 핵심 기술이다.
+- 2.5계층 32비트 고정 레이블과 **LFIB** 스위칭을 통한 고속 전달, **FRR** 고속 복구 및 **VPN** 테넌트 격리를 제공하는 백본 핵심 기술이다.

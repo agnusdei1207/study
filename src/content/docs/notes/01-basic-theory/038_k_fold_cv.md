@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "K-Fold 교차 검증 (K-Fold Cross-Validation)"
-date: "2026-09-14T09:07:00+09:00"
+date: "2026-09-14T14:36:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 38
@@ -172,4 +172,4 @@ extra:
 
 #### 한줄 요약
 
-- AutoML 및 MLOps 지속적 학습 파이프라인의 핵심 검증 게이트로 안착한 교차 검증 체계를 정립하고, 데이터 누출 방지와 연산 비용 절감을 고려한 분할 설계 기준 정립
+- AutoML 및 MLOps 지속적 학습 파이프라인의 핵심 검증 게이트로 안착한 교차 검증 체계를 바탕으로, 데이터 누출을 방지하고 연산 비용을 고려해 분할 전략을 수립한다.

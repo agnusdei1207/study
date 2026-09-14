@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "추천 시스템: 협업 필터링·콘텐츠 기반 (Recommendation System)"
-date: "2026-09-14T09:14:00+09:00"
+date: "2026-09-14T14:46:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 54
@@ -165,9 +165,9 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **근사 최근접 이웃(Approximate Nearest Neighbor, ANN)**: 고차원 벡터 공간에서 전수 탐색을 피하고 인덱스 구조를 통해 밀리초 단위로 유사 벡터를 초고속 탐색하는 알고리즘.
-- **심층 추천 모델(Deep Learning Recommendation Model, DLRM)**: 범주형 특징의 대규모 임베딩 테이블과 연속형 특징을 결합하여 클릭률을 초정밀 예측하는 딥러닝 추천 아키텍처.
-- **최대 한계 관련성(Maximal Marginal Relevance, MMR)**: 질의와의 연관성을 극대화하면서도 기선택된 아이템 간의 유사도를 감점하여 추천 다양성을 높이는 순위 재조정 기법.
+- **근사 최근접 이웃(Approximate Nearest Neighbor, ANN)**: 고차원 벡터 공간에서 전수 탐색을 피하고 인덱스 구조를 통해 밀리초 단위로 유사 벡터를 고속 탐색하는 알고리즘.
+- **심층 추천 모델(Deep Learning Recommendation Model, DLRM)**: 범주형 특징의 대규모 임베딩 테이블과 연속형 특징을 결합하여 클릭률을 정밀 예측하는 딥러닝 추천 아키텍처.
+- **최대 한계 관련성(Maximal Marginal Relevance, MMR)**: 질의와의 연관성을 높이면서도 기선택된 아이템 간의 유사도를 감점하여 추천 다양성을 높이는 순위 재조정 기법.
 
 </details>
 
@@ -176,7 +176,7 @@ extra:
 
 #### 한줄 요약
 
-- 추천 아키텍처는 ANN 후보 생성, DLRM 랭킹, MMR 재정렬의 3단계 파이프라인으로 정착되었으며, 추론 지연 시간과 추천 다양성 간의 아키텍처 절충 기준 정립
+- 협업 필터링과 콘텐츠 기반 매칭 원리를 바탕으로, 3단계 파이프라인과 MMR 다양성 제어를 통해 콜드 스타트를 완화하고 추천 품질을 확보하도록 설계한다.
 
 ## 2~4교시 확장
 

@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 30%"
     variant: note
 title: "백트래킹 (Backtracking)"
-date: "2026-09-14T09:07:00+09:00"
+date: "2026-09-14T14:32:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 16
@@ -175,4 +175,4 @@ extra:
 
 #### 한줄 요약
 
-- 백트래킹은 ToT 및 SAT/SMT 융합 탐색으로 발전하고 있으며 실무에서는 제약 전파와 명시적 스택을 통한 자원 한계 제어 체계 정립
+- 백트래킹은 ToT 및 SAT/SMT 융합 탐색으로 발전하고 있으며 실무에서는 제약 전파와 명시적 스택을 통해 자원 한계를 제어한다.

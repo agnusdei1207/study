@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 30%"
     variant: note
 title: "튜링 머신 (Turing Machine)"
-date: "2026-09-14T09:07:00+09:00"
+date: "2026-09-14T14:33:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 22
@@ -169,4 +169,4 @@ extra:
 
 #### 한줄 요약
 
-- 튜링 머신은 QTM 및 NTM으로 확장되고 있으며 실무에서는 정지 불능성에 대비한 Wasm 샌드박스와 자원 상한 강제 체계 정립
+- 튜링 머신은 QTM 및 NTM으로 확장되고 있으며 실무에서는 정지 불능성에 대비해 Wasm 샌드박스와 자원 상한을 강제한다.

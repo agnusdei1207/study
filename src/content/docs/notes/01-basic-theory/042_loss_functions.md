@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "손실 함수: Cross-Entropy•MSE (Loss Functions)"
-date: "2026-09-14T09:13:00+09:00"
+date: "2026-09-14T14:37:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 42
@@ -96,7 +96,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **Softmax-with-Loss 결합 미분**: Softmax와 Cross-Entropy를 수식적으로 결합하면 역전파 기울기가 단순히 $\hat{y}_i - y_i$로 극도로 단순화되어 수치 안정성과 연산 속도가 비약적으로 향상되는 원리.
+- **Softmax-with-Loss 결합 미분**: Softmax와 Cross-Entropy를 수식적으로 결합하면 역전파 기울기가 단순히 $\hat{y}_i - y_i$로 극도로 단순화되어 수치 안정성과 연산 속도가 대폭 향상되는 원리.
 
 </details>
 
@@ -165,7 +165,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **직접 선호도 최적화(Direct Preference Optimization, DPO)**: 복잡한 보상 모델 학습이나 강화학습 절차 없이 선호 응답과 비선호 응답 쌍의 확률비를 직접 최적화하여 거대 언어 모델을 인간 선호도에 정렬시키는 손실 함수.
-- **정보 노이즈 대조 추정(Information Noise-Contrastive Estimation, InfoNCE)**: 정답 앵커와 양성 샘플 간의 상호 정보량을 극대화하고 음성 샘플들을 밀어내어 멀티모달(CLIP) 임베딩 공간을 정렬하는 대조 손실 함수.
+- **정보 노이즈 대조 추정(Information Noise-Contrastive Estimation, InfoNCE)**: 정답 앵커와 양성 샘플 간의 상호 정보량을 높이고 음성 샘플들을 밀어내어 멀티모달(CLIP) 임베딩 공간을 정렬하는 대조 손실 함수.
 - **쿨백-라이블러 발산(Kullback-Leibler Divergence, KLD)**: 두 확률 분포 사이의 상대적 엔트로피 정보 차이를 측정하여 잠재 변수 정규화 및 언어 모델의 과도한 정책 표류를 억제하는 손실 척도.
 
 </details>
@@ -175,4 +175,4 @@ extra:
 
 #### 한줄 요약
 
-- InfoNCE 및 DPO 등 파운데이션 모델 정렬 손실로 확장되는 원리를 정립하고, 수치 안정성과 클래스 불균형을 동시에 고려한 목적 함수 설계 기준 정립
+- InfoNCE 및 DPO 등 파운데이션 모델 정렬 손실로 확장되는 원리를 바탕으로, 수치 안정성과 클래스 불균형을 동시에 고려해 목적 함수를 설계한다.

@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "프로세스 스레싱 (Process Thrashing)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T15:08:00+09:00"
 tags: [notes-software]
 weight: 14
 extra:
@@ -146,7 +146,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **메모리 압축 스왑**(Compressed RAM Swap, zswap/zRAM): 물리 디스크 I/O 대신 RAM의 일부를 압축 풀로 활용하여 스왑 인/아웃 지연을 극소화하는 커널 메모리 가속 기술.
+- **메모리 압축 스왑**(Compressed RAM Swap, zswap/zRAM): 물리 디스크 I/O 대신 RAM의 일부를 압축 풀로 활용하여 스왑 인/아웃 지연을 최소화하는 커널 메모리 가속 기술.
 - **제어 그룹 v2 메모리 제어기**(cgroups v2 Memory Controller): 컨테이너별 메모리 사용량에 대해 최소 보장선(memory.min)과 능동 회수선(memory.high)을 지정하여 노드 스레싱 전파를 차단하는 리눅스 자원 격리 기제.
 
 </details>
@@ -155,4 +155,4 @@ extra:
 - 쿠버네티스 파드 밀집 환경에서 단일 프로세스의 메모리 폭증이 노드 전체 스레싱으로 전파되지 않도록 **제어 그룹 v2 메모리 제어기**의 상하한선을 정밀 설정하는 운영 통제 체계 구축
 
 #### 한줄 요약
-- 압축 RAM 스왑으로 디스크 병목을 우회하고 cgroups v2 상하한선 통제로 노드 단위 스레싱 전파 차단 체계 구축
+- 워킹 셋과 PFF 기반의 스레싱 방어 원리를 바탕으로, 압축 RAM 스왑과 cgroups v2 상하한선 통제를 결합하여 스레싱 전파를 차단하고 메모리 안정성을 확보하도록 설계한다.

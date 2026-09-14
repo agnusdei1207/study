@@ -28,10 +28,10 @@ extra:
 </details>
 
 - 정의/개념: 설비 데이터를 **Semantic Information Model** 기반 주소 공간으로 모델링하고 X.509 PKI 보안과 C/S·Pub/Sub 전송을 함께 표준화한 산업 통신 표준(IEC 62541)
-- 배경/필요성: 과거 공장 자동화에서 사용되던 레거시 OPC Classic(OPC DA/HDA)은 마이크로소프트 윈도우 독점 기술인 DCOM(Distributed COM)에 종속되어 방화벽 통과 불가, 리눅스/임베디드 설비 연동 불가 및 보안 취약점을 노출하고, 벤더별 제각각인 메모리 번지수 기반 원시 데이터 구조로 인해 상위 IT/클라우드 시스템과의 시맨틱(Semantic) 데이터 연동이 불가능했던 한계를 극복하기 위해, 플랫폼 독립적(OS-Agnostic) 객체 지향 주소 공간(Address Space) 모델과 내장형 다계층 보안(X.509 PKI/AES-256) 및 C/S와 Pub/Sub(TSN 결합) 듀얼 전송 체계를 표준화한 OPC UA(IEC 62541)를 도입하여 이종 PLC/설비 간 완벽한 상호운용성(Interoperability), 스마트 팩토리 OT와 IT/클라우드의 심리스 융합 및 산업 제어 시스템 보안 강화를 달성할 필요
+- 배경/필요성: 과거 공장 자동화에서 사용되던 레거시 OPC Classic(OPC DA/HDA)은 마이크로소프트 윈도우 독점 기술인 DCOM(Distributed COM)에 종속되어 방화벽 통과 불가, 리눅스/임베디드 설비 연동 불가 및 보안 취약점을 노출하고, 벤더별 제각각인 메모리 번지수 기반 원시 데이터 구조로 인해 상위 IT/클라우드 시스템과의 시맨틱(Semantic) 데이터 연동이 불가능했던 한계를 극복하기 위해, 플랫폼 독립적(OS-Agnostic) 객체 지향 주소 공간(Address Space) 모델과 내장형 다계층 보안(X.509 PKI/AES-256) 및 C/S와 Pub/Sub(TSN 결합) 듀얼 전송 체계를 표준화한 OPC UA(IEC 62541)를 도입하여 이종 PLC/설비 간 높은 상호운용성(Interoperability), 스마트 팩토리 OT와 IT/클라우드의 심리스 융합 및 산업 제어 시스템 보안 강화를 달성할 필요
 
 #### 한줄 요약
-- DCOM 종속 OPC Classic이 설비마다 치르던 드라이버·방화벽·의미 해석 비용을 표준 계층 하나로 흡수하므로, 설비 수가 늘어도 상위 IT가 지불하는 연동 비용은 늘지 않는다.
+- OPC UA는 시맨틱 정보 모델과 다계층 보안을 통해 이종 설비와 IT 시스템 간의 표준 상호운용성을 보장해야 한다.
 
 ## Ⅱ. 특징
 
@@ -48,7 +48,7 @@ extra:
 - 내장 보안(**Security-by-Design**): X.509 상호 인증·RBAC·AES 암호화를 스택에 내장
 
 #### 한줄 요약
-- 플랫폼 독립성과 시맨틱 모델은 설비 벤더가 자체 데이터 구조의 자유를 포기하고 공통 모델에 맞춘 대가로 얻는 것이라, 표준 채택률이 곧 상호운용성의 상한이다.
+- 플랫폼 독립성, 객체 지향 주소 공간, C/S 및 Pub/Sub 이중 통신, 내장 보안을 유기적으로 제공해야 한다.
 
 ## Ⅲ. 구조 및 구성요소
 
@@ -145,15 +145,22 @@ extra:
 | 제조사별 변수명 차이 | **Companion Specification** 채택 | 데이터 의미 표준화 |
 | **인증서 만료**로 설비 통신 차단 | **GDS** 인증서 자동 갱신 | 만료 중단 예방 |
 | 센서 폴링으로 서버 부하 증가 | **Subscription & MonitoredItem**·**Pub/Sub** 전환 | 부하 분산·실시간 전송 |
-| 외부 침입에 따른 설비 조작 | **SignAndEncrypt** 보안 모드·RBAC 인가 | 비인가 명령 차단 |
+| 외부 침입에 따른 설비 조작 | **SignAndEncrypt** 보안 모드·RBAC 인가 | 비인가 명령 방지 |
 
 #### 한줄 요약
-- 변수명·인증서·폴링 문제를 설비별로 대응하지 않고 명세·GDS·구독이라는 표준 계층에서 한 번 해결하는 쪽이 설비 수에 비례하는 운영 비용을 끊는다.
+- 컴패니언 명세 채택, GDS 자동 갱신, MonitoredItem 구독, SignAndEncrypt 보안 모드를 통해 산업 제어망의 신뢰성을 확보해야 한다.
 
 ## Ⅶ. 결론
 
-- 스마트 팩토리 인더스트리 4.0(RAMI 4.0)의 데이터 모델링과 제어 통신을 주도하며 글로벌 스마트 제조 및 IT-OT 융합의 단일 표준 산업 통신 아키텍처(IEC 62541)로 확고히 자리잡음.
-- 필드버스(Fieldbus) 영역까지 완벽히 대체하기 위해 TSN(Time-Sensitive Networking)과 결합한 OPC UA over TSN 및 5G 사설망 연동으로 진화하는 가운데, 실무 스마트 제조 인프라 구축 시에는 **공작기계(umati), 로봇(VDMA) 등 산업군별 데이터 의미 표준화를 위한 컴패니언 명세(Companion Specification) 적용**, **수천 개 설비의 인증서 만료 중단을 방지하는 GDS(Global Discovery Server) 자동 배포/갱신**, **비인가 제어를 원천 차단하는 SignAndEncrypt 보안 프로파일과 RBAC 인가**를 결합하여 완벽한 산업 제조 신뢰성을 완성.
+<details><summary>용어 설명</summary>
+
+- **TSN (Time-Sensitive Networking)**: 표준 이더넷(IEEE 802.1) 기반으로 마이크로초 단위의 확정적 전송 지연과 대역폭을 보장하는 기술.
+- **RAMI 4.0 (Reference Architectural Model Industrie 4.0)**: 스마트 팩토리 인더스트리 4.0의 생태계 전반을 계층, 수명주기, IT 구조의 3차원 축으로 체계화한 참조 아키텍처 모델.
+
+</details>
+
+- 스마트 팩토리 인더스트리 4.0(RAMI 4.0)의 데이터 모델링과 제어 통신을 주도하며 글로벌 스마트 제조 및 IT-OT 융합의 단일 표준 산업 통신 아키텍처(IEC 62541)로 확고히 자리잡았다.
+- 필드버스(Fieldbus) 영역까지 안정적으로 대체하기 위해 TSN(Time-Sensitive Networking)과 결합한 OPC UA over TSN 및 5G 사설망 연동으로 진화하는 가운데, 실무 스마트 제조 인프라 구축 시에는 **공작기계(umati), 로봇(VDMA) 등 산업군별 데이터 의미 표준화를 위한 컴패니언 명세(Companion Specification) 적용**, **수천 개 설비의 인증서 만료 중단을 방지하는 GDS(Global Discovery Server) 자동 배포/갱신**, **비인가 제어를 선제적으로 방지하는 SignAndEncrypt 보안 프로파일과 RBAC 인가**를 결합하여 안정적인 스마트 제조 신뢰성을 확보해야 한다.
 
 #### 한줄 요약
-- 구성·정밀 제어에는 C/S, 대규모 수집·하드 실시간에는 Pub/Sub over TSN을 택하되, 두 모델을 같은 주소 공간 위에 두는 것이 OPC UA를 고르는 이유다.
+- 클라이언트-서버와 Pub/Sub over TSN을 객체 지향 주소 공간 위에 통합하여 고신뢰 스마트 팩토리 제어를 달성해야 한다.

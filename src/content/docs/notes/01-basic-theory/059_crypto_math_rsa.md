@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "암호 수학: 이산 대수·RSA 원리 (Cryptography Mathematics)"
-date: "2026-09-14T09:15:00+09:00"
+date: "2026-09-14T14:51:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 59
@@ -173,4 +173,4 @@ extra:
 
 #### 한줄 요약
 
-- RSA는 현대 PKI의 표준 암호이나 양자 해독 위협에 직면해 있으며, OAEP 안전성 유지와 함께 PQC 하이브리드 전환 및 암호 민첩성 거버넌스 기준 정립
+- 소인수분해 난제와 오일러 정리 기반의 RSA 원리를 바탕으로, OAEP 패딩과 PQC 하이브리드 전환을 적용하여 안전한 키 교환 및 기밀성을 확보하도록 설계한다.

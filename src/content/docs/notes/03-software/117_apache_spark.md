@@ -1,12 +1,12 @@
 ---
 sidebar:
   order: 117
-  label: "117. Apache Spark"
+  label: "117. Apache Spark 아키텍처"
   badge:
-    text: "기출 · 30%"
+    text: "기출 · 70%"
     variant: note
-title: "Apache Spark"
-date: "2026-09-07T10:05:00+09:00"
+title: "Apache Spark 아키텍처 (Apache Spark)"
+date: "2026-09-14T17:08:00+09:00"
 tags:
   - "notes-software"
 weight: 117
@@ -28,7 +28,7 @@ extra:
 </details>
 
 - 정의/개념: 대규모 분산 처리를 위해 인메모리 RDD와 DAG 실행 엔진 및 **Catalyst** 최적화기를 기반으로 고속 병렬 연산을 수행하는 분산 컴퓨팅 프레임워크
-- 배경/필요성: 1세대 Hadoop MapReduce의 매 단계 디스크 I/O 플러시로 인한 **심각한 지연 및 머신러닝/그래프 반복 연산 처리 한계**
+- 배경/필요성: 1세대 Hadoop MapReduce의 매 단계 디스크 I/O 플러시로 인한 **디스크 I/O 지연 및 머신러닝/그래프 반복 연산 처리 한계**
 
 #### 한줄 요약
 - Spark는 중간 결과를 메모리에 두어 반복 연산 비용을 낮추는 대신 그 메모리를 잃으면 계보를 따라 다시 계산해야 하므로, 무엇을 캐시할지가 곧 재계산 비용과 메모리 점유의 균형 결정이 된다.
@@ -150,8 +150,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 빅데이터 엔지니어링, 대규모 분산 데이터 파이프라인 및 AI/ML 데이터 전처리의 **사실상 표준(De-facto Standard) 인메모리 분산 컴퓨팅 엔진**으로 확립.
-- 실무 운영 시에는 **Driver OOM을 유발하는 `collect()` 금지**, **셔플 네트워크 병목을 완화하는 Broadcast Hash Join 및 Adaptive Query Execution(AQE) 런타임 최적화**, **GC 부하를 억제하는 Off-Heap 메모리 관리(Tungsten) 및 Kryo 직렬화**를 결합하여 대규모 클러스터 자원 효율성과 처리량을 극대화.
+- 현대 빅데이터 엔지니어링, 대규모 분산 데이터 파이프라인 및 AI/ML 데이터 전처리의 **대표적인 인메모리 분산 컴퓨팅 엔진**으로 자리 잡았다.
+- 실무 운영 시에는 **Driver OOM을 유발하는 `collect()` 지양**, **셔플 네트워크 병목을 완화하는 Broadcast Hash Join 및 Adaptive Query Execution**(AQE) **런타임 최적화**, **GC 부하를 억제하는 Off-Heap 메모리 관리**(Tungsten) **및 Kryo 직렬화**를 결합하여 대규모 클러스터 자원 효율성과 처리량을 확보해야 한다.
 
 #### 한줄 요약
-- 재사용 데이터는 캐시하고 Wide 변환의 셔플 비용을 줄인다.
+- 인메모리 RDD 계보와 Catalyst 최적화기를 바탕으로 브로드캐스트 조인과 AQE를 적용하여 셔플 오버헤드를 줄이고 분산 처리량을 확보한다.

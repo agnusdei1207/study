@@ -147,8 +147,15 @@ extra:
 
 ## Ⅶ. 결론
 
+<details><summary>용어 설명</summary>
+
+- **RIC (RAN Intelligent Controller)**: 개방형 무선망(O-RAN)에서 무선 자원 최적화, 이동성 관리, 네트워크 슬라이싱 등을 AI/ML 기반으로 자동 제어하는 지능형 컨트롤러.
+- **5G Advanced (3GPP Release 18+)**: 5G의 성능을 확장하여 AI 네이티브 무선망, 확장현실(XR) 특화 기술, 고정밀 측위 및 위성 통신 융합을 도입한 5G 진화 규격.
+
+</details>
+
 - 폐쇄적인 통신사 장비 독점 구조를 타파하고 소프트웨어 중심의 클라우드 네이티브 기지국 시대를 여는 **5G Advanced 및 6G 개방형 무선망(O-RAN / vRAN)의 가장 핵심적인 기지국 아키텍처 표준 기술**로 정립.
-- AI 기반 RIC(RAN Intelligent Controller) 및 클라우드 엣지 오케스트레이션과의 결합으로 진화하는 가운데, 실무 기능 분리 기지국 구축 시에는 **비실시간 제어 자원 풀링을 위한 Option 2(F1 미드홀)와 멀티벤더 DU-RU 개방을 지원하는 Option 7-2x(eCPRI 프론트홀)의 최적 조합 설계**, **TDD 프레임 간섭을 방지하는 IEEE 1588v2 PTP(Telecom Profile G.8275.1) 및 SyncE 기반 $\pm 65\text{ns}$ 정밀 시간 동기화**, **vDU의 High-PHY 계층 연산 병목을 제거하는 인라인(Inline) 하드웨어 가속기(FPGA/ASIC/GPU) 연동**을 결합하여 완벽한 개방형 무선망 성능을 완성.
+- AI 기반 RIC(RAN Intelligent Controller) 및 클라우드 엣지 오케스트레이션과의 결합으로 진화하는 가운데, 실무 기능 분리 기지국 구축 시에는 **비실시간 제어 자원 풀링을 위한 Option 2(F1 미드홀)와 멀티벤더 DU-RU 개방을 지원하는 Option 7-2x(eCPRI 프론트홀)의 최적 조합 설계**, **TDD 프레임 간섭을 방지하는 IEEE 1588v2 PTP(Telecom Profile G.8275.1) 및 SyncE 기반 $\pm 65\text{ns}$ 정밀 시간 동기화**, **vDU의 High-PHY 계층 연산 병목을 제거하는 인라인(Inline) 하드웨어 가속기(FPGA/ASIC/GPU) 연동**을 결합하여 개방형 무선망의 성능과 안정성을 확보해야 한다.
 
 #### 한줄 요약
-- 네트워크 기능 분리는 3GPP F1 및 O-RAN 7-2x 기반의 CU/DU/RU 분할과 정밀 동기화를 통해 개방형 고효율 기지국을 실현하는 핵심 기술이다.
+- 네트워크 기능 분리는 3GPP F1 및 O-RAN 7-2x 기반의 CU/DU/RU 분할과 정밀 동기화를 통해 개방형 고효율 기지국을 실현하도록 아키텍처를 수립해야 한다.

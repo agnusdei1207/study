@@ -31,7 +31,7 @@ extra:
 - 배경/필요성: 자율주행, ADAS, 고화질 인포테인먼트(IVI) 도입으로 인해 차량 내부 데이터 처리량이 수십 Mbps~수 Gbps로 급증하고 전자제어 아키텍처가 존(Zone) 기반의 소프트웨어 정의 차량(SDV)으로 전환되는 환경에서, 전통적인 CAN 버스의 신호 기반(Signal-based) 정적 브로드캐스팅 방식은 대역폭 한계와 신규 기능 추가 시 전 ECU의 데이터베이스(DBC)를 재빌드해야 하는 강한 결합(Tight Coupling)의 한계를 노출함에 따라, 차량용 이더넷(Automotive Ethernet) 상에서 서비스 인터페이스 기반으로 동작하는 AUTOSAR 표준 SOA 미들웨어인 SOME/IP 및 런타임 서비스 탐색 프로토콜(SOME/IP-SD)을 도입하여 기가비트급 대용량 제어/센서 데이터 전송, 런타임 동적 플러그앤플레이 서비스 바인딩 및 기능 안전(E2E Protection) 보증을 달성할 필요
 
 #### 한줄 요약
-- 신호 기반 CAN이 기능 추가마다 전 ECU 재빌드 비용을 치르는 강한 결합을, 서비스 인터페이스와 **SOME/IP-SD** 런타임 탐색 계층으로 풀어 대역폭과 결합도를 함께 낮춘다.
+- 신호 기반 CAN의 결합 문제를 서비스 인터페이스와 SOME/IP-SD 동적 탐색 계층으로 해결하여 고속 대용량 통신을 보장해야 한다.
 
 ## Ⅱ. 특징
 
@@ -47,7 +47,7 @@ extra:
 - 다양한 통신 패턴 지원: 동기식 요청-응답(RPC), 단방향 알림(Fire & Forget), 비동기 이벤트 스트리밍(Pub/Sub) 제공
 
 #### 한줄 요약
-- 런타임 바인딩으로 얻은 확장 유연성의 대가로 직렬화·디스커버리 오버헤드와 실행 시점 결합 실패 가능성을 떠안는다.
+- 경량 직렬화, 동적 서비스 런타임 바인딩, 다양한 통신 패턴 지원을 유기적으로 제공해야 한다.
 
 ## Ⅲ. 구조 및 구성요소
 
@@ -129,25 +129,32 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **Contract Testing (계약 테스트)**: 사전에 정의한 ARXML 인터페이스 명세와 실제 ECU 펌웨어 구현체가 100% 일치하는지 자동 검증하는 프로세스.
+- **Contract Testing (계약 테스트)**: 사전에 정의한 ARXML 인터페이스 명세와 실제 ECU 펌웨어 구현체가 정합하는지 자동 검증하는 프로세스.
 - **SOME/IP-TP (Transport Protocol)**: UDP MTU를 넘는 페이로드를 세그먼트로 나누고 헤더의 오프셋·More Segments 플래그로 수신 측이 재조립하게 하는 SOME/IP 분할 전송 확장.
 
 </details>
 
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
-| ECU 소프트웨어 업데이트 후 버전 불일치로 인한 역직렬화 런타임 크래시 | 인터페이스 Major/Minor 버전 검증 및 **Contract Testing** | 런타임 파싱 오류 원천 차단 및 호환성 보증 |
+| ECU 소프트웨어 업데이트 후 버전 불일치로 인한 역직렬화 런타임 크래시 | 인터페이스 Major/Minor 버전 검증 및 **Contract Testing** | 런타임 파싱 오류 방지 및 호환성 보증 |
 | 차량 시동 시 수백 개 ECU의 동시 SD 브로드캐스트로 트래픽 폭풍 발생 | SD 초기 지연 랜덤화 및 반복 주기 지수 백오프(Exponential Back-off) | 시동 초기 Broadcast Storm 억제 |
-| 차량 통신 버스 상의 제어 메시지 위변조 및 재전송 공격(Replay Attack) 위협 | **E2E Protection** Profile(Counter+Data ID+CRC) 및 SecOC 적용 | 기능 안전 오류 검출 및 악성 패킷 재전송 차단 |
-| 대용량 비디오 스트리밍 시 UDP 버퍼 오버플로우 패킷 손실 | **SOME/IP-TP** 세그멘테이션 또는 TCP 전환 | 대용량 페이로드 무손실 분할 수용 |
+| 차량 통신 버스 상의 제어 메시지 위변조 및 재전송 공격(Replay Attack) 위협 | **E2E Protection** Profile(Counter+Data ID+CRC) 및 SecOC 적용 | 기능 안전 오류 검출 및 악성 패킷 재전송 방지 |
+| 대용량 비디오 스트리밍 시 UDP 버퍼 오버플로우 패킷 손실 | **SOME/IP-TP** 세그멘테이션 또는 TCP 전환 | 대용량 페이로드 분할 수용 |
 
 #### 한줄 요약
-- SOA가 CAN에서 가져온 유연성은 런타임에야 드러나는 실패(버전 불일치·스톰·분할)를 낳으므로, 대책의 초점은 결합 실패를 설계 시점의 계약 검증으로 앞당기는 데 있다.
+- 계약 테스트, 지수 백오프, E2E Protection, SOME/IP-TP를 적용하여 차량용 SOA 통신의 신뢰성을 확보해야 한다.
 
 ## Ⅶ. 결론
 
-- 전통적인 분산 ECU 제어 방식에서 중앙 집중형 존(Zonal) 아키텍처와 소프트웨어 정의 차량(SDV: Software-Defined Vehicle)으로 전환되는 자동차 산업의 가장 핵심적인 차량용 이더넷 서비스 지향 통신(SOA) 미들웨어 표준으로 확립.
-- 고성능 자율주행 컴퓨터의 DDS(Data Distribution Service) 및 차량-클라우드(V2C) 연동 프로토콜과 융합하는 가운데, 실무 SDV 플랫폼 구축 시에는 **차량 시동 시 브로드캐스트 스톰을 방지하는 SOME/IP-SD 지수 백오프(Exponential Backoff) 적용**, **인터페이스 파편화 크래시를 방지하는 엄격한 Major/Minor 버전 계약 테스트(Contract Testing)**, **ISO 26262 ASIL-D 기능 안전 무결성을 만족하는 AUTOSAR E2E Profile(CRC+Counter) 및 SecOC 암호화 인증**, **대용량 센서 데이터 처리를 위한 SOME/IP-TP 세그멘테이션**을 결합하여 완벽한 차세대 차량 네트워크 신뢰성을 완성.
+<details><summary>용어 설명</summary>
+
+- **DDS (Data Distribution Service)**: 분산 시스템에서 데이터 중심의 실시간 게시/구독 통신을 지원하는 OMG 표준 미들웨어.
+- **ASIL-D (Automotive Safety Integrity Level D)**: ISO 26262 기능 안전 표준에서 가장 엄격한 안전 무결성 등급.
+
+</details>
+
+- 전통적인 분산 ECU 제어 방식에서 중앙 집중형 존(Zonal) 아키텍처와 소프트웨어 정의 차량(SDV: Software-Defined Vehicle)으로 전환되는 자동차 산업의 가장 핵심적인 차량용 이더넷 서비스 지향 통신(SOA) 미들웨어 표준으로 확립되었다.
+- 고성능 자율주행 컴퓨터의 DDS(Data Distribution Service) 및 차량-클라우드(V2C) 연동 프로토콜과 융합하는 가운데, 실무 SDV 플랫폼 구축 시에는 **차량 시동 시 브로드캐스트 스톰을 방지하는 SOME/IP-SD 지수 백오프(Exponential Backoff) 적용**, **인터페이스 파편화 크래시를 방지하는 엄격한 Major/Minor 버전 계약 테스트(Contract Testing)**, **ISO 26262 ASIL-D 기능 안전 무결성을 만족하는 AUTOSAR E2E Profile(CRC+Counter) 및 SecOC 암호화 인증**, **대용량 센서 데이터 처리를 위한 SOME/IP-TP 세그멘테이션**을 결합하여 안정적인 차세대 차량 네트워크 신뢰성을 확보해야 한다.
 
 #### 한줄 요약
-- SOME/IP 미들웨어와 SOME/IP-SD 및 E2E 보호 기술을 결합하여 SDV 시대의 차량용 SOA 네트워크를 실현한다.
+- SOME/IP 미들웨어와 SOME/IP-SD 및 E2E 보호 기술을 결합하여 SDV 시대의 차량용 SOA 네트워크를 안정적으로 실현해야 한다.

@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "Redis 인메모리 데이터베이스 (Redis In-Memory Database)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T17:01:00+09:00"
 tags:
   - "notes-software"
 weight: 107
@@ -27,7 +27,7 @@ extra:
 
 </details>
 
-- 정의/개념: 초저지연 처리를 위해 모든 데이터를 RAM에 상주시키고 다양한 자료구조와 영속성(RDB/AOF)을 제공하는 고성능 인메모리 Key-Value 데이터베이스
+- 정의/개념: 저지연 처리를 위해 모든 데이터를 RAM에 상주시키고 다양한 자료구조와 영속성(RDB/AOF)을 제공하는 고성능 인메모리 Key-Value 데이터베이스
 - 배경/필요성: 디스크 기반 DB의 기계적 I/O 지연으로 인한 **실시간 세션 관리, 실시간 랭킹 산정 및 고빈도 캐싱 처리 지연 한계**
 
 #### 한줄 요약
@@ -42,12 +42,12 @@ extra:
 
 </details>
 
-- 메인 메모리(RAM) 기반 1ms 미만의 초저지연 응답 속도(Sub-millisecond Latency)
+- 메인 메모리(RAM) 기반 1ms 미만의 저지연 응답 속도(Sub-millisecond Latency)
 - Strings, Hashes, Lists, Sets, Sorted Sets(ZSet) 등 풍부한 내장 자료구조 원자적 지원
 - RDB 스냅샷 및 AOF 변경 로그를 통한 인메모리 데이터의 디스크 영속성(Persistence) 보장
 
 #### 한줄 요약
-- 단일 스레드 비동기 루프로 동시성 락 경합 없이 초고속 원자적 연산을 수행한다.
+- 단일 스레드 비동기 루프로 동시성 락 경합 없이 원자적 연산을 수행한다.
 
 ## Ⅲ. 구조 및 구성요소
 
@@ -130,7 +130,7 @@ extra:
 |:---|:---|:---|
 | 지원 자료구조 | Strings, Hashes, Lists, Sets, ZSets, Stream | 단순 String (Key-Value)만 지원 |
 | 스레드 모델 | 단일 스레드 이벤트 루프 (Atomic 보장) | 멀티스레드 모델 (멀티코어 CPU 활용) |
-| 영속성 (Persistence)| 지원 (RDB 스냅샷 + AOF 로그) | 미지원 (서버 재부팅 시 데이터 전멸) |
+| 영속성 (Persistence)| 지원 (RDB 스냅샷 + AOF 로그) | 미지원 (서버 재부팅 시 데이터 휘발) |
 | 복제 및 클러스터 | Redis Sentinel (HA), Redis Cluster (샤딩) | 자체 미지원 (클라이언트 라이브러리 샤딩) |
 
 #### 한줄 요약
@@ -147,7 +147,7 @@ extra:
 | 문제 | 대책 | 효과 |
 |:---|:---|:---|
 | `KEYS *` 실행으로 인한 단일 스레드 전체 서버 락업(Lockup) | 운영 환경 `KEYS` 명령어 비활성화 및 `SCAN` 커서 명령 대체 | 무중단 커서 순회 처리 보장 |
-| 대량 캐시 TTL 동시 만료로 DB 다운 (**Cache Stampede**) | TTL에 랜덤 지터(Random Jitter: $\pm 10\%$) 추가 및 Redlock 선점| 백엔드 DB 과부하 원천 방지 |
+| 대량 캐시 TTL 동시 만료로 DB 다운 (**Cache Stampede**) | TTL에 랜덤 지터(Random Jitter: $\pm 10\%$) 추가 및 Redlock 선점| 백엔드 DB 과부하 방지 |
 | 수십만 개 원소를 가진 Big Key로 인한 메모리/지연 병목 | 해시 태그 기반 키 분할(Sharding) 및 `MEMORY USAGE` 모니터링 | 메모리 접근 및 직렬화 병목 해소 |
 | Master 다운 시 데이터 유실 | Redis Sentinel 자동 페일오버 및 `appendfsync everysec` 설정 | RPO 1초 이내 고가용성 달성 |
 
@@ -156,8 +156,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 분산 시스템 및 클라우드 애플리케이션의 **표준 인메모리 캐시 및 데이터 구조 서버**로 확립
-- 실무 운영 시에는 **단일 스레드 락업을 방지하는 `KEYS *` 금지 및 `SCAN` 커서 순회 원칙 준수**, **Cache Stampede를 방어하는 TTL 랜덤 지터**(Random Jitter) 부여, **데이터 안전성을 위한 AOF `everysec` 및 Redis Sentinel 기반 자동 페일오버**, **Redis Cluster 수평 샤딩**을 결합하여 고성능과 무중단 영속성을 동시 보증
+- 현대 분산 시스템 및 클라우드 애플리케이션의 **표준 인메모리 캐시 및 데이터 구조 서버**로 자리 잡았다.
+- 실무 운영 시에는 **단일 스레드 락업을 방지하는 `KEYS *` 금지 및 `SCAN` 커서 순회 원칙 준수**, **Cache Stampede를 방어하는 TTL 랜덤 지터**(Random Jitter) 부여, **데이터 안전성을 위한 AOF `everysec` 및 Redis Sentinel 기반 자동 페일오버**, **Redis Cluster 수평 샤딩**을 결합하여 고성능과 영속성을 동시에 확보해야 한다.
 
 #### 한줄 요약
-- 단일 스레드 기반 인메모리 자료구조와 RDB/AOF 영속성을 활용하여 서브밀리초 응답 성능과 고가용성을 달성하는 인메모리 데이터 플랫폼 체계 구축
+- 단일 스레드 이벤트 루프와 풍부한 인메모리 자료구조를 바탕으로 RDB·AOF 영속성과 Sentinel 페일오버를 결합하여 저지연 응답과 고가용성을 확보한다.

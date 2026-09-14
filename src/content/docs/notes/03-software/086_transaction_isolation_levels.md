@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "트랜잭션 격리 수준 4단계 (Transaction Isolation Levels)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T16:45:00+09:00"
 tags:
   - "notes-software"
 weight: 86
@@ -28,7 +28,7 @@ extra:
 </details>
 
 - 정의/개념: 다중 트랜잭션 동시 실행 시 나타나는 읽기 이상 현상을 제어하기 위해 **Read Uncommitted부터 Serializable까지 4단계로 직렬화 수준을 규정**한 동시성 표준
-- 배경/필요성: 완벽한 직렬성 강제 시의 **극심한 락 경합 및 동시 처리량 급락과, 제어 부재 시의 3대 읽기 이상 현상(Dirty·Non-Repeatable·Phantom Read) 발생 한계**
+- 배경/필요성: 엄격한 직렬성 강제 시의 **과도한 락 경합 및 동시 처리량 급락과, 제어 부재 시의 3대 읽기 이상 현상(Dirty·Non-Repeatable·Phantom Read) 발생 한계**
 
 #### 한줄 요약
 - 4단계 격리 수준과 MVCC/Lock 메커니즘을 통해 동시 처리량과 정합성 간의 최적 균형을 달성한다.
@@ -38,7 +38,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **Read View(MVCC 스냅샷)**: 트랜잭션이 시작될 때 활성 중인 타 트랜잭션 ID 목록을 캡처하여 일관된 과거 버전을 읽게 해주는 가시성 판정 뷰.
-- **Next-Key Lock**: MySQL InnoDB에서 레코드 락(Record Lock)과 갭 락(Gap Lock)을 결합하여 Repeatable Read에서도 팬텀 리드를 원천 방어하는 기술.
+- **Next-Key Lock**: MySQL InnoDB에서 레코드 락(Record Lock)과 갭 락(Gap Lock)을 결합하여 Repeatable Read에서도 팬텀 리드를 방어하는 기술.
 
 </details>
 
@@ -116,12 +116,12 @@ extra:
 | 비교 항목 | Lock 기반 동시성 제어 (2PL) | MVCC 기반 동시성 제어 (Undo Log) |
 |:---|:---|:---|
 | 읽기/쓰기 상호작용 | **읽기와 쓰기가 상호 락(S-Lock/X-Lock)으로 블로킹** | **"읽기는 쓰기를 막지 않고, 쓰기는 읽기를 막지 않음"** |
-| 동시 처리 성능(TPS)| 락 경합 및 대기로 인해 동시성 낮음 | **스냅샷 조회로 동시 조회 처리량 극대화** |
+| 동시 처리 성능(TPS)| 락 경합 및 대기로 인해 동시성 낮음 | **스냅샷 조회로 동시 조회 처리량 향상** |
 | 구현 메커니즘 | 공유 락(Shared Lock), 배타 락(Exclusive Lock) | Undo Log 버전 체인, Read View 가시성 판정 |
-| 적용 환경 | 완벽한 직렬화가 필요한 Serializable 수준 | 현대 대부분의 RDBMS 기본 엔진 (InnoDB 등) |
+| 적용 환경 | 엄격한 직렬화가 필요한 Serializable 수준 | 현대 대부분의 RDBMS 기본 엔진 (InnoDB 등) |
 
 #### 한줄 요약
-- 2PL은 잠금 기반으로 직렬화하고, MVCC는 스냅샷 기반으로 읽기 성능과 동시성을 극대화한다.
+- 2PL은 잠금 기반으로 직렬화하고, MVCC는 스냅샷 기반으로 읽기 성능과 동시성을 향상시킨다.
 
 ## Ⅵ. 실무 고려사항 및 대책
 
@@ -154,4 +154,4 @@ extra:
 - **동시 처리 성능(TPS)과 데이터 무결성의 트레이드오프 통제 결단**: 무조건적인 최고 격리 수준 설정은 락 경합과 교착 상태를 유발하므로, Read Committed 또는 Repeatable Read를 기본 채택하고 갱신 분실 위험 구역에만 비관적 락(`SELECT FOR UPDATE`)이나 낙관적 락(`@Version`)을 국소 적용하는 공학적 절충 기준 확립
 
 #### 한줄 요약
-- 트랜잭션 격리 수준은 MVCC와 SSI 기반의 무잠금 직렬화로 진화하고 있으며, TPS 극대화와 정합성 보장을 위한 선택적 락킹 절충 기준 확립
+- ANSI SQL 4단계 격리 수준과 MVCC 스냅샷 판정 원리를 바탕으로 비즈니스 요구에 부합하는 격리 레벨을 선택하고 선택적 락킹을 조합하여 데이터 정합성과 동시 처리량을 최적화한다.

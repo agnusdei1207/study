@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 30%"
     variant: note
 title: "ICMP•IGMP (ICMP IGMP)"
-date: "2026-09-07T14:00:00+09:00"
+date: "2026-09-14T09:40:00+09:00"
 tags:
   - "notes-network"
 weight: 14
@@ -83,7 +83,7 @@ extra:
 | IGMPv1/v2/v3 | 기본 가입/보고, 명시적 Leave 및 송신자 필터링(SSM) 버전별 지원 |
 
 #### 한줄 요약
-- IGMP Snooping이 L2 스위치 안에 끼어들어 멤버십 메시지를 엿봄으로써, 라우터만 알던 그룹 가입 여부를 스위치가 대신 판단해 포트 단위 플러딩을 걷어낸다.
+- L2 스위치에서 IGMP Snooping을 활성화하여 멀티캐스트 패킷의 무분별한 플러딩을 차단하고 필요한 포트로만 선별 전달해야 한다.
 
 ## Ⅳ. 흐름도
 
@@ -105,10 +105,10 @@ extra:
   └─ [IGMP Snooping 스위치] (④ Report면 포트를 Snooping 테이블에 등록, Fast-Leave면 해당 포트 즉시 차단)
 ```
 
-분기 결과: **PMTUD 3단계**는 ② 폐기 통보를 받아 ③ MSS 축소 재전송으로 이어지고, 멤버십 ④는 Report를 보내면 포트가 열리고 Fast-Leave를 보내면 즉시 닫혀 미가입 포트의 플러딩 대역폭이 회수된다.
+분기 결과: PMTUD 3단계는 라우터 폐기 통보 시 MSS 축소 재전송으로 분기되고, 멤버십 제어는 Report 수신 시 포트 등록, Fast-Leave 수신 시 포트 즉시 차단으로 분기된다.
 
 #### 한줄 요약
-- ICMP PMTUD로 MTU를 동적 조정하고, IGMP Report/Leave로 멀티캐스트 포워딩을 최적화한다.
+- ICMP PMTUD로 MTU를 동적 조정하고, IGMP Report/Leave로 멀티캐스트 포워딩을 최적화해야 한다.
 
 ## Ⅴ. 종류 및 비교
 
@@ -127,7 +127,7 @@ extra:
 | 보안 위협 요소 | ICMP Flooding (Smurf, Ping of Death), 네트워크 정찰 | 비인가 멀티캐스트 플러딩, 불법 채널 가입 스푸핑 |
 
 #### 한줄 요약
-- ICMP는 유니캐스트 오류 피드백 및 진단을 수행하고, IGMP는 멀티캐스트 그룹 멤버십을 관리한다.
+- ICMP는 유니캐스트 오류 피드백 및 진단을 수행하고, IGMP는 멀티캐스트 그룹 멤버십을 관리해야 한다.
 
 ## Ⅵ. 실무 고려사항 및 대책
 
@@ -145,12 +145,18 @@ extra:
 | 비인가 악의적 멀티캐스트 트래픽 주입 공격 | **`IGMPv3 소스 필터링(SSM)` 및 PIM 라우터 접근 제어 목록(ACL)** | 허가된 소스 스트림만 안전 수신 |
 
 #### 한줄 요약
-- ICMP Type 3 Code 4 허용, CoPP Rate Limit, IGMP Snooping, SSM 소스 필터링으로 운영한다.
+- ICMP Type 3 Code 4 선별 허용, CoPP Rate Limit, IGMP Snooping, SSM 소스 필터링을 체계적으로 적용해야 한다.
 
 ## Ⅶ. 결론
 
-- IP 네트워크의 상태 진단/오류 보고(ICMP)와 IPTV·금융 시세 피드 등 실시간 대규모 미디어 배포(IGMP)를 지탱하는 **가장 핵심적인 L3 제어 및 그룹 통신 표준 프로토콜**로 확립.
-- 실무 운영 시에는 **PMTUD 장애로 인한 TCP 블랙홀을 방지하기 위한 ICMP Type 3 Code 4 선별 허용**, **제어 평면 보호를 위한 CoPP(Control Plane Policing) Rate Limiting**, **L2 스위치 전 포트 IGMP Snooping 및 Fast-Leave 활성화**, **특정 송신원 스트림만 수신하는 IGMPv3 SSM(Source-Specific Multicast) 구성**을 결합하여 안정성과 전송 효율을 극대화.
+<details><summary>용어 설명</summary>
+
+- **CoPP (Control Plane Policing)**: 네트워크 라우터나 스위치의 라우팅 엔진 및 CPU를 보호하기 위해 제어 평면으로 유입되는 트래픽 대역폭을 제한하는 보안 기법.
+
+</details>
+
+- IP 네트워크의 상태 진단/오류 보고(ICMP)와 IPTV·금융 시세 피드 등 실시간 대규모 미디어 배포(IGMP)를 지탱하는 L3 제어 및 그룹 통신 표준 프로토콜로 확립.
+- 실무 운영 시에는 PMTUD 장애로 인한 TCP 블랙홀을 방지하기 위한 ICMP Type 3 Code 4 선별 허용, 제어 평면 보호를 위한 CoPP Rate Limiting, L2 스위치 전 포트 IGMP Snooping 및 Fast-Leave 활성화, 특정 송신원 스트림만 수신하는 IGMPv3 SSM 구성을 결합하여 통신 안정성과 전송 효율을 체계적으로 확보.
 
 #### 한줄 요약
-- ICMP 오류 피드백과 IGMP/Snooping 멀티캐스트 최적화를 통해 고신뢰 네트워크 제어 및 고효율 미디어 전송을 실현한다.
+- ICMP 오류 피드백과 IGMP/Snooping 멀티캐스트 최적화를 통해 신뢰성 높은 네트워크 제어와 효율적 미디어 전송을 실현해야 한다.

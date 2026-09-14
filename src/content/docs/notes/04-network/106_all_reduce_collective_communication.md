@@ -28,7 +28,7 @@ extra:
 </details>
 
 - 정의/개념: **Reduce-Scatter·All-Gather**로 텐서를 동기화하는 집합 통신
-- 배경/필요성: 초거대 AI 모델의 데이터 병렬화(Data Parallelism) 분산 학습 시, 수천 대의 GPU가 계산한 역전파 그래디언트(Gradient)를 동기화하기 위해 중앙 마스터 노드에 의존하는 파라미터 서버(Parameter Server) 방식은 노드 수가 증가할수록 중앙 서버의 네트워크 대역폭 포화(Network Saturation) 및 심각한 통신 병목을 초래하여 클러스터 확장 효율이 급격히 저하되는 한계를 노출함에 따라, 중앙 집중 노드 없이 모든 참여 노드가 링(Ring), 트리(Tree) 또는 계층형(Hierarchical) 토폴로지 상에서 그래디언트 청크를 분할 교환(Reduce-Scatter)하고 전역 복제(All-Gather)하는 All-Reduce 집합 통신(Collective Communication) 알고리즘을 도입하여 **노드 수($N$)가 증가해도 GPU당 통신량을 $2(N-1)M/N \approx 2M$으로 일정하게 유지, 중앙 병목의 원천 제거 및 선형적(Linear) 분산 훈련 확장 효율**을 달성할 필요
+- 배경/필요성: 초거대 AI 모델의 데이터 병렬화(Data Parallelism) 분산 학습 시, 수천 대의 GPU가 계산한 역전파 그래디언트(Gradient)를 동기화하기 위해 중앙 마스터 노드에 의존하는 파라미터 서버(Parameter Server) 방식은 노드 수가 증가할수록 중앙 서버의 네트워크 대역폭 포화(Network Saturation) 및 심각한 통신 병목을 초래하여 클러스터 확장 효율이 급격히 저하되는 한계를 노출함에 따라, 중앙 집중 노드 없이 모든 참여 노드가 링(Ring), 트리(Tree) 또는 계층형(Hierarchical) 토폴로지 상에서 그래디언트 청크를 분할 교환(Reduce-Scatter)하고 전역 복제(All-Gather)하는 All-Reduce 집합 통신(Collective Communication) 알고리즘을 도입하여 **노드 수($N$)가 증가해도 GPU당 통신량을 $2(N-1)M/N \approx 2M$으로 일정하게 유지, 중앙 병목의 구조적 해소 및 선형적(Linear) 분산 훈련 확장 효율**을 달성할 필요
 
 #### 한줄 요약
 - Reduce-Scatter와 All-Gather를 통해 노드 수와 무관한 일정한 통신량으로 그래디언트를 전역 동기화한다.
@@ -46,7 +46,7 @@ extra:
 - **연산-통신 오버랩**: 역전파와 All-Reduce 병렬 수행
 
 #### 한줄 요약
-- 노드 수 무관 전송량 고정, 완전 탈중앙화 부하 분담, 연산-통신 비동기 오버랩을 제공한다.
+- 노드 수 무관 전송량 고정, 탈중앙화 부하 분담, 연산-통신 비동기 오버랩을 제공한다.
 
 ## Ⅲ. 구조 및 구성요소
 
@@ -148,8 +148,15 @@ extra:
 
 ## Ⅶ. 결론
 
-- 중앙 집중형 파라미터 서버의 물리적 한계를 완전히 극복하고 초거대 모델의 대규모 분산 딥러닝을 가능케 하는 **AI 분산 학습 집합 통신(Collective Communication)의 가장 핵심적인 통신 프리미티브이자 표준 알고리즘(MPI / NCCL)**으로 확립.
-- 스위치 인네트워크 컴퓨팅(SHARP) 및 2D-Torus/Dragonfly+ 패브릭과의 결합으로 진화하는 가운데, 실무 분산 AI 학습 파이프라인 구축 시에는 **텐서 크기와 토폴로지에 따라 대형 텐서는 링(Ring), 소형 텐서는 트리(Tree), 노드 내-외 링크 속도 격차(NVLink vs RDMA)가 큰 환경은 계층형(Hierarchical) All-Reduce 최적 알고리즘 선택**, **작은 텐서들의 통신 오버헤드를 제거하는 텐서 퓨전(Tensor Fusion / 버킷팅) 적용**, **전체 클러스터 동기화를 지연시키는 단일 저속 노드(Straggler Node) 실시간 감지 및 동적 격리**를 결합하여 완벽한 분산 훈련 처리 성능을 완성.
+<details><summary>용어 설명</summary>
+
+- **MPI (Message Passing Interface)**: 분산 메모리 병렬 컴퓨팅 환경에서 프로세스 간 통신 규격을 정의한 표준 인터페이스 사양.
+- **Dragonfly+ 토폴로지**: 고밀도 라우터 그룹들을 광학 링크로 성형(All-to-All) 연결하여 스위치 홉 수와 케이블 비용을 줄이는 대규모 슈퍼컴퓨팅 상호연결망 구조.
+
+</details>
+
+- 중앙 집중형 파라미터 서버의 물리적 한계를 효과적으로 극복하고 초거대 모델의 대규모 분산 딥러닝을 가능케 하는 **AI 분산 학습 집합 통신(Collective Communication)의 가장 핵심적인 통신 프리미티브이자 표준 알고리즘(MPI / NCCL)**으로 확립.
+- 스위치 인네트워크 컴퓨팅(SHARP) 및 2D-Torus/Dragonfly+ 패브릭과의 결합으로 진화하는 가운데, 실무 분산 AI 학습 파이프라인 구축 시에는 **텐서 크기와 토폴로지에 따라 대형 텐서는 링(Ring), 소형 텐서는 트리(Tree), 노드 내-외 링크 속도 격차(NVLink vs RDMA)가 큰 환경은 계층형(Hierarchical) All-Reduce 최적 알고리즘 선택**, **작은 텐서들의 통신 오버헤드를 줄이는 텐서 퓨전(Tensor Fusion / 버킷팅) 적용**, **전체 클러스터 동기화를 지연시키는 단일 저속 노드(Straggler Node) 실시간 감지 및 동적 격리**를 결합하여 분산 훈련 처리 성능과 효율성을 확보해야 한다.
 
 #### 한줄 요약
-- All-Reduce는 Reduce-Scatter와 All-Gather 및 계층형 NVLink/RDMA 패브릭을 결합하여 대규모 AI 분산 훈련을 실현하는 핵심 통신 프리미티브다.
+- All-Reduce는 Reduce-Scatter와 All-Gather 및 계층형 NVLink/RDMA 패브릭을 결합하여 대규모 AI 분산 훈련을 실현하는 핵심 통신 프리미티브로 운용해야 한다.

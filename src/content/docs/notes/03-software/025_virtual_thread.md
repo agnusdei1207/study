@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "가상 스레드: Java Project Loom (Virtual Thread)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T15:25:00+09:00"
 tags:
   - "notes-software"
 weight: 25
@@ -22,7 +22,7 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **가상 스레드(Virtual Thread)**: OS 커널 스레드(1:1)와 달리 JVM 사용자 공간에서 M:N으로 다중화되는 수백 바이트 크기의 초경량 스레드 (Java 21 표준).
+- **가상 스레드(Virtual Thread)**: OS 커널 스레드(1:1)와 달리 JVM 사용자 공간에서 M:N으로 다중화되는 수백 바이트 크기의 경량 스레드 (Java 21 표준).
 - **Continuation**: 실행 중인 코드의 호출 스택과 연산 상태를 일시 중단(`yield`)하여 힙 메모리에 저장하고 나중에 복원하는 기제.
 
 </details>
@@ -42,8 +42,8 @@ extra:
 
 </details>
 
-- 스레드 생성 비용이 극소화(수백 바이트)되어 **스레드 풀링 없이 요청당 스레드(Thread-per-Request)** 생성
-- I/O 대기 시 **언마운트(Unmount)** 로 캐리어 스레드를 즉시 반납하여 CPU 가동률 극대화
+- 스레드 생성 비용이 최소화(수백 바이트)되어 **스레드 풀링 없이 요청당 스레드(Thread-per-Request)** 생성
+- I/O 대기 시 **언마운트(Unmount)** 로 캐리어 스레드를 즉시 반납하여 CPU 가동률 향상
 - Reactive WebFlux의 복잡한 콜백 없이 **직관적인 동기식 블로킹 코드 스타일** 그대로 유지
 
 #### 한줄 요약
@@ -135,7 +135,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **ReentrantLock**: `synchronized`와 달리 가상 스레드가 락 획득 대기 중에도 캐리어 스레드를 언마운트할 수 있는 Java 표준 동시성 유틸리티.
-- **Scoped Values**: 수백만 가상 스레드 환경에서 `ThreadLocal`의 메모리 복사 및 불변성 누수를 방지하는 초경량 컨텍스트 전파 기법.
+- **Scoped Values**: 수백만 가상 스레드 환경에서 `ThreadLocal`의 메모리 복사 및 불변성 누수를 방지하는 경량 컨텍스트 전파 기법.
 
 </details>
 
@@ -151,8 +151,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 Java 21+ 및 고성능 백엔드 아키텍처의 **표준 초경량 동시성 실행 모델**로 확립
+- 현대 Java 21+ 및 고성능 백엔드 아키텍처의 **표준 경량 동시성 실행 모델**로 확립
 - 실무 엔터프라이즈 환경에서는 I/O 블로킹 중심 웹/마이크로서비스에 **가상 스레드**(Thread-per-Request)를 기본 적용하고, 캐리어 스레드 고착을 막기 위한 `synchronized` $\to$ `ReentrantLock` 전환, 하위 DB 커넥션 보호를 위한 세마포어 유량 제어, 불변 컨텍스트 전파를 위한 Scoped Values를 결합한 시스템 설계 체계 구축
 
 #### 한줄 요약
-- 동기식 코드의 직관성을 유지하며 대규모 I/O 처리를 지원하는 Java 21 가상 스레드 기반 수백만 동시성 실현 체계 구축
+- Continuation 기반 힙 스택 관리와 M:N 다중화 원리를 바탕으로, ReentrantLock 전환과 세마포어 유량 제어를 적용하여 캐리어 피닝을 방지하고 고동시성 처리량을 확보하도록 설계한다.

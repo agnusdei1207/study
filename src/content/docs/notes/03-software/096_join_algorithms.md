@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "조인 알고리즘: NLJ•Hash Join•Merge Join (Join Algorithms)"
-date: "2026-09-14T09:40:00+09:00"
+date: "2026-09-14T16:53:00+09:00"
 tags:
   - "notes-software"
 weight: 96
@@ -141,7 +141,7 @@ extra:
 |:---|:---|:---|
 | NLJ 수행 시 대용량 테이블이 Driving으로 잘못 선택 | `LEADING(u)` 힌트 또는 서브쿼리로 소용량 드라이빙 강제 | 조인 루프 횟수 및 인덱스 탐색 비용 급감 |
 | Driven 테이블의 조인 키 인덱스 부재로 NLJ 성능 폭락 | **Driven** 컬럼에 B+Tree 인덱스 생성 또는 **Hash Join**으로 전환 | 인덱스 스캔 복원 및 쿼리 속도 10배 향상 |
-| Hash Join 시 메모리 초과로 디스크 스필(Disk Spill) 발생 | `join_buffer_size` 확장 및 WHERE 절 선필터링으로 Build 축소 | 디스크 I/O 병목 원천 차단 |
+| Hash Join 시 메모리 초과로 디스크 스필(Disk Spill) 발생 | `join_buffer_size` 확장 및 WHERE 절 선필터링으로 Build 축소 | 디스크 I/O 병목 방지 |
 | 대용량 데이터에서 잘못된 Sort Merge Join으로 CPU 과부하 | 인덱스 활용 또는 **Hash Join** 강제 힌트(`/*+ USE_HASH(o) */`) | 무거운 디스크 정렬(filesort) 제거 |
 
 #### 한줄 요약
@@ -161,4 +161,4 @@ extra:
 - **워크로드별 조인 분리와 디스크 스필 통제 결단**: 실시간 웹 트랜잭션은 소용량 드라이빙과 드리븐 인덱스 기반의 **중첩 루프 조인**(NLJ)을 적용하되, 대규모 **온라인 분석 처리**(OLAP) 집계에는 조인 버퍼 확장을 통해 디스크 스필(Disk Spill)을 차단한 인메모리 **해시 조인**(Hash Join)을 유도하는 워크로드 격리 거버넌스 확보
 
 #### 한줄 요약
-- 조인 알고리즘은 분산 셔플 및 SIMD 벡터화 엔진으로 진화하고 있으며, OLTP용 NLJ와 OLAP용 인메모리 해시 조인의 워크로드 분리 통제 체계 구축
+- 데이터 규모와 인덱스 유무 및 조인 조건을 바탕으로 최적의 조인 알고리즘(NLJ·Hash·Merge)을 선택하고, 드라이빙 테이블 통제와 버퍼 확보를 통해 조인 연산 처리 성능을 최적화한다.

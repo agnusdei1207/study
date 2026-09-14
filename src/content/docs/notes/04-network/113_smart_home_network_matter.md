@@ -38,7 +38,7 @@ extra:
 <details><summary>용어 설명</summary>
 
 - **Multi-Admin (다중 관리자)**: 단일 Matter 기기를 Apple HomeKit, Google Home, Samsung SmartThings 등 복수의 스마트 홈 플랫폼에 동시 등록하여 제어하는 기능.
-- **Local Control (로컬 완결 제어)**: 외부 클라우드 서버와의 통신 없이 댁내 로컬 IPv6 네트워크 내에서 100% 기기 제어를 완결하는 오프라인 자율성.
+- **Local Control (로컬 완결 제어)**: 외부 클라우드 서버와의 통신 없이 댁내 로컬 IPv6 네트워크 내에서 자체적으로 기기 제어를 완결하는 오프라인 자율성.
 
 </details>
 
@@ -105,10 +105,10 @@ extra:
   └─ [NOC 발급 및 패브릭 가입] (④ 운영 인증서 NOC 발급 후 패브릭에 가입, 제어 가능)
 ```
 
-분기 결과: DAC 서명·인증서 체인 검증 여부가 패브릭 가입과 거부를 가르며, 제조 단계 증명을 요구하는 대가로 위조 기기의 진입을 원천 차단하는 대신 DCL 조회와 인증서 검증 왕복 지연이 커미셔닝 시간에 더해진다.
+분기 결과: DAC 서명·인증서 체인 검증 여부가 패브릭 가입과 거부를 가르며, 제조 단계 증명을 요구하는 대가로 위조 기기의 진입을 효과적으로 방지하는 대신 DCL 조회와 인증서 검증 왕복 지연이 커미셔닝 시간에 더해진다.
 
 #### 한줄 요약
-- DAC 검증에서 패브릭 가입과 거부로 갈리며, 제조 단계 인증서를 요구하는 대가로 위조 기기의 진입을 원천 차단한다.
+- DAC 검증에서 패브릭 가입과 거부로 갈리며, 제조 단계 인증서를 요구하는 대가로 위조 기기의 진입을 효과적으로 차단한다.
 
 ## Ⅴ. 종류 및 비교
 
@@ -149,8 +149,15 @@ extra:
 
 ## Ⅶ. 결론
 
-- 제조사별 파편화와 전용 허브의 장벽을 허물고 전 세계 가전 및 IoT 기기를 단일 표준 생태계로 통합하는 **차세대 스마트 홈 및 건물 IoT 자동화의 절대적 사실상 표준(De-facto Standard) 상호운용성 프로토콜(CSA Matter)**로 안착.
-- 에너지 관리(Matter 1.3+) 및 공간 지능 AI와의 결합으로 진화하는 가운데, 실무 Matter 네트워크 구축 시에는 **저전력 센서 노드를 위한 Thread 메시망과 고대역 Wi-Fi/Ethernet을 무단절 연결하는 Thread Border Router 배치**, **mDNS 멀티캐스트 폭주를 차단하는 DNS-SD Discovery Proxy 적용**, **위조 기기 진입을 방지하는 Secure Element 기반 DAC(Device Attestation Certificate) 및 분산 컴플라이언스 원장(DCL) 검증 체계**를 결합하여 완벽한 스마트 홈 신뢰성을 완성.
+<details><summary>용어 설명</summary>
+
+- **SED (Sleepy End Device)**: 배터리 소모를 극소화하기 위해 평소에는 수신 라디오를 끄고 절전 수면 상태를 유지하다가 필요 시에만 주기적으로 기상하는 저전력 노드.
+- **ICD (Intermittent Connected Device)**: Matter 1.2+ 규격에서 도입된 간헐적 연결 기기 사양으로, 배터리 구동 센서와 도어록 등의 긴 대기 시간을 지원하기 위한 전력 최적화 프로파일.
+
+</details>
+
+- 제조사별 파편화와 전용 허브의 장벽을 허물고 전 세계 가전 및 IoT 기기를 단일 표준 생태계로 통합하는 **차세대 스마트 홈 및 건물 IoT 자동화의 대표적인 상호운용성 프로토콜(CSA Matter)**로 안착.
+- 에너지 관리(Matter 1.3+) 및 공간 지능 AI와의 결합으로 진화하는 가운데, 실무 Matter 네트워크 구축 시에는 **저전력 센서 노드를 위한 Thread 메시망과 고대역 Wi-Fi/Ethernet을 무단절 연결하는 Thread Border Router 배치**, **mDNS 멀티캐스트 폭주를 차단하는 DNS-SD Discovery Proxy 적용**, **위조 기기 진입을 방지하는 Secure Element 기반 DAC(Device Attestation Certificate) 및 분산 컴플라이언스 원장(DCL) 검증 체계**를 결합하여 스마트 홈 네트워크의 신뢰성과 보안성을 확보해야 한다.
 
 #### 한줄 요약
-- Matter는 IPv6 기반 공통 데이터 모델과 Multi-Admin 및 Thread 메시망을 통해 플랫폼 종속 없는 차세대 스마트 홈 표준을 완성한다.
+- Matter는 IPv6 기반 공통 데이터 모델과 Multi-Admin 및 Thread 메시망을 통해 플랫폼 종속 없는 차세대 스마트 홈 네트워크 환경을 구축해야 한다.

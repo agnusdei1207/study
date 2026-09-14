@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "NoSQL 유형: 문서•키값•컬럼•그래프 (NoSQL Types)"
-date: "2026-09-07T10:05:00+09:00"
+date: "2026-09-14T16:57:00+09:00"
 tags:
   - "notes-software"
 weight: 102
@@ -100,7 +100,7 @@ extra:
 ```text
 [데이터 저장소 선정 파이프라인] (진행 ①→④ 순차 판정, 전부 아니오 시 RDBMS로 수렴)
   │
-  ├─ [Key-Value Store] (① O(1) 단순 키 초고속 읽기·쓰기 필요, Redis)
+  ├─ [Key-Value Store] (① O(1) 단순 키 고속 읽기·쓰기 필요, Redis)
   │
   ├─ [Document Store] (② 중첩 복합 객체·유연한 스키마 필요, MongoDB)
   │
@@ -154,8 +154,8 @@ extra:
 
 ## Ⅶ. 결론
 
-- 현대 분산 클라우드 아키텍처 및 대용량 데이터 처리의 **핵심 비관계형 영속성 모델**로 확립.
-- 실무 구축 시에는 **단일 만능 DB 사상 탈피**, **RDBMS(결제/원장)와 함께 Key-Value(캐시/세션: Redis), Document(카탈로그/콘텐츠: MongoDB), Wide-Column(시계열/로그: Cassandra), Graph(추천/관계망: Neo4j)의 유기적 조합**, **폴리글랏 지속성(Polyglot Persistence) 전략 수립**을 결합하여 시스템 확장성과 개발 민첩성을 극대화.
+- **핵심 비관계형 영속성 모델 확립**: 현대 분산 클라우드 아키텍처 및 대용량 데이터 처리를 위한 비관계형 영속성 모델 정립
+- **폴리글랏 지속성 전략 수립**: 단일 만능 DB 사상 탈피 및 도메인별 4대 NoSQL·RDBMS 조합 기반 **폴리글랏 지속성**(Polyglot Persistence) 전략 수립을 통한 시스템 확장성·개발 민첩성 향상
 
 #### 한줄 요약
-- 4대 NoSQL 모델은 데이터 구조와 접근 패턴에 특화된 비관계형 솔루션이며, 폴리글랏 아키텍처를 통해 최적의 시스템 확장을 실현한다.
+- 도메인의 데이터 구조와 질의 접근 패턴을 바탕으로 4대 NoSQL 모델(Key-Value, Document, Wide-Column, Graph)을 선별하고, RDBMS와 결합한 폴리글랏 지속성을 구현하여 시스템의 확장성과 성능을 최적화한다.

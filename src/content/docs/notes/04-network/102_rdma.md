@@ -28,7 +28,7 @@ extra:
 </details>
 
 - 정의/개념: RNIC가 **커널 우회·제로 카피**로 원격 메모리에 직접 전송
-- 배경/필요성: 초거대 AI 모델 분산 훈련(LLM Training) 및 고성능 컴퓨팅(HPC) 환경에서 수만 개의 GPU/서버가 초당 테라바이트급 텐서(Tensor) 데이터를 교환할 때, 전통적인 소켓 기반 TCP/IP 네트워크 스택은 잦은 OS 시스템 콜, 다단계 메모리 복사(User Space $\leftrightarrow$ Kernel Buffer) 및 인터럽트 컨텍스트 스위칭으로 인해 극심한 CPU 오버헤드와 수십 마이크로초($\mu s$) 수준의 통신 지연(Latency Bottleneck)을 초래함에 따라, OS 커널과 호스트 CPU의 개입 없이 네트워크 인터페이스 카드(RNIC)가 원격 노드의 물리 메모리에 직접 DMA 방식으로 읽기/쓰기를 수행하는 RDMA(Remote Direct Memory Access) 기술을 도입하여 **커널 우회(Kernel Bypass) 및 제로 카피(Zero-Copy) 기반 극단적 통신 지연 단축($\le 1\mu s$), 호스트 CPU 사용률 0% 수렴 및 초고속 대규모 AI 클러스터 확장성**을 달성할 필요
+- 배경/필요성: 초거대 AI 모델 분산 훈련(LLM Training) 및 고성능 컴퓨팅(HPC) 환경에서 수만 개의 GPU/서버가 초당 테라바이트급 텐서(Tensor) 데이터를 교환할 때, 전통적인 소켓 기반 TCP/IP 네트워크 스택은 잦은 OS 시스템 콜, 다단계 메모리 복사(User Space $\leftrightarrow$ Kernel Buffer) 및 인터럽트 컨텍스트 스위칭으로 인해 극심한 CPU 오버헤드와 수십 마이크로초($\mu s$) 수준의 통신 지연(Latency Bottleneck)을 초래함에 따라, OS 커널과 호스트 CPU의 개입 없이 네트워크 인터페이스 카드(RNIC)가 원격 노드의 물리 메모리에 직접 DMA 방식으로 읽기/쓰기를 수행하는 RDMA(Remote Direct Memory Access) 기술을 도입하여 **커널 우회(Kernel Bypass) 및 제로 카피(Zero-Copy) 기반 통신 지연 단축($\le 1\mu s$), 호스트 CPU 부하의 대폭 절감 및 대규모 AI 클러스터 확장성**을 달성할 필요
 
 #### 한줄 요약
 - 커널 우회, 제로 카피, CPU 오프로드를 통해 마이크로초 미만의 초저지연 메모리 전송을 실현한다.
@@ -149,8 +149,16 @@ extra:
 
 ## Ⅶ. 결론
 
-- CPU와 OS 커널의 소프트웨어 병목을 물리적으로 우회하여 통신 대역폭을 하드웨어 와이어 속도(Wire-Speed)까지 끌어올리는 **AI/ML 분산 가속, 대규모 HPC 및 클라우드 초고속 스토리지(NVMe-oF)의 절대적 핵심 통신 표준 기술**로 확고히 정립.
-- RoCEv2, Ultra Ethernet 및 CXL 패브릭과의 결합으로 진화하는 가운데, 실무 RDMA 클러스터 구축 시에는 **인터럽트 지연을 제거하는 완료 큐(CQ) 폴링 루프 및 버퍼 수명주기 동기화**, **수만 개 노드 연결 시 RNIC 메모리(MTT) 고갈을 방지하는 공유 수신 큐(SRQ) 및 온디맨드 페이징(ODP) 적용**, **이더넷 상의 패킷 유실을 방지하는 무손실 PFC(Priority-based Flow Control) 및 DCQCN 혼잡 제어 튜닝**을 결합하여 완벽한 초저지연 통신 신뢰성을 완성.
+<details><summary>용어 설명</summary>
+
+- **NVMe-oF (NVMe over Fabrics)**: 플래시 스토리지 전용 NVMe 명령어를 RDMA, 파이버 채널 또는 TCP 패브릭을 통해 원격으로 확장하여 초저지연 SAN을 구현하는 프로토콜.
+- **Ultra Ethernet (UEC)**: AI 및 고성능 컴퓨팅 워크로드의 대규모 분산 통신을 위해 기존 이더넷을 개선하여 무손실 전송과 패킷 스프레이를 표준화하는 차세대 컨소시엄 규격.
+- **CXL (Compute Express Link)**: CPU, GPU, 메모리, 가속기 간의 초고속·저지연 캐시 일관성(Cache Coherency) 및 메모리 풀링을 지원하는 개방형 산업 표준 인터커넥트.
+
+</details>
+
+- CPU와 OS 커널의 소프트웨어 병목을 물리적으로 우회하여 통신 대역폭을 하드웨어 와이어 속도(Wire-Speed)까지 끌어올리는 **AI/ML 분산 가속, 대규모 HPC 및 클라우드 초고속 스토리지(NVMe-oF)의 핵심 통신 표준 기술**로 확고히 정립.
+- RoCEv2, Ultra Ethernet 및 CXL 패브릭과의 결합으로 진화하는 가운데, 실무 RDMA 클러스터 구축 시에는 **인터럽트 지연을 제거하는 완료 큐(CQ) 폴링 루프 및 버퍼 수명주기 동기화**, **수만 개 노드 연결 시 RNIC 메모리(MTT) 고갈을 방지하는 공유 수신 큐(SRQ) 및 온디맨드 페이징(ODP) 적용**, **이더넷 상의 패킷 유실을 방지하는 무손실 PFC(Priority-based Flow Control) 및 DCQCN 혼잡 제어 튜닝**을 결합하여 초저지연 통신의 신뢰성과 안정성을 확보해야 한다.
 
 #### 한줄 요약
-- **커널 우회·제로 카피**로 CPU 병목 제거
+- 커널 우회와 제로 카피 및 CPU 오프로드를 결합하여 AI 클러스터의 초저지연 통신 인프라를 구축해야 한다.

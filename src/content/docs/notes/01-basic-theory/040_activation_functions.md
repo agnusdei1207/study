@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 30%"
     variant: note
 title: "활성화 함수: ReLU•Sigmoid•Tanh (Activation Functions)"
-date: "2026-09-14T09:07:00+09:00"
+date: "2026-09-14T14:37:00+09:00"
 tags:
   - "notes-basic-theory"
 weight: 40
@@ -154,7 +154,7 @@ extra:
 | Sigmoid의 은닉층 적용 시 **심각한 기울기 소실** | 은닉층을 **ReLU / GELU**로 전면 교체 | 심층망(100+ 층) 안정적 학습 보장 |
 | ReLU 음수 구간 뉴런 불능화인 **Dying ReLU 현상** | **Leaky ReLU ($\alpha=0.01$) 또는 ELU / GELU** 채택 | 음수 영역 미세 기울기 보존 |
 | 큰 가중치로 인한 활성화 함수의 **극단 포화** | **배치 정규화(BatchNorm)** 및 He/Xavier 초기화 | 가중합 $z$ 분포 안정화 |
-| 트랜스포머 언어 모델의 확률적 활성화 요구 | **GELU (Gaussian Error Linear Unit)** 적용 | LLM/BERT 자연어 표현력 극대화 |
+| 트랜스포머 언어 모델의 확률적 활성화 요구 | **GELU (Gaussian Error Linear Unit)** 적용 | LLM/BERT 자연어 표현력 확보 |
 
 #### 한줄 요약
 
@@ -164,15 +164,15 @@ extra:
 
 <details><summary>용어 설명</summary>
 
-- **스위시 게이트 선형 유닛(Swish Gated Linear Unit, SwiGLU)**: Swish 활성화와 선형 투영의 요소별 곱(Hadamard Product)을 결합하여 매개변수 표현력을 극대화한 최신 거대 언어 모델(LLaMA 등)의 표준 활성화 함수.
+- **스위시 게이트 선형 유닛(Swish Gated Linear Unit, SwiGLU)**: Swish 활성화와 선형 투영의 요소별 곱(Hadamard Product)을 결합하여 매개변수 표현력을 확장한 최신 거대 언어 모델(LLaMA 등)의 표준 활성화 함수.
 - **계층 정규화(Layer Normalization, LayerNorm)**: 미니배치 독립적으로 각 입력 샘플의 은닉 차원 평균과 분산을 정규화하여 활성화 함수의 극단 포화를 방지하는 신경망 정규화 기법.
-- **루트 평균 제곱 정규화(Root Mean Square Normalization, RMSNorm)**: 평균 중심화 연산을 생략하고 제곱평균제곱근(RMS)만을 기반으로 입력 크기를 재조정하여 연산 효율을 극대화한 트랜스포머 정규화 기법.
+- **루트 평균 제곱 정규화(Root Mean Square Normalization, RMSNorm)**: 평균 중심화 연산을 생략하고 제곱평균제곱근(RMS)만을 기반으로 입력 크기를 재조정하여 연산 효율을 높인 트랜스포머 정규화 기법.
 
 </details>
 
-- 전통적 ReLU/Sigmoid 은닉층을 넘어, 현대 트랜스포머 및 초대규모 언어 모델(LLM)에서는 게이트 표현력을 극대화한 **스위시 게이트 선형 유닛**과 **루트 평균 제곱 정규화**의 결합 구조로 확장 진화 추세
+- 전통적 ReLU/Sigmoid 은닉층을 넘어, 현대 트랜스포머 및 대규모 언어 모델(LLM)에서는 게이트 표현력을 높인 **스위시 게이트 선형 유닛**과 **루트 평균 제곱 정규화**의 결합 구조로 확장 진화 추세
 - 실무에서는 출력층 목적에 부합하는 활성화를 엄격히 구분하고 심층 은닉층의 **Dying ReLU**를 방지해야 하며, 저정밀도(FP16/BF16) 환경에서 수치 오버플로를 억제하는 **활성화-정규화 파이프라인** 설계 체계 구축
 
 #### 한줄 요약
 
-- SwiGLU 및 RMSNorm 등 파운데이션 모델 아키텍처로 진화하는 활성화 함수 원리를 정립하고, 기울기 소실 방지와 수치 안정성을 담보하는 아키텍처 결단 기준 정립
+- SwiGLU 및 RMSNorm 등 파운데이션 모델 아키텍처로 진화하는 활성화 함수 원리를 바탕으로, 기울기 소실을 방지하고 수치 안정성을 확보한다.
