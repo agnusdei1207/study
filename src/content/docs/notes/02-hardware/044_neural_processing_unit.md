@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 85%"
     variant: note
 title: "NPU (Neural Processing Unit)"
-date: "2026-09-07T09:40:00+09:00"
+date: "2026-09-14T09:23:00+09:00"
 tags:
   - "notes-hardware"
 weight: 44
@@ -159,8 +159,8 @@ extra:
 
 </details>
 
-- **온디바이스 생성형 AI 및 전용 엔진 진화**: 스마트폰과 AI PC 환경의 실시간 추론을 지원하기 위해 소형 거대 언어 모델(Small Large Language Model, sLLM) 전용 어텐션 가속 엔진(Attention Accelerator Engine) 및 INT4/FP8 초저비트 하드웨어 융합 추세.
-- **실무 컴파일러 최적화 및 폴백 방어 통찰**: 엣지 배포 시 양자화 인식 훈련(Quantization-Aware Training, QAT)을 통한 추론 정밀도 유지와 더불어, 서브그래프 분할 최적화를 통해 CPU/GPU 폴백(Fallback) 지연을 원천 격리하는 아키텍처 역량 확보 필수.
+- **온디바이스 생성형 AI 및 전용 엔진 진화**: 스마트폰과 AI PC 실시간 추론 지원을 위한 **소형 거대 언어 모델**(sLLM) 전용 **어텐션 가속 엔진**(Attention Accelerator Engine) 및 INT4/FP8 초저비트 하드웨어 융합 가속화
+- **실무 컴파일러 최적화 및 폴백 방어 통찰**: 엣지 배포 시 **양자화 인식 훈련**(QAT) 기반 정밀도 유지 및 서브그래프 분할 최적화를 통한 CPU/GPU 폴백(Fallback) 지연 원천 격리 체계 정립
 
 #### 한줄 요약
-- sLLM 대응 어텐션 가속 엔진과 저비트 연산으로 고도화되고 있으며, QAT 정밀도 방어와 CPU 폴백 제로화를 이끄는 컴파일러 최적화가 핵심이다.
+- sLLM 대응 어텐션 가속 엔진 진화 및 QAT 정밀도 방어·CPU 폴백 격리 최적화

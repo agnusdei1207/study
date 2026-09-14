@@ -6,7 +6,7 @@ sidebar:
     text: "기출 · 50%"
     variant: note
 title: "SoC 시스템온칩 (System on Chip)"
-date: "2026-09-07T09:40:00+09:00"
+date: "2026-09-14T09:21:00+09:00"
 tags:
   - "notes-hardware"
 weight: 38
@@ -155,8 +155,8 @@ extra:
 
 </details>
 
-- **모듈형 칩렛 아키텍처 진화**: 모놀리식 단일 다이의 레티클 면적 및 수율 한계를 극복하기 위해, 이종 공정 다이를 결합하는 칩렛(Chiplet) 구조와 범용 칩렛 인터커넥트(Universal Chiplet Interconnect Express, UCIe) 표준 패브릭으로의 패러다임 전환.
-- **실무 검증 및 위험 통제 통찰**: 나노미터급 공정 테이프아웃(Tape-out) 실패 비용을 통제하기 위해, 디지털 트윈/가상 프로토타입(Digital Twin / Virtual Prototype) 기반 HW/SW 동시 사전 검증(Co-verification) 및 도메인별 전력 무결성 확보 필수.
+- **모듈형 칩렛 아키텍처 진화**: 모놀리식 단일 다이의 레티클 면적 및 수율 한계를 극복하기 위해, 이종 공정 다이를 결합하는 칩렛(Chiplet) 구조와 범용 칩렛 인터커넥트(Universal Chiplet Interconnect Express, UCIe) 표준 패브릭으로의 패러다임 전환
+- **실무 검증 및 위험 통제 통찰**: 나노미터급 공정 테이프아웃(Tape-out) 실패 비용을 통제하기 위해, 디지털 트윈/가상 프로토타입(Digital Twin / Virtual Prototype) 기반 HW/SW 동시 사전 검증(Co-verification) 및 도메인별 전력 무결성 확보 기준 정립
 
 #### 한줄 요약
-- 단일 다이 한계를 넘어 UCIe 기반 칩렛 모듈화로 진화하고 있으며, 막대한 마스크 재제작 리스크를 차단하기 위한 디지털 트윈 기반 HW/SW 동시 사전 검증이 핵심이다.
+- 단일 다이 한계를 넘어 UCIe 기반 칩렛 모듈화로 진화하고 있으며, 막대한 마스크 재제작 리스크를 차단하기 위한 디지털 트윈 기반 HW/SW 동시 사전 검증 기준 정립
