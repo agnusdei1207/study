@@ -6,9 +6,9 @@ sidebar:
     text: "기출 · 70%"
     variant: note
 title: "OPC UA 산업 표준 통신 (OPC Unified Architecture)"
-date: "2026-09-07T16:00:00+09:00"
+date: "2026-09-15T11:50:00+09:00"
 tags:
-  - "notes-latest-tech"
+  - "notes-latest_tech"
 weight: 202
 extra:
   question_no: "202"
@@ -20,164 +20,83 @@ extra:
 
 ## Ⅰ. 개요
 
-<details><summary>용어 설명</summary>
-
-- **OPC 통합 아키텍처(OPC Unified Architecture, OPC UA)**: 산업 데이터의 의미•통신•보안을 통합하여 이기종 설비의 상호운용을 지원하는 표준이다.
-
-</details>
-
-- 정의: 산업 데이터의 의미•통신•보안을 통합한 **OPC UA** 상호운용 표준
-- 배경/필요성: 스마트 팩토리 및 스마트 제조 현장에서 지멘스(Siemens), 미쓰비시(Mitsubishi), 로크웰(Rockwell) 등 다수 벤더의 이기종 PLC, 센서, SCADA 장비가 각기 다른 독점(Proprietary) 필드버스 프로토콜과 단순 원시 데이터(Raw Tag Value)만을 사용하여, 상호 통신 시 복잡한 프로토콜 변환 게이트웨이가 필수적이고 데이터의 문맥적 의미(Contextual Semantics)가 상실되며 윈도우 OS 종속성(DCOM 취약점)에 노출되는 한계에 직면함에 따라, OPC Foundation에서 제정하고 IEC 62541 국제 표준으로 등록된 플랫폼 독립적 개방형 산업 상호운용성 표준인 OPC UA(OPC Unified Architecture / IEC 62541 Standard / AddressSpace Information Model: Object, Variable, Method, Reference, Semantic Typing / Client-Server & PubSub with TSN / Multi-layer Security: X.509 Certificate, Encryption, Signing, User Auth / Cross-platform: C, Java, .NET / Companion Specifications: Euromap, PackML) 규격을 도입하여 **노드 및 객체 지향 주소 공간(AddressSpace)을 통한 원시 데이터를 넘어선 풍부한 의미론적 메타데이터(Semantic Information)의 벤더 무관 표준 교환, 세션 기반 Client-Server 방식과 마이크로초 단위 초저지연 결정론적 통신(PubSub over TSN) 동시 지원, X.509 인증서 기반의 종단 간 강력한 암호화/무결성 검증을 통한 OT-IT 융합 보안**을 달성할 필요
-
-#### 한줄 요약
-
-- 서로 다른 제조사의 장비가 공통 사전과 통신 규칙을 사용하여 값뿐 아니라 값의 의미까지 교환하는 방식이다.
+- **정의**: 제조 및 산업 자동화 환경에서 이종 설비·시스템 간 데이터의 구문론적(Syntax) 교환을 넘어 객체 지향적 의미론(Semantics), 플랫폼 독립적 통신, 종단 간 다계층 보안을 통합 제공하는 개방형 산업 통신 표준 (IEC 62541)
+- **배경 및 필요성**: 다양한 제조사(Siemens, Rockwell, Mitsubishi 등)의 이기종 제어기가 제각기 독점 프로토콜을 사용함에 따른 데이터 사일로와 문맥 상실, DCOM 기반 레거시 OPC의 윈도우 OS 종속성 및 보안 취약점을 극복하고, 현장 센서부터 클라우드 엔터프라이즈까지 단일 의미 체계로 안전하게 직결할 필요
 
 ## Ⅱ. 특징
 
-<details><summary>용어 설명</summary>
-
-- **의미 기반 정보 모델**: 설비 객체를 노드•속성•참조 관계로 표현해 값의 의미까지 교환하게 하는 모델이다.
-- **클라이언트-서버(Client-Server)**: 클라이언트가 서버 기능을 호출하는 세션 기반 통신 모델이다.
-- **발행-구독(Publish-Subscribe, PubSub)**: 게시자가 발행한 데이터셋을 다수 구독자가 수신하는 통신 모델이다.
-
-</details>
-
-- 노드•속성•참조로 설비를 표현하는 **의미 기반 정보 모델**
-- 클라이언트-서버•**PubSub**를 지원하는 **복수 통신 모델**
-- 인증•서명•암호화•권한 제어를 제공하는 **통합 보안**
-#### 한줄 요약
-
-- 제조사가 다른 설비도 같은 의미 체계와 보안 규칙으로 데이터를 주고받게 한다.
+- **시맨틱 정보 모델**: 주소 공간(AddressSpace) 내에 노드·속성·참조를 정의하여 단순 태그 값을 넘어 엔지니어링 단위, 데이터 타입, 장비 계층 관계 등 의미론적 메타데이터를 함께 전달
+- **복수 통신 모델 지원**: 일대일 질의응답 및 원격 제어를 위한 세션 기반 Client-Server 모델과 초저지연·다자간 실시간 배포를 위한 PubSub over TSN 모델을 동시 지원
+- **플랫폼 독립 및 내재 보안**: 임베디드 OS부터 리눅스, 윈도우, 클라우드까지 범용 실행 가능하며, X.509 인증서 기반 암호화·전자서명·사용자 인가를 프로토콜 자체에 내장
 
 ## Ⅲ. 구조 및 구성요소
 
-<details><summary>용어 설명</summary>
-
-- **주소 공간(AddressSpace)**: 설비 객체와 그 관계를 노드•속성•참조로 표현하는 OPC 통합 아키텍처의 정보 공간이다.
-- **클라이언트(Client)**: 서버의 주소 공간을 탐색하고 읽기•쓰기•구독을 요청하는 주체이다.
-- **서버(Server)**: 주소 공간과 세션•서비스를 제공하는 주체이다.
-- **발행자(Publisher)**: 데이터셋 메시지를 생성해 전송하는 주체이다.
-- **구독자(Subscriber)**: 관심 데이터셋 메시지를 비동기로 수신하는 주체이다.
-- **정보 모델**: 공통 타입•객체•변수•참조로 설비의 의미와 관계를 상호운용 가능하게 표현한 규약이다.
-- **인증서•신뢰 체계**: 애플리케이션 신원과 보안 채널을 검증하고 메시지를 서명•암호화하는 보안 기반이다.
-
-</details>
-
 ```text
-[OPC UA 통합 아키텍처]
-├── [클라이언트-서버 모델]
-│   ├── [Client]
-│   └── [Server]
-├── [정보 모델 계층]
-│   └── [AddressSpace]
-├── [PubSub 통신 모델]
-│   ├── [Publisher]
-│   └── [Subscriber]
-└── [보안 인프라]
-    └── [인증서•신뢰 체계]
+[OPC UA IEC 62541 통합 아키텍처]
+├── [정보 모델 계층 (Information Model Layer)]
+│   ├── [주소 공간 (AddressSpace)] (노드, 속성, 참조 관계로 구조화)
+│   ├── [노드 클래스 (NodeClasses)] (Object, Variable, Method, DataType)
+│   └── [동반 명세 (Companion Specs)] (Euromap, PackML, Robotics 표준 모델)
+├── [통신 프로토콜 계층 (Communication Layer)]
+│   ├── [Client-Server 세션 모델] (TCP/Binary, HTTPS, WebSockets 기반 요청-응답)
+│   └── [PubSub 브로커/브로커리스] (UDP Multicast/TSN 결정론적 전송, MQTT 연계)
+└── [보안 아키텍처 계층 (Security Architecture)]
+    ├── [보안 채널 (Secure Channel)] (TLS/X.509 인증서 기반 서명 및 암호화)
+    └── [사용자 인증/인가] (Anonymous, ID/PW, X.509, JSON Web Token)
 ```
 
-- 선의 의미: 계층 구조 및 상하위 포함 관계를 나타낸다.
+- 선들의 의미: 실선(──)과 가지선(├──, └──)은 계층적 하위 관계를 의미함
 
-| 구성요소 | 책임 |
-|:---|:---|
-| Client | **탐색•읽기•쓰기•구독** 요청 |
-| Server | **서비스**•**세션** 관리 |
-| AddressSpace | **노드•속성•참조 관계** 표현 |
-| Publisher | **DataSet 메시지 발행** |
-| Subscriber | **DataSet 메시지 수신** |
-| 인증서•신뢰 체계 | **인증서•키•권한** 관리 |
-
-#### 한줄 요약
-
-- AddressSpace가 값에 의미를 붙여 두기에 수신 측이 별도 매핑 없이 해석할 수 있고, **안전한 데이터셋 전달**은 그 의미를 훼손 없이 옮기는 통신 계층이 맡는다.
+| 계층/구성요소 | 세부 구성요소 | 핵심 역할 |
+|:---|:---|:---|
+| 정보 모델 계층 | AddressSpace, Node, Reference | 물리 설비와 공정을 노드와 객체 지향 링크로 추상화하여 시맨틱 표현 제공 |
+| 산업 표준 명세 | Companion Specifications | 반도체, 사출성형(Euromap), 포장(PackML) 등 도메인별 표준 객체 모델 정의 |
+| Client-Server 통신 | 세션 관리자, OPC UA TCP/Binary | 점대점 요청-응답, 메소드 원격 호출, 상태 변경 통지(MonitoredItems) 처리 |
+| PubSub 통신 | DataSetWriter, DataSetReader, TSN | 브로커리스 UDP 멀티캐스트 또는 MQTT 브로커를 통한 대규모 고속 배포 |
+| 보안 인프라 | GDS (Global Discovery Server), PKI | X.509 인증서 발급·폐기·신뢰 목록 배포 및 메시지 암호화/무결성 서명 |
 
 ## Ⅳ. 흐름도
 
-<details><summary>용어 설명</summary>
-
-- **보안 채널**: 인증서를 검증한 통신 주체 사이에서 메시지의 서명과 암호화를 제공하는 연결이다.
-
-</details>
-
 ```text
-[Client] ── Endpoint 탐색 요청 ──▶ [Server]
-[Client] ◀──── Endpoint 목록 ────── [Server]
-    │ 1. 보안 채널 요청
-    └─────────────────────────────▶ [Server]
-                                        │ 2. 인증서•정책 검증
-                                        ▼
-                              [인증서•신뢰 체계]
-                                        │ 검증 결과
-                                        ▼
-[Client] ◀── 3. 보안 채널•세션 수립 ── [Server]
-    │ 4. 탐색•읽기•구독 요청
-    └─────────────────────────────▶ [Server]
-                                        │ 5. 노드 조회•구독 등록
-                                        ▼
-                                  [AddressSpace]
-[Client] ◀── 서비스 결과•변경 통지 ─── [Server]
+[엔드포인트 탐색 요청] (① 클라이언트가 OPC UA 서버의 디스커버리 엔드포인트(/discovery)로 보안 정책 목록 질의)
+│
+▼
+[보안 채널 협상 및 인증서 교환] (② 클라이언트와 서버가 X.509 인증서를 교환하고 암호화 스위트(Basic256Sha256) 협상)
+│
+▼
+[보안 채널 및 세션 수립] (③ 서명/암호화 채널을 개설하고 사용자 자격증명(JWT/인증서)으로 인증 세션 생성)
+│
+▼
+[AddressSpace 노드 탐색 및 구독 요청] (④ Browse 서비스로 객체 트리를 탐색하고 관심 센서 변수에 대해 CreateSubscription 요청)
+│
+▼
+[데이터 샘플링 및 큐잉] (⑤ 서버가 지정된 샘플링 주기(예: 10ms)로 PLC 하드웨어 태그 값을 읽어 모니터링 큐에 적재)
+│
+▼
+[PublishResponse 변경 통지 전송] (⑥ 데이터 변경(DataChange) 또는 이벤트 발생 시 게시 응답 메시지로 클라이언트에 전송)
 ```
 
-### 동작 원리
-
-1. 보안 채널 요청: 보안 정책과 메시지 보호 방식 제안
-2. 인증서•정책 검증: 발급자•유효기간•폐기•신뢰 목록 확인
-3. 보안 채널•세션 수립: 서명•암호화와 사용자 인증 적용
-4. 탐색•읽기•구독 요청: 필요한 노드와 서비스 지정
-5. 노드 조회•구독 등록: AddressSpace에서 값과 변경 통지 연결
-
-#### 한줄 요약
-
-- 설비 탐색 후 **보안 채널•상태 변경 통지** 구성
+- 분기 결과: 정상 통신 시 실시간 변경 텔레메트리 스트리밍 수신, 세션 만료 또는 서명 불일치 시 보안 연결 즉시 해제 및 재인증 요구
 
 ## Ⅴ. 종류 및 비교
 
-<details><summary>용어 설명</summary>
-
-- **단순 태그 프로토콜**: 주소와 값 중심으로 설비 데이터를 교환하는 통신 방식이다.
-
-</details>
-
-| 구분 | OPC UA 클라이언트-서버 | OPC UA PubSub | 단순 태그 프로토콜 |
+| 구분 | OPC UA Client-Server | OPC UA PubSub over TSN | 레거시 Modbus/TCP |
 |:---|:---|:---|:---|
-| 적용 기준 | **질의•명령•상태 구독** | 다수 대상 **실시간 배포** | **단순 값 교환** |
-| 핵심 특징 | 세션 기반 **서비스 호출** | 송수신자 분리 **메시징** | **주소•값 중심 통신** |
-| 한계 | **연결•세션 관리** 부담 | **배포•키 관리** 필요 | **의미•보안 표준** 부족 |
-
-#### 한줄 요약
-
-- 두 통신 패턴은 같은 정보 모델을 요청 응답과 일방 배포 중 어느 비용 구조로 실어 나를지의 차이이며, 수신자가 늘수록 **PubSub** 쪽이 전송 비용을 참여자 수와 분리한다.
+| 통신 패러다임 | 점대점 세션 기반 요청-응답 | 발행-구독 (1:N 브로커리스 멀티캐스트) | 마스터-슬레이브 폴링 |
+| 실시간성/지연 | 수십 밀리초 (ms) 수준 | 마이크로초 ($\mu$s) 단위 확정적 지연 | 네트워크 부하에 따라 지연 가변 |
+| 데이터 표현력 | 완전한 객체 지향 시맨틱 정보 모델 | 인코딩된 바이너리/JSON 데이터셋 | 단순 16비트 레지스터 번호 나열 |
+| 보안 메커니즘 | X.509 인증서, 세션 암호화 내장 | 대칭키 기반 보안 그룹 키(SKS) 관리 | 보안 기능 없음 (평문 전송) |
+| 주 활용 분야 | SCADA-MES-ERP 상위 계층 연계 | 컨트롤러 간(C2C), 모션 제어 필드버스 | 단순 레거시 계측기 및 센서 연결 |
 
 ## Ⅵ. 실무 고려사항 및 대책
 
-<details><summary>용어 설명</summary>
-
-- **동반 명세(Companion Specification)**: 산업별 장비와 데이터의 공통 의미 모델을 정의해 공급사 간 해석 차이를 줄이는 명세이다.
-
-</details>
-
-| 문제 | 대책 | 효과 |
+| 문제점 | 대책 | 효과 |
 |:---|:---|:---|
-| 공급사별 **Namespace•모델 차이** | **Companion Specification**•매핑 규칙 적용 | 의미 **상호운용성 향상** |
-| 만료•미신뢰 **인증서 연결 중단** | **자동 갱신•신뢰 목록**과 폐기 절차 운영 | 안전한 **가용성 확보** |
-| 과도한 **쓰기•Method 권한** | 역할별 **노드•서비스 최소 권한** | **설비 오조작 방지** |
-
-#### 한줄 요약
-
-- 공통 정보 모델과 **인증서 신뢰 체계** 기반 안전한 설비 연동
+| 설비 제조사별 네임스페이스(Namespace) 및 태그 모델링 불일치 | 산업 도메인별 표준 Companion Specification 채택 및 전사 매핑 사전 구축 | 시맨틱 상호운용성 보장 및 상위 시스템 연동 시간 대폭 단축 |
+| 수천 대 설비의 X.509 인증서 만료 및 폐기 미흡으로 통신 단절 리스크 | GDS(Global Discovery Server) 기반 인증서 자동 발급·갱신(Push/Pull) 체계 구축 | 인증서 수작업 갱신 오류 제거 및 무중단 보안 가용성 확보 |
+| 클라이언트-서버 폴링 과다로 인한 임베디드 PLC의 CPU 오버헤드 급증 | 상태 변경 통지(MonitoredItems/Publish) 전환 및 고주파 데이터는 PubSub 분리 | 제어기 연산 부하 80% 이상 절감 및 실시간 제어 무결성 유지 |
 
 ## Ⅶ. 결론
 
-<details><summary>용어 설명</summary>
-
-- **통신 패턴**: 질의•명령•다수 배포처럼 데이터 교환 주체와 방향을 구분하는 기준이다.
-
-</details>
-
-- OT(제조 운영기술)와 IT(정보기술) 영역의 프로토콜 사일로를 허물고 Industry 4.0 및 스마트 팩토리 상호운용성을 실현하는 **글로벌 산업용 통신 및 의미론적 데이터 상호운용성의 최고 표준(OPC UA / IEC 62541 International Standard / Semantic AddressSpace & Companion Specs / Client-Server & PubSub over TSN / End-to-End Security Architecture)의 확고한 표준**으로 확고히 자리 잡았으며, 클라우드 네이티브 MQTT 브로커 및 산업용 AI 데이터 파이프라인과 결합 발전하는 가운데, 실무 OPC UA 구축 시에는 **산업 도메인별 Companion Specification을 활용하여 표준 정보 모델을 설계하고, 제어 트래픽에는 PubSub over TSN을, 상위 시스템 연계에는 Client-Server를 최적 분리 적용하며, X.509 인증서 자동 갱신(GDS) 및 최소 권한 접근 제어**를 결합하여 완벽한 산업 상호운용성과 공장망 사이버 보안을 완성
-
-#### 한줄 요약
-
-- 정보 모델과 **통신 패턴•인증서 신뢰** 공동 표준화
+- **기술 위상/발전**: Industry 4.0 및 스마트 팩토리의 상호운용성을 지탱하는 사실상의 국제 표준 산업 통신 백본이며, 최근에는 TSN(Time-Sensitive Networking) 및 클라우드 MQTT 연계와 결합하여 IT/OT 통합 백본으로 확장 중
+- **실무 적용/통제**: 장비 도입 시 도메인별 Companion Specification 준수 여부를 필수 검증하고, 제어 트래픽과 모니터링 트래픽의 전송 모드를 분리하되, GDS를 통한 인증서 수명주기 자동화 거버넌스를 갖출 필요
