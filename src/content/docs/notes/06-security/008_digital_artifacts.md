@@ -1,5 +1,6 @@
 ---
 title: "아티팩트(Artifact)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 100%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "137회, 140회, 121회, 126회, 130회"
   priority: 100

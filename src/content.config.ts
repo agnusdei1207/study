@@ -19,6 +19,7 @@ const docs = defineCollection({
           reference_status: z.string().optional(),
           priority: z.number().optional(),
           priority_note: z.string().optional(),
+          model: z.string().optional(),
         })
         .optional(),
     }),

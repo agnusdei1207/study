@@ -1,5 +1,6 @@
 ---
 title: "교착상태(Deadlock)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 81%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "101회, 116회, 124회"
   priority: 81

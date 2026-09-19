@@ -1,5 +1,6 @@
 ---
 title: "제로트러스트 가이드라인 2.0"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 87%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 87

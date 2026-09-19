@@ -1,5 +1,6 @@
 ---
 title: "인공지능 학습용 데이터 품질관리"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 100%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "126회, 128회, 131회, 139회, 140회"
   priority: 100

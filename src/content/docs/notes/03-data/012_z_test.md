@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 92%"
     variant: note
 title: "z-검정 (z-test)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 12
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "012"
   source_status: "기출"
   source_history: "132회, 131회, 125회, 121회"

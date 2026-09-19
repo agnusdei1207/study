@@ -1,5 +1,6 @@
 ---
 title: "AI 보안 안내서 (과기정통부·KISA)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 85%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 85

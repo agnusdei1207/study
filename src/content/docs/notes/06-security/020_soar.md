@@ -1,5 +1,6 @@
 ---
 title: "SOAR(Security Orchestration, Automation and Response)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 91%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "135회, 127회"
   priority: 91

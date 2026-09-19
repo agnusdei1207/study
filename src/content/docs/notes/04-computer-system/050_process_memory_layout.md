@@ -1,5 +1,6 @@
 ---
 title: "프로세스 메모리 영역(코드·데이터·힙·스택)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 80%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "138회"
   priority: 80

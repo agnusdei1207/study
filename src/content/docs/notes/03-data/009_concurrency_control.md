@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 96%"
     variant: note
 title: "동시성 제어 (Concurrency Control)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 9
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "009"
   source_status: "기출"
   source_history: "130회, 128회, 121회"

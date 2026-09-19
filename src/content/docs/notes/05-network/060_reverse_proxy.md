@@ -1,5 +1,6 @@
 ---
 title: "리버스 프록시(Reverse Proxy)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:51:00+09:00"
 tags:
   - "notes-network"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 70%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "110회, 128회"
   priority: 70

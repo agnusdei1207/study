@@ -1,5 +1,6 @@
 ---
 title: "에이전틱 RAG (Agentic RAG)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-latest-tech"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 85%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 85

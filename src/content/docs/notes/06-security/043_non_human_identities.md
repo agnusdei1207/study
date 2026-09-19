@@ -1,5 +1,6 @@
 ---
 title: "비인간 신원(NHI, Non-Human Identities)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 85%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "140회"
   priority: 85

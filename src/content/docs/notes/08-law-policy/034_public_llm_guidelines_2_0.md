@@ -1,5 +1,6 @@
 ---
 title: "공공부문 초거대 AI 도입·활용 가이드라인 2.0"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 75%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "137회"
   priority: 75

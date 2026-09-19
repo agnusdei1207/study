@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 96%"
     variant: note
 title: "데이터 표준화 (Data Standardization)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 8
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "008"
   source_status: "기출"
   source_history: "132회, 131회, 126회"

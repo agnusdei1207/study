@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 77%"
     variant: note
 title: "트랜잭션 (Transaction)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-data"
 weight: 78
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "078"
   source_status: "기출"
   source_history: "129회, 81회, 107회"

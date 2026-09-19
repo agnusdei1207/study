@@ -1,5 +1,6 @@
 ---
 title: "칩렛 / UCIe 3.0"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 85%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 85

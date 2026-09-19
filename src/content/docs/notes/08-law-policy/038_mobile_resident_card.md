@@ -1,5 +1,6 @@
 ---
 title: "모바일 주민등록증"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 75%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 75

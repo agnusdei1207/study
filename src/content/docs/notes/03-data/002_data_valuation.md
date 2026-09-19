@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 100%"
     variant: note
 title: "데이터 가치평가"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 2
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "002"
   source_status: "기출"
   source_history: "135회, 139회, 140회"

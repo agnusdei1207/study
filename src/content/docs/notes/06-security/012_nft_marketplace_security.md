@@ -1,5 +1,6 @@
 ---
 title: "NFT(Non-Fungible Token) 마켓플레이스 보안"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 96%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "123회, 127회, 128회"
   priority: 96

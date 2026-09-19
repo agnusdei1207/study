@@ -1,5 +1,6 @@
 ---
 title: "개인정보 비식별화(De-identification)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 81%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "120회, 102회, 107회, 110회, 118회"
   priority: 81

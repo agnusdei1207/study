@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 91%"
     variant: note
 title: "반정규화 (Denormalization)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 17
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "017"
   source_status: "기출"
   source_history: "135회, 125회, 83회"

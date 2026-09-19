@@ -1,5 +1,6 @@
 ---
 title: "산업제어시스템(ICS)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 86%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "132회, 125회"
   priority: 86

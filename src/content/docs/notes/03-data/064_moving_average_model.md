@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 80%"
     variant: note
 title: "이동평균모형 (Moving Average Model)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-data"
 weight: 64
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "064"
   source_status: "기출"
   source_history: "138회"

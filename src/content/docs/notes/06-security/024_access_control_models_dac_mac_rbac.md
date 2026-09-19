@@ -1,5 +1,6 @@
 ---
 title: "접근통제 정책·모델(DAC·MAC·RBAC)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 90%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "133회, 127회, 129회"
   priority: 90

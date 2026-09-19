@@ -1,5 +1,6 @@
 ---
 title: "분산에너지 활성화 특별법 / 전력계통영향평가"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 75%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 75

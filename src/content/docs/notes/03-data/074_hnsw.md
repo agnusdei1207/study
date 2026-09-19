@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 77%"
     variant: note
 title: "HNSW (Hierarchical Navigable Small World)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-data"
 weight: 74
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "074"
   source_status: "기출"
   source_history: "137회"

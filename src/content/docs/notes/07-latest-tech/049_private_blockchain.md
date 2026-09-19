@@ -1,5 +1,6 @@
 ---
 title: "프라이빗 블록체인(Private Blockchain)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:43:00+09:00"
 tags:
   - "notes-latest-tech"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 82%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "113회, 124회, 126회"
   priority: 82

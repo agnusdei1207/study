@@ -1,5 +1,6 @@
 ---
 title: "오토스케일링(Auto Scaling)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 86%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "121회, 131회"
   priority: 86

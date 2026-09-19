@@ -1,5 +1,6 @@
 ---
 title: "명세 기반 테스트 기법(동등분할·경계값 등)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-software-engineering"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 85%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "125회, 137회"
   priority: 85

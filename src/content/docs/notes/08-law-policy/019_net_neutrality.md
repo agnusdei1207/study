@@ -1,5 +1,6 @@
 ---
 title: "망중립성(Net Neutrality)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 81%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "123회, 92회, 98회, 113회, 114회"
   priority: 81

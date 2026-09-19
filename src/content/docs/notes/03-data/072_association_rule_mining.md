@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 79%"
     variant: note
 title: "연관규칙분석 (Association Rule Mining)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-data"
 weight: 72
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "072"
   source_status: "기출"
   source_history: "137회"

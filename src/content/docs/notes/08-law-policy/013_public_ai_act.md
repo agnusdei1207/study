@@ -1,5 +1,6 @@
 ---
 title: "공공AI법 (인공지능 및 데이터 기반 행정 활성화에 관한 법률)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 85%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 85

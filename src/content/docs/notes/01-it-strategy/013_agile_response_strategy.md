@@ -1,5 +1,6 @@
 ---
 title: "애자일(Agile) 대응 전략"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 91%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "129회, 131회"
   priority: 91

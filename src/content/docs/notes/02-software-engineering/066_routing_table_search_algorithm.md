@@ -1,5 +1,6 @@
 ---
 title: "라우팅 테이블(Routing Table) 탐색 알고리즘"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-software-engineering"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 80%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "139회"
   priority: 80

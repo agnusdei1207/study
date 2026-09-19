@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 80%"
     variant: note
 title: "시계열 실시간 이상치 탐지"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-data"
 weight: 61
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "061"
   source_status: "기출"
   source_history: "140회"

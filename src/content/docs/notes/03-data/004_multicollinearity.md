@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 97%"
     variant: note
 title: "다중공선성 (Multicollinearity)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 4
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "004"
   source_status: "기출"
   source_history: "135회, 132회, 124회"

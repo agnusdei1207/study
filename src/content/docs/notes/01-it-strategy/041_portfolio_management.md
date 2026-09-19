@@ -1,5 +1,6 @@
 ---
 title: "포트폴리오 관리(Portfolio Management)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:41:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 77%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "135회"
   priority: 77

@@ -1,5 +1,6 @@
 ---
 title: "AI 생성코드·오픈웨이트 라이선스 컴플라이언스"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-software-engineering"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 80%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "140회"
   priority: 80

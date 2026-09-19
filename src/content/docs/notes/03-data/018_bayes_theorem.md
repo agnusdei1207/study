@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 91%"
     variant: note
 title: "베이즈 정리 (Bayes' Theorem)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 18
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "018"
   source_status: "기출"
   source_history: "138회, 93회, 80회"

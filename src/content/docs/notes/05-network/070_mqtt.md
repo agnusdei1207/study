@@ -1,5 +1,6 @@
 ---
 title: "MQTT(Message Queue Telemetry Transport)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:01:00+09:00"
 tags:
   - "notes-network"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 64%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "108회, 110회"
   priority: 64

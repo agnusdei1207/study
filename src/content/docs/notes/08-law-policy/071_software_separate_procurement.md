@@ -1,5 +1,6 @@
 ---
 title: "소프트웨어 분리발주(SW Separate Procurement)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:57:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 60%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "84회, 86회"
   priority: 60

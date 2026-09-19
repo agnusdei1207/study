@@ -1,5 +1,6 @@
 ---
 title: "코드스멜(Code Smell)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-software-engineering"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 96%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "127회, 139회"
   priority: 96

@@ -1,5 +1,6 @@
 ---
 title: "전자정부 발전지수(E-Government Development Index)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:54:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 72%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "127회, 113회"
   priority: 72

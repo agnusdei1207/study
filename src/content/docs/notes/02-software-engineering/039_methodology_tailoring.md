@@ -1,5 +1,6 @@
 ---
 title: "방법론 테일러링(Methodology Tailoring)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-software-engineering"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 86%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "138회"
   priority: 86

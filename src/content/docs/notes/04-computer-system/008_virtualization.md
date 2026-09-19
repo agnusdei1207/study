@@ -1,5 +1,6 @@
 ---
 title: "가상화(Virtualization)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 91%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "89회, 104회, 122회, 129회"
   priority: 91

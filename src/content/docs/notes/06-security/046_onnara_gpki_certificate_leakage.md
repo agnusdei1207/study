@@ -1,5 +1,6 @@
 ---
 title: "온나라시스템·GPKI 인증서 유출"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 85%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 85

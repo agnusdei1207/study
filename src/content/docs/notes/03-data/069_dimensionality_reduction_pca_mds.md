@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 80%"
     variant: note
 title: "차원 축소 (PCA·다차원척도법)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-data"
 weight: 69
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "069"
   source_status: "기출"
   source_history: "123회, 131회"

@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 80%"
     variant: note
 title: "앙상블 (배깅·부스팅)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-data"
 weight: 62
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "062"
   source_status: "기출"
   source_history: "120회, 126회"

@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 91%"
     variant: note
 title: "데이터 시각화 (Data Visualization)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 16
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "016"
   source_status: "기출"
   source_history: "135회, 131회"

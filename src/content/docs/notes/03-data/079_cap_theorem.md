@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 76%"
     variant: note
 title: "CAP 이론 (CAP Theorem)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-data"
 weight: 79
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "079"
   source_status: "기출"
   source_history: "126회, 93회"

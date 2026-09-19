@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 81%"
     variant: note
 title: "이상현상 (Anomaly)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-data"
 weight: 46
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "046"
   source_status: "기출"
   source_history: "129회, 84회, 96회"

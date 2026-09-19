@@ -1,5 +1,6 @@
 ---
 title: "소프트웨어 아키텍처(Software Architecture)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-software-engineering"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 81%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "120회"
   priority: 81

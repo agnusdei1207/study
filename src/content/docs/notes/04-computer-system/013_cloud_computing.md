@@ -1,5 +1,6 @@
 ---
 title: "클라우드 컴퓨팅(Cloud Computing)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 91%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "84회, 89회, 90회, 98회, 99회, 114회, 139회"
   priority: 91

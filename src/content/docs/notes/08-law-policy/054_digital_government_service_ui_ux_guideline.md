@@ -1,5 +1,6 @@
 ---
 title: "디지털 정부서비스 UI/UX 가이드라인"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:06:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 70%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "133회"
   priority: 70

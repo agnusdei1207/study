@@ -1,5 +1,6 @@
 ---
 title: "온디바이스 AI"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-latest-tech"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 85%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "127회"
   priority: 85

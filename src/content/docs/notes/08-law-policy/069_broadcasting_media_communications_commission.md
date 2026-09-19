@@ -1,5 +1,6 @@
 ---
 title: "방송미디어통신위원회 출범"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:51:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "미출 · 65%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "미출"
   source_history: ""
   priority: 65

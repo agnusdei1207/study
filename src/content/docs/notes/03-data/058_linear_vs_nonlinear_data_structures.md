@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 80%"
     variant: note
 title: "선형 vs 비선형 자료구조"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-data"
 weight: 58
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "058"
   source_status: "기출"
   source_history: "125회, 131회"

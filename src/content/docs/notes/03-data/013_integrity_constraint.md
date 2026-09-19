@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 92%"
     variant: note
 title: "무결성 제약 (Integrity Constraint)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 13
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "013"
   source_status: "기출"
   source_history: "138회, 135회, 105회"

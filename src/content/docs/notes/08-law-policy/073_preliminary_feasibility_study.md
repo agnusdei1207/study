@@ -1,5 +1,6 @@
 ---
 title: "예비타당성조사(Preliminary Feasibility Study)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T02:03:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 58%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "102회, 116회"
   priority: 58

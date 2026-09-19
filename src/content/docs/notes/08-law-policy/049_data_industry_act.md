@@ -1,5 +1,6 @@
 ---
 title: "데이터산업법"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:51:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 72%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "127회"
   priority: 72

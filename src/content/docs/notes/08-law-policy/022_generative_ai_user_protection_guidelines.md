@@ -1,5 +1,6 @@
 ---
 title: "생성형 인공지능 서비스 이용자 보호 가이드라인"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 80%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "138회"
   priority: 80

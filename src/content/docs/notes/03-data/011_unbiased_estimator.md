@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 95%"
     variant: note
 title: "불편추정량 (Unbiased Estimator)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 11
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "011"
   source_status: "기출"
   source_history: "135회, 132회, 127회"

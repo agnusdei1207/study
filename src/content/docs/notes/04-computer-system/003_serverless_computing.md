@@ -1,5 +1,6 @@
 ---
 title: "서버리스 컴퓨팅(Serverless Computing)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 96%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "136회, 140회"
   priority: 96

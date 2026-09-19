@@ -1,5 +1,6 @@
 ---
 title: "전자서명법 개정·사설인증서"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:18:00+09:00"
 tags:
   - "notes-law-policy"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 70%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "122회"
   priority: 70

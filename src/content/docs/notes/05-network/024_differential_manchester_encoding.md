@@ -1,5 +1,6 @@
 ---
 title: "차동 맨체스터 부호화"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 80%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "140회"
   priority: 80

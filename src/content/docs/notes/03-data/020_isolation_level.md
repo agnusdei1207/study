@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 91%"
     variant: note
 title: "트랜잭션 격리 수준 (Isolation Level)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 20
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "020"
   source_status: "기출"
   source_history: "137회, 134회, 119회"

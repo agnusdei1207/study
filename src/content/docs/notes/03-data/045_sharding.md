@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 81%"
     variant: note
 title: "샤딩 (Sharding)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-data"
 weight: 45
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "045"
   source_status: "기출"
   source_history: "127회, 102회, 119회"

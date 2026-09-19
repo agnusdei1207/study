@@ -1,5 +1,6 @@
 ---
 title: "SATIN(Satellite-Aerial-Terrestrial Integrated Network)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 95%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "128회, 130회, 135회"
   priority: 95

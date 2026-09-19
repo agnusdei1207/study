@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 96%"
     variant: note
 title: "데이터 레이크 (Data Lake)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 7
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "007"
   source_status: "기출"
   source_history: "139회, 137회, 119회"

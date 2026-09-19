@@ -6,11 +6,13 @@ sidebar:
     text: "기출 · 100%"
     variant: note
 title: "NoSQL"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-data"
 weight: 1
 extra:
+  model: "Gemini 3.8 Flash"
   question_no: "001"
   source_status: "기출"
   source_history: "133회, 128회, 124회, 117회, 114회, 93회"

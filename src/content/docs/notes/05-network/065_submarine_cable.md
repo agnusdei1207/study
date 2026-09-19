@@ -1,5 +1,6 @@
 ---
 title: "해저케이블(Submarine Cable)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:56:00+09:00"
 tags:
   - "notes-network"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 70%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "123회"
   priority: 70

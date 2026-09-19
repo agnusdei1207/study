@@ -1,5 +1,6 @@
 ---
 title: "오픈소스 SW와 라이선스(Permissive·Copyleft·SSPL/BSL)"
+author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-software-engineering"
@@ -7,6 +8,7 @@ sidebar:
   badge:
     text: "기출 · 90%"
 extra:
+  model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "122회, 124회, 134회"
   priority: 90

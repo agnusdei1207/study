@@ -6,6 +6,7 @@ export interface NoteExtraMetadata {
   source_history?: string;
   priority?: number;
   priority_note?: string;
+  model?: string;
 }
 
 export interface NoteBadgeData {
