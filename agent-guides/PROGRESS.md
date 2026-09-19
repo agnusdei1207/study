@@ -1,4 +1,3 @@
-# 진행 상황
+# 진행 현황
 
-- 04-computer-system: 040
-- 05-network: 040
+- 02-software-engineering: 02-060
