@@ -1,7 +1,4 @@
-# 진행 현황
+# 진행 상황
 
-- 01-it-strategy: 01-020
-- 02-software-engineering: 02-040
-- 03-data: 03-020
-- 06-security: 06-020
-- 07-latest-tech: 07-020
+- 과목: 05-network
+- 현재 진행: 05-040 완료 (05-041 작성 준비)
