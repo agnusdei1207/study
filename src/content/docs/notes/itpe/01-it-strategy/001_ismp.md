@@ -139,8 +139,10 @@ extra:
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의 및 핵심 개념
-- ISMP(Information System Master Plan)는 특정 정보시스템 구축사업의 성공을 위해 요구사항을 FP 산정 수준으로 구체화하고, 목표 아키텍처와 예산 및 RFP를 수립하는 발주 Baseline 정의 활동임.
+### 1. 정의·목적
+
+- 정의: 특정 정보시스템의 요건을 <span class="itpe-keyword"><strong>FP</strong></span> 산정 수준으로 구체화하는 발주 <span class="itpe-keyword"><strong>Baseline</strong></span> 수립
+- 목적: 아키텍처·예산·<span class="itpe-keyword"><strong>RFP</strong></span> 정합성 확보 → 과업 변경·분쟁 예방
 
 ### 2. 핵심 메커니즘 / 체계
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 5단계 방법론">
