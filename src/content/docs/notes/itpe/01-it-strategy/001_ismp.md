@@ -1,7 +1,7 @@
 ---
 title: "ISMP"
 author: "Codex"
-date: "2026-09-20T19:27:50+09:00"
+date: "2026-09-20T20:12:30+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -73,7 +73,7 @@ extra:
 > ISMP는 **특정 정보시스템**의 요건을 실행 가능한 발주 **Baseline**으로 전환하며, 완성도는 **Traceability**로 판정한다.
 
 - 정의: **특정 정보시스템**의 요건을 **FP 산정 수준**으로 상세화하여 발주 **Baseline**을 수립하는 활동
-- 목적: 요건-아키텍처-예산-**RFP** 간 **Traceability** 확보 → 과업 변경·조달 분쟁 예방
+- 목적: 과업 변경 및 조달 분쟁 예방
 
 ## Ⅱ. ISMP 구성체계 및 5단계 방법론
 
@@ -188,7 +188,7 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **ISMP(Information System Master Plan)**는 특정 정보시스템의 요건을 **FP(Function Point) 산정 수준**으로 상세화하여 발주 **Baseline**을 수립하는 활동
-- 목적: 요건과 **RFP(Request for Proposal)** 정합성 확보 → 과업 변경·예산 분쟁 예방
+- 목적: 과업 변경 및 조달 분쟁 예방
 
 ### 2. 구성체계 및 방법론
 
