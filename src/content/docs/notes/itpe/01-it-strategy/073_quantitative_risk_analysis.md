@@ -1,6 +1,6 @@
 ---
 title: "정량적 위험분석"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -74,7 +74,7 @@ extra:
 > 정량적 위험분석은 정성적 평가의 주관성을 극복하고 불확실성을 화폐 가치로 치환하며, 성패는 단순 최빈값(P50) 나열이 아닌 **통계적 신뢰수준(P80)**에 기반한 **비상예비비 확보**로 판정함.
 
 - 정의: 정성적 분석에서 선별된 핵심 위험들이 프로젝트 전체 일정과 비용 목표에 미치는 영향을 **확률분포(Probability Distribution)**와 **몬테카를로 시뮬레이션(Monte Carlo Simulation)**을 통해 수치화하는 **위험 통제 활동**
-- 목적: 주관적 편향을 배제하고 프로젝트 성공 확률 도출 → 수학적 근거 기반의 **비상예비비(Contingency Reserve)** 및 완충 일정 확정
+- 목적: 주관적 편향 배제, 프로젝트 성공 확률 도출 및 객관적 비상예비비 확정
 
 ## Ⅱ. 정량적 위험분석 4단계 실행 파이프라인
 
@@ -83,22 +83,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="정량적 위험분석 4단계 실행 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 위험 선별 및 데이터 수집</strong></span>
-    <small>P-I Matrix 상위 고위험 선별 · 유사 사업 실적 데이터 수집<br />→ 정량 분석 대상 위험 목록</small>
+    <div class="itpe-step-detail"><strong>고위험 선별</strong><span>P-I Matrix 상위 고위험 선별 및 유사 사업 실적 데이터 수집</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 확률분포 모델링 (3점 추정)</strong></span>
-    <small>낙관치(O), 최빈치(M), 비관치(P) 추정 · 삼각/베타 분포 할당<br />→ 확률분포 매개변수 정의서</small>
+    <div class="itpe-step-detail"><strong>분포 할당</strong><span>낙관치(O), 최빈치(M), 비관치(P) 추정 및 삼각/베타 분포 할당</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 시뮬레이션 연산 (Monte Carlo)</strong></span>
-    <small>난수 발생 기반 수천 회 반복 시뮬레이션 · 민감도 분석 수행<br />→ 누적 확률 S-Curve · 토네이도 차트</small>
+    <div class="itpe-step-detail"><strong>통계 연산</strong><span>난수 발생 수천 회 반복 시뮬레이션 및 누적 확률 S-Curve 도출</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 비상예비비 및 베이스라인 확정</strong></span>
-    <small>조직 위험 수용도(P80) 기준선 적용 · 비상예비비 확정<br />→ 원가/일정 기준선(Baseline) 갱신</small>
+    <div class="itpe-step-detail"><strong>기준선 확정</strong><span>위험 수용도(P80) 기준선 적용 및 비상예비비 산정 확정</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Contingency Reserve</strong></span> · P80(신뢰수준 80% 예산) - P50(단순 합산 예산) = 정량적 비상예비비 도출</div>
@@ -145,22 +145,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="정량적 위험분석 동적 예비비 관리 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>주관적 3점 추정 편향 · 착수 시 1회성 분석 후 방치 · 예비비 단순 최빈값(P50) 의존</small>
+    <div class="itpe-step-detail"><strong>취약점</strong><span>주관적 3점 추정 편향, 1회성 분석 방치 및 최빈값(P50) 의존</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>과거 실적 데이터 정규화 + 몬테카를로 P80 신뢰수준 기반 동적 예비비 거버넌스 수립</small>
+    <div class="itpe-step-detail"><strong>동적 거버넌스</strong><span>과거 실적 데이터 정규화 및 몬테카를로 P80 기반 동적 거버넌스 수립</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>마일스톤별 위험 소멸에 따른 예비비 환수율 검증 · S-Curve 성공 확률 80% 유지</small>
+    <div class="itpe-step-detail"><strong>목표 지표</strong><span>위험 소멸에 따른 예비비 환수율 검증 및 S-Curve 성공 확률 80% 유지</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>통계적 근거 기반 예산 편성 · 스폰서 신뢰성 확보 및 공정 지연 사전 예방</small>
+    <div class="itpe-step-detail"><strong>가치 창출</strong><span>통계 기반 예산 편성, 스폰서 신뢰성 확보 및 공정 지연 사전 예방</span></div>
   </div>
 </div>
 
@@ -169,18 +169,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 정성적 분석을 통해 선별된 핵심 위험들이 프로젝트 전체에 미치는 영향을 **확률분포**와 **몬테카를로 시뮬레이션**으로 수치화하는 **정량적 위험 평가 기법**
-- 목적: 주관적 판단 배제 및 프로젝트 성공 확률 도출 → 객관적 근거 기반의 **비상예비비(Contingency Reserve)** 산정
+- 목적: 주관적 판단 배제, 성공 확률 도출 및 객관적 비상예비비 산정
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="정량적 위험분석 4단계 절차 요약">
-  <div class="itpe-pipeline-node"><strong>위험 선별</strong><small>P-I Matrix 상위 고위험 항목 도출</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>위험 선별</strong>
+    <div class="itpe-step-detail"><strong>고위험 도출</strong><span>P-I Matrix 상위 고위험 항목 도출</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>분포 모델링</strong><small>3점 추정(낙관/최빈/비관) 및 삼각·베타 분포</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>분포 모델링</strong>
+    <div class="itpe-step-detail"><strong>확률 부여</strong><span>3점 추정 및 삼각·베타 분포 할당</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>시뮬레이션</strong><small>몬테카를로 난수 반복 연산 · S-Curve 도출</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>시뮬레이션</strong>
+    <div class="itpe-step-detail"><strong>난수 연산</strong><span>몬테카를로 반복 연산 및 S-Curve 도출</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>예비비 확정</strong><small>P80 신뢰수준 예산 - P50 예산 = 비상예비비</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>예비비 확정</strong>
+    <div class="itpe-step-detail"><strong>기준선 반영</strong><span>P80 신뢰수준 예산 기반 비상예비비 확정</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

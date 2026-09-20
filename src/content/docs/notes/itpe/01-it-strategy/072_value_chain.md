@@ -1,6 +1,6 @@
 ---
 title: "가치사슬(Value Chain)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -68,7 +68,7 @@ extra:
 > 가치사슬은 기업 활동을 본원적 활동과 지원 활동으로 분해하여 **마진(Margin)**을 분석하며, 경쟁 우위는 개별 부서의 단절된 효율이 아닌 **활동 간 연계성(Linkages)의 최적화**로 판정함.
 
 - 정의: 원자재 수급부터 최종 서비스까지 제품 변환 과정을 **5대 본원적 활동**과 **4대 지원 활동**으로 체계화하여 부가가치 창출 구조와 **마진(Margin)**을 분석하는 **경영 전략 분석 모델**
-- 목적: 활동별 원가 동인 분석 및 차별화 기회 포착 → 프로세스 연계 최적화를 통한 **경쟁 우위(Competitive Advantage)** 확보
+- 목적: 활동별 원가 동인 분석, 차별화 기회 포착 및 프로세스 연계 최적화
 
 ## Ⅱ. 5대 본원적 활동의 순차적 가치 창출 파이프라인
 
@@ -77,27 +77,27 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="가치사슬 5대 본원적 활동 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 입고 물류 (Inbound Logistics)</strong></span>
-    <small>원자재 수급 · 하역 검수 · 창고 보관 · 재고 통제<br />→ 자재 입고 전표 · WMS 재고 마스터</small>
+    <div class="itpe-step-detail"><strong>자재 조달</strong><span>원자재 수급, 하역 검수, 창고 보관 및 WMS 재고 통제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 생산 및 운영 (Operations)</strong></span>
-    <small>원자재 가공 · 부품 조립 · 공정 검사 · 설비 유지보수<br />→ 완제품 검사성적서 · MES 제조 실적</small>
+    <div class="itpe-step-detail"><strong>가공 조립</strong><span>부품 가공, 공정 조립, 품질 검사 및 MES 설비 제어</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 출고 물류 (Outbound Logistics)</strong></span>
-    <small>완제품 포장 · 출하 배차 · 물류 거점 유통 · 배송 추적<br />→ 출하 송장 · TMS 운송 지시서</small>
+    <div class="itpe-step-detail"><strong>유통 배송</strong><span>완제품 포장, TMS 배차 관리, 물류 거점 유통 및 배송 추적</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 마케팅 및 영업 (Marketing & Sales)</strong></span>
-    <small>가격 책정 · 광고 프로모션 · 영업 채널 운영 · 수주 계약<br />→ 고객 견적서 · CRM 수주 명세서</small>
+    <div class="itpe-step-detail"><strong>판촉 수주</strong><span>가격 책정, 광고 프로모션, 영업 채널 운영 및 CRM 수주</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 사후 서비스 (Service)</strong></span>
-    <small>설치 시운전 · 부품 교체 수리 · 고객 불만(VOC) 대응<br />→ A/S 작업 내역서 · 고객 만족도 보고서</small>
+    <div class="itpe-step-detail"><strong>고객 지원</strong><span>설치 시운전, A/S 부품 교체 수리 및 고객 불만(VOC) 대응</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Margin</strong></span> · 최종 소비자의 지불 용의 가치에서 9대 가치 활동의 총비용을 차감한 이익 극대화</div>
@@ -149,22 +149,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="가치사슬 디지털 가치그물 전환 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>활동 간 데이터 사일로 · 야간 배치 연계에 따른 주문-생산 시차 발생 · 마진 잠식</small>
+    <div class="itpe-step-detail"><strong>취약점</strong><span>활동 간 데이터 사일로, 야간 배치 연계 주문-생산 시차 및 마진 잠식</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>전사 이벤트 버스(Kafka) 중심 실시간 EDA 가치그물 구축 및 기간계(ERP-SCM-CRM) 연계</small>
+    <div class="itpe-step-detail"><strong>가치그물</strong><span>전사 이벤트 버스(Kafka) 중심 실시간 EDA 가치그물 구축 및 기간계 연계</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>본원적 활동 간 종단간(End-to-End) 트랜잭션 추적성 확보 · 결품 발생률 0%</small>
+    <div class="itpe-step-detail"><strong>목표 지표</strong><span>본원적 활동 간 E2E 트랜잭션 추적성 확보 및 결품 발생률 0% 달성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>고객 수요에 즉각 반응하는 민첩한 제조 유통 달성 · 경쟁 우위 및 기업 마진 극대화</small>
+    <div class="itpe-step-detail"><strong>가치 창출</strong><span>고객 수요 반응형 제조 유통 달성, 경쟁 우위 및 기업 마진 극대화</span></div>
   </div>
 </div>
 
@@ -173,20 +173,35 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 기업의 활동을 **5대 본원적 활동**과 **4대 지원 활동**으로 체계화하여 부가가치 창출 구조와 **마진(Margin)**을 분석하는 **마이클 포터의 경영 전략 모델**
-- 목적: 활동별 원가 동인 분석 및 프로세스 최적화 → 활동 간 연계성(Linkages) 강화를 통한 **경쟁 우위(Competitive Advantage)** 확보
+- 목적: 활동별 원가 동인 분석, 프로세스 최적화 및 연계성 강화
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="가치사슬 5대 본원 활동 요약">
-  <div class="itpe-pipeline-node"><strong>입고 물류</strong><small>원자재 수급 · 보관 (SCM / WMS)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>입고 물류</strong>
+    <div class="itpe-step-detail"><strong>원자재 조달</strong><span>원자재 수급 및 보관 (SCM / WMS)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>생산 운영</strong><small>부품 가공 · 조립 검사 (MES / IoT)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>생산 운영</strong>
+    <div class="itpe-step-detail"><strong>가공 조립</strong><span>부품 가공 및 조립 검사 (MES / IoT)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>출고 물류</strong><small>완제품 배송 · 유통 라우팅 (TMS)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>출고 물류</strong>
+    <div class="itpe-step-detail"><strong>유통 배송</strong><span>완제품 배송 및 유통 라우팅 (TMS)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>마케팅/영업</strong><small>가격 결정 · 판촉 수주 (CRM)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>마케팅/영업</strong>
+    <div class="itpe-step-detail"><strong>판촉 수주</strong><span>가격 결정 및 판촉 수주 (CRM)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>사후 서비스</strong><small>설치 시운전 · 수리 (AI A/S 포털)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>사후 서비스</strong>
+    <div class="itpe-step-detail"><strong>고객 지원</strong><span>설치 시운전 및 수리 (AI A/S 포털)</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

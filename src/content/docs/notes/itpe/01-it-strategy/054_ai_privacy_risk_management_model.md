@@ -1,6 +1,6 @@
 ---
 title: "AI 프라이버시 리스크 관리 모델"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:46:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -70,7 +70,7 @@ extra:
 > AI 프라이버시 리스크 관리 모델은 전통적 DB 보안을 넘어 **비정형 데이터**와 **모델 파라미터 암기** 위험을 선제 통제하며, 성패는 **적법한 데이터 처리 근거 확보**와 **수학적 프라이버시 보증**으로 판정함.
 
 - 정의: 인공지능의 기획, 데이터 수집·가공, 모델 학습, 서비스 운영에 이르는 전 생애주기 동안 개인정보 침해 위험을 식별·평가하고 **기술적·관리적 가드레일**을 구축하는 **프라이버시 거버넌스 모델**
-- 목적: 무단 데이터 학습 및 모델 역공학(Reverse Engineering) 공격 차단 → 혁신을 위한 **데이터 활용성**과 정보주체의 **권익 보호** 간 균형 확립
+- 목적: 무단 데이터 학습 및 역공학 공격 차단, 혁신을 위한 **데이터 활용성**과 정보주체 **권익 보호** 간 균형 확립
 
 ## Ⅱ. AI 프라이버시 리스크 관리의 3대 핵심 평가 기준
 
@@ -89,22 +89,26 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 프라이버시 생애주기 4단계 통제 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 기획 및 설계 단계</strong></span>
-    <small>목적 외 이용 · 적법 처리 근거 부재<br />→ PbD 원칙 수립, 사전 AI 프라이버시 영향평가(PIA) 수행</small>
+    <div class="itpe-step-detail"><strong>핵심 위험</strong><span>목적 외 이용, 적법 처리 근거 부재</span></div>
+    <div class="itpe-step-detail"><strong>통제 활동</strong><span>PbD 원칙 수립, 사전 AI 프라이버시 영향평가(PIA) 수행</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 데이터 수집 및 가공 단계</strong></span>
-    <small>웹 크롤링 내 PII 유입 · 비정형 텍스트/영상 식별자 잔존<br />→ NER 기반 PII 마스킹, 비정형 가명처리, 합성 데이터 대체</small>
+    <div class="itpe-step-detail"><strong>핵심 위험</strong><span>웹 크롤링 내 PII 유입, 비정형 텍스트·영상 식별자 잔존</span></div>
+    <div class="itpe-step-detail"><strong>통제 활동</strong><span>NER 기반 PII 마스킹, 비정형 가명처리, 합성 데이터 대체</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 모델 개발 및 학습 단계</strong></span>
-    <small>모델 가중치 과적합 암기(Memorization) · 멤버십 추론 공격<br />→ DP-SGD 차분 프라이버시 주입, 정규화, 머신 언러닝 파이프라인</small>
+    <div class="itpe-step-detail"><strong>핵심 위험</strong><span>모델 가중치 과적합 암기(Memorization), 멤버십 추론 공격</span></div>
+    <div class="itpe-step-detail"><strong>통제 활동</strong><span>DP-SGD 차분 프라이버시 주입, 정규화, 머신 언러닝 파이프라인</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 서비스 및 운영 단계</strong></span>
-    <small>프롬프트 인젝션을 통한 PII 유출 · RAG 검색 민감정보 노출<br />→ 런타임 입출력 가드레일, RAG 접근 제어(ACL), 삭제 요구권 이행</small>
+    <div class="itpe-step-detail"><strong>핵심 위험</strong><span>프롬프트 인젝션 PII 유출, RAG 검색 민감정보 노출</span></div>
+    <div class="itpe-step-detail"><strong>통제 활동</strong><span>런타임 입출력 가드레일, RAG 접근 제어(ACL), 삭제 요구권 이행</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>End-to-End Privacy</strong></span> · 사전 영향평가 ↔ 비식별 가공 ↔ DP-SGD 학습 ↔ 런타임 필터링 연동</div>
@@ -126,12 +130,12 @@ extra:
 
 > 단순 마스킹은 문맥 결합 시 재식별될 수 있으므로, 공학적 알고리즘과 엄격한 접근 권한 관리가 병행되어야 함.
 
-| 문제점 | 발생 원인 | 공학적·관리적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **문맥 결합 재식별 위험** | 고유명사만 치환하고 주변 정황 텍스트 방치 | **NER 기반 문맥 가명처리** 및 k-익명성 치환 알고리즘 적용 | 가명처리 적정성 평가 통과 · 재식별 위험도 지표 |
-| **적대적 PII 추출 공격** | 과적합으로 인해 특정 개인의 민감문장 원문 복원 | **차분 프라이버시(DP-SGD)** 적용 및 그래디언트 클리핑 | 프라이버시 예산(Epsilon) 한도 준수 · 추출 공격 방어율 |
-| **정보주체의 삭제 요구 난제** | 수천억 개 파라미터에 데이터가 융합되어 원장 삭제 불가 | 완전 재학습 비용을 절감하는 **선택적 머신 언러닝** 알고리즘 구현 | 언러닝 후 멤버십 추론 공격 실패율 · 모델 성능 보존도 |
-| **RAG 벡터 DB 내 PII 노출** | 사내 문서를 검증 없이 벡터화하여 유사도 검색 표출 | 벡터 인덱싱 파이프라인 내 PII 필터 강제 및 **사용자 권한별 ACL** 통제 | 권한 외 개인정보 노출 0건 · 벡터 검색 가드레일 작동 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **문맥 결합 재식별 위험** | **NER 기반 문맥 가명처리** 및 k-익명성 치환 알고리즘 적용 | 가명처리 적정성 확보, 재식별 위험도 완화 |
+| **적대적 PII 추출 공격** | **차분 프라이버시(DP-SGD)** 적용 및 그래디언트 클리핑 | 프라이버시 예산(Epsilon) 준수, 추출 공격 원천 차단 |
+| **정보주체의 삭제 요구 난제** | 완전 재학습 비용을 절감하는 **선택적 머신 언러닝** 알고리즘 구현 | 모델 성능 보존, 정보주체 잊힐 권리 보장 |
+| **RAG 벡터 DB 내 PII 노출** | 벡터 인덱싱 파이프라인 내 PII 필터 강제 및 **사용자 권한별 ACL** 통제 | 비인가 개인정보 노출 방지, 런타임 검색 안전성 확보 |
 
 ## Ⅵ. 수학적 프라이버시와 합성 데이터 중심의 결론
 
@@ -152,22 +156,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 프라이버시 엔드투엔드 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>정형 PIA의 한계 · 비정형 문맥 재식별 리스크 · 잊힐 권리 대응 난제</small>
+    <div class="itpe-step-detail"><strong>문제점</strong><span>정형 PIA 한계, 비정형 문맥 재식별 리스크, 잊힐 권리 대응 난제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>합성 데이터 사전 학습 + DP-SGD 차분 프라이버시 + 머신 언러닝 내재화</small>
+    <div class="itpe-step-detail"><strong>추진 전략</strong><span>합성 데이터 사전 학습, DP-SGD 차분 프라이버시, 머신 언러닝 내재화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>프라이버시 손실 한도(Epsilon) 준수 · 멤버십 추론 방어율 · 삭제 요청 검증</small>
+    <div class="itpe-step-detail"><strong>관리 지표</strong><span>프라이버시 손실 한도(Epsilon) 준수, 멤버십 추론 방어율, 삭제 요청 검증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>규제 과징금 리스크 차단 · 데이터 활용 혁신과 정보주체 권익의 양립</small>
+    <div class="itpe-step-detail"><strong>최종 효과</strong><span>규제 과징금 리스크 차단, 데이터 활용 혁신과 정보주체 권익 양립</span></div>
   </div>
 </div>
 
@@ -176,18 +180,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **AI 프라이버시 리스크 관리 모델**은 AI 전 생애주기(기획-수집-학습-운영) 동안 개인정보 유출 및 모델 역공격 위험을 진단하고 기술적·관리적 보호조치를 적용하는 프라이버시 프레임워크
-- 목적: 모델 가중치 암기 및 데이터 누출 방지 → **적법성·안전성·투명성** 확보 및 신뢰 가능한 AI 구축
+- 목적: 모델 가중치 암기 및 데이터 누출 방지, **적법성·안전성·투명성** 확보 통한 신뢰 가능한 AI 구축
 
 ### 2. 생애주기별 4단계 통제 파이프라인
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 프라이버시 생애주기 4단계 요약 파이프라인">
-  <div class="itpe-pipeline-node"><strong>기획·설계</strong><small>적법 근거 확보 · PbD 원칙 · AI PIA</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>기획·설계</strong>
+    <div class="itpe-step-detail"><strong>사전 평가</strong><span>적법 근거 확보, PbD 원칙 수립, AI PIA 수행</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>수집·가공</strong><small>NER 비정형 마스킹 · 합성 데이터셋</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>수집·가공</strong>
+    <div class="itpe-step-detail"><strong>비식별화</strong><span>NER 비정형 마스킹 및 합성 데이터 대체</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>개발·학습</strong><small>DP-SGD 차분 프라이버시 · 머신 언러닝</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>개발·학습</strong>
+    <div class="itpe-step-detail"><strong>수학적 보호</strong><span>DP-SGD 차분 프라이버시 및 머신 언러닝</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>서비스·운영</strong><small>런타임 입출력 가드레일 · 잊힐 권리</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>서비스·운영</strong>
+    <div class="itpe-step-detail"><strong>런타임 통제</strong><span>런타임 입출력 가드레일 및 잊힐 권리 이행</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

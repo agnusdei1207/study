@@ -1,6 +1,6 @@
 ---
 title: "기술 주권 (자국 기술 주권 확보)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:47:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -69,7 +69,7 @@ extra:
 > 기술 주권은 단순한 기술 자급자족이 아니라, 외세의 공급 차단에도 국가 핵심 기능이 마비되지 않도록 **전략적 자율성**과 **대체 불가능한 억제력**을 확보하는 안보 체계이며, 성패는 **초격차 킬러 기술** 확보로 판정함.
 
 - 정의: 국가의 생존, 안보 및 미래 번영에 직결되는 핵심 원천 기술(AI, 반도체, 클라우드)을 외세의 간섭이나 공급 중단 위협 없이 **독자적으로 결정·통제·운용**할 수 있는 주권적 역량
-- 목적: 글로벌 기술 블록화 및 수출 통제 리스크 대응 → 국가 데이터 유출 차단 및 대체 불가능한 **상호 레버리지** 확보
+- 목적: 글로벌 기술 블록화 대응, 국가 데이터 유출 차단 및 대체 불가능한 **상호 레버리지** 확보
 
 ## Ⅱ. 기술 주권의 3대 핵심 기둥 및 아키텍처
 
@@ -78,17 +78,20 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기술 주권 3대 핵심 기둥 및 구성 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 지능 주권 : 소버린 AI (Sovereign AI)</strong></span>
-    <small>한국어 특화 독자 파운데이션 모델 · 문화·역사 정체성 보존<br />→ 외산 LLM 사상 편향 탈피 및 공공·국방 안보 지능 독자 제어</small>
+    <div class="itpe-step-detail"><strong>핵심 자산</strong><span>한국어 특화 독자 파운데이션 모델, 문화·역사 정체성 보존</span></div>
+    <div class="itpe-step-detail"><strong>주권 효과</strong><span>외산 LLM 사상 편향 탈피 및 공공·국방 안보 지능 독자 제어</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 인프라 주권 : 소버린 클라우드 (Sovereign Cloud)</strong></span>
-    <small>공공·국방 데이터 국내 물리적 보관 · CSAP 등급제 준수<br />→ 미국 CLOUD Act 등 역외 데이터 징발 차단 및 데이터 영토 수호</small>
+    <div class="itpe-step-detail"><strong>핵심 자산</strong><span>공공·국방 데이터 국내 물리적 보관, CSAP 등급제 준수</span></div>
+    <div class="itpe-step-detail"><strong>주권 효과</strong><span>미국 CLOUD Act 등 역외 데이터 징발 차단 및 데이터 영토 수호</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 하드웨어 주권 : 소버린 실리콘 (Sovereign Silicon)</strong></span>
-    <small>세계 1위 HBM 초격차 제조 · 국산 NPU 팜 육성 · 첨단 패키징<br />→ 엔비디아 GPU 종속 완화 및 글로벌 공급망 상호 확증 억제력 발휘</small>
+    <div class="itpe-step-detail"><strong>핵심 자산</strong><span>세계 1위 HBM 초격차 제조, 국산 NPU 팜 육성, 첨단 패키징</span></div>
+    <div class="itpe-step-detail"><strong>주권 효과</strong><span>엔비디아 GPU 종속 완화 및 글로벌 공급망 상호 확증 억제력 발휘</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Full-Stack Sovereignty</strong></span> · 소버린 AI(지능) ↔ 소버린 클라우드(영토) ↔ 소버린 실리콘(하드웨어) 유기적 결합</div>
@@ -120,12 +123,12 @@ extra:
 
 > 폐쇄적 쇄국주의(갈라파고스화)로 흐르면 글로벌 기술 격차에서 도태되므로, 개방형 표준 수용과 실리적 타협이 필수적임.
 
-| 위험 요인 | 발생 원인 | 공학적·제도적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **자원 분산에 따른 경쟁력 상실** | 모든 품목의 100% 자급자족을 시도하여 R&D 예산 분산 | 선택과 집중 원칙으로 **대체 불가 핵심 자산(HBM, 패키징)**에 역량 집중 | 핵심 품목 세계 시장 점유율 · 글로벌 특허 경쟁력 |
-| **갈라파고스화 (글로벌 고립)** | 독자 규격 고집으로 글로벌 기술 생태계와 상호운용성 단절 | **글로벌 오픈소스 표준(Linux, PyTorch)**을 수용하되 독자 기여 확대 | 글로벌 표준 프레임워크 호환율 100% 검증 |
-| **조달 후 민간 자생력 부재** | 공공 의무 구매에만 의존하고 상용 소프트웨어 완성도 미흡 | 컴파일러, 런타임 등 **시스템 소프트웨어 풀스택** 생태계 동시 육성 | 민간 시장 자발적 채택률 · 개발자 커뮤니티 활성도 |
-| **보호무역 통상 마찰** | 과도한 보호주의 조치로 인한 상대국 무역 보복 유발 | 데이터 안보 및 국제표준(ISO/IEC) 부합성을 근거로 제도적 정당성 확보 | WTO/FTA 규범 부합성 검토 · 통상 분쟁 발생 0건 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **자원 분산에 따른 경쟁력 상실** | 선택과 집중 원칙으로 **대체 불가 핵심 자산(HBM, 패키징)**에 역량 집중 | 글로벌 특허 경쟁력 확보 및 세계 시장 점유율 유지 |
+| **갈라파고스화 (글로벌 고립)** | **글로벌 오픈소스 표준(Linux, PyTorch)**을 수용하되 독자 기여 확대 | 글로벌 표준 프레임워크 호환성 100% 확보 |
+| **조달 후 민간 자생력 부재** | 컴파일러, 런타임 등 **시스템 소프트웨어 풀스택** 생태계 동시 육성 | 민간 자발적 채택률 제고 및 개발자 생태계 활성화 |
+| **보호무역 통상 마찰** | 데이터 안보 및 국제표준(ISO/IEC) 부합성을 근거로 제도적 정당성 확보 | WTO/FTA 통상 분쟁 예방 및 규범 정합성 확보 |
 
 ## Ⅵ. '선택과 집중'형 초격차 레버리지 중심의 결론
 
@@ -146,22 +149,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기술 주권 실리적 실행 전략 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>글로벌 GPU 수급난 · 외산 LLM 문화적 종속 · 100% 자립 시도에 따른 예산 분산</small>
+    <div class="itpe-step-detail"><strong>문제점</strong><span>글로벌 GPU 수급난, 외산 LLM 사상 종속, 100% 자립 시도에 따른 예산 분산</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>HBM 초격차를 지렛대 삼아 글로벌 오픈소스를 내재화하는 실리적 주권 전략</small>
+    <div class="itpe-step-detail"><strong>추진 전략</strong><span>HBM 초격차를 지렛대 삼아 글로벌 오픈소스를 내재화하는 실리적 주권 전략</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>글로벌 생태계 호환성 100% · 공공·국방 데이터 관할권 100% 사수</small>
+    <div class="itpe-step-detail"><strong>관리 지표</strong><span>글로벌 생태계 호환성 100%, 공공·국방 데이터 관할권 100% 사수</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>공급망 무기화 차단 · 국가 전략적 자율성 확보 · 글로벌 기술 통상 주도</small>
+    <div class="itpe-step-detail"><strong>최종 효과</strong><span>공급망 무기화 차단, 국가 전략적 자율성 확보, 글로벌 기술 통상 주도</span></div>
   </div>
 </div>
 
@@ -170,16 +173,25 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **기술 주권(Technology Sovereignty)**은 글로벌 기술 패권 경쟁 환경에서 외세의 간섭이나 공급 차단 위협에 흔들리지 않고 첨단 디지털 자산을 독자 통제·운용할 수 있는 국가적 역량
-- 목적: 글로벌 공급망 교란 대응 및 **전략적 자율성(Strategic Autonomy)** 확보 → 국가 안보 수호 및 산업 주도권 장악
+- 목적: 공급망 교란 대응, **전략적 자율성(Strategic Autonomy)** 확보 통한 국가 안보 수호 및 산업 주도권 확보
 
 ### 2. 기술 주권 3대 핵심 기둥
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기술 주권 3대 핵심 기둥 요약 파이프라인">
-  <div class="itpe-pipeline-node"><strong>소버린 AI</strong><small>한국형 파운데이션 모델 · 문화적 정체성 보존</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>소버린 AI</strong>
+    <div class="itpe-step-detail"><strong>지능 주권</strong><span>한국형 독자 파운데이션 모델 및 문화적 정체성 보존</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>소버린 클라우드</strong><small>CSAP 보안인증 · 데이터 국외 이전 통제</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>소버린 클라우드</strong>
+    <div class="itpe-step-detail"><strong>인프라 주권</strong><span>CSAP 보안인증 및 데이터 국외 이전 통제</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>소버린 실리콘</strong><small>초격차 HBM 제조 · 국산 NPU 생태계 육성</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>소버린 실리콘</strong>
+    <div class="itpe-step-detail"><strong>하드웨어 주권</strong><span>초격차 HBM 제조 및 국산 NPU 생태계 육성</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

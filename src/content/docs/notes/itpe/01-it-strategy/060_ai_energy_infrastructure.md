@@ -1,6 +1,6 @@
 ---
 title: "에너지 인프라 (AI 전력)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:49:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -70,7 +70,7 @@ extra:
 > AI 에너지 인프라는 소프트웨어 알고리즘을 물리적으로 지탱하는 **청정 기저 전력**과 **초고밀도 냉각 설비**의 융합체이며, 성패는 **PUE 1.1 이하 달성**과 **비수도권 분산 계통 확보**로 판정함.
 
 - 정의: 대규모 **GPU/NPU** 연산 클러스터를 중단 없이 가동하기 위해 기가와트(GW)급 청정 기저 전력을 조달하고, 랙당 수십 kW의 초고밀도 발열을 **액침 냉각** 등으로 해소하는 친환경 전력·설비 인프라
-- 목적: 수도권 송배전망 포화 극복 및 탄소 배출 규제(CFE 100) 준수 → **24/365 무중단 전력 공급** 및 AI 운영 비용(TCO) 절감
+- 목적: 수도권 전력망 포화 극복, 24/365 무중단 전력 공급 및 CFE 100 준수
 
 ## Ⅱ. 전통적 데이터센터 vs 차세대 AI 데이터센터 전력 체계 비교
 
@@ -92,17 +92,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 에너지 인프라 3대 계층 아키텍처">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 무탄소 기저 발전 계층 (Generation)</strong></span>
-    <small>SMR(소형 모듈 원자로) · 대형 원자력 장기 PPA · 해상풍력+BESS<br />→ 날씨에 영향받지 않는 24/365 무탄소 기저부하(Baseload) 확보</small>
+    <div class="itpe-step-detail"><strong>핵심 기술</strong><span>SMR, 원자력 장기 PPA, 풍력 연계 BESS 기반 24/365 기저부하 확보</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 지능형 송배전 계층 (Grid)</strong></span>
-    <small>초고압 직류송전(HVDC) · 분산에너지 마이크로그리드 · 380V DC 배전<br />→ 장거리 송전 손실 최소화 및 교류-직류 변환 손실 10% 이상 절감</small>
+    <div class="itpe-step-detail"><strong>핵심 기술</strong><span>HVDC 직류송전, 분산 마이크로그리드 및 380V DC 배전 손실 절감</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 초고밀도 냉각 및 설비 계층 (Cooling & Waste Heat)</strong></span>
-    <small>1상/2상 액침 냉각 탱크 · D2C 수랭 블록 · 지역난방 폐열 회수망<br />→ 서버 팬(Fan) 전력 제거, PUE 1.05 달성 및 친환경 열 순환 경제</small>
+    <div class="itpe-step-detail"><strong>핵심 기술</strong><span>1상/2상 액침 냉각, D2C 수랭 블록 및 지역난방 폐열 회수망 연계</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Energy-Compute Loop</strong></span> · SMR 청정 전력 ↔ HVDC 송전 ↔ 액침 냉각 ↔ 폐열 지역난방 공급</div>
@@ -120,16 +120,16 @@ extra:
 | **서버 팬 전력** | 고속 팬 가동으로 전체의 15% 소모 | 보조 공랭 팬 필요 (일부 소모) | **서버 팬 100% 제거 (소음/진동 0)** |
 | **유지보수 고려점** | 표준 랙으로 관리 매우 단순 | 누수 감지 센서 및 배관 관리 필수 | 크레인 인양 설비 및 유체 세척 공정 필요 |
 
-## Ⅴ. 실무 추진 시 장애 요인 및 기술사적 통제 대책
+## Ⅴ. 실무 추진 시 위험 요인 및 기술사적 대책
 
 > 데이터센터 전력 대란은 단순 전력 구매 문제가 아니며, 입지 다변화와 하드웨어 표준 인증을 통해 해결해야 함.
 
-| 문제점 | 발생 원인 | 공학적·제도적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **수도권 계통 포화 및 인허가 불허** | 수도권 전력망 과부하로 인한 신규 수전 거부 | **분산에너지 활성화 특별법** 준용, 발전소 인근 지방 분산 배치 | 분산에너지 특화지역 지정 · 계통 인입 협약 체결 |
-| **냉각 컴프레서 전력 과소비** | 외기 온도가 높은 하절기 칠러 가동 전력 폭증 | **외기 프리쿨링(Free Cooling)** 및 **액침 냉각** 전면 전환 | 연평균 PUE 1.1 이하 유지 · 칠러 전력 소비 감소율 |
-| **재생에너지 간헐성에 따른 정전** | 태양광·풍력 발전량의 급격한 변동성 | **대규모 BESS(에너지저장장치)** 연계 및 **원전 기저 PPA** 결합 | 24/365 가용률 99.999% · 주파수 변동률 통제 |
-| **액침 냉각 도입 시 워런티 거부** | 서버 제조사의 액체 침적 하드웨어 보증 기피 | **OCP(Open Compute Project)** 표준 인증 랙 채택 및 SLA 협약 | 하드웨어 벤더 무상 유지보수 확약서 확보 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **수도권 계통 포화 및 인허가 불허** | **분산에너지 활성화 특별법** 준용, 발전소 인근 지방 분산 배치 | 분산에너지 특화지역 지정 및 안정적 계통 인입 협약 체결 |
+| **냉각 컴프레서 전력 과소비** | **외기 프리쿨링(Free Cooling)** 및 **액침 냉각** 전면 전환 | 연평균 PUE 1.1 이하 유지 및 칠러 전력 소비 대폭 감축 |
+| **재생에너지 간헐성에 따른 정전** | **대규모 BESS(에너지저장장치)** 연계 및 **원전 기저 PPA** 결합 | 24/365 가용률 99.999% 확보 및 주파수 변동률 안정화 |
+| **액침 냉각 도입 시 워런티 거부** | **OCP(Open Compute Project)** 표준 인증 랙 채택 및 SLA 협약 | 하드웨어 벤더 무상 유지보수 확약서 확보 및 리스크 해소 |
 
 ## Ⅵ. 폐열 순환형 도심 공존 마이크로그리드 중심의 결론
 
@@ -150,22 +150,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 에너지 인프라 순환 모델 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>수도권 계통 포화 · 공랭식 칠러 전력 낭비 · 단순 폐열 방출에 따른 열섬 현상</small>
+    <div class="itpe-step-detail"><strong>취약점</strong><span>수도권 계통 포화, 공랭식 칠러 전력 낭비 및 단순 폐열 방출</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>지방 분산 SMR/CFE 전력 직결, OCP 액침 냉각 및 폐열 회수 지역난방 공급</small>
+    <div class="itpe-step-detail"><strong>지방 분산</strong><span>지방 분산 SMR/CFE 전력 직결, OCP 액침 냉각 및 폐열 지역난방 공급</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>PUE 1.05 근접 달성 · 랙당 80kW 냉각 무결성 · Scope 1·2 탄소 배출 제로</small>
+    <div class="itpe-step-detail"><strong>목표 지표</strong><span>PUE 1.05 근접 달성, 랙당 80kW 냉각 및 탄소 배출 제로화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>초거대 AI 클러스터 무중단 가동 · 지역 상생형 스마트 마이크로그리드 완성</small>
+    <div class="itpe-step-detail"><strong>가치 창출</strong><span>초거대 AI 클러스터 무중단 가동 및 지역 상생형 스마트 마이크로그리드 완성</span></div>
   </div>
 </div>
 
@@ -174,16 +174,25 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **AI 에너지 인프라**는 초거대 AI 가속기 클러스터의 대규모 전력 수요와 고밀도 발열을 해결하기 위해 **SMR**, **CFE 100** 무탄소 전력과 **액침 냉각**을 결합한 친환경 전력·설비 통합 체계
-- 목적: 수도권 전력망 포화 해소 및 **PUE 1.1 이하** 달성 → **24/365 무중단 전력 공급** 및 탄소중립 실현
+- 목적: 수도권 전력망 포화 해소, 24/365 무중단 전력 공급 및 탄소중립 실현
 
 ### 2. AI 에너지 인프라 핵심 아키텍처
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 에너지 인프라 핵심 계층 요약 파이프라인">
-  <div class="itpe-pipeline-node"><strong>발전원 계층</strong><small>SMR 소형 원자로 · 대형 원전 PPA · CFE 100</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>발전원 계층</strong>
+    <div class="itpe-step-detail"><strong>핵심 요소</strong><span>SMR 소형 원자로, 대형 원전 PPA 및 CFE 100</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>송배전 계층</strong><small>HVDC 초고압 직류송전 · 분산에너지망</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>송배전 계층</strong>
+    <div class="itpe-step-detail"><strong>핵심 요소</strong><span>HVDC 초고압 직류송전 및 분산에너지망</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>냉각·IDC 계층</strong><small>액침 냉각 (랙당 100kW) · 폐열 지역난방 회수</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>냉각·IDC 계층</strong>
+    <div class="itpe-step-detail"><strong>핵심 요소</strong><span>액침 냉각(랙당 100kW) 및 폐열 지역난방 회수</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

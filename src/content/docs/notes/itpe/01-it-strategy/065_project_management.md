@@ -1,6 +1,6 @@
 ---
 title: "프로젝트 관리"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:50:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -77,7 +77,7 @@ extra:
 > 프로젝트 관리는 단순 산출물 납품을 넘어 전사 비즈니스 가치를 인도하는 실행 메커니즘이며, 성패는 **WBS 기준선(Baseline)** 통제와 **비즈니스 편익(Benefits) 실현**으로 판정함.
 
 - 정의: 한정된 기간과 자원 제약 내에서 고유한 목표와 제품·서비스를 완성하기 위해 기획, 실행, 감시·통제 기법을 적용하는 **체계적 공학 및 관리 활동**
-- 목적: 범위(Scope)·일정(Time)·원가(Cost) **삼중 제약(Triple Constraint)** 균형 달성 및 결함 최소화 → 조직의 전략적 목표 달성 및 **비즈니스 가치(Value)** 인도
+- 목적: 삼중 제약 균형 달성, 결함 최소화 및 비즈니스 가치 적기 인도
 
 ## Ⅱ. 포트폴리오 vs 프로그램 vs 프로젝트 3계층 거버넌스 체계
 
@@ -86,17 +86,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="포트폴리오, 프로그램, 프로젝트 3계층 거버넌스 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 포트폴리오 관리 (Portfolio Management)</strong></span>
-    <small>"올바른 일을 하고 있는가?" (Doing the right things)<br />→ 전사 전략 연계, 투자 가치(ROI) 극대화, 자원 우선순위 배분</small>
+    <div class="itpe-step-detail"><strong>Doing the right things</strong><span>전사 전략 연계, 투자 가치(ROI) 극대화 및 자원 우선순위 배분</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 프로그램 관리 (Program Management)</strong></span>
-    <small>"함께 잘 조율되고 있는가?" (Doing them together)<br />→ 복수 프로젝트 통합, 그룹 시너지 창출, 비즈니스 편익(Benefits) 달성</small>
+    <div class="itpe-step-detail"><strong>Doing them together</strong><span>복수 프로젝트 통합, 그룹 시너지 창출 및 비즈니스 편익 달성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 프로젝트 관리 (Project Management)</strong></span>
-    <small>"일을 올바르게 수행하고 있는가?" (Doing things right)<br />→ 삼중 제약(Scope/Time/Cost) 내에서 고유 산출물(Deliverables) 적기 인도</small>
+    <div class="itpe-step-detail"><strong>Doing things right</strong><span>삼중 제약(Scope/Time/Cost) 내에서 고유 산출물 적기 인도</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Strategic Value Chain</strong></span> · 포트폴리오(투자 전략) ↔ 프로그램(편익 시너지) ↔ 프로젝트(산출물 완결)</div>
@@ -136,16 +136,16 @@ extra:
 | **변경 통제** | **CCB 승인 절차**를 통한 변경 엄격 억제 | 스프린트 회고 및 백로그 동적 재배치 | **계약 마일스톤은 CCB, 세부 기능은 애자일 수용** |
 | **대표 적용처** | 금융 계정계, 공공 대규모 원장 구축 | 모바일 앱, 빅데이터 분석, AI 서비스 개발 | **대규모 차세대 엔터프라이즈 DX 사업** |
 
-## Ⅴ. 실무 프로젝트 파행 요인 및 기술사적 통제 대책
+## Ⅴ. 실무 프로젝트 위험 요인 및 기술사적 대책
 
 > 프로젝트 실패의 주원인은 기술 부족보다 비공식적 요구사항 확대와 주관적 공정 보고에 기인함.
 
-| 문제점 | 발생 원인 | 공학적·제도적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **범위 크립(Scope Creep) 누적** | 발주자의 구두 요구에 대한 무비판적 수용 | 공식 **변경통제위원회(CCB)** 운영 및 WBS 베이스라인 잠금 | 비공식 변경 0건 · 승인된 변경만 일정·예산 보정 |
-| **주관적 진척 보고 왜곡** | 주관적 판단에 의해 "90% 완료" 허위 보고 | **EVM 기법** 및 0/100 룰(완전 완료 시에만 가치 인정) 강제 | SPI(일정성과지수), CPI(원가성과지수) 객관 계측 |
-| **인터페이스 결함 막판 폭발** | 서브 시스템 간 의존성 조율 부재 및 지연 통합 | **일일 CI/CD 자동 빌드** 및 주간 인터페이스 통합 테스트 | 일일 빌드 성공률 100% · 조기 결함 발견율 |
-| **전략과 무관한 프로젝트 난립** | 부서 이기주의에 따른 불필요한 사업 착수 | **포트폴리오 관리(PPM)** 투자 심의 및 비즈니스 케이스 평가 | 전략 정합성 점수 · ROI/NPV 평가 통과율 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **범위 크립(Scope Creep) 누적** | 공식 **변경통제위원회(CCB)** 운영 및 WBS 베이스라인 잠금 | 비공식 변경 0건 달성 및 승인된 변경만 일정·예산 보정 |
+| **주관적 진척 보고 왜곡** | **EVM 기법** 및 0/100 룰(완전 완료 시에만 가치 인정) 강제 | SPI/CPI 지표 기반 객관적 공정 진척 및 예산 계측 |
+| **인터페이스 결함 막판 폭발** | **일일 CI/CD 자동 빌드** 및 주간 인터페이스 통합 테스트 | 결함 조기 발견 및 인터페이스 불일치 리스크 사전 해소 |
+| **전략과 무관한 프로젝트 난립** | **포트폴리오 관리(PPM)** 투자 심의 및 비즈니스 케이스 평가 | 전사 전략 정합성 확보 및 고수익 프로젝트 자원 집중 |
 
 ## Ⅵ. 엔지니어링 데이터 드리븐 PM 중심의 결론
 
@@ -166,22 +166,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="데이터 드리븐 프로젝트 관리 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>구두 요구에 의한 스코프 크립 · 주관적 공정 왜곡 · 통합 결함 지연 발견</small>
+    <div class="itpe-step-detail"><strong>취약점</strong><span>구두 요구에 의한 스코프 크립, 주관적 공정 왜곡 및 통합 결함 지연 발견</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>Git/CI 연동 데이터 드리븐 PM 및 하이브리드 거버넌스(CCB+스프린트) 확립</small>
+    <div class="itpe-step-detail"><strong>데이터 기반</strong><span>Git/CI 연동 데이터 드리븐 PM 및 하이브리드 거버넌스(CCB+스프린트) 확립</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>EVM 정량 지표 0.95 이상 · WBS 기준선 일치율 100% · 결함 조기 수렴</small>
+    <div class="itpe-step-detail"><strong>목표 지표</strong><span>EVM 정량 지표 0.95 이상, WBS 기준선 일치율 100% 및 결함 조기 수렴</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>예산·납기 초과 방지 · 고품질 산출물 인도 · 전사 비즈니스 가치 실현</small>
+    <div class="itpe-step-detail"><strong>가치 창출</strong><span>예산·납기 초과 방지, 고품질 산출물 인도 및 전사 비즈니스 가치 실현</span></div>
   </div>
 </div>
 
@@ -190,16 +190,25 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **프로젝트 관리(Project Management)**는 고유한 제품·서비스를 완성하기 위해 착수·기획·실행·통제·종료 프로세스를 적용하여 삼중 제약을 통제하고 가치를 인도하는 체계적 활동
-- 목적: 범위·일정·원가·품질 균형 달성 및 결함 방지 → **비즈니스 편익(Benefits)** 실현 및 전략 목표 달성
+- 목적: 삼중 제약 균형 달성, 결함 방지 및 비즈니스 편익 실현
 
 ### 2. 프로젝트, 프로그램, 포트폴리오 3대 관리 체계
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프로젝트 관리 3대 체계 요약 파이프라인">
-  <div class="itpe-pipeline-node"><strong>포트폴리오 관리</strong><small>전사 전략 정렬 · ROI 극대화 (Doing the right things)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>포트폴리오 관리</strong>
+    <div class="itpe-step-detail"><strong>전략 정렬</strong><span>전사 투자 최적화 (Doing the right things)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>프로그램 관리</strong><small>복수 프로젝트 통합 · 시너지 편익 (Doing them together)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>프로그램 관리</strong>
+    <div class="itpe-step-detail"><strong>시너지 창출</strong><span>복수 프로젝트 통합 편익 (Doing them together)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>프로젝트 관리</strong><small>삼중 제약 통제 · 산출물 완성 (Doing things right)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>프로젝트 관리</strong>
+    <div class="itpe-step-detail"><strong>실행 통제</strong><span>삼중 제약 통제 및 산출물 완성 (Doing things right)</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

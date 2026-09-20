@@ -1,6 +1,6 @@
 ---
 title: "정보시스템 운영 성과관리"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -74,7 +74,7 @@ extra:
 > 정보시스템 운영 성과관리는 '만드는 IT'에서 **운영 중인 IT의 지속 가치 평가**로 패러다임을 전환하며, 성패는 단순 서류 작성이 아닌 **저이용 좀비 시스템의 과감한 폐기·통폐합**으로 판정함.
 
 - 정의: 전자정부법 제56조에 근거하여 운영 중인 정보시스템을 대상으로 **비용 적정도**와 **업무 기여도**를 계량 평가하여 존속 여부를 결정하는 **사후 성과평가 거버넌스**
-- 목적: 저이용·중복 '좀비 시스템' 퇴출 및 예산 낭비 차단 → **유지·기능개선·재개발·폐기**의 객관적 의사결정을 통한 **IT 운영 효율화** 달성
+- 목적: 저이용 좀비 시스템 퇴출, 예산 낭비 차단 및 IT 운영 효율화 달성
 
 ## Ⅱ. 성과관리 4단계 추진 파이프라인
 
@@ -83,22 +83,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="정보시스템 운영 성과관리 4단계 추진 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 성과측정 계획 수립</strong></span>
-    <small>운영 중인 시스템 인벤토리 실사 · 성과측정 대상군 확정<br />→ 성과측정 추진계획서</small>
+    <div class="itpe-step-detail"><strong>대상 확정</strong><span>운영 중인 시스템 인벤토리 실사 및 성과측정 대상군 확정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 실측 데이터 수집 및 검증</strong></span>
-    <small>웹 로그(MAU) · 계약서 원장 · 인프라 리소스 실측<br />→ 지표별 실측 증빙자료</small>
+    <div class="itpe-step-detail"><strong>데이터 실측</strong><span>웹 로그(MAU), 계약서 원장 및 인프라 리소스 계측</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 종합 점수 산출 및 매핑</strong></span>
-    <small>비용 관점 점수 + 업무 관점 점수 환산 후 4분면 매트릭스 배치<br />→ 2차원 매트릭스 진단 보고서</small>
+    <div class="itpe-step-detail"><strong>매트릭스 배치</strong><span>비용 관점 점수와 업무 관점 점수 환산 후 4분면 매핑</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 심의 의결 및 예산 환류</strong></span>
-    <small>정보화심의위원회 의결 · 폐기/통폐합/재개발 집행 및 차년도 예산 연계<br />→ 운영 개선 계획서 · 예산 조정안</small>
+    <div class="itpe-step-detail"><strong>구조조정 집행</strong><span>정보화심의위 의결, 폐기/재개발 집행 및 차년도 예산 연계</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>2차원 의사결정</strong></span> · 비용 적정도 축과 업무 기여도 축의 교차 지점에서 최적의 구조조정 방향 확정</div>
@@ -145,22 +145,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="운영 성과관리 및 시스템 합리화 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>연 1회 엑셀 서류 취합 · 매크로를 통한 트래픽 조작 · 부서 이기주의로 폐기 거부</small>
+    <div class="itpe-step-detail"><strong>취약점</strong><span>연 1회 엑셀 취합, 매크로 트래픽 조작 및 부서 이기주의로 폐기 거부</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>APM 로그 실측 파이프라인 + 2차원 매트릭스 자동 판정 + 클라우드 WORM 콜드 아카이빙</small>
+    <div class="itpe-step-detail"><strong>자동화</strong><span>APM 로그 실측, 2차원 매트릭스 자동 판정 및 클라우드 WORM 아카이빙</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>허위 PV 필터링 100% · 폐기 의결 시스템의 법정 데이터 영구 보존 무결성 검증</small>
+    <div class="itpe-step-detail"><strong>목표 지표</strong><span>허위 PV 필터링 및 폐기 의결 시스템 법정 데이터 영구 보존 무결성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>좀비 시스템 낭비 예산 전면 회수 · 신규 디지털 혁신 사업으로 예산 전략적 재배분</small>
+    <div class="itpe-step-detail"><strong>가치 창출</strong><span>낭비 예산 전면 회수 및 신규 디지털 혁신 사업으로 예산 전략적 재배분</span></div>
   </div>
 </div>
 
@@ -169,18 +169,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 가동 중인 정보시스템의 타당성을 **비용 적정도**와 **업무 기여도** 관점에서 계량 평가하여 유지·개선·폐기를 결정하는 **사후 성과 거버넌스**
-- 목적: 저이용 좀비 시스템 퇴출 및 IT 예산 낭비 차단 → **유지·기능개선·재개발·폐기** 의사결정을 통한 운영 효율화
+- 목적: 저이용 좀비 시스템 퇴출, 예산 낭비 차단 및 IT 운영 효율화
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="정보시스템 운영 성과관리 2차원 매트릭스 요약">
-  <div class="itpe-pipeline-node"><strong>유지 (Maintain)</strong><small>업무 기여도 우수 / 비용 적정 (현행 SLA 유지)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>유지 (Maintain)</strong>
+    <div class="itpe-step-detail"><strong>현행 유지</strong><span>업무 기여도 우수 / 비용 적정 (현행 SLA 유지)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>기능개선/재개발</strong><small>업무 기여도 우수 / 비용 과다 (클라우드 MSA 재개발)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>기능개선/재개발</strong>
+    <div class="itpe-step-detail"><strong>현대화</strong><span>업무 기여도 우수 / 비용 과다 (클라우드 MSA 재개발)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>폐기/통폐합</strong><small>업무 기여도 저조 / 비용 적정 (데이터 아카이빙 후 통합)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>폐기/통폐합</strong>
+    <div class="itpe-step-detail"><strong>통폐합</strong><span>업무 기여도 저조 / 비용 적정 (데이터 아카이빙 후 통합)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>운영효율화/폐기</strong><small>업무 기여도 저조 / 비용 과다 (예산 삭감 및 즉시 폐기)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>운영효율화/폐기</strong>
+    <div class="itpe-step-detail"><strong>즉시 퇴출</strong><span>업무 기여도 저조 / 비용 과다 (예산 삭감 및 즉시 폐기)</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

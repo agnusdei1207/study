@@ -1,6 +1,6 @@
 ---
 title: "AI 거버넌스 플랫폼"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:43:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -70,7 +70,7 @@ extra:
 > AI 거버넌스 플랫폼은 선언적 윤리 지침을 넘어 실시간 소프트웨어 통제로 구현하는 체계이며, 성패는 **Policy-as-Code** 기반 배포 자동화와 **런타임 가드레일**의 인라인 방어력으로 판정함.
 
 - 정의: 사내외 AI/LLM 모델의 데이터 수집, 학습, 배포, 운영 전 수명주기에 걸쳐 위험을 분류하고 규제 준수와 신뢰성을 보증하는 **통합 AI 거버넌스 관리 소프트웨어 플랫폼**
-- 목적: 글로벌 AI 규제 미준수에 따른 막대한 과징금 차단 및 **환각(Hallucination)**·데이터 유출 위험 방지를 통한 **신뢰성(Trustworthiness) 확보**
+- 목적: 글로벌 규제 위반 과징금 차단, **환각(Hallucination)** 및 데이터 유출 방지 통한 **신뢰성(Trustworthiness) 확보**
 
 ## Ⅱ. AI 거버넌스 플랫폼의 4대 핵심 원칙
 
@@ -102,22 +102,26 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 거버넌스 플랫폼 4단계 수명주기 운영 프로세스">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 자산 등록 및 위험 평가</strong></span>
-    <small>모델 목적 · 학습 데이터 · 대상 사용자 등록<br />→ 위험 등급(수용불가/고위험/일반) 분류</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>모델 목적, 학습 데이터 출처, 대상 사용자 등록</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>위험 등급(수용불가/고위험/일반) 분류 및 승인</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 데이터 및 알고리즘 사전 검증</strong></span>
-    <small>저작권 · PII 정제 검사 · 편향성 및 독성 테스트<br />→ 데이터 무결성 리포트, 편향 지표 측정</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>저작권 확인, PII 정제 검사, 편향성 및 독성 테스트</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>데이터 무결성 리포트, 편향 지표 측정 결과서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ MLOps CI/CD 배포 게이트 통제</strong></span>
-    <small>Policy-as-Code 자동 평가 · 보안 검증 통과 여부 판정<br />→ 거버넌스 승인 토큰 발급, 자동 릴리즈</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>Policy-as-Code 자동 평가, 보안 검증 통과 여부 판정</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>거버넌스 승인 토큰 발급 및 자동 릴리즈</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 런타임 인라인 감시 및 사후 감사</strong></span>
-    <small>프롬프트 차단 · 데이터 드리프트 탐지 · 환각 모니터링<br />→ 실시간 알림, Model Card 갱신 및 공시</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>프롬프트 차단, 데이터 드리프트 탐지, 환각 모니터링</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>실시간 이상 알림, Model Card 갱신 및 대외 공시</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>지속적 모니터링</strong></span> · 런타임 이상 탐지 및 드리프트 발생 시 즉각 서빙 파드 트래픽 차단(서킷 브레이커)</div>
@@ -137,12 +141,12 @@ extra:
 
 > 섀도우 AI, 가드레일 지연 오버헤드, 환각 리스크를 아키텍처적으로 통제해야 함.
 
-| 위험 요인 | 발생 원인 | 공학적·관리적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **섀도우 AI(Shadow AI)** | 개발 부서에서 비인가 외부 LLM API 임의 호출 | **API 게이트웨이** 레벨의 트래픽 라우팅 강제 및 인벤토리 등록 | 비인가 모델 사용 원천 차단 |
-| **가드레일 레이턴시 지연** | 다단계 정규식 및 무거운 검증 모델로 응답 속도 저하 | 경량화 가드레일 모델 적용 및 **비동기 감사 로깅 파이프라인** 분리 | 사용자 체감 지연 최소화 |
-| **환각(Hallucination)** | RAG 참조 문서 불일치 및 통제되지 않은 임의 추론 | Faithfulness 및 Relevance 메트릭 실시간 측정, **임계치 미달 시 차단** | 허위 정보 제공 리스크 차단 |
-| **수기 심의 배포 병목** | 전통적 위원회의 대면 수기 심의로 배포 주기 지연 | **OPA(Open Policy Agent)** 기반 Policy-as-Code 자동 승인 | 컴플라이언스 준수 및 배포 민첩성 확보 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **섀도우 AI(Shadow AI)** | **API 게이트웨이** 레벨의 트래픽 라우팅 강제 및 인벤토리 등록 | 비인가 모델 사용 원천 차단 |
+| **가드레일 레이턴시 지연** | 경량화 가드레일 모델 적용 및 **비동기 감사 로깅 파이프라인** 분리 | 사용자 체감 지연 최소화 |
+| **환각(Hallucination)** | Faithfulness 및 Relevance 메트릭 실시간 측정, **임계치 미달 시 차단** | 허위 정보 제공 리스크 차단 |
+| **수기 심의 배포 병목** | **OPA(Open Policy Agent)** 기반 Policy-as-Code 자동 승인 | 컴플라이언스 준수 및 배포 민첩성 확보 |
 
 ## Ⅶ. Policy-as-Code 기반 자동 배포 게이트 중심의 제언
 
@@ -163,22 +167,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 거버넌스 플랫폼 실효적 안착을 위한 기술사적 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>사각지대 섀도우 AI · 수기 심의에 따른 배포 지연 · 가드레일 레이턴시 오버헤드</small>
+    <div class="itpe-step-detail"><strong>문제점</strong><span>사각지대 섀도우 AI, 수기 심의에 따른 배포 지연, 가드레일 레이턴시 오버헤드</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>API 게이트웨이 강제 통합 + Policy-as-Code 자동 게이트 + 경량 런타임 가드레일</small>
+    <div class="itpe-step-detail"><strong>추진 전략</strong><span>API 게이트웨이 강제 통합, Policy-as-Code 자동 게이트, 경량 런타임 가드레일</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>EU AI Act·ISO 42001 정합성 · 모델 카드 자동 갱신율 · 레이턴시 지연 오차 측정</small>
+    <div class="itpe-step-detail"><strong>관리 지표</strong><span>EU AI Act·ISO 42001 정합성, 모델 카드 자동 갱신율, 레이턴시 오차 측정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>법적·재무적 리스크 사전 방어 · 전사 AI 서비스의 비즈니스 출시 가속화</small>
+    <div class="itpe-step-detail"><strong>최종 효과</strong><span>법적·재무적 리스크 사전 방어, 전사 AI 서비스 비즈니스 출시 가속화</span></div>
   </div>
 </div>
 
@@ -187,18 +191,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **AI 거버넌스 플랫폼(AI Governance Platform)**은 기업 내 AI/LLM 모델의 수명주기 전반에 걸쳐 위험도 평가, 공정성·설명가능성 검증, 런타임 유해 정보 차단 및 글로벌 규제 준수를 중앙에서 자동 통제하는 **통합 관리 소프트웨어 플랫폼**
-- 목적: 글로벌 규제 미준수에 따른 과징금 차단 및 **신뢰할 수 있는 AI(Trustworthy AI)** 생태계 구축
+- 목적: 글로벌 규제 위반 과징금 차단, **신뢰할 수 있는 AI(Trustworthy AI)** 생태계 구축
 
 ### 2. 구성체계 및 핵심 파이프라인
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 거버넌스 플랫폼 핵심 파이프라인 요약">
-  <div class="itpe-pipeline-node"><strong>자산 등록 및 위험 평가</strong><small>EU AI Act 기반 4단계 위험도 분류</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>자산 등록 및 위험 평가</strong>
+    <div class="itpe-step-detail"><strong>위험도 분류</strong><span>EU AI Act 기반 4단계 위험도 분류</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>신뢰성 및 공정성 검증</strong><small>Fairlearn 편향도 측정 및 SHAP/LIME XAI</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>신뢰성 및 공정성 검증</strong>
+    <div class="itpe-step-detail"><strong>신뢰성 분석</strong><span>Fairlearn 편향도 측정 및 SHAP/LIME XAI</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>CI/CD 배포 게이트 통제</strong><small>Policy-as-Code(OPA) 기반 자동 승인</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>CI/CD 배포 게이트 통제</strong>
+    <div class="itpe-step-detail"><strong>자동 배포 승인</strong><span>Policy-as-Code(OPA) 기반 자동 승인</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>런타임 인라인 가드레일</strong><small>프롬프트 인젝션 차단 및 모델 카드 생성</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>런타임 인라인 가드레일</strong>
+    <div class="itpe-step-detail"><strong>실시간 방어</strong><span>프롬프트 인젝션 차단 및 모델 카드 생성</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

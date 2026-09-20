@@ -1,6 +1,6 @@
 ---
 title: "시스템 운영 감리"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:48:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -76,7 +76,7 @@ extra:
 > 시스템 운영 감리는 인프라 가용성과 BCP 체계를, 유지보수 감리는 응용 SW 품질과 과업 변경을 검증하며, 성패는 **무작위 백업 복원 실사**와 **비공식 과업 추가 차단**으로 판정함.
 
 - 정의: 정보시스템 가동 후 서비스 가용성, 인프라 성능, 재난복구 체계를 점검하는 **시스템 운영 감리**와, 응용 SW 하자보수 및 계약 과업 범위를 점검하는 **유지보수 감리**의 독립적 종합 품질 검증 활동
-- 목적: 잦은 전산 장애 및 데이터 유실 예방, **BCP/DR** 실효성 확보 → 발주자의 부당한 과업 추가 방지 및 **서비스 연속성** 보장
+- 목적: 시스템 상시 가용성 보증, **BCP/DR** 실효성 검증 및 비공식 과업 추가 통제
 
 ## Ⅱ. 시스템 운영 감리 vs 유지보수 감리 비교
 
@@ -97,27 +97,27 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="운영 감리 5대 분야 및 유지보수 감리 4대 분야 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>[운영 감리] ① 서비스 관리 및 ITSM</strong></span>
-    <small>SLA 지표 설정의 현실성 · 장애 인시던트 평균 해결 시간(MTTR)<br />→ SLA 월간 보고서 및 ITSM 티켓 로그 검증</small>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>SLA 지표 설정 현실성, MTTR 로그 및 ITSM 티켓 검증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>[운영 감리] ② 성능 및 용량 관리</strong></span>
-    <small>피크 타임 CPU/메모리/스토리지 병목 식별 · 3개년 증설 계획<br />→ APM 모니터링 추이 및 하드웨어 사이징 적정성 실사</small>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>피크 타임 자원 병목 식별, 3개년 증설 계획 및 APM 추이 실사</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>[운영 감리] ③ BCP 및 재해복구(DR)</strong></span>
-    <small>목표 복구 시간(RTO) 및 복구 시점(RPO) 부합성 · 모의훈련 실효성<br />→ 센터 간 데이터 동기화 지연 계측 및 비상대응 매뉴얼 실사</small>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>RTO/RPO 부합성, 데이터 동기화 지연 계측 및 모의훈련 실효성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>[운영 감리] ④ 백업 및 무작위 복원 실사</strong></span>
-    <small>풀/증분 백업 정책 · 원격지 소산 백업 · 실제 데이터 복원 테스트<br />→ 백업 매체 무결성 및 복원 소요 시간 실측</small>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>풀/증분 및 원격 소산 정책, 실제 데이터 복원 시간 실측</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>[유지보수] ⑤ 계약 이행, SR 변경 및 형상 통제</strong></span>
-    <small>과업 범위 준수 여부 · 구두 요구에 의한 부당 과업 추가 점검 · 형상 일치<br />→ 과업심의 의결서, Git 커밋 로그, 소프트웨어 결함 재발률 통제</small>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>과업 범위 준수, 구두 요구 차단, 과업심의 의결서 및 형상 무결성</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability & Continuity</strong></span> · SLA 지표 ↔ 인프라 용량 ↔ 재해복구(DR) ↔ 소스 형상 ↔ 과업 계약 완결</div>
@@ -134,16 +134,16 @@ extra:
 | **핵심 기법** | CBD 방법론, 기능점수, 테스트 커버리지 | **APM 계측**, 백업 실복원, 모의 장애 주입 | 정적 소스코드 분석, 형상 감사, 과업 심의 |
 | **법적 통제** | 전자정부법상 10억 이상 의무 감리 | 국가정보화기본법 및 감리기준 고시 | 공공 SW사업 계약 기준 및 과업심의 연계 |
 
-## Ⅴ. 실무 감리 시 장애 요인 및 기술사적 통제 대책
+## Ⅴ. 실무 감리 시 위험 요인 및 기술사적 대책
 
 > 단순 매뉴얼과 로그 화면 육안 확인에 의존하는 형식적 서류 감리는 실제 재해 발생 시 대형 장애로 직결됨.
 
-| 문제점 | 발생 원인 | 공학적·제도적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **서류 중심 형식적 백업 검증** | 백업 완료 로그 화면만 확인하고 실제 복구 테스트 미실시 | 감리 현장에서 무작위 백업 미디어 추출 후 **테스트 서버 실복원 실사** | 백업 데이터 무결성 100% · 목표 RTO 이내 복원 완료 |
-| **운영 중 부하 테스트 한계** | 프로덕션 환경에서 스트레스 테스트 시 서비스 장애 우려 | 스테이징 환경 대상 **트래픽 미러링(Shadowing)** 기법 및 심야 계측 | 상용 영향도 0건 · 피크 부하 임계치 식별 |
-| **부당한 무상 과업 추가 묵인** | 공공 발주자의 구두 요구에 의한 기능 추가를 감리 미적발 | SR 접수 대장과 실제 Git 커밋 로그 교차 감사 및 **과업심의위 회부** | 계약 외 과업 적발률 100% · 정당한 대가 지급 유도 |
-| **SLA 지표의 왜곡 보고** | 장애 시간을 계획된 점검으로 변칙 분류하여 가동률 과장 | **APM 및 불변 감사 로그(Immutable Audit Log)** 기반 지표 교차 검증 | 허위 가동률 보정 · 정확한 MTBF/MTTR 산출 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **서류 중심 형식적 백업 검증** | 감리 현장에서 무작위 백업 미디어 추출 후 **테스트 서버 실복원 실사** | 백업 데이터 무결성 100% 확보 및 목표 RTO 이내 복원 완료 |
+| **운영 중 부하 테스트 한계** | 스테이징 환경 대상 **트래픽 미러링(Shadowing)** 기법 및 심야 계측 | 상용 서비스 영향도 제로화 및 피크 부하 임계치 식별 |
+| **부당한 무상 과업 추가 묵인** | SR 접수 대장과 실제 Git 커밋 로그 교차 감사 및 **과업심의위 회부** | 계약 외 과업 적발률 제고 및 정당한 대가 지급 체계 확립 |
+| **SLA 지표의 왜곡 보고** | **APM 및 불변 감사 로그(Immutable Audit Log)** 기반 지표 교차 검증 | 허위 가동률 보정 및 객관적 MTBF/MTTR 산출 |
 
 ## Ⅵ. 카오스 엔지니어링 기반 실전형 감리 중심의 결론
 
@@ -164,22 +164,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="시스템 운영 감리 실전형 진화 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>로그 화면 단순 대조 · 백업 미복원 위험 방치 · 구두 과업 추가 묵인</small>
+    <div class="itpe-step-detail"><strong>취약점</strong><span>로그 화면 단순 대조, 백업 미복원 위험 방치, 구두 과업 추가 묵인</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>무작위 백업 실복원 실사 및 카오스 엔지니어링 기반 장애 주입 검증</small>
+    <div class="itpe-step-detail"><strong>동적 검증</strong><span>무작위 백업 실복원 실사 및 카오스 엔지니어링 기반 장애 주입 검증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>목표 RTO/RPO 실측치 부합 · 소스 형상과 SR 일치율 100%</small>
+    <div class="itpe-step-detail"><strong>목표 지표</strong><span>목표 RTO/RPO 실측치 부합, 소스 형상과 SR 일치율 100% 달성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>재난 시 무중단 복구 능력 확보 · SW 제값주기 및 서비스 연속성 완성</small>
+    <div class="itpe-step-detail"><strong>가치 창출</strong><span>재난 시 무중단 복구 능력 확보, SW 제값주기 및 서비스 연속성 완성</span></div>
   </div>
 </div>
 
@@ -188,18 +188,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **시스템 운영 감리**는 정보시스템 가동 후 가용성, 인프라 용량, 재해복구 체계를 점검하는 '운영 감리'와, 응용 SW 결함 수정 및 과업 범위를 점검하는 '유지보수 감리'의 독립적 종합 품질 검증 활동
-- 목적: 상시 서비스 중단 방지 및 **BCP/DR** 실효성 확보 → 발주자의 부당 과업 추가 방지 및 **서비스 연속성** 보장
+- 목적: 시스템 상시 가용성 보증, BCP/DR 실효성 검증 및 비공식 과업 추가 통제
 
 ### 2. 운영 감리 및 유지보수 감리 핵심 점검 분야
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="운영 및 유지보수 감리 핵심 점검 분야 요약">
-  <div class="itpe-pipeline-node"><strong>운영: ITSM / SLA</strong><small>가동률 지표 적정성 · 인시던트 처리</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>운영: ITSM / SLA</strong>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>가동률 지표 적정성 및 인시던트 처리 검증</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>운영: 성능·용량 & DR</strong><small>피크 병목 식별 · RTO/RPO 충족 여부</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>운영: 성능·용량 & DR</strong>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>피크 병목 식별 및 RTO/RPO 충족 여부 실사</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>운영: 백업 복원 실사</strong><small>무작위 백업본 추출 및 실제 복구 계측</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>운영: 백업 복원 실사</strong>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>무작위 백업본 추출 및 실제 복구 계측</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>유지보수: 과업 & 형상</strong><small>계약 범위 준수 · SR 변경 · 형상 무결성</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>유지보수: 과업 & 형상</strong>
+    <div class="itpe-step-detail"><strong>핵심 점검</strong><span>계약 범위 준수, SR 변경 통제 및 형상 무결성</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

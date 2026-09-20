@@ -1,6 +1,6 @@
 ---
 title: "협상에 의한 계약 제안서평가 세부기준"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -68,7 +68,7 @@ extra:
 > 협상에 의한 계약 제안서평가 세부기준은 공공 SW의 부실화를 방지하고 기술력 기반의 정당한 대가를 보장하는 조달 통제 장치이며, 성패는 **기술 변별력 확보(차등점수제)**와 **평가 투명성**으로 판정함.
 
 - 정의: 공공 정보화 사업 등 전문성과 기술성이 요구되는 사업에서 기술능력(80~90%)과 입찰가격(10~20%)을 종합 심사하여 최적 사업자를 선정하는 **조달청 계약 평가 지침**
-- 목적: 저가 덤핑 투찰로 인한 공공 SW 품질 저하 방지 및 우수 IT 기업 육성 → **공정 경쟁 환경 조성** 및 사업 성공률 제고
+- 목적: 저가 덤핑 방지, 우수 IT 기업 선정 및 공정 경쟁 환경 조성
 
 ## Ⅱ. 제안서평가 세부기준 최근 개정 방향 및 평가 배점 체계
 
@@ -77,17 +77,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="협상에 의한 계약 종합 배점 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 기술능력평가 (80~90점)</strong></span>
-    <small>정량평가(10~20점): 신용평가등급, 유사 수행실적, 상생협력<br />정성평가(70~80점): 개발 방법론, 아키텍처, 기능 요건, WBS 일정, 보안</small>
+    <div class="itpe-step-detail"><strong>평가 구성</strong><span>정량(신용등급, 실적) + 정성(방법론, 아키텍처, 기능 요구사항, WBS, 보안)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 기술 변별력 보정 : 차등점수제 적용</strong></span>
-    <small>평가위원 점수 편차 축소 시 순위별 고정 점수차(0.5~3점) 강제 적용<br />→ 가격 점수에 의한 1순위 역전 현상 원천 차단</small>
+    <div class="itpe-step-detail"><strong>변별력 강화</strong><span>순위별 고정 점수차(0.5~3점) 강제 부여로 가격 점수 역전 현상 차단</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 입찰가격평가 (10~20점)</strong></span>
-    <small>기획재정부 계약예규 산식 적용 · 80% 미만 투찰 시 감점 체감 산식<br />→ 무분별한 저가 투찰 덤핑 방지</small>
+    <div class="itpe-step-detail"><strong>덤핑 방지</strong><span>기재부 계약예규 평점산식 적용 및 80% 미만 투찰 시 감점 체감 산식</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Fair Procurement Loop</strong></span> · 사전 제안서 분량 통제 ↔ 당일 위원 무작위 추첨 ↔ 차등점수 집계 ↔ 실명 공개</div>
@@ -96,7 +96,7 @@ extra:
 
 | 개정 방향 | 주요 개정 내용 | 실무 기대 효과 |
 |---|---|---|
-| **기술 변별력 강화** | **차등점수제** 적용 요건 및 차등 폭 명문화 | 기술 1위 업체의 억울한 가격 역전 패배 방지 |
+| **기술 변별력 강화** | **차등점수제** 적용 기준 및 차등 폭 명문화 | 기술 1위 업체의 억울한 가격 역전 패배 방지 |
 | **평가 공정성 제고** | 평가위원 당일 새벽 무작위 자동 추첨, 평가 결과 및 채점위원 실명 공개 | 사전 불법 로비 원천 차단 및 채점 책임성 확보 |
 | **입찰 부담 완화** | 제안서 분량 상한제(예: 200페이지 이내) 및 요약서(50페이지) 의무화 | 제안서 '쪽수 늘리기' 경쟁 지양 및 작성 비용 절감 |
 | **부정행위 감점 확대** | 불공정 행위, 사후 하도급 위반, 허위 기재 적발 시 감점 강화 | 공공 입찰 시장 질서 교란 행위 엄단 |
@@ -127,16 +127,16 @@ extra:
 | **가격 경쟁 폐단** | 덤핑 투찰 가능성 상존 | 기술 점수 비중이 높아 기술력 우수 기업 절대 유리 |
 | **협상 절차 유무** | 별도 과업 협상 없이 낙찰 즉시 계약 | 우선협상대상자와 제안 내용, 일정, 상세 과업 협상 |
 
-## Ⅴ. 실무 평가 시 왜곡 요인 및 기술사적 통제 대책
+## Ⅴ. 실무 평가 시 위험 요인 및 기술사적 대책
 
 > 제안서의 겉포장이나 피티 전문 강사의 언변에 현혹되지 않도록 기술 중심의 실증 검증이 병행되어야 함.
 
-| 문제점 | 발생 원인 | 공학적·제도적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **기술 1위 업체의 가격 역전** | 평가위원 점수 몰아주기 기피로 미세 점수차 발생 | 순위별 고정 점수차를 부여하는 **차등점수제 의무화** | 기술 1위 업체의 최종 낙찰 성공률 통제 |
-| **평가위원 사전 결탁 및 로비** | 평가위원 인력 풀 사전 유출 및 연고 채점 | **e-발주시스템 당일 새벽 무작위 자동 추첨** 및 실명 공개 | 로비 접촉 원천 차단 · 위원별 채점 편차 통계 감사 |
-| **제안서 허위 기재 및 과장** | 수주만을 목적으로 실현 불가능한 기술 및 투입 인력 기재 | 제안서 내용을 **계약서 강제 편입** 및 위반 시 부정당업자 제재 | 제안 기능의 실제 검수 일치율 100% |
-| **전문 외주 발표자(피티 강사) 폐단** | 발표 전문 외주 강사를 고용하여 현장 기술 질의 무력화 | **사업관리자(PM) 직접 발표 의무화** 및 PM 기술 역량 심층 질의 | PM 재직 여부 확인 · PM 질의응답 단독 수행 검증 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **기술 1위 업체의 가격 역전** | 순위별 고정 점수차를 부여하는 **차등점수제 의무화** | 기술 1위 업체의 최종 낙찰 성공률 보장 |
+| **평가위원 사전 결탁 및 로비** | **e-발주시스템 당일 새벽 무작위 자동 추첨** 및 실명 공개 | 로비 접촉 원천 차단 및 위원별 채점 공정성 확보 |
+| **제안서 허위 기재 및 과장** | 제안서 내용을 **계약서 강제 편입** 및 위반 시 부정당업자 제재 | 제안 기능의 실제 검수 일치율 100% 확보 |
+| **전문 외주 발표자(피티 강사) 폐단** | **사업관리자(PM) 직접 발표 의무화** 및 기술 역량 심층 질의 | PM 실무 총괄 검증 및 제안서 허수 배제 |
 
 ## Ⅵ. 실증 검증(PoC) 기반 기술평가 전환 중심의 결론
 
@@ -157,22 +157,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기술 중심 제안서 평가 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>온정주의 채점에 따른 가격 역전 · 페이퍼 제안서 과장 · 외주 발표자 폐단</small>
+    <div class="itpe-step-detail"><strong>취약점</strong><span>온정주의 채점에 따른 가격 역전, 페이퍼 제안서 과장 및 외주 발표자 폐단</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>차등점수제 강제화, 제안 PM 직접 발표 및 핵심 아키텍처 라이브 PoC 실사</small>
+    <div class="itpe-step-detail"><strong>공정 평가</strong><span>차등점수제 강제화, 제안 PM 직접 발표 및 핵심 아키텍처 라이브 PoC 실사</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>순위별 유의미한 점수차 확보 · 제안 내용 계약서 100% 편입</small>
+    <div class="itpe-step-detail"><strong>목표 지표</strong><span>순위별 유의미한 점수차 확보 및 제안 내용의 계약서 100% 편입</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>SW 제값주기 실현 · 기술 우수 기업 선정 · 공공 정보화 사업 무결성 완성</small>
+    <div class="itpe-step-detail"><strong>가치 창출</strong><span>SW 제값주기 실현, 기술 우수 기업 선정 및 공공 정보화 품질 완성</span></div>
   </div>
 </div>
 
@@ -181,18 +181,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **협상에 의한 계약 제안서평가 세부기준**은 공공 정보화 사업에서 기술능력(80~90%)과 입찰가격(10~20%)을 종합 평가하여 최적 사업자를 선정하는 조달청 공식 계약 기준
-- 목적: 최저가 덤핑 낙찰 폐단 극복 및 **공정 경쟁** 확보 → 우수 IT 기업 선정 및 공공 SW 품질 보증
+- 목적: 최저가 덤핑 낙찰 폐단 극복, 공정 경쟁 확보 및 SW 품질 보증
 
 ### 2. 종합 평가 배점 및 차등점수제 체계
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="제안서평가 종합 배점 체계 요약">
-  <div class="itpe-pipeline-node"><strong>기술능력평가 (80~90점)</strong><small>정량(10~20) + 정성(70~80)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>기술능력평가 (80~90점)</strong>
+    <div class="itpe-step-detail"><strong>종합 심사</strong><span>정량(10~20점) + 정성(70~80점) 합산</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>차등점수제 적용</strong><small>순위별 고정 점수차 부여로 가격 역전 차단</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>차등점수제 적용</strong>
+    <div class="itpe-step-detail"><strong>변별력 확보</strong><span>순위별 고정 점수차 부여로 가격 역전 차단</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>입찰가격평가 (10~20점)</strong><small>80% 하한선 평점산식 적용</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>입찰가격평가 (10~20점)</strong>
+    <div class="itpe-step-detail"><strong>가격 심사</strong><span>80% 하한선 평점산식 적용</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>우선협상대상자 결정</strong><small>종합 1위와 기술·과업 협상</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>우선협상대상자 결정</strong>
+    <div class="itpe-step-detail"><strong>협상 체결</strong><span>종합 1위 업체와 기술 및 과업 협상</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

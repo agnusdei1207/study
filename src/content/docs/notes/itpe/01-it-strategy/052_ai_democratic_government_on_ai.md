@@ -1,6 +1,6 @@
 ---
 title: "AI 민주정부 / 온AI"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:45:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -69,7 +69,7 @@ extra:
 > AI 민주정부는 **온AI(On-AI)** 내재화를 통해 국민이 찾기 전에 복지를 공급하는 선제 행정 모델이며, 성패는 **행정 환각(Hallucination) 억제**와 **다층 보안 체계(MLS)** 준수로 판정함.
 
 - 정의: 정부의 모든 행정 업무와 대국민 서비스 접점에 인공지능을 기본 탑재(On-AI)하여, 맞춤형 혜택을 선제 제공하고 공무원의 초지능 업무 보조를 실현하는 **차세대 공공 거버넌스 모델**
-- 목적: 정보 비대칭에 따른 복지 사각지대 해소 및 공공 데이터 기반의 과학적 정책 수립 → **선제적 맞춤 행정** 구현 및 대국민 신뢰 회복
+- 목적: 복지 사각지대 해소, 공공 데이터 기반 정책 수립 통한 **선제적 맞춤 행정** 구현 및 대국민 신뢰 회복
 
 ## Ⅱ. 전자정부 vs 디지털플랫폼정부(DPG) vs AI 민주정부(온AI) 비교
 
@@ -91,17 +91,20 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 민주정부 온AI 3대 계층 아키텍처">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 대국민 선제적 서비스 계층</strong></span>
-    <small>맞춤형 혜택알리미 · 24/365 대화형 민원 상담 · 위기가구 발굴<br />→ 신청주의 탈피 및 취약계층 선제적 복지 공급</small>
+    <div class="itpe-step-detail"><strong>핵심 기능</strong><span>맞춤형 혜택알리미, 24/365 대화형 민원 상담, 위기가구 발굴</span></div>
+    <div class="itpe-step-detail"><strong>목표·효과</strong><span>신청주의 탈피 및 취약계층 선제적 복지 공급</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 공무원 온AI 워크스페이스 계층</strong></span>
-    <small>온나라 전자결재 AI 플러그인 · 기안문 초안 작성 · 법령 RAG 검색<br />→ 공무원 단순 서류 작업 경감 및 데이터 과학 기반 정책 기획</small>
+    <div class="itpe-step-detail"><strong>핵심 기능</strong><span>온나라 전자결재 AI 플러그인, 기안문 초안 작성, 법령 RAG 검색</span></div>
+    <div class="itpe-step-detail"><strong>목표·효과</strong><span>공무원 단순 서류 작업 경감 및 데이터 기반 정책 기획</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 범정부 AI 공통 인프라 계층</strong></span>
-    <small>공공 특화 sLLM · 법령·지침 벡터 지식베이스 · MLS 보안 게이트웨이<br />→ 행정 환각 억제, 개인정보 마스킹 및 보안 등급별 차등 통제</small>
+    <div class="itpe-step-detail"><strong>핵심 기능</strong><span>공공 특화 sLLM, 법령·지침 벡터 지식베이스, MLS 보안 게이트웨이</span></div>
+    <div class="itpe-step-detail"><strong>목표·효과</strong><span>행정 환각 억제, 개인정보 마스킹 및 보안 등급별 차등 통제</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Trust & Security Loop</strong></span> · 행정 데이터 가명화 ↔ sLLM/RAG 검색 ↔ 공무원 최종 승인 ↔ 대민 처분</div>
@@ -122,12 +125,12 @@ extra:
 
 > 행정 시스템의 AI 적용은 거짓 정보 처분 시 법적 분쟁을 야기하므로 기술적 검증과 거버넌스 통제가 필수적임.
 
-| 위험 요인 | 발생 원인 | 공학적·제도적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **행정 기밀 외부 유출** | 외부 상용 LLM API 호출 시 공문서 본문 전송 | 행정망 내 **프라이빗 sLLM** 구축 및 PII 마스킹 게이트웨이 강제 | 외부 트래픽 패킷 0건 · 개인식별정보 유출 0건 |
-| **환각(Hallucination)에 의한 오처분** | LLM의 통계적 확률 생성 특성으로 인한 가짜 법령 인용 | 법령 조항 원문 임베딩 기반 **행정 RAG** 구축 및 원본 출처 각주 강제 | 인용 법령 조항 일치율 100% · 환각 발생률 통제 |
-| **알고리즘 편향에 따른 복지 누락** | 과거 수혜자 데이터의 편향 학습으로 소외계층 발생 | **설명가능한 AI(XAI)** 판정 근거 제시 및 이의신청 절차 의무화 | 복지 대상자 선정 공정성 지표 · 누락률 모니터링 |
-| **물리적 망분리로 인한 혁신 지연** | 일률적인 인터넷 차단으로 최신 AI 모델 접근 불가 | 국가정보원 **다층 보안 체계(MLS)** 기반 데이터 등급별 차등 접근 | 기밀(C)/민감(S)/공개(O) 등급 분류 및 망연계 보안 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **행정 기밀 외부 유출** | 행정망 내 **프라이빗 sLLM** 구축 및 PII 마스킹 게이트웨이 강제 | 외부 트래픽 차단, 개인식별정보 유출 방지 |
+| **환각(Hallucination)에 의한 오처분** | 법령 조항 원문 임베딩 기반 **행정 RAG** 구축 및 원본 출처 각주 강제 | 인용 법령 조항 일치율 100% 확보, 환각 오처분 억제 |
+| **알고리즘 편향에 따른 복지 누락** | **설명가능한 AI(XAI)** 판정 근거 제시 및 이의신청 절차 의무화 | 복지 대상자 선정 공정성 확보, 소외계층 누락 방지 |
+| **물리적 망분리로 인한 혁신 지연** | 국가정보원 **다층 보안 체계(MLS)** 기반 데이터 등급별 차등 접근 | 기밀·민감·공개 등급별 유연한 AI 활용 및 망연계 보안 |
 
 ## Ⅵ. 인간 최종 책임(Human-in-the-loop) 중심의 결론
 
@@ -148,22 +151,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="온AI 정부 신뢰성 및 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>신청주의 복지 사각지대 · 환각 오처분 리스크 · 망분리 규제 경직</small>
+    <div class="itpe-step-detail"><strong>문제점</strong><span>신청주의 복지 사각지대, 환각 오처분 리스크, 망분리 규제 경직</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>공공 sLLM/RAG 기반 온AI 워크스페이스 구축 및 MLS 보안 체계 적용</small>
+    <div class="itpe-step-detail"><strong>추진 전략</strong><span>공공 sLLM/RAG 기반 온AI 워크스페이스 구축 및 MLS 보안 체계 적용</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>법령 출처 각주 매핑 100% · Human-in-the-loop 최종 검인 의무화</small>
+    <div class="itpe-step-detail"><strong>관리 지표</strong><span>법령 출처 각주 매핑 100%, Human-in-the-loop 최종 검인 의무화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>선제적 맞춤 행정 실현 · 행정 무결성 보증 · 대국민 신뢰 회복</small>
+    <div class="itpe-step-detail"><strong>최종 효과</strong><span>선제적 맞춤 행정 실현, 행정 무결성 보증, 대국민 신뢰 회복</span></div>
   </div>
 </div>
 
@@ -172,16 +175,25 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **AI 민주정부(온AI)**는 정부 행정 시스템 전반에 AI를 기본 내재화하여 대국민 맞춤 혜택을 선제 공급하고 공무원 업무를 지능화하는 차세대 공공 거버넌스 모델
-- 목적: 신청주의 행정 한계 극복 및 행정 오류 감소 → **선제적 맞춤 행정** 구현 및 공공 생산성 혁신
+- 목적: 신청주의 행정 한계 극복, 행정 오류 감소 통한 **선제적 맞춤 행정** 구현 및 공공 생산성 혁신
 
 ### 2. 온AI 3대 계층 체계
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="온AI 핵심 3계층 요약 파이프라인">
-  <div class="itpe-pipeline-node"><strong>대국민 계층</strong><small>혜택알리미 · 24/365 AI 민원 비서</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>대국민 계층</strong>
+    <div class="itpe-step-detail"><strong>선제 서비스</strong><span>혜택알리미 및 24/365 AI 민원 비서</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>공무원 업무 계층</strong><small>온AI 워크스페이스 · 기안 초안 · 법령 질의</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>공무원 업무 계층</strong>
+    <div class="itpe-step-detail"><strong>지능형 보조</strong><span>온AI 워크스페이스, 기안 초안 및 법령 질의</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>공통 인프라 계층</strong><small>행정 특화 sLLM · 법령 RAG · 다층 보안(MLS)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>공통 인프라 계층</strong>
+    <div class="itpe-step-detail"><strong>기반 기술</strong><span>행정 특화 sLLM, 법령 RAG, 다층 보안(MLS)</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

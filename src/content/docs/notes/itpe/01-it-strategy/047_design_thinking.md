@@ -1,6 +1,6 @@
 ---
 title: "디자인 씽킹"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:41:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -76,7 +76,7 @@ extra:
 > 디자인 씽킹은 기술 주도 공급자 마인드를 탈피하여 사용자 결핍을 올바른 문제로 재정의하는 프레임워크이며, 성패는 **POV**의 구체성과 **시제품(Prototype)** 기반의 조기 검증으로 판정함.
 
 - 정의: 디자이너의 감수성과 방식을 적용하여 사용자의 잠재 욕구를 깊이 공감하고, 기술적 실현 가능성과 사업성을 결합하는 **인간 중심 문제해결 방법론(Design Thinking)**
-- 목적: 잘못된 문제 정의로 인한 개발 낭비 차단 및 **사용자 경험(UX)** 혁신을 통한 **비즈니스 가치 창출**
+- 목적: 문제 오정의 개발 낭비 방지, **사용자 경험(UX)** 혁신 통한 **비즈니스 가치 창출**
 
 ## Ⅱ. 스탠퍼드 d.school 5단계 구성체계 및 방법론
 
@@ -85,27 +85,32 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="디자인 씽킹 d.school 5단계 방법론 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① Empathize (공감)</strong></span>
-    <small>사용자 심층 인터뷰 · 현장 섀도잉 · 미충족 욕구(Unmet Needs) 발굴<br />→ 공감 지도(Empathy Map), 인터뷰 전사록</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>사용자 심층 인터뷰, 현장 섀도잉, 미충족 욕구(Unmet Needs) 발굴</span></div>
+    <div class="itpe-step-detail"><strong>주요 산출물</strong><span>공감 지도(Empathy Map), 인터뷰 전사록</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② Define (정의)</strong></span>
-    <small>관찰 데이터 분석 · 페르소나 및 고객여정지도(CJM) 구축<br />→ POV(Point of View) 문제 진술문 확정</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>관찰 데이터 분석, 페르소나 및 고객여정지도(CJM) 구축</span></div>
+    <div class="itpe-step-detail"><strong>주요 산출물</strong><span>POV(Point of View) 문제 진술문 확정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ Ideate (아이디어 도출)</strong></span>
-    <small>HMW(How Might We) 질문법 · 브레인스토밍 · 비판 배제 발산<br />→ 아이디어 우선순위 매트릭스</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>HMW(How Might We) 질문법, 브레인스토밍, 비판 배제 발산</span></div>
+    <div class="itpe-step-detail"><strong>주요 산출물</strong><span>아이디어 우선순위 매트릭스</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ Prototype (시제품 제작)</strong></span>
-    <small>손으로 만질 수 있는 빠른 가시화 · 저충실도(Low-fi) 제작<br />→ 페이퍼 목업, 클릭형 와이어프레임</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>손으로 만질 수 있는 빠른 가시화, 저충실도(Low-fi) 제작</span></div>
+    <div class="itpe-step-detail"><strong>주요 산출물</strong><span>페이퍼 목업, 클릭형 와이어프레임</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ Test (사용자 테스트)</strong></span>
-    <small>실사용자 UT 수행 · 피드백 수집 및 가설 검증<br />→ 사용성 평가 보고서, 피드백 그리드</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>실사용자 UT 수행, 피드백 수집 및 가설 검증</span></div>
+    <div class="itpe-step-detail"><strong>주요 산출물</strong><span>사용성 평가 보고서, 피드백 그리드</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>비선형 회귀 루프</strong></span> · 테스트 결과 가설 기각 시 즉각 문제 정의(Define) 또는 아이디어(Ideate) 단계로 재순환</div>
@@ -139,12 +144,12 @@ extra:
 
 > 일회성 포스트잇 행사에 그치는 형식주의를 극복하고 엔지니어링 백로그와 연계해야 함.
 
-| 실패 요인 | 발생 원인 | 공학적·관리적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **형식적 워크숍 전락** | 포스트잇 붙이기 일회성 행사로 종료, 개발 미반영 | 도출된 페인포인트를 **Jira 에픽·스토리 백로그**로 필수 연동 | 기획과 실무 개발의 정합성 확보 |
-| **문제 정의 건너뛰기** | 성급하게 아키텍처 및 UI 기술 스택으로 직행 | **POV 승인 게이트웨이(Quality Gate)**를 두어 문제 검증 | 불필요한 기능 개발 낭비 차단 |
-| **고충실도 목업 집착** | 초기부터 완벽한 디자인을 추구하여 피드백 지연 | 페이퍼 목업 등 **저충실도(Low-fi) 프로토타입** 의무화 | 실패 비용 최소화 및 빠른 검증 |
-| **다학제 협업 결여** | 디자이너 단독 진행으로 기술적 실현 가능성 부재 | PO + 디자이너 + **소프트웨어 아키텍트** 공동 스쿼드 운영 | 기술적·사업적으로 실현 가능한 해법 도출 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **형식적 워크숍 전락** | 도출된 페인포인트를 **Jira 에픽·스토리 백로그**로 필수 연동 | 기획과 실무 개발의 정합성 확보 |
+| **문제 정의 건너뛰기** | **POV 승인 게이트웨이(Quality Gate)**를 두어 문제 검증 | 불필요한 기능 개발 낭비 차단 |
+| **고충실도 목업 집착** | 페이퍼 목업 등 **저충실도(Low-fi) 프로토타입** 의무화 | 실패 비용 최소화 및 빠른 검증 |
+| **다학제 협업 결여** | PO + 디자이너 + **소프트웨어 아키텍트** 공동 스쿼드 운영 | 기술적·사업적으로 실현 가능한 해법 도출 |
 
 ## Ⅵ. 삼위일체 파이프라인 구축 중심의 기술사적 제언
 
@@ -165,22 +170,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="디자인 씽킹 기반 삼위일체 개발 파이프라인 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>공급자 중심 개발 · 형식적 워크숍 행사 · 엔지니어링 백로그와의 단절</small>
+    <div class="itpe-step-detail"><strong>문제점</strong><span>공급자 중심 개발, 형식적 워크숍 행사, 엔지니어링 백로그와의 단절</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>Sprint 0 디자인 씽킹 도입 + 저충실도 프로토타입 기반 백로그 승격제</small>
+    <div class="itpe-step-detail"><strong>추진 전략</strong><span>Sprint 0 디자인 씽킹 도입, 저충실도 프로토타입 기반 백로그 승격제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>POV 타당성 검토 · 실사용자 UT 통과율 · 애자일 스토리 연결성</small>
+    <div class="itpe-step-detail"><strong>관리 지표</strong><span>POV 타당성 검토, 실사용자 UT 통과율, 애자일 스토리 연결성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>개발 재작업 비용 절감 · 사용자 중심 디지털 서비스 혁신 완성</small>
+    <div class="itpe-step-detail"><strong>최종 효과</strong><span>개발 재작업 비용 절감, 사용자 중심 디지털 서비스 혁신 완성</span></div>
   </div>
 </div>
 
@@ -189,20 +194,35 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **디자인 씽킹(Design Thinking)**은 사용자의 잠재된 미충족 결핍을 공감하여 문제를 올바르게 재정의하고, **프로토타입(Prototype)**과 테스트의 반복을 통해 혁신적 대안을 창출하는 인간 중심 문제해결 방법론
-- 목적: 잘못된 문제 정의에 따른 개발 낭비 차단 및 **사용자 경험(UX)** 혁신
+- 목적: 문제 오정의 개발 낭비 차단, **사용자 경험(UX)** 혁신 통한 비즈니스 가치 실현
 
 ### 2. 구성체계 및 d.school 5단계
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="디자인 씽킹 5단계 요약">
-  <div class="itpe-pipeline-node"><strong>Empathize (공감)</strong><small>인터뷰 · 현장 섀도잉 관찰</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Empathize (공감)</strong>
+    <div class="itpe-step-detail"><strong>사용자 관찰</strong><span>인터뷰 및 현장 섀도잉 관찰</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Define (정의)</strong><small>페르소나 · 고객여정지도(CJM) · POV</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Define (정의)</strong>
+    <div class="itpe-step-detail"><strong>문제 재정의</strong><span>페르소나, 고객여정지도(CJM), POV 명세</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Ideate (아이디어)</strong><small>HMW 발문 · 브레인스토밍 발산</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Ideate (아이디어)</strong>
+    <div class="itpe-step-detail"><strong>창의적 발산</strong><span>HMW 발문 및 브레인스토밍 발산</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Prototype (시제품)</strong><small>저충실도(Low-fi) 페이퍼 목업</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Prototype (시제품)</strong>
+    <div class="itpe-step-detail"><strong>신속 가시화</strong><span>저충실도(Low-fi) 페이퍼 목업 제작</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Test (사용자 테스트)</strong><small>실사용자 UT 및 피드백 회귀</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Test (사용자 테스트)</strong>
+    <div class="itpe-step-detail"><strong>가설 검증</strong><span>실사용자 UT 및 피드백 회귀 루프</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제
