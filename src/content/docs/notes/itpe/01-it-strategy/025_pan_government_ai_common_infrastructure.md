@@ -75,7 +75,7 @@ extra:
 > 개별 기관의 자체 LLM 구축에 따른 예산 낭비를 차단하며, 성패는 단순 API 제공이 아닌 **공공 RAG 정확도**와 **행정 데이터 격리**로 판정함.
 
 - 정의: 행정·공공기관이 독자 구축 없이 표준 **API(Application Programming Interface)**로 고성능 AI 모델과 인프라를 활용하도록 지원하는 **국가 공통 플랫폼**
-- 목적: 인프라 중복투자 방지를 통한 **TCO(Total Cost of Ownership)** 절감 및 **RAG(Retrieval-Augmented Generation)** 기반 공공 행정 신뢰성 확보
+- 목적: 인프라 중복투자 방지, 공공 예산 절감 및 행정 서비스 신뢰성 확보
 
 ## Ⅱ. 범정부 AI 공통기반 5단계 온보딩 및 운영 파이프라인
 
@@ -188,7 +188,7 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 행정·공공기관이 거대언어모델(**LLM**)과 연산 인프라를 독자 구축 없이 표준 **API(Application Programming Interface)**로 공동 활용하는 클라우드 기반 **국가 공공 AI 공유 플랫폼**
-- 목적: 중복투자 방지를 통한 **TCO(Total Cost of Ownership)** 절감 및 **RAG(Retrieval-Augmented Generation)** 기반 공공 행정 서비스 신뢰성 확보
+- 목적: 인프라 중복투자 방지, 공공 예산 절감 및 행정 서비스 신뢰성 확보
 
 ### 2. 구성체계 및 방법론
 
