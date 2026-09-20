@@ -203,26 +203,21 @@ extra:
 
 ### 3. 핵심 통제
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="RTM 검증 결과를 Quality Gate에서 판정하는 핵심 통제">
-  <div class="itpe-pipeline-node">
+<div class="itpe-flow-map" role="img" aria-label="RTM으로 요건부터 RFP까지 추적하고 Quality Gate에서 발주 여부를 판정하는 핵심 통제">
+  <div class="itpe-flow-node">
     <span class="itpe-keyword"><strong>RTM(Requirements Traceability Matrix)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>대상</strong><span>요건 ↔ 아키텍처 ↔ FP·예산 ↔ RFP</span>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>추적</strong><span>요건 ↔ 아키텍처 ↔ FP·예산 ↔ RFP</span></div>
+      <div class="itpe-flow-branch"><strong>확인</strong><span>누락 · 고립 · 불일치 탐지</span></div>
     </div>
   </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>전수 매핑 검증</strong>
-    <div class="itpe-step-detail">
-      <strong>판정</strong><span>누락 · 고립 · 불일치 확인</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
     <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-    <div class="itpe-step-detail">
-      <strong>통과</strong><span>발주 Baseline 확정</span>
-      <strong>미통과</strong><span>요건 보완 후 재검증</span>
+    <small>모든 요건이 RFP까지 양방향 추적되는가?</small>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>통과</strong><span>발주 Baseline 확정 → 조달 진행</span></div>
+      <div class="itpe-flow-branch"><strong>미통과</strong><span>누락·불일치 보완 → RTM 재검증</span></div>
     </div>
   </div>
 </div>
