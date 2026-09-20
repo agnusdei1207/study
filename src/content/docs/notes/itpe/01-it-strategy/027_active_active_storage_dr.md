@@ -1,7 +1,7 @@
 ---
 title: "액티브-액티브 이중화와 스토리지 DR"
 author: "Codex"
-date: "2026-09-20T22:22:00+09:00"
+date: "2026-09-20T19:22:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

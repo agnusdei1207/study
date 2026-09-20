@@ -1,7 +1,7 @@
 ---
 title: "공공부문 클라우드 네이티브 전환"
 author: "Codex"
-date: "2026-09-20T22:17:00+09:00"
+date: "2026-09-20T19:17:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

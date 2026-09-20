@@ -1,7 +1,7 @@
 ---
 title: "FinOps"
 author: "Codex"
-date: "2026-09-20T22:11:00+09:00"
+date: "2026-09-20T19:11:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

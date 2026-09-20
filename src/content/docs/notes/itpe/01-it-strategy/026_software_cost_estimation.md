@@ -1,7 +1,7 @@
 ---
 title: "소프트웨어 사업 대가산정"
 author: "Codex"
-date: "2026-09-20T22:21:00+09:00"
+date: "2026-09-20T19:21:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

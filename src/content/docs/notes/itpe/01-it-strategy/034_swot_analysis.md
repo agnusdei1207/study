@@ -1,7 +1,7 @@
 ---
 title: "SWOT 분석"
 author: "Codex"
-date: "2026-09-20T22:29:00+09:00"
+date: "2026-09-20T19:29:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

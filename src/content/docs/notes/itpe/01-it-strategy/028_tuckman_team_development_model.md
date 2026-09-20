@@ -1,7 +1,7 @@
 ---
 title: "터크만 팀 발달 모델"
 author: "Codex"
-date: "2026-09-20T22:23:00+09:00"
+date: "2026-09-20T19:23:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

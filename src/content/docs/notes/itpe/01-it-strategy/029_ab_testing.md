@@ -1,7 +1,7 @@
 ---
 title: "A/B 테스트"
 author: "Codex"
-date: "2026-09-20T22:24:00+09:00"
+date: "2026-09-20T19:24:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

@@ -1,7 +1,7 @@
 ---
 title: "애자일 대응 전략"
 author: "Codex"
-date: "2026-09-20T22:12:00+09:00"
+date: "2026-09-20T19:12:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

@@ -1,7 +1,7 @@
 ---
 title: "국가 AI 전략과 인공지능 행동계획"
 author: "Codex"
-date: "2026-09-20T22:19:00+09:00"
+date: "2026-09-20T19:19:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

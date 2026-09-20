@@ -1,7 +1,7 @@
 ---
 title: "IT 투자평가·투자관리"
 author: "Codex"
-date: "2026-09-20T22:13:00+09:00"
+date: "2026-09-20T19:13:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

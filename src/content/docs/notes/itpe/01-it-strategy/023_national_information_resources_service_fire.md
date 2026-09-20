@@ -1,7 +1,7 @@
 ---
 title: "국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성"
 author: "Codex"
-date: "2026-09-20T22:18:00+09:00"
+date: "2026-09-20T19:18:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

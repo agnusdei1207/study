@@ -1,7 +1,7 @@
 ---
 title: "범정부 AI 공통기반"
 author: "Codex"
-date: "2026-09-20T22:20:00+09:00"
+date: "2026-09-20T19:20:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

@@ -1,7 +1,7 @@
 ---
 title: "디지털 트랜스포메이션(DX)"
 author: "Codex"
-date: "2026-09-20T22:16:00+09:00"
+date: "2026-09-20T19:16:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:

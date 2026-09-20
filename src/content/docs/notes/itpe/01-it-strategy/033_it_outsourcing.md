@@ -1,7 +1,7 @@
 ---
 title: "IT 아웃소싱"
 author: "Codex"
-date: "2026-09-20T22:28:00+09:00"
+date: "2026-09-20T19:28:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
