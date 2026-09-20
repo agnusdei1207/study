@@ -1,5 +1,7 @@
 ---
 title: "프로젝트 위험관리"
+author: "Codex"
+date: "2026-09-20T19:27:50+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5 Codex"
 ---
 
 ## 지식 로드맵 내 현재 위치

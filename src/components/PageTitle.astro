@@ -2,9 +2,11 @@
 import { Badge } from '@astrojs/starlight/components';
 import NoteBadges from './badges/NoteBadges.astro';
 import type { NoteExtraMetadata } from '../types/note';
+import { formatNoteDate, formatNoteModel } from '../utils/noteMetadata.mjs';
 
-const { title, extra } = Astro.locals.starlightRoute.entry.data as {
+const { title, date, extra } = Astro.locals.starlightRoute.entry.data as {
   title: string;
+  date?: string;
   extra?: NoteExtraMetadata;
 };
 
@@ -12,6 +14,8 @@ const questionNo = extra?.question_no;
 const status = extra?.source_status;
 const priority = extra?.priority;
 const model = extra?.model;
+const modelLabel = formatNoteModel(model);
+const dateLabel = formatNoteDate(date);
 ---
 
 {
@@ -26,7 +30,7 @@ const model = extra?.model;
 <h1 id="_top">{title}</h1>
 
 {
-  (status || priority !== undefined || model) && (
+  (status || priority !== undefined || modelLabel || dateLabel) && (
     <div class="note-header-badges-row">
       {(status || priority !== undefined) && (
         <NoteBadges
@@ -37,14 +41,15 @@ const model = extra?.model;
           class="note-header-badges"
         />
       )}
-      {model && (
+      {modelLabel && (
         <Badge
-          text={model}
+          text={modelLabel}
           variant="tip"
           size="medium"
           class="model-badge"
         />
       )}
+      {dateLabel && <time class="note-written-at" datetime={date}>{dateLabel}</time>}
     </div>
   )
 }
@@ -102,6 +107,12 @@ const model = extra?.model;
       font-size: var(--sl-text-xs);
       font-weight: 500;
       letter-spacing: 0.02em;
+    }
+
+    .note-written-at {
+      color: var(--palette-muted);
+      font-size: var(--sl-text-xs);
+      font-variant-numeric: tabular-nums;
     }
   }
 </style>
