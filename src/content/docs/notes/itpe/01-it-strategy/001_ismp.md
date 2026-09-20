@@ -79,27 +79,42 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 구성체계와 5단계 방법론의 활동 및 산출물">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 프로젝트 착수</strong></span>
-    <small>범위 · 조직 · 일정 · 품질계획<br />→ 수행계획서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>범위 · 조직 · 일정 · 품질계획</span>
+      <strong>산출</strong><span>수행계획서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 정보시스템 방향성 수립</strong></span>
-    <small>환경·현황 · 목표 · 추진 범위<br />→ 범위·방향성 정의서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>환경·현황 · 목표 · 추진 범위</span>
+      <strong>산출</strong><span>범위·방향성 정의서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 업무 및 IT 요건 분석</strong></span>
-    <small>업무 · 기능 · 데이터 · 비기능<br />→ 업무·IT 요건 목록</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>업무 · 기능 · 데이터 · 비기능 요건 분석</span>
+      <strong>산출</strong><span>업무·IT 요건 목록</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 정보시스템 구조 및 요건 정의</strong></span>
-    <small>목표 아키텍처 · 인터페이스 · 상세 요건<br />→ 아키텍처 · 요건명세서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>목표 아키텍처 · 인터페이스 · 상세 요건 정의</span>
+      <strong>산출</strong><span>아키텍처 · 요건명세서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 구축사업 이행방안 수립</strong></span>
-    <small>일정 · FP · 예산 · 발주전략<br />→ 이행계획 · 예산서 · RFP</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>일정 · FP · 예산 · 발주전략 수립</span>
+      <strong>산출</strong><span>이행계획 · 예산서 · RFP</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>RTM</strong></span> · 요건 ↔ 아키텍처 ↔ FP·예산 ↔ RFP 양방향 추적</div>
@@ -198,9 +213,11 @@ extra:
 
 ## 학습 체크
 
-- [ ] ISP와 ISMP를 대상·목적·상세 수준·산출물로 비교할 수 있는가?
-- [ ] ISMP 5단계의 활동과 산출물을 연결해 설명할 수 있는가?
-- [ ] RTM 기반 Quality Gate를 실무 대책으로 제시할 수 있는가?
+- [ ] Ⅰ 개요: ISMP를 `특정 시스템 · FP 산정 수준 · 발주 Baseline`으로 정의하고 목적을 말할 수 있는가?
+- [ ] Ⅱ 방법론: 5단계를 순서대로 쓰고, 각 단계의 **활동과 산출물**을 한 쌍으로 재현할 수 있는가?
+- [ ] Ⅲ 비교: ISP와 ISMP를 `질문 · 대상 · 상세 · 산출 · 종료` 5개 축으로 비교할 수 있는가?
+- [ ] Ⅳ 통제: `요건 ↔ 아키텍처 ↔ FP·예산 ↔ RFP`의 RTM과 Quality Gate 검증 기준을 설명할 수 있는가?
+- [ ] Ⅴ 제언: 문서 분량이 아닌 Traceability를 ISMP 종료 조건으로 제시할 수 있는가?
 
 ## 연결 토픽
 

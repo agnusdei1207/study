@@ -327,8 +327,32 @@ body {
 
 .sl-markdown-content .itpe-pipeline.is-vertical .itpe-pipeline-node {
   box-sizing: border-box;
+  grid-template-columns: minmax(0, 1fr);
   width: 100%;
   min-height: 4rem;
+}
+
+.sl-markdown-content .itpe-step-detail {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0.2rem 0.6rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--palette-line);
+  text-align: left;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.sl-markdown-content .itpe-step-detail > strong {
+  color: var(--palette-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.sl-markdown-content .itpe-step-detail > span {
+  min-width: 0;
 }
 
 .sl-markdown-content .itpe-pipeline.is-vertical .itpe-pipeline-arrow {
