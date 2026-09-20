@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5 Codex"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
