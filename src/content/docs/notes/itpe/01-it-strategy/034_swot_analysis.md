@@ -1,7 +1,7 @@
 ---
 title: "SWOT 분석"
-author: "Antigravity"
-date: "2026-09-20T19:29:00+09:00"
+author: "OpenAI Codex"
+date: "2026-09-21T18:15:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)**은 내부 역량(강점·약점)과 외부 환경(기회·위협)을 객관적 사실 기반으로 분석하여 **TOWS 매트릭스**를 통해 4대 전략 대안을 도출하는 경영전략 프레임워크
-- 메커니즘: 거시환경(**PEST**)과 산업경쟁(**5-Force**)으로 기회·위협을 식별하고 가치사슬과 **VRIO**로 강점·약점을 규명한 뒤 교차 결합(SO, ST, WO, WT)
-- 산출: SWOT 4분면 매트릭스 · Cross-SWOT(TOWS) 전략 과제 · **AHP** 기반 우선순위 로드맵
+- 본질: 내부 강점·약점과 외부 기회·위협을 구분하고 교차하여 전략대안을 만드는 환경분석 기법
+- 메커니즘: 근거 수집 → S·W·O·T 분류 → SO·ST·WO·WT 교차 → 실행과제·우선순위 결정
+- 통제: 내부·외부 기준 일관성 · 요인별 근거 · 전략과 과제의 Traceability
 
 <div class="itpe-flow-map" role="img" aria-label="SWOT 대내외 환경 분석부터 TOWS 교차 및 로드맵 수립 흐름">
   <div class="itpe-flow-node">
@@ -65,7 +65,7 @@ extra:
 
 ## 예상문제
 
-> 기업의 정보전략계획(ISP) 수립 시 활용되는 SWOT 분석의 개념과 수행 절차를 설명하고, 4대 Cross-SWOT(TOWS) 전략 도출 메커니즘 및 단순 나열식 한계 극복을 위한 공학적 통제 방안을 논하시오. (25점)
+> SWOT 분석의 개념과 수행절차를 설명하고, TOWS 전략 도출 및 단순 나열식 분석의 대응책을 제시하시오. **(미출제 예상·25점)**
 
 ## Ⅰ. 대내외 경영환경의 전략적 교차, SWOT 분석의 개요
 
@@ -82,35 +82,35 @@ extra:
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>① 분석 범위 및 전략 목표 수립</strong></span>
-      <span>분석 대상(전사/사업부/IT) 정의 · 전략적 지향점 확정 (분석 범위 정의서)</span>
+      <strong>활동</strong><span>대상·기간·의사결정 목적 정의</span><strong>산출</strong><span>분석 범위</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>② 대내외 팩트 데이터 수집</strong></span>
-      <span>외부 PEST/5-Force · 내부 VRIO/가치사슬 분석 데이터 집계 (대내외 환경 팩트북)</span>
+      <strong>활동</strong><span>외부 PEST·5-Force · 내부 VRIO·가치사슬 분석</span><strong>산출</strong><span>환경·역량 근거</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>③ MECE 기반 SWOT 4분면 분류</strong></span>
-      <span>통제 가능성 기준 엄격 적용 (내부=S/W, 외부=O/T) (SWOT 매트릭스 초안)</span>
+      <strong>활동</strong><span>내부 S·W와 외부 O·T 분류</span><strong>산출</strong><span>SWOT 매트릭스</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>④ Cross-SWOT(TOWS) 교차 전략 도출</strong></span>
-      <span>SO(공격), ST(방어), WO(보완), WT(철수) 1:1 교차 결합 (TOWS 교차 전략표)</span>
+      <strong>활동</strong><span>SO·ST·WO·WT 조합별 대안 도출</span><strong>산출</strong><span>TOWS 전략대안</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>⑤ 과제 우선순위화 및 로드맵 수립</strong></span>
-      <span>AHP 쌍대비교 · 시급성/난이도 매트릭스 · BSC 연계 KPI 설정 (전략 과제 정의서 및 실행 로드맵)</span>
+      <strong>활동</strong><span>효과·실행가능성·위험 평가</span><strong>산출</strong><span>우선과제 · 실행 로드맵</span>
     </div>
   </div>
 </div>
@@ -144,53 +144,45 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **단순 나열식 매몰** | 객관적 지표·통계 데이터 실증 및 핵심 요인 5개 이내 압축 | 각 요인별 객관적 증빙 데이터 확보율 100% |
+| **단순 나열식 매몰** | 요인별 근거·영향·기간 명시 | 검증 가능한 요인만 유지 |
 | **내·외부 개념 혼동** | **통제 가능 여부(Controllability)** 기준 엄격 적용 | 조직 통제 가능=S/W, 통제 불가=O/T 분류 일치 |
 | **우선순위 부재** | **AHP(계층화분석법)** 쌍대비교 및 2×2 매트릭스 적용 | 가중치 상위 핵심 과제 선별 완료 |
-| **정적 분석의 한계** | 시나리오 플래닝 결합 및 분기별 SWOT 정기 롤링 | 분기별 환경 변화 반영 및 전략 업데이트 |
+| **정적 분석의 한계** | 변화 신호 모니터링 · 시나리오별 재평가 | 환경변화 반영 |
 
 ## Ⅵ. 실행 과제 연계 및 추적성 중심의 기술사적 제언
 
 > SWOT의 가치는 4개 상자를 채우는 데 있지 않고, Cross 전략이 예산과 책임자가 명시된 프로젝트로 이어지는 데 있음.
 
-### 학습자 통찰 메모 — 답안 밖
+`[핵심 통찰]` SWOT의 약점은 4분면이 아니라 근거 없는 요인과 실행되지 않는 전략이며, TOWS 대안이 책임·자원·성과지표를 가진 과제로 전환되어야 가치가 생김.
 
-- [핵심 통찰]: 실무 ISP 컨설팅에서 SWOT이 비판받는 주된 이유는 누구나 알 만한 상식적 단어를 나열한 뒤 보고서용으로 방치하기 때문임. PEST와 가치사슬에서 뽑아낸 정량적 팩트를 바탕으로 TOWS 전략을 도출하고, 이를 BSC 관점의 KPI와 1:1로 매핑해야만 살아있는 전략이 됨.
-- 나라면: 전략 계획 수립 시 `통제 가능성 기준에 따른 S/W와 O/T 분리 검증 → TOWS 전략별 AHP 가중치 부여 → 상위 3개 핵심 과제에 대해 담당 부서, 예산, 마일스톤(WBS) 강제 지정`을 전략 프레임워크의 완성 조건으로 확립하겠음.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 피상적 나열 탈피 및 객관적 팩트 기반 TOWS 실행 과제화
-- 대안: **PEST/가치사슬-SWOT-TOWS-AHP** 4단계 연계 프레임워크 적용
-- 검증: 통제 가능성 기반 분류 오류 0건 · 도출 과제-BSC KPI 1:1 매핑 완료
-- 효과: 전략 수립의 객관성 확보 및 한정된 IT 자원의 최적 투자 집중
+`나라면` 각 요인에 근거와 유효기간을 붙이고, TOWS 대안을 효과·실행가능성·위험으로 평가하여 선택된 과제만 로드맵에 반영하겠음.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SWOT 전략 프레임워크 제언 흐름">
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>현행 한계</strong>
-      <span>주관적 나열 · 내외부 개념 혼동 · 실행 과제 단절</span>
+      <strong>문제</strong><span>주관적 나열 · 내외부 혼동 · 실행과제 단절</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>개선 대안</strong>
-      <span>통제 가능성 기준 MECE 분류 + TOWS 교차 + AHP 우선순위화</span>
+      <strong>대안</strong><span>근거·유효기간 부여 · TOWS 교차 · 다기준 평가</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>검증 기준</strong>
-      <span>팩트북 연계율 100% · BSC 관점 전략 맵 추적성 확보</span>
+      <strong>판정</strong><span>요인 근거 · 전략 연결 · 책임자·자원 · 성과지표</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>실행 효과</strong>
-      <span>전략적 정합성(Strategic Fit) 달성 · 지속 가능한 경쟁 우위 확보</span>
+      <strong>효과</strong><span>전략 정합성 · 우선순위 명확화 · 실행력 확보</span>
     </div>
   </div>
 </div>
@@ -241,17 +233,16 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제133회 정보관리기술사 1교시: SWOT 분석 및 전략 도출 방안
-- 제99회, 제81회, 제80회 정보관리기술사 기출
-- Michael E. Porter, [Competitive Strategy: Techniques for Analyzing Industries and Competitors](https://www.hbs.edu)
-- ISO, [ISO 31000:2018, Risk management — Guidelines](https://www.iso.org)
+- 공식 문제지 원문으로 확인한 직접 기출 없음
+- [Harvard Business School: The Five Competitive Forces That Shape Strategy](https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-competitive-forces-that-shape-strategy.aspx)
 
 ## 학습 체크
 
-- [ ] SWOT의 4가지 요소를 통제 가능 여부(내부/외부)와 영향(긍정/부정)의 2×2 축으로 구분할 수 있는가?
-- [ ] SO, ST, WO, WT 4대 Cross 전략의 개념과 대표적 실행 과제를 설명할 수 있는가?
-- [ ] PEST, 5-Force, 가치사슬 분석과 SWOT 간의 데이터 입력 및 통합 관계를 도식화할 수 있는가?
-- [ ] 실무 SWOT의 한계인 단순 나열식을 극복하기 위한 공학적 통제 방안(AHP 등)을 서술할 수 있는가?
+- [ ] Ⅰ. SWOT의 정의·목적과 내부·외부 구분기준을 설명할 수 있는가?
+- [ ] Ⅱ. 범위 정의부터 과제 우선순위까지 활동·산출을 연결할 수 있는가?
+- [ ] Ⅲ. SO·ST·WO·WT의 조합과 전략방향을 재현할 수 있는가?
+- [ ] Ⅳ. SWOT·3C·PEST·5-Force의 분석범위와 산출을 비교할 수 있는가?
+- [ ] Ⅴ~Ⅵ. 근거 없는 나열과 실행과제 단절의 대응책을 제시할 수 있는가?
 
 ## 연결 토픽
 
