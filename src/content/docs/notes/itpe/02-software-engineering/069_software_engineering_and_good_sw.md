@@ -25,7 +25,7 @@ extra:
 
 ```text
 [소프트웨어 공학 및 좋은 SW의 조건]
- ├── 공학 정의: 전 생애주기(SDLC)에 걸쳐 QCD(품질·비용·납기)를 달성하기 위한 체계적 규율 (IEEE 610.12)
+ ├── 본질: 주먹구구식 개발로 인한 납기 지연·비용 폭증·품질 파탄(SW 위기)을 극복하고, 과학적·체계적 공정으로 고품질 SW를 경제적으로 생산하는 공학 규율 (IEEE 610.12)
  ├── Brooks의 4대 본질적 난제: 복잡성(Complexity), 순응성(Conformity), 변경성(Changeability), 비가시성(Invisibility)
  ├── 공학 3요소: 도구(Tools) + 방법(Methods) + 프로세스(Process)
  ├── 좋은 SW 4대 조건(Sommerville): 유지보수성, 신뢰성/보안성, 효율성, 수용성

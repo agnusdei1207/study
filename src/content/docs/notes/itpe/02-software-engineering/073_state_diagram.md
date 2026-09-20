@@ -25,7 +25,7 @@ extra:
 
 ```text
 [상태 다이어그램(State Machine Diagram)]
- ├── 이론 기반: 유한 상태 머신(FSM: Finite State Machine)
+ ├── 본질: 단일 객체가 외부 이벤트에 반응하여 시간에 따라 어떤 상태로 변하고 동작하는지 생애주기를 추적·통제하는 유한 상태 머신(FSM) 모델링 기법
  ├── 핵심 요소: 상태(State) · 전이(Transition) · 이벤트(Event) · 가드 조건(Guard) · 액션(Entry/Do/Exit)
  ├── 상태 폭발 해결: 복합 상태(Composite State) · 직교 영역(Orthogonal) · 이력 상태(History)
  ├── UML 3대 행위 비교: 유스케이스(외부 상호작용) vs 액티비티(업무 흐름) vs 상태(객체 생애주기)
