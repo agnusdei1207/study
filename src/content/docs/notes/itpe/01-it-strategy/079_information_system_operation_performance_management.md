@@ -1,20 +1,20 @@
 ---
 title: "정보시스템 운영 성과관리"
-author: "Antigravity"
-date: "2026-09-20T19:32:00+09:00"
+author: "OpenAI Codex"
+date: "2026-09-22T05:50:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 시스템 운영 관리 및 IT 거버넌스를 거쳐 정보시스템 운영 성과관리로 이어지는 지식 위치">
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 시스템 운영 관리·IT 거버넌스를 거쳐 정보시스템 운영 성과관리로 이어지는 지식 위치">
   <span>IT 전략·관리</span>
   <span>시스템 운영 관리·IT 거버넌스</span>
   <strong>정보시스템 운영 성과관리</strong>
@@ -22,196 +22,139 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: **정보시스템 운영 성과관리**는 가동 중인 정보시스템의 타당성을 **비용 관점**과 **업무 관점** 2개 축으로 계량 평가하여 유지·개선·폐기를 결정하는 사후 거버넌스 제도
-- 메커니즘: 유지관리비 적정도와 실질 이용률을 2차원 매트릭스에 매핑하여 **유지·기능개선·재개발·폐기(통폐합)**의 4대 의사결정을 도출
-- 산출: 운영 성과측정 종합 보고서 · 2차원 의사결정 매트릭스 · 폐기/재개발 의결서
+- 본질: **정보시스템 운영 성과관리**는 정보시스템의 지속 운영 가치를 판단하고 업무·비용 성과를 높이는 활동
+- 메커니즘: 대상 선정 → 성과측정 → 성과평가 → 정비대상 결정·정비계획 환류
+- 산출물: 성과측정 결과 · 평가점수 · 정비권고 · 정비계획
 
-<div class="itpe-flow-map" role="img" aria-label="정보시스템 운영 성과관리 평가 및 의사결정 흐름">
-  <div class="itpe-flow-node">
-    <strong>운영 시스템 인벤토리</strong>
-    <small>전사 가동 중인 공공·기업 정보시스템 전수 조사</small>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>2대 관점 지표 실측</small></div>
-  <div class="itpe-flow-node is-current">
-    <strong>2차원 성과측정 모델</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>비용</strong><span><span class="itpe-keyword"><strong>유지관리비 적정도</strong></span> (대가기준 대비 계약액)</span></div>
-      <div class="itpe-flow-branch"><strong>업무</strong><span><span class="itpe-keyword"><strong>업무 기여도</strong></span> (실사용 MAU · 법정 업무 지원율)</span></div>
-      <div class="itpe-flow-branch"><strong>판정</strong><span>2차원 4분면 매트릭스 기반 <span class="itpe-keyword"><strong>4대 의사결정</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>심의 의결 및 후속 조치</small></div>
-  <div class="itpe-flow-node">
-    <strong>구조조정 및 예산 반영</strong>
-    <small>유지 · 클라우드 재개발 · 데이터 아카이빙 후 폐기(Retire)</small>
-  </div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="정보시스템 운영 성과관리의 대상 선정부터 정비계획까지 세로 흐름">
+  <div class="itpe-pipeline-node"><strong>① 대상 선정</strong><div class="itpe-step-detail"><strong>기준</strong><span>제23조의 성과측정 대상·제외대상 식별</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>② 성과측정</strong><div class="itpe-step-detail"><strong>비용</strong><span>40점</span></div><div class="itpe-step-detail"><strong>업무</strong><span>60점</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>③ 성과평가</strong><div class="itpe-step-detail"><strong>주체</strong><span>행정안전부장관</span></div><div class="itpe-step-detail"><strong>산출</strong><span>100점 만점 평가점수</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node is-current"><strong>④ 정비권고·정비계획</strong><div class="itpe-step-detail"><strong>판정</strong><span>60점 미만 정비권고 가능</span></div><div class="itpe-step-detail"><strong>환류</strong><span>폐기·개선 등 정비계획 수립</span></div></div>
 </div>
 
 <details>
 <summary>핵심 용어</summary>
 
-- **정보시스템 운영 성과관리**: 전자정부법 제56조에 따라 운영 중인 정보시스템의 효율성과 업무 기여도를 측정하는 제도
-- **비용 관점(비용 적정도)**: 소프트웨어 사업 대가산정 가이드 대비 실제 유지관리비와 인프라 운영비의 적정성을 평가
-- **업무 관점(업무 적합성)**: 시스템의 실제 이용률(접속 건수, MAU)과 법정 필수 업무 기여도, 사용자 만족도를 평가
-- **좀비 시스템**: 이용자나 트랜잭션이 거의 없으면서 매년 유지보수비와 서버 자원을 지속 낭비하는 노후 시스템
-- **데이터 아카이빙(Data Archiving)**: 폐기 대상 시스템의 법정 보존 의무 데이터를 장기 보관용 콜드 스토리지로 안전 이관하는 활동
-- **통폐합**: 유사·중복 기능을 수행하는 둘 이상의 시스템을 단일 플랫폼으로 통합 흡수하는 조치
+- **정보시스템 운영 성과관리**: 지속 운영 가치를 판단하기 위해 운영 성과측정·평가 결과에 따라 정비대상을 결정하고 업무·비용 성과를 높이는 활동
+- **성과측정**: 비용 측면 40점·업무 측면 60점의 지표별 기초데이터로 운영 성과를 측정하는 활동
+- **성과평가**: 제출된 성과측정 결과를 행정안전부장관이 검토하여 평가점수를 확정하는 활동
+- **정비**: 평가점수에 따라 폐기하거나 통폐합·기능고도화·전면재개발 등의 개선방안을 마련·시행하는 조치
 
 </details>
 
 ## 예상문제
 
-> 행정안전부 '정보시스템 운영 성과관리 지침'에 따른 정보시스템 운영 성과측정의 개념, 비용 관점 및 업무 관점의 핵심 지표, 2차원 매트릭스 기반 4대 의사결정(유지, 기능개선, 재개발, 폐기) 판단 기준 및 실무 정착 방안을 설명하시오. (25점)
+> 「전자정부 성과관리 지침」에 따른 정보시스템 운영 성과관리의 개념·절차, 성과측정 지표와 정비 판정기준을 설명하시오. **(미출제 예상·25점)**
 
-## 딸려 나오는 하위 토픽
+## Ⅰ. 지속 운영 가치와 정비대상을 결정하는 성과관리
 
-| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
-|---|---|---|
-| **01-100 정보시스템 운영 성과측정** | 비용 적정도와 업무 기여도 2개 축으로 계량화하여 4분면 매트릭스 진단 수행 | 본문 전반 (Ⅱ, Ⅲ, Ⅳ) |
+> 성과측정·평가 결과를 근거로 저성과 정보시스템을 정비하되, 폐기 예외와 서비스 연속성을 함께 통제함.
 
-## Ⅰ. IT 운영 효율화와 시스템 합리화의 기준, 성과관리의 개요
+- 정의: 정보시스템의 지속 운영 가치를 판단하기 위해 운영 성과측정·평가 결과에 따라 **정비대상**을 결정하여 업무·비용 성과를 높이는 활동
+- 목적: 운영 성과의 객관적 진단 · 저성과 시스템 정비 · 정보화 투자 효율화
 
-> 정보시스템 운영 성과관리는 '만드는 IT'에서 **운영 중인 IT의 지속 가치 평가**로 패러다임을 전환하며, 성패는 단순 서류 작성이 아닌 **저이용 좀비 시스템의 과감한 폐기·통폐합**으로 판정함.
+## Ⅱ. 현행 지침의 성과관리 조문 체계
 
-- 정의: 전자정부법 제56조에 근거하여 운영 중인 정보시스템을 대상으로 **비용 적정도**와 **업무 기여도**를 계량 평가하여 존속 여부를 결정하는 **사후 성과평가 거버넌스**
-- 목적: 저이용 좀비 시스템 퇴출, 예산 낭비 차단 및 IT 운영 효율화 달성
+| 단계 | 공식 근거 | 핵심 활동 | 산출 |
+|---|---|---|---|
+| **대상 선정** | 제23조 | 성과측정 대상·제외대상 식별 | 측정 대상 목록 |
+| **성과측정** | 제24조 | 기관이 기초데이터·증빙자료를 수집하여 비용·업무 성과 측정 | 성과측정 결과 |
+| **성과평가** | 제25조 | 행정안전부장관이 측정 결과를 검토·평가 | 평가점수 |
+| **정보시스템 정비** | 제26조 | 60점 미만 시스템에 점수 구간별 정비권고 | 정비대상·정비권고 |
+| **정비계획 수립** | 제27조 | 정비권고 시스템의 폐기·개선 계획 수립 | 정비계획 |
 
-## Ⅱ. 성과관리 4단계 추진 파이프라인
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>통제 원칙</strong></span> · 정비계획에 이용자 불편 방지 · 정보 이관 또는 보존 · 전자정부서비스 연속성 보장 포함</div>
 
-> 전수 인벤토리 조사에서 실측 데이터 수집, 2차원 매트릭스 분석, 심의 의결로 이어지는 행정·공학적 파이프라인으로 수행됨.
+## Ⅲ. 성과측정 구성, 비용 40점·업무 60점
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정보시스템 운영 성과관리 4단계 추진 파이프라인">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 성과측정 계획 수립</strong></span>
-    <div class="itpe-step-detail"><strong>대상 확정</strong><span>운영 중인 시스템 인벤토리 실사 및 성과측정 대상군 확정</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 실측 데이터 수집 및 검증</strong></span>
-    <div class="itpe-step-detail"><strong>데이터 실측</strong><span>웹 로그(MAU), 계약서 원장 및 인프라 리소스 계측</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 종합 점수 산출 및 매핑</strong></span>
-    <div class="itpe-step-detail"><strong>매트릭스 배치</strong><span>비용 관점 점수와 업무 관점 점수 환산 후 4분면 매핑</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 심의 의결 및 예산 환류</strong></span>
-    <div class="itpe-step-detail"><strong>구조조정 집행</strong><span>정보화심의위 의결, 폐기/재개발 집행 및 차년도 예산 연계</span></div>
-  </div>
+| 측면 | 지표 | 배점 | 측정 초점 |
+|---|---|---:|---|
+| **비용** | 운영의 적정성 | 10점 | 누적유지보수비÷누적개발비 |
+| **비용** | 유지의 용이성 | 10점 | 전년 대비 운영유지비 증감률 |
+| **비용** | 비용의 효율성 | 20점 | 전년 대비 활용규모당 운영유지비 증감률 |
+| **업무** | 기능 활용도 | 20점 | 기능별 전년 대비 사용량 증감률 |
+| **업무** | 업무 성과 달성도 | 40점 | 공통지표 10점 · 고유지표 30점 |
+| **합계** | 비용 40점 · 업무 60점 | **100점** | 지표별 환산점수 합산 |
+
+> 세부 구간·환산점수는 현행 지침 별표를 적용하며, 성과측정 데이터·증빙자료의 적정성 검토 결과가 평가점수에 반영될 수 있음.
+
+## Ⅳ. 제26조 평가점수별 정비 판정
+
+<div class="itpe-flow-map" role="img" aria-label="정보시스템 성과평가 점수가 60점 이상인지 판정하고 60점 미만을 40점 기준으로 나누는 흐름">
+  <div class="itpe-flow-node"><strong>성과평가 총점</strong><div class="itpe-step-detail"><strong>만점</strong><span>100점</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current"><strong>60점 미만인가?</strong><div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>아니요</strong><span>제26조 정비권고 대상 아님</span></div><div class="itpe-flow-branch"><strong>예</strong><span>정비권고 가능 → 40점 기준 판정</span></div></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>60점 미만 점수 구간</strong><div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>40점 미만</strong><span><span class="itpe-keyword"><strong>폐기</strong></span></span></div><div class="itpe-flow-branch"><strong>40점 이상 60점 미만</strong><span>폐기 또는 통폐합·기능고도화·전면재개발 등 개선방안 마련·시행</span></div></div></div>
 </div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>2차원 의사결정</strong></span> · 비용 적정도 축과 업무 기여도 축의 교차 지점에서 최적의 구조조정 방향 확정</div>
 
-## Ⅲ. 성과측정 2대 평가 관점 및 세부 지표
+| 평가점수 | 제26조 판정 | 후속 조치 |
+|---:|---|---|
+| **60점 이상** | 제26조제1항의 정비권고 대상 아님 | 지표 결과값 관리 · 운영·관리 수준 향상 |
+| **40점 이상 60점 미만** | 정비권고 가능 | 폐기 또는 통폐합·기능고도화·전면재개발 등 개선방안 마련·시행 |
+| **40점 미만** | 폐기 정비권고 가능 | 제26조제2항 예외 검토 후 폐기 절차 수행 |
 
-> 소프트웨어 대가 기준 기반의 비용 검증과 실사용 기반의 업무 효익을 균형 있게 계량화함.
+> 40점 미만이라도 법령상 구축·운영 근거, 생명·안보·치안, 국가경제·국민생활, 대국민 서비스, 사회적 약자, 표준 보급시스템, 운영 3년 미경과, 위원회 인정 사유에 해당하면 폐기권고를 하지 않을 수 있음.
 
-| 평가 관점 | 세부 지표 | 측정 내용 및 산식 기준 | 비고 |
-|---|---|---|---|
-| **비용 관점 (Cost)** | **유지관리비 적정도** | SW 사업 대가산정 가이드 기준 대비 실제 계약 금액 비율 | 비용 과다 투입 여부 검증 |
-| **비용 관점 (Cost)** | **운영비용 효율성** | 기능점수(FP) 단위당 소비되는 인프라(서버, 스토리지) 비용 | 클라우드 전환 타당성 검토 |
-| **업무 관점 (Business)** | **시스템 이용도** | 실 사용자 본인인증 기반 월간 활성 이용자 수(MAU), 트랜잭션 수 | 허위 호출 배제 실사용 검증 |
-| **업무 관점 (Business)** | **업무 기여도** | 조직 고유 핵심 업무 및 법정 의무 사무 처리 지원율 | 대체 불가능성 평가 |
-| **업무 관점 (Business)** | **사용자 만족도** | 내·외부 실제 사용자를 대상으로 실시한 연례 정량 만족도 | 체감 서비스 품질 측정 |
+## Ⅴ. 문제점·대응책
 
-## Ⅳ. 2차원 매트릭스 기반 4대 의사결정 판정 체계
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **기초데이터 오류** | 원천자료·산식·증빙자료 교차검증 | 평가 재현성 확보 |
+| **점수만으로 기계적 폐기** | 제26조제2항 폐기 예외 검토 · 위원회 판단 근거 기록 | 필수 서비스 보호 |
+| **정비 중 서비스 단절** | 이용자 불편 방지 · 정보 이관·보존 · 서비스 연속성 계획 | 안전한 정비 이행 |
 
-> 두 개 축의 평가 점수를 바탕으로 4개 분면에 배치하여 명확한 조치 경로를 도출함.
+## Ⅵ. 증빙과 서비스 연속성을 확보하기 위한 기술사적 제언
 
-| 4대 의사결정 | 매트릭스 영역 | 핵심 판정 사유 | 실무 추진 조치 |
-|---|---|---|---|
-| **유지 (Maintain)** | 업무 기여도 높음 / 비용 적정 | 업무 기여도가 높고 비용 집행이 적정한 가장 이상적인 상태 | 현행 운영 체계 및 SLA 유지, 보안 패치 |
-| **기능개선 / 재개발** | 업무 기여도 높음 / 비용 과다 | 핵심 업무를 지원하나 시스템 노후화로 유지비가 폭증한 상태 | **클라우드 네이티브 전환**, MSA 재개발 추진 |
-| **폐기 / 통폐합** | 업무 기여도 낮음 / 비용 적정 | 이용률이 미미하여 비즈니스 존속 가치를 상실한 저이용 상태 | 데이터 아카이빙 후 **서비스 종료 및 타 시스템 통합** |
-| **운영효율화 / 폐기** | 업무 기여도 낮음 / 비용 과다 | 이용자도 없으면서 막대한 인프라 비용을 축내는 최악의 상태 | 즉각적 인프라 회수, **차년도 예산 전액 삭감 및 즉시 폐기** |
-
-## Ⅴ. 시스템 폐기 및 클라우드 아카이빙 연계를 위한 기술사적 제언
-
-> 시스템 폐기 시 공공 기록물 보존 규정을 위반하지 않도록 콜드 스토리지 아카이빙과 상시 자동 관제 거버넌스가 필수적임.
+> 평가점수만 제시하지 않고 원천자료·폐기 예외·정비 이행의 판단 근거를 끝까지 추적해야 함.
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: 정보시스템 운영 성과관리의 최대 걸림돌은 부서 이기주의임. 시스템이 폐기되면 부서의 권한과 예산이 줄어든다고 판단해 매크로로 가짜 트래픽을 만들어 점수를 조작함. 따라서 인증 기반의 고유 트랜잭션을 실측하고, 자진 폐기 부서에 신규 R&D 예산을 우선 배정하는 제도적 인센티브가 병행되어야 함.
-- 나라면: 클라우드 통합 관제 센터의 APM 데이터를 직접 파이프라인으로 연결하여 `연간 트래픽 미달 시스템을 '좀비 후보군'으로 자동 지정 → 2차원 매트릭스 자동 계산 → 폐기 결정 시 법정 데이터를 클라우드 WORM(Write Once Read Many) 스토리지로 자동 아카이빙`하는 무중단 폐기 거버넌스를 구축하겠음.
+- [핵심 통찰]: 현행 체계의 판정 단위는 업무·비용 2×2 유형이 아니라 **100점 평가점수와 60점·40점 구간**임.
+- 나라면: 지표별 원천자료와 폐기 예외 검토 근거를 함께 보존하여 점수와 정비결정의 감사 추적성을 확보하겠음.
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 연례 서류 취합을 탈피하고 APM 실측 기반 상시 평가 체계 확립
-- 대안: **클라우드 APM 연계 자동 성과측정 및 WORM 아카이빙 기반 폐기 파이프라인** 가동
-- 검증: 본인인증 실사용자 MAU 실측률 100% · 폐기 데이터 법정 보존 무결성 검증
-- 효과: 유령 시스템 퇴출을 통한 전사 IT 운영비 20% 절감 및 클라우드 전환 가속화
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="운영 성과관리 및 시스템 합리화 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>취약점</strong><span>연 1회 엑셀 취합, 매크로 트래픽 조작 및 부서 이기주의로 폐기 거부</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>자동화</strong><span>APM 로그 실측, 2차원 매트릭스 자동 판정 및 클라우드 WORM 아카이빙</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>목표 지표</strong><span>허위 PV 필터링 및 폐기 의결 시스템 법정 데이터 영구 보존 무결성</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>가치 창출</strong><span>낭비 예산 전면 회수 및 신규 디지털 혁신 사업으로 예산 전략적 재배분</span></div>
-  </div>
-</div>
+- 판정: 비용 40점·업무 60점 측정결과의 증빙 적정성 · 제26조 점수 구간
+- 대안: 원천자료 검증 · 폐기 예외 검토 · 정비계획 수립 · 이행점검
+- 검증: 평가점수 · 정비권고 근거 · 정보 이관·보존 · 서비스 연속성 증적
+- 효과: 저성과 시스템 정비 · 업무·비용 성과 제고 · 이용자 영향 최소화
 
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
 
-- 정의: 가동 중인 정보시스템의 타당성을 **비용 적정도**와 **업무 기여도** 관점에서 계량 평가하여 유지·개선·폐기를 결정하는 **사후 성과 거버넌스**
-- 목적: 저이용 좀비 시스템 퇴출, 예산 낭비 차단 및 IT 운영 효율화
+- 정의: 운영 성과측정·평가 결과에 따라 정비대상을 결정하여 정보시스템의 업무·비용 성과를 높이는 활동
+- 목적: 지속 운영 가치 판단 · 저성과 시스템 정비 · 정보화 투자 효율화
 
-### 2. 구성체계 및 방법론
+### 2. 측정·판정체계
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정보시스템 운영 성과관리 2차원 매트릭스 요약">
-  <div class="itpe-pipeline-node">
-    <strong>유지 (Maintain)</strong>
-    <div class="itpe-step-detail"><strong>현행 유지</strong><span>업무 기여도 우수 / 비용 적정 (현행 SLA 유지)</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>기능개선/재개발</strong>
-    <div class="itpe-step-detail"><strong>현대화</strong><span>업무 기여도 우수 / 비용 과다 (클라우드 MSA 재개발)</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>폐기/통폐합</strong>
-    <div class="itpe-step-detail"><strong>통폐합</strong><span>업무 기여도 저조 / 비용 적정 (데이터 아카이빙 후 통합)</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>운영효율화/폐기</strong>
-    <div class="itpe-step-detail"><strong>즉시 퇴출</strong><span>업무 기여도 저조 / 비용 과다 (예산 삭감 및 즉시 폐기)</span></div>
-  </div>
-</div>
-
-### 3. 핵심 통제
-
-- **2차원 4분면 매트릭스**: 업무 적합성과 비용 적정도의 교차 지점에서 객관적 조치 확정
-- **데이터 아카이빙**: 폐기 결정 시스템의 법정 원장 데이터를 클라우드 WORM 스토리지로 안전 이관
+| 구분 | 핵심 기준 | 결과 |
+|---|---|---|
+| **성과측정** | 비용 40점 · 업무 60점 | 100점 만점 평가점수 |
+| **60점 이상** | 제26조 정비권고 기준 비해당 | 지표 결과값 관리 · 수준 향상 |
+| **40점 이상 60점 미만** | 정비권고 가능 | 폐기 또는 통폐합·기능고도화·전면재개발 등 개선 |
+| **40점 미만** | 폐기 정비권고 가능 | 폐기 예외 검토 · 정비계획 수립 |
 
 ## 출제 이력과 검증 출처
 
-- 제121회 정보관리기술사(KPC) 1교시: 전자정부 정보시스템 운영 성과관리 지침에 따른 성과측정 및 판단 기준
-- 행정안전부, [정보시스템 운영 성과관리 지침](https://www.mois.go.kr)
-- 한국지능정보사회진흥원(NIA), [공공 정보시스템 운영 성과관리 실무 매뉴얼](https://www.nia.or.kr)
+- 국가법령정보센터, [전자정부 성과관리 지침](https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulId=61899&efYd=0) — 2025년 12월 19일 시행, 행정안전부고시 제2025-71호, 제2조·제23조~제27조
+- 국가법령정보센터, [정보시스템 운영 성과측정 지표별 배점 및 환산점수](https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200201&flNm=%5B%EB%B3%84%ED%91%9C%5D+%EC%A0%95%EB%B3%B4%EC%8B%9C%EC%8A%A4%ED%85%9C+%EC%9A%B4%EC%98%81+%EC%84%B1%EA%B3%BC%EC%B8%A1%EC%A0%95+%EC%A7%80%ED%91%9C%EB%B3%84+%EB%B0%B0%EC%A0%90+%EB%B0%8F+%ED%99%98%EC%82%B0%EC%A0%90%EC%88%98%28%EC%A0%9C25%EC%A1%B0%EC%A0%9C1%ED%95%AD+%EA%B4%80%EB%A0%A8%29&flSeq=148844105) — 제25조제1항 관련 현행 별표
+
+> 연혁 주의: 업무·비용 기준값의 2×2 유지관리유형 분류는 폐지된 구 지침 체계이며 현행 판정기준으로 사용하지 않음.
 
 ## 학습 체크
 
-- [ ] 정보시스템 운영 성과관리의 법적 근거(전자정부법 제56조)를 제시할 수 있는가?
-- [ ] 비용 관점과 업무 관점의 세부 측정 지표를 설명할 수 있는가?
-- [ ] 2차원 매트릭스 상의 4대 의사결정(유지, 기능개선, 재개발, 폐기)의 판정 기준을 설명할 수 있는가?
-- [ ] 저이용 시스템 폐기 시 데이터 보존 및 아카이빙 대책을 제시할 수 있는가?
+- [ ] Ⅰ: 정보시스템 운영 성과관리의 정의·목적을 설명할 수 있는가?
+- [ ] Ⅱ: 제23조~제27조의 대상 선정 → 측정 → 평가 → 정비 → 정비계획 흐름을 재현할 수 있는가?
+- [ ] Ⅲ: 비용 40점·업무 60점의 지표·배점을 설명할 수 있는가?
+- [ ] Ⅳ: 60점·40점 구간별 정비 판정과 40점 미만 폐기 예외를 설명할 수 있는가?
+- [ ] Ⅴ: 기초데이터·폐기판단·서비스 연속성 위험의 대책·효과를 제시할 수 있는가?
+- [ ] Ⅵ: 평가점수부터 정비 이행까지 감사 추적성을 확보하는 방안을 제언할 수 있는가?
 
 ## 연결 토픽
 
