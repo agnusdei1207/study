@@ -22,7 +22,7 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: **터크만 팀 발달 모델(Tuckman Team Development Model)**은 프로젝트 팀이 결성부터 해산까지 거치는 성숙 과정을 5단계로 체계화한 **터크만 사다리 모델(Tuckman Ladder Model)**
+- 본질: **터크만 팀 발달 모델(Tuckman Team Development Model)**은 팀이 처음 만나 겪는 갈등(Storming)과 규범화(Norming)를 거쳐야만 비로소 고성과(Performing)를 창출할 수 있음을 규명한 5단계 팀 성숙 주기 이론
 - 메커니즘: 형성기(Forming) → 폭풍기(Storming) → 규범기(Norming) → 성과기(Performing) → 해산기(Adjourning) 순서로 발전하며 PM 리더십을 지시형에서 위임형으로 전환
 - 산출: 프로젝트 헌장 · 작업 협약서(**Working Agreement**) · 교훈 관리대장(**Lessons Learned**)
 
