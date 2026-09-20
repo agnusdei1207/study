@@ -1,20 +1,18 @@
 ---
 sidebar:
-  order: 14
-  label: "014. 중심극한정리"
-  badge: { text: "A", variant: note }
+  badge:
+    text: "A"
 title: "중심극한정리 (Central Limit Theorem)"
-author: "OpenAI Codex"
-date: "2026-09-20T00:25:00+09:00"
+author: "Codex"
+date: "2026-09-20T19:54:00+09:00"
 tags: ["notes-data"]
-weight: 14
-extra: { model: "GPT-5", keyword_grade: "A", question_no: "014" }
+extra:
+  model: "GPT-5.6 Sol"
+  keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
-```text
-데이터 분석 → 통계 기초 → 중심극한정리
-```
+<div class="itpe-topic-path" role="img" aria-label="데이터 분석에서 통계 추론 및 중심극한정리로 이어지는 지식 위치"><span>자료처리·데이터</span><span>통계 분석·추론</span><strong>중심극한정리</strong></div>
 
 ## 큰 그림과 30초 인출
 ```text
@@ -25,8 +23,17 @@ extra: { model: "GPT-5", keyword_grade: "A", question_no: "014" }
 ```
 - 본질: **일정 조건 아래 표본합·표본평균의 표준화 분포가 표본 증가에 따라 정규분포로 수렴하는 정리**
 - 구분: 대수의 법칙은 값의 수렴, 중심극한정리는 분포의 수렴
+- 산출: 표준오차·신뢰구간·가설검정의 정규근사 근거
 
 ## 예상문제
+<details><summary>핵심 용어</summary>
+
+- `CLT(Central Limit Theorem)`: 표준화한 표본합·평균의 분포가 정규분포로 수렴하는 정리
+- `Standard Error`: 표본통계량의 표집분포 표준편차
+- `LLN(Law of Large Numbers)`: 표본평균 값이 모평균으로 수렴하는 법칙
+- `Bootstrap`: 재표본추출로 표집분포와 불확실성을 근사하는 방법
+
+</details>
 > 중심극한정리의 개념·성립조건·통계적 의의를 설명하고 대수의 법칙과 비교하여 적용 한계를 논하시오. (25점)
 
 ## Ⅰ. 추론통계의 정규근사 기반, 중심극한정리 개요
@@ -78,8 +85,20 @@ X̄ ≈ N(μ, σ²/n)                    Z ≈ N(0,1)
 | 희귀사건 꼬리 오차 | 평균근사만 의존 | 꼬리모형·시뮬레이션 |
 
 ## Ⅶ. 표본크기보다 생성과정을 먼저 보는 결론
+> 큰 표본도 의존성·대표성 위반을 치유하지 못하므로 생성과정 진단이 정규근사보다 우선임.
 - 큰 n은 독립성·대표성 위반을 고치지 못하므로 표본설계와 생성과정 진단이 우선
 - 정규근사는 목적이 아니라 불확실성을 설명하는 수단이며 민감도 검증을 병행
+
+### 학습자 통찰 메모 — 답안 밖
+- `[핵심 통찰]`: 중심극한정리는 원자료가 정규분포가 된다는 뜻이 아니라 표준화한 평균의 표집분포에 관한 정리다.
+- `나라면`: 표본 수 기준을 기계적으로 적용하지 않고 왜도·꼬리·의존성을 진단한 뒤 Bootstrap으로 근사 결론을 교차검증하겠다.
+
+### 실전 답안용 기술사적 제언
+- 판정: 독립성·대표성·유한분산과 근사 오차를 확인
+- 대안: 군집 표준오차·Bootstrap·정확분포를 조건별 적용
+- 검증: 시뮬레이션과 신뢰구간 Coverage 비교
+- 효과: 잘못된 정규근사와 과도한 확신 방지
+<div class="itpe-flow-map" role="img" aria-label="중심극한정리 적용 제언"><div class="itpe-flow-node"><strong>현행 한계</strong><span>문제: 표본 수만으로 정규근사</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>개선안</strong><span>대안: 생성과정 진단·Bootstrap</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>검증·효과</strong><span>판정: Coverage·민감도 일치</span><span>효과: 신뢰 가능한 추론</span></div></div>
 
 ## 1교시 10점 답안 발췌
 ```text

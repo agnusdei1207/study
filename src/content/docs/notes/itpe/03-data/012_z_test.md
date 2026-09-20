@@ -1,5 +1,7 @@
----
+﻿---
 title: "z-검정(z-test)"
+author: "Codex"
+date: "2026-09-20T19:52:00+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +27,7 @@ extra:
 - 절차: `가설 설정(H0/H1) → 유의수준(α) 결정 → 검정통계량 계산 → 기각역/p-값 비교 → 통계적 판정`
 
 <div class="itpe-flow-map" role="img" aria-label="z-검정 가설 수립 및 판정 파이프라인">
-  <div class="itpe-flow-node"><strong>연구 가설 및 유의수준 수립</strong><small>귀무가설($H_0$) vs 대립가설($H_1$) · $\alpha = 0.05$</small></div>
+  <div class="itpe-flow-node"><strong>연구 가설 및 유의수준 수립</strong><div class="itpe-step-detail"><span>입력</span><span>귀무가설 $H_0$ · 대립가설 $H_1$ · $\alpha$</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>전제조건 검증 및 z 통계량 산출</strong>
@@ -46,6 +49,15 @@ extra:
 
 ## 예상문제
 
+<details><summary>핵심 용어</summary>
+
+- `z-statistic`: 기준 모수와 표본 통계량 차이를 표준오차로 표준화한 값
+- `p-value`: 귀무가설 아래 관측값 이상으로 극단적인 결과의 확률
+- `Power`: 거짓 귀무가설을 올바르게 기각할 확률
+- `MDE(Minimum Detectable Effect)`: 설계한 검정이 탐지하도록 정한 최소 효과
+
+</details>
+
 > 대규모 A/B 테스트 및 시스템 성능 개선 효과 검증을 위한 z-검정(z-test)의 개념, 전제조건, 검정 통계량 산출식(평균 검정, 비율 검정)을 제시하고, t-검정과의 차이점 및 빅데이터 환경에서 p-값(p-value) 해석 시 유의사항을 논하시오. (25점)
 
 ## 딸려 나오는 하위 토픽
@@ -57,7 +69,7 @@ extra:
 
 ## Ⅰ. 대규모 표본 기반 모수 검정의 표준, z-검정의 개요
 
-> **한줄 요약:** z-검정은 모분산이 알려져 있거나 표본이 충분히 클 때 표준정규분포를 통해 귀무가설 기각 여부를 판단하는 기법임.
+> z-검정은 모분산이 알려져 있거나 표본이 충분히 클 때 표준정규분포를 통해 귀무가설 기각 여부를 판단하는 기법임.
 
 - 정의: 검정 통계량이 귀무가설($H_0$) 하에서 표준정규분포($\mathcal{N}(0, 1)$)를 따른다고 가정할 수 있을 때, 표본 통계치와 기준 모수 간의 편차를 표준오차 단위로 표준화하여 유의성을 검정하는 기법
 - 필수 전제조건:
@@ -67,7 +79,7 @@ extra:
 
 ## Ⅱ. 통계적 가설검정의 핵심 논리 및 2대 오류
 
-> **한줄 요약:** 표본 오차 범위를 넘어서는 극단적 통계량이 관측될 때 귀무가설의 우연성을 기각함.
+> 표본 오차 범위를 넘어서는 극단적 통계량이 관측될 때 귀무가설의 우연성을 기각함.
 
 ```text
                [실제 모집단의 참/거짓 상태]
@@ -85,14 +97,14 @@ extra:
 
 ## Ⅲ. z-검정의 주요 3대 유형 및 통계량 공식
 
-> **한줄 요약:** 단일 평균, 두 집단 평균 차이, 모비율 차이에 따라 표준오차 공식을 분기 적용함.
+> 단일 평균, 두 집단 평균 차이, 모비율 차이에 따라 표준오차 공식을 분기 적용함.
 
 <div class="itpe-pipeline" role="img" aria-label="z-검정 3대 유형">
-  <div class="itpe-pipeline-node"><strong>단일 모평균 검정</strong><small>$z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}$</small></div>
+  <div class="itpe-pipeline-node"><strong>단일 모평균 검정</strong><div class="itpe-step-detail"><span>통계량</span><span>$z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}$</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>두 모평균 차이 검정</strong><small>$z = \frac{(\bar{X}_1 - \bar{X}_2) - d_0}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}$</small></div>
+  <div class="itpe-pipeline-node"><strong>두 모평균 차이 검정</strong><div class="itpe-step-detail"><span>통계량</span><span>$z = \frac{(\bar{X}_1 - \bar{X}_2) - d_0}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}$</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>모비율 A/B 검정</strong><small>$z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\bar{p}(1-\bar{p})(\frac{1}{n_1} + \frac{1}{n_2})}}$</small></div>
+  <div class="itpe-pipeline-node"><strong>모비율 A·B 검정</strong><div class="itpe-step-detail"><span>통계량</span><span>$z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\bar{p}(1-\bar{p})(\frac{1}{n_1} + \frac{1}{n_2})}}$</span></div></div>
 </div>
 
 | 유형 | 검정 통계량 공식 ($z$) | 적용 상황 예시 |
@@ -104,7 +116,7 @@ extra:
 
 ## Ⅳ. z-검정 vs t-검정 비교
 
-> **한줄 요약:** 모분산을 알거나 대표본이면 z-검정을, 모분산을 모르고 소표본이면 t-검정을 씀.
+> 모분산을 알거나 대표본이면 z-검정을, 모분산을 모르고 소표본이면 t-검정을 씀.
 
 | 비교 기준 | z-검정 (z-test) | t-검정 (t-test) |
 |---|---|---|
@@ -116,7 +128,7 @@ extra:
 
 ## Ⅴ. 통계적 가설검정 5단계 절차
 
-> **한줄 요약:** 가설 설정부터 통계량 계산, 임계치 판정 및 효과크기(Effect Size) 보고로 마감함.
+> 가설 설정부터 통계량 계산, 임계치 판정 및 효과크기(Effect Size) 보고로 마감함.
 
 | 단계 | 주요 활동 내용 | 실무 핵심 산출물 |
 |---|---|---|
@@ -128,7 +140,7 @@ extra:
 
 ## Ⅵ. 실무 고려사항 및 분석 장애 대책
 
-> **한줄 요약:** 빅데이터 환경의 'p-값의 함정'과 다중 비교 오류를 효과크기와 본페로니 보정으로 차단함.
+> 빅데이터 환경의 'p-값의 함정'과 다중 비교 오류를 효과크기와 본페로니 보정으로 차단함.
 
 - 적용 상황: 수백만 유저 대상 모바일 앱 UI/UX A/B 테스트 플랫폼 운영
 
@@ -140,10 +152,19 @@ extra:
 
 ## Ⅶ. 결론 및 기술사적 제언
 
-> **한줄 요약:** z-검정은 기계적 p-값 확인이 아니라 통계적 검정력과 비즈니스 실익을 함께 평가하는 도구임.
+> z-검정은 기계적 p-값 확인이 아니라 통계적 검정력과 비즈니스 실익을 함께 평가하는 도구임.
+
+### 학습자 통찰 메모 — 답안 밖
 
 - [핵심 통찰]: 데이터가 넘쳐나는 빅데이터 시대에 $p < 0.05$를 얻는 것은 너무나 쉬운 일임. 통계적으로 유의미하다는 사실이 비즈니스적으로 가치 있다는 뜻은 아님. 기술사는 p-값이라는 통계적 허상에 휘둘리지 않고, 신뢰구간과 효과크기를 통해 실제 비즈니스 임팩트를 계량화할 수 있어야 함.
 - 나라면: 전사 A/B 테스트 플랫폼에 자동화된 검정 파이프라인을 구축할 때, z-검정 알고리즘과 함께 최소 검출 가능 효과(MDE: Minimum Detectable Effect) 사전 계산기를 탑재하고, 본페로니 보정과 95% 신뢰구간 시각화를 기본 대시보드에 강제하여 통계적 오판으로 인한 자원 낭비를 방지하겠음.
+
+### 실전 답안용 기술사적 제언
+- 판정: p-값뿐 아니라 효과크기·신뢰구간·검정력 충족 여부로 결정
+- 대안: MDE 기반 표본설계와 다중검정 보정 적용
+- 검증: 사전 표본수·효과크기·95% 신뢰구간 보고
+- 효과: 통계적 유의성과 업무 실익의 혼동 방지
+<div class="itpe-flow-map" role="img" aria-label="z 검정 의사결정 제언"><div class="itpe-flow-node"><strong>현행 한계</strong><span>문제: p-값 단독 판단</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>개선안</strong><span>대안: MDE·효과크기·다중검정 보정</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>검증·효과</strong><span>판정: 신뢰구간·검정력 충족</span><span>효과: 실익 있는 결정</span></div></div>
 
 ## 1교시 10점 답안 발췌
 
@@ -159,13 +180,13 @@ extra:
 ```
 - 모분산 미지·소표본 환경에서는 t-검정($t(df)$)을 적용함.
 
-### 3. 차별화 제언
+### 3. 적용 제언
 - 빅데이터 환경에서는 극소한 차이도 유의하게 도출되는 'p-값의 함정'을 경계하고, 반드시 효과크기(Cohen's d)와 다중비교 보정(Bonferroni)을 병행해야 함.
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제132회 정보관리기술사 기출, 제131회·125회 KPC 모의고사
-- 검증 출처: NIST/SEMATECH e-Handbook of Statistical Methods, 한국데이터산업진흥원 ADP 표준 교재
+- [NIST/SEMATECH, Tests of Means](https://www.itl.nist.gov/div898/handbook/prc/section2/prc21.htm)
+- [NIST/SEMATECH, Two-Sample t-Test](https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm)
 
 ## 학습 체크
 
@@ -178,3 +199,4 @@ extra:
 - 이전 토픽: [불편추정량(Unbiased Estimator)](./011_unbiased_estimator.md)
 - 연관 토픽: [t-검정](./086_t_test.md), [가설검정](./041_hypothesis_testing.md), [중심극한정리](./014_central_limit_theorem.md)
 - 다음 토픽: [무결성 제약(데이터 무결성)](./013_integrity_constraint.md)
+

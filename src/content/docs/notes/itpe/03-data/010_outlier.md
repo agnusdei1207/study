@@ -1,5 +1,7 @@
----
+﻿---
 title: "이상치(탐지 기법·노이즈 구분 포함)"
+author: "Codex"
+date: "2026-09-20T19:50:00+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +27,7 @@ extra:
 - 4대 처리: 삭제(Trimming), 대체(Imputation), 클리핑(Winsorizing), 강건 모형(Robust Estimation)
 
 <div class="itpe-flow-map" role="img" aria-label="이상치 및 노이즈 탐지에서 분석 목적별 처리 흐름">
-  <div class="itpe-flow-node"><strong>원천 데이터 수집</strong><small>센서 · 금융 거래 로그 · 의료 데이터</small></div>
+  <div class="itpe-flow-node"><strong>원천 데이터 수집</strong><div class="itpe-step-detail"><span>대상</span><span>센서 · 금융 거래 로그 · 의료 데이터</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>이상치 vs 노이즈 구분</strong>
@@ -48,6 +51,15 @@ extra:
 
 ## 예상문제
 
+<details><summary>핵심 용어</summary>
+
+- `IQR(Interquartile Range)`: 사분위 범위로 단변량 극단값을 판정
+- `LOF(Local Outlier Factor)`: 이웃과의 국소 밀도 차이로 이상 정도를 산출
+- `Isolation Forest`: 짧은 분할 경로를 이용해 이상치를 격리
+- `Winsorizing`: 극단값을 정한 경계값으로 치환
+
+</details>
+
 > 데이터 전처리 및 이상 징후 탐지를 위한 이상치(Outlier)와 노이즈(Noise)의 개념 및 차이점을 비교하고, 통계적·거리/밀도·머신러닝 기반 3대 탐지 알고리즘(IQR, LOF, Isolation Forest) 및 분석 목적에 따른 4대 처리 전략을 설명하시오. (25점)
 
 ## 딸려 나오는 하위 토픽
@@ -59,7 +71,7 @@ extra:
 
 ## Ⅰ. 데이터 왜곡의 주범이자 사기 탐지의 신호탄, 이상치의 개요
 
-> **한줄 요약:** 이상치는 정상 분포에서 극단적으로 이탈한 관측치로, 단순 제거 대상인 노이즈와 달리 고가치 정보를 내포할 수 있음.
+> 이상치는 정상 분포에서 극단적으로 이탈한 관측치로, 단순 제거 대상인 노이즈와 달리 고가치 정보를 내포할 수 있음.
 
 - 정의: 대부분의 데이터가 따르는 정상적 분포나 규칙에서 현저하게 벗어나, 다른 메커니즘에 의해 생성된 것으로 의심되는 관측치 (Hawkins, 1980)
 - 양면성:
@@ -69,7 +81,7 @@ extra:
 
 ## Ⅱ. 이상치(Outlier) vs 노이즈(Noise) 비교
 
-> **한줄 요약:** 노이즈는 제거해야 할 무작위 오차이고, 이상치는 의미 분석이 필요한 식별 가능한 극단치임.
+> 노이즈는 제거해야 할 무작위 오차이고, 이상치는 의미 분석이 필요한 식별 가능한 극단치임.
 
 | 비교 기준 | 이상치 (Outlier) | 노이즈 (Noise) |
 |---|---|---|
@@ -81,14 +93,14 @@ extra:
 
 ## Ⅲ. 이상치 탐지 3대 핵심 알고리즘 체계
 
-> **한줄 요약:** 단변량 통계(IQR), 다변량 밀도(LOF), 트리 격리(Isolation Forest)를 결합하여 탐지함.
+> 단변량 통계(IQR), 다변량 밀도(LOF), 트리 격리(Isolation Forest)를 결합하여 탐지함.
 
 <div class="itpe-pipeline" role="img" aria-label="이상치 3대 탐지 알고리즘">
-  <div class="itpe-pipeline-node"><strong>통계 기반</strong><small>IQR / Z-Score</small></div>
+  <div class="itpe-pipeline-node"><strong>통계 기반</strong><div class="itpe-step-detail"><span>방식</span><span>IQR · Z-Score</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>거리·밀도 기반</strong><small>Mahalanobis / LOF</small></div>
+  <div class="itpe-pipeline-node"><strong>거리·밀도 기반</strong><div class="itpe-step-detail"><span>방식</span><span>Mahalanobis · LOF</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>머신러닝 기반</strong><small>Isolation Forest / AE</small></div>
+  <div class="itpe-pipeline-node"><strong>머신러닝 기반</strong><div class="itpe-step-detail"><span>방식</span><span>Isolation Forest · Autoencoder</span></div></div>
 </div>
 
 | 기법 | 핵심 동작 수식 및 원리 | 주요 특징 및 장단점 |
@@ -101,7 +113,7 @@ extra:
 
 ## Ⅳ. 이상치 탐지 및 처리 5단계 절차
 
-> **한줄 요약:** 탐지 후 무조건 삭제하지 않고 원인 분류 후 도메인 규칙에 따라 처리 방식을 확정함.
+> 탐지 후 무조건 삭제하지 않고 원인 분류 후 도메인 규칙에 따라 처리 방식을 확정함.
 
 | 단계 | 활동 내용 | 통제 기준 |
 |---|---|---|
@@ -113,7 +125,7 @@ extra:
 
 ## Ⅴ. 분석 목적에 따른 4대 이상치 처리 전략
 
-> **한줄 요약:** 인과 분석은 윈저화나 삭제를, 이상 탐지는 별도 모델 분리를, 머신러닝은 강건 회귀를 선택함.
+> 인과 분석은 윈저화나 삭제를, 이상 탐지는 별도 모델 분리를, 머신러닝은 강건 회귀를 선택함.
 
 | 처리 전략 | 구체적 처리 기법 | 적합한 분석 상황 | 주의사항 및 트레이드오프 |
 |---|---|---|---|
@@ -124,7 +136,7 @@ extra:
 
 ## Ⅵ. 실무 고려사항 및 장애 대책
 
-> **한줄 요약:** 자동 삭제로 인한 핵심 사기 신호 유실과 차원의 저주를 파이프라인 격리로 방어함.
+> 자동 삭제로 인한 핵심 사기 신호 유실과 차원의 저주를 파이프라인 격리로 방어함.
 
 - 적용 상황: 카드 결제 FDS(이상거래탐지시스템) 및 반도체 공정 센서 이상 감지
 
@@ -136,10 +148,19 @@ extra:
 
 ## Ⅶ. 결론 및 기술사적 제언
 
-> **한줄 요약:** 이상치 처리는 기계적 정제가 아니라 도메인 지식과 머신러닝이 결합된 의사결정 파이프라인이어야 함.
+> 이상치 처리는 기계적 정제가 아니라 도메인 지식과 머신러닝이 결합된 의사결정 파이프라인이어야 함.
+
+### 학습자 통찰 메모 — 답안 밖
 
 - [핵심 통찰]: 데이터 엔지니어링에서 가장 위험한 행위는 탐지된 이상치를 '평균을 갉아먹는 귀찮은 존재'로 보고 DELETE 문을 날리는 것임. 이상치는 비즈니스의 사각지대, 새로운 고객 세그먼트, 또는 시스템 장애의 전조 증상일 가능성이 높음.
 - 나라면: 데이터 전처리 단계에서 '이상치 격리 큐(Anomaly Quarantine Queue)'를 구축하여, 탐지된 이상치 데이터를 원천 보존하고, SHAP/LIME 기반 XAI(설명가능 인공지능)를 연동해 이상치로 판정된 원인 피처를 현업 분석가에게 대시보드로 자동 제공하는 체계를 수립하겠음.
+
+### 실전 답안용 기술사적 제언
+- 판정: 오류와 유효 사건을 구분한 뒤 처리
+- 대안: 원본 보존·격리 큐·도메인 검토 결합
+- 검증: 탐지 정밀도·재현율과 처리 전후 모델 성능 측정
+- 효과: 사기·고장 신호 유실 방지
+<div class="itpe-flow-map" role="img" aria-label="이상치 처리 제언"><div class="itpe-flow-node"><strong>현행 한계</strong><span>문제: 탐지 즉시 삭제</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>개선안</strong><span>대안: 원본 격리·도메인 판정</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>검증·효과</strong><span>판정: 정밀도·재현율·성능 비교</span><span>효과: 핵심 신호 보존</span></div></div>
 
 ## 1교시 10점 답안 발췌
 
@@ -156,13 +177,13 @@ extra:
 ```
 - 통계, 거리/밀도, 머신러닝 3대 기법으로 식별 후 분석 목적에 따라 차등 처리함.
 
-### 3. 차별화 제언
+### 3. 적용 제언
 - 이상치를 기계적으로 삭제하지 않고 XAI 기반 이상 원인을 규명하며, 실시간 환경에서는 Autoencoder 복원 오차 기반 파이프라인을 구축해야 함.
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제139회·136회 정보관리기술사 기출, 제102회 KPC 모의고사
-- 검증 출처: 한국데이터산업진흥원(K-DATA) ADP 가이드, Scikit-learn Anomaly Detection Documentation
+- [scikit-learn, Novelty and Outlier Detection](https://scikit-learn.org/stable/modules/outlier_detection.html)
+- [NIST/SEMATECH, Exploratory Data Analysis](https://www.itl.nist.gov/div898/handbook/eda/eda.htm)
 
 ## 학습 체크
 
@@ -175,3 +196,4 @@ extra:
 - 이전 토픽: [동시성 제어(병행제어)](./009_concurrency_control.md)
 - 연관 토픽: [군집분석](./005_cluster_analysis.md), [다중공선성](./004_multicollinearity.md), [시계열 실시간 이상치 탐지](./061_time_series_realtime_anomaly_detection.md)
 - 다음 토픽: [불편추정량(Unbiased Estimator)](./011_unbiased_estimator.md)
+
