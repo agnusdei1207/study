@@ -1,165 +1,170 @@
 ---
 title: "서버리스 컴퓨팅(Serverless Computing)"
-author: "OpenAI Codex"
-date: "2026-09-20T00:30:00+09:00"
+author: "Codex"
+date: "2026-09-20T19:41:02+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "OpenAI Codex"
+  model: "GPT-5.6 Sol"
   keyword_grade: "A"
-
 ---
+
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 19:41 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" aria-label="지식 경로"><span>클라우드 컴퓨팅</span><span>실행 모델</span><strong>서버리스 컴퓨팅</strong></div>
+<div class="itpe-topic-path" aria-label="지식 경로"><span>클라우드 컴퓨팅</span><span>클라우드 실행 모델</span><strong>서버리스 컴퓨팅</strong></div>
 
 ## 큰 그림과 30초 인출
 
-```text
-[HTTP·메시지·파일·스케줄 이벤트]
-                 │
-                 ▼
-      [API Gateway / Event Router]
-                 │  트리거·인증·라우팅
-                 ▼
-      [FaaS Runtime: 함수 실행·자동 확장]
-                 │
-        ┌────────┼────────┐
-        ▼        ▼        ▼
-     [DB]     [Queue]   [Object]
-       └──── BaaS: 관리형 백엔드 ────┘
-                 │
-                 ▼
-       [로그·추적·메트릭·비용]
-```
+- 본질: 서버가 없는 기술이 아니라 공급자가 실행 인프라의 프로비저닝·확장·운영을 맡는 클라우드 실행 모델임
+- 메커니즘: 이벤트 수신 → **FaaS** 함수 실행 → **BaaS** 상태·공통 기능 연계 → 실행량 계측
+- 산출: 부하 변화에 민첩한 서비스이며, 대가는 Cold Start·상태 외부화·벤더 종속·분산 관측 복잡성임
 
-```text
-Serverless = 서버가 없음(X) / 서버 운영 책임을 공급자에 위임(O)
-구성 = FaaS(실행) + BaaS(상태·연계)
-흐름 = Event → Route → Execute → Backend → Observe
-핵심 = 이벤트 기반·수요 기반 확장·사용량 계측
-통제 = Cold Start·상태 외부화·멱등성·최소권한·분산추적
-```
+<div class="itpe-flow itpe-flow--vertical" aria-label="서버리스 실행 구조">
+  <div class="itpe-flow__node"><strong>이벤트 소스</strong><small><b>입력:</b> HTTP · 메시지 · 파일 · 스케줄</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>이벤트 라우터</strong><small><b>처리:</b> 인증 · 트리거 · 라우팅</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>FaaS</strong></span><small><b>처리:</b> 실행환경 준비 · 함수 실행 · 자동 확장</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>BaaS</strong></span><small><b>산출:</b> DB · 객체 · 인증 · 메시징 연계 결과</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>관측·계측</strong><small><b>통제:</b> 로그 · 추적 · 메트릭 · 사용량</small></div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- `FaaS(Function as a Service)`: 이벤트마다 함수 실행환경을 제공하는 계산 계층 → 짧은 수명과 실행 제한을 고려
+- `BaaS(Backend as a Service)`: 인증·DB·메시징 등 공통 백엔드를 관리형 서비스로 제공 → 서비스 결합도를 통제
+- `Cold Start`: 유휴 상태에서 실행환경을 새로 준비하며 생기는 초기 지연 → 지연 민감 업무를 가르는 기준
+- `Stateless`: 함수 내부 상태에 다음 호출이 의존하지 않는 설계 → 상태를 외부 저장소로 이동
+- `Idempotency(멱등성)`: 같은 이벤트가 반복돼도 결과가 달라지지 않는 성질 → 재시도 중복을 차단
+
+</details>
 
 ## 예상문제
 
-> 서버리스 컴퓨팅의 개념과 특징, 구성요소 및 장·단점을 설명하고 도입 시 고려사항을 제시하시오.
+- 서버리스 컴퓨팅의 개념과 특징, FaaS·BaaS 기반 구성 및 동작을 설명하고, VM·컨테이너와 비교하여 도입 고려사항을 제시하시오.
 
-## Ⅰ. 개요 ───── 정의·등장 배경
+## Ⅰ. 운영 책임을 추상화한 서버리스 컴퓨팅 개요
 
-서버리스 컴퓨팅은 **공급자가 서버 자원의 프로비저닝·운영·확장을 담당하고, 이용자는 이벤트에 반응하는 함수와 관리형 백엔드 서비스를 조합해 애플리케이션을 실행하는 클라우드 실행 모델**이다.
+> 서버리스의 가치는 서버 제거가 아니라 운영 책임 경계의 이동이며, 업무가 이벤트 기반·무상태로 분해될 때 효과가 커짐.
 
-| 배경 | 기존 문제 | 목적 |
+- 정의: 클라우드 공급자가 **프로비저닝**, **자동 확장**, **실행환경 운영**을 담당하고 이용자가 이벤트 기반 코드와 관리형 서비스를 조합하는 실행 모델
+- 목적: 인프라 운영 책임 위임 → 변동 부하 대응과 업무 로직 집중
+
+| 특징 | 메커니즘 | 설계 의미 |
 |---|---|---|
-| 변동성 큰 이벤트 부하 | 최대 부하 기준 상시 용량 확보 | 수요 기반 자원 할당 |
-| 짧은 수명 서비스 | OS·런타임 운영 부담 | 업무 로직 집중 |
-| 관리형 서비스 확산 | 연계 구현 중복 | FaaS와 BaaS 조합 |
+| **Event-driven** | 트리거별 함수 호출 | 이벤트 계약이 결합도 결정 |
+| **Auto Scaling** | 동시 요청에 따라 인스턴스 증감 | 폭주·하위 서비스 한도 통제 |
+| **Metering** | 호출·실행 자원 계측 | 유휴 비용 감소, 단위비용 변동 |
+| **Stateless** | 실행환경 수명과 상태 분리 | DB·캐시로 상태 외부화 |
 
-## Ⅱ. 특징 ───── FaaS·BaaS·이벤트 기반
+## Ⅱ. FaaS·BaaS 기반 구성과 실행 흐름
 
-| 특징 | 설명 | 키워드 |
-|---|---|---|
-| 운영 책임 위임 | 인프라와 실행환경을 공급자가 관리 | 관리 추상화 |
-| 이벤트 구동 | HTTP, 메시지, 파일, 스케줄로 실행 | Event-driven |
-| 탄력 실행 | 요청량에 따라 실행 인스턴스 증감 | Auto Scaling |
-| 사용량 계측 | 호출·실행시간·자원을 정책에 따라 과금 | Metering |
-| 상태 외부화 | 상태를 DB·캐시·객체에 저장 | Stateless 지향 |
+> FaaS는 계산, BaaS는 상태와 공통 기능을 맡으며, 재시도·실패 경로까지 이벤트 계약에 포함해야 운영 가능한 구조가 됨.
 
-> 제품별 한도와 정책이 다르므로 ‘무한 확장’, ‘완전한 무운영’으로 표현하지 않는다.
+<div class="itpe-flow itpe-flow--vertical" aria-label="서버리스 처리 절차">
+  <div class="itpe-flow__node"><strong>이벤트 계약</strong><small><b>활동:</b> 스키마 · 인증 · 라우팅 규칙 정의</small><small><b>산출:</b> 트리거와 실패 정책</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>실행환경 준비</strong><small><b>활동:</b> 런타임 로드 · 인스턴스 할당</small><small><b>산출:</b> 실행 가능한 함수 컨텍스트</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>함수·백엔드 실행</strong><small><b>활동:</b> <span class="itpe-keyword"><strong>FaaS</strong></span> 로직 · <span class="itpe-keyword"><strong>BaaS</strong></span> 상태 연계</small><small><b>산출:</b> 결과 또는 재시도 이벤트</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>관측·회수</strong><small><b>활동:</b> 로그 · 분산추적 · 메트릭 기록</small><small><b>산출:</b> 실행량·오류·지연과 유휴 환경 회수</small></div>
+</div>
 
-## Ⅲ. 구조 ───── 실행·백엔드·운영 계층
+- 횡단 통제: 함수별 최소권한, Secret 분리, 상관 ID, Timeout, 재시도 제한, **DLQ(Dead Letter Queue)** 적용
 
-```text
-┌─ 접점 ──────────────────────────────────────┐
-│ API Gateway │ Event Bus │ Queue │ Scheduler │
-└──────────────────┬───────────────────────────┘
-                   ▼
-┌─ 실행(FaaS) ────────────────────────────────┐
-│ Runtime │ Function │ Concurrency │ Scaling  │
-└──────────────────┬───────────────────────────┘
-                   ▼
-┌─ 서비스(BaaS) ──────────────────────────────┐
-│ DB │ Object │ Identity │ Notification       │
-└──────────────────┬───────────────────────────┘
-                   ▼
-┌─ 횡단 통제 ─────────────────────────────────┐
-│ IAM │ Secret │ Log │ Trace │ Metric │ Cost  │
-└──────────────────────────────────────────────┘
-```
+## Ⅲ. VM·컨테이너·서버리스 비교
 
-## Ⅳ. 동작 ───── 이벤트부터 관측까지
+> 실행 단위가 작아질수록 운영 부담은 공급자로 이동하지만 실행 제약과 플랫폼 결합은 커지므로 업무 수명·지연·이식성으로 선택해야 함.
 
-```text
-① 이벤트 수신 → ② 인증·라우팅 → ③ 실행환경 준비
- → ④ 함수 실행 → ⑤ BaaS 연계 → ⑥ 결과 반환
- → ⑦ 로그·추적·비용 기록 → ⑧ 유휴 환경 회수
-```
-
-| 단계 | 활동 | 통제 |
-|---|---|---|
-| 설계 | 이벤트·함수 경계 정의 | 이벤트 계약, 실패 정책 |
-| 배포 | 코드·의존성·설정 등록 | 불변 패키지, Secret 분리 |
-| 실행 | 동시성·재시도·타임아웃 적용 | 멱등키, DLQ |
-| 운영 | 지연·오류·비용 관측 | 분산추적, SLO, 예산 알림 |
-
-## Ⅴ. 비교 ───── VM·컨테이너·서버리스
-
-| 구분 | VM | 컨테이너 | 서버리스 함수 |
+| 축 | VM | 컨테이너 | 서버리스 함수 |
 |---|---|---|---|
-| 배포 단위 | Guest OS 포함 이미지 | 애플리케이션 이미지 | 함수·의존성 |
-| 운영 책임 | OS 이상 이용자 비중 큼 | 오케스트레이션 필요 | 실행환경을 공급자가 관리 |
-| 확장 단위 | VM | Pod/Task | 호출·함수 인스턴스 |
-| 상태 | 장기 실행 가능 | 외부 상태 권장 | 외부 상태가 원칙 |
-| 적합 업무 | 강한 격리·레거시 | 장기 서비스·이식성 | 이벤트·간헐·급변 부하 |
+| 단위 | Guest OS 이미지 | 애플리케이션 이미지 | 함수·의존성 |
+| 책임 | OS 이상 이용자 관리 | 오케스트레이션 관리 | 실행환경 공급자 관리 |
+| 확장 | VM | Pod·Task | 호출·함수 인스턴스 |
+| 상태 | 장기 상태 가능 | 외부화 권장 | 외부화 원칙 |
+| 적합 | 강한 격리·레거시 | 장기 서비스·이식성 | 간헐·급변 이벤트 |
+| 대가 | 기동·유휴 자원 | 플랫폼 운영 | Cold Start·종속 |
 
-| 구분 | FaaS | BaaS |
-|---|---|---|
-| 역할 | 사용자 함수 실행 | 인증·DB·메시지 등 백엔드 제공 |
-| 결합 | BaaS 호출 | 함수의 상태와 공통 기능 지원 |
+## Ⅳ. 한계의 원인과 도입 통제
 
-## Ⅵ. 고려 ───── 한계·원인·대응·검증
+> 서버리스 장애는 함수 코드보다 재시도·동시성·관리형 서비스 사이에서 확산되므로 E2E 관측과 실패 격리가 핵심임.
 
-| 문제 | 원인 | 대응 | 검증 |
+| 문제 | 원인 | 대책 | 검증 |
 |---|---|---|---|
-| 초기 호출 지연 | 환경 준비·의존성 로딩 | 경량 패키지, 사전 준비 기능 검토 | 지연 분포 |
-| 중복 처리 | 재시도·비동기 전달 | 멱등키, 조건부 쓰기, DLQ | 중복·실패율 |
-| 상태 일관성 | 짧은 수명과 분산 연계 | 상태 외부화, Saga·보상 | 정합성 오류 |
-| 권한 과다 | 서비스 간 연쇄 호출 | 함수별 최소권한, Secret 관리 | 권한 경로 |
-| 관측 단절 | 다수 함수·관리형 서비스 | 상관 ID, 로그·메트릭·추적 | 추적 완결률 |
-| 종속·비용 | 전용 API, 호출·전송 과금 | 표준 경계, Exit Plan, 비용 태깅 | 이동성·단위비용 |
+| 초기 지연 | 런타임·의존성 준비 | 경량 패키지·사전 준비 | 지연 분포 |
+| 중복 처리 | 비동기 전달·재시도 | **멱등키**, 조건부 쓰기·DLQ | 중복·실패 이벤트 |
+| 연쇄 장애 | 동시성 폭주·하위 한도 | 동시성 제한·Backpressure | 오류 전파 경로 |
+| 관측 단절 | 다수 함수·관리형 서비스 | 상관 ID·분산추적 | 추적 완결성 |
+| 종속·비용 | 전용 API·전송·호출 계측 | Port·Adapter 경계·Exit Plan | 이동성·단위비용 |
 
-## Ⅶ. 결론 ───── 이벤트 계약과 운영 통제의 동시 설계
+## Ⅴ. 이벤트 계약과 운영 통제를 결합하는 결론
 
-서버리스의 효과는 서버 관리 제거가 아니라 **이벤트 단위로 실행 책임을 재구성하는 것**에 있다. FaaS·BaaS와 함께 멱등성·최소권한·분산추적·비용 통제를 설계해야 민첩성과 운영가능성을 함께 확보할 수 있다.
+> 서버리스 도입은 함수 변환 프로젝트가 아니라 이벤트 계약·실패 의미·운영 책임을 다시 설계하는 아키텍처 결정임.
 
-## 1교시 10점 발췌
+### 학습자 통찰 메모 — 답안 밖
 
-```text
-서버리스는 공급자가 실행 인프라의 운영·확장을 담당하고,
-이용자가 이벤트 기반 함수와 관리형 백엔드에 집중하는 실행 모델이다.
+- `[핵심 통찰]`: 자동 확장은 계산 계층만 빠르게 늘릴 뿐 DB와 외부 API의 수용량까지 늘리지 않으므로 동시성 제한이 안정성 장치가 된다.
+- `나라면`: 짧고 무상태인 이벤트 업무를 파일럿으로 선정하고, 멱등성·분산추적·단위비용을 통과한 뒤 범위를 넓히겠다.
 
-구성: Event → Router → FaaS → BaaS → Observability
-특징: 운영 추상화·이벤트 구동·탄력 실행·사용량 계측·상태 외부화
-고려: Cold Start·멱등성·최소권한·분산추적·종속/비용
-```
+### 실전 답안용 기술사적 제언
 
-## 공식 검증 출처
+- 판정: 이벤트 독립성, 지연 허용도, 상태 외부화 가능성으로 적합성 판정
+- 대안: 멱등키·동시성 제한·DLQ·상관 ID를 공통 실행 Baseline으로 적용
+- 검증: E2E 지연, 중복 결과, 실패 이벤트, 하위 서비스 포화, 단위비용을 함께 관찰
+- 효과: 자동 확장의 장애 증폭을 막고 민첩성과 운영가능성을 동시 확보
 
-- [CNCF Serverless Whitepaper 소개](https://www.cncf.io/blog/2018/02/14/cncf-takes-first-step-towards-serverless-computing/)
-- 공식 기출 근거: 한국산업인력공단 Q-Net 정보관리기술사 136회·140회 문제지
+<div class="itpe-flow itpe-flow--vertical" aria-label="서버리스 도입 개선 흐름">
+  <div class="itpe-flow__node"><strong>현행 한계</strong><small><b>문제:</b> 함수 중심 전환으로 실패·상태·관측 누락</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>이벤트 Baseline</strong><small><b>대안:</b> 멱등성 · 동시성 · DLQ · 상관 ID 표준화</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>파일럿 검증</strong><small><b>판정:</b> 지연 · 중복 · 포화 · 비용의 허용 여부</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>단계 확산</strong><small><b>효과:</b> 장애 격리와 운영 책임의 명확화</small></div>
+</div>
 
-## 답안 체크
+## 1교시 10점 답안 발췌
 
-- [ ] 운영 책임의 추상화로 정의했는가
-- [ ] 중앙 구조도에 FaaS·BaaS·이벤트·관측을 표시했는가
-- [ ] Cold Start·멱등성·권한·종속까지 썼는가
-- [ ] 제품 한도를 고정 수치로 일반화하지 않았는가
+- 정의: 공급자가 **프로비저닝·Auto Scaling·실행환경 운영**을 담당하고 이용자가 이벤트 기반 **FaaS(Function as a Service)**와 **BaaS(Backend as a Service)**를 조합하는 클라우드 실행 모델
+- 목적: 서버 운영 책임 위임 → 변동 부하 대응과 업무 로직 집중
+
+<div class="itpe-flow itpe-flow--vertical" aria-label="서버리스 1교시 구조">
+  <div class="itpe-flow__node"><strong>Event</strong><small><b>입력:</b> HTTP · 메시지 · 파일 · 스케줄</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>FaaS</strong><small><b>처리:</b> 함수 실행 · 자동 확장</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>BaaS</strong><small><b>산출:</b> 상태 · 인증 · 메시징 연계</small></div>
+  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow__node"><strong>Observability</strong><small><b>통제:</b> 로그 · 메트릭 · 분산추적</small></div>
+</div>
+
+- 장점: 이벤트별 탄력 실행, 인프라 관리 감소, 유휴 자원 축소
+- 한계: Cold Start, 상태 외부화, 벤더 종속, 분산 관측 복잡성
+- 결론: 멱등성·동시성 제한·DLQ를 이벤트 계약과 함께 설계
+
+## 출제 이력과 검증 출처
+
+- 제136회·제140회 정보관리기술사: 공식 문제지는 Q-Net 자료실에서 원문 확인
+- [CNCF Serverless Whitepaper](https://github.com/cncf/wg-serverless/tree/master/whitepapers/serverless-overview)
+- [NIST SP 800-204D, Strategies for the Integration of Software Supply Chain Security in DevSecOps CI/CD Pipelines](https://csrc.nist.gov/pubs/sp/800/204/d/final)
+- [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
+
+## 학습 체크
+
+- [ ] Ⅰ 개요: 서버가 없다는 뜻이 아니라 운영 책임 경계가 이동한다는 정의와 네 특징을 재현할 수 있는가?
+- [ ] Ⅱ 구조: Event·Router·FaaS·BaaS·관측의 흐름과 각 단계 활동·산출을 그릴 수 있는가?
+- [ ] Ⅲ 비교: VM·컨테이너·서버리스를 실행 단위·책임·확장·상태·적합 업무로 비교할 수 있는가?
+- [ ] Ⅳ 통제: Cold Start·중복·연쇄 장애·관측·종속의 원인과 대책을 1:1로 연결할 수 있는가?
+- [ ] Ⅴ 제언: 적합성 판정부터 Baseline·파일럿·단계 확산까지 설명할 수 있는가?
 
 ## 연결 토픽
 
-- [BaaS](./001_baas/)
-- [가상화](./008_virtualization/)
-- [멀티클라우드](./009_multi_cloud/)
+- [클라우드 컴퓨팅](./013_cloud_computing/) · [FaaS](./078_faas/) · [컨테이너](./032_container/) · [클라우드 서비스 모델](./109_cloud_computing_service_models/)
