@@ -19,9 +19,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: 특정 시스템을 **요건 · 아키텍처 · FP · 예산 · RFP**로 구체화하는 발주 **Baseline**
+- 본질: 특정 시스템을 요건 · 아키텍처 · FP · 예산 · RFP로 구체화하는 발주 <span class="itpe-keyword"><strong>Baseline</strong></span>
 - 절차: `착수 → 방향 → 요건 → 구조 → 이행`
-- 통제: `요건 → 아키텍처 → FP → RFP` 전 구간 추적
+- 통제: `요건 → 아키텍처 → FP → RFP` 전 구간 <span class="itpe-keyword"><strong>Traceability</strong></span>
 
 <div class="itpe-flow-map" role="img" aria-label="경영·정책에서 ISP와 ISMP를 거쳐 조달·구축으로 이어지는 흐름">
   <div class="itpe-flow-node"><strong>경영·정책</strong></div>
@@ -55,7 +55,7 @@ extra:
 
 ## Ⅰ. 구축사업 실패를 방어하는 발주 Baseline, ISMP의 개요
 
-> **한줄 요약:** ISMP는 특정 시스템의 요건을 조달 가능한 Baseline(기준선)으로 구체화한다.
+> ISMP는 특정 시스템의 요건을 조달 가능한 <span class="itpe-keyword"><strong>Baseline</strong></span>으로 구체화하며, 품질은 RFP까지의 Traceability로 판정한다.
 
 - 정의: 특정 SW 및 정보시스템 구축사업을 추진하기 전에 업무와 IT 현황을 분석하고, 요구사항을 FP 산정이 가능한 수준으로 상세화하여 구축 계획, 아키텍처, 예산, RFP를 작성하는 종합 실행 계획
 - 배경: 모호한 사업 구상 상태에서 무리하게 턴키 발주하여 발생하는 잦은 과업 변경, 납기 지연, 사업자와 발주처 간의 예산·하자 분쟁 악순환 차단
@@ -63,7 +63,7 @@ extra:
 
 ## Ⅱ. ISMP의 4대 핵심 특징
 
-> **한줄 요약:** 대상·요건·산출물·조달을 연결하여 발주 불확실성을 제거한다.
+> ISMP의 실효성은 요건 상세화보다 요건·산출물·조달 간 <span class="itpe-keyword"><strong>Traceability</strong></span> 유지 여부에서 갈린다.
 
 | 특징 | 세부 내용 및 원리 | 실무적 기여 |
 |---|---|---|
@@ -74,7 +74,7 @@ extra:
 
 ## Ⅲ. ISMP 구조·절차 및 산출물
 
-> **한줄 요약:** 요건을 아키텍처와 규모·예산으로 전환하고 RFP까지 추적한다.
+> 요건을 아키텍처와 규모·예산으로 변환하되, <span class="itpe-keyword"><strong>RTM</strong></span>이 단절되면 RFP의 완전성을 보장할 수 없다.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="요건에서 아키텍처와 규모·예산을 거쳐 RFP로 이어지는 ISMP 추적 구조">
   <div class="itpe-pipeline-node"><strong>요건</strong><small>업무 · IT · 비기능</small></div>
@@ -97,7 +97,7 @@ extra:
 
 ## Ⅳ. 전략계획(ISP) vs 구축실행계획(ISMP) 비교
 
-> **한줄 요약:** ISP가 전사 과제를 선정한다면 ISMP는 특정 시스템의 구축·발주 기준을 확정한다.
+> <span class="itpe-keyword"><strong>ISP</strong></span>는 투자 대상을 선택하고 <span class="itpe-keyword"><strong>ISMP</strong></span>는 선택된 시스템의 발주 가능성을 검증한다.
 
 | 기준 | ISP | ISMP |
 |---|---|---|
@@ -110,7 +110,7 @@ extra:
 
 ## Ⅴ. 실무 고려사항 및 대책
 
-> **한줄 요약:** RTM·FP·분리발주 검증으로 과업, 예산 및 조달 위험을 통제한다.
+> 과업·예산 분쟁은 <span class="itpe-keyword"><strong>RTM</strong></span>·<span class="itpe-keyword"><strong>FP</strong></span>·분리발주 검증을 조달 전 Quality Gate로 묶어야 차단된다.
 
 - 적용 상황: 공공 차세대 행정 시스템 구축사업 전 ISMP 수립 및 조달 발주
 
@@ -122,10 +122,20 @@ extra:
 
 ## Ⅵ. 결론 및 기술사적 제언
 
-> **한줄 요약:** ISMP의 품질은 문서 분량이 아니라 요건부터 계약까지의 추적성으로 판정한다.
+> ISMP의 품질은 문서 분량이 아니라 요건부터 계약까지의 <span class="itpe-keyword"><strong>Traceability</strong></span>로 판정한다.
 
 - [핵심 통찰]: ISMP의 성패는 수백 페이지짜리 보고서 두께가 아니라 '업무 요건이 계약문서(RFP)와 예산서에 1:1로 온전히 추적되는가'에 달려 있음. 요건과 계약이 단절된 ISMP는 본 구축사업에서 필연적으로 과업 변경과 사업 파행을 유발함.
 - 나라면: ISMP 종료 감리 시 단순 문서 점검을 배제하고, 요건 추적 매트릭스(RTM) 상의 [요건 → 아키텍처 → FP 단가 → RFP 과업지시서] 전수 매핑 검증을 '품질 게이트(Quality Gate)'로 강제하여, 완전한 발주 Baseline이 확보된 상태에서만 조달청 공고를 진행하겠음.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 종료 검증을 RTM 기반 Quality Gate로 개선하는 제언">
+  <div class="itpe-pipeline-node"><span>현행 한계</span><small>산출물별 분절 검토 · 계약 연계 누락</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><span>나의 개선안</span><small><span class="itpe-keyword"><strong>RTM 기반 Quality Gate</strong></span></small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><span>검증 기준</span><small>요건 · 아키텍처 · FP · RFP 전 구간 Traceability</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><span>실행</span><small>Gate 통과 후 조달 공고</small></div>
+</div>
 
 ## 1교시 10점 답안 발췌
 

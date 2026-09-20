@@ -418,20 +418,21 @@ a:not([class]):hover {
   color: var(--palette-accent-glow);
 }
 
-/* 강조 키워드 (strong)를 테마의 프라이머리 컬러로 렌더링 */
-strong,
-.sl-markdown-content strong,
-.sl-markdown-content table strong,
-.sl-markdown-content blockquote strong {
-  color: var(--palette-accent-glow);
+/* 일반 굵기와 채점 키워드 색상을 분리한다. */
+.sl-markdown-content strong {
+  color: inherit;
   font-weight: 700;
   letter-spacing: 0.01em;
 }
 
-:root[data-theme='light'] strong,
-:root[data-theme='light'] .sl-markdown-content strong,
-:root[data-theme='light'] .sl-markdown-content table strong,
-:root[data-theme='light'] .sl-markdown-content blockquote strong {
+.sl-markdown-content .itpe-keyword,
+.sl-markdown-content .itpe-keyword strong {
+  color: var(--palette-accent-glow);
+  font-weight: 700;
+}
+
+:root[data-theme='light'] .sl-markdown-content .itpe-keyword,
+:root[data-theme='light'] .sl-markdown-content .itpe-keyword strong {
   color: var(--palette-accent-deep);
 }
 
