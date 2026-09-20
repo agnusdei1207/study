@@ -176,5 +176,5 @@ extra:
 ## 연결 토픽
 
 - 이전 토픽: [기술 주권](./058_technology_sovereignty.md)
-- 연관 토픽: [정보시스템 감리](./008_it_audit.md), [SLA](./006_sla.md), [DR](./042_disaster_recovery_system.md)
+- 연관 토픽: [정보시스템 감리](./008_it_audit.md), [SLA](./006_sla.md), [DRS](./042_drs.md)
 - 다음 토픽: [AI 에너지 인프라](./060_ai_energy_infrastructure.md)
