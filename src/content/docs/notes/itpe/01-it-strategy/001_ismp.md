@@ -203,8 +203,29 @@ extra:
 
 ### 3. 핵심 통제
 
-- **RTM(Requirements Traceability Matrix)**: 요건 ↔ 아키텍처 ↔ **FP(Function Point)**·예산 ↔ RFP 양방향 추적
-- Quality Gate: 전수 매핑 통과 후 발주 → 과업 누락 사전 차단
+<div class="itpe-pipeline is-vertical" role="img" aria-label="RTM 검증 결과를 Quality Gate에서 판정하는 핵심 통제">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>RTM(Requirements Traceability Matrix)</strong></span>
+    <div class="itpe-step-detail">
+      <strong>대상</strong><span>요건 ↔ 아키텍처 ↔ FP·예산 ↔ RFP</span>
+    </div>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>전수 매핑 검증</strong>
+    <div class="itpe-step-detail">
+      <strong>판정</strong><span>누락 · 고립 · 불일치 확인</span>
+    </div>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>Quality Gate</strong></span>
+    <div class="itpe-step-detail">
+      <strong>통과</strong><span>발주 Baseline 확정</span>
+      <strong>미통과</strong><span>요건 보완 후 재검증</span>
+    </div>
+  </div>
+</div>
 
 ## 출제 이력과 검증 출처
 
