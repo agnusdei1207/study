@@ -40,8 +40,8 @@ export function parseNoteBadgeText(text?: string | null): NoteBadgeData {
   if (!text) return {};
   const trimmed = text.trim();
 
-  // "기출 · 70%" 또는 "미출 • 50%" 패턴
-  const combinedMatch = trimmed.match(/^(기출|미출|미출제)\s*[·•\-/]\s*(\d+)%?$/);
+  // "A · 기출 · 70%" 또는 "기출 · 70%" 또는 "미출 • 50%" 패턴
+  const combinedMatch = trimmed.match(/^(?:[ABC]\s*[·•\-/]\s*)?(기출|미출|미출제)\s*[·•\-/]\s*(\d+)%?$/);
   if (combinedMatch) {
     return {
       status: normalizeNoteStatus(combinedMatch[1]),

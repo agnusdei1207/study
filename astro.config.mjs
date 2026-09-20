@@ -26,12 +26,24 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: '학습 노트',
+          label: '컴퓨터시스템응용 (CSPE)',
+          collapsed: false,
+          items: [
+            {
+              autogenerate: {
+                directory: 'notes/cspe',
+                collapsed: true,
+              },
+            },
+          ],
+        },
+        {
+          label: '정보관리 (ITPE)',
           collapsed: true,
           items: [
             {
               autogenerate: {
-                directory: 'notes',
+                directory: 'notes/itpe',
                 collapsed: true,
               },
             },
