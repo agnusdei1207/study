@@ -1,34 +1,40 @@
 ---
 title: "서브네팅·슈퍼네팅(CIDR·VLSM)"
 author: "OpenAI Codex"
-date: "2026-09-20T15:25:00+09:00"
+date: "2026-09-20T21:28:00+09:00"
 tags:
   - "notes-network"
+sidebar: { badge: { text: "A" } }
 extra:
-  model: "GPT-5"
+  keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 
 ---
 
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 21:28 KST</p>
+
+## 지식 로드맵 내 현재 위치
+
+<div class="itpe-topic-path" aria-label="지식 경로"><span>IP 네트워크</span><span>주소·경로 집계</span><strong>서브네팅·슈퍼네팅</strong></div>
+
 ## 큰 그림과 30초 인출
 
-```text
-                    [IP Prefix: 주소/길이]
-                              │
-              ┌───────────────┴───────────────┐
-              ▼                               ▼
-       [서브네팅·VLSM]                    [슈퍼네팅]
-    큰 주소 블록을 요구량별 분할        연속 prefix를 짧게 요약
-    주소 절약·장애/보안 영역 분리       라우팅 상태·광고량 축소
-              │                               │
-              └───────────────┬───────────────┘
-                              ▼
-                 [CIDR 기반 주소·경로 설계]
-```
-
 - 본질: IPv4 클래스를 쓰는 기술이 아니라 **prefix 길이**로 주소 경계와 경로 집계를 설계하는 기술
-- 계산: `필요 host 수 → host bit h → prefix / (32-h) → block size → 경계 정렬`
-- 배치: 가장 큰 요구부터 연속 블록에 배치하여 단편화 방지
-- 구분: VLSM은 **분할**, 슈퍼네팅은 **집계**
+- 메커니즘: 큰 요구부터 경계에 맞춰 분할하고 연속·정렬 Prefix만 다시 집계함
+- 산출: 주소 낭비·라우팅 상태를 줄이면서 장애·보안 영역을 계층화함
+
+<div class="itpe-flow itpe-flow--vertical" aria-label="주소 분할과 경로 집계">
+  <div class="itpe-flow__node"><strong>IP Prefix</strong><small><b>입력:</b> 주소 블록 · Host 요구량</small></div><div class="itpe-flow__arrow">↓</div>
+  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>VLSM 분할</strong></span><small><b>활동:</b> 큰 요구부터 Block 경계 정렬</small><small><b>산출:</b> 크기가 다른 Subnet</small></div><div class="itpe-flow__arrow">↓</div>
+  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>CIDR 집계</strong></span><small><b>판정:</b> 연속성 · 정렬 · 동일 정책</small><small><b>산출:</b> 요약 경로</small></div>
+</div>
+
+<details><summary>핵심 용어</summary>
+
+- `CIDR(Classless Inter-Domain Routing)`: 클래스 경계 대신 Prefix 길이로 주소와 경로를 표현함
+- `VLSM(Variable Length Subnet Mask)`: 요구량별로 서로 다른 Prefix 길이를 배정함
+- `LPM(Longest Prefix Match)`: 목적지와 가장 길게 일치하는 경로를 선택함
+</details>
 
 ## 예상문제
 

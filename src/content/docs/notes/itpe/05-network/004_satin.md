@@ -1,74 +1,93 @@
 ---
-title: "SATIN(Satellite-Aerial-Terrestrial Integrated Network)"
-author: "Gemini 3.8 Flash"
-date: "2026-09-20T00:25:00+09:00"
-tags:
-  - "notes-network"
-extra:
-  model: "Gemini 3.8 Flash"
-
+title: "위성·공중·지상 통합망(SATIN·NTN)"
+author: "OpenAI Codex"
+date: "2026-09-20T21:44:00+09:00"
+tags: ["notes-network"]
+sidebar: { badge: { text: "A" } }
+extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 ---
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 21:44 KST</p>
+## 지식 로드맵 내 현재 위치
+<div class="itpe-topic-path" aria-label="지식 경로"><span>차세대 이동통신</span><span>비지상 통합 접속</span><strong>SATIN·NTN</strong></div>
 
-## 답안 골격
-```text
-[SATIN] ◀━━ 머리: Ⅶ 내 의견 (3GPP NTN 표준 준수 위성-지상 코어망 통합 오케스트레이션)
- ┃
- ┣━ Ⅰ 개요 ───── 지상 2차원 망의 커버리지 한계(산간·해양 음영) → 위성·공중·지상 입체망
- ┣━ Ⅱ 특징 ───── 전 지구적 커버리지(100%), 3차원 입체 통신, 초연결 회복 탄력성
- ┣━ Ⅲ 구조 ───── 위성 계층(LEO·GEO) + 공중 계층(HAPS·드론) + 지상 계층(5G/6G 셀룰러)
- ┣━ Ⅳ 흐름 ───── ① 단말 위치·채널 감지 → ② 지상·공중·위성 최적 링크 선택 → ③ 수직 핸드오버 라우팅
- ┣━ Ⅴ 비교 ───── LEO 위성망 vs HAPS vs 지상망 (고도, 지연 시간, 커버리지 직경)
- ┗━ Ⅵ 실무 ───── 고속 궤도 이동에 따른 도플러 천이 / 빈번한 인터-새틀라이트 링크 단절 / 주파수 간섭
-```
-- 필수 키워드: NTN · LEO(저궤도 위성) · HAPS(성층권 플랫폼) · ISL(위성 간 링크) · 도플러 천이 · 수직 핸드오버
-- 기출: 128회·130회 `위성-공중-지상 통합망 개념과 구조` → Ⅰ·Ⅲ, 135회 `6G 이동통신 핵심 구조` → Ⅲ·Ⅳ
+## 큰 그림과 30초 인출
+- 본질: 위성·공중 플랫폼·지상망을 공통 서비스와 이동성 제어 아래 결합함
+- 메커니즘: 궤도·전파·지연이 다른 Access를 위치·품질·부하 정책으로 선택하고 Handover함
+- 산출: 음영지역·재난·해상·항공까지 이어지는 광역 연속 커버리지임
+<div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 계층 구조">
+  <div class="itpe-flow__node"><strong>Space</strong><small><b>구성:</b> GEO · MEO · LEO 위성</small><small><b>역할:</b> 광역 Coverage</small></div><div class="itpe-flow__arrow">↓</div>
+  <div class="itpe-flow__node"><strong>Air</strong><small><b>구성:</b> HAPS · UAV</small><small><b>역할:</b> 지역 보강 · 재난 복구</small></div><div class="itpe-flow__arrow">↓</div>
+  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>NTN Access</strong></span><small><b>처리:</b> Service Link · Feeder Link · Gateway</small></div><div class="itpe-flow__arrow">↓</div>
+  <div class="itpe-flow__node"><strong>Terrestrial</strong><small><b>산출:</b> 5G Core 연동 · 서비스 연속성</small></div>
+</div>
+<details><summary>핵심 용어</summary>
 
-## 한 줄 본질
-- 지상 기지국 중심 2차원 통신의 도서·해양·상공 음영지역 한계 → 저궤도 위성·성층권 드론·지상 이동통신망을 3차원 입체 메쉬로 통합 연결 → 지구 전역 100% 무결점 커버리지 확보 / 위성의 초고속 공전에 따른 극심한 도플러 편차 및 빈번한 수직 핸드오버 오버헤드
+- `SATIN(Satellite-Aerial-Terrestrial Integrated Network)`: 이질 Access를 통합 제어하는 전체 망 관점임
+- `NTN(Non-Terrestrial Network)`: 위성·공중 플랫폼을 이용하는 3GPP 비지상 접속망임
+- `HAPS(High-Altitude Platform Station)`: 성층권에서 지역 커버리지를 제공함
+- `LEO(Low Earth Orbit)`: 낮은 궤도로 지연을 줄이나 빠른 이동·Handover가 필요함
+</details>
 
-## 핵심 그림
-```text
-[ 우주 계층 (Space) ]   GEO (정지궤도, 36,000km)
-                        LEO (저궤도 군집위성, 500~1,500km) <---+ ISL (위성간 레이저 링크)
-                             \                     /
-                              \  ISL              /
-                               v                 v
-[ 공중 계층 (Air/Aerial) ]  HAPS (성층권 드론/비행선, 20km)
-                            UAV / 도심항공교통(UAM, 1~3km)
-                               \                 /
-                                v               v
-[ 지상 계층 (Terrestrial) ] 5G/6G 기지국(gNB) -- 코어망(5GC)
-                             /         |        \
-                            v          v         v
-                         단말(UE)   선박(해양)   도심 UAM
-```
+## 예상문제
+- SATIN과 NTN의 개념·구조·핵심 기술을 설명하고 지상망 연동 시 기술적 문제와 대책을 제시하시오.
 
-## 핵심 용어
-- HAPS(High Altitude Platform Station): 지상 20km 성층권에 고정 비행하며 준위성 통신 중계국 역할을 수행하는 무인 비행선·태양광 드론
-- ISL(Inter-Satellite Link): 지상 기지국을 거치지 않고 저궤도 위성끼리 우주 공간에서 레이저(FSO)나 밀리미터파로 데이터를 직접 라우팅하는 링크
-- 수직 핸드오버(Vertical Handover): 서로 다른 이종 계층(지상 5G ↔ 성층권 HAPS ↔ 저궤도 위성) 간에 서비스 단절 없이 세션을 전환하는 메커니즘
+## Ⅰ. 3차원 커버리지를 제공하는 SATIN·NTN 개요
+> SATIN은 계층을 단순 연결하는 망이 아니라 각 Access의 지연·용량·가용성을 서비스 정책으로 전환하는 통합망임.
+- 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)**은 **NTN(Non-Terrestrial Network)**과 **지상 이동통신망**을 통합하여 3차원 접속을 제공하는 아키텍처임
+- 목적: 지리적 음영과 지상 인프라 단절 보완 → 서비스 연속성과 재난 복원력 확보
 
-## 핵심 통찰
-- 저궤도 위성(LEO)은 지구를 90~120분마다 한 바퀴씩 공전하므로 단말 관점의 가시 시간(In-View)이 5~10분에 불과 → 지속적인 위성 간 빔 전환과 예측 기반 핸드오버 알고리즘 필수
-- 지상 코어망과 위성망이 분리되면 지연 시간과 인증 절차가 이중 발생 → 3GPP Rel-17/18 NTN 규격에 맞춰 위성 기지국(gNB)을 지상 5G Core(5GC)와 직접 연동하는 통합 아키텍처로 진화
-- 공중 HAPS는 위성 대비 전파 왕복 지연(RTT 0.1~0.2ms 수준)이 극도로 낮아 재난 지역 긴급 망 복구와 도심 UAM 관제에 가장 비용 효율적
+## Ⅱ. 투명·재생 Payload와 링크 구성
+> Payload 처리 위치는 위성 복잡도와 지상 의존성을 교환하므로 서비스 지연·수명·업그레이드 가능성으로 선택해야 함.
+| 축 | Transparent Payload | Regenerative Payload |
+|---|---|---|
+| 처리 | RF 중계 | On-board 처리 |
+| gNB | 지상 | 위성 전체·일부 |
+| 지연 | Gateway 경유 | 경로 단축 가능 |
+| 대가 | Feeder 의존 | 위성 복잡도·전력 |
 
-## 이웃 토픽과 구분
-- SATIN vs NTN: NTN은 비지상 통신망 전체를 일컫는 3GPP 표준 용어 / SATIN은 위성(Satellite), 공중(Aerial), 지상(Terrestrial)을 유기적으로 엮은 3차원 통합 네트워크 아키텍처 프레임워크
-
-## 문제·원인·대책
-- 적용 상황: 도심항공교통(UAM) 기체와 저궤도 위성 간 고속 통신 시 링크 끊김
-| 문제 | 원인 | 대책 | 효과 |
+## Ⅲ. Doppler·지연·이동성 문제와 대책
+> NTN의 핵심 난제는 긴 전파지연과 빠른 위성 이동이 지상망의 Timing·주파수·Mobility 가정을 깨뜨리는 데 있음.
+| 문제 | 원인 | 대책 | 판정 |
 |---|---|---|---|
-| 고속 이동에 따른 수신 주파수 왜곡 | 시속 수천 km 위성 이동 및 UAM 기동으로 도플러 천이(Doppler Shift) 발생 | 궤도 정보 기반 도플러 사전 보상(Pre-compensation) 및 위상 제어 알고리즘 적용 | 주파수 동기화 유지로 복조 오류율 억제 |
-| 위성 가시 영역 이탈 시 통신 단절 | 단일 LEO 위성의 빠른 지평선 진입/이탈 | 인접 위성 듀얼 커넥티비티(Dual Connectivity) 및 Make-Before-Break 핸드오버 | 패킷 유실 없는 끊김 없는(Seamless) 서비스 유지 |
+| 동기 이탈 | 큰 Doppler | Ephemeris·주파수 사전 보상 | 잔류 주파수 오차 |
+| 접속 실패 | 긴 RTT | Timing Advance 확장·Timer 조정 | Random Access 성공 |
+| 빈번한 전환 | Moving Cell | 예측 Handover·Multi-connectivity | 단절·재전송 |
+| Link 불안 | 강우·차폐 | Link Adaptation·다중 경로 | 가용성·지연 |
 
-## 이렇게 출제된다
-- 제128회 1교시: "위성-공중-지상 통합망(SATIN)의 개념과 계층별 특징을 설명하시오." → 요구 포인트: Ⅰ 개념 + Ⅲ 우주·공중·지상 3계층 구조
-- 제135회 2교시 4번: "6G 이동통신기술에 대하여 다음을 설명하시오." → 요구 포인트: 초공간 통신망(SATIN/NTN)을 6G 핵심 아키텍처로 도식화
+## Ⅳ. 서비스 중심 통합 제어 결론
+> 단일 Access 고정보다 서비스 SLA와 궤도 예측을 결합한 Multi-access 선택이 성능과 연속성을 함께 지킴.
+### 학습자 통찰 메모 — 답안 밖
+- `[핵심 통찰]`: 위성망의 넓은 Coverage는 지연·Doppler·용량 제약과 교환된다. 통합의 가치는 이를 숨기는 것이 아니라 예측 가능한 정책으로 노출하는 데 있다.
+- `나라면`: 재난·해상 등 우선 서비스부터 지상망 Failover를 시험하고 Access별 품질을 측정해 확대하겠다.
+### 실전 답안용 기술사적 제언
+- 판정: 서비스별 지연·가용성·Handover 연속성 충족
+- 대안: 궤도 예측과 Telemetry 기반 Multi-access Steering
+- 검증: Gateway 장애·강우·Beam 전환 시나리오 시험
+- 효과: 음영·단절 대응과 불필요한 위성 자원 사용 억제
+<div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 개선 제언"><div class="itpe-flow__node"><strong>Access 고정</strong><small><b>문제:</b> 환경 변화와 경로 품질 불일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>예측 Steering</strong><small><b>대안:</b> 궤도 · 품질 · 서비스 정책 결합</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>전환 시험</strong><small><b>판정:</b> 지연 · 가용성 · 연속성</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>통합 운용</strong><small><b>효과:</b> Coverage와 자원효율 균형</small></div></div>
 
-## 내 의견
-- [독자 위성망 프로토콜 종속성 탈피] 기존 위성 사업자의 독자 변복조 및 프로토콜 규격으로 인해 일반 스마트폰과의 호환성 결여 및 단말 단가 상승 → 나라면: 3GPP Release 19/20에 정의되는 5G NR NTN 표준 규격을 수용하여 지상 스마트폰 칩셋이 소프트웨어 펌웨어 업데이트만으로 LEO 위성 신호를 직접 수신하는 Direct-to-Cell 환경을 구축
+## 1교시 10점 답안 발췌
+- 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)**은 **NTN(Non-Terrestrial Network)**과 **지상망**을 통합하여 3차원 접속을 제공하는 아키텍처임
+- 목적: 음영·재난 단절 보완 → 서비스 연속성 확보
+<div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 1교시 구조"><div class="itpe-flow__node"><strong>Space</strong><small><b>활동:</b> 광역 중계</small><small><b>산출:</b> Wide Coverage</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>Air</strong><small><b>활동:</b> 지역 보강</small><small><b>산출:</b> 임시 Coverage</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>Ground</strong><small><b>활동:</b> Core 연동</small><small><b>산출:</b> 서비스 연속성</small></div></div>
+| 문제 | 대책 |
+|---|---|
+| Doppler·긴 RTT | 사전 보상·Timer 조정 |
+| Moving Cell | 예측 Handover |
+- 결론: 궤도·품질·서비스 정책 기반 Steering을 장애 시나리오로 검증함
 
-## 찾아볼 것
-- 스타링크(Starlink)와 지상 이동통신사(T-Mobile 등) 간 Direct-to-Cell 상용 주파수 공유 현황
+## 출제 이력과 검증 출처
+- 제128·130회: 원문 미확보(회차만 확인)
+- [3GPP TS 23.501, System architecture for the 5G System](https://www.3gpp.org/dynareport/23501.htm)
+- [3GPP TR 38.811, NR to support non-terrestrial networks](https://www.3gpp.org/dynareport/38811.htm)
+- [ITU-R M.2160-0, IMT-2030 Framework](https://www.itu.int/rec/R-REC-M.2160-0-202311-I/en)
+
+## 학습 체크
+- [ ] Ⅰ 개요: SATIN·NTN·지상망 관계와 목적을 재현할 수 있는가?
+- [ ] 상단 그림: Space·Air·Ground의 역할과 산출을 연결할 수 있는가?
+- [ ] Ⅱ 표: Transparent와 Regenerative Payload를 비교할 수 있는가?
+- [ ] Ⅲ 표: Doppler·RTT·Moving Cell의 원인·대책·판정을 연결할 수 있는가?
+- [ ] Ⅳ 제언: 문제·대안·판정·효과의 Steering 흐름을 재현할 수 있는가?
+
+## 연결 토픽
+- [NTN](./006_ntn/) · [6G 이동통신](./027_6g_mobile_communication/) · [5G-Advanced](./039_5g_advanced/)
