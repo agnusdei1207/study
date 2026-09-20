@@ -418,6 +418,66 @@ body {
   width: min(100%, 28rem);
 }
 
+/* ISO/IEC 38500 EDM: 세 기능의 순환과 중앙 피드백을 한눈에 표현 */
+.sl-markdown-content .itpe-edm-cycle {
+  width: min(100%, 36rem);
+  margin: 1rem auto 1.5rem;
+}
+
+.sl-markdown-content .itpe-edm-cycle svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.sl-markdown-content .itpe-edm-link {
+  fill: none;
+  stroke: var(--palette-accent);
+  stroke-width: 5;
+}
+
+.sl-markdown-content .itpe-edm-cycle marker path {
+  fill: var(--palette-accent);
+}
+
+.sl-markdown-content .itpe-edm-node {
+  fill: var(--palette-surface);
+  stroke: var(--palette-line);
+  stroke-width: 3;
+}
+
+.sl-markdown-content .itpe-edm-center {
+  fill: color-mix(in srgb, var(--palette-accent) 16%, var(--palette-surface));
+  stroke: var(--palette-accent);
+  stroke-width: 3;
+}
+
+.sl-markdown-content .itpe-edm-title,
+.sl-markdown-content .itpe-edm-center-title,
+.sl-markdown-content .itpe-edm-sub {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-family: var(--sl-font);
+}
+
+.sl-markdown-content .itpe-edm-title,
+.sl-markdown-content .itpe-edm-center-title {
+  fill: var(--palette-accent-glow);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.sl-markdown-content .itpe-edm-sub {
+  fill: var(--palette-text);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.sl-markdown-content .itpe-edm-cycle.is-compact {
+  width: min(100%, 30rem);
+}
+
 @media (max-width: 40rem) {
   .sl-markdown-content .itpe-topic-path {
     display: grid;
@@ -543,7 +603,7 @@ a:not([class]):hover {
 
 /* Table styling */
 .sl-markdown-content table {
-  display: block;
+  display: table;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
@@ -575,6 +635,9 @@ a:not([class]):hover {
 
 @media (max-width: 40rem) {
   .sl-markdown-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
     font-size: 0.82rem;
   }
   .sl-markdown-content th,
