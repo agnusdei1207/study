@@ -295,6 +295,10 @@ body {
   line-height: 1.35;
 }
 
+.sl-markdown-content .itpe-pipeline-node > * {
+  margin-block: 0;
+}
+
 .sl-markdown-content .itpe-pipeline-arrow {
   display: grid;
   place-content: center;
@@ -311,6 +315,30 @@ body {
   background: color-mix(in srgb, var(--palette-accent) 9%, var(--palette-surface));
   font-size: 0.88rem;
   text-align: center;
+}
+
+.sl-markdown-content .itpe-pipeline.is-vertical {
+  display: grid;
+  grid-template-columns: minmax(0, 28rem);
+  justify-content: center;
+  gap: 0.2rem;
+  width: 100%;
+}
+
+.sl-markdown-content .itpe-pipeline.is-vertical .itpe-pipeline-node {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 4rem;
+}
+
+.sl-markdown-content .itpe-pipeline.is-vertical .itpe-pipeline-arrow {
+  min-height: 1.35rem;
+  transform: none;
+}
+
+.sl-markdown-content .itpe-pipeline.is-vertical + .itpe-trace-band {
+  box-sizing: border-box;
+  width: min(100%, 28rem);
 }
 
 @media (max-width: 40rem) {
@@ -357,6 +385,10 @@ body {
   .sl-markdown-content .itpe-pipeline-arrow {
     transform: rotate(90deg);
     min-height: 1rem;
+  }
+
+  .sl-markdown-content .itpe-pipeline.is-vertical .itpe-pipeline-arrow {
+    transform: none;
   }
 }
 

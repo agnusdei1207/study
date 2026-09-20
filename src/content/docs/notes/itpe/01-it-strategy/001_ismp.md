@@ -76,13 +76,13 @@ extra:
 
 > **한줄 요약:** 요건을 아키텍처와 규모·예산으로 전환하고 RFP까지 추적한다.
 
-<div class="itpe-pipeline" role="img" aria-label="요건에서 아키텍처와 규모·예산을 거쳐 RFP로 이어지는 ISMP 추적 구조">
+<div class="itpe-pipeline is-vertical" role="img" aria-label="요건에서 아키텍처와 규모·예산을 거쳐 RFP로 이어지는 ISMP 추적 구조">
   <div class="itpe-pipeline-node"><strong>요건</strong><small>업무 · IT · 비기능</small></div>
-  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>아키텍처</strong><small>SW · HW · NW · 보안</small></div>
-  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>규모·예산</strong><small>FP · TCO</small></div>
-  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>RFP</strong><small>범위 · 일정 · 발주</small></div>
 </div>
 <div class="itpe-trace-band"><strong>RTM</strong> · 요건부터 RFP까지 양방향 추적</div>
@@ -133,15 +133,15 @@ extra:
 - ISMP(Information System Master Plan)는 특정 정보시스템 구축사업의 성공을 위해 요구사항을 FP 산정 수준으로 구체화하고, 목표 아키텍처와 예산 및 RFP를 수립하는 발주 Baseline 정의 활동임.
 
 ### 2. 핵심 메커니즘 / 체계
-<div class="itpe-pipeline" role="img" aria-label="ISMP 5단계 방법론">
+<div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 5단계 방법론">
   <div class="itpe-pipeline-node"><strong>착수</strong></div>
-  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>방향</strong></div>
-  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>요건</strong></div>
-  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>구조</strong></div>
-  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>이행</strong><small>FP · 예산 · RFP</small></div>
 </div>
 - ISP가 '과제 도출(What to do)'이라면 ISMP는 '발주 Baseline 확립(How to build)'을 담당함.
