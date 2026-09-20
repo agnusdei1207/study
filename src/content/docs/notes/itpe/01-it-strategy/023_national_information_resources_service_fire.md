@@ -1,6 +1,6 @@
 ---
 title: "국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성"
-author: "Codex"
+author: "OpenAI Codex"
 date: "2026-09-21T12:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
