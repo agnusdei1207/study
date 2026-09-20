@@ -144,5 +144,5 @@ NIST Cloud Federation Reference Architecture의 관점처럼 서비스 배포·�
 ## 연결 토픽
 
 - [서버리스 컴퓨팅](./003_serverless_computing/)
-- [스토리지 유형 비교](./005_object_storage/)
+- [스토리지 유형 비교](./123_storage_type_comparison/)
 - [가상화](./008_virtualization/)

@@ -1,7 +1,7 @@
 ---
 title: "서버리스 컴퓨팅(Serverless Computing)"
 author: "Codex"
-date: "2026-09-20T19:41:02+09:00"
+date: "2026-09-20T20:01:14+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
@@ -11,7 +11,7 @@ extra:
   keyword_grade: "A"
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 19:41 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:01 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -148,13 +148,28 @@ extra:
 
 - 장점: 이벤트별 탄력 실행, 인프라 관리 감소, 유휴 자원 축소
 - 한계: Cold Start, 상태 외부화, 벤더 종속, 분산 관측 복잡성
+
+| 축 | VM | 컨테이너 | 서버리스 함수 |
+|---|---|---|---|
+| 단위 | Guest OS | 이미지 | 함수·이벤트 |
+| 운영 | OS부터 이용자 책임 | 오케스트레이션 필요 | 실행환경 공급자 책임 |
+| 적합 | 레거시·강한 격리 | 장기 서비스 | 간헐·급변 부하 |
+
+| 문제 | 원인 | 대책 |
+|---|---|---|
+| 중복 처리 | 이벤트 재시도 | 멱등키·조건부 쓰기 |
+| 연쇄 장애 | 무제한 동시성 | 동시성 제한·DLQ |
+| 관측 단절 | 분산 함수 호출 | 상관 ID·분산추적 |
+
 - 결론: 멱등성·동시성 제한·DLQ를 이벤트 계약과 함께 설계
 
 ## 출제 이력과 검증 출처
 
-- 제136회·제140회 정보관리기술사: 공식 문제지는 Q-Net 자료실에서 원문 확인
+- 제136회 정보관리기술사 1교시 9번: `서버리스 컴퓨팅(Serverless Computing)`
+- 제140회 정보관리기술사 2교시 1번: `서버리스 컴퓨팅(Serverless Computing)에 대하여 다음을 설명하시오. 가. 정의 및 특징 나. 구성 요소 및 장·단점`
 - [CNCF Serverless Whitepaper](https://github.com/cncf/wg-serverless/tree/master/whitepapers/serverless-overview)
-- [NIST SP 800-204D, Strategies for the Integration of Software Supply Chain Security in DevSecOps CI/CD Pipelines](https://csrc.nist.gov/pubs/sp/800/204/d/final)
+- [Google Cloud — What is serverless computing?](https://cloud.google.com/discover/what-is-serverless-computing)
+- [Google Cloud — What is FaaS?](https://cloud.google.com/discover/what-is-function-as-a-service-faas)
 - [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
 
 ## 학습 체크

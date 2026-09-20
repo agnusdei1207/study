@@ -1,7 +1,7 @@
 ---
 title: "스토리지 유형 비교(블록·파일·오브젝트)"
 author: "Codex"
-date: "2026-09-20T19:47:31+09:00"
+date: "2026-09-20T19:55:42+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
@@ -11,7 +11,7 @@ extra:
   keyword_grade: "A"
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 19:47 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 19:55 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -73,17 +73,25 @@ extra:
 
 - 보호 방식: 복제·Snapshot·RAID·삭제 코딩·Versioning은 구현 선택이므로 어느 유형의 절대 속성으로 단정하지 않음
 
+### 딸려 나오는 하위 토픽
+
+| 번호 | 키워드 | 부모 답안 내 위치 |
+|---|---|---|
+| 04-005 | 오브젝트 스토리지 | Bucket·Key·Object API·Metadata |
+| 04-016 | 블록 스토리지 | LUN·LBA·Host 파일시스템·저지연 I/O |
+| 04-017 | 파일 스토리지 | 계층 Path·NFS/SMB·POSIX·파일 Lock |
+
 ## Ⅲ. 워크로드 선택축 비교
 
 > 저지연 임의 갱신·계층 공유·대량 수평 확장은 서로 다른 강점이므로 단일 유형 표준화보다 데이터 생명주기별 조합이 합리적임.
 
 | 축 | 블록 | 파일 | 오브젝트 |
 |---|---|---|---|
-| 접근 | Device·Volume | Path·File Protocol | HTTP 기반 API |
+| 접근 | Device·Volume·LBA | Path·NFS/SMB | HTTP 기반 Object API |
 | 갱신 | 블록 단위 | Byte Range·파일 | 객체 교체 중심 |
 | 공유 | Cluster SW 필요 | 다중 Client 강점 | API 기반 분산 접근 |
 | 지연 | 저지연 임의 I/O 강점 | Metadata·공유 조정 | 대량 순차·병렬 접근 강점 |
-| 확장 | Array·Volume 구성 | Namespace·Metadata 병목 고려 | 대량 객체 수평 확장 강점 |
+| 확장 | Array·Volume 구성 | Namespace·Metadata Server 병목 고려 | 대량 객체 수평 확장 강점 |
 | 적합 | DB·VM·Transaction | 협업·POSIX 도구 | 비정형·보관·분석 원천 |
 
 ## Ⅳ. 데이터 생명주기 배치와 통제
@@ -102,7 +110,7 @@ extra:
 
 | 문제 | 원인 | 대책 | 검증 |
 |---|---|---|---|
-| 소형 객체 비효율 | 요청·Metadata 비용 | 묶음 포맷·Partition | 크기별 처리량 |
+| 소형 파일·객체 비효율 | Path 탐색·요청·Metadata 비용 | 묶음 포맷·Partition·병렬 파일시스템 | 크기별 처리량·Metadata Ops |
 | 데이터 중력 | 대용량 계층 이동 | 계산의 데이터 인접 배치 | 이동시간·전송량 |
 | 일관성 오해 | 제품·연산별 보장 차이 | API 의미와 요구 수준 대조 | 동시 읽기·쓰기 시험 |
 | 복제 확산 | 계층별 사본 증가 | Catalog·Lineage·수명주기 | 원천 추적·복구시험 |
@@ -148,8 +156,11 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제132회·제140회 정보관리기술사: 공식 문제지는 Q-Net 자료실에서 원문 확인
+- 제132회 정보관리기술사 1교시 12번: `블록 스토리지, 파일 스토리지, 오브젝트 스토리지의 데이터 접근방식`
+- 제140회 정보관리기술사 3교시 5번: `클라우드 컴퓨팅 환경에서 대규모 AI 학습 데이터 구축 및 서비스 인프라 구성을 위해 다양한 스토리지 아키텍처가 활용된다. 블록 스토리지(Block Storage), 파일 스토리지(File Storage), 오브젝트 스토리지(Object Storage)를 비교하여 설명하고, 각 스토리지의 최적 활용 방안에 대하여 설명하시오.`
 - [SNIA Dictionary](https://www.snia.org/education/online-dictionary)
+- [NVM Express — NVMe over Fabrics](https://nvmexpress.org/specifications/)
+- [IETF RFC 8881 — NFS Version 4 Minor Version 1 Protocol](https://www.rfc-editor.org/rfc/rfc8881)
 - [NIST SP 800-209, Security Guidelines for Storage Infrastructure](https://csrc.nist.gov/pubs/sp/800/209/final)
 - [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
 
@@ -163,4 +174,4 @@ extra:
 
 ## 연결 토픽
 
-- [블록 스토리지](./016_block_storage/) · [파일 스토리지](./017_file_storage/) · [스토리지 가상화](./081_storage_virtualization/) · [스토리지 연결 방식](./080_nas/)
+- [스토리지 가상화](./081_storage_virtualization/) · [스토리지 연결 방식](./080_nas/) · [RAID](./056_raid/) · [클라우드 컴퓨팅](./013_cloud_computing/)

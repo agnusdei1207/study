@@ -75,7 +75,7 @@ OS: Process → Scheduling → Synchronization → Virtual Memory
 ### 1. 운영체제 자원관리
 
 - [은행가 알고리즘](./002_bankers_algorithm/)
-- [세마포어](./004_semaphore/), [모니터](./015_monitor/), [뮤텍스](./045_mutex/)
+- [프로세스 동기화 기법](./122_process_synchronization/)
 - [CPU 스케줄링](./019_cpu_scheduling/), [가상 메모리](./023_virtual_memory/), [디스크 스케줄링](./024_disk_scheduling/)
 - [교착상태](./038_deadlock/), [스레싱](./039_thrashing/), [IPC](./034_ipc/)
 
@@ -93,7 +93,7 @@ OS: Process → Scheduling → Synchronization → Virtual Memory
 
 ### 4. 스토리지·가용성·재해복구
 
-- [블록 스토리지](./016_block_storage/), [파일 스토리지](./017_file_storage/), [오브젝트 스토리지](./005_object_storage/)
+- [스토리지 유형 비교](./123_storage_type_comparison/)
 - [HA·FTS](./042_ha_availability_assurance/), [RAID](./056_raid/)
 - [멀티 리전 Active-Active DR](./068_multi_region_active_active_disaster_recovery/)
 

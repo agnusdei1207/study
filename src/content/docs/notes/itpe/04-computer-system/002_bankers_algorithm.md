@@ -1,7 +1,7 @@
 ---
 title: "은행가 알고리즘(Banker's Algorithm)"
 author: "Codex"
-date: "2026-09-20T19:37:28+09:00"
+date: "2026-09-20T20:01:14+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
@@ -11,7 +11,7 @@ extra:
   keyword_grade: "A"
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 19:37 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:01 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -147,13 +147,25 @@ extra:
 </div>
 
 - 한계: 최대 요구량 사전 선언과 반복 행렬 계산 때문에 요구량이 급변하는 범용 환경에는 제한적 적용
+
+| 비교 | 예방 | 은행가 알고리즘 | 탐지·복구 |
+|---|---|---|---|
+| 시점 | 할당 규칙 사전 제한 | 할당 직전 안전성 검사 | 할당 후 교착 탐지 |
+| 기준 | 필요조건 제거 | 안전 순서열 존재 | 대기 사이클·교착 집합 |
+| 대가 | 자원 활용 저하 | Max 선언·반복 계산 | 종료·선점·롤백 |
+
+| 문제 | 원인 | 대책 |
+|---|---|---|
+| 장기 대기 | 불안전 요청 반복 보류 | Aging·예약량 |
+| 이용률 저하 | Max 과대 선언 | 실측 기반 상한 재조정 |
+
 - 결론: 통제 가능한 자원 풀에서 최대량의 신뢰성과 장기 대기를 함께 관리
 
 ## 출제 이력과 검증 출처
 
 - 제138회 정보관리기술사 1교시 11번: `은행가 알고리즘(Banker's Algorithm)`
 - [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
-- [The Open Group Base Specifications Issue 8](https://pubs.opengroup.org/onlinepubs/9799919799/)
+- [University of Illinois Chicago — Operating Systems: Deadlocks, Banker's Algorithm](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/7_Deadlocks)
 
 ## 학습 체크
 
@@ -165,4 +177,4 @@ extra:
 
 ## 연결 토픽
 
-- [교착상태](./038_deadlock/) · [프로세스 동기화 기법](./004_semaphore/) · [우선순위 역전](./059_priority_inversion/)
+- [교착상태](./038_deadlock/) · [프로세스 동기화 기법](./122_process_synchronization/) · [우선순위 역전](./059_priority_inversion/)
