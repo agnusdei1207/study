@@ -1,19 +1,19 @@
 ---
 title: "오류제어(검출·정정·ARQ)"
 author: "OpenAI Codex"
-date: "2026-09-20T21:36:00+09:00"
+date: "2026-09-20T20:08:20+09:00"
 tags: ["notes-network"]
 sidebar: { badge: { text: "A" } }
 extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 ---
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 21:36 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:08 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 <div class="itpe-topic-path" aria-label="지식 경로"><span>데이터 통신</span><span>신뢰성 제어</span><strong>오류제어</strong></div>
 
 ## 큰 그림과 30초 인출
 - 본질: 전송 중 변형된 비트를 검출하고 정정하거나 재전송하여 신뢰성을 회복함
-- 메커니즘: 중복 부호·ACK·Timer·Sequence Number를 채널 오류와 지연 특성에 맞춰 결합함
+- 메커니즘: 중복 부호·ACK(Acknowledgement)·Timer·Sequence Number를 채널 오류와 지연 특성에 맞춰 결합함
 - 산출: 잔류 오류·재전송 지연·중복 트래픽 사이의 통제된 균형임
 <div class="itpe-flow itpe-flow--vertical" aria-label="오류제어 흐름">
   <div class="itpe-flow__node"><strong>송신 부호화</strong><small><b>입력:</b> Data</small><small><b>산출:</b> 검사용 Redundancy</small></div><div class="itpe-flow__arrow">↓</div>
@@ -26,7 +26,7 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 - `CRC(Cyclic Redundancy Check)`: 다항식 나눗셈의 나머지로 Burst 오류를 검출함
 - `FEC(Forward Error Correction)`: 수신 측 정정을 위해 추가 중복을 전송함
 - `ARQ(Automatic Repeat reQuest)`: 오류·손실 프레임을 ACK와 Timer로 재전송함
-- `ACK(Acknowledgement)`: 수신 성공과 다음 기대 순서를 송신 측에 피드백함
+- `ACK(Acknowledgement)`: ARQ에서는 프레임 수신 성공을, TCP에서는 누적된 다음 기대 순서를 피드백함
 </details>
 
 ## 예상문제
@@ -45,7 +45,7 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 | Checksum | Word 합 | 구현 용이 | Burst 검출 한계 |
 | **CRC** | 생성다항식 나머지 | Burst 검출 | 자체 정정 불가 |
 | **FEC** | Code Distance | 무재전송 정정 | 대역폭·연산 |
-| **ARQ** | ACK·Timer·Sequence | 적응적 복구 | RTT·재전송 |
+| **ARQ** | ACK·Timer·Sequence | 적응적 복구 | RTT(Round-Trip Time)·재전송 |
 
 ## Ⅲ. ARQ 유형 비교
 > Window 크기와 재전송 범위가 링크 이용률과 복구 트래픽을 가르므로 오류율·RTT·수신 버퍼를 함께 보아야 함.
@@ -76,7 +76,7 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 ## 1교시 10점 답안 발췌
 - 정의: **오류제어**는 **오류 검출·정정 부호**와 **ARQ(Automatic Repeat reQuest)**로 전송 오류를 식별·복구하는 신뢰성 제어임
 - 목적: 잔류 오류 통제 → 데이터 무결성 확보
-<div class="itpe-flow itpe-flow--vertical" aria-label="오류제어 1교시 그림"><div class="itpe-flow__node"><strong>검출</strong><small><b>활동:</b> CRC 판정</small><small><b>산출:</b> 정상·오류</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>복구</strong><small><b>활동:</b> FEC 또는 ARQ</small><small><b>산출:</b> 정정 Data</small></div></div>
+<div class="itpe-flow itpe-flow--vertical" aria-label="오류제어 1교시 그림"><div class="itpe-flow__node"><strong>검출</strong><small><b>활동:</b> CRC 판정</small><small><b>산출:</b> 정상·오류 구분</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>FEC(Forward Error Correction)</strong><small><b>활동:</b> 중복 부호로 수신 측 정정</small><small><b>산출:</b> 무재전송 복구 Data</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>ARQ(Automatic Repeat reQuest)</strong><small><b>활동:</b> ACK·Timer로 재전송</small><small><b>산출:</b> 확인된 순서 Data</small></div></div>
 | 축 | Go-Back-N | Selective Repeat |
 |---|---|---|
 | 재전송 | 오류 이후 전체 | 오류 Frame |
@@ -87,6 +87,11 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 - 제137·138회: 원문 미확보(회차만 확인)
 - [RFC 9293, Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293)
 - [RFC 6298, Computing TCP's Retransmission Timer](https://www.rfc-editor.org/rfc/rfc6298)
+- [ITU-T X.25, LAPB의 Go-Back-N ARQ 절차](https://www.itu.int/rec/T-REC-X.25/en)
+- [RFC 3366, Advice to link designers on link Automatic Repeat reQuest](https://www.rfc-editor.org/rfc/rfc3366)
+- [RFC 3385, Internet Protocol Small Computer System Interface cyclic redundancy check](https://www.rfc-editor.org/rfc/rfc3385)
+- [RFC 6363, Forward Error Correction Framework](https://www.rfc-editor.org/rfc/rfc6363)
+- [RFC 1982, Serial Number Arithmetic for Sequence Number Space](https://www.rfc-editor.org/rfc/rfc1982)
 
 ## 학습 체크
 - [ ] Ⅰ 개요: 검출·정정·ARQ의 관계와 목적을 재현할 수 있는가?

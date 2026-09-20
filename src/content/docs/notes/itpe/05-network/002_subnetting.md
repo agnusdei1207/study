@@ -1,7 +1,7 @@
 ---
 title: "서브네팅·슈퍼네팅(CIDR·VLSM)"
 author: "OpenAI Codex"
-date: "2026-09-20T21:28:00+09:00"
+date: "2026-09-20T20:08:10+09:00"
 tags:
   - "notes-network"
 sidebar: { badge: { text: "A" } }
@@ -11,7 +11,7 @@ extra:
 
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 21:28 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:08 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -57,8 +57,8 @@ extra:
 | **Classless** | `주소/prefix-length`로 경계 명시 | 요구량별 블록 선택 | 클래스 명칭을 현재 설계 기준으로 사용하지 않음 |
 | **가변 길이** | subnet마다 다른 prefix 적용 | 주소 낭비 축소 | 큰 요구부터 정렬·배치 |
 | **계층 주소** | 조직·지역·서비스별 상위 prefix 위임 | 책임과 장애영역 분리 | 향후 성장분과 예비 블록 확보 |
-| **경로 집계** | 연속·정렬된 prefix를 짧은 prefix로 광고 | RIB/FIB·광고량 절감 | 구멍 난 주소와 비연속 블록은 집계 제한 |
-| **정책 연계** | subnet/VLAN/VRF/ACL 경계 일치 | 보안·운영 단순화 | 주소 구조만으로 보안을 보장하지 않음 |
+| **경로 집계** | 연속·정렬된 prefix를 짧은 prefix로 광고 | RIB(Routing Information Base)·FIB(Forwarding Information Base)·광고량 절감 | 구멍 난 주소와 비연속 블록은 집계 제한 |
+| **정책 연계** | Subnet·VLAN(Virtual LAN)·VRF(Virtual Routing and Forwarding)·ACL(Access Control List) 경계 일치 | 보안·운영 단순화 | 주소 구조만으로 보안을 보장하지 않음 |
 
 #### 한줄 요약
 
@@ -66,18 +66,7 @@ extra:
 
 ## Ⅲ. Network prefix와 host 영역으로 이루어진 주소 구조
 
-```text
-IPv4 32 bit
-┌──────────────────────────────┬──────────────────┐
-│ Network/Subnet Prefix        │ Host bits        │
-│ 왼쪽부터 p bit               │ 32-p bit         │
-└──────────────────────────────┴──────────────────┘
-              /p
-
-예: 192.0.2.0/24를 /26으로 분할
-192.0.2.0/26   192.0.2.64/26   192.0.2.128/26   192.0.2.192/26
-     64주소          64주소           64주소            64주소
-```
+<div class="itpe-flow itpe-flow--vertical" aria-label="IPv4 Prefix 구조"><div class="itpe-flow__node"><strong>IPv4 32 bit</strong><small><b>구성:</b> Network Prefix p bit · Host 32-p bit</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>/26 분할</strong><small><b>산출:</b> 0 · 64 · 128 · 192 경계의 64주소 블록</small></div></div>
 
 | 항목 | 산식·판정 | 의미 |
 |---|---|---|
@@ -94,21 +83,7 @@ IPv4 32 bit
 
 ## Ⅳ. 큰 요구부터 경계에 맞춰 배치하는 VLSM 설계 절차
 
-```text
-① 요구 host·망 수·성장률 조사
-          ↓
-② host 요구량을 큰 순서로 정렬
-          ↓
-③ 2^h-2 ≥ 요구량인 최소 h 선택
-          ↓
-④ prefix = 32-h, block = 2^h 계산
-          ↓
-⑤ 상위 블록 시작점부터 경계 정렬·순차 배치
-          ↓
-⑥ network/usable/broadcast·gateway·예비 범위 기록
-          ↓
-⑦ 중복·누락·요약경로·ACL/DHCP 연계 검증
-```
+<div class="itpe-flow itpe-flow--vertical" aria-label="VLSM 설계 절차"><div class="itpe-flow__node"><strong>요구량 정렬</strong><small><b>활동:</b> Host·성장량을 큰 순서로 배열</small><small><b>산출:</b> 배치 우선순위</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>Prefix 계산</strong><small><b>활동:</b> 최소 h와 32-h 선택</small><small><b>산출:</b> Block 크기</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>경계 배치</strong><small><b>활동:</b> 시작점부터 순차 할당</small><small><b>산출:</b> Network·Usable·Broadcast</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>연계 검증</strong><small><b>판정:</b> 중복·누락·요약·정책 일치</small><small><b>산출:</b> 승인된 주소계획</small></div></div>
 
 ### 계산 예시: `192.0.2.0/24`, 요구량 100·50·20·10 host
 
@@ -134,7 +109,7 @@ IPv4 32 bit
 | **prefix 변화** | 길어짐 | 짧아짐 |
 | **주요 목적** | 주소 배분·broadcast/정책 영역 분리 | 라우팅 정보·광고량 축소 |
 | **핵심 조건** | 요구량과 block 경계 | 연속성·동일 크기·정렬 |
-| **대표 산출물** | IPAM 주소 계획, subnet/VLAN 표 | 요약경로와 예외경로 |
+| **대표 산출물** | IPAM(IP Address Management) 주소 계획, Subnet·VLAN 표 | 요약경로와 예외경로 |
 | **위험** | 단편화·중복 할당 | 과도한 요약에 따른 blackhole |
 
 #### 한줄 요약
@@ -145,11 +120,11 @@ IPv4 32 bit
 
 | 문제 | 원인 | 대책 | 효과 |
 |---|---|---|---|
-| **주소 중복** | 수기 문서와 실제 DHCP·라우터 상태 불일치 | IPAM을 기준정보로 두고 할당 전 중복 검사 | 충돌·우회 경로 예방 |
-| **확장 불가** | 현재 host 수에만 맞춘 최소 블록 배정 | 성장률·HA·관리 주소를 포함한 예비 블록 인접 배치 | renumbering 감소 |
+| **주소 중복** | 수기 문서와 실제 DHCP(Dynamic Host Configuration Protocol)·라우터 상태 불일치 | IPAM을 기준정보로 두고 할당 전 중복 검사 | 충돌·우회 경로 예방 |
+| **확장 불가** | 현재 host 수에만 맞춘 최소 블록 배정 | 성장률·HA(High Availability)·관리 주소를 포함한 예비 블록 인접 배치 | renumbering 감소 |
 | **경로 단편화** | 조직별 비연속 주소 배정 | 지역·서비스 계층별 연속 prefix 위임 | 요약경로 유지 |
 | **요약 blackhole** | 하위 경로 장애에도 상위 요약을 계속 광고 | discard 경로·하위 가용성 추적·정책 검증 | 잘못된 전달 범위 제한 |
-| **IPv4 관성의 IPv6 적용** | IPv6를 IPv4처럼 host 수 최소화 중심으로 분할 | IPv6 주소정책과 SLAAC·운영 경계를 기준으로 /64 subnet 검토 | 표준 기능·운영 일관성 확보 |
+| **IPv4 관성의 IPv6 적용** | IPv6를 IPv4처럼 host 수 최소화 중심으로 분할 | IPv6 주소정책과 SLAAC(Stateless Address Autoconfiguration)·운영 경계를 기준으로 /64 Subnet 검토 | 표준 기능·운영 일관성 확보 |
 
 #### 한줄 요약
 
@@ -157,41 +132,34 @@ IPv4 32 bit
 
 ## Ⅶ. 주소-경로-정책 추적성으로 완성하는 결론
 
-- **[prefix를 운영 기준선으로 관리]**: 주소만 분할하고 라우팅·보안 정책이 따로 움직이면 장애 분석과 변경 통제가 어려우므로 prefix별 소유자, 용도, 위치, VLAN/VRF, gateway, DHCP, ACL, 요약경로를 연결
-- 나라면: 변경 전 IPAM에서 중복·경계·요약 가능성을 검사하고, 배포 후 RIB/FIB·DHCP lease·ACL hit·도달성 결과를 대조하여 계획과 실제 상태의 일치 여부 확인
+> 좋은 주소 설계는 빈 주소 수가 아니라 Prefix·경로·정책의 실제 상태가 동일한 Baseline으로 유지되는지로 판정함.
 
-#### 한줄 요약
+### 학습자 통찰 메모 — 답안 밖
+- `[핵심 통찰]`: 주소를 촘촘히 쓰는 것보다 연속성과 성장 여지를 보존해야 경로 집계와 변경 통제가 쉬워진다.
+- `나라면`: 변경 전 IPAM에서 경계·중복·요약을 검사하고 배포 후 제어 평면과 전달 평면을 대조하겠다.
 
-- 좋은 서브네팅은 빈 주소를 줄이는 계산이 아니라 주소·경로·정책의 일관성을 지속 검증하는 운영 설계임
+### 실전 답안용 기술사적 제언
+- 판정: 계획 Prefix와 실제 주소·경로·정책의 일치
+- 대안: IPAM을 Baseline으로 주소·VLAN·VRF·DHCP·ACL 연결
+- 검증: RIB·FIB·Lease·ACL Hit·도달성 교차 확인
+- 효과: 주소 충돌·요약 Blackhole·정책 누락 예방
+<div class="itpe-flow itpe-flow--vertical" aria-label="주소 설계 개선"><div class="itpe-flow__node"><strong>분산 관리</strong><small><b>문제:</b> 주소·경로·정책 불일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>IPAM Baseline</strong><small><b>대안:</b> Prefix와 운영 객체 연결</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>배포 대조</strong><small><b>판정:</b> 계획·RIB·FIB·정책 일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>일관성 확보</strong><small><b>효과:</b> 충돌·Blackhole 예방</small></div></div>
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의와 관계
-
-```text
-CIDR prefix
- ├─ 길게: 서브네팅/VLSM = 요구량별 분할
- └─ 짧게: 슈퍼네팅     = 연속 경로 집계
-```
-
-### 2. VLSM 절차
-
-| 순서 | 핵심 |
-|---:|---|
-| 1 | host 요구량 내림차순 정렬 |
-| 2 | `2^h-2` 기준 최소 h와 `/32-h` 선택 |
-| 3 | block 경계에 맞춰 순차 배치 |
-| 4 | network·usable·broadcast·잔여 범위 검증 |
-
-### 3. 차별화 제언
-
-- Classful 주소는 역사적 배경으로만 설명하고 실제 설계는 CIDR/VLSM·IPv6 prefix로 수행
-- IPAM을 기준으로 주소·VLAN/VRF·DHCP·ACL·요약경로를 추적하여 중복과 blackhole 방지
+- 정의: **CIDR(Classless Inter-Domain Routing)** 기반 서브네팅은 Prefix를 늘려 주소 블록을 분할하고, **VLSM(Variable Length Subnet Mask)**은 요구량별 길이를 달리하는 설계임
+- 목적: 주소 효율과 장애·보안 영역 분리 → 확장 가능한 계층 주소 확보
+<div class="itpe-flow itpe-flow--vertical" aria-label="서브네팅 1교시 그림"><div class="itpe-flow__node"><strong>요구량</strong><small><b>입력:</b> Host·성장량</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>VLSM 분할</strong><small><b>활동:</b> 큰 요구부터 경계 배치</small><small><b>산출:</b> Subnet Prefix</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>CIDR 집계</strong><small><b>판정:</b> 연속·정렬·동일 정책</small><small><b>산출:</b> 요약 경로</small></div></div>
+| 축 | 서브네팅·VLSM | 슈퍼네팅 |
+|---|---|---|
+| 방향 | Prefix 증가·분할 | Prefix 감소·집계 |
+| 목적 | 주소·영역 배정 | 경로 상태 축소 |
+| 위험 | 단편화·중복 | Blackhole·과잉 광고 |
+- 결론: IPAM Baseline과 RIB·FIB·정책 대조로 주소 계산을 운영 일관성까지 닫음
 
 ## 출제 이력과 검증 출처
 
 - 제139회: 공식 문제지 맵에 VLSM 서브네팅 계산형 출제 이력 확인
-- 제130회: KPC 컴시응 대응 이력
 - [RFC 4632, Classless Inter-domain Routing Address Assignment and Aggregation Plan](https://www.rfc-editor.org/info/rfc4632/)
 - [RFC 950, Internet Standard Subnetting Procedure](https://www.rfc-editor.org/info/rfc950/)
 - [RFC 4291, IPv6 Addressing Architecture](https://www.rfc-editor.org/info/rfc4291/)

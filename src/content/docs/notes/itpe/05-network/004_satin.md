@@ -1,12 +1,12 @@
 ---
 title: "위성·공중·지상 통합망(SATIN·NTN)"
 author: "OpenAI Codex"
-date: "2026-09-20T21:44:00+09:00"
+date: "2026-09-20T20:08:30+09:00"
 tags: ["notes-network"]
 sidebar: { badge: { text: "A" } }
 extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 ---
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 21:44 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:08 KST</p>
 ## 지식 로드맵 내 현재 위치
 <div class="itpe-topic-path" aria-label="지식 경로"><span>차세대 이동통신</span><span>비지상 통합 접속</span><strong>SATIN·NTN</strong></div>
 
@@ -14,12 +14,13 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 - 본질: 위성·공중 플랫폼·지상망을 공통 서비스와 이동성 제어 아래 결합함
 - 메커니즘: 궤도·전파·지연이 다른 Access를 위치·품질·부하 정책으로 선택하고 Handover함
 - 산출: 음영지역·재난·해상·항공까지 이어지는 광역 연속 커버리지임
-<div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 계층 구조">
-  <div class="itpe-flow__node"><strong>Space</strong><small><b>구성:</b> GEO · MEO · LEO 위성</small><small><b>역할:</b> 광역 Coverage</small></div><div class="itpe-flow__arrow">↓</div>
-  <div class="itpe-flow__node"><strong>Air</strong><small><b>구성:</b> HAPS · UAV</small><small><b>역할:</b> 지역 보강 · 재난 복구</small></div><div class="itpe-flow__arrow">↓</div>
-  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>NTN Access</strong></span><small><b>처리:</b> Service Link · Feeder Link · Gateway</small></div><div class="itpe-flow__arrow">↓</div>
-  <div class="itpe-flow__node"><strong>Terrestrial</strong><small><b>산출:</b> 5G Core 연동 · 서비스 연속성</small></div>
-</div>
+| 병렬 Access | 구성 | 역할 |
+|---|---|---|
+| Space | GEO(Geostationary Earth Orbit)·MEO(Medium Earth Orbit)·LEO 위성 | 광역 Coverage |
+| Air | HAPS·UAV(Uncrewed Aerial Vehicle) | 지역 보강·재난 복구 |
+| Terrestrial | 지상 기지국·5G Core | 고용량 접속·서비스 제어 |
+
+<div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 통합 관계"><div class="itpe-flow__node"><strong>병렬 Access</strong><small><b>입력:</b> Space · Air · Terrestrial Link 상태</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><span class="itpe-keyword"><strong>통합 제어</strong></span><small><b>처리:</b> 경로 선택 · 이동성 · 서비스 정책</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>서비스 연속성</strong><small><b>산출:</b> 광역 Coverage · 장애 우회</small></div></div>
 <details><summary>핵심 용어</summary>
 
 - `SATIN(Satellite-Aerial-Terrestrial Integrated Network)`: 이질 Access를 통합 제어하는 전체 망 관점임
@@ -40,8 +41,8 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 > Payload 처리 위치는 위성 복잡도와 지상 의존성을 교환하므로 서비스 지연·수명·업그레이드 가능성으로 선택해야 함.
 | 축 | Transparent Payload | Regenerative Payload |
 |---|---|---|
-| 처리 | RF 중계 | On-board 처리 |
-| gNB | 지상 | 위성 전체·일부 |
+| 처리 | RF(Radio Frequency) 중계 | On-board 처리 |
+| gNB(next Generation Node B) | 지상 | 위성 전체·일부 |
 | 지연 | Gateway 경유 | 경로 단축 가능 |
 | 대가 | Feeder 의존 | 위성 복잡도·전력 |
 
@@ -50,12 +51,12 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 | 문제 | 원인 | 대책 | 판정 |
 |---|---|---|---|
 | 동기 이탈 | 큰 Doppler | Ephemeris·주파수 사전 보상 | 잔류 주파수 오차 |
-| 접속 실패 | 긴 RTT | Timing Advance 확장·Timer 조정 | Random Access 성공 |
+| 접속 실패 | 긴 RTT(Round-Trip Time) | Timing Advance 확장·Timer 조정 | Random Access 성공 |
 | 빈번한 전환 | Moving Cell | 예측 Handover·Multi-connectivity | 단절·재전송 |
 | Link 불안 | 강우·차폐 | Link Adaptation·다중 경로 | 가용성·지연 |
 
 ## Ⅳ. 서비스 중심 통합 제어 결론
-> 단일 Access 고정보다 서비스 SLA와 궤도 예측을 결합한 Multi-access 선택이 성능과 연속성을 함께 지킴.
+> 단일 Access 고정보다 서비스 SLA(Service Level Agreement)와 궤도 예측을 결합한 Multi-access 선택이 성능과 연속성을 함께 지킴.
 ### 학습자 통찰 메모 — 답안 밖
 - `[핵심 통찰]`: 위성망의 넓은 Coverage는 지연·Doppler·용량 제약과 교환된다. 통합의 가치는 이를 숨기는 것이 아니라 예측 가능한 정책으로 노출하는 데 있다.
 - `나라면`: 재난·해상 등 우선 서비스부터 지상망 Failover를 시험하고 Access별 품질을 측정해 확대하겠다.
@@ -74,6 +75,7 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 |---|---|
 | Doppler·긴 RTT | 사전 보상·Timer 조정 |
 | Moving Cell | 예측 Handover |
+| Payload | Transparent: 지상 gNB·단순 위성 / Regenerative: 위성 처리·짧은 경로 |
 - 결론: 궤도·품질·서비스 정책 기반 Steering을 장애 시나리오로 검증함
 
 ## 출제 이력과 검증 출처
@@ -81,6 +83,7 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 - [3GPP TS 23.501, System architecture for the 5G System](https://www.3gpp.org/dynareport/23501.htm)
 - [3GPP TR 38.811, NR to support non-terrestrial networks](https://www.3gpp.org/dynareport/38811.htm)
 - [ITU-R M.2160-0, IMT-2030 Framework](https://www.itu.int/rec/R-REC-M.2160-0-202311-I/en)
+- [IEEE Access, Satellite-Aerial-Terrestrial Integrated Network for 6G](https://ieeexplore.ieee.org/document/9350208)
 
 ## 학습 체크
 - [ ] Ⅰ 개요: SATIN·NTN·지상망 관계와 목적을 재현할 수 있는가?
