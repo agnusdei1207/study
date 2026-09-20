@@ -1,5 +1,7 @@
 ---
 title: "데이터 거버넌스(Data Governance)"
+author: "Codex"
+date: "2026-09-20T19:38:01+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -16,6 +19,17 @@ extra:
   <span>데이터 거버넌스·품질</span>
   <strong>데이터 거버넌스(Data Governance)</strong>
 </div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- `Decision Rights`: 데이터 관련 결정을 누가 내리는지 정한 권한 체계
+- `Accountability`: 데이터 품질·보호 결과에 대한 최종 책임
+- `Data Owner·Steward·Custodian`: 승인·실무관리·기술보관을 분리한 역할 구조
+- `Federated Governance`: 중앙 공통 통제와 도메인 자율 실행을 결합한 운영 모델
+- `Policy as Code`: 정책을 실행 가능한 규칙으로 만들어 배포 시 자동 검증하는 방식
+
+</details>
 
 ## 큰 그림과 30초 인출
 
@@ -139,8 +153,24 @@ extra:
 
 > **한줄 요약:** 데이터 거버넌스는 규제와 통제의 족쇄가 아니라 데이터를 자산으로 만드는 인에이블러(Enabler)여야 함.
 
-- [핵심 통찰]: 과거의 데이터 거버넌스가 '데이터를 사용하지 못하게 잠그는 보안 경찰' 역할이었다면, 현대의 거버넌스는 '누구나 믿을 수 있는 데이터를 찾아 즉시 활용하게 돕는 신뢰 플랫폼'이어야 함. 거버넌스가 개발 생산성을 저해하면 구성원들은 섀도우 IT(Shadow IT)로 이탈함.
-- 나라면: Data Mesh 패러다임에 맞춰 'Federated Computational Governance'를 구축하고, OpenLineage와 dbt를 활용해 데이터 계약(Data Contract) 검증 및 보안 마스킹 정책을 코드화(Policy-as-Code)하여, 배포 파이프라인 내에서 거버넌스 규칙이 사람의 개입 없이 자동으로 강제되도록 구현하겠음.
+### 학습자 통찰 메모 — 답안 밖
+
+- `[핵심 통찰]`: 거버넌스는 사용을 막는 결재체계가 아니라 신뢰할 수 있는 데이터를 빠르게 찾고 안전하게 쓰게 하는 운영체계다.
+- `나라면`: 중앙은 최소 공통 정책과 증적을 소유하고, 도메인은 데이터 제품 품질과 변경 책임을 지도록 연합형으로 설계하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 권한·책임·측정지표가 연결되고 정책 위반이 배포 전에 탐지되어야 실효성 확보
+- 대안: RACI와 Data Contract를 카탈로그·계보·Policy as Code에 연결
+- 검증: 소유자 지정률, 품질 규칙 통과율, 접근 승인시간, 계보 완전성을 정기 심의
+- 효과: 중앙 병목과 도메인 사일로를 동시에 완화하고 감사 가능한 활용 기반 확보
+
+<div class="itpe-flow-map" role="img" aria-label="데이터 거버넌스 개선과 검증 흐름">
+  <div class="itpe-flow-node"><strong>현행 한계</strong><span>문제: 문서 정책·수동 승인·책임 공백</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>연합형 실행</strong><span>대안: 중앙 Baseline + 도메인 Owner + 자동 정책</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>성과 검증</strong><span>판정: 품질·승인시간·계보 KPI 충족</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current"><strong>실행 효과</strong><span>효과: 신뢰와 활용속도 동시 향상</span></div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
@@ -159,19 +189,20 @@ extra:
 ```
 - 원칙, 조직, 프로세스, 기술, 성과 5대 요소를 기반으로 운영됨.
 
-### 3. 차별화 제언
+### 3. 적용 제언
 - 중앙집중형 병목을 해소하기 위해 Data Mesh 기반 연합형 거버넌스(Federated Governance)와 정책의 코드화(Policy as Code)를 구현해야 함.
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제130회·127회·124회 KPC 모의고사, 제114회 기출
-- 검증 출처: DAMA International 'DAMA-DMBOK 2.0 (Data Management Body of Knowledge)', 한국데이터산업진흥원
+- [DAMA International, What is Data Management?](https://dama.org/learning-resources/)
+- [NIST Privacy Framework](https://www.nist.gov/privacy-framework)
 
 ## 학습 체크
 
-- [ ] 데이터 거버넌스와 데이터 관리(Data Management)의 차이를 설명할 수 있는가?
-- [ ] DAMA DMBOK 기반 거버넌스 5대 구성요소와 조직별 R&R(Owner, Steward 등)을 제시할 수 있는가?
-- [ ] 중앙집중형, 분산형, 연합형(Federated) 거버넌스의 장단점을 비교할 수 있는가?
+- [ ] Ⅰ·Ⅱ 개념: 거버넌스와 관리의 차이, 전략·책임·정책·생명주기·자동화 특징을 설명한다.
+- [ ] Ⅲ 조직: 원칙·조직·프로세스·기술·성과와 Owner·Steward·Custodian 책임을 연결한다.
+- [ ] Ⅳ·Ⅴ 구축·모델: 5단계 구축 절차와 중앙·분산·연합형 선택 기준을 비교한다.
+- [ ] Ⅵ·Ⅶ 실행: 참여·승인·메타데이터 문제 대책과 자동화 검증지표를 재현한다.
 
 ## 연결 토픽
 

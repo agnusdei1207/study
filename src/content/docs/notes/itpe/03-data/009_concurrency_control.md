@@ -1,5 +1,7 @@
 ---
 title: "동시성 제어(병행제어)"
+author: "Codex"
+date: "2026-09-20T19:41:27+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -16,6 +19,17 @@ extra:
   <span>트랜잭션·동시성</span>
   <strong>동시성 제어(병행제어)</strong>
 </div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- `Serializability`: 병행 스케줄 결과가 어떤 직렬 스케줄과 동등하다는 정확성 기준
+- `2PL(Two-Phase Locking)`: 락 획득과 해제를 확장·축소 단계로 분리하는 제어
+- `OCC(Optimistic Concurrency Control)`: 읽기 후 커밋 전 충돌을 검증하는 낙관적 제어
+- `MVCC(Multi-Version Concurrency Control)`: 시점별 버전을 제공해 읽기와 쓰기 경합을 줄이는 제어
+- `Recoverability`: 선행 트랜잭션 결과 확정 순서를 지켜 안전하게 복구 가능한 성질
+
+</details>
 
 ## 큰 그림과 30초 인출
 
@@ -139,8 +153,24 @@ extra:
 
 > **한줄 요약:** 현대 DBMS는 MVCC와 2PL을 결합하여 읽기 성능과 쓰기 정합성을 동시에 달성함.
 
-- [핵심 통찰]: '락(Locking)만이 정답'이던 시대는 지났음. PostgreSQL과 Oracle 등 현대 메인스트림 DBMS는 MVCC를 기반으로 읽기 트랜잭션의 병목을 완전히 제거하고, 쓰기-쓰기 충돌 구간에서만 선별적으로 2PL을 조합하는 하이브리드 아키텍처를 표준으로 채택함.
-- 나라면: 결제·잔액 갱신 등 원자성이 극도로 중요한 금융 핵심 도메인은 'SELECT FOR UPDATE' 기반의 비관적 락(Strict 2PL)을 선별 적용하고, 상품 조회 및 장바구니 등 읽기 위주 서비스는 MVCC 기반 Read Committed 격리 수준을 설정하여 TPS를 극대화하는 이원화 설계를 적용하겠음.
+### 학습자 통찰 메모 — 답안 밖
+
+- `[핵심 통찰]`: 동시성 제어는 가장 강한 락을 고르는 문제가 아니라 충돌률과 정합성 요구에 맞는 제어를 선택하는 문제다.
+- `나라면`: 잔액처럼 쓰기 충돌 피해가 큰 경로는 명시적 비관 잠금을, 조회 중심 경로는 MVCC를 적용하고 격리 이상을 테스트하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 업무 불변식, 읽기·쓰기 비율, 충돌률, 허용 재시도 비용으로 제어 방식 선택
+- 대안: 핵심 갱신은 Strict 2PL, 충돌 희박 단기 갱신은 OCC, 조회는 MVCC로 분리
+- 검증: 직렬성 테스트, 교착·재시도율, 장기 트랜잭션, P95 지연을 부하 시험에서 측정
+- 효과: 데이터 정합성을 유지하면서 불필요한 락 대기와 버전 팽창 억제
+
+<div class="itpe-flow-map" role="img" aria-label="동시성 제어 선택과 검증 흐름">
+  <div class="itpe-flow-node"><strong>업무 조건</strong><span>문제: 불변식·충돌률·재시도 비용 상이</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>제어 선택</strong><span>대안: Strict 2PL·OCC·MVCC 분리 적용</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>부하 검증</strong><span>판정: 직렬성·교착·지연·버전 정리 기준 충족</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current"><strong>운영 효과</strong><span>효과: 정합성과 처리량 균형</span></div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
@@ -158,19 +188,20 @@ extra:
 ```
 - 갱신손실, 오독, 반복불가읽기, 유령읽기 4대 이상현상을 방지함.
 
-### 3. 차별화 제언
+### 3. 적용 제언
 - 현대 엔터프라이즈는 MVCC 기반 무차단 읽기를 기본으로 하고, 쓰기 충돌 핵심 영역에만 Strict 2PL을 선별 적용하는 하이브리드 전략이 필수적임.
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제130회·128회·121회 KPC 모의고사
-- 검증 출처: Silberschatz Database System Concepts, 한국데이터산업진흥원 DMBOK 2.0
+- [PostgreSQL Documentation, Concurrency Control](https://www.postgresql.org/docs/current/mvcc.html)
+- [MySQL Reference Manual, InnoDB Locking and Transaction Model](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-transaction-model.html)
 
 ## 학습 체크
 
-- [ ] 병행 제어 미적용 시 발생하는 4대 이상현상(Lost Update, Dirty Read 등)을 설명할 수 있는가?
-- [ ] 충돌 직렬성(Conflict Serializability)의 조건과 선행 그래프 검증 방식을 제시할 수 있는가?
-- [ ] 2PL, Timestamp, OCC, MVCC 4대 기법의 원리와 장단점을 비교할 수 있는가?
+- [ ] Ⅰ·Ⅱ 개념·이상: 목표 2개와 Lost Update·Dirty Read·Non-repeatable Read·Phantom Read를 재현한다.
+- [ ] Ⅲ 기법: 2PL·Timestamp·OCC·MVCC를 대기, 롤백, 버전 비용으로 비교한다.
+- [ ] Ⅳ·Ⅴ 직렬성·선택: 충돌 조건 3개와 선행 그래프 비순환 판정을 설명한다.
+- [ ] Ⅵ·Ⅶ 운영: 교착·연쇄 롤백·버전 팽창 대책과 업무별 선택 기준을 제시한다.
 
 ## 연결 토픽
 

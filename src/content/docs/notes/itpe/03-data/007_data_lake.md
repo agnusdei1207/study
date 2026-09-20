@@ -1,5 +1,7 @@
 ---
 title: "데이터 레이크(데이터 늪 포함)"
+author: "Codex"
+date: "2026-09-20T19:39:18+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -16,6 +19,17 @@ extra:
   <span>데이터 저장·플랫폼</span>
   <strong>데이터 레이크(데이터 늪 포함)</strong>
 </div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- `Schema-on-Read`: 적재 시 원형을 보존하고 소비 시점에 구조를 해석하는 방식
+- `Medallion Architecture`: Bronze·Silver·Gold로 품질과 업무 의미를 단계적으로 높이는 구조
+- `Data Swamp`: 메타데이터·품질·소유권 부재로 탐색과 신뢰가 불가능해진 상태
+- `Data Lineage`: 원천부터 소비까지 변환과 의존 관계를 추적하는 메타데이터
+- `Data Contract`: 생산자와 소비자 사이의 스키마·품질·SLA 약속
+
+</details>
 
 ## 큰 그림과 30초 인출
 
@@ -134,8 +148,24 @@ extra:
 
 > **한줄 요약:** 데이터 레이크의 성패는 수집량에 있지 않고 오픈 테이블 포맷과 레이크하우스 거버넌스 완성도에 있음.
 
-- [핵심 통찰]: 단순히 '모든 데이터를 모아두면 언젠가 가치가 생길 것'이라는 기대는 막대한 클라우드 청구서와 데이터 늪만을 남김. 데이터 레이크는 수집 시점부터 '누가, 왜, 어떤 목적으로 소비할 것인가'가 정의된 Data Product 기반으로 운영되어야 함.
-- 나라면: 파일 기반 레이크의 한계를 극복하기 위해 Apache Iceberg를 공통 테이블 포맷으로 도입하여 ACID 트랜잭션, 타임 트래블(Time Travel), 파티션 진화를 보장하고, Great Expectations를 CI/CD에 통합하여 Silver 계층 진입 전 품질 검증에 실패한 데이터는 자동으로 Quarantined 영역으로 격리하는 무결성 파이프라인을 구축하겠음.
+### 학습자 통찰 메모 — 답안 밖
+
+- `[핵심 통찰]`: 수집량이 아니라 발견 가능성·신뢰성·소유권이 레이크의 가치를 결정한다. 소비 목적 없는 원본 축적은 늪을 만든다.
+- `나라면`: 수집 시 Data Contract와 Owner를 등록하고 Silver 진입 전에 스키마·품질·민감정보 Gate를 통과시키겠다.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 카탈로그 검색, 계보 추적, 품질 상태, 소유자 확인이 모두 가능한 데이터만 서비스 계층 승격
+- 대안: 메달리온 계층에 자동 카탈로그·Data Contract·격리영역·Lifecycle 정책 결합
+- 검증: 메타데이터 완전성, 품질 규칙 통과율, 미소유 데이터 수, 미사용 데이터 비용 측정
+- 효과: 늪화를 예방하면서 재처리 가능성과 분석 민첩성 확보
+
+<div class="itpe-flow-map" role="img" aria-label="데이터 레이크 늪 방지와 검증 흐름">
+  <div class="itpe-flow-node"><strong>현행 한계</strong><span>문제: 무목적 적재와 소유권 부재</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>개선안</strong><span>대안: Contract·Catalog·Lineage·Lifecycle 결합</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>승격 Gate</strong><span>판정: 스키마·품질·보안 규칙 통과</span></div><div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current"><strong>운영 효과</strong><span>효과: 검색 가능하고 재현 가능한 분석</span></div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
@@ -151,19 +181,21 @@ Raw Sources ──▶ [Bronze: 원본] ──▶ [Silver: 정제] ──▶ [Gol
 ```
 - 거버넌스 결여 시 데이터 늪(Data Swamp)으로 전락하므로 메달리온 파이프라인과 메타데이터 통제가 필수적임.
 
-### 3. 차별화 제언
+### 3. 적용 제언
 - 파일 단위 레이크의 정합성 한계를 돌파하기 위해 Apache Iceberg/Delta Lake 기반 레이크하우스(Lakehouse)로 고도화해야 함.
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제139회·137회 정보관리기술사 기출, 제119회 KPC 모의고사
-- 검증 출처: Databricks Medallion Architecture Guide, AWS Data Lake Governance Best Practices
+- [AWS, What is a Data Lake?](https://aws.amazon.com/what-is/data-lake/)
+- [Databricks, Medallion Architecture](https://www.databricks.com/glossary/medallion-architecture)
+- [Apache Iceberg Documentation](https://iceberg.apache.org/docs/latest/)
 
 ## 학습 체크
 
-- [ ] 데이터 레이크와 DW, 레이크하우스의 핵심 차이(스키마 적용 시점, ACID 등)를 비교할 수 있는가?
-- [ ] 메달리온 아키텍처(Bronze, Silver, Gold)의 계층별 특성을 설명할 수 있는가?
-- [ ] 데이터 늪(Data Swamp)의 발생 원인과 4대 거버넌스 해결책을 제시할 수 있는가?
+- [ ] Ⅰ·Ⅱ 개념: Schema-on-Read와 저장·연산 분리의 가치 및 한계를 설명한다.
+- [ ] Ⅲ 메달리온: Bronze·Silver·Gold의 상태·활동·소비자를 연결한다.
+- [ ] Ⅳ 비교: DW·레이크·레이크하우스를 데이터, 스키마, ACID, 워크로드로 비교한다.
+- [ ] Ⅴ~Ⅶ 통제: 늪 원인 4개와 Catalog·Lineage·Lifecycle·Contract 대책 및 승격 Gate를 재현한다.
 
 ## 연결 토픽
 

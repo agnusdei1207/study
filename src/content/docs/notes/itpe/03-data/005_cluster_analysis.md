@@ -1,5 +1,7 @@
 ---
 title: "군집분석(Clustering)"
+author: "Codex"
+date: "2026-09-20T19:36:54+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -16,6 +19,17 @@ extra:
   <span>비지도학습·데이터마이닝</span>
   <strong>군집분석(Clustering)</strong>
 </div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- `Cohesion·Separation`: 군집 내부 거리는 줄이고 군집 사이 거리는 늘리는 품질 기준
+- `K-Means`: 중심점까지의 제곱거리 합을 반복 최소화하는 분할 군집화
+- `DBSCAN(Density-Based Spatial Clustering of Applications with Noise)`: 밀도 연결성과 잡음을 함께 판정하는 군집화
+- `GMM(Gaussian Mixture Model)`: 혼합분포의 사후확률로 소속을 정하는 모델 기반 군집화
+- `Silhouette Coefficient`: 응집도와 최근접 타 군집 분리도를 결합한 내부 타당성 지표
+
+</details>
 
 ## 큰 그림과 30초 인출
 
@@ -136,8 +150,27 @@ extra:
 
 > **한줄 요약:** 군집분석은 통계적 군집 형성에 그치지 않고 비즈니스 액션이 가능한 실용적 페르소나를 도출해야 함.
 
-- [핵심 통찰]: 통계적으로 실루엣 점수가 아무리 높아도 현업 마케터나 운영자가 해당 군집의 차별화된 특성을 설명할 수 없다면 사장된 분석에 불과함. 군집분석의 성공은 '수학적 분리도'와 '도메인 설명가능성(Interpretability)'의 균형점에서 결정됨.
-- 나라면: K-Means 클러스터링 단독 수행을 지양하고, Autoencoder 또는 PCA 기반 잠재 벡터 추출 $\to$ K-Means++ 군집화 $\to$ SHAP 기반 군집 결정 요인 분석을 파이프라인으로 엮어, 현업이 즉시 타깃팅할 수 있는 설명 가능한 군집화 인프라를 완성하겠음.
+### 학습자 통찰 메모 — 답안 밖
+
+- `[핵심 통찰]`: 높은 실루엣 점수만으로는 쓸 수 있는 군집이 되지 않는다. 수학적 분리도와 도메인 설명가능성이 함께 확보되어야 한다.
+- `나라면`: PCA로 거리 변별력을 복원하고 K-Means++로 안정화한 뒤, 군집별 대표 특성과 업무 행동을 함께 검증하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 내부 타당성과 반복 표본 안정성, 현업 행동 가능성을 함께 충족해야 운영 군집으로 승인
+- 대안: 스케일링·차원 축소 → 복수 알고리즘 후보 학습 → 군집 프로파일과 담당 업무 연결
+- 검증: 실루엣·DBI, 재표본화 군집 일치도, 캠페인 반응률을 Quality Gate로 측정
+- 효과: 우연한 분할과 해석 불가능 군집 제거 → 재현 가능한 세분화 확보
+
+<div class="itpe-flow-map" role="img" aria-label="군집분석 개선안과 검증 흐름">
+  <div class="itpe-flow-node"><strong>현행 한계</strong><span>문제: 단일 점수·단일 알고리즘 의존</span></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>개선안</strong><span>대안: 전처리·후보 비교·업무 프로파일 결합</span></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>승인 Gate</strong><span>판정: 타당성·안정성·행동 가능성 동시 충족</span></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current"><strong>운영 효과</strong><span>효과: 재현 가능한 고객 세분화</span></div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
@@ -152,19 +185,20 @@ extra:
 ```
 - Elbow Method와 실루엣 계수로 최적 군집 수 $k$를 결정함.
 
-### 3. 차별화 제언
+### 3. 적용 제언
 - 고차원 데이터의 차원의 저주를 해결하기 위해 PCA 차원 축소를 선행하고, K-Means++ 초기화를 적용하여 국소해 수렴을 방어해야 함.
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제139회·134회 정보관리기술사 기출, 제129회·122회 KPC 모의고사
-- 검증 출처: 한국데이터산업진흥원(K-DATA) 데이터분석 전문가 가이드(ADP), Scikit-Learn Clustering Documentation
+- [scikit-learn, Clustering](https://scikit-learn.org/stable/modules/clustering.html)
+- [NIST/SEMATECH e-Handbook, Cluster Analysis](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm)
 
 ## 학습 체크
 
-- [ ] 군집분석의 4대 유형(분할, 계층, 밀도, 모델)의 핵심 원리와 차이를 설명할 수 있는가?
-- [ ] 실루엣 계수 산식($s(i) = \frac{b(i)-a(i)}{\max(a(i),b(i))}$)과 의미를 제시할 수 있는가?
-- [ ] 차원의 저주 및 K-Means 국소 최적해에 대한 실무 대책을 논할 수 있는가?
+- [ ] Ⅰ·Ⅱ 정의와 척도: 비지도학습의 목적과 데이터 유형별 거리 척도 4개를 재현한다.
+- [ ] Ⅲ 알고리즘 비교: K-Means·계층·DBSCAN·GMM을 군집 수, 형상, 이상치 기준으로 비교한다.
+- [ ] Ⅳ·Ⅴ 수행과 평가: 전처리부터 프로파일링까지 5단계와 실루엣 산식을 연결한다.
+- [ ] Ⅵ·Ⅶ 대책과 판단: 차원의 저주·초기값·비선형 형상 대책과 운영 승인 Gate를 설명한다.
 
 ## 연결 토픽
 
