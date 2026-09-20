@@ -131,45 +131,64 @@
   --sl-font-mono: "Cascadia Code", "Fira Code", "IBM Plex Mono", Consolas, monospace;
 }
 
-/* ---------- 4. Base & Typography styles ---------- */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   background-color: var(--palette-bg);
   color: var(--palette-text);
   letter-spacing: -0.01em;
 }
 
-/* ITPE 학습 지도: 한글 문자 폭에 의존하지 않는 손그림형 박스 흐름 */
+.sl-markdown-content {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+}
+
+/* ITPE 학습 지도: 반응형 브레드크럼 박스 흐름 */
 .sl-markdown-content .itpe-topic-path {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.4rem 0.5rem;
   margin-block: 1rem 1.5rem;
-  overflow-x: auto;
+  padding: 0.5rem 0.75rem;
+  background: color-mix(in srgb, var(--palette-surface) 65%, transparent);
+  border: 1px solid var(--palette-line);
+  border-radius: 0.55rem;
+  max-width: 100%;
 }
 
 .sl-markdown-content .itpe-topic-path > * {
   display: inline-flex;
-  flex: 0 0 auto;
   align-items: center;
-  min-height: 2.4rem;
-  padding: 0.45rem 0.8rem;
+  padding: 0.25rem 0.6rem;
   border: 1px solid var(--palette-line);
-  border-radius: 0.55rem;
+  border-radius: 0.4rem;
   background: var(--palette-surface);
-  white-space: nowrap;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  white-space: normal;
+  word-break: keep-all;
+  max-width: 100%;
 }
 
 .sl-markdown-content .itpe-topic-path > * + *::before {
-  content: "→";
-  margin-inline: -1.35rem 0.75rem;
+  content: "›";
+  margin-inline-end: 0.45rem;
   color: var(--palette-muted);
   font-weight: 700;
+  font-size: 1.1em;
 }
 
 .sl-markdown-content .itpe-topic-path > strong {
   border-color: var(--palette-accent);
   color: var(--palette-accent-glow);
   background: color-mix(in srgb, var(--palette-accent) 14%, var(--palette-surface));
+  font-weight: 700;
 }
 
 .sl-markdown-content .itpe-flow-map {
@@ -213,19 +232,14 @@ body {
 
 @media (max-width: 40rem) {
   .sl-markdown-content .itpe-topic-path {
-    flex-direction: column;
-    align-items: stretch;
-    overflow-x: visible;
+    gap: 0.35rem;
+    padding: 0.4rem 0.5rem;
   }
 
   .sl-markdown-content .itpe-topic-path > * {
-    justify-content: center;
+    font-size: 0.78rem;
+    padding: 0.2rem 0.45rem;
     white-space: normal;
-  }
-
-  .sl-markdown-content .itpe-topic-path > * + *::before {
-    content: "↓";
-    margin: -1.3rem 0.75rem 0.75rem;
   }
 }
 
@@ -291,8 +305,10 @@ strong,
 /* Table styling */
 .sl-markdown-content table {
   display: block;
+  width: 100%;
   max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
   border: 1px solid var(--palette-line);
   border-radius: 6px;
@@ -302,8 +318,8 @@ strong,
 
 .sl-markdown-content th,
 .sl-markdown-content td {
-  min-width: 110px;
-  padding: 0.65rem 0.9rem;
+  min-width: 95px;
+  padding: 0.65rem 0.85rem;
   border: 1px solid var(--palette-line);
   text-align: left;
   vertical-align: top;
@@ -318,11 +334,32 @@ strong,
   background: color-mix(in srgb, var(--palette-surface) 40%, transparent);
 }
 
+@media (max-width: 40rem) {
+  .sl-markdown-content table {
+    font-size: 0.82rem;
+  }
+  .sl-markdown-content th,
+  .sl-markdown-content td {
+    min-width: 60px;
+    padding: 0.45rem 0.55rem;
+  }
+}
+
 /* Code & Pre styling */
 .sl-markdown-content pre {
   border: 1px solid var(--palette-line) !important;
   border-radius: 6px !important;
   background: var(--palette-code-bg) !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 40rem) {
+  .sl-markdown-content pre {
+    font-size: 0.78rem !important;
+    padding: 0.65rem !important;
+  }
 }
 
 .sl-markdown-content code {

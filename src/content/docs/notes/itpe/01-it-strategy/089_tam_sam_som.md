@@ -1,5 +1,5 @@
 ---
-title: "TAM-SAM-SOM(Total Addressable Market-Serviceable Addressable Market-Serviceable Obtainable Market)"
+title: "TAM-SAM-SOM"
 tags:
   - "notes-it-strategy"
 sidebar:

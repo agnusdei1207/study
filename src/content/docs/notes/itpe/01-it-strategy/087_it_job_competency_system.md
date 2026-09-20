@@ -1,5 +1,5 @@
 ---
-title: "소프트웨어 기술자 구분(등급제·IT직무제)"
+title: "SW 기술자 구분(등급제·IT직무제)"
 tags:
   - "notes-it-strategy"
 sidebar:

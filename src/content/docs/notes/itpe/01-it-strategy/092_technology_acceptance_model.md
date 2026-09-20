@@ -1,5 +1,5 @@
 ---
-title: "기술수용모델(Technology Acceptance Model)"
+title: "기술수용모델(TAM)"
 tags:
   - "notes-it-strategy"
 sidebar:

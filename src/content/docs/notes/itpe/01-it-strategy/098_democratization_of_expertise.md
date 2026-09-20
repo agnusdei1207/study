@@ -1,5 +1,5 @@
 ---
-title: "전문성의 민주화(Democratization of Expertise)"
+title: "전문성의 민주화"
 tags:
   - "notes-it-strategy"
 sidebar:

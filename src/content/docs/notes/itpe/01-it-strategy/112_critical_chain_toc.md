@@ -1,5 +1,5 @@
 ---
-title: "CCPM(Critical Chain, TOC)"
+title: "CCPM"
 tags:
   - "notes-it-strategy"
 sidebar:

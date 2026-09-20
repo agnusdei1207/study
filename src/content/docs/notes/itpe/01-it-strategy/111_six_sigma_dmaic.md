@@ -1,5 +1,5 @@
 ---
-title: "6시그마(Six Sigma) DMAIC"
+title: "6시그마 DMAIC"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -14,7 +14,7 @@ extra:
 <div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 IT 품질 경영 및 프로세스 혁신을 거쳐 6시그마 DMAIC로 이어지는 지식 위치">
   <span>IT 전략·관리</span>
   <span>IT 품질 경영·프로세스 혁신</span>
-  <strong>6시그마(Six Sigma) DMAIC</strong>
+  <strong>6시그마 DMAIC</strong>
 </div>
 
 ## 큰 그림과 30초 인출

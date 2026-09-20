@@ -1,5 +1,5 @@
 ---
-title: "EA/ITA(Enterprise Architecture/Information Technology Architecture)"
+title: "EA/ITA"
 tags:
   - "notes-it-strategy"
 sidebar:
