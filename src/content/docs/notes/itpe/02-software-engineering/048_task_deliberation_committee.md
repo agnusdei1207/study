@@ -1,14 +1,15 @@
 ---
 title: "소프트웨어사업 과업심의위원회"
-author: "Codex"
-date: "2026-09-20T20:06:00+09:00"
-tags: ["notes-software-engineering"]
+tags:
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -21,7 +22,7 @@ extra:
 - 메커니즘: 과업 확정 또는 변경 요청 → 외부위원 과반의 심의·의결 → 결과와 조치계획 통보 → 계약 반영
 - 산출: 확정 과업내용 · 변경 타당성 판단 · 계약금액·기간 조정안 · 조치계획
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의위원회의 과업 통제 흐름"><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>심의 사유</strong></span><small><b>입력</b> 과업내용 확정·변경 · 계약 조정 필요<br /><b>주체</b> 국가기관등 또는 계약 사업자</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>심의·의결</strong></span><small><b>활동</b> 범위·대가·기간·근거 검토<br /><b>통제</b> 외부위원 과반 · 제척·기피·회피</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>통보·반영</strong></span><small><b>산출</b> 심의결과 · 조치계획<br /><b>효과</b> 계약금액·기간과 과업 Baseline 정합화</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의위원회의 과업 통제 흐름"><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>심의 사유</strong></span><span><b>입력</b> 과업내용 확정·변경 · 계약 조정 필요<br /><b>주체</b> 국가기관등 또는 계약 사업자</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>심의·의결</strong></span><span><b>활동</b> 범위·대가·기간·근거 검토<br /><b>통제</b> 외부위원 과반 · 제척·기피·회피</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>통보·반영</strong></span><span><b>산출</b> 심의결과 · 조치계획<br /><b>효과</b> 계약금액·기간과 과업 Baseline 정합화</span></div></div>
 
 <details><summary>핵심 용어</summary>
 
@@ -60,21 +61,21 @@ extra:
 
 > 사업자의 개최 요청권이 실제 변경 통제로 이어지려면 요청서·영향분석·결과 통보·계약 변경이 하나의 추적 경로로 남아야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="사업자의 과업심의위원회 개최 요청 절차"><div class="itpe-pipeline-node"><strong>변경 요청</strong><small><b>활동</b> 변경 사유·범위·비용·기간 영향 제출<br /><b>산출</b> 과업내용 변경요청서와 근거</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>요청 수용·소집</strong><small><b>활동</b> 국가기관등이 위원장에게 개최 통보<br /><b>산출</b> 안건·위원·심의자료</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>심의·의결</strong><small><b>활동</b> 타당성·영향·계약 조정 검토<br /><b>산출</b> 위원별 결과와 종합 결과</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>결과 통보·조치</strong><small><b>활동</b> 요청일부터 14일 이내 결과·조치계획 통보<br /><b>산출</b> 계약 변경 또는 미반영 사유</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="사업자의 과업심의위원회 개최 요청 절차"><div class="itpe-pipeline-node"><strong>변경 요청</strong><span><b>활동</b> 변경 사유·범위·비용·기간 영향 제출<br /><b>산출</b> 과업내용 변경요청서와 근거</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>요청 수용·소집</strong><span><b>활동</b> 국가기관등이 위원장에게 개최 통보<br /><b>산출</b> 안건·위원·심의자료</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>심의·의결</strong><span><b>활동</b> 타당성·영향·계약 조정 검토<br /><b>산출</b> 위원별 결과와 종합 결과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>결과 통보·조치</strong><span><b>활동</b> 요청일부터 14일 이내 결과·조치계획 통보<br /><b>산출</b> 계약 변경 또는 미반영 사유</span></div></div>
 
 - 불가피한 추가 조사 시 사업자와 협의하여 한 차례, 14일 이내 범위에서 통보기한 연기 가능
 - 입찰공고에 사업자의 개최 요청권과 과업 변경 절차를 명시
 
-## Ⅳ. 형식적 심의를 막는 운영 통제
+## Ⅳ. 과업심의 운영 위험 및 실무 통제 대책
 
 > 위원회 개최 건수보다 변경 근거와 계약 반영의 추적성이 중요하며, 미반영 시 특별한 사정의 근거가 남아야 함.
 
-| 문제 | 원인 | 대안 | 판정 |
-|---|---|---|---|
-| 사후 승인 | 변경 착수 후 안건 상정 | 변경 전 작업중지점과 영향분석 | 의결 전 변경 작업 미착수 |
-| 대가 누락 | 기능만 심의 | 범위·금액·기간 묶음 안건 | 세 요소의 동시 의결 |
-| 형식 의결 | 근거 없는 요약자료 | 요구사항·산출물·일정 추적표 첨부 | 변경 영향의 양방향 추적 |
-| 이해충돌 | 당사자 중심 구성 | 외부위원 과반·제척·기피·회피 | 의결 참여 적정성 기록 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **기시공 후 사후 심의 (기정사실화)** | 변경 작업 착수 전 공식 심의 게이트 강제 | 무단 과업 변경 원천 차단 및 사업자 손실 방지 |
+| **대가·기간 미연동 (무상 과업 강요)** | 과업 범위·금액·기간 3대 요소 일괄 통합 심의 | 정당한 SW 대가 지급 및 납기 지연 분쟁 예방 |
+| **형식적 서면 심의 (부실 의결)** | RTM 추적표 및 FP 기반 영향도 평가서 첨부 의무화 | 객관적 공학 증거 기반의 공정한 심의 보증 |
+| **발주자 중심 의결 (공정성 훼손)** | 외부 전문가 과반 참여 강제 및 제척·기피·회피 철저 | 심의의 독립성 확보 및 발주자-수행사 간 분쟁 차단 |
 
 ## Ⅴ. 변경 증거와 계약 실행을 잇는 거버넌스
 
@@ -92,14 +93,14 @@ extra:
 - 검증: 의결 전 착수 여부, 외부위원·이해충돌 기록, 계약·검수 기준 반영 확인
 - 효과: 무상 과업 확대 억제 · 분쟁 근거 명료화 · 계약 이행 가능성 향상
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의 실효성 개선 제언"><div class="itpe-pipeline-node"><strong>사후·형식 심의</strong><small><b>문제</b> 변경 실행 뒤 범위만 승인</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>변경 전 Gate</strong><small><b>대안</b> 범위·금액·기간과 증거를 한 안건으로 심의</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>계약 추적</strong><small><b>판정</b> 의결 결과와 계약·일정·검수 기준 일치</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>공정한 변경 통제</strong><small><b>효과</b> 책임·대가·납기 분쟁 예방</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의 실효성 개선 제언"><div class="itpe-pipeline-node"><strong>사후·형식 심의</strong><span><b>문제</b> 변경 실행 뒤 범위만 승인</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>변경 전 Gate</strong><span><b>대안</b> 범위·금액·기간과 증거를 한 안건으로 심의</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>계약 추적</strong><span><b>판정</b> 의결 결과와 계약·일정·검수 기준 일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>공정한 변경 통제</strong><span><b>효과</b> 책임·대가·납기 분쟁 예방</span></div></div>
 
 ## 1교시 10점 답안 발췌
 
 - 정의: **과업심의위원회**는 국가기관등의 **과업내용 확정·변경**과 **계약금액·계약기간 조정**을 심의하는 법정 위원회
 - 목적: 과업 확대와 계약조건 불일치 방지 → 객관적 과업 Baseline 유지
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의위원회 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>확정·변경 요청</strong><small><b>입력</b> 과업·금액·기간 영향 근거</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>심의·의결</strong><small><b>통제</b> 외부위원 과반·이해충돌 배제</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>통보·계약 반영</strong><small><b>산출</b> 결과·조치계획·변경 계약</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의위원회 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>확정·변경 요청</strong><span><b>입력</b> 과업·금액·기간 영향 근거</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>심의·의결</strong><span><b>통제</b> 외부위원 과반·이해충돌 배제</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>통보·계약 반영</strong><span><b>산출</b> 결과·조치계획·변경 계약</span></div></div>
 
 | 구분 | 핵심 내용 |
 |---|---|
@@ -124,7 +125,6 @@ extra:
 
 ## 연결 토픽
 
-- [요구공학](./040_requirements_engineering/)
-- [요구사항 명세](./054_requirements_specification/)
-- [요구사항 추적표](./102_requirement_traceability_matrix/)
-- [FP(Function Point)](./113_function_point/)
+- 이전 토픽: [AI Native 개발 플랫폼](./046_ai_native_dev_platform.md)
+- 연관 토픽: [요구공학](./040_requirements_engineering.md), [요구사항 명세](./054_requirements_specification.md), [요구사항 추적표(RTM)](./102_requirement_traceability_matrix.md), [기능점수(FP)](./113_function_point.md)
+- 다음 토픽: [비선형 구조](./052_non_linear_structure.md)

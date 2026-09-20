@@ -1,81 +1,180 @@
 ---
-title: "요구공학(요구사항 유형 포함)"
-author: "Gemini 3.8 Flash"
-date: "2026-09-20T00:30:00+09:00"
+title: "요구공학"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
-
+  model: "Gemini 3.8 Flash (High)"
+  keyword_grade: "A"
 ---
 
-## 답안 골격
-```text
-[요구공학] ◀━━ 머리: Ⅶ 내 의견 (요구사항 추적성 매트릭스(RTM) 자동화와 불명확 요구의 리스크 조기 차단)
- ┃
- ┣━ Ⅰ 개요 ───── 잘못되거나 누락된 요구사항으로 인한 프로젝트 납기 지연 및 실패 방지
- ┣━ Ⅱ 특징 ───── 생애주기 전반의 체계적 프로세스 · 기능적/비기능적 요구 분리 · 추적성(Traceability) 확보
- ┣━ Ⅲ 구조 ───── 요구사항 개발(도출 → 분석 → 명세 → 검증) + 요구사항 관리(베이스라인, 형상, 추적, 변경)
- ┣━ Ⅳ 흐름 ───── 도출(인터뷰, 워크숍) → 분석(도메인 모델링) → 명세(SRS, IEEE 830) → 검증(인스펙션)
- ┣━ Ⅴ 비교 ───── 요구사항 개발(CMMI RD, 엔지니어링) vs 요구사항 관리(CMMI REQM, 거버넌스)
- ┗━ Ⅵ 실무 ───── 불명확한 요구사항으로 인한 스코프 크립(Scope Creep) / 변경 통제 위원회(CCB)
-```
-- 필수 키워드: 도출(Elicitation) · 분석(Analysis) · 명세(Specification) · 검증(Validation) · RTM(추적표) · 기능/비기능 · IEEE 830/29148
-- 기출: 133회 3교시 `소프트웨어 요구공학(Requirement Engineering)` → Ⅰ~Ⅳ / 130회 1교시 `요구사항명세서 기술 항목` → Ⅳ 명세
+## 지식 로드맵 내 현재 위치
 
-## 한 줄 본질
-- 고객 자신도 자신이 무엇을 원하는지 정확히 알지 못하거나 말하지 않는 암묵적 요구의 모호성 병목 → 도출, 분석, 명세, 검증의 체계적 공학 프로세스와 지속적 형상 관리를 통해 완결된 요구사항 명세서(SRS)를 도출하고 유지 → 프로젝트 성공률 제고 및 설계 변경 재작업 비용 최소화 / 초기 분석 일정 및 문서화 공수 대가
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 분석·설계를 거쳐 요구공학으로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>분석·설계</span>
+  <strong>요구공학</strong>
+</div>
 
-## 핵심 그림
-```text
-+--------------------------------------------------------------------+
-|  [ 1. 요구사항 개발 (RD: Requirements Development) ]              |
-|                                                                    |
-|  [ 도출 (Elicitation) ] ===> [ 분석 (Analysis) ]                   |
-|  - 인터뷰, 브레인스토밍      - 도메인 모델링, 우선순위화           |
-|                                     |                              |
-|  [ 검증 (Validation) ]  <=== [ 명세 (Specification) ]              |
-|  - 인스펙션, 프로토타입      - SRS 작성 (IEEE 830/29148 표준)       |
-+--------------------------------------------------------------------+
-                                  |
-                                  v (양방향 추적성 및 변경 관리)
-+--------------------------------------------------------------------+
-|  [ 2. 요구사항 관리 (REQM: Requirements Management) ]              |
-|  * 기준선(Baseline) 수립 / 변경 통제(CCB) / 요구사항 추적표(RTM)   |
-+--------------------------------------------------------------------+
-```
+## 큰 그림과 30초 인출
 
-## 핵심 용어
-- SRS(Software Requirements Specification): 시스템이 수행해야 할 모든 기능적·비기능적 요구사항과 제약 조건을 명확하고 검증 가능하게 기록한 최종 공식 문서(ISO/IEC/IEEE 29148 표준)
-- 요구사항 추적표(RTM, Requirements Traceability Matrix): 요구사항 ID를 설계서, 소스코드, 테스트 케이스 ID와 1:1로 매핑하여 누락 여부와 변경 파급 효과를 추적하는 매트릭스
+- 본질: **요구공학(Requirements Engineering)**은 고객의 모호한 요구를 정확히 수집·분석·명세·검증하고, 소프트웨어 생애주기 전반에 걸쳐 요구사항의 변경과 추적성을 체계적으로 관리하는 공학적 프로세스
+- 메커니즘: **요구사항 개발(RD: 도출 → 분석 → 명세 → 검증)** + **요구사항 관리(REQM: 기준선 수립 · 형상관리 · 변경통제 CCB · 추적표 RTM)**
+- 산출/효과: 완결된 요구사항 명세서(SRS) · 프로젝트 납기/예산 초과 방지 · 결함 조기 발견을 통한 재작업 비용 극소화(보엠의 법칙 방어)
 
-## 핵심 통찰
-- 요구사항 단계에서 발견하지 못한 결함이 배포 후 운영 단계에서 발견되면 이를 수정하는 비용은 무려 100배에서 200배로 기하급수적으로 폭증함(보엠의 법칙)
-- 비기능 요구사항(성능, 보안, 가용성, 신뢰성)을 명확한 수치(예: "99.99% 가용성", "동시접속 10,000명 시 2초 이내 응답")로 명세하지 않으면 아키텍처 실패로 직결됨
-- 요구공학은 개발 초기에 끝나는 일회성 작업이 아니라, 개발 및 운영 전 과정에 걸쳐 변경을 관리(REQM)하는 지속적 프로세스임
+<div class="itpe-flow-map" role="img" aria-label="요구공학 전주기 프레임워크">
+  <div class="itpe-flow-node"><strong>고객/이해관계자</strong><span>암묵적·모호한 니즈</span></div>
+  <div class="itpe-flow-arrow">→ 요구사항 개발 (RD) →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>요구공학 2대 축</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>개발(RD)</strong><span><span class="itpe-keyword"><strong>도출 · 분석 · 명세 · 검증</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>관리(REQM)</strong><span><span class="itpe-keyword"><strong>기준선 · CCB · RTM 추적성</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>분류 축</strong><span>기능적 요구사항 vs 비기능적 요구사항</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ 기준선(SRS) 확정 및 통제 →</div>
+  <div class="itpe-flow-node"><strong>설계·구현·테스트</strong><span>추적성 기반 품질 보증</span></div>
+</div>
 
-## 딸려 나오는 하위 토픽
+<details>
+<summary>핵심 용어</summary>
 
-| 하위 토픽 | 상위 구조 속 위치 | 한 줄 (정의 → 메커니즘 → 구분축) |
-|---|---|---|
-| IT 개발 요구사항(IT Requirements) | Ⅱ 분류 / 요구사항 유형 | 시스템 구축을 위해 사용자가 필요로 하는 기능적 요구(무엇을 하는가)와 품질·성능·보안·운영 등 비기능적 요구(어떤 제약과 품질로 동작하는가)의 총체 (기능적 요구 vs 비기능적 요구 및 제약조건) |
+- **SRS(Software Requirements Specification)**: 시스템이 수행해야 할 기능적·비기능적 요구사항과 제약 조건을 표준(ISO/IEC/IEEE 29148)에 따라 명확히 기술한 공식 명세서
+- **RTM(Requirements Traceability Matrix)**: 요구사항 ID를 설계서, 소스코드, 테스트 케이스 ID와 양방향(Forward/Backward) 매핑하여 누락과 파급 효과를 통제하는 매트릭스
+- **CCB(Configuration Control Board)**: 요구사항 기준선 변경 요청(CR)에 대해 기술적·비용적 타당성과 파급 영향을 심의·승인하는 공식 협의체
+- **Scope Creep(범위 잠식)**: 공식 변경 절차 없이 요구사항이 비공식적으로 계속 팽창하여 프로젝트 일정과 예산이 파탄 나는 현상
+- **Boehm's Cost of Change Principle**: 요구사항 단계의 결함이 운영 단계에서 발견될 경우 수정 비용이 100~200배 이상 폭증한다는 소프트웨어 공학 법칙
 
-## 이웃 토픽과 구분
-- 요구사항 개발(RD) vs 요구사항 관리(REQM): RD = 요구사항을 만들어내는 공학적 창작 활동 / REQM = 도출된 요구사항의 변경을 통제하고 추적하는 거버넌스 활동
+</details>
 
-## 문제·원인·대책
-- 사례: 133회/139회 기출 명확하지 않은 요구사항으로 인한 프로젝트 품질 저하 및 납기 파탄
-| 문제 | 원인 | 대책 | 효과 |
+## 예상문제
+
+> 소프트웨어 프로젝트의 성패를 좌우하는 요구공학(Requirements Engineering)의 개념과 중요성을 설명하고, 요구사항 개발(RD) 4단계와 요구사항 관리(REQM) 체계, 그리고 불명확한 요구사항으로 인한 위험 통제 방안을 제시하시오. (25점)
+
+## Ⅰ. 불명확한 요구사항 병목 해소, 요구공학의 개요
+
+> 사용자는 자기가 무엇을 원하는지 실제로 완성된 화면을 보기 전까지 정확히 알지 못한다.
+
+- 정의: 사용자의 모호한 요구사항을 공학적 기법으로 정제하여 명세화하고, 소프트웨어 생애주기 전반에 걸쳐 지속적으로 변경을 통제·관리하는 체계적 학문 및 실천 프로세스
+- 필요성:
+  - **비용 폭증 방어**: 요구사항 결함 조기 식별을 통한 하류 공정 재작업 비용 절감
+  - **소통 기준 수립**: 발주자와 개발자 간 단일한 진실 공급원(Single Source of Truth) 확보
+  - **검수 무결성 확보**: 명문화된 인수 조건(Acceptance Criteria) 기반 분쟁 원천 차단
+
+## Ⅱ. 요구공학의 2대 체계: 개발(RD)과 관리(REQM)
+
+> 요구사항은 생성(Engineering)하는 것만큼이나 생애주기 동안 변질되지 않도록 통제(Governance)하는 것이 중요하다.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="요구공학 2대 프레임워크">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>1. 요구사항 개발 (RD: Requirements Development)</strong></span>
+    <span>• 도출(Elicitation): 인터뷰, 설문, 워크숍, 프로토타이핑<br />• 분석(Analysis): 도메인 모델링, 유스케이스 분석, 우선순위화<br />• 명세(Specification): SRS 작성 (IEEE 830, ISO/IEC/IEEE 29148)<br />• 검증(Validation): 인스펙션, 워크스루, 프로토타입 검증</span>
+  </div>
+  <div class="itpe-pipeline-arrow">↕ 양방향 기준선(Baseline) 연계 및 피드백</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>2. 요구사항 관리 (REQM: Requirements Management)</strong></span>
+    <span>• 기준선(Baseline) 수립: 이해관계자 공식 서명 및 형상 등록<br />• 변경 통제: 변경요청서(CR) 접수, 영향도 평가, CCB 심의<br />• 추적성(Traceability) 관리: RTM 기반 순방향/역방향 전수 추적<br />• 상태 추적: 요구사항 생애주기 상태(제안, 승인, 구현, 검증) 모니터링</span>
+  </div>
+</div>
+
+## Ⅲ. 요구사항 개발(RD) 4단계 상세 프로세스
+
+> 도출-분석-명세-검증은 순차적 일회성이 아닌, 피드백 루프를 갖는 반복적 점진 프로세스이다.
+
+| 단계 | 핵심 활동 | 주요 산출물 | 검증 및 품질 기법 |
 |---|---|---|---|
-| 개발 완료 단계에서 고객이 "원했던 기능이 아니다"라며 검수 거부 | 자연어 텍스트 중심의 추상적 명세서로 인한 상호 해석 차이 | 핵심 업무 화면 프로토타이핑 및 유스케이스 기반 검증 인스펙션 | 이해관계자 간 요구사항 일치도 100% 확보 |
-| 고객의 수시 구두 요구사항 변경으로 개발 스코프 무한 팽창(Scope Creep) | 공식 변경 통제 절차 부재 및 개발자의 무단 구두 수용 | 변경 요청(CR) 접수, CCB 영향도 평가 및 RTM 기반 일정/비용 재정산 강제 | 무단 변경 차단 및 프로젝트 스코프 통제 |
+| **1. 도출 (Elicitation)** | 이해관계자 식별, 인터뷰, 브레인스토밍, 사용자 관찰 | 요구사항 수집 목록, 인터뷰 녹취록 | 비기능 요구 조기 질의, 페르소나 기법 |
+| **2. 분석 (Analysis)** | 요구사항 분류(기능/비기능), 도메인 모델링, 모순 제거 | DFD, UML 유스케이스, 클래스 다이어그램 | MoSCoW 우선순위화, 요구사항 타당성 평가 |
+| **3. 명세 (Specification)** | 정형화된 언어로 SRS 작성, 인수 조건 상세화 | 소프트웨어 요구사항 명세서(SRS) | ISO/IEC/IEEE 29148 표준 템플릿 준수 |
+| **4. 검증 (Validation)** | 명세서의 완전성, 일관성, 검증 가능성 점검 | 요구사항 검토 보고서, 인스펙션 결함표 | Fagan Inspection, 프로토타입 시연 검증 |
 
-## 이렇게 출제된다
-- 제133회 3교시 5번: "소프트웨어 요구공학(Requirement Engineering)에 대하여 설명하시오." → 요구 포인트: Ⅰ 개념 + Ⅲ 개발(도출, 분석, 명세, 검증) 및 관리 프로세스 체계 + Ⅵ 실무 품질 향상 기여점
-- 제130회 1교시 3번: "요구사항명세서에 기술되어야 하는 항목 설명" → 요구 포인트: IEEE 830 기준 시스템 개요, 기능적 요구, 비기능적 요구, 외부 인터페이스, 제약조건
+## Ⅳ. 요구사항 불명확 위험 및 통제 대책
 
-## 내 의견
-- [요구사항 정의서를 워드 문서로 방치하는 SI의 비극] 프로젝트 착수 때 수백 쪽짜리 요구사항정의서를 작성해 파일 서버에 올려두고, 개발 중에는 메신저와 구두로 수정사항을 주고받아 문서가 완전히 쓰레기가 되는 현상 다반사 → 나라면: Jira나 Confluence 같은 이슈 트래커에 요구사항을 티켓화(User Story)하고, 모든 설계 PR과 테스트 코드에 요구사항 티켓 번호를 태깅해 요구사항 추적성(Traceability)을 100% 자동 검증
+> 요구사항 결함은 프로젝트 후반부로 갈수록 비용이 기하급수적으로 폭증하므로 조기 통제가 절대적이다.
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **범위 잠식 (Scope Creep)** | **공식 변경 통제 위원회(CCB)** 심의 및 변경 계약 강제 | 무단 과업 변경 원천 차단 및 납기·비용 안정화 |
+| **명세 불명확·해석 왜곡** | **프로토타이핑 시연** 및 정량적 비기능 수치화(SLO) | 발주자-개발자 간 요구사항 일치도 100% 달성 |
+| **구현 누락 및 미검증** | **요구사항 추적표(RTM)** 전주기 1:1 매핑 강제 | 요구사항-설계-코드-테스트 간 완전한 추적성 확보 |
+
+## Ⅴ. AI 네이티브 및 애자일 환경에서의 기술사적 제언
+
+> 문서 중심의 무거운 폭포수 요구공학에서, 실행 가능한 코드와 자동화된 추적성을 제공하는 살아있는 요구공학으로 진화해야 한다.
+
+### 학습자 통찰 메모 — 답안 밖
+
+- [핵심 통찰]: 요구사항 명세서를 워드 파일로 두껍게 작성해 파일 서버에 묻어두는 SI 관행은 반드시 실패함. 개발자는 코딩하며 문서를 보지 않고, 고객은 검수 때 문서를 근거로 분쟁을 일으킴. 요구사항은 살아 움직이는 Jira 티켓(User Story)과 BDD(Behavior-Driven Development) 인수 테스트 코드로 변환되어 CI/CD 파이프라인에서 매 빌드마다 자동 검증되어야 함.
+- 나라면: 프로젝트 착수 시 요구공학 체계를 '디지털 스펙 거버넌스'로 정의하고, 이슈 트래커(Jira) - 형상관리(Git PR) - 자동화 테스트(Cucumber/Playwright)를 요구사항 ID로 단일 연계하여, 요구사항 변경 시 영향받는 코드와 테스트가 자동으로 탐지되도록 파이프라인을 구축하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 요구사항 자산의 코드화(Specification as Code) 및 지속적 추적성 거버넌스 확립
+- 대안: **User Story + BDD(Given-When-Then)** 기반 실행 가능한 명세 도입
+- 검증: Git 커밋 및 CI 파이프라인과 RTM 자동 연동을 통한 요구사항 검증률 100%
+- 효과: 문서-코드 간 불일치 해소 · 요구사항 결함 수정 비용 80% 절감
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="현대적 요구공학 거버넌스 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <span>문서 중심 명세의 정체로 인한 코드-명세 간 동기화 단절 및 스코프 잠식</span>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <span>Specification as Code 도입 및 Jira-Git-Test 간 RTM 자동 추적 체계 구축</span>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <span>BDD 시나리오 통과율 100% 및 변경 요청(CR)에 대한 영향도 자동 분석</span>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <span>고객 만족도 극대화 · 후반부 과업 변경 재작업 비용 최소화 달성</span>
+  </div>
+</div>
+
+## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **요구공학(Requirements Engineering)**은 사용자의 요구사항을 도출·분석·명세·검증하고 생애주기 동안 변경을 관리하는 공학적 프로세스
+- 목적: 모호성 제거, 변경 통제, 재작업 비용 절감 및 프로젝트 성공률 제고
+
+### 2. 요구공학 2대 프레임워크
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="요구공학 프레임워크 요약">
+  <div class="itpe-pipeline-node"><strong>요구사항 개발 (RD)</strong><span>도출 → 분석 → 명세(SRS) → 검증(인스펙션)</span></div>
+  <div class="itpe-pipeline-arrow">↕ 기준선(Baseline) 및 추적 관리</div>
+  <div class="itpe-pipeline-node"><strong>요구사항 관리 (REQM)</strong><span>형상관리, 변경통제(CCB), 추적표(RTM), 상태 모니터링</span></div>
+</div>
+
+### 3. 핵심 통제
+
+- **SRS 표준화**: ISO/IEC/IEEE 29148 규격 기반 기능/비기능 요구 명확 분리 명세
+- **RTM 추적성**: 요구사항-설계-코드-시험 간 양방향 추적성 보장으로 누락 방지
+
+## 출제 이력과 검증 출처
+
+- 제133회 정보관리기술사 3교시: 소프트웨어 요구공학(Requirement Engineering)의 개요 및 프로세스
+- 제130회 정보관리기술사 1교시: 요구사항명세서(SRS) 기술 항목 및 작성 기준
+- ISO/IEC/IEEE 29148 Systems and software engineering - Life cycle processes - Requirements engineering
+
+## 학습 체크
+
+- [ ] 요구사항 개발(RD)의 4단계(도출, 분석, 명세, 검증)를 설명할 수 있는가?
+- [ ] 요구사항 관리(REQM)의 핵심 통제 수단(기준선, CCB, RTM)을 설명할 수 있는가?
+- [ ] 기능적 요구사항과 비기능적 요구사항의 차이점을 구체적 예시와 함께 제시할 수 있는가?
+
+## 연결 토픽
+
+- 이전 토픽: [개발방법론 테일러링](./039_methodology_tailoring.md)
+- 연관 토픽: [소프트웨어 비용산정](./027_sw_cost_estimation.md), [형상관리](./011_configuration_management.md)
+- 다음 토픽: [요구사항 도출](./041_requirements_elicitation.md)

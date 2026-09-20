@@ -2,11 +2,14 @@
 title: "SW 안전성 분석(FTA·FMEA·HAZOP)"
 tags:
   - "notes-software-engineering"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 위험원 식별 · 위험도(Risk Matrix) 산출 · **안전 요구사항(Safety Requirements)** 도출 · 기능안전(ISO 26262/IEC 61508) 인증 획득
 
 <div class="itpe-flow-map" role="img" aria-label="SW 안전성 분석 프레임워크">
-  <div class="itpe-flow-node"><strong>시스템 위험원 식별</strong><small>PHA · FHA 사전 분석</small></div>
+  <div class="itpe-flow-node"><strong>시스템 위험원 식별</strong><span>PHA · FHA 사전 분석</span></div>
   <div class="itpe-flow-arrow">→ 분석 기법 적용 →</div>
   <div class="itpe-flow-node is-current">
     <strong>3대 안전성 분석 기법</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 안전 통제책 수립 →</div>
-  <div class="itpe-flow-node"><strong>안전 무결성 기준 충족</strong><small>Fail-Safe · SIL/ASIL 달성</small></div>
+  <div class="itpe-flow-node"><strong>안전 무결성 기준 충족</strong><span>Fail-Safe · SIL/ASIL 달성</span></div>
 </div>
 
 <details>
@@ -67,17 +70,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="3대 안전성 분석 기법 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. FTA (Fault Tree Analysis) — 연역적 / Top-Down</strong></span>
-    <small>사고 발생(Top Event) → AND/OR 논리 게이트 전개 → 최소 컷셋(Minimal Cut Set) 도출</small>
+    <span>사고 발생(Top Event) → AND/OR 논리 게이트 전개 → 최소 컷셋(Minimal Cut Set) 도출</span>
   </div>
   <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>2. FMEA (Failure Mode and Effects Analysis) — 귀납적 / Bottom-Up</strong></span>
-    <small>단위 컴포넌트 고장 모드 나열 → 시스템 영향 분석 → 위험우선순위(RPN) 산출 및 조치</small>
+    <span>단위 컴포넌트 고장 모드 나열 → 시스템 영향 분석 → 위험우선순위(RPN) 산출 및 조치</span>
   </div>
   <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3. HAZOP (Hazard and Operability Analysis) — 가이드워드 기반</strong></span>
-    <small>설계 의도 변수(온도, 전압, 데이터) + 가이드워드(No, More, Reverse) → 이탈 및 대책 도출</small>
+    <span>설계 의도 변수(온도, 전압, 데이터) + 가이드워드(No, More, Reverse) → 이탈 및 대책 도출</span>
   </div>
 </div>
 
@@ -102,26 +105,36 @@ extra:
 - **산식**: `RPN = 심각도(Severity, 1~10) × 발생빈도(Occurrence, 1~10) × 검출도(Detection, 1~10)`
 - **조치 기준**: 통상 RPN 100점 이상 또는 심각도 9점 이상인 항목에 대해 안전 메커니즘 강제 적용
 
-## Ⅳ. 소프트웨어 기능안전 표준과 안전 아키텍처 패턴
+## Ⅳ. 소프트웨어 기능안전 표준과 실무 위험 관리
 
 > 분석된 위험원은 기능안전 표준(ISO 26262 등)의 ASIL 등급에 맞춰 아키텍처 패턴으로 설계에 반영된다.
+
+### 1. 안전 아키텍처 메커니즘
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="안전 아키텍처 메커니즘">
   <div class="itpe-pipeline-node">
     <strong>Fail-Safe (고장 시 안전 보장)</strong>
-    <small>고장 발생 시 시스템을 사전에 정의된 무해한 상태(정지, 전원 차단)로 전이</small>
+    <span>고장 발생 시 시스템을 사전에 정의된 무해한 상태(정지, 전원 차단)로 전이</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>Fail-Operational (고장 시 운용 유지)</strong>
-    <small>자율주행, 항공 제어 등 즉시 정지가 위험한 경우 이중화로 기능 지속 제공</small>
+    <span>자율주행, 항공 제어 등 즉시 정지가 위험한 경우 이중화로 기능 지속 제공</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1oo2D / 2oo3 (다수결 투표 및 안전 다중화)</strong></span>
-    <small>서로 다른 알고리즘(N-Version Programming) 결과 비교 및 워치독 모니터링</small>
+    <span>서로 다른 알고리즘(N-Version Programming) 결과 비교 및 워치독 모니터링</span>
   </div>
 </div>
+
+### 2. 안전성 분석 실무 위험 및 대응 통제
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 단일 고장점(SPOF)으로 인한 시스템 마비 | FTA 최소 컷셋(Minimal Cut Set) 분석 및 단일 고장 사건 제거 | 단일 컴포넌트 결함 시 재앙적 사고 예방 |
+| 잠재적 부품 고장의 연쇄 영향 간과 | FMEA 기반 RPN 지수 산출 및 고위험군(RPN≥100) 조치 강제 | 부품 단위 고장의 파급 효과 사전 차단 |
+| 프로세스 파라미터 이탈로 인한 오동작 | HAZOP 가이드워드 기반 이탈 분석 및 Fail-Safe 메커니즘 구축 | 비정상 제어 입력 시 안전 상태(무해 상태) 안착 |
 
 ## Ⅴ. 고신뢰성 SW 안전 확보를 위한 기술사적 제언
 
@@ -142,22 +155,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SW 안전성 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>기능 테스트 편중 · 극한 상황 및 다중 고장에 대한 안전 분석 부재</small>
+    <span>기능 테스트 편중 · 극한 상황 및 다중 고장에 대한 안전 분석 부재</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>FTA/FMEA/HAZOP 연계 위험원 분석 및 Fail-Safe 안전 아키텍처 구현</small>
+    <span>FTA/FMEA/HAZOP 연계 위험원 분석 및 Fail-Safe 안전 아키텍처 구현</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>고장 주입 테스트(Fault Injection) 통과 및 RPN 리스크 완화 검증</small>
+    <span>고장 주입 테스트(Fault Injection) 통과 및 RPN 리스크 완화 검증</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>무결점 기능안전 달성 · 인명 및 물리적 자산 피해 원천 차단</small>
+    <span>무결점 기능안전 달성 · 인명 및 물리적 자산 피해 원천 차단</span>
   </div>
 </div>
 
@@ -171,11 +184,11 @@ extra:
 ### 2. 3대 분석 기법 핵심 비교
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="3대 기법 비교 요약">
-  <div class="itpe-pipeline-node"><strong>FTA</strong><small>연역적 Top-Down · 사고(Top Event)에서 출발 · 부울 대수</small></div>
+  <div class="itpe-pipeline-node"><strong>FTA</strong><span>연역적 Top-Down · 사고(Top Event)에서 출발 · 부울 대수</span></div>
   <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node"><strong>FMEA</strong><small>귀납적 Bottom-Up · 부품 고장에서 출발 · RPN 지수</small></div>
+  <div class="itpe-pipeline-node"><strong>FMEA</strong><span>귀납적 Bottom-Up · 부품 고장에서 출발 · RPN 지수</span></div>
   <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node"><strong>HAZOP</strong><small>탐색적 · 가이드워드(No, More, Less) 기반 이탈 분석</small></div>
+  <div class="itpe-pipeline-node"><strong>HAZOP</strong><span>탐색적 · 가이드워드(No, More, Less) 기반 이탈 분석</span></div>
 </div>
 
 ### 3. 핵심 통제

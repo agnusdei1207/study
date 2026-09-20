@@ -5,7 +5,10 @@ tags:
 sidebar:
   badge:
     text: "A"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
 ---
 
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 전송 프로토콜 독립성(HTTP, SMTP 등) · **WS-Security** 기반 엔터프라이즈 보안 · 엄격한 계약(Contract) 기반 상호운용성
 
 <div class="itpe-flow-map" role="img" aria-label="SOAP 웹 서비스 아키텍처">
-  <div class="itpe-flow-node"><strong>서비스 요청자</strong><small>WSDL 기반 프록시 호출</small></div>
+  <div class="itpe-flow-node"><strong>서비스 요청자</strong><span>WSDL 기반 프록시 호출</span></div>
   <div class="itpe-flow-arrow">→ SOAP XML 메시지 (HTTP/TCP) →</div>
   <div class="itpe-flow-node is-current">
     <strong>SOAP 메시지 구조</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 엄격한 XML 유효성 검증 →</div>
-  <div class="itpe-flow-node"><strong>서비스 제공자</strong><small>엔터프라이즈 비즈니스 로직</small></div>
+  <div class="itpe-flow-node"><strong>서비스 제공자</strong><span>엔터프라이즈 비즈니스 로직</span></div>
 </div>
 
 <details>
@@ -67,22 +70,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SOAP XML 메시지 구조">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. SOAP Envelope (루트 엘리먼트)</strong></span>
-    <small>XML 문서가 SOAP 메시지임을 선언하고 네임스페이스(`xmlns:soap`) 정의</small>
+    <span>XML 문서가 SOAP 메시지임을 선언하고 네임스페이스(`xmlns:soap`) 정의</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 포함</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>2. SOAP Header (선택적)</strong></span>
-    <small>인증 토큰, 트랜잭션 ID, 암호화 키 등 횡단 관심사 메타데이터 저장 (WS-Security)</small>
+    <span>인증 토큰, 트랜잭션 ID, 암호화 키 등 횡단 관심사 메타데이터 저장 (WS-Security)</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 포함 (필수)</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3. SOAP Body (필수 엘리먼트)</strong></span>
-    <small>실제 호출할 메서드명과 매개변수 데이터 페이로드 포함</small>
+    <span>실제 호출할 메서드명과 매개변수 데이터 페이로드 포함</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 오류 발생 시 생성</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>4. SOAP Fault (오류 처리 엘리먼트)</strong></span>
-    <small>에러 코드(faultcode), 에러 메시지(faultstring), 상세 원인(detail) 표준화 반환</small>
+    <span>에러 코드(faultcode), 에러 메시지(faultstring), 상세 원인(detail) 표준화 반환</span>
   </div>
 </div>
 
@@ -93,17 +96,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="웹 서비스 3대 표준 연계">
   <div class="itpe-pipeline-node">
     <strong>UDDI (서비스 등록소)</strong>
-    <small>전화번호부 역할 · 비즈니스 서비스 카탈로그 및 WSDL URL 등록</small>
+    <span>전화번호부 역할 · 비즈니스 서비스 카탈로그 및 WSDL URL 등록</span>
   </div>
   <div class="itpe-pipeline-arrow">↕ Find (검색) / Publish (등록)</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>WSDL (서비스 명세서)</strong></span>
-    <small>인터페이스 계약서 · 포트 타입, 오퍼레이션, 메시지 스키마, 엔드포인트 URL 기술</small>
+    <span>인터페이스 계약서 · 포트 타입, 오퍼레이션, 메시지 스키마, 엔드포인트 URL 기술</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ Bind (호출 실행)</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>SOAP (메시지 통신)</strong></span>
-    <small>WSDL 계약에 따라 XML 메시지를 포장하여 실제 원격 프로시저 호출 수행</small>
+    <span>WSDL 계약에 따라 XML 메시지를 포장하여 실제 원격 프로시저 호출 수행</span>
   </div>
 </div>
 
@@ -139,22 +142,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SOAP 현대화 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>SOAP의 과도한 XML 오버헤드로 인한 모바일/클라우드 성능 저하</small>
+    <span>SOAP의 과도한 XML 오버헤드로 인한 모바일/클라우드 성능 저하</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>엔터프라이즈 코어 연계 유지 및 API Gateway 기반 REST 래핑</small>
+    <span>엔터프라이즈 코어 연계 유지 및 API Gateway 기반 REST 래핑</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>메시지 수준 암호화(WS-Security) 유지 및 변환 레이턴시 검증</small>
+    <span>메시지 수준 암호화(WS-Security) 유지 및 변환 레이턴시 검증</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>금융급 보안 신뢰성 유지 · 최신 웹 생태계와의 원활한 데이터 연계</small>
+    <span>금융급 보안 신뢰성 유지 · 최신 웹 생태계와의 원활한 데이터 연계</span>
   </div>
 </div>
 
@@ -168,11 +171,11 @@ extra:
 ### 2. SOAP 메시지 4대 엘리먼트
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SOAP 4대 구조 요약">
-  <div class="itpe-pipeline-node"><strong>Envelope (봉투)</strong><small>루트 XML 엘리먼트 · 네임스페이스 정의</small></div>
+  <div class="itpe-pipeline-node"><strong>Envelope (봉투)</strong><span>루트 XML 엘리먼트 · 네임스페이스 정의</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Header (헤더)</strong><small>WS-Security, 트랜잭션 등 메타데이터</small></div>
+  <div class="itpe-pipeline-node"><strong>Header (헤더)</strong><span>WS-Security, 트랜잭션 등 메타데이터</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Body (본문)</strong><small>실제 데이터 페이로드 (오류 시 Fault 포함)</small></div>
+  <div class="itpe-pipeline-node"><strong>Body (본문)</strong><span>실제 데이터 페이로드 (오류 시 Fault 포함)</span></div>
 </div>
 
 ### 3. 핵심 통제

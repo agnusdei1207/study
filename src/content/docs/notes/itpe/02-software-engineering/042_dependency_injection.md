@@ -1,14 +1,15 @@
 ---
 title: "의존성 주입(Dependency Injection)"
-author: "Codex"
-date: "2026-09-20T19:46:00+09:00"
-tags: ["notes-software-engineering"]
+tags:
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +23,9 @@ extra:
 - 산출: 생성 책임과 사용 책임 분리 · 구현 교체 가능성 · 격리 단위 테스트
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입의 등록 해결 주입 흐름">
-  <div class="itpe-pipeline-node"><strong>등록</strong><small><b>활동</b> 추상화와 구현·범위 연결<br /><b>산출</b> 구성 메타데이터</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>해결</strong><small><b>활동</b> 의존 그래프·생성 순서·순환 검사<br /><b>산출</b> 객체 생성 계획</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>주입</strong><small><b>활동</b> 생성자·수정자로 협력자 전달<br /><b>산출</b> 사용 가능한 객체 그래프</small></div>
+  <div class="itpe-pipeline-node"><strong>등록</strong><span><b>활동</b> 추상화와 구현·범위 연결<br /><b>산출</b> 구성 메타데이터</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>해결</strong><span><b>활동</b> 의존 그래프·생성 순서·순환 검사<br /><b>산출</b> 객체 생성 계획</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>주입</strong><span><b>활동</b> 생성자·수정자로 협력자 전달<br /><b>산출</b> 사용 가능한 객체 그래프</span></div>
 </div>
 
 <details><summary>핵심 용어</summary>
@@ -70,16 +71,16 @@ extra:
 | **수정자 주입** | 선택·재구성 의존 | 의존 교체 가능 | 불완전 상태 방지 규칙 필요 |
 | **필드 주입** | 프레임워크 제한 상황 | 코드가 짧음 | 의존 은닉 · 컨테이너 없는 테스트 곤란 |
 
-## Ⅳ. 의존 그래프와 수명주기 품질 통제
+## Ⅳ. 의존 그래프 위험과 실무 품질 통제
 
 > 주입 성공만 확인하면 단기 객체를 장기 객체가 붙잡거나 순환이 숨어들 수 있으므로 그래프·범위·종료 자원을 함께 검증함.
 
-| 위험 | 판정 | 대안 | 효과 |
-|---|---|---|---|
-| 순환 의존 | 그래프가 DAG를 형성하는가 | 책임 재분리 · 이벤트·중재자 도입 | 생성 실패와 양방향 결합 제거 |
-| 범위 불일치 | 장기 객체가 단기 객체를 보유하는가 | Scope 정합 규칙 · 팩토리 사용 | 상태 누출 방지 |
-| 숨은 의존 | 생성자 계약에 필수 협력자가 보이는가 | 생성자 주입 표준화 | 테스트·리뷰 가능성 향상 |
-| 과도한 의존 | 생성자 매개변수가 책임 팽창을 드러내는가 | 역할 분리 · Facade 검토 | 응집도 향상 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **순환 의존 (생성 실패)** | 단방향 의존 그래프(DAG) 강제 및 이벤트 기반 비동기 분리 | 런타임 교착 상태 차단 및 양방향 결합 제거 |
+| **범위 불일치 (상태 누출)** | Scope 정합성 규칙 강제 및 팩토리 패턴(ObjectProvider) 적용 | 장기 객체의 단기 객체 참조로 인한 메모리 누수 방지 |
+| **숨은 의존 (테스트 불가)** | **생성자 주입(Constructor Injection)** 원칙 의무화 | 컨테이너 없는 순수 POJO 단위 테스트 가능성 확보 |
+| **과도한 의존 (책임 팽창)** | 생성자 매개변수 임계치(최대 5개) 통제 및 Facade 패턴 도입 | 객체 응집도 극대화 및 단일 책임 원칙(SRP) 준수 |
 
 ## Ⅴ. 조립 경계를 검증하는 DI 거버넌스
 
@@ -97,14 +98,14 @@ extra:
 - 검증: 컨테이너 기동·격리 단위 테스트·순환 및 범위 검사
 - 효과: 변경 영향 국소화 · 객체 완전성 · 테스트 용이성 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 개선 제언"><div class="itpe-pipeline-node"><strong>숨은 결합</strong><small><b>문제</b> 직접 생성·필드 주입·Scope 혼용</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>조립 경계</strong><small><b>대안</b> 생성자 주입과 Composition Root 집중</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>품질 게이트</strong><small><b>판정</b> 등록·순환·범위·격리 테스트 통과</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>설계 품질</strong><small><b>효과</b> 교체 가능성과 변경 영향 국소화</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 개선 제언"><div class="itpe-pipeline-node"><strong>숨은 결합</strong><span><b>문제</b> 직접 생성·필드 주입·Scope 혼용</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>조립 경계</strong><span><b>대안</b> 생성자 주입과 Composition Root 집중</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>품질 게이트</strong><span><b>판정</b> 등록·순환·범위·격리 테스트 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>설계 품질</strong><span><b>효과</b> 교체 가능성과 변경 영향 국소화</span></div></div>
 
 ## 1교시 10점 답안 발췌
 
 - 정의: **DI(Dependency Injection)**는 **외부 조립자**가 객체의 **의존 객체**를 제공하여 생성과 사용 책임을 분리하는 **IoC(Inversion of Control)** 구현 기법
 - 목적: 구체 구현 결합 제거 → 구현 교체 · 객체 완전성 · 격리 테스트 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>등록</strong><small><b>활동</b> 추상화와 구현·Scope 연결<br /><b>산출</b> 구성 메타데이터</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>해결·주입</strong><small><b>활동</b> 그래프 검사 후 생성자 전달<br /><b>산출</b> 완전한 객체 그래프</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>폐기</strong><small><b>활동</b> Scope 종료와 자원 해제<br /><b>산출</b> 수명주기 정합성</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>등록</strong><span><b>활동</b> 추상화와 구현·Scope 연결<br /><b>산출</b> 구성 메타데이터</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>해결·주입</strong><span><b>활동</b> 그래프 검사 후 생성자 전달<br /><b>산출</b> 완전한 객체 그래프</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>폐기</strong><span><b>활동</b> Scope 종료와 자원 해제<br /><b>산출</b> 수명주기 정합성</span></div></div>
 
 | 방식 | 적합 대상 | 통제 |
 |---|---|---|
@@ -129,7 +130,6 @@ extra:
 
 ## 연결 토픽
 
-- [객체지향 설계원칙 SOLID](./082_solid/)
-- [AOP(Aspect Oriented Programming)](./074_aop/)
-- [Spring Boot](./159_spring_boot/)
-- [모듈성(결합도·응집도)](./190_modularity/)
+- 이전 토픽: [요구사항 도출](./041_requirements_elicitation.md)
+- 연관 토픽: [객체지향 설계원칙 SOLID](./082_solid.md), [AOP](./074_aop.md), [모듈성](./190_modularity.md)
+- 다음 토픽: [정렬 알고리즘](./043_sort_algorithm.md)

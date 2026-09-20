@@ -1,134 +1,188 @@
 ---
-title: "선형 자료구조(큐·리스트)"
-author: "Antigravity"
-date: "2026-09-20T12:30:00+09:00"
+title: "선형 구조(Linear Structure)"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
-    variant: "tip"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
-  model: "Antigravity"
-
+  model: "Gemini 3.8 Flash (High)"
+  keyword_grade: "A"
 ---
 
-## 딸려 나오는 하위 토픽
+## 지식 로드맵 내 현재 위치
 
-| 번호 | 토픽명 | 핵심 키워드 | 흡수 근거 |
-|---|---|---|---|
-| 02-044 | 큐(Queue) | FIFO, Enqueue/Dequeue, 원형 큐, 잘못된 포화(False Overflow), 모듈로 연산, 배압(Backpressure) | 선형 자료구조의 대표적 입출력 제약 구조로 통합 |
-| 02-029 | 리스트(List) | 순차 리스트(ArrayList), 연결 리스트(LinkedList), 포인터 체인, 임의 접근($O(1)$), 캐시 지역성 | 선형 데이터의 저장 방식(물리적 연속 vs 논리적 포인터)의 핵심 축으로 통합 |
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 자료구조와 알고리즘을 거쳐 선형 구조로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>자료구조 · 알고리즘</span>
+  <strong>선형 구조</strong>
+</div>
 
----
+## 큰 그림과 30초 인출
 
-## 답안 골격 (10점 / 25점)
+- 본질: **선형 구조(Linear Structure)**는 데이터 요소 간의 관계가 1:1로 연결되어 유일한 선행자와 후속자를 갖는 일차원적 순서 나열 자료구조
+- 메커니즘: **임의 접근 구조(배열, 순차 리스트)** + **참조 연결 구조(연결 리스트)** + **입출력 제약 구조(스택-LIFO, 큐-FIFO, 덱-양방향)**
+- 산출/효과: CPU 캐시 공간 지역성(Spatial Locality) 극대화 · 링 버퍼(원형 큐)를 통한 메모리 재활용 및 제로 카피 스트리밍 버퍼 구현
 
-```text
-[선형 자료구조] ◀━━ 머리: Ⅶ 공학적 제언 (캐시 지역성과 배압 제어를 고려한 선형 버퍼 설계)
- ┃
- ┣━ Ⅰ 개요 ───── 1:1 선형 순서 보장, 물리적 연속 배치(배열) vs 논리적 포인터 체인(리스트)
- ┣━ Ⅱ 핵심 유형 ─ 제약 없는 구조(배열, 리스트) vs 입출력 제약 구조(스택-LIFO, 큐-FIFO, 덱)
- ┣━ Ⅲ 큐 메커니즘 ─ 선형 큐의 잘못된 포화(False Overflow) 극복: 원형 큐 모듈로((Rear+1)%Size) 연산
- ┣━ Ⅳ 리스트 메커니즘 ─ 순차 리스트(ArrayList) vs 연결 리스트(단순·이중·원형 LinkedList)
- ┣━ Ⅴ 비교 ───── 선형 자료구조 4대 핵심(배열 vs 리스트 vs 스택 vs 큐) 시간복잡도 대조
- ┣━ Ⅵ 실무 문제 ─ 언바운디드 큐 OOM / 대용량 리스트 캐시 미스(Cache Miss) 병목
- ┗━ Ⅶ 결론 ───── 바운디드 큐(Bounded Queue) 배압 적용 및 CPU 공간 지역성 극대화
-```
+<div class="itpe-flow-map" role="img" aria-label="선형 자료구조 체계도">
+  <div class="itpe-flow-node"><strong>선형 데이터</strong><span>1:1 연속 나열</span></div>
+  <div class="itpe-flow-arrow">→ 접근 방식 및 제약 분기 →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>선형 자료구조 분류</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>비제약</strong><span><span class="itpe-keyword"><strong>배열(Array) · 리스트(ArrayList/LinkedList)</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>제약(LIFO/FIFO)</strong><span><span class="itpe-keyword"><strong>스택(Stack) · 큐(Queue) · 덱(Deque)</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>버퍼 최적화</strong><span>원형 큐(Ring Buffer) 모듈로 연산</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ 하드웨어 캐시 및 버퍼링 →</div>
+  <div class="itpe-flow-node"><strong>시스템 최적화</strong><span>배압 제어 · 초저지연 I/O 큐</span></div>
+</div>
 
-- **필수 키워드**: 1:1 관계, FIFO/LIFO, 원형 큐(Circular Queue), 잘못된 포화(False Overflow), 모듈로(`%`) 연산, 순차 리스트(ArrayList), 연결 리스트(LinkedList), 캐시 지역성(Spatial Locality), 배압(Backpressure)
-  - **10점형**: 선형 자료구조 정의 → 순차/연결 리스트 및 원형 큐 메커니즘 도식 → 4대 선형 구조 복잡도 비교표.
-  - **25점형**: Ⅰ~Ⅶ 전체 구조 전개 + 선형 큐의 잘못된 포화 원인 및 원형 큐 포인터 판별식 수식화 + 하드웨어 캐시 라인 관점의 리스트 성능 벤치마크 분석.
+<details>
+<summary>핵심 용어</summary>
 
----
+- **Linear Structure(선형 구조)**: 데이터 요소 간에 1:1 선행·후속 관계를 갖는 순차적 자료구조
+- **Circular Queue(원형 큐)**: 선형 큐의 잘못된 포화(False Overflow)를 해결하기 위해 모듈로(`% Size`) 연산으로 시작과 끝을 연결한 링 버퍼
+- **Spatial Locality(공간 지역성)**: 최근 접근한 메모리의 인접 영역이 연속 참조될 가능성이 높아 CPU 캐시 적중률이 극대화되는 하드웨어 특성
+- **Backpressure(배압)**: 큐 버퍼 상한 도달 시 생산자의 유입 속도를 능동적으로 제어하여 OOM 크래시를 방지하는 리액티브 메커니즘
+- **ArrayList vs LinkedList**: 연속된 물리 배열 기반 $O(1)$ 임의 접근 vs 힙 포인터 체인 기반 $O(1)$ 중간 삽입/삭제 구조
 
-## 30초 인출용 핵심 다이어그램
+</details>
 
-```text
-[ 1. 원형 큐 (Circular Queue) 메커니즘 ]
-        [ 0 ]         * Enqueue: Rear = (Rear + 1) % Size
-      /       \       * Dequeue: Front = (Front + 1) % Size
-   [ 3 ]       [ 1 ]   * 포화 조건: (Rear + 1) % Size == Front (1칸 공백)
-      \       /       * 공백 조건: Front == Rear
-        [ 2 ]         * 선형 큐의 잘못된 포화(False Overflow) 완벽 해결
+## 예상문제
 
-[ 2. 순차 리스트(ArrayList) vs 연결 리스트(LinkedList) ]
-  ArrayList  : [ 0: A ] [ 1: B ] [ 2: C ]  --> 임의접근 O(1), 캐시적중률 우수
-  LinkedList : [ A | * ]-->[ B | * ]-->[ C | NULL ] --> 삽입/삭제 O(1), 순차탐색 O(N)
-```
+> 데이터 요소 간 1:1 관계를 갖는 선형 자료구조(Linear Structure)의 개념을 설명하고, 배열, 연결 리스트, 스택, 큐의 동작 메커니즘과 시간복잡도를 비교하며, 원형 큐의 포화 판별 수식 및 실무 운영 위험 통제 방안을 제시하시오. (25점)
 
----
+## Ⅰ. 1:1 순서 보장과 메모리 배치, 선형 구조의 개요
 
-## 본론: 개념 및 핵심 메커니즘
+> 현대 고성능 시스템의 병목은 알고리즘 점근 복잡도보다 CPU 캐시 적중률과 큐 버퍼링 제어에서 발생한다.
 
-### 1. 선형 자료구조의 본질과 분류 체계
+- 정의: 데이터 요소 간의 앞뒤 순서가 일렬(1:1)로 연결되어, 첫 번째와 마지막 원소를 제외한 모든 원소가 유일한 선행자와 후속자를 갖는 자료구조
+- 목적: 순차적 데이터 처리, 함수 호출 스택 관리, 비동기 메시지 버퍼링, 하드웨어 메모리 친화적 임의 접근 보장
 
-- **개념**: 원소 간에 앞뒤 순서가 일렬(1:1)로 연결되어, 첫 번째 원소(선행자 없음)와 마지막 원소(후속자 없음)를 제외한 모든 원소가 유일한 선행자와 후속자를 갖는 자료구조.
-- **분류 체계**:
-  1. **접근 제약 없는 구조**:
-     - **배열(Array)**: 물리적으로 연속된 메모리 공간에 고정 크기로 할당, 인덱스를 통한 $O(1)$ 임의 접근.
-     - **리스트(List)**: 순서가 있는 가변 크기 모임. 순차 리스트(ArrayList)와 연결 리스트(LinkedList)로 구분.
-  2. **접근 제약 구조 (무결성 보장)**:
-     - **스택(Stack)**: 한쪽 끝(Top)에서만 입출력이 일어나는 후입선출(LIFO) 구조.
-     - **큐(Queue)**: 한쪽(Rear)에서는 삽입, 다른 한쪽(Front)에서는 삭제가 일어나는 선입선출(FIFO) 구조.
-     - **덱(Deque)**: 양쪽 끝(Front, Rear) 모두에서 삽입과 삭제가 가능한 결합 구조.
+## Ⅱ. 선형 자료구조 핵심 분류 및 메커니즘
 
-### 2. 큐(Queue)의 동작 원리와 원형 큐 수식
+> 메모리 연속성 여부와 입출력 제약 조건에 따라 구조적 특성과 사용 목적이 명확히 분기된다.
 
-- **선형 큐의 한계 (잘못된 포화, False Overflow)**:
-  - Dequeue로 인해 배열 앞단이 비어있음에도 `Rear`가 배열 마지막 인덱스에 도달하면 추가 삽입이 불가능해지는 메모리 단편화 발생.
-  - 데이터를 매번 앞으로 시프트하면 $O(N)$의 치명적 오버헤드 발생.
-- **원형 큐(Circular Queue / Ring Buffer) 해결책**:
-  - 배열의 처음과 끝을 모듈로 연산(`% Size`)으로 논리적으로 연결.
-  - **포인터 이동**: `Next_Pointer = (Current_Pointer + 1) % Size`
-  - **공백 판별식**: `Front == Rear`
-  - **포화 판별식**: `(Rear + 1) % Size == Front` (공백과 포화를 구별하기 위해 반드시 1칸을 비워둠)
+<div class="itpe-pipeline is-vertical" role="img" aria-label="선형 구조 분류 체계">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>1. 접근 제약 없는 구조 (자유로운 탐색)</strong></span>
+    <span>• 배열 (Array): 연속 메모리 배치, 인덱스 오프셋 기반 $O(1)$ 임의 접근<br />• 순차 리스트 (ArrayList): 동적 가변 배열, 캐시 공간 지역성 압도적 우수<br />• 연결 리스트 (LinkedList): 노드 포인터 체인, 선행자 확보 시 $O(1)$ 중간 삽입/삭제</span>
+  </div>
+  <div class="itpe-pipeline-arrow">↕ 무결성 보장을 위한 입출력 제약 부여</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>2. 접근 제약 구조 (엄격한 순서 보장)</strong></span>
+    <span>• 스택 (Stack): Top 한쪽 끝에서만 입출력되는 후입선출 (LIFO: 백트래킹, 실행 스택)<br />• 큐 (Queue): Rear 삽입, Front 삭제가 일어나는 선입선출 (FIFO: 작업 대기열)<br />• 덱 (Deque): 양쪽 끝(Front, Rear)에서 모두 삽입/삭제 가능한 양방향 결합형</span>
+  </div>
+</div>
 
-### 3. 리스트(List) 메커니즘: 순차 vs 연결
+## Ⅲ. 4대 선형 구조 복잡도 및 원형 큐 수식 메커니즘
 
-| 비교 항목 | 순차 리스트 (ArrayList) | 연결 리스트 (LinkedList) |
-|---|---|---|
-| **물리적 배치** | 연속된 메모리 공간 (정적/동적 배열) | 힙 메모리에 흩어진 노드 (데이터 + 포인터) |
-| **임의 접근(조회)** | $O(1)$ (시작 주소 + 오프셋 즉시 계산) | $O(N)$ (Head부터 포인터를 차례로 순회) |
-| **중간 삽입/삭제** | $O(N)$ (삽입 지점 이후 원소 전체 복사/시프트) | $O(1)$ (선행 노드를 안다면 포인터 링크 2개만 교체) |
-| **메모리 오버헤드** | 여유 공간(Capacity) 낭비 가능 | 노드당 포인터(8Byte) 추가 소비, 메모리 단편화 |
-| **하드웨어 친화성** | **압도적 우수** (CPU 캐시 라인 공간 지역성) | **불리** (메모리 파편화로 인한 CPU 캐시 미스) |
+> 선형 큐의 메모리 단편화 문제를 해결하기 위해 원형 큐의 모듈로 판별식이 필수적으로 사용된다.
 
----
+### 1. 4대 선형 자료구조 시간복잡도 비교
 
-## 4대 선형 자료구조 시간복잡도 비교
-
-| 자료구조 | 접근(Access) | 탐색(Search) | 삽입(Insertion) | 삭제(Deletion) | 주 활용 분야 |
+| 자료구조 | 임의 접근 (Access) | 순차 탐색 (Search) | 삽입 (Insertion) | 삭제 (Deletion) | 주요 활용 분야 |
 |---|---|---|---|---|---|
-| **배열 (Array)** | $O(1)$ | $O(N)$ | $O(N)$ | $O(N)$ | 룩업 테이블, 정적 고정 버퍼 |
-| **연결 리스트** | $O(N)$ | $O(N)$ | $O(1)^*$ | $O(1)^*$ | 삽입/삭제 위치가 고정된 스트리밍 버퍼 |
-| **스택 (Stack)** | $O(N)$ | $O(N)$ | $O(1)$ (Push) | $O(1)$ (Pop) | 함수 호출 복귀주소, 백트래킹, 괄호 검사 |
-| **큐 (Queue)** | $O(N)$ | $O(N)$ | $O(1)$ (Enqueue) | $O(1)$ (Dequeue) | 프로세스 레디 큐, 메시지 브로커, 비동기 I/O |
+| **배열 (Array)** | **$O(1)$** | $O(N)$ | $O(N)$ | $O(N)$ | 룩업 테이블, 정적 고정 버퍼 |
+| **연결 리스트** | $O(N)$ | $O(N)$ | **$O(1)^*$** | **$O(1)^*$** | 삽입/삭제 잦은 동적 리스트 |
+| **스택 (Stack)** | $O(N)$ | $O(N)$ | **$O(1)$ (Push)** | **$O(1)$ (Pop)** | 함수 복귀 주소, 문법 파싱 |
+| **큐 (Queue)** | $O(N)$ | $O(N)$ | **$O(1)$ (Enqueue)** | **$O(1)$ (Dequeue)** | OS 스케줄러, 메시지 브로커 |
 
-> \* 연결 리스트의 $O(1)$ 삽입/삭제는 해당 위치 노드의 포인터를 이미 확보한 경우에 한함 (탐색 비용 제외).
+> \* 연결 리스트의 $O(1)$ 삽입/삭제는 대상 노드의 포인터를 이미 확보한 경우에 한함.
 
----
+### 2. 원형 큐(Circular Queue) 모듈로 수식
 
-## 실무 장애 시나리오 및 공학적 대안
+- **선형 큐 한계**: Dequeue 후 앞단 공간이 비어 있어도 `Rear == Size - 1`이면 삽입 불가능(False Overflow)
+- **포인터 이동식**: `Next_Pointer = (Current_Pointer + 1) % Size`
+- **공백 판별식**: `Front == Rear`
+- **포화 판별식**: `(Rear + 1) % Size == Front` (공백과 포화 구분을 위해 반드시 1칸을 공백으로 유지)
 
-### 1. 현장 장애 사례
+## Ⅳ. 선형 구조 운영 위험 및 실무 통제 대책
 
-1. **대규모 트래픽 유입 시 Unbounded Queue에 의한 OOM Crash**:
-   - `LinkedBlockingQueue`를 용량 지정 없이 무제한으로 열어두어, 컨슈머 처리 지연 시 힙 메모리 100% 도달 및 서비스 다운.
-2. **이론만 믿고 LinkedList 남발로 인한 CPU 스파이크**:
-   - 단순 조회와 순회가 빈번한 모듈에 삽입/삭제가 일부 있다는 이유로 LinkedList를 사용했다가, L1/L2 캐시 미스로 처리 지연 급증.
+> 메모리 제약 없는 큐와 캐시 미스를 유발하는 연결 리스트는 운영 장애의 주요 원인이 된다.
 
-### 2. 문제 원인 및 공학적 해결책
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **큐 폭증으로 인한 OOM (Crash)** | **바운디드 큐(Bounded Queue)** 강제 및 리액티브 **배압(Backpressure)** 적용 | 힙 메모리 고갈 원천 차단 및 시스템 생존 보장 |
+| **캐시 미스(Cache Miss) 병목** | LinkedList 대신 **ArrayList** 표준화 및 객체 풀링(Object Pooling) | CPU 공간 지역성 확보로 대량 순회 속도 3~5배 향상 |
+| **선형 큐 잘못된 포화 고갈** | **원형 큐(Ring Buffer / LMAX Disruptor)** 구조 채택 | 가비지 컬렉션(GC) 제거 및 마이크로초 단위 초저지연 달성 |
 
-| 장애 상황 | 근본 원인 | 공학적 대책 (대안 기술) | 개선 효과 |
-|---|---|---|---|
-| **큐 메모리 폭증 (OOM)** | 생산자-소비자 속도 불일치 및 크기 제한 부재 | **바운디드 큐(Bounded Queue)** 강제 + 리액티브 **배압(Backpressure)** 적용 | 버퍼 상한(80%) 초과 시 인입 차단(429)하여 시스템 생존 |
-| **리스트 대량 순회 지연** | 힙 메모리 파편화로 인한 CPU 캐시 적중률 저하 | **ArrayList 표준화** 및 대용량 객체 풀링(Object Pooling) 적용 | 공간 지역성(Spatial Locality) 확보로 순회 속도 3~5배 향상 |
-| **선형 큐 고갈 에러** | Dequeue 후 공간 재활용 불가 (False Overflow) | **원형 큐(Ring Buffer, LMAX Disruptor)** 구조 채택 | 가비지 컬렉션 프리(Zero GC) 및 마이크로초 단위 초저지연 처리 |
+## Ⅴ. 하드웨어 캐시 지역성과 배압 제어 관점의 기술사적 제언
 
----
+> 이론적 시간복잡도보다 현대 CPU의 캐시 아키텍처와 분산 시스템의 배압 거버넌스를 결합해야 한다.
 
-## 결론: 기술사 답안 차별화 포인트
+### 학습자 통찰 메모 — 답안 밖
 
-1. **원형 큐의 수식 정확성**: 답안 작성 시 반드시 `(Rear + 1) % Size == Front` 포화 판별 수식과 공백 구분을 위한 '1칸 비움'의 원리를 명문화할 것.
-2. **현대 하드웨어 아키텍처 관점의 통찰**: 전통적 알고리즘 시간복잡도($O(1)$ vs $O(N)$)를 넘어, 현대 64비트 CPU의 64바이트 캐시 라인(Spatial Locality) 관점에서 `ArrayList`가 10만 건 이하 연산에서 포인터 순회형 `LinkedList`를 압도함을 기술적 근거로 제시할 것.
+- [핵심 통찰]: 알고리즘 책에서는 삽입/삭제가 빈번할 때 LinkedList가 $O(1)$로 우수하다고 가르치지만, 현대 64비트 CPU 환경에서는 완전히 틀린 조언임. LinkedList의 노드는 힙 메모리 사방에 흩어져 있어 접근할 때마다 L1/L2 캐시 미스를 유발함. 반면 ArrayList는 메모리가 연속되어 있어 64바이트 캐시 라인(Spatial Locality)에 의해 미리 CPU로 올라옴. 10만 건 이하의 일반적 연산에서는 메모리 시프트 비용을 감수하더라도 ArrayList가 LinkedList보다 훨씬 빠름.
+- 나라면: 엔터프라이즈 백엔드 표준 가이드라인에서 무분별한 LinkedList 사용을 금지하고 ArrayList를 기본 컬렉션으로 강제하되, 메시지 큐는 용량 제한이 없는 `LinkedBlockingQueue`를 엄격히 금지하고 반드시 크기가 고정된 `ArrayBlockingQueue`에 배압(429 Too Many Requests) 정책을 연동하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 하드웨어 캐시 친화적 컬렉션 선정 및 바운디드 큐 기반 버퍼 거버넌스 확립
+- 대안: **ArrayList 표준화 + 원형 링 버퍼(Disruptor) + 리액티브 배압(Backpressure)**
+- 검증: CPU L1/L2 캐시 미스율 프로파일링 및 큐 수용 임계치(80%) 모니터링
+- 효과: 메모리 파편화 제거 · 초저지연 트랜잭션 처리율 극대화
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="선형 구조 엔터프라이즈 최적화 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <span>언바운디드 큐로 인한 OOM 및 포인터 체인으로 인한 캐시 미스 성능 저하</span>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <span>연속 메모리(ArrayList/원형 큐) 기반 설계 및 배압 제어 파이프라인 구축</span>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <span>큐 임계치 초과 시 트래픽 스로틀링 검증 및 CPU 캐시 적중률 95% 이상</span>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <span>서버 다운 없는 안정적 트래픽 수용 및 고성능 스트리밍 I/O 완성</span>
+  </div>
+</div>
+
+## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **선형 구조(Linear Structure)**는 데이터 요소들이 1:1의 선행·후속 관계로 순차 나열되는 자료구조
+- 목적: 엄격한 순서 보장, 효율적 메모리 인덱싱, 비동기 버퍼링 제어
+
+### 2. 원형 큐 핵심 수식
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="원형 큐 요약">
+  <div class="itpe-pipeline-node"><strong>포인터 이동</strong><span>`Next = (Current + 1) % Size`</span></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>공백·포화 판별</strong><span>공백: `Front == Rear` / 포화: `(Rear + 1) % Size == Front`</span></div>
+</div>
+
+### 3. 핵심 통제
+
+- **False Overflow 극복**: 모듈로 연산 기반 링 버퍼를 활용해 메모리 재활용
+- **배압(Backpressure)**: 큐 크기 상한 설정으로 OOM 방지 및 가용성 유지
+
+## 출제 이력과 검증 출처
+
+- 제131회 정보관리기술사 1교시: 자료구조에서 선형 구조와 비선형 구조의 비교
+- Thomas H. Cormen, Introduction to Algorithms (CLRS) - Elementary Data Structures
+- LMAX Disruptor High Performance Alternative to Bounded Queues
+
+## 학습 체크
+
+- [ ] 선형 자료구조의 정의와 선형 큐의 '잘못된 포화(False Overflow)' 원인을 설명할 수 있는가?
+- [ ] 원형 큐의 공백 판별식과 포화 판별식을 수식으로 정확히 제시할 수 있는가?
+- [ ] ArrayList와 LinkedList를 CPU 캐시 공간 지역성 관점에서 비교할 수 있는가?
+
+## 연결 토픽
+
+- 이전 토픽: [비선형 구조](./052_non_linear_structure.md)
+- 연관 토픽: [정렬 알고리즘](./043_sort_algorithm.md), [BST](./001_bst.md)
+- 다음 토픽: [요구사항 명세](./054_requirements_specification.md)

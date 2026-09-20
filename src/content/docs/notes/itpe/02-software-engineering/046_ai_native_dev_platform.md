@@ -1,14 +1,15 @@
 ---
 title: "AI 네이티브 개발 플랫폼"
-author: "Codex"
-date: "2026-09-20T19:47:30+09:00"
-tags: ["notes-software-engineering"]
+tags:
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,10 +23,10 @@ extra:
 - 산출: 변경 근거·실행 로그·검증 결과를 동반한 검토 가능한 변경 집합
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼의 통제된 개발 폐루프">
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>사양·권한</strong></span><small><b>입력</b> 작업 목표 · 인수 조건 · 허용 도구<br /><b>산출</b> 실행 가능한 작업 계약</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>문맥·계획</strong></span><small><b>처리</b> 저장소 검색 · 의존 분석 · 단계 분해<br /><b>산출</b> 근거가 연결된 변경 계획</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>격리 실행</strong></span><small><b>처리</b> 파일 변경 · 빌드 · 테스트<br /><b>산출</b> 패치 · 로그 · 실패 피드백</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>검증·승인</strong></span><small><b>판정</b> 품질·보안·정책 Gate<br /><b>산출</b> 승인·수정·중단 결정</small></div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>사양·권한</strong></span><span><b>입력</b> 작업 목표 · 인수 조건 · 허용 도구<br /><b>산출</b> 실행 가능한 작업 계약</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>문맥·계획</strong></span><span><b>처리</b> 저장소 검색 · 의존 분석 · 단계 분해<br /><b>산출</b> 근거가 연결된 변경 계획</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>격리 실행</strong></span><span><b>처리</b> 파일 변경 · 빌드 · 테스트<br /><b>산출</b> 패치 · 로그 · 실패 피드백</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>검증·승인</strong></span><span><b>판정</b> 품질·보안·정책 Gate<br /><b>산출</b> 승인·수정·중단 결정</span></div>
 </div>
 
 <details><summary>핵심 용어</summary>
@@ -69,10 +70,10 @@ extra:
 > 에이전트가 스스로 반복하더라도 인수 조건과 시도 한계가 없으면 실패를 확대하므로, 매 반복은 관찰 가능한 증거와 종료 조건을 가져야 함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발의 계획 실행 검증 절차">
-  <div class="itpe-pipeline-node"><strong>작업 계약</strong><small><b>활동</b> 범위·인수 조건·금지 행동 명세<br /><b>산출</b> 승인된 목표와 권한</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>문맥 수집·계획</strong><small><b>활동</b> 관련 코드·테스트·정책 검색과 단계 분해<br /><b>산출</b> 근거 링크와 변경 계획</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>최소 변경·실행</strong><small><b>활동</b> Sandbox에서 패치·빌드·테스트<br /><b>산출</b> 변경 집합과 실행 로그</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Gate·피드백</strong><small><b>판정</b> 인수·회귀·보안·정책 결과 확인<br /><b>산출</b> 승인·재계획·중단 결정</small></div>
+  <div class="itpe-pipeline-node"><strong>작업 계약</strong><span><b>활동</b> 범위·인수 조건·금지 행동 명세<br /><b>산출</b> 승인된 목표와 권한</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>문맥 수집·계획</strong><span><b>활동</b> 관련 코드·테스트·정책 검색과 단계 분해<br /><b>산출</b> 근거 링크와 변경 계획</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>최소 변경·실행</strong><span><b>활동</b> Sandbox에서 패치·빌드·테스트<br /><b>산출</b> 변경 집합과 실행 로그</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>Gate·피드백</strong><span><b>판정</b> 인수·회귀·보안·정책 결과 확인<br /><b>산출</b> 승인·재계획·중단 결정</span></div>
 </div>
 
 ## Ⅳ. AI 보조 개발과 AI 네이티브 개발 비교
@@ -88,17 +89,17 @@ extra:
 | 산출 | 코드 제안 | 패치·로그·검증 증거 |
 | 통제 | 제안 채택 여부 | 권한 경계·Gate·승인점 |
 
-## Ⅴ. 품질·보안 위험과 통제
+## Ⅴ. 품질·보안 위험과 실무 방어 대책
 
 > 비결정적 생성은 결정적 검증으로 감싸야 하며, 특히 공급망·비밀정보·과잉 권한은 코드 정확성과 별도로 차단해야 함.
 
-| 위험 | 원인 | 대안 | 판정 |
-|---|---|---|---|
-| 사양 오해 | 모호한 목표·불완전 문맥 | 인수 테스트·질문·범위 잠금 | 요구별 검증 결과 존재 |
-| 공급망 오염 | 검증되지 않은 패키지 제안 | 승인 Registry·**SCA(Software Composition Analysis)**·잠금파일 | 출처·취약점·라이선스 통과 |
-| 비밀정보 노출 | 과도한 저장소·로그 접근 | 민감도 필터·비밀 스캔·마스킹 | 입력·출력·커밋에 비밀 없음 |
-| 권한 남용 | 광범위한 셸·네트워크 권한 | 최소 권한 Sandbox·승인 단계 | 허용 범위 밖 호출 차단 |
-| 검증 환상 | 생성 테스트만으로 자기 확인 | 독립 인수·회귀·정적 분석 | 변경 요구와 회귀 조건 통과 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **사양 오해 및 환각 (Hallucination)** | BDD 기반 인수 테스트 사전 정의 및 명세 범위 잠금(Spec-lock) | 요구사항 대비 임의적 코드 변조 및 결함 원천 차단 |
+| **공급망 오염 (취약 패키지 도입)** | 승인된 프라이빗 Registry 강제 및 **SCA(Software Composition Analysis)** 연동 | 악성 패키지·라이선스 위반 요소 유입 100% 차단 |
+| **비밀정보 및 크리덴셜 노출** | 커밋 전 비밀정보 스캐너(TruffleHog) 및 민감 데이터 마스킹 적용 | API Key, DB 비밀번호 등 크리덴셜 외부 유출 방지 |
+| **과잉 권한 남용 (자원 침해)** | 컨테이너 격리 **Sandbox** 및 최소 권한 도구(Tool Gateway) 제한 | 악의적 명령어 실행 및 호스트 환경 침해 방지 |
+| **자기 검증 환상 (False Safety)** | 에이전트 생성 테스트 외 독립 회귀 테스트 및 **정적 분석 Gate** 강제 | 코드 커버리지 왜곡 방지 및 프로덕션 품질 무결성 확보 |
 
 ## Ⅵ. 증거 기반 자율성 거버넌스
 
@@ -116,19 +117,19 @@ extra:
 - 검증: 요구 추적·회귀·보안·감사 로그와 롤백 가능성 확인
 - 효과: 자동화 이득 유지 · 오류 확산 억제 · 책임 있는 변경 승인
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼 거버넌스 제언"><div class="itpe-pipeline-node"><strong>무제한 자율 실행</strong><small><b>문제</b> 사양 오류와 과잉 권한이 변경 전반으로 확산</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>위험 기반 권한</strong><small><b>대안</b> 작업 등급별 도구·데이터·승인 경계 설정</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>독립 Quality Gate</strong><small><b>판정</b> 요구·회귀·공급망·비밀정보 검사 통과</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>점진적 자율성</strong><small><b>효과</b> 증거가 있는 범위만 실행 권한 확대</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼 거버넌스 제언"><div class="itpe-pipeline-node"><strong>무제한 자율 실행</strong><span><b>문제</b> 사양 오류와 과잉 권한이 변경 전반으로 확산</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>위험 기반 권한</strong><span><b>대안</b> 작업 등급별 도구·데이터·승인 경계 설정</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>독립 Quality Gate</strong><span><b>판정</b> 요구·회귀·공급망·비밀정보 검사 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>점진적 자율성</strong><span><b>효과</b> 증거가 있는 범위만 실행 권한 확대</span></div></div>
 
 ## 1교시 10점 답안 발췌
 
 - 정의: **AI Native Development Platform**은 **SDLC(Software Development Life Cycle)**에서 **AI 에이전트**가 개발 도구와 Quality Gate를 결합해 계획·변경·검증을 수행하는 환경
 - 목적: 반복 구현·검증 자동화 → 개발자의 사양·아키텍처·위험 승인 집중
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>작업 계약</strong><small><b>입력</b> 목표·인수 조건·권한<br /><b>산출</b> 실행 범위</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>문맥·격리 실행</strong><small><b>처리</b> 검색·계획·패치·테스트<br /><b>산출</b> 변경·로그</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>Gate·승인</strong><small><b>판정</b> 품질·보안·정책<br /><b>산출</b> 승인·재계획·중단</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>작업 계약</strong><span><b>입력</b> 목표·인수 조건·권한<br /><b>산출</b> 실행 범위</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>문맥·격리 실행</strong><span><b>처리</b> 검색·계획·패치·테스트<br /><b>산출</b> 변경·로그</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>Gate·승인</strong><span><b>판정</b> 품질·보안·정책<br /><b>산출</b> 승인·재계획·중단</span></div></div>
 
-| 위험 | 대책 | 판정 |
+| 위험 | 대책 | 효과 |
 |---|---|---|
-| 공급망 오염 | 승인 Registry·**SCA(Software Composition Analysis)** | 출처·취약점·라이선스 통과 |
-| 권한 남용 | 최소 권한 Sandbox·인간 승인 | 허용 범위 밖 호출 차단 |
+| **공급망 오염** | 승인 Registry 및 **SCA 분석** 의무화 | 취약점·라이선스 위반 패키지 차단 |
+| **권한 남용** | 최소 권한 **Sandbox** 및 고위험 인간 승인 | 호스트 환경 침해 및 비인가 명령 원천 방지 |
 
 - 결론: 최소 권한과 독립 Gate로 비결정적 생성을 결정적 증거 안에 가둠
 
@@ -150,6 +151,6 @@ extra:
 
 ## 연결 토픽
 
-- [AI 생성 코드 라이선스 준수](./063_ai_generated_code_license_compliance/)
-- [AI SW 품질보증과 테스트](./093_ai_sw_quality_assurance_testing/)
-- [CI/CD](./095_ci_cd/)
+- 이전 토픽: [클래스 다이어그램](./045_class_diagram.md)
+- 연관 토픽: [AI 생성 코드 라이선스 준수](./063_ai_generated_code_license_compliance.md), [AI SW 품질보증과 테스트](./093_ai_sw_quality_assurance_testing.md), [CI/CD](./095_ci_cd.md)
+- 다음 토픽: [과업심의위원회](./048_task_deliberation_committee.md)

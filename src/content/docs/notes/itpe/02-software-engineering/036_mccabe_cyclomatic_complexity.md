@@ -2,11 +2,14 @@
 title: "McCabe 순환복잡도"
 tags:
   - "notes-software-engineering"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 화이트박스 테스트의 **기본 경로 테스팅(Basis Path Testing)** 케이스 수 도출 · 결함 발생 위험 예측 · 리팩토링 기준선(10 이하) 확립
 
 <div class="itpe-flow-map" role="img" aria-label="McCabe 순환복잡도 산출 및 활용 흐름">
-  <div class="itpe-flow-node"><strong>소스코드 분석</strong><small>조건문 및 분기문 식별</small></div>
+  <div class="itpe-flow-node"><strong>소스코드 분석</strong><span>조건문 및 분기문 식별</span></div>
   <div class="itpe-flow-arrow">→ 그래프 모델링 →</div>
   <div class="itpe-flow-node is-current">
     <strong>제어 흐름 그래프 (CFG)</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 경로 테스팅 및 리팩토링 →</div>
-  <div class="itpe-flow-node"><strong>품질 개선</strong><small>복잡도 10 이하 유지 · 테스트 케이스 완비</small></div>
+  <div class="itpe-flow-node"><strong>품질 개선</strong><span>복잡도 10 이하 유지 · 테스트 케이스 완비</span></div>
 </div>
 
 <details>
@@ -67,17 +70,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="McCabe 3대 계산 공식">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>공식 1: 간선과 노드 기반</strong></span>
-    <small>V(G) = E - N + 2P (단일 모듈인 경우 P=1 이므로 V(G) = E - N + 2)</small>
+    <span>V(G) = E - N + 2P (단일 모듈인 경우 P=1 이므로 V(G) = E - N + 2)</span>
   </div>
   <div class="itpe-pipeline-arrow">↕ 수학적 동일</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>공식 2: 서술 노드(Predicate Node) 기반</strong></span>
-    <small>V(G) = P + 1 (P는 2개 이상의 출력 간선을 가진 분기 노드의 총 개수)<br />→ 실무에서 코드만 보고 즉시 계산할 때 가장 유용</small>
+    <span>V(G) = P + 1 (P는 2개 이상의 출력 간선을 가진 분기 노드의 총 개수, 실무 계산에 최적)</span>
   </div>
   <div class="itpe-pipeline-arrow">↕ 수학적 동일</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>공식 3: 닫힌 영역(Region) 기반</strong></span>
-    <small>V(G) = R (CFG 평면 그래프가 분할하는 닫힌 영역의 수 + 외부 개방 영역 1개)</small>
+    <span>V(G) = R (CFG 평면 그래프가 분할하는 닫힌 영역의 수 + 외부 개방 영역 1개)</span>
   </div>
 </div>
 
@@ -97,31 +100,41 @@ extra:
 | **21 ~ 50** | 매우 복잡하고 이해하기 어려운 코드 | **높음 (High Risk)** | **즉각적인 메서드 추출(Extract Method) 리팩토링 필수** |
 | **50 초과** | 테스트가 불가능한 스파게티 코드 | **치명적 (Very High Risk)** | 전면 재작성 또는 모듈 재설계 필수 |
 
-## Ⅳ. 기본 경로 테스팅(Basis Path Testing)에의 실무 적용
+## Ⅳ. 기본 경로 테스팅(Basis Path Testing)에의 적용 및 실무 위험 관리
 
 > 화이트박스 테스팅에서 중복 없이 모든 분기를 커버하는 테스트 스위트를 설계하는 기준이 된다.
+
+### 1. 기본 경로 테스팅 4단계
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기본 경로 테스팅 4단계">
   <div class="itpe-pipeline-node">
     <strong>1. 제어 흐름 그래프(CFG) 작성</strong>
-    <small>소스코드의 실행 블록을 노드로, 분기 제어를 간선으로 변환</small>
+    <span>소스코드의 실행 블록을 노드로, 분기 제어를 간선으로 변환</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>2. 순환복잡도 V(G) 계산</strong>
-    <small>선형 독립 경로의 상한선 도출 (예: V(G) = 4)</small>
+    <span>선형 독립 경로의 상한선 도출 (예: V(G) = 4)</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3. 독립 경로(Basis Path) 집합 도출</strong></span>
-    <small>최소 1개 이상의 새로운 간선을 통과하는 경로 4개 선정<br />Path 1: 1-2-3-5 / Path 2: 1-2-4-5 / Path 3: 1-6-7 ...</small>
+    <span>최소 1개 이상의 새로운 간선을 통과하는 경로 4개 선정 (Path 1, 2, 3, 4)</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>4. 경로별 테스트 케이스 입력값 설계</strong></span>
-    <small>각 독립 경로를 강제로 통과시키는 구체적 입력 데이터 도출</small>
+    <span>각 독립 경로를 강제로 통과시키는 구체적 입력 데이터 도출</span>
   </div>
 </div>
+
+### 2. 순환복잡도 관리 실무 위험 및 대응 통제
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 과도한 분기문으로 복잡도 폭증(V(G)>10) | 메서드 추출(Extract Method) 및 다형성(Strategy 패턴) 리팩토링 | 코드 가독성 향상 및 잠재 결함 발생률 감소 |
+| 기본 경로(Basis Path) 누락으로 미검증 분기 발생 | 순환복잡도 수치 기반 선형 독립 경로 전수 도출 및 테스트 | 분기 커버리지 100% 달성 및 회귀 버그 예방 |
+| 고복잡도 코드의 지속적 커밋 방치 | CI 파이프라인 내 SonarQube 복잡도 Quality Gate(V(G)≤10) 연동 | 고복잡도 코드의 운영 환경 유입 원천 차단 |
 
 ## Ⅴ. 정적 분석 기반 복잡도 거버넌스를 위한 기술사적 제언
 
@@ -142,22 +155,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="순환복잡도 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>수백 라인의 거대 함수 방치 · 테스트 케이스 누락 및 회귀 버그 속출</small>
+    <span>수백 라인의 거대 함수 방치 · 테스트 케이스 누락 및 회귀 버그 속출</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>McCabe 순환복잡도 10 이하 관리 기준 수립 및 CI 파이프라인 자동 차단</small>
+    <span>McCabe 순환복잡도 10 이하 관리 기준 수립 및 CI 파이프라인 자동 차단</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>정적 분석 Quality Gate 통과율 100% 및 기본 경로 커버리지 충족</small>
+    <span>정적 분석 Quality Gate 통과율 100% 및 기본 경로 커버리지 충족</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>클린 코드 아키텍처 실현 · 단위 테스트 완전성 및 소프트웨어 신뢰성 보증</small>
+    <span>클린 코드 아키텍처 실현 · 단위 테스트 완전성 및 소프트웨어 신뢰성 보증</span>
   </div>
 </div>
 
@@ -171,11 +184,11 @@ extra:
 ### 2. 핵심 계산 공식 3가지
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="McCabe 3대 공식 요약">
-  <div class="itpe-pipeline-node"><strong>간선/노드 공식</strong><small>V(G) = E - N + 2P (P=1 단일 모듈)</small></div>
+  <div class="itpe-pipeline-node"><strong>간선/노드 공식</strong><span>V(G) = E - N + 2P (P=1 단일 모듈)</span></div>
   <div class="itpe-pipeline-arrow">↕ 동일</div>
-  <div class="itpe-pipeline-node"><strong>분기 노드 공식</strong><small>V(G) = P + 1 (P는 서술 노드 수)</small></div>
+  <div class="itpe-pipeline-node"><strong>분기 노드 공식</strong><span>V(G) = P + 1 (P는 서술 노드 수)</span></div>
   <div class="itpe-pipeline-arrow">↕ 동일</div>
-  <div class="itpe-pipeline-node"><strong>영역 공식</strong><small>V(G) = Closed Regions + 1</small></div>
+  <div class="itpe-pipeline-node"><strong>영역 공식</strong><span>V(G) = Closed Regions + 1</span></div>
 </div>
 
 ### 3. 핵심 통제

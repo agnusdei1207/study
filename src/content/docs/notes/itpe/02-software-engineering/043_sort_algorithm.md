@@ -1,14 +1,15 @@
 ---
 title: "정렬 알고리즘(삽입정렬·트리정렬)"
-author: "Codex"
-date: "2026-09-20T19:46:30+09:00"
-tags: ["notes-software-engineering"]
+tags:
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -29,9 +30,9 @@ extra:
 - 산출: 순서화된 레코드와 안정성·시간·공간 특성이 명시된 선택 근거
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="삽입정렬과 트리정렬의 핵심 동작 비교">
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>삽입정렬</strong></span><small><b>입력</b> 정렬 구간과 다음 Key<br /><b>처리</b> 큰 원소 이동 후 빈 위치 삽입<br /><b>산출</b> 한 칸 확장된 안정 정렬 구간</small></div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>삽입정렬</strong></span><span><b>입력</b> 정렬 구간과 다음 Key<br /><b>처리</b> 큰 원소 이동 후 빈 위치 삽입<br /><b>산출</b> 한 칸 확장된 안정 정렬 구간</span></div>
   <div class="itpe-pipeline-arrow"><span aria-label="비교">vs</span></div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>트리정렬</strong></span><small><b>입력</b> 비교 가능한 Key 열<br /><b>처리</b> BST 삽입 후 중위 순회<br /><b>산출</b> 오름차순 방문 열</small></div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>트리정렬</strong></span><span><b>입력</b> 비교 가능한 Key 열<br /><b>처리</b> BST 삽입 후 중위 순회<br /><b>산출</b> 오름차순 방문 열</span></div>
 </div>
 
 <details><summary>핵심 용어</summary>
@@ -60,9 +61,9 @@ extra:
 > 삽입정렬은 역전 쌍이 적을수록 이동량이 줄어드는 적응 정렬이며, 소규모·거의 정렬된 입력에서 단순한 제어와 지역성이 강점임.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="삽입정렬 절차">
-  <div class="itpe-pipeline-node"><strong>Key 선택</strong><small><b>활동</b> 미정렬 구간의 첫 원소 보관<br /><b>산출</b> 삽입 대상 Key</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>후방 탐색·이동</strong><small><b>활동</b> Key보다 큰 원소를 오른쪽으로 이동<br /><b>산출</b> Key가 들어갈 빈 위치</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>삽입·확장</strong><small><b>활동</b> 빈 위치에 Key 저장<br /><b>산출</b> 확장된 안정 정렬 구간</small></div>
+  <div class="itpe-pipeline-node"><strong>Key 선택</strong><span><b>활동</b> 미정렬 구간의 첫 원소 보관<br /><b>산출</b> 삽입 대상 Key</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>후방 탐색·이동</strong><span><b>활동</b> Key보다 큰 원소를 오른쪽으로 이동<br /><b>산출</b> Key가 들어갈 빈 위치</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>삽입·확장</strong><span><b>활동</b> 빈 위치에 Key 저장<br /><b>산출</b> 확장된 안정 정렬 구간</span></div>
 </div>
 
 - **최선 $O(n)$**: 이미 정렬된 입력은 원소별 한 번의 경계 비교로 통과함
@@ -74,16 +75,16 @@ extra:
 > 트리정렬의 성능은 순회가 아니라 BST 높이가 결정하므로, 최악 시간을 제한하려면 균형 트리를 선택해야 함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="트리정렬 절차">
-  <div class="itpe-pipeline-node"><strong>BST 구축</strong><small><b>활동</b> Key 비교로 왼쪽·오른쪽 자식에 삽입<br /><b>산출</b> 순서 불변식을 가진 트리</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>중위 순회</strong><small><b>활동</b> 왼쪽·루트·오른쪽 순으로 방문<br /><b>산출</b> 오름차순 Key 열</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>높이 통제</strong><small><b>판정</b> 편향 여부와 균형 규칙 확인<br /><b>산출</b> 최악 시간 경계</small></div>
+  <div class="itpe-pipeline-node"><strong>BST 구축</strong><span><b>활동</b> Key 비교로 왼쪽·오른쪽 자식에 삽입<br /><b>산출</b> 순서 불변식을 가진 트리</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>중위 순회</strong><span><b>활동</b> 왼쪽·루트·오른쪽 순으로 방문<br /><b>산출</b> 오름차순 Key 열</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>높이 통제</strong><span><b>판정</b> 편향 여부와 균형 규칙 확인<br /><b>산출</b> 최악 시간 경계</span></div>
 </div>
 
 - **평균 $O(n\log n)$**: 트리 높이가 로그 수준일 때 각 삽입 비용이 제한됨
 - **최악 $O(n^2)$**: 정렬 입력이 단순 BST를 한쪽으로 편향시키면 삽입 경로가 선형화됨
 - **공간 $O(n)$**: 노드·링크 저장이 필요하며 중복 Key 정책이 안정성과 결과를 좌우함
 
-## Ⅳ. 입력 조건별 비교와 선택
+## Ⅳ. 입력 조건별 비교 및 실무 위험 대책
 
 > 동일한 점근 복잡도라도 안정성·보조공간·기존 질서가 다르면 선택이 달라지므로 운영 입력의 분포와 상한을 먼저 고정해야 함.
 
@@ -94,6 +95,14 @@ extra:
 | 공간 | $O(1)$ | $O(n)$ | $O(n)$ | 평균 $O(\log n)$ |
 | 안정성 | 안정 | 구현 정책 의존 | 안정 | 일반적으로 불안정 |
 | 선택 | 소규모·거의 정렬 | 정렬과 동적 탐색 병행 | 안정성·최악 보장 | 배열·평균 성능 |
+
+### 실무 정렬 알고리즘 운영 위험 및 대책
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **최악 시간 복잡도 퇴화 ($O(n^2)$)** | 정렬 상태 사전 점검 및 인트로소트(Introsort)·AVL 트리 적용 | 최악 상황에서도 $O(n\log n)$ 수행 성능 보증 |
+| **메모리 초과 (OOM)** | 대용량 데이터 시 외부 정렬(External Sort) 및 제자리 정렬 강제 | 추가 메모리 $O(1)$ 제약 준수 및 시스템 다운 차단 |
+| **동등 키 순서 왜곡 (불안정 정렬)** | 다단계 정렬 시 안정 정렬(Stable Sort) 알고리즘 의무화 | 비즈니스 데이터의 기존 정렬 무결성 100% 보존 |
 
 ## Ⅴ. 복잡도보다 입력 계약을 우선하는 선택
 
@@ -111,14 +120,14 @@ extra:
 - 검증: 정렬·역순·중복·부분 정렬 입력의 비교 횟수와 공간 상한 시험
 - 효과: 최악 퇴화 조기 발견 · 동등 Key 의미 보존 · 운영 성능 예측
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정렬 알고리즘 선택 제언"><div class="itpe-pipeline-node"><strong>단일 복잡도 비교</strong><small><b>문제</b> 입력 질서·안정성·공간 제약 누락</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>입력 계약</strong><small><b>대안</b> 분포·중복·규모·메모리 상한 명시</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>경계 입력 시험</strong><small><b>판정</b> 최악 시간·안정성·공간 조건 통과</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>선택 근거 확보</strong><small><b>효과</b> 성능 퇴화와 의미 손실 예방</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="정렬 알고리즘 선택 제언"><div class="itpe-pipeline-node"><strong>단일 복잡도 비교</strong><span><b>문제</b> 입력 질서·안정성·공간 제약 누락</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>입력 계약</strong><span><b>대안</b> 분포·중복·규모·메모리 상한 명시</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>경계 입력 시험</strong><span><b>판정</b> 최악 시간·안정성·공간 조건 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>선택 근거 확보</strong><span><b>효과</b> 성능 퇴화와 의미 손실 예방</span></div></div>
 
 ## 1교시 10점 답안 발췌
 
 - 정의: **Sorting Algorithm(정렬 알고리즘)**은 **비교 연산**으로 Key 순서를 판정해 레코드를 재배치하는 **순서화 알고리즘**
 - 목적: 탐색·병합의 순서 전제 확보 → 후속 처리의 예측 가능성 향상
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정렬 알고리즘 1교시 핵심 그림"><div class="itpe-pipeline-node"><strong>삽입정렬</strong><small><b>처리</b> Key 선택·큰 원소 이동·삽입<br /><b>산출</b> 확장된 안정 정렬 구간</small></div><div class="itpe-pipeline-arrow"><span aria-label="비교">vs</span></div><div class="itpe-pipeline-node"><strong>트리정렬</strong><small><b>처리</b> BST 구축·중위 순회<br /><b>산출</b> 오름차순 방문 열</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="정렬 알고리즘 1교시 핵심 그림"><div class="itpe-pipeline-node"><strong>삽입정렬</strong><span><b>처리</b> Key 선택·큰 원소 이동·삽입<br /><b>산출</b> 확장된 안정 정렬 구간</span></div><div class="itpe-pipeline-arrow"><span aria-label="비교">vs</span></div><div class="itpe-pipeline-node"><strong>트리정렬</strong><span><b>처리</b> BST 구축·중위 순회<br /><b>산출</b> 오름차순 방문 열</span></div></div>
 
 | 기준 | 삽입정렬 | 트리정렬 |
 |---|---|---|
@@ -144,6 +153,6 @@ extra:
 
 ## 연결 토픽
 
-- [알고리즘 복잡도(Big-O)](./125_algorithm_complexity_big_o/)
-- [BST](./001_bst/)
-- [McCabe 순환복잡도](./036_mccabe_cyclomatic_complexity/)
+- 이전 토픽: [의존성 주입(DI)](./042_dependency_injection.md)
+- 연관 토픽: [알고리즘 복잡도(Big-O)](./125_algorithm_complexity_big_o.md), [BST](./001_bst.md), [McCabe 순환복잡도](./036_mccabe_cyclomatic_complexity.md)
+- 다음 토픽: [클래스 다이어그램](./045_class_diagram.md)

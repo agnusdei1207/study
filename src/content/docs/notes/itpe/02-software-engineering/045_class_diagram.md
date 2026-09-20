@@ -1,14 +1,15 @@
 ---
 title: "클래스 다이어그램(Class Diagram)"
-author: "Codex"
-date: "2026-09-20T19:50:00+09:00"
-tags: ["notes-software-engineering"]
+tags:
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +23,9 @@ extra:
 - 산출: 책임·다중성·탐색 방향·생명주기 소유권이 명시된 설계 모델
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램의 클래스 내부와 외부 관계">
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>클래스 구획</strong></span><small><b>구성</b> 이름 · 속성 · 오퍼레이션<br /><b>표기</b> 가시성 · 타입 · 매개변수</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>관계 명세</strong></span><small><b>구성</b> 연관 · 일반화 · 실체화 · 의존<br /><b>표기</b> 다중성 · 역할 · 탐색 방향</small></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>소유권 판정</strong></span><small><b>구성</b> 집약 · 합성<br /><b>판정</b> 공유 여부 · 생명주기 종속</small></div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>클래스 구획</strong></span><span><b>구성</b> 이름 · 속성 · 오퍼레이션<br /><b>표기</b> 가시성 · 타입 · 매개변수</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>관계 명세</strong></span><span><b>구성</b> 연관 · 일반화 · 실체화 · 의존<br /><b>표기</b> 다중성 · 역할 · 탐색 방향</span></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>소유권 판정</strong></span><span><b>구성</b> 집약 · 합성<br /><b>판정</b> 공유 여부 · 생명주기 종속</span></div>
 </div>
 
 <details><summary>핵심 용어</summary>
@@ -67,11 +68,11 @@ extra:
 > 관계는 선 모양을 외우는 데서 끝나지 않고 참조 지속성·계약 이행·상속·소유권 중 무엇을 뜻하는지 코드와 일치해야 함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="시험장에서 재현하는 UML 클래스와 관계 기호">
-  <div class="itpe-pipeline-node"><strong>Order</strong><small><b>속성</b> -orderNo: String<br /><b>오퍼레이션</b> +total(): Money</small></div>
+  <div class="itpe-pipeline-node"><strong>Order</strong><span><b>속성</b> -orderNo: String<br /><b>오퍼레이션</b> +total(): Money</span></div>
   <div class="itpe-pipeline-arrow"><strong>◆ 합성</strong><br /><span>다중성 1 : 1..*</span><br />↓</div>
-  <div class="itpe-pipeline-node"><strong>OrderItem</strong><small><b>소유</b> Order에 배타적으로 귀속<br /><b>생명주기</b> Order와 함께 생성·삭제</small></div>
+  <div class="itpe-pipeline-node"><strong>OrderItem</strong><span><b>소유</b> Order에 배타적으로 귀속<br /><b>생명주기</b> Order와 함께 생성·삭제</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>관계 기호</strong><small><b>일반화</b> ──▷ · <b>실체화</b> - -▷<br /><b>집약</b> ◇── · <b>합성</b> ◆──</small></div>
+  <div class="itpe-pipeline-node"><strong>관계 기호</strong><span><b>일반화</b> ──▷ · <b>실체화</b> - -▷<br /><b>집약</b> ◇── · <b>합성</b> ◆──</span></div>
 </div>
 
 | 관계 | 표기 | 의미 | 검증 질문 |
@@ -83,7 +84,7 @@ extra:
 | **Aggregation** | 전체 쪽 빈 마름모 | 공유 가능한 부분 | 부분이 독립·공유 가능한가 |
 | **Composition** | 전체 쪽 채운 마름모 | 배타적 소유 | 부분의 생명주기가 전체에 종속되는가 |
 
-## Ⅳ. 집약과 합성의 경계 판정
+## Ⅳ. 집약과 합성의 경계 판정 및 실무 위험 대책
 
 > 전체-부분이라는 말만으로 합성을 선택하면 안 되며, 배타적 소유와 생성·삭제 책임이 모두 성립할 때만 강한 생명주기 관계를 표시함.
 
@@ -94,6 +95,14 @@ extra:
 | 이동 | 다른 전체로 이전 가능 | 소유 경계 안에서 관리 |
 | 표기 | 빈 마름모 | 채운 마름모 |
 | 구현 판단 | 일반 참조로 충분한지 확인 | 생성·삭제·무결성 규칙 동반 |
+
+### 실무 클래스 모델링 위험 및 대책
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **집약·합성 소유권 혼동** | 객체 생명주기(Lifecycle) 종속성 기준 배타적 소유 엄격 판정 | 메모리 누수 및 고아 객체(Orphan) 발생 원천 차단 |
+| **다중성(Multiplicity) 누락** | `1..*`, `0..1` 등 양방향 다중성 명시 및 Nullable 제약 검증 | 런타임 NullPointerException 및 데이터 정합성 결함 예방 |
+| **과도한 상속 결합 (is-a 왜곡)** | 상속보다 합성(Composition over Inheritance) 원칙 우선 적용 | 클래스 폭발 방지 및 유연한 객체 확장성 확보 |
 
 ## Ⅴ. 모델과 구현의 양방향 정합성
 
@@ -111,14 +120,14 @@ extra:
 - 검증: 코드의 참조·상속·생성·삭제 규칙과 다이어그램 양방향 대조
 - 효과: 과도한 상속 억제 · 생명주기 오류 예방 · 구조 의사소통 향상
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램 품질 개선 제언"><div class="itpe-pipeline-node"><strong>표기 중심 모델</strong><small><b>문제</b> 다중성·역할·소유권 해석 불일치</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>관계 의미 규칙</strong><small><b>대안</b> 참조 지속성·치환성·생명주기 질문 적용</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>모델-코드 대조</strong><small><b>판정</b> 관계·다중성·생성·삭제 규칙 일치</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>정적 구조 정합성</strong><small><b>효과</b> 변경 영향과 무결성 경계 명료화</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램 품질 개선 제언"><div class="itpe-pipeline-node"><strong>표기 중심 모델</strong><span><b>문제</b> 다중성·역할·소유권 해석 불일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>관계 의미 규칙</strong><span><b>대안</b> 참조 지속성·치환성·생명주기 질문 적용</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>모델-코드 대조</strong><span><b>판정</b> 관계·다중성·생성·삭제 규칙 일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>정적 구조 정합성</strong><span><b>효과</b> 변경 영향과 무결성 경계 명료화</span></div></div>
 
 ## 1교시 10점 답안 발췌
 
 - 정의: **UML(Unified Modeling Language) Class Diagram**은 **클래스**의 특성과 **정적 관계**를 명세하는 구조 다이어그램
 - 목적: 책임·타입·관계 제약의 공통 이해 확보 → 설계와 구현의 구조 정합성 유지
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램 1교시 핵심 그림"><div class="itpe-pipeline-node"><strong>Order</strong><small><b>속성</b> -orderNo: String<br /><b>오퍼레이션</b> +total(): Money</small></div><div class="itpe-pipeline-arrow"><strong>◆ 합성</strong><br /><span>다중성 1 : 1..*</span><br />↓</div><div class="itpe-pipeline-node"><strong>OrderItem</strong><small><b>소유</b> Order에 배타적으로 귀속<br /><b>생명주기</b> Order와 함께 생성·삭제</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램 1교시 핵심 그림"><div class="itpe-pipeline-node"><strong>Order</strong><span><b>속성</b> -orderNo: String<br /><b>오퍼레이션</b> +total(): Money</span></div><div class="itpe-pipeline-arrow"><strong>◆ 합성</strong><br /><span>다중성 1 : 1..*</span><br />↓</div><div class="itpe-pipeline-node"><strong>OrderItem</strong><span><b>소유</b> Order에 배타적으로 귀속<br /><b>생명주기</b> Order와 함께 생성·삭제</span></div></div>
 
 | 관계 | 기호 | 의미 |
 |---|---|---|
@@ -143,7 +152,6 @@ extra:
 
 ## 연결 토픽
 
-- [UML 다이어그램](./020_uml_diagrams/)
-- [객체지향 설계원칙 SOLID](./082_solid/)
-- [모듈성(결합도·응집도)](./190_modularity/)
-- [추상 클래스와 인터페이스](./205_abstract_class_and_interface/)
+- 이전 토픽: [정렬 알고리즘](./043_sort_algorithm.md)
+- 연관 토픽: [UML 다이어그램](./020_uml_diagrams.md), [객체지향 설계원칙 SOLID](./082_solid.md), [모듈성](./190_modularity.md)
+- 다음 토픽: [AI Native 개발 플랫폼](./046_ai_native_dev_platform.md)

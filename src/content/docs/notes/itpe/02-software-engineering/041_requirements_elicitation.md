@@ -1,15 +1,15 @@
 ---
 title: "요구사항 도출 기법(Requirements Elicitation)"
-author: "Codex"
-date: "2026-09-20T19:45:30+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -27,11 +27,11 @@ extra:
 - 산출: 출처가 식별된 요구 후보 · 용어집 · 미결정 쟁점 · 확인 기록
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출의 준비부터 확인까지의 흐름">
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>① 범위·정보원 식별</strong></span><small><b>활동</b> 목표·업무·권한·이해관계자 분석<br /><b>산출</b> 이해관계자 지도 · 도출 계획</small></div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>① 범위·정보원 식별</strong></span><span><b>활동</b> 목표·업무·권한·이해관계자 분석<br /><b>산출</b> 이해관계자 지도 · 도출 계획</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>② 기법 조합·수행</strong></span><small><b>활동</b> 인터뷰·JAD·관찰·프로토타이핑<br /><b>산출</b> 사실 · 요구 후보 · 가정 · 갈등</small></div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>② 기법 조합·수행</strong></span><span><b>활동</b> 인터뷰·JAD·관찰·프로토타이핑<br /><b>산출</b> 사실 · 요구 후보 · 가정 · 갈등</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>③ 확인·합의</strong></span><small><b>활동</b> 재진술·시나리오 검토·충돌 조정<br /><b>산출</b> 확인 요구 · 결정 근거 · 미결정 목록</small></div>
+  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>③ 확인·합의</strong></span><span><b>활동</b> 재진술·시나리오 검토·충돌 조정<br /><b>산출</b> 확인 요구 · 결정 근거 · 미결정 목록</span></div>
 </div>
 
 <details>
@@ -73,25 +73,25 @@ extra:
 > 도출 품질은 회의 횟수가 아니라 각 요구가 출처·목적·확인 결과를 가지며 미해결 충돌이 결정권자에게 전달되는지로 검증함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출의 품질 통제 절차">
-  <div class="itpe-pipeline-node"><strong>도출 준비</strong><small><b>활동</b> 목표·범위·정보원·기법·질문 설계<br /><b>산출</b> 도출 계획 · 질문지 · 업무 자료 목록</small></div>
+  <div class="itpe-pipeline-node"><strong>도출 준비</strong><span><b>활동</b> 목표·범위·정보원·기법·질문 설계<br /><b>산출</b> 도출 계획 · 질문지 · 업무 자료 목록</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>증거 수집</strong><small><b>활동</b> 발언과 관찰 사실을 분리하고 예외·가정 기록<br /><b>산출</b> 원시 기록 · 요구 후보 · 용어집</small></div>
+  <div class="itpe-pipeline-node"><strong>증거 수집</strong><span><b>활동</b> 발언과 관찰 사실을 분리하고 예외·가정 기록<br /><b>산출</b> 원시 기록 · 요구 후보 · 용어집</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>정제·분류</strong><small><b>활동</b> 중복 병합, 유형 분류, 충돌 식별<br /><b>산출</b> 구조화 요구 · 충돌·미결정 목록</small></div>
+  <div class="itpe-pipeline-node"><strong>정제·분류</strong><span><b>활동</b> 중복 병합, 유형 분류, 충돌 식별<br /><b>산출</b> 구조화 요구 · 충돌·미결정 목록</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>확인·결정</strong><small><b>활동</b> 재진술·시나리오·프로토타입으로 이해 검증<br /><b>산출</b> 확인 요구 · 결정 근거 · 후속 조치</small></div>
+  <div class="itpe-pipeline-node"><strong>확인·결정</strong><span><b>활동</b> 재진술·시나리오·프로토타입으로 이해 검증<br /><b>산출</b> 확인 요구 · 결정 근거 · 후속 조치</span></div>
 </div>
 
-## Ⅳ. 도출 실패 유형과 품질 확보 방안
+## Ⅳ. 도출 실패 위험과 실무 방어 대책
 
 > 요구 누락과 충돌은 문서 양으로 해결되지 않으며 출처 추적·다중 기법 교차 확인·결정 규칙을 품질 게이트로 두어야 함.
 
-| 실패 유형 | 원인 | 통제 방안 | 판정 기준 |
-|---|---|---|---|
-| 대표자 편향 | 관리자·강한 발언자에 출처 집중 | 역할별 표본화 · 익명 설문 병행 | 핵심 사용자 역할별 확인 기록 |
-| 암묵 요구 누락 | 인터뷰만 수행 | 관찰 · 업무 문서 분석 · 프로토타입 조합 | 정상·예외 시나리오 반영 |
-| 요구 충돌 방치 | 결정권·우선순위 기준 부재 | JAD · 결정권자 · 결정 기한 명시 | 소유자·기한 없는 미결정 0건 |
-| 해결책 고착 | 사용자의 구현안만 수용 | 목적·문제·대안 분리 | 구현 수단이 아닌 필요·제약 기술 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **대표자 편향 (요구 왜곡)** | 관리자·실무자 등 **역할별 표본화 및 익명 설문** 병행 | 특정 계층 왜곡 방지 및 실무 현장 요구사항 100% 반영 |
+| **암묵 요구 누락 (기능 결함)** | **현장 관찰(Observation) 및 프로토타이핑** 결합 | 미표현된 잠재 요구 발굴 및 정상·예외 시나리오 완전성 확보 |
+| **요구 충돌 방치 (일정 지연)** | **JAD 워크숍** 및 이해관계자별 의사결정권·기한 명시 | 부서 간 이견 조기 해소 및 미결정 안건 0건 달성 |
+| **해결책 고착 (과잉 투자)** | 사용자 구현 요청을 **근본 목적·비즈니스 문제**로 재정의 | 불필요한 과잉 스펙 제거 및 최적의 공학적 대안 도출 |
 
 ## Ⅴ. 증거와 의사결정이 남는 도출 거버넌스
 
@@ -110,13 +110,13 @@ extra:
 - 효과: 암묵 요구 가시화 · 충돌 조기 결정 · 명세 재작업 감소
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출 개선 제언">
-  <div class="itpe-pipeline-node"><strong>현행 한계</strong><small><b>문제</b> 대표자 인터뷰와 회의록 의존으로 암묵 요구·충돌 누락</small></div>
+  <div class="itpe-pipeline-node"><strong>현행 한계</strong><span><b>문제</b> 대표자 인터뷰와 회의록 의존으로 암묵 요구·충돌 누락</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>교차 도출</strong><small><b>대안</b> 역할별 인터뷰 · 관찰 · 프로토타입 증거 결합</small></div>
+  <div class="itpe-pipeline-node"><strong>교차 도출</strong><span><b>대안</b> 역할별 인터뷰 · 관찰 · 프로토타입 증거 결합</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>도출 게이트</strong><small><b>판정</b> 출처·목적·가정·확인 상태와 갈등 소유자 완비</small></div>
+  <div class="itpe-pipeline-node"><strong>도출 게이트</strong><span><b>판정</b> 출처·목적·가정·확인 상태와 갈등 소유자 완비</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>실행 결과</strong><small><b>효과</b> 합의 요구 확보 · 명세와 추적의 신뢰 가능한 입력 제공</small></div>
+  <div class="itpe-pipeline-node"><strong>실행 결과</strong><span><b>효과</b> 합의 요구 확보 · 명세와 추적의 신뢰 가능한 입력 제공</span></div>
 </div>
 
 ## 1교시 10점 답안 발췌
@@ -124,12 +124,12 @@ extra:
 - 정의: **Requirements Elicitation(요구사항 도출)**은 **이해관계자**와 운영 환경에서 **요구·제약·가정**을 발견해 요구 후보로 구조화하는 활동
 - 목적: 표현된 요청과 실제 업무의 간극 식별 → 누락·오해·충돌을 줄인 요구 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>정보원 식별</strong><small><b>활동</b> 역할·업무·권한 파악<br /><b>산출</b> 이해관계자 지도</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>교차 도출</strong><small><b>활동</b> 인터뷰·관찰·프로토타입 조합<br /><b>산출</b> 요구 후보·가정·갈등</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>확인·합의</strong><small><b>활동</b> 재진술·충돌 조정<br /><b>산출</b> 확인 요구·미결정 목록</small></div></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>정보원 식별</strong><span><b>활동</b> 역할·업무·권한 파악<br /><b>산출</b> 이해관계자 지도</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>교차 도출</strong><span><b>활동</b> 인터뷰·관찰·프로토타입 조합<br /><b>산출</b> 요구 후보·가정·갈등</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>확인·합의</strong><span><b>활동</b> 재진술·충돌 조정<br /><b>산출</b> 확인 요구·미결정 목록</span></div></div>
 
-| 문제 | 대책 | 판정 |
+| 위험 | 대책 | 효과 |
 |---|---|---|
-| 대표자 편향 | 역할별 인터뷰·익명 설문 | 역할별 확인 기록 |
-| 암묵 요구 누락 | 관찰·프로토타입 병행 | 정상·예외 시나리오 반영 |
+| **대표자 편향** | 역할별 인터뷰 및 익명 설문 병행 | 핵심 사용자 역할별 요구사항 균형 반영 |
+| **암묵 요구 누락** | 현장 관찰 및 화면 프로토타이핑 병행 | 미표현된 숨은 요구 발굴 및 예외 시나리오 완비 |
 
 - 결론: 요구별 출처·가정·확인 상태와 미결정 책임자를 통제하여 명세와 추적의 신뢰 가능한 입력을 확보함
 
@@ -148,7 +148,6 @@ extra:
 
 ## 연결 토픽
 
-- [요구공학(요구사항 유형 포함)](./040_requirements_engineering/)
-- [요구사항 명세(SRS·IEEE 830·명세 품질 특성)](./054_requirements_specification/)
-- [요구사항 추적표(Requirement Traceability Matrix)](./102_requirement_traceability_matrix/)
-- [Agile 방법론](./119_agile_methodology/)
+- 이전 토픽: [요구공학](./040_requirements_engineering.md)
+- 연관 토픽: [요구사항 명세](./054_requirements_specification.md), [요구사항 추적표(RTM)](./102_requirement_traceability_matrix.md)
+- 다음 토픽: [의존성 주입(DI)](./042_dependency_injection.md)
