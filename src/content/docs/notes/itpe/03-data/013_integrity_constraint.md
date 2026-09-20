@@ -205,4 +205,3 @@ CREATE TABLE orders (
 - 이전 토픽: [z-검정(z-test)](./012_z_test.md)
 - 연관 토픽: [참조 무결성](./070_referential_integrity.md), [키(Key)](./157_key.md), [정규화](./019_normalization.md)
 - 다음 토픽: [중심극한정리·대수의 법칙](./014_central_limit_theorem.md)
-

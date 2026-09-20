@@ -196,4 +196,3 @@ extra:
 - 이전 토픽: [동시성 제어(병행제어)](./009_concurrency_control.md)
 - 연관 토픽: [군집분석](./005_cluster_analysis.md), [다중공선성](./004_multicollinearity.md), [시계열 실시간 이상치 탐지](./061_time_series_realtime_anomaly_detection.md)
 - 다음 토픽: [불편추정량(Unbiased Estimator)](./011_unbiased_estimator.md)
-

@@ -216,4 +216,3 @@ s^2 = Σ(Xi - X̄)^2 / (n - 1)  ==>  E(s^2) = σ^2 보장
 - 이전 토픽: [이상치(탐지 기법·노이즈 구분 포함)](./010_outlier.md)
 - 연관 토픽: [점추정 vs 구간추정](./163_point_vs_interval_estimation.md), [중심극한정리·대수의 법칙](./014_central_limit_theorem.md), [편향](./038_bias.md)
 - 다음 토픽: [z-검정(z-test)](./012_z_test.md)
-

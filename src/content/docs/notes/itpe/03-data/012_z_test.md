@@ -199,4 +199,3 @@ extra:
 - 이전 토픽: [불편추정량(Unbiased Estimator)](./011_unbiased_estimator.md)
 - 연관 토픽: [t-검정](./086_t_test.md), [가설검정](./041_hypothesis_testing.md), [중심극한정리](./014_central_limit_theorem.md)
 - 다음 토픽: [무결성 제약(데이터 무결성)](./013_integrity_constraint.md)
-
