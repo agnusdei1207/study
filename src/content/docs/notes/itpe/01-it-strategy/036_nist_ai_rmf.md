@@ -1,11 +1,14 @@
 ---
 title: "NIST AI RMF"
+author: "Codex"
+date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "A"
 extra:
+  model: "GPT-5.6 Sol"
   keyword_grade: "A"
 ---
 
@@ -19,183 +22,206 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-┌───────────────────────── [ GOVERN (거버넌스) ] ─────────────────────────┐
-│     조직 문화, 리더십, 역할과 책임(R&R), 투명한 위험관리 프로세스 확립     │
-├──────────────────────────────────┬──────────────────────────────────────┤
-│      [ MAP (매핑 / 식별) ]       │        [ MANAGE (관리 / 대응) ]       │
-│      - 맥락 및 비즈니스 영향 분석 │        - 위험 우선순위화 및 자원 배분 │
-│      - 잠재적 위험 목록화        │        - 가드레일 적용 및 잔여위험 통제│
-└──────────────────┬───────────────┴──────────────────▲───────────────────┘
-                   │                                  │
-                   └──────> [ MEASURE (측정 / 평가) ] ─┘
-                            - 정량적·정성적 지표 계측
-                            - 7대 신뢰성 특성 벤치마킹
-```
+- 본질: **NIST AI RMF(Artificial Intelligence Risk Management Framework)**는 인공지능 수명주기 전반의 사회기술적 위험을 자율적으로 통제하기 위해 미국 NIST가 제정한 4대 핵심 기능과 7대 신뢰성 특성 기반의 프레임워크
+- 메커니즘: 전사 거버넌스(**GOVERN**)의 지침 아래 비즈니스 맥락 및 위험을 식별(**MAP**)하고, 정량 벤치마크로 계측(**MEASURE**)하여, 가드레일로 완화·대응(**MANAGE**)하는 지속 순환 루프
+- 산출: AI 위험관리 정책서 · 위험 영향도 평가서 · 신뢰성 계측 벤치마크표 · **MLOps** 인라인 가드레일 명세서
 
-- 본질: 미국 국립표준기술연구소(NIST)가 인공지능의 편향, 환각, 오남용, 프라이버시 침해 등 사회기술적(Socio-technical) 위험을 전 생명주기에 걸쳐 자율적으로 통제하도록 제시한 실무 위험관리 프레임워크 (NIST AI 100-1)
-- 위치: `AI 전략 → AI 신뢰성 가이드라인 → NIST AI RMF → ISO 42001 인증 / MLOps 가드레일`
-- 4대 핵심 구조: `GOVERN (최상위 통제) · MAP (위험 식별) · MEASURE (정량 측정) · MANAGE (실행 및 대응)`
-- 7대 신뢰 특성: `유효성/신뢰성 · 안전성 · 보안/복원력 · 책임/투명성 · 설명가능성 · 프라이버시 · 공정성(편향 관리)`
+<div class="itpe-flow-map" role="img" aria-label="NIST AI RMF 4대 핵심 기능 순환 및 신뢰성 확보 흐름">
+  <div class="itpe-flow-node">
+    <strong>GOVERN (전사 거버넌스)</strong>
+    <small>조직 문화 · 리스크 허용 한도 · RACI 책임성</small>
+  </div>
+  <div class="itpe-flow-arrow">↓<small>위험 관리 지침 및 자원 배분</small></div>
+  <div class="itpe-flow-node is-current">
+    <strong>NIST AI RMF 순환 코어</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>MAP</strong><span>비즈니스 맥락 분석 · 잠재 위협 식별 · 이해관계자 영향 평가</span></div>
+      <div class="itpe-flow-branch"><strong>MEASURE</strong><span><span class="itpe-keyword"><strong>7대 신뢰 특성</strong></span> 정량 계측 · 레드팀 침투 검증</span></div>
+      <div class="itpe-flow-branch"><strong>MANAGE</strong><span>위험 우선순위화 · 인라인 <span class="itpe-keyword"><strong>가드레일</strong></span> 배포 · 잔여 위험 감시</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓<small>생성형 AI 프로파일(NIST AI 600-1) 연계</small></div>
+  <div class="itpe-flow-node">
+    <strong>Trustworthy AI 달성</strong>
+    <small>유효성 · 안전성 · 공정성 확보 및 컴플라이언스 보증</small>
+  </div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **NIST AI RMF(Artificial Intelligence Risk Management Framework)**: 인공지능 시스템의 부정적 영향을 식별·측정·관리하기 위해 미국 NIST가 제정한 비규제적·자율적 위험관리 표준(NIST AI 100-1)
+- **GOVERN**: 조직 차원의 AI 위험관리 문화, 지침, 역할과 책임(R&R)을 수립하고 전 과정을 지휘·감독하는 최상위 통제 기능
+- **MAP**: AI 시스템의 사용 맥락, 시스템 한계, 이해관계자 파급효과 및 잠재적 위협 요소를 분류·목록화하는 기능
+- **MEASURE**: 식별된 위험을 정량적 벤치마크, 지표 분석, 레드팀 모의 침투를 통해 객관적으로 계측·평가하는 기능
+- **MANAGE**: 측정된 위험을 우선순위에 따라 가드레일 배포, 모델 재학습 등으로 완화하고 잔여 위험을 지속 감시하는 기능
+- **NIST AI 600-1**: 생성형 AI(Generative AI)의 환각, 탈옥, 데이터 중독 등 12대 고유 위험에 대응하기 위해 AI RMF를 특화한 프로파일
+- **Trustworthy AI(신뢰할 수 있는 AI)**: 유효성·신뢰성, 안전성, 보안·복원력, 책임·투명성, 설명가능성, 프라이버시, 공정성의 7대 속성을 갖춘 인공지능
+- **Guardrails(가드레일)**: AI 모델의 입력 프롬프트와 출력 결과를 실시간 검증하여 유해 콘텐츠, 프롬프트 인젝션, 환각을 차단하는 소프트웨어 방화벽
+- **Red Teaming(레드팀 테스트)**: 공격자 관점에서 시스템에 적대적 프롬프트 주입 및 탈옥을 시도하여 안전성 취약점을 실증 탐지하는 모의 훈련
+
+</details>
 
 ## 예상문제
 
-> 미국 국립표준기술연구소(NIST)에서 제정한 AI RMF(Risk Management Framework) 1.0의 개념과 4가지 핵심 구조(Core), 7가지 신뢰 가능한 특성(Trustworthy Characteristics)을 설명하고, 생성형 AI 특화 프로파일(NIST AI 600-1)의 적용 방안을 논하시오. (25점)
+> 미국 국립표준기술연구소(NIST)의 AI RMF(Risk Management Framework) 1.0 개념과 4대 핵심 기능(GOVERN, MAP, MEASURE, MANAGE), 7대 신뢰 가능한 특성을 설명하고, 생성형 AI 특화 프로파일(NIST AI 600-1)의 주요 위험과 실무 공학적 대응 방안을 제시하시오. (25점)
 
 ## 딸려 나오는 하위 토픽
 
 | 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
 |---|---|---|
-| **NIST AI 600-1 (생성형 AI 프로파일)** | LLM의 탈옥, 환각, 데이터 중독 등 생성형 AI 12대 고유 위험에 대한 세부 가이드 | Ⅵ 실무 대책, Ⅶ 결론 |
-| **신뢰할 수 있는 AI (Trustworthy AI)** | 공정성, 설명가능성, 안전성, 투명성 등 7대 핵심 품질 속성 | Ⅱ 특징, Ⅲ 구조 |
+| **AI RMF (NIST AI 100-1)** | 4대 핵심 기능(GOVERN, MAP, MEASURE, MANAGE)과 7대 신뢰 특성 기반의 자율적 위험관리 체계 | Ⅰ 개요, Ⅱ 특성, Ⅲ 구조 |
+| **NIST AI 600-1 (생성형 AI 프로파일)** | LLM의 환각, 적대적 탈옥, 데이터 중독 등 생성형 AI 12대 고유 위험에 대한 4대 기능별 세부 통제 가이드 | Ⅳ 절차, Ⅴ 대책, Ⅶ 결론 |
 
-## Ⅰ. 신뢰할 수 있는 인공지능을 위한 표준 지침, NIST AI RMF 개요
+## Ⅰ. 신뢰할 수 있는 AI 구현을 위한 NIST AI RMF의 개요
 
-- 정의: AI 시스템의 설계, 개발, 배포, 운영 전 과정에서 개인, 조직, 사회에 미칠 수 있는 잠재적 부정적 영향을 식별하고 체계적으로 관리하기 위한 비규제적·자율적 위험관리 프레임워크
-- 배경: 딥러닝 및 생성형 AI의 불투명성(Black-box), 학습 데이터 편향으로 인한 차별, 허위정보(환각), 보안 취약점 확산
-- 목적: AI의 혁신을 저해하지 않으면서 7대 신뢰성 특성을 내재화하여 안전하고 책임 있는 AI 생태계 구축
+> NIST AI RMF는 단순한 체크리스트가 아닌 조직 거버넌스(**GOVERN**) 하에서 위험을 식별·측정·대응하는 공학적 루프이며, 성패는 **Trustworthy AI** 7대 특성의 정량적 보증으로 판정함.
 
-#### 한줄 요약
-- 조직이 AI 수명주기 전반에서 기술적·윤리적 위험을 자율적으로 통제하도록 돕는 프레임워크임
+- 정의: 인공지능 시스템 수명주기 전반의 사회기술적 위험을 식별·측정·관리하기 위해 미국 NIST가 제정한 **4대 핵심 기능**과 **7대 신뢰성 특성** 기반의 **자율적 위험관리 프레임워크**
+- 목적: 딥러닝·생성형 AI의 블랙박스성 및 편향 해소 → **Trustworthy AI(신뢰할 수 있는 AI)** 생태계 확립 및 비즈니스 위험 선제 차단
 
 ## Ⅱ. 7대 신뢰 가능한 AI 특성 (Trustworthy Characteristics)
 
-| 신뢰 특성 | 영문 명칭 | 공학적 정의 및 요구사항 |
+> 7가지 신뢰 특성은 상호 연계되어 있으며, 안전성과 설명가능성, 공정성의 트레이드오프 균형이 핵심임.
+
+| 신뢰 특성 | 핵심 요구사항 및 공학적 의미 | 실무 구현 수단 |
 |---|---|---|
-| **1. 유효성 및 신뢰성** | Valid & Reliable | 의도한 도메인에서 정확하게 작동하고, 반복적인 시험에서도 일관된 결과를 도출 |
-| **2. 안전성** | Safe | 인간의 생명, 건강, 재산, 환경에 물리적·정신적 피해를 주지 않도록 보호 |
-| **3. 보안성 및 복원력** | Secure & Resilient | 적대적 공격(적대적 섭동, 데이터 포이즈닝)에 견디고 장애 시 복원력 유지 |
-| **4. 책임성 및 투명성** | Accountable & Transparent | 결정 과정과 데이터 출처가 개방적이고, 의사결정의 법적·윤리적 책임 주체 명시 |
-| **5. 설명가능성 및 해석성** | Explainable & Interpretable | 모델의 추론 메커니즘과 결과의 이유를 인간 사용자가 이해할 수 있게 제공 |
-| **6. 프라이버시 보호** | Privacy-Enhanced | 학습 및 추론 시 개인정보를 익명화·가명화하여 무단 노출 및 재식별 방지 |
-| **7. 공정성 (편향 관리)** | Fair - Harmful Bias Managed | 특정 인종, 성별, 연령에 대해 체계적 불이익이나 차별적 결과를 배제 |
+| **유효성 및 신뢰성** | 의도한 도메인에서 정확하게 동작하고 반복 검증 시 일관된 결과 도출 | 교차 검증(Cross-validation), 성능 드리프트 모니터링 |
+| **안전성** | 인간의 생명, 신체, 건강 및 재산에 직간접적 위해를 가하지 않음 | 안전성 인라인 필터링, 장애 시 Fail-safe 메커니즘 |
+| **보안성 및 복원력** | 적대적 섭동, 데이터 중독 등 사이버 공격에 견디고 장애 복구 유지 | 적대적 훈련(Adversarial Training), 모델 가중치 암호화 |
+| **책임성 및 투명성** | 결정 과정과 데이터 원천이 공개되고 법적·윤리적 책임 소재 명확화 | 모델 카드(Model Card), 데이터셋 무결성 명세서 배포 |
+| **설명가능성 및 해석성** | 모델의 추론 메커니즘과 결과 도출 이유를 인간 사용자가 이해 가능 | **XAI(eXplainable AI)** 기법(SHAP, LIME), 주의집중 시각화 |
+| **프라이버시 보호** | 학습 및 추론 시 개인정보 누출 및 역추적(Model Inversion) 방지 | 차분 프라이버시(Differential Privacy), 가명화·익명화 파이프라인 |
+| **공정성 (편향 관리)** | 특정 성별, 인종, 계층에 대한 체계적 차별이나 유해 편향 배제 | 데이터 증강, 공정성 계측 지표(Disparate Impact) 통제 |
 
-#### 한줄 요약
-- 7가지 신뢰 특성은 상호 연계되어 있으며, 안전성과 설명가능성, 공정성의 균형이 핵심임
+## Ⅲ. NIST AI RMF 4대 핵심 기능(Core) 구성체계
 
-## Ⅲ. NIST AI RMF 4대 핵심 기능(Core)의 정적 구조
+> 전사 통제인 GOVERN이 전체 생명주기를 관통하며, MAP(식별) → MEASURE(측정) → MANAGE(대응)가 순환함.
 
-```text
-┌────────────────────────────────────────────────────────┐
-│               1. GOVERN (전사 거버넌스)                  │
-│  - AI 위험관리 정책 및 원칙 수립, 책임자(C-Level) 지정  │
-│  - 조직 문화 조성, 지속적 위험 모니터링 체계 확립       │
-└───────────────────────────┬────────────────────────────┘
-                            │
-       ┌────────────────────┴────────────────────┐
-       ▼                                         ▼
-┌─────────────────────────┐           ┌─────────────────────────┐
-│  2. MAP (맥락 및 식별)   │           │ 4. MANAGE (관리 및 대응) │
-│ - 비즈니스 맥락 분석    │           │ - 위험 우선순위화       │
-│ - 시스템 한계 및 위험   │           │ - 통제 대책(가드레일)   │
-│ - 이해관계자 영향 평가  │           │ - 잔여 위험 지속 감시   │
-└───────────┬─────────────┘           └──────────▲──────────────┘
-            │                                    │
-            └──────> ┌─────────────────────────┐ ─┘
-                     │  3. MEASURE (측정·평가)  │
-                     │ - 정량적·정성적 벤치마크│
-                     │ - 공정성/강건성 정량 실측│
-                     └─────────────────────────┘
-```
+<div class="itpe-pipeline is-vertical" role="img" aria-label="NIST AI RMF 4대 핵심 기능 순환 파이프라인">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>① GOVERN (거버넌스)</strong></span>
+    <small>위험관리 문화 조성 · 위험 허용 한도(Tolerance) 설정 · RACI 명시<br />→ AI 윤리 헌장 · 거버넌스 정책 매뉴얼</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>② MAP (맥락 및 위험 매핑)</strong></span>
+    <small>비즈니스 유스케이스 정의 · 한계점 분류 · 잠재적 피해 요소 목록화<br />→ 위험 영향도 평가서 · 맥락 정의서</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>③ MEASURE (측정 및 평가)</strong></span>
+    <small>정량적 벤치마크 계측 · 공정성/강건성 실측 · 레드팀 침투 테스트<br />→ 신뢰성 계측 평가표 · 레드팀 침투 보고서</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>④ MANAGE (관리 및 대응)</strong></span>
+    <small>위험 우선순위화 · 인라인 가드레일 배포 · 잔여 위험 지속 감시<br />→ 위험 완화 실행 계획서 · 가드레일 룰셋</small>
+  </div>
+</div>
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Continuous Feedback</strong></span> · 측정(MEASURE) 결과를 바탕으로 대응(MANAGE)하고 차기 거버넌스(GOVERN)로 환류</div>
 
-| 핵심 기능 | 핵심 질문 | 주요 활동 및 통제 산출물 |
-|---|---|---|
-| **GOVERN (통제)** | "위험을 관리할 조직의 체계와 책임이 준비되었는가?" | AI 윤리 헌장, RACI 매트릭스, 규제 컴플라이언스 체크리스트 |
-| **MAP (식별)** | "이 AI 시스템이 어디에 쓰이며 어떤 위험을 유발하는가?" | AI 시스템 분류서, 위험 영향도 평가서, 비즈니스 맥락 정의서 |
-| **MEASURE (측정)**| "식별된 위험을 정량적으로 어떻게 증명하고 측정할 것인가?" | 벤치마크 평가표, 공정성 지표(Disparate Impact), 레드팀 침투 보고서 |
-| **MANAGE (관리)** | "측정된 위험을 완화하고 모니터링하기 위해 무엇을 할 것인가?" | 위험 완화 계획서, 가드레일 배포 명세서, 인시던트 대응 절차서 |
+## Ⅳ. 글로벌 AI 거버넌스 표준 비교 (NIST AI RMF vs ISO/IEC 42001 vs EU AI Act)
 
-#### 한줄 요약
-- GOVERN이 전 과정을 관통하며, MAP(식별) → MEASURE(측정) → MANAGE(대응)가 순환함
-
-## Ⅳ. RMF 적용 4단계 실행 프로세스
-
-```text
-① 조직 거버넌스 수립(GOVERN) → ② 사용 맥락 및 위험 매핑(MAP) → ③ 정량 벤치마크 계측(MEASURE) → ④ 대응 조치 및 잔여위험 관리(MANAGE)
-   └─ 위험 관리 방침 승인        └─ AI 유스케이스·영향 분석       └─ 편향·안전성 정량 지표 실측       └─ 필터링·가드레일·모니터링
-```
-
-| 단계 | 주요 수행 내용 | 핵심 공학 도구 및 기법 |
-|---|---|---|
-| **1. 거버넌스 확립** | AI 위험 허용 한도(Risk Tolerance) 설정, 전사 검토 위원회 발족 | AI 거버넌스 프레임워크, 정책 매뉴얼 |
-| **2. 맥락 매핑** | 모델 입력 데이터, 배포 환경, 사회적 파급효과 및 잠재적 피해 식별 | 위협 모델링(Threat Modeling), 스트라이드(STRIDE) |
-| **3. 위험 측정** | 공정성, 강건성, 환각률을 정량화하고 레드팀(Red Teaming) 실증 | Fairlearn, SHAP/LIME, Promptfoo, Garak |
-| **4. 위험 관리** | 허용 불가능한 위험 모델 배포 차단, 인라인 가드레일 적용, 지속 모니터링 | NeMo Guardrails, Llama Guard, MLOps 드리프트 알람 |
-
-#### 한줄 요약
-- 거버넌스 하에서 위협 모델링으로 식별하고, 정량 툴로 측정한 뒤 가드레일로 통제함
-
-## Ⅴ. 글로벌 AI 거버넌스 표준 비교 (NIST AI RMF vs ISO/IEC 42001 vs EU AI Act)
+> NIST는 실무적 자율 프레임워크, ISO는 제3자 심사 인증 규격, EU AI Act는 법적 강제 규제임.
 
 | 비교 항목 | NIST AI RMF 1.0 (미국) | ISO/IEC 42001:2023 (국제) | EU AI Act (유럽연합) |
 |---|---|---|---|
-| **법적 성격** | 비규제적, 자율적 실무 프레임워크 | 제3자 심사 및 인증 가능한 국제 표준 | 법적 구속력을 가진 강력한 규제 법안 |
-| **접근 방식** | 위험 기반 가이드라인 (4대 기능 중심) | 인공지능 경영시스템(AIMS) 프로세스 요구사항 | 4단계 위험 분류(허용불가, 고위험 등) |
-| **적용 목적** | 조직의 유연한 위험 식별, 측정, 관리 지원 | 기업의 AI 관리 역량에 대한 신뢰성 대외 공인 | 고위험 AI에 대한 사전 적합성 평가 및 처벌 |
-| **핵심 구성** | Govern, Map, Measure, Manage | PDCA 사이클, 리더십, 기획, 지원, 운용, 개선 | 적합성 평가, 투명성 의무, 고액 과징금 |
-| **상호 관계** | ISO 42001 구현 시 구체적 위험평가 방법론으로 활용 | NIST RMF를 수용하여 기업 인증 체계 구축 | NIST 지침을 준수하여 EU 적합성 평가 대응 |
+| 법적 성격 | 비규제적, 자율적 실무 프레임워크 | 제3자 심사 및 인증 가능한 국제 표준 | 법적 구속력을 갖는 강력한 처벌 규제 |
+| 접근 방식 | 위험 기반 유연한 가이드라인 (4대 기능 중심) | 인공지능 경영시스템(AIMS) 프로세스 요구사항 | 4단계 위험 분류(허용불가, 고위험 등) |
+| 적용 목적 | 기업 내부의 자율적 위험 식별 및 통제 역량 강화 | AI 거버넌스 및 관리 역량의 대외 공인 인증 | 시민 권리 보호 및 고위험 AI 사전 적합성 검증 |
+| 핵심 구성 | Govern, Map, Measure, Manage | PDCA 사이클, 리더십, 기획, 지원, 운용, 개선 | 적합성 평가, 투명성 의무, 고액 과징금 부과 |
+| 상호 관계 | ISO 42001 구현 시 구체적 위험평가 도구로 활용 | NIST AI RMF 체계를 수용하여 기업 인증 구축 | NIST 프레임워크 준수로 EU 적합성 심사 대비 |
 
-#### 한줄 요약
-- NIST는 자율적 실행 지침, ISO는 제3자 인증 규격, EU AI Act는 법적 강제 규제임
+## Ⅴ. 생성형 AI 위험과 실무 공학적 대책 (NIST AI 600-1)
 
-## Ⅵ. 생성형 AI 위험과 실무 공학적 대응 (NIST AI 600-1)
+> 생성형 AI 특화 프로파일(NIST AI 600-1)을 준용하여 환각, 탈옥, 데이터 중독 위험을 엔지니어링 가드레일로 통제함.
 
-- 적용 상황: 금융·의료 분야에 LLM 기반 업무 비서 및 민원 상담 AI를 배포하는 프로젝트
-
-| AI 600-1 고유 위험 | 위험 발생 메커니즘 | 공학적·관리적 해결 대책 | 기대 효과 |
+| 위험 요인 | 발생 원인 및 메커니즘 | 공학적·관리적 통제 대책 | 검증 지점 |
 |---|---|---|---|
-| **환각 (Hallucination)** | 사실이 아닌 정보를 그럴듯하게 거짓 생성 | 공공/사내 문서 기반 RAG 파이프라인 연계 및 출처 표기 강제 | 사실 기반 응답 보장 및 오류 차단 |
-| **적대적 탈옥 (Jailbreak)** | 교묘한 프롬프트로 시스템 보안 지침 우회 | 이중 가드레일(입력 검증 + 출력 필터링) 및 적대적 레드팀 훈련 | 시스템 탈옥 및 악의적 정보 생성 방어 |
-| **데이터 중독 (Poisoning)** | 악의적 학습 데이터 주입으로 모델 편향 왜곡 | 학습 데이터셋 무결성 검증, 데이터 출처(Provenance) 추적 | 백도어 공격 차단 및 공정성 확보 |
-| **신뢰 특성 간 충돌** | 설명가능성 강화 시 모델 복원력/프라이버시 저하 | 위험 우선순위에 따른 가중치 설정 및 거버넌스 승인 절차 | 상황별 최적의 신뢰성 균형 달성 |
+| **환각 (Hallucination)** | 사실이 아닌 정보를 그럴듯하게 거짓 생성 | 사내 검증 문서 기반 **RAG(검색증강생성)** 파이프라인 연계 및 출처 강제 | 사실 정합성(Factual Accuracy) 벤치마크 통과 |
+| **적대적 탈옥 (Jailbreak)** | 교묘한 우회 프롬프트로 시스템 안전 지침 무력화 | 입출력 이중 **가드레일(Guardrails)** 배치 및 적대적 레드팀 모의 침투 | 탈옥 시도 차단율 및 프롬프트 인젝션 방어 확인 |
+| **데이터 중독 (Poisoning)** | 악의적 학습 데이터 주입으로 모델 편향 왜곡 | 학습 데이터셋 무결성 해시 검증 및 데이터 출처(Provenance) 추적 | 학습 데이터 오염률 0건 유지 |
+| **신뢰 특성 간 상충** | 설명가능성 강화 시 모델 복원력이나 프라이버시 저하 | 비즈니스 맥락에 따른 위험 우선순위 가중치 부여 및 위원회 승인 | 도메인별 최적 신뢰성 균형 달성 |
 
-#### 한줄 요약
-- AI 600-1 프로파일에 따라 RAG, 이중 가드레일, 레드팀 검증을 적용해 생성형 AI 위험을 통제함
+## Ⅵ. MLOps 파이프라인 내재화 중심의 기술사적 제언
 
-## Ⅶ. MLOps 파이프라인 내재화 중심의 기술사적 결론
+> 문서 작성용 체크리스트를 탈피하여 CI/CD 배포 파이프라인에 자동화된 신뢰성 테스트 게이트를 구축해야 함.
 
-- **[문서 중심 체크리스트에서 Automated MLOps Gate로 전환]**: NIST AI RMF는 종이 문서 자가진단표가 아니라, CI/CD 배포 파이프라인에 정량적 신뢰성 테스트 도구를 연동하여 배포를 자동 통제하는 엔지니어링 파이프라인이어야 함
-- 나라면: 엔터프라이즈 AI 플랫폼 구축 시 `CI/CD 단계에 공정성(Fairlearn)·안전성(Garak) 자동 검사 게이트 배치 → 가드레일 통과율 99% 미만 시 배포 자동 거부 → 모델 레지스트리에 7대 신뢰 지표 메타데이터 기록 의무화`를 아키텍처에 구현
+### 학습자 통찰 메모 — 답안 밖
 
-#### 한줄 요약
-- 정량 측정 도구와 MLOps 배포 게이트가 결합될 때 자율적 위험관리가 현실에서 작동함
+- [핵심 통찰]: NIST AI RMF가 종이 보고서로 전락하지 않으려면, MLOps 배포 파이프라인 내에 정량적 신뢰성 검증 도구가 자동 게이트(Gate)로 내재화되어야 함. 편향이나 환각 임계치를 초과한 모델은 프로덕션 배포가 시스템적으로 차단되어야 함.
+- 나라면: AI 서비스 아키텍처 설계 시 `CI/CD 파이프라인에 Fairlearn(공정성) 및 Garak(보안/탈옥) 자동 검사 게이트 배치 → 가드레일 통과율 미달 시 배포 자동 롤백 → 모델 레지스트리에 7대 신뢰 특성 메타데이터 기록 의무화`를 아키텍처 표준으로 확립하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 서류상 자가진단 탈피 및 MLOps 연계 자동화 신뢰성 배포 게이트 확립
+- 대안: **NIST AI RMF-AI 600-1-MLOps Gate** 3계층 통합 신뢰성 엔지니어링 구현
+- 검증: 가드레일 인라인 차단율 99% 이상 · 배포 전 레드팀 테스트 전수 통과
+- 효과: 생성형 AI 컴플라이언스 위험 원천 차단 및 서비스 연속성 보장
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="NIST AI RMF 거버넌스 제언 흐름">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>문서 중심 체크리스트 · 환각 및 탈옥 취약 · 사후 수동 대응</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>NIST AI 600-1 RAG 연계 + 입출력 가드레일 + MLOps 배포 게이트</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>7대 신뢰 특성 정량 계측 통과 · 프롬프트 인젝션 방어 실증</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>신뢰할 수 있는 AI(Trustworthy AI) 완성 · 글로벌 규제 적합성 확보</small>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-### 1. NIST AI RMF의 정의
-- 인공지능 수명주기 전반의 사회기술적 위험을 식별·측정·관리하기 위해 미국 NIST가 제정한 4대 핵심 기능(GOVERN, MAP, MEASURE, MANAGE)과 7대 신뢰성 특성 기반의 자율적 위험관리 프레임워크
+### 1. 정의·목적
 
-### 2. 4대 핵심 기능 및 7대 신뢰 특성 구조
-```text
-[GOVERN: 전사 통제] ──> [MAP: 위험 식별] ──> [MEASURE: 정량 측정] ──> [MANAGE: 가드레일 대응]
-```
+- 정의: **NIST AI RMF(Artificial Intelligence Risk Management Framework)**는 AI 수명주기 전반의 위험을 통제하기 위해 미국 NIST가 제정한 **4대 핵심 기능**과 **7대 신뢰성 특성** 기반의 **자율적 위험관리 프레임워크**
+- 목적: 딥러닝·생성형 AI의 위험 통제 및 **Trustworthy AI(신뢰할 수 있는 AI)** 생태계 구축
 
-| 4대 기능 | 핵심 내용 |
-|---|---|
-| GOVERN (거버넌스) | 위험관리 정책 수립, 조직 문화 및 책임성(RACI) 확립 |
-| MAP (맥락/식별) | 비즈니스 사용 맥락 파악 및 잠재적 피해 요소 목록화 |
-| MEASURE (측정/평가) | 공정성, 환각, 견고성에 대한 정량적·정성적 벤치마크 실측 |
-| MANAGE (관리/대응) | 위험 완화 전략 수립, 가드레일 적용 및 잔여위험 감시 |
+### 2. 구성체계 및 방법론
 
-- **7대 신뢰 특성**: ①유효성·신뢰성 ②안전성 ③보안성·복원력 ④책임성·투명성 ⑤설명가능성 ⑥프라이버시 ⑦공정성(편향 관리)
+<div class="itpe-pipeline is-vertical" role="img" aria-label="NIST AI RMF 4대 핵심 기능 요약">
+  <div class="itpe-pipeline-node"><strong>GOVERN (통제)</strong><small>위험관리 문화 · 책임성 확립</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>MAP (식별)</strong><small>비즈니스 맥락 파악 · 위험 매핑</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>MEASURE (측정)</strong><small>7대 신뢰 특성 계측 · 레드팀 실측</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>MANAGE (관리)</strong><small>가드레일 배포 · 잔여 위험 감시</small></div>
+</div>
 
-### 3. 차별화 제언
-- 생성형 AI 특화 프로파일인 NIST AI 600-1을 준용하여 RAG와 가드레일을 연계하고, MLOps 파이프라인 내에 자동화된 신뢰성 테스트 게이트를 구축해야 함
+### 3. 핵심 통제
+
+- **7대 신뢰 특성**: 유효성·신뢰성, 안전성, 보안·복원력, 책임·투명성, 설명가능성, 프라이버시, 공정성
+- **생성형 AI 특화 통제**: **NIST AI 600-1** 프로파일을 준용하여 RAG 연계 및 인라인 가드레일(Guardrails) 자동 배포
 
 ## 출제 이력과 검증 출처
 
-- 제138회 1교시 1번: NIST AI RMF의 개념과 4가지 핵심 구조, 7가지 신뢰 가능한 특성
-- [NIST, Artificial Intelligence Risk Management Framework (AI RMF 1.0), NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1)
-- [NIST, Generative Artificial Intelligence Profile (NIST AI 600-1)](https://doi.org/10.6028/NIST.AI.600-1)
-- [ISO/IEC 42001:2023, Artificial intelligence — Management system](https://www.iso.org)
+- 제138회 정보관리기술사 1교시 1번: NIST AI RMF의 개념과 4가지 핵심 구조, 7가지 신뢰 가능한 특성
+- NIST, [Artificial Intelligence Risk Management Framework (NIST AI 100-1)](https://doi.org/10.6028/NIST.AI.100-1)
+- NIST, [Generative Artificial Intelligence Profile (NIST AI 600-1)](https://doi.org/10.6028/NIST.AI.600-1)
+- ISO/IEC, [ISO/IEC 42001:2023, Artificial intelligence — Management system](https://www.iso.org)
 
 ## 학습 체크
 
 - [ ] NIST AI RMF의 4대 핵심 기능(GOVERN, MAP, MEASURE, MANAGE)의 유기적 연계를 도식화할 수 있는가?
 - [ ] 7가지 신뢰 가능한 AI 특성(Trustworthy Characteristics)을 빠짐없이 기술할 수 있는가?
-- [ ] NIST AI RMF와 ISO/IEC 42001, EU AI Act의 차이점을 표로 비교할 수 있는가?
+- [ ] NIST AI RMF와 ISO/IEC 42001, EU AI Act의 법적 성격과 접근 방식을 비교할 수 있는가?
 - [ ] 생성형 AI 프로파일(NIST AI 600-1)의 고유 위험인 환각과 탈옥에 대한 공학적 대책을 제시할 수 있는가?
 
 ## 연결 토픽
 
-- [AI 거버넌스 플랫폼](./050_ai_governance_platform/) · [AI 프라이버시 리스크 관리 모델](./054_ai_privacy_risk_management_model/) · [국가 AI 전략](./024_korea_ai_action_plan/) · [ISO 31000](./069_iso_31000/) · [범정부 AI 공통기반](./025_pan_government_ai_common_infrastructure/)
+- 이전 토픽: [갈등관리](./035_conflict_management.md)
+- 연관 토픽: [AI 거버넌스 플랫폼](./050_ai_governance_platform.md), [AI 프라이버시 리스크 관리 모델](./054_ai_privacy_risk_management_model.md), [국가 AI 전략](./024_korea_ai_action_plan.md), [ISO 31000](./069_iso_31000.md)
+- 다음 토픽: [POP](./038_pop.md)
