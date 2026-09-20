@@ -1,7 +1,7 @@
 ---
 title: "공공 SW 사업 발주·계약"
-author: "Antigravity"
-date: "2026-09-20T19:34:00+09:00"
+author: "OpenAI Codex"
+date: "2026-09-21T19:30:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,250 +9,156 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 공공 SW 정책과 계약 제도를 거쳐 공공 SW 사업 발주·계약으로 이어지는 지식 위치">
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 공공 소프트웨어 사업관리를 거쳐 발주와 계약으로 이어지는 지식 위치">
   <span>IT 전략·관리</span>
-  <span>공공 SW 정책·계약 제도</span>
-  <strong>공공 SW 사업 발주·계약</strong>
+  <span>공공 SW 사업관리</span>
+  <strong>발주·계약</strong>
 </div>
 
 ## 큰 그림과 30초 인출
 
-- 본질: **공공 SW 사업 발주·계약**은 요구사항 불명확성과 저가 덤핑 투찰을 근절하기 위해 분석·설계와 개발을 분리하는 **단계별 발주**와 기술 변별력을 강화하는 **차등점수제**를 적용하는 법정 공공 조달 체계
-- 메커니즘: 1단계 기획·설계 발주로 상세 요구사항과 기능점수(**FP**)를 확정한 후, 2단계 본개발에서 **기술 90% : 가격 10%** 및 차등점수제로 우수 사업자를 선정하여 계약 체결
-- 산출: 상세 제안요청서(**RFP**) · 기능점수 산정서 · 과업심의위원회 의결서 · 기술협상서 및 공정 계약서
+- 본질: 공공 SW 사업의 **범위·대가·책임·검수기준**을 경쟁과 계약 절차로 확정
+- 절차: 사업계획 → RFP → 과업심의 → 입찰·평가 → 협상·계약 → 수행·변경관리
+- 통제: 요구사항 명확화 · 적정 대가 · 기술평가 · 과업변경 심의 · 계약 추적성
 
-<div class="itpe-flow-map" role="img" aria-label="공공 SW 사업 단계별 발주 및 차등점수제 업체 선정 흐름">
-  <div class="itpe-flow-node">
-    <strong>1단계: 기획·설계 분리 발주</strong>
-    <small>ISMP · 요구사항 상세화 · 아키텍처 설계</small>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>정밀 기능점수(FP) 및 상세 RFP 확정</small></div>
-  <div class="itpe-flow-node is-current">
-    <strong>2단계: 본개발 발주 및 제안평가</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>제도</strong><span><span class="itpe-keyword"><strong>단계별 발주</strong></span>(설계·개발 분리) · 과업심의위원회</span></div>
-      <div class="itpe-flow-branch"><strong>평가</strong><span>기술 90% : 가격 10% 확대 · <span class="itpe-keyword"><strong>차등점수제</strong></span> 적용</span></div>
-      <div class="itpe-flow-branch"><strong>협상</strong><span>우선협상대상자 선정 · 요구사항 과업 기준선 확정</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>공정 계약 체결 및 개발 착수</small></div>
-  <div class="itpe-flow-node">
-    <strong>공공 SW 품질 및 납기 완수</strong>
-    <small>과업 변경 분쟁 차단 · 정당 대가 지급 · SW 생태계 정상화</small>
-  </div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 소프트웨어 사업 발주와 계약의 전체 흐름">
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 발주 준비</strong><strong>활동</strong><span>사업범위·요구사항·예산·기간 정의</span><strong>산출</strong><span>사업계획서 · RFP 초안</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 과업 확정</strong><strong>활동</strong><span>과업내용·사업기간·대가 검토</span><strong>산출</strong><span>과업심의 결과 · RFP</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 사업자 선정</strong><strong>활동</strong><span>공고·제안평가·우선협상</span><strong>산출</strong><span>평가결과 · 협상안</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>④ 계약·이행</strong><strong>활동</strong><span>범위·대가·기간·검수조건 확정</span><strong>산출</strong><span>계약서 · 사업수행계획서</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 변경·검수</strong><strong>활동</strong><span>변경 영향분석·과업심의·검수</span><strong>산출</strong><span>변경계약 · 검수결과</span></div></div>
 </div>
 
 <details>
 <summary>핵심 용어</summary>
 
-- **공공 SW 사업 발주·계약**: 소프트웨어 진흥법에 의거하여 요구사항을 구체화하고 적정 대가와 기술 중심 선정을 보장하는 공공 조달 체계
-- **단계별 발주(분할발주)**: 분석·설계(1단계)와 시스템 구현(2단계)을 별도 사업으로 분리 발주하여 요구사항 모호성을 사전 해소하는 제도
-- **차등점수제**: 기술능력평가 시 심사위원 점수 인플레이션(0.1점 차)으로 인한 저가 덤핑 낙찰을 방지하기 위해 기술 순위별로 고정 점수차(0.5~3점)를 강제 부여하는 제도
-- **협상에 의한 계약**: 다수의 입찰자로부터 제안서를 제출받아 기술과 가격을 종합 평가하고 우선협상대상자와 협상을 거쳐 계약하는 방식
-- **과업심의위원회**: 공공 SW 사업의 사업기간 적정성 심의 및 사업 추진 중 과업 변경 여부와 계약금액 조정을 법적으로 의무 심의하는 위원회
-- **FP(Function Point)**: 소프트웨어의 논리적 기능 규모를 측정하여 개발 대가와 일정을 산정하는 기준
-- **RFP(Request for Proposal)**: 발주기관이 입찰 참가자에게 사업 범위, 상세 요구사항, 제안서 작성 기준을 제시하는 제안요청서
-- **헤드카운팅(Head-counting)**: 소프트웨어 사업 대가를 투입 인력의 등급과 머릿수(M/M)로 산정하거나 현장 출근을 강제하는 구태 관행
-- **PoC(Proof of Concept)**: 1단계 설계에서 도출된 신기술이나 아키텍처의 실현 가능성을 사전 시제품으로 실증하는 절차
+- **RFP(Request for Proposal)**: 사업범위·요구사항·평가기준·계약조건을 제시하는 제안요청서
+- **FP(Function Point)**: 사용자 관점의 논리적 기능으로 SW 규모를 측정하는 방법
+- **과업심의위원회**: 과업내용의 확정·변경과 이에 따른 계약금액·기간 조정을 심의하는 기구
+- **협상에 의한 계약**: 제안서의 기술·가격을 평가하고 우선협상대상자와 협상하여 체결하는 계약방식
+- **SLA(Service Level Agreement)**: 서비스 수준과 측정·보고·조치 기준을 합의한 문서
+- **Baseline**: 변경통제를 거쳐야 수정할 수 있도록 승인된 범위·요구사항·일정·비용 기준
 
 </details>
 
 ## 예상문제
 
-> 공공 소프트웨어 사업의 요구사항 불명확과 저가 덤핑 문제를 해결하기 위한 발주·계약 제도 개선방안(단계별 발주, 기술평가 90:10 확대, 차등점수제, 과업심의위원회)을 설명하고, 실무 적용 시의 한계점과 극복 대책을 논하시오. (25점)
+> 공공 SW 사업의 발주·계약 절차를 설명하고, 요구사항 불명확과 과업변경 분쟁을 예방하기 위한 통제방안을 제시하시오. **(미출제 예상·25점)**
 
-## Ⅰ. 공공 SW 품질 확보와 생태계 정상화를 위한 발주·계약 제도의 개요
+## Ⅰ. 공공 SW 사업 발주·계약의 개요
 
-> 공공 SW 발주·계약 제도는 모호한 RFP로 인한 잦은 과업 변경과 저가 투찰을 방지하는 법정 장치이며, 성패는 **요구사항 상세화**와 기술 우수 사업자를 보호하는 **차등점수제**의 실효적 작동으로 판정함.
+> 발주·계약은 사업구상을 **검수 가능한 요구사항과 계약 Baseline**으로 전환하는 통제 활동임.
 
-- 정의: 공공 정보화 사업 추진 시 요구사항을 사전에 상세화하고 기술 우수 사업자가 정당한 대가를 받도록 보장하는 **소프트웨어 진흥법** 기반의 **공공 조달 및 계약 체계**
-- 목적: 요구사항 명확화, 과업 변경·저가 덤핑 근절, SW 품질 보증
+- 정의: 공공 SW 사업의 범위·요구사항·대가·기간·책임을 명시하고 사업자를 선정하여 계약하는 조달 절차
+- 목적: **공정한 사업자 선정 · 적정 대가 · 과업분쟁 예방**
 
-## Ⅱ. 공공 SW 발주·계약 혁신의 4대 핵심 제도 체계
+## Ⅱ. 발주·계약의 구성체계와 절차
 
-> 4대 제도가 상호 결합하여 범위 고정과 기술 중심 낙찰을 실현함.
+> RFP의 요구사항이 평가·협상·계약·검수까지 끊기지 않아야 함.
 
-| 핵심 제도 | 법적 근거 및 주요 내용 | 도입 목적 및 기대 효과 |
+| 단계 | 주요 활동 | 핵심 산출물 |
 |---|---|---|
-| **단계별 발주 (분할발주)** | SW 진흥법 제44조 / 분석·설계(1단계)와 구현·검수(2단계) 분리 | 요구사항 미확정 상태의 조기 개발 착수 방지 및 과업 변경 최소화 |
-| **협상에 의한 계약** | 국가계약법 시행령 제43조 / 기술평가와 가격평가 종합 합산 | 단순 최저가 낙찰을 배제하고 기술력과 가격을 종합 협상 |
-| **기술평가 비중 확대** | 기술 90% : 가격 10% (기존 80:20에서 기술평가 비중 상향) | 저가 덤핑 입찰자의 가격 우위 왜곡 차단 |
-| **차등점수제** | 조달청 협상에 의한 계약 세부기준 / 순위별 고정 점수차(0.5~3점) 부여 | 심사위원 점수 인플레이션(0.1점 차) 무력화 및 기술 우위 사업자 낙찰 |
+| 발주 준비 | 사업범위·요구사항·예산·기간 정의 | 사업계획서 · RFP 초안 |
+| 과업 확정 | 과업내용·사업기간·대가 검토 | 과업심의 결과 · RFP |
+| 입찰·평가 | 공고·제안접수·기술·가격평가 | 평가결과 · 우선협상대상자 |
+| 협상·계약 | 제안내용·범위·대가·검수조건 조정 | 협상결과 · 계약서 |
+| 이행·변경 | 진척·품질관리·변경 영향분석 | 변경심의 · 변경계약 · 검수결과 |
 
-## Ⅲ. 단계별 발주 및 업체 선정 아키텍처
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Contract Traceability</strong></span> · 요구사항 ↔ 평가항목 ↔ 제안내용 ↔ 계약조항 ↔ 검수기준</div>
 
-> 1단계 설계에서 상세 요구와 FP를 뽑아 2단계 RFP에 담고, 차등점수제로 본개발사를 선정함.
+## Ⅲ. 핵심 제도와 통제 역할
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 SW 단계별 발주 및 제안평가 프로세스 파이프라인">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>① 1단계: 기획·설계 발주 및 과업심의</strong></span>
-      <span>ISMP 수립 · 사업기간 적정성 심의 · 분할발주 확정 (과업심의위원회 의결서)</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>② 요구사항 상세화 및 아키텍처 설계</strong></span>
-      <span>화면·DB 설계 · 기능점수(FP) 정밀 산정 · 상세 RFP 확정 (상세 요구사항 명세서, FP 산정서)</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>③ 2단계: 본개발 입찰 공고</strong></span>
-      <span>상세 RFP 첨부 · 나라장터 사전 규격 공개 5일 이상 (입찰 공고문, 제안요청서)</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>④ 제안서 평가 및 차등점수제 적용</strong></span>
-      <span>기술능력평가(90%) + 입찰가격평가(10%) · 순위별 고정 격차 부여 (기술평가 결과표, 우선협상대상자 선정)</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>⑤ 기술협상 및 최종 계약 체결</strong></span>
-      <span>과업 범위 기준선 확정 · 기술협상 수행 · SLA 체결 (기술협상록, 최종 계약서)</span>
-    </div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Scope Traceability</strong></span> · 1단계 설계 산출물이 2단계 RFP로 100% 반영되고 기술 우수 기업이 최종 낙찰</div>
+> 제도명 나열보다 각 제도가 어느 위험을 통제하는지 연결해야 함.
 
-## Ⅳ. 일괄 발주 vs 단계별(분할) 발주 비교
-
-> 일괄 발주가 행정 편의적인 반면, 단계별 발주는 요구사항 변경 리스크를 사전에 제거함.
-
-| 비교 항목 | 일괄 발주 방식 (Turn-key) | 단계별 분할 발주 방식 (설계·개발 분리) |
+| 통제 | 적용 | 효과 |
 |---|---|---|
-| 발주 형태 | 분석, 설계, 구현, 검수를 단일 사업자에게 일괄 위탁 | 1단계(분석·설계)와 2단계(구현·검수)를 분리 발주 |
-| 요구사항 확정도 | RFP 공고 시점에 요구사항이 추상적이고 모호함 | 1단계 종료 시점에 화면, DB, 상세 기능이 100% 확정됨 |
-| 과업 변경 위험 | 개발 진행 중 잦은 과업 변경 및 분쟁 빈발 | 2단계 본개발 착수 시 과업 변경 요인이 최소화됨 |
-| 책임 소재 | 단일 주사업자가 전체 수명주기 책임 (명확함) | 설계 사업자와 개발 사업자 간 책임 전가 위험 잔존 |
-| 발주 행정 소요 | 1회의 입찰 및 계약으로 행정 절차 간소 | 2회의 입찰 및 검수가 필요하여 전체 일정 장기화 |
-| 적합 사업 | 단순 레거시 재구축, 패키지 도입, 표준화된 사업 | 대규모 차세대, 신규 업무 시스템, 기술 복잡도 높은 사업 |
+| **과업내용 확정** | 발주 전 사업계획서·RFP 심의 | 모호한 범위 축소 |
+| **협상에 의한 계약** | 기술·가격 평가 후 계약조건 협상 | 기술·가격 균형 |
+| **과업변경 심의** | 범위·비용·기간 영향 검토 | 무상 과업변경 방지 |
+| **단계별 발주** | 필요 시 설계와 구현을 구분 | 구현 전 상세화 |
 
-## Ⅴ. 실무 공공 SW 발주·계약의 실패 요인과 공학적 대책
+## Ⅳ. 일괄발주와 단계별 발주 비교
 
-> 설계-개발 간 책임 단절과 차등점수 격차 왜곡을 방어하지 못하면 제도의 취지가 훼손됨.
+> 사업 불확실성과 설계 독립성에 따라 발주방식을 선택함.
+
+| 기준 | 일괄발주 | 단계별 발주 |
+|---|---|---|
+| 범위 | 설계·구현 통합 | 설계 후 구현 분리 |
+| 장점 | 책임창구·절차 단순 | 요구사항·아키텍처 상세화 |
+| 위험 | 초기 RFP 모호성 | 단계 간 책임·일정 단절 |
+| 적합 | 범위·기술이 명확한 사업 | 불확실성·복잡도가 큰 사업 |
+
+## Ⅴ. 문제점·대응책
+
+> 계약문서 간 불일치를 변경통제와 검수 단계까지 추적해야 함.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **설계-개발 책임 단절** | 1단계 검수 시 **PoC(개념검증)** 의무화 및 2단계 감수·자문 계약 연계 | 구현 불가능한 설계 0건 검증 |
-| **차등점수 격차 왜곡** | 사업 규모·난이도에 맞춘 적정 차등폭(0.5~1.5점) 탄력 적용 | 합리적이고 공정한 기술 변별력 확인 |
-| **과업심의위원회 무력화** | 과업심의 의무화 위반 시 감사 지적 명시 및 조달청 계약 변경 연동 | 부당한 무상 과업 추가 0건 유지 |
-| **헤드카운팅 관행 회귀** | 인력 관리 조항 계약서 배제 의무화 및 산출물 기반 검수 정착 | 투입 공수 간섭 배제 및 생산성 보장 |
+| **요구사항 누락** | RFP·제안서·계약서·검수항목 추적 | 범위 누락 통제 |
+| **저가·과소산정** | 규모·공수·인프라·운영비 구분 산정 | 대가 근거 명확화 |
+| **무상 과업변경** | 영향분석 후 과업심의·변경계약 | 비용·기간 조정 |
+| **설계·구현 단절** | 인수기준·설계검증·책임경계 명시 | 책임분쟁 완화 |
 
-## Ⅵ. 공정한 소프트웨어 생태계 완성 중심 기술사적 제언
+## Ⅵ. 계약 Baseline을 지키는 기술사적 제언
 
-> 공공 SW 사업 부실은 개발사 역량 부족 이전에 불명확한 RFP와 덤핑 입찰 제도에서 기인하므로, 요구사항 상세화와 제값 주기 풍토가 선행되어야 함.
+`[핵심 통찰]` 공공 SW 계약의 품질은 문서량이 아니라 요구사항이 평가·계약·검수 기준으로 이어지는가에 달려 있음.
 
-### 학습자 통찰 메모 — 답안 밖
+`나라면` 협상 종료 전 요구사항별 제안수용 여부·계약조항·검수방법을 매핑하고, 변경은 비용·기간 영향이 승인된 뒤 반영하겠음.
 
-- [핵심 통찰]: 공공 SW 사업의 고질적인 납기 지연과 품질 저하는 결국 발주기관이 무엇을 만들지 모른 채 사업자를 뽑고, 최저가 투찰자가 낙찰되는 구조적 결함에서 비롯됨. 기획·설계 분할 발주로 요구사항을 먼저 고정하고, 차등점수제로 기술 우수 기업을 낙찰시키는 것이 유일한 해법임.
-- 나라면: 공공 정보화 사업 기획 시 `ISMP 기반 기능·비기능 요구사항 100% 명세화 → 기술 90% 및 1.0점 차등점수제 적용 → 과업 변경 발생 시 과업심의위원회 의결을 통한 계약금액 자동 조정`을 조달 규격서에 확정하겠음.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 행정 편의적 일괄 발주 탈피 및 요구사항 상세화 기반 공정 계약 확립
-- 대안: **단계별 발주 + 기술평가 90:10 + 차등점수제 + 과업심의 연동** 패키지 적용
-- 검증: 본개발 착수 전 요구사항 확정률 100% · 과업 변경 계약금액 조정률 100%
-- 효과: 과업 변경 분쟁 원천 차단 및 공공 정보시스템 품질·납기 보증
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 SW 발주·계약 혁신 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <strong>현행 한계</strong>
-      <span>모호한 RFP · 저가 덤핑 투찰 · 무상 과업 변경 강요</span>
-    </div>
-  </div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 소프트웨어 계약 Baseline 통제 방안">
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>문제</strong><span>RFP·제안서·계약서·검수기준 단절</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <strong>개선 대안</strong>
-      <span>설계·개발 분할발주 + 기술 90% 및 차등점수제 + 과업심의 의무화</span>
-    </div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>대책</strong><span>요구사항별 계약·검수 매핑</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <strong>검증 기준</strong>
-      <span>상세 RFP 기반 정밀 FP 산출 · 순위별 고정 격차 부여</span>
-    </div>
-  </div>
+  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>변경 통제</strong><span>영향분석 → 과업심의 → 변경계약</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <strong>실행 효과</strong>
-      <span>제값 주는 공공 SW 생태계 확립 · 고품질 디지털 행정 완성</span>
-    </div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>효과</strong><span>범위·대가·기간·검수책임 일치</span></div></div>
 </div>
 
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
 
-- 정의: **공공 SW 사업 발주·계약**은 요구사항 불명확성과 저가 덤핑 투찰을 근절하기 위해 분석·설계와 개발을 분리하는 **단계별 발주**와 기술 변별력을 강화하는 **차등점수제**를 적용하는 법정 공공 조달 체계
-- 목적: 요구사항 명확화, 과업 변경·저가 덤핑 근절, SW 품질 보증
+- 정의: 공공 SW 사업의 **범위·요구사항·대가·기간·책임**을 명시하고 사업자를 선정하여 계약하는 조달 절차
+- 목적: **공정한 선정 · 적정 대가 · 과업분쟁 예방**
 
-### 2. 구성체계 및 방법론
+### 2. 발주·계약 절차
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 SW 발주·계약 프로세스 요약">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <strong>1단계 설계</strong>
-      <span>요구사항 상세화 · 정밀 FP 산정</span>
-    </div>
-  </div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 소프트웨어 발주와 계약 절차 요약">
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>발주 준비</strong><strong>활동</strong><span>범위·요구사항·예산 정의</span><strong>산출</strong><span>사업계획서 · RFP 초안</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <strong>2단계 공고</strong>
-      <span>상세 RFP 첨부 · 사전 규격 공개</span>
-    </div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>과업 확정</strong><strong>활동</strong><span>과업내용 심의</span><strong>산출</strong><span>RFP · 심의결과</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <strong>제안 평가</strong>
-      <span>기술 90% + 차등점수제(고정 격차)</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail">
-      <strong>기술 협상</strong>
-      <span>과업 기준선 확정 · 공정 계약 체결</span>
-    </div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>선정·계약</strong><strong>활동</strong><span>평가·협상·계약</span><strong>산출</strong><span>계약 Baseline</span></div></div>
 </div>
 
 ### 3. 핵심 통제
 
-- **단계별 발주**: 분석·설계(1단계)로 요구사항 확정 후 구현(2단계) 분리 발주
-- **차등점수제**: 기술능력평가 순위 간 0.5~3점의 고정 격차 강제 부여로 저가 투찰 방어 및 기술 우위 사업자 낙찰
+- **과업심의**: 과업내용 확정·변경과 계약금액·기간 조정
+- **추적성**: 요구사항 ↔ 계약조항 ↔ 검수기준 연결
 
 ## 출제 이력과 검증 출처
 
-- 제122회 정보관리기술사 기출 맥락: 협상에 의한 계약체결 기준과 차등점수제
-- 제121회 정보관리기술사 기출 맥락: 공공 SW사업 발주제도 개선방안
-- 과학기술정보통신부, [소프트웨어 진흥법 및 공공 소프트웨어사업 제안요청서 작성 매뉴얼](https://www.msit.go.kr)
-- 조달청, [협상에 의한 계약 제안서평가 세부기준](https://www.pps.go.kr)
+- 공식 문제지 원문으로 확인한 직접 기출 없음
+- [국가법령정보센터: 소프트웨어 진흥법](https://www.law.go.kr/법령/소프트웨어진흥법)
+- [국가법령정보센터: 소프트웨어사업 계약 및 관리감독에 관한 지침](https://www.law.go.kr/행정규칙/소프트웨어사업계약및관리감독에관한지침)
 
 ## 학습 체크
 
-- [ ] 단계별 분할 발주와 일괄 발주의 장단점을 요구사항 관리 관점에서 비교할 수 있는가?
-- [ ] 기술평가 90% 확대와 차등점수제가 저가 덤핑 투찰을 방지하는 원리를 설명할 수 있는가?
-- [ ] 과업심의위원회의 법적 역할과 사업기간 적정성 심의의 필요성을 서술할 수 있는가?
-- [ ] 설계-개발 분할 발주 시 발생하는 책임 단절 문제를 극복하기 위한 공학적 대책을 제시할 수 있는가?
+- [ ] Ⅰ. 발주·계약의 정의·목적을 설명할 수 있는가?
+- [ ] Ⅱ. 발주 준비부터 변경·검수까지 활동·산출물을 연결할 수 있는가?
+- [ ] Ⅲ. 과업내용 확정·변경과 협상계약의 통제 역할을 설명할 수 있는가?
+- [ ] Ⅳ. 일괄발주와 단계별 발주의 선택 기준을 비교할 수 있는가?
+- [ ] Ⅴ~Ⅵ. 요구사항 누락·과소산정·무상변경의 대응책을 제시할 수 있는가?
 
 ## 연결 토픽
 
