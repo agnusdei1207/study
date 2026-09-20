@@ -431,8 +431,17 @@ a:not([class]):hover {
   font-weight: 700;
 }
 
+/* ITPE Markdown의 **채점 키워드**는 자동으로 강조색을 적용한다. */
+.sl-markdown-content:has(.itpe-topic-path) :is(p, li, td, th, blockquote) strong {
+  color: var(--palette-accent-glow);
+}
+
 :root[data-theme='light'] .sl-markdown-content .itpe-keyword,
 :root[data-theme='light'] .sl-markdown-content .itpe-keyword strong {
+  color: var(--palette-accent-deep);
+}
+
+:root[data-theme='light'] .sl-markdown-content:has(.itpe-topic-path) :is(p, li, td, th, blockquote) strong {
   color: var(--palette-accent-deep);
 }
 

@@ -19,9 +19,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: ISMP(Information System Master Plan)는 ISP(Information Strategy Planning) 선정 시스템을 조달 가능한 <span class="itpe-keyword"><strong>Baseline</strong></span>으로 구체화
-- 메커니즘: 요건 → 아키텍처 → 규모·예산 → RFP(Request for Proposal)를 <span class="itpe-keyword"><strong>RTM(Requirements Traceability Matrix)</strong></span>으로 연결
-- 산출: 요건명세 · 목표 아키텍처 · FP(Function Point) · 예산 · RFP
+- 본질: **ISMP(Information System Master Plan)**는 **ISP(Information Strategy Planning)** 선정 시스템을 조달 가능한 **Baseline**으로 구체화
+- 메커니즘: 요건 → 아키텍처 → 규모·예산 → **RFP(Request for Proposal)**를 **RTM(Requirements Traceability Matrix)**으로 연결
+- 산출: 요건명세 · 목표 아키텍처 · **FP(Function Point)** · 예산 · RFP
 
 <div class="itpe-flow-map" role="img" aria-label="경영·정책에서 ISP와 ISMP를 거쳐 조달·구축으로 이어지는 흐름">
   <div class="itpe-flow-node"><strong>경영·정책</strong></div>
@@ -35,8 +35,8 @@ extra:
     <strong>ISMP</strong>
     <div class="itpe-flow-branches">
       <div class="itpe-flow-branch"><strong>절차</strong><span>착수 → 방향성 → 요건 → 구조 → 이행</span></div>
-      <div class="itpe-flow-branch"><strong>통제</strong><span>RTM 기반 양방향 추적</span></div>
-      <div class="itpe-flow-branch"><strong>산출</strong><span>아키텍처 · FP · 예산 · RFP</span></div>
+      <div class="itpe-flow-branch"><strong>통제</strong><span><span class="itpe-keyword"><strong>RTM</strong></span> 기반 양방향 추적</span></div>
+      <div class="itpe-flow-branch"><strong>산출</strong><span>아키텍처 · <span class="itpe-keyword"><strong>FP</strong></span> · 예산 · <span class="itpe-keyword"><strong>RFP</strong></span></span></div>
     </div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
@@ -49,15 +49,15 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- ISMP(Information System Master Plan): 특정 시스템의 요건·구조·예산을 발주 가능한 수준으로 구체화
-- ISP(Information Strategy Planning): 조직의 정보화 방향과 투자 과제를 선정하는 상위 계획
-- IT(Information Technology): 업무 목표를 정보시스템으로 구현하는 기술 영역
-- Baseline: 승인된 범위·요건·비용의 변경 통제 기준
-- RTM(Requirements Traceability Matrix): 요건과 설계·비용·계약 산출물의 양방향 연결을 검증
-- 아키텍처: 요건을 응용·데이터·기술 구성과 관계로 배치한 목표 구조
-- 요건명세: 기능·데이터·비기능 요구를 설계·검수 가능한 수준으로 정의
-- FP(Function Point): 사용자 관점 기능을 기준으로 소프트웨어 규모를 산정
-- RFP(Request for Proposal): 범위·요건·평가·계약 조건을 제시하는 제안 요청 문서
+- **ISMP(Information System Master Plan)**: 특정 시스템의 요건·구조·예산을 발주 가능한 수준으로 구체화
+- **ISP(Information Strategy Planning)**: 조직의 정보화 방향과 투자 과제를 선정하는 상위 계획
+- **IT(Information Technology)**: 업무 목표를 정보시스템으로 구현하는 기술 영역
+- **Baseline**: 승인된 범위·요건·비용의 변경 통제 기준
+- **RTM(Requirements Traceability Matrix)**: 요건과 설계·비용·계약 산출물의 양방향 연결을 검증
+- **아키텍처**: 요건을 응용·데이터·기술 구성과 관계로 배치한 목표 구조
+- **요건명세**: 기능·데이터·비기능 요구를 설계·검수 가능한 수준으로 정의
+- **FP(Function Point)**: 사용자 관점 기능을 기준으로 소프트웨어 규모를 산정
+- **RFP(Request for Proposal)**: 범위·요건·평가·계약 조건을 제시하는 제안 요청 문서
 
 </details>
 
@@ -67,10 +67,10 @@ extra:
 
 ## Ⅰ. 발주 Baseline을 수립하는 ISMP의 개요
 
-> ISMP는 특정 시스템의 요건을 실행 가능한 발주 <span class="itpe-keyword"><strong>Baseline</strong></span>으로 전환하며, 완성도는 RFP까지의 Traceability로 판정한다.
+> ISMP는 **특정 정보시스템**의 요건을 실행 가능한 발주 **Baseline**으로 전환하며, 완성도는 **Traceability**로 판정한다.
 
-- 정의: 특정 정보시스템의 요건·구조·규모·예산·이행방안을 구체화하는 발주 Baseline 수립 활동
-- 목적: 검수 가능한 요건과 적정 예산 확정 → 과업 변경·조달 분쟁 예방
+- 정의: **특정 정보시스템**의 요건을 **FP 산정 수준**으로 상세화하여 발주 **Baseline**을 수립하는 활동
+- 목적: 요건-아키텍처-예산-**RFP** 간 **Traceability** 확보 → 과업 변경·조달 분쟁 예방
 
 ## Ⅱ. ISMP 구성체계 및 5단계 방법론
 
@@ -78,27 +78,27 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 구성체계와 5단계 방법론의 활동 및 산출물">
   <div class="itpe-pipeline-node">
-    <strong>① 프로젝트 착수</strong>
+    <span class="itpe-keyword"><strong>① 프로젝트 착수</strong></span>
     <small>범위 · 조직 · 일정 · 품질계획<br />→ 수행계획서</small>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>② 정보시스템 방향성 수립</strong>
+    <span class="itpe-keyword"><strong>② 정보시스템 방향성 수립</strong></span>
     <small>환경·현황 · 목표 · 추진 범위<br />→ 범위·방향성 정의서</small>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>③ 업무 및 IT 요건 분석</strong>
+    <span class="itpe-keyword"><strong>③ 업무 및 IT 요건 분석</strong></span>
     <small>업무 · 기능 · 데이터 · 비기능<br />→ 업무·IT 요건 목록</small>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>④ 정보시스템 구조 및 요건 정의</strong>
+    <span class="itpe-keyword"><strong>④ 정보시스템 구조 및 요건 정의</strong></span>
     <small>목표 아키텍처 · 인터페이스 · 상세 요건<br />→ 아키텍처 · 요건명세서</small>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>⑤ 구축사업 이행방안 수립</strong>
+    <span class="itpe-keyword"><strong>⑤ 구축사업 이행방안 수립</strong></span>
     <small>일정 · FP · 예산 · 발주전략<br />→ 이행계획 · 예산서 · RFP</small>
   </div>
 </div>
@@ -106,30 +106,30 @@ extra:
 
 ## Ⅲ. ISP와 ISMP의 비교
 
-> ISP는 투자 과제를 선택하고, ISMP는 선택된 시스템을 발주·구축할 수 있는 수준으로 확정한다.
+> **ISP**는 투자 과제를 선택하고, **ISMP**는 선택된 시스템을 **발주 Baseline**으로 확정한다.
 
 | 기준 | ISP | ISMP |
 |---|---|---|
 | 질문 | 무엇을 왜 추진할 것인가 | 무엇을 어느 범위·비용으로 구축할 것인가 |
 | 대상 | 조직·업무 전반 | 특정 정보시스템 |
-| 상세 | 전략·개념 수준 | 상세 요건·FP 산정 수준 |
-| 산출 | 정보화 과제 · 우선순위 · 로드맵 | 요건명세 · 아키텍처 · 예산 · RFP |
+| 상세 | 전략·개념 수준 | 상세 요건·**FP 산정 수준** |
+| 산출 | 정보화 과제 · 우선순위 · 로드맵 | 요건명세 · 아키텍처 · 예산 · **RFP** |
 | 종료 | 투자 과제 선정 | 발주 Baseline 확정 |
 
 ## Ⅳ. 구축사업 이행방안의 실효성 확보
 
-> 조달 전 <span class="itpe-keyword"><strong>Quality Gate</strong></span>에서 범위·비용·계약의 연결성을 검증해야 구축 단계의 변경비용을 앞단에서 차단할 수 있다.
+> 조달 전 **Quality Gate**에서 범위·비용·계약의 연결성을 검증해야 구축 단계의 변경비용을 앞단에서 차단할 수 있다.
 
 | 위험 | 원인 | 통제 | 검증 |
 |---|---|---|---|
-| 과업 변경 | 요건-RFP 단절 | RTM 전수 점검 | 미반영 요건 0건 |
-| 예산 왜곡 | 기능 규모·인프라 비용 혼재 | FP·인프라·운영비 분리 | 규모·단가·예산 일치 |
+| 과업 변경 | 요건-RFP 단절 | **RTM** 전수 점검 | 미반영 요건 0건 |
+| 예산 왜곡 | 기능 규모·인프라 비용 혼재 | **FP**·인프라·운영비 분리 | 규모·단가·예산 일치 |
 | 구조 불일치 | 요건-아키텍처 별도 설계 | 요건별 구성요소 매핑 | 미할당·중복 제거 |
 | 발주 분쟁 | 수용기준·책임 불명확 | 검수조건·발주단위 명시 | 요건별 검수 가능 |
 
 ## Ⅴ. Traceability 중심의 기술사적 제언
 
-> 보고서 분량이 아니라 요건에서 계약까지 이어지는 Traceability를 통과 조건으로 삼아야 ISMP가 조달 통제장치로 작동한다.
+> 보고서 분량이 아니라 요건에서 계약까지 이어지는 **Traceability**를 통과 조건으로 삼아야 ISMP가 조달 통제장치로 작동한다.
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -139,7 +139,7 @@ extra:
 ### 실전 답안용 기술사적 제언
 
 - 판정: 산출물 존재보다 요건별 종단 Traceability 확인
-- 대안: RTM 기반 종료 <span class="itpe-keyword"><strong>Quality Gate</strong></span> 운영
+- 대안: **RTM** 기반 종료 **Quality Gate** 운영
 - 검증: 미매핑 요건 0건 · 중복 과업 제거 · 비용 근거 일치
 - 효과: 조달 전 Baseline 확정 → 과업 변경·유찰·분쟁 예방
 
@@ -169,8 +169,8 @@ extra:
 
 ### 1. 정의·목적
 
-- 정의: ISMP(Information System Master Plan)는 특정 정보시스템의 요건·구조·규모·예산을 구체화하는 발주 <span class="itpe-keyword"><strong>Baseline</strong></span> 수립 활동
-- 목적: 요건과 RFP(Request for Proposal) 정합성 확보 → 과업 변경·예산 분쟁 예방
+- 정의: **ISMP(Information System Master Plan)**는 특정 정보시스템의 요건을 **FP(Function Point) 산정 수준**으로 상세화하여 발주 **Baseline**을 수립하는 활동
+- 목적: 요건과 **RFP(Request for Proposal)** 정합성 확보 → 과업 변경·예산 분쟁 예방
 
 ### 2. 구성체계 및 방법론
 
@@ -188,7 +188,7 @@ extra:
 
 ### 3. 핵심 통제
 
-- <span class="itpe-keyword"><strong>RTM(Requirements Traceability Matrix)</strong></span>: 요건 ↔ 아키텍처 ↔ FP(Function Point)·예산 ↔ RFP 양방향 추적
+- **RTM(Requirements Traceability Matrix)**: 요건 ↔ 아키텍처 ↔ **FP(Function Point)**·예산 ↔ RFP 양방향 추적
 - Quality Gate: 전수 매핑 통과 후 발주 → 과업 누락 사전 차단
 
 ## 출제 이력과 검증 출처
