@@ -1,11 +1,14 @@
 ---
 title: "TAM-SAM-SOM"
+author: "Codex"
+date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "B"
 extra:
+  model: "GPT-5.6 Sol"
   keyword_grade: "B"
 ---
 
@@ -19,153 +22,173 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-┌────────────────────────────────────────────────────────┐
-│  [ TAM: Total Addressable Market (전체 시장) ]         │
-│  - 제품·서비스 카테고리의 이론적 최대 수요 총액       │
-│  ┌──────────────────────────────────────────────┐      │
-│  │  [ SAM: Serviceable Addressable (유효 시장) ]│      │
-│  │  - 자사 비즈니스 모델·타깃 영역 도달 가능 시장│      │
-│  │  ┌────────────────────────────────────┐       │      │
-│  │  │  [ SOM: Serviceable Obtainable ]   │       │      │
-│  │  │  - 초기 1~3년 내 실제 점유 시장    │       │      │
-│  │  └────────────────────────────────────┘       │      │
-│  └──────────────────────────────────────────────┘      │
-└────────────────────────────────────────────────────────┘
-```
+- 본질: 거대 시장 착시를 배제하고 전체 시장(**TAM**)에서 유효 시장(**SAM**), 실제 점유 가능한 수익 시장(**SOM**)으로 좁히는 3단계 추정 모델
+- 메커니즘: 거시 잠재력 탐색(Top-down) → BM 부합 유효 고객 필터링(Middle-out) → 영업력·단가 기반 수익 산출(Bottom-up)
+- 산출: TAM 거시 규모표 · SAM 타깃 고객 명세 · SOM 실행 매출 계획서 · **Unit Economics** 검증서
 
-- 본질: 거대 시장의 착시를 제거하고 전체 잠재 시장(TAM)에서 비즈니스 모델로 필터링한 유효 시장(SAM), 초기 자원 제약 하에서 실제 점유 가능한 수익 시장(SOM)으로 좁혀가는 3단계 시장 규모 추정 프레임워크
-- 위치: `신규 사업 기획/ISP → TAM 도출(거시) → SAM 한정(BM) → SOM 산출(실행) → 투자 및 손익분기 분석`
-- 핵심: 제134회 1교시 기출, 3단계 동심원 구조, 하향식(Top-down) 및 상향식(Bottom-up) 교차 검증, Unit Economics(CAC/LTV) 연계
-- 실무: 단순 비율 추정 지양, 고객 수 × 연간 객단가(ARPU) 기반 실증 계산, 경쟁사 윈백 비용 반영
+<div class="itpe-flow-map" role="img" aria-label="TAM 전체시장에서 SAM 유효시장과 SOM 수익시장으로 좁혀지는 3단계 시장 규모 추정 동심원 모델">
+  <div class="itpe-flow-node">
+    <strong>TAM (Total Addressable Market)</strong>
+    <small>전체 시장 · 산업군 내 이론적 최대 수요 총액 (Top-down)</small>
+  </div>
+  <div class="itpe-flow-arrow">↓<small>비즈니스 모델 및 서비스 도달 한계 필터링</small></div>
+  <div class="itpe-flow-node">
+    <strong>SAM (Serviceable Addressable Market)</strong>
+    <small>유효 시장 · 자사 솔루션 스펙 및 타깃 도달 가능 시장 (Middle-out)</small>
+  </div>
+  <div class="itpe-flow-arrow">↓<small>영업 파이프라인 및 초기 자원 제약 반영</small></div>
+  <div class="itpe-flow-node is-current">
+    <strong>SOM (Serviceable Obtainable Market)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>기간</strong><span>초기 1~3년 내 실제 점유 목표</span></div>
+      <div class="itpe-flow-branch"><strong>방식</strong><span>고객 수 × <span class="itpe-keyword"><strong>ARPU</strong></span> × 획득률 (Bottom-up)</span></div>
+      <div class="itpe-flow-branch"><strong>검증</strong><span><span class="itpe-keyword"><strong>Unit Economics</strong></span> (LTV/CAC ≥ 3)</span></div>
+    </div>
+  </div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **TAM(Total Addressable Market)**: 특정 제품·서비스 카테고리가 해결 가능한 전 세계 또는 국내 시장의 이론적 최대 수요 총액
+- **SAM(Serviceable Addressable Market)**: 자사의 비즈니스 모델, 제품 스펙, 유통 채널, 지리적 영역 내에서 실제 도달 가능한 유효 시장
+- **SOM(Serviceable Obtainable Market)**: 초기 1~3년 내 자사의 인력, 자본, 마케팅 자원 제약 하에서 현실적으로 점유 가능한 수익 시장
+- **ARPU(Average Revenue Per User)**: 고객 또는 계정당 연간/월간 평균 결제 단가
+- **CAC(Customer Acquisition Cost)**: 고객 1개사를 신규 획득하기 위해 소요되는 마케팅 및 영업 총비용
+- **LTV(Customer Lifetime Value)**: 고객 1개사가 계약 유지 기간 동안 창출하는 총 기대 수익
+- **Unit Economics**: 단위 고객당 수익성 지표로, 건강한 성장을 위해 통상 $LTV/CAC \ge 3$을 충족해야 함
+- **BEP(Break-Even Point)**: 총매출이 고정비와 변동비의 합계와 일치하여 손익이 0이 되는 손익분기점
+
+</details>
 
 ## 예상문제
 
 > 신규 IT 서비스 사업 기획 및 투자 유치 시 활용되는 시장 규모 추정 프레임워크인 TAM-SAM-SOM의 개념, 3단계 동심원 계층 구조, 하향식(Top-down) 및 상향식(Bottom-up) 추정 방법과 실무 적용 방안을 설명하시오. (10점/25점)
 
-## Ⅰ. 시장 기획의 체계적 여과기, TAM-SAM-SOM의 개요
+## Ⅰ. 시장 기획의 3단계 여과기, TAM-SAM-SOM의 개요
 
-- 정의: 신규 IT 제품 및 디지털 서비스 기획 시 전체 잠재 시장(TAM), 서비스 가능 유효 시장(SAM), 단기 실현 가능 수익 시장(SOM)의 3단계 동심원으로 시장 규모를 계층화하여 추정하는 사업 타당성 분석 프레임워크
-- 배경: "전 세계 거대 시장의 1% 점유"와 같은 비현실적 시장 규모 왜곡 방지, 구체적 타깃 고객 기반의 자원 배분 및 손익분기점(BEP) 산정 필요성 증대
-- 목적: 투자 유치 시 객관적 매출 근거 제시, 초기 영업 및 마케팅 전략의 집중 영역(Targeting) 식별, Unit Economics 기반의 지속 가능한 성장 모델 수립
+> 거대 시장의 착시를 걷어내고 **TAM(전체 시장)**에서 **SAM(유효 시장)**을 거쳐 **SOM(수익 시장)**으로 좁혀 단기 실행력을 확보함.
 
-#### 한줄 요약
-- 전체 시장에서 실행 가능한 세그먼트를 3단계 동심원으로 필터링하는 시장 추정 도구임
+- 정의: 신규 IT 제품 및 디지털 서비스 기획 시 **TAM(Total Addressable Market)**, **SAM(Serviceable Addressable Market)**, **SOM(Serviceable Obtainable Market)**의 3단계 동심원으로 시장 규모를 단계별 여과 추정하는 **사업 타당성 분석 프레임워크**
+- 목적: "거대 시장의 1% 점유"와 같은 비현실적 과대 추정을 방지하고, **단위 경제성(Unit Economics)** 기반의 객관적 손익분기점(**BEP**)을 달성
 
-## Ⅱ. TAM-SAM-SOM 3단계 계층 구조 및 특징
+## Ⅱ. TAM-SAM-SOM 3단계 계층 구조 및 추정 체계
 
-| 계층 구분 | 개념 및 정의 | 산출 공식 및 기준 | IT 서비스 예시 (클라우드 FinOps) |
+> 거시 통계에서 비즈니스 모델 제약, 영업 파이프라인 실측치로 좁혀가는 3단계 계층 파이프라인을 운영함.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="TAM-SAM-SOM 3단계 계층 구조 및 산출 체계">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>① TAM (Total Addressable Market: 전체 시장)</strong></span>
+    <small>산업 보고서 기준 이론적 최대 수요 총액<br />→ 거시 통계 인용 · 잠재 모수 × 이상 단가</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>② SAM (Serviceable Addressable Market: 유효 시장)</strong></span>
+    <small>자사 BM · 솔루션 스펙 · 지리적 도달 가능 영역<br />→ 타깃 세그먼트 고객 수 × 패키지 단가</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>③ SOM (Serviceable Obtainable Market: 수익 시장)</strong></span>
+    <small>초기 1~3년 내 인력·자본 제약 하 실제 점유 시장<br />→ 집중 고객 수 × ARPU × 현실 획득률</small>
+  </div>
+</div>
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>타당성 정합성</strong></span> · TAM(잠재 한계) ↔ SAM(전략 목표) ↔ SOM(실행 검증: LTV/CAC ≥ 3)</div>
+
+### 3단계 계층 상세 비교표
+
+| 계층 구분 | 개념 및 정의 | 산출 공식 및 기준 | IT 실무 적용 예시 (엔터프라이즈 AI FinOps) |
 |---|---|---|---|
-| **TAM** (Total Addressable) | 제품 카테고리가 해결 가능한 전 세계/국내 이론적 최대 전체 시장 규모 | 전체 잠재 고객 수 × 이상적 연간 소비 단가 (거시 통계) | 글로벌 클라우드 관리 및 FinOps 시장 (약 50조 원) |
-| **SAM** (Serviceable Addressable) | 자사 비즈니스 모델, 솔루션 스펙, 지리적 영역 내에서 도달 가능한 유효 시장 | 타깃 고객군 수 × 연간 패키지 단가 (세그먼트 통계) | 국내 엔터프라이즈 및 금융권 FinOps 시장 (약 3,000억 원) |
-| **SOM** (Serviceable Obtainable) | 초기 1~3년 내 자사의 인력, 자본, 마케팅 역량으로 실제 확보 가능한 수익 시장 | 타깃 집중 고객 수 × 목표 점유율 × 연간 구독료(ARPU) | 국내 주요 금융사 50개사 중 20% 점유 (약 50억 원) |
+| **TAM** | 제품 카테고리가 해결 가능한 이론적 최대 전체 시장 규모 | 전체 잠재 고객 수 × 이상적 연간 지출액 (Gartner/IDC) | 전 세계 클라우드 비용 관리 및 FinOps 시장 (약 50조 원) |
+| **SAM** | 자사 솔루션 스펙 및 지리적 도달 범위 내의 유효 시장 | 타깃 고객군 수 × 연간 라이선스 패키지 단가 | 국내 금융·제조 엔터프라이즈 FinOps 시장 (약 3,000억 원) |
+| **SOM** | 초기 1~3년 내 영업 인력과 채널로 실제 확보 가능한 수익 시장 | 타깃 집중 고객 수 × **ARPU(Average Revenue Per User)** × 획득률 | 국내 Tier-1 금융사 50개 중 20% 점유 (약 50억 원) |
 
-#### 한줄 요약
-- TAM은 한계선, SAM은 전략 목표, SOM은 단기 생존과 손익분기 달성용 지표임
+## Ⅲ. 하향식(Top-down) vs 상향식(Bottom-up) 추정 방법 비교
 
-## Ⅲ. TAM-SAM-SOM 추정 모델 및 산출 체계
+> 하향식으로 잠재 성장 한계선을 설정하고 상향식으로 즉시 실행 가능한 고객 단가를 도출해 교차 검증해야 함.
 
-```text
-┌───────────────── [TAM: Top-down 거시적 접근] ─────────────────┐
-│  - 공신력 있는 시장 보고서(Gartner, IDC) 전체 시장 규모 인용  │
-│  - 이론적 최대치: 잠재 기업 고객 수(N_total) × 평균 IT 지출액│
-└────────────────────────────────┬──────────────────────────────┘
-                                 │ 비즈니스 모델 및 타깃 세그먼트 필터링
-                                 ▼
-┌───────────────── [SAM: Middle-out 전략적 접근] ───────────────┐
-│  - 라이선스/구독 모델 적합군 + 국내/타깃 지역 기업 선별       │
-│  - 유효 시장: 도달 가능 기업군(N_target) × 연간 구독 단가     │
-└────────────────────────────────┬──────────────────────────────┘
-                                 │ 영업 인프라 및 단기 점유율 한정
-                                 ▼
-┌───────────────── [SOM: Bottom-up 실증적 접근] ────────────────┐
-│  - 영업 인력(영업 대표 수) × 인당 클로징 가능 계정 수        │
-│  - 수익 시장: 초기 타깃 고객 수(N_som) × ARPU × 획득률        │
-└───────────────────────────────────────────────────────────────┘
-```
-
-| 접근 방식 | 주 사용 계층 | 데이터 출처 및 산정 방식 | 장단점 |
+| 비교 항목 | 하향식 추정 (Top-down) | 상향식 추정 (Bottom-up) | 가치 기반 추정 (Value Theory) |
 |---|---|---|---|
-| **Top-down (하향식)** | TAM, 거시 SAM | 시장조사 리포트, 정부 산업 통계, 거시 경제 데이터 기반 하향 전개 | 시장의 전체 잠재력 파악 용이하나, 과대 추정(허수) 발생 위험 높음 |
-| **Bottom-up (상향식)** | SOM, 정밀 SAM | 실제 고객 단가(ARPU), 영업 파이프라인, 전환율, 인터뷰 실측치 | 실현 가능성 및 신뢰도 극대화되나, 초기 데이터 확보 리소스 소요 |
-| **Value Theory (가치 기반)** | 신규 카테고리 TAM | 고객이 해당 솔루션을 통해 얻는 비용 절감액 또는 부가가치의 일정 % 추정 | 시장이 존재하지 않는 파괴적 혁신 제품의 잠재력 추정에 적합 |
+| **추정 기준** | 공신력 있는 시장 통계 리포트 (Gartner, IDC) | 실제 영업 데이터 (**고객 수 × ARPU × 전환율**) | 고객이 솔루션으로 얻는 비용 절감액의 일정 % |
+| **주요 활용** | **TAM** 산출, 투자자 대상 장기 비전 제시 | **SOM** 산출, 분기별 영업 및 손익(BEP) 계획 | 시장이 없는 파괴적 신기술 TAM 산출 |
+| **핵심 장점** | 적은 공수로 전체 시장 잠재력 조망 용이 | 높은 현실 실현 가능성 및 객관적 검증 가능 | 솔루션의 고유 경제적 가치(ROI) 직접 대변 |
+| **치명적 맹점** | "1% 법칙의 오류"(실제 획득 역량과 무관) | 초기 표본 부족 시 전체 확장성 과소평가 위험 | 고객사별 ROI 편차로 단가 표준화 난항 |
+| **상호 보완책** | **상향식 SOM 집계 결과를 하향식 SAM/TAM에 역대조하여 현실적 시장 점유율(%) 정합성 검증** |
 
-#### 한줄 요약
-- 하향식으로 잠재 한계를 파악하고 상향식으로 실현 가능한 SOM을 도출해 교차 검증함
+## Ⅳ. 실무 적용 시 주요 왜곡 요인과 통제 대책
 
-## Ⅳ. TAM-SAM-SOM 산출 및 검증 절차
+> 단순 비율 곱셈을 금지하고 경쟁사 전환 장벽과 고객 획득 비용을 반영한 실증 모델을 구축해야 함.
 
-```text
-[1단계: 시장 정의] ──→ [2단계: 거시 TAM] ──→ [3단계: 유효 SAM] ──→ [4단계: 실행 SOM] ──→ [5단계: 타당성 검증]
-- 타깃 문제 정의      - 산업 리포트 수집    - BM 부합 고객 필터   - 초기 영업력 산정     - CAC vs LTV 분석
-- 이상적 고객 프로필  - 전체 잠재 모수 산정 - 지리/법적 제약 반영  - 전환율/점유율 곱셈   - BEP 달성 시점 도출
-```
-
-| 단계 | 주요 활동 내용 | 핵심 산출물 및 기법 |
-|---|---|---|
-| **1. 시장 정의** | 제품의 핵심 가치 제안 및 타깃 고객 페르소나(ICP, Ideal Customer Profile) 정의 | 문제 정의서, ICP 명세서 |
-| **2. 거시 TAM 산정** | 시장조사기관 리포트 및 공공 통계를 활용한 산업 전체 지출 규모 파악 | TAM 규모 보고서, 하향식 산정표 |
-| **3. 유효 SAM 필터링** | 자사의 제품 기능, 가격대, 언어, 법적 규제상 즉시 공급 가능한 고객군 추출 | SAM 세그먼트 매트릭스 |
-| **4. 실행 SOM 산출** | 영업 채널 역량, 마케팅 예산, 고객 전환율을 반영한 1~3년 목표 수치 도출 | 바텀업 SOM 계산서, 영업 파이프라인 계획 |
-| **5. 타당성 검증** | 고객 획득 비용(CAC) 대비 고객 생애 가치(LTV) 비율 및 BEP 도달 기간 검토 | Unit Economics 검증서 ($LTV/CAC \ge 3$) |
-
-#### 한줄 요약
-- ICP 정의부터 Top-down TAM, Middle-out SAM, Bottom-up SOM, Unit Economics 검증 순으로 전개함
-
-## Ⅴ. 하향식(Top-down) 추정과 상향식(Bottom-up) 추정 비교
-
-| 비교 항목 | 하향식 추정 (Top-down) | 상향식 추정 (Bottom-up) |
-|---|---|---|
-| **추정 기준** | 거시 산업 통계 보고서 (IDC, Gartner) | 실제 고객 접점 데이터 (고객 수 × ARPU) |
-| **주요 활용 단계** | TAM 산출, 장기 비전 제시 | SOM 산출, 분기별 영업 실행 계획 수립 |
-| **장점** | 적은 노력으로 전체 시장 조망 가능, 투자자 시선 유도 용이 | 검증 가능성 높음, 즉시 실행 가능한 영업 목표 제시 |
-| **주요 맹점** | "1% 법칙"의 함정(실제 유치 역량과 무관한 숫자 놀음) | 초기 표본 부족 시 전체 확장성 파악의 한계 |
-| **실무적 보완책** | 상향식 산출 결과를 거시 점유율(%)과 역으로 대조하여 상호 정합성 검증 |
-
-#### 한줄 요약
-- 하향식은 잠재력 제시용, 상향식은 실행력 검증용이며 두 수치의 교차 검증이 필수임
-
-## Ⅵ. 실무 고려사항 및 대책
-
-- 적용 상황: 엔터프라이즈 B2B SaaS 솔루션(생성형 AI 지식관리) 신규 사업 기획
-
-| 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
+| 문제점 | 발생 원인 | 공학적·재무적 통제 대책 | 기대 효과 |
 |---|---|---|---|
-| **시장 규모 부풀리기 (TAM 착시)** | 거시 시장 보고서의 수치를 자사 솔루션의 실제 시장으로 왜곡 | 산업군(제조/금융), 인프라 요건(온프레미스/클라우드)으로 여과한 SAM/SOM 모델 의무화 | 현실적 매출 목표 수립 및 예산 낭비 차단 |
-| **고객 획득 비용(CAC) 과소평가** | 경쟁사 전환 장벽(Switching Cost) 및 레거시 연동 공수 간과 | 경쟁사 윈백 비용 및 PoC 인입 비용을 바텀업 단가 모델에 반영 ($LTV/CAC > 3$ 검증) | 영업 마진율 및 현금 흐름 건전성 확보 |
-| **정적 시장 추정의 왜곡** | 시장 성장률, 기술 대체 속도, 규제 변화 등 동적 환경 요인 미반영 | 몬테카를로 시뮬레이션 기반 시나리오별(Best/Worst) SOM 동적 갱신 파이프라인 구축 | 급변하는 시장 환경에 대한 회복탄력성 확보 |
+| **TAM 착시 및 부풀리기** | 거시 보고서 수치를 자사 매출 가능 시장으로 왜곡 | OS 환경, 온프레미스/클라우드 등 스펙 제약으로 SAM/SOM 여과 의무화 | 현실적 사업 목표 수립 및 투자 왜곡 차단 |
+| **고객 획득 비용(CAC) 과소평가** | 경쟁사 전환 장벽(Switching Cost) 및 PoC 인입 공수 간과 | 경쟁사 윈백 비용 및 영업 공수를 반영한 **Unit Economics ($LTV/CAC \ge 3$)** 통제 | 영업 마진율 및 현금흐름 건전성 확보 |
+| **정적 추정의 한계** | 기술 진부화, 경쟁자 진입, 규제 강화 등 동적 변수 미반영 | 몬테카를로 시뮬레이션 기반 시나리오별(Best/Worst) SOM 동적 갱신 | 환경 변화 대응력 및 회복탄력성 확보 |
 
-#### 한줄 요약
-- TAM 착시를 방지하기 위해 정밀 SAM/SOM 여과와 LTV/CAC 실증 모델을 적용해야 함
+## Ⅴ. Unit Economics 연계 시장 타당성 검증을 위한 기술사적 제언
 
-## Ⅶ. 결론 및 기술사적 제언
+> 공허한 TAM 나열을 지양하고 LTV/CAC 비율이 3 이상인 검증된 세그먼트만을 SOM으로 산정해야 함.
 
-- [핵심 통찰]: 투자자와 경영진이 가장 경계하는 사업계획서는 거대 TAM만 나열하고 단기 SOM을 증명하지 못하는 보고서임. TAM은 사업의 성장 잠재 한계선(Ceiling)을 보여주는 거시적 지표인 반면, SOM은 당장 분기별 생존과 손익분기점(BEP)을 달성하기 위한 미시적 실행 지표임.
-- 나라면: SOM 산출 단계에서 단순 목표 점유율(%)을 곱하는 방식을 엄격히 금지하고, [고객 획득 비용(CAC) 대비 고객 생애 가치(LTV)] 비율이 3 이상인 검증된 고객 세그먼트만을 SOM 모수로 편입하는 'Unit Economics 연계 SOM 산정 프레임워크'를 수립하여 사업 타당성의 객관적 신뢰도를 확보하겠음.
+### 학습자 통찰 메모 — 답안 밖
 
-#### 한줄 요약
-- 거시적 TAM 환상을 걷어내고 LTV/CAC가 검증된 상향식 SOM 중심의 사업 기획을 추진해야 함
+- [핵심 통찰]: 투자 심사역이나 경영진이 가장 불신하는 사업계획서는 "전 세계 시장이 100조 원이니 1%만 해도 1조 원"이라는 논리임. TAM은 사업의 성장 한계선(Ceiling)을 보여주는 지표일 뿐이며, 사업의 생존을 결정하는 것은 철저히 바텀업으로 검증된 SOM임.
+- 나라면: SOM 산정 시 단순 비율 가정을 배제하고, [고객 생애 가치(LTV) / 고객 획득 비용(CAC)] 비율이 3 이상이고 회수 기간(Payback Period)이 12개월 이내인 고객군만을 SOM 모수로 편입하는 'Unit Economics 연계 SOM 산정 기준'을 의무화하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 거시 시장 보고서 인용 위주에서 바텀업 실측 단가와 Unit Economics 검증으로 전환
+- 대안: **Unit Economics(LTV/CAC ≥ 3) 기반 SOM 정밀 추정 모델** 확립
+- 검증: Top-down 거시 점유율과 Bottom-up 고객 수 교차 일치 · Payback Period ≤ 12개월
+- 효과: 과대 투자 예방 · 현실적 손익분기점(BEP) 달성 및 자본 효율성 극대화
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="Unit Economics 연계 시장 타당성 검증 제언 흐름">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>Gartner 보고서 단순 인용 · "1% 점유"식 과대 매출 추정 · CAC 간과</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>Bottom-up 기반 SOM 도출 + LTV/CAC ≥ 3 및 회수기간 12개월 필터링</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>실제 PoC 전환율 · 고객사 윈백 비용 반영 · Top-down 역검증 매핑</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>현실적 BEP 달성 · 초기 자본 고갈(Death Valley) 극복 및 신규 사업 성공</small>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의 및 핵심 개념
-- TAM-SAM-SOM은 신규 IT 사업 기획 시 전체 시장(TAM), 도달 가능한 유효 시장(SAM), 단기 실현 가능한 수익 시장(SOM)으로 시장 규모를 3단계 동심원 구조로 여과하여 추정하는 사업 타당성 분석 프레임워크임.
+### 1. 정의·목적
 
-### 2. 핵심 메커니즘 / 체계
-```text
-┌────────────── [TAM] 전체 시장: 산업군 이론상 최대 총수요 (Top-down)
-│ ┌──────────── [SAM] 유효 시장: 비즈니스 모델 부합 도달 시장 (Middle-out)
-│ │ ┌────────── [SOM] 수익 시장: 초기 1~3년 점유 가능 시장 (Bottom-up: 고객 수 × ARPU)
-```
-- 하향식(거시 보고서 인용)과 상향식(영업 파이프라인 및 단가 실측치)의 교차 검증을 통해 시장 규모의 신뢰도를 확보함.
+- 정의: 신규 IT 사업 기획 시 전체 시장(**TAM**), 서비스 가능 유효 시장(**SAM**), 조기 실현 가능한 수익 시장(**SOM**)으로 시장 규모를 3단계 동심원으로 여과 추정하는 **사업 타당성 분석 프레임워크**
+- 목적: 거대 시장의 착시를 제거하고 **Unit Economics(LTV/CAC)** 기반의 지속 가능한 **손익분기점(BEP)** 달성
 
-### 3. 차별화 제언
-- 단순 비율 가정이 아닌 $LTV/CAC \ge 3$을 만족하는 세그먼트만을 SOM 모수로 인정하는 'Unit Economics 결합형 시장 추정'을 통해 공허한 매출 부풀리기를 방지하고 실행력 있는 IT 투자 의사결정을 지원해야 함.
+### 2. 구성체계 및 방법론
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="TAM-SAM-SOM 3단계 구성 요약">
+  <div class="itpe-pipeline-node"><strong>TAM (전체 시장)</strong><small>산업군 이론상 최대 총수요 (Top-down)</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>SAM (유효 시장)</strong><small>자사 BM · 스펙 부합 도달 시장 (Middle-out)</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>SOM (수익 시장)</strong><small>초기 1~3년 실제 점유: 고객 수 × ARPU (Bottom-up)</small></div>
+</div>
+
+### 3. 핵심 통제
+
+- **추정 기법 교차 검증**: Top-down(잠재력 파악)과 Bottom-up(실행력 검증)의 상호 역대조
+- **단위 경제성 통제**: $LTV/CAC \ge 3$을 충족하는 세그먼트만 SOM으로 인정하여 사업 건전성 확보
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제134회 정보관리기술사 1교시 2번 기출
-- 검증 출처: 중소벤처기업부 기술창업 가이드라인, Steve Blank 'The Startup Owner's Manual'
+- 제134회 정보관리기술사 1교시: 신규 사업 기획 시 활용되는 시장 규모 추정 기법인 TAM-SAM-SOM의 개념 및 특징
+- [중소벤처기업부, 기술창업 및 신사업 타당성 분석 가이드라인](https://www.mss.go.kr)
+- [Steve Blank, The Startup Owner's Manual: The Step-By-Step Guide for Building a Great Company](https://steveblank.com)
 
 ## 학습 체크
 
@@ -176,5 +199,5 @@ extra:
 ## 연결 토픽
 
 - 이전 토픽: [경영환경 분석(SWOT·3C·PEST)](./088_swot_3c_pest.md)
-- 연관 토픽: [IT 투자 평가(ROI/NPV/IRR)](./016_it_investment_evaluation.md), [린 스타트업(MVP)](../02-software-engineering/074_lean_software_development.md)
+- 연관 토픽: [기술수용모델(TAM)](./092_technology_acceptance_model.md), [SW 비용 산정](./113_software_cost_estimation.md)
 - 다음 토픽: [과업심의(과업변경·사업기간 적정성)](./091_public_sw_cost_and_scope_change_criteria.md)
