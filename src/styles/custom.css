@@ -478,6 +478,66 @@ body {
   width: min(100%, 30rem);
 }
 
+/* ITPE 공통 SVG: 토폴로지·순환·관계도용 반응형 문법 */
+.sl-markdown-content .itpe-svg-map {
+  width: min(100%, 38rem);
+  margin: 1rem auto 1.5rem;
+}
+
+.sl-markdown-content .itpe-svg-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.sl-markdown-content .itpe-svg-node {
+  fill: var(--palette-surface);
+  stroke: var(--palette-line);
+  stroke-width: 3;
+}
+
+.sl-markdown-content .itpe-svg-node.is-current {
+  fill: color-mix(in srgb, var(--palette-accent) 14%, var(--palette-surface));
+  stroke: var(--palette-accent);
+}
+
+.sl-markdown-content .itpe-svg-link {
+  fill: none;
+  stroke: var(--palette-accent);
+  stroke-width: 4;
+}
+
+.sl-markdown-content .itpe-svg-map marker path {
+  fill: var(--palette-accent);
+}
+
+.sl-markdown-content .itpe-svg-title,
+.sl-markdown-content .itpe-svg-label,
+.sl-markdown-content .itpe-svg-sub {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-family: var(--sl-font);
+}
+
+.sl-markdown-content .itpe-svg-title {
+  fill: var(--palette-accent-glow);
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.sl-markdown-content .itpe-svg-label {
+  fill: var(--palette-muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sl-markdown-content .itpe-svg-sub {
+  fill: var(--palette-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 @media (max-width: 40rem) {
   .sl-markdown-content .itpe-topic-path {
     display: grid;
