@@ -1,11 +1,14 @@
 ---
-title: "EA/ITA"
+title: "EA/ITA(Enterprise Architecture/Information Technology Architecture)"
+author: "Codex"
+date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
+  model: "GPT-5.6 Sol"
   keyword_grade: "C"
 ---
 
@@ -19,169 +22,187 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-┌───────────────── [EA/ITA 3대 핵심 구성 축] ─────────────────┐
-│                                                             │
-│   [ 1. 아키텍처 모델 ]            [ 2. 5대 참조 모델 ]       │
-│   - BA (Business Architecture)    - PRM (성과 참조모델)     │
-│   - DA (Data Architecture)        - BRM (업무 참조모델)     │
-│   - AA (Application Architecture) - DRM (데이터 참조모델)   │
-│   - TA (Technology Architecture)  - ARM (서비스 참조모델)   │
-│   - SA (Security Architecture)    - TRM (기술 참조모델)     │
-│                 │                               │           │
-│                 └───────────────┬───────────────┘           │
-│                                 ▼                           │
-│   [ 3. 아키텍처 관리체계 ]                                   │
-│   - 조직 및 원칙: 전사 아키텍트, 표준 원칙(재사용, 연계)     │
-│   - 프로세스 및 시스템: 도입 적합성 검토, EAMS 포털         │
-└─────────────────────────────────────────────────────────────┘
-```
+- 본질: 비즈니스 목표와 IT 자원(데이터·응용·기술·보안)의 상호 관계를 구조화된 청사진으로 정의하여 중복 투자를 방지하는 전사 설계 프레임워크
+- 메커니즘: 기본 모델(5대 뷰) 수립 → **5대 참조모델(PRM/BRM/DRM/ARM/TRM)** 정렬 → 현행-목표 갭 분석 → **EAMS** 기반 거버넌스
+- 산출: 전사 아키텍처 정의서 · 5대 뷰 모델링 명세서 · 갭 분석 및 이행 로드맵 · 아키텍처 적합성 검토서
 
-- 본질: 기업이나 정부의 비즈니스 목표, 업무 프로세스, 데이터, 애플리케이션, IT 기술 인프라의 상호 관계를 구조화된 청사진(Blueprint)으로 정의하여 중복 투자를 방지하고 IT 자원의 상호운용성과 전략적 정합성을 달성하는 전사 설계 체계
-- 위치: `경영 전략/ISP 수립 → As-Is 현행 분석 → To-Be 목표 아키텍처 수립 → 갭 분석 및 이행 로드맵 → EAMS 운영`
-- 핵심: Clinger-Cohen Act, 정보시스템의 효율적 도입 및 운영 등에 관한 법률(ITA법), 3대 축(기본모델/참조모델/관리체계), 5대 뷰(BA/DA/AA/TA/SA), 5대 참조모델(PRM/BRM/DRM/ARM/TRM), EAMS
-- 실무: 죽은 문서화 탈피, API/MSA 카탈로그 기반의 동적 거버넌스 전환, 신규 IT 사업 예산 사전 심의 연계
+<div class="itpe-flow-map" role="img" aria-label="EA/ITA의 아키텍처 모델, 5대 참조모델, 관리체계 3대 축과 거버넌스 순환 흐름">
+  <div class="itpe-flow-node">
+    <strong>경영 전략 및 비즈니스 비전</strong>
+    <small>전사 비즈니스 목표 · 아키텍처 수립 원칙</small>
+  </div>
+  <div class="itpe-flow-arrow">↓<small>전사 청사진 수립</small></div>
+  <div class="itpe-flow-node is-current">
+    <strong>EA/ITA 3대 핵심 구성 축</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>모델</strong><span><span class="itpe-keyword"><strong>5대 뷰</strong></span> (BA · DA · AA · TA · SA) / As-Is → To-Be</span></div>
+      <div class="itpe-flow-branch"><strong>참조</strong><span><span class="itpe-keyword"><strong>5대 참조모델</strong></span> (PRM · BRM · DRM · ARM · TRM)</span></div>
+      <div class="itpe-flow-branch"><strong>관리</strong><span>아키텍처 위원회 · 적합성 심의 · <span class="itpe-keyword"><strong>EAMS 포털</strong></span></span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓<small>실행 및 진화</small></div>
+  <div class="itpe-flow-node">
+    <strong>Living Architecture as Code</strong>
+    <small>중복 투자 배제 · 상호운용성 확보 · Git/API 실시간 동기화</small>
+  </div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **EA(Enterprise Architecture)**: 조직의 업무와 이를 지원하는 정보기술 간의 관계를 종합적으로 정리한 전사적 청사진
+- **ITA(Information Technology Architecture)**: 정보기술아키텍처로, 정보시스템의 효율적 도입 및 운영을 위한 기술적 아키텍처 체계
+- **5대 아키텍처 뷰(BA/DA/AA/TA/SA)**: 비즈니스(BA), 데이터(DA), 응용(AA), 기술(TA), 보안(SA) 관점의 구조적 모델
+- **5대 참조모델(Reference Model)**: 범정부 차원의 성과(PRM), 업무(BRM), 데이터(DRM), 서비스(ARM), 기술(TRM) 표준 분류 체계
+- **EAMS(Enterprise Architecture Management System)**: 아키텍처 산출물을 등록·저장하고 신규 사업의 적합성을 심의하는 전사 포털 시스템
+- **Living Architecture as Code**: 정적 문서 중심의 EA를 탈피하여 IaC 코드와 API 카탈로그를 실시간 크롤링해 현행화하는 현대적 아키텍처 체계
+
+</details>
 
 ## 예상문제
 
-> 전사적 아키텍처인 EA/ITA(Enterprise Architecture/Information Technology Architecture)의 개념, 기본모델·참조모델·관리체계의 3대 구성요소, 범정부 5대 참조모델의 특성, 클라우드 및 MSA 환경에서의 실무적 진화 방향을 설명하시오. (10점/25점)
+> 전사적 아키텍처인 EA/ITA(Enterprise Architecture/Information Technology Architecture)의 개념, 기본모델·참조모델·관리체계의 3대 구성요소, 범정부 5대 참조모델의 특성, 클라우드 및 MSA 환경에서의 실무적 진화 방향을 설명하시오. (25점)
 
 ## Ⅰ. 비즈니스와 IT의 통합 청사진, EA/ITA의 개요
 
-- 정의: 조직의 경영 목표를 지원하기 위해 비즈니스 구조(BA), 데이터(DA), 애플리케이션(AA), 기술 인프라(TA), 보안(SA) 간의 유기적 관계를 체계화하고 현행(As-Is)에서 목표(To-Be)로의 이행 경로를 제시하는 종합 아키텍처 프레임워크
-- 배경: 부서별 독자적 정보화 추진으로 인한 고립된 사일로(Silo) 시스템 난립, 데이터 중복 및 불일치 심화, 유지보수 비용 폭증 및 IT 투자 대비 경영 기여도 측정 한계
-- 목적: IT 중복 투자 배제 및 자원 재사용 극대화, 시스템 간 상호운용성(Interoperability) 확보, 비즈니스 변화에 민첩하게 대응 가능한 표준 기반 IT 거버넌스 확립
+> 사일로(Silo) 시스템의 중복 투자를 방지하고, **비즈니스(BA)**부터 **인프라(TA)**까지 전사 자원의 **상호운용성(Interoperability)**을 보장함.
 
-#### 한줄 요약
-- 비즈니스와 IT 자원의 연계 구조를 청사진으로 정의하여 중복 투자를 없애는 전사 설계 체계임
+- 정의: 조직의 경영 목표를 지원하기 위해 비즈니스 구조(BA), 데이터(DA), 애플리케이션(AA), 기술 인프라(TA), 보안(SA) 간의 유기적 관계를 체계화하고 **As-Is**에서 **To-Be**로의 이행 경로를 제시하는 **전사 종합 아키텍처 프레임워크**
+- 목적: 부서별 독자 추진에 따른 중복 투자 제거 및 시스템 간 **상호운용성** 확보, 비즈니스 변화에 민첩하게 대응 가능한 표준 기반 **IT 거버넌스** 확립
 
-## Ⅱ. EA/ITA의 3대 핵심 구성 축
+## Ⅱ. EA/ITA 3대 구성 축 및 4단계 이행 방법론
 
-| 핵심 구성 축 | 구성 요소 및 내용 | 세부 역할 및 가치 |
+> 전사 청사진 수립에서 표준 참조모델 매핑, 이행 로드맵 도출, EAMS 거버넌스로 이어지는 파이프라인을 가동함.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="EA/ITA 4단계 이행 방법론 및 산출물">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>① EA 방향 및 원칙 수립</strong></span>
+    <small>기업 비전 연계 아키텍처 원칙(재사용, 연계성, 표준화) 정의<br />→ EA 헌장 · 프레임워크 정의서</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>② 5대 도메인 모델링 (As-Is / To-Be)</strong></span>
+    <small>BA(업무), DA(데이터), AA(응용), TA(기술), SA(보안) 뷰 설계<br />→ 현행 및 목표 아키텍처 모델링 명세서</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>③ 갭 분석 및 정보화 이행 로드맵</strong></span>
+    <small>현행-목표 간 아키텍처 갭(Gap) 식별, 우선순위별 프로젝트 도출<br />→ 갭 분석서 · 중장기 정보화 이행 로드맵</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>④ 거버넌스 및 EAMS 운영</strong></span>
+    <small>신규 정보화 사업 기획 시 EAMS 내 기술 표준 적합성 사전 심의<br />→ 아키텍처 적합성 검토서 · EAMS 저장소</small>
+  </div>
+</div>
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>아키텍처 정렬</strong></span> · 비즈니스 목표 ↔ 5대 뷰(BA/DA/AA/TA/SA) ↔ 5대 참조모델 ↔ EAMS 적합성 100% 매핑</div>
+
+### EA/ITA 3대 핵심 구성 축
+
+| 핵심 구성 축 | 세부 구성 요소 | 주요 역할 및 가치 |
 |---|---|---|
-| **1. 아키텍처 모델**<br>(Architecture Model) | **5대 아키텍처 뷰**<br>- BA(비즈니스), DA(데이터), AA(응용), TA(기술), SA(보안)<br>- As-Is(현행), To-Be(목표), Transition Plan(이행계획) | 전사 자원의 현재 모습과 미래 지향점, 전환 로드맵 시각화 |
-| **2. 참조 모델**<br>(Reference Model) | **범정부 5대 참조모델**<br>- PRM(성과), BRM(업무), DRM(데이터), ARM(서비스), TRM(기술) | 표준화된 공통 언어 및 분류 체계 제공을 통한 벤치마킹 및 재사용 지원 |
-| **3. 아키텍처 관리체계**<br>(Governance & System) | **조직, 프로세스, 시스템**<br>- 전사 아키텍처 위원회, 아키텍처 승인 프로세스<br>- EAMS(전사 아키텍처 관리 시스템) | 신규 사업의 아키텍처 적합성 사전 심의 및 상시 변경 관리 |
+| **1. 아키텍처 모델** | **5대 아키텍처 뷰 (BA, DA, AA, TA, SA)**<br>- As-Is(현행), To-Be(목표), Transition Plan(이행계획) | 전사 비즈니스와 IT 자원의 현재 상태와 미래 목표를 시각화한 구조적 설계도 |
+| **2. 참조 모델** | **범정부 5대 참조모델 (PRM, BRM, DRM, ARM, TRM)** | 조직 간 공통 언어와 표준 분류 체계를 제공하여 벤치마킹과 공통 컴포넌트 재사용 촉진 |
+| **3. 아키텍처 관리체계** | **조직, 프로세스, 시스템**<br>- 아키텍처 위원회, 적합성 심의 프로세스, EAMS 시스템 | 신규 IT 투자 시 표준 준수를 강제하고 시스템 변경 사항을 상시 현행화하는 통제 기구 |
 
-#### 한줄 요약
-- 아키텍처 모델(청사진), 참조 모델(표준 분류), 관리체계(거버넌스·EAMS)의 3개 축으로 구동됨
+## Ⅲ. 범정부 5대 참조모델(Reference Model) 체계
 
-## Ⅲ. 범정부 5대 참조모델(Reference Model) 아키텍처
+> 성과부터 업무, 데이터, 서비스, 기술로 하향 전개되는 계층적 표준화 분류 프레임워크를 제공함.
 
-```text
-┌────────────────── [PRM: 성과 참조모델 (Performance)] ──────────────────┐
-│  - IT 투자의 정책적 효과, 고객 만족도, 업무 효율성 측정 지표          │
-└────────────────────────────────────┬───────────────────────────────────┘
-                                     │ 업무 기능 매핑
-                                     ▼
-┌────────────────── [BRM: 업무 참조모델 (Business)] ─────────────────────┐
-│  - 기관 고유 업무 및 공통 행정 업무 기능 3단계 분류 체계              │
-└─────────────────┬───────────────────────────────────┬─────────────────┘
-                  │ 데이터 관계 정의                  │ 서비스 컴포넌트 도출
-                  ▼                                   ▼
-┌───────────────────────────────┐   ┌───────────────────────────────────┐
-│ [DRM: 데이터 참조모델 (Data)] │   │ [ARM: 서비스/응용 참조모델 (App)] │
-│ - 데이터 분류, 표준 용어·코드  │   │ - 공통 업무 컴포넌트, 공유 서비스 │
-└───────────────┬───────────────┘   └─────────────────┬─────────────────┘
-                │                                     │
-                └──────────────────┬──────────────────┘
-                                   │ 인프라 기술 표준 매핑
-                                   ▼
-┌────────────────── [TRM: 기술 참조모델 (Technical)] ────────────────────┐
-│  - 서비스 구현을 위한 H/W, S/W, 통신, 보안 등 요소 기술 표준 프로파일   │
-└───────────────────────────────────────────────────────────────────────┘
-```
+| 참조모델 | 영문 명칭 | 정의 및 핵심 관리 내용 | 상호 연계 역할 |
+|---|---|---|---|
+| **PRM** | Performance Reference Model | 정보화 투자의 투입, 프로세스, 산출, 최종 비즈니스 효과를 계량화하는 성과 지표 체계 | BRM 업무의 성공 여부를 측정 |
+| **BRM** | Business Reference Model | 정부 및 기업의 조직 구조와 무관하게 수행하는 모든 업무 기능을 계층적으로 표준화한 체계 | DRM 데이터와 ARM 서비스의 기준점 |
+| **DRM** | Data Reference Model | 기관 간 데이터 공유 및 상호운용을 위한 공통 데이터 분류, 표준 용어·코드, 메타데이터 체계 | 업무(BRM) 간 데이터 교환 매개 |
+| **ARM** | Application Reference Model | 독립적으로 수행 가능한 업무 소프트웨어 기능 및 공통 응용 서비스 컴포넌트 분류 체계 | 데이터(DRM)를 처리하는 서비스 모듈 |
+| **TRM** | Technical Reference Model | 정보시스템 구축 시 사용 가능한 기술 표준, 통신 프로토콜, 소프트웨어 솔루션 표준 프로파일 | 서비스(ARM)를 구동하는 인프라 표준 |
 
-| 참조모델 | 영문 명칭 | 정의 및 핵심 관리 내용 |
-|---|---|---|
-| **PRM** | Performance Reference Model | 정보화 투자의 투입, 프로세스, 산출, 최종 성과를 측정하는 계량 지표 체계 |
-| **BRM** | Business Reference Model | 정부 및 기업의 조직 구조와 무관하게 수행하는 모든 업무 기능을 계층적으로 분류한 체계 |
-| **DRM** | Data Reference Model | 기관 간 데이터 공유 및 상호운용을 위한 공통 데이터 분류, 표준 코드, 메타데이터 체계 |
-| **ARM** | Application Reference Model | 독립적으로 수행 가능한 업무 소프트웨어 기능 및 공통 응용 서비스 컴포넌트 분류 체계 |
-| **TRM** | Technical Reference Model | 정보시스템 구축 시 사용 가능한 기술 표준, 프로토콜, 소프트웨어 패키지 표준 프로파일 |
+## Ⅳ. 전사 아키텍처(EA) vs 솔루션 아키텍처(SA) 비교
 
-#### 한줄 요약
-- PRM(성과), BRM(업무), DRM(데이터), ARM(서비스), TRM(기술)의 5대 참조모델이 상호 연계됨
-
-## Ⅳ. EA/ITA 수립 및 관리 운영 프로세스
-
-```text
-[1단계: EA 방향 수립] ──→ [2단계: As-Is/To-Be 분석] ──→ [3단계: 이행 계획 수립] ──→ [4단계: 거버넌스 운영]
-- 전사 비전 및 원칙 정의   - 5대 도메인 현행 분석      - 기술적·업무적 갭(Gap) 분석  - EAMS 등록 및 승인
-- 프레임워크/도구 선정     - 목표 아키텍처 청사진 도출 - 연차별 우선순위 로드맵      - 신규 사업 적합성 심의
-```
-
-| 단계 | 주요 활동 내용 | 핵심 산출물 |
-|---|---|---|
-| **1. 비전 및 원칙 수립** | 기업 비전 기반 아키텍처 원칙(재사용, 표준화, 상호운용성) 정의 | EA 원칙 선언문, 프레임워크 정의서 |
-| **2. 모델링 분석** | 현행 시스템 실사(As-Is) 및 미래 지향적 목표 아키텍처(To-Be) 5대 뷰 설계 | BA/DA/AA/TA/SA 모델링 산출물 |
-| **3. 갭 분석 및 이행 계획** | 현행과 목표 간 격차(Gap) 식별, 마이그레이션 프로젝트 도출 및 로드맵 수립 | 갭 분석서, 정보화 이행 로드맵 |
-| **4. 거버넌스 및 EAMS 운영** | 신규 정보화 사업 기획 시 EAMS 내 아키텍처 표준 준수 여부 사전 검토 | 적합성 검토 의견서, EAMS 저장소 |
-
-#### 한줄 요약
-- 원칙 수립부터 현행/목표 모델링, 이행 로드맵 도출, EAMS 적합성 검토로 운영됨
-
-## Ⅴ. 전사 아키텍처(EA) vs 솔루션 아키텍처(SA) 비교
+> EA는 전사적 중복 방지와 표준화의 거시 청사진이며, SA는 단위 프로젝트의 성공적 구현 설계임.
 
 | 비교 항목 | 전사 아키텍처 (EA, Enterprise Architecture) | 솔루션 아키텍처 (SA, Solution Architecture) |
 |---|---|---|
-| **조망 관점** | 전사적(Enterprise-wide) 거시적 조망 | 단일 시스템 또는 특정 프로젝트 미시적 조망 |
-| **핵심 목적** | IT 투자 효율화, 중복 방지, 표준화, 상호운용성 | 비즈니스 요구 기능의 성공적 구현 및 성능 최적화 |
-| **다루는 시간축** | 중장기적(3~5년) 이행 로드맵 | 프로젝트 구축 기간 및 단기 운영 주기 |
-| **표준 강제력** | 전사 아키텍처 원칙 및 기술 참조모델(TRM) 수립 | EA 표준을 준수하며 특정 기술 스택 선정 및 구현 |
-| **핵심 담당자** | Chief Enterprise Architect, 전사 거버넌스 조직 | Lead Solution Architect, 시스템 엔지니어 |
+| **조망 관점** | 전사적(Enterprise-wide) 거시적 전체 조망 | 단일 시스템 또는 특정 프로젝트 미시적 조망 |
+| **핵심 목적** | IT 투자 효율화, 중복 방지, 전사 표준화, 상호운용성 | 비즈니스 요구 기능의 성공적 구현, 시스템 성능 최적화 |
+| **시간 축** | 중장기적(3~5년) 비전 및 단계적 이행 로드맵 | 프로젝트 구축 기간 및 단기 운영 릴리즈 주기 |
+| **표준 강제력** | 전사 아키텍처 원칙 및 기술 참조모델(TRM) 표준 제정 | EA가 정한 표준 프로파일 준수 하에 기술 스택 선정 |
+| **주요 역할자** | Chief Enterprise Architect, 전사 IT 거버넌스 조직 | Lead Solution Architect, 시스템 엔지니어 |
 
-#### 한줄 요약
-- EA는 전사 중복 방지와 표준화의 거시 청사진이며, SA는 단위 프로젝트의 구현 설계임
+## Ⅴ. 현대적 EA 거버넌스 진화를 위한 기술사적 제언
 
-## Ⅵ. 실무 고려사항 및 대책
+> 캐비닛 속의 '죽은 EA 문서'를 탈피하고 클라우드 IaC와 API 카탈로그를 실시간 연동하는 Living Architecture로 진화해야 함.
 
-- 적용 상황: 공공 부처 및 엔터프라이즈 전사 EA 수립 및 유지관리 운영
+### 학습자 통찰 메모 — 답안 밖
 
-| 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **수립 후 방치되는 '죽은 EA'** | 프로젝트 종료 후 수작업 문서 갱신 부담 및 실무 개발자의 변경 사항 미반영 | CI/CD 파이프라인 및 클라우드 IaC 기반 아키텍처 메타데이터 자동 추출·동기화 | 상시 최신 아키텍처 현행화 |
-| **형식적인 EAMS 적합성 검토** | 사업 부서의 예산 집행을 위한 형식적 통과의례로 전락하여 중복 투자 잔존 | 신규 IT 사업 예산 심의 시 EAMS 적합성 통과 필증 첨부 의무화 제도 결합 | 불필요 중복 개발 원천 차단 |
-| **클라우드 MSA 환경과의 단절** | 모놀리식 중심의 정적 EA 분류 체계가 민첩한 MSA/API 생태계를 미수용 | API 게이트웨이 카탈로그 및 서비스 메시(Service Mesh)를 EA 저장소와 실시간 연동 | 현대적 클라우드 네이티브 거버넌스 확보 |
+- [핵심 통찰]: EA/ITA가 현업에서 외면받은 가장 큰 이유는 수백 페이지의 아키텍처 문서를 수작업으로 작성하여 '잉크가 마르기도 전에 현실과 괴리되는 죽은 문서화'에 빠졌기 때문임. 클라우드와 MSA 환경에서 아키텍처는 문서가 아니라 '살아 숨 쉬는 코드'여야 함.
+- 나라면: 과거의 하향식 문서 입력형 EAMS를 전면 개편하여, 개발자의 Git 리포지토리, 테라폼(IaC) 구성 파일, API 게이트웨이 라우팅 정보를 자동으로 크롤링하여 전사 아키텍처 토폴로지를 실시간 렌더링하는 'Living Architecture as Code' 플랫폼을 구축하고, 신규 프로젝트 예산 편성 시 아키텍처 API 재사용률을 핵심 평가지표로 의무화하겠음.
 
-#### 한줄 요약
-- CI/CD 자동 추출 동기화, 예산 심의 연계, API 카탈로그 연동으로 생명력 있는 EA를 구축해야 함
+### 실전 답안용 기술사적 제언
 
-## Ⅶ. 결론 및 기술사적 제언
+- 판정: 정적 문서 중심의 사후 관리에서 코드 기반 실시간 동적 아키텍처 거버넌스로 전환
+- 대안: **Living Architecture as Code 플랫폼 구축** 및 **신규 사업 예산 심의 연계**
+- 검증: 아키텍처 자동 현행화율 100% · 공통 API 컴포넌트 재사용률 40% 이상 달성
+- 효과: IT 자원 중복 개발 원천 차단 · 클라우드 네이티브 환경의 민첩한 비즈니스 적응력 확보
 
-- [핵심 통찰]: EA/ITA가 실패하는 가장 큰 이유는 아키텍처를 '한 번 그리고 끝나는 거대한 문서 세트'로 취급하기 때문임. 급변하는 비즈니스 환경에서 캐비닛에 보관된 EA 문서는 잉크가 마르는 순간 현실과 괴리됨.
-- 나라면: 과거의 하향식 문서 입력형 EAMS를 폐기하고, 개발자의 Git 리포지토리, 클라우드 구성(IaC), API 게이트웨이의 라우팅 정보를 자동으로 크롤링하여 전사 아키텍처 토폴로지를 실시간 렌더링하는 'Living Architecture as Code' 플랫폼으로 EA 관리체계를 전면 전환하겠음.
-
-#### 한줄 요약
-- 문서를 넘어 코드로 살아 숨 쉬는 실시간 Living Architecture로 EA의 가치를 부활시켜야 함
+<div class="itpe-pipeline is-vertical" role="img" aria-label="EA/ITA 현대화 및 실효성 확보를 위한 기술사적 제언 파이프라인">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>수작업 문서 갱신 부담 · 프로젝트 종료 후 방치되는 죽은 EA</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>Git/IaC/API 게이트웨이 실시간 크롤링 기반 Living Architecture</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>신규 사업 예산 편성 시 EAMS 적합성 및 TRM 준수 검증 100%</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>중복 투자 제로화 · 전사 데이터 및 서비스 상호운용성 극대화</small>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의 및 핵심 개념
-- EA/ITA는 비즈니스(BA), 데이터(DA), 응용(AA), 기술(TA), 보안(SA)의 상호 관계를 구조화하여 중복 투자를 방지하고 상호운용성을 극대화하는 전사 설계 및 관리 체계임.
+### 1. 정의·목적
 
-### 2. 핵심 메커니즘 / 체계
-```text
-[3대 구성요소] ──▶ 기본 모델(BA/DA/AA/TA) ↔ 5대 참조모델(PRM/BRM/DRM/ARM/TRM) ↔ 관리체계(조직/EAMS)
-```
-- 현행(As-Is)과 목표(To-Be) 간 갭 분석을 통해 단계별 이행 로드맵을 수립하고, 신규 사업 추진 시 아키텍처 적합성을 심의함.
+- 정의: 비즈니스(BA), 데이터(DA), 응용(AA), 기술(TA), 보안(SA) 간의 유기적 관계를 체계화하여 중복 투자를 방지하고 상호운용성을 극대화하는 **전사 종합 아키텍처 관리 체계**
+- 목적: 정보시스템의 사일로화를 방지하고 표준 기반 **IT 거버넌스** 확립을 통한 비즈니스 전략 정합성 달성
 
-### 3. 차별화 제언
-- 클라우드 네이티브 환경에 부합하도록 IaC 및 API 카탈로그를 EAMS와 실시간 연동하는 'Living Architecture as Code' 체계를 도입하여 아키텍처 현행화 오버헤드를 극복해야 함.
+### 2. 구성체계 및 3대 축
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="EA/ITA 3대 구성 축 요약">
+  <div class="itpe-pipeline-node"><strong>아키텍처 모델</strong><small>5대 뷰(BA/DA/AA/TA/SA) · As-Is / To-Be</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>5대 참조모델</strong><small>PRM(성과) · BRM(업무) · DRM(데이터) · ARM(서비스) · TRM(기술)</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>관리체계</strong><small>아키텍처 위원회 · EAMS 적합성 심의</small></div>
+</div>
+
+### 3. 핵심 통제
+
+- **참조모델 정렬**: 범정부 5대 참조모델 준수를 통한 기관 간 공통 서비스 재사용 및 데이터 연계
+- **Living Architecture**: 클라우드 IaC 및 API 카탈로그 자동 연동을 통한 아키텍처 상시 현행화
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제119회, 제81회, 제80회 KPC 기출
-- 검증 출처: 전자정부법 및 전자정부기본법, 행정안전부 '범정부 EA 구축 가이드라인'
+- 제119회, 제81회, 제80회 KPC 기출: 전사 아키텍처(EA)의 구성요소 및 참조모델 연계
+- [행정안전부, 범정부 정보기술아키텍처(EA) 구축 및 운영 가이드라인](https://www.mois.go.kr)
+- [The Open Group, TOGAF Standard 10th Edition](https://www.opengroup.org)
 
 ## 학습 체크
 
 - [ ] EA/ITA의 3대 핵심 구성 축(아키텍처 모델, 참조모델, 관리체계)을 설명할 수 있는가?
-- [ ] 범정부 5대 참조모델(PRM, BRM, DRM, ARM, TRM)의 정의와 연계 구조를 도식화할 수 있는가?
-- [ ] Living Architecture as Code 관점에서 현대적 EA 거버넌스 발전 방안을 제시할 수 있는가?
+- [ ] 범정부 5대 참조모델(PRM, BRM, DRM, ARM, TRM)의 정의와 상호 연계 구조를 도식화할 수 있는가?
+- [ ] Living Architecture as Code 관점에서 현대적 EA 발전 방안을 제시할 수 있는가?
 
 ## 연결 토픽
 
-- 이전 토픽: [품질비용(COQ)](./106_cost_of_quality_coq.md)
+- 이전 토픽: [품질비용(Cost of Quality)](./106_cost_of_quality_coq.md)
 - 연관 토픽: [ISP(정보전략계획)](./003_isp.md), [ISMP(정보시스템마스터플랜)](./001_ismp.md)
 - 다음 토픽: [프로그래머블 머니 (AI 에이전트의 경제 주체화)](./110_programmable_money_ai_agents.md)
