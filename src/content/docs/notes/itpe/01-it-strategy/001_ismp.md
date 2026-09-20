@@ -37,7 +37,7 @@ extra:
   <div class="itpe-flow-node is-current">
     <strong>ISMP</strong>
     <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>절차</strong><span>착수 → 방향성 → 요건 → 구조 → 이행</span></div>
+      <div class="itpe-flow-branch"><strong>절차</strong><span>착수 → 방향성 → 요구사항 → 구조 → 이행</span></div>
       <div class="itpe-flow-branch"><strong>통제</strong><span><span class="itpe-keyword"><strong>RTM</strong></span> 기반 양방향 추적</span></div>
       <div class="itpe-flow-branch"><strong>산출</strong><span>아키텍처 · <span class="itpe-keyword"><strong>FP</strong></span> · 예산 · <span class="itpe-keyword"><strong>RFP</strong></span></span></div>
     </div>
@@ -94,15 +94,15 @@ extra:
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 업무 및 IT 요건 분석</strong></span>
+    <span class="itpe-keyword"><strong>③ 업무 및 IT 요구사항 분석</strong></span>
     <div class="itpe-step-detail">
       <strong>활동</strong><span>업무 기능 · 데이터 · 비기능(보안·성능) 요구사항 도출 및 명세화</span>
-      <strong>산출</strong><span>업무·IT 요건 목록</span>
+      <strong>산출</strong><span>업무·IT 요구사항 목록</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 정보시스템 구조 및 요건 정의</strong></span>
+    <span class="itpe-keyword"><strong>④ 정보시스템 구조 및 요구사항 정의</strong></span>
     <div class="itpe-step-detail">
       <strong>활동</strong><span>목표 아키텍처 수립 · 내외부 인터페이스 및 상세 요구사항 정의</span>
       <strong>산출</strong><span>목표 아키텍처 명세서 · 요구사항 명세서</span>
@@ -202,7 +202,7 @@ extra:
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>요구사항 분석</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>업무 · IT · 비기능 요구사항 도출</span><strong>산출</strong><span>업무·IT 요건 목록</span></div>
+    <div class="itpe-step-detail"><strong>활동</strong><span>업무 · IT · 비기능 요구사항 도출</span><strong>산출</strong><span>업무·IT 요구사항 목록</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
