@@ -5,5 +5,5 @@
 - 03-data: 03-161
 - 04-computer-system: 04-121
 - 05-network: 05-072
-- 07-latest-tech: 07-145
+- 07-latest-tech: 07-165
 - 08-law-policy: 08-074
