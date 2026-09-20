@@ -6,7 +6,7 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "미출 · 91%"
+    text: "A · 미출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
   source_status: "미출"
@@ -59,6 +59,12 @@ extra:
 - FinOps의 최종 목표는 '비용을 줄이는 것(Cost Cutting)'이 아니라 '수익 창출 속도를 높이기 위해 돈을 똑똑하게 쓰는 것(Value Maximization)'임
 - 1달러를 아끼기 위해 시니어 엔지니어가 10시간 동안 리사이징 작업을 한다면 이는 FinOps의 실패임 → 자동화된 도구로 개발자 개입 없이 해결해야 함
 - 진정한 FinOps 성숙도는 절대 비용 액수가 아니라 '트랜잭션당 인프라 비용' 또는 '유료 활성 사용자당 비용(Unit Economics)'을 낮추는 것으로 측정됨
+
+## 딸려 나오는 하위 토픽
+
+| 하위 토픽 | 상위 구조 속 위치 | 한 줄 (정의 → 메커니즘 → 구분축) |
+|---|---|---|
+| FOCUS (FinOps 비용 데이터 표준) | Ⅲ 구조 / 데이터 계층 | AWS, Azure, GCP 등 멀티 클라우드 공급자마다 제각각인 청구서(Billing CSV) 컬럼과 요금 체계를 공통 오픈소스 스키마로 표준화하여 일관된 비용 분석과 자동화를 지원하는 데이터 규격 (CSP별 파편화된 청구서 vs 단일 표준 개방형 FOCUS 스키마) |
 
 ## 이웃 토픽과 구분
 - FinOps vs DevOps: DevOps = 소프트웨어의 개발(Dev)과 운영(Ops) 속도 및 품질을 최적화 / FinOps = 개발·운영에 재무(Finance)를 결합하여 속도와 비용 효율성의 균형을 제어

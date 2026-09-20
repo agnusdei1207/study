@@ -6,13 +6,13 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기출 · 65%"
+    text: "C · 기출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "80회, 81회, 119회"
   priority: 65
-  priority_note: "이전(KPC):80,81,119"
+  priority_note: "이전(KPC):80,81,119 · 컴시응 기출 1"
 ---
 
 ## 답안 골격

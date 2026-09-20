@@ -6,7 +6,7 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기출 · 70%"
+    text: "B · 기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
   source_status: "기출"

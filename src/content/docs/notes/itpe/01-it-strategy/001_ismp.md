@@ -6,13 +6,13 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기출 · 100%"
+    text: "A · 기출 · 100%"
 extra:
   model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "138회, 125회, 127회, 129회, 130회"
   priority: 100
-  priority_note: "[출제:138] · [출제(KPC):125,127,129,130] · 이전(KPC):90,119"
+  priority_note: "[출제:138] · [출제(KPC):125,127,129,130] · 이전(KPC):90,119 · 합숙·모의 14 · 컴시응 기출 2"
 ---
 
 ## 답안 골격

@@ -6,10 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기출 · 58%"
+    text: "C · 미출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
+  source_status: "미출"
   source_history: "93회, 96회"
   priority: 58
   priority_note: "이전(KPC):93,96"

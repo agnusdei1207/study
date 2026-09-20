@@ -6,13 +6,13 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기출 · 86%"
+    text: "A · 기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "128회, 131회"
   priority: 86
-  priority_note: "[출제(KPC):128,131]"
+  priority_note: "[출제(KPC):128,131] · 합숙·모의 8"
 ---
 
 ## 답안 골격

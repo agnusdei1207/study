@@ -6,13 +6,13 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기출 · 76%"
+    text: "B · 기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "125회"
   priority: 76
-  priority_note: "[출제(KPC):125]"
+  priority_note: "[출제(KPC):125] · 합숙·모의 6 · 컴시응 기출 1"
 ---
 
 ## 답안 골격

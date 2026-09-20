@@ -6,13 +6,13 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기출 · 64%"
+    text: "C · 미출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
+  source_status: "미출"
   source_history: "86회, 90회"
   priority: 64
-  priority_note: "이전(KPC):86,90"
+  priority_note: "이전(KPC):86,90 · 합숙·모의 3"
 ---
 
 ## 답안 골격

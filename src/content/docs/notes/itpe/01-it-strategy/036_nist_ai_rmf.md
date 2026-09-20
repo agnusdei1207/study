@@ -6,13 +6,13 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기출 · 80%"
+    text: "A · 기출 · 82%"
 extra:
   model: "Gemini 3.8 Flash"
   source_status: "기출"
   source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+  priority: 82
+  priority_note: "[출제:138] · 합숙·모의 1 · 시사·트렌드"
 ---
 
 ## 답안 골격
@@ -66,6 +66,12 @@ extra:
 - NIST AI RMF의 핵심 철학은 AI 위험을 '사이버 보안 위험'과 동일한 연장선상에서 다루되, AI 고유의 '사회기술적(Socio-technical) 위험'을 포괄하는 데 있음
 - 7대 신뢰 특성은 서로 상충(Trade-off)함 → 설명가능성(XAI)을 높이려다 모델 정확도가 떨어지거나, 프라이버시 보호(차분 프라이버시)를 강화하다 공정성 지표가 왜곡될 수 있으므로 거버넌스 차원의 균형 조율이 필수적임
 - NIST는 생성형 AI의 환각과 탈옥 공격에 대응하기 위해 후속으로 'NIST AI 600-1(생성형 AI 프로파일)'을 발표하여 RMF를 지속 확장하고 있음
+
+## 딸려 나오는 하위 토픽
+
+| 하위 토픽 | 상위 구조 속 위치 | 한 줄 (정의 → 메커니즘 → 구분축) |
+|---|---|---|
+| NIST AI 600-1 (생성형 AI 프로파일) | Ⅲ 구조 / 특화 프로파일 | NIST AI RMF를 기반으로 거대 언어 모델(LLM)과 생성형 AI의 고유 위험인 탈옥(Jailbreak), 환각(Hallucination), 편향, 지식재산권 침해, CBRN 유출 등 12대 위험 요소를 체계적으로 식별·대응하기 위한 실무 프로파일 (전통 판별형 AI 위험관리 vs 생성형 AI 특화 NIST AI 600-1 프로파일) |
 
 ## 이웃 토픽과 구분
 - NIST AI RMF vs ISO/IEC 42001: NIST AI RMF = 미국 주도의 자율적 위험관리 가이드라인(실행 방법론) / ISO/IEC 42001 = 국제 표준화 기구의 AI 경영시스템 인증 규격(기업이 제3자 인증을 받기 위한 필수 요건)
