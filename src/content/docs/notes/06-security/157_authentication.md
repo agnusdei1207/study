@@ -1,0 +1,86 @@
+---
+title: "인증(Authentication)"
+author: "Gemini 3.8 Flash"
+date: "2026-09-20T01:00:00+09:00"
+tags:
+  - "notes-security"
+sidebar:
+  badge:
+    text: "기출"
+extra:
+  model: "Gemini 3.8 Flash"
+  source_status: "기출"
+  source_history: "[출제(KPC):128]"
+  priority: 70
+  priority_note: "[출제(KPC):128]"
+---
+
+# 인증(Authentication)
+
+## 핵심 개념
+- 정보 시스템에 접근하려는 주체(사용자, 프로세스, 기기)가 자신이 주장하는 본인임을 신뢰성 있게 증명하고, 시스템이 이를 검증하는 일련의 보안 절차.
+- 신원 주장(Identification) 이후에 수행되며, 인가(Authorization) 및 책임추적성(Accountability) 확립의 필수 전제 조건임.
+
+```
++-------------------------------------------------------------+
+|                      접근 통제 3A 체계                       |
++-------------------------------------------------------------+
+| 1. 식별(Identification)   | "나는 홍길동이다" (ID 입력)            |
+| 2. 인증(Authentication)   | "본인이 맞는지 증명" (비밀번호/생체 대조)|
+| 3. 인가(Authorization)     | "해당 자원에 대한 읽기/쓰기 권한 부여"   |
++-------------------------------------------------------------+
+```
+
+---
+
+## 식별(Identification) vs 인증(Authentication)
+
+| 비교 항목 | 식별(Identification) | 인증(Authentication) |
+|---|---|---|
+| **개념** | 주체가 시스템에 자신의 신원(Identity)을 제시하는 행위 | 제시된 신원이 실제 본인과 일치하는지 증거를 검증하는 행위 |
+| **요청 질문** | "당신은 누구인가?" (Who are you?) | "당신이 주장하는 본인이 맞다는 증거가 있는가?" (Prove it) |
+| **주요 수단** | 사용자 ID, 사번, 이메일 주소, 주민등록번호, IP | 패스워드, OTP, 전자서명, 생체 템플릿, FIDO 토큰 |
+| **보안 요구** | 공개 가능한 고유성(Uniqueness) 요구 | 위조 및 도난 방지를 위한 기밀성(Confidentiality) 보장 |
+
+---
+
+## 인증 기술의 발전 단계
+
+```
+[1세대: 지식 기반] ====> [2세대: 소유 기반] ====> [3세대: 생체/FIDO] ====> [4세대: 상황인지/연속인증]
+ - 단일 패스워드          - OTP 토큰, SMS        - 지문, 안면 인식       - 제로 트러스트 기반
+ - 사전 대입 취약         - SIM 스와핑 위험      - FIDO2 / Passkey      - 위험도 기반 적응형
+```
+
+### 1. 1세대: 지식 기반 인증 (Something You Know)
+- 패스워드, PIN 번호, 보안 질의응답.
+- 구현이 단순하나 망각 위험, 크리덴셜 스터핑 및 키로깅에 취약.
+
+### 2. 2세대: 소유 기반 인증 (Something You Have)
+- 하드웨어 OTP(토큰형), 스마트카드, SMS 인증코드.
+- 패스워드와 결합한 2차 인증(2FA)으로 활용되었으나, 중간자 공격(AitM) 및 SIM 하이재킹 취약점 존재.
+
+### 3. 3세대: 생체 및 공개키 기반 인증 (FIDO / Passkey)
+- 지문, 홍채, 안면 인식과 비대칭 공개키 암호학(WebAuthn)을 결합.
+- 서버에 비밀번호를 저장하지 않아 서버 측 DB 유출 사고가 발생해도 자격증명 노출 원천 차단.
+
+### 4. 4세대: 제로 트러스트 연속 인증 (Continuous & Adaptive Authentication)
+- 위치(Geo-IP), 단말 무결성, 접속 시간, 키스트로크 타이핑 리듬 등 행위 프로파일링(UEBA) 결합.
+- 로그인 1회 검증에 그치지 않고 세션 유지 중 지속적으로 위험도를 평가하여 동적 세션 종료 또는 재인증 요구.
+
+---
+
+## 최신 인증 아키텍처 비교
+
+| 인증 방식 | 구성 아키텍처 | 주요 보안 메커니즘 | 장점 및 고려사항 |
+|---|---|---|---|
+| **FIDO2 / Passkey** | Client(Secure Enclave) + Server | 비대칭키 쌍 생성, 개인키 기기 격리, Challenge-Response 서명 | 피싱 원천 차단, 비밀번호 폐기 가능 |
+| **OAuth 2.0 / OIDC** | User + Client + IdP + Resource | 인가 코드 교환, ID Token(JWT), Bearer Token | 단일 로그인(SSO) 구현 용이, 토큰 탈취 방어 필요 |
+| **분산 신원증명(DID)** | Holder + Issuer + Verifier + Blockchain | 탈중앙 신원 증명, 검증 가능한 자격증명(VC/VP) | 자기주권 신원 보장, 중앙 기관 단일장애점(SPOF) 제거 |
+| **연속 적응형 인증** | UEBA 엔진 + IAM 정책 서버 | 실시간 위험 점수(Risk Engine) 산출, 동적 MFA 트리거 | 공격자 세션 하이재킹 실시간 무력화, 인프라 부하 관리 |
+
+---
+
+## 결론 및 실무 시사점
+- 정적 패스워드 기반 인증 체계는 클라우드 및 원격 근무 확산 환경에서 신뢰 경계를 보장하지 못함.
+- 비밀번호 없는 패스키(Passwordless Passkey) 도입과 제로 트러스트 원칙에 입각한 '지속적 적응형 신원 검증(Continuous Adaptive Risk and Trust Assessment, CARTA)' 체계로의 전환이 요구됨.
