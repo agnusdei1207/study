@@ -1,7 +1,7 @@
 ---
 title: "공공부문 클라우드 네이티브 전환"
-author: "Codex"
-date: "2026-09-20T19:17:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T21:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -82,7 +82,7 @@ extra:
 > 공공 클라우드 네이티브 전환은 단순 IaaS 서버 이전을 넘어 **애플리케이션과 운영 체계의 전면 현대화**이며, 성패는 공공서비스의 **탄력적 가용성과 무중단 배포 역량**으로 판정함.
 
 - 정의: 공공 정보시스템에 클라우드의 탄력성, 회복성, 자동화를 온전히 내재화하기 위해 **마이크로서비스(MSA)**, **컨테이너(Container)**, **CI/CD**, **데브옵스(DevOps)** 기반으로 전면 재설계·운영하는 현대화 전략
-- 목적: 행정전산망 장애 시 서비스 마비 차단, 대국민 무중단 서비스 보장 및 운영 효율화
+- 목적: 행정전산망 단일장애점(SPOF) 차단 및 24/365 대국민 무중단 서비스 확보
 
 ## Ⅱ. 공공 클라우드 네이티브 5단계 전환 방법론 및 추진 파이프라인
 
@@ -91,27 +91,42 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 클라우드 네이티브 5단계 전환 방법론">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 진단 및 6R 전략 수립 (Assessment & Strategy)</strong></span>
-    <small>정보자원 등급 진단 · BIA 분석 · 6R(Refactor, Replatform 등) 분류<br />→ 클라우드 전환 타당성 분석서 · 이행 우선순위표</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>정보자원 등급 진단 · BIA 분석 · 6R(Refactor, Replatform 등) 분류</span>
+      <strong>산출</strong><span>클라우드 전환 타당성 분석서 · 이행 우선순위표</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 랜딩존 및 표준 플랫폼 구축 (Landing Zone & Platform)</strong></span>
-    <small>보안 망분리 · CSAP 인증 공공존 확보 · K8s 클러스터 · 표준 배포 파이프라인<br />→ 클라우드 플랫폼 표준 명세서 · IAM 정책서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>보안 망분리 · CSAP 인증 공공존 확보 · K8s 클러스터 · 표준 배포 파이프라인</span>
+      <strong>산출</strong><span>클라우드 플랫폼 표준 명세서 · IAM 정책서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 점진적 애플리케이션 현대화 (Modernization & Strangler)</strong></span>
-    <small>도메인 주도 설계(DDD) 기반 MSA 분할 · Strangler Fig 적용 · DB 분리<br />→ MSA 아키텍처 설계서 · 마이크로서비스 API 명세서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>도메인 주도 설계(DDD) 기반 MSA 분할 · Strangler Fig 적용 · DB 분리</span>
+      <strong>산출</strong><span>MSA 아키텍처 설계서 · 마이크로서비스 API 명세서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 무중단 배포 및 전환 (Zero-Downtime Deployment)</strong></span>
-    <small>카나리(Canary)/블루그린 배포 · 트래픽 점진적 롤아웃 · 데이터 정합성 검증<br />→ 전환 검수 보고서 · 롤백 시나리오</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>카나리(Canary)/블루그린 배포 · 트래픽 점진적 롤아웃 · 데이터 정합성 검증</span>
+      <strong>산출</strong><span>전환 검수 보고서 · 롤백 시나리오</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 관측성 및 상시 운영 (Observability & SRE)</strong></span>
-    <small>OpenTelemetry 분산 추적 · SLO 기반 SRE 운영 · FinOps 비용 최적화<br />→ 공공 서비스 가용성 리포트 · 장애 조기 경보 대시보드</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>OpenTelemetry 분산 추적 · SLO 기반 SRE 운영 · FinOps 비용 최적화</span>
+      <strong>산출</strong><span>공공 서비스 가용성 리포트 · 장애 조기 경보 대시보드</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 공공 정보등급 ↔ 6R 현대화 ↔ 무중단 CI/CD 배포 ↔ SRE 가용성 전주기 추적</div>
@@ -169,22 +184,30 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 클라우드 네이티브 점진 전환 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>빅뱅 전면 전환의 고위험 · 단일 턴키 계약 · DB 강결합으로 전환 실패</small>
+    <div class="itpe-step-detail">
+      <strong>문제</strong><span>빅뱅 전면 전환의 고위험 · 단일 턴키 계약 · DB 강결합으로 전환 실패</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>대민 접점 모듈부터 Strangler Fig 점진 분리 + 기능 단위 분할 발주</small>
+    <div class="itpe-step-detail">
+      <strong>대안</strong><span>대민 접점 모듈부터 Strangler Fig 점진 분리 + 기능 단위 분할 발주</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>CDC 기반 데이터 동기화 정합성 · 트래픽 폭증 시 컨테이너 Pod HPA 확장 실측</small>
+    <div class="itpe-step-detail">
+      <strong>판정</strong><span>CDC 기반 데이터 동기화 정합성 · 트래픽 폭증 시 컨테이너 Pod HPA 확장 실측</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>행정전산망 전면 마비 차단 · 24/365 대국민 무중단 서비스 실현 · 공공 IT 민첩성 극대화</small>
+    <div class="itpe-step-detail">
+      <strong>효과</strong><span>행정전산망 전면 마비 차단 · 24/365 대국민 무중단 서비스 실현 · 공공 IT 민첩성 극대화</span>
+    </div>
   </div>
 </div>
 
@@ -193,20 +216,50 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **공공부문 클라우드 네이티브 전환**은 공공 시스템의 탄력성과 회복성을 확보하기 위해 **MSA(마이크로서비스)**, **컨테이너(Container)**, **CI/CD**, **데브옵스(DevOps)** 기반으로 애플리케이션과 운영을 전면 현대화하는 전략
-- 목적: 행정전산망 장애 시 서비스 마비 차단, 대국민 무중단 서비스 보장 및 운영 효율화
+- 목적: 행정전산망 단일장애점(SPOF) 차단 및 24/365 대국민 무중단 서비스 확보
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 클라우드 네이티브 전환 5단계 요약">
-  <div class="itpe-pipeline-node"><strong>진단·6R</strong><small>정보자원 등급 · 전략 수립</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>① 진단·6R</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>정보자원 등급 · BIA</span>
+      <strong>산출</strong><span>6R 전환전략서</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>플랫폼 구축</strong><small>CSAP 공공존 · K8s · CI/CD</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>② 플랫폼구축</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>CSAP 공공존 · K8s</span>
+      <strong>산출</strong><span>랜딩존 명세서</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>점진 현대화</strong><small>DDD 도메인 분할 · Strangler</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>③ 점진현대화</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>DDD 도메인 분할</span>
+      <strong>산출</strong><span>Strangler 아키텍처</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>무중단 배포</strong><small>카나리/블루그린 전환</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>④ 무중단배포</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>카나리/블루그린 전환</span>
+      <strong>산출</strong><span>롤백 시나리오</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>관측성 운영</strong><small>OpenTelemetry · SRE</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>⑤ 관측성운영</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>OpenTelemetry · SRE</span>
+      <strong>산출</strong><span>가용성 모니터링</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

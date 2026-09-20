@@ -1,7 +1,7 @@
 ---
 title: "국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성"
-author: "Codex"
-date: "2026-09-20T19:18:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T21:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -84,27 +84,42 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="회복탄력성 5단계 구성체계 및 단계별 활동과 산출물">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 물리 설비 격리</strong></span>
-    <small>배터리실 방화구획 분리 · 전원·통신 인입 관로 이원화<br />→ 물리 격리 설계서 · 관로 이원화 도면</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>배터리실 방화구획 분리 · 전원·통신 인입 관로 이원화</span>
+      <strong>산출</strong><span>물리 격리 설계서 · 관로 이원화 도면</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 인프라 가상화 및 망 분산</strong></span>
-    <small>다중 거점 클라우드 배치 · 전용 백본망 이중화<br />→ 멀티 리전 인프라 구성도 · 대역폭 용량계획서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>다중 거점 클라우드 배치 · 전용 백본망 이중화</span>
+      <strong>산출</strong><span>멀티 리전 인프라 구성도 · 대역폭 용량계획서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 플랫폼 및 공통 서비스 분산</strong></span>
-    <small>공통 인증·행정연계 게이트웨이 거점별 독립 배포<br />→ 분산 게이트웨이 아키텍처 · 무상태 컨테이너 매니페스트</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>공통 인증·행정연계 게이트웨이 거점별 독립 배포</span>
+      <strong>산출</strong><span>분산 게이트웨이 아키텍처 · 무상태 컨테이너 매니페스트</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 데이터 동기 복제 및 에어갭</strong></span>
-    <small>Active-Active 스토리지 미러링 · 제3 거점 격리 백업<br />→ 동기 복제 정책서 · 불변(WORM) 백업 대장</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>Active-Active 스토리지 미러링 · 제3 거점 격리 백업</span>
+      <strong>산출</strong><span>동기 복제 정책서 · 불변(WORM) 백업 대장</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 자동 장애 감지 및 절체</strong></span>
-    <small>GSLB 헬스체크 트래픽 우회 · 카오스 엔지니어링 실전 검증<br />→ 자동 failover 절차서 · 모의훈련 결과서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>GSLB 헬스체크 트래픽 우회 · 카오스 엔지니어링 실전 검증</span>
+      <strong>산출</strong><span>자동 failover 절차서 · 모의훈련 결과서</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 물리 재난 감지 ↔ GSLB 트래픽 우회 ↔ 스토리지 정합성 ↔ 서비스 무중단 검증</div>
@@ -164,22 +179,30 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="다중 거점 회복탄력성 구축 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>단일 센터 설비 이중화 · 공통 연계망 중앙 집중 의존</small>
+    <div class="itpe-step-detail">
+      <strong>문제</strong><span>단일 센터 설비 이중화 · 공통 연계망 중앙 집중 의존</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>Active-Active 다중 거점 분산 · 무상태 클라우드 네이티브 전환</small>
+    <div class="itpe-step-detail">
+      <strong>대안</strong><span>Active-Active 다중 거점 분산 · 무상태 클라우드 네이티브 전환</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>GSLB 자동 절체 동작 · 카오스 엔지니어링 불시 훈련 RTO 실증</small>
+    <div class="itpe-step-detail">
+      <strong>판정</strong><span>GSLB 자동 절체 동작 · 카오스 엔지니어링 불시 훈련 RTO 실증</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>거점 전소 시에도 무중단 서비스 제공 · RPO=0 무결성 보장</small>
+    <div class="itpe-step-detail">
+      <strong>효과</strong><span>거점 전소 시에도 무중단 서비스 제공 · RPO=0 무결성 보장</span>
+    </div>
   </div>
 </div>
 
@@ -193,13 +216,37 @@ extra:
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 회복탄력성 메커니즘 요약">
-  <div class="itpe-pipeline-node"><strong>물리 격리</strong><small>배터리실 방화구획 · 관로 이원화</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>① 물리격리</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>배터리실 방화구획 분리</span>
+      <strong>산출</strong><span>관로 이원화 도면</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>트래픽 우회</strong><small>GSLB 자동 헬스체크 failover</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>② 트래픽우회</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>GSLB 자동 헬스체크</span>
+      <strong>산출</strong><span>Failover 경로</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>데이터 동기</strong><small>Active-Active 스토리지 미러링</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>③ 데이터동기</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>Active-Active 스토리지 미러링</span>
+      <strong>산출</strong><span>동기 복제 정책서</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>불변 보존</strong><small>제3 거점 에어갭 WORM 백업</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>④ 불변보존</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>제3 거점 에어갭 WORM 백업</span>
+      <strong>산출</strong><span>불변 백업 대장</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

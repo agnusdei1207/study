@@ -1,7 +1,7 @@
 ---
 title: "국가 AI 전략과 인공지능 행동계획"
-author: "Codex"
-date: "2026-09-20T19:19:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T21:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -83,7 +83,7 @@ extra:
 > 국가 비전(G3)을 부처별 예산·사업 단위로 전환하며, 성패는 선언적 구호가 아닌 **컴퓨팅 인프라 확보**와 **실전 AX 성과**로 판정함.
 
 - 정의: **AI 3대 강국(G3)** 도약을 위해 범국가 컨트롤타워인 **국가인공지능전략위원회**를 중심으로 정책·인프라·산업을 결집하는 국가 마스터플랜
-- 목적: 부처 간 중복 투자 차단, 전 산업 AI 전환 가속화 및 국가 성장동력 확보
+- 목적: 부처 간 중복 투자 차단 및 전 산업 AX 경쟁력 확보
 
 ## Ⅱ. 국가 AI 전략과 행동계획 5단계 추진체계 및 방법론
 
@@ -92,27 +92,42 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="국가 AI 전략 및 행동계획 5단계 추진체계의 단계별 활동과 산출물">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 환경·역량 진단</strong></span>
-    <small>글로벌 기술격차 · 연산자원 및 데이터 보유량 분석<br />→ 국가 AI 역량 진단 보고서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>글로벌 기술격차 · 연산자원 및 데이터 보유량 분석</span>
+      <strong>산출</strong><span>국가 AI 역량 진단 보고서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 국가 비전 및 전략 수립</strong></span>
-    <small>AI 3대 강국 이정표 설정 · 범국가 추진원칙 확정<br />→ 국가 AI 기본계획서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>AI 3대 강국 이정표 설정 · 범국가 추진원칙 확정</span>
+      <strong>산출</strong><span>국가 AI 기본계획서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 행동계획 포트폴리오 구조화</strong></span>
-    <small>부처별 과제-예산-일정-책임기관 매핑 및 중복 심의<br />→ 인공지능 행동계획서(Action Plan)</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>부처별 과제-예산-일정-책임기관 매핑 및 중복 심의</span>
+      <strong>산출</strong><span>인공지능 행동계획서(Action Plan)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 민관합동 실증 및 AX 확산</strong></span>
-    <small>국가 AI 컴퓨팅 센터 가동 · 공공/산업 선도 실증 지원<br />→ AX 실증 레퍼런스 모델</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>국가 AI 컴퓨팅 센터 가동 · 공공/산업 선도 실증 지원</span>
+      <strong>산출</strong><span>AX 실증 레퍼런스 모델</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 성과평가 및 안전·신뢰 환류</strong></span>
-    <small>정량 KPI 점검 · 고영향 AI 위험 모니터링<br />→ 연차별 성과평가서 · 예산 조정안</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>정량 KPI 점검 · 고영향 AI 위험 모니터링</span>
+      <strong>산출</strong><span>연차별 성과평가서 · 예산 조정안</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 국가 비전 ↔ 위원회 심의 ↔ 세부 실행과제 ↔ KPI 달성도 양방향 연계</div>
@@ -171,22 +186,30 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="국가 AI 전략 실행력 담보 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>부처별 분절 발주 · 외산 GPU 의존 · 안전성 사전 검증 미흡</small>
+    <div class="itpe-step-detail">
+      <strong>문제</strong><span>부처별 분절 발주 · 외산 GPU 의존 · 안전성 사전 검증 미흡</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>국가AI전략위 총괄 조정 · 공통기반 연계 · 국산 NPU 실증</small>
+    <div class="itpe-step-detail">
+      <strong>대안</strong><span>국가AI전략위 총괄 조정 · 공통기반 연계 · 국산 NPU 실증</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>중복 예산 사전 심의 통과 · 고영향 AI 위험평가 보고서 검증</small>
+    <div class="itpe-step-detail">
+      <strong>판정</strong><span>중복 예산 사전 심의 통과 · 고영향 AI 위험평가 보고서 검증</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>AI 3대 강국 도약 · 연산자원 자립 · 신뢰 기반 AI 서비스 확산</small>
+    <div class="itpe-step-detail">
+      <strong>효과</strong><span>AI 3대 강국 도약 · 연산자원 자립 · 신뢰 기반 AI 서비스 확산</span>
+    </div>
   </div>
 </div>
 
@@ -195,18 +218,42 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **국가 AI 전략**과 **인공지능 행동계획**은 **AI 3대 강국(G3)** 도약을 위해 **국가인공지능전략위원회**를 중심으로 인프라·데이터·AX·신뢰를 사업 단위로 구체화한 범국가 실행체계
-- 목적: 부처 간 중복 투자 차단, 전 산업 AI 전환 가속화 및 국가 성장동력 확보
+- 목적: 부처 간 중복 투자 차단 및 전 산업 AX 경쟁력 확보
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 국가 AI 전략 4대 축 요약">
-  <div class="itpe-pipeline-node"><strong>인프라</strong><small>국가 AI 컴퓨팅 센터 · NPU</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>① 인프라</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>국가 AI 컴퓨팅 센터 · NPU 실증</span>
+      <strong>산출</strong><span>연산자원 공급망</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>데이터</strong><small>전 산업 고품질 데이터셋 개방</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>② 데이터</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>전 산업 고품질 데이터셋 개방</span>
+      <strong>산출</strong><span>도메인 데이터셋</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>융합·확산</strong><small>전 산업 AX · 공공 지능화</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>③ 융합·AX</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>산업 전면 AX · 공공 지능화</span>
+      <strong>산출</strong><span>AX 레퍼런스 모델</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>안전·신뢰</strong><small>인공지능기본법 고영향 AI 평가</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>④ 안전·신뢰</strong>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>고영향 AI 안전성 영향평가</span>
+      <strong>산출</strong><span>신뢰성 인증서</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,7 +1,7 @@
 ---
 title: "디지털 트랜스포메이션(DX)"
-author: "Codex"
-date: "2026-09-20T19:16:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T20:57:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -29,12 +29,12 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="디지털 전환 3단계 진화 및 전사 확산 체계">
   <div class="itpe-flow-node">
     <strong>1단계: Digitization (정보 전산화)</strong>
-    <small>아날로그 문서의 디지털화 · 단순 PDF/엑셀 변환 · 데이터 아카이빙</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>전환</strong><span>아날로그 문서 디지털화 · 데이터 아카이빙</span></div></div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>2단계: Digitalization (업무 디지털화)</strong>
-    <small>ERP/CRM 구축 · RPA 업무 자동화 · 프로세스 리드타임 단축 및 원가 절감</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>효율</strong><span>ERP/CRM 고도화 · RPA 업무 자동화 · 원가 절감</span></div></div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
@@ -48,7 +48,7 @@ extra:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>파괴적 경쟁우위 확보</strong>
-    <small>디지털 시장 선도 · 고객 경험(CX) 극대화 · 지속가능 수익 창출</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>성과</strong><span>시장 선도 · 고객 경험(CX) 극대화 · 지속가능 수익 창출</span></div></div>
   </div>
 </div>
 
@@ -84,7 +84,7 @@ extra:
 > DX는 단순한 IT 도구 도입이 아닌 **비즈니스 모델과 조직 문화의 근본적 전환**이며, 성패는 기술 스펙이 아닌 **고객 가치와 지속적 수익 창출력**으로 판정함.
 
 - 정의: 디지털 신기술(AI, Cloud, BigData 등)을 활용하여 **고객 경험(CX)**, **운영 프로세스**, **비즈니스 모델(BM)** 및 기업 문화를 근본적으로 변화시키는 **전사 경영 혁신 전략**
-- 목적: 데이터 기반 신성장 동력 확보 및 시장 경쟁 우위 선점
+- 목적: 데이터 기반 신수익원 창출 및 시장 경쟁력 확보
 
 ## Ⅱ. 디지털 전환 3단계 발전모델 및 전사 추진 파이프라인
 
@@ -93,22 +93,34 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="디지털 전환 4단계 추진 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① Digitization (정보 전산화)</strong></span>
-    <small>아날로그 문서·신호의 디지털 포맷 변환 · 종이 없는 사무실<br />→ 전자 문서 원장 · 원천 데이터 레이크</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>아날로그 문서·신호의 디지털 포맷 변환 · 전산화</span>
+      <strong>산출</strong><span>전자 문서 원장 · 원천 데이터 레이크</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② Digitalization (프로세스 최적화)</strong></span>
-    <small>ERP/CRM 고도화 · RPA 업무 자동화 · 데이터 기반 의사결정<br />→ 운영 효율화 보고서 · 리드타임 단축</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>ERP/CRM 고도화 · RPA 업무 자동화 · 데이터 분석</span>
+      <strong>산출</strong><span>운영 효율화 보고서 · 리드타임 단축</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ Digital Transformation (비즈니스 모델 재창조)</strong></span>
-    <small>구독 경제(XaaS) 전환 · 고객 경험(CX) 개인화 · 플랫폼 생태계 구축<br />→ 신규 디지털 매출 원장 · 고객 여정 지도</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>구독 경제(XaaS) 전환 · CX 개인화 · 플랫폼 구축</span>
+      <strong>산출</strong><span>신규 디지털 매출 원장 · 고객 여정 지도</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ Enterprise Scaling & AX (문화 내재화 및 AI 전환)</strong></span>
-    <small>CoE 거버넌스 가동 · 생성형 AI 기반 업무 에이전트 결합<br />→ 전사 디지털 역량 지수 · 자율 운영 체계</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>CoE 거버넌스 가동 · 생성형 AI 업무 에이전트 결합</span>
+      <strong>산출</strong><span>전사 디지털 역량 지수 · 자율 운영 체계</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Value Delivery</strong></span> · 고객 문제 정의 ↔ MVP 애자일 가치 검증 ↔ CoE 전사 확산 양방향 연계</div>
@@ -165,22 +177,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="CoE 기반 성공적 디지털 전환 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>IT 부서 단독 추진 · 기술 과시형 PoC 무덤 · 현업 기득권 반발 및 사일로</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>IT 부서 단독 추진 · 기술 과시형 PoC 무덤 · 현업 사일로</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>현업-IT 융합 제품팀(Product Team) + 전사 표준·거버넌스를 지원하는 CoE 신설</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>현업-IT 융합 제품팀 + 전사 표준을 지원하는 CoE 신설</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>비즈니스 KPI(고객가치/수익)와 연동된 MVP 검증 · Quick Win 조기 입증</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>비즈니스 KPI 연동 MVP 검증 · Quick Win 조기 입증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>PoC 상용화 안착 · 고객 경험 혁신 달성 · 데이터 기반 지속가능 신성장 동력 확보</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>PoC 상용화 안착 · 고객 경험 혁신 · 신성장 동력 확보</span></div>
   </div>
 </div>
 
@@ -189,16 +201,25 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **디지털 트랜스포메이션(DX)**은 디지털 신기술을 활용하여 **고객 경험(CX)**, 운영 프로세스, **비즈니스 모델(BM)** 및 조직 문화를 전면 재창조하는 **전사 경영 혁신 전략**
-- 목적: 데이터 기반 신성장 동력 확보 및 시장 경쟁 우위 선점
+- 목적: 데이터 기반 신수익원 창출 및 시장 경쟁력 확보
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="디지털 전환 3단계 발전 요약">
-  <div class="itpe-pipeline-node"><strong>Digitization</strong><small>정보 전산화 · 종이 전자문서화</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Digitization</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>정보 전산화</span><strong>산출</strong><span>전자문서화</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Digitalization</strong><small>프로세스 최적화 · ERP/RPA 자동화</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Digitalization</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>프로세스 최적화</span><strong>산출</strong><span>RPA 자동화</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>DX (디지털 전환)</strong><small>BM 재창조 · 구독 경제 · 애자일 문화</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>DX (디지털 전환)</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>BM 재창조</span><strong>산출</strong><span>구독 경제(XaaS)</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

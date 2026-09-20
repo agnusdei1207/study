@@ -14,7 +14,11 @@ extra:
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → IT 거버넌스·감사 → **IT 감리**
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 IT 거버넌스·감사를 거쳐 IT 감리로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>IT 거버넌스·감사</span>
+  <strong>IT 감리</strong>
+</div>
 
 ## 큰 그림과 30초 인출
 

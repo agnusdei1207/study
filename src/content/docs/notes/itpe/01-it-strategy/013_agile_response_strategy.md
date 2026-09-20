@@ -1,7 +1,7 @@
 ---
 title: "애자일 대응 전략"
-author: "Codex"
-date: "2026-09-20T19:12:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T20:56:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="엔터프라이즈 바이모달 IT 애자일 대응 체계">
   <div class="itpe-flow-node">
     <strong>비즈니스 환경 변화 및 불확실성</strong>
-    <small>요구사항 잦은 변경 · 빠른 시장 출시 압박</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>동인</strong><span>요구사항 변경 빈발 · 조기 출시 압박</span></div></div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
@@ -42,7 +42,7 @@ extra:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>엔터프라이즈 애자일 (SAFe / Agile PMO)</strong>
-    <small>스프린트 단위 가치 검수 · DoD 준수 · 자기조직화 팀 확립</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>산출</strong><span>스프린트 가치 검수 · DoD 준수 · 자기조직화 팀 확립</span></div></div>
   </div>
 </div>
 
@@ -79,7 +79,7 @@ extra:
 > 애자일 대응 전략은 변경을 통제 대상이 아닌 가치 창출의 기회로 수용하며, 성패는 문서 분량이 아닌 **작동하는 소프트웨어의 지속적 인도**로 판정함.
 
 - 정의: 사전에 모든 요구사항을 확정할 수 없다는 전제하에, 짧은 주기(Sprint)의 반복과 점진적 개발을 통해 고객 피드백을 신속히 반영하는 **민첩한 프로젝트 및 조직 운영 전략**
-- 목적: 시장 출시 속도 단축, 불확실성 조기 제거 및 비즈니스 적응력 확보
+- 목적: 타임투마켓 단축 및 불확실성 대응력 확보
 
 ## Ⅱ. 애자일 스프린트 구성체계 및 4단계 반복 이행 방법론
 
@@ -88,22 +88,34 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="애자일 4단계 스프린트 반복 이행 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 비전 수립 및 백로그 정제 (Backlog Refinement)</strong></span>
-    <small>사용자 스토리 도출 · 비즈니스 가치 평가 · 스토리 포인트 산정<br />→ 프로덕트 백로그(Product Backlog)</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>사용자 스토리 도출 · 가치 평가 · 스토리 포인트 산정</span>
+      <strong>산출</strong><span>프로덕트 백로그(Product Backlog)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 스프린트 계획 및 확정 (Sprint Planning)</strong></span>
-    <small>팀 속도(Velocity) 기반 범위 확정 · 작업(Task) 분해<br />→ 스프린트 백로그(Sprint Backlog) · 번다운 차트</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>팀 속도(Velocity) 기반 범위 확정 · 작업(Task) 분해</span>
+      <strong>산출</strong><span>스프린트 백로그(Sprint Backlog) · 번다운 차트</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 스프린트 실행 및 일일 점검 (Daily Scrum)</strong></span>
-    <small>15분 스탠드업 · 장애 요인(Impediment) 제거 · 지속적 통합(CI)<br />→ 칸반 보드 갱신 · 일일 빌드 결과</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>15분 스탠드업 · 장애 요인 제거 · 지속적 통합(CI)</span>
+      <strong>산출</strong><span>칸반 보드 갱신 · 일일 빌드 결과</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 스프린트 리뷰 및 회고 (Review & Retrospective)</strong></span>
-    <small>이해관계자 데모 시연 · 피드백 수렴 · 프로세스 개선 도출<br />→ 배포 가능 제품 증분(Increment) · 회고 개선 과제</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>이해관계자 데모 시연 · 피드백 수렴 · 프로세스 개선</span>
+      <strong>산출</strong><span>배포 가능 제품 증분(Increment) · 회고 개선 과제</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>DoD(Definition of Done)</strong></span> · 사용자 스토리 ↔ 단위/통합 테스트 자동화 ↔ 잠재 배포 가능 제품 검증</div>
@@ -138,7 +150,7 @@ extra:
 
 | 위험 | 원인 | 통제 | 검증 |
 |---|---|---|---|
-| **고정가 턴키 계약 충돌** | 사전 요구사항 확정을 전제로 하는 국가계약법 및 확정가 발주 관행 | 총액 계약 내에서 백로그 우선순위 조정을 허용하는 '애자일 표준계약 템플릿' 적용 | 과업 변경 심의 분쟁 0건 |
+| **계약과 변경 충돌** | 고정 범위와 반복적 우선순위 조정의 불일치 | 변경 절차·검수 기준·백로그 권한 명시 | 변경 이력과 인수기준 추적 |
 | **관리자의 통제 상실감** | WBS 기반 진척률 보고에 익숙한 전통적 경영진의 진척 불신 | 번다운 차트(Burndown Chart) 및 정례 데모 시연회(Sprint Review) 운영 | 스프린트 데모 합격률 100% |
 | **품질 부채 (Technical Debt)** | 빠른 기능 출시에 매몰되어 리팩토링 및 자동화 테스트 누락 | 스프린트 완료 정의(DoD)에 단위 테스트 커버리지 및 정적 분석 필수화 | 코드 커버리지 기준 준수 및 결함 조기 격리 |
 
@@ -155,28 +167,28 @@ extra:
 
 - 판정: 부분적 개발 방법론 변경을 넘어 전사 거버넌스 및 계약 체계 개혁
 - 대안: **바이모달 IT 아키텍처** 및 **DoD 기반 애자일 용역 계약 테일러링**
-- 검증: 스프린트별 동작 가능한 증분 검수율 100% · 테스트 자동화 파이프라인 통과
-- 효과: 시장 요구 대응 리드타임 단축 및 과업 변경 분쟁 원천 차단
+- 검증: 스프린트 목표 달성, DoD 충족, 변경 이력 추적
+- 효과: 피드백 주기 단축, 변경 분쟁 감소
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="엔터프라이즈 애자일 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>고정가 턴키 계약 관행 · WBS 산출물 중심 감사 · Fake Agile 양산</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>고정가 턴키 계약 관행 · WBS 문서 중심 감사 · Fake Agile</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>바이모달 IT(Mode 1/2) 분리 + DoD 기반 스프린트 기성 검수 계약</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>바이모달 IT(Mode 1/2) 분리 + DoD 기반 스프린트 기성 검수</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>사용자 스토리별 DoD 충족 여부 · CI/CD 테스트 자동화 통과율</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>사용자 스토리별 DoD 충족 여부 · CI/CD 테스트 통과율</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>고객 피드백 즉시 반영 · 과업 변경 분쟁 예방 · 출시 리드타임 단축</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>고객 피드백 즉시 반영 · 과업 변경 분쟁 예방 · 출시 단축</span></div>
   </div>
 </div>
 
@@ -185,18 +197,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **애자일(Agile)** 대응 전략은 요구사항 변경을 수용하고 짧은 반복 주기를 통해 작동하는 소프트웨어를 지속 인도하는 **민첩한 경영·개발 전략**
-- 목적: 시장 출시 속도 단축, 불확실성 조기 제거 및 비즈니스 적응력 확보
+- 목적: 타임투마켓 단축 및 불확실성 대응력 확보
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="애자일 스프린트 4단계 요약">
-  <div class="itpe-pipeline-node"><strong>백로그 정제</strong><small>스토리 도출 · 우선순위화</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>백로그 정제</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>스토리 도출 · 우선순위화</span><strong>산출</strong><span>프로덕트 백로그</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>스프린트 계획</strong><small>스프린트 백로그 확정</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>스프린트 계획</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>속도 기반 범위 확정</span><strong>산출</strong><span>스프린트 백로그</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>스프린트 실행</strong><small>일일 스크럼 · CI/CD 연계</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>스프린트 실행</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>일일 스탠드업 · CI</span><strong>산출</strong><span>일일 빌드</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>리뷰 및 회고</strong><small>DoD 검수 · 증분(Increment) 인도</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>리뷰 및 회고</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>데모 시연 · 피드백</span><strong>산출</strong><span>제품 증분(Increment)</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제
@@ -206,16 +230,13 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제131회 정보관리기술사 1교시: 애자일 방법론의 핵심 가치 및 스프린트 운영
-- 제129회 정보관리기술사 2교시: 엔터프라이즈 환경에서의 바이모달 IT 및 애자일 전환 전략
 - [Agile Alliance: Manifesto for Agile Software Development](https://agilemanifesto.org/)
-- [Gartner Research: Bimodal IT Framework](https://www.gartner.com)
 
 ## 학습 체크
 
-- [ ] 애자일 선언문의 4대 핵심 가치와 12대 실행 원칙을 설명할 수 있는가?
-- [ ] 바이모달 IT(Mode 1 vs Mode 2)의 특성과 업무 적용 기준을 비교할 수 있는가?
-- [ ] 폭포수 모델과 애자일 모델의 범위, 일정, 비용 역삼각형 구조를 도식화할 수 있는가?
+- [ ] Ⅱ·반복 흐름: 백로그부터 회고까지 활동과 산출을 그릴 수 있는가?
+- [ ] Ⅲ·적용 기준: 안정성 중심 영역과 탐색 중심 영역의 운영 차이를 설명할 수 있는가?
+- [ ] Ⅳ·비교: 폭포수와 애자일의 변경·전달·검증 차이를 설명할 수 있는가?
 
 ## 연결 토픽
 

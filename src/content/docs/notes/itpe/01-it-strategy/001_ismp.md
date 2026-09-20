@@ -14,7 +14,11 @@ extra:
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → 정보화 기획·발주 → **ISMP**
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 정보화 기획·발주를 거쳐 ISMP로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>정보화 기획·발주</span>
+  <strong>ISMP</strong>
+</div>
 
 ## 큰 그림과 30초 인출
 

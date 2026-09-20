@@ -1,7 +1,7 @@
 ---
 title: "IT 투자평가·투자관리"
-author: "Codex"
-date: "2026-09-20T19:13:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T20:56:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="IT 투자평가 생애주기 3단계 및 가치 환류 체계">
   <div class="itpe-flow-node">
     <strong>1. 사전 평가 (Ex-Ante)</strong>
-    <small>타당성 검토 · 우선순위 도출 · TCO 산출 · ROI/NPV/IRR 재무 분석</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>활동</strong><span>타당성 검토 · 우선순위 도출 · TCO 산출 · 재무 분석</span></div></div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
@@ -42,7 +42,7 @@ extra:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>3. 사후 평가 (Ex-Post)</strong>
-    <small>비즈니스 편익 실현율(ROI) 검증 · IT 생산성 역설 진단 · 교훈 환류</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>산출</strong><span>편익 실현율(ROI) 검증 · 생산성 역설 진단 · 교훈 환류</span></div></div>
   </div>
 </div>
 
@@ -79,7 +79,7 @@ extra:
 > IT 투자평가는 IT 자본 배분의 정당성을 입증하고 전 생애주기 편익을 통제하며, 성패는 단순 시스템 개통이 아닌 **비즈니스 가치 실현율**로 판정함.
 
 - 정의: IT 투자 의사결정 시점부터 구축, 운영, 폐기까지의 **전 생애주기(Lifecycle)**에 걸쳐 소요 비용(**TCO**)과 기대 편익을 정량·정성적으로 측정하는 **투자 관리 및 거버넌스 활동**
-- 목적: 생산성 역설 극복, IT 자본 배분 효율화 및 사후 편익 실현 보증
+- 목적: 생산성 역설 극복 및 사후 편익 실현 보증
 
 ## Ⅱ. IT 투자평가 생애주기 3단계 구성체계 및 이행 방법론
 
@@ -88,17 +88,26 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 투자평가 생애주기 3단계 구성체계 및 활동">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 사전 평가 (Ex-Ante)</strong></span>
-    <small>타당성 검토 · 우선순위 도출 · TCO 산출 · 재무 분석(NPV/IRR/ROI)<br />→ 사업계획서 · 투자 타당성 분석서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>타당성 검토 · 우선순위 도출 · TCO 산출 · 재무 분석(NPV/IRR)</span>
+      <strong>산출</strong><span>사업계획서 · 투자 타당성 분석서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 중간 평가 (In-Itinere)</strong></span>
-    <small>EVM 공정/예산 실측 · 마일스톤 감리 · 사업 지속성 심의(Go/No-Go)<br />→ 공정 현황 보고서 · 위험 대장</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>EVM 공정/예산 실측 · 마일스톤 감리 · 사업 지속성 심의</span>
+      <strong>산출</strong><span>공정 현황 보고서 · 위험 대장</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 사후 평가 (Ex-Post)</strong></span>
-    <small>비즈니스 편익 실현율 검증 · 생산성 역설 진단 · 차기 계획 환류<br />→ 편익 실현 평가서 · 교훈(Lessons Learned) 원장</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>비즈니스 편익 실현율 검증 · 생산성 역설 진단 · 차기 계획 환류</span>
+      <strong>산출</strong><span>편익 실현 평가서 · 교훈(Lessons Learned) 원장</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Val IT</strong></span> · 투자 타당성 Business Case ↔ EVM 공정 통제 ↔ 사후 편익 실현율 양방향 추적</div>
@@ -163,22 +172,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Val IT 기반 IT 투자 생애주기 가치 관리 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>사전 승인용 장밋빛 ROI 조작 · 사후 편익 추적 전무 · 생산성 역설 심화</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>사전 승인용 장밋빛 ROI · 사후 편익 추적 부재 · 생산성 역설</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>Val IT 프레임워크 기반 5개년 누적 TCO + 사후 편익 실현 감사 제도화</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>Val IT 기반 5개년 누적 TCO + 사후 편익 실현 감사 제도화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>사전 목표 편익 ↔ 사후 1년 실측치 간 일치성 · 간접비 누락 0건</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>사전 목표 편익 ↔ 사후 1년 실측치 일치성 · 간접비 누락 0건</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>예산 낭비 차단 · IT 투자 가치 실현율 보증 · 차기 ISP 환류 체계 완성</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>예산 낭비 차단 · 투자 가치 실현율 보증 · 차기 ISP 환류 완성</span></div>
   </div>
 </div>
 
@@ -187,16 +196,25 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **IT 투자평가**는 IT 자본 배분의 효율성을 극대화하기 위해 전 생애주기 동안 **TCO(Total Cost of Ownership)**와 기대 편익을 측정·관리하는 **투자 거버넌스 활동**
-- 목적: 생산성 역설 극복, IT 자본 배분 효율화 및 사후 편익 실현 보증
+- 목적: 생산성 역설 극복 및 사후 편익 실현 보증
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 투자평가 생애주기 3단계 요약">
-  <div class="itpe-pipeline-node"><strong>사전 평가</strong><small>타당성 · TCO · NPV/IRR/ROI</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>사전 평가</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>타당성 · TCO 산정</span><strong>산출</strong><span>투자 타당성서</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>중간 평가</strong><small>EVM 공정 실측 · 원가 집행 통제</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>중간 평가</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>EVM 공정/비용 실측</span><strong>산출</strong><span>공정 보고서</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>사후 평가</strong><small>편익 실현율 감사 · 차기 ISP 환류</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>사후 평가</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>편익 실현율 감사</span><strong>산출</strong><span>교훈 원장</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제
