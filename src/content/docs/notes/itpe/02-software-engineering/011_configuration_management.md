@@ -1,11 +1,14 @@
 ---
 title: "형상관리(베이스라인)"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
 ---
 
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: **베이스라인(Baseline)** 확립 · 무단 변경 차단 · 결함 역추적성 확보 · 산출물 무결성 보장
 
 <div class="itpe-flow-map" role="img" aria-label="형상관리 프로세스 및 베이스라인 발전 흐름">
-  <div class="itpe-flow-node"><strong>형상 식별</strong><small>형상항목(CI) 선정 및 ID 부여</small></div>
+  <div class="itpe-flow-node"><strong>형상 식별</strong><div class="itpe-step-detail"><span>형상항목(CI) 선정 및 ID 부여</span></div></div>
   <div class="itpe-flow-arrow">→ 베이스라인 승인 →</div>
   <div class="itpe-flow-node is-current">
     <strong>형상 통제 (CCB)</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 감사 및 보고 →</div>
-  <div class="itpe-flow-node"><strong>형상 감사 (FCA/PCA)</strong><small>기능적/물리적 무결성 검증</small></div>
+  <div class="itpe-flow-node"><strong>형상 감사 (FCA/PCA)</strong><div class="itpe-step-detail"><span>기능적/물리적 무결성 검증</span></div></div>
 </div>
 
 <details>
@@ -58,7 +61,7 @@ extra:
 > 형상관리는 단순한 소스코드 버전 관리가 아니며, 생명주기 전반의 요구·설계·코드·시험 산출물의 일관성을 지키는 거버넌스다.
 
 - 정의: 소프트웨어 생명주기 동안 산출물의 변경을 체계적으로 식별, 통제, 감사, 기록하여 **제품의 무결성과 추적성(Traceability)**을 유지하는 활동
-- 목적: 비인가된 무단 변경 방지, 변경 영향도 사전 분석, 버전 간 차이 추적, 프로젝트 가시성 확보
+- 목적: 비인가된 무단 변경 방지, 변경 영향도 사전 분석, 버전 간 차이 추적 및 프로젝트 가시성 확보
 
 ## Ⅱ. 형상관리 4대 활동과 5대 베이스라인 체계
 
@@ -67,27 +70,27 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="생명주기 단계별 5대 베이스라인 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 기능적 기준선 (Functional Baseline)</strong></span>
-    <small>요구사항 분석 완료 시점 · 시스템 규격서, SRS 확정</small>
+    <div class="itpe-step-detail"><strong>요구 확정</strong><span>요구사항 분석 완료 시점, 시스템 규격서 및 SRS 확정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 설계 진행</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 분배/설계 기준선 (Allocated/Design Baseline)</strong></span>
-    <small>기본/상세설계 완료 시점 · 아키텍처, 인터페이스, 서브시스템 명세</small>
+    <div class="itpe-step-detail"><strong>구조 확정</strong><span>기본/상세설계 완료 시점, 아키텍처 및 인터페이스 명세 확정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 구현 및 단위시험</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 개발 기준선 (Development Baseline)</strong></span>
-    <small>개발자 내부 코딩 및 단위시험 완료 시점의 소스코드</small>
+    <div class="itpe-step-detail"><strong>코드 확정</strong><span>개발자 내부 코딩 및 단위시험 완료 시점의 소스코드 동결</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 시스템/인수시험</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 제품 기준선 (Product Baseline)</strong></span>
-    <small>인수시험 통과 후 고객 인도 가능한 릴리스 버전</small>
+    <div class="itpe-step-detail"><strong>인도 확정</strong><span>인수시험 통과 후 고객 인도 가능한 릴리스 버전 확립</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 운영 전환</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 운영 기준선 (Operational Baseline)</strong></span>
-    <small>실제 운영 환경에 배포되어 패치/유지보수 중인 상태</small>
+    <div class="itpe-step-detail"><strong>유지보수</strong><span>실제 운영 환경에 배포되어 패치/유지보수 중인 상태 관리</span></div>
   </div>
 </div>
 
@@ -105,33 +108,35 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="CCB 변경 통제 5단계 절차">
   <div class="itpe-pipeline-node">
     <strong>1. 변경 요청(CR 접수)</strong>
-    <small>사용자 또는 개발자의 변경 요구를 공식 CR로 등록</small>
+    <div class="itpe-step-detail"><strong>CR 등록</strong><span>사용자 또는 개발자의 변경 요구를 공식 CR로 등록</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>2. 영향도 분석</strong>
-    <small>기술적 파급효과, 예산, 일정, 품질 영향 평가</small>
+    <div class="itpe-step-detail"><strong>파급 분석</strong><span>기술적 파급효과, 예산, 일정, 품질 영향 종합 평가</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>3. CCB 심의 및 판정</strong>
-    <small>승인(Approved), 기각(Rejected), 보류(Deferred) 결정</small>
+    <div class="itpe-step-detail"><strong>공식 결정</strong><span>승인(Approved), 기각(Rejected), 보류(Deferred) 의결</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>4. 변경 구현 및 검증</strong>
-    <small>개발 브랜치 수정, 단위/회귀 테스트 통과 확인</small>
+    <div class="itpe-step-detail"><strong>구현 검증</strong><span>개발 브랜치 수정 및 단위/회귀 테스트 통과 확인</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>5. 베이스라인 갱신 및 배포</strong>
-    <small>신규 버전 태깅, 베이스라인 승격, 릴리스 노트 발행</small>
+    <div class="itpe-step-detail"><strong>승격 배포</strong><span>신규 버전 태깅, 베이스라인 승격, 릴리스 노트 발행</span></div>
   </div>
 </div>
 
-## Ⅳ. 현대 클라우드·DevOps 환경에서의 형상관리 진화
+## Ⅳ. 현대 클라우드·DevOps 환경에서의 형상관리 및 위험 통제
 
 > 분산 환경에서는 중앙집중식 통제에서 GitOps 기반의 선언적 자동화 통제로 진화하고 있다.
+
+### 전통적 SCM vs 현대적 GitOps 비교
 
 | 구분 | 전통적 SCM (Subversion, ClearCase) | 현대적 GitOps / DevOps SCM (Git) |
 |---|---|---|
@@ -139,6 +144,14 @@ extra:
 | **브랜치 전략** | 긴 수명의 기능 브랜치 (병합 충돌 빈발) | Trunk-based Development, 단기 Feature 브랜치 |
 | **변경 통제** | 서면 문서 결재 기반의 무거운 CCB | **Pull Request(PR)** 코드 리뷰 및 CI 자동화 검사 |
 | **인프라 형상** | 서버별 수작업 형상 기록 | **IaC(Terraform)**로 인프라 형상도 코드로 일원 관리 |
+
+### 실무 위험 및 거버넌스 대책
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **비공식 구두 변경(Uncontrolled Change)** | 모든 변경 시 공식 CR(Change Request) 등록 및 CCB 심의 의무화 | 무단 변경 방지 및 베이스라인 무결성 유지 |
+| **코드와 문서 간 불일치** | **RTM(요구사항 추적표)** 연동 및 CI 빌드 시 문서 자동 생성 | 역추적성 확보 및 산출물 정합성 보장 |
+| **개발 브랜치 오염 및 병합 충돌** | Branch Protection Rule 설정 및 최소 2인 PR 코드 리뷰 강제 | 메인 브랜치 안정성 확보 및 형상 충돌 예방 |
 
 ## Ⅴ. 산출물 무결성 통제를 위한 기술사적 제언
 
@@ -159,22 +172,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="형상관리 고도화 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>코드와 문서 간 불일치 · 비공식 구두 변경으로 인한 소스 유실</small>
+    <div class="itpe-step-detail"><strong>문서 불일치</strong><span>코드와 문서 간 불일치 및 구두 변경으로 소스 유실</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>GitOps 기반 형상 단일 진실 공급원(SSOT) 구축 및 CCB 자동화</small>
+    <div class="itpe-step-detail"><strong>단일 진실원</strong><span>GitOps 기반 단일 진실 공급원(SSOT) 및 CCB 자동화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>기능/물리적 형상감사(FCA/PCA) 통과 및 브랜치 보호 규칙</small>
+    <div class="itpe-step-detail"><strong>형상 감사</strong><span>기능/물리적 형상감사(FCA/PCA) 통과 및 브랜치 보호</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>전 생명주기 산출물 무결성 확립 · 결함 원인 신속 역추적 달성</small>
+    <div class="itpe-step-detail"><strong>무결성 확립</strong><span>전 생명주기 산출물 무결성 확립 및 결함 역추적 보장</span></div>
   </div>
 </div>
 
@@ -188,13 +201,13 @@ extra:
 ### 2. 형상관리 4대 활동 및 핵심 요소
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="형상관리 4대 활동 요약">
-  <div class="itpe-pipeline-node"><strong>형상 식별</strong><small>CI 항목 선정 및 명명</small></div>
+  <div class="itpe-pipeline-node"><strong>형상 식별</strong><div class="itpe-step-detail"><span>CI 항목 선정 및 명명</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>형상 통제</strong><small>CCB 승인 및 베이스라인 갱신</small></div>
+  <div class="itpe-pipeline-node"><strong>형상 통제</strong><div class="itpe-step-detail"><span>CCB 승인 및 베이스라인 갱신</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>형상 감사</strong><small>FCA(기능) / PCA(물리) 검증</small></div>
+  <div class="itpe-pipeline-node"><strong>형상 감사</strong><div class="itpe-step-detail"><span>FCA(기능) / PCA(물리) 검증</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>형상 기록</strong><small>이력 추적 및 상태 보고</small></div>
+  <div class="itpe-pipeline-node"><strong>형상 기록</strong><div class="itpe-step-detail"><span>이력 추적 및 상태 보고</span></div></div>
 </div>
 
 ### 3. 핵심 통제

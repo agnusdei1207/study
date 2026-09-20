@@ -2,11 +2,14 @@
 title: "스크럼(Scrum)"
 tags:
   - "notes-software-engineering"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 고객 피드백 조기 수용 · 개발 리스크 분산 · 비즈니스 가치 전달 속도(Time-to-Market) 극대화
 
 <div class="itpe-flow-map" role="img" aria-label="스크럼 프레임워크 동작 프로세스">
-  <div class="itpe-flow-node"><strong>제품 백로그</strong><small>우선순위화된 요구사항 (PO 소유)</small></div>
+  <div class="itpe-flow-node"><strong>제품 백로그</strong><span>우선순위화된 요구사항 (PO 소유)</span></div>
   <div class="itpe-flow-arrow">→ 스프린트 계획 →</div>
   <div class="itpe-flow-node is-current">
     <strong>스프린트 (1~4주)</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 리뷰 &amp; 회고 →</div>
-  <div class="itpe-flow-node"><strong>잠재적 출시 가능 제품 증분</strong><small>완료의 정의(DoD) 충족 산출물</small></div>
+  <div class="itpe-flow-node"><strong>잠재적 출시 가능 제품 증분</strong><span>완료의 정의(DoD) 충족 산출물</span></div>
 </div>
 
 <details>
@@ -67,17 +70,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 3-5-3 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3대 역할 (Accountabilities)</strong></span>
-    <small>1. Product Owner (가치 극대화, 백로그 소유)<br />2. Scrum Master (프로세스 촉진, 장애 제거, 서번트 리더십)<br />3. Developers (동작 가능한 제품 증분 개발 전문가)</small>
+    <span>1. Product Owner (가치 극대화, 백로그 소유)<br />2. Scrum Master (프로세스 촉진, 장애 제거, 서번트 리더십)<br />3. Developers (동작 가능한 제품 증분 개발 전문가)</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 산출물 생성 및 관리</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3대 산출물 (Artifacts)</strong></span>
-    <small>1. Product Backlog (제품 목표 약속)<br />2. Sprint Backlog (스프린트 목표 약속)<br />3. Increment (완료의 정의 DoD 약속)</small>
+    <span>1. Product Backlog (제품 목표 약속)<br />2. Sprint Backlog (스프린트 목표 약속)<br />3. Increment (완료의 정의 DoD 약속)</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 이벤트 수행 주기</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>5대 이벤트 (Events)</strong></span>
-    <small>1. The Sprint (모든 이벤트의 컨테이너)<br />2. Sprint Planning (스프린트 계획)<br />3. Daily Scrum (일일 15분 점검)<br />4. Sprint Review (이해관계자 검토/피드백)<br />5. Sprint Retrospective (팀 프로세스 개선 회고)</small>
+    <span>1. The Sprint (모든 이벤트의 컨테이너)<br />2. Sprint Planning (스프린트 계획)<br />3. Daily Scrum (일일 15분 점검)<br />4. Sprint Review (이해관계자 검토/피드백)<br />5. Sprint Retrospective (팀 프로세스 개선 회고)</span>
   </div>
 </div>
 
@@ -99,21 +102,31 @@ extra:
 | **고객 참여** | 요구분석 및 최종 인수 시점에 국한 | **매 스프린트 리뷰마다 지속적 참여 및 피드백** |
 | **리스크 노출** | 후반부 통합 및 테스트 시 폭증 | **초기부터 조기 분산 및 완화** |
 
-## Ⅳ. 완료의 정의(DoD)와 완료 기준(DoR)의 실무적 역할
+## Ⅳ. 품질 기준(DoR/DoD)과 실무 위험 관리
 
 > 스크럼이 단순한 '날림 개발'로 전락하지 않기 위한 가장 강력한 공학적 안전장치가 DoD이다.
+
+### 1. DoR에서 DoD로의 품질 전이
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="DoR에서 DoD로의 품질 전이">
   <div class="itpe-pipeline-node">
     <strong>DoR (Definition of Ready: 준비의 정의)</strong>
-    <small>스프린트에 투입되기 위한 백로그 요건: 비즈니스 가치 명확, 추정 가능, INVEST 기준 충족</small>
+    <span>스프린트에 투입되기 위한 백로그 준비 조건: 비즈니스 가치 명확, 추정 가능, INVEST 기준 충족</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 스프린트 개발 수행</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>DoD (Definition of Done: 완료의 정의)</strong></span>
-    <small>코드 리뷰 완료 · 단위/통합 테스트 100% 통과 · 정적 분석 취약점 제로 · 문서화 및 스테이징 배포 완료</small>
+    <span>코드 리뷰 완료 · 단위/통합 테스트 100% 통과 · 정적 분석 취약점 제로 · 문서화 및 스테이징 배포 완료</span>
   </div>
 </div>
+
+### 2. 스크럼 프로젝트 실무 위험 및 대응 통제
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 형식적 일일 미팅(좀비 스크럼) 및 몰입 저하 | 스프린트 목표(Sprint Goal) 중심 15분 타임박스 운영 및 장애 제거 집중 | 팀 주도성 및 비즈니스 가치 몰입도 향상 |
+| 불명확한 품질 기준으로 결함 누적 | DoD(코드리뷰, 단위/통합테스트, 정적분석) 체크리스트 엄격 적용 | 잠재적 출시 가능한 고품질 제품 증분 확보 |
+| 스프린트 도중 무분별한 과업 추가 및 변경 | 스프린트 타임박스 보호 규칙 적용 및 차기 스프린트 백로그 이관 | 개발팀 개발 집중도 유지 및 일정 예측 가능성 확보 |
 
 ## Ⅴ. 스크럼 확장을 위한 기술사적 제언
 
@@ -134,22 +147,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 조직 성숙도 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>형식적 스크럼 미팅 · DoD 부재로 인한 품질 결함 누적</small>
+    <span>형식적 스크럼 미팅 · DoD 부재로 인한 품질 결함 누적</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>엄격한 DoD 확립 및 서번트 리더십 기반 장애 제거 체계화</small>
+    <span>엄격한 DoD 확립 및 서번트 리더십 기반 장애 제거 체계화</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>스프린트 목표 달성률 90% 이상 및 증분 릴리스 가능성 검증</small>
+    <span>스프린트 목표 달성률 90% 이상 및 증분 릴리스 가능성 검증</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>팀 자율성 극대화 · 지속가능한 고품질 증분 전달 체계 완성</small>
+    <span>팀 자율성 극대화 · 지속가능한 고품질 증분 전달 체계 완성</span>
   </div>
 </div>
 
@@ -163,11 +176,11 @@ extra:
 ### 2. 스크럼 3-5-3 체계 요약
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 3-5-3 요약">
-  <div class="itpe-pipeline-node"><strong>3대 역할</strong><small>PO (가치 결정) · SM (장애 제거) · Developers (개발)</small></div>
+  <div class="itpe-pipeline-node"><strong>3대 역할</strong><span>PO (가치 결정) · SM (장애 제거) · Developers (개발)</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>3대 산출물</strong><small>제품 백로그 · 스프린트 백로그 · 제품 증분(DoD)</small></div>
+  <div class="itpe-pipeline-node"><strong>3대 산출물</strong><span>제품 백로그 · 스프린트 백로그 · 제품 증분(DoD)</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>5대 이벤트</strong><small>스프린트, 계획, 일일 스크럼, 리뷰, 회고</small></div>
+  <div class="itpe-pipeline-node"><strong>5대 이벤트</strong><span>스프린트, 계획, 일일 스크럼, 리뷰, 회고</span></div>
 </div>
 
 ### 3. 핵심 통제
@@ -178,7 +191,7 @@ extra:
 ## 출제 이력과 검증 출처
 
 - 제123회 정보관리기술사 1교시: 스크럼의 3대 역할 및 5대 이벤트
-- 제129회 정보관리기술사 2교시: 애자일 스크럼의 성공 요건과 DoD의 중요성
+- 제129회 정보관리기술사 2교시: 애자일 스크럼의 성공 요인과 DoD의 중요성
 - Ken Schwaber, Jeff Sutherland, The Scrum Guide (2020)
 
 ## 학습 체크

@@ -1,11 +1,14 @@
 ---
 title: "리팩토링(코드스멜)"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
 ---
 
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 기술 부채 청산 · 복잡도(순환복잡도) 감소 · 신규 기능 추가 생산성 향상
 
 <div class="itpe-flow-map" role="img" aria-label="리팩토링 수행 사이클">
-  <div class="itpe-flow-node"><strong>코드스멜 감지</strong><small>중복 코드 · 거대 클래스 · 긴 메서드</small></div>
+  <div class="itpe-flow-node"><strong>코드스멜 감지</strong><div class="itpe-step-detail"><span>중복 코드 · 거대 클래스 · 긴 메서드</span></div></div>
   <div class="itpe-flow-arrow">→ 회귀 테스트 확보 →</div>
   <div class="itpe-flow-node is-current">
     <strong>마이크로 리팩토링</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 자동화 테스트 검증 →</div>
-  <div class="itpe-flow-node"><strong>클린 코드 달성</strong><small>외부 행위 불변 · 유지보수성 극대화</small></div>
+  <div class="itpe-flow-node"><strong>클린 코드 달성</strong><div class="itpe-step-detail"><span>외부 행위 불변 · 유지보수성 극대화</span></div></div>
 </div>
 
 <details>
@@ -57,8 +60,8 @@ extra:
 
 > 리팩토링은 기능 추가가 아니라 가독성과 변경 용이성을 확보하는 행위이며, 자동화된 테스트 없이는 리팩토링이 성립하지 않는다.
 
-- 정의: 소프트웨어의 **외부적 동작을 변경하지 않고**, 소프트웨어를 더 이해하기 쉽고 수정하기 쉽게 내부 구조를 재조정하는 행위
-- 목적: 소프트웨어 설계 품질 유지, **기술 부채(Technical Debt)** 해소, 코드 가독성 증대, 버그 발견 용이성 확보
+- 정의: 소프트웨어의 **외부적 동작을 변경하지 않고** 코드를 이해하고 수정하기 쉽게 내부 구조를 재조정하는 **소프트웨어 품질 개선 활동**
+- 목적: 소프트웨어 설계 품질 유지, **기술 부채(Technical Debt)** 해소, 코드 가독성 증대 및 버그 조기 발견 용이성 확보
 
 ## Ⅱ. 대표적 코드스멜과 리팩토링 대응 패턴
 
@@ -67,22 +70,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 절차">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 코드스멜 진단</strong></span>
-    <small>정적 분석 도구(SonarQube) 및 코드 리뷰로 악취 영역 식별</small>
+    <div class="itpe-step-detail"><strong>악취 식별</strong><span>정적 분석 도구(SonarQube) 및 코드 리뷰로 스멜 영역 탐지</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 단위 테스트 케이스 확보</strong></span>
-    <small>현재 기능의 정상 동작을 검증하는 촘촘한 단위 테스트 작성</small>
+    <div class="itpe-step-detail"><strong>안전망 구축</strong><span>현재 기능의 정상 동작을 보증하는 촘촘한 단위 테스트 작성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 소규모 점진적 변환</strong></span>
-    <small>컴파일과 테스트가 항상 통과하는 아주 작은 단위로 코드 수정</small>
+    <div class="itpe-step-detail"><strong>마이크로 변환</strong><span>테스트가 항상 통과하는 초소형 단위로 점진적 코드 수정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 회귀 테스트 및 커밋</strong></span>
-    <small>전체 테스트 슈트 실행 통과 확인 후 형상관리 커밋</small>
+    <div class="itpe-step-detail"><strong>동작 검증</strong><span>전체 테스트 슈트 통과 확인 후 형상관리 마이크로 커밋</span></div>
   </div>
 </div>
 
@@ -109,11 +112,11 @@ extra:
 
 > 테스트 없는 리팩토링은 리팩토링이 아니라 단순한 코드 변작에 불과하며 새로운 버그를 대량 양산한다.
 
-| 위험 요소 | 발생 원인 | 영향 | 실무 대책 |
-|---|---|---|---|
-| **회귀 결함 발생** | 사전 테스트 케이스 부재 | 리팩토링 도중 기존 기능 훼손 | 리팩토링 착수 전 **단위 테스트 커버리지 확보** 필수 |
-| **빅뱅 리팩토링 실패** | 너무 많은 코드를 한꺼번에 변경 | 롤백 불가, 형상 충돌(Merge Hell) | 5분~10분 단위의 **초소형 변경(Micro-commit)** 유지 |
-| **일정 지연 논란** | 리팩토링 전용 기간 요구 | 비즈니스 이해관계자 반발 | 캠핑장 규칙(Leave it better than you found it) 일상화 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **사전 검증 부재로 회귀 결함 발생** | 리팩토링 착수 전 **단위 테스트 커버리지(80% 이상) 확보** 필수화 | 기존 정상 기능 훼손 방지 및 동작 동등성 입증 |
+| **빅뱅 리팩토링으로 인한 형상 충돌** | 5분~10분 단위의 **마이크로 커밋(Micro-commit)** 유지 | 충돌(Merge Hell) 방지 및 안전한 롤백 지점 확보 |
+| **리팩토링 전용 기간에 따른 일정 반발** | 캠핑장 규칙(Boy Scout Rule) 기반 일상 업무 내 소단위 리팩토링 내재화 | 별도 공기 지연 없이 지속적 기술 부채 상환 |
 
 ## Ⅴ. 기술 부채 해소 중심의 기술사적 제언
 
@@ -134,22 +137,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>일정 압박으로 스파게티 코드 방치 · 기술 부채 눈덩이 증가</small>
+    <div class="itpe-step-detail"><strong>부채 방치</strong><span>일정 압박으로 스파게티 코드 방치 및 기술 부채 누적</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>CI 파이프라인 내 정적 분석 및 자동화 회귀테스트 강제</small>
+    <div class="itpe-step-detail"><strong>품질 강제</strong><span>CI 파이프라인 내 정적 분석 및 자동화 회귀테스트 강제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>코드스멜 제로 · 단위 테스트 통과 및 순환복잡도 10 이하</small>
+    <div class="itpe-step-detail"><strong>스멜 제로</strong><span>코드스멜 제로, 단위테스트 통과 및 순환복잡도 10 이하</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>외부 행위 불변 보장 · 클린 코드 기반 고품질 유지보수 실현</small>
+    <div class="itpe-step-detail"><strong>클린 코드</strong><span>외부 행위 불변 보장 및 클린 코드 기반 고품질 유지보수 실현</span></div>
   </div>
 </div>
 
@@ -163,11 +166,11 @@ extra:
 ### 2. 핵심 메커니즘 및 3단계 사이클
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 핵심 사이클 요약">
-  <div class="itpe-pipeline-node"><strong>코드스멜 식별</strong><small>중복 · 장대함수 · 거대클래스</small></div>
+  <div class="itpe-pipeline-node"><strong>코드스멜 식별</strong><div class="itpe-step-detail"><span>중복 · 장대함수 · 거대클래스</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>소규모 리팩토링</strong><small>메서드 추출 · 다형성 전환</small></div>
+  <div class="itpe-pipeline-node"><strong>소규모 리팩토링</strong><div class="itpe-step-detail"><span>메서드 추출 · 다형성 전환</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>회귀테스트 통과</strong><small>외부 동작 불변성 입증</small></div>
+  <div class="itpe-pipeline-node"><strong>회귀테스트 통과</strong><div class="itpe-step-detail"><span>외부 동작 불변성 입증</span></div></div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,11 +1,14 @@
 ---
 title: "화이트박스 테스트(White Box Test)"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
 ---
 
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 미실행 데드코드(Dead Code) 적발 · 내부 로직 오류 및 메모리 누수 격리 · 고신뢰성 안전 등급 보증
 
 <div class="itpe-flow-map" role="img" aria-label="화이트박스 테스트 제어 흐름 분석도">
-  <div class="itpe-flow-node"><strong>소스코드 분석</strong><small>AST 및 제어 흐름 파악</small></div>
+  <div class="itpe-flow-node"><strong>소스코드 분석</strong><div class="itpe-step-detail"><span>AST 및 제어 흐름 파악</span></div></div>
   <div class="itpe-flow-arrow">→ 그래프 모델링 →</div>
   <div class="itpe-flow-node is-current">
     <strong>제어 흐름 그래프(CFG)</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 경로 기반 테스트 도출 →</div>
-  <div class="itpe-flow-node"><strong>테스트 스위트</strong><small>미실행 경로 제로화 달성</small></div>
+  <div class="itpe-flow-node"><strong>테스트 스위트</strong><div class="itpe-step-detail"><span>미실행 경로 제로화 달성</span></div></div>
 </div>
 
 <details>
@@ -57,8 +60,8 @@ extra:
 
 > 소스코드를 보지 않는 블랙박스 테스트로는 숨겨진 악성 로직이나 실행 불가능한 데드코드를 결코 찾아낼 수 없다.
 
-- 정의: 소프트웨어 내부 소스코드의 **논리적 구조, 제어 흐름(Control Flow), 데이터 흐름(Data Flow)**을 바탕으로 테스트 케이스를 설계하는 구조 기반 테스트 기법
-- 목적: 미실행 코드(Dead Code) 제거, 무한 루프 등 제어 흐름 결함 적발, 경계 조건의 논리 오류 조기 차단
+- 정의: 소프트웨어 내부 소스코드의 **논리적 구조, 제어 흐름(Control Flow), 데이터 흐름(Data Flow)**을 분석하여 모든 실행 경로의 정확성을 검증하는 **구조 기반 테스트 기법**
+- 목적: 미실행 코드(Dead Code) 제거, 무한 루프 등 제어 흐름 결함 적발 및 경계 조건의 논리 오류 조기 차단
 
 ## Ⅱ. 제어 흐름 테스트 커버리지 5단계 체계 및 포함 관계
 
@@ -67,27 +70,27 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="화이트박스 커버리지 계층도">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. 구문 커버리지 (Statement, C0)</strong></span>
-    <small>모든 실행 문장(Statement)을 최소 1회 실행 · 가장 약한 수준</small>
+    <div class="itpe-step-detail"><strong>문장 실행</strong><span>모든 실행 가능한 문장(Statement)을 최소 1회 실행</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 포함 (상위 커버리지)</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>2. 결정/분기 커버리지 (Decision/Branch, C1)</strong></span>
-    <small>모든 조건문의 참(True)/거짓(False) 분기를 최소 1회 실행</small>
+    <div class="itpe-step-detail"><strong>분기 실행</strong><span>모든 조건문의 참(True)/거짓(False) 분기 전체를 최소 1회 실행</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3. 조건 커버리지 (Condition, C2)</strong></span>
-    <small>복합 조건식 내부의 각 개별 조건이 참/거짓을 최소 1회 만족</small>
+    <div class="itpe-step-detail"><strong>조건 실행</strong><span>복합 조건식 내부의 각 개별 조건이 참/거짓을 최소 1회 만족</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 결합</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>4. 조건/결정 커버리지 (Condition/Decision)</strong></span>
-    <small>개별 조건 참/거짓 + 전체 결정 참/거짓을 동시에 만족</small>
+    <div class="itpe-step-detail"><strong>조건·분기 동시</strong><span>개별 조건 참/거짓 + 전체 결정 참/거짓을 동시에 만족</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 실용적 최적화</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>5. MC/DC (Modified Condition/Decision)</strong></span>
-    <small>각 개별 조건이 다른 조건과 독립적으로 결과에 영향을 줌을 증명<br />→ 케이스 수 N+1개로 다중조건(2^N) 수준의 신뢰성 달성</small>
+    <div class="itpe-step-detail"><strong>독립 영향력</strong><span>N+1개 케이스로 각 개별 조건의 독립적 영향력 증명</span></div>
   </div>
 </div>
 
@@ -117,9 +120,11 @@ extra:
    - 케이스 1과 비교: `A=True, B=False, C=True` → Result = **True** (쌍 {1, 4})
 - **최종 도출된 최소 테스트 슈트**: 케이스 1, 2, 3, 4 (총 4개 = N+1개로 증명 완료)
 
-## Ⅳ. 화이트박스 테스트 도구 및 실무 적용 방안
+## Ⅳ. 화이트박스 테스트 도구 및 실무 위험 통제 대책
 
 > 단위 테스트 프레임워크와 정적/동적 분석 도구를 CI/CD 파이프라인에 결합하여 커버리지를 지속 측정한다.
+
+### 화이트박스 도구 분류
 
 | 도구 분류 | 대표 도구 | 주 검증 내용 |
 |---|---|---|
@@ -127,13 +132,21 @@ extra:
 | **정적 코드 분석** | SonarQube, Fortify, Coverity | 코딩 표준 준수, 널 참조, 잠재적 런타임 오류, 보안 취약점 |
 | **기능안전 전문 도구** | VectorCAST, LDRA, Cantata | 임베디드 대상 MC/DC 커버리지 자동 측정 및 리포팅 |
 
+### 실무 위험 및 거버넌스 대책
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **C0(구문) 편중으로 인한 분기 누락** | 단순 구문 측정을 지양하고 **결정 커버리지(C1) 80% 이상** 강제 | `else` 누락 등 미실행 분기 결함 적발 |
+| **복합 조건식 조합 폭발(2^N)** | 안전 필수 시스템 대상 **MC/DC(N+1개 케이스)** 검증 적용 | 최소 비용으로 다중조건 수준의 신뢰성 확보 |
+| **테스트 코드 유지보수 부채** | 내부 구현 종속적 테스트 지양, 행위 기반 검증 및 Mocking 최소화 | 리팩토링 시 테스트 깨짐 방지 및 유지보수성 향상 |
+
 ## Ⅴ. 고신뢰성 소프트웨어 검증을 위한 기술사적 제언
 
 > 100% 구문 커버리지가 무결함을 의미하지 않으며, 요구사항 명세 검증(블랙박스)과의 결합이 필수적이다.
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: 구문 커버리지(C0) 100%는 단순한 최소 요건일 뿐임. `if (a > 0)`에서 `else` 블록이 누락된 경우 C0는 100%가 나오지만 심각한 분기 누락 버그가 존재함. 따라서 상용 시스템에서는 최소한 결정 커버리지(C1) 80% 이상, 안전 필수(Safety-critical) 시스템에서는 MC/DC를 필히 강제해야 함.
+- [핵심 통찰]: 구문 커버리지(C0) 100%는 단순한 최소 조건일 뿐임. `if (a > 0)`에서 `else` 블록이 누락된 경우 C0는 100%가 나오지만 심각한 분기 누락 버그가 존재함. 따라서 상용 시스템에서는 최소한 결정 커버리지(C1) 80% 이상, 안전 필수(Safety-critical) 시스템에서는 MC/DC를 필히 강제해야 함.
 - 나라면: 자율주행, 철도, 의료기기 프로젝트 수행 시 ISO 26262 ASIL-D 수준을 만족하도록 전문 동적 검증 도구(VectorCAST)를 도입하여 단위/통합 테스트에서 MC/DC 100%를 통과 기준선(Quality Gate)으로 설정하겠음.
 
 ### 실전 답안용 기술사적 제언
@@ -146,22 +159,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="화이트박스 테스팅 고도화 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>형식적인 C0 구문 커버리지 위주 측정 · 분기 및 복합조건 결함 간과</small>
+    <div class="itpe-step-detail"><strong>형식적 C0</strong><span>형식적 C0 구문 커버리지 위주 및 분기 결함 간과</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>결정 커버리지(C1) 표준화 및 핵심 안전 모듈 MC/DC 강제</small>
+    <div class="itpe-step-detail"><strong>MC/DC 강제</strong><span>결정 커버리지(C1) 표준화 및 핵심 모듈 MC/DC 강제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>CI Quality Gate 연동 · 커버리지 미달 시 빌드 자동 중단</small>
+    <div class="itpe-step-detail"><strong>품질 게이트</strong><span>CI Quality Gate 연동 및 커버리지 미달 시 빌드 중단</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>내부 논리 오류 원천 차단 · 소프트웨어 기능안전 최고 등급 달성</small>
+    <div class="itpe-step-detail"><strong>안전 등급</strong><span>내부 논리 오류 차단 및 기능안전 최고 등급 달성</span></div>
   </div>
 </div>
 
@@ -175,11 +188,11 @@ extra:
 ### 2. 주요 커버리지 계층
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="커버리지 계층 요약">
-  <div class="itpe-pipeline-node"><strong>구문(C0)</strong><small>모든 문장 1회 실행</small></div>
+  <div class="itpe-pipeline-node"><strong>구문(C0)</strong><div class="itpe-step-detail"><span>모든 문장 1회 실행</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>결정(C1)</strong><small>모든 분기 True/False 실행</small></div>
+  <div class="itpe-pipeline-node"><strong>결정(C1)</strong><div class="itpe-step-detail"><span>모든 분기 True/False 실행</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>MC/DC</strong><small>N+1개 케이스로 개별 조건 독립 영향력 검증</small></div>
+  <div class="itpe-pipeline-node"><strong>MC/DC</strong><div class="itpe-step-detail"><span>N+1개 케이스로 개별 조건 독립 영향력 검증</span></div></div>
 </div>
 
 ### 3. 핵심 통제

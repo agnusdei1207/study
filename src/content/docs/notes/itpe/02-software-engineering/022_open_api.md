@@ -2,11 +2,14 @@
 title: "Open API(API 일반)"
 tags:
   - "notes-software-engineering"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 디지털 생태계 확장 · 마이데이터 활성화 · 서비스 융합 혁신 · 신규 수익 모델(Monetization) 창출
 
 <div class="itpe-flow-map" role="img" aria-label="Open API 생태계 연계 흐름도">
-  <div class="itpe-flow-node"><strong>API 제공자</strong><small>핵심 데이터 및 서비스</small></div>
+  <div class="itpe-flow-node"><strong>API 제공자</strong><span>핵심 데이터 및 서비스</span></div>
   <div class="itpe-flow-arrow">→ API Gateway 통제 →</div>
   <div class="itpe-flow-node is-current">
     <strong>Open API 플랫폼</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 외부 개발자 활용 →</div>
-  <div class="itpe-flow-node"><strong>융합 서비스 생태계</strong><small>핀테크 · 마이데이터 앱</small></div>
+  <div class="itpe-flow-node"><strong>융합 서비스 생태계</strong><span>핀테크 · 마이데이터 앱</span></div>
 </div>
 
 <details>
@@ -67,17 +70,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 3계층 아키텍처">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. 개발자 포털 (Developer Portal)</strong></span>
-    <small>API 카탈로그 · OAS 기반 인터랙티브 문서(Swagger) · 샌드박스 테스트</small>
+    <span>API 카탈로그 · OAS 기반 인터랙티브 문서(Swagger) · 샌드박스 테스트</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ API 호출</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>2. API 게이트웨이 (API Gateway)</strong></span>
-    <small>보안 인증(OAuth 2.0/mTLS) · 트래픽 제어(Rate Limit) · 라우팅 및 변환</small>
+    <span>보안 인증(OAuth 2.0/mTLS) · 트래픽 제어(Rate Limit) · 라우팅 및 변환</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 백엔드 전달</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3. 백엔드 서비스 (Core Services)</strong></span>
-    <small>비즈니스 마이크로서비스(MSA) · 레거시 시스템 래핑 · 데이터베이스</small>
+    <span>비즈니스 마이크로서비스(MSA) · 레거시 시스템 래핑 · 데이터베이스</span>
   </div>
 </div>
 
@@ -99,16 +102,15 @@ extra:
 | **보안 통제** | 내부 네트워크망 신뢰, 기본 토큰 | 전용 VPN, mTLS, 계약 기반 인증 | **엄격한 OAuth 2.0, Rate Limit, WAF 필수** |
 | **수익 모델** | 내부 개발 공수 절감 | 파트너십 상호 정산 | 호출당 과금(Pay-per-use), 무료 티어 제공 |
 
-## Ⅳ. Open API 보안 위협과 실무 통제 방안 (OWASP API Security)
+## Ⅳ. Open API 보안 위협과 실무 위험 관리 (OWASP API Security)
 
 > API는 소스코드 내부 비즈니스 로직과 데이터가 직접 외부에 노출되므로 전통적 웹 방화벽만으로는 방어가 불가능하다.
 
-| 보안 위협 (OWASP Top 10) | 위협 내용 | 실무 방어 대책 |
+| 위험 | 대책 | 효과 |
 |---|---|---|
-| **BOLA (객체 수준 인가 손상)** | 타인의 리소스 ID(`/orders/1002`)를 변조해 무단 조회 | 토큰의 주체(Subject)와 요청 객체 소유권의 서버단 철저한 일치 검증 |
-| **대량 할당 (Mass Assignment)** | 클라이언트가 허가되지 않은 필드(`isAdmin=true`)를 주입 | DTO(Data Transfer Object) 화이트리스트 바인딩 강제 |
-| **트래픽 고갈 (DoS)** | 과도한 API 호출로 백엔드 자원 소진 | 클라이언트 IP 및 토큰 기반 Rate Limiting 및 지수 백오프 강제 |
-| **민감 데이터 노출** | 백엔드 모델 전체를 그대로 반환하여 개인정보 노출 | 응답 필터링 DTO 적용 및 개인정보 마스킹 처리 |
+| BOLA (객체 수준 인가 손상) | 토큰 주체(Subject)와 요청 리소스 소유권 서버단 일치 검증 | 타인 데이터 무단 열람 및 변조 원천 차단 |
+| 대량 트래픽 급증 및 DoS 공격 | 클라이언트 IP 및 토큰 기반 Rate Limiting·Throttling 적용 | 백엔드 자원 고갈 방지 및 서비스 가용성(SLA) 보장 |
+| 민감 개인정보 과다 노출 | 응답 필터링 DTO 적용 및 주민번호·계좌 마스킹 처리 | 데이터 유출 규제 위반 및 프라이버시 침해 방지 |
 
 ## Ⅴ. 성공적인 Open API 거버넌스를 위한 기술사적 제언
 
@@ -129,22 +131,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>파편화된 개별 API 노출 · 보안 통제 부재 및 개발자 경험 저하</small>
+    <span>파편화된 개별 API 노출 · 보안 통제 부재 및 개발자 경험 저하</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>API Gateway 중앙 통제 및 개발자 포털·샌드박스 표준화</small>
+    <span>API Gateway 중앙 통제 및 개발자 포털·샌드박스 표준화</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>OAuth 2.0/mTLS 보안 검증 및 Rate Limiting 트래픽 방어</small>
+    <span>OAuth 2.0/mTLS 보안 검증 및 Rate Limiting 트래픽 방어</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>안전한 데이터 개방 달성 · 융합 서비스 창출 및 생태계 확장</small>
+    <span>안전한 데이터 개방 달성 · 융합 서비스 창출 및 생태계 확장</span>
   </div>
 </div>
 
@@ -158,11 +160,11 @@ extra:
 ### 2. 핵심 아키텍처 3요소
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 핵심 3요소">
-  <div class="itpe-pipeline-node"><strong>개발자 포털</strong><small>OAS 명세 · 문서 · 샌드박스</small></div>
+  <div class="itpe-pipeline-node"><strong>개발자 포털</strong><span>OAS 명세 · 문서 · 샌드박스</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>API Gateway</strong><small>OAuth 2.0 · Rate Limit · 라우팅</small></div>
+  <div class="itpe-pipeline-node"><strong>API Gateway</strong><span>OAuth 2.0 · Rate Limit · 라우팅</span></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>백엔드 서비스</strong><small>코어 비즈니스 로직 수행</small></div>
+  <div class="itpe-pipeline-node"><strong>백엔드 서비스</strong><span>코어 비즈니스 로직 수행</span></div>
 </div>
 
 ### 3. 핵심 통제

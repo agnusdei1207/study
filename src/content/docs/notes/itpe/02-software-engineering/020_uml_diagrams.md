@@ -2,11 +2,14 @@
 title: "UML 다이어그램 체계(구조·행위, 활동 다이어그램)"
 tags:
   - "notes-software-engineering"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 이해관계자 간 명확한 의사소통 · 아키텍처 가시화 · **활동 다이어그램(Activity Diagram)**을 통한 복잡한 비즈니스 로직 및 병렬 워크플로우 완벽 명세
 
 <div class="itpe-flow-map" role="img" aria-label="UML 2.5 다이어그램 체계 분류">
-  <div class="itpe-flow-node"><strong>UML 2.5 체계 (14종)</strong><small>OMG 표준 통합 모델링 언어</small></div>
+  <div class="itpe-flow-node"><strong>UML 2.5 체계 (14종)</strong><span>OMG 표준 통합 모델링 언어</span></div>
   <div class="itpe-flow-arrow">→ 관점별 이원화 →</div>
   <div class="itpe-flow-node is-current">
     <strong>다이어그램 분류</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 비즈니스 프로세스 상세화 →</div>
-  <div class="itpe-flow-node"><strong>활동 다이어그램</strong><small>Action · Fork/Join · Swimlane</small></div>
+  <div class="itpe-flow-node"><strong>활동 다이어그램</strong><span>Action · Fork/Join · Swimlane</span></div>
 </div>
 
 <details>
@@ -67,12 +70,12 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="UML 2.x 다이어그램 분류">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>구조 다이어그램 (7종) — 정적 구조</strong></span>
-    <small>1. Class(클래스/관계) 2. Object(객체 인스턴스) 3. Package(모듈 구조)<br />4. Component(컴포넌트/인터페이스) 5. Composite Structure(복합체 구조)<br />6. Deployment(배치/인프라 노드) 7. Profile(UML 확장 메커니즘)</small>
+    <span>1. Class(클래스/관계) 2. Object(객체 인스턴스) 3. Package(모듈 구조)<br />4. Component(컴포넌트/인터페이스) 5. Composite Structure(복합체 구조)<br />6. Deployment(배치/인프라 노드) 7. Profile(UML 확장 메커니즘)</span>
   </div>
   <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>행위 다이어그램 (7종) — 동적 흐름</strong></span>
-    <small>1. Use Case(요구기능/액터) 2. <span class="itpe-keyword"><strong>Activity(업무 흐름/병렬)</strong></span> 3. State Machine(상태 전이)<br /><strong>[상호작용 다이어그램군]</strong><br />4. Sequence(시간순 메시지 교환) 5. Communication(객체 간 관계 중심)<br />6. Timing(시간 제약/상태) 7. Interaction Overview(상호작용 개요)</small>
+    <span>1. Use Case(요구기능/액터) 2. <span class="itpe-keyword"><strong>Activity(업무 흐름/병렬)</strong></span> 3. State Machine(상태 전이)<br /><strong>[상호작용 다이어그램군]</strong> 4. Sequence(시간순 메시지 교환) 5. Communication(객체 간 관계 중심)<br />6. Timing(시간 제약/상태) 7. Interaction Overview(상호작용 개요)</span>
   </div>
 </div>
 
@@ -83,27 +86,27 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="활동 다이어그램 주요 흐름 예시">
   <div class="itpe-pipeline-node">
     <strong>Initial Node (시작 노드)</strong>
-    <small>채워진 검은 원(●) · 활동의 시작점</small>
+    <span>채워진 검은 원(●) · 활동의 시작점</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ Control Flow</div>
   <div class="itpe-pipeline-node">
     <strong>Action / Activity Node (액션 노드)</strong>
-    <small>모서리가 둥근 사각형 · 원자적 연산 또는 복합 작업 수행</small>
+    <span>모서리가 둥근 사각형 · 원자적 연산 또는 복합 작업 수행</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ Fork Node</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>Fork Node (동기화 분기: 굵은 가로선)</strong></span>
-    <small>단일 입력 흐름을 2개 이상의 동시 병렬 실행 흐름으로 분할</small>
+    <span>단일 입력 흐름을 2개 이상의 동시 병렬 실행 흐름으로 분할</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 병렬 처리 수행</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>Join Node (동기화 결합: 굵은 가로선)</strong></span>
-    <small>모든 병렬 흐름이 완료될 때까지 대기 후 단일 흐름으로 합류</small>
+    <span>모든 병렬 흐름이 완료될 때까지 대기 후 단일 흐름으로 합류</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ Control Flow</div>
   <div class="itpe-pipeline-node">
     <strong>Activity Final Node (종료 노드)</strong>
-    <small>테두리가 있는 채워진 원(◎) · 모든 흐름 종료</small>
+    <span>테두리가 있는 채워진 원(◎) · 모든 흐름 종료</span>
   </div>
 </div>
 
@@ -116,9 +119,11 @@ extra:
 | **Join Node** | 굵은 직선 (N:1) | 모든 병렬 흐름이 도달할 때까지 동기화 대기 후 진행 |
 | **Swimlane (스윔레인)** | 수직/수평 분할 구획선 | 액션을 수행하는 주체(예: 고객, 주문시스템, 결제사)를 역할별로 구분 |
 
-## Ⅳ. 주요 행위 다이어그램 간의 비교 및 선택 기준
+## Ⅳ. 주요 행위 다이어그램 간의 비교 및 실무 위험 관리
 
 > 시스템 모델링 시 표현하려는 관점에 따라 가장 적합한 다이어그램을 선택해야 한다.
+
+### 1. 주요 행위 다이어그램 비교
 
 | 비교 항목 | 유스케이스 다이어그램 | 순차 다이어그램 (Sequence) | 활동 다이어그램 (Activity) | 상태 다이어그램 (State) |
 |---|---|---|---|---|
@@ -126,6 +131,14 @@ extra:
 | **적합한 단계** | 요구사항 분석 초기 | 상세 분석 및 설계 단계 | 비즈니스 프로세스 분석 | 복잡한 생명주기를 갖는 엔티티 |
 | **병렬 표현** | 불가능 | 가능하나 복잡함 | **Fork/Join으로 매우 우수** | 동시성 복합 상태로 표현 |
 | **주요 활용** | 과업 범위 확정 | API 시퀀스, 인터페이스 설계 | 업무 흐름도, 알고리즘 로직 | 주문/결제 상태 머신 설계 |
+
+### 2. UML 모델링 실무 위험 및 대응 통제
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 코드 변경 시 UML 다이어그램 동기화 누락 | PlantUML/Mermaid 기반 Docs-as-Code 및 Git 연동 | 설계 문서 최신성 및 형상 일관성 유지 |
+| 비즈니스 병렬 흐름 표기 오류(데드락) | 활동 다이어그램 내 Fork-Join 쌍 일치성 및 완료 조건 검증 | 동시성 흐름 설계 오류 및 교착상태 사전 차단 |
+| 14종 전 다이어그램 작성에 따른 공수 낭비 | 분석·설계 목적별 핵심 3종(Class, Sequence, Activity) 선별 표준화 | 모델링 생산성 향상 및 실효적 의사소통 집중 |
 
 ## Ⅴ. 모델 기반 엔지니어링(MBSE)을 위한 기술사적 제언
 
@@ -146,22 +159,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="UML 모델링 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>형식적 다이어그램 작성 · 구현 후 코드와 모델의 영구적 괴리</small>
+    <span>형식적 다이어그램 작성 · 구현 후 코드와 모델의 영구적 괴리</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>Docs-as-Code(PlantUML/Mermaid) 도입 및 핵심 3종 다이어그램 선별</small>
+    <span>Docs-as-Code(PlantUML/Mermaid) 도입 및 핵심 3종 다이어그램 선별</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>Git 브랜치 연동 문서 자동 빌드 및 RTM 양방향 추적성 점검</small>
+    <span>Git 브랜치 연동 문서 자동 빌드 및 RTM 양방향 추적성 점검</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>설계 의사소통 표준화 · 살아 숨쉬는 아키텍처 문서 자산화 달성</small>
+    <span>설계 의사소통 표준화 · 살아 숨쉬는 아키텍처 문서 자산화 달성</span>
   </div>
 </div>
 
@@ -175,9 +188,9 @@ extra:
 ### 2. 구조(7종) vs 행위(7종) 체계 요약
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="UML 2체계 요약">
-  <div class="itpe-pipeline-node"><strong>구조 다이어그램 (7종)</strong><small>Class · Component · Deployment · Package 등 (정적 구조)</small></div>
+  <div class="itpe-pipeline-node"><strong>구조 다이어그램 (7종)</strong><span>Class · Component · Deployment · Package 등 (정적 구조)</span></div>
   <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node"><strong>행위 다이어그램 (7종)</strong><small>Use Case · Activity · Sequence · State 등 (동적 실행)</small></div>
+  <div class="itpe-pipeline-node"><strong>행위 다이어그램 (7종)</strong><span>Use Case · Activity · Sequence · State 등 (동적 실행)</span></div>
 </div>
 
 ### 3. 활동 다이어그램 핵심 통제

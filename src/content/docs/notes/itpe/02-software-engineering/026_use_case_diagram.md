@@ -2,11 +2,14 @@
 title: "유스케이스 다이어그램(유스케이스 명세)"
 tags:
   - "notes-software-engineering"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 시스템 개발 범위(Scope) 확정 · 사용자 관점의 요구사항 가시화 · **유스케이스 명세서(Use Case Specification)** 작성을 통한 분석·설계·테스트 기준선 제공
 
 <div class="itpe-flow-map" role="img" aria-label="유스케이스 모델링 흐름">
-  <div class="itpe-flow-node"><strong>액터(Actor)</strong><small>시스템 외부 사용자/연계시스템</small></div>
+  <div class="itpe-flow-node"><strong>액터(Actor)</strong><span>시스템 외부 사용자/연계시스템</span></div>
   <div class="itpe-flow-arrow">→ 상호작용 (Association) →</div>
   <div class="itpe-flow-node is-current">
     <strong>유스케이스 (Use Case)</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 상세화 →</div>
-  <div class="itpe-flow-node"><strong>유스케이스 명세서</strong><small>사전/사후조건 · 기본/대안 흐름</small></div>
+  <div class="itpe-flow-node"><strong>유스케이스 명세서</strong><span>사전/사후조건 · 기본/대안 흐름</span></div>
 </div>
 
 <details>
@@ -67,17 +70,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="유스케이스 관계 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. 액터 (Actor) — 졸라맨 심볼</strong></span>
-    <small>시스템 외부에 위치하며 시스템과 정보를 교환하는 역할 (주 액터, 부 액터)</small>
+    <span>시스템 외부에 위치하며 시스템과 정보를 교환하는 역할 (주 액터, 부 액터)</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 실선 연관 (Association)</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>2. 기본 유스케이스 (Base Use Case) — 타원 심볼</strong></span>
-    <small>시스템 경계(Subject Boundary 사각형) 내부에서 사용자 목적을 달성하는 작업 단위</small>
+    <span>시스템 경계(Subject Boundary 사각형) 내부에서 사용자 목적을 달성하는 작업 단위</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 점선 화살표 관계</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3. 포함(&lt;&lt;include&gt;&gt;) 및 확장(&lt;&lt;extend&gt;&gt;)</strong></span>
-    <small>include: 기본 → 피포함 (필수 실행)<br />extend: 확장 → 기본 (조건부 선택 실행, 확장점 명시)</small>
+    <span>include: 기본 → 피포함 (필수 실행) / extend: 확장 → 기본 (조건부 선택 실행, 확장점 명시)</span>
   </div>
 </div>
 
@@ -100,26 +103,36 @@ extra:
 | **주요 목적** | 공통 기능 재사용 (중복 제거) | 기본 흐름을 훼손하지 않는 예외/부가 기능 분리 |
 | **구체적 사례** | `[주문하기] ──<<include>>──> [로그인]` | `[쿠폰 적용] ──<<extend>>──> [결제하기]` |
 
-## Ⅳ. 유스케이스 명세서(Use Case Specification)의 표준 구조
+## Ⅳ. 유스케이스 명세서(Use Case Specification)의 표준 구조 및 실무 위험 관리
 
 > 다이어그램은 목차에 불과하며, 실질적인 소프트웨어 설계와 테스트의 기준은 명세서 본문이다.
+
+### 1. 유스케이스 명세서 기술 항목
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="유스케이스 명세서 기술 항목">
   <div class="itpe-pipeline-node">
     <strong>기본 정보</strong>
-    <small>유스케이스명, 식별자, 주 액터, 담당자, 개요</small>
+    <span>유스케이스명, 식별자, 주 액터, 담당자, 개요</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>사전/사후 조건 (Pre/Post-conditions)</strong></span>
-    <small>사전조건: 실행 전 참이어야 할 상태 (예: 로그인 완료)<br />사후조건: 실행 후 보장되는 시스템 상태 (예: 주문DB 저장, 결제 승인)</small>
+    <span>사전조건: 실행 전 참이어야 할 상태 (예: 로그인 완료)<br />사후조건: 실행 후 보장되는 시스템 상태 (예: 주문DB 저장, 결제 승인)</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>이벤트 흐름 (Flow of Events)</strong></span>
-    <small>1. 기본 흐름(Happy Path): 오류 없는 이상적 진행 단계<br />2. 대안 흐름(Alternative Flow): 다른 방식으로 목적 달성<br />3. 예외 흐름(Exception Flow): 장애 발생 시 롤백 및 에러 처리</small>
+    <span>1. 기본 흐름(Happy Path): 오류 없는 이상적 진행 단계<br />2. 대안 흐름(Alternative Flow): 다른 방식으로 목적 달성<br />3. 예외 흐름(Exception Flow): 장애 발생 시 롤백 및 에러 처리</span>
   </div>
 </div>
+
+### 2. 유스케이스 모델링 실무 위험 및 대응 통제
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 기능 분해(Functional Decomposition)로 복잡도 폭증 | 사용자 관점의 완전한 목적 달성 단위로 유스케이스 통합 | 순서도식 나열 방지 및 본질적 요구사항 가시화 |
+| 포함과 확장 관계의 화살표 방향·개념 오용 | include(기본→포함, 필수), extend(확장→기본, 선택) 표준 가이드 확립 | 모델링 표기 오류 방지 및 의사소통 왜곡 차단 |
+| 명세서 부실로 인한 예외 흐름 누락 | 기본/대안/예외 흐름 및 사전·사후조건 정형화 템플릿 적용 | 개발자 자의적 구현 방지 및 인수 테스트 기준 확립 |
 
 ## Ⅴ. 요구사항 추적성 확립을 위한 기술사적 제언
 
@@ -140,22 +153,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="유스케이스 거버넌스 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>순서도식 과도한 유스케이스 분할 · 명세서 부실로 개발자 자의적 구현</small>
+    <span>순서도식 과도한 유스케이스 분할 · 명세서 부실로 개발자 자의적 구현</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>사용자 가치 중심 유스케이스 통합 및 이벤트 흐름(기본/대안/예외) 정형화</small>
+    <span>사용자 가치 중심 유스케이스 통합 및 이벤트 흐름(기본/대안/예외) 정형화</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>RTM 추적성 검증 및 유스케이스 기반 인수 테스트(UAT) 커버리지</small>
+    <span>RTM 추적성 검증 및 유스케이스 기반 인수 테스트(UAT) 커버리지</span>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>요구사항 누락 제로화 · 발주자-개발자 간 완벽한 합의 형성</small>
+    <span>요구사항 누락 제로화 · 발주자-개발자 간 완벽한 합의 형성</span>
   </div>
 </div>
 
@@ -169,15 +182,16 @@ extra:
 ### 2. 포함 vs 확장 핵심 차이
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="포함 vs 확장 요약">
-  <div class="itpe-pipeline-node"><strong>&lt;&lt;include&gt;&gt; (포함)</strong><small>기본 → 포함 · 필수 실행 · 공통 모듈 재사용</small></div>
+  <div class="itpe-pipeline-node"><strong>&lt;&lt;include&gt;&gt; (포함)</strong><span>기본 → 포함 · 필수 실행 · 공통 모듈 재사용</span></div>
   <div class="itpe-pipeline-arrow">↕ 반대 성격</div>
-  <div class="itpe-pipeline-node"><strong>&lt;&lt;extend&gt;&gt; (확장)</strong><small>확장 → 기본 · 조건부 실행 · 확장점(Extension Point) 명시</small></div>
+  <div class="itpe-pipeline-node"><strong>&lt;&lt;extend&gt;&gt; (확장)</strong><span>확장 → 기본 · 조건부 실행 · 확장점(Extension Point) 명시</span></div>
 </div>
 
 ### 3. 핵심 통제
 
 - **명세서 연계**: 사전/사후 조건 및 기본/예외 이벤트 흐름을 상세 명세하여 모호성 제거
 - **RTM 추적성**: 비즈니스 요구사항과 유스케이스 간 양방향 추적성 보증
+- **위험 통제**: 기능 분해 지양 및 명세서 템플릿 정형화로 인수 테스트 일관성 확보
 
 ## 출제 이력과 검증 출처
 

@@ -1,11 +1,14 @@
 ---
 title: "스택(Stack) 자료구조"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
 ---
 
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 함수 호출 스택 관리 · 괄호 검사 · 후위 표기법 연산 · DFS(깊이우선탐색) 및 브라우저 뒤로가기 구현
 
 <div class="itpe-flow-map" role="img" aria-label="스택 자료구조의 LIFO 동작 흐름">
-  <div class="itpe-flow-node"><strong>Push(데이터)</strong><small>Top 증가 및 데이터 삽입</small></div>
+  <div class="itpe-flow-node"><strong>Push(데이터)</strong><div class="itpe-step-detail"><span>Top 증가 및 데이터 삽입</span></div></div>
   <div class="itpe-flow-arrow">→ Top 포인터 조작 →</div>
   <div class="itpe-flow-node is-current">
     <strong>스택(Stack) 메모리</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ Top 감소 및 반환 →</div>
-  <div class="itpe-flow-node"><strong>Pop() 결과</strong><small>최상단 데이터 추출</small></div>
+  <div class="itpe-flow-node"><strong>Pop() 결과</strong><div class="itpe-step-detail"><span>최상단 데이터 추출</span></div></div>
 </div>
 
 <details>
@@ -57,8 +60,8 @@ extra:
 
 > 스택은 접근 지점을 Top 하나로 제한하여 구조를 단순화하고 모든 입출력을 O(1) 상수 시간에 보장한다.
 
-- 정의: 데이터의 삽입과 삭제가 **Top이라 불리는 한쪽 끝에서만** 이루어지는 후입선출(LIFO) 형태의 선형 자료구조
-- 목적: 작업의 역순 복원, 상태 저장 및 복귀, 재귀적 호출 흐름 관리를 메모리 오버헤드 없이 **O(1)**로 수행
+- 정의: 데이터의 삽입과 삭제가 **Top이라 불리는 한쪽 끝에서만** 이루어지는 **후입선출(LIFO) 형태의 선형 자료구조**
+- 목적: 작업 역순 복원, 상태 저장 및 복귀, 재귀적 호출 흐름 관리를 메모리 오버헤드 없이 **O(1)** 상수 시간에 수행
 
 ## Ⅱ. 스택의 핵심 연산 메커니즘 및 구현 방식 비교
 
@@ -67,17 +70,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="스택 기본 연산 흐름">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① Push(Item)</strong></span>
-    <small>isFull() 확인 → Overflow 방지 → Top 1 증가 → S[Top] = Item</small>
+    <div class="itpe-step-detail"><strong>삽입 연산</strong><span>isFull() 확인 및 Overflow 방지 후 Top 증가, 데이터 저장</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② Peek()</strong></span>
-    <small>isEmpty() 확인 → 삭제 없이 S[Top] 데이터 조회</small>
+    <div class="itpe-step-detail"><strong>단순 조회</strong><span>isEmpty() 확인 후 데이터 삭제 없이 최상단 데이터 반환</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ Pop()</strong></span>
-    <small>isEmpty() 확인 → Underflow 방지 → Item = S[Top] 반환 → Top 1 감소</small>
+    <div class="itpe-step-detail"><strong>추출 연산</strong><span>isEmpty() 확인 후 Underflow 방지, 데이터 반환 및 Top 감소</span></div>
   </div>
 </div>
 
@@ -104,11 +107,11 @@ extra:
 
 > 스택 오버플로우는 단순 프로그램 비정상 종료를 넘어 해킹 공격(Buffer Overflow)의 주요 통로로 악용된다.
 
-| 위험 요소 | 발생 원인 | 영향 | 실무 방어 대책 |
-|---|---|---|---|
-| **Stack Overflow** | 끝없는 재귀 호출(무한 루프) | 프로세스 강제 크래시 | 종료 조건(Base Case) 검증 및 재귀를 **반복문(Iteration)**으로 변환 |
-| **Stack Buffer Overflow** | 경계 검사 없는 문자열 복사(`strcpy`) | 스택 복귀 주소 변조, 원격 코드 실행 | 안전한 함수(`strncpy`) 사용, **스택 카나리(Stack Canary)**, ASLR 적용 |
-| **Stack Underflow** | 빈 스택에서 Pop 시도 | 널 포인터 참조 또는 시스템 패닉 | Pop/Peek 실행 전 `isEmpty()` 사전 조건 검증 필수 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **Stack Overflow (스택 고갈)** | 무한 재귀 종료 조건(Base Case) 검증 및 재귀를 **반복문(Iteration)**으로 변환 | 프로세스 비정상 종료(Crash) 원천 방지 |
+| **Stack Buffer Overflow (메모리 변조)** | 안전한 문자열 함수(`strncpy`) 사용, **Stack Canary**, ASLR 강제 | 악의적 리턴 주소 변조 및 원격 코드 실행 차단 |
+| **Stack Underflow (공백 상태 인출)** | Pop/Peek 실행 전 `isEmpty()` 사전 조건 검증 필수화 | 널 포인터 참조 및 시스템 패닉 방지 |
 
 ## Ⅴ. 메모리 아키텍처 관점의 기술사적 제언
 
@@ -129,22 +132,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="스택 메모리 안정성 확보 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>과도한 재귀 호출로 인한 스택 오버플로우 및 메모리 변조 위험</small>
+    <div class="itpe-step-detail"><strong>고갈 위험</strong><span>과도한 재귀 호출로 인한 스택 오버플로우 및 메모리 변조 위험</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>명시적 힙 스택 전환 및 스택 카나리(Canary) 방어 체계화</small>
+    <div class="itpe-step-detail"><strong>힙 스택 전환</strong><span>명시적 힙 스택 전환 및 스택 카나리(Canary) 방어 체계화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>스택 한계선 모니터링 및 경계 검사 단위 테스트 100%</small>
+    <div class="itpe-step-detail"><strong>한계 모니터링</strong><span>스택 한계선 모니터링 및 경계 검사 단위 테스트 100%</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>런타임 안정성 보장 및 시스템 보안 취약점 원천 제거</small>
+    <div class="itpe-step-detail"><strong>안정성 확보</strong><span>런타임 안정성 보장 및 시스템 보안 취약점 원천 제거</span></div>
   </div>
 </div>
 
@@ -158,11 +161,11 @@ extra:
 ### 2. 핵심 메커니즘
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="스택 동작 요약">
-  <div class="itpe-pipeline-node"><strong>Push(X)</strong><small>Top 증가 후 데이터 저장</small></div>
+  <div class="itpe-pipeline-node"><strong>Push(X)</strong><div class="itpe-step-detail"><span>Top 증가 후 데이터 저장</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Peek()</strong><small>Top 위치 데이터 단순 조회</small></div>
+  <div class="itpe-pipeline-node"><strong>Peek()</strong><div class="itpe-step-detail"><span>Top 위치 데이터 단순 조회</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Pop()</strong><small>Top 데이터 반환 후 Top 감소</small></div>
+  <div class="itpe-pipeline-node"><strong>Pop()</strong><div class="itpe-step-detail"><span>Top 데이터 반환 후 Top 감소</span></div></div>
 </div>
 
 ### 3. 핵심 통제

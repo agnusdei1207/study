@@ -1,11 +1,14 @@
 ---
 title: "디자인 패턴(프록시 패턴)"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
 ---
 
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 실제 비즈니스 로직과 부가 관심사 분리(AOP 기반) · 성능 최적화 · OCP/SRP 준수
 
 <div class="itpe-flow-map" role="img" aria-label="프록시 패턴의 호출 중계 구조">
-  <div class="itpe-flow-node"><strong>클라이언트(Client)</strong><small>인터페이스 호출</small></div>
+  <div class="itpe-flow-node"><strong>클라이언트(Client)</strong><div class="itpe-step-detail"><span>인터페이스 호출</span></div></div>
   <div class="itpe-flow-arrow">→ request() →</div>
   <div class="itpe-flow-node is-current">
     <strong>프록시(Proxy)</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 결과 반환 →</div>
-  <div class="itpe-flow-node"><strong>실제 객체(RealSubject)</strong><small>핵심 비즈니스 로직 수행</small></div>
+  <div class="itpe-flow-node"><strong>실제 객체(RealSubject)</strong><div class="itpe-step-detail"><span>핵심 비즈니스 로직 수행</span></div></div>
 </div>
 
 <details>
@@ -57,8 +60,8 @@ extra:
 
 > 프록시 패턴은 실제 객체의 코드를 변경하지 않고도 접근 제어와 부가 기능을 추가하며, 투명성(Transparency) 확보가 성패를 좌우한다.
 
-- 정의: 어떤 객체에 대한 접근을 제어하기 위하여 그 객체의 대리인(Surrogate)이나 자리표시자(Placeholder)를 제공하는 패턴
-- 목적: 무거운 객체의 **지연 로딩(Lazy Loading)**, 보안 접근 제어, 분산 환경 호출 추상화, **횡단 관심사(Cross-cutting Concerns)** 분리
+- 정의: 실제 객체(RealSubject)에 대한 대리 객체(Proxy)를 두어 객체에 대한 직접 접근을 제어하고 부가 기능을 투명하게 제공하는 **구조 디자인 패턴**
+- 목적: 무거운 객체의 **지연 로딩(Lazy Loading)**, 보안 접근 제어, 분산 환경 호출 추상화 및 **횡단 관심사(Cross-cutting Concerns)** 분리
 
 ## Ⅱ. 프록시 패턴의 구조 및 주요 유형
 
@@ -67,17 +70,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프록시 패턴의 인터페이스 기반 구조">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>Subject (인터페이스)</strong></span>
-    <small>RealSubject와 Proxy가 공동으로 구현하는 오퍼레이션 정의<br />→ Client는 오직 Subject에만 의존</small>
+    <div class="itpe-step-detail"><strong>오퍼레이션 규격</strong><span>RealSubject와 Proxy가 공동 구현하여 Client 의존성 격리</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 구현(Implements)</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>Proxy (대리 객체)</strong></span>
-    <small>RealSubject에 대한 참조(Pointer) 보유<br />→ 요청 인터셉트, 부가기능 수행 후 RealSubject 호출 위임</small>
+    <div class="itpe-step-detail"><strong>호출 가로채기</strong><span>RealSubject 참조 보유, 부가기능 수행 후 실제 호출 위임</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓ 위임(Delegation)</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>RealSubject (실제 객체)</strong></span>
-    <small>실제 핵심 비즈니스 로직을 수행하는 본체 객체</small>
+    <div class="itpe-step-detail"><strong>핵심 로직</strong><span>실제 핵심 비즈니스 로직을 수행하는 본체 객체</span></div>
   </div>
 </div>
 
@@ -98,16 +101,25 @@ extra:
 | **인터페이스 변경** | 동일한 인터페이스 유지 | 다른 인터페이스로 변환 | 동일한 인터페이스 유지 또는 확장 |
 | **실제 객체 참조** | 프록시가 내부에서 직접 생성/관리 가능 | 클라이언트가 어댑티 객체를 주입 | 클라이언트가 원본 객체를 감싸서 주입 |
 
-## Ⅳ. Spring AOP에서의 프록시 패턴 구현 및 실무 고려사항
+## Ⅳ. Spring AOP 적용 및 실무 위험 통제 대책
 
-> 프록시 패턴은 현대 엔터프라이즈 프레임워크(Spring, JPA 등)의 선언적 트랜잭션과 AOP의 근간 기술이다.
+> 프록시 패턴은 선언적 트랜잭션과 AOP의 근간이나, 내부 호출 누락과 프록시 제약에 따른 위험을 통제해야 한다.
+
+### Spring AOP 프록시 구현 방식 비교
 
 | 구분 | JDK Dynamic Proxy | CGLIB Proxy |
 |---|---|---|
 | **기반 메커니즘** | Java 리플렉션, `java.lang.reflect.Proxy` | 바이트코드 조작(ASM), 서브클래싱(Subclassing) |
 | **적용 조건** | 타깃 클래스가 **반드시 인터페이스 구현** | 타깃 클래스가 인터페이스 미구현 시에도 가능 |
-| **한계 및 주의점** | 인터페이스가 없는 구체 클래스는 프록시 생성 불가 | 타깃 클래스나 메서드가 `final`인 경우 오버라이딩 불가 |
-| **실무 내부 호출 주의** | 동일 클래스 내부 메서드 호출(`this.foo()`) 시 프록시를 거치지 않아 AOP(트랜잭션 등) 누락 발생 |
+| **한계점** | 인터페이스가 없는 구체 클래스는 프록시 생성 불가 | 타깃 클래스나 메서드가 `final`인 경우 오버라이딩 불가 |
+
+### 실무 위험 및 거버넌스 대책
+
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **Self-Invocation (내부 메서드 호출 시 프록시 우회)** | 자기 호출 메서드를 별도 서비스 컴포넌트로 분리하거나 `AopContext.currentProxy()` 활용 | 트랜잭션 및 보안 AOP 누락 원천 방지 |
+| **CGLIB의 final 제약 및 생성자 제약** | `final` 키워드 지양 규칙 및 Objenesis 라이브러리 연계 프록시 생성 | 런타임 프록시 생성 실패 방지 및 호환성 확보 |
+| **지연 로딩 시점의 세션 종료 (LazyInitializationException)** | OSIV 패턴 또는 Fetch Join 기반 사전 조회 쿼리 최적화 | N+1 문제 방지 및 지연 로딩 런타임 에러 근절 |
 
 ## Ⅴ. 프록시 기반 아키텍처 구축을 위한 기술사적 제언
 
@@ -128,22 +140,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프록시 패턴 아키텍처 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>비즈니스 코드에 트랜잭션·보안·로깅 등 횡단 관심사 혼재</small>
+    <div class="itpe-step-detail"><strong>관심사 혼재</strong><span>비즈니스 코드에 트랜잭션·보안·로깅 등 횡단 관심사 침투</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>프록시 기반 AOP 내재화 및 인터페이스 표준화</small>
+    <div class="itpe-step-detail"><strong>AOP 내재화</strong><span>프록시 기반 AOP 구축 및 인터페이스 표준화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>내부 메서드 호출 누락 방지 단위테스트 및 지연로딩 검증</small>
+    <div class="itpe-step-detail"><strong>누락 검증</strong><span>내부 호출 방지 단위테스트 및 지연로딩 사전 검증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>단일 책임 원칙(SRP) 준수 · 엔터프라이즈 유지보수성 극대화</small>
+    <div class="itpe-step-detail"><strong>단일 책임</strong><span>단일 책임 원칙(SRP) 준수 및 엔터프라이즈 유지보수성 극대화</span></div>
   </div>
 </div>
 
@@ -157,11 +169,11 @@ extra:
 ### 2. 구성체계 및 구조
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프록시 구조 요약">
-  <div class="itpe-pipeline-node"><strong>Subject Interface</strong><small>공통 오퍼레이션 규격</small></div>
+  <div class="itpe-pipeline-node"><strong>Subject Interface</strong><div class="itpe-step-detail"><span>공통 오퍼레이션 규격</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Proxy</strong><small>사전/사후 처리 · 위임 제어</small></div>
+  <div class="itpe-pipeline-node"><strong>Proxy</strong><div class="itpe-step-detail"><span>사전/사후 처리 · 위임 제어</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>RealSubject</strong><small>핵심 비즈니스 수행</small></div>
+  <div class="itpe-pipeline-node"><strong>RealSubject</strong><div class="itpe-step-detail"><span>핵심 비즈니스 수행</span></div></div>
 </div>
 
 ### 3. 핵심 통제

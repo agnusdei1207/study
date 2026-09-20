@@ -1,11 +1,14 @@
 ---
 title: "무중단 배포·배포 전략"
+author: "Antigravity"
+date: "2026-09-20T21:40:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
 ---
 
@@ -24,7 +27,7 @@ extra:
 - 산출/효과: 가용성(High Availability) 99.999% 유지 · 배포 위험 최소화 · 무중단 사용자 경험 보장
 
 <div class="itpe-flow-map" role="img" aria-label="무중단 배포 전략 흐름도">
-  <div class="itpe-flow-node"><strong>로드밸런서(LB)</strong><small>트래픽 라우팅 제어</small></div>
+  <div class="itpe-flow-node"><strong>로드밸런서(LB)</strong><div class="itpe-step-detail"><span>트래픽 라우팅 제어</span></div></div>
   <div class="itpe-flow-arrow">→ 배포 전략 선택 →</div>
   <div class="itpe-flow-node is-current">
     <strong>무중단 배포 방식</strong>
@@ -35,7 +38,7 @@ extra:
     </div>
   </div>
   <div class="itpe-flow-arrow">→ 검증 및 전환 →</div>
-  <div class="itpe-flow-node"><strong>프로덕션 서비스</strong><small>Downtime Zero 운영</small></div>
+  <div class="itpe-flow-node"><strong>프로덕션 서비스</strong><div class="itpe-step-detail"><span>Downtime Zero 운영</span></div></div>
 </div>
 
 <details>
@@ -53,12 +56,12 @@ extra:
 
 > 클라우드 네이티브 환경에서 무중단 배포(Zero-Downtime Deployment)의 필요성을 설명하고, 3대 배포 전략(Rolling, Blue/Green, Canary)의 장단점 및 데이터베이스 스키마 변경 시 호환성 확보 방안을 제시하시오. (25점)
 
-## Ⅰ. 24/7 무중단 서비스의 필수 요건, 무중단 배포의 개요
+## Ⅰ. 24/7 무중단 서비스의 필수 조건, 무중단 배포의 개요
 
 > 무중단 배포는 서비스 점검 시간(Maintenance Window)을 없애고, 배포 실패 시 복구 지연을 원천 차단하는 엔지니어링 역량이다.
 
-- 정의: 애플리케이션 업데이트 중에도 시스템 중단 없이 지속적으로 사용자 요청을 처리하도록 트래픽을 동적으로 제어하는 배포 기술
-- 목적: 비즈니스 가용성(24/7/365) 확보, 릴리스 주기 가속화, 배포 실패 시 **MTTR(복구 시간)** 제로화
+- 정의: 애플리케이션 업데이트 중에도 시스템 중단 없이 지속적으로 사용자 요청을 처리하도록 트래픽을 동적으로 제어하는 **고가용성 배포 기술**
+- 목적: 비즈니스 가용성(24/7/365) 확보, 릴리스 주기 가속화 및 배포 실패 시 **MTTR(복구 시간)** 제로화
 
 ## Ⅱ. 3대 무중단 배포 전략의 메커니즘 및 비교
 
@@ -67,17 +70,17 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="3대 무중단 배포 전략 구조">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① Rolling 배포</strong></span>
-    <small>인스턴스를 n개씩 순차 교체 · 추가 자원 최소화<br />→ 배포 중 구버전/신버전 혼재 발생</small>
+    <div class="itpe-step-detail"><strong>순차 교체</strong><span>인스턴스를 n개씩 점진 교체하여 추가 자원 최소화 및 롤링 배포</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② Blue/Green 배포</strong></span>
-    <small>신규 Green 환경 사전 완벽 검증 후 로드밸런서 스위칭<br />→ 인프라 2배 필요, 스위칭 즉시 롤백 가능</small>
+    <div class="itpe-step-detail"><strong>전체 스위칭</strong><span>Green 환경 완벽 검증 후 로드밸런서 일괄 전환 및 즉각 롤백 확보</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ Canary 배포</strong></span>
-    <small>카나리아 광부 메타포 · 1% → 10% → 100% 트래픽 점진 확대<br />→ 실 사용자 기반 오류율·지연 모니터링 후 자동 롤백</small>
+    <div class="itpe-step-detail"><strong>점진 노출</strong><span>1% → 10% → 100% 트래픽 점진 확대 및 실시간 오류 감지 자동 롤백</span></div>
   </div>
 </div>
 
@@ -96,29 +99,29 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Expand-Contract DB 스키마 변경 패턴">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>Phase 1: Expand (확장)</strong></span>
-    <small>기존 컬럼 유지 + 신규 컬럼 추가 (구버전 앱 정상 동작 보장)</small>
+    <div class="itpe-step-detail"><strong>하위 호환 유지</strong><span>기존 컬럼 유지 상태에서 신규 컬럼 추가 및 구버전 정상 동작 보장</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>Phase 2: Transition (이행 및 양방향 쓰기)</strong></span>
-    <small>신버전 앱 배포 · 신규 컬럼 읽기/쓰기 및 백그라운드 데이터 마이그레이션</small>
+    <div class="itpe-step-detail"><strong>양방향 동기화</strong><span>신버전 앱 배포, 신규 컬럼 읽기/쓰기 및 백그라운드 데이터 마이그레이션</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>Phase 3: Contract (축소 및 정리)</strong></span>
-    <small>모든 인스턴스 신버전 전환 확인 후 구버전 컬럼 삭제</small>
+    <div class="itpe-step-detail"><strong>구버전 제거</strong><span>전체 인스턴스 전환 확인 후 구버전 컬럼 삭제로 스키마 정리 완료</span></div>
   </div>
 </div>
 
-## Ⅳ. 무중단 배포 운영 시 기술적 고려사항
+## Ⅳ. 무중단 배포 운영 시 기술적 위험 통제
 
 > 애플리케이션의 세션 유지와 커넥션 드레이닝이 보장되지 않으면 배포 중 사용자의 연결이 끊어진다.
 
-| 위험 요소 | 기술적 원인 | 실무 대응 통제책 |
+| 위험 | 대책 | 효과 |
 |---|---|---|
-| **세션 끊김** | 인스턴스 인메모리 세션 소멸 | Redis 기반 외장형 분산 세션 스토어(Sticky Session 지양) |
-| **진행 중 요청 유실** | 인스턴스 강제 종료 (SIGKILL) | **Graceful Shutdown** 및 **Connection Draining**(30초 유예) |
-| **헬스체크 실패 오판** | 기동 초기 트래픽 급유입 | Kubernetes `readinessProbe` 및 `livenessProbe` 정밀 구성 |
+| **배포 중 세션 끊김 현상** | Redis 기반 외장형 분산 세션 스토어 전환 (Sticky Session 지양) | 인스턴스 교체 시에도 사용자 로그인 유지 |
+| **진행 중 요청(In-flight) 유실** | **Graceful Shutdown** 및 **Connection Draining**(30초 유예) 설정 | 강제 종료로 인한 502/504 에러 방지 |
+| **헬스체크 실패 및 조기 유입** | Kubernetes `readinessProbe` 및 `livenessProbe` 정밀 구성 | 기동 완료 전 트래픽 유입에 따른 장애 방지 |
 
 ## Ⅴ. 고가용 무중단 아키텍처를 위한 기술사적 제언
 
@@ -139,22 +142,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="무중단 배포 아키텍처 개선 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>야간 배포 의존 · DB 스키마 불일치로 인한 롤백 불가</small>
+    <div class="itpe-step-detail"><strong>야간 의존</strong><span>야간 배포 의존 및 DB 스키마 불일치로 인한 롤백 불가</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>Canary 자동화 파이프라인 및 Expand/Contract DB 분리</small>
+    <div class="itpe-step-detail"><strong>자동화 전환</strong><span>Canary 자동화 파이프라인 및 Expand/Contract DB 분리</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>SLO 위반 에러율 0% · Connection Draining 및 자동 롤백</small>
+    <div class="itpe-step-detail"><strong>무장애 검증</strong><span>SLO 위반 에러율 0% · Connection Draining 및 자동 롤백</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>주간 상시 무중단 배포 달성 · 릴리스 리스크 완벽 제거</small>
+    <div class="itpe-step-detail"><strong>상시 배포</strong><span>주간 상시 무중단 배포 달성 및 릴리스 리스크 완벽 제거</span></div>
   </div>
 </div>
 
@@ -168,11 +171,11 @@ extra:
 ### 2. 3대 배포 전략 요약
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="무중단 배포 3대 전략 요약">
-  <div class="itpe-pipeline-node"><strong>Rolling</strong><small>인스턴스 점진 교체 · 자원 효율</small></div>
+  <div class="itpe-pipeline-node"><strong>Rolling</strong><div class="itpe-step-detail"><span>인스턴스 점진 교체 · 자원 효율</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Blue/Green</strong><small>전체 환경 일괄 스위칭 · 즉시 롤백</small></div>
+  <div class="itpe-pipeline-node"><strong>Blue/Green</strong><div class="itpe-step-detail"><span>전체 환경 일괄 스위칭 · 즉시 롤백</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Canary</strong><small>일부 트래픽 선 검증 · 점진적 확대</small></div>
+  <div class="itpe-pipeline-node"><strong>Canary</strong><div class="itpe-step-detail"><span>일부 트래픽 선 검증 · 점진적 확대</span></div></div>
 </div>
 
 ### 3. 핵심 통제
