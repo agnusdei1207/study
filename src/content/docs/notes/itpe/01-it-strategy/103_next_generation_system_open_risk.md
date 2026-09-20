@@ -1,191 +1,148 @@
 ---
 title: "차세대 시스템 오픈 리스크"
-author: "Antigravity"
-date: "2026-09-20T19:33:00+09:00"
-tags:
-  - "notes-it-strategy"
+author: "OpenAI Codex"
+date: "2026-09-22T09:45:00+09:00"
+tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 프로젝트 위험 관리 및 시스템 전환을 거쳐 차세대 시스템 오픈 리스크로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>프로젝트 위험 관리·시스템 전환</span>
-  <strong>차세대 시스템 오픈 리스크</strong>
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 전환관리를 거쳐 차세대 시스템 오픈 리스크로 이어지는 위치">
+  <span>IT 전략·관리</span><span>전환관리·사업위험</span><strong>오픈 리스크</strong>
 </div>
 
 ## 큰 그림과 30초 인출
 
-- 본질: 대규모 차세대 전환 시 발생하는 데이터 불일치, 성능 마비, 연계 단절을 방지하고 비즈니스 연속성을 보장하는 리스크 통제 체계
-- 메커니즘: 사전 모의이행(Dry-Run) 실측 → 컷오버(Cut-over) 데이터 이행 → **Drop-dead Time** 전 **Go/No-Go 판정** → **종합상황실(War-Room)** 안정화
-- 산출: 모의이행 결과서 · 컷오버 상세 실행계획서 · Go/No-Go 의결서 · 비상 롤백(Rollback) 매뉴얼
+- **본질**: 신·구 시스템 절체 중 데이터·업무·연계·성능 중단 위험 통제
+- **메커니즘**: 리허설 → Cut-over → Go/No-Go → 안정화
+- **핵심**: 롤백 가능 시점 전에 증적 기반으로 계속·중단을 판정
 
-<div class="itpe-flow-map" role="img" aria-label="차세대 시스템 오픈 컷오버 타임라인 및 롤백 마지노선 통제 흐름">
-  <div class="itpe-flow-node">
-    <strong>오픈 전 검증 (D-30 ~ D-1)</strong>
-    <div class="itpe-step-detail"><span>3회 이상 데이터 모의이행(Dry-Run) · 부하 테스트</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>거래 중단 및 최종 백업</small></div>
-  <div class="itpe-flow-node is-current">
-    <strong>컷오버(Cut-over) 및 판정 게이트</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>이행</strong><span>병렬 <span class="itpe-keyword"><strong>ETL</strong></span> 데이터 적재 및 정합성 자동 대사</span></div>
-      <div class="itpe-flow-branch"><strong>마지노선</strong><span><span class="itpe-keyword"><strong>Drop-dead Time</strong></span> 이전 복구 가능성 확보</span></div>
-      <div class="itpe-flow-branch"><strong>판정</strong><span>치명 결함 미해결 시 무조건 <span class="itpe-keyword"><strong>No-Go(롤백)</strong></span> 집행</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>정상 가동 승인</small></div>
-  <div class="itpe-flow-node">
-    <strong>오픈 후 안정화 (War-Room)</strong>
-    <div class="itpe-step-detail"><span>24시간 종합상황실 가동 · 실시간 APM 모니터링 및 핫픽스</span></div>
-  </div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="차세대 시스템 오픈 리스크 통제 흐름">
+  <div class="itpe-flow-node"><strong>리허설</strong><div class="itpe-step-detail"><strong>검증</strong><span>절차·시간·데이터·복구</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>Cut-over</strong><div class="itpe-step-detail"><strong>실행</strong><span>업무중단·백업·이행·절체</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current"><strong>Go/No-Go</strong><div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>Go</strong><span>신규 시스템 가동</span></div><div class="itpe-flow-branch"><strong>No-Go</strong><span>Rollback 실행</span></div></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>안정화</strong><div class="itpe-step-detail"><strong>통제</strong><span>모니터링·장애·현업 지원</span></div></div>
 </div>
 
 <details>
-<summary>핵심 용어</summary>
+<summary>약어·전문용어</summary>
 
-- **Cut-over(컷오버)**: 구 레거시 시스템의 운영을 공식 중단하고 신규 차세대 시스템으로 데이터와 트랜잭션을 최종 절체하는 전환 절차
-- **Dry-Run(모의이행)**: 본 컷오버와 동일한 실데이터 규모와 네트워크 환경에서 전환 전 과정을 사전에 반복 실측·검증하는 리허설
-- **Drop-dead Time(롤백 마지노선)**: 차세대 가동 실패 시 익일 정상 영업 개시 전까지 레거시 시스템으로 안전하게 복원 가능한 물리적 한계 시각
-- **Go/No-Go Decision**: 정량적 데이터 정합성 대사율과 치명 결함 잔존 여부를 기준으로 신규 시스템 오픈 강행 여부를 결정하는 의사결정 게이트
-- **War-Room(종합상황실)**: 오픈 직후 발생하는 예외 상황, 거래 병목, 현업 조작 오류에 즉시 대응하기 위해 전사 전문가가 24시간 상주하는 비상 기구
-- **ETL(Extract-Transform-Load)**: 레거시 RDB에서 데이터를 추출, 정제·변환하여 차세대 목표 데이터베이스에 적재하는 파이프라인
+- **Cut-over**: 구 시스템에서 신 시스템으로 업무·데이터·연계를 전환하는 절차
+- **Dry Run**: 본 전환과 유사한 조건에서 수행하는 모의이행
+- **Go/No-Go**: 가동 지속 또는 롤백을 결정하는 의사결정 Gate
+- **Rollback**: 전환 실패 시 검증된 이전 상태로 복구하는 활동
+- **ETL(Extract, Transform, Load)**: 데이터를 추출·변환·적재하는 처리
+- **BCP(Business Continuity Plan)**: 중단 상황에서도 핵심 업무를 지속·복구하기 위한 계획
 
 </details>
 
 ## 예상문제
 
-> 금융·공공 등 대규모 차세대 시스템 전환(Big-Bang Cut-over) 시 발생할 수 있는 주요 오픈 리스크의 유형, 오픈 전·중·후 단계별 리스크 통제 및 검증 방안, 비상시 롤백(Rollback) 시나리오와 Go/No-Go 의사결정 기준을 설명하시오. (25점)
+> **(미출제 예상·25점)** 차세대 시스템 Cut-over의 주요 오픈 리스크를 설명하고, 단계별 통제와 Go/No-Go·Rollback 의사결정 방안을 제시하시오.
 
-## Ⅰ. 대규모 IT 전환의 사활을 거는 분수령, 오픈 리스크의 개요
+## Ⅰ. 차세대 시스템 오픈 리스크 개요
 
-> 대규모 **컷오버(Cut-over)** 시 발생하는 데이터 왜곡과 성능 마비를 방지하기 위해 **모의이행(Dry-Run)**과 **Go/No-Go 게이트**로 위험을 통제함.
+> Cut-over는 기술 배포가 아니라 업무·데이터·조직을 동시에 전환하는 고위험 변경임
 
-- 정의: 차세대 정보시스템의 정식 가동(Go-Live) 시점에 구 시스템의 업무, 데이터, 인프라를 신 시스템으로 절체하는 **컷오버(Cut-over)** 과정에서 비즈니스 중단과 데이터 유실을 방지하는 **전환 리스크 관리 체계**
-- 목적: 데이터 이행 무결성 확보, 거래 지연 차단 및 롤백 마지노선 기반 비즈니스 연속성(BCP) 담보
+- **정의**: 차세대 시스템 가동 과정에서 업무중단·데이터 오류·성능저하·연계장애를 예방·대응하는 전환 위험관리
+- **목적**: 전환 무결성·서비스 연속성·복구 가능성 확보
 
-## Ⅱ. 컷오버 타임라인 및 4단계 리스크 통제 방법론
+## Ⅱ. 단계별 통제
 
-> 오픈 전 모의이행부터 컷오버 실행, 롤백 마지노선 이전 Go/No-Go 판정, 종합상황실 운영으로 이어지는 파이프라인을 구축함.
+| 단계 | 활동 | 산출 |
+|---|---|---|
+| 계획 | 범위·순서·의존성·책임 정의 | Cut-over 계획·RACI |
+| 리허설 | 모의이행·대사·성능·복구 검증 | 리허설 결과·보완목록 |
+| 실행 | 동결·백업·이행·절체·Smoke Test | 실행로그·대사결과 |
+| 판정 | Go/No-Go·Rollback 결정 | 판정서·복구 승인 |
+| 안정화 | 모니터링·장애·현업지원 | 상황보고·종료기준 |
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="차세대 시스템 오픈 4단계 리스크 통제 프로세스">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>① 오픈 전 사전 검증 (D-30 ~ D-1)</strong><span>3회 이상 데이터 모의이행(Dry-Run) 소요시간 실측 · 부하 테스트 → 모의이행 결과 보고서 · 롤백 실행 매뉴얼</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>② 컷오버 이행 수행 (D-Day)</strong><span>레거시 거래 중단, 데이터 최종 백업, 병렬 ETL 적재, 네트워크 절체 → 컷오버 단계별 체크리스트 · 데이터 추출/적재 로그</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>③ Go/No-Go 판정 게이트 (Drop-dead Time 전)</strong><span>데이터 정합성 100% 검증, 핵심 결함 제로 확인, 비상시 즉각 롤백 → 정합성 대사 결과표 · Go/No-Go 의결서</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>④ 오픈 후 종합상황실 가동 (D+1 ~ D+30)</strong><span>War-Room 24시간 교대 근무, 실시간 트랜잭션 모니터링, 긴급 핫픽스 → 일일 오픈 안정화 대시보드 · 장애 조치 내역서</span></div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>전환 추적성</strong></span> · 모의이행 소요시간 ↔ 컷오버 실행창(Cut-over Window) ↔ 롤백 마지노선 100% 준수</div>
-
-## Ⅲ. 4대 핵심 오픈 리스크 영역 및 통제 방안
-
-> 데이터 정합성, 시스템 성능, 대내외 연계, 현업 숙련도의 4대 취약점을 다차원으로 통제해야 함.
+## Ⅲ. 핵심 리스크·통제
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **데이터 이행 불일치 및 지연** | 원천/목표 DB 간 건수·금액 **체크섬(Checksum) 자동 대사**, 병렬 ETL 적용 | 데이터 무결성 확보 및 이행 시간 단축 |
-| **오픈 직후 시스템 성능 마비** | 오픈 전 실데이터 기반 3배 피크 부하 테스트, 슬로우 쿼리 사전 튜닝 | CPU 포화 방지 및 안정적 트랜잭션 처리 |
-| **대내외 인터페이스 연계 단절** | 전 대외기관 참여 실거래 엔드투엔드(E2E) 합동 리허설 완료 | 타행 이체 및 대외 통신 무중단 보장 |
-| **현업 사용자 조작 미숙** | 전 지점 대상 시스템 오픈 전 영업점 사전 교육 및 현장 기술지원팀 배치 | 오입력 방지 및 대고객 응대 지연 최소화 |
+| 데이터 누락·불일치 | 건수·금액·참조무결성 대사 | 이행 무결성 확인 |
+| 성능 저하 | 업무량 기반 부하·용량 시험 | 병목 사전 제거 |
+| 대내외 연계 단절 | E2E(End-to-End) 합동 시험 | 인터페이스 연속성 확보 |
+| 업무 절차 혼선 | 사용자 리허설·비상업무 절차 | 현업 대응력 확보 |
+| 복구 실패 | 백업 복원·Rollback 리허설 | 복구 실행성 확보 |
 
-## Ⅳ. 빅뱅(Big-Bang) 전환 vs 단계적(Phased) 전환 비교
+## Ⅳ. Big-Bang·Phased 전환 비교
 
-| 비교 항목 | 빅뱅 (Big-Bang) 전환 | 단계적 (Phased) 전환 |
+| 기준 | Big-Bang | Phased |
 |---|---|---|
-| **전환 방식** | 특정 주말에 전 업무 및 시스템을 일괄 동시 전환 | 채널별 또는 업무 도메인별(여신→수신 등) 순차 전환 |
-| **데이터 동기화** | 단 1회 대규모 이행으로 이중 인터페이스 불필요 | 신·구 시스템 간 장기간 실시간 양방향 데이터 동기화 필수 |
-| **오픈 리스크** | **매우 높음** (실패 시 전사 비즈니스 전면 마비) | **국소적 분산** (장애 발생 시 해당 모듈로 피해 한정) |
-| **비용 및 기간** | 단기 집중 투입으로 상대적 전환 비용 절감 | 장기 프로젝트화 및 이중 시스템 운영 유지비용 증가 |
-| **적용 권장 대상** | 업무 간 결합도가 극도로 높은 핵심 금융 코어뱅킹 | 모듈 간 의존도가 낮고 점진적 마이그레이션이 가능한 플랫폼 |
+| 전환 | 일괄 절체 | 업무·채널별 순차 절체 |
+| 장점 | 이중운영·동기화 기간 최소화 | 영향 범위 분산 |
+| 위험 | 실패 영향 집중 | 신·구 정합성·장기 이중운영 |
+| 선택 | 강한 결합·단일 전환창 | 분리 가능한 도메인·점진 검증 |
 
-## Ⅴ. 성공적 차세대 오픈을 위한 기술사적 제언
+## Ⅴ. 문제점·대응책
 
-> 정치적 오픈 강행을 방지하기 위해 독립적 의사결정 기구와 자동 롤백 세이프가드를 명문화해야 함.
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 일정 압박에 따른 강행 | 사전 승인된 판정기준·권한 | 의사결정 독립성 |
+| 리허설과 운영환경 차이 | 운영 규모·순서·권한 재현 | 실행오차 축소 |
+| 판정 증적 분산 | 통합 상황판·단일 승인기록 | 판단 근거 확보 |
+| 롤백 시간 부족 | 역산 일정·중단시점 설정 | 복구 가능성 보호 |
 
-### 학습자 통찰 메모 — 답안 밖
+## Ⅵ. 결론·기술사적 제언
 
-- [핵심 통찰]: 차세대 오픈 현장에서 가장 위험한 사람은 "약속된 날짜에 무조건 오픈해야 한다"며 일정을 강요하는 경영진과 "밤새우면 해결할 수 있다"고 장담하는 개발 책임자임. 오픈의 성패는 얼마나 화려하게 여느냐가 아니라, 돌이킬 수 없는 상황이 오기 전에 '언제 안전하게 물러설 것인가(Rollback)'를 결정하는 시스템적 결단력에 달려 있음.
-- 나라면: CISO, 외부 전문 감리인, 총괄 PMO로 구성된 '독립 오픈 판정 위원회'를 신설하고, [Drop-dead Time 도달 시 데이터 대사 불일치 1건이라도 존재 시 자동으로 No-Go(롤백)가 발효]되도록 이사회 사전 승인 규정으로 제도화하겠음.
+> **[핵심 통찰]** 성공적인 오픈은 장애가 없는 오픈이 아니라, 불확실성을 조기에 드러내고 되돌릴 수 있을 때 중단하는 오픈임.
 
-### 실전 답안용 기술사적 제언
+> **나라면** 업무 중요도별 Go/No-Go 기준과 Rollback 결정시점을 사전 승인하고, 데이터·성능·연계·현업 증적이 한 화면에 모인 경우에만 가동을 승인하겠음.
 
-- 판정: 감정적 타협이나 일정 압박에 의한 강행을 배제하고 정량 지표 기반 자동 판정으로 전환
-- 대안: **독립 오픈 판정 위원회 운영** 및 **Drop-dead Time 자동 롤백 세이프가드** 수립
-- 검증: 모의이행 실측 소요시간 여유율 30% 확보 · 데이터 자동 대사 일치율 100%
-- 효과: 대형 전산 장애 사전 예방 · 고객 신뢰 보호 및 기업 법적 책임 방어
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="차세대 오픈 리스크 통제를 위한 기술사적 제언 파이프라인">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>현행 한계</strong><span>경영진의 정치적 일정 압박 · 결함 미해결 상태에서 강행 오픈 시도</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>개선 대안</strong><span>독립 오픈 판정 위원회 구성 + Drop-dead Time 기반 자동 롤백 규정화</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>검증 기준</strong><span>데이터 체크섬 100% 일치 · 대외기관 합동 리허설 100% 무결성 확인</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>실행 효과</strong><span>전산 마비 참사 원천 방지 · 안전한 차세대 비즈니스 연속성(BCP) 달성</span></div>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 500" role="img" aria-label="Go No-Go와 Rollback 판정 구조">
+  <rect x="245" y="25" width="270" height="90" rx="14" class="itpe-svg-node"></rect>
+  <text x="380" y="62" text-anchor="middle" class="itpe-svg-title">판정 증적</text><text x="380" y="92" text-anchor="middle" class="itpe-svg-sub">데이터·성능·연계·업무</text>
+  <rect x="245" y="180" width="270" height="90" rx="14" class="itpe-svg-node is-current"></rect>
+  <text x="380" y="217" text-anchor="middle" class="itpe-svg-title">Rollback 결정시점</text><text x="380" y="247" text-anchor="middle" class="itpe-svg-sub">복구 소요시간 역산</text>
+  <rect x="70" y="350" width="240" height="90" rx="14" class="itpe-svg-node"></rect>
+  <text x="190" y="387" text-anchor="middle" class="itpe-svg-title">Go</text><text x="190" y="417" text-anchor="middle" class="itpe-svg-sub">가동·안정화</text>
+  <rect x="450" y="350" width="240" height="90" rx="14" class="itpe-svg-node"></rect>
+  <text x="570" y="387" text-anchor="middle" class="itpe-svg-title">No-Go</text><text x="570" y="417" text-anchor="middle" class="itpe-svg-sub">Rollback·원인 보완</text>
+  <path d="M380 115 L380 180 M315 270 L190 350 M445 270 L570 350" class="itpe-svg-link"></path>
+  <text x="225" y="315" class="itpe-svg-label">기준 충족</text><text x="505" y="315" class="itpe-svg-label">미충족·시간 도달</text>
+</svg>
 </div>
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의·목적
+- **정의**: 차세대 시스템 가동 과정에서 업무중단·데이터 오류·성능저하·연계장애를 예방·대응하는 전환 위험관리
+- **목적**: 전환 무결성·서비스 연속성·복구 가능성 확보
 
-- 정의: 차세대 시스템의 정식 가동 시점에 데이터 이행, 성능 부하, 대내외 연계 장애를 차단하고 신속한 전환을 달성하는 **시스템 컷오버(Cut-over) 위험 통제 체계**
-- 목적: 데이터 대사 무결성 확보 및 비즈니스 연속성(BCP) 유지를 통한 대형 전산 장애 예방
-
-### 2. 구성체계 및 타임라인
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="컷오버 타임라인 및 통제 요약">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>오픈 전 검증</strong><span>모의이행(Dry-Run) 3회 실측 · 롤백 매뉴얼</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>컷오버 이행</strong><span>병렬 ETL 적재 · 데이터 정합성 자동 대사</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Go/No-Go 판정</strong><span>Drop-dead Time 이전 의결 · 결함 잔존 시 롤백</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>종합상황실</strong><span>24시간 War-Room 가동 · 실시간 APM 핫픽스</span></div></div>
-</div>
-
-### 3. 핵심 통제
-
-- **Drop-dead Time**: 레거시 시스템 복구를 위해 소요되는 최소 시간을 역산하여 정한 불가역적 롤백 한계 시각
-- **정합성 100% 대사**: 원천과 목표 데이터베이스 간 건수와 잔액의 체크섬 불일치 시 오픈 불허
+| 구간 | 통제 |
+|---|---|
+| 오픈 전 | Dry Run·대사·부하·복구 시험 |
+| 오픈 중 | 실행로그·Go/No-Go·Rollback |
+| 오픈 후 | 상황실·모니터링·종료기준 |
 
 ## 출제 이력과 검증 출처
 
-- 제129회 KPC 모의고사 1교시: 차세대 시스템 오픈 리스크의 유형 및 단계별 관리 방안
-- [금융감독원, 금융IT 안정성 확보를 위한 가이드라인](https://www.fss.or.kr)
-- [한국정보화진흥원, 대규모 공공 정보시스템 전환 및 이행 감리 가이드](https://www.nia.or.kr)
+- 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
+- [NIST SP 800-34 Rev.1, Contingency Planning Guide for Federal Information Systems](https://csrc.nist.gov/pubs/sp/800/34/r1/final)
+- [AWS Prescriptive Guidance, Cutover runbook](https://docs.aws.amazon.com/prescriptive-guidance/latest/cutover-runbook/)
 
 ## 학습 체크
 
-- [ ] 차세대 오픈의 4대 리스크(데이터/성능/연계/숙련도)와 통제 대책을 설명할 수 있는가?
-- [ ] 컷오버 타임라인에서 Drop-dead Time의 기술적·경영적 의미를 제시할 수 있는가?
-- [ ] 객관적 Go/No-Go 판정 지표와 비상 롤백 시나리오를 설명할 수 있는가?
+- [ ] Ⅰ: 오픈 리스크의 정의·목적을 설명할 수 있는가?
+- [ ] Ⅱ: 계획부터 안정화까지 활동·산출을 연결할 수 있는가?
+- [ ] Ⅲ: 데이터·성능·연계·현업·복구 위험의 통제를 제시할 수 있는가?
+- [ ] Ⅳ: Big-Bang·Phased 선택기준을 비교할 수 있는가?
+- [ ] Ⅴ: 일정 압박·환경 차이·롤백 시간 부족의 대응책을 제시할 수 있는가?
+- [ ] Ⅵ: 증적 기반 Go/No-Go 판정 구조를 그릴 수 있는가?
 
 ## 연결 토픽
 
-- 이전 토픽: [지능정보기술 감리 실무 가이드](./102_intelligent_information_technology_audit_guide.md)
-- 연관 토픽: [프로젝트 부정적 위험 대응 전략](./040_negative_risk_response_strategy.md), [클라우드 전환사업 감리](./104_cloud_migration_project_audit.md)
-- 다음 토픽: [클라우드 전환사업 감리](./104_cloud_migration_project_audit.md)
+- 이전: [102. 지능정보기술 감리 실무 가이드](./102_intelligent_information_technology_audit_guide/)
+- 관련: [040. 부정적 위험 대응](./040_negative_risk_response_strategy/) · [104. 클라우드 전환사업 감리](./104_cloud_migration_project_audit/)
+- 다음: [104. 클라우드 전환사업 감리](./104_cloud_migration_project_audit/)
