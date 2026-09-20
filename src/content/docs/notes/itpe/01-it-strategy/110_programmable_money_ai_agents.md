@@ -1,198 +1,167 @@
 ---
-title: "프로그래머블 머니 (AI 에이전트의 경제 주체화)"
-author: "Antigravity"
-date: "2026-09-20T19:33:00+09:00"
-tags:
-  - "notes-it-strategy"
+title: "Programmable Money·AI Agent 결제"
+author: "OpenAI Codex"
+date: "2026-09-22T11:05:00+09:00"
+tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 미래 금융 혁신 및 AI 트렌드를 거쳐 프로그래머블 머니로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>미래 금융 혁신·AI 트렌드</span>
-  <strong>프로그래머블 머니 (AI 에이전트의 경제 주체화)</strong>
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 디지털 금융과 AI Agent를 거쳐 Programmable Money로 이어지는 위치">
+  <span>IT 전략·관리</span><span>디지털 금융·AI(Artificial Intelligence) Agent</span><strong>Programmable Money·Payment</strong>
 </div>
 
 ## 큰 그림과 30초 인출
 
-- 본질: 화폐에 **스마트 계약** 코드를 심어 사람의 수동 개입 없이 자율 **AI 에이전트** 간 실시간 가치 교환과 정산을 가능하게 하는 디지털 통화
-- 메커니즘: AI 간 서비스 협상 → 조건부 에스크로 락업 → **ERC-4337(계정 추상화)** 지출 서명 → **초미세 결제(Micro-payment)** 및 원장 동시 정산
-- 산출: 에이전트 스마트 지갑 명세서 · 조건부 에스크로 컨트랙트 · 온체인 거래 영수증 · 지출 한도 가드레일 정책서
+- **구분**: 화폐 사용조건을 제한하는 Programmable Money ≠ 결제 실행조건을 자동화하는 Programmable Payment
+- **구조**: Agent 권한 → 정책검사 → 조건부 결제 → 원장 정산 → 감사
+- **통제**: 소유자 책임·최소권한·지출한도·거래상대방·취소·분쟁처리
 
-<div class="itpe-flow-map" role="img" aria-label="AI 에이전트 경제에서 스마트 계약과 프로그래머블 머니를 통한 실시간 결제 정산 아키텍처">
-  <div class="itpe-flow-node">
-    <strong>AI 에이전트 경제 (Agentic Economy)</strong>
-    <div class="itpe-step-detail"><span>구매 AI (GPU/데이터 요청) ↔ 판매 AI (API 엔드포인트 제공)</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>자율 서명 및 정책 가드레일</small></div>
-  <div class="itpe-flow-node is-current">
-    <strong>스마트 계약 및 지출 가드레일</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>지갑</strong><span><span class="itpe-keyword"><strong>ERC-4337</strong></span> 계정 추상화 (세션 키 기반 위임)</span></div>
-      <div class="itpe-flow-branch"><strong>통제</strong><span>시간당/일일 지출 쿼터(Rate-limit) · SLA 검증</span></div>
-      <div class="itpe-flow-branch"><strong>실행</strong><span>조건 충족 시 조건부 에스크로 자금 자동 릴리스</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>원장 기록</small></div>
-  <div class="itpe-flow-node">
-    <strong>프로그래머블 머니 결제 원장</strong>
-    <div class="itpe-step-detail"><span>토큰화 예금 · 스테이블코인 · <span class="itpe-keyword"><strong>CBDC</strong></span> 실시간 동시 정산(DvP)</span></div>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 520" role="img" aria-label="AI Agent 조건부 결제 구조">
+  <defs><marker id="pay-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" class="itpe-svg-link"></path></marker></defs>
+  <rect x="250" y="25" width="260" height="80" rx="14" class="itpe-svg-node"></rect>
+  <text x="380" y="58" text-anchor="middle" class="itpe-svg-title">인간·법인 소유자</text><text x="380" y="86" text-anchor="middle" class="itpe-svg-sub">목적·예산·책임 위임</text>
+  <rect x="250" y="155" width="260" height="80" rx="14" class="itpe-svg-node"></rect>
+  <text x="380" y="188" text-anchor="middle" class="itpe-svg-title">AI Agent</text><text x="380" y="216" text-anchor="middle" class="itpe-svg-sub">탐색·선택·결제 요청</text>
+  <rect x="250" y="285" width="260" height="95" rx="14" class="itpe-svg-node is-current"></rect>
+  <text x="380" y="320" text-anchor="middle" class="itpe-svg-title">Policy Engine</text><text x="380" y="350" text-anchor="middle" class="itpe-svg-sub">한도·상대방·목적·승인</text>
+  <rect x="55" y="425" width="280" height="70" rx="14" class="itpe-svg-node"></rect>
+  <text x="195" y="468" text-anchor="middle" class="itpe-svg-title">조건부 결제 실행</text>
+  <rect x="425" y="425" width="280" height="70" rx="14" class="itpe-svg-node"></rect>
+  <text x="565" y="468" text-anchor="middle" class="itpe-svg-title">원장 정산·감사로그</text>
+  <path d="M380 105 L380 155" class="itpe-svg-link" marker-end="url(#pay-arrow)"></path>
+  <path d="M380 235 L380 285" class="itpe-svg-link" marker-end="url(#pay-arrow)"></path>
+  <path d="M330 380 L195 425" class="itpe-svg-link" marker-end="url(#pay-arrow)"></path>
+  <path d="M430 380 L565 425" class="itpe-svg-link" marker-end="url(#pay-arrow)"></path>
+</svg>
 </div>
 
 <details>
-<summary>핵심 용어</summary>
+<summary>약어·전문용어</summary>
 
-- **프로그래머블 머니(Programmable Money)**: 화폐 단위 자체에 비즈니스 로직(스마트 계약)을 내장하여 사전 정의된 조건 만족 시 자동으로 결제·정산되는 디지털 화폐
-- **Agentic Economy(에이전트 경제)**: 자율 AI 에이전트가 소프트웨어 API, 컴퓨팅 파워, 데이터 자산을 직접 구매·소비하는 기계 중심 경제 체계
-- **스마트 계약(Smart Contract)**: 블록체인 상에서 사전 정의된 조건이 충족되면 제3자의 중개 없이 자동으로 실행되는 불변의 프로그램 코드
-- **ERC-4337(Account Abstraction)**: 스마트 컨트랙트를 지갑으로 활용하여 세션 키 기반 소액 자동 결제와 지출 한도 설정을 가능케 하는 이더리움 표준
-- **CBDC(Central Bank Digital Currency)**: 중앙은행이 직접 발행하는 디지털 형태의 법정 통화로, 도매형(기관 간 결제)과 소매형으로 구분
-- **Micro-payment(초미세 결제)**: 신용카드 고정 수수료 체계로는 불가능한 $0.001 이하 센트 단위의 초소액 실시간 거래
+- **Programmable Money**: 화폐 단위 자체의 사용처·기간·지역 등에 조건이 부여된 디지털 화폐
+- **Programmable Payment**: 조건 충족 시 결제지시를 자동 실행하는 기능
+- **AI(Artificial Intelligence) Agent**: 목표와 권한 범위에서 도구를 사용해 과업을 수행하는 인공지능 시스템
+- **CBDC(Central Bank Digital Currency)**: 중앙은행이 발행하는 디지털 형태의 중앙은행 화폐
+- **DvP(Delivery versus Payment)**: 자산 인도와 대금 지급을 조건부로 연계하는 결제 방식
+- **KYC(Know Your Customer)**: 고객 신원 확인 절차
+- **AML(Anti-Money Laundering)**: 자금세탁 방지 통제
+- **PSP(Payment Service Provider)**: 지급결제 서비스를 제공하는 사업자
+- **RACI(Responsible, Accountable, Consulted, Informed)**: 역할별 수행·책임·협의·통보 관계를 정한 표
 
 </details>
 
 ## 예상문제
 
-> 생성형 AI 에이전트가 자율적으로 API 및 컴퓨팅 자원을 구매·소비하는 경제 주체로 부상함에 따라 주목받는 '프로그래머블 머니(Programmable Money)'의 개념, 핵심 기술 아키텍처, 스마트 계약 기반의 자율 결제 메커니즘, 보안 및 규제 이슈와 대응 방안을 설명하시오. (25점)
+> **(미출제 예상·25점)** Programmable Money와 Programmable Payment의 차이를 설명하고, AI Agent 결제 구조와 위험·통제방안을 제시하시오.
 
-## Ⅰ. 기계 경제(Machine Economy)의 혈관, 프로그래머블 머니의 개요
+## Ⅰ. 개요
 
-> 인간 개입 없는 **기계 간 자율 상거래(M2M)**를 위해 화폐에 **스마트 계약**을 내장하여 **초미세 결제(Micro-payment)**와 동시 정산을 실현함.
+> AI Agent는 독립적 법적 주체라기보다 인간·법인이 정한 권한 안에서 결제 요청을 실행하는 대리 시스템으로 설계해야 함
 
-- 정의: 화폐 단위 자체에 프로그래밍 코드(**스마트 계약**)와 실행 조건을 내장하여, 특정 조건 충족 시 사람의 개입 없이 자율적으로 결제·정산이 집행되는 **기계 경제(Machine Economy) 특화 디지털 화폐 체계**
-- 목적: 인간 인증 병목과 고정 수수료 제거, AI 에이전트 간 실시간 가치 교환 및 원장 동시 정산(DvP) 구현
+- **정의**: Programmable Money는 화폐의 사용조건을, Programmable Payment는 결제지시의 실행조건을 코드로 통제하는 방식
+- **목적**: 조건부 거래 자동화·정산 효율화·기계 간 소액거래 지원
 
-## Ⅱ. 프로그래머블 머니 3계층 아키텍처 및 4단계 자율 결제 프로세스
+## Ⅱ. Money·Payment 비교
 
-> 에이전트 간 협상에서 조건부 에스크로 예치, 서비스 수행, 결과 검증 후 즉시 정산으로 이어지는 파이프라인을 운영함.
+| 기준 | Programmable Money | Programmable Payment |
+|---|---|---|
+| 조건 대상 | 화폐 단위 | 결제지시·업무규칙 |
+| 제약 | 사용처·기간·지역 등 | 지급시점·검수·승인 등 |
+| 쟁점 | 화폐 단일성·범용성 | 오류·취소·분쟁·책임 |
+| 예시 | 목적 제한형 Voucher | Pay-on-delivery·Escrow |
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="프로그래머블 머니 기반 AI 에이전트 자율 결제 4단계 프로세스">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>① 서비스 탐색 및 온체인 협상</strong><span>서비스 레지스트리 검색, 단가/SLA 협상 및 스마트 계약 초안 생성 → 자율 계약 조건 명세서</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>② 조건부 에스크로 자금 예치</strong><span>ERC-4337 지갑 서명, 스마트 계약에 대금 락업 및 지출 한도 검증 → 에스크로 스마트 컨트랙트 생성</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>③ 서비스 수행 및 페이로드 전달</strong><span>약정된 SLA에 맞춰 GPU 추론 연산 결과 반환 또는 데이터 스트리밍 → 암호화된 결과 페이로드 수신</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>④ 암호학적 검증 및 즉시 정산</strong><span>결과물 해시 및 SLA 무결성 확인 시 판매자 지갑으로 자금 즉시 릴리스 → 온체인 트랜잭션 영수증 (DvP 정산 완결)</span></div>
-  </div>
+CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이며, 그 자체만으로 Programmable Money라고 단정하지 않음.
+
+## Ⅲ. AI Agent 결제 절차
+
+> Agent 판단과 자금 집행을 분리하고 독립 Policy Engine이 최종 권한을 검사함
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="AI Agent 조건부 결제 절차">
+  <div class="itpe-flow-node"><strong>① 권한 위임</strong><div class="itpe-step-detail"><strong>활동</strong><span>목적·한도·상대방·기간 정의</span></div><div class="itpe-step-detail"><strong>산출</strong><span>위임정책·승인규칙</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>② 거래 요청</strong><div class="itpe-step-detail"><strong>활동</strong><span>서비스·가격·조건 선택</span></div><div class="itpe-step-detail"><strong>산출</strong><span>결제요청·거래문맥</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current"><strong>③ 정책·위험 검사</strong><div class="itpe-step-detail"><strong>판정</strong><span>한도·KYC·AML·Fraud·추가승인</span></div><div class="itpe-step-detail"><strong>산출</strong><span>승인·차단·보류</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>④ 조건부 실행·정산</strong><div class="itpe-step-detail"><strong>활동</strong><span>조건 검증·지급·원장 기록</span></div><div class="itpe-step-detail"><strong>산출</strong><span>영수증·감사로그</span></div></div>
 </div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>정산 무결성</strong></span> · 에이전트 계약 ↔ 스마트 계약 가드레일 ↔ 블록체인 최종성(Finality) 100% 보증</div>
 
-### 3계층 아키텍처 구성요소
+## Ⅳ. 결제수단별 특성
 
-| 아키텍처 계층 | 핵심 기술 및 구성요소 | 주요 기능 및 역할 |
+| 수단 | 강점 | 주요 위험 |
 |---|---|---|
-| **1. 에이전트 계층** | LLM 오케스트레이터, Agent Protocol, 온체인 서비스 레지스트리 | 자율 서비스 탐색, 실시간 가격 협상, API 호출 계약 발주 |
-| **2. 가드레일 계층** | **ERC-4337(계정 추상화) 지갑**, 지출 쿼터 모듈, 오라클(Chainlink) | AI 오작동 지출 방어, SLA 충족 여부 검증, 조건부 에스크로 집행 |
-| **3. 결제 원장 계층** | 이더리움 L2 롤업, 토큰화 예금, 중앙은행 도매형 **CBDC** 네트워크 | 가스비 최소화 초미세 결제 지원 및 실시간 동시 정산(DvP) |
+| Tokenised Deposit | 은행 예금 기반·액면 상환 | 은행 간 상호운용성 |
+| Stablecoin | 개방형 네트워크 활용 | 준비자산·가격·규제 |
+| Wholesale CBDC | 중앙은행 화폐 결제 | 접근범위·시스템 연계 |
+| 기존 지급결제망 | 법·운영체계 성숙 | API·소액거래 제약 |
 
-## Ⅲ. 전통 전자화폐 vs 프로그래머블 머니 비교
-
-> 전통 화폐는 인간의 수동 인증과 배치 정산 중심이나, 프로그래머블 머니는 코드 실행과 실시간 동시 정산 중심임.
-
-| 비교 항목 | 전통 전자화폐 (신용카드, 간편결제) | 프로그래머블 머니 (Smart Money) |
-|---|---|---|
-| **주요 결제 주체** | 사람 (사용자 본인 인증 및 OTP 필수) | **소프트웨어 코드, 자율 AI 에이전트, 기계** |
-| **실행 메커니즘** | 중앙 집중형 금융 결제망 (PG사, 은행망) | **스마트 계약(Smart Contract)** 기반 조건부 자동 실행 |
-| **거래 수수료** | 건당 고정 수수료 + 정률 (마이크로 결제 불가) | L2 블록체인 기반 극소 가스비 (**마이크로센트 결제 실현**) |
-| **정산 주기** | 영업일 기준 T+1 ~ T+3일 배치 정산 | **결제와 동시에 원장에 최종 기록되는 실시간 정산(DvP)** |
-| **화폐의 상태성** | 정적 가치 저장 및 단순 잔고 이동 | **지출 조건, 유효기간, SLA 제약이 화폐 코드 내 내장** |
-
-## Ⅳ. 실무 적용 시 보안·규제 위험 요인 및 통제 대책
-
-> AI 환각으로 인한 무한 결제 루프와 스마트 계약 취약점을 방어하기 위해 지출 쿼터와 DID를 결합해야 함.
+## Ⅴ. 문제점·대응책
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **AI 환각에 의한 잔고 탕진** | ERC-4337 지갑 내 **Session Key 기반 시간당/일일 지출 한도(Rate-limit)** 및 서킷브레이커 | 돌발적 재정 손실 원천 차단 |
-| **스마트 계약 해킹** | 정적 분석 도구(Slither) 검증 및 다중 서명(Multi-sig) 오라클 합의 강제 | 금융 자산 탈취 방지 |
-| **법인격 부재에 따른 규제 위반** | AI 에이전트와 법인/인간 소유자를 1:1 매핑하는 **탈중앙 식별자(DID)** 발급 의무화 | 금융 법률 준수 및 법적 책임 명확화 |
+| Agent 오판·반복 결제 | 한도·속도제한·Circuit Breaker | 손실 범위 제한 |
+| 권한 탈취 | 단기자격·키 격리·거래서명 | 자금 접근 보호 |
+| 상대방·서비스 사기 | Allowlist·평판·Escrow | 거래위험 감소 |
+| 책임 불명확 | 소유자·운영자·PSP의 RACI | 분쟁 책임 명확화 |
+| 취소 불가·오라클 오류 | 보류·취소·이의제기 절차 | 소비자·기업 보호 |
 
-## Ⅴ. 안전한 기계 경제 구축을 위한 기술사적 제언
+## Ⅵ. 결론·기술사적 제언
 
-> 무제한 자율성을 차단하기 위해 세션 키 기반 권한 위임과 제도권 토큰화 예금을 결제 레일로 채택해야 함.
+> **[핵심 통찰]** Agent의 자율성은 지갑 보유가 아니라, 책임주체가 승인한 정책 안에서 취소·감사 가능한 결제를 수행하는 능력으로 정의해야 함.
 
-### 학습자 통찰 메모 — 답안 밖
+> **나라면** Agent에 Master Key를 주지 않고 거래별 단기 권한을 발급하며, 금액·상대방·목적·위험도에 따라 자동승인·추가승인·차단을 분기하겠음.
 
-- [핵심 통찰]: AI 에이전트가 고도화될수록 기계는 인간에게 신용카드 OTP 번호를 묻지 않을 것임. AI가 진정한 자율성을 갖춘 경제 주체로 도약하기 위한 마지막 퍼즐 조각은 바로 '기계 친화적 네이티브 화폐'인 프로그래머블 머니임.
-- 나라면: AI 에이전트에 지갑 마스터 키를 주지 않고, [ERC-4337의 Session Key] 기술을 활용하여 지정된 기간 동안 사전 승인된 화이트리스트 스마트 계약에만 소액 지출을 허용하는 '권한 위임 샌드박스'를 구축하고, 암호화폐 가격 변동성 위험을 차단하기 위해 중앙은행 도매형 CBDC 및 인가된 토큰화 예금만을 결제 통화로 강제하겠음.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 무제한적 자율 결제를 배제하고 세션 키 기반 지출 가드레일과 제도권 통화 레일로 전환
-- 대안: **ERC-4337 Session Key 지출 한도 제어** 및 **도매형 CBDC/토큰화 예금 연계**
-- 검증: 일일 지출 한도 초과 차단율 100% · 스마트 계약 정적 취약점 0건
-- 효과: AI 에이전트 폭주 손실 원천 차단 · 규제 준수 기반 안전한 기계 경제(Machine Economy) 구현
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="프로그래머블 머니 기반 안전한 AI 경제 구축 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>현행 한계</strong><span>인간 본인인증 필수 · 신용카드 고정 수수료로 AI 초미세 결제 수용 불가</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>개선 대안</strong><span>스마트 계약 내장형 프로그래머블 머니 + ERC-4337 계정 추상화 도입</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>검증 기준</strong><span>Session Key 기반 지출 쿼터 통제 · DID 연계 소유자 실명 추적성</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>실행 효과</strong><span>API 센트 단위 초미세 결제 실현 · 마찰 없는 자율 기계 경제 안착</span></div>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 470" role="img" aria-label="AI Agent 결제 위험도별 승인 분기">
+  <rect x="250" y="25" width="260" height="85" rx="14" class="itpe-svg-node is-current"></rect>
+  <text x="380" y="60" text-anchor="middle" class="itpe-svg-title">Policy·Risk 판정</text><text x="380" y="88" text-anchor="middle" class="itpe-svg-sub">금액·상대방·목적·행동</text>
+  <rect x="25" y="300" width="210" height="90" rx="14" class="itpe-svg-node"></rect>
+  <text x="130" y="338" text-anchor="middle" class="itpe-svg-title">저위험</text><text x="130" y="366" text-anchor="middle" class="itpe-svg-sub">자동승인</text>
+  <rect x="275" y="300" width="210" height="90" rx="14" class="itpe-svg-node"></rect>
+  <text x="380" y="338" text-anchor="middle" class="itpe-svg-title">중위험</text><text x="380" y="366" text-anchor="middle" class="itpe-svg-sub">인간 추가승인</text>
+  <rect x="525" y="300" width="210" height="90" rx="14" class="itpe-svg-node"></rect>
+  <text x="630" y="338" text-anchor="middle" class="itpe-svg-title">고위험</text><text x="630" y="366" text-anchor="middle" class="itpe-svg-sub">차단·조사</text>
+  <path d="M330 110 L130 300 M380 110 L380 300 M430 110 L630 300" class="itpe-svg-link"></path>
+</svg>
 </div>
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의·목적
+- **정의**: Programmable Money는 화폐 사용조건을, Programmable Payment는 결제 실행조건을 코드로 통제하는 방식
+- **목적**: 조건부 거래 자동화·정산 효율화·기계 간 소액거래 지원
 
-- 정의: 화폐 단위 자체에 **스마트 계약** 코드를 내장하여 특정 비즈니스 조건 충족 시 사람 개입 없이 자동 결제·정산되는 **기계 경제(Machine Economy) 특화 디지털 화폐**
-- 목적: 인간 인증 병목과 고정 수수료 제거, 자율 AI 에이전트 간 초미세 결제(Micro-payment) 및 실시간 정산 실현
-
-### 2. 구성체계 및 결제 파이프라인
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="프로그래머블 머니 자율 결제 요약">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>에이전트 계층</strong><span>온체인 서비스 탐색 · 가격/SLA 자율 협상</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>가드레일 계층</strong><span>ERC-4337 세션 키 · 지출 쿼터 · 에스크로</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>결제 원장 계층</strong><span>토큰화 예금 · 도매형 CBDC · 실시간 동시 정산(DvP)</span></div></div>
-</div>
-
-### 3. 핵심 통제
-
-- **Session Key 지출 쿼터**: AI 에이전트의 오작동 및 무한 루프 호출 시 일일 지출 한도 차단
-- **DID 연계 책임성**: AI 에이전트를 인간/법인 소유자와 온체인 DID로 매핑하여 금융 규제(AML/KYC) 준수
+| 통제층 | 핵심 |
+|---|---|
+| 권한 | 목적·한도·상대방·기간 |
+| 위험 | KYC·AML·Fraud·추가승인 |
+| 정산 | 조건검증·지급·원장·감사 |
 
 ## 출제 이력과 검증 출처
 
-- 시사·트렌드 출제 예상 토픽: AI 에이전트의 경제 주체화 및 프로그래머블 머니
-- [Bank for International Settlements(BIS), Blueprint for the future monetary system](https://www.bis.org)
-- [Ethereum Foundation, ERC-4337: Account Abstraction Using Alt Mempool](https://eips.ethereum.org)
+- 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
+- [ECB, Progress on the investigation phase of a digital euro](https://www.ecb.europa.eu/euro/digital_euro/timeline/profuse/shared/pdf/ecb.degov230424_progress.en.pdf)
+- [BIS, Pushing the monetary frontier: stablecoins and tokenised deposits](https://www.bis.org/speeches/20260828-pushing-monetary-frontier-stablecoins-and-tokenised-deposits)
+- [Ethereum, ERC-4337](https://eips.ethereum.org/EIPS/eip-4337)
 
 ## 학습 체크
 
-- [ ] 프로그래머블 머니의 4대 핵심 특징과 전통 전자화폐와의 차이점을 설명할 수 있는가?
-- [ ] AI 에이전트 자율 결제 아키텍처의 3계층 구조를 도식화할 수 있는가?
-- [ ] ERC-4337(계정 추상화)과 Session Key를 활용한 지출 가드레일 설계 방안을 제시할 수 있는가?
+- [ ] Ⅰ: Programmable Money·Payment의 정의·목적을 설명할 수 있는가?
+- [ ] Ⅱ: Money와 Payment의 조건 대상·쟁점을 비교할 수 있는가?
+- [ ] Ⅲ: 권한 위임부터 정산까지 활동·산출을 연결할 수 있는가?
+- [ ] Ⅳ: 결제수단별 강점·위험을 비교할 수 있는가?
+- [ ] Ⅴ: 오판·탈취·사기·책임·취소 위험의 대응책을 제시할 수 있는가?
+- [ ] Ⅵ: 위험도별 승인 분기를 그릴 수 있는가?
 
 ## 연결 토픽
 
-- 이전 토픽: [EA/ITA](./107_ea_ita.md)
-- 연관 토픽: [AI 거버넌스 플랫폼](./050_ai_governance_platform.md), [NIST AI RMF](./036_nist_ai_rmf.md)
-- 다음 토픽: [6시그마(Six Sigma) DMAIC](./111_six_sigma_dmaic.md)
+- 이전: [107. EA·ITA](./107_ea_ita/)
+- 관련: [050. AI 거버넌스 플랫폼](./050_ai_governance_platform/) · [036. NIST AI RMF](./036_nist_ai_rmf/)
+- 다음: [111. Six Sigma DMAIC](./111_six_sigma_dmaic/)
