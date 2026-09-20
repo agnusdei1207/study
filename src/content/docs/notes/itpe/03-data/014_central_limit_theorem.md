@@ -4,7 +4,7 @@ sidebar:
     text: "A"
 title: "중심극한정리 (Central Limit Theorem)"
 author: "Codex"
-date: "2026-09-20T19:54:48+09:00"
+date: "2026-09-20T20:01:24+09:00"
 tags: ["notes-data"]
 extra:
   model: "GPT-5.6 Sol"
@@ -15,17 +15,12 @@ extra:
 <div class="itpe-topic-path" role="img" aria-label="데이터 분석에서 통계 추론 및 중심극한정리로 이어지는 지식 위치"><span>자료처리·데이터</span><span>통계 분석·추론</span><strong>중심극한정리</strong></div>
 
 ## 큰 그림과 30초 인출
-```text
-[임의 모집단: μ, σ²] → 크기 n의 독립 표본 → 표본평균 X̄
-                                           │ 표준화
-                                           ▼
-                  Z=(X̄-μ)/(σ/√n) ⇒ N(0,1), n→∞
-```
 - 본질: **일정 조건 아래 표본합·표본평균의 표준화 분포가 표본 증가에 따라 정규분포로 수렴하는 정리**
 - 구분: 대수의 법칙은 값의 수렴, 중심극한정리는 분포의 수렴
 - 산출: 표준오차·신뢰구간·가설검정의 정규근사 근거
 
-## 예상문제
+<div class="itpe-flow-map" role="img" aria-label="중심극한정리 큰 그림"><div class="itpe-flow-node"><strong>모집단</strong><span>입력: 평균 $\mu$ · 유한분산 $\sigma^2$</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>독립 표본평균</strong><span>처리: 크기 $n$ 표본 추출·표준화</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>정규근사</strong><span>산출: $Z\Rightarrow N(0,1)$</span></div></div>
+
 <details><summary>핵심 용어</summary>
 
 - `CLT(Central Limit Theorem)`: 표준화한 표본합·평균의 분포가 정규분포로 수렴하는 정리
@@ -34,6 +29,8 @@ extra:
 - `Bootstrap`: 재표본추출로 표집분포와 불확실성을 근사하는 방법
 
 </details>
+
+## 예상문제
 > 중심극한정리의 개념·성립조건·통계적 의의를 설명하고 대수의 법칙과 비교하여 적용 한계를 논하시오. (25점)
 
 ## 딸려 나오는 하위 토픽
@@ -45,11 +42,13 @@ extra:
 | **정규근사 한계** | 왜도·중꼬리·의존성에서 수렴속도와 표준오차 점검 | Ⅱ 조건, Ⅵ 보완 |
 
 ## Ⅰ. 추론통계의 정규근사 기반, 중심극한정리 개요
+> 중심극한정리는 원자료가 아니라 표준화한 표본평균의 분포 수렴을 설명함.
 - 평균 $\mu$, 유한분산 $\sigma^2$인 독립·동일분포 표본에서 $\sqrt n(\bar X-\mu)/\sigma$는 표준정규분포로 수렴
 - 원모집단이 정규분포가 아니어도 표본평균의 근사 분포를 제공
 - 신뢰구간·z/t 검정·오차한계와 표본수 산정의 이론적 기반
 
 ## Ⅱ. 성립 조건과 수렴 요소
+> 표본 수보다 독립성·꼬리·분산 조건이 정규근사의 타당성을 좌우함.
 | 요소 | 내용 | 위반 시 확인 |
 |---|---|---|
 | 독립성 | 표본 간 강한 의존 없음 | 군집·시계열 구조 |
@@ -58,6 +57,7 @@ extra:
 | 충분한 n | 왜도·꼬리에 따라 필요량 다름 | 시뮬레이션·진단 |
 
 ## Ⅲ. 표본평균의 근사 분포
+> 표준오차 $\sigma/\sqrt n$은 표본 증가가 평균 추정 불확실성을 줄이는 속도를 나타냄.
 ```text
 E(X̄)=μ        Var(X̄)=σ²/n        SE(X̄)=σ/√n
 X̄ ≈ N(μ, σ²/n)                    Z ≈ N(0,1)
@@ -66,6 +66,7 @@ X̄ ≈ N(μ, σ²/n)                    Z ≈ N(0,1)
 - 정규 모집단이면 표본크기와 무관하게 표본평균이 정규분포
 
 ## Ⅳ. 적용 절차
+> 생성과정 진단 후 표준오차와 근사 민감도를 검증해야 추론이 유효함.
 ```text
 모집단·표본설계 확인 → 독립성·꼬리·왜도 진단 → 표본통계량 선택
  → 표준오차 산정 → 정규근사·신뢰구간/검정 → 민감도 검증
@@ -77,6 +78,7 @@ X̄ ≈ N(μ, σ²/n)                    Z ≈ N(0,1)
 | 검증 | Bootstrap·시뮬레이션과 결론이 일치하는가 |
 
 ## Ⅴ. 대수의 법칙과 중심극한정리 비교
+> LLN은 값의 수렴, CLT는 표준화 오차분포의 수렴을 답함.
 | 구분 | 대수의 법칙 | 중심극한정리 |
 |---|---|---|
 | 대상 | 표본평균 자체 | 표준화한 표본평균의 분포 |
@@ -85,6 +87,7 @@ X̄ ≈ N(μ, σ²/n)                    Z ≈ N(0,1)
 | 활용 | 일치성 | 신뢰구간·가설검정 |
 
 ## Ⅵ. 적용 한계와 보완
+> 큰 표본은 의존성·대표성·무한분산을 자동으로 해결하지 못함.
 | 문제 | 원인 | 대책 |
 |---|---|---|
 | 작은 표본 정규근사 오류 | 심한 왜도·중꼬리 | 정확분포·t분포·Bootstrap |
@@ -111,10 +114,7 @@ X̄ ≈ N(μ, σ²/n)                    Z ≈ N(0,1)
 ## 1교시 10점 답안 발췌
 - 정의: CLT(Central Limit Theorem)는 독립 표본합·평균을 표준화한 분포가 조건 아래 정규분포로 수렴하는 정리임.
 - 목적: 표본평균의 표준오차와 정규근사를 통해 신뢰구간·가설검정의 불확실성을 계산함.
-```text
-Z=(X̄-μ)/(σ/√n) ⇒ N(0,1)
-LLN: 값의 수렴 / CLT: 표준화 오차분포의 수렴
-```
+<div class="itpe-flow-map" role="img" aria-label="중심극한정리와 대수의 법칙"><div class="itpe-flow-node"><strong>표본평균</strong><span>입력: 독립 표본 · 유한분산</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>CLT(Central Limit Theorem)</strong><span>처리: $Z=(\bar X-\mu)/(\sigma/\sqrt n)$</span><span>산출: $N(0,1)$로 분포 수렴</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>LLN(Law of Large Numbers)</strong><span>비교: $\bar X$ 값이 $\mu$로 수렴</span></div></div>
 | 비교·한계 | 판정·대책 |
 |---|---|
 | LLN vs CLT | 값 수렴 vs 분포 수렴 |

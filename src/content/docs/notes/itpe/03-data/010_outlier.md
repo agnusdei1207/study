@@ -1,7 +1,7 @@
 ﻿---
 title: "이상치(탐지 기법·노이즈 구분 포함)"
 author: "Codex"
-date: "2026-09-20T19:54:48+09:00"
+date: "2026-09-20T20:01:24+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -49,8 +49,6 @@ extra:
   <div class="itpe-flow-node"><strong>분석 목적별 처리 (삭제 / 대체 / 윈저화 / FDS 격리)</strong></div>
 </div>
 
-## 예상문제
-
 <details><summary>핵심 용어</summary>
 
 - `IQR(Interquartile Range)`: 사분위 범위로 단변량 극단값을 판정
@@ -59,6 +57,8 @@ extra:
 - `Winsorizing`: 극단값을 정한 경계값으로 치환
 
 </details>
+
+## 예상문제
 
 > 데이터 전처리 및 이상 징후 탐지를 위한 이상치(Outlier)와 노이즈(Noise)의 개념 및 차이점을 비교하고, 통계적·거리/밀도·머신러닝 기반 3대 탐지 알고리즘(IQR, LOF, Isolation Forest) 및 분석 목적에 따른 4대 처리 전략을 설명하시오. (25점)
 
@@ -144,7 +144,7 @@ extra:
 |---|---|---|---|
 | **사기 거래 데이터 오삭제** | 전처리 엔지니어가 이상 거래를 단순 노이즈로 오인하여 일괄 Trimming | 이상치 탐지 파이프라인과 지도학습 분류 파이프라인 분리 | FDS 학습용 핵심 불균형 데이터 보존 |
 | **고차원 센서 거리 균일화** | 수백 개 센서 변수 동시 투입 시 거리 분별력 약화 | 차원 축소·특성 선택 후 Isolation Forest·Autoencoder 후보를 검증자료로 비교 | 데이터량·정상학습 가정에 맞는 탐지기 선택 |
-| **스트리밍 지연 발생** | 초당 수만 건 트래픽에 복잡한 군집 기반 탐지 알고리즘 적용 | 경량화된 Half-Space Trees 또는 온라인 Isolation Forest 적용 | 실시간성(Latency < 10ms) 보장 |
+| **스트리밍 지연 발생** | 초당 수만 건 트래픽에 복잡한 탐지 알고리즘 적용 | Half-Space Trees·온라인 탐지 후보를 부하 시험 | 목표 지연·처리량·정확도 SLA 충족 여부 판정 |
 
 ## Ⅶ. 결론 및 기술사적 제언
 
@@ -169,13 +169,7 @@ extra:
 - 목적: 오류와 유효 희귀사건을 분리하여 통계 왜곡을 줄이고 사기·고장 신호를 보존함.
 
 ### 2. 핵심 메커니즘 / 체계
-```text
-[입력 데이터] ──▶ [탐지] IQR (Q1-1.5*IQR ~ Q3+1.5*IQR) / LOF / Isolation Forest
-                     │
-                     ▼
-[처리 분기] 오류 ──▶ 삭제(Trimming) / 윈저화(Winsorizing)
-            신호 ──▶ FDS 격리 보존 / Autoencoder 복원오차 모델링
-```
+<div class="itpe-flow-map" role="img" aria-label="이상치 탐지와 처리"><div class="itpe-flow-node"><strong>입력 데이터</strong><span>대상: 원천 관측치</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>탐지</strong><span>방식: IQR(Interquartile Range) · LOF(Local Outlier Factor) · Isolation Forest</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>원인 판정</strong><span>오류: 삭제·대체</span><span>신호: 격리·조사</span></div></div>
 - 통계, 거리/밀도, 머신러닝 3대 기법으로 식별 후 분석 목적에 따라 차등 처리함.
 
 | 판정 대상 | 대책 | 검증 |

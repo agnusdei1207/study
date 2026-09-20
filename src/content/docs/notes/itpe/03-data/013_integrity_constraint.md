@@ -1,7 +1,7 @@
 ﻿---
 title: "무결성 제약(데이터 무결성)"
 author: "Codex"
-date: "2026-09-20T19:54:48+09:00"
+date: "2026-09-20T20:01:24+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -48,8 +48,6 @@ extra:
   </div>
 </div>
 
-## 예상문제
-
 <details><summary>핵심 용어</summary>
 
 - `Entity Integrity`: 기본키의 유일성과 Null 불허 규칙
@@ -58,6 +56,8 @@ extra:
 - `CASCADE·RESTRICT`: 부모 변경 시 자식 처리 또는 거부 정책
 
 </details>
+
+## 예상문제
 
 > 관계형 데이터베이스에서 데이터 무결성(Data Integrity)의 개념과 릴레이션 4대 무결성 제약(개체, 참조, 도메인, 키)을 비교하고, 부모-자식 테이블 간 참조 무결성 유지를 위한 4대 참조 조치(CASCADE, RESTRICT, SET NULL 등) 및 성능 최적화 방안을 논하시오. (25점)
 
@@ -78,7 +78,7 @@ extra:
 
 ## Ⅱ. 릴레이션 4대 무결성 제약조건 비교
 
-> 개체(PK), 참조(FK), 도메인(Type/Check), 키(Unique)가 RDBMS 무결성의 4대 기둥임.
+> 개체·참조 무결성은 관계형 모델의 핵심이며 도메인·키의 별도 분류 여부와 Null 규칙은 교재·DBMS 체계를 확인함.
 
 <div class="itpe-pipeline" role="img" aria-label="릴레이션 무결성 4대 제약">
   <div class="itpe-pipeline-node"><strong>개체 무결성</strong><div class="itpe-step-detail"><span>규칙</span><span>PK Not-Null · Unique</span></div></div>
@@ -95,7 +95,7 @@ extra:
 | **개체 무결성 (Entity)** | 릴레이션의 기본키(PK)는 유일해야 하며 어떠한 경우에도 NULL 값을 가질 수 없음 | 특정 튜플의 고유한 식별이 불가능해져 데이터 중복 및 접근 불가 발생 | `PRIMARY KEY` |
 | **참조 무결성 (Referential)** | 외래키(FK) 값은 참조하는 부모 릴레이션의 기본키 값이거나 NULL이어야 함 | 부모가 없는 고아 레코드(Orphan Record)가 발생하여 조인 오류 유발 | `FOREIGN KEY REFERENCES` |
 | **도메인 무결성 (Domain)** | 속성에 입력되는 값은 해당 속성에 정의된 도메인(타입, 길이, 범위)에 속해야 함 | 나이 컬럼에 음수 입력, 날짜 컬럼에 문자열 입력 등 데이터 타입 파손 | `CHECK`, `NOT NULL`, 도메인 타입 |
-| **키 무결성 (Key)** | 모든 릴레이션은 튜플을 유일하게 식별할 수 있는 하나 이상의 키(후보키)를 가져야 함 | 릴레이션 내에 모든 속성값이 동일한 완전 중복 행(Duplicate Row) 발생 | `UNIQUE` |
+| **키 무결성 (Key)** | 교재 체계에 따라 별도 분류하며, PK는 대표 식별자·NOT NULL이고 UNIQUE는 대체키 유일성 및 Null 처리 규칙이 DBMS별 상이 | 식별·대체키 중복 | `PRIMARY KEY`, `UNIQUE` |
 | **사용자 정의 무결성** | 4대 기본 제약 외에 비즈니스 업무 규칙(Business Rule)을 만족해야 함 | 결제 금액이 상품 정가보다 크거나, 탈퇴 회원의 주문 상태 변경 등 업무 왜곡 | `TRIGGER`, Stored Procedure |
 
 ## Ⅲ. 참조 무결성 유지를 위한 4대 참조 조치 정책
@@ -141,12 +141,12 @@ CREATE TABLE orders (
   부모 키 변경·삭제와 자식 조회 패턴 확인 → DBMS별 실행계획·잠금 관측
   → 참조 검사 비용과 경합이 큰 FK에 적합한 인덱스 설계
 ```
-- **대량 데이터 배치(Batch) 적재 지연**: 수천만 건 데이터를 삽입할 때 매 행마다 PK/FK 제약을 검증하면 성능이 급감함.
+- **대량 데이터 배치(Batch) 적재 지연**: 대량 삽입에서 PK·FK 검증 비용이 누적될 수 있으므로 DBMS별 적재 방식과 실행시간을 측정함.
   - 대책: Oracle의 `ENABLE NOVALIDATE`는 기존 행을 검증하지 않으므로 신규 DML 통제용으로 구분하고, 기존 데이터까지 정제·검증할 때는 `ENABLE VALIDATE` 적용.
 
 ## Ⅵ. 실무 고려사항 및 장애 대책
 
-> 고아 데이터 유입과 외래키 인덱스 누락으로 인한 락 경합을 사전에 통제함.
+> 고아 데이터와 참조 검사 병목은 선언 제약, DBMS별 실행계획·잠금 관측, 복구 절차로 통제함.
 
 - 적용 상황: MSA 분산 DB 환경 및 대규모 ERP 마이그레이션
 
@@ -154,7 +154,7 @@ CREATE TABLE orders (
 |---|---|---|---|
 | **참조 검사 지연·경합** | FK 인덱스 부재, 부모 변경, DBMS별 잠금 구현 차이 | 실행계획·잠금 이벤트 확인 후 선택적 FK 인덱스와 작업 순서 적용 | 특정 잠금 명칭을 일반화하지 않고 병목을 실측 개선 |
 | **MSA 분산 DB 고아 데이터 발생** | 주문 DB와 회원 DB 분리로 인해 물리적 FK 선언 불가 | 분산 트랜잭션(Saga Pattern) 및 CDC 기반 최종 일관성 검증 파이프라인 | 서비스 독립성과 데이터 정합성 양립 |
-| **CASCADE 연쇄 삭제 대참사** | 대형 테이블 간 CASCADE 설정 후 단일 부모 삭제 시 수백만 자식 행 동시 삭제 | 운영 DB에서 ON DELETE CASCADE 금지, 논리적 삭제(Soft Delete: `is_deleted='Y'`) 표준화 | 데이터 오삭제 방지 및 복구력 확보 |
+| **CASCADE 연쇄 삭제 위험** | 생명주기가 다른 대형 테이블에 CASCADE 적용 | 생명주기 일치 시에만 적용하고 영향 행수·승인·복구 절차 통제, 필요 시 Soft Delete | 대량 오삭제 위험 완화 |
 
 ## Ⅶ. 결론 및 기술사적 제언
 
@@ -163,7 +163,7 @@ CREATE TABLE orders (
 ### 학습자 통찰 메모 — 답안 밖
 
 - [핵심 통찰]: 성능을 이유로 DBMS의 무결성 제약(PK/FK)을 모두 해제하고 '애플리케이션 코드로 검증하겠다'고 주장하는 개발팀이 종종 있음. 그러나 애플리케이션 버그, 배치 스크립트 직접 실행, 직접 SQL 수정 등의 우회 경로를 통해 고아 데이터가 유입되는 순간 RDBMS의 존재 가치는 완전히 소멸함.
-- 나라면: 엔터프라이즈 RDBMS 구축 시 모든 식별자와 참조 관계에 선언적 제약(PK, FK)과 FK 전용 인덱스를 100% 필수 강제하고, 대량 적재 시에만 선별적 제약 비활성화/재활성화 파이프라인을 적용하여, 성능과 무결성의 타협 없는 아키텍처 기준선을 확립하겠음.
+- 나라면: 식별자와 참조 관계에는 선언적 제약을 우선하고, FK 인덱스는 DBMS·조회·부모 변경 패턴을 실측해 선택하며 대량 적재 후 기존 데이터까지 검증하겠음.
 
 ### 실전 답안용 기술사적 제언
 - 판정: 가능한 규칙은 DBMS 선언 제약으로 최종 보장
@@ -179,13 +179,8 @@ CREATE TABLE orders (
 - 목적: 애플리케이션 우회 경로에서도 데이터 불변식을 보존하여 신뢰 가능한 관계를 유지함.
 
 ### 2. 핵심 메커니즘 / 체계
-```text
-[개체 무결성] PK: Not Null & Unique
-[참조 무결성] FK: 부모 PK 일치 or Null (RESTRICT, CASCADE, SET NULL)
-[도메인 무결성] Type, Length, CHECK, NOT NULL
-[키 무결성] 후보키 유일성 (UNIQUE)
-```
-- DDL 선언적 제약으로 1차 통제하고, 복합 규칙은 트리거로 보완함.
+<div class="itpe-flow-map" role="img" aria-label="데이터 무결성 제약"><div class="itpe-flow-node"><strong>Entity Integrity</strong><span>규칙: PK(Primary Key) 유일·Not Null</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>Referential Integrity</strong><span>규칙: FK(Foreign Key)는 부모키 또는 Null</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>Domain·Key Integrity</strong><span>규칙: Type·CHECK·UNIQUE</span></div></div>
+- DDL(Data Definition Language) 선언적 제약으로 1차 통제하고, 복합 규칙은 트리거로 보완함.
 
 | 상황 | 대책 | 주의 |
 |---|---|---|

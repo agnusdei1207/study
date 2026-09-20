@@ -1,7 +1,7 @@
 ﻿---
 title: "z-검정(z-test)"
 author: "Codex"
-date: "2026-09-20T19:54:48+09:00"
+date: "2026-09-20T20:01:24+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -47,8 +47,6 @@ extra:
   </div>
 </div>
 
-## 예상문제
-
 <details><summary>핵심 용어</summary>
 
 - `z-statistic`: 기준 모수와 표본 통계량 차이를 표준오차로 표준화한 값
@@ -57,6 +55,8 @@ extra:
 - `MDE(Minimum Detectable Effect)`: 설계한 검정이 탐지하도록 정한 최소 효과
 
 </details>
+
+## 예상문제
 
 > 대규모 A/B 테스트 및 시스템 성능 개선 효과 검증을 위한 z-검정(z-test)의 개념, 전제조건, 검정 통계량 산출식(평균 검정, 비율 검정)을 제시하고, t-검정과의 차이점 및 빅데이터 환경에서 p-값(p-value) 해석 시 유의사항을 논하시오. (25점)
 
@@ -69,7 +69,7 @@ extra:
 
 ## Ⅰ. 대규모 표본 기반 모수 검정의 표준, z-검정의 개요
 
-> z-검정은 모분산이 알려져 있거나 표본이 충분히 클 때 표준정규분포를 통해 귀무가설 기각 여부를 판단하는 기법임.
+> 평균 z-검정은 모분산 기지가 원칙이고 대표본에서 모분산 미지 z 사용은 t의 정규근사임.
 
 - 정의: 검정 통계량이 귀무가설($H_0$) 하에서 표준정규분포($\mathcal{N}(0, 1)$)를 따른다고 가정할 수 있을 때, 표본 통계치와 기준 모수 간의 편차를 표준오차 단위로 표준화하여 유의성을 검정하는 기법
 - 필수 전제조건:
@@ -85,14 +85,14 @@ extra:
 ```text
                [실제 모집단의 참/거짓 상태]
                   H0 참 (차이 없음)      H0 거짓 (차이 있음)
-판정   H0 채택   올바른 결정 (1 - α)   제2종 오류 (β)
+판정   H0 기각 실패   올바른 결정 (1 - α)   제2종 오류 (β)
 결과   H0 기각   제1종 오류 (α)        올바른 결정 (검정력: 1 - β)
 ```
 
 | 검정 요소 | 개념 정의 | 실무적 기준 및 통제 방안 |
 |---|---|---|
 | **귀무가설 ($H_0$)** | "효과가 없다", "차이가 없다"는 기존 상태의 가설 | 기각하고자 하는 대상 가설 (예: $A$와 $B$의 전환율은 같다) |
-| **대립가설 ($H_1$)** | "효과가 있다", "차이가 있다"는 연구자의 주장 가설 | 채택하고자 하는 주장 (단측 검정: $>$, 양측 검정: $\neq$) |
+| **대립가설 ($H_1$)** | "효과가 있다", "차이가 있다"는 연구자의 주장 가설 | 귀무가설 기각 시 지지되는 주장(단측: $>$, 양측: $\neq$) |
 | **유의수준 ($\alpha$)** | 귀무가설이 참인데도 잘못 기각할 제1종 오류의 최대 허용치 | 통상 $\alpha = 0.05$ (5%) 또는 $0.01$ (1%)로 데이터 수집 전 사전 확정 |
 | **p-값 (p-value)** | 귀무가설이 참이라는 가정 하에, 관측된 통계량만큼 극단적인 값이 나올 확률 | $p \le \alpha$이면 귀무가설 기각, $p > \alpha$이면 기각 실패이며 귀무가설이 참임을 증명하지 않음 |
 
@@ -117,12 +117,12 @@ extra:
 
 ## Ⅳ. z-검정 vs t-검정 비교
 
-> 모분산을 알거나 대표본이면 z-검정을, 모분산을 모르고 소표본이면 t-검정을 씀.
+> 평균 검정은 모분산 기지이면 z, 미지이면 t가 원칙이며 대표본 z는 근사로만 사용함.
 
 | 비교 기준 | z-검정 (z-test) | t-검정 (t-test) |
 |---|---|---|
 | **기준 확률분포** | 표준정규분포 $\mathcal{N}(0, 1)$ (자유도 무관) | 스튜던트 t-분포 $t(df)$ (자유도 $n-1$에 따라 형태 변화) |
-| **모분산($\sigma^2$) 정보** | 모분산을 알고 있거나(Known), 대표본으로 추정 가능 | 모분산을 모름(Unknown), 반드시 표본분산($s^2$) 사용 |
+| **모분산($\sigma^2$) 정보** | 모분산을 알고 있음 | 모분산 미지, 표본분산($s^2$) 사용 |
 | **표본 크기 ($n$)** | 고정 임계 없음, 분포·의존성·기대도수에 따른 근사 품질 확인 | 모분산 미지 평균 검정의 기본, 정규성·강건성 확인 |
 | **분포 꼬리 두께** | 꼬리가 얇음 (극단치에 상대적으로 엄격) | 꼬리가 두꺼움(Fat-tail, 자유도가 작을수록 불확실성 반영) |
 | **임계값 ($\alpha=0.05$, 양측)** | 고정값: **$\pm 1.96$** | 자유도에 따라 변동 ($df=10$ 시 $\pm 2.228$, $df \to \infty$ 시 $1.96$ 수렴) |
@@ -174,12 +174,7 @@ extra:
 - 목적: 표본 차이를 표준오차 단위로 환산하여 사전 유의수준 아래 귀무가설 기각 여부를 통제함.
 
 ### 2. 핵심 메커니즘 / 체계
-```text
-[가설] H0 vs H1 ──▶ [통계량] z = (관측값 - 기준모수) / 표준오차
-                        │
-                        ▼
-[판정] 양측 α=.05에서 |z| > 1.96 또는 p < .05 ──▶ H0 기각
-```
+<div class="itpe-flow-map" role="img" aria-label="z 검정 판정"><div class="itpe-flow-node"><strong>가설</strong><span>입력: $H_0$ · $H_1$ · $\alpha$</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>z-statistic</strong><span>처리: 관측 차이 ÷ 표준오차</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>판정</strong><span>조건: 양측 $\alpha=.05$에서 $|z|>1.96$ 또는 $p<.05$</span><span>산출: $H_0$ 기각 또는 기각 실패</span></div></div>
 - 모분산 미지 평균 검정은 t-검정이 원칙이며, 대표본 z 사용은 근사임.
 
 | 검정 | 전제 | 대책 |
@@ -196,7 +191,8 @@ extra:
 
 - [NIST/SEMATECH, Tests of Means](https://www.itl.nist.gov/div898/handbook/prc/section2/prc21.htm)
 - [NIST/SEMATECH, Two-Sample t-Test](https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm)
-- [NIST/SEMATECH, Proportions Control Charts](https://www.itl.nist.gov/div898/handbook/pmc/section3/pmc332.htm)
+- [NIST/SEMATECH, Equality of Two Proportions z Test](https://www.itl.nist.gov/div898/handbook/prc/section3/prc33.htm)
+- [NIST Dataplot, Binomial Proportion Test](https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/binotest.htm)
 
 ## 학습 체크
 
