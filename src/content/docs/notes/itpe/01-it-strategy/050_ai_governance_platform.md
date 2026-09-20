@@ -1,243 +1,196 @@
 ---
 title: "AI 거버넌스 플랫폼"
-author: "Antigravity"
-date: "2026-09-20T19:43:00+09:00"
-tags:
-  - "notes-it-strategy"
+author: "OpenAI Codex"
+date: "2026-09-21T23:30:00+09:00"
+tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
-  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 IT 거버넌스 및 AI 규제 대응을 거쳐 AI 거버넌스 플랫폼으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>IT 거버넌스·신기술 규제</span>
-  <strong>AI 거버넌스 플랫폼</strong>
+<div class="itpe-topic-path" role="img" aria-label="IT 전략 관리에서 AI 거버넌스를 거쳐 AI 거버넌스 플랫폼으로 이어지는 지식 위치">
+  <span>IT 전략·관리</span><span>AI 거버넌스</span><strong>AI 거버넌스 플랫폼</strong>
 </div>
 
 ## 큰 그림과 30초 인출
 
-- 본질: **AI 거버넌스 플랫폼(AI Governance Platform)**은 기업 내 AI/LLM 모델의 위험 평가, 신뢰성(공정성·설명가능성) 검증, 런타임 보안 가드레일, 글로벌 규제 컴플라이언스를 소프트웨어적으로 중앙 통제하는 전주기 통합 관리 플랫폼
-- 메커니즘: 글로벌 규제 매핑 → 모델 인벤토리 등록 및 위험도 등급화 → **MLOps/LLMOps** 배포 파이프라인 연계 **Policy-as-Code** 게이트 통제 → 런타임 인라인 가드레일 및 감사 추적
-- 산출: 모델 카탈로그 · **Model Card(모델 카드)** · 공정성/편향성 평가서 · **SHAP/LIME** 설명가능성 보고서 · 런타임 감사 로그
+- 본질: 거버넌스 **정책·책임·위험기준**을 AI 수명주기의 통제점과 증적으로 구현
+- 흐름: AI 자산 등록 → 위험평가 → 개발·검증 → 승인·배포 → 운영감시·사고대응
+- 증적: **AI Inventory·System Card·평가결과·승인기록·운영로그**
 
-<div class="itpe-flow-map" role="img" aria-label="AI 거버넌스 플랫폼 전주기 통제 및 규제 준수 흐름">
-  <div class="itpe-flow-node">
-    <strong>글로벌 규제 및 정책 프레임워크</strong>
-    <small>EU AI Act · ISO/IEC 42001 · NIST AI RMF</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>AI 거버넌스 플랫폼 코어 체계</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>자산 통제</strong><span>모델 카탈로그 등록 · 용도별 4단계 위험 분류</span></div>
-      <div class="itpe-flow-branch"><strong>신뢰성</strong><span>알고리즘 공정성(Fairlearn) · 설명가능성(<span class="itpe-keyword"><strong>XAI</strong></span>)</span></div>
-      <div class="itpe-flow-branch"><strong>보안/감사</strong><span><span class="itpe-keyword"><strong>런타임 가드레일</strong></span> · <span class="itpe-keyword"><strong>Policy-as-Code</strong></span> 배포 통제</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>신뢰할 수 있는 AI 서비스 운영</strong>
-    <small>환각 및 PII 유출 차단 · 과징금 방어 · 책임성 확보</small>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 650" role="img" aria-label="AI 거버넌스 정책이 수명주기 통제와 감사 증적으로 구현되는 플랫폼 구조">
+  <defs><marker id="arrow-ai-gov" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
+  <rect class="itpe-svg-node is-current" x="130" y="24" width="500" height="82" rx="14" />
+  <text class="itpe-svg-title" x="380" y="58" text-anchor="middle">거버넌스 정책·책임</text>
+  <text class="itpe-svg-sub" x="380" y="84" text-anchor="middle">위험기준 · 역할 · 승인 · 예외 · 규제 의무</text>
+  <path class="itpe-svg-link" d="M380 106 V146" marker-end="url(#arrow-ai-gov)" />
+  <rect class="itpe-svg-node" x="130" y="154" width="500" height="92" rx="14" />
+  <text class="itpe-svg-title" x="380" y="188" text-anchor="middle">Governance Control Plane</text>
+  <text class="itpe-svg-sub" x="380" y="216" text-anchor="middle">AI Inventory · 위험평가 · 승인 · 예외관리</text>
+  <path class="itpe-svg-link" d="M380 246 V286" marker-end="url(#arrow-ai-gov)" />
+  <rect class="itpe-svg-node" x="130" y="294" width="500" height="92" rx="14" />
+  <text class="itpe-svg-title" x="380" y="328" text-anchor="middle">Lifecycle Gate</text>
+  <text class="itpe-svg-sub" x="380" y="356" text-anchor="middle">데이터 · 모델 · 프롬프트 · 배포 검증</text>
+  <path class="itpe-svg-link" d="M380 386 V426" marker-end="url(#arrow-ai-gov)" />
+  <rect class="itpe-svg-node" x="130" y="434" width="500" height="92" rx="14" />
+  <text class="itpe-svg-title" x="380" y="468" text-anchor="middle">Runtime Control</text>
+  <text class="itpe-svg-sub" x="380" y="496" text-anchor="middle">성능·편향·보안 감시 · Human Oversight · 사고대응</text>
+  <path class="itpe-svg-link" d="M380 526 V566" marker-end="url(#arrow-ai-gov)" />
+  <rect class="itpe-svg-node" x="130" y="574" width="500" height="58" rx="14" />
+  <text class="itpe-svg-title" x="380" y="610" text-anchor="middle">감사 증적 · 지속 개선</text>
+</svg>
 </div>
 
 <details>
 <summary>핵심 용어</summary>
 
-- **AI 거버넌스 플랫폼**: 사내 AI 모델의 기획·학습·배포·운영 전 과정을 중앙에서 모니터링하고 정책을 강제하는 소프트웨어 플랫폼
-- **ISO/IEC 42001**: 인공지능 경영시스템(AIMS) 요구사항을 규정한 세계 최초의 AI 거버넌스 국제 인증 표준
-- **EU AI Act**: AI 시스템의 위험도를 4단계(수용불가·고위험·제한적·최소)로 차등 분류하여 규제하는 유럽연합 법률
-- **NIST AI RMF**: 미국 국립표준기술연구소가 발표한 AI 위험 관리 프레임워크(Govern·Map·Measure·Manage)
-- **Model Card(모델 카드)**: 모델의 훈련 데이터 출처, 사용 목적, 성능 지표, 한계점 및 윤리적 고려사항을 기록한 표준 명세서
-- **XAI(Explainable AI)**: 인공지능 모델의 의사결정 과정과 피처 중요도를 인간이 이해할 수 있도록 설명하는 기술
-- **Runtime Guardrails(런타임 가드레일)**: 모델의 프롬프트 입력과 생성 응답을 실시간 감시하여 인젝션, 독성, PII 유출을 차단하는 인라인 방화벽
-- **Policy-as-Code(코드형 정책)**: 규제 및 사내 거버넌스 규칙을 코드로 작성하여 CI/CD 파이프라인에서 자동 검증·강제하는 기법
+- **AIMS(Artificial Intelligence Management System)**: AI의 책임 있는 개발·제공·사용을 위한 방침·목표·프로세스의 관리체계
+- **AI Inventory**: 조직이 개발·구매·운영하는 AI 시스템의 목적·소유자·위험등급·상태 목록
+- **System Card**: AI 시스템의 목적·범위·성능·한계·위험·평가결과를 기록한 증적
+- **Policy-as-Code**: 정책의 판정 규칙을 코드화하여 개발·배포 과정에서 반복 검증하는 방식
+- **Human Oversight**: 위험도와 영향에 따라 사람이 검토·승인·중단할 수 있도록 한 통제
+- **Lineage**: 데이터·모델·프롬프트·배포 버전의 생성과 변경 관계를 추적하는 정보
+- **MLOps(Machine Learning Operations)**: ML 모델의 개발·배포·운영을 연결하는 실무체계
+- **LLMOps(Large Language Model Operations)**: LLM 서비스의 프롬프트·평가·배포·운영을 관리하는 실무체계
 
 </details>
 
 ## 예상문제
 
-> 기업의 생성형 AI 도입 확산에 따른 리스크를 통제하고 EU AI Act, NIST AI RMF 등 글로벌 규제에 대응하기 위한 'AI 거버넌스 플랫폼'의 필요성, 주요 아키텍처 및 구성요소, MLOps 파이프라인과의 연계 구축 방안을 설명하시오. (25점)
+> AI 거버넌스 플랫폼의 개념과 구성체계를 설명하고, AI 수명주기 통제 프로세스 및 운영상 문제점·대응책을 제시하시오. **(미출제 예상·25점)**
 
-## Ⅰ. 신뢰할 수 있는 AI 비즈니스의 통제 기반, AI 거버넌스 플랫폼 개요
+## Ⅰ. AI 거버넌스 정책을 실행 통제로 전환하는 플랫폼
 
-> AI 거버넌스 플랫폼은 선언적 윤리 지침을 넘어 실시간 소프트웨어 통제로 구현하는 체계이며, 성패는 **Policy-as-Code** 기반 배포 자동화와 **런타임 가드레일**의 인라인 방어력으로 판정함.
+> AI 거버넌스 플랫폼은 선언적 원칙을 **승인 Gate·운영 통제·감사 증적**으로 전환하여 AI 위험을 수명주기 전반에서 관리함.
 
-- 정의: 사내외 AI/LLM 모델의 데이터 수집, 학습, 배포, 운영 전 수명주기에 걸쳐 위험을 분류하고 규제 준수와 신뢰성을 보증하는 **통합 AI 거버넌스 관리 소프트웨어 플랫폼**
-- 목적: 글로벌 규제 위반 과징금 차단, **환각(Hallucination)** 및 데이터 유출 방지 통한 **신뢰성(Trustworthiness) 확보**
+- 정의: 조직의 AI 정책·책임·위험기준을 AI 자산·개발·배포·운영 통제와 증적관리로 구현하는 통합 플랫폼
+- 목적: **책임성·추적성·규제 대응·운영위험 통제**
+- 기준: **ISO/IEC 42001:2023**의 AIMS와 **NIST AI RMF(Artificial Intelligence Risk Management Framework)**의 Govern·Map·Measure·Manage를 조직 환경에 맞게 적용
 
-## Ⅱ. AI 거버넌스 플랫폼의 4대 핵심 원칙
+## Ⅱ. AI 거버넌스 플랫폼 구성체계
 
-> 글로벌 규제 준수와 알고리즘 윤리를 실무 시스템으로 구현하는 설계 원칙을 정립함.
+> 관리체계·통제평면·개발도구를 분리하고, 공통 식별자와 증적으로 연결해야 정책과 실행의 단절을 방지할 수 있음.
 
-| 원칙 | 주요 실무 통제 내용 | 품질 검증 기준 |
+| 계층 | 핵심 기능 | 주요 증적 |
 |---|---|---|
-| **위험 기반 접근 (Risk-based)** | 활용 목적에 따라 허용 불가, 고위험, 제한적 위험, 최소 위험으로 차등 통제 | EU AI Act 4단계 분류 적합성 |
-| **전주기 추적성 (Traceability)** | 학습 데이터셋 계통(Lineage), 하이퍼파라미터, 모델 가중치, 배포 이력 전수 기록 | 모델 카드 및 감사 로그 완전성 |
-| **알고리즘 공정성 (Fairness)** | 특정 인종, 성별, 연령에 대한 알고리즘적 차별성 및 편향성 통계 검증 | Disparate Impact 지수 기준 충족 |
-| **설명가능성 (Explainability)** | 블랙박스 모델의 추론 근거와 주요 피처 중요도를 시각화하여 제공 | **SHAP**, **LIME** 분석 결과 제공 여부 |
+| 관리체계 | 정책·역할·책임·위험기준·예외 | 정책·RACI·위험수용 기록 |
+| 통제평면 | AI 자산·위험평가·승인·변경관리 | AI Inventory·승인 이력 |
+| 수명주기 연계 | 데이터·모델·프롬프트·배포 Gate | Lineage·평가결과·System Card |
+| 운영통제 | 성능·편향·보안 감시·Human Oversight | 운영로그·경보·개입 기록 |
+| 증적관리 | 의무-통제-증적 매핑·감사·개선 | 통제목록·감사추적·개선조치 |
 
-## Ⅲ. AI 거버넌스 플랫폼 아키텍처 및 5대 핵심 구성요소
+## Ⅲ. AI 수명주기 통제 프로세스
 
-> 정책 엔진, 코어 거버넌스 모듈, 런타임 인라인 통제 계층이 상호 유기적으로 결합함.
+> 각 단계는 활동과 산출물을 함께 관리하고, 위험 변화가 발생하면 이전 단계로 환류함.
 
-| 구성요소 | 핵심 기술 및 프로토콜 | 역할 및 통제 기능 | 핵심 산출물 |
-|---|---|---|---|
-| **모델 카탈로그 (Registry)** | 메타데이터 저장소, MLflow 연계 | 사내 도입·개발된 전 모델 및 외부 API 자산 통합 등록 | AI 자산 인벤토리, 모델 프로파일 |
-| **위험 평가 엔진** | 규칙 매핑 엔진, OPA(Open Policy Agent) | 사용 목적 및 다루는 데이터 민감도 기반 위험 등급 판정 | 위험 평가 등급 판정서 |
-| **신뢰성 검증 스위트** | Fairlearn, AIF360, SHAP, LIME | 학습 데이터 편향성 계측 및 추론 가중치 설명력 제공 | 공정성 진단서, XAI 중요도 차트 |
-| **런타임 가드레일** | NeMo Guardrails, 프록시 필터 | 프롬프트 인젝션, 개인정보(PII) 탈취, 유해 답변 실시간 차단 | 런타임 차단 로그, 인라인 감사 추적 |
-| **감사 대시보드** | Model Card Toolkit, 리포팅 엔진 | 규제 기관 제출용 표준 문서 및 거버넌스 KPI 시각화 | **Model Card**, 규제 감사 증적서 |
-
-## Ⅳ. AI 거버넌스 플랫폼 운영 4단계 수명주기 프로세스
-
-> 모델 도입 기획부터 런타임 모니터링까지 MLOps 파이프라인과 결합된 폐루프 통제를 수행함.
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 거버넌스 플랫폼 4단계 수명주기 운영 프로세스">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 자산 등록 및 위험 평가</strong></span>
-    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>모델 목적, 학습 데이터 출처, 대상 사용자 등록</span></div>
-    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>위험 등급(수용불가/고위험/일반) 분류 및 승인</span></div>
-  </div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 거버넌스 플랫폼의 수명주기 통제 프로세스">
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 등록·분류</strong><strong>활동</strong><span>목적·소유자·영향대상·사용환경 식별</span><strong>산출</strong><span>AI Inventory · 위험등급</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 데이터 및 알고리즘 사전 검증</strong></span>
-    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>저작권 확인, PII 정제 검사, 편향성 및 독성 테스트</span></div>
-    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>데이터 무결성 리포트, 편향 지표 측정 결과서</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 설계·개발</strong><strong>활동</strong><span>데이터·모델·보안·인적감독 통제 설계</span><strong>산출</strong><span>통제계획 · Lineage</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ MLOps CI/CD 배포 게이트 통제</strong></span>
-    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>Policy-as-Code 자동 평가, 보안 검증 통과 여부 판정</span></div>
-    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>거버넌스 승인 토큰 발급 및 자동 릴리즈</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 검증·승인</strong><strong>활동</strong><span>성능·공정성·안전·보안·준수 평가</span><strong>산출</strong><span>평가결과 · System Card · 승인기록</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 런타임 인라인 감시 및 사후 감사</strong></span>
-    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>프롬프트 차단, 데이터 드리프트 탐지, 환각 모니터링</span></div>
-    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>실시간 이상 알림, Model Card 갱신 및 대외 공시</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 배포·운영</strong><strong>활동</strong><span>버전통제·모니터링·사용자 고지·인적개입</span><strong>산출</strong><span>배포기록 · 운영로그 · 경보</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 사고·변경</strong><strong>활동</strong><span>영향평가·중단·완화·재승인·폐기</span><strong>산출</strong><span>사고기록 · 개선조치 · 폐기증적</span></div></div>
 </div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>지속적 모니터링</strong></span> · 런타임 이상 탐지 및 드리프트 발생 시 즉각 서빙 파드 트래픽 차단(서킷 브레이커)</div>
 
-## Ⅴ. 전통적 데이터 거버넌스 vs MLOps vs AI 거버넌스 플랫폼 비교
+## Ⅳ. Data Governance·MLOps·AI Governance 비교
 
-> 데이터 무결성, 모델 개발 생산성, 윤리적·법적 안전성 통제의 상호 보완적 관계를 형성함.
+> 세 영역은 대체관계가 아니라 데이터 품질, 생산운영, 책임통제를 분담하는 결합관계임.
 
-| 비교 항목 | 전통적 데이터 거버넌스 | MLOps 플랫폼 | AI 거버넌스 플랫폼 |
+| 기준 | Data Governance | MLOps·LLMOps | AI Governance Platform |
 |---|---|---|---|
-| **핵심 초점** | 데이터 품질, 표준화, 메타데이터 관리 | 모델 개발, 학습, 배포 파이프라인 자동화 | **AI 모델의 윤리, 공정성, 법적 규제 준수** |
-| **통제 대상** | RDBMS 원장, 데이터 레이크, DW | 피처 스토어, 모델 아티팩트, 추론 서버 | **파운데이션 모델, RAG 파이프라인, 프롬프트** |
-| **성공 지표** | 데이터 오류율, 표준 준수율 | 모델 배포 주기, 서빙 지연시간(Latency) | **규제 위반 과징금 0건**, 편향도 지수, 보안 차단율 |
-| **통제 수단** | MDM, 데이터 품질 관리 지침 | CI/CD 파이프라인, 모델 레지스트리 | **Policy-as-Code**, **런타임 인라인 가드레일** |
+| 초점 | 데이터 품질·보호 | 개발·배포·운영 | 책임·위험·준수 |
+| 대상 | 데이터·메타데이터 | 모델·프롬프트·파이프라인 | AI 시스템·사용맥락 |
+| 통제 | 표준·품질·권한 | 버전·시험·배포·감시 | 위험평가·승인·감독·증적 |
+| 연계 | Lineage 제공 | Lifecycle Gate 실행 | 정책·판정기준 제공 |
 
-## Ⅵ. 실무 구축 시 위험 요인과 기술사적 통제 방안
+## Ⅴ. 문제점·대응책
 
-> 섀도우 AI, 가드레일 지연 오버헤드, 환각 리스크를 아키텍처적으로 통제해야 함.
+> 도구 도입보다 AI 자산 식별, 책임 배정, 통제 증적의 연결이 먼저임.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **섀도우 AI(Shadow AI)** | **API 게이트웨이** 레벨의 트래픽 라우팅 강제 및 인벤토리 등록 | 비인가 모델 사용 원천 차단 |
-| **가드레일 레이턴시 지연** | 경량화 가드레일 모델 적용 및 **비동기 감사 로깅 파이프라인** 분리 | 사용자 체감 지연 최소화 |
-| **환각(Hallucination)** | Faithfulness 및 Relevance 메트릭 실시간 측정, **임계치 미달 시 차단** | 허위 정보 제공 리스크 차단 |
-| **수기 심의 배포 병목** | **OPA(Open Policy Agent)** 기반 Policy-as-Code 자동 승인 | 컴플라이언스 준수 및 배포 민첩성 확보 |
+| Shadow AI | AI Inventory·접근경로 등록 | 미승인 사용 식별 |
+| 형식적 승인 | 위험기반 Gate·예외 만료·재승인 | 책임 있는 출시 판단 |
+| 개발·규제 증적 단절 | 의무-통제-증적 매핑 | 감사 추적성 확보 |
+| 운영 중 성능·위험 변화 | 지속 감시·Human Oversight·사고대응 | 영향 확산 억제 |
 
-## Ⅶ. Policy-as-Code 기반 자동 배포 게이트 중심의 제언
+## Ⅵ. 증적 기반 Quality Gate 제언
 
-> AI 거버넌스는 회의실의 문서 규정에 머무르지 않고, MLOps 파이프라인에서 자동으로 작동하는 코드형 정책(Policy as Code)으로 내재화되어야 함.
+`[핵심 통찰]` AI 거버넌스의 성패는 원칙의 수가 아니라, 각 위험에 책임자·통제점·판정기준·증적이 연결되어 실제 배포 판단을 바꾸는가에 달려 있음.
 
-### 학습자 통찰 메모 — 답안 밖
+`나라면` 고위험 AI는 선언적 체크리스트로 승인하지 않고, 사용맥락별 필수 증적을 확인하는 Quality Gate와 예외 만료일을 두어 미충족 항목이 해소될 때만 배포하겠음.
 
-- [핵심 통찰]: AI 거버넌스의 실패는 대부분 '관료화된 심의 절차'에서 옴. 위원회가 소집되어 회의를 여는 동안 비즈니스 타이밍을 놓침. 규제 기준을 OPA 코드로 변환하여 CI/CD 파이프라인의 자동 게이트웨이로 심어야 개발자도 따르고 규제도 방어됨.
-- 나라면: 엔터프라이즈 AI 거버넌스 구축 시 `모든 모델 배포 파이프라인에 OPA 기반 Policy-as-Code 게이트 강제 적용 → 프롬프트 입출력 경로에 인라인 가드레일 프록시 배치 → 이상 징후 발생 시 서킷 브레이커 발동 및 모델 카드 자동 갱신`을 아키텍처 표준으로 수립하겠음.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 관료적 수기 심의를 탈피한 MLOps 파이프라인 내 코드형 정책 자동화
-- 대안: **Policy-as-Code(OPA) 기반 배포 게이트** + **인라인 런타임 가드레일 프록시**
-- 검증: 규제 위반 건수 0건 · 프롬프트 인젝션 방어율 99.9% 이상 달성
-- 효과: 글로벌 AI 규제 과징금 리스크 원천 차단 및 신뢰할 수 있는 엔터프라이즈 AI 구현
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 거버넌스 플랫폼 실효적 안착을 위한 기술사적 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>문제점</strong><span>사각지대 섀도우 AI, 수기 심의에 따른 배포 지연, 가드레일 레이턴시 오버헤드</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>추진 전략</strong><span>API 게이트웨이 강제 통합, Policy-as-Code 자동 게이트, 경량 런타임 가드레일</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>관리 지표</strong><span>EU AI Act·ISO 42001 정합성, 모델 카드 자동 갱신율, 레이턴시 오차 측정</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>최종 효과</strong><span>법적·재무적 리스크 사전 방어, 전사 AI 서비스 비즈니스 출시 가속화</span></div>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 440" role="img" aria-label="AI 거버넌스 증적 기반 품질 게이트의 통과와 보완 분기">
+  <defs><marker id="arrow-ai-qg" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
+  <rect class="itpe-svg-node" x="170" y="24" width="420" height="76" rx="14" />
+  <text class="itpe-svg-title" x="380" y="56" text-anchor="middle">위험·의무 식별</text>
+  <text class="itpe-svg-sub" x="380" y="82" text-anchor="middle">사용맥락 · 영향대상 · 규제 요구</text>
+  <path class="itpe-svg-link" d="M380 100 V142" marker-end="url(#arrow-ai-qg)" />
+  <rect class="itpe-svg-node is-current" x="170" y="150" width="420" height="86" rx="14" />
+  <text class="itpe-svg-title" x="380" y="182" text-anchor="middle">Evidence Quality Gate</text>
+  <text class="itpe-svg-sub" x="380" y="210" text-anchor="middle">통제 수행 · 판정기준 충족 · 증적 완결</text>
+  <path class="itpe-svg-link" d="M300 236 V282 H170 V318" marker-end="url(#arrow-ai-qg)" />
+  <path class="itpe-svg-link" d="M460 236 V282 H590 V318" marker-end="url(#arrow-ai-qg)" />
+  <text class="itpe-svg-label" x="210" y="276" text-anchor="middle">통과</text>
+  <text class="itpe-svg-label" x="550" y="276" text-anchor="middle">미통과</text>
+  <rect class="itpe-svg-node" x="50" y="326" width="240" height="76" rx="14" />
+  <text class="itpe-svg-title" x="170" y="358" text-anchor="middle">승인·배포</text>
+  <text class="itpe-svg-sub" x="170" y="384" text-anchor="middle">운영감시 · 재평가</text>
+  <rect class="itpe-svg-node" x="470" y="326" width="240" height="76" rx="14" />
+  <text class="itpe-svg-title" x="590" y="358" text-anchor="middle">보완·재검증</text>
+  <text class="itpe-svg-sub" x="590" y="384" text-anchor="middle">통제 수정 · 예외 심의</text>
+</svg>
 </div>
 
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
 
-- 정의: **AI 거버넌스 플랫폼(AI Governance Platform)**은 기업 내 AI/LLM 모델의 수명주기 전반에 걸쳐 위험도 평가, 공정성·설명가능성 검증, 런타임 유해 정보 차단 및 글로벌 규제 준수를 중앙에서 자동 통제하는 **통합 관리 소프트웨어 플랫폼**
-- 목적: 글로벌 규제 위반 과징금 차단, **신뢰할 수 있는 AI(Trustworthy AI)** 생태계 구축
+- 정의: AI 정책·책임·위험기준을 AI 자산·개발·배포·운영 통제와 증적관리로 구현하는 플랫폼
+- 목적: **책임성·추적성·규제 대응·운영위험 통제**
 
-### 2. 구성체계 및 핵심 파이프라인
+### 2. 구성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 거버넌스 플랫폼 핵심 파이프라인 요약">
-  <div class="itpe-pipeline-node">
-    <strong>자산 등록 및 위험 평가</strong>
-    <div class="itpe-step-detail"><strong>위험도 분류</strong><span>EU AI Act 기반 4단계 위험도 분류</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>신뢰성 및 공정성 검증</strong>
-    <div class="itpe-step-detail"><strong>신뢰성 분석</strong><span>Fairlearn 편향도 측정 및 SHAP/LIME XAI</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>CI/CD 배포 게이트 통제</strong>
-    <div class="itpe-step-detail"><strong>자동 배포 승인</strong><span>Policy-as-Code(OPA) 기반 자동 승인</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>런타임 인라인 가드레일</strong>
-    <div class="itpe-step-detail"><strong>실시간 방어</strong><span>프롬프트 인젝션 차단 및 모델 카드 생성</span></div>
-  </div>
-</div>
+| 영역 | 핵심 |
+|---|---|
+| 관리체계 | 정책·역할·위험기준 |
+| 통제평면 | 자산·평가·승인·예외 |
+| 수명주기 | 데이터·모델·배포 Gate |
+| 운영·증적 | 감시·사고·감사추적 |
 
 ### 3. 핵심 통제
 
-- **Policy-as-Code**: 규제 지침을 OPA 코드로 변환하여 CI/CD 파이프라인에 자동 게이트로 탑재
-- **런타임 가드레일**: 프롬프트 입력과 모델 생성 결과에 대한 인라인 프록시 감시
+- **Risk-based Gate**: 사용맥락과 영향에 따라 평가·승인 강도 차등화
+- **Evidence Traceability**: 의무 → 통제 → 평가결과 → 승인기록 연결
 
 ## 출제 이력과 검증 출처
 
-- 최신 시사·트렌드: 생성형 AI 도입 리스크 및 전사 AI 거버넌스 체계
-- [ISO/IEC 42001:2023, Artificial intelligence — Management system](https://www.iso.org)
-- [NIST, AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework)
-- [European Parliament, EU Artificial Intelligence Act](https://artificialintelligenceact.eu)
+- 공식 문제지 원문으로 확인한 직접 기출 없음
+- [ISO, ISO/IEC 42001:2023 AI management systems](https://www.iso.org/standard/42001)
+- [NIST, AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [European Commission, AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
 
 ## 학습 체크
 
-- [ ] AI 거버넌스 플랫폼의 필요성과 주요 역할을 설명할 수 있는가?
-- [ ] 모델 카탈로그, 위험 평가, 신뢰성 검증, 런타임 가드레일의 핵심 기능을 제시할 수 있는가?
-- [ ] MLOps 플랫폼과 AI 거버넌스 플랫폼의 차이점 및 연동 방식을 설명할 수 있는가?
-- [ ] Policy-as-Code를 통한 자동 배포 게이트 구현 방안을 논술할 수 있는가?
+- [ ] Ⅰ: 정의·목적을 설명할 수 있는가?
+- [ ] Ⅱ: 관리체계·통제평면·수명주기·운영·증적 계층을 구분할 수 있는가?
+- [ ] Ⅲ: 등록부터 사고·변경까지 활동과 산출물을 연결할 수 있는가?
+- [ ] Ⅳ: Data Governance·MLOps·AI Governance의 역할을 비교할 수 있는가?
+- [ ] Ⅴ: 위험-대책-효과 세 쌍을 제시할 수 있는가?
+- [ ] Ⅵ: 증적 기반 Quality Gate를 제언할 수 있는가?
 
 ## 연결 토픽
 
 - 이전 토픽: [제안요청서(RFP)](./049_rfp.md)
-- 연관 토픽: [NIST AI RMF](./036_nist_ai_rmf.md), [AI 고속도로](./051_ai_highway.md), [AI 프라이버시 리스크 관리 모델](./054_ai_privacy_risk_management_model.md)
+- 연관 토픽: [NIST AI RMF](./036_nist_ai_rmf.md), [AI 프라이버시 위험관리 모델](./054_ai_privacy_risk_management_model.md)
 - 다음 토픽: [AI 고속도로](./051_ai_highway.md)
