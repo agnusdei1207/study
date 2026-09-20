@@ -184,4 +184,4 @@ extra:
 
 - 이전 토픽: [공공 SW 사업 발주·계약](./039_public_sw_contract.md)
 - 연관 토픽: [프로젝트 위험관리](./009_project_risk_management_negative.md), [ISO 31000](./069_iso_31000.md), [정량적 위험분석](./073_quantitative_risk_analysis.md), [EVM](./032_evm.md)
-- 다음 토픽: [린 소프트웨어 개발](./041_lean_software_development.md)
+- 다음 토픽: [DRS](./042_drs.md)
