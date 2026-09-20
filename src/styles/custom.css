@@ -230,6 +230,79 @@ body {
   line-height: 1;
 }
 
+.sl-markdown-content .itpe-flow-arrow small {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--palette-muted);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.sl-markdown-content .itpe-flow-branches {
+  display: grid;
+  width: min(100%, 32rem);
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--palette-line);
+  text-align: left;
+}
+
+.sl-markdown-content .itpe-flow-branch {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+}
+
+.sl-markdown-content .itpe-flow-branch > strong {
+  color: var(--palette-accent-glow);
+}
+
+.sl-markdown-content .itpe-flow-branch > span {
+  min-width: 0;
+}
+
+.sl-markdown-content .itpe-pipeline {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.45rem;
+  width: min(100%, 52rem);
+  margin-inline: auto;
+}
+
+.sl-markdown-content .itpe-pipeline-node {
+  display: grid;
+  place-content: center;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.65rem 0.55rem;
+  border: 1px solid var(--palette-line);
+  border-radius: 0.5rem;
+  background: var(--palette-surface);
+  text-align: center;
+  line-height: 1.35;
+}
+
+.sl-markdown-content .itpe-pipeline-arrow {
+  display: grid;
+  place-content: center;
+  flex: 0 0 auto;
+  color: var(--palette-accent);
+  font-weight: 800;
+}
+
+.sl-markdown-content .itpe-trace-band {
+  width: min(100%, 52rem);
+  margin: 0.55rem auto 0;
+  padding: 0.45rem 0.65rem;
+  border-left: 3px solid var(--palette-accent);
+  background: color-mix(in srgb, var(--palette-accent) 9%, var(--palette-surface));
+  font-size: 0.88rem;
+  text-align: center;
+}
+
 @media (max-width: 40rem) {
   .sl-markdown-content .itpe-topic-path {
     gap: 0.35rem;
@@ -240,6 +313,27 @@ body {
     font-size: 0.78rem;
     padding: 0.2rem 0.45rem;
     white-space: normal;
+  }
+
+  .sl-markdown-content .itpe-flow-node {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .sl-markdown-content .itpe-flow-branch {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 0.45rem;
+    font-size: 0.9rem;
+  }
+
+  .sl-markdown-content .itpe-pipeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .sl-markdown-content .itpe-pipeline-arrow {
+    transform: rotate(90deg);
+    min-height: 1rem;
   }
 }
 
