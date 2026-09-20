@@ -1,7 +1,7 @@
 ---
 title: "갈등관리"
-author: "Antigravity"
-date: "2026-09-20T19:31:00+09:00"
+author: "OpenAI Codex"
+date: "2026-09-21T18:30:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: **갈등관리(Conflict Management)**는 프로젝트 수행 중 발생하는 목표·자원·기술적 견해차를 조기 식별하고, 과업 갈등은 건설적 혁신으로 유도하며 관계 갈등은 최소화하는 이해관계자 통제 프로세스
-- 메커니즘: **Thomas-Kilmann 모델**의 2대 축(**Assertiveness**, **Cooperativeness**)을 기준으로 5대 모드(협력, 경쟁, 타협, 회피, 수용)를 적용하고, '사람'과 '문제'를 분리하여 합의안 도출
-- 산출: 이해관계자 이슈 로그 · 기술 검증(**PoC**) 및 아키텍처 결정 기록(**ADR**) · 갈등 중재 합의안 · 갱신된 **WBS/RACI**
+- 본질: 목표·자원·관계·업무방식의 충돌을 진단하고 상황에 맞는 대응으로 프로젝트 성과를 보호하는 활동
+- 메커니즘: 유형·원인 파악 → 이해관계 확인 → 대응모드 선택 → 합의·결정 → 이행 확인
+- 통제: Assertiveness·Cooperativeness · 객관적 기준 · 결정권 · 기록·후속조치
 
 <div class="itpe-flow-map" role="img" aria-label="갈등 발생 감지부터 Thomas-Kilmann 모델 적용 및 기준선 반영 흐름">
   <div class="itpe-flow-node">
@@ -35,7 +35,7 @@ extra:
   <div class="itpe-flow-node is-current">
     <strong>Thomas-Kilmann 5대 갈등 대응 모델</strong>
     <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>협력</strong><span><span class="itpe-keyword"><strong>Collaborating</strong></span>: Win-Win 통합 해결책 모색 (최우선)</span></div>
+      <div class="itpe-flow-branch"><strong>협력</strong><span><span class="itpe-keyword"><strong>Collaborating</strong></span>: 양측 관심사를 통합</span></div>
       <div class="itpe-flow-branch"><strong>경쟁</strong><span><span class="itpe-keyword"><strong>Competing</strong></span>: 긴급·보안·안전 원칙 관철 (Zero-sum)</span></div>
       <div class="itpe-flow-branch"><strong>타협</strong><span><span class="itpe-keyword"><strong>Compromising</strong></span>: 상호 양보를 통한 현실적 절충</span></div>
       <div class="itpe-flow-branch"><strong>회피</strong><span><span class="itpe-keyword"><strong>Avoiding</strong></span>: 사소한 이슈 방치 및 감정 냉각기 확보</span></div>
@@ -66,14 +66,7 @@ extra:
 
 ## 예상문제
 
-> 소프트웨어 프로젝트 진행 중 발생하는 갈등의 주요 원인과 3대 유형을 설명하고, 토마스-킬만(Thomas-Kilmann)의 5대 갈등 대응 모델과 상황별 적용 방안 및 PM의 공학적 중재 전략을 제시하시오. (25점)
-
-## 딸려 나오는 하위 토픽
-
-| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
-|---|---|---|
-| **프로젝트 갈등관리** | 과업·관계·프로세스 갈등의 원인 규명 및 Thomas-Kilmann 5대 모드 기반의 공학적 통제 | Ⅱ 유형, Ⅲ 모델, Ⅳ 절차 |
-| **하버드 협상 원칙(PON)** | 사람과 문제의 분리, 입장이 아닌 이해관계 집중, 객관적 기준을 활용한 합의 도출 | Ⅳ 절차, Ⅴ 비교, Ⅶ 결론 |
+> 프로젝트 갈등의 유형을 설명하고, Thomas–Kilmann 5대 대응모드와 상황별 적용 및 중재방안을 제시하시오. **(미출제 예상·25점)**
 
 ## Ⅰ. 위기를 팀 성장의 기회로 전환하는 갈등관리의 개요
 
@@ -84,7 +77,7 @@ extra:
 
 ## Ⅱ. 갈등의 3대 유형과 주요 발생 원인
 
-> 과업 갈등은 적정 수준으로 유도하여 품질을 높이고, 관계 갈등은 무관용 원칙으로 조기 차단하며, 프로세스 갈등은 룰(Rule)로 해결함.
+> 과업 갈등은 근거 기반 토론으로 전환하고, 관계 갈등은 감정 확산을 줄이며, 프로세스 갈등은 역할·절차를 명확히 하여 관리함.
 
 | 갈등 유형 | 핵심 원인 및 성격 | 프로젝트에 미치는 영향 | 관리 및 통제 방향 |
 |---|---|---|---|
@@ -112,35 +105,35 @@ extra:
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>① 갈등 조기 감지 (Detection)</strong></span>
-      <span>스탠드업 미팅 · PR 리뷰 코멘트 모니터링 (커뮤니케이션 이상 징후 포착)</span>
+      <strong>활동</strong><span>회의·이슈·업무지연에서 징후 확인</span><strong>산출</strong><span>갈등 이슈</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>② 사람과 문제의 분리 (Separation)</strong></span>
-      <span>감정적 비난 차단 · 객관적 기술 팩트만 추출 (이슈 로그 등록)</span>
+      <strong>활동</strong><span>사실·해석·감정·요구 구분</span><strong>산출</strong><span>쟁점·사실 목록</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>③ 본질적 이해관계 분석 (Analysis)</strong></span>
-      <span>5-Why 기법 적용 · 표면 입장 뒤의 숨은 니즈 규명 (이해관계자 매트릭스)</span>
+      <strong>활동</strong><span>입장 뒤의 관심사·제약 확인</span><strong>산출</strong><span>이해관계·선택기준</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>④ 상황별 대응모드 실행 (Resolution)</strong></span>
-      <span>Thomas-Kilmann 모드 적용 · PoC 실증 · 의사결정 기록(ADR) 작성 (갈등 합의안, ADR)</span>
+      <strong>활동</strong><span>대응모드 선택 · 필요 시 PoC·ADR</span><strong>산출</strong><span>합의안·결정기록</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>⑤ 제도화 및 기준선 반영 (Institutionalization)</strong></span>
-      <span>합의 내용을 WBS 및 RACI에 갱신 · 재발 방지 모니터링 (프로젝트 계획 변경 승인서)</span>
+      <strong>활동</strong><span>책임·계획·후속조치 갱신</span><strong>산출</strong><span>변경계획 · 이행점검</span>
     </div>
   </div>
 </div>
@@ -164,53 +157,45 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **감정적 비난 전이** | 비동기 문서 기반 토론(**ADR**) 및 코드 리뷰 가이드라인 제정 | 감정 배제 및 기술적 팩트 기반 논의 확인 |
+| **감정적 비난 전이** | 사실·해석·감정을 분리하고 중립적 회의규칙 적용 | 쟁점 중심 논의 |
 | **PM의 일방적 강요** | 부하 테스트, 벤치마크 결과 등 객관적 수치 기반 의사결정 | 팀원의 심리적 저항 및 태업 방지 확인 |
-| **결정 장애 및 방임** | **Disagree and Commit(동의하지 않아도 헌신)** 원칙 제도화 | 타임박스 내 최종 의사결정 완료율 100% |
+| **결정 장애·방임** | 결정권자·기한·에스컬레이션 경로 명시 | 결정 지연 방지 |
 | **합의안 사후 파기** | 중재 회의 직후 액션 아이템, 책임자, 기한 명시 회의록 배포 | WBS 및 RACI 기준선 공식 반영 완료 |
 
 ## Ⅶ. 심리적 안전감과 데이터 기반 중재 중심의 기술사적 제언
 
 > 갈등의 부재는 평화가 아닌 무관심의 증거이며, 진정한 고성과 팀은 과업 갈등을 자유롭게 분출할 수 있는 심리적 안전감 위에서 탄생함.
 
-### 학습자 통찰 메모 — 답안 밖
+`[핵심 통찰]` 갈등을 없애려 하면 위험정보까지 침묵할 수 있으므로, 과업 이견은 근거와 실험으로 다루고 인신공격·보복은 분리 통제해야 함.
 
-- [핵심 통찰]: 프로젝트에서 갈등을 무조건 없애려 하면 구성원들은 침묵을 선택하고 잠재된 위험은 오픈 직전 폭발하게 됨. 기술적 이견(과업 갈등)은 PoC와 아키텍처 결정 기록(ADR)을 통해 건설적 토론으로 승화시키고, 감정적 충돌(관계 갈등)만 단호하게 분리 차단해야 함.
-- 나라면: 프로젝트 킥오프 시 `갈등 에스컬레이션 3단계 경로 정의 → 아키텍처 분쟁 시 48시간 타임박스 PoC 룰 의무화 → 합의 불발 시 단일 의사결정권자(Sponsor) 직권 결정 후 Disagree and Commit 강제`를 거버넌스 헌장에 못박아 정쟁을 원천 차단하겠음.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 주관적 감정 대립 탈피 및 데이터 기반 공학적 중재 거버넌스 확립
-- 대안: **PoC-ADR-Disagree and Commit** 3단계 갈등 해결 메커니즘 수립
-- 검증: 아키텍처 분쟁의 ADR 문서화율 100% · 중재 후 일정 지연 0건
-- 효과: 건설적인 기술 혁신 유도 및 팀 내 심리적 안전감(Psychological Safety) 확보
+`나라면` 쟁점별 결정권자·기한·객관적 기준을 먼저 정하고, 기술대안은 필요한 수준의 PoC와 ADR로 비교한 뒤 결정과 후속조치를 추적하겠음.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="갈등관리 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>현행 한계</strong>
-      <span>감정 대립 전이 · 권위적 강요 · 결정 장애로 인한 납기 지연</span>
+      <strong>문제</strong><span>감정 전이 · 권위적 강요 · 결정 장애</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>개선 대안</strong>
-      <span>사람/문제 분리 + ADR 문서화 + Disagree and Commit 원칙</span>
+      <strong>대안</strong><span>사실·관심사 분리 · 객관적 기준 · 결정권·기한</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>검증 기준</strong>
-      <span>타임박스 내 의사결정 완료 · WBS/RACI 기준선 일치</span>
+      <strong>판정</strong><span>결정근거 · 책임자 · 후속조치 · 계획 반영</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>실행 효과</strong>
-      <span>과업 갈등의 품질 개선 승화 · 팀 결속력 및 프로젝트 완주성 보장</span>
+      <strong>효과</strong><span>건설적 과업갈등 · 결정지연 축소 · 심리적 안전</span>
     </div>
   </div>
 </div>
@@ -268,17 +253,17 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제136회 정보관리기술사 2교시: 프로젝트 팀 개발 및 갈등 해결 기법
-- Kenneth W. Thomas & Ralph H. Kilmann, [Thomas-Kilmann Conflict Mode Instrument (TKI)](https://www.kilmanndiagnostics.com)
-- PMI, [A Guide to the Project Management Body of Knowledge (PMBOK Guide) 7th Edition](https://www.pmi.org)
-- Fisher, Ury & Patton, [Getting to Yes: Negotiating Agreement Without Giving In (Harvard PON)](https://www.pon.harvard.edu)
+- 공식 문제지 원문으로 확인한 직접 기출 없음
+- [The Myers-Briggs Company: Thomas–Kilmann Conflict Mode Instrument](https://www.themyersbriggs.com/en-US/Products-and-Services/TKI)
+- [Harvard Program on Negotiation: Principled Negotiation](https://www.pon.harvard.edu/daily/negotiation-skills-daily/principled-negotiation-focus-interests-to-create-value/)
 
 ## 학습 체크
 
-- [ ] 과업 갈등, 관계 갈등, 프로세스 갈등의 차이점과 관리 방향을 설명할 수 있는가?
-- [ ] Thomas-Kilmann 모델의 2대 축(자기주장성, 협조성)과 5대 모드를 도식화할 수 있는가?
-- [ ] 협력(Collaborating)과 타협(Compromising)의 근본적 차이와 적합한 상황을 비교할 수 있는가?
-- [ ] 아키텍처 결정 기록(ADR)과 PoC를 연계한 공학적 갈등 중재 방안을 제시할 수 있는가?
+- [ ] Ⅰ~Ⅱ. 과업·관계·프로세스 갈등의 차이와 관리방향을 설명할 수 있는가?
+- [ ] Ⅲ. Assertiveness·Cooperativeness 축과 5대 대응모드를 재현할 수 있는가?
+- [ ] Ⅳ. 감지부터 계획 반영까지 활동·산출을 연결할 수 있는가?
+- [ ] Ⅴ. TKI와 원칙중심 협상을 목적·메커니즘·적용상황으로 비교할 수 있는가?
+- [ ] Ⅵ~Ⅶ. 감정 전이·강요·결정 장애·합의 파기의 대응책을 제시할 수 있는가?
 
 ## 연결 토픽
 
