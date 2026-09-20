@@ -1,13 +1,19 @@
 ---
 title: "엣지 컴퓨팅(Edge Computing)"
-author: "Gemini 3.8 Flash"
-date: "2026-09-20T00:30:00+09:00"
+author: "Codex"
+date: "2026-09-20T20:09:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  badge:
+    text: "A"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
+  keyword_grade: "A"
 
 ---
+
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:09 KST</p>
 
 ## 답안 골격
 ```text

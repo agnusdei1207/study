@@ -1,16 +1,18 @@
 ---
 title: "스레드(Thread)"
-author: "OpenAI Codex"
-date: "2026-09-20T00:30:00+09:00"
+author: "Codex"
+date: "2026-09-20T20:09:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "OpenAI Codex"
+  model: "GPT-5.6 Sol"
   keyword_grade: "A"
 
 ---
+
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:09 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
