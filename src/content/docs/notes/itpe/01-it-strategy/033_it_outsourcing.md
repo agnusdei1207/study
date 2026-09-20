@@ -78,7 +78,7 @@ extra:
 
 > ISO 37500의 수명주기·거버넌스 관점을 답안용으로 전략·선정계약·전환·운영종료 절차로 구조화함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ISO 37500 기반 IT 아웃소싱 4단계 생명주기 파이프라인">
+<div class="itpe-pipeline is-vertical" role="img" aria-label="IT 아웃소싱 실무 생명주기의 단계별 활동과 산출물">
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <span class="itpe-keyword"><strong>① 전략 수립</strong></span>
@@ -134,7 +134,7 @@ extra:
 
 ## Ⅴ. 아웃소싱 실무 실패 요인과 공학적 통제 방안
 
-> 내부 역량 공동화와 수박 SLA 현상을 차단하지 못하면 발주사는 통제권을 완전히 상실함.
+> 내부 역량 공동화와 SLA 착시를 방치하면 발주자의 기술·계약 통제력이 약화됨.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
