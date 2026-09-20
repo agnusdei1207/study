@@ -1,4 +1,4 @@
----
+﻿---
 title: "데이터 표준화(공공 DB 표준화 지침·테이블 정의서 포함)"
 author: "Codex"
 date: "2026-09-20T19:40:22+09:00"
@@ -38,7 +38,7 @@ extra:
 - 공공 지침: 행정안전부 '공공데이터베이스 표준화 관리지침', 행정표준용어 및 공통도메인 준수 의무, 메타데이터 테이블 정의서 1:1 추적
 
 <div class="itpe-flow-map" role="img" aria-label="데이터 표준화 4대 사전과 테이블 정의서 매핑 흐름">
-  <div class="itpe-flow-node"><strong>비즈니스 개념 및 속성</strong><small>현업 업무 용어 수집</small></div>
+  <div class="itpe-flow-node"><strong>비즈니스 개념 및 속성</strong><div class="itpe-step-detail"><span>입력</span><span>현업 업무 용어</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>데이터 표준 4대 사전 수립</strong>
@@ -72,7 +72,7 @@ extra:
 
 ## Ⅰ. 데이터 상호운용성의 주춧돌, 데이터 표준화의 개요
 
-> **한줄 요약:** 데이터 표준화는 전사 데이터의 명칭·정의·형식·코드를 통일해 데이터 해석 왜곡을 방지하는 관리 활동임.
+> 데이터 표준화는 전사 데이터의 명칭·정의·형식·코드를 통일해 데이터 해석 왜곡을 방지하는 관리 활동임.
 
 - 정의: 조직 내에서 사용하는 데이터의 명칭, 의미, 도메인, 규칙을 일관되게 정의하고, 이를 정보시스템 설계·구축·운영 및 공공데이터 개방 전반에 강제하는 엔지니어링 활동
 - 배경: 부서별 독자적 개발로 인한 이음동의어(Synonym), 동음이의어(Homonym) 만연, 시스템 간 데이터 연계 시 막대한 ETL 매핑 비용 발생 및 통계 왜곡
@@ -80,16 +80,16 @@ extra:
 
 ## Ⅱ. 데이터 표준화 4대 핵심 구성요소 (단·용·도·코)
 
-> **한줄 요약:** 표준단어의 조합으로 표준용어를 만들고, 분류어에 표준도메인과 코드를 바인딩함.
+> 표준단어의 조합으로 표준용어를 만들고, 분류어에 표준도메인과 코드를 바인딩함.
 
 <div class="itpe-pipeline" role="img" aria-label="데이터 표준화 4대 요소 결합 관계">
-  <div class="itpe-pipeline-node"><strong>표준단어</strong><small>최소 의미 단위</small></div>
+  <div class="itpe-pipeline-node"><strong>표준단어</strong><div class="itpe-step-detail"><span>역할</span><span>최소 의미 단위</span></div></div>
   <div class="itpe-pipeline-arrow">+</div>
-  <div class="itpe-pipeline-node"><strong>분류어</strong><small>용어 끝단어</small></div>
+  <div class="itpe-pipeline-node"><strong>분류어</strong><div class="itpe-step-detail"><span>역할</span><span>용어 끝단어</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>표준용어</strong><small>속성/컬럼명</small></div>
+  <div class="itpe-pipeline-node"><strong>표준용어</strong><div class="itpe-step-detail"><span>산출</span><span>속성 · 컬럼명</span></div></div>
   <div class="itpe-pipeline-arrow">↔</div>
-  <div class="itpe-pipeline-node"><strong>도메인/코드</strong><small>타입/허용값</small></div>
+  <div class="itpe-pipeline-node"><strong>도메인·코드</strong><div class="itpe-step-detail"><span>통제</span><span>타입 · 허용값</span></div></div>
 </div>
 
 | 구성요소 | 정의 및 작성 규칙 | 실무 작성 예시 | 통제 규칙 |
@@ -101,7 +101,7 @@ extra:
 
 ## Ⅲ. 데이터 표준화 5단계 수립 및 통제 절차
 
-> **한줄 요약:** 현황 수집에서 원칙 정립, 4대 사전 정의, 모델 검증, 변경 관리로 순환 운영함.
+> 현황 수집에서 원칙 정립, 4대 사전 정의, 모델 검증, 변경 관리로 순환 운영함.
 
 | 단계 | 주요 활동 내용 | 핵심 산출물 및 통제 기준 |
 |---|---|---|
@@ -113,7 +113,7 @@ extra:
 
 ## Ⅳ. 물리 데이터 모델의 핵심 산출물: 테이블 정의서 구조 및 표준 매핑
 
-> **한줄 요약:** 테이블 정의서는 표준용어와 물리 DB 컬럼의 타입·제약을 1:1로 결합하는 공식 명세서임.
+> 테이블 정의서는 표준용어와 물리 DB 컬럼의 타입·제약을 1:1로 결합하는 공식 명세서임.
 
 ```text
 [표준사전] 표준용어: 고객가입일자 (CUST_JOIN_DT, 도메인: 일자)
@@ -132,7 +132,7 @@ extra:
 
 ## Ⅴ. 행정안전부 '공공데이터베이스 표준화 관리지침' 주요 요구사항
 
-> **한줄 요약:** 공공기관은 행정표준코드와 범정부 공통표준용어를 의무 준수하고 메타관리시스템에 등록해야 함.
+> 공공기관은 행정표준코드와 범정부 공통표준용어를 의무 준수하고 메타관리시스템에 등록해야 함.
 
 | 요구 영역 | 세부 지침 내용 | 공공 정보화 사업 적용 방안 |
 |---|---|---|
@@ -143,7 +143,7 @@ extra:
 
 ## Ⅵ. 실무 고려사항 및 장애 대책
 
-> **한줄 요약:** 비표준 레거시와의 충돌과 자의적 약어 생성을 메타관리 솔루션 기반 CI/CD 게이트로 방어함.
+> 비표준 레거시와의 충돌과 자의적 약어 생성을 메타관리 솔루션 기반 CI/CD 게이트로 방어함.
 
 - 적용 상황: 대규모 공공 차세대 시스템 구축 시 수천 개 테이블 표준화 및 레거시 데이터 마이그레이션
 
@@ -155,7 +155,7 @@ extra:
 
 ## Ⅶ. 결론 및 기술사적 제언
 
-> **한줄 요약:** 데이터 표준화는 단순한 명칭 통일이 아니라 데이터 메시와 AI 상호운용성을 여는 기반 인프라임.
+> 데이터 표준화는 단순한 명칭 통일이 아니라 데이터 메시와 AI 상호운용성을 여는 기반 인프라임.
 
 ### 학습자 통찰 메모 — 답안 밖
 

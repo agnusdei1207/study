@@ -38,7 +38,7 @@ extra:
 - 평가: 엘보우 차트(SSE), 실루엣 계수(Silhouette Coefficient), 데이비스-볼딘 지수
 
 <div class="itpe-flow-map" role="img" aria-label="군집분석 모델링 및 알고리즘 분기 체계">
-  <div class="itpe-flow-node"><strong>라벨 없는 고차원 데이터</strong><small>스케일링 · 거리척도 정의(Euclidean / Cosine)</small></div>
+  <div class="itpe-flow-node"><strong>라벨 없는 고차원 데이터</strong><div class="itpe-step-detail"><span>처리</span><span>스케일링 · 거리척도 정의(Euclidean · Cosine)</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>군집 알고리즘 분기</strong>
@@ -72,7 +72,7 @@ extra:
 
 ## Ⅰ. 데이터에 내재된 숨은 구조를 찾는 군집분석의 개요
 
-> **한줄 요약:** 정답 레이블 없이 객체 간 다차원 유사성을 측정해 동질적 하위 집단으로 분할하는 비지도학습 기법임.
+> 정답 레이블 없이 객체 간 다차원 유사성을 측정해 동질적 하위 집단으로 분할하는 비지도학습 기법임.
 
 - 정의: 주어진 $N$개의 다변량 관측 데이터에 대해 사전 정의된 클래스 정보 없이, 데이터 간의 거리(Distance) 또는 유사도(Similarity)에 기초하여 동일 군집 내 응집성과 타 군집 간 분리성을 최대화하는 패턴 탐색 활동
 - 목적: 고객 세분화(Segmentation), 추천 시스템의 협업 필터링, 이미지 분할(Segmentation), 노이즈 제거 및 이상금융거래(FDS) 군집 기반 탐지
@@ -80,7 +80,7 @@ extra:
 
 ## Ⅱ. 군집분석의 거리 척도 및 핵심 특징
 
-> **한줄 요약:** 데이터의 속성 형태(연속형, 범주형, 텍스트)에 부합하는 거리 척도 선정이 군집 품질을 좌우함.
+> 데이터의 속성 형태(연속형, 범주형, 텍스트)에 부합하는 거리 척도 선정이 군집 품질을 좌우함.
 
 | 거리 척도 | 수식 및 원리 | 특성 및 적합 데이터 |
 |---|---|---|
@@ -91,16 +91,16 @@ extra:
 
 ## Ⅲ. 군집분석 4대 유형 비교
 
-> **한줄 요약:** 구형 데이터는 K-Means, 계층 구조는 Ward, 복잡한 비선형 형상은 DBSCAN, 중첩 확률은 GMM을 선택함.
+> 구형 데이터는 K-Means, 계층 구조는 Ward, 복잡한 비선형 형상은 DBSCAN, 중첩 확률은 GMM을 선택함.
 
 <div class="itpe-pipeline" role="img" aria-label="군집분석 4대 핵심 알고리즘">
-  <div class="itpe-pipeline-node"><strong>분할기반</strong><small>K-Means / Medoids</small></div>
+  <div class="itpe-pipeline-node"><strong>분할기반</strong><div class="itpe-step-detail"><span>방식</span><span>K-Means · Medoids</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>계층적</strong><small>Dendrogram / Ward</small></div>
+  <div class="itpe-pipeline-node"><strong>계층적</strong><div class="itpe-step-detail"><span>방식</span><span>Dendrogram · Ward</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>밀도기반</strong><small>DBSCAN / OPTICS</small></div>
+  <div class="itpe-pipeline-node"><strong>밀도기반</strong><div class="itpe-step-detail"><span>방식</span><span>DBSCAN · OPTICS</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>모델기반</strong><small>GMM (EM 알고리즘)</small></div>
+  <div class="itpe-pipeline-node"><strong>모델기반</strong><div class="itpe-step-detail"><span>방식</span><span>GMM · EM 알고리즘</span></div></div>
 </div>
 
 | 비교 항목 | 분할기반 (K-Means) | 계층적 (Hierarchical) | 밀도기반 (DBSCAN) | 모델기반 (GMM) |
@@ -113,7 +113,7 @@ extra:
 
 ## Ⅳ. 군집분석 5단계 수행 절차
 
-> **한줄 요약:** 전처리 및 거리 정의에서 출발하여 최적 $k$ 탐색, 군집화 및 비즈니스 프로파일링으로 완결함.
+> 전처리 및 거리 정의에서 출발하여 최적 $k$ 탐색, 군집화 및 비즈니스 프로파일링으로 완결함.
 
 | 단계 | 주요 활동 내용 | 핵심 산출물 및 주의사항 |
 |---|---|---|
@@ -125,7 +125,7 @@ extra:
 
 ## Ⅴ. 군집 타당성 평가(Cluster Validity) 지표
 
-> **한줄 요약:** 응집도와 분리도를 종합 평가하는 내부 지표(실루엣, 엘보우)로 최적 모형을 검증함.
+> 응집도와 분리도를 종합 평가하는 내부 지표(실루엣, 엘보우)로 최적 모형을 검증함.
 
 | 평가 지표 | 계산 공식 및 판정 기준 | 통계적 의미 |
 |---|---|---|
@@ -136,7 +136,7 @@ extra:
 
 ## Ⅵ. 실무 고려사항 및 분석 장애 대책
 
-> **한줄 요약:** 차원의 저주, 초기값 수렴 실패, 비선형 형상 왜곡을 PCA와 K-Means++로 방어함.
+> 차원의 저주, 초기값 수렴 실패, 비선형 형상 왜곡을 PCA와 K-Means++로 방어함.
 
 - 적용 상황: 수백 개 행동 로그를 가진 1,000만 사용자 대상 이커머스 마케팅 세분화
 
@@ -148,7 +148,7 @@ extra:
 
 ## Ⅶ. 결론 및 기술사적 제언
 
-> **한줄 요약:** 군집분석은 통계적 군집 형성에 그치지 않고 비즈니스 액션이 가능한 실용적 페르소나를 도출해야 함.
+> 군집분석은 통계적 군집 형성에 그치지 않고 비즈니스 액션이 가능한 실용적 페르소나를 도출해야 함.
 
 ### 학습자 통찰 메모 — 답안 밖
 

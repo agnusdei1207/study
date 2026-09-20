@@ -1,4 +1,4 @@
----
+﻿---
 title: "데이터 거버넌스(Data Governance)"
 author: "Codex"
 date: "2026-09-20T19:38:01+09:00"
@@ -38,7 +38,7 @@ extra:
 - 운영 모델: 중앙집중형, 분산형, 연합형(Federated Governance)
 
 <div class="itpe-flow-map" role="img" aria-label="데이터 거버넌스 의사결정 및 실행 프레임워크">
-  <div class="itpe-flow-node"><strong>비즈니스 전략 및 컴플라이언스</strong><small>디지털 전환 · 개인정보보호법 · AI 윤리</small></div>
+  <div class="itpe-flow-node"><strong>비즈니스 전략 및 컴플라이언스</strong><div class="itpe-step-detail"><span>입력</span><span>디지털 전환 · 개인정보보호 · AI 윤리</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>데이터 거버넌스 위원회 (CDO)</strong>
@@ -73,7 +73,7 @@ extra:
 
 ## Ⅰ. 데이터 자산의 지휘·통제 사령탑, 데이터 거버넌스의 개요
 
-> **한줄 요약:** 데이터 거버넌스는 데이터 자산의 비즈니스 가치 창출과 리스크 통제를 위한 전사 의사결정권 및 책임 규약임.
+> 데이터 거버넌스는 데이터 자산의 비즈니스 가치 창출과 리스크 통제를 위한 전사 의사결정권 및 책임 규약임.
 
 - 정의: 데이터의 가용성, 유용성, 무결성, 보안성을 보증하기 위해 전사적 차원에서 데이터 의사결정 권한(Decision Rights)과 책임(Accountability) 체계를 규정하고 실행하는 활동 (DAMA DMBOK 2.0 정의)
 - 필요성: 시스템별 데이터 중복 및 불일치(사일로 심화), 데이터 소유권 불분명으로 인한 품질 저하 방치, 개인정보 유출 및 AI 편향 등 법적·윤리적 컴플라이언스 리스크 급증
@@ -81,7 +81,7 @@ extra:
 
 ## Ⅱ. 데이터 거버넌스의 5대 핵심 특징
 
-> **한줄 요약:** 비즈니스 전략 정렬, 전 생명주기 통제, 다차원 R&R 분리, 자동화 플랫폼 지원을 특징으로 함.
+> 비즈니스 전략 정렬, 전 생명주기 통제, 다차원 R&R 분리, 자동화 플랫폼 지원을 특징으로 함.
 
 | 특징 | 동작 원리 및 세부 내용 | 실무적 기여 |
 |---|---|---|
@@ -93,18 +93,18 @@ extra:
 
 ## Ⅲ. DAMA DMBOK 기반 거버넌스 5대 구성요소 및 조직 체계
 
-> **한줄 요약:** 원칙, 조직, 프로세스, 기술, 성과의 5대 요소와 CDO 중심의 3계층 조직이 상호 연동됨.
+> 원칙, 조직, 프로세스, 기술, 성과의 5대 요소와 CDO 중심의 3계층 조직이 상호 연동됨.
 
 <div class="itpe-pipeline" role="img" aria-label="데이터 거버넌스 5대 구성요소">
-  <div class="itpe-pipeline-node"><strong>원칙·정책</strong><small>데이터 헌장 · 지침</small></div>
+  <div class="itpe-pipeline-node"><strong>원칙·정책</strong><div class="itpe-step-detail"><span>산출</span><span>데이터 헌장 · 지침</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>조직·R&R</strong><small>위원장 · Owner · Steward</small></div>
+  <div class="itpe-pipeline-node"><strong>조직·R&amp;R</strong><div class="itpe-step-detail"><span>주체</span><span>위원회 · Owner · Steward</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>프로세스</strong><small>표준 · 품질 · 변경</small></div>
+  <div class="itpe-pipeline-node"><strong>프로세스</strong><div class="itpe-step-detail"><span>처리</span><span>표준 · 품질 · 변경</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>기술·도구</strong><small>Catalog · Lineage</small></div>
+  <div class="itpe-pipeline-node"><strong>기술·도구</strong><div class="itpe-step-detail"><span>수단</span><span>Catalog · Lineage</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>성과·감사</strong><small>성숙도 · DQI 모니터링</small></div>
+  <div class="itpe-pipeline-node"><strong>성과·감사</strong><div class="itpe-step-detail"><span>검증</span><span>성숙도 · DQI 모니터링</span></div></div>
 </div>
 
 | 역할 | 소속 및 직무 권한 | 주요 책임 및 활동 |
@@ -116,7 +116,7 @@ extra:
 
 ## Ⅳ. 데이터 거버넌스 5단계 구축 절차
 
-> **한줄 요약:** 현황 진단에서 비전 수립, 조직/정책 설계, 핵심 도메인 파일럿, 전사 확산으로 순차 진행함.
+> 현황 진단에서 비전 수립, 조직/정책 설계, 핵심 도메인 파일럿, 전사 확산으로 순차 진행함.
 
 | 단계 | 활동 내용 | 주요 산출물 |
 |---|---|---|
@@ -128,7 +128,7 @@ extra:
 
 ## Ⅴ. 중앙집중형 vs 분산형 vs 연합형(Federated) 거버넌스 비교
 
-> **한줄 요약:** 전통적 중앙집중형의 병목과 분산형의 무질서를 극복하기 위해 연합형(Data Mesh) 거버넌스가 부상함.
+> 전통적 중앙집중형의 병목과 분산형의 무질서를 극복하기 위해 연합형(Data Mesh) 거버넌스가 부상함.
 
 | 구분 | 중앙집중형 거버넌스 | 분산형 거버넌스 | 연합형 거버넌스 (Federated Governance) |
 |---|---|---|---|
@@ -139,7 +139,7 @@ extra:
 
 ## Ⅵ. 실무 고려사항 및 구축 실패 방지 대책
 
-> **한줄 요약:** 관료주의적 문서화를 배제하고 메타데이터 플랫폼 자동화와 인센티브 제도로 현업 참여를 견인함.
+> 관료주의적 문서화를 배제하고 메타데이터 플랫폼 자동화와 인센티브 제도로 현업 참여를 견인함.
 
 - 적용 상황: 글로벌 제조/유통 기업의 전사 데이터 레이크하우스 거버넌스 재구축
 
@@ -151,7 +151,7 @@ extra:
 
 ## Ⅶ. 결론 및 기술사적 제언
 
-> **한줄 요약:** 데이터 거버넌스는 규제와 통제의 족쇄가 아니라 데이터를 자산으로 만드는 인에이블러(Enabler)여야 함.
+> 데이터 거버넌스는 규제와 통제의 족쇄가 아니라 데이터를 자산으로 만드는 인에이블러(Enabler)여야 함.
 
 ### 학습자 통찰 메모 — 답안 밖
 

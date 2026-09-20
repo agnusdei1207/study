@@ -1,4 +1,4 @@
----
+﻿---
 title: "동시성 제어(병행제어)"
 author: "Codex"
 date: "2026-09-20T19:41:27+09:00"
@@ -38,7 +38,7 @@ extra:
 - 4대 이상현상: 갱신 손실(Lost Update), 오독(Dirty Read), 반복불가 읽기(Non-repeatable Read), 유령 읽기(Phantom Read)
 
 <div class="itpe-flow-map" role="img" aria-label="다중 트랜잭션 충돌과 4대 동시성 제어 기법 분기">
-  <div class="itpe-flow-node"><strong>동시 트랜잭션 요청 ($T_1, T_2, \dots$)</strong><small>Read / Write 연산 인터리빙</small></div>
+  <div class="itpe-flow-node"><strong>동시 트랜잭션 요청 ($T_1, T_2, \dots$)</strong><div class="itpe-step-detail"><span>처리</span><span>Read · Write 연산 인터리빙</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>동시성 제어 4대 알고리즘 분기</strong>
@@ -72,7 +72,7 @@ extra:
 
 ## Ⅰ. 트랜잭션 고립성과 처리량의 균형추, 동시성 제어의 개요
 
-> **한줄 요약:** 동시성 제어는 다중 트랜잭션의 병행 수행 결과를 직렬 수행 결과와 동일하게 보장하는 기술임.
+> 동시성 제어는 다중 트랜잭션의 병행 수행 결과를 직렬 수행 결과와 동일하게 보장하는 기술임.
 
 - 정의: 다중 사용자 환경에서 동시에 실행되는 복수 트랜잭션의 인터리빙(Interleaving) 연산을 스케줄링하여, 트랜잭션의 격리성(Isolation)과 일관성(Consistency)을 유지하고 데이터 손상을 방지하는 DBMS 핵심 엔진 기술
 - 필요성: 단순 직렬(Serial) 처리는 데이터 정합성은 완벽하나 CPU 및 디스크 I/O 유휴로 시스템 처리량(Throughput)이 급감하며, 무제어 병행 처리는 갱신 손실 등 치명적 불일치 유발
@@ -80,7 +80,7 @@ extra:
 
 ## Ⅱ. 병행 제어 결여 시 발생하는 4대 이상현상
 
-> **한줄 요약:** 미제어 동시 실행은 갱신 손실, 오독, 불일치 분석, 유령 레코드 생성을 야기함.
+> 미제어 동시 실행은 갱신 손실, 오독, 불일치 분석, 유령 레코드 생성을 야기함.
 
 | 이상현상 | 발생 메커니즘 | 구체적 장애 사례 |
 |---|---|---|
@@ -91,16 +91,16 @@ extra:
 
 ## Ⅲ. 동시성 제어 4대 기법 동작 원리 및 메커니즘
 
-> **한줄 요약:** 락(2PL), 시간(타임스탬프), 검증(OCC), 버전(MVCC)의 서로 다른 메커니즘으로 충돌을 통제함.
+> 락(2PL), 시간(타임스탬프), 검증(OCC), 버전(MVCC)의 서로 다른 메커니즘으로 충돌을 통제함.
 
 <div class="itpe-pipeline" role="img" aria-label="동시성 제어 4대 기법">
-  <div class="itpe-pipeline-node"><strong>2PL</strong><small>Locking 기반</small></div>
+  <div class="itpe-pipeline-node"><strong>2PL</strong><div class="itpe-step-detail"><span>방식</span><span>Locking 기반</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>Timestamp</strong><small>시간순서화</small></div>
+  <div class="itpe-pipeline-node"><strong>Timestamp</strong><div class="itpe-step-detail"><span>방식</span><span>시간순서화</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>OCC</strong><small>낙관적 검증</small></div>
+  <div class="itpe-pipeline-node"><strong>OCC</strong><div class="itpe-step-detail"><span>방식</span><span>낙관적 검증</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>MVCC</strong><small>다중버전 스냅샷</small></div>
+  <div class="itpe-pipeline-node"><strong>MVCC</strong><div class="itpe-step-detail"><span>방식</span><span>다중버전 스냅샷</span></div></div>
 </div>
 
 | 기법 | 핵심 동작 원리 및 규칙 | 교착상태(Deadlock) 여부 | 주요 장점 및 한계 |
@@ -112,7 +112,7 @@ extra:
 
 ## Ⅳ. 직렬가능성(Serializability) 이론 및 판정
 
-> **한줄 요약:** 트랜잭션 충돌 연산 순서에 사이클이 없으면 충돌 직렬성(Conflict Serializability)을 만족함.
+> 트랜잭션 충돌 연산 순서에 사이클이 없으면 충돌 직렬성(Conflict Serializability)을 만족함.
 
 ```text
 [충돌 연산(Conflict Operation)의 3요소]
@@ -128,7 +128,7 @@ extra:
 
 ## Ⅴ. 4대 동시성 제어 기법 종합 비교
 
-> **한줄 요약:** 비관적 환경은 Strict 2PL, 읽기 집약 분산 환경은 MVCC가 현대 DBMS의 표준임.
+> 비관적 환경은 Strict 2PL, 읽기 집약 분산 환경은 MVCC가 현대 DBMS의 표준임.
 
 | 비교 기준 | 2PL (Two-Phase Locking) | 타임스탬프 순서화 | 낙관적 기법 (OCC) | MVCC (Multi-Version) |
 |---|---|---|---|---|
@@ -139,7 +139,7 @@ extra:
 
 ## Ⅵ. 실무 고려사항 및 장애 대책
 
-> **한줄 요약:** 교착상태, 연쇄 롤백, Vacuum 부하를 타임아웃과 스냅샷 격리로 통제함.
+> 교착상태, 연쇄 롤백, Vacuum 부하를 타임아웃과 스냅샷 격리로 통제함.
 
 - 적용 상황: 대규모 트래픽이 몰리는 수강신청 및 금융 계좌이체 시스템의 동시성 제어
 
@@ -151,7 +151,7 @@ extra:
 
 ## Ⅶ. 결론 및 기술사적 제언
 
-> **한줄 요약:** 현대 DBMS는 MVCC와 2PL을 결합하여 읽기 성능과 쓰기 정합성을 동시에 달성함.
+> 현대 DBMS는 MVCC와 2PL을 결합하여 읽기 성능과 쓰기 정합성을 동시에 달성함.
 
 ### 학습자 통찰 메모 — 답안 밖
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "데이터 레이크(데이터 늪 포함)"
 author: "Codex"
 date: "2026-09-20T19:39:18+09:00"
@@ -38,8 +38,8 @@ extra:
 - 늪 방지: 메타데이터 카탈로그, 데이터 계보(Lineage), Data Owner 지정, 보존 주기(TTL) 통제
 
 <div class="itpe-flow-map" role="img" aria-label="데이터 수집에서 메달리온 아키텍처 및 데이터 늪 방지로 이어지는 체계">
-  <div class="itpe-flow-node"><strong>다양한 데이터 원천</strong><small>RDBMS · 웹로그 · IoT 센서 · 이미지/음성</small></div>
-  <div class="itpe-flow-arrow">↓<small>Batch · CDC · Kafka Streaming</small></div>
+  <div class="itpe-flow-node"><strong>다양한 데이터 원천</strong><div class="itpe-step-detail"><span>대상</span><span>RDBMS · 웹로그 · IoT 센서 · 이미지 · 음성</span></div><div class="itpe-step-detail"><span>수집 방식</span><span>Batch · CDC · Kafka Streaming</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>메달리온 레이크 아키텍처</strong>
     <div class="itpe-flow-branches">
@@ -73,7 +73,7 @@ extra:
 
 ## Ⅰ. 대규모 이종 데이터 수용소, 데이터 레이크(Data Lake)의 개요
 
-> **한줄 요약:** 데이터 레이크는 정형·비정형 원시 데이터를 원형 그대로 보존하고 분석 시 구조를 정의하는 유연한 저장 플랫폼임.
+> 데이터 레이크는 정형·비정형 원시 데이터를 원형 그대로 보존하고 분석 시 구조를 정의하는 유연한 저장 플랫폼임.
 
 - 정의: 정형 관계형 데이터뿐 아니라 로그, JSON, 오디오, 비디오 등 반정형·비정형 데이터를 확장 가능한 객체 스토리지(S3, HDFS 등)에 원본 그대로 저장하는 중앙 집중식 저장소
 - 등장 배경: 전통적 DW의 사전 모델링(Schema-on-Write) 방식은 고비용 ETL과 비정형 데이터 수용 불가로 인해 AI/ML 및 빅데이터 분석 요구 지원에 한계 노출
@@ -81,7 +81,7 @@ extra:
 
 ## Ⅱ. 데이터 레이크의 핵심 특징 및 메커니즘
 
-> **한줄 요약:** Schema-on-Read, 저장-연산 분리, 메달리온 정제 흐름을 통해 확장성과 분석 유연성을 극대화함.
+> Schema-on-Read, 저장-연산 분리, 메달리온 정제 흐름을 통해 확장성과 분석 유연성을 극대화함.
 
 | 특징 | 동작 원리 및 메커니즘 | 실무적 기여 |
 |---|---|---|
@@ -92,16 +92,16 @@ extra:
 
 ## Ⅲ. 메달리온(Medallion) 참조 아키텍처
 
-> **한줄 요약:** Bronze(원천 원본), Silver(정제·결합), Gold(비즈니스 집계)의 3계층 정제 파이프라인을 구축함.
+> Bronze(원천 원본), Silver(정제·결합), Gold(비즈니스 집계)의 3계층 정제 파이프라인을 구축함.
 
 <div class="itpe-pipeline" role="img" aria-label="메달리온 3단계 아키텍처">
-  <div class="itpe-pipeline-node"><strong>Bronze Layer</strong><small>Raw 원본 적재</small></div>
+  <div class="itpe-pipeline-node"><strong>Bronze Layer</strong><div class="itpe-step-detail"><span>활동</span><span>Raw 원본 적재</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>Silver Layer</strong><small>정제 · 검증 · 표준화</small></div>
+  <div class="itpe-pipeline-node"><strong>Silver Layer</strong><div class="itpe-step-detail"><span>활동</span><span>정제 · 검증 · 표준화</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>Gold Layer</strong><small>비즈니스 집계 · Mart</small></div>
+  <div class="itpe-pipeline-node"><strong>Gold Layer</strong><div class="itpe-step-detail"><span>산출</span><span>비즈니스 집계 · Mart</span></div></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>Serving</strong><small>BI 대시보드 · AI/ML</small></div>
+  <div class="itpe-pipeline-node"><strong>Serving</strong><div class="itpe-step-detail"><span>대상</span><span>BI 대시보드 · AI · ML</span></div></div>
 </div>
 
 | 계층 (Layer) | 데이터 상태 및 가공 수준 | 데이터 포맷 및 처리 활동 | 대상 사용자 |
@@ -112,7 +112,7 @@ extra:
 
 ## Ⅳ. 데이터 웨어하우스(DW) vs 데이터 레이크 vs 레이크하우스 비교
 
-> **한줄 요약:** 레이크는 유연성, DW는 정합성을 담당하며, 레이크하우스는 두 장점을 통합한 차세대 패러다임임.
+> 레이크는 유연성, DW는 정합성을 담당하며, 레이크하우스는 두 장점을 통합한 차세대 패러다임임.
 
 | 비교 기준 | 데이터 웨어하우스 (DW) | 데이터 레이크 (Data Lake) | 데이터 레이크하우스 (Lakehouse) |
 |---|---|---|---|
@@ -124,7 +124,7 @@ extra:
 
 ## Ⅴ. 데이터 늪(Data Swamp) 발생 원인 및 위험성
 
-> **한줄 요약:** 메타데이터 없는 무분별한 저장은 레이크를 검색 불가능한 쓰레기장인 '데이터 늪'으로 전락시킴.
+> 메타데이터 없는 무분별한 저장은 레이크를 검색 불가능한 쓰레기장인 '데이터 늪'으로 전락시킴.
 
 - 정의: 데이터 레이크에 저장된 데이터에 대한 메타데이터, 소유권, 데이터 계보, 품질 관리가 이루어지지 않아, 데이터의 존재 여부와 가치를 파악할 수 없게 된 기능 마비 상태
 - 4대 주요 발생 원인:
@@ -135,7 +135,7 @@ extra:
 
 ## Ⅵ. 데이터 늪 방지를 위한 4대 거버넌스 대책
 
-> **한줄 요약:** 카탈로그 자동화, 계보 추적, 수명주기(TTL) 관리, 데이터 계약으로 늪화를 원천 차단함.
+> 카탈로그 자동화, 계보 추적, 수명주기(TTL) 관리, 데이터 계약으로 늪화를 원천 차단함.
 
 | 영역 | 구체적 대책 및 구현 기법 | 실무적 통제 효과 |
 |---|---|---|
@@ -146,7 +146,7 @@ extra:
 
 ## Ⅶ. 결론 및 기술사적 제언
 
-> **한줄 요약:** 데이터 레이크의 성패는 수집량에 있지 않고 오픈 테이블 포맷과 레이크하우스 거버넌스 완성도에 있음.
+> 데이터 레이크의 성패는 수집량에 있지 않고 오픈 테이블 포맷과 레이크하우스 거버넌스 완성도에 있음.
 
 ### 학습자 통찰 메모 — 답안 밖
 
