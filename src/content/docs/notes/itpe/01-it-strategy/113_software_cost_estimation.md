@@ -1,211 +1,221 @@
 ---
 title: "소프트웨어 비용 산정(Software Cost Estimation)"
-author: "Antigravity"
-date: "2026-09-20T19:33:00+09:00"
+author: "OpenAI Codex"
+date: "2026-09-22T10:30:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 공공 SW 사업 제도 및 비용 관리를 거쳐 소프트웨어 비용 산정으로 이어지는 지식 위치">
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 공공 SW 사업 관리와 소프트웨어 비용 산정으로 이어지는 위치">
   <span>IT 전략·관리</span>
-  <span>공공 SW 제도·비용 관리</span>
-  <strong>소프트웨어 비용 산정(Software Cost Estimation)</strong>
+  <span>공공 SW 사업 관리</span>
+  <strong>SW 비용 산정</strong>
 </div>
 
 ## 큰 그림과 30초 인출
 
-- 본질: SW 규모(Size)를 객관적으로 측정하고 통계 알고리즘(**FP/COCOMO/Putnam**)을 적용해 소요 공수(M/M)와 개발 예산을 과학적으로 산출하는 원가 공학
-- 메커니즘: 시스템 경계 정의 → 5대 기능 식별(데이터/트랜잭션) → 가중치 적용(UFP) → 보정계수 반영 → **FP(기능점수)** 단가 연계 예산 확정
-- 산출: 기능점수 산정 명세서 · COCOMO 모형 분석서 · SW 사업 대가 산출 내역서 · 과업 변경 계약 조정서
+- 본질: 개발 기능을 **FP(Function Point)**로 수량화하여 예산·계약대가의 공통 기준 마련
+- 메커니즘: 경계 설정 → 5대 기능 측정 → 5대 보정 → 개발원가 산정
+- 산출물: FP 산정서 · 개발원가 · 직접경비 · SW 개발비
 
-<div class="itpe-flow-map" role="img" aria-label="SW 비용 산정 3대 접근 방식과 기능점수 기반 대가 산정 흐름">
-  <div class="itpe-flow-node">
-    <strong>비용 산정 3대 접근 방식</strong>
-    <div class="itpe-step-detail"><span>하향식 (전문가/델파이) · 상향식 (LOC/WBS) · 수학적 모형</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓<span>공공 조달 표준 적용</span></div>
-  <div class="itpe-flow-node is-current">
-    <strong>기능점수 (FP, Function Point) 산정</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>데이터</strong><span>내부논리(ILF) · 외부연계(EIF)</span></div>
-      <div class="itpe-flow-branch"><strong>트랜잭션</strong><span>외부입력(EI) · 외부출력(EO) · 외부조회(EQ)</span></div>
-      <div class="itpe-flow-branch"><strong>보정</strong><span>규모 · 연계 · 성능 · 다중사이트 보정계수</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓<span>법정 대가 고시</span></div>
-  <div class="itpe-flow-node">
-    <strong>SW 개발비 확정 (제값받기)</strong>
-    <div class="itpe-step-detail"><span>보정 FP × 고시 단가 + 직접경비 및 이윤 합산</span></div>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 430" role="img" aria-label="기능점수 측정에서 소프트웨어 개발비 산정까지의 구조">
+  <defs>
+    <marker id="sw-cost-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" class="itpe-svg-link" />
+    </marker>
+  </defs>
+  <rect x="250" y="18" width="260" height="62" rx="14" class="itpe-svg-node" />
+  <text x="380" y="44" text-anchor="middle" class="itpe-svg-title">요구사항·애플리케이션 경계</text>
+  <text x="380" y="65" text-anchor="middle" class="itpe-svg-sub">측정 범위 확정</text>
+  <path d="M380 80 L380 118" class="itpe-svg-link" marker-end="url(#sw-cost-arrow)" />
+  <rect x="75" y="125" width="270" height="92" rx="14" class="itpe-svg-node" />
+  <text x="210" y="153" text-anchor="middle" class="itpe-svg-title">데이터 기능</text>
+  <text x="210" y="178" text-anchor="middle" class="itpe-svg-sub">ILF · EIF</text>
+  <text x="210" y="199" text-anchor="middle" class="itpe-svg-label">내부 보유 · 외부 참조 데이터</text>
+  <rect x="415" y="125" width="270" height="92" rx="14" class="itpe-svg-node" />
+  <text x="550" y="153" text-anchor="middle" class="itpe-svg-title">트랜잭션 기능</text>
+  <text x="550" y="178" text-anchor="middle" class="itpe-svg-sub">EI · EO · EQ</text>
+  <text x="550" y="199" text-anchor="middle" class="itpe-svg-label">입력 · 출력 · 조회</text>
+  <path d="M380 105 L210 105 L210 125" class="itpe-svg-link" marker-end="url(#sw-cost-arrow)" />
+  <path d="M380 105 L550 105 L550 125" class="itpe-svg-link" marker-end="url(#sw-cost-arrow)" />
+  <path d="M210 217 L210 252 L380 252" class="itpe-svg-link" />
+  <path d="M550 217 L550 252 L380 252" class="itpe-svg-link" />
+  <path d="M380 252 L380 263" class="itpe-svg-link" marker-end="url(#sw-cost-arrow)" />
+  <rect x="250" y="270" width="260" height="62" rx="14" class="itpe-svg-node is-current" />
+  <text x="380" y="296" text-anchor="middle" class="itpe-svg-title">보정 기능점수</text>
+  <text x="380" y="317" text-anchor="middle" class="itpe-svg-sub">규모 · 연계 · 성능 · 다중사이트 · 보안</text>
+  <path d="M380 332 L380 366" class="itpe-svg-link" marker-end="url(#sw-cost-arrow)" />
+  <rect x="160" y="375" width="440" height="42" rx="12" class="itpe-svg-node" />
+  <text x="380" y="402" text-anchor="middle" class="itpe-svg-title">개발원가 + 이윤 + 직접경비 = SW 개발비</text>
+</svg>
 </div>
 
 <details>
 <summary>핵심 용어</summary>
 
-- **FP(Function Point)**: 사용자 관점에서 소프트웨어가 제공하는 논리적 기능 수량을 독립적으로 측정하는 기능점수 표준
-- **COCOMO(Constructive Cost Model)**: Barry Boehm이 정립한 모델로, 소스코드 라인 수(KLOC)와 15개 노력조정승수(EAF)를 결합한 회귀 비용 산정식
-- **Putnam 모형**: Rayleigh-Norden 곡선을 바탕으로 프로젝트 전 생애주기 동안의 시간과 인력 배분 관계를 산출하는 동적 비용 모델
-- **Delphi 기법**: 복수 전문가의 주관적 편향을 제거하기 위해 익명 설문과 피드백을 반복 수렴하여 견적을 도출하는 하향식 기법
-- **EAF(Effort Adjustment Factor)**: COCOMO 모형에서 시스템의 신뢰도, 데이터베이스 크기, 개발자 역량 등 환경 요인을 보정하는 승수
-- **UFP(Unadjusted Function Point)**: 5대 기능 유형별 개수에 평균 복잡도 가중치를 곱해 단순 합산한 미조정 기능점수
+- **FP(Function Point)**: 사용자에게 제공되는 논리적 기능의 규모 측정 단위
+- **ILF(Internal Logical File)**: 애플리케이션 경계 내부에서 유지하는 데이터 기능
+- **EIF(External Interface File)**: 다른 애플리케이션이 유지하고 측정 대상이 참조하는 데이터 기능
+- **EI(External Input)**: 경계 밖에서 들어와 내부 데이터·동작을 변경하는 트랜잭션 기능
+- **EO(External Output)**: 처리·계산을 포함해 경계 밖으로 정보를 제공하는 트랜잭션 기능
+- **EQ(External Inquiry)**: 중요한 처리 없이 입력에 대응한 정보를 조회하는 트랜잭션 기능
 
 </details>
 
 ## 예상문제
 
-> 소프트웨어 개발 프로젝트의 예산 책정 및 대가 산정을 위한 비용 산정 기법의 3대 분류(하향식, 상향식, 수학적 모형)와 주요 모델(LOC, COCOMO, Putnam, 기능점수 FP)의 특징, 장단점 및 실무 적용 방안을 설명하시오. (10점/25점)
+> **(미출제 예상·25점)** SW 비용 산정 접근법을 비교하고, 기능점수 방식의 측정 절차·개발비 구성·산정 위험과 대응책을 설명하시오.
 
-## Ⅰ. 공정 계약과 예산 건전성의 초석, SW 비용 산정의 개요
+## Ⅰ. SW 비용 산정의 개요
 
-> 주먹구구식 덤핑과 예산 삭감을 탈피하고, **기능점수(FP)**와 **수학적 알고리즘 모델**로 투입 공수와 **적정 대가**를 산정함.
+> 요구사항을 측정 가능한 규모와 비용으로 변환해야 예산·계약·변경관리의 기준이 성립한다.
 
-- 정의: SW 개발 및 유지관리 사업에서 프로젝트 규모(Size)를 객관적으로 측정하고, 과거 실적 데이터와 공학적 모형(**FP**, **COCOMO**)을 통해 소요 공수(Effort)와 예산(Cost)을 과학적으로 도출하는 **원가 공학 프로세스**
-- 목적: 발주처의 객관적 예산 확보 근거 마련, 수급인의 **적정 개발 대가** 보장 및 요구사항 변경에 따른 계약금액 조정 기준선 제공
+- 정의: SW의 **규모·공수·기간**을 추정하여 개발·운영에 필요한 비용을 산정하는 활동
+- 목적: 적정 예산·계약대가 확보 · 변경비용 산정 · 사업 타당성 판단
 
-## Ⅱ. SW 비용 산정 3대 접근 방식 및 5단계 기능점수 산정 프로세스
+## Ⅱ. 비용 산정 접근법과 FP 산정 체계
 
-> 요구사항 분석에서 5대 기능 도출, 가중치 산정, 보정계수 반영, 대가 확정으로 이어지는 표준 파이프라인을 가동함.
+> 초기에는 유사사례로 범위를 잡고, 요구사항이 구체화되면 작업분해·모형 기반 추정으로 정밀화한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="기능점수(FP) 기반 공공 SW 개발비 산정 5단계 프로세스">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 요구사항 분석 및 시스템 경계 확정</strong></span>
-    <div class="itpe-step-detail"><strong>경계 식별</strong><span>RFP 기반 사용자 관점 기능/비기능 경계 정의 및 요구사항 확정</span></div>
-  </div>
+### 1. 비용 산정 접근법
+
+| 접근법 | 기준 | 적용 |
+|---|---|---|
+| 하향식 | 전문가 판단 · 유사사례 | 초기 개략 견적 |
+| 상향식 | **WBS(Work Breakdown Structure)** 작업별 공수 | 상세 범위 확정 후 |
+| 모형식 | FP · **COCOMO(Constructive Cost Model)** | 데이터 기반 검증 |
+
+### 2. FP 측정·대가 산정 절차
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="기능점수 측정과 소프트웨어 개발비 산정 절차">
+  <div class="itpe-pipeline-node"><strong>① 측정 범위 설정</strong><div class="itpe-step-detail"><strong>활동</strong><span>사용자 관점 애플리케이션 경계 확정</span></div><div class="itpe-step-detail"><strong>산출</strong><span>측정 범위 · 경계</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 5대 기능 유형 식별 및 분류</strong></span>
-    <div class="itpe-step-detail"><strong>기능 분류</strong><span>데이터 기능(ILF, EIF) 및 트랜잭션 기능(EI, EO, EQ) 도출</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><strong>② 기능 식별</strong><div class="itpe-step-detail"><strong>활동</strong><span>ILF · EIF · EI · EO · EQ 분류</span></div><div class="itpe-step-detail"><strong>산출</strong><span>기능 목록</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 미조정 기능점수(UFP) 산출</strong></span>
-    <div class="itpe-step-detail"><strong>가중치 집계</strong><span>기능 유형별 표준 가중치(간이법 기준) 곱연산 및 단순 합산</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><strong>③ 기능점수 산정</strong><div class="itpe-step-detail"><strong>활동</strong><span>정통법 복잡도 또는 간이법 평균 가중치 적용</span></div><div class="itpe-step-detail"><strong>산출</strong><span>미보정 기능점수</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 4대 보정계수 적용</strong></span>
-    <div class="itpe-step-detail"><strong>환경 보정</strong><span>규모, 연계 복잡성, 성능 요구, 다중 사이트 보정계수 반영</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><strong>④ 개발원가 산정</strong><div class="itpe-step-detail"><strong>활동</strong><span>FP 단가 · 5대 보정계수 적용</span></div><div class="itpe-step-detail"><strong>산출</strong><span>보정 기능점수 · 개발원가</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ SW 개발비 확정</strong></span>
-    <div class="itpe-step-detail"><strong>비용 산출</strong><span>KOSA 고시 기능당 단가 적용 및 직접경비·이윤 합산</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><strong>⑤ 개발비 확정</strong><div class="itpe-step-detail"><strong>활동</strong><span>이윤 · 직접경비 합산</span></div><div class="itpe-step-detail"><strong>산출</strong><span>SW 개발비 산정서</span></div></div>
 </div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>대가 정합성</strong></span> · 기능 요구명세 ↔ UFP 측정 ↔ 보정계수 ↔ KOSA 고시단가 100% 매핑</div>
 
-### SW 비용 산정 3대 접근 방식 비교
+### 3. 현행 기능점수 방식의 핵심 식
 
-| 접근 방식 | 대표 세부 기법 | 산출 메커니즘 | 장단점 및 추천 적용 시점 |
+```text
+개발원가 = 기능점수 × 기능점수당 단가 × 5대 보정계수
+SW 개발비 = 개발원가 + 이윤 + 직접경비
+```
+
+- 5대 보정계수: **규모 · 연계복잡성 · 성능요구수준 · 다중사이트 운영성 · 보안성**
+- 2025년 개정판 기능점수당 단가: **605,784원**
+
+## Ⅲ. 주요 산정 모형 비교
+
+> 모형의 우열보다 산정 시점에 확보 가능한 입력과 추정 목적의 일치가 중요하다.
+
+| 기준 | FP | LOC | COCOMO |
 |---|---|---|---|
-| **하향식 기법**<br>(Top-Down) | 전문가 판단,<br>**델파이 기법(Delphi)** | 시니어 엔지니어의 직관 또는 복수 전문가의 익명 피드백을 반복 수렴하여 견적 도출 | 신속한 개략 견적 가능하나 주관적 편향 존재 (사업 초기 예비타당성/기획 단계) |
-| **상향식 기법**<br>(Bottom-Up) | 원천 코드 라인 수(LOC),<br>WBS 공수 산정 | WBS 최하위 작업 패키지별 라인 수 또는 세부 M/M 공수를 개별 집계 후 합산 | 정확도는 높으나 기획 초기 상세 WBS 도출 불가, 언어 종속적 (설계 완료 단계) |
-| **수학적 모형**<br>(Algorithmic) | **COCOMO, Putnam**,<br>**기능점수(FP)** | 과거 프로젝트 축적 통계 데이터를 기반으로 규모, 공수, 기간 간의 수학 공식 적용 | 객관적 검증 가능 및 공공 표준이나 보정계수 산정 오버헤드 (발주 및 계약 단계) |
+| 입력 | 사용자 기능 | 코드 라인 | 코드 규모 · 비용동인 |
+| 장점 | 언어 독립 · 조기 측정 | 측정 단순 | 공수·기간 추정 |
+| 한계 | 경계·기능 판정 편차 | 언어·구현 종속 | 보정 데이터 필요 |
 
-## Ⅲ. 대표적 수학적 모형 비교 (COCOMO vs Putnam vs 기능점수 FP)
+## Ⅳ. 문제점·대응책
 
-> 소스코드 종속성 여부와 측정 관점에 따라 모델별 공학적 특성이 구분됨.
-
-| 비교 항목 | COCOMO 모형 | Putnam 모형 | 기능점수 (FP, Function Point) |
-|---|---|---|---|
-| **제안자 및 기반** | Barry Boehm (KLOC 기반 통계 회귀) | Lawrence Putnam (Rayleigh 곡선) | Allan Albrecht (논리 기능 크기) |
-| **산출 기준 변수** | 소스코드 라인 수 (KLOC), 15개 EAF | 생애주기 소요 시간($t$), 인력 투입 곡선 | **사용자 관점 5대 기능 (데이터/트랜잭션)** |
-| **언어 독립성** | **종속적** (프로그래밍 언어별 편차 심함) | 종속적 (코드 규모 추정에 연계) | **완전 독립적 (언어와 무관한 기능 크기 측정)** |
-| **개발 모드 구분** | 단순형(Organic), 중간형(Semi), 내장형(Embedded) | 전 수명주기에 걸친 동적 인력 배분 곡선 | 간이법(평균 복잡도), 정규법(상세 복잡도) |
-| **주요 활용 영역** | 전통적 C/C++ 시스템 및 패키지 개발 견적 | 대형 프로젝트의 최적 개발 기간·인력 배분 | **공공 SW 조달, 발주 예산 및 법정 대가 표준** |
-
-## Ⅳ. 실무 적용 시 주요 왜곡 요인과 통제 대책
-
-> 기획 초기 기능 모호성과 임의적 예산 삭감을 방지하기 위해 간이 FP와 롤링 웨이브 계약을 적용해야 함.
+> 산식보다 측정 경계·기능 식별·변경 추적의 일관성이 견적 신뢰도를 결정한다.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **기획 초기 상세 스펙 미확정** | 화면 및 엔티티 수 기반 **간이 기능점수 산정법(Average Complexity)** 적용 | 조기 예산 확보 및 기획 오차 최소화 |
-| **발주처의 임의 예산 삭감** | 과거 공공 SW 사업 실적 통계 및 **KOSA 공인 대가 가이드라인** 증빙 강제 | 적정 개발 예산 보장 |
-| **과업 변경 시 추가 대가 미지급** | **RTM(요구사항 추적표)** 연동 형상관리 기반 증분 FP 자동 측정 및 과업심의 연계 | 공정한 계약금액 증액 (SW진흥법 제50조) |
+| 경계 불일치 | 애플리케이션 경계 합의 · 검토 | 중복·누락 방지 |
+| 기능 분류 편차 | 측정 규칙 · 교차검증 적용 | 산정 재현성 확보 |
+| 비기능 비용 누락 | 5대 보정계수 근거 기록 | 사업 특성 반영 |
+| 범위 변경 미정산 | **RTM(Requirements Traceability Matrix)**과 증분 FP 연계 | 변경대가 근거 확보 |
 
-## Ⅴ. 제값받기 실현을 위한 기술사적 제언
+## Ⅴ. 결론·기술사적 제언
 
-> 초기 불확실성을 극복하기 위해 간이 FP로 예산 범위를 잡고 분석 후 확정하는 단계적 정밀화 계약 모델을 도입해야 함.
+> 일회성 숫자 확정보다 요구사항 성숙도에 맞춘 재산정과 추적 가능한 산정근거가 중요하다.
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: SW 비용 산정의 성패는 정교한 수학 공식이 아니라 '요구사항의 명확성'에 달려 있음. 요구사항이 안갯속인 상태에서 아무리 복잡한 FP나 COCOMO 공식을 돌려봐야 '정교하게 포장된 쓰레기 견적'이 나올 뿐임.
-- 나라면: 기획/발주 단계에서는 간이 FP를 적용해 예산의 범위(Band: $\pm 15\%$)를 유연하게 설정하고, 본 사업 착수 후 3개월 시점에 요구사항 정의서가 동결되면 '정규 FP 확정 게이트'를 거쳐 최종 계약금액을 확정 정산하는 '단계적 정밀화(Rolling Wave FP) 계약 제도'를 도입하겠음.
+- [핵심 통찰]: 정확한 공식도 잘못된 경계와 누락된 요구사항을 보정하지 못한다. 견적 품질은 입력 품질과 변경 추적성에서 시작한다.
+- 나라면: 기획 견적을 계약 확정치로 고정하지 않고 분석·설계 종료 시 FP를 재검증하여 범위와 대가를 함께 Baseline화하겠다.
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 일회성 고정 총액 계약에서 요구사항 상세화에 맞춘 단계적 정밀화 정산으로 전환
-- 대안: **Rolling Wave FP 계약 모델** 및 **RTM 기반 증분 FP 자동 산정 체계** 도입
-- 검증: 기획-분석 단계 간 FP 변동률 15% 이내 관리 · 과업변경 시 증분 FP 100% 반영
-- 효과: 덤핑 수주 및 무상 과업 근절 · 개발사 적정 대가 보장 및 공공 SW 품질 확보
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="SW 비용 산정 현실화 및 제값받기를 위한 기술사적 제언 파이프라인">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>모호한 견적</strong><span>기획 단계 모호한 요구로 임의 예산 산정 및 대가 누락</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>단계적 확정</strong><span>간이 FP 예산 밴드(±15%) 및 정규 FP 확정 게이트 도입</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>대가 준수</strong><span>KOSA 공인 단가 준수 및 RTM 기반 증분 FP 정산</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>제값받기</strong><span>SW 적정 대가 보장 및 잦은 과업 변경 야근 악순환 종식</span></div>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 500" role="img" aria-label="기능점수 재산정과 변경통제를 결합한 비용 산정 개선안">
+  <defs>
+    <marker id="sw-cost-control-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" class="itpe-svg-link" />
+    </marker>
+  </defs>
+  <rect x="190" y="20" width="380" height="70" rx="14" class="itpe-svg-node" />
+  <text x="380" y="47" text-anchor="middle" class="itpe-svg-title">기획단계 개략 견적</text>
+  <text x="380" y="70" text-anchor="middle" class="itpe-svg-sub">유사사례 · 간이 FP</text>
+  <path d="M380 90 L380 130" class="itpe-svg-link" marker-end="url(#sw-cost-control-arrow)" />
+  <rect x="190" y="140" width="380" height="70" rx="14" class="itpe-svg-node" />
+  <text x="380" y="167" text-anchor="middle" class="itpe-svg-title">분석·설계단계 재산정</text>
+  <text x="380" y="190" text-anchor="middle" class="itpe-svg-sub">경계 · 5대 기능 · 보정근거 검증</text>
+  <path d="M380 210 L380 250" class="itpe-svg-link" marker-end="url(#sw-cost-control-arrow)" />
+  <rect x="190" y="260" width="380" height="70" rx="14" class="itpe-svg-node is-current" />
+  <text x="380" y="287" text-anchor="middle" class="itpe-svg-title">비용 Baseline 확정</text>
+  <text x="380" y="310" text-anchor="middle" class="itpe-svg-sub">FP 산정서 · 예산 · 계약범위 일치</text>
+  <path d="M380 330 L380 370" class="itpe-svg-link" marker-end="url(#sw-cost-control-arrow)" />
+  <rect x="70" y="380" width="270" height="80" rx="14" class="itpe-svg-node" />
+  <text x="205" y="408" text-anchor="middle" class="itpe-svg-title">변경 없음</text>
+  <text x="205" y="433" text-anchor="middle" class="itpe-svg-sub">Baseline 유지</text>
+  <rect x="420" y="380" width="270" height="80" rx="14" class="itpe-svg-node" />
+  <text x="555" y="408" text-anchor="middle" class="itpe-svg-title">변경 발생</text>
+  <text x="555" y="433" text-anchor="middle" class="itpe-svg-sub">RTM → 증분 FP → 계약 조정</text>
+  <path d="M380 355 L205 355 L205 380" class="itpe-svg-link" marker-end="url(#sw-cost-control-arrow)" />
+  <path d="M380 355 L555 355 L555 380" class="itpe-svg-link" marker-end="url(#sw-cost-control-arrow)" />
+</svg>
 </div>
 
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
 
-- 정의: 소프트웨어 규모(Size)를 객관적으로 측정하고 통계 공학 모형(**FP**, **COCOMO**)을 적용하여 투입 공수(M/M)와 개발 예산을 과학적으로 산출하는 **원가 공학 체계**
-- 목적: 발주처의 객관적 예산 확보 근거를 수립하고 개발사의 **적정 대가**를 보장하여 SW 산업 생태계 건전성 확보
+- 정의: SW의 **규모·공수·기간**을 추정하여 개발·운영 비용을 산정하는 활동
+- 목적: 적정 예산·계약대가 확보 · 변경비용 산정
 
-### 2. 구성체계 및 기능점수(FP) 5대 기능
+### 2. FP 기반 개발비 산정
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="기능점수 대가 산정 요약">
-  <div class="itpe-pipeline-node"><strong>데이터 기능</strong><div class="itpe-step-detail"><span>내부논리파일(ILF) · 외부연계파일(EIF)</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>트랜잭션 기능</strong><div class="itpe-step-detail"><span>외부입력(EI) · 외부출력(EO) · 외부조회(EQ)</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>보정 및 개발비</strong><div class="itpe-step-detail"><span>UFP × 4대 보정계수 × FP 고시단가 (원)</span></div></div>
-</div>
+```text
+경계 설정 → ILF·EIF·EI·EO·EQ 측정 → 5대 보정 → 개발원가
+개발원가 + 이윤 + 직접경비 = SW 개발비
+```
 
-### 3. 핵심 통제
+### 3. 핵심 고려사항
 
-- **언어 독립성 보장**: 코드 라인 수(LOC) 종속성을 극복하고 사용자 관점의 논리적 업무 기능으로 측정
-- **과업 변경 연계**: 구축 중 추가 요구 발생 시 증분 FP를 측정하여 계약금액 증액 의결(SW진흥법 제50조)
+- 애플리케이션 경계와 기능 분류의 일관성
+- 보정계수 근거와 FP 산정서의 추적성
+- 범위 변경 시 증분 FP 재산정
 
 ## 출제 이력과 검증 출처
 
-- 제117회, 제86회 KPC 기출: 소프트웨어 비용 산정 기법의 분류 및 기능점수(FP) 산정
-- [과학기술정보통신부, 소프트웨어사업 대가산정 가이드라인](https://www.msit.go.kr)
-- [한국소프트웨어산업협회(KOSA), SW사업 대가산정 해설서](https://www.sw.or.kr)
+- 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
+- [한국인공지능·소프트웨어산업협회, SW사업 대가산정 가이드(2025년 개정판)](https://www.sw.or.kr/site/sw/ex/board/View.do?bcIdx=63607&cbIdx=276)
+- [ISO, ISO/IEC 14143-1:2007 Functional size measurement](https://www.iso.org/standard/42188.html)
 
 ## 학습 체크
 
-- [ ] SW 비용 산정 3대 접근 방식(하향식, 상향식, 수학적 모형)의 특징을 설명할 수 있는가?
-- [ ] 기능점수(FP)의 5대 기능 유형과 간이법 산출 공식을 제시할 수 있는가?
-- [ ] COCOMO 모형의 3대 개발 모드(Organic, Semi-detached, Embedded)를 비교할 수 있는가?
+- [ ] Ⅰ: SW 비용 산정의 정의·목적을 구분해 쓸 수 있는가?
+- [ ] Ⅱ: FP 5대 기능과 5대 보정계수를 각각 재현할 수 있는가?
+- [ ] Ⅱ: 개발원가와 SW 개발비의 구성을 식으로 설명할 수 있는가?
+- [ ] Ⅲ: FP·LOC·COCOMO를 입력·장점·한계로 비교할 수 있는가?
+- [ ] Ⅳ~Ⅴ: 산정 위험 4개와 재산정·변경통제 방안을 연결할 수 있는가?
 
 ## 연결 토픽
 
-- 이전 토픽: [CCPM(Critical Chain, TOC)](./112_critical_chain_toc.md)
-- 연관 토픽: [과업심의(과업변경·사업기간 적정성)](./091_public_sw_cost_and_scope_change_criteria.md), [품질비용(Cost of Quality)](./106_cost_of_quality_coq.md)
-- 다음 토픽: [개방형 혁신(Open Innovation)](./114_open_innovation.md)
+- 이전: [112. CCPM·TOC](./112_critical_chain_toc/)
+- 관련: [026. SW 사업 대가산정](./026_software_cost_estimation/) · [091. 과업심의](./091_public_sw_cost_and_scope_change_criteria/)
+- 다음: [114. 개방형 혁신](./114_open_innovation/)
