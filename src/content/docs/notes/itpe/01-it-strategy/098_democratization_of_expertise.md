@@ -1,6 +1,6 @@
 ---
 title: "전문성의 민주화(Democratization of Expertise)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="전문성의 민주화 4대 축과 CoE 가드레일 기반 엔터프라이즈 거버넌스 연계 흐름">
   <div class="itpe-flow-node">
     <strong>기술적 추상화 도구 인입</strong>
-    <small>LCNC 플랫폼 · 셀프서비스 BI · AutoML · 생성형 AI</small>
+    <div class="itpe-step-detail"><span>LCNC 플랫폼 · 셀프서비스 BI · AutoML · 생성형 AI</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>비즈니스 실무자 역량 부여</small></div>
   <div class="itpe-flow-node is-current">
@@ -44,7 +44,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>엔터프라이즈 보안 및 품질 통제</small></div>
   <div class="itpe-flow-node">
     <strong>CoE 가드레일 및 코어 IT 연계</strong>
-    <small><span class="itpe-keyword"><strong>Shadow IT</strong></span> 차단 · CI/CD 샌드박스 배포 승인</small>
+    <div class="itpe-step-detail"><span><span class="itpe-keyword"><strong>Shadow IT</strong></span> 차단 · CI/CD 샌드박스 배포 승인</span></div>
   </div>
 </div>
 
@@ -69,7 +69,7 @@ extra:
 > SW 개발과 데이터·AI 전문성의 기술적 장벽을 낮추어 **시민 개발자(Citizen Developer)**를 육성하고, **CoE 거버넌스**로 **Shadow IT**를 통제함.
 
 - 정의: 전문 소프트웨어 엔지니어와 데이터 사이언티스트가 독점하던 고난도 기술 역량을 **LCNC(Low-Code/No-Code)**, **AutoML**, 생성형 AI로 추상화하여 비전문가가 직접 비즈니스 솔루션을 구현하도록 보편화하는 **IT 역량 민주화 전략**
-- 목적: IT 전문 인력 공급 부족(Talent Shortage) 해소, 현업 주도의 민첩한 **Time-to-Market** 단축 및 중앙 IT 조직의 **코어 플랫폼 아키텍처** 집중
+- 목적: IT 전문 인력 공급 부족 해소, 현업 주도 Time-to-Market 단축 및 중앙 IT 코어 아키텍처 집중
 
 ## Ⅱ. 4대 핵심 영역 및 엔터프라이즈 추진 방법론
 
@@ -77,23 +77,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="전문성의 민주화 엔터프라이즈 4단계 추진 방법론">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 플랫폼 및 도구 인입</strong></span>
-    <small>엔터프라이즈 LCNC 및 GenAI 개발 도구 선정 및 연동 인프라 구축<br />→ 플랫폼 도입 계획서 · API 카탈로그</small>
+    <div class="itpe-step-detail"><strong>① 플랫폼 및 도구 인입</strong><span>엔터프라이즈 LCNC 및 GenAI 개발 도구 선정 및 연동 인프라 구축 → 플랫폼 도입 계획서 · API 카탈로그</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② CoE 거버넌스 및 가드레일 수립</strong></span>
-    <small>데이터 접근 권한(RBAC), 보안 정적 분석(SAST), 배포 승인 기준 제정<br />→ 시민 개발 거버넌스 헌장 · 보안 가이드라인</small>
+    <div class="itpe-step-detail"><strong>② CoE 거버넌스 및 가드레일 수립</strong><span>데이터 접근 권한(RBAC), 보안 정적 분석(SAST), 배포 승인 기준 제정 → 시민 개발 거버넌스 헌장 · 보안 가이드라인</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 시민 개발자 육성 및 사내 해커톤</strong></span>
-    <small>직무별 실습 교육, 파일럿 과제 발굴 및 우수 템플릿(Best Practice) 전파<br />→ 육성 커리큘럼 · 공통 컴포넌트 라이브러리</small>
+    <div class="itpe-step-detail"><strong>③ 시민 개발자 육성 및 사내 해커톤</strong><span>직무별 실습 교육, 파일럿 과제 발굴 및 우수 템플릿(Best Practice) 전파 → 육성 커리큘럼 · 공통 컴포넌트 라이브러리</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 전사 배포 및 수명주기 통제</strong></span>
-    <small>배포 앱 인벤토리 중앙 모니터링, 성능 튜닝 및 비사용 앱 자동 회수/폐기<br />→ 앱 라이프사이클 관리 대시보드</small>
+    <div class="itpe-step-detail"><strong>④ 전사 배포 및 수명주기 통제</strong><span>배포 앱 인벤토리 중앙 모니터링, 성능 튜닝 및 비사용 앱 자동 회수/폐기 → 앱 라이프사이클 관리 대시보드</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>통제 정합성</strong></span> · 시민 개발 앱 ↔ CoE 보안 검증 ↔ 코어 백엔드 API 게이트웨이 100% 매핑</div>
@@ -123,11 +119,11 @@ extra:
 
 > 무분별한 섀도우 IT 확산과 전사 DB 부하를 방지하기 위해 보안 가드레일과 격리 샌드박스를 강제해야 함.
 
-| 위험 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **섀도우 IT 및 데이터 유출** | 중앙 IT 승인 없이 비인가 LCNC 툴로 개인정보 연동 | 중앙 관리형 API 게이트웨이 및 데이터 마스킹(DLP) 프록시 연계 강제 | 데이터 유출 원천 차단 및 컴플라이언스 준수 |
-| **스파게티 앱 및 유지보수 불가** | SW 공학 지식 부족으로 모듈화 결여, 담당자 퇴사 시 방치 | **CoE** 표준 템플릿 준수 의무화 및 6개월 미사용 앱 자동 아카이빙/폐기 | 기술 부채 축적 및 시스템 비대화 방지 |
-| **전사 코어 DB 성능 저하** | 비효율적 Full Table Scan 쿼리를 유발하는 LCNC 앱 남발 | 샌드박스 내 쿼리 쿼터(Quota) 설정 및 읽기 전용 복제본(Read Replica) 강제 | 코어 시스템 부하 원천 격리 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **섀도우 IT 및 데이터 유출** | 중앙 관리형 API 게이트웨이 및 데이터 마스킹(DLP) 프록시 연계 강제 | 데이터 유출 원천 차단 및 컴플라이언스 준수 |
+| **스파게티 앱 및 유지보수 불가** | **CoE** 표준 템플릿 준수 의무화 및 6개월 미사용 앱 자동 아카이빙/폐기 | 기술 부채 축적 및 시스템 비대화 방지 |
+| **전사 코어 DB 성능 저하** | 샌드박스 내 쿼리 쿼터(Quota) 설정 및 읽기 전용 복제본(Read Replica) 강제 | 코어 시스템 부하 원천 격리 |
 
 ## Ⅴ. 성공적 전문성 민주화 안착을 위한 기술사적 제언
 
@@ -147,23 +143,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="전문성의 민주화 성공 안착을 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>중앙 IT 백로그 심화 · 현업의 비인가 툴 사용으로 Shadow IT 리스크 급증</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>중앙 IT 백로그 심화 · 현업의 비인가 툴 사용으로 Shadow IT 리스크 급증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>전사 공인 LCNC/AutoML 플랫폼 도입 + CoE 기반 Guardrail as Code 가동</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>전사 공인 LCNC/AutoML 플랫폼 도입 + CoE 기반 Guardrail as Code 가동</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>RBAC/DLP 보안 게이트 통과 · 6개월 미사용 앱 수명주기 자동 회수</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>RBAC/DLP 보안 게이트 통과 · 6개월 미사용 앱 수명주기 자동 회수</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>보안 안전성 확보 속 신속 개발 · 우수 앱의 전사 코어 자산화 실현</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>보안 안전성 확보 속 신속 개발 · 우수 앱의 전사 코어 자산화 실현</span></div>
   </div>
 </div>
 
@@ -172,16 +164,16 @@ extra:
 ### 1. 정의·목적
 
 - 정의: SW 개발, 데이터 분석, AI 모델링의 복잡성을 **LCNC**, **AutoML**로 추상화하여 비전문가가 직접 비즈니스 솔루션을 구현하는 **IT 기술 보편화 전략**
-- 목적: 현업 주도의 신속한 **Time-to-Market** 단축 및 중앙 IT의 고난도 핵심 플랫폼 집중
+- 목적: 현업 주도 신속한 Time-to-Market 단축 및 중앙 IT 고난도 핵심 플랫폼 집중
 
 ### 2. 구성체계 및 핵심 영역
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="전문성의 민주화 4대 축 및 거버넌스 요약">
-  <div class="itpe-pipeline-node"><strong>4대 영역</strong><small>데이터(BI) · 개발(LCNC) · AI(AutoML) · 디자인(노코드)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>4대 영역</strong><span>데이터(BI) · 개발(LCNC) · AI(AutoML) · 디자인(노코드)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>CoE 가드레일</strong><small>보안 점검(SAST/DLP) · 권한 인가 · 배포 샌드박스</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>CoE 가드레일</strong><span>보안 점검(SAST/DLP) · 권한 인가 · 배포 샌드박스</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>코어 IT 플랫폼</strong><small>백엔드 API 게이트웨이 · 데이터 레이크 연계</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>코어 IT 플랫폼</strong><span>백엔드 API 게이트웨이 · 데이터 레이크 연계</span></div></div>
 </div>
 
 ### 3. 핵심 통제

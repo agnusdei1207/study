@@ -1,6 +1,6 @@
 ---
 title: "EA/ITA(Enterprise Architecture/Information Technology Architecture)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="EA/ITA의 아키텍처 모델, 5대 참조모델, 관리체계 3대 축과 거버넌스 순환 흐름">
   <div class="itpe-flow-node">
     <strong>경영 전략 및 비즈니스 비전</strong>
-    <small>전사 비즈니스 목표 · 아키텍처 수립 원칙</small>
+    <div class="itpe-step-detail"><span>전사 비즈니스 목표 · 아키텍처 수립 원칙</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>전사 청사진 수립</small></div>
   <div class="itpe-flow-node is-current">
@@ -43,7 +43,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>실행 및 진화</small></div>
   <div class="itpe-flow-node">
     <strong>Living Architecture as Code</strong>
-    <small>중복 투자 배제 · 상호운용성 확보 · Git/API 실시간 동기화</small>
+    <div class="itpe-step-detail"><span>중복 투자 배제 · 상호운용성 확보 · Git/API 실시간 동기화</span></div>
   </div>
 </div>
 
@@ -68,7 +68,7 @@ extra:
 > 사일로(Silo) 시스템의 중복 투자를 방지하고, **비즈니스(BA)**부터 **인프라(TA)**까지 전사 자원의 **상호운용성(Interoperability)**을 보장함.
 
 - 정의: 조직의 경영 목표를 지원하기 위해 비즈니스 구조(BA), 데이터(DA), 애플리케이션(AA), 기술 인프라(TA), 보안(SA) 간의 유기적 관계를 체계화하고 **As-Is**에서 **To-Be**로의 이행 경로를 제시하는 **전사 종합 아키텍처 프레임워크**
-- 목적: 부서별 독자 추진에 따른 중복 투자 제거 및 시스템 간 **상호운용성** 확보, 비즈니스 변화에 민첩하게 대응 가능한 표준 기반 **IT 거버넌스** 확립
+- 목적: 중복 투자 제거, 상호운용성 확보 및 표준 기반 IT 거버넌스 확립
 
 ## Ⅱ. EA/ITA 3대 구성 축 및 4단계 이행 방법론
 
@@ -76,23 +76,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="EA/ITA 4단계 이행 방법론 및 산출물">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① EA 방향 및 원칙 수립</strong></span>
-    <small>기업 비전 연계 아키텍처 원칙(재사용, 연계성, 표준화) 정의<br />→ EA 헌장 · 프레임워크 정의서</small>
+    <div class="itpe-step-detail"><strong>① EA 방향 및 원칙 수립</strong><span>기업 비전 연계 아키텍처 원칙(재사용, 연계성, 표준화) 정의 → EA 헌장 · 프레임워크 정의서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 5대 도메인 모델링 (As-Is / To-Be)</strong></span>
-    <small>BA(업무), DA(데이터), AA(응용), TA(기술), SA(보안) 뷰 설계<br />→ 현행 및 목표 아키텍처 모델링 명세서</small>
+    <div class="itpe-step-detail"><strong>② 5대 도메인 모델링 (As-Is / To-Be)</strong><span>BA(업무), DA(데이터), AA(응용), TA(기술), SA(보안) 뷰 설계 → 현행 및 목표 아키텍처 모델링 명세서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 갭 분석 및 정보화 이행 로드맵</strong></span>
-    <small>현행-목표 간 아키텍처 갭(Gap) 식별, 우선순위별 프로젝트 도출<br />→ 갭 분석서 · 중장기 정보화 이행 로드맵</small>
+    <div class="itpe-step-detail"><strong>③ 갭 분석 및 정보화 이행 로드맵</strong><span>현행-목표 간 아키텍처 갭(Gap) 식별, 우선순위별 프로젝트 도출 → 갭 분석서 · 중장기 정보화 이행 로드맵</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 거버넌스 및 EAMS 운영</strong></span>
-    <small>신규 정보화 사업 기획 시 EAMS 내 기술 표준 적합성 사전 심의<br />→ 아키텍처 적합성 검토서 · EAMS 저장소</small>
+    <div class="itpe-step-detail"><strong>④ 거버넌스 및 EAMS 운영</strong><span>신규 정보화 사업 기획 시 EAMS 내 기술 표준 적합성 사전 심의 → 아키텍처 적합성 검토서 · EAMS 저장소</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>아키텍처 정렬</strong></span> · 비즈니스 목표 ↔ 5대 뷰(BA/DA/AA/TA/SA) ↔ 5대 참조모델 ↔ EAMS 적합성 100% 매핑</div>
@@ -147,23 +143,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="EA/ITA 현대화 및 실효성 확보를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>수작업 문서 갱신 부담 · 프로젝트 종료 후 방치되는 죽은 EA</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>수작업 문서 갱신 부담 · 프로젝트 종료 후 방치되는 죽은 EA</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>Git/IaC/API 게이트웨이 실시간 크롤링 기반 Living Architecture</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>Git/IaC/API 게이트웨이 실시간 크롤링 기반 Living Architecture</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>신규 사업 예산 편성 시 EAMS 적합성 및 TRM 준수 검증 100%</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>신규 사업 예산 편성 시 EAMS 적합성 및 TRM 준수 검증 100%</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>중복 투자 제로화 · 전사 데이터 및 서비스 상호운용성 극대화</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>중복 투자 제로화 · 전사 데이터 및 서비스 상호운용성 극대화</span></div>
   </div>
 </div>
 
@@ -172,16 +164,16 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 비즈니스(BA), 데이터(DA), 응용(AA), 기술(TA), 보안(SA) 간의 유기적 관계를 체계화하여 중복 투자를 방지하고 상호운용성을 극대화하는 **전사 종합 아키텍처 관리 체계**
-- 목적: 정보시스템의 사일로화를 방지하고 표준 기반 **IT 거버넌스** 확립을 통한 비즈니스 전략 정합성 달성
+- 목적: 사일로화 방지 및 표준 기반 IT 거버넌스 확립 통한 비즈니스 전략 정합성 달성
 
 ### 2. 구성체계 및 3대 축
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="EA/ITA 3대 구성 축 요약">
-  <div class="itpe-pipeline-node"><strong>아키텍처 모델</strong><small>5대 뷰(BA/DA/AA/TA/SA) · As-Is / To-Be</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>아키텍처 모델</strong><span>5대 뷰(BA/DA/AA/TA/SA) · As-Is / To-Be</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>5대 참조모델</strong><small>PRM(성과) · BRM(업무) · DRM(데이터) · ARM(서비스) · TRM(기술)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>5대 참조모델</strong><span>PRM(성과) · BRM(업무) · DRM(데이터) · ARM(서비스) · TRM(기술)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>관리체계</strong><small>아키텍처 위원회 · EAMS 적합성 심의</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>관리체계</strong><span>아키텍처 위원회 · EAMS 적합성 심의</span></div></div>
 </div>
 
 ### 3. 핵심 통제

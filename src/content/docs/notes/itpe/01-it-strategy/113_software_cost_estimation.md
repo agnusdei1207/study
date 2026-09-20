@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어 비용 산정(Software Cost Estimation)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,9 +29,9 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="SW 비용 산정 3대 접근 방식과 기능점수 기반 대가 산정 흐름">
   <div class="itpe-flow-node">
     <strong>비용 산정 3대 접근 방식</strong>
-    <small>하향식 (전문가/델파이) · 상향식 (LOC/WBS) · 수학적 모형</small>
+    <div class="itpe-step-detail"><span>하향식 (전문가/델파이) · 상향식 (LOC/WBS) · 수학적 모형</span></div>
   </div>
-  <div class="itpe-flow-arrow">↓<small>공공 조달 표준 적용</small></div>
+  <div class="itpe-flow-arrow">↓<span>공공 조달 표준 적용</span></div>
   <div class="itpe-flow-node is-current">
     <strong>기능점수 (FP, Function Point) 산정</strong>
     <div class="itpe-flow-branches">
@@ -40,10 +40,10 @@ extra:
       <div class="itpe-flow-branch"><strong>보정</strong><span>규모 · 연계 · 성능 · 다중사이트 보정계수</span></div>
     </div>
   </div>
-  <div class="itpe-flow-arrow">↓<small>법정 대가 고시</small></div>
+  <div class="itpe-flow-arrow">↓<span>법정 대가 고시</span></div>
   <div class="itpe-flow-node">
     <strong>SW 개발비 확정 (제값받기)</strong>
-    <small>보정 FP × 고시 단가 + 직접경비 및 이윤 합산</small>
+    <div class="itpe-step-detail"><span>보정 FP × 고시 단가 + 직접경비 및 이윤 합산</span></div>
   </div>
 </div>
 
@@ -67,7 +67,7 @@ extra:
 
 > 주먹구구식 덤핑과 예산 삭감을 탈피하고, **기능점수(FP)**와 **수학적 알고리즘 모델**로 투입 공수와 **적정 대가**를 산정함.
 
-- 정의: SW 개발 및 유지관리 사업에서 프로젝트 규모(Size)를 객관적으로 측정하고, 과거 실적 데이터와 공학적 모형(**FP**, **COCOMO**)을 통해 필요한 공수(Effort)와 예산(Cost)을 과학적으로 도출하는 **원가 공학 프로세스**
+- 정의: SW 개발 및 유지관리 사업에서 프로젝트 규모(Size)를 객관적으로 측정하고, 과거 실적 데이터와 공학적 모형(**FP**, **COCOMO**)을 통해 소요 공수(Effort)와 예산(Cost)을 과학적으로 도출하는 **원가 공학 프로세스**
 - 목적: 발주처의 객관적 예산 확보 근거 마련, 수급인의 **적정 개발 대가** 보장 및 요구사항 변경에 따른 계약금액 조정 기준선 제공
 
 ## Ⅱ. SW 비용 산정 3대 접근 방식 및 5단계 기능점수 산정 프로세스
@@ -77,27 +77,27 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기능점수(FP) 기반 공공 SW 개발비 산정 5단계 프로세스">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 요구사항 분석 및 시스템 경계 확정</strong></span>
-    <small>RFP 및 과업지시서 기반 사용자 관점 기능/비기능 경계 정의<br />→ 시스템 경계 정의서</small>
+    <div class="itpe-step-detail"><strong>경계 식별</strong><span>RFP 기반 사용자 관점 기능/비기능 경계 정의 및 요구사항 확정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 5대 기능 유형 식별 및 분류</strong></span>
-    <small>데이터 기능(ILF, EIF) 및 트랜잭션 기능(EI, EO, EQ) 도출<br />→ 기능 분류 매트릭스</small>
+    <div class="itpe-step-detail"><strong>기능 분류</strong><span>데이터 기능(ILF, EIF) 및 트랜잭션 기능(EI, EO, EQ) 도출</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 미조정 기능점수(UFP) 산출</strong></span>
-    <small>기능 유형별 표준 가중치(간이법 기준: ILF 7.5, EIF 5.4 등) 합산<br />→ UFP 계산 명세서 ($UFP = \sum 기능수 \times 가중치$)</small>
+    <div class="itpe-step-detail"><strong>가중치 집계</strong><span>기능 유형별 표준 가중치(간이법 기준) 곱연산 및 단순 합산</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 4대 보정계수 적용</strong></span>
-    <small>프로젝트 규모, 연계 복잡성, 성능 요구, 다중 사이트 보정계수 반영<br />→ 최종 보정 기능점수 ($보정 FP = UFP \times \prod 보정계수$)</small>
+    <div class="itpe-step-detail"><strong>환경 보정</strong><span>규모, 연계 복잡성, 성능 요구, 다중 사이트 보정계수 반영</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ SW 개발비 확정</strong></span>
-    <small>KOSA 고시 기능당 단가(약 55만 원/FP) 적용 및 직접경비/이윤 합산<br />→ 최종 개발비 산출 내역서</small>
+    <div class="itpe-step-detail"><strong>비용 산출</strong><span>KOSA 고시 기능당 단가 적용 및 직접경비·이윤 합산</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>대가 정합성</strong></span> · 기능 요구명세 ↔ UFP 측정 ↔ 보정계수 ↔ KOSA 고시단가 100% 매핑</div>
@@ -126,11 +126,11 @@ extra:
 
 > 기획 초기 기능 모호성과 임의적 예산 삭감을 방지하기 위해 간이 FP와 롤링 웨이브 계약을 적용해야 함.
 
-| 왜곡 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **기획 초기 상세 스펙 미확정** | ISP/ISMP 단계에서 DB 테이블과 트랜잭션 속성이 미확정되어 정규 FP 측정 불가 | 화면 및 엔티티 수 기반 **간이 기능점수 산정법(Average Complexity)** 적용 | 조기 예산 확보 및 기획 오차 최소화 |
-| **발주처의 임의 예산 삭감** | 예산 부처의 통계적 근거 없는 획일적 삭감 및 덤핑 발주 관행 | 과거 공공 SW 사업 실적 통계 및 **KOSA 공인 대가 가이드라인** 증빙 강제 | 적정 개발 예산 보장 |
-| **과업 변경 시 추가 대가 미지급** | 구축 중 발주처 요구 추가 시 정량적 FP 재산정 체계 부재 | **RTM(요구사항 추적표)** 연동 형상관리 기반 증분 FP 자동 측정 및 과업심의 연계 | 공정한 계약금액 증액 (SW진흥법 제50조) |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **기획 초기 상세 스펙 미확정** | 화면 및 엔티티 수 기반 **간이 기능점수 산정법(Average Complexity)** 적용 | 조기 예산 확보 및 기획 오차 최소화 |
+| **발주처의 임의 예산 삭감** | 과거 공공 SW 사업 실적 통계 및 **KOSA 공인 대가 가이드라인** 증빙 강제 | 적정 개발 예산 보장 |
+| **과업 변경 시 추가 대가 미지급** | **RTM(요구사항 추적표)** 연동 형상관리 기반 증분 FP 자동 측정 및 과업심의 연계 | 공정한 계약금액 증액 (SW진흥법 제50조) |
 
 ## Ⅴ. 제값받기 실현을 위한 기술사적 제언
 
@@ -151,22 +151,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SW 비용 산정 현실화 및 제값받기를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>기획 단계 모호한 요구로 주먹구구 예산 산정 · 과업 추가 시 대가 미반영</small>
+    <div class="itpe-step-detail"><strong>모호한 견적</strong><span>기획 단계 모호한 요구로 임의 예산 산정 및 대가 누락</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>간이 FP 예산 밴드(±15%) + 착수 후 정규 FP 확정 게이트웨이 제도화</small>
+    <div class="itpe-step-detail"><strong>단계적 확정</strong><span>간이 FP 예산 밴드(±15%) 및 정규 FP 확정 게이트 도입</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>KOSA 공인 단가 준수 · RTM 기반 과업 변경 시 증분 FP 재산정</small>
+    <div class="itpe-step-detail"><strong>대가 준수</strong><span>KOSA 공인 단가 준수 및 RTM 기반 증분 FP 정산</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>SW 제값받기 실현 · 잦은 납기 지연 및 개발자 야근 악순환 종식</small>
+    <div class="itpe-step-detail"><strong>제값받기</strong><span>SW 적정 대가 보장 및 잦은 과업 변경 야근 악순환 종식</span></div>
   </div>
 </div>
 
@@ -180,11 +180,11 @@ extra:
 ### 2. 구성체계 및 기능점수(FP) 5대 기능
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기능점수 대가 산정 요약">
-  <div class="itpe-pipeline-node"><strong>데이터 기능</strong><small>내부논리파일(ILF) · 외부연계파일(EIF)</small></div>
+  <div class="itpe-pipeline-node"><strong>데이터 기능</strong><div class="itpe-step-detail"><span>내부논리파일(ILF) · 외부연계파일(EIF)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>트랜잭션 기능</strong><small>외부입력(EI) · 외부출력(EO) · 외부조회(EQ)</small></div>
+  <div class="itpe-pipeline-node"><strong>트랜잭션 기능</strong><div class="itpe-step-detail"><span>외부입력(EI) · 외부출력(EO) · 외부조회(EQ)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>보정 및 개발비</strong><small>UFP × 4대 보정계수 × FP 고시단가 (원)</small></div>
+  <div class="itpe-pipeline-node"><strong>보정 및 개발비</strong><div class="itpe-step-detail"><span>UFP × 4대 보정계수 × FP 고시단가 (원)</span></div></div>
 </div>
 
 ### 3. 핵심 통제

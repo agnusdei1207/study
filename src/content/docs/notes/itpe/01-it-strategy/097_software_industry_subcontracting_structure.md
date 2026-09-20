@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어산업진흥법 하도급 구조"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="공공 SW 사업 하도급 50% 직접수행 의무 및 재하도급 금지 구조">
   <div class="itpe-flow-node">
     <strong>공공 발주기관</strong>
-    <small>원도급 계약 체결 · 하도급 적정성 사전 심사</small>
+    <div class="itpe-step-detail"><span>원도급 계약 체결 · 하도급 적정성 사전 심사</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>원도급 계약</small></div>
   <div class="itpe-flow-node is-current">
@@ -43,7 +43,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>1차 하도급 계약 (사전승인 必)</small></div>
   <div class="itpe-flow-node">
     <strong>하수급인 (1차 협력업체)</strong>
-    <small>❌ 재하도급 원칙적 금지 (신기술·특수장비 극히 예외적 허용)</small>
+    <div class="itpe-step-detail"><span>❌ 재하도급 원칙적 금지 (신기술·특수장비 극히 예외적 허용)</span></div>
   </div>
 </div>
 
@@ -68,7 +68,7 @@ extra:
 > 대형 SI 기업의 통행세 착복과 다단계 피라미드 하청을 차단하기 위해 **50% 이상 직접수행**과 **재하도급 금지**를 법적으로 강제함.
 
 - 정의: **소프트웨어 진흥법 제51조**에 따라 공공 SW 사업 수주 시 50%를 초과한 하도급을 금지하고, 재하도급을 원칙적으로 금지하며 사전에 발주자 승인을 받도록 규정한 **공공 SW 상생 및 품질 보호 제도**
-- 목적: 중소 SW 전문기업의 **적정 대가** 보장, 원수급자의 **직접수행 책임성** 강화, 다단계 하청에 따른 시스템 부실 구축 및 보안 사고 방지
+- 목적: 중소 SW 기업 적정 대가 보장, 원수급자 직접수행 책임성 강화 및 부실 구축 방지
 
 ## Ⅱ. SW진흥법 하도급 규제 4대 원칙 및 4단계 운영 절차
 
@@ -76,30 +76,26 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SW진흥법 하도급 사전승인 및 대금지급 4단계 절차">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 하도급 사전 신청</strong></span>
-    <small>사업 착수 전/후 하도급 계약 계획서, 산출내역서, 협력사 자격 증빙 제출<br />→ 하도급 계획서 · 계약서(초안)</small>
+    <div class="itpe-step-detail"><strong>① 하도급 사전 신청</strong><span>사업 착수 전/후 하도급 계약 계획서, 산출내역서, 협력사 자격 증빙 제출 → 하도급 계획서 · 계약서(초안)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 하도급 적정성 심사</strong></span>
-    <small>심사위원회 구성, 대가 비율(82% 룰) 및 기술 인력 역량 계량 평가<br />→ 적정성 평가표 (85점 이상 승인 기준)</small>
+    <div class="itpe-step-detail"><strong>② 하도급 적정성 심사</strong><span>심사위원회 구성, 대가 비율(82% 룰) 및 기술 인력 역량 계량 평가 → 적정성 평가표 (85점 이상 승인 기준)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 승인 여부 서면 통보</strong></span>
-    <small>접수일로부터 14일 이내 승인, 불승인, 조건부 보완 서면 통보<br />→ 하도급 사전승인 통보서</small>
+    <div class="itpe-step-detail"><strong>③ 승인 여부 서면 통보</strong><span>접수일로부터 14일 이내 승인, 불승인, 조건부 보완 서면 통보 → 하도급 사전승인 통보서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 계약 체결 및 직불 집행</strong></span>
-    <small>전자계약 체결 및 조달청 '하도급지킴이' 시스템 등록 후 대금 직불<br />→ 기성 대금 전자이체 영수증</small>
+    <div class="itpe-step-detail"><strong>④ 계약 체결 및 직불 집행</strong><span>전자계약 체결 및 조달청 '하도급지킴이' 시스템 등록 후 대금 직불 → 기성 대금 전자이체 영수증</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>상생 추적성</strong></span> · 원도급 계약금액 ↔ 하도급 심사 대가율(≥82%) ↔ 하도급지킴이 직불 100% 매핑</div>
 
 ### 하도급 규제 4대 핵심 원칙
 
-| 규제 원칙 | 법적 근거 (SW진흥법) | 세부 법적 요건 | 실무 적용 시 유의점 |
+| 규제 원칙 | 법적 근거 (SW진흥법) | 세부 법적 기준 | 실무 적용 시 유의점 |
 |---|---|---|---|
 | **50% 초과 하도급 금지** | 제51조 제1항 | 사업금액의 100분의 50을 초과하여 하도급 불가 (**원수급자 50% 이상 직접수행**) | 단순 하드웨어/상용SW 물품 구매액은 모수에서 제외 가능 |
 | **재하도급 원칙적 금지** | 제51조 제2항 | 하수급인은 도급받은 SW 사업을 다른 제3자에게 다시 하도급할 수 없음 | 피라미드식 다단계 하도급 원천 차단 |
@@ -131,11 +127,11 @@ extra:
 
 > 프리랜서 위장도급과 대금 지연 문제를 극복하기 위해 직접 고용 검증과 시스템 기반 직불제를 강화해야 함.
 
-| 왜곡 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **프리랜서 위장도급 만연** | 50% 직접수행 인력 부족을 메우기 위해 인력파견형 프리랜서를 편법 투입 | 4대 보험 가입 증빙 기반 정규 상주 인력 검증 및 원도급자 직접 근로계약 의무화 | 불법 파견 근절 및 개발자 근로조건 보호 |
-| **하도급 대금 지연·체불** | 원수급자의 자금 유용 및 어음 지급 등 정산 지연 | 조달청 **'하도급지킴이'**를 통한 대금 직불 및 금융권 에스크로 계좌 결제 의무화 | 대금 체불 원천 차단 |
-| **형식적 하도급 사전승인** | 발주기관의 전문성 부재로 서류상의 형식적 요건만 검토 후 승인 | 외부 감리법인을 통한 '하도급 계약 적정성 사전 감리 검증제' 의무화 | 하도급 심사의 객관성 및 품질 담보 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **프리랜서 위장도급 만연** | 4대 보험 가입 증빙 기반 정규 상주 인력 검증 및 원도급자 직접 근로계약 의무화 | 불법 파견 근절 및 개발자 근로조건 보호 |
+| **하도급 대금 지연·체불** | 조달청 **'하도급지킴이'**를 통한 대금 직불 및 금융권 에스크로 계좌 결제 의무화 | 대금 체불 원천 차단 |
+| **형식적 하도급 사전승인** | 외부 감리법인을 통한 '하도급 계약 적정성 사전 감리 검증제' 의무화 | 하도급 심사의 객관성 및 품질 담보 |
 
 ## Ⅴ. 하도급 투명성 확보를 위한 기술사적 제언
 
@@ -155,23 +151,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="하도급 투명성 확보를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>계약서 서류상 50% 준수 · 현장 프리랜서 편법 위장도급 만연</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>계약서 서류상 50% 준수 · 현장 프리랜서 편법 위장도급 만연</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>Git 커밋 기반 개발 실명제 + 하도급지킴이 금융 API 연계 직불</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>Git 커밋 기반 개발 실명제 + 하도급지킴이 금융 API 연계 직불</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>원도급 대가 82% 심사 통과 · 감리법인의 하도급 사전검증 100%</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>원도급 대가 82% 심사 통과 · 감리법인의 하도급 사전검증 100%</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>피라미드식 하청 착취 근절 · 중소 SW 전문기업 적정 대가 보장</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>피라미드식 하청 착취 근절 · 중소 SW 전문기업 적정 대가 보장</span></div>
   </div>
 </div>
 
@@ -180,18 +172,18 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **소프트웨어 진흥법 제51조**에 따라 사업금액의 50% 이상 원수급자 직접 수행, 재하도급 원칙적 금지, 발주자 사전승인을 강제하는 **공공 SW 하도급 규제 제도**
-- 목적: 다단계 하청에 따른 대금 후려치기를 차단하고 중소 전문기업의 **적정 대가**와 **공공 SW 품질**을 보장
+- 목적: 대금 후려치기 차단, 중소 전문기업 적정 대가 및 공공 SW 품질 보장
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="하도급 규제 구조 요약">
-  <div class="itpe-pipeline-node"><strong>원수급자</strong><small>50% 이상 직접수행 (주공정 아키텍처)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>원수급자</strong><span>50% 이상 직접수행 (주공정 아키텍처)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>사전승인</strong><small>대가 82% 이상 · 적정성 평가 85점 이상</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>사전승인</strong><span>대가 82% 이상 · 적정성 평가 85점 이상</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>1차 하도급</strong><small>50% 이내 수행 · ❌ 재하도급 원칙 금지</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>1차 하도급</strong><span>50% 이내 수행 · ❌ 재하도급 원칙 금지</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>하도급지킴이</strong><small>조달청 시스템 기반 대금 직접 지급</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>하도급지킴이</strong><span>조달청 시스템 기반 대금 직접 지급</span></div></div>
 </div>
 
 ### 3. 핵심 통제

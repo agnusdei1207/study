@@ -1,6 +1,6 @@
 ---
 title: "지능정보기술 감리 실무 가이드"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="지능정보기술 감리의 데이터, 모델, 인프라 3대 점검 관점 및 생애주기 연계 흐름">
   <div class="itpe-flow-node">
     <strong>기존 감리의 한계 (결정론적 검증)</strong>
-    <small>화면 · RDB · 소스코드 로직 위주 (True/False 판정)</small>
+    <div class="itpe-step-detail"><span>화면 · RDB · 소스코드 로직 위주 (True/False 판정)</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>패러다임 전환 (NIA 가이드)</small></div>
   <div class="itpe-flow-node is-current">
@@ -43,7 +43,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>지속적 신뢰성 보증</small></div>
   <div class="itpe-flow-node">
     <strong>종료 감리 실측 및 운영 안정성</strong>
-    <small><span class="itpe-keyword"><strong>Hold-out Test Set</strong></span> 현장 실측 + 자동 재학습(CT) 가동</small>
+    <div class="itpe-step-detail"><span><span class="itpe-keyword"><strong>Hold-out Test Set</strong></span> 현장 실측 + 자동 재학습(CT) 가동</span></div>
   </div>
 </div>
 
@@ -68,7 +68,7 @@ extra:
 > 결정론적 코드 검증을 탈피하여 **데이터**, **알고리즘·모델**, **인프라·MLOps**의 3대 관점으로 **확률론적 신뢰성**을 검증함.
 
 - 정의: **한국지능정보사회진흥원(NIA)**이 제정한 감리 기준으로, 인공지능·빅데이터 시스템의 생애주기별 특성을 반영하여 데이터 품질, 알고리즘 모델링, MLOps 인프라의 전주기 신뢰성을 검증하는 **확률론적 감리 실무 가이드**
-- 목적: 데이터 편향 및 개인정보 침해 차단, 모델 예측 신뢰도 및 **설명가능성(XAI)** 확보, **MLOps** 기반의 지속적 운영 안정성 보증
+- 목적: 데이터 편향 및 개인정보 침해 차단, 모델 신뢰도 및 XAI 설명가능성 확보, MLOps 기반 지속적 운영 안정성 보증
 
 ## Ⅱ. 3대 핵심 점검 관점 및 4단계 감리 절차
 
@@ -76,23 +76,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="지능정보기술 감리 4단계 감리 절차 및 점검 산출물">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 기획·착수 감리 (AI 적합성 검증)</strong></span>
-    <small>비즈니스 문제의 AI 적합성, 학습 데이터 수급 계획, PoC 검증<br />→ PoC 결과 검토서 · 데이터 수급 적법성 계획서</small>
+    <div class="itpe-step-detail"><strong>① 기획·착수 감리 (AI 적합성 검증)</strong><span>비즈니스 문제의 AI 적합성, 학습 데이터 수급 계획, PoC 검증 → PoC 결과 검토서 · 데이터 수급 적법성 계획서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 분석·설계 감리 (데이터·아키텍처 검증)</strong></span>
-    <small>데이터 정제/라벨링 기준, 개인정보 비식별화, GPU 사이징 검토<br />→ 데이터 정제 명세서 · 목표 아키텍처 정의서</small>
+    <div class="itpe-step-detail"><strong>② 분석·설계 감리 (데이터·아키텍처 검증)</strong><span>데이터 정제/라벨링 기준, 개인정보 비식별화, GPU 사이징 검토 → 데이터 정제 명세서 · 목표 아키텍처 정의서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 구축·훈련 감리 (실험 추적성 검증)</strong></span>
-    <small>데이터 버전 관리(DVC), 훈련 하이퍼파라미터 로깅, 시큐어 코딩<br />→ 모델 훈련 실험 로그 · 코드 정적 분석서</small>
+    <div class="itpe-step-detail"><strong>③ 구축·훈련 감리 (실험 추적성 검증)</strong><span>데이터 버전 관리(DVC), 훈련 하이퍼파라미터 로깅, 시큐어 코딩 → 모델 훈련 실험 로그 · 코드 정적 분석서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 시험·종료 감리 (독립 실측 및 운영 검증)</strong></span>
-    <small>독립 Hold-out 데이터셋 기반 성능 실측, XAI, MLOps 트리거 검증<br />→ 감리결과보고서 · 시험 실측 결과표</small>
+    <div class="itpe-step-detail"><strong>④ 시험·종료 감리 (독립 실측 및 운영 검증)</strong><span>독립 Hold-out 데이터셋 기반 성능 실측, XAI, MLOps 트리거 검증 → 감리결과보고서 · 시험 실측 결과표</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>신뢰 추적성</strong></span> · 데이터 적법성 ↔ 모델 학습 이력 ↔ 독립 테스트셋 실측 ↔ MLOps 자동 재학습 100% 매핑</div>
@@ -121,11 +117,11 @@ extra:
 
 > 사업자 제출 데이터에만 의존한 편향 검증을 차단하기 위해 감리단 전용 독립 테스트셋을 운영해야 함.
 
-| 왜곡 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **서류 중심 감리로 성능 은폐** | 사업자가 선별한 편향된 테스트 데이터로만 검증하여 실 운영 시 오류 속출 | 감리단이 독자 확보한 **'Hold-out 블라인드 테스트 데이터셋'** 실측 의무화 | 객관적 실제 성능 검증 및 부실 AI 차단 |
-| **저작권 및 개인정보 리스크** | 웹 크롤링 데이터의 무단 수집 및 비인가 식별자 잔존 | 데이터 출처 추적표(Provenance) 전수 조사 및 비식별화 적정성 검증 | 법적 분쟁 및 개인정보보호법 과징금 차단 |
-| **운영 중 모델 성능 급락** | 배포 후 실시간 데이터 분포 변화(Drift) 감지 체계 부재 | **MLOps** 파이프라인 내 KS 통계 검정 기반 Drift 알람 및 재학습 검증 | 운영 환경에서의 지속적 예측 정확도 보증 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **서류 중심 감리로 성능 은폐** | 감리단이 독자 확보한 **'Hold-out 블라인드 테스트 데이터셋'** 실측 의무화 | 객관적 실제 성능 검증 및 부실 AI 차단 |
+| **저작권 및 개인정보 리스크** | 데이터 출처 추적표(Provenance) 전수 조사 및 비식별화 적정성 검증 | 법적 분쟁 및 개인정보보호법 과징금 차단 |
+| **운영 중 모델 성능 급락** | **MLOps** 파이프라인 내 KS 통계 검정 기반 Drift 알람 및 재학습 검증 | 운영 환경에서의 지속적 예측 정확도 보증 |
 
 ## Ⅴ. 지능정보기술 감리 실효성 제고를 위한 기술사적 제언
 
@@ -145,23 +141,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="지능정보기술 감리 실효성 제고를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>사업자 샘플 데이터 기반 형식적 시연 · 사후 드리프트 대책 부재</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>사업자 샘플 데이터 기반 형식적 시연 · 사후 드리프트 대책 부재</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>감리단 독자 블라인드 테스트셋 실측 + MLOps 드리프트 알람 검증</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>감리단 독자 블라인드 테스트셋 실측 + MLOps 드리프트 알람 검증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>독립 데이터셋 F1-score 실측 달성 · XAI 기반 판단 근거 추적성</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>독립 데이터셋 F1-score 실측 달성 · XAI 기반 판단 근거 추적성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>AI 오작동 피해 예방 · 공공 인공지능 시스템의 대국민 신뢰도 확보</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>AI 오작동 피해 예방 · 공공 인공지능 시스템의 대국민 신뢰도 확보</span></div>
   </div>
 </div>
 
@@ -170,16 +162,16 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **NIA(한국지능정보사회진흥원)**가 제정한 가이드로, 인공지능·빅데이터 시스템의 **데이터**, **알고리즘·모델**, **인프라·MLOps** 품질을 전주기에 걸쳐 점검하는 **확률론적 감리 표준**
-- 목적: 데이터 편향 및 법적 리스크 차단, 모델 예측 성능 및 **XAI 설명가능성** 확보를 통한 시스템 신뢰성 보증
+- 목적: 데이터 편향 및 법적 리스크 차단, 모델 예측 성능 및 XAI 설명가능성 확보 통한 시스템 신뢰성 보증
 
 ### 2. 구성체계 및 핵심 관점
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="지능정보 감리 3대 관점 요약">
-  <div class="itpe-pipeline-node"><strong>데이터 관점</strong><small>수집 적법성 · 라벨링 무결성 · 클래스 균형</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>데이터 관점</strong><span>수집 적법성 · 라벨링 무결성 · 클래스 균형</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>알고리즘·모델</strong><small>과적합 방지 · F1-score 실측 · XAI 설명가능성</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>알고리즘·모델</strong><span>과적합 방지 · F1-score 실측 · XAI 설명가능성</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>인프라·MLOps</strong><small>서빙 레이턴시 · Data Drift 감지 · 자동 재학습(CT)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>인프라·MLOps</strong><span>서빙 레이턴시 · Data Drift 감지 · 자동 재학습(CT)</span></div></div>
 </div>
 
 ### 3. 핵심 통제

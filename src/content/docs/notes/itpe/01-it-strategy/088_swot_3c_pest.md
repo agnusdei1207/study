@@ -1,6 +1,6 @@
 ---
 title: "경영환경 분석(SWOT·3C·PEST)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -29,12 +29,12 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="PEST 거시분석과 3C 미시분석을 거쳐 SWOT 4대 교차 전략으로 이어지는 통합 경영환경 분석 파이프라인">
   <div class="itpe-flow-node">
     <strong>1단계: 거시환경 분석 (PEST)</strong>
-    <small>정치(P) · 경제(E) · 사회(S) · 기술(T) 외생 변수 진단</small>
+    <div class="itpe-step-detail"><span>정치(P) · 경제(E) · 사회(S) · 기술(T) 외생 변수 진단</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>기회(O) · 위협(T) 잠재 후보 도출</small></div>
   <div class="itpe-flow-node">
     <strong>2단계: 미시환경 분석 (3C)</strong>
-    <small>고객(Customer) · 경쟁사(Competitor) · 자사(Company) 3각 역학</small>
+    <div class="itpe-step-detail"><span>고객(Customer) · 경쟁사(Competitor) · 자사(Company) 3각 역학</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>강점(S) · 약점(W) 및 시장 차별점 구체화</small></div>
   <div class="itpe-flow-node is-current">
@@ -78,7 +78,7 @@ extra:
 > 거시 외생 요인(**PEST**)과 미시 경쟁 역학(**3C**)을 정제하여 **SWOT 매트릭스**로 교차 매핑함으로써 실행 가능한 **4대 교차 전략**을 도출함.
 
 - 정의: 통제 불가능한 거시 환경(**PEST**)과 시장 내 미시 경쟁 관계(**3C**)를 진단하여, 내부 역량과 외부 환경을 2x2 **SWOT** 매트릭스로 교차하는 **통합 경영환경 분석 프레임워크**
-- 목적: 내·외부 전략적 정합성(**Strategic Fit**) 확보 및 단순 나열을 탈피한 실행 가능한 **4대 교차 전략(SO/ST/WO/WT)** 도출
+- 목적: 내·외부 전략적 정합성(Strategic Fit) 확보 및 실행 가능한 4대 교차 전략(SO/ST/WO/WT) 도출
 
 ## Ⅱ. PEST, 3C, SWOT 핵심 특성 및 비교
 
@@ -97,23 +97,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="PEST-3C-SWOT 통합 연계 4단계 방법론">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 거시환경 분석 (PEST)</strong></span>
-    <small>정치·법률, 경제 지표, 사회·문화, 기술 파괴 요인 진단<br />→ 거시 기회(O) · 위협(T) 후보 목록</small>
+    <div class="itpe-step-detail"><strong>① 거시환경 분석 (PEST)</strong><span>정치·법률, 경제 지표, 사회·문화, 기술 파괴 요인 진단 → 거시 기회(O) · 위협(T) 후보 목록</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 미시환경 분석 (3C)</strong></span>
-    <small>타깃 고객 니즈 세분화, 경쟁사 벤치마킹, 자사 역량 분석<br />→ 핵심 성공요인(KSF) · 차별 강점(S) · 보완 약점(W)</small>
+    <div class="itpe-step-detail"><strong>② 미시환경 분석 (3C)</strong><span>타깃 고객 니즈 세분화, 경쟁사 벤치마킹, 자사 역량 분석 → 핵심 성공요인(KSF) · 차별 강점(S) · 보완 약점(W)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ SWOT 요인 배치 및 정제</strong></span>
-    <small>통제 가능성 기준으로 내부(S/W) 및 외부(O/T) 엄격 분류<br />→ SWOT 2x2 팩트시트 확정</small>
+    <div class="itpe-step-detail"><strong>③ SWOT 요인 배치 및 정제</strong><span>통제 가능성 기준으로 내부(S/W) 및 외부(O/T) 엄격 분류 → SWOT 2x2 팩트시트 확정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 4대 교차 전략 수립</strong></span>
-    <small>SO(공격), ST(차별화), WO(국면전환), WT(철수) 도출<br />→ 전략 실행 로드맵 · AHP 연계 과제 우선순위</small>
+    <div class="itpe-step-detail"><strong>④ 4대 교차 전략 수립</strong><span>SO(공격), ST(차별화), WO(국면전환), WT(철수) 도출 → 전략 실행 로드맵 · AHP 연계 과제 우선순위</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>전략 정합성</strong></span> · PEST 외생 변수 ↔ 3C 경쟁 포지셔닝 ↔ SWOT 4대 교차 과제 100% 매핑</div>
@@ -131,12 +127,12 @@ extra:
 
 > 작성 주체 분리로 인한 도구 간 단절과 나열식 요약 문제를 극복하기 위해 통제 가능성 기준과 단일 템플릿 검증을 강제해야 함.
 
-| 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **도구 간 단절 및 모순** | 팀별 분업 작성으로 PEST/3C 결과와 무관하게 SWOT 작성 | `PEST 요인 → 3C 검증 → SWOT 배치` 단일 추적성 매핑 템플릿 의무화 | 전략 보고서의 논리적 완결성 확보 |
-| **단순 나열식 분석** | SWOT 팩트 나열에 그치고 교차 실행 과제 도출 부재 | SO/ST/WO/WT 교차 전략 작성 의무화 및 **AHP** 연계 과제 우선순위 산출 | 구체적 실행 액션 플랜 도출 |
-| **내부 약점과 외부 위협 혼동** | 사내 레거시 결함 등 내부 문제를 외부 위협(T)으로 오배치 | **통제 가능성 기준(내부 통제 가능=S/W, 통제 불가=O/T)** 판정 게이트 운영 | 정확한 원인 진단 및 전략 왜곡 차단 |
-| **WT(철수) 전략 외면** | 성장형(SO) 과제만 선호하고 사업 축소·철수 과제 기피 | 사업 포트폴리오 차원의 Exit Criteria(철수 기준선) 사전 수립 | 자원 낭비 방지 및 생존력 확보 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **도구 간 단절 및 모순** | `PEST 요인 → 3C 검증 → SWOT 배치` 단일 추적성 매핑 템플릿 의무화 | 전략 보고서의 논리적 완결성 확보 |
+| **단순 나열식 분석** | SO/ST/WO/WT 교차 전략 작성 의무화 및 **AHP** 연계 과제 우선순위 산출 | 구체적 실행 액션 플랜 도출 |
+| **내부 약점과 외부 위협 혼동** | **통제 가능성 기준(내부 통제 가능=S/W, 통제 불가=O/T)** 판정 게이트 운영 | 정확한 원인 진단 및 전략 왜곡 차단 |
+| **WT(철수) 전략 외면** | 사업 포트폴리오 차원의 Exit Criteria(철수 기준선) 사전 수립 | 자원 낭비 방지 및 생존력 확보 |
 
 ## Ⅴ. 상시 전략 감지(Continuous Sensing) 중심의 기술사적 제언
 
@@ -156,23 +152,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="상시 전략 감지 체계 구축 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>연례 1회성 파워포인트 보고서 · 도구 간 단절 · 환경 변화 즉시 대응 불가</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>연례 1회성 파워포인트 보고서 · 도구 간 단절 · 환경 변화 즉시 대응 불가</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>외부 뉴스/규제 API(PEST) + 시장 데이터(3C) + IT 메트릭 연계 동적 레이더</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>외부 뉴스/규제 API(PEST) + 시장 데이터(3C) + IT 메트릭 연계 동적 레이더</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>통제 가능성 기준(S/W vs O/T) 검증 · AHP 기반 과제 우선순위 정량화</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>통제 가능성 기준(S/W vs O/T) 검증 · AHP 기반 과제 우선순위 정량화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>전략적 모순 제거 · 급변하는 AI/규제 환경에 기민한 전략 피벗(Pivot) 실현</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>전략적 모순 제거 · 급변하는 AI/규제 환경에 기민한 전략 피벗(Pivot) 실현</span></div>
   </div>
 </div>
 
@@ -181,16 +173,16 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 거시 외생환경(**PEST**)과 미시 경쟁관계(**3C**)를 진단하여 내·외부 요인을 **SWOT** 매트릭스로 교차함으로써 4대 실행 전략(SO, ST, WO, WT)을 도출하는 **통합 경영환경 분석 프레임워크**
-- 목적: 통제 불가능한 환경 변화에 대응하고 내부 핵심 역량과 결합하여 **지속 가능한 경쟁 우위**를 확보
+- 목적: 환경 변화 대응 및 내부 역량 결합 통한 지속 가능한 경쟁 우위 확보
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="경영환경 분석 3단계 연계 요약">
-  <div class="itpe-pipeline-node"><strong>PEST (거시)</strong><small>정치 · 경제 · 사회 · 기술 외생 변수 → O / T 후보</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>PEST (거시)</strong><span>정치 · 경제 · 사회 · 기술 외생 변수 → O / T 후보</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>3C (미시)</strong><small>고객 · 경쟁사 · 자사 3각 역학 → S / W 구체화</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>3C (미시)</strong><span>고객 · 경쟁사 · 자사 3각 역학 → S / W 구체화</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>SWOT (전략)</strong><small>SO(공격) · ST(차별화) · WO(국면전환) · WT(철수)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>SWOT (전략)</strong><span>SO(공격) · ST(차별화) · WO(국면전환) · WT(철수)</span></div></div>
 </div>
 
 ### 3. 핵심 통제

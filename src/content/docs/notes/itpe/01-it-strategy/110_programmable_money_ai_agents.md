@@ -1,6 +1,6 @@
 ---
 title: "프로그래머블 머니 (AI 에이전트의 경제 주체화)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="AI 에이전트 경제에서 스마트 계약과 프로그래머블 머니를 통한 실시간 결제 정산 아키텍처">
   <div class="itpe-flow-node">
     <strong>AI 에이전트 경제 (Agentic Economy)</strong>
-    <small>구매 AI (GPU/데이터 요청) ↔ 판매 AI (API 엔드포인트 제공)</small>
+    <div class="itpe-step-detail"><span>구매 AI (GPU/데이터 요청) ↔ 판매 AI (API 엔드포인트 제공)</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>자율 서명 및 정책 가드레일</small></div>
   <div class="itpe-flow-node is-current">
@@ -43,7 +43,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>원장 기록</small></div>
   <div class="itpe-flow-node">
     <strong>프로그래머블 머니 결제 원장</strong>
-    <small>토큰화 예금 · 스테이블코인 · <span class="itpe-keyword"><strong>CBDC</strong></span> 실시간 동시 정산(DvP)</small>
+    <div class="itpe-step-detail"><span>토큰화 예금 · 스테이블코인 · <span class="itpe-keyword"><strong>CBDC</strong></span> 실시간 동시 정산(DvP)</span></div>
   </div>
 </div>
 
@@ -68,7 +68,7 @@ extra:
 > 인간 개입 없는 **기계 간 자율 상거래(M2M)**를 위해 화폐에 **스마트 계약**을 내장하여 **초미세 결제(Micro-payment)**와 동시 정산을 실현함.
 
 - 정의: 화폐 단위 자체에 프로그래밍 코드(**스마트 계약**)와 실행 조건을 내장하여, 특정 조건 충족 시 사람의 개입 없이 자율적으로 결제·정산이 집행되는 **기계 경제(Machine Economy) 특화 디지털 화폐 체계**
-- 목적: 전통 금융망의 인간 인증 병목과 고정 수수료를 제거하고, 자율 **AI 에이전트** 간 실시간 가치 교환 및 **원장 동시 정산(DvP)**을 구현
+- 목적: 인간 인증 병목과 고정 수수료 제거, AI 에이전트 간 실시간 가치 교환 및 원장 동시 정산(DvP) 구현
 
 ## Ⅱ. 프로그래머블 머니 3계층 아키텍처 및 4단계 자율 결제 프로세스
 
@@ -76,23 +76,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프로그래머블 머니 기반 AI 에이전트 자율 결제 4단계 프로세스">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 서비스 탐색 및 온체인 협상</strong></span>
-    <small>서비스 레지스트리 검색, 단가/SLA 협상 및 스마트 계약 초안 생성<br />→ 자율 계약 조건 명세서</small>
+    <div class="itpe-step-detail"><strong>① 서비스 탐색 및 온체인 협상</strong><span>서비스 레지스트리 검색, 단가/SLA 협상 및 스마트 계약 초안 생성 → 자율 계약 조건 명세서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 조건부 에스크로 자금 예치</strong></span>
-    <small>ERC-4337 지갑 서명, 스마트 계약에 대금 락업 및 지출 한도 검증<br />→ 에스크로 스마트 컨트랙트 생성</small>
+    <div class="itpe-step-detail"><strong>② 조건부 에스크로 자금 예치</strong><span>ERC-4337 지갑 서명, 스마트 계약에 대금 락업 및 지출 한도 검증 → 에스크로 스마트 컨트랙트 생성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 서비스 수행 및 페이로드 전달</strong></span>
-    <small>약정된 SLA에 맞춰 GPU 추론 연산 결과 반환 또는 데이터 스트리밍<br />→ 암호화된 결과 페이로드 수신</small>
+    <div class="itpe-step-detail"><strong>③ 서비스 수행 및 페이로드 전달</strong><span>약정된 SLA에 맞춰 GPU 추론 연산 결과 반환 또는 데이터 스트리밍 → 암호화된 결과 페이로드 수신</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 암호학적 검증 및 즉시 정산</strong></span>
-    <small>결과물 해시 및 SLA 무결성 확인 시 판매자 지갑으로 자금 즉시 릴리스<br />→ 온체인 트랜잭션 영수증 (DvP 정산 완결)</small>
+    <div class="itpe-step-detail"><strong>④ 암호학적 검증 및 즉시 정산</strong><span>결과물 해시 및 SLA 무결성 확인 시 판매자 지갑으로 자금 즉시 릴리스 → 온체인 트랜잭션 영수증 (DvP 정산 완결)</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>정산 무결성</strong></span> · 에이전트 계약 ↔ 스마트 계약 가드레일 ↔ 블록체인 최종성(Finality) 100% 보증</div>
@@ -121,11 +117,11 @@ extra:
 
 > AI 환각으로 인한 무한 결제 루프와 스마트 계약 취약점을 방어하기 위해 지출 쿼터와 DID를 결합해야 함.
 
-| 위험 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **AI 환각에 의한 잔고 탕진** | 프롬프트 루프 오류로 불필요한 고비용 API를 초당 수백 회 무한 호출 | ERC-4337 지갑 내 **Session Key 기반 시간당/일일 지출 한도(Rate-limit)** 및 서킷브레이커 | 돌발적 재정 손실 원천 차단 |
-| **스마트 계약 해킹** | 에스크로 컨트랙트의 재진입(Reentrancy) 결함으로 예치 자금 탈취 | 정적 분석 도구(Slither) 검증 및 다중 서명(Multi-sig) 오라클 합의 강제 | 금융 자산 탈취 방지 |
-| **법인격 부재에 따른 규제 위반** | 법적 주체가 아닌 AI의 거래로 인한 자금세탁(AML) 및 실명 확인(KYC) 위반 | AI 에이전트와 법인/인간 소유자를 1:1 매핑하는 **탈중앙 식별자(DID)** 발급 의무화 | 금융 법률 준수 및 법적 책임 명확화 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **AI 환각에 의한 잔고 탕진** | ERC-4337 지갑 내 **Session Key 기반 시간당/일일 지출 한도(Rate-limit)** 및 서킷브레이커 | 돌발적 재정 손실 원천 차단 |
+| **스마트 계약 해킹** | 정적 분석 도구(Slither) 검증 및 다중 서명(Multi-sig) 오라클 합의 강제 | 금융 자산 탈취 방지 |
+| **법인격 부재에 따른 규제 위반** | AI 에이전트와 법인/인간 소유자를 1:1 매핑하는 **탈중앙 식별자(DID)** 발급 의무화 | 금융 법률 준수 및 법적 책임 명확화 |
 
 ## Ⅴ. 안전한 기계 경제 구축을 위한 기술사적 제언
 
@@ -145,23 +141,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프로그래머블 머니 기반 안전한 AI 경제 구축 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>인간 본인인증 필수 · 신용카드 고정 수수료로 AI 초미세 결제 수용 불가</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>인간 본인인증 필수 · 신용카드 고정 수수료로 AI 초미세 결제 수용 불가</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>스마트 계약 내장형 프로그래머블 머니 + ERC-4337 계정 추상화 도입</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>스마트 계약 내장형 프로그래머블 머니 + ERC-4337 계정 추상화 도입</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>Session Key 기반 지출 쿼터 통제 · DID 연계 소유자 실명 추적성</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>Session Key 기반 지출 쿼터 통제 · DID 연계 소유자 실명 추적성</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>API 센트 단위 초미세 결제 실현 · 마찰 없는 자율 기계 경제 안착</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>API 센트 단위 초미세 결제 실현 · 마찰 없는 자율 기계 경제 안착</span></div>
   </div>
 </div>
 
@@ -170,16 +162,16 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 화폐 단위 자체에 **스마트 계약** 코드를 내장하여 특정 비즈니스 조건 충족 시 사람 개입 없이 자동 결제·정산되는 **기계 경제(Machine Economy) 특화 디지털 화폐**
-- 목적: 인간 인증 병목과 고정 수수료를 제거하고 자율 **AI 에이전트** 간 **초미세 결제(Micro-payment)** 및 실시간 정산을 실현
+- 목적: 인간 인증 병목과 고정 수수료 제거, 자율 AI 에이전트 간 초미세 결제(Micro-payment) 및 실시간 정산 실현
 
 ### 2. 구성체계 및 결제 파이프라인
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프로그래머블 머니 자율 결제 요약">
-  <div class="itpe-pipeline-node"><strong>에이전트 계층</strong><small>온체인 서비스 탐색 · 가격/SLA 자율 협상</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>에이전트 계층</strong><span>온체인 서비스 탐색 · 가격/SLA 자율 협상</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>가드레일 계층</strong><small>ERC-4337 세션 키 · 지출 쿼터 · 에스크로</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>가드레일 계층</strong><span>ERC-4337 세션 키 · 지출 쿼터 · 에스크로</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>결제 원장 계층</strong><small>토큰화 예금 · 도매형 CBDC · 실시간 동시 정산(DvP)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>결제 원장 계층</strong><span>토큰화 예금 · 도매형 CBDC · 실시간 동시 정산(DvP)</span></div></div>
 </div>
 
 ### 3. 핵심 통제

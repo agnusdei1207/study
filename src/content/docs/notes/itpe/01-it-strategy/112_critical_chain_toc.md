@@ -1,6 +1,6 @@
 ---
 title: "CCPM(Critical Chain, TOC)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,9 +29,9 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="전통 일정의 안전마진 낭비 극복 및 CCPM 3대 버퍼 통합 통제 흐름">
   <div class="itpe-flow-node">
     <strong>전통적 일정 낭비 (CPM의 한계)</strong>
-    <small>파킨슨 법칙 (시간 채우기) + 학생 증후군 (막판 미루기)</small>
+    <div class="itpe-step-detail"><span>파킨슨 법칙 (시간 채우기) + 학생 증후군 (막판 미루기)</span></div>
   </div>
-  <div class="itpe-flow-arrow">↓<small>안전마진 50% 회수 및 통합</small></div>
+  <div class="itpe-flow-arrow">↓<span>안전마진 50% 회수 및 통합</span></div>
   <div class="itpe-flow-node is-current">
     <strong>크리티컬 체인 및 3대 버퍼 체계</strong>
     <div class="itpe-flow-branches">
@@ -40,10 +40,10 @@ extra:
       <div class="itpe-flow-branch"><strong>RB</strong><span><span class="itpe-keyword"><strong>자원 버퍼(Resource Buffer)</strong></span>: 병목 자원 사전 대기 알림</span></div>
     </div>
   </div>
-  <div class="itpe-flow-arrow">↓<small>진척도 통제</small></div>
+  <div class="itpe-flow-arrow">↓<span>진척도 통제</span></div>
   <div class="itpe-flow-node">
     <strong>3-Zone 버퍼 소진율 관리</strong>
-    <small>녹색(0~33%) 정상 ➔ 황색(34~66%) 원인분석 ➔ 적색(67~100%) 비상개입</small>
+    <div class="itpe-step-detail"><span>녹색(0~33%) 정상 ➔ 황색(34~66%) 원인분석 ➔ 적색(67~100%) 비상개입</span></div>
   </div>
 </div>
 
@@ -75,8 +75,8 @@ extra:
 
 > 개별 안전마진을 회수해 **파킨슨 법칙**과 **학생 증후군**을 차단하고, **자원 제약(Critical Chain)**과 **3대 버퍼(PB/FB/RB)**로 납기를 보장함.
 
-- 정의: **TOC(Theory of Constraints)** 기반으로 작업 선후행 관계뿐만 아니라 자원 제약을 함께 고려하여 크리티컬 체인을 도출하고, 통합 버퍼로 납기를 통제하는 **프로젝트 일정 관리 기법**
-- 목적: 숨겨진 안전마진의 낭비 방지, 멀티태스킹 오버헤드 제거 및 **버퍼 소진율(3-Zone)** 기반의 선제적 납기 관리
+- 정의: **TOC(Theory of Constraints)** 기반으로 작업 선후행 관계와 자원 제약을 동시 반영한 크리티컬 체인을 도출하고, 통합 버퍼로 납기를 통제하는 **프로젝트 일정 관리 기법**
+- 목적: 숨겨진 안전마진 낭비 방지, 멀티태스킹 오버헤드 제거 및 **버퍼 소진율(3-Zone)** 기반 선제적 납기 관리
 
 ## Ⅱ. CCPM 3대 버퍼 체계 및 4단계 일정 통제 방법론
 
@@ -85,22 +85,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="CCPM 4단계 일정 수립 및 버퍼 관리 프로세스">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 50% 공격적 공기 산정</strong></span>
-    <small>개별 작업에 숨겨진 안전마진(80~90% 보증치) 50% 강제 회수<br />→ 50% 성공 확률 기준 공격적 WBS 수립</small>
+    <div class="itpe-step-detail"><strong>마진 회수</strong><span>개별 작업 안전마진 50% 강제 회수 및 공격적 WBS 수립</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 자원 종속성 분석 및 크리티컬 체인 확정</strong></span>
-    <small>자원 경합(Resource Contention) 해소, 자원 제약 반영 최장 경로 도출<br />→ 크리티컬 체인(Critical Chain) 네트워크도</small>
+    <div class="itpe-step-detail"><strong>자원 제약</strong><span>자원 경합 해소 및 자원 제약 반영 최장 경로(Critical Chain) 도출</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 3대 버퍼(PB, FB, RB) 최적 배치</strong></span>
-    <small>체인 끝에 PB 배치, 비임계 합류점에 FB 배치, 자원 직전에 RB 설정<br />→ 통합 버퍼 크기 산출서 (Root-Square Error 기법)</small>
+    <div class="itpe-step-detail"><strong>통합 완충</strong><span>체인 끝 PB, 비임계 합류점 FB, 자원 직전 RB 배치</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 3-Zone 신호등 버퍼 소진율 관리</strong></span>
-    <small>체인 진척 대비 버퍼 소진율(Green/Yellow/Red) 실시간 모니터링<br />→ 피버 차트(Fever Chart) · 주간 리스크 조치 보고서</small>
+    <div class="itpe-step-detail"><strong>위험 경보</strong><span>체인 진척 대비 버퍼 소진율(Green/Yellow/Red) 실시간 모니터링</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>버퍼 추적성</strong></span> · 50% 공기 절감액 ↔ PB/FB 통합 풀 ↔ Fever Chart 신호등 통제 100% 일치</div>
@@ -119,7 +119,7 @@ extra:
 
 | 비교 항목 | 전통적 임계경로법 (CPM) | 크리티컬 체인 프로젝트 관리 (CCPM) |
 |---|---|---|
-| **제약 요건 고려** | 작업 간 **논리적 선후행 의존성**만 고려 | 작업 간 논리적 의존성 + **자원 가용성(제약)** 동시 고려 |
+| **제약 조건 고려** | 작업 간 **논리적 선후행 의존성**만 고려 | 작업 간 논리적 의존성 + **자원 가용성(제약)** 동시 고려 |
 | **공기 산정 기준** | 80~90% 달성 확률 (작업자별 숨은 마진 포함) | **50% 달성 확률 (공격적 추정, 마진 회수)** |
 | **버퍼 관리 방식** | 개별 작업마다 여유시간(Float/Slack) 분산 배치 | 개별 마진 회수 후 **집중 버퍼(PB, FB)**로 통합 관리 |
 | **진척 통제 지표** | 개별 작업 마감일 준수율, EVM (SPI, CPI) | 크리티컬 체인 진척률 대비 **버퍼 소진율(Buffer Consumption)** |
@@ -129,11 +129,11 @@ extra:
 
 > 개발자의 50% 공기 거부감과 다중 프로젝트 자원 경합을 극복하기 위해 심리적 안전감과 DBR을 적용해야 함.
 
-| 왜곡 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **개발자의 50% 공기 단축 저항** | 일정 미준수 시 문책 우려로 부풀려진 일정 고수 | "개별 마감일 미준수는 문책하지 않으며 버퍼가 흡수한다"는 심리적 안전감 제도화 | 정직하고 공격적인 일정 산출 유도 |
-| **다중 프로젝트 간 자원 경합** | 핵심 아키텍트/DBA가 여러 프로젝트에 동시 투입되어 전사 지연 | PMO 차원의 **드럼-버퍼-로프(DBR)** 적용 및 전사 단일 우선순위 큐 강제 | 비효율적 멀티태스킹 근절 |
-| **버퍼 관리 형식화** | 단순 완료율만 보고하고 버퍼 소진 상태 누락 | Jira 등 도구 연계 **피버 차트(Fever Chart)** 실시간 대시보드 시각화 | 프로젝트 납기 지연 선제 경보 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **개발자의 50% 공기 단축 저항** | "개별 마감일 미준수는 문책하지 않으며 버퍼가 흡수한다"는 심리적 안전감 제도화 | 정직하고 공격적인 일정 산출 유도 |
+| **다중 프로젝트 간 자원 경합** | PMO 차원의 **드럼-버퍼-로프(DBR)** 적용 및 전사 단일 우선순위 큐 강제 | 비효율적 멀티태스킹 근절 |
+| **버퍼 관리 형식화** | 도구 연계 **피버 차트(Fever Chart)** 실시간 대시보드 시각화 | 프로젝트 납기 지연 선제 경보 |
 
 ## Ⅴ. 성공적 CCPM 정착을 위한 기술사적 제언
 
@@ -154,22 +154,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="CCPM 기반 납기 단축 및 버퍼 통제를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>개별 작업자 안전마진 숨기기 · 학생 증후군으로 만성적 프로젝트 지연</small>
+    <div class="itpe-step-detail"><strong>마진 낭비</strong><span>개별 작업자 안전마진 은닉 및 학생 증후군 만연</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>50% 공격적 공기 산정 + 3대 버퍼(PB/FB/RB) 통합 및 Fever Chart 관리</small>
+    <div class="itpe-step-detail"><strong>버퍼 통합</strong><span>50% 공격적 공기 산정 및 3대 버퍼(PB/FB/RB) 체계화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>3-Zone 신호등 통제(황색 시 원인분석, 적색 시 Crashing 집행)</small>
+    <div class="itpe-step-detail"><strong>3-Zone 통제</strong><span>Fever Chart 기반 황색 시 분석, 적색 시 자원 집중 투입</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>파킨슨 법칙 타파 · 프로젝트 납기 획기적 단축 및 자원 효율 극대화</small>
+    <div class="itpe-step-detail"><strong>납기 준수</strong><span>파킨슨 법칙 타파 및 프로젝트 공기 25% 단축 달성</span></div>
   </div>
 </div>
 
@@ -183,13 +183,13 @@ extra:
 ### 2. 구성체계 및 3대 버퍼
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="CCPM 3대 버퍼 구조 요약">
-  <div class="itpe-pipeline-node"><strong>50% 공격적 공기</strong><small>작업자별 숨은 마진 회수 (릴레이 주자 원칙)</small></div>
+  <div class="itpe-pipeline-node"><strong>50% 공격적 공기</strong><div class="itpe-step-detail"><span>작업자별 숨은 마진 회수 (릴레이 주자 원칙)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>크리티컬 체인</strong><small>선후행 관계 + 자원 제약 반영 최장 경로</small></div>
+  <div class="itpe-pipeline-node"><strong>크리티컬 체인</strong><div class="itpe-step-detail"><span>선후행 관계 + 자원 제약 반영 최장 경로</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>3대 버퍼 배치</strong><small>PB(체인 끝: 납기보장) · FB(합류점 방어) · RB(자원 알림)</small></div>
+  <div class="itpe-pipeline-node"><strong>3대 버퍼 배치</strong><div class="itpe-step-detail"><span>PB(체인 끝 납기보장) · FB(합류점 방어) · RB(자원 알림)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>3-Zone 관리</strong><small>Fever Chart: 녹색(정상) · 황색(분석) · 적색(개입)</small></div>
+  <div class="itpe-pipeline-node"><strong>3-Zone 관리</strong><div class="itpe-step-detail"><span>Fever Chart: 녹색(정상) · 황색(분석) · 적색(개입)</span></div></div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,6 +1,6 @@
 ---
 title: "인과루프다이어그램(Causal Loop Diagram)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,9 +29,9 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="인과루프 다이어그램(CLD) 4대 구성요소와 피드백 루프 상호작용 흐름">
   <div class="itpe-flow-node">
     <strong>시스템 사고 (Systems Thinking) 변수 정의</strong>
-    <small>프로젝트 지연 일수 · 개발자 피로도 · 기술 부채</small>
+    <div class="itpe-step-detail"><span>프로젝트 지연 일수 · 개발자 피로도 · 기술 부채</span></div>
   </div>
-  <div class="itpe-flow-arrow">↓<small>인과 링크 연결 (화살표 및 극성 +/-)</small></div>
+  <div class="itpe-flow-arrow">↓<span>인과 링크 연결 (화살표 및 극성 +/-)</span></div>
   <div class="itpe-flow-node is-current">
     <strong>피드백 루프 및 시간 지연 구조화</strong>
     <div class="itpe-flow-branches">
@@ -40,10 +40,10 @@ extra:
       <div class="itpe-flow-branch"><strong>시간 지연(//)</strong><span>원인과 결과 사이의 시차 (과잉 반응 유발)</span></div>
     </div>
   </div>
-  <div class="itpe-flow-arrow">↓<small>근본 원인 해결</small></div>
+  <div class="itpe-flow-arrow">↓<span>근본 원인 해결</span></div>
   <div class="itpe-flow-node">
     <strong>고레버리지(High-Leverage) 개입</strong>
-    <small>정책 저항 차단 · 브룩스의 법칙 극복 · 과업 동결(Descoping)</small>
+    <div class="itpe-step-detail"><span>정책 저항 차단 · 브룩스의 법칙 극복 · 과업 동결(Descoping)</span></div>
   </div>
 </div>
 
@@ -69,7 +69,7 @@ extra:
 > 단선적 인과관계의 착시를 탈피하고, **피드백 루프(R/B)**와 **시간 지연(//)**을 모델링하여 시스템의 **근본 지렛대(Leverage)**를 식별함.
 
 - 정의: 시스템 사고(Systems Thinking)의 핵심 기법으로, 복잡계 시스템 내 변수 간 인과관계, 순환 피드백 고리(**강화·조절 루프**) 및 **시간 지연(Delay)**을 다이어그램으로 시각화하여 동적 거동을 분석하는 **복잡계 모델링 도구**
-- 목적: 대증적 처방으로 인한 정책 저항(Policy Resistance) 방지, 단기적 해결책이 장기적 재앙을 낳는 악순환 구조 규명 및 **고레버리지 개입 지점** 도출
+- 목적: 대증적 처방에 따른 정책 저항(Policy Resistance) 방지, 단기 해결책의 장기 악순환 구조 규명 및 **고레버리지 개입 지점** 도출
 
 ## Ⅱ. CLD 4대 핵심 구성요소 및 4단계 모델링 방법론
 
@@ -78,22 +78,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="인과루프 다이어그램 4단계 모델링 프로세스">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 문제 정의 및 핵심 변수 식별</strong></span>
-    <small>시간에 따른 상태 변화(BOT 그래프) 작성 및 명사형 변수 정의<br />→ BOT(Behavior Over Time) 그래프 · 변수 목록</small>
+    <div class="itpe-step-detail"><strong>변수 식별</strong><span>시간에 따른 상태 변화(BOT 그래프) 작성 및 명사형 변수 정의</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 인과 링크 연결 및 극성(+/-) 부여</strong></span>
-    <small>직접적 원인-결과 쌍 연결, 같은 방향(+) 또는 반대 방향(-) 표시<br />→ 인과 링크 매트릭스</small>
+    <div class="itpe-step-detail"><strong>링크 연결</strong><span>직접적 인과관계 쌍 연결 및 동일(+)·반대(-) 방향 극성 표기</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 폐쇄 루프 극성 판정 및 시간 지연(//) 표기</strong></span>
-    <small>음(-)의 링크 수가 짝수면 강화(R), 홀수면 조절(B), 시차 지연 표기<br />→ 인과루프 다이어그램(CLD) 완성본</small>
+    <div class="itpe-step-detail"><strong>루프 판정</strong><span>음(-) 링크 짝수면 강화(R), 홀수면 조절(B) 판정 및 지연 삽입</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 악순환 고리 단절 및 레버리지 도출</strong></span>
-    <small>강화 루프의 악순환을 끊는 최소 노력 최대 효과의 개입 지점 처방<br />→ 고레버리지 전략 실행 계획서</small>
+    <div class="itpe-step-detail"><strong>지렛대 개입</strong><span>강화 루프 악순환을 차단하는 최소 노력 최대 효과 지점 처방</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>동적 인과성</strong></span> · 문제 변수 ↔ 극성 링크 ↔ 피드백 루프(R/B) ↔ 고레버리지 지렛대 100% 매핑</div>
@@ -149,22 +149,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="CLD 기반 복잡계 IT 문제 해결을 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>일정 지연 시 인력 추가 투입의 단선적 사고 · 브룩스의 법칙으로 파행</small>
+    <div class="itpe-step-detail"><strong>단선적 대증</strong><span>일정 지연 시 인력 투입 단선 사고 및 파행 심화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>CLD 피드백 루프 분석 + 과업 범위 삭감(Descoping) 고레버리지 개입</small>
+    <div class="itpe-step-detail"><strong>지렛대 개입</strong><span>CLD 피드백 분석 및 과업 범위 삭감(Descoping) 개입</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>온보딩 시간 지연(//) 인정 · 베테랑 개발자 전담 코딩 시간 확보율 80%</small>
+    <div class="itpe-step-detail"><strong>시간 지연</strong><span>온보딩 지연(//) 인정 및 베테랑 전담 시간 80% 확보</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>정책 저항 원천 차단 · 기술 부채 누적 방지 및 납기 준수 실현</small>
+    <div class="itpe-step-detail"><strong>악순환 차단</strong><span>정책 저항 차단 및 기술 부채 누적 방지, 납기 준수</span></div>
   </div>
 </div>
 
@@ -178,13 +178,13 @@ extra:
 ### 2. 구성체계 및 4대 요소
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="CLD 4대 구성요소 요약">
-  <div class="itpe-pipeline-node"><strong>변수 (Variables)</strong><small>시간에 따라 변화하는 동적 상태값 (명사구)</small></div>
+  <div class="itpe-pipeline-node"><strong>변수 (Variables)</strong><div class="itpe-step-detail"><span>시간에 따라 변화하는 동적 상태값 (명사구)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>인과 링크 (Links)</strong><small>화살표 및 극성 (+ 같은 방향 / - 반대 방향)</small></div>
+  <div class="itpe-pipeline-node"><strong>인과 링크 (Links)</strong><div class="itpe-step-detail"><span>화살표 및 극성 (+ 같은 방향 / - 반대 방향)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>피드백 루프</strong><small>(R) 강화 루프(증폭) · (B) 조절 루프(균형)</small></div>
+  <div class="itpe-pipeline-node"><strong>피드백 루프</strong><div class="itpe-step-detail"><span>(R) 강화 루프(증폭) · (B) 조절 루프(균형)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>시간 지연 (//)</strong><small>원인과 결과 사이의 물리적 시차 (과잉 반응 유발)</small></div>
+  <div class="itpe-pipeline-node"><strong>시간 지연 (//)</strong><div class="itpe-step-detail"><span>원인과 결과 사이의 물리적 시차 (과잉 반응 유발)</span></div></div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,6 +1,6 @@
 ---
 title: "TAM-SAM-SOM"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -29,12 +29,12 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="TAM 전체시장에서 SAM 유효시장과 SOM 수익시장으로 좁혀지는 3단계 시장 규모 추정 동심원 모델">
   <div class="itpe-flow-node">
     <strong>TAM (Total Addressable Market)</strong>
-    <small>전체 시장 · 산업군 내 이론적 최대 수요 총액 (Top-down)</small>
+    <div class="itpe-step-detail"><span>전체 시장 · 산업군 내 이론적 최대 수요 총액 (Top-down)</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>비즈니스 모델 및 서비스 도달 한계 필터링</small></div>
   <div class="itpe-flow-node">
     <strong>SAM (Serviceable Addressable Market)</strong>
-    <small>유효 시장 · 자사 솔루션 스펙 및 타깃 도달 가능 시장 (Middle-out)</small>
+    <div class="itpe-step-detail"><span>유효 시장 · 자사 솔루션 스펙 및 타깃 도달 가능 시장 (Middle-out)</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>영업 파이프라인 및 초기 자원 제약 반영</small></div>
   <div class="itpe-flow-node is-current">
@@ -70,7 +70,7 @@ extra:
 > 거대 시장의 착시를 걷어내고 **TAM(전체 시장)**에서 **SAM(유효 시장)**을 거쳐 **SOM(수익 시장)**으로 좁혀 단기 실행력을 확보함.
 
 - 정의: 신규 IT 제품 및 디지털 서비스 기획 시 **TAM(Total Addressable Market)**, **SAM(Serviceable Addressable Market)**, **SOM(Serviceable Obtainable Market)**의 3단계 동심원으로 시장 규모를 단계별 여과 추정하는 **사업 타당성 분석 프레임워크**
-- 목적: "거대 시장의 1% 점유"와 같은 비현실적 과대 추정을 방지하고, **단위 경제성(Unit Economics)** 기반의 객관적 손익분기점(**BEP**)을 달성
+- 목적: 비현실적 과대 추정 방지 및 단위 경제성(Unit Economics) 기반 객관적 손익분기점(BEP) 달성
 
 ## Ⅱ. TAM-SAM-SOM 3단계 계층 구조 및 추정 체계
 
@@ -78,18 +78,15 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="TAM-SAM-SOM 3단계 계층 구조 및 산출 체계">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① TAM (Total Addressable Market: 전체 시장)</strong></span>
-    <small>산업 보고서 기준 이론적 최대 수요 총액<br />→ 거시 통계 인용 · 잠재 모수 × 이상 단가</small>
+    <div class="itpe-step-detail"><strong>① TAM (Total Addressable Market: 전체 시장)</strong><span>산업 보고서 기준 이론적 최대 수요 총액 → 거시 통계 인용 · 잠재 모수 × 이상 단가</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② SAM (Serviceable Addressable Market: 유효 시장)</strong></span>
-    <small>자사 BM · 솔루션 스펙 · 지리적 도달 가능 영역<br />→ 타깃 세그먼트 고객 수 × 패키지 단가</small>
+    <div class="itpe-step-detail"><strong>② SAM (Serviceable Addressable Market: 유효 시장)</strong><span>자사 BM · 솔루션 스펙 · 지리적 도달 가능 영역 → 타깃 세그먼트 고객 수 × 패키지 단가</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ SOM (Serviceable Obtainable Market: 수익 시장)</strong></span>
-    <small>초기 1~3년 내 인력·자본 제약 하 실제 점유 시장<br />→ 집중 고객 수 × ARPU × 현실 획득률</small>
+    <div class="itpe-step-detail"><strong>③ SOM (Serviceable Obtainable Market: 수익 시장)</strong><span>초기 1~3년 내 인력·자본 제약 하 실제 점유 시장 → 집중 고객 수 × ARPU × 현실 획득률</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>타당성 정합성</strong></span> · TAM(잠재 한계) ↔ SAM(전략 목표) ↔ SOM(실행 검증: LTV/CAC ≥ 3)</div>
@@ -118,11 +115,11 @@ extra:
 
 > 단순 비율 곱셈을 금지하고 경쟁사 전환 장벽과 고객 획득 비용을 반영한 실증 모델을 구축해야 함.
 
-| 문제점 | 발생 원인 | 공학적·재무적 통제 대책 | 기대 효과 |
-|---|---|---|---|
-| **TAM 착시 및 부풀리기** | 거시 보고서 수치를 자사 매출 가능 시장으로 왜곡 | OS 환경, 온프레미스/클라우드 등 스펙 제약으로 SAM/SOM 여과 의무화 | 현실적 사업 목표 수립 및 투자 왜곡 차단 |
-| **고객 획득 비용(CAC) 과소평가** | 경쟁사 전환 장벽(Switching Cost) 및 PoC 인입 공수 간과 | 경쟁사 윈백 비용 및 영업 공수를 반영한 **Unit Economics ($LTV/CAC \ge 3$)** 통제 | 영업 마진율 및 현금흐름 건전성 확보 |
-| **정적 추정의 한계** | 기술 진부화, 경쟁자 진입, 규제 강화 등 동적 변수 미반영 | 몬테카를로 시뮬레이션 기반 시나리오별(Best/Worst) SOM 동적 갱신 | 환경 변화 대응력 및 회복탄력성 확보 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **TAM 착시 및 부풀리기** | OS 환경, 온프레미스/클라우드 등 스펙 제약으로 SAM/SOM 여과 의무화 | 현실적 사업 목표 수립 및 투자 왜곡 차단 |
+| **고객 획득 비용(CAC) 과소평가** | 경쟁사 윈백 비용 및 영업 공수를 반영한 **Unit Economics ($LTV/CAC \ge 3$)** 통제 | 영업 마진율 및 현금흐름 건전성 확보 |
+| **정적 추정의 한계** | 몬테카를로 시뮬레이션 기반 시나리오별(Best/Worst) SOM 동적 갱신 | 환경 변화 대응력 및 회복탄력성 확보 |
 
 ## Ⅴ. Unit Economics 연계 시장 타당성 검증을 위한 기술사적 제언
 
@@ -142,23 +139,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Unit Economics 연계 시장 타당성 검증 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>Gartner 보고서 단순 인용 · "1% 점유"식 과대 매출 추정 · CAC 간과</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>Gartner 보고서 단순 인용 · "1% 점유"식 과대 매출 추정 · CAC 간과</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>Bottom-up 기반 SOM 도출 + LTV/CAC ≥ 3 및 회수기간 12개월 필터링</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>Bottom-up 기반 SOM 도출 + LTV/CAC ≥ 3 및 회수기간 12개월 필터링</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>실제 PoC 전환율 · 고객사 윈백 비용 반영 · Top-down 역검증 매핑</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>실제 PoC 전환율 · 고객사 윈백 비용 반영 · Top-down 역검증 매핑</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>현실적 BEP 달성 · 초기 자본 고갈(Death Valley) 극복 및 신규 사업 성공</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>현실적 BEP 달성 · 초기 자본 고갈(Death Valley) 극복 및 신규 사업 성공</span></div>
   </div>
 </div>
 
@@ -167,16 +160,16 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 신규 IT 사업 기획 시 전체 시장(**TAM**), 서비스 가능 유효 시장(**SAM**), 조기 실현 가능한 수익 시장(**SOM**)으로 시장 규모를 3단계 동심원으로 여과 추정하는 **사업 타당성 분석 프레임워크**
-- 목적: 거대 시장의 착시를 제거하고 **Unit Economics(LTV/CAC)** 기반의 지속 가능한 **손익분기점(BEP)** 달성
+- 목적: 거대 시장 착시 배제 및 Unit Economics 기반 손익분기점(BEP) 달성
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="TAM-SAM-SOM 3단계 구성 요약">
-  <div class="itpe-pipeline-node"><strong>TAM (전체 시장)</strong><small>산업군 이론상 최대 총수요 (Top-down)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>TAM (전체 시장)</strong><span>산업군 이론상 최대 총수요 (Top-down)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>SAM (유효 시장)</strong><small>자사 BM · 스펙 부합 도달 시장 (Middle-out)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>SAM (유효 시장)</strong><span>자사 BM · 스펙 부합 도달 시장 (Middle-out)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>SOM (수익 시장)</strong><small>초기 1~3년 실제 점유: 고객 수 × ARPU (Bottom-up)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>SOM (수익 시장)</strong><span>초기 1~3년 실제 점유: 고객 수 × ARPU (Bottom-up)</span></div></div>
 </div>
 
 ### 3. 핵심 통제

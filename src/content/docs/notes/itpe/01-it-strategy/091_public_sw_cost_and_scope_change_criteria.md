@@ -1,6 +1,6 @@
 ---
 title: "과업심의(과업변경·사업기간 적정성)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="발주 전 사업기간 적정성 심의에서 사업 수행 중 과업변경 심의 및 계약금액 조정으로 이어지는 흐름">
   <div class="itpe-flow-node">
     <strong>사전 통제: 사업기간 적정성 심의</strong>
-    <small>발주 전 입찰공고 단계 · 법정 개발 공기 산출식 검증</small>
+    <div class="itpe-step-detail"><span>발주 전 입찰공고 단계 · 법정 개발 공기 산출식 검증</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>계약 체결 및 사업 착수</small></div>
   <div class="itpe-flow-node is-current">
@@ -43,7 +43,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>의결 집행</small></div>
   <div class="itpe-flow-node">
     <strong>계약 변경 및 대가 증액</strong>
-    <small><span class="itpe-keyword"><strong>FP 재산정</strong></span> 계약금액 증액 + <span class="itpe-keyword"><strong>CPM</strong></span> 공기 연장</small>
+    <div class="itpe-step-detail"><span><span class="itpe-keyword"><strong>FP 재산정</strong></span> 계약금액 증액 + <span class="itpe-keyword"><strong>CPM</strong></span> 공기 연장</span></div>
   </div>
 </div>
 
@@ -75,7 +75,7 @@ extra:
 > 발주 전 **사업기간 적정성**을 사전 검증하고, 수행 중 **과업변경 심의**를 통해 **FP(Function Point)** 기반 대가 증액과 공기 연장을 법적으로 보장함.
 
 - 정의: **소프트웨어 진흥법 제50조**에 근거하여 발주 전 개발 공기의 타당성을 검증하고, 사업 수행 중 과업 변경 발생 시 객관적으로 타당성을 심의하여 계약금액 및 기간 조정을 의결하는 **공공 SW 법정 심의 제도**
-- 목적: 발주자의 우월적 지위를 이용한 무상 과업 추가 방지 및 **적정 개발 공기** 확보 → 개발자 처우 개선 및 시스템 **품질·안전성 확보**
+- 목적: 무상 과업 추가 방지, 적정 개발 공기 확보 및 소프트웨어 품질·안전성 확보
 
 ## Ⅱ. 과업심의위원회 구성 및 5단계 심의 절차
 
@@ -83,28 +83,23 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 SW 과업심의 5단계 처리 프로세스">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 과업변경 요청</strong></span>
-    <small>법령 개정, 정책 변경, 상세 요구 도출에 따른 변경 요청<br />→ 과업변경 요청서 (발주자 또는 수급 사업자 제출)</small>
+    <div class="itpe-step-detail"><strong>① 과업변경 요청</strong><span>법령 개정, 정책 변경, 상세 요구사항 도출에 따른 변경 요청 → 과업변경 요청서 (발주자 또는 수급 사업자 제출)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 영향도 분석</strong></span>
-    <small>증감 기능점수(FP) 측정, 아키텍처 영향도, 공기 지연 분석<br />→ 영향도 분석서 · FP 증감표 · CPM 일정 분석서</small>
+    <div class="itpe-step-detail"><strong>② 영향도 분석</strong><span>증감 기능점수(FP) 측정, 아키텍처 영향도, 공기 지연 분석 → 영향도 분석서 · FP 증감표 · CPM 일정 분석서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 과업심의위원회 개최</strong></span>
-    <small>외부 전문가 과반수 구성 위원회 소집 및 안건 심의<br />→ 타당성 평가 · 경미/중대 판정 · 추가 예산/공기 심의</small>
+    <div class="itpe-step-detail"><strong>③ 과업심의위원회 개최</strong><span>외부 전문가 과반수 구성 위원회 소집 및 안건 심의 → 타당성 평가 · 경미/중대 판정 · 추가 예산/공기 심의</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 심의결과 통보</strong></span>
-    <small>접수 후 14일 이내 심의 의결 결과를 수급인에게 서면 통보<br />→ 과업심의 의결서 · 심의결과 통보서</small>
+    <div class="itpe-step-detail"><strong>④ 심의결과 통보</strong><span>접수 후 14일 이내 심의 의결 결과를 수급인에게 서면 통보 → 과업심의 의결서 · 심의결과 통보서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 공식 계약 변경</strong></span>
-    <small>국가계약법/지방계약법에 따른 계약금액 증액 및 공기 연장<br />→ 수정 계약서 체결 · 추가 대가 정산</small>
+    <div class="itpe-step-detail"><strong>⑤ 공식 계약 변경</strong><span>국가계약법/지방계약법에 따른 계약금액 증액 및 공기 연장 → 수정 계약서 체결 · 추가 대가 정산</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>심의 구속력</strong></span> · 과업심의 의결서 ↔ 국가계약법 수정계약 ↔ 대가 증액 100% 반영 의무</div>
@@ -152,23 +147,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의 실효성 확보를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>추가 예비비 미확보로 심의위 개최 기피 · 사업자의 무상 야근 감내</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>추가 예비비 미확보로 심의위 개최 기피 · 사업자의 무상 야근 감내</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>총사업비 내 10% 과업변경 예비비 의무화 + 착수 후 Scope Freeze 게이트</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>총사업비 내 10% 과업변경 예비비 의무화 + 착수 후 Scope Freeze 게이트</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>수급인 직접 청구권 보장 · RTM 기반 변경 전후 형상 및 FP 전수 감사</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>수급인 직접 청구권 보장 · RTM 기반 변경 전후 형상 및 FP 전수 감사</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>무상 과업 근절 · 정당한 대가 지급 및 공공 SW 시스템 안정성 제고</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>무상 과업 근절 · 정당한 대가 지급 및 공공 SW 시스템 안정성 제고</span></div>
   </div>
 </div>
 
@@ -177,16 +168,16 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **소프트웨어 진흥법 제50조**에 따라 발주 전 적정 공기를 검증하고, 수행 중 과업 변경 시 **FP(Function Point)** 기반 계약금액 및 기간 조정을 심의·의결하는 **법정 심의 제도**
-- 목적: 불합리한 사업기간 단축과 무상 과업 추가를 방지하여 **공정 계약 질서**를 확립하고 공공 SW 품질을 보장
+- 목적: 불합리한 공기 단축 및 무상 과업 추가 방지, 공정 계약 질서 확립 및 공공 SW 품질 보장
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의 2단계 연계 체계 요약">
-  <div class="itpe-pipeline-node"><strong>사전: 사업기간 적정성</strong><small>발주 전 공기 공식 검증 (SW진흥법 제45조)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>사전: 사업기간 적정성</strong><span>발주 전 공기 공식 검증 (SW진흥법 제45조)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>수행: 변경 영향도 분석</strong><small>증감 FP 측정 · CPM 공기 지연 분석</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>수행: 변경 영향도 분석</strong><span>증감 FP 측정 · CPM 공기 지연 분석</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>사후: 과업심의위 의결</strong><small>외부 전문가 과반수 · 계약금액/기간 조정</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>사후: 과업심의위 의결</strong><span>외부 전문가 과반수 · 계약금액/기간 조정</span></div></div>
 </div>
 
 ### 3. 핵심 통제
@@ -204,7 +195,7 @@ extra:
 ## 학습 체크
 
 - [ ] 사업기간 적정성 심의와 과업변경 심의의 시점 및 법적 근거를 설명할 수 있는가?
-- [ ] 과업심의위원회의 위원 구성 요건과 수급인의 직접 청구권을 숙지하고 있는가?
+- [ ] 과업심의위원회의 위원 구성 자격기준과 수급인의 직접 청구권을 숙지하고 있는가?
 - [ ] 경미한 과업 변경과 중대한 과업 변경의 판정 기준 및 대가 산정 메커니즘을 비교할 수 있는가?
 
 ## 연결 토픽

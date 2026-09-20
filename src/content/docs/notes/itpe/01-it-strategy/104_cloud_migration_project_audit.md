@@ -1,6 +1,6 @@
 ---
 title: "클라우드 전환사업 감리"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -29,12 +29,12 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="클라우드 전환사업 감리의 기획, 설계, 이행, 운영 4단계 감리 프레임워크">
   <div class="itpe-flow-node">
     <strong>기획·분석 감리</strong>
-    <small><span class="itpe-keyword"><strong>6R 전환 전략</strong></span> 타당성 · CSAP 보안 인증 등급제 검토</small>
+    <div class="itpe-step-detail"><span><span class="itpe-keyword"><strong>6R 전환 전략</strong></span> 타당성 · CSAP 보안 인증 등급제 검토</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>설계 검증</small></div>
   <div class="itpe-flow-node">
     <strong>구조·설계 감리</strong>
-    <small>멀티 AZ 고가용성(HA) · IAM 최소 권한 · VPC 망분리</small>
+    <div class="itpe-step-detail"><span>멀티 AZ 고가용성(HA) · IAM 최소 권한 · VPC 망분리</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>이행 안전성</small></div>
   <div class="itpe-flow-node is-current">
@@ -48,7 +48,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>운영 안정성</small></div>
   <div class="itpe-flow-node">
     <strong>시험·운영 감리</strong>
-    <small>오토스케일링 탄력성 실측 + <span class="itpe-keyword"><strong>FinOps</strong></span> 비용 최적화 대시보드</small>
+    <div class="itpe-step-detail"><span>오토스케일링 탄력성 실측 + <span class="itpe-keyword"><strong>FinOps</strong></span> 비용 최적화 대시보드</span></div>
   </div>
 </div>
 
@@ -73,7 +73,7 @@ extra:
 > 레거시 단순 이전을 탈피하여 **6R 전략**의 적합성, **공유 책임 모델(SRM)** 기반 보안, **FinOps 비용 거버넌스**를 전 생애주기 동안 독립 검증함.
 
 - 정의: 온프레미스 레거시 시스템을 클라우드 환경으로 이전하는 사업에서 전환 계획, 아키텍처 설계, 데이터 이행, 운영 안정성을 전 생애주기에 걸쳐 독립 점검하는 **전문 IT 품질 보증 활동**
-- 목적: 리프트앤시프트(Rehost)로 인한 비용 폭증 차단, **CSAP(Cloud Security Assurance Program)** 규제 준수 및 무중단 **데이터 무결성** 확보
+- 목적: 리프트앤시프트(Rehost) 비용 폭증 차단, CSAP 규제 준수 및 무중단 데이터 무결성 확보
 
 ## Ⅱ. 클라우드 전환사업 4단계 감리 프레임워크 및 방법론
 
@@ -81,23 +81,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="클라우드 전환사업 4단계 감리 방법론 및 산출물">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 기획·분석 감리 (전환 전략 및 규제 검증)</strong></span>
-    <small>업무별 6R 전략 타당성, CSAP 보안인증 등급(상/중/하), TCO/ROI 분석<br />→ 전환 마스터플랜 · TCO 타당성 분석서</small>
+    <div class="itpe-step-detail"><strong>① 기획·분석 감리 (전환 전략 및 규제 검증)</strong><span>업무별 6R 전략 타당성, CSAP 보안인증 등급(상/중/하), TCO/ROI 분석 → 전환 마스터플랜 · TCO 타당성 분석서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 구조·설계 감리 (클라우드 아키텍처 검증)</strong></span>
-    <small>멀티 AZ 고가용성(HA), IAM 최소 권한(Least Privilege), VPC 격리<br />→ 클라우드 아키텍처 설계서 · IAM 권한 매트릭스</small>
+    <div class="itpe-step-detail"><strong>② 구조·설계 감리 (클라우드 아키텍처 검증)</strong><span>멀티 AZ 고가용성(HA), IAM 최소 권한(Least Privilege), VPC 격리 → 클라우드 아키텍처 설계서 · IAM 권한 매트릭스</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 전환·이행 감리 (데이터 무결성 및 인프라 감사)</strong></span>
-    <small>CDC 기반 실시간 무중단 복제, IaC 정적 분석(Tfsec), 모의전환 실측<br />→ 데이터 이행 정합성 대사표 · 컷오버 롤백 매뉴얼</small>
+    <div class="itpe-step-detail"><strong>③ 전환·이행 감리 (데이터 무결성 및 인프라 감사)</strong><span>CDC 기반 실시간 무중단 복제, IaC 정적 분석(Tfsec), 모의전환 실측 → 데이터 이행 정합성 대사표 · 컷오버 롤백 매뉴얼</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 시험·운영 감리 (탄력성 실측 및 비용 거버넌스)</strong></span>
-    <small>오토스케일링 부하 실측, CSP 공유 책임 모델 SLA, FinOps 대시보드<br />→ 성능 시험 성적서 · FinOps 최적화 보고서</small>
+    <div class="itpe-step-detail"><strong>④ 시험·운영 감리 (탄력성 실측 및 비용 거버넌스)</strong><span>오토스케일링 부하 실측, CSP 공유 책임 모델 SLA, FinOps 대시보드 → 성능 시험 성적서 · FinOps 최적화 보고서</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>품질 정합성</strong></span> · 6R 타당성 ↔ 멀티 AZ 설계 ↔ CDC 무중단 이행 ↔ FinOps 비용 통제 100% 매핑</div>
@@ -145,23 +141,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="클라우드 전환 감리 고도화를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>물리 서버 납품식 체크리스트 · Rehost 위주로 인한 클라우드 비용 폭증</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>물리 서버 납품식 체크리스트 · Rehost 위주로 인한 클라우드 비용 폭증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>IaC 정적 분석 기반 보안 감사 + FinOps 라이트사이징 감리 제도화</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>IaC 정적 분석 기반 보안 감사 + FinOps 라이트사이징 감리 제도화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>IAM 최소 권한 원칙 점검 · CDC 무중단 데이터 대사 일치율 100%</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>IAM 최소 권한 원칙 점검 · CDC 무중단 데이터 대사 일치율 100%</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>인프라 운영 비용 30% 절감 · 클라우드 네이티브 고가용성(HA) 확보</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>인프라 운영 비용 30% 절감 · 클라우드 네이티브 고가용성(HA) 확보</span></div>
   </div>
 </div>
 
@@ -170,18 +162,18 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 레거시 정보시스템의 클라우드 이설 시 발생하는 아키텍처 비효율, 보안 결함, 비용 초과를 방지하기 위해 전 생애주기적 품질을 독립 검증하는 **클라우드 전문 IT 감리 활동**
-- 목적: **6R 전환 전략** 최적화, **공유 책임 모델(SRM)** 기반 보안 준수 및 **FinOps** 비용 최적화 실현
+- 목적: 6R 전환 전략 최적화, 공유 책임 모델(SRM) 기반 보안 준수 및 FinOps 비용 최적화 실현
 
 ### 2. 구성체계 및 4단계 감리
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="클라우드 전환 감리 4단계 구성 요약">
-  <div class="itpe-pipeline-node"><strong>기획 감리</strong><small>6R 마이그레이션 전략 · CSAP 인증 등급</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>기획 감리</strong><span>6R 마이그레이션 전략 · CSAP 인증 등급</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>설계 감리</strong><small>멀티 AZ 고가용성 · IAM 최소 권한 · VPC</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>설계 감리</strong><span>멀티 AZ 고가용성 · IAM 최소 권한 · VPC</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>이행 감리</strong><small>CDC 무중단 데이터 복제 · IaC 정적 분석</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>이행 감리</strong><span>CDC 무중단 데이터 복제 · IaC 정적 분석</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>운영 감리</strong><small>오토스케일링 실측 · FinOps 비용 최적화</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>운영 감리</strong><span>오토스케일링 실측 · FinOps 비용 최적화</span></div></div>
 </div>
 
 ### 3. 핵심 통제

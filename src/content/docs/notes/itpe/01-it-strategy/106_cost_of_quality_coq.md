@@ -1,6 +1,6 @@
 ---
 title: "품질비용(Cost of Quality)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="품질비용의 적합비용과 부적합비용 분류 및 시프트 레프트 최적 균형 흐름">
   <div class="itpe-flow-node">
     <strong>적합 비용 (Cost of Conformance)</strong>
-    <small>예방 비용 (교육·아키텍처) + 평가 비용 (단위/통합 테스트·정적분석)</small>
+    <div class="itpe-step-detail"><span>예방 비용 (교육·아키텍처) + 평가 비용 (단위/통합 테스트·정적분석)</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>선제적 시프트-레프트(Shift-Left) 투자</small></div>
   <div class="itpe-flow-node is-current">
@@ -43,7 +43,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>손실 차단</small></div>
   <div class="itpe-flow-node">
     <strong>부적합 비용 (Non-conformance) 최소화</strong>
-    <small>내부 실패(재작업 공수) 감축 + 외부 실패(운영 장애·배상금) 제로화</small>
+    <div class="itpe-step-detail"><span>내부 실패(재작업 공수) 감축 + 외부 실패(운영 장애·배상금) 제로화</span></div>
   </div>
 </div>
 
@@ -68,7 +68,7 @@ extra:
 > 사후 장애 복구의 천문학적 **부적합 비용**을 막기 위해 개발 초기에 선제적 **적합 비용**을 투입하여 총 품질비용을 최적화함.
 
 - 정의: 소프트웨어 제품의 무결함을 보장하기 위한 **적합 비용(예방·평가)**과 품질 불량으로 인해 유발되는 **부적합 비용(내부·외부 실패)**을 계량화하여 총 품질비용을 최적화하는 **품질 경제학적 관리 기법**
-- 목적: 배포 후 발생하는 치명적 장애와 손해배상 등 외부 실패 비용 차단, **시프트-레프트(Shift-Left)**를 통한 프로젝트 총소유비용(**TCO**) 최소화
+- 목적: 배포 후 외부 실패 비용 차단 및 시프트-레프트(Shift-Left)를 통한 프로젝트 총소유비용(TCO) 최소화
 
 ## Ⅱ. COQ 4대 구성요소 및 4단계 품질 개선 방법론
 
@@ -76,23 +76,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="품질비용 최적화 4단계 실행 프로세스">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① COQ 분류 기준 수립</strong></span>
-    <small>품질 활동 및 결함 수정 공수를 4대 COQ 항목으로 정의<br />→ COQ 분류 가이드라인 · 회계 계정 매핑</small>
+    <div class="itpe-step-detail"><strong>① COQ 분류 기준 수립</strong><span>품질 활동 및 결함 수정 공수를 4대 COQ 항목으로 정의 → COQ 분류 가이드라인 · 회계 계정 매핑</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 비용 데이터 수집 및 계량화</strong></span>
-    <small>Jira 결함 처리 공수(M/D), 정적분석 도입비, 장애 손실액 집계<br />→ COQ 현황 집계표 · 실패 손실 명세서</small>
+    <div class="itpe-step-detail"><strong>② 비용 데이터 수집 및 계량화</strong><span>Jira 결함 처리 공수(M/D), 정적분석 도입비, 장애 손실액 집계 → COQ 현황 집계표 · 실패 손실 명세서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 상충관계 및 파레토 분석</strong></span>
-    <small>총 COQ 중 실패 비용 비중 분석 (실패 비용 > 50% 시 경보)<br />→ 결함 원인 파레토 차트 · 품질 투자 타당성 분석서</small>
+    <div class="itpe-step-detail"><strong>③ 상충관계 및 파레토 분석</strong><span>총 COQ 중 실패 비용 비중 분석 (실패 비용 > 50% 시 경보) → 결함 원인 파레토 차트 · 품질 투자 타당성 분석서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 시프트-레프트 선제 투자</strong></span>
-    <small>TDD, 정적 분석(SAST), CI/CD 배포 Quality Gate 자동화 구축<br />→ 테스트 자동화 커버리지 80% · 외부 결함 제로화</small>
+    <div class="itpe-step-detail"><strong>④ 시프트-레프트 선제 투자</strong><span>TDD, 정적 분석(SAST), CI/CD 배포 Quality Gate 자동화 구축 → 테스트 자동화 커버리지 80% · 외부 결함 제로화</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>비용 추적성</strong></span> · 예방/평가 투자(적합) ↔ 결함 조기 격리 ↔ 외부 실패 비용(부적합) 최소화 100% 매핑</div>
@@ -145,23 +141,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="COQ 최적화를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>납기 압박으로 테스트 비용 우선 삭감 · 운영 배포 후 외부 실패 비용 폭증</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>납기 압박으로 테스트 비용 우선 삭감 · 운영 배포 후 외부 실패 비용 폭증</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>Shift-Left 기반 예방 투자 확대 + CI/CD Quality Gate 자동 배포 차단</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>Shift-Left 기반 예방 투자 확대 + CI/CD Quality Gate 자동 배포 차단</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>Boehm 곡선 적용 초기 결함 제거율 80% 달성 · COQ 실패비율 20% 이하 통제</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>Boehm 곡선 적용 초기 결함 제거율 80% 달성 · COQ 실패비율 20% 이하 통제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>운영 장애 0건 달성 · 재작업 공수 절감 및 비즈니스 TCO 최적화</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>운영 장애 0건 달성 · 재작업 공수 절감 및 비즈니스 TCO 최적화</span></div>
   </div>
 </div>
 
@@ -170,18 +162,18 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 소프트웨어 품질 적합성을 확보하기 위한 **적합 비용(예방·평가)**과 품질 불량으로 유발되는 **부적합 비용(내부·외부 실패)**을 계량화하여 총비용을 최적화하는 **품질 경제성 관리 기법**
-- 목적: **Boehm 곡선**에 따른 사후 결함 수정 비용 폭증을 방지하고 **시프트-레프트(Shift-Left)**를 통해 TCO를 최소화
+- 목적: 사후 결함 수정 비용 폭증 방지 및 시프트-레프트(Shift-Left) 통한 TCO 최소화
 
 ### 2. 구성체계 및 4대 분류
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="품질비용 4대 분류 체계 요약">
-  <div class="itpe-pipeline-node"><strong>예방 비용 (적합)</strong><small>코딩 표준 · 아키텍처 검토 · 교육</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>예방 비용 (적합)</strong><span>코딩 표준 · 아키텍처 검토 · 교육</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>평가 비용 (적합)</strong><small>단위/통합 테스트 · SAST 정적 분석</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>평가 비용 (적합)</strong><span>단위/통합 테스트 · SAST 정적 분석</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>내부 실패 (부적합)</strong><small>배포 전 버그 수정 · 재작업(Rework)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>내부 실패 (부적합)</strong><span>배포 전 버그 수정 · 재작업(Rework)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>외부 실패 (부적합)</strong><small>운영 장애 복구 · 고객 배상금 · 과징금</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>외부 실패 (부적합)</strong><span>운영 장애 복구 · 고객 배상금 · 과징금</span></div></div>
 </div>
 
 ### 3. 핵심 통제

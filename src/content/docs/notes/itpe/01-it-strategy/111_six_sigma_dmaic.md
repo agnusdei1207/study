@@ -1,6 +1,6 @@
 ---
 title: "6시그마(Six Sigma) DMAIC"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:33:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -29,12 +29,12 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="6시그마 DMAIC 5단계 로드맵 및 통계적 품질 통제 흐름">
   <div class="itpe-flow-node">
     <strong>Define (정의)</strong>
-    <small>VOC 수집 ──▶ <span class="itpe-keyword"><strong>CTQ(핵심품질특성)</strong></span> 도출 및 헌장 승인</small>
+    <div class="itpe-step-detail"><span>VOC 수집 ──▶ <span class="itpe-keyword"><strong>CTQ(핵심품질특성)</strong></span> 도출 및 헌장 승인</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>측정 체계</small></div>
   <div class="itpe-flow-node">
     <strong>Measure (측정)</strong>
-    <small>Gage R&R 신뢰성 검증 · 공정능력지수(<span class="itpe-keyword"><strong>Cpk</strong></span>) 및 DPMO 산정</small>
+    <div class="itpe-step-detail"><span>Gage R&R 신뢰성 검증 · 공정능력지수(<span class="itpe-keyword"><strong>Cpk</strong></span>) 및 DPMO 산정</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>원인 규명</small></div>
   <div class="itpe-flow-node is-current">
@@ -48,7 +48,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>제도화</small></div>
   <div class="itpe-flow-node">
     <strong>Control (관리)</strong>
-    <small><span class="itpe-keyword"><strong>SPC 관리도</strong></span>(X-bar R) · 포카요케(실수방지) · 표준화</small>
+    <div class="itpe-step-detail"><span><span class="itpe-keyword"><strong>SPC 관리도</strong></span>(X-bar R) · 포카요케(실수방지) · 표준화</span></div>
   </div>
 </div>
 
@@ -74,7 +74,7 @@ extra:
 > 프로세스 변동(Variation)을 통계적으로 규명하여 **3.4 DPMO** 무결점을 달성하고, **CTQ(Critical to Quality)** 중심의 **DMAIC 로드맵**을 수행함.
 
 - 정의: 프로세스 내 변동을 통계적으로 분석하여 100만 기회당 3.4개 결함 이하(**3.4 DPMO**)로 억제하는 **데이터 기반 5단계(DMAIC) 품질 혁신 방법론**
-- 목적: 고객의 핵심 품질 요구(**CTQ**) 만족, 결함 유발 핵심 인자(**Vital Few X**) 제거 및 프로세스 표준화를 통한 품질 안정성과 비용 절감
+- 목적: 고객 핵심 품질 요구(CTQ) 만족, 결함 유발 핵심 인자(Vital Few X) 제거 및 프로세스 표준화 통한 품질 안정성과 비용 절감
 
 ## Ⅱ. 6시그마 DMAIC 5단계 방법론 및 활동·산출물
 
@@ -82,28 +82,23 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="6시그마 DMAIC 5단계 방법론 및 주요 산출물">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① Define (정의)</strong></span>
-    <small>고객의 소리(VOC) 수집, CTQ 도출, SIPOC 매핑, 프로젝트 헌장 작성<br />→ 프로젝트 헌장 · CTQ 명세서</small>
+    <div class="itpe-step-detail"><strong>① Define (정의)</strong><span>고객의 소리(VOC) 수집, CTQ 도출, SIPOC 매핑, 프로젝트 헌장 작성 → 프로젝트 헌장 · CTQ 명세서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② Measure (측정)</strong></span>
-    <small>측정시스템 분석(Gage R&R), 기준선 DPMO 산정, 공정능력지수(Cpk) 계산<br />→ 데이터 수집 계획서 · 공정능력 평가서</small>
+    <div class="itpe-step-detail"><strong>② Measure (측정)</strong><span>측정시스템 분석(Gage R&R), 기준선 DPMO 산정, 공정능력지수(Cpk) 계산 → 데이터 수집 계획서 · 공정능력 평가서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ Analyze (분석)</strong></span>
-    <small>특성요인도, 파레토 차트, 가설 검정(ANOVA/회귀분석)으로 원인 규명<br />→ 치명 인자 목록 (Vital Few X)</small>
+    <div class="itpe-step-detail"><strong>③ Analyze (분석)</strong><span>특성요인도, 파레토 차트, 가설 검정(ANOVA/회귀분석)으로 원인 규명 → 치명 인자 목록 (Vital Few X)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ Improve (개선)</strong></span>
-    <small>실험계획법(DOE) 기반 최적 조건 도출, 잠재 고장 모드(FMEA), 파일럿 검증<br />→ 최적 공정 조건표 · 파일럿 검증 보고서</small>
+    <div class="itpe-step-detail"><strong>④ Improve (개선)</strong><span>실험계획법(DOE) 기반 최적 조건 도출, 잠재 고장 모드(FMEA), 파일럿 검증 → 최적 공정 조건표 · 파일럿 검증 보고서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ Control (관리)</strong></span>
-    <small>표준운영절차서(SOP) 개정, 통계적 공정관리(SPC/관리도), 포카요케 구축<br />→ 표준 작업 지침서 · 모니터링 관리 계획서</small>
+    <div class="itpe-step-detail"><strong>⑤ Control (관리)</strong><span>표준운영절차서(SOP) 개정, 통계적 공정관리(SPC/관리도), 포카요케 구축 → 표준 작업 지침서 · 모니터링 관리 계획서</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>인과 연계</strong></span> · 고객 요구(VOC/CTQ) ↔ 측정(Cpk) ↔ 원인(Vital Few) ↔ 개선(DOE) ↔ 관리(SPC) 100% 매핑</div>
@@ -157,23 +152,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 환경 6시그마 현대화를 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>과도한 통계 서류 작업으로 개발 현장 외면 · 개선 후 과거로 회귀</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>과도한 통계 서류 작업으로 개발 현장 외면 · 개선 후 과거로 회귀</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>린(Lean) 낭비 제거 결합 + APM/DevOps 파이프라인에 DMAIC 코드화</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>린(Lean) 낭비 제거 결합 + APM/DevOps 파이프라인에 DMAIC 코드화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>Cpk ≥ 1.5 달성 검증 · 프로메테우스 기반 실시간 관리도 이탈 경보</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>Cpk ≥ 1.5 달성 검증 · 프로메테우스 기반 실시간 관리도 이탈 경보</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>소프트웨어 품질 변동 제어 · 3.4 DPMO 수준의 안정적 IT 서비스 유지</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>소프트웨어 품질 변동 제어 · 3.4 DPMO 수준의 안정적 IT 서비스 유지</span></div>
   </div>
 </div>
 
@@ -182,20 +173,20 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 프로세스 결함의 근본 원인인 변동(Variation)을 통계적으로 제어하여 100만 기회당 3.4개 결함(**3.4 DPMO**)을 달성하는 **데이터 기반 5단계(DMAIC) 품질 혁신 프레임워크**
-- 목적: 고객 핵심 요구(**CTQ**) 만족 및 결함 유발 인자(**Vital Few X**) 제거를 통한 프로세스 안정화
+- 목적: 고객 핵심 요구(CTQ) 만족 및 결함 유발 인자(Vital Few X) 제거를 통한 프로세스 안정화
 
 ### 2. 구성체계 및 DMAIC 5단계
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="6시그마 DMAIC 5단계 요약">
-  <div class="itpe-pipeline-node"><strong>Define</strong><small>VOC ➔ CTQ 정의 · 프로젝트 헌장</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Define</strong><span>VOC ➔ CTQ 정의 · 프로젝트 헌장</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Measure</strong><small>Gage R&R · 공정능력(Cpk) · DPMO</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Measure</strong><span>Gage R&R · 공정능력(Cpk) · DPMO</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Analyze</strong><small>ANOVA · 회귀분석 ➔ Vital Few X</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Analyze</strong><span>ANOVA · 회귀분석 ➔ Vital Few X</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Improve</strong><small>실험계획법(DOE) · FMEA · 파일럿</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Improve</strong><span>실험계획법(DOE) · FMEA · 파일럿</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Control</strong><small>SPC 관리도 · 포카요케 · SOP 표준화</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Control</strong><span>SPC 관리도 · 포카요케 · SOP 표준화</span></div></div>
 </div>
 
 ### 3. 핵심 통제

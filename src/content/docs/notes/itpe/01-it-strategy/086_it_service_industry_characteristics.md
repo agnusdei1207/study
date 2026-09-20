@@ -1,6 +1,6 @@
 ---
 title: "IT서비스 산업 특수성"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "C"
 ---
 
@@ -68,7 +68,7 @@ extra:
 > IT서비스 산업은 소프트웨어의 무형성과 주문생산성으로 인해 심각한 정보 비대칭을 내포하며, 생태계 정상화의 성패는 단순 인력 관리가 아닌 **과업의 명확한 상세화**와 **결과물 가치 기반 대가 지급**으로 판정함.
 
 - 정의: 일반 제조업과 달리 **무형성(Intangibility)**, **비가시성**, **주문생산성**과 높은 인적 의존성을 지녀 다단계 하도급과 헤드카운팅 관행이 발생하기 쉬운 **국내 IT서비스(SI/SM) 산업의 구조적 특성**
-- 목적: 불공정 거래 관행 개선 및 엔지니어 처우 개선 → **소프트웨어 진흥법 제도 개선**과 **상용 SaaS 전환**을 통한 소프트웨어 생태계 고부가가치화
+- 목적: 불공정 거래 관행 개선, 엔지니어 처우 보장 및 SW 생태계 고부가가치화
 
 ## Ⅱ. 국내 IT서비스 산업의 구조적 악순환 파이프라인
 
@@ -77,22 +77,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="국내 IT서비스 다단계 하도급 악순환 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 발주자 (수요처)</strong></span>
-    <small>모호한 RFP · 짧은 사업 기간 · 예산 삭감 턴키 발주 · 무상 과업 추가<br />→ 불완전한 과업 요구사항</small>
+    <div class="itpe-step-detail"><strong>모호한 발주</strong><span>모호한 RFP, 짧은 사업 기간, 예산 삭감 및 무상 과업 추가</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 대형 SI 원수급자 (수주사)</strong></span>
-    <small>관리 마진 취득 후 응용 개발 전면 외주화 (1차 하도급 집행)<br />→ 프로젝트 총괄 및 관리 기능 한정</small>
+    <div class="itpe-step-detail"><strong>외주 전가</strong><span>관리 마진 취득 후 응용 개발 전면 외주화(1차 하도급 집행)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 중소 전문 소프트웨어사 (수급인)</strong></span>
-    <small>단가 인하 압박 · 모듈별 재하도급 분할 및 인력 파견(2차 하도급)<br />→ 수익성 악화 및 R&D 투자 여력 상실</small>
+    <div class="itpe-step-detail"><strong>단가 압박</strong><span>단가 인하 압박 및 모듈별 재하도급 분할·인력 파견(2차 하도급)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 말단 프리랜서 및 개발자 (실행자)</strong></span>
-    <small>열악한 개발 환경 · 과도한 야근/철야 · 잦은 이탈 · 시스템 결함 누적<br />→ 시스템 오픈 파행 및 운영 장애 발생</small>
+    <div class="itpe-step-detail"><strong>품질 저하</strong><span>열악한 환경, 야근/철야, 잦은 이탈 및 결함 누적에 따른 장애 발생</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>악순환의 고리</strong></span> · 저가 수주 ↔ 중간 마진 누수 ↔ 개발자 처우 악화 ↔ 시스템 품질 저하의 구조적 반복</div>
@@ -151,22 +151,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT서비스 산업 고부가가치화 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>1회성 맞춤 개발 고수 · 저가 턴키 다단계 하도급 피라미드 · 헤드카운팅 M/M 정산</small>
+    <div class="itpe-step-detail"><strong>취약점</strong><span>1회성 맞춤 개발 고수, 저가 턴키 다단계 하도급 및 헤드카운팅 정산</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>소프트웨어 진흥법 철저 준수(과업심의·하도급 제한) + 공공 상용 클라우드 SaaS 우선 도입제</small>
+    <div class="itpe-step-detail"><strong>생태계 정상화</strong><span>소프트웨어 진흥법 준수(과업심의·하도급 제한) 및 상용 SaaS 우선 도입제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>불법 파견 재하도급 적발 0건 · 기능점수(FP) 기반 대가 산정 100% 준수</small>
+    <div class="itpe-step-detail"><strong>목표 지표</strong><span>불법 파견 재하도급 적발 0건 및 기능점수(FP) 기반 대가 산정 100% 준수</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>개발자 처우 개선 및 이탈 방지 · 고품질 소프트웨어 자산 축적 및 산업 생태계 선순환</small>
+    <div class="itpe-step-detail"><strong>가치 창출</strong><span>개발자 처우 개선, 고품질 SW 자산 축적 및 산업 생태계 선순환 달성</span></div>
   </div>
 </div>
 
@@ -175,18 +175,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 소프트웨어의 **무형성**, **비분리성**, **주문생산성**으로 인해 발주자-수주자 간 정보 비대칭이 크고, 다단계 하도급과 헤드카운팅(M/M) 관행이 발생하는 **국내 IT서비스(SI/SM) 산업의 구조적 특성**
-- 목적: 불공정 거래 관행 개선 및 엔지니어 권익 보호 → **소프트웨어 진흥법 4대 장치**를 통한 산업 고부가가치화
+- 목적: 불공정 관행 개선, 엔지니어 권익 보호 및 산업 고부가가치화
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="소프트웨어 진흥법 4대 핵심 개선 장치 요약">
-  <div class="itpe-pipeline-node"><strong>하도급 제한</strong><small>50% 초과 하도급 제한 · 재하도급 원칙적 금지</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>하도급 제한</strong>
+    <div class="itpe-step-detail"><strong>구조 개선</strong><span>50% 초과 하도급 제한 및 재하도급 원칙적 금지</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>요구사항 상세화</strong><small>발주 전 제안요청서 기능/데이터 상세 명세 의무화</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>요구사항 상세화</strong>
+    <div class="itpe-step-detail"><strong>명확화</strong><span>발주 전 RFP 기능/데이터 상세 명세 의무화</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>과업심의 의무화</strong><small>과업 변경 시 위원회 심의를 통한 대가·기간 조정</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>과업심의 의무화</strong>
+    <div class="itpe-step-detail"><strong>변경 통제</strong><span>과업 변경 시 위원회 심의를 통한 대가·기간 조정</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>헤드카운팅 금지</strong><small>투입인력 관리 금지 · 기능점수(FP) 대가 산정</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>헤드카운팅 금지</strong>
+    <div class="itpe-step-detail"><strong>가치 평가</strong><span>투입인력 관리 금지 및 기능점수(FP) 대가 산정</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제
@@ -212,4 +224,4 @@ extra:
 
 - 이전 토픽: [CoE](./082_coe.md)
 - 연관 토픽: [SW 사업 대가산정](./026_software_cost_estimation.md), [과업심의 기준](./091_public_sw_cost_and_scope_change_criteria.md), [하도급 구조](./097_software_industry_subcontracting_structure.md)
-- 다음 토픽: [경영환경 분석](./088_business_environment_analysis.md)
+- 다음 토픽: [IT 역량체계(ITS-NCS)](./087_it_job_competency_system.md)

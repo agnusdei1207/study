@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어 기술자 구분(등급제·IT직무제)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -29,7 +29,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="기술자 등급제 폐지에서 ITSQF 기반 IT직무제 전환 및 공정 대가 실현 흐름">
   <div class="itpe-flow-node">
     <strong>과거: SW 기술자 등급제 (2012 폐지)</strong>
-    <small>학력 · 자격증 · 단순 근속연수 (초·중·고·특급)</small>
+    <div class="itpe-step-detail"><span>학력 · 자격증 · 단순 근속연수 (초·중·고·특급)</span></div>
   </div>
   <div class="itpe-flow-arrow">↓<small>패러다임 전환</small></div>
   <div class="itpe-flow-node is-current">
@@ -43,7 +43,7 @@ extra:
   <div class="itpe-flow-arrow">↓<small>공공 조달 혁신</small></div>
   <div class="itpe-flow-node">
     <strong>능력 중심 적정 대가 지급</strong>
-    <small>헤드카운팅 근절 · 기능점수(FP) 및 결과물 중심 정산</small>
+    <div class="itpe-step-detail"><span>헤드카운팅 근절 · 기능점수(FP) 및 결과물 중심 정산</span></div>
   </div>
 </div>
 
@@ -75,7 +75,7 @@ extra:
 > 과거 학력·근속연수 중심 **SW 기술자 등급제**를 폐지하고, **ITSQF** 기반 직무와 역량 수준으로 평가하여 **공정 대가** 체계를 확립함.
 
 - 정의: 학력·경력 연수 기준의 **소프트웨어 기술자 등급제**를 폐지하고, **ITSQF(IT Sectoral Qualifications Framework)** 기반 28개 직무와 Level 1~8 역량 수준으로 기술자를 정의하는 **능력 중심 기술자 구분 제도**
-- 목적: 투입 인력 수 기준 **헤드카운팅(Head Counting)** 근절 및 실질적 문제해결 역량에 부합하는 **공정 대가** 지급 → 고부가가치 SW 생태계 육성
+- 목적: 헤드카운팅 근절, 직무 역량 기반 공정 대가 실현 및 고부가가치 SW 생태계 육성
 
 ## Ⅱ. ITSQF 기반 IT직무제 이행 체계 및 4단계 방법론
 
@@ -83,26 +83,22 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ITSQF 기반 IT직무제 4단계 이행 방법론 및 산출물">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 직무 및 요구역량 정의</strong></span>
-    <small>프로젝트 필요 직무(MSA 아키텍트, DBA 등) 및 요구 Level 명세<br />→ 직무기술서(Job Description)</small>
+    <div class="itpe-step-detail"><strong>① 직무 및 요구역량 정의</strong><span>프로젝트 필요 직무(MSA 아키텍트, DBA 등) 및 요구 Level 명세 → 직무기술서(Job Description)</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 실무 역량 포트폴리오 검증</strong></span>
-    <small>프로젝트 실적, 오픈소스 기여, 코딩 테스트 및 기술 검증<br />→ 역량 포트폴리오 · 실기 평가 성적서</small>
+    <div class="itpe-step-detail"><strong>② 실무 역량 포트폴리오 검증</strong><span>프로젝트 실적, 오픈소스 기여, 코딩 테스트 및 기술 검증 → 역량 포트폴리오 · 실기 평가 성적서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ ITSQF 역량 수준 판정</strong></span>
-    <small>KOSA 공인 프레임워크 기준 역량 심의(Level 1~8 판정)<br />→ ITSQF 역량인정서 발급</small>
+    <div class="itpe-step-detail"><strong>③ ITSQF 역량 수준 판정</strong><span>KOSA 공인 프레임워크 기준 역량 심의(Level 1~8 판정) → ITSQF 역량인정서 발급</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 직무별 적정 대가 지급</strong></span>
-    <small>직무별 시장 평균 노임단가 및 기능점수(FP) 연계 정산<br />→ 용역계약서 · 대가산정 명세서</small>
+    <div class="itpe-step-detail"><strong>④ 직무별 적정 대가 지급</strong><span>직무별 시장 평균 노임단가 및 기능점수(FP) 연계 정산 → 용역계약서 · 대가산정 명세서</span></div>
   </div>
 </div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>역량 정합성</strong></span> · 직무기술서 요건 ↔ ITSQF 역량인정서 ↔ 노임단가 정산 100% 매핑</div>
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>역량 정합성</strong></span> · 직무기술서 요구사항 ↔ ITSQF 역량인정서 ↔ 노임단가 정산 100% 매핑</div>
 
 ## Ⅲ. 한국형 정보기술역량체계(ITSQF) 구조 및 역량 수준
 
@@ -135,12 +131,12 @@ extra:
 
 > 발주 편의주의와 상주 인력 통제 관행을 타파하고, RFP 사전심의와 기능 중심 검수를 강제해야 직무제가 안착함.
 
-| 잔존 문제점 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **RFP 내 등급 요구 잔존** | 직무 역량 평가 전문성 부족, 감사 회피용 단순 연차 선호 | 조달청 입찰공고 사전심의 강화, 등급 명시 시 입찰 무효화 | 폐지된 불법 등급제 관행 원천 차단 |
-| **프리랜서 역량 검증 한계** | 기업별 역량 기준 상이, 이력서 위변조 위험 | **KOSA** 공인 **ITSQF 역량인정서** 제출 및 코딩 실기 검증 의무화 | 공신력 있는 시장 검증 체계 확립 |
-| **헤드카운팅 상주 강요** | 산출물 품질 검수 역량 부재로 상주 인력 머릿수 통제 | 소프트웨어 진흥법 '투입인력 관리 금지' 위반 신고 센터 가동 | 투입공수 통제 탈피 및 유연근무 확대 |
-| **직무별 임금 데이터 부족** | 직무별 시장 임금 통계 부재로 예산 편성 난항 | 협회 주관 28개 직무별 시장 실지급 임금 실태조사 공표 의무화 | 현실적 적정 임금 보장 및 제값주기 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **RFP 내 등급 요구 잔존** | 조달청 입찰공고 사전심의 강화, 등급 명시 시 입찰 무효화 | 폐지된 불법 등급제 관행 원천 차단 |
+| **프리랜서 역량 검증 한계** | **KOSA** 공인 **ITSQF 역량인정서** 제출 및 코딩 실기 검증 의무화 | 공신력 있는 시장 검증 체계 확립 |
+| **헤드카운팅 상주 강요** | 소프트웨어 진흥법 '투입인력 관리 금지' 위반 신고 센터 가동 | 투입공수 통제 탈피 및 유연근무 확대 |
+| **직무별 임금 데이터 부족** | 협회 주관 28개 직무별 시장 실지급 임금 실태조사 공표 의무화 | 현실적 적정 임금 보장 및 제값주기 |
 
 ## Ⅵ. 능력 중심 SW 생태계 정착을 위한 기술사적 제언
 
@@ -160,23 +156,19 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="능력 중심 IT직무제 정착을 위한 기술사적 제언 파이프라인">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>RFP 상 특급·고급 요구 잔존 · 투입인력 상주 및 출근 검사</small>
+    <div class="itpe-step-detail"><strong>현행 한계</strong><span>RFP 상 특급·고급 요구 잔존 · 투입인력 상주 및 출근 검사</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>ITSQF 28개 직무기술서 기반 발주 + 결과물(FP/SLA) 중심 검수</small>
+    <div class="itpe-step-detail"><strong>개선 대안</strong><span>ITSQF 28개 직무기술서 기반 발주 + 결과물(FP/SLA) 중심 검수</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>조달청 입찰 사전심의 100% · KOSA ITSQF 역량인정서 매핑</small>
+    <div class="itpe-step-detail"><strong>검증 기준</strong><span>조달청 입찰 사전심의 100% · KOSA ITSQF 역량인정서 매핑</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>헤드카운팅 완전 근절 · 능력 중심 청년 개발자 공정 보상</small>
+    <div class="itpe-step-detail"><strong>실행 효과</strong><span>헤드카운팅 완전 근절 · 능력 중심 청년 개발자 공정 보상</span></div>
   </div>
 </div>
 
@@ -185,18 +177,18 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 과거 학력·경력 연수 기준의 **소프트웨어 기술자 등급제**를 폐지하고, **ITSQF(IT Sectoral Qualifications Framework)** 기반 28개 직무와 Level 1~8 역량 수준으로 기술자를 분류하는 **능력 중심 기술자 구분 제도**
-- 목적: 투입 인력 머릿수 관리 관행인 **헤드카운팅(Head Counting)**을 근절하고 직무 역량 기반 **공정 대가**를 실현
+- 목적: 헤드카운팅 근절 및 직무 역량 기반 공정 대가 실현
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT직무제 4단계 구성체계 요약">
-  <div class="itpe-pipeline-node"><strong>직무 정의</strong><small>직무기술서(JD) · 요구 Level</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>직무 정의</strong><span>직무기술서(JD) · 요구 Level</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>역량 검증</strong><small>포트폴리오 · 코딩 실기 평가</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>역량 검증</strong><span>포트폴리오 · 코딩 실기 평가</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>수준 판정</strong><small>KOSA ITSQF 인정서(Level 1~8)</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>수준 판정</strong><span>KOSA ITSQF 인정서(Level 1~8)</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>대가 지급</strong><small>직무별 노임단가 · FP 연계 정산</small></div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>대가 지급</strong><span>직무별 노임단가 · FP 연계 정산</span></div></div>
 </div>
 
 ### 3. 핵심 통제
