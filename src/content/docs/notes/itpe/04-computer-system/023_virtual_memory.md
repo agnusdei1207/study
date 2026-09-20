@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "102회, 139회"
-  priority: 86
-  priority_note: "[출제:139] · 이전(KPC):102"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 페이지 부재 빈발에 따른 스래싱(Thrashing) / TLB 캐시 미스 오버헤드 / OOM Killer 동작
 ```
 - 필수 키워드: MMU(Memory Management Unit) · TLB · 페이징 · 페이지 테이블 · 페이지 부재(Page Fault) · 요구 페이징(Demand Paging)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 주소 변환 아키텍처 도식 → Ⅴ 페이징 vs 세그멘테이션 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 페이지 부재 핸들링 6단계와 Ⅵ 대용량 메모리 환경 Huge Page 최적화
 - 기출: 139회 4교시 `가상메모리(개념, 필요성, 주소변환 메커니즘, 스래싱 해결방안)`
 
 ## 한 줄 본질

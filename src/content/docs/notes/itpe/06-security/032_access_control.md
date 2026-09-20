@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회, 129회, 92회"
-  priority: 86
-  priority_note: "[출제:133] · [출제(KPC):129] · 이전(KPC):92"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수평적/수직적 권한 상승 취약점(BOLA/IDOR) 방어 / IAM 거버넌스 수립 / 멀티클라우드 권한 관리(CIEM)
 ```
 - 필수 키워드: 3A 체계(Authentication, Authorization, Accounting) · 참조 모니터 · 최소 권한 · 식별/인증/인가 · 감사 추적성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 접근통제 4단계 프로세스 도식 → Ⅴ 정책 모델 비교 / 25점 = Ⅰ~Ⅶ 전개, 3A 아키텍처와 Ⅵ 현대 클라우드 IAM 권한 오남용 대책 집중
 - 기출: 133회 4교시 3번 `접근제어의 개념과 정책, 절차, 구현 메커니즘` → Ⅰ·Ⅲ·Ⅳ·Ⅵ / 129회 2교시 `접근제어 통제정책` → Ⅱ·Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 76
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 드리프트에 따른 운영 성능 저하 / 재현 불가능한 파이프라인 / 실험 관리 파편화에 따른 추적 실패
 ```
 - 필수 키워드: MLOps · CI/CD/CT(지속적 훈련) · 데이터 드리프트(Data Drift) · 피처 스토어(Feature Store) · 모델 레지스트리(Model Registry) · 숨겨진 기술 부채
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ MLOps 엔드투엔드 파이프라인 구조도 → Ⅴ DevOps vs MLOps 비교표 / 25점 = Ⅰ~Ⅶ 전개, 구글 MLOps 성숙도 3단계(Level 0, 1, 2)와 드리프트 탐지(PSI/KS-Test) 메커니즘 집중
 - 기출: 130회 2교시 `MLOps` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

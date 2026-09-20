@@ -5,25 +5,16 @@ date: "2026-09-20T00:30:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
-    text: "A · 기초 · 핵심"
+    text: "A"
 extra:
   model: "OpenAI Codex"
   keyword_grade: "A"
-  grade_basis: "04-computer-system canonical 목록 A"
-  source_status: "학습핵심"
-  source_history: "정보관리 공식 기출 미확인"
-  priority: 91
-  priority_note: "canonical A · 프로세스 실행단위 핵심"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [03 데이터] → [▶ 04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 04 컴퓨터 시스템 → 스레드
+<div class="itpe-topic-path" aria-label="지식 경로"><span>운영체제</span><span>실행 단위</span><strong>스레드</strong></div>
 
 ## 큰 그림과 30초 인출
 

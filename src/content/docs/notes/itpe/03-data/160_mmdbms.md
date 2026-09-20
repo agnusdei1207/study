@@ -2,9 +2,6 @@
 sidebar:
   order: 160
   label: "160. MMDBMS(Main Memory DBMS)"
-  badge:
-    text: "기출 · 60%"
-    variant: note
 title: "MMDBMS (Main Memory DBMS)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 160
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "160"
-  source_status: "기출"
-  source_history: "92회, 96회"
-  priority: 60
-  priority_note: "이전(KPC):92,96"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 서버 급단전 시 메모리 휘발로 인한 데이터 유실(RPO) 위험 / 대용량 데이터 적재 시 RAM 비용 급증(FinOps)
 ```
 - 필수 키워드: MMDBMS · 인메모리 DB · T-Tree · 디스크 I/O 제거 · 포인터 직접 참조 · 영속성(Durability) · 비동기 체크포인트 · NVRAM · Redis · ALTIBASE
-- 배점 전략: 10점 = Ⅰ → Ⅲ DRDBMS vs MMDBMS 내부 아키텍처 비교도 → Ⅴ DRDBMS vs MMDBMS 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 메모리 휘발성 극복을 위한 로깅/체크포인트 복구 메커니즘 및 Ⅵ 금융 초단타 매매(HFT) 실무
 - 기출: 96회 `데이터베이스 처리 성능 향상을 위한 MMDBMS(Main Memory DBMS)의 개념, 특징, 회복 기법 및 디스크 기반 DBMS와의 차이점을 설명하시오.` → Ⅰ 정의 + Ⅱ 특징 + Ⅲ 구조 및 회복 기법 + Ⅴ 비교표
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 89
   label: "089. 로지스틱 회귀분석 (Logistic Regression)"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "로지스틱 회귀분석 (Logistic Regression)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 89
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "089"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 76
-  priority_note: "[출제(KPC):124] · 이전(KPC):113"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 불균형(Class Imbalance)에 따른 임계값(Threshold) 조정 / 다중공선성에 따른 오즈비 왜곡 / L1/L2 규제 적용
 ```
 - 필수 키워드: 로지스틱 회귀 · 시그모이드(Sigmoid) · 오즈(Odds) · 로짓 변환 · 오즈비(Odds Ratio) · 최대우도추정법(MLE) · 이진 교차 엔트로피
-- 배점 전략: 10점 = Ⅰ → Ⅲ 로짓-시그모이드 수식 유도 도식 → Ⅴ 선형 회귀와의 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ MLE 손실함수 최소화 원리 및 Ⅵ 회귀계수 오즈비 해석법
 - 기출: 124회 `머신러닝 분류 알고리즘 중 로지스틱 회귀분석(Logistic Regression)의 개념, 수식 유도 과정(Odds, Logit, Sigmoid) 및 특징을 설명하시오.` → Ⅰ 개념 + Ⅲ 수식 유도 + Ⅱ/Ⅴ 특징 및 비교
 
 ## 한 줄 본질

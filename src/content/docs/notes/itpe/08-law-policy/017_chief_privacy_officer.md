@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 81
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── CISO-CPO 간 책임 회피 핑퐁 / 개발 부서와의 비즈니스 마찰 / 자격증 보유 인력 부족
 ```
 - 필수 키워드: PIPA 제31조 · 개인정보보호책임자 · 전문 CPO 지정 요건 · 독립성 보장 · CPO-CISO 역할 분담 · 침해사고 통지
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ CPO-CISO 역할 비교표 및 거버넌스 도식 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 법정 자격 기준과 Ⅵ 실무 침해사고 대응 워크플로우 집중
 - 기출: 미출제 (시사·트렌드 최우선 예상)
 
 ## 한 줄 본질

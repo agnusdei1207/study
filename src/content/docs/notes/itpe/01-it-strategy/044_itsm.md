@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 기출 · 76%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회"
-  priority: 76
-  priority_note: "[출제:133] · 합숙·모의 8 · 컴시응 기출 2"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수작업 프로세스 준수 강제로 인한 개발-운영 병목 / SLA 지표의 형식적 달성(수박 효과: Watermelon Effect)
 ```
 - 필수 키워드: ITIL 4 · ISO/IEC 20000 · SLA/SLO · 서비스 데스크 · 인시던트 관리 · 문제 관리 · 변경 관리(CAB) · 서비스 가치 시스템(SVS)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 핵심 프로세스 구조도 → Ⅴ 전통 운영 vs ITSM 비교 / 25점 = 133회 기출 연계 ISO/IEC 20000 기준 서비스 설계, 구축, 전환 활동 상술
 - 기출: 133회 3교시 3번 `ISO/IEC 20000에서 제시하는 기준을 중심으로, 정보기술 서비스 관리체계(ITSM)의 개념을 설명하고, 이 시스템의 서비스 설계 및 구축, 전환을 위한 활동에 대하여 설명하시오.` → Ⅰ·Ⅲ·Ⅳ
 
 ## 한 줄 본질

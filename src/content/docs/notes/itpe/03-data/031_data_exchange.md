@@ -2,9 +2,6 @@
 sidebar:
   order: 31
   label: "031. 데이터 거래소 (Data Exchange)"
-  badge:
-    text: "기출 · 86%"
-    variant: note
 title: "데이터 거래소 (Data Exchange)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 31
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "031"
-  source_status: "기출"
-  source_history: "132회, 127회"
-  priority: 86
-  priority_note: "[출제:132] · [출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 가격 산정 불투명성 / 원본 데이터 유출 및 재판매 위험 / 거래 유동성(Liquidity) 부족
 ```
 - 필수 키워드: 데이터 거래소 · 데이터산업법 · 금융데이터거래소 · 가치평가 · 가명정보 결합 · 데이터 안심구역 · API 연동
-- 배점 전략: 10점 = Ⅰ → Ⅲ 거래소 아키텍처 및 Ⅳ 거래 흐름도 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 4대 플랫폼 구성요소 및 유통 활성화 방안
 - 기출: 132회 1교시 2번 `데이터 거래소` → Ⅰ 개념 + Ⅲ 구성요소 + Ⅵ 활성화 과제 / 127회 `데이터 커머스` → 비즈니스 모델
 
 ## 한 줄 본질

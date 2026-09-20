@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 스택 오버플로우 / 힙 단편화 및 메모리 누수 / 버퍼 오버플로우 공격
 ```
 - 필수 키워드: 가상 주소 공간 · 코드(Text) · 데이터(Data/BSS) · 힙(Heap) · 스택(Stack) · ASLR · 권한 제어(RWX)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 메모리 구조도 → Ⅴ 힙 vs 스택 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 동적 메모리 확장 메커니즘(brk, rsp) 및 Ⅵ 메모리 보호 기법(DEP, ASLR, Canary)
 - 기출: 138회 2교시 6번 `운영체제 메모리 4가지 주요 영역의 역할, 특징, 동작 메커니즘` 논술형 출제
 
 ## 한 줄 본질

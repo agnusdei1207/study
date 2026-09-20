@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:37:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 72
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무늬만 애자일(Fake Agile) / 대규모 조직 적용(SAFe, LeSS) / 계약 및 예산 산정 충돌
 ```
 - 필수 키워드: 애자일 · 애자일 선언문 · 스크럼(Scrum) · 칸반(Kanban) · XP · 스프린트 · 피드백 루프 · 지속적 전달
-- 배점 전략: 10점 = Ⅰ 정의 및 선언문 4대 가치 → Ⅲ 애자일 생명주기 및 구성 프레임워크 → Ⅴ 폭포수 비교 / 25점 = Ⅰ~Ⅶ 전개, 129회 기출 애자일 확산 전략, 엔터프라이즈 애자일(SAFe) 및 공공 프로젝트 적용 과제
 - 기출: 129회 1교시 `애자일(Agile) 방법론의 가치와 적용 방안` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

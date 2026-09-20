@@ -3,7 +3,7 @@ sidebar:
   order: 1
   label: "001. NoSQL"
   badge:
-    text: "A · 기출 · 100%"
+    text: "A"
     variant: note
 title: "NoSQL"
 author: "OpenAI Codex"
@@ -14,22 +14,13 @@ weight: 1
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "03-data canonical 목록 A"
   question_no: "001"
-  source_status: "기출"
-  source_history: "133회(정보관리 공식)"
-  priority: 100
-  priority_note: "4대 유형·모델링·CAP/PACELC·RDBMS 비교로 25점 확장 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [▶ 03 데이터] → [04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 03 데이터 → NoSQL
+<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>비관계형 데이터베이스</span><strong>NoSQL</strong></div>
 
 ## 큰 그림과 30초 인출
 

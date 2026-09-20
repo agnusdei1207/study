@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회"
-  priority: 72
-  priority_note: "[출제:134]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 연산 상태 불일치(WAR 의존성 오류) / 잦은 체크포인팅 오버헤드로 인한 전력 낭비 / 시간 개념 상실
 ```
 - 필수 키워드: 인터미턴트 컴퓨팅 · 에너지 하베스팅 · 배터리리스(Battery-less) · 비휘발성 메모리(NVM) · 체크포인팅(Checkpointing) · 멱등성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 에너지 하베스팅 및 NVM 상태 보존 구조도 → Ⅴ 연속 컴퓨팅 대비 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 전원 차단/복구 시퀀스 및 Ⅵ 메모리 정합성(WAR 해저드) 해결을 위한 트랜잭션 기법
 - 기출: 134회 1교시 9번 `인터미턴트 컴퓨팅(Intermittent Computing)` 단답형 출제
 
 ## 한 줄 본질

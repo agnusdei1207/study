@@ -2,9 +2,6 @@
 sidebar:
   order: 143
   label: "143. 추론통계(Inferential Statistics)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "추론통계 (Inferential Statistics)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 143
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "143"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 표본 선택 편향(Sampling Bias)으로 인한 잘못된 추론 / 표본 크기 과다에 따른 p-해킹(p-hacking)
 ```
 - 필수 키워드: 추론통계 · 모집단(Population)과 표본(Sample) · 모수(Parameter)와 통계량(Statistic) · 점추정 · 구간추정 · 가설검정 · 중심극한정리 · 표본오차
-- 배점 전략: 10점 = Ⅰ → Ⅲ 추론통계 2대 축(추정 vs 가설검정) 분류 체계도 → Ⅴ 기술통계 vs 추론통계 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 표본추출부터 일반화까지의 5단계 흐름도 및 Ⅵ 모수 vs 비모수 선택 기준
 - 기출: 123회 `데이터 통계 분석에서 기술통계(Descriptive Statistics)와 추론통계(Inferential Statistics)의 개념을 비교하고, 추론통계의 핵심 요소(추정과 검정)를 설명하시오.` → Ⅰ 정의 + Ⅲ 2대 축 + Ⅴ 비교표 + Ⅵ 실무 활용
 
 ## 한 줄 본질

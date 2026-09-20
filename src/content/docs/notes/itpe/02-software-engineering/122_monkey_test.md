@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:40:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 72
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 재현 불가능성(Reproducibility) 한계 / 테스트 시드(Seed) 로깅 / 모바일 앱(Android Monkey) 활용
 ```
 - 필수 키워드: 몽키 테스트 · 덤 몽키(Dumb Monkey) · 스마트 몽키(Smart Monkey) · 무작위 입력 · 크래시(Crash) · 퍼즈 테스팅 · 카오스 몽키
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 덤 몽키 vs 스마트 몽키 도식 → Ⅴ 몽키 vs 고릴라 vs 퍼징 비교 / 25점 = Ⅰ~Ⅶ 전개, 129회 기출 무작위 테스팅 한계 극복 방안(시드 기록, 상태 전이 기반 몽키)
 - 기출: 129회 1교시 `몽키 테스트(Monkey Test)` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

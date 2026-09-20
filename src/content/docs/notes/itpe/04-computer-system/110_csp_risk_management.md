@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:32:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 70
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── CSP 리전 정전 시 복구 지연 / 독점 서비스 종속으로 이전 비용 폭증 / 국외 법률(CLOUD Act)에 따른 기밀 압수
 ```
 - 필수 키워드: CSP 리스크 · 벤더 종속(Lock-in) · 출구 전략(Exit Strategy) · SLA · ISO 27017 · 데이터 주권 · 비즈니스 연속성(BCP)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 리스크 관리 프레임워크 도식 → Ⅴ 단일 vs 멀티 CSP 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 4대 리스크 영역별 점검 항목과 Ⅵ 계약 및 기술적 출구 전략 심층 서술
 - 기출: 129회 2교시 `클라우드 서비스 제공자(CSP) 선정 및 리스크 관리`
 
 ## 한 줄 본질

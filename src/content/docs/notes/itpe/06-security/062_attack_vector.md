@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이메일 피싱 및 악성 첨부파일 / 취약한 VPN/RDP를 통한 원격 침투 / 오픈소스 공급망을 경유한 간접 벡터 차단
 ```
 - 필수 키워드: 공격 벡터 · 침투 경로 · Initial Access · 스피어피싱 · 공급망 공격 · 사회공학 · 심층방어(Defense-in-Depth)
-- 배점 전략: 10점 = Ⅰ 정의 및 주요 벡터 유형 → Ⅲ 침투 메커니즘 도식 → Ⅴ 공격 표면과의 개념적 비교 / 25점 = Ⅰ~Ⅶ 전개, 최신 공격 벡터 5대 유형과 Ⅵ 벡터별 대응 다계층 방어 체계 집중
 - 기출: 138회 3교시 5번 `IT 인프라 확장에 따른 사이버 위협(공격 벡터 및 표면)` → Ⅰ~Ⅴ 전반
 
 ## 한 줄 본질

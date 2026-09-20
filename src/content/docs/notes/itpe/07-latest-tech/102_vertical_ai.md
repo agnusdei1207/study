@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 초기 고품질 독점 데이터 확보의 어려움 / 산업별 엄격한 법적 책임 및 인허가 장벽 / 범용 파운데이션 모델의 지속적 성능 침범
 ```
 - 필수 키워드: 버티컬 AI(Vertical AI) · 호라이즌탈 AI(Horizontal AI) · 도메인 특화 모델(Domain sLM) · 규제 컴플라이언스 · 독점 데이터(Proprietary Data) · 풀스택 워크플로우
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 버티컬 AI 풀스택 아키텍처 계층도 → Ⅴ 수평형 vs 수직형 AI 비교표 / 25점 = Ⅰ~Ⅶ 전개, 산업별(의료, 법률, 반도체) 규제 장벽 극복 전략 및 범용 모델 대비 경제적 해자 집중
 - 기출: 미출제. 예상: "특정 산업 도메인의 전문성을 고도화하는 버티컬 AI(Vertical AI)의 개념, 핵심 구성요소, 수평형 AI와의 차별점 및 엔터프라이즈 도입 전략을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

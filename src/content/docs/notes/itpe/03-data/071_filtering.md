@@ -2,9 +2,6 @@
 sidebar:
   order: 71
   label: "071. 필터링 (Filtering)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "필터링 (Filtering)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 71
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "071"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 신규 사용자/아이템 유입 시 콜드 스타트(Cold Start) / 사용자-아이템 평점 행렬의 극단적 희소성(Sparsity)
 ```
 - 필수 키워드: 협업 필터링(Collaborative Filtering) · 콘텐츠 기반 필터링(CBF) · 콜드 스타트(Cold Start) · 희소성(Sparsity) · 행렬 분해(Matrix Factorization) · SVD · 코사인 유사도
-- 배점 전략: 10점 = Ⅰ → Ⅲ 필터링 분류 도식 → Ⅴ 협업 vs 콘텐츠 기반 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 잠재요인 행렬분해(SVD/ALS) 수학적 원리 및 Ⅵ 콜드스타트 해결책
 - 기출: 139회 4교시 1번 `빅데이터 분석기법 중 클러스터링, 필터링, 이상치 탐지` → Ⅰ 개념 + Ⅲ 추천/필터링 기법 유형 + Ⅴ 비교
 
 ## 한 줄 본질

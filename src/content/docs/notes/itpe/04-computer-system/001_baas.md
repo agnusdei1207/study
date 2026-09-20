@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 100%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "104회, 121회, 136회, 140회"
-  priority: 100
-  priority_note: "[출제:136,140] · [출제(KPC):121] · 이전(KPC):104"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 벤더 락인 / 복잡 비즈니스 로직 제약 / 데이터 주권 및 보안 컴플라이언스
 ```
 - 필수 키워드: 매니지드 백엔드 · 인증 SDK · 벤더 종속(Lock-in) · FaaS 연계 · 실시간 동기화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 핵심 서비스 구성도 → Ⅴ BaaS vs FaaS 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ FaaS 결합 흐름과 Ⅵ 탈출 전략 제시
 - 기출: 140회 2교시 `서버리스 컴퓨팅 유형(FaaS·BaaS)` → Ⅲ·Ⅴ, 136회 1교시 `서버리스 컴퓨팅` → Ⅰ·Ⅲ
 
 ## 한 줄 본질

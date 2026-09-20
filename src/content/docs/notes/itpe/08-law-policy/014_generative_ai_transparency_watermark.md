@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 압축·화면캡처 시 워터마크 유실 / 로컬 오픈웨이트 모델 규제 사각지대
 ```
 - 필수 키워드: AI 투명성 · C2PA 표준 · 가시적 워터마크 · 비가시적 워터마크 · SynthID · 딥페이크 방지
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 가시적/비가시적 기술 분류도 → Ⅴ 기술 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ C2PA 암호학적 서명 구조와 Ⅵ 공격 내성 한계 상세화
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

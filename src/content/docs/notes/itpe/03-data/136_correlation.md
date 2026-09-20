@@ -2,9 +2,6 @@
 sidebar:
   order: 136
   label: "136. 상관관계(Correlation)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "상관관계 (Correlation)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 136
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "136"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 제3의 잠복변수(Lurking Variable)로 인한 허위 상관(Spurious Correlation)을 인과관계로 오판하여 잘못된 투자 집행
 ```
 - 필수 키워드: 상관관계 · 상관계수($r$) · 피어슨 상관계수 · 스피어만 순위상관계수 · 인과관계 · 허위 상관(Spurious Correlation) · 잠복변수 · 앤스컴 콰르텟(Anscombe's Quartet)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 피어슨 vs 스피어만 수식 및 상관계수 범위(-1~+1) 도식 → Ⅴ 상관관계 vs 인과관계 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 앤스컴 콰르텟 시각화의 중요성 및 Ⅵ 편상관분석을 통한 허위 상관 제거
 - 기출: 128회 `상관관계(Correlation)와 인과관계(Causation)의 차이점 및 상관계수의 유형(피어슨, 스피어만)과 통계적 유의성 검정을 설명하시오.` → Ⅰ 정의 + Ⅲ 계수 유형 + Ⅴ 상관 vs 인과 비교 + Ⅵ 허위상관 해결책
 
 ## 한 줄 본질

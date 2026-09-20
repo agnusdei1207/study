@@ -2,9 +2,6 @@
 sidebar:
   order: 72
   label: "072. 연관규칙분석 (Association Rule Mining)"
-  badge:
-    text: "기출 · 79%"
-    variant: note
 title: "연관규칙분석 (Association Rule Mining)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 72
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "072"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 79
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 최소 지지도 설정 실패 시 수천만 개 무의미 규칙 팽창 / 당연한 규칙(빵 구매 시 우유 구매)의 무가치성
 ```
 - 필수 키워드: 장바구니 분석 · 연관성 규칙($A \rightarrow B$) · 지지도(Support) · 신뢰도(Confidence) · 향상도(Lift) · Apriori · FP-Tree
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3대 지표 수식 정의 및 벤다이어그램 도식 → Ⅴ Apriori vs FP-Growth 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 3대 지표 수식 유도 및 Ⅳ 가지치기(Pruning) 원리
 - 기출: 137회 1교시 13번 `데이터마이닝의 연관 규칙 분석(Association Rule Analysis) 지표를 설명하시오` → Ⅰ 개념 + Ⅲ 지지도/신뢰도/향상도 수식 및 의미 상세
 
 ## 한 줄 본질

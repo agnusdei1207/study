@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회, 90회"
-  priority: 76
-  priority_note: "[출제(KPC):124] · 이전(KPC):90"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 대량 데이터 힙 생성 시 재귀 호출 스택 오버플로 / 비재귀 상향식(Bottom-up) 힙 빌드($O(N)$)
 ```
 - 필수 키워드: 완전 이진 트리 · 반정렬(Semi-sorted) · 최대 힙/최소 힙 · Up-Heap/Down-Heap · 우선순위 큐 · 힙 정렬($O(N \log N)$)
-- 배점 전략: 10점 = Ⅰ 정의 및 성질 → Ⅲ 배열 인덱스 매핑 도식 → Ⅳ 삽입/삭제 선별 과정 / 25점 = Ⅰ~Ⅶ 전개, 124회 기출 힙 자료구조 연산과 힙 정렬(Heap Sort) 구현 알고리즘
 - 기출: 124회 1교시 `힙(Heap) 자료구조` → Ⅰ~Ⅳ / 90회 1교시 `최대 힙과 최소 힙` → Ⅲ
 
 ## 한 줄 본질

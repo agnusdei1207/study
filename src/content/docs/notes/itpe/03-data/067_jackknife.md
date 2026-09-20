@@ -2,9 +2,6 @@
 sidebar:
   order: 67
   label: "067. 잭나이프 (Jackknife) 기법"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "잭나이프 (Jackknife) 기법"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 67
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "067"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 중앙값(Median) 등 비매끄러운(Non-smooth) 통계량 적용 시 추정 일관성 상실
 ```
 - 필수 키워드: 리샘플링(Resampling) · Leave-One-Out · 편향(Bias) 감소 · 분산(Variance) 추정 · 의사값(Pseudo-values) · 부트스트랩(Bootstrap)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 수식 정의 및 LOO 절차 도식 → Ⅴ 잭나이프 vs 부트스트랩 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 의사값 수학적 수식 유도 및 Ⅵ 한계(평활성 조건)
 - 기출: 140회 1교시 7번 `편향(Bias) 감소와 분산(Variance) 추정을 위한 잭나이프(Jackknife) 기법` → Ⅰ 개념 + Ⅲ 편향/분산 수식 + Ⅴ 부트스트랩 비교
 
 ## 한 줄 본질

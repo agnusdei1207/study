@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:06:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 71%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "89회, 96회, 102회"
-  priority: 71
-  priority_note: "이전(KPC):89,96,102"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── i-node 고갈(No space left on device) / 하드 링크 참조 카운트 불일치 / 디스크 단편화
 ```
 - 필수 키워드: i-node · 메타데이터 · 직접 블록 포인터 · 간접 블록 포인터 · 하드 링크 · i-node 고갈
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ i-node 내부 구조 및 포인터 체계도 → Ⅴ i-node vs FAT 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 다단계 간접 블록 포인터 계산 메커니즘과 Ⅵ i-node 고갈 실무 트러블슈팅
 - 기출: 이전 KPC 89회, 96회, 102회 출제
 
 ## 한 줄 본질

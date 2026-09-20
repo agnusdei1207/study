@@ -2,9 +2,6 @@
 sidebar:
   order: 148
   label: "148. 힙(Max·Min)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "힙 (Max·Min Heap)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 148
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "148"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 힙 생성(Heapify) 비용 최적화($O(N)$ 상향식 구성) / 실시간 대용량 트래픽의 Top-K 랭킹 추출
 ```
 - 필수 키워드: 힙(Heap) · 최대 힙(Max Heap) · 최소 힙(Min Heap) · 완전 이진 트리 · 우선순위 큐 · Up-Heap · Down-Heap · Heapify · 힙 정렬($O(N \log N)$)
-- 배점 전략: 10점 = Ⅰ → Ⅲ Max/Min 힙 트리 및 1차원 배열 매핑 도식 → Ⅴ 힙 vs BST 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 삽입(Up-Heap) 및 삭제(Down-Heap) 4단계 상태 전이도와 Ⅵ Heapify $O(N)$ 증명
 - 기출: 124회 `자료구조 힙(Heap)의 개념, 유형(최대 힙, 최소 힙) 및 삽입과 삭제 연산 과정을 설명하시오.` → Ⅰ 정의 + Ⅲ 2대 유형 및 배열 매핑 + Ⅳ 연산 과정 도식 + Ⅴ BST와의 비교
 
 ## 한 줄 본질

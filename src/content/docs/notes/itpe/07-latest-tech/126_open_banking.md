@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 72
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 핀테크 보안 사고 발생 시 연대 책임 및 2차 피해 / 계좌 탈취(ATO)를 통한 부정 이체 / 대용량 트래픽 집중에 따른 중계망 병목
 ```
 - 필수 키워드: 오픈뱅킹(Open Banking) · 오픈 API · 금융결제원 · OAuth 2.0 · 계좌 조회 · 출금이체 · FDS(이상금융거래탐지) · 스크래핑 대체
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 오픈뱅킹 공동망 구성도 및 5대 핵심 API → Ⅴ 스크래핑 vs 오픈뱅킹 비교표 / 25점 = Ⅰ~Ⅶ 전개, OAuth 2.0 토큰 기반 인증 흐름 및 금융보안원 보안 점검 가이드라인 집중
 - 기출: 120회 `오픈뱅킹` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 30
   label: "030. 군집화 (Clustering)"
-  badge:
-    text: "기출 · 86%"
-    variant: note
 title: "군집화 (Clustering)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 30
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "030"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 86
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원의 저주(고차원 거리 왜곡) / 대용량 데이터 연산 복잡도 / 비즈니스 해석 불명확성
 ```
 - 필수 키워드: 비지도 학습 · 군집 내 응집도 · 군집 간 분리도 · DBSCAN · K-Means · GMM · 실루엣 분석
-- 배점 전략: 10점 = Ⅰ → Ⅴ 클러스터링/필터링/이상치탐지 3각 비교표 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 4대 군집화 패러다임 및 Ⅴ 분석기법 비교
 - 기출: 139회 4교시 1번 `빅데이터 분석기법 중 클러스터링, 필터링, 이상치 탐지를 설명하시오.` → Ⅴ 3대 기법 비교 중심
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:37:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 70
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 빅뱅 통합 시 결함 원인 추적 불능 / 인터페이스 규격 불일치 / MSA 환경의 계약 기반 테스팅(Pact)
 ```
 - 필수 키워드: 통합 테스트 · 인터페이스 검증 · 빅뱅 통합 · 하향식(Top-down) · 상향식(Bottom-up) · 샌드위치 통합 · 테스트 드라이버 · 테스트 스텁
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 4대 통합 방식 비교 도식 → Ⅴ 통합 방식 상세 비교표 / 25점 = Ⅰ~Ⅶ 전개, 131회 기출 통합 테스트 전략별 장단점, 드라이버/스텁 활용 메커니즘 및 마이크로서비스 환경에서의 계약 테스팅(CDC)
 - 기출: 131회 1교시 `소프트웨어 통합 테스트(Integration Test)의 개념 및 점진적/비점진적 통합 방식 비교` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

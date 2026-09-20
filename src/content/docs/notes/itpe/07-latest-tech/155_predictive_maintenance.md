@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 70
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 산업 현장 고장 데이터 희소성(Normal vs Anomaly 불균형) / 복합 진동 노이즈 환경 / 레거시 설비 센서 부착 한계
 ```
 - 필수 키워드: 예지정비(Predictive Maintenance) · CBM(상태기반정비) · RUL(잔여유효수명) · FFT(고속푸리에변환) · 오토인코더(Autoencoder) · 시계열 이상탐지 · 스마트 팩토리
-- 배점 전략: 10점 = Ⅰ 정비 패러다임 진화 → Ⅲ 예지정비 4계층 아키텍처 다이어그램 → Ⅴ BM vs PM vs PdM 3대 정비 전략 비교표 / 25점 = Ⅰ~Ⅶ 전개, FFT 주파수 도메인 분석 메커니즘, 잔여 수명(RUL) 산출 수식 및 회귀 모델 연계
 - 기출: 132회 4교시 `설비예지정비(Predictive Maintenance)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 87
   label: "087. 데이터 무결성 (Data Integrity)"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "데이터 무결성 (Data Integrity)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 87
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "087"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 76
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 성능을 이유로 FK 제거 시 고아 레코드 발생 / 분산 환경(MSA) 무결성 붕괴 / 캐시-DB 불일치
 ```
 - 필수 키워드: 데이터 무결성 · 개체 무결성 · 참조 무결성 · 도메인 무결성 · 사용자 정의 무결성 · PK/FK · CHECK 제약 · 트랜잭션 ACID
-- 배점 전략: 10점 = Ⅰ → Ⅲ 4대 무결성 매핑 구조도 → Ⅵ 실무 FK 제거 부작용 / 25점 = Ⅰ~Ⅶ, Ⅳ 다층 검증 파이프라인 및 Ⅵ MSA 환경 최종 무결성 보장
 - 기출: 128회 `관계형 데이터베이스에서 데이터 무결성(Data Integrity)의 개념과 4대 무결성 제약조건의 유형 및 보장 방안을 설명하시오.` → Ⅰ 개념 + Ⅲ 4대 제약조건 + Ⅳ 보장 메커니즘
 
 ## 한 줄 본질

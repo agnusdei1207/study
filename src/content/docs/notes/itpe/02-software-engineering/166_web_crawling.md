@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:24:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 70
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── SPA(CSR) 렌더링 한계(헤드리스 브라우저 필요) / 봇 차단(WAF, 캡차) 우회 및 윤리성 / 저작권 및 법적 분쟁(부정경쟁방지법)
 ```
 - 필수 키워드: 웹 크롤링 · URL 프론티어 · 웹 스파이더 · robots.txt · 중복 제거(Bloom Filter) · 헤드리스 브라우저 · 웹 스크래핑 · 윤리적 크롤링
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 분산 웹 크롤러 아키텍처 도식 → Ⅴ 크롤링 vs 스크래핑 비교 / 25점 = Ⅰ~Ⅶ 전개, 122회 기출 웹 크롤링 동작 원리, 대규모 분산 수집 설계(URL Frontier) 및 법적/보안적 대응 방안
 - 기출: 122회 1교시 `웹 크롤링(Web Crawling)의 개념, 동작 절차 및 기술적 고려사항` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

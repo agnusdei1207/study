@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고비용 플랫폼 도입 후 현업 활용도 저조 / 섀도우 AI(Shadow AI) 보안 리스크 / 데이터 사일로(Silo)로 인한 협업 단절
 ```
 - 필수 키워드: DSML(Data Science & Machine Learning) · 통합 플랫폼 · AutoML · 시민 데이터 과학자(Citizen Data Scientist) · MLOps · 모델옵스(ModelOps) · 데이터 거버넌스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 가트너(Gartner) 기준 DSML 플랫폼 4대 아키텍처 계층도 → Ⅴ BI vs 전문 ML vs DSML 비교표 / 25점 = Ⅰ~Ⅶ 전개, 시티즌 분석가(No-code)와 전문가(Code-first) 공존 거버넌스 및 GenAI 융합 트렌드 집중
 - 기출: 130회 `DSML` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

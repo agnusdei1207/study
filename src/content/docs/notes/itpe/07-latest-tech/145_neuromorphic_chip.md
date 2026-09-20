@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── SNN 변환 시 정확도 손실 / 부동소수점 오차 / 비표준 프로그래밍 프레임워크 및 하드웨어 제조 미세공정 수율 한계
 ```
 - 필수 키워드: 뉴로모픽 칩(Neuromorphic Chip) · SNN(Spiking Neural Network) · LIF(Leaky Integrate-and-Fire) · 시냅스(Synapse) · 멤리스터(Memristor) · AER · STDP · 비동기 이벤트 기반
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 뉴로모픽 칩 뉴런-시냅스 내부 구조도 → Ⅴ 폰 노이만 vs 뉴로모픽 비교표 / 25점 = Ⅰ~Ⅶ 전개, SNN 발화 메커니즘 수식적 개념과 AER 라우팅 구조 상세화
 - 기출: 128회 `뉴로모픽 반도체(Neuromorphic Chip)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

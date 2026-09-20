@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:12:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "95회, 117회"
-  priority: 64
-  priority_note: "과거기출(95회, 117회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 테스트 환경과 운영 환경 간의 스펙 불일치 / DB 커넥션 풀(DBCP) 고갈 / 가상 사용자(VUser) 인위적 부하의 현실 왜곡
 ```
 - 필수 키워드: 응답 시간(Response Time) · 처리량(TPS/Throughput) · 가상 사용자(VUser) · 부하 테스트 · 스트레스 테스트 · 내구성 테스트(Soak) · 스파이크 테스트 · 임계점(Breakpoint)
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 5대 성능 테스트 유형별 부하 프로파일 곡선 도식 → Ⅴ 유형별 상세 비교표 / 25점 = Ⅰ~Ⅶ 전개, 95·117회 기출 성능 지표(TPS, Latency, Concurrency) 산출 수식, 리틀의 법칙(Little's Law), APM 연계 병목 진단 기법
 - 기출: 95회 1교시, 117회 1교시 `성능 테스트의 개념, 주요 유형(부하, 스트레스, 확장성 등) 및 성능 측정 지표` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

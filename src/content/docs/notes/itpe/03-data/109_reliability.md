@@ -2,9 +2,6 @@
 sidebar:
   order: 109
   label: "109. 신뢰도 (Reliability)"
-  badge:
-    text: "기출 · 72%"
-    variant: note
 title: "신뢰도 (Reliability)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 109
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "109"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 72
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 응답자 피로도로 인한 후반부 문항 일관성 붕괴 / 높은 신뢰도에 안주하여 엉뚱한 대상을 측정하는 타당도 결여 위험
 ```
 - 필수 키워드: 신뢰도 · 측정의 일관성 · 무작위 오차 · 타당도 · 재검사법 · 크론바흐 알파(Cronbach's $\alpha$) · 반분법
-- 배점 전략: 10점 = Ⅰ → Ⅲ 신뢰도 4대 측정 기법 비교표 → Ⅴ 신뢰도 vs 타당도 다트 과녁 도식 / 25점 = Ⅰ~Ⅶ, Ⅳ 크론바흐 알파 수학적 산출식 및 Ⅵ 신뢰도 향상 4대 방안
 - 기출: 123회 `통계적 데이터 분석에서 신뢰도(Reliability)와 타당도(Validity)의 개념과 측정 기법` → Ⅰ 정의 + Ⅲ 신뢰도 측정 기법 + Ⅴ 다트 과녁 비교 + Ⅵ 향상 방안
 
 ## 한 줄 본질

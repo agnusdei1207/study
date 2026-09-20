@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 81
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 시스템 프롬프트 유출 / RAG 검색 오염 / 에이전트 무제한 권한 남용(과도한 에이전시) / 환각으로 인한 보안 신뢰성 저하
 ```
 - 필수 키워드: OWASP LLM Top 10 · 프롬프트 인젝션 · 민감정보 노출 · 공급망 취약점 · 데이터 포이즈닝 · 과도한 에이전시 · 가드레일
-- 배점 전략: 10점 = Ⅰ 개요 및 제정 배경 → Ⅲ 10대 위협 분류 도식 → Ⅴ 전통 웹 취약점 대비 차이 / 25점 = Ⅰ~Ⅶ 전개, 핵심 3대 위협(인젝션, 민감정보, 에이전시) 메커니즘과 Ⅵ RAG 연계 실무 보안 대책 집중
 - 기출: 136회 4교시 5번 `OWASP LLM 애플리케이션 10대 보안 위협(OWASP Top 10 for LLM Applications)` → Ⅰ 제정 배경 + Ⅲ 주요 취약점 항목 상세 + Ⅵ 기업 적용 대책
 
 ## 한 줄 본질

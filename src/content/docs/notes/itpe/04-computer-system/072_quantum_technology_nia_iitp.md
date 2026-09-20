@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 극저온 냉각 인프라(mK) 한계 / 양자 결맞음 시간(Coherence Time) 부족 / PQC 표준 전환 비용
 ```
 - 필수 키워드: 양자기술 · 큐비트(Qubit) · 초전도/이온트랩 · QKD(양자키분배) · PQC(양자내성암호) · 양자센서 · NIA/IITP 로드맵
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 양자기술 3대 축(컴퓨팅·통신·센서) 분류도 → Ⅴ QKD vs PQC 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 양자 게이트 및 얽힘 메커니즘과 Ⅵ 국가 양자 플래그십 로드맵(50큐비트→1000큐비트) 및 실무 과제
 - 기출: 미출제 (2026 시사·트렌드 키워드)
 
 ## 한 줄 본질

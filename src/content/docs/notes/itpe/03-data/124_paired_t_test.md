@@ -2,9 +2,6 @@
 sidebar:
   order: 124
   label: "124. 대응 표본 t-검정(Paired t-test)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "대응 표본 t-검정 (Paired t-test)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 124
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "124"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 70
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차이값의 정규성 가정이 깨졌는데도 무리하게 t-검정을 적용해 1종 오류 유발 / 이월 효과(Carryover Effect) 미통제
 ```
 - 필수 키워드: 대응 표본 t-검정 · 짝지은 데이터(Paired) · 차이값($D$) · 정규성 가정 · 검정통계량($t$) · 자유도($n-1$) · 독립 표본 t-검정 · 윌콕슨 부호순위 검정
-- 배점 전략: 10점 = Ⅰ → Ⅲ 통계량 산출식 및 데이터 구조 표 → Ⅴ 독립 표본 t-검정과의 차이점 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 차이값 정규성 검증 파이프라인 및 Ⅵ 소프트웨어 튜닝 전후 성능 평가 실무
 - 기출: 131회 `대응 표본 t-검정(Paired t-test)과 독립 표본 t-검정(Independent t-test)의 개념, 기본 가정 및 차이점을 비교 설명하시오.` → Ⅰ 정의 + Ⅱ 기본 가정 + Ⅲ 수식 비교 + Ⅴ 상세 비교표
 
 ## 한 줄 본질

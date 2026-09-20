@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 100%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회, 140회, 121회, 126회, 130회"
-  priority: 100
-  priority_note: "[출제:137,140] · [출제(KPC):121,126,130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 타임스톰핑(Timestomping) 시간 위변조 탐지 / $LogFile 교차 대조 / 안티포렌식 극복
 ```
 - 필수 키워드: 프리패치(Prefetch) · 심캐시(Shimcache) · 앰캐시(Amcache) · $MFT · MACB 타임스탬프 · 타임스톰핑
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 윈도우 주요 아티팩트 분류표 → Ⅴ 실행 아티팩트 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 아티팩트 기반 침해 타임라인 재구성 및 Ⅵ 타임스톰핑 탐지 방안 집중
 - 기출: 137회 1교시 2번 `디지털 포렌식에서 아티팩트의 개념과 종류` → Ⅰ·Ⅲ·Ⅴ / 140회 1교시 12번 `포렌식 증거 분석 아티팩트` → Ⅳ·Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:27:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 딥페이크 성착취·가짜뉴스 확산 / 생성형 AI의 저작물 무단 학습 / 플랫폼 알고리즘의 확증 편향
 ```
 - 필수 키워드: 정보윤리 · PAPA 모델 · 프라이버시(Privacy) · 정확성(Accuracy) · 재산권(Property) · 접근성(Accessibility) · AI 윤리
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 메이슨(Mason)의 PAPA 4대 원칙 도식 → Ⅴ AI 윤리 확장 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ PAPA 영역별 침해 사례와 Ⅵ 디지털 심화 시대 제도적·기술적 대응 방안
 - 기출: 123회 4교시 3번 `정보윤리와 관련하여 개념, 메이슨의 4대 영역(PAPA), 최근 정보화 부작용 및 대응 방안을 설명하시오.` → Ⅰ·Ⅱ·Ⅲ·Ⅵ 전수
 
 ## 한 줄 본질

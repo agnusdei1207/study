@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "111회, 120회"
-  priority: 72
-  priority_note: "[출제(KPC):120] · 이전(KPC):111"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── PCIe 호스트-디바이스 간 데이터 전송 병목 / 워프 발산(Warp Divergence) / 비병합 메모리 접근
 ```
 - 필수 키워드: GPGPU · SIMT · CUDA · 스트리밍 멀티프로세서(SM) · 워프(Warp) · 텐서 코어 · 워프 발산
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ GPU 내부 SM 및 코어 그리드 구조도 → Ⅴ CPU vs GPGPU 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 호스트-디바이스(Host-Device) 연산 실행 흐름 및 Ⅵ 워프 발산(Warp Divergence)과 메모리 병합(Coalescing) 최적화
 - 기출: 120회 1교시 12번 `CPU와 GPGPU 비교` 단답형 출제
 
 ## 한 줄 본질

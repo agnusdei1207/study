@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 딥러닝 블랙박스 설명 불가 / 상시 인적 재심사에 따른 운영 인건비 증가
 ```
 - 필수 키워드: PIPA 제37조의2 · 완전 자동화 시스템 · 거부권 · 설명요구권 · 검토요구권(인적 개입) · 설명가능한 AI(XAI)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 권리 및 예외 요건 구조도 → Ⅴ 법률 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 권리별 이행 요건과 Ⅵ XAI 연계 재심사 아키텍처 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

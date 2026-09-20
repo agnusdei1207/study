@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 라우팅 테이블 비대화로 인한 룩업 지연 / 계층적 트라이(LC-Trie) 및 하드웨어 파이프라인 적용
 ```
 - 필수 키워드: 최장 일치 접두사(LPM) · 바이너리 트라이 · 패트리샤 트라이 · 이진 탐색 트리(BST) · 멀티비트 트라이 · TCAM
-- 배점 전략: 10점 = Ⅰ 정의 및 LPM 필요성 → Ⅲ 트라이 구조도 → Ⅴ BST vs 트라이 비교 / 25점 = Ⅰ~Ⅶ 전개, 139회 기출 BST와 라우팅 테이블 탐색의 수학적·구조적 상관관계 집중 분석
 - 기출: 139회 3교시 5번 `이진 탐색 트리와 라우팅 테이블 탐색 알고리즘의 상관관계에 대하여 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 전력망 계통 포화 / 초고발열 핫스팟 제거 / 광통신 트랜시버 고장률 급증
 ```
 - 필수 키워드: AI 팩토리 · 기가와트급(GW) · 고밀도 랙(100kW+) · 액체냉각(D2C/액침) · SMR(소형모듈원자로) · RoCEv2 · PUE
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ AI 팩토리 4대 핵심 인프라 구성도 → Ⅴ 전통 IDC vs AI 팩토리 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 냉각 및 전력 흐름도와 Ⅵ 전력 수급(SMR) 및 초고밀도 패브릭 구축 방안
 - 기출: 미출제 (2026 시사·트렌드 키워드)
 
 ## 한 줄 본질

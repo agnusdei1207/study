@@ -2,9 +2,6 @@
 sidebar:
   order: 137
   label: "137. 스타 스키마(Star Schema)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "스타 스키마 (Star Schema)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 137
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "137"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 70
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원 테이블 비정규화로 인한 데이터 중복 및 갱신 이상 / 느리게 변화하는 차원(SCD) 관리 부하
 ```
 - 필수 키워드: 스타 스키마 · 사실 테이블(Fact Table) · 차원 테이블(Dimension Table) · 데이터 입도(Grain) · 킴볼(Kimball) 모델링 · 스노우플레이크 스키마 · 스타 조인(Star Join) · 비정규화
-- 배점 전략: 10점 = Ⅰ → Ⅲ 중앙 Fact 중심 스타 스키마 구조도 → Ⅴ 스노우플레이크 스키마와의 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 킴볼의 4단계 차원 모델링 절차 및 Ⅵ SCD(Type 1/2/3) 이력 관리 방안
 - 기출: 122회 `데이터웨어하우스의 차원 모델링 기법인 스타 스키마(Star Schema)와 스노우플레이크 스키마(Snowflake Schema)를 비교 설명하시오.` → Ⅰ 정의 + Ⅲ 구조도 + Ⅴ 비교표 + Ⅵ 성능 및 유지보수 고려사항
 
 ## 한 줄 본질

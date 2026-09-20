@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 96%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회, 140회"
-  priority: 96
-  priority_note: "[출제:136,140] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 사실과 다른 환각(Hallucination) / 저작권 및 라이선스 위반 / 프롬프트 인젝션 보안 위협
 ```
 - 필수 키워드: 트랜스포머(Transformer) · 확산 모델(Diffusion) · 창발성(Emergence) · 환각(Hallucination) · RLHF · 워터마크
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅴ 판별형 vs 생성형 비교표 → Ⅵ 환각 대응책 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 계층 구조와 Ⅳ 3단계 학습 파이프라인(사전학습-SFT-RLHF) 집중
 - 기출: 136회 4교시 1번 `국내 AI 윤리기준과 생성형 AI` → Ⅰ·Ⅵ, 140회 1교시 9번 `Physical AI와 생성형 AI 비교` → Ⅴ
 
 ## 한 줄 본질

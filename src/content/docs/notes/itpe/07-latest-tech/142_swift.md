@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 70
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 환거래 은행을 거치는 다단계 중계에 따른 수수료 및 지연 / 방글라데시 중앙은행 해킹 등 내부망 침해 / 지정학적 금융 제재 무기화
 ```
 - 필수 키워드: SWIFT · BIC(SWIFT Code) · 금융 전문(Messaging) · ISO 20022 · SWIFT gpi · 환거래은행(Correspondent Bank) · SWIFT CSP · 지정학적 제재
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ SWIFT 금융 전문 전송 및 환거래 정산 구조도 → Ⅴ 금융 통신 수단 진화 비교표 / 25점 = Ⅰ~Ⅶ 전개, ISO 20022(XML) 표준 전문 전환 및 방글라데시 은행 해킹 사건 이후 SWIFT CSP 보안 통제 집중
 - 기출: 120회 `SWIFT` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 70
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 악천후 및 야간 저조도 영상 인식 저하 / 고해상도 다채널 영상 동시 처리 시 GPU 부하 / 관제 구역 사생활 침해 프라이버시
 ```
 - 필수 키워드: 딥뷰(DeepView) · ETRI 시각지능 · 시각 상황 이해(Visual Understanding) · 행동 인지(Action Recognition) · 시공간 특징(Spatio-Temporal) · 씬 그래프(Scene Graph) · 스마트 관제
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 딥뷰 시각지능 소프트웨어 계층 아키텍처 → Ⅴ 기존 지능형 영상분석 vs 딥뷰 비교표 / 25점 = Ⅰ~Ⅶ 전개, 시공간 행동 인식 알고리즘 및 씬 그래프 기반 상황 추론 파이프라인 전개
 - 기출: 129회 `딥뷰(DeepView)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

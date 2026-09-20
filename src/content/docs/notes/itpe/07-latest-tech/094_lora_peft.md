@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 랭크($r$) 및 알파($\alpha$) 선정 트레이드오프 / 멀티 어댑터 동시 서빙 시 동적 스와핑 오버헤드 / 과적합 발생
 ```
 - 필수 키워드: PEFT · LoRA(Low-Rank Adaptation) · 저차원 행렬 분해 · QLoRA · 랭크($r$) · 가중치 병합(Weight Merging) · 파라미터 효율화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ LoRA 수학적 분해 아키텍처 도식 → Ⅴ PEFT 핵심 기법 4종 비교표 / 25점 = Ⅰ~Ⅶ 전개, 역전파 메모리 절감 수식 원리 및 QLoRA 3대 기술(NF4, 이중 양자화, 페이징) 집중
 - 기출: 미출제. 예상: "대규모 언어 모델(LLM)의 효율적 도메인 특화를 위한 PEFT(Parameter-Efficient Fine-Tuning)의 개념과 LoRA(Low-Rank Adaptation)의 동작 원리 및 QLoRA를 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

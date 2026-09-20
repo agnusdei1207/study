@@ -2,9 +2,6 @@
 sidebar:
   order: 75
   label: "075. 논클러스터드 인덱스 (Non-Clustered Index)"
-  badge:
-    text: "기출 · 77%"
-    variant: note
 title: "논클러스터드 인덱스 (Non-Clustered Index)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 75
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "075"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 77
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 선택도(Selectivity) 불량 시 풀스캔보다 느림 / 과도한 인덱스 생성에 따른 DML(INSERT/UPDATE) 지연
 ```
 - 필수 키워드: 보조 인덱스(Secondary Index) · RID(Row ID) · 클러스터드 키 포인터 · 랜덤 I/O · 룩업(Lookup) · 커버링 인덱스(Covering Index) · 선택도
-- 배점 전략: 10점 = Ⅰ → Ⅲ B+Tree 리프-데이터 룩업 구조도 → Ⅴ 클러스터드와의 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 2차 룩업 I/O 메커니즘 및 Ⅵ 커버링 최적화
 - 기출: 136회 2교시 5번 `데이터베이스 인덱스 설명 및 클러스터드 인덱스와 논클러스터드 인덱스 비교` → Ⅰ 개념 + Ⅲ/Ⅳ 논클러스터드 룩업 구조 + Ⅴ 비교
 
 ## 한 줄 본질

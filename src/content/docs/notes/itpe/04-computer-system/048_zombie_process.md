@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── PID 고갈(PID Exhaustion)로 신규 프로세스 생성 불가 / 컨테이너 환경 PID 1 바인딩 문제
 ```
 - 필수 키워드: 좀비 프로세스 · 디펀트(defunct) · wait()/waitpid() · exit() · PCB 잔존 · PID 고갈 · 고아 프로세스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 생명주기 및 좀비 전이 도식 → Ⅴ 좀비 vs 고아 프로세스 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ SIGCHLD 시그널 처리 메커니즘과 Ⅵ 도커 컨테이너 Tini/dumb-init 연계
 - 기출: 140회 1교시 8번 `좀비 프로세스(Zombie Process)` 단답형 출제
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 44
   label: "044. 벡터 데이터베이스 (Vector Database)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "벡터 데이터베이스 (Vector Database)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 44
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "044"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 81
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원의 저주로 인한 탐색 지연 / 과도한 메모리 점유 비용 / 메타데이터 필터링 성능 저하
 ```
 - 필수 키워드: 고차원 임베딩 · ANN(Approximate Nearest Neighbor) · HNSW · IVF · 코사인 유사도 · RAG(검색 증강 생성) · 밀집 벡터(Dense Vector)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 아키텍처 도식 → Ⅴ HNSW vs IVF 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ RAG 파이프라인 연계 및 Ⅵ 메모리 최적화 기법
 - 기출: 137회 4교시 2번 `벡터 DB의 효율적 검색을 위한 HNSW와 IVF 동작원리` → Ⅲ 색인 구조 + Ⅴ HNSW/IVF 비교
 
 ## 한 줄 본질

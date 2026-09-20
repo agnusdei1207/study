@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 90%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회, 127회, 128회"
-  priority: 90
-  priority_note: "[출제(KPC):121,127,128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 사일로 모델의 섀도우화 / 재무/규제 감사 증적 부재 / 운영 중 모델 책임 소재 모호
 ```
 - 필수 키워드: 전사 거버넌스 · 이종 모델 통합 · 모델 레지스트리 · 모델 생명주기(MLC) · 드리프트 감지 · 비즈니스 KPI
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅴ DevOps/DataOps/MLOps/ModelOps 4단 비교표 → Ⅵ 핵심 대책 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 구성 프레임워크와 Ⅳ 전사 승인 거버넌스 흐름도 집중
 - 기출: 121회 `MLOps와 ModelOps 비교` → Ⅴ, 128회 `기업 관점의 모델 생명주기 관리(ModelOps)` → Ⅰ·Ⅲ·Ⅳ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:09:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 70
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 대규모 노드 확장 시 Raft 합의 지연 / 빈약한 서드파티 에코시스템 / 복잡한 스테이트풀(Stateful) 워크로드 지원 한계
 ```
 - 필수 키워드: 도커 스웜 · 매니저 노드 · 워커 노드 · Raft 알고리즘 · 라우팅 메시 · 오버레이 네트워크
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 매니저-워커 아키텍처도 → Ⅴ 도커 스웜 vs 쿠버네티스 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 인그레스 라우팅 메시 트래픽 흐름과 Ⅵ 쿠버네티스 대세 속 스웜의 실무 포지셔닝
 - 기출: 121회 1교시 7번 `도커 스웜(Docker Swarm)` 단답형 출제
 
 ## 한 줄 본질

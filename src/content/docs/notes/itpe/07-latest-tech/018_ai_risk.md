@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 90%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회, 139회"
-  priority: 90
-  priority_note: "[출제:134,139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 적대적 프롬프트 인젝션 / 학습 데이터 내 PII 노출 / 고영향 AI 사고 시 제조물 책임 입증
 ```
 - 필수 키워드: NIST AI RMF · 기술적/윤리적/법적 리스크 · 데이터 포이즈닝 · 적대적 공격 · MITRE ATLAS · 고영향 AI
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 리스크 분류 매트릭스 → Ⅵ 핵심 완화 대책 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 차원별 위험과 Ⅳ NIST AI RMF 4대 핵심 기능 집중
 - 기출: 134회 4교시 3번 `AI 시스템 법적·윤리적·기술적 문제와 해결방안` → Ⅲ·Ⅵ, 139회 2교시 1번 `AI 리스크의 개념과 유형별 대응 전략` → Ⅰ~Ⅵ 전반
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:23:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── APM과 프론트엔드 지표의 단절 / 성능 저하 롤백 정책 / 조직 간 사일로(개발 vs 인프라 vs 기획) 극복
 ```
 - 필수 키워드: 웹 성능관리(WPM) · APM · RUM(Real User Monitoring) · 신세틱 모니터링 · 성능 예산(Performance Budget) · 전주기 관리 · 가시성
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 엔드투엔드 WPM 아키텍처 도식 → Ⅴ RUM vs Synthetic 비교 / 25점 = Ⅰ~Ⅶ 전개, 128회 기출 웹 성능관리 체계 구축 절차, RUM/Synthetic/APM 통합 관측성 및 성능 예산제 운영
 - 기출: 128회 1교시 `웹 성능관리(Web Performance Management)의 개념 및 모니터링 기법` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 76
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 공동 책임 모델(Shared Responsibility) 오해로 인한 보안 홀 / 유휴 자원 비용 누수
 ```
 - 필수 키워드: IaaS · 공동 책임 모델 · 가상화(Hypervisor) · 멀티테넌시 · VPC · 탄력성(Elasticity) · FinOps
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ IaaS 핵심 구성요소 도식 → Ⅴ IaaS/PaaS/SaaS 책임 모델 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ VM 프로비저닝 내부 흐름 및 Ⅵ 엔터프라이즈 마이그레이션(Lift-and-Shift) 시 비용·보안 최적화
 - 기출: 122회 4교시 1번 `IaaS, PaaS, SaaS의 특징 및 구축방법` 논술형 출제
 
 ## 한 줄 본질

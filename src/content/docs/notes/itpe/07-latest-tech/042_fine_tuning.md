@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:42:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 84%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 84
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 파괴적 망각(Catastrophic Forgetting) / 고비용 GPU 자원 요구 / 최신 지식 실시간 갱신 불가
 ```
 - 필수 키워드: 전이 학습(Transfer Learning) · 지도 미세조정(SFT) · PEFT(Parameter-Efficient Fine-Tuning) · LoRA(Low-Rank Adaptation) · 파괴적 망각 · RAFT
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ LoRA 저랭크 행렬 분해 구조도 → Ⅴ Full vs LoRA vs RAG 비교표 / 25점 = Ⅰ~Ⅶ 전개, LoRA 수식 원리와 RAFT(Retrieval Augmented Fine-Tuning) 결합 파이프라인 집중
 - 기출: 139회 2교시 2번 `A기업은 AI 전환(AX) 추진을 위해 LLM 기반 AI 시스템을 구축하고자 한다. 일반 파인튜닝 학습 파이프라인과 RAFT 기반 학습 파이프라인을 비교하여 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

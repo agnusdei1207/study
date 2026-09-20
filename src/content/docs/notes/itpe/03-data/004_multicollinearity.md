@@ -3,7 +3,7 @@ sidebar:
   order: 4
   label: "004. 다중공선성"
   badge:
-    text: "A · 기출 · 97%"
+    text: "A"
     variant: note
 title: "다중공선성 (Multicollinearity)"
 author: "OpenAI Codex"
@@ -14,22 +14,13 @@ weight: 4
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "03-data canonical 목록 A"
   question_no: "004"
-  source_status: "기출"
-  source_history: "132·135회(정보관리 공식)"
-  priority: 97
-  priority_note: "회귀 진단·변수 선택·규제·등분산성과 함께 출제 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [▶ 03 데이터] → [04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 03 데이터 → 다중공선성
+<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터 분석</span><span>회귀분석 진단</span><strong>다중공선성</strong></div>
 
 ## 큰 그림과 30초 인출
 

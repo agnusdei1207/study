@@ -2,9 +2,6 @@
 sidebar:
   order: 38
   label: "038. 편향 (Bias)"
-  badge:
-    text: "기출 · 82%"
-    variant: note
 title: "편향 (Bias)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 38
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "038"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 82
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 채용/대출 심사 AI의 성별·인종 차별 / 피처 누락으로 인한 누락변수 편향
 ```
 - 필수 키워드: 체계적 오차 · 선택 편향(Selection Bias) · 생존 편향 · 편향-분산 트레이드오프 · AI 공정성(Fairness) · 편향 완화(Mitigation)
-- 배점 전략: 10점 = Ⅰ → Ⅴ 편향 vs 분산 vs 이상치 3각 비교표 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 편향 유형 분류도 및 완화 3단계(전/중/후) 처리
 - 기출: 139회 3교시 2번 `데이터분석에서 이상치와 편향의 개념, 영향 및 처리 방안` → Ⅰ 개념 + Ⅵ 영향 및 처리 완결
 
 ## 한 줄 본질

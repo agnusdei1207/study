@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:17:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 60%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "83회, 108회"
-  priority: 60
-  priority_note: "과거기출(83회, 108회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 배낭 문제(0/1 Knapsack은 DP 필수, Fractional은 Greedy 가능) / 거스름돈 문제의 배수 조건 위반 시 오답 / 허프만 코딩, MST, 다익스트라
 ```
 - 필수 키워드: 지역 최적해(Local Optimum) · 전역 최적해(Global Optimum) · 탐욕적 선택 속성 · 최적 부분 구조 · 활동 선택 문제 · 허프만 코딩 · 근사 알고리즘
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 2대 필수 조건 및 3단계 동작 도식 → Ⅴ 타 알고리즘 설계 패러다임 비교표 / 25점 = Ⅰ~Ⅶ 전개, 83·108회 기출 그리디 알고리즘의 개념, 최적해 보장을 위한 수학적 증명 조건, 동전 거스름돈 반례(배수 조건 불만족 시) 분석 및 DP와의 차이점
 - 기출: 83회 1교시, 108회 1교시 `그리디(탐욕) 알고리즘의 개념, 최적해가 보장되는 조건 및 동적 계획법과의 비교` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

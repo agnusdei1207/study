@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 76
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── IV 재사용 시 기밀성 붕괴 / 패딩 오라클 공격(POODLE) / 대용량 데이터 전송 시 CTR/GCM의 멀티코어 병렬 성능 가속
 ```
 - 필수 키워드: 블록 암호 운용 모드 · ECB · CBC · CFB · OFB · CTR · GCM(AEAD) · 초기화 벡터(IV) · 오류 전파
-- 배점 전략: 10점 = Ⅰ 정의 및 필요성 → Ⅲ 5대 모드 핵심 도식 → Ⅴ 모드별 특성 비교표 / 25점 = Ⅰ~Ⅶ 전개, CTR과 GCM의 수학적 연산 흐름 및 Ⅵ 패딩 오라클 공격 원리와 AEAD 실무 적용 집중
 - 기출: KPC 127회 `블록 암호 운용 모드(ECB, CBC, CFB, OFB, CTR)의 특징과 장단점 비교 및 최신 동향` → Ⅰ~Ⅴ 전반
 
 ## 한 줄 본질

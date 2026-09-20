@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 74
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 신체 컨디션/환경 변화에 따른 오인식률(FRR) 증가 / 실시간 센서 수집에 따른 배터리 소모 / 사용자 프라이버시 침해 우려
 ```
 - 필수 키워드: 무자각 지속인증 · 행위 생체인식(Behavioral Biometrics) · 키스트로크 다이내믹스 · 신뢰 점수(Trust Score) · 제로트러스트 지속 검증 · 적응형 인증(RBA)
-- 배점 전략: 10점 = Ⅰ 무자각 지속인증 개념 및 필요성 → Ⅲ 시스템 구조도 → Ⅵ 핵심 행위 생체 특징 요약 / 25점 = Ⅰ~Ⅶ 전개, 제120회 기출 대응, 제로트러스트 "Never Trust, Always Verify" 철학과의 연계, AI 기반 이상 행동 탐지 모델 및 스텝업 인증 연동 심층 상술
 - 기출: 제120회 기출: "무자각 지속인증(Continuous Authentication)"
 
 ## 한 줄 본질

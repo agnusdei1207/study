@@ -6,29 +6,20 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 기출 · 100%"
+    text: "A"
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "memories canonical 01-009 (2026-09-20)"
-  source_status: "기출"
-  source_history: "134·138·139회(공식), 80·81회(KPC 이전 이력)"
-  priority: 100
-  priority_note: "위험 프로세스·PI 평가·5대 위협 대응·예비비·잔여위험으로 확장 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-▶ 01 정보 전략·관리 ─→ 02 SW공학·프로젝트 ─→ 03 데이터
-          │
-          └─→ 04 컴퓨터시스템 ─→ 05 네트워크 ─→ 06 보안
-                                     │
-                                     └─→ 07 AI·신기술
-전 영역 준거 ───────────────────────────→ 08 법·정책
-```
-
-- 현재 위치: `01 정보 전략·관리 > 프로젝트 위험관리 > 부정적 위험 대응`
+<div class="itpe-topic-path" role="img" aria-label="프로젝트 관리에서 위험관리를 거쳐 부정적 위험 대응으로 이어지는 지식 위치">
+  <span>프로젝트 관리</span>
+  <span>위험관리</span>
+  <strong>부정적 위험 대응</strong>
+</div>
 
 ## 큰 그림과 30초 인출
 

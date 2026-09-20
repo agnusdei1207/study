@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 86
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 숨은 노드(Hidden Node) 문제 / 노출 노드(Exposed Node) 문제 / 백오프 지연
 ```
 - 필수 키워드: 반송파 감지 · IFS(DIFS/SIFS) · 랜덤 백오프 · NAV(가상 반송파 감지) · RTS/CTS · 숨은 노드
-- 배점 전략: 10점 = Ⅰ → Ⅲ 타이밍 다이어그램(DIFS, 백오프, SIFS, ACK) → Ⅴ CSMA/CD 대조 / 25점 = Ⅰ~Ⅶ, 140회 3교시 4번 무선 3종 프로토콜(가. CSMA/CA) 비교 전개
 - 기출: 140회 3교시 4번 `다음 무선 통신 프로토콜을 설명하시오. 가. CSMA/CA 나. CDMA 다. TDMA` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

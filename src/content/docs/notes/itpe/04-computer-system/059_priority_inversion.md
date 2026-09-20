@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 76
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 화성 탐사선 패스파인더호 통신 두절 사건 / 연쇄 블로킹(Chained Blocking) / 교착상태(Deadlock)
 ```
 - 필수 키워드: 우선순위 역전 · 실시간 스케줄링(RTOS) · 공유 자원 · 우선순위 상속(PIP) · 우선순위 천장(PCP) · 패스파인더호
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3개 태스크 우선순위 역전 타이밍도 → Ⅴ PIP vs PCP 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 역전 발생 4단계 메커니즘 상세 및 Ⅵ 실무 RTOS(VxWorks, FreeRTOS) 해결 파라미터 튜닝
 - 기출: 126회 4교시 2번 `우선순위 역전(Priority Inversion)의 사례 기반 설명 및 해결 기법` 논술형 출제
 
 ## 한 줄 본질

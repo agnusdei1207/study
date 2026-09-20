@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:08:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 배포 후 결함 수정 비용 100배 증가(Boehm 법칙) / 테스트 예산 삭감의 역설 / CoQ 관리 대시보드
 ```
 - 필수 키워드: 품질비용(CoQ) · PAF 모델 · 예방 비용 · 평가 비용 · 내부 실패 비용 · 외부 실패 비용 · 배리 보엠(Barry Boehm) 곡선 · Shift-Left
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ PAF 모델 4대 분류 체계 도식 → Ⅴ 4대 비용 항목별 예시 비교 / 25점 = Ⅰ~Ⅶ 전개, 128회 기출 품질비용 구성요소, 공정 단계별 결함 수정 비용 곡선 및 최적 품질 수준(CoQ 곡선) 도출
 - 기출: 128회 1교시 `소프트웨어 품질비용(Cost of Quality)의 구성요소 및 최적화 방안` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

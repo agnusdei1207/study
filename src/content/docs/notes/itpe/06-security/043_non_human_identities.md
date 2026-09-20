@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 85
-  priority_note: "[출제:140] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 소스코드 하드코딩 유출 / 미사용 유령 토큰(Orphan Token) / 수명주기 자동 회전(Rotation) 미비
 ```
 - 필수 키워드: NHI · 비인간 신원 · 서비스 계정 · API 키 · 시크릿 하드코딩 · 비밀 수명주기(Secret Lifecycle) · PAM/IAM
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ NHI 구성 유형 도식 → Ⅴ 인간 신원 대비 보안 취약점 비교 / 25점 = Ⅰ~Ⅶ 전개, NHI 공격 킬체인 및 Ⅵ 토큰 자동 회전·시크릿 관리 아키텍처 집중
 - 기출: 140회 1교시 11번 `비인간 신원(NHI, Non-Human Identities)의 보안 취약점` → Ⅱ 특징 + Ⅲ 유형 + Ⅵ 취약점과 대책
 
 ## 한 줄 본질

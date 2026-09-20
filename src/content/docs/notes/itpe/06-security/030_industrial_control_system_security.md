@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회, 125회"
-  priority: 86
-  priority_note: "[출제:132] · [출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── Modbus/DNP3 무인증 통신 취약점 / 에어갭(폐쇄망) 우회 악성코드(USB) / 일방향 데이터 전송장치(Data Diode)
 ```
 - 필수 키워드: 퍼듀 모델(Purdue Model) · SCADA · PLC/RTU · Modbus · IEC 62443 · 일방향 전송장치(Data Diode)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 퍼듀 모델 5계층 도식 → Ⅴ IT 보안 vs OT 보안 비교 / 25점 = Ⅰ~Ⅶ 전개, 스턱스넷 킬체인 분석과 Ⅵ 일방향 망연계 및 제어 프로토콜 심층 패킷 검사(DPI) 집중
 - 기출: 132회 1교시 5번 `ISA/IEC 62443 기반 산업제어시스템 보안` → Ⅰ·Ⅲ·Ⅵ / 125회 1교시 `ICS/SCADA 보안 위협 및 대책` → Ⅱ·Ⅴ
 
 ## 한 줄 본질

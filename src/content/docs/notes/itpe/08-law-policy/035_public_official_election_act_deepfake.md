@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 해외 SNS(텔레그램·X) 협조 지연 / 풍자·패러디와 악의적 허위사실의 경계 모호
 ```
 - 필수 키워드: 공직선거법 제82조의8 · 선거일 전 90일 · 딥페이크 선거운동 전면 금지 · 가상 정보 표시 의무 · 7년 이하 징역
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 시기별 규제 차등 도식 → Ⅴ 허용 vs 금지 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 법정 요건과 Ⅵ 딥페이크 탐지(Detection) 기술 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

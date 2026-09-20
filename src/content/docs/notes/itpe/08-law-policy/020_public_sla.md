@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 저가 수주 환경에서 가혹한 패널티 반발 / 이중 장애 시 책임 소재 불분명
 ```
 - 필수 키워드: 전자정부법 · 공공 SLA · 정보시스템 등급제 · 가용성(Availability) · RTO/RPO · 패널티(감액)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 핵심 지표 구성표 → Ⅴ 민간 대비 차이점 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 등급별 차등 기준과 Ⅵ 실무 장애 복구 프로세스 집중
 - 기출: 139회 2교시 5번 `전자정부법 개정을 통한 정보시스템 등급제와 공공 SLA 표준 의무화` → Ⅰ·Ⅱ·Ⅲ·Ⅳ·Ⅵ 전수
 
 ## 한 줄 본질

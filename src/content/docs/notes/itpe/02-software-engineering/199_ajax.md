@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:20:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "83회, 95회"
-  priority: 58
-  priority_note: "과거기출(83회, 95회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 동일 출처 정책(SOP) 위반 및 CORS 에러 대응 / 뒤로가기(History API) 미작동 문제 / 콜백 지옥(Promise, Async/Await로 해결)
 ```
 - 필수 키워드: 비동기(Asynchronous) · XMLHttpRequest(XHR) · Fetch API · DOM 조작 · JSON · 동일 출처 정책(SOP) · CORS · Single Page Application(SPA)
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 동기 vs 비동기 웹 통신 흐름 비교 도식 → Ⅴ 전통 웹 vs AJAX vs WebSocket 비교표 / 25점 = Ⅰ~Ⅶ 전개, 83·95회 기출 AJAX 동작 메커니즘 4단계, XHR 객체의 readyState 상태 전이, 보안 제약사항(SOP/CORS) 및 최신 Fetch/Axios 진화
 - 기출: 83회 1교시, 95회 1교시 `AJAX의 개념, 동작 원리, 핵심 구성 기술 및 전통적인 웹 페이지 방식과의 비교` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

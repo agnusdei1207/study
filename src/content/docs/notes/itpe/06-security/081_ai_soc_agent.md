@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── AI 환각(Hallucination)에 의한 오차단 방지 / 프롬프트 인젝션을 통한 에이전트 탈취 방어 / 고영향 조치에 대한 인간 개입(HITL) 설계
 ```
 - 필수 키워드: AI SOC 에이전트 · 경보 피로(Alert Fatigue) · 자율 추론(ReAct) · 트리아지(Triage) · SOAR 연동 · 인간 개입(Human-in-the-Loop, HITL)
-- 배점 전략: 10점 = Ⅰ 등장 배경(경보 폭증 한계) → Ⅲ 에이전트 아키텍처 도식 → Ⅴ 전통 SOAR 대비 차별점 / 25점 = Ⅰ~Ⅶ 전개, LLM 기반 추론 파이프라인(ReAct/RAG)과 실무 적용 시의 신뢰성 검증(HITL 통제) 심층 제시
 - 기출: 미출제. AI와 정보보안 융합 트렌드 단답/서술 유력 예상
 
 ## 한 줄 본질

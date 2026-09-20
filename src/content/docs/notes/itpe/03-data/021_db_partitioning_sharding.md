@@ -2,9 +2,6 @@
 sidebar:
   order: 21
   label: "021. DB 분할·샤딩"
-  badge:
-    text: "기출 · 90%"
-    variant: note
 title: "DB 분할·샤딩"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 21
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "021"
-  source_status: "기출"
-  source_history: "138회, 127회"
-  priority: 90
-  priority_note: "[출제:138] · [출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 샤드 간 조인 불가 / 핫스팟(Hotspot) 불균형 / 글로벌 2PC 트랜잭션 성능 급락
 ```
 - 필수 키워드: 파티셔닝(수직/수평) · 샤딩(Sharding) · 샤드 키 · 레인지/해시 샤딩 · 2PC(Two-Phase Commit) · 핫스팟
-- 배점 전략: 10점 = Ⅰ → Ⅴ 파티셔닝 vs 샤딩 비교표 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 구조도 및 Ⅳ 샤딩 라우팅 매커니즘
 - 기출: 138회 `데이터베이스 분할(수평/수직)` → Ⅲ 파티셔닝 유형 / 127회 `데이터베이스 샤딩` → Ⅲ 샤딩 아키텍처 및 Ⅵ 실무 고려사항
 
 ## 한 줄 본질

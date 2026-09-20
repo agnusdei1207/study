@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "C · 기출 · 70%"
+    text: "C"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 일정 압박으로 인한 테스트 비용 삭감 / 배포 후 운영 장애로 인한 천문학적 배상금 / 정량적 COQ 집계 체계 부재
 ```
 - 필수 키워드: 품질비용(COQ) · 적합비용(Conformance) · 부적합비용(Non-conformance) · 예방비용 · 평가비용 · 내부실패비용 · 외부실패비용 · 시프트-레프트(Shift-Left)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ COQ 4대 분류 매트릭스 도식 → Ⅴ 상충관계 그래프 / 25점 = Ⅰ~Ⅶ 전개, 배리 뵘(Boehm)의 결함 조기 발견 비용 모델(1:10:100 법칙) 및 DevSecOps 연계 최적화 전략 상술
 - 기출: 128회 KPC `소프트웨어 품질 관리에서 적합비용과 부적합비용으로 구성되는 품질비용(COQ)의 개념, 상호 상충관계 및 최적 품질비용 모델` → Ⅰ·Ⅲ·Ⅳ·Ⅴ
 
 ## 한 줄 본질

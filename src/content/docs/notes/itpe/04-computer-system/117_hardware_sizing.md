@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:39:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "108회, 117회"
-  priority: 64
-  priority_note: "이전(KPC):108,117"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 오픈 당일 피크 트래픽 폭증으로 시스템 마비 / I/O 병목 간과로 CPU 유휴 / 클라우드 환경 오버 프로비저닝
 ```
 - 필수 키워드: 하드웨어 규모산정 · 용량 계획(Capacity Planning) · TPC-C/tpmC · 동시 사용자 수 · TPS · 피크 부하율 · 보정 계수
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 규모산정 5단계 절차도 → Ⅴ 3대 산정 방식 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ OLTP/WEB 서버 상세 산정 수식과 Ⅵ 클라우드 네이티브 환경에서의 동적 사이징 전환 전략
 - 기출: 108회 1교시, 117회 1교시 `하드웨어 규모산정 방식 및 절차` 출제
 
 ## 한 줄 본질

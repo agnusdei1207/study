@@ -2,9 +2,6 @@
 sidebar:
   order: 161
   label: "161. MOLAP(Multidimensional OLAP)"
-  badge:
-    text: "기출 · 58%"
-    variant: note
 title: "MOLAP (Multidimensional OLAP)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 161
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "161"
-  source_status: "기출"
-  source_history: "80회, 114회"
-  priority: 58
-  priority_note: "이전(KPC):80,114"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원 수 증가에 따른 큐브 크기 지수적 폭증(Cube Explosion) / 큐브 재생성(Rebuild) 야간 배치 지연
 ```
 - 필수 키워드: MOLAP · 다차원 큐브(Cube) · ROLAP · HOLAP · 사전 집계(Pre-aggregation) · 롤업(Roll-up) · 드릴다운(Drill-down) · 슬라이싱/다이싱 · 큐브 폭발
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3차원 큐브(시간×지역×상품) 도식 및 5대 연산 매핑표 → Ⅴ MOLAP vs ROLAP vs HOLAP 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 큐브 빌드 및 MDX 질의 처리 흐름과 Ⅵ 희소성(Sparsity) 압축 기법
 - 기출: 114회 `온라인 분석 처리 기술인 OLAP의 3가지 유형(MOLAP, ROLAP, HOLAP)을 비교하고, MOLAP의 구조적 특징과 장단점을 설명하시오.` → Ⅰ 정의 + Ⅲ 큐브 구조 및 5대 연산 + Ⅴ 3대 OLAP 비교표 + Ⅵ 큐브 폭발 해결책
 
 ## 한 줄 본질

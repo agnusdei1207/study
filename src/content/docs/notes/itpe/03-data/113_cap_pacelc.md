@@ -2,9 +2,6 @@
 sidebar:
   order: 113
   label: "113. CAP·PACELC"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "CAP·PACELC"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 113
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "113"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 네트워크 지연을 CAP의 P로 오판하여 불필요한 시스템 중단 / 금융 트랜잭션에 AP 시스템을 도입해 마이너스 잔고 사고
 ```
 - 필수 키워드: CAP 정리 · PACELC · 일관성(Consistency) · 가용성(Availability) · 네트워크 분절(Partition) · 지연시간(Latency) · 최종 일관성(Eventual Consistency)
-- 배점 전략: 10점 = Ⅰ → Ⅲ CAP 벤다이어그램 및 PACELC 매트릭스 도식 → Ⅴ 대표 분산 DB 매핑 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 분할/평시 상태 전이 메커니즘 및 Ⅵ 업무 요건별 아키텍처 선택 가이드
 - 기출: 126회 `분산 데이터베이스 환경에서의 CAP 이론과 PACELC 이론을 비교하고, NoSQL 데이터베이스 선정 기준을 제시하시오.` → Ⅰ 정의 + Ⅲ CAP/PACELC 상세 구조 + Ⅴ 비교표 + Ⅵ 시스템 선정 기준
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 74
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수많은 상호작용 조합으로 인한 UCA 폭증 / 핵심 제어 루프 우선순위화 및 안전 제약조건(Safety Constraint) 도출
 ```
 - 필수 키워드: STPA · STAMP 모델 · 낸시 레브슨(Nancy Leveson) · 계층적 제어 구조 · 불안전 제어 행위(UCA) · 인과 시나리오(Loss Scenario) · 안전 제약조건
-- 배점 전략: 10점 = Ⅰ 전통 기법 한계와 STPA 등장 배경 → Ⅲ 기본 제어 루프 및 4대 UCA 유형 도식 → Ⅳ 4단계 분석 절차 / 25점 = Ⅰ~Ⅶ 전개, 128회 기출 STPA의 이론적 배경(STAMP), 분석 4단계 절차, UCA 도출 사례, 및 자율주행/원자력 적용 방안
 - 기출: 128회 1교시 `STPA(System Theoretic Process Analysis)` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 85
-  priority_note: "[출제(KPC):127] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단말 배터리 발열 / 메모리 대역폭 한계 / 모델 크기 제약으로 인한 복합 지능 성능 저하
 ```
 - 필수 키워드: NPU(Neural Processing Unit) · 양자화(Quantization) · 가지치기(Pruning) · 지식 증류 · 신경망 컴파일러(TVM/ONNX) · 하이브리드 AI
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 하드웨어·소프트웨어 계층도 → Ⅴ 클라우드 AI vs 온디바이스 AI 비교표 / 25점 = Ⅰ~Ⅶ 전개, NPU MAC 어레이 구조와 온디바이스-클라우드 협업 오프로딩 집중
 - 기출: 127회 2교시 4번 `온디바이스AI(Artificial Intelligence)의 개념, 필요성, 핵심 기술 및 적용 분야를 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

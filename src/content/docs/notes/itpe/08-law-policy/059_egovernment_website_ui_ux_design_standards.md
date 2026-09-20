@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:21:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 액티브X 잔존 및 특정 OS 종속 / 검색엔진 수집 차단(robots.txt disallow) 오설정 / 과도한 이미지 용량으로 속도 저하
 ```
 - 필수 키워드: UI/UX 7대 설계기준 · 웹 접근성(Web Accessibility) · 웹 호환성(Web Compatibility) · 웹 개방성(Web Openness) · 웹 최적화(Web Optimization) · 행정안전부
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 7대 원칙 및 4대 품질 매트릭스 도식 → Ⅴ 4대 품질 개념 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 7대 원칙과 4대 품질 항목별 진단 지표 상세화 및 Ⅵ 공공 웹사이트 품질 감리 연계
 - 기출: 126회 3교시 2번 `전자정부 웹사이트 UI/UX 설계기준 7가지와 웹접근성, 웹호환성, 웹개방성, 웹최적화` → Ⅰ·Ⅱ·Ⅲ·Ⅴ·Ⅵ 전수
 
 ## 한 줄 본질

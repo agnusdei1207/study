@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 84%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 84
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 딥러닝 블랙박스 설명 불가능성(XAI) / 적대적 공격 취약점 / 분산 학습 통신 비용
 ```
 - 필수 키워드: AI-Native · Closed-loop 자동화 · 시맨틱 통신 · 무선 인터페이스 AI · NWDAF · 연합학습(FL) · ZSM
-- 배점 전략: 10점 = Ⅰ → Ⅲ 계층별 AI 내재화 아키텍처 도식 → Ⅴ AI-Infused vs Native 비교 / 25점 = Ⅰ~Ⅶ, 138회 4교시 3번 기출에 맞춰 폐루프 제어 및 물리 계층 AI 서술
 - 기출: 138회 4교시 3번 `6G 이동통신기술의 핵심 축인 AI-Native Network에 대하여 다음을 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

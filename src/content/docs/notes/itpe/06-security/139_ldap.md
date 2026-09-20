@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 70
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단순 바인드(Simple Bind) 사용 시 비밀번호 평문 노출 / 특수문자 조작을 통한 LDAP Injection 공격 / 중앙 서버 단일 실패점(SPOF)
 ```
 - 필수 키워드: LDAP · X.500 경량화 · DIT(Directory Information Tree) · DN(Distinguished Name) · 바인드(Bind) 인증 흐름 · LDAPS(TCP 636) · LDAP 인젝션
-- 배점 전략: 10점 = Ⅰ LDAP 정의 및 계층형 DIT 구조도 → Ⅲ DN 구성요소 요약 → Ⅴ RDBMS vs LDAP 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제129회 2교시 2번 기출 완벽 대응(접근 제어 통제 정책과 LDAP 인증 시퀀스 흐름도), 3단계 인증 절차(Bind-Search-Compare) 및 LDAPS 암호화 보안 통제 방안 심층 상술
 - 기출: 제129회 2교시 2번: "접근 제어(Access Control)의 통제정책과 경량 디렉토리 액세스 프로토콜 (LDAP: Lightweight Directory Access Protocol)의 인증 흐름(Flow)"
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 86
-  priority_note: "[출제:138] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 통신 실시간성(하드 리얼타임 L1) 충돌 / 고전력 GPU 발열 / 통신-AI 연합 보안
 ```
 - 필수 키워드: AI-RAN Alliance · AI for RAN · AI on RAN · AI and RAN · O-RAN RIC · GPU 가속 가상화(vRAN)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3대 핵심 기둥 도식 → Ⅴ 진화 비교표 / 25점 = Ⅰ~Ⅶ, 138회 4교시 3번 AI-Native Network 연계 전개
 - 기출: 138회 4교시 3번 `6G 핵심 AI-Native Network` → Ⅰ~Ⅵ AI-RAN 아키텍처 중심으로 전개
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 76
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상용 레거시 방화벽/NAT의 SCTP 프로토콜 차단 / 브라우저 미지원(WebRTC 캡슐화 필수)
 ```
 - 필수 키워드: RFC 4960 · 멀티호밍(Multi-homing) · 멀티스트리밍 · 청크(Chunk) 구조 · 4-way handshake · HoL 차단
-- 배점 전략: 10점 = Ⅰ → Ⅲ 패킷 및 청크 구조도 → Ⅴ TCP/UDP/SCTP 3자 비교표 / 25점 = Ⅰ~Ⅶ, 132회 3교시 4번 기출에 맞춰 멀티호밍 장애 페일오버 및 SYN Flooding 방어 메커니즘 상세
 - 기출: 132회 3교시 4번 `SCTP(Stream Control Transmission Protocol)에 대하여 다음을 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

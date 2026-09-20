@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 76
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상용 시스템 적용 시 상위 등급 주체의 정보 수집 제약 / 엄격한 쓰기 금지로 인한 데이터 동기화 지연
 ```
 - 필수 키워드: 비바 모델 · 무결성(Integrity) · No Read Down(단순 무결성) · No Write Up(*-무결성) · 호출 속성(Invocation Property) · BLP 모델 비교
-- 배점 전략: 10점 = Ⅰ 개념 및 무결성 정의 → Ⅲ 2대 핵심 규칙 도식 → Ⅴ BLP와의 대칭 구조 비교표 / 25점 = Ⅰ~Ⅶ 전개, Biba 상태 전이 수학적 메커니즘과 상용 환경 적용 한계(Clark-Wilson 전환 이유) 상세화
 - 기출: 127회 2교시 6번 `아래의 접근 통제 보안 모델에 대하여 설명하시오. 나. 비바(Biba) 모델` → Ⅰ Biba 개념 + Ⅲ 2대 무결성 속성 + Ⅴ BLP/Clark-Wilson 비교
 
 ## 한 줄 본질

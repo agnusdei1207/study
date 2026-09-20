@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 81
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 거짓 공유(False Sharing)로 인한 성능 급락 / 버스 트래픽 포화 / 메모리 배리어(Memory Barrier)
 ```
 - 필수 키워드: 캐시 일관성 · 스누핑(Snooping) · 디렉터리 기반 · MESI 프로토콜 · 무효화(Invalidate) · 거짓 공유(False Sharing)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ MESI 상태 전이도 및 4대 상태 정의 → Ⅴ 스누핑 vs 디렉터리 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 버스 스누핑 시퀀스와 Ⅵ 멀티스레드 거짓 공유 해결(패딩 기법)
 - 기출: 137회 2교시 `캐시 메모리의 사상 방식 및 멀티코어 환경의 캐시 일관성 유지 기법`
 
 ## 한 줄 본질

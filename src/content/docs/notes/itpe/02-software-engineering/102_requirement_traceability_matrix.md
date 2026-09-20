@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 75
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 엑셀 수작업 작성으로 인한 현행화 지연(문서 고아화) / Jira/GitLab 기반 ALM 도구 연동 자동화
 ```
 - 필수 키워드: 요구사항 추적표(RTM) · 추적성(Traceability) · 정방향 추적성 · 역방향 추적성 · 영향도 분석 · 고아 산출물(Orphan) · CMMI · IEEE 830
-- 배점 전략: 10점 = Ⅰ RTM 정의 및 필요성 → Ⅲ 매트릭스 구성 양식 도식 → Ⅴ 정방향 vs 역방향 비교 / 25점 = Ⅰ~Ⅶ 전개, 135회 기출 요구사항 추적표의 작성 목적, 구성 항목, 생명주기별 추적성 관리 방안 및 도구 기반 자동화
 - 기출: 135회 1교시 3번 `요구사항 추적표(Requirement Traceability Matrix)` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

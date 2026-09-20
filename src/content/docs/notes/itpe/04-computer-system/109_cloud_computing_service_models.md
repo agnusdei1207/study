@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:31:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 70
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── PaaS 프레임워크 종속(Lock-in) / IaaS 게스트 OS 보안 패치 방치 / SaaS 데이터 주권 및 반출 제약
 ```
 - 필수 키워드: 서비스 모델 · IaaS · PaaS · SaaS · 책임 공유 모델 · NIST SP 800-145 · 벤더 종속(Lock-in)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ IT 스택 책임 분계도 → Ⅴ 3대 서비스 모델 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 계층별 상세 책임과 Ⅵ 실무 거버넌스 및 하이브리드 조합 전략
 - 기출: 131회 1교시 `클라우드 서비스 모델(IaaS, PaaS, SaaS)` 단답형 출제
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 94
   label: "094. TEXT2SQL"
-  badge:
-    text: "기출 · 75%"
-    variant: note
 title: "TEXT2SQL"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 94
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "094"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 존재하지 않는 테이블·컬럼 참조(환각) / 복합 다중 조인 관계 왜곡 / DROP/DELETE 등 악성 쿼리 실행 위험
 ```
 - 필수 키워드: TEXT2SQL · LLM · 스키마 링킹 · 프롬프트 엔지니어링 · AST 파싱 · 셀프 디버깅(Self-Correction) · 가드레일 · 읽기 전용
-- 배점 전략: 10점 = Ⅰ → Ⅲ E2E 파이프라인 블록도 → Ⅵ 보안 가드레일 및 환각 방지책 / 25점 = Ⅰ~Ⅶ, Ⅳ 스키마 링킹 및 셀프 수정 피드백 루프 상세화
 - 기출: 137회 2교시 6번 `TEXT2SQL에 대하여 설명하시오.` → Ⅰ 개념 + Ⅲ/Ⅳ 동작 아키텍처 및 파이프라인 + Ⅵ 보안 및 정확도 검증 방안
 
 ## 한 줄 본질

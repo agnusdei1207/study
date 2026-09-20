@@ -2,9 +2,6 @@
 sidebar:
   order: 29
   label: "029. K-Means"
-  badge:
-    text: "기출 · 86%"
-    variant: note
 title: "K-Means"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 29
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "029"
-  source_status: "기출"
-  source_history: "130회, 129회, 101회"
-  priority: 86
-  priority_note: "[출제(KPC):129,130] · 이전(KPC):101"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 최적 $k$ 결정 주관성 / 이상치로 인한 중심점 왜곡 / 비구형(초승달) 군집 분할 실패
 ```
 - 필수 키워드: K-Means · 중심점(Centroid) · SSE(오차제곱합) · K-Means++ · 엘보우 기법(Elbow Method) · 실루엣 점수
-- 배점 전략: 10점 = Ⅰ → Ⅳ 4단계 반복 흐름도 및 SSE 수식 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅳ 동작 알고리즘 및 Ⅴ DBSCAN과의 비교표
 - 기출: 129회 1교시 5번 `K-Means Clustering과 DBSCAN` → Ⅰ 개념 + Ⅲ 구성요소 + Ⅴ DBSCAN 대비 장단점 비교
 
 ## 한 줄 본질

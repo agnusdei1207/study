@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:01:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "108회, 110회"
-  priority: 64
-  priority_note: "이전(KPC):108,110"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 브로커 단일 장애점(SPOF) 및 확장성 한계 / QoS 2 남용에 따른 지연 급증 / 대규모 TCP 세션 유지 메모리
 ```
 - 필수 키워드: 발행/구독(Pub/Sub) · 브로커(Broker) · 2바이트 고정 헤더 · QoS(0, 1, 2) · LWT(Last Will and Testament) · 킵얼라이브(Keep-Alive) · 리테인(Retain) 메시지
-- 배점 전략: 10점 = Ⅰ → Ⅲ 브로커 중심 Pub/Sub 흐름도 및 3단계 QoS 핸드셰이크 비교 → Ⅴ IoT 프로토콜 비교표 / 25점 = 110회 기출에 맞춰 QoS 0/1/2 단계별 패킷 교환 상세, MQTT v5.0 공유 구독(Shared Subscription), 브로커 고가용성 클러스터링
 - 기출: 제108회·110회: "사물인터넷(IoT) 메시징 프로토콜인 MQTT(Message Queue Telemetry Transport)의 구조, QoS 단계 및 주요 기능을 설명하시오." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

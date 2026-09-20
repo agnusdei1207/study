@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 74
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 악천후(야간/눈/비) 시 오탐 및 미탐 / 다수 카메라 연결 시 네트워크 대역폭 포화 / 개인정보보호법 위반(얼굴 식별)
 ```
 - 필수 키워드: 지능형 CCTV · 엣지 AI · 객체 검출(YOLO) · 다중 객체 추적(MOT) · 이상 행동 인식 · KISA 인증 · 프라이버시 바이 디자인(비식별화)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 지능형 영상 분석 파이프라인 흐름도 → Ⅴ CCTV 발전 세대 비교표 / 25점 = Ⅰ~Ⅶ 전개, 시공간 뼈대(Pose Skeleton) 기반 이상 행동 감지 알고리즘 및 실시간 얼굴 모자이크 비식별화 집중
 - 기출: 121회 `지능형 CCTV` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 96%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회, 140회"
-  priority: 96
-  priority_note: "[출제:134,140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 전력망 용량 부족 / 공랭식 냉각 한계(Thermal Throttling) / 네트워크 패킷 드롭
 ```
 - 필수 키워드: 초고밀도 랙 · PUE · 액체 냉각(D2C, Immersion) · InfiniBand · RoCEv2 · Spine-Leaf · DCIM
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 인프라 계층도 및 핵심 기술 요소 → Ⅵ 한계 대응 / 25점 = Ⅰ~Ⅶ 전개, 전력·냉각·네트워크 3대 병목 해소 기술 집중
 - 기출: 134회 2교시 4번 `대규모 AI 서비스를 위한 데이터센터 구축 기술` → Ⅲ·Ⅵ, 140회 4교시 6번 `AI 데이터센터(Data Center)` → Ⅰ~Ⅶ
 
 ## 한 줄 본질

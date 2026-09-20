@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 발주기관의 보안 유출 우려 및 소통 부재 불만 / 클라우드 PC(DaaS) 및 애자일 일일 스크럼 도입
 ```
 - 필수 키워드: 원격지 개발 · 소프트웨어 진흥법 제49조 · 사업자 작업장소 제안권 · DaaS/VDI · 망분리 · 보안 가이드라인 · 비대면 협업 · 상주 파견 폐해
-- 배점 전략: 10점 = Ⅰ 상주 개발의 한계와 법적 도입 배경 → Ⅲ 법/보안/협업 3대 체계도 → Ⅴ 상주 vs 원격지 비교 / 25점 = Ⅰ~Ⅶ 전개, 원격지 개발 제도의 법적 의무 사항, 보안 요구조건(기술적/관리적), 및 현장 기피 원인 극복 방안
 - 기출: 미출제
 
 ## 한 줄 본질

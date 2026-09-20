@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── C-SCRM(공급망 사이버위협 관리) 내재화 / 경영진·이사회 대상 보안 지표 보고 / ISMS-P와의 상호 매핑
 ```
 - 필수 키워드: NIST CSF 2.0 · 거버넌스(Govern, GV) · 6대 기능 · 공급망 위험관리(C-SCRM) · 프로파일(Profiles) · 티어(Tiers)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ CSF 2.0 6대 기능 도식 → Ⅴ 1.1 vs 2.0 차이점 비교 / 25점 = Ⅰ~Ⅶ 전개, 신설된 Govern(GV) 6대 하위 범주 분석과 Ⅵ 이사회 차원의 리스크 관리 집중
 - 기출: 미출제. 예상: "미국 NIST 사이버보안 프레임워크 2.0(CSF 2.0)의 개정 배경과 6대 핵심 기능을 설명하고, 신설된 거버넌스(Govern) 기능의 실무 적용 방안을 논하시오."
 
 ## 한 줄 본질

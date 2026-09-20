@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "84회, 93회"
-  priority: 64
-  priority_note: "이전(KPC):84,93"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 온톨로지 구축 시 도메인 전문가 간 합의 도출 난항 / 온톨로지 규모 확장에 따른 추론 지연 / 지식 변화에 따른 동적 버전 관리 한계
 ```
 - 필수 키워드: 온톨로지(Ontology) · 톰 그루버(Tom Gruber) · 클래스 · 인스턴스 · 속성 · 공리(Axiom) · OWL · 추론 엔진(Reasoning Engine) · OWA(열린세계가정)
-- 배점 전략: 10점 = Ⅰ Gruber의 온톨로지 4대 정의 → Ⅲ 온톨로지 핵심 구성요소 4종 체계도 → Ⅴ DB 스키마 vs 온톨로지 비교표 / 25점 = Ⅰ~Ⅶ 전개, OWL 설명 논리(Description Logic) 기반 공리 수식화 및 논리 추론(Tableau Algorithm) 메커니즘 전개
 - 기출: 84회, 93회 `온톨로지(Ontology)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

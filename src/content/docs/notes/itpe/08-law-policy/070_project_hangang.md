@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:54:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 블록체인 초당 트랜잭션(TPS) 성능 병목 / 기존 신용카드 인프라 대비 편의성 차별화 / 거래 익명성과 실명 규제 충돌
 ```
 - 필수 키워드: 프로젝트 한강 · 중앙은행 디지털화폐(CBDC) · 예금토큰(Tokenized Deposit) · 2계층 구조 · 기관용 CBDC · 프로그래머블 머니 · 스마트 계약
-- 배점 전략: 10점 = Ⅰ 추진 배경 → Ⅲ 2계층 결제 아키텍처 도식 → Ⅴ 디지털 화폐 유형 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 예금토큰 스마트 계약 실행 메커니즘과 Ⅵ 글로벌 국경 간 결제(Project Agorá) 연계
 - 기출: 미출
 
 ## 한 줄 본질

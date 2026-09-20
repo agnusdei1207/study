@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "81회, 83회, 122회"
-  priority: 81
-  priority_note: "[출제(KPC):122] · 이전(KPC):81,83"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 테넌트 간 데이터 침범(Data Leakage) / 커스터마이징 제약 / 클라우드 섀도우 IT(Shadow IT)
 ```
 - 필수 키워드: 멀티 테넌시(Multi-Tenancy) · 구독 모델 · 테넌트 격리(Silo vs Pool) · CASB · API 경제 · 완전관리형
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 테넌트 데이터 격리 아키텍처 도식 → Ⅴ IaaS/PaaS/SaaS 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 멀티 테넌트 인가 흐름과 Ⅵ 엔터프라이즈 보안 통제 전략
 - 기출: 122회 `클라우드 컴퓨팅 서비스 모델(SaaS, PaaS, IaaS)의 특징 및 차이점`
 
 ## 한 줄 본질

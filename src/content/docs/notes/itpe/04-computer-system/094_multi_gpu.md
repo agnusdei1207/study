@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:11:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회"
-  priority: 70
-  priority_note: "[출제:134]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── GPU 간 통신 병목(Communication Overhead) / 토폴로지 불일치로 인한 성능 저하 / 전력 밀도 및 발열 제어
 ```
 - 필수 키워드: 멀티 GPU · NVLink · NVSwitch · GPUDirect RDMA · NCCL · 인터커넥트 · 토폴로지
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 8-GPU NVLink 풀메시/스위치 구조도 → Ⅴ PCIe vs NVLink 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ GPUDirect P2P 통신 흐름과 Ⅵ 랙스케일 전력·냉각 인프라 설계
 - 기출: 134회 4교시 2번 `딥러닝에서 대규모 신경망을 효율적으로 훈련하기 위한 멀티 GPU 기술에 대하여 설명하시오.` 서술형 출제
 
 ## 한 줄 본질
@@ -72,7 +65,7 @@ extra:
 - 멀티 GPU vs GPGPU: GPGPU = 단일 그래픽 칩셋을 범용 병렬 연산에 활용하는 하드웨어 기술 / 멀티 GPU = 복수의 가속기를 고속 인터커넥트로 결합하여 단일 대형 워크로드를 분산 처리하는 시스템 아키텍처
 
 ## 문제·원인·대책
-- 사례: 134회 기출 및 8-GPU 서버에서 대규모 언어모델 학습 중 GPU 활용률(GPU Utilization)이 35%로 급락한 병목 사고
+- 적용 상황: 다중 GPU 학습에서 통신·동기화 병목으로 연산 자원이 대기하는 상황
 | 문제 | 원인 | 대책 | 효과 |
 |---|---|---|---|
 | 노드 간 통신 시 CPU 사용률이 100%로 치솟고 GPU 연산 지연 발생 | TCP/IP 스택 경유 및 시스템 메모리 중복 복사(Buffer Copy) 발생 | GPUDirect RDMA 및 RoCEv2 커널 바이패스 네트워크 적용 | CPU 오버헤드 제로화 및 노드 간 GPU 메모리 직접 통신 달성 |

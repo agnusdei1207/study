@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "92회, 104회"
-  priority: 64
-  priority_note: "이전(KPC):92,104"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 조명 변화에 따른 특징점 소실 및 가상 객체 떨림(Jitter) / 폐색(Occlusion: 가상 객체가 손 뒤로 가야 함) 미지원 / 배터리 소모 및 발열
 ```
 - 필수 키워드: 증강현실(AR) · 로널드 아즈마(Azuma) · 3차원 공간 정합 · SLAM · 마커리스(Markerless) · OST vs VST · 폐색(Occlusion) 처리 · 스마트 글래스
-- 배점 전략: 10점 = Ⅰ 개요 및 아즈마의 AR 3대 특징 → Ⅲ AR 시스템 파이프라인 구성도 → Ⅴ OST vs VST 비교표 / 25점 = Ⅰ~Ⅶ 전개, 밀그램(Milgram)의 현실-가상 연속체(Reality-Virtuality Continuum), 비주얼 SLAM 및 Depth 기반 폐색(Occlusion) 해결 메커니즘 상세화
 - 기출: 92회, 104회 `증강현실(Augmented Reality)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

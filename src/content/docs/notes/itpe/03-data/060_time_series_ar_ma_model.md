@@ -2,9 +2,6 @@
 sidebar:
   order: 60
   label: "060. 시계열 AR·MA 모형"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "시계열 AR·MA 모형"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 60
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "060"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 비정상 시계열에 직접 적용 시 허위 회귀 / 차수 과다로 인한 과적합
 ```
 - 필수 키워드: 정상성(Stationarity) · 자기회귀모형(AR) · 이동평균모형(MA) · ARMA · 자기상관함수(ACF) · 편자기상관함수(PACF) · 백색잡음
-- 배점 전략: 10점 = Ⅰ → Ⅲ 수식 정의 및 ACF/PACF 패턴 도식 → Ⅴ AR vs MA 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ Box-Jenkins 모델링 5단계 및 ARIMA 확장
 - 기출: 138회 1교시 7번 `자기회귀모형(Autoregressive model)과 이동평균모형(Moving Average model)` → Ⅰ 개념 + Ⅲ 수식 및 특징 + Ⅴ 비교
 
 ## 한 줄 본질

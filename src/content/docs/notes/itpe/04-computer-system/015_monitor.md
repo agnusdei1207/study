@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 90%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회, 139회"
-  priority: 90
-  priority_note: "[출제:139] · [출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 허위 깨어남(Spurious Wakeup) / signal 호출 순서 오류 / 데드락 위험
 ```
 - 필수 키워드: 공유 데이터 캡슐화 · 조건 변수(Condition Variable) · wait/signal · Hoare 방식 · Mesa 방식 · Spurious Wakeup
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 모니터 내부 구조도 → Ⅴ 뮤텍스/세마포어/모니터 3자 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 조건 변수 큐 상태 전이와 Hoare vs Mesa 시그널링 차이 집중
 - 기출: 139회 4교시 `뮤텍스, 세마포어, 모니터` → Ⅲ 메커니즘 및 Ⅴ 비교표
 
 ## 한 줄 본질

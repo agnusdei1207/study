@@ -2,9 +2,6 @@
 sidebar:
   order: 147
   label: "147. 파일"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "파일 (File System Data Storage)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 147
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "147"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 파일 기반 데이터 관리 시 다중 프로세스 동시 쓰기 락 경합 및 트랜잭션 원자성(ACID) 보장 실패
 ```
 - 필수 키워드: 파일 시스템 · 순차 파일 · 직접 파일 · 색인 순차 파일(ISAM) · inode · 데이터 종속성 · 데이터 중복성 · DBMS 태동 · VFS
-- 배점 전략: 10점 = Ⅰ → Ⅲ 파일 3대 조직 방식(순차, 직접, ISAM) 구조도 → Ⅴ 파일 시스템 vs DBMS 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ OS 커널 VFS/inode 파일 I/O 메커니즘 및 Ⅵ 현대 분산 객체 스토리지(S3)로의 진화
 - 기출: 130회 `데이터 관리 방식인 파일 시스템(File System)의 구조적 유형(순차, 직접, 색인순차)과 한계점 및 DBMS와의 차이점을 설명하시오.` → Ⅰ 정의 + Ⅲ 3대 파일 구조 + Ⅴ 파일 시스템 vs DBMS 비교 + Ⅵ 한계 극복
 
 ## 한 줄 본질

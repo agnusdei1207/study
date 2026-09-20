@@ -2,9 +2,6 @@
 sidebar:
   order: 57
   label: "057. 데이터베이스 분할 (수평분할)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "데이터베이스 분할 (수평분할)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 57
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "057"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 파티션 키 조건 누락으로 인한 전 파티션 풀스캔 / 글로벌 인덱스 재구성 오버헤드
 ```
 - 필수 키워드: 수평 파티셔닝 · 파티션 키(Partition Key) · 레인지(Range) · 해시(Hash) · 리스트(List) · 파티션 프루닝(Partition Pruning) · 로컬 인덱스
-- 배점 전략: 10점 = Ⅰ → Ⅲ 4대 분할 방식 다이어그램 도식 → Ⅴ 수평 vs 수직 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 파티션 프루닝 I/O 원리 및 Ⅵ 인덱스 관리 전략
 - 기출: 138회 2교시 3번 `분산 데이터베이스 시스템 구축을 위한 데이터베이스 분할(수평/수직 분할)` → Ⅰ 개념 + Ⅲ 수평분할 유형 + Ⅴ 비교
 
 ## 한 줄 본질

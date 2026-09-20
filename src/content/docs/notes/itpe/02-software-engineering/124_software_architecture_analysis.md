@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:42:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 72
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 아키텍처 드리프트(Drift) 및 침식(Erosion) / 의존성 순환(Circular Dependency) / ArchAsCode 구축
 ```
 - 필수 키워드: 아키텍처 분석 · 정방향 분석 · 역방향 분석 · 아키텍처 침식(Erosion) · 아키텍처 복원 · ATAM · DSM(Design Structure Matrix)
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 정방향/역방향 상호작용 도식 → Ⅴ 정방향 vs 역방향 상세 비교표 / 25점 = Ⅰ~Ⅶ 전개, 126회 기출 분석 기법별 절차, 아키텍처 복원 도구 및 CI/CD 검증 체계화
 - 기출: 126회 1교시 `소프트웨어 아키텍처 분석(정방향/역방향)` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

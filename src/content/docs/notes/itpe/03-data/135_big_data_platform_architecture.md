@@ -2,9 +2,6 @@
 sidebar:
   order: 135
   label: "135. 빅데이터 플랫폼 아키텍처"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "빅데이터 플랫폼 아키텍처"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 135
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "135"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 람다 아키텍처의 배치 레이어와 스피드 레이어 간 동일 비즈니스 로직 중복 개발 및 결과 불일치 버그
 ```
 - 필수 키워드: 빅데이터 플랫폼 · 람다 아키텍처 · 카파 아키텍처 · 레이크하우스 · 메달리온 아키텍처(Bronze/Silver/Gold) · Kafka · Spark · Flink · Trino · 데이터 거버넌스
-- 배점 전략: 10점 = Ⅰ → Ⅲ 빅데이터 5계층 아키텍처 블록 다이어그램 → Ⅴ 람다 vs 카파 vs 레이크하우스 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 메달리온 정제 파이프라인 흐름 및 Ⅵ 로직 일관성 보장 전략
 - 기출: 126회 `빅데이터 플랫폼 아키텍처의 계층별 구성요소와 람다(Lambda) 및 카파(Kappa) 아키텍처의 장단점을 비교 설명하시오.` → Ⅰ 정의 + Ⅲ 계층별 구성요소 + Ⅴ 람다 vs 카파 + Ⅵ 최신 레이크하우스 진화
 
 ## 한 줄 본질

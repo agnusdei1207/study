@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 헌법 원칙 간의 상충(도움됨 vs 무해함 트레이드오프) / 모호한 헌법 조항으로 인한 탈옥(Jailbreak) / AI 피드백 편향의 자기 강화(Self-reinforcing bias)
 ```
 - 필수 키워드: Constitutional AI · RLAIF · RLHF 대체 · 헌법(Constitution) · 비판 및 수정(Critique & Revision) · AI 피드백 · 안전성 정렬(Alignment) · 앤트로픽(Anthropic)
-- 배점 전략: 10점 = Ⅰ RLHF의 한계와 Constitutional AI 개요 → Ⅲ 2단계(지도정제 + RLAIF) 훈련 파이프라인 → Ⅴ RLHF vs RLAIF 비교표 / 25점 = Ⅰ~Ⅶ 전개, Critique 프롬프트 예시, 헌법 조항 설계 기법 및 보상 모델(Preference Model) 학습 손실 함수 수식화
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

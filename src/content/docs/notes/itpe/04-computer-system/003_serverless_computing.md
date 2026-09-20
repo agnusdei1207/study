@@ -5,25 +5,16 @@ date: "2026-09-20T00:30:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
-    text: "A · 기초 · 기출"
+    text: "A"
 extra:
   model: "OpenAI Codex"
   keyword_grade: "A"
-  grade_basis: "04-computer-system canonical 목록 A"
-  source_status: "기출"
-  source_history: "136회 1교시 9번, 140회 2교시 1번"
-  priority: 100
-  priority_note: "[출제:136,140] · BaaS·FaaS 통합 토픽"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [03 데이터] → [▶ 04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 04 컴퓨터 시스템 → 서버리스 컴퓨팅
+<div class="itpe-topic-path" aria-label="지식 경로"><span>클라우드 컴퓨팅</span><span>실행 모델</span><strong>서버리스 컴퓨팅</strong></div>
 
 ## 큰 그림과 30초 인출
 
@@ -158,7 +149,7 @@ Serverless = 서버가 없음(X) / 서버 운영 책임을 공급자에 위임(O
 ## 공식 검증 출처
 
 - [CNCF Serverless Whitepaper 소개](https://www.cncf.io/blog/2018/02/14/cncf-takes-first-step-towards-serverless-computing/)
-- 로컬 원문: `memories/contexts/itpe/sources/qnet-exam-papers-itpe/136-2025.md`, `140-2026.md`
+- 공식 기출 근거: 한국산업인력공단 Q-Net 정보관리기술사 136회·140회 문제지
 
 ## 답안 체크
 

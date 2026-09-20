@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 74
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 스마트폰 분실·도난 시 폐기 처리(Revocation) / 루팅·탈옥 단말의 개인키 탈취 위험 / 고령층 디지털 소외
 ```
 - 필수 키워드: 모바일 신분증 · DID(Decentralized Identifier) · VC(Verifiable Credential) · VP(Verifiable Presentation) · 자기주권 신원(SSI) · Secure Element(SE) · 영지식 증명(ZKP)
-- 배점 전략: 10점 = Ⅰ 모바일 신분증 개념 및 법적 효력 → Ⅲ DID 신원 3주체 구조도 → Ⅵ 핵심 보안 메커니즘 요약 / 25점 = Ⅰ~Ⅶ 전개, 제121회 기출 대응, W3C DID 표준 아키텍처, 선택적 정보 제공(주민번호 숨김) 및 단말 하드웨어(SE/TEE) 보안 기술 심층 상술
 - 기출: 제121회 1교시 11번: "모바일 신분증"
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 설계 복잡도 증가에 따른 위험원 누락 / 시스템 이론 기반 STPA 기법 및 V-모델 안전 생명주기 통제
 ```
 - 필수 키워드: SW 안전(Safety) · SW진흥법 · SW안전 확보 지침 · 위험원(Hazard) · 기능안전(ISO 26262, IEC 61508) · Fail-Safe · Fault-Tolerant · STPA · V&V
-- 배점 전략: 10점 = Ⅰ SW 안전 개념 및 보안과의 차이 → Ⅲ 법적/기술적 체계 도식 → Ⅳ 생명주기 절차 / 25점 = Ⅰ~Ⅶ 전개, 과학기술정보통신부 'SW안전 확보 지침'의 주요 내용과 위험원 분석 4대 기법(FTA, FMEA, HAZOP, STPA) 실무 적용
 - 기출: 미출제
 
 ## 한 줄 본질

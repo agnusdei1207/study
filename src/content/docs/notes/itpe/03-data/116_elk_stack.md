@@ -2,9 +2,6 @@
 sidebar:
   order: 116
   label: "116. ELK(Elasticsearch/Logstash/Kibana) 스택"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "ELK(Elasticsearch/Logstash/Kibana) 스택"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 116
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "116"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 70
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 샤드(Shard) 과다 생성으로 인한 클러스터 OOM / Logstash JVM 무거움으로 인한 서버 자원 고갈
 ```
 - 필수 키워드: ELK 스택 · Elasticsearch · Logstash · Kibana · Beats · 역색인(Inverted Index) · 샤딩(Sharding) · Grok 필터 · 인덱스 수명주기(ILM)
-- 배점 전략: 10점 = Ⅰ → Ⅲ ELK 4대 구성요소 파이프라인 구조도 → Ⅴ Splunk와의 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 로그 수집-정제-색인-시각화 파이프라인 흐름 및 Ⅵ 대용량 클러스터 운영 최적화(샤드/ILM)
 - 기출: 132회 1교시 7번 `ELK(Elasticsearch/Logstash/Kibana) 스택` → Ⅰ 정의 + Ⅲ 핵심 구성요소 + Ⅳ 데이터 흐름 + Ⅵ 실무 운영 방안
 
 ## 한 줄 본질

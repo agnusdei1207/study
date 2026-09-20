@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 96%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회, 140회"
-  priority: 96
-  priority_note: "[출제:135,140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 프롬프트 인젝션/탈옥(Jailbreak) / 모델 업데이트 시 출력 변동 / 긴 문맥 비용
 ```
 - 필수 키워드: 인컨텍스트 러닝 · Few-shot · CoT(Chain of Thought) · ReAct · 하네스 엔지니어링 · 프롬프트 인젝션
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 5대 구성요소 블록도 → Ⅴ 프롬프트 vs 하네스 비교 / 25점 = Ⅰ~Ⅶ 전개, 추론 기법(CoT/ToT/ReAct) 상세화와 Ⅵ 보안 가드레일 집중
 - 기출: 135회 3교시 2번 `프롬프트 엔지니어링의 기술 요소와 활용 방안` → Ⅲ·Ⅳ, 140회 1교시 13번 `프롬프트 엔지니어링과 하네스 엔지니어링 비교` → Ⅴ
 
 ## 한 줄 본질

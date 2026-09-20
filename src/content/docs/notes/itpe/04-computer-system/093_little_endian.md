@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:10:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 네트워크 전송 시 바이트 오더링 왜곡(ntohl/htonl 누락) / 파일 포맷(BMP vs JPEG) 파싱 오류 / IPC 통신 불일치
 ```
 - 필수 키워드: 리틀 엔디언 · LSB(최하위 바이트) · 호스트 바이트 순서 · 네트워크 바이트 순서 · htonl · 형변환
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 메모리 주소 배치도 → Ⅴ 리틀 vs 빅 엔디언 6대 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 산술 연산 효율성 및 Ⅵ 이기종 네트워크 통신 시 소켓 바이트 변환(Endianness Conversion) 실무
 - 기출: 126회 1교시 11번 `빅엔디언(Big Endian) 과 리틀 엔디언(Little Endian)` 단답형 출제
 
 ## 한 줄 본질

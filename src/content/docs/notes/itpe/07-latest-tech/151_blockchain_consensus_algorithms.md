@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 70
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── Nothing at Stake 문제 / 포크(Fork) 발생에 따른 최종성 지연 / 노드 수 증가에 따른 통신 오버헤드 폭증
 ```
 - 필수 키워드: 합의 알고리즘(Consensus Algorithm) · Safety · Liveness · PoW · PoS · DPoS · PBFT · 슬래싱(Slashing) · 최종성(Finality)
-- 배점 전략: 10점 = Ⅰ 개요 및 CAP/FLP 불가능성 정리 → Ⅲ 주요 합의 알고리즘 유형 분류도 → Ⅴ PoW vs PoS vs PBFT 비교표 / 25점 = Ⅰ~Ⅶ 전개, PBFT 3단계 통신 프로토콜 상세 다이어그램 및 Nothing at Stake 극복 방안 제시
 - 기출: 122회 `블록체인 합의 알고리즘` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상시 감시에 따른 사생활 침해 공포 / 의도 오판단 시 원치 않는 공간 제어 사고 / 이종 기기간 분산 합의 오버헤드
 ```
 - 필수 키워드: 앰비언트 인비저블 인텔리전스 · 비가시성(Invisibility) · 사이지각(Perception) · 공간 맥락 그래프(Spatial Graph) · 온디바이스 SLM · Zero Touch · 자율 에이전트
-- 배점 전략: 10점 = Ⅰ 개요 및 챗봇에서 공간 지능으로의 진화 → Ⅲ 4계층 아키텍처 다이어그램 → Ⅴ 챗봇 AI vs 인비저블 인텔리전스 비교표 / 25점 = Ⅰ~Ⅶ 전개, Wi-Fi CSI/밀리미터파 비접촉 생체 감지 메커니즘 및 엣지 멀티에이전트 자율 협업 프로토콜 상세화
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

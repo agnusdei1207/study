@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:34:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── L3.5 우회 원격 유지보수 통로 개방 / 레거시 PLC 평문 프로토콜(Modbus) 도청 / IT-OT 보안 패치 주기 충돌
 ```
 - 필수 키워드: 퍼듀 모델(Purdue Model) · ISA-95 · IEC 62443 · OT/ICS 보안 · Level 0~5 · IDMZ(산업용 DMZ) · PLC/SCADA
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ Level 0~5 계층 구조도 → Ⅴ 전통 퍼듀 vs 제로 트러스트 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 계층별 상세 역할과 Ⅵ IDMZ 기반 데이터 연계 및 OT 보안 침해 방지 실무 대책
 - 기출: 125회 2교시 `스마트 팩토리 산업제어시스템 보안 및 퍼듀 참조 모델` 출제
 
 ## 한 줄 본질

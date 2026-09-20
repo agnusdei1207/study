@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 92%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회, 140회"
-  priority: 92
-  priority_note: "[출제:140] · [출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 호위 효과(Convoy Effect) / 벨레이디의 모순(Belady's Anomaly) / 긴급 패킷 처리 불가
 ```
 - 필수 키워드: 선입선출 · 호위 효과(Convoy Effect) · 벨레이디의 모순 · WFQ · 비선점 스케줄링
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 큐 구조도 → Ⅴ FIFO vs WFQ 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅵ 네트워크 패킷 큐잉 및 메모리 관리 한계 분석
 - 기출: 140회 2교시 `FIFO 방식과 웨이티드 페어큐잉(WFQ) 방식을 비교 설명하시오` → Ⅴ 핵심 비교표 중심
 
 ## 한 줄 본질

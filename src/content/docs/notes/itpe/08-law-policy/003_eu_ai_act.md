@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 91
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고위험 분류 시 출시 지연 / GPAI 시스템적 위험 기준(10^25 FLOPs) 충족 부담
 ```
 - 필수 키워드: 위험 기반 접근법(Risk-based) · 고위험 AI(High-Risk) · 범용 AI(GPAI) · CE 마크 · 적합성 평가 · 역외 적용
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4단계 피라미드 도식 → Ⅴ 국가별 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 위험별 의무사항과 Ⅳ 적합성 평가 절차 집중
 - 기출: 미출제 (시사·트렌드 최우선 출제 예상)
 
 ## 한 줄 본질

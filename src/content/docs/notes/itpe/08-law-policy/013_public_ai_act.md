@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 기관 간 데이터 공유 기피 / 행정 생성형 AI의 환각(Hallucination) 오답 리스크
 ```
 - 필수 키워드: 데이터기반행정 · 공공 AI 행정 · 통합데이터분석센터 · 과학적 행정 · 공공 거버넌스 · 알고리즘 투명성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 공공 AI 추진 추진체계 도식 → Ⅴ 발전 단계 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 법정 지원체계와 Ⅵ 행정 환각 대응 방안 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

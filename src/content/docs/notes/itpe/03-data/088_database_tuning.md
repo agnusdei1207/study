@@ -2,9 +2,6 @@
 sidebar:
   order: 88
   label: "088. 데이터베이스 튜닝 (Database Tuning)"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "데이터베이스 튜닝 (Database Tuning)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 88
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "088"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 76
-  priority_note: "[출제(KPC):127] · 이전(KPC):105"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 바인드 변수 미사용으로 인한 하드 파싱 폭증 / 인덱스 과다로 인한 DML 지연 / 잘못된 풀스캔
 ```
 - 필수 키워드: DB 튜닝 · 모델 튜닝 · 환경 튜닝 · SQL 튜닝 · 최소 I/O · 실행 계획(Execution Plan) · 바인드 변수 · 인덱스 설계
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3계층 튜닝 피라미드 도식 → Ⅴ 3개 영역별 효과/비용 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ AWR 기반 분석 절차 및 Ⅵ SQL 튜닝 핵심 패턴
 - 기출: 127회 `데이터베이스 튜닝의 필요성, 3대 영역(설계, 환경, SQL)별 주요 접근 방법 및 최적화 절차를 설명하시오.` → Ⅰ 필요성 + Ⅲ 3대 영역 + Ⅳ 절차
 
 ## 한 줄 본질

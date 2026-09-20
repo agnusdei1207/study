@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회, 125회"
-  priority: 86
-  priority_note: "[출제:133] · [출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 연산 속도 저하(평문 대비 수백~수천 배) / 암호문 크기 팽창 / AI 프라이버시 보존 추론(PPML) 적용
 ```
 - 필수 키워드: 완전 동형암호(FHE) · 부트스트래핑(Bootstrapping) · CKKS 스킴 · 노이즈(Noise) 관리 · 격자 기반 암호(RLWE) · PPML
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 동형암호 세대별 발전 단계 도식 → Ⅴ BGV vs CKKS 비교 / 25점 = Ⅰ~Ⅶ 전개, 부트스트래핑 노이즈 리셋 메커니즘과 Ⅵ 의료/금융 AI 결합 집중
 - 기출: 133회 1교시 5번 `동형암호의 동작원리와 유형` → Ⅰ·Ⅱ·Ⅲ / 125회 1교시 `완전 동형암호(FHE)의 부트스트래핑` → Ⅳ·Ⅵ
 
 ## 한 줄 본질

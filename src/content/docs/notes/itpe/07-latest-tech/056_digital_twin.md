@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "114회, 118회, 119회, 127회"
-  priority: 81
-  priority_note: "[출제(KPC):127] · 이전(KPC):114,118,119"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이기종 설비 데이터 표준화 부재 / 실시간 고속 렌더링에 따른 인프라 비용 / 물리 모델링 정확도 검증 한계
 ```
 - 필수 키워드: 디지털 트윈(Digital Twin) · ISO 23247 · 실시간 동기화 · What-If 시뮬레이션 · 예지보전(Predictive Maintenance) · 사이버물리시스템(CPS)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 물리-디지털 양방향 인터페이스 구조도 → Ⅴ CAD vs 시뮬레이션 vs 디지털 트윈 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제조 분야 디지털 트윈 표준(ISO 23247) 4계층 참조 프레임워크 집중
 - 기출: 114회 1교시 / 118회 2교시 / 119회 1교시 / 127회 1교시 `디지털 트윈(Digital Twin)의 개념, 핵심 기술, 단계별 진화 과정 및 적용 분야를 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

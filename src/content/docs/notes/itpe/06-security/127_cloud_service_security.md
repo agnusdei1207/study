@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 72
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 퍼블릭 S3 버킷 공개 등 설정 실수로 인한 대규모 정보 유출 / 하이퍼바이저 탈출(VM Escape) / 섀도우 클라우드 가시성 부족
 ```
 - 필수 키워드: 클라우드 서비스 보안 · 공동 책임 모델 · CSPM · CWPP · CIEM · CNAPP · 설정 오류(Misconfiguration) · CSAP · ISO/IEC 27017
-- 배점 전략: 10점 = Ⅰ 클라우드 보안 개념 및 공동 책임 모델 → Ⅲ CNAPP 4대 핵심 아키텍처 도식 → Ⅵ 핵심 도입 고려사항 / 25점 = Ⅰ~Ⅶ 전개, 제130회 4교시 기출 완벽 대응(IT 담당자 관점의 도입 시 체크리스트 및 보안 요소), 클라우드 서비스 모델별(IaaS, PaaS, SaaS) 책임 경계 매트릭스 및 최신 CNAPP 통합 통제 방안 심층 상술
 - 기출: 제130회 4교시 3번: "최근 다수의 기업들이 클라우드 서비스를 도입하면서 다양한 보안 문제가 대두되고 있다. IT 담당자 입장에서 클라우드 서비스 도입 시 고려해야 할 보안 요소..."
 
 ## 한 줄 본질

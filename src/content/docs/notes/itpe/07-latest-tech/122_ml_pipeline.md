@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 72
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -29,7 +23,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 훈련-서빙 스큐(Training-Serving Skew) / 데이터 드리프트에 따른 성능 저하 / 파이프라인 오케스트레이터 관리 복잡성
 ```
 - 필수 키워드: 머신러닝 파이프라인 · MLOps · 지속적 학습(CT) · 데이터 계통(Data Lineage) · 모델 레지스트리 · 훈련-서빙 스큐 · Kubeflow
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 엔드투엔드 파이프라인 6단계 구조도 → Ⅴ 전통 파이프라인 대비 비교표 / 25점 = Ⅰ~Ⅶ 전개, MLOps 성숙도 3단계(수작업 -> 파이프라인 자동화 -> CI/CD 자동화) 및 피처 스토어 연계 집중
 - 기출: 121회 `머신러닝 파이프라인` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

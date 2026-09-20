@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:56:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── EDT(Event Dispatch Thread) 블로킹으로 인한 화면 멈춤 / 고해상도(HiDPI) 스케일링 결함 / SwingWorker 비동기 처리
 ```
 - 필수 키워드: 스윙 · JComponent · 경량 컴포넌트 · 플러그형 룩앤필(PLAF) · EDT(Event Dispatch Thread) · SwingWorker · MVC
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 경량 컴포넌트 렌더링 구조 도식 → Ⅴ AWT vs Swing 비교 / 25점 = Ⅰ~Ⅶ 전개, 125회 기출 AWT/Swing 차이점, EDT 싱글 스레드 규칙 및 SwingWorker 비동기 스레드 동기화
 - 기출: 125회 1교시 `자바 AWT와 Swing의 특징 및 차이점` → Ⅱ·Ⅲ·Ⅴ
 
 ## 한 줄 본질

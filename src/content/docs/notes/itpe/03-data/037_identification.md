@@ -2,9 +2,6 @@
 sidebar:
   order: 37
   label: "037. 식별 (Identification)"
-  badge:
-    text: "기출 · 82%"
-    variant: note
 title: "식별 (Identification)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 37
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "037"
-  source_status: "기출"
-  source_history: "133회, 128회"
-  priority: 82
-  priority_note: "[출제:133] · [출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 복합 식별자로 인한 자식 테이블 PK 비대화 / 개인 식별자(주민번호) 직접 사용 컴플라이언스 위반
 ```
 - 필수 키워드: 유일 식별자(UID) · 기본키(PK) · 식별 관계(실선) · 비식별 관계(점선) · 신원 주장(Identification) · 인증(Authentication) · DID
-- 배점 전략: 10점 = Ⅰ → Ⅴ 식별 vs 인증 vs 인가 3단계 보안 비교표 및 데이터 모델링 식별자 매핑 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 2대 관점(DB/보안) 구조도 및 Ⅳ 식별 관계 전이 메커니즘
 - 기출: 128회 4교시 6번 `식별(Identification)과 인증(Authentication)` → 보안 4단계 체계 / 133회 `데이터 모델링` → 식별자 및 식별 관계
 
 ## 한 줄 본질

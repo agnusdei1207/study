@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:43:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 81
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 전문 학습 데이터 확보 난이도(의료 기록, 법원 판결문) / 데이터 저작권 리스크 / 도메인 변경 시 재학습 비용
 ```
 - 필수 키워드: DSLM(도메인 특화 언어모델) · 계속 사전학습(Continued Pre-training) · 도메인 토크나이저 · 전문 코퍼스 · 환각 억제 · BloombergGPT
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 도메인 적응 파이프라인 구조도 → Ⅴ 범용 LLM vs DSLM 비교표 / 25점 = Ⅰ~Ⅶ 전개, 전용 토크나이저 확장 기법과 계속 사전학습 손실 함수 설계 집중
 - 기출: 미출제. 예상: "기업 및 전문 산업 분야에서 생성형 AI의 실질적 도입을 견인하는 DSLM(Domain-Specific Language Models)의 개념, 구축 방법론(Continued Pre-training, SFT), 그리고 범용 LLM 대비 장단점을 설명하시오."
 
 ## 한 줄 본질

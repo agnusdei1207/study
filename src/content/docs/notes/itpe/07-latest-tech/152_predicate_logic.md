@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 70
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 지식 표현 시 조합 폭증에 따른 지연 / 지식 베이스 불일치(Inconsistency) / 비선형 딥러닝 모델과의 표현 양식 불일치
 ```
 - 필수 키워드: 술어 논리(Predicate Logic) · 1차 술어 논리(FOL) · 전칭 한정사(∀) · 존재 한정사(∃) · 단일화(Unification) · 분해 추론(Resolution) · 지식 베이스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 술어 논리의 수식적 구성요소 및 한정사 기호 → Ⅴ 명제 논리 vs 1차 술어 논리 비교표 / 25점 = Ⅰ~Ⅶ 전개, 단일화(Unification) 알고리즘 흐름 및 자동 정리 증명(Resolution Refutation) 증명 과정 전개
 - 기출: 122회 `술어 논리(Predicate Logic)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

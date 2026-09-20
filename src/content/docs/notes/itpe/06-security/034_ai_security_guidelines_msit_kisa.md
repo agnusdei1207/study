@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 학습데이터 오염(Data Poisoning) 방지 / 프롬프트 인젝션 및 모델 전도 방어 / 사내 기밀 유출 차단
 ```
 - 필수 키워드: 과기정통부·KISA · AI 생애주기 보안 · 데이터 중독 · 모델 추출(Model Extraction) · 레드티밍 · 입출력 가드레일
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ AI 생애주기별 4단계 보안 통제 도식 → Ⅴ 보안 안내서 vs 윤리 기준 비교 / 25점 = Ⅰ~Ⅶ 전개, 생애주기별 핵심 위협 대응표와 Ⅵ 기업 내 생성형 AI 도입 거버넌스 집중
 - 기출: 미출제. 예상: "과기정통부와 KISA가 발표한 '생성형 AI 서비스 보안 안내서'의 생애주기별 주요 보안 위협과 단계별 보안 대책을 설명하시오."
 
 ## 한 줄 본질

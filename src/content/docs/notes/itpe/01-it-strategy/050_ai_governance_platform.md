@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "B · 미출 · 75%"
+    text: "B"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 오픈소스 LLM 도입 시 통제 사각지대 / 실시간 가드레일 삽입에 따른 레이턴시 증가 / 사내 부서 간 규제 해석 충돌
 ```
 - 필수 키워드: AI 거버넌스 · EU AI Act · 위험 기반 접근(Risk-based) · 모델 카드(Model Card) · 편향성/공정성 · 설명가능성(XAI) · MLOps 연계
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 아키텍처 계층도 → 핵심 기능 요약 / 25점 = Ⅰ~Ⅶ 전개, NIST AI RMF / ISO 42001 표준 프레임워크와의 결합 방안 제시
 - 기출: 미출제. 예상: "기업의 생성형 AI 도입에 따른 위험 통제와 글로벌 규제 대응을 위한 AI 거버넌스 플랫폼의 주요 구성요소 및 구축 방안을 설명하시오."
 
 ## 한 줄 본질

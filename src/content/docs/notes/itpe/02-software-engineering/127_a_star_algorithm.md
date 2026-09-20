@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:45:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 71%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "87회, 90회, 98회"
-  priority: 71
-  priority_note: "이전(KPC):87,90,98"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 허용성(Admissibility) 위반 시 최적 경로 실패 / 대규모 맵에서의 메모리 폭증 / 게임 길찾기 및 내비게이션 활용
 ```
 - 필수 키워드: A* 알고리즘 · 평가 함수 $f(n)$ · 실제 비용 $g(n)$ · 휴리스틱 $h(n)$ · 허용성(Admissibility) · 일관성(Consistency) · Open/Closed List
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 평가 함수 구성 및 탐색 격자 도식 → Ⅴ 다익스트라 비교 / 25점 = Ⅰ~Ⅶ 전개, 87/90/98회 기출 휴리스틱 조건(과소 추정)에 따른 최적성 증명 및 메모리 한계 극복(IDA*, SMA*)
 - 기출: 98회 1교시 `A* 알고리즘의 평가함수와 특징` → Ⅱ·Ⅲ, 90회 2교시 `최단 경로 알고리즘 비교(Dijkstra vs A*)` → Ⅴ
 
 ## 한 줄 본질

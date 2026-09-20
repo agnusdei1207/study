@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:33:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 순환 링크로 인한 라우팅 교착상태(Deadlock) / 고차원 케이블링 물리적 복잡도 / 단일 링크 장애 시 단절
 ```
 - 필수 키워드: 토러스(Torus) · k-ary n-cube · 랩어라운드 링크 · 네트워크 지름(Diameter) · 가상 채널(Virtual Channel) · 차원 순서 라우팅(DOR)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 2D 메시 vs 2D 토러스 비교 도식 → Ⅴ 상호연결망 토폴로지 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 수학적 지표(지름/대역폭)와 Ⅵ 가상 채널 기반 교착상태(Deadlock) 해결 알고리즘
 - 기출: 125회 2교시 `상호연결망 토폴로지 중 토러스(Torus)` 출제
 
 ## 한 줄 본질

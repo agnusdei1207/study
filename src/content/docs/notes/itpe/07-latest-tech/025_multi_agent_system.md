@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 86
-  priority_note: "[출제:139] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 에이전트 간 환각 증폭(Cascading Hallucination) / 무한 루프 / 토큰 소모량 급증
 ```
 - 필수 키워드: 분산 인공지능(DAI) · 역할 분업(Planner/Worker/Critic) · 오케스트레이션 · LangGraph · 환각 증폭 · 블랙보드 패턴
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 멀티에이전트 협업 토폴로지(계층형/네트워크형) → Ⅵ 핵심 대책 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 구성요소와 Ⅳ 오케스트레이션 루프(상태 머신) 상세화
 - 기출: 139회 3교시 1번 `기업의 업무구조를 바꾸는 다중 에이전트 시스템(MAS)` → Ⅰ~Ⅵ 전반
 
 ## 한 줄 본질

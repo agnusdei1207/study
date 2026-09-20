@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 반복 루프에 따른 토큰 누적 및 지연시간 증가 / 잘못된 관측 결과 해석에 따른 에러 전파 / 도구 스키마 환각
 ```
 - 필수 키워드: ReAct · Thought(생각) · Action(행동) · Observation(관측) · 자율 에이전트 · 도구 연계(Tool Use) · 환각 억제
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ Thought-Action-Observation 루프 아키텍처 → Ⅴ 3대 에이전트 패턴 비교표 / 25점 = Ⅰ~Ⅶ 전개, CoT 대비 환각률 저감 원리 및 외부 환경 상태 반영 메커니즘 집중
 - 기출: 미출제. 예상: "자율 AI 에이전트의 문제 해결 능력을 고도화하기 위한 ReAct(Reasoning and Acting) 패턴의 개념, 동작 사이클 및 기존 CoT 대비 이점을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

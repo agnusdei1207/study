@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 100%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회, 136회, 131회"
-  priority: 100
-  priority_note: "[출제:134,136] · [출제(KPC):131] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 취약점 오탐 피로(Alert Fatigue) 해소 / 동적 패키지 식별 한계 / 공급업체 납품 강제 규제
 ```
 - 필수 키워드: NTIA 최소요소 · SPDX · CycloneDX · VEX · 전이 의존성(Transitive Dependency) · Cosign
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ NTIA 7대 필수요소 표 → Ⅴ SPDX vs CycloneDX / 25점 = Ⅰ~Ⅶ 전개, DevSecOps 연계 흐름과 Ⅵ VEX를 통한 오탐 통제 집중
 - 기출: 134회 3교시 3번 `SBOM 개념과 구성요소` → Ⅰ·Ⅲ / 136회 4교시 4번 `공급망 보안과 SBOM 아키텍처` → Ⅳ·Ⅵ
 
 ## 한 줄 본질

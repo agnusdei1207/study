@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:54:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 불완전 디버깅(수정 시 신규 결함 유입) / 테스트 환경과 운영 환경의 괴리 / 릴리스 시점 결정
 ```
 - 필수 키워드: SRGM · 소프트웨어 신뢰도 · NHPP · Goel-Okumoto 모델 · Yamada S-curve · 잔존 결함 · MTTF · 릴리스 시점
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ G-O 지수형 vs Yamada S자형 결함 누적 곡선 도식 → Ⅴ 두 모델 비교 / 25점 = Ⅰ~Ⅶ 전개, 124회 기출 SRGM 가정 사항, 모델 파라미터 추정(MLE) 및 최적 릴리스 시점 결정 공식
 - 기출: 124회 1교시 `소프트웨어 신뢰성 성장 모델(SRGM)의 개념 및 대표적 모델 2가지` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

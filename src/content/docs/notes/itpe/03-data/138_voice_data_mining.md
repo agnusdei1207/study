@@ -2,9 +2,6 @@
 sidebar:
   order: 138
   label: "138. 음성데이터 마이닝"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "음성데이터 마이닝"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 138
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "138"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 통화 중 주변 소음 및 묵음 구간으로 인한 오인식 / 녹취록 내 고객 주민등록번호 등 민감 개인정보 노출
 ```
 - 필수 키워드: 음성데이터 마이닝 · 음성인식(STT) · MFCC · 스펙트로그램 · 화자 분리(Speaker Diarization) · 감성 분석 · VoC · Whisper
-- 배점 전략: 10점 = Ⅰ → Ⅲ 음성-음향-텍스트 3단계 마이닝 파이프라인 구조도 → Ⅴ 텍스트 마이닝과의 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 엔드투엔드 처리 흐름도 및 Ⅵ AICC(인공지능 콜센터) 구축 실무
 - 기출: 130회 `비정형 데이터 분석을 위한 음성데이터 마이닝(Voice Data Mining)의 개념, 처리 절차 및 주요 활용 분야를 설명하시오.` → Ⅰ 정의 + Ⅲ 핵심 기술 요소 + Ⅳ 분석 절차 + Ⅵ AICC 실무 사례
 
 ## 한 줄 본질

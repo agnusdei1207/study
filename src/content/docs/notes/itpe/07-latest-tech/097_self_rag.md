@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 반성 토큰 학습을 위한 특수 파인튜닝 비용 / 빔 서치 적용 시 디코딩 지연시간 증가 / 독점 상용 LLM 적용 제약
 ```
 - 필수 키워드: Self-RAG · 반성 토큰(Reflection Tokens) · 적응형 검색(Adaptive Retrieval) · `[Retrieve]` · `[IsRel]` · `[IsSup]` · `[IsUse]`
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 반성 토큰 구조 및 동작 흐름 → Ⅴ 기존 RAG 대비 차별성 비교표 / 25점 = Ⅰ~Ⅶ 전개, 반성 토큰 학습 방식(Critic/Generator) 및 빔 서치 확률 최적화 수식 집중
 - 기출: 미출제. 예상: "거대 언어 모델의 검색 증강 생성에서 적응형 검색과 자가 반성을 결합한 Self-RAG의 개념, 4가지 반성 토큰의 역할 및 동작 원리를 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

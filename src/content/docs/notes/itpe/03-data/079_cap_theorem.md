@@ -2,9 +2,6 @@
 sidebar:
   order: 79
   label: "079. CAP 이론 (CAP Theorem)"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "CAP 이론 (CAP Theorem)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 79
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "079"
-  source_status: "기출"
-  source_history: "126회, 93회"
-  priority: 76
-  priority_note: "[출제(KPC):126] · 이전(KPC):93"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 정상 상황(P가 아닐 때)의 지연시간(Latency) 트레이드오프 설명 불가 (PACELC 필요)
 ```
 - 필수 키워드: 브루어(Eric Brewer) · 일관성(Consistency) · 가용성(Availability) · 파티션 허용성(Partition Tolerance) · CP 시스템 · AP 시스템 · PACELC
-- 배점 전략: 10점 = Ⅰ → Ⅲ 벤다이어그램 도식 → Ⅴ CP vs AP 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 네트워크 단절 시나리오 증명 및 PACELC 이론 확장
 - 기출: 126회 `분산 데이터베이스 시스템에서 CAP 이론의 개념과 CP, AP 시스템 비교` → Ⅰ 개념 + Ⅲ 3대 요소 + Ⅴ CP/AP 비교 및 대표 NoSQL
 
 ## 한 줄 본질

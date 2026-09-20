@@ -2,9 +2,6 @@
 sidebar:
   order: 32
   label: "032. 표본추출 (Sampling)"
-  badge:
-    text: "기출 · 86%"
-    variant: note
 title: "표본추출 (Sampling)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 32
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "032"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 86
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 표본추출 틀(Sampling Frame) 오차 / 클래스 불균형(소수 클래스 소실) / 표본 편향(Selection Bias)
 ```
 - 필수 키워드: 모집단 · 표본오차 · 단순무작위추출(SRS) · 층화추출(Stratified) · 군집추출(Cluster) · 편향(Bias) · AI 학습데이터 샘플링
-- 배점 전략: 10점 = Ⅰ → Ⅲ 확률추출 4대 기법 비교표 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 추출 유형 분류도 및 Ⅴ 층화 vs 군집 심층 비교
 - 기출: 140회 4교시 2번 `데이터 기반 의사결정과 AI 학습데이터 구축에서 핵심이 되는 표본추출에 대하여 다음을 설명하시오.` → 통계 표본추출 + AI 데이터셋 샘플링
 
 ## 한 줄 본질

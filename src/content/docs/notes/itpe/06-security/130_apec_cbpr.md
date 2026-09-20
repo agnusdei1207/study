@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 70
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 국내 개인정보보호법과의 요건 불일치 / 중소기업의 인증 유지 비용 부담 / Global CBPR 포럼으로의 확대 개편에 따른 규정 갱신
 ```
 - 필수 키워드: APEC CBPR · 국경 간 개인정보 이전 · APEC 9대 프라이버시 원칙 · 책임기구(AA) · 집행당국(PEPA) · EU GDPR 적정성 결정 비교 · Global CBPR
-- 배점 전략: 10점 = Ⅰ APEC CBPR 정의 및 제정 목적 → Ⅲ 4대 운영 구성요소 도식 → Ⅴ GDPR 적정성 결정과의 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제132회 3교시 기출 완벽 대응, APEC 9대 원칙(피해방지, 통지, 수집제한 등) 상술, Global CBPR 포럼 출범에 따른 글로벌 데이터 주권 대응 전략 분석
 - 기출: 제132회 3교시 5번: "APEC(Asia-Pacific Economic Cooperation)의 CBPR(Cross Border Privacy Rules)에 대하여 다음을 설명하시오."
 
 ## 한 줄 본질

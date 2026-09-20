@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:57:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고밀도 GPU 클러스터 테일 레이턴시(Tail Latency) / 저궤도 위성 도플러 시프트 / 기지국 전력 소비 폭증
 ```
 - 필수 키워드: IITP 2026 10대 이슈 · AI-RAN · Ultra Ethernet(UEC 1.0) · 광 동시 패키징(CPO) · 6G 비지상망(NTN) · 테일 레이턴시 · AI Native
-- 배점 전략: 10점 = Ⅰ → Ⅲ 2026 네트워크 3대 기술 축(AI for Net, Net for AI, 3D 초공간) 도식 → Ⅴ 5G vs 차세대망 비교표 / 25점 = 미출제 대비 Ultra Ethernet vs InfiniBand, AI-RAN 얼라이언스 로드맵, 3GPP Rel-20 6G 표준화 연계 상세
 - 기출: 미출제. 예상: "정보통신기획평가원(IITP) 2026 10대 이슈 중 네트워크 분야의 핵심 동향(AI-RAN, Ultra Ethernet, 6G NTN)을 설명하시오." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 74
   label: "074. HNSW (Hierarchical Navigable Small World)"
-  badge:
-    text: "기출 · 77%"
-    variant: note
 title: "HNSW (Hierarchical Navigable Small World)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 74
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "074"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 77
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 그래프 엣지 정보 유지로 인한 막대한 RAM 점유 / 데이터 동적 삭제 시 그래프 단절 위험
 ```
 - 필수 키워드: ANN(근사 최근접 이웃) · 스킵리스트(Skip-List) · 계층형 근접 그래프 · 탐욕적 탐색(Greedy Routing) · efSearch · M(노드당 최대 연결 수) · 벡터 DB
-- 배점 전략: 10점 = Ⅰ → Ⅲ 다계층 그래프 도식 → Ⅴ HNSW vs IVF 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 다계층 탐색 및 삽입(Heuristic Pruning) 알고리즘 상세
 - 기출: 137회 4교시 2번 `벡터 데이터베이스의 효율적 검색을 위한 HNSW와 IVF의 동작원리` → Ⅰ 개념 + Ⅲ/Ⅳ HNSW 다계층 계층 탐색 원리 + Ⅴ 비교
 
 ## 한 줄 본질

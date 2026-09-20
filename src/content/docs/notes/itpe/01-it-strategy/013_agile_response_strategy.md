@@ -6,26 +6,19 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 미출 · 91%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 91
-  priority_note: "합숙·모의 13"
   keyword_grade: "A"
-  grade_basis: "memories 정본 01-013의 A 등급"
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-▶ 01 정보 전략·관리 → 02 SW공학 → 03 데이터 → 04 시스템
-         ↑                                        ↓
-08 법·정책 ← 06 보안 ← 05 네트워크 ← 07 AI·디지털
-```
-
-- 과목 내 위치: `경영 변화 대응 → 제품·조직 전환 → 반복 가치 전달 → 성과·학습`
+<div class="itpe-topic-path" role="img" aria-label="경영 변화관리에서 제품과 조직 전환을 거쳐 애자일 대응 전략으로 이어지는 지식 위치">
+  <span>경영 변화관리</span>
+  <span>제품·조직 전환</span>
+  <strong>애자일 대응 전략</strong>
+</div>
 
 ## 해당 토픽 큰 그림과 30초 인출
 
@@ -52,7 +45,6 @@ Vision → Backlog → Sprint → Increment → Feedback → Backlog
  ┗━ Ⅵ 실무 ───── 고정가 턴키 계약과의 충돌 / 전통적 관리자의 통제 상실감 / 형식적 일일 스탠드업 미팅 변질
 ```
 - 필수 키워드: 바이모달 IT(Mode 1/2) · 스크럼(Scrum) · 스프린트(Sprint) · 대규모 애자일(SAFe) · 자기조직화 · 계약 테일러링
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 바이모달 IT 구조도 → 폭포수 vs 애자일 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 영역별 전환 전략과 Ⅵ 공공·엔터프라이즈 계약 장애 극복 집중
 - 기출: 129회 2교시 `구조적 방법론 환경에서 애자일 방법론 도입 전략 및 고려사항` → Ⅲ·Ⅵ, 131회 1교시 `폭포수와 애자일 비교` → Ⅴ
 
 ## 한 줄 본질

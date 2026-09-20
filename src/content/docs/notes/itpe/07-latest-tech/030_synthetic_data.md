@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 86
-  priority_note: "[출제:140] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 모델 붕괴(Model Collapse, 재귀 학습 퇴화) / 원본 데이터 편향 복제 / 현실 왜곡
 ```
 - 필수 키워드: 데이터 고갈(Data Wall) · 충실도(Fidelity) · 다양성(Diversity) · 차분 프라이버시 · 모델 붕괴(Model Collapse) · 코너 케이스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 생성 방식 다이어그램 → Ⅵ 모델 붕괴 대응 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 품질 3대 평가 지표와 Ⅳ 생성-검증 파이프라인 집중
 - 기출: 140회 3교시 3번 `합성데이터(Synthetic Data)의 대두 배경, 생성 기술, 품질 평가 및 한계점` → Ⅰ~Ⅵ 전반
 
 ## 한 줄 본질

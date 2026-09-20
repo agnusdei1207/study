@@ -2,9 +2,6 @@
 sidebar:
   order: 55
   label: "055. 데이터 마이닝 기법"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "데이터 마이닝 기법"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 55
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "055"
-  source_status: "기출"
-  source_history: "129회, 130회"
-  priority: 80
-  priority_note: "[출제(KPC):129,130]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원 과다로 인한 과적합 / 연속형 변수의 무분별한 이산화에 따른 정보 손실
 ```
 - 필수 키워드: 분류(Classification) · 회귀(Regression) · 군집화(Clustering) · 연관규칙(Association Rule) · 의사결정나무 · K-Means · Apriori
-- 배점 전략: 10점 = Ⅰ → Ⅲ 기법 분류 매트릭스 도식 → Ⅴ 지도/비지도 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 기법별 대표 알고리즘 상세 및 Ⅵ 도메인 적용 사례
 - 기출: 129회/130회 `데이터 마이닝의 주요 기법과 특징` → Ⅲ 기법 분류 체계 + 대표 알고리즘 매핑
 
 ## 한 줄 본질

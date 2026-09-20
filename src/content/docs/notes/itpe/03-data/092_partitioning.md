@@ -2,9 +2,6 @@
 sidebar:
   order: 92
   label: "092. 파티셔닝 (Partitioning)"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "파티셔닝 (Partitioning)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 92
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "092"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 76
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 쿼리 조건절 파티션 키 누락으로 전 파티션 풀스캔 / 글로벌 인덱스 존재 시 파티션 Drop 에러(Index Unusable)
 ```
 - 필수 키워드: 파티셔닝 · 파티션 키 · 파티션 프루닝(Pruning) · Range · List · Hash · Composite · 로컬 인덱스 · 글로벌 인덱스
-- 배점 전략: 10점 = Ⅰ → Ⅲ 4대 분할 방식 도식 → Ⅴ 파티셔닝 vs 샤딩 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 파티션 프루닝 I/O 절감 원리 및 Ⅵ 인덱스 관리 전략
 - 기출: 127회 `대용량 데이터베이스의 성능 및 관리 향상을 위한 파티셔닝(Partitioning)의 개념, 분할 방식 4가지 및 인덱스 파티션(로컬/글로벌)을 설명하시오.` → Ⅰ 개념 + Ⅲ 4대 분할 방식 + Ⅵ 로컬 vs 글로벌 인덱스
 
 ## 한 줄 본질

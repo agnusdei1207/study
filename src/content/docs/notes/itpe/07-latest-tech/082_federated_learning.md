@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 76
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 비-IID(Non-IID) 분포에 따른 모델 발산 / 무선 통신 대역폭 병목 / 악의적 클라이언트의 중독 공격(Poisoning)
 ```
 - 필수 키워드: 연합학습(Federated Learning) · FedAvg(Federated Averaging) · 비-IID(Non-IID) 데이터 · 차분 프라이버시(DP) · 안전 다자간 계산(SMC) · 모델 중독(Model Poisoning)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 중앙 서버-엣지 클라이언트 협업 구조도 → Ⅴ 학습 패러다임 비교표 / 25점 = Ⅰ~Ⅶ 전개, FedAvg 가중 평균 수식과 Non-IID 이질성 해결책(FedProx), 가중치 역공학 방어(DP-SGD) 집중
 - 기출: 128회 1교시 `연합학습` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

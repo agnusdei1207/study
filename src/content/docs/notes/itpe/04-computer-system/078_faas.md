@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 74
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 초기 기동 지연(Cold Start) / 최대 실행 시간(15분) 제한 / 분산 트랜잭션 및 디버깅 복잡성
 ```
 - 필수 키워드: FaaS · 서버리스 · 이벤트 주도 · AWS Lambda · 콜드 스타트(Cold Start) · MicroVM · 무상태(Stateless)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ FaaS 런타임 및 이벤트 라우팅 구조도 → Ⅴ FaaS vs BaaS 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 함수 수명주기(Cold/Warm Start) 동작 흐름 및 Ⅵ 콜드 스타트 완화와 관측가능성(Observability)
 - 기출: 121회 1교시 3번 `BaaS와 FaaS 비교` 단답형 출제
 
 ## 한 줄 본질

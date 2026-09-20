@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "B · 기출 · 75%"
+    text: "B"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 75
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 원천 기술 기업의 브랜드 인지도 상실 / 커스터마이징 제약에 따른 차별화 실패 / 플랫폼 종속 및 라이선스 분쟁
 ```
 - 필수 키워드: 화이트 레이블(White Label) · 리브랜딩(Rebranding) · B2B2C · Time-to-Market · API 이코노미 · BaaS(서비스형 뱅킹) · 헤드리스(Headless)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 기술 아키텍처(백엔드 엔진 ↔ 화이트라벨링 UI) → Ⅴ 유사 모델(OEM, 프라이빗라벨) 비교 / 25점 = Ⅰ~Ⅶ 전개, 핀테크 BaaS 및 멀티테넌트 SaaS 연계
 - 기출: 136회 1교시 1번 `화이트 레이블 마케팅(White Label Marketing)` → Ⅰ·Ⅲ·Ⅴ
 
 ## 한 줄 본질

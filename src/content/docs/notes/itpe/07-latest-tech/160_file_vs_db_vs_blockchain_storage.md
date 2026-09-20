@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 블록체인에 대용량 파일 직접 저장 시 온체인 수수료 폭증 / DB 데이터 위변조 내부자 공격 / 파일 저장소의 동시성 제어 한계
 ```
 - 필수 키워드: 파일 시스템 · RDBMS · NoSQL · 블록체인(Blockchain) · 불변성(Immutability) · CRUD · 온체인 vs 오프체인 · IPFS · 티어링(Tiering)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅴ 파일 vs DB vs 블록체인 핵심 특성 비교표 → Ⅶ 온체인-오프체인 하이브리드 아키텍처 / 25점 = Ⅰ~Ⅶ 전개, 데이터 라이프사이클에 따른 3계층 매핑 및 IPFS 해시 연동 메커니즘 상세화
 - 기출: 130회 `파일 vs DB vs 블록체인 저장` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

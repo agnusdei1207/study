@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T02:06:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "116회, 119회"
-  priority: 58
-  priority_note: "이전(KPC):116,119"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 자금력 없는 중소 스타트업 CP의 시장 진입 장벽 형성 / 통신사 자사 서비스 몰아주기로 인한 공정거래법 위반 리스크
 ```
 - 필수 키워드: 제로 레이팅(Zero Rating) · 스폰서 데이터 · 망중립성(Net Neutrality) · 자사 우대(Self-preferencing) · 심층패킷분석(DPI) · 공정경쟁 저해
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 3대 유형 분류 및 과금 흐름 도식 → Ⅴ 망중립성과의 충돌 쟁점 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ DPI 기술적 구현 메커니즘과 Ⅵ 통신복지 vs 공정경쟁 양면 시장 규제 실무
 - 기출: 116회, 119회 기출 `제로 레이팅(Zero Rating)의 개념, 유형, 긍정적/부정적 측면, 망중립성과의 관계 및 정책적 대응 방안을 설명하시오.` → Ⅰ·Ⅱ·Ⅲ·Ⅳ·Ⅵ 전수
 
 ## 한 줄 본질

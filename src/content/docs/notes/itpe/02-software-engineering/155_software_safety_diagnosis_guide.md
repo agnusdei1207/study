@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:13:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 레거시 설비 인터페이스 분석 난항 / 안전 프로세스 내재화 부족 / 지침 개정에 따른 공공 발주 의무화
 ```
 - 필수 키워드: 소프트웨어 안전진단 · 과기정통부 · NIPA · 위험원(Hazard) · 페일세이프(Fail-Safe) · 결함 허용 · 결함 주입 시험 · IEC 61508
-- 배점 전략: 10점 = Ⅰ 목적 → Ⅲ 4단계 진단 절차 및 4대 영역 매트릭스 도식 → Ⅴ 안전 vs 보안 vs 품질 비교 / 25점 = Ⅰ~Ⅶ 전개, 126회 기출 가이드라인 주요 진단 항목, 위험원 분석 기법 및 공공 정보화 사업 적용 방안
 - 기출: 126회 1교시 `소프트웨어 안전진단 가이드의 주요 내용 및 진단 절차` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

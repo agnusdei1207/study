@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회, 137회"
-  priority: 91
-  priority_note: "[출제:133,137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── etcd 백업 및 고가용성 / 네트워크 CNI 병목 / 복잡한 RBAC 권한 제어
 ```
 - 필수 키워드: 컨트롤 플레인 · etcd · Kubelet · 파드(Pod) · 선언적 구성(Desired State) · CNI/CSI
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 마스터/워커 아키텍처 다이어그램 → Ⅴ 도커스웜 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 컨트롤 루프 동작과 Ⅵ 엔터프라이즈 장애 대응 방안
 - 기출: 133회 1교시 `쿠버네티스 개념`, 137회 4교시 `쿠버네티스 아키텍처 및 핵심 구성요소`
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 72
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원이 20차원 이상일 때 GP 연산량($O(N^3)$) 급증 / 획득 함수 하이퍼파라미터($\kappa$) 편향 / 비정상성(Non-stationary) 지형 적합 실패
 ```
 - 필수 키워드: 베이지안 최적화 · 가우시안 프로세스(GP) · 대리 모델(Surrogate Model) · 획득 함수(Acquisition Function) · EI(Expected Improvement) · UCB · 탐색과 활용
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 가우시안 프로세스 사후 분포 및 획득 함수 그래프 도식 → Ⅴ HPO 탐색 기법 비교표 / 25점 = Ⅰ~Ⅶ 전개, EI/UCB 수식 기반 탐색-활용 트레이드오프 및 고차원 TPE 대안 집중
 - 기출: 132회 1교시 3번: "베이지안 최적화(Bayesian Optimization)" → Ⅰ~Ⅴ
 
 ## 한 줄 본질

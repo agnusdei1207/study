@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 정책 추진 동력 일시 약화 우려 / DPG 허브 사업의 부처 간 주도권 재갈등
 ```
 - 필수 키워드: 디지털플랫폼정부위원회 · 행정안전부 이관 · DPG 허브 승계 · 국가인공지능위원회 · 실행력 강화 · 데이터 연계
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 기능 이관 맵 구조도 → Ⅴ 거버넌스 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ DPG 핵심 사업의 부처별 승계 내역과 Ⅵ 안정적 이행 방안 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 112
   label: "112. 빅데이터 (Big Data)"
-  badge:
-    text: "기출 · 71%"
-    variant: note
 title: "빅데이터 (Big Data)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 112
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "112"
-  source_status: "기출"
-  source_history: "96회, 98회, 101회, 107회, 113회"
-  priority: 71
-  priority_note: "이전(KPC):96,98,101,107,113"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무분별한 데이터 수집으로 데이터 레이크가 데이터 늪(Data Swamp)으로 전락 / 개인정보 비식별화 미비
 ```
 - 필수 키워드: 빅데이터 · 5V(Volume, Velocity, Variety, Veracity, Value) · 분산 파일 시스템(HDFS) · 분산 컴퓨팅(Spark) · 데이터 레이크 · 스키마 온 리드
-- 배점 전략: 10점 = Ⅰ → Ⅲ 빅데이터 수집-저장-처리-분석 4계층 아키텍처 → Ⅴ DW vs 빅데이터 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 람다/카파 아키텍처 흐름 및 Ⅵ 거버넌스·품질 관리 방안
 - 기출: 113회 `빅데이터의 5V 특성과 빅데이터 플랫폼 아키텍처의 구성요소 및 처리 기술` → Ⅰ 정의 + Ⅱ 5V + Ⅲ 아키텍처 구성요소 + Ⅵ 거버넌스
 
 ## 한 줄 본질

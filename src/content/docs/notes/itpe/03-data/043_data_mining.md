@@ -2,9 +2,6 @@
 sidebar:
   order: 43
   label: "043. 데이터마이닝 (Data Mining)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "데이터마이닝 (Data Mining)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 43
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "043"
-  source_status: "기출"
-  source_history: "129회, 96회, 98회, 99회"
-  priority: 81
-  priority_note: "[출제(KPC):129] · 이전(KPC):96,98,99"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 불균형으로 인한 오탐 / 무의미한 거짓 상관관계(Spurious Correlation) 채택
 ```
 - 필수 키워드: CRISP-DM · KDD · 분류 · 군집화 · 연관규칙(장바구니 분석) · 이상치 탐지 · 특성공학(Feature Engineering)
-- 배점 전략: 10점 = Ⅰ → Ⅳ CRISP-DM 프로세스 도식 → Ⅴ OLAP 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 4대 작업 유형 및 Ⅳ 절차 상세 전개
 - 기출: 129회 `데이터마이닝 절차 및 주요 분석 기법` → Ⅳ CRISP-DM 절차 + Ⅲ 핵심 분석 알고리즘
 
 ## 한 줄 본질

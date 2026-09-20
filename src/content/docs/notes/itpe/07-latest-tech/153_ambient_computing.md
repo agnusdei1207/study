@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 70
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상시 감시에 따른 프라이버시 침해 공포 / 센서 오작동으로 인한 원치 않는 기기 오동작 / 제조사별 생태계 파편화
 ```
 - 필수 키워드: 앰비언트 컴퓨팅(Ambient Computing) · 캄 테크(Calm Tech) · Zero UI · 맥락 인지(Context-Aware) · 선제적 서비스(Proactive) · Matter 표준 · 사이지각 센싱
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 앰비언트 컴퓨팅 4대 핵심 특징 및 계층 구조도 → Ⅴ 유비쿼터스 vs 앰비언트 비교표 / 25점 = Ⅰ~Ⅶ 전개, 마크 와이저의 유비쿼터스 컴퓨팅 계승 관계, Matter 프로토콜 기반 멀티 디바이스 연동 및 프라이버시 보호 전개
 - 기출: 121회 `앰비언트 컴퓨팅(Ambient Computing)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회, 104회"
-  priority: 76
-  priority_note: "[출제:133] · 이전(KPC):104"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수신자 공개키 위조 방지를 위한 PKI 인증서 검증 필수 / 송신자 신원 보증을 위해 전자서명과 결합한 전자서명봉투(Signed Envelope) 운용
 ```
 - 필수 키워드: 전자봉투 · 하이브리드 암호화 · 일회용 세션키 · 대칭키(AES) · 비대칭키(RSA/ECC) · 생성 절차 · 개봉 절차
-- 배점 전략: 10점 = Ⅰ 하이브리드 개념 → Ⅳ 생성 절차 및 개봉 절차 2단 도식 → Ⅴ 전자서명과의 비교 / 25점 = Ⅰ~Ⅶ 전개, S/MIME 및 PGP에서의 전자서명 결합 구조와 PQC KEM(Key Encapsulation Mechanism) 전환 대응
 - 기출: 133회 1교시 4번 `전자봉투 생성절차와 개봉절차를 설명하시오.` → Ⅳ 생성 절차 및 개봉 절차 2대 흐름 상세 도식
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 72
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 파라미터 수 폭증에 따른 GPU VRAM 고갈 / 과적합(Overfitting) 발생 / 그래디언트 소실 및 폭주
 ```
 - 필수 키워드: 파라미터(Parameter) · 모델 가중치(Weight) · 편향(Bias) · 역전파(Backpropagation) · 경사하강법 · 하이퍼파라미터 대비 · 파라미터 양자화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 신경망 뉴런 수식($y = \sigma(Wx+b)$) 및 파라미터 갱신 흐름도 → Ⅴ 파라미터 vs 하이퍼파라미터 비교표 / 25점 = Ⅰ~Ⅶ 전개, 수천억 파라미터 LLM 시대의 메모리 산정 공식(1B당 4GB FP32/2GB FP16) 및 양자화 최적화 집중
 - 기출: 120회 `파라미터` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

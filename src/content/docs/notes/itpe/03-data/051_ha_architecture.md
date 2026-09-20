@@ -2,9 +2,6 @@
 sidebar:
   order: 51
   label: "051. 고가용성(HA) 아키텍처"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "고가용성(HA) 아키텍처"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 51
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "051"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 네트워크 단절 시 스플릿 브레인(Split-Brain) 데이터 오염 / 페일오버 지연에 따른 트랜잭션 유실
 ```
 - 필수 키워드: 단일 장애점(SPOF) · Active-Active · Active-Standby · 하트비트(Heartbeat) · 페일오버(Failover) · 스플릿 브레인 · 쿼럼(Quorum)
-- 배점 전략: 10점 = Ⅰ → Ⅲ HA 클러스터 구성도 → Ⅴ Active-Active vs Standby 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 페일오버 상세 메커니즘 및 Ⅵ 정합성 통제
 - 기출: 138회 3교시 4번 `가용성 보장에 대하여 다음 내용을 설명하시오` → Ⅰ 개념 + Ⅲ HA 아키텍처 + Ⅳ 페일오버 및 정합성 보장
 
 ## 한 줄 본질

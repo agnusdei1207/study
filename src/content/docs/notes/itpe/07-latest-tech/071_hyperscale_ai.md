@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 79%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 79
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 환각(Hallucination)에 따른 의사결정 왜곡 / 막대한 GPU 전력 및 탄소 배출 / 데이터 주권 및 개인정보 침해
 ```
 - 필수 키워드: 초거대 인공지능 · 파운데이션 모델 · 스케일링 법칙(Scaling Law) · 창발적 능력(Emergent Ability) · RoCEv2 인프라 · 초거대 AI 가이드라인 2.0
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4계층 풀스택 구조도 → Ⅴ 전통 AI 대비 비교표 / 25점 = Ⅰ~Ⅶ 전개, 인프라 병렬화(3D Parallelism) 기술과 공공부문 초거대 AI 가이드라인 2.0 적용 절차 집중
 - 기출: 137회 2교시 4번 `“공공부문 초거대 AI 도입·활용 가이드라인 2.0”에 대하여 다음을 설명하시오.` → Ⅰ~Ⅶ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 국가별 프라이버시 법제(GDPR, PIPA) 차이 조정 / 글로벌 거버넌스 주도권 경쟁 / DID 네트워크 간 신뢰 앵커(Trust Anchor) 동기화 난제
 ```
 - 필수 키워드: GADI · DID 얼라이언스 · 옴니원(OmniOne) · 트러스트 에어웨이(Trust Airway) · FIDO 결합 · 상호운용성(Interoperability) · 자기주권 신원(SSI)
-- 배점 전략: 10점 = Ⅰ GADI 정의 및 글로벌 신원 필요성 → Ⅲ GADI 아키텍처 도식 → Ⅵ 핵심 구성요소 요약 / 25점 = Ⅰ~Ⅶ 전개, 제123회 1교시 기출 완벽 대응, FIDO 로컬 인증과 블록체인 DID의 결합 원리, 국가 간 크로스보더 신원 증명 프로토콜(Trust Airway) 및 글로벌 표준화 동향 심층 분석
 - 기출: 제123회 1교시 12번: "GADI(Global Architecture for Digital Identity)"
 
 ## 한 줄 본질

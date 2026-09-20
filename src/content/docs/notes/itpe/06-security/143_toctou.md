@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 임시 디렉토리(`/tmp`) 공유 파일 접근 시 취약 / 파일 경로 문자열 기반 검사의 한계 / 운영체제 스레드 선점으로 인한 시간차 발생
 ```
 - 필수 키워드: TOCTOU · 경쟁 상태(Race Condition) · 레이스 윈도우(Race Window) · 심볼릭 링크 공격 · 원자적 연산(Atomic Operation) · 파일 디스크립터(fstat) · `O_NOFOLLOW`
-- 배점 전략: 10점 = Ⅰ TOCTOU 개념 및 발생 원리 → Ⅲ TOC-TOU 시간차 공격 흐름도 도식 → Ⅵ 핵심 시큐어 코딩 대책 / 25점 = Ⅰ~Ⅶ 전개, 제125회 2교시 4번 기출 완벽 대응, C/C++ 및 자바/파이썬 환경에서의 구체적 취약 코드와 안전한 코드 대조, POSIX 원자적 시스템 콜(`O_CREAT | O_EXCL`) 및 파일 디스크립터 바인딩 심층 분석
 - 기출: 제125회 2교시 4번: "구현단계에서 발생 가능한 코딩 보안 약점인 검사시점과 사용시점(TOCTOU)"
 
 ## 한 줄 본질

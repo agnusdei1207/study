@@ -2,9 +2,6 @@
 sidebar:
   order: 99
   label: "099. 등분산성 (Homoscedasticity)"
-  badge:
-    text: "기출 · 75%"
-    variant: note
 title: "등분산성 (Homoscedasticity)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 99
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "099"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 75
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 소득 증가에 따른 소비 분산 폭증(나팔형 잔차) / t-검정 p-value 왜곡으로 유의하지 않은 변수 채택 위험
 ```
 - 필수 키워드: 등분산성 · 이분산성(Heteroscedasticity) · 가우스-마르코프 · 잔차도(Residual Plot) · Breusch-Pagan 검정 · White 검정 · 로그 변환 · WLS
-- 배점 전략: 10점 = Ⅰ → Ⅲ 잔차 산점도 도식(등분산 vs 이분산) → Ⅴ 다중공선성과의 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 통계 검정 및 Ⅵ 3대 해결책(로그변환, WLS, Robust SE)
 - 기출: 135회 2교시 3번 `회귀모형에서 오차의 등분산성(Homoscedasticity)과 다중공선성(Multicollinearity)에 대하여 설명하시오.` → Ⅰ 등분산성 정의 + Ⅲ 진단법 + Ⅴ 다중공선성 비교 + Ⅵ 해결책
 
 ## 한 줄 본질

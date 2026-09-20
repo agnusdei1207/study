@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 연산 효율화(MoE·경량화)로 임계치 우회 / 모델 가중치(Weights) 암호화 저장 난제
 ```
 - 필수 키워드: 프론티어 AI · 10^26 FLOPs · 이중용도 파운데이션 모델 · 레드티밍(Red Teaming) · 모델 가중치 보호 · CBRN 위험
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ FLOPs 기준과 3대 안전 의무 도식 → Ⅴ 규제 방식 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 적대적 테스트 요건과 Ⅵ 연산량 기준의 공학적 한계 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 배터리 에너지 밀도 한계(가동 2~4시간) / 고정밀 감속기 등 핵심 부품 해외 의존도 / 인간 공존 환경에서의 안전성 인증 부재
 ```
 - 필수 키워드: 휴머노이드 로봇 · 피지컬 AI · 국가 전략 프로젝트 · VLA 모델 · 액추에이터(Actuator) · 이족보행 동역학 · Sim-to-Real · K-로봇
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 휴머노이드 계층형 제어 아키텍처 → Ⅴ 로봇 폼팩터 비교표 / 25점 = Ⅰ~Ⅶ 전개, 국가 차원의 공급망(감속기, 모터, AI NPU) 내재화 및 산업 현장 실증 전략 집중
 - 기출: 미출제. 예상: "피지컬 AI(Physical AI) 국가 전략 프로젝트로서 휴머노이드 로봇(Humanoid Robot)의 중요성, 핵심 기술 아키텍처 및 산업 경쟁력 확보 방안을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

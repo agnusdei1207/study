@@ -2,9 +2,6 @@
 sidebar:
   order: 115
   label: "115. DB 튜닝"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "DB 튜닝"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 115
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "115"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 70
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 특정 쿼리 최적화를 위해 생성한 인덱스가 다른 배치 DML 성능을 급격히 저하시키는 부작용
 ```
 - 필수 키워드: DB 튜닝 · 대기 이벤트(Wait Event) · AWR · 실행 계획(Execution Plan) · 파레토 법칙 · 바인드 변수 · 인덱스 튜닝 · 버퍼 캐시
-- 배점 전략: 10점 = Ⅰ → Ⅲ 4계층 튜닝 영역별 기법 매핑표 → Ⅴ 튜닝 방식 간 투자 대비 효과 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 성능 진단 5단계 라이프사이클 및 Ⅵ 부작용 방지 사전영향평가
 - 기출: 127회 `데이터베이스 튜닝의 목표 및 단계별(모델, 환경, SQL) 튜닝 접근 방법` → Ⅰ 목표 + Ⅲ 단계별 기법 + Ⅳ 절차 + Ⅵ 실무 고려사항
 
 ## 한 줄 본질

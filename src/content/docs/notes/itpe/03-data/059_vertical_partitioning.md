@@ -2,9 +2,6 @@
 sidebar:
   order: 59
   label: "059. 수직분할 (Vertical Partitioning)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "수직분할 (Vertical Partitioning)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 59
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "059"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 전체 속성 조회 시 1:1 조인 오버헤드 / 분할 테이블 간 트랜잭션 정합성 관리 비용
 ```
 - 필수 키워드: 컬럼 분할 · 기본키(PK) 복제 · 1:1 관계 · 블록 집적도 · LOB(Large Object) · 접근 빈도 · 조인 오버헤드
-- 배점 전략: 10점 = Ⅰ → Ⅲ 테이블 분할 다이어그램 도식 → Ⅴ 수직 vs 수평 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 컬럼 친밀도 분석 기법 및 Ⅵ 물리 I/O 절감 효과
 - 기출: 138회 2교시 3번 `분산 데이터베이스 구축을 위한 데이터베이스 분할(수평/수직 분할)` → Ⅰ 개념 + Ⅲ 수직분할 구조 + Ⅴ 비교
 
 ## 한 줄 본질

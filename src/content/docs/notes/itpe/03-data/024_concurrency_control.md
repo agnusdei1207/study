@@ -2,9 +2,6 @@
 sidebar:
   order: 24
   label: "024. 병행제어"
-  badge:
-    text: "기출 · 90%"
-    variant: note
 title: "병행제어"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 24
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "024"
-  source_status: "기출"
-  source_history: "130회, 128회, 121회"
-  priority: 90
-  priority_note: "[출제(KPC):121,128,130]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 교착상태(Deadlock) 발생 / 락 세분도(Granularity) 설정 오류 / 장기 트랜잭션 블로킹
 ```
 - 필수 키워드: 병행제어 · 직렬 스케줄 · 갱신 손실(Lost Update) · 모순성(Inconsistency) · 연쇄 복귀(Cascading Rollback) · 2PL · 락 세분도
-- 배점 전략: 10점 = Ⅰ → Ⅴ 4대 이상현상 및 4대 제어기법 매핑 표 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅴ 이상현상 구조도 및 Ⅲ 제어 메커니즘
 - 기출: 130회 1교시 2번 `데이터베이스 병행 제어 기법 및 필요성` → Ⅰ 필요성 + Ⅲ 기법 / 128회 4교시 5번 `데이터베이스의 병행제어` → 직렬성 검증 및 2PL
 
 ## 한 줄 본질

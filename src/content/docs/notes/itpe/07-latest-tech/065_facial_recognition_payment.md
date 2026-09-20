@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:46:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 사진·마스크 기반 위조 공격(Spoofing) / 생체정보 유출 시 비가역적 피해 / 조명·각도에 따른 인식률 저하
 ```
 - 필수 키워드: 안면인식 결제 · 생체인식 결제 · 위변조 방지(Liveness Detection/PAD) · 특징점 템플릿 · FIDO2 · 바이오정보 분산관리
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 결제 처리 및 보안 검증 아키텍처 구조도 → Ⅴ 생체 결제 수단별 비교표 / 25점 = Ⅰ~Ⅶ 전개, 라이브니스(위변조 탐지) 기술과 금융보안원 바이오정보 분산관리 표준 집중
 - 기출: 138회 1교시 5번 `안면인식 결제 서비스` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

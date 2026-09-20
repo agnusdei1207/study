@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:02:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 70
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 후반부 요구변경 시 재작업 비용 기하급수 증가 / 프로젝트 후반부까지 동작하는 SW 부재로 인한 납기 지연 리스크
 ```
 - 필수 키워드: 선형 순차 모델(Linear Sequential) · 산출물 베이스라인(Baseline) · 마일스톤(Milestone) · 요구명세서(SRS) · 설계명세서(SDD) · 변경 통제(CCB)
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 5단계 라이프사이클 도식 → Ⅴ 타 방법론(애자일/나선형) 비교표 / 25점 = Ⅰ~Ⅶ 전개, 131회 기출 폭포수 적용 타당 프로젝트 유형, 후반부 결함 발견 시 재작업 비용 곡선(Boehm 곡선), 하이브리드 완화 방안
 - 기출: 131회 1교시 `폭포수 개발 방법론의 특징, 단계별 산출물 및 장단점` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

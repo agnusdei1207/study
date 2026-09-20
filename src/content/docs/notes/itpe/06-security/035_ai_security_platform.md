@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── API 응답 지연(Latency) 증가 / 비결정론적 판정에 따른 오탐(False Positive) / 다종 LLM 모델 연동 복잡성
 ```
 - 필수 키워드: AI-SPM(AI Security Posture Management) · 섀도우 AI 탐지 · 입출력 가드레일 · 프롬프트 방화벽 · 시맨틱 검사 · PII 마스킹
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ AI 보안 플랫폼 아키텍처 도식 → Ⅴ 전통 WAF vs AI 보안 플랫폼 비교 / 25점 = Ⅰ~Ⅶ 전개, AI-SPM 4대 기능과 Ⅵ 엔터프라이즈 통합 관제 방안 집중
 - 기출: 미출제. 예상: "기업의 LLM 및 생성형 AI 도입에 따른 위협을 통제하기 위한 'AI 보안 플랫폼(AI Security Platform)'의 아키텍처와 핵심 기능, 도입 시 고려사항을 설명하시오."
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 75
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 널 포인터 역참조(NULL Dereference) / 스택 오버플로우 / Use-After-Free 메모리 오염
 ```
 - 필수 키워드: 세그먼테이션 오류 · SIGSEGV · MMU · Page Fault · VMA · 널 포인터 · 코어 덤프(Core Dump)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 세그먼테이션 오류 발생 4계층 구조도 → Ⅴ SIGSEGV vs SIGBUS 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ MMU 트랩 및 커널 시그널 처리 과정과 Ⅵ GDB 코어 덤프 분석 디버깅 절차
 - 기출: 136회 1교시 7번 `세그먼테이션 오류(Segmentation Fault)` 단답형 출제
 
 ## 한 줄 본질

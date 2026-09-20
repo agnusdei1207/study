@@ -2,9 +2,6 @@
 sidebar:
   order: 47
   label: "047. 인덱스 (Index)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "인덱스 (Index)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 47
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "047"
-  source_status: "기출"
-  source_history: "136회, 95회"
-  priority: 81
-  priority_note: "[출제:136] · 이전(KPC):95"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 인덱스 과다 생성으로 INSERT/UPDATE 지연 / 컬럼 가공(함수)으로 인한 인덱스 미사용
 ```
 - 필수 키워드: B+Tree · 클러스터드 인덱스 · 논클러스터드 인덱스 · 선택도(Selectivity) · 카디널리티 · 리프 노드 · 랜덤 I/O · 커버링 인덱스
-- 배점 전략: 10점 = Ⅰ → Ⅲ B+Tree 노드 계층 도식 → Ⅴ 클러스터드 vs 논클러스터드 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 탐색 흐름 및 Ⅵ 인덱스 튜닝 원칙
 - 기출: 136회 2교시 5번 `데이터베이스 인덱스 설명 및 클러스터드/논클러스터드 인덱스 비교` → Ⅰ 개념 + Ⅲ 구조 + Ⅴ 클러스터드 vs 논클러스터드 비교
 
 ## 한 줄 본질

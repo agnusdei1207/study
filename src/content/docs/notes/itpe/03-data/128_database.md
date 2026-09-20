@@ -2,9 +2,6 @@
 sidebar:
   order: 128
   label: "128. 데이터베이스"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "데이터베이스 (Database)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 128
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "128"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 종속성과 중복성으로 인한 이상현상 / 단일 중앙 DB에 모든 부하가 집중되는 확장성 한계
 ```
 - 필수 키워드: 데이터베이스 · 통합 데이터 · 저장 데이터 · 운영 데이터 · 공용 데이터 · ANSI/SPARC 3단계 · 데이터 독립성 · DBMS · 폴리글랏 지속성
-- 배점 전략: 10점 = Ⅰ → Ⅲ ANSI/SPARC 3단계 스키마 및 2단계 사상 도식 → Ⅴ 파일 시스템 vs DB 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 질의 처리 엔진 흐름 및 Ⅵ 현대 분산/클라우드 네이티브 DB 진화 방향
 - 기출: 130회 `데이터베이스(Database)의 정의, 4대 기본 특성 및 ANSI/SPARC 3단계 데이터베이스 구조와 데이터 독립성을 설명하시오.` → Ⅰ 정의 + Ⅱ 4대 특성 + Ⅲ ANSI/SPARC 구조 + Ⅳ 논리적/물리적 독립성
 
 ## 한 줄 본질

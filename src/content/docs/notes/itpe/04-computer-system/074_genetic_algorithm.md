@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 조기 수렴(Premature Convergence)으로 국소 최적해 갇힘 / 적합도 함수 설계 난이도 / 하이퍼파라미터 민감성
 ```
 - 필수 키워드: 유전 알고리즘 · 적합도 함수 · 선택(Selection) · 교차(Crossover) · 돌연변이(Mutation) · 조기 수렴 · 엘리티즘
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 유전 연산자 도식 → Ⅴ 선택 기법 3종 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 세대 진화 알고리즘 제어 루프 및 Ⅵ 스케줄링/외판원 문제(TSP) 적용과 조기 수렴 극복책
 - 기출: 137회 4교시 5번 `유전 알고리즘(Genetic Algorithm)에 대하여 설명하시오.` 논술형 출제
 
 ## 한 줄 본질

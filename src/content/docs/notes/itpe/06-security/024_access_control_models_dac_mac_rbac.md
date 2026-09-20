@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 90%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회, 127회, 129회"
-  priority: 90
-  priority_note: "[출제:133] · [출제(KPC):127,129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 트로이 목마 정보 유출 취약(DAC) / 경직된 관리 부담(MAC) / 역할 폭발(Role Explosion) 현상(RBAC)
 ```
 - 필수 키워드: DAC(임의적 접근통제) · MAC(강제적 접근통제) · RBAC(역할기반) · ABAC(속성기반) · 참조 모니터 · 역할 폭발
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 접근통제 모델 비교표 → Ⅳ 참조 모니터 동작 흐름 / 25점 = Ⅰ~Ⅶ 전개, 각 모델의 수학적/보안적 한계와 Ⅵ 클라우드 환경 ABAC 진화 집중
 - 기출: 133회 4교시 3번 `접근통제 정책과 절차 및 메커니즘` → Ⅰ·Ⅲ·Ⅳ / 129회 2교시 2번 `접근 제어 정책과 LDAP 인증` → Ⅲ·Ⅴ
 
 ## 한 줄 본질

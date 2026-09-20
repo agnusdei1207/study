@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 기출 · 82%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 82
-  priority_note: "[출제:138] · 합숙·모의 1 · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 생성형 AI 특화 위험(환각, 탈옥) 대응 한계 / 정량 측정 도구 부재 / 기업의 형식적 자율 점검
 ```
 - 필수 키워드: NIST AI RMF 1.0 · 4대 핵심 구조(Govern, Map, Measure, Manage) · 7대 신뢰 특성 · 설명가능성 · 공정성 및 편향 관리 · AI 안전성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 핵심 기능 및 7대 특성 도식 → 핵심 정의 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 4대 기능별 세부 활동과 Ⅵ MLOps 연계 집중
 - 기출: 138회 1교시 1번 `미국 NIST 발행 AI RMF의 개념과 4가지 핵심구조, 7가지 신뢰 가능한 특성` → Ⅰ·Ⅲ
 
 ## 한 줄 본질

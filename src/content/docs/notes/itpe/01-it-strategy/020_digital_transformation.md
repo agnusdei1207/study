@@ -6,26 +6,19 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 미출 · 86%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 86
-  priority_note: "합숙·모의 8"
   keyword_grade: "A"
-  grade_basis: "memories 정본 01-020의 A 등급"
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-▶ 01 정보 전략·관리 → 02 SW공학 → 03 데이터 → 04 시스템
-         ↑                                        ↓
-08 법·정책 ← 06 보안 ← 05 네트워크 ← 07 AI·디지털
-```
-
-- 과목 내 위치: `경영전략 → 고객·프로세스·비즈니스모델 전환 → 디지털 역량 → 성과`
+<div class="itpe-topic-path" role="img" aria-label="경영전략에서 디지털 혁신을 거쳐 디지털 트랜스포메이션으로 이어지는 지식 위치">
+  <span>경영전략</span>
+  <span>디지털 혁신</span>
+  <strong>디지털 트랜스포메이션</strong>
+</div>
 
 ## 해당 토픽 큰 그림과 30초 인출
 
@@ -50,7 +43,6 @@ Digitization → Digitalization → Digital Transformation
  ┗━ Ⅵ 실무 ───── 기술 과시형 프로젝트(PoC 무덤) / 기존 조직의 기득권 반발 / IT 부서와 비즈니스 부서의 협업 단절
 ```
 - 필수 키워드: 디지털 전환 · 고객 경험(CX) · 비즈니스 모델(BM) · Digitization/Digitalization/DX · CoE(Center of Excellence) · 데이터 드리븐 · AX(인공지능 전환)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3단계 발전 모델 도식 → Digitization vs Digitalization vs DX 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 4대 영역과 Ⅵ 성공적 추진을 위한 CoE 조직 전략 집중
 - 기출: 128회 2교시 `디지털 혁신을 위한 고려사항과 CoE의 역할` → Ⅲ·Ⅵ, 131회 1교시 `디지털 트랜스포메이션(Digital Transformation)` → Ⅰ·Ⅲ
 
 ## 한 줄 본질

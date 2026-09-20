@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 70
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이더리움 가스비 폭증 / 브릿지(Bridge) 해킹을 통한 자산 유출 / 엔터프라이즈 감사(Audit) 요건 미충족
 ```
 - 필수 키워드: 블록체인 트릴레마(Blockchain Trilemma) · TPS(초당트랜잭션) · 최종성(Finality) · 51% 공격 · 재진입 공격(Reentrancy) · 롤업(Rollup) · 샤딩(Sharding) · 형식 검증
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 성능 고려사항 및 해결책 → Ⅲ 보안 고려사항 및 해결책 / 25점 = Ⅰ~Ⅶ 전개, 블록체인 트릴레마 축과 레이어2 롤업(Optimistic vs ZK) 및 스마트 컨트랙트 보안 감사 체계 집중
 - 기출: 120회 `블록체인 플랫폼 성능·보안 고려사항` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

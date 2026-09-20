@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회, 134회"
-  priority: 86
-  priority_note: "[출제:134] · [출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 링크 플래핑 시 SPF 연산 폭증 / 대규모 단일 Area 메모리 고갈 / 가상 링크 구성
 ```
 - 필수 키워드: 링크 상태(Link State) · 다익스트라 SPF · Area 0(백본) · DR/BDR · ABR · ASBR · LSA
-- 배점 전략: 10점 = Ⅰ → Ⅲ 계층적 Area 아키텍처 도식 → Ⅴ RIP vs OSPF 비교표 / 25점 = Ⅰ~Ⅶ, LSA 패킷 유형(1~5)과 134회 비교 문제 상세 전개
 - 기출: 124회 `OSPF 동작 원리 및 Area 구조` → Ⅲ·Ⅳ, 134회 1교시 8번 `RIP와 OSPF 비교` → Ⅴ
 
 ## 한 줄 본질

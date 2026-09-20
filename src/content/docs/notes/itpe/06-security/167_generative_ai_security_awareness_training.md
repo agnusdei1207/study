@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "시사"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "시사"
-  source_history: "시사·트렌드"
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 # 생성형 AI 시대 보안 인식 교육

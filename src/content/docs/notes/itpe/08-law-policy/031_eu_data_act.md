@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 제조사 영업비밀 노출 위험 / 커넥티드 기기 내 데이터 전송 펌웨어 개조 부담
 ```
 - 필수 키워드: 커넥티드 디바이스(IoT) · 데이터 접근권 · 클라우드 스위칭(전환) 비용 제로화 · Egress Fee 철폐 · 영업비밀 보호
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 핵심 규제 축 구조도 → Ⅴ GDPR 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 클라우드 락인 해제 조항과 Ⅵ 국내 제조·IT 수출기업 영향 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

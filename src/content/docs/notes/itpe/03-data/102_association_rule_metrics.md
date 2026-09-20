@@ -2,9 +2,6 @@
 sidebar:
   order: 102
   label: "102. 연관규칙 지표(지지도·신뢰도·향상도)"
-  badge:
-    text: "기출 · 75%"
-    variant: note
 title: "연관규칙 지표(지지도·신뢰도·향상도)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 102
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "102"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 최소 지지도를 높게 설정 시 희귀하지만 중요한 규칙 탈락 / 높은 신뢰도라도 향상도가 1 이하인 맹목 규칙 발생
 ```
 - 필수 키워드: 연관규칙 분석 · 지지도(Support) · 신뢰도(Confidence) · 향상도(Lift) · Apriori · 빈발 항목 집합 · 장바구니 분석
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3대 지표 수식 및 의미 비교표 → Ⅴ 향상도 기준 해석(>1, =1, <1) / 25점 = Ⅰ~Ⅶ, Ⅳ Apriori 가지치기 연계 절차 및 Ⅵ 실무 한계 극복
 - 기출: 137회 1교시 13번 `데이터마이닝의 연관 규칙 분석(Association Rule Analysis) 지표를 설명하시오.` → Ⅰ 개념 + Ⅲ 3대 지표 수식과 의미 + Ⅴ 향상도 판별 기준
 
 ## 한 줄 본질

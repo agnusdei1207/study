@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:36:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 74
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 테스트 불균형(일부 기능 과잉/일부 누락) / 커버리지와 결함률의 괴리 / 릴리스 승인 게이트 연계
 ```
 - 필수 키워드: 테스트 커버리지 · 기능 커버리지 · 코드 커버리지 · 요구사항 추적표(RTM) · 테스트 완료 기준(Exit Criteria) · 품질 게이트
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 다차원 커버리지 프레임워크 도식 → Ⅴ 기능 vs 코드 커버리지 비교 / 25점 = Ⅰ~Ⅶ 전개, 127회 기출 커버리지 유형 및 실무 프로젝트 테스트 종료 판정 활용 방안
 - 기출: 127회 1교시 `테스트 커버리지(Test Coverage)` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

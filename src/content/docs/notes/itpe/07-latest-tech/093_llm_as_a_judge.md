@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 위치 편향(Position Bias) / 장황함 편향(Verbosity Bias) / 자가 선호 편향(Self-enhancement Bias)
 ```
 - 필수 키워드: LLM-as-a-Judge · 평가 루브릭(Rubric) · 쌍대 비교(Pairwise) · 단일 점수화(Single-answer) · 위치 편향 · 장황함 편향 · 생각 사슬(CoT)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 판별 평가 아키텍처 → Ⅴ 평가 방식 3종 비교표 / 25점 = Ⅰ~Ⅶ 전개, 3대 편향(위치, 장황함, 자가선호) 극복을 위한 엔지니어링 메커니즘 집중
 - 기출: 미출제. 예상: "생성형 AI 모델의 성능 및 안전성 평가를 위한 LLM-as-a-Judge의 개념, 평가 프로토콜, 고유 편향(Bias) 유형과 극복 방안을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

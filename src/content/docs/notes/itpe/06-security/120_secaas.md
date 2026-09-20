@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 72
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 국외 이전 및 규제 컴플라이언스 충돌 / CSP 장애 시 전사 보안 마비 / 기업 민감 트래픽의 외부 복호화(SSL 가시성) 프라이버시 이슈
 ```
 - 필수 키워드: SECaaS · 클라우드 보안 서비스 · CSA 12대 영역 · OpEx 전환 · SASE/SSE · 클라우드 엣지(POP) · 글로벌 위협 인텔리전스
-- 배점 전략: 10점 = Ⅰ SECaaS 정의 및 등장 배경 → Ⅲ CSA 분류 체계도 → Ⅴ 온프레미스 vs SECaaS 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제125회 1교시 기출 반영, 클라우드 네이티브 보안 트렌드(SASE, CASB, ZTNA와의 결합) 및 보안 주권/데이터 프라이버시 대응 방안 상술
 - 기출: 제125회 1교시 1번: "SECaaS(Security as a Service)"
 
 ## 한 줄 본질

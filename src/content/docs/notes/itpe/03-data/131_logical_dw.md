@@ -2,9 +2,6 @@
 sidebar:
   order: 131
   label: "131. 로지컬 DW"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "로지컬 DW"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 131
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "131"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 70
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 원천 시스템 성능 저하(쿼리 부하 전이) / 분산 조인(Cross-source Join) 시 네트워크 대역폭 병목
 ```
 - 필수 키워드: 로지컬 DW · 데이터 가상화(Data Virtualization) · 시맨틱 레이어 · 쿼리 푸시다운(Pushdown) · 연합 쿼리(Federated Query) · ETL 없는 통합 · TCO 절감
-- 배점 전략: 10점 = Ⅰ → Ⅲ 로지컬 DW 논리 가상화 아키텍처 도식 → Ⅴ 전통적 물리 DW와의 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 쿼리 최적화 및 푸시다운 메커니즘과 Ⅵ 원천 부하 분산 대책
 - 기출: 121회 `가트너가 제시한 로지컬 데이터웨어하우스(Logical Data Warehouse)의 개념과 특징 및 전통적 물리 DW와의 비교` → Ⅰ 개념 + Ⅱ 특징 + Ⅲ 아키텍처 + Ⅴ 비교표
 
 ## 한 줄 본질

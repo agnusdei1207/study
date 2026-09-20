@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 페일오버 시간 동안의 트랜잭션 정체 / 단일 장애점(SPOF) 미인지 / 종속 서비스 장애 전파
 ```
 - 필수 키워드: 가용도(Availability) · MTBF(평균 고장 간격) · MTTR(평균 수리 시간) · Five Nines · SPOF 제거 · 카오스 엔지니어링
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 가용성 보장 체계 다이어그램 → Ⅴ MTBF/MTTR 지표 관계 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 가용성 생명주기 루프와 Ⅵ 카오스 엔지니어링(Chaos Mesh) 실무 검증
 - 기출: 138회 3교시 `가용성 보장에 대하여 다음 내용을 설명하시오 (가용성 척도, 이중화 방안, FTS 및 DR 연계)`
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 악의적 에이전트의 AGENTS.md 무단 우회 / 과도한 컨텍스트 주입에 따른 토큰 낭비 / 동적 권한 갱신 미반영
 ```
 - 필수 키워드: AAIF(Agentic AI Foundation) · AGENTS.md · 자율 에이전트 · 가드레일(Guardrail) · MCP(Model Context Protocol) · 기계 가독형 명세
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ AGENTS.md 명세 구조 및 파싱 흐름 → Ⅴ 기존 정책 파일(robots.txt 등) 비교표 / 25점 = Ⅰ~Ⅶ 전개, 에이전트 생태계 거버넌스 및 런타임 권한 통제 집중
 - 기출: 미출제. 예상: "자율 AI 에이전트의 시스템 상호작용 표준화를 위한 Agentic AI Foundation(AAIF)과 AGENTS.md 명세의 구조 및 운영 방안을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 96%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "105회, 128회, 131회, 134회"
-  priority: 96
-  priority_note: "[출제:134] · [출제(KPC):128,131] · 이전(KPC):105"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 누수(Data Leakage) / 과적합(Overfitting) / 개념 드리프트(Concept Drift)
 ```
 - 필수 키워드: 지도학습 · 비지도학습 · 강화학습 · 손실 함수 · 편향-분산 트레이드오프 · MLOps · 과적합
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 학습 패러다임 분류 트리 → Ⅵ 핵심 대책 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 파이프라인 단계별 활동과 Ⅴ 전통 프로그래밍 대비 패러다임 전환 집중
 - 기출: 134회 1교시 3번 `머신러닝 성능지표` → Ⅳ·Ⅵ
 
 ## 한 줄 본질

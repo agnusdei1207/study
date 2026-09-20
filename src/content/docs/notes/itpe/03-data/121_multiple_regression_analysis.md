@@ -2,9 +2,6 @@
 sidebar:
   order: 121
   label: "121. 다중회귀분석(Multiple Regression Analysis)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "다중회귀분석 (Multiple Regression Analysis)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 121
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "121"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 독립변수 간 강한 상관관계(다중공선성)로 회귀계수 부호 왜곡 / 변수 추가 시 $R^2$ 맹목적 증가
 ```
 - 필수 키워드: 다중회귀분석 · OLS · 편회귀계수 · 수정된 결정계수(Adj $R^2$) · 다중공선성 · VIF · F-검정 · t-검정 · 잔차 진단
-- 배점 전략: 10점 = Ⅰ → Ⅲ 다중회귀식 및 4대 잔차 가정 매핑표 → Ⅴ 회귀 유형 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 단계별 모델링 및 진단 절차도와 Ⅵ 변수선택법(전진, 후진, 단계적)
 - 기출: 124회 `다중회귀분석(Multiple Regression Analysis)의 기본 가정과 다중공선성 판별 및 해결 방안` → Ⅰ 정의 + Ⅱ 기본 가정 + Ⅳ 다중공선성 판별(VIF) + Ⅵ 정규화 대책
 
 ## 한 줄 본질

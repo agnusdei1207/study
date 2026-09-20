@@ -2,9 +2,6 @@
 sidebar:
   order: 84
   label: "084. PACELC 이론"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "PACELC 이론"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 84
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "084"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 76
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 금융 결제(PC/EC) vs SNS 피드/장바구니(PA/EL) / 쿼럼($R + W > N$) 기반 유연한 레벨 조절
 ```
 - 필수 키워드: PACELC · Daniel Abadi · CAP 한계 · 네트워크 분할(P) · 가용성(A) · 일관성(C) · 지연시간(L) · 쿼럼(Quorum)
-- 배점 전략: 10점 = Ⅰ → Ⅲ PACELC 분기 수식 도식 → Ⅴ 대표 분산 DBMS 4분면 매핑표 / 25점 = Ⅰ~Ⅶ, Ⅳ 상태별 분기 흐름 및 Ⅵ SLA 기반 아키텍처 설계
 - 기출: 126회 `분산 데이터베이스에서 CAP 이론의 한계와 이를 확장한 PACELC 이론을 비교 설명하시오.` → Ⅰ CAP 한계 + Ⅲ PACELC 개념/구조 + Ⅴ 대표 제품 비교
 
 ## 한 줄 본질

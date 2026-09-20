@@ -2,9 +2,6 @@
 sidebar:
   order: 61
   label: "061. 시계열 실시간 이상치 탐지"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "시계열 실시간 이상치 탐지"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 61
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "061"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 계절성 변동(출퇴근 트래픽)을 이상치로 오탐 / 개념 드리프트(Concept Drift)로 인한 모델 성능 저하
 ```
 - 필수 키워드: 슬라이딩 윈도우 · 동적 임계값 · EWMA · 격리 포레스트(Isolation Forest) · 오토인코더(AutoEncoder) · 개념 드리프트 · 저지연
-- 배점 전략: 10점 = Ⅰ → Ⅲ 실시간 스트림 파이프라인 도식 → Ⅴ 통계 vs ML 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 동적 임계값 갱신 알고리즘 및 산업별(IoT/금융) 사례
 - 기출: 140회 4교시 4번 `시계열 데이터에서 실시간 이상치 탐지` → Ⅰ 개념 + Ⅲ 아키텍처 + Ⅳ 탐지 기법 및 산업 적용
 
 ## 한 줄 본질

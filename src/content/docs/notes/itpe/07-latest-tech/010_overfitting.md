@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 96%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회, 139회"
-  priority: 96
-  priority_note: "[출제:139] · [출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 테스트셋 오염 / 과도한 규제로 인한 과소적합 퇴보 / 에포크(Epoch) 수치 선정
 ```
 - 필수 키워드: 편향-분산 트레이드오프 · 일반화 손실 · 조기 종료(Early Stopping) · 드롭아웃(Dropout) · L1/L2 규제 · 데이터 증강
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 학습 곡선 그래프(Loss 다이어그램) → Ⅵ 데이터/모델/학습 차원 3대 대책 / 25점 = Ⅰ~Ⅶ 전개, Ⅴ 언더피팅과의 4대 축 비교와 정규화 수식 집중
 - 기출: 139회 1교시 8번 `과적합(Overfitting)과 과소적합(Underfitting)의 발생 원인과 해결 방안` → Ⅲ·Ⅴ·Ⅵ
 
 ## 한 줄 본질

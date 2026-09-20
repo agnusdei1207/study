@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 74
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 네트워크 지연에 따른 타이핑 랙(Latency) / 그래픽 집약 앱 GPU 비용 / 라이선스(OS/SaaS) 중복
 ```
 - 필수 키워드: DaaS · 클라우드 가상 데스크톱 · VDI 대항마 · 세션 브로커 · 화면 전송 프로토콜 · 제로 트러스트 · 골든 이미지
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ DaaS 클라우드 서비스 계층도 → Ⅴ DaaS vs VDI 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 스트리밍 세션 연결 절차 및 Ⅵ 망분리/재택근무 보안 통제와 그래픽 가속(vGPU) 최적화
 - 기출: 127회 1교시 13번 `DaaS(Desktop as a Service)` 단답형 출제
 
 ## 한 줄 본질

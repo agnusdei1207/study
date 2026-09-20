@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:19:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 자체 운영 인프라 관리 부담 / 플러그인 호환성 결함 / 최신 모던 UI/UX 부족 극복
 ```
 - 필수 키워드: 오픈소스 PM 도구 · 레드마인(Redmine) · OpenProject · Taiga · 이슈 추적 · 간트 차트 · 온프레미스 · 데이터 주권 · 플러그인
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 오픈소스 PM 소프트웨어 핵심 구성 모듈 도식 → Ⅴ 주요 오픈소스 PM 도구 비교 / 25점 = Ⅰ~Ⅶ 전개, 123회 기출 오픈소스 PM 도구의 필요성, 대표 도구별 아키텍처 특성 및 사내 구축 전략
 - 기출: 123회 1교시 `오픈소스 프로젝트 관리 소프트웨어(Open Source Project Management Software)의 유형 및 도입 고려사항` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

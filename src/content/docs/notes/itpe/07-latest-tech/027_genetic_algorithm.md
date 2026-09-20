@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "80회, 113회, 137회"
-  priority: 86
-  priority_note: "[출제:137] · 이전(KPC):80,113"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 조기 수렴(국소 최적해 고착) / 대규모 인구 연산 부하 / 도메인 제약조건 만족(TSP 등)
 ```
 - 필수 키워드: 염색체(Chromosome) · 적합도 함수 · 룰렛 휠 선택 · 교차(Crossover) · 변이(Mutation) · 엘리티즘(Elitism) · 조기 수렴
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 유전 연산자 도해 → Ⅳ 진화 루프 순환도 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 연산자 상세 메커니즘과 Ⅵ 조기 수렴 방지 기법 집중
 - 기출: 137회 4교시 5번 `유전 알고리즘(Genetic Algorithm)에 대하여 설명하시오.` → Ⅰ~Ⅵ 전반
 
 ## 한 줄 본질

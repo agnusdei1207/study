@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회"
-  priority: 74
-  priority_note: "[출제:133]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 과도한 TIME_WAIT 소켓 누수로 로컬 포트 고갈 / 지연 도착 패킷 충돌
 ```
 - 필수 키워드: 전이중 종료 · Half-Close · FIN_WAIT_1/2 · CLOSE_WAIT · TIME_WAIT · 2MSL · SO_REUSEADDR
-- 배점 전략: 10점 = Ⅰ → Ⅲ 상태 전이도 및 시퀀스 다이어그램 → Ⅴ 3-way vs 4-way 비교표 / 25점 = 133회 1교시 13번 기출 완벽 대응 (3-way와 4-way 상호 대조 및 TIME_WAIT 해결책 상세)
 - 기출: 133회 1교시 13번 `TCP(Transmission Control Protocol) 프로토콜의 3-way handshake와 4-way handshake를 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

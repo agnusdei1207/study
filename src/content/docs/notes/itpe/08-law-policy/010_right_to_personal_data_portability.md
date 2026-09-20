@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 의료·통신·유통 간 이종 데이터 스키마 불일치 / 시스템 구축 비용 분담 갈등
 ```
 - 필수 키워드: PIPA 제35조의2 · 개인정보 전송요구권 · 전 분야 마이데이터 · 개인정보관리전문기관 · 표준 API · 데이터 이동권
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 주체 연계 구조도 → Ⅴ 금융 vs 전분야 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 전송요구권 행사 요건과 Ⅵ 이종 산업 결합 이슈 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

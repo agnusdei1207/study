@@ -2,9 +2,6 @@
 sidebar:
   order: 62
   label: "062. 앙상블 (배깅·부스팅)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "앙상블 (배깅·부스팅)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 62
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "062"
-  source_status: "기출"
-  source_history: "120회, 126회"
-  priority: 80
-  priority_note: "[출제(KPC):120,126]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 부스팅의 이상치 과민 반응(과적합) / 대규모 데이터셋에서 직렬 학습에 따른 학습 시간 지연
 ```
 - 필수 키워드: 약한 학습기(Weak Learner) · 배깅(Bagging) · 부스팅(Boosting) · 부트스트랩(Bootstrap) · 편향(Bias) · 분산(Variance) · XGBoost · LightGBM
-- 배점 전략: 10점 = Ⅰ → Ⅲ/Ⅳ 배깅과 부스팅 비교 도식 → Ⅴ 핵심 차이점 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 알고리즘(AdaBoost, GBM) 수학적 원리 및 Ⅵ 튜닝 전략
 - 기출: 120회/126회 `머신러닝 앙상블 기법 중 배깅과 부스팅을 비교 설명하시오` → Ⅰ 개념 + Ⅲ/Ⅳ 병렬/순차 구조 + Ⅴ 편향/분산 관점 상세 비교
 
 ## 한 줄 본질

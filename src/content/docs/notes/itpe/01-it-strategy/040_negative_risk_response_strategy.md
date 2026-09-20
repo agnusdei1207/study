@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 기출 · 90%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 90
-  priority_note: "[출제:134,139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수용 위험의 대책 부재로 인한 비용 급증 / 무조건적 외주 전가로 인한 기술 종속 / 2차 위험 간과
 ```
 - 필수 키워드: 회피(Avoid) · 완화(Mitigate) · 전가(Transfer) · 수용(Accept) · 에스컬레이트(Escalate) · 잔여 위험 · 2차 위험
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅴ 5대 전략 비교표 → 각 전략별 IT 프로젝트 실무 적용 예시 / 25점 = Ⅰ~Ⅶ 전개, 위험 정량분석(EMV)과 연결
 - 기출: 139회 1교시 4번 `IT 프로젝트에서 발생할 수 있는 부정적 위험(Negative Risk)과 대응 전략` → Ⅰ·Ⅲ·Ⅴ
 
 ## 한 줄 본질

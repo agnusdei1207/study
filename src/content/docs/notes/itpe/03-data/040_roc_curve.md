@@ -2,9 +2,6 @@
 sidebar:
   order: 40
   label: "040. ROC 곡선 (ROC Curve)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "ROC 곡선 (ROC Curve)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 40
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "040"
-  source_status: "기출"
-  source_history: "135회, 102회"
-  priority: 81
-  priority_note: "[출제:135] · 이전(KPC):102"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 음성 데이터가 압도적으로 많을 때 AUC 점수 착시 / 최적 임계값 선정 실패
 ```
 - 필수 키워드: ROC 곡선 · AUC · TPR(민감도) · FPR(1-특이도) · 혼동행렬(Confusion Matrix) · 임계값(Threshold) · Youden's J Index
-- 배점 전략: 10점 = Ⅰ → Ⅲ ROC 곡선 도식 및 축 공식 매핑 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 그래프 도식 및 Ⅴ ROC vs PR 곡선 비교표
 - 기출: 135회 `분류 모델 평가 지표` → 혼동행렬 및 ROC/AUC / 102회 `ROC 곡선 분석` → 개념 및 해석
 
 ## 한 줄 본질

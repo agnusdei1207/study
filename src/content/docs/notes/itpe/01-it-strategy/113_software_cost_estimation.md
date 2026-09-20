@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "C · 미출 · 64%"
+    text: "C"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: "86회, 117회"
-  priority: 64
-  priority_note: "이전(KPC):86,117 · 합숙·모의 12"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 초기 기획 단계 상세 요구사항 미확정 / 언어·프레임워크별 생산성 편차 / 과도한 단가 삭감 압박
 ```
 - 필수 키워드: 소프트웨어 비용 산정 · 하향식 기법 · 상향식 기법 · 수학적 모형 · LOC · COCOMO · Putnam · 기능점수(FP) · 보정계수
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 비용 산정 기법 3대 분류 도식 → Ⅴ 핵심 모형(LOC/COCOMO/FP) 비교 / 25점 = Ⅰ~Ⅶ 전개, 기능점수 5대 기능(ILF, EIF, EI, EO, EQ) 산정 절차 및 보정계수, 불확실성 원추(Cone of Uncertainty) 연계 상술
 - 기출: 이전 KPC(86, 117회) `소프트웨어 개발 프로젝트의 비용 산정 기법 분류(하향식, 상향식, 수학적 모형)와 주요 모델(LOC, COCOMO, 기능점수)의 특징 및 장단점 비교` → Ⅰ·Ⅲ·Ⅳ·Ⅴ
 
 ## 한 줄 본질

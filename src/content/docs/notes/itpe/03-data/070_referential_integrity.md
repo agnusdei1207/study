@@ -2,9 +2,6 @@
 sidebar:
   order: 70
   label: "070. 참조 무결성 (Referential Integrity)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "참조 무결성 (Referential Integrity)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 70
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "070"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 대량 INSERT 시 FK 검사 디스크 I/O 병목 / 부모 행 무분별한 CASCADE DELETE로 인한 연쇄 데이터 참사
 ```
 - 필수 키워드: 외래키(FK) · 기본키(PK) · 고아 레코드(Orphan Record) · 제한(Restrict) · 연쇄(Cascade) · Null 설정(Set Null) · 무결성 제약
-- 배점 전략: 10점 = Ⅰ → Ⅲ 부모-자식 참조 관계 도식 → Ⅳ 4대 삭제/수정 규칙 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 무결성 4대 체계 매핑 및 Ⅵ 분산 환경 한계 대책
 - 기출: 138회 1교시 9번 `정보모델링의 참조 무결성` → Ⅰ 개념 + Ⅲ 구성요소 + Ⅳ 연쇄 제어 옵션(Cascade 등)
 
 ## 한 줄 본질

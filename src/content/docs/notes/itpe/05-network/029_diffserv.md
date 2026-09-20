@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 76
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 종단 간(E2E) 절대적 대역폭 보장 불가(Soft QoS) / 도메인 간 SLA 협약 복잡성
 ```
 - 필수 키워드: 차등화 서비스 · DSCP(6비트) · PHB(EF/AF/BE) · 경계 라우터(Edge) · 코어 라우터(Core) · 상태 비저장
-- 배점 전략: 10점 = Ⅰ → Ⅲ DiffServ 도메인 구성도(엣지 분류 vs 코어 PHB) → Ⅴ IntServ vs DiffServ 비교표 / 25점 = 125회 기출 종합 QoS 모델 비교 상세
 - 기출: 125회 1교시: "인터넷 QoS 보장 기법 중 IntServ와 DiffServ의 차이점을 설명하시오." → Ⅰ~Ⅴ
 
 ## 한 줄 본질

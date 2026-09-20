@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 75
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 하류 활용처 통제 불가능성 / 탈옥(Jailbreak) 기법의 지속적 진화 / 평가 지표 표준화 미흡
 ```
 - 필수 키워드: 범용 AI(GPAI) · 시스템적 위험(Systemic Risk) · NIST AI RMF · EU AI Act · 적대적 레드티밍(Red Teaming) · 거버넌스 · 모델 수명주기
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ NIST AI RMF 4대 기능 및 GPAI 생애주기 도식 → Ⅴ 위험관리 유형 비교표 / 25점 = Ⅰ~Ⅶ 전개, EU AI Act 기준 연산량($10^{25}$ FLOPs) 기반 시스템적 위험 분류 및 기술적 완화 조치 집중
 - 기출: 136회 1교시 2번: "범용 AI(General-Purpose AI) 위험관리 프레임워크" → Ⅰ~Ⅴ
 
 ## 한 줄 본질

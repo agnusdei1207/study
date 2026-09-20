@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "C · 기출 · 70%"
+    text: "C"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 70
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 섀도우 IT(Shadow IT) 확산 / 보안 취약점 및 데이터 유출 / 파편화된 비표준 시스템 유지보수 불가
 ```
 - 필수 키워드: 전문성의 민주화 · 시민 개발자(Citizen Developer) · 로우코드/노코드(LCNC) · AutoML · 셀프서비스 BI · 섀도우 IT · 거버넌스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 민주화 영역 매트릭스 도식 → Ⅴ 전통 IT 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, 생성형 AI 시대의 민주화 고도화와 섀도우 IT 통제를 위한 거버넌스(가드레일, CoE) 상술
 - 기출: 121회 KPC `가트너 전략 기술 중 전문성의 민주화(Democratization of Expertise)의 개념, 4대 핵심 영역 및 기업 비즈니스 영향` → Ⅰ·Ⅲ·Ⅳ·Ⅵ
 
 ## 한 줄 본질

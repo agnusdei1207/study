@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 72
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── TF 1.x에서 2.x 전환에 따른 레거시 호환성 문제 / 연구계(PyTorch) 대비 최신 논문 구현체 부족 / 복잡한 C++ 런타임 디버깅
 ```
 - 필수 키워드: 텐서플로우(TensorFlow) · 텐서(Tensor) · 계산 그래프(Dataflow Graph) · 자동 미분(GradientTape) · 즉시 실행(Eager Execution) · Keras · TFLite · TF Serving
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 텐서플로우 2.x 통합 아키텍처 계층도 → Ⅴ TF 1.x vs TF 2.x vs PyTorch 비교표 / 25점 = Ⅰ~Ⅶ 전개, Eager Execution과 `@tf.function` 그래프 변환 원리 및 엔터프라이즈 TFX 파이프라인 집중
 - 기출: 122회 `텐서플로우` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

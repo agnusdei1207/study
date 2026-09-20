@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 77%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 77
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 모달리티 간 정보 불균형(Modality Imbalance) / 학습 연산량 폭증 / 교차 모달리티 환각(Hallucination)
 ```
 - 필수 키워드: 멀티모달(Multimodal) · 교차 모달리티 정렬 · 대조학습(Contrastive Learning) · ViT(Vision Transformer) · Q-Former / Cross-Attention · 멀티모달 표현 학습
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 멀티모달 융합 아키텍처 구조도 → Ⅴ 융합 단계별(Early/Late/Cross) 비교표 / 25점 = Ⅰ~Ⅶ 전개, CLIP 대조학습 손실함수 수식과 LLaVA 스타일 프로젝션 메커니즘 집중
 - 기출: 미출제. 예상: "텍스트, 이미지, 음성 등 이종 데이터를 복합 처리하는 멀티모달(Multimodal) AI의 개념, 융합 아키텍처 유형, 그리고 핵심 기술 요소를 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

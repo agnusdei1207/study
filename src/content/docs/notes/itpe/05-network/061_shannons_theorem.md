@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:52:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 대역폭($B$) 무한 확장 시 샤논 한계(1.44 S/N0) 수렴 / 고차 변조 시 요구 SNR 급증 / 터보·LDPC 부호 채택
 ```
 - 필수 키워드: 샤논의 채널 용량(Channel Capacity) · 백색 가우시안 잡음(AWGN) · 대역폭($B$) · 신호 대 잡음비(SNR, $S/N$) · 나이퀴스트(Nyquist) · 샤논 한계(-1.59dB) · 채널 코딩
-- 배점 전략: 10점 = Ⅰ → Ⅲ 수식 유도 및 도식($C = B \log_2(1+S/N)$) → Ⅴ 나이퀴스트 vs 샤논 비교표 / 25점 = 125회 기출(정보이론과 샤논 정리)에 맞춰 엔트로피 정의, 소스 코딩 정리, 채널 코딩 정리, 현대 5G LDPC 부호의 샤논 한계 접근성 상세
 - 기출: 제125회 4교시 2번: "정보통신분야 정보이론(Information Theory)과 샤논(Shannon)의 정리" → Ⅰ~Ⅵ
 
 ## 한 줄 본질

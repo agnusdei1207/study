@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 기상 이변에 따른 예측 오차율(MAPE) 상승 / 역송전 시 배전망 과전압 / 통신 보안 취약점
 ```
 - 필수 키워드: 가상발전소(VPP) · 분산 에너지 자원(DER) · AI 전력 수요예측 · 간헐성 극복 · ESS(에너지저장장치) · 시계열 딥러닝(Informer/PatchTST)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ VPP 통합 제어 아키텍처 구조도 → Ⅴ 전통 발전소 vs VPP 비교표 / 25점 = Ⅰ~Ⅶ 전개, AI 시계열 발전량·수요 예측 알고리즘과 전력 거래 최적화 목적함수 집중
 - 기출: 139회 4교시 5번 `VPP(Virtual Power Plant) 가상발전소에서는 전력수요 예측을 위해 AI 기술을 사용하고 있다. 이와 관련해서 다음을 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

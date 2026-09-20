@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "84회, 101회, 118회"
-  priority: 65
-  priority_note: "이전(KPC):84,101,118"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이종 센서 간 시간적 동기화(Time Sync) 지연 / 주변 환경 소음 및 조도 변화에 따른 오인식 / 연산 복잡도 및 배터리 소모
 ```
 - 필수 키워드: 멀티모달 인터페이스(Multi-Modal Interface) · NUI(Natural User Interface) · 시선 추적(Eye-tracking) · 제스처 인식 · 햅틱(Haptics) · 초기 융합 vs 후기 융합 · 크로스 어텐션(Cross-Attention)
-- 배점 전략: 10점 = Ⅰ 개요 및 진화 배경 → Ⅲ 4대 모달리티 입력 체계 → Ⅳ 융합 메커니즘 3종 비교표 / 25점 = Ⅰ~Ⅶ 전개, 공간 컴퓨팅(Apple Vision Pro)의 Eye+Pinch 인터랙션 아키텍처 및 크로스 어텐션 수식 상세화
 - 기출: 84회, 101회, 118회 `멀티모달 인터페이스` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 81
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 과도한 오탐으로 인한 빌드 중단(개발자 피로) / 오픈소스 공급망 취약점 / IaC 설정 오류 / 런타임 보안 연계
 ```
 - 필수 키워드: DevSecOps · 시프트 레프트(Shift-Left) · CI/CD 파이프라인 · SAST · DAST · SCA · IaC 보안 · RASP
-- 배점 전략: 10점 = Ⅰ 정의 및 필요성 → Ⅲ CI/CD 단계별 보안 도구 매핑 도식 → Ⅴ 전통 보안 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, 파이프라인 단계별 보안 통제 기법과 Ⅵ 오탐 완화 및 개발자 경험(DX) 개선 방안 집중
 - 기출: 135회 2교시 2번 `CI/CD 파이프라인에서 DevSecOps 적용방안에 대하여 설명하시오.` → Ⅲ CI/CD 연계 아키텍처 + Ⅳ 절차 + Ⅵ 실무 적용 방안
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:37:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 마요라나 상태 제어 및 실증 난도 / T자 접합 나노 공정 수율 한계 / 밀리켈빈(10mK) 극저온 유지 비용
 ```
 - 필수 키워드: 위상 큐비트 · 마요라나 영에너지 모드(MZM) · 위상 보호(Topological Protection) · 비국소성 · 브레이딩(Braiding) · 비가환 통계 · Majorana 1
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 나노와이어 MZM 분산 저장 구조도 → Ⅴ 양자 큐비트 방식 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 비가환 브레이딩 연산 메커니즘과 Ⅵ 상용 양자 컴퓨터를 향한 스케일업 실무 과제
 - 기출: 미출제 (양자 컴퓨터 시사·트렌드 핵심 키워드)
 
 ## 한 줄 본질

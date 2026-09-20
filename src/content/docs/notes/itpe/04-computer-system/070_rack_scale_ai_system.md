@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 랙당 120kW 전력 인입 난제 / 액체 누수(Leak) 감지 및 차단 / 광 트랜시버 전력 오버헤드
 ```
 - 필수 키워드: 랙스케일 · GB200 NVL72 · Vera Rubin · NVLink 스위치 · 액체냉각(D2C) · 구리 백플레인 · 단일 논리 GPU
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ GB200 NVL72 랙 내부 구성도 → Ⅴ 서버스케일 vs 랙스케일 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ NVLink 스위치 트레이 패브릭 동작 및 Ⅵ 전력(48V DC)과 차세대 Vera Rubin 진화 로드맵
 - 기출: 미출제 (2026 시사·트렌드 키워드)
 
 ## 한 줄 본질

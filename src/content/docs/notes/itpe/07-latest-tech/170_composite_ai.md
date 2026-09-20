@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이종 AI 모델 간의 인터페이스 표준화 부재 / 파이프라인 결합 시 시스템 복잡도 증가 / 도메인 지식 수작업 구축 공수
 ```
 - 필수 키워드: 복합 AI(Composite AI) · 기호주의(Symbolic) · 연결주의(Connectionist) · 지식 그래프(Knowledge Graph) · 규칙 엔진(Rule Engine) · 수리 최적화 · 설명 가능성(XAI)
-- 배점 전략: 10점 = Ⅰ 개요 및 등장 배경 → Ⅲ 복합 AI 4대 핵심 구성요소 다이어그램 → Ⅴ 단일 딥러닝 vs 복합 AI 비교표 / 25점 = Ⅰ~Ⅶ 전개, 뉴로-심볼릭(Neuro-Symbolic) 통합 파이프라인 및 금융/제조 도메인 적용 아키텍처 상세화
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

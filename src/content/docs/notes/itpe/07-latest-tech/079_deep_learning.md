@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회, 107회"
-  priority: 76
-  priority_note: "[출제(KPC):131] · 이전(KPC):107"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 기울기 소실·폭주(Vanishing/Exploding Gradient) / 과적합(Overfitting) / 블랙박스 설명 불가능성(XAI 요구)
 ```
 - 필수 키워드: 딥러닝 · 표현 학습(Representation Learning) · 다층 신경망(DNN) · 역전파(Backpropagation) · 활성화 함수(Activation) · 과적합 방지(Dropout) · XAI
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 심층 신경망 기본 구조 및 연산 흐름도 → Ⅴ AI 패러다임 진화 비교표 / 25점 = Ⅰ~Ⅶ 전개, 역전파 연쇄 법칙 수식 유도와 기울기 소실 해결책(ReLU, Skip Connection, Normalization) 집중
 - 기출: 131회 2교시, 107회 1교시 `딥러닝` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

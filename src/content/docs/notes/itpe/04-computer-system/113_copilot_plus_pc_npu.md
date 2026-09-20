@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:35:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고부하 시 발열 쓰로틀링 / 칩셋 벤더별 NPU 가속기 파편화 / Recall 데이터베이스 평문 저장 보안 위협
 ```
 - 필수 키워드: Copilot+ PC · NPU · 40 TOPS · Windows Copilot Runtime · DirectML · ONNX Runtime · 온디바이스 AI
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 소프트웨어-하드웨어 스택 구조도 → Ⅴ CPU vs GPU vs NPU 추론 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ DirectML 기반 추론 파이프라인과 Ⅵ 실무 보안(Recall 로컬 암호화) 및 발열 제어
 - 기출: 미출제 (시사·트렌드 핵심 키워드)
 
 ## 한 줄 본질

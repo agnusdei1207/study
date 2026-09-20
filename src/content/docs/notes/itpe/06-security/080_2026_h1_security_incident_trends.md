@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: "﻿"
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── SBOM 기반 공급망 투명성 확보 / 비인간 신원(NHI) 수명주기 관리 / 백업 불변성(WORM)을 통한 신속 복원력 구축
 ```
 - 필수 키워드: 침해사고 동향 · 공급망 공격(Supply Chain) · LotL(Living off the Land) · 비인간 신원(NHI) · AI 악용 공격 · 사이버 복원력(Cyber Resilience)
-- 배점 전략: 10점 = Ⅰ 2026년 침해 트렌드 요약 → Ⅲ 4대 핵심 위협 축 도식 → Ⅵ 기업 핵심 대응책 / 25점 = Ⅰ~Ⅶ 전개, XZ Utils 백도어 등 실제 2024~2026 사건 사례와 CTEM(지속적 위협노출관리) 기반 대응 로드맵 상세화
 - 기출: 미출제. 시사성 높은 최신 보안 종합 문제로 출제 예상
 
 ## 한 줄 본질

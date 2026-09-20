@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 81
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 서브도메인 테이크오버(Subdomain Takeover) / 방치된 개발 서버 포트 개방 / 잘못 설정된 S3 버킷 공개 / 공급망 자산 모니터링
 ```
 - 필수 키워드: 공격표면관리(ASM) · EASM · CAASM · 섀도우 IT · 미관리 자산 · 자산 인벤토리 · 위험 우선순위화
-- 배점 전략: 10점 = Ⅰ 정의 및 배경 → Ⅲ EASM/CAASM 구조도 → Ⅴ 전통 자산관리 대비 차이점 / 25점 = Ⅰ~Ⅶ 전개, 외부 공격표면 탐색 4단계 흐름과 Ⅵ 섀도우 IT 및 서브도메인 테이크오버 실무 대응 집중
 - 기출: 미출제. 예상: "클라우드 및 재택근무 환경에서 사이버 침해 경로를 선제적으로 차단하기 위한 공격표면관리(Attack Surface Management, ASM)의 개념, 핵심 기술 요소 및 운영 절차를 설명하시오."
 
 ## 한 줄 본질

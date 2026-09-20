@@ -2,9 +2,6 @@
 sidebar:
   order: 54
   label: "054. 데이터 관측가능성 (Data Observability)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "데이터 관측가능성 (Data Observability)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 54
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "054"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 업스트림 스키마 변경으로 인한 다운스트림 대시보드 중단 / 데이터 무단 유실(Data Downtime)
 ```
 - 필수 키워드: 5대 핵심 기둥 · 신선도(Freshness) · 볼륨(Volume) · 스키마(Schema) · 분포(Distribution) · 계보(Lineage) · 데이터 다운타임(Data Downtime)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 5대 기둥 다이어그램 도식 → Ⅴ 관측가능성 vs 모니터링 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ DataOps 아키텍처 및 Ⅵ RCA 해결 절차
 - 기출: 138회 1교시 8번 `데이터 관측가능성(Data Observability)` → Ⅰ 개념 + Ⅲ 5대 기둥 + 도입 필요성 및 효과
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 74
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 복잡한 비즈니스 로직으로 인한 다이어그램 비대화 / 프래그먼트(ref) 분할 및 PlantUML 코드화 관리
 ```
 - 필수 키워드: 순차 다이어그램 · 시퀀스 다이어그램 · 생명선(Lifeline) · 실행 명세(Activation) · 동기/비동기 메시지 · 복합 프래그먼트(alt, opt, loop, ref)
-- 배점 전략: 10점 = Ⅰ 순차 다이어그램 정의 및 목적 → Ⅲ 5대 핵심 표기법 기호 도식 → Ⅴ 순차 vs 통신 다이어그램 비교 / 25점 = Ⅰ~Ⅶ 전개, 127회 기출 순차 다이어그램의 개념, 구성요소, 복합 프래그먼트 4대 연산자(alt, opt, loop, par), 및 REST API 설계 모델링 적용
 - 기출: 127회 1교시 `순차 다이어그램(Sequence Diagram)` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

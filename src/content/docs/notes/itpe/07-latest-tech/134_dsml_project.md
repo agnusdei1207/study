@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── PoC 단계에서 양산 배포로 넘어가지 못하는 PoC 트랩 / 현업 비즈니스 부서와의 소통 단절 / 데이터 파이프라인의 숨은 기술 부채
 ```
 - 필수 키워드: DSML 프로젝트 · CRISP-DM · PoC 트랩(PoC Trap) · 비즈니스 정렬 · MLOps 연계 · 데이터 가변성 · 실험 추적(Experiment Tracking)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ DSML 프로젝트 5단계 생애주기 프로세스 → Ⅴ 전통 SI vs DSML 비교표 / 25점 = Ⅰ~Ⅶ 전개, 구글의 '머신러닝 시스템의 숨은 기술 부채' 관점의 위험 통제 및 PoC 탈출 전략 집중
 - 기출: 130회 `DSML 프로젝트` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

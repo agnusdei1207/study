@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수락률(Acceptance Rate) 저하 시 오버헤드 / 드래프트 모델 추가 메모리 점유 / 도메인 편향
 ```
 - 필수 키워드: 추측 디코딩 · 자동회귀 병목 · 드래프트 모델 · 타깃 모델 · 거부 샘플링(Rejection Sampling) · 무손실(Lossless) 가속
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 드래프트-타깃 2단계 디코딩 아키텍처 도식 → Ⅴ 일반 디코딩 vs 추측 디코딩 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 거부 샘플링 수학적 일치 증명 흐름 및 Ⅵ 엔터프라이즈 vLLM 서빙 엔진 적용 방안
 - 기출: 미출제 (2026 시사·트렌드 키워드)
 
 ## 한 줄 본질

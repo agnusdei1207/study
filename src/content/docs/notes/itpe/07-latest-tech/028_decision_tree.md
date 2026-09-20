@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "105회, 126회, 130회"
-  priority: 86
-  priority_note: "[출제(KPC):126,130] · 이전(KPC):105"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 트리 깊이 증가에 따른 과적합 / 축에 평행한(Axis-aligned) 분할 한계 / 데이터 변동 민감도
 ```
 - 필수 키워드: 지니 계수(Gini Index) · 엔트로피(Entropy) · 정보 획득량 · CART · C4.5 · 가지치기(Pruning) · 화이트박스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 트리 구조 및 분할 기준 수식 → Ⅵ 가지치기 대책 / 25점 = Ⅰ~Ⅶ 전개, Ⅴ CART vs C4.5 세부 비교와 불순도 계산 예시 집중
 - 기출: 126회 `엔트로피 지수와 지니 지수 비교` → Ⅲ·Ⅴ, 130회 `의사결정나무와 앙상블 비교` → Ⅰ·Ⅴ
 
 ## 한 줄 본질

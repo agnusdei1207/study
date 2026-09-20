@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 75
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── LLM 입력/출력 이중 가드레일 설치 / 벡터 DB에 대한 접근제어 및 데이터 계보 관리 / 도구 실행 시 최소 권한 강제
 ```
 - 필수 키워드: OWASP LLM Top 10(2025) · 프롬프트 인젝션(LLM01) · 민감정보 유출(LLM02) · 공급망 취약점(LLM03) · 데이터 및 모델 중독(LLM04) · 과도한 대행(LLM06)
-- 배점 전략: 10점 = Ⅰ OWASP LLM 2025 개요 → Ⅲ 10대 위협 목록 및 주요 메커니즘 도식 → Ⅵ 핵심 대응책 / 25점 = Ⅰ~Ⅶ 전개, 136회 기출 요구에 따라 10대 위협의 명칭과 동작 원리, 2023년 대비 2025년 주요 변경점(에이전트 및 RAG 위협 고도화) 심층 서술
 - 기출: 136회 4교시 5번 `대형언어모델(LLM, Large Language Model)의 활용이 급격히 증가함에 따라 그와 관련된 보안 위협이 새롭게 대두되고 있다. OWASP에서는 2025년 버전의 LLM 애플리케이션을 위한 Top 10 보안 위협 목록(OWASP LLM, OWASP Top 10 for LLM Applications)에 대하여 설명하시오.` → Ⅲ 10대 취약점 상세 설명
 
 ## 한 줄 본질

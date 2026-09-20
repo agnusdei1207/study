@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:35:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회, 92회"
-  priority: 74
-  priority_note: "[출제(KPC):127] · 이전(KPC):92"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무의미한 커버리지 채우기(단언 없는 테스트) / 안전필수 도메인(ISO 26262) 인증 / CI 게이트웨이 연계
 ```
 - 필수 키워드: 코드 커버리지 · 구문 커버리지 · 분기 커버리지 · 조건 커버리지 · MC/DC · 계측(Instrumentation) · JaCoCo
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 커버리지 수준별 포함관계 및 예시 표 → Ⅵ 실무 품질 게이트 / 25점 = Ⅰ~Ⅶ 전개, 127회 기출 커버리지 유형별 검증 강도, MC/DC 도출 절차 및 자동차 전장 인증 기준 연계
 - 기출: 127회 1교시 `코드 커버리지의 유형과 특징` → Ⅲ·Ⅴ, 92회 1교시 `구문, 분기, 조건 커버리지` → Ⅲ
 
 ## 한 줄 본질

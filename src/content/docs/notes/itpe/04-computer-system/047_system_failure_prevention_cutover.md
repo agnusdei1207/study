@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회, 129회"
-  priority: 80
-  priority_note: "[출제(KPC):122,129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 전환 정합성 불일치 / 배치 시간 초과(Batch Window) / 롤백 골든타임 경과
 ```
 - 필수 키워드: 컷오버(Cutover) · 빅뱅 vs 단계적 전환 · 롤백(Rollback) 플랜 · Go/No-Go 의사결정 · 모의 전환(Rehearsal) · 데이터 마이그레이션
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 전환 방식 3종 비교 도식 → Ⅳ 컷오버 절차 / 25점 = Ⅰ~Ⅶ 전개, Go/No-Go 체크리스트와 Ⅵ 차세대 시스템 오픈 장애 방지 대책
 - 기출: 122회·129회 `정보시스템 오픈을 위한 운영 전환(Cutover) 전략 및 장애 예방 통제 방안`
 
 ## 한 줄 본질

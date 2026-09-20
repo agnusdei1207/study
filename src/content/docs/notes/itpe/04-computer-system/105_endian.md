@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:22:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── C 구조체 단순 메모리 복사 전송 시 패킷 필드 왜곡 / 2바이트 및 4바이트 정수 혼동 / 파일 헤더 파싱 오류
 ```
 - 필수 키워드: 엔디언 · 바이트 오더링 · 빅 엔디언 · 리틀 엔디언 · MSB · LSB · htonl/ntohl
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4바이트 정수 메모리 정렬 비교도 → Ⅴ 빅 vs 리틀 vs 바이 엔디언 3원 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 네트워크 전송 변환 시퀀스와 Ⅵ 이기종 IPC 및 분산 시스템에서의 바이트 정렬 실무 트러블슈팅
 - 기출: 126회 1교시 11번 `빅엔디언(Big Endian) 과 리틀 엔디언(Little Endian)` 단답형 출제
 
 ## 한 줄 본질

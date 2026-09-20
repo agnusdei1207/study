@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 메타데이터 제거(소셜미디어 재압축 시 EXIF/C2PA 유실) / 카메라 및 AI 생성기 서명 키 유출 / 레거시 미디어 호환성 문제
 ```
 - 필수 키워드: 디지털 출처증명 · C2PA(Coalition for Content Provenance and Authenticity) · 콘텐츠 자격증명(Content Credentials) · 매니페스트(Manifest) · 전자서명 · 워터마킹
-- 배점 전략: 10점 = Ⅰ 디지털 출처증명 필요성 → Ⅲ C2PA 출처증명 구조 도식 → Ⅵ SNS 유통 시 손실 문제 및 기술적 대응 / 25점 = Ⅰ~Ⅶ 전개, 생성형 AI 시대 딥페이크 방어 패러다임 전환(탐지에서 증명으로), EU AI Act 및 글로벌 빅테크 연합(C2PA) 표준 심층 분석
 - 기출: 미출제. 예상: "생성형 AI로 제작된 허위 조작 정보(딥페이크) 대응을 위한 '디지털 출처증명(Digital Provenance)'의 개념과 C2PA 표준 아키텍처를 설명하고, 유통 단계에서의 메타데이터 보존 방안을 제시하시오."
 
 ## 한 줄 본질

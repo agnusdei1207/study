@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상업용 LLM의 공정이용 인정 불확실성 / 스타일 모방과 저작권 침해 판정 경계
 ```
 - 필수 키워드: 저작권법 제35조의5 · 공정이용(Fair Use) 4대 요소 · TDM(텍스트·데이터 마이닝) · 옵트아웃(Opt-out) · robots.txt · AI 산출물 저작권
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 공정이용 4대 판단 기준 매트릭스 → Ⅴ 국가별 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 학습 단계 vs 산출 단계 저작권 쟁점과 Ⅵ 기술적 옵트아웃 대응 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

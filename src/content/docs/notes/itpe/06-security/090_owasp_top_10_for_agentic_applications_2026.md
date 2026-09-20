@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 도구 호출 전 파라미터 유효성 검증 게이트웨이 / 에이전트별 엄격한 실행 샌드박스 / 다중 에이전트 간 mTLS 및 암호 서명 강제
 ```
 - 필수 키워드: OWASP Agentic Top 10 · 에이전틱 AI · 목표 하이재킹(Goal Hijacking) · 도구 오남용(Tool Misuse) · 자율 권한 탈취 · 다중 에이전트 거버넌스
-- 배점 전략: 10점 = Ⅰ 에이전틱 AI 확산과 보안 표준 등장 배경 → Ⅲ 주요 위협 영역 도식 → Ⅴ LLM Top 10과의 차별점 / 25점 = Ⅰ~Ⅶ 전개, 자율 에이전트의 계획(Planning) 및 도구 실행(Execution) 단계별 10대 위협 매트릭스와 실무 샌드박스 격리 대책 상세화
 - 기출: 미출제. 2026년 에이전틱 AI 상용화에 따른 최신 보안 표준 문제로 출제 유력
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 74
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무한 계수(Count-to-Infinity) 라우팅 루프 / 느린 수렴(Slow Convergence)
 ```
 - 필수 키워드: 벨만-포드 · 거리와 방향 · Routing by Rumor · Count-to-Infinity · 스플릿 호라이즌 · 포이즌 리버스 · 홀드다운 타이머
-- 배점 전략: 10점 = Ⅰ → Ⅲ 벨만-포드 수학적 점화식 및 동작 도식 → Ⅴ 거리벡터 vs 링크상태 비교표 / 25점 = 124회 기출 무한 계수 발생 시나리오 및 해결 5대 기제 상세 풀이
 - 기출: 124회 1교시: "거리벡터(Distance Vector) 라우팅 프로토콜의 동작 원리와 라우팅 루프 해결 방안을 설명하시오." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

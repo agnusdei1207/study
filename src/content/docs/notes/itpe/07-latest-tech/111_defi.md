@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 74
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 스마트 계약 재진입(Reentrancy) 결함 / 플래시론(Flash Loan) 기반 시세 조작 / 비영구적 손실(Impermanent Loss)
 ```
 - 필수 키워드: DeFi(탈중앙화 금융) · 스마트 계약 · AMM(Automated Market Maker) · 유동성 풀(Liquidity Pool) · 플래시론 · 비영구적 손실 · 머니 레고(Money Legos)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ DeFi 4계층 아키텍처 및 AMM 수식($x \times y = k$) → Ⅴ TradFi vs CeFi vs DeFi 비교표 / 25점 = Ⅰ~Ⅶ 전개, 플래시론 공격 메커니즘 및 탈중앙 오라클(Chainlink) 조작 방어 기법 집중
 - 기출: 123회 `DeFi` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

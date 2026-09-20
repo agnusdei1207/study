@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 스텔스 스캔에 대한 일반 웹서버 로그 부재 / UDP 스캔의 타임아웃 지연 및 패킷 손실 / 방화벽의 상태 추적(Stateful Inspection)에 의한 차단
 ```
 - 필수 키워드: 네트워크 스캐닝 · TCP Connect 스캔 · TCP SYN 스캔(Half-Open) · 스텔스 스캔(FIN/Xmas/Null) · 배너 그래핑(Banner Grabbing) · 포트 노킹 · Nmap
-- 배점 전략: 10점 = Ⅰ 네트워크 스캐닝 정의 및 목적 → Ⅲ TCP SYN 스캔 흐름도 도식 → Ⅴ 오픈 스캔 vs 스텔스 스캔 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제126회 1교시 기출 완벽 대응, TCP 플래그 조작 원리(RFC 793 기반 열린 포트/닫힌 포트 응답 규칙), Nmap 스캔 기법 및 방어 대책(포트 노킹, 배너 숨김) 심층 상술
 - 기출: 제126회 1교시 12번: "네트워크 스캐닝(Network Scanning)"
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── CISO 겸직 금지로 인한 중소기업 구인난 / 침해사고 은폐 및 지연 신고 위험
 ```
 - 필수 키워드: PIPA 이관 · CISO 지정 의무화 · ISMS 의무대상 · 침해사고 즉시 신고(24시간) · 망 안정성 확보
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 개정 망법 4대 핵심 축 구조도 → Ⅴ 법적 위상 변화 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ CISO/ISMS 세부 요건과 Ⅵ 침해사고 실무 대응 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

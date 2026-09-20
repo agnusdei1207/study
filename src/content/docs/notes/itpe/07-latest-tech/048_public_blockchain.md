@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:42:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 82%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "113회, 124회, 126회"
-  priority: 82
-  priority_note: "[출제(KPC):124,126] · 이전(KPC):113"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 블록체인 트릴레마(확장성 한계) / 높은 가스비(Gas Fee) / 데이터 프라이버시 노출
 ```
 - 필수 키워드: 무허가형(Permissionless) · 탈중앙화(Decentralization) · 블록체인 트릴레마 · 합의 알고리즘(PoW/PoS) · 스마트 계약(Smart Contract) · 레이어 2(Rollup)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 계층 구조도 → Ⅴ 퍼블릭 vs 프라이빗 비교표 / 25점 = Ⅰ~Ⅶ 전개, 블록체인 트릴레마(확장성, 보안성, 탈중앙성) 해소 방안 및 롤업 기술 집중
 - 기출: 124회 4교시 5번 `퍼블릭(Public) 블록체인과 프라이빗(Private) 블록체인의 차이점을 비교하여 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

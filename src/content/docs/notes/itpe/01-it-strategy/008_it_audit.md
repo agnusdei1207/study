@@ -6,30 +6,20 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 기출 · 100%"
+    text: "A"
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "memories canonical 01-008 (2026-09-20)"
-  source_status: "기출"
-  source_history: "136·137회(공식), 123·125·129·131회(KPC 키워드), 다수 이전 이력"
-  reference_status: "2026-09-20 전자정부법·시행령 및 정보시스템 감리기준 현행 확인"
-  priority: 100
-  priority_note: "법적 근거·3자 구조·감리 절차·PMO 비교·AI/클라우드로 확장 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-▶ 01 정보 전략·관리 ─→ 02 SW공학·프로젝트 ─→ 03 데이터
-          │
-          └─→ 04 컴퓨터시스템 ─→ 05 네트워크 ─→ 06 보안
-                                     │
-                                     └─→ 07 AI·신기술
-전 영역 준거 ───────────────────────────→ 08 법·정책
-```
-
-- 현재 위치: `01 정보 전략·관리 > IT 통제·감사 > 정보시스템 감리`
+<div class="itpe-topic-path" role="img" aria-label="IT 거버넌스에서 통제와 감사를 거쳐 정보시스템 감리로 이어지는 지식 위치">
+  <span>IT 거버넌스</span>
+  <span>통제·감사</span>
+  <strong>정보시스템 감리</strong>
+</div>
 
 ## 큰 그림과 30초 인출
 

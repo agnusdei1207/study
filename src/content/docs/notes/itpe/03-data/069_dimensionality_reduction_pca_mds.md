@@ -2,9 +2,6 @@
 sidebar:
   order: 69
   label: "069. 차원 축소 (PCA·다차원척도법)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "차원 축소 (PCA·다차원척도법)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 69
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "069"
-  source_status: "기출"
-  source_history: "123회, 131회"
-  priority: 80
-  priority_note: "[출제(KPC):123,131]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원 축소 후 주성분의 비즈니스적 해석 난해(Blackbox) / 비선형 매니폴드 구조 왜곡
 ```
 - 필수 키워드: 차원 축소 · 차원의 저주 · 주성분분석(PCA) · 다차원척도법(MDS) · 고유값/고유벡터 · 스트레스(Stress) 지수 · 변동성(분산)
-- 배점 전략: 10점 = Ⅰ → Ⅲ/Ⅳ PCA와 MDS 투영 원리 도식 → Ⅴ 핵심 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 수학적 유도(고유분해) 및 Ⅵ 시각화/해석 한계 극복
 - 기출: 123회/131회 `데이터 차원 축소 기법인 PCA와 MDS를 비교 설명하시오` → Ⅰ 개념 + Ⅲ 원리 + Ⅴ PCA vs MDS 상세 비교표
 
 ## 한 줄 본질

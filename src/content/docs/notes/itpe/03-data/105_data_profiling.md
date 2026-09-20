@@ -2,9 +2,6 @@
 sidebar:
   order: 105
   label: "105. 데이터 프로파일링 (Data Profiling)"
-  badge:
-    text: "기출 · 74%"
-    variant: note
 title: "데이터 프로파일링 (Data Profiling)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 105
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "105"
-  source_status: "기출"
-  source_history: "128회, 83회"
-  priority: 74
-  priority_note: "[출제(KPC):128] · 이전(KPC):83"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수억 건 데이터 프로파일링 시 운영 DB CPU 마비 / 정의서에는 NOT NULL이나 실제 값의 30%가 빈 문자열
 ```
 - 필수 키워드: 데이터 프로파일링 · 열 프로파일링 · 구조 분석 · 값 분석 · 관계 분석 · 고아 레코드(Orphan Data) · 카디널리티 · 데이터 품질관리(DQM)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3단계 프로파일링 기법 매핑표 → Ⅴ 품질 활동 간 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 실행 절차 및 Ⅵ 대용량 DB 비침습적 프로파일링 방안
 - 기출: 128회 `데이터 품질 관리를 위한 데이터 프로파일링 기법과 분석 단계` → Ⅰ 정의 + Ⅲ 3대 기법(열, 다중열, 관계) + Ⅳ 분석 단계 + Ⅵ 실무 적용
 
 ## 한 줄 본질

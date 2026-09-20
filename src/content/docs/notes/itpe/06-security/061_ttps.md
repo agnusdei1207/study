@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── TTPs 추출의 고도 분석 인력 의존성 / 방대한 ATT&CK 매트릭스 분류 부담 / EDR 및 위협 헌팅 도구와의 자동 연계
 ```
 - 필수 키워드: TTPs · Tactics(전술) · Techniques(기법) · Procedures(절차) · 침통의 피라미드(Pyramid of Pain) · MITRE ATT&CK · 위협 인텔리전스
-- 배점 전략: 10점 = Ⅰ 정의 및 침통의 피라미드 도식 → Ⅲ Tactics/Techniques/Procedures 3계층 설명 / 25점 = Ⅰ~Ⅶ 전개, MITRE ATT&CK 매트릭스 연계 탐지와 Ⅵ TTPs 기반 위협 헌팅 체계 집중
 - 기출: 138회 1교시 10번 `TTPs(Tactics, Techniques and Procedures)` → Ⅰ 정의 + Ⅲ 3단계 구조 + Ⅵ 실무 적용 방안
 
 ## 한 줄 본질

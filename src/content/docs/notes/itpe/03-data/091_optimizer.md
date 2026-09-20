@@ -2,9 +2,6 @@
 sidebar:
   order: 91
   label: "091. 옵티마이저 (Optimizer)"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "옵티마이저 (Optimizer)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 91
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "091"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 76
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 통계 정보 부재로 인한 풀스캔 / 바인드 피킹(Bind Peeking) 왜곡 / 악성 힌트 남발로 인한 플랜 고착화
 ```
 - 필수 키워드: 옵티마이저 · 실행 계획(Execution Plan) · 파서 · 질의 변환기 · 비용 산정기 · 카디널리티 · 선택도 · RBO · CBO · 힌트
-- 배점 전략: 10점 = Ⅰ → Ⅲ 옵티마이저 4대 서브모듈 아키텍처 블록도 → Ⅴ RBO/CBO 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 비용 계산 원리($\text{Cost} = I/O + CPU$) 및 Ⅵ 바인드 피킹 대책
 - 기출: 127회 `데이터베이스 옵티마이저(Optimizer)의 역할과 주요 구성요소 및 최적화 과정을 설명하시오.` → Ⅰ 역할 + Ⅲ 구성요소 + Ⅳ 최적화 5단계 절차
 
 ## 한 줄 본질

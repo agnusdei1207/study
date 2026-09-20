@@ -6,26 +6,19 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 미출 · 92%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 92
-  priority_note: "합숙·모의 1"
   keyword_grade: "A"
-  grade_basis: "memories 정본 01-016의 A 등급"
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-▶ 01 정보 전략·관리 → 02 SW공학 → 03 데이터 → 04 시스템
-         ↑                                        ↓
-08 법·정책 ← 06 보안 ← 05 네트워크 ← 07 AI·디지털
-```
-
-- 과목 내 위치: `경영목표 → 투자평가·포트폴리오 → 사업 실행 → 편익 실현·환류`
+<div class="itpe-topic-path" role="img" aria-label="IT 전략관리에서 투자와 포트폴리오 관리를 거쳐 IT 투자평가로 이어지는 지식 위치">
+  <span>IT 전략관리</span>
+  <span>투자·포트폴리오 관리</span>
+  <strong>IT 투자평가</strong>
+</div>
 
 ## 해당 토픽 큰 그림과 30초 인출
 
@@ -54,7 +47,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무형의 가치(브랜드, 고객만족) 산정 곤란 / 사후 평가 미수행으로 인한 환류 부재 / TCO 숨은 비용 누락
 ```
 - 필수 키워드: 생산성의 역설 · 사전/중간/사후 평가 · NPV/IRR/ROI · TCO(총소유비용) · IT-BSC · Val IT · 기대효과 실현
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 생애주기 3단계 평가 도식 → 주요 재무 지표 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 단계별 평가 기법과 Ⅵ 사후 성과관리 집중
 - 기출: 125회 3교시 `IT 투자평가 기법` → Ⅲ·Ⅴ, 129회 4교시 `IT 투자분석의 프로세스, 프레임워크, 분석방법론` → Ⅲ·Ⅳ·Ⅴ
 
 ## 한 줄 본질

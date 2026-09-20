@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:34:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 74
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 매칭 지연 및 ReDoS 취약점 / 런타임 반복 컴파일 오버헤드 / 정규식 가독성 저하
 ```
 - 필수 키워드: 정규 표현식 · 정규 언어 · 메타 문자 · 유한 오토마타 · NFA 백트래킹 · ReDoS · PCRE
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 주요 메타 문자 체계 표 → Ⅵ ReDoS 발생 원리 및 대책 / 25점 = Ⅰ~Ⅶ 전개, 120회 기출 정규식-오토마타 변환 메커니즘 및 대용량 텍스트 파싱 성능 최적화
 - 기출: 120회 1교시 `정규표현식과 유한 오토마타` → Ⅲ·Ⅳ
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 152
   label: "152. B+Tree"
-  badge:
-    text: "기출 · 64%"
-    variant: note
 title: "B+Tree"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 152
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "152"
-  source_status: "기출"
-  source_history: "98회, 101회"
-  priority: 64
-  priority_note: "이전(KPC):98,101"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무작위 키 삽입으로 인한 빈번한 페이지 분할(Page Split) 및 인덱스 단편화 발생
 ```
 - 필수 키워드: B+Tree · 내부 노드 · 리프 노드 · 양방향 연결 리스트 · 범위 스캔(Range Scan) · 팬아웃(Fan-out) · B-Tree · 클러스터드 인덱스 · 페이지 분할
-- 배점 전략: 10점 = Ⅰ → Ⅲ B+Tree 구조도(내부 노드 라우팅 + 리프 연결 리스트) → Ⅴ B-Tree vs B+Tree 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 범위 검색 실행 흐름 시퀀스 및 Ⅵ InnoDB 클러스터드 B+Tree 아키텍처
 - 기출: 101회 `데이터베이스 인덱스 구조로 가장 널리 사용되는 B+Tree의 구조적 특징과 B-Tree와의 차이점을 설명하시오.` → Ⅰ 정의 + Ⅲ 구조도 + Ⅴ 상세 비교표 + Ⅵ 범위 검색 우수성
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 68
   label: "068. 잭나이프·부트스트랩"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "잭나이프·부트스트랩"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 68
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "068"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 잭나이프의 중앙값 추정 파탄 / 대용량 데이터에서 부트스트랩 반복 시 연산 비용 급증
 ```
 - 필수 키워드: 리샘플링(Resampling) · 잭나이프(Jackknife) · 부트스트랩(Bootstrap) · Leave-One-Out · 복원추출 · 편향 보정 · 신뢰구간(Confidence Interval)
-- 배점 전략: 10점 = Ⅰ → Ⅲ/Ⅳ 양대 기법 메커니즘 비교 도식 → Ⅴ 종합 대조표 / 25점 = Ⅰ~Ⅶ, Ⅲ 수학적 편향/분산 수식 비교 및 Ⅵ 머신러닝 연계(배깅)
 - 기출: 140회 1교시 7번/4교시 2번 `재표본화 기법(잭나이프와 부트스트랩)` → Ⅰ 개념 + Ⅲ 원리 비교 + Ⅴ 상세 비교표
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:16:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 70
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수작업 좌표 관리의 비효율 / 이미지 변경 시 전체 캐시 무효화 / 빌드 도구(webpack-spritesmith) 자동화
 ```
 - 필수 키워드: 스프라이트 · CSS 스프라이트 · 스프라이트 시트 · HTTP 요청 감소 · RTT 단축 · `background-position` · 텍스처 아틀라스 · WebP
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 스프라이트 시트 및 CSS 좌표 매핑 도식 → Ⅴ CSS 스프라이트 vs SVG 스프라이트 비교 / 25점 = Ⅰ~Ⅶ 전개, 122회 기출 스프라이트 기술 메커니즘, HTTP/1.1 vs HTTP/2 환경에서의 성능 영향 및 현대적 전환
 - 기출: 122회 1교시 `웹 성능 최적화를 위한 이미지 스프라이트(Image Sprite)의 개념 및 동작 원리` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

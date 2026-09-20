@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:06:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 70
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 평균값 착시(Tail Latency 누락) / 리틀의 법칙(Little's Law) 부재 / 공공 정보화 RFP 성능 요구 명세
 ```
 - 필수 키워드: 성능 요구사항 · 응답시간(Response Time) · TPS(Transactions Per Second) · 처리량 · 자원 사용률 · 백분위수(p99) · 동시 사용자 · 리틀의 법칙
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 4대 성능 지표 체계 도식 → Ⅴ 응답시간 vs TPS 관계 / 25점 = Ⅰ~Ⅶ 전개, 132회 기출 성능 요구사항 작성 시 주요 성능지표 및 상세 내용, 부하 산정 공식 및 테일 레이턴시(Tail Latency) 대책
 - 기출: 132회 3교시 6번: "정보시스템의 성능 요구사항 작성 시 고려해야 하는 주요 성능지표 및 내용에 대하여 설명하시오." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "89회, 114회"
-  priority: 58
-  priority_note: "이전(KPC):89,114"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 배터리 수명 및 전력 공급 한계 / 통신 거리 극도로 짧음 / 환경 오염 및 인체 흡입 시 유해성(생분해성 소재 필요)
 ```
 - 필수 키워드: 스마트 더스트(Smart Dust) · 크리스 피스터(Kris Pister) · MEMS · 모트(Mote) · CCR(Corner Cube Retroreflector) · 에너지 하베스팅 · 자율 구성 메시(Self-Organizing Mesh) · 생분해성 센서
-- 배점 전략: 10점 = Ⅰ 개요 및 개념 → Ⅲ 모트(Mote) 5대 하드웨어 블록도 → Ⅳ 통신 방식(CCR 반사통신 vs RF) 비교 / 25점 = Ⅰ~Ⅶ 전개, MEMS 미세 가공 공정, CCR 레이저 변조 통신 메커니즘 및 친환경 생분해성(Biodegradable) 센서 소재 전개
 - 기출: 89회, 114회 `스마트 더스트(Smart Dust)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

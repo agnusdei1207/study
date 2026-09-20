@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 16단 초박형 적층 시 휨(Warpage) 현상 / 발열 밀도 폭증 / 수율 확보 및 테스트 난이도
 ```
 - 필수 키워드: HBM4 · 2048비트 버스 · 베이스 다이(Base Die) · TSMC 협력 · TSV · MR-MUF · 하이브리드 본딩
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ HBM4 적층 단면 및 베이스 다이 구조도 → Ⅴ HBM3E vs HBM4 세대 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 제조 공정 및 파운드리 협업 메커니즘과 Ⅵ 16단 적층 시 발열 및 휨 제어 방안
 - 기출: 미출제 (2026 시사·트렌드 키워드)
 
 ## 한 줄 본질

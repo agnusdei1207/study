@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "105회, 126회"
-  priority: 74
-  priority_note: "[출제(KPC):126] · 이전(KPC):105"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 트리 간 상관관계(Correlation) 발생 시 분산 감소 한계 / 해석력(Explainability) 상실 / 대규모 트리 메모리 점유
 ```
 - 필수 키워드: 배깅(Bagging) · 부트스트랩 집계(Bootstrap Aggregating) · 복원 추출 · 분산(Variance) 감소 · OOB(Out-of-Bag) · 랜덤 포레스트 · 다수결 투표
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 배깅 병렬 학습 및 집계 개념도 → Ⅴ 배깅 vs 부스팅 비교표 / 25점 = Ⅰ~Ⅶ 전개, 부트스트랩의 수학적 확률($1 - 1/e \approx 63.2\%$) 및 분산 저감 원리($\frac{1}{B}\sigma^2$) 집중
 - 기출: 126회 `배깅` / 105회 `앙상블 기법(배깅, 부스팅)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

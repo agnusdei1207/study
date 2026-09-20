@@ -2,9 +2,6 @@
 sidebar:
   order: 90
   label: "090. 오피니언 마이닝 (Opinion Mining)"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "오피니언 마이닝 (Opinion Mining)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 90
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "090"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 76
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 반어법·풍자 인식 실패 / 도메인별 감성 반전(작다: 폰=긍정, 용량=부정) / 어뷰징 및 가짜 리뷰(Spam) 오염
 ```
 - 필수 키워드: 오피니언 마이닝 · 감성 분석 · 주관성 탐지 · 감성 사전 · 극성 분류(Polarity) · 속성 기반 감성 분석(ABSA) · 감성 강도
-- 배점 전략: 10점 = Ⅰ → Ⅲ 5대 구성요소 도식 → Ⅴ 분석 방식별 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 5단계 파이프라인 및 Ⅵ 문맥/반어법 극복을 위한 ABSA 구현
 - 기출: 122회 `빅데이터 분석에서 오피니언 마이닝(Opinion Mining)의 개념, 처리 절차 및 감성 분석을 위한 주요 기법을 설명하시오.` → Ⅰ 개념 + Ⅳ 5단계 처리 절차 + Ⅲ/Ⅴ 주요 기법
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 72
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단일 실패 지점(SPOF)에 따른 편향·결함의 전방위 전파 / 천문학적 학습 비용에 따른 빅테크 독점 / 환각 및 저작권 침해
 ```
 - 필수 키워드: 파운데이션 모델(Foundation Model) · 스탠퍼드 HAI · 창발성(Emergence) · 동질화(Homogenization) · 자기지도학습 · 하류 태스크(Downstream Task) · 전이 학습
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 파운데이션 모델과 하류 태스크 적응 개념도 → Ⅴ AI 개발 패러다임 진화 비교표 / 25점 = Ⅰ~Ⅶ 전개, 스탠퍼드 HAI가 제시한 2대 핵심 특성(창발성과 동질화) 및 안전성·거버넌스 집중
 - 기출: 131회 `파운데이션 모델` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

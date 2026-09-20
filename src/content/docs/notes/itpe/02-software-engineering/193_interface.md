@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:14:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "108회, 117회"
-  priority: 64
-  priority_note: "과거기출(108회, 117회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 인터페이스 오염(뚱뚱한 인터페이스로 ISP 위반) / 잦은 인터페이스 변경으로 구현체 연쇄 수정 / Mock 객체 기반 테스트 용이성
 ```
 - 필수 키워드: 계약(Contract) · 다형성(Polymorphism) · 느슨한 결합(Loose Coupling) · DIP(의존성 역전 원칙) · ISP(인터페이스 분리 원칙) · 다중 구현 · 동적 디스패치
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 클라이언트-인터페이스-구현체 분리 도식 → Ⅴ 추상 클래스 vs 인터페이스 비교표 / 25점 = Ⅰ~Ⅶ 전개, 108·117회 기출 객체지향 인터페이스의 역할, SOLID 원칙과의 상관관계, Java 8 default 메서드 도입 배경과 다중 구현 충돌 해결
 - 기출: 108회 1교시, 117회 1교시 `객체지향 프로그래밍에서 인터페이스(Interface)의 개념, 역할 및 추상클래스와의 차이점` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

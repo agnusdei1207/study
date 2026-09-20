@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 서브넷 대역 오버랩(중복) 오류 / 라우팅 테이블 복잡성 / 주소 관리 난이도
 ```
 - 필수 키워드: 가변 길이 서브넷 마스크 · FLSM · 내부 단편화 · 클래스리스 라우팅 · CIDR · 점대점 링크(/30)
-- 배점 전략: 10점 = Ⅰ → Ⅲ VLSM 트리 분할 도식 → Ⅴ FLSM vs VLSM 비교표 / 25점 = Ⅰ~Ⅶ, 139회 4교시 6번 기출 500명 대상 4개 서브넷 분할 계산식과 대역표 완벽 풀이
 - 기출: 139회 4교시 6번 `네트워크 서브네팅(Subnetting)과 관련하여 다음을 설명하시오. 개발팀 500명이 사용할 수 있도록 4개의 VLSM으로 분할한 각각의 Subnet Mask 값과 할당 가능한 Host IP 대역` → Ⅳ·Ⅵ
 
 ## 한 줄 본질

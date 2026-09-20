@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:05:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 70
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 캐시 무효화 실패로 인한 구버전 고착 / HTTPS 보안 제약 / Workbox 라이브러리 활용
 ```
 - 필수 키워드: 서비스 워커 · PWA · 네트워크 프록시 · Cache Storage · 생명주기(Install, Activate, Fetch) · 오프라인 지원 · Push API
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 네트워크 요청 가로채기 도식 → Ⅴ 웹 워커 vs 서비스 워커 비교 / 25점 = Ⅰ~Ⅶ 전개, 122회 기출 서비스 워커 생명주기 3단계, 5대 캐싱 전략(Cache First, Network First 등) 및 PWA 아키텍처
 - 기출: 122회 1교시 `PWA(Progressive Web Apps)와 서비스 워커(Service Worker)의 역할` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

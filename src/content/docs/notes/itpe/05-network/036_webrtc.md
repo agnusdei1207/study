@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 76
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 대칭형 NAT(Symmetric NAT) P2P 실패 / 다자간 통화 시 업로드 대역폭 폭증
 ```
 - 필수 키워드: W3C/IETF · SDP · ICE · STUN · TURN · SRTP · DTLS · SFU(Selective Forwarding Unit)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 프로토콜 스택 도식 → Ⅳ ICE 연결 수립 시퀀스 / 25점 = Ⅰ~Ⅶ, 123회 기출에 맞춰 NAT 통과(STUN vs TURN) 및 다자간 아키텍처(Mesh/SFU/MCU) 상세
 - 기출: 123회 2교시: "WebRTC의 아키텍처, 연결 수립 절차(ICE, STUN, TURN, SDP) 및 다자간 영상회의 구성 방식을 설명하시오." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

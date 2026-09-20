@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 모바일 데이터 과다 로딩(성능 저하) / 중단점 파편화 / CSS Flexbox·Grid 활용 고도화
 ```
 - 필수 키워드: 반응형 웹(RWD) · 에단 마코트(Ethan Marcotte) · 미디어 쿼리 · 가변 그리드 · 유연한 이미지 · 모바일 퍼스트 · AWD
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 3대 핵심 요소 구조 도식 → Ⅴ RWD vs AWD 비교 / 25점 = Ⅰ~Ⅶ 전개, 124회 기출 반응형 웹 3대 기술 메커니즘, 모바일 성능 최적화(srcset, Picture) 및 실무 도입 방안
 - 기출: 124회 1교시 `반응형 웹 디자인(RWD)의 개념 및 3대 핵심 기술` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

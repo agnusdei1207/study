@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:36:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 송전선로 주민 갈등으로 인한 팹 가동 지연 / 이상 가뭄 시 원수 확보난 / 화학물질 혼합 폐수 방류 기준 강화
 ```
 - 필수 키워드: 반도체 인프라 · 기저부하 전력 · 순간 전압 강하(Voltage Sag) · Dynamic UPS · 초순수(UPW) · 공업용수 재이용 · 메가 클러스터
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 전력·용수 공급망 통합 구성도 → Ⅴ IDC 인프라 vs 반도체 팹 인프라 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ Voltage Sag 방어 체계와 초순수 3단계 정제 공정, Ⅵ 국가 차원의 인프라 구축 전략
 - 기출: 미출제 (국가 전략 산업 시사·트렌드 핵심 키워드)
 
 ## 한 줄 본질

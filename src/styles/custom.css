@@ -138,6 +138,97 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* ITPE 학습 지도: 한글 문자 폭에 의존하지 않는 손그림형 박스 흐름 */
+.sl-markdown-content .itpe-topic-path {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-block: 1rem 1.5rem;
+  overflow-x: auto;
+}
+
+.sl-markdown-content .itpe-topic-path > * {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-height: 2.4rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--palette-line);
+  border-radius: 0.55rem;
+  background: var(--palette-surface);
+  white-space: nowrap;
+}
+
+.sl-markdown-content .itpe-topic-path > * + *::before {
+  content: "→";
+  margin-inline: -1.35rem 0.75rem;
+  color: var(--palette-muted);
+  font-weight: 700;
+}
+
+.sl-markdown-content .itpe-topic-path > strong {
+  border-color: var(--palette-accent);
+  color: var(--palette-accent-glow);
+  background: color-mix(in srgb, var(--palette-accent) 14%, var(--palette-surface));
+}
+
+.sl-markdown-content .itpe-flow-map {
+  display: grid;
+  justify-items: center;
+  gap: 0.3rem;
+  margin-block: 1rem 1.5rem;
+}
+
+.sl-markdown-content .itpe-flow-node {
+  display: grid;
+  justify-items: center;
+  width: min(100%, 32rem);
+  gap: 0.2rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--palette-line);
+  border-radius: 0.55rem;
+  background: var(--palette-surface);
+  text-align: center;
+}
+
+.sl-markdown-content .itpe-flow-node.is-current {
+  border: 2px solid var(--palette-accent);
+  background: color-mix(in srgb, var(--palette-accent) 12%, var(--palette-surface));
+}
+
+.sl-markdown-content .itpe-flow-node.is-current strong {
+  color: var(--palette-accent-glow);
+  font-size: 1.05rem;
+}
+
+.sl-markdown-content .itpe-flow-node small {
+  color: var(--palette-muted);
+}
+
+.sl-markdown-content .itpe-flow-arrow {
+  color: var(--palette-accent);
+  font-weight: 800;
+  line-height: 1;
+}
+
+@media (max-width: 40rem) {
+  .sl-markdown-content .itpe-topic-path {
+    flex-direction: column;
+    align-items: stretch;
+    overflow-x: visible;
+  }
+
+  .sl-markdown-content .itpe-topic-path > * {
+    justify-content: center;
+    white-space: normal;
+  }
+
+  .sl-markdown-content .itpe-topic-path > * + *::before {
+    content: "↓";
+    margin: -1.3rem 0.75rem 0.75rem;
+  }
+}
+
 .site-title,
 .brand,
 .content-panel h1,

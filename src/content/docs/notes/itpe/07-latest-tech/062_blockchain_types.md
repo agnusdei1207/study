@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:46:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회, 126회"
-  priority: 80
-  priority_note: "[출제(KPC):124,126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상호운용성(Interoperability) 부재 / 이기종 체인 간 브릿지(Bridge) 해킹 위험 / 거버넌스 충돌
 ```
 - 필수 키워드: 퍼블릭 블록체인 · 프라이빗 블록체인 · 컨소시엄 블록체인 · 하이브리드 블록체인 · 인터체인(Cross-chain Bridge) · 영지식 증명(ZKP)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 유형별 권한/접근 매트릭스 도식 → Ⅴ 4대 유형 종합 비교표 / 25점 = Ⅰ~Ⅶ 전개, 하이브리드 블록체인의 L1-L2 앵커링 기술과 브릿지 보안 검증 집중
 - 기출: 124회 4교시 5번 `퍼블릭(Public) 블록체인과 프라이빗(Private) 블록체인의 차이점을 비교하여 설명하시오.` / 126회 1교시 `하이브리드 블록체인` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

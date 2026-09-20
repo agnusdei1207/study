@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회"
-  priority: 70
-  priority_note: "[출제:134]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 작업자 간 라벨 편차(Inter-annotator disagreement) / 장시간 수작업에 따른 휴먼 에러 / 클래스 불균형(Class Imbalance)
 ```
 - 필수 키워드: 데이터 어노테이션(Data Annotation) · 바운딩 박스 · 폴리곤 · 시맨틱 분할 · 인스턴스 분할 · 오토 라벨링 · 능동 학습(Active Learning) · HITL(Human-in-the-Loop)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 이미지 데이터 어노테이션 4대 유형 다이어그램 → Ⅴ 어노테이션 기법별 비용·정밀도 비교표 / 25점 = Ⅰ~Ⅶ 전개, 능동 학습 파이프라인 및 작업자 일치도 지표(Fleiss' Kappa, IoU) 상세화
 - 기출: 134회 1교시 `이미지 데이터 어노테이션(Data Annotation) 유형과 기법` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

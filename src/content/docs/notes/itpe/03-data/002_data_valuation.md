@@ -3,7 +3,7 @@ sidebar:
   order: 2
   label: "002. 데이터 가치평가·자산화"
   badge:
-    text: "A · 기출 · 100%"
+    text: "A"
     variant: note
 title: "데이터 가치평가·자산화"
 author: "OpenAI Codex"
@@ -14,22 +14,13 @@ weight: 2
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "03-data canonical 목록 A"
   question_no: "002"
-  source_status: "기출"
-  source_history: "135·139·140회(공식)"
-  priority: 100
-  priority_note: "최근 공식 출제 반복, 평가요인·방법론·자산화·거래로 확장 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [▶ 03 데이터] → [04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 03 데이터 → 데이터 가치평가·자산화
+<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터 관리</span><span>데이터 자산관리</span><strong>데이터 가치평가·자산화</strong></div>
 
 ## 큰 그림과 30초 인출
 

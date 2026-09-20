@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:42:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "81회, 95회"
-  priority: 58
-  priority_note: "이전(KPC):81,95"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 한 곳을 고치면 다른 곳이 막히는 병목 전이(Bottleneck Shifting) / 운영 서버 직접 파라미터 수정 / GC STW 지연
 ```
 - 필수 키워드: 성능 튜닝 · 병목(Bottleneck) · 응답 시간(Response Time) · 처리량(TPS) · 베이스라인 · APM · SQL 튜닝 · GC 튜닝
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 성능 튜닝 5단계 절차도 → Ⅴ 튜닝 계층별 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ OS/WAS/DB 계층별 핵심 파라미터와 Ⅵ 병목 전이 트러블슈팅 및 성능 테스트 자동화
 - 기출: 81회 1교시, 95회 2교시 `성능 튜닝의 개념, 절차 및 계층별 튜닝 기법` 출제
 
 ## 한 줄 본질

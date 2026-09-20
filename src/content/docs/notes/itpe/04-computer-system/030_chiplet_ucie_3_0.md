@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── D2D 인터페이스 지연 시간 / 패키징 테스트 복잡도(KGD: Known Good Die) / 열팽창계수(CTE) 불일치
 ```
 - 필수 키워드: 칩렛(Chiplet) · 모놀리식 한계 · UCIe(Universal Chiplet Interconnect Express) · 2.5D/3D 패키징 · CoWoS · KGD(Known Good Die)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ UCIe 3계층 아키텍처 및 칩렛 패키징 도식 → Ⅴ 모놀리식 vs 칩렛 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ D2D 통신 흐름과 Ⅵ 글로벌 반도체 공급망 변화
 - 기출: 미출제. 예상: "무어의 법칙 한계를 극복하기 위한 반도체 기술인 '칩렛(Chiplet)'의 개념, 장점, 그리고 다이 간 상호연결 표준인 UCIe(Universal Chiplet Interconnect Express)의 계층 구조를 설명하시오."
 
 ## 한 줄 본질

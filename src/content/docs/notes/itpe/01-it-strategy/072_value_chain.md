@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "C · 기출 · 74%"
+    text: "C"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 74
-  priority_note: "[출제(KPC):124] · 합숙·모의 2"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 활동 간 데이터 사일로로 병목 전이 / 지원 활동의 비용 센터 전락 / 플랫폼 비즈니스 전환 시 가치사슬 붕괴
 ```
 - 필수 키워드: 가치사슬(Value Chain) · 마이클 포터 · 본원적 활동(Primary) · 지원 활동(Support) · 마진(Margin) · 가치 동인 · 가치생태계
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 포터의 가치사슬 정통 다이어그램 완벽 도시 → Ⅴ 전통 vs 디지털 가치사슬 비교 / 25점 = Ⅰ~Ⅶ 전개, 각 활동별 최신 IT 기술(AI/클라우드/IoT) 매핑 상술
 - 기출: 124회 KPC `마이클 포터의 가치사슬(Value Chain) 모델의 주활동 및 지원활동과 IT를 통한 가치사슬 혁신 방안` → Ⅲ·Ⅳ·Ⅵ
 
 ## 한 줄 본질

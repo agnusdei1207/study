@@ -2,9 +2,6 @@
 sidebar:
   order: 151
   label: "151. ACID"
-  badge:
-    text: "기출 · 64%"
-    variant: note
 title: "ACID (Transaction ACID Properties)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 151
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "151"
-  source_status: "기출"
-  source_history: "81회, 90회"
-  priority: 64
-  priority_note: "이전(KPC):81,90"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 완벽한 격리성 추구로 인한 트랜잭션 락 경합과 처리량 저하 / 분산 환경에서 2PC 적용 시 가용성 훼손
 ```
 - 필수 키워드: ACID · 원자성(Atomicity) · 일관성(Consistency) · 격리성(Isolation) · 영속성(Durability) · Undo Log · Redo Log · WAL · MVCC · BASE
-- 배점 전략: 10점 = Ⅰ → Ⅲ ACID 4대 속성과 DBMS 구현 기술 1:1 매핑표 → Ⅴ ACID vs BASE 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 트랜잭션 커밋/롤백 시 로그 처리 흐름도 및 Ⅵ MSA 분산 환경에서의 ACID 한계 극복
 - 기출: 90회 `데이터베이스 트랜잭션의 4대 속성인 ACID의 개념과 각각을 보장하기 위한 DBMS 엔진의 기술적 메커니즘을 설명하시오.` → Ⅰ 정의 + Ⅲ 4대 속성별 구현 기술 + Ⅳ 트랜잭션 제어 흐름 + Ⅴ BASE 비교
 
 ## 한 줄 본질

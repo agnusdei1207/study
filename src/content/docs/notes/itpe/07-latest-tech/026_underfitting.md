@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 86
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 핵심 도메인 특성 누락 / 과도한 규제 페널티 설정 / 부적절한 활성화 함수(기울기 소실)
 ```
 - 필수 키워드: 고편향(High Bias) · 모델 표현력 · 특성 공학 · 규제 완화 · 학습률 튜닝 · 편향-분산 트레이드오프
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 고편향 학습 곡선 도해 → Ⅵ 4대 해결 방안 / 25점 = Ⅰ~Ⅶ 전개, Ⅴ 과적합과의 대칭적 4대 비교축과 특성 공학 메커니즘 집중
 - 기출: 139회 1교시 8번 `과적합(Overfitting)과 과소적합(Underfitting)의 발생 원인과 해결 방안` → Ⅲ·Ⅴ·Ⅵ
 
 ## 한 줄 본질

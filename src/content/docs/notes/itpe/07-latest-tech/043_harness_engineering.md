@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:42:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 84%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 84
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 하네스 계층 누적으로 인한 지연시간(Latency) 증가 / 과도한 제약에 따른 모델 창의성 저하
 ```
 - 필수 키워드: 하네스 엔지니어링(Harness Engineering) · 테스트 하네스 · 가드레일(NeMo Guardrails) · 구조화된 출력(JSON Schema) · 벤치마크 평가 · 프롬프트 엔지니어링
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 하네스 시스템 아키텍처 구조도 → Ⅴ 프롬프트 vs 하네스 비교표 / 25점 = Ⅰ~Ⅶ 전개, 입출력 가드레일 파이프라인과 LLM 평가 하네스(Eval Harness) 구축 집중
 - 기출: 140회 1교시 13번 `프롬프트 엔지니어링(Prompt Engineering)과 하네스 엔지니어링(Harness Engineering) 비교` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

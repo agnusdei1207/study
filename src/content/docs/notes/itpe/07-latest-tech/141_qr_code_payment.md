@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 70
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 가맹점 정적 QR 스티커 바꿔치기(큐싱) 사기 / 네트워크 음영 지역 결제 불가 / 카메라 스캔 인식 실패
 ```
 - 필수 키워드: QR코드 결제 · MPM(가맹점 제시형) · CPM(고객 제시형) · EMVCo 표준 · 일회용 토큰 · 큐싱(Qshing) 방어 · 제로페이
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ MPM vs CPM 결제 트랜잭션 흐름도 → Ⅴ MPM vs CPM vs NFC 3자 비교표 / 25점 = Ⅰ~Ⅶ 전개, EMVCo QR 표준 데이터 명세(Tag-Length-Value) 및 가짜 QR 위변조 방지 암호화 집중
 - 기출: 120회 `QR코드 결제` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

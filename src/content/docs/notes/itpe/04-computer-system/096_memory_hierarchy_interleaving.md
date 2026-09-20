@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:13:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 뱅크 충돌(Bank Conflict)로 인한 지연 / 단일 뱅크 편중 접근 / 메모리 채널 비대칭 구성(Flex Mode)
 ```
 - 필수 키워드: 메모리 계층 구조 · 메모리 인터리빙 · 뱅크(Bank) · 하위 인터리빙 · 상위 인터리빙 · 뱅크 충돌 · Memory Wall
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 메모리 계층 피라미드 및 4-Way 하위 인터리빙 구조도 → Ⅴ 상위 vs 하위 인터리빙 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 주소 매핑 비트 분할과 Ⅵ 뱅크 충돌 방지 및 다중 채널(Multi-channel) 메모리 구성 실무
 - 기출: 128회 1교시 11번 `메모리 인터리빙(Memory Interleaving)` 단답형 출제
 
 ## 한 줄 본질

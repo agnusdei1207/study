@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:48:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 용인 메가 클러스터 송전망 및 전력 수급 지연 / 팹리스 생태계 부실로 인한 메모리 편중 한계
 ```
 - 필수 키워드: 반도체특별법 · K-칩스법 · 직접 보조금 · 메가 클러스터 · 전력·용수 인프라 · 팹리스 · 미국 CHIPS Act
-- 배점 전략: 10점 = Ⅰ 입법 배경 → Ⅲ 4대 핵심 지원 기둥 도식 → Ⅴ 주요국 반도체 지원법 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 인프라·보조금·생태계 세부 법제 조항과 Ⅵ AI 반도체(NPU, HBM) 파운드리 실무 연계
 - 기출: 미출
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 72
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 강제력 없는 자율 규범의 실효성 한계 / 해외 글로벌 플랫폼(Roblox 등) 규제 역차별 / 아바타 범죄에 대한 법적 형벌권 적용 공백
 ```
 - 필수 키워드: 메타버스 윤리원칙 · 3대 지향 가치 · 8대 실천원칙 · 아바타 인격권 · 세이프티 바이 디자인 · 연성 규범(Soft Law) · 디지털 프라이버시
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 지향 가치 및 8대 실천원칙 체계도 → Ⅴ 타 윤리 기준과의 비교표 / 25점 = Ⅰ~Ⅶ 전개, 아바타 간 안전거리(Personal Boundary) 등 세이프티 바이 디자인 기술적 구현 방안 집중
 - 기출: 130회 `메타버스 윤리원칙` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

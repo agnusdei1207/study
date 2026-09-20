@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "119회, 122회"
-  priority: 76
-  priority_note: "[출제(KPC):122] · 이전(KPC):119"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 플랫폼 종속성(Lock-in) / 커스텀 OS 라이브러리 지원 한계 / 디버깅 가시성 제약
 ```
 - 필수 키워드: PaaS · 애플리케이션 런타임 · 빌드팩(Buildpack) · 벤더 종속성 · K-PaaS(전자정부) · CI/CD 연계 · 개발 생산성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ PaaS 아키텍처 계층도 → Ⅴ PaaS vs IaaS vs FaaS 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 소스-투-서비스(Source-to-Service) 배포 워크플로우 및 Ⅵ 공공 K-PaaS와 멀티 클라우드 이식성 확보 방안
 - 기출: 122회 4교시 1번 `IaaS, PaaS, SaaS의 특징 및 구축방법` 논술형 출제
 
 ## 한 줄 본질

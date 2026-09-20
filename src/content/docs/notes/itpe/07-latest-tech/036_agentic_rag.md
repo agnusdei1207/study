@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 반복 검색에 따른 지연시간(Latency) 증가 / API 호출 비용 폭증 / 판단 오류 시 엉뚱한 도구 호출
 ```
 - 필수 키워드: 에이전틱 RAG · 쿼리 변환(Query Transformation) · 자기 수정(Self-Correction/CRAG) · 적응형 라우팅(Adaptive Routing) · 검색 평가기(Grader) · LangGraph
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 동적 제어 구조도 → Ⅴ Naive RAG vs Agentic RAG 비교표 / 25점 = Ⅰ~Ⅶ 전개, Self-RAG 및 Corrective RAG의 상태 머신 전이도와 서빙 최적화 집중
 - 기출: 미출제. 예상: "기존 Naive RAG의 한계를 극복하기 위해 등장한 에이전틱 RAG(Agentic RAG)의 개념, 동적 검색 제어 아키텍처, 그리고 질의 재작성 및 자기 수정 메커니즘을 설명하시오."
 
 ## 한 줄 본질

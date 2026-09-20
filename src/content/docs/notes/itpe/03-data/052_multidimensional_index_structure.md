@@ -2,9 +2,6 @@
 sidebar:
   order: 52
   label: "052. 다차원 색인구조 (Multidimensional Index Structure)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "다차원 색인구조 (Multidimensional Index Structure)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 52
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "052"
-  source_status: "기출"
-  source_history: "134회, 124회"
-  priority: 80
-  priority_note: "[출제:134] · [출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── MBR 간 중복(Overlap)에 따른 다중 경로 탐색 / 차원 증가 시 풀 테이블 스캔으로 퇴화
 ```
 - 필수 키워드: MBR(Minimum Bounding Rectangle) · R-Tree · K-D Tree · 공간 질의(Range/k-NN Query) · 필터링 및 정제(Filter & Refinement) · 차원의 저주
-- 배점 전략: 10점 = Ⅰ → Ⅲ R-Tree MBR 계층 도식 → Ⅴ 주요 색인 유형 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 2단계 질의 처리 및 Ⅵ 활용 사례 상세
 - 기출: 134회 3교시 5번 `다차원색인구조의 개념, 유형, 활용사례에 대하여 설명하시오` → Ⅰ 개념 + Ⅲ/Ⅴ 유형 + Ⅵ GIS/자율주행 활용사례
 
 ## 한 줄 본질

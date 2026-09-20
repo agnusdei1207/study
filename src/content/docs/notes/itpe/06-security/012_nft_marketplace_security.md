@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 96%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회, 127회, 128회"
-  priority: 96
-  priority_note: "[출제(KPC):123,127,128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 재진입성(Reentrancy) 공격 차단 / 서명 탈취(Wyvern 프로토콜 피싱) 방어 / 러그풀(Rug Pull) 탐지
 ```
 - 필수 키워드: 스마트 컨트랙트 · ERC-721 · IPFS · 재진입 공격(Reentrancy) · 오프체인 메타데이터 · 러그풀(Rug Pull)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 온체인/오프체인 아키텍처 도식 → Ⅵ 핵심 취약점 및 대응표 / 25점 = Ⅰ~Ⅶ 전개, 스마트 컨트랙트 검증 흐름과 Ⅵ OpenSea 침해사례 분석 집중
 - 기출: 128회 4교시 1번 `NFT 마켓 침해사례와 스마트 컨트랙트 취약점 대응` → Ⅰ·Ⅲ·Ⅵ / 127회 1교시 `NFT 보안위협` → Ⅱ·Ⅴ
 
 ## 한 줄 본질

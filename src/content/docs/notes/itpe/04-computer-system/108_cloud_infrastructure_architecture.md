@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 70
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이종 하드웨어 풀링 복잡성 / 단일 실패점(SPOF) 리스크 / 멀티 테넌트 Noisy Neighbor 간섭
 ```
 - 필수 키워드: 클라우드 인프라 · SDDC · SDN/SDS · 하이퍼바이저/컨테이너 · CMP · 멀티 테넌시 · 프로비저닝
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4계층 아키텍처 도식 → Ⅴ 전통 인프라 vs 클라우드 인프라 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 자원 오케스트레이션 제어 시퀀스와 Ⅵ 멀티 테넌시 격리 실무 대책
 - 기출: 121회 2교시 `클라우드 인프라 아키텍처`
 
 ## 한 줄 본질

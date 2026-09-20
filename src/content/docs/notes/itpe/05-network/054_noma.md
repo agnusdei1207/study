@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 72
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수신단 SIC 처리 지연 및 하드웨어 복잡도 / 불완전 CSI에 따른 에러 전파(Error Propagation)
 ```
 - 필수 키워드: 비직교 다중접속 · 전력 영역(Power Domain) · 중첩 부호화(Superposition Coding) · 연속 간섭 제거(SIC) · 단말 페어링(User Pairing)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 송수신 원리 도식(송신 전력 분배 및 수신 SIC 감산) → Ⅴ OMA 대비 비교표 / 25점 = 129회 기출에 맞춰 전력 도메인 송수신 메커니즘과 단말 페어링 최적화 상세
 - 기출: 제129회 1교시 12번: "비직교 다중접속(NOMA, Non-Orthogonal Multiple Access)" → Ⅰ~Ⅵ
 
 ## 한 줄 본질

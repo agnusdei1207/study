@@ -2,9 +2,6 @@
 sidebar:
   order: 156
   label: "156. 데이터 이관(Data Migration)"
-  badge:
-    text: "기출 · 64%"
-    variant: note
 title: "데이터 이관 (Data Migration)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 156
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "156"
-  source_status: "기출"
-  source_history: "81회, 105회"
-  priority: 64
-  priority_note: "이전(KPC):81,105"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 본 이관 당일 예상 시간을 초과하여 컷오버 지연 / 예외 데이터로 인한 제약조건 위반 적재 실패
 ```
 - 필수 키워드: 데이터 이관 · 매핑 정의서 · 모의 이관(Rehearsal) · 컷오버(Cut-over) · 빅뱅 이관 · 단계적 이관 · 데이터 정제(Cleansing) · 롤백 플랜(Rollback)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 데이터 이관 5단계 라이프사이클 도식 → Ⅴ 이관 전략 3종 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 시간대별 분 단위 컷오버 시나리오 및 Ⅵ 데이터 이관 실패 리스크 대응 방안
 - 기출: 105회 `차세대 정보시스템 구축 시 데이터 이관(Data Migration)의 절차, 주요 활동 및 성공적인 이관을 위한 고려사항을 설명하시오.` → Ⅰ 정의 + Ⅲ 5단계 절차 + Ⅴ 전략 비교 + Ⅵ 성공 요건
 
 ## 한 줄 본질

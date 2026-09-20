@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 접두사 길이 가변성으로 인한 일반 BST 적용 한계 / TCAM 고발열 및 고비용
 ```
 - 필수 키워드: 최장 일치(LPM) · 이진 트라이 · 패트리샤 트리(Radix Tree) · 멀티비트 트라이 · TCAM · $O(W)$
-- 배점 전략: 10점 = Ⅰ → Ⅲ 트라이 비트 분기 구조도 → Ⅴ 탐색 기법 비교표 / 25점 = Ⅰ~Ⅶ, 139회 3교시 5번 기출(BST와 라우팅 탐색 상관관계 및 한계) 상세 풀이
 - 기출: 139회 3교시 5번 `이진 탐색 트리와 라우팅 테이블 탐색 알고리즘의 상관관계에 대하여 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 범주형 변수의 이진 분기 조합 탐색 비용(2^(k-1)-1) / 연속형 변수 정렬 오버헤드 / 과적합 발생 방지를 위한 가지치기(Pruning)
 ```
 - 필수 키워드: 지니 지수(Gini Index) · 불순도(Impurity) · 순수도(Purity) · CART · 이진 분할(Binary Split) · 지니 감소량(Gini Gain) · 가지치기(Pruning)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 지니 지수 수학적 정의식 및 곡선 특성 → Ⅳ CART 이진 분기 메커니즘 / 25점 = Ⅰ~Ⅶ 전개, 엔트로피 지수와의 수식 전개 비교(테일러 1차 근사 관점) 및 비용-복잡도 가지치기(ccp_alpha) 수식 상세화
 - 기출: 126회 `지니 지수(Gini Index)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

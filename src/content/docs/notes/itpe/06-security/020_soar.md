@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회, 127회"
-  priority: 91
-  priority_note: "[출제:135] · [출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 자동 차단 오탐으로 인한 서비스 장애 / 플레이북 유지보수 부담 / 레거시 장비 API 연동 부재
 ```
 - 필수 키워드: 보안 오케스트레이션(SO) · 보안 자동화(SA) · 플레이북(Playbook) · SIEM 연계 · MTTR(평균대응시간) 단축 · TIP
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ SOAR 3대 핵심역량 도식 → Ⅴ SIEM vs SOAR 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 플레이북 기반 사고 대응 흐름과 Ⅵ 실무 오탐 방지 가드레일 집중
 - 기출: 135회 1교시 5번 `SIEM과 SOAR 비교` → Ⅰ·Ⅴ / 127회 4교시 6번 `보안관제 고도화와 SOAR 도입` → Ⅲ·Ⅳ·Ⅵ
 
 ## 한 줄 본질

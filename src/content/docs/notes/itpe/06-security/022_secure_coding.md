@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회, 125회, 98회, 108회"
-  priority: 91
-  priority_note: "[출제(KPC):121,125] · 이전(KPC):98,108"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 오탐(False Positive) 정리에 따른 개발 지연 / AI 생성 코드 보안 결함 검증 / 레거시 코드 리팩토링
 ```
 - 필수 키워드: 행정안전부 7대 보안약점 · CWE · SAST · DAST · Boehm의 결함 수정 비용 곡선 · 파라미터화 쿼리
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 행안부 7대 보안약점 표 → Ⅴ SAST vs DAST 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ DevSecOps 연동 절차와 Ⅵ 개발 생산성 저하 방지 대책 집중
 - 기출: 125회 1교시 `소프트웨어 개발 보안(시큐어 코딩) 7대 분야` → Ⅰ·Ⅲ / 121회 2교시 `시큐어 코딩 진단 도구와 프로세스` → Ⅳ·Ⅴ·Ⅵ
 
 ## 한 줄 본질

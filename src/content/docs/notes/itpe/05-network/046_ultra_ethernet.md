@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수신측 NIC 재정렬 버퍼 하드웨어 요구 / 스위치 칩셋 상용화 시점 / 레거시 이더넷 호환
 ```
 - 필수 키워드: UEC(Ultra Ethernet Consortium) · UET · 인피니밴드 대체 · 비순차 전달(Out-of-Order) · 패킷 스프레잉 · LLR · RoCEv2 극복
-- 배점 전략: 10점 = Ⅰ → Ⅲ UEC 계층 스택 도식 → Ⅴ InfiniBand/RoCEv2/UEC 3자 비교표 / 25점 = Ⅰ~Ⅶ, AI 분산 학습의 네트워크 병목(Tail Latency)과 UEC 해결 메커니즘 상세
 - 기출: 미출제. AI 인프라 고성능 네트워킹 핵심 주제로 25점 서술형 출제 유력
 
 ## 한 줄 본질

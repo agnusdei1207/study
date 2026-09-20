@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고해상도 모델(B7)에서 큰 배치 크기 학습 시 GPU VRAM 급증 / 비전 트랜스포머(ViT) 대비 초거대 데이터 확장성 한계
 ```
 - 필수 키워드: EfficientNet · 복합 스케일링(Compound Scaling) · 깊이(Depth) · 너비(Width) · 해상도(Resolution) · MBConv · 신경망 구조 탐색(NAS)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 스케일링 3대 요소 및 복합 수식 다이어그램 → Ⅴ 전통 CNN 확장 방식 비교표 / 25점 = Ⅰ~Ⅶ 전개, FLOPs 제약식($\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2$)의 수학적 유도 원리 및 MBConv 구조 집중
 - 기출: 123회 `EfficientNet` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

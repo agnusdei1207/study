@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회"
-  priority: 76
-  priority_note: "[출제:133]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 마케팅 부서의 과도한 데이터 수집 요구와의 갈등 / 디폴트 설정(Opt-in vs Opt-out) 충돌 / AI 학습 데이터 파이프라인 PbD 적용
 ```
 - 필수 키워드: Privacy by Design(PbD) · Ann Cavoukian · 7대 원칙 · Privacy by Default · 사전예방(Proactive) · 포지티브섬(Positive-Sum) · 개인정보 영향평가(PIA)
-- 배점 전략: 10점 = Ⅰ 정의 및 배경 → Ⅲ PbD 7대 기본 원칙 도식 → Ⅴ 전통 사후 대응 대비 차이점 / 25점 = Ⅰ~Ⅶ 전개, 7대 원칙의 공학적 구현 기법과 Ⅵ 모바일 앱/AI 서비스 개발 실무 적용 방안 집중
 - 기출: 133회 2교시 5번 `PbD(Privacy by Design)의 개념과 7대 기본 원칙, ICT 분야 적용 방안` → Ⅰ~Ⅶ 전반 완벽 대응
 
 ## 한 줄 본질

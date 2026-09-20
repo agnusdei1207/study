@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 69%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "86회, 93회, 102회"
-  priority: 69
-  priority_note: "이전(KPC):86,93,102"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 기울기 소실/폭주(Vanishing/Exploding Gradient) / 과적합(Overfitting) / 블랙박스 특성으로 인한 설명 가능성 부재
 ```
 - 필수 키워드: 인공 신경망(ANN) · 퍼셉트론(Perceptron) · 활성화 함수(Activation Function) · 순전파 · 역전파(Backpropagation) · 연쇄 법칙(Chain Rule) · ReLU · 드롭아웃(Dropout)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 뉴런 수식 모델 및 MLP 네트워크 구조도 → Ⅲ 순전파 및 역전파 흐름 / 25점 = Ⅰ~Ⅶ 전개, 연쇄 법칙(Chain Rule) 기반 역전파 수학적 유도 과정 및 기울기 소실 해결책(ReLU, Skip Connection) 상세화
 - 기출: 86회, 93회, 102회 `인공 신경망` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

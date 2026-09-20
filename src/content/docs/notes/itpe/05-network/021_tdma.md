@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 전파 전파 지연차로 인한 슬롯 간 충돌 / 트래픽 미발생 시 타임 슬롯 낭비
 ```
 - 필수 키워드: 타임 슬롯 · 프레임 구조 · 보호 시간(Guard Time) · 버스트 전송 · 동기화(Synchronization) · D-TDMA
-- 배점 전략: 10점 = Ⅰ → Ⅲ TDMA 프레임 구조도 → Ⅴ 다중접속 3종 비교표 / 25점 = Ⅰ~Ⅶ, 140회 3교시 4번 기출(다. TDMA)에 맞춰 동기화 타이밍 어드밴스 상세
 - 기출: 140회 3교시 4번 `다음 무선 통신 프로토콜을 설명하시오. 가. CSMA/CA 나. CDMA 다. TDMA` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

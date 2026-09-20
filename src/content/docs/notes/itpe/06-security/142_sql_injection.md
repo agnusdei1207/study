@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회, 92회"
-  priority: 70
-  priority_note: "[출제(KPC):121] · 이전(KPC):92"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── ORM(MyBatis, JPA) 사용 시 동적 정렬 필드(`ORDER BY`) 인젝션 노출 / 2차 인젝션(Second-order SQLi) / WAF 필터링 우회(인코딩 기법)
 ```
 - 필수 키워드: SQL Injection · PreparedStatement(매개변수화 쿼리) · Error-based · Union-based · Blind SQLi · 코드와 데이터 분리 · 최소 권한 원칙
-- 배점 전략: 10점 = Ⅰ SQLi 정의 및 발생 원인 → Ⅲ 공격 3대 유형 분류 도식 → Ⅵ 핵심 방어 기법(PreparedStatement) 요약 / 25점 = Ⅰ~Ⅶ 전개, 제121회 2교시 기출 완벽 대응, 동적 쿼리와 매개변수화 쿼리의 파싱 단계별 차이 분석, Blind SQLi(Time-based) 추출 원리 및 ORM 오용 사례 심층 상술
 - 기출: 제121회 2교시 6번: "OWASP에서 발표한 보안 위협 인젝션(Injection)의 개념과 대응 방안" (이전: 92회)
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 100
   label: "100. 릴레이션 무결성 제약"
-  badge:
-    text: "기출 · 75%"
-    variant: note
 title: "릴레이션 무결성 제약 (Relation Integrity Constraint)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 100
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "100"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 75
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 참조 무결성 cascade 삭제로 인한 연쇄 삭제 사고 / 대량 데이터 적재(Bulk Load) 시 제약조건 검사 병목
 ```
 - 필수 키워드: 릴레이션 무결성 · 개체 무결성 · 참조 무결성 · 도메인 무결성 · 키 무결성 · DDL 제약조건 · CASCADE · CHECK
-- 배점 전략: 10점 = Ⅰ → Ⅲ 4대 무결성 유형 및 구체 사례 매핑표 → Ⅴ 구현 방식 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ DML 실행 시 제약조건 검증 메커니즘 및 Ⅵ 대량 적재 최적화
 - 기출: 135회 4교시 2번 `릴레이션 무결성 제약의 유형과 사례를 제시하고, 구현 방법에 대하여 설명하시오.` → Ⅰ 개념 + Ⅲ 유형 및 사례 + Ⅴ/Ⅵ DDL 및 트리거 구현 방법
 
 ## 한 줄 본질

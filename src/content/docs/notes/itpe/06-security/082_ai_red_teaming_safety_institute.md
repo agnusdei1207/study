@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 자동화 레드티밍 도구 도입을 통한 비용 절감 / 모델 업데이트 시 지속적 회귀 테스트(Regression Test) 체계 구축
 ```
 - 필수 키워드: AI 레드티밍 · AI안전연구소(AISI) · 탈옥(Jailbreak) · 프롬프트 인젝션 · 안전성 가드레일 · CBRN 위험 평가
-- 배점 전략: 10점 = Ⅰ AI 레드티밍과 AISI 개념 → Ⅲ 적대적 테스트 및 연구소 역할 도식 → Ⅴ 전통 침투테스트 대비 차이점 / 25점 = Ⅰ~Ⅶ 전개, 미국/영국/한국 AI안전연구소의 핵심 기능과 실무 레드티밍 수행 방법론(자동화+전문가 결합) 심층 서술
 - 기출: 미출제. AI 기본법 제정 및 글로벌 AI 안전 정상회의 시사 이슈로 유력 예상
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 82%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 82
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 솔트(Salt) 적용 시 테이블 무용화 / 키 스트레칭 / 충돌(Collision)에 의한 체인 병합(Merge) 문제
 ```
 - 필수 키워드: 레인보우 테이블 · 시공간 절충(TMTO) · 해시 체인 · 감축 함수(Reduction Function) · 솔트(Salt) · 키 스트레칭(Key Stretching)
-- 배점 전략: 10점 = Ⅰ 정의 및 원리 → Ⅲ 해시 체인 및 감축 함수 도식 → Ⅴ TMTO 비교 / 25점 = Ⅰ~Ⅶ 전개, 체인 병합 방지 메커니즘과 Ⅵ 솔트·적응형 해시(bcrypt/Argon2) 실무 방어 대책 집중
 - 기출: 138회 4교시 2번 `단방향 해시 함수` → Ⅲ 공격 기법(레인보우 테이블) 및 Ⅵ 방어 대책(솔팅)
 
 ## 한 줄 본질

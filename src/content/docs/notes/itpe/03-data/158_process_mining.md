@@ -2,9 +2,6 @@
 sidebar:
   order: 158
   label: "158. 프로세스 마이닝(Process Mining)"
-  badge:
-    text: "기출 · 64%"
-    variant: note
 title: "프로세스 마이닝 (Process Mining)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 158
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "158"
-  source_status: "기출"
-  source_history: "96회, 118회"
-  priority: 64
-  priority_note: "이전(KPC):96,118"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수작업 오프라인 업무의 로그 누락 / 예외 케이스 과다로 인한 스파게티 프로세스(Spaghetti Process) 시각화 혼란
 ```
 - 필수 키워드: 프로세스 마이닝 · 이벤트 로그(Event Log) · Case ID · Activity · Timestamp · 프로세스 발견(Discovery) · 적합도 검사(Conformance) · 프로세스 향상(Enhancement) · Celonis
-- 배점 전략: 10점 = Ⅰ → Ⅲ 프로세스 마이닝 3대 유형 및 이벤트 로그 구조도 → Ⅴ BPM과의 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 5단계 분석 라이프사이클 및 Ⅵ 스파게티 프로세스 필터링 기법
 - 기출: 118회 `정보시스템의 이벤트 로그를 활용한 프로세스 마이닝(Process Mining)의 개념, 3대 유형 및 비즈니스 프로세스 혁신 방안을 설명하시오.` → Ⅰ 정의 + Ⅲ 3대 유형(발견, 적합도, 향상) + Ⅳ 절차 + Ⅵ 적용 효과
 
 ## 한 줄 본질

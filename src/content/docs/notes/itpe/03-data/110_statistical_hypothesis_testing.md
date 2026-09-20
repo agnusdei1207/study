@@ -2,9 +2,6 @@
 sidebar:
   order: 110
   label: "110. 통계적 가설검정 (Statistical Hypothesis Testing)"
-  badge:
-    text: "기출 · 72%"
-    variant: note
 title: "통계적 가설검정 (Statistical Hypothesis Testing)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 110
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "110"
-  source_status: "기출"
-  source_history: "121회, 111회"
-  priority: 72
-  priority_note: "[출제(KPC):121] · 이전(KPC):111"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 표본 수가 수십만 건으로 커질 때 무의미한 차이도 $p < 0.05$로 판정되는 p-해킹(p-hacking) 발생
 ```
 - 필수 키워드: 가설검정 · 귀무가설($H_0$) · 대립가설($H_1$) · 유의수준($\alpha$) · 유의확률($p\text{-value}$) · 1종 오류 · 2종 오류 · 검정력($1-\beta$)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 가설검정 5단계 절차도 → Ⅴ 1종 오류와 2종 오류 매트릭스 / 25점 = Ⅰ~Ⅶ, Ⅳ 기각역과 p-value 판정 곡선 도식 및 Ⅵ p-해킹 방지 실무 가이드
 - 기출: 121회 `통계적 가설검정의 개념, 절차 및 1종 오류와 2종 오류의 관계` → Ⅰ 정의 + Ⅲ 구성요소 + Ⅳ 5단계 절차 + Ⅴ 오류 매트릭스 및 검정력
 
 ## 한 줄 본질

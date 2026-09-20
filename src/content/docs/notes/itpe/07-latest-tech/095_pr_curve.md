@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 75
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 불균형 비율에 따른 기준선(Baseline) 변동 / 국소적 톱니바퀴 형태 진동 / 단일 수치 요약 시 보간법 왜곡
 ```
 - 필수 키워드: PR(Precision-Recall) 곡선 · ROC 곡선 · 클래스 불균형(Class Imbalance) · 정밀도(Precision) · 재현율(Recall) · AUPRC · 진음성(TN)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 정밀도/재현율 수식 및 그래프 형상 → Ⅴ PR 곡선 vs ROC 곡선 비교표 / 25점 = Ⅰ~Ⅶ 전개, 이상치 탐지 및 금융 사기(FDS) 관점의 TN 배제 수학적 당위성 집중
 - 기출: 135회 1교시 1번: "PR(Precision Recall) 곡선과 ROC(Receiver Operating Characteristic) 곡선 비교" → Ⅰ~Ⅴ
 
 ## 한 줄 본질

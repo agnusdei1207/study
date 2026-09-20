@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 71%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "107회, 116회, 118회"
-  priority: 71
-  priority_note: "이전(KPC):107,116,118"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 기기 분실 시 계정 복구(Recovery) 절차 설계 / 레거시 브라우저 호환성 / 생체정보 위조(가짜 지문)에 대한 단말 하드웨어 신뢰성
 ```
 - 필수 키워드: FIDO2 · WebAuthn · CTAP(Client to Authenticator Protocol) · 무암호 인증(Passwordless) · 로컬 인증 · 피싱 저항성 · 패스키(Passkey)
-- 배점 전략: 10점 = Ⅰ FIDO 개념 및 3대 구성요소 → Ⅲ 등록 및 인증 2단계 흐름 도식 → Ⅴ FIDO 1.0 vs FIDO2 비교표 / 25점 = Ⅰ~Ⅶ 전개, KPC 기출 반영, 생체정보 보호 메커니즘(비밀 분산/로컬 매칭), FIDO2 2대 핵심 규격(W3C WebAuthn API, CTAP2) 상세 구조 및 최신 클라우드 패스키(Passkey) 동기화 기술 심층 상술
 - 기출: 제118회 기출: "FIDO(Fast Identity Online) 1.0과 FIDO 2.0의 기술요소 및 차이점을 비교 설명하시오." (이전: 107, 116회)
 
 ## 한 줄 본질

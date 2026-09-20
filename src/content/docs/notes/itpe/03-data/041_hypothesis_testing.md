@@ -2,9 +2,6 @@
 sidebar:
   order: 41
   label: "041. 가설검정 (Hypothesis Testing)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "가설검정 (Hypothesis Testing)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 41
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "041"
-  source_status: "기출"
-  source_history: "125회, 102회, 111회"
-  priority: 81
-  priority_note: "[출제(KPC):125] · 이전(KPC):102,111"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 표본 과대 시 사소한 차이 기각(p-hacking) / 검정력 부족으로 실제 효과 탐지 실패
 ```
 - 필수 키워드: 귀무가설($H_0$) · 대립가설($H_1$) · 유의수준($\alpha$) · p-값(p-value) · 1종 오류 · 2종 오류 · 검정력($1-\beta$)
-- 배점 전략: 10점 = Ⅰ → Ⅲ/Ⅳ 절차 도식 → Ⅴ 1·2종 오류 교차표 / 25점 = Ⅰ~Ⅶ, Ⅲ 구조 및 Ⅴ 오류 트레이드오프 전진 배치
 - 기출: 125회 `가설검정의 절차와 1종/2종 오류` → Ⅳ 절차 + Ⅴ 오류 표
 
 ## 한 줄 본질

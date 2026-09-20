@@ -2,9 +2,6 @@
 sidebar:
   order: 73
   label: "073. 포아송 분포 (Poisson Distribution)"
-  badge:
-    text: "기출 · 79%"
-    variant: note
 title: "포아송 분포 (Poisson Distribution)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 73
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "073"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 79
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 실제 데이터에서 분산이 평균보다 훨씬 큰 과산포(Overdispersion) 현상 발생 시 모형 적합도 파탄
 ```
 - 필수 키워드: 포아송 분포 · 모수 $\lambda$ · 희귀 사건(Rare Event) · 이산 확률분포 · $E(X)=Var(X)=\lambda$ · 이항분포의 극한 · 대기행렬이론
-- 배점 전략: 10점 = Ⅰ → Ⅲ PMF 수식 및 $\lambda$별 분포 형태 도식 → Ⅴ 포아송 vs 이항분포 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 이항분포 극한($n \to \infty, p \to 0$) 유도 및 Ⅵ 과산포 해결책
 - 기출: 135회 4교시 3번 `이항 분포(Binomial Distribution)와 포아송 분포(Poisson Distribution)를 비교 설명하시오` → Ⅰ 개념 + Ⅲ 수식/특징 + Ⅴ 상세 비교표
 
 ## 한 줄 본질

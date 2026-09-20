@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 크리피 효과(Creepy Effect: 지나친 감시에 대한 불쾌감) / 필터 버블(Filter Bubble) / 개인정보보호법(옵트아웃) 준수
 ```
 - 필수 키워드: 초개인화(Hyper-Personalization) · 세그먼트 오브 원(Segment of One) · CDP(고객데이터플랫폼) · 실시간 맥락(Context) · Two-Tower 모델 · 동적 UI · 크리피 효과
-- 배점 전략: 10점 = Ⅰ 개요 및 마케팅 진화 단계 → Ⅲ 초개인화 시스템 4계층 아키텍처 → Ⅴ 개인화 vs 초개인화 비교표 / 25점 = Ⅰ~Ⅶ 전개, 실시간 이벤트 스트리밍 및 Two-Tower 딥러닝 추천 파이프라인, 프라이버시 침해 방지 전략 상세화
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

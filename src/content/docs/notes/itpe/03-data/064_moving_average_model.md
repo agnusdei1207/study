@@ -2,9 +2,6 @@
 sidebar:
   order: 64
   label: "064. 이동평균모형 (Moving Average Model)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "이동평균모형 (Moving Average Model)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 64
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "064"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단순 이동평균(SMA)과의 개념 혼동 / 장기 추세가 존재하는 데이터에서의 부적합성
 ```
 - 필수 키워드: 이동평균모형(MA) · 백색잡음(White Noise) · 오차항($\epsilon_t$) · 가역성(Invertibility) · ACF(자기상관함수) · 차수 $q$ · 유한 충격
-- 배점 전략: 10점 = Ⅰ → Ⅲ 수식 정의 및 ACF 절단 도식 → Ⅴ MA vs AR 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 가역성 조건 유도 및 ARMA 결합 확장
 - 기출: 138회 1교시 7번 `자기회귀모형(Autoregressive model)과 이동평균모형(Moving Average model)` → Ⅰ 개념 + Ⅲ MA 모형 수식 + Ⅴ 비교
 
 ## 한 줄 본질

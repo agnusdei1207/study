@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:47:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 70
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 짙은 안개/스모그에 의한 신호 감쇠 / 대기 난류(Scintillation) / 빌딩 흔들림에 따른 빔 정렬 이탈
 ```
 - 필수 키워드: 자유공간 광통신 · 비가시선 불가(가시선 LoS) · 레이저 다이오드(LD) · 애벌런치 포토다이오드(APD) · 빔 지향 추적(PAT) · 대기 난류(Scintillation) · 하이브리드 FSO/RF
-- 배점 전략: 10점 = Ⅰ → Ⅲ 송수신 계통도(광원-광학렌즈-공기층-수광소자) → Ⅴ RF 통신 대비 비교표 / 25점 = 121회 기출(모바일 FSO)에 맞춰 이동체 대상 자동 빔 추적(PAT) 메커니즘과 기상 장애 극복 기술 상세
 - 기출: 제121회 1교시 8번: "모바일 FSO(Free Space Optics) 통신" → Ⅰ~Ⅵ
 
 ## 한 줄 본질

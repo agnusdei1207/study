@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회, 121회"
-  priority: 86
-  priority_note: "[출제:132] · [출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 형식적 '바지 CISO' 지정 관행 / 침해사고 시 형사 처벌 법적 리스크 / 예산 집행권 부재
 ```
 - 필수 키워드: 정보통신망법 제45조의3 · 전자금융거래법 · 겸직 금지 · CISO 지정 신고 · 법적 책임과 면책 · CPO
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 법적 지정 요건 표 → Ⅴ CISO vs CIO vs CPO 비교 / 25점 = Ⅰ~Ⅶ 전개, CISO의 법적 의무 업무와 Ⅵ 독립성 보장 거버넌스 전략 집중
 - 기출: 132회 4교시 6번 `기업의 정보보안 부서 신설 및 CISO 체계 수립` → Ⅰ·Ⅲ·Ⅵ / 121회 1교시 `CISO 겸직 금지 제도` → Ⅱ·Ⅴ
 
 ## 한 줄 본질

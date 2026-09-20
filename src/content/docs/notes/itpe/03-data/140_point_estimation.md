@@ -2,9 +2,6 @@
 sidebar:
   order: 140
   label: "140. 점추정(Point Estimation)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "점추정 (Point Estimation)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 140
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "140"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 70
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 표본분산 계산 시 $n$으로 나누어 모분산을 과소추정(편향)하는 오류 / 점추정치만 보고 오차범위 무시
 ```
 - 필수 키워드: 점추정 · 추정량($\hat{\theta}$) · 불편성(Unbiasedness) · 효율성(Efficiency) · 일치성(Consistency) · 최대우도추정법(MLE) · 최소자승법(OLS) · 구간추정
-- 배점 전략: 10점 = Ⅰ → Ⅲ 좋은 추정량의 4대 조건 매핑표 → Ⅴ 점추정 vs 구간추정 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ MLE 우도함수 극대화 유도 흐름 및 Ⅵ 표본분산 자유도($n-1$) 불편성 증명
 - 기출: 132회 1교시 10번 `모집단의 특성을 추론하는 점추정과 구간추정 비교` → Ⅰ 정의 + Ⅲ 좋은 추정량의 4대 조건 + Ⅴ 점추정 vs 구간추정 상세 비교 + Ⅵ 상호 보완 활용
 
 ## 한 줄 본질

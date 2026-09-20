@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "110회, 116회"
-  priority: 64
-  priority_note: "이전(KPC):110,116"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 일자리 양극화(자동화 대체) / 사이버-물리 융합 공격(OT 보안 취약점) / 디지털 격차에 따른 국가·기업 간 양극화
 ```
 - 필수 키워드: 4차 산업혁명 · 사이버-물리 시스템(CPS) · 초연결 · 초지능 · 초융합 · ICBMA · 디지털 트윈 · 자율제어 루프 · 클라우스 슈밥
-- 배점 전략: 10점 = Ⅰ 1~4차 산업혁명 진화 계보도 → Ⅱ 3대 핵심 특징(초연결·초지능·초융합) → Ⅲ CPS 폐루프 구조 / 25점 = Ⅰ~Ⅶ 전개, 스마트 팩토리 실증 모델, CPS 5계층 아키텍처(5C: Connection, Conversion, Cyber, Cognition, Configuration) 상세화
 - 기출: 110회, 116회 `4차 산업혁명` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

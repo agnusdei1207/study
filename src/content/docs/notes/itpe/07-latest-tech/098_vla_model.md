@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 5~10Hz 수준의 느린 제어 주기 / 실시간 충돌 회피 등 저수준 안전성 보장 한계 / 희소한 실제 로봇 궤적 데이터
 ```
 - 필수 키워드: VLA(Vision-Language-Action) · RT-2 · 피지컬 AI · 액션 토큰화 · 임바디드 AI(Embodied AI) · 종단간 제어 · 로봇 조작
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ VLA 통합 아키텍처 및 액션 토큰화 도식 → Ⅴ 로봇 제어 패러다임 비교표 / 25점 = Ⅰ~Ⅶ 전개, 인터넷 스케일 VLM 지식의 물리적 조작 전이 메커니즘 및 궤적 이산화 기법 집중
 - 기출: 미출제. 예상: "피지컬 AI(Physical AI) 구현을 위한 Vision-Language-Action(VLA) 모델의 개념, 구조, 액션 토큰화 원리 및 기존 로보틱스 제어 방식과의 차별점을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

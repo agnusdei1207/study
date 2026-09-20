@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 서브 테라헤르츠(sub-THz) 극심한 경로 손실 / 천문학적 기지국 구축비 / 킬러 서비스 부재
 ```
 - 필수 키워드: ITU-R IMT-2030 · 3GPP Rel-20 · Rel-21 · ISAC(통신·센싱 융합) · AI-Native · NTN(초공간 입체) · sub-THz
-- 배점 전략: 10점 = Ⅰ → Ⅲ IMT-2030 6대 사용 시나리오 레이더 차트/도식 → Ⅴ 5G/6G 비교표 / 25점 = Ⅰ~Ⅶ, 3GPP 표준화 일정 로드맵과 6G 6대 목표 성능 지표 상세
 - 기출: 미출제. 6G 표준화 로드맵 및 핵심 기술 프레임워크 25점 서술형 출제 유력
 
 ## 한 줄 본질

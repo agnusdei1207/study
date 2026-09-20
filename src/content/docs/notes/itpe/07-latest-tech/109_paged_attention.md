@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 블록 크기(Block Size) 튜닝 트레이드오프 / 복잡한 커널 구현에 따른 GPU 아키텍처 종속성 / 동적 메모리 회수 지연
 ```
 - 필수 키워드: PagedAttention · vLLM · KV 캐시(KV Cache) · 블록 테이블(Block Table) · 가상 메모리 페이징 · 내부 단편화 · 쓰기 시 복사(Copy-on-Write)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 블록 테이블 기반 논리-물리 메모리 매핑 구조도 → Ⅴ LLM 서빙 메모리 할당 비교표 / 25점 = Ⅰ~Ⅶ 전개, 메모리 단편화 수식 분석 및 다중 샘플링(Beam Search) 시 CoW 공유 원리 집중
 - 기출: 미출제. 예상: "거대 언어 모델 서빙 프레임워크(vLLM)의 핵심 기술인 PagedAttention의 등장 배경, 블록 테이블 동작 원리 및 기존 방식 대비 성능 개선 요인을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

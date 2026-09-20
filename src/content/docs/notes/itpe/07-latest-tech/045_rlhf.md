@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:42:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 82%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 82
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 보상 해킹(Reward Hacking) / 인간 평가자 주관 및 편향 전파 / 복잡한 4개 신경망 동시 구동에 따른 GPU 메모리 폭증
 ```
 - 필수 키워드: RLHF · 3H 원칙(Helpful, Honest, Harmless) · 보상 모델(Reward Model) · PPO(Proximal Policy Optimization) · KL 발산(Kullback-Leibler) 페널티 · 보상 해킹(Reward Hacking)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3단계 파이프라인 흐름도 → Ⅴ RLHF vs DPO 비교표 / 25점 = Ⅰ~Ⅶ 전개, PPO 목적함수 수식(KL 규제 항)과 보상 모델 Bradley-Terry 확률 메커니즘 집중
 - 기출: 139회 2교시 1번 `인공지능(AI) 기술의 급속한 발전은 혁신적 변화와 함께 다양한 리스크를 수반한다. AI 리스크에 대하여 다음을 설명하시오. (LLM 모델 정렬 및 안전성 확보 기술)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:25:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 순환 의존성(Circular Dependency) 발생 시 정렬 불가 / 대규모 빌드(Bazel) 및 패키지 관리(npm) 적용
 ```
 - 필수 키워드: 위상정렬 · DAG · 진입 차수(In-degree) · Kahn 알고리즘 · DFS 기반 정렬 · $O(V+E)$ · 사이클 탐지 · 빌드 의존성
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ Kahn 알고리즘 큐 기반 동작 도식 → Ⅴ Kahn vs DFS 비교 / 25점 = Ⅰ~Ⅶ 전개, 125회 기출 위상정렬 알고리즘 2가지(Kahn, DFS) 단계별 절차, 사이클 탐지 원리 및 실무 컴파일러/스케줄러 응용
 - 기출: 125회 1교시 `위상 정렬(Topological Sort)의 개념, 동작 과정 및 알고리즘 비교` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

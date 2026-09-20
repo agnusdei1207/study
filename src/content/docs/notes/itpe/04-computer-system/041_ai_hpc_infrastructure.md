@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 통신 병목(Straggler 노드) / 체크포인팅 I/O 정체 / 랙당 수십 kW 전력 및 발열 제어
 ```
 - 필수 키워드: AI 슈퍼컴퓨팅 · InfiniBand/RoCE v2 · NVLink · GPUDirect RDMA · 병렬 파일시스템 · Slurm/K8s
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ AI 풀스택 인프라 구조도 → Ⅴ 전통 HPC vs AI 슈퍼컴퓨팅 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 3D 병렬화(DP/TP/PP) 통신 흐름과 Ⅵ 랙 단위 전력/냉각 실무 대책
 - 기출: 140회 2교시 4번 `대규모 AI 학습 및 추론을 지원하는 고성능 컴퓨팅 인프라(AI 슈퍼컴퓨팅 플랫폼 개념, 주요 요소 기술, HPC/클라우드와의 비교)`
 
 ## 한 줄 본질

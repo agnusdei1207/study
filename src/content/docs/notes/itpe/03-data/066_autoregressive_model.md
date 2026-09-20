@@ -2,9 +2,6 @@
 sidebar:
   order: 66
   label: "066. 자기회귀모형 (Autoregressive Model)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "자기회귀모형 (Autoregressive Model)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 66
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "066"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 계수 $|\phi| \ge 1$ 시 미래 예측값 무한 발산(랜덤 워크) / 비정상 시계열 직접 적용에 따른 오류
 ```
 - 필수 키워드: 자기회귀(AR) · 정상성(Stationarity) · PACF(편자기상관함수) · 차수 $p$ · Yule-Walker 방정식 · 단위근(Unit Root) · 랜덤 워크
-- 배점 전략: 10점 = Ⅰ → Ⅲ 수식 및 PACF 절단 다이어그램 도식 → Ⅴ AR vs MA 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 정상성 조건($|\phi|<1$) 수학적 유도 및 ARIMA 연계
 - 기출: 138회 1교시 7번 `자기회귀모형(Autoregressive model)과 이동평균모형(Moving Average model)` → Ⅰ 개념 + Ⅲ AR 모형 수식 + Ⅴ 비교
 
 ## 한 줄 본질

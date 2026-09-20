@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:42:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 84%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "116회, 120회, 122회"
-  priority: 84
-  priority_note: "[출제(KPC):120,122] · 이전(KPC):116"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 규제 해석의 모호성 / 레거시 시스템 연계 난이도 / 시스템 오탐(False Positive)으로 인한 업무 마비
 ```
 - 필수 키워드: 레그테크(RegTech) · 섭테크(SupTech) · 컴플라이언스 자동화 · 규제 기술 · AML(자금세탁방지) · 이상거래탐지(FDS)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 기술 아키텍처 구조도 → Ⅴ 레그테크 vs 섭테크 비교표 / 25점 = Ⅰ~Ⅶ 전개, AML/KYC 자동화 프로세스와 데이터 거버넌스 연계 집중
 - 기출: 120회 3교시 2번 `레그테크(RegTech)의 개념, 주요 기술, 도입 효과 및 활성화 방안을 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

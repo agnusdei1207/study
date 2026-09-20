@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 86
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── Reality Gap(가상-현실 오차) / 물리적 충돌 및 인명 안전사고 / 실시간 제어 지연시간(Latency)
 ```
 - 필수 키워드: 체화된 AI(Embodied AI) · VLA 모델 · 월드 모델(World Model) · Sim2Real · 공간 지능 · 휴머노이드 로봇
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅴ 생성형 AI vs 피지컬 AI 비교표 → Ⅵ 핵심 과제(Sim2Real) / 25점 = Ⅰ~Ⅶ 전개, Ⅲ VLA 구조와 Ⅳ 센서-액추에이터 폐루프 제어 흐름도 상세화
 - 기출: 140회 1교시 9번 `Physical AI와 생성형 AI 비교` → Ⅰ·Ⅲ·Ⅴ
 
 ## 한 줄 본질

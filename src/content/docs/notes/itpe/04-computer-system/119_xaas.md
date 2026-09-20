@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:41:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "89회, 101회"
-  priority: 58
-  priority_note: "이전(KPC):89,101"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 다수 구독 서비스 난립으로 인한 숨은 비용(Hidden Cost) 폭증 / 공급사 장애 시 전사 업무 중단 / 데이터 사일로
 ```
 - 필수 키워드: XaaS(Everything as a Service) · CapEx to OpEx · AIaaS · SECaaS · DaaS · API 경제 · FinOps · 컴포저블 엔터프라이즈
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ XaaS 서비스 매트릭스 분류도 → Ⅴ 온프레미스 vs XaaS 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 4대 계층별 대표 XaaS 유형 상세와 Ⅵ 전사적 FinOps 및 보안 거버넌스 실무 대책
 - 기출: 89회 1교시, 101회 1교시 `XaaS(Everything as a Service)의 개념과 유형` 출제
 
 ## 한 줄 본질

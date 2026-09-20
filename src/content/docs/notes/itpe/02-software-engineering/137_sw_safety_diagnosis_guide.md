@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:55:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 진단 항목의 형식적 체크리스트화 한계 / 레거시 시스템 분석 난항 / 안전 프로세스 내재화 방안
 ```
 - 필수 키워드: SW 안전진단 가이드 · 과기정통부 · NIPA · 위험원(Hazard) · FTA · FMEA · 코딩 표준(MISRA/CWE) · 페일세이프(Fail-Safe)
-- 배점 전략: 10점 = Ⅰ 목적 → Ⅲ 4대 진단 영역 체계 도식 → Ⅴ 품질 vs 안전 vs 보안 비교 / 25점 = Ⅰ~Ⅶ 전개, 126회 기출 가이드라인 주요 진단 항목, 위험원 분석 기법 및 공공 기반시설 안전 확보 대책
 - 기출: 126회 1교시 `소프트웨어 안전진단 가이드의 주요 내용 및 진단 절차` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

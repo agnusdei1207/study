@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 부처 이기주의로 인한 1등급 과다 신청 / 1등급 요구 예산 미반영
 ```
 - 필수 키워드: 전자정부법 · 1~4등급 체계 · 업무 영향도 · 재해복구(DR) · Active-Active · 공공 SLA 연계
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 1~4등급별 아키텍처 요건 매트릭스 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 등급 산정 기준과 Ⅵ 재난복구 인프라 예산 연계 집중
 - 기출: 139회 2교시 5번 `전자정부법 개정을 통한 정보시스템 등급제와 공공 SLA 표준 의무화` → Ⅰ·Ⅱ·Ⅲ·Ⅳ 전수
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 기존 레거시 시스템 연동 실패 / 도메인 현장 전문가의 AI 불신 및 저항 / ROI 불명확성에 따른 PoC 단계 좌초
 ```
 - 필수 키워드: AX 2.0 · X+AI · 자율 비즈니스 프로세스 · 버티컬 AI(Vertical AI) · AI-Ready Data · 도메인 혁신 · 에이전틱 전환
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ AX 2.0 엔터프라이즈 아키텍처 계층도 → Ⅴ DX vs AX 1.0 vs AX 2.0 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제조·금융·의료 등 도메인(X) 특화 BPR 방법론 및 ROI 극대화 체계 집중
 - 기출: 미출제. 예상: "기업 및 공공 부문의 성공적인 AI 전환을 위한 'AX 2.0(X+AI)'의 개념, AX 1.0과의 차별점, 추진 아키텍처 및 성공 요소를 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

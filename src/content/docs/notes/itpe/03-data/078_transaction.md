@@ -2,9 +2,6 @@
 sidebar:
   order: 78
   label: "078. 트랜잭션 (Transaction)"
-  badge:
-    text: "기출 · 77%"
-    variant: note
 title: "트랜잭션 (Transaction)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 78
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "078"
-  source_status: "기출"
-  source_history: "129회, 81회, 107회"
-  priority: 77
-  priority_note: "[출제(KPC):129] · 이전(KPC):81,107"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 긴 트랜잭션(Long-running)으로 인한 락 경합 및 커넥션 풀 고갈 / 분산 환경 2PC 블로킹
 ```
 - 필수 키워드: ACID · 원자성(Undo) · 영속성(Redo, WAL) · 격리성(MVCC) · 5대 상태 전이 · 커밋(Commit) · 롤백(Rollback) · 분산 트랜잭션
-- 배점 전략: 10점 = Ⅰ → Ⅲ ACID 구현 메커니즘 매핑표 → Ⅳ 5대 상태 전이도 / 25점 = Ⅰ~Ⅶ, Ⅲ Redo/Undo WAL 원리 및 Ⅴ 분산 트랜잭션(Saga) 확장
 - 기출: 129회 `데이터베이스 트랜잭션의 ACID 특성과 상태 전이도` → Ⅰ 개념 + Ⅲ ACID 4대 특성 + Ⅳ 상태 전이 5단계
 
 ## 한 줄 본질

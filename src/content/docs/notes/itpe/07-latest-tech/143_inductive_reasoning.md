@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 흄의 귀납의 문제(블랙 스완: 관측되지 않은 예외에 취약) / 과적합 및 표본 편향에 따른 잘못된 일반화 / 설명가능성 결여
 ```
 - 필수 키워드: 귀납적 사고(Inductive Reasoning) · 연역적 추론 · 머신러닝의 철학 · 귀납적 편향(Inductive Bias) · 일반화(Generalization) · 블랙 스완(Black Swan) · 흄의 문제
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 연역 vs 귀납 vs 가추 3대 추론 비교도 → Ⅴ 추론 방식 비교표 / 25점 = Ⅰ~Ⅶ 전개, 머신러닝 알고리즘별 귀납적 편향(CNN의 공간 불변성, RNN의 시간 순서 등) 및 일반화 오차 집중
 - 기출: 128회 `귀납적 사고` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

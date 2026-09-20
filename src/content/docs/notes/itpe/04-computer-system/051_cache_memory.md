@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 79%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 79
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── False Sharing(거짓 공유) / 캐시 오염(Thrashing) / 쓰기 정책(Write-Through vs Write-Back)
 ```
 - 필수 키워드: 캐시 메모리 · 메모리 벽(Memory Wall) · 참조 국소성 · 캐시 라인 · 세트 연관 매핑 · 쓰기 정책 · False Sharing
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 캐시 메모리 주소 매핑 구조도 → Ⅴ 주소 매핑 방식 3가지 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 캐시 적중/실패 동작 및 Ⅵ 멀티코어 환경의 False Sharing 문제와 정렬(Alignment) 대책
 - 기출: 137회 2교시 1번 `캐시 메모리(Cache Memory)` 서술형 출제
 
 ## 한 줄 본질

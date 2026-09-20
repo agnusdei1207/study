@@ -2,9 +2,6 @@
 sidebar:
   order: 50
   label: "050. 확장성 해싱 (Extendible Hashing)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "확장성 해싱 (Extendible Hashing)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 50
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "050"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 81
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 해시 충돌 집중 시 디렉터리 크기 지수적 폭증 / 비트 패턴 편향에 따른 메모리 낭비
 ```
 - 필수 키워드: 동적 해싱 · 디렉터리 · 버킷(Bucket) · 글로벌 깊이(Global Depth) · 로컬 깊이(Local Depth) · 모조키(Pseudo Key) · 버킷 분할
-- 배점 전략: 10점 = Ⅰ → Ⅲ 디렉터리-버킷 매핑 도식 → Ⅳ 오버플로우 분할 조건 / 25점 = Ⅰ~Ⅶ, Ⅳ 단계별 분할 과정 및 Ⅴ 선형 해싱 비교표
 - 기출: 135회 4교시 1번 `확장성 해싱(Extendible Hashing) 기법` → Ⅰ 개념 + Ⅲ 구성요소 + Ⅳ 동작 메커니즘 및 분할 절차
 
 ## 한 줄 본질

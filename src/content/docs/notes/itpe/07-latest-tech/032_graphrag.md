@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 그래프 구축 시 LLM 추출 비용 폭증 / 빈번한 데이터 업데이트 시 그래프 재구축 부하
 ```
 - 필수 키워드: 지식 그래프(Knowledge Graph) · 엔티티/관계 추출 · Leiden 알고리즘 · 커뮤니티 요약 · Global Search · Local Search
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 지식 그래프 인덱싱 파이프라인 구조도 → Ⅴ 전통 RAG vs GraphRAG 비교 / 25점 = Ⅰ~Ⅶ 전개, 커뮤니티 탐지 메커니즘과 Global vs Local 쿼리 차별화 집중
 - 기출: 미출제. 예상: "기존 벡터 검색 기반 RAG의 한계를 극복하기 위해 등장한 GraphRAG의 개념, 지식 그래프 구축 파이프라인, 그리고 Global Search와 Local Search 동작 방식을 설명하시오."
 
 ## 한 줄 본질

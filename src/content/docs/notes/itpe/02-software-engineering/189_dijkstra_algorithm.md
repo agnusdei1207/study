@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:10:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "84회, 98회"
-  priority: 64
-  priority_note: "과거기출(84회, 98회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 음의 가중치 존재 시 무한 루프 또는 오답 발생 / OSPF 라우팅 프로토콜(링크 상태) 및 내비게이션 최적 경로 계산 응용
 ```
 - 필수 키워드: 단일 출발점 최단 경로(SSSP) · 완화(Relaxation) 연산 · 탐욕 기법(Greedy) · 우선순위 큐(Min Heap) · O((V+E)log V) · 음의 가중치 불가 · OSPF
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 완화 연산 및 점화식 도식 → Ⅴ 최단 경로 4대 알고리즘 비교표 / 25점 = Ⅰ~Ⅶ 전개, 84·98회 기출 다익스트라 단계별 동작 예시 트레이싱, 우선순위 큐 적용에 따른 시간복잡도 개선($O(V^2) \to O(E \log V)$), 음의 가중치 한계 원인
 - 기출: 84회 1교시, 98회 1교시 `다익스트라(Dijkstra) 알고리즘의 동작 절차, 점화식 및 시간복잡도 분석` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

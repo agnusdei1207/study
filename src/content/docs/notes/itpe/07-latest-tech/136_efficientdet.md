@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── BiFPN의 복잡한 그래프 분기로 인한 임베디드 하드웨어 최적화 난이도 / 초고해상도(D7x) 입력 시 메모리 병목
 ```
 - 필수 키워드: EfficientDet · BiFPN(양방향 피처 피라미드) · 복합 스케일링(Compound Scaling) · EfficientNet 백본 · 가중치 피처 융합 · 객체 검출(Object Detection)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ BiFPN 피처 융합 구조 비교도 → Ⅴ 피처 피라미드 기법 비교표 / 25점 = Ⅰ~Ⅶ 전개, BiFPN의 정규화 가중합 수식($O = \sum \frac{w_i}{\epsilon + \sum w_j} I_i$) 및 복합 스케일링 계수($\phi$) 집중
 - 기출: 123회 `EfficientDet` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

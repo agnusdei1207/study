@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── Git 태그와 릴리스 Tarball 간의 무결성 대조 검증 / 불필요한 라이브러리 링크 의존성 제거(systemd-notify 결합 분리) / SLSA 레벨 3 도입
 ```
 - 필수 키워드: XZ Utils 백도어 · CVE-2024-3094 · 공급망 공격 · IFUNC(간접 함수) 훅 · OpenSSH 데몬 · 릴리스 타르볼(Tarball) 변조 · 사회공학 메인테이너 탈취
-- 배점 전략: 10점 = Ⅰ 사건 개요 및 CVSS 10.0 위협도 요약 → Ⅲ 악성코드 주입 4단계 체인 도식 → Ⅵ 오픈소스 거버넌스 대책 / 25점 = Ⅰ~Ⅶ 전개, Git 저장소에는 없고 릴리스 Tarball에만 코드를 숨긴 기만 전술과 Linux IFUNC를 이용한 sshd 런타임 하이재킹 메커니즘 심층 상술
 - 기출: 미출제. 오픈소스 소프트웨어 공급망 보안의 최대 랜드마크 사건으로 출제 유력 예상
 
 ## 한 줄 본질

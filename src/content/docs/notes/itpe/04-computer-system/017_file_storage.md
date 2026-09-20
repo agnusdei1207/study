@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 90%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회, 140회"
-  priority: 90
-  priority_note: "[출제:132,140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수억 개 소형 파일 시 메타데이터 락 병목 / 단일 NAS 컨트롤러 병목 / 확장성 한계
 ```
 - 필수 키워드: NAS(Network Attached Storage) · NFS/SMB · POSIX 호환 · 계층형 트리 · 병렬 파일시스템(Lustre) · 파일 잠금
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 파일 스토리지 프로토콜 구조도 → Ⅴ 3대 스토리지 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 파일 시스템 I/O 흐름과 Ⅵ HPC/AI 대용량 병렬 파일시스템 진화 방향
 - 기출: 132회 1교시 `3대 스토리지 비교`, 140회 3교시 `대규모 AI 인프라 구축을 위한 3대 스토리지 비교 및 최적 활용방안`
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차폐 시설(Faraday Cage) 구축의 막대한 비용 / 케이블 인입부 및 환기구를 통한 전자기파 침투(누설) / 상용 데이터센터의 EMP 무방비 실태
 ```
 - 필수 키워드: EMP 공격 · HEMP(High-Altitude EMP) · NNEMP · E1/E2/E3 파형 · 콤프턴 효과 · 패러데이 케이지(Faraday Cage) · 서지보호기(SPD) · MIL-STD-188-125
-- 배점 전략: 10점 = Ⅰ EMP 정의 및 발생 원리(HEMP/NNEMP) → Ⅲ E1/E2/E3 3대 파형 특성 도식 → Ⅵ 핵심 물리 방호 기술 요약 / 25점 = Ⅰ~Ⅶ 전개, 제125회 2교시 기출 완벽 대응, 콤프턴 산란 물리 메커니즘, 군사 표준(MIL-STD-188-125) 차폐 기준(80~100dB), 국가 핵심 데이터센터의 백업 및 복원력 방호 설계 심층 상술
 - 기출: 제125회 2교시 5번: "EMP공격(Electro Magnetic Pulse attack)에 대하여 다음 물음에 답하시오."
 
 ## 한 줄 본질

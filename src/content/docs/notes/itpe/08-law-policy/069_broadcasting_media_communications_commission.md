@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:51:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 정치적 갈등으로 인한 합의제 기구 마비 / 글로벌 빅테크(넷플릭스·유튜브)에 대한 국내법 역외 집행 실효성
 ```
 - 필수 키워드: 방송미디어통신위원회 · 방송통신위원회 · 시청각미디어서비스법 · OTT 규제 · 영국의 Ofcom · 미국의 FCC · 망이용대가
-- 배점 전략: 10점 = Ⅰ 추진 배경 → Ⅲ 통합 거버넌스 소관 영역 도식 → Ⅴ 해외 기구(FCC/Ofcom) 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 디지털 미디어 규제 개혁 과제와 Ⅵ 글로벌 빅테크 플랫폼 공정경쟁 실무 집중
 - 기출: 미출
 
 ## 한 줄 본질

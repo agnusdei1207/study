@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "102회, 105회"
-  priority: 64
-  priority_note: "이전(KPC):102,105"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── K회 반복 학습에 따른 연산 시간 증가 / 시계열 데이터 적용 시 미래 정보 누수(Look-ahead Bias) / 그룹 간 종속성 무시
 ```
 - 필수 키워드: 교차검증(Cross Validation) · 일반화 성능 · 과적합(Overfitting) · K-Fold · 층화 K-Fold(Stratified) · LOOCV · 시계열 누수(Look-ahead) · 워크 포워드(Walk-Forward)
-- 배점 전략: 10점 = Ⅰ 개요 및 필요성 → Ⅲ 교차검증 4대 대표 유형 분류도 → Ⅳ K-Fold 분할 및 평가 흐름도 / 25점 = Ⅰ~Ⅶ 전개, 데이터 불균형 상황에서 Stratified K-Fold의 수학적 필요성과 금융 시계열 Purging/Embargoing 기법 상세화
 - 기출: 102회, 105회 `교차검증(Cross Validation)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

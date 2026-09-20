@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:36:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 70
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 배포 시 저작권 및 면책 고지 누락에 따른 저작권 위반 / Apache 2.0 특허 보복 조항에 대한 법무 검토 미비
 ```
 - 필수 키워드: 허용적 라이선스 · MIT 라이선스 · Apache 2.0 · BSD 라이선스 · 비전염성 · 저작권 고지 · 특허권 라이선스
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 대표 3대 허용적 라이선스 비교 도식 → Ⅴ 카피레프트 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 라이선스별 세부 조건(특허 조항, 상표권)과 Ⅵ 기업 엔터프라이즈 오픈소스 관리 전략
 - 기출: 122회 1교시 4번 `허용적 라이선스(Permissive License)와 카피레프트 라이선스(Copyleft License)` → 허용적 라이선스 관점 단독 완결 및 비교 대조
 
 ## 한 줄 본질

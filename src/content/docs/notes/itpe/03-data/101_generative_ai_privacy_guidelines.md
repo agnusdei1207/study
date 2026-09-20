@@ -2,9 +2,6 @@
 sidebar:
   order: 101
   label: "101. 생성형 AI 개발·활용 개인정보 처리 안내서"
-  badge:
-    text: "미출 · 75%"
-    variant: note
 title: "생성형 AI 개발·활용 개인정보 처리 안내서"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 101
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "101"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 크롤링 데이터 내 개인정보 혼입 / 프롬프트를 통한 개인정보 유출 및 재학습
 ```
 - 필수 키워드: 개인정보보호위원회 · Privacy by Design(PbD) · 공개된 정보 · 정당한 이익 · 가명처리 · 프롬프트 유출 · 기계 학습 망각(Machine Unlearning)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 단계별 개인정보 보호 기준 매핑표 → Ⅵ 실무 대책 / 25점 = Ⅰ~Ⅶ, Ⅳ 파이프라인 흐름 및 Ⅵ 기계 학습 망각 한계 대응
 - 기출: 미출제. 예상: "생성형 AI 개발 및 서비스 운영 시 단계별 개인정보 보호 조치 기준과 정보주체 권리 보장 방안을 설명하시오."
 
 ## 한 줄 본질

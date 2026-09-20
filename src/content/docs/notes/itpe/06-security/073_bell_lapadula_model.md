@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 76
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고위직 관리자의 낮은 등급 보고서 작성 불가 불편 / 무결성 훼손 방치 / 은닉 채널(Covert Channel)을 통한 정보 유출
 ```
 - 필수 키워드: 벨라파듈라(BLP) · 기밀성(Confidentiality) · MAC(강제적 접근통제) · NRU(No Read Up) · NWD(No Write Down) · *-속성 · 은닉 채널
-- 배점 전략: 10점 = Ⅰ 정의 및 설계 목적 → Ⅲ 2대 핵심 규칙(NRU, NWD) 도식 → Ⅴ Biba 모델과의 비교 / 25점 = Ⅰ~Ⅶ 전개, BLP 수학적 상태 전이 공리와 Ⅵ 은닉 채널 취약점 및 신뢰 주체(Trusted Subject) 예외 처리 집중
 - 기출: KPC 127회 `보안 모델 중 벨라파듈라(Bell-LaPadula) 모델과 비바(Biba) 모델의 원리 및 규칙 비교` → Ⅰ~Ⅴ 전반
 
 ## 한 줄 본질

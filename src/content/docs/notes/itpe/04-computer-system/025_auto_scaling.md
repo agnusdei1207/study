@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회, 131회"
-  priority: 86
-  priority_note: "[출제(KPC):121,131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 플래핑(Flapping/Thrashing) 현상 / 스케일링 지연(부팅 시간) / 데이터베이스 연결 풀 고갈
 ```
 - 필수 키워드: 스케일 아웃(Scale-out) · HPA(Horizontal Pod Autoscaler) · VPA · 쿨다운(Cooldown) · 플래핑(Flapping) · KEDA
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 오토스케일링 아키텍처 도식 → Ⅴ HPA vs VPA 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 메트릭 수집 루프와 Ⅵ 플래핑 방지 및 사전 워밍(Pre-warming)
 - 기출: 121회·131회 `클라우드 오토스케일링 메커니즘 및 고려사항`
 
 ## 한 줄 본질

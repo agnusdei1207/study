@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 72
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 지나친 고수준 추상화로 인한 내부 디버깅 난해성 / 버전 업데이트에 따른 파괴적 변경 / 복잡한 다중 루프 제어의 한계
 ```
 - 필수 키워드: 랭체인(LangChain) · LCEL · RAG(검색 증강 생성) · 도구 호출(Tool Calling) · 에이전트(Agent) · 벡터 스토어 · 예지정비(PdM) 연계
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 랭체인 6대 핵심 컴포넌트 아키텍처 → Ⅴ 타 프레임워크 비교표 / 25점 = Ⅰ~Ⅶ 전개, 132회 기출에 맞춰 설비예지정비(센서 시계열+매뉴얼 RAG+작업지시 에이전트) 통합 구축 아키텍처 집중
 - 기출: 132회 4교시 3번: "설비예지정비(Predictive Maintenance)시스템 구축 시 LangChain 프레임워크를 활용할 수 있는 방안에 대하여 다음을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

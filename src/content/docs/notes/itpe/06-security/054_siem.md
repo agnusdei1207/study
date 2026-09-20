@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 81
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 매일 수십만 건의 경보 피로(Alert Fatigue) / 정규화 파서 유지보수 부담 / 클라우드 로그 폭증에 따른 라이선스 비용
 ```
 - 필수 키워드: SIEM · SIM · SEM · 로그 정규화 · 상관분석(Correlation) · 경보 피로(Alert Fatigue) · UEBA · SOAR
-- 배점 전략: 10점 = Ⅰ 정의 및 구조 → Ⅲ SIEM 파이프라인 도식 → Ⅴ SOAR와의 핵심 비교 / 25점 = Ⅰ~Ⅶ 전개, 상관분석 알고리즘과 Ⅵ 경보 피로 해소를 위한 머신러닝(UEBA) 융합 방안 집중
 - 기출: 135회 1교시 5번 `SIEM(Security Information & Event Management)와 SOAR(Security Orchestration, Automation & Response) 비교` → Ⅰ~Ⅴ 전반
 
 ## 한 줄 본질

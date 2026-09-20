@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 문서 내 표/이미지 정보 손실 / 개인정보 유출 리스크 / 데이터 최신성(Freshness) 유지 파이프라인 부재
 ```
 - 필수 키워드: AI-Ready Data · 데이터 자산화 · 시맨틱 청킹(Semantic Chunking) · 데이터 거버넌스 · PII 비식별화 · 피처 스토어(Feature Store)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ AI-Ready 변환 아키텍처 → Ⅴ 데이터 유형 3종 비교표 / 25점 = Ⅰ~Ⅶ 전개, 엔터프라이즈 RAG 및 파인튜닝 관점의 데이터 전처리 및 거버넌스 집중
 - 기출: 미출제. 예상: "기업 내 LLM 도입 및 AI 전환(AX) 가속화를 위한 AI-Ready Data의 개념, 필수 요건 및 데이터 정제·가공 파이프라인 구축 방안을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

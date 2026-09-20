@@ -2,9 +2,6 @@
 sidebar:
   order: 22
   label: "022. 데이터 늪 (Data Swamp)"
-  badge:
-    text: "기출 · 90%"
-    variant: note
 title: "데이터 늪 (Data Swamp)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 22
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "022"
-  source_status: "기출"
-  source_history: "139회, 137회"
-  priority: 90
-  priority_note: "[출제:137,139]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 미사용 데이터 장기 방치로 스토리지 비용 폭증 / 민감정보 무단 방치 컴플라이언스 위반
 ```
 - 필수 키워드: 데이터 늪(Data Swamp) · 메타데이터 부재 · 데이터 카탈로그 · 데이터 계보(Lineage) · Zone 아키텍처 · 거버넌스
-- 배점 전략: 10점 = Ⅰ → Ⅴ 레이크 vs 늪 비교표 및 원인/대책 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 늪화 원인 구조도 및 정화 프레임워크
 - 기출: 137회 1교시 10번 `데이터 늪(DataSwamp)을 설명하시오.` → Ⅰ 개념 + Ⅲ 원인 및 대책 / 139회 `데이터 레이크 기반 플랫폼` → Ⅵ 도입 시 실패 위험 예방책
 
 ## 한 줄 본질

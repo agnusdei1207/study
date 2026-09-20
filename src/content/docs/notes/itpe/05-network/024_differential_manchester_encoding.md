@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 신호 주파수 2배 증가로 인한 대역폭 낭비(보 레이트 2배) / 고주파 감쇠
 ```
 - 필수 키워드: 디지털 라인 코딩 · 비트 시작점 전이 · 비트 중앙 전이 · 자가 클록 동기화 · 극성 무관(Polarity Free) · 토큰링(IEEE 802.5)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 부호화 파형 다이어그램(비트 0과 1 전이 규칙) → Ⅴ 부호화 비교표 / 25점 = Ⅰ~Ⅶ, 140회 1교시 10번 기출에 맞춰 0/1 비트 스트림 변환 예시 상세
 - 기출: 140회 1교시 10번 `차등적 맨체스터(Differential Manchester) 부호화 방법` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회, 116회"
-  priority: 76
-  priority_note: "[출제(KPC):126] · 이전(KPC):116"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 서명 검증 시 서명자의 공개키 유효성 보증을 위한 PKI 인증서 체인 및 CRL/OCSP 상태 조회 필수
 ```
 - 필수 키워드: 전자서명 · 해시 함수 · 송신자 개인키 · 송신자 공개키 · 부인 방지 · RSA · ECDSA · PKI 인증서
-- 배점 전략: 10점 = Ⅰ 전자서명 개념 → Ⅳ 서명 생성 및 검증 흐름 도식 → Ⅴ RSA vs DSA/ECDSA 비교 / 25점 = Ⅰ~Ⅶ 전개, 수학적 메커니즘 상세 및 126회 기출인 RSA와 DSA 알고리즘의 파라미터 구조·연산 효율성 심층 비교
 - 기출: 126회 4교시 5번 `RSA(Rivest-Shamir-Adleman)알고리즘과 DSA(Digital Signature Algorithm)을 비교하여` → Ⅲ 전자서명 구조 + Ⅴ RSA vs DSA 비교
 
 ## 한 줄 본질

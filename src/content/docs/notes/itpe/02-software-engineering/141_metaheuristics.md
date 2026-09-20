@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:59:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 조기 수렴(Premature Convergence) 위험 / 하이퍼파라미터 튜닝 부담 / 물류 배차(VRP) 및 스케줄링 적용
 ```
 - 필수 키워드: 메타휴리스틱스 · 조합 최적화 · NP-Hard · 지역 최적점 탈출 · 유전 알고리즘(GA) · 모의 담금질(SA) · 탐색(Exploration) · 활용(Exploitation)
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 대표 알고리즘 분류 체계 도식 → Ⅴ GA vs SA vs Tabu 비교 / 25점 = Ⅰ~Ⅶ 전개, 126회 기출 메타휴리스틱스 개념, 탐색/활용 균형 메커니즘 및 물류/반도체 배치 실무 적용
 - 기출: 126회 1교시 `메타휴리스틱스(Metaheuristics)의 개념 및 대표 알고리즘` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

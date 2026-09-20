@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 81
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 영세 자영업자 무인단말기 교체 비용 부담 / 간편 UI와 복잡한 비즈니스 로직 충돌
 ```
 - 필수 키워드: 디지털 기본권 · 무인정보단말기(키오스크) 접근성 · 보편적 설계(Universal Design) · 배리어프리(BF) · 디지털 역량
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 법률 4대 핵심 축 구조도 → Ⅴ 패러다임 전환 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 키오스크 세부 규격과 Ⅵ 소상공인 실무 적용 이슈 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

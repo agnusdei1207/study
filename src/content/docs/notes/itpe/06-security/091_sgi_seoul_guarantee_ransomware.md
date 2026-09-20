@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 격리된 불변(Air-gapped Immutable) 백업 구축 / Active Directory Tiering 모델 적용 / EDR 기반 측면 이동 조기 차단
 ```
 - 필수 키워드: SGI서울보증 랜섬웨어 · 금융권 보안 · 이중 협박(Double Extortion) · 불변 백업(Immutable Backup) · Active Directory 방어 · 에어갭(Air-gap)
-- 배점 전략: 10점 = Ⅰ 사건 개요 및 금융권 파급력 → Ⅲ 랜섬웨어 공격 체인 도식 → Ⅵ 금융 인프라 핵심 방어책 / 25점 = Ⅰ~Ⅶ 전개, 금융권 랜섬웨어의 5단계 공격 전술(초기 침투-AD 장악-백업 무력화-암호화-유출)과 전자금융감독규정에 따른 불변 백업 체계 상세화
 - 기출: 미출제. 금융권 침해사고 및 랜섬웨어 복원력 대책으로 출제 유력 예상
 
 ## 한 줄 본질

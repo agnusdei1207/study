@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 저작권(Copyright) 및 학습 데이터 공정이용 분쟁 / 딥페이크 가짜뉴스 및 사기 / 창작자 일자리 위협 및 윤리적 갈등
 ```
 - 필수 키워드: AI 미디어 빅뱅 · 생성형 AI · 확산 트랜스포머(DiT) · 합성 미디어(Synthetic Media) · 보이스 클로닝 · 초개인화 · 저작권 · C2PA · 디지털 워터마킹
-- 배점 전략: 10점 = Ⅰ 개요 및 폭발적 성장 배경 → Ⅲ 미디어 제작 파이프라인의 전후 비교도 → Ⅵ 저작권 및 딥페이크 역기능 대응책 / 25점 = Ⅰ~Ⅶ 전개, DiT(Diffusion Transformer) 시공간 패치 인코딩 메커니즘 및 C2PA 출처 증명 표준 아키텍처 상세화
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

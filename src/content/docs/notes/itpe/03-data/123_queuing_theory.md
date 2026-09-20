@@ -2,9 +2,6 @@
 sidebar:
   order: 123
   label: "123. 대기행렬이론(Queuing Theory)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "대기행렬이론 (Queuing Theory)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 123
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "123"
-  source_status: "기출"
-  source_history: "120회, 116회"
-  priority: 70
-  priority_note: "[출제(KPC):120] · 이전(KPC):116"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 시스템 이용률이 90%를 초과할 때 대기시간이 지수함수적으로 폭발하여 전체 API 타임아웃 장애 유발
 ```
 - 필수 키워드: 대기행렬이론 · 켄달 표기법(Kendall's Notation) · 리틀의 법칙(Little's Law) · 포아송 도착($\lambda$) · 서비스율($\mu$) · 시스템 이용률($\rho$) · M/M/1 · M/M/c
-- 배점 전략: 10점 = Ⅰ → Ⅲ 대기행렬 기본 모델 구조도 및 켄달 표기법 6개 인자 → Ⅴ M/M/1 주요 성능 지표 수식 / 25점 = Ⅰ~Ⅶ, Ⅳ 이용률 대비 대기시간 폭증 비선형 곡선 도식 및 Ⅵ 클라우드 오토스케일링 임계치 설계
 - 기출: 120회 `대기행렬이론(Queuing Theory)의 기본 구조, 켄달의 표기법(Kendall's Notation), 리틀의 법칙(Little's Law)을 설명하시오.` → Ⅰ 정의 + Ⅲ 기본 구조 + Ⅳ 켄달 표기법 + Ⅴ 리틀의 법칙 및 수식
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:15:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "87회, 96회"
-  priority: 64
-  priority_note: "과거기출(87회, 96회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 희소 그래프(크루스칼 유리) vs 밀집 그래프(프림 유리) / 통신망 광케이블 포설, 도로망 설계, 파이프라인 최소 비용 구축
 ```
 - 필수 키워드: 신장 트리(Spanning Tree) · V-1 간선 · 사이클 부재 · 크루스칼(Kruskal) · 프림(Prim) · 서로소 집합(Disjoint-Set / Union-Find) · 우선순위 큐
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 크루스칼 vs 프림 기본 원리 도식 → Ⅴ 두 알고리즘 상세 비교표 / 25점 = Ⅰ~Ⅶ 전개, 87·96회 기출 MST 조건, 크루스칼의 Union-Find 사이클 방지 메커니즘, 시간복잡도 비교($O(E \log E)$ vs $O(E \log V)$) 및 네트워크 토폴로지 설계 응용
 - 기출: 87회 1교시, 96회 1교시 `최소신장트리(MST)의 개념, 크루스칼(Kruskal)과 프림(Prim) 알고리즘의 동작 절차 및 비교` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

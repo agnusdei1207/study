@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "C · 미출 · 64%"
+    text: "C"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: "86회, 90회"
-  priority: 64
-  priority_note: "이전(KPC):86,90 · 합숙·모의 3"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 과도한 통계 분석 도구 집착으로 인한 실행 지연 / 소프트웨어 개발의 창의적 특성 무시 / 형식적 서류 작업화
 ```
 - 필수 키워드: 6시그마 · DMAIC · 3.4 DPMO · CTQ(핵심품질특성) · 공정능력지수(Cpk) · 관리도(Control Chart) · 린-6시그마(Lean Six Sigma)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ DMAIC 5단계 프로세스 도식 → Ⅴ 6시그마 vs 린 비교 / 25점 = Ⅰ~Ⅶ 전개, DMAIC 단계별 핵심 산출물과 도구(SIPOC, Gage R&R, 회귀분석, SPC) 매트릭스 및 IT 서비스 품질 향상 적용 사례 상술
 - 기출: 이전 KPC(86, 90회) `품질 혁신 방법론인 6시그마의 개념, 통계적 의미(3.4 DPMO) 및 프로세스 개선 로드맵인 DMAIC 단계별 핵심 도구와 활동` → Ⅰ·Ⅲ·Ⅳ·Ⅴ
 
 ## 한 줄 본질

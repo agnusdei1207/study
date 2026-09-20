@@ -1,77 +1,105 @@
 ---
 sidebar:
   order: 20
-  label: "020. 트랜잭션 격리 수준 (Isolation Level)"
-  badge:
-    text: "기출 · 91%"
-    variant: note
+  label: "020. 트랜잭션 격리 수준"
+  badge: { text: "A", variant: note }
 title: "트랜잭션 격리 수준 (Isolation Level)"
-author: "Gemini 3.8 Flash"
+author: "OpenAI Codex"
 date: "2026-09-20T00:25:00+09:00"
-tags:
-  - "notes-data"
+tags: ["notes-data"]
 weight: 20
-extra:
-  model: "Gemini 3.8 Flash"
-  question_no: "020"
-  source_status: "기출"
-  source_history: "137회, 134회, 119회"
-  priority: 91
-  priority_note: "[출제:134,137] · 이전(KPC):119"
+extra: { model: "GPT-5", keyword_grade: "A", question_no: "020" }
 ---
 
-## 답안 골격
+## 지식 로드맵 내 현재 위치
 ```text
-[트랜잭션 격리 수준] ◀━━ 머리: Ⅶ 내 의견 (요구 수준 명시 → 동시성 테스트로 검증)
- ┃
- ┣━ Ⅰ 개요 ───── 완전 직렬 실행 = 대기 비용 → 수준별로 일관성과 동시성 절충
- ┣━ Ⅱ 특징 ───── 수준↑ = 이상현상↓ · 동시성↓
- ┣━ Ⅲ 구조 ───── Read Uncommitted / Read Committed / Repeatable Read / Serializable
- ┣━ Ⅳ 흐름 ───── ① 트랜잭션 시작 → ② 락·스냅샷으로 읽기 → ③ 커밋·롤백
- ┣━ Ⅴ 비교 ───── 수준 × Dirty Read · Non-Repeatable Read · Phantom Read
- ┗━ Ⅵ 실무 ───── Lost Update / 처리량 저하 / 기본 수준 차이
-```
-- 필수 키워드: 격리성(ACID) · Dirty Read · Non-Repeatable Read · Phantom Read · 락 · MVCC
-- 배점 전략: 10점 = Ⅰ → Ⅴ 표 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅴ 표
-- 기출: 137회 `가. 격리 수준 4가지` → Ⅲ, `나. 이상현상` → Ⅴ / 134회 `사례 중심` → Ⅵ 사례
-
-## 한 줄 본질
-- 트랜잭션을 모두 직렬로 돌리면 대기 비용이 큼 → 읽기 격리 강도를 4단계로 나눠 허용할 이상현상을 선택 → 동시성 확보 / 낮은 수준일수록 데이터 이상 위험
-
-## 핵심 그림
-```text
-수준               Dirty Read   Non-Repeatable Read   Phantom Read
-Read Uncommitted   발생         발생                  발생
-Read Committed     방지         발생                  발생
-Repeatable Read    방지         방지                  발생
-Serializable       방지         방지                  방지
+데이터베이스 → 트랜잭션·동시성 → 격리 수준
 ```
 
-## 핵심 용어
-- MVCC: 읽기가 쓰기를 기다리지 않게 하는 장치. 대가는 옛 버전 보관 공간과 정리 비용
-- Lost Update: 표준 세 이상현상 밖에서 실무에 가장 자주 터지는 문제. 두 트랜잭션이 같은 값을 읽고 각자 덮어씀
+## 큰 그림과 30초 인출
+```text
+낮은 격리·높은 동시성                         높은 격리·낮은 이상
+Read Uncommitted → Read Committed → Repeatable Read → Serializable
+ Dirty Read 차단 ─┘  Non-repeatable 차단 ─┘  Phantom·직렬화 이상 차단
+```
+- 본질: **동시 트랜잭션이 서로의 중간 결과를 어느 범위까지 관찰할지 정한 일관성·동시성 절충 수준**
+- 암기: `RU-RC-RR-S`와 `Dirty-Nonrepeatable-Phantom`
+- 주의: 실제 보장과 구현은 DBMS의 Lock·MVCC·직렬화 방식에 따라 확인
 
-## 핵심 통찰
-- 격리 수준 = 일관성과 동시성의 교환 비율 → 수준을 올릴수록 락 대기·직렬화 실패 재시도가 늘어 처리량 감소
-- 같은 수준 이름이라도 락 방식이냐 스냅샷 방식이냐에 따라 막는 이상현상이 달라짐 → DBMS를 바꾸면 동작이 바뀔 수 있음
-- 대부분의 업무는 Read Committed로 충분 → 재고·잔액처럼 읽고 갱신하는 구간만 명시적 락이나 높은 수준으로 좁혀 적용
+## 예상문제
+> 트랜잭션 격리 수준 4가지와 이상현상을 설명하고 Lock·MVCC 구현 및 업무별 선택 기준을 논하시오. (25점)
 
-## 이웃 토픽과 구분
-- 격리 수준 vs 동시성 제어 기법: 격리 수준 = 무엇을 허용할지(요구) / 락·MVCC·타임스탬프 = 어떻게 막을지(구현)
+## Ⅰ. 동시성 제어의 가시성 계약, 격리 수준 개요
+- 정의: 동시에 실행되는 트랜잭션의 읽기·쓰기 결과가 서로에게 보이는 범위를 규정한 수준
+- 목적: Dirty Read·Non-repeatable Read·Phantom·직렬화 이상을 통제하면서 처리량 확보
+- 관점: ACID의 Isolation을 업무 오류비용과 동시성 요구에 맞게 구현
 
-## 문제·원인·대책
-- 적용 상황: 주문 폭주 시 재고 차감
-| 문제 | 원인 | 대책 | 효과 |
-|---|---|---|---|
-| 재고가 실제보다 적게 차감 | 두 트랜잭션이 같은 재고를 읽고 각자 갱신(Lost Update) | 갱신 대상 행 명시적 락 또는 버전 컬럼 낙관적 락 | 나중 갱신이 앞 갱신을 덮지 않음 |
-| 전체 Serializable 적용 후 처리량 저하 | 범위 락과 직렬화 실패 재시도 증가 | 필요한 트랜잭션만 수준 상향 | 나머지 트랜잭션의 동시성 유지 |
+## Ⅱ. 주요 이상현상
+| 이상 | 현상 | 업무 영향 |
+|---|---|---|
+| Dirty Read | 미커밋 값을 읽음 | 롤백된 값으로 의사결정 |
+| Non-repeatable Read | 같은 행 재조회 결과 변경 | 검증 중 값 불일치 |
+| Phantom Read | 조건 재조회 시 행 집합 변경 | 집계·범위 규칙 오류 |
+| Lost Update | 한 갱신이 다른 갱신을 덮음 | 수량·잔액 손실 |
+| Write Skew | 개별 검사는 통과하나 결합 제약 위반 | 당직·한도 규칙 파괴 |
 
-## 이렇게 출제된다
-- 제134회 2교시 6번: "트랜잭션 격리 수준(Transaction Isolation Level) 4가지를 사례 중심으로 설명하시오." → 요구 포인트: Ⅲ 네 수준 + Ⅵ 사례
-- 제137회 3교시 4번: "데이터베이스 트랜잭션 격리 수준(Transaction Isolation Level)과 관련하여 아래 사항을 설명하시오. 가. 데이터베이스 트랜잭션 격리 수준 4가지 나. 데이터베이스 트랜잭션 격리 수준에 따라 발생할 수 있는 이상현상" → 요구 포인트: Ⅲ + Ⅴ 표
+## Ⅲ. ANSI 격리 수준 4단계
+| 수준 | Dirty | Non-repeatable | Phantom | 특성 |
+|---|---:|---:|---:|---|
+| Read Uncommitted | 가능 | 가능 | 가능 | 최대 동시성, 최소 격리 |
+| Read Committed | 방지 | 가능 | 가능 | 문장 단위 커밋값 읽기 |
+| Repeatable Read | 방지 | 방지 | 구현별 | 트랜잭션 내 행 재조회 일관 |
+| Serializable | 방지 | 방지 | 방지 | 직렬 실행과 동등한 결과 지향 |
 
-## 내 의견
-- [기본값에 맡긴 격리 수준] ORM·DBMS 기본값 차이로 Lost Update가 운영에서야 드러남 → 나라면: 서비스별 요구 수준을 설계 문서에 명시하고, 두 세션으로 재현하는 동시성 테스트를 배포 파이프라인에 넣어 이상현상 여부를 먼저 확인
+## Ⅳ. Lock·MVCC 기반 동작
+```text
+[Lock] 읽기·쓰기 충돌을 대기·차단 → 2PL → 직렬성
+[MVCC] 버전·Snapshot으로 읽기와 쓰기 분리 → 충돌 시 검증·재시도
+```
+| 방식 | 강점 | 비용 |
+|---|---|---|
+| Lock | 충돌을 명시적으로 차단 | 대기·Deadlock |
+| MVCC | 읽기 동시성 향상 | 버전 정리·쓰기 충돌 |
+| SSI/직렬화 검증 | 위험 의존성 탐지 | Abort·재시도 증가 |
 
-## 찾아볼 것
-- 스냅샷 격리(Snapshot Isolation)에서 발생하는 쓰기 왜곡(Write Skew)과 대응
+## Ⅴ. 격리 수준 선택 기준
+| 업무 | 권장 관점 | 보완 |
+|---|---|---|
+| 단순 조회·콘텐츠 | Read Committed 중심 | 낙관적 버전 검사 |
+| 주문·재고 | Repeatable/조건부 잠금 | 원자 UPDATE·재시도 |
+| 잔액·한도·결산 | Serializable 우선 검토 | 짧은 트랜잭션·멱등성 |
+| 분석 Snapshot | 일관된 Snapshot | 장기 버전·지연 관리 |
+
+## Ⅵ. 운영 고려사항
+| 문제 | 원인 | 대책 |
+|---|---|---|
+| Deadlock | 잠금 순서 불일치 | 잠금 순서 표준·짧은 트랜잭션·재시도 |
+| 직렬화 실패 | 높은 충돌률 | 지수 Backoff·멱등 처리 |
+| 장기 Snapshot | 버전 정리 지연 | Timeout·Batch 분할 |
+| 격리 오해 | 표준명만 보고 제품 차이 무시 | DBMS 공식 문서·재현 시험 |
+
+## Ⅶ. 가장 높은 수준보다 오류비용에 맞는 수준을 고르는 결론
+- 격리 수준은 성능 옵션이 아니라 업무 불변조건의 실행 계약
+- 핵심 원장에는 강한 격리와 원자 연산을, 일반 조회에는 낮은 격리와 충돌 검증을 조합
+
+## 1교시 10점 답안 발췌
+```text
+RU → RC → RR → Serializable
+Dirty 차단 → Non-repeatable 차단 → Phantom·직렬화 이상 차단
+구현: Lock 또는 MVCC + 충돌 검증·재시도
+```
+
+## 출제 이력과 검증 출처
+- 제134회 공식 문제지: 격리 수준 4가지의 사례 관련 출제
+- 제137회 공식 문제지: 격리 수준과 이상현상 관련 출제
+- [PostgreSQL Documentation, Transaction Isolation](https://www.postgresql.org/docs/current/transaction-iso.html)
+- [Q-Net 기술사 자료실](https://www.q-net.or.kr/man001.do?gSite=Q)
+
+## 학습 체크
+- [ ] 격리 수준 4단계를 순서대로 씀
+- [ ] Dirty·Non-repeatable·Phantom을 구분함
+- [ ] Lock과 MVCC의 차이를 설명함
+- [ ] DBMS별 보장 차이와 재시도를 언급함
+
+## 연결 토픽
+- [동시성 제어](./009_concurrency_control/) · [정규화](./019_normalization/) · [무결성 제약](./013_integrity_constraint/)

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 86
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무인 환경 단일 장애점(SPOF) 리스크 / OT 사이버 침해 시 물리적 파괴 / 막대한 초기 투자비
 ```
 - 필수 키워드: Lights-out Manufacturing · CPS(사이버물리시스템) · AMR(자율이동로봇) · 디지털 트윈 · 예지정비(PdM) · OT 보안
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4계층 아키텍처 다이어그램 → Ⅵ 핵심 리스크 대응 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 구성 기술과 스마트팩토리 고도화 단계(Level 5) 집중
 - 기출: 140회 1교시 2번 `다크 팩토리(Dark Factory)` → Ⅰ~Ⅵ 전반
 
 ## 한 줄 본질

@@ -3,7 +3,7 @@ sidebar:
   order: 8
   label: "008. 데이터 표준화"
   badge:
-    text: "A · 기출 · 96%"
+    text: "A"
     variant: note
 title: "데이터 표준화 (Data Standardization)"
 author: "OpenAI Codex"
@@ -14,23 +14,13 @@ weight: 8
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "03-data canonical 목록 A"
   question_no: "008"
-  source_status: "기출"
-  source_history: "132회(정보관리 공식)"
-  reference_status: "공공데이터 공통표준 8차 제·개정(2025.11) 공식 포털 확인"
-  priority: 96
-  priority_note: "표준 단어·용어·도메인·코드와 공공DB 표준화로 확장 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [▶ 03 데이터] → [04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 03 데이터 → 데이터 표준화
+<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터 관리</span><span>표준·메타데이터</span><strong>데이터 표준화</strong></div>
 
 ## 큰 그림과 30초 인출
 

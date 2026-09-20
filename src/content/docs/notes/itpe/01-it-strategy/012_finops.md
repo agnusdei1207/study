@@ -6,26 +6,19 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 미출 · 91%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 91
-  priority_note: "합숙·모의 3 · 시사·트렌드"
   keyword_grade: "A"
-  grade_basis: "memories 정본 01-012의 A 등급"
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-▶ 01 정보 전략·관리 → 02 SW공학 → 03 데이터 → 04 시스템
-         ↑                                        ↓
-08 법·정책 ← 06 보안 ← 05 네트워크 ← 07 AI·디지털
-```
-
-- 과목 내 위치: `IT 투자·클라우드 전략 → 비용 가시화 → 가치 최적화 → 운영 거버넌스`
+<div class="itpe-topic-path" role="img" aria-label="클라우드 경영에서 비용과 가치 최적화를 거쳐 FinOps로 이어지는 지식 위치">
+  <span>클라우드 경영</span>
+  <span>비용·가치 최적화</span>
+  <strong>FinOps</strong>
+</div>
 
 ## 해당 토픽 큰 그림과 30초 인출
 
@@ -53,7 +46,6 @@ Inform → Optimize → Operate → 반복
  ┗━ Ⅵ 실무 ───── 태깅 미준수로 인한 비용 추적 불가 / 개발팀의 최적화 작업 기피 / 예약 인스턴스 과다 구매로 인한 낭비
 ```
 - 필수 키워드: 클라우드 재무 관리 · Inform-Optimize-Operate · 태깅(Tagging) · 라이트사이징(Rightsizing) · RI/Savings Plans · 유닛 이코노믹스(Unit Economics) · FOCUS 표준
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3단계 라이프사이클 도식 → 핵심 실행 기법 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 3단계별 프랙티스와 Ⅵ 거버넌스 자동화 집중
 - 기출: 미출제. 예상: "클라우드 비용 낭비를 방지하고 비즈니스 가치를 극대화하기 위한 FinOps의 개념과 3단계 라이프사이클(Inform-Optimize-Operate) 및 조직적 도입 방안을 설명하시오."
 
 ## 한 줄 본질

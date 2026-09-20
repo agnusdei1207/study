@@ -2,9 +2,6 @@
 sidebar:
   order: 144
   label: "144. 컬럼 패밀리 데이터베이스(Column Family Database)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "컬럼 패밀리 데이터베이스 (Column Family Database)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 144
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "144"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 빈번한 DELETE로 인한 툼스톤(Tombstone) 누적 시 읽기 성능 저하 / Row Key 설계 결함으로 인한 노드 쏠림(Hotspotting)
 ```
 - 필수 키워드: 컬럼 패밀리 · Bigtable · Cassandra · HBase · LSM-Tree · Memtable · SSTable · Row Key · 컴팩션(Compaction) · 툼스톤(Tombstone)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 4차원 다차원 정렬 맵 데이터 구조도 → Ⅴ RDBMS vs 컬럼 패밀리 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ LSM-Tree 쓰기/읽기 엔진 아키텍처 및 Ⅵ 대규모 시계열/IoT 설계
 - 기출: 123회 `NoSQL 데이터베이스 유형 중 컬럼 패밀리(Column Family) 데이터베이스의 개념, 데이터 모델 구조 및 특징을 설명하시오.` → Ⅰ 정의 + Ⅲ 4차원 데이터 모델 + Ⅳ 동작 원리 + Ⅵ 장단점
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 생체 신호 침해 및 신경 프라이버시(Neuro-privacy) / 기계 의존성에 따른 인지 퇴화 / 디지털 격차(Digital Divide) 심화
 ```
 - 필수 키워드: 디지털 휴먼증강(Digital Human Augmentation) · 외골격 로봇(Exoskeleton) · 감각 증강 · 인지 증강 · BCI(뇌-컴퓨터 인터페이스) · 생체 인터페이스 · 신경 프라이버시
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 휴먼증강 3대 분류(신체/감각/인지) 프레임워크 → Ⅳ 4대 기반 기술 및 활용처 / 25점 = Ⅰ~Ⅶ 전개, BCI 및 근전도(EMG) 센싱 메커니즘과 신경 데이터 보안 윤리 전개
 - 기출: 124회 `디지털 휴먼 증강` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

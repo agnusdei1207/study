@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:51:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "110회, 128회"
-  priority: 70
-  priority_note: "[출제(KPC):128] · 이전(KPC):110"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단일 장애점(SPOF) 리스크 / 원본 클라이언트 IP 손실(X-Forwarded-For 누락) / 세션 불일치
 ```
 - 필수 키워드: 리버스 프록시 · 로드 밸런싱 · SSL/TLS 종단(Termination) · IP 은닉 · X-Forwarded-For · 캐싱 · 단일 장애점(SPOF)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 포워드 vs 리버스 프록시 비교 도식 → Ⅴ 포워드 프록시 대비 비교표 / 25점 = 128회 기출(웹서버의 안전한 운영)에 맞춰 DMZ 내 보안 분리, TLS 암호화 가속, 무중단 배포(Blue/Green) 연계
 - 기출: 제110회 1교시: "리버스 프록시(Reverse Proxy)" / 제128회 4교시 2번: "웹서버의 안전한 운영을 위해 다양한 방안을 고려할 수 있다." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:08:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 금융 계좌 잔액 차감 이상 / 재고 수량 초과 판매(오버셀) / 멀티스레드 포인터 해제 경쟁(Use-After-Free)
 ```
 - 필수 키워드: 경쟁 상태 · 임계 영역 · 상호 배제 · 원자성(Atomicity) · CAS(Compare-And-Swap) · 뮤텍스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 인터리빙 실행 타이밍도 → Ⅴ 경쟁 상태 vs 교착 상태 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 동시성 제어 3대 조건(상호배제/진행/유한대기) 충족 메커니즘과 Ⅵ 하드웨어 CAS 및 락 프리 알고리즘
 - 기출: 126회 1교시 3번 `Race Condition` 단답형 출제
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:46:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 라벨링 데이터 부재(정상 편향) / 계절성(Seasonality) 변동에 따른 오탐 / 센서 노이즈와 실제 이상의 구별 난해
 ```
 - 필수 키워드: 시계열 이상치 탐지 · 점 이상 / 문맥 이상 / 집단 이상 · 재구성 오차(Reconstruction Error) · LSTM-AE · 극단값 이론(EVT / SPOT) · 슬라이딩 윈도우
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 이상치 3대 유형 정의 도식 → Ⅴ 통계 vs ML vs 딥러닝 비교표 / 25점 = Ⅰ~Ⅶ 전개, 오토인코더 기반 복원 오차 및 극단값 이론(SPOT) 기반 동적 임계값 수식 집중
 - 기출: 140회 4교시 4번 `시계열 데이터에서 실시간 이상치 탐지는 여러 산업 분야에서 중요성이 증가하고 있다. 다음을 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

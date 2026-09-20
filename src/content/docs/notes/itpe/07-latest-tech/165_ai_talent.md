@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 해외 빅테크로의 심각한 두뇌 유출(Brain Drain) / 산업계 현장 수요와 대학 교육 간의 미스매치 / 초고액 연봉 격차로 인한 조직 갈등
 ```
 - 필수 키워드: AI 인재 · AI 연구원(Scientist) · MLOps 엔지니어 · AI+X(도메인 융합) · 두뇌 유출(Brain Drain) · AI 윤리 전문가 · 리스킬링(Reskilling) · 산학 협력
-- 배점 전략: 10점 = Ⅰ 개요 및 글로벌 인재 전쟁 배경 → Ⅱ AI 4대 인재 유형 프레임워크 → Ⅳ 전주기 육성 체계 / 25점 = Ⅰ~Ⅶ 전개, 역량 피라미드 구조도 및 글로벌 인재 유출 방지를 위한 국가적 보상·인프라 리텐션 전략 집중
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

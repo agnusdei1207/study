@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "B · 기출 · 70%"
+    text: "B"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회"
-  priority: 70
-  priority_note: "[출제:133]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 신규 시스템 도입 시 현업 거부 / UI 복잡도로 인한 용이성 저하 / 직무 연계성 부족으로 유용성 불인정
 ```
 - 필수 키워드: 인지된 유용성(PU) · 인지된 용이성(PEOU) · 기술 이용 태도(ATU) · 행동 의도(BI) · 합리적 행위이론(TRA) · UTAUT
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 핵심 인과 모델 구조도 → Ⅴ TRA/TAM 비교 / 25점 = Ⅰ~Ⅶ 전개, TAM2/TAM3/UTAUT 확장 모델 연계 및 실무 수용성 증진 전략
 - 기출: 133회 1교시 6번 `기술수용모델(TAM)의 개념과 주요 구성요소` → Ⅰ·Ⅲ
 
 ## 한 줄 본질

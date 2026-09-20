@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:18:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── x86/ARM 호스트 통신 시 바이트 스왑 누락 버그 / 하위 데이터 형변환 시 주소 오프셋 계산 오류 / 프로토콜 파싱 불일치
 ```
 - 필수 키워드: 빅 엔디언 · MSB(최상위 바이트) · 네트워크 바이트 순서 · RFC 791 · ntohs · 가독성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 메모리 주소 배치도 → Ⅴ 빅 vs 리틀 엔디언 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 네트워크 전송 직렬화 메커니즘과 Ⅵ 고속 비트마스킹 및 바이트 스왑 최적화(BSWAP 인스트럭션)
 - 기출: 126회 1교시 11번 `빅엔디언(Big Endian) 과 리틀 엔디언(Little Endian)` 단답형 출제
 
 ## 한 줄 본질

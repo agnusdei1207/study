@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 장기적 뇌 신경 회로 부작용 / 강제적 직무 향상 요구(인지적 강제) / 신경 격차(Neuro-divide)에 따른 사회적 불평등
 ```
 - 필수 키워드: 신경 향상(Neurological Enhancement) · 경두개 직류자극(tDCS) · 경두개 자기자극(TMS) · 신경 가소성(Neuroplasticity) · 폐루프 신경 조절 · 인지적 자유(Cognitive Liberty) · 신경 윤리
-- 배점 전략: 10점 = Ⅰ 개요 및 치료에서 향상으로의 전환 → Ⅱ 4대 신경 향상 기술 분류체계 → Ⅳ 폐루프 자극 메커니즘 / 25점 = Ⅰ~Ⅶ 전개, 시냅스 장기강화(LTP) 유도 원리 및 칠레 등 글로벌 헌법 차원의 뉴로 라이츠(Neuro-rights) 법제화 동향 분석
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

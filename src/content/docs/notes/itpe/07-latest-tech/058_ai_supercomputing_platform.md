@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── GPU 장애(MTBF 저하)로 인한 학습 중단 / 노드 간 네트워크 통신 병목 / 막대한 전력 소모 및 발열(PUE 악화)
 ```
 - 필수 키워드: AI 슈퍼컴퓨팅 · NVLink / NVSwitch · 인피니밴드(InfiniBand) · RoCE v2 · 3D 병렬화(텐서·파이프라인·데이터 병렬) · 액체 냉각(DLC)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 스케일업 및 스케일아웃 네트워크 아키텍처 구조도 → Ⅴ 전통 HPC vs AI 슈퍼컴 비교표 / 25점 = Ⅰ~Ⅶ 전개, Megatron-LM 3D 병렬화 메커니즘과 고집적 액체 냉각 인프라 설계 집중
 - 기출: 140회 2교시 4번 `최근 LLM 등 초거대 AI 서비스의 급격한 확산과 텍스트·이미지·음성·영상 등 멀티모달 데이터 처리 수요의 증가에 따라, 대규모 AI 학습 및 추론을 지원하는 고성능 컴퓨팅 인프라의 중요성을 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

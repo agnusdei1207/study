@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 안면인식 모델에서의 얼굴 복원 / 의료 진단 모델에서의 유전체 복원 / 과도한 상세 확률값(Softmax) 노출 / 차분 프라이버시(DP) 방어
 ```
 - 필수 키워드: 모델 전도 공격 · Model Inversion · 신뢰도 점수(Confidence Score) · 경사 기반 역산 · 차분 프라이버시(DP-SGD) · 출력 노이즈
-- 배점 전략: 10점 = Ⅰ 정의 및 원리 → Ⅲ 경사 역산 복원 흐름 도식 → Ⅴ 멤버십 추론 공격과의 비교 / 25점 = Ⅰ~Ⅶ 전개, 역산 수학적 메커니즘과 Ⅵ 차분 프라이버시 및 출력 양자화(Top-1) 실무 방어 대책 집중
 - 기출: 138회 1교시 13번 `모델 전도 공격(Model Inversion Attack)` → Ⅰ 개념 + Ⅲ 공격 원리 및 절차 + Ⅵ 방어 대책
 
 ## 한 줄 본질

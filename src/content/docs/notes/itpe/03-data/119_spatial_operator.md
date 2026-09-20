@@ -2,9 +2,6 @@
 sidebar:
   order: 119
   label: "119. 공간 연산자 (Spatial Operator)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "공간 연산자 (Spatial Operator)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 119
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "119"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수만 개 정밀 다각형의 공간 조인(ST_Intersects) 시 CPU 100% 병목 / 투영 좌표계(SRID) 불일치로 인한 오차
 ```
 - 필수 키워드: 공간 연산자 · Spatial DB · OGC 표준 · ST_Contains · ST_Intersects · ST_Distance · MBR · R-Tree · DE-9IM · SRID
-- 배점 전략: 10점 = Ⅰ → Ⅲ 공간 연산자 3대 유형 및 대표 함수 매핑표 → Ⅳ 2단계 필터링(MBR Filter & Refine) 도식 / 25점 = Ⅰ~Ⅶ, DE-9IM 행렬 원리 및 Ⅵ 대규모 공간 조인 튜닝
 - 기출: 124회 `공간 데이터베이스의 공간 연산자(Spatial Operator)의 개념과 주요 유형(위상, 거리, 집합 연산)을 설명하시오.` → Ⅰ 정의 + Ⅲ 3대 유형별 함수 + Ⅳ 처리 메커니즘 + Ⅵ 실무 성능 최적화
 
 ## 한 줄 본질

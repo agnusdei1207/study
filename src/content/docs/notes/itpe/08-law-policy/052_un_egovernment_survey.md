@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 70
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 국가 간 디지털 분열(Digital Divide) 심화 / 순위 경쟁 매몰로 인한 실질 체감도 괴리
 ```
 - 필수 키워드: UN E-Government Survey · UNDESA · EGDI · EPI · LOSI · 지속가능발전목표(SDGs) · GovTech
-- 배점 전략: 10점 = Ⅰ 평가 개요 → Ⅲ 평가 체계 3대 축 도식 → Ⅴ 타 국제기구 지표 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ LOSI 도시평가 확장 및 Ⅵ 한국의 글로벌 ODA 연계 전략 심층화
 - 기출: 127회 2교시 1번 `국제연합(UN)은 매 2년마다 전체 회원국을 대상으로 전자정부 평가를 실시한다. 전자정부 평가에 대한 산정 방식, 구성요소, 한국의 발전방향` → Ⅰ·Ⅱ·Ⅲ·Ⅵ 전수
 
 ## 한 줄 본질

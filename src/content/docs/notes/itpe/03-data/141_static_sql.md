@@ -2,9 +2,6 @@
 sidebar:
   order: 141
   label: "141. 정적 SQL(Static SQL)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "정적 SQL (Static SQL)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 141
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "141"
-  source_status: "기출"
-  source_history: "134회"
-  priority: 70
-  priority_note: "[출제:134]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 검색 조건이 다양한 다차원 필터 화면에서 불필요하게 복잡한 `NVL(:val, col)` 쿼리 남발로 인덱스 무력화
 ```
 - 필수 키워드: 정적 SQL · 프리컴파일(Pre-compile) · 실행 계획 고정 · 소프트 파싱(Soft Parsing) · SQL Injection 방지 · 바인드 변수 · 동적 SQL
-- 배점 전략: 10점 = Ⅰ → Ⅲ 정적 SQL 컴파일-실행 흐름도 → Ⅴ 정적 SQL vs 동적 SQL 5대 축 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ Pro*C 및 저장 프로시저 최적화 메커니즘과 Ⅵ 다중 조건 튜닝 안티패턴
 - 기출: 134회 1교시 7번 `정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL) 비교` → Ⅰ 정의 + Ⅲ 실행 흐름 + Ⅴ 5대 비교 항목 + Ⅵ 선택 가이드
 
 ## 한 줄 본질

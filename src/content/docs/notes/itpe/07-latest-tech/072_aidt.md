@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 77%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 77
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 학교 현장 무선망 트래픽 폭증 / 학생 민감정보(학업성취도) 유출 위험 / 교사의 AI 도구 수용성 격차
 ```
 - 필수 키워드: AI 디지털교과서(AIDT) · 지능형 튜터링 시스템(ITS) · 학습 경험 API(xAPI) · 학습 기록 저장소(LRS) · 지식 추적(KT) · 교사용 대시보드
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 핵심 시스템 구성도(학생-교사-엔진) → Ⅴ 교과서 진화 비교표 / 25점 = Ⅰ~Ⅶ 전개, xAPI 표준 데이터 파이프라인, 지식 추적(Knowledge Tracing) 알고리즘, 교육 정보 보안 대책 집중
 - 기출: 135회 2교시 6번 `AI 디지털교과서에 대하여 다음을 설명하시오.` → Ⅰ~Ⅶ
 
 ## 한 줄 본질

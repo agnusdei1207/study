@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 76
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고주파 대기 흡수 감쇠 / 기지국 설치 밀도 폭증 / 에너지 소비 및 단말 발열
 ```
 - 필수 키워드: IMT-2030 · sub-THz(100GHz~1THz) · 1Tbps · 0.1ms · NTN · RIS(지능형 반사 표면) · ISAC
-- 배점 전략: 10점 = Ⅰ → Ⅲ 6G 핵심 기술 5대 축 도식 → Ⅴ 세대별(4G/5G/6G) 핵심 지표 비교표 / 25점 = Ⅰ~Ⅶ, 130회 기출 비전과 성능 지표 및 기술적 과제 상세 전개
 - 기출: 130회 `6G 이동통신의 비전, 주요 성능 지표 및 핵심 기술요소를 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 소셜 미디어 리사이징 및 스크린샷 캡처 시 메타데이터 유실(Stripping) 방어 / 원격 클라우드 매니페스트 저장소(Cloud Binding) 연동
 ```
 - 필수 키워드: C2PA · 콘텐츠 자격증명(Content Credentials) · 디지털 출처(Provenance) · 매니페스트(Manifest) · 전자서명 · 딥페이크 방어
-- 배점 전략: 10점 = Ⅰ 딥페이크 확산과 C2PA 등장 배경 → Ⅲ 매니페스트 서명 아키텍처 도식 → Ⅴ 전통 워터마킹 대비 차별점 / 25점 = Ⅰ~Ⅶ 전개, C2PA 매니페스트 체인의 계보 추적 메커니즘과 스크린샷 및 포맷 변환 시 메타데이터 유실 방지 방안(Cloud Manifest) 상세화
 - 기출: 미출제. AI 기본법 내 생성형 AI 표시제 및 딥페이크 방지 표준으로 출제 유력 예상
 
 ## 한 줄 본질

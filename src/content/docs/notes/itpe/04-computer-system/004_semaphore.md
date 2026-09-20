@@ -6,25 +6,16 @@ tags:
   - "notes-computer-system"
 sidebar:
   badge:
-    text: "A · 기출 · 94%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
   keyword_grade: "A"
-  grade_basis: "04-computer-system canonical 목록 A(04-122 통합 토픽)"
-  source_status: "기출"
-  source_history: "139회(정보관리 공식)"
-  priority: 94
-  priority_note: "[정보관리 출제:139]"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [03 데이터] → [▶ 04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 04 컴퓨터 시스템 → 세마포어
+<div class="itpe-topic-path" aria-label="지식 경로"><span>운영체제</span><span>프로세스 동기화</span><strong>세마포어</strong></div>
 
 ## 큰 그림과 30초 인출
 

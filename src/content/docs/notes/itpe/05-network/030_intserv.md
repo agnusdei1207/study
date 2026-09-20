@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 76
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수백만 개 플로우 상태 저장으로 백본 라우터 메모리 고갈 / RSVP 주기적 갱신 부하
 ```
 - 필수 키워드: 통합 서비스 · Hard QoS · RSVP · PATH/RESV · 수락 제어(Admission Control) · 플로우 상태(Stateful)
-- 배점 전략: 10점 = Ⅰ → Ⅲ RSVP 시그널링 흐름도(PATH/RESV) → Ⅴ IntServ vs DiffServ 대조 / 25점 = 125회 기출 종합 인터넷 QoS 모델 상세
 - 기출: 125회 1교시: "QoS 보장 기술인 IntServ와 DiffServ를 비교하여 설명하시오." → Ⅰ~Ⅴ
 
 ## 한 줄 본질

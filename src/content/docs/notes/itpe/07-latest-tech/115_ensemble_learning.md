@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 74
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 기저 모델 간 높은 상관관계(다양성 부족) 시 성능 정체 / 모델 복잡도 급증에 따른 연산 자원 및 서빙 지연 / 설명가능성(XAI) 저하
 ```
 - 필수 키워드: 앙상블 학습(Ensemble Learning) · 보팅(Voting) · 배깅(Bagging) · 부스팅(Boosting) · 스태킹(Stacking) · 다양성(Diversity) · 편향-분산 트레이드오프
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 앙상블 4대 패러다임 분류 체계도 → Ⅴ 앙상블 기법 비교표 / 25점 = Ⅰ~Ⅶ 전개, 콩도르세 배심원 정리의 수학적 수렴 원리 및 스태킹의 OOF(Out-of-Fold) 데이터 누수 방지 집중
 - 기출: 120회 `앙상블 학습` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

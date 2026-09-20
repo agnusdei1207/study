@@ -2,9 +2,6 @@
 sidebar:
   order: 149
   label: "149. 분산 데이터베이스(Distributed Database)"
-  badge:
-    text: "기출 · 67%"
-    variant: note
 title: "분산 데이터베이스 (Distributed Database)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 149
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "149"
-  source_status: "기출"
-  source_history: "80회, 102회, 117회"
-  priority: 67
-  priority_note: "이전(KPC):80,102,117"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 2PC 수행 중 코디네이터 노드 장애 시 전체 참여 노드 락 대기 블로킹(Blocking) 발생 / 글로벌 데드락 탐지 난제
 ```
 - 필수 키워드: 분산 데이터베이스 · 5대 투명성 · 분할(수평/수직) · 복제 · 2단계 커밋(2PC) · 코디네이터(Coordinator) · 분산 트랜잭션 · Raft/Paxos · 사가(Saga)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 분산 DB 5대 투명성 매핑표 → Ⅴ 집중형 vs 분산형 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 2단계 커밋(2PC) 시퀀스 다이어그램 및 Ⅵ 블로킹 극복 방안(3PC, 합의 프로토콜)
 - 기출: 117회 `분산 데이터베이스(Distributed Database)의 개념, 5가지 투명성(Transparency) 및 분산 트랜잭션 처리를 위한 2PC를 설명하시오.` → Ⅰ 정의 + Ⅱ 5대 투명성 + Ⅳ 2PC 시퀀스 + Ⅵ 한계와 대안
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 100%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회, 135회, 136회"
-  priority: 100
-  priority_note: "[출제:133,135,136]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 간접 프롬프트 주입 방어 / RAG 벡터 DB 접근통제 / 모델 탈옥(Jailbreak) 탐지
 ```
 - 필수 키워드: 프롬프트 인젝션 · 데이터 중독 · 모델 도난 · 간접 주입 · 도구 과잉 권한 · AI 가드레일
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 공격 접점 계층 도식 → Ⅴ 주요 위협 대응표 / 25점 = Ⅰ~Ⅶ 전개, OWASP LLM 10대 위협 매핑 및 Ⅵ 실무 방어 체계 제시
 - 기출: 136회 2교시 3번 `LLM 도입 보안 위험 3가지 및 대응` → Ⅲ·Ⅵ / 136회 4교시 5번 `OWASP LLM Top 10` → Ⅴ 비교
 
 ## 한 줄 본질

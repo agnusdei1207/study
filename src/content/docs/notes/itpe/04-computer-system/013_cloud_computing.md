@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "84회, 89회, 90회, 98회, 99회, 114회, 139회"
-  priority: 91
-  priority_note: "[출제:139] · 이전(KPC):84,89,90,98,99,114"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 클라우드 비용 폭증(FinOps 필요) / 벤더 락인 / 데이터 주권 및 정보보호 규제
 ```
 - 필수 키워드: NIST 5대 특징 · IaaS/PaaS/SaaS · 온디맨드 · 자원 풀링 · 공유 책임 모델(Shared Responsibility)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 서비스/배포 모델 매트릭스 → Ⅴ 관리 책임 모델 / 25점 = Ⅰ~Ⅶ 전개, NIST 5대 특징 구체화 및 Ⅵ 엔터프라이즈 클라우드 전환 전략
 - 기출: 139회 1교시 `엣지 컴퓨팅과 클라우드 컴퓨팅 차이점`, 이전 기출 `NIST 클라우드 정의 및 서비스 모델`
 
 ## 한 줄 본질

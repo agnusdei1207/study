@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회, 104회"
-  priority: 74
-  priority_note: "[출제(KPC):130] · 이전(KPC):104"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무선 암호화 적용 시 제어 지연(Latency) 발생 / GPS 위조 신호에 의한 강제 착륙 및 납치 / 물리적 탈취 시 온보드 플래시 메모리 덤프
 ```
 - 필수 키워드: 드론 보안 · GPS 스푸핑(Spoofing) · RF 재밍(Jamming) · MAVLink v2 · 지상제어소(GCS) · 센서 음향 공진 공격 · 안티드론(Anti-Drone)
-- 배점 전략: 10점 = Ⅰ 드론 보안 정의 및 위협 유형 → Ⅲ 3대 계층별 위협/대응 구조도 → Ⅵ 핵심 방어 기술 요약 / 25점 = Ⅰ~Ⅶ 전개, 제130회 1교시 기출 요구사항 대응, MAVLink 프로토콜 취약점, GPS 스푸핑 원리 및 안티드론 무력화 기술(소프트킬/하드킬) 심층 상술
 - 기출: 제130회 1교시 5번: "드론의 보안위협과 대응방안"
 
 ## 한 줄 본질

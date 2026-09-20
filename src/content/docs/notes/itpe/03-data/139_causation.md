@@ -2,9 +2,6 @@
 sidebar:
   order: 139
   label: "139. 인과관계(Causation)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "인과관계 (Causation)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 139
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "139"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 선택 편향(Selection Bias)과 역인과관계(Reverse Causality)를 간과하여 잘못된 비즈니스 정책 수립
 ```
 - 필수 키워드: 인과관계 · 인과추론 · 3대 성립 조건(시간적 선행성, 공변성, 비허위성) · 무작위 대조군 실험(RCT) · 교란요인(Confounder) · 반사실(Counterfactual) · A/B 테스트 · 이중차분법(DID)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 인과관계 성립 3대 조건 매핑표 → Ⅴ 상관관계 vs 인과관계 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 인과 다이어그램(DAG) 기반 교란 통제 메커니즘 및 Ⅵ 비즈니스 A/B 테스트와 준실험 설계
 - 기출: 128회 `상관관계(Correlation)와 인과관계(Causation)의 차이점 및 데이터 분석에서 인과관계를 입증하기 위한 조건과 추론 기법을 설명하시오.` → Ⅰ 정의 + Ⅲ 3대 조건 + Ⅴ 상세 비교표 + Ⅵ 인과추론 기법
 
 ## 한 줄 본질

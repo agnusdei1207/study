@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 평문 전송 및 인증 부재(스푸핑 취약) / 서비스 거부(DoS) / 잘못된 제어 명령 주입
 ```
 - 필수 키워드: 마스터-슬레이브 · 기능 코드(Function Code) · 코일/레지스터 · Modbus RTU · Modbus TCP(502 포트) · MBAP 헤더 · 평문 보안 취약점
-- 배점 전략: 10점 = Ⅰ → Ⅲ PDU 프레임 구조도 → Ⅴ RTU vs TCP 비교표 / 25점 = 137회 1교시 3번 기출에 맞춰 4대 데이터 모델(코일, 레지스터)과 OT 보안 대책 상세
 - 기출: 137회 1교시 3번 `MODBUS 프로토콜을 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

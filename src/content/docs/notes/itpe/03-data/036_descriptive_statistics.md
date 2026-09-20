@@ -2,9 +2,6 @@
 sidebar:
   order: 36
   label: "036. 기술통계 (Descriptive Statistics)"
-  badge:
-    text: "기출 · 82%"
-    variant: note
 title: "기술통계 (Descriptive Statistics)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 36
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "036"
-  source_status: "기출"
-  source_history: "124회, 123회"
-  priority: 82
-  priority_note: "[출제(KPC):123,124]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이상치로 인한 평균 착시 / 척도에 맞지 않는 통계량 적용 / 분산 무시로 인한 데이터 왜곡
 ```
 - 필수 키워드: 4대 척도(명목·서열·등간·비율) · 중심경향치(평균·중앙값·최빈값) · 산포도(분산·표준편차·IQR) · 왜도(Skewness) · 첨도(Kurtosis) · EDA
-- 배점 전략: 10점 = Ⅰ → Ⅲ 4대 척도 및 통계량 매핑 표 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 척도 체계도 및 Ⅴ 기술통계 vs 추론통계 비교표
 - 기출: 124회 1교시 2번 `통계학의 4가지 척도를 구분하고 다중회귀/로지스틱회귀 비교` → 4대 척도 체계 / 123회 `기술통계와 추론통계`
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 96%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "107회, 137회, 138회"
-  priority: 96
-  priority_note: "[출제:137,138] · 이전(KPC):107"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고지연 위성망 재전송 지연 / 무선 채널 버스트 에러 / 프로세싱 부하
 ```
 - 필수 키워드: 패리티 검사 · CRC · 체크섬 · 해밍 코드 · ARQ · FEC · HARQ
-- 배점 전략: 10점 = Ⅰ → Ⅲ 분류 체계 표 → Ⅴ ARQ/FEC 비교 / 25점 = Ⅰ~Ⅶ, 138회 논술에 맞춰 검출 알고리즘과 복구 기제 상세 서술
 - 기출: 107회 `오류 검출과 정정 기법 비교` → Ⅲ·Ⅴ, 138회 `신뢰성 전송을 위한 오류 제어 기술` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

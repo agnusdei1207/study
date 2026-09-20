@@ -3,7 +3,7 @@ sidebar:
   order: 5
   label: "005. 군집분석"
   badge:
-    text: "A · 기출 · 96%"
+    text: "A"
     variant: note
 title: "군집분석 (Cluster Analysis)"
 author: "OpenAI Codex"
@@ -14,22 +14,13 @@ weight: 5
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "03-data canonical 목록 A"
   question_no: "005"
-  source_status: "기출"
-  source_history: "134·139회(정보관리 공식)"
-  priority: 96
-  priority_note: "군집 유형·SOM·K-Means/DBSCAN 비교·타당성 평가로 확장 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [▶ 03 데이터] → [04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 03 데이터 → 군집분석
+<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터 분석</span><span>비지도학습</span><strong>군집분석</strong></div>
 
 ## 큰 그림과 30초 인출
 

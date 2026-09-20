@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고정된 짧은 키 사용 시 전수조사 노출 / ECB 모드 사용 시 원본 이미지 윤곽 노출 / 난수 생성기(PRNG)의 엔트로피 부족
 ```
 - 필수 키워드: 암호문 공격(COA) · 완전 안전성(Perfect Secrecy) · 유일거리(Unicity Distance) · 혼돈(Confusion)과 확산(Diffusion) · 빈도 분석 · 전수 공격(Brute Force)
-- 배점 전략: 10점 = Ⅰ 암호문 공격 정의 및 기본 가정 → Ⅲ 통계적 분석 및 전수 공격 구조 도식 → Ⅵ 방어 대책 요약 / 25점 = Ⅰ~Ⅶ 전개, 샤논의 정보 이론(완전 비밀성 H(M|C)=H(M)), 고전 암호부터 현대 블록 암호(AES)까지의 COA 저항성 확보 메커니즘 심층 상술
 - 기출: 제137회 1교시 4번: "암호문 공격(Ciphertext Attack)을 설명하시오."
 
 ## 한 줄 본질

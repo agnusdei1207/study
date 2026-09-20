@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:54:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무손실 압축의 하한선($L \ge H(X)$) 한계 / 채널 용량 초과($R > C$) 시 오류율 급증 / 머신러닝 교차 엔트로피 적용
 ```
 - 필수 키워드: 정보량($I(x)$) · 정보 엔트로피($H(X)$) · 상호 정보량($I(X;Y)$) · 소스 코딩 정리 · 채널 코딩 정리 · 중복성(Redundancy) · KL 발산
-- 배점 전략: 10점 = Ⅰ → Ⅲ 정보이론 핵심 척도 벤 다이어그램 및 수식 → Ⅴ 소스 코딩 vs 채널 코딩 비교표 / 25점 = 125회 기출에 맞춰 섀넌의 통신 모델, 엔트로피 유도 과정, 2대 부호화 정리, 현대 통신 및 AI(손실함수) 응용 상세
 - 기출: 제125회 4교시 2번: "정보통신분야 정보이론(Information Theory)과 샤논(Shannon)의 정리" → Ⅰ~Ⅵ
 
 ## 한 줄 본질

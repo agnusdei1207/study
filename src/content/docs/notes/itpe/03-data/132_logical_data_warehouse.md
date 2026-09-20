@@ -2,9 +2,6 @@
 sidebar:
   order: 132
   label: "132. 로지컬 데이터웨어하우스(LDW, Logical Data Warehouse)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "로지컬 데이터웨어하우스 (LDW, Logical Data Warehouse)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 132
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "132"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 70
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이종 소스 간 상이한 데이터 타입 매핑 오류 / 가상화 계층의 보안 및 접근 제어 정책 단절
 ```
 - 필수 키워드: 로지컬 데이터웨어하우스 · LDW · 데이터 가상화 · 시맨틱 레이어 · 분산 쿼리 엔진 · 데이터 패브릭 · 쿼리 가속 · 단일 논리 뷰
-- 배점 전략: 10점 = Ⅰ → Ⅲ LDW 4계층 엔터프라이즈 아키텍처 도식 → Ⅴ 타 데이터 저장소 모델과의 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 쿼리 컴파일-최적화-실행 상세 시퀀스 및 Ⅵ 단계적 전환 로드맵
 - 기출: 121회 `로지컬 데이터웨어하우스(LDW)의 아키텍처 구성요소와 도입 시 고려사항 및 전통적 DW와의 비교` → Ⅰ 정의 + Ⅲ 4계층 아키텍처 + Ⅴ 비교표 + Ⅵ 도입 고려사항
 
 ## 한 줄 본질

@@ -6,25 +6,16 @@ tags:
   - "notes-computer-system"
 sidebar:
   badge:
-    text: "A · 기출 · 100%"
+    text: "A"
 extra:
   model: "Gemini 3.8 Flash"
   keyword_grade: "A"
-  grade_basis: "04-computer-system canonical 목록 A"
-  source_status: "기출"
-  source_history: "138회(정보관리 공식)"
-  priority: 100
-  priority_note: "[정보관리 출제:138]"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [03 데이터] → [▶ 04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 04 컴퓨터 시스템 → 은행가 알고리즘
+<div class="itpe-topic-path" aria-label="지식 경로"><span>운영체제</span><span>교착상태 회피</span><strong>은행가 알고리즘</strong></div>
 
 ## 큰 그림과 30초 인출
 

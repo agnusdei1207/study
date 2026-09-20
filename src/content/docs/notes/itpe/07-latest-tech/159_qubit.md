@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 양자 결맞음 시간(Coherence Time, T1/T2)의 짧음 / 열·전자기파 노이즈로 인한 양자 게이트 오류 / 극저온(밀리켈빈) 냉각 요구
 ```
 - 필수 키워드: 큐비트(Qubit) · 양자 중첩(Superposition) · 양자 얽힘(Entanglement) · 블로흐 구면(Bloch Sphere) · 결맞음(Coherence) · 조셉슨 접합 · NISQ · 양자 오류 정정(QEC)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 양자역학적 3대 특성 → Ⅲ 블로흐 구면 및 수식 표기 → Ⅴ 고전 비트 vs 큐비트 비교표 / 25점 = Ⅰ~Ⅶ 전개, Dirac 브라-켓 표기법 및 4대 물리적 하드웨어 구현 방식(초전도 vs 이온트랩 등) 상세 비교
 - 기출: 128회 `큐비트(Qubit)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:12:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 완전 디버깅 가정의 한계 / 결함 재유입률(Imperfect Debugging) 반영 / 안전필수(ISO 26262) 도메인 적용
 ```
 - 필수 키워드: SRGM · 소프트웨어 신뢰성 · NHPP · 평균 고장 간격(MTBF) · Goel-Okumoto · Yamada S자형 · MLE(최우도추정법) · 최적 릴리스 시점
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 주요 SRGM 수학적 모델 분류 체계 도식 → Ⅴ 대표 모델 비교표 / 25점 = Ⅰ~Ⅶ 전개, 124회 기출 SRGM의 수학적 기본 가정, 모수 추정 절차 및 비용 최소화 릴리스 결정 공식
 - 기출: 124회 1교시 `소프트웨어 신뢰성 성장 모델(SRGM)의 개념 및 대표적 모델 2가지` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

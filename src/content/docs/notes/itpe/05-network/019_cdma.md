@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 원근 문제(Near-Far Problem) / 기지국 용량의 소프트 한계 / 레이크(RAKE) 수신기
 ```
 - 필수 키워드: 대역확산(DSSS) · 직교 부호(Walsh Code) · PN 시퀀스 · 원근 문제 · 전력 제어 · 소프트 핸드오버
-- 배점 전략: 10점 = Ⅰ → Ⅲ 대역확산 및 역확산 수식/도식 → Ⅴ FDMA/TDMA/CDMA 비교표 / 25점 = Ⅰ~Ⅶ, 140회 3교시 4번 기출(나. CDMA)에 맞춰 원근 문제 극복 메커니즘 상세
 - 기출: 140회 3교시 4번 `다음 무선 통신 프로토콜을 설명하시오. 가. CSMA/CA 나. CDMA 다. TDMA` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

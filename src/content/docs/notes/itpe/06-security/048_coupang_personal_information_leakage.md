@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── CAPTCHA 우회 AI 도구 대응 / 로그인 속도 제한(Rate Limiting) / 이상 로그인 FDS 탐지 / 침해 계정 비밀번호 강제 리셋
 ```
 - 필수 키워드: 크리덴셜 스터핑 · 봇넷 · 무차별 대입 · 개인정보 유출 · FDS(이상거래탐지) · Rate Limiting · 패스키(Passkey)
-- 배점 전략: 10점 = Ⅰ 사고 개요 및 공격 메커니즘 → Ⅲ 크리덴셜 스터핑 구조도 → Ⅴ 직접 침투 대비 차이점 / 25점 = Ⅰ~Ⅶ 전개, 봇 탐지 기법과 Ⅵ 전자상거래 계정보호 실무 방어 아키텍처 집중
 - 기출: 미출제. 예상: "대규모 전자상거래 플랫폼을 대상으로 발생한 크리덴셜 스터핑(Credential Stuffing) 공격의 원인과 메커니즘을 분석하고, 플랫폼 기업의 기술적·제도적 대응 방안을 제시하시오."
 
 ## 한 줄 본질

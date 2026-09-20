@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 니어 메모리(DDR5) 대비 접근 지연(Far Memory Latency) / 호스트 OS 및 하이퍼바이저 지원 미비
 ```
 - 필수 키워드: 캐시 일관성 · 메모리 풀링(Pooling) · CXL.mem · 패브릭(Fabric) · Stranded Memory · CXL 스위치
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ CXL 3대 프로토콜 및 메모리 풀링 아키텍처 도식 → Ⅴ CXL 세대별 발전 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 캐시 일관성 동기화 흐름과 Ⅵ 데이터센터 TCO 절감 효과
 - 기출: 미출제. 예상: "데이터센터 메모리 벽(Memory Wall) 극복을 위한 CXL(Compute Express Link) 3.0/4.0의 개념, 메모리 풀링 메커니즘, 그리고 기존 인터커넥트와의 차별점을 설명하시오."
 
 ## 한 줄 본질

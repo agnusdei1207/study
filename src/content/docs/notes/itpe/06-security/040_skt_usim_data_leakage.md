@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── e-SIM 환경의 보안 위협 / 유심 변경 알림 서비스 의무화 / FIDO 생체인증 기반 금융 보안 강화
 ```
 - 필수 키워드: USIM · IMSI(국제이동가입자식별자) · ICCID · SIM 스와핑(SIM Swapping) · HLR/HSS · 2차 인증 우회
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ USIM 구조 및 탈취 메커니즘 도식 → Ⅴ 피해 파급력 비교 / 25점 = Ⅰ~Ⅶ 전개, SIM 복제 금융 탈취 킬체인과 Ⅵ 통신·금융 연계 융합 보안 대책 집중
 - 기출: 미출제. 예상: "통신사 유심(USIM) 정보 유출 사고의 원인과 이를 악용한 심 스와핑(SIM Swapping) 공격 메커니즘을 설명하고, 통신사 및 금융기관의 대응 방안을 제시하시오."
 
 ## 한 줄 본질

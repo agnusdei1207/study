@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "84회, 96회"
-  priority: 64
-  priority_note: "이전(KPC):84,96"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 온톨로지 구축 및 태깅의 막대한 인건비/수작업 공수 / 웹 마스터들의 시맨틱 메타데이터 입력 유인 부재 / 모호한 자연어의 기호화 한계
 ```
 - 필수 키워드: 시맨틱 웹(Semantic Web) · 팀 버너스 리 · 레이어 케이크(Layer Cake) · RDF(Resource Description Framework) · OWL · SPARQL · 온톨로지 · LOD(Linked Open Data)
-- 배점 전략: 10점 = Ⅰ 개요 및 등장 배경 → Ⅲ 시맨틱 웹 레이어 케이크 7계층도 → Ⅳ RDF 트리플 및 SPARQL 질의문 예시 / 25점 = Ⅰ~Ⅶ 전개, RDF 데이터 모델(Subject-Predicate-Object), OWL 3대 서브언어(Lite, DL, Full) 비교 및 LOD 5-Star 배포 원칙 상세화
 - 기출: 84회, 96회 `시맨틱 웹(Semantic Web)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

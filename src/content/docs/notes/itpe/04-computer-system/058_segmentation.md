@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 76
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 외부 단편화(External Fragmentation) / 메모리 압축(Compaction) 비용 / 세그먼테이션 폴트
 ```
 - 필수 키워드: 세그먼테이션 · 가변 크기 · 세그먼트 테이블 · Base/Limit · 외부 단편화 · 세그먼테이션 폴트 · 페이징 결합
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 세그먼테이션 주소 변환 매핑도 → Ⅴ 세그먼테이션 vs 페이징 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 주소 변환 및 한계 검사(Limit Check) 흐름과 Ⅵ Paged Segmentation 복합 아키텍처
 - 기출: 131회 3교시 5번 `운영체제 메모리 관리 기법 중 페이징 기법과 세그먼테이션 기법 비교` 서술형 출제
 
 ## 한 줄 본질

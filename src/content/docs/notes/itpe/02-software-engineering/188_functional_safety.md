@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:09:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "114회, 118회"
-  priority: 64
-  priority_note: "과거기출(114회, 118회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 체계적 결함(버그)에 대한 정적 분석(MISRA-C) 및 동적 커버리지(MC/DC) 미달 / 안전 메커니즘(Fail-Safe) 미동작 리스크
 ```
 - 필수 키워드: IEC 61508 · ISO 26262 · HARA(Hazard Analysis) · SIL(Safety Integrity Level) · ASIL(A~D) · Fail-Safe · Fault Tolerance · MC/DC 커버리지
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 도메인별 표준 맵핑 도식 → Ⅴ 기능안전 vs SOTIF vs 보안 비교표 / 25점 = Ⅰ~Ⅶ 전개, 114·118회 기출 기능안전 라이프사이클, ISO 26262의 ASIL 산출 매트릭스(심각도, 노출도, 통제가능성), 자율주행 시대 SOTIF와의 연계
 - 기출: 114회 1교시, 118회 1교시 `기능안전(Functional Safety)의 개념, IEC 61508과 ISO 26262의 관계, ASIL 산출 방식` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

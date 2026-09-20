@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:43:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "102회, 105회"
-  priority: 58
-  priority_note: "이전(KPC):102,105"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 극소 메모리(SRAM 2KB) 오버플로우 / RTOS 부재로 긴 루프 실행 시 센서 인터럽트 유실 / 산업용 노이즈 리셋
 ```
 - 필수 키워드: 아두이노(Arduino) · 마이크로컨트롤러(MCU) · 오픈소스 하드웨어(OSHW) · ATmega328P · 부트로더 · GPIO/PWM/ADC · 스케치
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 아두이노 하드웨어/소프트웨어 통합 구조도 → Ⅴ 아두이노 vs 라즈베리 파이 vs ESP32 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 부트로더 펌웨어 업로드 시퀀스와 Ⅵ 산업용 임베디드 적용 시 한계 및 FreeRTOS 연계 방안
 - 기출: 102회 1교시, 105회 1교시 `오픈소스 하드웨어(OSHW)와 아두이노(Arduino)` 출제
 
 ## 한 줄 본질

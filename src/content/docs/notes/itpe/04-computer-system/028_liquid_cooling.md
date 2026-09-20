@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 누수(Leakage) 리스크 및 감지 센서 / 절연유 유지보수(하드웨어 교체 난이도) / 랙 바닥 하중 설계
 ```
 - 필수 키워드: D2C(Direct-to-Chip) · 액침냉각(Immersion Cooling) · PUE(전력효율지수) · CDU(Cooling Distribution Unit) · 유전체 냉각유(Dielectric Fluid)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ D2C vs 액침냉각 구조 비교도 → Ⅴ 냉각 방식별 특성 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 열교환 루프 메커니즘과 Ⅵ 데이터센터 리모델링 시 바닥 하중/누수 대책
 - 기출: 미출제. 예상: "AI 고밀도 데이터센터의 전력 밀도 급증에 따른 액체냉각(Liquid Cooling) 기술의 대두 배경, D2C와 액침냉각 방식의 비교 및 도입 고려사항을 설명하시오."
 
 ## 한 줄 본질

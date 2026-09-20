@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 72
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 인증 유지 비용 부담 / EU-미국 프라이버시 프레임워크 대비 유럽 내 인지도 한계
 ```
 - 필수 키워드: APEC CBPR · 국경 간 개인정보 이전 · 9대 프라이버시 원칙 · 인증기관(Accountability Agent, AA) · KISA · 글로벌 CBPR 포럼
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ APEC 9대 원칙 및 4대 참여자 도식 → Ⅴ GDPR 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 9대 세부 원칙과 Ⅵ 글로벌 데이터 이전 컴플라이언스 집중
 - 기출: 132회 3교시 5번 `APEC의 CBPR(Cross Border Privacy Rules)` → Ⅰ·Ⅱ·Ⅲ·Ⅳ·Ⅴ 전수
 
 ## 한 줄 본질

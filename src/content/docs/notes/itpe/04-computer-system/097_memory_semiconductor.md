@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:14:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 70
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 10nm 이하 누설 전류 및 커패시터 정전용량 한계 / 실리콘 관통 전극(TSV) 수율 저하 / 메모리 다운사이클 가격 폭락
 ```
 - 필수 키워드: 메모리 반도체 · DRAM · NAND Flash · 3D 적층 · TSV · HBM · 소품종 대량생산
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 메모리 반도체 분류 체계도 → Ⅴ DRAM vs NAND vs SRAM 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 3D 수직 적층 공정 원리와 Ⅵ AI 시대 HBM(고대역폭 메모리) 시장 재편 및 실무 대책
 - 기출: 129회 4교시 3번 `글로벌 반도체 생태계 전쟁과 메모리/비메모리 반도체 경쟁력 비교` 논술형 출제
 
 ## 한 줄 본질

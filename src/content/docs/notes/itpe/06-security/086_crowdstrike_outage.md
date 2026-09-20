@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 배포 파이프라인의 카나리(Canary) 단계적 롤아웃 필수 / 커널 모드 권한 최소화(eBPF 도입) / BitLocker 키 중앙 백업 관리
 ```
 - 필수 키워드: CrowdStrike 장애 · 보안 소프트웨어 공급망 · 커널 레벨(Ring 0) · BSOD · 카나리 배포(Canary Deployment) · eBPF · BitLocker
-- 배점 전략: 10점 = Ⅰ 사건 개요 및 원인 요약 → Ⅲ Ring 0 커널 충돌 메커니즘 도식 → Ⅵ 공급망 리스크 핵심 재발 방지 대책 / 25점 = Ⅰ~Ⅶ 전개, 커널 파서의 결함 원인 분석과 보안 에이전트 아키텍처 혁신(Windows의 커널 접근 제한 정책 및 eBPF 전환) 심층 제시
 - 기출: 미출제. 소프트웨어 안전 및 디지털 공급망 단일 장애점(SPOF) 시사 문제로 출제 유력
 
 ## 한 줄 본질

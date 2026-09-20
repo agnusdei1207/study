@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 76
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단어 간 문맥·유사도(동의어/다의어) 무시 / 어휘 사전 증가에 따른 차원의 저주 / 신규 희귀 단어에 대한 과도한 가중치
 ```
 - 필수 키워드: TF-IDF · 단어 빈도(TF) · 역문서 빈도(IDF) · 불용어(Stopword) · DTM(문서-단어 행렬) · 스무딩(Smoothing) · BM25
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 계산 공식 및 구성요소 → Ⅴ BoW vs TF-IDF vs BM25 비교표 / 25점 = Ⅰ~Ⅶ 전개, 132회 기출 스타일 수치 계산 풀이 과정(로그 밑수 및 스무딩 공식) 집중
 - 기출: 132회 2교시 3번 `문서별 TF-IDF 식별을 위한 계산 과정과 그 결과` → Ⅰ~Ⅶ
 
 ## 한 줄 본질

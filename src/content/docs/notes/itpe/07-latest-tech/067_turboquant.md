@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 극단적 이상치 발생 시 양자화 오차 누적 / 커스텀 CUDA 커널 의존성 / NPU 하드웨어 호환성 제약
 ```
 - 필수 키워드: 터보퀀트(TurboQuant) · LLM 양자화 · 혼합 정밀도 · 이상치 보존(Outlier Retention) · KV 캐시 압축 · 텐서 코어 커널 최적화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 구조 및 이상치 분리 메커니즘 → Ⅴ 양자화 기법 비교표 / 25점 = Ⅰ~Ⅶ 전개, 139회 기출 요구(개념, 특징, 성능, 기존 양자화 차이, 기대효과) 충실 반영
 - 기출: 139회 2교시 4번 `터보퀀트(TurboQuant)의 개념, 특징, 성능, 기존 양자화기술과의 차이점, 기대 효과` → Ⅰ~Ⅶ
 
 ## 한 줄 본질

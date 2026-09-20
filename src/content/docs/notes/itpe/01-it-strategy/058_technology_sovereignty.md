@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "B · 미출 · 75%"
+    text: "B"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 모든 기술의 자립화 시도에 따른 자원 분산 / 글로벌 표준과의 호환성 단절 / 외교적 통상 마찰
 ```
 - 필수 키워드: 기술 주권 · 소버린 AI · 소버린 클라우드 · 공급망 무기화 · 데이터 주권(Data Sovereignty) · 12대 국가전략기술 · 전략적 자율성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 기술 주권 계층도 → Ⅴ 패러다임 전환 비교 / 25점 = Ⅰ~Ⅶ 전개, EU 가이아-X(Gaia-X) 사례 및 국내 반도체/AI 풀스택 전략 상술
 - 기출: 미출제. 예상: "미·중 기술 패권 전쟁 및 AI 시대의 도래에 따른 '기술 주권(Technology Sovereignty)'의 개념, 3대 핵심 영역(AI, 반도체, 데이터) 및 국가적 확보 전략을 설명하시오."
 
 ## 한 줄 본질

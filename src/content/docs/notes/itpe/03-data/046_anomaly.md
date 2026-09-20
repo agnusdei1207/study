@@ -2,9 +2,6 @@
 sidebar:
   order: 46
   label: "046. 이상현상 (Anomaly)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "이상현상 (Anomaly)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 46
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "046"
-  source_status: "기출"
-  source_history: "129회, 84회, 96회"
-  priority: 81
-  priority_note: "[출제(KPC):129] · 이전(KPC):84,96"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수강생 없는 과목 개설 불가 / 교수 퇴직 시 강의 정보 삭제 / 학생 주소 변경 시 일부 행 누락
 ```
 - 필수 키워드: 삽입 이상 · 삭제 이상 · 갱신 이상 · 데이터 중복 · 함수적 종속성(FD) · 정규화(Normalization) · 무손실 분해
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3대 이상현상 정의 및 사례 테이블 도식 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, Ⅲ/Ⅳ 이상현상 발생 메커니즘 및 Ⅴ 비교표 상세
 - 기출: 129회 `관계형 데이터베이스의 이상현상 3가지와 해결방안` → Ⅲ 3대 이상현상 + 해결방안(정규화)
 
 ## 한 줄 본질

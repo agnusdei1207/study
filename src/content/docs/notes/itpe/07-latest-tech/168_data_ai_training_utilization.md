@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 크롤링 방지 규약(robots.txt) 무단 위반 소송 / 합성 데이터 반복 학습에 따른 모델 붕괴(Model Collapse) / 다크웹 데이터 누출 위험
 ```
 - 필수 키워드: 데이터 중심 AI(Data-Centric AI) · 데이터 고갈(Data Wall) · 합성 데이터(Synthetic Data) · 모델 붕괴(Model Collapse) · TDM 면책 · 중복 제거(MinHash) · 데이터 큐레이션
-- 배점 전략: 10점 = Ⅰ 데이터 중심 AI 개요 → Ⅱ AI 학습 데이터 전주기 파이프라인 → Ⅲ 당면 과제 및 Ⅳ 해결 기술 / 25점 = Ⅰ~Ⅶ 전개, MinHash 중복 제거 메커니즘, 합성 데이터 기반 모델 붕괴 방지 전략 및 AI 기본법 데이터 활용 기준 상세화
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

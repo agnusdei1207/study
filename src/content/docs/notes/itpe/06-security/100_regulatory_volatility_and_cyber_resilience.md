@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 규제 변경 시 아키텍처 재설계 비용 폭증 / 부서 간 컴플라이언스 사일로 / 규제 준수가 실제 안전을 보장한다는 형식주의 함정
 ```
 - 필수 키워드: 규제 변동성(Regulatory Volatility) · 사이버 복원력(Cyber Resilience) · Assume Breach · DORA(디지털 운영 복원력법) · 지속적 위협 노출 관리(CTEM) · 비즈니스 연속성(BCP)
-- 배점 전략: 10점 = Ⅰ 규제 변동성과 복원력 개념 → Ⅲ 사이버 복원력 4단계 라이프사이클 도식 → Ⅵ 실무 대응 전략 / 25점 = Ⅰ~Ⅶ 전개, 체크리스트 보안의 한계 지적, 금융 DORA 및 망분리 완화 등 최신 규제 환경과 연계한 엔터프라이즈 복원력 아키텍처 상술
 - 기출: 미출제. 예상: "최근 국내외 보안 규제의 급변(규제 변동성) 상황에서 전통적 체크리스트 컴플라이언스의 한계를 논하고, 조직의 핵심 업무를 지속하기 위한 '사이버 복원력(Cyber Resilience)' 구축 방안을 제시하시오."
 
 ## 한 줄 본질

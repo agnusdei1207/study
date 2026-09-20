@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "B · 기출 · 76%"
+    text: "B"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 76
-  priority_note: "[출제(KPC):121] · 합숙·모의 3"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 허상 지표(Vanity Metrics) 매몰 / 로컬 옵티마(국소 최적화) 함정 / 지나친 다크 패턴 적용으로 사용자 이탈
 ```
 - 필수 키워드: AARRR 퍼널 · 북극성 지표(NSM) · A/B 테스트 · 코호트 분석(Cohort) · 제품-시장 적합성(PMF) · 바이럴 루프
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ AARRR 5단계 퍼널 상세 도식 → Ⅴ 전통 마케팅 비교 / 25점 = Ⅰ~Ⅶ 전개, 데이터 파이프라인(CDP) 및 실험 통계 검정 연계
 - 기출: KPC 121회 `그로스 해킹(Growth Hacking)의 개념과 AARRR 프레임워크 및 데이터 분석 기법을 설명하시오.` → Ⅰ·Ⅲ·Ⅳ
 
 ## 한 줄 본질

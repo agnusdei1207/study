@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "99회, 131회"
-  priority: 76
-  priority_note: "[출제(KPC):131] · 이전(KPC):99"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 다단계 페이징으로 인한 메모리 접근 오버헤드 / TLB 미스 폭증 / 페이지 폴트(Page Fault)
 ```
 - 필수 키워드: 페이징 · 페이지(Page) · 프레임(Frame) · 페이지 테이블 · TLB · 내부 단편화 · 다단계 페이징 · HugePage
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 페이징 주소 변환 및 TLB 구조도 → Ⅴ 페이징 vs 세그먼테이션 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 다단계 페이지 테이블(4-Level Paging) 탐색 과정 및 Ⅵ TLB 적중률 최적화(HugePage)
 - 기출: 131회 3교시 5번 `운영체제 메모리 관리 기법 중 페이징 기법과 세그먼테이션 기법 비교` 서술형 출제
 
 ## 한 줄 본질

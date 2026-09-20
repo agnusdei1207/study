@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 74
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 악의적 API 트래픽 남용 및 DoS 공격 / 파트너사 보안 사고에 따른 2차 데이터 유출 / 플랫폼 거버넌스 및 수익 배분 충돌
 ```
 - 필수 키워드: 오픈 플랫폼(Open Platform) · 오픈 API(Open API) · 양면 네트워크 효과 · API 게이트웨이 · 개발자 포털 · 샌드박스 · OAuth 2.0
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 오픈 플랫폼 구성요소 아키텍처 → Ⅴ 플랫폼 개방성 수준별 비교표 / 25점 = Ⅰ~Ⅶ 전개, 양면 시장의 교차 네트워크 효과 경제학 및 API 게이트웨이 보안 통제 집중
 - 기출: 125회 `오픈 플랫폼` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

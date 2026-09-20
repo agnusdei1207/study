@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 100%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회, 128회, 104회, 107회, 113회"
-  priority: 100
-  priority_note: "[출제:138] · [출제(KPC):128] · 이전(KPC):104,107,113"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── AD(Active Directory) 도메인 컨트롤러 장악 방어 / 불변 스토리지(Immutable Backup) 운영
 ```
 - 필수 키워드: 하이브리드 암호화 · 볼륨 섀도 복사본(VSS) · 이중 협박(Double Extortion) · RaaS · 에어갭 백업 · WORM
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 공격 단계별 메커니즘 도식 → Ⅵ 백업 및 격리 대책 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 침투 전파 킬체인 분석과 다중 협박 대응 방안 제시
 - 기출: 138회 4교시 5번 `랜섬웨어 피해와 RaaS 확산` → Ⅰ·Ⅲ·Ⅵ / 128회 1교시 12번 `랜섬웨어와 RaaS` → Ⅴ 비교
 
 ## 한 줄 본질

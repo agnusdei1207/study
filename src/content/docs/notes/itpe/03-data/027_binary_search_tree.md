@@ -2,9 +2,6 @@
 sidebar:
   order: 27
   label: "027. 트리·이진 탐색 트리"
-  badge:
-    text: "기출 · 90%"
-    variant: note
 title: "트리·이진 탐색 트리"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 27
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "027"
-  source_status: "기출"
-  source_history: "139회, 137회"
-  priority: 90
-  priority_note: "[출제:137,139]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 정렬된 데이터 순차 삽입 시 경사 트리(Skewed Tree) 퇴화 / 네트워크 라우팅 롱기스트 매칭 한계
 ```
 - 필수 키워드: BST · 왼쪽 < 루트 < 오른쪽 · 중위 순회 · 경사 트리(Skewed) · AVL/Red-Black 트리 · 라우팅 트리(Trie/Radix)
-- 배점 전략: 10점 = Ⅰ → Ⅲ BST 속성 및 편향 트리 도식 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 노드 구조도 및 라우팅 테이블(LPM)과의 연계
 - 기출: 137회 1교시 12번 `이진 탐색 트리를 설명하시오.` → Ⅰ 정의 + Ⅲ BST 원리 및 연산 / 139회 3교시 5번 `BST와 라우팅 테이블 탐색 알고리즘의 상관관계` → 라우팅 트리(Trie, Radix) 연계
 
 ## 한 줄 본질

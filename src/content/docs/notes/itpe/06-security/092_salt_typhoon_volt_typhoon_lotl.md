@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 엣지 네트워크 장비 펌웨어 무결성 검증 / 스크립트 실행 제어(AppLocker, WDAC) / 정상 계정의 비정상 명령어 실행 상관분석
 ```
 - 필수 키워드: Volt Typhoon · Salt Typhoon · LotL(Living off the Land) · 핵심 인프라 침투 · 사전 배치(Pre-positioning) · 통신 백본 감청 · 엣지 장비 취약점
-- 배점 전략: 10점 = Ⅰ Typhoon 위협 개요 및 LotL 개념 → Ⅲ 공격 구조 도식 → Ⅵ 핵심 인프라 방어 대책 / 25점 = Ⅰ~Ⅶ 전개, Volt Typhoon(인프라 마비 목적)과 Salt Typhoon(통신사 합법 감청 시스템 CALEA 해킹)의 차이점 및 LotL 탐지 메커니즘 심층 서술
 - 기출: 미출제. 국가 안보 및 사이버전 최신 시사 문제로 출제 유력 예상
 
 ## 한 줄 본질

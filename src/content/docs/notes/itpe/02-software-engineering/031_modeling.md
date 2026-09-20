@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 90%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회, 124회, 127회, 128회, 133회"
-  priority: 90
-  priority_note: "[출제:133] · [출제(KPC):123,124,127,128] · 이전(KPC):118"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 모델링과 구현 코드의 괴리(동기화 실패) / 모델 주도 아키텍처(MDA) 및 코드 자동화
 ```
 - 필수 키워드: 추상화(Abstraction) · 단순화(Simplification) · 명확화(Clarity) · 기능/정적/동적 모델링 · MDA · 4+1 View
-- 배점 전략: 10점 = Ⅱ 3대 특성 → Ⅲ 3대 관점(기능, 구조, 행위) 매핑 표 / 25점 = Ⅰ~Ⅶ 전개, 소프트웨어 아키텍처 및 데이터 모델링 연계 발전 방안
 - 기출: 133회 3교시 `소프트웨어 모델링 및 요구공학` → Ⅰ·Ⅲ / 128회 1교시 `기계학습 모델링과 모델옵스` → Ⅳ·Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:32:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회, 110회"
-  priority: 74
-  priority_note: "[출제(KPC):120] · 이전(KPC):110"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상태 폭증(State Explosion) / ReDoS(정규식 DoS 공격) / 임베디드 상태 머신(FSM) 구현
 ```
 - 필수 키워드: 유한 오토마타 · DFA · NFA · 5-튜플 · 상태 전이 함수 · 정규 언어 · 톰슨 구성법 · 부분집합 구성법
-- 배점 전략: 10점 = Ⅰ 정의 및 5-튜플 → Ⅲ DFA/NFA 상태도 도식 → Ⅴ DFA vs NFA 비교 / 25점 = Ⅰ~Ⅶ 전개, 120회 기출 오토마타 변환 절차(Regex→NFA→DFA→최소화) 및 ReDoS 보안 대책
 - 기출: 120회 1교시 `유한 오토마타(DFA, NFA)` → Ⅲ·Ⅴ, 110회 2교시 `어휘 분석과 오토마타 변환` → Ⅳ
 
 ## 한 줄 본질

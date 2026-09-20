@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 76
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 임베딩 차원 결정의 트레이드오프 / 미등록 단어(OOV) 처리 한계 / 벡터 차원 붕괴(Dimensional Collapse)
 ```
 - 필수 키워드: 임베딩(Embedding) · 원-핫 인코딩 · 분산 표현(Distributed Representation) · 밀집 벡터(Dense Vector) · 코사인 유사도 · Word2Vec · 문맥 임베딩
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 임베딩 룩업 테이블 매커니즘 도식 → Ⅴ 인코딩/임베딩 기법 3종 비교표 / 25점 = Ⅰ~Ⅶ 전개, Word2Vec(CBOW/Skip-gram) 네거티브 샘플링 수식과 벡터 연산(King - Man + Woman = Queen) 집중
 - 기출: 124회 1교시 `임베딩` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

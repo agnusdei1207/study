@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 스위치 칩 벤더 파편화 / 이기종 가속기 간 프로토콜 호환성 검증 / 물리적 배선 및 발열
 ```
 - 필수 키워드: UALink 1.0 · 스케일업(Scale-up) · 개방형 표준 · NVLink 대항마 · 200Gbps SerDes · 1024개 가속기 · 캐시 일관성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ UALink 프로토콜 스택 및 1024개 가속기 포드 구조도 → Ⅴ UALink vs NVLink 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 단일 주소공간 로드/스토어 동작 원리 및 Ⅵ 이기종 AI 클러스터 구축 전략
 - 기출: 미출제 (2026 시사·트렌드 키워드)
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:46:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 분포 변화(Concept Drift) / 장기 예측 시 오차 누적 / 단순 선형 모델 대비 과적합(Overfitting) 위험
 ```
 - 필수 키워드: 시계열 딥러닝 · LSTM / GRU · TCN(Temporal Convolutional Network) · Informer · PatchTST · 채널 독립성(Channel Independence)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 시계열 딥러닝 모델 진화 계보도 → Ⅴ 대표 아키텍처 비교표 / 25점 = Ⅰ~Ⅶ 전개, PatchTST의 서브시리즈 패칭 메커니즘과 DLinear 논쟁(선형 vs 트랜스포머) 분석 집중
 - 기출: 139회 4교시 5번 `VPP(Virtual Power Plant) 가상발전소에서는 전력수요 예측을 위해 AI 기술을 사용하고 있다. (시계열 딥러닝 알고리즘 및 예측 메커니즘)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

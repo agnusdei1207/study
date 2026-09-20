@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회, 128회"
-  priority: 86
-  priority_note: "[출제(KPC):120,128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 글로벌 CSP(AWS/Azure)의 하등급 진입 경쟁 / 중소 SaaS 기업의 인증 비용 부담 / 상·중등급 실증 지연
 ```
 - 필수 키워드: 클라우드 보안인증 · CSAP 3등급제(상·중·하) · 물리적 망분리 · 논리적 망분리 · KISA · 공공 클라우드
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ CSAP 인증 체계도 → Ⅴ 상·중·하 3등급제 비교표 / 25점 = Ⅰ~Ⅶ 전개, 등급제별 물리/논리 분리 요건과 Ⅵ 국내외 CSP 시장 파급효과 집중
 - 기출: 128회 1교시 `공공 클라우드 CSAP 인증제도 개편` → Ⅰ·Ⅴ / 120회 1교시 `CSAP 인증 기준 및 평가 항목` → Ⅲ·Ⅳ
 
 ## 한 줄 본질

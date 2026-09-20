@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 74
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 스키마 변경으로 인한 하류(Downstream) 대시보드 장애 / 데이터 계약(Data Contracts) 도입
 ```
 - 필수 키워드: DataOps · 애자일 데이터 공학 · 통계적 공정 관리(SPC) · 지속적 데이터 통합(CDI) · 데이터 파이프라인 · 데이터 리니지 · 데이터 계약 · Great Expectations
-- 배점 전략: 10점 = Ⅰ DataOps 정의 및 3대 사상 결합 도식 → Ⅲ 파이프라인 아키텍처 → Ⅴ DataOps vs DevOps vs MLOps 비교 / 25점 = Ⅰ~Ⅶ 전개, 130회 기출 DataOps의 등장 배경, 3대 핵심 사상, 데이터 파이프라인 자동화 체계, 및 성공적 정착 전략
 - 기출: 130회 1교시 `데이터옵스(DataOps)` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

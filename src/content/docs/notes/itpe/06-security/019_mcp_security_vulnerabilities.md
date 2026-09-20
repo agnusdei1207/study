@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회, 137회"
-  priority: 91
-  priority_note: "[출제:136,137] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 악성 MCP 서버를 통한 크리덴셜 탈취 / 로컬 파일시스템 임의 접근 / 도구 호출 과잉 권한(Over-privileged) 통제
 ```
 - 필수 키워드: MCP(Model Context Protocol) · 간접 프롬프트 주입 · Tool Call 탈취 · JSON-RPC · 최소 권한 · 샌드박스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ MCP 아키텍처 및 공격 접점 도식 → Ⅵ 핵심 취약점 및 대응표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 악성 도구 실행 킬체인과 Ⅵ 엔터프라이즈 환경 보안 가이드라인 집중
 - 기출: 136회 1교시 13번 `MCP 개념과 구조` → Ⅰ·Ⅲ / 137회 2교시 3번 `MCP 보안 취약점 및 대응 방안` → Ⅲ·Ⅳ·Ⅵ
 
 ## 한 줄 본질

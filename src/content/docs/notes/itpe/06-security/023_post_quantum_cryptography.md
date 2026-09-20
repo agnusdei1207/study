@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회, 125회"
-  priority: 91
-  priority_note: "[출제:135] · [출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 패킷 단편화(MTU 초과) 발생 / 레거시 장비 메모리 부족 / 지금 도청 후 나중 해독(SNDL) 위협 대응
 ```
 - 필수 키워드: 쇼어(Shor) 알고리즘 · 격자 기반 암호(Lattice) · NIST PQC 표준 · ML-KEM(Kyber) · ML-DSA(Dilithium) · SNDL
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 5대 수학적 난제 분류표 → Ⅴ PQC vs QKD 비교 / 25점 = Ⅰ~Ⅶ 전개, NIST FIPS 표준 현황과 Ⅵ 암호 민첩성(Crypto-Agility) 구현 집중
 - 기출: 135회 3교시 4번 `양자 암호 기술 (QKD와 PQC 비교)` → Ⅰ·Ⅴ / 125회 1교시 `양자내성암호(PQC) 유형과 표준화` → Ⅲ·Ⅳ
 
 ## 한 줄 본질

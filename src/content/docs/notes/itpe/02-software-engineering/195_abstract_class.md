@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:16:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "108회, 117회"
-  priority: 64
-  priority_note: "과거기출(108회, 117회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 다중 상속 불가로 인한 확장 제약 / 깊은 상속 계층 구조로 인한 결합도 증가 / 템플릿 메서드(Template Method) 패턴 응용
 ```
 - 필수 키워드: abstract 키워드 · 추상 메서드 · 인스턴스화 불가 · IS-A 관계 · 템플릿 메서드 패턴 · 코드 재사용 · 다형성
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 추상 클래스와 하위 구체 클래스 상속 다이어그램 → Ⅴ 인터페이스 vs 추상클래스 비교표 / 25점 = Ⅰ~Ⅶ 전개, 108·117회 기출 추상클래스의 설계 의의, 템플릿 메서드 패턴을 통한 제어 역전(IoC) 메커니즘, 상속(Inheritance)의 취약점과 컴포지션(Composition) 대안
 - 기출: 108회 1교시, 117회 1교시 `객체지향 설계에서 추상클래스(Abstract Class)의 개념, 역할 및 인터페이스와의 차이점` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

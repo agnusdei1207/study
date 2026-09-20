@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 2배 대역폭 요구(나이퀴스트 대역폭 한계) / 고속 이더넷 적용 한계 / 지터 민감도
 ```
 - 필수 키워드: 라인 코딩(Line Coding) · 차동 부호화 · 비트 간격 중간 전이 · 극성 불변성 · 보드 레이트($2R$) · IEEE 802.5
-- 배점 전략: 10점 = Ⅰ → Ⅲ 부호화 진리표 및 010101 비트 파형도 → Ⅴ 라인 코딩 4종 종합 비교표 / 25점 = Ⅰ~Ⅶ, 140회 기출 공식 문제 해설 및 스펙트럼 밀도 특성
 - 기출: 140회 1교시 10번 `차등적 맨체스터(Differential Manchester) 부호화 방법` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

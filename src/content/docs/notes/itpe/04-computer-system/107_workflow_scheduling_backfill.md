@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:24:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 70
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상위 태스크 실패로 인한 하위 태스크 캐스케이딩 블로킹 / Walltime 추정 오류로 인한 예약 교란 / 큐 포화
 ```
 - 필수 키워드: 워크플로 스케줄링 · DAG(방향성 비순환 그래프) · 백필(Backfill) · HEFT · 임계 경로 · 슬롯 단편화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ DAG 의존성 및 시간-자원 백필 통합 구조도 → Ⅴ 정적 vs 백필 스케줄링 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ DAG 우선순위 계산 및 백필 결정 알고리즘과 Ⅵ Airflow/Slurm 연계 실무 최적화
 - 기출: 120회 1교시 13번 `워크플로우 관리(Workflow Management)의 백필(Backfill)` 단답형 출제
 
 ## 한 줄 본질

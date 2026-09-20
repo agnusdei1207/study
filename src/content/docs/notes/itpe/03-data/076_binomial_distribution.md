@@ -2,9 +2,6 @@
 sidebar:
   order: 76
   label: "076. 이항분포 (Binomial Distribution)"
-  badge:
-    text: "기출 · 77%"
-    variant: note
 title: "이항분포 (Binomial Distribution)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 76
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "076"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 77
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 시행 간 상호 독립성(i.i.d.) 위배 시 모델 왜곡 / 대규모 $n$에서 팩토리얼 계산 오버플로우
 ```
 - 필수 키워드: 베르누이 시행 · 독립 시행 · 성공 횟수($k$) · 시행 횟수($n$) · 성공 확률($p$) · $np$ 및 $np(1-p)$ · 포아송 근사 · 드무아브르-라플라스 정리
-- 배점 전략: 10점 = Ⅰ → Ⅲ PMF 수식 및 기댓값/분산 도식 → Ⅴ 이항분포 vs 포아송 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 정규분포 근사($np \ge 5$) 및 Ⅵ A/B 테스트 응용
 - 기출: 135회 4교시 3번 `이항 분포(Binomial Distribution) 와 포아송 분포(Poisson Distribution) 를 비교 설명하시오` → Ⅰ 개념 + Ⅲ 수식/특징 + Ⅴ 상세 비교표
 
 ## 한 줄 본질

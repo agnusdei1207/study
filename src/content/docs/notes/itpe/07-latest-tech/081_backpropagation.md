@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회"
-  priority: 76
-  priority_note: "[출제:133]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 활성화 도함수 소멸에 따른 기울기 소실(Vanishing Gradient) / 가중치 국소 최적해(Local Minima) / 안장점(Saddle Point) 정체
 ```
 - 필수 키워드: 역전파(Backpropagation) · 연쇄 법칙(Chain Rule) · 계산 그래프 · 오차 신호($\delta$) · 편미분 · 경사하강법 · 자동 미분(AutoDiff)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 계산 그래프 역전파 메커니즘 수식도 → Ⅴ 미분 기법 비교표 / 25점 = Ⅰ~Ⅶ 전개, 연쇄 법칙 수학적 증명 유도 과정과 기울기 소실 해결책(ReLU, 배치 정규화) 집중
 - 기출: 133회 3교시 6번 `인공신경망의 구조 및 오차역전파 알고리즘` → Ⅰ~Ⅶ
 
 ## 한 줄 본질

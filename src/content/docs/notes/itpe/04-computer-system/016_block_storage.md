@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 90%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회, 140회"
-  priority: 90
-  priority_note: "[출제:132,140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 다중 호스트 동시 쓰기 불가 / 고비용(GB당 단가) / 스토리지 프로비저닝(Thin vs Thick)
 ```
 - 필수 키워드: LBA(Logical Block Addressing) · SAN(Storage Area Network) · NVMe-oF · IOPS · LUN · 로우 디바이스(Raw Device)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 블록 스토리지 아키텍처 도식 → Ⅴ 3대 스토리지 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ NVMe-oF 프로토콜 흐름과 Ⅵ AI 분산학습 체크포인팅 활용
 - 기출: 132회 1교시 `3대 스토리지 비교`, 140회 3교시 `대규모 AI 인프라 구축을 위한 3대 스토리지 비교 및 최적 활용방안`
 
 ## 한 줄 본질

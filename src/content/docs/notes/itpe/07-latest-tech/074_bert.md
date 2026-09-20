@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 76
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── [MASK] 토큰의 사전학습과 미세조정 간 불일치 / 입력 시퀀스 512 토큰 길이 제약 / 생성(Generation) 태스크 적용 불가
 ```
 - 필수 키워드: BERT · 트랜스포머 인코더 · 양방향(Bidirectional) 문맥 · 마스크 언어 모델(MLM) · 다음 문장 예측(NSP) · [CLS]/[SEP] 토큰 · 파인튜닝
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3단 임베딩 및 인코더 구조도 → Ⅴ GPT 대비 양방향 비교표 / 25점 = Ⅰ~Ⅶ 전개, MLM(80:10:10 규칙)과 NSP 학습 메커니즘, RoBERTa/KoBERT 변형 모델 비교 집중
 - 기출: 123회 1교시 `BERT` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

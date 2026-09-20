@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 85
-  priority_note: "[출제:139] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 취약점 데이터 사일로 현상 / 개발-보안 부서 간 조치 지연 / CVSS 점수 의존 탈피 및 EPSS 도입
 ```
 - 필수 키워드: CTEM · 5단계 사이클(Scoping, Discovery, Prioritization, Validation, Mobilization) · 공격표면 · 악용 가능성 · BAS · CVSS/EPSS
-- 배점 전략: 10점 = Ⅰ 정의 및 필요성 → Ⅲ 5단계 순환 모델 도식 → Ⅴ 전통 취약점 관리 대비 차별점 / 25점 = Ⅰ~Ⅶ 전개, 5단계 세부 활동 및 Ⅵ EPSS 기반 실무 조치 파이프라인 집중
 - 기출: 139회 1교시 11번 `CTEM(Continuous Threat Exposure Management)` → Ⅰ 정의 + Ⅲ 5단계 프레임워크 + Ⅵ 효과
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:22:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "83회, 93회"
-  priority: 58
-  priority_note: "과거기출(83회, 93회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── UI DOM 변경 시 테스트 취약성(Flaky Test) / 비동기 응답 타이밍 불일치 / GoReplay를 활용한 운영 트래픽 섀도잉(Shadowing)
 ```
 - 필수 키워드: 레코드(Record) · 리플레이(Replay) · 회귀 테스트(Regression) · 테스트 오라클 · 캡처/재생 · DOM 셀렉터 · Flaky Test · 트래픽 섀도잉(GoReplay)
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 기록-저장-재생-비교 4단계 아키텍처 도식 → Ⅴ 자동화 테스트 기법 비교표 / 25점 = Ⅰ~Ⅶ 전개, 83·93회 기출 레코드 & 리플레이의 동작 원리, UI 레벨의 한계점(화면 변경 취약성) 및 해결책(AI 셀프힐링), API/네트워크 레벨 트래픽 미러링 확장
 - 기출: 83회 1교시, 93회 1교시 `Record and Replay 테스트 기법의 개념, 동작 절차, 장단점 및 보완 대책` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

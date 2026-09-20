@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 쓰기 충돌(Write Conflict) / 광케이블 물리 지연(Latency) / 스플릿 브레인(Split-Brain)
 ```
 - 필수 키워드: 다중지역 동시 가동 · Active-Active · GSLB · RTO=0 · 데이터 동기화 · 분산 합의(Raft) · 스플릿 브레인
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3계층(글로벌 라우팅-애플리케이션-분산DB) 아키텍처 도식 → Ⅴ 전통 DR 대비 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 트랜잭션 동기화 메커니즘 및 Ⅵ 광역 WAN 네트워크 지연 극복과 분산 락 설계
 - 기출: 137회 3교시 3번 `다중지역 동시 가동방식(Multi-Region Active-Active) 재해복구시스템` 논술형 출제
 
 ## 한 줄 본질

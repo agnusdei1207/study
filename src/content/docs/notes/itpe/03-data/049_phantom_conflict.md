@@ -2,9 +2,6 @@
 sidebar:
   order: 49
   label: "049. 팬텀 충돌 (Phantom Conflict)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "팬텀 충돌 (Phantom Conflict)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 49
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "049"
-  source_status: "기출"
-  source_history: "135회, 98회"
-  priority: 81
-  priority_note: "[출제:135] · 이전(KPC):98"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수강 인원 제한(최대 30명) 초과 삽입 / 중복 예약 발생 / 일일 정산 합계 불일치
 ```
 - 필수 키워드: 팬텀 리드(Phantom Read) · 갭 락(Gap Lock) · Next-Key Lock · 서술어 락(Predicate Lock) · Repeatable Read · 직렬성(Serializability)
-- 배점 전략: 10점 = Ⅰ → Ⅳ 시간축 충돌 흐름도 → Ⅵ 해결 기법(갭 락, 인덱스 락) / 25점 = Ⅰ~Ⅶ, Ⅲ 충돌 메커니즘 및 Ⅴ 이상현상 비교
 - 기출: 135회 1교시 11번 `팬텀충돌(Phantom Conflict)` → Ⅰ 개념 + Ⅳ 발생 메커니즘 + 해결방안
 
 ## 한 줄 본질

@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "C · 미출 · 65%"
+    text: "C"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무한 루프 결제로 인한 지갑 잔고 고갈 / 스마트 계약 취약점 악용 해킹 / 법인격 없는 AI의 법적 책임(KYC/AML) 부재
 ```
 - 필수 키워드: 프로그래머블 머니 · AI 에이전트 경제 · 스마트 계약 · 스테이블코인 · CBDC · 마이크로 결제(Micro-payment) · 계정 추상화(ERC-4337)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3계층 아키텍처 도식 → Ⅴ 전통 결제 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, 계정 추상화(Account Abstraction) 메커니즘, AI 에이전트 간 자원 거래 시나리오 및 보안/금융 규제(AML, 오작동 방지) 통제안 상술
 - 기출: 미출제. 예상: "자율 AI 에이전트 간 즉각적이고 마이크로 단위의 가치 교환을 가능케 하는 프로그래머블 머니(Programmable Money)의 개념, 스마트 계약 및 스테이블코인 기반 결제 메커니즘, 보안 및 규제 이슈를 설명하시오."
 
 ## 한 줄 본질

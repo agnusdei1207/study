@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 로컬 관리자 비밀번호 통일(LAPS 미도입) 취약점 / SMB(445), RDP(3389) 평면 개방 / EDR의 LotL 정상 명령어 오탐 회피 대응
 ```
 - 필수 키워드: 측면 이동 · Lateral Movement · Pass-the-Hash · LotL(Living-off-the-Land) · 마이크로세그멘테이션 · LAPS · 제로트러스트
-- 배점 전략: 10점 = Ⅰ 정의 및 킬체인 내 위치 → Ⅲ 측면 이동 4단계 흐름 도식 → Ⅴ 권한 상승(수직) 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, 대표 기법(Pass-the-Hash, PsExec) 메커니즘과 Ⅵ 네트워크 세그멘테이션 및 허니토큰 실무 방어 대책 집중
 - 기출: 138회 3교시 5번 `IT 인프라 확장에 따른 사이버 위협(측면 이동)` → Ⅰ 정의 + Ⅲ 기법 메커니즘 + Ⅵ 차단 대책
 
 ## 한 줄 본질

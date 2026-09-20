@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고유값(Unique ID)이 많은 변수 선택 시 정보획득량 과대평가 편향 / 연속형 변수 분할 시 연산 복잡도 / 과적합 발생 위험
 ```
 - 필수 키워드: 엔트로피 지수(Entropy Index) · 섀넌 엔트로피(Shannon Entropy) · 불확실성(Uncertainty) · 순수도(Purity) · 정보 획득량(Information Gain) · 분할 정보량(Split Information) · ID3 · C4.5
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 엔트로피 수학적 정의식 및 그래프 특성 → Ⅳ 정보 획득량 분기 계산 메커니즘 / 25점 = Ⅰ~Ⅶ 전개, ID3의 고유값 편향 문제와 이를 해결하기 위한 C4.5의 정보 획득률(Gain Ratio) 수식 상세 전개
 - 기출: 126회 `엔트로피 지수(Entropy Index)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

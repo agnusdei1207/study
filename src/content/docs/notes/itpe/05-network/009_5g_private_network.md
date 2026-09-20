@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회, 133회"
-  priority: 86
-  priority_note: "[출제:133] · [출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 초기 투자비(CapEx) 부담 / 28GHz 회절 한계 / 전파 관리 및 코어망 운영 난이도
 ```
 - 필수 키워드: 이음5G · 4.7GHz · 28GHz · 로컬 UPF · SA(단독모드) · 네트워크 슬라이싱 · 오픈랜(O-RAN)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 사설 5G 인프라 구성도 → Ⅴ Wi-Fi 6 대조표 / 25점 = Ⅰ~Ⅶ, 133회 4교시 5번 기출에 맞춰 신뢰성 확보 방안 Ⅵ에 집중
 - 기출: 125회 `5G 특화망 개념과 도입 모델` → Ⅰ·Ⅲ·Ⅴ, 133회 4교시 5번 `5G 특화망 구축 시 고려사항 및 신뢰성 확보 방안` → Ⅵ
 
 ## 한 줄 본질

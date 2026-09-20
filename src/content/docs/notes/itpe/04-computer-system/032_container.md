@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 84%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회, 121회"
-  priority: 84
-  priority_note: "[출제(KPC):120,121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 호스트 커널 공유로 인한 보안 탈출(Container Escape) / 스토리지 영속성(볼륨) / 이미지 비대화
 ```
 - 필수 키워드: 리눅스 네임스페이스(Namespaces) · cgroups(Control Groups) · OverlayFS · OCI(Open Container Initiative) · runc · 불변 인프라
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 컨테이너 3대 핵심 기술 도식 → Ⅴ VM vs 컨테이너 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ OCI 표준 이미지 레이어 구조와 Ⅵ 컨테이너 보안 하드닝(Hardening)
 - 기출: 120회·121회 `컨테이너 가상화의 개념, 핵심 기술요소 및 가상머신과의 비교`
 
 ## 한 줄 본질

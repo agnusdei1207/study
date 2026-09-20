@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 응답 지연(수십 초 소요) / 과도한 추론 토큰에 따른 서빙 비용 / 주관식 창의성 평가 적용 한계
 ```
 - 필수 키워드: 추론 모델(LRM) · 테스트 타임 컴퓨트(Test-time Compute) · 긴 생각의 사슬(Long CoT) · 시스템 1 vs 시스템 2 · 자가 반조(Self-Reflection) · 검증기(Verifier)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 시스템 2 아키텍처 및 CoT 버퍼 구조 → Ⅴ 전통 LLM vs LRM 비교표 / 25점 = Ⅰ~Ⅶ 전개, 테스트 타임 컴퓨팅 스케일링 법칙 수식 및 OpenAI o1/DeepSeek-R1 메커니즘 집중
 - 기출: 미출제. 예상: "최근 복합 추론과 수학/코딩 영역에서 혁신을 일으키고 있는 대형 추론 모델(LRM, Large Reasoning Model)의 개념, System 2 인지 아키텍처, 테스트 타임 컴퓨팅 스케일링 원리를 설명하시오."
 
 ## 한 줄 본질

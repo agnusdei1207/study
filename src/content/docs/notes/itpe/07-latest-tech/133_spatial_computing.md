@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 71%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 71
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상시 전방위 촬영에 따른 사생활 침해 논란 / 장시간 착용 시 안면 압박 및 피로도 / 폐쇄형 앱 생태계 파편화
 ```
 - 필수 키워드: 공간 컴퓨팅(Spatial Computing) · Apple Vision Pro · visionOS · 시선 추적(Eye Tracking) · 핀치 제스처(Pinch Gesture) · SLAM · 공간 오디오 · 무한 캔버스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 공간 컴퓨팅 5대 핵심 기술 스택 구조도 → Ⅴ 컴퓨팅 인터페이스 세대별 비교표 / 25점 = Ⅰ~Ⅶ 전개, 시선+제스처(Look and Tap) 상호작용 설계 원칙 및 실시간 실내 음향 레이트레이싱 기술 집중
 - 기출: 미출제. 예상: "스마트폰을 이을 차세대 인터페이스인 공간 컴퓨팅(Spatial Computing)의 개념, 핵심 기술 요소, 기존 2D 모바일 컴퓨팅과의 차별점 및 산업 파급 효과를 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

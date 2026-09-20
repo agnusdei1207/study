@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 72
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원의 저주에 따른 탐색 연산 비용 폭증 / 데이터 누수(Data Leakage)를 유발하는 잘못된 검증 / 설정 민감도
 ```
 - 필수 키워드: 하이퍼파라미터(Hyperparameter) · HPO · 학습률(Learning Rate) · 배치 크기(Batch Size) · 가중치 감쇠 · 그리드 탐색 · 베이지안 최적화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 하이퍼파라미터 3대 분류 체계도 → Ⅴ 파라미터 vs 하이퍼파라미터 비교표 / 25점 = Ⅰ~Ⅶ 전개, 주요 HPO 탐색 기법 4종(Grid, Random, Bayesian, Hyperband) 비교 및 검증 세트 분리 원칙 집중
 - 기출: 120회 `하이퍼파라미터` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회, 114회, 117회"
-  priority: 81
-  priority_note: "[출제(KPC):128] · 이전(KPC):114,117"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 전송 거리 한계(광섬유 감쇄로 약 100km 내외) / 신뢰 노드(Trusted Node) 보안 위험 / 전용 광선로 구축 비용
 ```
 - 필수 키워드: 양자암호통신 · QKD · QRNG · QKMS · 양자 불확정성 · 복제불가원리 · 신뢰 노드(Trusted Node) · PQC 하이브리드
-- 배점 전략: 10점 = Ⅰ 필요성 및 물리 원리 → Ⅲ 4대 핵심 구성요소 및 계층 구조도 → Ⅴ PQC와의 비교 / 25점 = Ⅰ~Ⅶ 전개, BB84 프로토콜과 광통신망 연동 구조 및 Ⅵ 국가 백본망 신뢰 노드 보안 대책 집중
 - 기출: KPC 128회 `양자암호통신의 원리와 구성요소 및 기존 통신망과의 연동 방안` → Ⅰ 원리 + Ⅲ 구성요소(QRNG, QKD, QKMS) + Ⅵ 연동 방안
 
 ## 한 줄 본질

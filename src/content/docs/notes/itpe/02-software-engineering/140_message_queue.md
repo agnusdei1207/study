@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:58:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 메시지 유실 및 중복 처리 / 순서 보장(Ordering) 한계 / 배압(Backpressure) 제어
 ```
 - 필수 키워드: 메시지 큐 · 비동기 메시징 · 결합 분리(Decoupling) · 피크 완충(Leveling) · At-least-once · 멱등성 · RabbitMQ · Kafka
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 비동기 메시지 버퍼링 구조 도식 → Ⅴ RabbitMQ vs Kafka 비교 / 25점 = Ⅰ~Ⅶ 전개, 123회 기출 메시지 큐의 역할, 신뢰성 보장 메커니즘(At-most, At-least, Exactly-once) 및 장애 대응 전략
 - 기출: 123회 1교시 `메시지 큐(Message Queue)의 개념, 필요성 및 주요 기술 비교` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

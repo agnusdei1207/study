@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 81
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 실리 윈도우 신드롬(SWS) / 대역폭-지연 곱(BDP) 불일치 / 제로 윈도우 교착상태
 ```
 - 필수 키워드: 흐름제어 · 파이프라이닝 · 수신 윈도우(rwnd) · 누적 ACK · 윈도우 슬라이딩 · 실리 윈도우 신드롬
-- 배점 전략: 10점 = Ⅰ → Ⅲ 송/수신 윈도우 상태도 → Ⅳ 슬라이딩 동작 도식 / 25점 = Ⅰ~Ⅶ, 137회 3교시 5번 기출에 맞춰 TCP 흐름제어 메커니즘과 SWS 해결책(Nagle, Clark) 상세
 - 기출: 137회 3교시 5번 `통신 프로토콜에 대하여 각항목을 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

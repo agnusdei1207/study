@@ -2,9 +2,6 @@
 sidebar:
   order: 114
   label: "114. DB 복제 유형"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "DB 복제 유형"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 114
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "114"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 70
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 비동기 복제 지연(Replication Lag)으로 사용자가 방금 쓴 글을 조회하지 못하는 읽기 일관성 불일치
 ```
 - 필수 키워드: DB 복제 · 동기 복제(Synchronous) · 비동기 복제(Asynchronous) · 반동기 복제(Semi-Sync) · Master-Slave · Multi-Master · 복제 지연(Replication Lag) · Failover
-- 배점 전략: 10점 = Ⅰ → Ⅲ 복제 방식(동기/비동기/반동기) 시퀀스 도식 → Ⅴ 3대 복제 방식 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 로그 기반 복제 내부 동작 흐름 및 Ⅵ 복제 지연 완화 실무 대책
 - 기출: 120회 `데이터베이스 복제(Replication)의 동기화 방식(동기, 비동기, 반동기)과 토폴로지 구조를 비교 설명하시오.` → Ⅰ 정의 + Ⅲ 복제 방식 및 토폴로지 + Ⅴ 상세 비교 + Ⅵ 운영 이슈
 
 ## 한 줄 본질

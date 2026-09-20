@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "83회, 96회, 119회, 137회"
-  priority: 86
-  priority_note: "[출제:137] · 이전(KPC):83,96,119"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 기아 현상(Starvation) / 문맥 교환 오버헤드(잦은 타임 슬라이스) / 우선순위 역전
 ```
 - 필수 키워드: 선점/비선점 · 준비 큐 · 디스패처 · 라운드 로빈(RR) · MLFQ · CFS(Completely Fair Scheduler) · 에이징(Aging)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 스케줄링 큐 구조도 → Ⅴ 대표 알고리즘 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 프로세스 상태 전이와 Ⅵ 리눅스 CFS 레드블랙트리 동작 원리
 - 기출: 137회 3교시 `운영체제 스케줄링 기법`, 이전 기출 `스케줄링 알고리즘별 평균 대기시간 계산 및 비교`
 
 ## 한 줄 본질

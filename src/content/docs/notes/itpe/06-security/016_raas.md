@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 94%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회, 128회"
-  priority: 94
-  priority_note: "[출제:138] · [출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── IAB(Initial Access Broker) 모니터링 / 유출 계정 실시간 폐기 / 에어갭 백업 및 불변 스토리지
 ```
 - 필수 키워드: 어필리에이트(Affiliate) · IAB(초기접근브로커) · 다크웹 포털 · 수익 셰어(Revenue Share) · LockBit · 다중 협박
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ RaaS 범죄 생태계 분업 구조도 → Ⅴ 전통 랜섬웨어 vs RaaS / 25점 = Ⅰ~Ⅶ 전개, Ⅳ RaaS 공격 킬체인과 Ⅵ 엔터프라이즈 사전 차단 체계 집중
 - 기출: 138회 4교시 5번 `랜섬웨어 피해와 RaaS 등장에 따른 변화` → Ⅰ·Ⅲ·Ⅵ / 128회 1교시 12번 `RaaS 개념과 구조` → Ⅱ·Ⅲ
 
 ## 한 줄 본질

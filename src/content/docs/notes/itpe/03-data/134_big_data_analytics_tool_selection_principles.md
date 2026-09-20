@@ -2,9 +2,6 @@
 sidebar:
   order: 134
   label: "134. 빅데이터 분석도구 선택 원칙"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "빅데이터 분석도구 선택 원칙"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 134
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "134"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 유행하는 최신 도구(Spark/Flink) 무비판적 도입으로 클러스터 운영 비용 폭증 및 조직 역량 미달 실패
 ```
 - 필수 키워드: 빅데이터 분석도구 · 선정 원칙 · 배치 vs 실시간 · TCO · 데이터 볼륨 · PoC 벤치마크 · 벤더 종속(Lock-in) · 오픈소스 생태계
-- 배점 전략: 10점 = Ⅰ → Ⅲ 빅데이터 분석도구 5대 선정 평가 매트릭스 도식 → Ⅴ 대표 도구별(Spark, Flink, Trino, BigQuery) 적합 영역 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 의사결정 트리 흐름도 및 Ⅵ PoC 성능/비용 검증 방법론
 - 기출: 126회 `빅데이터 분석 환경 구축 시 분석 도구(소프트웨어/플랫폼)의 선정 기준 및 고려사항을 설명하시오.` → Ⅰ 정의 + Ⅲ 5대 선정 원칙 + Ⅳ 의사결정 절차 + Ⅵ 실무 고려사항
 
 ## 한 줄 본질

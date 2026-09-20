@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "108회, 110회"
-  priority: 64
-  priority_note: "이전(KPC):108,110"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── UDP 패킷 손실 시 재전송 타이머(RTO) 튜닝 / 대용량 블록 전송(Block-wise) 분할 / DTLS 핸드셰이크 부하
 ```
 - 필수 키워드: 제약 환경 프로토콜 · IETF RFC 7252 · UDP 기반 · 4바이트 헤더 · CON/NON/ACK/RST · RESTful · Observe 옵션 · DTLS
-- 배점 전략: 10점 = Ⅰ → Ⅲ 2계층 분리 구조(메시지 계층 + 요청/응답 계층) 및 4바이트 헤더 포맷 → Ⅴ CoAP vs MQTT 비교표 / 25점 = 110회 기출에 맞춰 메시지 4개 타입 동작, Observe 비동기 푸시, CoAP-HTTP 게이트웨이 상호 변환 상세
 - 기출: 제108회·110회: "사물인터넷(IoT) 환경을 위한 경량 통신 프로토콜인 CoAP(Constrained Application Protocol)의 특징, 구조 및 동작 방식을 설명하시오." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

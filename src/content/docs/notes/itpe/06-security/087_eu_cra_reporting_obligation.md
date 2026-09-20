@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── SBOM(소프트웨어 자재명세서) 작성 및 보관 의무화 / 수출 기업의 24시간 대응 체계(CSIRT) 및 자동화된 취약점 공시 파이프라인 구축
 ```
 - 필수 키워드: EU CRA · 사이버복원력법 · 적극 악용된 취약점(Actively Exploited Vulnerability) · 24시간 조기 경보 · ENISA · CE 마킹 · SBOM
-- 배점 전략: 10점 = Ⅰ EU CRA 정의 및 보고 의무 3단계 타임라인 도식 → Ⅲ 법적 요구사항 → Ⅵ 국내 수출 기업 대응책 / 25점 = Ⅰ~Ⅶ 전개, NIS2와의 관할 차이점 비교 및 '24시간 조기 경보 - 72시간 통보 - 1개월 최종 보고' 프로세스 상세화
 - 기출: 미출제. 글로벌 공급망 규제 및 소프트웨어 안전 법규 트렌드로 출제 유력 예상
 
 ## 한 줄 본질

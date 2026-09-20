@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 60%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "95회, 96회"
-  priority: 60
-  priority_note: "이전(KPC):95,96"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 바인더 트랜잭션 버퍼(1MB) 초과 장애 / 메모리 누수로 인한 OOM 킬러 발동 / 백그라운드 배터리 과다 소모
 ```
 - 필수 키워드: 안드로이드 아키텍처 · 리눅스 커널 · HAL(하드웨어 추상화 계층) · ART(Android Runtime) · Zygote · 바인더(Binder) IPC · 샌드박스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 5계층 소프트웨어 스택 아키텍처 도식 → Ⅴ Dalvik vs ART 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ Zygote 포크 및 바인더 IPC 메커니즘과 Ⅵ 안드로이드 실무 메모리/배터리 최적화
 - 기출: 95회 1교시, 96회 2교시 `안드로이드의 아키텍처 구조 및 가상머신(Dalvik/ART)` 출제
 
 ## 한 줄 본질

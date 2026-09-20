@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:44:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 72
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── GIL로 인한 멀티코어 CPU 병렬성 제약 / 런타임 타입 에러 / 패키지 격리(Virtualenv, Poetry)
 ```
 - 필수 키워드: 파이썬 · CPython · PVM · GIL(Global Interpreter Lock) · 동적 타이핑 · 참조 카운팅 · 일급 객체 · 타입 힌트
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ CPython 실행 구조 및 GIL 메커니즘 도식 → Ⅴ 자바/C++ 비교 / 25점 = Ⅰ~Ⅶ 전개, 122회 기출 언어적 특징, GIL의 동작 원리와 멀티스레딩 한계 극복 대안(Multiprocessing, Cython, Asyncio)
 - 기출: 122회 1교시 `파이썬(Python)의 특징과 GIL(Global Interpreter Lock)` → Ⅱ·Ⅲ·Ⅵ
 
 ## 한 줄 본질

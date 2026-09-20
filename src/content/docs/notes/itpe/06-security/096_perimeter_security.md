@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 75
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 내부 침입 탐지 불가(VPN 침해 시 내부망 전면 장악) / 분산 클라우드 환경에서 경계 트래픽 병목 / 섀도우 IT 가시성 부재
 ```
 - 필수 키워드: 성-해자(Castle-and-Moat) · 암묵적 신뢰(Implicit Trust) · DMZ · 마이크로세그멘테이션 · 제로트러스트(Zero Trust) · 측면 이동(Lateral Movement)
-- 배점 전략: 10점 = Ⅰ 성-해자 모델 개념 → Ⅲ 전통적 경계망(외부-DMZ-내부) 도식 → Ⅴ 제로트러스트와의 핵심 비교 / 25점 = Ⅰ~Ⅶ 전개, 클라우드·원격근무로 인한 경계 와해 배경 상술, 135회 기출(제로트러스트 성숙도 모델 2.0 비교 및 도입 고려사항)과 직결
 - 기출: 제135회 4교시 6번: "경계 기반 보안(Perimeter Security)과 제로 트러스트(Zero Trust) 성숙도모델 2.0에 대하여 비교 설명하고, 제로 트러스트 아키텍처 도입 시 고려사항에 대하여 설명하시오."
 
 ## 한 줄 본질

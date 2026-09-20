@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "86회, 110회, 126회"
-  priority: 81
-  priority_note: "[출제(KPC):126] · 이전(KPC):86,110"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── MPD 조절(스왑 아웃) / 물리 메모리 증설 / zRAM(인메모리 압축 스왑) 도입
 ```
 - 필수 키워드: 다중 프로그래밍 정도(MPD) · 페이지 부재 빈발 · 워킹셋(Working Set) · PFF(Page Fault Frequency) · 지역성(Locality) · zRAM
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ MPD-CPU 이용률 곡선 그래프 및 워킹셋 도식 → Ⅴ 워킹셋 vs PFF 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 스래싱 악순환 사이클 분석과 Ⅵ 현대 리눅스 메모리 압축 기법
 - 기출: 126회 `가상 메모리 환경에서 발생하는 스래싱(Thrashing)의 원인, 현상 및 해결방안(워킹셋, PFF)`
 
 ## 한 줄 본질

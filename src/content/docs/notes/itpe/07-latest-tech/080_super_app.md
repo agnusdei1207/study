@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회"
-  priority: 76
-  priority_note: "[출제:133]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 악의적 서드파티 미니앱의 데이터 탈취 위험 / 호스트 앱 비대화(App Bloat) / 단일 장애점(SPOF) 리스크
 ```
 - 필수 키워드: 슈퍼앱(Super App) · 미니앱(Mini App) · 하이브리드 아키텍처 · JS-Native 브리지 · 통합 결제(Pay) · 샌드박스(Sandbox) · 단일 로그인(SSO)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 호스트 앱 및 미니앱 런타임 구조도 → Ⅴ 앱 유형별 3종 비교표 / 25점 = Ⅰ~Ⅶ 전개, W3C MiniApps 표준 아키텍처와 서드파티 보안 검증 및 샌드박스 격리 집중
 - 기출: 133회 3교시 3번 `슈퍼앱에 대하여 다음을 설명하시오.` → Ⅰ~Ⅶ
 
 ## 한 줄 본질

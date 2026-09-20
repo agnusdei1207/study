@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 85
-  priority_note: "[출제:137] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── netstat/lsof 명령어로 탐지 불가 / eBPF/Falco를 통한 커널 레벨 원시 소켓 감시 / 프로세스 메모리 무결성 검증
 ```
 - 필수 키워드: Berkeley Packet Filter(BPF) · Raw Socket · 매직 패킷(Magic Packet) · 리버스 쉘(Reverse Shell) · 포트 미개방 · 스텔스 백도어
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ BPFdoor 동작 메커니즘 도식 → Ⅴ 전통 백도어 vs BPFdoor 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 매직 패킷 활성화 킬체인과 Ⅵ 탐지 회피 무력화 대책 집중
 - 기출: 137회 4교시 1번 `BPFdoor(Berkeley Packet Filter door) 악성코드` → Ⅰ·Ⅱ·Ⅲ·Ⅵ
 
 ## 한 줄 본질

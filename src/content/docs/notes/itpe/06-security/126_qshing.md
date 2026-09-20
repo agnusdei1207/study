@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 72
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 오프라인 시설물에 부착된 스티커 훼손 감시 한계 / 단축 URL 악용 시 최종 착륙 도메인 확인 지연 / 스마트폰 기본 카메라의 위험 도메인 경고 미흡
 ```
 - 필수 키워드: 큐싱(Qshing) · QR코드 · 스티커 덧붙이기(Over-stickering) · 보안 게이트웨이 우회 · 피싱 사이트 · 악성 APK 다운로드 · 보안 QR(Secure QR)
-- 배점 전략: 10점 = Ⅰ 큐싱 정의 및 발생 경로 → Ⅲ 공격 구조 및 4단계 흐름 도식 → Ⅵ 핵심 예방 수칙 / 25점 = Ⅰ~Ⅶ 전개, 제132회 1교시 기출 완벽 대응, 이메일 보안 장비(SEG)를 우회하는 이미지 기반 QR 공격 기법 분석, 암호학적 디지털 서명 QR 및 모바일 OS 차원의 인라인 검증 기술 심층 상술
 - 기출: 제132회 1교시 6번: "큐싱(Qshing)"
 
 ## 한 줄 본질

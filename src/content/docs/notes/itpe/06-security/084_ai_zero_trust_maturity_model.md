@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 한 번에 최적화 단계 도입 시 업무 마비 초래 / 단계적 로드맵 수립을 통한 데이터 무결성 검증부터 모델 거버넌스로의 점진적 확장
 ```
 - 필수 키워드: AI 제로트러스트 · 성숙도 모델(Maturity Model) · Never Trust, Always Verify · 5대 기둥 · 지속적 검증 · CISA ZTMM
-- 배점 전략: 10점 = Ⅰ AI 제로트러스트 필요성 → Ⅲ 5대 기둥 및 4단계 성숙도 매트릭스 도식 → Ⅵ 단계적 전환 로드맵 / 25점 = Ⅰ~Ⅶ 전개, AI 데이터 중독(Poisoning) 및 공급망 변조 방어를 위한 기둥별 상세 기술 요건과 CISA 가이드라인 연계
 - 기출: 미출제. 제로트러스트 가이드라인 2.0과 AI 보안 결합 문제로 출제 유력 예상
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무조건적 차단 시 우회 수단 급증 / AI 브라우저 플러그인 가시성 부재 / 프롬프트 데이터의 실시간 민감정보 판별 지연
 ```
 - 필수 키워드: 섀도우 AI(Shadow AI) · 생성형 AI 데이터 유출 · CASB(Cloud Access Security Broker) · 프롬프트 DLP · 사내 엔터프라이즈 AI · 제로 트레이닝(Zero Data Retention)
-- 배점 전략: 10점 = Ⅰ 섀도우 AI 정의 및 유출 경로 → Ⅲ 섀도우 AI 위험 구조 도식 → Ⅵ 통제 대책 요약 / 25점 = Ⅰ~Ⅶ 전개, 단순 차단 정책의 부작용(생산성 저하 및 음성화) 비판, 엔터프라이즈 AI 게이트웨이 및 프라이빗 환경 구축을 포함한 양면 통제 전략 상술
 - 기출: 미출제. 예상: "최근 임직원들의 비인가 생성형 AI 도구 사용(Shadow AI)으로 인한 기업 기밀 유출 위험이 급증하고 있다. 섀도우 AI의 발생 원인과 보안 위협을 분석하고, 기업 차원의 거버넌스 및 기술적 통제 방안을 제시하시오."
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 42
   label: "042. 데이터 모델링 (Data Modeling)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "데이터 모델링 (Data Modeling)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 42
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "042"
-  source_status: "기출"
-  source_history: "133회, 93회, 107회"
-  priority: 81
-  priority_note: "[출제:133] · 이전(KPC):93,107"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── M:N 직접 연결로 인한 매핑 불가 / 과도한 정규화에 따른 조인 부하 / 식별자 상속 남발
 ```
 - 필수 키워드: 개념 모델링 · 논리 모델링 · 물리 모델링 · 엔터티 · 속성 · 관계 · 정규화 · 반정규화
-- 배점 전략: 10점 = Ⅰ → Ⅳ 3단계 수직 흐름도 → Ⅴ 논리/물리 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 3대 요소 매핑 및 Ⅳ 3단계 전환 상세
 - 기출: 133회 4교시 4번 `RDBMS 적용 데이터 모델링` → Ⅳ 3단계 절차 및 Ⅴ 논리/물리 전환 기법
 
 ## 한 줄 본질

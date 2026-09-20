@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "114회, 118회, 139회"
-  priority: 91
-  priority_note: "[출제:139] · 이전(KPC):114,118"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이기종 엣지 디바이스 배포 관리 / 현장 노드의 물리적 보안 취약 / 연산 자원 제약
 ```
 - 필수 키워드: 초저지연 · MEC(Multi-access Edge Computing) · 대역폭 절약 · 온디바이스 AI · 분산 처리
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 계층 구조도 → Ⅴ 엣지 vs 클라우드 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 데이터 흐름도와 Ⅵ 자율주행·스마트팩토리 실무 적용 방안
 - 기출: 139회 1교시 `엣지 컴퓨팅과 클라우드 컴퓨팅의 차이점` → Ⅴ 핵심 비교 중심
 
 ## 한 줄 본질

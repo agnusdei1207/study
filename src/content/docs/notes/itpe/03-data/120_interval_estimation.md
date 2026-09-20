@@ -2,9 +2,6 @@
 sidebar:
   order: 120
   label: "120. 구간추정 (Interval Estimation)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "구간추정 (Interval Estimation)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 120
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "120"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 70
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 신뢰구간을 "모수가 이 구간에 있을 확률이 95%"라고 잘못 해석하는 빈도주의 오개념 발생
 ```
 - 필수 키워드: 구간추정 · 신뢰구간(CI) · 신뢰수준($1-\alpha$) · 표본오차 · 표준오차(SE) · 오차한계(ME) · Z분포 · t분포 · 점추정
-- 배점 전략: 10점 = Ⅰ → Ⅲ 신뢰구간 계산 일반식 및 정규곡선 도식 → Ⅴ 점추정 vs 구간추정 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 모분산 유무별 공식 분기 흐름도 및 Ⅵ 신뢰수준의 올바른 해석
 - 기출: 132회 1교시 10번 `모집단의 특성을 추론하는 점추정과 구간추정 비교` → Ⅰ 정의 + Ⅲ 구간추정 구조 + Ⅴ 점추정 vs 구간추정 비교 + Ⅵ 장단점
 
 ## 한 줄 본질

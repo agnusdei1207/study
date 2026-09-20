@@ -2,9 +2,6 @@
 sidebar:
   order: 125
   label: "125. 데이터 마이그레이션·정합성"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "데이터 마이그레이션·정합성"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 125
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "125"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 오픈 당일 정합성 불일치로 롤백 / 이관 스크립트 실행 시간 초과로 정해진 점검 시간(Downtime) 위반
 ```
 - 필수 키워드: 데이터 마이그레이션 · 데이터 정합성 · CDC(Change Data Capture) · ETL 매핑 · 컷오버(Cut-over) · 대사(Reconciliation) · 해시 체크섬 · 롤백 플랜
-- 배점 전략: 10점 = Ⅰ → Ⅲ 마이그레이션 5단계 절차도 → Ⅴ 빅뱅 vs 단계적 이관 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 무중단 CDC 컷오버 시퀀스 도식 및 Ⅵ 3단계 정합성 검증 기법(건수, 금액합, 해시)
 - 기출: 128회 `차세대 시스템 구축 시 데이터 마이그레이션 절차와 데이터 정합성 검증 방안을 설명하시오.` → Ⅰ 정의 + Ⅲ 이관 단계 + Ⅳ 검증 절차 + Ⅵ 컷오버 및 비상 롤백 방안
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 스마트폰 분실 시 도용 위험 / 단말기 교체 시 재발급 불편 / 고령자 디지털 격차
 ```
 - 필수 키워드: 주민등록법 · 분산신원증명(DID) · 자기주권신원(SSI) · 하드웨어 보안영역(SE/TEE) · 영지식 증명(ZKP) · 검증가능한 자격증명(VC)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ DID 신원 발급 및 검증 3각 관계도 → Ⅴ 실물 신분증 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ SE/TEE 하드웨어 보안 구조와 Ⅵ 프라이버시 최소화 메커니즘 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

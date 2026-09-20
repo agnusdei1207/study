@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 모듈 간 인터페이스 표준화 복잡도 / 다단계 모듈 호출에 따른 레이턴시 증가 / 모듈 오류 전파 관리
 ```
 - 필수 키워드: Modular RAG · 모듈화(Modularity) · 6대 핵심 모듈(Search, Memory, Routing, Predict, Fusion, Task Adapter) · Naive vs Advanced vs Modular · 플러그앤플레이
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ Modular RAG 모듈 조립 블록도 → Ⅴ RAG 3세대 진화 비교표 / 25점 = Ⅰ~Ⅶ 전개, 모듈 간 상태 전달 프로토콜 및 질의 유형별 동적 파이프라인 라우팅 패턴 집중
 - 기출: 139회 1교시 3번 `Advanced RAG(Retrieval-Augmented Generation)와 Modular RAG(Retrieval-Augmented Generation) 비교` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:42:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 69%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 69
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 해외 거래소 차익거래 및 규제 차익(Regulatory Arbitrage) / 온체인 DEX·디파이(DeFi)에 대한 규제 집행 한계
 ```
 - 필수 키워드: 디지털자산기본법 · 가상자산이용자보호법 · 예치금 신탁 · 콜드월렛(80%) · 불공정거래 행위 · 스테이블코인 · EU MiCA
-- 배점 전략: 10점 = Ⅰ 입법 배경 → Ⅲ 2단계 입법 구조 및 핵심 규제 요건 도식 → Ⅴ 타 법률 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 내부통제 기술 요건(콜드월렛, 실시간 감시)과 Ⅵ 스테이블코인·STO 제도화 실무
 - 기출: 미출
 
 ## 한 줄 본질

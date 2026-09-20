@@ -2,9 +2,6 @@
 sidebar:
   order: 65
   label: "065. 이상치 탐지 (Outlier Detection)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "이상치 탐지 (Outlier Detection)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 65
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "065"
-  source_status: "기출"
-  source_history: "139회, 102회"
-  priority: 80
-  priority_note: "[출제:139] · 이전(KPC):102"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 극단적 이상치로 인한 회귀선 왜곡 / 정상 특이 케이스(VIP 결제)의 무분별한 오탐 삭제
 ```
 - 필수 키워드: 이상치(Outlier) · IQR(사분위범위) · Z-Score · LOF(Local Outlier Factor) · Isolation Forest · One-Class SVM · 편향(Bias)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 기법 분류 및 박스플롯 도식 → Ⅵ 4대 처리 방안 / 25점 = Ⅰ~Ⅶ, Ⅲ 다차원 탐지 알고리즘 상세 및 Ⅴ 비교표 전개
 - 기출: 139회 3교시 2번 `데이터분석에서 이상치와 편향의 개념, 영향 및 처리 방안` → Ⅰ 개념 + Ⅲ 탐지 기법 + Ⅵ 분석 영향 및 처리 대책
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 배터리 수명 및 연속 가동 시간 제약 / 다중 태스크 전환 시 보정 오차 누적 / 작업자 공존 환경 안전 표준 미비
 ```
 - 필수 키워드: 다기능 로봇(Polyfunctional Robots) · 피지컬 AI · 휴머노이드 · VLA(Vision-Language-Action) · 모바일 매니퓰레이터 · 범용 하드웨어 · 다중 태스크 일반화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 다기능 로봇 두뇌-신체 통합 아키텍처 → Ⅴ 로봇 세대별 비교표 / 25점 = Ⅰ~Ⅶ 전개, Sim-to-Real 강화학습 기반 범용 모터 제어 및 안전 표준(ISO 10218/15066) 집중
 - 기출: 미출제. 예상: "제조 및 물류 산업의 다품종 변량 생산에 대응하기 위한 다기능 로봇(Polyfunctional Robots)의 개념, 핵심 기술 요소 및 현장 도입 과제를 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

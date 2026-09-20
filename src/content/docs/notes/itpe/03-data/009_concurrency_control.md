@@ -3,7 +3,7 @@ sidebar:
   order: 9
   label: "009. 동시성 제어"
   badge:
-    text: "A · 핵심 · 96%"
+    text: "A"
     variant: note
 title: "동시성 제어 (Concurrency Control)"
 author: "OpenAI Codex"
@@ -14,22 +14,13 @@ weight: 9
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "03-data canonical 목록 A"
   question_no: "009"
-  source_status: "학습핵심"
-  source_history: "정보관리 공식 기출 미확인"
-  priority: 96
-  priority_note: "직렬가능성·2PL·Timestamp·OCC·MVCC·교착상태로 확장 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-[01 IT 전략] → [02 SW 공학] → [▶ 03 데이터] → [04 컴퓨터 시스템]
-      → [05 네트워크] → [06 보안] → [07 최신기술] → [08 법규·정책]
-```
-
-과목 내 현재 키워드: 03 데이터 → 동시성 제어
+<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>트랜잭션·동시성</span><strong>동시성 제어</strong></div>
 
 ## 큰 그림과 30초 인출
 

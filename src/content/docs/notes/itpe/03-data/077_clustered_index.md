@@ -2,9 +2,6 @@
 sidebar:
   order: 77
   label: "077. 클러스터드 인덱스 (Clustered Index)"
-  badge:
-    text: "기출 · 77%"
-    variant: note
 title: "클러스터드 인덱스 (Clustered Index)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 77
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "077"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 77
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무작위 키(UUID) 삽입 시 빈번한 페이지 분할(Page Split) 및 디스크 단편화 유발
 ```
 - 필수 키워드: 클러스터드 인덱스 · 리프 노드 = 데이터 페이지 · 테이블당 1개 · 페이지 분할(Page Split) · 북마크 룩업 생략 · 범위 검색(Range Scan) · 기본키(PK)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 리프=데이터 B+Tree 도식 → Ⅴ 클러스터드 vs 논클러스터드 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ I/O 경로 비교 및 Ⅵ 키 선정 전략(Auto-increment vs UUID)
 - 기출: 136회 2교시 5번 `데이터베이스 인덱스 설명 및 클러스터드 인덱스와 논클러스터드 인덱스 비교` → Ⅰ 개념 + Ⅲ 리프=데이터 구조 + Ⅴ 비교
 
 ## 한 줄 본질

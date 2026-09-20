@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 92%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회, 124회, 130회"
-  priority: 92
-  priority_note: "[출제(KPC):123,124,130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 자율주행 도로표지판 오인식 위험 / 안면인식 우회 / 적대적 훈련 시 정상 데이터 정확도 저하
 ```
 - 필수 키워드: 섭동(Perturbation) · FGSM(Fast Gradient Sign Method) · PGD · C&W 공격 · 적대적 훈련 · 전이성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 공격 유형 분류표 → Ⅳ FGSM 수식 및 도식 / 25점 = Ⅰ~Ⅶ 전개, 화이트박스 vs 블랙박스 알고리즘과 Ⅵ 모델 강건성 확보 방어책 집중
 - 기출: 130회 1교시 12번 `적대적 공격 유형 및 방어기법` → Ⅰ·Ⅲ·Ⅵ / 124회 3교시 4번 `적대적 예제(FGSM 등)와 모델 강건성` → Ⅳ·Ⅴ
 
 ## 한 줄 본질

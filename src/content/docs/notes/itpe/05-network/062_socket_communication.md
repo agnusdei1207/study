@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:53:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 70
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── C10K 동시접속 시 블로킹 I/O 스레드 폭증 / TIME_WAIT 소켓 누수 / TCP 패킷 경계 부재(프레이밍 필요)
 ```
 - 필수 키워드: 버클리 소켓(BSD Socket) · 5-Tuple · 스트림(SOCK_STREAM) · 데이터그램(SOCK_DGRAM) · I/O 다중화(epoll/kqueue) · C10K 문제 · TIME_WAIT
-- 배점 전략: 10점 = Ⅰ → Ⅲ 서버-클라이언트 시스템 콜 호출 시퀀스 흐름도 → Ⅴ TCP vs UDP 소켓 비교표 / 25점 = 131회 기출에 맞춰 소켓 내부 버퍼 메커니즘, 블로킹/논블로킹/이벤트 기반 I/O 멀티플렉싱(epoll) 비교 상세
 - 기출: 제131회 2교시 5번: "소켓(Socket) 통신" → Ⅰ~Ⅵ
 
 ## 한 줄 본질

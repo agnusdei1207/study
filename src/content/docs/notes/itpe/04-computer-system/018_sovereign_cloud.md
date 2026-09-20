@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 89%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 89
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 글로벌 최신 AI 기술 도입 지체 / 구축·운영 비용 상승 / 완벽한 기술 자립의 난이도
 ```
 - 필수 키워드: 데이터 주권(Data Sovereignty) · 미국 CLOUD Act · CSAP(클라우드 보안인증) · HYOK(Hold Your Own Key) · 디지털 안보
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 소버린 클라우드 3대 주권 모델(데이터·운영·소프트웨어) → Ⅴ 일반 클라우드 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 암호화 키 분리 및 Ⅵ 공공·금융 규제 준수 방안
 - 기출: 미출제. 예상: "최근 유럽 및 국내에서 부각되고 있는 소버린 클라우드(Sovereign Cloud)의 등장 배경, 3대 핵심 영역(데이터/운영/소프트웨어 주권), 그리고 엔터프라이즈 도입 전략을 설명하시오."
 
 ## 한 줄 본질

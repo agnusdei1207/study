@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 브릿지(Bridge) 해킹 및 스마트 컨트랙트 락업 취약점 / 앵커링 주기 설정에 따른 가스비 비용 최적화 / 인터체인 표준화 부재
 ```
 - 필수 키워드: 하이브리드 블록체인(Hybrid Blockchain) · 퍼블릭 앵커링(Anchoring) · 머클 루트(Merkle Root) · 프라이버시 · 크로스체인 브릿지 · 기밀성 · 확장성
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 하이브리드 블록체인 2계층 연동 아키텍처 → Ⅴ 퍼블릭 vs 프라이빗 vs 하이브리드 비교표 / 25점 = Ⅰ~Ⅶ 전개, 머클 트리 기반 앵커링 데이터 흐름도 및 브릿지 오라클 무결성 검증 체계 전개
 - 기출: 126회 `하이브리드 블록체인(Hybrid Blockchain)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 76
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 부처 간 데이터 연계 권한 갈등 / 대규모 행정망 장애 시 단일 장애점(SPOF) 리스크
 ```
 - 필수 키워드: DPG 허브 · 원사이트(One-Site) 토털 서비스 · 구비서류 제로화 · 민관 협업 생태계 · 제로 트러스트
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ DPG 허브 중심 아키텍처 도식 → Ⅴ 전자정부 대비 차이점 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 구성요소와 Ⅵ 데이터 칸막이 해소 대책 상세화
 - 기출: 129회 1교시 1번 `디지털 플랫폼 정부의 특징, 구성요소, 기대효과` → Ⅰ·Ⅱ·Ⅲ 전수
 
 ## 한 줄 본질

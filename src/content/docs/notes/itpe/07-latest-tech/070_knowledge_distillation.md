@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 79%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 79
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 학생 모델 용량 한계로 인한 지식 누락 / 증류 학습 시 추가 GPU 자원 소모 / 교사 모델의 편향·오류 전이
 ```
 - 필수 키워드: 지식 증류(Knowledge Distillation) · 교사 모델(Teacher) · 학생 모델(Student) · 소프트 타깃(Soft Target) · 암묵적 지식(Dark Knowledge) · 온도 매개변수(Temperature) · KL 다이버전스
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 구조도 및 복합 손실함수 수식 → Ⅴ 모델 경량화 기법 3종 비교표 / 25점 = Ⅰ~Ⅶ 전개, Soft Target/Dark Knowledge의 수학적 의미, Response/Feature/Relation 증류 유형 집중
 - 기출: 미출제. 예상: "거대 언어 모델(LLM)을 경량화하여 온디바이스에 탑재하기 위한 지식 증류(Knowledge Distillation)의 개념, 동작 메커니즘, 손실함수 및 유형을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

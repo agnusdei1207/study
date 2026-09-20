@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 91%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 91
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 막대한 GPU 인프라 투자 비용 / 글로벌 파운데이션 모델과의 성능 격차 / 인재 유출
 ```
 - 필수 키워드: 데이터 주권 · 인프라 주권 · 모델 주권 · 자국어 코퍼스 · 국산 NPU · AI 안보
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 주권 기둥(Pillar) 블록도 → Ⅵ 실무 추진 전략 / 25점 = Ⅰ~Ⅶ 전개, 국가 경제·안보적 필요성과 Ⅴ 글로벌 빅테크 모델과의 상호보완적 비교 집중
 - 기출: 미출제. 예상: "최근 국가적 AI 주권 확보를 위한 소버린 AI(Sovereign AI)의 대두 배경과 4대 구성요소 및 실현 전략을 설명하시오."
 
 ## 한 줄 본질

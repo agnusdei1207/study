@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 양자 하드웨어 극저온(mK) 유지 인프라 비용 / PQC 알고리즘 전환 시 레거시 암호 호환성
 ```
 - 필수 키워드: 양자기술산업법 · 국가양자전략위원회 · 양자컴퓨팅 · 양자통신(QKD) · 양자센서 · 양자내성암호(PQC)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 양자 3대 축 및 육성 체계도 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 법정 거버넌스와 Ⅵ PQC 국가 전환 전략 집중
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

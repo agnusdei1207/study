@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 85
-  priority_note: "[출제:137] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 식별 자동화 도구 미비 / 보안 등급 오분류 리스크 / SaaS·생성형 AI 연동 게이트웨이 보안
 ```
 - 필수 키워드: N2SF · 다층보안체계(MLS) · C(기밀)/S(민감)/O(공개) · 데이터 등급분류 · 제로트러스트 · 보안통제 게이트웨이
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ C·S·O 망 구조 및 연동 도식 → Ⅴ 기존 망분리 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, N2SF 등급 판정 기준 및 Ⅵ 공공 SaaS 연계 보안대책 집중
 - 기출: 137회 3교시 6번 `N2SF 보안 가이드라인` → Ⅰ 개요 + Ⅲ C/S/O 구조 및 통제 + Ⅵ 실무 고려사항
 
 ## 한 줄 본질

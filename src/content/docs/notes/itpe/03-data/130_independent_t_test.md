@@ -2,9 +2,6 @@
 sidebar:
   order: 130
   label: "130. 독립표본 t-검정(Independent t-test)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "독립표본 t-검정 (Independent t-test)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 130
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "130"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 70
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이분산 상태에서 일반 스튜던트 t-검정 공식 적용 시 1종 오류 급증 / 표본 크기 불균형($n_1 \gg n_2$) 시 검정력 저하
 ```
 - 필수 키워드: 독립표본 t-검정 · 정규성 가정 · 등분산성(Levene 검정) · 합동분산(Pooled Variance) · 웰치의 t-검정(Welch's t-test) · A/B 테스트 · 맨-휘트니 U 검정
-- 배점 전략: 10점 = Ⅰ → Ⅲ 등분산 vs 이분산 수식 분기 도식 → Ⅴ 대응표본 t-검정과의 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 3단계 선행 검정 파이프라인 및 Ⅵ 실무 A/B 테스트 적용 가이드
 - 기출: 131회 `독립 표본 t-검정(Independent t-test)과 대응 표본 t-검정(Paired t-test)의 개념, 기본 가정 및 차이점을 비교 설명하시오.` → Ⅰ 정의 + Ⅱ 3대 기본 가정 + Ⅲ 검정통계량 수식 + Ⅴ 비교표
 
 ## 한 줄 본질

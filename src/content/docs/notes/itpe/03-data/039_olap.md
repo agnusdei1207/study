@@ -2,9 +2,6 @@
 sidebar:
   order: 39
   label: "039. OLAP"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "OLAP"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 39
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "039"
-  source_status: "기출"
-  source_history: "122회, 118회, 80회"
-  priority: 81
-  priority_note: "[출제(KPC):122] · 이전(KPC):80,118"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원 수 증가 시 큐브 데이터 폭증(Data Explosion) / 원천 데이터 갱신 지연 / 스토리지 비용
 ```
 - 필수 키워드: 다차원 큐브 · ROLAP · MOLAP · HOLAP · Roll-up · Drill-down · Slicing · Dicing · 스타 스키마
-- 배점 전략: 10점 = Ⅰ → Ⅲ 4대 연산 도식 및 Ⅴ ROLAP/MOLAP/HOLAP 비교표 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 큐브 구조도 및 4대 연산 상세
 - 기출: 122회 `다차원 분석 및 ROLAP, MOLAP, HOLAP 비교` → Ⅲ 큐브 연산 + Ⅴ 3대 아키텍처 비교 완결
 
 ## 한 줄 본질

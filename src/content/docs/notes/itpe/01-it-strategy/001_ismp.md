@@ -6,49 +6,38 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A · 기출 · 100%"
+    text: "A"
 extra:
   model: "GPT-5"
   keyword_grade: "A"
-  grade_basis: "memories canonical 01-001 (2026-09-20)"
-  source_status: "기출"
-  source_history: "138회(공식), 125·127·129·130회(KPC 키워드)"
-  reference_status: "NIA ISP·ISMP 수립 공통가이드 제9판 일부개정(2025.12) 확인"
-  priority: 100
-  priority_note: "공식 138회 출제, ISP 비교·방법론·이행방안으로 확장 가능"
+
 ---
 
-## 전체 로드맵 내 현재 위치
+## 지식 로드맵 내 현재 위치
 
-```text
-▶ 01 정보 전략·관리 ─→ 02 SW공학·프로젝트 ─→ 03 데이터
-          │
-          └─→ 04 컴퓨터시스템 ─→ 05 네트워크 ─→ 06 보안
-                                     │
-                                     └─→ 07 AI·신기술
-전 영역 준거 ───────────────────────────→ 08 법·정책
-```
-
-- 현재 위치: `01 정보 전략·관리 > 정보화 기획·발주 > ISMP`
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 정보화 기획·발주를 거쳐 ISMP로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>정보화 기획·발주</span>
+  <strong>ISMP</strong>
+</div>
 
 ## 큰 그림과 30초 인출
 
-```text
-[경영·정책 목표]
-       │
-       ▼
-[ISP: 중장기 방향·과제] ──▶ [구축할 단위 시스템 확정]
-                                      │
-                                      ▼
-              ┌──────────── ISMP ────────────┐
-              │ 착수 → 방향 → 요건 → 구조 → 이행 │
-              │                  └─ 계획·분리발주 │
-              │                     예산·RFP     │
-              └──────────────────────────────┘
-                                      │
-                                      ▼
-                         [조달·구축사업 기준선]
-```
+<div class="itpe-flow-map" role="img" aria-label="경영 정책 목표에서 ISP와 구축 대상 확정을 거쳐 ISMP로 발주 기준선을 만드는 흐름">
+  <div class="itpe-flow-node">경영·정책 목표</div>
+  <div class="itpe-flow-arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow-node">ISP: 중장기 방향·과제</div>
+  <div class="itpe-flow-arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow-node">구축할 단위 시스템 확정</div>
+  <div class="itpe-flow-arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow-node is-current">
+    <strong>ISMP</strong>
+    <span>착수 → 방향 → 요건 → 구조 → 이행</span>
+    <small>구축계획·분리발주 · 예산·RFP</small>
+  </div>
+  <div class="itpe-flow-arrow" aria-hidden="true">↓</div>
+  <div class="itpe-flow-node">조달·구축사업 기준선</div>
+</div>
 
 - 본질: **특정 정보시스템**의 업무·기술 요건을 기능점수 산정이 가능한 수준까지 구체화하고, 예산과 제안요청서(RFP)를 만드는 실행 계획
 - 위치: `IT 투자기획 → ISP/ISMP → RFP·예산 → 조달·구축`

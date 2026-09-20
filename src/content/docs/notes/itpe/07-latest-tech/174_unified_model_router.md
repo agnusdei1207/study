@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 라우터 자체의 추론 오버헤드 / 난이도 오판 시 저품질 답변 생성 / 모델 간 프롬프트 템플릿 비호환성
 ```
 - 필수 키워드: 통합 모델 라우터 · 시맨틱 라우터(Semantic Router) · 모델 캐스케이딩(Model Cascading) · SLM vs LLM · 질의 복잡도(Query Complexity) · MoA(Mixture of Agents) · 비용 최적화
-- 배점 전략: 10점 = Ⅰ 개요 및 추론 비용 병목 → Ⅲ 통합 라우터 3계층 아키텍처 다이어그램 → Ⅴ 단일 모델 vs 라우터 분기 비교표 / 25점 = Ⅰ~Ⅶ 전개, 시맨틱 유사도 기반 라우팅 수식, 복합 추론 판별 알고리즘 및 캐스케이딩 폴백(Fallback) 구조 상세화
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 70
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고유값 분산 설명력(Explained Variance Ratio) 누적 임계점 선정 / 정보 손실률 관리 / 비선형 기법의 새로운 데이터 투영 불가 한계
 ```
 - 필수 키워드: 차원의 저주(Curse of Dimensionality) · 특성 선택(Feature Selection) · 특성 추출(Feature Extraction) · PCA · LDA · t-SNE · UMAP · 분산 보존
-- 배점 전략: 10점 = Ⅰ 개요 및 차원의 저주 → Ⅲ 차원 축소 양대 분류(선택 vs 추출) 체계도 → Ⅴ 대표 기법 4종(PCA/LDA/t-SNE/UMAP) 비교표 / 25점 = Ⅰ~Ⅶ 전개, PCA 고유값 분해(Eigendecomposition) 수학적 원리 및 UMAP 매니폴드 구조 전개
 - 기출: 131회 `데이터 차원 축소` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

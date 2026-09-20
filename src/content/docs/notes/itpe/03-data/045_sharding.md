@@ -2,9 +2,6 @@
 sidebar:
   order: 45
   label: "045. 샤딩 (Sharding)"
-  badge:
-    text: "기출 · 81%"
-    variant: note
 title: "샤딩 (Sharding)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 45
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "045"
-  source_status: "기출"
-  source_history: "127회, 102회, 119회"
-  priority: 81
-  priority_note: "[출제(KPC):127] · 이전(KPC):102,119"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 크로스 샤드 조인(Cross-Shard Join) 성능 저하 / 샤드 불균형(Hotspot) / 2단계 커밋(2PC) 오버헤드
 ```
 - 필수 키워드: 수평 분할 · 샤드 키(Shard Key) · 라우터(Router) · Shared Nothing · 일관된 해싱 · 크로스 샤드 조인 · 핫스팟(Hotspot)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 아키텍처 도식 → Ⅴ 3대 샤딩 전략 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 라우팅 흐름 및 Ⅵ 분산 트랜잭션 한계 대책
 - 기출: 127회 `데이터베이스 샤딩의 개념과 분할 전략` → Ⅰ 개념 + Ⅲ 아키텍처 + Ⅴ 분할 전략
 
 ## 한 줄 본질

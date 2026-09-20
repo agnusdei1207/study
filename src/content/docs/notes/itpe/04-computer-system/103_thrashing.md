@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:20:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 스왑 메모리 점유율 100% 도달로 인한 서비스 무응답 / OOM Killer 비정상 프로세스 강제 종료 / 디스크 트래픽 급증
 ```
 - 필수 키워드: 스래싱 · 다중 프로그래밍 정도(MPD) · 페이지 부재(Page Fault) · 워킹셋 · PFF · 지역성(Locality)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ MPD 대 CPU 활용률 곡선 그래프 및 악순환 구조도 → Ⅴ 워킹셋 vs PFF 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 스래싱 발생 악순환 메커니즘과 Ⅵ 리눅스 cgroups 메모리 제한 및 OOM 제어 실무
 - 기출: 126회 1교시 10번 `스레싱(Thrashing)` 단답형 출제
 
 ## 한 줄 본질

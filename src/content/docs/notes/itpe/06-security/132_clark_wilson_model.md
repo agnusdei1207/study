@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 70
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 트랜잭션 절차화에 따른 시스템 유연성 저하 / 직무 분리를 위한 최소 인력 확보 부담 / UDI에서 CDI로의 데이터 변환(입력값 검증) 누락
 ```
 - 필수 키워드: Clark-Wilson · CDI(Constrained Data Item) · UDI · TP(Transformation Procedure) · IVP · 정형화된 트랜잭션 · 직무 분리(Separation of Duties) · 접근 3원소
-- 배점 전략: 10점 = Ⅰ 클라크-윌슨 모델 정의 및 목적 → Ⅲ 4대 구성요소 및 접근 3원소 도식 → Ⅴ BLP/Biba 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제127회 기출(접근 통제 보안 모델) 완벽 대응, 5대 인증 규칙(Certification)과 4대 강제 규칙(Enforcement), 현대 ERP/금융 시스템과의 1:1 매핑 사례 심층 상술
 - 기출: 제127회 2교시 6번: "아래의 접근 통제 보안 모델..."
 
 ## 한 줄 본질

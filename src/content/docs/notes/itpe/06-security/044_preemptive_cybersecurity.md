@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 취약점 폭증에 따른 오탐 피로 · 선제적 조치로 인한 운영 서비스 장애 우려 · 상시 레드팀 운영 예산 제약
 ```
 - 필수 키워드: 선제적 사이버보안 · 능동적 방어 · CTEM · EASM · 침해 및 공격 시뮬레이션(BAS) · 사이버 기만(Deception) · 위협 헌팅
-- 배점 전략: 10점 = Ⅰ 개념 및 패러다임 전환 → Ⅲ 선제 보안 프레임워크 도식 → Ⅴ 반응형 보안과의 비교 / 25점 = Ⅰ~Ⅶ 전개, BAS/디셉션 핵심 메커니즘과 Ⅵ 운영 적용 단계별 로드맵 집중
 - 기출: 미출제. 예상: "사후 대응 중심 사이버보안의 한계를 극복하기 위한 선제적 사이버보안(Preemptive Cybersecurity)의 개념, 핵심 기술 요소 및 실무 적용 방안을 설명하시오."
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 90%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회, 122회, 128회, 129회, 130회"
-  priority: 90
-  priority_note: "[출제(KPC):120,122,128,129,130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── S3 버킷 비인가 공개 설정 오류(Misconfiguration) / CSP 락인 및 종속성 리스크 / CSAP 등급제(상·중·하) 대응
 ```
 - 필수 키워드: 책임공유모델 · CSAP 등급제 · ISO/IEC 27017 · 설정 오류(Misconfiguration) · CSPM · CWPP
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 서비스 모델별 책임공유 계층도 → Ⅴ CSAP vs ISO 27017 비교 / 25점 = Ⅰ~Ⅶ 전개, 클라우드 주요 위협(설정오류, 계정탈취)과 Ⅵ CSPM/CWPP 적용 전략 집중
 - 기출: 130회 4교시 3번 `클라우드 도입 시 보안 고려사항` → Ⅰ·Ⅲ·Ⅵ / 129회 4교시 6번 `CSP(클라우드 서비스 제공자) 리스크 관리` → Ⅱ·Ⅵ
 
 ## 한 줄 본질

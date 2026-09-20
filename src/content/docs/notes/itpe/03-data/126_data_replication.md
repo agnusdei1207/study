@@ -2,9 +2,6 @@
 sidebar:
   order: 126
   label: "126. 데이터 복제(Data Replication)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "데이터 복제 (Data Replication)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 126
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "126"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 70
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이기종 DBMS 간 복제 시 데이터 타입 비호환 / 양방향 복제(Active-Active) 환경에서 동시 수정 충돌(Conflict)
 ```
 - 필수 키워드: 데이터 복제 · 고가용성(HA) · 재해 복구(DR) · 블록 레벨 복제 · DBMS 로그 복제 · CDC · Active-Active · 복제 충돌 해결(LWW)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 복제 구현 계층(스토리지 vs DB vs CDC) 매핑표 → Ⅴ 3대 복제 계층 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ Active-Active 복제 시 충돌 해결 메커니즘 및 Ⅵ 재해복구(DR) 센터 구축 전략
 - 기출: 120회 `데이터베이스 및 분산 시스템에서의 데이터 복제(Data Replication) 방식과 재해복구(DR) 적용 방안` → Ⅰ 정의 + Ⅲ 계층별 복제 방식 + Ⅴ 비교 + Ⅵ DR 구축
 
 ## 한 줄 본질

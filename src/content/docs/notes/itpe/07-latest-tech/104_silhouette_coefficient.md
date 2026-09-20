@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 75
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── $O(N^2)$ 계산 복잡도로 대규모 데이터 연산 병목 / 비구형(Non-globular) 및 밀도 기반 군집 왜곡 / 이상치 민감도
 ```
 - 필수 키워드: 실루엣 계수(Silhouette Coefficient) · 군집 분석 · 응집도 $a(i)$ · 분리도 $b(i)$ · 최적 군집 수 $k$ · 엘보우 기법 · 실루엣 다이어그램
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 실루엣 계수 수식 및 기하학적 개념도 → Ⅴ 비지도 군집 평가 지표 비교표 / 25점 = Ⅰ~Ⅶ 전개, 수식의 분모 정규화 원리 및 실루엣 다이어그램을 통한 군집 편향 진단 기법 집중
 - 기출: 135회 1교시 6번: "실루엣 계수(Silhouette Coefficient)" → Ⅰ~Ⅴ
 
 ## 한 줄 본질

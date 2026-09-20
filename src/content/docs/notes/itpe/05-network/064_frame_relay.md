@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:55:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 망 혼잡 시 무경고 프레임 폐기 / 비대칭 트래픽 시 CIR 대역폭 초과 과금 / MPLS-VPN 대체
 ```
 - 필수 키워드: 2계층 스위칭 · DLCI(Data Link Connection Identifier) · PVC/SVC · CIR(Committed Information Rate) · FECN/BECN · DE(Discard Eligibility) · 종단 간 오류제어
-- 배점 전략: 10점 = Ⅰ → Ⅲ 프레임 구조 및 혼잡 제어 비트(FECN/BECN/DE) 도식 → Ⅴ X.25 vs 프레임릴레이 vs ATM 비교표 / 25점 = 124회 기출에 맞춰 대역폭 파라미터(CIR, EIR, Bc, Be) 수학적 관계 및 현대 MPLS/SD-WAN 대체 과정 상세
 - 기출: 제124회 1교시 10번: "프레임릴레이(Frame Relay)" → Ⅰ~Ⅵ
 
 ## 한 줄 본질

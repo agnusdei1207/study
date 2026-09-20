@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:06:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "87회, 118회"
-  priority: 64
-  priority_note: "과거기출(87회, 118회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 과도한 문서화로 인한 개발 생산성 저하 / 인증 심사 통과 후 프로세스 사장(Paperwork만 남음) 방지
 ```
 - 필수 키워드: 프로세스 성숙도 · 5단계 성숙도 레벨 · 단계적 표현(Staged) · 연속적 표현(Continuous) · 정량적 관리(SPC) · 원인 분석 및 해결(CAR) · CMMI V2.0
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 5단계 성숙도 레벨 계층도 → Ⅴ 단계적 vs 연속적 비교표 / 25점 = Ⅰ~Ⅶ 전개, 87·118회 기출 CMMI 5단계 상세 설명, 레벨 4(정량적 관리)의 통계적 기법, CMMI V2.0의 애자일 통합 아키텍처
 - 기출: 87회 1교시, 118회 1교시 `CMMI 성숙도 레벨 5단계 및 단계적/연속적 표현 방식 비교` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

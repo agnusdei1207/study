@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 결정론적 암호화(Deterministic Encryption)의 CPA 취약점 / 오류 메시지를 통한 패딩 오라클(CCA) / 부채널 공격과의 결합
 ```
 - 필수 키워드: COA(Ciphertext-Only Attack) · KPA(Known-Plaintext Attack) · CPA(Chosen-Plaintext Attack) · CCA(Chosen-Ciphertext Attack) · IND-CCA2 · 오라클 공격(Oracle Attack)
-- 배점 전략: 10점 = Ⅰ 4대 공격 모델 정의 → Ⅲ 공격자 능력에 따른 4단계 위계 도식 → Ⅴ 4대 유형 비교표 / 25점 = Ⅰ~Ⅶ 전개, 각 공격 유형별 수학적 공격 절차, 패딩 오라클 사례, 의미론적 보안(Semantic Security) 및 IND-CPA/IND-CCA2 증명 이론 심층 서술
 - 기출: 제137회 1교시 4번: "암호문 공격(Ciphertext Attack)을 설명하시오."
 
 ## 한 줄 본질

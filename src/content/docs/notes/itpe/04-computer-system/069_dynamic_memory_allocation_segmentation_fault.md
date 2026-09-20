@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 75
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 허상 포인터(Dangling Pointer) / 이중 해제(Double Free) / 버퍼 오버런(Buffer Overrun)
 ```
 - 필수 키워드: 동적 메모리 할당 · malloc/free · brk/mmap · 세그멘테이션 폴트 · SIGSEGV · MMU · Dangling Pointer
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 동적 할당 및 폴트 발생 메커니즘 도식 → Ⅴ 할당 전략 4종 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ MMU 예외 처리 상세 흐름과 Ⅵ 실무 메모리 디버깅 도구(ASan, GDB) 연계
 - 기출: 136회 3교시 6번 `동적 메모리 할당과 세그멘테이션 폴트 메커니즘` 논술형 출제
 
 ## 한 줄 본질

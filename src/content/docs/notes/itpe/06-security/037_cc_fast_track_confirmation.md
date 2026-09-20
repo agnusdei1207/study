@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회, 129회"
-  priority: 85
-  priority_note: "[출제:136] · [출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 생성형 AI/양자암호 등 신기술 도입 지연 해소 / 인증 획득 후 임의 소스코드 변경 방지(형상관리)
 ```
 - 필수 키워드: 공통평가기준(CC, ISO/IEC 15408) · 보호프로파일(PP) · 보안목표명세서(ST) · 평가보증등급(EAL) · 정보보호제품 신속확인제도
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ CC 3대 핵심 산출물 도식 → Ⅴ 정규 CC vs 신속확인제도 비교 / 25점 = Ⅰ~Ⅶ 전개, EAL 체계와 Ⅵ 공공 보안 시장 신속 도입 전략 집중
 - 기출: 136회 1교시 11번 `CC(Common Criteria)와 정보보호제품 평가` → Ⅰ·Ⅲ / 129회 1교시 11번 `정보보호 제품 신속 확인 제도` → Ⅱ·Ⅴ·Ⅵ
 
 ## 한 줄 본질

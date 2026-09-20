@@ -2,9 +2,6 @@
 sidebar:
   order: 117
   label: "117. IMDF (Indoor Mapping Data Format)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "IMDF (Indoor Mapping Data Format)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 117
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "117"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 70
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고정밀 3D BIM 도면을 모바일용 2D 경량 IMDF로 변환 시 세부 형상 왜곡 / 층간 이동(계단/엘리베이터) 위상 누락
 ```
 - 필수 키워드: IMDF · 실내 공간정보 · OGC 국제표준 · GeoJSON · Venue · Level · Unit · Anchor · 실내 내비게이션 · IndoorGML
-- 배점 전략: 10점 = Ⅰ → Ⅲ IMDF 5계층 공간 모델 도식 → Ⅴ 타 공간 표준(CityGML, IndoorGML) 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ BIM 기반 IMDF 변환 파이프라인 및 Ⅵ 실내 측위(Wi-Fi/BLE) 연계
 - 기출: 124회 `실내 공간정보 모델링을 위한 IMDF(Indoor Mapping Data Format)의 개념과 구성요소` → Ⅰ 정의 + Ⅱ 특징 + Ⅲ 공간 계층 구조 + Ⅴ 타 표준 비교
 
 ## 한 줄 본질

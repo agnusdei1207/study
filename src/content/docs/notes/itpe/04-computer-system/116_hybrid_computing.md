@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:38:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이종 칩셋 간 I/O 인터페이스 지연 병목 / 이기종 툴체인(Qiskit, CUDA) 파편화 / 분산 상태 동기화 오버헤드
 ```
 - 필수 키워드: 하이브리드 컴퓨팅 · 양자-고전 하이브리드(HQC) · QPU · CXL(Compute Express Link) · VQE · QAOA · 이기종 오프로딩
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 고전-가속기 하이브리드 구조도 → Ⅴ 동종 vs 이종 vs 양자-고전 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 변분 알고리즘(VQE) 기반 폐루프 연산 흐름과 Ⅵ CXL 공유 메모리 기반 I/O 병목 해소 방안
 - 기출: 미출제 (차세대 고성능 컴퓨팅 시사·트렌드 핵심 키워드)
 
 ## 한 줄 본질

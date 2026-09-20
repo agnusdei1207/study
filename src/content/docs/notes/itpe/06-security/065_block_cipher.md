@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회, 130회"
-  priority: 80
-  priority_note: "[출제(KPC):127,130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차분 해독법(DC) 및 선형 해독법(LC) 공격 · 짧은 블록 크기(64비트) 충돌(Sweet32) · 부채널 공격 대응
 ```
 - 필수 키워드: 블록 암호 · 혼돈(Confusion) · 확산(Diffusion) · 페이스텔(Feistel) · SPN · 라운드 함수 · AES · SEED · ARIA
-- 배점 전략: 10점 = Ⅰ 정의 및 섀넌의 2대 원리 → Ⅲ Feistel vs SPN 구조 비교 도식 → Ⅴ 스트림 암호 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, SPN 4단계(SubBytes, ShiftRows, MixColumns, AddRoundKey)와 Ⅵ 블록 암호 해독 기법(DC/LC) 및 방어 대책 집중
 - 기출: KPC 127회/130회 `블록 암호의 구조(Feistel, SPN) 및 설계 원리와 운용 방식` → Ⅰ 설계 원리 + Ⅲ Feistel vs SPN + Ⅴ 특성 비교
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 72
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 라벨러 주관적 해석에 따른 편향 발생 / 모호한 경계 케이스(Edge Case) 처리 지침 부재 / 민감 개인정보 노출
 ```
 - 필수 키워드: 데이터 라벨링 · 지도학습 · 어노테이션(Annotation) · 바운딩 박스 · 세그멘테이션 · 모델 보조 라벨링(MAL) · 작업자 간 일치도(Cohen's Kappa)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 라벨링 자동화 파이프라인 흐름도 → Ⅴ 모달리티별 라벨링 기법 비교표 / 25점 = Ⅰ~Ⅶ 전개, Active Learning 기반 불확실성(Uncertainty) 샘플 우선 라벨링 및 품질 관리 수식 집중
 - 기출: 126회 `데이터 라벨링` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

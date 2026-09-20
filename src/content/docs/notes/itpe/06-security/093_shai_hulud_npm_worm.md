@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── npm 게시 시 2단계 인증(MFA/WebAuthn) 강제 / CI/CD 환경에서 `--ignore-scripts` 옵션 적용 / 패키지 락파일(lockfile) 무결성 검증
 ```
 - 필수 키워드: Shai-Hulud · npm 웜 · 오픈소스 공급망 공격 · `postinstall` 훅 · 개발자 토큰 탈취 · 자가 증식(Self-propagating) · MFA 강제
-- 배점 전략: 10점 = Ⅰ 사건 개요 및 npm 웜 개념 → Ⅲ 자가 증식 연쇄 메커니즘 도식 → Ⅵ 개발 환경 핵심 예방 대책 / 25점 = Ⅰ~Ⅶ 전개, npm 수명주기 스크립트(Lifecycle Scripts)의 구조적 취약점 분석과 오픈소스 에코시스템의 토큰 최소 권한 및 격리 파이프라인 심층 서술
 - 기출: 미출제. 오픈소스 소프트웨어 공급망 보안 최신 이슈로 출제 유력 예상
 
 ## 한 줄 본질

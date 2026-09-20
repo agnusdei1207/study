@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "이전"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "이전"
-  source_history: "이전(KPC):83,102,118"
-  priority: 69
-  priority_note: "이전(KPC):83,102,118"
+
 ---
 
 # 개인정보보호(Personal Information Protection)

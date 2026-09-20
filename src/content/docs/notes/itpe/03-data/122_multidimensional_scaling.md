@@ -2,9 +2,6 @@
 sidebar:
   order: 122
   label: "122. 다차원척도법(MDS, Multidimensional Scaling)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "다차원척도법 (MDS, Multidimensional Scaling)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 122
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "122"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 축(Axis)의 의미가 수학적으로 자동 정의되지 않아 해석 주관성 개입 / 고차원 축소 시 국소적 최솟값(Local Minimum) 수렴
 ```
 - 필수 키워드: 다차원척도법(MDS) · 유사도/비유사도 행렬 · 계량적 MDS · 비계량적 MDS · 스트레스(Stress) 값 · 지각도(Perceptual Map) · 차원 축소
-- 배점 전략: 10점 = Ⅰ → Ⅲ 계량적 vs 비계량적 비교 및 Stress 판정 기준표 → Ⅴ PCA와의 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 반복 최적화(ALSCAL/SMACOF) 알고리즘 흐름 및 Ⅵ 마케팅 포지셔닝 맵 활용
 - 기출: 123회 `다차원척도법(MDS)의 개념과 유형(계량적/비계량적) 및 적합도 판정 척도인 스트레스(Stress)를 설명하시오.` → Ⅰ 정의 + Ⅲ 2대 유형 + Ⅳ 스트레스 판정 기준 + Ⅵ 활용
 
 ## 한 줄 본질

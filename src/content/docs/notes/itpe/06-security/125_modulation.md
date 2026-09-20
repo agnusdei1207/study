@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 72
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단순 체크섬(CRC32)의 변조 탐지 무력화 / 전자서명 미검증 시 비트 플리핑 노출 / 블록체인 등 분산 원장의 51% 변조 위협
 ```
 - 필수 키워드: 변조(Modification/Modulation) · 위조(Fabrication) · 무결성(Integrity) · 중간자 공격(MITM) · HMAC · 전자서명 · 비트 플리핑
-- 배점 전략: 10점 = Ⅰ 변조의 보안학적 정의 및 위조와의 차이점 → Ⅲ 중간자 변조 흐름 도식 → Ⅴ 변조 vs 위조 vs 가로채기 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제127회 1교시 기출(변조와 위조 비교) 완벽 대응, 통신 신호 변조(Modulation) 관점과 데이터 무결성 변조(Modification) 관점 통합 비교, 블록 암호 비트 조작 및 암호학적 방어 메커니즘 상술
 - 기출: 제127회 1교시 9번: "변조(Modification)와 위조(Fabrication)"
 
 ## 한 줄 본질

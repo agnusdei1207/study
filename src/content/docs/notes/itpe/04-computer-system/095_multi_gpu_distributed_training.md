@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:12:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회"
-  priority: 70
-  priority_note: "[출제:134]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 파이프라인 버블(Bubble)로 인한 GPU 유휴 / 통신 오버헤드로 인한 확장비(Scaling Efficiency) 저하 / 그래디언트 폭발 및 발산
 ```
 - 필수 키워드: 분산학습 · DDP · 텐서 병렬화 · 파이프라인 병렬화 · ZeRO · FSDP · 3D 병렬화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 분산학습 패러다임 구조도 → Ⅴ DP vs TP vs PP 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 순전파/역전파 및 그래디언트 올리듀스 통신 흐름과 Ⅵ 3D 병렬화(Megatron-DeepSpeed) 실무 최적화
 - 기출: 134회 4교시 2번 `딥러닝에서 대규모 신경망을 효율적으로 훈련하기 위한 멀티 GPU 기술에 대하여 설명하시오.` 서술형 출제
 
 ## 한 줄 본질

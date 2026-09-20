@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 50바이트 헤더 추가에 따른 MTU 단편화(Fragmentation) / 멀티캐스트 플러딩 의존성 / 하드웨어 오프로딩
 ```
 - 필수 키워드: MAC-in-UDP · VTEP(VXLAN Tunnel Endpoint) · VNI(24비트, 1600만 개) · L2 over L3 · EVPN-BGP · MTU 단편화 · 점보 프레임
-- 배점 전략: 10점 = Ⅰ → Ⅲ 패킷 캡슐화 구조도(원 프레임 + VXLAN + UDP + Outer IP) → Ⅴ VLAN vs VXLAN 비교표 / 25점 = 130회 기출에 맞춰 데이터센터 스파인-리프(Spine-Leaf) 언더레이 연동 및 EVPN-BGP 제어평면 동작 상세
 - 기출: 제130회 1교시 8번: "VXLAN(Virtual eXtensible LAN)" → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 76
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 51% 공격 및 롱레인지 공격 / Nothing at Stake 문제 / 통신 복잡도 $O(N^2)$ 폭증
 ```
 - 필수 키워드: 합의 알고리즘 · 비잔틴 결함(BFT) · 작업 증명(PoW) · 지분 증명(PoS) · 완결성(Finality) · 이중 지불
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 핵심 구성요소 → Ⅴ 합의 알고리즘 4종 비교표 / 25점 = Ⅰ~Ⅶ 전개, CAP 정리 및 FLP 불가능성 정리 관점의 분기 완결성 메커니즘 집중
 - 기출: 122회 `합의 알고리즘` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

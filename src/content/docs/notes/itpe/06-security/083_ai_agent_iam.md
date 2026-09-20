@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고정된 API Key 하드코딩 금지 / 권한 상승(Privilege Escalation) 공격 방지 / 에이전트 간 연쇄 호출(Chaining) 시 신뢰 사슬 단절 방어
 ```
 - 필수 키워드: AI 에이전트 IAM · 비인간 신원(NHI) · 대리인 위임(User Delegation) · 단기 자격증명(Ephemeral Token) · 세분화된 스코프(Fine-grained Scope) · 제로트러스트
-- 배점 전략: 10점 = Ⅰ AI 에이전트 자격증명의 위험성 및 IAM 필요성 → Ⅲ 아키텍처 및 권한 위임 흐름 도식 → Ⅴ 인간 IAM 대비 차이점 / 25점 = Ⅰ~Ⅶ 전개, OAuth 2.0 Token Exchange(RFC 8693) 기반 위임 구조 및 컨지(Confused Deputy) 문제 방어 메커니즘 집중
 - 기출: 미출제. 에이전틱 AI 보안 및 비인간 신원 관리 핵심 트렌드로 유력 예상
 
 ## 한 줄 본질

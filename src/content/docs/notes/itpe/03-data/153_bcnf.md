@@ -2,9 +2,6 @@
 sidebar:
   order: 153
   label: "153. BCNF(Boyce-Codd Normal Form)"
-  badge:
-    text: "기출 · 64%"
-    variant: note
 title: "BCNF (Boyce-Codd Normal Form)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 153
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "153"
-  source_status: "기출"
-  source_history: "80회, 105회"
-  priority: 64
-  priority_note: "이전(KPC):80,105"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── BCNF 분해 시 기존 함수적 종속성(FD)이 분실되어 두 테이블 조인 없이는 제약조건 검증 불가
 ```
 - 필수 키워드: BCNF · 보이스-코드 정규형 · 결정자(Determinant) · 후보키(Candidate Key) · 슈퍼키 · 3NF 예외 · 무손실 분해 · 종속성 보존 손실
-- 배점 전략: 10점 = Ⅰ → Ⅲ 수강 릴레이션(학번, 과목, 교수) 분해 도식 → Ⅴ 3NF vs BCNF 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 함수 종속성 다이어그램 및 Ⅵ 종속성 보존 vs BCNF 달성의 트레이드오프
 - 기출: 105회 `제3정규형(3NF)과 보이스-코드 정규형(BCNF)의 개념을 비교하고, 3NF는 만족하지만 BCNF를 위배하는 사례와 분해 과정을 설명하시오.` → Ⅰ 정의 + Ⅲ 위배 사례 도식 + Ⅳ 분해 절차 + Ⅴ 비교표
 
 ## 한 줄 본질

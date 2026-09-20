@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 언어 혼용(Language Mixing) 현상 / 가독성 저하 / 검증 불가 영역(작문 등)의 보상 설계 난해
 ```
 - 필수 키워드: 순수 강화학습(Pure RL) · GRPO · 창발적 추론(Aha Moment) · 자가 반조 · 지식 증류(Distillation) · 규칙 기반 보상
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ R1-Zero에서 R1으로의 진화 흐름도 → Ⅴ PPO vs GRPO 비교 / 25점 = Ⅰ~Ⅶ 전개, GRPO 수식 원리와 추론 시간 컴퓨팅(Test-time Compute) 스케일링 집중
 - 기출: 미출제. 예상: "대규모 언어모델의 추론 역량 혁신을 이끈 DeepSeek-R1의 순수 강화학습 메커니즘, GRPO 알고리즘, 그리고 기존 RLHF 대비 차별점을 설명하시오."
 
 ## 한 줄 본질

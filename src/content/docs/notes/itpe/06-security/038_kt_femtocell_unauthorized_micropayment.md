@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 펨토셀 장비 보안인증(하드웨어 난독화 및 TPM 탑재) / 이상 기지국 접속 탐지 / 이동통신사 망 무결성 감사
 ```
 - 필수 키워드: 펨토셀(Femtocell) · 가짜 기지국(Rogue Base Station) · 중간자 공격(MitM) · IMSI Catcher · SMS 인증 가로채기 · 상호 인증
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 불법 펨토셀 중간자 공격 도식 → Ⅴ 스미싱 vs 펨토셀 공격 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 무선 구간 인증 탈취 킬체인과 Ⅵ 통신사 인프라 보안 개선책 집중
 - 기출: 미출제. 예상: "최근 발생한 불법 펨토셀(초소형 기지국)을 이용한 무단 소액결제 침해사고의 공격 메커니즘을 설명하고, 이동통신망 및 금융결제 관점의 재발 방지 대책을 제시하시오."
 
 ## 한 줄 본질

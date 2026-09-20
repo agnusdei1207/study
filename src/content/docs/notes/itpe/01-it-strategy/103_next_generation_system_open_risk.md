@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "C · 기출 · 70%"
+    text: "C"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회"
-  priority: 70
-  priority_note: "[출제(KPC):129]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이행 시간(Cut-over Window) 초과 / 미검증된 예외 거래로 인한 DB 락 / 경영진의 정치적 오픈 강행 압박
 ```
 - 필수 키워드: 차세대 오픈 리스크 · 컷오버(Cut-over) · 데이터 모의이행(Dry-Run) · Go/No-Go 의사결정 · 롤백(Rollback) · 마지노선 · 상황실
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 리스크 영역 및 컷오버 타임라인 도식 → Ⅴ 빅뱅 vs 단계적 오픈 비교 / 25점 = Ⅰ~Ⅶ 전개, 오픈 전·중·후 3단계 리스크 통제 세부 활동 및 Go/No-Go 판정 체크리스트, 롤백 절차 상술
 - 기출: 129회 KPC `빅뱅 방식 차세대 시스템 오픈 시 발생할 수 있는 주요 오픈 리스크와 오픈 전/중/후 단계별 리스크 통제 및 롤백 대책` → Ⅰ·Ⅲ·Ⅳ·Ⅵ
 
 ## 한 줄 본질

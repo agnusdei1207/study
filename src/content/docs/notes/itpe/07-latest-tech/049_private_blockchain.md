@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:43:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 82%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "113회, 124회, 126회"
-  priority: 82
-  priority_note: "[출제(KPC):124,126] · 이전(KPC):113"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 중앙화 및 담합 위험 / 오더러(Orderer) 노드의 단일 실패점 / 거버넌스 협의체 구성의 어려움
 ```
 - 필수 키워드: 허가형 블록체인(Permissioned) · 하이퍼레저 패브릭(Hyperledger Fabric) · MSP(Membership Service Provider) · 채널(Channel) · BFT(Byzantine Fault Tolerance) · 체인코드(Chaincode)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 하이퍼레저 패브릭 트랜잭션 처리 구조도 → Ⅴ 블록체인 유형별 비교표 / 25점 = Ⅰ~Ⅶ 전개, Execute-Order-Validate 아키텍처와 엔터프라이즈 프라이버시 보장 기법 집중
 - 기출: 124회 4교시 5번 `퍼블릭(Public) 블록체인과 프라이빗(Private) 블록체인의 차이점을 비교하여 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

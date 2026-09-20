@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회"
-  priority: 74
-  priority_note: "[출제:134]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 가상화 계층 I/O 오버헤드 / 메타데이터 손상 시 전체 볼륨 유실 위험 / 벤더 독점 기능 미지원
 ```
 - 필수 키워드: 스토리지 가상화 · SDS(소프트웨어정의스토리지) · 씬 프로비저닝 · 스토리지 풀링 · 인밴드/아웃오브밴드 · CSI
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 스토리지 가상화 구현 위치별 구조도 → Ⅴ 가상화 3대 유형(호스트, 네트워크, 어레이) 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 인밴드/아웃오브밴드 주소 매핑 흐름 및 Ⅵ 쿠버네티스 CSI 연동과 계층형 스토리지 최적화
 - 기출: 134회 1교시 10번 `스토리지 가상화(Storage Virtualization) 유형별 특징` 단답형 출제
 
 ## 한 줄 본질

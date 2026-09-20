@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:17:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 70
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 자동 설정의 블랙박스 디버깅 난항 / 기동 시간(Cold Start) 지연 / GraalVM Native Image 활용
 ```
 - 필수 키워드: 스프링 부트 · 자동 설정(Auto-Configuration) · 스타터(Starter) · 내장 WAS · Actuator · `@SpringBootApplication` · GraalVM
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 3대 핵심 기둥 도식 → Ⅴ 전통 Spring vs Spring Boot 비교 / 25점 = Ⅰ~Ⅶ 전개, 127회 기출 스프링 부트의 특징, 자동 설정 동작 원리(`@Conditional`) 및 클라우드 네이티브 MSA 운영(Actuator)
 - 기출: 127회 1교시 `스프링 부트(Spring Boot)의 개념 및 주요 특징` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

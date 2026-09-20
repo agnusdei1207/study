@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "98회, 99회, 108회, 137회"
-  priority: 86
-  priority_note: "[출제:137] · 이전(KPC):98,99,108"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── SSTF의 바깥쪽 트랙 기아(Starvation) / SSD 환경에서 HDD 스케줄러 오적용 / 플래시 마모도
 ```
 - 필수 키워드: 탐색 시간(Seek Time) · 회전 지연(Rotational Latency) · SSTF · SCAN(엘리베이터) · C-SCAN · NVMe None 스케줄러
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 디스크 구조도 → Ⅴ 대표 알고리즘 6종 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 트랙 이동 거리 계산 예시와 Ⅵ 플래시 SSD/NVMe 환경의 스케줄러 진화
 - 기출: 137회 3교시 `운영체제 스케줄링 기법(디스크 I/O 스케줄링 알고리즘 및 특징)`
 
 ## 한 줄 본질

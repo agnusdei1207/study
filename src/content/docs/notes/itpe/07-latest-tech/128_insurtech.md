@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 72
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 민감 건강/위치 정보 수집에 따른 프라이버시 충돌 / 고령층 디지털 금융 소외 / 블랙박스 알고리즘 심사의 설명책임성
 ```
 - 필수 키워드: 인슈어테크(InsurTech) · UBI(Usage-Based Insurance) · 텔레매틱스(Telematics) · AI 손해사정 · 지수형 보험(Parametric Insurance) · FDS · 스마트 계약
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 인슈어테크 가치사슬별 핵심 기술 매핑도 → Ⅴ 전통 보험 vs 인슈어테크 비교표 / 25점 = Ⅰ~Ⅶ 전개, 비전 AI 사고 견적 및 블록체인 기반 지수형 보험 자동 지급 메커니즘 집중
 - 기출: 122회 `인슈어테크` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

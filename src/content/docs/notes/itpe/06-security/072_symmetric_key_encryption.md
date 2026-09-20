@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 76
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 키 탈취 시 과거 모든 암호문 해독 위험 / 클라우드 KMS(Key Management Service) 연계 / 하드웨어 가속(AES-NI) 최적화
 ```
 - 필수 키워드: 대칭키 암호화 · 비밀키(Secret Key) · 키 배송 문제 · 블록 암호 · 스트림 암호 · AES · $N(N-1)/2$ · KMS
-- 배점 전략: 10점 = Ⅰ 정의 및 동작 원리 → Ⅲ 블록/스트림 암호 분류 도식 → Ⅴ 비대칭키 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, 키 분배 문제 해결 기법(디피헬만, KDC)과 Ⅵ 엔터프라이즈 KMS 키 관리 체계 집중
 - 기출: 132회 1교시 4번 `대칭 암호화와 비대칭 암호화` → Ⅰ 대칭키 개념 + Ⅲ 원리 + Ⅴ 비대칭키와의 비교
 
 ## 한 줄 본질

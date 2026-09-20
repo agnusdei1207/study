@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 위성 고속 이동 도플러 천이 / 지상-위성 간 동일 주파수 간섭 / 페이로드 중량 제약
 ```
 - 필수 키워드: 3GPP NTN · LEO 군집위성 · Direct-to-Cell · 수직 핸드오버 · 도플러 사전 보상 · 재생형 페이로드
-- 배점 전략: 10점 = Ⅰ → Ⅲ 위성-지상 코어망 통합 구성도 → Ⅴ 독자망 vs 표준 융합망 비교 / 25점 = Ⅰ~Ⅶ, 위성 탑재 기지국(gNB) 진화 단계와 주파수 공존 기술 상세
 - 기출: 미출제. 6G 핵심 아키텍처로서의 위성 융합 25점 서술형 출제 유력
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "117회, 118회"
-  priority: 64
-  priority_note: "이전(KPC):117,118"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 배포 후 수정 불가(불변성)로 인한 버그 패치 난항 / 오라클 문제(외부 데이터 위변조) / 재진입 공격(Reentrancy) 등 취약점
 ```
 - 필수 키워드: 스마트 계약(Smart Contract) · 닉 자보 · EVM(이더리움 가상머신) · 솔리디티(Solidity) · 불변성 · 가스(Gas) 메커니즘 · 오라클 문제(Oracle Problem) · 체인링크(DON)
-- 배점 전략: 10점 = Ⅰ 개요 및 닉 자보의 자판기 비유 → Ⅲ 스마트 계약 컴파일-배포-실행 파이프라인 → Ⅴ 전통 계약 vs 스마트 계약 비교표 / 25점 = Ⅰ~Ⅶ 전개, EVM 상태 전이 머신(State Transition Machine) 수학적 모델링 및 오라클 문제 해결을 위한 탈중앙 오라클(DON) 아키텍처 상세화
 - 기출: 117회, 118회 `스마트 계약(Smart Contract)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

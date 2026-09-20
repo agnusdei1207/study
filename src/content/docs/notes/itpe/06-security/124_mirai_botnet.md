@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 72
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── IoT 기기 사후 패치 인프라 부재 / 제조사의 보안 취약점 방치 / 오픈소스로 공개된 소스코드로 인한 변종(Satori, Mozi 등) 무한 증식
 ```
 - 필수 키워드: 미라이(Mirai) · IoT 봇넷 · Telnet 스캐닝 · 기본 자격증명(Default Credentials) · 테라급 DDoS · Dyn DNS 마비 · C2 서버
-- 배점 전략: 10점 = Ⅰ 미라이 봇넷 정의 및 Dyn DNS 침해 사건 요약 → Ⅲ 감염 및 공격 5단계 구조도 → Ⅵ 핵심 대응 방안 / 25점 = Ⅰ~Ⅶ 전개, 제126회 4교시 기출 완벽 대응, 60개 사전 대입 메커니즘, 메모리 상주 및 타 경쟁 악성코드 사살(Killer) 프로세스 동작 원리, IoT 보안 인증제 등 제도적 대응 심층 상술
 - 기출: 제126회 4교시 3번: "미라이 봇넷(Mirai Botnet)"
 
 ## 한 줄 본질

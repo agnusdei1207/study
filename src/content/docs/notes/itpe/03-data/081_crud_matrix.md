@@ -2,9 +2,6 @@
 sidebar:
   order: 81
   label: "081. CRUD 매트릭스"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "CRUD 매트릭스"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 81
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "081"
-  source_status: "기출"
-  source_history: "133회"
-  priority: 76
-  priority_note: "[출제:133]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── C 누락 엔티티(미생성 고아) / C 다중 프로세스(중복 생성 경합) / R 누락 프로세스(더미 엔티티)
 ```
 - 필수 키워드: 업무 프로세스 · 엔티티 타입 · CRUD(Create/Read/Update/Delete) · 2차원 행렬 · 정합성 검증 · 단일 C 규칙
-- 배점 전략: 10점 = Ⅰ → Ⅲ 매트릭스 도식 및 4대 검증 규칙 → Ⅵ 검증 실패 사례 / 25점 = Ⅰ~Ⅶ, Ⅳ 작성 4단계 및 Ⅵ 아키텍처 연계(서비스 분할 기준)
 - 기출: 133회 1교시 `데이터모델링에서 CRUD 매트릭스를 사용하는 목적과 이를 표현하는 방법` → Ⅰ 목적 + Ⅲ 표현 형식(행/열/교차점) + 검증 규칙
 
 ## 한 줄 본질

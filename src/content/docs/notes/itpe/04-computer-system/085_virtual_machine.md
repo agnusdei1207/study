@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 72
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 게스트 OS 중복으로 인한 스토리지/메모리 오버헤드 / 느린 부팅 시간 / 가상화 이스케이프(Escape) 위험
 ```
 - 필수 키워드: 가상머신(VM) · 하이퍼바이저 · 게스트 OS · 커널 수준 격리 · vCPU/vRAM · VM-Exit · 라이브 마이그레이션
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 가상머신 vs 컨테이너 계층 아키텍처 비교도 → Ⅴ VM vs 컨테이너 8대 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 하드웨어 자원 가상화(CPU/Mem/IO) 원리 및 Ⅵ 현대 클라우드 MicroVM(Firecracker) 진화 방향
 - 기출: 120회 2교시 4번 `가상머신(Virtual Machine)과 컨테이너(Container) 비교` 논술형 출제
 
 ## 한 줄 본질

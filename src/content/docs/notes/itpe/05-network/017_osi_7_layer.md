@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "98회, 117회, 124회"
-  priority: 81
-  priority_note: "[출제(KPC):124] · 이전(KPC):98,117"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 계층별 중복 기능(L2/L4 오류검출) / 과도한 계층 분리로 인한 헤더 오버헤드
 ```
 - 필수 키워드: ISO · PDU · 캡슐화 · 물리/데이터링크/네트워크/전송/세션/표현/응용 · TCP/IP 4계층 · 서비스 접근점(SAP)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 7계층 매핑 표(계층, 역할, PDU, 대표 프로토콜, 장비) → Ⅴ TCP/IP 비교 / 25점 = Ⅰ~Ⅶ, 계층화 원칙과 캡슐화/역캡슐화 절차 상세화
 - 기출: 98회·117회 `OSI 7계층과 캡슐화 절차` → Ⅲ·Ⅳ, 124회 `계층별 기능, PDU, 장비 및 TCP/IP 비교` → Ⅲ·Ⅴ
 
 ## 한 줄 본질

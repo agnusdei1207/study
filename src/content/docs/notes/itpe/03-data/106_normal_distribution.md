@@ -2,9 +2,6 @@
 sidebar:
   order: 106
   label: "106. 정규분포 (Normal Distribution)"
-  badge:
-    text: "기출 · 74%"
-    variant: note
 title: "정규분포 (Normal Distribution)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 106
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "106"
-  source_status: "기출"
-  source_history: "126회, 83회"
-  priority: 74
-  priority_note: "[출제(KPC):126] · 이전(KPC):83"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 소득·클릭수 등 극단적 우측 꼬리 데이터에 무리한 정규분포 가정 적용 시 예측 붕괴
 ```
 - 필수 키워드: 정규분포 · 가우스 분포 · 표준정규분포($Z$) · 68-95-99.7 법칙 · 중심극한정리 · Shapiro-Wilk · Q-Q Plot · 왜도와 첨도
-- 배점 전략: 10점 = Ⅰ → Ⅲ 확률밀도함수 및 68-95-99.7 종 모양 도식 → Ⅴ t-분포와의 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 정규성 진단 파이프라인 및 Ⅵ 비정규 데이터의 정규화 기법(Box-Cox)
 - 기출: 126회 `정규분포(Normal Distribution)의 특성과 표준정규분포로의 변환 및 통계적 활용 방안` → Ⅰ 정의 + Ⅱ 4대 특성 + Ⅲ 표준화 수식 + Ⅳ 활용 방안
 
 ## 한 줄 본질

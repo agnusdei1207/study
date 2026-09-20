@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "B · 기출 · 76%"
+    text: "B"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회, 119회"
-  priority: 76
-  priority_note: "[출제(KPC):124] · 이전(KPC):119 · 합숙·모의 5"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 형식적 포스트잇 워크숍으로 끝나는 현상(Innovation Theater) / 프로토타입 검증 실패 시 매몰비용 집착
 ```
 - 필수 키워드: d.school 5단계(공감·정의·아이디어·시제품·테스트) · 더블 다이아몬드 · 페르소나(Persona) · 고객여정지도(CJM) · HMW(How Might We) · 신속 프로토타이핑
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 5단계 프로세스 및 도구 매핑 → Ⅴ 전통 방식 대비 차이점 / 25점 = Ⅰ~Ⅶ 전개, 디자인씽킹+린+애자일 통합 개발 모델 상술
 - 기출: KPC 124회 `디자인 씽킹(Design Thinking)의 5단계 프로세스와 주요 기법을 설명하시오.`, KPC 119회 `사용자 중심 혁신을 위한 디자인 씽킹` → Ⅰ·Ⅲ·Ⅳ
 
 ## 한 줄 본질

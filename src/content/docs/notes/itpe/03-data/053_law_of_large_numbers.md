@@ -2,9 +2,6 @@
 sidebar:
   order: 53
   label: "053. 대수의 법칙 (Law of Large Numbers)"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "대수의 법칙 (Law of Large Numbers)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
@@ -14,10 +11,7 @@ weight: 53
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "053"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 소표본 관측으로 인한 성급한 일반화(도박사의 오류) / 이상치 포함 시 수렴 지연
 ```
 - 필수 키워드: 표본평균($\bar{X}$) · 모평균($\mu$) · 약대수의 법칙(WLLN) · 강대수의 법칙(SLLN) · 확률수렴 · i.i.d. · 중심극한정리(CLT)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 수식 정의 및 수렴 도식 → Ⅴ LLN vs CLT 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ WLLN/SLLN 수학적 증명 구조 및 Ⅵ 활용 분야
 - 기출: 139회 1교시 2번 `대수의 법칙과 중심극한정리` → Ⅰ 개념 + Ⅲ WLLN/SLLN + Ⅴ CLT와의 비교 및 관계
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "이전"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "이전"
-  source_history: "이전(KPC):99,101"
-  priority: 64
-  priority_note: "이전(KPC):99,101"
+
 ---
 
 # BYOD(Bring Your Own Device)

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 데이터 쓰기 충돌(Conflict) / 빛의 속도 한계(RTT 지연) / Split-Brain 현상
 ```
 - 필수 키워드: Multi-Region · Active-Active · RTO=0 · GSLB · 데이터 동기화 · CRDT · 분산 합의(Paxos/Raft)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 멀티 리전 액티브-액티브 아키텍처 도식 → Ⅴ DR 아키텍처 유형별 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 트래픽 라우팅 및 데이터 정합성 흐름과 Ⅵ 쓰기 분산(Write Path) 및 네트워크 단절 시 Split-Brain 방지책
 - 기출: 137회 3교시 3번 `다중지역 동시 가동방식(Multi-Region Active-Active) 재해복구시스템` 논술형 출제
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:33:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "122회"
-  priority: 70
-  priority_note: "[출제(KPC):122]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상용 소프트웨어 개발 시 GPL 코드 혼입으로 인한 전사 소스코드 유출 소송 / 클라우드 SaaS 회피와 AGPL 대응
 ```
 - 필수 키워드: 카피레프트(Copyleft) · GPL(General Public License) · AGPL · LGPL · 파생저작물 · 전염성 · 소스코드 공개 의무
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 카피레프트 분류 스펙트럼 도식 → Ⅴ GPL vs LGPL vs AGPL 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 법적 의무 발효 조건(배포, 링크 방식)과 Ⅵ 기업 오픈소스 거버넌스(SCA) 연계
 - 기출: 122회 1교시 4번 `허용적 라이선스(Permissive License)와 카피레프트 라이선스(Copyleft License)` → 카피레프트 관점 단독 완결 및 비교 대조
 
 ## 한 줄 본질

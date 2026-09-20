@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회, 96회"
-  priority: 76
-  priority_note: "[출제(KPC):124] · 이전(KPC):96"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수평적 권한 상승(IDOR) 탐지 난제 / 프레임워크 기본 설정 취약 / 오픈소스 취약점 전파(Log4j) / SSRF 방어
 ```
 - 필수 키워드: OWASP Top 10 · 취약한 접근통제(A01) · 암호화 실패(A02) · 인젝션(A03) · 안전하지 않은 설계(A04) · 취약한 구성요소(A06) · SSRF(A10)
-- 배점 전략: 10점 = Ⅰ 정의 및 최신 순위 변동 추이 → Ⅲ 최신 10대 취약점 요약 도식 → Ⅴ 과거 버전 대비 패러다임 변화 / 25점 = Ⅰ~Ⅶ 전개, 상위 3대 취약점(A01, A02, A03) 발생 원리와 Ⅵ 개발 생애주기(DevSecOps) 연계 실무 방어 대책 집중
 - 기출: KPC 124회 `OWASP Top 10의 주요 취약점 변화 추이 및 대응 방안` → Ⅰ~Ⅶ 전반
 
 ## 한 줄 본질

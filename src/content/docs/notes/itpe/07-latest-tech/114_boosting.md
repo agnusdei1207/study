@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "105회, 126회"
-  priority: 74
-  priority_note: "[출제(KPC):126] · 이전(KPC):105"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 노이즈 및 이상치에 대한 극심한 과적합 취약성 / 순차 실행에 따른 학습 지연 / 방대한 하이퍼파라미터 튜닝 비용
 ```
 - 필수 키워드: 부스팅(Boosting) · 약한 학습기(Weak Learner) · 잔차(Residual) · 그래디언트 부스팅(GBM) · XGBoost · LightGBM · 편향(Bias) 감소
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 순차적 잔차 누적 아키텍처 도식 → Ⅴ 부스팅 4대 알고리즘 진화 비교표 / 25점 = Ⅰ~Ⅶ 전개, 손실 함수 그래디언트 수식 유도 및 XGBoost의 2차 도함수(Hessian) 정밀도 집중
 - 기출: 126회 `부스팅` / 105회 `앙상블 기법(배깅, 부스팅)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

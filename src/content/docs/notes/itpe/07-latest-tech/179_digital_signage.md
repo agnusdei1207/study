@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 64%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "98회, 107회"
-  priority: 64
-  priority_note: "이전(KPC):98,107"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 유동인구 안면 촬영에 따른 개인정보보호법 위반 논란 / 야간 과도한 눈부심 및 빛 공해 / 윈도우 블루스크린(BSOD) 노출 사고
 ```
 - 필수 키워드: 디지털 사이니지 · DOOH(Digital Out-Of-Home) · 프로그래매틱 DOOH(pDOOH) · CMS(콘텐츠관리시스템) · 미디어 플레이어 · 시청자 분석(Audience Measurement) · 안면 인식
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 디지털 사이니지 4대 시스템 구성요소도 → Ⅴ 전통 OOH vs DOOH 비교표 / 25점 = Ⅰ~Ⅶ 전개, pDOOH 실시간 RTB(Real-Time Bidding) 광고 경매 흐름 및 비식별 비전 AI 기반 시청 효과 측정 기술 상세화
 - 기출: 98회, 107회 `디지털 사이니지` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

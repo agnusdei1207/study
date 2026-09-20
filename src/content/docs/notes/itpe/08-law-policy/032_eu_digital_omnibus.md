@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 규제 유예에 따른 컴플라이언스 일정 혼선 / 완화된 틈을 탄 안전성 검증 누락
 ```
 - 필수 키워드: 디지털 옴니버스 · 드라기(Draghi) 보고서 · 고위험 AI 의무 유예 · 규제 샌드박스 · 규제 중복 해소 · 브뤼셀 효과
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 규제 과부하와 옴니버스 정비 축 도식 → Ⅴ 전후 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 고위험 AI 의무 완화 세부 내용과 Ⅵ 글로벌 AI 생태계 파급효과 상세화
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

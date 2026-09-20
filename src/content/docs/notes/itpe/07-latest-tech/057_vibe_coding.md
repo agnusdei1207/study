@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 81
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 코드베이스 이해 상실(Code Blindness) / 레거시 부채 및 유지보수 불능 / 숨겨진 보안 취약점 누적
 ```
 - 필수 키워드: 바이브 코딩(Vibe Coding) · 안드레이 카파시(Andrej Karpathy) · AI 네이티브 개발 · 에이전틱 IDE(Cursor) · 컨텍스트 주입 · 테스트 주도 개발(TDD)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 바이브 코딩 순환 제어 흐름도 → Ⅴ 코딩 패러다임 3단계 비교표 / 25점 = Ⅰ~Ⅶ 전개, 소프트웨어 공학 관점의 품질 리스크(유지보수성, 보안성)와 TDD 기반 자동화 하네스 대책 집중
 - 기출: 미출제. 예상: "최근 생성형 AI와 에이전틱 도구의 확산으로 부각된 바이브 코딩(Vibe Coding)의 개념, 소프트웨어 개발 패러다임의 변화, 그리고 엔터프라이즈 환경에서의 품질 및 보안 리스크 대응 방안을 설명하시오."
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 74
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── VLAN 호핑(VLAN Hopping) 공격 / 4,096개 VLAN ID 확장 한계(VXLAN 등장 배경)
 ```
 - 필수 키워드: 가상 LAN · 브로드캐스트 도메인 격리 · IEEE 802.1Q · 트렁크(Trunk) 포트 · VID(12비트, 4096개) · Inter-VLAN 라우팅
-- 배점 전략: 10점 = Ⅰ → Ⅲ 802.1Q 태그 필드 구조도 및 트렁크 개념도 → Ⅴ VLAN 유형 비교표 / 25점 = 120회 기출 완벽 대응 (개념, 필요성, 분류, 태그 구조, 보안 위협)
 - 기출: 120회 1교시: "VLAN(Virtual LAN)의 개념, 필요성, 분류 방식 및 IEEE 802.1Q 프레임 태깅 구조를 설명하시오." → Ⅰ~Ⅴ
 
 ## 한 줄 본질

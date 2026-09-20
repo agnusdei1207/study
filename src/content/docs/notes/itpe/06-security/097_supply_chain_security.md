@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 75
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── SBOM 형식 파편화(SPDX vs CycloneDX) / 오픈소스 취약점 전파 가시성 부족 / 빌드 파이프라인 비밀키 유출
 ```
 - 필수 키워드: SBOM(Software Bill of Materials) · SLSA(Supply-chain Levels for Software Artifacts) · 서드파티 리스크 · 무결성 서명(Cosign) · 제로트러스트 공급망 · 의존성 분석(SCA)
-- 배점 전략: 10점 = Ⅰ 공급망 공격 개념 및 SolarWinds/XZ 사례 요약 → Ⅲ 공급망 라이프사이클 도식 → Ⅵ 핵심 대응 프레임워크 / 25점 = Ⅰ~Ⅶ 전개, 제136회 기출 요구사항인 '제로트러스트 기반 공급망 보안 아키텍처(NIST SP 800-161, SLSA, 인프라 격리 및 서명 검증)' 상술
 - 기출: 제136회 4교시 4번: "공급망 보안(Supply Chain Security)을 설명하고, 제로트러스트(Zero Trust) 기반 공급망 보안 아키텍처를 설명하시오."
 
 ## 한 줄 본질

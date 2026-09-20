@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:36:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 70
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 실제 하위 모듈 연동 시 인터페이스 불일치 결함 / 외부 결제/메일 API 격리 / Mockito 프레임워크 활용
 ```
 - 필수 키워드: 테스트 스텁 · 하향식 통합 테스팅(Top-down) · 피호출 모듈 대행 · 더미 응답 · 의존성 격리 · Mockito · 테스트 드라이버 비교
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 스텁의 하위 응답 대행 구조 도식 → Ⅴ 스텁 vs 드라이버 vs 목 비교 / 25점 = Ⅰ~Ⅶ 전개, 131회 기출 통합 테스트 기법, 스텁의 구현 패턴, 테스트 더블(Test Double) 5대 분류 및 실무 API 모킹
 - 기출: 131회 1교시 `소프트웨어 통합 테스트에서 테스트 드라이버(Driver)와 테스트 스텁(Stub)의 개념 및 차이점` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

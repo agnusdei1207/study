@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:15:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "126회"
-  priority: 70
-  priority_note: "[출제(KPC):126]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 지역 최적점 조기 수렴(Premature Convergence) / 탐색 시간 폭증 / 하이퍼파라미터(온도/변이율) 튜닝 난이도
 ```
 - 필수 키워드: 메타휴리스틱 · NP-Hard · 탐색(Exploration) · 활용(Exploitation) · 지역 최적점 탈출 · 유전 알고리즘 · 시뮬레이티드 어닐링
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 메타휴리스틱 기본 구조도 → Ⅴ 4대 대표 기법(GA/SA/TS/PSO) 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 탐색-활용 트레이드오프 수렴 제어 및 Ⅵ 클라우드 자원 스케줄링/물류 TSP 최적화 실무 적용
 - 기출: 126회 1교시 2번 `메타휴리스틱스(Metaheurstics)` 단답형 출제
 
 ## 한 줄 본질

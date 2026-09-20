@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:22:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── Core Web Vitals(LCP, INP, CLS) 불합격 / JavaScript 번들 비대화(Tree-shaking) / 이미지 차세대 포맷(WebP/AVIF)
 ```
 - 필수 키워드: 웹 성능 최적화 · Core Web Vitals · LCP · INP · CLS · 중요 렌더링 경로(CRP) · 리플로우/리페인트 · 트리 셰이킹 · CDN
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 웹 성능 최적화 3대 영역 도식 → Ⅴ Core Web Vitals 핵심 지표 표 / 25점 = Ⅰ~Ⅶ 전개, 128회 기출 프론트엔드 성능 최적화 기법, 브라우저 렌더링 파이프라인(CRP) 단계별 병목 해소 방안
 - 기출: 128회 1교시 `웹 성능 최적화(Web Performance Optimization)의 기법 및 주요 성능 지표` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

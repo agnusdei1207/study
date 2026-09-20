@@ -2,9 +2,6 @@
 sidebar:
   order: 118
   label: "118. MongoDB"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "MongoDB"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 118
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "118"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 70
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 임베딩(Embedding) 과다로 인한 16MB 문서 크기 한도 초과 / 잘못된 샤드 키 선정으로 인한 점보 청크(Jumbo Chunk) 발생
 ```
 - 필수 키워드: MongoDB · 문서 지향(Document) · BSON · Replica Set · 샤딩(Sharding) · Mongos · Config Server · WiredTiger 엔진 · 임베딩 vs 참조
-- 배점 전략: 10점 = Ⅰ → Ⅲ MongoDB 분산 클러스터(Mongos, Config, Shard) 구조도 → Ⅴ RDBMS와의 데이터 모델링 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 쿼리 라우팅 및 Ⅵ 임베딩 vs 참조 설계 패턴
 - 기출: 127회 `문서 지향 NoSQL 데이터베이스인 MongoDB의 특징과 아키텍처 및 데이터 모델링 기법` → Ⅰ 정의 + Ⅱ 특징 + Ⅲ 아키텍처 + Ⅵ 모델링 패턴(임베딩 vs 참조)
 
 ## 한 줄 본질

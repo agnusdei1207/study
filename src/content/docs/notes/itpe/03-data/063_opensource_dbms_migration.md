@@ -2,9 +2,6 @@
 sidebar:
   order: 63
   label: "063. 오픈소스 DBMS 전환"
-  badge:
-    text: "기출 · 80%"
-    variant: note
 title: "오픈소스 DBMS 전환"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
@@ -14,10 +11,7 @@ weight: 63
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "063"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 80
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 상용 전용 패키지(PL/SQL, NVL, 계층형 쿼리) 미지원에 따른 애플리케이션 수정 비용 폭증
 ```
 - 필수 키워드: TCO 절감 · 벤더 종속(Lock-in) 탈피 · 스키마 변환(SCT) · CDC(Change Data Capture) · 컷오버(Cutover) · 무중단 마이그레이션 · PostgreSQL
-- 배점 전략: 10점 = Ⅰ → Ⅳ 5단계 마이그레이션 절차 도식 → Ⅴ 상용 vs 오픈소스 비교표 / 25점 = Ⅰ~Ⅶ, Ⅲ 호환성 진단 툴체인 및 Ⅵ 정합성 검증·위험 관리
 - 기출: 138회 2교시 1번 `상용 DBMS를 오픈소스 DBMS로 전환하는 수요 증대와 전환 방안` → Ⅰ 전환 배경 + Ⅳ 마이그레이션 절차 + Ⅵ 주요 위험 및 대책
 
 ## 한 줄 본질

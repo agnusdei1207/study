@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:19:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 70
-  priority_note: "[출제(KPC):125]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 패킷 경합으로 인한 지연(Head-of-Line Blocking) / 데드락(Deadlock) 발생 / 배선 복잡도 및 스위치 포트 수 한계
 ```
 - 필수 키워드: 상호연결망 · 정적/동적 토폴로지 · 네트워크 지름 · 이등분 대역폭 · 웜홀 라우팅 · Fat-Tree · Torus
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 주요 토폴로지(Mesh, Torus, Hypercube, Fat-Tree) 비교도 → Ⅴ 정적 vs 동적 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 웜홀 스위칭 및 가상 채널 흐름과 Ⅵ 대규모 AI 슈퍼컴퓨터 네트워크 실무 설계
 - 기출: 125회 2교시 3번 `병렬처리 시스템의 상호연결망(Interconnection Network)` 서술형 출제
 
 ## 한 줄 본질

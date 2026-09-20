@@ -2,9 +2,6 @@
 sidebar:
   order: 108
   label: "108. 비식별관계 (Non Identification)"
-  badge:
-    text: "기출 · 72%"
-    variant: note
 title: "비식별관계 (Non Identification)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 108
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "108"
-  source_status: "기출"
-  source_history: "133회"
-  priority: 72
-  priority_note: "[출제:133]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 식별관계 남용 시 5단계 하위 자식의 복합 PK 폭증 / 비식별관계 과다 시 조인 연산 증가로 인한 성능 저하
 ```
 - 필수 키워드: 비식별관계 · 식별관계 · 외래키(FK) · 주식별자 상속 · 점선 표기 · 약한 종속성 · 대리키(Surrogate Key)
-- 배점 전략: 10점 = Ⅰ → Ⅲ ERD 표기 및 필수/선택 비식별 구조도 → Ⅴ 식별 vs 비식별 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 모델링 선택 기준 의사결정 트리 및 Ⅵ 복합키 폭증 해소 사례
 - 기출: 133회 4교시 4번 `RDBMS를 적용하기 위한 데이터 모델링에서 식별관계와 비식별관계` → Ⅰ 정의 + Ⅲ 구조 + Ⅴ 상세 비교 + Ⅵ 설계 가이드라인
 
 ## 한 줄 본질

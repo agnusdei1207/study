@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 85
-  priority_note: "[출제:136] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무한 루프(Infinite Loop) / 도구 실행 권한 남용(Privilege Abuse) / 환각 누적으로 인한 복합 오류
 ```
 - 필수 키워드: 자율성(Autonomy) · ReAct 패턴 · 계획 수립(Planning) · 도구 사용(Function Calling/MCP) · 자가 반조(Reflection) · 인간 개입(HITL)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 핵심 아키텍처 4대 요소 → Ⅳ ReAct 순환 흐름도 / 25점 = Ⅰ~Ⅶ 전개, 단기/장기 메모리 구조와 보안 권한 제어 가드레일 집중
 - 기출: 136회 1교시 3번 `에이전틱 AI(Agentic AI)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 통신사 조 단위 투자비 부담 / 5G 커버리지 미흡 지역 통화 품질 저하(EPS Fallback)
 ```
 - 필수 키워드: 주파수 재할당 · 5G SA(Standalone) · 5G NSA(Non-Standalone) · 5GC(5G Core) · 네트워크 슬라이싱 · URLLC
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ NSA vs SA 망 구조 비교도 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 3GPP 표준 옵션과 Ⅵ B2B 산업 융합 효과 상세화
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

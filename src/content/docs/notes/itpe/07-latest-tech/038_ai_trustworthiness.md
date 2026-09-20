@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "133회, 137회"
-  priority: 85
-  priority_note: "[출제:133,137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 적대적 공격(Adversarial Attack) 취약 / 설명가능성(XAI)과 모델 정확도 상충 / 데이터 드리프트
 ```
 - 필수 키워드: 안전성(Safety) · 설명가능성(Explainability/XAI) · 공정성(Fairness) · 견고성(Robustness) · 신뢰성 검인증(CAT) · AI 윤리
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 신뢰성 4대 축 구조도 → Ⅴ 전통 SW vs AI 신뢰성 비교표 / 25점 = Ⅰ~Ⅶ 전개, TTA AI 신뢰성 검인증 기준(CAT) 및 ISO/IEC 42001 표준 프레임워크 집중
 - 기출: 133회 1교시 8번 `인공지능 신뢰성의 개념과 핵심 속성에 대하여 설명하시오.` / 137회 1교시 8번 `AI 신뢰성 검인증 제도(CAT)를 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

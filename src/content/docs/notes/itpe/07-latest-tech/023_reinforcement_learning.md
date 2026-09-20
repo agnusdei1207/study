@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 86
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 보상 해킹(Reward Hacking) / 표본 효율성(Sample Inefficiency) 저조 / 탐색 공간 폭발
 ```
 - 필수 키워드: MDP · 벨만 방정식 · 탐험과 활용(Exploration vs Exploitation) · DQN · PPO · 보상 함수 · RLHF
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ MDP 상호작용 피드백 루프 구조도 → Ⅴ 대표 알고리즘 3대 비교 / 25점 = Ⅰ~Ⅶ 전개, 벨만 최적 방정식 수식과 최신 LLM 추론(PPO/GRPO) 결합 집중
 - 기출: 139회 2교시 2번 `LLM 학습 파이프라인 및 강화학습(RL) 적용` → Ⅰ·Ⅲ·Ⅵ
 
 ## 한 줄 본질

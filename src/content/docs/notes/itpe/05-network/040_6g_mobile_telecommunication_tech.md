@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 75
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── THz 대역 극심한 대기 흡수 손실 / 전력 증폭기(PA) 효율 급락 / 하드웨어 발열
 ```
 - 필수 키워드: 테라헤르츠(THz) · RIS(지능형 반사 표면) · ISAC(통신-센싱 융합) · Extreme MIMO · NTN · 시맨틱 통신
-- 배점 전략: 10점 = Ⅰ → Ⅲ 6G 핵심 기술 분류 체계도 → Ⅴ 5G vs 6G 기술 비교표 / 25점 = Ⅰ~Ⅶ, 135회 2교시 4번 기출에 맞춰 각 기술별 공학적 원리와 물리적 한계 대책 상세
 - 기출: 135회 2교시 4번 `6G 이동통신기술에 대하여 다음을 설명하시오.` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

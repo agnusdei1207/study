@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:33:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "123회"
-  priority: 70
-  priority_note: "[출제(KPC):123]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 음수 사이클(Negative Cycle) 무한 루프 / 내비게이션 길찾기(A*) / 네트워크 라우팅 프로토콜(OSPF vs BGP)
 ```
 - 필수 키워드: 최단경로 · 다익스트라(Dijkstra) · 벨만-포드(Bellman-Ford) · 플로이드-워셜(Floyd-Warshall) · 변 경감(Relaxation) · 음수 사이클 · OSPF · A*
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 4대 최단경로 알고리즘 분류 체계 도식 → Ⅴ 시간복잡도 및 특성 비교표 / 25점 = Ⅰ~Ⅶ 전개, 123회 기출 단일 시작점 vs 모든 쌍 최단경로 기법 비교, 변 경감(Edge Relaxation) 수학적 원리 및 네트워크 라우팅 실무 적용
 - 기출: 123회 1교시 `최단경로 알고리즘(Shortest Path Algorithm)의 종류 및 특징 비교` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

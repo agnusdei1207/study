@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수천 개 물리 큐비트당 1개 논리 큐비트 비율(오버헤드) / 실시간 디코딩 지연 / 극저온 배선 한계
 ```
 - 필수 키워드: QEC(양자 오류정정) · 결어긋남(Decoherence) · 서피스 코드(Surface Code) · 구글 윌로우(Willow) · 오류정정 임계값 · 논리 큐비트
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 서피스 코드 그리드 구조도 → Ⅴ NISQ vs FTQC 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 신드롬 측정 흐름과 Ⅵ 실용 양자 암호 해독 및 신소재 시뮬레이션 영향
 - 기출: 미출제. 예상: "구글 윌로우(Willow) 칩 발표로 촉발된 '양자 오류정정 임계값(Quantum Error Correction Threshold)'의 개념, 서피스 코드 동작 원리, 그리고 실용적 양자컴퓨팅(FTQC) 도달 의미를 설명하시오."
 
 ## 한 줄 본질

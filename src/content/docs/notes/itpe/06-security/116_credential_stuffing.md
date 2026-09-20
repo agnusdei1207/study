@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "131회"
-  priority: 74
-  priority_note: "[출제(KPC):131]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 정상 사용자 로그인 요청과 봇 트래픽의 구분 난항 / IP 차단 시 분산 프록시 우회 / CAPTCHA 남발에 따른 고객 이탈
 ```
 - 필수 키워드: 크리덴셜 스터핑 · 비밀번호 재사용 · 콤보 리스트(Combo List) · 봇넷(Botnet) · 패스키(Passkey) · 다중 요소 인증(MFA) · 레이트 리미팅(Rate Limiting)
-- 배점 전략: 10점 = Ⅰ 크리덴셜 스터핑 개념 및 메커니즘 → Ⅲ 공격 인프라 및 흐름 도식 → Ⅴ 브루트포스 비교표 / 25점 = Ⅰ~Ⅶ 전개, 제131회 기출 반영, OWASP Automated Threat(OAT-008) 대응 체계, WAF 봇 관리 솔루션 및 FIDO2 기반 패스키 마이그레이션 심층 상술
 - 기출: 제131회 1교시 10번: "크리덴셜 스터핑(Credential stuffing)"
 
 ## 한 줄 본질

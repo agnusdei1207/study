@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:44:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 전압 스케일링 한계(덴나드 스케일링 법칙 붕괴) / 클록 다운으로 인한 서비스 지연 / 초기 인프라 투자비용
 ```
 - 필수 키워드: 에너지 효율 컴퓨팅 · Performance per Watt · DVFS · 파워 게이팅 · GAA(Gate-All-Around) · 액침냉각 · PUE
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 에너지 효율 컴퓨팅 전 계층 아키텍처 도식 → Ⅴ 전통 HPC vs 에너지 효율 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 하드웨어/OS 절전 제어 흐름 및 Ⅵ AI 데이터센터 PUE 절감과 ESG 탄소 배출권 연계
 - 기출: 미출제 (2026 시사·트렌드 키워드)
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 86
   label: "086. T검정 (T-test)"
-  badge:
-    text: "기출 · 76%"
-    variant: note
 title: "T검정 (T-test)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 86
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "086"
-  source_status: "기출"
-  source_history: "132회"
-  priority: 76
-  priority_note: "[출제:132]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단일표본(기준값 비교) vs 독립표본(A/B 테스트) vs 대응표본(배포 전/후 레이턴시 비교)
 ```
 - 필수 키워드: t-검정 · t-분포 · 모분산 미지 · 표본표준편차 · 자유도($df$) · p-value · 독립표본 · 대응표본(Paired)
-- 배점 전략: 10점 = Ⅰ → Ⅲ 수식 및 t-분포 도식 → Ⅴ z-검정과의 비교표 / 25점 = Ⅰ~Ⅶ, Ⅵ 3대 유형(단일/독립/대응) 공식 및 실무 A/B 테스트 판정 절차
 - 기출: 132회 2교시 1번 `중심극한정리, t-검정, z-검정을 설명하시오.` → Ⅰ t-검정 개념 + Ⅲ t-통계량 수식 + Ⅴ z-검정과의 조건별 비교
 
 ## 한 줄 본질

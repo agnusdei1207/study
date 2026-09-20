@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 장기 예측 시 오차 누적으로 인한 환각 붕괴 / 극심한 학습 연산량 / 물리적 불연속성(충돌/마찰) 표현 한계
 ```
 - 필수 키워드: 월드 모델(World Model) · 월드 파운데이션 모델 · 잠재 공간(Latent Space) · 물리 시뮬레이션 · JEPA · 미래 상태 예측 · 상상 속 학습(Dreamer)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ V-M-C 3단 아키텍처 및 미래 예측 루프 → Ⅴ 기존 모델 대비 비교표 / 25점 = Ⅰ~Ⅶ 전개, 얀 르쿤의 V-JEPA 비지도 물리 표현 학습 및 자율주행(End-to-End) 안전성 집중
 - 기출: 미출제. 예상: "AGI 및 피지컬 AI의 핵심 기반 기술로 주목받는 월드 모델(World Model)의 개념, 아키텍처, 물리 세계 시뮬레이션 원리 및 자율주행/로봇 적용 방안을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 133
   label: "133. 베르누이 분포(Bernoulli Distribution)"
-  badge:
-    text: "기출 · 70%"
-    variant: note
 title: "베르누이 분포 (Bernoulli Distribution)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 133
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "133"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 성공 확률이 극도로 낮은 불균형 데이터($p \ll 0.01$, 사기 거래)에서 분산 감소에 따른 학습 왜곡
 ```
 - 필수 키워드: 베르누이 분포 · 베르누이 시행 · 성공확률($p$) · 확률질량함수(PMF) · 기댓값($p$) · 분산($p(1-p)$) · 이항분포 · 이진 교차 엔트로피(BCE)
-- 배점 전략: 10점 = Ⅰ → Ⅲ PMF 수식 및 기댓값/분산 유도식 → Ⅴ 관련 이산확률분포 비교표 / 25점 = Ⅰ~Ⅶ, Ⅳ 베르누이에서 이항/포아송으로의 확장 흐름도 및 Ⅵ 머신러닝 BCE 손실 함수 연계
 - 기출: 130회 `베르누이 시행과 베르누이 분포(Bernoulli Distribution)의 개념, 확률질량함수 및 평균과 분산을 유도하시오.` → Ⅰ 정의 + Ⅱ 베르누이 시행 성질 + Ⅲ PMF 및 평균/분산 수식 유도 + Ⅴ 이항분포와의 관계
 
 ## 한 줄 본질

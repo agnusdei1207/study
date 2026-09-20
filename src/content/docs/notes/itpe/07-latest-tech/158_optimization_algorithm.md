@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 70
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 국소 극소점(Local Minima) 및 안장점(Saddle Point) 정체 / 그래디언트 소실(Vanishing) 및 폭주(Exploding) / 학습률 튜닝 오버헤드
 ```
 - 필수 키워드: 최적화 알고리즘(Optimization Algorithm) · 경사하강법(SGD) · 모멘텀(Momentum) · AdaGrad · RMSprop · Adam · AdamW · 안장점(Saddle Point) · 학습률(Learning Rate)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅱ 최적화 알고리즘 진화 계보도(방향 vs 보폭) → Ⅴ 대표 5대 옵티마이저 비교표 / 25점 = Ⅰ~Ⅶ 전개, Adam 수식(1차·2차 모멘텀 바이어스 보정) 및 AdamW의 Weight Decay 수식적 차이 전개
 - 기출: 130회 `최적화 알고리즘(Optimization Algorithm)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

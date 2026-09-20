@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:50:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회, 128회"
-  priority: 80
-  priority_note: "[출제(KPC):120,128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 동일 범주의 2가지 수단(2-Step)을 2요소(2FA)로 오인 / SMS 인증의 SIM 스와핑 취약성 / 피싱 저항성 FIDO2 MFA 도입
 ```
 - 필수 키워드: 식별(Identification) · 인증(Authentication) · IAAA · 인증 4대 요소(지식·소유·존재·행위) · MFA · 적응형 인증 · FIDO
-- 배점 전략: 10점 = Ⅰ 정의 및 IAAA 체계 → Ⅲ 인증 4대 요소 분류 도식 → Ⅴ 식별 vs 인증 vs 인가 비교 / 25점 = Ⅰ~Ⅶ 전개, 인증 요소별 장단점 및 Ⅵ 피싱 저항성 다중인증(MFA) 실무 구현 대책 집중
 - 기출: KPC 120회/128회 `식별과 인증의 개념, 인증의 4대 요소 및 다중요소인증(MFA) 구현 방안` → Ⅰ IAAA + Ⅲ 인증 4대 요소 + Ⅵ MFA 실무
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 82%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 82
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 가상 메모리 페이징 도입 / 메모리 압축(Compaction)의 I/O 비용 / 버디 시스템(Buddy System)
 ```
 - 필수 키워드: 내부 단편화(Internal) · 외부 단편화(External) · 페이징(Paging) · 세그멘테이션 · 버디 시스템(Buddy System) · 슬랩 할당자(Slab Allocator)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 내부 vs 외부 단편화 도식 → Ⅴ 단편화 유형 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 버디 시스템 분할/병합 알고리즘과 Ⅵ OS 커널 슬랩 캐시 동작
 - 기출: 139회 4교시 `가상메모리 및 메모리 관리 기법(단편화 원인과 해결방안)`
 
 ## 한 줄 본질

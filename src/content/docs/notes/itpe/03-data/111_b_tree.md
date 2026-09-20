@@ -2,9 +2,6 @@
 sidebar:
   order: 111
   label: "111. B 트리 (B-Tree)"
-  badge:
-    text: "기출 · 71%"
-    variant: note
 title: "B 트리 (B-Tree)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 111
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "111"
-  source_status: "기출"
-  source_history: "89회, 98회, 101회, 105회"
-  priority: 71
-  priority_note: "이전(KPC):89,98,101,105"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 빈번한 삽입·삭제로 인한 노드 분할 오버헤드 / 범위 검색(Range Scan) 시 순차 I/O 비효율
 ```
 - 필수 키워드: B-Tree · 다원 균형 트리 · 노드 분할(Split) · 노드 병합(Merge) · 블록 I/O 최소화 · $O(\log N)$ · B+Tree · 균형 트리
-- 배점 전략: 10점 = Ⅰ → Ⅲ B-Tree 노드 구조 및 차수 M의 성질 → Ⅴ BST 및 B+Tree 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 노드 분할/병합 알고리즘 및 Ⅵ 디스크 I/O 최적화 관점
 - 기출: 105회 `B-Tree의 개념과 특징, 삽입 및 삭제 연산 과정` → Ⅰ 정의 + Ⅱ 핵심 성질 + Ⅳ 분할/병합 연산 흐름 + Ⅴ B+Tree 비교
 
 ## 한 줄 본질

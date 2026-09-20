@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "139회"
-  priority: 80
-  priority_note: "[출제:139]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 락 획득 후 미해제에 따른 데드락 / 우선순위 역전(Priority Inversion) / 빈번한 문맥 교환 오버헤드
 ```
 - 필수 키워드: 상호배제(Mutual Exclusion) · 소유권(Ownership) · lock()/unlock() · 원자적 명령어(TAS) · 피터슨 알고리즘 · 우선순위 역전
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 뮤텍스 내부 구조도 → Ⅴ 뮤텍스 vs 이진 세마포어 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ Test-and-Set 하드웨어 원리와 Ⅵ 우선순위 상속 프로토콜(PIP)
 - 기출: 139회 4교시 2번 `운영체제의 프로세스 동기화 기법 중 뮤텍스(Mutex), 세마포어(Semaphore), 모니터(Monitor)에 대하여 설명하시오.`
 
 ## 한 줄 본질

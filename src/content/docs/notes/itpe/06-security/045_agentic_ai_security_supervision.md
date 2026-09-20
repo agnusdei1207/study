@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 85%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 85
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무한 루프 자원 고갈 / 간접 프롬프트 인젝션을 통한 악성 명령 실행 / DB 삭제 등 비가역적 액션 오작동
 ```
 - 필수 키워드: 에이전틱 AI · 자율 실행 · 보안 감독 · 가드레일(Guardrails) · HITL(Human-in-the-Loop) · 샌드박스 격리 · 도구 호출 인가
-- 배점 전략: 10점 = Ⅰ 개요 및 에이전트 위협 → Ⅲ 에이전트 보안 감독 프레임워크 도식 → Ⅴ 챗봇 보안 대비 차별점 / 25점 = Ⅰ~Ⅶ 전개, OWASP Agentic Top 10 취약점과 Ⅵ 샌드박스·HITL 실무 통제 아키텍처 집중
 - 기출: 미출제. 예상: "자율적으로 행동하고 도구를 사용하는 에이전틱 AI(Agentic AI)의 보안 위협 요소를 제시하고, 안전한 활용을 위한 보안 감독 체계(Guardrails, HITL)를 설명하시오."
 
 ## 한 줄 본질

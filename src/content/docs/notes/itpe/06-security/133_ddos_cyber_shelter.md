@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── DNS 캐시 전파 지연(TTL)으로 인한 우회 지연 / 웹 트래픽(HTTP/HTTPS) 중심 지원 한계 / 원본 서버 IP 노출 시 직접 타격 위험
 ```
 - 필수 키워드: DDoS 사이버대피소 · 한국인터넷진흥원(KISA) · 스크러빙 센터(Scrubbing Center) · DNS CNAME 우회 · L4/L7 디도스 방어 · 트래픽 세척 · 중소기업 무료 지원
-- 배점 전략: 10점 = Ⅰ 사이버대피소 개념 및 지원 대상 → Ⅲ DNS 우회 및 스크러빙 흐름도 도식 → Ⅵ 핵심 운영 절차 / 25점 = Ⅰ~Ⅶ 전개, KPC 기출 반영, L4 대역폭 고갈(SYN/UDP Flood)과 L7 애플리케이션 공격(Slowloris, HTTP Flooding)에 대한 스크러빙 필터링 기술, 원본 IP 은닉 및 BGP Anycast 연계 방안 심층 상술
 - 기출: 제128회 기출: "DDoS 사이버대피소"
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 표현의 자유 침해 논란 / 언어적 뉘앙스와 풍자(Satire)에 대한 AI 자동 판별 한계 / 국경을 넘나드는 공격 행위자 처벌 불가
 ```
 - 필수 키워드: 허위정보 보안 · 인지전(Cognitive Warfare) · DISARM 프레임워크 · FIMI(정보 조작 및 간섭) · 생성형 AI 딥페이크 · 소셜 봇넷 · 팩트체크 자동화
-- 배점 전략: 10점 = Ⅰ 허위정보 보안 개념 및 위협 양상 → Ⅲ DISARM 프레임워크 기반 공격 체계도 → Ⅵ 핵심 방어 기술 요약 / 25점 = Ⅰ~Ⅶ 전개, 국가 배후 인지전(Cognitive Warfare)의 기술적 메커니즘 분석, MITRE ATT&CK과 유사한 DISARM 매트릭스 적용 및 기술·제도적 종합 대응책 심층 상술
 - 기출: 미출제. 예상: "생성형 AI 기술의 발전으로 정교화된 허위정보(Disinformation)가 국가 안보와 기업 경영에 심각한 위협으로 대두되고 있다. 허위정보 공격의 전파 메커니즘과 이를 사이버 위협 관점에서 분석·방어하기 위한 'DISARM 프레임워크' 및 기술적 대응 방안을 설명하시오."
 
 ## 한 줄 본질

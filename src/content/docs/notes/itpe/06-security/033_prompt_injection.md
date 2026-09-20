@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 86
-  priority_note: "[출제:138] · 시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 시스템 프롬프트 유출(Leaking) 방어 / RAG 파이프라인 정화 / 구조화된 구분자(XML/Delimiters) 설계
 ```
 - 필수 키워드: OWASP Top 10 for LLM(LLM01) · 직접 인젝션 · 간접 인젝션(Indirect Injection) · 탈옥(Jailbreak) · 시스템 프롬프트 · 가드레일
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 직접 vs 간접 인젝션 도식 → Ⅴ SQL 인젝션과의 본질적 차이 / 25점 = Ⅰ~Ⅶ 전개, 간접 인젝션 킬체인과 Ⅵ 입력 정화 및 아키텍처 다층 방어책 집중
 - 기출: 138회 1교시 12번 `프롬프트 인젝션(Prompt Injection)` → Ⅰ·Ⅱ·Ⅲ·Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "121회"
-  priority: 76
-  priority_note: "[출제(KPC):121]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 고유식별자 매핑키 관리 소홀 / 비정형 데이터(텍스트·이미지) 가명처리 난도
 ```
 - 필수 키워드: PIPA 제28조의2 · 추가정보(Additional Info) · 과학적 연구 · 결합전문기관 · k-익명성 · 재식별 금지
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 가명처리 4단계 절차도 → Ⅴ 3단계 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 비식별화 기법과 Ⅵ 안전성 조치 의무 집중
 - 기출: 121회 3교시 4번 `데이터 3법 시행령상 가명정보 결합 및 안전성 확보 조치` → Ⅰ·Ⅲ·Ⅳ·Ⅵ
 
 ## 한 줄 본질

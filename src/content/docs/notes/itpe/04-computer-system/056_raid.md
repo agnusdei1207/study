@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "99회, 120회"
-  priority: 76
-  priority_note: "[출제(KPC):120] · 이전(KPC):99"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 리빌딩(Rebuild) 중 2차 장애 발생(URE) / 쓰기 페널티(Write Penalty) / 전원 장애 시 Write Hole
 ```
 - 필수 키워드: RAID · 스트라이핑(Striping) · 미러링(Mirroring) · 패리티(Parity) · 쓰기 페널티 · URE · 리빌딩(Rebuild)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ RAID 레벨별 데이터 배치 도식 → Ⅴ RAID 0/1/5/6/10 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 패리티 연산 흐름 및 Ⅵ 대용량 드라이브 리빌드 시 2차 파손 위험과 Erasure Coding 발전 방향
 - 기출: 120회 1교시 8번 `RAID 0, RAID 1, RAID 5, RAID 6` 단답형 출제
 
 ## 한 줄 본질

@@ -2,9 +2,6 @@
 sidebar:
   order: 159
   label: "159. 함수적 종속성(Functional Dependency)"
-  badge:
-    text: "기출 · 64%"
-    variant: note
 title: "함수적 종속성 (Functional Dependency)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
@@ -14,10 +11,7 @@ weight: 159
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "159"
-  source_status: "기출"
-  source_history: "81회, 84회"
-  priority: 64
-  priority_note: "이전(KPC):81,84"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 이행적 함수 종속(주민번호 $\rightarrow$ 주소 $\rightarrow$ 우편번호)을 단일 테이블에 방치하여 주소 변경 시 대규모 갱신 이상 발생
 ```
 - 필수 키워드: 함수적 종속성 · 결정자(Determinant) · 종속자(Dependent) · 완전 함수 종속(FFD) · 부분 함수 종속(PFD) · 이행적 함수 종속(TFD) · 암스트롱의 공리 · 정규화
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3대 함수 종속성 유형 및 정규화 매핑표 → Ⅴ FFD vs PFD vs TFD 비교 / 25점 = Ⅰ~Ⅶ, Ⅳ 함수 종속 다이어그램(FDD) 도식 및 Ⅵ 암스트롱 공리 6개 규칙 증명
 - 기출: 84회 `데이터베이스 정규화의 기초가 되는 함수적 종속성(Functional Dependency)의 개념과 유형(완전, 부분, 이행) 및 암스트롱의 공리(Armstrong's Axioms)를 설명하시오.` → Ⅰ 정의 + Ⅲ 3대 종속성 유형 + Ⅴ 암스트롱 공리 + Ⅵ 정규화 연계
 
 ## 한 줄 본질

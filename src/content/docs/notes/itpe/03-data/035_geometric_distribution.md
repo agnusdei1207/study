@@ -2,9 +2,6 @@
 sidebar:
   order: 35
   label: "035. 기하 분포 (Geometric Distribution)"
-  badge:
-    text: "기출 · 85%"
-    variant: note
 title: "기하 분포 (Geometric Distribution)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:32:00+09:00"
@@ -14,10 +11,7 @@ weight: 35
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "035"
-  source_status: "기출"
-  source_history: "135회, 130회"
-  priority: 85
-  priority_note: "[출제:135] · [출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 네트워크 패킷 재전송 횟수 산정 / 반도체 웨이퍼 첫 불량 검출 시점 / 결제 승인 재시도 제어
 ```
 - 필수 키워드: 기하 분포 · 베르누이 시행 · 첫 번째 성공 · 비기억성(Memoryless Property) · $E(X)=1/p$ · 음이항 분포
-- 배점 전략: 10점 = Ⅰ → Ⅲ PMF 수식 및 기댓값/분산 유도 도식 → Ⅵ 한 행 / 25점 = Ⅰ~Ⅶ, 앞 1/3에 Ⅲ 수식 도식 및 Ⅴ 베르누이 계열 4대 분포 비교표
 - 기출: 130회 1교시 12번 `베르누이 분포와 기하 분포` → Ⅰ 두 분포 정의 + Ⅴ 관계 및 차이점 완결 비교
 
 ## 한 줄 본질

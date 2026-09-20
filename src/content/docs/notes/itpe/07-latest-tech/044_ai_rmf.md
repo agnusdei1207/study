@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:42:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 82%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "138회"
-  priority: 82
-  priority_note: "[출제:138]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 조직 문화 부재로 인한 거버넌스 형식화 / AI 위해(Harm)의 정량화 측정 난이도 / 지속적 모니터링 부담
 ```
 - 필수 키워드: NIST AI RMF · 4대 핵심 기능(GOVERN, MAP, MEASURE, MANAGE) · 7대 신뢰성 특성 · 위험 기반 접근 · AI 위해(AI Harms) · ISO/IEC 42001
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 핵심 기능 구조도 → Ⅴ 7대 신뢰성 특성 표 / 25점 = Ⅰ~Ⅶ 전개, 4대 기능별 세부 활동(Sub-category) 및 조직 ERM 연계 방안 집중
 - 기출: 138회 1교시 1번 `미국 국립표준기술연구소에서 발행한 AI RMF(Risk Management Framework)의 개념과 4가지 핵심구조, 7가지 신뢰 가능한 특성을 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

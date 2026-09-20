@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "B · 기출 · 76%"
+    text: "B"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "125회"
-  priority: 76
-  priority_note: "[출제(KPC):125] · 합숙·모의 6 · 컴시응 기출 1"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 부적절한 분할 축 선정으로 인한 애매한 중복 / 하위 계층에서의 MECE 붕괴 / 지나친 세분화로 인한 오버헤드
 ```
 - 필수 키워드: 상호 배타성(ME) · 전체 포괄성(CE) · 로직 트리 · WBS 100% 룰 · 2분법 · 프레임워크(3C, 4P, SWOT)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅴ 4분면 매트릭스 및 IT 적용 분야 도식 / 25점 = Ⅰ~Ⅶ 전개, WBS/리스크 관리/ISP 현황분석 연계
 - 기출: KPC 125회 `MECE(Mutually Exclusive Collectively Exhaustive)의 개념과 분할 기법 및 IT 프로젝트 활용 방안을 설명하시오.` → Ⅰ·Ⅲ·Ⅵ
 
 ## 한 줄 본질

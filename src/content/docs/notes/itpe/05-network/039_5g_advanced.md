@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 통신사 5G 추가 투자 여력 부족 / RedCap 단말 칩셋 단가 하락 지연 / XR 킬러 디바이스 부재
 ```
 - 필수 키워드: 3GPP Rel-18 · AI/ML for RAN · 5G NTN · RedCap(Reduced Capability) · X-Reality(XR) · Ambient IoT
-- 배점 전략: 10점 = Ⅰ → Ⅲ 5G-Advanced 4대 핵심 축 도식 → Ⅴ 세대별 진화 비교표 / 25점 = Ⅰ~Ⅶ, 3GPP Rel-18 표준화 기능(RedCap, NTN, AI 무선망) 상세화
 - 기출: 미출제. 차세대 5G 고도화 및 6G 진화 경로 25점 서술형 출제 유력
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:43:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 81
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 시퀀스 길이 제곱에 비례하는 연산 복잡도($O(N^2)$) / 긴 문맥 처리 시 GPU 메모리(KV Cache) 폭증
 ```
 - 필수 키워드: 트랜스포머(Transformer) · 셀프 어텐션(Self-Attention) · 멀티헤드 어텐션(MHA) · 스케일드 닷 프로덕트 · 쿼리/키/값(Q, K, V) · 플래시어텐션(FlashAttention)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 인코더-디코더 블록 구조도 → Ⅳ 스케일드 닷 프로덕트 어텐션 수식 / 25점 = Ⅰ~Ⅶ 전개, Attention Is All You Need 메커니즘과 $O(N^2)$ 메모리 병목 해소 기술 집중
 - 기출: 137회 1교시 7번 `트랜스포머(Transformer)와 MoE(Mixture of Experts)를 설명하시오.` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

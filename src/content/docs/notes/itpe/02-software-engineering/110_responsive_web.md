@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 74
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 모바일 접속 시 불필요한 데스크톱 고용량 리소스 다운로드로 인한 로딩 지연 / `srcset` 및 반응형 이미지 최적화
 ```
 - 필수 키워드: 반응형 웹 디자인(RWD) · 미디어 쿼리(Media Query) · 가변 그리드(Fluid Grid) · 유연한 이미지 · 모바일 우선(Mobile First) · 중단점(Breakpoints) · 뷰포트(Viewport) · OSMU
-- 배점 전략: 10점 = Ⅰ RWD 정의 및 등장 배경 → Ⅲ 3대 핵심 기술 요소 도식 → Ⅴ 반응형(RWD) vs 적응형(AWD) 비교 / 25점 = Ⅰ~Ⅶ 전개, 124회 기출 반응형 웹의 개념, 3대 구현 원리, 중단점 설계 기준, 및 성능 최적화(웹 바이탈) 방안
 - 기출: 124회 1교시 `반응형 웹(Responsive Web)` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

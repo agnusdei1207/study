@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "130회"
-  priority: 76
-  priority_note: "[출제(KPC):130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 비연속 주소 할당 시 요약 불가(Blackhole 라우팅 위험) / 라우팅 룩업 세밀도 저하
 ```
 - 필수 키워드: CIDR · 라우트 요약 · 공통 비트 접두사 · 결합 3대 조건 · 라우팅 테이블 크기 감소 · 블랙홀 라우팅
-- 배점 전략: 10점 = Ⅰ → Ⅲ 3대 결합 조건 및 2진수 계산 도식 → Ⅴ 서브네팅 vs 슈퍼네팅 비교표 / 25점 = 130회 기출 풀이 상세
 - 기출: 130회 2교시: "CIDR과 슈퍼네팅의 개념, 필요성, 결합 조건 및 계산 과정을 설명하시오." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

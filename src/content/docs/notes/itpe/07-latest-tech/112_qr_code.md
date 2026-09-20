@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 74%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 74
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 악성 URL 위조를 통한 큐싱(Qshing) 피싱 공격 / 야외 오염·반사에 따른 인식률 저하 / 정적 QR의 복제 위협
 ```
 - 필수 키워드: QR코드(Quick Response) · 2차원 매트릭스 · 위치 검출 패턴(1:1:3:1:1) · 리드-솔로몬(Reed-Solomon) · 타이밍 패턴 · 정렬 패턴 · 큐싱(Qshing)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ QR코드 구조 다이어그램(패턴별 역할) → Ⅴ 2D 코드 비교표 / 25점 = Ⅰ~Ⅶ 전개, 리드-솔로몬 4단계 에러 복원 레벨(L/M/Q/H) 및 금융 큐싱 방어 기술 집중
 - 기출: 120회 `QR코드` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 81
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 단말 분실 시 계정 복구(Recovery) 난제 / 기업 인프라(사설망) 연동 호환성 / 생태계(애플/구글/MS) 간 키 이전 제약
 ```
 - 필수 키워드: 패스키(Passkey) · FIDO2 · WebAuthn · 패스워드리스(Passwordless) · 도메인 바인딩 · 비대칭키 · 클라우드 키체인 동기화
-- 배점 전략: 10점 = Ⅰ 정의 및 등장 배경 → Ⅲ WebAuthn 등록/인증 도식 → Ⅴ 패스워드 대비 보안성 비교 / 25점 = Ⅰ~Ⅶ 전개, 피싱 저항성 메커니즘과 Ⅵ 단말 분실 복구 및 엔터프라이즈 도입 고려사항 집중
 - 기출: 미출제. 예상: "패스워드의 보안 한계를 극복하기 위해 글로벌 빅테크가 주도하는 패스키(Passkey)의 기술적 원리, 핵심 특징 및 전통적 인증 체계 대비 장단점을 설명하시오."
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:05:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 72
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무단 리소스 퍼블릭 노출 / 과도한 IAM 권한 부여 / 섀도우 IT 및 SaaS 데이터 유출
 ```
 - 필수 키워드: 책임 공유 모델 · CSPM · CWPP · CASB · CIEM · 설정 오류 · API 취약점
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 계층별 취약점 매핑도 → Ⅴ IaaS/PaaS/SaaS 3대 보안 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 라이프사이클 통제 흐름과 Ⅵ 취약점 대응 실무 솔루션(CSPM/CWPP/CASB) 연계
 - 기출: 128회 2교시 2번 `공공부문 민간 클라우드 도입 시 보안 고려사항` 논술형 출제
 
 ## 한 줄 본질

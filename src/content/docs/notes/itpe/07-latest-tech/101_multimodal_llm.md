@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "135회"
-  priority: 75
-  priority_note: "[출제:135]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 객체 환각(Object Hallucination) / 고해상도 이미지 처리 시 토큰 폭증 / 비디오 시계열 컨텍스트 한계
 ```
 - 필수 키워드: 멀티모달 LLM(MLLM) · 크로스모달 프로젝터(Cross-modal Projector) · Q-Former · ViT(Vision Transformer) · LLaVA · 멀티모달 정렬 · 객체 환각
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ MLLM 3단 아키텍처 도식 → Ⅴ MLLM 구축 방식 비교표 / 25점 = Ⅰ~Ⅶ 전개, 모달리티 정렬 기법(Linear vs Cross-Attention) 및 멀티모달 인스트럭션 튜닝 파이프라인 집중
 - 기출: 135회 1교시 2번: "Multimodal LLM(Large Language Model)" → Ⅰ~Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 점수 스케일 불일치 / 두 색인 유지에 따른 스토리지 2배 증가 / 검색 지연시간 증가
 ```
 - 필수 키워드: 하이브리드 검색 · BM25(Sparse) · Dense Vector(임베딩) · RRF(Reciprocal Rank Fusion) · Cross-Encoder(리랭커) · RAG 고도화
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 듀얼 파이프라인 구조도 → Ⅴ 검색 기법 3종 비교표 / 25점 = Ⅰ~Ⅶ 전개, RRF 수식 및 점수 융합 메커니즘, Cross-Encoder 2단계 재순위화 집중
 - 기출: 140회 1교시 6번 `어휘검색(Lexical Search)과 의미검색(Vector Search)을 결합한 하이브리드 검색(Hybrid Search)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

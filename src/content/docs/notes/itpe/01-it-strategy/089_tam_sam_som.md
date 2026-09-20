@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "B · 기출 · 70%"
+    text: "B"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "134회"
-  priority: 70
-  priority_note: "[출제:134]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 시장 규모 부풀리기(TAM을 자사 시장으로 왜곡) / SOM 달성을 위한 구체적 실행 계획 결여 / 경쟁사 점유율 간과
 ```
 - 필수 키워드: TAM · SAM · SOM · 시장 규모 추정 · 전체 유효 시장 · 유효 시장 · 수익 시장(침투 시장) · 탑다운/바텀업 추정 · ARPU
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3단계 동심원 다이어그램 및 수식 정의 → Ⅴ 탑다운 vs 바텀업 비교 / 25점 = Ⅰ~Ⅶ 전개, 클라우드 B2B SaaS 신규 런칭 실무 추정 사례 상술
 - 기출: 134회 1교시 2번 `시장 규모 추정 방법인 TAM-SAM-SOM 프레임워크` → Ⅰ·Ⅲ·Ⅳ·Ⅴ
 
 ## 한 줄 본질

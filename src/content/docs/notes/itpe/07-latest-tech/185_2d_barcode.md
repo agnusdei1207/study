@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 58%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "92회, 96회"
-  priority: 58
-  priority_note: "이전(KPC):92,96"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 큐싱(Qshing) 등 악성 URL 유포 보안 위협 / 표면 훼손·오염에 따른 인식 실패 / 저해상도 카메라 초점 지연
 ```
 - 필수 키워드: 2D 바코드 · QR 코드(QR Code) · 데이터 매트릭스(Data Matrix) · PDF417 · 리드-솔로몬(Reed-Solomon) · 위치 검출 심볼 · 오류 정정(Error Correction) · 큐싱(Qshing)
-- 배점 전략: 10점 = Ⅰ 개요 및 1D 대비 차별점 → Ⅲ 2D 바코드 양대 분류(매트릭스 vs 적층형) → Ⅳ QR 코드 내부 구조도 / 25점 = Ⅰ~Ⅶ 전개, 리드-솔로몬 오류 복원 레벨(L, M, Q, H) 수식적 원리 및 QR 코드 악용 큐싱(Qshing) 방어 아키텍처 상세화
 - 기출: 92회, 96회 `2D 바코드(2D Barcode)` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

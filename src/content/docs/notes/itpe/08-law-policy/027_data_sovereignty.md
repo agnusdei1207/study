@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "124회"
-  priority: 76
-  priority_note: "[출제(KPC):124]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 해외 SaaS 이용 시 국외 이전 동의 난제 / 미국 CLOUD Act와의 법적 관할권 충돌
 ```
 - 필수 키워드: 소버린 클라우드 · 소버린 AI · 데이터 현지화 · 미국 CLOUD Act · 국외 이전 통제 · HYOK(Hold Your Own Key)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 데이터 주권 확보 3대 레이어 구조도 → Ⅴ 글로벌 진영 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 기술적 주권 메커니즘과 Ⅵ 소버린 AI 생태계 집중
 - 기출: 124회 2교시 1번 `언택트 시대의 데이터 주권 이슈와 데이터 거버넌스 전략 방향` → Ⅰ·Ⅲ·Ⅵ
 
 ## 한 줄 본질

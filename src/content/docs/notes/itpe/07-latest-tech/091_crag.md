@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 평가기 추론 지연시간 추가 / 외부 웹 검색 API 비용 및 레이턴시 / 지식 조각 분해 시 문맥 손실
 ```
 - 필수 키워드: CRAG(Corrective RAG) · 검색 평가자(Retrieval Evaluator) · 3단계 신뢰도 판정 · 지식 정제(Knowledge Refinement) · 웹 검색 폴백 · 환각 방지
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ CRAG 평가 및 교정 파이프라인 흐름도 → Ⅴ RAG 진화 모델 비교표 / 25점 = Ⅰ~Ⅶ 전개, 검색 신뢰도 3단계 분기 로직 및 Knowledge Strip 정제 알고리즘 집중
 - 기출: 미출제. 예상: "검색 증강 생성(RAG)의 검색 품질 한계를 극복하기 위한 Corrective RAG(CRAG)의 개념, 동작 매커니즘 및 기존 RAG 대비 차별점을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

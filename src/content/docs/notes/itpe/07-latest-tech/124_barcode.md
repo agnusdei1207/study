@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 72%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "86회, 120회"
-  priority: 72
-  priority_note: "[출제(KPC):120] · 이전(KPC):86"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 인쇄 번짐에 따른 스캐너 판독 불가 / 긁힘 및 훼손 시 자체 복원 불가 / 20자 내외의 극히 제한된 데이터 저장 용량
 ```
 - 필수 키워드: 바코드(Barcode) · 1차원 심볼로지 · EAN-13 · 가드 패턴(Guard Pattern) · 체크 디지트(Check Digit) · 광학 스캐너 · 모듈러 10
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ EAN-13 표준 구조 다이어그램 → Ⅴ 바코드 vs QR코드 vs RFID 비교표 / 25점 = Ⅰ~Ⅶ 전개, 모듈러 10 가중치(1, 3) 체크디지트 검증 수식 및 스캐너 광학 원리 집중
 - 기출: 120회 `바코드` / 86회 `바코드와 2차원 바코드` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

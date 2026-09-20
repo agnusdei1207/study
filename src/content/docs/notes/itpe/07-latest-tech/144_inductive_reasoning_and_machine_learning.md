@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "128회"
-  priority: 70
-  priority_note: "[출제(KPC):128]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 귀납적 편향 부재 시 일반화 불가(No Free Lunch) / 훈련 데이터 분포와 테스트 데이터 분포의 불일치(공변량 변화) / 과적합 위험
 ```
 - 필수 키워드: 귀납적 추론 · 기계학습 · 일반화(Generalization) · 귀납적 편향(Inductive Bias) · 가설 공간($\mathcal{H}$) · PAC 학습 · 오컴의 면도날 · 경험적 위험 최소화(ERM)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 기계학습의 귀납적 학습 매핑 다이어그램 → Ⅴ 연역적 프로그래밍 vs 기계학습 비교표 / 25점 = Ⅰ~Ⅶ 전개, 톰 미첼(Tom Mitchell)의 귀납적 편향 정리 및 2대 편향(선호 편향 vs 제약 편향) 집중
 - 기출: 128회 `귀납적 추론과 기계학습` → Ⅰ~Ⅴ
 
 ## 한 줄 본질

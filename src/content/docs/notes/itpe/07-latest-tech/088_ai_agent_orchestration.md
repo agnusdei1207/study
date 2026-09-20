@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 무한 대화 루프로 인한 토큰 소진 / 에이전트 간 컨텍스트 불일치 / 비결정적 분기에 따른 데드락
 ```
 - 필수 키워드: 에이전트 오케스트레이션 · 다중 에이전트(Multi-Agent) · LangGraph · 상태 머신(State Machine) · 작업 분할(Task Decomposition) · 인간 개입(HITL)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 오케스트레이션 핵심 구조도 → Ⅴ 오케스트레이션 토폴로지 3종 비교 / 25점 = Ⅰ~Ⅶ 전개, 그래프 기반 상태 제어(StateGraph) 및 장애 격리 패턴 집중
 - 기출: 미출제. 예상: "복합 태스크를 자율적으로 해결하기 위한 AI 에이전트 오케스트레이션의 개념, 핵심 패턴(계층형, 라우팅형, 군집형) 및 신뢰성 확보 방안을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

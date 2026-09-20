@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "기출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "137회"
-  priority: 75
-  priority_note: "[출제:137]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 생성형 AI 환각의 정량화 난제 / 평가 데이터셋 편향 / 스타트업 수수료 부담
 ```
 - 필수 키워드: CAT(Conformity Assessment for AI Trustworthiness) · TTA · 안전성 · 투명성 · 견고성 · 공정성 · 적대적 공격
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 4대 검증 분야 구성표 → Ⅳ 절차 흐름도 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 4대 지표별 세부 시험 항목과 Ⅵ 실무 검증 기법 상세화
 - 기출: 137회 1교시 8번 `AI 신뢰성 검인증 제도(CAT)를 설명하시오.` → Ⅰ·Ⅱ·Ⅲ·Ⅳ 전수
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 응답 지연시간(초~분 단위) 급증 / 추론당 토큰 API 비용 폭증 / 단순 사실 질의에 대한 불필요한 과잉 연산(Overthinking)
 ```
 - 필수 키워드: 테스트 타임 컴퓨트 · 추론 스케일링 법칙(Inference Scaling Law) · 생각 토큰(Thinking Tokens) · OpenAI o1/o3 · DeepSeek-R1 · PRM(Process Reward Model) · MCTS
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 테스트 타임 컴퓨트 탐색 아키텍처 → Ⅴ 훈련 스케일링 vs 추론 스케일링 비교표 / 25점 = Ⅰ~Ⅶ 전개, PRM 기반 단계별 가치 평가 수식 및 자가 수정(Self-correction) 탐색 알고리즘 집중
 - 기출: 미출제. 예상: "거대 언어 모델의 추론 능력 도약을 이끄는 '테스트 타임 컴퓨트(Test-time Compute)'의 개념, 핵심 기술 요소, 추론 스케일링 법칙 및 실무 적용 방안을 설명하시오." → Ⅰ~Ⅶ
 
 ## 한 줄 본질

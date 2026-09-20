@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:40:00+09:00"
 tags:
   - "notes-computer-system"
-sidebar:
-  badge:
-    text: "기출 · 80%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "140회"
-  priority: 80
-  priority_note: "[출제:140]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── Split-Brain 방지 / 분산 DB 트랜잭션 지연(Latency) / 클라우드 간 네트워크 비용
 ```
 - 필수 키워드: 클라우드 네이티브 · RTO/RPO · 멀티 리전 · GitOps · GSLB · 분산 DB 복제 · 카오스 엔지니어링
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 멀티 리전 DR 아키텍처 도식 → Ⅴ RTO/RPO 수준별 사이트 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅳ 자동 페일오버 시퀀스와 Ⅵ 상태(Stateful) 데이터 일관성 확보 방안
 - 기출: 140회 3교시 1번 `클라우드 네이티브 환경 무중단 재해복구 전략` 논술형 출제
 
 ## 한 줄 본질

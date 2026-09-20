@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T11:19:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 60%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "99회, 105회"
-  priority: 60
-  priority_note: "과거기출(99회, 105회)"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 후반부 요구사항 변경에 따른 납기/비용 통제 불능 / 단계별 공식 검토(Formal Review, Inspection) 필수 운영
 ```
 - 필수 키워드: 선형 순차(Linear Sequential) · 윈스턴 로이스(Royce) · 진입/종료 기준(Entry/Exit Criteria) · 베이스라인(Baseline) · 산출물 추적성 · 피드백 루프 · 사시미 모델
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 로이스 원형 피드백 폭포수 도식 → Ⅴ 변형 모델(V-모델, 사시미) 비교표 / 25점 = Ⅰ~Ⅶ 전개, 99·105회 기출 폭포수 모델의 단계별 핵심 산출물 및 품질 게이트, 후반부 결함 수정 비용 곡선(Boehm), 사시미(Sashimi) 및 점진적 변형 모델 비교
 - 기출: 99회 1교시, 105회 1교시 `소프트웨어 생명주기에서 폭포수 모델(Waterfall Model)의 특징, 단계별 산출물 및 장단점` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

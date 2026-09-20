@@ -2,9 +2,6 @@
 sidebar:
   order: 96
   label: "096. 노이즈 (Noise)"
-  badge:
-    text: "기출 · 75%"
-    variant: note
 title: "노이즈 (Noise)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 96
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "096"
-  source_status: "기출"
-  source_history: "136회"
-  priority: 75
-  priority_note: "[출제:136]"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── IoT 센서 순간 튀김(Spike) / 크라우드소싱 라벨링 오염 / 과도한 필터링으로 인한 원본 고유 신호 손실
 ```
 - 필수 키워드: 노이즈 · 신호 대 잡음비(SNR) · 이상치(Outlier) 대비 · 평활화(Smoothing) · 메디안 필터 · 백색소음 · 라벨 노이즈 · 디노이징 오토인코더
-- 배점 전략: 10점 = Ⅰ → Ⅴ 노이즈 vs 이상치 비교표 → Ⅲ 노이즈 제거 3대 기법 / 25점 = Ⅰ~Ⅶ, Ⅳ 신호 처리 및 머신러닝 디노이징 파이프라인
 - 기출: 136회 `데이터 분석에서 노이즈(Noise)와 이상치(Outlier)의 개념을 비교하고, 노이즈 제거 기법을 설명하시오.` → Ⅰ 노이즈 정의 + Ⅴ 이상치와의 비교 + Ⅳ/Ⅵ 정제 기법
 
 ## 한 줄 본질

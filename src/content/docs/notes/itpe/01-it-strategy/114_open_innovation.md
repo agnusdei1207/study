@@ -6,13 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "C · 미출 · 62%"
+    text: "C"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: "90회, 93회"
-  priority: 62
-  priority_note: "이전(KPC):90,93 · 합숙·모의 2"
+
 ---
 
 ## 답안 골격
@@ -27,7 +24,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 핵심 기술 유출 우려 / 외부 기술에 대한 내부 엔지니어의 저항(NIH) / 파트너 간 지식재산권 분쟁
 ```
 - 필수 키워드: 개방형 혁신 · 헨리 체스브로 · 폐쇄형 혁신 · NIH(Not Invented Here) 증후군 · 인바운드(Outside-In) · 아웃바운드(Inside-Out) · 스핀오프(Spin-off)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 인바운드/아웃바운드 깔때기 도식 → Ⅴ 폐쇄형 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, 기업 벤처캐피털(CVC) 및 오픈소스 소프트웨어(OSS) 생태계 연계 전략, IP 보호와 개방의 밸런스 상술
 - 기출: 이전 KPC(90, 93회) `헨리 체스브로 교수가 제안한 개방형 혁신의 개념, 인바운드 및 아웃바운드 혁신 메커니즘, 폐쇄형 혁신과의 비교 및 기업의 IP 전략` → Ⅰ·Ⅲ·Ⅳ·Ⅴ
 
 ## 한 줄 본질

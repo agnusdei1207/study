@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 65%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 65
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 생물학적 메커니즘의 불확실성 / 습식 실험(Wet Lab)과의 재현성 괴리 / 바이오 안보(Bio-security: 생물무기 합성) 위험
 ```
 - 필수 키워드: AI 바이오 · 알파폴드(AlphaFold 3) · 에보포머(Evoformer) · 신약 개발(Drug Discovery) · 디노보(De Novo) 설계 · 그래프 신경망(GNN) · 인실리코(In Silico) · 디지털 바이오 파운드리
-- 배점 전략: 10점 = Ⅰ 개요 및 신약 개발 패러다임 전환 → Ⅱ 신약 개발 단계별 AI 적용 영역 → Ⅴ Wet Lab vs In Silico 비교표 / 25점 = Ⅰ~Ⅶ 전개, AlphaFold의 MSA(다중 서열 정렬) 및 Pair Representation 상호작용 메커니즘 상세화
 - 기출: 미출 (시사·트렌드) → Ⅰ~Ⅶ 전 범위 완결형 구성
 
 ## 한 줄 본질

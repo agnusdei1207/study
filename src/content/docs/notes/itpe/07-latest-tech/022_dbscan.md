@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:35:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "기출 · 86%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "129회, 130회"
-  priority: 86
-  priority_note: "[출제(KPC):129,130]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 차원의 저주에 따른 거리 측정 왜곡 / 다중 밀도 분포 분할 실패 / 최적 Epsilon 선정
 ```
 - 필수 키워드: Epsilon($\epsilon$) · MinPts · 핵심점(Core) · 경계점(Border) · 노이즈점(Noise) · 밀도 직접 도달 · HDBSCAN
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 3대 점 분류 도해 → Ⅴ K-Means 대비 장단점 / 25점 = Ⅰ~Ⅶ 전개, 밀도 도달성/연결성 정의와 Ⅵ 파라미터 튜닝(k-거리 그래프) 집중
 - 기출: 129회 `밀도 기반 군집화 DBSCAN 원리` → Ⅲ·Ⅳ, 130회 `K-Means와 DBSCAN 비교` → Ⅴ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:43:00+09:00"
 tags:
   - "notes-latest-tech"
-sidebar:
-  badge:
-    text: "미출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 81
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 오픈엔디드(Open-ended) 답변의 자동 채점 난해 / 급격한 토큰 API 비용 폭증 / 데이터 드리프트 감지 어려움
 ```
 - 필수 키워드: LLMOps · MLOps 확장 · 프롬프트 형상관리 · 관측성(Observability/LangSmith) · LLM-as-a-Judge · RAG 모니터링
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ LLMOps 생애주기 아키텍처 구조도 → Ⅴ MLOps vs LLMOps 비교표 / 25점 = Ⅰ~Ⅶ 전개, Ragas 기반 RAG 평가 지표(Faithfulness, Answer Relevance) 및 비용 통제 전략 집중
 - 기출: 미출제. 예상: "대규모 언어모델(LLM) 기반 서비스의 상용화를 위한 LLMOps의 개념, 전통 MLOps와의 차이점, 핵심 구성요소 및 관측성(Observability) 구축 방안을 설명하시오."
 
 ## 한 줄 본질

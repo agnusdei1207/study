@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-network"
-sidebar:
-  badge:
-    text: "기출 · 76%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "127회"
-  priority: 76
-  priority_note: "[출제(KPC):127]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 초기 패킷(Table-Miss) 지연 / 컨트롤러 병목(SPOF) / TCAM 플로우 엔트리 용량 한계
 ```
 - 필수 키워드: 사우스바운드 API · 플로우 테이블 · Match-Action · Table-Miss · Packet-In/Out · ONF
-- 배점 전략: 10점 = Ⅰ → Ⅲ OpenFlow 스위치 아키텍처 및 플로우 엔트리 구조도 → Ⅳ Match-Action 흐름 / 25점 = Ⅰ~Ⅶ, 127회 기출 메시지 3종(Controller-to-Switch, Asynchronous, Symmetric) 상세
 - 기출: 127회 2교시: "SDN(Software Defined Networking)의 핵심 프로토콜인 OpenFlow의 개념, 스위치 구조, 플로우 테이블 매칭 절차 및 메시지 유형을 설명하시오." → Ⅰ~Ⅵ
 
 ## 한 줄 본질

@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:45:00+09:00"
 tags:
   - "notes-security"
-sidebar:
-  badge:
-    text: "미출 · 81%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 81
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── CPU 벤더 종속(Intel SGX/TDX, AMD SEV, ARM CCA) / TEE 내 코드 재작성 오버헤드 / 사이드채널 공격(캐시 타이밍) 위협
 ```
 - 필수 키워드: 기밀 컴퓨팅 · TEE(신뢰실행환경) · 처리 중 데이터(Data In-Use) 보호 · 보안 엔클레이브 · 메모리 암호화 · 원격 증명(Remote Attestation)
-- 배점 전략: 10점 = Ⅰ 필요성(데이터 3개 상태) → Ⅲ TEE 하드웨어 격리 아키텍처 도식 → Ⅴ 전통 가상화 대비 비교 / 25점 = Ⅰ~Ⅶ 전개, 인텔 SGX/AMD SEV 기술별 특징과 Ⅵ 안전한 AI 연합학습 및 원격 증명 실무 적용 집중
 - 기출: 미출제. 예상: "클라우드 환경에서 처리 중인 데이터(Data In-Use)의 보호를 위한 기밀 컴퓨팅(Confidential Computing)의 개념, 핵심 기술 요소(TEE, 원격 증명) 및 활용 방안을 설명하시오."
 
 ## 한 줄 본질

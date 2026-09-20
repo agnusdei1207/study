@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T00:25:00+09:00"
 tags:
   - "notes-law-policy"
-sidebar:
-  badge:
-    text: "미출 · 75%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "미출"
-  source_history: ""
-  priority: 75
-  priority_note: "시사·트렌드"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 수도권 신규 IDC 인허가 반려 / 지방 이전 시 네트워크 지연(Latency) 및 전문인력 부족
 ```
 - 필수 키워드: 분산에너지법 · 전력계통영향평가(10MW 이상) · AI 데이터센터 · 전기공급 거부권 · 지역별 차등요금제 · VPP(가상발전소)
-- 배점 전략: 10점 = Ⅰ 개요 → Ⅲ 전력계통영향평가 절차도 → Ⅴ 중앙 vs 분산 비교 / 25점 = Ⅰ~Ⅶ 전개, Ⅲ 10MW 기준과 Ⅵ 데이터센터 분산 전략 상세화
 - 기출: 미출제 (시사·트렌드 핵심 예상)
 
 ## 한 줄 본질

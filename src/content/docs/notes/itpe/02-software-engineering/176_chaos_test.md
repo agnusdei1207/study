@@ -4,15 +4,9 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-20T10:34:00+09:00"
 tags:
   - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "기출 · 70%"
 extra:
   model: "Gemini 3.8 Flash"
-  source_status: "기출"
-  source_history: "120회"
-  priority: 70
-  priority_note: "[출제(KPC):120]"
+
 ---
 
 ## 답안 골격
@@ -27,7 +21,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 통제 실패 시 실제 대규모 서비스 장애 위험 / 비상 정지 버튼(Emergency Stop) / 쿠버네티스(Litmus, Chaos Mesh)
 ```
 - 필수 키워드: 카오스 테스트 · 카오스 엔지니어링 · 넷플릭스 · 카오스 몽키 · 정상 상태(Steady State) · 폭발 반경(Blast Radius) · 장애 주입 · 회복 탄력성(Resilience)
-- 배점 전략: 10점 = Ⅰ 정의 → Ⅲ 카오스 실험 4단계 라이프사이클 도식 → Ⅴ 전통 장애 시험 vs 카오스 테스트 비교 / 25점 = Ⅰ~Ⅶ 전개, 120회 기출 카오스 엔지니어링의 원칙, Simian Army 도구군 및 마이크로서비스 신뢰성 확보 전략
 - 기출: 120회 1교시 `카오스 테스트(Chaos Test)의 개념, 원칙 및 주요 도구` → Ⅰ~Ⅵ
 
 ## 한 줄 본질

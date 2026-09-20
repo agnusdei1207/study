@@ -2,9 +2,6 @@
 sidebar:
   order: 98
   label: "098. 동적 SQL (Dynamic SQL)"
-  badge:
-    text: "기출 · 75%"
-    variant: note
 title: "동적 SQL (Dynamic SQL)"
 author: "Gemini 3.8 Flash"
 date: "2026-09-20T01:00:00+09:00"
@@ -14,10 +11,7 @@ weight: 98
 extra:
   model: "Gemini 3.8 Flash"
   question_no: "098"
-  source_status: "기출"
-  source_history: "134회"
-  priority: 75
-  priority_note: "[출제:134] · 이전(KPC):108,117"
+
 ---
 
 ## 답안 골격
@@ -32,7 +26,6 @@ extra:
  ┗━ Ⅵ 실무 ───── 문자열 단순 연결로 인한 SQL Injection 침투 / 매번 다른 쿼리문으로 인한 하드 파싱 폭증 및 CPU 고갈
 ```
 - 필수 키워드: 동적 SQL · 정적 SQL · 런타임 조립 · 바인드 변수(Bind Variable) · 하드 파싱(Hard Parsing) · SQL 인젝션 · QueryDSL · 라이브러리 캐시
-- 배점 전략: 10점 = Ⅰ → Ⅴ 정적 vs 동적 SQL 비교표 → Ⅵ 보안 및 파싱 대책 / 25점 = Ⅰ~Ⅶ, Ⅲ 동적 빌더 아키텍처 및 Ⅵ 바인드 변수 처리 원리
 - 기출: 134회 1교시 7번 `정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL) 비교` → Ⅰ 개념 + Ⅴ 비교표(컴파일시점, 성능, 보안, 유연성) + Ⅵ 실무 적용 방안
 
 ## 한 줄 본질
