@@ -1,7 +1,7 @@
 ---
 title: "IT 아웃소싱"
-author: "Antigravity"
-date: "2026-09-20T19:28:00+09:00"
+author: "OpenAI Codex"
+date: "2026-09-21T18:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: **IT 아웃소싱(IT Outsourcing)**은 핵심 비즈니스 집중과 비용 최적화를 위해 IT 기획·개발·운영 업무의 일부 또는 전부를 외부 전문 기업에 위탁하여 **SLA** 기반으로 수행하는 전략적 소싱 기법
-- 메커니즘: 전략적 중요도와 내부 역량에 따른 **Make or Buy** 분석을 거쳐, **ISO 37500** 생명주기 4단계(전략 → 조달 → 전환 → 운영·거버넌스)를 밟고 **Exit Plan**으로 완결
-- 산출: 소싱 전략서 · 제안요청서(**RFP**) · **SLA(Service Level Agreement)** 협약서 · 인수인계서 · 출구 전략서(**Exit Plan**)
+- 본질: IT 업무 일부 또는 전부를 외부 전문조직에 위탁하되 성과·위험·통제권을 계약으로 관리하는 소싱 방식
+- 메커니즘: Make or Buy → 범위·책임 설계 → 공급자 선정 → 전환 → 운영통제 → 재계약·종료
+- 통제: Retained Organization · SLA · 지식이전 · Exit Plan · 공급자 종속 방지
 
 <div class="itpe-flow-map" role="img" aria-label="IT 아웃소싱 Make or Buy 판단부터 생명주기 및 거버넌스 흐름">
   <div class="itpe-flow-node">
@@ -33,7 +33,7 @@ extra:
   </div>
   <div class="itpe-flow-arrow">↓<small>소싱 포트폴리오 확정</small></div>
   <div class="itpe-flow-node is-current">
-    <strong>ISO 37500 아웃소싱 생명주기</strong>
+    <strong>아웃소싱 실무 생명주기</strong>
     <div class="itpe-flow-branches">
       <div class="itpe-flow-branch"><strong>전략</strong><span>비즈니스 케이스 · 잔존 조직(<span class="itpe-keyword"><strong>RO</strong></span>) 설계</span></div>
       <div class="itpe-flow-branch"><strong>조달</strong><span>제안 기술평가 · <span class="itpe-keyword"><strong>SLA</strong></span>/<span class="itpe-keyword"><strong>OLA</strong></span> 계약 체결</span></div>
@@ -53,7 +53,7 @@ extra:
 
 - **IT 아웃소싱(IT Outsourcing)**: IT 기획, 개발, 운영, 유지보수 업무의 일부 또는 전부를 외부 전문 기업에 위탁하여 계약 및 서비스 수준으로 통제하는 경영 방식
 - **Make or Buy**: 내부 직접 수행(Make)과 외부 위탁 구매(Buy)의 타당성을 전략적 중요도와 내부 역량을 기준으로 판정하는 의사결정 프레임워크
-- **ISO 37500**: 조직의 아웃소싱 생명주기 4단계(전략, 조달, 전환, 거버넌스)와 관리 프로세스를 규정한 국제 표준 가이드라인
+- **ISO 37500**: 산업·규모와 무관하게 아웃소싱의 주요 단계·프로세스·거버넌스를 안내하는 국제표준
 - **SLA(Service Level Agreement)**: 발주사와 공급자 간에 합의된 IT 서비스 품질 수준, 가용성 지표 및 미달 시 위약금(Penalty)을 명시한 협약서
 - **OLA(Operational Level Agreement)**: 최종 SLA 목표 달성을 지원하기 위해 공급사 내부 팀 및 협력사 간에 맺는 운영 수준 협약서
 - **RO(Retained Organization)**: 업무 위탁 후에도 발주사에 잔류하여 아키텍처 기준선, 데이터 보안 및 계약 통제권을 행사하는 내부 잔존 조직
@@ -65,49 +65,49 @@ extra:
 
 ## 예상문제
 
-> IT 아웃소싱의 의사결정 모델(Make or Buy)과 ISO 37500 기반 생명주기 4단계를 설명하고, 공급자 종속(Lock-in) 및 내부 역량 공동화(Hollowing out) 방지를 위한 SLA 거버넌스와 출구 전략(Exit Plan)을 제시하시오. (25점)
+> IT 아웃소싱의 Make or Buy 의사결정과 실무 생명주기를 설명하고, Lock-in·역량 공동화 방지를 위한 거버넌스와 Exit Plan을 제시하시오. **(미출제 예상·25점)**
 
 ## Ⅰ. 핵심 역량 집중과 비용 최적화, IT 아웃소싱의 개요
 
 > IT 아웃소싱은 개발·운영 업무를 위탁하더라도 IT 거버넌스와 아키텍처 통제권은 **Retained Organization(잔존 조직)**에 유지해야 하며, 성패는 **Lock-in** 없는 **Exit Plan**의 완결성으로 판정함.
 
-- 정의: 기업의 핵심 비즈니스 집중과 비용 최적화를 위해 IT 기획, 개발, 운영 업무의 일부 또는 전부를 외부 전문 기업에 위탁하여 **SLA** 기반으로 수행하는 전략적 소싱 관리 체계
+- 정의: IT 업무 일부 또는 전부를 외부 전문조직에 위탁하고 계약·서비스 수준으로 성과와 위험을 관리하는 소싱 체계
 - 목적: 핵심 역량 집중, 운영 비용 최적화, 서비스 품질 확보
 
-## Ⅱ. IT 아웃소싱 구성체계 및 ISO 37500 생명주기 4단계
+## Ⅱ. IT 아웃소싱 실무 생명주기
 
-> 아웃소싱은 단순 계약 체결로 끝나지 않으며, 전략 수립에서 출발하여 조달, 전환, 거버넌스 및 종료 시점의 출구 전략으로 이어지는 전 수명주기 프로세스임.
+> ISO 37500의 수명주기·거버넌스 관점을 답안용으로 전략·선정계약·전환·운영종료 절차로 구조화함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ISO 37500 기반 IT 아웃소싱 4단계 생명주기 파이프라인">
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>① 전략 수립 (Strategy)</strong></span>
-      <span>Make or Buy 분석 · 소싱 범위 확정 · 잔존 조직(RO) 설계 (아웃소싱 전략 기획서)</span>
+      <span class="itpe-keyword"><strong>① 전략 수립</strong></span>
+      <strong>활동</strong><span>Make or Buy · 범위·잔존역량 결정</span><strong>산출</strong><span>소싱 전략</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>② 공급자 선정 및 계약 (Procurement)</strong></span>
-      <span>RFP 발행 · 기술 제안평가 · SLA 및 OLA 계약 체결 (제안평가서, SLA 협약서)</span>
+      <span class="itpe-keyword"><strong>② 공급자 선정·계약</strong></span>
+      <strong>활동</strong><span>RFP · 제안평가 · 책임·SLA 합의</span><strong>산출</strong><span>계약서 · SLA</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>③ 이행 및 전환 (Transition)</strong></span>
-      <span>업무 지식 이전(KT) · IT 자산 및 계정 인계 · 병행 운영 (업무 인수인계서, 전환 완료 보고서)</span>
+      <span class="itpe-keyword"><strong>③ 이행·전환</strong></span>
+      <strong>활동</strong><span>지식·자산·계정 인계 · 병행운영</span><strong>산출</strong><span>전환계획 · 인수인계서</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
-      <span class="itpe-keyword"><strong>④ 운영 및 거버넌스 (Governance)</strong></span>
-      <span>SLA 성과 모니터링 · 페널티/크레딧 정산 · Exit Plan 갱신 (월간 SLA 보고서, 출구 전략서)</span>
+      <span class="itpe-keyword"><strong>④ 운영·종료</strong></span>
+      <strong>활동</strong><span>SLA 평가 · 변경통제 · Exit Plan 검증</span><strong>산출</strong><span>성과보고 · 전환·종료계획</span>
     </div>
   </div>
 </div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Dual Governance</strong></span> · 전략-전술-운영 3계층 협의체 가동 및 위탁 종료 시 인소싱 가역성 보증</div>
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Governance</strong></span> · 발주자와 공급자가 공동으로 성과·위험·변경을 관리하되 최종 통제권은 발주자가 유지</div>
 
 ## Ⅲ. IT 소싱 의사결정 모델 (Make or Buy 매트릭스)
 
@@ -138,53 +138,45 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **역량 공동화 (Hollowing out)** | 아키텍처, 데이터 모델, 보안 통제는 **잔존 조직(RO)** 전담 | 기술 검토 및 형상 변경의 내부 승인율 100% |
+| **역량 공동화(Hollowing out)** | 아키텍처·데이터·보안 의사결정은 잔존 조직이 담당 | 내부 통제역량 유지 |
 | **공급자 종속 (Lock-in)** | 표준 오픈소스 채택, 소스코드 및 설계서 형상관리 의무화 | 계약 만료 시 타 사업자 이관 테스트 통과 |
-| **출구 전략 부재** | 계약서에 **Exit Plan** 지원 조항 명시 및 전환 비용 지급 연계 | 업무 인수인계 기간 및 지식 이전 산출물 완성 |
+| **출구 전략 부재** | 계약서에 Exit Plan·전환지원·자료반환 명시 | 서비스 전환 가능성 확보 |
 | **수박 SLA 현상** | 단순 가용성 외에 사용자 체감 품질(**XLA**) 병행 측정 | 최종 사용자 체감 만족도 및 장애 체감 시간 단축 |
 
 ## Ⅵ. 잔존 조직 거버넌스 중심의 기술사적 제언
 
 > 아웃소싱은 통제를 포기하는 것이 아니라, 고도화된 거버넌스로 외부 전문성을 지휘하는 경영 기술이어야 함.
 
-### 학습자 통찰 메모 — 답안 밖
+`[핵심 통찰]` 실행을 위탁해도 아키텍처·데이터·보안·계약 판단까지 위탁하면 공급자를 평가하거나 교체할 능력을 잃음.
 
-- [핵심 통찰]: IT 아웃소싱의 성패는 수탁 업체의 기술력보다 위탁 발주사 내부 잔존 조직(Retained Organization)의 기술 판단력에 좌우됨. 모든 실무를 넘기더라도 시스템 아키텍처 승인권과 데이터 주권은 반드시 내부가 쥐고 있어야 함.
-- 나라면: 아웃소싱 RFP 작성 단계부터 `ISO 37500 표준 준수 요구 → 잔존 조직(RO)의 아키텍처 형상 승인권 명시 → 수박 현상 방지를 위한 XLA 도입 → 계약 만료 6개월 전 출구 전략(Exit Plan) 상세 이행서 제출 의무화`를 조달 규격서에 확정하겠음.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 일방적 업무 위탁 탈피 및 잔존 조직(RO) 주도의 능동적 거버넌스 확립
-- 대안: **RO-SIAM-공급사** 3계층 거버넌스 체계 및 **XLA** 결합형 계약 제도화
-- 검증: 잔존 조직 전결권 준수율 100% · 출구 전략(Exit Plan) 사전 검증 통과
-- 효과: 벤더 종속(Lock-in) 방지 및 비즈니스 변화에 따른 소싱 가역성 보장
+`나라면` 잔존 조직의 의사결정권과 공급자의 전환지원 의무를 계약에 명시하고, 계약기간 중 다른 공급자 또는 내부조직으로의 인계 시험을 수행하겠음.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 아웃소싱 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>현행 한계</strong>
-      <span>내부 역량 공동화 · 벤더 종속(Lock-in) · 수박 SLA 착시</span>
+      <strong>문제</strong><span>역량 공동화 · Lock-in · SLA 착시</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>개선 대안</strong>
-      <span>잔존 조직(RO) 강화 + XLA 도입 + Exit Plan 계약 의무화</span>
+      <strong>대안</strong><span>잔존 조직 권한 · 성과·경험 지표 · Exit Plan</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>검증 기준</strong>
-      <span>아키텍처 내부 승인권 · 지식 이전 매뉴얼 · 다중 벤더 조율</span>
+      <strong>판정</strong><span>내부 승인권 · 지식·자료 반환 · 전환 리허설</span>
     </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>실행 효과</strong>
-      <span>소싱 가역성 확보 · 비용 최적화 · 고품질 서비스 영속</span>
+      <strong>효과</strong><span>통제권 유지 · 소싱 가역성 · 서비스 연속성</span>
     </div>
   </div>
 </div>
@@ -198,7 +190,7 @@ extra:
 
 ### 2. 구성체계 및 방법론
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ISO 37500 기반 IT 아웃소싱 생명주기 요약">
+<div class="itpe-pipeline is-vertical" role="img" aria-label="IT 아웃소싱 실무 생명주기 요약">
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
       <strong>전략 수립</strong>
@@ -235,16 +227,17 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제123회 정보관리기술사 1교시: IT 아웃소싱의 유형 및 계약 시 고려사항
-- ISO, [ISO 37500:2014, Guidance on outsourcing](https://www.iso.org)
-- ISO/IEC, [ISO/IEC 20000-1:2018, Information technology — Service management](https://www.iso.org)
+- 공식 문제지 원문으로 확인한 직접 기출 없음
+- [ISO 37500:2014: Guidance on outsourcing](https://www.iso.org/standard/56269.html)
+- [ISO/IEC 20000-1:2018: Service management system requirements](https://www.iso.org/standard/70636.html)
 
 ## 학습 체크
 
-- [ ] Make or Buy 의사결정 매트릭스 4개 분면(인소싱, 코소싱, 선택적, 전체)을 설명할 수 있는가?
-- [ ] ISO 37500의 4단계 생명주기(전략, 조달, 전환, 거버넌스)를 도식화할 수 있는가?
-- [ ] 벤더 종속(Lock-in)과 역량 공동화(Hollowing out)의 발생 원인 및 통제 대책을 제시할 수 있는가?
-- [ ] 전통적 SLA와 사용자 경험 기반 XLA(eXperience Level Agreement)의 차이점을 서술할 수 있는가?
+- [ ] Ⅰ. IT 아웃소싱의 정의·목적과 잔존 조직의 필요성을 설명할 수 있는가?
+- [ ] Ⅱ. 전략·선정계약·전환·운영종료의 활동·산출을 연결할 수 있는가?
+- [ ] Ⅲ. 인소싱·코소싱·선택적·전체 아웃소싱의 선택기준을 설명할 수 있는가?
+- [ ] Ⅳ. 단일·멀티소싱·MSP를 구조·책임·위험으로 비교할 수 있는가?
+- [ ] Ⅴ~Ⅵ. Lock-in·역량 공동화·Exit Plan 부재의 통제방안을 제시할 수 있는가?
 
 ## 연결 토픽
 
