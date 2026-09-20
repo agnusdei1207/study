@@ -230,10 +230,11 @@ extra:
   <div class="itpe-flow-node is-current">
     <span class="itpe-keyword"><strong>Quality Gate</strong></span>
     <div class="itpe-step-detail"><strong>판정 질문</strong><span>모든 요구사항이 RFP까지 양방향 추적되는가?</span></div>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>통과</strong><span>발주 Baseline 확정 → 조달 진행</span></div>
-      <div class="itpe-flow-branch"><strong>미통과</strong><span>누락·불일치 보완 → RTM 재검증</span></div>
-    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-branches">
+    <div class="itpe-flow-branch is-pass"><strong>통과</strong><span>발주 Baseline 확정 → 조달 진행</span></div>
+    <div class="itpe-flow-branch is-fail"><strong>미통과</strong><span>누락·불일치 보완 → RTM 재검증</span></div>
   </div>
 </div>
 

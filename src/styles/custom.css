@@ -261,6 +261,14 @@ body {
   padding-top: 0.6rem;
   border-top: 1px dashed var(--palette-line);
   text-align: left;
+  align-items: stretch;
+}
+
+.sl-markdown-content .itpe-flow-map > .itpe-flow-branches {
+  width: min(100%, 32rem);
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .sl-markdown-content .itpe-flow-branches > .itpe-flow-branch:nth-child(odd):last-child {
@@ -270,9 +278,10 @@ body {
 .sl-markdown-content .itpe-flow-branch {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 0.25rem;
-  padding: 0.45rem 0.65rem;
-  background: color-mix(in srgb, var(--palette-surface) 60%, transparent);
+  padding: 0.5rem 0.7rem;
+  background: color-mix(in srgb, var(--palette-surface) 75%, transparent);
   border: 1px solid var(--palette-line);
   border-radius: 0.45rem;
   min-width: 0;
@@ -295,6 +304,24 @@ body {
   font-size: 0.88rem;
   line-height: 1.4;
   color: var(--palette-text-secondary, inherit);
+}
+
+.sl-markdown-content .itpe-flow-branch.is-pass {
+  border-color: color-mix(in srgb, var(--palette-accent) 60%, var(--palette-line));
+  background: color-mix(in srgb, var(--palette-accent) 10%, var(--palette-surface));
+}
+
+.sl-markdown-content .itpe-flow-branch.is-pass > strong {
+  color: var(--palette-accent-glow);
+}
+
+.sl-markdown-content .itpe-flow-branch.is-fail {
+  border-color: color-mix(in srgb, #f87171 45%, var(--palette-line));
+  background: color-mix(in srgb, #f87171 8%, var(--palette-surface));
+}
+
+.sl-markdown-content .itpe-flow-branch.is-fail > strong {
+  color: #fca5a5;
 }
 
 .sl-markdown-content .itpe-pipeline {
@@ -358,8 +385,9 @@ body {
 
 .sl-markdown-content .itpe-step-detail {
   display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr);
-  gap: 0.2rem 0.6rem;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.2rem 0.65rem;
+  align-items: baseline;
   width: 100%;
   margin-top: 0.5rem;
   padding-top: 0.45rem;
@@ -371,8 +399,9 @@ body {
 
 .sl-markdown-content .itpe-step-detail > strong {
   color: var(--palette-muted);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .sl-markdown-content .itpe-step-detail > span {
