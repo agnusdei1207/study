@@ -26,7 +26,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="프로젝트 위험관리 식별·분석 및 대응 체계">
   <div class="itpe-flow-node">
     <strong>위험 식별 및 분석</strong>
-    <small>위험 등록부 · P×I 정성 분석 · EMV/몬테카를로 정량 시뮬레이션</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>산출</strong><span>위험 등록부 · P×I · EMV · 몬테카를로 분석</span></div></div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
@@ -171,22 +171,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="선행지표 기반 위험 조기경보 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>문서 사장화 · 소방수식 사후 수습 · 2차 위험 미식별로 인한 파행</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>문서 사장화 · 소방수식 사후 수습 · 2차 위험 미식별로 인한 파행</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>선행지표 임계치 · 책임자 · 대응기한 연결</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>선행지표 임계치 · 책임자 · 대응기한 연결</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>임계치 초과 · 확인 · 조치 · 예비비 승인 이력</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>임계치 초과 · 확인 · 조치 · 예비비 승인 이력</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>위험 조기 노출 · 대응 지연 감소 · 예비비 책임성 확보</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>위험 조기 노출 · 대응 지연 감소 · 예비비 책임성 확보</span></div>
   </div>
 </div>
 
@@ -200,17 +200,17 @@ extra:
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="위험관리 7개 프로세스 요약">
-  <div class="itpe-pipeline-node"><strong>위험 식별</strong><small>위험 등록부 작성</small></div>
+  <div class="itpe-pipeline-node"><strong>위험 식별</strong><div class="itpe-step-detail"><strong>활동</strong><span>위험 원인 · 사건 · 영향 도출</span><strong>산출</strong><span>위험 등록부</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>정성적 분석</strong><small>P×I 매트릭스</small></div>
+  <div class="itpe-pipeline-node"><strong>정성적 분석</strong><div class="itpe-step-detail"><strong>활동</strong><span>발생가능성 · 영향 · 긴급도 평가</span><strong>산출</strong><span>P×I 우선순위</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>정량적 분석</strong><small>EMV · 몬테카를로</small></div>
+  <div class="itpe-pipeline-node"><strong>정량적 분석</strong><div class="itpe-step-detail"><strong>활동</strong><span>비용 · 일정 영향을 수치화</span><strong>산출</strong><span>EMV · 몬테카를로 분석</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>대응 전략 수립</strong><small>위협 5대 · 기회 5대</small></div>
+  <div class="itpe-pipeline-node"><strong>대응 전략 수립</strong><div class="itpe-step-detail"><strong>활동</strong><span>대응책 · 책임자 · 기한 설정</span><strong>산출</strong><span>위협·기회 대응계획</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>대응 실행</strong><small>담당자 · 예비비 · 2차 위험</small></div>
+  <div class="itpe-pipeline-node"><strong>대응 실행</strong><div class="itpe-step-detail"><strong>활동</strong><span>대응책 수행 · 예비비 승인 · 2차 위험 관리</span><strong>산출</strong><span>조치 결과 · 변경 요청</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>위험 감시</strong><small>트리거 관제 · 예비비 통제</small></div>
+  <div class="itpe-pipeline-node"><strong>위험 감시</strong><div class="itpe-step-detail"><strong>활동</strong><span>트리거 · 잔여위험 · 대응효과 점검</span><strong>산출</strong><span>갱신 등록부 · 위험 보고서</span></div></div>
 </div>
 
 ### 3. 대응·예비비 통제

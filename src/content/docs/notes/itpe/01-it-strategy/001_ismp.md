@@ -28,7 +28,7 @@ extra:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>ISP</strong>
-    <small>정보화 과제 · 구축 대상 선정</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>산출</strong><span>정보화 과제 · 구축 대상</span></div></div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
@@ -42,7 +42,7 @@ extra:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>조달·구축</strong>
-    <small>확정된 발주 Baseline 집행</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>입력</strong><span>확정된 발주 Baseline</span></div></div>
   </div>
 </div>
 
@@ -161,22 +161,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="RTM 기반 ISMP 종료 Quality Gate 제언">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>산출물별 분절 검토 · 계약 연계 누락</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>산출물별 분절 검토 · 계약 연계 누락</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>RTM 기반 종료 Quality Gate</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>RTM 기반 종료 Quality Gate</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>요건 · 아키텍처 · FP·예산 · RFP 전수 매핑</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>요건 → 아키텍처 → FP·예산 → RFP 전수 추적</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>Gate 통과 후 발주 · 변경비용 사전 차단</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>Gate 통과 후 발주 · 변경비용 사전 차단</span></div>
   </div>
 </div>
 
@@ -190,15 +190,30 @@ extra:
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 5단계 구성체계 및 방법론 요약">
-  <div class="itpe-pipeline-node"><strong>착수</strong><small>수행계획</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>착수</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>범위 · 조직 · 일정 정의</span><strong>산출</strong><span>수행계획서</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>방향성</strong><small>목표 · 범위</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>방향성</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>환경 · 현황 · 목표 · 범위 분석</span><strong>산출</strong><span>범위·방향성 정의서</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>요건 분석</strong><small>업무 · IT · 비기능</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>요건 분석</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>업무 · IT · 비기능 요건 도출</span><strong>산출</strong><span>업무·IT 요건 목록</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>구조·요건 정의</strong><small>아키텍처 · 요건명세</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>구조·요건 정의</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>목표 아키텍처 · 인터페이스 · 상세요건 정의</span><strong>산출</strong><span>아키텍처 · 요건명세서</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>이행방안</strong><small>FP · 예산 · RFP</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>이행방안</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>일정 · FP · 예산 · 발주전략 수립</span><strong>산출</strong><span>이행계획 · 예산서 · RFP</span></div>
+  </div>
 </div>
 
 ### 3. RTM·Quality Gate
@@ -214,7 +229,7 @@ extra:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
     <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-    <small>모든 요건이 RFP까지 양방향 추적되는가?</small>
+    <div class="itpe-step-detail"><strong>판정 질문</strong><span>모든 요건이 RFP까지 양방향 추적되는가?</span></div>
     <div class="itpe-flow-branches">
       <div class="itpe-flow-branch"><strong>통과</strong><span>발주 Baseline 확정 → 조달 진행</span></div>
       <div class="itpe-flow-branch"><strong>미통과</strong><span>누락·불일치 보완 → RTM 재검증</span></div>

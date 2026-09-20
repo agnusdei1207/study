@@ -26,7 +26,7 @@ extra:
 <div class="itpe-flow-map" role="img" aria-label="정보시스템 감리 3자 거버넌스 및 수행 체계">
   <div class="itpe-flow-node">
     <strong>발주기관 (행정기관 등)</strong>
-    <small>감리 발주 및 사업 관리·감독</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>책임</strong><span>감리 발주 · 사업 관리·감독</span></div></div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
@@ -40,7 +40,7 @@ extra:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>피감리인 (수행 사업자)</strong>
-    <small>개선권고 조치 · 증빙 제출 · 조치확인</small>
+    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>책임</strong><span>개선권고 조치 · 증빙 제출 · 조치확인</span></div></div>
   </div>
 </div>
 
@@ -160,22 +160,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="실측 중심 IT 감리 실효성 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>서류 위주 형식 감리 · 납기 압박에 따른 미조치 조건부 준공 검수</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>서류 위주 형식 감리 · 납기 압박에 따른 미조치 조건부 준공 검수</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>정적·동적 실측 증빙 · 조치확인서와 준공 조건 연계</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>정적·동적 실측 증빙 · 조치확인서와 준공 조건 연계</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>검사기준서별 실측 증빙 · 미조치 항목 승인 이력 · 조치확인서</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>검사기준서별 실측 증빙 · 미조치 항목 승인 이력 · 조치확인서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>가동 초기 서비스 마비 예방 · 공공 정보시스템 안전성 및 신뢰성 확보</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>가동 초기 서비스 마비 예방 · 공공 정보시스템 안전성 및 신뢰성 확보</span></div>
   </div>
 </div>
 
@@ -189,15 +189,15 @@ extra:
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 감리 5단계 프로세스 요약">
-  <div class="itpe-pipeline-node"><strong>감리계획</strong><small>투입공수 확정</small></div>
+  <div class="itpe-pipeline-node"><strong>감리계획</strong><div class="itpe-step-detail"><strong>활동</strong><span>대상 · 범위 · 일정 · 인력 계획</span><strong>산출</strong><span>감리계획서</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>예비조사</strong><small>감리 검사기준서 확정</small></div>
+  <div class="itpe-pipeline-node"><strong>예비조사</strong><div class="itpe-step-detail"><strong>활동</strong><span>사업현황 · 산출물 · 위험 사전 분석</span><strong>산출</strong><span>감리 검사기준서</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>현장감리</strong><small>시스템 실측 · 인터뷰</small></div>
+  <div class="itpe-pipeline-node"><strong>현장감리</strong><div class="itpe-step-detail"><strong>활동</strong><span>산출물 점검 · 시스템 실측 · 인터뷰</span><strong>산출</strong><span>감리 발견사항</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>보고서 통보</strong><small>개선권고 통보</small></div>
+  <div class="itpe-pipeline-node"><strong>보고서 통보</strong><div class="itpe-step-detail"><strong>활동</strong><span>발견사항 합의 · 개선사항 확정</span><strong>산출</strong><span>감리보고서 · 개선권고</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>조치확인</strong><small>시정 실측 승인</small></div>
+  <div class="itpe-pipeline-node"><strong>조치확인</strong><div class="itpe-step-detail"><strong>활동</strong><span>개선권고 반영 여부 재검증</span><strong>산출</strong><span>감리결과 조치확인서</span></div></div>
 </div>
 
 ### 3. 유형·종료 통제
