@@ -4,7 +4,7 @@ sidebar:
     text: "A"
 title: "중심극한정리 (Central Limit Theorem)"
 author: "Codex"
-date: "2026-09-20T19:54:00+09:00"
+date: "2026-09-20T19:54:48+09:00"
 tags: ["notes-data"]
 extra:
   model: "GPT-5.6 Sol"
@@ -35,6 +35,14 @@ extra:
 
 </details>
 > 중심극한정리의 개념·성립조건·통계적 의의를 설명하고 대수의 법칙과 비교하여 적용 한계를 논하시오. (25점)
+
+## 딸려 나오는 하위 토픽
+
+| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
+|---|---|---|
+| **대수의 법칙(LLN)** | 표본평균 값이 모평균으로 수렴하는 성질 | Ⅴ 비교 |
+| **표준오차(SE)** | 표본평균 표집분포의 표준편차 $\sigma/\sqrt n$ | Ⅲ 근사 분포 |
+| **정규근사 한계** | 왜도·중꼬리·의존성에서 수렴속도와 표준오차 점검 | Ⅱ 조건, Ⅵ 보완 |
 
 ## Ⅰ. 추론통계의 정규근사 기반, 중심극한정리 개요
 - 평균 $\mu$, 유한분산 $\sigma^2$인 독립·동일분포 표본에서 $\sqrt n(\bar X-\mu)/\sigma$는 표준정규분포로 수렴
@@ -101,25 +109,31 @@ X̄ ≈ N(μ, σ²/n)                    Z ≈ N(0,1)
 <div class="itpe-flow-map" role="img" aria-label="중심극한정리 적용 제언"><div class="itpe-flow-node"><strong>현행 한계</strong><span>문제: 표본 수만으로 정규근사</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>개선안</strong><span>대안: 생성과정 진단·Bootstrap</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>검증·효과</strong><span>판정: Coverage·민감도 일치</span><span>효과: 신뢰 가능한 추론</span></div></div>
 
 ## 1교시 10점 답안 발췌
+- 정의: CLT(Central Limit Theorem)는 독립 표본합·평균을 표준화한 분포가 조건 아래 정규분포로 수렴하는 정리임.
+- 목적: 표본평균의 표준오차와 정규근사를 통해 신뢰구간·가설검정의 불확실성을 계산함.
 ```text
 Z=(X̄-μ)/(σ/√n) ⇒ N(0,1)
 LLN: 값의 수렴 / CLT: 표준화 오차분포의 수렴
 ```
-| 의의 | 적용 |
+| 비교·한계 | 판정·대책 |
 |---|---|
-| 표준오차 $σ/√n$ | 신뢰구간·검정·표본수 산정 |
+| LLN vs CLT | 값 수렴 vs 분포 수렴 |
+| 왜도·중꼬리 | 표본 수 고정 임계 금지, Bootstrap 비교 |
+| 군집·시계열 의존 | 군집·자기상관 보정 표준오차 |
+- 결론: 큰 표본만으로 대표성과 독립성이 확보되지 않으므로 생성과정 진단과 근사 민감도 검증을 병행해야 함.
 
 ## 출제 이력과 검증 출처
-- 제139회 공식 문제지: 대수의 법칙과 중심극한정리 관련 출제
-- 제132회 공식 문제지: 중심극한정리·t-검정·z-검정 관련 출제
 - [NIST/SEMATECH e-Handbook of Statistical Methods](https://www.itl.nist.gov/div898/handbook/)
-- [Q-Net 기술사 자료실](https://www.q-net.or.kr/man001.do?gSite=Q)
+- [NIST/SEMATECH, Quantile-Quantile Plot](https://www.itl.nist.gov/div898/handbook/eda/section3/qqplot.htm)
+- [OpenStax, The Central Limit Theorem](https://openstax.org/books/introductory-statistics-2e/pages/7-1-the-central-limit-theorem-for-sample-means-averages)
 
 ## 학습 체크
-- [ ] 표준화 식과 표준오차를 씀
-- [ ] 성립조건과 한계를 구분함
-- [ ] 대수의 법칙과 값·분포 수렴으로 비교함
-- [ ] 대표성·의존성 문제를 언급함
+- [ ] Ⅰ·Ⅲ 정의·근사: 표준화 식, 표본평균 분포, 표준오차를 함께 재현한다.
+- [ ] Ⅱ 조건: 독립성·동일분포·유한분산·표본규모의 판정 기준을 설명한다.
+- [ ] Ⅴ 비교: LLN의 값 수렴과 CLT의 분포 수렴을 구분한다.
+- [ ] Ⅵ·Ⅶ 한계·판단: 왜도·꼬리·의존성·대표성 문제와 보완책을 연결한다.
 
 ## 연결 토픽
-- [z-검정](./012_z_test/) · [불편추정량](./011_unbiased_estimator/) · [베이즈 정리](./018_bayes_theorem/)
+- 이전 토픽: [무결성 제약](./013_integrity_constraint.md)
+- 연관 토픽: [z-검정](./012_z_test.md), [불편추정량](./011_unbiased_estimator.md), [잭나이프·부트스트랩](./068_jackknife_bootstrap.md)
+- 다음 토픽: [텍스트 마이닝](./015_text_mining.md)
