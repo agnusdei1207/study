@@ -1,234 +1,177 @@
 ---
-title: "프로젝트 관리"
-author: "Antigravity"
-date: "2026-09-20T19:50:00+09:00"
-tags:
-  - "notes-it-strategy"
+title: "프로젝트 관리 통합 체계"
+author: "OpenAI Codex"
+date: "2026-09-22T03:45:00+09:00"
+tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
-  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 사업 및 조직 관리를 거쳐 프로젝트 관리로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>사업 관리·PMO</span>
-  <strong>프로젝트 관리</strong>
+<div class="itpe-topic-path" role="img" aria-label="IT 전략 관리에서 포트폴리오 프로그램 프로젝트를 거쳐 프로젝트 관리 통합 체계로 이어지는 지식 위치">
+  <span>IT 전략·관리</span><span>Portfolio·Programme·Project</span><strong>프로젝트 관리</strong>
 </div>
 
 ## 큰 그림과 30초 인출
 
-- 본질: **프로젝트 관리(PM)**는 한정된 기간과 자원 내에서 고유한 결과물을 인도하기 위해 삼중 제약(범위·일정·원가·품질)을 통제하며, 상위 **포트폴리오 관리** 및 **프로그램 관리**와 연계되어 전사 비즈니스 가치를 실현하는 거버넌스 체계
-- 메커니즘: `포트폴리오(전략 연계) → 프로그램(시너지 편익) → 프로젝트(산출물 완성)` 3계층 수직 정렬 하에 `착수 → 기획 → 실행 → 감시·통제 → 종료` 5대 프로세스 순환
-- 산출: 프로젝트 헌장 · **WBS(Work Breakdown Structure)** · 프로젝트 관리 계획서 · **EVM(Earned Value Management)** 분석서 · 인수 확인서
+- 본질: 제한된 자원으로 고유한 결과와 의도한 가치를 인도하는 통합 관리
+- 정렬: Portfolio(전략·투자) → Programme(편익·의존성) → Project(산출·성과)
+- 통제: Governance·Scope·Schedule·Finance·Stakeholder·Resource·Risk를 Tailoring
 
-<div class="itpe-flow-map" role="img" aria-label="포트폴리오, 프로그램, 프로젝트 관리 3계층 거버넌스 흐름도">
-  <div class="itpe-flow-node">
-    <strong>전사 비즈니스 전략 및 투자 심의</strong>
-    <small>Doing the right things · 자원 최적 배분</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>3대 계층 거버넌스 수직 정렬</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>포트폴리오</strong><span>전략적 가치 극대화 · 투자 우선순위화 · 위험 분산</span></div>
-      <div class="itpe-flow-branch"><strong>프로그램</strong><span>연관 복수 프로젝트 통합 · 시너지 창출 · <span class="itpe-keyword"><strong>비즈니스 편익(Benefits)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>프로젝트</strong><span>단일 고유 산출물 적기 인도 · <span class="itpe-keyword"><strong>삼중 제약(Scope/Time/Cost)</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>PMBOK 7판 가치 인도 시스템(Value Delivery) 완성</strong>
-    <small>하이브리드 테일러링 · 데이터 드리븐 PM · 조직 프로세스 자산화</small>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 600" role="img" aria-label="전략에서 포트폴리오 프로그램 프로젝트를 거쳐 가치와 편익으로 이어지는 구조">
+  <defs><marker id="arrow-project-value" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
+  <rect class="itpe-svg-node" x="140" y="24" width="480" height="70" rx="14" />
+  <text class="itpe-svg-title" x="380" y="66" text-anchor="middle">조직 전략·투자기준</text>
+  <path class="itpe-svg-link" d="M380 94 V132" marker-end="url(#arrow-project-value)" />
+  <rect class="itpe-svg-node" x="140" y="140" width="480" height="82" rx="14" />
+  <text class="itpe-svg-title" x="380" y="173" text-anchor="middle">Portfolio</text><text class="itpe-svg-sub" x="380" y="199" text-anchor="middle">선정 · 우선순위 · 자원 · 균형</text>
+  <path class="itpe-svg-link" d="M380 222 V260" marker-end="url(#arrow-project-value)" />
+  <rect class="itpe-svg-node" x="140" y="268" width="480" height="82" rx="14" />
+  <text class="itpe-svg-title" x="380" y="301" text-anchor="middle">Programme</text><text class="itpe-svg-sub" x="380" y="327" text-anchor="middle">편익 · 의존성 · 변화 · 공동자원</text>
+  <path class="itpe-svg-link" d="M380 350 V388" marker-end="url(#arrow-project-value)" />
+  <rect class="itpe-svg-node is-current" x="140" y="396" width="480" height="82" rx="14" />
+  <text class="itpe-svg-title" x="380" y="429" text-anchor="middle">Project</text><text class="itpe-svg-sub" x="380" y="455" text-anchor="middle">Scope · Schedule · Cost · Quality · Risk</text>
+  <path class="itpe-svg-link" d="M380 478 V516" marker-end="url(#arrow-project-value)" />
+  <rect class="itpe-svg-node" x="140" y="524" width="480" height="58" rx="14" />
+  <text class="itpe-svg-title" x="380" y="560" text-anchor="middle">Outcome · Benefit · Value</text>
+</svg>
 </div>
 
 <details>
 <summary>핵심 용어</summary>
 
-- **PM(Project Management)**: 고유한 목표를 달성하기 위해 지식, 기술, 도구, 기법을 프로젝트 활동에 적용하는 관리 체계
-- **포트폴리오 관리(Portfolio Management)**: 전사 전략 목표 달성을 위해 프로젝트, 프로그램, 운영 업무를 하나의 투자 묶음으로 통합 심의·선정하는 활동
-- **프로그램 관리(Program Management)**: 개별 관리 시 불가능한 통합 시너지와 편익(Benefits) 창출을 위해 상호 연관된 복수 프로젝트를 묶어 조율하는 활동
-- **WBS(Work Breakdown Structure)**: 프로젝트 전체 범위를 관리 가능한 계층적 작업 패키지(Work Package)로 분할한 작업 분류 체계
-- **EVM(Earned Value Management)**: 범위, 일정, 원가 데이터를 종합 계측하여 공정 진척도와 비용 성과를 정량적으로 분석·예측하는 기법
-- **CCB(Change Control Board)**: 프로젝트 기준선(Baseline) 변경 요구의 타당성을 공식 심의·승인·기각하는 변경통제위원회
-- **PMBOK(Project Management Body of Knowledge)**: PMI가 제정한 프로젝트 관리 지식 체계 표준 (7판에서 가치 인도 및 12대 원칙으로 전면 개편)
+- **PM(Project Management)**: 프로젝트 목표 달성을 위해 지식·기술·도구·기법을 적용하는 활동
+- **WBS(Work Breakdown Structure)**: 프로젝트 범위를 계층적으로 분할한 구조
+- **Baseline**: 성과 측정과 변경통제의 기준이 되는 승인된 범위·일정·원가 계획
+- **CCB(Change Control Board)**: 변경요청을 검토·승인·기각하는 의사결정기구
+- **EVM(Earned Value Management)**: 계획가치·획득가치·실제원가를 통합해 성과를 측정하는 기법
+- **Tailoring**: 프로젝트 맥락에 맞게 접근법·프로세스·도구·통제를 조정하는 활동
 
 </details>
 
-## 딸려 나오는 하위 토픽
-
-| 키워드 | 등급 | 학습 역할 및 연결 이유 | 핵심 질문/키워드 |
-|---|---|---|---|
-| **포트폴리오 관리** | B | 전사 전략과 프로젝트를 연계하여 투자 우선순위와 ROI를 최적화하는 최상위 의사결정 계층 | Doing the right things, 전략 정합성, 자원 배분, PPM |
-| **IT 프로젝트 관리** | B | 단일 시스템의 범위, 일정, 원가를 통제하여 고유한 인도물을 생성하는 실행 단위 | Doing things right, 삼중 제약, WBS, EVM, CCB |
-| **프로그램 관리** | B | 상호 연관된 복수 프로젝트를 조율하여 개별 프로젝트가 달성할 수 없는 비즈니스 편익을 실현하는 중간 계층 | Doing them together, 편익 실현(Benefits Realization), 의존성 조율 |
-
 ## 예상문제
 
-> IT 프로젝트 관리에 대하여 다음을 설명하시오. 가. IT 프로젝트 관리의 개념 및 PMBOK 7판의 가치 인도 체계 나. 포트폴리오 관리, 프로그램 관리, 프로젝트 관리의 개념 비교 및 상호 관계 다. IT 프로젝트 5대 프로세스 그룹 및 실무 파행 방지를 위한 기술사적 통제 방안 (25점)
+> 프로젝트 관리 통합 체계와 Portfolio·Programme·Project의 관계를 설명하고, 프로젝트 수행절차 및 문제점·대응책을 제시하시오. **(미출제 예상·25점)**
 
-## Ⅰ. 가치 중심 프로젝트 거버넌스, 프로젝트 관리의 개요
+## Ⅰ. 산출물을 조직 가치로 연결하는 통합 관리
 
-> 프로젝트 관리는 단순 산출물 납품을 넘어 전사 비즈니스 가치를 인도하는 실행 메커니즘이며, 성패는 **WBS 기준선(Baseline)** 통제와 **비즈니스 편익(Benefits) 실현**으로 판정함.
+> 프로젝트 성공은 납기·예산 준수만이 아니라 결과가 의도한 편익과 조직 가치로 전환되는가로 판단해야 함.
 
-- 정의: 한정된 기간과 자원 제약 내에서 고유한 목표와 제품·서비스를 완성하기 위해 기획, 실행, 감시·통제 기법을 적용하는 **체계적 공학 및 관리 활동**
-- 목적: 삼중 제약 균형 달성, 결함 최소화 및 비즈니스 가치 적기 인도
+- 정의: 제한된 기간과 자원으로 고유한 산출·성과를 만들고 의도한 가치를 인도하도록 프로젝트를 기획·실행·통제하는 활동
+- 목적: **전략 정렬·성과 인도·제약 균형·위험 통제·조직 학습**
+- 기준: **PMBOK(Project Management Body of Knowledge) 8판**·**ISO 21502:2020**
 
-## Ⅱ. 포트폴리오 vs 프로그램 vs 프로젝트 3계층 거버넌스 체계
+## Ⅱ. Portfolio·Programme·Project 비교
 
-> 세 계층은 상호 배타적인 것이 아니라, 전략(포트폴리오)에서 시너지(프로그램)를 거쳐 실행(프로젝트)으로 이어지는 수직적 가치 사슬임.
+| 기준 | Portfolio | Programme | Project |
+|---|---|---|---|
+| 목적 | 전략·투자 최적화 | 공동 편익 실현 | 고유 산출·성과 인도 |
+| 대상 | 사업·프로그램·프로젝트 | 연관 프로젝트·활동 | 한시적 작업 |
+| 통제 | 선정·우선순위·자원균형 | 의존성·변화·편익 | 범위·일정·원가·품질 |
+| 성공 | 전략 기여·투자성과 | 편익·역량 전환 | 인수·성과·가치 기여 |
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="포트폴리오, 프로그램, 프로젝트 3계층 거버넌스 체계">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 포트폴리오 관리 (Portfolio Management)</strong></span>
-    <div class="itpe-step-detail"><strong>Doing the right things</strong><span>전사 전략 연계, 투자 가치(ROI) 극대화 및 자원 우선순위 배분</span></div>
-  </div>
+## Ⅲ. 프로젝트 관리 절차
+
+> 프로젝트의 접근법이 예측형·적응형·Hybrid 중 무엇이든 승인·인도·측정·학습의 관리흐름은 필요함.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="프로젝트의 정당화부터 편익 환류까지 통합 관리 절차">
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 정당화·착수</strong><strong>활동</strong><span>Business Case·목표·Sponsor·권한 확정</span><strong>산출</strong><span>Project Charter</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 프로그램 관리 (Program Management)</strong></span>
-    <div class="itpe-step-detail"><strong>Doing them together</strong><span>복수 프로젝트 통합, 그룹 시너지 창출 및 비즈니스 편익 달성</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 계획·Baseline</strong><strong>활동</strong><span>WBS·일정·원가·품질·위험·조달 계획</span><strong>산출</strong><span>PM Plan · Baseline</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 프로젝트 관리 (Project Management)</strong></span>
-    <div class="itpe-step-detail"><strong>Doing things right</strong><span>삼중 제약(Scope/Time/Cost) 내에서 고유 산출물 적기 인도</span></div>
-  </div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 실행·인도</strong><strong>활동</strong><span>팀·공급자·품질·의사소통·작업 통합</span><strong>산출</strong><span>Deliverable · 성과정보</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 측정·변경통제</strong><strong>활동</strong><span>편차·위험·가치 검토·CCB 의사결정</span><strong>산출</strong><span>성과보고 · 승인변경</span></div></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 인수·종료·환류</strong><strong>활동</strong><span>인수·계약종료·교훈·편익책임 이관</span><strong>산출</strong><span>인수서 · Lessons Learned</span></div></div>
 </div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Strategic Value Chain</strong></span> · 포트폴리오(투자 전략) ↔ 프로그램(편익 시너지) ↔ 프로젝트(산출물 완결)</div>
 
-### 3대 관리 계층의 비교
+## Ⅳ. 예측형·적응형·Hybrid 비교
 
-| 비교 항목 | 포트폴리오 관리 (Portfolio) | 프로그램 관리 (Program) | 프로젝트 관리 (Project) |
+| 기준 | Predictive | Adaptive | Hybrid |
 |---|---|---|---|
-| **핵심 질문** | Doing the right things? | Doing them together? | Doing things right? |
-| **관리 대상** | 전사 프로젝트, 프로그램, 운영 업무 일체 | 상호 연관된 복수의 하위 프로젝트군 | 단일의 고유한 프로젝트 작업 일체 |
-| **초점 및 목표** | 전사 전략 정렬, **ROI 극대화**, 위험 분산 | **통합 시너지 창출**, 비즈니스 편익 실현 | **삼중 제약(범위·일정·원가)** 준수 및 산출물 납품 |
-| **책임자** | 포트폴리오 매니저, 최고경영진(C-Level) | 프로그램 매니저 (PgMP) | 프로젝트 매니저 (PMP) |
-| **핵심 산출물** | 포트폴리오 헌장, 자원 배분 로드맵 | 편익 관리 계획서, 통합 마스터 일정 | **WBS**, 프로젝트 관리 계획서, 결과물 |
-| **성공 판정** | 전사 사업 가치 및 재무 성과 달성도 | 집합적 편익(Benefits) 실현 여부 | 산출물 납기 준수, 품질 및 예산 일치 |
+| 요구 | 비교적 안정 | 불확실·학습 필요 | 고정·가변 혼재 |
+| 계획 | 상세 선행계획 | 반복·점진 계획 | Milestone+Backlog |
+| 인도 | 단계·최종 인도 | 짧은 주기 증분 | 단계별 증분 |
+| 변경 | CCB·Baseline | Backlog 재우선순위 | 수준별 이원통제 |
+| 적합 | 규제·물리·계약 고정 | 탐색·디지털 제품 | 대규모 IT 전환 |
 
-## Ⅲ. IT 프로젝트 관리 5대 프로세스 그룹 및 통제 흐름
-
-> 착수부터 종료까지 프로세스는 일회성으로 끝나지 않으며, 감시 및 통제 그룹이 전 주기에 걸쳐 기준선 변경을 감시함.
-
-| 프로세스 그룹 | 주요 수행 활동 | 핵심 산출물 (ITTO) | 실무 통제 기준 |
-|---|---|---|---|
-| **1. 착수 (Initiating)** | 프로젝트 목적 수립, 초기 타당성 분석, PM 권한 승인 | **프로젝트 헌장(Project Charter)** · 이해관계자 등록부 | 스폰서 공식 서명 확보 |
-| **2. 기획 (Planning)** | 범위·일정·원가 베이스라인 확정, 위험/품질 계획 구체화 | **WBS** · 일정 네트워크 공정표 · 프로젝트 관리 계획서 | 기준선(Baseline) 잠금(Freeze) |
-| **3. 실행 (Executing)** | 작업 패키지 구현, 팀 빌딩, 품질 보증, 자원 조달 | 작업 인도물(Deliverables) · 변경 요청서(CR) | 품질 기준 충족 여부 점검 |
-| **4. 감시/통제 (M&C)** | 실적 계측, 편차 분석, 위험 재평가, **CCB 변경 심의** | 작업 성과 보고서 · **EVM(CPI, SPI)** 지표 | 기준선 대비 편차 10% 이내 통제 |
-| **5. 종료 (Closing)** | 고객 인수 검수, 계약 종결, 교훈(Lessons Learned) 정리 | 최종 검수 확인서 · 조직 프로세스 자산(OPA) 갱신 | 미해결 결함 0건 및 자산화 |
-
-## Ⅳ. 예측적(워터폴) vs 적응적(애자일) vs 하이브리드 관리 테일러링
-
-> 프로젝트 특성에 따라 개발 모델을 재단(Tailoring)해야 납기 지연과 품질 결함을 방어할 수 있음.
-
-| 비교 항목 | 예측적 접근법 (Waterfall) | 적응적 접근법 (Agile) | 하이브리드 접근법 (Hybrid) |
-|---|---|---|---|
-| **요구사항 특성** | 사업 초기 명확히 확정 가능 | 불확실성이 극심하여 잦은 변경 예상 | 핵심 코어는 고정, UI 및 상세 기능은 가변적 |
-| **범위 관리** | WBS 기반 엄격한 스코프 베이스라인 | 프로덕트 백로그 기반 스프린트 우선순위화 | **상위 마일스톤 고정 + 하위 백로그 적응** |
-| **인도 방식** | 프로젝트 종료 시점 일괄 인도 (Big Bang) | 1~4주 스프린트 단위 점진적 가치 인도 | 릴리즈 단위 단계적 배포 및 조기 가치 검증 |
-| **변경 통제** | **CCB 승인 절차**를 통한 변경 엄격 억제 | 스프린트 회고 및 백로그 동적 재배치 | **계약 마일스톤은 CCB, 세부 기능은 애자일 수용** |
-| **대표 적용처** | 금융 계정계, 공공 대규모 원장 구축 | 모바일 앱, 빅데이터 분석, AI 서비스 개발 | **대규모 차세대 엔터프라이즈 DX 사업** |
-
-## Ⅴ. 실무 프로젝트 위험 요인 및 기술사적 대책
-
-> 프로젝트 실패의 주원인은 기술 부족보다 비공식적 요구사항 확대와 주관적 공정 보고에 기인함.
+## Ⅴ. 문제점·대응책
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **범위 크립(Scope Creep) 누적** | 공식 **변경통제위원회(CCB)** 운영 및 WBS 베이스라인 잠금 | 비공식 변경 0건 달성 및 승인된 변경만 일정·예산 보정 |
-| **주관적 진척 보고 왜곡** | **EVM 기법** 및 0/100 룰(완전 완료 시에만 가치 인정) 강제 | SPI/CPI 지표 기반 객관적 공정 진척 및 예산 계측 |
-| **인터페이스 결함 막판 폭발** | **일일 CI/CD 자동 빌드** 및 주간 인터페이스 통합 테스트 | 결함 조기 발견 및 인터페이스 불일치 리스크 사전 해소 |
-| **전략과 무관한 프로젝트 난립** | **포트폴리오 관리(PPM)** 투자 심의 및 비즈니스 케이스 평가 | 전사 전략 정합성 확보 및 고수익 프로젝트 자원 집중 |
+| 전략과 무관한 착수 | Business Case·Portfolio Gate | 투자 정렬 |
+| Scope Creep | 요구-WBS-Baseline·CCB 추적 | 변경 투명성 |
+| 낙관적 진척 보고 | EVM·Milestone·실물 증적 | 예측력 향상 |
+| 통합결함 후반 집중 | 조기통합·자동시험·Definition of Done | 재작업 감소 |
+| 종료 후 편익 단절 | 편익 Owner·측정시점·이관계획 | 가치 실현 |
 
-## Ⅵ. 엔지니어링 데이터 드리븐 PM 중심의 결론
+## Ⅵ. Evidence-based Forecast 제언
 
-> 프로젝트 관리는 주관적 보고서 작성을 탈피하여, 실제 코드 저장소와 빌드 파이프라인에서 추출되는 **엔지니어링 메트릭 기반 데이터 드리븐 PM**으로 진화해야 함.
+`[핵심 통찰]` 프로젝트 파행은 계획과 실제의 차이보다 그 차이를 늦게 인식하고 의사결정을 미루는 데서 커지므로, 예측 신뢰도와 변경 결정시간을 관리해야 함.
 
-### 학습자 통찰 메모 — 답안 밖
+`나라면` 보고서의 주관적 완료율 대신 승인된 산출물·시험결과·EVM·Risk Exposure를 함께 보고, 기준 초과 시 범위·일정·원가 중 무엇을 조정할지 CCB가 즉시 결정하도록 하겠음.
 
-- [핵심 통찰]: 프로젝트 파행은 개발자가 코드를 못 짜서가 아니라, 비공식 구두 요구사항이 누적되어 통제 불능(Scope Creep) 상태에 빠지고 이를 PM이 정량적으로 감지하지 못할 때 발생함.
-- 나라면: 프로젝트 룸에 화려한 PPT 보고서 대신 `Git 커밋 빈도 + CI/CD 빌드 성공률 + 지라(Jira) 결함 미해결 번다운 차트 + EVM 지표`를 결합한 실시간 데이터 대시보드를 전광판으로 띄워 객관적 수치로만 진척을 통제하겠음.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 주관적 보고서보다 형상 및 빌드 기반 정량 데이터 통제 여부로 성패 판정
-- 대안: **데이터 드리븐 PMO 대시보드** + **엄격한 CCB 품질 게이트(Quality Gate)** 운영
-- 검증: CPI/SPI 지표 0.9 이상 유지 · 스프린트 번다운 완료율 · 미승인 변경 0건
-- 효과: 스코프 크립 원천 차단 · 납기 지연 방지 및 PMBOK 7판 가치 인도 체계 완성
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="데이터 드리븐 프로젝트 관리 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>취약점</strong><span>구두 요구에 의한 스코프 크립, 주관적 공정 왜곡 및 통합 결함 지연 발견</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>데이터 기반</strong><span>Git/CI 연동 데이터 드리븐 PM 및 하이브리드 거버넌스(CCB+스프린트) 확립</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>목표 지표</strong><span>EVM 정량 지표 0.95 이상, WBS 기준선 일치율 100% 및 결함 조기 수렴</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>가치 창출</strong><span>예산·납기 초과 방지, 고품질 산출물 인도 및 전사 비즈니스 가치 실현</span></div>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 760 470" role="img" aria-label="프로젝트 증적을 기반으로 예측하고 변경을 결정하는 피드백 구조">
+  <defs><marker id="arrow-project-loop" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
+  <circle class="itpe-svg-node is-current" cx="380" cy="235" r="88" />
+  <text class="itpe-svg-title" x="380" y="224" text-anchor="middle">Forecast</text><text class="itpe-svg-sub" x="380" y="253" text-anchor="middle">일정 · 원가 · 위험 · 가치</text>
+  <rect class="itpe-svg-node" x="55" y="45" width="220" height="76" rx="14" />
+  <text class="itpe-svg-title" x="165" y="78" text-anchor="middle">Evidence</text><text class="itpe-svg-sub" x="165" y="103" text-anchor="middle">산출 · 시험 · EVM</text>
+  <rect class="itpe-svg-node" x="485" y="45" width="220" height="76" rx="14" />
+  <text class="itpe-svg-title" x="595" y="78" text-anchor="middle">CCB Decision</text><text class="itpe-svg-sub" x="595" y="103" text-anchor="middle">승인 · 기각 · 보류</text>
+  <rect class="itpe-svg-node" x="485" y="349" width="220" height="76" rx="14" />
+  <text class="itpe-svg-title" x="595" y="382" text-anchor="middle">Rebaseline</text><text class="itpe-svg-sub" x="595" y="407" text-anchor="middle">범위 · 일정 · 원가</text>
+  <rect class="itpe-svg-node" x="55" y="349" width="220" height="76" rx="14" />
+  <text class="itpe-svg-title" x="165" y="382" text-anchor="middle">Execute</text><text class="itpe-svg-sub" x="165" y="407" text-anchor="middle">인도 · 검증 · 학습</text>
+  <path class="itpe-svg-link" d="M275 83 H475" marker-end="url(#arrow-project-loop)" />
+  <path class="itpe-svg-link" d="M595 121 V339" marker-end="url(#arrow-project-loop)" />
+  <path class="itpe-svg-link" d="M485 387 H285" marker-end="url(#arrow-project-loop)" />
+  <path class="itpe-svg-link" d="M165 349 V131" marker-end="url(#arrow-project-loop)" />
+</svg>
 </div>
 
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
 
-- 정의: **프로젝트 관리(Project Management)**는 고유한 제품·서비스를 완성하기 위해 착수·기획·실행·통제·종료 프로세스를 적용하여 삼중 제약을 통제하고 가치를 인도하는 체계적 활동
-- 목적: 삼중 제약 균형 달성, 결함 방지 및 비즈니스 편익 실현
+- 정의: 제한된 기간과 자원으로 고유한 산출·성과를 만들고 가치를 인도하도록 기획·실행·통제하는 활동
+- 목적: **전략 정렬·성과 인도·제약 균형·위험 통제·조직 학습**
 
-### 2. 프로젝트, 프로그램, 포트폴리오 3대 관리 체계
+### 2. 통합체계
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="프로젝트 관리 3대 체계 요약 파이프라인">
-  <div class="itpe-pipeline-node">
-    <strong>포트폴리오 관리</strong>
-    <div class="itpe-step-detail"><strong>전략 정렬</strong><span>전사 투자 최적화 (Doing the right things)</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>프로그램 관리</strong>
-    <div class="itpe-step-detail"><strong>시너지 창출</strong><span>복수 프로젝트 통합 편익 (Doing them together)</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>프로젝트 관리</strong>
-    <div class="itpe-step-detail"><strong>실행 통제</strong><span>삼중 제약 통제 및 산출물 완성 (Doing things right)</span></div>
-  </div>
-</div>
+| 계층 | 핵심 |
+|---|---|
+| Portfolio | 전략·선정·우선순위·자원 |
+| Programme | 편익·의존성·변화 |
+| Project | 범위·일정·원가·품질·위험 |
 
 ### 3. 핵심 통제
 
-- **WBS 및 CCB 기준선 관리**: WBS로 작업을 완전 분할하고 기준선 잠금 후, 모든 변경 요구는 공식 **CCB(Change Control Board)**를 통해서만 심의·반영하여 스코프 크립 원천 차단
-- **하이브리드 테일러링**: 계약 및 거버넌스는 워터폴 마일스톤으로 통제하고, 개발 상세 구현은 2주 단위 애자일 스프린트로 유연하게 대응
+- **Baseline·CCB**: 승인계획 대비 편차와 변경의 공식 통제
+- **Evidence-based Forecast**: 산출·시험·EVM·위험 기반 완료예측
 
 ## 출제 이력과 검증 출처
 
-- 제135회 정보관리기술사 3교시 1번: IT 프로젝트 관리의 개념, 5대 프로세스, 프로그램/포트폴리오 관리 비교
-- 제125회 정보관리기술사 1교시: PMBOK 7판 핵심 원칙 및 성과 영역
-- PMI, 'A Guide to the Project Management Body of Knowledge (PMBOK Guide 7th Edition)'
-- ISO 21500:2021, 'Project, programme and portfolio management'
+- 공식 문제지 원문으로 확인한 직접 기출 없음
+- [PMI, PMBOK Guide Eighth Edition](https://www.pmi.org/standards/pmbok)
+- [ISO, ISO 21502:2020 Guidance on project management](https://www.iso.org/standard/74947.html)
 
 ## 학습 체크
 
-- [ ] 프로젝트, 프로그램, 포트폴리오 관리의 차이점과 상호 연결성을 설명할 수 있는가?
-- [ ] IT 프로젝트 관리 5대 프로세스 그룹과 주요 산출물(ITTO)을 제시할 수 있는가?
-- [ ] 예측적(워터폴), 적응적(애자일), 하이브리드 관리 기법의 장단점을 비교할 수 있는가?
-- [ ] 스코프 크립 방지를 위한 CCB와 EVM 기반 공정 통제 방안을 논술할 수 있는가?
+- [ ] Ⅰ: 프로젝트 관리의 정의·목적과 현행 기준을 설명할 수 있는가?
+- [ ] Ⅱ: Portfolio·Programme·Project를 목적·통제로 비교할 수 있는가?
+- [ ] Ⅲ: 착수부터 종료·환류까지 활동과 산출물을 연결할 수 있는가?
+- [ ] Ⅳ: Predictive·Adaptive·Hybrid를 비교할 수 있는가?
+- [ ] Ⅴ: 정렬·변경·진척·통합·편익 위험의 대응책을 제시할 수 있는가?
+- [ ] Ⅵ: Evidence-based Forecast를 제언할 수 있는가?
 
 ## 연결 토픽
 
