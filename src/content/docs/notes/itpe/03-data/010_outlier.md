@@ -1,7 +1,7 @@
 ﻿---
 title: "이상치(탐지 기법·노이즈 구분 포함)"
 author: "Codex"
-date: "2026-09-20T20:01:24+09:00"
+date: "2026-09-20T20:05:23+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -169,7 +169,7 @@ extra:
 - 목적: 오류와 유효 희귀사건을 분리하여 통계 왜곡을 줄이고 사기·고장 신호를 보존함.
 
 ### 2. 핵심 메커니즘 / 체계
-<div class="itpe-flow-map" role="img" aria-label="이상치 탐지와 처리"><div class="itpe-flow-node"><strong>입력 데이터</strong><span>대상: 원천 관측치</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>탐지</strong><span>방식: IQR(Interquartile Range) · LOF(Local Outlier Factor) · Isolation Forest</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>원인 판정</strong><span>오류: 삭제·대체</span><span>신호: 격리·조사</span></div></div>
+<div class="itpe-flow-map" role="img" aria-label="이상치 탐지와 처리"><div class="itpe-flow-node"><strong>입력 데이터</strong><span>대상: 원천 관측치</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node"><strong>탐지</strong><span>방식: IQR(Interquartile Range) · LOF(Local Outlier Factor) · Isolation Forest</span></div><div class="itpe-flow-arrow">↓</div><div class="itpe-flow-node is-current"><strong>원인 판정</strong><span>판정: 오류이면 삭제·대체</span><span>판정: 유효 신호이면 격리·조사</span><span>효과: 왜곡 완화·희귀사건 보존</span></div></div>
 - 통계, 거리/밀도, 머신러닝 3대 기법으로 식별 후 분석 목적에 따라 차등 처리함.
 
 | 판정 대상 | 대책 | 검증 |

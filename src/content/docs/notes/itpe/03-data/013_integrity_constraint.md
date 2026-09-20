@@ -1,7 +1,7 @@
 ﻿---
 title: "무결성 제약(데이터 무결성)"
 author: "Codex"
-date: "2026-09-20T20:01:24+09:00"
+date: "2026-09-20T20:05:23+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -136,11 +136,13 @@ CREATE TABLE orders (
 
 > 무결성 검증 비용과 잠금 영향은 DBMS 구현·인덱스·작업 유형에 따라 달라지므로 실행계획과 잠금 관측으로 판단함.
 
-```text
-[외래키 인덱스 판단]
-  부모 키 변경·삭제와 자식 조회 패턴 확인 → DBMS별 실행계획·잠금 관측
-  → 참조 검사 비용과 경합이 큰 FK에 적합한 인덱스 설계
-```
+<div class="itpe-flow-map" role="img" aria-label="외래키 인덱스 판단 흐름">
+  <div class="itpe-flow-node"><strong>접근 패턴 확인</strong><div class="itpe-step-detail"><span>활동</span><span>부모 키 변경·삭제와 자식 조회 빈도 수집</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>DBMS 관측</strong><div class="itpe-step-detail"><span>판정</span><span>실행계획·잠금 이벤트·참조 검사 비용 측정</span></div></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current"><strong>선택적 인덱스 설계</strong><div class="itpe-step-detail"><span>산출</span><span>DBMS와 부하 특성에 맞는 FK 인덱스</span></div></div>
+</div>
 - **대량 데이터 배치(Batch) 적재 지연**: 대량 삽입에서 PK·FK 검증 비용이 누적될 수 있으므로 DBMS별 적재 방식과 실행시간을 측정함.
   - 대책: Oracle의 `ENABLE NOVALIDATE`는 기존 행을 검증하지 않으므로 신규 DML 통제용으로 구분하고, 기존 데이터까지 정제·검증할 때는 `ENABLE VALIDATE` 적용.
 
