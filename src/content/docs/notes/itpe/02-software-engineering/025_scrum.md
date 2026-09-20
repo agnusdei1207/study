@@ -2,14 +2,14 @@
 title: "스크럼(Scrum)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -102,21 +102,21 @@ extra:
 | **고객 참여** | 요구분석 및 최종 인수 시점에 국한 | **매 스프린트 리뷰마다 지속적 참여 및 피드백** |
 | **리스크 노출** | 후반부 통합 및 테스트 시 폭증 | **초기부터 조기 분산 및 완화** |
 
-## Ⅳ. 품질 기준(DoR/DoD)과 실무 위험 관리
+## Ⅳ. 스크럼 운영 문제점·대응책
 
 > 스크럼이 단순한 '날림 개발'로 전락하지 않기 위한 가장 강력한 공학적 안전장치가 DoD이다.
 
-### 1. DoR에서 DoD로의 품질 전이
+### 1. 백로그 정제와 완료의 정의(DoD)
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="DoR에서 DoD로의 품질 전이">
+<div class="itpe-pipeline is-vertical" role="img" aria-label="백로그 정제와 완료의 정의">
   <div class="itpe-pipeline-node">
-    <strong>DoR (Definition of Ready: 준비의 정의)</strong>
-    <span>스프린트에 투입되기 위한 백로그 준비 조건: 비즈니스 가치 명확, 추정 가능, INVEST 기준 충족</span>
+    <strong>제품 백로그 정제</strong>
+    <span>제품 백로그 항목을 더 작고 명확하게 분해 · 설명·순서·크기 지속 보완</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ 스프린트 개발 수행</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>DoD (Definition of Done: 완료의 정의)</strong></span>
-    <span>코드 리뷰 완료 · 단위/통합 테스트 100% 통과 · 정적 분석 취약점 제로 · 문서화 및 스테이징 배포 완료</span>
+    <span>조직이 제품 증분에 요구하는 품질 상태를 공식 정의 · 충족한 작업만 증분에 포함</span>
   </div>
 </div>
 
@@ -128,7 +128,7 @@ extra:
 | 불명확한 품질 기준으로 결함 누적 | DoD(코드리뷰, 단위/통합테스트, 정적분석) 체크리스트 엄격 적용 | 잠재적 출시 가능한 고품질 제품 증분 확보 |
 | 스프린트 도중 무분별한 과업 추가 및 변경 | 스프린트 타임박스 보호 규칙 적용 및 차기 스프린트 백로그 이관 | 개발팀 개발 집중도 유지 및 일정 예측 가능성 확보 |
 
-## Ⅴ. 스크럼 확장을 위한 기술사적 제언
+## Ⅴ. 경험주의 정착 중심의 결론
 
 > 단일 스크럼을 넘어 다수 팀이 참여하는 엔터프라이즈 환경에서는 스케일드 애자일(SAFe, LeSS) 거버넌스가 필요하다.
 
@@ -198,7 +198,7 @@ extra:
 
 - [ ] 스크럼의 3대 경험주의 기둥(투명성, 점검, 적응)을 설명할 수 있는가?
 - [ ] PO, SM, Developers의 핵심 책임과 차이점을 설명할 수 있는가?
-- [ ] DoD(완료의 정의)와 DoR(준비의 정의)의 차이점을 설명할 수 있는가?
+- [ ] 제품 백로그 정제와 DoD(Definition of Done, 완료의 정의)의 역할을 구분할 수 있는가?
 
 ## 연결 토픽
 

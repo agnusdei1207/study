@@ -2,14 +2,14 @@
 title: "REST"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -111,7 +111,7 @@ extra:
 | **PATCH** | 자원의 부분 수정 | X | **X / O** (설계에 따라 다름) | X |
 | **DELETE** | 자원 삭제 | X | **O** (이미 삭제된 상태 유지) | X |
 
-## Ⅳ. 리차드슨 성숙도 모델과 실무 위험 관리
+## Ⅳ. REST 적용 문제점·대응책
 
 > REST 도입 수준을 4단계로 정의하여 점진적 RESTful API 진화를 안내한다.
 
@@ -147,7 +147,7 @@ extra:
 | 재시도 시 중복 결제·데이터 생성 | 고유 Idempotency-Key 헤더 도입 및 멱등성 검증 로직 구현 | 네트워크 장애 시 안전한 재시도 보장 |
 | 제각각의 에러 응답 포맷 | RFC 7807 (Problem Details) 표준 에러 규격 적용 | 클라이언트 예외 처리 일관성 및 디버깅 가속화 |
 
-## Ⅴ. 성공적인 API 설계를 위한 기술사적 제언
+## Ⅴ. 일관된 인터페이스 중심의 결론
 
 > HATEOAS의 교조적 적용보다는 실용적 일관성과 OAS(OpenAPI Specification) 표준화가 현대 아키텍처의 핵심이다.
 

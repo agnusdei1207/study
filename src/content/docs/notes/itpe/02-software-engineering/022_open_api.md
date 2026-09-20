@@ -2,14 +2,14 @@
 title: "Open API(API 일반)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -102,7 +102,7 @@ extra:
 | **보안 통제** | 내부 네트워크망 신뢰, 기본 토큰 | 전용 VPN, mTLS, 계약 기반 인증 | **엄격한 OAuth 2.0, Rate Limit, WAF 필수** |
 | **수익 모델** | 내부 개발 공수 절감 | 파트너십 상호 정산 | 호출당 과금(Pay-per-use), 무료 티어 제공 |
 
-## Ⅳ. Open API 보안 위협과 실무 위험 관리 (OWASP API Security)
+## Ⅳ. Open API 운영 문제점·대응책
 
 > API는 소스코드 내부 비즈니스 로직과 데이터가 직접 외부에 노출되므로 전통적 웹 방화벽만으로는 방어가 불가능하다.
 
@@ -112,7 +112,7 @@ extra:
 | 대량 트래픽 급증 및 DoS 공격 | 클라이언트 IP 및 토큰 기반 Rate Limiting·Throttling 적용 | 백엔드 자원 고갈 방지 및 서비스 가용성(SLA) 보장 |
 | 민감 개인정보 과다 노출 | 응답 필터링 DTO 적용 및 주민번호·계좌 마스킹 처리 | 데이터 유출 규제 위반 및 프라이버시 침해 방지 |
 
-## Ⅴ. 성공적인 Open API 거버넌스를 위한 기술사적 제언
+## Ⅴ. 개방성과 통제 균형의 결론
 
 > Open API의 성패는 배포 기술이 아니라 개발자 경험(DX: Developer Experience)과 지속적 생애주기 관리에 달려 있다.
 

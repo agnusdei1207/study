@@ -1,15 +1,15 @@
 ---
-title: "오픈소스 라이선스(Permissive·Copyleft·SSPL/BSL)"
+title: "오픈소스 라이선스(Permissive·Copyleft)와 Source-Available 라이선스"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,12 +23,12 @@ extra:
 ## 큰 그림과 30초 인출
 
 - 본질: **오픈소스 라이선스(OSS License)**는 오픈소스 소프트웨어의 사용, 복제, 수정, 재배포 시 준수해야 하는 법적 권리와 의무(저작권 고지, 소스코드 공개 등)를 규정한 계약
-- 메커니즘: **Permissive**(조건 완화: MIT/Apache) vs **Copyleft**(전염성 강제: GPL/LGPL/AGPL) vs **클라우드 보호**(SSPL/BSL)
+- 메커니즘: **Permissive**(최소 조건) · **Copyleft**(동일 조건 제공) · **Source-Available**(용도 제한 가능)을 구분
 - 산출/효과: 라이선스 위반 소송 방지 · 기업 지식재산권(IP) 보호 · **SBOM** 기반 컴플라이언스 체계 확립
 
 <div class="itpe-flow-map" role="img" aria-label="오픈소스 라이선스 스펙트럼">
   <div class="itpe-flow-node"><strong>Permissive (허용적)</strong><span>MIT · Apache 2.0 · BSD (상용화 자유, 고지만 요구)</span></div>
-  <div class="itpe-flow-arrow">→ 전염성 강화 →</div>
+  <div class="itpe-flow-arrow">→ 의무 범위 확대 →</div>
   <div class="itpe-flow-node is-current">
     <strong>Copyleft (카피레프트)</strong>
     <div class="itpe-flow-branches">
@@ -48,7 +48,7 @@ extra:
 - **Permissive License(허용적 라이선스)**: 소스코드 공개 의무가 없으며, 저작권 및 라이선스 고지만 유지하면 상용 독점 소프트웨어에 자유롭게 결합 가능한 라이선스 (MIT, Apache 2.0)
 - **Copyleft(카피레프트)**: 지식재산권을 공유하기 위해 이를 수정한 2차적 저작물도 동일한 라이선스로 소스코드를 공개하도록 강제하는 원칙 (GPL)
 - **AGPL(Affero GPL)**: 배포(Distribution)되지 않고 네트워크 서버(SaaS) 형태로만 서비스되는 경우에도 소스코드 공개 의무를 강제하는 라이선스
-- **SSPL / BSL**: 클라우드 벤더(AWS 등)가 오픈소스를 무단으로 서비스화(SaaS)하는 것을 방지하기 위해 상업적 클라우드 제공을 제한한 라이선스
+- **SSPL / BSL**: 소스는 열람할 수 있으나 용도 제한이 있어 Open Source Initiative(OSI) 승인 오픈소스와 구분되는 라이선스
 
 </details>
 
@@ -63,29 +63,29 @@ extra:
 - 정의: 오픈소스 소프트웨어 개발자가 이용자에게 소스코드의 사용, 수정, 배포 권한을 부여하면서 일정한 의무사항을 준수하도록 규정한 법적 계약
 - 목적: 소프트웨어 공유 생태계 발전, 지식재산권(IP) 보호, 기업 상용화 시 라이선스 충돌 및 **독점 코드 강제 공개 리스크** 방어
 
-## Ⅱ. 오픈소스 라이선스 유형별 특성 및 전염성 비교
+## Ⅱ. 오픈소스 라이선스 유형별 의무 범위 비교
 
-> 카피레프트의 전염성(Viral Effect) 여부에 따라 기업 독점 소스코드의 운명이 결정된다.
+> 의무 범위는 라이선스 원문·결합 방식·배포 형태에 따라 달라지므로 개별 조건을 판정해야 한다.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="오픈소스 라이선스 분류 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. Permissive (MIT, Apache 2.0, BSD)</strong></span>
     <span>수정본 소스코드 공개 의무 없음 · 저작권 고지만 유지 시 독점 상용화 가능</span>
   </div>
-  <div class="itpe-pipeline-arrow">↓ 전염성 발생</div>
+  <div class="itpe-pipeline-arrow">↓ 동일 조건 의무 확대</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>2. Weak Copyleft (LGPL, MPL)</strong></span>
-    <span>라이브러리 자체 수정 시만 공개 · 동적 링크(Dynamic Link) 결합 시 독점 코드 비공개 허용</span>
+    <span>해당 구성요소의 수정·결합·배포 조건에 따라 공개 의무 범위 판정</span>
   </div>
-  <div class="itpe-pipeline-arrow">↓ 강력한 전염성</div>
+  <div class="itpe-pipeline-arrow">↓ 배포 범위 판정</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>3. Strong Copyleft (GPL v2/v3)</strong></span>
-    <span>정적/동적 링크 불문, 결합된 전체 프로그램의 소스코드를 GPL로 전면 공개 강제</span>
+    <span>배포되는 파생 저작물에는 GPL의 대응 소스 제공 조건 적용</span>
   </div>
   <div class="itpe-pipeline-arrow">↓ SaaS 환경 확장</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>4. Network Copyleft (AGPL)</strong></span>
-    <span>소프트웨어를 직접 배포하지 않고 네트워크 서비스(SaaS)로 제공해도 소스코드 공개 강제</span>
+    <span>수정 프로그램과 네트워크로 상호작용하는 이용자에게 대응 소스 제공 기회 부여</span>
   </div>
 </div>
 
@@ -94,9 +94,9 @@ extra:
 | **Permissive** | MIT, BSD, Apache 2.0 | **공개 의무 없음** (고지만 유지) | Apache 2.0(특허권 명시) | **극히 낮음** (기업 친화적) |
 | **Weak Copyleft** | LGPL 2.1/3.0, MPL | 해당 오픈소스 모듈 수정 시만 공개 | LGPL 3.0(특허 보증) | 보통 (동적 링크 시 안전) |
 | **Strong Copyleft** | GPL 2.0/3.0 | **결합된 파생 저작물 전체 공개** | GPL 3.0(특허 보증) | **매우 높음** (독점 코드 노출 위험) |
-| **Network Copyleft**| AGPL 3.0 | **웹/클라우드 서비스 이용자에게 공개**| AGPL 3.0 | **치명적** (백엔드 코드 공개 강제) |
+| **Network Copyleft**| AGPL 3.0 | 수정 프로그램의 네트워크 이용자에게 대응 소스 제공 기회 | AGPL 3.0 | 서비스 방식·수정 범위 검토 필요 |
 
-## Ⅲ. 클라우드 시대의 새로운 라이선스: SSPL과 BSL의 등장
+## Ⅲ. 오픈소스와 구분할 Source-Available 라이선스: SSPL·BSL
 
 > AWS 등 거대 클라우드 기업이 오픈소스를 무료로 가져다 매니지드 서비스(SaaS)로 판매하자 원저작사들이 반격에 나섰다.
 
@@ -113,7 +113,7 @@ extra:
 | **전환 기간** | 영구적 규제 | 일정 기간(예: 4년) 경과 후 오픈소스(Apache)로 자동 전환 |
 | **OSI 승인 여부** | **미승인 (Non-OSS)** (차별 금지 조항 위배) | **미승인 (Non-OSS)** (소스 가용성 모델) |
 
-## Ⅳ. 기업 오픈소스 컴플라이언스 및 위험 관리
+## Ⅳ. 오픈소스 컴플라이언스 문제점·대응책
 
 > 엔터프라이즈 환경에서는 개발 전 과정에서 오픈소스 라이선스 오염을 감시하는 SBOM 기반 거버넌스가 필수적이다.
 
@@ -149,7 +149,7 @@ extra:
 | 오픈소스 고지 의무 누락 | SPDX/CycloneDX 기반 SBOM 및 라이선스 고지문 자동 생성 | 저작권 침해 분쟁 및 법적 제재 예방 |
 | AI 코딩 도구 발 라이선스 오염 | 공개 코드 매칭 필터링 활성화 및 코드 정밀 검증 | 생성형 AI 기반 지식재산권 침해 방지 |
 
-## Ⅴ. 지식재산권 보호 중심의 기술사적 제언
+## Ⅴ. 라이선스 원문 판정 중심의 결론
 
 > 오픈소스 관리는 개발팀의 자율에만 맡길 수 없는 전사적 법무·보안·엔지니어링 통합 거버넌스 영역이다.
 
@@ -218,7 +218,7 @@ extra:
 ## 학습 체크
 
 - [ ] Permissive 라이선스와 Copyleft 라이선스의 가장 결정적인 법적 차이를 설명할 수 있는가?
-- [ ] LGPL과 GPL의 링크(Linking) 방식에 따른 소스코드 공개 범위 차이를 설명할 수 있는가?
+- [ ] LGPL과 GPL의 결합·배포 조건에 따른 대응 소스 제공 범위를 원문 기준으로 구분할 수 있는가?
 - [ ] AGPL, SSPL, BSL이 클라우드 SaaS 환경에서 등장하게 된 배경을 설명할 수 있는가?
 
 ## 연결 토픽
