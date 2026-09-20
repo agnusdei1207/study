@@ -28,7 +28,7 @@ extra:
     <strong>발주기관 (행정기관 등)</strong>
     <small>감리 발주 및 사업 관리·감독</small>
   </div>
-  <div class="itpe-flow-arrow">↓<small>독립 감리 계약 체결</small></div>
+  <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
     <strong>감리법인 (독립 제3자)</strong>
     <div class="itpe-flow-branches">
@@ -37,10 +37,10 @@ extra:
       <div class="itpe-flow-branch"><strong>산출</strong><span>감리계획서 · 감리보고서 · 감리결과 조치확인서</span></div>
     </div>
   </div>
-  <div class="itpe-flow-arrow">↓<small>시정 조치 권고 및 완료 검증</small></div>
+  <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>피감리인 (수행 사업자)</strong>
-    <small>결함 시정 조치 및 증빙 제출 (준공 검수 승인)</small>
+    <small>개선권고 조치 · 증빙 제출 · 조치확인</small>
   </div>
 </div>
 
@@ -84,30 +84,30 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="감리 5단계 프로세스 활동 및 산출물">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 감리계획 수립</strong></span>
-    <small>총괄감리원 선임 · 감리 일정 및 투입 공수 확정 · 검사기준서 초안 작성<br />→ 감리계획서</small>
+    <div class="itpe-step-detail"><strong>활동</strong><span>총괄감리원 · 일정 · 투입공수 확정</span><strong>산출</strong><span>감리계획서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 예비조사</strong></span>
-    <small>과업내용서 및 기성 산출물 사전 검토 · 감리 검사기준서 확정<br />→ 예비조사 결과서 · 감리 검사기준서</small>
+    <div class="itpe-step-detail"><strong>활동</strong><span>과업내용서 · 기성 산출물 사전 검토</span><strong>산출</strong><span>예비조사 결과서 · 감리 검사기준서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 현장감리 수행</strong></span>
-    <small>착수회의 · 산출물 검토 · 담당자 인터뷰 · 시스템 실측/테스트 · 종료회의<br />→ 현장감리 일지 · 감리 가보고서</small>
+    <div class="itpe-step-detail"><strong>활동</strong><span>산출물 검토 · 인터뷰 · 시스템 실측</span><strong>산출</strong><span>현장감리 일지 · 감리 가보고서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 감리보고서 통보</strong></span>
-    <small>종합 의견 작성 · 개선 권고(적합/보통/부적합) 판정 및 공식 송부<br />→ 감리 최종보고서</small>
+    <div class="itpe-step-detail"><strong>활동</strong><span>종합 의견 · 개선권고 판정 · 공식 송부</span><strong>산출</strong><span>감리 최종보고서</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 감리결과 조치확인</strong></span>
-    <small>피감리인 시정조치 이행 · 감리원 현장 재실측 및 최종 승인<br />→ 조치계획서 · 감리결과 조치확인서</small>
+    <div class="itpe-step-detail"><strong>활동</strong><span>시정조치 이행 · 재실측 · 완료 판정</span><strong>산출</strong><span>조치계획서 · 감리결과 조치확인서</span></div>
   </div>
 </div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>품질 보증 루프</strong></span> · 감리 검사기준서 기반 현장 실측 ↔ 감리보고서 개선권고 ↔ 감리결과 조치확인서 기반 준공 승인</div>
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>조치확인 흐름</strong></span> · 감리 검사기준서 → 현장 실측 → 개선권고 → 조치확인</div>
 
 ## Ⅲ. 감리 프레임워크 3대 축 및 정기감리(3단계) vs 상주감리 비교
 
@@ -128,8 +128,8 @@ extra:
 | **투입 형태** | 단계별 마일스톤 시점 단기 투입 (각 5~10일) | 프로젝트 전체 기간 동안 감리원 현장 상주 투입 |
 | **주요 역할** | 단계별 확정 산출물 사후 평가 및 개선 권고 | 일상적 산출물 검토, 설계 변경 사전 점검, 잠재 리스크 차단 |
 | **결함 발견 시점** | 단계 종료 시점에서 집중 지적 (재작업 부담 발생) | 문제 발생 즉시 실시간 지적 및 시정 (실패 비용 최소화) |
-| **적용 대상** | 사업비 20억원 이상 일반 공공 구축사업 | 100억원 이상 대형 사업, 다수 기관 연계 고위험 미션크리티컬 사업 |
-| **비용 부담** | 통상 구축 사업비의 2~3% 수준 | 상주 인력 지속 투입으로 상대적 고비용 |
+| **적용 대상** | 법정 감리 대상 구축사업 | 대형·복합·고위험 사업 |
+| **투입 비용** | 단계별 집중 투입 | 상주 인력 지속 투입 |
 
 ## Ⅳ. 감리 실효성 확보를 위한 실무 위험과 통제 대책
 
@@ -138,7 +138,7 @@ extra:
 | 위험 현상 | 발생 원인 | 통제 대책 | 검증 기준 |
 |---|---|---|---|
 | **서류 중심 형식 감리** | 짧은 현장감리 기간과 실측 도구 부재로 문서 열람 치중 | 정적 코드 분석(SonarQube), 부하 테스트(JMeter) 활용 실측 감리 의무화 | 소스코드 결함 및 응답 지연 사전 제거 |
-| **종료 단계 조치 지연** | 개통 일정 압박으로 감리 지적 미반영 상태에서 조건부 검수 | **'감리결과 조치확인서'** 미제출 시 준공 검수 및 대금 지급 원천 차단 | 시정 조치 100% 완료 후 시스템 개통 |
+| **종료 단계 조치 지연** | 개통 일정 압박으로 감리 지적 미반영 상태에서 조건부 검수 | **감리결과 조치확인서**를 준공 검수 조건과 연계 | 미조치 항목의 승인·책임 기록 |
 | **감리-PMO 간 R&R 갈등** | 상시 관리 주체(PMO)와 독립 감사인(감리) 간 의견 충돌 | 감리는 독립 품질 평가, PMO는 조치계획 실행 지원으로 역할 명문화 | 기관 갈등 방지 및 시너지 창출 |
 
 ## Ⅴ. 실측 중심 차세대 감리 모델 정착을 위한 기술사적 제언
@@ -147,15 +147,15 @@ extra:
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: IT 감리의 성패는 지적 건수가 아니라 '개선 권고 사항이 개발 현장에 완벽히 반영되어 실제 가동 단계의 장애와 보안 사고를 방어했는가(조치확인의 완결성)'에 달려 있음. 단순 페이퍼 감리는 대형 장애의 방패가 될 수 없음.
+- [핵심 통찰]: IT 감리의 성패는 지적 건수가 아니라 개선권고가 실제 산출물과 시스템에 반영되었는지를 재확인하는 데 있음. 조치확인이 빠진 감리는 결함 목록만 남기고 품질을 바꾸지 못함.
 - 나라면: 클라우드 및 생성형 AI 공공 사업 감리 시, 고전적 산출물 검토를 넘어 'FinOps 비용 아키텍처 실측', 'IaC(코드형 인프라) 보안 검증', 'AI 모델 편향성 및 데이터 저작권 위반 여부'를 핵심 감리 검사기준서에 편입하는 '차세대 AI/클라우드 특화 감리 프레임워크'를 적용하겠음.
 
 ### 실전 답안용 기술사적 제언
 
 - 판정: 서류 열람 위주의 정적 감리를 탈피하고 자동화 도구 기반 실측 검증 및 조치확인 완결성 확보
 - 대안: **실측 기반 차세대 감리 모델** 및 **감리결과 조치확인서 준공 강제 연계**
-- 검증: 정적 분석·부하 테스트 실측률 100% · 미조치 지적사항 0건 확인 후 기성 지급
-- 효과: 대국민 공공 서비스 개통 직후 대형 장애 차단 및 법적 컴플라이언스 완벽 준수
+- 검증: 검사기준서별 실측 증빙 · 미조치 항목의 승인·책임 기록 · 조치확인서
+- 효과: 조건부 준공 억제 · 가동 초기 장애 위험 감소 · 법적 책임 명확화
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="실측 중심 IT 감리 실효성 제언 흐름">
   <div class="itpe-pipeline-node">
@@ -165,12 +165,12 @@ extra:
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>정적/동적 실측 감리 의무화 + 조치확인서 준공 검수 법적 강제</small>
+    <small>정적·동적 실측 증빙 · 조치확인서와 준공 조건 연계</small>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>감리 검사기준서 전수 점검 · 성능/보안 결함 조치 완료율 100%</small>
+    <small>검사기준서별 실측 증빙 · 미조치 항목 승인 이력 · 조치확인서</small>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
@@ -200,26 +200,31 @@ extra:
   <div class="itpe-pipeline-node"><strong>조치확인</strong><small>시정 실측 승인</small></div>
 </div>
 
-### 3. 핵심 통제
+### 3. 유형·종료 통제
 
-- **감리 유형**: 정기감리(3단계: 요구-설계-종료) ↔ **상주감리**(전 기간 현장 상주 위험 예방)
-- **법적 요건**: 사업비 5억원 이상 의무 감리, **감리결과 조치확인서** 제출 후 준공 검수
+| 구분 | 적용 | 통제 초점 |
+|---|---|---|
+| 정기감리 | 요구정의 · 설계 · 종료 | 단계별 산출물 판정 |
+| **상주감리** | 대형·복합·고위험 사업 | 상시 위험·변경 점검 |
+
+- 종료 조건: **감리결과 조치확인서**로 개선권고의 반영 여부를 확인한 후 준공 판정
 
 ## 출제 이력과 검증 출처
 
-- 제136회 정보관리기술사 1교시: 정보시스템 감리의 정의 및 감리 5단계 절차
-- 제137회 정보관리기술사 2교시: 공공 SW 사업 3단계 감리와 상주감리의 비교 및 감리 실효성 확보 방안
+- 제136회 정보관리기술사 2교시: "정보시스템 감리의 법적 근거" 및 "PMO와 상주감리의 비교"
+- 제137회 정보관리기술사 2교시: "정보시스템 감리의 시스템 운영 및 유지보수 감리"의 개념과 점검 분야
 - 전자정부법 제57조(행정기관등의 감리수행 등) 및 동법 시행령 제71조
 - 행정안전부 고시, 정보시스템 감리기준 및 한국지능정보사회진흥원(NIA) 감리 점검 가이드
 
 ## 학습 체크
 
-- [ ] 전자정부법상 감리 의무 대상 기준(5억원 등)과 3대 주체 거버넌스를 설명할 수 있는가?
-- [ ] 3단계 감리(요구정의, 설계, 종료)의 단계별 핵심 점검 포인트를 제시할 수 있는가?
-- [ ] 상주감리의 도입 기준과 감리 검사기준서를 활용한 '감리결과 조치확인' 절차를 설명할 수 있는가?
+- [ ] Ⅰ 개요: 정보시스템 감리를 독립성·법정 품질 통제·개선권고로 정의할 수 있는가?
+- [ ] Ⅱ 절차: 감리 5단계의 활동과 산출물을 한 쌍으로 재현할 수 있는가?
+- [ ] Ⅲ 비교: 정기감리와 상주감리를 적용·투입·통제 시점으로 비교할 수 있는가?
+- [ ] Ⅳ~Ⅴ 통제: 검사기준서 실측부터 조치확인서까지의 폐루프를 설명할 수 있는가?
 
 ## 연결 토픽
 
 - 이전 토픽: [WBS](./007_wbs.md)
-- 연관 토픽: [PMO](./004_pmo.md), [과업심의](./091_public_sw_cost_and_scope_change_criteria.md), [소프트웨어 테스트](./013_agile_response_strategy.md)
+- 연관 토픽: [PMO](./004_pmo.md), [과업심의](./091_public_sw_cost_and_scope_change_criteria.md), [소프트웨어 테스트 원칙](../02-software-engineering/070_software_testing_principles.md)
 - 다음 토픽: [프로젝트 위험관리](./009_project_risk_management_negative.md)

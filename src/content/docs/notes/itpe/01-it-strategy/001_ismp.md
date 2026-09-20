@@ -137,7 +137,7 @@ extra:
 
 | 위험 | 원인 | 통제 | 검증 |
 |---|---|---|---|
-| 과업 변경 | 요건-RFP 단절 | **RTM** 전수 점검 | 미반영 요건 0건 |
+| 과업 변경 | 요건-RFP 단절 | **RTM** 전수 점검 | 미반영 요건 없음 |
 | 예산 왜곡 | 기능 규모·인프라 비용 혼재 | **FP**·인프라·운영비 분리 | 규모·단가·예산 일치 |
 | 구조 불일치 | 요건-아키텍처 별도 설계 | 요건별 구성요소 매핑 | 미할당·중복 제거 |
 | 발주 분쟁 | 수용기준·책임 불명확 | 검수조건·발주단위 명시 | 요건별 검수 가능 |
@@ -155,7 +155,7 @@ extra:
 
 - 판정: 산출물 존재보다 요건별 종단 Traceability 확인
 - 대안: **RTM** 기반 종료 **Quality Gate** 운영
-- 검증: 미매핑 요건 0건 · 중복 과업 제거 · 비용 근거 일치
+- 검증: 미매핑 요건 없음 · 중복 과업 제거 · 비용 근거 일치
 - 효과: 조달 전 Baseline 확정 → 과업 변경·유찰·분쟁 예방
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="RTM 기반 ISMP 종료 Quality Gate 제언">
@@ -201,7 +201,7 @@ extra:
   <div class="itpe-pipeline-node"><strong>이행방안</strong><small>FP · 예산 · RFP</small></div>
 </div>
 
-### 3. 핵심 통제
+### 3. RTM·Quality Gate
 
 <div class="itpe-flow-map" role="img" aria-label="RTM으로 요건부터 RFP까지 추적하고 Quality Gate에서 발주 여부를 판정하는 핵심 통제">
   <div class="itpe-flow-node">
