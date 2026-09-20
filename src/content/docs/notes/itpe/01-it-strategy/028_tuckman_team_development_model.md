@@ -1,7 +1,7 @@
 ---
 title: "터크만 팀 발달 모델"
-author: "Antigravity"
-date: "2026-09-20T21:13:00+09:00"
+author: "OpenAI Codex"
+date: "2026-09-21T16:40:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,37 +22,37 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: **터크만 팀 발달 모델(Tuckman Team Development Model)**은 팀이 처음 만나 겪는 갈등(Storming)과 규범화(Norming)를 거쳐야만 비로소 고성과(Performing)를 창출할 수 있음을 규명한 5단계 팀 성숙 주기 이론
-- 메커니즘: 형성기(Forming) → 폭풍기(Storming) → 규범기(Norming) → 성과기(Performing) → 해산기(Adjourning) 순서로 발전하며 PM 리더십을 지시형에서 위임형으로 전환
-- 산출: 프로젝트 헌장 · 작업 협약서(**Working Agreement**) · 교훈 관리대장(**Lessons Learned**)
+- 본질: 팀의 관계·역할·과업 수행이 형성부터 해산까지 변화하는 발달 단계 모델
+- 메커니즘: Forming → Storming → Norming → Performing → Adjourning
+- 통제: 단계 진단 → 갈등 중재 → 규범 합의 → 자율성 확대 → 교훈 환류
 
 <div class="itpe-flow-map" role="img" aria-label="터크만 팀 발달 5단계 사다리 모델 및 리더십 전환 흐름">
   <div class="itpe-flow-node">
     <strong>① Forming (형성기)</strong>
-    <small>목표 탐색 · 역할 모호성 → <span class="itpe-keyword"><strong>지시형(Directing)</strong></span> 리더십</small>
+    <small>목표 탐색 · 역할 모호성 → 목표·역할 명확화</small>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>② Storming (폭풍기)</strong>
-    <small>권한·방식 갈등 분출 → <span class="itpe-keyword"><strong>코칭형(Coaching)</strong></span> 갈등 중재</small>
+    <small>권한·방식 갈등 분출 → 갈등 표면화·중재</small>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>③ Norming (규범기)</strong>
-    <small>신뢰 형성 · 규칙 합의 → <span class="itpe-keyword"><strong>지원형(Supporting)</strong></span> 자율성 보장</small>
+    <small>신뢰 형성 · 규칙 합의 → 합의 촉진·자율성 확대</small>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
     <strong>④ Performing (성과기)</strong>
     <div class="itpe-flow-branches">
       <div class="itpe-flow-branch"><strong>협업</strong><span>자율적 문제 해결 및 팀 시너지 극대화</span></div>
-      <div class="itpe-flow-branch"><strong>리더십</strong><span><span class="itpe-keyword"><strong>위임형(Delegating)</strong></span> 서번트 리더십</span></div>
+      <div class="itpe-flow-branch"><strong>PM 개입</strong><span>장애 제거 · 의사결정 위임</span></div>
     </div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>⑤ Adjourning (해산기)</strong>
-    <small>과업 완수 및 팀 해체 → <span class="itpe-keyword"><strong>인정형(Celebrating)</strong></span> 지식 자산화</small>
+    <small>과업 완수 및 팀 해체 → 성과 인정·교훈 환류</small>
   </div>
 </div>
 
@@ -72,21 +72,13 @@ extra:
 
 ## 예상문제
 
-> 프로젝트 팀의 발전 과정을 설명하는 터크만(Tuckman) 팀 발달 5단계를 기술하고, 각 단계별 팀의 행동 특성과 프로젝트 관리자(PM)의 리더십 스타일 및 갈등 관리 방안을 논하시오. (25점)
-
-## 딸려 나오는 하위 토픽
-
-| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
-|---|---|---|
-| **터크만 사다리 모델** | Forming, Storming, Norming, Performing, Adjourning 5단계 계단식 발전 | Ⅱ 구성체계, Ⅲ 구조 |
-| **상황 대응 리더십** | 허시-블랜차드(Hersey-Blanchard) 모델과 결합한 단계별 PM 개입 방식 | Ⅳ 절차, Ⅴ 비교 |
-| **팀 갈등관리 기법** | 폭풍기 갈등의 필연성 인정 및 협력적(Collaborating) 문제 해결 기법 | Ⅵ 대책, Ⅶ 결론 |
+> Tuckman 팀 발달 5단계와 단계별 행동 특성을 설명하고, PM의 개입 및 갈등관리 방안을 제시하시오. **(미출제 예상·25점)**
 
 ## Ⅰ. 고성과 자기조직화 팀 구축을 위한 터크만 팀 발달 모델의 개요
 
 > 폭풍기 갈등을 필연적 성장 통과의례로 수용하며, 성패는 단순 일정 관리가 아닌 **단계별 맞춤형 리더십 전환**과 **자기조직화**로 판정함.
 
-- 정의: 팀 결성부터 해산까지 겪는 심리적·과업적 성숙 과정을 5단계로 체계화한 **터크만 사다리 모델(Tuckman Ladder Model)**
+- 정의: 팀 결성부터 해산까지 관계와 과업 수행의 변화를 5단계로 설명한 팀 발달 모델
 - 목적: 팀 성숙도 단계별 갈등 해소, 최고 성과기 조기 도달
 
 ## Ⅱ. 터크만 5단계 팀 발달 구성체계 및 단계별 활동 산출물
@@ -148,18 +140,15 @@ extra:
 | **4. 성과기 (Performing)** | 상호보완적 협업, 뛰어난 문제해결력, 고생산성 | 장애물 제거, 전폭적 권한 위임 | 스프린트 성과, 배포 릴리스 |
 | **5. 해산기 (Adjourning)** | 프로젝트 완수, 과업 종료감 및 해체 아쉬움 | 공식적 성과 보상, 교훈 자산화 | 최종 보고서, **Lessons Learned** |
 
-## Ⅳ. 발달 단계별 상황 대응 리더십 매칭 및 의사결정 권한 비교
+## Ⅳ. 발달 단계별 PM 개입 방향
 
-> 성숙도가 낮을 때는 지시적 통제를, 성숙도가 높아질수록 서번트 리더십 기반 위임을 적용해야 함.
+> 다음 개입 방향은 터크만 모델의 공식 단계가 아니라 팀 상태에 맞춘 실무 적용안임.
 
-| 비교 기준 | 형성기 (Forming) | 폭풍기 (Storming) | 규범기 (Norming) | 성과기 (Performing) |
+| 기준 | 형성기 | 폭풍기 | 규범기 | 성과기 |
 |---|---|---|---|---|
-| **리더십 스타일** | **지시형 (Directing)** | **코칭형 (Coaching)** | **지원형 (Supporting)** | **위임형 (Delegating)** |
-| **지시적 행동** | 높음 (명확한 가이드 제시) | 높음 (방향 설명 및 코칭) | 낮음 (팀의 판단 존중) | 매우 낮음 (완전 자율 부여) |
-| **지원적 행동** | 낮음 (신속한 프레임 구축) | 높음 (감정 수용 및 격려) | 높음 (협력적 결정 촉진) | 낮음/필요시 (외압 차단) |
-| **의사결정 주체** | 프로젝트 관리자(PM) 독자 결정 | PM (팀 의견 수렴 후 결정) | 팀과 PM의 공동 합의 | 팀 자체 자율 결정 |
-| **핵심 성공 요인** | 모호성 제거 및 명확한 R&R | 건설적 갈등 표면화 및 해결 | 상호 신뢰 및 자발적 규율 | 시너지 극대화 및 장애 제거 |
-| **경계해야 할 함정** | 초기부터 과도한 자율 방임 | 갈등 회피 또는 일방적 억압 | 형식적 규칙 나열에 매몰 | 마이크로매니지먼트(과잉 간섭) |
+| **개입** | 목표·역할 명확화 | 갈등 표면화·중재 | 합의 촉진·권한 확대 | 장애 제거·위임 |
+| **의사결정** | PM 주도 | 원칙 기반 조정 | 팀 합의 확대 | 팀 자율 중심 |
+| **경계** | 역할 모호성 | 갈등 회피·억압 | 집단사고 | 마이크로매니지먼트 |
 
 ## Ⅴ. 실무 프로젝트 환경별 리스크 및 공학적·관리적 해결 대책
 
@@ -176,17 +165,9 @@ extra:
 
 > PM 1인의 마이크로매니지먼트에서 벗어나, 팀 스스로 갈등을 소화하고 자율 진화하는 **애자일 회고 문화**와 **심리적 안전감**이 팀 빌딩의 본질임.
 
-### 학습자 통찰 메모 — 답안 밖
+`[핵심 통찰]` Storming은 제거할 실패가 아니라 다룰 갈등이며, 억압하면 Norming에 필요한 합의가 형성되지 않음.
 
-- [핵심 통찰]: 많은 PM들이 폭풍기(Storming)를 팀워크 실패로 오인하여 억누르려 하지만, 갈등이 표면화되지 않는 팀은 결코 고성과기(Performing)로 진입할 수 없음. 터크만 모델의 진정한 가치는 갈등을 두려워하지 않고 객관적 기술 지표와 심리적 안전감을 통해 건설적 규범(Norming)으로 승화시키는 데 있음.
-- 나라면: 프로젝트 킥오프 시 팀원이 참여하는 '작업 협약(Working Agreement)'을 제정하고, 스프린트마다 정기 '애자일 회고(Retrospective)'를 제도화하여 인력 교체나 요구사항 급변 시에도 신속히 규범기로 재안착할 수 있는 팀 복원력을 확보하겠음.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 일방적 지시·통제 중심 관리에서 팀 자율성과 자기조직화 체계로 전환
-- 대안: **Working Agreement** 수립 및 단계별 **상황 대응 리더십(Directing-Coaching-Supporting-Delegating)** 적용
-- 검증: 스프린트 회고 주기 준수율 100% · 팀 건강도(Team Health Check) 지표 개선 실증
-- 효과: 인력 교체 시 퇴행 기간 최소화 및 고품질 소프트웨어 산출 보증
+`나라면` 팀이 Working Agreement를 직접 정하고, 인력·목표 변화 때 현재 단계를 다시 진단하여 역할·규범·의사결정 방식을 재합의하겠음.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="터크만 팀 발달 모델 실무 정착 제언 파이프라인">
   <div class="itpe-pipeline-node">
@@ -196,17 +177,17 @@ extra:
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>대안</strong><span>터크만 5단계 진단 · 상황별 리더십 매칭 및 회고 제도화</span></div>
+    <div class="itpe-step-detail"><strong>대안</strong><span>단계 재진단 · Working Agreement · 정기 회고</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>Working Agreement 준수율 · 정기 팀 건강도 대시보드 점검</span></div>
+    <div class="itpe-step-detail"><strong>판정</strong><span>역할 명확성 · 갈등 해결 · 합의 이행 · 자율 의사결정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>성과기 조기 도달 · 자기조직화(Self-Organizing) 고성과 팀 완성</span></div>
+    <div class="itpe-step-detail"><strong>효과</strong><span>갈등의 규범 전환 · 팀 복원력 · 자율 협업</span></div>
   </div>
 </div>
 
@@ -214,7 +195,7 @@ extra:
 
 ### 1. 정의·목적
 
-- 정의: 팀 결성부터 해산까지의 심리적·과업적 성숙 과정을 5단계로 체계화한 **터크만 사다리 모델(Tuckman Ladder Model)**
+- 정의: 팀 결성부터 해산까지 관계와 과업 수행의 변화를 5단계로 설명한 팀 발달 모델
 - 목적: 팀 성숙도 단계별 갈등 해소, 최고 성과기 조기 도달
 
 ### 2. 구성체계 및 방법론
@@ -248,23 +229,23 @@ extra:
 
 ### 3. 핵심 통제
 
-- **상황 대응 리더십**: 성숙도에 따른 지시-코칭-지원-위임의 동적 리더십 스타일 전환
+- **단계별 PM 개입**: 형성기의 명확화에서 성과기의 장애 제거·위임으로 개입 수준 조정
 - **Working Agreement**: 팀 자율 규범 제정을 통한 역할 모호성 및 감정 갈등 해소
 - **비선형성 통제**: 인력 교체 시 폭풍기로의 퇴행을 인지하고 신속한 재온보딩 지원
 
 ## 출제 이력과 검증 출처
 
-- 제134회 정보관리기술사 1교시: 터크만(Tuckman) 사다리 모델 5단계
-- 제136회 정보관리기술사 2교시: 프로젝트 팀 개발 및 갈등 해결 기법
-- PMI, [A Guide to the Project Management Body of Knowledge (PMBOK Guide) 7th Edition](https://www.pmi.org)
+- 공식 문제지 원문으로 확인한 직접 기출 없음
+- [PMI: A Guide to the Project Management Body of Knowledge](https://www.pmi.org/pmbok-guide-standards/foundational/pmbok)
 - Bruce W. Tuckman, ["Developmental Sequence in Small Groups", Psychological Bulletin](https://doi.org/10.1037/h0022100)
 
 ## 학습 체크
 
-- [ ] 터크만 5단계(Forming, Storming, Norming, Performing, Adjourning)의 행동 특성을 설명할 수 있는가?
-- [ ] 상황 대응 리더십(지시-코칭-지원-위임)과 5단계를 1:1로 매핑할 수 있는가?
-- [ ] 폭풍기 갈등을 대하는 올바른 관점과 협력적 갈등 해결 기법을 제시할 수 있는가?
-- [ ] 팀 발달의 비선형적 특성(퇴행)과 인력 변경 시의 관리 방안을 서술할 수 있는가?
+- [ ] Ⅰ. Tuckman 모델의 정의·목적을 설명할 수 있는가?
+- [ ] Ⅱ~Ⅲ. 5단계의 행동·PM 개입·산출을 연결할 수 있는가?
+- [ ] Ⅳ. 단계별 PM 개입 방향을 공식 단계와 구분하여 제시할 수 있는가?
+- [ ] Ⅴ. 폭풍기 장기화·인력 교체·원격 고립·집단사고의 대책을 설명할 수 있는가?
+- [ ] Ⅵ. 팀 변화 후 단계 재진단과 Working Agreement 재합의 방안을 제시할 수 있는가?
 
 ## 연결 토픽
 
