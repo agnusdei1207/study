@@ -1,156 +1,179 @@
 ---
-sidebar:
-  order: 9
-  label: "009. 동시성 제어"
-  badge:
-    text: "A"
-    variant: note
-title: "동시성 제어 (Concurrency Control)"
-author: "OpenAI Codex"
-date: "2026-09-20T00:25:00+09:00"
+title: "동시성 제어(병행제어)"
 tags:
   - "notes-data"
-weight: 9
+sidebar:
+  badge:
+    text: "A"
 extra:
-  model: "GPT-5"
   keyword_grade: "A"
-  question_no: "009"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>트랜잭션·동시성</span><strong>동시성 제어</strong></div>
+<div class="itpe-topic-path" role="img" aria-label="데이터베이스에서 트랜잭션 관리 및 동시성 제어로 이어지는 지식 위치">
+  <span>자료처리·데이터</span>
+  <span>트랜잭션·동시성</span>
+  <strong>동시성 제어(병행제어)</strong>
+</div>
 
 ## 큰 그림과 30초 인출
 
-```text
-T1: Read ─ Write ─ Commit
-T2:    Read ─ Write ─ Commit
-          │ 상호 간섭
-          ▼
- [직렬가능성·회복가능성 보장]
-          │
-   Lock / Timestamp / OCC / MVCC
-          │
-  일관성 ↔ 동시 처리량 균형
-```
+- 본질: 다중 트랜잭션이 데이터베이스를 동시에 공유·접근할 때 상호 간섭으로 인한 데이터 불일치 이상현상을 방지하고, 직렬가능성(Serializability)과 회복가능성(Recoverability)을 보장하는 트랜잭션 통제 메커니즘
+- 4대 기법: 로킹(2PL), 타임스탬프 순서화(Timestamp Ordering), 낙관적 검증(OCC), 다중버전 제어(MVCC)
+- 4대 이상현상: 갱신 손실(Lost Update), 오독(Dirty Read), 반복불가 읽기(Non-repeatable Read), 유령 읽기(Phantom Read)
 
-- 본질: **여러 트랜잭션을 동시에 실행하면서 직렬 실행과 동등한 결과와 회복 가능한 스케줄을 보장하는 제어기술**
-- 4대 기법: 2PL, Timestamp Ordering, OCC, MVCC
-- 암기: `락-시-낙-버` = 락 → 시간순서 → 낙관적 검증 → 다중버전
+<div class="itpe-flow-map" role="img" aria-label="다중 트랜잭션 충돌과 4대 동시성 제어 기법 분기">
+  <div class="itpe-flow-node"><strong>동시 트랜잭션 요청 ($T_1, T_2, \dots$)</strong><small>Read / Write 연산 인터리빙</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>동시성 제어 4대 알고리즘 분기</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>2PL (로킹)</strong><span>확장기(Lock 획득) $\to$ 축소기(Lock 반납) · Strict 2PL</span></div>
+      <div class="itpe-flow-branch"><strong>Timestamp</strong><span>트랜잭션 시작 시간순 실행 · Thomas Write Rule</span></div>
+      <div class="itpe-flow-branch"><strong>OCC (낙관적)</strong><span>Read $\to$ Validation $\to$ Write 3단계 검증</span></div>
+      <div class="itpe-flow-branch"><strong>MVCC (다중버전)</strong><span>스냅샷 격리 · 읽기는 쓰기를 막지 않음 (Undo Log)</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <strong>직렬가능성(Serializability) 보장</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>충돌 직렬성</strong><span>선행 그래프(Precedence Graph) 비순환(Acyclic)</span></div>
+      <div class="itpe-flow-branch"><strong>회복가능성</strong><span>연쇄 롤백(Cascading Rollback) 방지</span></div>
+    </div>
+  </div>
+</div>
 
 ## 예상문제
 
-> 데이터베이스 동시성 제어의 필요성과 이상현상, 직렬가능성을 설명하고 2PL·Timestamp·OCC·MVCC를 비교하여 실무 적용방안을 논하시오. (25점)
+> 데이터베이스에서 다중 트랜잭션 동시 실행 시 발생 가능한 4대 이상현상(Lost Update, Dirty Read 등)을 제시하고, 이를 방지하기 위한 직렬성(Serializability) 이론 및 4대 동시성 제어 기법(2PL, Timestamp, OCC, MVCC)의 동작 원리와 장단점을 비교 설명하시오. (25점)
 
-## Ⅰ. 병행처리의 일관성을 보장하는 동시성 제어 개요
+## 딸려 나오는 하위 토픽
 
-- 정의: 동시성 제어는 복수 트랜잭션의 연산 순서를 조정하여 데이터 일관성과 격리성을 지키면서 병행 처리량을 확보하는 기법
-- 목적: Lost Update·Dirty Read·Non-repeatable Read·Phantom Read 등 간섭 방지와 직렬가능성 보장
-- 필요성: 완전 직렬 실행은 일관되지만 처리량이 낮고, 무제어 병행 실행은 빠르나 데이터 결과가 실행 순서에 따라 달라짐
-
-## Ⅱ. 동시성 제어의 목표와 대표 이상현상
-
-| 목표·현상 | 의미 | 통제 관점 |
+| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
 |---|---|---|
-| 직렬가능성 | 병행 결과가 어떤 직렬 스케줄과 동등 | 충돌/뷰 직렬가능성 |
-| 회복가능성 | 읽은 값을 쓴 선행 트랜잭션 이후 커밋 | Commit 의존성 |
-| Lost Update | 뒤의 쓰기가 앞의 갱신을 덮음 | Write 충돌·버전 검사 |
-| Dirty Read | 미커밋 값을 다른 트랜잭션이 읽음 | 가시성·격리 수준 |
-| Non-repeatable Read | 같은 행 재조회 결과가 달라짐 | 행 버전·Lock 유지 |
-| Phantom Read | 같은 조건 재조회 시 행 집합이 달라짐 | 범위/Predicate 통제 |
+| **병행제어(Concurrency Control)** | 데이터베이스 무결성과 격리성을 지키며 시스템 처리량을 극대화하는 트랜잭션 스케줄링 | Ⅰ 개요, Ⅲ 기법 |
+| **Strict 2PL (엄격한 2단계 로킹)** | 트랜잭션이 완료(Commit/Abort)될 때까지 모든 배타 락(X-Lock)을 유지하여 연쇄 롤백을 차단하는 기법 | Ⅲ 기법 세부 |
 
-## Ⅲ. 직렬가능성과 4대 제어기법
+## Ⅰ. 트랜잭션 고립성과 처리량의 균형추, 동시성 제어의 개요
 
-```text
-T1 ──RW 충돌──▶ T2
-T2 ──WR 충돌──▶ T3       선행그래프에 Cycle 없음 → 충돌 직렬가능
-```
+> **한줄 요약:** 동시성 제어는 다중 트랜잭션의 병행 수행 결과를 직렬 수행 결과와 동일하게 보장하는 기술임.
 
-| 기법 | 핵심 원리 | 강점 | 한계 |
+- 정의: 다중 사용자 환경에서 동시에 실행되는 복수 트랜잭션의 인터리빙(Interleaving) 연산을 스케줄링하여, 트랜잭션의 격리성(Isolation)과 일관성(Consistency)을 유지하고 데이터 손상을 방지하는 DBMS 핵심 엔진 기술
+- 필요성: 단순 직렬(Serial) 처리는 데이터 정합성은 완벽하나 CPU 및 디스크 I/O 유휴로 시스템 처리량(Throughput)이 급감하며, 무제어 병행 처리는 갱신 손실 등 치명적 불일치 유발
+- 목표: 직렬 실행과 동일한 결과를 보장하는 직렬가능성(Serializability) 달성 및 트랜잭션 장애 시 연쇄 복구를 방지하는 회복가능성(Recoverability) 확보
+
+## Ⅱ. 병행 제어 결여 시 발생하는 4대 이상현상
+
+> **한줄 요약:** 미제어 동시 실행은 갱신 손실, 오독, 불일치 분석, 유령 레코드 생성을 야기함.
+
+| 이상현상 | 발생 메커니즘 | 구체적 장애 사례 |
+|---|---|---|
+| **갱신 손실 (Lost Update)** | 트랜잭션 $T_1$의 갱신 결과를 트랜잭션 $T_2$가 덮어써서 $T_1$의 변경이 무효화됨 | 잔액 100만원 계좌에 A가 10만원 입금 중, B가 20만원 출금하여 A의 입금 기록이 유실됨 |
+| **오독 / 더티 리드 (Dirty Read)** | $T_1$이 수정한 미커밋(Uncommitted) 데이터를 $T_2$가 읽은 후, $T_1$이 롤백됨 | 미확정 주문 내역을 읽어 배송 처리했으나 결제 실패로 주문이 취소되어 손실 발생 |
+| **반복불가 읽기 (Non-repeatable Read)** | $T_1$이 동일 데이터를 두 번 읽는 사이에 $T_2$가 해당 데이터를 수정·커밋하여 값이 바뀜 | 동일 트랜잭션 내에서 고객 등급을 조회할 때마다 VIP와 일반으로 다르게 조회됨 |
+| **유령 읽기 (Phantom Read)** | $T_1$이 범위 조건을 만족하는 행 집합을 재조회하는 사이에 $T_2$가 신규 행을 삽입(Insert)함 | $T_1$이 특정 부서 인원수를 집계(10명)한 후 보너스를 지급하려 재조회 시 11명으로 증가 |
+
+## Ⅲ. 동시성 제어 4대 기법 동작 원리 및 메커니즘
+
+> **한줄 요약:** 락(2PL), 시간(타임스탬프), 검증(OCC), 버전(MVCC)의 서로 다른 메커니즘으로 충돌을 통제함.
+
+<div class="itpe-pipeline" role="img" aria-label="동시성 제어 4대 기법">
+  <div class="itpe-pipeline-node"><strong>2PL</strong><small>Locking 기반</small></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>Timestamp</strong><small>시간순서화</small></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>OCC</strong><small>낙관적 검증</small></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>MVCC</strong><small>다중버전 스냅샷</small></div>
+</div>
+
+| 기법 | 핵심 동작 원리 및 규칙 | 교착상태(Deadlock) 여부 | 주요 장점 및 한계 |
 |---|---|---|---|
-| 2PL | Lock 획득 확장단계 후 해제 축소단계 | 직렬가능성 보장·직관적 | 대기·교착상태 |
-| Timestamp | 트랜잭션 시간순서에 맞지 않는 연산 중단 | 교착 없음 | 충돌 시 재시작 증가 |
-| OCC | Read-Validate-Write, 커밋 전 충돌 검증 | 충돌 적을 때 무대기 | 충돌 많으면 롤백 비용 |
-| MVCC | 여러 버전과 Snapshot 가시성 제공 | Read-Write 경합 감소 | 버전 정리·쓰기 충돌·구현 차이 |
+| **2PL (2단계 로킹)** | **확장 단계(Growing)**: 락 획득만 가능<br>**축소 단계(Shrinking)**: 락 해제만 가능 | **발생 가능**<br>(교착 탐지 및 예방 필요) | 직렬가능성 완벽 보장하나, 락 경합으로 인한 대기 및 교착상태 처리 오버헤드 존재 |
+| **타임스탬프 순서화 (Timestamp)** | 트랜잭션 시작 시 부여된 $TS(T)$ 순서로 데이터 읽기($R\text{-}TS$)와 쓰기($W\text{-}TS$) 허용 | **발생 불가**<br>(대기 없이 즉시 Abort) | 교착상태가 없으나 충돌 빈번 시 연쇄 롤백(Cascading Rollback) 및 재시작 비용 큼 |
+| **낙관적 검증 (OCC)** | **Read $\to$ Validation $\to$ Write** 3단계 수행, 트랜잭션 종료 시 충돌 검증 | **발생 불가** | 충돌이 적은 읽기 위주 환경에서 락 오버헤드 0, 쓰기 충돌 시 롤백 비용 급증 |
+| **다중버전 제어 (MVCC)** | 데이터 갱신 시 기존 행을 덮어쓰지 않고 Undo 세그먼트에 새 버전을 생성 | 쓰기-쓰기 충돌 시에만 잠금 | **"읽기는 쓰기를 블록하지 않고, 쓰기는 읽기를 블록하지 않음"**, 언두 영역 관리 부담 |
 
-- Strict 2PL은 Commit/Abort까지 배타 Lock을 유지하여 Dirty Read와 연쇄 Rollback을 막음
-- MVCC도 모든 이상현상을 자동 제거하는 것은 아니며 격리 수준과 DBMS 구현에 따라 Write Skew 등을 별도 통제
+## Ⅳ. 직렬가능성(Serializability) 이론 및 판정
 
-## Ⅳ. 트랜잭션 요청에서 회복까지의 제어 흐름
+> **한줄 요약:** 트랜잭션 충돌 연산 순서에 사이클이 없으면 충돌 직렬성(Conflict Serializability)을 만족함.
 
 ```text
-① Begin → ② Read/Write 요청 → ③ Lock·Timestamp·Snapshot 검사
- → ④ 허용/대기/Abort → ⑤ Commit 검증·로그 확정 → ⑥ Lock/Version 정리
+[충돌 연산(Conflict Operation)의 3요소]
+1. 서로 다른 트랜잭션 소속 ($T_1 \neq T_2$)
+2. 동일한 데이터 항목 접근 ($Q$)
+3. 최소 하나 이상의 쓰기 연산 포함 (Read-Write, Write-Read, Write-Write)
+
+[직렬성 검증: 선행 그래프 (Precedence Graph)]
+  T1 ──(Write Q)──▶ T2 (Read Q)
+  T2 ──(Write R)──▶ T3 (Read R)
+  * 그래프 내 사이클(Cycle)이 없으면(DAG 형태) 충돌 직렬성 만족 확정!
 ```
 
-| 단계 | 통제사항 | 결과 |
-|---|---|---|
-| 접근판정 | 객체·범위·버전·충돌 확인 | 실행/대기/재시도 |
-| 실행 | Undo/Redo와 가시성 유지 | 격리된 변경 |
-| Commit | 제약·충돌·로그 지속성 검증 | 변경 확정 |
-| Abort | Undo·버전 폐기·자원 해제 | 원자적 복구 |
-| 사후정리 | 오래된 버전·Lock·대기열 정리 | 자원 회수 |
+## Ⅴ. 4대 동시성 제어 기법 종합 비교
 
-## Ⅴ. 제어기법의 적용 비교
+> **한줄 요약:** 비관적 환경은 Strict 2PL, 읽기 집약 분산 환경은 MVCC가 현대 DBMS의 표준임.
 
-| 판단축 | 2PL | Timestamp | OCC | MVCC |
+| 비교 기준 | 2PL (Two-Phase Locking) | 타임스탬프 순서화 | 낙관적 기법 (OCC) | MVCC (Multi-Version) |
 |---|---|---|---|---|
-| 충돌 가정 | 중간~높음 | 순서 위반 시 중단 | 낮음 | 읽기 많음 |
-| 대기 | 있음 | 없음 | 실행 중 없음 | 읽기 대기 적음 |
-| 실패비용 | 교착·Timeout | 재시작 | 검증 실패 Rollback | 버전·쓰기 충돌 |
-| 적합업무 | 강한 갱신 통제 | 순서기반 시스템 | 짧은 저충돌 갱신 | OLTP 읽기·쓰기 혼합 |
-| 핵심튜닝 | Lock 범위·순서·시간 | 재시도·Timestamp | 충돌구간·버전 | Snapshot·정리·격리 |
+| **제어 접근법** | 비관적(Pessimistic) 잠금 제어 | 비관적 시간 정렬 제어 | 낙관적(Optimistic) 사후 검증 | 버전 기반 다중 복사본 제어 |
+| **동시성 수준** | 낮음 (락 보유 중 대기 발생) | 중간 (시간순 어긋남 시 롤백) | 높음 (검증 전까지 무대기) | **매우 높음** (읽기-쓰기 무차단) |
+| **오버헤드 발생 시점** | 락 획득 및 해제 시점 | 매 읽기/쓰기 시 타임스탬프 갱신 | 트랜잭션 커밋(검증) 시점 | 가비지 컬렉션(Vacuum/Undo) 시점 |
+| **대표 적용 DBMS** | 전통 RDBMS 트랜잭션 모드 | 분산 Spanner(TrueTime), 학술 | 메모리 DB, 충돌 희박 웹 서비스 | Oracle, PostgreSQL, MySQL(InnoDB) |
 
-- 선택 기준: 읽기/쓰기 비율, 충돌 빈도, 트랜잭션 길이, 오류 비용, 재시도 가능성을 함께 고려
+## Ⅵ. 실무 고려사항 및 장애 대책
 
-## Ⅵ. 일관성과 처리량의 균형을 위한 실무 고려사항
+> **한줄 요약:** 교착상태, 연쇄 롤백, Vacuum 부하를 타임아웃과 스냅샷 격리로 통제함.
+
+- 적용 상황: 대규모 트래픽이 몰리는 수강신청 및 금융 계좌이체 시스템의 동시성 제어
 
 | 문제 | 원인 | 대책 | 효과 |
 |---|---|---|---|
-| 교착상태 | 트랜잭션별 Lock 순서 상이 | 접근순서 표준화, 짧은 트랜잭션, 탐지·희생자 재시도 | 순환대기 감소 |
-| Lock 경합·TPS 저하 | 넓은 범위·장시간 Transaction | 적절한 인덱스, Batch 분할, 외부 I/O 분리 | Lock 보유시간 축소 |
-| MVCC 버전 누적 | 장기 Snapshot·정리 지연 | 장기질의 통제, Vacuum/Garbage Collection 감시 | 저장·조회 성능 유지 |
-| Lost Update | 읽은 뒤 조건 없이 덮어쓰기 | 버전컬럼·조건부 Update·낙관적 검증 | 갱신 충돌 탐지 |
-| 분산 이중갱신 | DB 경계 밖 동시 실행 | 단일 Writer·분산합의·멱등성·업무 보상 | 서비스 간 정합성 확보 |
+| **교착상태(Deadlock) 빈발** | 복수 자원에 대해 서로 다른 순서로 배타 락(X-Lock) 요청 | 자원 접근 순서 표준화(Sorting) 및 Lock Timeout / Wait-For Graph 탐지 | 트랜잭션 무한 대기 차단 |
+| **연쇄 롤백 (Cascading Rollback)** | 기본 2PL에서 락을 조기 반납하여 더티 데이터를 다른 트랜잭션이 참조 | **Strict 2PL** 적용 (모든 X-Lock을 커밋 시점까지 유지) | 원자적 복구 및 연쇄 취소 원천 차단 |
+| **MVCC 테이블 팽창(Bloat)** | 장기 실행 트랜잭션으로 인해 오래된 버전 튜플 삭제 불가 | Auto-Vacuum 튜닝, 장기 실행 트랜잭션 자동 킬(Kill) 정책 수립 | 디스크 낭비 방지 및 고속 인덱스 스캔 복원 |
 
-## Ⅶ. DBMS 기본기법과 업무 불변식을 함께 설계하는 결론
+## Ⅶ. 결론 및 기술사적 제언
 
-- **[격리수준-업무 불변식-재시도 정책의 결합]**: 격리수준 이름만 선택하면 복합 업무조건의 Write Skew와 분산 갱신을 놓칠 수 있음
-- 나라면: 계좌 잔액·재고와 같은 불변식을 명시하고 제약·조건부 갱신·Lock 범위를 설계한 뒤 Deadlock/Serialization Failure를 멱등하게 재시도
+> **한줄 요약:** 현대 DBMS는 MVCC와 2PL을 결합하여 읽기 성능과 쓰기 정합성을 동시에 달성함.
 
-#### 한줄 요약
-
-- 동시성 제어의 완성은 충돌을 없애는 것이 아니라 오류 없이 재시도하고 업무 불변식을 끝까지 지키는 상태임
+- [핵심 통찰]: '락(Locking)만이 정답'이던 시대는 지났음. PostgreSQL과 Oracle 등 현대 메인스트림 DBMS는 MVCC를 기반으로 읽기 트랜잭션의 병목을 완전히 제거하고, 쓰기-쓰기 충돌 구간에서만 선별적으로 2PL을 조합하는 하이브리드 아키텍처를 표준으로 채택함.
+- 나라면: 결제·잔액 갱신 등 원자성이 극도로 중요한 금융 핵심 도메인은 'SELECT FOR UPDATE' 기반의 비관적 락(Strict 2PL)을 선별 적용하고, 상품 조회 및 장바구니 등 읽기 위주 서비스는 MVCC 기반 Read Committed 격리 수준을 설정하여 TPS를 극대화하는 이원화 설계를 적용하겠음.
 
 ## 1교시 10점 답안 발췌
 
+### 1. 정의 및 핵심 개념
+- 동시성 제어(병행제어)는 다중 트랜잭션 환경에서 데이터 일관성과 격리성을 유지하며 직렬가능성(Serializability)을 보장하는 DBMS 스케줄링 기술임.
+
+### 2. 핵심 메커니즘 / 체계
 ```text
-병행 트랜잭션 → 충돌 검사 → 실행/대기/Abort → Commit·회복
-                    Lock / Timestamp / OCC / MVCC
+[트랜잭션 연산] ──▶ [직렬성 검증] 선행그래프 비순환(Acyclic)
+                       │
+                       ├─ 2PL: 확장(Lock) ── 축소(Unlock)
+                       ├─ Timestamp: 시작순서 강제 (Thomas Rule)
+                       ├─ OCC: Read ── Validate ── Write
+                       └─ MVCC: Undo 기반 스냅샷 격리 (읽기/쓰기 분리)
 ```
+- 갱신손실, 오독, 반복불가읽기, 유령읽기 4대 이상현상을 방지함.
 
-| 기법 | 핵심 |
-|---|---|
-| 2PL | 확장·축소, 직렬성, 교착 위험 |
-| Timestamp | 시간순서 위반 시 재시작 |
-| OCC | 실행 후 Commit 전 충돌검증 |
-| MVCC | Snapshot 버전으로 Read-Write 경합 감소 |
-
-- 차별화: 격리수준뿐 아니라 업무 불변식·조건부 갱신·멱등 재시도를 함께 설계
+### 3. 차별화 제언
+- 현대 엔터프라이즈는 MVCC 기반 무차단 읽기를 기본으로 하고, 쓰기 충돌 핵심 영역에만 Strict 2PL을 선별 적용하는 하이브리드 전략이 필수적임.
 
 ## 출제 이력과 검증 출처
 
-- [PostgreSQL Documentation, Concurrency Control](https://www.postgresql.org/docs/current/mvcc.html)
+- 출제 이력: 제130회·128회·121회 KPC 모의고사
+- 검증 출처: Silberschatz Database System Concepts, 한국데이터산업진흥원 DMBOK 2.0
 
 ## 학습 체크
 
-- [ ] 직렬가능성과 회복가능성을 구분함
-- [ ] 4대 기법을 원리·대기·실패비용·적합업무로 비교함
-- [ ] MVCC가 모든 이상현상을 제거하지 않음을 씀
-- [ ] 결론에서 업무 불변식과 멱등 재시도를 제언함
+- [ ] 병행 제어 미적용 시 발생하는 4대 이상현상(Lost Update, Dirty Read 등)을 설명할 수 있는가?
+- [ ] 충돌 직렬성(Conflict Serializability)의 조건과 선행 그래프 검증 방식을 제시할 수 있는가?
+- [ ] 2PL, Timestamp, OCC, MVCC 4대 기법의 원리와 장단점을 비교할 수 있는가?
 
 ## 연결 토픽
 
-- [격리 수준](./020_isolation_level/) · [트랜잭션](./078_transaction/) · [팬텀 충돌](./049_phantom_conflict/) · [ACID](./151_acid/)
+- 이전 토픽: [데이터 표준화](./008_data_standardization.md)
+- 연관 토픽: [트랜잭션 격리 수준](./020_isolation_level.md), [팬텀 충돌](./049_phantom_conflict.md), [트랜잭션(ACID)](./078_transaction.md)
+- 다음 토픽: [이상치(탐지 기법·노이즈 구분 포함)](./010_outlier.md)

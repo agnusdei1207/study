@@ -1,124 +1,198 @@
 ---
 title: "플랫폼 엔지니어링(Platform Engineering)"
-author: "Antigravity"
-date: "2026-09-20T13:05:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
-    variant: "caution"
 extra:
-  model: "Antigravity"
-
+  keyword_grade: "A"
 ---
 
-## 답안 골격 (10점 / 25점)
+## 지식 로드맵 내 현재 위치
 
-```text
-[플랫폼 엔지니어링] ◀━━ 머리: Ⅶ 공학적 제언 (팀 토폴로지 기반 플랫폼 팀 구성과 자발적 채택을 이끄는 황금 경로 구축)
- ┃
- ┣━ Ⅰ 개요 ───── DevOps "You Build It, You Run It"의 부작용: 개발자의 인지 부하(Cognitive Load) 폭증 해소
- ┣━ Ⅱ 핵심 철학 ─ 제품으로서의 플랫폼(Platform as a Product) · 황금 경로(Golden Path) · 셀프서비스 인프라
- ┣━ Ⅲ 아키텍처 ─ IDP(내부 개발자 플랫폼) 4계층: 포털(Backstage) - 오케스트레이션 - 거버넌스(OPA) - 인프라(K8s/IaaS)
- ┣━ Ⅳ 팀 토폴로지 ─ 스트림 정렬 팀(Stream-aligned) 지원을 위한 플랫폼 팀(Platform Team)의 협업 모델
- ┣━ Ⅴ 비교 ───── 전통적 SysAdmin vs DevOps 문화 vs SRE(신뢰성 엔지니어링) vs 플랫폼 엔지니어링(IDP 제품화)
- ┣━ Ⅵ 실무 문제 ─ 강제 적용으로 인한 섀도우 IT 발생 / 플랫폼 팀의 관료주의화 및 요구사항 수용 지연
- ┗━ Ⅶ 결론 ───── 사내 개발자 NPS(만족도) 및 리드타임(DORA 지표) 연동 중심의 플랫폼 지속 진화
-```
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 빌드·배포·DevOps를 거쳐 플랫폼 엔지니어링으로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>빌드·배포·DevOps</span>
+  <strong>플랫폼 엔지니어링(Platform Engineering)</strong>
+</div>
 
-- **필수 키워드**: 내부 개발자 플랫폼(IDP), 인지 부하(Cognitive Load), 황금 경로(Golden Path / Paved Road), Platform as a Product, Spotify Backstage, 팀 토폴로지(Team Topologies), 개발자 경험(DevEx), 셀프서비스
-  - **10점형**: 플랫폼 엔지니어링 개념 및 IDP 계층 구조도 → DevOps/SRE와의 차이점 비교표.
-  - **25점형**: Ⅰ~Ⅶ 전체 구조 전개 + 가트너 전략 기술 및 팀 토폴로지 조직 모델 분석 + IDP 핵심 컴포넌트(포털, 제어 평면, 오케스트레이터, 보안) 아키텍처와 성공적 거버넌스 방안 심층 제시.
+## 큰 그림과 30초 인출
 
----
+- 본질: **플랫폼 엔지니어링(Platform Engineering)**은 클라우드 네이티브 환경에서 개발자의 인지 부하(Cognitive Load)를 줄이고 셀프서비스 역량을 제공하기 위해 **내부 개발자 플랫폼(IDP: Internal Developer Platform)**을 구축·운영하는 공학 학문
+- 메커니즘: 전담 플랫폼 팀(Platform Team)이 플랫폼을 제품(Product)으로 취급 → **골든 패스(Golden Path)** 포장 → 셀프서비스 포털 제공
+- 산출/효과: 개발자 인지 부하 감소 · 온보딩 시간 단축 · 보안/컴플라이언스 기본 내재화 · 개발 생산성(Velocity) 극대화
 
-## 30초 인출용 핵심 다이어그램
+<div class="itpe-flow-map" role="img" aria-label="플랫폼 엔지니어링 아키텍처">
+  <div class="itpe-flow-node"><strong>플랫폼 팀 (Product 소유)</strong><small>인프라·보안·배포 템플릿 표준화</small></div>
+  <div class="itpe-flow-arrow">→ 골든 패스(Golden Path) 패키징 →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>내부 개발자 플랫폼 (IDP)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>셀프 서비스</strong><span>개발자 포털 (Backstage)</span></div>
+      <div class="itpe-flow-branch"><strong>오케스트레이션</strong><span><span class="itpe-keyword"><strong>환경 프로비저닝 자동화</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>보안 가드레일</strong><span><span class="itpe-keyword"><strong>정책 및 규정 준수 내재화</strong></span></span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ 셀프서비스 소비 →</div>
+  <div class="itpe-flow-node"><strong>비즈니스 개발팀</strong><small>인프라 신경 없이 비즈니스 로직 몰입</small></div>
+</div>
 
-```text
-+-------------------------------------------------------------------------+
-|                  내부 개발자 플랫폼(IDP) 아키텍처 및 역할 체계           |
-+-------------------------------------------------------------------------+
-|   [ 스트림 정렬 개발팀 (Stream-aligned Teams) ]                          |
-|             │                                                           |
-|             ▼ (셀프서비스: Golden Path 템플릿 기반 1-Click 배포)        |
-|   +-----------------------------------------------------------------+   |
-|   |  1. 포털 계층 (Developer Portal) : Backstage, 서비스 카탈로그   |   |
-|   +-----------------------------------------------------------------+   |
-|   |  2. 제어 및 오케스트레이션 : ArgoCD, Crossplane, Terraform      |   |
-|   +-----------------------------------------------------------------+   |
-|   |  3. 보안 및 거버넌스 : OPA(Open Policy Agent), 비밀키 관리(Vault)|   |
-|   +-----------------------------------------------------------------+   |
-|   |  4. 인프라 기반 계층 : Kubernetes, 멀티클라우드(AWS/GCP), CI 파이프라인|
-|   +-----------------------------------------------------------------+   |
-|             ▲                                                           |
-|             │ (Platform as a Product: 개발자 피드백 기반 지속 개선)     |
-|   [ 플랫폼 엔지니어링 팀 (Platform Team: Product Owner 배속) ]          |
-+-------------------------------------------------------------------------+
-```
+<details>
+<summary>핵심 용어</summary>
 
----
+- **Platform Engineering**: 현대 소프트웨어 엔지니어링 조직에서 개발자의 생산성을 극대화하기 위해 툴체인과 워크플로우를 설계하고 지원하는 기술 분야
+- **IDP(Internal Developer Platform)**: 플랫폼 팀이 구축하여 개발자가 필요로 하는 인프라, 환경, 배포를 스스로 프로비저닝할 수 있게 해주는 셀프서비스 계층
+- **Golden Path (황금 경로)**: 보안, 신뢰성, 모범 사례가 이미 검증되어 개발자가 고민 없이 따라가기만 하면 되는 표준화된 권장 개발 경로
+- **Cognitive Load(인지 부하)**: 개발자가 쿠버네티스, 테라폼, 보안 등 복잡한 인프라 도구를 다루면서 비즈니스 코드에 집중하지 못하게 되는 정신적 부담
+- **Platform as a Product**: 내부 플랫폼을 사내 개발자(고객)를 위한 하나의 독립된 제품으로 취급하고 지속적으로 개선하는 접근법
 
-## 본론: 개념 및 핵심 메커니즘
+</details>
 
-### 1. 플랫폼 엔지니어링의 등장 배경: 개발자 인지 부하(Cognitive Load)
+## 예상문제
 
-- **DevOps의 한계**:
-  - "You Build It, You Run It" 철학이 확산되면서, 개발자가 비즈니스 로직 외에 도커, 쿠버네티스, 테라폼, 모니터링, IAM 보안까지 모두 학습·운영해야 하는 인지 과부하(Cognitive Load) 발생.
-  - 조직 전체적으로 동일한 인프라 설정 스크립트가 파편화되어 보안 구멍과 클라우드 비용 낭비 초래.
-- **플랫폼 엔지니어링의 본질**:
-  - 인프라의 복잡성을 내부 개발자 플랫폼(IDP) 뒤로 은닉(추상화)하고, 표준화된 셀프서비스 도구 모음(황금 경로)을 제공하여 개발자가 비즈니스 코드 개발에만 집중하도록 지원하는 공학적 실천.
+> DevOps의 성숙과 함께 대두된 플랫폼 엔지니어링(Platform Engineering)의 개념 및 등장 배경(개발자 인지 부하 문제)을 설명하고, 내부 개발자 플랫폼(IDP)의 핵심 아키텍처 구성요소, 골든 패스(Golden Path)의 역할 및 전통적 DevOps 모델과의 차이점을 제시하시오. (25점)
 
-### 2. 내부 개발자 플랫폼 (IDP) 4계층 아키텍처
+## Ⅰ. DevOps 피로도를 극복하는 플랫폼 엔지니어링의 개요
 
-1. **포털 계층 (Developer Portal)**:
-   - 오픈소스 프레임워크(Spotify Backstage 등)를 기반으로 전사 마이크로서비스 카탈로그, API 문서, 인프라 신청 UI 단일 진입점 제공.
-2. **제어 및 오케스트레이션 계층 (Control Plane)**:
-   - GitOps 도구(ArgoCD), 선언적 인프라 도구(Terraform, Crossplane)를 통해 애플리케이션 실행 환경을 자동 프로비저닝.
-3. **보안 및 정책 계층 (Policy as Code)**:
-   - OPA(Open Policy Agent), Kyverno를 통해 인프라 규격, 보안 감사, 클라우드 비용 상한선을 자동으로 강제(Guardrail).
-4. **인프라 런타임 계층 (Infrastructure)**:
-   - 하부의 쿠버네티스 클러스터, 서버리스, 데이터베이스, 네트워크 등 물리/가상 인프라 자원.
+> "You build it, you run it"의 이상은 개발자에게 감당할 수 없는 인프라 인지 부하를 안겨주었으며, 플랫폼 엔지니어링이 이를 해결한다.
 
-### 3. 팀 토폴로지(Team Topologies) 관점의 조직 구조
+- 정의: 개발자가 복잡한 클라우드 인프라를 직접 조작하지 않고도 셀프서비스로 애플리케이션을 빌드, 배포, 운영할 수 있도록 **내부 개발자 플랫폼(IDP)**을 제품처럼 구축하는 공학 체계
+- 목적: **개발자의 인지 부하(Cognitive Load) 최소화**, 개발 생산성 및 출시 속도 가속, 인프라 보안/컴플라이언스 가드레일 자동 적용
 
-- **스트림 정렬 팀 (Stream-aligned Team)**: 비즈니스 가치를 고객에게 직접 전달하는 피처 개발팀.
-- **플랫폼 팀 (Platform Team)**: 스트림 정렬 팀이 자율적으로 인프라를 사용할 수 있도록 IDP 제품을 기획·개발·운영하는 전담 엔지니어링 팀.
-- **핵심 원칙 (Platform as a Product)**: 플랫폼을 내부 개발자에게 '강제하는 관료적 표준'이 아니라, '사내 개발자가 기꺼이 돈 내고 쓰고 싶어 하는 매력적인 제품'으로 지속 개선.
+## Ⅱ. 내부 개발자 플랫폼(IDP)의 4계층 아키텍처
 
----
+> IDP는 복잡한 하부 클라우드 기술(K8s, Terraform)을 추상화하여 개발자에게 단순한 인터페이스를 제공한다.
 
-## DevOps vs SRE vs 플랫폼 엔지니어링 비교
+<div class="itpe-pipeline is-vertical" role="img" aria-label="IDP 4계층 아키텍처">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>1. 개발자 인터페이스 계층 (Developer Interface)</strong></span>
+    <small>셀프서비스 포털(Spotify Backstage), CLI, 서비스 카탈로그, API 명세</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓ 요청 전달</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>2. 플랫폼 오케스트레이션 계층 (Platform Orchestration)</strong></span>
+    <small>환경 자동 구성 엔진(Humanitec, Kratix) · 워크플로우 제어</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓ 표준화 배포</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>3. 거버넌스 및 가드레일 계층 (Governance &amp; Guardrails)</strong></span>
+    <small>보안 정책(OPA, Kyverno), RBAC 권한 통제, 비용 최적화(FinOps)</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓ 인프라 프로비저닝</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>4. 인프라 및 도구 계층 (Infrastructure &amp; Tooling)</strong></span>
+    <small>Kubernetes, 멀티클라우드(AWS/GCP), CI/CD 파이프라인, 모니터링</small>
+  </div>
+</div>
 
-| 비교 항목 | DevOps | SRE (Site Reliability Engineering) | 플랫폼 엔지니어링 |
-|---|---|---|---|
-| **핵심 목적** | 개발과 운영의 사일로 해소, 협업 문화 증진 | 대규모 프로덕션 시스템의 가용성/신뢰성 보장 | 개발자 인지 부하 감소, 개발자 경험(DevEx) 극대화 |
-| **활동 주체** | 전사 조직 전체의 문화적 운동 | 구글 제안 SRE 전담 팀 (운영 엔지니어) | 플랫폼 엔지니어링 팀 (제품 관리자 포함) |
-| **주요 산출물** | CI/CD 자동화 파이프라인, 협업 규약 | SLA, SLO, SLI, 에러 버짓(Error Budget) | **내부 개발자 플랫폼(IDP)**, 황금 경로(Golden Path) |
-| **접근 방식** | 문화 및 실천 방법론 | 소프트웨어 공학을 운영에 적용 | 인프라를 추상화한 **내부 제품(Product)** 개발 |
+## Ⅲ. 전통적 DevOps vs 플랫폼 엔지니어링 비교
 
----
+> 플랫폼 엔지니어링은 DevOps를 대체하는 것이 아니라, DevOps 문화를 대규모 조직에서 실현 가능하게 만드는 진화 형태이다.
 
-## 실무 장애 시나리오 및 공학적 대안
+| 비교 항목 | 전통적 DevOps ("You build it, you run it") | 플랫폼 엔지니어링 (IDP 기반) |
+|---|---|---|
+| **개발자의 역할** | 비즈니스 로직 + K8s 매니페스트 + CI/CD + 인프라 직접 관리 | **비즈니스 로직 개발에 100% 집중** |
+| **인지 부하** | **극도로 높음 (DevOps 피로도 누적)** | **극도로 낮음 (추상화된 셀프서비스)** |
+| **인프라 상호작용** | 각 팀마다 K8s YAML 및 테라폼 복사-붙여넣기 파편화 | **골든 패스(Golden Path) 템플릿 기반 원클릭 생성** |
+| **보안 및 규정** | 개별 개발팀의 역량과 양심에 의존 | 플랫폼 레벨에서 **보안 가드레일 자동 강제** |
+| **적합한 규모** | 10~20명 규모의 소수 정예 스타트업 | **수백~수천 명 규모의 대형 엔터프라이즈** |
 
-### 1. 현장 장애 사례
+## Ⅳ. 골든 패스(Golden Path)의 역할과 설계 원칙
 
-1. **플랫폼 강제화로 인한 섀도우 IT 발생**:
-   - 플랫폼 팀이 만든 IDP가 너무 경직되어 최신 AI 프레임워크나 특수 DB를 지원하지 못하자, 피처 팀들이 사설 클라우드 계정을 몰래 생성해 배포.
-2. **황금 경로 템플릿 오류로 전사 서비스 동반 장애**:
-   - 플랫폼 팀이 배포한 기본 Helm 차트의 네트워킹 설정 결함으로 IDP를 통해 배포된 30개 신규 서비스가 일제히 다운.
+> 골든 패스는 강제가 아니라 개발자가 가장 편하게 따를 수 있는 '최소 저항의 경로'로 설계되어야 한다.
 
-### 2. 문제 원인 및 공학적 해결책
+<div class="itpe-pipeline is-vertical" role="img" aria-label="골든 패스 원칙">
+  <div class="itpe-pipeline-node">
+    <strong>포장된 도로 (Paved Road)</strong>
+    <small>표준 기술 스택, CI/CD, 모니터링, 보안이 사전 구성된 기성품 템플릿 제공</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>자율성 보장 (Freedom of Choice)</strong></span>
+    <small>골든 패스를 따르는 것이 가장 쉽지만, 특별한 요구가 있다면 벗어날 자유(오프로드) 허용</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>가드레일 내재화 (Invisible Guardrails)</strong></span>
+    <small>개발자가 실수하더라도 보안 취약점이나 인프라 파괴가 일어나지 않도록 정책적 격리</small>
+  </div>
+</div>
 
-| 장애 상황 | 근본 원인 | 공학적 대책 (대안 기술) | 개선 효과 |
-|---|---|---|---|
-| **섀도우 IT 발생** | 폐쇄적 플랫폼 거버넌스 및 자율성 억압 | 강제가 아닌 권장형 **옵트인(Opt-in) 황금 경로** + 커스텀 확장 슬롯 허용 | 개발자 자발적 유입률 85% 달성 |
-| **플랫폼 장애 전파** | 템플릿 및 인프라 변경에 대한 사전 검증 부재 | 플랫폼 기능 변경 시 **카나리(Canary) 배포** 및 사내 베타 테스터 풀 운영 | 플랫폼 배포 리스크 제로화 |
-| **신규 서비스 셋업 지연** | 파편화된 수작업 인프라 구축 | **IDP 1-Click 셀프서비스 템플릿** (Backstage Software Templates) 제공 | 신규 서비스 프로비저닝 시간 2주 $\rightarrow$ 10분 단축 |
+## Ⅴ. 성공적인 플랫폼 팀 운영을 위한 기술사적 제언
 
----
+> 플랫폼 엔지니어링이 실패하는 가장 큰 이유는 플랫폼 팀이 과거의 중앙집중식 인프라 관리팀처럼 군림하기 때문이다.
 
-## 결론: 기술사 답안 차별화 포인트
+### 학습자 통찰 메모 — 답안 밖
 
-1. **개발자 경험(DevEx)과 DORA 지표 연계**: 플랫폼 엔지니어링의 성과는 추상적 만족도가 아니라 구체적인 DORA 4대 지표(배포 빈도, 변경 리드타임, 서비스 복구 시간, 변경 실패율)의 획기적 개선으로 측정되어야 함을 결론부에 강조할 것.
-2. **황금 경로(Golden Path)의 철학적 깊이**: 황금 경로는 울타리를 쳐서 개발자를 가두는 '감옥'이 아니라, 길을 포장하여 가장 빠르고 안전하게 목적지에 도달하게 만드는 '고속도로(Paved Road)'라는 공학적 비유를 답안에 녹여낼 것.
+- [핵심 통찰]: 플랫폼 팀의 성패는 "개발자를 고객으로 대우하는 제품 사고방식(Product Mindset)"에 달려 있음. 플랫폼을 구축해놓고 사내에 강제 배포하면 개발자들은 우회로를 찾음. Spotify의 Backstage처럼 개발자가 진심으로 사용하고 싶어 하는 매력적인 기능을 제공하고, 개발자 만족도(Net Promoter Score)를 플랫폼 팀의 핵심 KPI로 삼아야 함.
+- 나라면: 신규 개발자 온보딩 시간(Time-to-First-PR)을 기존 2주에서 1일로 단축하는 것을 목표로 설정하고, 골든 패스 템플릿을 통해 서비스 등록, CI 파이프라인 생성, 스테이징 DB 생성이 10분 만에 끝나는 셀프서비스를 구축하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 엔터프라이즈 개발 조직 확장에 따른 플랫폼 엔지니어링 전환 판정
+- 대안: **Spotify Backstage** 기반 IDP 구축 및 **골든 패스** 표준화
+- 검증: 개발자 온보딩 리드타임 80% 단축 · 내부 플랫폼 채택률 85% 이상
+- 효과: 개발팀 인지 부하 해소 · 비즈니스 기능 전달 속도 극대화
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="플랫폼 엔지니어링 고도화 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>K8s/클라우드 복잡도로 인한 개발 생산성 저하 및 파편화된 환경</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>IDP 셀프서비스 포털 구축 및 플랫폼-as-a-Product 접근법 도입</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>개발자 경험(DevEx) 만족도 측정 및 DORA 배포 주기 개선 검증</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>인지 부하 제로화 · 보안 가드레일 자동 준수 및 전사 엔지니어링 가속</small>
+  </div>
+</div>
+
+## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **플랫폼 엔지니어링**은 개발자의 인지 부하를 줄이고 셀프서비스 환경을 제공하기 위해 내부 개발자 플랫폼(IDP)을 제품으로 구축하는 기술 분야
+- 목적: 복잡한 인프라 조작을 추상화하여 비즈니스 개발 생산성과 출시 속도 극대화
+
+### 2. 핵심 3대 구성요소
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="플랫폼 엔지니어링 3요소">
+  <div class="itpe-pipeline-node"><strong>내부 개발자 플랫폼 (IDP)</strong><small>셀프서비스 개발자 포털 (Backstage)</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>골든 패스 (Golden Path)</strong><small>사전 검증된 표준 템플릿 및 모범 사례</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>보안 가드레일</strong><small>보안/컴플라이언스 정책(OPA) 자동 강제</small></div>
+</div>
+
+### 3. 핵심 통제
+
+- **Product Mindset**: 플랫폼 팀을 서비스 제공 부서가 아닌 사내 제품 개발팀으로 운영
+- **Cognitive Load 해소**: 쿠버네티스/인프라 설정을 감추고 원클릭 프로비저닝 지원
+
+## 출제 이력과 검증 출처
+
+- Gartner Top Strategic Technology Trends for 2024: Platform Engineering
+- Manuel Pais, Matthew Skelton, Team Topologies: Organizing Business and Technology Teams for Fast Flow
+- CNCF Platforms White Paper (Cloud Native Computing Foundation)
+
+## 학습 체크
+
+- [ ] 플랫폼 엔지니어링이 전통적 DevOps 모델의 피로도에서 출발한 배경을 설명할 수 있는가?
+- [ ] 내부 개발자 플랫폼(IDP)의 4계층 아키텍처 구성을 설명할 수 있는가?
+- [ ] 골든 패스(Golden Path)의 개념과 자율성 보장 원칙을 설명할 수 있는가?
+
+## 연결 토픽
+
+- 이전 토픽: [메타모픽 테스트](./030_metamorphic_test.md)
+- 연관 토픽: [DevOps](./002_devops.md), [CI/CD](./095_ci_cd.md)
+- 다음 토픽: [MSA](./035_msa.md)

@@ -1,108 +1,186 @@
 ---
+title: "무결성 제약(데이터 무결성)"
+tags:
+  - "notes-data"
 sidebar:
-  order: 13
-  label: "013. 무결성 제약"
-  badge: { text: "A", variant: note }
-title: "무결성 제약 (Integrity Constraint)"
-author: "OpenAI Codex"
-date: "2026-09-20T00:25:00+09:00"
-tags: ["notes-data"]
-weight: 13
-extra: { model: "GPT-5", keyword_grade: "A", question_no: "013" }
+  badge:
+    text: "A"
+extra:
+  keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
-```text
-데이터 관리 → 관계형 데이터 모델 → 무결성 제약
-```
+
+<div class="itpe-topic-path" role="img" aria-label="데이터베이스에서 관계형 데이터 모델 및 무결성 제약으로 이어지는 지식 위치">
+  <span>자료처리·데이터</span>
+  <span>데이터 모델링·RDBMS</span>
+  <strong>무결성 제약(데이터 무결성)</strong>
+</div>
 
 ## 큰 그림과 30초 인출
-```text
-[도메인] 값 범위  [키] 유일성  [개체] PK NULL 금지  [참조] FK 일치
-      └────────────── DBMS 선언적 제약 ───────────────┘
-                  입력·수정·삭제 시 즉시 검증
-```
-- 본질: **데이터가 업무규칙과 릴레이션 관계를 항상 만족하도록 DBMS가 강제하는 조건**
-- 암기: `도-키-개-참` = 도메인·키·개체·참조 무결성
+
+- 본질: 데이터의 정확성(Accuracy), 유효성(Validity), 일관성(Consistency)을 유지하기 위해 DBMS가 데이터의 삽입·수정·삭제 연산 시 자동으로 강제하는 선언적·절차적 불변 규칙
+- 4대 릴레이션 무결성: 개체 무결성(PK Not-Null), 참조 무결성(FK 일치/Null), 도메인 무결성(값 범위), 키 무결성(튜플 유일성) + 사용자 정의 무결성
+- 참조 동작 옵션: RESTRICT / NO ACTION(거부), CASCADE(연쇄), SET NULL(널 치환), SET DEFAULT(기본값 치환)
+
+<div class="itpe-flow-map" role="img" aria-label="데이터 무결성 제약조건 및 연산 통제 흐름">
+  <div class="itpe-flow-node"><strong>DML 트랜잭션 (Insert / Update / Delete)</strong></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>DBMS 무결성 검증 엔진</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>개체 무결성</strong><span>PK 중복 및 NULL 입력 차단</span></div>
+      <div class="itpe-flow-branch"><strong>참조 무결성</strong><span>부모 없는 고아 레코드(FK) 생성 차단</span></div>
+      <div class="itpe-flow-branch"><strong>도메인/키</strong><span>타입·범위(CHECK) 및 후보키 유일성(UNIQUE)</span></div>
+      <div class="itpe-flow-branch"><strong>업무 무결성</strong><span>트리거 및 비즈니스 로직 제약 검증</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <strong>결과 분기 (Commit vs Rollback)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>통과</strong><span>데이터베이스 물리 디스크 반영 (Commit)</span></div>
+      <div class="itpe-flow-branch"><strong>위배</strong><span>즉시 에러 반환 및 트랜잭션 원자적 롤백</span></div>
+    </div>
+  </div>
+</div>
 
 ## 예상문제
-> 릴레이션 무결성 제약의 유형과 구현 방법을 설명하고 참조 무결성의 변경·삭제 정책을 논하시오. (25점)
 
-## Ⅰ. 데이터 신뢰성의 최소 규칙, 무결성 제약 개요
-- 정의: 저장·변경되는 데이터가 정의된 값 범위, 식별성, 관계 규칙을 위반하지 않도록 하는 선언적 조건
-- 목적: 오류를 응용마다 사후 보정하지 않고 데이터 계층에서 일관되게 차단
-- 구현: 데이터 타입·NOT NULL·CHECK·UNIQUE·PRIMARY KEY·FOREIGN KEY
+> 관계형 데이터베이스에서 데이터 무결성(Data Integrity)의 개념과 릴레이션 4대 무결성 제약(개체, 참조, 도메인, 키)을 비교하고, 부모-자식 테이블 간 참조 무결성 유지를 위한 4대 참조 조치(CASCADE, RESTRICT, SET NULL 등) 및 성능 최적화 방안을 논하시오. (25점)
 
-## Ⅱ. 무결성 제약의 원칙과 계층
-| 원칙 | 내용 | 효과 |
+## 딸려 나오는 하위 토픽
+
+| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
 |---|---|---|
-| 선언성 | 규칙을 스키마에 명시 | 응용 간 동일 규칙 |
-| 원자성 | 위반 문장을 거부·롤백 | 부분 반영 방지 |
-| 최소성 | 핵심 불변조건은 DB, 복잡 절차는 서비스 | 책임 명확화 |
-| 추적성 | 논리 모델 규칙과 DDL 연결 | 변경 영향 분석 |
+| **릴레이션 무결성 제약(Relation Integrity)** | Codd의 관계형 모델에 기반한 개체, 참조, 도메인, 키 무결성 등 관계적 불변 제약조건 | Ⅱ 핵심 분류 |
+| **데이터 무결성(Data Integrity)** | 데이터의 라이프사이클 전반에 걸쳐 결점 없이 완전하고 일관된 상태를 유지하는 성질 | Ⅰ 개요 |
 
-## Ⅲ. 4대 무결성 제약
-| 유형 | 규칙 | 구현 예 |
-|---|---|---|
-| **도메인** | 속성값은 타입·범위·형식 만족 | TYPE, CHECK, NOT NULL |
-| **키** | 후보키 값은 유일 | UNIQUE |
-| **개체** | 기본키는 유일하고 NULL 불가 | PRIMARY KEY |
-| **참조** | 외래키는 부모키 또는 NULL | FOREIGN KEY |
+## Ⅰ. 데이터 신뢰성을 지키는 제1 방어선, 데이터 무결성 제약의 개요
+
+> **한줄 요약:** 무결성 제약은 데이터의 생성·변형 시 불일치와 오류를 방지하기 위해 DBMS가 강제하는 데이터 규칙임.
+
+- 정의: 데이터베이스 내에 저장된 데이터의 정확성(Accuracy), 일관성(Consistency), 유효성(Validity)을 보장하기 위해 데이터 조작(Insert, Update, Delete) 시 반드시 준수되어야 하는 논리적 제약조건
+- 필요성: 애플리케이션 버그나 동시성 경합으로 인해 존재하지 않는 부모 데이터를 참조하거나, 식별자가 중복되는 등 데이터베이스가 오염되는 사태를 데이터 계층에서 원천 차단
+- 구현 방식: DBMS 스키마 DDL에 선언하는 선언적 제약(Declarative Constraint)과 트리거/프로시저로 구현하는 절차적 제약(Procedural Constraint)으로 양분
+
+## Ⅱ. 릴레이션 4대 무결성 제약조건 비교
+
+> **한줄 요약:** 개체(PK), 참조(FK), 도메인(Type/Check), 키(Unique)가 RDBMS 무결성의 4대 기둥임.
+
+<div class="itpe-pipeline" role="img" aria-label="릴레이션 무결성 4대 제약">
+  <div class="itpe-pipeline-node"><strong>개체 무결성</strong><small>PK Not-Null & Unique</small></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>참조 무결성</strong><small>FK 일치 또는 Null</small></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>도메인 무결성</strong><small>데이터 타입 & Check</small></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>키 무결성</strong><small>후보키 유일성</small></div>
+</div>
+
+| 제약조건 유형 | 핵심 규칙 및 수학적 정의 | 위배 시 발생하는 문제 | DDL 구현 예시 |
+|---|---|---|---|
+| **개체 무결성 (Entity)** | 릴레이션의 기본키(PK)는 유일해야 하며 어떠한 경우에도 NULL 값을 가질 수 없음 | 특정 튜플의 고유한 식별이 불가능해져 데이터 중복 및 접근 불가 발생 | `PRIMARY KEY` |
+| **참조 무결성 (Referential)** | 외래키(FK) 값은 참조하는 부모 릴레이션의 기본키 값이거나 NULL이어야 함 | 부모가 없는 고아 레코드(Orphan Record)가 발생하여 조인 오류 유발 | `FOREIGN KEY REFERENCES` |
+| **도메인 무결성 (Domain)** | 속성에 입력되는 값은 해당 속성에 정의된 도메인(타입, 길이, 범위)에 속해야 함 | 나이 컬럼에 음수 입력, 날짜 컬럼에 문자열 입력 등 데이터 타입 파손 | `CHECK`, `NOT NULL`, 도메인 타입 |
+| **키 무결성 (Key)** | 모든 릴레이션은 튜플을 유일하게 식별할 수 있는 하나 이상의 키(후보키)를 가져야 함 | 릴레이션 내에 모든 속성값이 동일한 완전 중복 행(Duplicate Row) 발생 | `UNIQUE` |
+| **사용자 정의 무결성** | 4대 기본 제약 외에 비즈니스 업무 규칙(Business Rule)을 만족해야 함 | 결제 금액이 상품 정가보다 크거나, 탈퇴 회원의 주문 상태 변경 등 업무 왜곡 | `TRIGGER`, Stored Procedure |
+
+## Ⅲ. 참조 무결성 유지를 위한 4대 참조 조치 정책
+
+> **한줄 요약:** 부모 레코드 삭제·수정 시 자식 레코드를 연쇄 처리하거나 조작을 거부함.
 
 ```sql
 CREATE TABLE orders (
-  order_id BIGINT PRIMARY KEY,
-  customer_id BIGINT NOT NULL REFERENCES customer(customer_id),
-  amount NUMERIC CHECK (amount >= 0),
-  status VARCHAR(10) CHECK (status IN ('NEW','PAID','DONE'))
+  order_id    BIGINT PRIMARY KEY,
+  customer_id BIGINT NOT NULL,
+  CONSTRAINT fk_orders_customer
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    ON DELETE RESTRICT     -- 자식이 있으면 부모 삭제 거부
+    ON UPDATE CASCADE      -- 부모 키 변경 시 자식 FK 자동 연쇄 갱신
 );
 ```
 
-## Ⅳ. 제약 설계·적용 절차
+| 참조 조치 옵션 | 부모 레코드 삭제(Delete) 시 동작 | 부모 레코드 수정(Update) 시 동작 | 권장 적용 업무 도메인 |
+|---|---|---|---|
+| **RESTRICT / NO ACTION** | 자식 레코드가 하나라도 존재하면 부모 삭제 즉시 거부(Rollback) | 자식 레코드가 참조 중이면 부모 키 수정 즉시 거부 | 금융 원장, 고객 마스터, 결제 트랜잭션 등 핵심 데이터 |
+| **CASCADE (연쇄)** | 부모 삭제 시 해당 부모를 참조하는 모든 자식 레코드도 자동 연쇄 삭제 | 부모 키 변경 시 자식의 외래키 값도 동일하게 자동 연쇄 수정 | 주문-주문상세, 게시글-첨부파일 등 생명주기 일치 복합 엔티티 |
+| **SET NULL** | 부모 삭제 시 자식의 외래키 컬럼 값을 NULL로 자동 변경 | 부모 키 수정 시 자식의 외래키 값을 NULL로 자동 변경 | 부서-사원(부서 폐지 시 사원의 부서코드를 임시 NULL 지정) |
+| **SET DEFAULT** | 부모 삭제 시 자식의 외래키 컬럼 값을 사전에 정의된 기본값으로 변경 | 부모 키 수정 시 자식의 외래키 값을 기본값으로 변경 | 미분류 카테고리(`'000'`)가 존재하는 상품 분류 체계 |
+
+## Ⅳ. 선언적 제약 vs 절차적 제약 비교
+
+> **한줄 요약:** 단순 도메인과 식별자는 DDL 제약으로, 복잡한 시점·교차 테이블 검증은 트리거로 구현함.
+
+| 비교 기준 | 선언적 제약조건 (Declarative Constraint) | 절차적 제약조건 (Procedural Constraint) |
+|---|---|---|
+| **구현 수단** | SQL DDL 제약조건 키워드 (PK, FK, UNIQUE, CHECK) | Trigger, Stored Procedure, Application Logic |
+| **검증 위치** | DBMS 커널 엔진 레벨에서 직접 검사 | 트랜잭션 실행 시 프로시저/트리거 인터럽트 실행 |
+| **성능 및 오버헤드** | 매우 빠름 (인덱스 활용 및 최소 CPU 연산) | 트리거 실행에 따른 컨텍스트 스위칭 및 I/O 부하 증가 |
+| **유지보수성** | 스키마 카탈로그에 명시되어 변경 추적 용이 | 복잡하게 얽힌 트리거는 디버깅 및 형상 관리가 극도로 난해 |
+| **적용 권장** | 개체, 참조, 단순 값 범위 제약 (기본 원칙) | 두 개 이상 테이블 간 교차 집계 제약, 시계열 검증 |
+
+## Ⅴ. 무결성 제약과 시스템 성능 간의 트레이드오프
+
+> **한줄 요약:** 완벽한 무결성 검증은 쓰기 I/O 오버헤드를 유발하므로 대량 적재 시 유연한 튜닝이 필요함.
+
 ```text
-업무규칙 식별 → 엔터티·속성·관계 모델링 → 제약 유형 매핑
- → 기존 데이터 정제 → DDL 적용 → 위반·동시성·성능 시험 → 변경관리
+[외래키(FK) 인덱스 부재 시의 락(Lock) 전파 문제]
+  부모 테이블 행 수정/삭제 ──▶ 자식 테이블 전체에 Table Share Lock 발생!
+  * 해결책: 자식 테이블의 외래키(FK) 컬럼에 B-Tree 인덱스를 반드시 생성해야 Row-level Lock으로 국소화됨.
 ```
-- 기존 데이터가 규칙을 위반하면 정제·격리 후 제약을 활성화
-- 제약명과 오류 메시지를 표준화해 운영 원인 추적성 확보
+- **대량 데이터 배치(Batch) 적재 지연**: 수천만 건 데이터를 삽입할 때 매 행마다 PK/FK 제약을 검증하면 성능이 급감함.
+  - 대책: `ALTER TABLE ... DISABLE CONSTRAINT`로 제약을 일시 비활성화 $\to$ 고속 Direct Path Load $\to$ 정제 후 `ENABLE NOVALIDATE`로 활성화.
 
-## Ⅴ. 참조 동작 정책 비교
-| 정책 | 부모 변경·삭제 시 동작 | 적용 판단 |
-|---|---|---|
-| RESTRICT/NO ACTION | 참조가 있으면 거부 | 원장·핵심 마스터 |
-| CASCADE | 자식도 연쇄 변경·삭제 | 강한 생명주기 종속 |
-| SET NULL | 외래키를 NULL로 | 선택 관계·이력 보존 |
-| SET DEFAULT | 기본값으로 변경 | 명시적 미분류 값 존재 시 |
+## Ⅵ. 실무 고려사항 및 장애 대책
 
-## Ⅵ. 실무 고려사항
-| 문제 | 원인 | 대책 |
-|---|---|---|
-| 고아 데이터 | FK 미정의·우회 적재 | FK와 적재 순서·격리영역 |
-| 연쇄삭제 피해 | CASCADE 범위 미검토 | 영향 건수 확인·Soft Delete |
-| 응용-DB 규칙 불일치 | 검증 로직 중복 | 불변조건은 DB를 기준선으로 관리 |
-| 대량적재 지연 | 행별 제약·색인 비용 | Stage 적재 후 검증, 배치 전략 |
+> **한줄 요약:** 고아 데이터 유입과 외래키 인덱스 누락으로 인한 락 경합을 사전에 통제함.
 
-## Ⅶ. 모델의 불변조건을 데이터 계층에 고정하는 결론
-- 핵심 무결성은 문서가 아니라 실행 가능한 스키마 제약으로 구현해야 함
-- 참조 정책은 편의보다 데이터 생명주기·감사·복구 요구로 선택
+- 적용 상황: MSA 분산 DB 환경 및 대규모 ERP 마이그레이션
+
+| 문제 | 원인 | 대책 | 효과 |
+|---|---|---|---|
+| **자식 테이블 전체 락(Lock) 경합** | 외래키(FK) 컬럼에 전용 B-Tree 인덱스 누락 | FK 컬럼 인덱스 생성 전수 검증 스크립트 가동 | 부모 행 수정 시 자식 테이블 락 전파 원천 차단 |
+| **MSA 분산 DB 고아 데이터 발생** | 주문 DB와 회원 DB 분리로 인해 물리적 FK 선언 불가 | 분산 트랜잭션(Saga Pattern) 및 CDC 기반 최종 일관성 검증 파이프라인 | 서비스 독립성과 데이터 정합성 양립 |
+| **CASCADE 연쇄 삭제 대참사** | 대형 테이블 간 CASCADE 설정 후 단일 부모 삭제 시 수백만 자식 행 동시 삭제 | 운영 DB에서 ON DELETE CASCADE 금지, 논리적 삭제(Soft Delete: `is_deleted='Y'`) 표준화 | 데이터 오삭제 방지 및 복구력 확보 |
+
+## Ⅶ. 결론 및 기술사적 제언
+
+> **한줄 요약:** 데이터 무결성은 애플리케이션 코드가 아니라 데이터 계층(DBMS)에서 최종 보장되어야 함.
+
+- [핵심 통찰]: 성능을 이유로 DBMS의 무결성 제약(PK/FK)을 모두 해제하고 '애플리케이션 코드로 검증하겠다'고 주장하는 개발팀이 종종 있음. 그러나 애플리케이션 버그, 배치 스크립트 직접 실행, 직접 SQL 수정 등의 우회 경로를 통해 고아 데이터가 유입되는 순간 RDBMS의 존재 가치는 완전히 소멸함.
+- 나라면: 엔터프라이즈 RDBMS 구축 시 모든 식별자와 참조 관계에 선언적 제약(PK, FK)과 FK 전용 인덱스를 100% 필수 강제하고, 대량 적재 시에만 선별적 제약 비활성화/재활성화 파이프라인을 적용하여, 성능과 무결성의 타협 없는 아키텍처 기준선을 확립하겠음.
 
 ## 1교시 10점 답안 발췌
+
+### 1. 정의 및 핵심 개념
+- 데이터 무결성 제약은 데이터의 정확성, 일관성, 유효성을 보증하기 위해 삽입·수정·삭제 시 DBMS가 강제하는 규칙(개체, 참조, 도메인, 키)임.
+
+### 2. 핵심 메커니즘 / 체계
 ```text
-도메인 → 값 범위 / 키 → 유일성 / 개체 → PK NOT NULL / 참조 → FK 일치
-업무규칙 → 모델 → DDL → 정제·적용 → 위반·성능 검증
+[개체 무결성] PK: Not Null & Unique
+[참조 무결성] FK: 부모 PK 일치 or Null (RESTRICT, CASCADE, SET NULL)
+[도메인 무결성] Type, Length, CHECK, NOT NULL
+[키 무결성] 후보키 유일성 (UNIQUE)
 ```
+- DDL 선언적 제약으로 1차 통제하고, 복합 규칙은 트리거로 보완함.
+
+### 3. 차별화 제언
+- 외래키(FK) 컬럼에는 반드시 B-Tree 인덱스를 생성하여 부모 변경 시 자식 테이블 락(Lock) 전파를 방어하고, Soft Delete로 CASCADE 위험을 예방해야 함.
 
 ## 출제 이력과 검증 출처
-- 제135회 공식 문제지: 릴레이션 무결성 제약의 유형·사례·구현 관련 출제
-- 제138회 공식 문제지: 정보모델링의 참조 무결성 관련 출제
-- [PostgreSQL Documentation, Constraints](https://www.postgresql.org/docs/current/ddl-constraints.html)
-- [Q-Net 기술사 자료실](https://www.q-net.or.kr/man001.do?gSite=Q)
+
+- 출제 이력: 제138회·135회 정보관리기술사 기출, 제128회 KPC 모의고사
+- 검증 출처: C.J. Date 'An Introduction to Database Systems', 한국데이터산업진흥원 DMBOK 2.0
 
 ## 학습 체크
-- [ ] 도메인·키·개체·참조 무결성을 구분함
-- [ ] PK·FK·CHECK DDL 예시를 씀
-- [ ] 참조 동작 4종을 비교함
-- [ ] 기존 데이터 정제와 성능을 언급함
+
+- [ ] 릴레이션 4대 무결성 제약(개체, 참조, 도메인, 키)의 정의와 차이를 설명할 수 있는가?
+- [ ] 참조 무결성의 4대 동작 옵션(RESTRICT, CASCADE, SET NULL 등)을 제시할 수 있는가?
+- [ ] 외래키(FK) 컬럼에 인덱스를 생성해야 하는 성능적 이유(Lock 전파 방지)를 논할 수 있는가?
 
 ## 연결 토픽
-- [정규화](./019_normalization/) · [반정규화](./017_denormalization/) · [트랜잭션 격리 수준](./020_isolation_level/)
+
+- 이전 토픽: [z-검정(z-test)](./012_z_test.md)
+- 연관 토픽: [참조 무결성](./070_referential_integrity.md), [키(Key)](./157_key.md), [정규화](./019_normalization.md)
+- 다음 토픽: [중심극한정리·대수의 법칙](./014_central_limit_theorem.md)

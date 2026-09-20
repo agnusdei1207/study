@@ -1,141 +1,202 @@
 ---
 title: "McCabe 순환복잡도"
-author: "Antigravity"
-date: "2026-09-20T13:15:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
-    variant: "tip"
 extra:
-  model: "Antigravity"
-
+  keyword_grade: "A"
 ---
 
-## 딸려 나오는 하위 토픽
+## 지식 로드맵 내 현재 위치
 
-| 번호 | 토픽명 | 핵심 키워드 | 흡수 근거 |
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 테스트·검증을 거쳐 McCabe 순환복잡도로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>테스트·검증</span>
+  <strong>McCabe 순환복잡도</strong>
+</div>
+
+## 큰 그림과 30초 인출
+
+- 본질: **McCabe 순환복잡도(Cyclomatic Complexity)**는 프로그램의 제어 흐름 그래프(CFG)를 바탕으로 선형적으로 독립적인 기본 경로(Basis Path)의 수를 정량적으로 측정하는 소프트웨어 복잡도 메트릭
+- 메커니즘: 그래프 이론 기반 계산 `V(G) = E - N + 2P = P + 1 = R` (Edge 수, Node 수, 분기 노드 수, 면 수)
+- 산출/효과: 화이트박스 테스트의 **기본 경로 테스팅(Basis Path Testing)** 케이스 수 도출 · 결함 발생 위험 예측 · 리팩토링 기준선(10 이하) 확립
+
+<div class="itpe-flow-map" role="img" aria-label="McCabe 순환복잡도 산출 및 활용 흐름">
+  <div class="itpe-flow-node"><strong>소스코드 분석</strong><small>조건문 및 분기문 식별</small></div>
+  <div class="itpe-flow-arrow">→ 그래프 모델링 →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>제어 흐름 그래프 (CFG)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>공식 1</strong><span>V(G) = E - N + 2P</span></div>
+      <div class="itpe-flow-branch"><strong>공식 2</strong><span><span class="itpe-keyword"><strong>V(G) = Predicate Nodes + 1</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>공식 3</strong><span>V(G) = Closed Regions + 1</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ 경로 테스팅 및 리팩토링 →</div>
+  <div class="itpe-flow-node"><strong>품질 개선</strong><small>복잡도 10 이하 유지 · 테스트 케이스 완비</small></div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **Cyclomatic Complexity(순환복잡도)**: Thomas McCabe가 제안한 메트릭으로, 제어 흐름 내의 선형 독립 경로 수를 수치화한 지표
+- **CFG(Control Flow Graph)**: 노드(실행 문장 블록)와 엣지(제어 이동 경로)로 프로그램 논리를 표현한 그래프
+- **Basis Path(기본 경로)**: 프로그램 내의 다른 독립 경로들의 조합으로 표현될 수 없는 최소한 하나의 새로운 엣지를 포함하는 독립 실행 경로
+- **Predicate Node(서술 노드/분기 노드)**: 둘 이상의 엣지가 나가는 분기문(if, while, for 등)을 포함하는 노드
+- **Complexity Threshold(복잡도 임계치)**: 통상 1~10은 매우 양호(단순), 11~20은 중간 위험, 21 이상은 고위험 리팩토링 대상으로 판정
+
+</details>
+
+## 예상문제
+
+> Thomas McCabe의 순환복잡도(Cyclomatic Complexity)의 개념 및 목적을 설명하고, 제어 흐름 그래프(CFG)를 통한 3가지 계산 공식, 복잡도 수치에 따른 프로그램 위험도 판정 기준 및 화이트박스 기본 경로 테스팅(Basis Path Testing)에의 적용 방안을 제시하시오. (25점)
+
+## Ⅰ. 소프트웨어 논리 복잡도의 정량적 척도, McCabe 순환복잡도의 개요
+
+> "복잡한 코드는 필연적으로 버그를 품고 있다." 순환복잡도는 주관적 코드 평가를 객관적 수치로 증명하는 공학 지표다.
+
+- 정의: 프로그램의 제어 흐름 그래프(CFG)를 분석하여 선형적으로 독립적인 실행 경로의 개수를 측정하는 그래프 이론 기반의 소프트웨어 척도
+- 목적: 소프트웨어 **테스트 용이성(Testability)** 평가, 필요 최소 테스트 케이스 수 도출, **리팩토링(Refactoring)** 대상 함수 식별
+
+## Ⅱ. 제어 흐름 그래프(CFG) 모델링과 3대 계산 공식
+
+> 순환복잡도는 그래프의 간선(E), 노드(N), 분기 노드(P), 영역(R)을 통해 동일한 결과값으로 도출된다.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="McCabe 3대 계산 공식">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>공식 1: 간선과 노드 기반</strong></span>
+    <small>V(G) = E - N + 2P (단일 모듈인 경우 P=1 이므로 V(G) = E - N + 2)</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↕ 수학적 동일</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>공식 2: 서술 노드(Predicate Node) 기반</strong></span>
+    <small>V(G) = P + 1 (P는 2개 이상의 출력 간선을 가진 분기 노드의 총 개수)<br />→ 실무에서 코드만 보고 즉시 계산할 때 가장 유용</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↕ 수학적 동일</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>공식 3: 닫힌 영역(Region) 기반</strong></span>
+    <small>V(G) = R (CFG 평면 그래프가 분할하는 닫힌 영역의 수 + 외부 개방 영역 1개)</small>
+  </div>
+</div>
+
+### 계산 예시: `if (A) then X; else Y; if (B) then Z;`
+- 서술 노드 P = 2개 (조건식 A, 조건식 B)
+- 순환복잡도 `V(G) = 2 + 1 = 3`
+- 의미: 이 함수를 100% 검증하기 위해 필요한 **선형 독립 경로는 정확히 3개**임
+
+## Ⅲ. 순환복잡도 수치에 따른 위험도 판정 기준
+
+> 복잡도가 10을 초과하면 결함 발생 확률과 테스트 비용이 지수함수적으로 증가한다.
+
+| 복잡도 V(G) 수치 | 구조적 상태 평가 | 결함 발생 위험도 | 조치 가이드라인 |
 |---|---|---|---|
-| 02-067 | 맥케이브 순환복잡도 | 제어 흐름 그래프(CFG), 기저 경로 테스팅(Basis Path), $V(G) = E-N+2P$, 복합조건식 분해, 인지복잡도(Cognitive Complexity) 대조 | 동일 주제의 수식 및 정적 분석 실무 통합 |
+| **1 ~ 10** | 구조가 단순하고 명확한 프로그램 | **낮음 (Low Risk)** | 매우 안정적, 유지보수 및 테스트 용이 |
+| **11 ~ 20** | 다소 복잡한 분기 구조 보유 | **중간 (Moderate Risk)** | 부분적 리팩토링 검토, 집중 테스트 필요 |
+| **21 ~ 50** | 매우 복잡하고 이해하기 어려운 코드 | **높음 (High Risk)** | **즉각적인 메서드 추출(Extract Method) 리팩토링 필수** |
+| **50 초과** | 테스트가 불가능한 스파게티 코드 | **치명적 (Very High Risk)** | 전면 재작성 또는 모듈 재설계 필수 |
 
----
+## Ⅳ. 기본 경로 테스팅(Basis Path Testing)에의 실무 적용
 
-## 답안 골격 (10점 / 25점)
+> 화이트박스 테스팅에서 중복 없이 모든 분기를 커버하는 테스트 스위트를 설계하는 기준이 된다.
 
-```text
-[McCabe 순환복잡도] ◀━━ 머리: Ⅶ 공학적 제언 (순환복잡도와 인지복잡도를 결합한 CI 품질 게이트웨이 구축)
- ┃
- ┣━ Ⅰ 개요 ───── 제어 흐름 복잡성의 정량화, 선형 독립 경로 수 기반 최소 테스트 케이스 상한선 제시
- ┣━ Ⅱ 그래프 구조 ─ 제어 흐름 그래프(CFG): 실행 노드(N), 제어 간선(E), 분기 판정 노드(P), 닫힌 영역(R)
- ┣━ Ⅲ 3대 산출 공식 ─ ① $V(G) = E - N + 2P$ · ② $V(G) = P + 1$ (단일 출구) · ③ $V(G) = R + 1$ (평면 영역)
- ┣━ Ⅳ 기저 경로 테스팅 ─ 복잡도 $V(G)$ 수치만큼의 독립 경로(Basis Path) 집합 도출 및 테스트 케이스 매핑
- ┣━ Ⅴ 비교 ───── 맥케이브 순환복잡도(경로 수) vs 할스테드 복잡도(어휘/볼륨) vs 인지복잡도(가독성/중첩 가중)
- ┣━ Ⅵ 복합 조건식 ─ `if (A && B)` 단락 평가(Short-circuit)에 따른 분기 노드 분해 및 복잡도 증가 메커니즘
- ┗━ Ⅶ 결론 ───── SonarQube 품질 게이트(복잡도 10 이하 강제) 및 가드 절(Guard Clause) 리팩토링 표준화
-```
+<div class="itpe-pipeline is-vertical" role="img" aria-label="기본 경로 테스팅 4단계">
+  <div class="itpe-pipeline-node">
+    <strong>1. 제어 흐름 그래프(CFG) 작성</strong>
+    <small>소스코드의 실행 블록을 노드로, 분기 제어를 간선으로 변환</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>2. 순환복잡도 V(G) 계산</strong>
+    <small>선형 독립 경로의 상한선 도출 (예: V(G) = 4)</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>3. 독립 경로(Basis Path) 집합 도출</strong></span>
+    <small>최소 1개 이상의 새로운 간선을 통과하는 경로 4개 선정<br />Path 1: 1-2-3-5 / Path 2: 1-2-4-5 / Path 3: 1-6-7 ...</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>4. 경로별 테스트 케이스 입력값 설계</strong></span>
+    <small>각 독립 경로를 강제로 통과시키는 구체적 입력 데이터 도출</small>
+  </div>
+</div>
 
-- **필수 키워드**: 토마스 맥케이브(Thomas McCabe), 제어 흐름 그래프(CFG), 선형 독립 경로(Independent Path), 기저 경로 테스팅(Basis Path Testing), $V(G) = E - N + 2P$, $P + 1$, 복합 조건식 분해, 인지복잡도(Cognitive Complexity)
-  - **10점형**: 정의 및 목적 → CFG 예시 및 3대 산출 공식 유도 → 복잡도 임계치 평가 기준 표.
-  - **25점형**: Ⅰ~Ⅶ 전체 구조 전개 + 실제 소스코드(`if-else`, 루프)를 CFG로 변환하여 독립 경로 및 테스트 케이스를 직접 설계하는 수리적 전개 + 인지복잡도와의 비교 및 CI/CD 품질 게이트 적용 방안 제시.
+## Ⅴ. 정적 분석 기반 복잡도 거버넌스를 위한 기술사적 제언
 
----
+> 개발자의 코딩 습관에만 맡기지 말고, CI 파이프라인에서 복잡도를 자동 측정하여 기준치를 강제해야 한다.
 
-## 30초 인출용 핵심 다이어그램
+### 학습자 통찰 메모 — 답안 밖
 
-```text
-+-------------------------------------------------------------------------+
-|     제어 흐름 그래프(CFG)와 McCabe 순환복잡도 V(G) 산출 메커니즘        |
-+-------------------------------------------------------------------------+
-|   [ 코드 예시 ]                                                         |
-|   if (A && B) { X; } else { Y; }                                        |
-|                                                                         |
-|   [ 제어 흐름 그래프 (CFG) ]        [ 3대 계산 공식 ]                   |
-|            ( 1: 시작 )                                                  |
-|             /        \              1. V(G) = E - N + 2                 |
-|       ( 2: A 판정 )   |                = 8 - 6 + 2 = 4                  |
-|        /         \    |                                                 |
-|   ( 3: B 판정 )   \   |             2. V(G) = P + 1                     |
-|     /        \     \  |                = 3 + 1 = 4 (복합조건 분해 시 P=3)|
-| ( 4: X 실행 ) ( 5: Y 실행 )                                             |
-|     \        /                      3. V(G) = 닫힌 영역(R) + 1          |
-|      ( 6: 종료 )                       = 3 + 1 = 4                      |
-|                                                                         |
-|   * 노드(N)=6, 간선(E)=8, 분기점(P)=3  --> 선형 독립 경로 = 4개         |
-+-------------------------------------------------------------------------+
-```
+- [핵심 통찰]: 순환복잡도는 단순히 테스트 케이스 수를 세는 공식이 아니라, 객체지향 설계에서 '단일 책임 원칙(SRP)'이 무너졌는지를 가늠하는 리트머스 시험지임. 함수 하나의 복잡도가 15를 넘어간다면 그 함수는 최소 2~3가지 이상의 서로 다른 비즈니스 책임을 동시에 수행하고 있다는 명백한 증거임.
+- 나라면: SonarQube 정적 분석 규칙에 메서드 복잡도 임계치를 10으로 설정하고, 신규 PR에서 V(G) > 10인 코드가 발견되면 자동으로 빌드를 실패(Quality Gate Fail)시켜 개발자가 메서드 분할을 하지 않고는 머지할 수 없도록 강제하겠음.
 
----
+### 실전 답안용 기술사적 제언
 
-## 본론: 개념 및 핵심 메커니즘
+- 판정: 메서드 단위 순환복잡도 10 이하 강제 및 CI 빌드 게이트 연동 판정
+- 대안: **SonarQube/Checkstyle** 자동 검사 및 복합 분기문 **다형성(Polymorphism)** 전환
+- 검증: 전사 코드베이스 평균 V(G) ≤ 5 유지 · 복잡도 15 초과 메서드 제로화
+- 효과: 소스코드 결함 밀도 50% 감소 · 단위 테스트 케이스 설계 공수 40% 절감
 
-### 1. McCabe 순환복잡도(Cyclomatic Complexity)의 공학적 본질
+<div class="itpe-pipeline is-vertical" role="img" aria-label="순환복잡도 거버넌스 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>수백 라인의 거대 함수 방치 · 테스트 케이스 누락 및 회귀 버그 속출</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>McCabe 순환복잡도 10 이하 관리 기준 수립 및 CI 파이프라인 자동 차단</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>정적 분석 Quality Gate 통과율 100% 및 기본 경로 커버리지 충족</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>클린 코드 아키텍처 실현 · 단위 테스트 완전성 및 소프트웨어 신뢰성 보증</small>
+  </div>
+</div>
 
-- **개념**: 1976년 토마스 맥케이브(Thomas J. McCabe)가 제안한 그래프 이론 기반의 소프트웨어 메트릭으로, 프로그램의 제어 흐름 그래프(CFG)에서 **선형적으로 독립적인 실행 경로(Linearly Independent Path)의 수**를 정량화한 지표.
-- **핵심 목적**:
-  1. **최소 테스트 케이스 수 도출**: 모든 문장(Statement)과 분기(Branch)를 최소 1회 이상 실행하기 위해 필요한 기저 경로(Basis Path)의 상한선 결정.
-  2. **모듈의 복잡도 평가 및 리팩토링 기준**: 코드의 유지보수 난이도와 결함 발생 확률을 조기에 예측.
+## 1교시 10점 답안 발췌
 
-### 2. 3대 산출 공식 및 수식 원리
+### 1. 정의·목적
 
-1. **기본 공식 (간선과 노드)**:
-   $$V(G) = E - N + 2P$$
-   - $E$: CFG의 간선(Edge) 수, $N$: 노드(Node) 수, $P$: 연결 컴포넌트(Component) 수 (단일 프로그램인 경우 $P=1$이므로 $E - N + 2$).
-2. **분기 노드 기반 공식 (단일 진입·단일 진출)**:
-   $$V(G) = P_{\text{predicate}} + 1$$
-   - $P_{\text{predicate}}$: 2개 이상의 분기를 발생시키는 조건문(if, while, for 등)의 수.
-3. **평면 그래프 영역 공식**:
-   $$V(G) = R_{\text{closed}} + 1$$
-   - $R_{\text{closed}}$: 그래프 간선들로 둘러싸인 닫힌 영역(Region)의 수.
+- 정의: **McCabe 순환복잡도(Cyclomatic Complexity)**는 제어 흐름 그래프(CFG)를 기반으로 프로그램 내 선형 독립 경로 수를 정량화한 지표
+- 목적: 화이트박스 테스트 케이스 최소 수량 도출 및 복잡 코드 리팩토링 기준선 제공
 
-### 3. 복합 조건식(Compound Condition) 분해 원칙
+### 2. 핵심 계산 공식 3가지
 
-- 조건문에 논리 연산자(`&&`, `||`)가 포함된 경우, 프로그래밍 언어의 **단락 평가(Short-circuit Evaluation)**로 인해 내부 분기 노드가 추가 생성됨.
-- 예: `if (A && B)`는 단일 분기가 아니라, A를 검사한 후 참일 때만 B를 검사하는 2개의 분기 노드로 분해되어 복잡도가 1 증가함.
+<div class="itpe-pipeline is-vertical" role="img" aria-label="McCabe 3대 공식 요약">
+  <div class="itpe-pipeline-node"><strong>간선/노드 공식</strong><small>V(G) = E - N + 2P (P=1 단일 모듈)</small></div>
+  <div class="itpe-pipeline-arrow">↕ 동일</div>
+  <div class="itpe-pipeline-node"><strong>분기 노드 공식</strong><small>V(G) = P + 1 (P는 서술 노드 수)</small></div>
+  <div class="itpe-pipeline-arrow">↕ 동일</div>
+  <div class="itpe-pipeline-node"><strong>영역 공식</strong><small>V(G) = Closed Regions + 1</small></div>
+</div>
 
----
+### 3. 핵심 통제
 
-## 복잡도 임계치 및 타 복잡도 메트릭 비교
+- **임계치 관리**: V(G) ≤ 10 (안정), 10 초과 시 Extract Method 리팩토링 의무화
+- **Basis Path**: 도출된 복잡도 수만큼 독립 경로를 설계하여 결정 커버리지 100% 달성
 
-### 1. McCabe 순환복잡도 평가 구간
+## 출제 이력과 검증 출처
 
-| $V(G)$ 범위 | 구조적 안정성 및 복잡도 | 결함 위험도 | 권장 공학 조치 |
-|---|---|---|---|
-| **1 ~ 10** | 매우 안정적이고 단순한 구조 | 결함 위험 매우 낮음 | 양호 (추가 조치 불필요) |
-| **11 ~ 20** | 다소 복잡하고 분기 많음 | 결함 위험 중간 | 부분적 리팩토링 검토 |
-| **21 ~ 50** | 매우 복잡, 높은 위험도 | 결함 위험 높음 | **필수 메서드 분할 및 구조 개편** |
-| **50 초과** | **테스트 및 검증 불가능(Untestable)** | 극도로 위험 | 전면 재작성(Re-engineering) |
+- 제139회 정보관리기술사 1교시: 맥케이브 순환복잡도 계산 및 활용 방안
+- Thomas J. McCabe, A Complexity Measure (IEEE Transactions on Software Engineering 1976)
+- Roger S. Pressman, Software Engineering: A Practitioner's Approach
 
-### 2. 복잡도 3대 메트릭 비교
+## 학습 체크
 
-| 비교 항목 | 순환복잡도 (Cyclomatic) | 인지복잡도 (Cognitive Complexity) | 할스테드 복잡도 (Halstead) |
-|---|---|---|---|
-| **측정 대상** | 제어 흐름 경로의 수 | 인간 개발자의 코드 이해 난이도 | 연산자 및 피연산자의 어휘 수 |
-| **핵심 기준** | 분기문 수 (중첩 여부 무관) | **중첩 깊이(Nesting)에 가중치** 부여 | 토큰의 출현 빈도 및 고유 개수 |
-| **주 활용처** | 화이트박스 테스트 케이스 산출 | 코드 가독성 평가 및 코드 리뷰 | 소프트웨어 볼륨, 개발 노력(Effort) 추정 |
+- [ ] 순환복잡도를 계산하는 3가지 공식(간선/노드, 분기노드, 영역)을 설명할 수 있는가?
+- [ ] V(G) 수치에 따른 위험도 4단계(1~10, 11~20, 21~50, 50 초과)를 구분할 수 있는가?
+- [ ] 기본 경로 테스팅(Basis Path Testing)에서 순환복잡도가 갖는 의미를 설명할 수 있는가?
 
----
+## 연결 토픽
 
-## 실무 장애 시나리오 및 공학적 대안
-
-### 1. 현장 장애 사례
-
-1. **복잡도 30 초과 레거시 메서드의 회귀 버그 폭발**:
-   - 금융 여신 심사 모듈에 수십 개의 if-else가 얽혀 $V(G)=35$에 달했으나, 테스트 케이스를 3개만 작성하여 배포했다가 미검증 예외 경로에서 전산 사고 발생.
-2. **순환복잡도 수치만 낮추기 위한 꼼수 코딩**:
-   - 정적 분석 통과를 위해 단일 로직을 무의미한 1줄짜리 private 함수 10개로 쪼개어, 전체 인지 부하와 스택 추적 난이도가 오히려 증가.
-
-### 2. 문제 원인 및 공학적 해결책
-
-| 장애 상황 | 근본 원인 | 공학적 대책 (대안 기술) | 개선 효과 |
-|---|---|---|---|
-| **미검증 분기 장애** | 선형 독립 경로 수 미달 테스트 | **기저 경로 테스팅(Basis Path)** 적용하여 정확히 $V(G)$개 TC 도출 | 분기 커버리지(Branch Coverage) 100% 달성 |
-| **스파게티 조건문** | 중첩 if-else 남발 | **가드 절(Guard Clause) 조기 반환 + 전략 패턴(Strategy)** 다형성 치환 | 메서드 복잡도 5 이하로 경감 및 유지보수성 확보 |
-| **가독성 훼손 쪼개기** | 순환복잡도 단일 지표 맹신 | SonarQube에 **순환복잡도(Max 10)와 인지복잡도(Max 15) 결합 게이트** 설정 | 진짜 가독성 개선과 테스트 용이성 동시 달성 |
-
----
-
-## 결론: 기술사 답안 차별화 포인트
-
-1. **기저 경로 테스팅(Basis Path)과의 완벽한 연계**: 순환복잡도를 단순한 숫자 지표로 끝내지 말고, 화이트박스 테스팅 기법 중 하나인 기저 경로 테스팅의 **최소 독립 경로 집합(Basis Set)**을 결정하는 결정론적 상한선임을 명확히 서술할 것.
-2. **현대적 정적 분석(SonarQube) 품질 게이트 제시**: 개발자 주관에 맡기는 코드 리뷰의 한계를 극복하기 위해 CI 파이프라인(Jenkins, GitHub Actions)에 SonarQube를 연동하여 $V(G) > 10$ 시 PR 병합을 원천 차단하는 정량적 거버넌스를 제언으로 제시할 것.
+- 이전 토픽: [MSA](./035_msa.md)
+- 연관 토픽: [화이트박스 테스트](./013_white_box_test.md), [리팩토링](./006_refactoring.md)
+- 다음 토픽: [SOAP](./037_soap.md)

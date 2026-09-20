@@ -1,80 +1,203 @@
 ---
 title: "SW 안전성 분석(FTA·FMEA·HAZOP)"
-author: "Gemini 3.8 Flash"
-date: "2026-09-20T00:30:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "Gemini 3.8 Flash"
-
+  keyword_grade: "A"
 ---
 
-## 답안 골격
-```text
-[SW 안전성 분석] ◀━━ 머리: Ⅶ 내 의견 (단일 기법 한계 극복을 위한 연역·귀납 상호보완 3중 안전 매트릭스 구축)
- ┃
- ┣━ Ⅰ 개요 ───── SW 오류로 인한 인명·재산 피해 급증 → 시스템 안전 수명주기 전반의 체계적 위험 분석
- ┣━ Ⅱ 특징 ───── 기능 안전(Functional Safety) 표준 준수 · 연역적(FTA)과 귀납적(FMEA, HAZOP) 결합
- ┣━ Ⅲ 구조 ───── FTA(Top-Down, 결함 수형도) + FMEA(Bottom-Up, 고장 모드 영향) + HAZOP(공정 이탈 분석)
- ┣━ Ⅳ 흐름 ───── 위험원 식별(HAZOP) → 고장 모드 분석(FMEA/RPN) → 원인 추적 및 확률 계산(FTA) → 안전 요구사항 반영
- ┣━ Ⅴ 비교 ───── FTA vs FMEA vs HAZOP 3대 안전성 분석 기법 종합 비교
- ┗━ Ⅵ 실무 ───── 기계·소프트웨어 상호작용 복잡도 증가 / STPA(시스템 이론 프로세스 분석)로의 확장
-```
-- 필수 키워드: 기능 안전(ISO 26262/IEC 61508) · FTA(연역/Top-down) · FMEA(귀납/Bottom-up) · HAZOP(가이드워드) · RPN · STPA
-- 기출: 131회 3교시 `소프트웨어 안전성 분석의 필요성과 분석 기법(FTA, FMEA, HAZOP)` → Ⅰ~Ⅴ / 128회 3교시 `위험분석 방법` → Ⅲ·Ⅵ
+## 지식 로드맵 내 현재 위치
 
-## 한 줄 본질
-- 소프트웨어가 제어하는 자동차, 의료기기, 항공 시스템의 오작동으로 인한 치명적 사고 위험 병목 → 연역적 결함 트리(FTA), 귀납적 부품 고장 모드(FMEA), 공정 이탈 가이드워드(HAZOP)를 결합하여 위험원을 전수 식별·격리 → 시스템 고장 방지 및 안전 무결성 기준(SIL/ASIL) 달성 / 전수 분석에 따른 막대한 분석 비용
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 품질·안전·신뢰성을 거쳐 SW 안전성 분석으로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>품질·안전·신뢰성</span>
+  <strong>SW 안전성 분석(FTA·FMEA·HAZOP)</strong>
+</div>
 
-## 핵심 그림
-```text
-[ Top-Down 연역적 분석 ]                 [ Bottom-Up 귀납적 분석 ]
-          [ FTA ]                                 [ FMEA ]
-      (최상위 사고/재난)                        (단일 컴포넌트/함수)
-             |                                           |
-        [ AND / OR ]                             (고장 모드 식별)
-       /            \                                    |
-  (기본 결함 A)  (기본 결함 B)                     (치명도 RPN 평가: S x O x D)
-                                                         |
-                                                (전체 시스템 파급 영향)
-------------------------------------------------------------------------
-[ Process / Communication 이탈 분석: HAZOP (Guide Word + Parameter) ]
-```
+## 큰 그림과 30초 인출
 
-## 핵심 용어
-- FTA(Fault Tree Analysis): 최상위 사고(Top Event)에서 출발하여 논리 게이트(AND, OR)를 통해 근본 원인(Basic Event)을 찾아 내려가는 하향식·연역적 기법
-- FMEA(Failure Mode and Effect Analysis): 개별 부품이나 소프트웨어 단위의 잠재적 고장 모드를 나열하고, 심각도(S), 발생빈도(O), 검출난이도(D)를 곱한 위험우선순위(RPN)를 산출하는 상향식·귀납적 기법
-- RPN(Risk Priority Number): FMEA에서 조치 우선순위를 정하기 위해 심각도(1~10) × 발생빈도(1~10) × 검출도(1~10)로 계산하는 위험 지수
+- 본질: **SW 안전성 분석**은 자동차, 철도, 항공, 원자력 등 안전 필수(Safety-Critical) 시스템에서 소프트웨어 결함으로 인한 인명 피해나 물리적 재난을 예방하기 위해 위험원(Hazard)을 조기 식별·통제하는 공학 기법
+- 메커니즘: 연역적 결함 분석(**FTA**) + 귀납적 고장 모드 분석(**FMEA**) + 가이드워드 공정 분석(**HAZOP**)
+- 산출/효과: 위험원 식별 · 위험도(Risk Matrix) 산출 · **안전 요구사항(Safety Requirements)** 도출 · 기능안전(ISO 26262/IEC 61508) 인증 획득
 
-## 핵심 통찰
-- 어떤 단일 기법도 모든 위험을 잡을 수 없음: FTA는 시스템 아키텍처 결함에 강하고, FMEA는 단일 모듈 결함에 강하며, HAZOP은 모듈 간 통신/신호 이탈에 강함
-- 따라서 실무에서는 HAZOP으로 인터페이스 위험원을 도출하고, FMEA로 위험 모듈의 RPN을 매긴 후, 고위험 항목을 FTA의 Top Event로 올려 근본 원인을 추적하는 '3중 체인'으로 연계함
-- 자율주행과 AI 기반 CPS 시스템에서는 부품 고장이 없어도 컴포넌트 간 비선형 상호작용으로 사고가 발생하므로, 최근에는 제어 루프 기반의 STPA로 패러다임이 진화함
+<div class="itpe-flow-map" role="img" aria-label="SW 안전성 분석 프레임워크">
+  <div class="itpe-flow-node"><strong>시스템 위험원 식별</strong><small>PHA · FHA 사전 분석</small></div>
+  <div class="itpe-flow-arrow">→ 분석 기법 적용 →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>3대 안전성 분석 기법</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>FTA</strong><span><span class="itpe-keyword"><strong>연역적 Top-Down (불 대수·Cut Set)</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>FMEA</strong><span><span class="itpe-keyword"><strong>귀납적 Bottom-Up (RPN 지수)</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>HAZOP</strong><span>가이드워드 기반 이탈 분석</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ 안전 통제책 수립 →</div>
+  <div class="itpe-flow-node"><strong>안전 무결성 기준 충족</strong><small>Fail-Safe · SIL/ASIL 달성</small></div>
+</div>
 
-## 딸려 나오는 하위 토픽
+<details>
+<summary>핵심 용어</summary>
 
-| 하위 토픽 | 상위 구조 속 위치 | 한 줄 (정의 → 메커니즘 → 구분축) |
-|---|---|---|
-| FTA(Fault Tree Analysis) | Ⅲ 구조 / 연역적 하향식 분석 | 시스템 최상위 사고(Top Event)에서 출발하여 논리 게이트(AND/OR)를 통해 하위 기본 결함(Basic Event)의 조합과 확률을 도출하는 연역적 기법 (상위 사고 → 하위 원인 추적) |
-| FMEA(Failure Mode and Effect Analysis) | Ⅲ 구조 / 귀납적 상향식 분석 | 부품이나 소프트웨어 단위의 잠재적 고장 모드를 나열하고 심각도(S), 발생도(O), 검출도(D)를 곱한 위험우선순위(RPN)를 산출해 치명적 결함을 선별하는 귀납적 기법 (단위 고장 → 시스템 영향 분석) |
-| HAZOP(Hazard and Operability Analysis) | Ⅲ 구조 / 공정 이탈 분석 | 시스템 파라미터(온도, 압력, 속도, 신호)에 표준 가이드워드(No, More, Less, As Well As, Reverse 등)를 적용하여 정상 동작에서의 이탈(Deviation)과 위험원을 브레인스토밍하는 기법 (규격화된 가이드워드 기반 이탈 분석) |
+- **Software Safety(소프트웨어 안전성)**: 소프트웨어가 의도된 기능을 수행하는 것뿐만 아니라, 시스템이 위험한 고장 상태로 전이되지 않도록 보장하는 특성
+- **FTA(Fault Tree Analysis)**: 사고(Top Event)에서 출발하여 논리 게이트(AND/OR)를 통해 하위 기본 고장 원인을 규명하는 연역적(Top-down) 기법
+- **FMEA(Failure Mode and Effects Analysis)**: 각 부품/모듈의 고장 모드가 상위 시스템에 미치는 영향을 평가하고 RPN을 산출하는 귀납적(Bottom-up) 기법
+- **HAZOP(Hazard and Operability Study)**: 설계 의도에 가이드워드(No, More, Less, As well as 등)를 적용하여 비정상적 이탈(Deviation)을 분석하는 기법
+- **RPN(Risk Priority Number)**: 심각도(Severity) × 발생빈도(Occurrence) × 검출도(Detection)의 곱으로 위험 우선순위를 수량화한 지수
 
-## 이웃 토픽과 구분
-- FTA vs FMEA: FTA = "비행기가 추락했다(Top). 왜? (연역)" / FMEA = "센서가 고장 났다(Bottom). 무슨 일이 생기는가? (귀납)"
+</details>
 
-## 문제·원인·대책
-- 사례: 131회 기출 자율주행 제어 시스템의 안전성 분석 실패로 인한 급발진 사고
-| 문제 | 원인 | 대책 | 효과 |
+## 예상문제
+
+> 안전 필수(Safety-critical) 시스템에서 소프트웨어 결함으로 인한 재난을 방지하기 위한 소프트웨어 안전성 분석의 필요성을 설명하고, 3대 정형 기법(FTA, FMEA, HAZOP)의 분석 관점 및 절차 비교, 기능안전 표준(ISO 26262, IEC 61508)에서의 적용 방안을 제시하시오. (25점)
+
+## Ⅰ. 인명 피해와 재난을 방어하는 소프트웨어 안전성 분석의 개요
+
+> 기능적 정상 동작(신뢰성)만으로는 부족하며, 예측하지 못한 극한 상황에서도 시스템을 안전 상태(Fail-Safe)로 안착시켜야 한다.
+
+- 정의: 소프트웨어 생명주기 전반에서 시스템 위험원(Hazard)을 조기에 식별하고, 원인과 영향을 분석하여 안전 요구사항을 도출·검증하는 일련의 엔지니어링 활동
+- 목적: 잠재적 결함으로 인한 인명 손실, 환경 파괴, 재산 피해 방지, 국제 **기능안전(Functional Safety)** 인증 기준 충족
+
+## Ⅱ. 3대 안전성 분석 기법(FTA, FMEA, HAZOP)의 메커니즘
+
+> 연역적 하향식 분석(FTA)과 귀납적 상향식 분석(FMEA), 프로세스 편차 분석(HAZOP)을 상호 보완적으로 적용한다.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="3대 안전성 분석 기법 체계">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>1. FTA (Fault Tree Analysis) — 연역적 / Top-Down</strong></span>
+    <small>사고 발생(Top Event) → AND/OR 논리 게이트 전개 → 최소 컷셋(Minimal Cut Set) 도출</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>2. FMEA (Failure Mode and Effects Analysis) — 귀납적 / Bottom-Up</strong></span>
+    <small>단위 컴포넌트 고장 모드 나열 → 시스템 영향 분석 → 위험우선순위(RPN) 산출 및 조치</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>3. HAZOP (Hazard and Operability Analysis) — 가이드워드 기반</strong></span>
+    <small>설계 의도 변수(온도, 전압, 데이터) + 가이드워드(No, More, Reverse) → 이탈 및 대책 도출</small>
+  </div>
+</div>
+
+| 비교 항목 | FTA (결함 수목 분석) | FMEA (고장 모드 영향 분석) | HAZOP (위험 및 운전성 분석) |
 |---|---|---|---|
-| 브레이크와 가속 페달 신호 동시 수신 시 충돌 처리 누락 | FMEA로 부품 고장만 분석하고 신호 논리 조합의 상호작용 분석 누락 | FTA의 AND 게이트 분석 및 HAZOP의 As Well As 가이드워드 결합 적용 | 다중 입력 동시 수신 시 브레이크 우선(Brake Override) 안전 규칙 수립 |
-| 수백 개 소프트웨어 모듈의 FMEA 작성 시 분석 일정 지연 | 모든 저위험 모듈까지 동일한 깊이로 전수 분석 시도 | 사전 HAZOP 스캔으로 위험도 등급(ASIL) 분류 후 고위험군만 정밀 FMEA 수행 | 안전성 분석 시간 50% 단축 및 핵심 모듈 집중 |
+| **분석 접근법** | **연역적 (Deductive, Top-down)** | **귀납적 (Inductive, Bottom-up)** | **탐색적 (브레인스토밍, Guide Word)** |
+| **출발점** | 최상위 재앙적 사고 (Top Event) | 개별 하위 컴포넌트의 고장 모드 | 설계 의도 파라미터 및 프로세스 흐름 |
+| **분석 도구** | 논리 게이트(AND, OR), 사건 기호 | FMEA 워크시트, RPN(S × O × D) | 가이드워드 매트릭스 (No, As well as 등) |
+| **정량화 여부** | **정량적 확률 계산 가능 (부울 대수)** | 준정량적 (RPN 1~1000점 산출) | 정성적 분석 중심 |
+| **적합한 단계** | 아키텍처 및 시스템 전체 위험 분석 | 상세설계 및 단위 컴포넌트 분석 | 요구사항 분석 및 인터페이스 연계 분석 |
 
-## 이렇게 출제된다
-- 제131회 3교시 4번: "소프트웨어 안전성 분석의 필요성과 다음의 분석 기법(FTA, FMEA, HAZOP)을 설명하시오." → 요구 포인트: Ⅰ 기능안전 필요성 + Ⅲ 3대 기법 각각의 개념도 및 특징 + Ⅴ 종합 비교표
-- 제128회 3교시 3번: "최근 시스템이 복잡해지고 안전(Safety)이 중요시되면서 다양한 위험분석 방법이 적용되고 있다." → 요구 포인트: 정량적/정성적 위험 분석 방법론 및 소프트웨어 안전진단 가이드 연계
+## Ⅲ. FTA의 최소 컷셋(Minimal Cut Set)과 FMEA의 RPN 산출
 
-## 내 의견
-- [기계 공학 템플릿을 소프트웨어에 억지로 끼워 맞추는 관행] 마모나 부품 파손이 없는 소프트웨어에 기계식 FMEA 고장률 공식을 그대로 대입하여 엉터리 신뢰도 수치를 만들어내는 페이퍼워크 빈발 → 나라면: 소프트웨어 특화 안전 표준(ISO 26262 Part 6)을 적용하여 제어 흐름 결함, 타이밍 데드라인 초과, 메모리 오염 모드 중심의 소프트웨어 FMEA(SW-FMEA) 템플릿을 표준화하고 결함 주입 테스트로 실증
+> 안전성 분석의 최종 산출물은 정량적 우선순위에 따른 설계 개선이다.
+
+### 1. FTA 최소 컷셋 (Minimal Cut Set)
+- **Cut Set**: 그 안의 모든 기본 사건이 동시에 발생할 때 Top Event를 유발하는 사건들의 집합
+- **Minimal Cut Set**: 시스템 고장을 유발하는 최소한의 기본 사건 조합 (더 이상 줄일 수 없는 형태)
+- **활용**: 단일 사건으로 사고를 유발하는 Single Point of Failure(1차 Cut Set)를 우선 제거
+
+### 2. FMEA의 RPN (Risk Priority Number) 지수
+- **산식**: `RPN = 심각도(Severity, 1~10) × 발생빈도(Occurrence, 1~10) × 검출도(Detection, 1~10)`
+- **조치 기준**: 통상 RPN 100점 이상 또는 심각도 9점 이상인 항목에 대해 안전 메커니즘 강제 적용
+
+## Ⅳ. 소프트웨어 기능안전 표준과 안전 아키텍처 패턴
+
+> 분석된 위험원은 기능안전 표준(ISO 26262 등)의 ASIL 등급에 맞춰 아키텍처 패턴으로 설계에 반영된다.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="안전 아키텍처 메커니즘">
+  <div class="itpe-pipeline-node">
+    <strong>Fail-Safe (고장 시 안전 보장)</strong>
+    <small>고장 발생 시 시스템을 사전에 정의된 무해한 상태(정지, 전원 차단)로 전이</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>Fail-Operational (고장 시 운용 유지)</strong>
+    <small>자율주행, 항공 제어 등 즉시 정지가 위험한 경우 이중화로 기능 지속 제공</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>1oo2D / 2oo3 (다수결 투표 및 안전 다중화)</strong></span>
+    <small>서로 다른 알고리즘(N-Version Programming) 결과 비교 및 워치독 모니터링</small>
+  </div>
+</div>
+
+## Ⅴ. 고신뢰성 SW 안전 확보를 위한 기술사적 제언
+
+> 복잡한 소프트웨어 시스템에서는 전통적 인과관계 분석을 넘어 시스템 공학 기반의 STPA 기법으로 확장해야 한다.
+
+### 학습자 통찰 메모 — 답안 밖
+
+- [핵심 통찰]: FTA와 FMEA는 '단일 부품의 고장'을 전제로 개발된 기계/전자 시대의 유물임. 현대 복잡한 자율주행이나 클라우드 시스템에서는 부품이 고장 나지 않았는데도 컴포넌트 간 상호작용의 타이밍 오류나 비선형 피드백으로 대형 참사가 발생함. 이를 방어하기 위해 MIT의 시스템 이론 기반 안전성 분석인 STPA(System-Theoretic Process Analysis) 도입이 필수적임.
+- 나라면: 소프트웨어 안전 요구사항을 RTM(추적표)에 독립 트랙으로 등록하고, 빌드 파이프라인에서 정적 분석(MISRA-C 표준 검증)과 동적 고장 주입 테스트(Fault Injection Testing)를 의무화하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 도메인 기능안전 표준(ISO 26262 ASIL-D) 기반 전 주기 안전성 분석 판정
+- 대안: **FTA(연역) + FMEA(귀납)** 하이브리드 적용 및 **STPA** 상호작용 분석 보강
+- 검증: 최소 컷셋 단일 고장점 제로화 · RPN 100 이상 항목 안전 메커니즘 100% 반영
+- 효과: 소프트웨어 안전 무결성 인증 통과 및 치명적 시스템 재난 사고 원천 예방
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="SW 안전성 거버넌스 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>기능 테스트 편중 · 극한 상황 및 다중 고장에 대한 안전 분석 부재</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>FTA/FMEA/HAZOP 연계 위험원 분석 및 Fail-Safe 안전 아키텍처 구현</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>고장 주입 테스트(Fault Injection) 통과 및 RPN 리스크 완화 검증</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>무결점 기능안전 달성 · 인명 및 물리적 자산 피해 원천 차단</small>
+  </div>
+</div>
+
+## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **SW 안전성 분석**은 시스템 고장 및 위험원을 조기에 식별하여 소프트웨어로 인한 인명/물리적 재난을 방어하는 공학 기법
+- 목적: 잠재적 위험원을 사전에 제거하고 국제 기능안전(ISO 26262/IEC 61508) 인증 충족
+
+### 2. 3대 분석 기법 핵심 비교
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="3대 기법 비교 요약">
+  <div class="itpe-pipeline-node"><strong>FTA</strong><small>연역적 Top-Down · 사고(Top Event)에서 출발 · 부울 대수</small></div>
+  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
+  <div class="itpe-pipeline-node"><strong>FMEA</strong><small>귀납적 Bottom-Up · 부품 고장에서 출발 · RPN 지수</small></div>
+  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
+  <div class="itpe-pipeline-node"><strong>HAZOP</strong><small>탐색적 · 가이드워드(No, More, Less) 기반 이탈 분석</small></div>
+</div>
+
+### 3. 핵심 통제
+
+- **최소 컷셋(Minimal Cut Set)**: Top Event를 발생시키는 최소 고장 조합 식별 및 차단
+- **Fail-Safe 아키텍처**: 오류 감지 시 시스템을 안전 정지 상태로 전이
+
+## 출제 이력과 검증 출처
+
+- 제123회 정보관리기술사 1교시: FTA, FMEA의 비교 및 위험도 평가
+- 제128회 정보관리기술사 2교시: 소프트웨어 안전성 분석 기법(HAZOP, STPA)
+- ISO 26262 Road vehicles - Functional safety
+- IEC 61508 Functional safety of electrical/electronic/programmable electronic safety-related systems
+
+## 학습 체크
+
+- [ ] FTA(연역적)와 FMEA(귀납적)의 분석 방향과 출발점의 차이를 설명할 수 있는가?
+- [ ] FMEA에서 RPN(위험우선순위수)을 계산하는 3대 인자(S, O, D)를 설명할 수 있는가?
+- [ ] HAZOP의 가이드워드(Guide Word)를 프로세스 파라미터에 적용하는 원리를 설명할 수 있는가?
+
+## 연결 토픽
+
+- 이전 토픽: [SW 규모·비용 산정](./027_sw_cost_estimation.md)
+- 연관 토픽: [STPA](./108_stpa.md), [기능안전](./188_functional_safety.md)
+- 다음 토픽: [메타모픽 테스트](./030_metamorphic_test.md)

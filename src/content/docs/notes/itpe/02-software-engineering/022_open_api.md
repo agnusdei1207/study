@@ -1,137 +1,189 @@
 ---
 title: "Open API(API 일반)"
-author: "Antigravity"
-date: "2026-09-20T12:35:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
-    variant: "tip"
 extra:
-  model: "Antigravity"
-
+  keyword_grade: "A"
 ---
 
-## 딸려 나오는 하위 토픽
+## 지식 로드맵 내 현재 위치
 
-| 번호 | 토픽명 | 핵심 키워드 | 흡수 근거 |
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 구현·객체지향·API를 거쳐 Open API로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>구현·객체지향·API</span>
+  <strong>Open API(API 일반)</strong>
+</div>
+
+## 큰 그림과 30초 인출
+
+- 본질: **Open API**는 기업·기관이 보유한 데이터와 비즈니스 기능을 외부 개발자 및 파트너가 자유롭게 활용할 수 있도록 표준 규격으로 공개한 프로그래밍 인터페이스
+- 메커니즘: 표준화된 프로토콜(REST/JSON) + 보안 인가(**OAuth 2.0/API Key**) + 제어/모니터링(**API Gateway**)
+- 산출/효과: 디지털 생태계 확장 · 마이데이터 활성화 · 서비스 융합 혁신 · 신규 수익 모델(Monetization) 창출
+
+<div class="itpe-flow-map" role="img" aria-label="Open API 생태계 연계 흐름도">
+  <div class="itpe-flow-node"><strong>API 제공자</strong><small>핵심 데이터 및 서비스</small></div>
+  <div class="itpe-flow-arrow">→ API Gateway 통제 →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>Open API 플랫폼</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>보안/인증</strong><span><span class="itpe-keyword"><strong>OAuth 2.0 · API Key</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>명세 표준</strong><span><span class="itpe-keyword"><strong>OpenAPI Spec (OAS)</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>트래픽 제어</strong><span>Throttling · Rate Limiting</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ 외부 개발자 활용 →</div>
+  <div class="itpe-flow-node"><strong>융합 서비스 생태계</strong><small>핀테크 · 마이데이터 앱</small></div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **Open API**: 외부 개발자에게 플랫폼의 핵심 데이터와 기능을 프로그래밍 방식으로 개방하는 공개 인터페이스
+- **API Gateway**: 인증, 인가, 라우팅, 속도 제한, 로깅, 분석을 중앙에서 일괄 처리하는 관문 컴포넌트
+- **OAuth 2.0**: 제3자 애플리케이션이 사용자 비밀번호 노출 없이 리소스에 제한적으로 접근할 수 있도록 권한을 위임하는 표준 프레임워크
+- **Rate Limiting / Throttling**: 서비스 가용성 보장을 위해 클라이언트별 단위 시간당 호출 횟수를 제한하는 기법
+- **API 경제(API Economy)**: API를 독립된 제품(Product)으로 간주하여 플랫폼 간 상호연결을 통해 가치를 창출하는 비즈니스 패러다임
+
+</details>
+
+## 예상문제
+
+> 디지털 전환(DX) 시대의 핵심 동력인 Open API의 개념과 비즈니스 및 기술적 가치를 설명하고, API Gateway 기반의 핵심 기술 구성요소(인증/인가, 트래픽 제어, 모니터링) 및 마이데이터 환경에서의 보안 위협과 대응방안을 제시하시오. (25점)
+
+## Ⅰ. 디지털 생태계 확장의 관문, Open API의 개요
+
+> Open API는 단순한 기술 연계 도구가 아니라 플랫폼의 데이터 자산을 외부 혁신과 결합하는 비즈니스 제품(Product)이다.
+
+- 정의: 특정 플랫폼이 보유한 기능과 데이터를 외부 제3자(Third-party)가 쉽게 호출하여 새로운 서비스를 개발할 수 있도록 표준 규약으로 공개한 인터페이스
+- 목적: 플랫폼 네트워크 효과 극대화, 비즈니스 영역 확장, 데이터 개방 규제(마이데이터, 전자정부) 준수, **API 수익화(Monetization)**
+
+## Ⅱ. Open API 아키텍처 및 핵심 구성요소
+
+> Open API는 개발자 포털, 게이트웨이, 코어 백엔드의 3계층으로 유기적으로 연결된다.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 3계층 아키텍처">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>1. 개발자 포털 (Developer Portal)</strong></span>
+    <small>API 카탈로그 · OAS 기반 인터랙티브 문서(Swagger) · 샌드박스 테스트</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓ API 호출</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>2. API 게이트웨이 (API Gateway)</strong></span>
+    <small>보안 인증(OAuth 2.0/mTLS) · 트래픽 제어(Rate Limit) · 라우팅 및 변환</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓ 백엔드 전달</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>3. 백엔드 서비스 (Core Services)</strong></span>
+    <small>비즈니스 마이크로서비스(MSA) · 레거시 시스템 래핑 · 데이터베이스</small>
+  </div>
+</div>
+
+| 핵심 구성요소 | 주요 기술 및 메커니즘 | 실무 역할 |
+|---|---|---|
+| **인증/인가 (Auth)** | **OAuth 2.0, OpenID Connect, JWT, API Key** | 사용자 권한 위임 및 API 호출 클라이언트 검증 |
+| **트래픽 제어** | **Rate Limiting, Throttling, Quota** | DoS 공격 방어 및 SLA 기반 차등적 대역폭 할당 |
+| **명세 표준화** | **OAS (OpenAPI Specification 3.0), Swagger** | 기계 가독형 명세 제공 및 클라이언트 SDK 자동 생성 |
+| **모니터링/분석** | ELK 스택, Prometheus, Distributed Tracing | API 사용 패턴 분석, 과금(Billing) 데이터 집계, 장애 감지 |
+
+## Ⅲ. 프라이빗 API vs 파트너 API vs 오픈 API 비교
+
+> 서비스 대상과 개방 수준에 따라 거버넌스와 보안 요구사항이 차등화된다.
+
+| 구분 | 프라이빗 API (Private) | 파트너 API (Partner) | 퍼블릭 Open API (Public) |
 |---|---|---|---|
-| 02-132 | API(Application Programming Interface) | 계약(Contract), 인터페이스 추상화, REST/gRPC/GraphQL, 멱등성, OWASP API Top 10, API-First | API 일반 개념 및 내부/외부 인터페이스 표준 아키텍처의 상위 주제로 통합 |
+| **이용 대상** | 사내 내부 개발팀 | 전략적 제휴사, 특정 B2B 파트너 | **불특정 다수 외부 개발자, 일반 대중** |
+| **개방 목적** | 시스템 간 결합도 완화 및 재사용 | 비즈니스 파트너십 및 공동 서비스 | **플랫폼 생태계 확장 및 비즈니스 혁신** |
+| **보안 통제** | 내부 네트워크망 신뢰, 기본 토큰 | 전용 VPN, mTLS, 계약 기반 인증 | **엄격한 OAuth 2.0, Rate Limit, WAF 필수** |
+| **수익 모델** | 내부 개발 공수 절감 | 파트너십 상호 정산 | 호출당 과금(Pay-per-use), 무료 티어 제공 |
 
----
+## Ⅳ. Open API 보안 위협과 실무 통제 방안 (OWASP API Security)
 
-## 답안 골격 (10점 / 25점)
+> API는 소스코드 내부 비즈니스 로직과 데이터가 직접 외부에 노출되므로 전통적 웹 방화벽만으로는 방어가 불가능하다.
 
-```text
-[Open API / API] ◀━━ 머리: Ⅶ 공학적 제언 (API-First 거버넌스와 Zero-Trust 기반 API 보안 통제)
- ┃
- ┣━ Ⅰ 개요 ───── 사일로 극복과 생태계 확장, 인터페이스 추상화 및 명세 기반 표준 계약(Contract)
- ┣━ Ⅱ 생태계 구조 ─ Developer Portal · API Gateway · API Manager/Analytics · Backend Services
- ┣━ Ⅲ API 3대 프로토콜 ─ REST(자원중심, JSON) vs gRPC(HTTP/2, 바이너리) vs GraphQL(단일 쿼리)
- ┣━ Ⅳ 노출 범위별 ─ Open API(퍼블릭 개방) vs Partner API(제휴사) vs Private API(내부 마이크로서비스)
- ┣━ Ⅴ 보안·거버넌스 ─ OAuth 2.0/mTLS, Rate Limiting(토큰 버킷), OpenAPI Spec(OAS), OWASP API Top 10
- ┣━ Ⅵ 실무 문제 ─ 무차별 호출로 인한 리소스 고갈 / 섀도우(Shadow) API로 인한 데이터 유출
- ┗━ Ⅶ 결론 ───── CI/CD 연계 OAS 자동 검증 및 BOLA 방지를 위한 세밀한 인가 체계 구축
-```
+| 보안 위협 (OWASP Top 10) | 위협 내용 | 실무 방어 대책 |
+|---|---|---|
+| **BOLA (객체 수준 인가 손상)** | 타인의 리소스 ID(`/orders/1002`)를 변조해 무단 조회 | 토큰의 주체(Subject)와 요청 객체 소유권의 서버단 철저한 일치 검증 |
+| **대량 할당 (Mass Assignment)** | 클라이언트가 허가되지 않은 필드(`isAdmin=true`)를 주입 | DTO(Data Transfer Object) 화이트리스트 바인딩 강제 |
+| **트래픽 고갈 (DoS)** | 과도한 API 호출로 백엔드 자원 소진 | 클라이언트 IP 및 토큰 기반 Rate Limiting 및 지수 백오프 강제 |
+| **민감 데이터 노출** | 백엔드 모델 전체를 그대로 반환하여 개인정보 노출 | 응답 필터링 DTO 적용 및 개인정보 마스킹 처리 |
 
-- **필수 키워드**: API Gateway, OAuth 2.0 / JWT, OpenAPI Specification (OAS), Rate Limiting / Throttling, 토큰 버킷, gRPC / GraphQL, 마이데이터, OWASP API Top 10 (BOLA)
-  - **10점형**: API 정의 및 플랫폼 구성도(포털-게이트웨이-백엔드) → REST vs gRPC vs GraphQL 비교표 → 핵심 트래픽 제어 기법.
-  - **25점형**: Ⅰ~Ⅶ 전개, Open API 노출 범위(Private/Partner/Public) 분류 + API Gateway 트래픽 제어 알고리즘 + 금융 마이데이터/오픈뱅킹 법제화 표준 및 보안 거버넌스 심층 제시.
+## Ⅴ. 성공적인 Open API 거버넌스를 위한 기술사적 제언
 
----
+> Open API의 성패는 배포 기술이 아니라 개발자 경험(DX: Developer Experience)과 지속적 생애주기 관리에 달려 있다.
 
-## 30초 인출용 핵심 다이어그램
+### 학습자 통찰 메모 — 답안 밖
 
-```text
-+-------------------------------------------------------------------------+
-|                  현대적 API 플랫폼 아키텍처 및 트래픽 흐름              |
-+-------------------------------------------------------------------------+
-|  [외부 개발자/클라이언트]                 [개발자 포털 (Dev Portal)]     |
-|   (Web, Mobile, 3rd Party)                - 계정/API Key 발급, 샌드박스 |
-|              │ (HTTPS / OAuth 2.0 Bearer) - OAS 명세서 (Swagger)        |
-|              ▼                                    ▲                     |
-|  +------------------------------------------------┴------------------+  |
-|  | [ API Gateway ] (단일 진입점 DMZ 전진 배치)                       |  |
-|  | - 인증/인가 (OAuth 2.0, mTLS, JWT 검증)                           |  |
-|  | - 트래픽 제어: Throttling / Rate Limiting (Token Bucket)           |  |
-|  | - 프로토콜 변환: REST (HTTP/1.1) <-> gRPC (HTTP/2)                |  |
-|  +-------------------------------------------------------------------+  |
-|              │ 라우팅 (East-West 통신)                                  |
-|         ┌────┴───────────────────────────┐                              |
-|         ▼ (REST/JSON)                    ▼ (gRPC/Protobuf)              |
-|  [ 비즈니스 서비스 A ]            [ 초저지연 트랜잭션 서비스 B ]        |
-+-------------------------------------------------------------------------+
-```
+- [핵심 통찰]: Open API를 구축해놓고 개발자가 쓰지 않아 방치되는 '유령 API'가 대다수임. 외부 개발자가 5분 안에 Hello World를 호출할 수 있는 'Time-to-First-Hello-World' 단축이 생태계 구축의 핵심 지표임. 문서의 정확성과 샌드박스 환경이 제공되어야 함.
+- 나라면: API 버전 관리 정책(URI 기반 `/v1`, `/v2`)을 확립하고, 하위 호환성 유지 기간(최소 6개월 Deprecation 기간)을 공식 공지하는 라이프사이클 관리 체계를 수립하겠음.
 
----
+### 실전 답안용 기술사적 제언
 
-## 본론: 개념 및 핵심 메커니즘
+- 판정: Open API 거버넌스 및 API 생애주기 관리(APIM) 도입 판정
+- 대안: **API Gateway** 통합 통제 및 **OpenAPI 3.0** 기반 자동 문서화
+- 검증: OWASP API 보안 취약점 점검 · SLA 99.95% 가용성 보장
+- 효과: 글로벌 파트너 연계 가속화 · 안전한 데이터 경제 생태계 주도
 
-### 1. API(인터페이스)와 Open API의 본질
+<div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 거버넌스 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>파편화된 개별 API 노출 · 보안 통제 부재 및 개발자 경험 저하</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>API Gateway 중앙 통제 및 개발자 포털·샌드박스 표준화</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>OAuth 2.0/mTLS 보안 검증 및 Rate Limiting 트래픽 방어</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>안전한 데이터 개방 달성 · 융합 서비스 창출 및 생태계 확장</small>
+  </div>
+</div>
 
-- **API(Application Programming Interface)**: 구현 내부를 은닉하고, 약속된 표준 규약(Contract)을 통해 애플리케이션 간 기능과 데이터를 안전하게 교환하는 추상화 접점.
-- **Open API**: 기업 내부 자원(데이터·기능)을 표준화된 인터페이스(REST, JSON 등)로 외부에 개방하여 제3자 개발자가 혁신적 서비스를 창출하도록 돕는 플랫폼 비즈니스 모델.
+## 1교시 10점 답안 발췌
 
-### 2. API 접근 범위별 3대 분류
+### 1. 정의·목적
 
-1. **Private API**: 기업 내부 시스템 간 또는 마이크로서비스 간 연계용. 높은 성능과 유연성 중심 (gRPC, 내부 REST).
-2. **Partner API**: 비즈니스 협력 관계를 맺은 특정 제휴사에게만 허용. B2B VPN, mTLS 기반 상호 인증.
-3. **Public (Open) API**: 불특정 다수 외부 개발자에게 개방. 엄격한 사용자 등록, API Key 발급, 트래픽 쿼터(Quota) 및 과금 체계 필수.
+- 정의: **Open API**는 기업의 데이터와 비즈니스 로직을 표준 규격(REST/JSON)으로 외부에 개방하는 공개 인터페이스
+- 목적: 외부 개발자 참여를 통한 플랫폼 생태계 확장 및 마이데이터 기반 비즈니스 혁신
 
-### 3. 현대 API 3대 아키텍처 프로토콜 비교
+### 2. 핵심 아키텍처 3요소
 
-| 비교 항목 | REST API | gRPC | GraphQL |
-|---|---|---|---|
-| **기반 프로토콜** | HTTP/1.1 (JSON/XML) | HTTP/2 (Protocol Buffers) | HTTP/1.1, HTTP/2 (JSON) |
-| **통신 방식** | 요청-응답 (Request-Response) | 단방향/양방향 스트리밍 지원 | 단방향 쿼리/변이 (Subscription 지원) |
-| **성능 및 지연** | 텍스트 기반으로 오버헤드 큼 | 바이너리 직렬화로 **초저지연/고속** | 단일 요청으로 오버페칭 방지 |
-| **적용 영역** | 퍼블릭 Open API, 웹 프론트엔드 | 마이크로서비스 내부 통신(IPC) | 복잡한 관계형 UI, 모바일 BFF |
-| **표준화 명세** | OpenAPI Specification(Swagger) | `.proto` 파일 명세 | GraphQL Schema (SDL) |
+<div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 핵심 3요소">
+  <div class="itpe-pipeline-node"><strong>개발자 포털</strong><small>OAS 명세 · 문서 · 샌드박스</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>API Gateway</strong><small>OAuth 2.0 · Rate Limit · 라우팅</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>백엔드 서비스</strong><small>코어 비즈니스 로직 수행</small></div>
+</div>
 
----
+### 3. 핵심 통제
 
-## API 게이트웨이 트래픽 제어 및 보안 거버넌스
+- **OAuth 2.0**: 권한 위임 기반의 안전한 인가 토큰(Access Token) 발급
+- **Rate Limiting**: DoS 방어 및 서비스 가용성 유지를 위한 호출 쿼터 제한
 
-### 1. 트래픽 제어 메커니즘 (Throttling / Rate Limiting)
+## 출제 이력과 검증 출처
 
-- **토큰 버킷(Token Bucket) 알고리즘**:
-  - 일정한 주기(초당 $r$개)로 버킷에 토큰을 채우고, 요청마다 토큰을 소비.
-  - 버킷이 비어있으면 즉시 HTTP 429(Too Many Requests)를 반환하여 백엔드 보호.
-- **Leaky Bucket 알고리즘**:
-  - 큐에 요청을 쌓고 일정한 속도로 누출시켜 백엔드로 전달. 버스트 트래픽을 완벽히 평활화(Smoothing).
+- 제133회 정보관리기술사 1교시: Open API 개념 및 API Gateway
+- 제134회 정보관리기술사 2교시: 금융 마이데이터와 Open API 보안 대책
+- OWASP API Security Top 10 (2023)
 
-### 2. API 보안 위협과 방어 (OWASP API Security Top 10)
+## 학습 체크
 
-- **BOLA (Broken Object Level Authorization)**:
-  - 공격자가 URI 파라미터의 ID값(`/users/100` -> `/users/101`)을 변조하여 타인 정보를 조회하는 취약점.
-  - **대응**: 게이트웨이 및 서비스 레벨에서 토큰의 주체(Subject)와 자원 소유권 매핑을 강제 검증.
-- **섀도우 API (Shadow/Zombie API)**:
-  - 문서화되지 않거나 구버전이 방치되어 공격 경로로 노출되는 현상.
-  - **대응**: CI/CD 파이프라인에서 OpenAPI 명세서(OAS)와 실제 라우팅 경로를 일치시키는 API 거버넌스 자동화.
+- [ ] Open API의 3대 계층(포털, 게이트웨이, 백엔드)의 역할을 설명할 수 있는가?
+- [ ] OAuth 2.0과 API Key 방식의 보안성 차이를 설명할 수 있는가?
+- [ ] OWASP API Security 중 BOLA 취약점의 개념과 방어책을 설명할 수 있는가?
 
----
+## 연결 토픽
 
-## 실무 장애 시나리오 및 공학적 대안
-
-### 1. 현장 장애 사례
-
-1. **파트너사 무한 루프 호출로 메인 서비스 중단**:
-   - 특정 제휴사 배포 오류로 초당 5만 건의 API가 인입되어 전체 DB 커넥션 고갈.
-2. **API 스펙 파괴적 변경(Breaking Change)으로 모바일 클라이언트 대규모 먹통**:
-   - 하위 호환성 검토 없이 필드명을 수정 배포하여 구버전 모바일 앱 전면 오류 발생.
-
-### 2. 문제 원인 및 공학적 해결책
-
-| 장애 상황 | 근본 원인 | 공학적 대책 (대안 기술) | 개선 효과 |
-|---|---|---|---|
-| **폭주 트래픽 서비스 다운** | API별 인입 유량 제한 정책 부재 | **API Gateway 분산 토큰 버킷** (Redis 연계) 적용 | 클라이언트별 초당 호출 한도 강제, 서비스 99.99% 가용성 보장 |
-| **하위 호환성 파괴** | 버전 관리 정책 부재 및 즉각적 필드 변경 | **URL 경로 버전 관리** (`/api/v1/orders`) + 시맨틱 버저닝 | 최소 6개월 이상 일몰(Deprecation) 유예 및 무중단 전환 |
-| **비인가 데이터 유출** | Basic 인증 또는 고정 API Key 탈취 | **OAuth 2.0 PKCE + mTLS** 상호 인증 의무화 | 토큰 위변조 차단 및 금융 마이데이터 법적 보안 요건 충족 |
-
----
-
-## 결론: 기술사 답안 차별화 포인트
-
-1. **API-First 개발 방법론 제시**: 사후 문서화 관행을 탈피하고, 설계 단계에서 OpenAPI Specification(OAS 3.0)을 단일 진실 공급원(SSOT)으로 삼아 클라이언트-백엔드 목(Mock) 서버 병렬 개발 및 계약 테스트(Pact) 체계를 답안에 강조할 것.
-2. **비즈니스적 가치와 공학적 안정성의 균형**: Open API는 개방을 통한 데이터 경제(마이데이터, BaaS) 활성화가 목적이지만, 기술적 무기(API 게이트웨이, Throttling, BOLA 방어)가 전제되지 않으면 시스템 붕괴로 직결된다는 공학적 경각심을 명문화할 것.
+- 이전 토픽: [UML 다이어그램 체계](./020_uml_diagrams.md)
+- 연관 토픽: [REST](./015_rest.md), [API Gateway](./075_api_gateway.md)
+- 다음 토픽: [정보은닉](./024_information_hiding.md)

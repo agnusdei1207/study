@@ -1,137 +1,194 @@
 ---
 title: "스크럼(Scrum)"
-author: "Antigravity"
-date: "2026-09-20T12:50:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
-    variant: "tip"
 extra:
-  model: "Antigravity"
-
+  keyword_grade: "A"
 ---
 
-## 답안 골격 (10점 / 25점)
+## 지식 로드맵 내 현재 위치
 
-```text
-[스크럼(Scrum)] ◀━━ 머리: Ⅶ 공학적 제언 (DoD 기반 잠재적 출시 가능 제품 증분과 엔터프라이즈 애자일(SAFe) 확장)
- ┃
- ┣━ Ⅰ 개요 ───── 계획 중심 폭포수의 경직성 극복, 1~4주 단기 타임박스(Sprint) 기반 경험주의 애자일 프레임워크
- ┣━ Ⅱ 경험주의 3기둥 ─ 투명성(Transparency) · 검사(Inspection) · 적응(Adaptation)
- ┣━ Ⅲ 3-5-3 체계도 ─ 3대 역할(PO, SM, Developers) / 5대 이벤트(Sprint, Planning, Daily, Review, Retro) / 3대 산출물(PB, SB, Increment)
- ┣━ Ⅳ 스프린트 흐름 ─ 백로그 정제 → 계획(What/How) → 실행 및 데일리(15분) → 시연(Review) → 회고(Retro)
- ┣━ Ⅴ 품질 기준 ─ 준비 완료 정의(DoR: Definition of Ready) vs 완료 정의(DoD: Definition of Done)
- ┣━ Ⅵ 비교 ───── 스크럼(고정 타임박스) vs 칸반(WIP 제한 흐름) vs 스크럼반(하이브리드)
- ┗━ Ⅶ 결론 ───── 형식적 세레모니(Zombie Scrum) 탈피 및 비즈니스 가치 중심의 피드백 루프 내재화
-```
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 개발 방법론을 거쳐 스크럼으로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>개발 방법론</span>
+  <strong>스크럼(Scrum)</strong>
+</div>
 
-- **필수 키워드**: 경험주의(투명성·검사·적응), 3-5-3 구조, Product Owner, Scrum Master(서번트 리더), Sprint, Daily Scrum(15분), DoD / DoR, 제품 증분(Increment), 번다운 차트, WIP 제한
-  - **10점형**: 스크럼 정의 및 3-5-3 프레임워크 도식 → 스프린트 프로세스 흐름 → DoD와 DoR 비교.
-  - **25점형**: Ⅰ~Ⅶ 전체 구조 전개 + 전통적 폭포수 및 칸반과의 다차원 비교 + 대규모 조직 확장(SAFe, LeSS) 및 좀비 스크럼 방지책 제시.
+## 큰 그림과 30초 인출
 
----
+- 본질: **스크럼(Scrum)**은 불확실성이 높은 프로젝트 환경에서 1~4주의 짧은 반복 주기인 **스프린트(Sprint)**를 통해 동작 가능한 소프트웨어를 점진적으로 출시하는 경험주의 기반 애자일 프레임워크
+- 메커니즘: **3대 역할(PO, SM, Dev)** + **5대 이벤트(Sprint, Planning, Daily, Review, Retro)** + **3대 산출물(PB, SB, Increment)**
+- 산출/효과: 고객 피드백 조기 수용 · 개발 리스크 분산 · 비즈니스 가치 전달 속도(Time-to-Market) 극대화
 
-## 30초 인출용 핵심 다이어그램
+<div class="itpe-flow-map" role="img" aria-label="스크럼 프레임워크 동작 프로세스">
+  <div class="itpe-flow-node"><strong>제품 백로그</strong><small>우선순위화된 요구사항 (PO 소유)</small></div>
+  <div class="itpe-flow-arrow">→ 스프린트 계획 →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>스프린트 (1~4주)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>일일 스크럼</strong><span>15분 기립 미팅 · 장애 제거</span></div>
+      <div class="itpe-flow-branch"><strong>개발 활동</strong><span><span class="itpe-keyword"><strong>스프린트 백로그 구현</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>투명성·점검·적응</strong><span>경험주의 3대 기둥 실천</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ 리뷰 &amp; 회고 →</div>
+  <div class="itpe-flow-node"><strong>잠재적 출시 가능 제품 증분</strong><small>완료의 정의(DoD) 충족 산출물</small></div>
+</div>
 
-```text
-+-------------------------------------------------------------------------+
-|                  스크럼(Scrum) 3-5-3 아키텍처 및 스프린트 사이클        |
-+-------------------------------------------------------------------------+
-|  [3대 역할]                                                             |
-|  * PO (Product Owner) : 제품 비전, 백로그 우선순위(Value) 책임          |
-|  * SM (Scrum Master)  : 서번트 리더, 장애물(Impediment) 제거, 코칭      |
-|  * Dev (Developers)   : 스프린트 증분 직접 구현, 기술적 품질 책임       |
-|                                                                         |
-|  [5대 이벤트 및 3대 산출물 흐름]                                        |
-|                                                                         |
-|  [제품 백로그] ──> [스프린트 계획] ──> [스프린트 백로그]                |
-|  (Product Backlog) (Sprint Planning)   (Sprint Backlog)                 |
-|                            │                  │                         |
-|                            ▼                  ▼                         |
-|                   [ 스프린트 실행 (1~4주 타임박스) ]                     |
-|                   - 데일리 스크럼 (Daily Scrum, 매일 15분 스탠드업)     |
-|                            │                                            |
-|                            ▼                                            |
-|                   [스프린트 리뷰] ──> [잠재적 출시 가능 제품 증분]       |
-|                   (Sprint Review: 고객시연) (Shippable Increment - DoD) |
-|                            │                                            |
-|                            ▼                                            |
-|                   [스프린트 회고] ──> 프로세스 지속 개선 (KPT 기법)     |
-|                   (Sprint Retrospective)                                |
-+-------------------------------------------------------------------------+
-```
+<details>
+<summary>핵심 용어</summary>
 
----
+- **Scrum**: 복잡한 적응형 문제를 해결하며 최상의 가치를 창출하도록 돕는 가벼운 애자일 프레임워크
+- **Product Owner (PO)**: 제품의 가치를 극대화하고 제품 백로그의 우선순위를 결정하는 최종 의사결정자
+- **Scrum Master (SM)**: 스크럼 원칙을 전파하고 개발팀의 장애(Impediment)를 제거하는 서번트 리더
+- **Sprint(스프린트)**: 동작 가능한 제품 증분을 만들기 위한 1개월 이하의 고정된 기간(Time-box)
+- **DoD(Definition of Done, 완료의 정의)**: 증분이 제품으로서 요구되는 품질 기준을 충족했음을 보증하는 공식 체크리스트
 
-## 본론: 개념 및 핵심 메커니즘
+</details>
 
-### 1. 스크럼의 본질과 경험주의 3대 기둥
+## 예상문제
 
-- **개념**: 불확실성이 높은 복잡한 환경에서 가치 있는 제품을 점진적·반복적으로 전달하기 위해 1~4주의 짧은 반복 주기(Sprint)를 활용하는 가벼운(Lightweight) 프레임워크.
-- **경험주의(Empiricism) 3대 기둥**:
-  1. **투명성 (Transparency)**: 프로세스와 작업 현황이 관찰자 모두에게 명확히 공유됨 (백로그, 스크럼 보드).
-  2. **검사 (Inspection)**: 스프린트 목표 대비 진행 상황과 증분을 주기적으로 점검 (데일리 스크럼, 리뷰).
-  3. **적응 (Adaptation)**: 편차나 결함 발견 시 즉각적으로 프로세스나 백로그를 조정.
+> 애자일 개발 방법론의 대표적인 프레임워크인 스크럼(Scrum)의 3대 경험주의 기둥(투명성, 점검, 적응)을 설명하고, 3대 역할, 5대 이벤트, 3대 산출물의 상호 작용 구조 및 성공적인 스크럼 정착을 위한 완료의 정의(DoD)의 역할을 제시하시오. (25점)
 
-### 2. 스크럼 3-5-3 체계 상세
+## Ⅰ. 불확실성을 극복하는 경험적 프로세스, 스크럼의 개요
 
-| 구분 | 항목 | 주요 역할 및 활동 |
+> 스크럼은 미래를 예측하여 완벽한 계획을 세우는 것이 아니라, 잦은 점검과 적응을 통해 올바른 제품을 찾아가는 프레임워크다.
+
+- 정의: 복잡한 적응형 문제(Complex Adaptive Problems)를 해결하면서 높은 비즈니스 가치를 전달하기 위한 **경험주의(Empiricism)** 기반 애자일 프레임워크
+- 목적: 변화하는 고객 요구에 민첩 대응, 릴리스 주기 단축, 팀 자율성과 협업 문화 증진, 프로젝트 가시성 확보
+
+## Ⅱ. 스크럼의 3-5-3 체계 구조
+
+> 스크럼은 3가지 역할(Role), 5가지 이벤트(Event), 3가지 산출물(Artifact)의 유기적 결합으로 완성된다.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 3-5-3 체계">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>3대 역할 (Accountabilities)</strong></span>
+    <small>1. Product Owner (가치 극대화, 백로그 소유)<br />2. Scrum Master (프로세스 촉진, 장애 제거, 서번트 리더십)<br />3. Developers (동작 가능한 제품 증분 개발 전문가)</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓ 산출물 생성 및 관리</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>3대 산출물 (Artifacts)</strong></span>
+    <small>1. Product Backlog (제품 목표 약속)<br />2. Sprint Backlog (스프린트 목표 약속)<br />3. Increment (완료의 정의 DoD 약속)</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓ 이벤트 수행 주기</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>5대 이벤트 (Events)</strong></span>
+    <small>1. The Sprint (모든 이벤트의 컨테이너)<br />2. Sprint Planning (스프린트 계획)<br />3. Daily Scrum (일일 15분 점검)<br />4. Sprint Review (이해관계자 검토/피드백)<br />5. Sprint Retrospective (팀 프로세스 개선 회고)</small>
+  </div>
+</div>
+
+| 산출물 | 내포된 약속 (Commitment) | 핵심 통제 내용 |
 |---|---|---|
-| **3대 역할<br>(Roles)** | **Product Owner (PO)** | 제품 백로그 항목 생성 및 우선순위 결정, 비즈니스 가치 극대화 |
-| | **Scrum Master (SM)** | 스크럼 이론·실천 코칭, 팀의 외부 방해요소(Impediments) 제거, 서번트 리더십 |
-| | **Developers** | 계획 수립, 아키텍처 및 코딩, 테스트 수행, DoD 충족 증분 인도 |
-| **5대 이벤트<br>(Events)** | **스프린트 (Sprint)** | 모든 활동이 일어나는 1~4주의 고정된 타임박스 컨테이너 |
-| | **스프린트 계획** | 이번 스프린트에 '무엇(What)'을 하고 '어떻게(How)' 할지 결정 |
-| | **데일리 스크럼** | 매일 15분간 진행 상황 점검, 오늘 목표 정렬 및 장애요인 공유 |
-| | **스프린트 리뷰** | 스프린트 종료 시 이해관계자에게 완성된 증분을 시연하고 피드백 수렴 |
-| | **스프린트 회고** | 팀의 사람, 프로세스, 도구 개선점을 점검하는 반성 및 적응 미팅 (KPT/4L) |
-| **3대 산출물<br>(Artifacts)**| **제품 백로그 (PB)** | 제품에 필요한 모든 기능, 개선사항, 수정사항의 단일 정렬 목록 |
-| | **스프린트 백로그 (SB)**| 스프린트 목표를 달성하기 위해 선택된 PB 항목과 세부 작업 계획 |
-| | **제품 증분 (Increment)**| 스프린트 동안 완성된, 즉시 배포 가능한 품질(DoD)의 소프트웨어 조각 |
+| **제품 백로그 (Product Backlog)** | **제품 목표 (Product Goal)** | 제품의 미래 상태를 정의하며, PO가 가치 기반 우선순위 정렬 |
+| **스프린트 백로그 (Sprint Backlog)** | **스프린트 목표 (Sprint Goal)** | 이번 스프린트에서 완수할 단일 비즈니스 목적 및 개발 태스크 |
+| **제품 증분 (Increment)** | **완료의 정의 (Definition of Done)** | 릴리스 가능한 품질 수준을 완벽히 만족한 소프트웨어 실체 |
 
-### 3. 품질 기준: DoR vs DoD
+## Ⅲ. 전통적 폭포수 모델 vs 스크럼 프레임워크 비교
 
-- **준비 완료 정의 (DoR, Definition of Ready)**:
-  - 백로그 항목이 스프린트에 착수되기 위한 사전 조건 (명확한 사용자 스토리, 인수 조건(AC), 의존성 해결, 스토리 포인트 추정 완료).
-- **완료 정의 (DoD, Definition of Done)**:
-  - 기능이 '완료'되었다고 선언하기 위한 엄격한 품질 체크리스트 (코드 리뷰 완료, 단위/통합 테스트 통과, 정적 분석 0건, 스테이징 배포 완료).
-  - DoD를 타협하면 기술 부채가 스프린트마다 누적됨.
+> 두 방법론은 요구사항 고정과 일정 관리의 접근 방식에서 근본적인 차이를 보인다.
 
----
+| 비교 항목 | 전통적 폭포수 모델 (Waterfall) | 스크럼 프레임워크 (Scrum) |
+|---|---|---|
+| **기반 철학** | 계획 주도형 (Predictive, 통제 중심) | **경험주의 (Empirical, 점검·적응)** |
+| **삼각 제약 (Iron Triangle)** | **요구사항(범위) 고정**, 일정/비용 변동 | **일정(Timebox)/비용 고정**, 범위(Scope) 변동 |
+| **가치 인도 시점** | 프로젝트 최종 종료 시점 (빅뱅) | **매 스프린트 종료 시점 (점진적 출시)** |
+| **고객 참여** | 요구분석 및 최종 인수 시점에 국한 | **매 스프린트 리뷰마다 지속적 참여 및 피드백** |
+| **리스크 노출** | 후반부 통합 및 테스트 시 폭증 | **초기부터 조기 분산 및 완화** |
 
-## 스크럼 vs 칸반 vs 스크럼반 비교
+## Ⅳ. 완료의 정의(DoD)와 완료 기준(DoR)의 실무적 역할
 
-| 비교 항목 | 스크럼 (Scrum) | 칸반 (Kanban) | 스크럼반 (Scrumban) |
-|---|---|---|---|
-| **반복 주기** | 고정 타임박스 (1~4주) | 연속적인 작업 흐름 (주기 없음) | 이벤트 기반 또는 필요 시 주기 적용 |
-| **핵심 통제** | 스프린트 백로그 용량(Capacity) | 진행 중 작업 수(WIP Limit) 통제 | WIP 제한 + 일일 동기화 결합 |
-| **역할 정의** | PO, SM, Dev 엄격 규정 | 기존 역할 유지 (별도 역할 없음) | 유연한 역할 적용 |
-| **적합한 영역** | 신규 프로덕트 개발, 불확실한 요구 | 유지보수, 티켓 처리, 인프라 운영 | 운영과 개발이 혼재된 복합 환경 |
+> 스크럼이 단순한 '날림 개발'로 전락하지 않기 위한 가장 강력한 공학적 안전장치가 DoD이다.
 
----
+<div class="itpe-pipeline is-vertical" role="img" aria-label="DoR에서 DoD로의 품질 전이">
+  <div class="itpe-pipeline-node">
+    <strong>DoR (Definition of Ready: 준비의 정의)</strong>
+    <small>스프린트에 투입되기 위한 백로그 요건: 비즈니스 가치 명확, 추정 가능, INVEST 기준 충족</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓ 스프린트 개발 수행</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>DoD (Definition of Done: 완료의 정의)</strong></span>
+    <small>코드 리뷰 완료 · 단위/통합 테스트 100% 통과 · 정적 분석 취약점 제로 · 문서화 및 스테이징 배포 완료</small>
+  </div>
+</div>
 
-## 실무 장애 시나리오 및 공학적 대안
+## Ⅴ. 스크럼 확장을 위한 기술사적 제언
 
-### 1. 현장 장애 사례
+> 단일 스크럼을 넘어 다수 팀이 참여하는 엔터프라이즈 환경에서는 스케일드 애자일(SAFe, LeSS) 거버넌스가 필요하다.
 
-1. **데일리 스크럼의 업무 보고 회의 전락**:
-   - 팀원 간 자율적 소통 대신 관리자(PM)에게 실적을 보고하는 자리로 변질되어 회의가 1시간 이상 늘어지고 팀 피로도 누적.
-2. **DoD 부재로 인한 후반부 빅뱅 결함 폭발 (Zombie Scrum)**:
-   - "코딩 끝났으니 완료"라며 테스트와 배포를 미루다가 마지막 릴리즈 스프린트에서 대규모 회귀 결함이 터져 출시 3개월 연기.
+### 학습자 통찰 메모 — 답안 밖
 
-### 2. 문제 원인 및 공학적 해결책
+- [핵심 통찰]: 스크럼을 도입하고도 실패하는 조직의 공통점은 "형식만 흉내 내는 좀비 스크럼(Zombie Scrum)"임. 매일 모여 15분 동안 어제 한 일, 오늘 할 일을 기계적으로 읊기만 할 뿐 스프린트 목표(Sprint Goal)에 대한 주도적 몰입이 없음. 스크럼 마스터는 단순 진행자가 아니라 조직의 구조적 장애를 타파하는 변화 관리자여야 함.
+- 나라면: 스프린트 기간 동안에는 PO조차도 스프린트 백로그를 함부로 변경할 수 없도록 '스프린트 타임박스 보호 규칙'을 엄격히 적용하여 개발팀의 몰입도를 보호하겠음.
 
-| 장애 상황 | 근본 원인 | 공학적 대책 (대안 기술) | 개선 효과 |
-|---|---|---|---|
-| **데일리 미팅 시간 초과** | 세부 기술 논의 및 관리자 보고 편향 | **타이머 15분 강제** + 3대 질문(어제·오늘·장애) 집중, 세부 논의는 미팅 후(Parking Lot) 분리 | 회의 효율화 및 팀 집중도 회복 |
-| **스프린트 후반 품질 붕괴** | DoD 기준 미비 및 수동 테스트 의존 | **CI/CD 파이프라인 연계 자동화 DoD** (테스트 커버리지 80%, 정적 분석 Pass) 의무화 | 매 스프린트 즉시 배포 가능 상태 보장 |
-| **스프린트 중 잦은 과업 추가** | 외부 이해관계자의 직접 개입 | **PO 단일 창구화** + 스프린트 목표(Goal) 침해 시 과업 인입 차단 규칙 준수 | 팀 개발 리듬 보호 및 번다운 예측력 확보 |
+### 실전 답안용 기술사적 제언
 
----
+- 판정: 단일 팀 스크럼에서 전사적 확장 스크럼(SAFe/LeSS)으로의 단계적 진화
+- 대안: **완료의 정의(DoD)** 품질 기준 고도화 및 **Jira/Confluence** 기반 협업 가시화
+- 검증: 스프린트 번다운 차트(Burn-down Chart) 모니터링 · 속도(Velocity) 안정화
+- 효과: 시장 요구 대응 리드타임 50% 단축 및 비즈니스 적합도 극대화
 
-## 결론: 기술사 답안 차별화 포인트
+<div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 조직 성숙도 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>형식적 스크럼 미팅 · DoD 부재로 인한 품질 결함 누적</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>엄격한 DoD 확립 및 서번트 리더십 기반 장애 제거 체계화</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>스프린트 목표 달성률 90% 이상 및 증분 릴리스 가능성 검증</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>팀 자율성 극대화 · 지속가능한 고품질 증분 전달 체계 완성</small>
+  </div>
+</div>
 
-1. **형식주의(Agile Theater / Zombie Scrum) 비판**: 도구(Jira)와 세레모니만 흉내 내고 실질적인 피드백 루프와 잠재적 출시 가능 제품이 나오지 않는 허울뿐인 애자일을 비판하고, 진짜 핵심은 **작동하는 소프트웨어 증분과 투명한 DoD 준수**임을 강조할 것.
-2. **엔터프라이즈 스케일링 확장 제시**: 단일 팀 스크럼을 넘어 엔터프라이즈 전사 단위로 확장하기 위한 프레임워크(SAFe - Scaled Agile Framework, LeSS, Nexus) 및 가치 흐름(Value Stream) 정렬 방안을 3단락 맺음말로 제시할 것.
+## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **스크럼(Scrum)**은 1~4주의 스프린트를 통해 잠재적으로 출시 가능한 제품 증분을 점진적으로 완성하는 경험주의 애자일 프레임워크
+- 목적: 변화하는 시장 요구에 민첩 대응하고 지속적인 비즈니스 가치 조기 인도
+
+### 2. 스크럼 3-5-3 체계 요약
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 3-5-3 요약">
+  <div class="itpe-pipeline-node"><strong>3대 역할</strong><small>PO (가치 결정) · SM (장애 제거) · Developers (개발)</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>3대 산출물</strong><small>제품 백로그 · 스프린트 백로그 · 제품 증분(DoD)</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>5대 이벤트</strong><small>스프린트, 계획, 일일 스크럼, 리뷰, 회고</small></div>
+</div>
+
+### 3. 핵심 통제
+
+- **완료의 정의(DoD)**: 품질 타협 없는 제품 증분 판정 기준선
+- **Time-boxing**: 모든 이벤트의 최대 시간을 고정하여 집중력 및 효율 극대화
+
+## 출제 이력과 검증 출처
+
+- 제123회 정보관리기술사 1교시: 스크럼의 3대 역할 및 5대 이벤트
+- 제129회 정보관리기술사 2교시: 애자일 스크럼의 성공 요건과 DoD의 중요성
+- Ken Schwaber, Jeff Sutherland, The Scrum Guide (2020)
+
+## 학습 체크
+
+- [ ] 스크럼의 3대 경험주의 기둥(투명성, 점검, 적응)을 설명할 수 있는가?
+- [ ] PO, SM, Developers의 핵심 책임과 차이점을 설명할 수 있는가?
+- [ ] DoD(완료의 정의)와 DoR(준비의 정의)의 차이점을 설명할 수 있는가?
+
+## 연결 토픽
+
+- 이전 토픽: [정보은닉](./024_information_hiding.md)
+- 연관 토픽: [칸반](./090_kanban.md), [애자일 방법론](./119_agile_methodology.md)
+- 다음 토픽: [유스케이스 다이어그램](./026_use_case_diagram.md)
