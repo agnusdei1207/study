@@ -1,14 +1,14 @@
 ---
-title: "화이트 레이블 마케팅(White Label Marketing)"
-author: "Codex"
-date: "2026-09-20T22:56:46+09:00"
+title: "화이트 레이블 마케팅"
+author: "OpenAI Codex"
+date: "2026-09-22T04:10:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GPT-5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -30,7 +30,7 @@ extra:
 </details>
 
 ## 예상문제
-> 화이트 레이블 마케팅의 개념과 사업 구조를 설명하고, 자체 개발·OEM과 비교한 후 도입 위험과 통제 대책을 제시하시오.
+> 화이트 레이블 마케팅(White Label Marketing)에 대하여 설명하시오. **(제136회 정보관리기술사 1교시 1번)**
 
 ## Ⅰ. 시장 진입 시간을 줄이는 화이트 레이블
 > 생산 역량을 빌리되 시장 책임은 판매자 브랜드가 지며, 성패는 브랜드 통제권과 공급 의존 위험의 균형으로 판정함.
@@ -56,7 +56,7 @@ extra:
 | 진입 | 기존 제품 활용 | 개발·검증 선행 | 설계·생산 협의 선행 |
 | 위험 | 공급자 종속 · 품질 전이 | 개발비 · 일정 지연 | 생산 품질 · 납기 의존 |
 
-## Ⅳ. 위험과 통제
+## Ⅳ. 문제점·대응책
 > 공급자 장애·보안 사고도 판매자의 평판 손실로 귀결됨.
 
 | 위험 | 대책 | 효과 |
@@ -82,12 +82,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공급자 종속 완화 흐름"><div class="itpe-pipeline-node"><strong>현행 한계</strong><div class="itpe-step-detail"><strong>문제</strong><span>전용 형식·연계·운영지식 종속</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>전환 설계</strong><div class="itpe-step-detail"><strong>대안</strong><span>표준 반출·API 정책·전환 지원 계약</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>종료 모의훈련</strong><div class="itpe-step-detail"><strong>판정</strong><span>데이터 복원·대체 채널 전환 성공</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>지속 가능한 소싱</strong><div class="itpe-step-detail"><strong>효과</strong><span>사업 연속성·협상력 확보</span></div></div></div>
 
 ## 1교시 10점 답안 발췌
-- 정의: **화이트 레이블 마케팅(White Label Marketing)**은 공급자의 완성 제품·서비스에 판매자 브랜드를 적용해 시장에 제공하는 브랜드·유통 방식임
-- 목적: 개발 부담 축소 · 출시 기간 단축 · 판매 채널 확장
-- 구조: 공급자 제품 → 판매자 브랜드·채널 → 최종 고객 → 품질·수요 데이터 환류
-- 적용: **B2B2C(Business-to-Business-to-Consumer)**는 가능한 전달 구조이며 화이트 레이블의 필수조건은 아님
-- 통제: **SLA(Service Level Agreement)** · 데이터 권리 · 전환 지원 조항으로 품질 전이와 공급자 종속을 관리함
-- 결론: 빠른 시장 진입의 대가로 낮아지는 설계 통제권을 교체 가능성으로 보완해야 함
+
+### 1. 정의·목적
+
+- 정의: 공급자의 완성 제품·서비스에 판매자 브랜드를 적용해 시장에 제공하는 브랜드·유통 방식
+- 목적: **개발 부담 축소·출시기간 단축·판매채널 확장**
+
+### 2. 구조
+
+`공급자 제품 → 판매자 브랜드·채널 → 최종 고객 → 품질·수요 환류`
+
+- **B2B2C(Business-to-Business-to-Consumer)**는 가능한 전달 구조이며 필수조건은 아님
+
+### 3. 핵심 통제
+
+- **SLA(Service Level Agreement)**: 품질·장애·지원 책임 명확화
+- **Exit Plan**: 데이터 반출·API 전환·종료지원으로 공급자 종속 완화
 
 ## 출제 이력과 검증 출처
 - 제136회 정보관리기술사 1교시 1번: “화이트 레이블 마케팅(White Label Marketing)”
