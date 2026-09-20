@@ -1,7 +1,7 @@
 ---
 title: "정렬 알고리즘(삽입정렬·트리정렬)"
 author: "Codex"
-date: "2026-09-20T19:37:00+09:00"
+date: "2026-09-20T19:46:30+09:00"
 tags: ["notes-software-engineering"]
 sidebar:
   badge:
@@ -30,7 +30,7 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="삽입정렬과 트리정렬의 핵심 동작 비교">
   <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>삽입정렬</strong></span><small><b>입력</b> 정렬 구간과 다음 Key<br /><b>처리</b> 큰 원소 이동 후 빈 위치 삽입<br /><b>산출</b> 한 칸 확장된 안정 정렬 구간</small></div>
-  <div class="itpe-pipeline-arrow">↕</div>
+  <div class="itpe-pipeline-arrow"><span aria-label="비교">vs</span></div>
   <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>트리정렬</strong></span><small><b>입력</b> 비교 가능한 Key 열<br /><b>처리</b> BST 삽입 후 중위 순회<br /><b>산출</b> 오름차순 방문 열</small></div>
 </div>
 
@@ -117,8 +117,15 @@ extra:
 
 - 정의: **Sorting Algorithm(정렬 알고리즘)**은 **비교 연산**으로 Key 순서를 판정해 레코드를 재배치하는 **순서화 알고리즘**
 - 목적: 탐색·병합의 순서 전제 확보 → 후속 처리의 예측 가능성 향상
-- 삽입정렬: Key 선택 → 큰 원소 후방 이동 → 빈 위치 삽입, 최선 $O(n)$·Stable·공간 $O(1)$
-- 트리정렬: **BST(Binary Search Tree)** 구축 → **In-order Traversal(중위 순회)**, 평균 $O(n\log n)$·편향 시 $O(n^2)$
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="정렬 알고리즘 1교시 핵심 그림"><div class="itpe-pipeline-node"><strong>삽입정렬</strong><small><b>처리</b> Key 선택·큰 원소 이동·삽입<br /><b>산출</b> 확장된 안정 정렬 구간</small></div><div class="itpe-pipeline-arrow"><span aria-label="비교">vs</span></div><div class="itpe-pipeline-node"><strong>트리정렬</strong><small><b>처리</b> BST 구축·중위 순회<br /><b>산출</b> 오름차순 방문 열</small></div></div>
+
+| 기준 | 삽입정렬 | 트리정렬 |
+|---|---|---|
+| 시간 | 최선 $O(n)$·최악 $O(n^2)$ | 평균 $O(n\log n)$·편향 시 $O(n^2)$ |
+| 공간 | $O(1)$ | $O(n)$ |
+| 선택 | 소규모·거의 정렬 | 동적 탐색 병행·균형 통제 |
+
 - 결론: 기존 질서·안정성·메모리·최악 시간의 입력 계약으로 선택함
 
 ## 출제 이력과 검증 출처

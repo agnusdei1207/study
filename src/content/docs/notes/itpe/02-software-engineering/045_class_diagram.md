@@ -1,7 +1,7 @@
 ---
 title: "클래스 다이어그램(Class Diagram)"
 author: "Codex"
-date: "2026-09-20T19:39:00+09:00"
+date: "2026-09-20T19:47:00+09:00"
 tags: ["notes-software-engineering"]
 sidebar:
   badge:
@@ -66,6 +66,14 @@ extra:
 
 > 관계는 선 모양을 외우는 데서 끝나지 않고 참조 지속성·계약 이행·상속·소유권 중 무엇을 뜻하는지 코드와 일치해야 함.
 
+<div class="itpe-pipeline is-vertical" role="img" aria-label="시험장에서 재현하는 UML 클래스와 관계 기호">
+  <div class="itpe-pipeline-node"><strong>Order</strong><small><b>속성</b> -orderNo: String<br /><b>오퍼레이션</b> +total(): Money</small></div>
+  <div class="itpe-pipeline-arrow">│ 1　　1..* │</div>
+  <div class="itpe-pipeline-node"><strong>OrderItem</strong><small><b>관계</b> Order ◆── OrderItem<br /><b>의미</b> 합성·배타적 생명주기</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>관계 기호</strong><small><b>일반화</b> ──▷　<b>실체화</b> - -▷<br /><b>집약</b> ◇──　<b>합성</b> ◆──</small></div>
+</div>
+
 | 관계 | 표기 | 의미 | 검증 질문 |
 |---|---|---|---|
 | **Association** | 실선 | 구조적 참조 | 다중성·역할·탐색 방향이 맞는가 |
@@ -109,8 +117,15 @@ extra:
 
 - 정의: **UML(Unified Modeling Language) Class Diagram**은 **클래스**의 특성과 **정적 관계**를 명세하는 구조 다이어그램
 - 목적: 책임·타입·관계 제약의 공통 이해 확보 → 설계와 구현의 구조 정합성 유지
-- 구성: 이름·속성·오퍼레이션의 3단 구획, `+`·`-`·`#`·`~` 가시성
-- 관계: Association·Dependency·Generalization·Realization·Aggregation·Composition
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램 1교시 핵심 그림"><div class="itpe-pipeline-node"><strong>Order</strong><small><b>속성</b> -orderNo: String<br /><b>오퍼레이션</b> +total(): Money</small></div><div class="itpe-pipeline-arrow">│ 1　　1..* │</div><div class="itpe-pipeline-node"><strong>OrderItem</strong><small><b>관계</b> Order ◆── OrderItem<br /><b>의미</b> 합성·생명주기 종속</small></div></div>
+
+| 관계 | 기호 | 의미 |
+|---|---|---|
+| 일반화·실체화 | `──▷` · `- -▷` | 상속 · 계약 구현 |
+| 집약·합성 | `◇──` · `◆──` | 독립 생명주기 · 종속 생명주기 |
+| 연관·의존 | `──` · `- ->` | 구조적 참조 · 일시적 사용 |
+
 - 결론: **Multiplicity(다중성)**와 생명주기 소유권을 코드와 대조하여 관계의 의미를 보존함
 
 ## 출제 이력과 검증 출처

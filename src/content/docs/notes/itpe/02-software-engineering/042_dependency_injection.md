@@ -1,7 +1,7 @@
 ---
 title: "의존성 주입(Dependency Injection)"
 author: "Codex"
-date: "2026-09-20T19:31:59+09:00"
+date: "2026-09-20T19:46:00+09:00"
 tags: ["notes-software-engineering"]
 sidebar:
   badge:
@@ -103,7 +103,15 @@ extra:
 
 - 정의: **DI(Dependency Injection)**는 **외부 조립자**가 객체의 **의존 객체**를 제공하여 생성과 사용 책임을 분리하는 **IoC(Inversion of Control)** 구현 기법
 - 목적: 구체 구현 결합 제거 → 구현 교체 · 객체 완전성 · 격리 테스트 확보
-- 흐름: 구현 등록 → 의존 그래프 해결 → 생성자 주입 → Scope에 따른 폐기
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>등록</strong><small><b>활동</b> 추상화와 구현·Scope 연결<br /><b>산출</b> 구성 메타데이터</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>해결·주입</strong><small><b>활동</b> 그래프 검사 후 생성자 전달<br /><b>산출</b> 완전한 객체 그래프</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>폐기</strong><small><b>활동</b> Scope 종료와 자원 해제<br /><b>산출</b> 수명주기 정합성</small></div></div>
+
+| 방식 | 적합 대상 | 통제 |
+|---|---|---|
+| 생성자 주입 | 필수 의존 | 누락·순환 조기 검증 |
+| 수정자 주입 | 선택 의존 | 불완전 상태 방지 |
+| 필드 주입 | 프레임워크 제한 | 숨은 의존·테스트 곤란 점검 |
+
 - 결론: 생성자 주입과 Composition Root를 기본으로 하고 등록·순환·범위 오류를 자동 검증함
 
 ## 출제 이력과 검증 출처

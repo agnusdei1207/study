@@ -1,7 +1,7 @@
 ---
 title: "AI 네이티브 개발 플랫폼"
 author: "Codex"
-date: "2026-09-20T19:41:00+09:00"
+date: "2026-09-20T19:47:30+09:00"
 tags: ["notes-software-engineering"]
 sidebar:
   badge:
@@ -13,11 +13,11 @@ extra:
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 지능형 개발환경과 에이전틱 소프트웨어 개발을 거쳐 AI 네이티브 개발 플랫폼으로 이어지는 지식 위치"><span>소프트웨어 공학</span><span>지능형 개발환경 · Agentic SDLC</span><strong>AI 네이티브 개발 플랫폼</strong></div>
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 지능형 개발환경과 에이전틱 소프트웨어 개발을 거쳐 AI 네이티브 개발 플랫폼으로 이어지는 지식 위치"><span>소프트웨어 공학</span><span>지능형 개발환경 · 에이전틱 개발 수명주기</span><strong>AI 네이티브 개발 플랫폼</strong></div>
 
 ## 큰 그림과 30초 인출
 
-- 본질: **AI Native Development Platform**은 모델이 코드 제안에 그치지 않고 저장소 문맥·개발 도구·검증 정책을 이용해 작업을 계획하고 실행하는 개발환경
+- 본질: **AI Native Development Platform**은 **SDLC(Software Development Life Cycle)**에서 모델이 코드 제안에 그치지 않고 저장소 문맥·개발 도구·검증 정책을 이용해 작업을 계획하고 실행하는 개발환경
 - 메커니즘: 목표·권한 입력 → 문맥 검색·계획 → 격리 실행 → 테스트·보안 검증 → 인간 승인
 - 산출: 변경 근거·실행 로그·검증 결과를 동반한 검토 가능한 변경 집합
 
@@ -30,12 +30,13 @@ extra:
 
 <details><summary>핵심 용어</summary>
 
-- **Agentic SDLC**: AI 에이전트가 계획·도구 실행·피드백 반영을 반복하되 수명주기 통제를 따르는 개발 방식
+- **Agentic SDLC(Software Development Life Cycle)**: AI 에이전트가 계획·도구 실행·피드백 반영을 반복하되 개발 수명주기 통제를 따르는 방식
 - **Context Engineering**: 작업에 필요한 코드·문서·정책을 선택하고 출처와 우선순위를 갖춰 모델에 제공하는 설계
 - **RAG(Retrieval-Augmented Generation)**: 외부 지식을 검색해 생성 문맥에 결합하여 근거 부족을 줄이는 방식
 - **Sandbox(격리 실행환경)**: 파일·프로세스·네트워크 권한을 제한해 에이전트 실행 영향을 경계 안에 두는 환경
 - **Quality Gate**: 테스트·정적 분석·보안 정책의 통과 여부로 다음 단계 진입을 제어하는 판정점
 - **Human-in-the-loop**: 고위험 변경의 승인·예외·중단 권한을 사람이 보유하는 통제 구조
+- **SCA(Software Composition Analysis)**: 오픈소스 구성요소의 취약점·출처·라이선스를 식별해 공급망 Gate의 근거를 제공하는 분석
 
 </details>
 
@@ -94,7 +95,7 @@ extra:
 | 위험 | 원인 | 대안 | 판정 |
 |---|---|---|---|
 | 사양 오해 | 모호한 목표·불완전 문맥 | 인수 테스트·질문·범위 잠금 | 요구별 검증 결과 존재 |
-| 공급망 오염 | 검증되지 않은 패키지 제안 | 승인 Registry·SCA·잠금파일 | 출처·취약점·라이선스 통과 |
+| 공급망 오염 | 검증되지 않은 패키지 제안 | 승인 Registry·**SCA(Software Composition Analysis)**·잠금파일 | 출처·취약점·라이선스 통과 |
 | 비밀정보 노출 | 과도한 저장소·로그 접근 | 민감도 필터·비밀 스캔·마스킹 | 입력·출력·커밋에 비밀 없음 |
 | 권한 남용 | 광범위한 셸·네트워크 권한 | 최소 권한 Sandbox·승인 단계 | 허용 범위 밖 호출 차단 |
 | 검증 환상 | 생성 테스트만으로 자기 확인 | 독립 인수·회귀·정적 분석 | 변경 요구와 회귀 조건 통과 |
@@ -119,10 +120,16 @@ extra:
 
 ## 1교시 10점 답안 발췌
 
-- 정의: **AI Native Development Platform**은 **AI 에이전트**가 개발 도구와 **Quality Gate**를 결합해 계획·변경·검증을 수행하는 환경
+- 정의: **AI Native Development Platform**은 **SDLC(Software Development Life Cycle)**에서 **AI 에이전트**가 개발 도구와 Quality Gate를 결합해 계획·변경·검증을 수행하는 환경
 - 목적: 반복 구현·검증 자동화 → 개발자의 사양·아키텍처·위험 승인 집중
-- 구성: Context Layer · Tool Gateway · Sandbox · Policy Engine · Human Control
-- 흐름: 작업 계약 → 문맥·계획 → 최소 변경·실행 → 검증·재계획·승인
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>작업 계약</strong><small><b>입력</b> 목표·인수 조건·권한<br /><b>산출</b> 실행 범위</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>문맥·격리 실행</strong><small><b>처리</b> 검색·계획·패치·테스트<br /><b>산출</b> 변경·로그</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>Gate·승인</strong><small><b>판정</b> 품질·보안·정책<br /><b>산출</b> 승인·재계획·중단</small></div></div>
+
+| 위험 | 대책 | 판정 |
+|---|---|---|
+| 공급망 오염 | 승인 Registry·**SCA(Software Composition Analysis)** | 출처·취약점·라이선스 통과 |
+| 권한 남용 | 최소 권한 Sandbox·인간 승인 | 허용 범위 밖 호출 차단 |
+
 - 결론: 최소 권한과 독립 Gate로 비결정적 생성을 결정적 증거 안에 가둠
 
 ## 출제 이력과 검증 출처

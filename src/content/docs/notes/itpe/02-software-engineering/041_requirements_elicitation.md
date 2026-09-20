@@ -1,7 +1,7 @@
 ---
 title: "요구사항 도출 기법(Requirements Elicitation)"
 author: "Codex"
-date: "2026-09-20T19:30:40+09:00"
+date: "2026-09-20T19:45:30+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -123,7 +123,14 @@ extra:
 
 - 정의: **Requirements Elicitation(요구사항 도출)**은 **이해관계자**와 운영 환경에서 **요구·제약·가정**을 발견해 요구 후보로 구조화하는 활동
 - 목적: 표현된 요청과 실제 업무의 간극 식별 → 누락·오해·충돌을 줄인 요구 확보
-- 핵심 흐름: 정보원·범위 식별 → 인터뷰·JAD·관찰·프로토타이핑 조합 → 재진술·충돌 조정·확인
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>정보원 식별</strong><small><b>활동</b> 역할·업무·권한 파악<br /><b>산출</b> 이해관계자 지도</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>교차 도출</strong><small><b>활동</b> 인터뷰·관찰·프로토타입 조합<br /><b>산출</b> 요구 후보·가정·갈등</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>확인·합의</strong><small><b>활동</b> 재진술·충돌 조정<br /><b>산출</b> 확인 요구·미결정 목록</small></div></div>
+
+| 문제 | 대책 | 판정 |
+|---|---|---|
+| 대표자 편향 | 역할별 인터뷰·익명 설문 | 역할별 확인 기록 |
+| 암묵 요구 누락 | 관찰·프로토타입 병행 | 정상·예외 시나리오 반영 |
+
 - 결론: 요구별 출처·가정·확인 상태와 미결정 책임자를 통제하여 명세와 추적의 신뢰 가능한 입력을 확보함
 
 ## 출제 이력과 검증 출처
