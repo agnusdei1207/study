@@ -19,6 +19,10 @@ extra:
 
 ## 큰 그림과 30초 인출
 
+- 본질: 특정 시스템을 **요건 · 아키텍처 · FP · 예산 · RFP**로 구체화하는 발주 기준선
+- 절차: `착수 → 방향 → 요건 → 구조 → 이행`
+- 통제: `요건 → 아키텍처 → FP → RFP` 전 구간 추적
+
 <div class="itpe-flow-map" role="img" aria-label="경영·정책에서 ISP와 ISMP를 거쳐 조달·구축으로 이어지는 흐름">
   <div class="itpe-flow-node"><strong>경영·정책</strong></div>
   <div class="itpe-flow-arrow">↓</div>
@@ -38,10 +42,6 @@ extra:
   <div class="itpe-flow-node"><strong>조달·구축</strong></div>
 </div>
 
-- 본질: 특정 시스템을 **요건 · 아키텍처 · FP · 예산 · RFP**로 구체화하는 발주 기준선
-- 인출: `착수 → 방향 → 요건 → 구조 → 이행`
-- 통제: `요건 → 아키텍처 → FP → RFP` 추적성 확보
-
 ## 예상문제
 
 > 특정 정보시스템 구축사업의 발주 전 위험을 최소화하기 위한 ISMP(Information System Master Plan)의 개념, 방법론 5단계 체계, ISP와의 차이점 및 실무 적용 시 요건-예산-RFP 간 추적성 확보 방안을 설명하시오. (25점)
@@ -55,11 +55,15 @@ extra:
 
 ## Ⅰ. 구축사업 실패를 방어하는 발주 기준선, ISMP의 개요
 
+> **한줄 요약:** ISMP는 특정 시스템의 요건을 조달 가능한 구축 기준선으로 구체화한다.
+
 - 정의: 특정 SW 및 정보시스템 구축사업을 추진하기 전에 업무와 IT 현황을 분석하고, 요구사항을 FP 산정이 가능한 수준으로 상세화하여 구축 계획, 아키텍처, 예산, RFP를 작성하는 종합 실행 계획
 - 배경: 모호한 사업 구상 상태에서 무리하게 턴키 발주하여 발생하는 잦은 과업 변경, 납기 지연, 사업자와 발주처 간의 예산·하자 분쟁 악순환 차단
 - 목적: 발주자의 요구사항을 객관적·구체적으로 명세화하여 조달 전제 통일, 공학적 규모 측정을 통한 적정 예산 확보, 분리발주 및 클라우드 우선 도입 검토를 통한 조달 공정성 담보
 
 ## Ⅱ. ISMP의 4대 핵심 특징
+
+> **한줄 요약:** 대상·요건·산출물·조달을 연결하여 발주 불확실성을 제거한다.
 
 | 특징 | 세부 내용 및 원리 | 실무적 기여 |
 |---|---|---|
@@ -69,6 +73,8 @@ extra:
 | **조달 연계성** | 구축계획, SW 분리발주 대상 검토, 클라우드 적합성, 공공 발주 RFP 완성 | 즉각적인 조달 집행 가능 |
 
 ## Ⅲ. ISMP 구조·절차 및 산출물
+
+> **한줄 요약:** 요건을 아키텍처와 규모·예산으로 전환하고 RFP까지 추적한다.
 
 <div class="itpe-pipeline" role="img" aria-label="요건에서 아키텍처와 규모·예산을 거쳐 RFP로 이어지는 ISMP 추적 구조">
   <div class="itpe-pipeline-node"><strong>요건</strong><small>업무 · IT · 비기능</small></div>
@@ -91,6 +97,8 @@ extra:
 
 ## Ⅳ. 전략계획(ISP) vs 구축실행계획(ISMP) 비교
 
+> **한줄 요약:** ISP가 전사 과제를 선정한다면 ISMP는 특정 시스템의 구축·발주 기준을 확정한다.
+
 | 기준 | ISP | ISMP |
 |---|---|---|
 | **핵심 목적** | 전사 정보화 비전 수립 및 과제 포트폴리오 도출 | 특정 시스템 구축사업의 상세 요건 정의 및 발주 준비 |
@@ -102,6 +110,8 @@ extra:
 
 ## Ⅴ. 실무 고려사항 및 대책
 
+> **한줄 요약:** RTM·FP·분리발주 검증으로 과업, 예산 및 조달 위험을 통제한다.
+
 - 적용 상황: 공공 차세대 행정 시스템 구축사업 전 ISMP 수립 및 조달 발주
 
 | 문제 | 원인 | 대책 | 효과 |
@@ -112,8 +122,10 @@ extra:
 
 ## Ⅵ. 결론 및 기술사적 제언
 
+> **한줄 요약:** ISMP의 품질은 문서 분량이 아니라 요건부터 계약까지의 추적성으로 판정한다.
+
 - [핵심 통찰]: ISMP의 성패는 수백 페이지짜리 보고서 두께가 아니라 '업무 요건이 계약문서(RFP)와 예산서에 1:1로 온전히 추적되는가'에 달려 있음. 요건과 계약이 단절된 ISMP는 본 구축사업에서 필연적으로 과업 변경과 사업 파행을 유발함.
-- 나라면: ISMP 종료 감리 시 단순 문서 점검을 배제하고, [요건 추적 매트릭스(RTM) 상의 요건 $\rightarrow$ 아키텍처 $\rightarrow$ FP 단가 $\rightarrow$ RFP 과업지시서] 100% 일치율 검증을 '품질 게이트(Quality Gate)'로 강제하여, 완벽한 발주 기준선이 확보된 상태에서만 조달청 공고를 진행하겠음.
+- 나라면: ISMP 종료 감리 시 단순 문서 점검을 배제하고, 요건 추적 매트릭스(RTM) 상의 [요건 → 아키텍처 → FP 단가 → RFP 과업지시서] 전수 매핑 검증을 '품질 게이트(Quality Gate)'로 강제하여, 완벽한 발주 기준선이 확보된 상태에서만 조달청 공고를 진행하겠음.
 
 ## 1교시 10점 답안 발췌
 
@@ -121,18 +133,25 @@ extra:
 - ISMP(Information System Master Plan)는 특정 정보시스템 구축사업의 성공을 위해 요구사항을 FP 산정 수준으로 구체화하고, 목표 아키텍처와 예산 및 RFP를 수립하는 발주 기준선 정의 활동임.
 
 ### 2. 핵심 메커니즘 / 체계
-```text
-착수 → 방향 → 요건 → 구조 → 이행
-                       └─ FP · 예산 · RFP
-```
+<div class="itpe-pipeline" role="img" aria-label="ISMP 5단계 방법론">
+  <div class="itpe-pipeline-node"><strong>착수</strong></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>방향</strong></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>요건</strong></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>구조</strong></div>
+  <div class="itpe-pipeline-arrow">→</div>
+  <div class="itpe-pipeline-node"><strong>이행</strong><small>FP · 예산 · RFP</small></div>
+</div>
 - ISP가 '과제 도출(What to do)'이라면 ISMP는 '발주 기준선 확립(How to build)'을 담당함.
 
 ### 3. 차별화 제언
-- 구축 사업 중 과업 변경을 원천 차단하기 위해 '요건 $\rightarrow$ 아키텍처 $\rightarrow$ FP $\rightarrow$ RFP' 전수 추적 매트릭스(RTM) 검증을 의무화해야 함.
+- 구축 사업 중 과업 변경을 원천 차단하기 위해 '요건 → 아키텍처 → FP → RFP' 전수 추적 매트릭스(RTM) 검증을 의무화해야 함.
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제138회 정보관리기술사 기출, 제130회·129회 KPC 모의고사
+- 출제 이력: 제138회 정보관리기술사 1교시 기출
 - 검증 출처: 한국지능정보사회진흥원(NIA) '정보시스템 마스터플랜(ISMP) 수립 가이드라인'
 
 ## 학습 체크
