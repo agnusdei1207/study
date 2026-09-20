@@ -1,6 +1,6 @@
 ---
 title: "NIST AI RMF"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:32:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -78,7 +78,7 @@ extra:
 > NIST AI RMF는 단순한 체크리스트가 아닌 조직 거버넌스(**GOVERN**) 하에서 위험을 식별·측정·대응하는 공학적 루프이며, 성패는 **Trustworthy AI** 7대 특성의 정량적 보증으로 판정함.
 
 - 정의: 인공지능 시스템 수명주기 전반의 사회기술적 위험을 식별·측정·관리하기 위해 미국 NIST가 제정한 **4대 핵심 기능**과 **7대 신뢰성 특성** 기반의 **자율적 위험관리 프레임워크**
-- 목적: AI 신뢰성·안전성 확보 및 비즈니스 위험 선제 차단
+- 목적: AI 신뢰성·안전성 확보, 비즈니스 위험 선제 차단
 
 ## Ⅱ. 7대 신뢰 가능한 AI 특성 (Trustworthy Characteristics)
 
@@ -100,23 +100,31 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="NIST AI RMF 4대 핵심 기능 순환 파이프라인">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① GOVERN (거버넌스)</strong></span>
-    <small>위험관리 문화 조성 · 위험 허용 한도(Tolerance) 설정 · RACI 명시<br />→ AI 윤리 헌장 · 거버넌스 정책 매뉴얼</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>① GOVERN (거버넌스)</strong></span>
+      <span>위험관리 문화 조성 · 위험 허용 한도 설정 · RACI 명시 (AI 윤리 헌장, 거버넌스 정책 매뉴얼)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② MAP (맥락 및 위험 매핑)</strong></span>
-    <small>비즈니스 유스케이스 정의 · 한계점 분류 · 잠재적 피해 요소 목록화<br />→ 위험 영향도 평가서 · 맥락 정의서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>② MAP (맥락 및 위험 매핑)</strong></span>
+      <span>비즈니스 유스케이스 정의 · 한계점 분류 · 잠재적 피해 요소 목록화 (위험 영향도 평가서, 맥락 정의서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ MEASURE (측정 및 평가)</strong></span>
-    <small>정량적 벤치마크 계측 · 공정성/강건성 실측 · 레드팀 침투 테스트<br />→ 신뢰성 계측 평가표 · 레드팀 침투 보고서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>③ MEASURE (측정 및 평가)</strong></span>
+      <span>정량적 벤치마크 계측 · 공정성/강건성 실측 · 레드팀 침투 테스트 (신뢰성 계측 평가표, 레드팀 침투 보고서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ MANAGE (관리 및 대응)</strong></span>
-    <small>위험 우선순위화 · 인라인 가드레일 배포 · 잔여 위험 지속 감시<br />→ 위험 완화 실행 계획서 · 가드레일 룰셋</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>④ MANAGE (관리 및 대응)</strong></span>
+      <span>위험 우선순위화 · 인라인 가드레일 배포 · 잔여 위험 지속 감시 (위험 완화 실행 계획서, 가드레일 룰셋)</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Continuous Feedback</strong></span> · 측정(MEASURE) 결과를 바탕으로 대응(MANAGE)하고 차기 거버넌스(GOVERN)로 환류</div>
@@ -137,12 +145,12 @@ extra:
 
 > 생성형 AI 특화 프로파일(NIST AI 600-1)을 준용하여 환각, 탈옥, 데이터 중독 위험을 엔지니어링 가드레일로 통제함.
 
-| 위험 요인 | 발생 원인 및 메커니즘 | 공학적·관리적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **환각 (Hallucination)** | 사실이 아닌 정보를 그럴듯하게 거짓 생성 | 사내 검증 문서 기반 **RAG(검색증강생성)** 파이프라인 연계 및 출처 강제 | 사실 정합성(Factual Accuracy) 벤치마크 통과 |
-| **적대적 탈옥 (Jailbreak)** | 교묘한 우회 프롬프트로 시스템 안전 지침 무력화 | 입출력 이중 **가드레일(Guardrails)** 배치 및 적대적 레드팀 모의 침투 | 탈옥 시도 차단율 및 프롬프트 인젝션 방어 확인 |
-| **데이터 중독 (Poisoning)** | 악의적 학습 데이터 주입으로 모델 편향 왜곡 | 학습 데이터셋 무결성 해시 검증 및 데이터 출처(Provenance) 추적 | 학습 데이터 오염률 0건 유지 |
-| **신뢰 특성 간 상충** | 설명가능성 강화 시 모델 복원력이나 프라이버시 저하 | 비즈니스 맥락에 따른 위험 우선순위 가중치 부여 및 위원회 승인 | 도메인별 최적 신뢰성 균형 달성 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **환각 (Hallucination)** | 사내 검증 문서 기반 **RAG** 파이프라인 연계 및 출처 강제 | 사실 정합성(Factual Accuracy) 벤치마크 통과 |
+| **적대적 탈옥 (Jailbreak)** | 입출력 이중 **가드레일(Guardrails)** 배치 및 적대적 레드팀 모의 침투 | 탈옥 시도 차단율 및 프롬프트 인젝션 방어 확인 |
+| **데이터 중독 (Poisoning)** | 학습 데이터셋 무결성 해시 검증 및 데이터 출처(Provenance) 추적 | 학습 데이터 오염률 0건 유지 |
+| **신뢰 특성 간 상충** | 비즈니스 맥락에 따른 위험 우선순위 가중치 부여 및 위원회 승인 | 도메인별 최적 신뢰성 균형 달성 |
 
 ## Ⅵ. MLOps 파이프라인 내재화 중심의 기술사적 제언
 
@@ -162,23 +170,31 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="NIST AI RMF 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>문서 중심 체크리스트 · 환각 및 탈옥 취약 · 사후 수동 대응</small>
+    <div class="itpe-step-detail">
+      <strong>현행 한계</strong>
+      <span>문서 중심 체크리스트 · 환각 및 탈옥 취약 · 사후 수동 대응</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>NIST AI 600-1 RAG 연계 + 입출력 가드레일 + MLOps 배포 게이트</small>
+    <div class="itpe-step-detail">
+      <strong>개선 대안</strong>
+      <span>NIST AI 600-1 RAG 연계 + 입출력 가드레일 + MLOps 배포 게이트</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>7대 신뢰 특성 정량 계측 통과 · 프롬프트 인젝션 방어 실증</small>
+    <div class="itpe-step-detail">
+      <strong>검증 기준</strong>
+      <span>7대 신뢰 특성 정량 계측 통과 · 프롬프트 인젝션 방어 실증</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>신뢰할 수 있는 AI(Trustworthy AI) 완성 · 글로벌 규제 적합성 확보</small>
+    <div class="itpe-step-detail">
+      <strong>실행 효과</strong>
+      <span>신뢰할 수 있는 AI(Trustworthy AI) 완성 · 글로벌 규제 적합성 확보</span>
+    </div>
   </div>
 </div>
 
@@ -187,18 +203,38 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **NIST AI RMF(Artificial Intelligence Risk Management Framework)**는 AI 수명주기 전반의 위험을 통제하기 위해 미국 NIST가 제정한 **4대 핵심 기능**과 **7대 신뢰성 특성** 기반의 **자율적 위험관리 프레임워크**
-- 목적: AI 신뢰성·안전성 확보 및 비즈니스 위험 선제 차단
+- 목적: AI 신뢰성·안전성 확보, 비즈니스 위험 선제 차단
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="NIST AI RMF 4대 핵심 기능 요약">
-  <div class="itpe-pipeline-node"><strong>GOVERN (통제)</strong><small>위험관리 문화 · 책임성 확립</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>GOVERN (통제)</strong>
+      <span>위험관리 문화 · 책임성 확립</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>MAP (식별)</strong><small>비즈니스 맥락 파악 · 위험 매핑</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>MAP (식별)</strong>
+      <span>비즈니스 맥락 파악 · 위험 매핑</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>MEASURE (측정)</strong><small>7대 신뢰 특성 계측 · 레드팀 실측</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>MEASURE (측정)</strong>
+      <span>7대 신뢰 특성 계측 · 레드팀 실측</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>MANAGE (관리)</strong><small>가드레일 배포 · 잔여 위험 감시</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>MANAGE (관리)</strong>
+      <span>가드레일 배포 · 잔여 위험 감시</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,6 +1,6 @@
 ---
 title: "IT 아웃소싱"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:28:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -72,7 +72,7 @@ extra:
 > IT 아웃소싱은 개발·운영 업무를 위탁하더라도 IT 거버넌스와 아키텍처 통제권은 **Retained Organization(잔존 조직)**에 유지해야 하며, 성패는 **Lock-in** 없는 **Exit Plan**의 완결성으로 판정함.
 
 - 정의: 기업의 핵심 비즈니스 집중과 비용 최적화를 위해 IT 기획, 개발, 운영 업무의 일부 또는 전부를 외부 전문 기업에 위탁하여 **SLA** 기반으로 수행하는 전략적 소싱 관리 체계
-- 목적: 핵심 비즈니스 역량 집중, 운영 비용 최적화 및 서비스 품질 확보
+- 목적: 핵심 역량 집중, 운영 비용 최적화, 서비스 품질 확보
 
 ## Ⅱ. IT 아웃소싱 구성체계 및 ISO 37500 생명주기 4단계
 
@@ -80,23 +80,31 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ISO 37500 기반 IT 아웃소싱 4단계 생명주기 파이프라인">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 전략 수립 (Strategy)</strong></span>
-    <small>Make or Buy 분석 · 소싱 범위 확정 · 잔존 조직(RO) 설계<br />→ 아웃소싱 전략 기획서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>① 전략 수립 (Strategy)</strong></span>
+      <span>Make or Buy 분석 · 소싱 범위 확정 · 잔존 조직(RO) 설계 (아웃소싱 전략 기획서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 공급자 선정 및 계약 (Procurement)</strong></span>
-    <small>RFP 발행 · 기술 제안평가 · SLA 및 OLA 계약 체결<br />→ 제안평가서 · SLA 협약서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>② 공급자 선정 및 계약 (Procurement)</strong></span>
+      <span>RFP 발행 · 기술 제안평가 · SLA 및 OLA 계약 체결 (제안평가서, SLA 협약서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 이행 및 전환 (Transition)</strong></span>
-    <small>업무 지식 이전(KT) · IT 자산 및 계정 인계 · 병행 운영<br />→ 업무 인수인계서 · 전환 완료 보고서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>③ 이행 및 전환 (Transition)</strong></span>
+      <span>업무 지식 이전(KT) · IT 자산 및 계정 인계 · 병행 운영 (업무 인수인계서, 전환 완료 보고서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 운영 및 거버넌스 (Governance)</strong></span>
-    <small>SLA 성과 모니터링 · 페널티/크레딧 정산 · Exit Plan 갱신<br />→ 월간 SLA 보고서 · 출구 전략서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>④ 운영 및 거버넌스 (Governance)</strong></span>
+      <span>SLA 성과 모니터링 · 페널티/크레딧 정산 · Exit Plan 갱신 (월간 SLA 보고서, 출구 전략서)</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Dual Governance</strong></span> · 전략-전술-운영 3계층 협의체 가동 및 위탁 종료 시 인소싱 가역성 보증</div>
@@ -128,12 +136,12 @@ extra:
 
 > 내부 역량 공동화와 수박 SLA 현상을 차단하지 못하면 발주사는 통제권을 완전히 상실함.
 
-| 위험 요인 | 발생 원인 | 공학적·관리적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| **역량 공동화 (Hollowing out)** | 모든 기술 검토를 외주사에 일임하여 내부 판단력 상실 | 아키텍처, 데이터 모델, 보안 통제는 **잔존 조직(RO)** 전담 | 기술 검토 및 형상 변경의 내부 승인율 100% |
-| **공급자 종속 (Lock-in)** | 벤더 고유 프레임워크 사용 및 독점적 산출물 점유 | 표준 오픈소스 채택, 소스코드 및 설계서 형상관리 의무화 | 계약 만료 시 타 사업자 이관 테스트 통과 |
-| **출구 전략 부재** | 계약 종료 시 공급자의 인수인계 비협조로 업무 마비 | 계약서에 **Exit Plan** 지원 조항 명시 및 전환 비용 지급 연계 | 업무 인수인계 기간 및 지식 이전 산출물 완성 |
-| **수박 SLA 현상** | 겉으로는 지표 달성(녹색)이나 실 사용자는 불만족(적색) | 단순 가용성 외에 사용자 체감 품질(**XLA**) 병행 측정 | 최종 사용자 체감 만족도 및 장애 체감 시간 단축 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **역량 공동화 (Hollowing out)** | 아키텍처, 데이터 모델, 보안 통제는 **잔존 조직(RO)** 전담 | 기술 검토 및 형상 변경의 내부 승인율 100% |
+| **공급자 종속 (Lock-in)** | 표준 오픈소스 채택, 소스코드 및 설계서 형상관리 의무화 | 계약 만료 시 타 사업자 이관 테스트 통과 |
+| **출구 전략 부재** | 계약서에 **Exit Plan** 지원 조항 명시 및 전환 비용 지급 연계 | 업무 인수인계 기간 및 지식 이전 산출물 완성 |
+| **수박 SLA 현상** | 단순 가용성 외에 사용자 체감 품질(**XLA**) 병행 측정 | 최종 사용자 체감 만족도 및 장애 체감 시간 단축 |
 
 ## Ⅵ. 잔존 조직 거버넌스 중심의 기술사적 제언
 
@@ -153,23 +161,31 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 아웃소싱 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>내부 역량 공동화 · 벤더 종속(Lock-in) · 수박 SLA 착시</small>
+    <div class="itpe-step-detail">
+      <strong>현행 한계</strong>
+      <span>내부 역량 공동화 · 벤더 종속(Lock-in) · 수박 SLA 착시</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>잔존 조직(RO) 강화 + XLA 도입 + Exit Plan 계약 의무화</small>
+    <div class="itpe-step-detail">
+      <strong>개선 대안</strong>
+      <span>잔존 조직(RO) 강화 + XLA 도입 + Exit Plan 계약 의무화</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>아키텍처 내부 승인권 · 지식 이전 매뉴얼 · 다중 벤더 조율</small>
+    <div class="itpe-step-detail">
+      <strong>검증 기준</strong>
+      <span>아키텍처 내부 승인권 · 지식 이전 매뉴얼 · 다중 벤더 조율</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>소싱 가역성 확보 · 비용 최적화 · 고품질 서비스 영속</small>
+    <div class="itpe-step-detail">
+      <strong>실행 효과</strong>
+      <span>소싱 가역성 확보 · 비용 최적화 · 고품질 서비스 영속</span>
+    </div>
   </div>
 </div>
 
@@ -178,18 +194,38 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **IT 아웃소싱(IT Outsourcing)**은 핵심 역량 집중과 비용 최적화를 위해 IT 기획, 개발, 인프라 운영 업무의 일부 또는 전부를 외부 전문 기업에 위탁하여 **SLA** 기반으로 수행하는 전략적 소싱 관리 체계
-- 목적: 핵심 비즈니스 역량 집중, 운영 비용 최적화 및 서비스 품질 확보
+- 목적: 핵심 역량 집중, 운영 비용 최적화, 서비스 품질 확보
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ISO 37500 기반 IT 아웃소싱 생명주기 요약">
-  <div class="itpe-pipeline-node"><strong>전략 수립</strong><small>Make or Buy · RO 설계</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>전략 수립</strong>
+      <span>Make or Buy · RO 설계</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>공급자 선정</strong><small>RFP · SLA/OLA 계약</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>공급자 선정</strong>
+      <span>RFP · SLA/OLA 계약</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>이행·전환</strong><small>지식 이전(KT) · 병행 운영</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>이행·전환</strong>
+      <span>지식 이전(KT) · 병행 운영</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>운영·거버넌스</strong><small>SLA 모니터링 · Exit Plan</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>운영·거버넌스</strong>
+      <span>SLA 모니터링 · Exit Plan</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

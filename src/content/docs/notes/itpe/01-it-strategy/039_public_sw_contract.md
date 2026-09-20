@@ -1,6 +1,6 @@
 ---
 title: "공공 SW 사업 발주·계약"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:34:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -71,7 +71,7 @@ extra:
 > 공공 SW 발주·계약 제도는 모호한 RFP로 인한 잦은 과업 변경과 저가 투찰을 방지하는 법정 장치이며, 성패는 **요구사항 상세화**와 기술 우수 사업자를 보호하는 **차등점수제**의 실효적 작동으로 판정함.
 
 - 정의: 공공 정보화 사업 추진 시 요구사항을 사전에 상세화하고 기술 우수 사업자가 정당한 대가를 받도록 보장하는 **소프트웨어 진흥법** 기반의 **공공 조달 및 계약 체계**
-- 목적: 요구사항 명확화, 과업 변경 및 저가 덤핑 근절, SW 품질 보증
+- 목적: 요구사항 명확화, 과업 변경·저가 덤핑 근절, SW 품질 보증
 
 ## Ⅱ. 공공 SW 발주·계약 혁신의 4대 핵심 제도 체계
 
@@ -90,28 +90,38 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 SW 단계별 발주 및 제안평가 프로세스 파이프라인">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 1단계: 기획·설계 발주 및 과업심의</strong></span>
-    <small>ISMP 수립 · 사업기간 적정성 심의 · 분할발주 확정<br />→ 과업심의위원회 의결서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>① 1단계: 기획·설계 발주 및 과업심의</strong></span>
+      <span>ISMP 수립 · 사업기간 적정성 심의 · 분할발주 확정 (과업심의위원회 의결서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 요구사항 상세화 및 아키텍처 설계</strong></span>
-    <small>화면·DB 설계 · 기능점수(FP) 정밀 산정 · 상세 RFP 확정<br />→ 상세 요구사항 명세서 · FP 산정서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>② 요구사항 상세화 및 아키텍처 설계</strong></span>
+      <span>화면·DB 설계 · 기능점수(FP) 정밀 산정 · 상세 RFP 확정 (상세 요구사항 명세서, FP 산정서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 2단계: 본개발 입찰 공고</strong></span>
-    <small>상세 RFP 첨부 · 나라장터 사전 규격 공개(5일 이상)<br />→ 입찰 공고문 · 제안요청서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>③ 2단계: 본개발 입찰 공고</strong></span>
+      <span>상세 RFP 첨부 · 나라장터 사전 규격 공개 5일 이상 (입찰 공고문, 제안요청서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 제안서 평가 및 차등점수제 적용</strong></span>
-    <small>기술능력평가(90%) + 입찰가격평가(10%) · 순위별 고정 격차 부여<br />→ 기술평가 결과표 · 우선협상대상자 선정</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>④ 제안서 평가 및 차등점수제 적용</strong></span>
+      <span>기술능력평가(90%) + 입찰가격평가(10%) · 순위별 고정 격차 부여 (기술평가 결과표, 우선협상대상자 선정)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 기술협상 및 최종 계약 체결</strong></span>
-    <small>과업 범위 기준선 확정 · 기술협상 수행 · SLA 체결<br />→ 기술협상록 · 최종 계약서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>⑤ 기술협상 및 최종 계약 체결</strong></span>
+      <span>과업 범위 기준선 확정 · 기술협상 수행 · SLA 체결 (기술협상록, 최종 계약서)</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Scope Traceability</strong></span> · 1단계 설계 산출물이 2단계 RFP로 100% 반영되고 기술 우수 기업이 최종 낙찰</div>
@@ -133,12 +143,12 @@ extra:
 
 > 설계-개발 간 책임 단절과 차등점수 격차 왜곡을 방어하지 못하면 제도의 취지가 훼손됨.
 
-| 위험 요인 | 발생 원인 | 공학적·관리적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| 설계-개발 책임 단절 | 1단계 설계자가 비현실적 아키텍처 납품 후 철수 | 1단계 검수 시 **PoC(개념검증)** 의무화 및 2단계 감수·자문 계약 연계 | 구현 불가능한 설계 0건 검증 |
-| 차등점수 격차 왜곡 | 과도한 차등폭(3점)으로 정량 점수 우수 기업 역전 | 사업 규모·난이도에 맞춘 적정 차등폭(0.5~1.5점) 탄력 적용 | 합리적이고 공정한 기술 변별력 확인 |
-| 과업심의위원회 무력화 | 발주기관의 형식적 서면 심의 및 과업 변경 미개최 | 과업심의 의무화 위반 시 감사 지적 명시 및 조달청 계약 변경 연동 | 부당한 무상 과업 추가 0건 유지 |
-| 헤드카운팅 관행 회귀 | 기능점수(FP) 발주 후 현장에서 투입 인력 명단·등급 요구 | 인력 관리 조항 계약서 배제 의무화 및 산출물 기반 검수 정착 | 투입 공수 간섭 배제 및 생산성 보장 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **설계-개발 책임 단절** | 1단계 검수 시 **PoC(개념검증)** 의무화 및 2단계 감수·자문 계약 연계 | 구현 불가능한 설계 0건 검증 |
+| **차등점수 격차 왜곡** | 사업 규모·난이도에 맞춘 적정 차등폭(0.5~1.5점) 탄력 적용 | 합리적이고 공정한 기술 변별력 확인 |
+| **과업심의위원회 무력화** | 과업심의 의무화 위반 시 감사 지적 명시 및 조달청 계약 변경 연동 | 부당한 무상 과업 추가 0건 유지 |
+| **헤드카운팅 관행 회귀** | 인력 관리 조항 계약서 배제 의무화 및 산출물 기반 검수 정착 | 투입 공수 간섭 배제 및 생산성 보장 |
 
 ## Ⅵ. 공정한 소프트웨어 생태계 완성 중심 기술사적 제언
 
@@ -158,23 +168,31 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 SW 발주·계약 혁신 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>모호한 RFP · 저가 덤핑 투찰 · 무상 과업 변경 강요</small>
+    <div class="itpe-step-detail">
+      <strong>현행 한계</strong>
+      <span>모호한 RFP · 저가 덤핑 투찰 · 무상 과업 변경 강요</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>설계·개발 분할발주 + 기술 90% 및 차등점수제 + 과업심의 의무화</small>
+    <div class="itpe-step-detail">
+      <strong>개선 대안</strong>
+      <span>설계·개발 분할발주 + 기술 90% 및 차등점수제 + 과업심의 의무화</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>상세 RFP 기반 정밀 FP 산출 · 순위별 고정 격차 부여</small>
+    <div class="itpe-step-detail">
+      <strong>검증 기준</strong>
+      <span>상세 RFP 기반 정밀 FP 산출 · 순위별 고정 격차 부여</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>제값 주는 공공 SW 생태계 확립 · 고품질 디지털 행정 완성</small>
+    <div class="itpe-step-detail">
+      <strong>실행 효과</strong>
+      <span>제값 주는 공공 SW 생태계 확립 · 고품질 디지털 행정 완성</span>
+    </div>
   </div>
 </div>
 
@@ -183,18 +201,38 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **공공 SW 사업 발주·계약**은 요구사항 불명확성과 저가 덤핑 투찰을 근절하기 위해 분석·설계와 개발을 분리하는 **단계별 발주**와 기술 변별력을 강화하는 **차등점수제**를 적용하는 법정 공공 조달 체계
-- 목적: 요구사항 명확화, 과업 변경 및 저가 덤핑 근절, SW 품질 보증
+- 목적: 요구사항 명확화, 과업 변경·저가 덤핑 근절, SW 품질 보증
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 SW 발주·계약 프로세스 요약">
-  <div class="itpe-pipeline-node"><strong>1단계 설계</strong><small>요구사항 상세화 · 정밀 FP 산정</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>1단계 설계</strong>
+      <span>요구사항 상세화 · 정밀 FP 산정</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>2단계 공고</strong><small>상세 RFP 첨부 · 사전 규격 공개</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>2단계 공고</strong>
+      <span>상세 RFP 첨부 · 사전 규격 공개</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>제안 평가</strong><small>기술 90% + 차등점수제(고정 격차)</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>제안 평가</strong>
+      <span>기술 90% + 차등점수제(고정 격차)</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>기술 협상</strong><small>과업 기준선 확정 · 공정 계약 체결</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>기술 협상</strong>
+      <span>과업 기준선 확정 · 공정 계약 체결</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,7 +1,7 @@
 ---
 title: "소프트웨어 사업 대가산정"
-author: "Codex"
-date: "2026-09-20T19:21:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T21:12:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -83,7 +83,7 @@ extra:
 > 기능점수와 표준 산식을 통해 주관적 견적 마찰을 차단하며, 성패는 단순 초기 예산 확보가 아닌 **과업 변경에 따른 Traceability**로 판정함.
 
 - 정의: **소프트웨어 진흥법 제46조**에 따라 기획·구현·운영·유지관리 수명주기 전반의 투입 가치를 표준화된 산식으로 산출하는 **원가산정 체계**
-- 목적: 예산 과소 책정 방지, 무상 과업 근절 및 SW 품질 확보
+- 목적: 예산 과소 책정 방지, 무상 과업 근절, SW 품질 확보
 
 ## Ⅱ. 기능점수(FP) 기반 SW 개발비 산정 6단계 프로세스
 
@@ -92,32 +92,50 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기능점수 기반 SW 개발비 산정 6단계 절차 및 단계별 활동과 산출물">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 측정 유형 및 경계 확정</strong></span>
-    <small>신규/재개발 구분 · 애플리케이션 경계 및 외부 인터페이스 식별<br />→ 애플리케이션 경계 정의서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>신규/재개발 구분 · 애플리케이션 경계 및 외부 인터페이스 식별</span>
+      <strong>산출</strong><span>애플리케이션 경계 정의서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 데이터 기능 식별</strong></span>
-    <small>내부논리파일(ILF) · 외부연계파일(EIF) 식별 및 DET/RET 복잡도 산정<br />→ 데이터 기능점수 집계표</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>내부논리파일(ILF) · 외부연계파일(EIF) 식별 및 DET/RET 복잡도 산정</span>
+      <strong>산출</strong><span>데이터 기능점수 집계표</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 트랜잭션 기능 식별</strong></span>
-    <small>외부입력(EI) · 외부출력(EO) · 외부조회(EQ) 식별 및 FTR/DET 복잡도 산정<br />→ 트랜잭션 기능점수 집계표</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>외부입력(EI) · 외부출력(EO) · 외부조회(EQ) 식별 및 FTR/DET 복잡도 산정</span>
+      <strong>산출</strong><span>트랜잭션 기능점수 집계표</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 미조정 기능점수(UFP) 산출</strong></span>
-    <small>데이터 기능점수 총합과 트랜잭션 기능점수 총합의 단순 합산<br />→ 미조정 기능점수(UFP) 총괄표</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>데이터 기능점수 총합과 트랜잭션 기능점수 총합 단순 합산</span>
+      <strong>산출</strong><span>미조정 기능점수(UFP) 총괄표</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 5대 보정계수 적용</strong></span>
-    <small>규모(Size) · 연계복잡성 · 성능요구 · 다중사이트 · 품질요건 계수 곱연산<br />→ 보정 기능점수(AFP) 계산서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>규모 · 연계복잡성 · 성능요구수준 · 다중사이트 · 품질요건 계수 곱연산</span>
+      <strong>산출</strong><span>보정 기능점수(AFP) 계산서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑥ SW 개발원가 확정</strong></span>
-    <small>보정 FP × 고시 단가 산정 및 직접경비 합산<br />→ 최종 SW 개발비 산정서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>보정 FP × 고시 단가 산정 및 직접경비 합산</span>
+      <strong>산출</strong><span>최종 SW 개발비 산정서</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 요구사항 목록 ↔ WBS ↔ ILF/EIF/EI/EO/EQ ↔ FP 산출 내역 양방향 추적</div>
@@ -143,19 +161,19 @@ extra:
 | **산정 기준** | 논리적 사용자 기능 규모 (기능량) | 투입 인력의 기술등급 및 투입 기간 | 합의된 서비스 수준 목표(SLA) 달성도 |
 | **적용 영역** | 요구사항이 명세화된 신규/재개발 | ISP/ISMP, 컨설팅, 연구개발 | ITO 운영위탁, 클라우드 인프라 운영 |
 | **장점** | 개발 언어·기술에 독립적, 객관적 측정 | 직관적 산정 가능, 유연한 계약 변경 | 서비스 품질 중심 관리, 생산성 혁신 유도 |
-| **단점** | 초기 요건 모호 시 산정 오차 발생 | 머릿수 채우기 유발, 개발 생산성 저하 | SLA 지표 설계 난이도, 계측 분쟁 위험 |
+| **단점** | 초기 요구사항 모호 시 산정 오차 발생 | 머릿수 채우기 유발, 개발 생산성 저하 | SLA 지표 설계 난이도, 계측 분쟁 위험 |
 | **통제 장치** | **RTM**, 공인 FP 심의관 검증 | WBS 공수 내역서, 근태 및 공정 관리 | Service Credit, 정기 제3자 성과평가 |
 
 ## Ⅴ. 실무 대가산정 왜곡 요인과 공학적·제도적 통제 방안
 
 > 초기 간이법 예산 고정과 무상 과업 추가는 SW 산업의 핵심 고질병으로 제도적 통제가 필요함.
 
-| 왜곡 요인 | 발생 원인 | 공학적·제도적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **예산 결손 발생** | 기획 단계 간이법 예산이 본 사업에 고정 | **ISMP** 정밀 FP 산정 의무화 및 본 예산 재산정 | 현실적 예산 확보 및 조달 유찰 방지 |
-| **자의적 계수 조작** | 예산 상한선에 맞추기 위해 보정계수 임의 하향 | 객관적 요구 증빙 첨부 의무화 및 감리 검증 | 산정 데이터 신뢰성 및 감사 정당성 확보 |
-| **무상 과업 요구** | 과업 범위 모호성 및 관행적 추가 요구 | **과업심의위원회** 개최 의무화 및 대가 조정 | 개발사 권익 보호 및 과업 변경 분쟁 예방 |
-| **비기능 요구 배제** | 보안, 성능, 데이터 이관 대가 누락 | 비기능 요건을 직접경비 또는 독립 컨설팅 분리 | SW 품질 및 엔터프라이즈 안정성 확보 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **예산 결손 발생** | **ISMP** 정밀 FP 산정 의무화 및 본 예산 재산정 | 현실적 예산 확보 및 조달 유찰 방지 |
+| **자의적 계수 조작** | 객관적 요구 증빙 첨부 의무화 및 감리 검증 | 산정 데이터 신뢰성 및 감사 정당성 확보 |
+| **무상 과업 요구** | **과업심의위원회** 개최 의무화 및 대가 조정 | 개발사 권익 보호 및 과업 변경 분쟁 예방 |
+| **비기능 요구사항 배제** | 비기능 요구사항을 직접경비 또는 독립 컨설팅으로 분리 | SW 품질 및 엔터프라이즈 안정성 확보 |
 
 ## Ⅵ. 계약 기준선 유지와 사후 정산 중심의 기술사적 제언
 
@@ -176,22 +194,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SW 대가산정 기준선 정착을 위한 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>간이법 예산 고정 · 무상 과업 추가 강요 및 대가 미지급</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>간이법 예산 고정 · 무상 과업 추가 강요 및 대가 미지급</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>ISMP 정밀 FP 산정 의무화 · 과업심의위원회 정례화</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>ISMP 정밀 FP 산정 의무화 · 과업심의위원회 정례화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>요구사항-FP 1:1 매핑 RTM · 과업 변경 계약금액 공식 조정</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>요구사항-FP 1:1 매핑 RTM · 과업 변경 계약금액 공식 조정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>적정 소프트웨어 대가 보장 · 공공 SW 고품질 개발 유도</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>적정 소프트웨어 대가 보장 · 공공 SW 고품질 개발 유도</span></div>
   </div>
 </div>
 
@@ -200,20 +218,35 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **소프트웨어 진흥법 제46조**에 따라 기획·개발·유지관리 전반의 투입 가치를 **기능점수(FP)**, **투입공수(M/M)** 등 객관적 기준으로 산출하는 **원가산정 체계**
-- 목적: 예산 과소 책정 방지, 무상 과업 근절 및 SW 품질 확보
+- 목적: 예산 과소 책정 방지, 무상 과업 근절, SW 품질 확보
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 기능점수 개발비 산정 메커니즘">
-  <div class="itpe-pipeline-node"><strong>경계 확정</strong><small>애플리케이션 경계 · 인터페이스</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>경계 확정</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>애플리케이션 경계 · 인터페이스</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>기능 식별</strong><small>데이터(ILF/EIF) + 트랜잭션(EI/EO/EQ)</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>기능 식별</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>데이터(ILF/EIF) + 트랜잭션(EI/EO/EQ)</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>미조정 FP</strong><small>기능 복잡도별 가중치 합산</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>미조정 FP</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>기능 복잡도별 가중치 합산</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>보정계수 적용</strong><small>규모 · 연계 · 성능 · 사이트 · 품질</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>보정계수 적용</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>규모 · 연계 · 성능 · 사이트 · 품질</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>개발원가 확정</strong><small>보정 FP × 고시 단가 + 직접경비</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>개발원가 확정</strong>
+    <div class="itpe-step-detail"><strong>활동</strong><span>보정 FP × 고시 단가 + 직접경비</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,6 +1,6 @@
 ---
 title: "ITSM"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:38:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "A"
 ---
 
@@ -71,7 +71,7 @@ extra:
 > ITSM은 단순 장비 가동률 점검이 아니라 고객과 합의된 **SLA**를 준수하여 비즈니스 가치를 보호하는 체계이며, 성패는 **KEDB** 기반의 원인 제거와 무장애 **변경 관리**로 판정함.
 
 - 정의: 고객에게 합의된 품질의 IT 서비스를 제공하기 위해 **ITIL** 및 **ISO/IEC 20000** 기반으로 서비스 수명주기 전반을 프로세스로 체계화한 **IT 서비스 관리체계(ITSM)**
-- 목적: 정량적 **SLA(Service Level Agreement)** 달성을 통한 IT 서비스 안정성 확보 및 인프라 운영 비용 최적화와 **비즈니스 가치 창출**
+- 목적: 정량적 **SLA(Service Level Agreement)** 달성 통한 IT 서비스 안정성 확보, 인프라 운영 비용 최적화 및 **비즈니스 가치 창출**
 
 ## Ⅱ. ITSM 핵심 4대 운영 프로세스 및 연계 방법론
 
@@ -80,22 +80,26 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ITSM 핵심 4대 프로세스 연계 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 인시던트 관리 (Incident Management)</strong></span>
-    <small>SPOC 단일 접수 · 서비스 최단 시간 정상 복구<br />→ 우회책(Workaround) 적용, 인시던트 티켓 완료</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>SPOC 단일 접수, 장애 증상 분류, 우회책(Workaround) 적용</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>서비스 최단 시간 정상 복구, 인시던트 처리 티켓</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 문제 관리 (Problem Management)</strong></span>
-    <small>5-Why 근본 원인(Root Cause) 분석 · 재발 방지 대책<br />→ KEDB(Known Error DB) 등록, 변경 요청(RFC) 발행</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>5-Why 근본 원인(Root Cause) 규명, 장애 재발 방지 대책 수립</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>KEDB(Known Error DB) 등록, 변경 요청서(RFC) 발행</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 변경 관리 (Change Management)</strong></span>
-    <small>변경자문위원회(CAB) 영향도 심의 · 충돌 및 리스크 검증<br />→ 변경 승인(RFC Approve), 롤백 계획서 확정</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>변경자문위원회(CAB) 영향도 심의, 다운타임 충돌 검증</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>변경 승인(RFC Approve), 롤백 비상계획서 확정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 릴리즈 및 배포 (Release & Deployment)</strong></span>
-    <small>스테이징 검증 · 무중단 배포 · CMDB 형상 실시간 갱신<br />→ 배포 완료 보고서, 서비스 카탈로그 업데이트</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>스테이징 사전 검증, 무중단 카나리 배포, 형상 실시간 갱신</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>배포 완료 보고서, CMDB 형상 정보 및 서비스 카탈로그 갱신</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>지속적 개선(CSI)</strong></span> · 운영 데이터 분석 기반 SLA 지표 갱신 및 서비스 품질 고도화 선순환 환류</div>
@@ -137,12 +141,12 @@ extra:
 
 > 지표 왜곡 현상(수박 효과)을 방지하고 수작업 승인 병목을 해소하기 위한 기술적 개선이 필수적임.
 
-| 실패 요인 | 근본 원인 | 공학적·관리적 통제 대책 | 기대 효과 |
-|---|---|---|---|
-| **수박 효과(Watermelon)** | 가동률 99.9%로 SLA(녹색)이나 사용자는 불만(적색) | 기술 SLA 외에 사용자 체감 지표인 **XLA(Experience Level)** 결합 | 실질적 서비스 만족도 향상 |
-| **CAB 심의 병목** | 사소한 코드 패치까지 주간 CAB 대면 심의 요구 | 변경 등급화: 저위험 **표준 변경**은 CI/CD 무심의 자동 배포 | 리드타임 단축 및 배포 민첩성 확보 |
-| **인시던트-문제 혼재** | 티켓 처리 실적에 매몰되어 근본 원인 분석 방기 | 담당자 역할 분리 및 **동일 장애 3회 누적 시 문제 티켓 자동 승격** | 고질적 반복 장애 원천 차단 |
-| **CMDB 형상 노후화** | 클라우드 인프라 변경을 수작업 입력하여 불일치 | **Cloud Discovery 도구** 및 IaC 파이프라인 연동 실시간 동기화 | 변경 영향도 분석 정확도 100% 확보 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **수박 효과(Watermelon)** | 기술 SLA 외에 사용자 체감 지표인 **XLA(Experience Level)** 결합 | 실질적 서비스 만족도 향상 |
+| **CAB 심의 병목** | 변경 등급화: 저위험 **표준 변경**은 CI/CD 무심의 자동 배포 | 리드타임 단축 및 배포 민첩성 확보 |
+| **인시던트-문제 혼재** | 담당자 역할 분리 및 **동일 장애 3회 누적 시 문제 티켓 자동 승격** | 고질적 반복 장애 원천 차단 |
+| **CMDB 형상 노후화** | **Cloud Discovery 도구** 및 IaC 파이프라인 연동 실시간 동기화 | 변경 영향도 분석 정확도 100% 확보 |
 
 ## Ⅶ. SRE 에러 예산 결합 중심의 기술사적 제언
 
@@ -163,22 +167,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ITSM과 SRE 결합을 통한 실효적 서비스 운영 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>수박 효과(기술 지표 달성 vs 고객 불만) · CAB 승인 지연 · 수작업 CMDB 불일치</small>
+    <div class="itpe-step-detail"><strong>문제점</strong><span>수박 효과(기술 달성 vs 고객 불만), CAB 승인 지연, 수작업 CMDB 불일치</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>XLA 지표 도입 + SRE 에러 예산 연계 무심의 배포 + Cloud Discovery 자동화</small>
+    <div class="itpe-step-detail"><strong>추진 전략</strong><span>XLA 지표 도입, SRE 에러 예산 연계 무심의 배포, Cloud Discovery 자동화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>사용자 여정 체감 응답시간 · SLO 위반율 모니터링 · 형상 데이터 일치율</small>
+    <div class="itpe-step-detail"><strong>관리 지표</strong><span>사용자 여정 체감 응답시간, SLO 위반율 모니터링, 형상 데이터 일치율</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>릴리즈 리드타임 획기적 단축 · 반복 장애 근절 및 비즈니스 가치 실현</small>
+    <div class="itpe-step-detail"><strong>최종 효과</strong><span>릴리즈 리드타임 획기적 단축, 반복 장애 근절 및 비즈니스 가치 실현</span></div>
   </div>
 </div>
 
@@ -187,18 +191,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **ITSM(IT Service Management)**은 IT 운영을 고객 및 비즈니스 관점에서 정의하고 사전에 합의된 **SLA(Service Level Agreement)**에 따라 전 수명주기를 프로세스로 관리하는 체계
-- 목적: IT 서비스 품질 표준화 및 안정적 서비스 제공을 통한 **비즈니스 가치 창출**
+- 목적: IT 서비스 품질 표준화, 안정적 서비스 제공 통한 **비즈니스 가치 창출**
 
 ### 2. 구성체계 및 핵심 프로세스 루프
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ITSM 핵심 운영 프로세스 요약">
-  <div class="itpe-pipeline-node"><strong>서비스 데스크</strong><small>단일 접점(SPOC) 티켓 접수 및 1차 조치</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>서비스 데스크</strong>
+    <div class="itpe-step-detail"><strong>접점 일원화</strong><span>단일 접점(SPOC) 티켓 접수 및 1차 조치</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>인시던트 관리</strong><small>우회책(Workaround) 활용 신속 복구</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>인시던트 관리</strong>
+    <div class="itpe-step-detail"><strong>신속 복구</strong><span>우회책(Workaround) 활용 최단 시간 복구</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>문제 관리</strong><small>5-Why 근본 원인 분석 및 KEDB 지식화</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>문제 관리</strong>
+    <div class="itpe-step-detail"><strong>원인 규명</strong><span>5-Why 근본 원인 분석 및 KEDB 지식 자산화</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>변경 및 릴리즈</strong><small>CAB 심의 후 CMDB 갱신 및 안전한 배포</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>변경 및 릴리즈</strong>
+    <div class="itpe-step-detail"><strong>통제 배포</strong><span>CAB 심의 후 CMDB 갱신 및 무중단 배포</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

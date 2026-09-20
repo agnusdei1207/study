@@ -1,7 +1,7 @@
 ---
 title: "범정부 AI 공통기반"
-author: "Codex"
-date: "2026-09-20T19:20:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T21:05:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -63,6 +63,7 @@ extra:
 - **API(Application Programming Interface)**: 개별 공공시스템이 공통 플랫폼의 AI 기능을 손쉽게 호출하는 표준 연계 규격
 - **Human-in-the-loop**: 고영향 행정 처분 시 AI 추천 결과를 공무원이 최종 검토·승인하도록 강제하는 통제 체계
 - **TCO(Total Cost of Ownership)**: 정보시스템 도입부터 운영·유지보수·폐기까지 수명주기 전반에 걸친 총 소유비용
+- **RACI**: 업무 수행 시 Responsible(실무자), Accountable(최종책임자), Consulted(자문자), Informed(통보대상자)를 명확히 지정하는 책임 매트릭스
 
 </details>
 
@@ -75,7 +76,7 @@ extra:
 > 개별 기관의 자체 LLM 구축에 따른 예산 낭비를 차단하며, 성패는 단순 API 제공이 아닌 **공공 RAG 정확도**와 **행정 데이터 격리**로 판정함.
 
 - 정의: 행정·공공기관이 독자 구축 없이 표준 **API(Application Programming Interface)**로 고성능 AI 모델과 인프라를 활용하도록 지원하는 **국가 공통 플랫폼**
-- 목적: 인프라 중복투자 방지, 공공 예산 절감 및 행정 서비스 신뢰성 확보
+- 목적: 인프라 중복투자 차단, 공공 TCO 절감
 
 ## Ⅱ. 범정부 AI 공통기반 5단계 온보딩 및 운영 파이프라인
 
@@ -84,27 +85,42 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="범정부 AI 공통기반 온보딩 5단계 방법론의 활동 및 산출물">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 대상 업무 선정</strong></span>
-    <small>행정 수요 발굴 · 생성형 AI 적합성 및 ROI 분석<br />→ 업무 적용 타당성 평가서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>행정 수요 발굴 · 생성형 AI 적합성 및 ROI 분석</span>
+      <strong>산출</strong><span>업무 적용 타당성 평가서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 데이터 정제 및 등급화</strong></span>
-    <small>공공문서 수집 · 개인정보 비식별화 및 벡터화<br />→ 공공 지식 데이터셋 · 보안 등급표</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>공공문서 수집 · 개인정보 비식별화 및 벡터화</span>
+      <strong>산출</strong><span>공공 지식 데이터셋 · 보안 등급표</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 파이프라인 연계 및 설정</strong></span>
-    <small>공통 API 연동 · 프롬프트 엔지니어링 및 Guardrail 설정<br />→ 서비스 연계 설정서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>공통 API 연동 · 프롬프트 엔지니어링 및 Guardrail 설정</span>
+      <strong>산출</strong><span>서비스 연계 설정서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 실증 평가 및 보안 승인</strong></span>
-    <small>환각 발생률 · 편향성 시험 및 보안성 검토 승인<br />→ 신뢰성 평가 보고서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>환각 발생률 · 편향성 시험 및 보안성 검토 승인</span>
+      <strong>산출</strong><span>신뢰성 평가 보고서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 운영 모니터링 및 감사</strong></span>
-    <small>모델 드리프트 감시 · 토큰 FinOps 및 감사로그 추적<br />→ 월간 운영 및 비용 분석서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>모델 드리프트 감시 · 토큰 FinOps 및 감사로그 추적</span>
+      <strong>산출</strong><span>월간 운영 및 비용 분석서</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 행정 수요 ↔ 공통 API 연동 ↔ RAG 근거 검증 ↔ 감사로그 추적 양방향 연계</div>
@@ -138,12 +154,12 @@ extra:
 
 > 공공 행정 특유의 법적·윤리적 부작용을 통제하기 위해 공학적 안전망과 관리적 책임을 결합해야 함.
 
-| 위험 요인 | 발생 원인 | 공학적·관리적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **행정 오류 (환각)** | 학습 데이터 외 최신 법령 누락 및 모델 추론 한계 | **RAG** 연계 의무화, 출처 문서 링크 표시, 신뢰도 미달 시 응답 거부 | 허위 행정 정보 제공 방지 및 대국민 신뢰 확보 |
-| **개인정보 유출** | 프롬프트 입력창을 통한 주민번호 등 민감정보 유출 | 입력 단계에서 정규식 및 NER 기반 자동 마스킹, DLP 연동 | 법령 위반 차단 및 개인정보 침해 원천 차단 |
-| **프롬프트 인젝션** | 시스템 탈옥 프롬프트를 통한 보안 지침 무력화 | 이중 **Guardrail** 배치 및 시스템 프롬프트 변조 방지 | 비인가 행정 데이터 접근 및 오남용 방지 |
-| **책임 소재 모호** | AI 오답으로 인한 행정 피해 발생 시 책임 공백 | 플랫폼 제공자(기술)와 이용기관(내용) 간 **RACI 매트릭스** 확립 | 명확한 손해배상 및 행정 구제 체계 수립 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **행정 오류 (환각)** | **RAG** 연계 의무화, 출처 문서 링크 표시, 신뢰도 미달 시 응답 거부 | 허위 행정 정보 제공 방지 및 대국민 신뢰 확보 |
+| **개인정보 유출** | 입력 단계에서 정규식 및 NER 기반 자동 마스킹, DLP 연동 | 법령 위반 차단 및 개인정보 침해 원천 차단 |
+| **프롬프트 인젝션** | 이중 **Guardrail** 배치 및 시스템 프롬프트 변조 방지 | 비인가 행정 데이터 접근 및 오남용 방지 |
+| **책임 소재 모호** | 플랫폼 제공자(기술)와 이용기관(내용) 간 **RACI 매트릭스** 확립 | 명확한 손해배상 및 행정 구제 체계 수립 |
 
 ## Ⅵ. Human-in-the-loop 중심의 기술사적 제언
 
@@ -164,22 +180,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="범정부 AI 공통기반 거버넌스 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>기관별 독자 구축 예산 낭비 · 환각 및 개인정보 유출 위험 잔존</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>기관별 독자 구축 예산 낭비 · 환각 및 개인정보 유출 위험 잔존</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>범정부 AI 공통기반 연계 · 공공 RAG 표준화 및 Guardrail 내재화</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>범정부 AI 공통기반 연계 · 공공 RAG 표준화 및 Guardrail 내재화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>입출력 보안 필터링 통과 · Human-in-the-loop 공무원 검인 완료</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>입출력 보안 필터링 통과 · Human-in-the-loop 공무원 검인 완료</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>TCO 대폭 절감 · 신뢰받는 지능형 공공 행정 서비스 실현</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>TCO 대폭 절감 · 신뢰받는 지능형 공공 행정 서비스 실현</span></div>
   </div>
 </div>
 
@@ -188,18 +204,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 행정·공공기관이 거대언어모델(**LLM**)과 연산 인프라를 독자 구축 없이 표준 **API(Application Programming Interface)**로 공동 활용하는 클라우드 기반 **국가 공공 AI 공유 플랫폼**
-- 목적: 인프라 중복투자 방지, 공공 예산 절감 및 행정 서비스 신뢰성 확보
+- 목적: 인프라 중복투자 차단, 공공 TCO 절감
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 범정부 AI 공통기반 아키텍처 요약">
-  <div class="itpe-pipeline-node"><strong>서비스 인터페이스</strong><small>민원 챗봇 · 행정비서 UI</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>서비스 인터페이스</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>민원 챗봇 · 행정비서 UI</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>오케스트레이션 / RAG</strong><small>공공문서 벡터검색 · 근거 기반 답변 합성</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>오케스트레이션 / RAG</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>공공문서 벡터검색 · 근거 기반 답변 합성</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Model Gateway</strong><small>최적 모델 라우팅 · Fallback · 토큰 캐싱</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Model Gateway</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>최적 모델 라우팅 · Fallback · 토큰 캐싱</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>파운데이션 모델/인프라</strong><small>상용 LLM · 공공 sLLM · NPU 클러스터</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>파운데이션 인프라</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>상용 LLM · 공공 sLLM · NPU 클러스터</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,6 +1,6 @@
 ---
 title: "MECE"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:39:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
 ---
 
@@ -69,7 +69,7 @@ extra:
 > MECE는 직관적 추론의 오류와 요구사항 누락을 방지하는 구조화의 근간이며, 성패는 분석 축의 일관성과 **WBS 100% Rule** 충족으로 판정함.
 
 - 정의: 전체 집합을 구성하는 하위 항목들이 상호 겹치지 않고(**Mutually Exclusive**) 동시에 전체를 빠짐없이 포괄(**Collectively Exhaustive**)하도록 분류하는 **논리적 완전 분할 프레임워크**
-- 목적: 분석 중복으로 인한 자원 낭비 방지 및 요구사항 누락에 따른 **프로젝트 위험(Risk)** 사전 차단
+- 목적: 분석 중복 제거, 요구사항 누락 방지 통한 **프로젝트 위험(Risk)** 사전 차단
 
 ## Ⅱ. MECE 4분면 매트릭스 및 구조적 특성
 
@@ -78,22 +78,26 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="MECE 4분면 매트릭스 상태 분류">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① MECE 최적 상태 (ME ○, CE ○)</strong></span>
-    <small>중복 없음 · 누락 없음 · 집합론적 완전 분할<br />→ WBS 100% Rule 달성, 자원 배분 최적화</small>
+    <div class="itpe-step-detail"><strong>특징</strong><span>중복 없음, 누락 없음, 집합론적 완전 분할</span></div>
+    <div class="itpe-step-detail"><strong>효과</strong><span>WBS 100% Rule 달성, 자원 배분 최적화</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 중복 상태 (ME ×, CE ○)</strong></span>
-    <small>전체는 포괄하나 항목 간 교차 영역 발생<br />→ 업무 핑퐁, 이중 비용 발생, R&R 갈등 초래</small>
+    <div class="itpe-step-detail"><strong>특징</strong><span>전체는 포괄하나 항목 간 교차 영역 발생</span></div>
+    <div class="itpe-step-detail"><strong>효과</strong><span>업무 핑퐁, 이중 비용 발생, R&R 갈등 초래</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 사각지대 상태 (ME ○, CE ×)</strong></span>
-    <small>항목 간 중복은 없으나 핵심 영역 누락<br />→ 비기능 요건 결손, 치명적 프로젝트 결함 유발</small>
+    <div class="itpe-step-detail"><strong>특징</strong><span>항목 간 중복은 없으나 핵심 영역 누락</span></div>
+    <div class="itpe-step-detail"><strong>효과</strong><span>비기능 요구사항 결손, 치명적 프로젝트 결함 유발</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 혼돈 상태 (ME ×, CE ×)</strong></span>
-    <small>중복과 누락이 동시에 발생하는 최악의 구조<br />→ 분석 실패, 논리 왜곡, 프로젝트 표류</small>
+    <div class="itpe-step-detail"><strong>특징</strong><span>중복과 누락이 동시에 발생하는 최악의 구조</span></div>
+    <div class="itpe-step-detail"><strong>효과</strong><span>분석 실패, 논리 왜곡, 프로젝트 표류</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>핵심 원칙</strong></span> · $A \cap B = \emptyset$ (배타성)과 $A \cup B = U$ (포괄성)을 동시 만족해야 분석의 신뢰성 확보</div>
@@ -116,27 +120,32 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="MECE 기반 로직 트리 및 WBS 전개 프로세스">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 문제 정의 (Problem Statement)</strong></span>
-    <small>해결 과제 명문화 · 전체 집합(U) 경계 설정<br />→ 핵심 질문(Issue) 확정</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>해결 과제 명문화, 전체 집합(U) 경계 설정</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>핵심 질문(Issue) 확정</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 단일 분할 축 고정</strong></span>
-    <small>시간·기능·조직 축 중 단일 기준 선택<br />→ 레벨 내 기준 축 혼용 엄격 배제</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>시간·기능·조직 축 중 단일 기준 선택</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>동일 계층 내 기준 축 혼용 엄격 배제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 하향식 계층 분할 (Decomposition)</strong></span>
-    <small>1차 대분류 → 2차 중분류 → 3차 소분류 전개<br />→ Issue Tree 노드 도출</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>1차 대분류 → 2차 중분류 → 3차 소분류 전개</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>Issue Tree 노드 도출</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ WBS 100% Rule 검증</strong></span>
-    <small>하위 작업량의 합산치 100% 일치 확인<br />→ 누락 과업 0건, 중복 과업 제거</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>하위 작업량의 합산치 100% 일치 확인</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>누락 과업 0건 달성, 중복 과업 제거</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ RACI 매트릭스 할당</strong></span>
-    <small>단위 작업별 단일 책임자(Accountable) 지정<br />→ R&R 사각지대 원천 차단</small>
+    <div class="itpe-step-detail"><strong>핵심 활동</strong><span>단위 작업별 단일 책임자(Accountable) 지정</span></div>
+    <div class="itpe-step-detail"><strong>목표·산출물</strong><span>R&R 사각지대 원천 차단</span></div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>8/80 Rule</strong></span> · 최하위 작업 패키지는 최소 8시간, 최대 80시간 내 완수 가능한 단위로 분할 통제</div>
@@ -145,12 +154,12 @@ extra:
 
 > 분할 축 혼용, 사각지대 발생, 마이크로 분할로 인한 관리 오버헤드를 제도적으로 통제해야 함.
 
-| 왜곡 요인 | 발생 원인 | 공학적·관리적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **분할 축 혼용** | 동일 계층에서 기능 축(결제/인증)과 기술 축(웹/앱) 혼용 | 동일 레벨 내 **단일 축 고정** 및 2차원 매트릭스 WBS 도입 | 업무 범위 중복 배정 및 갈등 방지 |
-| **사각지대 발생** | 현행 시스템 범위에 매몰되어 비기능 요구 누락 | ISO/IEC 25010 기반 **비기능 체크리스트** 교차 점검 | 숨겨진 비기능 요건 누락 방지 |
-| **과도한 세분화** | 통제 수준을 넘어선 마이크로 레벨 분할로 문서화 과다 | **8/80 Rule** 적용 및 마일스톤 연계 최소 단위 통제 | 관리 오버헤드 최소화 및 생산성 유지 |
-| **책임 공백 발생** | 분할 후 경계 작업에 대한 담당 조직 미지정 | **RACI 매트릭스** 연계 및 단일 A(Accountable) 의무화 | 업무 핑퐁 차단 및 책임성 명확화 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **분할 축 혼용** | 동일 레벨 내 **단일 축 고정** 및 2차원 매트릭스 WBS 도입 | 업무 범위 중복 배정 및 갈등 방지 |
+| **사각지대 발생** | ISO/IEC 25010 기반 **비기능 체크리스트** 교차 점검 | 숨겨진 비기능 요구사항 누락 방지 |
+| **과도한 세분화** | **8/80 Rule** 적용 및 마일스톤 연계 최소 단위 통제 | 관리 오버헤드 최소화 및 생산성 유지 |
+| **책임 공백 발생** | **RACI 매트릭스** 연계 및 단일 A(Accountable) 의무화 | 업무 핑퐁 차단 및 책임성 명확화 |
 
 ## Ⅵ. 시스템적 검증 체계 중심의 기술사적 제언
 
@@ -159,7 +168,7 @@ extra:
 ### 학습자 통찰 메모 — 답안 밖
 
 - [핵심 통찰]: MECE의 최대 적은 '분할 축의 무의식적 혼용'임. 기능으로 쪼개다가 갑자기 조직이나 기술 스택으로 축을 바꾸면 반드시 중복과 누락이 동시에 발생함. 동일 계층에서는 무조건 하나의 축만 유지해야 함.
-- 나라면: 프로젝트 착수 시 `Jira/GitLab의 에픽-스토리 분류 체계를 MECE 기반 단일 축으로 강제 고정 → ISO 25010 비기능 요건 체크리스트와 1:1 매핑하지 않은 요구사항은 형상 베이스라인 승인 차단` 절차를 PMO 품질 검사 기준으로 확립하겠음.
+- 나라면: 프로젝트 착수 시 `Jira/GitLab의 에픽-스토리 분류 체계를 MECE 기반 단일 축으로 강제 고정 → ISO 25010 비기능 요구사항 체크리스트와 1:1 매핑하지 않은 요구사항은 형상 베이스라인 승인 차단` 절차를 PMO 품질 검사 기준으로 확립하겠음.
 
 ### 실전 답안용 기술사적 제언
 
@@ -171,22 +180,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="MECE 기반 프로젝트 완전성 확보 제언 흐름">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>분할 축 혼용으로 인한 업무 중복 · 비기능 요건 누락 · 책임 불명확</small>
+    <div class="itpe-step-detail"><strong>문제점</strong><span>분할 축 혼용으로 인한 업무 중복, 비기능 요구사항 누락, 책임 불명확</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>계층별 단일 축 고정 + WBS 100% Rule 검증 + RACI 단일 책임자 매핑</small>
+    <div class="itpe-step-detail"><strong>추진 전략</strong><span>계층별 단일 축 고정, WBS 100% Rule 검증, RACI 단일 책임자 매핑</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>RTM 양방향 추적률 100% · 8/80 Rule 준수 여부 · 이슈 사각지대 검사</small>
+    <div class="itpe-step-detail"><strong>관리 지표</strong><span>RTM 양방향 추적률 100%, 8/80 Rule 준수 여부, 이슈 사각지대 검사</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>과업 변경 분쟁 예방 · 개발 생산성 극대화 및 납기 준수</small>
+    <div class="itpe-step-detail"><strong>최종 효과</strong><span>과업 변경 분쟁 예방, 개발 생산성 극대화 및 납기 준수</span></div>
   </div>
 </div>
 
@@ -195,18 +204,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **MECE(Mutually Exclusive Collectively Exhaustive)**는 어떤 중복도 없이(**Mutually Exclusive**) 어떤 누락도 없이(**Collectively Exhaustive**) 전체 집합을 완전 분할하는 **논리적 사고 및 구조화 프레임워크**
-- 목적: 분석 중복으로 인한 자원 낭비 방지 및 요구사항 누락에 따른 **프로젝트 실패 위험** 차단
+- 목적: 분석 중복 제거, 요구사항 누락 방지 통한 **프로젝트 실패 위험** 차단
 
 ### 2. 구성체계 및 4대 분할 방식
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="MECE 4대 분할 방식 요약">
-  <div class="itpe-pipeline-node"><strong>2분법 (이분법)</strong><small>A vs Not A · 누락 원천 차단</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>2분법 (이분법)</strong>
+    <div class="itpe-step-detail"><strong>A vs Not A</strong><span>이론적 누락 원천 차단</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>프로세스 (시계열)</strong><small>수명주기 순서 · SDLC 단계별 분할</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>프로세스 (시계열)</strong>
+    <div class="itpe-step-detail"><strong>수명주기 순서</strong><span>SDLC 단계별 시계열 분할</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>구성요소 (변수)</strong><small>3계층 구조 · 산술적 합산 분해</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>구성요소 (변수)</strong>
+    <div class="itpe-step-detail"><strong>하위 요소 합</strong><span>아키텍처 계층 및 산술적 분해</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>표준 프레임워크</strong><small>3C, SWOT, PEST 프레임워크 준용</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>표준 프레임워크</strong>
+    <div class="itpe-step-detail"><strong>검증된 분석 축</strong><span>3C, SWOT, PEST 프레임워크 준용</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

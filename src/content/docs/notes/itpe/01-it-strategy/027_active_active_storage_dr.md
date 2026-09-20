@@ -1,7 +1,7 @@
 ---
 title: "액티브-액티브 이중화와 스토리지 DR"
-author: "Codex"
-date: "2026-09-20T19:22:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T21:13:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -75,7 +75,7 @@ extra:
 > 기존 Active-Standby의 기동 지연과 유휴 낭비를 극복하며, 성패는 단순 장비 증설이 아닌 **동기 복제 레이턴시 제어**와 **Quorum 무결성**으로 판정함.
 
 - 정의: 2개 이상의 독립 데이터센터에 서버와 스토리지를 상시 가동하여 트래픽을 동시 분산 처리하고, 재해 시 즉시 워크로드를 승계하는 **무중단 재해복구(DR) 아키텍처**
-- 목적: 서비스 무중단 운영(RTO≈0), 데이터 무유실(RPO=0) 및 비즈니스 연속성 보장
+- 목적: 서비스 무중단 운영, 데이터 무유실, 비즈니스 연속성 보증
 
 ## Ⅱ. 액티브-액티브 스토리지 DR 구성체계 및 복제 메커니즘
 
@@ -84,27 +84,42 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="액티브-액티브 스토리지 DR 구성체계 및 단계별 활동과 산출물">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 트래픽 감지 및 분산</strong></span>
-    <small>GSLB 헬스체크 · Anycast 라우팅 기반 다중 거점 부하분산<br />→ DNS 트래픽 분산 정책서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>GSLB 헬스체크 · Anycast 라우팅 기반 다중 거점 부하분산</span>
+      <strong>산출</strong><span>DNS 트래픽 분산 정책서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 애플리케이션 무상태 처리</strong></span>
-    <small>분산 세션 클러스터링 및 MSA 컨테이너 분산 가동<br />→ 무상태(Stateless) 아키텍처 설계서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>분산 세션 클러스터링 및 MSA 컨테이너 분산 가동</span>
+      <strong>산출</strong><span>무상태(Stateless) 아키텍처 설계서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 스토리지 블록 동기 미러링</strong></span>
-    <small>전용 광채널(ISL) 기반 양방향 쓰기 복제 및 캐시 동기화<br />→ 스토리지 동기 복제 구성도</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>전용 광채널(ISL) 기반 양방향 쓰기 복제 및 캐시 동기화</span>
+      <strong>산출</strong><span>스토리지 동기 복제 구성도</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 제3 거점 쿼럼 상태 감시</strong></span>
-    <small>하트비트 신호 모니터링 및 센터 간 네트워크 단절 감지<br />→ Quorum Witness 감시 로그</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>하트비트 신호 모니터링 및 센터 간 네트워크 단절 감지</span>
+      <strong>산출</strong><span>Quorum Witness 감시 로그</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 장애 판정 및 I/O 펜싱</strong></span>
-    <small>단절 센터 쓰기 즉시 차단 및 정상 센터 단독 마스터 승격<br />→ 자동 절체(Failover) 결과서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>단절 센터 쓰기 즉시 차단 및 정상 센터 단독 마스터 승격</span>
+      <strong>산출</strong><span>자동 절체(Failover) 결과서</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · GSLB 헬스체크 ↔ 스토리지 동기 복제 ↔ Quorum 중재 ↔ 무중단 서비스 양방향 연계</div>
@@ -138,12 +153,12 @@ extra:
 
 > 분산 환경에서 발생하는 네트워크 단절과 용량 초과는 연쇄 장애의 주원인이므로 사전 통제가 필수적임.
 
-| 실패 모드 | 발생 원인 | 공학적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **스플릿 브레인(Split-Brain)** | 센터 간 네트워크 단절 시 양 센터가 독립 마스터로 승격 | 제3 거점 독립 **Quorum Witness** 배치 및 다수결 I/O 펜싱 | 양방향 동시 쓰기로 인한 데이터 오염 원천 차단 |
-| **N-1 용량 초과 장애** | 한 센터 상실 시 단일 센터 자원이 전체 트래픽 감당 불가 | 평시 센터당 최대 사용률을 50% 이하로 통제(**N-1 설계**) | 장애 센터 절체 시 잔여 센터 연쇄 붕괴 방지 |
-| **복제 지연 누적** | 피크 타임 I/O 급증 및 장거리 선로 레이턴시 누적 | DWDM 고속 전용선 대역폭 확보 및 스토리지 캐시 버퍼 최적화 | 애플리케이션 응답 속도 지연(Latency) 방어 |
-| **논리적 오염 동시 전파** | 소프트웨어 버그나 악의적 SQL이 양 센터에 실시간 복제 | 제3 거점에 스냅샷 기반 격리 불변(**WORM**) 백업 병행 | 논리적 데이터 손상 시 시점 복구(PITR) 보장 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **스플릿 브레인(Split-Brain)** | 제3 거점 독립 **Quorum Witness** 배치 및 다수결 I/O 펜싱 | 양방향 동시 쓰기로 인한 데이터 오염 원천 차단 |
+| **N-1 용량 초과 장애** | 평시 센터당 최대 사용률을 50% 이하로 통제(**N-1 설계**) | 장애 센터 절체 시 잔여 센터 연쇄 붕괴 방지 |
+| **복제 지연 누적** | DWDM 고속 전용선 대역폭 확보 및 스토리지 캐시 버퍼 최적화 | 애플리케이션 응답 속도 지연(Latency) 방어 |
+| **논리적 오염 동시 전파** | 제3 거점에 스냅샷 기반 격리 불변(**WORM**) 백업 병행 | 논리적 데이터 손상 시 시점 복구(PITR) 보장 |
 
 ## Ⅵ. 정합성 및 실전 절체 중심의 기술사적 제언
 
@@ -164,22 +179,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="액티브-액티브 스토리지 DR 신뢰성 확보 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>Active-Standby 기동 지연 · 유휴 인프라 비용 과다 및 전환 실패</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>Active-Standby 기동 지연 · 유휴 인프라 비용 과다 및 전환 실패</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>Active-Active 다중 거점 분산 · 제3 거점 Quorum Witness 중재</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>Active-Active 다중 거점 분산 · 제3 거점 Quorum Witness 중재</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>센터 간 RTT 5ms 이내 유지 · N-1 부하 50% 이하 엄격 통제</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>센터 간 RTT 5ms 이내 유지 · N-1 부하 50% 이하 엄격 통제</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>RTO≈0 · RPO=0 달성 · 국가 핵심 디지털 행정 무중단 연속성 보장</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>RTO≈0 · RPO=0 달성 · 국가 핵심 디지털 행정 무중단 연속성 보장</span></div>
   </div>
 </div>
 
@@ -188,18 +203,30 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 2개 이상의 독립된 데이터센터에 서버와 스토리지를 상시 가동하여 부하를 분산하고 재해 시 무중단 승계하는 **액티브-액티브 재해복구(DR) 아키텍처**
-- 목적: 서비스 무중단 운영(RTO≈0), 데이터 무유실(RPO=0) 및 비즈니스 연속성 보장
+- 목적: 서비스 무중단 운영, 데이터 무유실, 비즈니스 연속성 보증
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 액티브-액티브 스토리지 DR 구조 요약">
-  <div class="itpe-pipeline-node"><strong>GSLB 트래픽 제어</strong><small>헬스체크 및 RTT 기반 분산</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>GSLB 트래픽 제어</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>헬스체크 및 RTT 기반 분산</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Active-Active 센터</strong><small>제1센터 Active ↔ 제2센터 Active</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Active-Active 센터</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>제1센터 Active ↔ 제2센터 Active</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>스토리지 동기 복제</strong><small>광채널 ISL 기반 실시간 미러링</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>스토리지 동기 복제</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>광채널 ISL 기반 실시간 미러링</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Quorum 중재</strong><small>제3 거점 Witness 기반 I/O 펜싱</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Quorum 중재</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>제3 거점 Witness 기반 I/O 펜싱</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

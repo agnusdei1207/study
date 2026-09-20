@@ -1,6 +1,6 @@
 ---
 title: "갈등관리"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:31:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -80,7 +80,7 @@ extra:
 > 갈등관리는 갈등의 완전한 소멸이 아니라 감정적 **관계 갈등**을 차단하고 건설적 **과업 갈등**을 유도하는 활동이며, 성패는 객관적 팩트 기반의 **합의 기준선(Baseline)** 확립으로 판정함.
 
 - 정의: 프로젝트 목표 달성 과정에서 발생하는 이해관계자 간의 대립과 이견을 조기에 식별하고 **Thomas-Kilmann 모델**을 통해 조정하는 **프로젝트 관리 프로세스**
-- 목적: 관계 갈등 조기 차단, 생산적 과업 갈등 유도 및 팀 결속력 강화
+- 목적: 관계 갈등 조기 차단, 생산적 과업 갈등 유도, 팀 결속력 강화
 
 ## Ⅱ. 갈등의 3대 유형과 주요 발생 원인
 
@@ -110,28 +110,38 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="갈등 중재 5단계 엔지니어링 프로세스 파이프라인">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 갈등 조기 감지 (Detection)</strong></span>
-    <small>스탠드업 미팅 · PR 리뷰 코멘트 모니터링<br />→ 커뮤니케이션 이상 징후 포착</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>① 갈등 조기 감지 (Detection)</strong></span>
+      <span>스탠드업 미팅 · PR 리뷰 코멘트 모니터링 (커뮤니케이션 이상 징후 포착)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 사람과 문제의 분리 (Separation)</strong></span>
-    <small>감정적 비난 차단 · 객관적 기술 팩트(Fact)만 추출<br />→ 이슈 로그(Issue Log) 등록</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>② 사람과 문제의 분리 (Separation)</strong></span>
+      <span>감정적 비난 차단 · 객관적 기술 팩트만 추출 (이슈 로그 등록)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 본질적 이해관계 분석 (Analysis)</strong></span>
-    <small>5-Why 기법 적용 · 표면 입장(Position) 뒤의 숨은 니즈(Interest) 규명<br />→ 이해관계자 매트릭스</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>③ 본질적 이해관계 분석 (Analysis)</strong></span>
+      <span>5-Why 기법 적용 · 표면 입장 뒤의 숨은 니즈 규명 (이해관계자 매트릭스)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 상황별 대응모드 실행 (Resolution)</strong></span>
-    <small>Thomas-Kilmann 모드 적용 · PoC 실증 · 의사결정 기록(ADR) 작성<br />→ 갈등 합의안 및 ADR</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>④ 상황별 대응모드 실행 (Resolution)</strong></span>
+      <span>Thomas-Kilmann 모드 적용 · PoC 실증 · 의사결정 기록(ADR) 작성 (갈등 합의안, ADR)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 제도화 및 기준선 반영 (Institutionalization)</strong></span>
-    <small>합의 내용을 WBS 및 RACI에 갱신 · 재발 방지 모니터링<br />→ 프로젝트 계획 변경 승인서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>⑤ 제도화 및 기준선 반영 (Institutionalization)</strong></span>
+      <span>합의 내용을 WBS 및 RACI에 갱신 · 재발 방지 모니터링 (프로젝트 계획 변경 승인서)</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Fact-based Decision</strong></span> · 사람과 문제를 분리하고 PoC 실증 데이터와 ADR 문서로 객관적 합의 도출</div>
@@ -152,12 +162,12 @@ extra:
 
 > 감정 대립과 구두 합의의 번복을 방어하지 못하면 프로젝트는 치명적인 정치적 소모전에 휘말림.
 
-| 위험 요인 | 발생 원인 | 공학적·관리적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| 감정적 비난 전이 | 기술적 견해차를 개인의 역량이나 태도 문제로 공격 | 비동기 문서 기반 토론(**ADR**) 및 코드 리뷰 가이드라인 제정 | 감정 배제 및 기술적 팩트 기반 논의 확인 |
-| PM의 일방적 강요 | 납기 압박을 이유로 충분한 검토 없이 상명하달 지시 | 부하 테스트, 벤치마크 결과 등 객관적 수치 기반 의사결정 | 팀원의 심리적 저항 및 태업 방지 확인 |
-| 결정 장애 및 방임 | 만장일치를 추구하다가 의사결정이 지연되어 납기 파탄 | **Disagree and Commit(동의하지 않아도 헌신)** 원칙 제도화 | 타임박스 내 최종 의사결정 완료율 100% |
-| 합의안 사후 파기 | 구두 합의에 그쳐 돌아서서 상호 다른 주장 제기 | 중재 회의 직후 액션 아이템, 책임자, 기한 명시 회의록 배포 | WBS 및 RACI 기준선 공식 반영 완료 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **감정적 비난 전이** | 비동기 문서 기반 토론(**ADR**) 및 코드 리뷰 가이드라인 제정 | 감정 배제 및 기술적 팩트 기반 논의 확인 |
+| **PM의 일방적 강요** | 부하 테스트, 벤치마크 결과 등 객관적 수치 기반 의사결정 | 팀원의 심리적 저항 및 태업 방지 확인 |
+| **결정 장애 및 방임** | **Disagree and Commit(동의하지 않아도 헌신)** 원칙 제도화 | 타임박스 내 최종 의사결정 완료율 100% |
+| **합의안 사후 파기** | 중재 회의 직후 액션 아이템, 책임자, 기한 명시 회의록 배포 | WBS 및 RACI 기준선 공식 반영 완료 |
 
 ## Ⅶ. 심리적 안전감과 데이터 기반 중재 중심의 기술사적 제언
 
@@ -177,23 +187,31 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="갈등관리 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>감정 대립 전이 · 권위적 강요 · 결정 장애로 인한 납기 지연</small>
+    <div class="itpe-step-detail">
+      <strong>현행 한계</strong>
+      <span>감정 대립 전이 · 권위적 강요 · 결정 장애로 인한 납기 지연</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>사람/문제 분리 + ADR 문서화 + Disagree and Commit 원칙</small>
+    <div class="itpe-step-detail">
+      <strong>개선 대안</strong>
+      <span>사람/문제 분리 + ADR 문서화 + Disagree and Commit 원칙</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>타임박스 내 의사결정 완료 · WBS/RACI 기준선 일치</small>
+    <div class="itpe-step-detail">
+      <strong>검증 기준</strong>
+      <span>타임박스 내 의사결정 완료 · WBS/RACI 기준선 일치</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>과업 갈등의 품질 개선 승화 · 팀 결속력 및 프로젝트 완주성 보장</small>
+    <div class="itpe-step-detail">
+      <strong>실행 효과</strong>
+      <span>과업 갈등의 품질 개선 승화 · 팀 결속력 및 프로젝트 완주성 보장</span>
+    </div>
   </div>
 </div>
 
@@ -202,20 +220,45 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **갈등관리(Conflict Management)**는 프로젝트 목표 달성 과정에서 발생하는 이해관계자 간의 대립과 이견을 조기에 식별하고 **Thomas-Kilmann 모델**을 통해 조정하는 **프로젝트 관리 프로세스**
-- 목적: 관계 갈등 조기 차단, 생산적 과업 갈등 유도 및 팀 결속력 강화
+- 목적: 관계 갈등 조기 차단, 생산적 과업 갈등 유도, 팀 결속력 강화
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="갈등관리 프로세스 요약">
-  <div class="itpe-pipeline-node"><strong>징후 감지</strong><small>PR 리뷰 · 스탠드업 미팅</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>징후 감지</strong>
+      <span>PR 리뷰 · 스탠드업 미팅</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>사람·문제 분리</strong><small>감정 배제 · 이슈 로그 등록</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>사람·문제 분리</strong>
+      <span>감정 배제 · 이슈 로그 등록</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>모드 실행</strong><small>Thomas-Kilmann 5대 모드</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>모드 실행</strong>
+      <span>Thomas-Kilmann 5대 모드</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>공학적 검증</strong><small>PoC 실증 · ADR 기록</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>공학적 검증</strong>
+      <span>PoC 실증 · ADR 기록</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>제도화</strong><small>WBS · RACI 기준선 반영</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>제도화</strong>
+      <span>WBS · RACI 기준선 반영</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

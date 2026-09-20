@@ -1,6 +1,6 @@
 ---
 title: "SWOT 분석"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:29:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -72,7 +72,7 @@ extra:
 > SWOT 분석은 주관적 브레인스토밍이 아닌 사실(Fact) 기반의 대내외 데이터를 교차하여 **Strategic Fit**을 달성하는 기법이며, 완성도는 **TOWS** 전략이 실제 **WBS** 과제로 연결되는 추적성으로 판정함.
 
 - 정의: 조직 내부의 통제 가능한 강점(S)·약점(W)과 외부 환경의 기회(O)·위협(T)을 객관적 사실 기반으로 분석하여 **TOWS 매트릭스**를 통해 실행 전략을 도출하는 프레임워크
-- 목적: 대내외 전략적 적합성 확보 및 실행 가능한 전략 과제 도출
+- 목적: 대내외 전략적 적합성 확보, 실행 가능한 전략 과제 도출
 
 ## Ⅱ. SWOT 분석 구성체계 및 5단계 추진 프로세스
 
@@ -80,28 +80,38 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SWOT 분석 5단계 추진 프로세스 파이프라인">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 분석 범위 및 전략 목표 수립</strong></span>
-    <small>분석 대상(전사/사업부/IT) 정의 · 전략적 지향점 확정<br />→ 분석 범위 정의서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>① 분석 범위 및 전략 목표 수립</strong></span>
+      <span>분석 대상(전사/사업부/IT) 정의 · 전략적 지향점 확정 (분석 범위 정의서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 대내외 팩트 데이터 수집</strong></span>
-    <small>외부 PEST/5-Force · 내부 VRIO/가치사슬 분석 데이터 집계<br />→ 대내외 환경 팩트북</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>② 대내외 팩트 데이터 수집</strong></span>
+      <span>외부 PEST/5-Force · 내부 VRIO/가치사슬 분석 데이터 집계 (대내외 환경 팩트북)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ MECE 기반 SWOT 4분면 분류</strong></span>
-    <small>통제 가능성(Controllability) 기준 엄격 적용 (내부=S/W, 외부=O/T)<br />→ SWOT 매트릭스 초안</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>③ MECE 기반 SWOT 4분면 분류</strong></span>
+      <span>통제 가능성 기준 엄격 적용 (내부=S/W, 외부=O/T) (SWOT 매트릭스 초안)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ Cross-SWOT(TOWS) 교차 전략 도출</strong></span>
-    <small>SO(공격), ST(방어), WO(보완), WT(철수) 1:1 교차 결합<br />→ TOWS 교차 전략표</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>④ Cross-SWOT(TOWS) 교차 전략 도출</strong></span>
+      <span>SO(공격), ST(방어), WO(보완), WT(철수) 1:1 교차 결합 (TOWS 교차 전략표)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 과제 우선순위화 및 로드맵 수립</strong></span>
-    <small>AHP 쌍대비교 · 시급성/난이도 매트릭스 · BSC 연계 KPI 설정<br />→ 전략 과제 정의서 및 실행 로드맵</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>⑤ 과제 우선순위화 및 로드맵 수립</strong></span>
+      <span>AHP 쌍대비교 · 시급성/난이도 매트릭스 · BSC 연계 KPI 설정 (전략 과제 정의서 및 실행 로드맵)</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Strategic Traceability</strong></span> · 환경 분석 Fact부터 TOWS 전략 대안, WBS 실행 과제까지 일관된 양방향 추적</div>
@@ -132,12 +142,12 @@ extra:
 
 > 주관적 나열식 오류와 내외부 개념 혼동을 차단하지 못하면 SWOT은 공허한 말장난에 그침.
 
-| 위험 요인 | 발생 원인 | 공학적·관리적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| 단순 나열식 매몰 | 브레인스토밍만으로 주관적 단어 수십 개 단순 나열 | 객관적 지표·통계 데이터 실증 및 핵심 요인 5개 이내 압축 | 각 요인별 객관적 증빙 데이터 확보율 100% |
-| 내·외부 개념 혼동 | 내부 약점을 외부 위협으로 오분류하는 논리적 오류 | **통제 가능 여부(Controllability)** 기준 엄격 적용 | 조직 통제 가능=S/W, 통제 불가=O/T 분류 일치 |
-| 우선순위 부재 | 도출된 Cross 과제가 너무 많아 실행 자원 분산 | **AHP(계층화분석법)** 쌍대비교 및 2×2 매트릭스 적용 | 가중치 상위 핵심 과제 선별 완료 |
-| 정적 분석의 한계 | 특정 시점의 단면만 분석하여 동적 환경 변화 미반영 | 시나리오 플래닝 결합 및 분기별 SWOT 정기 롤링 | 분기별 환경 변화 반영 및 전략 업데이트 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **단순 나열식 매몰** | 객관적 지표·통계 데이터 실증 및 핵심 요인 5개 이내 압축 | 각 요인별 객관적 증빙 데이터 확보율 100% |
+| **내·외부 개념 혼동** | **통제 가능 여부(Controllability)** 기준 엄격 적용 | 조직 통제 가능=S/W, 통제 불가=O/T 분류 일치 |
+| **우선순위 부재** | **AHP(계층화분석법)** 쌍대비교 및 2×2 매트릭스 적용 | 가중치 상위 핵심 과제 선별 완료 |
+| **정적 분석의 한계** | 시나리오 플래닝 결합 및 분기별 SWOT 정기 롤링 | 분기별 환경 변화 반영 및 전략 업데이트 |
 
 ## Ⅵ. 실행 과제 연계 및 추적성 중심의 기술사적 제언
 
@@ -157,23 +167,31 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SWOT 전략 프레임워크 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>주관적 나열 · 내외부 개념 혼동 · 실행 과제 단절</small>
+    <div class="itpe-step-detail">
+      <strong>현행 한계</strong>
+      <span>주관적 나열 · 내외부 개념 혼동 · 실행 과제 단절</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>통제 가능성 기준 MECE 분류 + TOWS 교차 + AHP 우선순위화</small>
+    <div class="itpe-step-detail">
+      <strong>개선 대안</strong>
+      <span>통제 가능성 기준 MECE 분류 + TOWS 교차 + AHP 우선순위화</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>팩트북 연계율 100% · BSC 관점 전략 맵 추적성 확보</small>
+    <div class="itpe-step-detail">
+      <strong>검증 기준</strong>
+      <span>팩트북 연계율 100% · BSC 관점 전략 맵 추적성 확보</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>전략적 정합성(Strategic Fit) 달성 · 지속 가능한 경쟁 우위 확보</small>
+    <div class="itpe-step-detail">
+      <strong>실행 효과</strong>
+      <span>전략적 정합성(Strategic Fit) 달성 · 지속 가능한 경쟁 우위 확보</span>
+    </div>
   </div>
 </div>
 
@@ -182,18 +200,38 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)**은 내부 역량(강점·약점)과 외부 환경(기회·위협)을 객관적 사실 기반으로 분석하여 **TOWS 매트릭스**를 통해 실행 전략을 도출하는 경영전략 프레임워크
-- 목적: 대내외 전략적 적합성 확보 및 실행 가능한 전략 과제 도출
+- 목적: 대내외 전략적 적합성 확보, 실행 가능한 전략 과제 도출
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SWOT 분석 프로세스 요약">
-  <div class="itpe-pipeline-node"><strong>팩트 수집</strong><small>PEST · 5-Force · 가치사슬</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>팩트 수집</strong>
+      <span>PEST · 5-Force · 가치사슬</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>MECE 분류</strong><small>통제 가능성 기준 S/W vs O/T</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>MECE 분류</strong>
+      <span>통제 가능성 기준 S/W vs O/T</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>TOWS 교차</strong><small>SO, ST, WO, WT 전략 도출</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>TOWS 교차</strong>
+      <span>SO, ST, WO, WT 전략 도출</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>과제 확정</strong><small>AHP 우선순위 및 로드맵 수립</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>과제 확정</strong>
+      <span>AHP 우선순위 및 로드맵 수립</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

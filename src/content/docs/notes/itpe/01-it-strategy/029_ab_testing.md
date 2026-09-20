@@ -1,7 +1,7 @@
 ---
 title: "A/B 테스트"
-author: "Codex"
-date: "2026-09-20T19:24:00+09:00"
+author: "Antigravity"
+date: "2026-09-20T21:14:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -75,7 +75,7 @@ extra:
 > 주관적 직관(HiPPO)을 배제하고 인과관계를 입증하며, 성패는 단순 클릭률이 아닌 **SRM 편향 제거**와 **보호 지표(Guardrail) 검증**으로 판정함.
 
 - 정의: 사용자를 무작위 배정하여 대조군(A)과 실험군(B) 간의 단일 변수 변경 효과를 통계적으로 검증하는 **무작위 통제 시험(RCT)**
-- 목적: 직관에 의한 오류 배제 및 데이터 기반 비즈니스 전환율 극대화
+- 목적: 직관에 의한 오류 배제, 데이터 기반 비즈니스 전환율 극대화
 
 ## Ⅱ. A/B 테스트 5단계 실험 프로세스 및 계측 파이프라인
 
@@ -84,27 +84,42 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="A/B 테스트 5단계 실험 프로세스 및 단계별 활동과 산출물">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 문제 정의 및 가설 수립</strong></span>
-    <small>독립변수 정의 · 귀무가설($H_0$) 및 대립가설($H_1$) 설정<br />→ 가설 정의서 · 핵심 성과지표 명세서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>독립변수 정의 · 귀무가설($H_0$) 및 대립가설($H_1$) 설정</span>
+      <strong>산출</strong><span>가설 정의서 · 핵심 성과지표 명세서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>② 표본수 및 실험 기간 산정</strong></span>
-    <small>유의수준($\alpha=0.05$) · 검정력($1-\beta=0.8$) · MDE 기준 표본수 계산<br />→ 실험 계획서 · 필요 표본수 계산서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>유의수준($\alpha=0.05$) · 검정력($1-\beta=0.8$) · MDE 기준 표본수 계산</span>
+      <strong>산출</strong><span>실험 계획서 · 필요 표본수 계산서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>③ 계측 구축 및 A/A 무편향 검증</strong></span>
-    <small>Feature Flag 연동 · A/A 테스트로 그룹 간 사전 편향 부재 확인<br />→ 배정 파이프라인 검증서 · 트래킹 코드</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>Feature Flag 연동 · A/A 테스트로 그룹 간 사전 편향 부재 확인</span>
+      <strong>산출</strong><span>배정 파이프라인 검증서 · 트래킹 코드</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>④ 무작위 실험 실행 및 모니터링</strong></span>
-    <small>동일 기간 동시 노출 · 조기 종료 금지 및 SRM 실시간 감시<br />→ 일별 전환 로그 · 가드레일 모니터링 보고서</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>동일 기간 동시 노출 · 조기 종료 금지 및 SRM 실시간 감시</span>
+      <strong>산출</strong><span>일별 전환 로그 · 가드레일 모니터링 보고서</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>⑤ 통계적 가설검정 및 배포 결정</strong></span>
-    <small>카이제곱 SRM 검사 · p-value 및 신뢰구간 평가 후 롤아웃 결정<br />→ 실험 결과 보고서 · 기능 배포 결정문</small>
+    <div class="itpe-step-detail">
+      <strong>활동</strong><span>카이제곱 SRM 검사 · p-value 및 신뢰구간 평가 후 롤아웃 결정</span>
+      <strong>산출</strong><span>실험 결과 보고서 · 기능 배포 결정문</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 사전 가설 ↔ Feature Flag 배정 ↔ SRM 적합도 ↔ 최종 롤아웃 양방향 연계</div>
@@ -137,13 +152,13 @@ extra:
 
 > 피킹 편향과 SRM은 잘못된 의사결정을 유발하는 가장 위험한 함정으로 엄격한 통제가 요구됨.
 
-| 통계적 왜곡 요인 | 발생 원인 | 공학적·통계적 해결 대책 | 기대 효과 |
-|---|---|---|---|
-| **표본비율 불일치(SRM)** | 리다이렉트 지연, 특정 OS 크래시로 배정 비율 왜곡 | 카이제곱 적합도 검정 자동화 및 이상 시 실험 즉시 무효화 | 편향된 표본으로 인한 오판 방지 |
-| **피킹 문제(Peeking)** | 실험 진행 중 p-value를 수시 확인하며 조기 승자 선언 | 정해진 표본수 도달 전 분석 금지 또는 순차 검정(Sequential) 적용 | 1종 오류(거짓 양성) 급증 차단 |
-| **다중 검정 오류** | 여러 지표와 세그먼트를 동시 검정하여 우연한 승자 발생 | 본페로니(Bonferroni) 교정 또는 FDR(False Discovery Rate) 통제 | 우연에 의한 가짜 개선 효과 배제 |
-| **간섭 효과(Spillover)** | 양방향 마켓플레이스에서 대조군과 실험군 간 자원 경합 | 사용자 단위 대신 지역(Cluster) 또는 시간 단위 무작위 배정 | 네트워크 효과로 인한 데이터 오염 방지 |
-| **신규성 효과(Novelty)** | 사용자의 단순 호기심으로 초기 지표가 일시적 급등 | 최소 2주 이상 실험 유지 및 신규/기존 사용자 분리 코호트 분석 | 일시적 착시 제거 및 지속 효과 확인 |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **표본비율 불일치(SRM)** | 카이제곱 적합도 검정 자동화 및 이상 시 실험 즉시 무효화 | 편향된 표본으로 인한 오판 방지 |
+| **피킹 문제(Peeking)** | 정해진 표본수 도달 전 분석 금지 또는 순차 검정(Sequential) 적용 | 1종 오류(거짓 양성) 급증 차단 |
+| **다중 검정 오류** | 본페로니(Bonferroni) 교정 또는 FDR(False Discovery Rate) 통제 | 우연에 의한 가짜 개선 효과 배제 |
+| **간섭 효과(Spillover)** | 사용자 단위 대신 지역(Cluster) 또는 시간 단위 무작위 배정 | 네트워크 효과로 인한 데이터 오염 방지 |
+| **신규성 효과(Novelty)** | 최소 2주 이상 실험 유지 및 신규/기존 사용자 분리 코호트 분석 | 일시적 착시 제거 및 지속 효과 확인 |
 
 ## Ⅵ. 실험 문화와 신뢰성 거버넌스 중심의 기술사적 제언
 
@@ -164,22 +179,22 @@ extra:
 <div class="itpe-pipeline is-vertical" role="img" aria-label="A/B 테스트 통계적 신뢰성 확보 제언 파이프라인">
   <div class="itpe-pipeline-node">
     <strong>현행 한계</strong>
-    <small>직관 의존 출시 · 피킹 편향 및 SRM 표본 왜곡 방치</small>
+    <div class="itpe-step-detail"><strong>문제</strong><span>직관 의존 출시 · 피킹 편향 및 SRM 표본 왜곡 방치</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>개선 대안</strong>
-    <small>A/B 테스트 표준 파이프라인 · SRM 자동 진단 및 순차 검정 도입</small>
+    <div class="itpe-step-detail"><strong>대안</strong><span>A/B 테스트 표준 파이프라인 · SRM 자동 진단 및 순차 검정 도입</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <small>카이제곱 적합도 검정 통과 · 사전 산정 표본수 100% 관측 충족</small>
+    <div class="itpe-step-detail"><strong>판정</strong><span>카이제곱 적합도 검정 통과 · 사전 산정 표본수 100% 관측 충족</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <small>순수 인과관계 실증 · 비즈니스 전환율 개선 및 시스템 안정성 유지</small>
+    <div class="itpe-step-detail"><strong>효과</strong><span>순수 인과관계 실증 · 비즈니스 전환율 개선 및 시스템 안정성 유지</span></div>
   </div>
 </div>
 
@@ -188,20 +203,35 @@ extra:
 ### 1. 정의·목적
 
 - 정의: 사용자를 대조군(A)과 실험군(B)에 무작위 배정하여 단일 변수의 변경이 성과지표에 미친 영향을 검증하는 **무작위 통제 실험(RCT)**
-- 목적: 직관에 의한 오류 배제 및 데이터 기반 비즈니스 전환율 극대화
+- 목적: 직관에 의한 오류 배제, 데이터 기반 비즈니스 전환율 극대화
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 A/B 테스트 메커니즘 요약">
-  <div class="itpe-pipeline-node"><strong>가설 수립</strong><small>귀무/대립가설 · 성과지표</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>가설 수립</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>귀무/대립가설 · 성과지표</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Feature Flag 배정</strong><small>해시 기반 무작위 50:50 분할</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>Feature Flag 배정</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>해시 기반 무작위 50:50 분할</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>동일 기간 관측</strong><small>Control vs Variant 동시 노출</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>동일 기간 관측</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>Control vs Variant 동시 노출</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>통계 검정</strong><small>SRM 진단 · p-value 및 신뢰구간</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>통계 검정</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>SRM 진단 · p-value 및 신뢰구간</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>롤아웃 결정</strong><small>Guardrail 지표 점검 후 배포</small></div>
+  <div class="itpe-pipeline-node">
+    <strong>롤아웃 결정</strong>
+    <div class="itpe-step-detail"><strong>역할</strong><span>Guardrail 지표 점검 후 배포</span></div>
+  </div>
 </div>
 
 ### 3. 핵심 통제

@@ -1,6 +1,6 @@
 ---
 title: "부정적 위험 대응 전략"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T19:35:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash (High)"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -81,7 +81,7 @@ extra:
 > 위험 대응은 엑셀 대장에 기록하는 요식 행위가 아니라 위협의 조기 무력화 활동이며, 성패는 대응책 실행 후 파생되는 **2차 위험(Secondary Risk)**과 **잔여 위험(Residual Risk)**의 폐쇄 루프 통제로 판정함.
 
 - 정의: 프로젝트 목표 달성을 저해하는 불확실한 사건(위협)에 대해 발생 확률을 낮추거나 피해를 줄이기 위해 **회피, 완화, 전가, 수용, 상위보고**를 수립·실행하는 **PMBOK 위험관리 체계**
-- 목적: 프로젝트 위협 조기 차단, 피해 최소화 및 납기 완주
+- 목적: 프로젝트 위협 조기 차단, 피해 최소화, 납기 완주
 
 ## Ⅱ. PMBOK 5대 부정적 위험 대응 전략 체계
 
@@ -113,28 +113,38 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="부정적 위험 대응 5단계 엔지니어링 프로세스 파이프라인">
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 위험 식별 및 정량 분석</strong></span>
-    <small>정성적·정량적 분석 · 기대화폐가치(EMV = 확률 × 영향) 도출<br />→ 위험 관리대장(Risk Register)</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>① 위험 식별 및 정량 분석</strong></span>
+      <span>정성적·정량적 분석 · 기대화폐가치 EMV 도출 (위험 관리대장)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 최적 대응전략 선정</strong></span>
-    <small>비용 편익(Cost-Benefit) 평가 · 회피/완화/전가/수용/보고 결정<br />→ 리스크 대응 전략 명세서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>② 최적 대응전략 선정</strong></span>
+      <span>비용 편익 평가 · 회피/완화/전가/수용/보고 결정 (리스크 대응 전략 명세서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 실행 계획 수립 및 WBS 반영</strong></span>
-    <small>대응 활동 WBS 패키지 추가 · 위험 책임자(Risk Owner) 지정<br />→ 갱신된 WBS · 책임할당표(RACI)</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>③ 실행 계획 수립 및 WBS 반영</strong></span>
+      <span>대응 활동 WBS 패키지 추가 · 위험 책임자 지정 (갱신된 WBS, 책임할당표 RACI)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 비상대책 실행</strong></span>
-    <small>비상예비비(Contingency Reserve) 투입 · 우회 대책(Workaround) 가동<br />→ 예비비 집행 전표 · 작업 승인서</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>④ 비상대책 실행</strong></span>
+      <span>비상예비비 투입 · 우회 대책 가동 (예비비 집행 전표, 작업 승인서)</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 잔여 및 2차 위험 모니터링</strong></span>
-    <small>조치 후 잔여 위험(Residual) 추적 · 파생된 2차 위험(Secondary) 재평가<br />→ 리스크 감사 보고서 · 추세 차트</small>
+    <div class="itpe-step-detail">
+      <span class="itpe-keyword"><strong>⑤ 잔여 및 2차 위험 모니터링</strong></span>
+      <span>조치 후 잔여 위험 추적 · 파생된 2차 위험 재평가 (리스크 감사 보고서, 추세 차트)</span>
+    </div>
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Closed-Loop Risk Control</strong></span> · 대책 실행 후 남은 잔여 위험과 파생된 2차 위험을 위험 대장에 재등록하여 지속 감시</div>
@@ -155,12 +165,12 @@ extra:
 
 > 2차 위험과 무분별한 수동적 수용을 통제하지 못하면 프로젝트는 치명적 장애에 직면함.
 
-| 위험 요인 | 발생 원인 | 공학적·관리적 통제 대책 | 검증 지점 |
-|---|---|---|---|
-| 수동적 수용 방치 | 위험 수용을 무대책으로 오해하여 장애 발생 시 패닉 | **비상예비비(Contingency)** 편성 및 우회 매뉴얼(**Workaround**) 수립 | 장애 발생 즉시 복구 절차 가동 확인 |
-| 외주 전가 2차 위험 | 핵심 개발을 외주 전가했으나 협력사 부실로 납기 지연 | **2차 위험 분석** 의무화 및 외주사에 대한 상시 품질 감리 병행 | 협력사 품질 지표 및 공정 진척 확인 |
-| 완화 비용 역전 | 위험 발생 잠재 손실보다 완화 조치 비용이 더 큼 | **EMV** 분석 기반 `완화 투입 비용 < 기대 손실` 기준 엄격 적용 | 비용 대비 위험 절감 효율성 검증 |
-| 상위보고 회피 | 인사 고과 불이익 우려로 중대 위험을 내부 은폐 | 에스컬레이션 임계치(일정 지연 2주 등)를 프로젝트 헌장에 명문화 | 조기 보고 및 전사 지원 확보율 100% |
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| **수동적 수용 방치** | **비상예비비(Contingency)** 편성 및 우회 매뉴얼(**Workaround**) 수립 | 장애 발생 즉시 복구 절차 가동 확인 |
+| **외주 전가 2차 위험** | **2차 위험 분석** 의무화 및 외주사에 대한 상시 품질 감리 병행 | 협력사 품질 지표 및 공정 진척 확인 |
+| **완화 비용 역전** | **EMV** 분석 기반 `완화 투입 비용 < 기대 손실` 기준 엄격 적용 | 비용 대비 위험 절감 효율성 검증 |
+| **상위보고 회피** | 에스컬레이션 임계치(일정 지연 2주 등)를 프로젝트 헌장에 명문화 | 조기 보고 및 전사 지원 확보율 100% |
 
 ## Ⅶ. 잔여 위험 통제와 데이터 기반 리스크 관리 중심의 기술사적 제언
 
@@ -180,23 +190,31 @@ extra:
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="부정적 위험 대응 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <small>문서상 대장 방치 · 수동적 수용 패닉 · 외주 전가에 따른 2차 위험 미인지</small>
+    <div class="itpe-step-detail">
+      <strong>현행 한계</strong>
+      <span>문서상 대장 방치 · 수동적 수용 패닉 · 외주 전가에 따른 2차 위험 미인지</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <small>P-I 기반 5대 전략 매핑 + 비상예비비 편성 + 2차 위험 폐쇄 루프 감시</small>
+    <div class="itpe-step-detail">
+      <strong>개선 대안</strong>
+      <span>P-I 기반 5대 전략 매핑 + 비상예비비 편성 + 2차 위험 폐쇄 루프 감시</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <small>EMV 기반 비용 효율성 확인 · 에스컬레이션 임계치 준수</small>
+    <div class="itpe-step-detail">
+      <strong>검증 기준</strong>
+      <span>EMV 기반 비용 효율성 확인 · 에스컬레이션 임계치 준수</span>
+    </div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <small>위험의 조기 무력화 · 예산 및 공기 보호 · 성공적 프로젝트 완주</small>
+    <div class="itpe-step-detail">
+      <strong>실행 효과</strong>
+      <span>위험의 조기 무력화 · 예산 및 공기 보호 · 성공적 프로젝트 완주</span>
+    </div>
   </div>
 </div>
 
@@ -205,20 +223,45 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **부정적 위험 대응 전략(Negative Risk Response Strategy)**은 프로젝트 목표를 저해하는 위협에 대해 발생 확률과 충격을 억제하기 위해 **회피, 완화, 전가, 수용, 상위보고** 5대 전략을 수립하는 **PMBOK 위험관리 체계**
-- 목적: 프로젝트 위협 조기 차단, 피해 최소화 및 납기 완주
+- 목적: 프로젝트 위협 조기 차단, 피해 최소화, 납기 완주
 
 ### 2. 구성체계 및 방법론
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="부정적 위험 대응 프로세스 요약">
-  <div class="itpe-pipeline-node"><strong>위험 분석</strong><small>P-I 매트릭스 · EMV 산출</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>위험 분석</strong>
+      <span>P-I 매트릭스 · EMV 산출</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>전략 선정</strong><small>회피 · 완화 · 전가 · 수용 · 보고</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>전략 선정</strong>
+      <span>회피 · 완화 · 전가 · 수용 · 보고</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>계획 반영</strong><small>WBS 추가 · 리스크 오너 지정</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>계획 반영</strong>
+      <span>WBS 추가 · 리스크 오너 지정</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>대책 실행</strong><small>비상예비비 투입 · 우회 대책</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>대책 실행</strong>
+      <span>비상예비비 투입 · 우회 대책</span>
+    </div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>사후 감시</strong><small>잔여 위험 · 2차 위험 통제</small></div>
+  <div class="itpe-pipeline-node">
+    <div class="itpe-step-detail">
+      <strong>사후 감시</strong>
+      <span>잔여 위험 · 2차 위험 통제</span>
+    </div>
+  </div>
 </div>
 
 ### 3. 핵심 통제
