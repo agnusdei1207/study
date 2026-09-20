@@ -1,214 +1,101 @@
 ---
 title: "화이트 레이블 마케팅(White Label Marketing)"
-author: "Antigravity"
-date: "2026-09-20T19:32:00+09:00"
-tags:
-  - "notes-it-strategy"
+author: "Codex"
+date: "2026-09-20T22:56:46+09:00"
+tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
-  model: "Gemini 3.8 Flash (High)"
   keyword_grade: "B"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
-
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 비즈니스 모델 및 플랫폼 전략을 거쳐 화이트 레이블 마케팅으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>비즈니스 모델·플랫폼 전략</span>
-  <strong>화이트 레이블 마케팅</strong>
-</div>
+<div class="itpe-topic-path" role="img" aria-label="사업모델에서 화이트 레이블 마케팅으로 이어지는 위치"><span>IT 전략·관리</span><span>사업모델·채널</span><strong>화이트 레이블 마케팅</strong></div>
 
 ## 큰 그림과 30초 인출
+- 본질: **화이트 레이블 마케팅(White Label Marketing)**은 공급자의 완성 제품·서비스를 판매자가 자기 브랜드로 제공하는 시장 진입 방식임
+- 메커니즘: 공급자 표준 제품 → 판매자 브랜드·가격·고객 접점 결합 → 최종 고객 판매 → 품질·수요 정보 환류
+- 산출: 브랜드 적용 제품 · 판매 계약 · 서비스 수준 합의 · 고객·운영 데이터
 
-- 본질: **화이트 레이블 마케팅(White Label Marketing)**은 원천 기업의 완제품·인프라에서 브랜드를 제거하고 도입 기업의 브랜드로 재포장하여 최종 고객에게 공급하는 **B2B2C** 유통 모델
-- 메커니즘: **Multi-tenant(다중 테넌트)** 클라우드 백엔드와 **Headless(헤드리스)** API를 통해 UI/UX 및 **CNAME(Canonical Name)** 도메인을 분리 결합
-- 산출: 멀티테넌트 코어 인프라 · OpenAPI 명세서 · 커스텀 도메인 매핑 · 리브랜딩 포털
+<div class="itpe-pipeline is-vertical" role="img" aria-label="화이트 레이블 전달 흐름"><div class="itpe-pipeline-node"><strong>원천 공급자</strong><div class="itpe-step-detail"><strong>역할</strong><span>제품·플랫폼·운영 지원</span></div><div class="itpe-step-detail"><strong>산출</strong><span>표준 제품·연계 규격</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node is-current"><strong>브랜드 사업자</strong><div class="itpe-step-detail"><strong>역할</strong><span>브랜드·가격·채널·고객 경험 구성</span></div><div class="itpe-step-detail"><strong>산출</strong><span>자사 브랜드 상품·고객 계약</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>최종 고객</strong><div class="itpe-step-detail"><strong>역할</strong><span>구매·이용·문의</span></div><div class="itpe-step-detail"><strong>환류</strong><span>수요·품질·장애 데이터</span></div></div></div>
 
-<div class="itpe-flow-map" role="img" aria-label="화이트 레이블 마케팅 서비스 전달 구조">
-  <div class="itpe-flow-node">
-    <strong>원천 기술 기업 (Core Provider)</strong>
-    <small>코어 엔진 · 멀티테넌트 SaaS 인프라 · Headless API</small>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>OpenAPI · 화이트 레이블 라이선스</small></div>
-  <div class="itpe-flow-node is-current">
-    <strong>리브랜딩 및 서비스 계층 (Rebrander)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>브랜딩</strong><span><span class="itpe-keyword"><strong>CNAME</strong></span> 도메인 · 동적 CSS 테마 · 로고 인젝션</span></div>
-      <div class="itpe-flow-branch"><strong>격리</strong><span>테넌트별 데이터베이스 파티셔닝 · 암호화 키 분리</span></div>
-      <div class="itpe-flow-branch"><strong>부가기능</strong><span>Webhook 연계 독자 비즈니스 로직 결합</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>도입사 완제품 형태로 제공</small></div>
-  <div class="itpe-flow-node">
-    <strong>최종 사용자 (End User)</strong>
-    <small>원천사 인지 없이 도입 기업의 단일 서비스 경험</small>
-  </div>
-</div>
+<details><summary>핵심 용어</summary>
 
-<details>
-<summary>핵심 용어</summary>
-
-- **White Label**: 원천 제품의 제조사 표식을 제거하여 구매 기업이 자사 상표를 부착할 수 있도록 만든 상태
-- **B2B2C(Business-to-Business-to-Consumer)**: 기업 간 거래(B2B)를 기반으로 최종 소비자(B2C)에게 서비스를 제공하는 비즈니스 구조
-- **Multi-tenant**: 단일 소프트웨어 인스턴스로 복수의 고객사(테넌트) 데이터를 물리적·논리적으로 격리 운영하는 아키텍처
-- **Headless**: 프론트엔드 표현 계층(Head)과 백엔드 비즈니스 로직(Body)을 API로 완전 분리한 구조
-- **CNAME(Canonical Name)**: DNS에서 도메인 별칭을 지정하여 원천 솔루션 도메인을 도입사 고유 도메인으로 매핑하는 레코드
-- **PB(Private Brand / Private Label)**: 유통업체가 독점적으로 기획하여 제조업체에 주문 생산하는 자체 브랜드
-- **OEM(Original Equipment Manufacturer)**: 발주 기업의 설계 도면에 따라 완제품을 수탁 생산하여 공급하는 방식
-
+- **White Label**: 판매자의 브랜드로 제공할 수 있는 공급자 제품·서비스 형태
+- **B2B2C(Business-to-Business-to-Consumer)**: 화이트 레이블을 적용할 수 있는 전달 구조 중 하나로, 공급자와 판매자의 기업 간 거래를 거쳐 최종 소비자에게 도달하는 방식
+- **SLA(Service Level Agreement)**: 서비스 수준·측정·책임의 합의
+- **API(Application Programming Interface)**: 판매자 채널과 공급자 기능의 연결 규격
 </details>
 
 ## 예상문제
+> 화이트 레이블 마케팅의 개념과 사업 구조를 설명하고, 자체 개발·OEM과 비교한 후 도입 위험과 통제 대책을 제시하시오.
 
-> 최근 BaaS(Banking as a Service) 및 플랫폼 비즈니스에서 신속한 시장 진입을 위해 활용되는 화이트 레이블 마케팅(White Label Marketing)의 개념과 기술적 구현 아키텍처(멀티테넌시, 헤드리스)를 설명하고, Private Label 및 OEM과의 차이점, 실무 적용 시 벤더 락인 방지 대책을 제시하시오. (25점)
+## Ⅰ. 시장 진입 시간을 줄이는 화이트 레이블
+> 생산 역량을 빌리되 시장 책임은 판매자 브랜드가 지며, 성패는 브랜드 통제권과 공급 의존 위험의 균형으로 판정함.
+- 정의: 공급자의 완성 제품·서비스에 판매자 브랜드를 적용해 시장에 제공하는 브랜드·유통 방식
+- 목적: 제품 개발 부담 축소 · 출시 기간 단축 · 판매 채널 확장
 
-## Ⅰ. 신속한 시장 진입을 위한 화이트 레이블 마케팅의 개요
+## Ⅱ. 역할·계약·데이터 운영 구조
+> 책임 경계·서비스 수준·데이터 권리를 계약과 연계 구조에 함께 고정해야 함.
 
-> 화이트 레이블 마케팅은 원천 인프라를 **Headless** 기반으로 추상화하여 **Time-to-Market**을 단축하며, 성패는 단순 재판매가 아닌 **독자 브랜드 경험 통제권**과 **데이터 주권 확보**로 판정함.
+| 주체 | 책임 | 통제 |
+|---|---|---|
+| 공급자 | 제품 개발 · 가용성 · 장애 복구 | **SLA** · 변경 통지 · 지원 종료 조건 |
+| 브랜드 사업자 | 가격 · 마케팅 · 고객 응대 | 브랜드 지침 · 민원 이관 · 품질 모니터링 |
+| 공동 | 연계 · 정산 · 데이터 처리 | **API** 버전 · 접근권한 · 감사로그 |
 
-- 정의: 전문 개발사가 구축한 소프트웨어·인프라의 고유 상표를 제거하고, 도입 기업이 자사 상표를 부착(**Rebranding**)하여 최종 사용자에게 공급하는 **B2B2C 기술 유통 전략**
-- 목적: 초기 R&D 비용 절감, Time-to-Market 극소화 및 독자 브랜드 자산 축적
+## Ⅲ. 대안 비교
+> 선택 기준은 브랜드 표시가 아니라 설계 통제권·시장 진입 시간·공급자 교체 가능성임.
 
-## Ⅱ. 화이트 레이블 서비스 구성체계 및 4계층 아키텍처
-
-> 백엔드 코어 연산과 프론트엔드 표현 계층을 분리하고 동적 테마 인젝션과 테넌트 격리를 보장해야 다수 도입사의 상용화 요구를 충족함.
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="화이트 레이블 4계층 아키텍처 파이프라인">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 코어 백엔드 계층 (Core Backend)</strong></span>
-    <div class="itpe-step-detail"><strong>원천 엔진</strong><span>MSA 비즈니스 로직, 대용량 트랜잭션 처리 및 테넌트 격리 DB</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 헤드리스 API 계층 (Headless API)</strong></span>
-    <div class="itpe-step-detail"><strong>디커플링</strong><span>OpenAPI 명세, GraphQL 엔드포인트 및 Webhook 비동기 이벤트</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 화이트 레이블 테마 계층 (Theming & Identity)</strong></span>
-    <div class="itpe-step-detail"><strong>브랜드 일체화</strong><span>CNAME DNS 매핑, 동적 CSS 변수 주입 및 멀티테넌트 SSL/TLS</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 고객 접점 채널 계층 (Channel & Experience)</strong></span>
-    <div class="itpe-step-detail"><strong>네이티브 UX</strong><span>반응형 웹 포털, 네이티브 모바일 앱 및 임베디드 SDK/위젯 제공</span></div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Multi-tenancy</strong></span> · 데이터 논리 격리(Schema-per-tenant) 및 전송 구간 종단간 암호화(E2EE) 필수 통제</div>
-
-## Ⅲ. 화이트 레이블 vs 프라이빗 레이블(PB) vs OEM 비교
-
-> 화이트 레이블은 비독점 범용 제품의 브랜드 교체이며, PB는 단일 유통사 독점 스펙 커스텀이고, OEM은 설계 도면 기반 위탁 생산임.
-
-| 비교 항목 | 화이트 레이블 (White Label) | 프라이빗 레이블 (Private Label / PB) | OEM (주문자 상표 부착 생산) |
+| 기준 | 화이트 레이블 | 자체 개발 | OEM |
 |---|---|---|---|
-| **기본 정의** | 기성 완제품을 복수 기업에 공급 후 각자 리브랜딩 | 단일 유통사를 위해 독점 스펙으로 맞춤 제작 공급 | 발주사의 설계 도면에 따라 생산 시설에서 위탁 제조 |
-| **공급 성격** | **비독점적 다수 공급** (Open to Multi-clients) | **단일사 독점 공급** (Exclusive Contract) | 수탁 생산 계약 (Contract Manufacturing) |
-| **스펙 변경권** | UI/테마 등 겉면 브랜딩 및 설정 수준에 한정 | 유통사 요구에 맞춘 제품 원료·기능 일부 커스텀 | 발주사 설계 도면 100% 일치 준수 |
-| **IT 구현체** | BaaS 핀테크, 화이트 레이블 SaaS 툴 | 대형 유통 플랫폼 전용 PB 소프트웨어 | 하드웨어 전자기기, 서버 위탁 조립 생산 |
-| **시장 진입 속도** | **즉시 출시 가능** (Time-to-Market 최단) | 중간 (독점 사양 협의 및 검증 기간 소요) | 느림 (설계 검증 및 시운전 기간 필요) |
+| 통제권 | 브랜드·채널 중심 | 제품 설계·운영 전반 | 주문자 사양·검수 중심 |
+| 진입 | 기존 제품 활용 | 개발·검증 선행 | 설계·생산 협의 선행 |
+| 위험 | 공급자 종속 · 품질 전이 | 개발비 · 일정 지연 | 생산 품질 · 납기 의존 |
 
-## Ⅳ. 화이트 레이블 실무 도입 시 위험 요인 및 기술사적 대책
-
-> 원천 공급사에 대한 의존성이 전면적인 비즈니스 마비로 전이되지 않도록 서킷 브레이커와 데이터 격리 거버넌스를 선제 수립해야 함.
+## Ⅳ. 위험과 통제
+> 공급자 장애·보안 사고도 판매자의 평판 손실로 귀결됨.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **원천사 장애 전이** | **서킷 브레이커(Circuit Breaker)** 연동 및 멀티 리전 핫스탠바이 | 장애 발생 시 3초 이내 자동 차단 및 캐시 응답 전환 |
-| **제품 동질화 한계** | **Webhook** 기반 자사 독자 부가 로직 결합 및 특화 번들링 | 도입사 고유 차별화 서비스 기능 확보 및 경쟁력 강화 |
-| **데이터 주권 상실** | **데이터 암호화 키(BYOK)** 도입 및 실시간 CDC 데이터 동기화 | 고객 식별정보 원천 공급사 평문 노출 제로화 |
-| **상업적 락인(Lock-in)** | 오픈 API 기반 인터페이스 표준화 및 대체 백엔드 어댑터 적용 | 공급사 교체 리드타임 단축 및 협상 교섭력 확보 |
+| 공급자 종속 | 데이터 반출 형식 · 전환 지원 · 종료 절차 명시 | 교체 가능성 확보 |
+| 품질 편차 | SLA 지표 · 장애 등급 · 시정 절차 합의 | 품질 일관성 확보 |
+| 데이터 책임 불명확 | 처리 목적 · 접근권한 · 보유·파기 통제 | 책임 추적성 확보 |
+| 제품 동질화 | 고객 여정 · 부가 서비스 · 채널 차별화 | 브랜드 가치 확보 |
 
-## Ⅴ. 기술 자립과 데이터 주권 확보를 위한 기술사적 제언
-
-> 무분별한 래핑(Wrapping)에 머무르면 수수료 종속과 데이터 유출로 귀결되므로, 프록시 계층의 데이터 마스킹과 대체 모델 스위칭 역량이 필수적임.
+## Ⅴ. 교체 가능성을 내장하는 제언
+> 경제성은 공급자를 계속 쓸 때가 아니라 바꿀 수 있을 때 지속됨.
 
 ### 학습자 통찰 메모 — 답안 밖
-
-- [핵심 통찰]: 최근 생성형 AI 래퍼(Wrapper)나 BaaS 플랫폼에서 화이트 레이블은 필수지만, 본질은 단순 외피 포장이 아닌 프록시 통제권에 있음. 원천 벤더가 다운되거나 약관을 변경해도 비즈니스가 유지되려면 데이터 격리와 인터페이스 추상화가 답안의 승부처임.
-- 나라면: 자사 도메인 프록시 게이트웨이를 전면에 배치하여 고객 식별 정보를 실시간 비식별화(Masking)하고, 원천사 장애 시 오픈소스 대체 엔진으로 트래픽을 자동 라우팅하는 Failover 아키텍처를 제시하겠음.
+- `[핵심 통찰]`: 고객에게 보이는 브랜드와 생산 주체가 다르므로 계약상 책임과 기술상 의존성을 함께 설계해야 함.
+- `나라면`: 계약 전에 데이터 반출과 대체 공급자 전환을 시험하겠음.
 
 ### 실전 답안용 기술사적 제언
+- 판정: 데이터·연계·운영지식의 이동 가능성
+- 대안: 표준 반출 형식 · API 버전 정책 · 전환 지원 조항
+- 검증: 종료 모의훈련의 데이터 복원·채널 전환 성공
+- 효과: 공급 중단·협상력 약화 위험 완화
 
-- 판정: 원천 기술 공급사 종속을 탈피하고 독자적 고객 데이터 주권 확립
-- 대안: **보안 프록시 게이트웨이** 전진 배치 및 **Zero Retention** 계약 체결
-- 검증: 엔드유저 프롬프트·개인식별정보(PII) 마스킹 검증률 100%
-- 효과: 벤더 종속 배제 · 서비스 중단 없는 고가용성 멀티벤더 운영
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="화이트 레이블 데이터 주권 확보 및 기술 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>취약점</strong><span>원천 솔루션 단일 종속, 고객 데이터 평문 전송 및 벤더 장애 연쇄 전이</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>데이터 주권</strong><span>자사 API 프록시 게이트웨이, BYOK 암호화 및 Zero Retention 계약 체결</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>목표 지표</strong><span>PII 마스킹 100% 검증 및 서킷 브레이커 트립 후 대체 백엔드 우회 실측</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>가치 창출</strong><span>데이터 주권 보호, 벤더 락인 방지 및 24x7 서비스 상시 가용성 확보</span></div>
-  </div>
-</div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="공급자 종속 완화 흐름"><div class="itpe-pipeline-node"><strong>현행 한계</strong><div class="itpe-step-detail"><strong>문제</strong><span>전용 형식·연계·운영지식 종속</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>전환 설계</strong><div class="itpe-step-detail"><strong>대안</strong><span>표준 반출·API 정책·전환 지원 계약</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>종료 모의훈련</strong><div class="itpe-step-detail"><strong>판정</strong><span>데이터 복원·대체 채널 전환 성공</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>지속 가능한 소싱</strong><div class="itpe-step-detail"><strong>효과</strong><span>사업 연속성·협상력 확보</span></div></div></div>
 
 ## 1교시 10점 답안 발췌
-
-### 1. 정의·목적
-
-- 정의: 원천 기술 기업이 개발한 완성형 소프트웨어·플랫폼에서 상표를 제거하고, 도입 기업의 브랜드를 부착(**Rebranding**)하여 판매하는 **B2B2C(Business-to-Business-to-Consumer)** 유통 모델
-- 목적: Time-to-Market 극소화, 초기 R&D 비용 절감 및 독자 브랜드 통제권 확보
-
-### 2. 구성체계 및 방법론
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="화이트 레이블 플랫폼 전달 체계 요약">
-  <div class="itpe-pipeline-node">
-    <strong>코어 백엔드</strong>
-    <div class="itpe-step-detail"><strong>원천 엔진</strong><span>MSA 비즈니스 로직 및 멀티테넌트 인프라</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>헤드리스 API</strong>
-    <div class="itpe-step-detail"><strong>디커플링</strong><span>OpenAPI 명세 및 Webhook 비동기 이벤트</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>리브랜딩 테마</strong>
-    <div class="itpe-step-detail"><strong>외피 구성</strong><span>CNAME DNS 매핑 및 동적 CSS 테마 주입</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>최종 고객 채널</strong>
-    <div class="itpe-step-detail"><strong>네이티브 UX</strong><span>도입 기업 단일 브랜드 포털 및 모바일 앱</span></div>
-  </div>
-</div>
-
-### 3. 핵심 통제
-
-- **서킷 브레이커(Circuit Breaker)**: 원천 플랫폼 장애 시 트래픽 격리 및 대체 캐시 응답
-- **BYOK(Bring Your Own Key)**: 테넌트 암호화 키 분리로 원천 솔루션 벤더의 데이터 무단 접근 차단
+- 정의: **화이트 레이블 마케팅(White Label Marketing)**은 공급자의 완성 제품·서비스에 판매자 브랜드를 적용해 시장에 제공하는 브랜드·유통 방식임
+- 목적: 개발 부담 축소 · 출시 기간 단축 · 판매 채널 확장
+- 구조: 공급자 제품 → 판매자 브랜드·채널 → 최종 고객 → 품질·수요 데이터 환류
+- 적용: **B2B2C(Business-to-Business-to-Consumer)**는 가능한 전달 구조이며 화이트 레이블의 필수조건은 아님
+- 통제: **SLA(Service Level Agreement)** · 데이터 권리 · 전환 지원 조항으로 품질 전이와 공급자 종속을 관리함
+- 결론: 빠른 시장 진입의 대가로 낮아지는 설계 통제권을 교체 가능성으로 보완해야 함
 
 ## 출제 이력과 검증 출처
-
-- 제136회 정보관리기술사 1교시: 화이트 레이블 마케팅(White Label Marketing)
-- Gartner, [Research on Composable Commerce and Headless Architecture](https://www.gartner.com)
+- 제136회 정보관리기술사 1교시 1번: “화이트 레이블 마케팅(White Label Marketing)”
 
 ## 학습 체크
-
-- [ ] 화이트 레이블 마케팅의 정의와 B2B2C 구조적 이점을 설명할 수 있는가?
-- [ ] 멀티테넌시(Multi-Tenancy)와 헤드리스(Headless) API의 기술적 역할을 기술할 수 있는가?
-- [ ] 화이트 레이블, 프라이빗 레이블(PB), OEM의 차이점을 비교축으로 대조할 수 있는가?
-- [ ] 벤더 락인 방지와 데이터 주권 확보를 위한 아키텍처적 통제 방안을 제시할 수 있는가?
+- [ ] Ⅰ: 공급자·판매자·최종 고객 관계로 정의할 수 있는가?
+- [ ] Ⅱ: 세 주체의 책임과 SLA·API·데이터 통제를 연결할 수 있는가?
+- [ ] Ⅲ: 자체 개발·OEM과 통제권·진입·위험 3축으로 비교할 수 있는가?
+- [ ] Ⅳ~Ⅴ: 위험 4개와 대책·효과를 1:1로 제시할 수 있는가?
 
 ## 연결 토픽
-
-- 이전 토픽: [협상에 의한 계약 제안서평가 세부기준](./066_negotiated_contract_proposal_evaluation.md)
-- 연관 토픽: [디지털 트랜스포메이션](./020_digital_transformation.md), [IT 아웃소싱](./033_it_outsourcing.md), [가치사슬](./072_value_chain.md)
-- 다음 토픽: [ERP](./068_erp.md)
+- [IT 아웃소싱](./033_it_outsourcing.md) · [SLA](./006_sla.md) · [기술 주권](./058_technology_sovereignty.md)
