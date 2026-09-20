@@ -1,7 +1,7 @@
 ---
 title: "프로세스 동기화 기법(뮤텍스·세마포어·모니터)"
 author: "Codex"
-date: "2026-09-20T19:53:07+09:00"
+date: "2026-09-20T20:02:55+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
@@ -11,7 +11,7 @@ extra:
   keyword_grade: "A"
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 19:53 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:02 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -23,12 +23,19 @@ extra:
 - 메커니즘: 뮤텍스는 소유권 Lock, 세마포어는 허가증 카운터, 모니터는 공유상태·프로시저·조건변수 캡슐화를 제공함
 - 산출: Race Condition을 차단하지만 잘못된 획득 순서·반환 누락·조건 재검사 누락은 교착·기아를 만듦
 
-<div class="itpe-flow itpe-flow--vertical" aria-label="동기화 기법 선택 구조">
-  <div class="itpe-flow__node"><strong>뮤텍스</strong><small><b>통제:</b> 소유권 Lock으로 단일 임계구역 보호</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>세마포어</strong><small><b>통제:</b> 원자적 P/V와 카운터로 N개 자원·신호 관리</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>모니터</strong><small><b>통제:</b> 자동 상호배제와 Condition Variable로 상태 불변식 캡슐화</small></div>
+<div class="itpe-flow-map" role="img" aria-label="보호 대상에 따른 3대 동기화 기법 병렬 선택">
+  <div class="itpe-flow-node"><strong>공유상태 동시 접근</strong><small>입력: 소유권 · 허용 수량 · 조건 복잡성</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <strong>동기화 대안 선택</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>뮤텍스</strong><span>판정: 소유권 Lock · 단일 임계구역</span></div>
+      <div class="itpe-flow-branch"><strong>세마포어</strong><span>판정: P/V 카운터 · N개 자원·신호</span></div>
+      <div class="itpe-flow-branch"><strong>모니터</strong><span>판정: 자동 상호배제 · 조건변수·복합 불변식</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>공유상태 불변식</strong><small>출력: Race Condition 차단 · 실행 순서 조정</small></div>
 </div>
 
 <details>
@@ -65,12 +72,17 @@ extra:
 
 > 뮤텍스는 소유권, 세마포어는 허가증, 모니터는 조건이 포함된 상태를 통제하며 각 Wakeup 뒤의 재검증 방식이 정확성을 좌우함.
 
-<div class="itpe-flow itpe-flow--vertical" aria-label="동기화 기법 동작">
-  <div class="itpe-flow__node"><strong>Mutex Lock</strong><small><b>활동:</b> 원자적 Lock 획득 · 소유자 기록</small><small><b>산출:</b> 단일 실행 흐름의 임계구역 진입</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>Semaphore P/V</strong><small><b>활동:</b> <span class="itpe-keyword"><strong>wait(P)</strong></span>로 감소·대기, <span class="itpe-keyword"><strong>signal(V)</strong></span>로 반환·Wakeup</small><small><b>산출:</b> 1개 또는 N개 동시 접근·신호</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>Monitor Condition</strong><small><b>활동:</b> 조건 불충족 시 wait로 Lock 반납 · signal 후 while 재검사</small><small><b>산출:</b> 캡슐화된 공유상태 불변식</small></div>
+<div class="itpe-flow-map" role="img" aria-label="동기화 기법별 병렬 동작">
+  <div class="itpe-flow-node"><strong>동기화 요청</strong><small>입력: 임계구역 · 자원 수 · 상태 조건</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>기법별 원자 동작</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>Mutex Lock</strong><span>활동: Lock 획득·소유자 기록 → 단일 진입</span></div>
+      <div class="itpe-flow-branch"><strong>Semaphore P/V</strong><span>활동: wait 감소·대기, signal 반환·Wakeup → N개 접근</span></div>
+      <div class="itpe-flow-branch"><strong>Monitor Condition</strong><span>활동: wait 반납·대기, signal 후 while 재검사 → 불변식</span></div>
+    </div>
+  </div>
 </div>
 
 - 구현 선택: 대기가 매우 짧으면 Spin, 길면 Block이 유리하므로 임계구역 길이와 Context Switch 비용으로 판단
@@ -139,6 +151,19 @@ extra:
 
 - 정의: **Mutex**, **Semaphore**, **Monitor**로 임계구역 진입과 조건 대기를 조정해 공유상태 변경의 원자성을 보장하는 동시성 제어 기법
 - 목적: **Race Condition** 차단과 실행 순서 조정 → 공유상태 불변식 유지
+
+<div class="itpe-flow-map" role="img" aria-label="프로세스 동기화 1교시 핵심 선택 그림">
+  <div class="itpe-flow-node"><strong>보호 대상 판정</strong><small>입력: 소유권 · 허용 수량 · 조건 복잡성</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <strong>3대 동기화 대안</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>Mutex</strong><span>통제: 소유자만 Unlock</span></div>
+      <div class="itpe-flow-branch"><strong>Semaphore</strong><span>통제: P/V 허가증 1개·N개</span></div>
+      <div class="itpe-flow-branch"><strong>Monitor</strong><span>통제: 상태·프로시저·조건변수 캡슐화</span></div>
+    </div>
+  </div>
+</div>
 
 | 축 | 뮤텍스 | 세마포어 | 모니터 |
 |---|---|---|---|

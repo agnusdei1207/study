@@ -1,7 +1,7 @@
 ---
 title: "은행가 알고리즘(Banker's Algorithm)"
 author: "Codex"
-date: "2026-09-20T20:01:14+09:00"
+date: "2026-09-20T20:02:55+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
@@ -11,7 +11,7 @@ extra:
   keyword_grade: "A"
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:01 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:02 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 

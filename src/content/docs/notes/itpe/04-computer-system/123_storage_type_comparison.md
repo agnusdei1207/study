@@ -1,7 +1,7 @@
 ---
 title: "스토리지 유형 비교(블록·파일·오브젝트)"
 author: "Codex"
-date: "2026-09-20T19:55:42+09:00"
+date: "2026-09-20T20:02:55+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
@@ -11,7 +11,7 @@ extra:
   keyword_grade: "A"
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 19:55 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:02 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -23,12 +23,19 @@ extra:
 - 메커니즘: 블록은 상위 파일시스템이 의미를 부여하고, 파일은 계층 Namespace를 제공하며, 오브젝트는 Data·Metadata·ID를 API로 다룸
 - 산출: DB·VM은 블록, 공유 작업은 파일, 대규모 비정형·보관은 오브젝트가 기본이며 실제 선택은 지연·공유·갱신·확장 조건으로 판정함
 
-<div class="itpe-flow itpe-flow--vertical" aria-label="스토리지 유형별 접근 구조">
-  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>Block Storage</strong></span><small><b>접근:</b> Volume · LUN · Block Address</small><small><b>산출:</b> 파일시스템·DB가 해석하는 Raw Block</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↕</div>
-  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>File Storage</strong></span><small><b>접근:</b> Directory Path · File Protocol</small><small><b>산출:</b> 계층형 공유 파일</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↕</div>
-  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>Object Storage</strong></span><small><b>접근:</b> Bucket · Key · Object API</small><small><b>산출:</b> Data + Metadata + ID 객체</small></div>
+<div class="itpe-flow-map" role="img" aria-label="워크로드 요구에 따른 스토리지 3대 유형 병렬 선택">
+  <div class="itpe-flow-node"><strong>데이터 접근 요구</strong><small>입력: 지연 · 공유 · 갱신 · 확장</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <strong>스토리지 대안 선택</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>Block</strong><span>판정: LUN·Block Address · 저지연 임의 I/O</span></div>
+      <div class="itpe-flow-branch"><strong>File</strong><span>판정: Directory Path · 계층 공유·POSIX</span></div>
+      <div class="itpe-flow-branch"><strong>Object</strong><span>판정: Bucket·Key · 대량 비정형 확장</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>업무별 저장 계층</strong><small>출력: DB·VM · 공동 작업 · Data Lake</small></div>
 </div>
 
 <details>
@@ -63,12 +70,17 @@ extra:
 
 > 블록에서 오브젝트로 갈수록 저장 서비스가 더 많은 데이터 의미를 맡지만, 세밀한 In-place Update와 POSIX 호환성은 줄어듦.
 
-<div class="itpe-flow itpe-flow--vertical" aria-label="스토리지 접근별 처리 흐름">
-  <div class="itpe-flow__node"><strong>블록 경로</strong><small><b>활동:</b> 호스트가 LUN의 Block Address 읽기·쓰기</small><small><b>산출:</b> DB·파일시스템이 관리하는 블록 상태</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>파일 경로</strong><small><b>활동:</b> 경로 탐색 · 권한 확인 · Byte Range 접근</small><small><b>산출:</b> 공유 File과 Directory Metadata</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>오브젝트 경로</strong><small><b>활동:</b> API로 Key 지정 · 객체 PUT/GET</small><small><b>산출:</b> 객체 단위 Data·Metadata·Version</small></div>
+<div class="itpe-flow-map" role="img" aria-label="공통 애플리케이션에서 3대 스토리지 접근 구조로의 분기">
+  <div class="itpe-flow-node"><strong>애플리케이션 I/O</strong><small>입력: 데이터와 접근 연산</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>접근 인터페이스 분기</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>Block 경로</strong><span>처리: LBA 읽기·쓰기 → DB·파일시스템 상태</span></div>
+      <div class="itpe-flow-branch"><strong>File 경로</strong><span>처리: Path·권한·Byte Range → 공유 File</span></div>
+      <div class="itpe-flow-branch"><strong>Object 경로</strong><span>처리: Key·PUT/GET → Data·Metadata·Version</span></div>
+    </div>
+  </div>
 </div>
 
 - 보호 방식: 복제·Snapshot·RAID·삭제 코딩·Versioning은 구현 선택이므로 어느 유형의 절대 속성으로 단정하지 않음
@@ -145,6 +157,19 @@ extra:
 
 - 정의: 데이터를 **Block Address**, **File Path**, **Object Key**라는 논리 단위와 인터페이스로 제공하는 스토리지 유형
 - 목적: 지연·공유·확장·갱신 요구에 맞는 접근 의미 선택 → 성능과 운영 복잡성 균형
+
+<div class="itpe-flow-map" role="img" aria-label="스토리지 유형 비교 1교시 핵심 선택 그림">
+  <div class="itpe-flow-node"><strong>워크로드 판정</strong><small>입력: 지연 · 공유 · 갱신 · 확장</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <strong>3대 스토리지 대안</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>Block</strong><span>접근: LUN·Block Address</span></div>
+      <div class="itpe-flow-branch"><strong>File</strong><span>접근: Directory Path·NFS/SMB</span></div>
+      <div class="itpe-flow-branch"><strong>Object</strong><span>접근: Bucket·Key·API</span></div>
+    </div>
+  </div>
+</div>
 
 | 유형 | 구조 | 강점 | 업무 |
 |---|---|---|---|
