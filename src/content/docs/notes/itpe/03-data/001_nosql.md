@@ -1,5 +1,7 @@
 ---
 title: "NoSQL"
+author: "Codex"
+date: "2026-09-20T19:29:12+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,28 +27,38 @@ extra:
 - 절차: `업무·SLA 분석 → Access Pattern 정의 → 데이터 모델 선택 → Partition/Replica 설계 → 부하·정합성 검증`
 
 <div class="itpe-flow-map" role="img" aria-label="질의 특성에 따른 RDBMS와 NoSQL 모델 분기 흐름">
-  <div class="itpe-flow-node"><strong>업무 데이터·질의 특성</strong></div>
+  <div class="itpe-flow-node"><strong>업무 데이터·질의 특성</strong><small>입력: 질의 빈도 · 지연 허용치 · 정합성 수준</small></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>저장 모델 분기</strong>
     <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>RDBMS</strong><span>엄격한 ACID · 복잡 조인 · 정규화 원장</span></div>
-      <div class="itpe-flow-branch"><strong>NoSQL</strong><span>BASE 기반 · Query-First 모델링 · 수평 확장</span></div>
+      <div class="itpe-flow-branch"><strong>RDBMS</strong><span>판정: 엄격한 ACID · 복잡 조인 · 정규화 원장</span></div>
+      <div class="itpe-flow-branch"><strong>NoSQL</strong><span>판정: BASE 기반 · Query-First 모델링 · 수평 확장</span></div>
     </div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
     <strong>NoSQL 4대 저장 구조</strong>
     <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>KV</strong><span>Key-Value 고속 단건 조회 (세션·캐시)</span></div>
-      <div class="itpe-flow-branch"><strong>Doc</strong><span>JSON/BSON 계층 문서 저장 (카탈로그)</span></div>
-      <div class="itpe-flow-branch"><strong>Column</strong><span>Row Key별 동적 열군 (시계열·로그)</span></div>
-      <div class="itpe-flow-branch"><strong>Graph</strong><span>Node-Edge-Property 관계 순회 (추천·이상탐지)</span></div>
+      <div class="itpe-flow-branch"><strong>KV</strong><span>처리: Key-Value 고속 단건 조회 · 세션·캐시</span></div>
+      <div class="itpe-flow-branch"><strong>Doc</strong><span>처리: JSON/BSON 계층 문서 저장 · 카탈로그</span></div>
+      <div class="itpe-flow-branch"><strong>Column</strong><span>처리: Row Key별 동적 열군 · 시계열·로그</span></div>
+      <div class="itpe-flow-branch"><strong>Graph</strong><span>처리: Node-Edge-Property 관계 순회 · 추천·이상탐지</span></div>
     </div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>Scale-Out 분산 서비스</strong></div>
+  <div class="itpe-flow-node"><strong>Scale-Out 분산 서비스</strong><small>출력: 워크로드별 저장소와 일관성 정책</small></div>
 </div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- `NoSQL(Not Only SQL)`: 관계형 단일 모델 대신 질의 목적에 맞는 분산 저장 구조를 선택하는 데이터베이스 계열
+- `BASE(Basically Available, Soft state, Eventual consistency)`: 분할 상황에서 가용성을 우선하고 복제본의 수렴을 관리하는 일관성 관점
+- `Query-First`: 엔터티 관계보다 실제 접근 패턴을 먼저 고정하여 파티션과 집계 경계를 설계하는 방식
+- `Polyglot Persistence`: 원장·세션·문서·관계 탐색을 각기 적합한 저장소에 배치하는 아키텍처 원칙
+
+</details>
 
 ## 예상문제
 
@@ -60,15 +73,14 @@ extra:
 
 ## Ⅰ. 대규모 분산 환경의 목적형 데이터베이스, NoSQL의 개요
 
-> **한줄 요약:** NoSQL은 관계형 모델의 스키마 제약과 조인 병목을 해소하기 위해 질의 중심 분산 저장을 지원하는 데이터베이스 체계임.
+> NoSQL은 관계형 모델의 스키마 제약과 조인 병목을 해소하기 위해 질의 중심 분산 저장을 지원하며, 성패는 저장 모델보다 접근 패턴과 일관성 요구의 일치로 판정함.
 
-- 정의: Key-Value, Document, Column Family, Graph 등의 유연한 데이터 모델을 채택하고, BASE 철학과 샤딩을 통해 Scale-Out 확장을 달성하는 비관계형 DBMS
-- 등장 배경: 대규모 트래픽 환경에서 단일 RDBMS의 수직적 확장(Scale-Up) 한계, 스키마 마이그레이션 다운타임, 다중 테이블 조인에 따른 I/O 병목 돌파 필요
-- 핵심 가치: 사전 스키마 정의 없이 유연한 데이터 수용, 파티션 분할을 통한 선형적 처리량 증가, 분산 복제를 통한 고가용성 보장
+- 정의: **NoSQL(Not Only SQL)**은 **Query-First 모델링**과 **수평 분할**로 목적형 데이터 모델을 분산 배치하는 비관계형 DBMS
+- 목적: **Scale-Out** 처리량과 **가용성** 확보 → 대규모·가변 워크로드의 지연 통제
 
 ## Ⅱ. NoSQL의 4대 핵심 특징 및 메커니즘
 
-> **한줄 요약:** 유연한 스키마, 수평 분산, 비정규화 조인 제거, BASE 기반 일관성 조절로 성능을 극대화함.
+> 유연한 스키마·수평 분산·비정규화는 조인 비용을 제거하지만 중복과 정합성 비용을 애플리케이션으로 이동시키므로 Aggregate 경계가 성패를 가름함.
 
 | 특징 | 동작 원리 | 실무적 기여 |
 |---|---|---|
@@ -79,16 +91,16 @@ extra:
 
 ## Ⅲ. 질의 목적에 따른 NoSQL 4대 저장 유형
 
-> **한줄 요약:** 질의 패턴이 단건, 계층 문서, 동적 열군, 다단계 관계 순회인지에 따라 최적 모델을 선택함.
+> 질의 패턴이 단건·계층 문서·동적 열군·다단계 관계 순회 중 무엇인지가 모델 선택 기준이며, 제품 선호보다 주 접근 경로를 먼저 검증해야 함.
 
 <div class="itpe-pipeline" role="img" aria-label="NoSQL 4대 데이터 모델 구조">
-  <div class="itpe-pipeline-node"><strong>Key-Value</strong><small>Key ─▶ Value</small></div>
+  <div class="itpe-pipeline-node"><strong>Key-Value</strong><small>처리: Key로 Value 단건 조회</small></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>Document</strong><small>ID ─▶ {JSON/BSON}</small></div>
+  <div class="itpe-pipeline-node"><strong>Document</strong><small>처리: ID로 JSON/BSON 문서 조회</small></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>Column Family</strong><small>Row Key ─▶ [Col Families]</small></div>
+  <div class="itpe-pipeline-node"><strong>Column Family</strong><small>처리: Row Key로 열군 범위 조회</small></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>Graph</strong><small>Node ─[Edge]─▶ Node</small></div>
+  <div class="itpe-pipeline-node"><strong>Graph</strong><small>처리: Edge를 따라 Node 관계 순회</small></div>
 </div>
 
 | 유형 | 데이터 저장 구조 | 적합 질의 패턴 | 대표 적용 분야 | 설계 핵심 요건 |
@@ -100,7 +112,7 @@ extra:
 
 ## Ⅳ. NoSQL Query-First 모델링 5단계 절차
 
-> **한줄 요약:** 데이터 관계가 아닌 애플리케이션의 접근 패턴(Access Pattern)을 먼저 도출하여 역방향으로 저장 구조를 설계함.
+> 데이터 관계보다 애플리케이션의 Access Pattern을 먼저 고정하며, 각 단계의 산출물이 다음 단계의 파티션·복제 결정을 추적 가능하게 해야 함.
 
 | 단계 | 활동 내용 | 핵심 산출물 |
 |---|---|---|
@@ -112,7 +124,7 @@ extra:
 
 ## Ⅴ. RDBMS vs NoSQL 비교 및 Polyglot Persistence
 
-> **한줄 요약:** 금융 원장은 RDBMS의 ACID로, 대규모 사용자 트래픽은 NoSQL의 확장성으로 수용하는 상호보완적 공존 구조를 취함.
+> 금융 원장은 RDBMS의 ACID로, 대규모 사용자 트래픽은 NoSQL의 확장성으로 수용하되 도메인 간 정합성 경계를 명시해야 공존 구조가 안정됨.
 
 | 비교 기준 | RDBMS | NoSQL |
 |---|---|---|
@@ -135,7 +147,7 @@ extra:
 
 ## Ⅵ. 실무 고려사항 및 장애 대책
 
-> **한줄 요약:** 핫 파티션, 복제 지연, 비정규화 데이터 불일치를 파티션 키 설계와 CDC 기반 동기화로 방어함.
+> 핫 파티션·복제 지연·비정규화 불일치는 각각 키 분포·수렴 지연·중복 갱신에서 발생하므로 원인별 통제가 필요함.
 
 - 적용 상황: 글로벌 이커머스 서비스의 초당 수만 건 트래픽 분산 처리
 
@@ -147,15 +159,33 @@ extra:
 
 ## Ⅶ. 결론 및 기술사적 제언
 
-> **한줄 요약:** NoSQL의 성공은 기술 도입이 아니라 데이터 도메인 경계별 일관성 요구수준에 맞춘 Polyglot 아키텍처 설계에 달려 있음.
+> NoSQL의 성공은 기술 도입이 아니라 데이터 도메인 경계별 일관성 요구수준에 맞춘 Polyglot 아키텍처와 실패 시 복구 경로에 달려 있음.
 
 - [핵심 통찰]: 모든 데이터를 NoSQL로 전환하려는 시도는 RDBMS의 강력한 트랜잭션 보장 능력을 포기하는 우를 범하며, 반대로 모든 워크로드를 RDBMS에 묶어두는 것은 클라우드 분산 확장의 이점을 차단함.
 - 나라면: 데이터 도메인의 오류 비용과 SLA를 기준으로 '원장·정산=RDBMS, 캐시·세션=Key-Value, 상품·주문내역=Document, 추천=Graph'로 역할을 분리하고, 도메인 간 정합성은 Kafka와 Debezium을 활용한 트랜잭셔널 아웃박스 패턴(Transactional Outbox Pattern)으로 묶어 시스템 복원력을 완성하겠음.
 
+### 실전 답안용 기술사적 제언
+
+- 판정: 데이터 모델보다 도메인별 정합성·지연·장애 허용 수준의 명시 여부가 성패를 가름함
+- 대안: 원장과 대규모 조회 영역을 분리하고 Outbox·CDC로 변경 이벤트를 연결함
+- 검증: 핫 키, 복제 지연, 재처리 중복을 장애 주입과 정합성 대조로 확인함
+- 효과: 저장소별 강점을 유지하면서 분산 불일치와 전면 전환 위험을 제한함
+
+<div class="itpe-flow-map" role="img" aria-label="NoSQL 도입 제언의 문제 대안 판정 효과 흐름">
+  <div class="itpe-flow-node"><strong>일괄 전환 위험</strong><small>문제: 원장 정합성과 접근 패턴의 혼재</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>Polyglot 배치</strong><small>대안: 도메인별 저장소 · Outbox · CDC</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>장애 주입 검증</strong><small>판정: 지연·중복·수렴이 허용 범위인지 확인</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>점진 확장</strong><small>효과: 원장 보존 · 병목 분리 · 복구 경로 확보</small></div>
+</div>
+
 ## 1교시 10점 답안 발췌
 
-### 1. 정의 및 핵심 개념
-- NoSQL은 유연한 스키마, 수평 확장성(Scale-Out), 고가용성을 목표로 Key-Value, Document, Column Family, Graph 등 목적형 비관계형 데이터 모델을 채택한 분산 데이터베이스 체계임.
+### 1. 정의 및 목적
+- 정의: **NoSQL(Not Only SQL)**은 **Query-First 모델링**과 **수평 분할**로 목적형 데이터 모델을 분산 배치하는 비관계형 DBMS
+- 목적: **Scale-Out** 처리량과 **가용성** 확보 → 대규모·가변 워크로드의 지연 통제
 
 ### 2. 핵심 메커니즘 / 체계
 ```text
@@ -165,19 +195,21 @@ SLA 정의 → Access Pattern → 모델 선정 → Partition/Replica → 부하
 ```
 - Query-First 모델링을 통해 조인을 배제하고, 접근 경로에 최적화된 비정규화 저장을 수행함.
 
-### 3. 차별화 제언
+### 3. 실무 제언
 - 원장성 데이터는 RDBMS의 ACID를 유지하고, 대규모 트랜래픽 영역에 NoSQL을 배치하는 Polyglot Persistence 및 CDC 기반 비동기 정합성 확보가 필수적임.
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제133회 정보관리기술사 기출, 제128·124·123회 KPC 모의고사
-- 검증 출처: 한국데이터산업진흥원(K-DATA) DMBOK 2.0, Apache Cassandra/MongoDB Architecture Documentation
+- 출제 이력: 제133회 1교시 3번 "NoSQL유형과 모델링 절차를 설명하시오."
+- 검증 출처: [MongoDB Data Modeling](https://www.mongodb.com/docs/manual/data-modeling/), [Apache Cassandra Architecture](https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html)
 
 ## 학습 체크
 
-- [ ] NoSQL의 4대 유형(Key-Value, Document, Column Family, Graph)의 구조와 질의 특성을 비교할 수 있는가?
-- [ ] Query-First 모델링 5단계 절차를 제시하고 RDBMS 모델링과의 차이를 설명할 수 있는가?
-- [ ] 핫 파티션 및 복제 지연에 대한 원인과 Quorum/CDC 기반 해결책을 제시할 수 있는가?
+- [ ] Ⅰ 개요: NoSQL의 정의와 목적을 Query-First·수평 분할·Scale-Out을 포함해 두 줄로 재현할 수 있는가?
+- [ ] Ⅲ 저장 유형: Key-Value·Document·Column Family·Graph를 주 질의 패턴으로 비교할 수 있는가?
+- [ ] Ⅳ 모델링: 5단계의 활동과 산출물을 한 쌍으로 연결할 수 있는가?
+- [ ] Ⅵ 장애 대책: 핫 파티션·복제 지연·중복 갱신의 원인과 통제를 대응시킬 수 있는가?
+- [ ] Ⅶ 제언: 저장소 분리부터 장애 주입 검증까지 판정·대안·효과 흐름을 그릴 수 있는가?
 
 ## 연결 토픽
 
