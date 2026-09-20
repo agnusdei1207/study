@@ -1,73 +1,201 @@
 ---
 title: "통합 테스트(Integration Test)"
-author: "Gemini 3.8 Flash"
-date: "2026-09-20T10:37:00+09:00"
+category: "02-software-engineering"
 tags:
-  - "notes-software-engineering"
-extra:
-  model: "Gemini 3.8 Flash"
-
+  - "통합테스트"
+  - "하향식통합"
+  - "상향식통합"
+  - "빅뱅통합"
+  - "샌드위치통합"
+  - "테스트스텁"
+  - "테스트드라이버"
+  - "Pact"
+date: "2026-09-20"
 ---
 
-## 답안 골격
-```text
-[통합 테스트(Integration Test)] ◀━━ 머리: Ⅶ 내 의견 (점진적 통합 전략과 Testcontainers 기반 자동화 통합 파이프라인 구축)
- ┃
- ┣━ Ⅰ 개요 ───── 개별 단위 모듈이 정상이어도 상호 연동 시 인터페이스 충돌 발생 → 컴포넌트 간 상호작용과 인터페이스 무결성 검증
- ┣━ Ⅱ 특징 ───── V-모델 2단계(상세설계 검증) · 모듈 간 데이터 흐름 검증 · 점진적(Incremental) 통합 vs 비점진적(Big Bang) 통합
- ┣━ Ⅲ 구조 ───── 통합 방식 4대 분류: 빅뱅 통합 / 하향식(Top-down, 스텁) / 상향식(Bottom-up, 드라이버) / 샌드위치(하이브리드)
- ┣━ Ⅳ 흐름 ───── 단위 테스트 완료 모듈 수집 → 통합 전략 수립 → 하네스(드라이버/스텁) 배치 → 인터페이스 결합 시험 → 결함 격리 및 수정
- ┣━ Ⅴ 비교 ───── 하향식 통합(Top-down) vs 상향식 통합(Bottom-up) vs 샌드위치 통합(Sandwich) vs 빅뱅(Big Bang)
- ┗━ Ⅵ 실무 ───── 빅뱅 통합 시 결함 원인 추적 불능 / 인터페이스 규격 불일치 / MSA 환경의 계약 기반 테스팅(Pact)
-```
-- 필수 키워드: 통합 테스트 · 인터페이스 검증 · 빅뱅 통합 · 하향식(Top-down) · 상향식(Bottom-up) · 샌드위치 통합 · 테스트 드라이버 · 테스트 스텁
-- 기출: 131회 1교시 `소프트웨어 통합 테스트(Integration Test)의 개념 및 점진적/비점진적 통합 방식 비교` → Ⅰ~Ⅵ
+## 지식 로드맵 내 현재 위치
 
-## 한 줄 본질
-- 단위 테스트를 모두 통과한 모듈들을 합쳐놓았더니 데이터 포맷 불일치, 순서 착오, 통신 타임아웃으로 시스템이 마비되는 인터페이스 결합 병목 → 모듈 간의 상호작용과 인터페이스를 체계적으로 결합해가며 데이터 전달의 정합성을 검증하는 소프트웨어 테스트 레벨 / 결함 격리 난이도
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어공학에서 소프트웨어 테스팅과 품질 보증을 거쳐 통합 테스트로 이어지는 지식 위치">
+  <span>소프트웨어공학</span>
+  <span>소프트웨어 테스팅·품질 보증</span>
+  <strong>통합 테스트(Integration Test)</strong>
+</div>
 
-## 핵심 그림
+## 큰 그림과 30초 인출
+
+- 본질: 단위 테스트를 통과한 개별 모듈들이 상호 결합할 때 발생하는 데이터 타입 불일치, 인터페이스 프로토콜 오류, 예외 처리 누락을 검증하기 위해, 모듈 간의 상호작용과 데이터 통신 흐름의 정합성을 체계적으로 검증하는 V-모델 상세설계 기반 테스트 레벨
+- 메커니즘: 단위 모듈 수집 $\rightarrow$ 점진적 통합 전략(하향식/상향식/샌드위치) 수립 $\rightarrow$ 테스트 하네스(드라이버/스텁) 배치 $\rightarrow$ 인터페이스 결합 시험 $\rightarrow$ 결함 격리 및 정합성 검증
+- 산출물: 통합 테스트 계획서 · 인터페이스 테스트 케이스 명세서 · 테스트 하네스 스크립트 · 결함 원인 분석 보고서
+
+<div class="itpe-flow-map" role="img" aria-label="소프트웨어 통합 테스트 절차 및 인터페이스 검증 파이프라인">
+  <div class="itpe-flow-node">
+    <strong>1단계: 단위 모듈 수집 및 인터페이스 분석</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>분석</strong><span>단위 테스트 합격 모듈 간 호출 관계 및 파라미터/반환값 명세 확인</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>2단계: 통합 전략 및 테스트 하네스 준비</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>배치</strong><span>하향식(스텁 Stub) 또는 상향식(드라이버 Driver) 가상 환경 구축</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>3단계: 점진적 결합 및 인터페이스 통신 시험</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>결합</strong><span>모듈을 단계별로 결합하며 데이터 교환 및 예외 전파 메커니즘 검증</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <span class="itpe-keyword"><strong>4단계: 인터페이스 무결성 판정 (Quality Gate)</strong></span>
+    <div class="itpe-step-detail">
+      <strong>판정 질문</strong><span>모든 모듈 간 데이터 직렬화와 통신 계약(Contract)이 오류 없이 완결되는가?</span>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-branches">
+    <div class="itpe-flow-branch is-pass">
+      <strong>통과 (인터페이스 무결성 확정)</strong>
+      <span>통합 승인 $\rightarrow$ 상위 시스템 테스트(System Test) 단계 진입</span>
+    </div>
+    <div class="itpe-flow-branch is-fail">
+      <strong>미통과 (인터페이스 충돌 / 타임아웃)</strong>
+      <span>결함 모듈 격리 $\rightarrow$ API 규격 재조정 및 DTO 파라미터 매핑 보완</span>
+    </div>
+  </div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **테스트 드라이버(Test Driver)**: 상향식 통합 테스트에서 아직 개발되지 않은 상위 모듈을 대신하여, 하위 모듈에 테스트 데이터를 전달하고 결과를 수신하는 가상 호출 프로그램
+- **테스트 스텁(Test Stub)**: 하향식 통합 테스트에서 아직 개발되지 않은 하위 모듈을 대신하여, 상위 모듈의 호출에 미리 정해진 가상의 결과값만 반환하는 임시 더미 루틴
+- **빅뱅 통합(Big-Bang Integration)**: 모든 단위 모듈이 완성될 때까지 기다렸다가 일괄 결합하여 테스트하는 비점진적 방식으로, 결함 원인 격리가 극도로 어려움
+- **소비자 주도 계약 테스팅(Pact CDC)**: 마이크로서비스 환경에서 API 소비자가 기대하는 인터페이스 계약서를 기준으로 제공자의 호환성을 검증하는 최신 기법
+</details>
+
+## 1. 개요 및 필요성
+
+### 단위 테스트의 한계와 인터페이스 결합 병목
+
+아무리 개별 클래스나 함수가 단위 테스트에서 100% 커버리지를 달성했더라도, 서로 다른 개발자가 만든 모듈을 결합하는 순간 시스템은 멈춰 선다. 날짜 포맷(`YYYY-MM-DD` vs `Timestamp`) 불일치, 널(Null) 포인터 예외 전파, 비동기 호출 타임아웃 등 대부분의 치명적 결함은 **모듈 간의 접점인 "인터페이스"**에서 발생한다.
+
+통합 테스트는 소프트웨어 아키텍처 상세설계 단계에서 정의된 인터페이스 규격과 데이터 교환 흐름이 실제 런타임 환경에서 완벽하게 작동하는지 검증하는 필수 공정이다.
+
+### 점진적 통합 vs 비점진적 통합 비교
+
+| 구분 | 비점진적 통합 (Non-Incremental) | 점진적 통합 (Incremental) |
+|---|---|---|
+| **대표 방식** | **빅뱅 통합 (Big-Bang)** | **하향식(Top-Down), 상향식(Bottom-Up), 샌드위치(Sandwich)** |
+| **결합 전략** | 모든 모듈을 한 번에 일괄 결합 | 모듈을 하나씩 또는 클러스터 단위로 단계별 결합 |
+| **결함 격리** | **결함 발생 시 원인 추적 극도로 곤란** | **방금 결합된 모듈 또는 인터페이스로 결함 즉시 격리** |
+| **하네스 비용** | 드라이버/스텁 작성 불필요 (비용 0) | 드라이버 또는 스텁 개발 공수 필요 |
+| **적용 권장** | 초소형 단기 토이 프로젝트 | **엔터프라이즈 및 미션 크리티컬 중대형 시스템** |
+
+## 2. 아키텍처 및 핵심 메커니즘
+
+### 4대 통합 테스트 전략 아키텍처
+
 ```text
 +-------------------------------------------------------------------------+
 |                  소프트웨어 4대 통합 테스트(Integration Test) 전략       |
 +-------------------------------------------------------------------------+
-|  [ 1. 빅뱅 통합 (Big-Bang) ] : 모든 모듈을 한 번에 다 합쳐서 테스트     |
-|     (모듈 A) + (모듈 B) + (모듈 C) + (모듈 D) ──> [ 와장창 결함 폭발! ] |
-|     * 결함 발생 시 어느 모듈 간의 문제인지 원인 추적 극도로 어려움     |
 |                                                                         |
-|  [ 2. 하향식 통합 (Top-Down) ] : 상위 제어 모듈부터 스텁(Stub) 활용 결합|
-|     [ 메인 모듈 ] ──> (가상 스텁 1) / (가상 스텁 2)                      |
-|     * 장점: 조기 시스템 뼈대 확인, UI 시연 가능 / 단점: 많은 스텁 개발 필요|
+|  [ 1. 하향식 통합 (Top-Down) ]         [ 2. 상향식 통합 (Bottom-Up) ]   |
+|       [ 메인 제어 모듈 ]                      ( 가상 테스트 드라이버 )   |
+|               │                                       │                 |
+|       ┌───────┴───────┐                       ┌───────┴───────┐         |
+|       v               v                       v               v         |
+|  (가상 스텁 1)   (가상 스텁 2)           [ DB 액세스 ]   [ 연산 모듈 ]  |
+|  - 제어 흐름 및 UI 뼈대 조기 검증       - 핵심 알고리즘 및 DB 조기 검증  |
+|  - 많은 수의 스텁(Stub) 개발 필요        - 가상 드라이버(Driver) 필요    |
 |                                                                         |
-|  [ 3. 상향식 통합 (Bottom-Up) ] : 최하위 모듈부터 드라이버(Driver) 활용 |
-|     (가상 드라이버) ──> [ 계산/DB 모듈 클러스터 ]                       |
-|     * 장점: 핵심 알고리즘 조기 검증, 스텁 불필요 / 단점: 전체 뼈대 늦게 나옴|
-|                                                                         |
-|  [ 4. 샌드위치 통합 (Sandwich) ] : 상위(하향식) + 하위(상향식) 혼합 절충 |
+|  [ 3. 샌드위치 통합 (Sandwich) ]       [ 4. 빅뱅 통합 (Big-Bang) ]       |
+|       상위 계층: 하향식 (스텁)                모든 모듈 일괄 결합       |
+|       중간 계층: 목표 인터페이스              ──> 결함 발생 시 원인 추적 |
+|       하위 계층: 상향식 (드라이버)                극도로 어려움 (지양)   |
 +-------------------------------------------------------------------------+
 ```
 
-## 핵심 용어
-- 빅뱅 통합(Big-Bang Integration): 모든 단위 모듈이 완성될 때까지 기다렸다가 마지막에 전체 모듈을 일괄 결합하여 한 번에 테스트하는 비점진적 방식으로, 결함 격리가 거의 불가능함
-- 샌드위치 통합(Sandwich/Hybrid Integration): 시스템을 상위 제어 계층, 중간 비즈니스 계층, 하위 데이터 계층으로 나누어 상위는 하향식으로, 하위는 상향식으로 동시에 결합해 올라오는 절충형 전략
+### 통합 방식별 상세 특징 및 테스트 하네스
 
-## 핵심 통찰
-- 통합 테스트의 주안점은 모듈 "내부"의 알고리즘을 검사하는 것이 아니라, 모듈과 모듈 "사이"를 흐르는 인터페이스 파라미터 규격, 반환값 타입, 예외 전파 여부를 검증하는 것임
-- 단위 테스트 100% 통과가 시스템의 정상 작동을 보장하지 못하는 이유는, A 모듈이 넘겨주는 날짜 포맷(`YYYY-MM-DD`)과 B 모듈이 기대하는 포맷(`Epoch Timestamp`)의 불일치 같은 인터페이스 오류가 널려있기 때문임
-- 마이크로서비스 환경에서는 모든 서비스를 로컬에 다 띄우고 통합 테스트하는 것이 불가능하므로, API 명세 계약서만 검증하는 "소비자 주도 계약 테스트(Pact CDC)"가 현대적 통합 테스트의 표준으로 자리 잡음
+<div class="itpe-component-grid">
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>① 하향식 통합 (Top-Down)</strong></span>
+      <span class="itpe-badge">스텁(Stub) 활용</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>시스템 제어 구조의 상위 모듈부터 아래로 결합해 내려가는 방식</li>
+        <li>초기 시스템 골격 시연 가능하나 하위 스텁 제작 공수가 큼</li>
+      </ul>
+    </div>
+  </div>
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>② 상향식 통합 (Bottom-Up)</strong></span>
+      <span class="itpe-badge">드라이버(Driver) 활용</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>최하위 모듈을 클러스터로 묶어 가상 드라이버로 테스트 후 상위로 이동</li>
+        <li>스텁이 불필요하고 고부하 모듈을 조기 검증하나 상위 골격 완성이 늦음</li>
+      </ul>
+    </div>
+  </div>
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>③ 샌드위치 통합 (Sandwich)</strong></span>
+      <span class="itpe-badge">하이브리드 절충</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>상위 제어는 하향식, 하위 데이터는 상향식으로 동시 진행하여 중간에서 합류</li>
+        <li>대규모 복잡한 프로젝트에 적합하나 테스트 설계 난이도가 높음</li>
+      </ul>
+    </div>
+  </div>
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>④ 빅뱅 통합 (Big-Bang)</strong></span>
+      <span class="itpe-badge">비점진적 일괄</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>모든 모듈이 끝날 때까지 대기 후 일괄 조립하여 한 번에 시험</li>
+        <li>결함 원인 규명이 거의 불가능하여 엔터프라이즈 환경에서는 절대 금기</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-## 이웃 토픽과 구분
-- 단위 테스트(Unit) vs 통합 테스트(Integration) vs 시스템 테스트(System): 단위 = 격리된 개별 함수/클래스 검증 / 통합 = 모듈 간 인터페이스 및 데이터 교환 검증 / 시스템 = 완제품 전체가 비기능/기능 요구사항을 만족하는지 환경 검증
+## 3. 실무 적용 및 고려사항
 
-## 문제·원인·대책
-- 적용 상황: 대규모 공공 포털 차세대 서브시스템 간 연계 통합 테스트
-| 문제 | 원인 | 대책 | 효과 |
-|---|---|---|---|
-| 오픈 2주 전 모든 모듈을 한 번에 합쳤더니 수천 개의 에러가 터져 원인 규명 불가 | 위험성이 가장 높은 비점진적 빅뱅 통합 방식을 채택한 구조적 실패 | 점진적 상향식 통합 및 핵심 데이터 모듈 클러스터 단위 단계적 결합 전환 | 결함 발생 모듈 즉시 격리 및 디버깅 공수 70% 절감 |
-| 결제 모듈과 정산 모듈 간 DTO 필드명 오타로 인해 연동 시 런타임 역직렬화 실패 | 수작업 명세서에 의존하여 모듈 간 API 변경 사항 동기화 누락 | 스프링 클라우드 컨트랙트(Spring Cloud Contract) 기반 자동화 계약 테스트 도입 | 인터페이스 불일치 오류 빌드 시점 100% 차단 |
+### 위험 대응 매트릭스
 
-## 이렇게 출제된다
-- 제131회 1교시: "소프트웨어 통합 테스트(Integration Test)의 개념 및 점진적/비점진적 통합 방식(하향식, 상향식, 샌드위치, 빅뱅)을 비교 설명하시오." → 요구 포인트: 통합 테스트 목적 + 4대 통합 방식별 개념도 및 장단점 비교표 + 드라이버/스텁 역할
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 오픈 2주 전 빅뱅 통합을 시도하다가 수천 개의 런타임 오류가 터져 프로젝트 일정 파탄 | 모듈 완성 즉시 클러스터 단위로 결합하는 점진적 상향식 통합(Bottom-Up) 전략 강제 | 결함 모듈 즉시 격리 및 디버깅 공수 70% 절감 |
+| 마이크로서비스 간 DTO 필드명 오타 및 API 변경 사항 미공유로 배포 후 서비스 다운 | 소비자 주도 계약 테스팅(Pact CDC)을 CI 파이프라인에 연동하여 API 호환성 자동 검증 | 인터페이스 스펙 불일치 오류 빌드 시점 100% 차단 |
+| 가짜 Mock 객체로만 통합 테스트를 통과시킨 후 운영 DB와 실제 연동 시 SQL 문법 에러 발생 | Testcontainers를 도입하여 실제 PostgreSQL, Redis 컨테이너를 동적으로 띄워 통합 검증 | 프로덕션 환경과의 불일치 결함 완벽 제거 |
 
-## 내 의견
-- [모의 객체(Mock) 만능주의에 빠진 가짜 통합 테스트 지양] 단위 테스트 수준에서 Mock만 붙여두고 통합 테스트를 마쳤다고 자만하다가 운영 DB와 실제 쿼리 실행 시 문법 에러로 뻗는 참사 다수 → 나라면: 실제 프로덕션과 동일한 PostgreSQL, Redis, Kafka를 Docker 컨테이너로 띄워 실제 네트워크 소켓과 쿼리를 검증하는 Testcontainers 기반의 "실제 환경 근접 통합 테스트"를 CI 파이프라인에 필수 편성
+## 4. 기술사 답안 차별화 포인트
+
+### MSA 시대의 소비자 주도 계약 테스트(Pact CDC)
+
+수백 개의 마이크로서비스가 얽힌 환경에서는 모든 서비스를 로컬에 다 띄우고 하향식/상향식 테스트를 수행하는 것이 불가능하다. 최신 아키텍처에서는 **Pact 기반의 소비자 주도 계약 테스팅(Consumer-Driven Contract Testing)**을 수행한다. API 소비자가 기대하는 요청/응답 명세(Pact 파일)를 생성하고, 제공자 측 파이프라인에서 이를 실행하여 실제 호환성을 검증하는 모던 통합 테스트 표준을 제시한다.
+
+### Testcontainers 기반의 프로덕션 근접 통합 테스트
+
+과거에는 인메모리 DB(H2)나 가짜 Mock을 사용하다가 실제 Oracle/PostgreSQL의 방언(Dialect) 차이로 장애가 났다. 현대 통합 테스트는 **Testcontainers 라이브러리**를 사용하여 Docker 컨테이너로 실제 DBMS, Kafka, Redis를 테스트 시점에 자동 프로비저닝하고 테스트 후 폐기하는 실무적 테스트 엔지니어링 역량을 강조한다.
+
+## 5. 참고 및 연계 학습
+
+- [소프트웨어 테스트 유형 및 레벨](./003_sw_test_types_and_levels.md)
+- [블랙박스 테스트(Black-box Test)](./008_black_box_test.md)
+- [화이트박스 테스트(White-box Test)](./013_white_box_test.md)
+- [회귀 테스트(Regression Test)](./061_regression_test.md)

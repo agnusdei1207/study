@@ -1,139 +1,197 @@
 ---
 title: "모듈성(결합도·응집도)"
-author: "Antigravity"
-date: "2026-09-20T13:55:00+09:00"
+category: "02-software-engineering"
 tags:
-  - "notes-software-engineering"
-sidebar:
-  badge:
-    text: "A"
-    variant: "tip"
-extra:
-  model: "Antigravity"
-
+  - "모듈성"
+  - "결합도"
+  - "응집도"
+  - "Coupling"
+  - "Cohesion"
+  - "LCOM"
+  - "마이어5대기준"
+  - "FanInFanOut"
+date: "2026-09-20"
 ---
 
-## 딸려 나오는 하위 토픽
+## 지식 로드맵 내 현재 위치
 
-| 번호 | 토픽명 | 핵심 키워드 | 흡수 근거 |
-|---|---|---|---|
-| 02-050 | 결합도(Coupling) | 6단계 강도(내-공-외-제-스-자), 스탬프 결합도, 제어 결합도, Loose Coupling, 파급효과 차단 | 모듈 간 상호작용 의존성의 평가 지표로 통합 |
-| 02-115 | 응집도(Cohesion) | 7단계 수준(우-논-시-절-교-순-기), 기능적 응집도, SRP, LCOM 메트릭, God Object 방지 | 모듈 내부 책임 집중도의 평가 지표로 통합 |
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어공학에서 소프트웨어 설계 원칙과 아키텍처 품질을 거쳐 모듈성으로 이어지는 지식 위치">
+  <span>소프트웨어공학</span>
+  <span>소프트웨어 설계 원칙·아키텍처 품질</span>
+  <strong>모듈성(결합도·응집도)</strong>
+</div>
 
----
+## 큰 그림과 30초 인출
 
-## 답안 골격 (10점 / 25점)
+- 본질: 대규모 소프트웨어의 복잡성을 통제하고 분할 정복(Divide & Conquer)을 실현하기 위해, 소프트웨어를 자율적이고 독립적인 모듈 단위로 분해하고, 모듈 간 상호 의존성을 최소화(저결합도: Loose Coupling)하며 모듈 내부의 책임 집중도를 극대화(고응집도: High Cohesion)하여 변경 파급효과를 완벽히 격리하는 핵심 소프트웨어 공학 설계 원리
+- 메커니즘: 도메인 요구 분석 $\rightarrow$ 단일 책임(SRP) 기반 모듈 분할 $\rightarrow$ 인터페이스 추상화 및 최소 데이터 전달 $\rightarrow$ 정량 메트릭(LCOM, Fan-in/out) 측정 $\rightarrow$ 고응집·저결합 모듈성 확정
+- 산출물: 모듈 아키텍처 구조도 · 결합도/응집도 분석 보고서 · LCOM 정적 분석 리포트 · 모듈 인터페이스 정의서
 
-```text
-[모듈성(결합도·응집도)] ◀━━ 머리: Ⅶ 공학적 제언 (LCOM 정적 분석과 DDD 바운디드 컨텍스트 기반 고응집·저결합 아키텍처)
- ┃
- ┣━ Ⅰ 개요 ───── 복잡성 제어(Divide & Conquer), 독립적 개발·배포·유지보수를 위한 모듈 분할 및 결합의 척도
- ┣━ Ⅱ 마이어(Meyer) 5대 기준 ─ 분해성(Decomposability) · 조합성(Composability) · 이해성 · 연속성 · 보호성
- ┣━ Ⅲ 결합도(Coupling) 6단계 ─ 내용(Content) > 공통(Common) > 외부(External) > 제어(Control) > 스탬프(Stamp) > 자료(Data)
- ┣━ Ⅳ 응집도(Cohesion) 7단계 ─ 우연적 < 논리적 < 시간적 < 절차적 < 교환적 < 순차적 < 기능적(Functional)
- ┣━ Ⅴ 정량 평가 메트릭 ─ LCOM(메서드 응집도 결여), Fan-in(모듈을 호출하는 수) / Fan-out(모듈이 호출하는 수)
- ┣━ Ⅵ 실무 문제 ─ 거대 DTO 통째 전달(스탬프 결합도) / 잡동사니 CommonUtil 누적(우연적 응집도)
- ┗━ Ⅶ 결론 ───── 의존성 주입(DI) 및 단일 책임 원칙(SRP) 강제를 통한 모듈 자율성 확보
-```
+<div class="itpe-flow-map" role="img" aria-label="모듈성 설계 및 정량적 품질 판정 파이프라인">
+  <div class="itpe-flow-node">
+    <strong>1단계: 도메인 책임 분할 (고응집화)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>분할</strong><span>단일 책임 원칙(SRP)에 따라 하나의 모듈이 오직 하나의 비즈니스 기능만 수행하도록 설계</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>2단계: 인터페이스 캡슐화 (저결합화)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>격리</strong><span>정보 은닉을 적용하고 모듈 간에는 최소한의 원시 데이터(자료 결합도)만 전달</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>3단계: 정량적 복잡도 계측</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>측정</strong><span>LCOM(응집도 결여) 및 Fan-in(호출 유입), Fan-out(호출 유출) 메트릭 산출</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <span class="itpe-keyword"><strong>4단계: 모듈성 품질 적합성 판정 (Quality Gate)</strong></span>
+    <div class="itpe-step-detail">
+      <strong>판정 질문</strong><span>LCOM 수치가 낮고 결합도가 자료/스탬프 수준이며 Fan-out이 4 이하로 통제되었는가?</span>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-branches">
+    <div class="itpe-flow-branch is-pass">
+      <strong>통과 (독립 모듈 확정)</strong>
+      <span>모듈 설계 승인 $\rightarrow$ 변경 파급효과 차단 및 독립적 단위 테스트·배포 실현</span>
+    </div>
+    <div class="itpe-flow-branch is-fail">
+      <strong>미통과 (God Object / 결합 과다)</strong>
+      <span>설계 반려 $\rightarrow$ 클래스 추출(Extract Class) 및 전략 패턴 적용 리팩토링</span>
+    </div>
+  </div>
+</div>
 
-- **필수 키워드**: 모듈성(Modularity), 버트란드 마이어(Meyer) 5대 기준, 결합도 6단계(내공외제스자), 응집도 7단계(우논시절교순기), 정보 은닉, LCOM, Fan-in / Fan-out, 스탬프 결합도, 제어 결합도, 기능적 응집도, God Object
-  - **10점형**: 모듈성 정의 및 Meyer 5대 기준 → 결합도 6단계 및 응집도 7단계 스펙트럼 도식 및 요약.
-  - **25점형**: Ⅰ~Ⅶ 전체 구조 전개 + 결합도 6단계와 응집도 7단계의 코드 레벨 예시 및 비교 매트릭스 + LCOM 수식 원리 + DDD/MSA 환경에서의 실무 모듈 경계 도출 전략 제시.
+<details>
+<summary>핵심 용어</summary>
 
----
+- **결합도(Coupling)**: 모듈과 모듈 사이의 상호 의존성 정도를 나타내며, 낮을수록(Loose Coupling) 독립성과 재사용성이 높아짐 (내용 > 공통 > 외부 > 제어 > 스탬프 > 자료)
+- **응집도(Cohesion)**: 모듈 내부의 구성 요소들이 단일한 목적을 달성하기 위해 얼마나 긴밀하게 집중되어 있는지를 나타내며, 높을수록 우수함 (우연적 < 논리적 < 시간적 < 절차적 < 교환적 < 순차적 < 기능적)
+- **LCOM(Lack of Cohesion in Methods)**: 클래스 내 메서드들이 인스턴스 필드를 공유하는 정도를 수치화한 메트릭으로, 값이 높을수록 응집도가 떨어져 리팩토링이 시급함을 의미
+- **버트란드 마이어(Meyer) 5대 기준**: 모듈의 품질을 평가하는 5가지 공학적 척도(분해성, 조합성, 이해성, 연속성, 보호성)
+</details>
 
-## 30초 인출용 핵심 다이어그램
+## 1. 개요 및 필요성
+
+### 스파게티 코드의 파멸과 모듈성의 공학적 가치
+
+소프트웨어가 복잡해질수록 하나의 기능을 수정했을 때 전혀 무관한 수십 개의 다른 기능이 연쇄적으로 고장 나는 "변경 파급효과(Ripple Effect)"가 발생한다. 이는 시스템 내부가 거대한 덩어리로 엉켜있는 스파게티 아키텍처 때문이다.
+
+모듈성은 시스템을 독립된 부품으로 분할하여 각 모듈을 독립적으로 개발, 테스트, 배포, 유지보수할 수 있도록 보장하는 소프트웨어 공학의 대원칙이다.
+
+### 버트란드 마이어(Bertrand Meyer)의 모듈성 5대 평가 기준
+
+| 평가 기준 | 핵심 질문 및 공학적 의미 |
+|---|---|
+| **분해성 (Decomposability)** | 대규모 문제를 독립적으로 개발 가능한 작은 하위 모듈들로 체계적으로 쪼갤 수 있는가? |
+| **조합성 (Composability)** | 이미 만들어진 모듈들을 조립하여 새로운 시스템을 쉽게 재구축할 수 있는가? (재사용성) |
+| **이해성 (Understandability)** | 다른 모듈의 내부를 깊이 알지 못해도 해당 모듈 단독으로 쉽게 이해할 수 있는가? |
+| **연속성 (Continuity)** | 사소한 요구사항 변경이 발생했을 때 전체로 번지지 않고 1~2개 모듈에만 국한 전파되는가? |
+| **보호성 (Protection)** | 런타임 오류나 예외가 발생했을 때 타 모듈로 확산되지 않고 해당 모듈 내에서 격리되는가? |
+
+## 2. 아키텍처 및 핵심 메커니즘
+
+### 결합도와 응집도의 2대 평가 스펙트럼
 
 ```text
 +-------------------------------------------------------------------------+
 |                  모듈성(Modularity) 2대 핵심 평가 축                    |
 +-------------------------------------------------------------------------+
+|                                                                         |
 |  [ 1. 결합도 (Coupling) : 모듈 간 상호 의존성 (낮을수록 우수: Loose) ]  |
 |  나쁨 <─── [내용] ── [공통] ── [외부] ── [제어] ── [스탬프] ── [자료] ───> 우수
 |            (Content) (Common) (External) (Control) (Stamp)   (Data)     |
-|            - 타모듈내부  -전역변수  -프로토콜  -플래그간섭 -객체전달  -원시값전달|
+|            타모듈직접접근 전역변수공유 프로토콜공유 플래그간섭 DTO통째전달  원시값전달 |
 |                                                                         |
 |  [ 2. 응집도 (Cohesion) : 모듈 내부 책임 집중도 (높을수록 우수: High) ]  |
 |  우수 <─── [기능적] ─ [순차적] ─ [교환적] ─ [절차적] ─ [시간적] ─ [논리적] ─ [우연적]
 |            (Functional)(Sequential)(Comm.)(Procedural)(Temporal)(Logical)(Coincidental)
-|            - 단일목적   -출력이입력 -동일입출력 -순서실행  -동시초기화 -유사작업  -무관함 |
+|            단일목적수행 출력이입력 동일입출력 순서실행   동시초기화 유사작업  무관한동거 |
 +-------------------------------------------------------------------------+
 ```
 
----
+### 결합도 6단계 상세 분석 [내 - 공 - 외 - 제 - 스 - 자]
 
-## 본론: 개념 및 핵심 메커니즘
+<div class="itpe-component-grid">
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>자료 결합도 (Data)</strong></span>
+      <span class="itpe-badge">최상 (Ideal)</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>모듈 간에 오직 필요한 원시 데이터 값(Primitive)만을 파라미터로 전달</li>
+        <li>인터페이스가 극도로 단순하며 변경 파급효과가 전혀 없음</li>
+      </ul>
+    </div>
+  </div>
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>스탬프 결합도 (Stamp)</strong></span>
+      <span class="itpe-badge">양호 (주의)</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>모듈 간에 복합 데이터 구조(DTO, 레코드) 전체를 매개변수로 전달</li>
+        <li>필요하지 않은 필드까지 노출되어 DTO 구조 변경 시 연쇄 영향</li>
+      </ul>
+    </div>
+  </div>
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>제어 결합도 (Control)</strong></span>
+      <span class="itpe-badge">보통 (지양)</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>상위 모듈이 하위 모듈에 제어 플래그(`boolean`)를 넘겨 내부 로직 지시</li>
+        <li>하위 모듈의 처리 흐름을 상위 모듈이 침범하여 캡슐화 훼손</li>
+      </ul>
+    </div>
+  </div>
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>내용 결합도 (Content)</strong></span>
+      <span class="itpe-badge">최악 (Very Bad)</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>한 모듈이 다른 모듈의 내부 코드나 비공개 변수 주소에 직접 접근</li>
+        <li>정보 은닉이 완전 파괴되어 단 하나의 수정에도 전체 붕괴</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-### 1. 모듈성과 버트란드 마이어(Bertrand Meyer) 5대 기준
+## 3. 실무 적용 및 고려사항
 
-- **모듈성(Modularity)**: 소프트웨어가 자율적이고 독립적인 구성 단위(모듈)로 얼마나 잘 분해되어 있는지를 나타내는 척도.
-- **마이어의 5대 모듈성 평가 기준**:
-  1. **분해성 (Decomposability)**: 큰 문제를 작은 하위 문제들로 체계적으로 분할하여 독립적 개발이 가능한가?
-  2. **조합성 (Composability)**: 기존 모듈들을 조립하여 새로운 시스템을 쉽게 구축할 수 있는가? (재사용성)
-  3. **이해성 (Understandability)**: 다른 모듈을 깊이 알지 못해도 해당 모듈 단독으로 쉽게 이해할 수 있는가?
-  4. **연속성 (Continuity)**: 사소한 요구사항 변경이 전체로 번지지 않고 단 1~2개 모듈에만 국한 전파되는가?
-  5. **보호성 (Protection)**: 런타임 예외나 장애가 발생했을 때 타 모듈로 전파되지 않고 격리되는가?
+### 위험 대응 매트릭스
 
-### 2. 결합도 (Coupling, 모듈 간 의존성) 6단계
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 100개 필드를 가진 거대 OrderDTO를 배송/정산 계층에 통째로 전달(스탬프 결합도)하여 필드 하나 변경 시 전사 재컴파일 | 메서드 파라미터에 꼭 필요한 최소 원시 데이터(자료 결합도)만 전달하도록 인터페이스 축소 | 모듈 간 변경 전파 완벽 격리 |
+| 상위 컨트롤러가 boolean 플래그를 넘겨 하위 서비스의 if-else 분기를 조종(제어 결합도) | 전략 패턴(Strategy Pattern) 또는 상태 다형성을 적용하여 분기 로직을 객체 내부로 캡슐화 | OCP(개방 폐쇄 원칙) 충족 및 유지보수성 향상 |
+| 잡다한 함수를 한곳에 몰아넣은 CommonUtil 클래스가 5,000라인짜리 God Object(우연적 응집도)로 변질 | 단일 책임 원칙(SRP) 적용 및 SonarQube LCOM 정적 분석 품질 게이트 연동(LCOM > 0.8 차단) | 클래스 책임 1개 한정 및 유지보수 공수 60% 절감 |
 
-> **암기 팁**: **[내 - 공 - 외 - 제 - 스 - 자]** (내용이 최악, 자료가 최선)
+## 4. 기술사 답안 차별화 포인트
 
-| 결합도 단계 | 상호작용 메커니즘 | 코드 레벨 현상 및 문제점 | 품질 수준 |
-|---|---|---|---|
-| **내용 (Content)** | 한 모듈이 타 모듈의 내부 코드, 변수 주소에 직접 접근. | `A.internalState = 10;` (정보은닉 완전 파괴) | **최악 (Very Bad)** |
-| **공통 (Common)** | 여러 모듈이 전역 변수(Global Variable)를 공유하여 참조. | 전역 변수 값 변경 시 무관한 수십 개 모듈 동반 오류 | 나쁨 |
-| **외부 (External)** | 외부 통신 프로토콜, 장치 인터페이스를 여러 모듈이 공유. | 특정 하드웨어/프로토콜 변경 시 연동 모듈 전체 수정 | 다소 나쁨 |
-| **제어 (Control)** | 상위 모듈이 하위 모듈에 제어 플래그(`boolean`)를 넘겨 내부 분기를 지시. | `doAction(boolean isSpecial)` (하위 로직 침범) | 보통 (Refactoring 요망) |
-| **스탬프 (Stamp)** | 모듈 간에 레코드나 객체(DTO) 전체를 불필요하게 통째로 전달. | `updateAge(Customer c)` (나이만 필요한데 전체 객체 전달) | 양호 (주의 필요) |
-| **자료 (Data)** | 오직 필요한 원시 데이터 값(Primitive)만을 파라미터로 전달. | `updateAge(int age)` (완벽한 인터페이스 격리) | **최상 (Ideal)** |
+### 결합도와 응집도의 상보적 역학 관계 수식화
 
-### 3. 응집도 (Cohesion, 모듈 내부 집중도) 7단계
+기술사 답안의 서두에서 **"응집도와 결합도는 동전의 양면"**임을 명시한다. 한 모듈의 응집도가 낮아 책임이 여러 곳으로 흩어지면, 그 흩어진 기능들을 호출하기 위해 다른 모듈들과의 결합도가 필연적으로 증가할 수밖에 없다. 따라서 **"높은 응집도를 달성하는 것이 곧 낮은 결합도를 실현하는 선결 조건"**이라는 공학적 인과관계를 피력한다.
 
-> **암기 팁**: **[우 - 논 - 시 - 절 - 교 - 순 - 기]** (우연이 최악, 기능이 최선)
+### DDD(도메인 주도 설계)의 바운디드 컨텍스트 연계
 
-| 응집도 단계 | 내부 요소 간 결합 메커니즘 | 대표 사례 및 현상 | 품질 수준 |
-|---|---|---|---|
-| **우연적 (Coincidental)** | 모듈 내 요소들이 아무런 논리적 관련 없이 우연히 모임. | `CommonUtil`에 전혀 무관한 잡다한 함수 난립 | **최악 (Very Bad)** |
-| **논리적 (Logical)** | 유사한 성격의 작업들을 하나의 모듈에 묶음. | 하나의 함수에서 플래그에 따라 마우스/키보드 입력 분기 | 나쁨 |
-| **시간적 (Temporal)** | 특정 시점(프로그램 시작, 종료)에 함께 실행되는 요소들의 모임. | `initializeAll()`, `cleanup()` (책임 분열) | 다소 나쁨 |
-| **절차적 (Procedural)** | 특정 순서(프로세스)에 따라 차례대로 실행되는 작업들의 모임. | 파일 열기 $\rightarrow$ 데이터 검증 $\rightarrow$ 화면 출력 | 보통 |
-| **교환적 (Communicational)**| 동일한 입력 데이터나 출력 결과를 공유하여 처리하는 모임. | 동일한 고객 DB 레코드를 읽어 화면 표시 및 파일 저장 | 양호 |
-| **순차적 (Sequential)** | 한 요소의 출력 결과가 다음 요소의 입력 데이터로 연결됨. | 데이터 파싱 $\rightarrow$ 정렬 $\rightarrow$ 필터링 파이프라인 | 매우 양호 |
-| **기능적 (Functional)** | **단 하나의 명확한 비즈니스 목적**만을 위해 모든 요소가 협력. | `calculateSquareRoot()`, `authenticateUser()` | **최상 (Ideal, SRP)** |
+전통적인 함수/클래스 수준의 논의를 넘어 현대 마이크로서비스 아키텍처(MSA) 수준으로 논의를 확장한다. **DDD의 바운디드 컨텍스트(Bounded Context)와 애그리게잇(Aggregate) 설계는 비즈니스 도메인 수준에서 '기능적 응집도'를 확보하고, 서비스 간 통신을 REST/이벤트로 한정하여 '자료 결합도'를 달성하는 현대적 실체**임을 결론으로 제시한다.
 
----
+## 5. 참고 및 연계 학습
 
-## 정량적 평가 메트릭
-
-1. **LCOM (Lack of Cohesion in Methods)**:
-   - 클래스 내 메서드 집합 $M$과 인스턴스 필드 집합 $F$에서, 필드를 공유하지 않는 메서드 쌍의 수($P$)에서 필드를 공유하는 메서드 쌍의 수($Q$)를 뺀 값 ($LCOM = \max(0, P - Q)$).
-   - LCOM이 높을수록 응집도가 떨어져 클래스 분할(Extract Class)이 필요함을 정량적으로 입증.
-2. **Fan-in / Fan-out**:
-   - **Fan-in (들어오는 호출)**: 높을수록 재사용성이 높지만, 변경 시 영향도가 큼.
-   - **Fan-out (나가는 호출)**: 높을수록 타 모듈에 지나치게 의존(결합도 높음)하므로 3~4 이하로 통제 필요.
-
----
-
-## 실무 장애 시나리오 및 공학적 대안
-
-### 1. 현장 장애 사례
-
-1. **만능 DTO 전달로 인한 스탬프 결합도 재앙**:
-   - 100개 필드를 가진 `OrderDTO`를 모든 서비스 계층에 통째로 넘기다 보니, 필드 하나를 수정하자 전혀 무관한 배송/정산 모듈까지 줄줄이 재컴파일 및 런타임 오류.
-2. **잡동사니 유틸리티 클래스의 신의 객체(God Object)화**:
-   - 프로젝트 초기에 만든 `SystemHelper` 클래스에 개발자들이 무차별 코드를 집어넣어 5,000라인의 우연적 응집도 괴물이 탄생, 아무도 수정하지 못함.
-
-### 2. 문제 원인 및 공학적 해결책
-
-| 장애 상황 | 근본 원인 | 공학적 대책 (대안 기술) | 개선 효과 |
-|---|---|---|---|
-| **스탬프 결합도 파장** | 거대 만능 DTO 무분별 재활용 | 메서드 시그니처에 **필요한 최소 원시 파라미터(자료 결합도)**만 선별 전달 | 모듈 간 변경 전파 완전 격리 |
-| **제어 결합도 스파게티** | 플래그 파라미터 기반 하위 모듈 분기 | **전략 패턴(Strategy)** 또는 상태 다형성 적용 | `if-else` 분기 제거 및 OCP 원칙 충족 |
-| **우연적 응집도 쓰레기통** | 무분별한 공통 유틸 클래스 남발 | **단일 책임 원칙(SRP)** 적용 및 SonarQube LCOM 정적 분석 게이트 강제 | 클래스당 책임 1개 한정 및 LCOM 20% 이하 유지 |
-
----
-
-## 결론: 기술사 답안 차별화 포인트
-
-1. **결합도와 응집도의 상보적 관계 수식화**: "높은 응집도(High Cohesion)를 달성하지 못하면 필연적으로 결합도(Coupling)가 증가하여 모듈성이 파괴된다"는 역학 관계를 1단락 도입부에서 명문화할 것.
-2. **도메인 주도 설계(DDD)와의 아키텍처 연계**: 전통적인 함수/클래스 수준의 결합도·응집도 논의를 넘어, 현대 엔터프라이즈 환경에서는 **DDD의 바운디드 컨텍스트(Bounded Context)와 애그리게잇(Aggregate)이 바로 기능적 응집도와 자료 결합도를 서비스 수준에서 구현하는 실체**임을 결론으로 제시할 것.
+- [SOLID 원칙](./082_solid.md)
+- [객체지향 프로그래밍(OOP)](./083_oop.md)
+- [리팩토링(Refactoring)](./006_refactoring.md)
+- [정보 은닉(Information Hiding)](./024_information_hiding.md)
