@@ -1,5 +1,7 @@
 ---
 title: "다중공선성(등분산성 포함)"
+author: "Codex"
+date: "2026-09-20T19:43:00+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -7,6 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,24 +27,34 @@ extra:
 - 대책: 변수 제거·결합, Ridge/Lasso 규제회귀, PCA 차원축소, WLS(가중최소제곱법), Robust SE
 
 <div class="itpe-flow-map" role="img" aria-label="회귀모형 가정 위배 진단 및 다중공선성 대응 흐름">
-  <div class="itpe-flow-node"><strong>다중회귀 기본 가정 검증</strong><small>선형성 · 정규성 · 등분산성 · 비공선성</small></div>
+  <div class="itpe-flow-node"><strong>다중회귀 기본 가정 검증</strong><small>입력: 선형성 · 정규성 · 등분산성 · 비공선성</small></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>가정 위배 진단</strong>
     <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>다중공선성</strong><span>VIF > 10 · 상태지수 > 30 · 상관계수 > 0.8</span></div>
-      <div class="itpe-flow-branch"><strong>이분산성</strong><span>잔차 깔때기 패턴 · Breusch-Pagan 검정 유의</span></div>
+      <div class="itpe-flow-branch"><strong>다중공선성</strong><span>판정: VIF · 상태지수 · 계수 안정성</span></div>
+      <div class="itpe-flow-branch"><strong>이분산성</strong><span>판정: 잔차 패턴 · Breusch-Pagan 검정</span></div>
     </div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current">
     <strong>통계적 대응 및 정규화</strong>
     <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>해석 목적</strong><span>변수 선택(Stepwise) · 파생변수 결합 · WLS</span></div>
-      <div class="itpe-flow-branch"><strong>예측 목적</strong><span>Ridge/Lasso 규제 · PCA · 변수 스케일링</span></div>
+      <div class="itpe-flow-branch"><strong>해석 목적</strong><span>대안: 변수 결합 · 인과 보존 · WLS</span></div>
+      <div class="itpe-flow-branch"><strong>예측 목적</strong><span>대안: Ridge/Lasso · PCA · 스케일링</span></div>
     </div>
   </div>
 </div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- `VIF(Variance Inflation Factor)`: 다른 독립변수로 설명되는 정도를 계수 분산의 팽창으로 바꾸어 보는 진단 지표
+- `OLS(Ordinary Least Squares)`: 잔차제곱합을 최소화하며 기본 가정 위배 시 계수 또는 표준오차 해석이 흔들리는 추정법
+- `WLS(Weighted Least Squares)`: 오차분산이 다른 관측치에 가중치를 부여하여 이분산 영향을 보정하는 추정법
+- `PCA(Principal Component Analysis)`: 상관 변수를 직교 축으로 변환하여 공선성을 제거하되 원 변수 해석력을 대가로 치르는 방법
+
+</details>
 
 ## 예상문제
 
@@ -56,11 +69,11 @@ extra:
 
 ## Ⅰ. 회귀모형의 안정성을 위협하는 다중공선성 및 등분산성의 개요
 
-> **한줄 요약:** 독립변수 간 중복 상관은 계수의 분산을 팽창시키고, 잔차 분산의 불균일은 유의성 검정을 왜곡함.
+> 독립변수 간 중복 상관은 계수 분산을 팽창시키고 잔차 분산의 불균일은 검정을 왜곡하므로, 예측과 설명 중 어느 목적을 보존할지 먼저 판정해야 함.
 
-- 다중공선성 정의: 회귀모형 내 둘 이상의 독립변수 사이에 강한 선형관계가 존재하여, $(X^TX)^{-1}$ 역행렬 계산이 불안정해지고 OLS 회귀계수 분산이 급증하는 현상
-- 등분산성 정의: 오차항 $\epsilon_i$의 분산이 독립변수 $X$의 모든 수준에서 일정하다는 가정($Var(\epsilon_i|X) = \sigma^2$)으로, 위배 시 BLUE(최량선형비편향추정량) 성립 불가
-- 공통 영향: 모형 전체의 결정계수($R^2$)와 F검정은 유의하게 나오나, 개별 계수의 t검정 유의확률이 떨어지거나 부호가 역전되어 의사결정을 심각하게 오도함
+- 정의: **다중공선성**은 독립변수의 강한 선형관계로 **OLS(Ordinary Least Squares)** 회귀계수의 분산과 표준오차가 팽창하는 현상
+- 목적: **VIF(Variance Inflation Factor)**와 잔차 진단으로 가정 위배를 식별 → 설명력 또는 예측력에 맞는 보정 선택
+- 구분: **등분산성**은 모든 설명변수 수준에서 오차항 분산이 일정하다는 별도의 회귀 가정
 
 ## Ⅱ. 다중공선성 및 이분산성이 미치는 통계적 영향
 
@@ -78,13 +91,13 @@ extra:
 > **한줄 요약:** 상관계수 행렬, VIF, 상태지수로 다중공선성을 잡고, 잔차도와 Breusch-Pagan 검정으로 이분산성을 진단함.
 
 <div class="itpe-pipeline" role="img" aria-label="회귀 진단 파이프라인">
-  <div class="itpe-pipeline-node"><strong>상관행렬</strong><small>Pearson $r > 0.8$</small></div>
+  <div class="itpe-pipeline-node"><strong>상관행렬</strong><small>판정: Pearson 상관계수</small></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>VIF 진단</strong><small>$VIF > 10$ 판정</small></div>
+  <div class="itpe-pipeline-node"><strong>VIF 진단</strong><small>판정: 계수 분산 팽창 수준</small></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>상태지수(CI)</strong><small>고유값 비율 > 30</small></div>
+  <div class="itpe-pipeline-node"><strong>상태지수</strong><small>판정: 고유값 불균형</small></div>
   <div class="itpe-pipeline-arrow">→</div>
-  <div class="itpe-pipeline-node"><strong>잔차 진단</strong><small>Breusch-Pagan</small></div>
+  <div class="itpe-pipeline-node"><strong>잔차 진단</strong><small>판정: Breusch-Pagan 검정</small></div>
 </div>
 
 | 진단 항목 | 수식 및 진단 기준 | 판정 결과 및 한계 |
@@ -138,10 +151,28 @@ extra:
 - [핵심 통찰]: 다중공선성은 OLS 추정의 수학적 한계일 뿐 데이터 자체의 죄가 아님. 예측이 목표라면 VIF가 높아도 예측력에 악영향이 적으므로 Ridge나 트리 기반 앙상블로 우회하면 되지만, 인과관계 설명이 목표라면 도메인 지식에 기반한 변수 재설계가 반드시 선행되어야 함.
 - 나라면: 회귀모형 개발 표준 지침에 '1단계 탐색적 진단(VIF/잔차도) $\rightarrow$ 2단계 목적 분기(설명모형: 변수통합/WLS, 예측모형: Ridge/ElasticNet) $\rightarrow$ 3단계 교차검증 기반 계수 안정성 평가'를 규정하여 데이터 분석가의 자의적 변수 삭제를 통제하겠음.
 
+### 실전 답안용 기술사적 제언
+
+- 판정: 임계치 하나보다 변수 의미·계수 안정성·검증 성능을 함께 보고 조치 여부를 판정함
+- 대안: 설명 모형은 인과 변수를 보존하고, 예측 모형은 규제·차원축소로 분산을 제어함
+- 검증: 재표본추출에서 계수 부호·분산과 교차검증 오차의 안정성을 확인함
+- 효과: 핵심 변수 오삭제와 유의성 왜곡을 줄이면서 모형 목적을 보존함
+
+<div class="itpe-flow-map" role="img" aria-label="회귀 가정 위배 대응 제언 흐름">
+  <div class="itpe-flow-node"><strong>임계치 기계 적용</strong><small>문제: 핵심 변수 오삭제 · 해석 왜곡</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>목적별 대응</strong><small>대안: 인과 보존 또는 규제·차원축소</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>안정성 검증</strong><small>판정: 계수 부호·분산 · 교차검증 오차</small></div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node"><strong>모형 목적 보존</strong><small>효과: 설명력과 예측력의 균형 유지</small></div>
+</div>
+
 ## 1교시 10점 답안 발췌
 
-### 1. 정의 및 핵심 개념
-- 다중공선성은 독립변수 간 강한 선형관계로 인해 회귀계수 분산이 팽창하여 해석이 불안정해지는 현상이며, 등분산성은 오차항의 분산이 동일해야 한다는 회귀 기본 가정임.
+### 1. 정의 및 목적
+- 정의: **다중공선성**은 독립변수의 강한 선형관계로 **OLS(Ordinary Least Squares)** 회귀계수의 분산과 표준오차가 팽창하는 현상
+- 목적: **VIF(Variance Inflation Factor)**와 잔차 진단으로 가정 위배를 식별 → 설명 또는 예측 목적에 맞는 보정 선택
 
 ### 2. 핵심 메커니즘 / 체계
 ```text
@@ -152,7 +183,7 @@ extra:
 ```
 - VIF와 상태지수로 다중공선성을 잡고, 잔차도로 이분산성을 진단함.
 
-### 3. 차별화 제언
+### 3. 실무 제언
 - VIF 수치만으로 핵심 변수를 기계적으로 제거하지 말고, 설명 모형과 예측 모형의 목적을 분리하여 ElasticNet 규제 및 Robust SE를 복합 적용해야 함.
 
 ## 출제 이력과 검증 출처
