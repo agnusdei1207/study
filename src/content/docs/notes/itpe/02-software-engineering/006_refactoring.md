@@ -1,121 +1,194 @@
 ---
-title: "리팩토링(코드 스멜)"
-author: "OpenAI Codex"
-date: "2026-09-20T00:25:00+09:00"
-tags: ["notes-software-engineering"]
+title: "리팩토링(코드스멜)"
+tags:
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "OpenAI Codex"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" aria-label="소프트웨어 품질에서 리팩터링까지의 지식 경로"><span>SW 공학·품질</span><span>유지보수성·코드 스멜</span><strong>리팩터링</strong></div>
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 유지보수·형상관리를 거쳐 리팩토링으로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>유지보수·형상관리</span>
+  <strong>리팩토링(코드스멜)</strong>
+</div>
 
 ## 큰 그림과 30초 인출
 
-```text
-[Code Smell 탐지] → [테스트 기준선] → [작은 변환] → [테스트]
-       ▲                                      │
-       └────────── 실패 시 복원 / 성공 시 커밋 ┘
-```
+- 본질: **리팩토링(Refactoring)**은 소프트웨어의 외부 동작(동등성)을 유지하면서 내부 구조를 개선하여 가독성, 유지보수성, 확장성을 높이는 기법
+- 메커니즘: **코드스멜(Code Smell)** 식별 → 자동화 테스트 확보 → 마이크로 단위 단계별 구조 개선 → 회귀테스트 통과 검증
+- 산출/효과: 기술 부채 청산 · 복잡도(순환복잡도) 감소 · 신규 기능 추가 생산성 향상
 
-```text
-리팩토링 = 외부 관찰 동작을 유지하며 내부 구조 개선
-신호 = 중복·긴 함수·큰 클래스·긴 매개변수·산탄총 수술
-원칙 = Small Step + Test + Commit
-구분 = 기능개발·성능최적화·재공학과 목적/범위가 다름
-```
+<div class="itpe-flow-map" role="img" aria-label="리팩토링 수행 사이클">
+  <div class="itpe-flow-node"><strong>코드스멜 감지</strong><small>중복 코드 · 거대 클래스 · 긴 메서드</small></div>
+  <div class="itpe-flow-arrow">→ 회귀 테스트 확보 →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>마이크로 리팩토링</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>메서드 추출</strong><span>Extract Method</span></div>
+      <div class="itpe-flow-branch"><strong>클래스 추출</strong><span>Extract Class</span></div>
+      <div class="itpe-flow-branch"><strong>조건문 단순화</strong><span>Decompose Conditional</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ 자동화 테스트 검증 →</div>
+  <div class="itpe-flow-node"><strong>클린 코드 달성</strong><small>외부 행위 불변 · 유지보수성 극대화</small></div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **Refactoring**: 소프트웨어의 겉보기 동작은 그대로 유지한 채, 코드를 이해하고 수정하기 쉽도록 내부 구조를 변경하는 기법
+- **Code Smell(코드스멜)**: 시스템에 더 심각한 문제가 있음을 암시하는 코드 내부의 나쁜 징후나 패턴
+- **Regression Test(회귀 테스트)**: 코드 변경 후 기존 기능이 깨지지 않았음을 증명하는 자동화 테스트 집합
+- **Extract Method(메서드 추출)**: 지나치게 길거나 여러 책임을 가진 코드 블록을 별도의 의미 있는 메서드로 분리하는 패턴
+- **Clean Code**: 가독성이 높고, 의도가 명확하며, 중복이 없고, 테스트를 통과하는 품질 높은 코드
+
+</details>
 
 ## 예상문제
 
-> 리팩토링과 코드 스멜의 개념·유형, 수행 절차와 주요 기법을 설명하고 유사 활동과 비교하여 안전한 적용 방안을 제시하시오.
+> 마틴 파울러(Martin Fowler)의 리팩토링(Refactoring) 개념 및 필요성을 설명하고, 대표적인 코드스멜(Code Smell) 5가지와 이를 제거하기 위한 리팩토링 패턴, 안전한 리팩토링을 위한 전제조건을 제시하시오. (25점)
 
-## Ⅰ. 개요 ───── 동작 불변의 내부 구조 개선
+## Ⅰ. 소프트웨어 내부 품질 혁신, 리팩토링의 개요
 
-리팩토링은 소프트웨어의 외부에서 관찰되는 동작을 유지하면서 내부 구조를 변경하여 이해성·변경성·시험성을 높이는 활동이다. 코드 스멜은 결함 자체가 아니라 구조 개선 필요성을 알려 주는 징후다.
+> 리팩토링은 기능 추가가 아니라 가독성과 변경 용이성을 확보하는 행위이며, 자동화된 테스트 없이는 리팩토링이 성립하지 않는다.
 
-## Ⅱ. 특징 ───── 작은 변환과 지속 검증
+- 정의: 소프트웨어의 **외부적 동작을 변경하지 않고**, 소프트웨어를 더 이해하기 쉽고 수정하기 쉽게 내부 구조를 재조정하는 행위
+- 목적: 소프트웨어 설계 품질 유지, **기술 부채(Technical Debt)** 해소, 코드 가독성 증대, 버그 발견 용이성 확보
 
-| 특징 | 의미 | 안전장치 |
+## Ⅱ. 대표적 코드스멜과 리팩토링 대응 패턴
+
+> 코드스멜은 당장 오류는 아니지만 미래의 변경 비용을 폭증시키는 주범이므로 발생 즉시 정형화된 패턴으로 제거한다.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 절차">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>① 코드스멜 진단</strong></span>
+    <small>정적 분석 도구(SonarQube) 및 코드 리뷰로 악취 영역 식별</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>② 단위 테스트 케이스 확보</strong></span>
+    <small>현재 기능의 정상 동작을 검증하는 촘촘한 단위 테스트 작성</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>③ 소규모 점진적 변환</strong></span>
+    <small>컴파일과 테스트가 항상 통과하는 아주 작은 단위로 코드 수정</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>④ 회귀 테스트 및 커밋</strong></span>
+    <small>전체 테스트 슈트 실행 통과 확인 후 형상관리 커밋</small>
+  </div>
+</div>
+
+| 코드스멜 (Code Smell) | 스멜의 본질적 문제 | 적용 리팩토링 기법 |
 |---|---|---|
-| 동작 보존 | 입력·출력과 공개 계약 유지 | 회귀·특성화 테스트 |
-| 작은 단계 | 한 번에 하나의 구조 변화 | 짧은 커밋·복원 |
-| 지속 활동 | 기능 개발과 함께 수행 | Definition of Done |
-| 설계 피드백 | 냄새로 결합·응집 문제 발견 | 정적 분석·리뷰 |
+| **Duplicated Code (중복 코드)** | 동일 로직 변경 시 여러 군데 수정 누락 위험 | **Extract Method**, Pull Up Method |
+| **Long Method (장대 함수)** | 함수의 응집도가 낮고 가독성 저하 | **Extract Method**, Replace Temp with Query |
+| **Large Class (거대 클래스)** | 단일 책임 원칙(SRP) 위반, 과도한 인스턴스 변수 | **Extract Class**, Extract Subclass |
+| **Feature Envy (기능 편애)** | 다른 클래스의 데이터와 메서드를 과도하게 호출 | **Move Method**, Move Field |
+| **Switch Statements (복잡한 분기문)** | 신규 조건 추가 시마다 분기문 전수 수정 필요 | **Replace Conditional with Polymorphism (다형성 전환)** |
 
-## Ⅲ. 구조 ───── 코드 스멜과 대응 기법
+## Ⅲ. 신규 개발 vs 리팩토링 vs 재공학(Re-engineering) 비교
 
-| 코드 스멜 | 구조 문제 | 대표 기법 |
-|---|---|---|
-| Duplicated Code | 변경 중복 | Extract Method, 공통화 |
-| Long Method | 책임 과다 | Extract Method |
-| Large Class | 낮은 응집 | Extract Class |
-| Long Parameter List | 강한 호출 결합 | Parameter Object |
-| Feature Envy | 책임 위치 오류 | Move Method |
-| Shotgun Surgery | 변경점 분산 | Move/Inline, 모듈 경계 재편 |
+> 개발 단계와 수정 대상에 따라 엔지니어링의 성격과 투입 비용이 완전히 다르다.
 
-## Ⅳ. 절차 ───── Red가 아닌 Green 기반 변환
-
-```text
-① 외부 동작·범위 식별
- → ② 기존 테스트 Green 확인, 부족하면 특성화 테스트
- → ③ 코드 스멜과 목표 구조 선택
- → ④ 한 가지 변환 수행
- → ⑤ 정적 분석·테스트 재실행
- → ⑥ 성공 시 커밋, 실패 시 복원
- → ⑦ 반복 후 성능·계약 회귀 확인
-```
-
-## Ⅴ. 비교 ───── 기능개발·최적화·재공학
-
-| 구분 | 리팩토링 | 기능개발 | 성능 최적화 | 재공학 |
-|---|---|---|---|---|
-| 목적 | 내부 품질 | 사용자 기능 | 시간·자원 | 시스템 현대화 |
-| 외부 동작 | 원칙적으로 유지 | 변경 | 의미는 유지 | 변경 가능 |
-| 범위 | 작은 점진 변경 | 요구 단위 | 병목 단위 | 시스템·자산 전체 |
-| 검증 | 회귀 테스트 | 인수 기준 | Profile·Benchmark | 전환·동등성 |
-
-## Ⅵ. 고려 ───── 테스트·범위·성능 통제
-
-| 문제 | 원인 | 대응 | 확인 |
+| 구분 | 신규 기능 개발 | 리팩토링 (Refactoring) | 재공학 (Re-engineering) |
 |---|---|---|---|
-| 잠복 동작 변경 | 테스트 부재 | 특성화 테스트 선행 | 기존 입출력 비교 |
-| 대규모 동시 변경 | 기능과 구조 혼합 | 리팩토링 커밋 분리 | Diff·리뷰 용이성 |
-| 공개 API 파손 | 계약 영향 미분석 | Deprecation·Contract Test | 소비자 테스트 |
-| 성능 회귀 | 추상화·객체 증가 | Profile 후 목표 최적화 | 기준선 비교 |
-| 냄새의 기계적 제거 | 도메인 맥락 무시 | 변화 빈도·결함 이력 함께 판단 | 개선 효과 |
+| **목적** | 새로운 비즈니스 가치 추가 | 내부 구조 개선 및 가독성 확보 | 레거시 시스템 현대화 및 아키텍처 재구축 |
+| **외부 동작 변경** | **변경됨** (신규 동작 추가) | **불변 (완전 동일)** | 일부 변경 또는 전체 개선 |
+| **수행 주기** | 스프린트 기능 구현 시 | 기능 추가 직전/직후 상시 수행 (마이크로) | 시스템 수명 한계 도달 시 대규모 프로젝트 |
+| **테스트 의존도** | 신규 테스트 작성 | **기존 회귀 테스트 필수 전제** | 시스템 인수 테스트 중심 |
 
-## Ⅶ. 결론 ───── 테스트 가능한 작은 변화의 누적
+## Ⅳ. 안전한 리팩토링을 위한 실무 위험 통제
 
-리팩토링은 정리 작업이 아니라 변경 비용을 낮추는 지속적 설계 활동이다. 코드 스멜을 신호로 사용하되 테스트 기준선, 작은 커밋과 계약·성능 검증을 갖춰야 기능 변경과 구분되는 안전한 개선이 된다.
+> 테스트 없는 리팩토링은 리팩토링이 아니라 단순한 코드 변작에 불과하며 새로운 버그를 대량 양산한다.
 
-## 1교시 10점 발췌
+| 위험 요소 | 발생 원인 | 영향 | 실무 대책 |
+|---|---|---|---|
+| **회귀 결함 발생** | 사전 테스트 케이스 부재 | 리팩토링 도중 기존 기능 훼손 | 리팩토링 착수 전 **단위 테스트 커버리지 확보** 필수 |
+| **빅뱅 리팩토링 실패** | 너무 많은 코드를 한꺼번에 변경 | 롤백 불가, 형상 충돌(Merge Hell) | 5분~10분 단위의 **초소형 변경(Micro-commit)** 유지 |
+| **일정 지연 논란** | 리팩토링 전용 기간 요구 | 비즈니스 이해관계자 반발 | 캠핑장 규칙(Leave it better than you found it) 일상화 |
 
-```text
-리팩토링은 외부 동작을 유지하면서 내부 구조를 개선하는 활동이다.
-Smell → Test Baseline → Small Transform → Test → Commit
-코드 스멜: 중복·긴 함수·큰 클래스·Feature Envy·Shotgun Surgery
-안전장치: 특성화/회귀 테스트, 작은 커밋, 계약·성능 검증
-```
+## Ⅴ. 기술 부채 해소 중심의 기술사적 제언
 
-## 공식 근거
+> 리팩토링은 별도 프로젝트로 몰아서 하는 것이 아니며, 일상 개발 문화와 CI 파이프라인에 완전히 내재화되어야 한다.
 
-- [Martin Fowler Refactoring Catalog](https://refactoring.com/catalog/)
-- Q-Net 제139회 정보관리기술사 2교시 4번 다항목 중 리팩토링
+### 학습자 통찰 메모 — 답안 밖
 
-## 체크
+- [핵심 통찰]: "기능 추가와 리팩토링의 모자를 동시에 쓰지 마라"는 파울러의 격언처럼, 신규 기능 코딩과 구조 개선을 한 번에 하려다 테스트가 깨지는 실수를 범하기 쉬움. 두 작업을 엄격히 분리하여 커밋해야 함.
+- 나라면: 정적 분석 도구(SonarQube)를 CI에 연동하여 신규 PR 생성 시 코드스멜 지수가 증가하거나 순환복잡도가 기준치(10 이상)를 초과하면 머지를 차단하는 Automated Quality Gate를 가동하겠음.
 
-- [ ] 코드 스멜과 결함을 구분했는가
-- [ ] 외부 동작 불변과 작은 단계·테스트를 썼는가
-- [ ] 기능개발·최적화·재공학과 비교했는가
-- [ ] 흡수 토픽인 코드 스멜 유형을 보존했는가
+### 실전 답안용 기술사적 제언
+
+- 판정: 지속적 리팩토링 문화 정착 및 정적 분석 기반 기술 부채 통제
+- 대안: **SonarQube** 연동 CI Quality Gate 구축 및 단위 테스트 커버리지 기준선 설정
+- 검증: 순환복잡도(Cyclomatic Complexity) 10 이하 유지 · 중복 코드율 3% 미만 통제
+- 효과: 유지보수 비용 급감 · 소프트웨어 기대 수명 연장 및 개발팀 생산성 증대
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 거버넌스 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>일정 압박으로 스파게티 코드 방치 · 기술 부채 눈덩이 증가</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>CI 파이프라인 내 정적 분석 및 자동화 회귀테스트 강제</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>코드스멜 제로 · 단위 테스트 통과 및 순환복잡도 10 이하</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>외부 행위 불변 보장 · 클린 코드 기반 고품질 유지보수 실현</small>
+  </div>
+</div>
+
+## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **리팩토링(Refactoring)**은 소프트웨어의 겉보기 동작은 변경하지 않고 내부 구조를 개선하여 가독성과 유지보수성을 향상시키는 기법
+- 목적: 코드스멜 제거를 통한 **기술 부채(Technical Debt)** 상환 및 생산성 개선
+
+### 2. 핵심 메커니즘 및 3단계 사이클
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 핵심 사이클 요약">
+  <div class="itpe-pipeline-node"><strong>코드스멜 식별</strong><small>중복 · 장대함수 · 거대클래스</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>소규모 리팩토링</strong><small>메서드 추출 · 다형성 전환</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>회귀테스트 통과</strong><small>외부 동작 불변성 입증</small></div>
+</div>
+
+### 3. 핵심 통제
+
+- **안전장치**: 완벽히 통과하는 **자동화된 단위 테스트 슈트** 필수
+- **스몰 스텝 원칙**: 한 번에 한 가지 스멜만 단계적으로 제거 후 즉시 커밋
+
+## 출제 이력과 검증 출처
+
+- 제139회 정보관리기술사 1교시: 코드스멜(Code Smell)과 리팩토링
+- Martin Fowler, Refactoring: Improving the Design of Existing Code (2nd Edition)
+- Robert C. Martin, Clean Code: A Handbook of Agile Software Craftsmanship
+
+## 학습 체크
+
+- [ ] 리팩토링의 정의와 외부 동작 불변의 원칙을 설명할 수 있는가?
+- [ ] 대표적 코드스멜 5가지와 적용 리팩토링 패턴을 매핑할 수 있는가?
+- [ ] 리팩토링 수행 시 단위 테스트가 필수적인 이유를 설명할 수 있는가?
 
 ## 연결 토픽
 
-- [디자인 패턴](./005_design_pattern/)
-- [회귀 테스트](./061_regression_test/)
-- [기술 부채](./016_technical_debt/)
+- 이전 토픽: [디자인 패턴](./005_design_pattern.md)
+- 연관 토픽: [기술 부채](./016_technical_debt.md), [SW 유지보수 3R](./168_maintenance_and_3r.md)
+- 다음 토픽: [무중단 배포](./007_zero_downtime_deployment.md)

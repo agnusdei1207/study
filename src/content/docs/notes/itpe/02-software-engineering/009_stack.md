@@ -1,115 +1,189 @@
 ---
 title: "스택(Stack) 자료구조"
-author: "OpenAI Codex"
-date: "2026-09-20T00:25:00+09:00"
-tags: ["notes-software-engineering"]
+tags:
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "OpenAI Codex"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" aria-label="자료구조에서 스택까지의 지식 경로"><span>SW 공학·자료구조</span><span>선형 자료구조</span><strong>스택(Stack)</strong></div>
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 알고리즘·자료구조를 거쳐 스택으로 이어지는 지식 위치">
+  <span>소프트웨어 공학</span>
+  <span>알고리즘·자료구조</span>
+  <strong>스택(Stack) 자료구조</strong>
+</div>
 
 ## 큰 그림과 30초 인출
 
-```text
- Push(D) ↓       Pop() ↑
-       ┌───┐
- Top → │ D │  후입선출 LIFO
-       ├───┤
-       │ C │  배열: top index / 연결: head pointer
-       ├───┤
-       │ B │
-       └───┘
-```
+- 본질: **스택(Stack)**은 한쪽 끝에서만 자료의 삽입과 삭제가 일어나는 **후입선출(LIFO: Last In First Out)** 선형 자료구조
+- 메커니즘: **Top** 포인터를 통한 **Push**(삽입), **Pop**(삭제), **Peek**(조회) 연산 (모두 **O(1)** 상수 시간)
+- 산출/효과: 함수 호출 스택 관리 · 괄호 검사 · 후위 표기법 연산 · DFS(깊이우선탐색) 및 브라우저 뒤로가기 구현
+
+<div class="itpe-flow-map" role="img" aria-label="스택 자료구조의 LIFO 동작 흐름">
+  <div class="itpe-flow-node"><strong>Push(데이터)</strong><small>Top 증가 및 데이터 삽입</small></div>
+  <div class="itpe-flow-arrow">→ Top 포인터 조작 →</div>
+  <div class="itpe-flow-node is-current">
+    <strong>스택(Stack) 메모리</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>Top 위치</strong><span><span class="itpe-keyword"><strong>항상 최상단 노드 가리킴</strong></span></span></div>
+      <div class="itpe-flow-branch"><strong>LIFO 원칙</strong><span>가장 나중에 들어온 자료가 먼저 나감</span></div>
+      <div class="itpe-flow-branch"><strong>복잡도</strong><span><span class="itpe-keyword"><strong>Push/Pop O(1)</strong></span></span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→ Top 감소 및 반환 →</div>
+  <div class="itpe-flow-node"><strong>Pop() 결과</strong><small>최상단 데이터 추출</small></div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **LIFO(Last In First Out)**: 가장 최근에 저장된 항목이 가장 먼저 인출되는 입출력 규칙
+- **Top 포인터**: 스택의 가장 위에 있는 자료의 위치를 가리키는 변수 (비어있을 때 -1 또는 null)
+- **Push / Pop**: 스택 최상단에 데이터를 삽입하거나, 최상단 데이터를 꺼내 반환하는 연산
+- **Stack Overflow**: 고정된 스택 용량을 초과하여 Push를 시도할 때 발생하는 메모리 오류
+- **Call Stack(호출 스택)**: 프로그램 실행 중 함수 호출 시 복귀 주소와 지역 변수를 관리하는 런타임 스택
+
+</details>
 
 ## 예상문제
 
-> 스택의 개념·구조와 연산을 설명하고 큐·덱과 비교한 후 호출 스택 등 활용 및 오류 대응을 제시하시오.
+> 스택(Stack) 자료구조의 개념 및 LIFO 특성을 설명하고, 기본 연산(Push, Pop) 메커니즘, 배열 및 연결리스트 구현 방식 비교, 시스템 소프트웨어 및 알고리즘에서의 대표적 응용 사례 4가지를 제시하시오. (25점)
 
-## Ⅰ. 개요 ───── 최근 상태를 먼저 복원하는 LIFO
+## Ⅰ. 후입선출(LIFO) 원칙의 선형 자료구조, 스택의 개요
 
-스택은 한쪽 끝 Top에서 삽입과 삭제를 수행하는 후입선출 자료구조다. 함수 호출·수식 처리·탐색 되돌리기처럼 최근 상태를 먼저 복원하는 문제에 적합하다.
+> 스택은 접근 지점을 Top 하나로 제한하여 구조를 단순화하고 모든 입출력을 O(1) 상수 시간에 보장한다.
 
-## Ⅱ. 특징 ───── 제한 접근과 일정 시간 연산
+- 정의: 데이터의 삽입과 삭제가 **Top이라 불리는 한쪽 끝에서만** 이루어지는 후입선출(LIFO) 형태의 선형 자료구조
+- 목적: 작업의 역순 복원, 상태 저장 및 복귀, 재귀적 호출 흐름 관리를 메모리 오버헤드 없이 **O(1)**로 수행
 
-| 특징 | 내용 |
+## Ⅱ. 스택의 핵심 연산 메커니즘 및 구현 방식 비교
+
+> 스택 구현은 고정 크기 배열 방식과 동적 연결 리스트 방식으로 나뉘며 메모리 제약에 따라 선택한다.
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="스택 기본 연산 흐름">
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>① Push(Item)</strong></span>
+    <small>isFull() 확인 → Overflow 방지 → Top 1 증가 → S[Top] = Item</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>② Peek()</strong></span>
+    <small>isEmpty() 확인 → 삭제 없이 S[Top] 데이터 조회</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>③ Pop()</strong></span>
+    <small>isEmpty() 확인 → Underflow 방지 → Item = S[Top] 반환 → Top 1 감소</small>
+  </div>
+</div>
+
+| 비교 항목 | 배열(Array) 기반 스택 | 연결 리스트(Linked List) 기반 스택 |
+|---|---|---|
+| **메모리 할당** | 정적 고정 할당 (컴파일/생성 시점) | 동적 노드 할당 (런타임 필요 시점) |
+| **장점** | 구현이 매우 단순, 데이터 접근 속도 빠름 | **Stack Overflow 없음** (메모리 허용 한도 내 무한) |
+| **단점** | 크기 제한으로 **Stack Overflow** 위험 | 노드별 포인터 오버헤드 발생 (메모리 추가 소모) |
+| **연산 복잡도** | Push: O(1), Pop: O(1) | Push: O(1), Pop: O(1) |
+
+## Ⅲ. 스택의 주요 컴퓨터 시스템 및 알고리즘 응용 분야
+
+> 스택은 단순한 이론적 구조를 넘어 OS 커널부터 컴파일러, 웹 브라우저까지 시스템의 근간을 이룬다.
+
+| 응용 분야 | 스택의 구체적 역할 및 동작 원리 |
 |---|---|
-| LIFO | 마지막 입력을 먼저 출력 |
-| 단일 접근점 | Top에서 Push·Pop·Peek |
-| 시간복잡도 | 정상 구현의 Push·Pop은 O(1) |
-| 구현 | 배열 기반 또는 연결 구조 |
-| 오류 | 빈 스택 Pop은 Underflow, 용량 초과는 Overflow |
+| **함수 호출 스택 (Call Stack)** | 함수 호출 시 복귀 주소(Return Address), 매개변수, 지역변수를 **스택 프레임(Stack Frame)**에 Push하고 복귀 시 Pop |
+| **컴파일러 수식 파싱** | 중위 표기법(Infix)을 후위 표기법(Postfix)으로 변환하고, 연산자를 스택에 임시 저장하여 우선순위 평가 |
+| **문법 괄호 유효성 검사** | 열린 괄호(`(`, `{`, `[`) 발견 시 Push, 닫힌 괄호 발견 시 Pop하여 짝 일치 여부 검증 |
+| **실행 취소(Undo) / 브라우저 뒤로가기** | 사용자의 직전 작업 상태를 스택에 기록하여 역순 복원 수행 |
+| **그래프 DFS (깊이 우선 탐색)** | 인접 정점 방문 시 역추적(Backtracking)을 위해 방문 경로를 스택에 저장 |
 
-## Ⅲ. 구조 ───── 배열·연결 구현
+## Ⅳ. 스택 운영 시의 위험 요소와 실무 방어 대책
 
-```text
-Array Stack                    Linked Stack
-data[0..capacity-1]            top→[D]→[C]→[B]→null
-top = 마지막 원소 index         Push: head 삽입
-Push: ++top 후 저장             Pop : head 제거
-```
+> 스택 오버플로우는 단순 프로그램 비정상 종료를 넘어 해킹 공격(Buffer Overflow)의 주요 통로로 악용된다.
 
-## Ⅳ. 동작 ───── Push·Pop·Peek
-
-```text
-Push(x): 용량확인 → top 증가 → data[top]=x
-Pop()  : 공백확인 → value=data[top] → top 감소 → value
-Peek() : 공백확인 → data[top] 반환, 제거 없음
-```
-
-불변식은 Top이 항상 마지막 유효 원소를 가리키며 원소 수와 경계를 벗어나지 않는 것이다.
-
-## Ⅴ. 비교 ───── 스택·큐·덱
-
-| 기준 | 스택 | 큐 | 덱 |
+| 위험 요소 | 발생 원인 | 영향 | 실무 방어 대책 |
 |---|---|---|---|
-| 원리 | LIFO | FIFO | 양 끝 입출력 |
-| 삽입/삭제 | Top/Top | Rear/Front | Front·Rear |
-| 활용 | 호출·Undo·DFS | 요청·BFS·Buffer | Sliding Window |
-| 핵심 오류 | 깊이·용량 초과 | 포화·기아 | 경계 관리 |
+| **Stack Overflow** | 끝없는 재귀 호출(무한 루프) | 프로세스 강제 크래시 | 종료 조건(Base Case) 검증 및 재귀를 **반복문(Iteration)**으로 변환 |
+| **Stack Buffer Overflow** | 경계 검사 없는 문자열 복사(`strcpy`) | 스택 복귀 주소 변조, 원격 코드 실행 | 안전한 함수(`strncpy`) 사용, **스택 카나리(Stack Canary)**, ASLR 적용 |
+| **Stack Underflow** | 빈 스택에서 Pop 시도 | 널 포인터 참조 또는 시스템 패닉 | Pop/Peek 실행 전 `isEmpty()` 사전 조건 검증 필수 |
 
-## Ⅵ. 고려 ───── 호출 스택과 안전성
+## Ⅴ. 메모리 아키텍처 관점의 기술사적 제언
 
-| 문제 | 원인 | 대응 | 확인 |
-|---|---|---|---|
-| Stack Overflow | 무한 재귀·깊은 호출 | 종료조건, 반복·명시 스택 전환 | 최대 깊이 |
-| Underflow | 빈 상태 Pop | 사전조건·예외 처리 | 빈 입력 시험 |
-| 고정 배열 초과 | 용량 추정 실패 | 동적 확장·연결 구현 | 최대 원소 수 |
-| 메모리 잔존 | Pop 후 참조 유지 | 참조 해제 | 누수 검사 |
-| 동시 접근 | 비원자 Top 갱신 | 소유권·동기화·동시 스택 | 경쟁 시험 |
+> 시스템의 신뢰성을 확보하기 위해서는 런타임 스택 메모리 한계와 스택 프레임 수명주기에 대한 철저한 통제가 필수적이다.
 
-## Ⅶ. 결론 ───── LIFO 불변식과 경계조건 검증
+### 학습자 통찰 메모 — 답안 밖
 
-스택은 단순하지만 호출과 상태 복원의 기반이다. 구현 방식보다 LIFO·Top 불변식, Overflow·Underflow와 재귀 깊이를 명시하고 입력 규모와 동시성 조건에 맞게 선택해야 한다.
+- [핵심 통찰]: 스택의 O(1) 고속 연산은 '캐시 친화도(Cache Locality)' 덕분임. CPU 레지스터와 L1 캐시가 Top 근처의 스택 메모리를 매우 빠르게 읽을 수 있기 때문임. 그러나 깊은 재귀 호출은 이 캐시를 무너뜨리고 스택 오버플로우를 유발함.
+- 나라면: 대용량 데이터 트리 탐색 시 언어 수준의 재귀 호출(콜스택 사용)을 금지하고, 힙 메모리에 명시적인 사용자 정의 스택(Explicit Stack)을 할당하여 OS 스택 한계(보통 1~8MB)를 우회하겠음.
 
-## 1교시 10점 발췌
+### 실전 답안용 기술사적 제언
 
-```text
-Stack = Top 한쪽에서 Push·Pop하는 LIFO 선형 자료구조
-연산: Push·Pop·Peek O(1), 오류: Overflow·Underflow
-구현: Array(top index) / Linked(top pointer)
-활용: Call Stack·Undo·괄호검사·DFS·수식변환
-```
+- 판정: 재귀 호출의 깊이가 불확실한 경우 명시적 스택 또는 반복문 전환 판정
+- 대안: **Heap 기반 커스텀 스택** 구현 및 컴파일러 보안 옵션(Canary, DEP) 강제
+- 검증: 최대 호출 깊이 정적 분석 · 스택 사용량 프로파일링
+- 효과: 스택 고갈 크래시 방지 및 버퍼 오버플로우 취약점 원천 차단
 
-## 공식 근거
+<div class="itpe-pipeline is-vertical" role="img" aria-label="스택 메모리 안정성 확보 제언">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <small>과도한 재귀 호출로 인한 스택 오버플로우 및 메모리 변조 위험</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <small>명시적 힙 스택 전환 및 스택 카나리(Canary) 방어 체계화</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <small>스택 한계선 모니터링 및 경계 검사 단위 테스트 100%</small>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <small>런타임 안정성 보장 및 시스템 보안 취약점 원천 제거</small>
+  </div>
+</div>
 
-- [NIST Dictionary of Algorithms and Data Structures — Stack](https://xlinux.nist.gov/dads/HTML/stack.html)
-- Q-Net 제132회 2교시 6번, 제138회 3교시 3번
+## 1교시 10점 답안 발췌
 
-## 체크
+### 1. 정의·목적
 
-- [ ] Top과 Push·Pop을 손그림으로 표현했는가
-- [ ] 배열·연결 구현과 경계조건을 썼는가
-- [ ] 큐·덱을 동일 기준으로 비교했는가
+- 정의: **스택(Stack)**은 Top을 통해서만 데이터 삽입과 삭제가 이루어지는 **후입선출(LIFO)** 선형 자료구조
+- 목적: 함수 호출 복귀, 상태 역순 복원, 수식 연산을 **O(1)** 시간 복잡도로 수행
+
+### 2. 핵심 메커니즘
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="스택 동작 요약">
+  <div class="itpe-pipeline-node"><strong>Push(X)</strong><small>Top 증가 후 데이터 저장</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>Peek()</strong><small>Top 위치 데이터 단순 조회</small></div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>Pop()</strong><small>Top 데이터 반환 후 Top 감소</small></div>
+</div>
+
+### 3. 핵심 통제
+
+- **오버플로우 방어**: 무한 재귀를 반복문으로 치환하고 힙 메모리 기반 커스텀 스택 활용
+- **보안 통제**: 스택 버퍼 오버플로우 방지를 위한 Stack Canary 및 경계 검사 강제
+
+## 출제 이력과 검증 출처
+
+- 제132회 정보관리기술사 1교시: 스택(Stack)과 큐(Queue) 자료구조 비교
+- 제138회 정보관리기술사 1교시: 스택 자료구조와 시스템 호출 스택
+- Thomas H. Cormen, Introduction to Algorithms (CLRS), Elementary Data Structures (Stacks and Queues)
+
+## 학습 체크
+
+- [ ] 스택의 LIFO 원칙과 Top 포인터의 동작을 그림으로 설명할 수 있는가?
+- [ ] 배열 기반 스택과 연결 리스트 기반 스택의 장단점을 비교할 수 있는가?
+- [ ] 콜 스택(Call Stack)에서 스택 오버플로우가 발생하는 원인과 방지 대책을 설명할 수 있는가?
 
 ## 연결 토픽
 
-- [선형 자료구조](./053_linear_structure/)
-- [비선형 자료구조](./052_non_linear_structure/)
-- [힙](./092_heap/)
+- 이전 토픽: [블랙박스 테스트](./008_black_box_test.md)
+- 연관 토픽: [선형 자료구조](./053_linear_structure.md), [BST](./001_bst.md)
+- 다음 토픽: [형상관리](./011_configuration_management.md)
