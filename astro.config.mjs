@@ -26,20 +26,8 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: '컴퓨터시스템응용 (CSPE)',
+          label: '정보관리기술사 (ITPE)',
           collapsed: false,
-          items: [
-            {
-              autogenerate: {
-                directory: 'notes/cspe',
-                collapsed: true,
-              },
-            },
-          ],
-        },
-        {
-          label: '정보관리 (ITPE)',
-          collapsed: true,
           items: [
             {
               autogenerate: {
