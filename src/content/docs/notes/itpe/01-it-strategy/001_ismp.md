@@ -207,7 +207,7 @@ extra:
   <div class="itpe-flow-node">
     <span class="itpe-keyword"><strong>RTM(Requirements Traceability Matrix)</strong></span>
     <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>추적</strong><span>요건 ↔ 아키텍처 ↔ FP·예산 ↔ RFP</span></div>
+      <div class="itpe-flow-branch"><strong>추적 경로</strong><span>요건 ↔ 아키텍처 ↔ FP·예산 ↔ RFP</span></div>
       <div class="itpe-flow-branch"><strong>확인</strong><span>누락 · 고립 · 불일치 탐지</span></div>
     </div>
   </div>
