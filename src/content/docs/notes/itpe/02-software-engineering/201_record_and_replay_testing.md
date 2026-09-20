@@ -1,92 +1,178 @@
 ---
 title: "Record and Replay 테스트 기법"
-author: "Gemini 3.8 Flash"
-date: "2026-09-20T11:22:00+09:00"
+category: "02-software-engineering"
 tags:
-  - "notes-software-engineering"
-extra:
-  model: "Gemini 3.8 Flash"
-
+  - "RecordAndReplay"
+  - "테스트자동화"
+  - "회귀테스트"
+  - "FlakyTest"
+  - "GoReplay"
+  - "트래픽섀도잉"
+  - "PageObjectModel"
+date: "2026-09-20"
 ---
 
-## 답안 골격
+## 지식 로드맵 내 현재 위치
+
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어공학에서 소프트웨어 테스팅과 테스트 자동화를 거쳐 Record and Replay 테스트 기법으로 이어지는 지식 위치">
+  <span>소프트웨어공학</span>
+  <span>소프트웨어 테스팅·테스트 자동화</span>
+  <strong>Record and Replay 테스트 기법</strong>
+</div>
+
+## 큰 그림과 30초 인출
+
+- 본질: 사용자의 GUI 마우스/키보드 입력 행위나 실제 운영 환경의 네트워크 패킷을 실시간 가로채어 기록(Record)한 뒤, 소스코드 수정 및 신규 배포 시 동일하게 재생(Replay)하여 이전과 똑같이 정상 동작하는지 검증하고 회귀 결함을 조기 발견하는 테스트 자동화 기법
+- 메커니즘: 사용자 인터랙션 캡처 $\rightarrow$ 테스트 스크립트 및 기대값(Golden Master) 저장 $\rightarrow$ 신규 빌드 대상 가상 이벤트 주입 재생 $\rightarrow$ 테스트 오라클(Oracle) 비교 검증 $\rightarrow$ 회귀 결함 판정
+- 산출물: 캡처된 테스트 스크립트 파일 · 기대 결과 데이터셋 · 회귀 시험 성적서 · 트래픽 리플레이 로그
+
+<div class="itpe-flow-map" role="img" aria-label="Record and Replay 테스트 수행 및 회귀 판정 파이프라인">
+  <div class="itpe-flow-node">
+    <strong>1단계: 사용자 조작 캡처 및 레코딩 (Record)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>기록</strong><span>마우스 클릭, 텍스트 입력, API 요청 패킷을 이벤트 단위로 가로채어 저장</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>2단계: 테스트 스크립트 및 오라클 정의</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>명세</strong><span>DOM 셀렉터, 파라미터 및 기준 기대값(Golden Master) 자동 생성</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>3단계: 신규 시스템 대상 자동 재생 (Replay)</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>재생</strong><span>신규 배포된 앱에 가상 이벤트를 자동 주입하여 실제 실행 결과 도출</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <span class="itpe-keyword"><strong>4단계: 회귀 결함 판정 (Quality Gate)</strong></span>
+    <div class="itpe-step-detail">
+      <strong>판정 질문</strong><span>재생 결과가 기대 오라클과 100% 일치하며 회귀 결함이나 Flaky 에러가 없는가?</span>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-branches">
+    <div class="itpe-flow-branch is-pass">
+      <strong>통과 (회귀 검증 합격)</strong>
+      <span>배포 승인 $\rightarrow$ 기존 기능 정상성 보장 및 무결점 프로덕션 릴리스</span>
+    </div>
+    <div class="itpe-flow-branch is-fail">
+      <strong>미통과 (불일치 / Flaky 실패)</strong>
+      <span>배포 차단 $\rightarrow$ DOM 셀렉터 깨짐 확인(Self-Healing) 및 회귀 버그 수정</span>
+    </div>
+  </div>
+</div>
+
+<details>
+<summary>핵심 용어</summary>
+
+- **Capture & Replay(캡처 및 재생)**: 사용자의 수작업 조작이나 실환경 트래픽을 가로채어 파일로 기록하고, 소프트웨어적으로 이를 동일하게 재생하여 검증하는 테스트 방식
+- **Test Oracle(테스트 오라클)**: 테스트 실행 결과의 참/거짓을 판별하기 위해 사전에 확립해 둔 판정 기준 또는 기준 정답 데이터(Golden Master)
+- **Flaky Test(불안정한 테스트)**: 실제 소스코드 결함이 없음에도 불구하고 네트워크 지연, 비동기 렌더링 타이밍, 일시적 DOM ID 변경으로 인해 간헐적으로 실패하는 테스트
+- **Traffic Shadowing (트래픽 미러링)**: 운영 환경에 인입되는 실제 사용자 HTTP/gRPC 트래픽을 백그라운드에서 복제(Record)하여 신규 개발 서버로 실시간 전달(Replay)해 검증하는 기술 (예: GoReplay)
+</details>
+
+## 1. 개요 및 필요성
+
+### 수작업 회귀 테스트의 한계와 자동화의 진입 장벽
+
+소프트웨어 기능이 추가될 때마다 기존에 잘 돌아가던 기능이 깨지지 않았는지 확인하는 "회귀 테스트(Regression Test)" 공수는 기하급수적으로 폭증한다. 그러나 코딩 기반의 E2E 테스트(Selenium, Playwright)를 일일이 작성하는 것은 높은 숙련도와 많은 시간이 소요된다.
+
+Record and Replay 기법은 **비전문가도 실제 화면을 조작하는 것만으로 신속하게 테스트 스크립트를 생성**할 수 있도록 지원하여, 테스트 자동화의 초기 구축 속도를 극대화하는 실용적 테스팅 기법이다.
+
+### 레코드 & 리플레이 vs 코드 기반 E2E vs 키워드 주도 테스트 비교
+
+| 구분 | 레코드 & 리플레이 (Record & Replay) | 코드 기반 E2E 테스트 (Playwright 등) | 키워드 주도 테스트 (Robot Framework) |
+|---|---|---|---|
+| **스크립트 생성**| **사용자 조작을 화면 녹화하듯 자동 생성** | **개발자/QA가 직접 프로그래밍 코딩** | 스프레드시트에 정의된 키워드 조합 |
+| **작성 난이도** | **매우 낮음 (비개발자도 즉시 가능)** | 높음 (테스트 프레임워크 지식 필요) | 보통 (테이블 정의 수준) |
+| **유지보수성** | **취약 (UI 변경 시 스크립트 깨짐 빈번)** | **우수 (Page Object Model 모듈화)** | 우수 (키워드 매핑 테이블만 수정) |
+| **실행 신뢰도** | 낮음 (Flaky Test 발생 위험) | **높음 (스마트 대기 및 예외 처리 견고)** | 높음 |
+| **대표 도구** | Selenium IDE, Cypress Studio, GoReplay | Playwright, Selenium WebDriver | Robot Framework |
+
+## 2. 아키텍처 및 핵심 메커니즘
+
+### Record and Replay 테스트 시스템 아키텍처
+
 ```text
-[Record and Replay 테스트 기법] ◀━━ 머리: Ⅶ 내 의견 (UI 스크립트의 취약성을 극복하는 운영 트래픽 기반(GoReplay) 백엔드 무중단 회귀 검증)
- ┃
- ┣━ Ⅰ 개요 ───── 사용자의 입력 행위나 실제 운영 네트워크 트래픽을 실시간 기록(Record)한 뒤 동일하게 재현(Replay)하여 회귀 결함을 검증하는 기법
- ┣━ Ⅱ 특징 ───── 비전문가도 테스트 시나리오 조기 생성 가능 · 회귀 테스트(Regression Test) 비용 절감 · 화면 변경 시 스크립트 깨짐 취약성
- ┣━ Ⅲ 구조 ───── 2대 핵심 프로세스: 캡처 및 레코딩 엔진(이벤트 수집, 데이터 추출) ──> 재현 및 검증 오라클(이벤트 주입, 응답 비교)
- ┣━ Ⅳ 흐름 ───── 사용자 동작 수행 → 이벤트 로깅 및 스크립트 생성 → SW 수정 및 배포 → 스크립트 자동 재실행 → 기대값 비교 및 리포트
- ┣━ Ⅴ 비교 ───── 레코드 & 리플레이 vs 코드 기반 자동화 테스트(Selenium/Playwright) vs 키워드 주도 테스트(Keyword-Driven)
- ┗━ Ⅵ 실무 ───── UI DOM 변경 시 테스트 취약성(Flaky Test) / 비동기 응답 타이밍 불일치 / GoReplay를 활용한 운영 트래픽 섀도잉(Shadowing)
-```
-- 필수 키워드: 레코드(Record) · 리플레이(Replay) · 회귀 테스트(Regression) · 테스트 오라클 · 캡처/재생 · DOM 셀렉터 · Flaky Test · 트래픽 섀도잉(GoReplay)
-- 기출: 83회 1교시, 93회 1교시 `Record and Replay 테스트 기법의 개념, 동작 절차, 장단점 및 보완 대책` → Ⅰ~Ⅵ
-
-## 한 줄 본질
-- 마우스 클릭, 키보드 입력, 네트워크 패킷을 비디오 녹화하듯 저장해 두었다가 코드가 변경되었을 때 그대로 재생하여 이전과 똑같이 동작하는지 검증하는 자동화 기법 / 빠른 시나리오 확보와 유지보수 취약성의 트레이드오프
-
-## 핵심 그림
-```text
 +-------------------------------------------------------------------------+
-|                  Record and Replay 테스트 아키텍처 및 라이프사이클      |
+|                  Record and Replay 테스트 시스템 아키텍처               |
 +-------------------------------------------------------------------------+
-| [ 1. Record 단계 ]                                                      |
-|   사용자/테스터 조작 (클릭, 입력) ──> [ 이벤트 캡처 엔진 ]                |
-|                                             │                           |
-|                                             ▼                           |
-|                                    [ 테스트 스크립트 저장소 ]            |
-|                                    (DOM 선택자, 입력값, 기대 결과)       |
-|                                             │                           |
-| [ 2. Replay 단계 ]                          ▼                           |
-|   신규 버전 배포 ──> [ 재생 엔진 ] <── 테스트 스크립트 로딩             |
-|                          │                                              |
-|                          ▼ (가상 이벤트 주입)                           |
-|                   [ 시스템 실행 ] ──> 실제 결과 출력                     |
-|                                            │                            |
-|                                            ▼                            |
-|                   [ 테스트 오라클 (비교) ] ──> 일치 여부 판정 및 결함 보고|
+|                                                                         |
+|  [ 1. Record 단계 ]                                                     |
+|    사용자/테스터의 실제 조작 ──> [ 이벤트 캡처 엔진 ]                   |
+|                                       │                                 |
+|                                       v                                 |
+|                              [ 테스트 스크립트 저장소 ]                 |
+|                              (DOM 셀렉터, 입력 데이터, 기대 결과)       |
+|                                       │                                 |
+|  [ 2. Replay 단계 ]                   v                                 |
+|    신규 빌드 배포 ──> [ 가상 재생 엔진 ] <── 스크립트 로딩               |
+|                              │                                          |
+|                              v (가상 이벤트 주입)                       |
+|                       [ 테스트 대상 애플리케이션 ]                       |
+|                              │                                          |
+|                              v 실제 출력값                              |
+|                       [ 테스트 오라클 (비교) ] ──> 일치 시 PASS / 불일치 결함 |
 +-------------------------------------------------------------------------+
 ```
 
-## 핵심 용어
-- 캡처 및 재생(Capture & Replay): 테스트 대상 애플리케이션에 전달되는 GUI 이벤트나 네트워크 패킷을 가로채어 기록하고, 이를 소프트웨어적으로 재생성하여 전달하는 기술
-- 테스트 오라클(Test Oracle): 테스트 수행 결과가 참인지 거짓인지를 판단하기 위해 사전에 정의된 기준이나 기록 당시의 기대 결과값(Golden Master)
-- 플래키 테스트(Flaky Test): 소스코드 결함이 없음에도 불구하고 네트워크 지연, 렌더링 타이밍, DOM ID 변경 등으로 인해 간헐적으로 실패하는 불안정한 테스트
-- 셀프 힐링(Self-Healing): UI 요소의 ID나 클래스명이 변경되더라도 AI나 상대적 위치 분석을 통해 대상 컴포넌트를 자동으로 재탐색하여 스크립트 깨짐을 자체 복구하는 기법
-- 트래픽 섀도잉(Traffic Shadowing / Mirroring): 운영 환경에 인입되는 실제 사용자 HTTP/gRPC 요청을 백그라운드에서 복제(Record)하여 신규 개발 서버로 실시간 전달(Replay)해 검증하는 기법 (예: GoReplay)
+### 핵심 2대 단계 및 메커니즘
 
-## 핵심 통찰
-- 레코드 & 리플레이 기법은 개발 초기나 비개발자 QA가 복잡한 코딩 없이 신속하게 회귀 테스트 스위트를 구축할 수 있는 가장 빠른 방법임
-- 그러나 전통적인 GUI 기반 레코드 방식은 화면 디자인이 조금만 바뀌거나 버튼 좌표/DOM이 변경되어도 테스트가 전부 실패하는 극심한 유지보수 비용(Maintenance Nightmare) 문제를 낳음
-- 따라서 오늘날 이 기법은 '단순한 화면 녹화'를 벗어나 두 가지 방향으로 고도화됨
-  - 첫째, UI 관점에서는 Playwright Codegen과 결합하고 `data-testid` 속성 기반으로 선택자를 견고화함
-  - 둘째, 백엔드 관점에서는 GoReplay와 같이 운영 트래픽 패킷을 캡처하여 스테이징 환경에서 무중단 부하 및 정합성을 검증하는 '트래픽 리플레이'로 확장됨
+<div class="itpe-component-grid">
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>① 레코드(Record) 메커니즘</strong></span>
+      <span class="itpe-badge">이벤트 캡처</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>브라우저 DOM 이벤트 리스너를 가로채어 클릭, 키 입력 수집</li>
+        <li>네트워크 레벨에서는 실제 HTTP 패킷을 패킷 스니퍼로 복제</li>
+      </ul>
+    </div>
+  </div>
+  <div class="itpe-component-card">
+    <div class="itpe-component-header">
+      <span class="itpe-keyword"><strong>② 리플레이(Replay) 메커니즘</strong></span>
+      <span class="itpe-badge">결과 검증</span>
+    </div>
+    <div class="itpe-component-body">
+      <ul>
+        <li>저장된 순서와 시간 간격에 맞춰 대리 실행 엔진이 이벤트 주입</li>
+        <li>화면 최종 상태 및 API 응답 코드를 기대값과 $1:1$ 자동 대조</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-## 이웃 토픽과 구분
-| 비교 항목 | 레코드 & 리플레이 (Record & Replay) | 코드 기반 테스트 (Code-based E2E) | 키워드 주도 테스트 (Keyword-Driven) |
-| :--- | :--- | :--- | :--- |
-| **스크립트 생성** | 사용자 행위 녹화를 통한 자동 생성 | 개발자/SDET가 테스트 코드를 직접 프로그래밍 | 엑셀/테이블에 정의된 키워드 조합 |
-| **작성 난이도** | 매우 낮음 (비개발자 친화적) | 높음 (테스트 프레임워크 및 코딩 필요) | 보통 (스프레드시트 작성 수준) |
-| **유지보수성** | 매우 취약 (UI 변경 시 전면 재녹화) | 우수 (Page Object Model 기반 모듈화) | 우수 (키워드 매핑 테이블만 수정) |
-| **실행 신뢰도** | 낮음 (Flaky Test 발생 빈번) | 높음 (명시적 대기 및 예외 처리 견고) | 높음 |
-| **대표 도구** | Selenium IDE, Cypress Studio | Playwright, Selenium WebDriver | Robot Framework |
+## 3. 실무 적용 및 고려사항
 
-## 문제·원인·대책
-| 문제상황 | 원인 | 기술적 대책 |
-| :--- | :--- | :--- |
-| **버튼 ID 변경으로 기존 스크립트 전면 실패** | 자동 생성기가 취약한 절대 XPath나 동적 생성 클래스명을 캡처함 | 의미론적 속성(`data-testid`, `aria-label`) 기반 셀렉터 강제화 및 Self-healing 도구 도입 |
-| **비동기 AJAX 지연으로 인한 요소 탐색 실패** | 고정 대기 시간(`Thread.sleep`) 부족으로 화면 렌더링 전 이벤트 주입 | 특정 DOM 요소가 나타날 때까지 대기하는 스마트 대기(Smart Wait / Explicit Wait) 적용 |
-| **데이터베이스 상태 불일치로 리플레이 오류** | 기록 당시의 DB 레코드(ID 등)가 삭제되거나 변경되어 중복 키 에러 발생 | 테스트 실행 전 DB를 도커(Docker/Testcontainers) 샌드박스로 초기화하여 격리 실행 |
+### 위험 대응 매트릭스
 
-## 이렇게 출제된다
-- **10점형**: Record and Replay 테스트 기법의 개념, 장단점 및 유지보수성 취약점을 설명하시오.
-- **25점형**: 
-  - 1) 소프트웨어 테스트 자동화에서 Record and Replay 기법의 기본 메커니즘과 동작 4단계를 도식으로 설명하시오.
-  - 2) 전통적인 GUI 레코드 & 리플레이 도구의 실패 원인(Flaky Test)과 이를 극복하기 위한 Page Object Model 및 Self-Healing 기술을 설명하시오.
-  - 3) 마이크로서비스(MSA) 아키텍처 환경에서 GoReplay 등을 활용한 실제 운영 트래픽 섀도잉(Traffic Shadowing) 및 회귀 검증 구현 전략을 논하시오.
+| 위험 | 대책 | 효과 |
+|---|---|---|
+| 화면 UI 개편이나 버튼 클래스명 변경으로 녹화된 수백 개 테스트 스크립트 전면 실패 | `data-testid` 의미론적 불변 속성 강제화 및 AI 기반 셀프 힐링(Self-Healing) 셀렉터 도입 | UI 변경 시 스크립트 깨짐 80% 감소 |
+| 비동기 AJAX 지연으로 화면 렌더링 전 이벤트가 주입되어 요소 탐색 실패(Flaky Test) | 고정 슬립(`sleep`) 대신 특정 DOM이 나타날 때까지 기다리는 스마트 명시적 대기(Smart Wait) 적용 | 테스트 신뢰도 99% 달성 |
+| 데이터베이스 상태 변경으로 인해 동일 요청 리플레이 시 중복 키 에러 및 트랜잭션 충돌 | Testcontainers를 도입하여 테스트 실행 전 도커 DB 샌드박스를 격리 프로비저닝 | DB 데이터 오염 없는 반복 시험 보장 |
 
-## 내 의견
-- 레코드 & 리플레이는 테스트 자동화의 진입 장벽을 낮추는 훌륭한 부트스트래핑 도구이지만, 여기에만 의존하여 작성된 수백 개의 테스트는 머지않아 팀 전체의 유지보수 재앙이 됨
-- 실무에서는 UI 테스트의 경우 레코더로 초기 뼈대 코드만 추출한 뒤, 즉시 엔지니어가 Page Object Model(POM) 패턴을 적용하여 재사용 가능한 코드로 리팩토링해야 함
-- 반면 대규모 분산 백엔드에서는 운영 트래픽을 비동기로 미러링하여 카나리 서버에 리플레이하는 기법(Shadow Traffic Testing)이 신규 시스템 배포 전 무결성을 검증하는 가장 안전하고 현실적인 기법으로 각광받고 있음
+## 4. 기술사 답안 차별화 포인트
+
+### GUI를 넘어선 백엔드 운영 트래픽 섀도잉(GoReplay)
+
+현대 엔지니어링에서 Record and Replay는 단순한 GUI 화면 녹화에 머물지 않는다. **GoReplay나 Envoy 트래픽 미러링**을 활용하여 실제 운영 중인 마이크로서비스로 들어오는 수백만 건의 사용자 HTTP 요청을 복제(Record)하고, 이를 차세대 신규 서버로 실시간 전달(Replay)하는 **"트래픽 섀도잉(Traffic Shadowing)"** 기법을 제시한다. 실제 운영 트래픽으로 신규 시스템의 부하와 정합성을 100% 무중단 검증하는 모던 아키텍처 역량을 피력한다.
+
+### Page Object Model(POM)과의 하이브리드 결합
+
+전통적 레코드 도구의 치명적 약점은 유지보수 불능(Maintenance Nightmare)이다. 따라서 실무에서는 레코드 도구(Playwright Codegen)로 초기 뼈대 코드만 고속 추출한 뒤, 즉시 엔지니어가 **Page Object Model(화면 객체와 비즈니스 로직 분리)** 패턴으로 리팩토링하는 하이브리드 운영 전략을 결론으로 제언한다.
+
+## 5. 참고 및 연계 학습
+
+- [회귀 테스트(Regression Test)](./061_regression_test.md)
+- [테스트 자동화(Test Automation)](./091_test_automation.md)
+- [통합 테스트(Integration Test)](./179_integration_test.md)
+- [성능 테스트(Performance Test)](./191_performance_test.md)
