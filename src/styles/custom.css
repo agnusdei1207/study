@@ -215,6 +215,10 @@ body {
   text-align: center;
 }
 
+.sl-markdown-content .itpe-flow-node:has(.itpe-flow-branches) {
+  width: min(100%, 34rem);
+}
+
 .sl-markdown-content .itpe-flow-node.is-current {
   border: 2px solid var(--palette-accent);
   background: color-mix(in srgb, var(--palette-accent) 12%, var(--palette-surface));
@@ -249,28 +253,44 @@ body {
 
 .sl-markdown-content .itpe-flow-branches {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   box-sizing: border-box;
   width: 100%;
-  gap: 0.4rem;
-  margin-top: 0.5rem;
-  padding-top: 0.55rem;
-  border-top: 1px solid var(--palette-line);
+  gap: 0.6rem;
+  margin-top: 0.55rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--palette-line);
   text-align: left;
 }
 
 .sl-markdown-content .itpe-flow-branch {
-  display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr);
-  gap: 0.6rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.45rem 0.65rem;
+  background: color-mix(in srgb, var(--palette-surface) 60%, transparent);
+  border: 1px solid var(--palette-line);
+  border-radius: 0.45rem;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .sl-markdown-content .itpe-flow-branch > strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
   color: var(--palette-accent-glow);
+  font-weight: 700;
+  border-bottom: 1px solid var(--palette-line);
+  padding-bottom: 0.2rem;
 }
 
 .sl-markdown-content .itpe-flow-branch > span {
   min-width: 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--palette-text-secondary, inherit);
 }
 
 .sl-markdown-content .itpe-pipeline {
@@ -393,11 +413,14 @@ body {
     padding: 0.65rem 0.75rem;
   }
 
-  .sl-markdown-content .itpe-flow-branch {
+  .sl-markdown-content .itpe-flow-branches {
     grid-template-columns: 1fr;
-    gap: 0.1rem;
-    font-size: 0.9rem;
-    text-align: center;
+    gap: 0.45rem;
+  }
+
+  .sl-markdown-content .itpe-flow-branch {
+    text-align: left;
+    font-size: 0.88rem;
   }
 
   .sl-markdown-content .itpe-pipeline {
