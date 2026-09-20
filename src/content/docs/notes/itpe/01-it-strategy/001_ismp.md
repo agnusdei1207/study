@@ -6,15 +6,30 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "코어 · 기출 · 100%"
+    text: "A · 기출 · 100%"
 extra:
   model: "GPT-5"
+  keyword_grade: "A"
+  grade_basis: "memories canonical 01-001 (2026-09-20)"
   source_status: "기출"
   source_history: "138회(공식), 125·127·129·130회(KPC 키워드)"
   reference_status: "NIA ISP·ISMP 수립 공통가이드 제9판 일부개정(2025.12) 확인"
   priority: 100
   priority_note: "공식 138회 출제, ISP 비교·방법론·이행방안으로 확장 가능"
 ---
+
+## 전체 로드맵 내 현재 위치
+
+```text
+▶ 01 정보 전략·관리 ─→ 02 SW공학·프로젝트 ─→ 03 데이터
+          │
+          └─→ 04 컴퓨터시스템 ─→ 05 네트워크 ─→ 06 보안
+                                     │
+                                     └─→ 07 AI·신기술
+전 영역 준거 ───────────────────────────→ 08 법·정책
+```
+
+- 현재 위치: `01 정보 전략·관리 > 정보화 기획·발주 > ISMP`
 
 ## 큰 그림과 30초 인출
 
