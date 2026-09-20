@@ -1,14 +1,14 @@
 ---
-title: "협상에 의한 계약 제안서평가 세부기준"
-author: "Codex"
-date: "2026-09-20T22:58:47+09:00"
+title: "협상계약 제안서 평가"
+author: "OpenAI Codex"
+date: "2026-09-22T04:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GPT-5"
   keyword_grade: "B"
 ---
 
@@ -68,6 +68,7 @@ extra:
 
 - 정의: **제안서 평가**의 위원 구성·방법·항목·배점·결과 처리에 필요한 세부사항을 정한 **조달청 집행 기준**
 - 목적: 평가 전문성 보완 · 입찰 분쟁 예방 · 기업 부담 경감
+- 적용: 개별 입찰은 공고일 기준 **현행 세부기준·제안요청서**를 우선 적용
 
 ## Ⅱ. 2024년 9월 개정사항
 
@@ -120,7 +121,7 @@ extra:
   </div>
 </div>
 
-## Ⅳ. 평가 운영 위험·통제
+## Ⅳ. 문제점·대응책
 
 > 제도의 실효성은 전문위원을 추가했다는 사실보다 전문영역 선택, 평가축 분리, 판단 증적이 일관되는지로 판정함.
 
@@ -191,7 +192,7 @@ extra:
 - [조달청, 「조달청 협상계약 평가… 기업 부담 낮추고 공정성 높인다」, 2024. 9. 11.](https://www.pps.go.kr/kor/bbs/view.do?bbsSn=2409110017&key=00318)
 - [조달청, 「협상에 의한 계약 제안서평가 세부기준 주요 개정사항」, 2024. 9. 19.](https://www.pps.go.kr/kor/bbs/view.do?bbsSn=2409190019&key=00638)
 - [국가법령정보센터, 「조달청 협상에 의한 계약 제안서평가 세부기준」 2024년 9월 시행 연혁](https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000247024)
-- [국가법령정보센터, 「조달청 협상에 의한 계약 제안서평가 세부기준」 개정 연혁 확인](https://law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000273638)
+- [국가법령정보센터, 현행 「조달청 협상에 의한 계약 제안서평가 세부기준」](https://law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000273638)
 
 ## 학습 체크
 
