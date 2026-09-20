@@ -1,14 +1,14 @@
 ---
 title: "DevOps"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-20T23:49:42+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5.6 Sol"
   keyword_grade: "A"
 ---
 
@@ -109,7 +109,7 @@ extra:
 | **인프라 관리** | 엔지니어 수작업 GUI/CLI 구성 | Git 기반 선언적 **IaC** 및 GitOps |
 | **장애 대응** | 장애 발생 시 원인 규명 및 문책 중심 | 비난 없는 사후 분석(Blameless) 및 시스템 보완 |
 
-## Ⅳ. DevOps 도입 시 주요 위험 요인과 실무 대책
+## Ⅳ. DevOps 도입 문제점·대응책
 
 > 도구만 도입하고 조직 문화와 평가 체계를 바꾸지 않으면 '도구 사일로'가 심화되므로 체계적인 거버넌스가 필요하다.
 
@@ -119,7 +119,7 @@ extra:
 | **조직 KPI 상충 및 저항** | 개발-운영 간 갈등을 중재하는 **에러 예산(Error Budget)** 제도화 | 변경 속도와 서비스 신뢰성의 수학적 균형 확보 |
 | **인프라 구성 불일치 (Drift)** | 콘솔 직접 수정을 금지하고 Git PR 기반 선언적 **IaC(GitOps)** 강제 | 환경 간 불일치 제거 및 배포 멱등성 보장 |
 
-## Ⅴ. 성공적인 DevOps 정착을 위한 기술사적 제언
+## Ⅴ. 지속 개선 중심의 결론
 
 > DevOps의 최종 목표는 배포 속도가 아니라 지속적인 비즈니스 민첩성이며, 이를 위해 플랫폼 엔지니어링 체계로 진화해야 한다.
 

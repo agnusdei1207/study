@@ -1,14 +1,14 @@
 ---
 title: "형상관리(베이스라인)"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-20T23:49:42+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5.6 Sol"
   keyword_grade: "A"
 ---
 
@@ -132,7 +132,7 @@ extra:
   </div>
 </div>
 
-## Ⅳ. 현대 클라우드·DevOps 환경에서의 형상관리 및 위험 통제
+## Ⅳ. 형상관리 문제점·대응책
 
 > 분산 환경에서는 중앙집중식 통제에서 GitOps 기반의 선언적 자동화 통제로 진화하고 있다.
 
@@ -153,7 +153,7 @@ extra:
 | **코드와 문서 간 불일치** | **RTM(요구사항 추적표)** 연동 및 CI 빌드 시 문서 자동 생성 | 역추적성 확보 및 산출물 정합성 보장 |
 | **개발 브랜치 오염 및 병합 충돌** | Branch Protection Rule 설정 및 최소 2인 PR 코드 리뷰 강제 | 메인 브랜치 안정성 확보 및 형상 충돌 예방 |
 
-## Ⅴ. 산출물 무결성 통제를 위한 기술사적 제언
+## Ⅴ. 산출물 무결성 중심의 결론
 
 > 형상관리가 부실하면 롤백 불가, 소스코드 유실, 불일치 릴리스 등 치명적인 프로젝트 실패가 발생한다.
 

@@ -143,18 +143,22 @@ extra:
 - 대안: IPAM을 Baseline으로 주소·VLAN·VRF·DHCP·ACL 연결
 - 검증: RIB·FIB·Lease·ACL Hit·도달성 교차 확인
 - 효과: 주소 충돌·요약 Blackhole·정책 누락 예방
+
 <div class="itpe-flow itpe-flow--vertical" aria-label="주소 설계 개선"><div class="itpe-flow__node"><strong>분산 관리</strong><small><b>문제:</b> 주소·경로·정책 불일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>IPAM Baseline</strong><small><b>대안:</b> Prefix와 운영 객체 연결</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>배포 대조</strong><small><b>판정:</b> 계획·RIB·FIB·정책 일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>일관성 확보</strong><small><b>효과:</b> 충돌·Blackhole 예방</small></div></div>
 
 ## 1교시 10점 답안 발췌
 
 - 정의: **CIDR(Classless Inter-Domain Routing)** 기반 서브네팅은 Prefix를 늘려 주소 블록을 분할하고, **VLSM(Variable Length Subnet Mask)**은 요구량별 길이를 달리하는 설계임
 - 목적: 주소 효율과 장애·보안 영역 분리 → 확장 가능한 계층 주소 확보
+
 <div class="itpe-flow itpe-flow--vertical" aria-label="서브네팅 1교시 그림"><div class="itpe-flow__node"><strong>요구량</strong><small><b>입력:</b> Host·성장량</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>VLSM 분할</strong><small><b>활동:</b> 큰 요구부터 경계 배치</small><small><b>산출:</b> Subnet Prefix</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>CIDR 집계</strong><small><b>판정:</b> 연속·정렬·동일 정책</small><small><b>산출:</b> 요약 경로</small></div></div>
+
 | 축 | 서브네팅·VLSM | 슈퍼네팅 |
 |---|---|---|
 | 방향 | Prefix 증가·분할 | Prefix 감소·집계 |
 | 목적 | 주소·영역 배정 | 경로 상태 축소 |
 | 위험 | 단편화·중복 | Blackhole·과잉 광고 |
+
 - 결론: IPAM Baseline과 RIB·FIB·정책 대조로 주소 계산을 운영 일관성까지 닫음
 
 ## 출제 이력과 검증 출처

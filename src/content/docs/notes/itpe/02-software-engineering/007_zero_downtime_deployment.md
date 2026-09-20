@@ -1,14 +1,14 @@
 ---
 title: "무중단 배포·배포 전략"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-20T23:49:42+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "GPT-5.6 Sol"
   keyword_grade: "A"
 ---
 
@@ -113,7 +113,7 @@ extra:
   </div>
 </div>
 
-## Ⅳ. 무중단 배포 운영 시 기술적 위험 통제
+## Ⅳ. 무중단 배포 문제점·대응책
 
 > 애플리케이션의 세션 유지와 커넥션 드레이닝이 보장되지 않으면 배포 중 사용자의 연결이 끊어진다.
 
@@ -123,7 +123,7 @@ extra:
 | **진행 중 요청(In-flight) 유실** | **Graceful Shutdown** 및 **Connection Draining**(30초 유예) 설정 | 강제 종료로 인한 502/504 에러 방지 |
 | **헬스체크 실패 및 조기 유입** | Kubernetes `readinessProbe` 및 `livenessProbe` 정밀 구성 | 기동 완료 전 트래픽 유입에 따른 장애 방지 |
 
-## Ⅴ. 고가용 무중단 아키텍처를 위한 기술사적 제언
+## Ⅴ. 호환성·복구 중심의 결론
 
 > 배포는 단순 스크립트 실행이 아니며, 인프라 라우팅, 관측성, 데이터 호환성이 삼위일체로 작동해야 한다.
 

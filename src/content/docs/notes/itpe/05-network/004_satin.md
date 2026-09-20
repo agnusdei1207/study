@@ -34,11 +34,13 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 
 ## Ⅰ. 3차원 커버리지를 제공하는 SATIN·NTN 개요
 > SATIN은 계층을 단순 연결하는 망이 아니라 각 Access의 지연·용량·가용성을 서비스 정책으로 전환하는 통합망임.
+
 - 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)**은 **NTN(Non-Terrestrial Network)**과 **지상 이동통신망**을 통합하여 3차원 접속을 제공하는 아키텍처임
 - 목적: 지리적 음영과 지상 인프라 단절 보완 → 서비스 연속성과 재난 복원력 확보
 
 ## Ⅱ. 투명·재생 Payload와 링크 구성
 > Payload 처리 위치는 위성 복잡도와 지상 의존성을 교환하므로 서비스 지연·수명·업그레이드 가능성으로 선택해야 함.
+
 | 축 | Transparent Payload | Regenerative Payload |
 |---|---|---|
 | 처리 | RF(Radio Frequency) 중계 | On-board 처리 |
@@ -48,6 +50,7 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 
 ## Ⅲ. Doppler·지연·이동성 문제와 대책
 > NTN의 핵심 난제는 긴 전파지연과 빠른 위성 이동이 지상망의 Timing·주파수·Mobility 가정을 깨뜨리는 데 있음.
+
 | 문제 | 원인 | 대책 | 판정 |
 |---|---|---|---|
 | 동기 이탈 | 큰 Doppler | Ephemeris·주파수 사전 보상 | 잔류 주파수 오차 |
@@ -65,17 +68,21 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 - 대안: 궤도 예측과 Telemetry 기반 Multi-access Steering
 - 검증: Gateway 장애·강우·Beam 전환 시나리오 시험
 - 효과: 음영·단절 대응과 불필요한 위성 자원 사용 억제
+
 <div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 개선 제언"><div class="itpe-flow__node"><strong>Access 고정</strong><small><b>문제:</b> 환경 변화와 경로 품질 불일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>예측 Steering</strong><small><b>대안:</b> 궤도 · 품질 · 서비스 정책 결합</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>전환 시험</strong><small><b>판정:</b> 지연 · 가용성 · 연속성</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>통합 운용</strong><small><b>효과:</b> Coverage와 자원효율 균형</small></div></div>
 
 ## 1교시 10점 답안 발췌
 - 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)**은 **NTN(Non-Terrestrial Network)**과 **지상망**을 통합하여 3차원 접속을 제공하는 아키텍처임
 - 목적: 음영·재난 단절 보완 → 서비스 연속성 확보
+
 <div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 1교시 구조"><div class="itpe-flow__node"><strong>Space</strong><small><b>활동:</b> 광역 중계</small><small><b>산출:</b> Wide Coverage</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>Air</strong><small><b>활동:</b> 지역 보강</small><small><b>산출:</b> 임시 Coverage</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>Ground</strong><small><b>활동:</b> Core 연동</small><small><b>산출:</b> 서비스 연속성</small></div></div>
+
 | 문제 | 대책 |
 |---|---|
 | Doppler·긴 RTT | 사전 보상·Timer 조정 |
 | Moving Cell | 예측 Handover |
 | Payload | Transparent: 지상 gNB·단순 위성 / Regenerative: 위성 처리·짧은 경로 |
+
 - 결론: 궤도·품질·서비스 정책 기반 Steering을 장애 시나리오로 검증함
 
 ## 출제 이력과 검증 출처
