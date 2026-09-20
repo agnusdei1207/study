@@ -1,106 +1,127 @@
 ---
 title: "의존성 주입(Dependency Injection)"
-author: "Antigravity"
-date: "2026-09-20T13:35:00+09:00"
-tags:
-  - "notes-software-engineering"
+author: "Codex"
+date: "2026-09-20T19:31:59+09:00"
+tags: ["notes-software-engineering"]
 sidebar:
   badge:
     text: "A"
-    variant: "tip"
 extra:
-  model: "Antigravity"
-
+  keyword_grade: "A"
+  model: "GPT-5.6 Sol"
 ---
 
-## 답안 골격 (10점 / 25점)
+## 지식 로드맵 내 현재 위치
 
-```text
-[의존성 주입(DI)] ◀━━ 머리: Ⅶ 공학적 제언 (생성자 주입 표준화를 통한 불변성 확보 및 단위 테스트 용이성 극대화)
- ┃
- ┣━ Ⅰ 개요 ───── 직접 인스턴스화(`new`)의 강결합 탈피, 외부 IoC 컨테이너가 런타임에 의존 객체를 주입
- ┣━ Ⅱ 설계 원칙 ─ 제어의 역전(IoC: Inversion of Control) 실현 · 의존관계 역전 원칙(DIP) 충족
- ┣━ Ⅲ 아키텍처 ─ Client 객체 · Target 추상 인터페이스 · Concrete 구현체 · Injector(IoC 컨테이너)
- ┣━ Ⅳ 3대 주입 방식 ─ 생성자 주입(Constructor Injection) vs 세터 주입(Setter) vs 필드 주입(Field)
- ┣━ Ⅴ 비교 ───── 3대 주입 방식의 불변성(final), 순환 참조 감지, 테스트 용이성 비교 매트릭스
- ┣━ Ⅵ 실무 문제 ─ 필드 주입(`@Autowired`) 남발로 인한 NPE 및 결합도 은닉 / 순환 참조 발생
- ┗━ Ⅶ 결론 ───── `final` 기반 생성자 주입 의무화 및 ArchUnit을 통한 아키텍처 규칙 자동 검증
-```
+<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 객체지향 설계와 결합도 관리를 거쳐 의존성 주입으로 이어지는 지식 위치"><span>소프트웨어 공학</span><span>객체지향 설계 · 결합도 관리</span><strong>의존성 주입</strong></div>
 
-- **필수 키워드**: 의존성 주입(DI), 제어의 역전(IoC), 의존관계 역전 원칙(DIP), 생성자 주입(Constructor), 세터 주입, 필드 주입, 불변성(`final`), 순환 참조(Circular Dependency), Mockist 테스트, Service Locator 비교
-  - **10점형**: 직접 생성 vs 의존성 주입 구조 대조도 → 3대 주입 방식 비교표 → 핵심 장점 4가지.
-  - **25점형**: Ⅰ~Ⅶ 전체 구조 전개 + 객체지향 SOLID(DIP, OCP)와의 수리적·설계적 연계 + 필드 주입 안티패턴 비판 및 프레임워크 없는 순수 단위 테스트(Mock) 구현 아키텍처 심층 제시.
+## 큰 그림과 30초 인출
 
----
+- 본질: **DI(Dependency Injection)**는 객체가 협력자를 직접 생성·탐색하지 않고 외부 조립자가 제공하게 하는 설계 기법
+- 메커니즘: 구현 등록 → 의존 그래프 해결 → 생성자 등 주입 지점으로 전달 → 수명주기 관리
+- 산출: 생성 책임과 사용 책임 분리 · 구현 교체 가능성 · 격리 단위 테스트
 
-## 30초 인출용 핵심 다이어그램
+<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입의 등록 해결 주입 흐름">
+  <div class="itpe-pipeline-node"><strong>등록</strong><small><b>활동</b> 추상화와 구현·범위 연결<br /><b>산출</b> 구성 메타데이터</small></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>해결</strong><small><b>활동</b> 의존 그래프·생성 순서·순환 검사<br /><b>산출</b> 객체 생성 계획</small></div><div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node"><strong>주입</strong><small><b>활동</b> 생성자·수정자로 협력자 전달<br /><b>산출</b> 사용 가능한 객체 그래프</small></div>
+</div>
 
-```text
-+-------------------------------------------------------------------------+
-|                직접 생성(강결합) vs 의존성 주입(느슨한 결합)            |
-+-------------------------------------------------------------------------+
-|  [ 1. Bad: 직접 new 생성 (구체 클래스 의존) ]                            |
-|    OrderService ───────( new OracleDB() )───────> OracleDB              |
-|    * DB 교체 시 OrderService 소스코드 직접 수정 불가피 (OCP 위반)      |
-|                                                                         |
-|  [ 2. Good: 의존성 주입 (추상화 인터페이스 의존) ]                      |
-|    OrderService ───────( DIP: 추상화 의존 )──────> << Database >>       |
-|         ▲                                                 ▲             |
-|         │                                                 │ (구현)      |
-|         │ 런타임에 구현체 밀어넣음 (Push)                ┌┴───────────┐ |
-|    [ IoC Container ] ──( MySQLDatabase 주입 )───> [ MySQLDatabase ]  |
-|    * OrderService 수정 없이 DB 구현체 자유자재 교체 및 Mock 테스트 가능 |
-+-------------------------------------------------------------------------+
-```
+<details><summary>핵심 용어</summary>
 
----
+- **DI(Dependency Injection)**: 객체 외부에서 협력자를 제공하여 생성 책임과 사용 책임을 분리하는 기법
+- **IoC(Inversion of Control)**: 객체 생성·호출 흐름의 통제권이 애플리케이션 객체에서 프레임워크·조립자로 이동하는 원리
+- **DIP(Dependency Inversion Principle)**: 상위·하위 모듈 모두 구체 구현이 아닌 추상화에 의존하게 하는 원칙
+- **Composition Root**: 애플리케이션 진입부에서 객체 생성과 결합을 집중하는 조립 지점
+- **Scope(범위)**: Singleton·요청·Transient처럼 인스턴스 생성과 공유 기간을 정하는 정책
 
-## 본론: 개념 및 핵심 메커니즘
+</details>
 
-### 1. 의존성 주입(DI)의 공학적 본질
+## 예상문제
 
-- **개념**: 객체가 자신이 동작하는 데 필요한 다른 객체(협력자)를 내부에서 직접 생성하지 않고, **외부의 제3자(IoC 컨테이너 또는 팩토리)로부터 주입(Injection)받는 디자인 패턴**.
-- **SOLID 원칙과의 연계**:
-  1. **DIP (의존관계 역전 원칙)**: 상위 모듈과 하위 모듈이 모두 추상화(인터페이스)에 의존하도록 보장.
-  2. **OCP (개방-폐쇄 원칙)**: 기존 코드를 수정하지 않고 새로운 기능 구현체를 외부 설정을 통해 확장.
+> 의존성 주입의 개념과 동작 구조를 설명하고, 주입 방식 비교 및 실무 적용 시 의존 그래프와 수명주기 관리 방안을 제시하시오.
 
-### 2. 의존성 주입 3대 방식 비교
+## Ⅰ. 생성과 사용을 분리하는 의존성 주입
 
-| 비교 항목 | 생성자 주입 (Constructor) | 수정자 주입 (Setter) | 필드 주입 (Field) |
+> DI는 구체 클래스 제거 자체가 아니라 객체 그래프 조립을 경계로 모으는 기법이며, 성패는 의존 관계의 명시성과 수명주기 정합성으로 판정함.
+
+- 정의: **외부 조립자**가 객체의 **의존 객체**를 주입하여 직접 생성·탐색을 제거하는 **IoC** 구현 기법
+- 목적: 생성 책임과 비즈니스 책임 분리 → 낮은 결합도 · 구현 교체 · 격리 테스트 확보
+
+## Ⅱ. DI 구성요소와 동작 메커니즘
+
+> 클라이언트는 계약만 알고 Composition Root가 구현 선택과 생명주기를 책임져야 변경 영향이 조립 경계에 머묾.
+
+| 요소 | 책임 | 통제점 |
+|---|---|---|
+| Client | 협력자 계약 사용 | 구체 구현 생성 금지 |
+| Abstraction | 행위 계약 제공 | 안정된 경계·최소 인터페이스 |
+| Implementation | 계약 구현 | 대체 가능성 유지 |
+| Injector·Container | 등록·해결·주입 | 누락·중복·순환 의존 검사 |
+| Composition Root | 객체 그래프 조립 집중 | 비즈니스 코드와 구성 분리 |
+
+## Ⅲ. 생성자·수정자·필드 주입 비교
+
+> 필수 의존은 생성자로 완전한 객체를 만들고 선택 의존만 수정자로 제한하며, 숨은 의존을 만드는 필드 주입은 테스트와 검증을 어렵게 함.
+
+| 방식 | 적합 대상 | 장점 | 위험·통제 |
 |---|---|---|---|
-| **주입 시점** | 객체 인스턴스화 시점 (최초 1회) | 객체 생성 후 세터 호출 시점 | 객체 생성 후 리플렉션으로 주입 |
-| **불변성 (`final`)** | **보장 가능 (`final` 키워드 지원)** | 불변 불가 (런타임 변경 가능) | 불변 불가 (`final` 불가) |
-| **순환 참조 감지** | **애플리케이션 기동 시점 즉시 에러** | 런타임 메서드 호출 시점 에러 | 런타임 메서드 호출 시점 에러 |
-| **테스트 용이성** | **최상** (순수 Java new로 Mock 주입) | 보통 (세터 매번 호출 필요) | **최악** (스프링 컨테이너 없이 Mock 주입 불가) |
-| **권장 여부** | **엔터프라이즈 절대적 권장 표준** | 선택적/가변 의존성에만 제한 적용 | **명백한 실무 안티패턴** |
+| **생성자 주입** | 필수 의존 | 불변성 · 누락 조기 발견 · 순수 단위 테스트 | 매개변수 과다는 책임 과다 신호 |
+| **수정자 주입** | 선택·재구성 의존 | 의존 교체 가능 | 불완전 상태 방지 규칙 필요 |
+| **필드 주입** | 프레임워크 제한 상황 | 코드가 짧음 | 의존 은닉 · 컨테이너 없는 테스트 곤란 |
 
-### 3. Service Locator 패턴과의 대조
+## Ⅳ. 의존 그래프와 수명주기 품질 통제
 
-- **Service Locator (Pull 방식)**: 객체가 중앙 레지스트리에 직접 접근하여 `Locator.getService(Database.class)` 형태로 필요한 의존성을 스스로 찾아옴. 레지스트리에 대한 결합도가 남고 단위 테스트 시 레지스트리 목(Mock)을 세팅해야 함.
-- **Dependency Injection (Push 방식)**: 객체는 수동적이며 외부 컨테이너가 생성자 파라미터로 필요한 것을 밀어 넣어줌(헐리우드 원칙: "Don't call us, we'll call you"). 결합도가 완벽히 해소됨.
+> 주입 성공만 확인하면 단기 객체를 장기 객체가 붙잡거나 순환이 숨어들 수 있으므로 그래프·범위·종료 자원을 함께 검증함.
 
----
-
-## 실무 장애 시나리오 및 공학적 대안
-
-### 1. 현장 장애 사례
-
-1. **필드 주입 객체의 단위 테스트 NPE(Null Pointer Exception) 발생**:
-   - 스프링의 `@Autowired` 필드 주입을 남발한 서비스 클래스를 단위 테스트할 때, 컨테이너 없이 `new`로 생성하자 주입된 필드가 `null`이어서 NullPointerException 폭발.
-2. **순환 참조로 인한 스프링 컨테이너 기동 실패**:
-   - `UserService`가 `OrderService`를 참조하고 `OrderService`가 `UserService`를 참조하는 양방향 결합을 방치하여 배포 파이프라인에서 컨테이너 기동 중단.
-
-### 2. 문제 원인 및 공학적 해결책
-
-| 장애 상황 | 근본 원인 | 공학적 대책 (대안 기술) | 개선 효과 |
+| 위험 | 판정 | 대안 | 효과 |
 |---|---|---|---|
-| **단위 테스트 불가 (NPE)** | 프레임워크 리플렉션에 의존한 필드 주입 | **Lombok `@RequiredArgsConstructor` + `final` 필드** 생성자 주입 표준화 | 무거운 스프링 기동 없이 순수 Mock 객체 기반 초고속 단위 테스트 달성 |
-| **순환 참조 (Circular)** | 도메인 책임 분리 실패 및 양방향 참조 | 생성자 주입으로 조기 검출 + **스프링 도메인 이벤트(ApplicationEvent)** 기반 비동기 디커플링 | 결합도 제로화 및 단방향 의존성 흐름 확립 |
-| **생성자 파라미터 폭증** | 단일 클래스에 너무 많은 책임 집중 | **의존성 개수(Max 5개) 린트 제한** 및 파사드(Facade) 객체 도입 | 단일 책임 원칙(SRP) 준수 및 클래스 슬림화 |
+| 순환 의존 | 그래프가 DAG를 형성하는가 | 책임 재분리 · 이벤트·중재자 도입 | 생성 실패와 양방향 결합 제거 |
+| 범위 불일치 | 장기 객체가 단기 객체를 보유하는가 | Scope 정합 규칙 · 팩토리 사용 | 상태 누출 방지 |
+| 숨은 의존 | 생성자 계약에 필수 협력자가 보이는가 | 생성자 주입 표준화 | 테스트·리뷰 가능성 향상 |
+| 과도한 의존 | 생성자 매개변수가 책임 팽창을 드러내는가 | 역할 분리 · Facade 검토 | 응집도 향상 |
 
----
+## Ⅴ. 조립 경계를 검증하는 DI 거버넌스
 
-## 결론: 기술사 답안 차별화 포인트
+> DI 컨테이너는 설계 결함을 자동으로 해결하지 않으므로 Composition Root와 자동화된 그래프 검증을 운영 기준으로 둬야 함.
 
-1. **테스트 용이성(Testability) 관점의 강조**: DI의 가장 강력한 실무적 혜택은 아키텍처의 우아함보다 **"스프링 컨테이너 없이도 순수한 자바 객체(POJO)와 Mockito를 사용하여 0.01초 만에 실행되는 단위 테스트를 작성할 수 있게 해 준다"**는 점임을 명확히 서술할 것.
-2. **정적 아키텍처 린트(ArchUnit) 연계**: 실무 현장에서 개발자들이 편의를 위해 필드 주입을 몰래 사용하는 행위를 원천 방지하기 위해, CI 파이프라인에 **ArchUnit 테스트를 등록하여 필드 주입 선언 시 빌드를 실패시키는 아키텍처 거버넌스 자동화**를 제언으로 제시할 것.
+### 학습자 통찰 메모 — 답안 밖
+
+- `[핵심 통찰]`: DI의 핵심은 프레임워크 애너테이션이 아니라 객체가 협력자를 만드는 방법을 몰라도 되게 하는 책임 분리다.
+- `나라면`: 필수 의존은 생성자로 명시하고 조립 코드를 진입부에 모은 뒤, 기동 테스트로 등록 누락·순환·범위 오류를 확인하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 숨은 의존과 Scope 불일치가 DI 적용 실패의 핵심 원인
+- 대안: 생성자 주입·Composition Root·의존 방향 규칙 표준화
+- 검증: 컨테이너 기동·격리 단위 테스트·순환 및 범위 검사
+- 효과: 변경 영향 국소화 · 객체 완전성 · 테스트 용이성 확보
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 개선 제언"><div class="itpe-pipeline-node"><strong>숨은 결합</strong><small><b>문제</b> 직접 생성·필드 주입·Scope 혼용</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>조립 경계</strong><small><b>대안</b> 생성자 주입과 Composition Root 집중</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>품질 게이트</strong><small><b>판정</b> 등록·순환·범위·격리 테스트 통과</small></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>설계 품질</strong><small><b>효과</b> 교체 가능성과 변경 영향 국소화</small></div></div>
+
+## 1교시 10점 답안 발췌
+
+- 정의: **DI(Dependency Injection)**는 **외부 조립자**가 객체의 **의존 객체**를 제공하여 생성과 사용 책임을 분리하는 **IoC(Inversion of Control)** 구현 기법
+- 목적: 구체 구현 결합 제거 → 구현 교체 · 객체 완전성 · 격리 테스트 확보
+- 흐름: 구현 등록 → 의존 그래프 해결 → 생성자 주입 → Scope에 따른 폐기
+- 결론: 생성자 주입과 Composition Root를 기본으로 하고 등록·순환·범위 오류를 자동 검증함
+
+## 출제 이력과 검증 출처
+
+- [Martin Fowler, Inversion of Control Containers and the Dependency Injection pattern](https://martinfowler.com/articles/injection.html)
+- [Microsoft, Dependency injection guidelines](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-guidelines)
+
+## 학습 체크
+
+- [ ] Ⅰ·정의와 목적: 외부 조립자·의존 객체·IoC의 관계를 두 줄로 설명할 수 있는가
+- [ ] Ⅱ·동작: 등록→해결→주입 흐름과 다섯 구성요소의 책임을 재현할 수 있는가
+- [ ] Ⅲ·방식: 생성자·수정자·필드 주입을 적합 대상과 위험으로 비교할 수 있는가
+- [ ] Ⅳ·통제: 순환·범위 불일치·숨은 의존·책임 팽창의 판정과 대안을 연결할 수 있는가
+- [ ] Ⅴ·제언: Composition Root와 자동 검증의 효과를 설명할 수 있는가
+
+## 연결 토픽
+
+- [객체지향 설계원칙 SOLID](./082_solid/)
+- [AOP(Aspect Oriented Programming)](./074_aop/)
+- [Spring Boot](./159_spring_boot/)
+- [모듈성(결합도·응집도)](./190_modularity/)
