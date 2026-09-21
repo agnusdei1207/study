@@ -13,7 +13,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어 개발 환경 및 도구 > 생성형 AI 개발 > AI 생성코드·오픈웨이트 라이선스 컴플라이언스
@@ -80,16 +80,65 @@ extra:
 
 ### Ⅲ. CI/CD 연계 컴플라이언스 자동화 검증 파이프라인
 
-```mermaid
-flowchart LR
-    A["1. IDE 코딩<br/>중복 코드 차단 필터"] --> B["2. PR 생성<br/>CI 빌드 트리거"]
-    B --> C["3. SCA 스니펫 매칭<br/>GPL/AGPL 오염 탐지"]
-    C --> D["4. 정적 보안 분석<br/>SAST 취약점 검출"]
-    D --> E["5. AI-SBOM 생성<br/>CycloneDX 패키징"]
-    E --> F{"위반 사항 판정"}
-    F -- 부적합 --> G["PR 자동 머지 차단<br/>클린룸 재작성"]
-    F -- 적합 --> H["배포 승인 & 릴리즈"]
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 상단: 5단계 검증 파이프라인 흐름 -->
+  <g transform="translate(15, 15)">
+    <rect x="0" y="0" width="490" height="98" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
+    <text x="15" y="20" font-size="11" font-weight="700" fill="var(--sl-color-text, #0f172a)">AI 코드 컴플라이언스 5단계 CI/CD 자동화 게이트</text>
+
+    <!-- 1단계: IDE 필터 -->
+    <rect x="10" y="32" width="86" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="53" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">1. IDE 필터</text>
+    <text x="53" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Copilot 차단</text>
+    <text x="53" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">150자 매칭 차단</text>
+
+    <!-- 2단계: PR 생성 -->
+    <rect x="106" y="32" width="86" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="149" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">2. PR 생성</text>
+    <text x="149" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">CI 트리거</text>
+    <text x="149" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">변경 Diff 추출</text>
+
+    <!-- 3단계: SCA 스캔 -->
+    <rect x="202" y="32" width="92" height="54" rx="4" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
+    <text x="248" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">3. SCA 스캔</text>
+    <text x="248" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">FOSSID 매칭</text>
+    <text x="248" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">GPL 오염 탐지</text>
+
+    <!-- 4단계: SAST 분석 -->
+    <rect x="304" y="32" width="86" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="347" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">4. SAST 분석</text>
+    <text x="347" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">SonarQube</text>
+    <text x="347" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">보안취약점 적출</text>
+
+    <!-- 5단계: AI-SBOM -->
+    <rect x="400" y="32" width="80" height="54" rx="4" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="440" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">5. AI-SBOM</text>
+    <text x="440" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">CycloneDX</text>
+    <text x="440" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">계보/모델명시</text>
+  </g>
+
+  <!-- 하단: 게이트 판정 및 사후 조치 구조 -->
+  <g transform="translate(15, 122)">
+    <rect x="0" y="0" width="490" height="88" rx="6" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
+    
+    <!-- 부적합 경로 (오염 감지) -->
+    <rect x="20" y="14" width="215" height="60" rx="5" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1"/>
+    <text x="127" y="32" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">[위반 판정: 카피레프트 오염]</text>
+    <text x="127" y="48" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">PR 머지 자동 차단 및 OSRB 회부</text>
+    <text x="127" y="60" font-size="8" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">클린룸(Clean-room) 격리 재작성</text>
+
+    <!-- 적합 경로 (통과) -->
+    <rect x="255" y="14" width="215" height="60" rx="5" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
+    <text x="362" y="32" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">[적합 판정: 컴플라이언스 준수]</text>
+    <text x="362" y="48" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">AI-SBOM 패키징 및 메인 병합</text>
+    <text x="362" y="60" font-size="8" text-anchor="middle" fill="var(--sl-color-success, #15803d)">프로덕션 안전 릴리즈 승인</text>
+  </g>
+</svg>
+</div>
 
 1. **IDE 레벨 1차 방어**: GitHub Copilot의 퍼블릭 코드 매칭 차단(Duplication Filter) 기능을 강제 활성화하여 150자 이상 일치 코드 유입 차단.
 2. **CI 단계 정밀 SCA 스캔**: FOSSID, Black Duck 등을 통해 토큰 기반 지문(Fingerprint) 매칭으로 GPL 계열 카피레프트 코드 혼입 여부 전수 검사.
@@ -111,27 +160,31 @@ flowchart LR
 
 ### Ⅴ. 기술사적 제언: 전략적 오픈(Strategic Openness) 대응 및 AI-SBOM 거버넌스
 
-```mermaid
-flowchart TD
-    subgraph Governance["1. 조직 및 정책 거버넌스"]
-        A[오픈소스 심의회 OSRB] --> B[AI 도구 및 오픈웨이트 승인 목록 화이트리스트 운영]
-        B --> C[프롬프트 및 AI 산출물 아카이빙 정책]
-    end
-    subgraph Technical["2. 기술 및 파이프라인 거버넌스"]
-        C --> D[CI/CD 품질 & 라이선스 게이트]
-        D --> E[SCA 스니펫 매칭 & SAST]
-    end
-    subgraph SBOM["3. AI-SBOM 메타데이터 체계"]
-        E --> F[AI 모델 카드: 파라미터/라이선스]
-        E --> G[학습 데이터셋 출처 계보]
-        E --> H[CycloneDX AI-BOM 표준화]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+오픈웨이트(Open-weight)는 진정한 오픈소스(OSD)가 아니다.
+빅테크 기업들이 생태계를 장악하면서도 법적 통제권(경쟁 모델 학습 금지, MAU 한도, 용도 제한)을 쥐려는 '전략적 오픈'이다.
+또한 AI 코딩 도구가 생성한 코드는 원본 저장소의 GPL 라이선스가 고지문 없이 그대로 복제되어 상용 코드를 오염시킬 수 있다.
+따라서 기업은 사내 OSRB(오픈소스 심의회)의 법률 검토와 CI/CD 파이프라인의 SCA 스니펫 매칭,
+그리고 모델-데이터-프롬프트 계보를 명시하는 AI-SBOM(CycloneDX) 확립이 필수적이다.
+
+[나라면]
+실전 답안에서 전통 오픈소스(OSI 공인)와 오픈웨이트의 본질적 차이(OSD 5, 6조 차별금지 위배 사실)를 명시하겠다.
+그리고 CI/CD에 결합된 5단계 자동화 검증 파이프라인(IDE 필터 -> SCA -> SAST -> AI-SBOM -> Gate)을 제시하겠다.
 ```
 
-1. **오픈웨이트의 이중성 인식과 전략적 거버넌스**:
-   - 오픈웨이트는 진정한 오픈소스(OSD)가 아니며, 빅테크 기업들이 생태계를 주도하면서도 법적 통제권을 유지하려는 **'전략적 오픈(Strategic Openness)'**임을 직시해야 함. AUP 조항의 작은 문구가 비즈니스 모델을 제약하지 않도록 사내 오픈소스 심의회(OSRB)의 법률 검토를 필수로 규정.
-2. **AI-SBOM으로의 표준 확장**:
-   - 단순 오픈소스 라이브러리 목록에 머무르지 않고, **기본 모델(Foundation Model), 파인튜닝 가중치 버전, 학습 데이터 저작권 상태, 생성 프롬프트 계보까지 통합 관리하는 AI-SBOM**을 구축하여 공급망 보안(SLSA)을 완성해야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: CI 파이프라인 상 SCA 스니펫 일치율(GPL/AGPL 카피레프트 코드 조각 검출 여부), 오픈웨이트 모델 라이선스의 상업적 제한(MAU 한도 및 AUP 용도 제한), 보안 취약점 심각도(Critical/High)를 기준으로 통과 여부를 판정함.
+- **대응 방안**: 카피레프트 오염 감지 시 PR 머지를 자동 차단하고 클린룸(Clean-room) 환경에서 독립 재작성을 수행하며, 오픈웨이트 모델은 도입 전 OSRB 심의를 통해 순수 허용형(Apache 2.0/MIT) 모델 우선 채택 정책을 유지함.
+- **검증 체계**: CycloneDX 1.6+ 표준 기반 AI-SBOM을 자동 생성하여 기본 모델 버전, 가중치 체크섬, 학습 데이터 출처, 생성 프롬프트 계보를 소프트웨어 공급망 자산에 동기화함.
+- **기대 효과**: 상용 프로덕션 코드의 카피레프트 오염 위험을 0%로 차단하고, 글로벌 AI 규제(EU AI Act 등) 감사 및 지식재산권 분쟁에 대한 완벽한 법적 소명력을 확보함.
+
+```text
+[AI 도구 생성] ──> [SCA 스니펫 매칭] ──(GPL 감지)──> [머지 차단 & 클린룸 재작성]
+                           │ (정상)
+                           └──> [AI-SBOM 패키징] ──> [프로덕션 안전 배포]
+```
 
 ---
 

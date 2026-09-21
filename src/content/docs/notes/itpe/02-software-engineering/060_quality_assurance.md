@@ -13,7 +13,7 @@ sidebar:
     text: "A"
     variant: "tip"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어 테스트 및 품질 > 품질 경영 및 관리 > 소프트웨어 품질보증(SQA)
@@ -67,16 +67,59 @@ extra:
 
 ### Ⅱ. 품질 경영 3대 축 및 QA vs QC vs Testing 비교
 
-#### 1. 품질 경영 3대 축(QP, QA, QC)의 유기적 연계 구조
+#### 1. 품질 경영 3대 축(QP, QA, QC)의 유기적 연계 및 피드백 구조
 
-```mermaid
-flowchart LR
-    A["품질 계획 (QP)<br/>목표 및 표준 수립"] --> B["품질 보증 (QA)<br/>프로세스 감사 및 예방"]
-    A --> C["품질 제어 (QC)<br/>산출물 검사 및 검출"]
-    B -. 프로세스 피드백 .-> A
-    C -. 제품 결함 피드백 .-> B
-    C --> D["소프트웨어 테스팅 (Testing)<br/>동적 실행 기반 결함 적출"]
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 상단: QP 품질 계획 -->
+  <g transform="translate(160, 15)">
+    <rect x="0" y="0" width="200" height="48" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+    <text x="100" y="20" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">품질 계획 (QP: Planning)</text>
+    <text x="100" y="36" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">품질 목표 수립, 표준/절차 정의</text>
+  </g>
+
+  <!-- 화살표: QP -> QA (좌하향) -->
+  <path d="M 210 63 L 130 95" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5" marker-end="url(#arr-qa)"/>
+  <text x="145" y="75" font-size="8" fill="var(--sl-color-text-accent, #64748b)">표준 하달</text>
+
+  <!-- 화살표: QP -> QC (우하향) -->
+  <path d="M 310 63 L 390 95" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+  <text x="365" y="75" font-size="8" fill="var(--sl-color-text-accent, #64748b)">규격 기준</text>
+
+  <!-- 중단 좌측: QA 품질 보증 -->
+  <g transform="translate(20, 95)">
+    <rect x="0" y="0" width="210" height="56" rx="6" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="105" y="20" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">품질 보증 (QA: Assurance)</text>
+    <text x="105" y="36" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">프로세스 준수 감사 | 결함 사전 예방</text>
+    <text x="105" y="48" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">NCR 발행 및 CAPA 개선 활동</text>
+  </g>
+
+  <!-- 중단 우측: QC 품질 제어 -->
+  <g transform="translate(290, 95)">
+    <rect x="0" y="0" width="210" height="56" rx="6" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+    <text x="105" y="20" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">품질 제어 (QC: Control)</text>
+    <text x="105" y="36" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">산출물/제품 규격 검사 | 사후 결함 검출</text>
+    <text x="105" y="48" font-size="7.5" text-anchor="middle" fill="var(--sl-color-success, #15803d)">인스펙션 / 워크스루 / 정적 검토</text>
+  </g>
+
+  <!-- 상호 피드백 화살표: QA <-> QC -->
+  <path d="M 230 120 L 290 120" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="260" y="114" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">결함 피드백</text>
+
+  <!-- 하단: Testing 소프트웨어 테스팅 -->
+  <g transform="translate(155, 165)">
+    <rect x="0" y="0" width="210" height="45" rx="6" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #64748b)" stroke-width="1.5"/>
+    <text x="105" y="18" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">소프트웨어 테스팅 (Testing)</text>
+    <text x="105" y="34" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">동적 실행 기반 결함 적출 (QC의 하위 실증 수단)</text>
+  </g>
+
+  <!-- QC -> Testing 연결선 -->
+  <path d="M 395 151 L 340 165" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+</svg>
+</div>
 
 #### 2. QA vs QC vs Testing 3자 명확한 비교
 
@@ -127,30 +170,30 @@ flowchart LR
 
 ### Ⅴ. 기술사적 제언: 현대적 DevQualOps 및 자동화 품질 게이트 거버넌스
 
-```mermaid
-flowchart TD
-    subgraph Dev["1. 개발 영역 (Shift-Left)"]
-        A[개발자 코드 작성] --> B[Commit & Push]
-        B --> C[CI 빌드 & 단위테스트]
-    end
-    subgraph Gate["2. 자동화 품질 게이트 (SQA 가드레일)"]
-        C --> D{SonarQube Gate 통과?}
-        D -- 미달 --> E[빌드 실패 & NCR 티켓 자동 생성]
-        D -- 통과 --> F[통합 환경 자동 배포]
-    end
-    subgraph Audit["3. 지속적 품질 감사 (DevQualOps)"]
-        F --> G[동적 보안/성능 테스트 자동 실행]
-        G --> H[SQA 대시보드 실시간 지표 집계]
-        H --> I{배포 승인 판정}
-        I -- 부적합 --> J[배포 거부권 자동 행사]
-        I -- 적합 --> K[운영 릴리즈 승인]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+SQA의 본질은 "프로세스가 올바르면 제품 결함은 자연히 최소화된다"는 예방(Prevention) 철학이다.
+과거 SQA가 '문서 경찰' 취급을 받으며 개발자와 대립했던 이유는 실질 코드 품질보다 종이 산출물 준수 여부에 매몰되었기 때문이다.
+현대 SQA는 사후 감사자가 아니라 '품질 가드레일 엔지니어링 및 코칭'으로 거듭나야 하며,
+CI/CD 파이프라인의 SonarQube 품질 게이트와 CTO 직속 배포 거부권(Veto Power)이 결합될 때 비로소 실효성을 갖는다.
+
+[나라면]
+실전 답안에서 QA(프로세스/예방) vs QC(제품/검출) vs Testing(동적실행/적출)의 3자 책임 매트릭스를 선명히 대조하겠다.
+또한 최근 136회에 부각된 PM 종속 탈피(CTO 직속 배포 거부권)와 DevQualOps 자동화 품질 게이트를 3단락 핵심 해법으로 제시하겠다.
 ```
 
-1. **품질 코칭(Quality Coaching)으로의 패러다임 전환**:
-   - 과거의 사후 감사관(Policeman) 역할에서 벗어나, 개발팀이 초기부터 고품질 코드를 작성할 수 있도록 테스트 프레임워크와 CI/CD 자동화 가드레일을 지원하는 코치 역할로 진화.
-2. **DevQualOps 자동화 품질 게이트 확립**:
-   - SonarQube, Snyk 등 정적/보안 분석 지표를 CI 파이프라인에 결합하여, 테스트 커버리지 80% 미달 또는 취약점 검출 시 메인 브랜치 병합을 자동 차단하는 정량적 거버넌스 구축.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: CI/CD 파이프라인 상 정적 분석 품질 게이트(테스트 커버리지 80% 미달, Blocker/Critical 취약점 검출) 통과 여부 및 SQA 부적합 보고서(NCR) 미결 상태를 기준으로 배포 적합성을 자동 판정함.
+- **대응 방안**: PM 조직과 분리된 CTO 직속 독립 SQA 체계를 가동하여 미결 NCR 발생 시 배포 거부권(Veto Power)을 발동하고, 5-Whys 기반 CAPA(시정/예방 조치) 완료 후 재심사 절차를 진행함.
+- **검증 체계**: 개발 단계별 산출물 표준 준수 감사와 SonarQube/Snyk 연동 정량 지표 대시보드를 이원화하여 프로세스 감사와 코드 품질 검증을 상시 동기화함.
+- **기대 효과**: 형식적 문서 위주 감사 마찰을 80% 감축하고, 출시 후 운영 결함 누출률을 90% 이상 억제하며 조직 내 결함 은폐 문화를 원천 차단함.
+
+```text
+[개발 Push] ──> [CI 단위/통합 테스트] ──> [SonarQube 품질 게이트] ──(부적합)──> [NCR 티켓 & 배포 거부권]
+                                                    │ (적합)
+                                                    └──> [SQA 대시보드 승인 및 운영 배포]
+```
 
 ---
 

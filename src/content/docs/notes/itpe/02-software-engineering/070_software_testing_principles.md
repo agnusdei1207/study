@@ -13,7 +13,7 @@ sidebar:
     text: "A"
     variant: "tip"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어 테스트 및 품질 > 소프트웨어 테스팅 > 소프트웨어 테스트 7대 원리
@@ -58,24 +58,74 @@ extra:
 #### 1. 테스트 7대 원리의 정의
 - 무한한 소프트웨어 입력 조합과 실행 경로 속에서, 유한한 시간과 예산으로 최적의 품질을 달성하기 위해 테스터와 엔지니어가 반드시 준수해야 하는 **ISTQB의 7가지 기본 공학적 공리**.
 
-#### 2. 7대 원리의 체계적 분류 구조도
+#### 2. 7대 원리의 3단계 유기적 연계 및 극복 구조
 
-```mermaid
-flowchart TD
-    subgraph Limits["1. 한계 인식 (테스팅의 경계)"]
-        A["① 결함의 존재 증명<br/>(결함 없음 증명 불가)"]
-        B["② 완벽 테스팅 불가<br/>(전수 검사 불가능)"]
-    end
-    subgraph Strategy["2. 전략적 배분 (자원의 최적화)"]
-        C["③ 조기 테스팅 (Shift-Left)<br/>(요구단계부터 시작)"]
-        D["④ 결함 집중 (80:20)<br/>(복잡 모듈 편중)"]
-    end
-    subgraph Execution["3. 실행 및 가치 검증 (역설 극복)"]
-        E["⑤ 살충제 패러독스<br/>(테스트 케이스 갱신)"]
-        F["⑥ 정황/맥락 의존성<br/>(도메인별 차등 적용)"]
-        G["⑦ 오류-부재의 궤변<br/>(고객 가치 확인)"]
-    end
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 그룹 1: 한계 인식 (좌측) -->
+  <g transform="translate(15, 15)">
+    <rect x="0" y="0" width="155" height="190" rx="6" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
+    <text x="77" y="24" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">1. 한계 인식 (공리)</text>
+    <text x="77" y="38" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">테스팅의 근본적 경계</text>
+
+    <!-- 카드 1 -->
+    <rect x="10" y="52" width="135" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="77" y="70" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">① 결함 존재 증명</text>
+    <text x="77" y="86" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">결함 있음만 증명</text>
+    <text x="77" y="98" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">무결점 증명 불가능</text>
+
+    <!-- 카드 2 -->
+    <rect x="10" y="118" width="135" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="77" y="136" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">② 완벽 테스팅 불가</text>
+    <text x="77" y="152" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">전수 검사 수학적 불가</text>
+    <text x="77" y="164" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">위험기반 표본 추출</text>
+  </g>
+
+  <!-- 그룹 2: 전략적 배분 (중앙) -->
+  <g transform="translate(182, 15)">
+    <rect x="0" y="0" width="155" height="190" rx="6" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="77" y="24" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">2. 전략적 배분 (효율)</text>
+    <text x="77" y="38" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">한정 자원의 최적화</text>
+
+    <!-- 카드 3 -->
+    <rect x="10" y="52" width="135" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="77" y="70" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">③ 조기 테스팅</text>
+    <text x="77" y="86" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Shift-Left 원칙</text>
+    <text x="77" y="98" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">요구/설계부터 정적검토</text>
+
+    <!-- 카드 4 -->
+    <rect x="10" y="118" width="135" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="77" y="136" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">④ 결함 집중 (80:20)</text>
+    <text x="77" y="152" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">파레토의 법칙</text>
+    <text x="77" y="164" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">고위험 20% 모듈 집중</text>
+  </g>
+
+  <!-- 그룹 3: 실행 역설 극복 (우측) -->
+  <g transform="translate(350, 15)">
+    <rect x="0" y="0" width="155" height="190" rx="6" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+    <text x="77" y="24" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">3. 실행 역설 극복</text>
+    <text x="77" y="38" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">품질 왜곡 함정 방어</text>
+
+    <!-- 카드 5 -->
+    <rect x="10" y="52" width="135" height="36" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="77" y="67" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">⑤ 살충제 패러독스</text>
+    <text x="77" y="80" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">반복 내성 극복 / 케이스 쇄신</text>
+
+    <!-- 카드 6 -->
+    <rect x="10" y="94" width="135" height="36" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="77" y="109" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">⑥ 정황 의존성</text>
+    <text x="77" y="122" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">도메인/안전성별 차등 전략</text>
+
+    <!-- 카드 7 -->
+    <rect x="10" y="136" width="135" height="36" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="77" y="151" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">⑦ 오류-부재의 궤변</text>
+    <text x="77" y="164" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">요구 미충족 시 버그 0도 무용</text>
+  </g>
+</svg>
+</div>
 
 ---
 
@@ -118,28 +168,30 @@ flowchart TD
 
 ### Ⅴ. 기술사적 제언: Shift-Left와 리스크 기반 테스팅(RBT) 통합 거버넌스
 
-```mermaid
-flowchart TD
-    subgraph ShiftLeft["1. Shift-Left 조기 품질 검증"]
-        A[요구사항 정의 & BDD 인수 조건 수립] --> B[아키텍처 및 설계 정적 인스펙션]
-        B --> C[CI 정적 분석 SonarQube & 단위테스트]
-    end
-    subgraph RBT["2. 리스크 기반 테스팅 (RBT) 배분"]
-        C --> D{비즈니스 위험도 및 복잡도 평가}
-        D -- High Risk (결함 집중 영역) --> E[MC/DC 커버리지 & 심층 침투 테스트]
-        D -- Low Risk --> F[기본 회귀 테스트 스위트 자동 실행]
-    end
-    subgraph Paradox["3. 살충제 패러독스 방어 체계"]
-        E --> G[뮤테이션 테스트로 결함 검출력 검증]
-        F --> G
-        G --> H[탐색적 테스팅을 통한 테스트 스위트 쇄신]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+테스트 7대 원리는 단순한 암기 사항이 아니다.
+"완벽한 테스팅은 불가능하므로(1,2)" -> "요구사항부터 시작해 위험한 20%에 80% 자원을 몰아주고(3,4)"
+-> "반복 실행의 내성을 깨며 도메인과 비즈니스 목적에 부합해야 한다(5,6,7)"는 완벽한 논리적 폐루프다.
+실무에서 '버그 제로'를 외치는 것은 공학에 대한 무지이며,
+남아있는 잔존 위험(Residual Risk)을 RBT(위험 기반 테스팅)로 관리하고 탐색적 테스팅으로 내성을 깨는 것이 참된 품질 거버넌스다.
+
+[나라면]
+실전 답안에서 7개 원리를 단순 열거하지 않고 [한계 인식 - 전략적 배분 - 실행 역설 극복]의 3단계로 구조화하겠다.
+그리고 3단락에서 살충제 패러독스를 깨는 탐색적 테스팅(ET)과 Shift-Left 기반 RBT 프레임워크를 연계하여 최고 득점을 견인하겠다.
 ```
 
-1. **원리 간의 유기적 연계성 인지**:
-   - 7대 원리는 개별 원칙이 아니라, **"완벽한 테스팅 불가(한계)" $\rightarrow$ "조기 테스팅 & 결함 집중(자원 최적화 전략)" $\rightarrow$ "살충제 패러독스 & 오류 부재 궤변(실행 시 품질 함정)"**으로 이어지는 일관된 공학적 흐름으로 접근해야 함.
-2. **Shift-Left와 RBT의 제도적 결합**:
-   - 모든 결함을 잡겠다는 비현실적 목표를 버리고, 비즈니스 영향도와 발생 빈도를 축으로 하는 위험 매트릭스(Risk Matrix)를 수립하여 상위 20% 모듈에 80%의 역량을 투입하는 **리스크 기반 테스팅(RBT)**을 품질 표준으로 정착시켜야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 모듈 복잡도(McCabe 10 초과), 비즈니스 장애 영향도(재무/생명 직결 여부), 테스트 스위트의 뮤테이션 스코어(내성 발생률 30% 초과)를 기준으로 테스팅 자원 집중 여부를 판정함.
+- **대응 방안**: 전수 검사의 비현실성을 극복하기 위해 RBT(리스크 기반 테스팅)를 통해 위험 상위 20% 모듈에 80%의 테스트 엔지니어링 역량을 집중하고, Shift-Left(정적 인스펙션 및 단위 TDD)를 전면 강제함.
+- **검증 체계**: 고정 회귀 스위트의 살충제 패러독스를 타파하기 위해 전체 테스트 시간의 30~40%를 시나리오 없는 탐색적 테스팅(Exploratory Testing)에 배정하고, 뮤테이션 테스트를 통해 TC 검출력을 상시 실증함.
+- **기대 효과**: 결함 전이 비용을 80% 이상 절감하면서 핵심 비즈니스 장애 누출률 0%를 달성하고, 오류-부재의 궤변을 극복하여 실제 고객 만족도 및 시스템 인수 성공률 100%를 보장함.
+
+```text
+[한계 인식 (1,2)] ──> [전략 배분: Shift-Left & RBT (3,4)] ──> [역설 극복: 탐색적 쇄신 & BDD (5,6,7)]
+(완벽 테스팅 불가)      (조기 착수 및 위험 모듈 집중)            (살충제 내성 타파 및 고객가치)
+```
 
 ---
 

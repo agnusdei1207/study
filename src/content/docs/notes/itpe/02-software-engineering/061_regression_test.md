@@ -13,7 +13,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어 테스트 및 품질 > 소프트웨어 테스팅 > 회귀테스트(Regression Test)
@@ -71,15 +71,62 @@ extra:
 
 ### Ⅱ. 3대 회귀테스트 전략 및 구조적 비교
 
-#### 1. 회귀테스트 3대 전략 메커니즘
+#### 1. 회귀테스트 3대 전략(Retest-All, RTS, TCP) 메커니즘
 
-```mermaid
-flowchart TD
-    A["코드 변경 발생 (Git Commit / PR)"] --> B["변경 영향도 분석 (TIA)"]
-    B --> C["1. Retest-All (전수 실행)<br/>모든 TC 100% 실행 / 자원 극대화"]
-    B --> D["2. RTS (영향 선별 실행)<br/>변경 영향 매핑 TC만 선별"]
-    B --> E["3. TCP (우선순위 정렬)<br/>위험도/실패확률 순서로 실행"]
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 상단: 코드 변경 및 TIA 입력 -->
+  <g transform="translate(20, 15)">
+    <rect x="0" y="0" width="480" height="42" rx="5" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="15" y="26" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #0f172a)">소프트웨어 변경 발생 (Git Diff) ──▶ TIA (Test Impact Analysis: 영향도 추적)</text>
+  </g>
+
+  <!-- 전략 1: Retest-All -->
+  <g transform="translate(20, 72)">
+    <rect x="0" y="0" width="150" height="132" rx="6" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+    <rect x="0" y="0" width="150" height="28" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)"/>
+    <text x="75" y="19" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">1. Retest-All</text>
+    
+    <text x="75" y="48" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">전수 실행 전략</text>
+    <text x="75" y="66" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">모든 기존 TC 100% 실행</text>
+    <text x="75" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">결함 누락 위험 0%</text>
+    
+    <rect x="15" y="96" width="120" height="24" rx="4" fill="var(--sl-color-bg-inline-code, #f1f5f9)"/>
+    <text x="75" y="112" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">야간 배치 / 메이저 릴리즈</text>
+  </g>
+
+  <!-- 전략 2: RTS (선별 실행) -->
+  <g transform="translate(185, 72)">
+    <rect x="0" y="0" width="150" height="132" rx="6" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2"/>
+    <rect x="0" y="0" width="150" height="28" rx="6" fill="var(--sl-color-primary, #3b82f6)"/>
+    <text x="75" y="19" font-size="10.5" font-weight="700" text-anchor="middle" fill="#ffffff">2. RTS (선택적)</text>
+    
+    <text x="75" y="48" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">영향부 선별 실행</text>
+    <text x="75" y="66" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">AST/커버리지 변경 매핑</text>
+    <text x="75" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">실행 시간 90% 단축</text>
+    
+    <rect x="15" y="96" width="120" height="24" rx="4" fill="#ffffff" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1"/>
+    <text x="75" y="112" font-size="8" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">PR 검증 / CI 피드백 (5분)</text>
+  </g>
+
+  <!-- 전략 3: TCP (우선순위화) -->
+  <g transform="translate(350, 72)">
+    <rect x="0" y="0" width="150" height="132" rx="6" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+    <rect x="0" y="0" width="150" height="28" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)"/>
+    <text x="75" y="19" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">3. TCP (우선순위)</text>
+    
+    <text x="75" y="48" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">위험도 정렬 실행</text>
+    <text x="75" y="66" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">최근 실패율/위험도 순</text>
+    <text x="75" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">제한 시간 내 조기 결함</text>
+    
+    <rect x="15" y="96" width="120" height="24" rx="4" fill="var(--sl-color-bg-inline-code, #f1f5f9)"/>
+    <text x="75" y="112" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">긴급 핫픽스 / 타임박스</text>
+  </g>
+</svg>
+</div>
 
 #### 2. 회귀테스트 3대 전략 상세 비교
 
@@ -117,31 +164,31 @@ flowchart TD
 
 ### Ⅴ. 기술사적 제언: 하이브리드 회귀 테스트 거버넌스 및 CI/CD 파이프라인
 
-```mermaid
-flowchart TD
-    subgraph Commit["1. PR 생성 시점 (RTS 적용)"]
-        A[개발자 PR 생성] --> B[TIA 분석 도구 실행]
-        B --> C[영향받는 단위/통합 TC 선별]
-        C --> D{5분 내 통과?}
-        D -- 실패 --> E[PR 즉시 반려]
-        D -- 통과 --> F[메인 브랜치 머지]
-    end
-    subgraph Nightly["2. 야간 배치 시점 (Retest-All 적용)"]
-        F --> G[야간 정기 스케줄 트리거]
-        G --> H[전체 회귀 스위트 Retest-All 실행]
-        H --> I[E2E 브라우저 테스트 전수 수행]
-        I --> J[심층 회귀 결함 리포트 발행]
-    end
-    subgraph Hotfix["3. 긴급 패치 시점 (TCP 적용)"]
-        K[긴급 장애 패치] --> L[위험도 기반 Top 20% TC 실행]
-        L --> M[운영 즉시 핫픽스 배포]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+소프트웨어 수정의 80%는 "고쳤더니 엉뚱한 다른 기능이 깨지는" 부작용(Side Effect)에서 장애가 발생한다.
+그러나 모든 커밋마다 수천 개의 테스트를 다 돌릴 수는 없다(빌드 파이프라인 병목).
+따라서 일상 PR 검증에는 TIA 기반 RTS(5분 내 선별 실행), 야간에는 Retest-All(자원 무제한 전수 검증),
+긴급 핫픽스에는 TCP(장애 조치 골든타임 사수)를 조합하는 3계층 하이브리드 전략이 핵심이다.
+
+[나라면]
+실전 답안에서 재테스트(Retest)와 회귀테스트(Regression)의 차이를 1단락에서 엄밀히 규정하겠다.
+그리고 2단락에서 Retest-All vs RTS vs TCP의 수학적·비용적 트레이드오프를 도식화한 후,
+현대 CI/CD 환경에서의 TIA(Test Impact Analysis) 도구 연동과 Flaky Test 쿼런틴 격리 방안을 결론으로 제언하겠다.
 ```
 
-1. **테스트 피라미드(Test Pyramid)의 엄격한 준수**:
-   - UI 기반 E2E 테스트로만 회귀 스위트를 구축하면 실행 시간과 Flaky Test로 인해 회귀 체계가 붕괴됨. 고속 단위 테스트와 API 계약 테스트로 90%를 방어하고, E2E는 핵심 결제/인증 경로만 유지.
-2. **상황별 3계층 하이브리드 거버넌스 확립**:
-   - 일상 커밋에는 TIA 기반 **RTS(5분 피드백)**, 야간에는 자원 제약 없는 **Retest-All(안전망 확보)**, 긴급 패치에는 **TCP(골든 타임 사수)**를 복합 적용하는 하이브리드 아키텍처 수립이 기술사적 최적 해법임.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 커밋 및 PR의 변경 코드 범위(Git Diff), 변경 모듈의 위험 등급(결제/보안 등 Core 여부), 파이프라인 타임박스 제약 시간을 기준으로 회귀 테스트 전략을 자동 라우팅함.
+- **대응 방안**: 일상 PR 생성 시 TIA 기반 RTS(Regression Test Selection)로 5분 내 피드백을 완료하고, 주말/야간에는 컴퓨팅 자원을 집중 투입하여 Retest-All 전수 회귀를 돌리며, 핫픽스 상황에는 TCP(Test Case Prioritization)로 위험도 상위 20%를 우선 수행함.
+- **검증 체계**: 간헐적 타이밍 이슈로 발생하는 가짜 경보(Flaky Test)를 감지하여 쿼런틴(Quarantine) 샌드박스로 즉시 격리하고, 비동기 호출 모킹 및 Testcontainers를 통해 신뢰도를 검증함.
+- **기대 효과**: CI 파이프라인 빌드 대기 시간을 4시간에서 10분 이내로 95% 단축하면서도, 운영 환경 회귀 결함 유출률을 0%에 수렴시킴.
+
+```text
+[코드 커밋/PR] ──> [TIA 기반 RTS (5분 검증)] ──(합격)──> [메인 병합]
+                          │ (야간 스케줄)
+                          └──> [Nightly Retest-All (전수 검증)] ──> [배포 승인]
+```
 
 ---
 

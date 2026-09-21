@@ -14,7 +14,7 @@ sidebar:
     text: "A"
     variant: "tip"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어공학 기초 > 소프트웨어 공학 개요 및 좋은 SW의 조건
@@ -77,14 +77,62 @@ extra:
 | **변경성** | Changeability | 물리적 마모가 없음에도 비즈니스 환경 변화에 따라 끊임없이 수정과 진화를 요구받음 |
 | **비가시성** | Invisibility | 기하학적 형상이 없어 내부 구조와 진행 상황을 물리적으로 시각화하기 극히 어려움 |
 
-#### 2. 소프트웨어 공학의 3대 핵심 구성요소
+#### 2. 소프트웨어 공학 3대 구성요소 및 난제 극복 아키텍처
 
-```mermaid
-flowchart LR
-    A["도구 (Tools)<br/>자동화 및 생산성 지원"] --- B["방법 (Methods)<br/>분석/설계/구현 원칙"]
-    B --- C["프로세스 (Process)<br/>절차/표준/품질 규율"]
-    C --- A
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 영역 1: 브룩스의 4대 난제 (좌측) -->
+  <g transform="translate(15, 15)">
+    <rect x="0" y="0" width="160" height="190" rx="6" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
+    <text x="80" y="22" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">브룩스 4대 난제</text>
+    <text x="80" y="36" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">(No Silver Bullet)</text>
+
+    <!-- 4대 난제 항목 -->
+    <rect x="12" y="46" width="136" height="28" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="80" y="64" font-size="9" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">1. 복잡성 (Complexity)</text>
+
+    <rect x="12" y="80" width="136" height="28" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="80" y="98" font-size="9" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">2. 순응성 (Conformity)</text>
+
+    <rect x="12" y="114" width="136" height="28" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="80" y="132" font-size="9" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">3. 변경성 (Changeability)</text>
+
+    <rect x="12" y="148" width="136" height="28" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="80" y="166" font-size="9" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">4. 비가시성 (Invisibility)</text>
+  </g>
+
+  <!-- 극복 화살표 -->
+  <g transform="translate(180, 95)">
+    <path d="M 0 15 L 25 15" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="2"/>
+    <polygon points="25,11 35,15 25,19" fill="var(--sl-color-hairline, #94a3b8)"/>
+    <text x="17" y="32" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">공학적 극복</text>
+  </g>
+
+  <!-- 영역 2: 공학 3대 요소 (우측) -->
+  <g transform="translate(225, 15)">
+    <rect x="0" y="0" width="280" height="190" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
+    <text x="140" y="22" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">소프트웨어 공학 3대 핵심 구성요소</text>
+
+    <!-- 프로세스 -->
+    <rect x="15" y="38" width="250" height="42" rx="5" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="30" y="56" font-size="10" font-weight="700" fill="var(--sl-color-primary, #1d4ed8)">프로세스 (Process)</text>
+    <text x="30" y="70" font-size="8.5" fill="var(--sl-color-text, #0f172a)">SDLC 절차, 품질 표준, Scrum / CMMI 테일러링</text>
+
+    <!-- 방법 -->
+    <rect x="15" y="88" width="250" height="42" rx="5" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+    <text x="30" y="106" font-size="10" font-weight="700" fill="var(--sl-color-success, #15803d)">방법 (Methods)</text>
+    <text x="30" y="120" font-size="8.5" fill="var(--sl-color-text, #0f172a)">분석/설계 원칙, OOAD, DDD, TDD, 클린 아키텍처</text>
+
+    <!-- 도구 -->
+    <rect x="15" y="138" width="250" height="42" rx="5" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="30" y="156" font-size="10" font-weight="700" fill="var(--sl-color-text, #0f172a)">도구 (Tools)</text>
+    <text x="30" y="170" font-size="8.5" fill="var(--sl-color-text-accent, #64748b)">자동화 및 생산성 지원 (Git, CI/CD, Docker, AI 어시스턴트)</text>
+  </g>
+</svg>
+</div>
 
 - **도구 (Tools)**: 개발 전 주기의 자동화를 지원 (IDE, Git, CI/CD, SonarQube, Docker).
 - **방법 (Methods)**: 소프트웨어 구축을 위한 기술적 지침과 모델링 (OOAD, DDD, TDD, 클린 아키텍처).
@@ -127,23 +175,30 @@ flowchart LR
 
 ### Ⅴ. 기술사적 제언: AI 네이티브 시대의 현대 소프트웨어 공학 거버넌스
 
-```mermaid
-flowchart TD
-    subgraph Traditional["1. 전통적 공학 패러다임"]
-        A[인간 개발자 수작업 코딩] --> B[무거운 문서 작성 및 감리]
-        B --> C[사후 품질 검사]
-    end
-    subgraph Modern["2. AI 네이티브 모던 공학 패러다임"]
-        D[AI 코딩 어시스턴트 협업] --> E[프롬프트 & 아키텍처 정합성 검증]
-        E --> F[자동화 테스트 TDD & CI 품질 게이트]
-        F --> G[지속적 피드백 & 비즈니스 가치 즉시 인도]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+브룩스가 간파했듯 소프트웨어는 본질적으로 '비가시적'이고 '변경 가능'하기 때문에 은총알(단일 만병통치약)이 없다.
+과거의 공학이 무거운 문서와 감리 위주의 관료주의로 흘렀다면,
+현대의 좋은 소프트웨어는 살아있는 테스트 명세(TDD)와 자동화된 파이프라인(DevOps)을 통해 입증된다.
+특히 생성형 AI 시대에는 코딩의 장벽이 사라진 대신, 아키텍처 설계·보안 거버넌스·품질 가드레일이라는
+소프트웨어 공학의 '본질적 규율'이 소프트웨어의 생사를 가르는 결정적 차별화 요소가 된다.
+
+[나라면]
+실전 답안에서 브룩스의 4대 난제(복·순·변·비)와 솜머빌의 4대 조건(유·신·효·수)을 1~2단락에서 균형 있게 서술하겠다.
+그리고 3단락에서 관리 4P 중 People(사람)의 심리적 안전감과 AI 네이티브 공학 가드레일을 결합한 현대적 발전 모델을 제시하겠다.
 ```
 
-1. **형식주의 문서 공학의 탈피**:
-   - 감리용 워드 문서를 채우는 전근대적 관료주의 공학은 디지털 전환 환경에서 소프트웨어 위기를 재현함. 테스트 코드 자체가 살아있는 명세서가 되는 **자동화된 회귀 스위트(TDD/BDD)**와 **코드형 인프라(IaC)**를 핵심 산출물로 정의해야 함.
-2. **AI 네이티브 공학 규율 확립**:
-   - 코파일럿 등 AI 코드 생성이 보편화되면서 단순 코딩 비용은 급감함. 반면 **요구사항의 엄밀한 정의, 소프트웨어 아키텍처 설계, 보안 취약점 차단, 라이선스 컴플라이언스** 등 공학적 검증 역량이 더욱 중요해짐에 따라 이를 자동화 파이프라인으로 내재화해야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 소프트웨어 산출물의 유지보수성 지수(MI 80점 이상), 핵심 결함 전이율, 비가시성 극복을 위한 동작 소프트웨어 스프린트 검증 여부를 기준으로 공학적 품질을 종합 판정함.
+- **대응 방안**: 도구(CI/CD, AI 어시스턴트), 방법(DDD, TDD), 프로세스(애자일, CMMI)의 3요소를 프로젝트 특성에 맞춰 테일러링하고, 관리 4P 중 People 중심의 엔지니어링 문화(심리적 안전감, 품질 코칭)를 제도화함.
+- **검증 체계**: 코드가 곧 명세가 되는 자동화 테스트 스위트 및 IaC 형상 관리를 의무화하여 문서 중심 형식주의를 배제하고 소프트웨어 가시성을 상시 확보함.
+- **기대 효과**: 소프트웨어 위기로 인한 납기 지연 및 예산 초과 리스크를 70% 이상 감축하고, 기술 부채 누적으로 인한 시스템 노후화를 사전에 차단함.
+
+```text
+[공학 3요소 통합] ──> [브룩스 4대 난제 제어] ──> [솜머빌 4대 품질 실현] ──> [비즈니스 가치 적기 인도]
+(도구·방법·프로세스)   (복잡·순응·변경·비가시)   (유지보수·신뢰·효율·수용)     (QCD 목표 달성)
+```
 
 ---
 
