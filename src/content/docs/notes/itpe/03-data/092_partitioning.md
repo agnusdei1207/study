@@ -3,17 +3,17 @@ sidebar:
   order: 92
   label: "092. 파티셔닝 (Partitioning)"
   badge:
-    text: "B"
+    text: "A"
     variant: note
 title: "데이터베이스 파티셔닝(Partitioning) 전략과 데이터 분할 아키텍처"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:10:00+09:00"
 tags:
   - "notes-data"
 weight: 92
 extra:
-  model: "GPT-5"
-  keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "092"
 ---
 
@@ -23,25 +23,64 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[데이터베이스 파티셔닝 구조 및 파티션 프루닝(Pruning) 흐름]
+<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" width="100%" height="auto" role="img" aria-label="데이터베이스 파티셔닝 구조 및 파티션 프루닝 메커니즘">
+  <defs>
+    <marker id="partArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
+    </marker>
+  </defs>
+  <!-- Background Card -->
+  <rect width="520" height="230" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
- [논리적 단일 테이블: 주문 테이블 (Orders)]
-  WHERE 주문일자 BETWEEN '2026-03-01' AND '2026-03-31'
-                          │
-                          ▼ (옵티마이저 파티션 프루닝)
- ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
- │  Part 1 (202601) │ │  Part 2 (202602) │ │  Part 3 (202603) │
- │  [ 세그먼트 A ]  │ │  [ 세그먼트 B ]  │ │  [ 세그먼트 C ]  │
- │  (스캔 배제: X)  │ │  (스캔 배제: X)  │ │ (물리 I/O: O)   │
- └──────────────────┘ └──────────────────┘ └──────────────────┘
-                          │
-                          ▼ [로컬 파티션 인덱스 (1:1 매핑)]
- ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
- │ Local Index 1    │ │ Local Index 2    │ │ Local Index 3    │
- └──────────────────┘ └──────────────────┘ └──────────────────┘
-  * 파티션 1 삭제 시 (DROP PARTITION) -> 0.1초 메타데이터 삭제, Index 2/3 영향 전무
-```
+  <!-- Top Logical Table Box -->
+  <rect x="25" y="15" width="470" height="42" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+  <text x="40" y="32" font-size="11" font-weight="700" fill="var(--sl-color-accent, #2563eb)">[논리적 단일 테이블] 주문 (Orders)</text>
+  <text x="40" y="48" font-size="10" fill="var(--sl-color-text, #334155)">질의: WHERE 주문일자 BETWEEN '2026-03-01' AND '2026-03-31'</text>
+
+  <!-- Pruning Indicator -->
+  <path d="M 260 57 L 260 82" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="2" marker-end="url(#partArr)"/>
+  <rect x="180" y="65" width="160" height="18" rx="4" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #bfdbfe)"/>
+  <text x="260" y="78" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">옵티마이저 파티션 프루닝 (Pruning)</text>
+
+  <!-- Bottom Partitions -->
+  <!-- Partition 1 -->
+  <g transform="translate(25, 90)">
+    <rect width="145" height="75" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-dasharray="3 3"/>
+    <text x="72" y="24" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-gray-3, #94a3b8)">Part 1 (2026-01)</text>
+    <text x="72" y="44" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-3, #94a3b8)">세그먼트 A</text>
+    <rect x="15" y="52" width="115" height="16" rx="3" fill="#f1f5f9"/>
+    <text x="72" y="64" text-anchor="middle" font-size="8.5" font-weight="600" fill="#dc2626">스캔 배제 (I/O 0%)</text>
+    <!-- Local Index 1 -->
+    <rect y="82" width="145" height="32" rx="4" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
+    <text x="72" y="102" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2, #64748b)">Local Index 1 (1:1)</text>
+  </g>
+
+  <!-- Partition 2 -->
+  <g transform="translate(187, 90)">
+    <rect width="145" height="75" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-dasharray="3 3"/>
+    <text x="72" y="24" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-gray-3, #94a3b8)">Part 2 (2026-02)</text>
+    <text x="72" y="44" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-3, #94a3b8)">세그먼트 B</text>
+    <rect x="15" y="52" width="115" height="16" rx="3" fill="#f1f5f9"/>
+    <text x="72" y="64" text-anchor="middle" font-size="8.5" font-weight="600" fill="#dc2626">스캔 배제 (I/O 0%)</text>
+    <!-- Local Index 2 -->
+    <rect y="82" width="145" height="32" rx="4" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
+    <text x="72" y="102" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2, #64748b)">Local Index 2 (1:1)</text>
+  </g>
+
+  <!-- Partition 3 (Target) -->
+  <g transform="translate(350, 90)">
+    <rect width="145" height="75" rx="6" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.8"/>
+    <text x="72" y="24" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">Part 3 (2026-03)</text>
+    <text x="72" y="44" text-anchor="middle" font-size="9" fill="var(--sl-color-text, #1e293b)">세그먼트 C</text>
+    <rect x="15" y="52" width="115" height="16" rx="3" fill="var(--sl-color-accent, #dbeafe)"/>
+    <text x="72" y="64" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">물리적 I/O 집중 스캔</text>
+    <!-- Local Index 3 -->
+    <rect y="82" width="145" height="32" rx="4" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #3b82f6)"/>
+    <text x="72" y="102" text-anchor="middle" font-size="9" font-weight="600" fill="var(--sl-color-accent, #1d4ed8)">Local Index 3 (1:1)</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **수억 건 규모의 대용량 테이블이나 인덱스를 애플리케이션 관점에서는 논리적으로 단일 객체로 유지하면서, 물리적으로는 독립된 세그먼트(Segment) 단위로 분할하여 I/O 부하 분산, 파티션 프루닝(Pruning)을 통한 성능 향상 및 무중단 데이터 라이프사이클 관리를 구현하는 기술**
 - 암기: `범-목-해-복` (4대 분할 방식: Range, List, Hash, Composite) / `프-가-관-성` (기대효과: 프루닝, 가용성, 관리성, 성능)
@@ -68,15 +107,6 @@ extra:
 
 #### 한줄 요약: 데이터의 특성과 쿼리 패턴에 따라 Range, List, Hash, Composite 방식을 전략적으로 선택
 
-```text
- [1. Range (범위)]       [2. List (목록)]       [3. Hash (해시)]      [4. Composite (복합)]
- ┌───────────────┐      ┌───────────────┐     ┌───────────────┐    ┌────────────────────┐
- │ 2026년 1월    │      │ 서울 / 경기   │     │ Hash(ID) % 4  │    │ 2026년 1월 (Range) │
- │ 2026년 2월    │      │ 부산 / 영남   │     │ 균등 분산     │    │  ├─ Hash 1         │
- │ 2026년 3월    │      │ 충청 / 호남   │     │ Hotspot 방지  │    │  └─ Hash 2         │
- └───────────────┘      └───────────────┘     └───────────────┘    └────────────────────┘
-```
-
 | 분할 방식 | 분할 기준 및 메커니즘 | 주요 적용 사례 | 장점 및 고려사항 |
 |:---|:---|:---|:---|
 | **Range (범위)** | 날짜, 일련번호 등 연속적인 값의 범위를 기준으로 분할 (`VALUES LESS THAN`) | 주문 이력, 거래 내역, 접속 로그, 결제 데이터 | 시계열 데이터 관리에 최적, 주기적 파티션 추가 및 일괄 삭제 용이 |
@@ -88,35 +118,19 @@ extra:
 
 #### 한줄 요약: 옵티마이저가 질의 조건절을 분석하여 쿼리 대상이 아닌 물리 파티션을 디스크 I/O 대상에서 원천 배제하는 고속화 기술
 
-```text
- [정적 프루닝 (Static Pruning)]
-   SQL: SELECT * FROM 주문 WHERE 주문일자 = '20260315';
-   -> 컴파일 타임에 'Part 3(202603)' 세그먼트만 스캔하도록 플랜 확정
-
- [동적 프루닝 (Dynamic Pruning)]
-   SQL: SELECT * FROM 주문 WHERE 주문일자 = :bind_date;
-   -> 실행 런타임에 바인드 변수(:bind_date) 값을 평가하여 대상 세그먼트만 동적 필터링
-```
-
 - **동작 원리**:
   1. 쿼리 파서 및 옵티마이저가 `WHERE` 조건절의 파티션 키 컬럼 조건 탐색
   2. 메타데이터 딕셔너리의 파티션 바운더리(경계값)와 비교
-  3. 조건에 부합하지 않는 파티션 세그먼트는 디스크 I/O 읽기 목록에서 제외
+  3. 조건에 부합하지 않는 파티션 세그먼트는 디스크 I/O 읽기 목록에서 원천 배제
 - **프루닝 유형**:
-  - **Static Partition Pruning**: 상수 조건으로 하드코딩되어 컴파일 시점에 접근 파티션 결정 (`Pstart = Pstop = 3`)
-  - **Dynamic Partition Pruning**: 바인드 변수나 서브쿼리 결과에 의해 실행 런타임에 파티션이 결정 (`KEY(AP)` 표시)
+  - **정적 프루닝 (Static Pruning)**: 상수 조건으로 하드코딩되어 컴파일 타임에 접근 파티션 결정 (`Pstart = Pstop = 3`)
+    - 예: `WHERE 주문일자 = '20260315'` $\rightarrow$ 컴파일 시점에 'Part 3' 세그먼트만 스캔하도록 플랜 확정
+  - **동적 프루닝 (Dynamic Pruning)**: 바인드 변수나 서브쿼리 결과에 의해 실행 런타임에 대상 파티션 동적 필터링 (`KEY(AP)` 표시)
+    - 예: `WHERE 주문일자 = :bind_date` $\rightarrow$ 런타임 변수 평가 후 해당 세그먼트만 선택적 I/O
 
 ## Ⅳ. 파티션 인덱스 아키텍처: 로컬 인덱스 vs 글로벌 인덱스
 
 #### 한줄 요약: 테이블 파티션과 1:1로 동일하게 분할되는 로컬 인덱스와 독립적인 키 체계를 갖는 글로벌 인덱스의 대조
-
-```text
- [로컬 파티션 인덱스 (Local Index)]          [글로벌 파티션 인덱스 (Global Index)]
-  Table Part 1 <---> Index Part 1 (1:1)       Table Part 1 ──┐
-  Table Part 2 <---> Index Part 2 (1:1)       Table Part 2 ──┼──> Global B-Tree Index (N:1)
-  Table Part 3 <---> Index Part 3 (1:1)       Table Part 3 ──┘
-  [독립적 세그먼트: 장애 격리 완벽]           [파티션 변경 시 전체 인덱스 무효화 위험]
-```
 
 | 구분 | 로컬 파티션 인덱스 (Local Index) | 글로벌 파티션 인덱스 (Global Index) | 비파티션 글로벌 인덱스 |
 |:---|:---|:---|:---|
@@ -148,45 +162,66 @@ extra:
 | **Index Unusable 전사 장애** | 보관주기 만료로 `ALTER TABLE DROP PARTITION` 수행 시 글로벌 인덱스가 깨짐 | DDL 수행 시 `ALTER TABLE DROP PARTITION p_old UPDATE GLOBAL INDEXES;` 구문 필수 적용 |
 | **데이터 쏠림(Skew) 현상** | 특정 Range 파티션 또는 Hash 키 편향으로 1개 세그먼트만 기가바이트 단위 비대화 | Composite 파티셔닝(Range + Hash) 도입, 비즈니스 특성에 맞는 파티션 키 재선정 |
 
-## Ⅶ. 기술사적 제언: 무중단 롤링 파티션(Rolling Partition)과 클라우드 티어링
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 데이터 라이프사이클 관리(ILM)와 연계한 초고속 익스체인지 및 콜드 데이터 객체 스토리지 티어링 체계
+### 학습자 통찰 메모 — 답안 밖
 
-```text
- [온라인 롤링 파티션 ILM 파이프라인]
-  [Hot Data: 최근 3개월] ──► 고성능 NVMe SSD (로컬 파티션 테이블)
-             │ (3개월 경과)
-             ▼
-  [Warm Data: 1년 이내]  ──► 표준 SAS 디스크 (테이블스페이스 이동)
-             │ (1년 경과)
-             ▼
-  [Exchange Partition]   ──► 임시 일반 테이블과 포인터 0.1초 맞바꿈 (락 최소화)
-             │
-             ▼
-  [Cold Data: 영구 보관] ──► Parquet 변환 후 AWS S3 / Cloud Object Storage로 티어링
-```
+> **[핵심 통찰]**
+> 파티셔닝의 가장 위대한 실무적 가치는 조회 성능(파티션 프루닝)보다 '데이터 라이프사이클 관리(ILM)'에 있다. 1억 건 테이블에서 1년 지난 데이터를 `DELETE`로 지우려면 수 시간이 소요되고 Undo/Redo 폭증으로 데이터베이스가 정지되지만, Range 파티션으로 설계되어 있다면 `ALTER TABLE DROP PARTITION` 명령 단 0.1초 만에 메타데이터 포인터 삭제로 완료된다. 단, 글로벌 인덱스가 존재할 경우 `UPDATE GLOBAL INDEXES`를 누락하면 서비스 장애가 발생하므로, 인덱스는 가급적 로컬 파티션 인덱스로 설계해야 한다.
 
-- **Exchange Partition 활용**: 대량 데이터를 적재하거나 삭제할 때, 일반 테이블과 파티션 세그먼트를 딕셔너리 메타데이터 포인터만 맞바꾸는 `EXCHANGE PARTITION`을 활용하여 시스템 락 시간을 0.1초 이내로 단축
-- **클라우드 하이브리드 티어링**: 핫 데이터는 RDBMS 파티션으로 유지하고, 1년 이상 경과한 콜드 파티션은 Parquet/ORC 파일로 변환하여 저비용 오브젝트 스토리지(S3, GCS)로 티어링(Hybrid Partitioning)하는 데이터 레이크하우스 아키텍처로 진화 중
+> **[나라면 이렇게 쓴다]**
+> 1교시형이라면 파티션 프루닝 다이어그램과 4대 분할 방식(범-목-해-복) 비교표를 일목요연하게 제시하겠다. 2교시 25점형이라면 로컬 인덱스와 글로벌 인덱스의 구조적 차이와 `UNUSABLE` 장애 메커니즘을 상세히 분석하고, 핫/웜/콜드 데이터 수명주기(ILM)를 고려하여 최근 3개월은 SSD 파티션, 1년 경과는 SAS, 영구 보관은 `EXCHANGE PARTITION`을 통해 클라우드 오브젝트 스토리지(Parquet)로 내보내는 하이브리드 티어링 아키텍처를 제언하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 대용량 이력 테이블에 보관 주기 만료 데이터를 단순 `DELETE`로 삭제 시 락 경합 및 트랜잭션 로그 급증으로 서비스 다운타임 발생. 또한 비파티션 글로벌 인덱스 환경에서 파티션 관리 작업 시 전사 인덱스 비활성화 위험 상존.
+- **대응 (개선 방안)**: 시계열 Range 파티셔닝과 로컬 파티션 인덱스를 기본 원칙으로 수립하고, 데이터 적재 및 폐기 시 `EXCHANGE PARTITION`을 활용하여 메타데이터 포인터 스왑 방식으로 시스템 락 시간을 밀리초 단위로 최소화.
+- **검증 (검증 기준)**: 일별 파티션 프루닝 적용률 100%, 글로벌 인덱스 종속성 0건 유지(필수 PK는 파티션 키 포함 복합 PK 설계), 파티션 DROP 시 DDL 수행 시간 1초 미만 검증.
+- **효과 (실행 효과)**: 배치 삭제 소요 시간 99% 단축(수 시간 $\rightarrow$ 0.1초), Undo/Redo I/O 95% 절감, 24x365 무중단 데이터 보관주기 라이프사이클 완성.
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">현행 한계</div>
+    <div class="itpe-flow-step__content">대량 DELETE로 인한 락 경합, 글로벌 인덱스 파손으로 인덱스 무효화</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">개선 방안</div>
+    <div class="itpe-flow-step__content">Range 파티션 + 로컬 인덱스 표준화, Exchange Partition 무중단 전환</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">검증 기준</div>
+    <div class="itpe-flow-step__content">파티션 프루닝 100%, 글로벌 인덱스 0건, DDL 수행 시간 1초 이내</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">실행 효과</div>
+    <div class="itpe-flow-step__content">배치 삭제 0.1초 완료, Undo I/O 95% 절감, 365일 무중단 ILM 체계 구현</div>
+  </div>
+</div>
 
 ---
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 파티셔닝(Partitioning)의 개념
-  - 대용량 테이블을 논리적으로 단일 객체로 유지하며, 물리적으로 독립된 세그먼트로 분할하여 I/O 분산 및 파티션 프루닝을 달성하는 기술.
+### [문제] 파티셔닝 (Partitioning)
 
-2. 파티셔닝 4대 분할 방식 및 인덱스 구조
-  가. 4대 분할 방식:
-    - Range(연속 범위, 이력 관리), List(불연속 코드), Hash(해시 균등 분산), Composite(Range+Hash 복합).
-  나. 파티션 인덱스:
-    - 로컬 인덱스(Local Index): 테이블 파티션과 1:1 매핑, 파티션 DROP 시 장애 격리 우수.
-    - 글로벌 인덱스(Global Index): 테이블 파티션과 독립적 구조, DROP 시 'UPDATE GLOBAL INDEXES' 필수.
+#### 1. 파티셔닝(Partitioning)의 개념
+- 대용량 테이블을 논리적으로 단일 객체로 유지하며, 물리적으로 독립된 세그먼트로 분할하여 I/O 부하 분산 및 파티션 프루닝(Pruning)을 달성하는 물리 모델링 기술
 
-3. 파티션 프루닝(Partition Pruning)의 효과
-  - 조건절 분석을 통해 불필요한 파티션 스캔을 원천 배제하여 대용량 풀스캔 I/O 병목 해소.
-```
+#### 2. 파티셔닝 4대 분할 방식 및 인덱스 구조
+
+| 분할 방식 | 핵심 메커니즘 | 최적 적용 업무 |
+|:---|:---|:---|
+| **Range (범위)** | 연속적인 날짜나 숫자 범위 기준 | 주문 이력, 로그 등 시계열 데이터 |
+| **List (목록)** | 고정된 불연속 코드 목록 기준 | 지역코드, 사업부별 데이터 |
+| **Hash (해시)** | 해시 알고리즘 균등 분산 | 고객 마스터, I/O 핫스팟 해소 |
+| **Composite (복합)** | Range + Hash/List 계층적 결합 | 초대용량 멀티차원 트랜잭션 |
+
+- **파티션 인덱스 구분**:
+  - **로컬 인덱스(Local Index)**: 테이블 파티션과 1:1 매핑, 파티션 DROP 시 타 세그먼트 영향 전무(장애 격리 최상)
+  - **글로벌 인덱스(Global Index)**: 테이블 파티션과 독립적 구조, 파티션 DROP 시 `UPDATE GLOBAL INDEXES` 누락 시 UNUSABLE 장애 발생
+
+#### 3. 파티션 프루닝(Partition Pruning)의 효과
+- 조건절 분석을 통해 불필요한 물리 파티션 스캔을 원천 배제하여 대용량 풀스캔 I/O 병목 해소
 
 ---
 
@@ -211,5 +246,5 @@ extra:
 
 ## 연결 토픽
 
-- 상위 토픽: [03-021 데이터베이스 분할(수평·수직 분할)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/021_horizontal_vertical_partitioning.md)
-- 연관 토픽: [03-045 샤딩(Sharding)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/045_sharding.md), [03-047 인덱스(클러스터드·논클러스터드)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/047_index_clustered_nonclustered.md)
+- 상위 토픽: [021. DB 파티셔닝과 샤딩 (DB Partitioning & Sharding)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/021_db_partitioning_sharding.md)
+- 연관 토픽: [045. 샤딩 (Sharding)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/045_sharding.md), [047. 인덱스 (Index)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/047_index.md)
