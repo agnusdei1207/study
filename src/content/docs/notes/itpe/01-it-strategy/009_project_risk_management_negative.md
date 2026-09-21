@@ -1,14 +1,14 @@
 ---
 title: "프로젝트 위험관리"
 author: "Codex"
-date: "2026-09-21T22:40:00+09:00"
+date: "2026-09-21T23:52:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,8 +20,6 @@ extra:
 - 본질: **Project Risk Management(프로젝트 위험관리)**는 아직 발생하지 않은 불확실성을 찾아 위협은 줄이고 기회는 키우는 반복 통제
 - 메커니즘: 식별 → 분석 → 대응계획·실행 → 감시 → 신규·잔여·2차 위험 재식별
 - 산출물: 위험관리 계획서 · **Risk Register** · 위험 보고서 · 대응 결과
-
-## 핵심 용어
 
 <details>
 <summary>핵심 용어</summary>
@@ -54,14 +52,24 @@ extra:
 
 ```mermaid
 flowchart TD
-    P["Plan Risk Management<br/>활동: 방법·역할·기준 정의<br/>산출: 위험관리 계획서"] --> I["Identify Risks<br/>활동: 원인·사건·영향 식별<br/>산출: Risk Register·위험 보고서"]
-    I --> QL["Perform Qualitative Risk Analysis<br/>활동: 확률·영향·우선순위 평가<br/>산출: 우선순위·Risk Owner"]
-    QL --> QT["Perform Quantitative Risk Analysis<br/>활동: 비용·일정 목표 영향 분석<br/>산출: 정량 위험 분석 결과"]
-    QT --> PR["Plan Risk Responses<br/>활동: 전략·트리거·조치 결정<br/>산출: 대응계획"]
-    PR --> IR["Implement Risk Responses<br/>활동: 합의된 대응 실행<br/>산출: 조치 결과·변경 요청"]
-    IR --> M["Monitor Risks<br/>활동: 대응 효과·잔여·2차 위험 감시<br/>산출: 성과정보·문서 갱신"]
-    M -->|신규·변경 위험| I
+    P["Plan Risk Management"] -->|"위험관리 계획서"| I["Identify Risks"]
+    I -->|"Risk Register·위험 보고서"| QL["Perform Qualitative Risk Analysis"]
+    QL -->|"우선순위·Risk Owner"| QT["Perform Quantitative Risk Analysis"]
+    QT -->|"정량 분석 결과"| PR["Plan Risk Responses"]
+    PR -->|"대응계획"| IR["Implement Risk Responses"]
+    IR -->|"조치 결과·변경 요청"| M["Monitor Risks"]
+    M -->|"신규·변경 위험"| I
 ```
+
+| 프로세스 | 활동 |
+|---|---|
+| Plan Risk Management | 방법·역할·기준 정의 |
+| Identify Risks | 원인·사건·영향 식별 |
+| Perform Qualitative Risk Analysis | 확률·영향·우선순위 평가 |
+| Perform Quantitative Risk Analysis | 비용·일정 목표 영향 분석 |
+| Plan Risk Responses | 전략·트리거·조치 결정 |
+| Implement Risk Responses | 합의된 대응 실행 |
+| Monitor Risks | 대응 효과·잔여·2차 위험 감시 |
 
 ## Ⅲ. 실행 가능한 위험 기술 구조
 
@@ -69,11 +77,17 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    C["원인<br/>공급 지연·기술 미성숙·결정 지체"] --> E["불확실 사건<br/>납품 실패·결함 급증·승인 지연"]
-    E --> I["목표 영향<br/>일정·원가·범위·품질 편차"]
-    I --> O["Risk Owner<br/>감시·대응 책임"]
-    I --> T["Trigger<br/>대응 개시 조건"]
+    C["원인"] --> E["불확실 사건"]
+    E --> I["목표 영향"]
+    I --> O["Risk Owner"]
+    I --> T["Trigger"]
 ```
+
+| 구조 요소 | 예시 |
+|---|---|
+| 원인 | 공급 지연·기술 미성숙·결정 지체 |
+| 불확실 사건 | 납품 실패·결함 급증·승인 지연 |
+| 목표 영향 | 일정·원가·범위·품질 편차 |
 
 ## Ⅳ. 부정적 위험 대응전략과 선택 기준
 
@@ -82,15 +96,15 @@ flowchart TD
 ```mermaid
 flowchart TD
     R["부정적 위험"] --> ALT["대응 대안 후보 도출"]
-    ALT --> ES["Escalate<br/>상위 조직에 관리 책임 이관"]
-    ALT --> AV["Avoid<br/>원인·계획 변경"]
-    ALT --> TR["Transfer<br/>계약·보험으로 책임 이전"]
-    ALT --> MI["Mitigate<br/>예방·복구 통제"]
-    ALT --> AC["Accept<br/>능동 수용·수동 수용"]
-    ES & AV & TR & MI & AC --> Q{"선정 기준 충족?<br/>전략 적합성·비용효과성·잔여위험"}
+    ALT --> ES["Escalate"]
+    ALT --> AV["Avoid"]
+    ALT --> TR["Transfer"]
+    ALT --> MI["Mitigate"]
+    ALT --> AC["Accept"]
+    ES & AV & TR & MI & AC --> Q{"선정 기준 충족?"}
     Q -->|충족| AP{"위험 수용권자 승인?"}
     Q -->|미충족| ALT
-    AP -->|승인| REG["Risk Register 확정<br/>Risk Owner·트리거·대응예산"]
+    AP -->|승인| REG["Risk Register 확정"]
     AP -->|보완| ALT
 ```
 
@@ -117,9 +131,9 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    M["감시<br/>대응 상태·트리거·잔여·2차·신규 위험"] --> Q{"재평가<br/>남은 노출이 수용 기준 이내인가?"}
+    M["감시"] --> Q{"재평가"}
     Q -->|예| C["종료·기록"]
-    Q -->|아니오| U["Risk Register 갱신<br/>책임자·전략·기한 재결정"]
+    Q -->|아니오| U["Risk Register 갱신"]
     U --> M
 ```
 
@@ -139,13 +153,6 @@ flowchart TD
 - 검증: 대응 실행 이력과 잔여·2차 위험 재평가 여부 점검
 - 효과: 잠재 위협이 이슈로 전환되기 전 의사결정 가능
 
-```mermaid
-flowchart TD
-    P["문제<br/>위험명·등급만 기록·실행 책임 불명확"] --> A["대안<br/>원인·사건·영향·트리거·Risk Owner 연결"]
-    A --> V["판정<br/>대응 실행 이력·잔여 위험 재평가"]
-    V --> E["효과<br/>위협의 이슈 전환 전 의사결정"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -158,15 +165,15 @@ flowchart TD
 ```mermaid
 flowchart TD
     R["부정적 위험"] --> ALT["대응 대안 후보 도출"]
-    ALT --> ES["Escalate<br/>상위 조직에 관리 책임 이관"]
-    ALT --> AV["Avoid<br/>원인·계획 변경"]
-    ALT --> TR["Transfer<br/>계약·보험으로 책임 이전"]
-    ALT --> MI["Mitigate<br/>예방·복구 통제"]
-    ALT --> AC["Accept<br/>능동 수용·수동 수용"]
-    ES & AV & TR & MI & AC --> Q{"선정 기준 충족?<br/>전략 적합성·비용효과성·잔여위험"}
+    ALT --> ES["Escalate"]
+    ALT --> AV["Avoid"]
+    ALT --> TR["Transfer"]
+    ALT --> MI["Mitigate"]
+    ALT --> AC["Accept"]
+    ES & AV & TR & MI & AC --> Q{"선정 기준 충족?"}
     Q -->|충족| AP{"위험 수용권자 승인?"}
     Q -->|미충족| ALT
-    AP -->|승인| REG["Risk Register 확정<br/>Risk Owner·트리거·대응예산"]
+    AP -->|승인| REG["Risk Register 확정"]
     AP -->|보완| ALT
 ```
 

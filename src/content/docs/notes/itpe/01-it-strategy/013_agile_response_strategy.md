@@ -1,7 +1,7 @@
 ---
 title: "애자일 대응 전략"
 author: "Codex"
-date: "2026-09-21T22:58:00+09:00"
+date: "2026-09-22T00:04:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -57,11 +57,18 @@ extra:
 
 ```mermaid
 flowchart TD
-    PB["Product Backlog 정제<br/>활동: 요구 구체화·가치 우선순위<br/>산출: Product Backlog"] --> PL["Sprint Planning<br/>활동: 목표 설정·작업 선택<br/>산출: Sprint Goal·Sprint Backlog"]
-    PL --> EX["Sprint 실행<br/>활동: 개발·통합·테스트·Daily Scrum<br/>산출: DoD 충족 Increment"]
-    EX --> RR["Review·Retrospective<br/>활동: 증분 검토·방식 개선<br/>산출: 갱신 Backlog·개선 항목"]
-    RR -->|Feedback Loop| PB
+    PB["① Product Backlog 정제"] --> PL["② Sprint Planning"]
+    PL --> EX["③ Sprint 실행"]
+    EX --> RR["④ Review·Retrospective"]
+    RR -->|"갱신 Backlog로 환류"| PB
 ```
+
+| 단계 | 활동 | 산출 |
+|---|---|---|
+| ① Product Backlog 정제 | 요구 구체화·가치 우선순위 | Product Backlog |
+| ② Sprint Planning | 목표 설정·작업 선택 | Sprint Goal·Sprint Backlog |
+| ③ Sprint 실행 | 개발·통합·테스트·Daily Scrum | DoD 충족 Increment |
+| ④ Review·Retrospective | 증분 검토·방식 개선 | 갱신 Backlog·개선 항목 |
 
 ## Ⅲ. 전통적 개발과 애자일 비교
 
@@ -79,9 +86,9 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["애자일 조직 적용"] --> P["제품<br/>가치 우선순위"]
-    A --> T["팀<br/>완료 품질"]
-    A --> O["조직<br/>팀 간 의존성"]
+    A["애자일 조직 적용"] --> P["제품 · 가치 우선순위"]
+    A --> T["팀 · 완료 품질"]
+    A --> O["조직 · 팀 간 의존성"]
     P --> PG["Product Goal"]
     P --> PB["Product Backlog"]
     T --> SG["Sprint Goal"]
@@ -120,13 +127,6 @@ flowchart TD
 - 검증: 자동화 시험·DoD 충족·Review 피드백 반영·가치 지표 변화 점검
 - 효과: 가치 조기 검증과 변경 손실 감소
 
-```mermaid
-flowchart TD
-    P["문제<br/>행사·속도 중심의 형식적 애자일"] --> A["대안<br/>독립 배포 제품 우선·범위 조정 규칙"]
-    A --> V["판정<br/>DoD 충족·고객 검증·Backlog 반영"]
-    V --> E["효과<br/>가치 조기 검증·변경 손실 축소"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -138,10 +138,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    PB["Product Backlog 정제<br/>활동: 요구 구체화·가치 우선순위<br/>산출: Product Backlog"] --> PL["Sprint Planning<br/>활동: 목표 설정·작업 선택<br/>산출: Sprint Goal·Sprint Backlog"]
-    PL --> EX["Sprint 실행<br/>활동: 개발·통합·테스트·Daily Scrum<br/>산출: DoD 충족 Increment"]
-    EX --> RR["Review·Retrospective<br/>활동: 증분 검토·방식 개선<br/>산출: 갱신 Backlog·개선 항목"]
-    RR -->|Feedback Loop| PB
+    PB["① Product Backlog 정제"] --> PL["② Sprint Planning"]
+    PL --> EX["③ Sprint 실행"]
+    EX --> RR["④ Review·Retrospective"]
+    RR -->|"갱신 Backlog로 환류"| PB
 ```
 
 ### 3. 핵심 통제

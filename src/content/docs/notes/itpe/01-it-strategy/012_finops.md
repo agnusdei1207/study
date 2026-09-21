@@ -1,7 +1,7 @@
 ---
 title: "FinOps"
 author: "Codex"
-date: "2026-09-21T22:53:00+09:00"
+date: "2026-09-22T00:04:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -61,26 +61,20 @@ extra:
 
 ```mermaid
 flowchart TD
-    subgraph LC["FinOps Lifecycle (사용량·단가·단위가치 지속 개선)"]
+    subgraph LC["FinOps Lifecycle"]
         direction TB
-        INF["① Inform<br/>(수집·할당·예측)"]
-        OPT["② Optimize<br/>(개선 기회 식별)"]
-        OPR["③ Operate<br/>(실행·정책 정착)"]
-        BV((Business<br/>Value))
-
-        INF --> OPT
-        OPT --> OPR
+        INF["① Inform"] --> OPT["② Optimize"]
+        OPT --> OPR["③ Operate"]
         OPR --> INF
-        INF --- BV
+        INF --- BV((Business Value))
         OPT --- BV
         OPR --- BV
     end
-
-    LC --> OUT["단계별 핵심 산출물"]
-    OUT --> O1["Inform: 비용 배분 · 예산·예측 · 단위지표"]
-    OUT --> O2["Optimize: 우선순위 최적화 Backlog"]
-    OUT --> O3["Operate: 가드레일 · 갱신 지표"]
 ```
+
+- Inform: 비용 배분 · 예산·예측 · 단위지표
+- Optimize: 우선순위 최적화 Backlog
+- Operate: 가드레일 · 갱신 지표
 
 ## Ⅲ. 클라우드 비용 데이터 공통 사양 FOCUS
 
@@ -88,14 +82,18 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    SRC["공급자별 비용·사용 데이터<br/>(형식·용어 상이)"] --> FOCUS["FOCUS 공통 사양 · 3대 정규화"]
-
-    FOCUS --> F1["비용 정규화<br/>(청구·실효·계약·정가 비용)"]
-    FOCUS --> F2["사용 귀속<br/>(계정·서비스·리소스·태그)"]
-    FOCUS --> F3["검증·분석<br/>(청구기간·통화·비용 범주)"]
-
-    F1 & F2 & F3 -->|동일 기준 비교| OUT["산출<br/>- Showback · Chargeback<br/>- 공급자 간 대사 · 비교"]
+    SRC["공급자별 비용·사용 데이터"] --> FOCUS["FOCUS 공통 사양"]
+    FOCUS --> F1["비용 정규화"]
+    FOCUS --> F2["사용 귀속"]
+    FOCUS --> F3["검증·분석"]
+    F1 & F2 & F3 -->|"동일 기준 비교·대사"| OUT["Showback·Chargeback"]
 ```
+
+| 정규화 축 | 대상 |
+|---|---|
+| 비용 정규화 | 청구·실효·계약·정가 비용 |
+| 사용 귀속 | 계정·서비스·리소스·태그 |
+| 검증·분석 | 청구기간·통화·비용 범주 |
 
 ## Ⅳ. FinOps vs 전통적 IT 재무관리(ITFM) 비교
 
@@ -133,13 +131,6 @@ flowchart TD
 - 검증: 미할당 비용·약정 사용·변경별 비용 증감과 단위비용 추세 점검
 - 효과: 배포 전 비용 낭비 차단·기술 사용 대비 비즈니스 가치 가시화
 
-```mermaid
-flowchart TD
-    P["문제<br/>월말 사후 정산·태깅 누락"] --> A["대안<br/>FOCUS 정규화·IaC 비용 사전 검토"]
-    A --> V["판정<br/>미태깅 차단·변경별 비용 증감 확인"]
-    V --> E["효과<br/>배포 전 낭비 차단·Unit Cost 개선"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -151,26 +142,20 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    subgraph LC["FinOps Lifecycle (사용량·단가·단위가치 지속 개선)"]
+    subgraph LC["FinOps Lifecycle"]
         direction TB
-        INF["① Inform<br/>(수집·할당·예측)"]
-        OPT["② Optimize<br/>(개선 기회 식별)"]
-        OPR["③ Operate<br/>(실행·정책 정착)"]
-        BV((Business<br/>Value))
-
-        INF --> OPT
-        OPT --> OPR
+        INF["① Inform"] --> OPT["② Optimize"]
+        OPT --> OPR["③ Operate"]
         OPR --> INF
-        INF --- BV
+        INF --- BV((Business Value))
         OPT --- BV
         OPR --- BV
     end
-
-    LC --> OUT["단계별 핵심 산출물"]
-    OUT --> O1["Inform: 비용 배분 · 예산·예측 · 단위지표"]
-    OUT --> O2["Optimize: 우선순위 최적화 Backlog"]
-    OUT --> O3["Operate: 가드레일 · 갱신 지표"]
 ```
+
+- Inform: 비용 배분 · 예산·예측 · 단위지표
+- Optimize: 우선순위 최적화 Backlog
+- Operate: 가드레일 · 갱신 지표
 
 ### 3. 핵심 통제
 

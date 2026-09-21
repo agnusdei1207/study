@@ -1,7 +1,7 @@
 ---
 title: "디지털 트랜스포메이션(DX)"
 author: "Codex"
-date: "2026-09-21T23:18:00+09:00"
+date: "2026-09-22T00:14:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -58,13 +58,15 @@ extra:
 > Digitization·Digitalization·DX는 변화 범위를 구분하는 개념이며, 모든 조직이 같은 고정 단계로 진행하는 것은 아님.
 
 ```mermaid
-flowchart TD
-    S1["① Digitization (정보 전산화)<br/>• 활동: 아날로그 문서·신호 변환<br/>• 산출: 디지털 정보"]
-    S2["② Digitalization (업무 프로세스 전환)<br/>• 활동: ERP/CRM 고도화 · RPA 업무 자동화 · 데이터 분석<br/>• 산출: 자동 처리 업무 절차"]
-    S3["③ Digital Transformation (비즈니스 모델 재창조)<br/>• 활동: 구독 경제(XaaS) 전환 · CX 개인화 · 플랫폼 구축<br/>• 산출: 구독형 신규 서비스 · 개인화 고객경험"]
-
-    S1 --> S2 --> S3
+flowchart LR
+    S1["① Digitization"] --> S2["② Digitalization"] --> S3["③ Digital Transformation"]
 ```
+
+| 단계 | 활동 | 산출 |
+|---|---|---|
+| ① Digitization(정보 전산화) | 아날로그 문서·신호 변환 | 디지털 정보 |
+| ② Digitalization(업무 프로세스 전환) | ERP/CRM 고도화·RPA 자동화·데이터 분석 | 자동 처리 업무 절차 |
+| ③ Digital Transformation(비즈니스 모델 재창조) | 구독 경제(XaaS) 전환·CX 개인화·플랫폼 구축 | 구독형 신규 서비스·개인화 고객경험 |
 
 ## Ⅲ. DX의 4대 전환 영역과 검증 지표
 
@@ -73,12 +75,18 @@ flowchart TD
 ```mermaid
 flowchart TD
     ROOT["DX 4대 전환 영역"]
-
-    ROOT --> CX["고객경험 (CX)<br/>• 전환: 채널·고객여정 재설계<br/>• 검증: 만족도 · 전환율"]
-    ROOT --> OP["운영 (Operation)<br/>• 전환: 수작업 → 자동화·데이터 기반 결정<br/>• 검증: 처리 시간 · 품질"]
-    ROOT --> BM["사업모델 (BM)<br/>• 전환: 제품 판매 → 플랫폼·구독<br/>• 검증: 신규 매출 · 고객가치"]
-    ROOT --> ORG["조직역량 (Organization)<br/>• 전환: 기능 조직 → 제품팀·CoE 지원<br/>• 검증: 학습 · 전달 주기"]
+    ROOT --> CX["고객경험(CX)"]
+    ROOT --> OP["운영(Operation)"]
+    ROOT --> BM["사업모델(BM)"]
+    ROOT --> ORG["조직역량(Organization)"]
 ```
+
+| 영역 | 전환 | 검증 지표 |
+|---|---|---|
+| 고객경험(CX) | 채널·고객여정 재설계 | 만족도·전환율 |
+| 운영(Operation) | 수작업 → 자동화·데이터 기반 결정 | 처리 시간·품질 |
+| 사업모델(BM) | 제품 판매 → 플랫폼·구독 | 신규 매출·고객가치 |
+| 조직역량(Organization) | 기능 조직 → 제품팀·CoE 지원 | 학습·전달 주기 |
 
 ## Ⅳ. Digitization vs Digitalization vs Digital Transformation 비교
 
@@ -116,16 +124,6 @@ flowchart TD
 - 검증: 고객·운영·수익 지표 변화와 검증 자산의 제품 반영·재사용 여부 점검
 - 효과: 기술 과시형 PoC 반복과 현업-IT 사일로 감소
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>(IT 부서 단독 추진 · 기술 과시형 PoC 무덤 · 현업 사일로)"]
-    P2["개선 대안<br/>(현업-IT 제품팀·CoE 표준 지원)"]
-    P3["검증 기준<br/>(고객·운영·수익 지표·제품 반영 여부)"]
-    P4["실행 효과<br/>(PoC 반복 감소·검증 자산 재사용)"]
-
-    P1 --> P2 --> P3 --> P4
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -136,12 +134,8 @@ flowchart TD
 ### 2. 단계별 전환과 산출
 
 ```mermaid
-flowchart TD
-    S1["① Digitization (정보 전산화)<br/>• 활동: 아날로그 문서·신호 변환<br/>• 산출: 디지털 정보"]
-    S2["② Digitalization (업무 프로세스 전환)<br/>• 활동: ERP/CRM 고도화 · RPA 업무 자동화 · 데이터 분석<br/>• 산출: 자동 처리 업무 절차"]
-    S3["③ Digital Transformation (비즈니스 모델 재창조)<br/>• 활동: 구독 경제(XaaS) 전환 · CX 개인화 · 플랫폼 구축<br/>• 산출: 구독형 신규 서비스 · 개인화 고객경험"]
-
-    S1 --> S2 --> S3
+flowchart LR
+    S1["① Digitization"] --> S2["② Digitalization"] --> S3["③ Digital Transformation"]
 ```
 
 ### 3. 핵심 통제
