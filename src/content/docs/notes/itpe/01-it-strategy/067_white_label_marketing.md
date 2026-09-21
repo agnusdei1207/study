@@ -1,7 +1,7 @@
 ---
 title: "화이트 레이블 마케팅"
 author: "Codex"
-date: "2026-09-22T04:10:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -122,14 +122,6 @@ flowchart LR
 - **대응 방안 (Action)**: 계약 체결 시 '표준 포맷(JSON/CSV) 기반 데이터 반출 권리' 및 '서비스 종료 지원(Exit Management) 조항'을 계약서에 필수 명문화.
 - **검증 체계 (Verification)**: 분기별 모의 종료 훈련(Mock Exit Drill)을 통해 공급자 장애 시 타 솔루션 또는 자체 시스템으로의 전환 시간(RTO)과 고객 이탈률을 검증함.
 - **기대 효과 (Impact)**: 공급자 종속 리스크 해소, 브랜드 신인도 보호, B2B2C 파트너십에서의 가격 협상력(Bargaining Power) 지속 유지를 달성함.
-
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>공급자 종속(Lock-in) · 전용 포맷 종속 · 품질 사고 전이"] --> P2["개선 대안<br/>표준 데이터 반출권 명문화 · Exit Management 계약 · 정기 백업"]
-    P2 --> P3{"검증 판정<br/>표준 포맷(JSON/CSV) 반출 가능 & 모의 전환(Mock Exit) 성공?"}
-    P3 -->|달성| P4["실행 효과<br/>공급자 종속 해소 · 브랜드 신인도 보호 · 가격 협상력 확보"]
-    P3 -->|미달| P5["보완 조치<br/>RESTful API 표준화 재점검 및 대체 솔루션 전환 계획 수립"]
-```
 
 ## 1교시 10점 답안 발췌
 

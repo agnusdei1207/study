@@ -1,14 +1,14 @@
 ---
 title: "프로젝트 관리 통합 체계"
 author: "Codex"
-date: "2026-09-22T03:45:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -51,23 +51,7 @@ extra:
 
 ```mermaid
 flowchart TD
-    subgraph PORT["1. Portfolio (전략 정렬 및 투자 최적화)"]
-        direction TB
-        P1["올바른 일을 하고 있는가? · 자원 우선순위 배분 · 전사 ROI 극대화"]
-    end
-
-    subgraph PROG["2. Programme (연계 편익 및 시너지 관리)"]
-        direction TB
-        PR1["시너지를 창출하고 있는가? · 프로젝트 간 의존성 조율 · 비즈니스 편익 실현"]
-    end
-
-    subgraph PROJ["3. Project (고유 산출물 인도 및 통합 통제)"]
-        direction TB
-        PJ1["일을 올바르게 실행하는가? · Scope, Schedule, Cost, Quality 통합 관리"]
-        PJ2["WBS 산출물 납품 → 수용(Acceptance) → 프로그램 편익 전환"]
-    end
-
-    PORT --> PROG --> PROJ
+    PORT["Portfolio · 전략·투자 최적화"] --> PROG["Programme · 편익 실현"] --> PROJ["Project · 산출 인도"]
 ```
 
 | 기준 | Portfolio | Programme | Project |
@@ -83,13 +67,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    S1["① 정당화·착수<br/>Business Case·목표·Sponsor·권한 확정<br/>(산출: Project Charter)"]
-    S2["② 계획·Baseline<br/>WBS·일정·원가·품질·위험·조달 수립<br/>(산출: PM Plan · Baseline)"]
-    S3["③ 실행·인도<br/>팀·공급자·품질·의사소통·작업 통합<br/>(산출: Deliverable · 성과정보)"]
-    S4["④ 측정·변경통제<br/>편차·위험·가치 검토 및 CCB 의사결정<br/>(산출: 성과보고 · 승인변경)"]
-    S5["⑤ 인수·종료·환류<br/>인수·계약종료·교훈정리·편익책임 이관<br/>(산출: 인수서 · Lessons Learned)"]
-
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["① 정당화·착수"] --> S2["② 계획·Baseline"] --> S3["③ 실행·인도"] --> S4["④ 측정·변경통제"] --> S5["⑤ 인수·종료·환류"]
 ```
 
 ## Ⅳ. 예측형·적응형·Hybrid 비교
@@ -127,14 +105,6 @@ flowchart TD
 - **검증 체계 (Verification)**: 산출물 인수기준(Acceptance Criteria) 충족 여부 전수 검사 및 PMBOK 8판/ISO 21502 기반 성과 측정치(EVM 추정치 EAC, VAC)의 통계적 검증.
 - **기대 효과 (Impact)**: 90% 증후군(프로젝트 후반부 지연 누적) 차단, 납기 및 예산 초과 리스크 40% 감축, 사업 종료 후 운영 부서 편익 실현률 극대화를 달성함.
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>낙관적 진척 보고 · 90% 증후군 · 비공식 범위 크립"] --> P2["개선 대안<br/>EVM 정량통제 · 공식 CCB 소집 · 일정압축(Crashing/Fast-tracking)"]
-    P2 --> P3{"검증 판정<br/>SPI/CPI >= 0.85 & 비공식 요구사항 변경 누적률 <= 10%?"}
-    P3 -->|달성| P4["실행 효과<br/>후반부 지연 차단 · 예산 초과 40% 감축 · 비즈니스 편익 극대화"]
-    P3 -->|미달| P5["보완 조치<br/>WBS Re-baselining 및 산출물 인수기준(Acceptance) 전수 재점검"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -146,23 +116,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    subgraph PORT["1. Portfolio (전략 정렬 및 투자 최적화)"]
-        direction TB
-        P1["올바른 일을 하고 있는가? · 자원 우선순위 배분 · 전사 ROI 극대화"]
-    end
-
-    subgraph PROG["2. Programme (연계 편익 및 시너지 관리)"]
-        direction TB
-        PR1["시너지를 창출하고 있는가? · 프로젝트 간 의존성 조율 · 비즈니스 편익 실현"]
-    end
-
-    subgraph PROJ["3. Project (고유 산출물 인도 및 통합 통제)"]
-        direction TB
-        PJ1["일을 올바르게 실행하는가? · Scope, Schedule, Cost, Quality 통합 관리"]
-        PJ2["WBS 산출물 납품 → 수용(Acceptance) → 프로그램 편익 전환"]
-    end
-
-    PORT --> PROG --> PROJ
+    PORT["Portfolio · 전략·투자 최적화"] --> PROG["Programme · 편익 실현"] --> PROJ["Project · 산출 인도"]
 ```
 
 ### 3. 핵심 통제

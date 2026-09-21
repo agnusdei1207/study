@@ -1,14 +1,14 @@
 ---
 title: "시스템 운영·유지보수 감리"
 author: "Codex"
-date: "2026-09-22T03:15:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -60,24 +60,24 @@ extra:
 
 ```mermaid
 flowchart TD
-    subgraph OP["운영 감리 영역 (SLA·안전성)"]
+    subgraph OP["운영 감리 영역"]
         direction TB
-        O1["가용성·성능: SLA 준수율 및 APM 모니터링"]
-        O2["장애관리: Incident/Problem 조치 및 근본원인(RCA) 분석"]
-        O3["재해복구: 백업 소산 및 모의훈련(RTO/RPO) 실증"]
-        O4["보안통제: 계정·권한 관리 및 패치·감사로그 점검"]
+        O1["가용성·성능"]
+        O2["장애관리"]
+        O3["재해복구"]
+        O4["보안통제"]
     end
 
-    subgraph MAINT["유지보수 감리 영역 (변경·품질)"]
+    subgraph MAINT["유지보수 감리 영역"]
         direction TB
-        M1["요구관리: SR 공식 접수 및 과업 타당성 검토"]
-        M2["변경승인: 변경자문위(CAB) 영향분석 및 Rollback 수립"]
-        M3["형상관리: 소스 Commit 해시 및 버전 브랜칭 감사"]
-        M4["시험배포: 단위·통합·회귀시험 결과서 및 배포 승인"]
+        M1["요구관리"]
+        M2["변경승인"]
+        M3["형상관리"]
+        M4["시험배포"]
     end
 
     OP --- MAINT
-    OP --> CAAT["공통 증적: CAATs 기반 원시 로그(Raw Log) 및 DB 트랜잭션 전수 교차검증"]
+    OP --> CAAT["공통 증적: CAATs 원시 로그 교차검증"]
     MAINT --> CAAT
 ```
 
@@ -94,13 +94,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    S1["① 감리계획<br/>범위·위험·기준·표본·일정 확정<br/>(산출: 감리계획서 · 점검표)"]
-    S2["② 증적수집<br/>문서·설정·원시 Log·Ticket·인터뷰 확보<br/>(산출: Evidence Inventory)"]
-    S3["③ 정밀검증<br/>표본복원·재수행·교차대조·원인분석<br/>(산출: 발견사항 · 근거)"]
-    S4["④ 평가·보고<br/>영향도·시급성·원인·개선권고 합의<br/>(산출: 감리보고서 · 조치계획)"]
-    S5["⑤ 이행확인<br/>시정조치 결과 점검 및 잔여위험 확인<br/>(산출: 조치확인서)"]
-
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["① 감리계획"] --> S2["② 증적수집"] --> S3["③ 정밀검증"] --> S4["④ 평가·보고"] --> S5["⑤ 이행확인"]
 ```
 
 ## Ⅴ. 문제점·대응책
@@ -128,14 +122,6 @@ flowchart TD
 - **검증 체계 (Verification)**: 유지보수 SR 티켓 ID ↔ 형상관리 Commit 해시 ↔ 테스트 결과서 ↔ 배포 승인서(CAB)를 1:1 체결한 변경 추적성 매트릭스로 검증함.
 - **기대 효과 (Impact)**: 페이퍼 감리 한계 탈피, 미승인 변경으로 인한 대형 장애(전산망 먹통) 예방, 유지보수 사업자와 발주기관 간 과업범위 분쟁 원천 차단을 달성함.
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>페이퍼 감리 한계 · SLA 평균값 왜곡 · 미승인 구두 변경"] --> P2["개선 대안<br/>CAATs 원시로그 전수대조 · 격리환경 Mock Restore · SR 1:1 추적"]
-    P2 --> P3{"검증 판정<br/>SLA 보고값 vs 원시 로그 장애시간 오차 <= 0분 & 추적률 100%?"}
-    P3 -->|달성| P4["실행 효과<br/>미승인 변경 원천 차단 · 대형 전산장애 예방 · 과업분쟁 해소"]
-    P3 -->|미달| P5["보완 조치<br/>SR ↔ Commit ↔ Test ↔ CAB 배포추적성 매트릭스 재검증"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -147,24 +133,24 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    subgraph OP["운영 감리 영역 (SLA·안전성)"]
+    subgraph OP["운영 감리 영역"]
         direction TB
-        O1["가용성·성능: SLA 준수율 및 APM 모니터링"]
-        O2["장애관리: Incident/Problem 조치 및 근본원인(RCA) 분석"]
-        O3["재해복구: 백업 소산 및 모의훈련(RTO/RPO) 실증"]
-        O4["보안통제: 계정·권한 관리 및 패치·감사로그 점검"]
+        O1["가용성·성능"]
+        O2["장애관리"]
+        O3["재해복구"]
+        O4["보안통제"]
     end
 
-    subgraph MAINT["유지보수 감리 영역 (변경·품질)"]
+    subgraph MAINT["유지보수 감리 영역"]
         direction TB
-        M1["요구관리: SR 공식 접수 및 과업 타당성 검토"]
-        M2["변경승인: 변경자문위(CAB) 영향분석 및 Rollback 수립"]
-        M3["형상관리: 소스 Commit 해시 및 버전 브랜칭 감사"]
-        M4["시험배포: 단위·통합·회귀시험 결과서 및 배포 승인"]
+        M1["요구관리"]
+        M2["변경승인"]
+        M3["형상관리"]
+        M4["시험배포"]
     end
 
     OP --- MAINT
-    OP --> CAAT["공통 증적: CAATs 기반 원시 로그(Raw Log) 및 DB 트랜잭션 전수 교차검증"]
+    OP --> CAAT["공통 증적: CAATs 원시 로그 교차검증"]
     MAINT --> CAAT
 ```
 

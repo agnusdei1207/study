@@ -1,7 +1,7 @@
 ---
 title: "가치사슬(Value Chain)"
 author: "Codex"
-date: "2026-09-22T04:50:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "C"
 extra:
   keyword_grade: "C"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -54,34 +54,41 @@ extra:
 
 ```mermaid
 flowchart TD
-    subgraph SUP["4대 지원 활동 (Support Activities)"]
+    subgraph SUP["4대 지원 활동"]
         direction TB
-        S1["기업 하부구조 (Firm Infrastructure - 기획, 재무, 법무, 품질경영)"]
-        S2["인적자원 관리 (Human Resource Management - 채용, 교육, 보상)"]
-        S3["기술 개발 (Technology Development - R&D, IT 시스템, 제품설계)"]
-        S4["조달 활동 (Procurement - 원자재, 설비, 외주용역 구매협상)"]
+        S1["기업 하부구조"]
+        S2["인적자원 관리"]
+        S3["기술 개발"]
+        S4["조달 활동"]
     end
 
-    subgraph PRI["5대 본원적 활동 (Primary Activities)"]
+    subgraph PRI["5대 본원적 활동"]
         direction LR
-        P1["입고물류<br/>(WMS)"] --> P2["생산운영<br/>(MES)"] --> P3["출고물류<br/>(TMS)"] --> P4["마케팅/영업<br/>(CRM)"] --> P5["사후서비스<br/>(A/S)"]
+        P1["입고 물류"] --> P2["생산·운영"] --> P3["출고 물류"] --> P4["마케팅·영업"] --> P5["사후 서비스"]
     end
 
     SUP -.-> PRI
-    PRI --> MARGIN["마진 (Margin)<br/>총 창출가치 - 활동 총비용"]
+    PRI --> MARGIN["마진(Margin)"]
 ```
 
-| 축 | 활동 | 주요 역할 및 정보기술 |
-|---|---|---|
-| **본원적 활동** | 입고 물류 | 원자재 수급, 검수, 재고관리 (WMS, SCM) |
-| | 생산·운영 | 가공, 조립, 패키징, 설비 제어 (MES, POP) |
-| | 출고 물류 | 완제품 보관, 주문 처리, 수송 배송 (TMS) |
-| | 마케팅·영업 | 판촉, 가격 책정, 채널 관리, 판매 (CRM) |
-| | 사후 서비스 | 설치, 수리, 고객지원, 부품 교체 (A/S 포털) |
-| **지원 활동** | 기업 하부구조 | 전사 기획, 재무회계, 법무, 품질경영 (ERP) |
-| | 인적자원 관리 | 채용, 교육훈련, 성과평가, 보상 (e-HR) |
-| | 기술 개발 | R&D, 제품 설계, 공정 개선 (PLM, CAD) |
-| | 조달 활동 | 원자재, 설비, 외주용역 구매 협상 (e-Procurement) |
+**5대 본원적 활동**
+
+| 활동 | 주요 역할 및 정보기술 |
+|---|---|
+| 입고 물류 | 원자재 수급, 검수, 재고관리 (WMS, SCM) |
+| 생산·운영 | 가공, 조립, 패키징, 설비 제어 (MES, POP) |
+| 출고 물류 | 완제품 보관, 주문 처리, 수송 배송 (TMS) |
+| 마케팅·영업 | 판촉, 가격 책정, 채널 관리, 판매 (CRM) |
+| 사후 서비스 | 설치, 수리, 고객지원, 부품 교체 (A/S 포털) |
+
+**4대 지원 활동**
+
+| 활동 | 주요 역할 및 정보기술 |
+|---|---|
+| 기업 하부구조 | 전사 기획, 재무회계, 법무, 품질경영 (ERP) |
+| 인적자원 관리 | 채용, 교육훈련, 성과평가, 보상 (e-HR) |
+| 기술 개발 | R&D, 제품 설계, 공정 개선 (PLM, CAD) |
+| 조달 활동 | 원자재, 설비, 외주용역 구매 협상 (e-Procurement) |
 
 ## Ⅲ. 가치활동과 정보기술 활용
 
@@ -119,14 +126,6 @@ flowchart TD
 - **검증 체계 (Verification)**: 활동별 원가 동인(Cost Drivers)과 차별화 동인(Uniqueness Drivers)을 정량 계측하여 가치사슬 전 구간의 E2E 현금전환주기(CCC)를 검증함.
 - **기대 효과 (Impact)**: 국소 최적화의 함정 탈피, 불필요한 재고 유지비용 35% 절감, 고객 맞춤형 차별화 경쟁 우위 및 영업이익률(마진) 극대화를 달성함.
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>부서별 사일로 국소 최적화 · 활동 간 데이터 단절 · 마진 훼손"] --> P2["개선 대안<br/>본원적 활동 간 EDA 실시간 연계 · 부서 간 통합 KPI 정렬"]
-    P2 --> P3{"검증 판정<br/>E2E 리드타임 증가율 <= 0% & 재고 유지비용 35% 감축?"}
-    P3 -->|달성| P4["실행 효과<br/>국소 최적화 함정 탈피 · 현금전환주기(CCC) 단축 · 영업이익률 극대화"]
-    P3 -->|미달| P5["보완 조치<br/>활동별 원가동인(Cost Drivers) 및 병목 연계구간 재설계"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -138,21 +137,21 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    subgraph SUP["4대 지원 활동 (Support Activities)"]
+    subgraph SUP["4대 지원 활동"]
         direction TB
-        S1["기업 하부구조 (Firm Infrastructure - 기획, 재무, 법무, 품질경영)"]
-        S2["인적자원 관리 (Human Resource Management - 채용, 교육, 보상)"]
-        S3["기술 개발 (Technology Development - R&D, IT 시스템, 제품설계)"]
-        S4["조달 활동 (Procurement - 원자재, 설비, 외주용역 구매협상)"]
+        S1["기업 하부구조"]
+        S2["인적자원 관리"]
+        S3["기술 개발"]
+        S4["조달 활동"]
     end
 
-    subgraph PRI["5대 본원적 활동 (Primary Activities)"]
+    subgraph PRI["5대 본원적 활동"]
         direction LR
-        P1["입고물류<br/>(WMS)"] --> P2["생산운영<br/>(MES)"] --> P3["출고물류<br/>(TMS)"] --> P4["마케팅/영업<br/>(CRM)"] --> P5["사후서비스<br/>(A/S)"]
+        P1["입고 물류"] --> P2["생산·운영"] --> P3["출고 물류"] --> P4["마케팅·영업"] --> P5["사후 서비스"]
     end
 
     SUP -.-> PRI
-    PRI --> MARGIN["마진 (Margin)<br/>총 창출가치 - 활동 총비용"]
+    PRI --> MARGIN["마진(Margin)"]
 ```
 
 ### 3. 핵심 통제

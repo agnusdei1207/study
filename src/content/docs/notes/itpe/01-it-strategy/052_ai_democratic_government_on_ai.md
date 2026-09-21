@@ -1,14 +1,14 @@
 ---
 title: "AI 민주정부·온AI"
 author: "Codex"
-date: "2026-09-22T02:25:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -31,6 +31,10 @@ extra:
 - **Human Oversight**: AI 결과를 사람이 검토·승인·중단할 수 있도록 한 통제
 - **Contestability**: AI가 영향을 준 결정에 대해 설명을 요구하고 이의를 제기할 수 있는 성질
 - **DPG(Digital Platform Government)**: 데이터와 서비스를 연계해 국민 중심 서비스를 제공하는 디지털플랫폼정부
+- **LLM(Large Language Model)**: 대규모 텍스트로 학습한 범용 생성 언어모델
+- **SLM(Small Language Model)**: 특정 용도에 맞춰 경량화한 소형 언어모델
+- **MLOps(Machine Learning Operations)**: ML 모델의 개발·배포·운영을 연결하는 실무체계
+- **LLMOps(Large Language Model Operations)**: LLM 서비스의 프롬프트·평가·배포·운영을 관리하는 실무체계
 
 </details>
 
@@ -50,18 +54,18 @@ extra:
 ```mermaid
 flowchart TD
     subgraph USERS["사용자 서비스 접점"]
-        U1["대국민 AI 서비스 (포털/앱)<br/>선제적 맞춤 복지안내 · 민원 자동응대"]
-        U2["공무원 행정지원 (온AI)<br/>법령·판례 검색 · 보고서 초안 및 요약"]
+        U1["대국민 AI 서비스"]
+        U2["공무원 행정지원·온AI"]
     end
 
-    subgraph PLATFORM["범정부 AI 공통기반 (공유 플랫폼)"]
-        P1["공공 특화 LLM/SLM · RAG(법령·규정 DB) · API 게이트웨이"]
-        P2["보안 필터(개인정보 비식별화) · MLOps/LLMOps 파이프라인"]
+    subgraph PLATFORM["범정부 AI 공통기반"]
+        P1["공공 특화 LLM·SLM·RAG"]
+        P2["보안 필터·MLOps·LLMOps"]
         P1 --- P2
     end
 
-    subgraph GOV["민주적 통제 및 책임성 (Human-in-the-Loop)"]
-        G1["공무원 최종 서명 책임제 · 국민 이의신청(Contestability) 보장 · 감사추적"]
+    subgraph GOV["민주적 통제·책임성"]
+        G1["최종 서명·결재"] ~~~ G2["이의신청·감사추적"]
     end
 
     USERS --> PLATFORM
@@ -81,13 +85,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    S1["① 과제 발굴<br/>국민 불편·업무 병목·이해관계자 식별<br/>(산출: Use Case · 서비스 목표)"]
-    S2["② 영향·적법성 평가<br/>법적 근거·개인정보·권리·오류영향 검토<br/>(산출: 영향평가 · 위험등급)"]
-    S3["③ 설계·개발<br/>데이터·RAG·모델·인적감독·이의제기 설계<br/>(산출: 서비스 설계 · 통제계획)"]
-    S4["④ 검증·도입<br/>정확성·공정성·보안·사용성·접근성 평가<br/>(산출: 평가결과 · 승인기록)"]
-    S5["⑤ 운영·개선<br/>오류·민원·이의제기·사고·변경 감시<br/>(산출: 운영로그 · 개선조치)"]
-
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["① 과제 발굴"] --> S2["② 영향·적법성 평가"] --> S3["③ 설계·개발"] --> S4["④ 검증·도입"] --> S5["⑤ 운영·개선"]
 ```
 
 ## Ⅳ. 전자정부·DPG·AI 민주정부 비교
@@ -124,13 +122,6 @@ flowchart TD
 - **검증 체계 (Verification)**: 행정기본법상 자동적 처분 요건 충족 여부 및 개인정보보호법상 자동화된 결정 거부권 처리 로그를 행정안전부 주관 정기 감찰을 통해 검증함.
 - **기대 효과 (Impact)**: 환각 기반 행정오류 원천 차단, 대국민 행정 신뢰도 제고, 디지털 취약계층 권익 보호 및 책임행정 구현을 달성함.
 
-```mermaid
-flowchart TD
-    P1["AI 분석 및 추천<br/>근거 · 한계 · 불확실성 표시"] --> P2["공무원 검토 및 결정 (Human Oversight)<br/>법적 근거 확인 및 전자서명 승인"]
-    P2 --> P3["통지 및 서비스 제공<br/>AI 사용 사실 · 판단 근거 · 담당자 명시"]
-    P3 --> P4["정정 및 이의제기 (Contestability)<br/>국민 이의신청 및 인간 재검토 보장"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -143,18 +134,18 @@ flowchart TD
 ```mermaid
 flowchart TD
     subgraph USERS["사용자 서비스 접점"]
-        U1["대국민 AI 서비스 (포털/앱)<br/>선제적 맞춤 복지안내 · 민원 자동응대"]
-        U2["공무원 행정지원 (온AI)<br/>법령·판례 검색 · 보고서 초안 및 요약"]
+        U1["대국민 AI 서비스"]
+        U2["공무원 행정지원·온AI"]
     end
 
-    subgraph PLATFORM["범정부 AI 공통기반 (공유 플랫폼)"]
-        P1["공공 특화 LLM/SLM · RAG(법령·규정 DB) · API 게이트웨이"]
-        P2["보안 필터(개인정보 비식별화) · MLOps/LLMOps 파이프라인"]
+    subgraph PLATFORM["범정부 AI 공통기반"]
+        P1["공공 특화 LLM·SLM·RAG"]
+        P2["보안 필터·MLOps·LLMOps"]
         P1 --- P2
     end
 
-    subgraph GOV["민주적 통제 및 책임성 (Human-in-the-Loop)"]
-        G1["공무원 최종 서명 책임제 · 국민 이의신청(Contestability) 보장 · 감사추적"]
+    subgraph GOV["민주적 통제·책임성"]
+        G1["최종 서명·결재"] ~~~ G2["이의신청·감사추적"]
     end
 
     USERS --> PLATFORM

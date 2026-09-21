@@ -1,14 +1,14 @@
 ---
 title: "AI 에너지 인프라"
 author: "Codex"
-date: "2026-09-22T03:30:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -61,13 +61,7 @@ extra:
 
 ```mermaid
 flowchart TD
-    S1["① 수요예측<br/>Workload·Rack 밀도·증설시점·변동성 분석<br/>(산출: Power·Thermal Forecast)"]
-    S2["② 입지·전원 설계<br/>계통·전원·탄소·물·인허가·재해 검토<br/>(산출: Site Plan · PPA Strategy)"]
-    S3["③ 전력·냉각 설계<br/>이중화·배전·UPS·냉각방식·폐열 검토<br/>(산출: Electrical·Thermal Design)"]
-    S4["④ 통합시험<br/>부하·절체·열·누수·장애·복구 검증<br/>(산출: Commissioning Result)"]
-    S5["⑤ 운영·최적화<br/>용량·효율·물·탄소·비용 감시·조정<br/>(산출: Energy Dashboard · 개선계획)"]
-
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["① 수요예측"] --> S2["② 입지·전원 설계"] --> S3["③ 전력·냉각 설계"] --> S4["④ 통합시험"] --> S5["⑤ 운영·최적화"]
 ```
 
 ## Ⅳ. 냉각방식 비교
@@ -76,31 +70,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph AIR["공랭식 (Air)"]
-        direction TB
-        A1["팬 대류 기반 순환"]
-        A2["밀도: ~15 kW / Rack"]
-        A3["PUE: 1.4 ~ 1.6"]
-        A4["전통 레거시 IDC"]
-    end
-
-    subgraph D2C["D2C (직접냉각)"]
-        direction TB
-        D1["Cold Plate 칩 접촉"]
-        D2["밀도: 40~100 kW / Rack"]
-        D3["PUE: 1.15 ~ 1.25"]
-        D4["고밀도 GPU 클러스터"]
-    end
-
-    subgraph IMM["액침식 (Immersion)"]
-        direction TB
-        I1["비전도성 유체 침지"]
-        I2["밀도: 100 kW+ / Rack"]
-        I3["PUE: 1.05 ~ 1.10"]
-        I4["초고밀도 초거대 AI"]
-    end
-
-    AIR --> D2C --> IMM
+    A["공랭식 · ~15kW·PUE 1.4~1.6"] --> B["D2C · 40~100kW·PUE 1.15~1.25"] --> C["액침식 · 100kW+·PUE 1.05~1.10"]
 ```
 
 | 기준 | Air Cooling | D2C | Immersion |
@@ -136,14 +106,6 @@ flowchart LR
 - **검증 체계 (Verification)**: DCIM/EMS를 통한 실시간 전력·온도 텔레메트리 수집, PUE/WUE/CUE 지표의 국제표준(ISO/IEC 30134) 공인 인증 및 탄소배출권 거래제와 연동 검증.
 - **기대 효과 (Impact)**: 냉각 소비전력 30% 이상 절감, 전력망 피크 부하 안정화, 글로벌 RE100 규제 준수 및 AI 인프라 운영 지속가능성을 달성함.
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>초고밀도 발열(Hotspot) · 전력망 피크 부하 · PUE 악화"] --> P2["개선 대안<br/>D2C 및 액침냉각 도입 · Carbon-aware AI 워크로드 스케줄링"]
-    P2 --> P3{"검증 판정<br/>데이터센터 PUE <= 1.3 & GPU 랙 온도 <= 85℃?"}
-    P3 -->|달성| P4["실행 효과<br/>냉각 소비전력 30% 감축 · RE100 규제 준수 및 안정성 확보"]
-    P3 -->|미달| P5["보완 조치<br/>야간 잉여전력 시간대 학습 부하 재배치 및 Cold Plate 정밀점검"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -155,31 +117,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph AIR["공랭식 (Air)"]
-        direction TB
-        A1["팬 대류 기반 순환"]
-        A2["밀도: ~15 kW / Rack"]
-        A3["PUE: 1.4 ~ 1.6"]
-        A4["전통 레거시 IDC"]
-    end
-
-    subgraph D2C["D2C (직접냉각)"]
-        direction TB
-        D1["Cold Plate 칩 접촉"]
-        D2["밀도: 40~100 kW / Rack"]
-        D3["PUE: 1.15 ~ 1.25"]
-        D4["고밀도 GPU 클러스터"]
-    end
-
-    subgraph IMM["액침식 (Immersion)"]
-        direction TB
-        I1["비전도성 유체 침지"]
-        I2["밀도: 100 kW+ / Rack"]
-        I3["PUE: 1.05 ~ 1.10"]
-        I4["초고밀도 초거대 AI"]
-    end
-
-    AIR --> D2C --> IMM
+    A["공랭식 · ~15kW·PUE 1.4~1.6"] --> B["D2C · 40~100kW·PUE 1.15~1.25"] --> C["액침식 · 100kW+·PUE 1.05~1.10"]
 ```
 
 ### 3. 핵심 통제

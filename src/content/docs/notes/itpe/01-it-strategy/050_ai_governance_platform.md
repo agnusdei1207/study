@@ -1,14 +1,14 @@
 ---
 title: "AI 거버넌스 플랫폼"
 author: "Codex"
-date: "2026-09-21T23:30:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -55,12 +55,7 @@ extra:
 
 ```mermaid
 flowchart TD
-    L1["1. 정책 및 관리 계층 (Governance Policy Plane)<br/>ISO/IEC 42001(AIMS) 정책 · 책임(RACI) · 윤리기준 · 예외 심의"]
-    L2["2. 자산 및 위험 통제 계층 (Asset & Risk Control Plane)<br/>AI Inventory · NIST AI RMF 영향평가 · 위험등급 분류"]
-    L3["3. 수명주기 게이트 계층 (Lifecycle Quality Gate Plane)<br/>데이터 Lineage · 모델 검증 · System Card 승인 · CI/CD 연동"]
-    L4["4. 런타임 감시 및 증적 계층 (Runtime & Audit Evidence Plane)<br/>환각/드리프트 감시 · Human Oversight 개입 · 감사 로그 추적"]
-
-    L1 --> L2 --> L3 --> L4
+    L1["정책·관리 계층"] --> L2["자산·위험 통제 계층"] --> L3["수명주기 게이트 계층"] --> L4["런타임 감시·증적 계층"]
 ```
 
 | 계층 | 핵심 기능 | 주요 증적 |
@@ -77,13 +72,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    S1["① 등록·분류<br/>목적·소유자·영향대상·사용환경 식별<br/>(산출: AI Inventory · 위험등급)"]
-    S2["② 설계·개발<br/>데이터·모델·보안·인적감독 통제 설계<br/>(산출: 통제계획 · Lineage)"]
-    S3["③ 검증·승인<br/>성능·공정성·안전·보안·준수 평가<br/>(산출: 평가결과 · System Card · 승인기록)"]
-    S4["④ 배포·운영<br/>버전통제·모니터링·사용자 고지·인적개입<br/>(산출: 배포기록 · 운영로그 · 경보)"]
-    S5["⑤ 사고·변경<br/>영향평가·중단·완화·재승인·폐기<br/>(산출: 사고기록 · 개선조치 · 폐기증적)"]
-
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["① 등록·분류"] --> S2["② 설계·개발"] --> S3["③ 검증·승인"] --> S4["④ 배포·운영"] --> S5["⑤ 사고·변경"]
 ```
 
 ## Ⅳ. Data Governance·MLOps·AI Governance 비교
@@ -123,14 +112,6 @@ flowchart TD
 - **검증 체계 (Verification)**: ISO/IEC 42001(AIMS) 및 EU AI Act 기준 System Card 증적의 완결성과 런타임 데이터 드리프트 지표(PSI > 0.25)를 실시간 감사함.
 - **기대 효과 (Impact)**: Shadow AI 및 규제 위반 과징금 리스크 원천 차단, AI 시스템의 전사적 신뢰성 및 추적성 100% 확보를 달성함.
 
-```mermaid
-flowchart TD
-    P1["위험·의무 식별<br/>사용맥락 · 영향대상 · 규제 요구 파악"] --> P2["Evidence Quality Gate<br/>통제 수행 · 판정기준 충족 · 증적 완결성 검증"]
-    P2 --> P3{"검증 판정<br/>Lineage 확보 및 환각·편향 검증 충족?"}
-    P3 -->|통과| P4["승인 및 배포<br/>런타임 감시 및 주기적 재평가"]
-    P3 -->|미통과| P5["보완 및 재검증<br/>통제 수정 및 Human Oversight 재심의"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -142,12 +123,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    L1["1. 정책 및 관리 계층 (Governance Policy Plane)<br/>ISO/IEC 42001(AIMS) 정책 · 책임(RACI) · 윤리기준 · 예외 심의"]
-    L2["2. 자산 및 위험 통제 계층 (Asset & Risk Control Plane)<br/>AI Inventory · NIST AI RMF 영향평가 · 위험등급 분류"]
-    L3["3. 수명주기 게이트 계층 (Lifecycle Quality Gate Plane)<br/>데이터 Lineage · 모델 검증 · System Card 승인 · CI/CD 연동"]
-    L4["4. 런타임 감시 및 증적 계층 (Runtime & Audit Evidence Plane)<br/>환각/드리프트 감시 · Human Oversight 개입 · 감사 로그 추적"]
-
-    L1 --> L2 --> L3 --> L4
+    L1["정책·관리 계층"] --> L2["자산·위험 통제 계층"] --> L3["수명주기 게이트 계층"] --> L4["런타임 감시·증적 계층"]
 ```
 
 ### 3. 핵심 통제
