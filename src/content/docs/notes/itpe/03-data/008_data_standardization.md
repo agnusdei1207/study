@@ -10,9 +10,9 @@ tags:
   - "테이블정의서"
   - "공공DB표준화지침"
 date: "2026-09-20T23:50:43+09:00"
-author: "Codex"
+author: "Antigravity"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -110,13 +110,57 @@ sidebar:
 
 > 단어, 용어, 도메인, 코드가 유기적으로 연결되어 단일한 메타데이터 기준선을 형성함.
 
-```text
-[표준단어 (Word)] ──(조합)──> [표준용어 (Term)] <──(매핑)── [테이블 정의서 컬럼]
-                                      │
-                                      ▼
-                        [표준도메인] & [표준코드]
-                        (데이터 타입, 길이, 범주값)
-```
+<svg viewBox="0 0 520 195" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="데이터 표준 4대 사전 및 물리 모델 매핑 구조" role="img">
+  <defs>
+    <marker id="std-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#58a6ff"/>
+    </marker>
+  </defs>
+  <!-- Standard Word -->
+  <g transform="translate(15, 20)">
+    <rect width="145" height="65" rx="5" fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="72" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#58a6ff" text-anchor="middle">표준단어 (Word)</text>
+    <text x="12" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• 최소 의미 단위 (고객, 일자)</text>
+    <text x="12" y="56" font-family="system-ui, sans-serif" font-size="8.5" fill="#8b949e">• 공인 영문 약어: CUST, DT</text>
+  </g>
+
+  <!-- Arrow: Word to Term -->
+  <path d="M 160 52 L 188 52" stroke="#58a6ff" stroke-width="2" marker-end="url(#std-arrow)"/>
+  <text x="174" y="45" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">조합</text>
+
+  <!-- Standard Term -->
+  <g transform="translate(192, 15)">
+    <rect width="150" height="75" rx="5" fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="75" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#3fb950" text-anchor="middle">표준용어 (Term)</text>
+    <text x="12" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• 단어 결합 + 필수 분류어</text>
+    <text x="12" y="56" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• 예: 고객가입일자</text>
+    <text x="12" y="70" font-family="system-ui, sans-serif" font-size="8.5" fill="#8b949e">• 컬럼명: CUST_JOIN_DT</text>
+  </g>
+
+  <!-- Arrow: Term to Physical -->
+  <path d="M 342 52 L 370 52" stroke="#3fb950" stroke-width="2" marker-end="url(#std-arrow)"/>
+  <text x="356" y="45" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">1:1 매핑</text>
+
+  <!-- Physical Model -->
+  <g transform="translate(374, 15)">
+    <rect width="130" height="75" rx="5" fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+    <text x="65" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#d29922" text-anchor="middle">테이블 정의서</text>
+    <text x="10" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• 물리 컬럼 매핑</text>
+    <text x="10" y="56" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• PK/FK 및 제약</text>
+    <text x="10" y="70" font-family="system-ui, sans-serif" font-size="8.5" fill="#8b949e">• DDL 자동 생성</text>
+  </g>
+
+  <!-- Arrow down from Term to Domain -->
+  <path d="M 267 90 L 267 114" stroke="#8b949e" stroke-width="1.5" marker-end="url(#std-arrow)"/>
+
+  <!-- Standard Domain & Code Box -->
+  <g transform="translate(100, 120)">
+    <rect width="320" height="60" rx="5" fill="rgba(163,113,247,0.08)" stroke="#a371f7" stroke-width="1.5"/>
+    <text x="160" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a371f7" text-anchor="middle">표준도메인 (Domain) &amp; 표준코드 (Code)</text>
+    <text x="20" y="38" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• 도메인: 자료형/길이/포맷 규정 (날짜 $\to$ VARCHAR2(8), 금액 $\to$ NUMBER(15,2))</text>
+    <text x="20" y="52" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e">• 공통코드: 범주값 통일 (국가 행정표준코드, ISO 코드 우선 준수)</text>
+  </g>
+</svg>
 
 | 표준 요소 | 개념 및 정의 | 구성 및 관리 규칙 | 실무 작성 예시 |
 |---|---|---|---|
@@ -129,15 +173,31 @@ sidebar:
 
 > 분류어를 쓰는 표준용어 체계에서는 끝 단어가 자료형·도메인 판단을 일관되게 드러내도록 명명 규칙을 검증함.
 
-```text
-[표준용어 생성 규칙]
-┌─────────────────────────────────────────────────────────────┐
-│ [수식어 단어 A] + [수식어 단어 B] + ... + [필수 분류어 (Term Classifier)] │
-│  예: "고객"      +  "최종"        +  "접속"  +  "일시"                     │
-│      (CUST)     +  (LAST)        +  (CONN)  +  (DTM)                      │
-│  => 물리 컬럼명: CUST_LAST_CONN_DTM (VARCHAR2(14))           │
-└─────────────────────────────────────────────────────────────┘
-```
+<svg viewBox="0 0 520 155" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="표준용어 생성 규칙 및 분류어 결합 메커니즘" role="img">
+  <!-- Formula Container -->
+  <g transform="translate(15, 15)">
+    <rect width="490" height="60" rx="5" fill="#21262d" stroke="#30363d"/>
+    <text x="20" y="24" font-family="system-ui, sans-serif" font-size="10.5" font-weight="bold" fill="#58a6ff">표준용어 생성 공식</text>
+    <rect x="20" y="32" width="120" height="22" rx="3" fill="#161b22" stroke="#58a6ff"/>
+    <text x="80" y="47" font-family="system-ui, sans-serif" font-size="9.5" fill="#c9d1d9" text-anchor="middle">수식단어 [단어 A]</text>
+    <text x="148" y="47" font-family="system-ui, sans-serif" font-size="12" fill="#8b949e" text-anchor="middle">+</text>
+    <rect x="156" y="32" width="120" height="22" rx="3" fill="#161b22" stroke="#58a6ff"/>
+    <text x="216" y="47" font-family="system-ui, sans-serif" font-size="9.5" fill="#c9d1d9" text-anchor="middle">핵심단어 [단어 B]</text>
+    <text x="284" y="47" font-family="system-ui, sans-serif" font-size="12" fill="#8b949e" text-anchor="middle">+</text>
+    <rect x="292" y="32" width="180" height="22" rx="3" fill="rgba(63,185,80,0.15)" stroke="#3fb950"/>
+    <text x="382" y="47" font-family="system-ui, sans-serif" font-size="9.5" font-weight="bold" fill="#3fb950" text-anchor="middle">필수 분류어 (Classifier)</text>
+  </g>
+
+  <!-- Example Mapping Box -->
+  <g transform="translate(15, 85)">
+    <rect width="490" height="55" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.3)"/>
+    <text x="20" y="22" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#58a6ff">실무 조합 예시</text>
+    <text x="20" y="42" font-family="system-ui, sans-serif" font-size="9.5" fill="#c9d1d9">
+      "고객(CUST)" + "최종(LAST)" + "접속(CONN)" + <tspan fill="#3fb950" font-weight="bold">"일시(DTM)"</tspan>
+      $\rightarrow$ 물리 컬럼명: <tspan fill="#58a6ff" font-weight="bold">CUST_LAST_CONN_DTM</tspan> (VARCHAR2(14))
+    </text>
+  </g>
+</svg>
 
 - **분류어(Classifier)의 역할**: 용어의 물리적 데이터 타입과 도메인을 결정하는 기준 (예: 일자, 일시, 번호, 코드, 명, 금액, 율, 량, 여부, 내용)
 - **명명 제한 사항**:
@@ -184,42 +244,71 @@ sidebar:
 > "데이터 표준화는 관리자의 엑셀 문서 속에 머무는 순간 사장된다. CI/CD 파이프라인과 결합된 살아있는 메타데이터만이 시스템을 지킨다."
 
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 표준화의 핵심은 이름을 예쁘게 맞추는 것이 아니라 같은 의미가 같은 타입과 규칙으로 구현되게 하는 것이다.
-- `나라면`: 표준사전을 설계도와 배포 파이프라인에 연결해 문서와 실제 DDL 사이의 드리프트를 지속 검출하겠다.
+
+> **[핵심 통찰]**
+> 표준화의 핵심은 이름을 예쁘게 맞추는 것이 아니라, 전사 시스템 간에 '동일한 비즈니스 의미가 동일한 데이터 타입과 검증 규칙으로 구현'되게 보장하는 것이다.
+>
+> **[나라면 이렇게 쓴다]**
+> 엑셀 기반의 수작업 메타 관리를 폐기하고, 메타데이터 관리 시스템과 Git 형상관리, CI/CD 배포 파이프라인을 연동하는 Schema-as-Code 체계를 구축하여 스키마 드리프트(Drift)를 원천 차단하겠다.
 
 ### 실전 답안용 기술사적 제언
-- 판정: 데이터 표준화의 완성도는 표준 사전의 단어 수가 아니라 **표준용어와 테이블 정의서, 실제 운영 DDL 간의 추적성(Traceability)**으로 판정함
-- 대안: 메타데이터 관리 시스템 $\rightarrow$ 테이블 정의서 자동 생성 $\rightarrow$ Git 기반 DDL 버전 관리 $\rightarrow$ CI/CD 배포 전 표준 Linter 검증
-- 검증: 물리 컬럼 표준 준수율 100%, 테이블 정의서-실제 DB 스키마 일치율 100% 감리 통과
-- 효과: 이음동의어/동음이의어 완벽 제거 및 공공데이터 개방·연계 시 매핑 비용 제로화 달성
 
-```text
-[현행 한계] ─────────> [개선 방안] ─────────> [검증 기준] ─────────> [실행 효과]
-수작업 엑셀 관리       메타관리 & DDL Linter  표준 준수율 100%        이음동의어 원천 차단
-스키마 드리프트        Schema-as-Code 파이프라인 정의서-DB 일치율 100%   공공데이터 연계성 극대화
-```
+- **판정 기준**: 데이터 표준화의 성패는 표준 사전의 단어 개수가 아니라 **표준용어와 테이블 정의서, 실제 운영 DDL 간의 100% 추적성(Traceability)**으로 판정
+- **대응 방안**: 메타데이터 관리 시스템 $\rightarrow$ 테이블 정의서 자동 생성 $\rightarrow$ Git 기반 DDL 버전 관리 $\rightarrow$ CI/CD 배포 전 표준 Linter 검증 파이프라인 정착
+- **검증 체계**: 물리 컬럼 표준 준수율 100%, 테이블 정의서-실제 운영 DB 스키마 일치율 100% 감리 통과
+- **기대 효과**: 이음동의어/동음이의어 전면 제거 및 범정부 공공데이터 개방·이기종 연계 시 매핑 비용 제로화 달성
+
+<div class="itpe-flow-map" role="img" aria-label="데이터 표준화 고도화 실행 로드맵">
+  <div class="itpe-flow-node">
+    <strong>1단계: 현행 한계 인식</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-fail"><strong>문제</strong><span>수작업 엑셀 관리로 인한 문서 진부화 및 운영 DB와 설계서 간 스키마 드리프트 발생</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>2단계: 아키텍처 개선 방안</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass"><strong>기술 적용</strong><span>Schema-as-Code 파이프라인 구축 + CI/CD DDL Linter 표준 자동 검사 강제</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>3단계: 정량 검증 기준</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>KPI 지표</strong><span>전사 물리 컬럼 표준 준수율 100%, 테이블 정의서-DB 스키마 일치율 100%</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>4단계: 궁극적 실행 효과</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass"><strong>가치 창출</strong><span>동음이의어/이음동의어 원천 배제 및 범정부 데이터 개방 연계 TCO 절감 달성</span></div>
+    </div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 데이터 표준화의 정의 및 목적
-- 정의: 데이터의 명칭, 정의, 형식, 규칙을 통일하여 동음이의어와 이음동의어를 배제하는 거버넌스 기준선
-- 목적: 데이터 상호운용성 확보, 데이터 품질 제고, 공공 DB 표준화 관리지침 준수
+### 1. 데이터 표준화의 정의 및 추진 목적
 
-2. 데이터 표준 4대 핵심 사전 및 명명 규칙
-┌───────────────┬─────────────────────────────────────────────┐
-│ 사전 종류     │ 관리 내용 및 실무 예시                      │
-├───────────────┼─────────────────────────────────────────────┤
-│ 표준단어      │ 최소 의미 단위, 영문 약어 관리 (고객: CUST) │
-│ 표준용어      │ 단어 조합 + 필수 분류어 (고객가입일자)      │
-│ 표준도메인    │ 데이터 타입 및 길이 포맷 (날짜: VARCHAR2(8))│
-│ 표준코드      │ 선택 가능한 범주형 코드값 (행정표준코드)    │
-└───────────────┴─────────────────────────────────────────────┘
-- 명명 규칙: [단어A] + [단어B] + [분류어(일자/코드/명/금액 등)]
+- **정의**: 조직 내 데이터의 명칭, 정의, 형식, 규칙을 통일하여 동음이의어와 이음동의어를 배제하고 상호운용성을 보증하는 거버넌스 기준선
+- **목적**: 데이터 의미 일관성 확보, 시스템 연계 매핑 비용 절감, 행안부 공공 DB 표준화 관리지침 준수
 
-3. 실무 제언
-- CI/CD 파이프라인에 표준 Linter를 통합하여 비표준 DDL 배포를 원천 차단하고, 테이블 정의서와 실제 DB 스키마의 100% 일치를 유지해야 함.
-```
+### 2. 데이터 표준 4대 핵심 사전 및 명명 규칙
+
+| 사전 구분 | 핵심 관리 내용 | 실무 예시 |
+|---|---|---|
+| **표준단어 (Word)** | 데이터 명칭의 최소 의미 단위, 공인 영문 약어 부여 | 고객(CUST), 일자(DT) |
+| **표준용어 (Term)** | 단어 조합 + 최우측 필수 분류어(Classifier) 결합 | 고객가입일자 (CUST_JOIN_DT) |
+| **표준도메인 (Domain)** | 속성의 데이터 타입, 허용 길이, 포맷 규칙 그룹 | 날짜 (VARCHAR2(8), YYYYMMDD) |
+| **표준코드 (Code)** | 도메인 내 허용 가능한 유효 범주값 목록 | 고객상태코드 (01:정상, 02:휴면) |
+
+- **명명 규칙**: `[수식단어] + [핵심단어] + [분류어]` (분류어는 일자, 일시, 코드, 번호, 금액, 여부 등 도메인 결정)
+
+### 3. 기술사적 실무 제언: Schema-as-Code 파이프라인
+
+- 엑셀 기반 수기 관리의 한계를 극복하기 위해, 메타데이터 관리 시스템과 Git 및 CI/CD DDL Linter를 연동하여 비표준 컬럼의 운영 DB 배포를 원천 차단해야 함.
 
 ## 출제 이력과 검증 출처
 

@@ -10,9 +10,9 @@ tags:
   - "메달리온"
   - "Lakehouse"
 date: "2026-09-20T23:50:43+09:00"
-author: "Codex"
+author: "Antigravity"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -109,10 +109,45 @@ sidebar:
 
 > 데이터에 스키마 구조를 부여하는 시점의 차이가 분석 민첩성과 데이터 유연성을 결정함.
 
-```text
-[Schema-on-Write (DW)]     원천 데이터 ──(비용 높은 ETL)──> [고정 스키마 DB] ──> SQL 쿼리
-[Schema-on-Read (Lake)]    원천 데이터 ──(저비용 적재)──> [객체 스토리지] ──(쿼리 시 스키마 부여)──> 분석
-```
+<svg viewBox="0 0 520 185" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="Schema-on-Write와 Schema-on-Read의 처리 흐름 비교" role="img">
+  <defs>
+    <marker id="arrow-write" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f0883e"/>
+    </marker>
+    <marker id="arrow-read" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#58a6ff"/>
+    </marker>
+  </defs>
+  <!-- Schema on Write -->
+  <g transform="translate(10, 15)">
+    <rect width="500" height="70" rx="6" fill="rgba(240,136,62,0.06)" stroke="#f0883e" stroke-width="1"/>
+    <text x="15" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f0883e">Schema-on-Write (전통적 DW)</text>
+    <rect x="15" y="30" width="80" height="28" rx="4" fill="#21262d" stroke="#30363d"/>
+    <text x="55" y="48" font-family="system-ui, sans-serif" font-size="10" fill="#c9d1d9" text-anchor="middle">정형 원천</text>
+    <path d="M 95 44 L 140 44" stroke="#f0883e" stroke-width="1.5" marker-end="url(#arrow-write)"/>
+    <text x="117" y="38" font-family="system-ui, sans-serif" font-size="9" fill="#f0883e" text-anchor="middle">고비용 ETL</text>
+    <rect x="145" y="30" width="105" height="28" rx="4" fill="#21262d" stroke="#f0883e"/>
+    <text x="197" y="48" font-family="system-ui, sans-serif" font-size="10" fill="#f0883e" text-anchor="middle">고정 스키마 DB</text>
+    <path d="M 250 44 L 320 44" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow-write)"/>
+    <rect x="325" y="30" width="160" height="28" rx="4" fill="#21262d" stroke="#30363d"/>
+    <text x="405" y="48" font-family="system-ui, sans-serif" font-size="10" fill="#c9d1d9" text-anchor="middle">정형 SQL / 리포팅</text>
+  </g>
+  <!-- Schema on Read -->
+  <g transform="translate(10, 95)">
+    <rect width="500" height="75" rx="6" fill="rgba(88,166,255,0.06)" stroke="#58a6ff" stroke-width="1"/>
+    <text x="15" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#58a6ff">Schema-on-Read (데이터 레이크)</text>
+    <rect x="15" y="32" width="95" height="28" rx="4" fill="#21262d" stroke="#30363d"/>
+    <text x="62" y="50" font-family="system-ui, sans-serif" font-size="10" fill="#c9d1d9" text-anchor="middle">정형/반정형/비정형</text>
+    <path d="M 110 46 L 155 46" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#arrow-read)"/>
+    <text x="132" y="40" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle">저비용 적재</text>
+    <rect x="160" y="32" width="115" height="28" rx="4" fill="#21262d" stroke="#58a6ff"/>
+    <text x="217" y="50" font-family="system-ui, sans-serif" font-size="10" fill="#58a6ff" text-anchor="middle">객체 스토리지(Raw)</text>
+    <path d="M 275 46 L 335 46" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#arrow-read)"/>
+    <text x="305" y="40" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle">읽기 시 스키마</text>
+    <rect x="340" y="32" width="145" height="28" rx="4" fill="#21262d" stroke="#30363d"/>
+    <text x="412" y="50" font-family="system-ui, sans-serif" font-size="10" fill="#c9d1d9" text-anchor="middle">AI/ML · EDA · Ad-hoc</text>
+  </g>
+</svg>
 
 | 비교 항목 | Schema-on-Write (전통 DW) | Schema-on-Read (데이터 레이크) |
 |---|---|---|
@@ -126,13 +161,54 @@ sidebar:
 
 > Bronze·Silver·Gold는 원시→정제→활용 데이터를 나누는 통용 설계 패턴이며, 제품·조직의 품질 기준에 맞게 계층을 조정함.
 
-```text
-┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
-│  Bronze (Raw)   │ ───>  │ Silver (Refined)│ ───>  │  Gold (Curated) │
-│ - 원본 불변 보존│       │ - 결측치/중복제거│       │ - 도메인 스타스키마│
-│ - Append-only   │       │ - Parquet 압축  │       │ - Data Product  │
-└─────────────────┘       └─────────────────┘       └─────────────────┘
-```
+<svg viewBox="0 0 520 180" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="메달리온 아키텍처 정제 파이프라인" role="img">
+  <defs>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d29922"/>
+    </marker>
+  </defs>
+  <!-- Bronze -->
+  <g transform="translate(15, 20)">
+    <rect width="140" height="95" rx="6" fill="#21262d" stroke="#cd7f32" stroke-width="1.5"/>
+    <rect x="0" y="0" width="140" height="24" rx="6" fill="rgba(205,127,50,0.2)"/>
+    <text x="70" y="16" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f0883e" text-anchor="middle">Bronze (Raw Zone)</text>
+    <text x="12" y="44" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• 원천 원본 불변 보존</text>
+    <text x="12" y="62" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• Append-only 수집</text>
+    <text x="12" y="80" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e">• 재처리(Replay) 보장</text>
+  </g>
+  <!-- Arrow 1 -->
+  <path d="M 158 68 L 187 68" stroke="#cd7f32" stroke-width="2" marker-end="url(#arrow-gold)"/>
+  <text x="172" y="60" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">정제</text>
+
+  <!-- Silver -->
+  <g transform="translate(190, 20)">
+    <rect width="140" height="95" rx="6" fill="#21262d" stroke="#8b949e" stroke-width="1.5"/>
+    <rect x="0" y="0" width="140" height="24" rx="6" fill="rgba(139,148,158,0.2)"/>
+    <text x="70" y="16" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#c9d1d9" text-anchor="middle">Silver (Refined Zone)</text>
+    <text x="12" y="44" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• 결측/중복 제거 정제</text>
+    <text x="12" y="62" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• Parquet/ORC 압축</text>
+    <text x="12" y="80" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e">• 전사 공통 참조 뷰</text>
+  </g>
+  <!-- Arrow 2 -->
+  <path d="M 333 68 L 362 68" stroke="#d29922" stroke-width="2" marker-end="url(#arrow-gold)"/>
+  <text x="347" y="60" font-family="system-ui, sans-serif" font-size="8" fill="#d29922" text-anchor="middle">집계</text>
+
+  <!-- Gold -->
+  <g transform="translate(365, 20)">
+    <rect width="140" height="95" rx="6" fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
+    <rect x="0" y="0" width="140" height="24" rx="6" fill="rgba(210,153,34,0.2)"/>
+    <text x="70" y="16" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#e3b341" text-anchor="middle">Gold (Curated Zone)</text>
+    <text x="12" y="44" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• 비즈니스 스타 스키마</text>
+    <text x="12" y="62" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• Data Product 패키징</text>
+    <text x="12" y="80" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e">• BI / ML 서빙 피처</text>
+  </g>
+
+  <!-- Governance Base Bar -->
+  <g transform="translate(15, 128)">
+    <rect width="490" height="38" rx="4" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)"/>
+    <text x="245" y="22" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#58a6ff" text-anchor="middle">공통 거버넌스 레이어: 메타데이터 카탈로그 (Glue/Atlas) · 데이터 계보 (Lineage) · 보안/권한 통제</text>
+  </g>
+</svg>
 
 1. **Bronze 계층 (Raw Zone)**:
    - 원천 시스템에서 수집된 변경되지 않은 원시 데이터를 시간순으로 누적 보존 (Append-only)
@@ -160,12 +236,49 @@ sidebar:
 
 > 거버넌스가 결여된 데이터 레이크는 거대한 데이터 쓰레기장으로 전락함.
 
-```text
-[데이터 무차별 적재] ──> [메타데이터 누락] ──> [내용 파악 불가] ──> [데이터 늪 (Data Swamp)]
-                                                                           │
-                                                                           ▼
-                                                             [다크 데이터 누적 & 비용 폭증]
-```
+<svg viewBox="0 0 520 140" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="데이터 늪 발생 악순환 메커니즘" role="img">
+  <defs>
+    <marker id="arrow-swamp" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f85149"/>
+    </marker>
+  </defs>
+  <!-- Step 1 -->
+  <g transform="translate(15, 20)">
+    <rect width="105" height="55" rx="5" fill="#21262d" stroke="#30363d"/>
+    <text x="52" y="24" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#c9d1d9" text-anchor="middle">무차별 적재</text>
+    <text x="52" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#8b949e" text-anchor="middle">검증 없는 Dump</text>
+  </g>
+  <path d="M 122 47 L 142 47" stroke="#f85149" stroke-width="1.5" marker-end="url(#arrow-swamp)"/>
+
+  <!-- Step 2 -->
+  <g transform="translate(145, 20)">
+    <rect width="105" height="55" rx="5" fill="#21262d" stroke="#f85149" stroke-width="1"/>
+    <text x="52" y="24" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f85149" text-anchor="middle">메타데이터 누락</text>
+    <text x="52" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#8b949e" text-anchor="middle">소유자·스키마 부재</text>
+  </g>
+  <path d="M 252 47 L 272 47" stroke="#f85149" stroke-width="1.5" marker-end="url(#arrow-swamp)"/>
+
+  <!-- Step 3 -->
+  <g transform="translate(275, 20)">
+    <rect width="105" height="55" rx="5" fill="#21262d" stroke="#f85149" stroke-width="1"/>
+    <text x="52" y="24" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f85149" text-anchor="middle">내용 파악 불가</text>
+    <text x="52" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#8b949e" text-anchor="middle">다크 데이터화</text>
+  </g>
+  <path d="M 382 47 L 402 47" stroke="#f85149" stroke-width="1.5" marker-end="url(#arrow-swamp)"/>
+
+  <!-- Step 4 -->
+  <g transform="translate(405, 20)">
+    <rect width="100" height="55" rx="5" fill="rgba(248,81,73,0.15)" stroke="#f85149" stroke-width="1.5"/>
+    <text x="50" y="24" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#ff7b72" text-anchor="middle">데이터 늪 전락</text>
+    <text x="50" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9" text-anchor="middle">비용↑ 신뢰도 0</text>
+  </g>
+
+  <!-- Bottom Result Bar -->
+  <g transform="translate(15, 90)">
+    <rect width="490" height="34" rx="4" fill="#161b22" stroke="#30363d"/>
+    <text x="245" y="21" font-family="system-ui, sans-serif" font-size="9.5" fill="#ff7b72" text-anchor="middle">치명적 리스크: 클라우드 스토리지 비용 폭증 · 컴플라이언스(개인정보) 위반 · 분석 신뢰 붕괴</text>
+  </g>
+</svg>
 
 - **메타데이터 부재**: 파일의 생성자, 비즈니스 의미, 스키마 이력이 카탈로그에 기록되지 않아 검색 불가
 - **Data Ownership 부재**: 데이터 적재 후 품질 모니터링과 수명주기 폐기를 책임지는 도메인 오너 부재
@@ -188,41 +301,69 @@ sidebar:
 > "데이터 레이크의 가치는 단순히 쌓아둔 테라바이트가 아니라, 신뢰할 수 있는 거버넌스 하에서 즉시 쿼리할 수 있는 가용성에 있다."
 
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 수집량이 아니라 발견 가능성·신뢰성·소유권이 레이크의 가치를 결정한다. 소비 목적 없는 원본 축적은 늪을 만든다.
-- `나라면`: 수집 시 Data Contract와 Owner를 등록하고 Silver 진입 전에 스키마·품질·민감정보 Gate를 통과시키겠다.
+
+> **[핵심 통찰]**
+> 수집량이 아니라 발견 가능성·신뢰성·소유권이 레이크의 가치를 결정한다. 소비 목적 없는 원본 축적은 필연적으로 데이터 늪(Data Swamp)을 양산한다.
+>
+> **[나라면 이렇게 쓴다]**
+> 수집 단계부터 Data Contract와 도메인 Owner를 강제 바인딩하고, Silver 승격 파이프라인에 스키마 적합성·품질 검증·PII 비식별화 Gate를 통과시켜 무결한 Data Product로 서빙하겠다.
 
 ### 실전 답안용 기술사적 제언
-- 판정: 카탈로그 검색 가능성, Lineage 추적성, 품질 SLA 준수 여부가 입증된 데이터셋만 상위 계층(Silver/Gold)으로 승격함
-- 대안: Apache Iceberg 기반 오픈 테이블 포맷 도입 $\rightarrow$ 객체 스토리지 상의 ACID 트랜잭션 및 타임 트래블(Time Travel) 구현
-- 검증: 메타데이터 카탈로그 등록률 100%, 미사용 다크 데이터 비율 10% 미만 통제
-- 효과: 데이터 늪 전락을 원천 예방하고, BI 분석가와 AI 연구원이 단일 저장소를 안전하게 공유하는 통합 레이크하우스 완성
 
-```text
-[현행 한계] ─────────> [개선 방안] ─────────> [검증 기준] ─────────> [실행 효과]
-데이터 늪화           메달리온 & Iceberg     카탈로그 등록률 100%    ACID 트랜잭션 보장
-다크 데이터 방치       FinOps 수명주기(TTL)   다크 데이터 < 10%       스토리지 TCO 40% 절감
-```
+- **판정 기준**: 카탈로그 검색 가능성, OpenLineage 계보 추적성, 품질 SLA 준수 여부가 100% 입증된 데이터셋만 상위 계층(Silver/Gold)으로 승격
+- **대응 방안**: Apache Iceberg / Delta Lake 기반 오픈 테이블 포맷 도입 $\rightarrow$ 객체 스토리지 상의 ACID 트랜잭션, 스키마 진화 및 타임 트래블(Time Travel) 구현
+- **검증 체계**: 메타데이터 카탈로그 등록률 100%, 90일 이상 미사용 다크 데이터 비율 10% 미만 통제
+- **기대 효과**: 데이터 늪 전락을 원천 차단하고, BI 분석가와 AI/ML 엔지니어가 단일 스토리지를 신뢰성 있게 공유하는 통합 레이크하우스 완성
+
+<div class="itpe-flow-map" role="img" aria-label="데이터 레이크 품질 고도화 실행 로드맵">
+  <div class="itpe-flow-node">
+    <strong>1단계: 현행 한계 인식</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-fail"><strong>문제</strong><span>거버넌스 없는 무차별 적재로 인한 데이터 늪화 및 다크 데이터 스토리지 비용 폭증</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>2단계: 아키텍처 개선 방안</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass"><strong>기술 적용</strong><span>Bronze-Silver-Gold 메달리온 파이프라인 + Apache Iceberg 테이블 포맷 + FinOps TTL 정책</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>3단계: 정량 검증 기준</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>KPI 지표</strong><span>메타데이터 카탈로그 등록률 100%, 비활성 다크 데이터 10% 미만 유지</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>4단계: 궁극적 실행 효과</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass"><strong>가치 창출</strong><span>객체 스토리지 상 ACID 트랜잭션 보장 및 스토리지 TCO 40% 이상 절감 달성</span></div>
+    </div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 데이터 레이크(Data Lake) 및 데이터 늪(Data Swamp)의 정의
-- 데이터 레이크: 모든 형태의 원시 데이터를 가공 없이 객체 스토리지에 저장하고 Schema-on-Read로 분석하는 플랫폼
-- 데이터 늪: 메타데이터와 거버넌스 결여로 데이터의 출처와 내용을 파악할 수 없게 된 방치된 저장소 상태
+### 1. 데이터 레이크(Data Lake) 및 데이터 늪(Data Swamp)의 개념
 
-2. 메달리온 아키텍처 및 늪 방지 대책
-┌─────────────────────────────────────────────────────────────┐
-│ Bronze (Raw 불변 보존) → Silver (정제/표준화) → Gold (비즈니스)│
-├─────────────────────────────────────────────────────────────┤
-│ 늪 방지 대책:                                               │
-│  - 메타데이터 카탈로그 (Glue/Atlas) 및 Data Lineage 자동화  │
-│  - Data Contract 체결로 스키마 파손 방지                    │
-│  - 스토리지 수명주기(TTL) 정책으로 다크 데이터 자동 제거    │
-└─────────────────────────────────────────────────────────────┘
+- **데이터 레이크**: 대규모 이종(정형·반정형·비정형) 데이터를 가공 없이 원형(Raw) 그대로 객체 스토리지에 적재하고, 분석 시점에 스키마를 부여(Schema-on-Read)하는 빅데이터 저장 플랫폼
+- **데이터 늪**: 메타데이터 카탈로그 및 소유권 거버넌스 부재로 데이터 출처·내용 파악이 불가능하여 가치를 상실한 쓰레기장 상태의 레이크
 
-3. 기술사적 제언: 레이크하우스(Lakehouse)로의 진화
-- Apache Iceberg/Delta Lake 도입으로 저비용 객체 스토리지 상에서 ACID 트랜잭션과 고성능 SQL 분석을 동시 달성
-```
+### 2. 메달리온 정제 아키텍처 및 늪 방지 4대 대책
+
+| 계층/영역 | 핵심 메커니즘 | 실무 통제 방안 |
+|---|---|---|
+| **Bronze 계층** | Raw Zone (원시 데이터 보존) | 원천 변경 대비 Append-only 불변 적재 |
+| **Silver 계층** | Refined Zone (정제·표준화) | 결측치 정제 및 Parquet/ORC 압축 컬럼화 |
+| **Gold 계층** | Curated Zone (비즈니스 서빙) | 도메인별 스타 스키마 구축 및 Data Product화 |
+| **늪 방지 거버넌스** | 카탈로그·계보·계약·수명주기 | Glue/Atlas 메타 등록, OpenLineage 추적, FinOps TTL 자동 삭제 |
+
+### 3. 기술사적 제언: 레이크하우스(Lakehouse)로의 진화
+
+- Apache Iceberg / Delta Lake 오픈 테이블 포맷을 도입하여 저비용 객체 스토리지 위에서 완벽한 ACID 트랜잭션과 고성능 SQL 엔진을 연계함으로써 데이터 늪 방지와 분석 민첩성을 동시 확보해야 함.
 
 ## 출제 이력과 검증 출처
 
