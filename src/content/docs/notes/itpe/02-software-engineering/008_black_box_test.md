@@ -1,6 +1,6 @@
 ---
 title: "블랙박스 테스트(명세 기반 기법: 동등 분할·경계값 분석)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:49:42+09:00"
 tags:
   - "notes-software-engineering"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -84,6 +84,57 @@ extra:
   </div>
 </div>
 
+### 동등 분할 및 경계값 분석(BVA) 메커니즘
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background grid -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title / Section Label -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[입력 도메인 동등 분할 및 경계값 분석 원리 (기준: 1 ~ 10)]</text>
+    
+    <!-- Equivalence Partitioning Bar -->
+    <!-- Invalid Class 1: x < 1 -->
+    <rect x="25" y="45" width="130" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" stroke-dasharray="4 2" />
+    <text x="90" y="62" class="itpe-svg-title" font-size="13" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">무효 클래스 1</text>
+    <text x="90" y="77" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">x &lt; 1 (대표값: -2)</text>
+    
+    <!-- Valid Class: 1 <= x <= 10 -->
+    <rect x="165" y="45" width="190" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="2" />
+    <text x="260" y="62" class="itpe-svg-title" font-size="13" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">유효 클래스 (정상)</text>
+    <text x="260" y="77" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">1 &le; x &le; 10 (대표값: 5)</text>
+    
+    <!-- Invalid Class 2: x > 10 -->
+    <rect x="365" y="45" width="130" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" stroke-dasharray="4 2" />
+    <text x="430" y="62" class="itpe-svg-title" font-size="13" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">무효 클래스 2</text>
+    <text x="430" y="77" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">x &gt; 10 (대표값: 15)</text>
+
+    <!-- Boundary Points Line -->
+    <line x1="40" y1="125" x2="480" y2="125" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="2" stroke-linecap="round" />
+    
+    <!-- 2-Value BVA Section -->
+    <rect x="25" y="145" width="225" height="60" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="35" y="163" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">2-Value BVA (경계 + 직전/직후)</text>
+    <text x="35" y="180" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">• 하한 경계: 0(오류), 1(정상)</text>
+    <text x="35" y="195" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">• 상한 경계: 10(정상), 11(오류)</text>
+
+    <!-- 3-Value BVA Section -->
+    <rect x="270" y="145" width="225" height="60" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="280" y="163" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)">3-Value BVA (경계 ± 1 정밀)</text>
+    <text x="280" y="180" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">• 하한 정밀: 0, 1, 2 (오류, 정상, 정상)</text>
+    <text x="280" y="195" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">• 상한 정밀: 9, 10, 11 (정상, 정상, 오류)</text>
+
+    <!-- Markers on line for Boundaries -->
+    <!-- min boundary marker (1) -->
+    <circle cx="165" cy="125" r="5" fill="var(--sl-color-primary, #3b82f6)" />
+    <text x="165" y="115" class="itpe-svg-label" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Min: 1</text>
+    <!-- max boundary marker (10) -->
+    <circle cx="355" cy="125" r="5" fill="var(--sl-color-primary, #3b82f6)" />
+    <text x="355" y="115" class="itpe-svg-label" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Max: 10</text>
+  </svg>
+</div>
+
 ### 입력값 설계 예시: 정수 범위 [1, 10]
 
 | 기법 | 클래스 / 경계 | 테스트 케이스 (입력값) | 기대 결과 |
@@ -139,10 +190,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 명세 기반 기법의 계층적 적용 (동등분할 1차 → 경계값 분석 2차 심화)
-- 대안: **Pairwise** 알고리즘 연계 및 **결정 테이블** 기반 룰 자동화
-- 검증: 명세 추적성(RTM) 100% 매핑 · 경계값 결함 누출률 0% 달성
-- 효과: 테스트 케이스 수 최적화 및 프로덕션 비즈니스 로직 무결성 보증
+- **판정 기준**: 입력 변수 특성(단일 연속형 vs 복합 이산형)에 따른 기법 계층화 (1차 동등 분할 → 2차 3-Value BVA)
+- **대응 방안**: 4개 이상 다차원 파라미터 조합 시 **Pairwise(페어와이즈)** 알고리즘 적용 및 복합 조건의 **의사결정 테이블** 룰 매트릭스화
+- **검증 체계**: 요구사항 추적성 매트릭스(RTM) 100% 매핑 및 경계 결함 조기 격리율 기반 회귀 테스트 자동화 파이프라인 구축
+- **기대 효과**: 테스트 설계 공수 40% 절감 및 프로덕션 오프바이원(Off-by-one) 경계 결함 누출률 0% 달성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="블랙박스 테스팅 최적화 제언">
   <div class="itpe-pipeline-node">

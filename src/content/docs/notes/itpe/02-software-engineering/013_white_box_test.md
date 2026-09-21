@@ -1,6 +1,6 @@
 ---
 title: "화이트박스 테스트(White Box Test)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:49:42+09:00"
 tags:
   - "notes-software-engineering"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -94,6 +94,66 @@ extra:
   </div>
 </div>
 
+### 제어 흐름 그래프(CFG) 및 커버리지 검증 스펙트럼
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Left: CFG Diagram -->
+    <text x="25" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[제어 흐름 그래프(CFG) 모델링]</text>
+    
+    <!-- Node 1: Entry/Stmt -->
+    <circle cx="120" cy="48" r="14" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" />
+    <text x="120" y="52" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">1</text>
+    
+    <!-- Flow arrow down -->
+    <line x1="120" y1="62" x2="120" y2="82" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Node 2: Decision (Diamond/Circle) -->
+    <polygon points="120,84 146,104 120,124 94,104" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
+    <text x="120" y="108" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">2: If</text>
+
+    <!-- Branch True (Left) -->
+    <line x1="94" y1="104" x2="60" y2="135" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
+    <text x="66" y="115" class="itpe-svg-label" font-size="10" fill="var(--sl-color-success, #10b981)">True</text>
+    <circle cx="60" cy="145" r="12" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.5" />
+    <text x="60" y="149" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">3</text>
+
+    <!-- Branch False (Right) -->
+    <line x1="146" y1="104" x2="180" y2="135" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" />
+    <text x="175" y="115" class="itpe-svg-label" font-size="10" fill="var(--sl-color-danger, #ef4444)">False</text>
+    <circle cx="180" cy="145" r="12" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.5" />
+    <text x="180" y="149" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">4</text>
+
+    <!-- Merge to Node 5 -->
+    <line x1="60" y1="157" x2="110" y2="185" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <line x1="180" y1="157" x2="130" y2="185" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <circle cx="120" cy="192" r="14" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" />
+    <text x="120" y="196" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">5</text>
+
+    <!-- Right: Coverage Levels Spectrum -->
+    <text x="245" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[커버리지 검증 기준 비교]</text>
+
+    <!-- Level 1: C0 -->
+    <rect x="245" y="42" width="255" height="46" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="255" y="60" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">C0 구문(Statement) 커버리지</text>
+    <text x="255" y="76" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)">모든 실행 문장 1회 이상 통과 (최소 기준)</text>
+
+    <!-- Level 2: C1 -->
+    <rect x="245" y="96" width="255" height="46" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
+    <text x="255" y="114" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">C1 결정(Decision/Branch) 커버리지</text>
+    <text x="255" y="130" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)">모든 분기의 True/False 경로 최소 1회 실행</text>
+
+    <!-- Level 3: MC/DC -->
+    <rect x="245" y="150" width="255" height="52" rx="5" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
+    <text x="255" y="168" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)">MC/DC (N+1 최적화 검증)</text>
+    <text x="255" y="184" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)">각 개별 조건의 독립적 영향력 입증</text>
+    <text x="255" y="196" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)">항공(DO-178C Level A), 차량(ISO 26262 ASIL-D)</text>
+  </svg>
+</div>
+
 | 커버리지 유형 | 핵심 정의 | 최소 필요 케이스 수 | 특징 및 한계 |
 |---|---|---|---|
 | **구문(C0)** | 실행 문장 1회 실행 | 최소 | 분기문의 반대쪽 경로 미실행 위험 |
@@ -151,10 +211,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 도메인 위험도(ASIL, SIL 등급)에 따른 커버리지 기준 차등화
-- 대안: 일반 시스템 C1(결정) 80% 의무화 · 고신뢰성 시스템 **MC/DC** 100% 적용
-- 검증: CI 파이프라인 내 JaCoCo/VectorCAST 커버리지 리포트 자동 발행
-- 효과: 소스코드 내부 잠재 결함 조기 박멸 및 기능안전 국제 표준 인증 통과
+- **판정 기준**: 시스템 위험 등급(기능안전 ASIL, SIL)에 따른 차등 커버리지 목표선 설정 (일반: C1 80%, 안전 필수: MC/DC 100%)
+- **대응 방안**: **MC/DC(N+1)** 알고리즘 기반 조합 폭발 통제 및 **정적 분석 도구(SonarQube)** 병행을 통한 데드코드 원천 격리
+- **검증 체계**: CI/CD 파이프라인 내 JaCoCo/VectorCAST 연동 Quality Gate 강제 (커버리지 미달 시 배포 빌드 실패 차단)
+- **기대 효과**: 제어 경로 및 복합 조건 내부 논리 오류 완전 적발, 기능안전 최고 안전 무결성 등급(DO-178C Level A) 공인 인증 통과
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="화이트박스 테스팅 고도화 제언">
   <div class="itpe-pipeline-node">

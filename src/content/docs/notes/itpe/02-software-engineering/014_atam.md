@@ -2,14 +2,14 @@
 title: "ATAM(Architecture Tradeoff Analysis Method)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -98,6 +98,67 @@ extra:
 
 > 유틸리티 트리는 모호한 품질 요구사항을 측정 가능한 시나리오로 변환하는 핵심 도구이다.
 
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[유틸리티 트리(Utility Tree) 계층 분해 및 판정 메커니즘]</text>
+
+    <!-- Root: Utility -->
+    <rect x="20" y="85" width="80" height="50" rx="6" fill="var(--sl-color-primary, #3b82f6)" />
+    <text x="60" y="110" class="itpe-svg-title" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Utility</text>
+    <text x="60" y="125" class="itpe-svg-sub" font-size="10" fill="#e0f2fe" text-anchor="middle">(전체 효용)</text>
+
+    <!-- Branch Lines -->
+    <line x1="100" y1="110" x2="135" y2="55" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
+    <line x1="100" y1="110" x2="135" y2="110" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
+    <line x1="100" y1="110" x2="135" y2="165" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Quality Attributes -->
+    <rect x="135" y="37" width="85" height="36" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="177" y="59" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">성능 (Perf)</text>
+
+    <rect x="135" y="92" width="85" height="36" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="177" y="114" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">보안 (Sec)</text>
+
+    <rect x="135" y="147" width="85" height="36" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="177" y="169" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">가용성 (Avail)</text>
+
+    <!-- Branch Lines to Scenarios -->
+    <line x1="220" y1="55" x2="250" y2="55" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
+    <line x1="220" y1="110" x2="250" y2="110" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
+    <line x1="220" y1="165" x2="250" y2="165" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Scenarios -->
+    <rect x="250" y="37" width="125" height="36" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="260" y="52" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #334155)">피크시 1초내 응답</text>
+    <text x="260" y="66" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-danger, #ef4444)">(High, High)</text>
+
+    <rect x="250" y="92" width="125" height="36" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="260" y="107" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #334155)">전송구간 암호화</text>
+    <text x="260" y="121" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-danger, #ef4444)">(High, Med)</text>
+
+    <rect x="250" y="147" width="125" height="36" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="260" y="162" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #334155)">장애시 30초 복구</text>
+    <text x="260" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)">(Med, High)</text>
+
+    <!-- Right Evaluation: Sensitivity vs Tradeoff -->
+    <!-- Sensitivity box -->
+    <rect x="395" y="37" width="115" height="65" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
+    <text x="452" y="57" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">민감점 (Sensitivity)</text>
+    <text x="452" y="74" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">단일 품질에 영향</text>
+    <text x="452" y="89" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(예: DB 풀 크기)</text>
+
+    <!-- Tradeoff box -->
+    <rect x="395" y="118" width="115" height="65" rx="5" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
+    <text x="452" y="138" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">절충점 (Tradeoff)</text>
+    <text x="452" y="155" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-accent, #8b5cf6)" font-weight="600" text-anchor="middle">복수 품질 상충</text>
+    <text x="452" y="170" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(예: HTTPS 암호화)</text>
+  </svg>
+</div>
+
 ### 1. 유틸리티 트리(Utility Tree) 구조
 - **루트**: Utility
 - **품질속성(Quality Attribute)**: 성능, 가용성, 보안성, 변경용이성
@@ -146,10 +207,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 아키텍처 확정 마일스톤 시 ATAM 기반 품질속성 검증 의무화 판정
-- 대안: **유틸리티 트리** 기반 우선순위화 및 **CBAM** 연계 경제성 평가 병행
-- 검증: (High, High) 시나리오 100% 검증 · 식별된 리스크 테마 완화 계획 수립
-- 효과: 구축 단계 아키텍처 재설계 비용(빅뱅 실패) 원천 차단 및 품질 합의 달성
+- **판정 기준**: 아키텍처 확정 마일스톤(Design Baseline) 시 ATAM 기반 품질속성 트레이드오프 검증 의무화 판정
+- **대응 방안**: **유틸리티 트리** 기반 (High, High) 핵심 시나리오 우선순위화 및 **CBAM** 연계를 통한 경제성(ROI) 분석 병행
+- **검증 체계**: 우선순위 시나리오 프로토타입 PoC 100% 검증 및 식별된 아키텍처 리스크 테마별 완화 계획서 승인
+- **기대 효과**: 구축 후반 아키텍처 재설계(빅뱅 결함) 비용 원천 차단 및 이해관계자 간 품질 요구사항 합의 보증
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ATAM 아키텍처 평가 제언">
   <div class="itpe-pipeline-node">

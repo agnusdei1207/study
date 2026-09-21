@@ -2,14 +2,14 @@
 title: "기술 부채(불명확한 요구사항과 품질 저하)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -89,6 +89,46 @@ extra:
   </div>
 </div>
 
+### 마틴 파울러의 기술 부채 사분면(Technical Debt Quadrant)
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="22" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[Martin Fowler 기술 부채 4분면 매트릭스]</text>
+
+    <!-- Axis Labels -->
+    <text x="145" y="40" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">← 신중함 (Prudent)</text>
+    <text x="375" y="40" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">무모함 (Reckless) →</text>
+
+    <!-- Quadrant 1: Prudent & Deliberate (Top-Left) -->
+    <rect x="25" y="48" width="230" height="74" rx="5" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
+    <text x="35" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">신중함 &amp; 의도적 (전략적 차입)</text>
+    <text x="35" y="86" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">"지금 출시하고 바로 리팩토링하자"</text>
+    <text x="35" y="103" class="itpe-svg-label" font-size="10" fill="var(--sl-color-success, #10b981)">→ 출시 후 즉시 부채 상환 계획 수립</text>
+
+    <!-- Quadrant 2: Reckless & Deliberate (Top-Right) -->
+    <rect x="265" y="48" width="230" height="74" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.2" stroke-dasharray="4 2" />
+    <text x="275" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-danger, #ef4444)">무모함 &amp; 의도적 (안티패턴)</text>
+    <text x="275" y="86" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">"설계할 시간 없어, 일단 돌아가게만 해"</text>
+    <text x="275" y="103" class="itpe-svg-label" font-size="10" fill="var(--sl-color-danger, #ef4444)">→ 미래 유지보수 비용 폭증 유발</text>
+
+    <!-- Quadrant 3: Prudent & Inadvertent (Bottom-Left) -->
+    <rect x="25" y="130" width="230" height="74" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="35" y="150" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">신중함 &amp; 우발적 (자연적 학습)</text>
+    <text x="35" y="168" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">"구현 후에야 더 나은 설계를 깨달았다"</text>
+    <text x="35" y="185" class="itpe-svg-label" font-size="10" fill="var(--sl-color-primary, #3b82f6)">→ 점진적 아키텍처 진화로 흡수</text>
+
+    <!-- Quadrant 4: Reckless & Inadvertent (Bottom-Right) -->
+    <rect x="265" y="130" width="230" height="74" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.2" />
+    <text x="275" y="150" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-danger, #ef4444)">무모함 &amp; 우발적 (역량 부족)</text>
+    <text x="275" y="168" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">"레이어링이나 패턴이 뭔지도 모름"</text>
+    <text x="275" y="185" class="itpe-svg-label" font-size="10" fill="var(--sl-color-danger, #ef4444)">→ 코드 리뷰 의무화 및 교육 필요</text>
+  </svg>
+</div>
+
 ### 불명확한 요구사항이 품질 저하로 이어지는 인과관계
 1. **요구사항 모호성**: 비즈니스 요구사항이 명확하지 않아 도메인 모델링 실패
 2. **잦은 요구 변경**: 개발 도중 땜질식 조건문(`if-else`) 누적, 스파게티 코드 양산
@@ -155,10 +195,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 기술 부채를 공식 백로그로 등록하여 가시화 및 우선순위화 판정
-- 대안: **SQALE** 모델 기반 TDR 모니터링 및 스프린트 내 **20% 부채 예산** 고정
-- 검증: 신규 코드 품질 등급 A 유지 · TDR 5% 이하 유지
-- 효과: 개발 생산성 저하 방지 · 시스템 수명 주기 연장 및 기술적 파산 예방
+- **판정 기준**: SQALE 모델 기반 기술 부채 비율(TDR) 5% 초과 여부 및 스프린트당 결함 수정 공수 증가율 판정
+- **대응 방안**: 스프린트 계획 시 **20% 부채 예산(Debt Budget)** 공식 배정 및 SonarQube Quality Gate 통과 의무화
+- **검증 체계**: CI 파이프라인 내 신규 기술 부채 유입 0건 통제 및 릴리스별 TDR 지수 추이 경영진 대시보드 공표
+- **기대 효과**: 아키텍처 부패 및 기술적 파산 원천 방지, 개발 생산성 30% 향상 및 엔터프라이즈 소프트웨어 자산 수명 극대화
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기술 부채 관리 고도화 제언">
   <div class="itpe-pipeline-node">

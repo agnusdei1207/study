@@ -1,6 +1,6 @@
 ---
 title: "스택(Stack) 자료구조"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:49:42+09:00"
 tags:
   - "notes-software-engineering"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -84,6 +84,64 @@ extra:
   </div>
 </div>
 
+### 스택 구조 및 호출 스택(Call Stack) 프레임
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Left: LIFO Operation Model -->
+    <text x="25" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[LIFO 연산 메커니즘]</text>
+    
+    <!-- Stack container -->
+    <rect x="35" y="45" width="110" height="155" rx="4" fill="none" stroke="var(--sl-color-border, #94a3b8)" stroke-width="2" stroke-dasharray="155 0 0 110" />
+    <!-- Stack base indicator -->
+    <line x1="30" y1="200" x2="150" y2="200" stroke="var(--sl-color-text-muted, #64748b)" stroke-width="3" />
+    <text x="90" y="213" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Stack Bottom (Base)</text>
+
+    <!-- Element 1 -->
+    <rect x="42" y="160" width="96" height="32" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="90" y="180" class="itpe-svg-sub" font-size="12" fill="var(--sl-color-text, #334155)" text-anchor="middle">Data [0]</text>
+
+    <!-- Element 2 -->
+    <rect x="42" y="120" width="96" height="32" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="90" y="140" class="itpe-svg-sub" font-size="12" fill="var(--sl-color-text, #334155)" text-anchor="middle">Data [1]</text>
+
+    <!-- Element 3 (Top) -->
+    <rect x="42" y="80" width="96" height="32" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
+    <text x="90" y="100" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Data [2] (Top)</text>
+
+    <!-- Top Pointer Arrow -->
+    <path d="M 175 96 L 145 96" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" marker-end="url(#arrow)" />
+    <text x="180" y="100" class="itpe-svg-label" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">Top Pointer</text>
+
+    <!-- Push/Pop Action Labels -->
+    <text x="90" y="48" class="itpe-svg-label" font-size="11" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">Push ↓  ↑ Pop</text>
+
+    <!-- Right: Call Stack Frame -->
+    <text x="270" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[함수 호출 스택 프레임(Stack Frame) 구조]</text>
+    
+    <!-- Call Stack container -->
+    <rect x="270" y="45" width="225" height="155" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    
+    <!-- Frame 1 (Main) -->
+    <rect x="278" y="152" width="209" height="42" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1" />
+    <text x="288" y="169" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">main() Frame</text>
+    <text x="288" y="185" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)">지역변수, 초기화 정보</text>
+
+    <!-- Frame 2 (Func A) -->
+    <rect x="278" y="102" width="209" height="42" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1" />
+    <text x="288" y="119" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">calculate() Frame</text>
+    <text x="288" y="135" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)">매개변수, 복귀주소(main)</text>
+
+    <!-- Frame 3 (Func B - Active) -->
+    <rect x="278" y="52" width="209" height="42" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
+    <text x="288" y="69" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">parse() Frame (Active)</text>
+    <text x="288" y="85" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">지역변수, 복귀주소(calculate)</text>
+  </svg>
+</div>
+
 | 비교 항목 | 배열(Array) 기반 스택 | 연결 리스트(Linked List) 기반 스택 |
 |---|---|---|
 | **메모리 할당** | 정적 고정 할당 (컴파일/생성 시점) | 동적 노드 할당 (런타임 필요 시점) |
@@ -124,10 +182,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 재귀 호출의 깊이가 불확실한 경우 명시적 스택 또는 반복문 전환 판정
-- 대안: **Heap 기반 커스텀 스택** 구현 및 컴파일러 보안 옵션(Canary, DEP) 강제
-- 검증: 최대 호출 깊이 정적 분석 · 스택 사용량 프로파일링
-- 효과: 스택 고갈 크래시 방지 및 버퍼 오버플로우 취약점 원천 차단
+- **판정 기준**: 재귀 호출 깊이(Depth)의 결정성 여부 및 콜 스택 임계치(기본 OS 1~8MB) 초과 가능성 판정
+- **대응 방안**: 불확실한 재귀를 **반복문(Iteration)**으로 변환하고, 대규모 탐색은 **힙(Heap) 기반 명시적 스택(Explicit Stack)**으로 전환
+- **검증 체계**: 컴파일러 보안 옵션(Stack Canary, DEP) 적용 및 정적 분석 도구를 통한 스택 프레임 최대 깊이 프로파일링
+- **기대 효과**: 스택 고갈(Stack Overflow) 비정상 종료 예방 및 버퍼 오버플로우 메모리 변조 취약점 원천 차단
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="스택 메모리 안정성 확보 제언">
   <div class="itpe-pipeline-node">

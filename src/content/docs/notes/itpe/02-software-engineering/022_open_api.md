@@ -2,14 +2,14 @@
 title: "Open API(API 일반)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -84,6 +84,69 @@ extra:
   </div>
 </div>
 
+### Open API 3계층 아키텍처 및 API Gateway 보안·제어 흐름
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[Open API 생태계 3계층 구조 및 API Gateway 통제 메커니즘]</text>
+
+    <!-- Tier 1: External Consumer & Portal (Left) -->
+    <rect x="18" y="45" width="135" height="155" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="85" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">외부 생태계</text>
+    <text x="85" y="85" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">3rd-party Developers</text>
+    <line x1="28" y1="95" x2="143" y2="95" stroke="var(--sl-color-border, #e2e8f0)" />
+    
+    <!-- Developer Portal Box -->
+    <rect x="26" y="105" width="119" height="42" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" />
+    <text x="85" y="122" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">개발자 포털</text>
+    <text x="85" y="137" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">OAS 문서 · 샌드박스</text>
+
+    <rect x="26" y="155" width="119" height="34" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="85" y="176" class="itpe-svg-label" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">API Key / App 등록</text>
+
+    <!-- Arrow from Tier 1 to Tier 2 -->
+    <line x1="153" y1="125" x2="185" y2="125" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" marker-end="url(#arrow)" />
+
+    <!-- Tier 2: API Gateway (Middle) -->
+    <rect x="185" y="45" width="155" height="155" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
+    <text x="262" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">API Gateway (관문)</text>
+    <text x="262" y="85" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">통합 인증·보안·제어</text>
+    <line x1="195" y1="95" x2="330" y2="95" stroke="var(--sl-color-border, #e2e8f0)" />
+
+    <!-- Features inside Gateway -->
+    <rect x="195" y="103" width="135" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="262" y="120" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">OAuth 2.0 / JWT 검증</text>
+
+    <rect x="195" y="134" width="135" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="262" y="151" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">Rate Limit (트래픽 차단)</text>
+
+    <rect x="195" y="165" width="135" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="262" y="182" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">WAF &amp; 동적 라우팅</text>
+
+    <!-- Arrow from Tier 2 to Tier 3 -->
+    <line x1="340" y1="125" x2="370" y2="125" stroke="var(--sl-color-success, #10b981)" stroke-width="2" marker-end="url(#arrow)" />
+
+    <!-- Tier 3: Core Backend (Right) -->
+    <rect x="370" y="45" width="132" height="155" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="436" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">코어 백엔드</text>
+    <text x="436" y="85" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Backend Core MSA</text>
+    <line x1="380" y1="95" x2="492" y2="95" stroke="var(--sl-color-border, #e2e8f0)" />
+
+    <rect x="380" y="105" width="112" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="436" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">사용자 마이크로서비스</text>
+
+    <rect x="380" y="136" width="112" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="436" y="153" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">결제/정산 서비스</text>
+
+    <rect x="380" y="167" width="112" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="436" y="184" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">마이데이터 DB</text>
+  </svg>
+</div>
+
 | 핵심 구성요소 | 주요 기술 및 메커니즘 | 실무 역할 |
 |---|---|---|
 | **인증/인가 (Auth)** | **OAuth 2.0, OpenID Connect, JWT, API Key** | 사용자 권한 위임 및 API 호출 클라이언트 검증 |
@@ -123,10 +186,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: Open API 거버넌스 및 API 생애주기 관리(APIM) 도입 판정
-- 대안: **API Gateway** 통합 통제 및 **OpenAPI 3.0** 기반 자동 문서화
-- 검증: OWASP API 보안 취약점 점검 · SLA 99.95% 가용성 보장
-- 효과: 글로벌 파트너 연계 가속화 · 안전한 데이터 경제 생태계 주도
+- **판정 기준**: 외부 개방 수준(Public/Partner/Private)에 따른 차등 보안·인증 체계 및 APIM(API Management) 라이프사이클 수립 판정
+- **대응 방안**: **API Gateway** 중앙 집중 통제(OAuth 2.0/JWT 인가, Rate Limiting 방어) 및 **OpenAPI 3.0(OAS)** 기반 명세 표준화
+- **검증 체계**: OWASP API Security Top 10(BOLA 등) 취약점 전수 진단 및 모니터링 기반 SLA 99.95% 가용성 검증
+- **기대 효과**: 외부 제3자 연계 리드타임 70% 단축, 안전한 마이데이터 생태계 활성화 및 데이터 자산 기반 신규 수익 모델(Monetization) 창출
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 거버넌스 제언">
   <div class="itpe-pipeline-node">

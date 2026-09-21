@@ -2,14 +2,14 @@
 title: "REST"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -99,6 +99,53 @@ extra:
   </div>
 </div>
 
+### REST 아키텍처 상호작용 및 무상태(Stateless) 메커니즘
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[REST 자원 중심 상호작용 및 무상태(Stateless) 원리]</text>
+
+    <!-- Client Box (Left) -->
+    <rect x="20" y="50" width="110" height="145" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="75" y="75" class="itpe-svg-title" font-size="12.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">클라이언트</text>
+    <text x="75" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Client (SPA/App)</text>
+    <line x1="30" y1="105" x2="120" y2="105" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="75" y="125" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">세션 상태 유지</text>
+    <text x="75" y="145" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(Client Context)</text>
+    <rect x="30" y="158" width="90" height="24" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
+    <text x="75" y="174" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Bearer JWT</text>
+
+    <!-- Middle Request / Response Channel -->
+    <!-- Request Arrow & Box -->
+    <path d="M 135 85 L 365 85" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="160" y="55" width="180" height="26" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1" />
+    <text x="250" y="72" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">GET /api/v1/users/42</text>
+
+    <!-- Response Arrow & Box -->
+    <path d="M 365 155 L 135 155" stroke="var(--sl-color-success, #10b981)" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="160" y="160" width="180" height="26" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1" />
+    <text x="250" y="177" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">200 OK (JSON Payload)</text>
+
+    <!-- Middle Stateless Note -->
+    <text x="250" y="115" class="itpe-svg-label" font-size="10" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">전송마다 완전한 인증·컨텍스트 동봉</text>
+    <text x="250" y="132" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(Stateless: 서버 세션 비보관)</text>
+
+    <!-- Server Box (Right) -->
+    <rect x="375" y="50" width="125" height="145" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="437" y="75" class="itpe-svg-title" font-size="12.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">REST 서버</text>
+    <text x="437" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Stateless API Node</text>
+    <line x1="385" y1="105" x2="490" y2="105" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="437" y="125" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">독립적 스케일아웃</text>
+    <text x="437" y="145" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(Auto-Scaling 용이)</text>
+    <rect x="385" y="158" width="105" height="24" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="437" y="174" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">HTTP Cache 활용</text>
+  </svg>
+</div>
+
 ## Ⅲ. HTTP Method의 안전성(Safety)과 멱등성(Idempotency)
 
 > 메서드의 멱등성을 올바르게 설계해야 네트워크 장애 시 안전한 자동 재시도(Retry)가 가능하다.
@@ -158,10 +205,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: REST Level 2 기반 실용적 표준화 및 OpenAPI 3.0 명세 도입 판정
-- 대안: **API Gateway** 연계 통합 인증(OAuth 2.0/JWT) 및 스키마 검증
-- 검증: URI 명명 표준 준수율 100% · 멱등성 보장 및 HTTP 상태코드 일관성
-- 효과: 시스템 간 상호운용성 극대화 및 마이크로서비스 연계 비용 최소화
+- **판정 기준**: RMM(리차드슨 성숙도 모델) Level 2 기반 실용적 표준화 및 OpenAPI 3.0(OAS) 명세서 준수 판정
+- **대응 방안**: **API Gateway** 연계 통합 인증(OAuth 2.0/JWT) 및 **RFC 7807(Problem Details)** 표준 에러 응답 체계 정립
+- **검증 체계**: CI 파이프라인 내 Spectral API Linting 자동화 및 HTTP Method별 멱등성(Idempotency) 계약 검증 테스트 수행
+- **기대 효과**: 엔터프라이즈 시스템 간 상호운용성 극대화, 클라이언트 연계 비용 50% 절감 및 클라우드 오토스케일링 무상태 확장성 보증
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="REST API 거버넌스 제언">
   <div class="itpe-pipeline-node">

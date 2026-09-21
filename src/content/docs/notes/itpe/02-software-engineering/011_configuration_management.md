@@ -1,6 +1,6 @@
 ---
 title: "형상관리(베이스라인)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:49:42+09:00"
 tags:
   - "notes-software-engineering"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -94,6 +94,79 @@ extra:
   </div>
 </div>
 
+### 생명주기 5대 베이스라인(Baseline) 및 CCB 변경 통제 구조
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[생명주기 단계별 5대 베이스라인 진화 및 CCB 통제선]</text>
+
+    <!-- Phase 1: Functional -->
+    <rect x="15" y="45" width="92" height="65" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="61" y="66" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">기능 기준선</text>
+    <text x="61" y="82" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Functional</text>
+    <text x="61" y="98" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">SRS 요구명세</text>
+
+    <line x1="107" y1="77" x2="117" y2="77" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Phase 2: Allocated -->
+    <rect x="117" y="45" width="92" height="65" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="163" y="66" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">분배 기준선</text>
+    <text x="163" y="82" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Allocated</text>
+    <text x="163" y="98" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">아키텍처/설계</text>
+
+    <line x1="209" y1="77" x2="219" y2="77" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Phase 3: Development -->
+    <rect x="219" y="45" width="92" height="65" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="265" y="66" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">개발 기준선</text>
+    <text x="265" y="82" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Development</text>
+    <text x="265" y="98" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">소스코드/단위시험</text>
+
+    <line x1="311" y1="77" x2="321" y2="77" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Phase 4: Product -->
+    <rect x="321" y="45" width="92" height="65" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="367" y="66" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">제품 기준선</text>
+    <text x="367" y="82" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Product</text>
+    <text x="367" y="98" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">릴리스/인수시험</text>
+
+    <line x1="413" y1="77" x2="423" y2="77" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Phase 5: Operational -->
+    <rect x="423" y="45" width="82" height="65" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="464" y="66" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">운영 기준선</text>
+    <text x="464" y="82" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Operational</text>
+    <text x="464" y="98" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">유지보수/패치</text>
+
+    <!-- Bottom: CCB Governance Barrier -->
+    <rect x="15" y="130" width="490" height="75" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
+    <text x="30" y="152" class="itpe-svg-title" font-size="12.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">CCB(형상통제위원회) 변경 통제 루프</text>
+    
+    <!-- Flow pills inside CCB -->
+    <rect x="30" y="162" width="95" height="32" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="77" y="182" class="itpe-svg-sub" font-size="11" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">① 변경 요청(CR)</text>
+
+    <text x="135" y="182" fill="var(--sl-color-text-muted, #94a3b8)" font-size="12">→</text>
+
+    <rect x="150" y="162" width="105" height="32" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="202" y="182" class="itpe-svg-sub" font-size="11" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">② 영향/비용 평가</text>
+
+    <text x="265" y="182" fill="var(--sl-color-text-muted, #94a3b8)" font-size="12">→</text>
+
+    <rect x="280" y="162" width="105" height="32" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" />
+    <text x="332" y="182" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">③ CCB 심의/승인</text>
+
+    <text x="395" y="182" fill="var(--sl-color-text-muted, #94a3b8)" font-size="12">→</text>
+
+    <rect x="410" y="162" width="85" height="32" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-success, #10b981)" />
+    <text x="452" y="182" class="itpe-svg-sub" font-size="11" font-weight="600" fill="var(--sl-color-success, #10b981)" text-anchor="middle">④ 기준선 갱신</text>
+  </svg>
+</div>
+
 | 4대 활동 | 주요 수행 활동 | 산출물 및 통제 도구 |
 |---|---|---|
 | **형상 식별 (Identification)** | 형상관리 대상(CI) 선정, 명명 규칙, 버전 번호 부여 체계 수립 | 형상관리계획서, CI 목록 |
@@ -164,10 +237,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 변경 영향도에 따른 차등적 CCB 승인 체계 확립 (경미 변경: 자동화, 중대 변경: 심의)
-- 대안: **GitOps** 기반 선언적 형상관리 구축 및 **RTM** 연계 형상 추적성 확보
-- 검증: FCA/PCA 형상 감사 정례화 · 빌드 재현율(Reproducibility) 100% 검증
-- 효과: 산출물 불일치 제로화 · 배포 안정성 극대화 및 장애 발생 시 즉각 롤백
+- **판정 기준**: 변경 영향도(Scope/Cost/Schedule)에 따른 차등 통제 (경미한 변경: PR/CI 자동 검증, 중대 변경: CCB 정식 심의)
+- **대응 방안**: **GitOps** 기반 선언적 형상관리(SSOT) 구축 및 **IaC** 연계를 통한 인프라-코드 일원 형상 동기화
+- **검증 체계**: 주기적 기능/물리적 형상감사(FCA/PCA) 정례화 및 빌드 재현율(Reproducibility) 100% 검증 파이프라인 수립
+- **기대 효과**: 산출물 불일치 제로화, 무단 변경 원천 차단 및 장애 발생 시 특정 베이스라인 시점 즉각 롤백 보장
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="형상관리 고도화 제언">
   <div class="itpe-pipeline-node">

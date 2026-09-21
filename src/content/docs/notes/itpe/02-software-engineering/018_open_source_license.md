@@ -2,14 +2,14 @@
 title: "오픈소스 라이선스(Permissive·Copyleft)와 Source-Available 라이선스"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -89,6 +89,63 @@ extra:
   </div>
 </div>
 
+### 오픈소스 라이선스 스펙트럼 및 의무 강도 비교
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[오픈소스 라이선스 소스코드 공개 의무 스펙트럼]</text>
+
+    <!-- Spectrum Arrow Line -->
+    <line x1="25" y1="42" x2="495" y2="42" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="2" marker-end="url(#arrow)" />
+    <text x="25" y="38" class="itpe-svg-label" font-size="10" fill="var(--sl-color-success, #10b981)">자유도 높음 (기업 친화적)</text>
+    <text x="495" y="38" class="itpe-svg-label" font-size="10" fill="var(--sl-color-danger, #ef4444)" text-anchor="end">공개 의무 엄격 (상용화 주의)</text>
+
+    <!-- Block 1: Permissive -->
+    <rect x="20" y="55" width="112" height="145" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
+    <text x="76" y="77" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">Permissive</text>
+    <text x="76" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">MIT, Apache 2.0</text>
+    <line x1="28" y1="102" x2="124" y2="102" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="76" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">소스 비공개 허용</text>
+    <text x="76" y="140" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">독점 상용화 가능</text>
+    <rect x="28" y="160" width="96" height="24" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="76" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-success, #10b981)" text-anchor="middle">고지의무만 준수</text>
+
+    <!-- Block 2: Weak Copyleft -->
+    <rect x="142" y="55" width="112" height="145" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
+    <text x="198" y="77" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Weak Copyleft</text>
+    <text x="198" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">LGPL, MPL</text>
+    <line x1="150" y1="102" x2="246" y2="102" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="198" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">해당 모듈 수정 시</text>
+    <text x="198" y="140" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">수정분만 공개</text>
+    <rect x="150" y="160" width="96" height="24" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="198" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">동적링크 시 비공개</text>
+
+    <!-- Block 3: Strong Copyleft -->
+    <rect x="264" y="55" width="112" height="145" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.2" />
+    <text x="320" y="77" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">Strong Copyleft</text>
+    <text x="320" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">GPL v2 / v3</text>
+    <line x1="272" y1="102" x2="368" y2="102" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="320" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">결합된 전체 코드</text>
+    <text x="320" y="140" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">GPL로 소스 공개</text>
+    <rect x="272" y="160" width="96" height="24" rx="4" fill="var(--sl-color-bg-accent, #fee2e2)" />
+    <text x="320" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">라이선스 전염</text>
+
+    <!-- Block 4: Network / Cloud -->
+    <rect x="386" y="55" width="114" height="145" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
+    <text x="443" y="77" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">Network Copyleft</text>
+    <text x="443" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">AGPL / SSPL</text>
+    <line x1="394" y1="102" x2="492" y2="102" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="443" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">네트워크 SaaS 이용자</text>
+    <text x="443" y="140" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">소스코드 제공 의무</text>
+    <rect x="394" y="160" width="98" height="24" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
+    <text x="443" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">클라우드 서비스 방어</text>
+  </svg>
+</div>
+
 | 라이선스 계열 | 대표 라이선스 | 소스코드 공개 의무 범위 | 특허 조항 | 상용 소프트웨어 결합 위험도 |
 |---|---|---|---|---|
 | **Permissive** | MIT, BSD, Apache 2.0 | **공개 의무 없음** (고지만 유지) | Apache 2.0(특허권 명시) | **극히 낮음** (기업 친화적) |
@@ -160,10 +217,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 오픈소스 전수 관리 체계 수립 및 SBOM 발행 의무화 판정
-- 대안: **SCA 도구(Black Duck)** 연동 CI/CD Quality Gate 구축
-- 검증: Strong/Network Copyleft 유입 제로 검증 · SBOM(SPDX) 일치성 검증
-- 효과: 지식재산권 소송 리스크 완벽 제거 및 글로벌 소프트웨어 수출 신뢰성 확보
+- **판정 기준**: 외부 배포 및 상용화 여부에 따른 라이선스 허용 목록(Whitelist) 판정 (상용: Permissive 원칙, Copyleft 전면 제한)
+- **대응 방안**: **SCA 도구(Black Duck/Snyk)** 연동 CI/CD Quality Gate 구축 및 **SBOM(SPDX/CycloneDX)** 의무 발행 체계 정립
+- **검증 체계**: Strong/Network Copyleft(GPL/AGPL) 유입 0건 통제 및 빌드 시 라이선스 고지문(Notice) 자동 생성 일치성 검증
+- **기대 효과**: 저작권 침해 소송 및 상용 독점 소스코드 강제 공개 위험 원천 제거, 글로벌 소프트웨어 공급망 투명성 확보
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="오픈소스 거버넌스 제언">
   <div class="itpe-pipeline-node">

@@ -2,14 +2,14 @@
 title: "UML 다이어그램 체계(구조·행위, 활동 다이어그램)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -110,6 +110,72 @@ extra:
   </div>
 </div>
 
+### 활동 다이어그램(Activity Diagram) 표기법 및 스윔레인(Swimlane)
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Swimlane Divider -->
+    <line x1="260" y1="35" x2="260" y2="210" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.5" stroke-dasharray="4 3" />
+    
+    <!-- Swimlane Headers -->
+    <rect x="15" y="10" width="235" height="26" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
+    <text x="132" y="27" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">고객 (User)</text>
+
+    <rect x="270" y="10" width="235" height="26" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="387" y="27" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">주문 시스템 (Order System)</text>
+
+    <!-- Initial Node (User lane) -->
+    <circle cx="65" cy="62" r="10" fill="var(--sl-color-text, #1e293b)" />
+    <text x="65" y="47" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">시작 (●)</text>
+
+    <line x1="75" y1="62" x2="105" y2="62" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Action 1: 주문 요청 -->
+    <rect x="105" y="46" width="125" height="32" rx="10" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
+    <text x="167" y="66" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">상품 주문 및 결제</text>
+
+    <!-- Cross to System lane -->
+    <line x1="230" y1="62" x2="280" y2="62" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Fork Node (Thick vertical or horizontal bar) -->
+    <rect x="280" y="48" width="8" height="110" rx="3" fill="var(--sl-color-text, #1e293b)" />
+    <text x="268" y="105" class="itpe-svg-label" font-size="9.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">Fork (분기)</text>
+
+    <!-- Branch 1: 재고 차감 (Top) -->
+    <line x1="288" y1="65" x2="320" y2="65" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <rect x="320" y="50" width="105" height="30" rx="10" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="372" y="69" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">재고 차감</text>
+
+    <!-- Branch 2: 결제 승인 (Bottom) -->
+    <line x1="288" y1="140" x2="320" y2="140" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <rect x="320" y="125" width="105" height="30" rx="10" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="372" y="144" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">결제 승인 통보</text>
+
+    <!-- Join Node (Thick bar) -->
+    <line x1="425" y1="65" x2="450" y2="65" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <line x1="425" y1="140" x2="450" y2="140" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <rect x="450" y="48" width="8" height="110" rx="3" fill="var(--sl-color-text, #1e293b)" />
+    <text x="472" y="105" class="itpe-svg-label" font-size="9.5" font-weight="700" fill="var(--sl-color-text, #1e293b)">Join (합류)</text>
+
+    <!-- Flow down from Join to Action -->
+    <line x1="454" y1="158" x2="454" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <line x1="454" y1="175" x2="280" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Action: 주문 확정 및 배송 접수 -->
+    <rect x="155" y="160" width="125" height="30" rx="10" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.2" />
+    <text x="217" y="179" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-success, #10b981)" text-anchor="middle">주문 확정 처리</text>
+
+    <!-- Final Node -->
+    <line x1="155" y1="175" x2="90" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <circle cx="75" cy="175" r="11" fill="none" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
+    <circle cx="75" cy="175" r="6" fill="var(--sl-color-text, #1e293b)" />
+    <text x="75" y="200" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">종료 (◎)</text>
+  </svg>
+</div>
+
 | 구성요소 | 표기법 심볼 | 설명 및 역할 |
 |---|---|---|
 | **Action Node** | 모서리가 둥근 사각형 | 더 이상 분할할 수 없는 최소 단위의 실행 단계 |
@@ -151,10 +217,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 과도한 전 다이어그램 작성 지양, 핵심 3종(클래스, 시퀀스, 활동) 집중 표준화
-- 대안: **PlantUML/Mermaid** 기반 Docs-as-Code 환경 구축 및 버전 관리 일원화
-- 검증: 요구사항-UML-코드 간 RTM 추적성 100% 검증 · 형상 일치성 확보
-- 효과: 모델링 작성 공수 60% 절감 · 아키텍처 문서의 최신성 및 신뢰성 유지
+- **판정 기준**: 분석·설계 단계별 의사소통 목적에 따른 핵심 3종(클래스, 시퀀스, 활동) 다이어그램 선별 표준화 판정
+- **대응 방안**: **Docs-as-Code(PlantUML/Mermaid)** 기반 코드형 다이어그램 체계 도입 및 소스코드와 단일 형상 관리
+- **검증 체계**: 요구사항(SRS)-UML 다이어그램-구현 코드 간 RTM 100% 추적성 및 Git 커밋 시 다이어그램 자동 빌드 검증
+- **기대 효과**: 형식적 모델링 공수 60% 절감, 아키텍처 문서의 최신성 보장 및 비즈니스 동시성(Fork/Join) 설계 무결성 달성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="UML 모델링 거버넌스 제언">
   <div class="itpe-pipeline-node">
