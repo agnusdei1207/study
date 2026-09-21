@@ -6,16 +6,16 @@ sidebar:
     text: "A"
     variant: note
 title: "CRUD 매트릭스 (CRUD Matrix) 및 프로세스-데이터 정합성 검증"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:50:00+09:00"
 tags:
   - "notes-data"
+category: "03-data"
 weight: 81
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
   question_no: "081"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,26 +24,112 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[CRUD 매트릭스 구조 및 핵심 검증 원칙]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 280" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="260" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="32" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">CRUD 매트릭스 구조 및 핵심 점검 원칙</text>
 
-            엔티티     [고객]    [주문]    [결제]    [배송]    검증 기준 (행 점검)
- 프로세스
- ─────────────────────────────────────────────────────────────────────────────
-  1. 회원가입            C         -         -         -     (고객 생성)
-  2. 주문신청            R         C         -         -     (주문 생성)
-  3. 결제처리            R         U         C         -     (결제 생성, 주문 갱신)
-  4. 배송지시            R         R         R         C     (배송 생성)
- ─────────────────────────────────────────────────────────────────────────────
-  검증 기준 (열 점검)   C, R     C, R, U    C, R       C     * 모든 엔티티는 최소 
-                                                             1개의 C와 R 필수!
+  <!-- Table Graphic Canvas -->
+  <g transform="translate(30, 48)">
+    <!-- Header Row -->
+    <rect x="0" y="0" width="110" height="24" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="55" y="16" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">프로세스 \ 엔티티</text>
 
- ─────────────────────────────────────────────────────────────────────────────
- [CRUD 매트릭스 3대 핵심 점검 규칙]
-  1. 엔티티 점검: 모든 엔티티는 반드시 최소 1개의 'C'(생성)와 1개의 'R'(조회)을 가져야 함
-  2. 단일 생성자 원칙: 엔티티의 'C'는 가급적 단 1개의 프로세스만 담당 (충돌 방지)
-  3. 프로세스 점검: 모든 프로세스는 최소 1개 이상의 엔티티에 C, R, U, D 중 하나를 수행해야 함
-```
+    <rect x="110" y="0" width="70" height="24" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="145" y="16" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">고객</text>
+
+    <rect x="180" y="0" width="70" height="24" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="215" y="16" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">주문</text>
+
+    <rect x="250" y="0" width="70" height="24" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="285" y="16" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">결제</text>
+
+    <rect x="320" y="0" width="70" height="24" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="355" y="16" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">배송</text>
+
+    <rect x="390" y="0" width="70" height="24" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="425" y="16" font-size="8" fill="#64748b" text-anchor="middle">행 점검</text>
+
+    <!-- Row 1: 회원가입 -->
+    <rect x="0" y="24" width="110" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="10" y="40" font-size="8.5" fill="#334155">1. 회원가입</text>
+    <rect x="110" y="24" width="70" height="24" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="145" y="40" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">C</text>
+    <rect x="180" y="24" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="215" y="40" font-size="8.5" fill="#94a3b8" text-anchor="middle">-</text>
+    <rect x="250" y="24" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="285" y="40" font-size="8.5" fill="#94a3b8" text-anchor="middle">-</text>
+    <rect x="320" y="24" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="355" y="40" font-size="8.5" fill="#94a3b8" text-anchor="middle">-</text>
+    <rect x="390" y="24" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="425" y="40" font-size="7.5" fill="#047857" text-anchor="middle">OK (C)</text>
+
+    <!-- Row 2: 주문신청 -->
+    <rect x="0" y="48" width="110" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="10" y="64" font-size="8.5" fill="#334155">2. 주문신청</text>
+    <rect x="110" y="48" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="145" y="64" font-size="8.5" fill="#334155" text-anchor="middle">R</text>
+    <rect x="180" y="48" width="70" height="24" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="215" y="64" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">C</text>
+    <rect x="250" y="48" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="285" y="64" font-size="8.5" fill="#94a3b8" text-anchor="middle">-</text>
+    <rect x="320" y="48" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="355" y="64" font-size="8.5" fill="#94a3b8" text-anchor="middle">-</text>
+    <rect x="390" y="48" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="425" y="64" font-size="7.5" fill="#047857" text-anchor="middle">OK (C,R)</text>
+
+    <!-- Row 3: 결제처리 -->
+    <rect x="0" y="72" width="110" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="10" y="88" font-size="8.5" fill="#334155">3. 결제처리</text>
+    <rect x="110" y="72" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="145" y="88" font-size="8.5" fill="#334155" text-anchor="middle">R</text>
+    <rect x="180" y="72" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="215" y="88" font-size="8.5" fill="#334155" text-anchor="middle">U</text>
+    <rect x="250" y="72" width="70" height="24" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="285" y="88" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">C</text>
+    <rect x="320" y="72" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="355" y="88" font-size="8.5" fill="#94a3b8" text-anchor="middle">-</text>
+    <rect x="390" y="72" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="425" y="88" font-size="7.5" fill="#047857" text-anchor="middle">OK (C,R,U)</text>
+
+    <!-- Row 4: 배송지시 -->
+    <rect x="0" y="96" width="110" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="10" y="112" font-size="8.5" fill="#334155">4. 배송지시</text>
+    <rect x="110" y="96" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="145" y="112" font-size="8.5" fill="#334155" text-anchor="middle">R</text>
+    <rect x="180" y="96" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="215" y="112" font-size="8.5" fill="#334155" text-anchor="middle">R</text>
+    <rect x="250" y="96" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="285" y="112" font-size="8.5" fill="#334155" text-anchor="middle">R</text>
+    <rect x="320" y="96" width="70" height="24" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="355" y="112" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">C</text>
+    <rect x="390" y="96" width="70" height="24" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="425" y="112" font-size="7.5" fill="#047857" text-anchor="middle">OK (C,R)</text>
+
+    <!-- Bottom: Column Verification -->
+    <rect x="0" y="120" width="110" height="24" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="55" y="136" font-size="8" fill="#64748b" text-anchor="middle">열 점검 (C/R 검사)</text>
+    <rect x="110" y="120" width="70" height="24" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="145" y="136" font-size="8" font-weight="bold" fill="#15803d" text-anchor="middle">C, R (OK)</text>
+    <rect x="180" y="120" width="70" height="24" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="215" y="136" font-size="8" font-weight="bold" fill="#15803d" text-anchor="middle">C, R, U (OK)</text>
+    <rect x="250" y="120" width="70" height="24" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="285" y="136" font-size="8" font-weight="bold" fill="#15803d" text-anchor="middle">C, R (OK)</text>
+    <rect x="320" y="120" width="70" height="24" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="355" y="136" font-size="8" font-weight="bold" fill="#15803d" text-anchor="middle">C (R누락?)</text>
+    <rect x="390" y="120" width="70" height="24" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="425" y="136" font-size="7.5" fill="#1e40af" text-anchor="middle">완전성검사</text>
+  </g>
+
+  <!-- Bottom Guidelines -->
+  <g transform="translate(30, 205)">
+    <rect x="0" y="0" width="460" height="52" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="12" y="18" font-size="8.5" font-weight="bold" fill="#0f172a">&bull; 규칙 1 (전수 C/R): 모든 엔티티는 최소 1개의 'C'(생성)와 1개의 'R'(조회) 필수 (고아/사석 방지)</text>
+    <text x="12" y="34" font-size="8.5" font-weight="bold" fill="#0f172a">&bull; 규칙 2 (단일 생성자): 엔티티 'C'는 가급적 1개 프로세스만 전담 (품질 불일치 차단)</text>
+    <text x="12" y="48" font-size="8" fill="#475569">&bull; 표기 우선순위: C (Create) &gt; D (Delete) &gt; U (Update) &gt; R (Read)</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **비즈니스 업무 프로세스(Process)와 데이터 모델의 엔티티(Entity) 간의 상호 작용(Create, Read, Update, Delete)을 2차원 표 형태로 매핑하여, 프로세스 정의의 누락과 데이터 모델의 불일치를 사전에 전수 검증하고 시스템 경계 분할 및 테스트 케이스 도출의 근간을 제공하는 품질 검증 도구**
 - 암기: `행-열-교-검` (행: 단위 프로세스, 열: 엔티티 타입, 교차점: CRUD 행위, 검증: 전수 C/R 규칙) / `단-고-더` (단일 생성자 원칙, 고아 엔티티 배제, 더미 프로세스 배제)
@@ -70,15 +156,29 @@ extra:
 
 #### 한줄 요약: 행의 단위 프로세스와 열의 엔티티 타입이 만나는 교차점에 C > D > U > R의 우선순위로 데이터 행위를 표기
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                       CRUD 매트릭스의 표현 체계                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-  - 행 (Rows)     : 최하위 단위 업무 프로세스 (더 이상 분할되지 않는 작업 단위)
-  - 열 (Columns)  : 개념/논리 데이터 모델의 핵심 엔티티 타입 (테이블)
-  - 셀 (Cells)    : C, R, U, D 알파벳 표기 (복수 발생 시 우선순위에 따라 표기)
-  - 표기 우선순위 : C (Create) > D (Delete) > U (Update) > R (Read)
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 120" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="100" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">CRUD 매트릭스 구성 요소 및 우선순위 체계</text>
+
+  <g transform="translate(25, 42)">
+    <rect x="0" y="0" width="145" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="72" y="18" font-size="9.5" font-weight="bold" fill="#1e40af" text-anchor="middle">행 (Rows) - 프로세스</text>
+    <text x="72" y="34" font-size="8" fill="#334155" text-anchor="middle">최하위 단위 업무 프로세스</text>
+    <text x="72" y="47" font-size="8" fill="#64748b" text-anchor="middle">시간적 업무 흐름 순 배치</text>
+
+    <rect x="160" y="0" width="145" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="232" y="18" font-size="9.5" font-weight="bold" fill="#1e40af" text-anchor="middle">열 (Columns) - 엔티티</text>
+    <text x="232" y="34" font-size="8" fill="#334155" text-anchor="middle">ERD 핵심 엔티티 타입</text>
+    <text x="232" y="47" font-size="8" fill="#64748b" text-anchor="middle">데이터 라이프사이클 순</text>
+
+    <rect x="320" y="0" width="145" height="55" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="392" y="18" font-size="9.5" font-weight="bold" fill="#1e40af" text-anchor="middle">셀 (Cells) - 표기 우선순위</text>
+    <text x="392" y="34" font-size="8.5" font-weight="bold" fill="#dc2626" text-anchor="middle">C &gt; D &gt; U &gt; R</text>
+    <text x="392" y="47" font-size="8" fill="#475569" text-anchor="middle">복수 시 병기 or 우선순위</text>
+  </g>
+</svg>
+</div>
 
 ### 1. 매트릭스 구성 요소 상세
 1. **행(Rows) - 업무 프로세스**:
@@ -97,30 +197,11 @@ extra:
 
 #### 한줄 요약: 고아 엔티티 방지를 위한 전수 C/R 검사, 중복 충돌을 방지하는 단일 생성자 원칙, 더미 프로세스 배제
 
-```text
-┌───────────────────────────────────┬───────────────────────────────────┐
-│       1. 엔티티 점검 규칙         │       2. 프로세스 점검 규칙       │
-├───────────────────────────────────┼───────────────────────────────────┤
-│ - 모든 열(엔티티)은 반드시        │ - 모든 행(프로세스)은 반드시      │
-│   최소 1개의 'C'와 1개의 'R' 필수  │   최소 1개 이상의 C, R, U, D 보유  │
-│ - C가 없으면: 미생성 고아 엔티티  │ - 아무 작업도 안 하면: 더미 프로세스│
-├───────────────────────────────────┴───────────────────────────────────┤
-│                    3. 단일 생성자 원칙 (Single Creator)                │
-│ - 특정 엔티티의 'C'(생성)는 가급적 1개의 프로세스만 전담해야 함      │
-│ - 복수 프로세스가 동시 C를 수행하면 데이터 유입 경로 파편화 및 정합성 충돌│
-└───────────────────────────────────────────────────────────────────────┘
-```
-
-### 1. 규칙 1: 엔티티 관점의 전수 C 및 R 검사 (열 기준)
-- **C(Create)가 없는 엔티티**: 데이터베이스에 데이터가 영원히 생성되지 않는 **'미생성 고아 엔티티'** $\rightarrow$ 데이터를 생성하는 업무 프로세스를 추가 도출하거나 불필요한 엔티티 삭제
-- **R(Read)이 없는 엔티티**: 데이터가 생성은 되지만 아무도 조회하거나 사용하지 않는 **'사석(Dead Data) 엔티티'** $\rightarrow$ 활용 프로세스를 기획하거나 엔티티 폐기
-
-### 2. 규칙 2: 단일 생성자 원칙 (Single Creator Principle)
-- 하나의 엔티티에 대해 생성(C)을 수행하는 프로세스가 2개 이상 존재하면, 생성 로직(필수값 검증, 기본값 세팅)이 분산되어 데이터 품질 불일치와 비즈니스 버그 유발
-- 가급적 하나의 프로세스(또는 단일 API 엔드포인트)만이 C 권한을 갖도록 일원화
-
-### 3. 규칙 3: 프로세스 관점의 접근 검사 (행 기준)
-- 어떤 엔티티에 대해서도 C, R, U, D 중 아무런 연산도 수행하지 않는 프로세스는 전산화 가치가 없는 **'더미 프로세스(Dummy Process)'**이므로 업무 재설계 대상
+| 점검 규칙 | 주요 점검 내용 | 위반 시 발생하는 결함 | 해결 및 보정 방안 |
+|:---|:---|:---|:---|
+| **1. 엔티티 점검 (열)** | 모든 엔티티는 최소 1개의 'C'와 1개의 'R'을 가져야 함 | C 누락 시: 미생성 고아 엔티티<br>R 누락 시: 사용 안 되는 사석(Dead) 엔티티 | 데이터 생성 프로세스를 추가하거나, 불필요한 고아/사석 엔티티 폐기 |
+| **2. 단일 생성자 원칙** | 특정 엔티티의 'C'는 가급적 단 1개의 프로세스만 전담 | 여러 프로세스가 동시 C 수행 시 생성 로직 파편화 및 정합성 충돌 | 생성 전담 서비스/API를 일원화하여 단일 진입점 구축 |
+| **3. 프로세스 점검 (행)** | 모든 프로세스는 최소 1개 엔티티에 C, R, U, D 수행 | 어떤 데이터도 조작하지 않는 더미 프로세스(Dummy Process) 존재 | 업무 재설계를 통해 무의미한 프로세스 통폐합 |
 
 ## Ⅳ. CRUD 매트릭스 vs 데이터 흐름도(DFD) vs 트랜잭션 매트릭스
 
@@ -137,15 +218,6 @@ extra:
 ## Ⅴ. 시스템 분석·설계 및 아키텍처 관점의 실무 활용 가치
 
 #### 한줄 요약: 마이크로서비스(MSA) 서비스 경계 분할, DB 락 경합 지점 식별, 통합 테스트 케이스 자동화의 근간
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      CRUD 매트릭스의 3대 실무 활용 영역                      │
-└─────────────────────────────────────────────────────────────────────────────┘
-  1. 시스템 경계 분할 ──▶ C와 U가 밀집된 프로세스와 엔티티를 묶어 Bounded Context 도출
-  2. 동시성 병목 식별 ──▶ 동일 엔티티에 다수 프로세스의 U/D 집중 시 락(Lock) 경합 사전 방어
-  3. 테스트 케이스 도출──▶ C ──▶ R ──▶ U ──▶ D 라이프사이클에 맞춘 엔드투엔드 시나리오 구성
-```
 
 ### 1. 도메인 주도 설계(DDD) 및 마이크로서비스 경계(Bounded Context) 분할
 - CRUD 매트릭스에서 특정 엔티티들에 대해 C와 U를 공유하는 프로세스 군집을 클러스터링
@@ -167,41 +239,72 @@ extra:
   - Spring Boot 컨트롤러(`@PostMapping`, `@GetMapping`)와 ORM 레포지토리(JPA `save()`, `findById()`)의 정적 AST(Abstract Syntax Tree)를 파싱
   - 빌드(CI) 시점에 실제 소스코드와 DB 스키마 간의 CRUD 매트릭스를 자동 생성하고, C나 R이 누락된 엔티티가 감지되면 빌드를 실패시키는 자동화 거버넌스 도입
 
-## Ⅶ. 데이터 아키텍트 관점의 자동화된 CRUD 거버넌스 제언
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 단순 문서 산출물이 아닌 시스템 엔지니어링의 정합성 게이트웨이로 CRUD 매트릭스를 승격
+### 학습자 통찰 메모 — 답안 밖
 
-- **모델링 도구(ERwin, PowerDesigner)와 형상관리의 연계**:
-  - 데이터 모델러와 소프트웨어 개발자가 동일한 엔티티 메타데이터를 기반으로 CRUD 매트릭스를 버전 관리(Git)해야 함
-- **엔티티 수명주기 상태 머신(State Machine)과의 일치성 확인**:
-  - CRUD에서 'U'(Update)가 발생하는 속성이 엔티티의 상태 코드(Status)인 경우, 상태 전이도(State Transition Diagram)와 1:1로 매핑하여 허용되지 않은 상태 도약(State Jump)이 프로세스에서 발생하지 않는지 교차 검증해야 함
+> **[핵심 통찰]**
+> CRUD 매트릭스는 단순한 "감리용 엑셀 문서"가 아니라 **"소프트웨어 아키텍처 경계 분할(Bounded Context)과 테스트 완전성을 증명하는 수학적 연관 행렬"**이다. 현업 프로젝트의 가장 큰 병폐는 분석 때 작성한 엑셀 매트릭스가 개발 중 코드와 동기화되지 않고 버려진다는 점이다. 최신 아키텍처에서는 CI/CD 파이프라인에 AST 정적 분석기를 연결하여 소스코드의 Repository 호출부를 스캔해 CRUD 매트릭스를 자동 갱신하고, C나 R이 누락된 고아 테이블이 발견되면 빌드를 중단시키는 **"지속적 CRUD 거버넌스(Continuous Architecture)"**를 확립해야 한다.
+
+> **[나라면 이렇게 쓴다]**
+> 10점형이라면 가상의 전자상거래 4개 프로세스 $\times$ 4개 엔티티 표를 그리고 셀 표기 우선순위($C > D > U > R$)와 3대 점검 규칙(C/R 전수, 단일 생성자, 더미 배제)을 명쾌하게 쓰겠다. 25점형이라면 CRUD 클러스터링을 통한 MSA 서비스 경계 분할 기법과 CI 파이프라인 연계 자동화 거버넌스를 4단 제언으로 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 수기 작성된 CRUD 엑셀의 사장화로 개발 코드와의 괴리 발생 및 미생성 고아 엔티티 방치
+- **대응 (개선 방안)**: CI 빌드 파이프라인에 소스코드 AST 정적 분석 기반 CRUD 자동 추출 엔진 구축 및 3대 검증 규칙 자동 게이트웨이화
+- **검증 (검증 기준)**: 모든 엔티티의 C/R 충족률 100% 검증, 단일 생성자 위반 0건 유지, 코드-매트릭스 일치도 99% 달성
+- **효과 (실행 효과)**: 설계-개발 간 누락 결함 80% 사전 차단, 통합 테스트 시나리오 커버리지 100% 확보 및 감리 통과율 제고
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">1</div>
+    <div class="itpe-flow-step-title">현행 한계</div>
+    <div class="itpe-flow-step-desc">수기 엑셀 사장화 및 프로세스-엔티티 간 누락/불일치 방치</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">2</div>
+    <div class="itpe-flow-step-title">개선 방안</div>
+    <div class="itpe-flow-step-desc">코드 AST 정적 분석 기반 CRUD 매트릭스 CI 자동 추출 및 검증</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">3</div>
+    <div class="itpe-flow-step-title">검증 기준</div>
+    <div class="itpe-flow-step-desc">C/R 충족률 100%, 단일 생성자 준수, 소스코드-ERD 일치도 &ge; 99%</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">4</div>
+    <div class="itpe-flow-step-title">실행 효과</div>
+    <div class="itpe-flow-step-desc">설계 누락 결함 80% 감소 및 MSA 서비스 경계 도출 최적화</div>
+  </div>
+</div>
 
 ---
 
 ## 1교시 10점 답안 발췌
 
-```text
-[문제 7] 데이터모델링에서 CRUD 매트릭스의 사용 목적 및 표현 방법
+### 1. CRUD 매트릭스의 개념 및 사용 목적
 
-1. CRUD 매트릭스의 개념 및 사용 목적
- 가. 개념: 업무 프로세스와 엔티티 간의 상관관계(Create/Read/Update/Delete)를 2차원 표로 검증하는 도구
- 나. 사용 목적:
+- **개념**: 업무 프로세스와 엔티티 간의 상관관계(Create/Read/Update/Delete)를 2차원 표로 검증하는 품질 도구
+- **사용 목적**:
   - 프로세스와 데이터 모델 간의 누락 및 불일치 사전 검증
-  - 엔티티의 생성(C) 및 활용(R) 완전성 감사 (고아 엔티티 원천 차단)
-  - 서브시스템 분할 및 통합 테스트 시나리오 도출 기준 제공
+  - 엔티티의 생성(C) 및 활용(R) 완전성 감사 (고아/사석 엔티티 차단)
+  - 서브시스템(MSA) 경계 분할 및 통합 테스트 시나리오 도출 기준 제공
 
-2. CRUD 매트릭스 표현 방법 및 3대 점검 규칙
- 가. 표현 방법
-  - 행(Rows): 단위 업무 프로세스 (시간 흐름 순 배치)
-  - 열(Columns): 데이터 모델의 엔티티 타입 (테이블)
-  - 셀(Cells): C, R, U, D 표기 (우선순위: C > D > U > R)
- 나. 3대 점검 규칙
-  - 규칙 1: 모든 엔티티는 반드시 최소 1개의 'C'와 1개의 'R'을 가져야 함
-  - 규칙 2: 엔티티 생성(C)은 원칙적으로 단 1개의 프로세스만 전담 (단일 생성자)
-  - 규칙 3: 모든 프로세스는 최소 1개 이상의 엔티티를 조작해야 함
+### 2. CRUD 매트릭스 표현 방법 및 3대 점검 규칙
 
-3. 실무 적용 제언: CI 파이프라인 정적 분석을 통한 코드-매트릭스 자동 동기화
-```
+1. **표현 방법**:
+   - **행(Rows)**: 단위 업무 프로세스 (시간 흐름 순 배치)
+   - **열(Columns)**: 데이터 모델의 엔티티 타입 (생명주기 순 배치)
+   - **셀(Cells)**: C, R, U, D 표기 (단일 표기 시 우선순위: $C > D > U > R$)
+2. **3대 점검 규칙**:
+   - **규칙 1 (엔티티 점검)**: 모든 엔티티는 반드시 최소 1개의 'C'와 1개의 'R'을 가져야 함
+   - **규칙 2 (단일 생성자)**: 엔티티 생성(C)은 원칙적으로 단 1개의 프로세스만 전담
+   - **규칙 3 (프로세스 점검)**: 모든 프로세스는 최소 1개 이상의 엔티티를 조작해야 함
+
+### 3. 실무 아키텍처 제언
+
+- 수기 엑셀 작성의 한계를 탈피하여 CI 파이프라인에서 소스코드 정적 분석(AST)을 통해 CRUD 매트릭스를 자동 생성하고 정합성을 검증하는 아키텍처 거버넌스 수립
 
 ---
 

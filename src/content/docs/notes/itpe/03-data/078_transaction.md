@@ -3,19 +3,19 @@ sidebar:
   order: 78
   label: "078. 트랜잭션 (Transaction)"
   badge:
-    text: "B"
+    text: "A"
     variant: note
 title: "트랜잭션 (Transaction) 및 ACID 특성과 상태 전이도"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:45:00+09:00"
 tags:
   - "notes-data"
+category: "03-data"
 weight: 78
 extra:
-  model: "GPT-5"
-  keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "078"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,31 +24,66 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[트랜잭션의 5대 상태 전이도 및 ACID 구현 기술 매핑]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 280" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="260" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="32" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">트랜잭션 5대 상태 전이도 &middot; ACID 구현 메커니즘</text>
 
-                      ┌────────────────────────┐
-                      │     활동 (Active)      │ ──▶ 트랜잭션이 시작되어 연산 수행 중
-                      └──────────┬─────────────┘
-               정상 연산 종료    │             │ 비정상 오류 발생
-                      ┌──────────┘             └──────────┐
-                      ▼                                   ▼
-              ┌───────────────┐                   ┌───────────────┐
-              │   부분 완료   │                   │  실패 (Failed) │
-              │(Partially Com)│                   └───────┬───────┘
-              └───────┬───────┘                           │
-       Commit 성공    │             Commit 실패           │ Rollback 실행
-                      ▼ ──────────────────────────────────┘
-              ┌───────────────┐                   ┌───────────────┐
-              │ 완료(Committed│                   │ 철회 (Aborted)│
-              └───────────────┘                   └───────────────┘
- ─────────────────────────────────────────────────────────────────────────────
- [ACID 4대 특성과 DBMS 핵심 구현 메커니즘]
-  - 원자성 (Atomicity)   ──▶ Undo Log (실패 시 변경 작업 원복, All or Nothing)
-  - 일관성 (Consistency) ──▶ 무결성 제약조건 (PK, FK, Check), 트리거, 도메인 규칙
-  - 격리성 (Isolation)   ──▶ 2단계 락킹 (2PL), MVCC 언두 스냅샷, 격리 수준
-  - 영속성 (Durability)  ──▶ Redo Log, WAL (Write-Ahead Logging), Checkpoint
-```
+  <!-- State Machine Canvas -->
+  <g transform="translate(30, 48)">
+    <!-- 1. Active -->
+    <rect x="160" y="0" width="110" height="34" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="215" y="21" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">1. 활동 (Active)</text>
+
+    <!-- Arrow Active -> Partially Committed -->
+    <path d="M 180 34 L 110 70" stroke="#3b82f6" stroke-width="1.5"/>
+    <polygon points="110,70 118,65 115,72" fill="#3b82f6"/>
+    <text x="120" y="48" font-size="7.5" fill="#1e40af">연산 정상종료</text>
+
+    <!-- Arrow Active -> Failed -->
+    <path d="M 250 34 L 320 70" stroke="#ef4444" stroke-width="1.5"/>
+    <polygon points="320,70 315,72 312,65" fill="#ef4444"/>
+    <text x="310" y="48" font-size="7.5" fill="#991b1b">오류/예외 발생</text>
+
+    <!-- 2. Partially Committed -->
+    <rect x="50" y="70" width="120" height="34" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="110" y="91" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">2. 부분완료 (Partially)</text>
+
+    <!-- 4. Failed -->
+    <rect x="270" y="70" width="110" height="34" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="325" y="91" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">4. 실패 (Failed)</text>
+
+    <!-- Arrow Partially -> Committed -->
+    <path d="M 110 104 L 110 135" stroke="#10b981" stroke-width="1.5"/>
+    <polygon points="110,135 106,128 114,128" fill="#10b981"/>
+    <text x="75" y="122" font-size="7.5" fill="#047857">Commit 성공</text>
+
+    <!-- Arrow Partially -> Failed -->
+    <path d="M 170 87 L 270 87" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="2,2"/>
+    <text x="220" y="82" font-size="7" fill="#dc2626" text-anchor="middle">플러시 실패</text>
+
+    <!-- Arrow Failed -> Aborted -->
+    <path d="M 325 104 L 325 135" stroke="#dc2626" stroke-width="1.5"/>
+    <polygon points="325,135 321,128 329,128" fill="#dc2626"/>
+    <text x="330" y="122" font-size="7.5" fill="#991b1b">Rollback 실행</text>
+
+    <!-- 3. Committed -->
+    <rect x="50" y="135" width="120" height="34" rx="4" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+    <text x="110" y="156" font-size="9.5" font-weight="bold" fill="#065f46" text-anchor="middle">3. 완료 (Committed)</text>
+
+    <!-- 5. Aborted -->
+    <rect x="270" y="135" width="110" height="34" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="325" y="156" font-size="9.5" font-weight="bold" fill="#991b1b" text-anchor="middle">5. 철회 (Aborted)</text>
+  </g>
+
+  <!-- Bottom: ACID Core Implementation -->
+  <g transform="translate(30, 218)">
+    <rect x="0" y="0" width="460" height="42" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="12" y="16" font-size="8.5" font-weight="bold" fill="#0f172a">&bull; 원자성 (A): Undo Log 롤백 | 일관성 (C): 무결성 제약조건/트리거</text>
+    <text x="12" y="32" font-size="8.5" font-weight="bold" fill="#0f172a">&bull; 격리성 (I): 2PL 락 &middot; MVCC 스냅샷 | 영속성 (D): Redo Log &middot; WAL &middot; Checkpoint</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **데이터베이스의 상태를 변환시키는 하나의 논리적 기능을 수행하기 위한 작업의 분할 불가능한 최소 논리 단위(All-or-Nothing)로, 원자성(A), 일관성(C), 격리성(I), 영속성(D)의 4대 속성을 보장하여 동시 실행 충돌과 시스템 장애로부터 데이터의 정합성을 수호하는 메커니즘**
 - 암기: `에이-씨-아이-디` (Atomicity, Consistency, Isolation, Durability) / `활-부-완-실-철` (활동, 부분완료, 완료, 실패, 철회) / `언-제-락-리` (Undo로그, 제약조건, 락/MVCC, Redo로그)
@@ -75,18 +110,6 @@ extra:
 
 #### 한줄 요약: 원자성, 일관성, 격리성, 영속성의 4대 기둥과 이를 물리적으로 구현하는 Undo, Redo, 락, 제약조건의 연계
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    ACID 4대 특성과 DBMS 물리 엔진 매핑                      │
-└─────────────────────────────────────────────────────────────────────────────┘
-  1. 원자성 (Atomicity)   ──▶ All or Nothing / 언두 세그먼트 (Undo Log)
-  2. 일관성 (Consistency) ──▶ 데이터 상태 유효성 / 무결성 제약조건, DDL, 트리거
-  3. 격리성 (Isolation)   ──▶ 동시 트랜잭션 간섭 배제 / 2PL 락킹, MVCC 스냅샷
-  4. 영속성 (Durability)  ──▶ 장애 후에도 결과 영구 보존 / Redo Log, WAL 저널링
-```
-
-### 1. ACID 특성별 상세 정의 및 구현 기술
-
 | ACID 특성 | 핵심 정의 및 보장 내용 | 위반 시 발생하는 현상 | DBMS 물리 구현 메커니즘 |
 |:---|:---|:---|:---|
 | **원자성 (Atomicity)** | 트랜잭션 내 연산들은 전부 수행되거나 전부 취소되어야 함 (All-or-Nothing) | 계좌 이체 중 출금만 되고 입금은 누락되어 돈이 증발함 | **Undo Log (언두 세그먼트)**<br>장애 발생 시 롤백 수행 |
@@ -98,26 +121,6 @@ extra:
 
 #### 한줄 요약: 활동, 부분 완료, 완료, 실패, 철회로 이어지는 5단계 상태 머신과 커밋/롤백 분기 흐름
 
-```text
- [1. 활동 (Active)]
-  - 트랜잭션이 시작되어 실제 읽기/쓰기(DML) 연산을 수행 중인 초기 상태
-           │
-           ├──────────────────────────────────────────┐
-           ▼ (정상적으로 마지막 연산 실행 완료)       ▼ (중간에 시스템 오류/제약 위반)
- [2. 부분 완료 (Partially Committed)]        [4. 실패 (Failed)]
-  - 메모리 버퍼에는 기록되었으나             - 비정상 상황으로 더 이상 정상
-    디스크 플러시가 아직 미완료된 상태         진행이 불가능한 상태
-           │                                          │
-           ├─────────────────────────┐                │
-           ▼ (WAL 디스크 플러시 성공) ▼ (플러시 실패)  │
- [3. 완료 (Committed)]               └───────────────▶│ (롤백 프로세스 진입)
-  - 트랜잭션이 최종 성공 확정되어                     ▼
-    디스크에 영구 반영된 최종 상태            [5. 철회 (Aborted)]
-                                              - Undo 로그로 모든 작업을 원복하고
-                                                트랜잭션 시작 전 상태로 복귀
-```
-
-### 1. 상태별 세부 특성
 - **활동 (Active)**: 트랜잭션이 시작(BEGIN)되어 질의문들이 실행 중인 동적 상태
 - **부분 완료 (Partially Committed)**: 애플리케이션의 마지막 SQL 문장이 실행 완료되었으나, 트랜잭션 로그 버퍼의 데이터가 실제 디스크에 영구 쓰기(fsync)되기 직전의 불안정한 상태
 - **완료 (Committed)**: WAL 로그가 디스크에 물리적으로 기록 완료되어 트랜잭션의 성공이 확정된 영구 상태
@@ -128,17 +131,30 @@ extra:
 
 #### 한줄 요약: 디스크 I/O 최적화를 위해 메모리 변경 전 로그를 먼저 쓰는 WAL과 장애 복구 표준 ARIES 알고리즘
 
-```text
-[Write-Ahead Logging (WAL) 메커니즘]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 130" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="110" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">Write-Ahead Logging (WAL) &middot; 체크포인트 흐름</text>
 
- 1. 클라이언트 UPDATE 실행 ──▶ 2. Undo/Redo 로그 버퍼 기록 ──▶ 3. 메모리 데이터 버퍼 수정 (Dirty Page)
-                                          │
-                                          ▼ (★ 커밋 시점: 반드시 로그 먼저 디스크 기록!)
-                                [ Redo Log 파일 (디스크 순차 I/O) ]
-                                          │
-                                          ▼ (비동기 지연 플러시: Checkpoint)
-                                [ Datafile 블록 (디스크 랜덤 I/O) ]
-```
+  <g transform="translate(25, 42)">
+    <rect x="0" y="0" width="110" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="55" y="20" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">1. DML UPDATE</text>
+    <text x="55" y="38" font-size="7.5" fill="#475569" text-anchor="middle">메모리 버퍼 수정</text>
+
+    <path d="M 112 27 L 138 27" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="140" y="0" width="140" height="55" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="210" y="20" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">2. Redo Log 먼저 기록</text>
+    <text x="210" y="38" font-size="7.5" fill="#b91c1c" text-anchor="middle">★ WAL: 디스크 순차 I/O</text>
+
+    <path d="M 282 27 L 318 27" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="320" y="0" width="140" height="55" rx="4" fill="#f8fafc" stroke="#64748b" stroke-width="1.2"/>
+    <text x="390" y="20" font-size="9" font-weight="bold" fill="#334155" text-anchor="middle">3. 데이터파일 플러시</text>
+    <text x="390" y="38" font-size="7.5" fill="#64748b" text-anchor="middle">Checkpoint 비동기 쓰기</text>
+  </g>
+</svg>
+</div>
 
 - **WAL (Write-Ahead Logging)의 대원칙**:
   - 더티 페이지(Dirty Page)를 디스크 데이터 파일에 기록하기 전에, 반드시 대응하는 **Redo 로그 레코드를 디스크에 먼저 기록**해야 함
@@ -152,18 +168,6 @@ extra:
 
 #### 한줄 요약: 단일 RDBMS의 강한 일관성(ACID)과 분산 NoSQL/MSA의 고가용성 중심 결과적 일관성(BASE) 비교
 
-```text
-┌───────────────────────────────────┬───────────────────────────────────┐
-│           ACID (RDBMS)            │           BASE (분산 시스템)      │
-├───────────────────────────────────┼───────────────────────────────────┤
-│ - Atomicity (원자성)              │ - Basically Available (기본 가용성)│
-│ - Consistency (일관성)            │ - Soft-state (유연한 상태)        │
-│ - Isolation (격리성)              │ - Eventual consistency(결과적일관)│
-│ - Durability (영속성)             │                                   │
-│ * 특징: 비관적 잠금, 강한 정합성   │ * 특징: 낙관적 복제, 높은 가용성   │
-└───────────────────────────────────┴───────────────────────────────────┘
-```
-
 | 비교 항목 | ACID (전통 RDBMS) | BASE (분산 NoSQL / MSA) |
 |:---|:---|:---|
 | **설계 철학** | **강한 데이터 일관성 (Strong Consistency)** 최우선 | **시스템 가용성 (High Availability)** 최우선 |
@@ -176,65 +180,111 @@ extra:
 
 #### 한줄 요약: 외부 통신 지연에 따른 커넥션 풀 고갈을 방지하고 DB와 메시지 큐 간의 원자성을 보장하는 설계
 
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 130" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="110" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">트랜잭셔널 아웃박스 패턴 (Transactional Outbox Pattern)</text>
+
+  <g transform="translate(25, 42)">
+    <!-- DB Box -->
+    <rect x="0" y="0" width="170" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="85" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">RDBMS (단일 트랜잭션)</text>
+    <text x="85" y="34" font-size="7.5" fill="#334155" text-anchor="middle">&bull; 주문 테이블 INSERT</text>
+    <text x="85" y="47" font-size="7.5" fill="#1e40af" text-anchor="middle">&bull; Outbox 테이블 INSERT</text>
+
+    <!-- Arrow -->
+    <path d="M 172 27 L 208 27" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- CDC -->
+    <rect x="210" y="0" width="110" height="55" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="265" y="20" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">CDC 엔진</text>
+    <text x="265" y="38" font-size="7.5" fill="#475569" text-anchor="middle">Debezium (WAL 파싱)</text>
+
+    <!-- Arrow -->
+    <path d="M 322 27 L 348 27" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- Kafka -->
+    <rect x="350" y="0" width="110" height="55" rx="4" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.2"/>
+    <text x="405" y="20" font-size="9" font-weight="bold" fill="#5b21b6" text-anchor="middle">Apache Kafka</text>
+    <text x="405" y="38" font-size="7.5" fill="#475569" text-anchor="middle">이벤트 안전 발행</text>
+  </g>
+</svg>
+</div>
+
 ### 1. 전형적 장애 패턴: 외부 통신을 포함한 긴 트랜잭션 (Long Transaction)
-- **문제점**:
-  ```java
-  @Transactional
-  public void orderPayment() {
-      orderRepository.save(order);       // 1. DB 쓰기 (커넥션 점유)
-      pgClient.callPaymentApi();        // 2. 외부 PG사 통신 (3~5초 소요!)
-      order.setStatus(PAID);             // 3. DB 업데이트
-  }
-  ```
-  - 외부 PG사 서버 지연 시 톰캣 스레드와 HikariCP DB 커넥션이 5초 동안 묶이면서 순식간에 커넥션 풀이 고갈(Connection Timeout)되어 시스템 전체 중단
-- **해결책**:
-  - 외부 네트워크 I/O는 트랜잭션 블록 바깥으로 분리하고, DB 작업만 수 밀리초 단위로 최소 시간 격리 수행
+- 외부 PG사 서버 지연 시 톰캣 스레드와 HikariCP DB 커넥션이 5초 동안 묶이면서 순식간에 커넥션 풀이 고갈(Connection Timeout)되어 시스템 전체 중단
+- **해결책**: 외부 네트워크 I/O는 트랜잭션 블록 바깥으로 분리하고, DB 작업만 수 밀리초 단위로 최소 시간 격리 수행
 
 ### 2. 트랜잭셔널 아웃박스 패턴 (Transactional Outbox Pattern)
-- **문제점**: DB에 주문 데이터를 저장하고 카프카에 이벤트를 발행할 때, DB는 커밋되었으나 카프카 전송이 실패하거나 그 반대가 발생하는 '이종 분산 원자성 파괴'
-- **해결책**:
-  - 주문 테이블과 동일한 DB 트랜잭션 내에 **아웃박스(Outbox) 테이블**을 생성하여 발행할 메시지를 함께 INSERT (로컬 ACID 보장)
-  - 별도의 CDC 엔진(Debezium)이 아웃박스 테이블의 변경 로그를 읽어 카프카로 안전하게 발행(At-least-once)함으로써 분산 환경의 원자성 확보
+- 주문 테이블과 동일한 DB 트랜잭션 내에 **아웃박스(Outbox) 테이블**을 생성하여 발행할 메시지를 함께 INSERT (로컬 ACID 보장)
+- 별도의 CDC 엔진(Debezium)이 아웃박스 테이블의 변경 로그를 읽어 카프카로 안전하게 발행(At-least-once)함으로써 분산 환경의 원자성 확보
 
-## Ⅶ. 데이터 아키텍트 관점의 트랜잭션 경계 설정 및 최적화 제언
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 트랜잭션 경계의 최소화, 읽기 전용 트랜잭션(`readOnly=true`) 최적화, 분산 환경에서의 보상 트랜잭션 정립
+### 학습자 통찰 메모 — 답안 밖
 
-- **"트랜잭션 경계는 짧을수록, 좁을수록 아름답다"**:
-  - 트랜잭션이 길어지면 락(Lock) 보유 시간이 늘어나 다른 트랜잭션의 대기 큐가 급증하고 데드락 발생 확률이 기하급수적으로 증가함
-  - 복잡한 비즈니스 로직 연산은 메모리에서 먼저 완료하고, DB 트랜잭션은 순수 커밋 직전 찰나의 순간에만 오픈하는 **'트랜잭션 지연 오픈'** 기법을 적용해야 함
-- **읽기 전용 트랜잭션 최적화**:
-  - 조회 중심 서비스에는 `@Transactional(readOnly = true)`를 선언하여 더티 체킹(Dirty Checking) 메모리 오버헤드를 제거하고, MySQL 등에서 슬레이브 DB(Read Replica)로 쿼리를 자동 라우팅하도록 인프라를 유도해야 함
+> **[핵심 통찰]**
+> 트랜잭션 설계의 황금률은 **"트랜잭션 경계(@Transactional)는 짧을수록, 좁을수록 아름답다"**는 것이다. 트랜잭션 내부에 외부 결제 API, 이메일 발송, S3 파일 업로드 같은 네트워크 I/O를 넣는 순간, 외부 장애가 전체 DB 커넥션 풀(DBCP)을 집어삼켜 대형 참사로 번진다. 또한 분산 시스템에서 RDBMS의 로컬 ACID와 메시지 브로커(Kafka) 간의 정합성을 맞추려면 2PC의 성능 저하를 버리고 **트랜잭셔널 아웃박스 패턴(Transactional Outbox Pattern)**을 적용해야 한다.
+
+> **[나라면 이렇게 쓴다]**
+> 10점형 답안이라면 5대 상태 전이도(활동 $\to$ 부분완료 $\to$ 완료 / 실패 $\to$ 철회)와 ACID 4대 특성의 물리 구현 매핑표를 전면에 배치하겠다. 25점형이라면 긴 트랜잭션(Long Transaction)으로 인한 커넥션 고갈 장애 시나리오를 지적하고, Transactional Outbox Pattern 및 읽기 전용 최적화(`readOnly=true`) 방안을 4단 제언으로 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 외부 API를 포함한 긴 트랜잭션으로 커넥션 풀 고갈 발생 및 DB-카프카 간 이종 분산 트랜잭션 원자성 결여
+- **대응 (개선 방안)**: 트랜잭션 경계 최소화(외부 I/O 분리), Transactional Outbox Pattern 도입 및 ARIES 기반 로그 선행 쓰기(WAL) 엄수
+- **검증 (검증 기준)**: 트랜잭션 체류 시간 50ms 이내 유지, 커넥션 대기 시간 0초 수렴, Outbox CDC 전송 누락률 0% 검증
+- **효과 (실행 효과)**: 커넥션 풀 고갈 장애 원천 차단, 초당 트랜잭션 처리량(TPS) 3배 향상 및 분산 데이터 최종 정합성 완결
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">1</div>
+    <div class="itpe-flow-step-title">현행 한계</div>
+    <div class="itpe-flow-step-desc">외부 I/O 포함 긴 트랜잭션으로 커넥션 고갈 및 분산 원자성 결함</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">2</div>
+    <div class="itpe-flow-step-title">개선 방안</div>
+    <div class="itpe-flow-step-desc">트랜잭션 지연 오픈 + 트랜잭셔널 아웃박스 패턴 (CDC 연계)</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">3</div>
+    <div class="itpe-flow-step-title">검증 기준</div>
+    <div class="itpe-flow-step-desc">트랜잭션 체류시간 &le; 50ms, HikariCP 대기시간 0초, Outbox 정합성 100%</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">4</div>
+    <div class="itpe-flow-step-title">실행 효과</div>
+    <div class="itpe-flow-step-desc">동시성 처리량 3배 향상 및 장애 없는 견고한 분산 아키텍처 실현</div>
+  </div>
+</div>
 
 ---
 
 ## 1교시 10점 답안 발췌
 
-```text
-[문제] 데이터베이스 트랜잭션의 ACID 특성과 상태 전이도
+### 1. 트랜잭션(Transaction)의 개념 및 ACID 4대 특성
 
-1. 트랜잭션(Transaction)의 개념 및 ACID 4대 특성
- 가. 개념: DB 상태를 변환시키는 작업의 분할 불가능한 논리적 최소 단위 (All-or-Nothing)
- 나. ACID 4대 특성 및 구현 기술
-  - 원자성(Atomicity): 모든 연산 완수 또는 전면 취소 / Undo Log 기반 롤백
-  - 일관성(Consistency): 실행 전후 무결성 제약조건 유지 / PK, FK, Check 제약
-  - 격리성(Isolation): 동시 트랜잭션 간 간섭 배제 / 2PL 락킹, MVCC 스냅샷
-  - 영속성(Durability): 성공 결과의 영구적 보존 / Redo Log, Write-Ahead Logging(WAL)
+- **개념**: DB 상태를 변환시키는 작업의 분할 불가능한 논리적 최소 단위 (All-or-Nothing)
+- **ACID 4대 특성 및 구현 기술**:
+  - **원자성 (Atomicity)**: 모든 연산 완수 또는 전면 취소 / Undo Log 기반 롤백
+  - **일관성 (Consistency)**: 실행 전후 무결성 제약조건 유지 / PK, FK, Check 제약 및 트리거
+  - **격리성 (Isolation)**: 동시 트랜잭션 간 간섭 배제 / 2PL 락킹, MVCC 언두 스냅샷
+  - **영속성 (Durability)**: 성공 결과의 영구적 보존 / Redo Log, Write-Ahead Logging(WAL)
 
-2. 트랜잭션의 5대 상태 전이도
- ┌─────────────┐   정상 연산   ┌─────────────┐   Commit 성공   ┌─────────────┐
- │    활동     │ ────────────▶ │  부분 완료  │ ──────────────▶ │    완료     │
- │  (Active)   │               │(Partially C)│                 │ (Committed) │
- └──────┬──────┘               └──────┬──────┘                 └─────────────┘
-        │ 오류 발생                   │ Commit 실패
-        ▼                             ▼
- ┌─────────────┐   Rollback    ┌─────────────┐
- │    실패     │ ────────────▶ │    철회     │ (Undo 로그로 원복)
- │  (Failed)   │               │  (Aborted)  │
- └─────────────┘               └─────────────┘
+### 2. 트랜잭션의 5대 상태 전이도
 
-3. 실무 아키텍처 제언: 외부 I/O 배제를 통한 트랜잭션 최소화 및 아웃박스 패턴 적용
-```
+| 상태 | 정의 및 전이 조건 |
+|:---|:---|
+| **1. 활동 (Active)** | 트랜잭션이 시작되어 읽기/쓰기 DML 연산을 수행 중인 상태 |
+| **2. 부분 완료 (Partially Committed)** | 마지막 SQL 실행 완료, WAL 로그가 디스크에 플러시되기 직전 상태 |
+| **3. 완료 (Committed)** | WAL 로그가 디스크에 영구 기록 완료되어 커밋 확정된 상태 |
+| **4. 실패 (Failed)** | 오류나 장애로 인해 정상 진행이 불가능해진 상태 |
+| **5. 철회 (Aborted)** | Undo Log로 모든 작업을 원복하고 트랜잭션 시작 전으로 복귀한 상태 |
+
+### 3. 실무 아키텍처 제언
+
+- 외부 I/O를 트랜잭션 범위에서 배제하여 트랜잭션 점유 시간을 수 ms 단위로 최소화하고, 분산 환경에서는 Transactional Outbox Pattern을 채택하여 정합성 확보
 
 ---
 
