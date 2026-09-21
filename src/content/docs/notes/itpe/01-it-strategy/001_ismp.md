@@ -1,7 +1,7 @@
 ---
 title: "ISMP"
-author: "Antigravity"
-date: "2026-09-20T20:27:33+09:00"
+author: "Codex"
+date: "2026-09-21T22:03:31+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,29 +25,6 @@ extra:
 - 본질: **ISMP(Information System Master Plan)**는 **ISP(Information Strategy Planning)**가 선정한 정보화 과제를 조달 가능한 **Baseline**으로 구체화
 - 메커니즘: 요구사항 분석 → 아키텍처 정의 → 규모·예산 산정 → **RFP(Request for Proposal)** 도출 과정을 **RTM(Requirements Traceability Matrix)**으로 연결
 - 산출물: 요구사항 명세서 · 목표 아키텍처 · **FP(Function Point)** 기반 예산서 · RFP
-
-<div class="itpe-flow-map" role="img" aria-label="경영·정책에서 ISP와 ISMP를 거쳐 조달·구축으로 이어지는 흐름">
-  <div class="itpe-flow-node"><strong>경영·정책</strong></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>ISP</strong>
-    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>산출</strong><span>정보화 과제 · 구축 대상</span></div></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>ISMP</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>절차</strong><span>착수 → 방향성 → 요구사항 → 구조 → 이행</span></div>
-      <div class="itpe-flow-branch"><strong>통제</strong><span><span class="itpe-keyword"><strong>RTM</strong></span> 기반 양방향 추적</span></div>
-      <div class="itpe-flow-branch"><strong>산출</strong><span>아키텍처 · <span class="itpe-keyword"><strong>FP</strong></span> · 예산 · <span class="itpe-keyword"><strong>RFP</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>조달·구축</strong>
-    <div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>입력</strong><span>확정된 발주 Baseline</span></div></div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -76,118 +53,21 @@ extra:
 
 > 각 단계는 입력 → 활동 → 산출물로 빈틈없이 전개되며, 최초 업무 요구사항이 최종 RFP까지 단절 없이 이어져야 방법론이 완성됨
 
+```mermaid
+flowchart TD
+    subgraph RTM["RTM(Requirements Traceability Matrix) 종단 양방향 추적선"]
+        direction TB
+        S1["① 프로젝트 착수<br/>활동: 범위·추진조직·일정 계획 수립"] --> O1["산출: 사업수행계획서"]
+        O1 --> S2["② 정보시스템 방향성 수립<br/>활동: 환경·업무 현황 분석 및 목표 모델 정의"]
+        S2 --> O2["산출: 범위·방향성 정의서"]
+        O2 --> S3["③ 업무 및 IT 요구사항 분석<br/>활동: 기능·데이터·비기능(보안·성능) 요구 도출"]
+        S3 --> O3["산출: 업무·IT 요구사항 목록"]
+        O3 --> S4["④ 정보시스템 구조 및 요구 정의<br/>활동: 목표 아키텍처 수립 및 인터페이스 정의"]
+        S4 --> O4["산출: 목표 아키텍처 명세서 · 상세 요건기술서"]
+        O4 --> S5["⑤ 구축사업 이행방안 수립<br/>활동: FP 기반 사업규모·예산 산정 및 발주전략 수립"]
+        S5 --> O5["산출: 이행계획서 · 예산서 · 제안요청서(RFP)"]
+    end
 ```
-[① 착수] ──> [② 방향성 수립] ──> [③ 요구사항 분석] ──> [④ 구조/요구 정의] ──> [⑤ 이행방안 수립]
-  수행계획서     목표/범위 정의서     업무/비기능 요구서       목표 아키텍처          FP 예산서/RFP
-  └───────────────────────────── RTM (Requirements Traceability Matrix) ──────────────────────────┘
-```
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="ISMP 5단계 방법론 및 RTM 기반 종단 추적 체계">
-  <!-- 배경 바운더리 -->
-  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
-
-  <!-- 5단계 박스 (상단) -->
-  <!-- 1. 착수 -->
-  <rect x="25" y="25" width="85" height="60" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="67" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">① 착수</text>
-  <text x="67" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">범위·일정 계획</text>
-  <text x="67" y="72" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">수행계획서</text>
-
-  <line x1="110" y1="55" x2="122" y2="55" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-
-  <!-- 2. 방향성 -->
-  <rect x="122" y="25" width="85" height="60" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="164" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">② 방향성</text>
-  <text x="164" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">현황·목표 모델</text>
-  <text x="164" y="72" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">방향성정의서</text>
-
-  <line x1="207" y1="55" x2="219" y2="55" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-
-  <!-- 3. 요구사항 -->
-  <rect x="219" y="25" width="85" height="60" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="261" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">③ 요구분석</text>
-  <text x="261" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">기능·비기능 명세</text>
-  <text x="261" y="72" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">요구사항목록</text>
-
-  <line x1="304" y1="55" x2="316" y2="55" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-
-  <!-- 4. 구조정의 -->
-  <rect x="316" y="25" width="85" height="60" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="358" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">④ 구조정의</text>
-  <text x="358" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">목표 아키텍처</text>
-  <text x="358" y="72" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">상세명세서</text>
-
-  <line x1="401" y1="55" x2="413" y2="55" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-
-  <!-- 5. 이행방안 -->
-  <rect x="413" y="25" width="82" height="60" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <text x="454" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent-high)">⑤ 이행방안</text>
-  <text x="454" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-text)">FP예산·발주전략</text>
-  <text x="454" y="72" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--sl-color-accent)">RFP 확정</text>
-
-  <!-- 중앙: RTM 양방향 추적 띠 -->
-  <rect x="25" y="100" width="470" height="34" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <text x="260" y="121" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-accent-high)">RTM (Requirements Traceability Matrix) 종단 추적 거버넌스</text>
-  <path d="M 261 85 L 261 100" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <path d="M 358 85 L 358 100" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <path d="M 454 85 L 454 100" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <!-- 하단: 조달 Quality Gate 효과 -->
-  <rect x="25" y="145" width="230" height="50" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="140" y="165" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">사전 검증 (Quality Gate)</text>
-  <text x="140" y="180" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">미매핑 요구사항 0건 / FP 근거 일치</text>
-
-  <line x1="255" y1="170" x2="265" y2="170" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <rect x="265" y="145" width="230" height="50" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="380" y="165" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">구축사업 조달 리스크 차단</text>
-  <text x="380" y="180" text-anchor="middle" font-size="8" fill="var(--sl-color-accent)">과업 변경·사업 유찰·소송 분쟁 원천 방지</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 구성체계와 5단계 방법론의 활동 및 산출물">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 프로젝트 착수</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>사업 범위 · 조직 · 일정 · 품질 통제 계획 수립</span>
-      <strong>산출</strong><span>수행계획서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 정보시스템 방향성 수립</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>내외부 환경 · 업무 현황 · 목표 모델 · 추진 범위 정의</span>
-      <strong>산출</strong><span>범위·방향성 정의서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 업무 및 IT 요구사항 분석</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>업무 기능 · 데이터 · 비기능(보안·성능) 요구사항 도출 및 명세화</span>
-      <strong>산출</strong><span>업무·IT 요구사항 목록</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 정보시스템 구조 및 요구사항 정의</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>목표 아키텍처 수립 · 내외부 인터페이스 및 상세 요구사항 정의</span>
-      <strong>산출</strong><span>목표 아키텍처 명세서 · 요구사항 명세서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 구축사업 이행방안 수립</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>추진 일정 · FP 기반 예산 산정 · 분할 발주 등 발주전략 수립</span>
-      <strong>산출</strong><span>이행계획서 · 예산서 · RFP</span>
-    </div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>RTM</strong></span> 추적 경로: 요구사항 ↔ 아키텍처 ↔ FP·예산 ↔ RFP</div>
 
 ## Ⅲ. ISP와 ISMP의 차이점
 
@@ -201,7 +81,7 @@ extra:
 | 핵심 산출물 | 정보화 과제 목록 · 우선순위 · 중장기 로드맵 | 상세 요구사항 명세서 · 목표 아키텍처 · 예산서 · **RFP** |
 | 종료 기준 | 최적 투자 과제 선정 및 경영진 승인 | 발주 Baseline 확정 |
 
-## Ⅳ. 구축사업 이행방안의 실효성 확보 (조달 위험 통제)
+## Ⅳ. 구축사업 이행방안의 문제점·대응책
 
 > 조달 전 Quality Gate에서 범위·비용·계약의 연결성을 선제적으로 검증해야 구축 단계의 예산 초과 및 과업 변경을 방지할 수 있음
 
@@ -218,37 +98,23 @@ extra:
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- `[핵심 통찰]`: ISMP의 성패는 보고서의 두께가 아니라, 사용자의 업무 요구사항이 목표 아키텍처, 예산, 계약 문서(RFP)로 단절 없이 추적되는가에 달려 있다. 이 연결고리가 끊어지면 구축 단계에서 100% 과업 변경과 예산 분쟁이 발생한다.
+- `[핵심 통찰]`: ISMP의 성패는 보고서의 두께가 아니라, 사용자의 업무 요구사항이 목표 아키텍처·예산·계약 문서(RFP)로 단절 없이 추적되는가에 달려 있다. 연결이 끊기면 구축 단계에서 과업 변경과 예산 분쟁이 커진다.
 - `나라면`: ISMP 산출물 검수 시 단순 양식 채우기를 넘어, RTM 기반의 `요구사항 → 아키텍처 → FP·예산 → RFP` 전수 추적 매핑을 조달 전 Quality Gate 통과 조건으로 강제하겠다.
 
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준**: 발주 전 종료 심의 시 요구사항별 RTM 100% 매핑 여부 및 FP 예산 산출 근거의 1:1 대조 일치성 판정
-- **대응 방안**: RTM 기반의 발주 전 Quality Gate 운영을 제도화하여 과잉 설계 및 누락 과업을 사전 제거
-- **검증 체계**: 외부 감리 및 제3자 기능점수 전문검증을 통한 요구사항-아키텍처-비용-RFP 정합성 실사
-- **기대 효과**: 명확한 조달 Baseline 확정으로 구축 단계 과업 변경율 80% 감소, 사업 유찰 및 계약 분쟁 원천 방지
+- 판정: 발주 전 종료 심의에서 모든 요구사항의 RTM 매핑과 FP 예산 산출 근거를 대조
+- 대안: RTM 기반 발주 전 Quality Gate로 과잉 설계·누락 과업을 정제
+- 검증: 요구사항·아키텍처·비용·RFP의 추적 연결과 미추적 항목 존재 여부 확인
+- 효과: 조달 Baseline 확정으로 과업 변경·계약 분쟁 가능성 축소
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="RTM 기반 ISMP 종료 Quality Gate 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>문제</strong><span>산출물별 분절적 검토 및 계약 연계 누락</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>대안</strong><span>RTM 기반 종료 Quality Gate 운영</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>요구사항 → 아키텍처 → FP·예산 → RFP 전수 추적</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>명확한 Baseline 기반 발주 확정 및 변경비용 차단</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    A["현행 한계<br/>(산출물별 분절적 검토 및 계약 연계 누락)"] --> B["개선 대안<br/>(RTM 기반 발주 전 Quality Gate 운영)"]
+    B --> C{"검증 판정<br/>(미추적 요구사항이 남았는가?)"}
+    C -->|없음| D["실행 효과<br/>(발주 Baseline 확정·조달 진행)"]
+    C -->|있음| E["보완·반려<br/>(누락·과잉 요구사항 정제·예산 재산정)"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -257,56 +123,32 @@ extra:
 - 정의: **ISMP(Information System Master Plan)**는 특정 정보시스템의 요구사항을 **FP 산정 수준**으로 구체화하여 발주 **Baseline**을 수립하는 활동
 - 목적: 명확한 과업 범위 확정을 통한 과업 변경 및 조달 분쟁 예방
 
-### 2. ISMP 구성체계 및 5단계 방법론
+### 2. ISMP 5단계 방법론·RTM 추적체계
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 5단계 구성체계 및 방법론 요약">
-  <div class="itpe-pipeline-node">
-    <strong>착수</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>범위 · 일정 · 품질계획 수립</span><strong>산출</strong><span>수행계획서</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>방향성 수립</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>업무 현황 · 목표 · 추진 범위 정의</span><strong>산출</strong><span>방향성 정의서</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>요구사항 분석</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>업무 · IT · 비기능 요구사항 도출</span><strong>산출</strong><span>업무·IT 요구사항 목록</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>구조·요구사항 정의</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>목표 아키텍처 및 상세 요구사항 정의</span><strong>산출</strong><span>아키텍처 · 요구사항 명세서</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>이행방안 수립</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>일정 · FP 예산 · 발주전략 도출</span><strong>산출</strong><span>이행계획서 · 예산서 · RFP</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    subgraph RTM["RTM(Requirements Traceability Matrix) 종단 양방향 추적선"]
+        direction TB
+        S1["① 프로젝트 착수<br/>활동: 범위·추진조직·일정 계획 수립"] --> O1["산출: 사업수행계획서"]
+        O1 --> S2["② 정보시스템 방향성 수립<br/>활동: 환경·업무 현황 분석 및 목표 모델 정의"]
+        S2 --> O2["산출: 범위·방향성 정의서"]
+        O2 --> S3["③ 업무 및 IT 요구사항 분석<br/>활동: 기능·데이터·비기능(보안·성능) 요구 도출"]
+        S3 --> O3["산출: 업무·IT 요구사항 목록"]
+        O3 --> S4["④ 정보시스템 구조 및 요구 정의<br/>활동: 목표 아키텍처 수립 및 인터페이스 정의"]
+        S4 --> O4["산출: 목표 아키텍처 명세서 · 상세 요건기술서"]
+        O4 --> S5["⑤ 구축사업 이행방안 수립<br/>활동: FP 기반 사업규모·예산 산정 및 발주전략 수립"]
+        S5 --> O5["산출: 이행계획서 · 예산서 · 제안요청서(RFP)"]
+    end
+```
 
 ### 3. RTM 기반 발주 Quality Gate
 
-<div class="itpe-flow-map" role="img" aria-label="RTM으로 요구사항부터 RFP까지 추적하고 Quality Gate에서 발주 여부를 판정하는 핵심 통제">
-  <div class="itpe-flow-node">
-    <span class="itpe-keyword"><strong>RTM(Requirements Traceability Matrix)</strong></span>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>추적 경로</strong><span>요구사항 ↔ 아키텍처 ↔ FP·예산 ↔ RFP</span></div>
-      <div class="itpe-flow-branch"><strong>확인</strong><span>누락 · 고립 · 불일치 · 과잉설계 탐지</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-    <div class="itpe-step-detail"><strong>판정 질문</strong><span>모든 요구사항이 RFP까지 양방향 추적되는가?</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass"><strong>통과</strong><span>발주 Baseline 확정 → 조달 진행</span></div>
-    <div class="itpe-flow-branch is-fail"><strong>미통과</strong><span>누락·불일치 보완 → RTM 재검증</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    RTM["RTM 양방향 추적<br/>(요구사항 ↔ 아키텍처 ↔ FP·예산 ↔ RFP)"] --> QG{"Quality Gate 판정<br/>미추적 요구사항이 남았는가?"}
+    QG -->|없음| PASS["통과: 발주 Baseline 확정 → 조달 진행"]
+    QG -->|있음| FAIL["미통과: 누락·불일치 보완 → RTM 재검증"]
+```
 
 ## 출제 이력과 검증 출처
 
