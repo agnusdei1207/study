@@ -3,19 +3,19 @@ sidebar:
   order: 63
   label: "063. 오픈소스 DBMS 전환"
   badge:
-    text: "B"
+    text: "A"
     variant: note
 title: "오픈소스 DBMS 전환 (Open Source DBMS Migration) 및 무중단 마이그레이션"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:15:00+09:00"
 tags:
   - "notes-data"
+category: "03-data"
 weight: 63
 extra:
-  model: "GPT-5"
-  keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "063"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,26 +24,73 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[상용 DBMS에서 오픈소스 DBMS로의 무중단 마이그레이션 파이프라인]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 270" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="250" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="32" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">상용 DBMS $\to$ 오픈소스 DBMS 무중단 마이그레이션 아키텍처</text>
 
-  [ 기존 상용 DBMS ]                                 [ 오픈소스 DBMS ]
-     (Oracle 등)                                      (PostgreSQL 등)
-  ┌───────────────┐                                  ┌───────────────┐
-  │ DDL / 스키마  │ ──Schema Conversion Tool(SCT)───▶│ 스키마 생성   │
-  └───────┬───────┘                                  └───────┬───────┘
-          │                                                  │
-          │ 1. 초기 대량 데이터 일괄 적재 (Bulk Load)         │
-          ├─────────────────────────────────────────────────▶│
-          │ 2. 실시간 증분 복제 (CDC: Debezium / Kafka Connect)│
-          ├─────────────────────────────────────────────────▶│
-          │                                                  │
-          ▼                                                  ▼
-   [트랜잭션 지속]                                    [실시간 동기화 상태]
-          │                                                  │
-          └──────────▶ [ 정합성 검증 및 컷오버 ] ◀───────────┘
-                       (Shadow Run / 양방향 복제)
-```
+  <!-- Left: Commercial DB -->
+  <g transform="translate(30, 50)">
+    <rect x="0" y="0" width="130" height="190" rx="6" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+    <rect x="0" y="0" width="130" height="28" rx="6" fill="#fee2e2"/>
+    <text x="65" y="19" font-size="10.5" font-weight="bold" fill="#991b1b" text-anchor="middle">기존 상용 DBMS</text>
+    <text x="65" y="44" font-size="9" fill="#7f1d1d" text-anchor="middle">(Oracle / MS-SQL)</text>
+
+    <rect x="15" y="55" width="100" height="26" rx="3" fill="#fef2f2" stroke="#fca5a5"/>
+    <text x="65" y="72" font-size="8.5" fill="#991b1b" text-anchor="middle">DDL / 스키마 객체</text>
+
+    <rect x="15" y="90" width="100" height="26" rx="3" fill="#fef2f2" stroke="#fca5a5"/>
+    <text x="65" y="107" font-size="8.5" fill="#991b1b" text-anchor="middle">대량 원천 데이터</text>
+
+    <rect x="15" y="125" width="100" height="26" rx="3" fill="#fef2f2" stroke="#fca5a5"/>
+    <text x="65" y="142" font-size="8.5" fill="#991b1b" text-anchor="middle">트랜잭션 Redo Log</text>
+
+    <text x="65" y="174" font-size="8.5" fill="#64748b" text-anchor="middle">운영 트랜잭션 지속</text>
+  </g>
+
+  <!-- Middle: Migration Pipeline -->
+  <g transform="translate(180, 50)">
+    <!-- 1. Schema Conversion -->
+    <path d="M 0 68 L 130 68" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="25" y="56" width="80" height="24" rx="3" fill="#eff6ff" stroke="#3b82f6"/>
+    <text x="65" y="72" font-size="8.5" font-weight="bold" fill="#1e40af" text-anchor="middle">1. SCT 변환</text>
+
+    <!-- 2. Bulk Load -->
+    <path d="M 0 103 L 130 103" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="20" y="91" width="90" height="24" rx="3" fill="#ecfdf5" stroke="#10b981"/>
+    <text x="65" y="107" font-size="8.5" font-weight="bold" fill="#065f46" text-anchor="middle">2. 벌크 적재(Load)</text>
+
+    <!-- 3. Realtime CDC -->
+    <path d="M 0 138 L 130 138" stroke="#8b5cf6" stroke-width="1.5"/>
+    <rect x="15" y="126" width="100" height="24" rx="3" fill="#f5f3ff" stroke="#8b5cf6"/>
+    <text x="65" y="142" font-size="8.5" font-weight="bold" fill="#5b21b6" text-anchor="middle">3. 실시간 CDC 복제</text>
+
+    <!-- 4. Reverse CDC (Rollback) -->
+    <path d="M 130 170 L 0 170" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <rect x="15" y="158" width="100" height="22" rx="3" fill="#fffbeb" stroke="#f59e0b"/>
+    <text x="65" y="173" font-size="8" font-weight="bold" fill="#b45309" text-anchor="middle">4. 역복제 (비상 롤백)</text>
+  </g>
+
+  <!-- Right: Open Source DB -->
+  <g transform="translate(340, 50)">
+    <rect x="0" y="0" width="140" height="190" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+    <rect x="0" y="0" width="140" height="28" rx="6" fill="#eff6ff"/>
+    <text x="70" y="19" font-size="10.5" font-weight="bold" fill="#1e40af" text-anchor="middle">오픈소스 DBMS</text>
+    <text x="70" y="44" font-size="9" fill="#1e40af" text-anchor="middle">(PostgreSQL / MySQL)</text>
+
+    <rect x="15" y="55" width="110" height="26" rx="3" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="70" y="72" font-size="8.5" fill="#1e40af" text-anchor="middle">타깃 스키마 자동생성</text>
+
+    <rect x="15" y="90" width="110" height="26" rx="3" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="70" y="107" font-size="8.5" fill="#065f46" text-anchor="middle">초기 베이스라인 구성</text>
+
+    <rect x="15" y="125" width="110" height="26" rx="3" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="70" y="142" font-size="8.5" fill="#5b21b6" text-anchor="middle">실시간 동기화 (Lag 0)</text>
+
+    <text x="70" y="174" font-size="8.5" font-weight="bold" fill="#059669" text-anchor="middle">★ Shadow Run &amp; Cutover</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **상용 DBMS(Oracle 등)의 막대한 코어 기반 라이선스 및 유지보수 비용(Vendor Lock-in)을 탈피하고 클라우드 네이티브 환경의 탄력성을 확보하기 위해, 스키마 변환 도구(SCT)와 실시간 변경 데이터 캡처(CDC)를 활용하여 서비스 중단 없이 오픈소스 DBMS(PostgreSQL, MySQL)로 안전하게 이전하는 기술적·관리적 마이그레이션 체계**
 - 암기: `분-변-적-복-검-컷` (대상 분석, 스키마 변환, 초기 적재, 실시간 복제, 정합성 검증, 컷오버) / `티-락-클-성` (TCO 절감, 벤더 락인 탈피, 클라우드 유연성, 성능/안정성 확보)
@@ -71,17 +118,50 @@ extra:
 
 #### 한줄 요약: 사전 분석부터 스키마 변환, 초기 적재, 실시간 CDC, 정합성 검증, 최종 컷오버로 이어지는 체계적 이행
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    오픈소스 DBMS 무중단 전환 6단계 절차                     │
-└─────────────────────────────────────────────────────────────────────────────┘
-  [1단계: 전환 진단 및 대상 선정] ──▶ 업무 중요도, 데이터 볼륨, PL/SQL 난이도 평가
-  [2단계: 스키마 및 오브젝트 변환] ──▶ DDL 추출, 데이터 타입 매핑, 인덱스 재설계 (SCT 활용)
-  [3단계: 초기 대량 데이터 적재]   ──▶ Full Dump/Load, 병렬 벌크 로딩을 통한 베이스라인 이관
-  [4단계: 실시간 변경 복제 (CDC)] ──▶ 소스 DB Redo Log 기반 변경분 실시간 캡처 및 타깃 반영
-  [5단계: 섀도우 런 및 정합성 검증] ──▶ 실 트래픽 복제(Shadow Traffic), 체크섬 기반 데이터 일치성 확인
-  [6단계: 최종 컷오버 및 전환 완료] ──▶ 트래픽을 오픈소스 DB로 인계, 유사시 즉시 역복제 롤백 대비
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 130" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="110" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">오픈소스 DBMS 무중단 전환 6단계 프로세스</text>
+
+  <g transform="translate(25, 45)">
+    <!-- Step 1 -->
+    <rect x="0" y="0" width="72" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="36" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">1. 진단/선정</text>
+    <text x="36" y="34" font-size="7.5" fill="#475569" text-anchor="middle">PL/SQL 분석</text>
+    <text x="36" y="47" font-size="7.5" fill="#64748b" text-anchor="middle">복잡도 매트릭스</text>
+
+    <!-- Step 2 -->
+    <rect x="79" y="0" width="72" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="115" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">2. 스키마변환</text>
+    <text x="115" y="34" font-size="7.5" fill="#475569" text-anchor="middle">SCT 도구 활용</text>
+    <text x="115" y="47" font-size="7.5" fill="#64748b" text-anchor="middle">DDL/타입매핑</text>
+
+    <!-- Step 3 -->
+    <rect x="158" y="0" width="72" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="194" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">3. 초기 적재</text>
+    <text x="194" y="34" font-size="7.5" fill="#475569" text-anchor="middle">병렬 벌크 로딩</text>
+    <text x="194" y="47" font-size="7.5" fill="#64748b" text-anchor="middle">pg_bulkload</text>
+
+    <!-- Step 4 -->
+    <rect x="237" y="0" width="72" height="55" rx="4" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.2"/>
+    <text x="273" y="18" font-size="9" font-weight="bold" fill="#5b21b6" text-anchor="middle">4. 실시간 CDC</text>
+    <text x="273" y="34" font-size="7.5" fill="#475569" text-anchor="middle">Redo Log 복제</text>
+    <text x="273" y="47" font-size="7.5" fill="#64748b" text-anchor="middle">Debezium/Kafka</text>
+
+    <!-- Step 5 -->
+    <rect x="316" y="0" width="72" height="55" rx="4" fill="#ffffff" stroke="#10b981" stroke-width="1.2"/>
+    <text x="352" y="18" font-size="9" font-weight="bold" fill="#065f46" text-anchor="middle">5. 정합성검증</text>
+    <text x="352" y="34" font-size="7.5" fill="#475569" text-anchor="middle">Shadow Run</text>
+    <text x="352" y="47" font-size="7.5" fill="#64748b" text-anchor="middle">체크섬 대사</text>
+
+    <!-- Step 6 -->
+    <rect x="395" y="0" width="75" height="55" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="432" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">6. 최종 컷오버</text>
+    <text x="432" y="34" font-size="7.5" fill="#475569" text-anchor="middle">DNS/VIP 절체</text>
+    <text x="432" y="47" font-size="7.5" fill="#dc2626" text-anchor="middle">역복제 가동</text>
+  </g>
+</svg>
+</div>
 
 ### 1. 단계별 핵심 활동 및 산출물
 
@@ -98,39 +178,18 @@ extra:
 
 #### 한줄 요약: 스키마 변환 도구(SCT), 트랜잭션 로그 기반 CDC, 섀도우 트래픽을 활용한 무중단 안전망 구축
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                       핵심 마이그레이션 기술 요소                           │
-└─────────────────────────────────────────────────────────────────────────────┘
-  1. SCT (Schema Conversion Tool) : 이기종 간 DDL 자동 변환 및 미지원 문법 분석
-  2. CDC (Change Data Capture)    : Redo Log를 읽어 DML 변경분을 Kafka로 실시간 스트리밍
-  3. Reverse CDC (역복제)         : 컷오버 후 장애 발생 시 구 상용 DB로 즉시 복구하기 위한 역방향 동기화
-  4. Shadow Traffic Replay        : 운영 쿼리를 미러링하여 신규 DB의 응답 및 실행계획 사전 검증
-```
-
-### 1. CDC (Change Data Capture) 기반 무중단 동기화
-- 소스 DB에 쿼리를 날리지 않고 물리적 트랜잭션 로그(Oracle Redo Log, MySQL Binlog, PostgreSQL WAL)를 직접 파싱
-- 소스 시스템의 성능 저하(부하)를 1% 미만으로 억제하면서 밀리초 단위로 변경 사항을 캡처하여 오픈소스 DB에 복제
-
-### 2. 역복제(Reverse CDC)를 통한 롤백(Rollback) 안전장치
-- 컷오버 완료 직후 신규 오픈소스 DB에서 발생하는 변경 트랜잭션을 구 상용 DB로 거꾸로 복제(Reverse Replication)
-- 만약 오픈소스 DB에서 예상치 못한 치명적 장애가 발생할 경우, 데이터 유실 없이 수 분 내에 구 상용 DB로 트래픽을 원복할 수 있는 안전망 제공
+- **SCT (Schema Conversion Tool)**:
+  - 오라클 고유의 데이터 타입(`NUMBER`, `VARCHAR2`, `CLOB`)을 PostgreSQL 표준 타입(`NUMERIC`, `VARCHAR`, `TEXT`)으로 매핑하고 저장 프로시저 자동 변환율 평가
+- **CDC (Change Data Capture) 기반 무중단 동기화**:
+  - 소스 DB에 쿼리를 날리지 않고 물리적 트랜잭션 로그(Oracle Redo Log, MySQL Binlog, PostgreSQL WAL)를 직접 파싱
+  - 소스 시스템의 부하를 1% 미만으로 억제하면서 밀리초 단위로 변경 사항을 캡처하여 오픈소스 DB에 복제
+- **역복제(Reverse CDC)를 통한 롤백(Rollback) 안전장치**:
+  - 컷오버 완료 직후 신규 오픈소스 DB에서 발생하는 변경 트랜잭션을 구 상용 DB로 거꾸로 복제(Reverse Replication)
+  - 만약 오픈소스 DB에서 예상치 못한 치명적 장애가 발생할 경우, 데이터 유실 없이 수 분 내에 구 상용 DB로 트래픽을 원복할 수 있는 안전망 제공
 
 ## Ⅳ. 상용 DBMS(Oracle) vs 오픈소스 DBMS(PostgreSQL / MySQL) 심층 비교
 
 #### 한줄 요약: 고비용 올인원 상용 제품과 유연성·확장성을 갖춘 오픈소스 진영의 아키텍처 및 비용 구조 비교
-
-```text
-┌───────────────────────────────────┬───────────────────────────────────┐
-│       상용 DBMS (Oracle)          │     오픈소스 DBMS (PostgreSQL)    │
-├───────────────────────────────────┼───────────────────────────────────┤
-│ - 비용: CPU 코어당 고액 라이선스   │ - 비용: 완전 무료 (Community Edition)│
-│ - 구조: 거대 모놀리식 올인원 엔진 │ - 구조: 모듈식 확장 가능 (Extensible)│
-│ - 방언: PL/SQL, 고유 내장함수 다수 │ - 방언: ANSI SQL 표준 엄격 준수    │
-│ - HA: Oracle RAC (공유 디스크)    │ - HA: Streaming Replication(비공유)│
-│ - 지원: 벤더 전담 기술지원 보장   │ - 지원: 커뮤니티 및 3rd Party 기업 │
-└───────────────────────────────────┴───────────────────────────────────┘
-```
 
 | 비교 항목 | 상용 DBMS (Oracle Database) | 오픈소스 DBMS (PostgreSQL) | 오픈소스 DBMS (MySQL) |
 |:---|:---|:---|:---|
@@ -160,59 +219,117 @@ extra:
 
 #### 한줄 요약: RTO를 수 분 이내로 단축하는 무중단 컷오버 타임라인과 양방향 CDC를 활용한 무손실 비상 롤백 체계
 
-```text
-[무중단 컷오버(Cutover) 타임라인]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 110" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="90" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">무중단 컷오버(Cutover) 타임라인 &amp; 롤백 안전망</text>
 
- [T - 2시간] ──▶ 실시간 CDC 복제 지연(Replication Lag) 0초 수렴 확인
- [T - 10분]  ──▶ 소스 DB 쓰기 작업 일시 정지 (Read-Only 전환)
- [T]         ──▶ 최종 CDC 트랜잭션 반영 확인 ──▶ 오픈소스 DB로 트래픽 인계 (VIP 전환)
- [T + 5분]   ──▶ 역복제(Reverse CDC) 가동 (신규 오픈소스 DB ──▶ 구 상용 DB)
- [T + 1시간] ──▶ 실시간 모니터링 정상 확인 ──▶ 최종 전환 성공 선언
-```
+  <g transform="translate(25, 42)">
+    <!-- T-2h -->
+    <circle cx="20" cy="20" r="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="20" y="24" font-size="8" font-weight="bold" fill="#1e40af" text-anchor="middle">T-2h</text>
+    <text x="20" y="46" font-size="7.5" fill="#475569" text-anchor="middle">복제 지연 0</text>
 
-## Ⅶ. 데이터 아키텍트 관점의 DBMS 탈종속 및 현대화 제언
+    <path d="M 36 20 L 110 20" stroke="#64748b" stroke-width="1.5"/>
 
-#### 한줄 요약: 단순한 DB 엔진 교체를 넘어 애플리케이션 결합도를 낮추고 클라우드 네이티브로 진화하는 계기로 승화
+    <!-- T-10m -->
+    <circle cx="125" cy="20" r="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="125" y="24" font-size="8" font-weight="bold" fill="#1e40af" text-anchor="middle">T-10m</text>
+    <text x="125" y="46" font-size="7.5" fill="#475569" text-anchor="middle">소스 쓰기제한</text>
 
-- **"DB 엔진 전환보다 데이터 접근 계층(DAL)의 추상화가 선행되어야 한다"**:
-  - 특정 상용 DB에 하드코딩된 SQL과 Stored Procedure가 가득한 상태에서는 오픈소스 전환 프로젝트가 실패할 수밖에 없음
-  - 마이그레이션 전 단계에서 MyBatis, JPA 등 ORM 계층을 정비하여 DB 종속성을 추상화하고, Stored Procedure를 마이크로서비스로 분리하는 **'애플리케이션 디커플링'**을 병행해야 함
-- **클라우드 관리형 오픈소스 DB 적극 활용**:
-  - 온프레미스 오픈소스 DB는 백업, 복제, 패치, 장애 조치(Failover)를 자체 엔지니어가 전담해야 하므로 운영 부담이 가중됨
-  - AWS Aurora PostgreSQL, GCP Cloud SQL 등 고가용성과 백업이 자동화된 클라우드 관리형 서비스를 채택하여 TCO 절감과 운영 안정성을 동시에 달성해야 함
+    <path d="M 141 20 L 215 20" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- T (Cutover) -->
+    <circle cx="230" cy="20" r="15" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="230" y="24" font-size="8.5" font-weight="bold" fill="#991b1b" text-anchor="middle">T (Cut)</text>
+    <text x="230" y="46" font-size="7.5" font-weight="bold" fill="#dc2626" text-anchor="middle">VIP 절체</text>
+
+    <path d="M 247 20 L 320 20" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- T+5m -->
+    <circle cx="335" cy="20" r="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="335" y="24" font-size="8" font-weight="bold" fill="#1e40af" text-anchor="middle">T+5m</text>
+    <text x="335" y="46" font-size="7.5" fill="#475569" text-anchor="middle">역복제 가동</text>
+
+    <path d="M 351 20 L 425 20" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- T+1h -->
+    <circle cx="440" cy="20" r="14" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+    <text x="440" y="24" font-size="8" font-weight="bold" fill="#065f46" text-anchor="middle">T+1h</text>
+    <text x="440" y="46" font-size="7.5" fill="#065f46" text-anchor="middle">이관 완료</text>
+  </g>
+</svg>
+</div>
+
+## Ⅶ. 기술사적 제언
+
+### 학습자 통찰 메모 — 답안 밖
+
+> **[핵심 통찰]**
+> 오픈소스 DBMS 전환 프로젝트의 성패는 **"DB 엔진 교체"가 아니라 "애플리케이션 계층과의 결합도(Decoupling)"**에 달려 있다. DB 안에 거대한 PL/SQL 패키지와 오라클 고유 함수(`NVL`, `DECODE`, `ROWNUM`, `(+)` 외부조인)가 박혀 있다면 아무리 좋은 변환 도구를 써도 프로젝트가 좌초된다. 진정한 클라우드 전환을 위해서는 SQL을 표준화하고 비즈니스 로직을 백엔드 애플리케이션으로 끌어올리는 애플리케이션 리팩토링이 동반되어야 하며, 컷오버 시점에는 반드시 장애를 대비한 **역방향 CDC(Reverse Replication)**를 가동해 두어야 경영진의 의사결정을 이끌어낼 수 있다.
+
+> **[나라면 이렇게 쓴다]**
+> 25점형 답안이라면 2단에 6단계 절차와 함께 "Redo Log 기반 CDC 파이프라인(Debezium + Kafka)" 구조도를 명확히 그리고, 4단 제언에 "Reverse CDC를 통한 RPO=0 무손실 롤백 안전망"과 "애플리케이션 Data Access Layer 추상화(JPA/MyBatis 표준화)"를 차별화 포인트로 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 상용 벤더 락인과 PL/SQL 고유 문법 종속으로 인한 클라우드 전환 지연 및 빅뱅 방식 전환 실패 시 서비스 마비 위험
+- **대응 (개선 방안)**: 트랜잭션 로그 기반 실시간 CDC 파이프라인과 Shadow Run을 도입하고, 컷오버 즉시 역복제(Reverse CDC)를 가동하여 무손실 롤백 안전망 확보
+- **검증 (검증 기준)**: CDC 복제 지연(Lag) 1초 미만 수렴 검증, 데이터 체크섬 100% 일치 확인, 컷오버 다운타임 5분 이내(RTO &le; 5m, RPO = 0)
+- **효과 (실행 효과)**: DBMS TCO 70% 이상 절감, 특정 벤더 종속 원천 탈피, 클라우드 네이티브 MSA 아키텍처로의 유연한 확장성 확보
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">1</div>
+    <div class="itpe-flow-step-title">현행 한계</div>
+    <div class="itpe-flow-step-desc">고액 라이선스 종속, PL/SQL 결합도 심화 및 전환 시 다운타임 위험</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">2</div>
+    <div class="itpe-flow-step-title">개선 방안</div>
+    <div class="itpe-flow-step-desc">CDC 기반 무중단 동기화 + Shadow Run 검증 + Reverse CDC 안전망</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">3</div>
+    <div class="itpe-flow-step-title">검증 기준</div>
+    <div class="itpe-flow-step-desc">CDC Lag &le; 1s, 데이터 체크섬 100% 일치, RTO &le; 5m, RPO = 0</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">4</div>
+    <div class="itpe-flow-step-title">실행 효과</div>
+    <div class="itpe-flow-step-desc">DBMS TCO 70% 절감, 벤더 종속 해소 및 클라우드 네이티브 현대화</div>
+  </div>
+</div>
 
 ---
 
 ## 2교시 25점 답안 발췌
 
-```text
-[문제 1] 상용 DBMS의 오픈소스 DBMS 전환 방안
+### Ⅰ. 오픈소스 DBMS 전환의 추진 배경 및 기대 효과
 
-Ⅰ. 오픈소스 DBMS 전환의 추진 배경 및 기대 효과
- 1. 배경: 고비용 상용 라이선스/유지보수비 부담(TCO 절감), 벤더 락인 탈피, 클라우드 네이티브 MSA 전환
- 2. 효과: TCO 70% 이상 절감, 특정 벤더 종속 배제, 컨테이너 기반 유연한 오토스케일링 인프라 확보
+1. **추진 배경**: 고비용 상용 라이선스/유지보수비 부담(TCO 절감), 벤더 락인 탈피, 클라우드 네이티브 MSA 전환
+2. **기대 효과**: TCO 70% 이상 절감, 특정 벤더 종속 배제, 컨테이너 기반 유연한 오토스케일링 인프라 확보
 
-Ⅱ. 오픈소스 DBMS 무중단 전환 6단계 프로세스
- 1. 절차: 대상 진단 -> 스키마 변환(SCT) -> 초기 데이터 적재 -> 실시간 CDC 복제 -> 검증 -> 컷오버
- 2. 핵심 메커니즘
-  가. 스키마 변환: AWS SCT를 활용한 DDL 자동 변환 및 오라클-PostgreSQL 데이터 타입 매핑
-  나. 무중단 복제: 트랜잭션 Redo Log를 파싱하는 CDC(Debezium)를 통해 실시간 동기화 상태 유지
+### Ⅱ. 오픈소스 DBMS 무중단 전환 6단계 프로세스
 
-Ⅲ. 상용 DBMS vs 오픈소스 DBMS 핵심 비교
- ┌──────────────┬────────────────────────────┬────────────────────────────┐
- │   비교 항목  │     상용 DBMS (Oracle)     │   오픈소스 (PostgreSQL)    │
- ├──────────────┼────────────────────────────┼────────────────────────────┤
- │ 라이선스 비용│ CPU 코어당 고액 영구비용   │ 무료 (TCO 획기적 절감)     │
- │ SQL 표준 준수│ 자체 오라클 방언 다수      │ 엄격한 ANSI SQL 표준 준수  │
- │ 확장성(Ext)  │ 제한적 상용 옵션           │ PostGIS, pgvector 무한 확장│
- │ 아키텍처 결합│ PL/SQL 등 높은 결합도      │ 오픈소스 및 클라우드 친화적│
- └──────────────┴────────────────────────────┴────────────────────────────┘
+1. **절차**: 대상 진단 $\to$ 스키마 변환(SCT) $\to$ 초기 데이터 적재 $\to$ 실시간 CDC 복제 $\to$ 검증 $\to$ 컷오버
+2. **핵심 메커니즘**:
+   - **스키마 변환**: AWS SCT를 활용한 DDL 자동 변환 및 오라클-PostgreSQL 데이터 타입 매핑
+   - **무중단 복제**: 트랜잭션 Redo Log를 파싱하는 CDC(Debezium)를 통해 실시간 동기화 상태 유지
 
-Ⅳ. 주요 기술적 난제 극복 및 비상 롤백 전략
- 1. PL/SQL 호환성 극복: 핵심 비즈니스 로직을 백엔드(Spring)로 흡수, EDB Postgres 활용
- 2. 비상 롤백(Rollback) 대책: 컷오버 즉시 오픈소스 -> 구 상용 DB로 역방향 CDC를 가동하여
-    신규 시스템 장애 시 데이터 유실 없는 무손실 롤백(RPO=0) 보장
-```
+### Ⅲ. 상용 DBMS vs 오픈소스 DBMS 핵심 비교
+
+| 비교 항목 | 상용 DBMS (Oracle) | 오픈소스 (PostgreSQL) |
+|:---|:---|:---|
+| **라이선스 비용** | CPU 코어당 고액 영구비용 + 연간 유지보수비 | 완전 무료 커뮤니티 에디션 (TCO 획기적 절감) |
+| **SQL 표준 준수** | 자체 오라클 방언 다수 포함 | 엄격한 ANSI SQL 표준 준수 |
+| **확장성 (Extension)** | 제한적 상용 옵션 | PostGIS, pgvector 플러그인 무한 확장 |
+| **아키텍처 결합도** | PL/SQL 중심 높은 결합도 | 백엔드(Spring) 중심 클라우드 친화적 결합도 |
+
+### Ⅳ. 주요 기술적 난제 극복 및 비상 롤백 전략
+
+1. **PL/SQL 호환성 극복**: 핵심 비즈니스 로직을 백엔드(Spring Boot)로 흡수하고 단기적으로 EDB Postgres 활용
+2. **비상 롤백(Rollback) 대책**: 컷오버 즉시 오픈소스 $\to$ 구 상용 DB로 역방향 CDC를 가동하여 신규 시스템 장애 시 데이터 유실 없는 무손실 롤백(RPO=0) 보장
 
 ---
 

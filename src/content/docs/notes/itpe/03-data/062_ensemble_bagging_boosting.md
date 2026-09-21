@@ -6,16 +6,16 @@ sidebar:
     text: "A"
     variant: note
 title: "앙상블 학습 (Ensemble Learning) 및 배깅(Bagging)과 부스팅(Boosting)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:10:00+09:00"
 tags:
   - "notes-data"
+category: "03-data"
 weight: 62
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
   question_no: "062"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,25 +24,102 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[배깅(Bagging)과 부스팅(Boosting)의 구조 및 메커니즘 비교]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 280" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="260" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="32" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">앙상블 양대 축: 배깅(Bagging) vs 부스팅(Boosting)</text>
 
- 1. 배깅 (Bagging: 병렬 독립 학습 -> "분산(Variance) 감소 / 과적합 방지")
-    [원시 데이터 D] ──복원추출(Bootstrap)──▶ [D_1]   [D_2]   [D_3] ... [D_B]
-                                              │       │       │         │
-    [약한 학습기 병렬 독립 훈련]              ▼       ▼       ▼         ▼
-                                            [Tree1] [Tree2] [Tree3] ... [TreeB]
-                                              └───┬───┴───┬───┘
-    [최종 예측 집계 (Aggregation)]                ▼
-                                      [ 다수결 투표(분류) / 평균 산출(회귀) ]
+  <!-- Left Side: Bagging -->
+  <g transform="translate(30, 48)">
+    <rect x="0" y="0" width="220" height="210" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <rect x="0" y="0" width="220" height="26" rx="6" fill="#eff6ff"/>
+    <text x="110" y="18" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">배깅 (Bagging: 분산 감소)</text>
 
- 2. 부스팅 (Boosting: 순차 가중 보정 -> "편향(Bias) 감소 / 예측력 극대화")
-    [원시 데이터] ──▶ [모델 1] ──(오차 샘플 가중치 상향)──▶ [모델 2] ──(잔차 적합)──▶ [모델 3]
-                        (α_1)                                 (α_2)                     (α_3)
-                          └───────────────────────────┬───────────────────────────┘
-    [최종 가중합 예측]                                ▼
-                                       [ 가중 결합 모델: F(x) = Σ α_m * h_m(x) ]
-```
+    <!-- Raw Data -->
+    <rect x="60" y="35" width="100" height="22" rx="3" fill="#f1f5f9" stroke="#94a3b8"/>
+    <text x="110" y="50" font-size="9" fill="#334155" text-anchor="middle">원시 데이터 (D)</text>
+
+    <!-- Bootstrap Samples -->
+    <path d="M 80 57 L 40 75" stroke="#64748b" stroke-width="1.2"/>
+    <path d="M 110 57 L 110 75" stroke="#64748b" stroke-width="1.2"/>
+    <path d="M 140 57 L 180 75" stroke="#64748b" stroke-width="1.2"/>
+
+    <rect x="15" y="75" width="50" height="20" rx="2" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="40" y="89" font-size="8.5" fill="#1e40af" text-anchor="middle">D1 (복원)</text>
+    <rect x="85" y="75" width="50" height="20" rx="2" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="110" y="89" font-size="8.5" fill="#1e40af" text-anchor="middle">D2 (복원)</text>
+    <rect x="155" y="75" width="50" height="20" rx="2" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="180" y="89" font-size="8.5" fill="#1e40af" text-anchor="middle">D3 (복원)</text>
+
+    <!-- Parallel Trees -->
+    <path d="M 40 95 L 40 112" stroke="#64748b" stroke-width="1.2"/>
+    <path d="M 110 95 L 110 112" stroke="#64748b" stroke-width="1.2"/>
+    <path d="M 180 95 L 180 112" stroke="#64748b" stroke-width="1.2"/>
+
+    <rect x="15" y="112" width="50" height="24" rx="3" fill="#dbeafe" stroke="#3b82f6"/>
+    <text x="40" y="128" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">Tree 1</text>
+    <rect x="85" y="112" width="50" height="24" rx="3" fill="#dbeafe" stroke="#3b82f6"/>
+    <text x="110" y="128" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">Tree 2</text>
+    <rect x="155" y="112" width="50" height="24" rx="3" fill="#dbeafe" stroke="#3b82f6"/>
+    <text x="180" y="128" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">Tree 3</text>
+
+    <text x="110" y="152" font-size="8.5" fill="#64748b" text-anchor="middle">병렬 독립 훈련 (Parallel)</text>
+
+    <!-- Aggregation -->
+    <path d="M 40 136 L 90 165" stroke="#64748b" stroke-width="1.2"/>
+    <path d="M 110 136 L 110 165" stroke="#64748b" stroke-width="1.2"/>
+    <path d="M 180 136 L 130 165" stroke="#64748b" stroke-width="1.2"/>
+
+    <rect x="25" y="165" width="170" height="32" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="110" y="180" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">최종 집계: 다수결 / 평균</text>
+    <text x="110" y="192" font-size="8" fill="#475569" text-anchor="middle">과적합 방지, 노이즈에 강건</text>
+  </g>
+
+  <!-- Right Side: Boosting -->
+  <g transform="translate(270, 48)">
+    <rect x="0" y="0" width="220" height="210" rx="6" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+    <rect x="0" y="0" width="220" height="26" rx="6" fill="#fef2f2"/>
+    <text x="110" y="18" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">부스팅 (Boosting: 편향 감소)</text>
+
+    <!-- Model 1 -->
+    <rect x="15" y="42" width="55" height="30" rx="3" fill="#fee2e2" stroke="#ef4444"/>
+    <text x="42" y="58" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">Model 1</text>
+    <text x="42" y="69" font-size="7.5" fill="#b91c1c" text-anchor="middle">오차 식별</text>
+
+    <!-- Arrow 1 -->
+    <path d="M 70 57 L 85 57" stroke="#b91c1c" stroke-width="1.5"/>
+
+    <!-- Model 2 -->
+    <rect x="85" y="42" width="55" height="30" rx="3" fill="#fee2e2" stroke="#ef4444"/>
+    <text x="112" y="58" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">Model 2</text>
+    <text x="112" y="69" font-size="7.5" fill="#b91c1c" text-anchor="middle">오답 가중</text>
+
+    <!-- Arrow 2 -->
+    <path d="M 140 57 L 155 57" stroke="#b91c1c" stroke-width="1.5"/>
+
+    <!-- Model 3 -->
+    <rect x="155" y="42" width="50" height="30" rx="3" fill="#fee2e2" stroke="#ef4444"/>
+    <text x="180" y="58" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">Model 3</text>
+    <text x="180" y="69" font-size="7.5" fill="#b91c1c" text-anchor="middle">잔차 적합</text>
+
+    <text x="110" y="92" font-size="8.5" fill="#64748b" text-anchor="middle">순차 직렬 보정 (Sequential)</text>
+
+    <!-- Weights α -->
+    <text x="42" y="115" font-size="9" font-weight="bold" fill="#ef4444" text-anchor="middle">w₁</text>
+    <text x="112" y="115" font-size="9" font-weight="bold" fill="#ef4444" text-anchor="middle">w₂</text>
+    <text x="180" y="115" font-size="9" font-weight="bold" fill="#ef4444" text-anchor="middle">w₃</text>
+
+    <path d="M 42 120 L 95 165" stroke="#ef4444" stroke-width="1.2"/>
+    <path d="M 112 120 L 112 165" stroke="#ef4444" stroke-width="1.2"/>
+    <path d="M 180 120 L 125 165" stroke="#ef4444" stroke-width="1.2"/>
+
+    <!-- Final Weighted Sum -->
+    <rect x="25" y="165" width="170" height="32" rx="4" fill="#fef2f2" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="110" y="180" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">최종 예측: F(x) = Σ α_m · h_m(x)</text>
+    <text x="110" y="192" font-size="8" fill="#475569" text-anchor="middle">예측력 극대화, 과적합 주의</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **복수의 약한 학습기(Weak Learner)를 결합하여 단일 모델이 갖는 높은 편향(과소적합) 또는 높은 분산(과적합)의 한계를 극복하고, 모델의 일반화 예측 성능(Generalization Performance)을 극대화하는 집단 지성 기반 머신러닝 기법**
 - 암기: `약-부-병-다` (배깅: 약한 학습기, 부트스트랩 복원추출, 병렬 독립 학습, 다수결 취합) / `순-가-잔-결` (부스팅: 순차 학습, 오차 가중치 갱신, 잔차 적합, 가중 선형 결합)
@@ -73,14 +150,30 @@ extra:
 
 #### 한줄 요약: 부트스트랩 표본 추출과 병렬 독립 학습을 거쳐 다수결 투표로 분산을 축소하는 앙상블
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                       배깅(Bagging)의 3단계 파이프라인                       │
-└─────────────────────────────────────────────────────────────────────────────┘
-  [1단계: 부트스트랩 (Bootstrap)] ──▶ 원본 데이터 N개에서 중복을 허용(복원추출)하여 N개 표본 생성
-  [2단계: 병렬 독립 학습]        ──▶ 추출된 B개의 표본 데이터셋에 각각 결정 트리를 독립 훈련
-  [3단계: 애그리게이션 (Agg)]     ──▶ 분류는 Hard/Soft Voting, 회귀는 단순 평균으로 최종 취합
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 115" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="95" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">배깅의 3단계 파이프라인 (부트스트랩 $\to$ 병렬학습 $\to$ 집계)</text>
+
+  <g transform="translate(25, 42)">
+    <rect x="0" y="0" width="145" height="50" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="72" y="18" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">1. 부트스트랩 (Bootstrap)</text>
+    <text x="72" y="35" font-size="8.5" fill="#475569" text-anchor="middle">N개 복원 추출 (OOB 36.8%)</text>
+
+    <path d="M 148 25 L 168 25" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="170" y="0" width="145" height="50" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="242" y="18" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">2. 병렬 독립 학습</text>
+    <text x="242" y="35" font-size="8.5" fill="#475569" text-anchor="middle">B개 독립 트리 분산 훈련</text>
+
+    <path d="M 318 25 L 338 25" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="340" y="0" width="135" height="50" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="407" y="18" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">3. 집계 (Aggregation)</text>
+    <text x="407" y="35" font-size="8.5" fill="#475569" text-anchor="middle">Hard/Soft 투표 및 평균</text>
+  </g>
+</svg>
+</div>
 
 ### 1. 부트스트랩(Bootstrap)의 통계적 특성
 - 원본 데이터가 $N$개일 때, 복원 추출로 $N$개를 뽑을 때 특정 데이터가 한 번도 선택되지 않을 확률:
@@ -96,20 +189,47 @@ extra:
 
 #### 한줄 요약: 앞선 모델의 예측 오차를 분석하여 가중치를 갱신하거나 잔차를 순차적으로 적합하는 편향 축소 앙상블
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      부스팅(Boosting)의 진화 계보                           │
-└─────────────────────────────────────────────────────────────────────────────┘
-  [AdaBoost]          ──▶ 오분류 샘플에 가중치를 부여하여 순차 보정 (지수 손실 함수)
-      │
-  [GBM (Gradient)]    ──▶ 임의의 미분 가능한 손실 함수의 음의 그래디언트(잔차)를 학습
-      │
-  [XGBoost]           ──▶ 2차 테일러 전개 기반 정규화 손실 함수, 병렬 노드 분할
-      │
-  [LightGBM]          ──▶ Leaf-wise 분할, GOSS 및 EFB 적용으로 대용량 고속화
-      │
-  [CatBoost]          ──▶ 순서형 인코딩(Target Encoding), 대칭 트리(Symmetric Tree)
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 115" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="95" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">부스팅 알고리즘 진화 계보</text>
+
+  <g transform="translate(25, 42)">
+    <!-- AdaBoost -->
+    <rect x="0" y="0" width="80" height="48" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="40" y="20" font-size="9.5" font-weight="bold" fill="#991b1b" text-anchor="middle">AdaBoost</text>
+    <text x="40" y="35" font-size="8" fill="#7f1d1d" text-anchor="middle">오차 가중치</text>
+
+    <path d="M 82 24 L 98 24" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- GBM -->
+    <rect x="100" y="0" width="80" height="48" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="140" y="20" font-size="9.5" font-weight="bold" fill="#991b1b" text-anchor="middle">GBM</text>
+    <text x="140" y="35" font-size="8" fill="#7f1d1d" text-anchor="middle">잔차 적합</text>
+
+    <path d="M 182 24 L 198 24" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- XGBoost -->
+    <rect x="200" y="0" width="85" height="48" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="242" y="20" font-size="9.5" font-weight="bold" fill="#991b1b" text-anchor="middle">XGBoost</text>
+    <text x="242" y="35" font-size="8" fill="#7f1d1d" text-anchor="middle">2차 테일러/정규화</text>
+
+    <path d="M 287 24 L 303 24" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- LightGBM -->
+    <rect x="305" y="0" width="85" height="48" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="347" y="20" font-size="9.5" font-weight="bold" fill="#991b1b" text-anchor="middle">LightGBM</text>
+    <text x="347" y="35" font-size="8" fill="#7f1d1d" text-anchor="middle">리프중심 분할</text>
+
+    <path d="M 392 24 L 408 24" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- CatBoost -->
+    <rect x="410" y="0" width="70" height="48" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="445" y="20" font-size="9.5" font-weight="bold" fill="#991b1b" text-anchor="middle">CatBoost</text>
+    <text x="445" y="35" font-size="8" fill="#7f1d1d" text-anchor="middle">범주형 특화</text>
+  </g>
+</svg>
+</div>
 
 ### 1. 그래디언트 부스팅(GBM)의 잔차(Residual) 학습 원리
 - 모델 $m-1$까지의 예측값을 $F_{m-1}(x)$라고 할 때, 손실 함수 $L(y, F(x))$를 최소화하기 위해 새로운 모델 $h_m(x)$는 **음의 그래디언트(Pseudo-residual)**를 타깃으로 삼아 학습:
@@ -129,18 +249,6 @@ extra:
 ## Ⅳ. 배깅 vs 부스팅 심층 비교
 
 #### 한줄 요약: 병렬 독립 학습과 분산 축소를 지향하는 배깅, 순차 의존 학습과 편향 축소를 지향하는 부스팅의 종합 비교
-
-```text
-┌───────────────────────────────────┬───────────────────────────────────┐
-│          배깅 (Bagging)           │         부스팅 (Boosting)         │
-├───────────────────────────────────┼───────────────────────────────────┤
-│ - 학습 구조: 병렬 독립 (Parallel) │ - 학습 구조: 순차 직렬 (Sequential)│
-│ - 최우선 목표: 분산(Variance) 감소 │ - 최우선 목표: 편향(Bias) 감소    │
-│ - 가중치: 모든 샘플 동일 가중치   │ - 가중치: 오답 샘플에 높은 가중치 │
-│ - 이상치(Outlier): 둔감 (강건함)  │ - 이상치(Outlier): 극도로 민감    │
-│ - 주요 한계: 고난도 복잡 패턴 한계 │ - 주요 한계: 과적합 위험, 느린학습│
-└───────────────────────────────────┴───────────────────────────────────┘
-```
 
 | 비교 항목 | 배깅 (Bagging) | 부스팅 (Boosting) |
 |:---|:---|:---|
@@ -180,42 +288,69 @@ extra:
 3. **서브샘플링(Subsample) 및 컬럼 샘플링(Colsample_bytree)**: 0.7~0.8 수준으로 설정하여 매 트리마다 데이터와 피처를 일부만 무작위 사용하여 다양성 확보
 4. **정규화 파라미터 적용**: XGBoost의 `reg_alpha`(L1), `reg_lambda`(L2) 패널티 부여
 
-## Ⅶ. 데이터 아키텍트 관점의 앙상블 아키텍처 제언
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 무조건적인 최신 부스팅 도입을 지양하고 해석 가능성(XAI)과 서빙 레이턴시를 고려한 실용적 앙상블 체계 구축
+### 학습자 통찰 메모 — 답안 밖
 
-- **추론 지연 시간(Inference Latency)의 트레이드오프 고려**:
-  - 수천 개의 트리를 엮은 부스팅 모델은 실시간 온라인 추천(목표 응답 10ms 이내)에서 직렬 트리 순회 비용으로 인해 SLA를 초과할 수 있음
-  - Treelite나 ONNX 런타임을 통해 트리를 C 언어 조건문으로 컴파일하여 서빙 속도를 10배 이상 가속하는 인프라 최적화가 병행되어야 함
-- **설명 가능한 AI (XAI) 파이프라인 연계**:
-  - 앙상블 모델은 내부가 복잡한 블랙박스이므로, 금융 대출 심사나 의료 진단에서는 **SHAP (SHapley Additive exPlanations)** 값을 함께 산출하여 개별 피처의 기여도를 현업에 투명하게 제공해야 함
+> **[핵심 통찰]**
+> 캐글(Kaggle) 등 대회에서는 무조건 최신 부스팅(LightGBM, CatBoost)과 스태킹이 승리하지만, **운영 프로덕션 환경의 머신러닝 시스템에서는 서빙 지연시간(Latency)과 모델 유지보수성(XAI)**이 본질적인 승부처다. 트리 수천 개가 얽힌 부스팅은 10ms SLA를 맞추기 어렵고 과적합 위험이 크다. 노이즈가 많은 초기 데이터에는 랜덤 포레스트를 베이스라인으로 깔고, 검증된 정제 파이프라인 위에서 정규화 파라미터(L1/L2)를 엄격히 제한한 부스팅을 적용하는 것이 실무 아키텍처의 정답이다.
+
+> **[나라면 이렇게 쓴다]**
+> 1교시 10점형이라면 배깅(병렬/분산감소)과 부스팅(순차/편향감소)의 구조도를 대칭으로 배치하고 편향-분산 트레이드오프 수식을 명시하겠다. 25점형이라면 Treelite/ONNX를 활용한 트리 컴파일 서빙 가속 및 SHAP을 연계한 설명가능성(XAI) 확보 방안을 4단 제언으로 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 부스팅 앙상블의 무분별한 도입 시 학습 데이터 이상치 과적합 발생 및 온라인 서빙 시 트리 순회 레이턴시 급증
+- **대응 (개선 방안)**: 노이즈 데이터는 배깅(랜덤 포레스트) 우선 채택, 부스팅 적용 시 `early_stopping`과 깊이 제한을 강제하고 Treelite 컴파일 서빙 체계 구축
+- **검증 (검증 기준)**: 검증 데이터와 테스트 데이터 간 오차 격차 5% 이내 유지, 온라인 추론 지연시간 10ms 이내 준수, SHAP 기반 기여도 해석 검증
+- **효과 (실행 효과)**: 과적합 방지를 통한 실무 일반화 정확도 15% 향상, 모델 추론 응답 속도 10배 가속 및 규제 기관 대응 투명성 확보
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">1</div>
+    <div class="itpe-flow-step-title">현행 한계</div>
+    <div class="itpe-flow-step-desc">단일 모델 과적합/과소적합 및 부스팅 도입 시 서빙 레이턴시 병목</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">2</div>
+    <div class="itpe-flow-step-title">개선 방안</div>
+    <div class="itpe-flow-step-desc">데이터 특성별 배깅/부스팅 선별 + Treelite C 컴파일 서빙 가속</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">3</div>
+    <div class="itpe-flow-step-title">검증 기준</div>
+    <div class="itpe-flow-step-desc">Train-Test 오차 격차 &le; 5%, 추론 응답 &le; 10ms, SHAP XAI 검증</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">4</div>
+    <div class="itpe-flow-step-title">실행 효과</div>
+    <div class="itpe-flow-step-desc">일반화 예측 성능 15% 향상, 서빙 레이턴시 10배 단축 및 투명성 확보</div>
+  </div>
+</div>
 
 ---
 
 ## 1교시 10점 답안 발췌
 
-```text
-[문제] 머신러닝 앙상블 기법 (배깅 vs 부스팅)
+### 1. 앙상블 학습(Ensemble Learning)의 개념 및 목적
 
-1. 앙상블 학습(Ensemble Learning)의 개념 및 목적
- 가. 개념: 복수의 약한 학습기(Weak Learner)를 결합하여 단일 강한 학습기를 도출하는 기법
- 나. 목적: 단일 모델의 편향(과소적합) 또는 분산(과적합)을 줄여 일반화 성능 극대화
+- **개념**: 복수의 약한 학습기(Weak Learner)를 결합하여 단일 강한 학습기(Strong Learner)를 도출하는 집단 지성 기반 머신러닝 기법
+- **목적**: 단일 모델의 편향(과소적합) 또는 분산(과적합)을 줄여 일반화 오차 최소화 ($\text{Error} = \text{Bias}^2 + \text{Variance} + \epsilon$)
 
-2. 배깅(Bagging)과 부스팅(Boosting)의 메커니즘 비교
- ┌──────────────┬────────────────────────────┬────────────────────────────┐
- │  비교 항목   │       배깅 (Bagging)       │      부스팅 (Boosting)     │
- ├──────────────┼────────────────────────────┼────────────────────────────┤
- │ 훈련 방식    │ 병렬 독립 학습 (Parallel)  │ 순차 가중 보정 (Sequential)│
- │ 오차 제어    │ 분산(Variance) 감소        │ 편향(Bias) 감소            │
- │ 표본 추출    │ 복원추출 (Bootstrap)       │ 전체 데이터 + 오차 가중치  │
- │ 이상치 민감도│ 둔감 (이상치에 강건)       │ 극도로 민감 (과적합 주의)  │
- │ 대표 모델    │ Random Forest, Extra Trees │ XGBoost, LightGBM, CatBoost│
- └──────────────┴────────────────────────────┴────────────────────────────┘
+### 2. 배깅(Bagging)과 부스팅(Boosting)의 메커니즘 비교
 
-3. 실무 아키텍처 적용 및 튜닝 제언
- 가. 모델 선택: 노이즈 데이터에는 배깅 적용, 정제된 고성능 태스크에는 부스팅 적용
- 나. 과적합 방어: 부스팅 적용 시 learning_rate 축소 및 early stopping, 깊이 제한 필수
-```
+| 비교 항목 | 배깅 (Bagging) | 부스팅 (Boosting) |
+|:---|:---|:---|
+| **훈련 방식** | 병렬 독립 학습 (Parallel) | 순차 가중 보정 (Sequential) |
+| **오차 제어** | **분산(Variance) 감소** | **편향(Bias) 감소** |
+| **표본 추출** | 복원추출 (Bootstrap, OOB 36.8%) | 전체 데이터 사용 + 오답 샘플 가중치 상향 |
+| **이상치 민감도** | 둔감 (다수결 취합으로 노이즈에 강건) | 극도로 민감 (이상치 잔차 학습 시 과적합 위험) |
+| **대표 모델** | Random Forest, Extra Trees | XGBoost, LightGBM, CatBoost |
+
+### 3. 실무 아키텍처 적용 및 튜닝 제언
+
+- **모델 선택**: 결측치와 노이즈가 많은 원천 데이터는 배깅 우선 적용, 정제된 테이블 데이터 성능 극대화에는 부스팅 선별 적용
+- **과적합 방어**: 부스팅 적용 시 `learning_rate` 축소(0.01~0.05), 트리 깊이 제한(`max_depth` 3~6) 및 `early_stopping` 설정 필수
 
 ---
 

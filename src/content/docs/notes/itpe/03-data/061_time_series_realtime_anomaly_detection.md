@@ -3,19 +3,19 @@ sidebar:
   order: 61
   label: "061. 시계열 실시간 이상치 탐지"
   badge:
-    text: "B"
+    text: "A"
     variant: note
 title: "시계열 실시간 이상치 탐지 (Time Series Real-time Anomaly Detection)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:05:00+09:00"
 tags:
   - "notes-data"
+category: "03-data"
 weight: 61
 extra:
-  model: "GPT-5"
-  keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "061"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,25 +24,63 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[시계열 실시간 이상치 탐지 파이프라인 및 동적 임계 밴드]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 280" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dynamic Band Background -->
+  <rect x="15" y="15" width="490" height="250" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="38" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">시계열 실시간 이상치 탐지: 동적 임계 밴드 & 2-Tier 파이프라인</text>
 
-  [스트림 인입] ──▶ [슬라이딩 윈도우] ──▶ [잔차 / 이상점수 계산] ──▶ [동적 임계 판정] ──▶ [알림 / 격리]
-  (IoT 센서, FDS)    (Apache Flink)       (EWMA / iForest / AE)     (Z-Score > 3.0)     (PagerDuty / 차단)
+  <!-- Plot Area -->
+  <rect x="35" y="55" width="450" height="135" rx="4" fill="#ffffff" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
 
- ─────────────────────────────────────────────────────────────────────────────
-  [동적 임계선(Dynamic Threshold Band) 기반 이상치 판정]
-   메트릭 값
-     ^
-     │             상한 동적 임계선 (Dynamic Upper Band = μ_t + 3*σ_t)
-     │          .─-─-─.                     ★ [이상치 탐지! Alert Triggered!]
-     │         /       \                   /
-     │────────/─────────\───/\────────────/─────────▶ 중심 추세선 (EWMA 추종)
-     │       /           \ /  \          /
-     │      '             '    '─-─-─-─-'
-     │             하한 동적 임계선 (Dynamic Lower Band = μ_t - 3*σ_t)
-     0──────────────────────────────────────────────▶ 시간 (t)
-```
+  <!-- Dynamic Band Shading -->
+  <path d="M 45 110 Q 110 80, 180 100 T 320 90 T 400 70 T 475 80 L 475 145 Q 400 135, 320 150 T 180 160 T 110 140 T 45 150 Z" fill="#3b82f6" fill-opacity="0.1"/>
+
+  <!-- Upper/Lower Threshold Lines -->
+  <path d="M 45 110 Q 110 80, 180 100 T 320 90 T 400 70 T 475 80" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="325" y="68" font-size="9" fill="#ef4444">Upper Band (μ + 3σ)</text>
+
+  <path d="M 45 150 Q 110 140, 180 160 T 320 150 T 400 135 T 475 145" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="325" y="162" font-size="9" fill="#ef4444">Lower Band (μ - 3σ)</text>
+
+  <!-- Center Trend (EWMA) -->
+  <path d="M 45 130 Q 110 110, 180 130 T 320 120 T 400 102 T 475 112" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+  <!-- Data Stream Curve with Anomaly Spike -->
+  <path d="M 45 130 L 80 125 L 115 112 L 150 138 L 180 128 L 220 118 L 250 125 L 280 62 L 310 122 L 350 118 L 390 100 L 430 108 L 475 115" fill="none" stroke="#0f172a" stroke-width="2"/>
+
+  <!-- Anomaly Alert Marker -->
+  <circle cx="280" cy="62" r="5" fill="#dc2626"/>
+  <circle cx="280" cy="62" r="9" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2,2"/>
+  <rect x="250" y="44" width="76" height="16" rx="3" fill="#dc2626"/>
+  <text x="288" y="55" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">★ Outlier (Alert)</text>
+
+  <!-- Bottom Pipeline Flow -->
+  <g transform="translate(30, 205)">
+    <rect x="5" y="5" width="95" height="42" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="52" y="22" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">1. 스트림 유입</text>
+    <text x="52" y="36" font-size="8.5" fill="#475569" text-anchor="middle">Kafka / IoT 센서</text>
+
+    <path d="M 102 26 L 118 26" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-anom)"/>
+
+    <rect x="120" y="5" width="105" height="42" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="172" y="22" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">2. 슬라이딩 윈도우</text>
+    <text x="172" y="36" font-size="8.5" fill="#475569" text-anchor="middle">Flink RocksDB</text>
+
+    <path d="M 227 26 L 243 26" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="245" y="5" width="105" height="42" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="297" y="22" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">3. 2-Tier 추론</text>
+    <text x="297" y="36" font-size="8.5" fill="#475569" text-anchor="middle">EWMA + AutoEnc</text>
+
+    <path d="M 352 26 L 368 26" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="370" y="5" width="90" height="42" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="415" y="22" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">4. 선제 격리</text>
+    <text x="415" y="36" font-size="8.5" fill="#475569" text-anchor="middle">FDS 차단 / Pager</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **지속적으로 유입되는 고속 스트리밍 데이터에서 시간적 순서와 자기상관성을 반영하여, 정상 분포 패턴을 벗어나는 돌발 스파이크나 시퀀스 왜곡을 슬라이딩 윈도우와 머신러닝 모델을 통해 수 밀리초(ms) 단위의 초저지연으로 탐지·격리하는 선제적 관측 체계**
 - 암기: `유-창-점-역` (스트림 유입, 슬라이딩 창, 이상 점수 산출, 역치 판정) / `통-기-심` (통계적 EWMA/3-Sigma, 머신러닝 Isolation Forest, 딥러닝 AutoEncoder)
@@ -70,14 +108,33 @@ extra:
 
 #### 한줄 요약: 단일 시점의 스파이크(포인트), 시간적 맥락과의 불일치(컨텍스트), 비정상 시퀀스 패턴(집단)으로 대별
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                       시계열 이상치의 3대 핵심 유형                         │
-└─────────────────────────────────────────────────────────────────────────────┘
-  1. 포인트 이상치 (Point Anomaly)       ──▶ 단일 데이터 포인트의 극단적 이탈 (순시 스파이크)
-  2. 컨텍스트 이상치 (Contextual Anomaly) ──▶ 절대값은 정상이지만 특정 상황/시간대 맥락상 이상
-  3. 집단 이상치 (Collective Anomaly)    ──▶ 개별 값은 정상이나 연속된 데이터 흐름 패턴이 비정상
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 140" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="120" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="32" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">시계열 이상치의 3대 핵심 유형 분류</text>
+
+  <!-- 3 Boxes -->
+  <g transform="translate(25, 45)">
+    <!-- Box 1 -->
+    <rect x="0" y="0" width="150" height="70" rx="5" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="75" y="20" font-size="10.5" font-weight="bold" fill="#b91c1c" text-anchor="middle">1. 포인트 이상치</text>
+    <text x="75" y="38" font-size="9" fill="#334155" text-anchor="middle">단일 시점 극단적 스파이크</text>
+    <text x="75" y="54" font-size="8" fill="#64748b" text-anchor="middle">CPU 100%, 0V 전압 강하</text>
+
+    <!-- Box 2 -->
+    <rect x="160" y="0" width="150" height="70" rx="5" fill="#ffffff" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="235" y="20" font-size="10.5" font-weight="bold" fill="#b45309" text-anchor="middle">2. 컨텍스트 이상치</text>
+    <text x="235" y="38" font-size="9" fill="#334155" text-anchor="middle">상황/시간 맥락상 비정상</text>
+    <text x="235" y="54" font-size="8" fill="#64748b" text-anchor="middle">새벽 3시 대규모 이체 급증</text>
+
+    <!-- Box 3 -->
+    <rect x="320" y="0" width="150" height="70" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="395" y="20" font-size="10.5" font-weight="bold" fill="#1d4ed8" text-anchor="middle">3. 집단 이상치</text>
+    <text x="395" y="38" font-size="9" fill="#334155" text-anchor="middle">연속 시퀀스 조합 결함</text>
+    <text x="395" y="54" font-size="8" fill="#64748b" text-anchor="middle">센서 고착(Freezing), 심박 지연</text>
+  </g>
+</svg>
+</div>
 
 | 이상치 유형 | 특징 및 판정 기준 | 전형적 사례 | 탐지 난이도 |
 |:---|:---|:---|:---:|
@@ -89,16 +146,33 @@ extra:
 
 #### 한줄 요약: 초경량 통계 기법(EWMA, 3-Sigma), 비지도 트리 머신러닝(iForest), 심층 시퀀스 모델(AutoEncoder)의 단계별 체계
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    실시간 이상치 탐지 기술 스펙트럼                         │
-└─────────────────────────────────────────────────────────────────────────────┘
-   [통계적 기법]                  [머신러닝 기법]               [딥러닝 기법]
-  - 3-Sigma / Z-Score           - Isolation Forest            - LSTM AutoEncoder
-  - EWMA (지수이동평균)          - Robust Random Cut Forest    - TranAD (Transformer)
-  - CUSUM (누적합 검정)          - One-Class SVM               - VAE (변분오토인코더)
-  * 초저지연 (수 μs ~ 수 ms)     * 비선형 다변량 (수십 ms)      * 복합 시퀀스 (수백 ms)
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 130" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="110" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">실시간 이상치 탐지 알고리즘 스펙트럼 (지연시간 vs 표현력)</text>
+
+  <g transform="translate(25, 42)">
+    <rect x="0" y="0" width="150" height="65" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+    <text x="75" y="18" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">[통계적 기법]</text>
+    <text x="75" y="34" font-size="8.5" fill="#334155" text-anchor="middle">EWMA, 3-Sigma, CUSUM</text>
+    <text x="75" y="50" font-size="8" fill="#166534" text-anchor="middle">초저지연 (&le; 1ms)</text>
+
+    <path d="M 152 32 L 168 32" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="170" y="0" width="150" height="65" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="245" y="18" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">[머신러닝 기법]</text>
+    <text x="245" y="34" font-size="8.5" fill="#334155" text-anchor="middle">Isolation Forest, RRCF</text>
+    <text x="245" y="50" font-size="8" fill="#1e3a8a" text-anchor="middle">다변량 비선형 (5~50ms)</text>
+
+    <path d="M 322 32 L 338 32" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="340" y="0" width="140" height="65" rx="4" fill="#faf5ff" stroke="#9333ea" stroke-width="1.2"/>
+    <text x="410" y="18" font-size="10" font-weight="bold" fill="#6b21a8" text-anchor="middle">[딥러닝 기법]</text>
+    <text x="410" y="34" font-size="8.5" fill="#334155" text-anchor="middle">LSTM-AutoEncoder, TranAD</text>
+    <text x="410" y="50" font-size="8" fill="#581c87" text-anchor="middle">시퀀스 패턴 (50~300ms)</text>
+  </g>
+</svg>
+</div>
 
 ### 1. 통계적 기법 (Statistical Methods)
 - **EWMA (지수 이동평균 기반 관리도)**:
@@ -140,26 +214,43 @@ extra:
 
 #### 한줄 요약: Kafka 인입, Flink 슬라이딩 윈도우 집계, 2단계 계층형 모델 추론, 실시간 알림 엔진의 유기적 결합
 
-```text
- [데이터 소스] ──▶ IoT 센서 / 결제 로그 / 서버 메트릭
-         │
-         ▼
- [스트리밍 인입] ──▶ Apache Kafka / AWS Kinesis (파티셔닝 분산 버퍼링)
-         │
-         ▼
- [스트림 처리기] ──▶ Apache Flink (Stateful 슬라이딩 윈도우 집계: 1분 윈도우, 1초 슬라이드)
-         │
-         ├──────────────────────────────────────────┐
-         ▼ (1차 경량 검사: 99% 정상 데이터 필터)     ▼ (2차 정밀 검사: 의심 구간 1%)
- [Edge / Worker 1]                           [GPU Worker Pool]
-  - EWMA 동적 밴드 판정                       - LSTM AutoEncoder 재구성 오차
-  - 1ms 이내 정상 데이터 통과                  - 다변량 상관관계 및 복합 이상치 확정
-         │                                          │
-         └────────────────────┬─────────────────────┘
-                              ▼
- [판정 및 대응] ──▶ Redis 캐시 갱신 ──▶ 웹소켓 대시보드 표출
-               ──▶ 이상 확정 시 PagerDuty 호출 및 트랜잭션 자동 차단
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="200" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="32" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">실시간 스트리밍 이상 탐지 엔드투엔드 아키텍처</text>
+
+  <!-- Left: Ingestion -->
+  <rect x="30" y="55" width="100" height="135" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="80" y="75" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">스트리밍 인입</text>
+  <text x="80" y="98" font-size="8.5" fill="#334155" text-anchor="middle">IoT / FDS 로그</text>
+  <rect x="40" y="115" width="80" height="26" rx="3" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="80" y="132" font-size="9" font-weight="bold" fill="#2563eb" text-anchor="middle">Kafka / Kinesis</text>
+
+  <!-- Arrow -->
+  <path d="M 132 122 L 158 122" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- Middle: Stream Engine -->
+  <rect x="160" y="55" width="115" height="135" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="217" y="75" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">스트림 처리 엔진</text>
+  <text x="217" y="98" font-size="8.5" fill="#334155" text-anchor="middle">Apache Flink</text>
+  <text x="217" y="125" font-size="8" fill="#475569" text-anchor="middle">Sliding Window</text>
+  <text x="217" y="145" font-size="8" fill="#475569" text-anchor="middle">RocksDB State</text>
+  <text x="217" y="165" font-size="8" fill="#475569" text-anchor="middle">Watermark 정렬</text>
+
+  <!-- Split Arrows -->
+  <path d="M 277 105 L 303 85" stroke="#16a34a" stroke-width="1.5"/>
+  <path d="M 277 140 L 303 160" stroke="#9333ea" stroke-width="1.5"/>
+
+  <!-- Right: 2-Tier Reasoning -->
+  <rect x="305" y="55" width="180" height="60" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="395" y="74" font-size="9.5" font-weight="bold" fill="#15803d" text-anchor="middle">Tier 1: 경량 통계 필터 (99% 통과)</text>
+  <text x="395" y="92" font-size="8.5" fill="#334155" text-anchor="middle">EWMA / Z-Score (&lt; 1ms 판정)</text>
+
+  <rect x="305" y="130" width="180" height="60" rx="4" fill="#faf5ff" stroke="#9333ea" stroke-width="1.2"/>
+  <text x="395" y="149" font-size="9.5" font-weight="bold" fill="#6b21a8" text-anchor="middle">Tier 2: 정밀 심층 신경망 (의심 1%)</text>
+  <text x="395" y="167" font-size="8.5" fill="#334155" text-anchor="middle">LSTM AutoEncoder (GPU 가속)</text>
+</svg>
+</div>
 
 - **슬라이딩 윈도우(Sliding Window) 상태 관리**:
   - Apache Flink의 RocksDB 상태 백엔드를 활용하여 각 시계열 키(센서 ID, 계좌 번호)별로 최근 $N$개의 윈도우 상태를 메모리에 유지
@@ -185,52 +276,77 @@ extra:
 - **동적 가변 윈도우 적용**:
   - 평시에는 윈도우 크기를 넓혀 연산 부하를 줄이고, 이상 징후 감지 시 윈도우를 세분화하여 정밀 진단 모드로 동적 전환
 
-## Ⅶ. 데이터 아키텍트 관점의 계층형 탐지 아키텍처 제언
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 모든 데이터를 딥러닝으로 처리하려는 과욕을 버리고 경량 통계 필터와 정밀 AI를 결합한 2-Tier 파이프라인 수립
+### 학습자 통찰 메모 — 답안 밖
 
-- **"비용 효율적인 2단계 계층형 필터링(Two-Tier Filtering)의 필수성"**:
-  - 초당 수십만 건의 시계열 데이터 전량을 GPU 기반 딥러닝(AutoEncoder, TranAD)으로 실시간 추론하려 하면 인프라 비용이 수십 배 폭증하고 백프레셔(Backpressure)로 시스템이 붕괴됨
-  - **1계층(Stream Worker)**에서 EWMA/Z-Score로 99%의 명백한 정상 데이터를 밀리초 미만으로 필터링하고,
-  - **2계층(Deep Learning Worker)**에서는 1계층에서 이탈된 상위 1%의 의심 시계열만 선별하여 심층 신경망으로 다변량 상관성을 검증하는 **하이브리드 계층 설계**가 실무의 정답임
-- **온라인 지속 학습(Continuous Learning) 체계 구축**:
-  - 공장 설비의 노후화나 서비스의 자연스러운 트래픽 증가는 정상 상태의 통계적 속성을 변화시킴(Concept Drift)
-  - 주기적으로 정상 윈도우 데이터를 샘플링하여 모델 파라미터를 점진적으로 온라인 업데이트(Online Update)하는 MLOps 파이프라인이 수반되어야 함
+> **[핵심 통찰]**
+> 시계열 이상치 탐지는 "단일 알고리즘의 정확도" 문제가 아니라 **"지연시간(Latency)과 연산 비용(Cost) 사이의 계층형 파이프라인 설계"** 문제다. 모든 스트림을 딥러닝(AutoEncoder/TranAD)에 쏟아부으면 백프레셔로 파이프라인이 즉시 마비된다. Flink 레벨에서 가벼운 EWMA 통계 필터로 99%의 정상 데이터를 1ms 내에 걸러내고, 남은 1%의 의심 구간만 GPU 워커로 넘기는 2-Tier 구조가 엔터프라이즈의 표준 해법이다.
+
+> **[나라면 이렇게 쓴다]**
+> 답안 3단에 "정적 임계값의 한계(알람 피로) vs EWMA 기반 동적 임계 밴드($\mu_t \pm 3\sigma_t$)"를 그래프와 수식으로 대비하고, 4단 기술사 제언에 "Tier-1 통계 필터(Edge) + Tier-2 딥러닝 추론(Cloud/GPU)"의 2계층 아키텍처와 Persistence Check(연속 $N$회 초과 시 경보 발송) 전략을 구조도로 명문화하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 단순 정적 임계값(Static Threshold) 기반 알람은 계절성 및 자연 증가 트래픽을 이상으로 오판하여 운영팀의 심각한 알람 피로(Alert Fatigue) 유발
+- **대응 (개선 방안)**: EWMA 기반 동적 밴드와 지속성 검증(Persistence Check)을 도입하고, 스트림 처리기(Tier 1)와 GPU AI 엔진(Tier 2)의 2단계 계층형 필터링 파이프라인 구축
+- **검증 (검증 기준)**: 오탐율(False Positive Rate) 0.1% 이하 유지, 엔드투엔드 탐지 레이턴시 50ms 이내 보장, 백프레셔 발생 여부 지속 모니터링
+- **효과 (실행 효과)**: 고비용 인프라 자원 소모 80% 절감, 골든타임 내 이상 징후 조기 격리로 장애 복구 시간(MTTR) 70% 단축
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">1</div>
+    <div class="itpe-flow-step-title">현행 한계</div>
+    <div class="itpe-flow-step-desc">정적 임계치 오탐 폭증 및 전수 딥러닝 시 백프레셔 발생</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">2</div>
+    <div class="itpe-flow-step-title">개선 방안</div>
+    <div class="itpe-flow-step-desc">2-Tier 하이브리드 필터링 (EWMA 1차 + AutoEncoder 2차)</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">3</div>
+    <div class="itpe-flow-step-title">검증 기준</div>
+    <div class="itpe-flow-step-desc">오탐율 &le; 0.1%, 탐지 레이턴시 &le; 50ms, 지속성 3회 검증</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">4</div>
+    <div class="itpe-flow-step-title">실행 효과</div>
+    <div class="itpe-flow-step-desc">알람 피로 해소, 추론 자원 80% 절감 및 MTTR 70% 단축</div>
+  </div>
+</div>
 
 ---
 
 ## 2교시 25점 답안 발췌
 
-```text
-[문제 4] 시계열 데이터 실시간 이상치 탐지 (Real-time Anomaly Detection)
+### Ⅰ. 시계열 실시간 이상치 탐지의 개요 및 3대 이상치 유형
 
-Ⅰ. 시계열 실시간 이상치 탐지의 개요 및 3대 이상치 유형
- 1. 개념: 고속 스트림 데이터에서 시간 순서와 자기상관성을 반영하여 정상 패턴 이탈을
-          초저지연(수 ms)으로 검출하는 선제적 품질·보안 관측 체계
- 2. 3대 이상치 유형
-  가. 포인트 이상치: 단일 시점의 급격한 스파이크 (예: CPU 100% 급증)
-  나. 컨텍스트 이상치: 특정 시간대/상황 맥락상 비정상 (예: 새벽 3시 대규모 이체)
-  다. 집단 이상치: 개별 값은 정상이나 연속 시퀀스 패턴이 비정상 (예: 센서 고착)
+1. **개념**: 고속 스트림 데이터에서 시간 순서와 자기상관성을 반영하여 정상 패턴 이탈을 초저지연(수 ms)으로 검출하는 선제적 품질·보안 관측 체계
+2. **3대 이상치 유형**:
+   - **포인트 이상치**: 단일 시점의 급격한 스파이크 (예: CPU 100% 급증)
+   - **컨텍스트 이상치**: 특정 시간대/상황 맥락상 비정상 (예: 새벽 3시 대규모 이체)
+   - **집단 이상치**: 개별 값은 정상이나 연속 시퀀스 패턴이 비정상 (예: 센서 고착)
 
-Ⅱ. 시계열 이상치 탐지 알고리즘 계열 비교
- ┌──────────────┬────────────────────────────┬────────────────────────────┐
- │   비교 항목  │      통계적 기법 (EWMA)    │  딥러닝 기법 (AutoEncoder) │
- ├──────────────┼────────────────────────────┼────────────────────────────┤
- │ 처리 레이턴시│ 극도로 낮음 (1ms 이내)     │ 보통 (50~300ms, GPU 요구)  │
- │ 탐지 대상    │ 단발성 포인트 이상치       │ 복합 시퀀스 및 집단 이상치 │
- │ 다변량 지원  │ 단변량 중심                │ 수백 개 센서 다변량 지원   │
- │ 판정 메커니즘│ 동적 관리한계선(μ ± 3σ)    │ 재구성 오차(Recon Error)   │
- └──────────────┴────────────────────────────┴────────────────────────────┘
+### Ⅱ. 시계열 이상치 탐지 알고리즘 계열 비교
 
-Ⅲ. 엔드투엔드 실시간 스트리밍 아키텍처
- 1. 파이프라인: Kafka(수집) -> Flink 슬라이딩 윈도우(집계) -> 2-Tier 추론 -> 알림/차단
- 2. 2-Tier 계층형 필터링: 1차 EWMA 경량 필터(99% 통과) + 2차 AutoEncoder 정밀 분석(1%)
- 3. 동적 임계값: 지수이동평균을 중심 추세선으로 추종하여 계절성 변동에 따른 오탐 원천 차단
+| 비교 항목 | 통계적 기법 (EWMA) | 딥러닝 기법 (AutoEncoder) |
+|:---|:---|:---|
+| **처리 레이턴시** | 극도로 낮음 (1ms 이내) | 보통 (50~300ms, GPU 요구) |
+| **탐지 대상** | 단발성 포인트 이상치 | 복합 시퀀스 및 집단 이상치 |
+| **다변량 지원** | 단변량 중심 | 수백 개 센서 다변량 지원 |
+| **판정 메커니즘** | 동적 관리한계선($\mu \pm 3\sigma$) | 재구성 오차(Reconstruction Error) |
 
-Ⅳ. 실무 장애 예방 및 아키텍처 제언
- 1. 알람 피로 극복: 3회 연속 윈도우 초과 시 경보 발송(Persistence Check)으로 노이즈 제거
- 2. 콘셉트 드리프트 대응: 윈도우 통계치 실시간 갱신 및 지속 학습(MLOps) 파이프라인 확립
-```
+### Ⅲ. 엔드투엔드 실시간 스트리밍 아키텍처
+
+1. **파이프라인**: Kafka(수집) $\to$ Flink 슬라이딩 윈도우(집계) $\to$ 2-Tier 추론 $\to$ 알림/차단
+2. **2-Tier 계층형 필터링**: 1차 EWMA 경량 필터(99% 통과) + 2차 AutoEncoder 정밀 분석(1%)
+3. **동적 임계값**: 지수이동평균을 중심 추세선으로 추종하여 계절성 변동에 따른 오탐 원천 차단
+
+### Ⅳ. 실무 장애 예방 및 아키텍처 제언
+
+1. **알람 피로 극복**: 3회 연속 윈도우 초과 시 경보 발송(Persistence Check)으로 노이즈 제거
+2. **콘셉트 드리프트 대응**: 윈도우 통계치 실시간 갱신 및 지속 학습(MLOps) 파이프라인 확립
 
 ---
 
