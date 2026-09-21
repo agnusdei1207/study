@@ -1,77 +1,287 @@
 ---
 sidebar:
   order: 114
-  label: "114. DB 복제 유형"
-title: "DB 복제 유형"
-author: "Gemini 3.8 Flash"
+  label: "114. DB 복제 유형 (Replication Types)"
+  badge:
+    text: "A"
+    variant: note
+title: "데이터베이스 복제 유형(동기·비동기·반동기)과 고가용성 복제 아키텍처"
+author: "Antigravity"
 date: "2026-09-20T09:30:00+09:00"
 tags:
   - "notes-data"
 weight: 114
 extra:
   model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "114"
+---
+
+## 지식 로드맵 내 현재 위치
+
+<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>분산 데이터베이스·고가용성</span><strong>DB 복제 유형</strong></div>
+
+## 큰 그림과 30초 인출
+
+<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" width="100%" height="auto" role="img" aria-label="데이터베이스 3대 복제 동기화 시퀀스 비교">
+  <defs>
+    <marker id="repArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
+    </marker>
+    <marker id="repAck" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+    </marker>
+  </defs>
+  <!-- Background Card -->
+  <rect width="520" height="230" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
+
+  <!-- Col 1: 동기 복제 -->
+  <g transform="translate(15, 15)">
+    <rect width="155" height="198" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
+    <rect width="155" height="26" rx="6" fill="#f8fafc"/>
+    <text x="77" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">1. 동기 복제 (Sync)</text>
+
+    <!-- Nodes Lifeline -->
+    <line x1="40" y1="35" x2="40" y2="155" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2"/>
+    <line x1="115" y1="35" x2="115" y2="155" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2"/>
+    <text x="40" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Primary</text>
+    <text x="115" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Replica</text>
+
+    <!-- Messages -->
+    <path d="M 40 65 L 115 75" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#repArr)"/>
+    <text x="77" y="66" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent, #2563eb)">로그 전송</text>
+
+    <text x="115" y="92" text-anchor="middle" font-size="7" fill="var(--sl-color-gray-2, #64748b)">디스크 기록</text>
+
+    <path d="M 115 105 L 40 115" stroke="#10b981" stroke-width="1.5" marker-end="url(#repAck)"/>
+    <text x="77" y="106" text-anchor="middle" font-size="7.5" font-weight="700" fill="#059669">ACK 응답</text>
+
+    <circle cx="40" cy="130" r="3" fill="#2563eb"/>
+    <text x="48" y="133" font-size="8" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">최종 커밋</text>
+
+    <!-- Bottom Trait -->
+    <text x="77" y="172" text-anchor="middle" font-size="8.5" font-weight="700" fill="#059669">RPO = 0 (무유실)</text>
+    <text x="77" y="186" text-anchor="middle" font-size="8" fill="#dc2626">네트워크 RTT 지연</text>
+  </g>
+
+  <!-- Col 2: 비동기 복제 -->
+  <g transform="translate(182, 15)">
+    <rect width="155" height="198" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
+    <rect width="155" height="26" rx="6" fill="#f8fafc"/>
+    <text x="77" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">2. 비동기 복제 (Async)</text>
+
+    <!-- Nodes Lifeline -->
+    <line x1="40" y1="35" x2="40" y2="155" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2"/>
+    <line x1="115" y1="35" x2="115" y2="155" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2"/>
+    <text x="40" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Primary</text>
+    <text x="115" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Replica</text>
+
+    <!-- Messages -->
+    <circle cx="40" cy="65" r="3" fill="#2563eb"/>
+    <text x="48" y="68" font-size="8" font-weight="700" fill="#2563eb">즉시 커밋!</text>
+
+    <path d="M 40 85 L 115 100" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#repArr)"/>
+    <text x="77" y="88" text-anchor="middle" font-size="7.5" fill="var(--sl-color-gray-2, #64748b)">백그라운드 전송</text>
+
+    <text x="115" y="120" text-anchor="middle" font-size="7" fill="var(--sl-color-gray-2, #64748b)">릴레이 적용</text>
+
+    <!-- Bottom Trait -->
+    <text x="77" y="172" text-anchor="middle" font-size="8.5" font-weight="700" fill="#2563eb">초저지연 최고성능</text>
+    <text x="77" y="186" text-anchor="middle" font-size="8" fill="#dc2626">장애 시 RPO &gt; 0 유실</text>
+  </g>
+
+  <!-- Col 3: 반동기 복제 -->
+  <g transform="translate(350, 15)">
+    <rect width="155" height="198" rx="6" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
+    <rect width="155" height="26" rx="6" fill="var(--sl-color-accent, #dbeafe)"/>
+    <text x="77" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">3. 반동기 (Semi-Sync)</text>
+
+    <!-- Nodes Lifeline -->
+    <line x1="40" y1="35" x2="40" y2="155" stroke="var(--sl-color-accent, #93c5fd)" stroke-width="1.2"/>
+    <line x1="115" y1="35" x2="115" y2="155" stroke="var(--sl-color-accent, #93c5fd)" stroke-width="1.2"/>
+    <text x="40" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Primary</text>
+    <text x="115" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Replica 1</text>
+
+    <!-- Messages -->
+    <path d="M 40 65 L 115 75" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5" marker-end="url(#repArr)"/>
+    <text x="77" y="66" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent, #1d4ed8)">로그 전송</text>
+
+    <text x="115" y="92" text-anchor="middle" font-size="7" fill="var(--sl-color-accent, #1e40af)">메모리(Relay) 수신</text>
+
+    <path d="M 115 105 L 40 115" stroke="#10b981" stroke-width="1.5" marker-end="url(#repAck)"/>
+    <text x="77" y="106" text-anchor="middle" font-size="7.5" font-weight="700" fill="#059669">최소 1대 ACK</text>
+
+    <circle cx="40" cy="130" r="3" fill="#1e40af"/>
+    <text x="48" y="133" font-size="8" font-weight="700" fill="var(--sl-color-accent, #1e40af)">최종 커밋</text>
+
+    <!-- Bottom Trait -->
+    <text x="77" y="172" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">성능과 무유실 절충</text>
+    <text x="77" y="186" text-anchor="middle" font-size="8" fill="var(--sl-color-accent, #2563eb)">엔터프라이즈 사실상 표준</text>
+  </g>
+</svg>
+</div>
+
+- 본질: **단일 데이터베이스의 장애로 인한 서비스 중단 및 데이터 유실을 방지하기 위해 트랜잭션 로그(WAL, Binlog)를 복수의 데이터베이스 노드로 전송·동기화하여 고가용성(HA), 읽기 트래픽 부하 분산(Scale-out), 재해 복구(DR)를 달성하는 핵심 인프라 아키텍처**
+- 암기: `동-비-반` (3대 동기화 방식: 동기, 비동기, 반동기 복제) / `마-슬 / 멀-마` (토폴로지: Master-Slave, Multi-Master) / `복-지-랙` (복제 지연 Replication Lag)
+- 판단축:
+  - **동기 복제(Synchronous)**: 금융 결제, 계좌 원장 등 데이터 유실이 1건도 허용되지 않는 RPO=0 절대 보장 영역 (단, 네트워크 RTT 지연 감수)
+  - **비동기 복제(Asynchronous)**: 초당 트랜잭션 수(TPS)가 최우선이고 미세 유실이 허용되는 대용량 로그 수집 및 SNS 피드 영역
+  - **반동기 복제(Semi-Synchronous)**: 여러 복제 노드 중 최소 1개 노드 수신 확인 후 커밋하여 성능과 무유실의 균형을 맞춘 엔터프라이즈 최적해
+- 주의: 비동기 복제 환경에서 읽기/쓰기 분리(Read Replica)를 적용할 경우, 쓰기 직후 복제 지연(Replication Lag)으로 인해 사용자가 방금 작성한 글을 조회하지 못하는 **읽기 일관성(Read-your-writes) 불일치**가 발생하므로 세션 라우팅 대책이 필수적임
+
+## 예상문제
+
+> 엔터프라이즈 데이터베이스의 고가용성과 확장성을 보장하기 위한 복제(Replication)의 동기화 3대 방식(동기, 비동기, 반동기)의 메커니즘과 장단점을 비교하고, 읽기 분산 환경에서 발생하는 복제 지연(Replication Lag)의 해결 방안과 스플릿 브레인(Split-Brain) 방어 체계를 서술하시오. (25점)
+
+## Ⅰ. 무중단 서비스를 지탱하는 데이터베이스 복제(Replication) 개요
+
+#### 한줄 요약: 트랜잭션 로그를 네트워크를 통해 보조 노드에 동기화하여 서비스 가용성과 읽기 처리량을 극대화하는 기술
+
+- **배경**: 단일 DB 인스턴스 환경에서는 하드웨어 고장 시 전사 서비스 중단(SPOF)이 발생하며, 읽기 트래픽 폭증 시 CPU 및 I/O 고갈로 시스템 마비
+- **정의**: Primary(Master) 데이터베이스에서 발생한 모든 데이터 변경 이력(WAL/Redo Log/Binary Log)을 하나 이상의 Secondary(Replica/Slave) 노드로 지속 복제하여 데이터의 복사본을 동기화하는 기술
+- **3대 핵심 목적**:
+  1. **고가용성(HA) 및 무중단 페일오버**: Primary 장애 시 대기 노드를 즉시 승격(Failover)하여 서비스 지속
+  2. **읽기 트래픽 부하 분산(Read Scale-out)**: CUD(쓰기)는 Primary로, 대량의 SELECT(읽기)는 복제본으로 분산
+  3. **지리적 재해 복구(DR)**: 원격 데이터센터로 데이터를 실시간 복제하여 지진·화재 등 물리적 재난 방어
+
+## Ⅱ. 복제 동기화 3대 방식 상세 비교
+
+#### 한줄 요약: 데이터 무결성을 위해 지연을 감수하는 동기 복제, 성능을 위해 유실 위험을 안는 비동기 복제, 그 절충점인 반동기 복제
+
+| 비교 항목 | 동기 복제 (Synchronous) | 비동기 복제 (Asynchronous) | 반동기 복제 (Semi-Synchronous) |
+|:---|:---|:---|:---|
+| **커밋 완료 시점** | **모든 복제 노드의 디스크 기록 및 ACK 수신 후** | **Primary 노드 로컬 기록 완료 즉시** | **최소 1개 복제 노드의 릴레이 로그 수신 ACK 후** |
+| **데이터 유실 위험** | **완전 0 (RPO = 0 완벽 보장)** | **장애 시 유실 발생 가능 (RPO > 0)** | **거의 0 (RPO $\approx$ 0 달성)** |
+| **트랜잭션 지연시간** | **가장 큼** (가장 느린 노드의 RTT에 종속) | **최저 지연** (네트워크 지연 영향 전무) | **낮음** (1개 노드 네트워크 RTT만 수반) |
+| **네트워크 단절 시** | 전체 트랜잭션 멈춤 (Hang 상태) | Primary는 정상 처리 지속 | 타임아웃 발생 시 비동기 모드로 자동 강등 |
+| **대표 적용 사례** | 금융 거래, 결제 원장, 증권 주문 | 일반 웹 서비스, SNS 피드, 빅데이터 수집 | MySQL Group Replication, 기업형 기간계 코어 |
+
+## Ⅲ. 복제 토폴로지 구조: Master-Slave vs Multi-Master
+
+#### 한줄 요약: 쓰기 주체가 단일 노드인 비대칭 구조와 모든 노드가 쓰기를 수용하는 대칭 구조의 비교
+
+| 비교 항목 | Master-Slave (Active-Standby) | Multi-Master (Active-Active) |
+|:---|:---|:---|
+| **쓰기(Write) 처리** | **오직 단일 Primary 노드만 쓰기 허용** | **모든 마스터 노드에서 자유롭게 쓰기 허용** |
+| **읽기(Read) 처리** | Primary 및 복수의 Read Replica에서 분산 수행 | 모든 노드에서 로컬 읽기 수행 |
+| **데이터 충돌 위험** | **충돌 없음** (단일 쓰기 지점 보장) | **노드 간 동시 수정 시 충돌(Conflict) 발생** |
+| **충돌 해결 방식** | 불필요 | 타임스탬프(LWW), CRDT, 또는 분산 락(Paxos/Raft) |
+| **장애 조치(Failover)** | Primary 다운 시 Slave 중 하나를 승격 필요 | 노드 1대 다운 시에도 타 마스터 노드로 즉시 우회 |
+| **적용 복잡도** | 단순하며 대부분의 엔터프라이즈 표준 | 매우 복잡하며 글로벌 분산 서비스에 제한적 적용 |
+
+## Ⅳ. 복제 지연(Replication Lag) 메커니즘과 읽기 일관성 보장 전략
+
+#### 한줄 요약: Primary와 Replica 간의 시간차로 인한 데이터 불일치를 애플리케이션 레벨에서 라우팅하여 해결
+
+- **복제 지연(Replication Lag)의 발생 원인**:
+  - Primary는 멀티스레드로 수천 건의 쿼리를 병렬 처리하지만, 과거 Slave는 단일 스레드로 릴레이 로그를 순차 반영하면서 지연 누적
+  - 대량 배치 DML(예: 100만 건 `UPDATE`) 실행 시 Slave의 반영 병목 심화
+- **실무 장애 현상**: 사용자가 게시글을 작성하자마자 상세 페이지로 이동했을 때 글이 보이지 않거나 이전 데이터가 노출되는 '읽기 일관성 결여' 발생
+- **엔지니어링 극복 방안**:
+  1. **자신이 쓴 데이터 읽기 (Read-your-writes Consistency)**: 사용자가 쓰기를 수행한 직후 일정 시간(예: 5초간) 동안은 해당 사용자의 읽기 요청을 강제로 Primary 노드로 라우팅
+  2. **멀티스레드 복제 (Multi-Threaded Replication)**: MySQL MTS(MTS)를 활성화하여 스키마 또는 논리적 트랜잭션 단위로 복제본에서도 병렬로 로그를 반영하도록 구성
+  3. **GTID(Global Transaction Identifier) 기반 동기화 확인**: 읽기 요청 시 클라이언트가 방금 커밋한 트랜잭션의 GTID를 복제본이 이미 반영했는지 확인 후 쿼리 수행
+
+## Ⅴ. 스플릿 브레인(Split-Brain) 방어 및 고가용성 오케스트레이션
+
+#### 한줄 요약: 네트워크 단절 시 복수의 노드가 마스터를 자처하는 뇌 분리 현상을 정족수(Quorum) 투표로 차단
+
+- **스플릿 브레인 (Split-Brain)**:
+  - Primary와 Secondary 간의 통신만 단절되고 양쪽 노드는 모두 정상 동작할 때, Secondary가 Primary의 장애로 오판하여 스스로 마스터로 승격
+  - 두 노드 모두 쓰기를 수용하여 데이터가 비가역적으로 오염되고 정합성이 영구 붕괴되는 치명적 재난
+- **방어 메커니즘**:
+  1. **정족수 기반 펜싱 (Quorum Fencing)**: 최소 3대 이상의 홀수 노드 또는 외부 감시자(Witness)를 배치하여, 과반수($N/2 + 1$)의 지지를 얻은 노드만 마스터 자격을 획득
+  2. **STONITH (Shoot The Other Node In The Head)**: 장애 의심 노드의 전원(IPMI/PDU)을 물리적으로 강제 차단하여 2개의 마스터 공존 원천 배제
+  3. **오케스트레이터 도입**: GitHub Orchestrator, Raft 합의 기반 패트롤 도구를 활용하여 토폴로지 자동 복구
+
+## Ⅵ. 실무 장애 사례 및 트러블슈팅 (Troubleshooting)
+
+#### 한줄 요약: 대량 배치로 인한 복제 지연, 복제본 쓰기 오염, 자동 장애조치 실패 방어
+
+| 장애 요인 | 발생 원인 | 실무 엔지니어링 극복 방안 |
+|:---|:---|:---|
+| **대량 DML로 인한 복제 중단** | 1,000만 건 테이블을 한 번의 트랜잭션으로 `DELETE`하여 Slave 지연시간이 수 시간 발생 | 대량 DML은 1,000건 단위 청크(Chunk)로 분할 커밋(`LIMIT 1000`) |
+| **복제본 쓰기 오염 (Slave Drift)** | 개발자가 점검 중 실수로 Slave DB에 직접 DML을 실행하여 Primary와 데이터 불일치 | 복제 노드에 `read_only = ON` 및 `super_read_only = ON` 파라미터 강제 |
+| **장애조치 시 트랜잭션 유실** | 비동기 복제 환경에서 Primary 급사 시 가장 최신 로그를 가진 Slave를 식별하지 못함 | Semi-Sync 복제 적용 및 MHA/Orchestrator의 최신 GTID 보유 노드 자동 선별 승격 |
+
+## Ⅶ. 기술사적 제언
+
+### 학습자 통찰 메모 — 답안 밖
+
+> **[핵심 통찰]**
+> 많은 조직이 '무중단 DB'를 만든다고 Master-Slave 복제를 구축해 두고 정작 장애가 났을 때 아무도 Failover를 하지 못해 수 시간의 다운타임을 겪는다. 당직 엔지니어가 새벽에 전화를 받고 깨어나 DNS를 수동으로 바꾸고 Slave를 승격시키는 것은 1990년대 방식이다. 진정한 고가용성은 '무인 자동 장애조치(Automated Failover)'에 있으며, 반동기 복제(Semi-Sync)를 통해 데이터 유실을 0으로 막고, 과반수 투표 기반의 오케스트레이터(Orchestrator/Raft)가 30초 이내에 승격을 끝내야 한다.
+
+> **[나라면 이렇게 쓴다]**
+> 1교시형이라면 동기, 비동기, 반동기의 3대 시퀀스 다이어그램과 RPO/지연시간 비교표를 명확히 제시하겠다. 2교시 25점형이라면 Master-Slave vs Multi-Master 토폴로지 비교와 함께 실무의 고질병인 복제 지연(Replication Lag)에 따른 읽기 일관성 깨짐 해결책(세션 기반 Primary 라우팅)과 스플릿 브레인 방어를 위한 쿼럼 펜싱(Quorum Fencing) 메커니즘을 제언에 완벽히 서술하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 비동기 복제 환경에서 마스터 장애 시 수십 초~수 분의 최신 데이터가 유실(RPO > 0)되며, 수작업 기반의 장애 복구 체계는 목표 RTO(5분 이내) 달성이 불가능함.
+- **대응 (개선 방안)**: 반동기 복제(Semi-Sync)를 기본 채택하여 최소 1개 복제본의 메모리 수신 ACK를 보장하고, Raft 합의 기반 무인 자동 장애조치(Orchestrator) 및 카오스 엔지니어링 훈련 도입.
+- **검증 (검증 기준)**: 마스터 강제 종료 모의훈련 시 RPO = 0 달성 검증, 자동 승격 및 DNS/VIP 스위칭 RTO 30초 이내 완료, 복제 지연 시간 1초 미만 통제.
+- **효과 (실행 효과)**: 데이터 유실 사고 100% 예방, 데이터베이스 고가용성 SLA 99.999% 달성, 야간 긴급 장애 대응 인건비 80% 절감.
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">현행 한계</div>
+    <div class="itpe-flow-step__content">비동기 복제로 장애 시 데이터 유실 위험, 수동 Failover로 RTO 수 시간 지연</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">개선 방안</div>
+    <div class="itpe-flow-step__content">반동기(Semi-Sync) 복제 표준화 + Raft 기반 무인 자동 장애조치 구축</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">검증 기준</div>
+    <div class="itpe-flow-step__content">RPO = 0 달성, 자동 페일오버 RTO 30초 이내, Replication Lag 1초 이내</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">실행 효과</div>
+    <div class="itpe-flow-step__content">데이터 무유실 보장, 연간 가용성 99.999% 확보, 24x365 무중단 운영 달성</div>
+  </div>
+</div>
 
 ---
 
-## 답안 골격
-```text
-[DB 복제 유형 (Replication Types)] ◀━━ 머리: Ⅶ 내 의견 (반동기 복제 기반 RPO 0 달성과 읽기 트래픽의 Read Replica 분산)
- ┃
- ┣━ Ⅰ 개요 ───── 데이터베이스의 고가용성(HA), 부하 분산, 재해 복구를 위해 둘 이상의 DB 노드 간에 데이터를 동기화하는 복제 기술
- ┣━ Ⅱ 특징 ───── 쓰기/읽기 트래픽 분리 · 노드 장애 시 무중단 자동 장애조치(Failover) · 동기화 시점에 따른 성능-정합성 트레이드오프
- ┣━ Ⅲ 구조 ───── 동기화 시점: 동기(Sync) / 비동기(Async) / 반동기(Semi-Sync) ┃ 토폴로지: Master-Slave(Active-Standby) / Multi-Master(Active-Active)
- ┣━ Ⅳ 흐름 ───── ① Primary 노드 트랜잭션 쓰기 및 WAL(Redo Log) 기록 → ② 복제 프로세스가 네트워크로 로그 전송 → ③ Secondary 노드 릴레이 로그 적용 → ④ 동기 방식에 따른 ACK 응답 및 커밋
- ┣━ Ⅴ 비교 ───── 동기 복제 vs 비동기 복제 vs 반동기 복제 (RPO 0/지연 높음 vs 지연 낮음/데이터 유실 위험 vs 최소 1개 노드 복제 보장 절충)
- ┗━ Ⅵ 실무 ───── 비동기 복제 지연(Replication Lag)으로 사용자가 방금 쓴 글을 조회하지 못하는 읽기 일관성 불일치
-```
-- 필수 키워드: DB 복제 · 동기 복제(Synchronous) · 비동기 복제(Asynchronous) · 반동기 복제(Semi-Sync) · Master-Slave · Multi-Master · 복제 지연(Replication Lag) · Failover
-- 기출: 120회 `데이터베이스 복제(Replication)의 동기화 방식(동기, 비동기, 반동기)과 토폴로지 구조를 비교 설명하시오.` → Ⅰ 정의 + Ⅲ 복제 방식 및 토폴로지 + Ⅴ 상세 비교 + Ⅵ 운영 이슈
+## 1교시 10점 답안 발췌
 
-## 한 줄 본질
-- 단일 DB 장애 시 전체 서비스 중단 및 데이터 유실 위험 → 트랜잭션 로그(WAL/바이너리 로그)를 네트워크를 통해 복제 노드에 동기/비동기 전달 → 무중단 가용성과 읽기 확장성 달성 / 복제 지연에 따른 일관성 불일치 발생
+### [문제] DB 복제 유형 (Replication Types)
 
-## 핵심 그림
-```text
-[DB 복제 동기화 3대 메커니즘 시퀀스 비교]
+#### 1. DB 복제(Replication)의 정의
+- 데이터베이스의 고가용성(HA), 부하 분산, 재해 복구를 위해 트랜잭션 로그를 네트워크를 통해 둘 이상의 노드 간에 동기화하는 복제 기술
 
-  [1. 동기 복제 (Sync)]           [2. 비동기 복제 (Async)]        [3. 반동기 복제 (Semi-Sync)]
-  (데이터 유실 0 / 지연 큼)       (빠른 응답 / 장애 시 유실)      (최소 1개 복제 보장 절충)
+#### 2. 복제 동기화 3대 방식 비교
 
-  Primary       Secondary         Primary       Secondary         Primary       Secondary
-     │              │                │              │                │              │
-     ├─ 트랜잭션    │                ├─ 트랜잭션    │                ├─ 트랜잭션    │
-     ├─ 로그 전송 ─►│                ├─ 커밋 완료!  │                ├─ 로그 전송 ─►│
-     │              ├─ 로그 기록     ├─ 로그 전송 ─►│                │              ├─ 릴레이 기록
-     │◄── ACK 응답 ─┤                │              ├─ 로그 기록     │◄── ACK 응답 ─┤
-     ├─ 최종 커밋   │                │              │                ├─ 최종 커밋   │
-     ▼              ▼                ▼              ▼                ▼              ▼
-```
+| 복제 방식 | 커밋 완료 시점 | 데이터 유실 (RPO) | 성능 (Latency) |
+|:---|:---|:---:|:---:|
+| **동기 복제 (Sync)** | 모든 복제 노드의 디스크 기록 확인 후 | **0 (완전 무유실)** | 가장 느림 (네트워크 RTT 종속) |
+| **비동기 복제 (Async)** | Primary 로컬 기록 즉시 완료 | 유실 발생 가능 ($> 0$) | **가장 빠름 (초저지연)** |
+| **반동기 복제 (Semi-Sync)** | 최소 1개 복제 노드의 릴레이 로그 수신 후 | **거의 0 ($\approx 0$)** | **우수 (성능-정합성 최적 절충)** |
 
-## 핵심 용어
-- 복제 지연(Replication Lag): Primary에 반영된 트랜잭션이 네트워크 전송 지연 및 Secondary 적용 병목으로 인해 복제본에 뒤늦게 반영되는 시간 차이
-- WAL(Write-Ahead Logging): 데이터 파일에 실제 쓰기를 수행하기 전에 변경 이력을 로그 파일에 먼저 영속화하는 데이터베이스의 기본 원리
+#### 3. 복제 지연(Replication Lag) 극복 방안
+- 쓰기 직후 세션은 일정 시간 Primary에서 직접 읽도록 라우팅(Read-your-writes)하여 데이터 불일치 해소
 
-## 핵심 통찰
-- 비동기 복제 환경에서 Primary 노드가 하드웨어 고장으로 급사하면, 복제본으로 넘어가지 못한 최신 데이터는 영원히 유실됨(RPO > 0) → 금융 결제 시스템에서는 비동기 복제를 절대 쓸 수 없음
-- 동기 복제를 리전 간(Cross-Region) 장거리 네트워크에 걸면, 네트워크 RTT(왕복 지연)만큼 트랜잭션 커밋이 멈춰 초당 트랜잭션 처리량(TPS)이 1/10 수준으로 곤두박질침
-- '반동기 복제(Semi-Sync)'는 여러 복제 노드 중 최소 1개 노드의 메모리/릴레이 로그에 쓰여졌다는 응답만 오면 Primary가 즉시 커밋하므로, 성능 저하를 최소화하면서 RPO=0을 달성하는 현실적 최적해임
+---
 
-## 이웃 토픽과 구분
-- DB 복제 vs DB 클러스터링(공유 디스크): 복제 = 각 노드가 독립적인 스토리지(Shared Nothing)를 갖고 로그를 주고받아 동기화 / 공유 디스크 클러스터링(Oracle RAC) = 여러 DB 엔진이 단일 스토리지(SAN)를 물리적으로 공유하여 락을 조율
+## 출제 이력과 검증 출처
 
-## 문제·원인·대책
-- 적용 상황: 대규모 SNS 커뮤니티의 Master-Slave 읽기 분산 아키텍처
-| 문제 | 원인 | 대책 | 효과 |
-|---|---|---|---|
-| 사용자가 게시글을 등록하자마자 새로고침하면 글이 보이지 않는 현상 | Primary 쓰기 후 복제본(Slave) 반영 전 읽기 요청이 Slave로 인입(Replication Lag) | 본인이 방금 작성한 쓰기 직후 세션은 5초간 Primary에서 직접 읽도록 라우팅 | 사용자 체감 일관성(Read-your-writes) 100% 보장 |
-| 마스터 장애 시 복제 노드로 승격(Failover)하는 과정에서 두 노드가 모두 마스터가 되는 스플릿 브레인(Split-Brain) | 네트워크 단절로 서로를 장애로 오인하여 양쪽 모두 쓰기 수용 | 과반수 투표 기반 합의(Raft/Quorum) 오케스트레이터(Orchestrator) 도입 | 단일 Primary 보장 및 데이터 충돌 방지 |
+- **기출 이력**:
+  - 제120회 정보관리 2교시: 고가용성 확보를 위한 데이터베이스 복제(Replication)의 동기화 방식(동기, 비동기, 반동기) 비교 및 읽기/쓰기 분리 아키텍처의 복제 지연 해결 방안
+- **검증 출처**:
+  - MySQL 8.0 Reference Manual, "Chapter 17 Replication"
+  - PostgreSQL Documentation, "Chapter 27 High Availability, Load Balancing, and Replication"
 
-## 이렇게 출제된다
-- 제120회: "고가용성 확보를 위한 데이터베이스 복제(Replication)의 동기화 방식(동기, 비동기, 반동기)을 비교하고, 읽기/쓰기 분리 아키텍처에서 발생하는 복제 지연(Replication Lag)의 해결 방안을 기술하시오." → 요구 포인트: 3대 복제 방식 시퀀스 도식 + 토폴로지 구조 + 지연 문제 원인과 라우팅 대책
+---
 
-## 내 의견
-- [수작업 Failover의 다운타임 부채] 마스터 DB가 죽었을 때 당직 엔지니어가 전화를 받고 접속해 수동으로 DNS를 바꾸고 Slave를 승격시키는 체계는 목표 RTO(5분 이내) 달성 불가능 → 나라면: MHA(Master High Availability)나 AWS Aurora Global Database의 자동 장애조치를 구축하고, 평상각 카오스 엔지니어링(Chaos Engineering)을 통해 주기적으로 강제 다운 훈련을 수행하여 무인 자동 절체 신뢰성 확보
+## 학습 체크
 
-## 찾아볼 것
-- MySQL의 Group Replication 및 PostgreSQL의 스트리밍 복제에서 지원하는 정족수 기반 Paxos 동기화 기제
+- [ ] DB 복제의 3대 동기화 방식(동기, 비동기, 반동기)의 시퀀스 흐름과 RPO 차이를 도식화할 수 있는가?
+- [ ] Master-Slave와 Multi-Master 토폴로지의 장단점 및 충돌 해결 방식을 비교할 수 있는가?
+- [ ] 복제 지연(Replication Lag)이 발생하는 원인과 읽기 일관성(Read-your-writes) 보장 기법을 설명할 수 있는가?
+
+---
+
+## 연결 토픽
+
+- 상위 토픽: [051. 고가용성(HA) 아키텍처](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/051_ha_architecture.md)
+- 연관 토픽: [113. CAP·PACELC 이론](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/113_cap_pacelc.md), [126. 데이터 복제 (Data Replication)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/126_data_replication.md)
