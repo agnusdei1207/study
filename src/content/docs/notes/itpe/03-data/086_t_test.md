@@ -6,16 +6,16 @@ sidebar:
     text: "A"
     variant: note
 title: "t-검정 (Student's t-test) 및 독립표본·대응표본 가설검정"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T19:05:00+09:00"
 tags:
   - "notes-data"
+category: "03-data"
 weight: 86
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
   question_no: "086"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,30 +24,53 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[t-검정의 통계량 구조 및 3대 검정 유형]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 280" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="260" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="32" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">t-검정 통계량 구조 및 3대 핵심 유형 비교</text>
 
-  [t-통계량 산출 공식]
-               (표본평균) - (모평균)          \bar{X} - \mu_0
-          t = ─────────────────────── = ────────────────────
-                (표본 표준오차)              s / \sqrt{n}
-                * 자유도 (Degrees of Freedom): df = n - 1
+  <!-- Formula Box -->
+  <g transform="translate(30, 48)">
+    <rect x="0" y="0" width="460" height="60" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="20" y="24" font-size="10.5" font-weight="bold" fill="#1e40af">t-통계량 = (표본평균 - 기준모평균) / 표본표준오차</text>
+    <text x="20" y="44" font-size="10" fill="#0f172a">t = (X̄ - μ₀) / (s / √n),   자유도: df = n - 1</text>
+  </g>
 
- ─────────────────────────────────────────────────────────────────────────────
-  [t-검정 3대 유형 비교]
-   1. 단일표본 t-검정 (One-sample)
-      : 단일 집단의 표본평균(\bar{X})이 특정 기준값(\mu_0)과 같은지 검정
-      (예: 새로 도입한 캐시 엔진의 응답 시간이 SLA 기준 50ms 이하인가?)
+  <!-- 3 Types Boxes -->
+  <g transform="translate(30, 120)">
+    <!-- Type 1 -->
+    <rect x="0" y="0" width="145" height="95" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="0" y="0" width="145" height="24" rx="5" fill="#eff6ff"/>
+    <text x="72" y="16" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">1. 단일표본 (One-sample)</text>
+    <text x="10" y="38" font-size="8" fill="#334155">&bull; 대상: 집단 1개 vs 기준값</text>
+    <text x="10" y="52" font-size="8" fill="#334155">&bull; H₀: μ = μ₀</text>
+    <text x="10" y="68" font-size="7.5" fill="#64748b">예: 신규 캐시 응답이 SLA 50ms 이하인가?</text>
 
-   2. 독립표본 t-검정 (Two-sample Independent)
-      : 서로 다른 두 독립 집단의 평균 차이(\bar{X}_1 - \bar{X}_2)를 검정
-      (예: UI/UX A안 사용자 그룹 vs B안 사용자 그룹의 일일 체류시간 차이)
-      * 등분산 시: 합동분산(Pooled Variance) / 이분산 시: 웰치의 t-검정(Welch's t)
+    <!-- Type 2 -->
+    <rect x="155" y="0" width="150" height="95" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="155" y="0" width="150" height="24" rx="5" fill="#eff6ff"/>
+    <text x="230" y="16" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">2. 독립표본 (Two-sample)</text>
+    <text x="165" y="38" font-size="8" fill="#334155">&bull; 대상: 독립 집단 A vs B</text>
+    <text x="165" y="52" font-size="8" fill="#334155">&bull; H₀: μ₁ = μ₂ (등분산/Welch)</text>
+    <text x="165" y="68" font-size="7.5" fill="#64748b">예: UI A안 vs B안 체류시간 차이 검증</text>
 
-   3. 대응표본 t-검정 (Paired-sample)
-      : 동일한 개체 집단의 처리 전/후(Before-After) 변화량 차이를 검정
-      (예: DB 인덱스 튜닝 전 vs 튜닝 후 동일 100개 쿼리 세트의 실행시간 단축 검증)
-```
+    <!-- Type 3 -->
+    <rect x="315" y="0" width="145" height="95" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="315" y="0" width="145" height="24" rx="5" fill="#eff6ff"/>
+    <text x="387" y="16" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">3. 대응표본 (Paired)</text>
+    <text x="325" y="38" font-size="8" fill="#334155">&bull; 대상: 동일 개체 전/후</text>
+    <text x="325" y="52" font-size="8" fill="#334155">&bull; H₀: μ_D = 0 (차이 검정)</text>
+    <text x="325" y="68" font-size="7.5" fill="#64748b">예: DB 인덱스 튜닝 전 vs 후 쿼리 시간</text>
+  </g>
+
+  <!-- Bottom Banner -->
+  <g transform="translate(30, 225)">
+    <rect x="0" y="0" width="460" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="12" y="16" font-size="8" fill="#475569">&bull; 모분산(σ²)을 모를 때 표본표준편차(s)로 대체하며, 자유도가 커질수록 표준정규분포에 수렴</text>
+    <text x="12" y="28" font-size="8" fill="#475569">&bull; 전제조건: 독립성, 정규성(위배 시 비모수 분기), 등분산성(위배 시 Welch's t-test 적용)</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **모집단의 분산($\sigma^2$)을 알 수 없는 현실 상황에서, 표본표준편차($s$)와 자유도($df$)에 기반한 t-분포를 이용하여 두 집단 간 평균의 차이가 단순한 표본오차에 의한 것인지 통계적으로 유의미한지를 판별하는 대표적인 모수적 가설검정 기법**
 - 암기: `단-독-대` (단일표본, 독립표본, 대응표본) / `모-자-표-피` (모분산 미지, 자유도 df, 표본표준오차, p-value 기각 판정)
@@ -75,20 +98,28 @@ extra:
 
 #### 한줄 요약: 표본 크기에 따라 꼬리가 두터워지는 t-분포를 통해 소표본의 추정 불확실성을 수학적으로 보정
 
-```text
-[표준정규분포(Z)와 t-분포의 확률밀도함수 비교]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 135" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="115" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">표준정규분포(Z)와 t-분포의 두터운 꼬리(Fat Tail) 비교</text>
 
-  확률밀도
-    ^
-    │               _--_  (정규분포 N(0, 1): 꼬리가 얇음)
-    │             /      \
-    │            |   t    |
-    │           /          \  (t-분포 df=3: 중심은 낮고 꼬리가 두터움 -> Fat Tail)
-    │       _--'            '--_
-    └──────/────────────────────\───────▶ t 값
-         -3          0          +3
-  * 자유도(df = n - 1)가 커질수록 t-분포는 정규분포 N(0, 1)에 완전히 수렴!
-```
+  <!-- Plot Area -->
+  <g transform="translate(60, 42)">
+    <line x1="0" y1="65" x2="400" y2="65" stroke="#94a3b8" stroke-width="1.2"/>
+    <line x1="200" y1="65" x2="200" y2="5" stroke="#94a3b8" stroke-width="1.2"/>
+
+    <!-- Normal Curve N(0, 1) -->
+    <path d="M 50 65 Q 150 64, 180 30 Q 200 8, 220 30 Q 250 64, 350 65" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="205" y="18" font-size="8" font-weight="bold" fill="#2563eb">정규분포 Z ~ N(0, 1)</text>
+
+    <!-- t-distribution (df=3) -->
+    <path d="M 30 63 Q 130 58, 170 36 Q 200 18, 230 36 Q 270 58, 370 63" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="245" y="35" font-size="8" fill="#ef4444">t-분포 (df=3: Fat Tail)</text>
+
+    <text x="200" y="78" font-size="8" fill="#64748b" text-anchor="middle">0 (중심값)</text>
+  </g>
+</svg>
+</div>
 
 ### 1. 자유도(Degrees of Freedom, $df$)의 개념
 - 통계량을 계산할 때 독립적으로 자유롭게 변할 수 있는 데이터 관측치의 개수
@@ -104,26 +135,15 @@ $$t = \frac{\bar{X} - \mu_0}{\frac{s}{\sqrt{n}}} \sim t(n - 1)$$
 
 #### 한줄 요약: 기준값 비교(단일표본), 두 독립 집단 비교(독립표본), 전/후 짝지은 비교(대응표본)의 구조적 차이
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         t-검정 3대 핵심 유형 체계                           │
-└─────────────────────────────────────────────────────────────────────────────┘
-  1. 단일표본 t-검정 (One-sample)    ──▶ 집단 1개 vs 기준 상수값 (μ_0)
-  2. 독립표본 t-검정 (Two-sample)    ──▶ 상호 배타적인 두 독립 집단 (Group A vs Group B)
-                                      ├── 등분산 가정: 합동 분산 (Pooled Variance) 적용
-                                      └── 이분산 가정: 웰치의 t-검정 (Welch's t-test) 적용
-  3. 대응표본 t-검정 (Paired-sample) ──▶ 동일 개체의 처리 전 vs 처리 후 (Before vs After)
-```
-
 ### 1. 단일표본 t-검정 (One-sample t-test)
 - **적용 목적**: 특정 단일 표본 집단의 평균이 알려진 모평균 기준값과 같은지 검증
 - **수식**: $t = \frac{\bar{X} - \mu_0}{s / \sqrt{n}}$, 자유도 $df = n - 1$
 
 ### 2. 독립표본 t-검정 (Independent Two-sample t-test)
 - **적용 목적**: 서로 다른 두 독립 모집단에서 추출한 표본들의 평균 차이($\mu_1 - \mu_2$)를 검증
-- **가. 등분산 만족 시 (Pooled t-test)**:
+- **등분산 만족 시 (Pooled t-test)**:
   $$t = \frac{\bar{X}_1 - \bar{X}_2}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}, \quad s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}, \quad df = n_1 + n_2 - 2$$
-- **나. 이분산 시 (Welch's t-test)**:
+- **이분산 시 (Welch's t-test)**:
   - 두 집단의 분산이 다를 때 Satterthwaite 근사식을 이용해 자유도를 재계산하여 1종 오류 억제
 
 ### 3. 대응표본 t-검정 (Paired-sample t-test)
@@ -137,17 +157,6 @@ $$t = \frac{\bar{X} - \mu_0}{\frac{s}{\sqrt{n}}} \sim t(n - 1)$$
 
 #### 한줄 요약: 모분산 인지 여부, 표본의 크기, 비교 집단의 수에 따른 통계 검정 도구 선택 기준
 
-```text
-┌───────────────────────────────────┬───────────────────────────────────┐
-│           t-검정 (t-test)         │           z-검정 (z-test)         │
-├───────────────────────────────────┼───────────────────────────────────┤
-│ - 모분산: 모름 (표본분산 s 사용)  │ - 모분산: 알고 있음 (모분산 σ 사용)│
-│ - 표본 크기: 소표본(n<30) 및 대형 │ - 표본 크기: 대규모 표본(n≥30)     │
-│ - 기준 분포: t-분포 (자유도 의존) │ - 기준 분포: 표준정규분포 N(0, 1) │
-│ - 실무 활용: 현실 분석의 사실상 표준│ - 실무 활용: 이론적 배경 설명용   │
-└───────────────────────────────────┴───────────────────────────────────┘
-```
-
 | 비교 항목 | t-검정 (Student's t-test) | z-검정 (Z-test) | 분산분석 (ANOVA, F-test) |
 |:---|:---|:---|:---|
 | **모분산($\sigma^2$) 인지 여부**| **모름** (표본분산 $s^2$로 대체) | **반드시 알아야 함** | 모름 (표본분산 활용) |
@@ -160,21 +169,33 @@ $$t = \frac{\bar{X} - \mu_0}{\frac{s}{\sqrt{n}}} \sim t(n - 1)$$
 
 #### 한줄 요약: 정규성, 등분산성, 독립성 가정의 충족 여부를 확인하고 위배 시 대체 검정으로 분기
 
-```text
- [1단계: 독립성 검정] ──▶ 표본 간 독립 추출 확인 (실험 설계 단계에서 Durbin-Watson 확인)
-           │
-           ▼
- [2단계: 정규성 검정 (Normality)]
-  - Shapiro-Wilk (소표본) / Kolmogorov-Smirnov (대표본)
-  ├── 정규성 만족 ──▶ 3단계 등분산성 검정 진행
-  └── 정규성 위배 ──▶ 비모수 검정 (Mann-Whitney U / Wilcoxon) 분기
-           │
-           ▼
- [3단계: 등분산성 검정 (Homoscedasticity)] (독립표본 검정 시)
-  - Levene 검정 / Bartlett 검정
-  ├── 등분산 만족 (p > 0.05) ──▶ 표준 독립표본 t-검정 (Pooled t-test)
-  └── 등분산 위배 (p < 0.05) ──▶ 웰치의 t-검정 (Welch's t-test) 적용
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 120" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="100" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">t-검정 3대 전제 조건 판정 및 분기 흐름</text>
+
+  <g transform="translate(25, 42)">
+    <rect x="0" y="0" width="145" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="72" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">1. 독립성 검정</text>
+    <text x="72" y="34" font-size="7.5" fill="#334155" text-anchor="middle">무작위 표본 추출</text>
+    <text x="72" y="47" font-size="7.5" fill="#64748b" text-anchor="middle">Durbin-Watson</text>
+
+    <path d="M 148 27 L 168 27" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="170" y="0" width="145" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="242" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">2. 정규성 검정</text>
+    <text x="242" y="34" font-size="7.5" fill="#334155" text-anchor="middle">Shapiro-Wilk</text>
+    <text x="242" y="47" font-size="7.5" fill="#dc2626" text-anchor="middle">위배 시 &rarr; 비모수 검정</text>
+
+    <path d="M 318 27 L 338 27" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="340" y="0" width="135" height="55" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="407" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">3. 등분산성 검정</text>
+    <text x="407" y="34" font-size="7.5" fill="#334155" text-anchor="middle">Levene 검정</text>
+    <text x="407" y="47" font-size="7.5" fill="#2563eb" text-anchor="middle">위배 시 &rarr; Welch's t</text>
+  </g>
+</svg>
+</div>
 
 ## Ⅵ. IT 및 데이터 엔지니어링 실무 응용
 
@@ -192,46 +213,74 @@ $$t = \frac{\bar{X} - \mu_0}{\frac{s}{\sqrt{n}}} \sim t(n - 1)$$
 - 실험 도중 매일 p-value를 확인하다가 우연히 $p < 0.05$가 되는 순간 실험을 조기 종료하면 실제로는 차이가 없는데 유의하다고 오판하는 제1종 오류가 최대 30%까지 급증
 - 사전에 최소 표본 크기($N$)를 파워 분석(Power Analysis)으로 확정하거나, 연속 가설검정(Sequential Testing) 프레임워크 적용 필수
 
-## Ⅶ. 데이터 아키텍트 관점의 데이터 기반 의사결정 파이프라인 제언
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: p-value 지상주의에서 벗어나 효과 크기(Cohen's d)와 신뢰구간을 함께 평가하는 통합 분석 체계 확립
+### 학습자 통찰 메모 — 답안 밖
 
-- **"빅데이터 시대, p-value는 거짓말을 한다"**:
-  - 표본 크기 $N$이 수십만~수백만 건에 달하면, 응답 시간 0.001ms 차이처럼 비즈니스적으로 전혀 의미 없는 미세한 차이도 $p < 0.00001$로 나와 '통계적으로 유의'하다고 판정됨
-  - 따라서 단순 p-value 통과 여부만 볼 것이 아니라, 실제 차이의 실질적 크기를 나타내는 **효과 크기(Cohen's d, $\frac{\bar{X}_1 - \bar{X}_2}{s_p}$)**와 95% 신뢰구간을 대시보드에 필수 병기해야 함
-- **자동화된 전제조건 검정 파이프라인 내재화**:
-  - 데이터 엔지니어는 분석가가 수작업으로 검정 도구를 고르지 않도록, 데이터 인입 시 자동으로 `Shapiro-Wilk $\rightarrow$ Levene $\rightarrow$ Student's/Welch's/Mann-Whitney`로 분기되는 **자동 가설검정 파이프라인(Auto-Hypothesis Pipeline)**을 표준 구축해야 함
+> **[핵심 통찰]**
+> 빅데이터 시대에 t-검정 적용 시 가장 주의할 점은 **"표본 크기가 커지면 p-value는 무조건 0으로 수렴한다"**는 사실이다. 표본이 100만 건이면 응답 속도 0.001ms 단축도 $p < 0.0001$로 나와 통계적으로 유의하다고 판정된다. 따라서 실무 의사결정에서는 단순 p-value 통과 여부에 매몰되지 말고, 실제 개선 폭의 실질적 가치를 나타내는 **효과 크기(Cohen's d)**와 신뢰구간(Confidence Interval)을 반드시 병기해야 한다.
+
+> **[나라면 이렇게 쓴다]**
+> 10점형 답안이라면 t-통계량 공식과 3대 유형(단일, 독립, 대응)의 차이를 명확한 표로 작성하겠다. 25점형이라면 정규성(Shapiro-Wilk)과 등분산성(Levene) 사전 검정 파이프라인을 그리고, A/B 테스트 시 조기 종료로 인한 1종 오류(Peeking Problem) 방지 방안을 4단 제언으로 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 모분산 인지 전제의 z-검정 오류 적용 및 빅데이터 환경에서 p-value 착시로 인한 무의미한 기능 배포
+- **대응 (개선 방안)**: 모분산 미지 시 t-분포 기반 검정 적용, 등분산 위배 시 Welch's t-test 자동 분기 및 효과 크기(Cohen's d) 병행 평가
+- **검증 (검증 기준)**: Shapiro-Wilk 정규성 검증(p &gt; 0.05), Levene 등분산 검증, Cohen's d &ge; 0.2 (실질적 유의미성) 확보
+- **효과 (실행 효과)**: A/B 테스트 의사결정 신뢰도 95% 확보 및 가짜 성능 개선에 따른 불필요한 배포 비용 절감
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">1</div>
+    <div class="itpe-flow-step-title">현행 한계</div>
+    <div class="itpe-flow-step-desc">모분산 미인지 상태 z-검정 오류 및 대규모 표본 p-value 착시</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">2</div>
+    <div class="itpe-flow-step-title">개선 방안</div>
+    <div class="itpe-flow-step-desc">자동 분기 t-검정 파이프라인 (Welch's t) + Cohen's d 효과크기 산출</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">3</div>
+    <div class="itpe-flow-step-title">검증 기준</div>
+    <div class="itpe-flow-step-desc">정규성/등분산성 사전 검정 통과, p &lt; 0.05, Cohen's d &ge; 0.2</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">4</div>
+    <div class="itpe-flow-step-title">실행 효과</div>
+    <div class="itpe-flow-step-desc">A/B 테스트 및 DB 튜닝 전후 성능 검증의 통계적 타당성 완결</div>
+  </div>
+</div>
 
 ---
 
 ## 2교시 25점 답안 발췌
 
-```text
-[문제 1] 가설검정 기법인 t-검정(t-test)과 z-검정 비교 및 전제조건
+### Ⅰ. 모분산 미지 상황의 해결사, t-검정의 개념 및 배경
 
-Ⅰ. 모분산 미지 상황의 해결사, t-검정의 개념 및 배경
- 1. 배경: 모집단의 분산(σ^2)을 알 수 없는 현실에서 표준정규분포 기반 z-검정 적용 불가
- 2. 정의: 표본분산(s^2)과 자유도(df=n-1)에 따른 t-분포를 이용하여 평균 차이의 유의성을 검정
+1. **배경**: 모집단의 분산($\sigma^2$)을 알 수 없는 현실에서 표준정규분포 기반 z-검정 적용 불가
+2. **정의**: 표본분산($s^2$)과 자유도($df=n-1$)에 따른 t-분포를 이용하여 평균 차이의 유의성을 검정
 
-Ⅱ. t-검정 vs z-검정 핵심 비교
- ┌──────────────┬────────────────────────────┬────────────────────────────┐
- │   비교 항목  │       t-검정 (t-test)      │       z-검정 (z-test)      │
- ├──────────────┼────────────────────────────┼────────────────────────────┤
- │ 모분산 인지  │ 모름 (표본표준편차 s 사용) │ 알고 있음 (모표준편차 σ)   │
- │ 표본 크기    │ 소표본(n<30) 및 대규모 범용│ 대규모 표본(n≥30) 한정     │
- │ 기준 분포    │ t-분포 (자유도 n-1)        │ 표준정규분포 N(0, 1)       │
- │ 꼬리 두께    │ 중심 낮고 꼬리 두터움      │ 꼬리가 얇음                │
- └──────────────┴────────────────────────────┴────────────────────────────┘
+### Ⅱ. t-검정 vs z-검정 핵심 비교
 
-Ⅲ. t-검정 3대 유형 수식 및 특성
- 1. 단일표본: t = (\bar{X} - \mu_0) / (s / \sqrt{n}) (기준값과 표본평균 비교)
- 2. 독립표본: t = (\bar{X}_1 - \bar{X}_2) / (s_p * \sqrt{1/n_1 + 1/n_2}) (A/B 테스트, 등분산/Welch)
- 3. 대응표본: t = (\bar{D} - \mu_D) / (s_D / \sqrt{n}) (동일 개체 전/후 튜닝 성능 비교)
+| 비교 항목 | t-검정 (Student's t-test) | z-검정 (Z-test) |
+|:---|:---|:---|
+| **모분산 인지 여부** | 모름 (표본표준편차 $s$ 사용) | 알고 있음 (모표준편차 $\sigma$) |
+| **표본 크기** | 소표본($n<30$) 및 대규모 범용 | 대규모 표본($n \ge 30$) 한정 |
+| **기준 분포** | t-분포 (자유도 $n-1$) | 표준정규분포 $N(0, 1)$ |
+| **꼬리 두께** | 중심 낮고 꼬리 두터움 (Fat Tail) | 꼬리가 얇음 |
 
-Ⅳ. 실무 가설검정 전제조건 및 아키텍처 제언
- 1. 전제조건: 정규성(Shapiro-Wilk 위배 시 비모수 분기), 등분산성(Levene 위배 시 Welch 적용)
- 2. 아키텍처 제언: 빅데이터 표본 과다 시 p-value 착시를 극복하기 위해 효과 크기(Cohen's d) 병행 산출
-```
+### Ⅲ. t-검정 3대 유형 수식 및 특성
+
+1. **단일표본**: $t = \frac{\bar{X} - \mu_0}{s / \sqrt{n}}$ (기준값과 표본평균 비교)
+2. **독립표본**: $t = \frac{\bar{X}_1 - \bar{X}_2}{s_p \sqrt{1/n_1 + 1/n_2}}$ (A/B 테스트, 등분산 만족 시/Welch)
+3. **대응표본**: $t = \frac{\bar{D} - \mu_D}{s_D / \sqrt{n}}$ (동일 개체 전/후 튜닝 성능 비교)
+
+### Ⅳ. 실무 가설검정 전제조건 및 아키텍처 제언
+
+1. **전제조건**: 정규성(Shapiro-Wilk 위배 시 비모수 분기), 등분산성(Levene 위배 시 Welch 적용)
+2. **아키텍처 제언**: 빅데이터 표본 과다 시 p-value 착시를 극복하기 위해 효과 크기(Cohen's d) 병행 산출
 
 ---
 
