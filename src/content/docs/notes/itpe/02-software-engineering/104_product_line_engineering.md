@@ -7,7 +7,7 @@ sidebar:
     text: "A"
     variant: "tip"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -48,7 +48,72 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 핵심 메커니즘
+## 핵심 메커니즘과 SEI 3대 활동 구조
+
+<div style="max-width: 520px; margin: 1.5rem auto;">
+  <!-- SVG: SEI 소프트웨어 제품라인 3대 핵심 활동 및 피처 모델링 -->
+  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+    <!-- 배경 -->
+    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+    
+    <!-- 영역 1: 도메인 공학 (Core Asset Development) -->
+    <rect x="15" y="15" width="150" height="150" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2"/>
+    <text x="90" y="32" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-primary, #3b82f6)">도메인 공학 (For Reuse)</text>
+    <text x="90" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">공통성·가변성 분석</text>
+
+    <g transform="translate(23, 55)">
+      <rect x="0" y="0" width="134" height="26" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="67" y="16" text-anchor="middle" font-size="8" font-weight="700" fill="var(--color-text, #0f172a)">FODA 피처 모델링</text>
+
+      <rect x="0" y="32" width="134" height="26" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="67" y="48" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">참조 아키텍처 수립</text>
+
+      <rect x="0" y="64" width="134" height="36" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-primary, #3b82f6)" stroke-width="1"/>
+      <text x="67" y="78" text-anchor="middle" font-size="8" font-weight="700" fill="var(--color-primary, #3b82f6)">공통 컴포넌트 개발</text>
+      <text x="67" y="90" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">표준 테스트 케이스</text>
+    </g>
+
+    <!-- 중앙: 핵심 자산 저장소 (Core Assets Repository) -->
+    <g transform="translate(180, 45)">
+      <rect x="0" y="0" width="160" height="90" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #94a3b8)" stroke-width="1.3"/>
+      <text x="80" y="22" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">핵심 자산 저장소</text>
+      <text x="80" y="36" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">(Core Assets Repository)</text>
+      <path d="M 15 45 L 145 45" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+      <text x="80" y="60" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">컴포넌트 70% 이상 재사용</text>
+      <text x="80" y="74" text-anchor="middle" font-size="7.5" fill="var(--color-accent, #10b981)">가변점(Variation Points) 제공</text>
+    </g>
+
+    <!-- 화살표 1: 도메인 공학 -> 자산 저장소 -->
+    <path d="M 165 90 L 178 90" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
+
+    <!-- 영역 2: 애플리케이션 공학 (Product Development) -->
+    <rect x="355" y="15" width="150" height="150" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
+    <text x="430" y="32" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-accent, #10b981)">애플리케이션 공학 (With)</text>
+    <text x="430" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">가변점 바인딩 및 조립</text>
+
+    <g transform="translate(363, 55)">
+      <rect x="0" y="0" width="134" height="26" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="67" y="16" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">파생 제품 A (보급형)</text>
+
+      <rect x="0" y="32" width="134" height="26" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="67" y="48" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">파생 제품 B (고급형)</text>
+
+      <rect x="0" y="64" width="134" height="36" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-accent, #10b981)" stroke-width="1"/>
+      <text x="67" y="78" text-anchor="middle" font-size="8" font-weight="700" fill="var(--color-accent, #10b981)">파생 제품 C (해외향)</text>
+      <text x="67" y="90" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">초고속 양산 및 출시(TTM)</text>
+    </g>
+
+    <!-- 화살표 2: 자산 저장소 -> 애플리케이션 공학 -->
+    <path d="M 342 90 L 353 90" stroke="var(--color-accent, #10b981)" stroke-width="1.5"/>
+
+    <!-- 하단: 관리 및 피드백 (Management & Feedback Loop) -->
+    <g transform="translate(15, 175)">
+      <rect x="0" y="0" width="490" height="32" rx="4" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="245" y="15" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">총괄 관리 (Management): 조직 거버넌스, InnerSource 기여 모델, 손익분기점(BEP) 통제</text>
+      <text x="245" y="26" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">◀ 신규 시장 가변점 발견 시 도메인 공학으로 지속적 환류(Feedback Loop)</text>
+    </g>
+  </svg>
+</div>
 
 ### (1) SEI 소프트웨어 제품라인(SPL) 3대 핵심 활동
 1. **핵심 자산 개발 (도메인 공학, "For Reuse")**:
@@ -103,30 +168,18 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 25점형 실전 답안 프레임워크
+## 실전 합격 전략 및 기술사적 제언
 
-### 1단락: 소프트웨어 제품라인(SPL)의 등장 배경 및 개념
-- **배경**: 복사-붙여넣기(Clone-and-Own) 방식의 단발성 프로젝트로 인한 소스코드 파편화와 중복 유지보수 비용 극복.
-- **정의**: 특정 도메인의 패밀리 제품군이 공유하는 공통성과 가변성을 기반으로 핵심 자산(Core Assets)을 구축하고 체계적으로 재사용하여 대량 맞춤(Mass Customization)을 실현하는 소프트웨어 공학 체계.
+### 학습자 통찰 메모 — 답안 밖
+- **[핵심 통찰]**: SPL은 단순한 '코드 재사용 기법'이 아니라 '제품군 양산 비즈니스 전략'이다. 선제적(Proactive) 방식으로 시작하면 핵심 자산 만드느라 2~3년 동안 신제품을 못 내고 조직이 와해된다. 따라서 실무와 시험에서는 "기존 성공 제품에서 공통 코드를 추출하는 Extractive 접근법"과 "조직 사일로를 방지하는 InnerSource 거버넌스"를 제시해야 압도적인 실무성을 인정받는다.
+- **나라면**: 답안 2단락에 SEI 3축(도메인 공학, 자산 저장소, 애플리케이션 공학)과 FODA 4대 관계 표기법을 명확히 제시하고, 3단락에서 바인딩 시점 비교 및 3대 도입 전략(선제적/반응적/추출적)을 대조하겠다. 4단락에서는 SDV 전장 플랫폼과 SaaS 멀티테넌시로의 현대적 확장을 제언하겠다.
 
-### 2단락: SEI 3대 핵심 활동 및 가변성 메커니즘
-- **SEI 3축 프레임워크 도해**: 도메인 공학(For Reuse) $\rightarrow$ 핵심 자산(Core Assets) $\rightarrow$ 애플리케이션 공학(With Reuse) $\leftrightarrow$ 관리(Management).
-- **FODA 피처 모델링 4대 관계**: Mandatory(`●`), Optional(`○`), Alternative(`⌒`), OR(`▲`).
-- **가변점 바인딩 시점 비교**: 컴파일 타임 vs 링크 타임 vs 런타임.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 파생 제품 개발 시 핵심 자산 재사용률 70% 이상 달성 및 파생 제품 출시 리드타임 60% 단축.
+- **대응 방안**: 기존 레거시 성공 제품군으로부터 공통 컴포넌트를 점진 추출(Extractive Approach)하고, 가변점 관리에 전략 패턴과 런타임 피처 플래그 결합.
+- **검증 체계**: 제품군 자동화 회귀 테스트 슈트를 구축하여 신규 가변점 주입 시 기존 파생 제품군에 미치는 사이드 이펙트 0건 무결성 판정.
+- **기대 효과**: 제품 양산 비용 50% 절감, 손익분기점(BEP 3개 제품군 이상) 조기 돌파 및 글로벌 시장 출시 기간(Time-to-Market) 극대화.
 
-### 3단락: 실무 적용 실패 방지를 위한 3대 도입 전략 및 거버넌스
-- **3대 도입 전략 비교**: 선제적(Proactive) vs 반응적(Reactive) vs 추출적(Extractive, 현실적 권장).
-- **실무 장애 극복 방안**: `#ifdef` 스파게티 지옥을 해결하는 플러그인 패턴 적용, 조직 사일로 방지를 위한 이너소스(InnerSource) 거버넌스.
-
-### 4단락: 현대 클라우드 및 임베디드 시대로의 기술사적 진화 제언
-- **AUTOSAR SDV와 SaaS 멀티테넌시로의 외연 확장**: 자동차 도메인의 플랫폼 공용화뿐만 아니라, 클라우드 환경에서 단일 엔진으로 수만 개 기업 고객의 요구를 동적 수용하는 피처 토글 기반 SaaS 제품라인 아키텍처로의 적극적 확장을 제언함.
-
----
-
-## 10점형 핵심 요약
-
-1. **정의**: 유사 제품군 간의 공통성과 가변성을 분석하여 핵심 자산을 구축하고 체계적으로 파생 제품을 양산하는 대량 맞춤 공학 방법론.
-2. **핵심 요소**:
-   - **도메인 공학 vs 애플리케이션 공학**: 부품 제작(For Reuse)과 제품 조립(With Reuse)의 분리.
-   - **FODA 피처 모델링**: Mandatory, Optional, Alternative, OR 관계 정의.
-3. **실무 핵심**: 레거시 성공 제품 기반의 '추출적(Extractive)' 도입으로 리스크를 낮추고, 런타임 피처 플래그 기반의 현대적 SaaS 아키텍처로 발전함.
+<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
+  <strong>실전 제언 파이프라인 요약</strong>: <code>FODA 공통·가변성 분석</code> → <code>Core Assets 추출 구축</code> → <code>애플리케이션 공학 조립</code> → <code>InnerSource 환류 루프</code>
+</div>
