@@ -1,24 +1,23 @@
 ---
 title: "Programmable Money·AI Agent 결제"
 author: "Codex"
-date: "2026-09-22T11:05:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["디지털 금융·AI Agent"]
-    B --> C["Programmable Money·Payment"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 디지털 금융·AI Agent를 거쳐 Programmable Money·Payment로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>디지털 금융·AI Agent</span>
+  <strong>Programmable Money·Payment</strong>
+</div>
 
 ## 30초 인출
 
@@ -38,6 +37,8 @@ flowchart LR
 - **AML(Anti-Money Laundering)**: 자금세탁 방지 통제
 - **PSP(Payment Service Provider)**: 지급결제 서비스를 제공하는 사업자
 - **RACI(Responsible, Accountable, Consulted, Informed)**: 역할별 수행·책임·협의·통보 관계를 정한 표
+- **ERC-4337**: 블록체인 계정을 스마트 컨트랙트로 추상화해 맞춤 권한·검증 로직을 허용하는 이더리움 표준
+- **WORM(Write Once Read Many)**: 한 번 기록 후 변경·삭제가 불가능한 기록 방식
 
 </details>
 
@@ -68,17 +69,16 @@ CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이
 ```mermaid
 flowchart LR
     subgraph PRINCIPAL["인간·법인 소유자"]
-        O["소유자<br/>- Session Key 위임<br/>- 예산/한도/목적 설정"]
+        O["소유자"]
     end
-    subgraph AGENT["AI Agent (대리인)"]
-        A["AI Agent<br/>- API 기반 조건 탐색<br/>- 단기 권한 트랜잭션 서명"]
+    subgraph AGENT["AI Agent · 대리인"]
+        A["AI Agent"]
     end
-    subgraph POLICY["Policy Engine (Gate)"]
-        P["가드레일 검증<br/>- AML / KYC / 한도 검사<br/>- Circuit Breaker 작동"]
+    subgraph POLICY["Policy Engine · Gate"]
+        P["가드레일 검증"]
     end
-    subgraph EXEC["조건부 실행 & 정산"]
-        S["Smart Contract (에스크로)<br/>- DvP 동시이행 검증<br/>- 오라클(배송 등) 확인"]
-        L["결제원장 & Audit Trail<br/>- CBDC/토큰예금 정산<br/>- WORM 불변 감사로그"]
+    subgraph EXEC["조건부 실행·정산"]
+        S["스마트 컨트랙트"] --> L["결제원장·감사로그"]
     end
 
     O -->|권한 위임| A
@@ -89,12 +89,11 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    S1["① 권한 위임<br/>목적 · 한도 · 거래상대방 · 유효기간 정의 (위임정책 · ERC-4337 세션키)"]
-    S2["② 거래 요청<br/>AI Agent의 최적 가격/조건 탐색 및 결제 트랜잭션 서명"]
-    S3["③ 정책·위험 검사<br/>Policy Engine의 한도·KYC·AML·이상거래 탐지 및 Circuit Breaker 판정"]
-    S4["④ 조건부 실행·정산<br/>스마트 컨트랙트 기반 DvP 정산, 결제원장 기록 및 불변 감사로그 적재"]
-    S1 --> S2 --> S3 --> S4
+    S1["권한 위임"] --> S2["거래 요청"] --> S3["정책·위험 검사"] --> S4["조건부 실행·정산"]
 ```
+
+- 활동: 목적·한도·거래상대방·유효기간 정의 → 조건 탐색·결제 트랜잭션 서명 → 한도·KYC·AML·이상거래 검사 → DvP 정산·원장 기록·감사로그 적재
+- 산출: 위임정책·세션키 → 결제 지시 → 검사 판정 → 정산 결과·불변 감사로그
 
 ## Ⅳ. 결제수단별 특성
 
@@ -129,14 +128,6 @@ flowchart TD
 - **검증 체계**: 스마트 컨트랙트 보안 감사(Audit) 3중 교차 검증 및 트랜잭션 단위 불가역 WORM 감사로그 정합성 실시간 검증
 - **기대 효과**: 기계 간(M2M) 초소액 결제(Micro-payment) 자동화 효율 90% 달성 및 비정상 오발주·금융 사고 리스크 제로화
 
-```mermaid
-flowchart TD
-    P1["Policy & Risk 판정<br/>(결제 금액 · 상대방 신원 · 거래 목적 · 이상 탐지 점수)"]
-    P1 -->|저위험: 한도 내 정상| P2["자동 승인<br/>스마트 컨트랙트 즉시 실행 & DvP 정산"]
-    P1 -->|중위험: 한도 초과 / 이상 징후| P3["인간 추가 승인 (Human-in-the-Loop)<br/>소유자 2FA 승인 후 결제 진행"]
-    P1 -->|고위험: 부정 거래 / 침해 탐지| P4["Circuit Breaker 차단<br/>트랜잭션 즉시 동결 및 감사 조사"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -149,17 +140,16 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph PRINCIPAL["인간·법인 소유자"]
-        O["소유자<br/>- Session Key 위임<br/>- 예산/한도/목적 설정"]
+        O["소유자"]
     end
-    subgraph AGENT["AI Agent (대리인)"]
-        A["AI Agent<br/>- API 기반 조건 탐색<br/>- 단기 권한 트랜잭션 서명"]
+    subgraph AGENT["AI Agent · 대리인"]
+        A["AI Agent"]
     end
-    subgraph POLICY["Policy Engine (Gate)"]
-        P["가드레일 검증<br/>- AML / KYC / 한도 검사<br/>- Circuit Breaker 작동"]
+    subgraph POLICY["Policy Engine · Gate"]
+        P["가드레일 검증"]
     end
-    subgraph EXEC["조건부 실행 & 정산"]
-        S["Smart Contract (에스크로)<br/>- DvP 동시이행 검증<br/>- 오라클(배송 등) 확인"]
-        L["결제원장 & Audit Trail<br/>- CBDC/토큰예금 정산<br/>- WORM 불변 감사로그"]
+    subgraph EXEC["조건부 실행·정산"]
+        S["스마트 컨트랙트"] --> L["결제원장·감사로그"]
     end
 
     O -->|권한 위임| A

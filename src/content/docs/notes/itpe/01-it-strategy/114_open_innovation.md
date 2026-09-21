@@ -1,25 +1,24 @@
 ---
 title: "개방형 혁신(Open Innovation)"
 author: "Codex"
-date: "2026-09-22T11:30:00+09:00"
+date: "2026-09-22T00:12:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["혁신관리"]
-    B --> C["개방형 혁신"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 혁신관리를 거쳐 개방형 혁신으로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>혁신관리</span>
+  <strong>개방형 혁신</strong>
+</div>
 
 ## 30초 인출
 
@@ -67,17 +66,17 @@ flowchart LR
 ```mermaid
 flowchart LR
     subgraph INBOUND["Inbound (외부 지식 유입)"]
-        IN["대학 · 스타트업 · 고객 소싱<br/>(기술도입, 라이선스 인)"]
+        IN["대학·스타트업·고객 소싱"]
     end
-    subgraph FUNNEL["내부 R&D 깔때기 (다공성 경계: Porous Boundary)"]
-        RD["연구개발 및 제품화 검증"]
+    subgraph FUNNEL["다공성 경계의 내부 R&D 깔때기"]
+        RD["연구개발·제품화 검증"]
     end
     subgraph OUTBOUND["Outbound (내부 지식 유출)"]
-        OUT["미활용 IP 외부 사업화<br/>(라이선스 아웃, Spin-off)"]
+        OUT["미활용 IP 외부 사업화"]
     end
     subgraph MARKETS["목표 시장 진출"]
-        M1["현재 주력 시장 (제품화 출시)"]
-        M2["신규 개척 시장 (외부 사업화 경로)"]
+        M1["현재 주력 시장"]
+        M2["신규 개척 시장"]
     end
 
     IN -->|유입| RD
@@ -89,12 +88,11 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    S1["① 전략·수요 정의<br/>내부 핵심역량 및 기술 Gap 분석, 개방 범위 결정 (기술수요서)"]
-    S2["② 파트너 탐색<br/>대학 · 스타트업 · 전문 공급사 소싱 및 협업 후보군 평가"]
-    S3["③ PoC·협업 설계<br/>가설 수립, 데이터 범위 확정, Background/Foreground IP 계약 체결"]
-    S4["④ 검증·사업화 (Quality Gate)<br/>기술성·사업성·통합성 평가를 통한 본 시스템 도입 또는 라이선스 결정"]
-    S1 --> S2 --> S3 --> S4
+    S1["전략·수요 정의"] --> S2["파트너 탐색"] --> S3["PoC·협업 설계"] --> S4["검증·사업화"]
 ```
+
+- 활동: 내부 핵심역량·기술 Gap 분석과 개방 범위 결정 → 대학·스타트업·전문 공급사 소싱 및 협업 후보군 평가 → 가설 수립·데이터 범위 확정·Background/Foreground IP 계약 체결 → 기술성·사업성·통합성 평가로 본 시스템 도입 또는 라이선스 결정
+- 산출: 기술수요서 → 협업 후보군 → PoC 설계·IP 계약 → 도입·라이선스 결정
 
 ## Ⅲ. 폐쇄형·개방형 혁신 비교
 
@@ -131,16 +129,6 @@ flowchart TD
 - **검증 체계**: PoC Quality Gate(기술성·사업성·IP 침해·레거시 통합성) 4단계 다면 심사제 운영
 - **기대 효과**: R&D 비용 30% 절감, 타임투마켓(Time-to-Market) 50% 단축 및 글로벌 오픈 플랫폼 생태계 선점
 
-```mermaid
-flowchart TD
-    P1["자산 및 경계 분류<br/>(핵심성 · 민감도 · 외부 활용가치 분석)"]
-    P1 -->|보호 영역| P2["은닉 및 보호<br/>핵심 알고리즘 · 영업비밀 · 데이터 접근통제"]
-    P1 -->|개방 영역| P3["외부 개방<br/>표준 Open API · 테스트베드 샌드박스 · 비핵심 모듈"]
-    P2 & P3 --> P4{"PoC Quality Gate<br/>기술성 · 사업성 · IP 침해여부 · 레거시 통합성 통과?"}
-    P4 -->|통과| P5["본 프로젝트 상용화 도입 및 라이선스 확장"]
-    P4 -->|미달| P6["협업 보완 조치 또는 프로젝트 조기 중단"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -153,17 +141,17 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph INBOUND["Inbound (외부 지식 유입)"]
-        IN["대학 · 스타트업 · 고객 소싱<br/>(기술도입, 라이선스 인)"]
+        IN["대학·스타트업·고객 소싱"]
     end
-    subgraph FUNNEL["내부 R&D 깔때기 (다공성 경계: Porous Boundary)"]
-        RD["연구개발 및 제품화 검증"]
+    subgraph FUNNEL["다공성 경계의 내부 R&D 깔때기"]
+        RD["연구개발·제품화 검증"]
     end
     subgraph OUTBOUND["Outbound (내부 지식 유출)"]
-        OUT["미활용 IP 외부 사업화<br/>(라이선스 아웃, Spin-off)"]
+        OUT["미활용 IP 외부 사업화"]
     end
     subgraph MARKETS["목표 시장 진출"]
-        M1["현재 주력 시장 (제품화 출시)"]
-        M2["신규 개척 시장 (외부 사업화 경로)"]
+        M1["현재 주력 시장"]
+        M2["신규 개척 시장"]
     end
 
     IN -->|유입| RD

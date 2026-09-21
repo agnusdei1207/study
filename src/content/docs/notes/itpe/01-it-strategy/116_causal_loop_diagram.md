@@ -1,25 +1,24 @@
 ---
 title: "인과루프다이어그램(Causal Loop Diagram)"
 author: "Codex"
-date: "2026-09-22T12:30:00+09:00"
+date: "2026-09-22T00:12:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["시스템 사고"]
-    B --> C["CLD"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 시스템 사고를 거쳐 CLD로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>시스템 사고</span>
+  <strong>CLD</strong>
+</div>
 
 ## 30초 인출
 
@@ -67,13 +66,11 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    S1["① 문제·경계 정의<br/>시스템 현상, 관찰 기간 및 이해관계자 범위 설정 (문제 정의서)"]
-    S2["② BOT·변수 도출<br/>시간에 따른 행동(BOT) 패턴 분석 및 증감 가능한 변수 명사화"]
-    S3["③ 링크·극성 설정<br/>원인과 결과 간 인과 방향 및 극성(+/-) 설정 (인과 링크 근거)"]
-    S4["④ 루프·Delay 식별<br/>폐쇄 경로 극성(R/B) 판정 및 시간 지연(Delay ║) 명시"]
-    S5["⑤ 검증·개입 설계<br/>전문가·데이터 교차 검증 및 지렛대(Leverage Point) 개입 계획 수립"]
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["문제·경계 정의"] --> S2["BOT·변수 도출"] --> S3["링크·극성 설정"] --> S4["루프·Delay 식별"] --> S5["검증·개입 설계"]
 ```
+
+- 활동: 시스템 현상·관찰 기간·이해관계자 범위 설정 → BOT 패턴 분석 및 증감 가능 변수 명사화 → 인과 방향·극성(+/-) 설정 → 폐쇄 경로 극성(R/B) 판정 및 Delay(║) 명시 → 데이터·인터뷰 교차 검증 및 Leverage Point 개입 계획 수립
+- 산출: 문제 정의서 → 변수 목록 → 인과 링크 근거 → R/B 루프·Delay 표기 → 개입 계획
 
 ## Ⅲ. 강화·조절 루프 판정 및 IT 프로젝트 CLD 아키텍처
 
@@ -81,16 +78,16 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph R_LOOP["R1 강화 악순환 루프 (음의 부호 0개: 파멸적 증폭)"]
-        P_PRESS["일정 압박"] -->|+(증가)| DEFECTS["결함 유입"]
-        DEFECTS -->|+(증가)| REWORK["재작업 증가"]
-        REWORK -->|+(증가)| FATIGUE["피로도 가중"]
-        FATIGUE -->|+(증가)| P_PRESS
+    subgraph R_LOOP["R1 강화 루프 (음의 링크 0개)"]
+        P_PRESS["일정 압박"] -->|+| DEFECTS["결함 유입"]
+        DEFECTS -->|+| REWORK["재작업 증가"]
+        REWORK -->|+| FATIGUE["피로도 가중"]
+        FATIGUE -->|+| P_PRESS
     end
-    subgraph B_LOOP["B1 조절 루프 (음의 부호 1개: 목표 지향 수렴)"]
-        Q_GAP["품질 Gap"] -->|+(증가)| TEST["테스트/검증 강화"]
-        TEST -->|"- (감소, Delay ║)"| RESIDUAL["잔존 결함"]
-        RESIDUAL -->|+(증가)| Q_GAP
+    subgraph B_LOOP["B1 조절 루프 (음의 링크 1개)"]
+        Q_GAP["품질 Gap"] -->|+| TEST["테스트/검증 강화"]
+        TEST -->|"− · Delay ║"| RESIDUAL["잔존 결함"]
+        RESIDUAL -->|+| Q_GAP
     end
 ```
 
@@ -99,17 +96,6 @@ flowchart LR
 | 음의 링크 | 0개 또는 짝수 | 홀수 |
 | 행동 | 변화 증폭 | 변화 억제·목표 추구 |
 | 형태 | 성장·쇠퇴 | 수렴·진동 가능 |
-
-### IT 프로젝트 예시
-
-```text
-R1 재작업 악순환
-결함 +→ 재작업 +→ 일정 압박 +→ 결함
-
-B1 품질 조절
-품질 Gap +→ 테스트 강화 −→ 잔존 결함 +→ 품질 Gap
-                         ║ Delay
-```
 
 ## Ⅳ. 문제점·대응책
 
@@ -136,14 +122,6 @@ B1 품질 조절
 - **검증 체계**: 정성적 CLD 인과 가설을 시스템 다이내믹스 Stock-Flow(저류량-유량) 모델로 정량 수치화하여 시뮬레이션 검증 수행
 - **기대 효과**: 단기 처방에 의한 부작용(Fixes that Fail) 원천 차단 및 시스템 전반의 리드타임 35% 단축
 
-```mermaid
-flowchart TD
-    P1["CLD 인과 가설 수립<br/>(R/B 루프 · 시간지연 Delay · Leverage 후보 식별)"] --> P2["인과 근거 검증<br/>정량 데이터 · 현업 인터뷰 · 반례(Counter-example) 검증"]
-    P2 --> P3{"Model Quality Gate<br/>경계 · 극성 판정 · 지연시간 · 반례 검토 통과?"}
-    P3 -->|정성 판단 충분| P4["소규모 정책 실험 및 실시간 모니터링 실행"]
-    P3 -->|정량 예측 필요| P5["시스템 다이내믹스 Stock-Flow 모델링 및 시뮬레이션 수행"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -155,16 +133,16 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph R_LOOP["R1 강화 악순환 루프 (음의 부호 0개: 파멸적 증폭)"]
-        P_PRESS["일정 압박"] -->|+(증가)| DEFECTS["결함 유입"]
-        DEFECTS -->|+(증가)| REWORK["재작업 증가"]
-        REWORK -->|+(증가)| FATIGUE["피로도 가중"]
-        FATIGUE -->|+(증가)| P_PRESS
+    subgraph R_LOOP["R1 강화 루프 (음의 링크 0개)"]
+        P_PRESS["일정 압박"] -->|+| DEFECTS["결함 유입"]
+        DEFECTS -->|+| REWORK["재작업 증가"]
+        REWORK -->|+| FATIGUE["피로도 가중"]
+        FATIGUE -->|+| P_PRESS
     end
-    subgraph B_LOOP["B1 조절 루프 (음의 부호 1개: 목표 지향 수렴)"]
-        Q_GAP["품질 Gap"] -->|+(증가)| TEST["테스트/검증 강화"]
-        TEST -->|"- (감소, Delay ║)"| RESIDUAL["잔존 결함"]
-        RESIDUAL -->|+(증가)| Q_GAP
+    subgraph B_LOOP["B1 조절 루프 (음의 링크 1개)"]
+        Q_GAP["품질 Gap"] -->|+| TEST["테스트/검증 강화"]
+        TEST -->|"− · Delay ║"| RESIDUAL["잔존 결함"]
+        RESIDUAL -->|+| Q_GAP
     end
 ```
 

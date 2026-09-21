@@ -1,25 +1,24 @@
 ---
 title: "품질비용(COQ)"
 author: "Codex"
-date: "2026-09-22T10:25:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["품질관리·경제성"]
-    B --> C["품질비용(COQ)"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 품질관리·경제성을 거쳐 품질비용으로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>품질관리·경제성</span>
+  <strong>품질비용(COQ)</strong>
+</div>
 
 ## 30초 인출
 
@@ -64,28 +63,27 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    S1["① 분류기준 정의<br/>예방(P) · 평가(A) · 내부실패(IF) · 외부실패(EF) 계정 정립"]
-    S2["② 비용 수집<br/>공수 · 도구 라이선스 · 장애 복구 및 보상비용 집계"]
-    S3["③ 원인·우선순위 분석<br/>실패비용 대상 결함 원인 파레토(Pareto) 분석"]
-    S4["④ 예방·평가 개선 (Shift-Left)<br/>코드리뷰 · TDD · CI/CD 자동화 시험 및 Quality Gate 적용"]
-    S1 --> S2 --> S3 --> S4
+    S1["분류기준 정의"] --> S2["비용 수집"] --> S3["원인·우선순위 분석"] --> S4["예방·평가 개선"]
 ```
+
+- 활동: 예방·평가·내부실패·외부실패 계정 정립 → 공수·라이선스·장애복구·보상비용 집계 → 결함 원인 파레토 분석 → 코드리뷰·TDD·CI/CD 자동시험·Quality Gate 적용
+- 산출: 분류기준 → 비용 집계표 → 개선 우선순위 → Shift-Left 개선안·재측정 결과
 
 ## Ⅳ. 적합비용 vs 부적합비용 상충 곡선 및 최적화
 
 > 예방 투자를 선제 집행하여(Shift-Left) 기하급수적으로 폭증하는 외부 실패비용을 차단하고 총 품질비용을 최소화함.
 
-### 1. PAF 상충 곡선 및 총 품질비용 최적점(Optimal Point)
+### 1. PAF 구성 그룹 및 Shift-Left 전환 관계
 
 ```mermaid
 flowchart LR
-    subgraph CONFORMANCE["적합비용 (Cost of Conformance)"]
-        P["예방비용 (Prevention)<br/>- 코딩 표준, 아키텍처 리뷰<br/>- 개발자 품질 교육, TDD"]
-        A["평가비용 (Appraisal)<br/>- 단위/통합 테스트, 정적분석<br/>- 제3자 감리, 보안 취약점 진단"]
+    subgraph CONFORMANCE["적합비용"]
+        P["예방비용"]
+        A["평가비용"]
     end
-    subgraph NON_CONFORMANCE["부적합비용 (Cost of Non-conformance: COPQ)"]
-        IF["내부실패비용 (Internal Failure)<br/>- 릴리스 전 결함 재작업<br/>- 빌드 실패 수정, 재시험"]
-        EF["외부실패비용 (External Failure)<br/>- 운영 환경 장애 복구, 배상<br/>- 긴급 핫픽스, 고객 이탈 손실"]
+    subgraph NON_CONFORMANCE["부적합비용 COPQ"]
+        IF["내부실패비용"]
+        EF["외부실패비용"]
     end
     CONFORMANCE -.->|Shift-Left 예방 투자| NON_CONFORMANCE
 ```
@@ -126,15 +124,6 @@ flowchart LR
 - **검증 체계**: 결함 원인 파레토(Pareto) 분석, 예방비용 집행 전·후 운영 장애 건수 및 복구비용 절감액 추적
 - **기대 효과**: 외부 장애에 따른 브랜드 실추 및 보상비용 원천 예방, 총 개발 라이프사이클 비용 30% 절감
 
-```mermaid
-flowchart TD
-    P1["실패비용 증적 수집<br/>운영 장애 복구비 · 재작업 공수 · 고객 손해배상액"] --> P2["원인 분석 (Pareto)<br/>핵심 결함 유입 원인 및 아키텍처 취약점 식별"]
-    P2 --> P3["Shift-Left 예방 통제<br/>CI/CD 정적분석 자동화 · 단위테스트 · Quality Gate"]
-    P3 --> P4{"COQ 재측정 Gate<br/>외부 실패비용 및 재발 결함률 유의미하게 감소?"}
-    P4 -->|달성| P5["품질 최적점 도달 및 표준 개발 프로세스 정착"]
-    P4 -->|미달| P6["예방 프로세스 보완 및 검증 범위 확대"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -146,13 +135,13 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph CONFORMANCE["적합비용 (Cost of Conformance)"]
-        P["예방비용 (Prevention)<br/>- 코딩 표준, 아키텍처 리뷰<br/>- 개발자 품질 교육, TDD"]
-        A["평가비용 (Appraisal)<br/>- 단위/통합 테스트, 정적분석<br/>- 제3자 감리, 보안 취약점 진단"]
+    subgraph CONFORMANCE["적합비용"]
+        P["예방비용"]
+        A["평가비용"]
     end
-    subgraph NON_CONFORMANCE["부적합비용 (Cost of Non-conformance: COPQ)"]
-        IF["내부실패비용 (Internal Failure)<br/>- 릴리스 전 결함 재작업<br/>- 빌드 실패 수정, 재시험"]
-        EF["외부실패비용 (External Failure)<br/>- 운영 환경 장애 복구, 배상<br/>- 긴급 핫픽스, 고객 이탈 손실"]
+    subgraph NON_CONFORMANCE["부적합비용 COPQ"]
+        IF["내부실패비용"]
+        EF["외부실패비용"]
     end
     CONFORMANCE -.->|Shift-Left 예방 투자| NON_CONFORMANCE
 ```

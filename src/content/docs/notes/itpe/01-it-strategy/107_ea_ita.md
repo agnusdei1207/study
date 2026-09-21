@@ -1,24 +1,23 @@
 ---
 title: "EA·ITA"
 author: "Codex"
-date: "2026-09-22T10:45:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["전사 Architecture·거버넌스"]
-    B --> C["EA·ITA"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 전사 Architecture·거버넌스를 거쳐 EA·ITA로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>전사 Architecture·거버넌스</span>
+  <strong>EA·ITA</strong>
+</div>
 
 ## 30초 인출
 
@@ -59,33 +58,29 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    S1["① 방향·원칙<br/>비전·원칙·범위 정의 (EA 원칙 · 메타모델)"]
-    S2["② 현행·목표 모델<br/>업무·데이터·응용·기술 4대 뷰 구조화 (As-Is / To-Be)"]
-    S3["③ Gap·이행계획<br/>차이 분석, 과제 우선순위 및 로드맵 수립 (Transition Plan)"]
-    S4["④ 관리·활용<br/>EAMS 등록, 아키텍처 적합성 검토 및 투자 연계"]
-    S1 --> S2 --> S3 --> S4
+    S1["방향·원칙"] --> S2["현행·목표 모델"] --> S3["Gap·이행계획"] --> S4["관리·활용"]
 ```
 
 ## Ⅲ. 범정부 EA 참조모형 및 4대 아키텍처 연계
 
 ```mermaid
 flowchart TD
-    PRM["PRM (성과참조모형)<br/>전략목표 정렬 & IT 투자 성과지표 측정"]
-    BA["BA (비즈니스 아키텍처)"] --- BRM["BRM (업무참조모형): 조직독립적 기능 분류"]
-    DA["DA (데이터 아키텍처)"] --- DRM["DRM (데이터참조모형): 데이터 분류·표준화"]
-    AA["AA (응용 아키텍처)"] --- SRM["SRM (서비스참조모형): 재사용 컴포넌트/API"]
-    TA["TA (기술 아키텍처)"] --- TRM["TRM (기술참조모형): 표준 기술·인프라 규격"]
+    PRM["PRM 성과참조모형"]
+    BA["BA"] --- BRM["BRM 업무참조모형"]
+    DA["DA"] --- DRM["DRM 데이터참조모형"]
+    AA["AA"] --- SRM["SRM 서비스참조모형"]
+    TA["TA"] --- TRM["TRM 기술참조모형"]
 
     PRM ==> BA & DA & AA & TA
 ```
 
-| 모형 | 영문 | 역할 |
-|---|---|---|
-| PRM | Performance Reference Model | 정보화 성과 분류·측정 |
-| BRM | Business Reference Model | 조직 독립적 업무기능 분류 |
-| SRM | Service Reference Model | 응용서비스·컴포넌트 분류·재사용 |
-| DRM | Data Reference Model | 데이터 분류·구조·교환·관리 |
-| TRM | Technical Reference Model | 기술·표준 분류 |
+| 모형 | 역할 |
+|---|---|
+| **PRM**(Performance Reference Model) | 정보화 성과 분류·측정 |
+| **BRM**(Business Reference Model) | 조직 독립적 업무기능 분류 |
+| **SRM**(Service Reference Model) | 응용서비스·컴포넌트 분류·재사용 |
+| **DRM**(Data Reference Model) | 데이터 분류·구조·교환·관리 |
+| **TRM**(Technical Reference Model) | 기술·표준 분류 |
 
 ## Ⅳ. EA·Solution Architecture 비교
 
@@ -119,15 +114,6 @@ flowchart TD
 - **검증 체계**: 단위 프로젝트 검수 단계 감리 시 As-Is/To-Be 산출물과 형상관리(CMDB/EAMS) 동기화 일치율 전수 실사
 - **기대 효과**: 범부처 시스템 중복 투자 방지(연간 예산 15% 절감), 데이터 상호운용성 보장 및 전자정부 서비스 무중단 연계 가속화
 
-```mermaid
-flowchart TD
-    P1["사업·변경 요청<br/>신규 사업 요구사항 · Solution 아키텍처 · 투자안"] --> P2["Architecture Review Gate<br/>범정부 5대 참조모형 준수 및 공통 컴포넌트 재사용 심의"]
-    P2 --> P3{"적합성 판정<br/>표준 아키텍처 준수 및 중복 투자 없음?"}
-    P3 -->|승인| P4["구현 및 운영 배포<br/>자산 · API · 구성정보 CMDB 배포"]
-    P3 -->|조건부/반려| P5["예외 승인(일몰제 적용) 또는 아키텍처 재설계"]
-    P4 --> P6["EAMS 현행화<br/>형상관리 연동 메타데이터 자동 갱신 폐루프"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -139,11 +125,11 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    PRM["PRM (성과참조모형)<br/>전략목표 정렬 & IT 투자 성과지표 측정"]
-    BA["BA (비즈니스 아키텍처)"] --- BRM["BRM (업무참조모형): 조직독립적 기능 분류"]
-    DA["DA (데이터 아키텍처)"] --- DRM["DRM (데이터참조모형): 데이터 분류·표준화"]
-    AA["AA (응용 아키텍처)"] --- SRM["SRM (서비스참조모형): 재사용 컴포넌트/API"]
-    TA["TA (기술 아키텍처)"] --- TRM["TRM (기술참조모형): 표준 기술·인프라 규격"]
+    PRM["PRM 성과참조모형"]
+    BA["BA"] --- BRM["BRM 업무참조모형"]
+    DA["DA"] --- DRM["DRM 데이터참조모형"]
+    AA["AA"] --- SRM["SRM 서비스참조모형"]
+    TA["TA"] --- TRM["TRM 기술참조모형"]
 
     PRM ==> BA & DA & AA & TA
 ```

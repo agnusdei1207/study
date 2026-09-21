@@ -1,25 +1,24 @@
 ---
 title: "차세대 시스템 오픈 리스크"
 author: "Codex"
-date: "2026-09-22T09:45:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["전환관리·사업위험"]
-    B --> C["차세대 시스템 오픈 리스크"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 전환관리·사업위험을 거쳐 차세대 시스템 오픈 리스크로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>전환관리·사업위험</span>
+  <strong>차세대 시스템 오픈 리스크</strong>
+</div>
 
 ## 30초 인출
 
@@ -58,20 +57,15 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    subgraph TIMELINE["Cut-over 런북 타임라인 (00:00 ~ 09:00)"]
-        T1["① 업무동결·백업<br/>(00:00~02:00, 2h)"] --> T2["② 데이터 이행·대사<br/>(02:00~04:30, 2.5h)"]
-        T2 --> T3["③ 연계·스모크테스트<br/>(04:30~05:30, 1h)"]
-        T3 --> T4["④ Go/No-Go 판정<br/>(05:30~06:00, 30m)"]
+    subgraph TIMELINE["Cut-over 런북 타임라인"]
+        T1["업무동결·백업"] --> T2["데이터 이행·대사"] --> T3["연계·스모크테스트"] --> T4["Go/No-Go 판정"]
     end
-    subgraph DECISION["Go / No-Go 분기"]
-        T4 -->|기준 충족| GO["✅ GO 판정 (06:00)<br/>09:00 대고객 서비스 개시"]
-        T4 -->|미충족 or 05:30 초과| NOGO["⛔ NO-GO 판정 (Rollback)<br/>구 시스템 원복 (09:00 정상영업)"]
-    end
-    subgraph RULE["핵심 통제 원칙: 롤백 소요시간 역산"]
-        R["Point of No Return (05:30): 09:00 영업개시 - 복구 소요시간(3.5h)"]
-    end
-    RULE -.-> T4
+    T4 -->|기준 충족| GO["GO · 대고객 개시"]
+    T4 -->|미충족·한계시각 도달| NOGO["NO-GO · Rollback"]
+    R["Point of No Return"] -.->|롤백 한계시각| T4
 ```
+
+- Point of No Return = 영업개시 시각 − 복구 소요시간(역산)
 
 ### 2. 단계별 통제 활동 및 산출물
 
@@ -127,14 +121,6 @@ flowchart LR
 - **검증 체계**: 단일 런북(Runbook) 기반 분 단위 실시간 상황실 관제, PMO·감리·현업 공동 참여 Go/No-Go 서명제 운영
 - **기대 효과**: 개통 첫날 대규모 전산 마비 사태 원천 차단, 대고객 서비스 연속성 및 금융/공공 신뢰도 유지
 
-```mermaid
-flowchart TD
-    E1["판정 증적 수집<br/>(데이터 대사율 100% · E2E 거래 · 목표 TPS · 현업 승인)"]
-    E1 --> P1{"Rollback 결정시점<br/>(05:30 Point of No Return 이전 & 기준 충족?)"}
-    P1 -->|충족| GO["Go 결정<br/>신규 시스템 최종 가동 및 대고객 서비스 개시"]
-    P1 -->|미충족 / 시간초과| NOGO["No-Go 결정<br/>즉시 Rollback 발동 및 구 시스템 원복 운영"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -146,19 +132,12 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph TIMELINE["Cut-over 런북 타임라인 (00:00 ~ 09:00)"]
-        T1["① 업무동결·백업<br/>(00:00~02:00, 2h)"] --> T2["② 데이터 이행·대사<br/>(02:00~04:30, 2.5h)"]
-        T2 --> T3["③ 연계·스모크테스트<br/>(04:30~05:30, 1h)"]
-        T3 --> T4["④ Go/No-Go 판정<br/>(05:30~06:00, 30m)"]
+    subgraph TIMELINE["Cut-over 런북 타임라인"]
+        T1["업무동결·백업"] --> T2["데이터 이행·대사"] --> T3["연계·스모크테스트"] --> T4["Go/No-Go 판정"]
     end
-    subgraph DECISION["Go / No-Go 분기"]
-        T4 -->|기준 충족| GO["✅ GO 판정 (06:00)<br/>09:00 대고객 서비스 개시"]
-        T4 -->|미충족 or 05:30 초과| NOGO["⛔ NO-GO 판정 (Rollback)<br/>구 시스템 원복 (09:00 정상영업)"]
-    end
-    subgraph RULE["핵심 통제 원칙: 롤백 소요시간 역산"]
-        R["Point of No Return (05:30): 09:00 영업개시 - 복구 소요시간(3.5h)"]
-    end
-    RULE -.-> T4
+    T4 -->|기준 충족| GO["GO · 대고객 개시"]
+    T4 -->|미충족·한계시각 도달| NOGO["NO-GO · Rollback"]
+    R["Point of No Return"] -.->|롤백 한계시각| T4
 ```
 
 ### 3. 핵심 통제

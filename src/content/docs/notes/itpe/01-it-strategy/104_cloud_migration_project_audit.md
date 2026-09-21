@@ -1,25 +1,24 @@
 ---
 title: "클라우드 전환사업 감리"
 author: "Codex"
-date: "2026-09-22T10:05:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "B"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["정보시스템 감리"]
-    B --> C["클라우드 전환사업 감리"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 정보시스템 감리를 거쳐 클라우드 전환사업 감리로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>정보시스템 감리</span>
+  <strong>클라우드 전환사업 감리</strong>
+</div>
 
 ## 30초 인출
 
@@ -36,6 +35,7 @@ flowchart LR
 - **SLA(Service Level Agreement)**: 서비스 수준과 책임을 정한 합의
 - **FinOps(Financial Operations)**: 기술·재무·업무가 함께 클라우드 비용과 가치를 관리하는 운영방식
 - **DR(Disaster Recovery)**: 재해 발생 후 시스템·데이터를 복구하는 체계
+- **CSAP(Cloud Security Assurance Program)**: 클라우드 서비스의 보안·신뢰성을 인증하는 국가 보안인증 제도
 
 </details>
 
@@ -58,19 +58,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    subgraph STAGE1["① 전략/기획 감리"]
-        S1["- 6R 전략 적정성<br/>- TCO/ROI 타당성<br/>- CSAP 보안인증<br/>- 전환 기본계획서"]
-    end
-    subgraph STAGE2["② 아키텍처 감리"]
-        S2["- 랜딩존/IaC 설계<br/>- 공유책임 모델(RACI)<br/>- Multi-AZ 이중화<br/>- CSP Lock-in 방지"]
-    end
-    subgraph STAGE3["③ 이행/전환 감리"]
-        S3["- 데이터 실시간 CDC<br/>- 건수/금액 무결성 대사<br/>- Cut-over 런북/Rollback<br/>- 모의이행(Dry Run)"]
-    end
-    subgraph STAGE4["④ 운영/비용 감리"]
-        S4["- FinOps 자원 태깅<br/>- 이상비용 알림 체계<br/>- SLA 및 가용성<br/>- Exit Plan(자산반출)"]
-    end
-    STAGE1 --> STAGE2 --> STAGE3 --> STAGE4
+    S1["전략·기획 감리"] --> S2["아키텍처 감리"] --> S3["이행·전환 감리"] --> S4["운영·비용 감리"]
 ```
 
 ### 2. 단계별 주요 활동 및 감리 증적
@@ -130,14 +118,6 @@ flowchart LR
 - **검증 체계**: 모의이행(Dry Run) 2회 이상 수행 증적, 원천-목표 데이터 건수/금액 일치 대사로그 전수 검증
 - **기대 효과**: 클라우드 이전 실패 위험 최소화, 불필요한 클라우드 과금 30% 이상 절감 및 안전한 공공 서비스 이행
 
-```mermaid
-flowchart TD
-    P1["전환 증적 수집<br/>(전략 계획서 · 랜딩존 IaC · Dry Run 로그 · 대사 보고서)"]
-    P1 --> P2{"Quality Gate<br/>보안(IAM) · 복구(Rollback) · 비용(FinOps) · Exit Plan 충족?"}
-    P2 -->|통과| P3["Cut-over 승인 및 클라우드 본 가동 개시"]
-    P2 -->|미통과| P4["보완 조치 요구 및 2차 재검증 수행"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -149,19 +129,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph STAGE1["① 전략/기획 감리"]
-        S1["- 6R 전략 적정성<br/>- TCO/ROI 타당성<br/>- CSAP 보안인증<br/>- 전환 기본계획서"]
-    end
-    subgraph STAGE2["② 아키텍처 감리"]
-        S2["- 랜딩존/IaC 설계<br/>- 공유책임 모델(RACI)<br/>- Multi-AZ 이중화<br/>- CSP Lock-in 방지"]
-    end
-    subgraph STAGE3["③ 이행/전환 감리"]
-        S3["- 데이터 실시간 CDC<br/>- 건수/금액 무결성 대사<br/>- Cut-over 런북/Rollback<br/>- 모의이행(Dry Run)"]
-    end
-    subgraph STAGE4["④ 운영/비용 감리"]
-        S4["- FinOps 자원 태깅<br/>- 이상비용 알림 체계<br/>- SLA 및 가용성<br/>- Exit Plan(자산반출)"]
-    end
-    STAGE1 --> STAGE2 --> STAGE3 --> STAGE4
+    S1["전략·기획 감리"] --> S2["아키텍처 감리"] --> S3["이행·전환 감리"] --> S4["운영·비용 감리"]
 ```
 
 ### 3. 핵심 통제

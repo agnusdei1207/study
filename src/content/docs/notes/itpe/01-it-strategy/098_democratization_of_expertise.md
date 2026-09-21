@@ -1,25 +1,24 @@
 ---
 title: "전문성의 민주화"
 author: "Codex"
-date: "2026-09-22T09:05:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["디지털 역량·조직 혁신"]
-    B --> C["전문성의 민주화"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 디지털 역량·조직 혁신을 거쳐 전문성의 민주화로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>디지털 역량·조직 혁신</span>
+  <strong>전문성의 민주화</strong>
+</div>
 
 ## 30초 인출
 
@@ -57,21 +56,21 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    subgraph CITIZEN["시민 전문가 (현업)"]
-        C1["4대 민주화 영역<br/>- LCNC 업무 자동화<br/>- Self-Service BI<br/>- 생성형 AI 프롬프트<br/>- UI 빌더 프로토타입"]
+    subgraph CITIZEN["시민 개발자·현업"]
+        C1["LCNC·BI·생성형 AI 활용"]
     end
-    subgraph COE["CoE 통제 가드레일"]
-        G1["거버넌스 & 통제<br/>① 표준 템플릿/컴포넌트<br/>② API/데이터 마스킹<br/>③ 격리 샌드박스 환경<br/>④ Shadow IT 모니터링<br/>⑤ 앱 수명주기/폐기"]
+    subgraph COE["CoE 가드레일"]
+        G1["표준·보안·수명주기 통제"]
     end
-    subgraph ROUTING["위험도 기반 3대 경로"]
-        R1["저위험 (개인/팀내): 현업 자율 개발 & 사후 등록"]
-        R2["중위험 (부서간 연계): CoE 보안 검토 및 승인 배포"]
-        R3["고위험 (전사 코어): 중앙 IT 프로개발 이관 및 승격"]
+    subgraph ROUTING["위험도 기반 경로"]
+        R1["저위험: 현업 자율"]
+        R2["중위험: CoE 승인"]
+        R3["고위험: 중앙 IT 이관"]
     end
-    CITIZEN --> COE
-    COE --> R1
-    COE --> R2
-    COE --> R3
+    C1 --> G1
+    G1 --> R1
+    G1 --> R2
+    G1 --> R3
 ```
 
 ### 2. 4대 적용 영역 및 역할분담
@@ -89,16 +88,15 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    S1["① 대상 과제 분류<br/>위험·복잡도·데이터 등급 평가 (허용 과제 카탈로그)"]
-    S2["② 플랫폼·가드레일 구축<br/>권한·데이터·API·배포 정책 설정 (표준·템플릿·정책)"]
-    S3["③ 개발·검증<br/>현업 직접 구현 및 CoE 위험기반 검토 (앱·모델 검증 기록)"]
-    S4["④ 운영·승격·폐기<br/>유지보수, 전사 시스템 승격, 미사용 앱 폐기 (자산대장)"]
-    S1 --> S2 --> S3 --> S4
+    S1["과제 분류"] --> S2["플랫폼·가드레일 구축"] --> S3["개발·검증"] --> S4["운영·승격·폐기"]
 ```
+
+- 활동: 위험·복잡도·데이터 등급 평가 → 권한·데이터·API·배포 정책 설정 → 현업 구현·CoE 위험기반 검토 → 유지보수·전사 승격·미사용 앱 폐기
+- 산출: 허용 과제 카탈로그 → 표준·템플릿·정책 → 검증 기록 → 자산대장
 
 ## Ⅳ. 문제점·대응책
 
-> 승인서만 확인하면 무단 재하도급·수행주체 변경·대금 지연을 발견하기 어려움.
+> 승인 플랫폼 밖의 자유로운 개발은 Shadow IT·데이터 유출·기술부채로 이어지므로 가드레일과 자산 등록을 함께 운영해야 함.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
@@ -123,14 +121,6 @@ flowchart TD
 - **검증 체계**: 전사 앱 자산대장(Catalog) 등록 감사, 정기 미사용 앱 자동 아카이빙/폐기 프로세스 운영
 - **기대 효과**: Shadow IT 보안 사고 원천 예방, IT 개발 백로그 40% 이상 감축 및 현업 중심 디지털 혁신 체화
 
-```mermaid
-flowchart TD
-    P1["과제 위험도 판정<br/>(데이터 등급 · 전사 영향도 · 복잡도)"]
-    P1 -->|저위험| P2["현업 자율<br/>자율 구현 & 사후 자산 카탈로그 등록"]
-    P1 -->|중위험| P3["CoE 검토<br/>보안·데이터 가드레일 검토 및 승인 배포"]
-    P1 -->|고위험| P4["중앙 IT 이관<br/>전문 개발팀 공식 프로젝트 승격 및 운영"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -142,21 +132,21 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph CITIZEN["시민 전문가 (현업)"]
-        C1["4대 민주화 영역<br/>- LCNC 업무 자동화<br/>- Self-Service BI<br/>- 생성형 AI 프롬프트<br/>- UI 빌더 프로토타입"]
+    subgraph CITIZEN["시민 개발자·현업"]
+        C1["LCNC·BI·생성형 AI 활용"]
     end
-    subgraph COE["CoE 통제 가드레일"]
-        G1["거버넌스 & 통제<br/>① 표준 템플릿/컴포넌트<br/>② API/데이터 마스킹<br/>③ 격리 샌드박스 환경<br/>④ Shadow IT 모니터링<br/>⑤ 앱 수명주기/폐기"]
+    subgraph COE["CoE 가드레일"]
+        G1["표준·보안·수명주기 통제"]
     end
-    subgraph ROUTING["위험도 기반 3대 경로"]
-        R1["저위험 (개인/팀내): 현업 자율 개발 & 사후 등록"]
-        R2["중위험 (부서간 연계): CoE 보안 검토 및 승인 배포"]
-        R3["고위험 (전사 코어): 중앙 IT 프로개발 이관 및 승격"]
+    subgraph ROUTING["위험도 기반 경로"]
+        R1["저위험: 현업 자율"]
+        R2["중위험: CoE 승인"]
+        R3["고위험: 중앙 IT 이관"]
     end
-    CITIZEN --> COE
-    COE --> R1
-    COE --> R2
-    COE --> R3
+    C1 --> G1
+    G1 --> R1
+    G1 --> R2
+    G1 --> R3
 ```
 
 ### 3. 핵심 통제

@@ -1,25 +1,24 @@
 ---
 title: "TAM-SAM-SOM"
 author: "Codex"
-date: "2026-09-22T07:30:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "B"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["사업 타당성·시장 분석"]
-    B --> C["TAM-SAM-SOM"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 사업 타당성·시장 분석을 거쳐 TAM-SAM-SOM으로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>사업 타당성·시장 분석</span>
+  <strong>TAM-SAM-SOM</strong>
+</div>
 
 ## 30초 인출
 
@@ -61,29 +60,15 @@ flowchart LR
 ```mermaid
 flowchart LR
     subgraph MARKET["TAM-SAM-SOM 3단계 여과"]
-        TAM["TAM (전체 시장)<br/>글로벌/국내 전체 잠재 수요 총액"]
-        SAM["SAM (유효 시장)<br/>자사 BM·솔루션 스펙 도달 가능 시장"]
-        SOM["SOM (획득 시장)<br/>초기 실제 점유 가능한 단기 수익 시장"]
-        TAM --> SAM --> SOM
+        TAM["TAM 전체 시장"] --> SAM["SAM 유효 시장"] --> SOM["SOM 획득 시장"]
     end
     subgraph VALIDATION["추정 및 검증 체계"]
-        TD["① 하향식(Top-Down)<br/>산업 리포트 기반 성장 한계선(Ceiling) 파악"]
-        BU["② 상향식(Bottom-Up)<br/>SOM = 타깃 고객 수 × ARPU × 획득률"]
-        UE["③ Unit Economics 검증<br/>LTV > 3 × CAC & 손익분기점(BEP) 달성"]
-        TD -.-> BU -.-> UE
+        TD["하향식 Top-Down"] -.-> BU["상향식 Bottom-Up"] -.-> UE["Unit Economics 검증"]
     end
-    SOM ==> VALIDATION
+    SOM ==>|실측 검증| VALIDATION
 ```
 
 ### 2. 3단계 계층 상세 비교
-
-```mermaid
-flowchart TD
-    S1["① TAM (전체 시장)<br/>산업 보고서 기준 이론적 최대 수요 총액 (Top-down 거시 통계 인용)"]
-    S2["② SAM (유효 시장)<br/>자사 BM · 솔루션 스펙 · 지리적 도달 영역 (타깃 고객 수 × 패키지 단가)"]
-    S3["③ SOM (획득 시장)<br/>경쟁력·채널·자원 제약 하 실제 획득 가능 시장 (영업 파이프라인 · 전환율 실측)"]
-    S1 --> S2 --> S3
-```
 
 | 계층 | 범위 | 산출 근거 |
 |---|---|---|
@@ -128,14 +113,6 @@ flowchart TD
 - **검증 체계**: 시장 경계 정의, 경쟁사 윈백 비용 반영, 분기별 실제 영업 전환율과 SOM 가설 간 편차 추적
 - **기대 효과**: 시장 규모 과대 추정에 따른 데스밸리(Death Valley) 사전 예방, 자본 효율성 극대화 및 신규 IT 서비스 성공률 제고
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>Gartner 보고서 단순 인용 · '1% 점유'식 과대 매출 추정 · CAC 간과"] --> P2["개선 대안<br/>고객 수·단가·전환근거 기반 상향식 SOM 도출"]
-    P2 --> P3{"검증 기준<br/>실제 PoC 전환율 · 고객사 윈백 비용 반영 · LTV > 3*CAC 만족?"}
-    P3 -->|충족| P4["실행 효과<br/>현실적 BEP 달성 · 초기 자본 고갈(Death Valley) 극복 및 신규 사업 성공"]
-    P3 -->|미흡| P5["보완 조치<br/>타깃 세그먼트 재조정 및 영업 파이프라인 실측치 반영"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -148,18 +125,12 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph MARKET["TAM-SAM-SOM 3단계 여과"]
-        TAM["TAM (전체 시장)<br/>글로벌/국내 전체 잠재 수요 총액"]
-        SAM["SAM (유효 시장)<br/>자사 BM·솔루션 스펙 도달 가능 시장"]
-        SOM["SOM (획득 시장)<br/>초기 실제 점유 가능한 단기 수익 시장"]
-        TAM --> SAM --> SOM
+        TAM["TAM 전체 시장"] --> SAM["SAM 유효 시장"] --> SOM["SOM 획득 시장"]
     end
     subgraph VALIDATION["추정 및 검증 체계"]
-        TD["① 하향식(Top-Down)<br/>산업 리포트 기반 성장 한계선(Ceiling) 파악"]
-        BU["② 상향식(Bottom-Up)<br/>SOM = 타깃 고객 수 × ARPU × 획득률"]
-        UE["③ Unit Economics 검증<br/>LTV > 3 × CAC & 손익분기점(BEP) 달성"]
-        TD -.-> BU -.-> UE
+        TD["하향식 Top-Down"] -.-> BU["상향식 Bottom-Up"] -.-> UE["Unit Economics 검증"]
     end
-    SOM ==> VALIDATION
+    SOM ==>|실측 검증| VALIDATION
 ```
 
 ### 3. 핵심 통제

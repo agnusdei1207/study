@@ -1,24 +1,23 @@
 ---
 title: "Six Sigma DMAIC"
 author: "Codex"
-date: "2026-09-22T11:25:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["품질혁신·프로세스 개선"]
-    B --> C["Six Sigma DMAIC"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 품질혁신·프로세스 개선을 거쳐 Six Sigma DMAIC로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>품질혁신·프로세스 개선</span>
+  <strong>Six Sigma DMAIC</strong>
+</div>
 
 ## 30초 인출
 
@@ -69,30 +68,11 @@ Six Sigma의 3.4 DPMO는 장기 공정 이동(1.5σ Shift)을 가정한 대표�
 ## Ⅲ. 6시그마 통계적 메커니즘과 DMAIC 파이프라인
 
 ```mermaid
-flowchart LR
-    subgraph STATS["6 Sigma 통계적 기준 (±6σ)"]
-        S["- 1.5σ Shift 반영: 3.4 DPMO<br/>- 합격률: 99.99966%<br/>- 단기 공정능력: Cp ≥ 2.0, Cpk ≥ 1.5"]
-    end
-    subgraph DMAIC["DMAIC 5단계 개선 파이프라인"]
-        D["① Define: VOC ➔ CTQ 도출, SIPOC, Charter"]
-        M["② Measure: MSA 신뢰성 검증, DPMO Baseline"]
-        A["③ Analyze: Vital Few 근본원인 통계 검정"]
-        I["④ Improve: DOE 최적화, Pilot A/B 테스트"]
-        C["⑤ Control: SPC 관리도, SOP 표준화, 자동 모니터링"]
-        D --> M --> A --> I --> C
-    end
-    STATS ==> DMAIC
+flowchart TD
+    S1["Define · IT 장애 CTQ 정의"] --> S2["Measure · APM·로그 MSA·Baseline"] --> S3["Analyze · Vital Few 원인 검정"] --> S4["Improve · 카나리 배포·A/B 검증"] --> S5["Control · SPC·자동 복구 Runbook"]
 ```
 
-```mermaid
-flowchart TD
-    S1["① Define (정의)<br/>IT 서비스 장애·지연 문제, VOC 및 CTQ 식별 (Project Charter)"]
-    S2["② Measure (측정)<br/>APM/로그 신뢰성 검증(MSA) 및 현수준 DPMO Baseline 측정"]
-    S3["③ Analyze (분석)<br/>데이터 기반 가설검정 및 핵심 장애 원인(Vital Few) 통계적 규명"]
-    S4["④ Improve (개선)<br/>아키텍처 개선안 도출, 카나리/파일럿 배포 및 A/B 테스트 검증"]
-    S5["⑤ Control (통제)<br/>Prometheus Alerting 연동, SPC 관리도 및 자동 복구 Runbook 표준화"]
-    S1 --> S2 --> S3 --> S4 --> S5
-```
+- DMAIC 5단계 공식 활동·도구·산출은 Ⅱ 표와 같으며, 통계 기준은 1.5σ Shift 감안 3.4 DPMO(99.99966%), 단기 공정능력 Cp ≥ 2.0·Cpk ≥ 1.5임.
 
 ## Ⅳ. Six Sigma·Lean 비교
 
@@ -126,15 +106,6 @@ flowchart TD
 - **검증 체계**: 통계적 공정관리(SPC) X-bar 관리도를 통한 이상 원인 조기 감지 및 분기별 MSA 재검증
 - **기대 효과**: 대고객 트랜잭션 오류율 99.999% 무결성 유지, SLA 위반 패널티 제로화 및 연간 재작업 품질비용 40% 이상 절감
 
-```mermaid
-flowchart TD
-    P1["CTQ Baseline 증적<br/>(APM 트랜잭션 지연 · 가용성 로그 · 에러율)"] --> P2["원인 검증 및 파일럿 실행<br/>Vital Few 통계적 규명 및 카나리 배포 A/B 검증"]
-    P2 --> P3["운영 통제 및 감시 체계<br/>SLI/SLO 지표 설정 · Alerting Rule · 표준 Runbook"]
-    P3 --> P4{"Control Review Gate<br/>DPMO 목표 달성 & 성과 회귀 방지 통제 작동?"}
-    P4 -->|달성| P5["표준 SOP 정착 및 전사 확산"]
-    P4 -->|미달/회귀| P6["원인 재분석 및 이상치 반응 계획(Reaction Plan) 가동"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -145,19 +116,8 @@ flowchart TD
 ### 2. 6시그마 통계 기준 및 DMAIC 로드맵
 
 ```mermaid
-flowchart LR
-    subgraph STATS["6 Sigma 통계적 기준 (±6σ)"]
-        S["- 1.5σ Shift 반영: 3.4 DPMO<br/>- 합격률: 99.99966%<br/>- 단기 공정능력: Cp ≥ 2.0, Cpk ≥ 1.5"]
-    end
-    subgraph DMAIC["DMAIC 5단계 개선 파이프라인"]
-        D["① Define: VOC ➔ CTQ 도출, SIPOC, Charter"]
-        M["② Measure: MSA 신뢰성 검증, DPMO Baseline"]
-        A["③ Analyze: Vital Few 근본원인 통계 검정"]
-        I["④ Improve: DOE 최적화, Pilot A/B 테스트"]
-        C["⑤ Control: SPC 관리도, SOP 표준화, 자동 모니터링"]
-        D --> M --> A --> I --> C
-    end
-    STATS ==> DMAIC
+flowchart TD
+    S1["Define · IT 장애 CTQ 정의"] --> S2["Measure · APM·로그 MSA·Baseline"] --> S3["Analyze · Vital Few 원인 검정"] --> S4["Improve · 카나리 배포·A/B 검증"] --> S5["Control · SPC·자동 복구 Runbook"]
 ```
 
 ### 3. 단계별 핵심 통제

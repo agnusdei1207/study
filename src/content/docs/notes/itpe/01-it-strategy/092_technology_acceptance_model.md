@@ -1,25 +1,24 @@
 ---
 title: "기술수용모델(TAM)"
 author: "Codex"
-date: "2026-09-22T08:20:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "B"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["변화관리·사용자 수용"]
-    B --> C["기술수용모델(TAM)"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 변화관리·사용자 수용을 거쳐 기술수용모델로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>변화관리·사용자 수용</span>
+  <strong>기술수용모델(TAM)</strong>
+</div>
 
 ## 30초 인출
 
@@ -57,21 +56,14 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    EXT["외부 변수<br/>시스템 품질 · 교육훈련 · 지원체계"]
-    PEOU["인지된 용이성 (PEOU)<br/>'배우기 쉽고 다루기 편함'"]
-    PU["인지된 유용성 (PU)<br/>'업무성과 향상 및 생산성 기여'"]
-    ATT["태도 (Attitude)<br/>사용에 대한 심리적 선호도"]
-    BI["이용 의도 (BI)<br/>기술 사용 계획 및 의지"]
-    USE["실제 사용 (Actual Use)<br/>지속적 시스템 활용 및 정착"]
-
-    EXT --> PEOU
-    EXT --> PU
+    EXT["외부 변수"] --> PEOU["PEOU"]
+    EXT --> PU["PU"]
     PEOU --> PU
-    PEOU --> ATT
+    PEOU --> ATT["태도"]
     PU --> ATT
-    PU -.->|직접 영향| BI
+    PU -.->|직접 영향| BI["BI"]
     ATT --> BI
-    BI --> USE
+    BI --> USE["실제 사용"]
 ```
 
 ### 2. 인과단계별 분석 및 개선방안
@@ -125,15 +117,6 @@ flowchart LR
 - **검증 체계**: 설문조사–시스템 로그–업무 성과 간 삼각 검증(Triangulation), 도입 전·중·후 3단계 시계열 추적
 - **기대 효과**: 막대한 SI/ERP 투자 후 방치되는 사장화(Shelfware) 리스크 방지 및 디지털 전환 투자 대비 가치(ROI) 극대화
 
-```mermaid
-flowchart TD
-    S1["① 수용성 진단<br/>설문 기반 PU · PEOU · BI 측정"] --> S2["② 행동 검증<br/>시스템 사용 로그(DAU/MAU) · 인터뷰 증거"]
-    S2 --> S3["③ 가치 검증<br/>실제 업무 KPI 달성도 및 생산성 개선 판정"]
-    S3 --> S4{"Quality Gate<br/>삼각 검증 기준 충족 여부?"}
-    S4 -->|통과| S5["전사 확산 및 지속 정착"]
-    S4 -->|미통과| S6["UX 개선 · 온보딩 교육 강화 · 기술지원 보완"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -145,21 +128,14 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    EXT["외부 변수<br/>시스템 품질 · 교육훈련 · 지원체계"]
-    PEOU["인지된 용이성 (PEOU)<br/>'배우기 쉽고 다루기 편함'"]
-    PU["인지된 유용성 (PU)<br/>'업무성과 향상 및 생산성 기여'"]
-    ATT["태도 (Attitude)<br/>사용에 대한 심리적 선호도"]
-    BI["이용 의도 (BI)<br/>기술 사용 계획 및 의지"]
-    USE["실제 사용 (Actual Use)<br/>지속적 시스템 활용 및 정착"]
-
-    EXT --> PEOU
-    EXT --> PU
+    EXT["외부 변수"] --> PEOU["PEOU"]
+    EXT --> PU["PU"]
     PEOU --> PU
-    PEOU --> ATT
+    PEOU --> ATT["태도"]
     PU --> ATT
-    PU -.->|직접 영향| BI
+    PU -.->|직접 영향| BI["BI"]
     ATT --> BI
-    BI --> USE
+    BI --> USE["실제 사용"]
 ```
 
 ### 3. 핵심 요소 및 실무 통제

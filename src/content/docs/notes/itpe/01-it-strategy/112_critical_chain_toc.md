@@ -1,24 +1,23 @@
 ---
 title: "CCPM·TOC"
 author: "Codex"
-date: "2026-09-22T11:45:00+09:00"
+date: "2026-09-22T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["일정·자원관리"]
-    B --> C["CCPM·TOC"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 일정·자원관리를 거쳐 CCPM·TOC로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>일정·자원관리</span>
+  <strong>CCPM·TOC</strong>
+</div>
 
 ## 30초 인출
 
@@ -57,14 +56,14 @@ flowchart LR
 ```mermaid
 flowchart LR
     subgraph FEEDING["비임계 체인 (Non-critical)"]
-        T_FEED["비임계 Task"] --> FB["FB (Feeding Buffer)<br/>합류 지연 전파 차단"]
+        T_FEED["비임계 Task"] --> FB["FB 피딩 버퍼"]
     end
     subgraph CRITICAL["Critical Chain (작업 + 자원 제약)"]
-        T1["CC Task 1<br/>(50% 공격적 추정)"] --> T2["CC Task 2<br/>(RB: 자원 준비 알림)"]
+        T1["CC Task 1"] --> T2["CC Task 2"]
         T2 --> T3["CC Task 3"]
     end
     subgraph DELIVERY["프로젝트 납기 보호"]
-        PB["PB (Project Buffer)<br/>전체 통합 버퍼"] --> END["프로젝트 납기 완료"]
+        PB["PB 프로젝트 버퍼"] --> END["프로젝트 납기 완료"]
     end
 
     FB --> T3
@@ -84,12 +83,11 @@ Buffer 크기는 작업 불확실성·추정방식·위험 데이터를 반영�
 
 ```mermaid
 flowchart TD
-    S1["① 작업·자원 분석<br/>선후행 의존성 및 제약 자원 가용성/경합 식별 (자원제약 네트워크)"]
-    S2["② Critical Chain 도출<br/>자원 평준화(Leveling) 및 다중작업 제거 후 최장 체인 확정"]
-    S3["③ Buffer 설계<br/>안전여유 통합 배치: PB(납기), FB(합류), RB(자원 사전알림)"]
-    S4["④ Buffer 통제 (Fever Chart)<br/>Chain 진척률 대 버퍼 소진율 모니터링 및 Red Zone 시 긴급 자원 집중"]
-    S1 --> S2 --> S3 --> S4
+    S1["작업·자원 분석"] --> S2["Critical Chain 도출"] --> S3["Buffer 설계"] --> S4["Buffer 통제"]
 ```
+
+- 활동: 선후행 의존성 및 제약 자원 가용성·경합 식별 → 자원 평준화(Leveling)·다중작업 제거 후 최장 체인 확정 → PB·FB·RB 안전여유 통합 배치 → Fever Chart로 진척률 대비 소진율 모니터링 및 Red Zone 긴급 자원 집중
+- 산출: 자원제약 네트워크 → Critical Chain → Buffer 일정 → 통제 기록·긴급 조치
 
 ## Ⅳ. CPM·CCPM 비교
 
@@ -123,14 +121,6 @@ flowchart TD
 - **검증 체계**: 주간 단위 제약 자원 부하율(Load Factor) 전수 측정 및 동시 진행 작업(WIP) 상한선(WIP Limit) 강제 통제
 - **기대 효과**: 자원 경합에 의한 대기 지연 30% 단축, 전체 프로젝트 공기 20% 이상 단축 및 납기 준수율 98% 달성
 
-```mermaid
-flowchart TD
-    P1["Chain 진척 및 Buffer 소진 측정<br/>(Fever Chart 상 버퍼 잔여량 및 소진 속도)"] --> P2["제약 원인 분석<br/>자원 경합 · 병목 작업 · 잦은 요구 변경 분석"]
-    P2 --> P3{"Fever Chart 판정 Gate<br/>버퍼 소진율 대비 회복 가능 여부?"}
-    P3 -->|Green/Yellow (회복 가능)| P4["현행 계획 유지 및 자원 집중 모니터링"]
-    P3 -->|Red Zone (회복 곤란)| P5["긴급 만회 조치 (Swarming, 범위/우선순위 조정, WIP 강제제한)"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -143,14 +133,14 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph FEEDING["비임계 체인 (Non-critical)"]
-        T_FEED["비임계 Task"] --> FB["FB (Feeding Buffer)<br/>합류 지연 전파 차단"]
+        T_FEED["비임계 Task"] --> FB["FB 피딩 버퍼"]
     end
     subgraph CRITICAL["Critical Chain (작업 + 자원 제약)"]
-        T1["CC Task 1<br/>(50% 공격적 추정)"] --> T2["CC Task 2<br/>(RB: 자원 준비 알림)"]
+        T1["CC Task 1"] --> T2["CC Task 2"]
         T2 --> T3["CC Task 3"]
     end
     subgraph DELIVERY["프로젝트 납기 보호"]
-        PB["PB (Project Buffer)<br/>전체 통합 버퍼"] --> END["프로젝트 납기 완료"]
+        PB["PB 프로젝트 버퍼"] --> END["프로젝트 납기 완료"]
     end
 
     FB --> T3

@@ -1,25 +1,24 @@
 ---
 title: "경영환경 분석(SWOT·3C·PEST)"
 author: "Codex"
-date: "2026-09-22T07:15:00+09:00"
+date: "2026-09-21T23:47:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "B"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["경영 전략·비즈니스 분석"]
-    B --> C["경영환경 분석(SWOT·3C·PEST)"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 경영 전략·비즈니스 분석을 거쳐 경영환경 분석으로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>경영 전략·비즈니스 분석</span>
+  <strong>경영환경 분석(SWOT·3C·PEST)</strong>
+</div>
 
 ## 30초 인출
 
@@ -58,9 +57,8 @@ flowchart LR
 
 | 비교 항목 | PEST 분석 | 3C 분석 | SWOT 분석 |
 |---|---|---|---|
-| **분석 범위** | **거시 환경 (Macro)**<br>정치·경제·사회·기술 외생 변수 | **미시 환경 (Micro)**<br>고객·경쟁사·자사 3각 역학 | **종합 전략 (Synthesis)**<br>내부 역량 × 외부 환경 교차 |
+| **분석 범위** | **거시 환경(Macro)**: 정치·경제·사회·기술 외생 변수 | **미시 환경(Micro)**: 고객·경쟁사·자사 3각 역학 | **종합 전략(Synthesis)**: 내부 역량 × 외부 환경 교차 |
 | **핵심 산출물** | 거시 변화요인 | 고객 요구·경쟁구도·자사역량 | S/W/O/T 요인·전략대안 |
-| **핵심 질문** | 외부 거시 변화는 무엇인가? | 고객·경쟁사 대비 자사의 위치는? | 내·외부 요인을 어떻게 결합할 것인가? |
 
 ## Ⅲ. PEST-3C-SWOT 연계 구성체계 및 4대 교차 매트릭스
 
@@ -71,28 +69,21 @@ flowchart LR
 ```mermaid
 flowchart TD
     subgraph INPUTS["환경 입력 분석"]
-        P["PEST (거시분석)<br/>P(정치) · E(경제) · S(사회) · T(기술)<br/>➔ 외부 환경 기회(O) / 위협(T) 도출"]
-        C["3C (미시분석)<br/>Customer · Competitor · Company<br/>➔ 내부 역량 강점(S) / 약점(W) 도출"]
+        P["PEST"]
+        C["3C"]
     end
     subgraph SWOT["SWOT 4대 교차 전략 매트릭스"]
-        SO["SO 전략 (공격/성장): 강점 활용 기회 선점"]
-        ST["ST 전략 (차별화/수비): 강점 기반 위협 극복"]
-        WO["WO 전략 (국면전환): 기회 활용 약점 만회"]
-        WT["WT 전략 (철수/방어): 취약점 보완 및 사업 축소"]
+        SO["SO 전략"]
+        ST["ST 전략"]
+        WO["WO 전략"]
+        WT["WT 전략"]
     end
-    INPUTS ==> SWOT
+    INPUTS ==>|거시 요인 O·T, 미시 요인 S·W 도출| SWOT
 ```
+
+- 연계 절차: PEST 거시 탐색(O/T 도출) → 3C 미시 검증(S/W 도출) → 통제 가능성 기준 SWOT 요인 정제 → 4대 교차 전략 도출 및 AHP 연계
 
 ### 2. SWOT 4대 교차 전략 매트릭스
-
-```mermaid
-flowchart TD
-    S1["① 거시환경 분석 (PEST)<br/>정치·경제·사회·기술 외생 변수 진단 (산출: 거시 기회 O · 위협 T)"]
-    S2["② 미시환경 분석 (3C)<br/>고객·경쟁사·자사 3각 역학 (산출: KSF · 강점 S · 약점 W)"]
-    S3["③ SWOT 요인 배치 및 정제<br/>통제 가능성 기준 내부(S/W) 및 외부(O/T) 엄격 분류"]
-    S4["④ 4대 교차 전략 수립<br/>SO(공격) · ST(차별화) · WO(국면전환) · WT(철수) 도출 및 AHP 연계"]
-    S1 --> S2 --> S3 --> S4
-```
 
 | 교차 전략 | 결합 축 | 전략 방향성 | 실무 IT 전략 적용 사례 |
 |---|---|---|---|
@@ -128,14 +119,6 @@ flowchart TD
 - **검증 체계**: 환경 요인–SWOT 매트릭스–전략 과제 간 추적성(Traceability) 검증 및 분기별 가정 재평가
 - **기대 효과**: 전략 왜곡 원천 차단, 생성형 AI·규제 변화에 따른 기민한 전략 피벗(Pivot) 및 자원 낭비 방지
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>연례 1회성 파워포인트 · 도구 간 단절 · 환경 변화 즉시 대응 불가"] --> P2["개선 대안<br/>외부 뉴스/규제 API(PEST) + 시장 데이터(3C) + IT 메트릭 연계 동적 레이더"]
-    P2 --> P3{"검증 기준<br/>통제가능성 기준 엄격 분류 & 환경-과제 간 추적성 확보?"}
-    P3 -->|충족| P4["실행 효과<br/>전략적 모순 제거 · 급변하는 AI/규제 환경에 기민한 피벗(Pivot) 실현"]
-    P3 -->|미흡| P5["보완 조치<br/>외부 데이터 API 연동 및 분기별 가정 재평가"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -148,16 +131,16 @@ flowchart TD
 ```mermaid
 flowchart TD
     subgraph INPUTS["환경 입력 분석"]
-        P["PEST (거시분석)<br/>P(정치) · E(경제) · S(사회) · T(기술)<br/>➔ 외부 환경 기회(O) / 위협(T) 도출"]
-        C["3C (미시분석)<br/>Customer · Competitor · Company<br/>➔ 내부 역량 강점(S) / 약점(W) 도출"]
+        P["PEST"]
+        C["3C"]
     end
     subgraph SWOT["SWOT 4대 교차 전략 매트릭스"]
-        SO["SO 전략 (공격/성장): 강점 활용 기회 선점"]
-        ST["ST 전략 (차별화/수비): 강점 기반 위협 극복"]
-        WO["WO 전략 (국면전환): 기회 활용 약점 만회"]
-        WT["WT 전략 (철수/방어): 취약점 보완 및 사업 축소"]
+        SO["SO 전략"]
+        ST["ST 전략"]
+        WO["WO 전략"]
+        WT["WT 전략"]
     end
-    INPUTS ==> SWOT
+    INPUTS ==>|거시 요인 O·T, 미시 요인 S·W 도출| SWOT
 ```
 
 ### 3. 핵심 통제

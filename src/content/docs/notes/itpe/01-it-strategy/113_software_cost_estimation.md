@@ -1,25 +1,24 @@
 ---
 title: "소프트웨어 비용 산정(Software Cost Estimation)"
 author: "Codex"
-date: "2026-09-22T10:30:00+09:00"
+date: "2026-09-22T00:12:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-```mermaid
-flowchart LR
-    A["IT 전략·관리"] --> B["공공 SW 사업 관리"]
-    B --> C["SW 비용 산정"]
-    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-```
+<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 공공 SW 사업 관리를 거쳐 SW 비용 산정으로 이어지는 지식 위치">
+  <span>IT 전략·관리</span>
+  <span>공공 SW 사업 관리</span>
+  <strong>SW 비용 산정</strong>
+</div>
 
 ## 30초 인출
 
@@ -65,32 +64,12 @@ flowchart LR
 ### 2. FP 측정·대가 산정 메커니즘
 
 ```mermaid
-flowchart LR
-    subgraph FUNCTIONS["① 5대 기능 식별"]
-        F1["- 데이터: ILF, EIF<br/>- 트랜잭션: EI, EO, EQ"]
-        F2["미보정 기능점수 (UFP)"]
-        F1 --> F2
-    end
-    subgraph FACTORS["② 5대 보정계수"]
-        FA["- 규모(소~대규모)<br/>- 연계복잡성<br/>- 성능요구수준<br/>- 다중사이트 운영성<br/>- 보안성 수준"]
-    end
-    subgraph COST["③ 개발원가 및 개발비 확정"]
-        C1["보정 기능점수 (AFP) × 단가 (605,784원/FP)"]
-        C2["최종 SW 개발비 = 개발원가 + 이윤(최대 25%) + 직접경비"]
-        C1 --> C2
-    end
-    FUNCTIONS --> FACTORS --> COST
+flowchart TD
+    S1["측정 범위 설정"] --> S2["5대 기능 식별"] --> S3["미보정 FP 산정"] --> S4["개발원가 산정"] --> S5["개발비 확정"]
 ```
 
-```mermaid
-flowchart TD
-    S1["① 측정 범위 설정<br/>사용자 관점 애플리케이션 경계 확정 (측정 범위 · 경계 정의)"]
-    S2["② 기능 식별<br/>데이터 기능(ILF, EIF) 및 트랜잭션 기능(EI, EO, EQ) 식별 및 분류"]
-    S3["③ 기능점수 산정<br/>정통법 복잡도 매트릭스 또는 간이법 평균 가중치 적용 (미보정 FP)"]
-    S4["④ 개발원가 산정<br/>5대 보정계수 적용(보정 FP) × 2025년 FP 단가(605,784원) 산출"]
-    S5["⑤ 개발비 확정<br/>개발원가 + 이윤(최대 25%) + 직접경비 실비 합산 (SW 개발비 산정서)"]
-    S1 --> S2 --> S3 --> S4 --> S5
-```
+- 활동: 사용자 관점 애플리케이션 경계 확정 → 데이터 기능(ILF·EIF)·트랜잭션 기능(EI·EO·EQ) 식별·분류 → 정통법 복잡도 매트릭스 또는 간이법 평균 가중치로 미보정 FP 산출 → 5대 보정계수 적용 후 2025년 단가(605,784원/FP) 곱산출 → 개발원가에 이윤(최대 25%)·직접경비 실비 합산
+- 산출: 경계 정의 → 기능 목록 → 미보정 FP(UFP) → 보정 FP(AFP)·개발원가 → SW 개발비 산정서
 
 ### 3. 현행 기능점수 방식의 핵심 식
 
@@ -137,15 +116,6 @@ SW 개발비 = 개발원가 + 이윤 + 직접경비
 - **검증 체계**: 전문 감리법인 및 공공 SW 대가 전문위원회의 교차 검증(Cross-Check)을 통한 기능 분류(ILF/EIF/EI/EO/EQ) 왜곡 방지
 - **기대 효과**: 공공 SW 사업 제값 받기 정착, 잦은 과업 추가에 따른 개발사 적자 리스크 원천 차단 및 납기 품질 보장
 
-```mermaid
-flowchart TD
-    P1["기획단계 개략 견적<br/>유사 사업 통계 · 간이법 FP 예산 편성"] --> P2["분석·설계단계 정밀 재산정<br/>경계 확정 · 5대 기능 전수 대조 · 보정계수 증적 검증"]
-    P2 --> P3["비용 Baseline 확정<br/>FP 산정서 · 예산 · 계약 범위 완전 일치"]
-    P3 --> P4{"과업 변경 발생 여부?<br/>(요구사항 증감 ±10% 초과 판정)"}
-    P4 -->|변경 없음| P5["Baseline 유지 및 안정적 개발 수행"]
-    P4 -->|변경 발생| P6["과업심의 상정 및 RTM 연동 증분 FP 기반 계약금액 조정"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -156,21 +126,8 @@ flowchart TD
 ### 2. 기능점수(FP) 기반 SW 개발비 산출 구조도
 
 ```mermaid
-flowchart LR
-    subgraph FUNCTIONS["① 5대 기능 식별"]
-        F1["- 데이터: ILF, EIF<br/>- 트랜잭션: EI, EO, EQ"]
-        F2["미보정 기능점수 (UFP)"]
-        F1 --> F2
-    end
-    subgraph FACTORS["② 5대 보정계수"]
-        FA["- 규모(소~대규모)<br/>- 연계복잡성<br/>- 성능요구수준<br/>- 다중사이트 운영성<br/>- 보안성 수준"]
-    end
-    subgraph COST["③ 개발원가 및 개발비 확정"]
-        C1["보정 기능점수 (AFP) × 단가 (605,784원/FP)"]
-        C2["최종 SW 개발비 = 개발원가 + 이윤(최대 25%) + 직접경비"]
-        C1 --> C2
-    end
-    FUNCTIONS --> FACTORS --> COST
+flowchart TD
+    S1["측정 범위 설정"] --> S2["5대 기능 식별"] --> S3["미보정 FP 산정"] --> S4["개발원가 산정"] --> S5["개발비 확정"]
 ```
 
 ### 3. 핵심 산식 및 통제 고려사항
