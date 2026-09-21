@@ -14,7 +14,7 @@ sidebar:
     text: "A"
     variant: "tip"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 시스템 연계 및 인터페이스 > 데이터 수집 및 연계 > 스크래핑(Scraping)
@@ -67,24 +67,78 @@ extra:
 
 ### Ⅱ. 스크래핑 동작 메커니즘 및 핵심 기술 요소
 
-#### 1. 스크린 스크래핑 동작 흐름도
+#### 1. 스크린 스크래핑 vs 마이데이터 표준 API 연계 메커니즘 비교
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User as 사용자
-    participant App as 핀테크 서버
-    participant Engine as 스크래핑 엔진
-    participant Bank as 원천 금융사 웹
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 상단: 레거시 스크린 스크래핑 (위험) -->
+  <g transform="translate(15, 12)">
+    <rect x="0" y="0" width="490" height="92" rx="6" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1"/>
+    <text x="15" y="20" font-size="10.5" font-weight="700" fill="var(--sl-color-danger, #ef4444)">[레거시 방식] 스크린 스크래핑 (인증정보 위탁 및 비공식 DOM 파싱)</text>
 
-    User->>App: 인증서 및 비밀번호 위탁 등록
-    App->>Engine: 세션 에뮬레이션 요청
-    Engine->>Bank: 대리 로그인 (인증서 서명 전송)
-    Bank-->>Engine: 전체 HTML/DOM 화면 응답
-    Engine->>Engine: Headless 파싱 (잔액, 거래내역 추출)
-    Engine-->>App: 정형 데이터(JSON) 변환
-    App-->>User: 통합 자산 관리 화면 표출
-```
+    <!-- 흐름 카드 -->
+    <rect x="10" y="30" width="100" height="50" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="60" y="46" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">사용자 인증</text>
+    <text x="60" y="60" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">ID/PW·인증서</text>
+    <text x="60" y="70" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">서버 위탁 보관</text>
+
+    <path d="M 112 55 L 126 55" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+
+    <rect x="128" y="30" width="110" height="50" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="183" y="46" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">대리 로그인</text>
+    <text x="183" y="60" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Headless Browser</text>
+    <text x="183" y="70" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">세션 쿠키 에뮬레이션</text>
+
+    <path d="M 240 55 L 254 55" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+
+    <rect x="256" y="30" width="110" height="50" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="311" y="46" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">DOM/XPath 파싱</text>
+    <text x="311" y="60" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">HTML 화면 캡처</text>
+    <text x="311" y="70" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">UI 변경 시 즉시 마비</text>
+
+    <path d="M 368 55 L 382 55" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+
+    <rect x="384" y="30" width="96" height="50" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1"/>
+    <text x="432" y="48" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">법적 금지</text>
+    <text x="432" y="64" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">보안 사고 위험</text>
+  </g>
+
+  <!-- 하단: 마이데이터 표준 API (안전) -->
+  <g transform="translate(15, 114)">
+    <rect x="0" y="0" width="490" height="94" rx="6" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+    <text x="15" y="20" font-size="10.5" font-weight="700" fill="var(--sl-color-success, #15803d)">[표준 방식] 마이데이터 표준 API (OAuth 2.0 인가 토큰 및 RESTful JSON)</text>
+
+    <rect x="10" y="30" width="100" height="52" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
+    <text x="60" y="46" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">전송요구권</text>
+    <text x="60" y="60" font-size="7.5" text-anchor="middle" fill="var(--sl-color-success, #15803d)">개인 데이터 주권</text>
+    <text x="60" y="70" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">본인 직접 동의</text>
+
+    <path d="M 112 56 L 126 56" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+
+    <rect x="128" y="30" width="110" height="52" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
+    <text x="183" y="46" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">OAuth 2.0 토큰</text>
+    <text x="183" y="60" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">최소 권한 원칙</text>
+    <text x="183" y="70" font-size="7.5" text-anchor="middle" fill="var(--sl-color-success, #15803d)">자격증명 위탁 없음</text>
+
+    <path d="M 240 56 L 254 56" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+
+    <rect x="256" y="30" width="110" height="52" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
+    <text x="311" y="46" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">RESTful API</text>
+    <text x="311" y="60" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">정형 JSON 페이로드</text>
+    <text x="311" y="70" font-size="7.5" text-anchor="middle" fill="var(--sl-color-success, #15803d)">mTLS 암호 통신</text>
+
+    <path d="M 368 56 L 382 56" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+
+    <rect x="384" y="30" width="96" height="52" rx="4" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="432" y="48" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">공식 표준</text>
+    <text x="432" y="62" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">안정성·확장성</text>
+    <text x="432" y="72" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">API 거버넌스</text>
+  </g>
+</svg>
+</div>
 
 #### 2. 스크래핑 핵심 기술 요소
 
@@ -122,27 +176,31 @@ sequenceDiagram
 
 ### Ⅴ. 기술사적 제언: 마이데이터 표준 API 전환 및 전 산업 데이터 주권 거버넌스
 
-```mermaid
-flowchart TD
-    subgraph Legacy["1. 레거시 스크래핑 연계 (폐기)"]
-        A[사용자 인증서 위탁] --> B[비공식 DOM 화면 스크래핑]
-        B --> C[잦은 오류 & 보안 위험 노출]
-    end
-    subgraph MyData["2. 마이데이터 표준 API 연계 (정착)"]
-        D[사용자 본인인증 & 전송요구] --> E[금융결제원 중계서버 / OAuth 2.0]
-        E --> F[원천 기관 REST API 안전 호출]
-        F --> G[암호화된 JSON 페이로드 수신]
-    end
-    subgraph Future["3. 전 산업 마이데이터 확장 (비전)"]
-        G --> H[금융 / 공공 / 의료 / 통신 데이터 결합]
-        H --> I[API Monetization & 전 산업 데이터 생태계 구축]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+스크린 스크래핑은 표준 API가 없던 시절 핀테크를 태동시킨 '과도기적 징검다리' 기술이었다.
+그러나 고객의 인증서와 비밀번호를 서비스 제공자가 위탁 보관하는 치명적 보안 결함과,
+UI 클래스명 하나만 바뀌어도 전체 파이프라인이 멈추는 취약성 때문에 법적으로 퇴출되었다.
+마이데이터 표준 API(OAuth 2.0 + REST JSON)로의 전환은 기술적 업그레이드를 넘어,
+기업이 독점하던 고객 데이터를 개인에게 돌려주는 '데이터 주권(Data Sovereignty)'의 완성이다.
+
+[나라면]
+실전 답안에서 스크래핑의 핵심 구성요소(Headless Browser, XPath, 인증 에뮬레이터)를 명확히 제시하겠다.
+그리고 2단락에서 인증정보 위탁 방식 vs OAuth 2.0 토큰 방식의 보안 대비를 도식화한 후,
+3단락에서 전 산업(금융·의료·통신) 마이데이터 확장과 API 거버넌스를 제언하겠다.
 ```
 
-1. **데이터 소유권의 패러다임 전환 (데이터 주권)**:
-   - 스크래핑 금지와 표준 API 의무화는 단순 기술 전환이 아니라, 데이터의 통제권이 기업의 독점에서 정보주체(개인)에게로 이전되는 **데이터 주권(Data Sovereignty)**의 기술적 실현임.
-2. **전 산업 마이데이터 표준 인프라 확장**:
-   - 금융권에서 검증된 OAuth 2.0 기반 표준 API 아키텍처를 공공, 통신, 의료(PHR), 유통 전 산업으로 확장 적용하고, API 호출 과금 모델(Monetization) 및 서비스 수준 협약(SLA)을 제도화하여 지속 가능한 API 경제 생태계를 구축해야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 연계 대상 시스템의 공인 REST API 지원 여부, 개인 신용정보 전송요구권 적용 대상 여부, 데이터 연계 시 자격증명 위탁 필요 여부를 기준으로 연계 방식을 자동 판정함.
+- **대응 방안**: 레거시 스크린 스크래핑을 전면 퇴출하고 금융결제원 중계망 연계 OAuth 2.0 기반 마이데이터 표준 API로 전환하며, 불가피한 웹 데이터 수집 시 robots.txt 규약 준수 및 클라이언트 측 분산 파싱을 적용함.
+- **검증 체계**: mTLS(상호 인증) 암호화 통신, 토큰 유효기간(Access Token 1시간 제한), API 시맨틱 버저닝을 의무화하여 트래픽 부하 및 변경 파손을 원천 검증함.
+- **기대 효과**: 인증정보 중앙 보관에 따른 유출 리스크를 100% 제거하고, 화면 변경에 따른 파서 마비 장애를 근절하며 전 산업 데이터 결합을 통한 초개인화 서비스 생태계를 구축함.
+
+```text
+[스크린 스크래핑 (위탁·파싱)] ──(신용정보법 개정)──> [OAuth 2.0 마이데이터 표준 API] ──> [전 산업 데이터 주권 확립]
+(보안 취약 & 잦은 오류)                            (토큰 기반 안전 JSON 연계)             (금융·의료·공공 결합)
+```
 
 ---
 

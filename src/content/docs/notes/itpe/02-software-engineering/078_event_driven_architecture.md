@@ -15,7 +15,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 분산 시스템 및 아키텍처 > 비동기 메시징 > EDA와 2대 토폴로지(브로커·중재자)
@@ -70,24 +70,83 @@ extra:
 
 #### 1. 2대 토폴로지(중재자 vs 브로커) 구조 비교도
 
-```mermaid
-flowchart TD
-    subgraph Mediator["1. 중재자 토폴로지 (오케스트레이션 방식)"]
-        A[클라이언트] --> B[시작 큐 Initiator Queue]
-        B --> C[이벤트 중재자 Mediator]
-        C --> D["액션 큐 1: 결제 서비스"]
-        C --> E["액션 큐 2: 재고 서비스"]
-        C --> F["액션 큐 3: 배송 서비스"]
-    end
-    subgraph Broker["2. 브로커 토폴로지 (코레오그래피 방식)"]
-        G[주문 서비스] -- 주문생성 이벤트 --> H[이벤트 브로커 Kafka]
-        H --> I[결제 서비스]
-        I -- 결제완료 이벤트 --> H
-        H --> J[재고 서비스]
-        J -- 재고차감 이벤트 --> H
-        H --> K[배송 서비스]
-    end
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 좌측: 중재자 토폴로지 (오케스트레이션) -->
+  <g transform="translate(15, 12)">
+    <rect x="0" y="0" width="240" height="195" rx="6" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="120" y="20" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">1. 중재자 (오케스트레이션)</text>
+    <text x="120" y="34" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">중앙 집중 워크플로우 통제 / 보상 트랜잭션</text>
+
+    <!-- 시작 큐 -->
+    <rect x="15" y="44" width="210" height="26" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="120" y="61" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">시작 큐 (Initiator Queue)</text>
+
+    <!-- 중앙 중재자 -->
+    <rect x="15" y="80" width="210" height="34" rx="4" fill="var(--sl-color-primary, #3b82f6)"/>
+    <text x="120" y="101" font-size="9.5" font-weight="700" text-anchor="middle" fill="#ffffff">이벤트 중재자 (Mediator)</text>
+
+    <!-- 액션 큐들 -->
+    <g transform="translate(15, 124)">
+      <rect x="0" y="0" width="66" height="32" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+      <text x="33" y="15" font-size="7.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">결제 큐</text>
+      <text x="33" y="26" font-size="7" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Payment</text>
+
+      <rect x="72" y="0" width="66" height="32" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+      <text x="105" y="15" font-size="7.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">재고 큐</text>
+      <text x="105" y="26" font-size="7" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Stock</text>
+
+      <rect x="144" y="0" width="66" height="32" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+      <text x="177" y="15" font-size="7.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">배송 큐</text>
+      <text x="177" y="26" font-size="7" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Delivery</text>
+    </g>
+
+    <!-- 화살표 -->
+    <path d="M 120 70 L 120 80" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+    <path d="M 48 114 L 48 124" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <path d="M 120 114 L 120 124" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <path d="M 192 114 L 192 124" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+
+    <text x="120" y="178" font-size="8" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">특징: 높은 트랜잭션 가시성 및 복구</text>
+  </g>
+
+  <!-- 우측: 브로커 토폴로지 (코레오그래피) -->
+  <g transform="translate(265, 12)">
+    <rect x="0" y="0" width="240" height="195" rx="6" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+    <text x="120" y="20" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">2. 브로커 (코레오그래피)</text>
+    <text x="120" y="34" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">탈중앙 자율 연쇄 반응 / 초고속 수평 확장</text>
+
+    <!-- 중앙 브로커 (Kafka) -->
+    <rect x="15" y="44" width="210" height="42" rx="5" fill="var(--sl-color-success, #22c55e)"/>
+    <text x="120" y="64" font-size="10" font-weight="700" text-anchor="middle" fill="#ffffff">이벤트 브로커 (Kafka Topic)</text>
+    <text x="120" y="78" font-size="7.5" text-anchor="middle" fill="#ffffff">대용량 분산 메시지 버스</text>
+
+    <!-- 프로세서 연쇄 반응 카드들 -->
+    <g transform="translate(15, 100)">
+      <!-- 주문생성 -->
+      <rect x="0" y="0" width="98" height="28" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+      <text x="49" y="18" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">주문 서비스 (발행)</text>
+
+      <!-- 결제처리 -->
+      <rect x="112" y="0" width="98" height="28" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+      <text x="161" y="18" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">결제 서비스 (구독/발행)</text>
+
+      <!-- 재고처리 -->
+      <rect x="0" y="36" width="98" height="28" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+      <text x="49" y="54" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">재고 서비스 (구독/발행)</text>
+
+      <!-- 알림/통계 -->
+      <rect x="112" y="36" width="98" height="28" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+      <text x="161" y="54" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">알림/통계 (구독)</text>
+    </g>
+
+    <text x="120" y="178" font-size="8" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">특징: 극도의 탈결합 및 초고성능</text>
+  </g>
+</svg>
+</div>
 
 #### 2. 토폴로지별 핵심 구성요소 분석
 
@@ -128,32 +187,33 @@ flowchart TD
 
 ### Ⅴ. 기술사적 제언: 하이브리드 토폴로지 및 트랜잭셔널 아웃박스 거버넌스
 
-```mermaid
-flowchart TD
-    subgraph CoreDomain["1. 코어 트랜잭션 영역 (중재자 오케스트레이션)"]
-        A[주문 요청] --> B[Saga 오케스트레이터]
-        B --> C[결제 서비스]
-        C --> D[재고 차감]
-        D --> E{트랜잭션 성공?}
-        E -- 실패 --> F[보상 트랜잭션 롤백 지휘]
-    end
-    subgraph OutboxPattern["2. 원자적 이벤트 발행 (Transactional Outbox)"]
-        E -- 성공 --> G[(RDBMS 주문 DB 커밋)]
-        G --> H[(Outbox 테이블 커밋)]
-        H --> I[Debezium CDC 엔진]
-        I --> J[Kafka 이벤트 브로커]
-    end
-    subgraph SubDomain["3. 부가 비즈니스 영역 (브로커 코레오그래피)"]
-        J --> K[마일리지 적립 서비스]
-        J --> L[카카오톡 알림톡 발송]
-        J --> M[데이터 웨어하우스 실시간 적재]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+EDA는 단순히 메시지 큐를 넣는 것이 아니라, 서비스 간 '시공간적 결합'을 완전히 끊어내는 패러다임이다.
+브로커(코레오그래피)는 춤추듯 자율 연쇄 반응하여 성능과 확장이 압도적이지만, 장애 시 되돌리기(보상 트랜잭션)가 지옥이다.
+반면 중재자(오케스트레이션)는 지휘자가 상태를 쥐고 있어 보상 트랜잭션이 쉽지만 중재자가 병목이 될 수 있다.
+따라서 실무는 '코어 주문/결제는 중재자(Saga)' + '부가 알림/통계는 브로커(Kafka)'의 하이브리드 조합이 정답이며,
+DB 저장과 이벤트 발행의 분절을 막는 '트랜잭셔널 아웃박스(Transactional Outbox)' 패턴이 필수 불가결하다.
+
+[나라면]
+실전 답안에서 중재자(오케스트레이션) vs 브로커(코레오그래피)의 구조도를 1단락 또는 2단락에 대조 도해하겠다.
+그리고 3단락에서 실무 하이브리드 토폴로지(코어=중재자, 부가=브로커)와
+DB-브로커 이원화 정합성을 해결하는 트랜잭셔널 아웃박스(Outbox + CDC Debezium)를 핵심 차별화로 제시하겠다.
 ```
 
-1. **실무 하이브리드 토폴로지(Hybrid Topology) 전략**:
-   - 실무 시스템은 100% 브로커 또는 100% 중재자로만 양자택일할 수 없음. **주문 접수, 결제 승인, 배송 지시와 같이 강력한 정합성과 보상 트랜잭션이 필수적인 코어 업무는 '중재자 토폴로지(Temporal, Camunda)'**로 통제하고, **배송 상태 변경에 따른 마일리지 적립, 알림톡 발송, 통계 적재 등 단순 후속 통보는 '브로커 토폴로지(Kafka)'**로 연결하는 하이브리드 설계가 기술사적 최적 해법임.
-2. **트랜잭셔널 아웃박스(Transactional Outbox) 패턴의 의무화**:
-   - 이벤트 아키텍처의 가장 치명적인 결함은 DB 저장과 메시지 브로커 발행 간의 분절임. 로컬 트랜잭션 내에서 비즈니스 데이터와 Outbox 테이블을 함께 커밋하고, **Debezium CDC**가 트랜잭션 로그(WAL)를 감지하여 Kafka로 비동기 송출하는 원자성 보장 파이프라인을 구축해야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 비즈니스 프로세스의 복잡도(다단계 보상 트랜잭션 필요 여부), 처리량 요구치(초당 수만 건 스트리밍 여부), 트랜잭션 가시성 요구 수준을 기준으로 중재자 vs 브로커 토폴로지를 선별 판정함.
+- **대응 방안**: 결제·주문 등 코어 도메인은 중재자(Saga Orchestrator)를 채택하여 즉각적인 보상 롤백을 통제하고, 부가 서비스(알림, 통계, 마일리지)는 Kafka 브로커 토폴로지로 자율 연쇄 분기하는 하이브리드 거버넌스를 구축함.
+- **검증 체계**: DB 상태 변경과 메시지 발행의 원자성을 보장하기 위해 트랜잭셔널 아웃박스(Transactional Outbox) 및 Debezium CDC 파이프라인을 의무화하고, 컨슈머 멱등성 검증 테이블을 구축함.
+- **기대 효과**: 서비스 간 동기 호출 블로킹 및 계단식 장애를 100% 근절하고, 분산 환경에서의 이벤트 유실률 0% 및 궁극적 일관성(Eventual Consistency)을 완벽히 보장함.
+
+```text
+[주문/결제 요청] ──> [중재자 Saga 오케스트레이션] ──(커밋)──> [Transactional Outbox DB]
+                          │ (보상 롤백 지휘)                          │ (Debezium CDC)
+                          ▼                                          ▼
+                   [장애 시 보상 트랜잭션]                    [Kafka 브로커 (알림/통계/적재)]
+```
 
 ---
 

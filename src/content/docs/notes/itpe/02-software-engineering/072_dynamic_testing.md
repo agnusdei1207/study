@@ -14,7 +14,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어 테스트 및 품질 > 소프트웨어 테스팅 > 동적 테스트(Dynamic Testing)
@@ -81,17 +81,65 @@ extra:
 
 ### Ⅲ. 동적 테스트의 3대 분류 체계 및 4대 테스트 오라클
 
-#### 1. 동적 테스트 3대 분류 체계
+#### 1. 동적 테스트 3대 분류 체계 및 핵심 기법
 
-```mermaid
-flowchart TD
-    A["동적 테스트 (소프트웨어 실행)"] --> B["1. 화이트박스 (구조 기반)<br/>내부 코드 경로 탐색"]
-    A --> C["2. 블랙박스 (명세 기반)<br/>요구사항 입출력 검증"]
-    A --> D["3. 경험 기반 (직관 기반)<br/>테스터 노하우/과거 장애"]
-    B --> E["구문, 분기, 조건, MC/DC"]
-    C --> F["동등분할, 경계값분석, 상태전이"]
-    D --> G["오류추정, 탐색적 테스팅"]
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 상단: 동적 테스트 본질 -->
+  <g transform="translate(15, 12)">
+    <rect x="0" y="0" width="490" height="42" rx="5" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
+    <text x="245" y="26" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">동적 테스트(Dynamic Testing): 코드 직접 실행(Execution) 기반 품질 검증</text>
+  </g>
+
+  <!-- 분류 1: 화이트박스 (구조 기반) -->
+  <g transform="translate(15, 64)">
+    <rect x="0" y="0" width="155" height="142" rx="6" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <rect x="0" y="0" width="155" height="28" rx="6" fill="var(--sl-color-primary, #3b82f6)"/>
+    <text x="77" y="19" font-size="10.5" font-weight="700" text-anchor="middle" fill="#ffffff">화이트박스 (구조)</text>
+
+    <text x="77" y="48" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">내부 로직·경로 검증</text>
+    <text x="77" y="66" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">구문 / 분기 / 조건</text>
+    <text x="77" y="80" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">MC/DC 커버리지</text>
+    <text x="77" y="94" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">기본 경로 테스팅</text>
+
+    <rect x="15" y="108" width="125" height="22" rx="4" fill="#ffffff" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1"/>
+    <text x="77" y="123" font-size="8" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">단위 테스트 (JUnit)</text>
+  </g>
+
+  <!-- 분류 2: 블랙박스 (명세 기반) -->
+  <g transform="translate(182, 64)">
+    <rect x="0" y="0" width="155" height="142" rx="6" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+    <rect x="0" y="0" width="155" height="28" rx="6" fill="var(--sl-color-success, #22c55e)"/>
+    <text x="77" y="19" font-size="10.5" font-weight="700" text-anchor="middle" fill="#ffffff">블랙박스 (명세)</text>
+
+    <text x="77" y="48" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">입·출력 요구사항 검증</text>
+    <text x="77" y="66" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">동등 분할 (EP)</text>
+    <text x="77" y="80" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">경계값 분석 (BVA)</text>
+    <text x="77" y="94" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">상태 전이 / 페어와이즈</text>
+
+    <rect x="15" y="108" width="125" height="22" rx="4" fill="#ffffff" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
+    <text x="77" y="123" font-size="8" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">통합/시스템 테스트</text>
+  </g>
+
+  <!-- 분류 3: 경험 기반 (직관 기반) -->
+  <g transform="translate(350, 64)">
+    <rect x="0" y="0" width="155" height="142" rx="6" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+    <rect x="0" y="0" width="155" height="28" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)"/>
+    <text x="77" y="19" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">경험 기반 (직관)</text>
+
+    <text x="77" y="48" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">테스터 노하우·휴리스틱</text>
+    <text x="77" y="66" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">오류 추정 (Error Guess)</text>
+    <text x="77" y="80" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">탐색적 테스팅 (ET)</text>
+    <text x="77" y="94" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">체크리스트 기반 테스팅</text>
+
+    <rect x="15" y="108" width="125" height="22" rx="4" fill="var(--sl-color-bg-inline-code, #f1f5f9)"/>
+    <text x="77" y="123" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">인수 테스트 / 버그바운티</text>
+  </g>
+</svg>
+</div>
 
 | 분류 | 검증 대상 | 핵심 기법 | 주요 적용 단계 |
 |---|---|---|---|
@@ -120,27 +168,31 @@ flowchart TD
 
 ### Ⅴ. 기술사적 제언: 정적-동적 연속 품질 파이프라인 및 Testcontainers 거버넌스
 
-```mermaid
-flowchart LR
-    subgraph Step1["1단계: 정적 사전 차단"]
-        A[소스코드 커밋] --> B[SonarQube SAST 정적 분석]
-        B --> C[규격 위반 1차 차단]
-    end
-    subgraph Step2["2단계: 격리 동적 검증"]
-        C --> D[Testcontainers 구동<br/>임시 DB/Kafka 생성]
-        D --> E[JUnit 단위/통합 동적 테스트]
-        E --> F[컨테이너 즉시 파기]
-    end
-    subgraph Step3["3단계: 비기능 동적 검증"]
-        F --> G[k6 부하 테스트 & ZAP DAST]
-        G --> H[운영 무중단 배포]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+정적 테스트와 동적 테스트는 양자택일이 아닌 상호보완적 2중 방어선이다.
+정적 테스트는 '결함 원인(Fault)'을 초기에 싼값으로 거르고,
+동적 테스트는 실제 메모리 누수·교착상태·응답지연 등 '런타임 고장(Failure)'을 실증한다.
+동적 테스트의 최대 걸림돌인 '환경 불일치'와 '테스트 데이터 오염'은
+최신 Testcontainers 기술로 임시 인프라를 동적 프로비저닝하고 폐기함으로써 완벽히 해결할 수 있다.
+
+[나라면]
+실전 답안에서 정적 vs 동적의 6대 비교축(실행여부, 대상, 결함종류, 비용, 오라클 등)을 선명한 표로 제시하겠다.
+그리고 2단락에서 화이트/블랙/경험의 3대 축과 4대 오라클을 다이어그램으로 완결한 후,
+3단락에서 Testcontainers를 결합한 CI/CD 연속 품질 게이트를 기술사적 실무 해법으로 강조하겠다.
 ```
 
-1. **정적-동적 테스트의 상호보완적 결합**:
-   - 정적 테스트는 "결함의 원인(Fault)"을 조기에 적은 비용으로 잡고, 동적 테스트는 "런타임 고장(Failure)"을 증명함. **정적 분석(SonarQube) $\rightarrow$ 동적 단위 테스트(JUnit) $\rightarrow$ 동적 성능/보안 테스트(k6/DAST)**로 이어지는 연속적 품질 파이프라인을 구축해야 함.
-2. **컨테이너 기반 동적 테스트 멱등성 보장**:
-   - 동적 테스트의 성패는 "언제 어디서 실행해도 동일한 결과를 내는 결정론적 환경"에 달려 있음. **Testcontainers**를 통해 DB, 캐시, 메시지 큐를 도커 컨테이너로 동적 생성·실행·폐기함으로써 공유 개발 환경의 데이터 오염을 원천 방지해야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 정적 분석(SonarQube 품질 게이트 통과), 동적 커버리지(단위 테스트 분기 커버리지 80% 이상), 테스트 오라클 판정 결과(참/샘플링 검증 합격률 100%)를 기준으로 배포 가능 여부를 자동 판정함.
+- **대응 방안**: 단위 레벨 화이트박스(JaCoCo)와 API 레벨 블랙박스(RestAssured)를 선행하고, Testcontainers를 통해 외부 DB/Kafka 환경을 독립 격리하여 동적 테스트의 멱등성을 확보함.
+- **검증 체계**: 메타모픽 관계(Metamorphic Relation)를 수립하여 복잡 계산 및 AI 영역의 테스트 오라클 부재 문제를 해결하고, k6 기반 런타임 성능 부하 검증을 필수화함.
+- **기대 효과**: 환경 불일치로 인한 Flaky Test를 95% 제거하고, 런타임 동시성 장애 및 OOM 결함을 사전에 100% 차단함.
+
+```text
+[정적 분석: SonarQube] ──> [격리 동적 검증: Testcontainers] ──> [비기능 동적 부하: k6] ──> [프로덕션 무중단 배포]
+(결함 원인 조기 차단)       (단위·통합 멱등성 보장)              (동시성 및 메모리 검증)
+```
 
 ---
 

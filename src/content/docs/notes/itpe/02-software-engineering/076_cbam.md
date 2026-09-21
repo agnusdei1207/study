@@ -14,7 +14,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어 아키텍처 및 구현 > 아키텍처 평가 > CBAM(Cost Benefit Analysis Method)
@@ -70,16 +70,71 @@ extra:
 
 #### 1. CBAM 의사결정 프레임워크 구조도
 
-```mermaid
-flowchart TD
-    A["ATAM 품질 속성 시나리오"] --> B["1. 시나리오 정제 & 유틸리티(U) 곡선 정의"]
-    B --> C["2. 아키텍처 전략(S_i) 매핑"]
-    C --> D["3. 편익(b_i) 산정: Σ (W_j × ΔU_ij)"]
-    C --> E["4. 투입 비용(C_i) 산정 (인건비/인프라)"]
-    D --> F["5. ROI 산출 (ROI_i = b_i / C_i)"]
-    E --> F
-    F --> G["6. 최종 선정: 예산 한도 내 ROI 최상위 전략 채택"]
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 1단계: 시나리오 & 유틸리티 (좌상) -->
+  <g transform="translate(15, 15)">
+    <rect x="0" y="0" width="150" height="85" rx="5" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+    <text x="75" y="20" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">1. 품질 시나리오</text>
+    <text x="75" y="36" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">ATAM 시나리오 정제</text>
+    <text x="75" y="52" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">유틸리티(U) 곡선 정의</text>
+    <text x="75" y="68" font-size="8" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">가중치(W) 산정</text>
+  </g>
+
+  <!-- 2단계: 아키텍처 전략 (좌하) -->
+  <g transform="translate(15, 115)">
+    <rect x="0" y="0" width="150" height="85" rx="5" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+    <text x="75" y="20" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">2. 아키텍처 전략 (S)</text>
+    <text x="75" y="36" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">설계 전술(Tactics) 도출</text>
+    <text x="75" y="52" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">대안 1: 캐시 레이어</text>
+    <text x="75" y="68" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">대안 2: 비동기 큐</text>
+  </g>
+
+  <!-- 결합 화살표 -->
+  <path d="M 165 57 L 195 90" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+  <path d="M 165 157 L 195 125" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+
+  <!-- 3단계: 편익 및 비용 산정 (중앙) -->
+  <g transform="translate(200, 45)">
+    <rect x="0" y="0" width="155" height="125" rx="6" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="77" y="22" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">3. 편익 &amp; 비용 산정</text>
+
+    <!-- 편익 박스 -->
+    <rect x="10" y="32" width="135" height="38" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1"/>
+    <text x="67" y="48" font-size="8.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">총 편익 (b_i)</text>
+    <text x="67" y="62" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">Σ (W_j × ΔU_ij)</text>
+
+    <!-- 비용 박스 -->
+    <rect x="10" y="76" width="135" height="38" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="67" y="92" font-size="8.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">투입 비용 (C_i)</text>
+    <text x="67" y="106" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">개발인건비 + 클라우드TCO</text>
+  </g>
+
+  <!-- ROI 계산 화살표 -->
+  <path d="M 355 107 L 385 107" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2"/>
+  <polygon points="385,103 395,107 385,111" fill="var(--sl-color-primary, #3b82f6)"/>
+
+  <!-- 4단계: ROI 산출 및 최종 선정 (우측) -->
+  <g transform="translate(395, 30)">
+    <rect x="0" y="0" width="112" height="155" rx="6" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+    <text x="56" y="24" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">4. ROI 선정</text>
+
+    <!-- 수식 -->
+    <rect x="8" y="35" width="96" height="42" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+    <text x="48" y="52" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">투자수익률</text>
+    <text x="48" y="68" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">ROI = b_i / C_i</text>
+
+    <!-- 우선순위 -->
+    <text x="56" y="96" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">전략별 ROI 정렬</text>
+    <text x="56" y="112" font-size="8" text-anchor="middle" fill="var(--sl-color-success, #15803d)">가용 예산 한도 내</text>
+    <text x="56" y="128" font-size="8" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">Top 전략 채택</text>
+    <text x="56" y="142" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">투자 로드맵 수립</text>
+  </g>
+</svg>
+</div>
 
 #### 2. CBAM 핵심 산출 수식 체계
 1. **아키텍처 전략 $S_i$의 총 편익 ($b_i$)**:
@@ -126,27 +181,31 @@ flowchart TD
 
 ### Ⅴ. 기술사적 제언: ATAM-CBAM-FinOps 3단계 가치 주도 아키텍처 거버넌스
 
-```mermaid
-flowchart LR
-    subgraph Step1["1단계: 기술 위험 식별 (ATAM)"]
-        A[품질 속성 시나리오 도출] --> B[민감점 / 절충점 분석]
-        B --> C[아키텍처 후보 전략 도출]
-    end
-    subgraph Step2["2단계: 경제적 우선순위화 (CBAM)"]
-        C --> D[유틸리티 증분 산정]
-        D --> E[전략별 ROI 계산]
-        E --> F[예산 내 Top 3 전략 확정]
-    end
-    subgraph Step3["3단계: 지속적 비용 거버넌스 (FinOps)"]
-        F --> G[클라우드 아키텍처 배포]
-        G --> H[실시간 리소스 비용 추적 & 유틸리티 최적화]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+소프트웨어 아키텍처는 기술적 최적화만으로 결정되지 않는다.
+"100ms를 10ms로 줄이는 데 10억이 든다면 투자할 가치가 있는가?"에 답해야 한다.
+ATAM이 기술적 트레이드오프(민감점/절충점)를 도출하는 도구라면,
+CBAM은 여기에 '비용(Cost)'과 '유틸리티 만족도(Benefit)'를 대입해 비즈니스 ROI를 뽑아내는 재무 도구다.
+클라우드 시대에는 이 CBAM의 비용 인자가 FinOps(클라우드 재무 관리)와 결합되어 지속적 가치 주도 거버넌스로 완성된다.
+
+[나라면]
+실전 답안에서 총 편익 공식 $b_i = \sum (W_j \times \Delta U_{ij})$과 $ROI = b_i / C_i$ 수식을 박스로 선명히 제시하겠다.
+그리고 SAAM(수정용이성) vs ATAM(기술 트레이드오프) vs CBAM(경제적 ROI)의 3자 비교표를 완성하고,
+3단락에서 ATAM(위험식별) -> CBAM(ROI우선순위) -> FinOps(실시간 TCO최적화)의 3단계 파이프라인을 제언하겠다.
 ```
 
-1. **ATAM과 CBAM의 상호보완적 파이프라인 정립**:
-   - 아키텍처 평가는 기술과 경제성이 분리될 수 없음. **1단계에서 ATAM을 통해 아키텍처의 구조적 위험(Risk)을 식별하고 절충안을 도출한 후, 2단계에서 CBAM을 가동하여 예산 제약 내 ROI 1위~3위 전략을 최종 채택**하는 파이프라인식 거버넌스를 구축해야 함.
-2. **클라우드 FinOps와의 실무적 접목**:
-   - 현대 클라우드 네이티브 환경에서 아키텍처 변경(서버리스 전환, 캐시 레이어 도입 등)은 즉각적인 월간 클라우드 비용 변동으로 이어짐. 따라서 CBAM의 비용($C_i$) 요소에 **FinOps의 총소유비용(TCO) 및 지속적 단위 경제학(Unit Economics) 지표**를 결합하여 살아있는 경제성 평가 체계를 완성해야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 아키텍처 대안별 총 유틸리티 증분 대비 투입 비용($\text{ROI} = b_i / C_i$), 품질 속성 한계 효용 체감 시점, 프로젝트 가용 재무 예산 한도를 기준으로 채택 여부를 판정함.
+- **대응 방안**: 1단계 ATAM을 통해 구조적 기술 위험 및 상충점을 도출하고, 2단계 CBAM을 통해 전략별 ROI 순위를 산출하여 예산 범위 내 최상위 전략을 채택하며, 클라우드 환경 배포 후 FinOps와 연계하여 TCO를 지속 최적화함.
+- **검증 체계**: 유틸리티 곡선 왜곡 방지를 위한 AHP(계층화 분석법) 가중치 합의 및 핵심 아키텍처 전술(캐싱, 비동기화)에 대한 사전 PoC 실측 성능 데이터를 검증 기준으로 활용함.
+- **기대 효과**: 오버엔지니어링으로 인한 불필요한 인프라 예산 낭비를 40% 이상 절감하고, 비즈니스 효용이 가장 높은 핵심 아키텍처에 투자를 집중하여 프로젝트 성공률을 극대화함.
+
+```text
+[1단계: 기술 위험 식별 (ATAM)] ──> [2단계: 경제적 우선순위화 (CBAM)] ──> [3단계: 실시간 TCO 최적화 (FinOps)]
+(민감점·절충점 분석)                 (유틸리티 증분 및 ROI 산출)             (클라우드 단위 비용 거버넌스)
+```
 
 ---
 

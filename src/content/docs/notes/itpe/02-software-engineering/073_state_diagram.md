@@ -14,7 +14,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어 분석 및 설계 > UML 모델링 > 상태 다이어그램(State Diagram)
@@ -70,16 +70,66 @@ extra:
 
 #### 1. 주문(Order) 도메인 상태 다이어그램 구조도
 
-```mermaid
-stateDiagram-v2
-    [*] --> 주문대기: 주문생성
-    주문대기 --> 결제완료: 결제승인 [재고있음] / 패키징
-    주문대기 --> 주문취소: 결제타임아웃 / 재고반환
-    결제완료 --> 배송출발: 물품출고
-    배송출발 --> 배송완료: 배송성공
-    배송완료 --> [*]
-    주문취소 --> [*]
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 초기 상태 (검은 원) -->
+  <circle cx="25" cy="80" r="8" fill="var(--sl-color-text, #0f172a)"/>
+  <path d="M 33 80 L 55 80" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+  <text x="44" y="72" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">주문생성</text>
+
+  <!-- 상태 1: 주문대기 -->
+  <rect x="55" y="58" width="85" height="44" rx="8" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #64748b)" stroke-width="1.5"/>
+  <text x="97" y="84" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">주문 대기</text>
+
+  <!-- 전이 1 (정상 경로): 주문대기 -> 결제완료 -->
+  <path d="M 140 80 L 175 80" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+  <text x="157" y="70" font-size="7.5" text-anchor="middle" fill="var(--sl-color-success, #15803d)">결제승인 [재고있음]</text>
+
+  <!-- 상태 2: 결제완료 -->
+  <rect x="175" y="58" width="85" height="44" rx="8" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+  <text x="217" y="78" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">결제 완료</text>
+  <text x="217" y="92" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">entry / 패키징</text>
+
+  <!-- 전이 2: 결제완료 -> 배송출발 -->
+  <path d="M 260 80 L 295 80" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+  <text x="277" y="72" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">물품출고</text>
+
+  <!-- 상태 3: 배송출발 -->
+  <rect x="295" y="58" width="85" height="44" rx="8" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #64748b)" stroke-width="1.5"/>
+  <text x="337" y="84" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">배송 중</text>
+
+  <!-- 전이 3: 배송출발 -> 배송완료 -->
+  <path d="M 380 80 L 415 80" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+  <text x="397" y="72" font-size="7.5" text-anchor="middle" fill="var(--sl-color-success, #15803d)">배송완료</text>
+
+  <!-- 상태 4: 배송완료 -->
+  <rect x="415" y="58" width="70" height="44" rx="8" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
+  <text x="450" y="84" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">수령 완료</text>
+
+  <!-- 최종 상태 (배송완료 -> 종료) -->
+  <path d="M 485 80 L 500 80" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+  <circle cx="508" cy="80" r="8" fill="none" stroke="var(--sl-color-text, #0f172a)" stroke-width="1.5"/>
+  <circle cx="508" cy="80" r="5" fill="var(--sl-color-text, #0f172a)"/>
+
+  <!-- 예외 전이 경로: 주문대기 -> 주문취소 (하단) -->
+  <path d="M 97 102 L 97 150 L 175 150" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
+  <text x="136" y="142" font-size="7.5" fill="var(--sl-color-danger, #ef4444)">결제타임아웃 / 재고반환</text>
+
+  <!-- 상태 5: 주문취소 -->
+  <rect x="175" y="128" width="85" height="44" rx="8" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
+  <text x="217" y="154" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">주문 취소</text>
+
+  <!-- 주문취소 -> 종료 상태 -->
+  <path d="M 260 150 L 508 150 L 508 92" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+
+  <!-- 하단 설명 배너 -->
+  <rect x="15" y="185" width="490" height="24" rx="4" fill="var(--sl-color-bg-inline-code, #f8fafc)"/>
+  <text x="260" y="201" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">핵심 5대 요소: 상태(State) · 전이(Transition) · 이벤트(Event) · 가드[Guard] · 액션(/Action)</text>
+</svg>
+</div>
 
 #### 2. 5대 핵심 구성요소
 
@@ -124,25 +174,30 @@ stateDiagram-v2
 
 ### Ⅴ. 기술사적 제언: 실행 가능한 상태 머신(Executable State Machine) 및 분산 사가 거버넌스
 
-```mermaid
-flowchart TD
-    subgraph Monolith["1. 단일 서비스 레벨 구현"]
-        A[상태 다이어그램 설계] --> B[Spring State Machine / GoF State Pattern]
-        B --> C[불법 전이 차단 & 단위 테스트 자동 생성]
-    end
-    subgraph Distributed["2. 마이크로서비스(MSA) 분산 확장"]
-        C --> D[Saga 오케스트레이터 상태 머신 전환]
-        D --> E[서비스 간 전이 이벤트 발행 / 카프카]
-        E --> F{트랜잭션 실패?}
-        F -- 예 --> G[보상 트랜잭션 전이 실행]
-        F -- 아니오 --> H[최종 완료 상태 도달]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+실무에서 상태 다이어그램 없이 주문/결제 도메인을 짜면 수십 개의 boolean 플래그와 if-else 조건문 지옥에 빠진다.
+상태 다이어그램은 단순한 문서가 아니라 '허용되지 않은 불법 전이를 컴파일/런타임에 원천 차단'하는 강력한 방화벽이다.
+상태 수가 늘어날 때 생기는 '상태 폭발'은 복합 상태(계층화)와 직교 영역(동시성), 이력 상태(H)로 압축해야 하며,
+현대 MSA 환경에서는 카프카 이벤트 기반의 사가(Saga) 오케스트레이터와 보상 트랜잭션 전이 경로로 확장된다.
+
+[나라면]
+실전 답안에서 5대 핵심 요소(상태-전이-이벤트-가드-액션)의 표준 표기 형식을 정확히 도해하겠다.
+그리고 2단락에서 유스케이스(외부) vs 활동(프로세스) vs 상태(객체 생애주기)의 관점 차이를 비교하고,
+3단락에서 Spring State Machine 및 MSA 사가(Saga) 보상 트랜잭션 전이 모델을 제시하겠다.
 ```
 
-1. **설계 문서에서 실행 가능한 코드(Executable Code)로 진화**:
-   - 설계서에만 머무르는 정적 그림은 시스템 변경 시 사문화됨. **Spring State Machine**이나 프론트엔드의 **XState**와 같은 상태 머신 프레임워크를 도입하여, 다이어그램의 상태와 전이 이벤트가 소스코드의 런타임 엔진으로 직결되도록 아키텍처를 설계해야 함.
-2. **분산 트랜잭션 환경에서의 사가(Saga) 상태 머신 확장**:
-   - 마이크로서비스(MSA) 환경에서는 단일 객체의 상태가 여러 독립 서비스에 분산됨. 따라서 **사가 오케스트레이터(Saga Orchestrator)**가 분산 상태 머신 역할을 수행하도록 설계하고, 각 전이 단계마다 장애 발생 시 이전 상태로 되돌리는 **보상 트랜잭션(Compensating Transaction)** 전이 경로를 반드시 다이어그램에 명시해야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 도메인 객체의 생애주기 상태 전이 시 가드 조건(재고, 결제 유효성) 충족 여부 및 비정상 이벤트 유입 시 불법 전이 예외 발생 여부를 기준으로 전이 타당성을 판정함.
+- **대응 방안**: 소스코드 레벨에서 if-else 플래그를 전면 제거하고 GoF State 패턴 및 Spring State Machine 프레임워크를 적용하여 상태별 행위 캡슐화와 전이 검증을 런타임 엔진에 위임함.
+- **검증 체계**: 상태 폭발 방지를 위한 직교 영역 및 복합 상태 계층을 검증하고, MSA 분산 사가 오케스트레이터와 결합하여 장애 시 보상 트랜잭션(Compensating Transaction) 전이 경로를 자동 검증함.
+- **기대 효과**: 비정상적 상태 전이로 인한 재고/결제 정산 사고를 0건으로 차단하고, 분산 트랜잭션 환경에서 궁극적 일관성(Eventual Consistency)을 100% 달성함.
+
+```text
+[상태 다이어그램 설계] ──> [Spring State Machine 엔진] ──> [MSA Saga 오케스트레이터] ──> [보상 트랜잭션 자동복구]
+(FSM 전이 및 가드조건)       (불법 전이 런타임 차단)          (분산 이벤트 기반 전이)          (궁극적 일관성 확보)
+```
 
 ---
 

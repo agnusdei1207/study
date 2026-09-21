@@ -14,7 +14,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 분산 시스템 및 아키텍처 > 마이크로서비스(MSA) > API Gateway
@@ -69,18 +69,68 @@ extra:
 
 ### Ⅱ. API Gateway의 핵심 아키텍처 및 5대 주요 기능
 
-#### 1. API Gateway 필터 파이프라인 구조도
+#### 1. API Gateway 3단계 필터 파이프라인 구조도
 
-```mermaid
-flowchart LR
-    A["외부 클라이언트<br/>(North-South 요청)"] --> B["사전 필터 (Pre-Filter)<br/>JWT 인증 / Rate Limit"]
-    B --> C["라우팅 필터 (Routing)<br/>서비스 디스커버리 / 부하분산"]
-    C --> D["사후 필터 (Post-Filter)<br/>응답 헤더 가공 / 분산 추적"]
-    C --> E["주문 서비스"]
-    C --> F["회원 서비스"]
-    C --> G["결제 서비스"]
-    D --> A
-```
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
+  
+  <!-- 좌측: 외부 클라이언트 -->
+  <g transform="translate(15, 65)">
+    <rect x="0" y="0" width="85" height="90" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+    <text x="42" y="24" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">클라이언트</text>
+    <text x="42" y="44" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">모바일 앱</text>
+    <text x="42" y="60" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">웹 브라우저</text>
+    <text x="42" y="76" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">단일 도메인</text>
+  </g>
+
+  <!-- 요청 화살표 -->
+  <path d="M 100 100 L 120 100" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2"/>
+  <text x="110" y="92" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">요청</text>
+
+  <!-- 중앙: API Gateway 컨테이너 -->
+  <g transform="translate(122, 20)">
+    <rect x="0" y="0" width="245" height="180" rx="8" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="122" y="22" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">API Gateway (단일 진입점)</text>
+
+    <!-- 1. Pre-Filter -->
+    <rect x="15" y="34" width="215" height="38" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="25" y="50" font-size="9" font-weight="700" fill="var(--sl-color-text, #0f172a)">1. 사전 필터 (Pre-Filter)</text>
+    <text x="25" y="64" font-size="7.5" fill="var(--sl-color-text-accent, #64748b)">JWT 토큰 검증, SSL 종료, Rate Limiting (TPS 제한)</text>
+
+    <!-- 2. Routing Filter -->
+    <rect x="15" y="80" width="215" height="38" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="25" y="96" font-size="9" font-weight="700" fill="var(--sl-color-primary, #1d4ed8)">2. 라우팅 필터 (Routing Filter)</text>
+    <text x="25" y="110" font-size="7.5" fill="var(--sl-color-text, #0f172a)">서비스 디스커버리 연동, 로드밸런싱, 서킷 브레이커</text>
+
+    <!-- 3. Post-Filter -->
+    <rect x="15" y="126" width="215" height="38" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
+    <text x="25" y="142" font-size="9" font-weight="700" fill="var(--sl-color-text, #0f172a)">3. 사후 필터 (Post-Filter)</text>
+    <text x="25" y="156" font-size="7.5" fill="var(--sl-color-text-accent, #64748b)">TraceId 로깅, 응답 헤더 가공, 에러 핸들링</text>
+  </g>
+
+  <!-- 라우팅 화살표들 -->
+  <path d="M 367 60 L 395 50" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+  <path d="M 367 110 L 395 110" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+  <path d="M 367 160 L 395 170" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
+
+  <!-- 우측: 백엔드 마이크로서비스들 -->
+  <g transform="translate(397, 25)">
+    <rect x="0" y="0" width="108" height="42" rx="4" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
+    <text x="54" y="20" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">주문 서비스</text>
+    <text x="54" y="34" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">/api/v1/orders</text>
+
+    <rect x="0" y="65" width="108" height="42" rx="4" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
+    <text x="54" y="85" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">결제 서비스</text>
+    <text x="54" y="99" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">/api/v1/payments</text>
+
+    <rect x="0" y="130" width="108" height="42" rx="4" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
+    <text x="54" y="150" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">회원 서비스</text>
+    <text x="54" y="164" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">/api/v1/members</text>
+  </g>
+</svg>
+</div>
 
 #### 2. API Gateway의 5대 주요 기능
 
@@ -119,25 +169,35 @@ flowchart LR
 
 ### Ⅴ. 기술사적 제언: North-South와 East-West의 2계층 트래픽 거버넌스
 
-```mermaid
-flowchart TD
-    subgraph NorthSouth["1. North-South 트래픽 (외부 경계)"]
-        A[외부 클라이언트 요청] --> B[L4 로드밸런서]
-        B --> C[API Gateway 클러스터]
-        C --> D[BFF 모바일/웹 데이터 취합]
-    end
-    subgraph EastWest["2. East-West 트래픽 (내부 서비스 메시)"]
-        D --> E[인그레스 게이트웨이]
-        E --> F[주문 파드 : Envoy 사이드카]
-        F -- 내부 mTLS 통신 --> G[결제 파드 : Envoy 사이드카]
-        G -- 내부 mTLS 통신 --> H[배송 파드 : Envoy 사이드카]
-    end
+### 학습자 통찰 메모 — 답안 밖
+```text
+[핵심 통찰]
+API Gateway는 마이크로서비스의 '정문(Front Door)'이다.
+게이트웨이가 없으면 클라이언트는 수십 개 서비스의 IP와 인증 방식을 모두 알아야 하며 강하게 결합된다.
+그러나 게이트웨이에 DB를 연결하거나 비즈니스 판단 로직을 넣는 순간,
+과거 SOA 시절의 거대하고 실패했던 '무거운 ESB'로 퇴보하게 된다.
+게이트웨이는 '멍청한 파이프(Dumb Pipe)'로서 무상태 라우팅과 보안에 집중하고,
+화면별 데이터 조합은 BFF, 내부 서비스 간 통신은 Service Mesh로 분격하는 2계층 거버넌스가 핵심이다.
+
+[나라면]
+실전 답안에서 Pre-filter, Routing, Post-filter의 3단계 필터 파이프라인을 1단락 또는 2단락에 도해하겠다.
+그리고 API Gateway(North-South) vs BFF(화면취합) vs Service Mesh(East-West)의 3자 매트릭스를 제시한 후,
+3단락에서 2계층 트래픽(North-South + East-West) 거버넌스 아키텍처를 결론으로 제언하겠다.
 ```
 
-1. **스마트 엔드포인트 & 멍청한 파이프(Smart Endpoints & Dumb Pipes)**:
-   - 마이크로서비스의 성공을 위해서는 게이트웨이 내부에 데이터베이스를 연결하거나 비즈니스 판단 로직을 넣는 안티패턴을 철저히 배제해야 함. 게이트웨이는 오직 무상태(Stateless) 라우팅과 보안에 집중하고, 복잡한 데이터 조합은 BFF에 위임해야 함.
-2. **2계층 트래픽 아키텍처의 정립**:
-   - 최외곽의 보안, 인증, 전사 유량 제어는 **API Gateway(Spring Cloud Gateway, Kong)**가 담당하고, 내부 서비스 간의 세밀한 mTLS 암호화, 동적 라우팅, 카나리 배포, 결함 주입은 **서비스 메시(Istio/Envoy)**가 전담하도록 트래픽 경계를 명확히 이원화해야 함.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 트래픽의 방향(외부 인그레스 North-South vs 내부 서비스 간 East-West), 화면별 데이터 집계 요구 여부, 서비스별 호출량 급증에 따른 임계치(TPS)를 기준으로 라우팅 및 거버넌스 경로를 자동 판정함.
+- **대응 방안**: 시스템 최외곽에는 Spring Cloud Gateway/Kong 기반 무상태(Stateless) API Gateway를 배치하여 전사 인증(JWT) 및 Rate Limiting을 수행하고, 화면 종속 데이터 가공은 BFF(Backend for Frontend)에 위임하며, 내부 서비스 간 통신은 Istio/Envoy 서비스 메시로 격리함.
+- **검증 체계**: W3C TraceContext 표준 헤더(TraceId, SpanId)를 인그레스 단계에서 필수 주입하여 전사 분산 추적성을 검증하고, Resilience4j 기반 서킷 브레이커로 하위 서비스 지연 전파를 차단함.
+- **기대 효과**: 게이트웨이 SPOF 위험을 제거하여 가용성 99.999%를 달성하고, 무거운 ESB 안티패턴으로의 퇴보를 방지하며 서비스 간 통신의 상호 mTLS 제로 트러스트 보안을 완성함.
+
+```text
+[외부 클라이언트] ──(North-South)──> [API Gateway (인증/유량)] ──> [BFF (화면취합)]
+                                                                      │
+                                                                 (East-West)
+                                                                      ▼
+                                                       [Service Mesh (mTLS/사이드카)]
+```
 
 ---
 
