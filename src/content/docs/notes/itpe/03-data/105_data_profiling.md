@@ -3,17 +3,17 @@ sidebar:
   order: 105
   label: "105. 데이터 프로파일링"
   badge:
-    text: "C"
+    text: "A"
     variant: note
 title: "데이터 프로파일링(Data Profiling) 분석 기법 및 데이터 품질 진단 체계"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T19:05:00+09:00"
 tags:
   - "notes-data"
 weight: 105
 extra:
-  model: "GPT-5"
-  keyword_grade: "C"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "105"
 ---
 
@@ -23,23 +23,62 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[데이터 프로파일링 3대 분석 차원 및 세부 진단 지표]
+<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" role="img" aria-label="데이터 프로파일링 3대 분석 차원 및 핵심 지표">
+  <!-- Background Card -->
+  <rect width="520" height="220" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
-  ┌─────────────────────────────────────────────────────────────┐
-  │                 데이터 프로파일링 (Data Profiling)          │
-  └─────────────────────────────────────────────────────────────┘
-          │                       │                      │
-  ┌───────▼──────────┐    ┌───────▼──────────┐   ┌───────▼──────────┐
-  │ 1. 열 (Column)   │    │ 2. 구조 (Structure)│ │ 3. 관계 (Cross)  │
-  ├──────────────────┤    ├──────────────────┤   ├──────────────────┤
-  │ - 데이터 타입/길이│   │ - PK 후보 유일성 │   │ - FK 참조 무결성 │
-  │ - NULL / 결측치율 │   │ - 함수적 종속성  │   │ - 고아 레코드 탐색│
-  │ - 고유값 수 (Card)│   │ - 다중열 상관관계│   │   (Orphan Record)│
-  │ - 정규식 패턴    │    │ - 도메인 유효범위│   │ - 시스템 간 중복 │
-  │ - 이상치(IQR, Z) │    │   규칙 준수      │   │   엔티티 대사    │
-  └──────────────────┘    └──────────────────┘   └──────────────────┘
-```
+  <!-- Top Title Box -->
+  <rect x="130" y="15" width="260" height="30" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+  <text x="260" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-accent, #2563eb)">데이터 프로파일링 (Data Profiling)</text>
+
+  <!-- Connectors -->
+  <path d="M 260 45 L 260 55" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+  <path d="M 98 55 L 422 55" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+  <path d="M 98 55 L 98 68" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+  <path d="M 260 55 L 260 68" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+  <path d="M 422 55 L 422 68" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+
+  <!-- Col 1: 열 분석 -->
+  <g transform="translate(18, 68)">
+    <rect width="160" height="135" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
+    <rect width="160" height="26" rx="6" fill="#f8fafc"/>
+    <text x="80" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">1. 열 (Column) 분석</text>
+
+    <text x="12" y="44" font-size="9" fill="var(--sl-color-text, #1e293b)">• 데이터 타입 및 길이 실측</text>
+    <text x="12" y="64" font-size="9" fill="var(--sl-color-text, #1e293b)">• NULL / 결측치 비율</text>
+    <text x="12" y="84" font-size="9" fill="var(--sl-color-text, #1e293b)">• 카디널리티 (Distinct 수)</text>
+    <text x="12" y="104" font-size="9" fill="var(--sl-color-text, #1e293b)">• 정규식 패턴 준수율</text>
+    <text x="12" y="124" font-size="9" fill="var(--sl-color-text, #1e293b)">• 이상치 (IQR / Min·Max)</text>
+  </g>
+
+  <!-- Col 2: 구조 분석 -->
+  <g transform="translate(180, 68)">
+    <rect width="160" height="135" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+    <rect width="160" height="26" rx="6" fill="var(--sl-color-accent, #eff6ff)"/>
+    <text x="80" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">2. 구조 (Structure) 분석</text>
+
+    <text x="12" y="44" font-size="9" fill="var(--sl-color-accent, #1d4ed8)">• PK 후보 키 유일성</text>
+    <text x="12" y="64" font-size="9" fill="var(--sl-color-accent, #1d4ed8)">• 함수적 종속성 (A $\rightarrow$ B)</text>
+    <text x="12" y="84" font-size="9" fill="var(--sl-color-accent, #1d4ed8)">• 다중 컬럼 간 상관관계</text>
+    <text x="12" y="104" font-size="9" fill="var(--sl-color-accent, #1d4ed8)">• 도메인 유효범위 검증</text>
+    <text x="12" y="124" font-size="9" fill="var(--sl-color-accent, #1d4ed8)">• 비즈니스 무결성 규칙</text>
+  </g>
+
+  <!-- Col 3: 관계 분석 -->
+  <g transform="translate(342, 68)">
+    <rect width="160" height="135" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
+    <rect width="160" height="26" rx="6" fill="#f8fafc"/>
+    <text x="80" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">3. 관계 (Relation) 분석</text>
+
+    <text x="12" y="44" font-size="9" fill="var(--sl-color-text, #1e293b)">• FK 참조 무결성 대사</text>
+    <text x="12" y="64" font-size="9" fill="var(--sl-color-text, #1e293b)">• 고아 레코드 (Orphan) 탐색</text>
+    <text x="12" y="84" font-size="9" fill="var(--sl-color-text, #1e293b)">• 부모-자식 카디널리티</text>
+    <text x="12" y="104" font-size="9" fill="var(--sl-color-text, #1e293b)">• 시스템 간 엔티티 중복</text>
+    <text x="12" y="124" font-size="9" fill="var(--sl-color-text, #1e293b)">• 마스터-상세 정합성</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **데이터베이스 내에 실제로 저장된 물리 데이터를 직접 읽고 통계적 기법을 적용하여 데이터의 실제 형식, 값의 분포, 결측률, 이상치, 그리고 테이블 간 참조 무결성 위반 여부를 정량적으로 측정·진단하는 데이터 품질관리(DQM)의 선행 분석 기법**
 - 암기: `열-구-관` (3대 분석 차원: 열 분석, 구조 분석, 관계 분석) / `탐-수-규-보고` (프로파일링 절차: 탐색, 수집, 규칙 대조, 리포트)
@@ -64,11 +103,6 @@ extra:
 
 #### 한줄 요약: 단일 컬럼 분석에서 시작하여 테이블 내부 구조, 테이블 간 참조 관계로 진단 범위를 확장
 
-```text
- [1차원: 열 프로파일링] ──► [2차원: 구조 프로파일링] ──► [3차원: 관계 프로파일링]
-  (단일 속성 값의 건전성)    (테이블 내 무결성/종속성)    (테이블 간 외래키/정합성)
-```
-
 | 분석 차원 | 주요 분석 항목 | 핵심 진단 지표 및 점검 내용 |
 |:---|:---|:---|
 | **1. 열 프로파일링 (Column Profiling)** | 데이터 타입, 포맷, 값 분포 | - **결측치 비율**: NULL, 스페이스, `9999-12-31` 등 기본값 비율<br>- **카디널리티**: Distinct 값의 개수, 선택도(Selectivity)<br>- **패턴 분석**: 정규표현식(Regex)을 통한 전화번호, 이메일, 주민번호 포맷 준수율<br>- **값 범위**: Min, Max, 사분위수(IQR)를 통한 극단적 이상치 탐지 |
@@ -79,27 +113,12 @@ extra:
 
 #### 한줄 요약: 대상 선정 $\rightarrow$ 규칙 프로파일링 $\rightarrow$ 이상치 식별 $\rightarrow$ 정제 보고의 선순환 프로세스
 
-```text
- [Step 1. 프로파일링 대상 선정]
-   - 핵심 마스터 테이블(고객, 계좌, 상품) 및 인터페이스 대상 우선 선정
-              │
-              ▼
- [Step 2. 메트릭 수집 및 쿼리 실행]
-   - 자동화 프로파일링 도구(Great Expectations, SQL 스크립트) 실행
-              │
-              ▼
- [Step 3. 비즈니스 규칙 대사 및 이상치 분석]
-   - 테이블 정의서 및 업무 표준 사전과 실제 프로파일링 결과 비교 (Gap 분석)
-              │
-              ▼
- [Step 4. 품질 진단 보고서 발행 및 정제 규칙 수립]
-   - 오류율 산출, 데이터 클렌징(Cleansing) 룰 정의 및 ETL 파이프라인 반영
-```
-
-1. **대상 선정 (Scoping)**: 시스템 전수 테이블 중 결함 발생 시 파급력이 큰 마스터 및 트랜잭션 핵심 테이블 식별
-2. **지표 수집 (Execution)**: 데이터 타입, NULL율, 카디널리티, 패턴 분포를 집계 쿼리로 수집
-3. **갭 분석 (Gap Analysis)**: 메타데이터 정의서와 실제 데이터 간의 불일치(예: 문자형 컬럼에 숫자가 혼재, FK 미존재) 도출
-4. **결과 보고 및 환류 (Reporting)**: 프로파일링 결과서를 바탕으로 현업 담당자와 데이터 정제 기준(삭제, 치환, 예외 허용) 확정
+| 단계 | 주요 활동 내용 | 산출물 및 기법 |
+|:---|:---|:---|
+| **1단계: 대상 선정 (Scoping)** | 전사 테이블 중 결함 파급력이 큰 마스터 및 핵심 트랜잭션 식별 | 프로파일링 대상 목록 정의서 |
+| **2단계: 지표 수집 (Execution)** | 데이터 타입, NULL율, 카디널리티, 패턴 분포를 집계 쿼리로 실측 | Great Expectations, SQL 수집 스크립트 |
+| **3단계: 갭 분석 (Gap Analysis)** | 메타데이터 정의서와 실제 데이터 간의 불일치(타입 불일치, FK 누락) 도출 | 불일치 갭 분석서 (Gap Matrix) |
+| **4단계: 결과 보고 및 환류 (Reporting)** | 프로파일링 결과서를 바탕으로 데이터 정제(Cleansing) 룰 확정 및 반영 | 품질 진단 리포트, 데이터 클렌징 룰북 |
 
 ## Ⅳ. 데이터 프로파일링 vs 데이터 감사(Audit) vs 데이터 정제(Cleansing)
 
@@ -116,17 +135,6 @@ extra:
 
 #### 한줄 요약: 전통적 SQL 수작업 스캔에서 자동화된 Assertions 프레임워크로의 기술 진화
 
-```text
- [현대적 Data Observability 파이프라인]
-  [원천 DB / Data Lake]
-           │
-           ▼
-  [Great Expectations / Soda] ──► "expect_column_values_to_not_be_null"
-           │                      "expect_column_values_to_match_regex"
-           ▼
-  [Data Docs 자동 생성 대시보드] ──► 이상 발견 시 Slack 알림 및 Airflow 파이프라인 중단
-```
-
 - **Great Expectations (GX)**: 데이터 파이프라인에서 데이터가 갖추어야 할 기댓값(Expectation)을 코드로 정의하고 프로파일링을 자동화하는 업계 표준 오픈소스
 - **ydata-profiling (구 Pandas Profiling)**: 단 한 줄의 코드로 Pandas DataFrame의 수치형/범주형 상관관계, 왜도, 결측치를 HTML 리포트로 즉시 렌더링
 - **Soda Core**: YAML 기반의 선언적 문법으로 SQL 쿼리 없이 복잡한 테이블 간 프로파일링 지표 수집 지원
@@ -141,41 +149,61 @@ extra:
 | **개인정보 침해 위험** | 프로파일링 리포트에 주민번호, 휴대폰번호 실제 데이터가 샘플로 노출 | 프로파일링 결과서 생성 시 민감 식별자 마스킹(`800101-1******`) 필터 강제 |
 | **비즈니스 룰 오판 (False Positive)** | 레거시 특수 목적 코드(예: 테스트 계정 `9999`)를 단순 이상치로 오판하여 삭제 | 도메인 전문가 인터뷰 선행, 업무 규칙 예외 목록(White List) 사전 등록 |
 
-## Ⅶ. 기술사적 제언: CI/CD 파이프라인 내 '지속적 프로파일링(Continuous Profiling)'
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 1회성 프로젝트 진단을 탈피하고 데이터 인제스천 단계에 인라인 품질 게이트(Quality Gate) 구축
+### 학습자 통찰 메모 — 답안 밖
 
-```text
- [Continuous Data Quality Pipeline]
-  Kafka / CDC ──► [Airflow DAG 실행] ──► [Great Expectations 인라인 검증]
-                                                   │
-                            ┌──────────────────────┴──────────────────────┐
-                            ▼ (Pass: 오류율 < 0.1%)                        ▼ (Fail: 결측치 급증)
-                  [타겟 DW / Lake 적재 완료]                   [데이터 적재 차단 (Quarantine)]
-                                                               - 슬랙 알림 발송 및 엔지니어 호출
-```
+> **[핵심 통찰]**
+> 많은 데이터 마이그레이션 프로젝트가 실패하는 결정적 이유는 '테이블 정의서'를 믿고 ETL 매핑을 시작하기 때문이다. 10년간 운영된 레거시 시스템의 정의서와 실제 물리 데이터는 100% 불일치한다. `VARCHAR(10)`에 공백 10칸이 차 있거나, 날짜 컬럼에 `0000-00-00`이 들어있는 것은 프로파일링을 돌려보기 전까지는 절대 알 수 없다. 따라서 프로젝트 착수 즉시 실제 물리 데이터를 스캔하는 프로파일링을 선행해야만 일정 지연과 데이터 파손 참사를 막을 수 있다.
 
-- **과거 한계**: 차세대 구축 시점에만 반짝 프로파일링을 수행하고, 오픈 이후에는 방치되어 수개월 만에 다시 데이터가 오염되는 악순환 반복
-- **미래 방향**:
-  - 데이터 엔지니어링 파이프라인(Airflow, dbt)에 프로파일링 단계를 내재화하여 데이터 인제스천 시마다 자동으로 프로파일링 지표를 산출
-  - 임계치를 벗어난 불량 데이터 유입 시 파이프라인을 즉시 차단(Circuit Breaker)하고 격리 영역(Quarantine Zone)으로 우회시키는 **지속적 데이터 품질(Continuous Data Quality)** 아키텍처 구축
+> **[나라면 이렇게 쓴다]**
+> 1교시형이라면 3대 분석 차원(열, 구조, 관계) 매트릭스와 프로파일링 vs 감사 vs 정제의 3각 비교표를 핵심으로 작성하겠다. 2교시 25점형이라면 운영 DB 부하 방지를 위한 Read Replica 및 Bernoulli 샘플링 기법을 제시하고, 1회성 분석을 넘어 Airflow-Great Expectations 파이프라인에 인라인 프로파일링 품질 게이트(Quality Gate)를 내재화하는 지속적 데이터 옵저버빌리티(Continuous Data Observability) 아키텍처를 제언하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 차세대 이관 시 메타데이터 정의서에만 의존하여 ETL을 구축함에 따라 결측치, 형식 오류, 고아 레코드로 인한 적재 실패(Abend)가 빈발하고, 운영 프로덕션 DB에서 직접 프로파일링 수행 시 서비스 다운 위험 초래.
+- **대응 (개선 방안)**: 읽기 전용 복제본(Read-Only Replica)에서 Great Expectations 기반 사전 프로파일링을 수행하고, Airflow 데이터 인제스천 파이프라인에 인라인 품질 검증 게이트(Circuit Breaker) 구축.
+- **검증 (검증 기준)**: 마이그레이션 대상 테이블 프로파일링 100% 완료, 미식별 고아 레코드 발생률 0건, 인라인 검증 시 결측률 임계치(0.1%) 초과 시 파이프라인 즉시 격리.
+- **효과 (실행 효과)**: 데이터 이관 실패율 95% 감소, 수작업 데이터 클렌징 일정 60% 단축, 전사 데이터 파이프라인 품질 신뢰도 99.9% 확보.
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">현행 한계</div>
+    <div class="itpe-flow-step__content">문서와 실데이터 불일치로 이관 실패, 운영 DB 프로파일링 시 부하 폭증</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">개선 방안</div>
+    <div class="itpe-flow-step__content">Read Replica 사전 프로파일링 및 Airflow 인라인 품질 게이트 구축</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">검증 기준</div>
+    <div class="itpe-flow-step__content">프로파일링 커버리지 100%, 고아 레코드 0건, 결측 임계치 0.1% 통제</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">실행 효과</div>
+    <div class="itpe-flow-step__content">이관 실패율 95% 절감, 클렌징 공수 60% 단축, 고신뢰 파이프라인 구현</div>
+  </div>
+</div>
 
 ---
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 데이터 프로파일링(Data Profiling)의 정의
-  - 원천 데이터의 구조, 값의 분포, 결측률, 무결성 제약 위배 여부를 통계적으로 실측하여 데이터 품질 실태를 파악하는 진단 기법.
+### [문제] 데이터 프로파일링 (Data Profiling)
 
-2. 데이터 프로파일링의 3대 분석 차원
-  가. 열 프로파일링(Column): 단일 컬럼의 데이터 타입, NULL율, 카디널리티, 정규식 패턴, 이상치.
-  나. 구조 프로파일링(Structure): 테이블 내 PK 유일성, 함수적 종속성(FD), 비즈니스 규칙 일치도.
-  다. 관계 프로파일링(Relationship): 테이블 간 FK 참조 무결성, 고아 레코드(Orphan Data) 대사.
+#### 1. 데이터 프로파일링의 정의
+- 원천 데이터의 구조, 값의 분포, 결측률, 무결성 제약 위배 여부를 통계적으로 실측하여 데이터 품질 실태를 파악하는 진단 기법
 
-3. 실무 수행 시 성능 및 거버넌스 고려사항
-  - 운영 DB I/O 부하 방지를 위한 Read Replica 분리 실행 및 Airflow-Great Expectations 연계 지속적 품질 게이트 구축.
-```
+#### 2. 데이터 프로파일링 3대 분석 차원
+
+| 분석 차원 | 핵심 점검 내용 | 주요 진단 지표 |
+|:---|:---|:---|
+| **1. 열 (Column) 분석** | 단일 컬럼 속성값의 건전성 실측 | 데이터 타입/길이, NULL율, 카디널리티, 정규식 패턴, IQR 이상치 |
+| **2. 구조 (Structure) 분석** | 단일 테이블 내부의 무결성 검증 | PK 후보키 유일성, 함수적 종속성(FD), 다중열 상관관계, 비즈니스 룰 |
+| **3. 관계 (Relation) 분석** | 테이블 간 참조 무결성 및 대사 | FK 참조 무결성, 고아 레코드(Orphan), 시스템 간 엔티티 중복 |
+
+#### 3. 실무 수행 시 성능 및 거버넌스 고려사항
+- 운영 DB I/O 부하 방지를 위한 Read Replica 분리 실행 및 Airflow-Great Expectations 연계 지속적 품질 게이트(Quality Gate) 구축
 
 ---
 
@@ -200,5 +228,5 @@ extra:
 
 ## 연결 토픽
 
-- 상위 토픽: [03-003 데이터 품질관리](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/003_data_quality_framework.md)
-- 연관 토픽: [03-156 데이터 이관](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/156_data_migration.md), [03-013 무결성 제약](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/013_integrity_constraint.md)
+- 상위 토픽: [003. 데이터 품질관리 (Data Quality Management)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/003_data_quality_management.md)
+- 연관 토픽: [156. 데이터 이관 (Data Migration)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/156_data_migration.md), [013. 무결성 제약조건 (Integrity Constraints)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/013_integrity_constraint.md)
