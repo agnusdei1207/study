@@ -7,7 +7,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -48,7 +48,94 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 핵심 메커니즘
+## 핵심 메커니즘과 수집·가공 아키텍처
+
+<div style="max-width: 520px; margin: 1.5rem auto;">
+  <!-- SVG: OpenTelemetry 엔드투엔드 파이프라인 아키텍처 -->
+  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+    <!-- 배경 -->
+    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+    
+    <!-- 영역 1: 계측 소스 (Applications) -->
+    <rect x="15" y="15" width="115" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2"/>
+    <text x="72" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">Applications</text>
+    <text x="72" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">API & SDK 계측</text>
+
+    <!-- App 3대 신호 -->
+    <rect x="25" y="55" width="95" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="72" y="70" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">Traces (분산추적)</text>
+    <text x="72" y="82" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">W3C Traceparent</text>
+
+    <rect x="25" y="97" width="95" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="72" y="112" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">Metrics (지표)</text>
+    <text x="72" y="124" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">카운터 / 히스토그램</text>
+
+    <rect x="25" y="139" width="95" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="72" y="154" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">Logs (구조화 로그)</text>
+    <text x="72" y="166" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Context 연계 로그</text>
+
+    <!-- 프로토콜 화살표 -->
+    <path d="M 132 110 L 158 110" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
+    <text x="145" y="103" text-anchor="middle" font-size="7.5" font-weight="700" fill="var(--color-primary, #3b82f6)">OTLP</text>
+
+    <!-- 영역 2: OpenTelemetry Collector -->
+    <rect x="160" y="15" width="210" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
+    <text x="265" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-accent, #10b981)">OpenTelemetry Collector</text>
+    <text x="265" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">단일 바이너리 중계·가공 데몬</text>
+
+    <!-- Collector 3단 파이프라인 -->
+    <g transform="translate(170, 55)">
+      <!-- Receiver -->
+      <rect x="0" y="0" width="58" height="120" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="29" y="25" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">Receiver</text>
+      <text x="29" y="55" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">OTLP gRPC</text>
+      <text x="29" y="70" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">OTLP HTTP</text>
+      <text x="29" y="85" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">Prometheus</text>
+
+      <!-- 화살표 1 -->
+      <path d="M 59 60 L 67 60" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
+
+      <!-- Processor -->
+      <rect x="68" y="0" width="58" height="120" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
+      <text x="97" y="25" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">Processor</text>
+      <text x="97" y="50" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">Batch 압축</text>
+      <text x="97" y="65" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">PII 마스킹</text>
+      <text x="97" y="80" text-anchor="middle" font-size="7" fill="var(--color-accent, #10b981)">Tail 샘플링</text>
+
+      <!-- 화살표 2 -->
+      <path d="M 127 60 L 135 60" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
+
+      <!-- Exporter -->
+      <rect x="136" y="0" width="54" height="120" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="163" y="25" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">Exporter</text>
+      <text x="163" y="55" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">OTLP 변환</text>
+      <text x="163" y="70" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">멀티 라우팅</text>
+      <text x="163" y="85" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">벤더 디커플링</text>
+    </g>
+
+    <!-- 백엔드 연결선 -->
+    <path d="M 372 80 L 398 65" stroke="var(--color-border, #94a3b8)" stroke-width="1.2"/>
+    <path d="M 372 110 L 398 110" stroke="var(--color-border, #94a3b8)" stroke-width="1.2"/>
+    <path d="M 372 140 L 398 155" stroke="var(--color-border, #94a3b8)" stroke-width="1.2"/>
+
+    <!-- 영역 3: 다중 백엔드 (Backends) -->
+    <rect x="400" y="15" width="105" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="452" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-text, #0f172a)">Backends</text>
+    <text x="452" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">무중단 교체 가능</text>
+
+    <rect x="408" y="55" width="89" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="452" y="70" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">Jaeger / Tempo</text>
+    <text x="452" y="82" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">트레이스 시각화</text>
+
+    <rect x="408" y="97" width="89" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="452" y="112" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">Prometheus</text>
+    <text x="452" y="124" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">메트릭 시계열 저장</text>
+
+    <rect x="408" y="139" width="89" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="452" y="154" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">상용 APM / Loki</text>
+    <text x="452" y="166" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">Datadog / OpenSearch</text>
+  </svg>
+</div>
 
 ### (1) 모니터링(Monitoring) vs 관측성(Observability)
 
@@ -101,30 +188,18 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 25점형 실전 답안 프레임워크
+## 실전 합격 전략 및 기술사적 제언
 
-### 1단락: OpenTelemetry의 등장 배경 및 개념
-- **배경**: 분산 마이크로서비스 환경에서 상용 APM 벤더별 상이한 SDK 종속성과 고비용 구조를 타파하기 위해 CNCF 차원에서 표준화 추진.
-- **정의**: Traces, Metrics, Logs의 생성부터 가공, 전송까지 전 관측성 파이프라인을 벤더 중립적으로 표준화한 오픈소스 프레임워크.
+### 학습자 통찰 메모 — 답안 밖
+- **[핵심 통찰]**: OTel 도입의 결정적 가치는 '벤더 종속 탈피(Vendor Neutrality)'와 '비용 통제(Cost Governance)'이다. 소스코드에는 오직 OTel API만 남기고, 데이터 수집 파이프라인의 Collector에서 Tail-based Sampling을 걸어 고비용 상용 SaaS APM과 저비용 오픈소스 스토리지로 트래픽을 분기하는 것이 엔터프라이즈의 정석이다.
+- **나라면**: 답안 2단락에 Receiver-Processor-Exporter 3단 구조를 명확히 제시하고 W3C 헤더 구조(`traceparent`)를 서술하겠다. 4단락에서는 Agent-Gateway 2단계 토폴로지와 eBPF 프로파일링 통합을 통한 무간섭 관측성 고도화 방안을 강조하겠다.
 
-### 2단락: OpenTelemetry 핵심 아키텍처 및 메커니즘
-- **수집-가공-전송 아키텍처 도해**: Application(API/SDK) $\rightarrow$ OTLP $\rightarrow$ OTel Collector(Receiver $\rightarrow$ Processor $\rightarrow$ Exporter) $\rightarrow$ Backend.
-- **W3C Trace Context 분산 전파 메커니즘**: traceparent 헤더 주입·추출을 통한 Trace ID 전역 유지 원리.
-- **Tail-based Sampling 메커니즘**: 트랜잭션 종료 시점의 오류/지연 여부를 보고 수집 여부를 결정하여 비용을 최적화.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 마이크로서비스 전 구간에서 Trace Context 누락율 0% 및 관측성 데이터 수집으로 인한 애플리케이션 CPU 오버헤드 3% 미만 준수.
+- **대응 방안**: K8s 노드별 DaemonSet 수집기(Agent)와 중앙 Gateway 클러스터의 2단 토폴로지를 구축하고, Collector Processor에서 민감정보(PII) 정규식 마스킹과 Tail-based 샘플링 동시 적용.
+- **검증 체계**: 분산 서비스 간 지연 이상 징후(P99 > 500ms) 및 HTTP 5xx 에러 트레이스 100% 보존 여부를 모니터링하는 E2E 합성 트랜잭션 검증.
+- **기대 효과**: APM 상용 벤더 종속 완전 탈피, 네트워크 수집 전송량 80% 절감 및 분산 트랜잭션 장애 원인 규명 시간(MTTR) 70% 단축.
 
-### 3단락: 실무 엔터프라이즈 관측성 구축 전략
-- **Agent-Gateway 2단 토폴로지**: 노드별 DaemonSet 수집과 중앙 Gateway 가공의 역할 분담.
-- **비용 및 보안 거버넌스**: PII 데이터 필터링, 상용 APM(이상 트레이스)과 오픈소스 스토리지(장기 로그)로의 이원화 라우팅.
-
-### 4단락: 차세대 관측성 진화를 위한 기술사적 제언
-- **eBPF 기반 무인 프로파일링 및 LLM 관측성 통합**: 소스코드 수정 없는 커널 레벨 eBPF 계측과 생성형 AI LLM 시맨틱 컨벤션을 결합하여 진정한 풀스택 관측성(Full-Stack Observability) 플랫폼을 완성할 것을 제언함.
-
----
-
-## 10점형 핵심 요약
-
-1. **정의**: 상용 APM 종속을 배제하고 분산 시스템의 Traces, Metrics, Logs(MELT)를 표준 방식으로 계측·수집·전송하는 CNCF 관측성 표준.
-2. **핵심 구조**:
-   - **API/SDK**: 소스코드와 계측 구현체의 완전한 분리.
-   - **OTel Collector**: Receiver $\rightarrow$ Processor(Tail 샘플링, PII 마스킹) $\rightarrow$ Exporter.
-3. **실무 핵심**: W3C Trace Context로 분산 서비스 호출을 추적하고, Tail-based Sampling으로 비용을 절감하며 무중단 백엔드 교체를 실현함.
+<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
+  <strong>실전 제언 파이프라인 요약</strong>: <code>OTel SDK Auto-Instrument</code> → <code>W3C Context Propagation</code> → <code>Collector Tail-Sampling & Masking</code> → <code>Multi-Backend Routing</code>
+</div>

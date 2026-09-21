@@ -7,7 +7,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -48,7 +48,90 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 핵심 메커니즘
+## 핵심 메커니즘과 파이프라인 아키텍처
+
+<div style="max-width: 520px; margin: 1.5rem auto;">
+  <!-- SVG: CI/CD 엔드투엔드 파이프라인 아키텍처 -->
+  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+    <!-- 배경 -->
+    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+    
+    <!-- 영역 1: CI (Continuous Integration) -->
+    <rect x="15" y="15" width="490" height="92" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2" stroke-dasharray="4 2"/>
+    <text x="25" y="30" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">CI (지속적 통합: Code → Build → Test → Package)</text>
+
+    <!-- CI 단계 박스 4개 -->
+    <g transform="translate(25, 38)">
+      <!-- 1. Code -->
+      <rect x="0" y="0" width="105" height="58" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="52" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">1. Code & Push</text>
+      <text x="52" y="34" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">트렁크 기반 병합</text>
+      <text x="52" y="48" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Pre-commit 시크릿 검사</text>
+
+      <!-- 화살표 1 -->
+      <path d="M 108 29 L 120 29" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+      <!-- 2. Build & SAST -->
+      <rect x="122" y="0" width="105" height="58" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="174" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">2. Build & SAST</text>
+      <text x="174" y="34" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">컴파일 및 정적분석</text>
+      <text x="174" y="48" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">SonarQube 룰셋 검사</text>
+
+      <!-- 화살표 2 -->
+      <path d="M 230 29 L 242 29" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
+
+      <!-- 3. Test -->
+      <rect x="244" y="0" width="105" height="58" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="296" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">3. Auto Test</text>
+      <text x="296" y="34" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">단위 / 통합 테스트</text>
+      <text x="296" y="48" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">커버리지 80% 게이트</text>
+
+      <!-- 화살표 3 -->
+      <path d="M 352 29 L 364 29" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
+
+      <!-- 4. Package & Sign -->
+      <rect x="366" y="0" width="104" height="58" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="418" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">4. Image & SCA</text>
+      <text x="418" y="34" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">컨테이너 OCI 패키징</text>
+      <text x="418" y="48" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Cosign 전자서명/취약점</text>
+    </g>
+
+    <!-- 영역 2: CD (Continuous Delivery / Deployment) -->
+    <rect x="15" y="117" width="490" height="92" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.2" stroke-dasharray="4 2"/>
+    <text x="25" y="132" font-size="10.5" font-weight="700" fill="var(--color-accent, #10b981)">CD (지속적 제공 및 배포: Delivery vs Deployment)</text>
+
+    <g transform="translate(25, 140)">
+      <!-- 레지스트리 저장소 -->
+      <rect x="0" y="0" width="115" height="58" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="57" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">Image Registry</text>
+      <text x="57" y="34" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">검증 완료 아티팩트</text>
+      <text x="57" y="48" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Harbor / ECR 보관</text>
+
+      <!-- 분기 1: Delivery -->
+      <rect x="155" y="0" width="155" height="26" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-primary, #3b82f6)" stroke-width="1"/>
+      <text x="232" y="14" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-primary, #3b82f6)">Continuous Delivery (수동 승인)</text>
+      <text x="232" y="22" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">스테이징 자동화 → 운영 수동 승인</text>
+
+      <!-- 분기 2: Deployment -->
+      <rect x="155" y="32" width="155" height="26" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-accent, #10b981)" stroke-width="1"/>
+      <text x="232" y="46" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-accent, #10b981)">Continuous Deployment (완전자동)</text>
+      <text x="232" y="54" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">GitOps Pull 방식 전과정 무인 릴리스</text>
+
+      <!-- 화살표 연결 -->
+      <path d="M 118 20 L 152 13" stroke="var(--color-primary, #3b82f6)" stroke-width="1.3"/>
+      <path d="M 118 38 L 152 45" stroke="var(--color-accent, #10b981)" stroke-width="1.3"/>
+
+      <!-- 런타임 프로덕션 -->
+      <rect x="345" y="0" width="125" height="58" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="407" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">Production Serve</text>
+      <text x="407" y="34" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">Canary 점진 롤아웃</text>
+      <text x="407" y="48" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">오류율 감지 시 즉시 롤백</text>
+
+      <path d="M 313 13 L 342 22" stroke="var(--color-border, #94a3b8)" stroke-width="1.3"/>
+      <path d="M 313 45 L 342 36" stroke="var(--color-border, #94a3b8)" stroke-width="1.3"/>
+    </g>
+  </svg>
+</div>
 
 ### (1) 지속적 제공(Continuous Delivery) vs 지속적 배포(Continuous Deployment)
 
@@ -97,31 +180,18 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 25점형 실전 답안 프레임워크
+## 실전 합격 전략 및 기술사적 제언
 
-### 1단락: CI/CD의 등장 배경 및 개념
-- **배경**: 장기 격리 개발로 인한 통합 지옥(Integration Hell) 해소와 잦은 비즈니스 요구 변경에 대한 신속한 대응 필요.
-- **정의**: 코드 병합부터 빌드, 테스트, 운영 환경 릴리스까지 전 과정을 파이프라인으로 자동화하여 가치 전달 주기를 극대화하는 소프트웨어 공학 실천법.
+### 학습자 통찰 메모 — 답안 밖
+- **[핵심 통찰]**: CI/CD의 핵심은 단순한 도구 체인(Jenkins, GitHub Actions) 설치가 아니라, '작고 빈번한 커밋(Trunk-based Development)'과 '실패 시 즉시 중단(Fail-Fast Quality Gate)'이라는 조직 문화의 정착이다. 자동화 테스트가 신뢰받지 못하면 CD는 불가능하다.
+- **나라면**: 답안 2단락에 CI 4단계와 CD의 Delivery/Deployment 분기 메커니즘을 SVG 도해처럼 깔끔한 파이프라인으로 제시하고, 4단락에서는 GitOps Pull 모델과 DORA 4대 지표(배포 빈도, 변경 리드타임, 변경 실패율, 복구 시간)를 결합한 공급망 거버넌스를 완결성 있게 제시하겠다.
 
-### 2단락: CI/CD 아키텍처와 GitOps 배포 메커니즘
-- **파이프라인 4단계 구성도**: Code $\rightarrow$ Build/Test $\rightarrow$ Package $\rightarrow$ Deploy/Ops.
-- **전통적 Push 방식 vs 선언적 GitOps Pull 방식 비교**:
-  - Push: CI 서버가 클러스터 관리자 권한 소지 (보안 취약점 상존).
-  - Pull: 클러스터 내부 ArgoCD 에이전트가 Git 단일 진실 공급원(SSOT)을 감시하여 무인 동기화.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 신규 코드 병합 후 빌드 및 단위 테스트 완료 시간이 10분을 초과하거나 코드 커버리지가 80% 미만일 경우 파이프라인 진행을 차단하는 Quality Gate 적용.
+- **대응 방안**: ArgoCD 기반의 GitOps Pull 모델을 도입하여 클러스터 접근 권한을 내재화하고, Cosign 이미지 서명과 Trivy SCA 검사를 결합한 DevSecOps 파이프라인 구축.
+- **검증 체계**: 프로메테우스 기반 런타임 에러율(HTTP 5xx > 1%) 감지 시 카나리 파이프라인 자동 롤백 및 Slack/Teams 즉시 알림 트리거 연동.
+- **기대 효과**: 배포 리드 타임 90% 단축(수일 $\rightarrow$ 수십 분) 및 프로덕션 릴리스 결함률 1% 미만 격리로 서비스 가용성(99.99%) 확보.
 
-### 3단락: 성공적인 파이프라인 안착을 위한 DevSecOps 통합 방안
-- **Shift-Left 보안 3대 게이트**: 사전 커밋 시크릿 스캔, 빌드 타임 정적 분석(SAST), 패키징 타임 SCA 및 Cosign 이미지 서명.
-- **무중단 릴리스 거버넌스**: Blue-Green 및 Canary 롤아웃과 프로메테우스 메트릭 연동 자동 롤백 체계 수립.
-
-### 4단락: 지속 가능한 배포 혁신을 위한 기술사적 제언
-- **DORA 핵심 메트릭 기반의 성숙도 측정**: 배포 빈도, 변경 리드 타임, 변경 실패율, 서비스 복구 시간(MTTR)을 실시간 대시보드화하여 개발 조직의 생산성과 신뢰성을 데이터 중심으로 지속 혁신할 것을 제언함.
-
----
-
-## 10점형 핵심 요약
-
-1. **정의**: 코드 통합(CI)과 운영 환경 릴리스(CD) 전 과정을 자동화하여 개발 생산성과 소프트웨어 신뢰도를 높이는 공학 체계.
-2. **핵심 차이**:
-   - **Continuous Delivery**: 스테이징까지 자동화 후 프로덕션 배포는 인간 승인.
-   - **Continuous Deployment**: 파이프라인 통과 시 프로덕션까지 완전 무인 배포.
-3. **실무 핵심**: GitOps 풀(Pull) 기반 배포로 클러스터 보안을 강화하고, Shift-Left DevSecOps 게이트를 결합하여 공급망 보안 무결성을 확보함.
+<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
+  <strong>실전 제언 파이프라인 요약</strong>: <code>Trunk-Based Commit</code> → <code>SAST/SCA Quality Gate</code> → <code>GitOps Pull Synchronize</code> → <code>Canary Rollout & Auto Rollback</code>
+</div>

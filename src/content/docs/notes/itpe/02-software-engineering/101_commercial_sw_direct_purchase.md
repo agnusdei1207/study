@@ -7,7 +7,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -48,7 +48,51 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 핵심 메커니즘
+## 핵심 메커니즘과 계약·거버넌스 구조
+
+<div style="max-width: 520px; margin: 1.5rem auto;">
+  <!-- SVG: 상용SW 직접구매(분리발주) vs 통합발주 비교 거버넌스 -->
+  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+    <!-- 배경 -->
+    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+    
+    <!-- 발주 공공기관 (중앙 최상단) -->
+    <rect x="180" y="15" width="160" height="42" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.3"/>
+    <text x="260" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">발주기관 (공공기관)</text>
+    <text x="260" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">총사업비 3억 이상 과업심의위 의결</text>
+
+    <!-- 왼쪽: SI 주사업자 계약 체결 -->
+    <rect x="25" y="85" width="190" height="75" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="120" y="103" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">SI 주사업자 (원청)</text>
+    <text x="120" y="118" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">응용시스템 구축 및 통합 책임</text>
+    <rect x="35" y="127" width="170" height="24" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-accent, #10b981)" stroke-width="1"/>
+    <text x="120" y="143" text-anchor="middle" font-size="7.5" font-weight="700" fill="var(--color-accent, #10b981)">통합관리비 수령 (상용SW가의 3~5%)</text>
+
+    <!-- 오른쪽: 상용SW 제조사 (직접구매) -->
+    <rect x="305" y="85" width="190" height="75" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.3"/>
+    <text x="400" y="103" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-accent, #10b981)">상용SW 제조사 (분리발주)</text>
+    <text x="400" y="118" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">조달청 디지털서비스몰 등록 제품</text>
+    <rect x="315" y="127" width="170" height="24" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-primary, #3b82f6)" stroke-width="1"/>
+    <text x="400" y="143" text-anchor="middle" font-size="7.5" font-weight="700" fill="var(--color-primary, #3b82f6)">제값 보장 (대금 100% 직불)</text>
+
+    <!-- 계약/지급 화살표들 -->
+    <path d="M 220 57 L 150 85" stroke="var(--color-border, #94a3b8)" stroke-width="1.3"/>
+    <text x="170" y="66" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">SI 용역계약</text>
+
+    <path d="M 300 57 L 370 85" stroke="var(--color-accent, #10b981)" stroke-width="1.3"/>
+    <text x="350" y="66" text-anchor="middle" font-size="7" font-weight="700" fill="var(--color-accent, #10b981)">직접계약 & 직불</text>
+
+    <!-- 하단: 시스템 연계 및 품질 보증 상호작용 -->
+    <g transform="translate(25, 172)">
+      <rect x="0" y="0" width="470" height="36" rx="4" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="235" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">시스템 인터페이스 연계 및 E2E 합동 테스트</text>
+      <text x="235" y="28" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">RFP 상 연계 규격 명시 ↔ 책임 분쟁 예방 ↔ 기술지원 확약서 제출</text>
+    </g>
+
+    <path d="M 120 160 L 120 172" stroke="var(--color-border, #94a3b8)" stroke-width="1.2"/>
+    <path d="M 400 160 L 400 172" stroke="var(--color-border, #94a3b8)" stroke-width="1.2"/>
+  </svg>
+</div>
 
 ### (1) 상용SW 직접구매(분리발주) vs SI 통합발주 비교
 
@@ -99,30 +143,18 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 25점형 실전 답안 프레임워크
+## 실전 합격 전략 및 기술사적 제언
 
-### 1단락: 상용SW 직접구매(분리발주) 제도의 대두 배경 및 개념
-- **배경**: 대형 SI 일괄발주 체계에서 원청사의 중소 상용SW 단가 후려치기(하도급 불공정)로 인한 국내 패키지 SW 산업 황폐화 방지.
-- **정의**: 공공기관이 SI 구축 사업 발주 시 일정 기준 이상의 상용 소프트웨어를 일괄 발주하지 않고 조달청을 통해 별도로 분리 구매하는 법정 제도.
+### 학습자 통찰 메모 — 답안 밖
+- **[핵심 통찰]**: 상용SW 직접구매의 본질은 중소 소프트웨어 기업의 생존권 보장과 '제값 주기'이다. 하지만 현장에서 발주자가 가장 두려워하는 것은 '연계 장애 시의 책임 핑퐁'이다. 따라서 기술사 답안에서는 법적 의무 규정만 나열할 것이 아니라, '통합관리비(3~5%) 공식 계상'과 'RFP 내 API 사전 규격화'라는 실무 해법을 반드시 제시해야 차별화된다.
+- **나라면**: 답안 2단락에 사업비 3억 / 개별 SW 5천만 원 기준과 과업심의위 심의 프로세스를 명시하고, 3단락에서 통합관리비 수령 및 E2E 합동 테스트 체계를 도해화하겠다. 4단락에서는 단순 구축형 패키지 분리발주를 넘어 공공 부문 CSAP 클라우드 SaaS 구독형 직접구매 확대를 제언하겠다.
 
-### 2단락: 법적 근거, 의무화 대상 기준 및 추진 프로세스
-- **법적 기준**: SW진흥법 제54조 (사업금액 3억 원 이상, 개별 상용SW 5천만 원 이상).
-- **단계별 추진 흐름**: 대상 검토 $\rightarrow$ 과업심의위원회 심의 $\rightarrow$ 조달청 분리 발주 $\rightarrow$ 대금 직불 $\rightarrow$ SI 연계 및 검수.
-- **전통적 SI 통합발주 vs 상용SW 직접구매 상세 비교표**.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 공공 SW 사업비 3억 원 이상 사업 내 5천만 원 이상 상용SW 직접구매율 100% 달성 및 예외 통합발주 시 과업심의위 사전 의결 필수 준수.
+- **대응 방안**: 주사업자 용역 계약 시 상용SW 금액의 3~5%를 '소프트웨어 통합관리비'로 법정 계상하고, 상용SW 제조사의 기술지원 확약서 징구를 의무화.
+- **검증 체계**: 발주 단계의 제안요청서(RFP) API 규격 사전 명시 검증 및 통합 단계의 E2E 합동 테스트 시나리오 기반 연계 적합성 판정.
+- **기대 효과**: 상용SW 하도급 단가 후려치기 근절로 국내 패키지 SW R&D 선순환 유도 및 연계 장애 시 책임 공백 해소.
 
-### 3단락: 실무 적용 시 문제점과 공학적·제도적 극복 방안
-- **문제점**: 계약 분리로 인한 인터페이스 연계 장애 시 책임 전가(핑퐁) 현상 발생.
-- **해결 방안**:
-  - 제도적: 주사업자 사업비에 '통합관리비(3~5%)'를 공식 계상하여 연계 통합 의무 부여.
-  - 공학적: RFP 단계에서 상용SW API 및 표준 인터페이스 정의서 사전 배포.
-
-### 4단락: 상용SW 생태계 활성화를 위한 기술사적 제언
-- **클라우드 SaaS 직접구매 및 유지관리요율 하한선 법제화**: 단순 패키지 구매를 넘어 CSAP 인증 SaaS의 다년 구독 계약을 활성화하고, 유지관리비 예산 편성을 15% 이상으로 의무화하여 지속 가능한 상용SW R&D 투자 선순환을 완성할 것을 제언함.
-
----
-
-## 10점형 핵심 요약
-
-1. **정의**: 공공 SI 사업에서 상용SW 단가 삭감을 방지하기 위해 발주기관이 5천만 원 이상 상용SW를 조달청을 통해 직접 분리 계약하는 제도.
-2. **핵심 기준**: 사업금액 3억 원 이상 & 개별 SW 5천만 원 이상 의무화 (소프트웨어 진흥법 제54조).
-3. **실무 핵심**: 분리 계약에 따른 책임 공백을 방어하기 위해 주사업자에게 통합관리비(3~5%)를 지급하고, 클라우드 SaaS 구독형 계약으로 제도를 확장함.
+<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
+  <strong>실전 제언 파이프라인 요약</strong>: <code>과업심의위 대상 식별</code> → <code>조달청 분리발주 직불</code> → <code>통합관리비(3~5%) 계상</code> → <code>E2E 합동 연계 검증</code>
+</div>

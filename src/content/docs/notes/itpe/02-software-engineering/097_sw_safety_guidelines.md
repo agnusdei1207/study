@@ -7,7 +7,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -48,7 +48,70 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 핵심 메커니즘
+## 핵심 메커니즘과 SW안전 프레임워크
+
+<div style="max-width: 520px; margin: 1.5rem auto;">
+  <!-- SVG: SW안전 확보 지침 생명주기 및 위험원 완화 아키텍처 -->
+  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+    <!-- 배경 -->
+    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+    
+    <!-- 영역 1: 위험원 분석 & 도출 (SDLC 초기) -->
+    <rect x="15" y="15" width="235" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2"/>
+    <text x="132" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">위험원 분석 및 안전 요구</text>
+    <text x="132" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Hazard 식별 및 ALARP 위험도 완화</text>
+
+    <!-- 4대 분석 기법 그리드 -->
+    <g transform="translate(25, 55)">
+      <rect x="0" y="0" width="102" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="51" y="15" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">PHA (예비분석)</text>
+      <text x="51" y="27" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">초기 잠재위험 식별</text>
+
+      <rect x="112" y="0" width="102" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="163" y="15" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">FMEA (상향식)</text>
+      <text x="163" y="27" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">단위 고장 영향추적</text>
+
+      <rect x="0" y="42" width="102" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="51" y="57" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">FTA (하향식)</text>
+      <text x="51" y="69" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">최상위 참사 원인도출</text>
+
+      <rect x="112" y="42" width="102" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="163" y="57" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">STPA (복잡계)</text>
+      <text x="163" y="69" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">상호작용 결함제어</text>
+
+      <!-- 산출물: Hazard Log -->
+      <rect x="0" y="85" width="214" height="42" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2"/>
+      <text x="107" y="102" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-primary, #3b82f6)">단일 진실 공급원: Hazard Log</text>
+      <text x="107" y="117" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">위험원 ID ↔ 안전 요구사항 ↔ 설계 모듈 맵핑</text>
+    </g>
+
+    <!-- 연결 화살표 -->
+    <path d="M 252 110 L 268 110" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
+
+    <!-- 영역 2: 안전 아키텍처 & 검증 (SDLC 후기) -->
+    <rect x="270" y="15" width="235" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
+    <text x="387" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-accent, #10b981)">안전 아키텍처 및 V&V 검증</text>
+    <text x="387" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Fail-Safe 전이 및 결함 주입 시험</text>
+
+    <!-- 아키텍처 및 검증 3단 -->
+    <g transform="translate(280, 55)">
+      <!-- 1. Fail-Safe 설계 -->
+      <rect x="0" y="0" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="107" y="15" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">안전 아키텍처 (Fail-Safe & Redundancy)</text>
+      <text x="107" y="29" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">2oo3 투표, 하드웨어 와치독, 메모리 파티셔닝</text>
+
+      <!-- 2. 안전 코딩 표준 -->
+      <rect x="0" y="45" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="107" y="60" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">정적 분석 (MISRA-C / C++)</text>
+      <text x="107" y="74" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">동적 메모리(malloc) 전면 금지, 널 포인터 검증</text>
+
+      <!-- 3. V&V 검증 -->
+      <rect x="0" y="90" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+      <text x="107" y="105" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">HIL 결함 주입 시험 (Fault Injection)</text>
+      <text x="107" y="119" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">MC/DC 100% 달성 및 최악 시간 분석(WCET)</text>
+    </g>
+  </svg>
+</div>
 
 ### (1) SW 품질(Quality) vs SW 보안(Security) vs SW 안전(Safety)
 
@@ -101,29 +164,18 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 25점형 실전 답안 프레임워크
+## 실전 합격 전략 및 기술사적 제언
 
-### 1단락: SW 안전의 대두 배경 및 개념
-- **배경**: 자율주행, 철도, 의료기기 등 사이버-물리 시스템(CPS) 확산에 따라 소프트웨어 오작동이 인명 사고로 직결되는 파국적 위험 급증.
-- **정의**: 소프트웨어 결함으로 인한 인명 피해나 환경 재난을 예방하기 위해 SDLC 전 단계에 걸쳐 위험원을 통제하고 안전 무결성을 보증하는 공학 및 제도 체계.
+### 학습자 통찰 메모 — 답안 밖
+- **[핵심 통찰]**: SW 안전은 일반 SW 품질(버그 없음)이나 정보보안(침입 방지)과 명확히 구분되어야 한다. SW 안전의 핵심 척도는 "소프트웨어가 오작동하거나 멈추더라도 사람을 다치게 하거나 물리적 파괴를 일으키지 않는가(Fail-Safe)"이다.
+- **나라면**: 답안 1단락에 품질/보안/안전의 3자 비교표를 명확히 제시하고, 2단락에 4대 위험원 분석 기법(PHA, FTA, FMEA, STPA)과 Hazard Log 중심의 양방향 추적성 구조를 도해화하겠다. 4단락에서는 생성형 AI/자율주행 환경에서 복잡계 상호작용 결함을 잡는 STPA 및 Safety Wrapper 가드레일을 기술사적 제언으로 연결하겠다.
 
-### 2단락: 과기정통부 'SW안전 확보 지침' 생명주기 및 위험원 분석 기법
-- **SW안전 6단계 프레임워크**: 안전 계획 $\rightarrow$ 위험원 분석 $\rightarrow$ 안전 요구 $\rightarrow$ 안전 설계 $\rightarrow$ 안전 검증 $\rightarrow$ 안전 운영.
-- **위험원 분석 기법 비교**: PHA(초기 예비 분석), FMEA(상향식 단일 고장 모드), FTA(하향식 결함 트리), STPA(시스템 이론 상호작용 제어 분석).
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 식별된 고위험도 위험원(Hazard Severity Class 1~2)의 완화율 100% 및 안전 필수 코드의 MC/DC 커버리지 100% 달성.
+- **대응 방안**: 시스템 개발 초기부터 위험원 등록부(Hazard Log)를 가동하고, 2oo3 삼중화 투표 메커니즘과 하드웨어 독립 와치독 타이머를 적용한 Fail-Safe 아키텍처 설계.
+- **검증 체계**: HIL(Hardware-in-the-Loop) 시뮬레이터 기반 물리적 단선·단락 및 센서 노이즈 결함 주입 시험(FIT)을 통해 10ms 이내 안전 상태 전이 검증.
+- **기대 효과**: 제어 소프트웨어 단일 장애점(SPOF) 원천 배제 및 재난급 물리적 사고 예방을 통한 최고 수준의 기능 안전성(ASIL-D / SIL-4) 보증.
 
-### 3단락: 안전 아키텍처 설계 및 공학적 검증 방안
-- **페일세이프(Fail-Safe) 및 결함 감내(Fault-Tolerant)**: 2oo3 삼중화 투표, 와치독 타이머, 메모리 파티셔닝(ARINC 653).
-- **엄격한 V&V 검증**: MISRA-C 정적 분석, PIL 단계 MC/DC 100% 커버리지, HIL 단계 결함 주입 시험(FIT).
-
-### 4단락: 실질적 SW 안전 확보를 위한 기술사적 제언
-- **형식적 서류 작업을 탈피한 'Hazard Log' 기반 품질 게이트**: 납품 직전 문서를 끼워맞추는 관행을 근절하고, 요구사항 정의 첫 단계부터 공인 안전 엔지니어가 참여하는 위험원 등록부를 개설하여 양방향 추적성이 입증되지 않으면 다음 마일스톤 진입을 불허하는 엄격한 거버넌스를 제언함.
-
----
-
-## 10점형 핵심 요약
-
-1. **정의**: 소프트웨어 오작동으로 인한 인명 사상 및 물리적 피해를 방지하기 위해 전 생명주기에 걸쳐 위험원을 분석·완화하는 법정 공학 활동.
-2. **핵심 메커니즘**:
-   - **위험원 분석**: FTA(하향식), FMEA(상향식), STPA(상호작용).
-   - **안전 설계**: 페일세이프(Fail-Safe), 하드웨어 와치독, 동적 할당 배제.
-3. **실무 핵심**: 위험원 등록부(Hazard Log)를 기반으로 요구사항-설계-V&V 테스트 간 양방향 추적성을 완벽히 확보함.
+<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
+  <strong>실전 제언 파이프라인 요약</strong>: <code>Hazard Log Registration</code> → <code>Safety Architecture (Fail-Safe)</code> → <code>MISRA-C & MC/DC 100%</code> → <code>HIL Fault Injection Testing</code>
+</div>

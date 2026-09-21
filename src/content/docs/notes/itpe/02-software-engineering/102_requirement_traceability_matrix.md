@@ -7,7 +7,7 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -48,7 +48,74 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 핵심 메커니즘
+## 핵심 메커니즘과 양방향 추적 구조
+
+<div style="max-width: 520px; margin: 1.5rem auto;">
+  <!-- SVG: 요구사항 추적표 양방향 추적성 및 라이프사이클 매핑 -->
+  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+    <!-- 배경 -->
+    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+    
+    <!-- 상단: 정방향 추적성 라벨 화살표 -->
+    <rect x="25" y="15" width="470" height="24" rx="4" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1"/>
+    <text x="260" y="31" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-primary, #3b82f6)">정방향 추적 (Forward): 요구사항 누락 방지 및 구현 완전성 보증 ➔</text>
+
+    <!-- 4대 산출물 블록 -->
+    <g transform="translate(25, 48)">
+      <!-- 1. 요구사항 (REQ) -->
+      <rect x="0" y="0" width="105" height="110" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+      <rect x="0" y="0" width="105" height="26" rx="6" fill="var(--color-bg, #f1f5f9)"/>
+      <text x="52" y="17" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">1. 요구사항 (REQ)</text>
+      <text x="52" y="45" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">REQ-001</text>
+      <text x="52" y="60" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">생체인증 로그인</text>
+      <text x="52" y="85" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">REQ-002</text>
+      <text x="52" y="100" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">이상거래 탐지</text>
+
+      <!-- 화살표 1 -->
+      <path d="M 108 55 L 118 55" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
+      <path d="M 118 65 L 108 65" stroke="var(--color-accent, #10b981)" stroke-width="1.5"/>
+
+      <!-- 2. 설계 (DSN) -->
+      <rect x="122" y="0" width="105" height="110" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+      <rect x="122" y="0" width="105" height="26" rx="6" fill="var(--color-bg, #f1f5f9)"/>
+      <text x="174" y="17" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">2. 시스템 설계</text>
+      <text x="174" y="45" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">DSN-101 / 102</text>
+      <text x="174" y="60" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">인증 아키텍처/화면</text>
+      <text x="174" y="85" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">DSN-201</text>
+      <text x="174" y="100" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">FDS AI 모델설계</text>
+
+      <!-- 화살표 2 -->
+      <path d="M 230 55 L 240 55" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
+      <path d="M 240 65 L 230 65" stroke="var(--color-accent, #10b981)" stroke-width="1.5"/>
+
+      <!-- 3. 소스코드 (SRC) -->
+      <rect x="244" y="0" width="105" height="110" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+      <rect x="244" y="0" width="105" height="26" rx="6" fill="var(--color-bg, #f1f5f9)"/>
+      <text x="296" y="17" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">3. 소스코드</text>
+      <text x="296" y="45" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">AuthService.java</text>
+      <text x="296" y="60" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">LoginView.vue</text>
+      <text x="296" y="85" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">FdsEngine.py</text>
+      <text x="296" y="100" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">탐지 모듈 소스</text>
+
+      <!-- 화살표 3 -->
+      <path d="M 352 55 L 362 55" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
+      <path d="M 362 65 L 352 65" stroke="var(--color-accent, #10b981)" stroke-width="1.5"/>
+
+      <!-- 4. 테스트 (TC) -->
+      <rect x="365" y="0" width="105" height="110" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+      <rect x="365" y="0" width="105" height="26" rx="6" fill="var(--color-bg, #f1f5f9)"/>
+      <text x="417" y="17" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">4. 테스트케이스</text>
+      <text x="417" y="45" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">TC-001 / TC-002</text>
+      <text x="417" y="60" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">단위 / 통합 테스트</text>
+      <text x="417" y="85" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">TC-010</text>
+      <text x="417" y="100" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">E2E 인수 시나리오</text>
+    </g>
+
+    <!-- 하단: 역방향 추적성 라벨 화살표 -->
+    <rect x="25" y="172" width="470" height="24" rx="4" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1"/>
+    <text x="260" y="188" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-accent, #10b981)">◀ 역방향 추적 (Backward): 고아 코드 방지 및 Gold Plating(범위 크립) 차단</text>
+  </svg>
+</div>
 
 ### (1) 정방향 추적성(Forward) vs 역방향 추적성(Backward)
 
@@ -97,30 +164,18 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ---
 
-## 25점형 실전 답안 프레임워크
+## 실전 합격 전략 및 기술사적 제언
 
-### 1단락: 요구사항 추적표(RTM)의 등장 배경 및 개념
-- **배경**: 시스템 복잡도 증가에 따라 개발 진행 중 요구사항 누락 및 통제되지 않은 코드(Gold Plating) 삽입으로 인한 프로젝트 실패 방지.
-- **정의**: 요구사항부터 설계, 구현, 시험까지 SDLC 전 과정 산출물의 연결 관계를 고유 ID로 명시하여 개발 완전성을 보증하는 매핑 매트릭스.
+### 학습자 통찰 메모 — 답안 밖
+- **[핵심 통찰]**: RTM의 실무적 실패 원인 1순위는 '엑셀 문서의 고아화'이다. 프로젝트 초기에 열심히 작성하다가 일정이 촉박해지면 코드는 수정되는데 문서는 멈추고 감리 직전에 가짜로 맞추는 악순환이 발생한다. 따라서 기술사 답안에서는 'ALM 연동 Living RTM'과 'Commitlint 기반의 자동화 추적'을 제시해야 높은 점수를 얻는다.
+- **나라면**: 답안 2단락에 정방향(Forward: 완전성)과 역방향(Backward: 순수성)의 대비를 명확히 도해화하고, 3단락에서 변경 영향도 분석(Impact Analysis) 절차를 서술하겠다. 4단락에서는 CI/CD 파이프라인과 결합된 Living RTM 거버넌스를 제언하겠다.
 
-### 2단락: 양방향 추적성 구조 및 RTM 핵심 구성 요소
-- **양방향 추적성 구조도**: REQ $\rightarrow$ DSN $\rightarrow$ SRC $\rightarrow$ TC (정방향: 완전성) $\leftrightarrow$ TC $\rightarrow$ SRC $\rightarrow$ DSN $\rightarrow$ REQ (역방향: 순수성).
-- **RTM 표준 테이블 레이아웃**: 요구사항 ID, 요구명세, 설계 산출물, 소스 모듈, 테스트 케이스 ID, 검증 상태.
-- **변경 영향도 분석(Impact Analysis) 메커니즘**: 요구사항 변경 시 영향받는 코드 및 테스트 범위 산출 원리.
+### 실전 답안용 기술사적 제언
+- **판정 기준**: 요구사항-설계-코드-테스트 케이스 간 양방향 추적 매핑율 100% 및 고아 코드(Unmapped Code) 0건 달성.
+- **대응 방안**: Jira-GitLab-SonarQube 연동 체계를 수립하고, Git 커밋 시 커밋 메시지에 요구사항 ID 입력을 강제하는 Commitlint 정책 적용.
+- **검증 체계**: CI/CD 파이프라인 빌드 시 Living RTM 검증 스크립트를 실행하여 미매핑 요구사항 발견 시 빌드를 차단하는 Quality Gate 운영.
+- **기대 효과**: 변경 영향도 분석 리드타임 90% 단축, 요구사항 누락으로 인한 재작업 비용 절감 및 프로젝트 감리 통과 신뢰성 극대화.
 
-### 3단락: 실무 적용 실패 방지를 위한 Living RTM 구축 방안
-- **엑셀 수작업 문서의 고아화 극복**: 개발 현실과 문서의 불일치를 해결하기 위한 도구(Jira, Confluence, Git) 연계.
-- **Commitlint 및 CI 파이프라인 연계**: 소스 커밋 시 요구사항 ID 입력을 강제하고 배포 시 RTM 대시보드 자동 렌더링.
-
-### 4단락: 프로젝트 성공을 위한 기술사적 품질 거버넌스 제언
-- **사후 감리 통과용 RTM 날조 관행 근절**: 납품 직전 외주 인력을 투입해 가짜 ID를 끼워맞추는 악습을 타파하고, 마일스톤별 양방향 추적성 통과율 100%를 다음 단계 착수의 필수 Quality Gate로 엄격 집행할 것을 제언함.
-
----
-
-## 10점형 핵심 요약
-
-1. **정의**: 요구사항부터 설계, 소스코드, 테스트 케이스까지의 산출물 관계를 고유 ID로 연결하여 완전성을 입증하는 공학 매트릭스.
-2. **핵심 기능**:
-   - **정방향 추적성**: 요구사항 구현 누락 차단 (완전성).
-   - **역방향 추적성**: 고아 코드 및 불필요한 기능(Gold Plating) 차단 (순수성).
-3. **실무 핵심**: 엑셀 수작업 작성을 배제하고, ALM 및 Git 커밋 린터와 연동된 실시간 'Living RTM' 파이프라인으로 운영함.
+<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
+  <strong>실전 제언 파이프라인 요약</strong>: <code>REQ ID 부여</code> → <code>Git Commitlint 연계</code> → <code>Living RTM 자동 빌드</code> → <code>Quality Gate 무결성 검증</code>
+</div>
