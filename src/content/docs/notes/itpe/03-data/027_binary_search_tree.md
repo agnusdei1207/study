@@ -1,21 +1,21 @@
 ---
+author: "Antigravity"
+category: "03-data"
+date: "2026-09-20T16:10:00+09:00"
+extra:
+  keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
+  question_no: "027"
 sidebar:
-  order: 27
-  label: "027. 트리·이진 탐색 트리"
   badge:
     text: "A"
-    variant: note
-title: "트리·이진 탐색 트리 (Binary Search Tree)"
-author: "OpenAI Codex"
-date: "2026-09-20T16:10:00+09:00"
+    variant: "note"
+  label: "027. 트리·이진 탐색 트리"
+  order: 27
 tags:
   - "notes-data"
+title: "트리·이진 탐색 트리 (Binary Search Tree)"
 weight: 27
-extra:
-  model: "GPT-5"
-  keyword_grade: "A"
-  question_no: "027"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,21 +24,35 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-               [루트 노드 (Key)]
-                  /         \
-                 /           \
-     [좌측 서브트리]       [우측 서브트리]
-     (Key 미만 노드)       (Key 초과 노드)
-           │                     │
-           └────── 재귀적 만족 ──┘
-                     │
-    ┌────────────────┴────────────────┐
-    ▼                                 ▼
-[이상적 균형: O(log n)]       [정렬 입력 편향: O(n) 경사 트리]
-- 중위 순회 시 오름차순        - 단순 연결 리스트로 퇴화
-- AVL / Red-Black 트리 발전    - 트라이(Trie)·LPM 라우팅 확장
-```
+<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+  <rect x="0" y="0" width="520" height="150" fill="var(--color-surface, #f8fafc)" rx="8" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- Root Node -->
+  <circle cx="260" cy="30" r="18" fill="var(--color-primary-light, #e0f2fe)" stroke="var(--color-primary, #0284c7)" stroke-width="2"/>
+  <text x="260" y="34" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">Key</text>
+
+  <!-- Left / Right branch -->
+  <line x1="245" y1="42" x2="160" y2="72" stroke="var(--color-text-muted, #64748b)" stroke-width="1.5"/>
+  <line x1="275" y1="42" x2="360" y2="72" stroke="var(--color-text-muted, #64748b)" stroke-width="1.5"/>
+
+  <!-- Left Subtree -->
+  <rect x="95" y="72" width="130" height="30" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <text x="160" y="87" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #0f172a)">좌측 서브트리</text>
+  <text x="160" y="97" text-anchor="middle" font-size="8" fill="var(--color-primary-dark, #0369a1)">Key 미만 (Left &lt; Root)</text>
+
+  <!-- Right Subtree -->
+  <rect x="295" y="72" width="130" height="30" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <text x="360" y="87" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #0f172a)">우측 서브트리</text>
+  <text x="360" y="97" text-anchor="middle" font-size="8" fill="var(--color-primary-dark, #0369a1)">Key 초과 (Right &gt; Root)</text>
+
+  <!-- Bottom Comparison Cards -->
+  <rect x="30" y="114" width="215" height="26" fill="var(--color-success-light, #dcfce7)" stroke="var(--color-success, #16a34a)" stroke-width="1" rx="3"/>
+  <text x="137" y="131" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-success-dark, #15803d)">이상적 균형: O(log n) 중위순회 오름차순</text>
+
+  <rect x="275" y="114" width="215" height="26" fill="var(--color-danger-light, #fee2e2)" stroke="var(--color-danger, #ef4444)" stroke-width="1" rx="3"/>
+  <text x="382" y="131" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-danger-dark, #b91c1c)">순차입력 편향: O(n) 연결리스트로 퇴화</text>
+</svg>
+</div>
 
 - 본질: **모든 노드에 대해 '좌측 서브트리 키 < 루트 키 < 우측 서브트리 키' 속성을 만족하여 이진 탐색의 효율($O(\log n)$)과 연결 리스트의 동적 삽입·삭제 장점을 결합한 계층적 트리 구조**
 - 암기: `좌-루-우 (중위 순회 오름차순)` / `경사 트리 퇴화 위험 → AVL·Red-Black 회전(LL, RR, LR, RL)`
@@ -68,13 +82,10 @@ extra:
 | **동적 메모리 관리** | 포인터 기반 노드 연결로 사전 크기 고정 없이 런타임에 유연한 확장 가능 | 메모리 할당 효율성 및 동적 갱신 용이 |
 | **편향 취약성** | 기정렬된 데이터 순차 입력 시 한쪽 자식만 생성되어 트리가 연결 리스트화 | 최악의 경우 탐색 시간이 $O(n)$으로 급격히 저하 |
 
-```text
-[트리 4대 순회 방식]
-1. 전위 순회 (Pre-order) : Root ─▶ Left ─▶ Right  (트리 복사 및 구조 직렬화에 활용)
-2. 중위 순회 (In-order)  : Left ─▶ Root ─▶ Right  (BST 내 키값 오름차순 정렬 인출)
-3. 후위 순회 (Post-order) : Left ─▶ Right ─▶ Root  (디렉토리 용량 계산, 트리 삭제/해제)
-4. 레벨 순회 (Level-order): 레벨 0부터 너비 우선 탐색 (BFS 큐 활용, 노드 레벨별 분석)
-```
+- **전위 순회 (Pre-order)**: Root $\to$ Left $\to$ Right (트리 복사 및 구조 직렬화에 활용)
+- **중위 순회 (In-order)**: Left $\to$ Root $\to$ Right (BST 내 키값 오름차순 정렬 인출)
+- **후위 순회 (Post-order)**: Left $\to$ Right $\to$ Root (디렉토리 용량 계산, 동적 메모리 트리 노드 해제)
+- **레벨 순회 (Level-order)**: 너비 우선 탐색 (BFS 큐 활용, 노드 레벨별 분석)
 
 #### 한줄 요약
 
@@ -82,20 +93,38 @@ extra:
 
 ## Ⅲ. 이진 탐색 트리의 동적 구조 및 3대 핵심 연산
 
-```text
-[노드 구조]                [노드 삭제 3대 케이스]
-+-------------------+      Case 1. 자식 없음 (Leaf Node) : 부모 포인터 NULL 처리
-| Left Pointer      |      Case 2. 자식 1개              : 부모와 자식을 직접 연결
-+-------------------+      Case 3. 자식 2개              : 오른쪽 서브트리의 최소값
-| Data / Key Value  |                                       (In-order Successor)으로 노드
-+-------------------+                                       키 대체 후 해당 후계자 노드 삭제
-| Right Pointer     |
-+-------------------+
-```
+<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+  <rect x="0" y="0" width="520" height="120" fill="var(--color-surface, #f8fafc)" rx="8" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- Case 1: Leaf Node -->
+  <rect x="15" y="15" width="150" height="90" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <rect x="15" y="15" width="150" height="24" fill="var(--color-primary-light, #e0f2fe)" rx="4"/>
+  <text x="90" y="31" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">Case 1. 자식 없음 (Leaf)</text>
+  <text x="90" y="60" text-anchor="middle" font-size="9" fill="var(--color-text, #0f172a)">삭제 노드 탐색 후</text>
+  <text x="90" y="76" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-success, #16a34a)">부모 포인터 = NULL</text>
+  <text x="90" y="93" text-anchor="middle" font-size="8" fill="var(--color-text-muted, #64748b)">메모리 즉시 해제</text>
+
+  <!-- Case 2: One Child -->
+  <rect x="185" y="15" width="150" height="90" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <rect x="185" y="15" width="150" height="24" fill="var(--color-primary-light, #e0f2fe)" rx="4"/>
+  <text x="260" y="31" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">Case 2. 자식 1개 (외자식)</text>
+  <text x="260" y="60" text-anchor="middle" font-size="9" fill="var(--color-text, #0f172a)">부모 노드와 외자식을</text>
+  <text x="260" y="76" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-primary, #0284c7)">직접 링크 연결 (승격)</text>
+  <text x="260" y="93" text-anchor="middle" font-size="8" fill="var(--color-text-muted, #64748b)">삭제 노드 연결 해제</text>
+
+  <!-- Case 3: Two Children -->
+  <rect x="355" y="15" width="150" height="90" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <rect x="355" y="15" width="150" height="24" fill="var(--color-primary-light, #e0f2fe)" rx="4"/>
+  <text x="430" y="31" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">Case 3. 자식 2개</text>
+  <text x="430" y="58" text-anchor="middle" font-size="8.5" fill="var(--color-text, #0f172a)">우측 서브트리 최솟값</text>
+  <text x="430" y="73" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-danger, #ef4444)">(In-order Successor)</text>
+  <text x="430" y="88" text-anchor="middle" font-size="8.5" fill="var(--color-text, #0f172a)">키 치환 후 해당 노드 재귀삭제</text>
+</svg>
+</div>
 
 | 연산 유형 | 동작 알고리즘 | 평균 시간복잡도 | 최악 시간복잡도 |
 |---|---|:---:|:---:|
-| **탐색 (Search)** | 1. 루트와 키 비교<br>2. 키 < 루트: 왼쪽 자식 재귀 탐색<br>3. 키 > 루트: 오른쪽 자식 재귀 탐색<br>4. 키 = 루트: 탐색 성공 반환 | $O(\log n)$ | $O(n)$ (경사 트리) |
+| **탐색 (Search)** | 1. 루트와 키 비교<br>2. 키 &lt; 루트: 왼쪽 자식 재귀 탐색<br>3. 키 &gt; 루트: 오른쪽 자식 재귀 탐색<br>4. 키 = 루트: 탐색 성공 반환 | $O(\log n)$ | $O(n)$ (경사 트리) |
 | **삽입 (Insert)** | 1. 루트부터 탐색 연산을 수행하여 키가 위치할 빈 포인터(NULL) 위치 탐색<br>2. 신규 노드 동적 할당 후 부모의 좌/우 링크 연결 | $O(\log n)$ | $O(n)$ (경사 트리) |
 | **삭제 (Delete)** | 1. 삭제할 노드 탐색<br>2. Case 1(리프): 즉시 삭제<br>3. Case 2(외자식): 자식을 삭제 노드 위치로 승격<br>4. Case 3(두 자식): 오른쪽 서브트리의 최소값(또는 왼쪽 최대값)으로 대체 후 해당 노드 재귀 삭제 | $O(\log n)$ | $O(n)$ (경사 트리) |
 
@@ -105,14 +134,45 @@ extra:
 
 ## Ⅳ. 편향 트리(Skewed Tree) 극복을 위한 자가 균형 BST 구조
 
-```text
-[정렬 데이터 10, 20, 30 입력 시 회전 동작]
-      [ 10 ] (불균형 발생)                   [ 20 ] (AVL/Red-Black 회전)
-        \                                   /      \
-        [ 20 ]       ──▶ 좌회전(RR) ──▶   [ 10 ]   [ 30 ]
-          \                               (균형 트리 복구, 높이 1)
-          [ 30 ]
-```
+<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 115" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+  <rect x="0" y="0" width="520" height="115" fill="var(--color-surface, #f8fafc)" rx="8" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- Left: Skewed Tree -->
+  <text x="110" y="20" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-danger, #ef4444)">정렬 데이터 순차입력 (편향 발생)</text>
+  <circle cx="60" cy="40" r="12" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-danger, #ef4444)" stroke-width="1.5"/>
+  <text x="60" y="44" text-anchor="middle" font-size="9" font-weight="bold">10</text>
+  <line x1="68" y1="48" x2="92" y2="67" stroke="var(--color-text-muted, #64748b)" stroke-width="1.2"/>
+  <circle cx="100" cy="75" r="12" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-danger, #ef4444)" stroke-width="1.5"/>
+  <text x="100" y="79" text-anchor="middle" font-size="9" font-weight="bold">20</text>
+  <line x1="108" y1="83" x2="132" y2="100" stroke="var(--color-text-muted, #64748b)" stroke-width="1.2"/>
+  <circle cx="140" cy="100" r="12" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-danger, #ef4444)" stroke-width="1.5"/>
+  <text x="140" y="104" text-anchor="middle" font-size="9" font-weight="bold">30</text>
+
+  <!-- Center: RR Rotation Arrow -->
+  <line x1="190" y1="65" x2="250" y2="65" stroke="var(--color-primary, #0284c7)" stroke-width="2" marker-end="url(#arrow-rot)"/>
+  <text x="220" y="55" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--color-primary, #0284c7)">좌회전 (RR)</text>
+
+  <!-- Right: Balanced Tree -->
+  <text x="390" y="20" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-success, #16a34a)">자가 균형 복구 (높이 log n)</text>
+  <circle cx="390" cy="45" r="13" fill="var(--color-success-light, #dcfce7)" stroke="var(--color-success, #16a34a)" stroke-width="1.5"/>
+  <text x="390" y="49" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--color-success-dark, #15803d)">20</text>
+
+  <line x1="380" y1="55" x2="340" y2="80" stroke="var(--color-text-muted, #64748b)" stroke-width="1.2"/>
+  <line x1="400" y1="55" x2="440" y2="80" stroke="var(--color-text-muted, #64748b)" stroke-width="1.2"/>
+
+  <circle cx="330" cy="90" r="12" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.5"/>
+  <text x="330" y="94" text-anchor="middle" font-size="9" font-weight="bold">10</text>
+
+  <circle cx="450" cy="90" r="12" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.5"/>
+  <text x="450" y="94" text-anchor="middle" font-size="9" font-weight="bold">30</text>
+
+  <defs>
+    <marker id="arrow-rot" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="var(--color-primary, #0284c7)"/>
+    </marker>
+  </defs>
+</svg>
+</div>
 
 | 자가 균형 트리 | 핵심 균형 규칙 | 회전 연산 | 장단점 및 실무 적용 |
 |---|---|---|---|
@@ -139,18 +199,31 @@ extra:
 
 ## Ⅵ. IP 라우팅 테이블(LPM)과 이진 트리 탐색 알고리즘의 상관관계
 
-- 출제 배경: 139회 3교시 5번 기출 연계 토픽 (라우팅 테이블 경로 결정 메커니즘)
-- 문제 상황: 인터넷 백본 라우터에서 수십만 개 경로 엔트리 중 목적지 IP와 서브넷이 가장 길게 일치하는 포트를 수 마이크로초 내 탐색 필요
+<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 115" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+  <rect x="0" y="0" width="520" height="115" fill="var(--color-surface, #f8fafc)" rx="8" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <text x="260" y="18" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">[IP 비트열 분기 트리: Binary Trie 기반 LPM (목적지: 192.168.1.0/24)]</text>
 
-```text
-[IP 주소 비트열 분기 트리: Binary Trie 기반 LPM]
-목적지 IP: 192.168.1.0/24 (비트 11000000 10101000 00000001 ...)
-                 [ Root ]
-                0 /    \ 1 (첫 번째 비트 1)
-              [ * ]    [ * ]
-                      0 / \ 1 (두 번째 비트 1)
-                     ...   [ * ] ──▶ 비트가 일치하는 최심부 노드의 Next-Hop 반환 (LPM)
-```
+  <!-- Root -->
+  <circle cx="260" cy="38" r="11" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-primary, #0284c7)" stroke-width="1.5"/>
+  <text x="260" y="42" text-anchor="middle" font-size="8" font-weight="bold">Root</text>
+
+  <!-- Level 1 -->
+  <line x1="250" y1="45" x2="190" y2="65" stroke="var(--color-text-muted, #94a3b8)" stroke-width="1.2"/>
+  <line x1="270" y1="45" x2="330" y2="65" stroke="var(--color-primary, #0284c7)" stroke-width="1.8"/>
+  <text x="215" y="52" font-size="8" fill="var(--color-text-muted, #64748b)">0</text>
+  <text x="305" y="52" font-size="8" font-weight="bold" fill="var(--color-primary, #0284c7)">1 (일치)</text>
+
+  <circle cx="180" cy="72" r="9" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <circle cx="340" cy="72" r="9" fill="var(--color-primary-light, #e0f2fe)" stroke="var(--color-primary, #0284c7)" stroke-width="1.5"/>
+
+  <!-- Level 2 -->
+  <line x1="345" y1="80" x2="390" y2="95" stroke="var(--color-primary, #0284c7)" stroke-width="1.8"/>
+  <text x="375" y="86" font-size="8" font-weight="bold" fill="var(--color-primary, #0284c7)">1 (일치)</text>
+  <rect x="395" y="85" width="110" height="22" fill="var(--color-success-light, #dcfce7)" stroke="var(--color-success, #16a34a)" stroke-width="1" rx="3"/>
+  <text x="450" y="99" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-success-dark, #15803d)">최심부 Next-Hop 반환</text>
+</svg>
+</div>
 
 | 기법 및 구조 | 동작 원리 | 문제점 및 최적화 기법 |
 |---|---|---|
@@ -163,33 +236,58 @@ extra:
 
 - IP 라우팅의 LPM은 이진 분기 원리를 IP 비트열에 적용한 Trie/Radix 구조를 통해 $O(K)$의 결정론적 고속 패킷 포워딩을 구현함
 
-## Ⅶ. 자료구조 선정 및 아키텍처 적용을 위한 기술사적 제언
+## Ⅶ. 기술사적 제언
 
-- **[이론적 자료구조와 하드웨어 아키텍처 특성의 정합성 확보]**: 자료구조의 시간복잡도($O(\log n)$)만 맹신하고 CPU 캐시 라인 크기(64 Byte)와 메모리 계층 구조를 무시하면 심각한 캐시 미스(Cache Miss)가 발생함
-- 나라면:
-  1. 메모리 내 소규모 빈번 갱신 구조에는 검증된 Red-Black 트리(자바의 ConcurrentSkipListMap 또는 TreeMap)를 우선 채택
-  2. 디스크 또는 대용량 SSD 인덱스는 블록 크기에 최적화된 B+Tree를 적용하여 페이지 I/O 최소화
-  3. 초고속 패킷 처리(SDN, DPDK 기반 vSwitch) 구현 시 소프트웨어 영역에는 24-8 분할 다단계 트라이(Multi-way Trie) 알고리즘을 적용하고, 물리 코어 스위치에는 TCAM 기반 하드웨어 포워딩 테이블을 결합하는 하이브리드 아키텍처를 설계
+### 학습자 통찰 메모 — 답안 밖
 
-#### 한줄 요약
+> **[핵심 통찰]**
+> 자료구조의 빅오($O$) 표기법 시간복잡도는 점근적 분석일 뿐, 실제 현대 하드웨어(CPU 캐시 라인, 메모리 대역폭) 위에서의 실행 성능을 완벽히 보장하지 않는다. 이진 탐색 트리는 포인터 기반 노드 참조로 인해 메모리가 무작위로 파편화되며 심각한 CPU L1/L2 캐시 미스(Cache Miss)를 유발한다. 반면 B-Tree는 단일 노드가 디스크 또는 캐시 라인 블록에 밀집되어 메모리 지역성(Locality)이 극대화된다.
+>
+> **[나라면 이렇게 쓴다]**
+> 실무 아키텍처 설계 시에는 저장 매체와 데이터 접근 패턴에 따라 탐색 구조를 철저히 분기해야 한다. 메모리 내 소규모 빈번 갱신 구조는 회전 비용이 저렴한 Red-Black 트리(`std::map`, Java `TreeMap`)를 적용하고, 디스크 및 SSD 대용량 저장소는 B+Tree 인덱스를 채택한다. 네트워크 패킷 처리 엔진(vSwitch, DPDK) 영역에는 소프트웨어 LC-Trie와 하드웨어 TCAM을 결합하여 IPv4/IPv6 경로 탐색 레이턴시를 100ns 이하로 결정론화하는 하이브리드 계층 설계를 제시하겠다.
 
-- 자료구조의 선택은 수학적 복잡도뿐만 아니라 타깃 하드웨어(CPU 캐시, 메모리 대역폭, 스토리지 블록)의 특성을 종합하여 결정해야 함
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 단순 BST 사용 시 정렬 데이터 순차 입력에 따른 $O(n)$ 경사 트리 퇴화 및 포인터 추적으로 인한 CPU 캐시 미스 발생.
+- **대응 (개선 방안)**: 색상 반전 및 단일 회전 기반 Red-Black 트리 표준화 및 대용량 네트워크 라우팅 시 경로 압축 Radix Trie·TCAM 결합.
+- **검증 (검증 기준)**: 삽입·탐색 시간 $O(\log n)$ 결정론적 상한 유지 및 라우팅 경로 탐색 지연시간 100ns 이내 검증.
+- **효과 (실행 효과)**: 최악 상황에서도 탐색 성능 퇴화 0건 차단, 초당 수억 패킷(Mpps) 수준의 고속 패킷 포워딩 보장.
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-title">현행 한계</div>
+    <div class="itpe-flow-desc">정렬 데이터 입력 시 O(n) 편향 퇴화 및 캐시 미스 오버헤드</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-title">개선 방안</div>
+    <div class="itpe-flow-desc">Red-Black 자가 균형 구조 표준화 및 Radix Trie·TCAM 결합</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-title">검증 기준</div>
+    <div class="itpe-flow-desc">O(log n) 보장 및 네트워크 패킷 경로 탐색 100ns 이내 검증</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-title">실행 효과</div>
+    <div class="itpe-flow-desc">탐색 지연 최악 퇴화 차단 및 수억 패킷급(Mpps) 라우팅 성능 확보</div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
 ### 1. 이진 탐색 트리(BST) 정의
 
-- 모든 노드가 $Key(Left) < Key(Root) < Key(Right)$ 속성을 만족하여, 중위 순회 시 오름차순 정렬을 보장하는 $O(\log n)$ 동적 탐색 이진 트리
+- 모든 노드가 $Key(Left) < Key(Root) < Key(Right)$ 속성을 만족하여, 중위 순회(In-order) 시 오름차순 정렬을 보장하는 $O(\log n)$ 동적 탐색 이진 트리
 
 ### 2. 핵심 구조 및 연산
 
-```text
-       [ 50 ]
-      /      \
-   [ 30 ]   [ 70 ]    ── In-order Traversal: 20 ─▶ 30 ─▶ 40 ─▶ 50 ─▶ 60 ─▶ 70
-   /    \   /
- [20]  [40][60]
-```
+- **중위 순회 정렬**: Left $\to$ Root $\to$ Right 순서로 방문하여 $O(n)$ 시간에 정렬된 배열 생성
+- **동적 연산 특성**:
+  - **탐색 (Search)**: 대소 비교를 통해 단계마다 탐색 대상 공간을 $1/2$씩 소거 ($O(\log n)$)
+  - **삽입 (Insert)**: 탐색 실패 지점(NULL)에 신규 노드를 동적으로 링크 연결 ($O(\log n)$)
+  - **삭제 (Delete)**:
+    - Case 1 (리프 노드): 부모 포인터 NULL 처리
+    - Case 2 (자식 1개): 자식 노드를 부모와 직결 승격
+    - Case 3 (자식 2개): 오른쪽 서브트리의 최소값(In-order Successor)으로 대체 후 해당 노드 삭제
 
 | 연산 | 핵심 메커니즘 | 시간복잡도 (평균 / 최악) |
 |---|---|:---:|
