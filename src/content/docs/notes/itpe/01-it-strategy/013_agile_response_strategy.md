@@ -1,14 +1,14 @@
 ---
 title: "애자일 대응 전략"
-author: "OpenAI Codex"
-date: "2026-09-21T10:30:00+09:00"
+author: "Claude Code"
+date: "2026-09-21T11:20:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Claude Opus 5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,20 +23,28 @@ extra:
 - 메커니즘: **Product Backlog → Sprint Goal → Increment → Review·Retrospective → Feedback**
 - 통제: **Definition of Done(DoD)**으로 완료 품질을 고정하고 범위는 가치 순으로 조정
 
-<svg class="itpe-svg-map" viewBox="0 0 760 470" role="img" aria-labelledby="agile-cycle-title agile-cycle-desc">
-  <title id="agile-cycle-title">애자일 피드백 순환 구조</title>
-  <desc id="agile-cycle-desc">제품 백로그에서 스프린트 목표와 증분을 거쳐 검토와 회고 결과를 다시 제품 백로그에 반영하는 순환 구조</desc>
-  <defs><marker id="agile-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="itpe-svg-arrowhead" /></marker></defs>
-  <path d="M380 93 C560 93 633 183 610 285" class="itpe-svg-link" marker-end="url(#agile-arrow)" />
-  <path d="M555 350 C470 438 290 438 205 350" class="itpe-svg-link" marker-end="url(#agile-arrow)" />
-  <path d="M150 285 C127 183 200 93 380 93" class="itpe-svg-link" marker-end="url(#agile-arrow)" />
-  <circle cx="380" cy="95" r="82" class="itpe-svg-node" /><circle cx="610" cy="310" r="82" class="itpe-svg-node" />
-  <circle cx="150" cy="310" r="82" class="itpe-svg-node" /><circle cx="380" cy="270" r="76" class="itpe-svg-node is-current" />
-  <text x="380" y="82" text-anchor="middle" class="itpe-svg-title">Product Backlog</text><text x="380" y="111" text-anchor="middle" class="itpe-svg-label">가치 우선순위</text>
-  <text x="610" y="297" text-anchor="middle" class="itpe-svg-title">Sprint</text><text x="610" y="326" text-anchor="middle" class="itpe-svg-label">목표·실행</text>
-  <text x="150" y="297" text-anchor="middle" class="itpe-svg-title">Review·회고</text><text x="150" y="326" text-anchor="middle" class="itpe-svg-label">검증·개선</text>
-  <text x="380" y="258" text-anchor="middle" class="itpe-svg-title">Increment</text><text x="380" y="287" text-anchor="middle" class="itpe-svg-label">DoD 충족</text>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 400" role="img" aria-label="제품 백로그, 스프린트, 리뷰·회고를 원형으로 잇고 중앙에 피드백 루프를 둔 애자일 반복 순환 구조">
+  <defs><marker id="arrow-agile-cycle" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <path class="itpe-svg-link" d="M300 162 Q 405 184 380 258" marker-end="url(#arrow-agile-cycle)" />
+  <path class="itpe-svg-link" d="M358 305 Q 260 395 162 305" marker-end="url(#arrow-agile-cycle)" />
+  <path class="itpe-svg-link" d="M140 258 Q 115 184 220 162" marker-end="url(#arrow-agile-cycle)" />
+  <circle class="itpe-svg-node" cx="260" cy="115" r="62" />
+  <text class="itpe-svg-title" x="260" y="95">Product</text>
+  <text class="itpe-svg-title" x="260" y="117">Backlog</text>
+  <text class="itpe-svg-label" x="260" y="139">가치 우선순위</text>
+  <circle class="itpe-svg-node" cx="420" cy="305" r="62" />
+  <text class="itpe-svg-title" x="420" y="296">Sprint</text>
+  <text class="itpe-svg-label" x="420" y="318">목표·실행</text>
+  <circle class="itpe-svg-node" cx="100" cy="305" r="62" />
+  <text class="itpe-svg-title" x="100" y="296">Review</text>
+  <text class="itpe-svg-label" x="100" y="318">증분 검토·회고</text>
+  <circle class="itpe-svg-node is-current" cx="260" cy="280" r="54" />
+  <text class="itpe-svg-title" x="260" y="271">Feedback</text>
+  <text class="itpe-svg-title" x="260" y="293">Loop</text>
+  <text class="itpe-svg-sub" x="260" y="376">Increment · DoD 충족</text>
 </svg>
+</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -77,6 +85,8 @@ extra:
   <div class="itpe-pipeline-node"><strong>④ Review·Retrospective</strong><div class="itpe-step-detail"><strong>활동</strong><span>증분 검토 · 피드백 반영 · 방식 개선</span><strong>산출</strong><span>갱신 Backlog · 개선 항목</span></div></div>
 </div>
 
+<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Feedback Loop</strong></span> 처리 흐름: Review·Retrospective 결과 → Product Backlog 재정제 → 다음 Sprint Goal 조정</div>
+
 ## Ⅲ. 전통적 개발과 애자일 비교
 
 > 두 방식은 우열보다 요구 안정성·검증 주기·계약 조건에 따라 선택·조합해야 함.
@@ -91,11 +101,31 @@ extra:
 
 > 팀의 반복 개발만 복제하지 말고 제품·투자·아키텍처 의사결정까지 같은 주기로 연결해야 함.
 
-| 적용 영역 | 핵심 통제 | 적용 방식 |
-|---|---|---|
-| **제품** | 가치 우선순위 | Product Goal · Backlog |
-| **팀** | 완료 품질 | Sprint Goal · DoD |
-| **조직** | 팀 간 의존성 | 공통 Cadence · 통합검증 |
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 432" role="img" aria-label="제품·팀·조직 세 수준의 핵심 통제와 각 수준의 적용 방식 두 개씩을 하위 박스로 분기한 적용 계층 트리">
+  <rect class="itpe-svg-node" x="40" y="10" width="440" height="40" rx="12" />
+  <text class="itpe-svg-title" x="260" y="30">제품 2 · 가치 우선순위</text>
+  <path class="itpe-svg-link" d="M70 50 V121 M70 79 H100 M70 121 H100" />
+  <rect class="itpe-svg-node" x="100" y="62" width="380" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="79">Product Goal · 제품 목표</text>
+  <rect class="itpe-svg-node" x="100" y="104" width="380" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="121">Product Backlog · 가치 순 정렬</text>
+  <rect class="itpe-svg-node" x="40" y="152" width="440" height="40" rx="12" />
+  <text class="itpe-svg-title" x="260" y="172">팀 2 · 완료 품질</text>
+  <path class="itpe-svg-link" d="M70 192 V263 M70 221 H100 M70 263 H100" />
+  <rect class="itpe-svg-node" x="100" y="204" width="380" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="221">Sprint Goal · 반복 집중점</text>
+  <rect class="itpe-svg-node" x="100" y="246" width="380" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="263">DoD · 증분 완료 판정</text>
+  <rect class="itpe-svg-node is-current" x="40" y="294" width="440" height="40" rx="12" />
+  <text class="itpe-svg-title" x="260" y="314">조직 2 · 팀 간 의존성</text>
+  <path class="itpe-svg-link" d="M70 334 V405 M70 363 H100 M70 405 H100" />
+  <rect class="itpe-svg-node" x="100" y="346" width="380" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="363">공통 Cadence · 반복 주기 정렬</text>
+  <rect class="itpe-svg-node" x="100" y="388" width="380" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="405">통합검증 · 팀 간 통합 확인</text>
+</svg>
+</div>
 
 - 안정성이 우선인 핵심 업무는 변경통제를 유지하고, 탐색 영역부터 반복 전달 적용
 - 다수 팀은 공통 목표·통합주기·아키텍처 원칙만 맞추고 팀 실행의 자율성 보장
@@ -113,16 +143,40 @@ extra:
 
 ## Ⅵ. 결론 — 속도가 아닌 학습 주기의 통제
 
-`[핵심 통찰]` 애자일의 성패는 Sprint 횟수가 아니라 검증 가능한 Increment가 고객 피드백을 거쳐 다음 투자 우선순위를 바꾸는 데 있음.
+> 애자일의 성패는 반복 횟수가 아니라 DoD를 충족한 Increment가 고객 피드백을 거쳐 다음 우선순위를 바꾸는가로 판정함
 
-`나라면` 대규모 조직의 전면 전환보다 독립 배포 가능한 제품부터 적용하고, DoD 충족·피드백 반영·가치 실현을 통과 조건으로 삼겠음.
+### 학습자 통찰 메모 — 답안 밖
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="애자일 적용을 가치 검증 체계로 전환하는 제언">
-  <div class="itpe-pipeline-node"><strong>현행 한계</strong><div class="itpe-step-detail"><strong>문제</strong><span>행사·속도 중심의 형식적 애자일</span></div></div>
+- `[핵심 통찰]`: 애자일의 성패는 Sprint 횟수가 아니라 검증 가능한 Increment가 고객 피드백을 거쳐 다음 투자 우선순위를 바꾸는 데 있음.
+- `나라면`: 대규모 조직의 전면 전환보다 독립 배포 가능한 제품부터 적용하고, DoD 충족·피드백 반영·가치 실현을 통과 조건으로 삼겠음.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 반복 행사 준수 여부가 아니라 Increment가 다음 우선순위를 바꾸는지가 성패를 가름
+- 대안: 독립 배포 가능한 제품부터 적용 · 목표·기간 고정과 Backlog 범위 조정 규칙 병행
+- 검증: DoD 충족 · 고객 검증 · 피드백의 Backlog 반영 여부
+- 효과: 가치 조기 검증 · 변경 손실 축소
+
+<div class="itpe-pipeline is-vertical" role="img" aria-label="애자일 적용을 가치 검증 체계로 전환하는 제언 흐름">
+  <div class="itpe-pipeline-node">
+    <strong>현행 한계</strong>
+    <div class="itpe-step-detail"><strong>문제</strong><span>행사·속도 중심의 형식적 애자일</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><strong>개선 통제</strong><div class="itpe-step-detail"><strong>판정</strong><span>DoD 충족 · 고객 검증 · Backlog 반영</span></div></div>
+  <div class="itpe-pipeline-node">
+    <strong>개선 대안</strong>
+    <div class="itpe-step-detail"><strong>대안</strong><span>독립 배포 가능한 제품 우선 적용 · 범위 조정 규칙 명시</span></div>
+  </div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>실행 효과</strong><div class="itpe-step-detail"><strong>효과</strong><span>가치 조기 검증 · 변경 손실 축소</span></div></div>
+  <div class="itpe-pipeline-node">
+    <strong>검증 기준</strong>
+    <div class="itpe-step-detail"><strong>판정</strong><span>DoD 충족 · 고객 검증 · Backlog 반영</span></div>
+  </div>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <strong>실행 효과</strong>
+    <div class="itpe-step-detail"><strong>효과</strong><span>가치 조기 검증 · 변경 손실 축소</span></div>
+  </div>
 </div>
 
 ## 1교시 10점 답안 발췌
@@ -132,19 +186,36 @@ extra:
 - 정의: **짧은 반복**, **고객 피드백**, **작동하는 증분**으로 변화에 대응하는 개발·관리 전략
 - 목적: 가치 조기 전달 · 변경 비용 절감 · 품질 내재화
 
-### 2. 핵심 구조
+### 2. 반복 구조 — **Feedback Loop**
 
-```text
-Product Backlog → Sprint Goal → Increment → Review·회고
-       ↑              DoD 충족              │
-       └──────── Feedback ──────────────────┘
-```
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 400" role="img" aria-label="제품 백로그, 스프린트, 리뷰·회고를 원형으로 잇고 중앙에 피드백 루프를 둔 애자일 반복 순환 구조">
+  <defs><marker id="arrow-agile-quick" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <path class="itpe-svg-link" d="M300 162 Q 405 184 380 258" marker-end="url(#arrow-agile-quick)" />
+  <path class="itpe-svg-link" d="M358 305 Q 260 395 162 305" marker-end="url(#arrow-agile-quick)" />
+  <path class="itpe-svg-link" d="M140 258 Q 115 184 220 162" marker-end="url(#arrow-agile-quick)" />
+  <circle class="itpe-svg-node" cx="260" cy="115" r="62" />
+  <text class="itpe-svg-title" x="260" y="95">Product</text>
+  <text class="itpe-svg-title" x="260" y="117">Backlog</text>
+  <text class="itpe-svg-label" x="260" y="139">가치 우선순위</text>
+  <circle class="itpe-svg-node" cx="420" cy="305" r="62" />
+  <text class="itpe-svg-title" x="420" y="296">Sprint</text>
+  <text class="itpe-svg-label" x="420" y="318">목표·실행</text>
+  <circle class="itpe-svg-node" cx="100" cy="305" r="62" />
+  <text class="itpe-svg-title" x="100" y="296">Review</text>
+  <text class="itpe-svg-label" x="100" y="318">증분 검토·회고</text>
+  <circle class="itpe-svg-node is-current" cx="260" cy="280" r="54" />
+  <text class="itpe-svg-title" x="260" y="271">Feedback</text>
+  <text class="itpe-svg-title" x="260" y="293">Loop</text>
+  <text class="itpe-svg-sub" x="260" y="376">Increment · DoD 충족</text>
+</svg>
+</div>
 
 ### 3. 핵심 통제
 
-- Product Backlog: 가치 우선순위 관리
-- Sprint Goal: 반복의 집중점 고정
-- DoD: 증분의 완료·품질 판정
+- **Product Backlog(제품 백로그)**: 가치 우선순위 관리
+- **Sprint Goal(스프린트 목표)**: 반복의 집중점 고정
+- **DoD(Definition of Done, 완료 정의)**: 증분의 완료·품질 판정
 
 ## 출제 이력과 검증 출처
 
@@ -155,11 +226,11 @@ Product Backlog → Sprint Goal → Increment → Review·회고
 ## 학습 체크
 
 - [ ] Ⅰ: 애자일을 짧은 반복·고객 피드백·작동하는 증분으로 정의할 수 있는가?
-- [ ] Ⅱ: Backlog부터 Review·Retrospective까지 활동·산출을 연결할 수 있는가?
-- [ ] Ⅲ: 전통적 개발과 요구·가치 전달·품질 통제를 비교할 수 있는가?
-- [ ] Ⅳ: 제품·팀·조직 수준의 적용 통제를 제시할 수 있는가?
-- [ ] Ⅴ: 형식화·계약 충돌·기술 부채의 위험·대책·효과를 연결할 수 있는가?
-- [ ] Ⅵ: Increment의 가치 검증을 중심으로 기술사적 제언을 제시할 수 있는가?
+- [ ] Ⅱ: ① Backlog 정제부터 ④ Review·Retrospective까지 네 단계의 활동·산출을 한 쌍으로 재현하고, Review 결과가 Backlog로 환류하는 고리를 그릴 수 있는가?
+- [ ] Ⅲ: 전통적 개발과 애자일을 요구 관리·가치 전달·품질 통제 세 축으로 비교할 수 있는가?
+- [ ] Ⅳ: 제품·팀·조직 세 수준의 핵심 통제와 각 수준의 적용 방식 2개씩을 트리로 재현할 수 있는가?
+- [ ] Ⅴ: 형식화·계약 충돌·기술 부채의 위험·대책·효과 세 쌍을 연결할 수 있는가?
+- [ ] Ⅵ: 판정·대안·검증·효과로 Increment의 가치 검증 중심 제언을 제시할 수 있는가?
 
 ## 연결 토픽
 

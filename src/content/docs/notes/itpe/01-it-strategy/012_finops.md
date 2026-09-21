@@ -1,7 +1,7 @@
 ---
 title: "FinOps"
-author: "OpenAI Codex"
-date: "2026-09-21T15:50:00+09:00"
+author: "Claude Code"
+date: "2026-09-21T11:20:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Claude Opus 5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,17 +26,22 @@ extra:
 - 메커니즘: Inform → Optimize → Operate를 반복하며 사용량·단가·단위가치를 지속 개선
 - 산출물: 할당된 비용 데이터 · 최적화 실행안 · 단위비용 지표 · 운영 정책
 
-<svg class="itpe-svg-map" viewBox="0 0 720 500" role="img" aria-labelledby="finops-cycle-title finops-cycle-desc">
-  <title id="finops-cycle-title">FinOps 3단계 순환</title><desc id="finops-cycle-desc">Inform, Optimize, Operate 세 단계가 측정 결과를 환류하며 반복되는 구조</desc>
-  <defs><marker id="finops-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" class="itpe-svg-arrowhead"/></marker></defs>
-  <path d="M352 95 C510 88 610 184 586 310" class="itpe-svg-link" marker-end="url(#finops-arrow)"/>
-  <path d="M548 342 C432 442 268 442 162 342" class="itpe-svg-link" marker-end="url(#finops-arrow)"/>
-  <path d="M132 304 C106 186 198 96 330 94" class="itpe-svg-link" marker-end="url(#finops-arrow)"/>
-  <circle cx="350" cy="90" r="82" class="itpe-svg-node"/><text x="350" y="82" text-anchor="middle" class="itpe-svg-title">Inform</text><text x="350" y="110" text-anchor="middle" class="itpe-svg-sub">사용·비용·가치 가시화</text>
-  <circle cx="585" cy="325" r="82" class="itpe-svg-node is-current"/><text x="585" y="317" text-anchor="middle" class="itpe-svg-title">Optimize</text><text x="585" y="345" text-anchor="middle" class="itpe-svg-sub">사용량·단가 최적화</text>
-  <circle cx="135" cy="325" r="82" class="itpe-svg-node"/><text x="135" y="317" text-anchor="middle" class="itpe-svg-title">Operate</text><text x="135" y="345" text-anchor="middle" class="itpe-svg-sub">실행·정책·자동화</text>
-  <circle cx="360" cy="285" r="92" class="itpe-svg-node is-current"/><text x="360" y="276" text-anchor="middle" class="itpe-svg-title">Business Value</text><text x="360" y="306" text-anchor="middle" class="itpe-svg-sub">Unit Economics · 책임 공유</text>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 380" role="img" aria-label="Inform, Optimize, Operate 세 단계가 같은 방향으로 순환하고 중앙에 Business Value 허브를 둔 FinOps 반복 주기">
+  <defs><marker id="arrow-finops-cycle" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <path class="itpe-svg-link" d="M315 75 A 150 150 0 0 1 408 237" marker-end="url(#arrow-finops-cycle)" />
+  <path class="itpe-svg-link" d="M353 332 A 150 150 0 0 1 167 332" marker-end="url(#arrow-finops-cycle)" />
+  <path class="itpe-svg-link" d="M112 237 A 150 150 0 0 1 205 75" marker-end="url(#arrow-finops-cycle)" />
+  <circle class="itpe-svg-node" cx="260" cy="65" r="56" />
+  <text class="itpe-svg-title" x="260" y="57">Inform</text><text class="itpe-svg-sub" x="260" y="81">비용 가시화</text>
+  <circle class="itpe-svg-node" cx="390" cy="290" r="56" />
+  <text class="itpe-svg-title" x="390" y="282">Optimize</text><text class="itpe-svg-sub" x="390" y="306">개선 기회 식별</text>
+  <circle class="itpe-svg-node" cx="130" cy="290" r="56" />
+  <text class="itpe-svg-title" x="130" y="282">Operate</text><text class="itpe-svg-sub" x="130" y="306">정책·자동화</text>
+  <circle class="itpe-svg-node is-current" cx="260" cy="215" r="52" />
+  <text class="itpe-svg-title" x="260" y="206">Business</text><text class="itpe-svg-title" x="260" y="228">Value</text>
 </svg>
+</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,23 +72,66 @@ extra:
 
 ## Ⅱ. FinOps 라이프사이클·핵심 활동
 
-> 세 단계는 성숙도 순서가 아니라 각 조직·기술 범위에서 빠르게 반복하는 개선 주기임
+> 세 단계는 성숙도 순서가 아니라 각 조직·기술 범위에서 빠르게 반복하는 개선 주기이며, 한 바퀴의 성과는 다음 **Inform**의 입력이 되어야 환류가 성립함
 
-| 단계 | 활동 | 산출 |
-|---|---|---|
-| **Inform** | 사용·비용·가치 수집 · 할당 · 예측 | 비용 배분 · 예산·예측 · 단위지표 |
-| **Optimize** | 사용량·단가·아키텍처 개선안 식별 | 우선순위화된 최적화 Backlog |
-| **Operate** | 개선 실행 · 정책·자동화 · 성과 환류 | 실행 결과 · 가드레일 · 갱신 지표 |
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 650" role="img" aria-label="FinOps 라이프사이클 안에서 Inform, Optimize, Operate가 Business Value 허브를 중심으로 순환하고, 단계별 산출물 세 개가 하위 박스로 분기된 구조">
+  <defs><marker id="arrow-finops-life" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <rect class="itpe-svg-node" x="10" y="10" width="500" height="420" rx="14" />
+  <text class="itpe-svg-title" x="260" y="38">FinOps Lifecycle · 3단계 반복</text>
+  <text class="itpe-svg-label" x="260" y="64">활동 · 사용량·단가·단위가치를 한 바퀴마다 개선</text>
+  <path class="itpe-svg-link" d="M313 146 A 135 135 0 0 1 394 286" marker-end="url(#arrow-finops-life)" />
+  <path class="itpe-svg-link" d="M341 378 A 135 135 0 0 1 179 378" marker-end="url(#arrow-finops-life)" />
+  <path class="itpe-svg-link" d="M126 286 A 135 135 0 0 1 207 146" marker-end="url(#arrow-finops-life)" />
+  <circle class="itpe-svg-node" cx="260" cy="135" r="54" />
+  <text class="itpe-svg-title" x="260" y="127">Inform</text><text class="itpe-svg-sub" x="260" y="151">수집·할당·예측</text>
+  <circle class="itpe-svg-node" cx="377" cy="337" r="54" />
+  <text class="itpe-svg-title" x="377" y="329">Optimize</text><text class="itpe-svg-sub" x="377" y="353">개선 기회 식별</text>
+  <circle class="itpe-svg-node" cx="143" cy="337" r="54" />
+  <text class="itpe-svg-title" x="143" y="329">Operate</text><text class="itpe-svg-sub" x="143" y="353">실행·정책 정착</text>
+  <circle class="itpe-svg-node is-current" cx="260" cy="270" r="50" />
+  <text class="itpe-svg-title" x="260" y="261">Business</text><text class="itpe-svg-title" x="260" y="283">Value</text>
+  <path class="itpe-svg-link" d="M260 430 V446" marker-end="url(#arrow-finops-life)" />
+  <rect class="itpe-svg-node" x="130" y="448" width="260" height="40" rx="12" />
+  <text class="itpe-svg-title" x="260" y="468">산출물 3</text>
+  <path class="itpe-svg-link" d="M260 488 V496 H60 V618 M60 518 H100 M60 568 H100 M60 618 H100" />
+  <rect class="itpe-svg-node" x="100" y="500" width="410" height="36" rx="10" />
+  <text class="itpe-svg-sub" x="305" y="518">Inform · 비용 배분 · 예산·예측 · 단위지표</text>
+  <rect class="itpe-svg-node" x="100" y="550" width="410" height="36" rx="10" />
+  <text class="itpe-svg-sub" x="305" y="568">Optimize · 우선순위 최적화 Backlog</text>
+  <rect class="itpe-svg-node" x="100" y="600" width="410" height="36" rx="10" />
+  <text class="itpe-svg-sub" x="305" y="618">Operate · 가드레일 · 갱신 지표</text>
+</svg>
+</div>
 
 ## Ⅲ. 클라우드 비용 데이터 공통 사양 FOCUS
 
-> 공급자마다 다른 비용·사용 데이터를 공통 구조로 정규화해야 할당·비교·대사가 성립함
+> 공급자마다 다른 비용·사용 데이터를 공통 구조로 정규화해야 할당·비교·대사가 성립하며, 정규화 이전 단계에서는 어떤 최적화 권고도 근거를 갖지 못함
 
-| 기능 | 표준화 대상 | 기여 |
-|---|---|---|
-| **비용 정규화** | 청구·실효·계약·정가 비용 | 동일 기준 비교 |
-| **사용 귀속** | 계정·서비스·리소스·태그 | Showback·Chargeback |
-| **검증·분석** | 청구기간·통화·비용 범주 | 대사·예측·최적화 |
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 455" role="img" aria-label="공급자별 비용·사용 데이터가 FOCUS 공통 사양의 세 가지 정규화를 거쳐 Showback·Chargeback과 대사·예측·최적화 산출로 이어지는 흐름">
+  <defs><marker id="arrow-finops-focus" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <rect class="itpe-svg-node" x="60" y="10" width="400" height="56" rx="12" />
+  <text class="itpe-svg-title" x="260" y="32">공급자별 비용·사용 데이터</text>
+  <text class="itpe-svg-sub" x="260" y="53">형식·용어 상이</text>
+  <path class="itpe-svg-link" d="M260 66 V104" marker-end="url(#arrow-finops-focus)" />
+  <rect class="itpe-svg-node is-current" x="30" y="106" width="460" height="44" rx="12" />
+  <text class="itpe-svg-title" x="260" y="128">FOCUS 공통 사양 · 정규화 3</text>
+  <path class="itpe-svg-link" d="M260 150 V162 H60 V300 M60 180 H100 M60 240 H100 M60 300 H100" />
+  <rect class="itpe-svg-node" x="100" y="163" width="390" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="295" y="180">비용 정규화 · 청구·실효·계약·정가 비용</text>
+  <rect class="itpe-svg-node" x="100" y="223" width="390" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="295" y="240">사용 귀속 · 계정·서비스·리소스·태그</text>
+  <rect class="itpe-svg-node" x="100" y="283" width="390" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="295" y="300">검증·분석 · 청구기간·통화·비용 범주</text>
+  <path class="itpe-svg-link" d="M60 300 V344 H260 V360" marker-end="url(#arrow-finops-focus)" />
+  <text class="itpe-svg-label" x="370" y="340">동일 기준 비교</text>
+  <rect class="itpe-svg-node" x="60" y="364" width="400" height="76" rx="12" />
+  <text class="itpe-svg-label" x="260" y="384">산출</text>
+  <text class="itpe-svg-sub" x="260" y="405">Showback · Chargeback</text>
+  <text class="itpe-svg-sub" x="260" y="426">대사 · 예측 · 최적화</text>
+</svg>
+</div>
 
 ## Ⅳ. FinOps vs 전통적 IT 재무관리(ITFM) 비교
 
@@ -101,9 +149,9 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **비용 할당 불가** | 태그 강제 정책(Policy-as-Code) 및 FOCUS 기반 비용 배분 규칙 적용 | 미할당 리소스 비용 비율 감소 |
-| **최적화 권고 방치** | Rightsizing 검토 책임자 지정 및 조치 예외 기한(SLA) 설정 | 최적화 권고 처리 시간 단축 및 낭비 제거 |
-| **약정 할인 과다·미달** | 수요 예측 기반 온디맨드·약정(RI/SP)·스팟 최적 포트폴리오 구성 | 약정 자원 이용률 극대화 및 위약금 방어 |
+| **비용 할당 불가** | 태그 강제 정책(Policy-as-Code) · FOCUS 기반 비용 배분 규칙 적용 | 미할당 리소스 비용 비율 감소 |
+| **최적화 권고 방치** | Rightsizing 검토 책임자 지정 · 조치 기한 설정 | 최적화 권고 처리 지연 해소 · 유휴 자원 제거 |
+| **약정 할인 과다·미달** | 수요 예측 기반 온디맨드·약정(RI/SP)·스팟 최적 포트폴리오 구성 | 약정 자원 유휴 감소 · 위약금 발생 차단 |
 
 ## Ⅵ. 결론 — Unit Economics 중심의 FinOps
 
@@ -115,6 +163,11 @@ extra:
 - `나라면`: 비용 데이터를 FOCUS 구조로 정규화하고, 배포 전 비용 변화가 허용 범위를 넘으면 검토하도록 정책을 연결하겠음.
 
 ### 실전 답안용 기술사적 제언
+
+- 판정: 비용 판단 시점을 청구 이후에서 배포 이전으로 옮겼는가
+- 대안: FOCUS 기반 비용 데이터 정규화 · IaC 변경의 비용 영향 사전 검토
+- 검증: 미태깅 리소스 차단 여부 · 변경 요청 단위 비용 증감 산출 여부
+- 효과: 블랙박스 비용 제거 · 트랜잭션당 인프라 원가 개선
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Shift-Left FinOps 자동화 제언 흐름">
   <div class="itpe-pipeline-node">
@@ -145,23 +198,36 @@ extra:
 - 정의: **FinOps**는 엔지니어링·재무·비즈니스가 기술 사용의 가치를 높이고 재무 책임을 공유하는 운영 프레임워크·문화
 - 목적: 데이터 기반 의사결정 · 기술 투자 가치 극대화
 
-### 2. 구성체계 및 방법론
+### 2. 라이프사이클과 단계별 산출물
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="FinOps 3단계 라이프사이클 요약">
-  <div class="itpe-pipeline-node">
-    <strong>Inform (가시화)</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>태깅 강제 · FOCUS 표준화</span><strong>산출</strong><span>비용 대시보드</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>Optimize (최적화)</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>Rightsizing · RI/SP 포트폴리오</span><strong>산출</strong><span>최적화 실행안</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>Operate (상시운영)</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>CI/CD 비용 가드레일</span><strong>산출</strong><span>예산 경보 정책</span></div>
-  </div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 650" role="img" aria-label="Inform, Optimize, Operate가 Business Value를 중심으로 순환하고 단계별 산출물 세 개가 하위 박스로 분기된 FinOps 라이프사이클">
+  <defs><marker id="arrow-finops-quick" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <rect class="itpe-svg-node" x="10" y="10" width="500" height="420" rx="14" />
+  <text class="itpe-svg-title" x="260" y="38">FinOps Lifecycle · 3단계 반복</text>
+  <text class="itpe-svg-label" x="260" y="64">활동 · 사용량·단가·단위가치를 한 바퀴마다 개선</text>
+  <path class="itpe-svg-link" d="M313 146 A 135 135 0 0 1 394 286" marker-end="url(#arrow-finops-quick)" />
+  <path class="itpe-svg-link" d="M341 378 A 135 135 0 0 1 179 378" marker-end="url(#arrow-finops-quick)" />
+  <path class="itpe-svg-link" d="M126 286 A 135 135 0 0 1 207 146" marker-end="url(#arrow-finops-quick)" />
+  <circle class="itpe-svg-node" cx="260" cy="135" r="54" />
+  <text class="itpe-svg-title" x="260" y="127">Inform</text><text class="itpe-svg-sub" x="260" y="151">수집·할당·예측</text>
+  <circle class="itpe-svg-node" cx="377" cy="337" r="54" />
+  <text class="itpe-svg-title" x="377" y="329">Optimize</text><text class="itpe-svg-sub" x="377" y="353">개선 기회 식별</text>
+  <circle class="itpe-svg-node" cx="143" cy="337" r="54" />
+  <text class="itpe-svg-title" x="143" y="329">Operate</text><text class="itpe-svg-sub" x="143" y="353">실행·정책 정착</text>
+  <circle class="itpe-svg-node is-current" cx="260" cy="270" r="50" />
+  <text class="itpe-svg-title" x="260" y="261">Business</text><text class="itpe-svg-title" x="260" y="283">Value</text>
+  <path class="itpe-svg-link" d="M260 430 V446" marker-end="url(#arrow-finops-quick)" />
+  <rect class="itpe-svg-node" x="130" y="448" width="260" height="40" rx="12" />
+  <text class="itpe-svg-title" x="260" y="468">산출물 3</text>
+  <path class="itpe-svg-link" d="M260 488 V496 H60 V618 M60 518 H100 M60 568 H100 M60 618 H100" />
+  <rect class="itpe-svg-node" x="100" y="500" width="410" height="36" rx="10" />
+  <text class="itpe-svg-sub" x="305" y="518">Inform · 비용 배분 · 예산·예측 · 단위지표</text>
+  <rect class="itpe-svg-node" x="100" y="550" width="410" height="36" rx="10" />
+  <text class="itpe-svg-sub" x="305" y="568">Optimize · 우선순위 최적화 Backlog</text>
+  <rect class="itpe-svg-node" x="100" y="600" width="410" height="36" rx="10" />
+  <text class="itpe-svg-sub" x="305" y="618">Operate · 가드레일 · 갱신 지표</text>
+</svg>
 </div>
 
 ### 3. 핵심 통제
@@ -178,11 +244,11 @@ extra:
 ## 학습 체크
 
 - [ ] Ⅰ 개요: FinOps를 공동 책임·클라우드 가치·데이터 기반 의사결정으로 정의할 수 있는가?
-- [ ] Ⅱ 라이프사이클: Inform·Optimize·Operate의 활동·산출을 연결할 수 있는가?
-- [ ] Ⅲ FOCUS: 비용 데이터 정규화 목적과 주요 필드를 설명할 수 있는가?
+- [ ] Ⅱ 라이프사이클: Inform·Optimize·Operate를 Business Value 중심의 원형 순환으로 그리고 단계별 산출물 3개를 연결할 수 있는가?
+- [ ] Ⅲ FOCUS: 공급자별 데이터 → 정규화 3(비용 정규화·사용 귀속·검증·분석) → Showback·Chargeback 흐름을 재현할 수 있는가?
 - [ ] Ⅳ 비교: ITFM과 FinOps의 비용 성격·주기·책임 차이를 설명할 수 있는가?
 - [ ] Ⅴ 문제점·대응책: 비용 미할당·권고 방치·약정 불균형의 위험·대책·효과를 연결할 수 있는가?
-- [ ] Ⅵ 결론: 단위비용 중심의 판정·대안·검증·효과를 제시할 수 있는가?
+- [ ] Ⅵ 결론: 비용 판단 시점을 배포 이전으로 옮기는 판정·대안·검증·효과를 제시할 수 있는가?
 
 ## 연결 토픽
 

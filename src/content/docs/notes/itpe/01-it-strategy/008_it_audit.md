@@ -1,7 +1,7 @@
 ---
 title: "정보시스템 감리"
-author: "OpenAI Codex"
-date: "2026-09-21T14:35:00+09:00"
+author: "Claude Code"
+date: "2026-09-21T11:20:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Claude Opus 5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -62,11 +62,42 @@ extra:
 
 > 법은 감리 대상·독립성·결과 반영 의무를 정하고, 고시는 감리의 업무범위·절차·준수사항을 구체화하여 점검의 실효성을 닫음
 
-| 근거 | 통제 | 실무 귀결 |
-|---|---|---|
-| **「전자정부법」 제57조~제59조** | 감리 실시 · 업무 간섭 금지 · 법인 등록·성실 의무 | 대상·독립성·자격 통제 |
-| **같은 법 시행령 제71조·제72조** | 의무감리 대상 · 감리법인 업무범위·절차 | 대상 판정 · 수행체계 |
-| **「정보시스템 감리기준」** | 업무범위·절차·준수사항 | 계획·현장감리·보고·조치 확인 표준화 |
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 576" role="img" aria-label="전자정부법이 시행령에 위임하고 정보시스템 감리기준이 이를 구체화하는 3계층 법령 통제 구조와 각 계층의 통제 항목 트리">
+  <defs><marker id="arrow-audit-law" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <rect class="itpe-svg-node is-current" x="20" y="8" width="470" height="44" rx="12" />
+  <text class="itpe-svg-title" x="255" y="30">「전자정부법」 제57조~제59조 · 통제 4</text>
+  <path class="itpe-svg-link" d="M45 52 V205 M45 79 H75 M45 121 H75 M45 163 H75 M45 205 H75" />
+  <rect class="itpe-svg-node" x="75" y="62" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="79">감리 실시 대상 확정</text>
+  <rect class="itpe-svg-node" x="75" y="104" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="121">감리업무 개입·간섭 금지</text>
+  <rect class="itpe-svg-node" x="75" y="146" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="163">감리결과 사업 반영 의무</text>
+  <rect class="itpe-svg-node" x="75" y="188" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="205">감리법인 등록 · 성실 의무</text>
+  <path class="itpe-svg-link" d="M465 52 V232" marker-end="url(#arrow-audit-law)" />
+  <text class="itpe-svg-label" x="437" y="140">위임</text>
+  <rect class="itpe-svg-node" x="20" y="238" width="470" height="44" rx="12" />
+  <text class="itpe-svg-title" x="255" y="260">같은 법 시행령 제71조·제72조 · 통제 2</text>
+  <path class="itpe-svg-link" d="M45 282 V351 M45 309 H75 M45 351 H75" />
+  <rect class="itpe-svg-node" x="75" y="292" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="309">의무감리 대상 판정</text>
+  <rect class="itpe-svg-node" x="75" y="334" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="351">감리법인 업무범위 · 절차</text>
+  <path class="itpe-svg-link" d="M465 282 V384" marker-end="url(#arrow-audit-law)" />
+  <text class="itpe-svg-label" x="433" y="330">구체화</text>
+  <rect class="itpe-svg-node" x="20" y="390" width="470" height="44" rx="12" />
+  <text class="itpe-svg-title" x="255" y="412">「정보시스템 감리기준」 · 통제 3</text>
+  <path class="itpe-svg-link" d="M45 434 V545 M45 461 H75 M45 503 H75 M45 545 H75" />
+  <rect class="itpe-svg-node" x="75" y="444" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="461">감리 업무범위 규정</text>
+  <rect class="itpe-svg-node" x="75" y="486" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="503">계획 · 현장감리 · 보고 절차</text>
+  <rect class="itpe-svg-node" x="75" y="528" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="545">감리원 준수사항</text>
+</svg>
+</div>
 
 - 적용관계: 「전자정부법」 제64조의2에 따라 전자정부사업관리를 위탁한 경우에도 모든 사업이 감리에서 제외되는 것은 아니며, 같은 법 제57조제1항 단서와 시행령 제71조제2항이 정한 사업만 의무감리 예외에 해당함
 - 예외범위: 대국민·기관 공동사용 사업 중 사업비 1억 원 이상 5억 원 미만인 사업 · 사업기간 5개월 미만인 정보시스템 구축사업
@@ -90,6 +121,30 @@ extra:
 ## Ⅳ. PMO와 상주감리의 역할 경계
 
 > PMO는 발주기관의 사업관리·의사결정을 계속 지원하고, 상주감리는 독립된 관점에서 위험·산출물을 점검하므로 두 역할을 섞으면 감리 독립성이 약해짐
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 348" role="img" aria-label="발주기관이 PMO에 사업관리를 위탁하고 상주감리는 독립 위치에서 결과를 보고하며, 두 주체가 사업자를 각각 관리하고 점검하는 역할 경계">
+  <defs><marker id="arrow-audit-role" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <rect class="itpe-svg-node" x="130" y="10" width="260" height="44" rx="12" />
+  <text class="itpe-svg-title" x="260" y="32">발주기관 · 사업 책임</text>
+  <path class="itpe-svg-link" d="M200 54 V92 H125 V126" marker-end="url(#arrow-audit-role)" />
+  <text class="itpe-svg-label" x="163" y="80">위탁</text>
+  <path class="itpe-svg-link" d="M395 130 V92 H320 V58" marker-end="url(#arrow-audit-role)" />
+  <text class="itpe-svg-label" x="357" y="80">감리 결과 보고</text>
+  <rect class="itpe-svg-node" x="15" y="130" width="220" height="70" rx="12" />
+  <text class="itpe-svg-title" x="125" y="155">PMO</text>
+  <text class="itpe-svg-sub" x="125" y="180">사업관리·의사결정 지원</text>
+  <rect class="itpe-svg-node is-current" x="285" y="130" width="220" height="70" rx="12" />
+  <text class="itpe-svg-title" x="395" y="155">상주감리</text>
+  <text class="itpe-svg-sub" x="395" y="180">독립 점검 · 개선 권고</text>
+  <path class="itpe-svg-link" d="M125 200 V270 H200 V286" marker-end="url(#arrow-audit-role)" />
+  <text class="itpe-svg-label" x="163" y="258">일정·위험 관리</text>
+  <path class="itpe-svg-link" d="M395 200 V270 H320 V286" marker-end="url(#arrow-audit-role)" />
+  <text class="itpe-svg-label" x="357" y="258">산출물·위험 점검</text>
+  <rect class="itpe-svg-node" x="130" y="290" width="260" height="44" rx="12" />
+  <text class="itpe-svg-title" x="260" y="312">사업자 · 구축 수행</text>
+</svg>
+</div>
 
 | 비교축 | **PMO(Project Management Office)** | **상주감리** |
 |---|---|---|
@@ -118,6 +173,35 @@ extra:
 
 > 독립성 훼손·검사기준 부실·미조치 종결을 각각 책임 분리·근거 추적·증적 확인으로 통제해야 함
 
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 256" role="img" aria-label="독립 수행, 근거 추적, 조치 이행의 통제 체인과 각 지점에서 감리 실효성을 무너뜨리는 위험의 대응 관계">
+  <defs><marker id="arrow-audit-risk" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <rect class="itpe-svg-node" x="20" y="10" width="270" height="52" rx="12" />
+  <text class="itpe-svg-title" x="155" y="28">독립 수행</text>
+  <text class="itpe-svg-sub" x="155" y="48">감리업무 간섭 차단</text>
+  <path class="itpe-svg-link" d="M290 36 H306" marker-end="url(#arrow-audit-risk)" />
+  <rect class="itpe-svg-node" x="310" y="14" width="190" height="44" rx="10" />
+  <text class="itpe-svg-label" x="405" y="29">위험</text>
+  <text class="itpe-svg-sub" x="405" y="45">감리업무 개입</text>
+  <path class="itpe-svg-link" d="M155 62 V96" marker-end="url(#arrow-audit-risk)" />
+  <rect class="itpe-svg-node" x="20" y="100" width="270" height="52" rx="12" />
+  <text class="itpe-svg-title" x="155" y="118">근거 추적</text>
+  <text class="itpe-svg-sub" x="155" y="138">검사기준 ↔ 발견 ↔ 증거</text>
+  <path class="itpe-svg-link" d="M290 126 H306" marker-end="url(#arrow-audit-risk)" />
+  <rect class="itpe-svg-node" x="310" y="104" width="190" height="44" rx="10" />
+  <text class="itpe-svg-label" x="405" y="119">위험</text>
+  <text class="itpe-svg-sub" x="405" y="135">형식적 점검</text>
+  <path class="itpe-svg-link" d="M155 152 V186" marker-end="url(#arrow-audit-risk)" />
+  <rect class="itpe-svg-node" x="20" y="190" width="270" height="52" rx="12" />
+  <text class="itpe-svg-title" x="155" y="208">조치 이행</text>
+  <text class="itpe-svg-sub" x="155" y="228">담당자 · 기한 · 증적</text>
+  <path class="itpe-svg-link" d="M290 216 H306" marker-end="url(#arrow-audit-risk)" />
+  <rect class="itpe-svg-node" x="310" y="194" width="190" height="44" rx="10" />
+  <text class="itpe-svg-label" x="405" y="209">위험</text>
+  <text class="itpe-svg-sub" x="405" y="225">미조치 종결</text>
+</svg>
+</div>
+
 | 위험 | 대책 | 효과 |
 |---|---|---|
 | 감리업무 개입 | 감리법인 독립성·보고 경로 명시 | 점검 결과 왜곡 방지 |
@@ -135,10 +219,15 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
+- 판정: 감리보고서 제출이 아니라 개선사항별 조치 증적 확인으로 감리 종료를 판정함
+- 대안: 계약·법령 근거 → 검증방법 → 발견 증거 → 조치 증적을 하나의 추적표로 연결
+- 검증: 개선사항별 반영 결과와 객관적 증거의 대응 여부
+- 효과: 감리결과의 실제 시스템 반영 · 결함의 운영 전이 차단
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="증거 기반 감리 개선 흐름">
   <div class="itpe-pipeline-node"><strong>현행 한계</strong><div class="itpe-step-detail"><strong>문제</strong><span>점검표·발견사항·조치 결과 분리</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>개선안</strong><div class="itpe-step-detail"><strong>대안</strong><span>근거·검증방법·발견 증거·조치 증적 연결</span></div></div>
+  <div class="itpe-pipeline-node"><strong>개선 대안</strong><div class="itpe-step-detail"><strong>대안</strong><span>근거·검증방법·발견 증거·조치 증적 연결</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>검증 기준</strong><div class="itpe-step-detail"><strong>판정</strong><span>개선사항별 반영 결과·증적 대응</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
@@ -154,12 +243,41 @@ extra:
 
 ### 2. 법적 통제 구조
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정보시스템 감리 법적 통제 구조">
-  <div class="itpe-pipeline-node"><strong>「전자정부법」 제57조</strong><div class="itpe-step-detail"><strong>통제</strong><span>대상 감리 · 업무 간섭 금지 · 결과 반영</span><strong>주체</strong><span>발주자 · 사업자</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>「정보시스템 감리기준」</strong><div class="itpe-step-detail"><strong>통제</strong><span>업무범위 · 절차 · 준수사항</span><strong>주체</strong><span>감리법인 · 감리원</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>감리결과 반영</strong><div class="itpe-step-detail"><strong>활동</strong><span>개선사항 반영 · 조치 증적 확인</span><strong>산출</strong><span>감리보고서 · 시정조치 결과</span></div></div>
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 576" role="img" aria-label="전자정부법이 시행령에 위임하고 정보시스템 감리기준이 이를 구체화하는 3계층 법령 통제 구조와 각 계층의 통제 항목 트리">
+  <defs><marker id="arrow-audit-law-quick" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <rect class="itpe-svg-node is-current" x="20" y="8" width="470" height="44" rx="12" />
+  <text class="itpe-svg-title" x="255" y="30">「전자정부법」 제57조~제59조 · 통제 4</text>
+  <path class="itpe-svg-link" d="M45 52 V205 M45 79 H75 M45 121 H75 M45 163 H75 M45 205 H75" />
+  <rect class="itpe-svg-node" x="75" y="62" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="79">감리 실시 대상 확정</text>
+  <rect class="itpe-svg-node" x="75" y="104" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="121">감리업무 개입·간섭 금지</text>
+  <rect class="itpe-svg-node" x="75" y="146" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="163">감리결과 사업 반영 의무</text>
+  <rect class="itpe-svg-node" x="75" y="188" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="205">감리법인 등록 · 성실 의무</text>
+  <path class="itpe-svg-link" d="M465 52 V232" marker-end="url(#arrow-audit-law-quick)" />
+  <text class="itpe-svg-label" x="437" y="140">위임</text>
+  <rect class="itpe-svg-node" x="20" y="238" width="470" height="44" rx="12" />
+  <text class="itpe-svg-title" x="255" y="260">같은 법 시행령 제71조·제72조 · 통제 2</text>
+  <path class="itpe-svg-link" d="M45 282 V351 M45 309 H75 M45 351 H75" />
+  <rect class="itpe-svg-node" x="75" y="292" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="309">의무감리 대상 판정</text>
+  <rect class="itpe-svg-node" x="75" y="334" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="351">감리법인 업무범위 · 절차</text>
+  <path class="itpe-svg-link" d="M465 282 V384" marker-end="url(#arrow-audit-law-quick)" />
+  <text class="itpe-svg-label" x="433" y="330">구체화</text>
+  <rect class="itpe-svg-node" x="20" y="390" width="470" height="44" rx="12" />
+  <text class="itpe-svg-title" x="255" y="412">「정보시스템 감리기준」 · 통제 3</text>
+  <path class="itpe-svg-link" d="M45 434 V545 M45 461 H75 M45 503 H75 M45 545 H75" />
+  <rect class="itpe-svg-node" x="75" y="444" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="461">감리 업무범위 규정</text>
+  <rect class="itpe-svg-node" x="75" y="486" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="503">계획 · 현장감리 · 보고 절차</text>
+  <rect class="itpe-svg-node" x="75" y="528" width="320" height="34" rx="10" />
+  <text class="itpe-svg-sub" x="235" y="545">감리원 준수사항</text>
+</svg>
 </div>
 
 ### 3. 핵심 판정
@@ -183,12 +301,12 @@ extra:
 ## 학습 체크
 
 - [ ] Ⅰ 개요: 정보시스템 감리를 독립된 제3자·구축·운영 종합 점검·문제 개선의 네 요소로 정의할 수 있는가?
-- [ ] Ⅱ 법적 근거: 감리 대상·독립성·결과 반영·자격 통제를 구분하고 PMO 위탁 시 의무감리 예외 조건을 설명할 수 있는가?
+- [ ] Ⅱ 법적 근거: 법 → 시행령 → 감리기준의 3계층 트리에 감리 대상·독립성·결과 반영·자격 통제를 배치하고 PMO 위탁 시 의무감리 예외 조건을 설명할 수 있는가?
 - [ ] Ⅲ 수행체계: 대표 수행 흐름에서 계약·계획부터 조치 확인까지 활동·산출을 연결할 수 있는가?
-- [ ] Ⅳ 역할 경계: PMO와 상주감리를 목적·업무·독립성의 3축으로 비교할 수 있는가?
+- [ ] Ⅳ 역할 경계: 발주기관·PMO·상주감리·사업자 사이의 위탁·보고·관리·점검 화살표를 그리고, PMO와 상주감리를 목적·업무·위치의 3축으로 비교할 수 있는가?
 - [ ] Ⅴ 확인 판정: 개선사항과 조치 증적의 대응 여부를 통과·미통과로 판정할 수 있는가?
-- [ ] Ⅵ 문제점·대응책: 독립성 훼손·검사기준 부실·미조치 종결의 위험·대책·효과를 연결할 수 있는가?
-- [ ] Ⅶ 결론: 근거·검증방법·발견 증거·조치 증적을 연결한 판정·대안·검증·효과를 제시할 수 있는가?
+- [ ] Ⅵ 문제점·대응책: 독립 수행·근거 추적·조치 이행 통제 체인의 각 지점에 감리업무 개입·형식적 점검·미조치 종결 위험을 대응시키고 대책·효과를 연결할 수 있는가?
+- [ ] Ⅶ 결론: 근거·검증방법·발견 증거·조치 증적을 연결한 판정·대안·검증·효과 네 줄을 제시할 수 있는가?
 
 ## 연결 토픽
 
