@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -78,6 +78,57 @@ extra:
 
 ### 2. Kruchten 4+1 View 체계
 
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="kru-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Central Box: Use Case View (+1) -->
+  <rect x="185" y="65" width="150" height="90" rx="8" fill="var(--sl-color-accent-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="2" filter="url(#kru-shadow)"/>
+  <text x="260" y="90" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">유스케이스 뷰 (+1)</text>
+  <text x="260" y="108" text-anchor="middle" font-size="9" fill="var(--sl-color-text, #1f2937)">최종 사용자 · 발주자 관점</text>
+  <text x="260" y="125" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">기능 요구 명세 &amp; 통합 검증</text>
+  <text x="260" y="142" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">모든 뷰의 검증 기준</text>
+
+  <!-- Top-Left: Logical View -->
+  <rect x="15" y="15" width="150" height="85" rx="6" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#kru-shadow)"/>
+  <text x="90" y="36" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">논리 뷰 (Logical)</text>
+  <text x="90" y="54" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">설계자 · 분석가 관점</text>
+  <text x="90" y="72" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">클래스 다이어그램 · 패키지</text>
+  <text x="90" y="88" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">도메인 모델 &amp; 기능 책임</text>
+
+  <!-- Top-Right: Process View -->
+  <rect x="355" y="15" width="150" height="85" rx="6" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#kru-shadow)"/>
+  <text x="430" y="36" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">프로세스 뷰 (Process)</text>
+  <text x="430" y="54" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">시스템 통합자 관점</text>
+  <text x="430" y="72" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">동시성 · 스레드 · 프로세스</text>
+  <text x="430" y="88" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">성능(TPS) · 확장성 · 가용성</text>
+
+  <!-- Bottom-Left: Implementation View -->
+  <rect x="15" y="120" width="150" height="85" rx="6" fill="var(--sl-color-orange-subtle, #fffbeb)" stroke="var(--sl-color-orange-high, #d97706)" stroke-width="1.5" filter="url(#kru-shadow)"/>
+  <text x="90" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">구현 뷰 (Development)</text>
+  <text x="90" y="159" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">프로그래머 · 개발자 관점</text>
+  <text x="90" y="177" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">컴포넌트 · 모듈 라이브러리</text>
+  <text x="90" y="193" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">정적 의존성 및 빌드 관리</text>
+
+  <!-- Bottom-Right: Deployment View -->
+  <rect x="355" y="120" width="150" height="85" rx="6" fill="var(--sl-color-red-subtle, #fef2f2)" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="1.5" filter="url(#kru-shadow)"/>
+  <text x="430" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">배포 뷰 (Physical)</text>
+  <text x="430" y="159" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">시스템 엔지니어 · 운영자</text>
+  <text x="430" y="177" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">물리 서버 노드 · K8s 파드</text>
+  <text x="430" y="193" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">네트워크 토폴로지 · 통신망</text>
+
+  <!-- Connecting Lines -->
+  <line x1="165" y1="75" x2="185" y2="85" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+  <line x1="335" y1="85" x2="355" y2="75" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+  <line x1="165" y1="145" x2="185" y2="135" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+  <line x1="335" y1="135" x2="355" y2="145" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Kruchten 4+1 View 구조">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>중심 뷰: 유스케이스 뷰 (Use Case View, +1)</strong></span>
@@ -142,10 +193,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 정적 문서 중심 설계를 탈피하여 코드로 검증되는 진화형 아키텍처 확립
-- 대안: **경량 ADR(결정 기록) + CI 탑재 아키텍처 피트니스 함수(Fitness Function)**
-- 검증: ArchUnit 계층 검증 통과율 100% 및 부하 PoC 기반 ATAM 절충점 확정
-- 효과: 아키텍처 침식 원천 방지 · 비즈니스 변화에 대응하는 탄력적 시스템 진화
+- **판정 기준**: Kruchten 4+1 View 다관점 뷰 일치 및 CI 내 아키텍처 피트니스 함수(Fitness Function) 통과 판정
+- **대응 방안**: ArchUnit 기반 계층 위반 차단, ADR 버전 관리 및 ATAM 품질속성 시나리오 정량 평가 수행
+- **검증 체계**: CI 빌드 파이프라인 계층 의존성 위반 0건 확인 및 야간 부하 PoC(k6) 기반 SLO 준수율 검증
+- **기대 효과**: 아키텍처 침식(Erosion) 원천 방지, 유지보수 비용 50% 절감 및 클라우드 진화형 시스템 완성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="진화형 아키텍처 거버넌스 제언">
   <div class="itpe-pipeline-node">

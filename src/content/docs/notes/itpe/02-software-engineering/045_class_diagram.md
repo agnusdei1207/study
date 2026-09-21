@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -53,6 +53,70 @@ extra:
 ## Ⅱ. 클래스의 3단 구획과 가시성
 
 > 구획에는 의사결정에 필요한 도메인 특성만 남기고 기계적으로 생성되는 접근자는 생략해야 모델의 책임 경계가 보임.
+
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="cd-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: 3-Compartment Class Box -->
+  <rect x="15" y="15" width="220" height="190" rx="6" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="2" filter="url(#cd-shadow)"/>
+  
+  <!-- Section 1: Name -->
+  <rect x="15" y="15" width="220" height="42" rx="6" fill="var(--sl-color-blue-subtle, #eff6ff)"/>
+  <text x="125" y="34" text-anchor="middle" font-size="10" fill="var(--sl-color-text-muted, #4b5563)">&lt;&lt;Entity&gt;&gt;</text>
+  <text x="125" y="49" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">Order</text>
+  <line x1="15" y1="57" x2="235" y2="57" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+
+  <!-- Section 2: Attributes -->
+  <text x="25" y="75" font-size="9.5" fill="var(--sl-color-text, #1f2937)">- orderId: String</text>
+  <text x="25" y="93" font-size="9.5" fill="var(--sl-color-text, #1f2937)">- orderDate: Date</text>
+  <text x="25" y="111" font-size="9.5" fill="var(--sl-color-text, #1f2937)"># totalAmount: Money</text>
+  <line x1="15" y1="122" x2="235" y2="122" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+
+  <!-- Section 3: Operations -->
+  <text x="25" y="142" font-size="9.5" fill="var(--sl-color-text, #1f2937)">+ calculateTotal(): Money</text>
+  <text x="25" y="160" font-size="9.5" fill="var(--sl-color-text, #1f2937)">+ cancel(): Boolean</text>
+  <text x="25" y="178" font-size="9.5" fill="var(--sl-color-text, #1f2937)">~ notifyUser(): void</text>
+  <text x="25" y="196" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">가시성: +Public, -Private, #Protected, ~Package</text>
+
+  <!-- Right: 6 Key Relationships -->
+  <rect x="255" y="15" width="250" height="190" rx="8" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5" filter="url(#cd-shadow)"/>
+  <text x="268" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">UML 6대 관계 표기법</text>
+
+  <!-- Rel 1: Generalization -->
+  <line x1="270" y1="58" x2="350" y2="58" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <polygon points="350,53 362,58 350,63" fill="none" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <text x="372" y="61" font-size="9.5" fill="var(--sl-color-text, #1f2937)">일반화 (is-a 상속)</text>
+
+  <!-- Rel 2: Realization -->
+  <line x1="270" y1="84" x2="350" y2="84" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <polygon points="350,79 362,84 350,89" fill="none" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <text x="372" y="87" font-size="9.5" fill="var(--sl-color-text, #1f2937)">실체화 (인터페이스 구현)</text>
+
+  <!-- Rel 3: Composition -->
+  <polygon points="270,110 279,105 288,110 279,115" fill="var(--sl-color-text, #1f2937)" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <line x1="288" y1="110" x2="362" y2="110" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <text x="372" y="113" font-size="9.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">합성 (생명주기 종속)</text>
+
+  <!-- Rel 4: Aggregation -->
+  <polygon points="270,136 279,131 288,136 279,141" fill="none" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <line x1="288" y1="136" x2="362" y2="136" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <text x="372" y="139" font-size="9.5" fill="var(--sl-color-text, #1f2937)">집약 (독립적 부분-전체)</text>
+
+  <!-- Rel 5: Association -->
+  <line x1="270" y1="162" x2="362" y2="162" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <text x="372" y="165" font-size="9.5" fill="var(--sl-color-text, #1f2937)">연관 (1 .. * 구조적 참조)</text>
+
+  <!-- Rel 6: Dependency -->
+  <line x1="270" y1="188" x2="354" y2="188" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <polyline points="346,183 356,188 346,193" fill="none" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
+  <text x="372" y="191" font-size="9.5" fill="var(--sl-color-text, #1f2937)">의존 (일시적 파라미터 사용)</text>
+</svg>
+</div>
 
 | 구획 | 표기 | 판정 |
 |---|---|---|
@@ -115,10 +179,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 장식적 관계선과 불명확한 다중성이 구현 해석 차이의 원인
-- 대안: 관계별 의미 질문과 소유권 규칙을 모델 리뷰 체크리스트로 적용
-- 검증: 코드의 참조·상속·생성·삭제 규칙과 다이어그램 양방향 대조
-- 효과: 과도한 상속 억제 · 생명주기 오류 예방 · 구조 의사소통 향상
+- **판정 기준**: 장식적 관계선 배제, 객체 생명주기 배타적 소유(합성)와 다중성(`1..*`, `0..1`) 표기 필수 판정
+- **대응 방안**: 상속(Generalization) 남용 지양 및 합성(Composition over Inheritance) 기반 유연한 설계 원칙 적용
+- **검증 체계**: 모델-코드 간 정적 분석(ArchUnit) 자동 검증 및 다중성 불일치/고아 객체 참조 여부 PR 게이트 통제
+- **기대 효과**: 객체지향 무결성 확보, 런타임 NullPointerException 예방 및 시스템 리팩토링 유지보수성 50% 향상
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램 품질 개선 제언"><div class="itpe-pipeline-node"><strong>표기 중심 모델</strong><span><b>문제</b> 다중성·역할·소유권 해석 불일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>관계 의미 규칙</strong><span><b>대안</b> 참조 지속성·치환성·생명주기 질문 적용</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>모델-코드 대조</strong><span><b>판정</b> 관계·다중성·생성·삭제 규칙 일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>정적 구조 정합성</strong><span><b>효과</b> 변경 영향과 무결성 경계 명료화</span></div></div>
 

@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -67,6 +67,57 @@ extra:
 
 > 메모리 연속성 여부와 입출력 제약 조건에 따라 구조적 특성과 사용 목적이 명확히 분기된다.
 
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="lin-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: Stack & Queue Constraints -->
+  <rect x="15" y="15" width="235" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#lin-shadow)"/>
+  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">입출력 제약 구조 (스택 vs 큐)</text>
+
+  <!-- Stack Box -->
+  <rect x="25" y="48" width="100" height="92" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="75" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">스택 (LIFO)</text>
+  <rect x="35" y="76" width="80" height="18" rx="2" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="0.8"/>
+  <text x="75" y="89" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">Top: Push/Pop</text>
+  <rect x="35" y="98" width="80" height="16" rx="2" fill="var(--sl-color-gray-5, #e5e7eb)"/>
+  <text x="75" y="110" text-anchor="middle" font-size="8" fill="var(--sl-color-text-muted, #4b5563)">Bottom (폐쇄)</text>
+  <text x="75" y="132" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">호출스택·파싱</text>
+
+  <!-- Queue Box -->
+  <rect x="135" y="48" width="105" height="92" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="187" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">큐 (FIFO)</text>
+  <rect x="143" y="76" width="89" height="18" rx="2" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
+  <text x="187" y="89" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">Rear: Enqueue</text>
+  <rect x="143" y="98" width="89" height="18" rx="2" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
+  <text x="187" y="111" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">Front: Dequeue</text>
+  <text x="187" y="132" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">비동기 버퍼링</text>
+
+  <rect x="25" y="148" width="215" height="46" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="32" y="165" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">캐시 친화성: ArrayList &gt;&gt; LinkedList</text>
+  <text x="32" y="182" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">연속 메모리 공간 지역성으로 L1/L2 적중률 극대화</text>
+
+  <!-- Right: Circular Queue (Ring Buffer) -->
+  <rect x="265" y="15" width="240" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#lin-shadow)"/>
+  <text x="275" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">원형 큐 (Circular Queue / Ring Buffer)</text>
+  <text x="275" y="52" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">선형 큐의 False Overflow 극복 (모듈로 연산)</text>
+
+  <!-- Circular Visual -->
+  <circle cx="385" cy="108" r="42" fill="none" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="12" stroke-dasharray="24 4"/>
+  <circle cx="385" cy="108" r="30" fill="var(--sl-color-bg-card, #ffffff)"/>
+  <text x="385" y="105" text-anchor="middle" font-size="9" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">Size: N</text>
+  <text x="385" y="118" text-anchor="middle" font-size="8" fill="var(--sl-color-text-muted, #4b5563)">Ring</text>
+
+  <rect x="275" y="158" width="220" height="38" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="282" y="172" font-size="8.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">포화 판별: (Rear + 1) % Size == Front</text>
+  <text x="282" y="186" font-size="8" fill="var(--sl-color-accent-high, #5b21b6)">공백과 구분 위해 1칸을 비워두고 만석 판정</text>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="선형 구조 분류 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. 접근 제약 없는 구조 (자유로운 탐색)</strong></span>
@@ -122,10 +173,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 하드웨어 캐시 친화적 컬렉션 선정 및 바운디드 큐 기반 버퍼 거버넌스 확립
-- 대안: **ArrayList 표준화 + 원형 링 버퍼(Disruptor) + 리액티브 배압(Backpressure)**
-- 검증: CPU L1/L2 캐시 미스율 프로파일링 및 큐 수용 임계치(80%) 모니터링
-- 효과: 메모리 파편화 제거 · 초저지연 트랜잭션 처리율 극대화
+- **판정 기준**: 언바운디드 큐(무제한 버퍼) 운영 환경 전면 금지, 메모리 공간 지역성(Spatial Locality) 최적화 판정
+- **대응 방안**: 순차 순회/조회는 ArrayList 표준화, 고성능 메시지 큐는 원형 링 버퍼(Disruptor) 및 바운디드 큐 배압(Backpressure) 적용
+- **검증 체계**: APM 기반 큐 적재 임계치(80%) 초과 알람 및 CPU L1/L2 캐시 미스율 프로파일링 정기 검증
+- **기대 효과**: 힙 메모리 고갈(OOM) 원천 차단, 트랜잭션 처리 지연 80% 단축 및 GC 부하 없는 초저지연 버퍼링 달성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="선형 구조 엔터프라이즈 최적화 제언">
   <div class="itpe-pipeline-node">

@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -49,6 +49,60 @@ extra:
 
 > 위원회의 독립성은 외부위원 비율과 이해충돌 배제에서, 실효성은 결과를 계약에 반영하는 후속 조치에서 확보됨.
 
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="tdc-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: Requestors -->
+  <rect x="15" y="15" width="110" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#tdc-shadow)"/>
+  <text x="70" y="38" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">요청 주체</text>
+  <rect x="23" y="50" width="94" height="65" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="70" y="75" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">국가기관 등</text>
+  <text x="70" y="95" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">과업내용 확정</text>
+  
+  <rect x="23" y="125" width="94" height="65" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="70" y="150" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">계약 사업자</text>
+  <text x="70" y="170" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">변경 요청권</text>
+
+  <!-- Arrow to Center -->
+  <path d="M 125 110 L 145 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+
+  <!-- Center: Committee Deliberation -->
+  <rect x="145" y="15" width="225" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#tdc-shadow)"/>
+  <text x="257" y="38" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">과업심의위원회 (법 제50조)</text>
+  <text x="257" y="53" text-anchor="middle" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">위원 5~10인 (외부위원 과반 강제 / 제척·기피·회피)</text>
+
+  <!-- 3 Deliberation Pillars -->
+  <rect x="155" y="65" width="205" height="38" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="165" y="88" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">① 과업 범위 확정 및 변경 적정성</text>
+
+  <rect x="155" y="110" width="205" height="38" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="165" y="133" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">② 계약금액 조정 (FP 기반 대가 산정)</text>
+
+  <rect x="155" y="155" width="205" height="38" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="165" y="178" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">③ 사업기간 연장 (납기 연동 검토)</text>
+
+  <!-- Arrow to Right -->
+  <path d="M 370 110 L 390 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+
+  <!-- Right: Result & Action -->
+  <rect x="390" y="15" width="115" height="190" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#tdc-shadow)"/>
+  <text x="447" y="38" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">결과 및 계약</text>
+  <rect x="398" y="50" width="99" height="140" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="405" y="72" font-size="9" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">★ 14일 이내 통보</text>
+  <text x="405" y="90" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">결과 및 조치계획</text>
+  <line x1="405" y1="100" x2="490" y2="100" stroke="var(--sl-color-gray-5, #e5e7eb)"/>
+  <text x="405" y="122" font-size="9" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">계약서 변경 반영</text>
+  <text x="405" y="140" font-size="8.5" fill="var(--sl-color-text, #374151)">• 과업 Baseline</text>
+  <text x="405" y="156" font-size="8.5" fill="var(--sl-color-text, #374151)">• 금액/기간 확정</text>
+  <text x="405" y="174" font-size="8.5" fill="var(--sl-color-text, #374151)">• 무상 과업 차단</text>
+</svg>
+</div>
+
 | 구분 | 법정 내용 | 통제점 |
 |---|---|---|
 | 대상 | 과업내용 확정 | 입찰 전 범위 명료화 |
@@ -88,10 +142,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 사후 상정과 계약 미반영이 과업심의의 실효성을 훼손
-- 대안: 변경 전 Gate와 범위·금액·기간 통합 안건, 결과-계약 추적표 적용
-- 검증: 의결 전 착수 여부, 외부위원·이해충돌 기록, 계약·검수 기준 반영 확인
-- 효과: 무상 과업 확대 억제 · 분쟁 근거 명료화 · 계약 이행 가능성 향상
+- **판정 기준**: 사전 심의 원칙 강제(사후 추인 금지), 과업 변경 시 계약금액 및 납기 조정 연동 필수 판정
+- **대응 방안**: 소프트웨어 진흥법 제50조 근거 외부위원 과반 위원회 구성 및 기능점수(FP) 기반 객관적 비용 산출
+- **검증 체계**: 사업자 요청 후 14일 이내 심의결과 통보 준수율 및 변경계약 체결 내역 감리 전수 검증
+- **기대 효과**: 구두 지시에 의한 무상 과업 추가 원천 근절, 공공 SW 제값 주기 실현 및 법적 분쟁 예방
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의 실효성 개선 제언"><div class="itpe-pipeline-node"><strong>사후·형식 심의</strong><span><b>문제</b> 변경 실행 뒤 범위만 승인</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>변경 전 Gate</strong><span><b>대안</b> 범위·금액·기간과 증거를 한 안건으로 심의</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>계약 추적</strong><span><b>판정</b> 의결 결과와 계약·일정·검수 기준 일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>공정한 변경 통제</strong><span><b>효과</b> 책임·대가·납기 분쟁 예방</span></div></div>
 

@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -55,6 +55,65 @@ extra:
 ## Ⅱ. 플랫폼 구성요소와 책임 경계
 
 > 모델·검색·도구·실행환경·정책을 분리해야 오류 원인을 추적하고 각 경계에 최소 권한을 적용할 수 있음.
+
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="ain-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Step 1: Spec & Goal -->
+  <rect x="15" y="15" width="110" height="190" rx="6" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#ain-shadow)"/>
+  <text x="70" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">1. 사양 계약</text>
+  <rect x="23" y="48" width="94" height="145" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="30" y="70" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">• 작업 명세 (BDD)</text>
+  <text x="30" y="88" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• 인수 조건 정의</text>
+  <text x="30" y="106" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• Spec-lock 잠금</text>
+  <text x="30" y="132" font-size="9" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">• 도구 허용 목록</text>
+  <text x="30" y="150" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">최소 권한 부여</text>
+
+  <!-- Arrow -->
+  <path d="M 125 110 L 140 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+
+  <!-- Step 2: Context & Planning -->
+  <rect x="140" y="15" width="110" height="190" rx="6" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#ain-shadow)"/>
+  <text x="195" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">2. 문맥 &amp; 계획</text>
+  <rect x="148" y="48" width="94" height="145" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="155" y="70" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">• Repo RAG</text>
+  <text x="155" y="88" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">코드베이스 검색</text>
+  <text x="155" y="106" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">AST 의존성 분석</text>
+  <text x="155" y="132" font-size="9" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">• 에이전트 계획</text>
+  <text x="155" y="150" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">단계적 변경 분해</text>
+
+  <!-- Arrow -->
+  <path d="M 250 110 L 265 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+
+  <!-- Step 3: Isolated Execution Sandbox -->
+  <rect x="265" y="15" width="115" height="190" rx="6" fill="var(--sl-color-orange-subtle, #fffbeb)" stroke="var(--sl-color-orange-high, #d97706)" stroke-width="1.5" filter="url(#ain-shadow)"/>
+  <text x="322" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">3. 격리 Sandbox</text>
+  <rect x="273" y="48" width="99" height="145" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="280" y="70" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">• Tool Gateway</text>
+  <text x="280" y="88" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">파일 수정 / 패치</text>
+  <text x="280" y="106" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">빌드 &amp; 단위테스트</text>
+  <text x="280" y="132" font-size="9" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">• 자원 격리</text>
+  <text x="280" y="150" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">네트워크·권한 제한</text>
+
+  <!-- Arrow -->
+  <path d="M 380 110 L 395 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+
+  <!-- Step 4: Verification & Gate -->
+  <rect x="395" y="15" width="110" height="190" rx="6" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#ain-shadow)"/>
+  <text x="450" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">4. 검증 &amp; Gate</text>
+  <rect x="403" y="48" width="94" height="145" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="410" y="70" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">• 독립 Gate</text>
+  <text x="410" y="88" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">SCA 공급망 검사</text>
+  <text x="410" y="106" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">시크릿 유출 스캔</text>
+  <text x="410" y="132" font-size="9" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">• Human-Loop</text>
+  <text x="410" y="150" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">최종 PR 승인·병합</text>
+</svg>
+</div>
 
 | 구성 | 책임 | 통제 |
 |---|---|---|
@@ -112,10 +171,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 자율성 확대보다 검증 증거와 권한 경계의 완비 여부를 먼저 평가
-- 대안: 위험 등급별 Tool 권한·Sandbox·독립 Gate·인간 승인점 설계
-- 검증: 요구 추적·회귀·보안·감사 로그와 롤백 가능성 확인
-- 효과: 자동화 이득 유지 · 오류 확산 억제 · 책임 있는 변경 승인
+- **판정 기준**: AI 에이전트 생성 코드의 무조건적 신뢰 배제, 독립 Quality Gate 통과 및 고위험 작업 인간 승인 판정
+- **대응 방안**: 컨테이너 격리 Sandbox 실행, Tool Gateway 최소 권한 통제 및 BDD 기반 Spec-lock 강제
+- **검증 체계**: SCA 공급망 검사, 시크릿 스캐너, 독립 회귀 테스트 전수 통과 확인 및 감사 로그 실시간 보존
+- **기대 효과**: 비결정적 생성의 결정적 통제 완성, 개발 생산성 3배 증대 및 프로덕션 보안 결함 99% 차단
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼 거버넌스 제언"><div class="itpe-pipeline-node"><strong>무제한 자율 실행</strong><span><b>문제</b> 사양 오류와 과잉 권한이 변경 전반으로 확산</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>위험 기반 권한</strong><span><b>대안</b> 작업 등급별 도구·데이터·승인 경계 설정</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>독립 Quality Gate</strong><span><b>판정</b> 요구·회귀·공급망·비밀정보 검사 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>점진적 자율성</strong><span><b>효과</b> 증거가 있는 범위만 실행 권한 확대</span></div></div>
 

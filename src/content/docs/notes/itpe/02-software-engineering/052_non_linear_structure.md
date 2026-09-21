@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -70,6 +70,66 @@ extra:
 
 > 데이터의 배치 형태와 탐색 메커니즘의 근본적 차이로 인해 적용 도메인이 명확히 분기된다.
 
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="nl-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: Tree Structure (1:N Hierarchy) -->
+  <rect x="15" y="15" width="235" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#nl-shadow)"/>
+  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">트리 (Tree) — 1:N 계층형</text>
+  <text x="25" y="52" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">단일 Root · 무사이클 · 간선 N-1</text>
+
+  <!-- Tree Diagram -->
+  <circle cx="132" cy="78" r="14" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+  <text x="132" y="82" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">Root</text>
+
+  <line x1="122" y1="90" x2="82" y2="114" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+  <line x1="142" y1="90" x2="182" y2="114" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+
+  <circle cx="75" cy="125" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+  <text x="75" y="129" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">A</text>
+
+  <circle cx="190" cy="125" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+  <text x="190" y="129" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">B</text>
+
+  <rect x="25" y="152" width="215" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="32" y="168" font-size="9.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">응용: RDBMS B+Tree 인덱스</text>
+  <text x="32" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">디스크 블록 I/O 최소화 및 O(log N) 탐색</text>
+
+  <!-- Right: Graph & DAG Structure (N:M Network) -->
+  <rect x="265" y="15" width="240" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#nl-shadow)"/>
+  <text x="275" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">그래프 (Graph / DAG) — N:M 망형</text>
+  <text x="275" y="52" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">정점(V) &amp; 간선(E) · 사이클/비순환 방향</text>
+
+  <!-- DAG Diagram -->
+  <circle cx="310" cy="95" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <text x="310" y="99" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">T1</text>
+
+  <line x1="323" y1="95" x2="368" y2="78" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <line x1="323" y1="95" x2="368" y2="114" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+
+  <circle cx="385" cy="75" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <text x="385" y="79" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">T2</text>
+
+  <circle cx="385" cy="115" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <text x="385" y="119" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">T3</text>
+
+  <line x1="398" y1="78" x2="443" y2="95" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <line x1="398" y1="114" x2="443" y2="95" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+
+  <circle cx="455" cy="95" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <text x="455" y="99" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">T4</text>
+
+  <rect x="275" y="152" width="220" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="282" y="168" font-size="9.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">응용: Airflow / Spark 분산 DAG</text>
+  <text x="282" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">의존성 위상정렬 기반 병렬 실행 보증</text>
+</svg>
+</div>
+
 | 비교 항목 | 선형 자료구조 (Linear) | 비선형 자료구조 (Non-Linear) |
 |---|---|---|
 | **원소 간 관계** | **1 : 1** (유일한 선행자와 후속자) | **1 : N (트리)** 또는 **N : M (그래프)** |
@@ -115,10 +175,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 도메인 특성에 따른 자료구조 최적화 (계층 색인: B+Tree, 의존성 제어: DAG)
-- 대안: **B+Tree 기반 디스크 블록 I/O 최소화 + DAG 기반 병렬 분산 파이프라인**
-- 검증: 진입차수 기반 사이클 검출 · 인덱스 블록 분할(Split) 모니터링
-- 효과: 대규모 트랜잭션 응답 지연 해소 · 파이프라인 무장애 연속성 확보
+- **판정 기준**: 데이터 관계 특성(1:N 계층 vs N:M 네트워크) 및 순환(Cycle) 허용 여부에 따른 구조 분기 판정
+- **대응 방안**: 데이터베이스 색인은 B+Tree 표준화, 분산 파이프라인/MSA 호출은 DAG 및 위상정렬 아키텍처 채택
+- **검증 체계**: Tarjan 알고리즘 기반 순환 의존성 CI 정적 검출 100% 및 B+Tree 인덱스 높이(Depth ≤ 4) 정기 모니터링
+- **기대 효과**: 파이프라인 교착 상태 원천 차단, 대용량 트랜잭션 $O(\log N)$ 검색 보증 및 시스템 처리율 극대화
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="비선형 구조 엔터프라이즈 활용 제언">
   <div class="itpe-pipeline-node">

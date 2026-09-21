@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -69,6 +69,51 @@ extra:
 ## Ⅱ. 표준 명세서 구조: IEEE 830 및 ISO/IEC/IEEE 29148
 
 > 명세서는 단순 기능 나열이 아니라, 시스템의 맥락과 외부 인터페이스를 아우르는 3대 섹션으로 구성된다.
+
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="srs-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: SRS Structure (3 Sections) -->
+  <rect x="15" y="15" width="235" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#srs-shadow)"/>
+  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">SRS 표준 3대 구조 (IEEE 830)</text>
+
+  <rect x="25" y="46" width="215" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="32" y="63" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">1. 서론 (Introduction)</text>
+  <text x="32" y="78" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">목적 · 범위 · 용어 정의 · 참조 표준</text>
+
+  <rect x="25" y="94" width="215" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="32" y="111" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">2. 전반적 설명 (Overall)</text>
+  <text x="32" y="126" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">제품 관점 · 기능 요약 · 제약 및 가정</text>
+
+  <rect x="25" y="142" width="215" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="32" y="159" font-size="10" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">3. 세부 요구사항 (Specific)</text>
+  <text x="32" y="174" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 기능적 요구 (입력/처리/출력/예외)</text>
+  <text x="32" y="188" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• 외부 인터페이스 &amp; 비기능 품질속성</text>
+
+  <!-- Right: 8 Quality Attributes -->
+  <rect x="265" y="15" width="240" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#srs-shadow)"/>
+  <text x="275" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">우수 SRS 8대 품질 특성</text>
+
+  <!-- Content Integrity Box -->
+  <rect x="275" y="46" width="220" height="68" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="283" y="63" font-size="10" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">[내용적 무결성] 정 · 명 · 완 · 일</text>
+  <text x="283" y="80" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 정확성(Correct) · 명확성(Unambiguous)</text>
+  <text x="283" y="96" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 완전성(Complete) · 일관성(Consistent)</text>
+  <text x="283" y="109" font-size="8" fill="var(--sl-color-text-muted, #4b5563)">해석 다의성 및 모순의 원천 배제</text>
+
+  <!-- Management Integrity Box -->
+  <rect x="275" y="122" width="220" height="72" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="283" y="139" font-size="10" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">[관리적 검증성] 순 · 검 · 수 · 추</text>
+  <text x="283" y="156" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 순위화(Ranked) · 검증가능성(Verifiable)</text>
+  <text x="283" y="172" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 수정가능성(Modifiable) · 추적가능성(Traceable)</text>
+  <text x="283" y="187" font-size="8" fill="var(--sl-color-text-muted, #4b5563)">정량적 수치화 &amp; RTM 100% 매핑</text>
+</svg>
+</div>
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SRS 표준 목차 3대 섹션">
   <div class="itpe-pipeline-node">
@@ -134,10 +179,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 자연어 명세의 모호성 극복 및 실행 가능한 명세 거버넌스 확립
-- 대안: **SEI 품질속성 시나리오 정량화 + BDD(Living Documentation) 파이프라인**
-- 검증: Given-When-Then 시나리오 자동 테스트 통과율 100% 및 RTM 전수 검증
-- 효과: 검수 분쟁 제로화 · 명세-코드 간 불일치 원천 해소
+- **판정 기준**: 자연어 모호성 전면 배제, 정량적 검증가능성(Verifiable) 및 RTM 추적성 충족 필수 판정
+- **대응 방안**: SEI 품질속성 시나리오 정량화(TPS, P99) 및 BDD(Given-When-Then) 실행 가능한 명세 도입
+- **검증 체계**: CI/CD 파이프라인 BDD 인수 테스트 100% 자동 통과 및 RTM 양방향 전수 매핑 감리 검증
+- **기대 효과**: 준공 검수 분쟁 제로화, 문서 사문화 방지 및 명세-코드 간 100% 실시간 동기화 달성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 명세 현대화 거버넌스 제언">
   <div class="itpe-pipeline-node">

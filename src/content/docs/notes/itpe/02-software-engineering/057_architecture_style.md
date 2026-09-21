@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -71,6 +71,62 @@ extra:
 
 > 데이터 전달 방식과 제어 흐름에 따라 4대 고전 계열로 체계화된다.
 
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="style-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 1. Pipes & Filters -->
+  <rect x="15" y="15" width="235" height="90" rx="6" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#style-shadow)"/>
+  <text x="25" y="34" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">1. 데이터 흐름: Pipes &amp; Filters</text>
+  <rect x="25" y="44" width="48" height="28" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="49" y="62" text-anchor="middle" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">Filter1</text>
+  <path d="M 73 58 L 93 58" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+  <rect x="93" y="44" width="48" height="28" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="117" y="62" text-anchor="middle" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">Filter2</text>
+  <path d="M 141 58 L 161 58" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+  <rect x="161" y="44" width="48" height="28" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="185" y="62" text-anchor="middle" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">Filter3</text>
+  <text x="25" y="92" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">단방향 순차 스트리밍 변환 (Unix 파이프, ETL)</text>
+
+  <!-- 2. Layered Architecture -->
+  <rect x="270" y="15" width="235" height="90" rx="6" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#style-shadow)"/>
+  <text x="280" y="34" font-size="11" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">2. 호출/복귀: Layered (계층형)</text>
+  <rect x="280" y="44" width="215" height="15" rx="2" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
+  <text x="387" y="55" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">표현 계층 (Presentation Layer)</text>
+  <rect x="280" y="61" width="215" height="15" rx="2" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
+  <text x="387" y="72" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">비즈니스 계층 (Business Logic)</text>
+  <rect x="280" y="78" width="215" height="15" rx="2" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
+  <text x="387" y="89" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">데이터 영속 계층 (Persistence Layer)</text>
+  <text x="280" y="101" font-size="7.5" fill="var(--sl-color-text-muted, #4b5563)">상위가 직하위에만 의존하는 수평 분할</text>
+
+  <!-- 3. Event-Driven Architecture (EDA) -->
+  <rect x="15" y="115" width="235" height="90" rx="6" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#style-shadow)"/>
+  <text x="25" y="134" font-size="11" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">3. 독립 컴포넌트: Event-Driven (EDA)</text>
+  <rect x="25" y="144" width="55" height="26" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="52" y="161" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">Producer</text>
+  <path d="M 80 157 L 98 157" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <rect x="98" y="142" width="70" height="30" rx="3" fill="var(--sl-color-accent, #7c3aed)"/>
+  <text x="133" y="161" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">Broker/Topic</text>
+  <path d="M 168 157 L 186 157" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <rect x="186" y="144" width="55" height="26" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="213" y="161" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">Consumer</text>
+  <text x="25" y="193" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">비동기 발행-구독 기반 결합도 제로 (Kafka)</text>
+
+  <!-- 4. Blackboard / Repository -->
+  <rect x="270" y="115" width="235" height="90" rx="6" fill="var(--sl-color-orange-subtle, #fffbeb)" stroke="var(--sl-color-orange-high, #d97706)" stroke-width="1.5" filter="url(#style-shadow)"/>
+  <text x="280" y="134" font-size="11" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">4. 데이터 중심: Blackboard (저장소)</text>
+  <rect x="345" y="145" width="85" height="30" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-orange-high, #d97706)" stroke-width="1.5"/>
+  <text x="387" y="164" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">Blackboard</text>
+  <text x="300" y="160" font-size="8.5" fill="var(--sl-color-text, #1f2937)">KS1 ⇄</text>
+  <text x="440" y="160" font-size="8.5" fill="var(--sl-color-text, #1f2937)">⇄ KS2</text>
+  <text x="280" y="193" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">중앙 공유 저장소와 독립 지식원 협업 (AI/음성)</text>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="4대 고전 아키텍처 스타일 체계">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. 데이터 흐름 계열: 파이프 앤 필터 (Pipes & Filters)</strong></span>
@@ -125,10 +181,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 도메인 특성에 맞춘 품질속성 트레이드오프 평가 및 하이브리드 스타일 설계
-- 대안: **시스템 외부(비동기 EDA) + 시스템 내부(도메인 격리 헥사고날 아키텍처)**
-- 검증: ATAM 기반 품질속성 절충점 분석 및 서비스 간 결합도 지수 측정
-- 효과: 고확장성 트래픽 수용 능력 확보 · 비즈니스 코어의 영속적 유지보수성 달성
+- **판정 기준**: 단일 스타일 맹신 탈피, 도메인별 최우선 품질속성(확장성 vs 일관성) 트레이드오프 판정
+- **대응 방안**: 시스템 외부(비동기 EDA/파이프-필터)와 시스템 내부(도메인 격리 헥사고날 아키텍처)의 하이브리드 조합 적용
+- **검증 체계**: ATAM 기반 품질 시나리오 평가 및 비즈니스 코어와 인프라 간 결합도 ArchUnit 정적 검증
+- **기대 효과**: 트래픽 스파이크 완벽 흡수, 분산 복잡도 최소화 및 비즈니스 로직 변경 비용 60% 절감
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="하이브리드 아키텍처 스타일 제언">
   <div class="itpe-pipeline-node">
