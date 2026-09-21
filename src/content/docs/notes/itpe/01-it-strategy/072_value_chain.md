@@ -1,6 +1,6 @@
 ---
 title: "가치사슬(Value Chain)"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T04:50:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "C"
 extra:
   keyword_grade: "C"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,27 +20,11 @@ extra:
   <strong>가치사슬(Value Chain)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: **가치사슬(Value Chain)**은 기업을 전략적으로 중요한 활동으로 분해해 원가우위·차별화의 원천을 찾는 분석 틀
-- 메커니즘: 본원적 활동·지원 활동 분해 → 활동별 비용·가치 동인 확인 → 활동 간 **연계(Linkage)** 재설계
-- 산출물: 가치활동 지도 · 비용·차별화 동인 · 개선 우선순위
-
-<div class="itpe-flow-map" role="img" aria-label="가치사슬 9대 활동·IT 솔루션 매핑 흐름">
-  <div class="itpe-flow-node">
-    <strong>4대 지원 활동(Support Activities)</strong>
-    <div class="itpe-step-detail"><strong>구성</strong><span>기업 하부구조 · 인적자원관리 · 기술개발 · 조달</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>5대 본원적 활동 (Primary Activities)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>물류/생산</strong><span>입고물류(<span class="itpe-keyword"><strong>SCM/WMS</strong></span>) → 생산운영(<span class="itpe-keyword"><strong>MES</strong></span>) → 출고물류(<span class="itpe-keyword"><strong>TMS</strong></span>)</span></div>
-      <div class="itpe-flow-branch"><strong>고객접점</strong><span>마케팅·영업(<span class="itpe-keyword"><strong>CRM</strong></span>) → 사후 서비스(<span class="itpe-keyword"><strong>A/S 포털</strong></span>)</span></div>
-      <div class="itpe-flow-branch"><strong>수익창출</strong><span>총가치 창출액 대비 총비용 차감 = <span class="itpe-keyword"><strong>마진(Margin)</strong></span></span></div>
-    </div>
-  </div>
-</div>
+- 본질: 기업의 활동을 본원적·지원 활동으로 분해하여 원가우위와 차별화 마진(Margin)을 도출하는 분석 틀
+- 메커니즘: 지원활동(인프라·HR·R&D·조달)이 본원활동(입고→생산→출고→마케팅→서비스)을 뒷받침하여 마진 창출
+- 판정 기준: 부서별 국소 최적화 지양 및 E2E 납기 리드타임 10% 이상 단축 달성
 
 <details>
 <summary>핵심 용어</summary>
@@ -68,81 +52,36 @@ extra:
 
 > 공급자로부터 원자재가 입고되어 가공, 출하, 판매, 사후 관리로 이어지는 흐름 속에서 부가가치가 누적되며 마진(Margin)을 창출함.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="마이클 포터의 가치사슬(Value Chain) 9대 활동 및 마진 구조도">
-    <!-- Support Activities (4 Rows) -->
-    <rect x="20" y="15" width="410" height="24" rx="3" class="itpe-svg-node"></rect>
-    <text x="225" y="31" class="itpe-svg-sub">기업 하부구조 (Firm Infrastructure - 기획, 재무, 법무, 품질경영)</text>
+```mermaid
+flowchart TD
+    subgraph SUP["4대 지원 활동 (Support Activities)"]
+        direction TB
+        S1["기업 하부구조 (Firm Infrastructure - 기획, 재무, 법무, 품질경영)"]
+        S2["인적자원 관리 (Human Resource Management - 채용, 교육, 보상)"]
+        S3["기술 개발 (Technology Development - R&D, IT 시스템, 제품설계)"]
+        S4["조달 활동 (Procurement - 원자재, 설비, 외주용역 구매협상)"]
+    end
 
-    <rect x="20" y="42" width="410" height="24" rx="3" class="itpe-svg-node"></rect>
-    <text x="225" y="58" class="itpe-svg-sub">인적자원 관리 (Human Resource Management - 채용, 교육, 평가, 보상)</text>
+    subgraph PRI["5대 본원적 활동 (Primary Activities)"]
+        direction LR
+        P1["입고물류<br/>(WMS)"] --> P2["생산운영<br/>(MES)"] --> P3["출고물류<br/>(TMS)"] --> P4["마케팅/영업<br/>(CRM)"] --> P5["사후서비스<br/>(A/S)"]
+    end
 
-    <rect x="20" y="69" width="410" height="24" rx="3" class="itpe-svg-node"></rect>
-    <text x="225" y="85" class="itpe-svg-sub">기술 개발 (Technology Development - R&D, IT 시스템, 제품/공정 설계)</text>
+    SUP -.-> PRI
+    PRI --> MARGIN["마진 (Margin)<br/>총 창출가치 - 활동 총비용"]
+```
 
-    <rect x="20" y="96" width="410" height="24" rx="3" class="itpe-svg-node"></rect>
-    <text x="225" y="112" class="itpe-svg-sub">조달 활동 (Procurement - 원자재, 설비, 외주 용역 구매 협상)</text>
-
-    <!-- Primary Activities (5 Columns) -->
-    <rect x="20" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
-    <text x="59" y="152" class="itpe-svg-title">입고물류</text>
-    <text x="59" y="170" class="itpe-svg-sub">자재수급</text>
-    <text x="59" y="186" class="itpe-svg-sub">(WMS)</text>
-
-    <rect x="103" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
-    <text x="142" y="152" class="itpe-svg-title">생산운영</text>
-    <text x="142" y="170" class="itpe-svg-sub">가공/조립</text>
-    <text x="142" y="186" class="itpe-svg-sub">(MES)</text>
-
-    <rect x="186" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
-    <text x="225" y="152" class="itpe-svg-title">출고물류</text>
-    <text x="225" y="170" class="itpe-svg-sub">유통/배송</text>
-    <text x="225" y="186" class="itpe-svg-sub">(TMS)</text>
-
-    <rect x="269" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
-    <text x="308" y="152" class="itpe-svg-title">마케팅/영업</text>
-    <text x="308" y="170" class="itpe-svg-sub">판촉/판매</text>
-    <text x="308" y="186" class="itpe-svg-sub">(CRM)</text>
-
-    <rect x="352" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
-    <text x="391" y="152" class="itpe-svg-title">서비스</text>
-    <text x="391" y="170" class="itpe-svg-sub">유지보수</text>
-    <text x="391" y="186" class="itpe-svg-sub">(A/S)</text>
-
-    <!-- Margin Arrow (Right Wedge) -->
-    <polygon points="435,15 495,110 435,205 450,110" fill="var(--sl-color-accent)" opacity="0.85"></polygon>
-    <text x="470" y="105" fill="#ffffff" font-weight="bold" font-size="12" text-anchor="middle">마</text>
-    <text x="470" y="125" fill="#ffffff" font-weight="bold" font-size="12" text-anchor="middle">진</text>
-  </svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="가치사슬 5대 본원적 활동 파이프라인">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 입고 물류 (Inbound Logistics)</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>원자재 수급·검수·보관</span></div><div class="itpe-step-detail"><strong>산출</strong><span>투입 자원·재고 가용성</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 생산·운영 (Operations)</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>가공·조립·품질검사</span></div><div class="itpe-step-detail"><strong>산출</strong><span>완성 제품·서비스</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 출고 물류 (Outbound Logistics)</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>보관·주문처리·배송</span></div><div class="itpe-step-detail"><strong>산출</strong><span>고객 인도</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 마케팅·영업 (Marketing & Sales)</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>가격·판촉·판매</span></div><div class="itpe-step-detail"><strong>산출</strong><span>수요·주문</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 사후 서비스 (Service)</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>설치·수리·고객지원</span></div><div class="itpe-step-detail"><strong>산출</strong><span>사용가치·고객 유지</span></div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Margin</strong></span> · 최종 소비자의 지불 용의 가치에서 9대 가치 활동의 총비용을 차감한 이익 극대화</div>
+| 축 | 활동 | 주요 역할 및 정보기술 |
+|---|---|---|
+| **본원적 활동** | 입고 물류 | 원자재 수급, 검수, 재고관리 (WMS, SCM) |
+| | 생산·운영 | 가공, 조립, 패키징, 설비 제어 (MES, POP) |
+| | 출고 물류 | 완제품 보관, 주문 처리, 수송 배송 (TMS) |
+| | 마케팅·영업 | 판촉, 가격 책정, 채널 관리, 판매 (CRM) |
+| | 사후 서비스 | 설치, 수리, 고객지원, 부품 교체 (A/S 포털) |
+| **지원 활동** | 기업 하부구조 | 전사 기획, 재무회계, 법무, 품질경영 (ERP) |
+| | 인적자원 관리 | 채용, 교육훈련, 성과평가, 보상 (e-HR) |
+| | 기술 개발 | R&D, 제품 설계, 공정 개선 (PLM, CAD) |
+| | 조달 활동 | 원자재, 설비, 외주용역 구매 협상 (e-Procurement) |
 
 ## Ⅲ. 가치활동과 정보기술 활용
 
@@ -180,27 +119,13 @@ extra:
 - **검증 체계 (Verification)**: 활동별 원가 동인(Cost Drivers)과 차별화 동인(Uniqueness Drivers)을 정량 계측하여 가치사슬 전 구간의 E2E 현금전환주기(CCC)를 검증함.
 - **기대 효과 (Impact)**: 국소 최적화의 함정 탈피, 불필요한 재고 유지비용 35% 절감, 고객 맞춤형 차별화 경쟁 우위 및 영업이익률(마진) 극대화를 달성함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="가치사슬 활동 간 연계 개선 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>문제</strong><span>활동 간 데이터 단절·업무 책임 경계의 병목</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>대안</strong><span>병목 활동의 데이터 추적·업무 규칙·책임 경계 개선</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>리드타임·결품률·단위당 원가·고객 유지율의 개선 여부</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>리드타임·원가 개선과 고객가치 강화</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>부서별 사일로 국소 최적화 · 활동 간 데이터 단절 · 마진 훼손"] --> P2["개선 대안<br/>본원적 활동 간 EDA 실시간 연계 · 부서 간 통합 KPI 정렬"]
+    P2 --> P3{"검증 판정<br/>E2E 리드타임 증가율 <= 0% & 재고 유지비용 35% 감축?"}
+    P3 -->|달성| P4["실행 효과<br/>국소 최적화 함정 탈피 · 현금전환주기(CCC) 단축 · 영업이익률 극대화"]
+    P3 -->|미달| P5["보완 조치<br/>활동별 원가동인(Cost Drivers) 및 병목 연계구간 재설계"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -209,13 +134,31 @@ extra:
 - 정의: 기업의 활동을 **5대 본원적 활동**과 **4대 지원 활동**으로 체계화하여 부가가치 창출 구조와 **마진(Margin)**을 분석하는 **마이클 포터의 경영 전략 모델**
 - 목적: 활동별 원가 동인 분석 · 프로세스 최적화 · 연계성 강화
 
-### 2. 핵심 구조·판정
+### 2. 가치사슬 9대 활동 및 마진 구조
 
-| 축 | 구성 | 판정 |
-|---|---|---|
-| **본원적 활동** | 입고 물류 → 생산·운영 → 출고 물류 → 마케팅·영업 → 사후 서비스 | 고객가치 창출 흐름 |
-| **지원 활동** | 기업 하부구조 · 인적자원관리 · 기술개발 · 조달 | 본원 활동 지원 |
-| **활동 간 연계** | 비용·차별화 동인 추적 | 마진 기여·병목 개선 여부 |
+```mermaid
+flowchart TD
+    subgraph SUP["4대 지원 활동 (Support Activities)"]
+        direction TB
+        S1["기업 하부구조 (Firm Infrastructure - 기획, 재무, 법무, 품질경영)"]
+        S2["인적자원 관리 (Human Resource Management - 채용, 교육, 보상)"]
+        S3["기술 개발 (Technology Development - R&D, IT 시스템, 제품설계)"]
+        S4["조달 활동 (Procurement - 원자재, 설비, 외주용역 구매협상)"]
+    end
+
+    subgraph PRI["5대 본원적 활동 (Primary Activities)"]
+        direction LR
+        P1["입고물류<br/>(WMS)"] --> P2["생산운영<br/>(MES)"] --> P3["출고물류<br/>(TMS)"] --> P4["마케팅/영업<br/>(CRM)"] --> P5["사후서비스<br/>(A/S)"]
+    end
+
+    SUP -.-> PRI
+    PRI --> MARGIN["마진 (Margin)<br/>총 창출가치 - 활동 총비용"]
+```
+
+### 3. 핵심 통제
+
+- **Linkages 최적화**: 단위 부서 효율보다 활동 간 데이터 연계를 통한 마진 극대화
+- **E2E 흐름 개선**: SCM-MES-TMS-CRM 전 구간 현금전환주기 단축
 
 ## 출제 이력과 검증 출처
 

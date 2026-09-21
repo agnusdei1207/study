@@ -1,6 +1,6 @@
 ---
 title: "시스템 운영·유지보수 감리"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T03:15:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -17,36 +17,11 @@ extra:
   <span>IT 전략·관리</span><span>정보시스템 감리·운영 품질</span><strong>운영·유지보수 감리</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 독립된 제3자가 운영·유지보수의 효율성·안전성·계약이행을 증적으로 점검
-- 운영: 서비스·장애·성능·용량·백업·DR·보안·사용자 지원
-- 유지보수: SR·변경·결함·시험·배포·형상·계약범위
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 560" role="img" aria-label="운영 감리와 유지보수 감리가 증적 검증과 개선조치로 연결되는 구조">
-  <defs><marker id="arrow-operation-audit" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="55" y="30" width="290" height="126" rx="14" />
-  <text class="itpe-svg-title" x="200" y="65" text-anchor="middle">운영 감리</text>
-  <text class="itpe-svg-sub" x="200" y="94" text-anchor="middle">SLA · 장애 · 성능 · 용량</text>
-  <text class="itpe-svg-sub" x="200" y="122" text-anchor="middle">백업 · DR · 보안 · 지원</text>
-  <rect class="itpe-svg-node" x="415" y="30" width="290" height="126" rx="14" />
-  <text class="itpe-svg-title" x="560" y="65" text-anchor="middle">유지보수 감리</text>
-  <text class="itpe-svg-sub" x="560" y="94" text-anchor="middle">SR · 변경 · 결함 · 시험</text>
-  <text class="itpe-svg-sub" x="560" y="122" text-anchor="middle">배포 · 형상 · 계약범위</text>
-  <path class="itpe-svg-link" d="M200 156 V215 H330" marker-end="url(#arrow-operation-audit)" />
-  <path class="itpe-svg-link" d="M560 156 V215 H430" marker-end="url(#arrow-operation-audit)" />
-  <rect class="itpe-svg-node is-current" x="190" y="226" width="380" height="108" rx="14" />
-  <text class="itpe-svg-title" x="380" y="261" text-anchor="middle">독립적 증적 검증</text>
-  <text class="itpe-svg-sub" x="380" y="290" text-anchor="middle">문서 · 설정 · Log · Ticket · Interview</text>
-  <text class="itpe-svg-sub" x="380" y="316" text-anchor="middle">표본 · 재수행 · 교차대조</text>
-  <path class="itpe-svg-link" d="M380 334 V390" marker-end="url(#arrow-operation-audit)" />
-  <rect class="itpe-svg-node" x="190" y="400" width="380" height="108" rx="14" />
-  <text class="itpe-svg-title" x="380" y="435" text-anchor="middle">발견사항·개선조치</text>
-  <text class="itpe-svg-sub" x="380" y="464" text-anchor="middle">영향도 · 시급성 · 원인 · 권고</text>
-  <text class="itpe-svg-sub" x="380" y="490" text-anchor="middle">조치계획 · 이행확인 · 잔여위험</text>
-</svg>
-</div>
+- 본질: 독립된 제3자가 운영·유지보수의 효율성·안전성·계약이행을 원시 증적 기반으로 종합 점검하는 활동
+- 메커니즘: 감리계획 수립 → 증적 수집(원시 로그·티켓) → 표본·재수행 검증 → 영향도 평가·보고 → 시정조치 이행확인
+- 판정 기준: SLA 보고값과 원시 로그 간 불일치 0건 및 SR-Commit-배포 간 100% 추적성 달성
 
 <details>
 <summary>핵심 용어</summary>
@@ -83,33 +58,28 @@ extra:
 
 ## Ⅲ. 핵심 점검영역
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="시스템 운영 및 유지보수 감리 핵심 점검 프레임워크">
-    <!-- Left: Operation Audit Core -->
-    <rect x="20" y="15" width="235" height="150" rx="8" class="itpe-svg-node"></rect>
-    <text x="137" y="38" class="itpe-svg-title">운영 감리 영역 (SLA/안전성)</text>
-    <line x1="30" y1="48" x2="245" y2="48" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="35" y="70" class="itpe-svg-sub">• 가용성/성능: SLA 준수율, APM 모니터링</text>
-    <text x="35" y="92" class="itpe-svg-sub">• 장애관리: Incident/Problem 조치, RCA</text>
-    <text x="35" y="114" class="itpe-svg-sub">• 재해복구: 백업 소산, 모의훈련 RTO/RPO</text>
-    <text x="35" y="136" class="itpe-svg-sub">• 보안통제: 권한관리, 패치, 감사로그</text>
-    <text x="35" y="155" class="itpe-svg-sub">• 사용자지원: 헬프데스크 접수 및 만족도</text>
+```mermaid
+flowchart TD
+    subgraph OP["운영 감리 영역 (SLA·안전성)"]
+        direction TB
+        O1["가용성·성능: SLA 준수율 및 APM 모니터링"]
+        O2["장애관리: Incident/Problem 조치 및 근본원인(RCA) 분석"]
+        O3["재해복구: 백업 소산 및 모의훈련(RTO/RPO) 실증"]
+        O4["보안통제: 계정·권한 관리 및 패치·감사로그 점검"]
+    end
 
-    <!-- Right: Maintenance Audit Core -->
-    <rect x="265" y="15" width="235" height="150" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="382" y="38" class="itpe-svg-title">유지보수 감리 영역 (변경/품질)</text>
-    <line x1="275" y1="48" x2="490" y2="48" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="280" y="70" class="itpe-svg-sub">• 요구관리: SR 공식 접수 및 타당성 검토</text>
-    <text x="280" y="92" class="itpe-svg-sub">• 변경승인: CAB 영향분석, Rollback 계획</text>
-    <text x="280" y="114" class="itpe-svg-sub">• 형상관리: 소스 Commit, 버전 브랜칭</text>
-    <text x="280" y="136" class="itpe-svg-sub">• 시험배포: 단위/통합/회귀시험 결과서</text>
-    <text x="280" y="155" class="itpe-svg-sub">• 계약범위: 무상 하자 vs 유상 변경 구분</text>
+    subgraph MAINT["유지보수 감리 영역 (변경·품질)"]
+        direction TB
+        M1["요구관리: SR 공식 접수 및 과업 타당성 검토"]
+        M2["변경승인: 변경자문위(CAB) 영향분석 및 Rollback 수립"]
+        M3["형상관리: 소스 Commit 해시 및 버전 브랜칭 감사"]
+        M4["시험배포: 단위·통합·회귀시험 결과서 및 배포 승인"]
+    end
 
-    <!-- Bottom Bridge -->
-    <rect x="20" y="175" width="480" height="35" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="197" class="itpe-svg-title" text-anchor="middle">공통 증적: CAATs 기반 원시 로그(Raw Log) · 데이터베이스 트랜잭션 전수 교차검증</text>
-  </svg>
-</div>
+    OP --- MAINT
+    OP --> CAAT["공통 증적: CAATs 기반 원시 로그(Raw Log) 및 DB 트랜잭션 전수 교차검증"]
+    MAINT --> CAAT
+```
 
 | 영역 | 점검사항 | 증적 |
 |---|---|---|
@@ -122,17 +92,16 @@ extra:
 
 ## Ⅳ. 증적 기반 감리절차
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="운영 유지보수 감리의 계획부터 이행확인까지 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 계획</strong><strong>활동</strong><span>범위·위험·기준·표본·일정 확정</span><strong>산출</strong><span>감리계획서 · 점검표</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 증적수집</strong><strong>활동</strong><span>문서·설정·Log·Ticket·Interview 확보</span><strong>산출</strong><span>Evidence Inventory</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 검증</strong><strong>활동</strong><span>표본검사·재수행·교차대조·원인분석</span><strong>산출</strong><span>발견사항 · 근거</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 평가·보고</strong><strong>활동</strong><span>영향도·시급성·원인·권고 합의</span><strong>산출</strong><span>감리보고서 · 조치계획</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 이행확인</strong><strong>활동</strong><span>시정조치·재시험·잔여위험 확인</span><strong>산출</strong><span>조치확인서</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 감리계획<br/>범위·위험·기준·표본·일정 확정<br/>(산출: 감리계획서 · 점검표)"]
+    S2["② 증적수집<br/>문서·설정·원시 Log·Ticket·인터뷰 확보<br/>(산출: Evidence Inventory)"]
+    S3["③ 정밀검증<br/>표본복원·재수행·교차대조·원인분석<br/>(산출: 발견사항 · 근거)"]
+    S4["④ 평가·보고<br/>영향도·시급성·원인·개선권고 합의<br/>(산출: 감리보고서 · 조치계획)"]
+    S5["⑤ 이행확인<br/>시정조치 결과 점검 및 잔여위험 확인<br/>(산출: 조치확인서)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅴ. 문제점·대응책
 
@@ -159,22 +128,13 @@ extra:
 - **검증 체계 (Verification)**: 유지보수 SR 티켓 ID ↔ 형상관리 Commit 해시 ↔ 테스트 결과서 ↔ 배포 승인서(CAB)를 1:1 체결한 변경 추적성 매트릭스로 검증함.
 - **기대 효과 (Impact)**: 페이퍼 감리 한계 탈피, 미승인 변경으로 인한 대형 장애(전산망 먹통) 예방, 유지보수 사업자와 발주기관 간 과업범위 분쟁 원천 차단을 달성함.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 470" role="img" aria-label="운영 유지보수 감리 증적 추적 구조">
-  <defs><marker id="arrow-audit-trace" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="190" y="25" width="380" height="72" rx="14" />
-  <text class="itpe-svg-title" x="380" y="57" text-anchor="middle">Event·SR</text><text class="itpe-svg-sub" x="380" y="82" text-anchor="middle">장애 · 요청 · 변경 필요</text>
-  <path class="itpe-svg-link" d="M380 97 V145" marker-end="url(#arrow-audit-trace)" />
-  <rect class="itpe-svg-node" x="190" y="153" width="380" height="72" rx="14" />
-  <text class="itpe-svg-title" x="380" y="185" text-anchor="middle">승인·실행</text><text class="itpe-svg-sub" x="380" y="210" text-anchor="middle">영향분석 · 작업 · Commit</text>
-  <path class="itpe-svg-link" d="M380 225 V273" marker-end="url(#arrow-audit-trace)" />
-  <rect class="itpe-svg-node is-current" x="190" y="281" width="380" height="72" rx="14" />
-  <text class="itpe-svg-title" x="380" y="313" text-anchor="middle">검증·배포</text><text class="itpe-svg-sub" x="380" y="338" text-anchor="middle">Test Result · 형상 · 배포기록</text>
-  <path class="itpe-svg-link" d="M380 353 V401" marker-end="url(#arrow-audit-trace)" />
-  <rect class="itpe-svg-node" x="190" y="409" width="380" height="48" rx="14" />
-  <text class="itpe-svg-title" x="380" y="440" text-anchor="middle">성과확인·종결·감사추적</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>페이퍼 감리 한계 · SLA 평균값 왜곡 · 미승인 구두 변경"] --> P2["개선 대안<br/>CAATs 원시로그 전수대조 · 격리환경 Mock Restore · SR 1:1 추적"]
+    P2 --> P3{"검증 판정<br/>SLA 보고값 vs 원시 로그 장애시간 오차 <= 0분 & 추적률 100%?"}
+    P3 -->|달성| P4["실행 효과<br/>미승인 변경 원천 차단 · 대형 전산장애 예방 · 과업분쟁 해소"]
+    P3 -->|미달| P5["보완 조치<br/>SR ↔ Commit ↔ Test ↔ CAB 배포추적성 매트릭스 재검증"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -183,12 +143,30 @@ extra:
 - 정의: 독립된 제3자가 정보시스템 운영·유지보수의 효율성·안전성·계약이행을 점검하고 개선을 권고하는 활동
 - 목적: **서비스 연속성·통제 실효성·변경 품질·계약 투명성** 확보
 
-### 2. 점검영역
+### 2. 점검영역 및 핵심 검증 프레임워크
 
-| 운영 | 유지보수 |
-|---|---|
-| SLA·장애·성능·용량 | SR·영향분석·승인 |
-| 백업·DR·보안·지원 | 변경·시험·배포·형상 |
+```mermaid
+flowchart TD
+    subgraph OP["운영 감리 영역 (SLA·안전성)"]
+        direction TB
+        O1["가용성·성능: SLA 준수율 및 APM 모니터링"]
+        O2["장애관리: Incident/Problem 조치 및 근본원인(RCA) 분석"]
+        O3["재해복구: 백업 소산 및 모의훈련(RTO/RPO) 실증"]
+        O4["보안통제: 계정·권한 관리 및 패치·감사로그 점검"]
+    end
+
+    subgraph MAINT["유지보수 감리 영역 (변경·품질)"]
+        direction TB
+        M1["요구관리: SR 공식 접수 및 과업 타당성 검토"]
+        M2["변경승인: 변경자문위(CAB) 영향분석 및 Rollback 수립"]
+        M3["형상관리: 소스 Commit 해시 및 버전 브랜칭 감사"]
+        M4["시험배포: 단위·통합·회귀시험 결과서 및 배포 승인"]
+    end
+
+    OP --- MAINT
+    OP --> CAAT["공통 증적: CAATs 기반 원시 로그(Raw Log) 및 DB 트랜잭션 전수 교차검증"]
+    MAINT --> CAAT
+```
 
 ### 3. 핵심 통제
 

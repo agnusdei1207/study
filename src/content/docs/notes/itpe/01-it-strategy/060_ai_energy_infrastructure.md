@@ -1,6 +1,6 @@
 ---
 title: "AI 에너지 인프라"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T03:30:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -17,32 +17,11 @@ extra:
   <span>IT 전략·관리</span><span>AI 인프라·Data Center</span><strong>AI 에너지 인프라</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: AI Workload의 전력·열·물·탄소 제약을 전원부터 IT 장비까지 통합 관리
-- 구조: 전력조달 → Grid·UPS → Rack 전력 → 냉각 → 폐열·운영계측
-- 통제: 용량·가용성·PUE·WUE·CUE·TCO의 다목적 최적화
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 650" role="img" aria-label="AI 데이터센터의 전력 공급부터 냉각과 폐열 활용까지 에너지 흐름">
-  <defs><marker id="arrow-ai-energy" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="130" y="24" width="500" height="78" rx="14" />
-  <text class="itpe-svg-title" x="380" y="56" text-anchor="middle">Power Source·PPA</text><text class="itpe-svg-sub" x="380" y="82" text-anchor="middle">계통 · 재생 · 저장 · 발전원 조합</text>
-  <path class="itpe-svg-link" d="M380 102 V140" marker-end="url(#arrow-ai-energy)" />
-  <rect class="itpe-svg-node" x="130" y="148" width="500" height="78" rx="14" />
-  <text class="itpe-svg-title" x="380" y="180" text-anchor="middle">Grid·Substation·UPS</text><text class="itpe-svg-sub" x="380" y="206" text-anchor="middle">수전용량 · 이중화 · 전력품질 · DR</text>
-  <path class="itpe-svg-link" d="M380 226 V264" marker-end="url(#arrow-ai-energy)" />
-  <rect class="itpe-svg-node is-current" x="130" y="272" width="500" height="78" rx="14" />
-  <text class="itpe-svg-title" x="380" y="304" text-anchor="middle">AI Compute Rack</text><text class="itpe-svg-sub" x="380" y="330" text-anchor="middle">GPU·NPU · Network · Storage · Scheduler</text>
-  <path class="itpe-svg-link" d="M380 350 V388" marker-end="url(#arrow-ai-energy)" />
-  <rect class="itpe-svg-node" x="130" y="396" width="500" height="78" rx="14" />
-  <text class="itpe-svg-title" x="380" y="428" text-anchor="middle">Thermal Management</text><text class="itpe-svg-sub" x="380" y="454" text-anchor="middle">Air · D2C · Immersion · Heat Reuse</text>
-  <path class="itpe-svg-link" d="M380 474 V512" marker-end="url(#arrow-ai-energy)" />
-  <rect class="itpe-svg-node" x="130" y="520" width="500" height="92" rx="14" />
-  <text class="itpe-svg-title" x="380" y="552" text-anchor="middle">Energy Operations</text>
-  <text class="itpe-svg-sub" x="380" y="580" text-anchor="middle">Capacity · PUE · WUE · CUE · Cost · Carbon</text>
-</svg>
-</div>
+- 본질: AI Workload의 전력·열·물·탄소 제약을 전원부터 IT 장비까지 통합 관리하는 물리 인프라 체계
+- 메커니즘: 전력조달(PPA·Grid) → 수배전·UPS → AI 랙 전력할당 → 고효율 냉각(D2C/액침) → 계측·스케줄링
+- 판정 기준: PUE <= 1.3 통제 및 GPU 랙 온도 <= 85℃ 이하 임계치 유지
 
 <details>
 <summary>핵심 용어</summary>
@@ -80,56 +59,49 @@ extra:
 
 ## Ⅲ. 용량계획·운영 절차
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 에너지 인프라의 수요예측부터 지속개선까지 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 수요예측</strong><strong>활동</strong><span>Workload·Rack 밀도·증설시점·변동성 분석</span><strong>산출</strong><span>Power·Thermal Forecast</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 입지·전원 설계</strong><strong>활동</strong><span>계통·전원·탄소·물·인허가·재해 검토</span><strong>산출</strong><span>Site Plan · PPA Strategy</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 전력·냉각 설계</strong><strong>활동</strong><span>이중화·배전·UPS·냉각방식·폐열 검토</span><strong>산출</strong><span>Electrical·Thermal Design</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 통합시험</strong><strong>활동</strong><span>부하·절체·열·누수·장애·복구 검증</span><strong>산출</strong><span>Commissioning Result</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 운영·최적화</strong><strong>활동</strong><span>용량·효율·물·탄소·비용 감시·조정</span><strong>산출</strong><span>Energy Dashboard · 개선계획</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 수요예측<br/>Workload·Rack 밀도·증설시점·변동성 분석<br/>(산출: Power·Thermal Forecast)"]
+    S2["② 입지·전원 설계<br/>계통·전원·탄소·물·인허가·재해 검토<br/>(산출: Site Plan · PPA Strategy)"]
+    S3["③ 전력·냉각 설계<br/>이중화·배전·UPS·냉각방식·폐열 검토<br/>(산출: Electrical·Thermal Design)"]
+    S4["④ 통합시험<br/>부하·절체·열·누수·장애·복구 검증<br/>(산출: Commissioning Result)"]
+    S5["⑤ 운영·최적화<br/>용량·효율·물·탄소·비용 감시·조정<br/>(산출: Energy Dashboard · 개선계획)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅳ. 냉각방식 비교
 
 > 대상에 따라 공기, 칩 직접 냉각, 액침 냉각을 조합하여 열밀도와 PUE를 최적화함.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="AI 데이터센터 3대 냉각 방식 비교 다이어그램">
-    <!-- Air Cooling -->
-    <rect x="20" y="20" width="150" height="150" rx="8" class="itpe-svg-node"></rect>
-    <text x="95" y="45" class="itpe-svg-title">공랭식 (Air)</text>
-    <line x1="30" y1="55" x2="160" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="95" y="75" class="itpe-svg-sub">팬 대류 기반 순환</text>
-    <text x="95" y="98" class="itpe-svg-sub">밀도: ~15 kW / Rack</text>
-    <text x="95" y="120" class="itpe-svg-sub">PUE: 1.4 ~ 1.6</text>
-    <text x="95" y="145" class="itpe-svg-sub">전통 레거시 IDC</text>
+```mermaid
+flowchart LR
+    subgraph AIR["공랭식 (Air)"]
+        direction TB
+        A1["팬 대류 기반 순환"]
+        A2["밀도: ~15 kW / Rack"]
+        A3["PUE: 1.4 ~ 1.6"]
+        A4["전통 레거시 IDC"]
+    end
 
-    <!-- D2C Liquid Cooling -->
-    <rect x="185" y="20" width="150" height="150" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="45" class="itpe-svg-title">D2C (직접냉각)</text>
-    <line x1="195" y1="55" x2="325" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="260" y="75" class="itpe-svg-sub">Cold Plate 칩 접촉</text>
-    <text x="260" y="98" class="itpe-svg-sub">밀도: 40~100 kW / Rack</text>
-    <text x="260" y="120" class="itpe-svg-sub">PUE: 1.15 ~ 1.25</text>
-    <text x="260" y="145" class="itpe-svg-sub">고밀도 GPU 클러스터</text>
+    subgraph D2C["D2C (직접냉각)"]
+        direction TB
+        D1["Cold Plate 칩 접촉"]
+        D2["밀도: 40~100 kW / Rack"]
+        D3["PUE: 1.15 ~ 1.25"]
+        D4["고밀도 GPU 클러스터"]
+    end
 
-    <!-- Immersion Cooling -->
-    <rect x="350" y="20" width="150" height="150" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="425" y="45" class="itpe-svg-title">액침식 (Immersion)</text>
-    <line x1="360" y1="55" x2="490" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="425" y="75" class="itpe-svg-sub">비전도성 유체 침지</text>
-    <text x="425" y="98" class="itpe-svg-sub">밀도: 100 kW+ / Rack</text>
-    <text x="425" y="120" class="itpe-svg-sub">PUE: 1.05 ~ 1.10</text>
-    <text x="425" y="145" class="itpe-svg-sub">초고밀도 초거대 AI</text>
+    subgraph IMM["액침식 (Immersion)"]
+        direction TB
+        I1["비전도성 유체 침지"]
+        I2["밀도: 100 kW+ / Rack"]
+        I3["PUE: 1.05 ~ 1.10"]
+        I4["초고밀도 초거대 AI"]
+    end
 
-    <!-- Bottom Indicator -->
-    <rect x="20" y="180" width="480" height="30" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="200" class="itpe-svg-sub" text-anchor="middle">진화 방향: 고발열 칩 전력밀도 급증에 따른 액체 냉각(Liquid Cooling) 표준화 필수</text>
-  </svg>
-</div>
+    AIR --> D2C --> IMM
+```
 
 | 기준 | Air Cooling | D2C | Immersion |
 |---|---|---|---|
@@ -164,23 +136,13 @@ extra:
 - **검증 체계 (Verification)**: DCIM/EMS를 통한 실시간 전력·온도 텔레메트리 수집, PUE/WUE/CUE 지표의 국제표준(ISO/IEC 30134) 공인 인증 및 탄소배출권 거래제와 연동 검증.
 - **기대 효과 (Impact)**: 냉각 소비전력 30% 이상 절감, 전력망 피크 부하 안정화, 글로벌 RE100 규제 준수 및 AI 인프라 운영 지속가능성을 달성함.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 450" role="img" aria-label="전력과 탄소 및 서비스 조건에 따라 AI 작업을 배치하는 구조">
-  <defs><marker id="arrow-carbon-schedule" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="175" y="24" width="410" height="78" rx="14" />
-  <text class="itpe-svg-title" x="380" y="56" text-anchor="middle">Signal 수집</text><text class="itpe-svg-sub" x="380" y="82" text-anchor="middle">전력여유 · 가격 · 탄소 · 온도 · SLA</text>
-  <path class="itpe-svg-link" d="M380 102 V150" marker-end="url(#arrow-carbon-schedule)" />
-  <rect class="itpe-svg-node is-current" x="175" y="158" width="410" height="82" rx="14" />
-  <text class="itpe-svg-title" x="380" y="190" text-anchor="middle">Carbon-aware Scheduler</text><text class="itpe-svg-sub" x="380" y="216" text-anchor="middle">시간 · 지역 · 가속기 · Power Cap 결정</text>
-  <path class="itpe-svg-link" d="M300 240 V286 H170 V330" marker-end="url(#arrow-carbon-schedule)" />
-  <path class="itpe-svg-link" d="M460 240 V286 H590 V330" marker-end="url(#arrow-carbon-schedule)" />
-  <text class="itpe-svg-label" x="210" y="280" text-anchor="middle">지연 허용</text><text class="itpe-svg-label" x="550" y="280" text-anchor="middle">실시간</text>
-  <rect class="itpe-svg-node" x="50" y="338" width="240" height="72" rx="14" />
-  <text class="itpe-svg-title" x="170" y="370" text-anchor="middle">학습 Workload</text><text class="itpe-svg-sub" x="170" y="395" text-anchor="middle">이동·예약·중단 가능</text>
-  <rect class="itpe-svg-node" x="470" y="338" width="240" height="72" rx="14" />
-  <text class="itpe-svg-title" x="590" y="370" text-anchor="middle">추론 Workload</text><text class="itpe-svg-sub" x="590" y="395" text-anchor="middle">SLA·가용성 우선</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>초고밀도 발열(Hotspot) · 전력망 피크 부하 · PUE 악화"] --> P2["개선 대안<br/>D2C 및 액침냉각 도입 · Carbon-aware AI 워크로드 스케줄링"]
+    P2 --> P3{"검증 판정<br/>데이터센터 PUE <= 1.3 & GPU 랙 온도 <= 85℃?"}
+    P3 -->|달성| P4["실행 효과<br/>냉각 소비전력 30% 감축 · RE100 규제 준수 및 안정성 확보"]
+    P3 -->|미달| P5["보완 조치<br/>야간 잉여전력 시간대 학습 부하 재배치 및 Cold Plate 정밀점검"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -189,13 +151,36 @@ extra:
 - 정의: AI 컴퓨팅의 전력수요와 발열을 수용하기 위한 전원·계통·배전·냉각·계측의 통합 인프라
 - 목적: **용량 적기확보·서비스 연속성·에너지 효율·환경 지속가능성**
 
-### 2. 구성
+### 2. 3대 냉각 방식 비교 아키텍처
 
-| 영역 | 핵심 |
-|---|---|
-| 전원·계통 | Grid·PPA·BESS·수배전 |
-| IT·냉각 | GPU·Scheduler·Air·D2C·Immersion |
-| 운영 | DCIM·PUE·WUE·CUE·TCO |
+```mermaid
+flowchart LR
+    subgraph AIR["공랭식 (Air)"]
+        direction TB
+        A1["팬 대류 기반 순환"]
+        A2["밀도: ~15 kW / Rack"]
+        A3["PUE: 1.4 ~ 1.6"]
+        A4["전통 레거시 IDC"]
+    end
+
+    subgraph D2C["D2C (직접냉각)"]
+        direction TB
+        D1["Cold Plate 칩 접촉"]
+        D2["밀도: 40~100 kW / Rack"]
+        D3["PUE: 1.15 ~ 1.25"]
+        D4["고밀도 GPU 클러스터"]
+    end
+
+    subgraph IMM["액침식 (Immersion)"]
+        direction TB
+        I1["비전도성 유체 침지"]
+        I2["밀도: 100 kW+ / Rack"]
+        I3["PUE: 1.05 ~ 1.10"]
+        I4["초고밀도 초거대 AI"]
+    end
+
+    AIR --> D2C --> IMM
+```
 
 ### 3. 핵심 통제
 

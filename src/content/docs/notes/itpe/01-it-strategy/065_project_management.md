@@ -1,6 +1,6 @@
 ---
 title: "프로젝트 관리 통합 체계"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T03:45:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -17,31 +17,11 @@ extra:
   <span>IT 전략·관리</span><span>Portfolio·Programme·Project</span><strong>프로젝트 관리</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 제한된 자원으로 고유한 결과와 의도한 가치를 인도하는 통합 관리
-- 정렬: Portfolio(전략·투자) → Programme(편익·의존성) → Project(산출·성과)
-- 통제: Governance·Scope·Schedule·Finance·Stakeholder·Resource·Risk를 Tailoring
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 600" role="img" aria-label="전략에서 포트폴리오 프로그램 프로젝트를 거쳐 가치와 편익으로 이어지는 구조">
-  <defs><marker id="arrow-project-value" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="140" y="24" width="480" height="70" rx="14" />
-  <text class="itpe-svg-title" x="380" y="66" text-anchor="middle">조직 전략·투자기준</text>
-  <path class="itpe-svg-link" d="M380 94 V132" marker-end="url(#arrow-project-value)" />
-  <rect class="itpe-svg-node" x="140" y="140" width="480" height="82" rx="14" />
-  <text class="itpe-svg-title" x="380" y="173" text-anchor="middle">Portfolio</text><text class="itpe-svg-sub" x="380" y="199" text-anchor="middle">선정 · 우선순위 · 자원 · 균형</text>
-  <path class="itpe-svg-link" d="M380 222 V260" marker-end="url(#arrow-project-value)" />
-  <rect class="itpe-svg-node" x="140" y="268" width="480" height="82" rx="14" />
-  <text class="itpe-svg-title" x="380" y="301" text-anchor="middle">Programme</text><text class="itpe-svg-sub" x="380" y="327" text-anchor="middle">편익 · 의존성 · 변화 · 공동자원</text>
-  <path class="itpe-svg-link" d="M380 350 V388" marker-end="url(#arrow-project-value)" />
-  <rect class="itpe-svg-node is-current" x="140" y="396" width="480" height="82" rx="14" />
-  <text class="itpe-svg-title" x="380" y="429" text-anchor="middle">Project</text><text class="itpe-svg-sub" x="380" y="455" text-anchor="middle">Scope · Schedule · Cost · Quality · Risk</text>
-  <path class="itpe-svg-link" d="M380 478 V516" marker-end="url(#arrow-project-value)" />
-  <rect class="itpe-svg-node" x="140" y="524" width="480" height="58" rx="14" />
-  <text class="itpe-svg-title" x="380" y="560" text-anchor="middle">Outcome · Benefit · Value</text>
-</svg>
-</div>
+- 본질: 제한된 자원으로 고유한 결과와 의도한 전략 가치를 인도하는 계층적·통합적 관리 체계
+- 메커니즘: 조직전략 → 포트폴리오(투자·선정) → 프로그램(편익·시너지) → 프로젝트(산출·통제) → 가치 실현
+- 판정 기준: EVM 성과지수(SPI/CPI) >= 0.85 유지 및 비공식 범위변경(Scope Creep) <= 0건
 
 <details>
 <summary>핵심 용어</summary>
@@ -69,31 +49,26 @@ extra:
 
 ## Ⅱ. Portfolio·Programme·Project 비교
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="Portfolio, Programme, Project 3단계 계층 정렬 및 가치 인도 체계">
-    <!-- Level 1: Portfolio -->
-    <rect x="60" y="15" width="400" height="50" rx="8" class="itpe-svg-node"></rect>
-    <text x="260" y="36" class="itpe-svg-title">1. Portfolio (포트폴리오: 전략 정렬 및 투자 최적화)</text>
-    <text x="260" y="52" class="itpe-svg-sub">"올바른 일을 하고 있는가?" · 자원 우선순위 배분 · 전사 ROI 극대화</text>
+```mermaid
+flowchart TD
+    subgraph PORT["1. Portfolio (전략 정렬 및 투자 최적화)"]
+        direction TB
+        P1["올바른 일을 하고 있는가? · 자원 우선순위 배분 · 전사 ROI 극대화"]
+    end
 
-    <!-- Down Arrow 1 -->
-    <line x1="260" y1="65" x2="260" y2="80" stroke="var(--sl-color-accent)" stroke-width="2"></line>
+    subgraph PROG["2. Programme (연계 편익 및 시너지 관리)"]
+        direction TB
+        PR1["시너지를 창출하고 있는가? · 프로젝트 간 의존성 조율 · 비즈니스 편익 실현"]
+    end
 
-    <!-- Level 2: Programme -->
-    <rect x="40" y="80" width="440" height="50" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="101" class="itpe-svg-title">2. Programme (프로그램: 상호 연계 편익 및 시너지 관리)</text>
-    <text x="260" y="117" class="itpe-svg-sub">"시너지를 창출하고 있는가?" · 프로젝트 간 의존성 조율 · 비즈니스 편익 실현</text>
+    subgraph PROJ["3. Project (고유 산출물 인도 및 통합 통제)"]
+        direction TB
+        PJ1["일을 올바르게 실행하는가? · Scope, Schedule, Cost, Quality 통합 관리"]
+        PJ2["WBS 산출물 납품 → 수용(Acceptance) → 프로그램 편익 전환"]
+    end
 
-    <!-- Down Arrow 2 -->
-    <line x1="260" y1="130" x2="260" y2="145" stroke="var(--sl-color-accent)" stroke-width="2"></line>
-
-    <!-- Level 3: Project -->
-    <rect x="20" y="145" width="480" height="55" rx="8" class="itpe-svg-node"></rect>
-    <text x="260" y="166" class="itpe-svg-title">3. Project (프로젝트: 고유 산출물 인도 및 통제)</text>
-    <text x="260" y="182" class="itpe-svg-sub">"일을 올바르게 실행하는가?" · Scope, Schedule, Cost, Quality 통합 관리</text>
-    <text x="260" y="194" class="itpe-svg-sub">WBS 산출물 납품 → 수용(Acceptance) → 프로그램 편익 전환</text>
-  </svg>
-</div>
+    PORT --> PROG --> PROJ
+```
 
 | 기준 | Portfolio | Programme | Project |
 |---|---|---|---|
@@ -106,17 +81,16 @@ extra:
 
 > 프로젝트의 접근법이 예측형·적응형·Hybrid 중 무엇이든 승인·인도·측정·학습의 관리흐름은 필요함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="프로젝트의 정당화부터 편익 환류까지 통합 관리 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 정당화·착수</strong><strong>활동</strong><span>Business Case·목표·Sponsor·권한 확정</span><strong>산출</strong><span>Project Charter</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 계획·Baseline</strong><strong>활동</strong><span>WBS·일정·원가·품질·위험·조달 계획</span><strong>산출</strong><span>PM Plan · Baseline</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 실행·인도</strong><strong>활동</strong><span>팀·공급자·품질·의사소통·작업 통합</span><strong>산출</strong><span>Deliverable · 성과정보</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 측정·변경통제</strong><strong>활동</strong><span>편차·위험·가치 검토·CCB 의사결정</span><strong>산출</strong><span>성과보고 · 승인변경</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 인수·종료·환류</strong><strong>활동</strong><span>인수·계약종료·교훈·편익책임 이관</span><strong>산출</strong><span>인수서 · Lessons Learned</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 정당화·착수<br/>Business Case·목표·Sponsor·권한 확정<br/>(산출: Project Charter)"]
+    S2["② 계획·Baseline<br/>WBS·일정·원가·품질·위험·조달 수립<br/>(산출: PM Plan · Baseline)"]
+    S3["③ 실행·인도<br/>팀·공급자·품질·의사소통·작업 통합<br/>(산출: Deliverable · 성과정보)"]
+    S4["④ 측정·변경통제<br/>편차·위험·가치 검토 및 CCB 의사결정<br/>(산출: 성과보고 · 승인변경)"]
+    S5["⑤ 인수·종료·환류<br/>인수·계약종료·교훈정리·편익책임 이관<br/>(산출: 인수서 · Lessons Learned)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅳ. 예측형·적응형·Hybrid 비교
 
@@ -153,25 +127,13 @@ extra:
 - **검증 체계 (Verification)**: 산출물 인수기준(Acceptance Criteria) 충족 여부 전수 검사 및 PMBOK 8판/ISO 21502 기반 성과 측정치(EVM 추정치 EAC, VAC)의 통계적 검증.
 - **기대 효과 (Impact)**: 90% 증후군(프로젝트 후반부 지연 누적) 차단, 납기 및 예산 초과 리스크 40% 감축, 사업 종료 후 운영 부서 편익 실현률 극대화를 달성함.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 470" role="img" aria-label="프로젝트 증적을 기반으로 예측하고 변경을 결정하는 피드백 구조">
-  <defs><marker id="arrow-project-loop" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <circle class="itpe-svg-node is-current" cx="380" cy="235" r="88" />
-  <text class="itpe-svg-title" x="380" y="224" text-anchor="middle">Forecast</text><text class="itpe-svg-sub" x="380" y="253" text-anchor="middle">일정 · 원가 · 위험 · 가치</text>
-  <rect class="itpe-svg-node" x="55" y="45" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="165" y="78" text-anchor="middle">Evidence</text><text class="itpe-svg-sub" x="165" y="103" text-anchor="middle">산출 · 시험 · EVM</text>
-  <rect class="itpe-svg-node" x="485" y="45" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="595" y="78" text-anchor="middle">CCB Decision</text><text class="itpe-svg-sub" x="595" y="103" text-anchor="middle">승인 · 기각 · 보류</text>
-  <rect class="itpe-svg-node" x="485" y="349" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="595" y="382" text-anchor="middle">Rebaseline</text><text class="itpe-svg-sub" x="595" y="407" text-anchor="middle">범위 · 일정 · 원가</text>
-  <rect class="itpe-svg-node" x="55" y="349" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="165" y="382" text-anchor="middle">Execute</text><text class="itpe-svg-sub" x="165" y="407" text-anchor="middle">인도 · 검증 · 학습</text>
-  <path class="itpe-svg-link" d="M275 83 H475" marker-end="url(#arrow-project-loop)" />
-  <path class="itpe-svg-link" d="M595 121 V339" marker-end="url(#arrow-project-loop)" />
-  <path class="itpe-svg-link" d="M485 387 H285" marker-end="url(#arrow-project-loop)" />
-  <path class="itpe-svg-link" d="M165 349 V131" marker-end="url(#arrow-project-loop)" />
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>낙관적 진척 보고 · 90% 증후군 · 비공식 범위 크립"] --> P2["개선 대안<br/>EVM 정량통제 · 공식 CCB 소집 · 일정압축(Crashing/Fast-tracking)"]
+    P2 --> P3{"검증 판정<br/>SPI/CPI >= 0.85 & 비공식 요구사항 변경 누적률 <= 10%?"}
+    P3 -->|달성| P4["실행 효과<br/>후반부 지연 차단 · 예산 초과 40% 감축 · 비즈니스 편익 극대화"]
+    P3 -->|미달| P5["보완 조치<br/>WBS Re-baselining 및 산출물 인수기준(Acceptance) 전수 재점검"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -180,13 +142,28 @@ extra:
 - 정의: 제한된 기간과 자원으로 고유한 산출·성과를 만들고 가치를 인도하도록 기획·실행·통제하는 활동
 - 목적: **전략 정렬·성과 인도·제약 균형·위험 통제·조직 학습**
 
-### 2. 통합체계
+### 2. 계층 정렬 및 가치 인도 체계
 
-| 계층 | 핵심 |
-|---|---|
-| Portfolio | 전략·선정·우선순위·자원 |
-| Programme | 편익·의존성·변화 |
-| Project | 범위·일정·원가·품질·위험 |
+```mermaid
+flowchart TD
+    subgraph PORT["1. Portfolio (전략 정렬 및 투자 최적화)"]
+        direction TB
+        P1["올바른 일을 하고 있는가? · 자원 우선순위 배분 · 전사 ROI 극대화"]
+    end
+
+    subgraph PROG["2. Programme (연계 편익 및 시너지 관리)"]
+        direction TB
+        PR1["시너지를 창출하고 있는가? · 프로젝트 간 의존성 조율 · 비즈니스 편익 실현"]
+    end
+
+    subgraph PROJ["3. Project (고유 산출물 인도 및 통합 통제)"]
+        direction TB
+        PJ1["일을 올바르게 실행하는가? · Scope, Schedule, Cost, Quality 통합 관리"]
+        PJ2["WBS 산출물 납품 → 수용(Acceptance) → 프로그램 편익 전환"]
+    end
+
+    PORT --> PROG --> PROJ
+```
 
 ### 3. 핵심 통제
 

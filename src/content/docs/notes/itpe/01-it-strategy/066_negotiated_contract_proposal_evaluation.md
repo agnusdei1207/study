@@ -1,6 +1,6 @@
 ---
 title: "협상계약 제안서 평가"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T04:00:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,31 +20,11 @@ extra:
   <strong>협상에 의한 계약 제안서평가 세부기준</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: **협상에 의한 계약 제안서평가 세부기준**은 조달청이 물품·용역 제안서를 평가할 때 위원 구성·평가 방법·항목·배점·결과 처리를 적용하는 집행 기준
-- 메커니즘: 제안서 접수 → 공통·전문 평가 → 점수 합산 → 평가 결과 통보로 이어지며, 대형 SW 사업은 전문영역을 별도 심층 평가하여 수요기관의 부족한 전문성을 보완
-- 산출물: 공통평가 점수 · 전문평가 점수 · 종합 기술능력평가 결과 · 협상대상자 선정 근거
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="대형 소프트웨어 사업 제안서 전문평가 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>제안서 접수</strong>
-    <div class="itpe-step-detail"><strong>입력</strong><span>제안요청서 · 입찰자 제안서 · 평가항목</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current">
-    <strong>평가축 분리</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>공통평가 60%</strong><span>전체 사업 수행 역량</span></div>
-      <div class="itpe-flow-branch"><strong>전문평가 40%</strong><span>4개 전문영역의 기술성</span></div>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>기술능력평가 결과</strong>
-    <div class="itpe-step-detail"><strong>산출</strong><span>공통평가·전문평가 점수 합산</span></div>
-  </div>
-</div>
+- 본질: 조달청이 제안서의 위원 구성·평가 항목·배점·결과 처리를 객관적으로 집행하는 규정
+- 메커니즘: 제안서 접수 → 공통(60%)·전문(40%) 이원 평가 → 기술능력 가중합산 → 협상적격자 선정
+- 판정 기준: 대형 SW 사업(40억 이상) 4대 전문영역 지정 및 공통·전문 항목 간 평가 중복률 <= 0%
 
 <details>
 <summary>핵심 용어</summary>
@@ -88,32 +68,18 @@ extra:
 
 > 전문평가제도는 모든 항목을 같은 위원이 평가하던 구조를 공통 60%·전문 40%로 분리하여, 전문영역 기술성을 전체 수행 역량과 함께 판정함.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="대형 소프트웨어 사업 제안서 전문평가 2트랙 가중합산 구조">
-    <!-- Common Evaluation Lane (60%) -->
-    <rect x="20" y="20" width="235" height="135" rx="8" class="itpe-svg-node"></rect>
-    <text x="137" y="42" class="itpe-svg-title">공통평가 (가중치 60%)</text>
-    <line x1="30" y1="52" x2="245" y2="52" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="35" y="74" class="itpe-svg-sub">• 평가주체: 공통 평가위원단</text>
-    <text x="35" y="96" class="itpe-svg-sub">• 평가범위: 사업 전반 수행 역량</text>
-    <text x="35" y="118" class="itpe-svg-sub">• 세부항목: 사업관리, 투입공수/인력,</text>
-    <text x="35" y="138" class="itpe-svg-sub">  품질보증, 지원부문 등 일반역량</text>
+```mermaid
+flowchart TD
+    subgraph EVAL["대형 SW 사업 제안서 2트랙 평가 아키텍처"]
+        direction TB
+        C["공통평가 (가중치 60%)<br/>공통 평가위원단 · 사업 전반 수행역량<br/>(사업관리, 투입인력, 품질보증 등)"]
+        E["전문평가 (가중치 40%)<br/>4대 전문영역 기술전문가 심층평가<br/>(정보기술개발 · 정보보호 · 데이터구축 · 디지털기술)"]
+    end
 
-    <!-- Expert Evaluation Lane (40%) -->
-    <rect x="265" y="20" width="235" height="135" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="382" y="42" class="itpe-svg-title">전문평가 (가중치 40%)</text>
-    <line x1="275" y1="52" x2="490" y2="52" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="280" y="74" class="itpe-svg-sub">• 평가주체: 4대 전문분야 기술전문가</text>
-    <text x="280" y="96" class="itpe-svg-sub">• 전문영역 선택 (1~2개 집중):</text>
-    <text x="280" y="118" class="itpe-svg-sub">  ①정보기술개발 ②정보보호</text>
-    <text x="280" y="138" class="itpe-svg-sub">  ③데이터구축 ④디지털기술</text>
-
-    <!-- Score Aggregation Bottom -->
-    <rect x="20" y="165" width="480" height="42" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="184" class="itpe-svg-title" text-anchor="middle">종합 기술능력평가 점수 산출 = (공통평가 × 0.6) + (전문평가 × 0.4)</text>
-    <text x="260" y="198" class="itpe-svg-sub" text-anchor="middle">적용기준: 40억 이상 SW 구축사업, 100억 이상 유지관리 사업 의무 적용</text>
-  </svg>
-</div>
+    C --> TOTAL["종합 기술능력평가 점수 = (공통평가 × 0.6) + (전문평가 × 0.4)"]
+    E --> TOTAL
+    TOTAL --> APPL["의무 적용: 40억 이상 SW 구축사업, 100억 이상 유지관리 사업"]
+```
 
 ### 1. 적용대상·전문영역
 
@@ -125,28 +91,15 @@ extra:
 
 ### 2. 평가·합산 구조
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="대형 소프트웨어 사업 전문평가제도의 적용과 판정 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>대형 SW 사업 식별</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>적용금액 · 사업유형 · 심층평가 필요성</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>평가위원 구성</strong>
-    <div class="itpe-step-detail"><strong>공통 역할</strong><span>사업 전반의 수행 역량</span></div>
-    <div class="itpe-step-detail"><strong>전문 역할</strong><span>선정 전문영역의 기술성</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current">
-    <strong>독립 평가</strong>
-    <div class="itpe-step-detail"><strong>평가</strong><span><span class="itpe-keyword"><strong>공통평가 60%</strong></span> · <span class="itpe-keyword"><strong>전문평가 40%</strong></span></span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>기술능력평가 확정</strong>
-    <div class="itpe-step-detail"><strong>산출</strong><span>두 평가점수의 가중 합산 결과</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 대형 SW 사업 식별<br/>사업금액(40억/100억) 및 심층평가 필요성 확인<br/>(산출: 전문평가 대상 지정)"]
+    S2["② 평가위원단 분리 구성<br/>공통역량 위원단 및 4대 전문영역 기술전문가 위촉<br/>(산출: 2트랙 위원회)"]
+    S3["③ 독립 심층 평가<br/>공통평가 60% 및 전문평가 40% 분리 채점<br/>(산출: 독립 평가표)"]
+    S4["④ 기술능력평가 확정<br/>두 평가점수의 가중합산 및 협상순위 결정<br/>(산출: 종합 평가결과)"]
+
+    S1 --> S2 --> S3 --> S4
+```
 
 ## Ⅳ. 문제점·대응책
 
@@ -174,27 +127,13 @@ extra:
 - **검증 체계 (Verification)**: 평가위원별 평가 의견서와 실물 제안서 증빙 대조, 허위 기재 및 상대 비방 시 계약심의회를 통한 감점 근거(조달청 개정 규정)의 객관적 적법성을 검증함.
 - **기대 효과 (Impact)**: 깜깜이 정성평가 및 입찰 담합·로비 차단, 고난도 신기술(AI, 클라우드 등) 제안서에 대한 기술 감별력 극대화, 탈락 업체의 이의제기 소송 리스크 원천 해소를 달성함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 추적 기반 제안서 평가 개선 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>문제</strong><span>공통·전문 항목 중복 또는 핵심기술 누락</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current">
-    <strong>평가 책임 매핑</strong>
-    <div class="itpe-step-detail"><strong>대안</strong><span>RFP 요구사항 ↔ 평가항목 ↔ 담당 평가축 연결</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>평가 증적 점검</strong>
-    <div class="itpe-step-detail"><strong>검증</strong><span>위원 의견 · 점수 · 요구사항의 연결 확인</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>평가 결과 확정</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>중복·누락 억제 · 판단 근거 보존</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>깜깜이 정성평가 · 공통/전문 지표 중복 · 탈락업체 소송"] --> P2["개선 대안<br/>4대 전문영역 필수지정 · RFP 요구사항 1:1 매핑 · 위원 의견 대조"]
+    P2 --> P3{"검증 판정<br/>RFP 핵심요구 매핑 100% & 공통·전문 지표 중복률 <= 0%?"}
+    P3 -->|달성| P4["실행 효과<br/>신기술 감별력 극대화 · 입찰담합 차단 · 소송 리스크 원천해소"]
+    P3 -->|미달| P5["보완 조치<br/>계약심의회 소집 및 제안요청서 대비 평가항목 배점 재조정"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -203,15 +142,25 @@ extra:
 - 정의: **협상에 의한 계약 제안서평가 세부기준**은 조달청이 물품·용역 제안서의 위원 구성·평가 방법·항목·배점·결과 처리를 일관되게 집행하는 기준
 - 목적: 평가 전문성 보완 · 공정경쟁 · 입찰 부담 경감
 
-### 2. 2024년 개정 핵심
+### 2. 대형 SW 사업 전문평가 2트랙 구조
 
-| 구분 | 내용 |
-|---|---|
-| 전문성 | 대형 SW 사업 **전문평가제도** 도입 |
-| 공정성 | 허위 판단절차 명확화 · 타사 비방 감점 |
-| 지원 | 수의계약 적합성 평가 대행 |
-| 부담 | 발표 기준금액 5억 원 이상으로 상향 |
-| 범위 | 기술용역 협상계약 평가기준 신설 |
+```mermaid
+flowchart TD
+    subgraph EVAL["대형 SW 사업 제안서 2트랙 평가 아키텍처"]
+        direction TB
+        C["공통평가 (가중치 60%)<br/>공통 평가위원단 · 사업 전반 수행역량<br/>(사업관리, 투입인력, 품질보증 등)"]
+        E["전문평가 (가중치 40%)<br/>4대 전문영역 기술전문가 심층평가<br/>(정보기술개발 · 정보보호 · 데이터구축 · 디지털기술)"]
+    end
+
+    C --> TOTAL["종합 기술능력평가 점수 = (공통평가 × 0.6) + (전문평가 × 0.4)"]
+    E --> TOTAL
+    TOTAL --> APPL["의무 적용: 40억 이상 SW 구축사업, 100억 이상 유지관리 사업"]
+```
+
+### 3. 핵심 통제
+
+- **Evaluation Decoupling**: 공통역량(60%)과 핵심기술(40%)의 분리 평가
+- **Requirement Traceability**: RFP 요구사항 ID ↔ 평가항목 ↔ 평가위원 의견 1:1 추적
 
 ## 출제 이력과 검증 출처
 

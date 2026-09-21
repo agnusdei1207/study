@@ -1,6 +1,6 @@
 ---
 title: "정량적 위험분석"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T05:05:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "C"
 extra:
   keyword_grade: "C"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,33 +20,11 @@ extra:
   <strong>정량적 위험분석</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: **정량적 위험분석(Quantitative Risk Analysis)**은 선별된 핵심 위험들이 전체 프로젝트 목표에 미치는 영향을 확률과 금액으로 계량화하는 통계적 위험 평가 기법
-- 메커니즘: 위험 데이터·가정 수집 → 민감도·기대화폐가치·의사결정나무·시뮬레이션 적용 → 비용·일정 분포와 대응 우선순위 결정
-- 산출: 누적 확률 분포 곡선(S-Curve) · 토네이도 다이어그램 · 비상예비비(Contingency Reserve)
-
-<div class="itpe-flow-map" role="img" aria-label="정량적 위험분석 흐름·예비비 산출 구조">
-  <div class="itpe-flow-node">
-    <strong>정성적 분석 선별 (P-I Matrix)</strong>
-    <div class="itpe-step-detail"><strong>입력</strong><span>위험 등록부 · 비용·일정 추정치 · 상관관계</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>정량적 위험분석 4대 기법</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>민감도</strong><span><span class="itpe-keyword"><strong>토네이도 다이어그램</strong></span> 기반 핵심 변수 우선순위</span></div>
-      <div class="itpe-flow-branch"><strong>기댓값</strong><span><span class="itpe-keyword"><strong>EMV(기대화폐가치)</strong></span> = 발생확률(P) × 재무적 영향(I)</span></div>
-      <div class="itpe-flow-branch"><strong>시뮬레이션</strong><span><span class="itpe-keyword"><strong>몬테카를로</strong></span> 반복 연산 · 누적 확률 S-Curve</span></div>
-      <div class="itpe-flow-branch"><strong>대안 평가</strong><span><span class="itpe-keyword"><strong>의사결정나무</strong></span> 분기별 확률·영향·EMV 비교</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>비상예비비·기준선 반영</strong>
-    <div class="itpe-step-detail"><strong>산출</strong><span>목표 달성 확률 · 핵심 영향 변수 · 대안별 EMV · 예비비 근거</span></div>
-  </div>
-</div>
+- 본질: 선별된 위험이 프로젝트 전체 비용·일정 목표에 미치는 영향을 확률·금액으로 계량화하는 분석 기법
+- 메커니즘: 위험선별/3점추정 → 확률분포 모델링 → 몬테카를로 시뮬레이션/EMV 연산 → 누적확률곡선(S-Curve) 도출
+- 판정 기준: 목표 신뢰수준(P80) 달성 확률 모니터링 및 P80-P50 차액 기반 비상예비비(Contingency) 산정
 
 <details>
 <summary>핵심 용어</summary>
@@ -75,28 +53,15 @@ extra:
 
 > 고위험 선별에서 데이터 확률분포 모델링, 컴퓨터 시뮬레이션, 베이스라인 확정으로 이어지는 엄밀한 수학적 파이프라인으로 전개됨.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정량적 위험분석 4단계 실행 파이프라인">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 위험 선별·데이터 수집</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>정성 분석 결과·위험 등록부·유사 사업 실적 수집</span></div><div class="itpe-step-detail"><strong>산출</strong><span>분석 대상 위험·데이터 품질 기록</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 확률분포 모델링 (3점 추정)</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>낙관치(O)·최빈치(M)·비관치(P), 상관관계·분포 설정</span></div><div class="itpe-step-detail"><strong>산출</strong><span>확률모형·가정 목록</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 시뮬레이션 연산 (Monte Carlo)</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>몬테카를로 반복 표본추출·민감도 분석</span></div><div class="itpe-step-detail"><strong>산출</strong><span>누적분포·토네이도 다이어그램</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 결과 해석·의사결정</strong></span>
-    <div class="itpe-step-detail"><strong>활동</strong><span>조직 위험선호에 따른 목표 신뢰수준·대응안 선택</span></div><div class="itpe-step-detail"><strong>산출</strong><span>예비비 근거·대응 우선순위</span></div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Contingency Reserve</strong></span> · 조직이 정한 신뢰수준의 비용 분포와 기준 추정치 차이를 근거로 산정</div>
+```mermaid
+flowchart TD
+    S1["① 위험 선별·데이터 수집<br/>정성 분석(P-I) 고위험 식별 및 유사실적 수집<br/>(산출: 분석 대상 위험 · 과거 실적치)"]
+    S2["② 확률분포 모델링<br/>3점 추정(O, M, P) 및 상관관계 모델링<br/>(산출: 확률모형 · 입력 파라미터)"]
+    S3["③ 시뮬레이션 연산<br/>몬테카를로 반복 연산 및 민감도 분석<br/>(산출: 누적확률 S-Curve · 토네이도 차트)"]
+    S4["④ 결과 해석·예비비 산출<br/>목표 신뢰수준(P80) 결정 및 예비비 반영<br/>(산출: Contingency Reserve = P80 - P50)"]
+
+    S1 --> S2 --> S3 --> S4
+```
 
 ## Ⅲ. 정성적 위험분석 vs 정량적 위험분석 비교
 
@@ -112,47 +77,26 @@ extra:
 
 > 네 가지 기법은 상호 배타적인 것이 아니라, 민감도 분석으로 변수를 좁히고 EMV·의사결정나무로 대안을 평가하며 몬테카를로로 종합 예비비를 산정하는 보완 관계임.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="정량적 위험분석 토네이도 다이어그램 및 몬테카를로 누적 S-Curve">
-    <!-- Left: Tornado Diagram (Sensitivity) -->
-    <rect x="20" y="15" width="235" height="190" rx="8" class="itpe-svg-node"></rect>
-    <text x="137" y="38" class="itpe-svg-title">민감도 분석 (토네이도 차트)</text>
-    <line x1="137" y1="48" x2="137" y2="175" stroke="var(--sl-color-gray-4)" stroke-dasharray="2,2"></line>
-    <!-- Tornado Bars -->
-    <rect x="55" y="55" width="160" height="20" rx="3" fill="var(--sl-color-accent)" opacity="0.8"></rect>
-    <text x="45" y="70" class="itpe-svg-sub" text-anchor="end">핵심 기술인력 이탈</text>
-    
-    <rect x="75" y="85" width="125" height="20" rx="3" fill="var(--sl-color-accent)" opacity="0.65"></rect>
-    <text x="65" y="100" class="itpe-svg-sub" text-anchor="end">요구사항 잦은 변경</text>
-    
-    <rect x="95" y="115" width="85" height="20" rx="3" fill="var(--sl-color-accent)" opacity="0.5"></rect>
-    <text x="85" y="130" class="itpe-svg-sub" text-anchor="end">클라우드 라이선스 인상</text>
-    
-    <rect x="115" y="145" width="45" height="20" rx="3" fill="var(--sl-color-accent)" opacity="0.35"></rect>
-    <text x="105" y="160" class="itpe-svg-sub" text-anchor="end">하드웨어 납기 지연</text>
-    
-    <text x="137" y="195" class="itpe-svg-sub" text-anchor="middle">영향도 순위화 (최상위 집중 관리)</text>
+```mermaid
+flowchart LR
+    subgraph SEN["민감도 분석 (토네이도 차트)"]
+        direction TB
+        T1["핵심 기술인력 이탈 (영향도 1위)"]
+        T2["요구사항 잦은 변경 (영향도 2위)"]
+        T3["클라우드 비용 인상 (영향도 3위)"]
+        T4["하드웨어 납기 지연 (영향도 4위)"]
+    end
 
-    <!-- Right: Monte Carlo S-Curve -->
-    <rect x="265" y="15" width="235" height="190" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="382" y="38" class="itpe-svg-title">몬테카를로 시뮬레이션 (S-Curve)</text>
-    
-    <!-- S-Curve Graphic -->
-    <path d="M 285 165 Q 350 160 382 105 T 480 50" fill="none" stroke="var(--sl-color-accent)" stroke-width="2.5"></path>
-    <!-- P50 Line -->
-    <line x1="382" y1="50" x2="382" y2="165" stroke="var(--sl-color-gray-4)" stroke-dasharray="2,2"></line>
-    <text x="382" y="180" class="itpe-svg-sub" text-anchor="middle">P50 (기준예산)</text>
-    
-    <!-- P80 Line -->
-    <line x1="435" y1="50" x2="435" y2="165" stroke="var(--sl-color-accent)" stroke-dasharray="2,2"></line>
-    <text x="445" y="180" class="itpe-svg-sub" text-anchor="middle">P80 (목표신뢰도)</text>
-    
-    <!-- Contingency Reserve Arrow -->
-    <line x1="382" y1="135" x2="435" y2="135" stroke="var(--sl-color-accent)" stroke-width="2"></line>
-    <text x="410" y="125" class="itpe-svg-sub" text-anchor="middle" font-weight="bold">비상예비비</text>
-    <text x="382" y="195" class="itpe-svg-sub" text-anchor="middle">Contingency Reserve = P80 - P50</text>
-  </svg>
-</div>
+    subgraph SIM["몬테카를로 시뮬레이션 (S-Curve)"]
+        direction TB
+        M1["입력 변수별 확률분포 할당"]
+        M2["수천 회 난수 기반 반복 연산"]
+        M3["기준예산 P50 vs 목표신뢰도 P80 도출"]
+        M4["비상예비비(Contingency) = P80 - P50"]
+    end
+
+    SEN -->|최상위 핵심위험 집중| SIM
+```
 
 | 분석 기법 | 핵심 메커니즘 | 실무 적용 역할 |
 |---|---|---|
@@ -187,27 +131,13 @@ extra:
 - **검증 체계 (Verification)**: 마일스톤별 실제 집행 원가 및 일정 진척 실적(EVM)을 피드백하여 시뮬레이션 확률분포를 롤링 웨이브(Rolling Wave) 방식으로 재보정.
 - **기대 효과 (Impact)**: 주관적 직관에 의한 예산 삭감/과대 계상 방지, 재무적 손실 가시화, 발주자·스폰서에 대한 통계적 신뢰도 기반 의사결정 설득력 확보를 달성함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정량적 위험분석 동적 예비비 관리 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>문제</strong><span>추정 편향 · 1회성 분석 · 입력 가정 노후화</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>대안</strong><span>유사 사업 실적·상관관계 반영 · 마일스톤별 재분석</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>승인 신뢰수준 충족 여부 · 위험 소멸에 따른 예비비 환수</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>비용·일정 목표의 근거 강화 · 예비비 적시 조정</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>추정치 주관적 편향 · 일회성 정적 분석 · 예비비 주먹구구 산정"] --> P2["개선 대안<br/>3점 추정 기반 몬테카를로 시뮬레이션 · 마일스톤별 롤링 재산정"]
+    P2 --> P3{"검증 판정<br/>프로젝트 달성 신뢰도 >= P80 & 비상예비비 근거 확보?"}
+    P3 -->|달성| P4["실행 효과<br/>예산 삭감/초과 차단 · 통계적 의사결정 설득력 확보"]
+    P3 -->|미달| P5["보완 조치<br/>토네이도 상위 3대 위험 선제 대응 및 예산 재조정"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -216,29 +146,22 @@ extra:
 - 정의: 선별된 위험이 프로젝트 목표에 미치는 영향을 **확률적·수치적 기법**으로 계량화하는 **위험 분석 활동**
 - 목적: 목표 달성 가능성 추정 · 대응 우선순위와 예비비 근거 마련
 
-### 2. 구성체계·방법론
+### 2. 정량적 위험분석 실행 파이프라인
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정량적 위험분석 4단계 절차 요약">
-  <div class="itpe-pipeline-node">
-    <strong>위험 선별</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>위험 등록부·분석대상 선정</span></div><div class="itpe-step-detail"><strong>산출</strong><span>대상 위험·자료 목록</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>분포 모델링</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>3점 추정·분포·상관관계 설정</span></div><div class="itpe-step-detail"><strong>산출</strong><span>확률모형·가정 목록</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>시뮬레이션</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>반복 표본추출·민감도 분석</span></div><div class="itpe-step-detail"><strong>산출</strong><span>누적분포·핵심 영향변수</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>결과 해석</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>조직 위험선호에 따른 목표 신뢰수준 선택</span></div><div class="itpe-step-detail"><strong>산출</strong><span>비용·일정 목표·예비비 근거</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 위험 선별·데이터 수집<br/>정성 분석(P-I) 고위험 식별 및 유사실적 수집<br/>(산출: 분석 대상 위험 · 과거 실적치)"]
+    S2["② 확률분포 모델링<br/>3점 추정(O, M, P) 및 상관관계 모델링<br/>(산출: 확률모형 · 입력 파라미터)"]
+    S3["③ 시뮬레이션 연산<br/>몬테카를로 반복 연산 및 민감도 분석<br/>(산출: 누적확률 S-Curve · 토네이도 차트)"]
+    S4["④ 결과 해석·예비비 산출<br/>목표 신뢰수준(P80) 결정 및 예비비 반영<br/>(산출: Contingency Reserve = P80 - P50)"]
+
+    S1 --> S2 --> S3 --> S4
+```
+
+### 3. 핵심 기법 및 통제
+
+- **민감도·EMV**: 최상위 변수 식별 및 기대 손익 산출
+- **몬테카를로**: 조직 신뢰수준(P80) 기준 예비비(`Contingency Reserve = P80 - P50`) 과학적 책정
 
 ## 출제 이력과 검증 출처
 

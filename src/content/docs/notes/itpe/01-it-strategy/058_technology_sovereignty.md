@@ -1,6 +1,6 @@
 ---
 title: "기술 주권"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T03:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -17,30 +17,11 @@ extra:
   <span>IT 전략·관리</span><span>국가 기술전략·공급망</span><strong>기술 주권</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 핵심기술을 직접 개발하거나 신뢰 가능한 경로로 조달할 **선택권·통제력·회복력**
-- 전략: 취약성 식별 → 보호(Protect) → 육성(Promote) → 대외확산(Project)
-- 균형: 전면 자급이 아니라 선택적 내재화·다변화·표준·동맹의 조합
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 590" role="img" aria-label="기술 주권을 보호 육성 대외확산으로 달성하는 3P 구조">
-  <defs><marker id="arrow-tech-sovereignty" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <circle class="itpe-svg-node is-current" cx="380" cy="295" r="105" />
-  <text class="itpe-svg-title" x="380" y="282" text-anchor="middle">Technology</text>
-  <text class="itpe-svg-title" x="380" y="310" text-anchor="middle">Sovereignty</text>
-  <text class="itpe-svg-sub" x="380" y="342" text-anchor="middle">선택권 · 통제력 · 회복력</text>
-  <rect class="itpe-svg-node" x="270" y="25" width="220" height="82" rx="14" />
-  <text class="itpe-svg-title" x="380" y="59" text-anchor="middle">Protect</text><text class="itpe-svg-sub" x="380" y="86" text-anchor="middle">핵심자산·공급망 보호</text>
-  <path class="itpe-svg-link" d="M380 107 V180" marker-end="url(#arrow-tech-sovereignty)" />
-  <rect class="itpe-svg-node" x="35" y="460" width="250" height="82" rx="14" />
-  <text class="itpe-svg-title" x="160" y="494" text-anchor="middle">Promote</text><text class="itpe-svg-sub" x="160" y="521" text-anchor="middle">R&amp;D·인재·시장 육성</text>
-  <path class="itpe-svg-link" d="M248 460 L310 397" marker-end="url(#arrow-tech-sovereignty)" />
-  <rect class="itpe-svg-node" x="475" y="460" width="250" height="82" rx="14" />
-  <text class="itpe-svg-title" x="600" y="494" text-anchor="middle">Project</text><text class="itpe-svg-sub" x="600" y="521" text-anchor="middle">표준·동맹·시장 확산</text>
-  <path class="itpe-svg-link" d="M512 460 L450 397" marker-end="url(#arrow-tech-sovereignty)" />
-</svg>
-</div>
+- 본질: 핵심기술을 직접 개발하거나 신뢰 가능한 경로로 조달할 선택권·통제력·회복력
+- 메커니즘: 핵심기능 식별 → 의존성 분석 → 전략 선택(내재화/다변화/비축) → 실행·실증 → 감시·재평가
+- 판정 기준: 단일 벤더/국가 의존도(HHI) <= 60% 및 대체 전환시간(MTTS) <= 7일 이내 통제
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,36 +48,17 @@ extra:
 
 ## Ⅱ. 기술 주권 대상과 통제수단
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="기술 주권 4대 핵심 기술 스택 및 다변화 통제 아키텍처">
-    <!-- AI & SW -->
-    <rect x="20" y="15" width="235" height="75" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="137" y="36" class="itpe-svg-title">AI 모델 및 SW 스택</text>
-    <text x="137" y="55" class="itpe-svg-sub">오픈소스 파운데이션 모델 활용</text>
-    <text x="137" y="72" class="itpe-svg-sub">SBOM 공급망 추적 · 상호운용 표준</text>
-
-    <!-- Cloud & Data -->
-    <rect x="265" y="15" width="235" height="75" rx="6" class="itpe-svg-node"></rect>
-    <text x="382" y="36" class="itpe-svg-title">클라우드 및 데이터 주권</text>
-    <text x="382" y="55" class="itpe-svg-sub">멀티 클라우드 이식성(Portability)</text>
-    <text x="382" y="72" class="itpe-svg-sub">데이터 관할권 보호 · 탈출(Exit) 전략</text>
-
-    <!-- Semiconductor & Accelerator -->
-    <rect x="20" y="105" width="235" height="75" rx="6" class="itpe-svg-node"></rect>
-    <text x="137" y="126" class="itpe-svg-title">반도체 및 하드웨어 가속기</text>
-    <text x="137" y="145" class="itpe-svg-sub">국산 NPU 실증 · 이기종 아키텍처</text>
-    <text x="137" y="162" class="itpe-svg-sub">글로벌 팹 파트너십 다변화</text>
-
-    <!-- Network & Security -->
-    <rect x="265" y="105" width="235" height="75" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="382" y="126" class="itpe-svg-title">네트워크 및 핵심 사이버보안</text>
-    <text x="382" y="145" class="itpe-svg-sub">제로트러스트 검증 · 장비 다중 벤더</text>
-    <text x="382" y="162" class="itpe-svg-sub">자체 보안 패치 권한 및 독립 관제</text>
-
-    <!-- Bottom Indicator -->
-    <text x="260" y="202" class="itpe-svg-sub" text-anchor="middle">목표: 특정 벤더·국가 락인(Lock-in) 방지 및 비상 시 전환시간(MTTS) 최소화</text>
-  </svg>
-</div>
+```mermaid
+flowchart TD
+    subgraph STACK["기술 주권 4대 핵심 기술 스택"]
+        direction TB
+        S1["AI 모델 및 SW 스택<br/>오픈소스 모델 · SBOM 공급망 · 상호운용 표준"]
+        S2["클라우드 및 데이터 주권<br/>멀티 클라우드 이식성 · 데이터 관할권 · 탈출(Exit) 전략"]
+        S3["반도체 및 HW 가속기<br/>국산 NPU 실증 · 이기종 구조 · 글로벌 팹 다변화"]
+        S4["네트워크 및 사이버보안<br/>제로트러스트 검증 · 다중 벤더 · 독자 패치·관제"]
+    end
+    STACK --> GOAL["통제 목표: 벤더·국가 락인 방지 및 비상 시 전환시간(MTTS) 최소화"]
+```
 
 | 대상 | 주요 의존위험 | 통제수단 |
 |---|---|---|
@@ -108,17 +70,16 @@ extra:
 
 ## Ⅲ. 기술 주권 확보 절차
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="기술 주권 확보를 위한 자산 식별부터 재평가까지 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 핵심기능 식별</strong><strong>활동</strong><span>국가·산업·서비스 영향과 대체시간 분석</span><strong>산출</strong><span>Critical Function 목록</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 의존성 분석</strong><strong>활동</strong><span>공급자·국가·기술·인력·계약 의존 파악</span><strong>산출</strong><span>Dependency Map · 집중도</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 전략 선택</strong><strong>활동</strong><span>내재화·다변화·비축·동맹·수용 결정</span><strong>산출</strong><span>Sovereignty Roadmap</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 실행·실증</strong><strong>활동</strong><span>R&amp;D·조달·표준화·대체전환 시험</span><strong>산출</strong><span>대체기술 · 전환결과</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 감시·재평가</strong><strong>활동</strong><span>지정학·시장·취약점·비용 변화 반영</span><strong>산출</strong><span>Risk Dashboard · 개선계획</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 핵심기능 식별<br/>국가·산업·서비스 영향 및 대체시간 분석<br/>(산출: Critical Function 목록)"]
+    S2["② 의존성 분석<br/>공급자·국가·기술·인력·계약 의존 파악<br/>(산출: Dependency Map · 집중도)"]
+    S3["③ 전략 선택<br/>내재화·다변화·비축·동맹·수용 결정<br/>(산출: Sovereignty Roadmap)"]
+    S4["④ 실행·실증<br/>R&D·조달·표준화·대체전환 시험<br/>(산출: 대체기술 · 전환결과)"]
+    S5["⑤ 감시·재평가<br/>지정학·시장·취약점·비용 변화 반영<br/>(산출: Risk Dashboard · 개선계획)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅳ. 효율성 중심 조달과 기술 주권 조달 비교
 
@@ -155,23 +116,13 @@ extra:
 - **검증 체계 (Verification)**: 연 1회 모의 공급망 단절(Vendor Blackout) 전환 훈련을 실시하여 예비 시스템으로의 업무 전환 시간(RTO)과 데이터 무결성을 실증함.
 - **기대 효과 (Impact)**: 지정학적 기술 수출 통제 및 벤더 라이선스 정책 급변에 대한 회복탄력성(Resilience) 확보, 독자적 협상력과 디지털 경제 주권 방어를 달성함.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 430" role="img" aria-label="기술 의존도 예산을 이용해 유지와 완화를 결정하는 구조">
-  <defs><marker id="arrow-dependency-budget" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="170" y="24" width="420" height="72" rx="14" />
-  <text class="itpe-svg-title" x="380" y="56" text-anchor="middle">Dependency Map</text><text class="itpe-svg-sub" x="380" y="81" text-anchor="middle">집중도 · 대체성 · 전환시간 · 영향</text>
-  <path class="itpe-svg-link" d="M380 96 V142" marker-end="url(#arrow-dependency-budget)" />
-  <rect class="itpe-svg-node is-current" x="170" y="150" width="420" height="82" rx="14" />
-  <text class="itpe-svg-title" x="380" y="182" text-anchor="middle">Dependency Budget</text><text class="itpe-svg-sub" x="380" y="208" text-anchor="middle">허용 집중도 · 목표 전환시간</text>
-  <path class="itpe-svg-link" d="M300 232 V275 H170 V315" marker-end="url(#arrow-dependency-budget)" />
-  <path class="itpe-svg-link" d="M460 232 V275 H590 V315" marker-end="url(#arrow-dependency-budget)" />
-  <text class="itpe-svg-label" x="210" y="269" text-anchor="middle">이내</text><text class="itpe-svg-label" x="550" y="269" text-anchor="middle">초과</text>
-  <rect class="itpe-svg-node" x="50" y="323" width="240" height="70" rx="14" />
-  <text class="itpe-svg-title" x="170" y="354" text-anchor="middle">유지·감시</text><text class="itpe-svg-sub" x="170" y="379" text-anchor="middle">비용·성능 최적화</text>
-  <rect class="itpe-svg-node" x="470" y="323" width="240" height="70" rx="14" />
-  <text class="itpe-svg-title" x="590" y="354" text-anchor="middle">의존 완화</text><text class="itpe-svg-sub" x="590" y="379" text-anchor="middle">다변화 · 대체 · 내재화</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>단일 외산 SW/인프라 의존 심화 및 공급망 단절 취약"] --> P2["개선 대안<br/>개방형 표준 필수화 · SBOM 의무화 · 멀티클라우드 이식성"]
+    P2 --> P3{"검증 판정<br/>단일 벤더 의존도 <= 60% 및 전환시간(MTTS) <= 7일?"}
+    P3 -->|달성| P4["실행 효과<br/>지정학적 리스크 회복탄력성 확보 및 디지털 경제 주권 방어"]
+    P3 -->|미달| P5["보완 조치<br/>모의 공급망 단절(Vendor Blackout) 훈련 및 소스 에스크로 강화"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -180,13 +131,19 @@ extra:
 - 정의: 핵심기술을 개발하거나 일방적 구조 의존 없이 조달·운용할 수 있는 국가 역량
 - 목적: **공급망 회복력·전략적 자율성·산업경쟁력·서비스 연속성** 확보
 
-### 2. 전략
+### 2. 핵심 기술 스택 및 통제 아키텍처
 
-| 전략 | 핵심 |
-|---|---|
-| Protect | 핵심자산·공급망·IP 보호 |
-| Promote | R&amp;D·인재·시장 육성 |
-| Project | 표준·동맹·시장 확산 |
+```mermaid
+flowchart TD
+    subgraph STACK["기술 주권 4대 핵심 기술 스택"]
+        direction TB
+        S1["AI 모델 및 SW 스택<br/>오픈소스 모델 · SBOM 공급망 · 상호운용 표준"]
+        S2["클라우드 및 데이터 주권<br/>멀티 클라우드 이식성 · 데이터 관할권 · 탈출(Exit) 전략"]
+        S3["반도체 및 HW 가속기<br/>국산 NPU 실증 · 이기종 구조 · 글로벌 팹 다변화"]
+        S4["네트워크 및 사이버보안<br/>제로트러스트 검증 · 다중 벤더 · 독자 패치·관제"]
+    end
+    STACK --> GOAL["통제 목표: 벤더·국가 락인 방지 및 비상 시 전환시간(MTTS) 최소화"]
+```
 
 ### 3. 핵심 통제
 
