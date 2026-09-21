@@ -10,9 +10,9 @@ tags:
   - "MVCC"
   - "WriteSkew"
 date: "2026-09-20T23:09:00+09:00"
-author: "기술사 수험생"
+author: "Antigravity"
 extra:
-  model: "Antigravity-v2"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -64,6 +64,7 @@ sidebar:
       <strong>판정 질문</strong><span>선택된 격리 수준이 금융 원장 불변식을 충족하며, Write Skew 등 직렬화 이상이 발생하지 않는가?</span>
     </div>
   </div>
+  <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-branches">
     <div class="itpe-flow-branch is-pass">
@@ -123,11 +124,37 @@ sidebar:
 
 > 표준 정의와 실제 DBMS 제품의 구현 메커니즘을 함께 이해해야 함.
 
-```text
-[낮은 격리 수준 / 높은 동시성]                                    [높은 격리 수준 / 낮은 동시성]
-  Read Uncommitted ───> Read Committed ───> Repeatable Read ───> Serializable
-   (Dirty Read 차단) ──────┘ (Non-repeatable 차단) ──┘ (Phantom & Write Skew 차단) ──┘
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+<svg viewBox="0 0 520 100" width="100%" height="auto" style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <rect x="0" y="0" width="520" height="100" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- RU -->
+  <rect x="12" y="15" width="112" height="70" rx="5" fill="var(--color-bg-muted, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="68" y="35" font-size="10" font-weight="700" fill="var(--color-text-primary, #0f172a)" text-anchor="middle">Read Uncommitted</text>
+  <text x="68" y="53" font-size="9" fill="var(--color-error, #b91c1c)" text-anchor="middle">Dirty Read 허용</text>
+  <text x="68" y="70" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">동시성 최상 / 정합성 최하</text>
+  <!-- Arrow -->
+  <text x="130" y="55" font-size="12" fill="var(--color-border, #94a3b8)">→</text>
+  <!-- RC -->
+  <rect x="140" y="15" width="112" height="70" rx="5" fill="var(--color-info, #0284c7)" fill-opacity="0.1" stroke="var(--color-info, #0284c7)" stroke-width="1"/>
+  <text x="196" y="35" font-size="10" font-weight="700" fill="var(--color-info, #0284c7)" text-anchor="middle">Read Committed</text>
+  <text x="196" y="53" font-size="9" fill="var(--color-success, #15803d)" text-anchor="middle">Dirty Read 차단</text>
+  <text x="196" y="70" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">Oracle·PG 기본값</text>
+  <!-- Arrow -->
+  <text x="258" y="55" font-size="12" fill="var(--color-border, #94a3b8)">→</text>
+  <!-- RR -->
+  <rect x="268" y="15" width="112" height="70" rx="5" fill="var(--color-primary, #2563eb)" fill-opacity="0.1" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
+  <text x="324" y="35" font-size="10" font-weight="700" fill="var(--color-primary, #1d4ed8)" text-anchor="middle">Repeatable Read</text>
+  <text x="324" y="53" font-size="9" fill="var(--color-success, #15803d)" text-anchor="middle">반복 읽기 보장</text>
+  <text x="324" y="70" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">MySQL InnoDB 기본값</text>
+  <!-- Arrow -->
+  <text x="386" y="55" font-size="12" fill="var(--color-border, #94a3b8)">→</text>
+  <!-- Serializable -->
+  <rect x="396" y="15" width="112" height="70" rx="5" fill="var(--color-warning, #d97706)" fill-opacity="0.12" stroke="var(--color-warning, #d97706)" stroke-width="1"/>
+  <text x="452" y="35" font-size="10" font-weight="700" fill="var(--color-warning, #b45309)" text-anchor="middle">Serializable</text>
+  <text x="452" y="53" font-size="9" fill="var(--color-success, #15803d)" text-anchor="middle">Phantom·Skew 차단</text>
+  <text x="452" y="70" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">정합성 최상 / 동시성 최하</text>
+</svg>
+</div>
 
 | 격리 수준 (Isolation Level) | Dirty Read | Non-repeatable Read | Phantom Read | 주요 구현 메커니즘 | 대표 기본 적용 DBMS |
 |---|:---:|:---:|:---:|---|---|
@@ -140,18 +167,27 @@ sidebar:
 
 > MVCC 기반의 Repeatable Read는 유령 읽기는 막아도 쓰기 왜곡(Write Skew)을 완벽히 방어하지 못함.
 
-```text
-[상황: 병원에 최소 1명의 의사는 반드시 당직(On-call)을 서야 한다는 비즈니스 불변식]
-현재 당직: 의사 A, 의사 B (총 2명)
-
-1. 트랜잭션 1 (의사 A 당직 취소 시도):
-   - 당직 의사 수 조회: 2명 확인 (A 취소 가능 판정)
-2. 트랜잭션 2 (의사 B 당직 취소 시도, 동시 실행):
-   - 당직 의사 수 조회: 2명 확인 (B 취소 가능 판정)
-3. 트랜잭션 1 커밋: 의사 A 당직 해제 완료
-4. 트랜잭션 2 커밋: 의사 B 당직 해제 완료
-=> 결과: 당직 의사가 0명이 되어 병원 불변식 파괴! (서로 다른 행을 수정하여 충돌 감지 실패)
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+<svg viewBox="0 0 520 140" width="100%" height="auto" style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <rect x="0" y="0" width="520" height="140" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- Top Banner: Invariant Rule -->
+  <rect x="15" y="10" width="490" height="24" rx="4" fill="var(--color-primary, #2563eb)" fill-opacity="0.1" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
+  <text x="260" y="26" font-size="10" font-weight="700" fill="var(--color-primary, #1d4ed8)" text-anchor="middle">비즈니스 불변식: 병원에 최소 1명의 의사는 반드시 당직(On-call)을 서야 함</text>
+  <!-- Tx 1 -->
+  <rect x="15" y="42" width="235" height="52" rx="4" fill="var(--color-info, #0284c7)" fill-opacity="0.08" stroke="var(--color-info, #0284c7)" stroke-width="1"/>
+  <text x="132" y="58" font-size="10" font-weight="700" fill="var(--color-info, #0284c7)" text-anchor="middle">트랜잭션 1 (의사 A 당직 취소)</text>
+  <text x="132" y="73" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">당직 수 2명 확인 $\to$ 의사 A 취소 커밋</text>
+  <text x="132" y="86" font-size="9" fill="var(--color-info, #0284c7)" text-anchor="middle">(대상 행: 의사 A 레코드만 수정)</text>
+  <!-- Tx 2 -->
+  <rect x="270" y="42" width="235" height="52" rx="4" fill="var(--color-warning, #d97706)" fill-opacity="0.08" stroke="var(--color-warning, #d97706)" stroke-width="1"/>
+  <text x="387" y="58" font-size="10" font-weight="700" fill="var(--color-warning, #b45309)" text-anchor="middle">트랜잭션 2 (의사 B 당직 취소, 동시)</text>
+  <text x="387" y="73" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">당직 수 2명 확인 $\to$ 의사 B 취소 커밋</text>
+  <text x="387" y="86" font-size="9" fill="var(--color-warning, #b45309)" text-anchor="middle">(대상 행: 의사 B 레코드만 수정)</text>
+  <!-- Bottom: Failure Result -->
+  <rect x="15" y="100" width="490" height="30" rx="4" fill="var(--color-error, #dc2626)" fill-opacity="0.1" stroke="var(--color-error, #dc2626)" stroke-width="1"/>
+  <text x="260" y="120" font-size="11" font-weight="700" fill="var(--color-error, #b91c1c)" text-anchor="middle">결과: 서로 다른 행 수정으로 충돌 감지 실패 $\to$ 당직 0명 불변식 파괴 (Write Skew!)</text>
+</svg>
+</div>
 
 - **해결 방안**:
   1. 비관적 명시 잠금: 조회 시 `SELECT ... FOR UPDATE`로 대상 레코드 전체에 배타 락 강제
@@ -184,41 +220,68 @@ sidebar:
 > "모든 트랜잭션을 Serializable로 돌리는 것은 무책임한 성능 포기이며, 무조건 Read Committed를 고집하는 것은 잠재적 금융 사고의 방조다."
 
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 실제 실무에서 가장 위험한 것은 격리 수준의 이름만 믿고 제품의 내부 동작을 검증하지 않는 것임. 예를 들어 MySQL InnoDB의 RR은 넥스트-키 락 덕분에 팬텀 리드가 방지되지만, PostgreSQL의 RR은 SSI가 아니면 쓰기 왜곡이 발생함.
-- `나라면`: 기본 격리 수준은 성능이 우수한 Read Committed를 채택하되, 잔액 차감이나 좌석 예약처럼 동시 수정이 치명적인 도메인 서비스 메서드에는 `SELECT ... FOR UPDATE` 기반의 비관적 락을 선별 적용하는 '격리 수준 하이브리드' 전략을 수립하겠음.
+
+> **[핵심 통찰]**
+> 실제 실무에서 가장 위험한 것은 격리 수준의 이름만 믿고 제품의 내부 동작을 검증하지 않는 것이다. 예를 들어 MySQL InnoDB의 RR은 넥스트-키 락 덕분에 팬텀 리드가 방지되지만, PostgreSQL의 RR은 SSI가 아니면 쓰기 왜곡이 발생한다.
+>
+> **[나라면 이렇게 쓴다]**
+> 기본 격리 수준은 성능이 우수한 Read Committed를 채택하되, 잔액 차감이나 좌석 예약처럼 동시 수정이 치명적인 도메인 서비스 메서드에는 `SELECT ... FOR UPDATE` 기반의 비관적 락을 선별 적용하는 '격리 수준 하이브리드' 전략을 수립하겠다.
 
 ### 실전 답안용 기술사적 제언
+
 - 판정: 트랜잭션 격리 수준은 전사 단일 설정을 지양하고, **비즈니스 오류 비용(Error Cost)과 동시성 요구도(TPS)**에 따라 서비스 단위로 세분화하여 판정함
 - 대안: 대다수 조회/일반 비즈니스는 **Read Committed**로 처리율 극대화 $\rightarrow$ 금융 잔액/결산 트랜잭션은 **명시적 배타 락(`FOR UPDATE`) 또는 Serializable** 강제
 - 검증: 카오스 엔지니어링 동시성 부하 시험을 통한 갱신 손실 0건 및 데드락 발생률 0.01% 이하 확인
 - 효과: 고성능 TPS를 달성하면서도 금융권 수준의 절대적 데이터 무결성 보장
 
-```text
-[현행 한계] ─────────> [개선 방안] ─────────> [검증 기준] ─────────> [실행 효과]
-전사 일괄 RC 적용     업무별 격리 수준 분리  갱신 손실 0건 달성      원장 무결성 사수
-갱신 손실 위험         선별적 FOR UPDATE 락   데드락 발생률 < 0.01%   초당 처리량(TPS) 극대화
-```
+<div class="itpe-flow-map" role="img" aria-label="트랜잭션 격리 수준 하이브리드 전략 및 무결성 확보 로드맵">
+  <div class="itpe-flow-node">
+    <strong>현행 한계</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>위험 상존</strong><span>전사 일괄 RC 적용 시 갱신 손실·Write Skew 발생, 일괄 직렬화 시 락 병목</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>개선 방안</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>하이브리드 분리</strong><span>일반 업무 RC(MVCC) 고속화 + 원장/예약 핵심 업무 선별적 `FOR UPDATE`·Serializable</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>검증 기준</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>품질 게이트</strong><span>갱신 손실 0건 달성 및 데드락 발생률 0.01% 이하 통과</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <span class="itpe-keyword"><strong>실행 효과</strong></span>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass">
+        <strong>목표 달성</strong>
+        <span>원장 무결성 100% 사수 및 초당 트랜잭션 처리량(TPS) 극대화 동시 달성</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 트랜잭션 격리 수준(Isolation Level)의 정의 및 목적
-- 정의: 동시 실행되는 트랜잭션 간 데이터 변경 가시성 범위를 규정하여 정합성과 동시성을 절충하는 수준
-- 목적: 4대 이상현상(Dirty Read, Non-repeatable Read, Phantom Read, Write Skew) 차단
+1. **트랜잭션 격리 수준(Isolation Level)의 정의 및 목적**
+   - **정의**: 동시 실행되는 트랜잭션 간 데이터 변경 가시성 범위를 규정하여 정합성과 동시성을 절충하는 수준
+   - **목적**: 4대 이상현상(Dirty Read, Non-repeatable Read, Phantom Read, Write Skew) 차단
 
-2. ANSI 4대 격리 수준 및 이상현상 방지 매트릭스
-┌────────────────────┬────────────┬─────────────────────┬──────────────┐
-│ 격리 수준          │ Dirty Read │ Non-repeatable Read │ Phantom Read │
-├────────────────────┼────────────┼─────────────────────┼──────────────┤
-│ Read Uncommitted   │ 발생       │ 발생                │ 발생         │
-│ Read Committed     │ 방지       │ 발생                │ 발생         │
-│ Repeatable Read    │ 방지       │ 방지                │ 발생 (MySQL방지)│
-│ Serializable       │ 방지       │ 방지                │ 방지         │
-└────────────────────┴────────────┴─────────────────────┴──────────────┘
+2. **ANSI 4대 격리 수준 및 이상현상 방지 매트릭스**
+   - **Read Uncommitted**: 락 미사용, 3대 이상현상 모두 발생 (최대 동시성)
+   - **Read Committed**: 커밋된 데이터만 조회, Dirty Read 방지 (Oracle/PostgreSQL 기본)
+   - **Repeatable Read**: 트랜잭션 내 일관된 스냅샷, Non-repeatable Read 방지 (MySQL InnoDB는 Next-Key Lock으로 Phantom도 차단)
+   - **Serializable**: 직렬 수행 보장, Phantom Read 및 Write Skew 원천 차단 (최고 정합성)
 
-3. 실무 제언: Write Skew 방지 및 하이브리드 전략
-- Repeatable Read에서도 서로 다른 행 수정 시 Write Skew가 발생하므로, 핵심 금융 원장은 Serializable 또는 SELECT FOR UPDATE 비관 락을 적용해야 함.
-```
+3. **실무 제언: Write Skew 방지 및 하이브리드 전략**
+   - **한계**: Repeatable Read에서도 서로 다른 행 수정 시 Write Skew가 발생할 수 있음
+   - **대책**: 일반 업무는 Read Committed로 처리율을 높이고, 금융 원장 및 좌석 예약은 `SELECT ... FOR UPDATE` 비관 락 또는 Serializable을 선별 적용하는 하이브리드 아키텍처 필수 권고
 
 ## 출제 이력과 검증 출처
 
