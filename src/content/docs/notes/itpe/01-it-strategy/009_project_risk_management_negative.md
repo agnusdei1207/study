@@ -1,7 +1,7 @@
 ---
 title: "프로젝트 위험관리"
-author: "Claude Code"
-date: "2026-09-21T12:40:00+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:20:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Claude Opus 5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -219,10 +219,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 등록된 위험 개수가 아니라 **트리거**·**Risk Owner**·대응 이력의 연결 여부가 성패를 가름
-- 대안: 원인·사건·영향에 관측 가능한 트리거와 Risk Owner를 붙여 등록부를 의사결정 문서로 운영
-- 검증: 대응 실행 이력과 잔여·2차 위험 재평가 기록의 존재 여부
-- 효과: 위협이 이슈로 전환되기 전 대응 개시 · 감시 공백 제거
+- **판정 기준**: 등록된 위험 개수(양적 지표)가 아니라 발생 징후를 조기에 인지하는 **정량적 트리거(Trigger)**, 단일 책임자(**Risk Owner**), 주기적 잔여 위험 평가 이력의 연결성으로 위험관리 체계의 실효성을 판정함
+- **대응 방안**: 프로젝트 권한·영향도에 따른 5대 위협 대응전략(상향, 회피, 전가, 완화, 수용)을 체계적으로 분기하고, 원인-사건-영향 연쇄 모델 기반으로 사전 예방 및 비상 대응(Contingency Plan)을 병행 수립함
+- **검증 체계**: 위험 등록부(Risk Register)의 주기적 감사 및 스프린트/마일스톤 회고 시 잔여 위험(Residual Risk)과 대응 실행 결과로 파생된 2차 위험(Secondary Risk)의 재평가 여부를 추적 검증함
+- **기대 효과**: 잠재 위협이 실제 프로젝트 장애 및 납기 지연(Issue)으로 전이되는 것을 사전에 차단하고, 일정·비용·품질 목표 편차를 통제 범위 내로 수렴시켜 프로젝트 성공률 극대화
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="작동하는 위험관리 개선 흐름">
   <div class="itpe-pipeline-node"><strong>현행 한계</strong><div class="itpe-step-detail"><strong>문제</strong><span>위험명·등급만 기록 · 실행 책임 불명확</span></div></div>

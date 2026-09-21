@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -75,6 +75,76 @@ extra:
 ## Ⅱ. ISMP 구성체계 및 5단계 방법론
 
 > 각 단계는 입력 → 활동 → 산출물로 빈틈없이 전개되며, 최초 업무 요구사항이 최종 RFP까지 단절 없이 이어져야 방법론이 완성됨
+
+```
+[① 착수] ──> [② 방향성 수립] ──> [③ 요구사항 분석] ──> [④ 구조/요구 정의] ──> [⑤ 이행방안 수립]
+  수행계획서     목표/범위 정의서     업무/비기능 요구서       목표 아키텍처          FP 예산서/RFP
+  └───────────────────────────── RTM (Requirements Traceability Matrix) ──────────────────────────┘
+```
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="ISMP 5단계 방법론 및 RTM 기반 종단 추적 체계">
+  <!-- 배경 바운더리 -->
+  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
+
+  <!-- 5단계 박스 (상단) -->
+  <!-- 1. 착수 -->
+  <rect x="25" y="25" width="85" height="60" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="67" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">① 착수</text>
+  <text x="67" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">범위·일정 계획</text>
+  <text x="67" y="72" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">수행계획서</text>
+
+  <line x1="110" y1="55" x2="122" y2="55" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+
+  <!-- 2. 방향성 -->
+  <rect x="122" y="25" width="85" height="60" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="164" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">② 방향성</text>
+  <text x="164" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">현황·목표 모델</text>
+  <text x="164" y="72" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">방향성정의서</text>
+
+  <line x1="207" y1="55" x2="219" y2="55" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+
+  <!-- 3. 요구사항 -->
+  <rect x="219" y="25" width="85" height="60" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="261" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">③ 요구분석</text>
+  <text x="261" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">기능·비기능 명세</text>
+  <text x="261" y="72" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">요구사항목록</text>
+
+  <line x1="304" y1="55" x2="316" y2="55" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+
+  <!-- 4. 구조정의 -->
+  <rect x="316" y="25" width="85" height="60" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="358" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">④ 구조정의</text>
+  <text x="358" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">목표 아키텍처</text>
+  <text x="358" y="72" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">상세명세서</text>
+
+  <line x1="401" y1="55" x2="413" y2="55" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+
+  <!-- 5. 이행방안 -->
+  <rect x="413" y="25" width="82" height="60" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <text x="454" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent-high)">⑤ 이행방안</text>
+  <text x="454" y="60" text-anchor="middle" font-size="8" fill="var(--sl-color-text)">FP예산·발주전략</text>
+  <text x="454" y="72" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--sl-color-accent)">RFP 확정</text>
+
+  <!-- 중앙: RTM 양방향 추적 띠 -->
+  <rect x="25" y="100" width="470" height="34" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <text x="260" y="121" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-accent-high)">RTM (Requirements Traceability Matrix) 종단 추적 거버넌스</text>
+  <path d="M 261 85 L 261 100" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <path d="M 358 85 L 358 100" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <path d="M 454 85 L 454 100" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+
+  <!-- 하단: 조달 Quality Gate 효과 -->
+  <rect x="25" y="145" width="230" height="50" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="140" y="165" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">사전 검증 (Quality Gate)</text>
+  <text x="140" y="180" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">미매핑 요구사항 0건 / FP 근거 일치</text>
+
+  <line x1="255" y1="170" x2="265" y2="170" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+
+  <rect x="265" y="145" width="230" height="50" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="380" y="165" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">구축사업 조달 리스크 차단</text>
+  <text x="380" y="180" text-anchor="middle" font-size="8" fill="var(--sl-color-accent)">과업 변경·사업 유찰·소송 분쟁 원천 방지</text>
+</svg>
+</div>
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ISMP 구성체계와 5단계 방법론의 활동 및 산출물">
   <div class="itpe-pipeline-node">
@@ -153,10 +223,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: ISMP 종료 기준은 단순 산출물 존재 유무가 아니라, 요구사항별 종단 Traceability 확보 여부임
-- 대안: **RTM** 기반 발주 전 종료 **Quality Gate** 운영 강제
-- 검증: 미매핑 요구사항 없음 · 과잉 설계 파악 · 예산 산출 근거의 1:1 일치 여부 점검
-- 효과: 조달 전 명확한 Baseline 확정 → 구축 시 과업 변경, 사업 유찰, 분쟁의 원천 차단
+- **판정 기준**: 발주 전 종료 심의 시 요구사항별 RTM 100% 매핑 여부 및 FP 예산 산출 근거의 1:1 대조 일치성 판정
+- **대응 방안**: RTM 기반의 발주 전 Quality Gate 운영을 제도화하여 과잉 설계 및 누락 과업을 사전 제거
+- **검증 체계**: 외부 감리 및 제3자 기능점수 전문검증을 통한 요구사항-아키텍처-비용-RFP 정합성 실사
+- **기대 효과**: 명확한 조달 Baseline 확정으로 구축 단계 과업 변경율 80% 감소, 사업 유찰 및 계약 분쟁 원천 방지
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="RTM 기반 ISMP 종료 Quality Gate 제언">
   <div class="itpe-pipeline-node">

@@ -1,14 +1,15 @@
 ---
 title: "애자일 대응 전략"
-author: "Claude Code"
-date: "2026-09-21T12:40:00+09:00"
-tags: ["notes-it-strategy"]
+author: "Antigravity"
+date: "2026-09-21T16:21:00+09:00"
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Claude Opus 5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -152,10 +153,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 반복 행사 준수 여부가 아니라 **Increment**가 다음 우선순위를 바꾸는지가 성패를 가름
-- 대안: 독립 배포 가능한 제품부터 적용 · 목표·기간 고정과 **Product Backlog** 범위 조정 규칙 병행
-- 검증: **DoD** 충족 · 고객 검증 · 피드백의 Backlog 반영 여부
-- 효과: 가치 조기 검증 · 변경 손실 축소
+- **판정 기준**: 스크럼 이벤트(데일리, 스프린트 등)의 형식적 준수 여부가 아니라, 매 이터레이션마다 **완료 정의(DoD)**를 통과한 '동작하는 증분(Working Increment)'이 실제 비즈니스 가치를 검증하고 차기 백로그 우선순위를 능동적으로 견인하는지 여부로 판단함
+- **대응 방안**: 독립 배포가 가능한 서브도메인 단위로 애자일을 단계적 적용(Pilot to Scale)하고, 고정 예산/일정 하에서 범위를 백로그 우선순위로 유연하게 조정하는 가변 범위 계약 모델(Agile Contracting)을 도입함
+- **검증 체계**: 단위/통합/보안 테스트 자동화 파이프라인과 결합된 DoD 준수율, 사용자 피드백의 스프린트 리뷰 반영률, 그리고 스프린트 번다운(Burndown) 및 속도(Velocity) 안정성을 객관적 지표로 추적 검증함
+- **기대 효과**: 폭포수 모델 대비 시장 출시 기간(Time-to-Market)을 대폭 단축하고, 요구사항 변경에 따른 매몰 비용과 프로젝트 실패 위험을 최소화하여 고객 가치 중심의 소프트웨어 인도를 실현함
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="애자일 적용을 가치 검증 체계로 전환하는 제언 흐름">
   <div class="itpe-pipeline-node">

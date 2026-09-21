@@ -1,7 +1,7 @@
 ---
 title: "IT 투자평가·투자관리"
-author: "Claude Code"
-date: "2026-09-21T12:40:00+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:21:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Claude Opus 5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -201,10 +201,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 승인 시 **Business Case**와 운영 후 실측 편익이 하나의 환류 고리로 이어지는지 여부
-- 대안: 생애주기 누적 **TCO** 산정 · **편익 책임자**·측정 시점·중단 기준의 승인 시 확정
-- 검증: 사전 목표 대비 비용·편익·위험 편차와 **편익 실현 검토** 통과 여부
-- 효과: 예산 낭비 방지 · 차기 투자 우선순위 환류
+- **판정 기준**: 사업 착수 승인을 위한 사전 기획 단계의 장밋빛 기대치(정적 ROI)가 아니라, 사전 승인 시 수립한 **비즈니스 케이스(Business Case)**와 가동 후 실제 달성된 실측 편익 간의 정량적 정합성 및 투자 회수 달성률로 판정함
+- **대응 방안**: 5개년 누적 총소유비용(TCO, 직접비·간접비·전환비·숨은비용) 산정을 의무화하고, 재무 지표(NPV, IRR)와 비재무 전략 지표(IT-BSC)를 결합한 다차원 평가와 함께 Val IT 기반 전 생애주기(사전-중간-사후) 가치 통제 체계를 구축함
+- **검증 체계**: 중간 개발 단계의 EVM(획득가치관리) 기반 공정·원가 감리, 그리고 가동 1년 후 실제 비즈니스 편익 달성 여부를 의무 검증하는 **편익 실현 감사(Benefits Realization Review)**를 수행함
+- **기대 효과**: IT 투자가 통계적 생산성 향상으로 이어지지 않는 생산성의 역설(Productivity Paradox)을 극복하고, 부적격 사업의 조기 중단(Kill Switch) 및 실측 레슨런 기반 차기 IT 포트폴리오 자본 배분 최적화를 실현함
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Val IT 기반 IT 투자 생애주기 가치 관리 흐름">
   <div class="itpe-pipeline-node">

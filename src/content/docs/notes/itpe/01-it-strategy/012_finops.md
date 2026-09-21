@@ -1,7 +1,7 @@
 ---
 title: "FinOps"
-author: "Claude Code"
-date: "2026-09-21T12:40:00+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:21:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Claude Opus 5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -166,10 +166,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 비용 판단 시점을 청구 이후에서 배포 이전으로 옮겼는가
-- 대안: **FOCUS** 기반 비용 데이터 정규화 · IaC 변경의 비용 영향 사전 검토
-- 검증: 미태깅 리소스 차단 여부 · 변경 요청 단위 비용 증감 산출 여부
-- 효과: 블랙박스 비용 제거 · 트랜잭션당 인프라 원가 개선
+- **판정 기준**: 월말 클라우드 청구서 기반의 사후 정산(ITFM 관점)에 머무는지, 개발·배포 이전 단계에서 인프라 변경 비용을 사전 시뮬레이션하고 비즈니스 성과와 연계된 **단위 경제성(Unit Economics)**을 통제하는지 여부로 성패를 판정함
+- **대응 방안**: 멀티 클라우드 비용 데이터를 **FOCUS(FinOps Open Cost and Usage Specification)** 사양으로 표준화하고, IaC(Terraform 등) 기반 CI/CD 파이프라인에 Infracost 등 비용 예측 및 Policy-as-Code(미태깅 리소스 프로비저닝 자동 차단)를 결합한 **Shift-Left FinOps** 체계를 구축함
+- **검증 체계**: 태그 미할당 자원 비율(Unallocated Cost Ratio < 3%), RI/Savings Plans 약정 커버리지 및 사용률(Utilization > 90%), 풀 리퀘스트(PR) 단계별 비용 증감 영향도 리포트의 자동 발행 여부를 정기 검증함
+- **기대 효과**: 통제 불가능한 블랙박스 낭비 비용을 원천 차단하고, 액티브 유저당 서버 비용 또는 트랜잭션당 인프라 원가(Unit Cost)를 지속 개선하여 클라우드 전환에 따른 비즈니스 마진 극대화를 달성함
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Shift-Left FinOps 자동화 제언 흐름">
   <div class="itpe-pipeline-node">
