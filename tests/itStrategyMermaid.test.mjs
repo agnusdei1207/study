@@ -7,7 +7,7 @@ const notesDir = 'src/content/docs/notes/itpe/01-it-strategy';
 
 async function targetNotes() {
   const names = await readdir(notesDir);
-  return names.filter((name) => /^(?:00[1-9]|0[1-4][0-9]|05[0-4]|05[8-9]|06[0-9]|07[0-5])_.+\.md$/u.test(name)).sort().map((name) => path.join(notesDir, name));
+  return names.filter((name) => /^0[0-9]{2}_.+\.md$/u.test(name)).sort().map((name) => path.join(notesDir, name));
 }
 
 function sectionAfter(markdown, headingPattern) {
@@ -22,9 +22,9 @@ function mermaidBlocks(markdown) {
   return [...markdown.matchAll(/```mermaid\s*\r?\n([\s\S]*?)```/gu)].map((match) => match[1].replace(/\r\n/gu, '\n').trim());
 }
 
-test('IT strategy notes 001 through 075 use Mermaid instead of legacy visual markup', async () => {
+test('IT strategy notes 001 through 098 use Mermaid instead of legacy visual markup', async () => {
   const files = await targetNotes();
-  assert.equal(files.length, 58, '현재 카탈로그의 001~075 범위에는 58개 노트가 있어야 합니다.');
+  assert.equal(files.length, 70, '현재 카탈로그의 001~098 범위에는 70개 노트가 있어야 합니다.');
   for (const file of files) {
     const note = await readFile(file, 'utf8');
     assert.match(note, /```mermaid/u, `${file}: Mermaid 시각화가 필요합니다.`);

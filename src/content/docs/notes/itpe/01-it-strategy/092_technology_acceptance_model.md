@@ -1,6 +1,6 @@
 ---
 title: "기술수용모델(TAM)"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T08:20:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,47 +8,24 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "B"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 변화관리를 거쳐 기술수용모델로 이어지는 위치">
-  <span>IT 전략·관리</span><span>변화관리·사용자 수용</span><strong>TAM</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["변화관리·사용자 수용"]
+    B --> C["기술수용모델(TAM)"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- **본질**: 기술을 유용하고 쉽게 느끼는지가 수용 의도를 형성
-- **메커니즘**: 외부 변수 → PU·PEOU → 태도·BI → 실제 사용
-- **활용**: 수용 저해요인 진단 → UX·업무 적합성·조직 지원 개선
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 500" role="img" aria-label="기술수용모델의 인과구조">
-  <defs><marker id="tam-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" class="itpe-svg-link"></path></marker></defs>
-  <rect x="35" y="205" width="150" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="110" y="240" text-anchor="middle" class="itpe-svg-title">외부 변수</text><text x="110" y="270" text-anchor="middle" class="itpe-svg-sub">품질·교육·지원</text>
-  <rect x="245" y="65" width="180" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="335" y="100" text-anchor="middle" class="itpe-svg-title">PEOU</text><text x="335" y="130" text-anchor="middle" class="itpe-svg-sub">인지된 용이성</text>
-  <rect x="245" y="345" width="180" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="335" y="380" text-anchor="middle" class="itpe-svg-title">PU</text><text x="335" y="410" text-anchor="middle" class="itpe-svg-sub">인지된 유용성</text>
-  <rect x="485" y="205" width="110" height="90" rx="14" class="itpe-svg-node is-current"></rect>
-  <text x="540" y="240" text-anchor="middle" class="itpe-svg-title">태도</text><text x="540" y="270" text-anchor="middle" class="itpe-svg-sub">Attitude</text>
-  <rect x="635" y="95" width="90" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="680" y="130" text-anchor="middle" class="itpe-svg-title">BI</text><text x="680" y="160" text-anchor="middle" class="itpe-svg-sub">사용 의도</text>
-  <rect x="635" y="335" width="90" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="680" y="370" text-anchor="middle" class="itpe-svg-title">사용</text><text x="680" y="400" text-anchor="middle" class="itpe-svg-sub">Actual Use</text>
-  <path d="M185 225 L245 135" class="itpe-svg-link" marker-end="url(#tam-arrow)"></path>
-  <path d="M185 275 L245 365" class="itpe-svg-link" marker-end="url(#tam-arrow)"></path>
-  <path d="M335 155 L335 345" class="itpe-svg-link" marker-end="url(#tam-arrow)"></path>
-  <path d="M425 110 C500 110 500 205 500 205" class="itpe-svg-link" marker-end="url(#tam-arrow)"></path>
-  <path d="M425 390 C500 390 500 295 500 295" class="itpe-svg-link" marker-end="url(#tam-arrow)"></path>
-  <path d="M595 235 C625 210 640 175 650 165" class="itpe-svg-link" marker-end="url(#tam-arrow)"></path>
-  <path d="M425 390 C555 470 620 220 650 175" class="itpe-svg-link" marker-end="url(#tam-arrow)"></path>
-  <path d="M680 185 L680 335" class="itpe-svg-link" marker-end="url(#tam-arrow)"></path>
-</svg>
-</div>
+- 본질: 사용자가 기술을 유용하고 쉽게 느끼는지(PU·PEOU)가 수용 태도와 사용 의도(BI)를 형성해 실제 사용을 결정한다는 모델
+- 메커니즘: 외부 변수(품질·교육·환경) → 인지된 용이성(PEOU) & 인지된 유용성(PU) → 태도(Attitude) → 이용의도(BI) → 실제 사용(Actual Use)
+- 판정 기준: PU·PEOU 지수, 시스템 사용 로그(접속률·기능도달률) 및 업무 KPI 달성도의 삼각 검증(Triangulation) 통과 여부
 
 <details>
 <summary>약어·전문용어</summary>
@@ -67,100 +44,34 @@ extra:
 
 ## Ⅰ. TAM 개요
 
-> 기술 자체의 우수성보다 사용자가 느끼는 유용성·용이성이 수용 행동을 좌우함
+> 기술 자체의 우수성보다 사용자가 느끼는 유용성·용이성이 수용 행동을 좌우함.
 
-- **정의**: 정보기술 수용을 <span class="itpe-keyword"><strong>PU</strong></span>와 <span class="itpe-keyword"><strong>PEOU</strong></span> 중심의 신념·태도·의도·사용 관계로 설명하는 모델
+- **정의**: 정보기술 수용을 PU와 PEOU 중심의 신념·태도·의도·사용 관계로 설명하는 모델
 - **목적**: 사용자 수용 저해요인 진단·실제 사용 촉진
 
 ## Ⅱ. TAM 인과구조 및 변화관리 매핑
 
-> PEOU는 직접 경로뿐 아니라 PU를 높이는 경로로도 수용 의도에 영향을 줌
+> PEOU는 직접 경로뿐 아니라 PU를 높이는 경로로도 수용 의도에 영향을 줌.
 
 ### 1. TAM 상세 인과 메커니즘 및 피드백 루프
 
-```xml
-<svg-diagram>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
-    </marker>
-    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#3b82f6"/>
-    </marker>
-  </defs>
+```mermaid
+flowchart LR
+    EXT["외부 변수<br/>시스템 품질 · 교육훈련 · 지원체계"]
+    PEOU["인지된 용이성 (PEOU)<br/>'배우기 쉽고 다루기 편함'"]
+    PU["인지된 유용성 (PU)<br/>'업무성과 향상 및 생산성 기여'"]
+    ATT["태도 (Attitude)<br/>사용에 대한 심리적 선호도"]
+    BI["이용 의도 (BI)<br/>기술 사용 계획 및 의지"]
+    USE["실제 사용 (Actual Use)<br/>지속적 시스템 활용 및 정착"]
 
-  <!-- Title -->
-  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">TAM 인과구조 및 조직 변화관리 연계도</text>
-
-  <!-- External Variables -->
-  <g transform="translate(15, 65)">
-    <rect x="0" y="0" width="95" height="90" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
-    <text x="47" y="25" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">외부 변수</text>
-    <text x="47" y="45" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">• 시스템 품질</text>
-    <text x="47" y="60" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">• 교육/훈련 지원</text>
-    <text x="47" y="75" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">• 최고경영진 의지</text>
-  </g>
-
-  <!-- PEOU (Top) -->
-  <g transform="translate(145, 45)">
-    <rect x="0" y="0" width="105" height="55" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
-    <text x="52" y="22" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">PEOU (용이성)</text>
-    <text x="52" y="38" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">"배우기 쉽다"</text>
-    <text x="52" y="49" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">UI/UX 직관성</text>
-  </g>
-
-  <!-- PU (Bottom) -->
-  <g transform="translate(145, 120)">
-    <rect x="0" y="0" width="105" height="55" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
-    <text x="52" y="22" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">PU (유용성)</text>
-    <text x="52" y="38" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">"업무성과 향상"</text>
-    <text x="52" y="49" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">생산성/시간절감</text>
-  </g>
-
-  <!-- Attitude (A) -->
-  <g transform="translate(285, 80)">
-    <rect x="0" y="0" width="95" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
-    <text x="47" y="24" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">태도 (Attitude)</text>
-    <text x="47" y="42" fill="var(--sl-color-text-muted)" font-size="9" text-anchor="middle">긍정적/부정적</text>
-    <text x="47" y="53" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">심리적 선호도</text>
-  </g>
-
-  <!-- Intention (BI) & Actual Use (AU) -->
-  <g transform="translate(415, 45)">
-    <rect x="0" y="0" width="90" height="55" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
-    <text x="45" y="24" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">BI (이용의도)</text>
-    <text x="45" y="42" fill="var(--sl-color-text-muted)" font-size="9" text-anchor="middle">사용 계획 수립</text>
-  </g>
-
-  <g transform="translate(415, 120)">
-    <rect x="0" y="0" width="90" height="55" fill="var(--sl-color-bg)" stroke="#10b981" stroke-width="2" rx="6"/>
-    <text x="45" y="24" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">Actual Use</text>
-    <text x="45" y="42" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">실제 지속 사용</text>
-  </g>
-
-  <!-- Connecting Arrows -->
-  <!-- Ext -> PEOU -->
-  <path d="M 110 95 L 140 75" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <!-- Ext -> PU -->
-  <path d="M 110 125 L 140 145" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <!-- PEOU -> PU (Core Path!) -->
-  <path d="M 197 100 L 197 115" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow)"/>
-  <!-- PEOU -> Attitude -->
-  <path d="M 250 75 L 280 95" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <!-- PU -> Attitude -->
-  <path d="M 250 145 L 280 125" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <!-- PU -> BI (Direct link) -->
-  <path d="M 250 155 C 340 185 380 90 410 75" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="3,3" marker-end="url(#arrow-blue)"/>
-  <!-- Attitude -> BI -->
-  <path d="M 380 100 L 410 80" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <!-- BI -> Actual Use -->
-  <path d="M 460 100 L 460 115" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
-
-  <!-- Note -->
-  <text x="15" y="198" fill="var(--sl-color-text-muted)" font-size="9">※ PEOU → PU 간접 경로 및 PU → BI 직접 경로(파란점선)가 신기술 도입 시 강력한 결정요인으로 작동함</text>
-</svg>
-</svg-diagram>
+    EXT --> PEOU
+    EXT --> PU
+    PEOU --> PU
+    PEOU --> ATT
+    PU --> ATT
+    PU -.->|직접 영향| BI
+    ATT --> BI
+    BI --> USE
 ```
 
 ### 2. 인과단계별 분석 및 개선방안
@@ -179,7 +90,7 @@ extra:
 
 ## Ⅲ. TAM vs UTAUT 비교
 
-> TAM은 핵심 신념을 간결하게 진단하고, UTAUT는 조직·사회적 조건까지 넓혀 설명함
+> TAM은 핵심 신념을 간결하게 진단하고, UTAUT는 조직·사회적 조건까지 넓혀 설명함.
 
 | 기준 | TAM | UTAUT |
 |---|---|---|
@@ -189,7 +100,7 @@ extra:
 
 ## Ⅳ. 문제점·대응책
 
-> 설문 의도만 측정하면 실제 사용과 업무성과를 과대평가할 수 있음
+> 설문 의도만 측정하면 실제 사용과 업무성과를 과대평가할 수 있음.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
@@ -214,26 +125,50 @@ extra:
 - **검증 체계**: 설문조사–시스템 로그–업무 성과 간 삼각 검증(Triangulation), 도입 전·중·후 3단계 시계열 추적
 - **기대 효과**: 막대한 SI/ERP 투자 후 방치되는 사장화(Shelfware) 리스크 방지 및 디지털 전환 투자 대비 가치(ROI) 극대화
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="TAM 기반 수용성 품질 게이트">
-  <div class="itpe-flow-node"><strong>수용성 진단</strong><div class="itpe-step-detail"><strong>측정</strong><span>PU·PEOU·BI</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>행동 검증</strong><div class="itpe-step-detail"><strong>증거</strong><span>사용 로그·현업 인터뷰</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>가치 검증</strong><div class="itpe-step-detail"><strong>판정</strong><span>업무 KPI·품질 개선</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>Quality Gate</strong><div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>통과</strong><span>확산·정착</span></div><div class="itpe-flow-branch"><strong>미통과</strong><span>UX·업무·지원 개선</span></div></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 수용성 진단<br/>설문 기반 PU · PEOU · BI 측정"] --> S2["② 행동 검증<br/>시스템 사용 로그(DAU/MAU) · 인터뷰 증거"]
+    S2 --> S3["③ 가치 검증<br/>실제 업무 KPI 달성도 및 생산성 개선 판정"]
+    S3 --> S4{"Quality Gate<br/>삼각 검증 기준 충족 여부?"}
+    S4 -->|통과| S5["전사 확산 및 지속 정착"]
+    S4 -->|미통과| S6["UX 개선 · 온보딩 교육 강화 · 기술지원 보완"]
+```
 
 ## 1교시 10점 답안 발췌
 
-- **정의**: 정보기술 수용을 PU·PEOU 중심의 신념·태도·의도·사용 관계로 설명하는 모델
-- **목적**: 사용자 수용 저해요인 진단·실제 사용 촉진
+### 1. 정의·목적
 
-| 요소 | 의미 |
-|---|---|
-| PU | 업무 성과에 도움이 되는가 |
-| PEOU | 쉽게 배워 사용할 수 있는가 |
-| BI·사용 | 사용할 의도와 실제 행동 |
+- **정의**: 정보기술 수용을 인지된 유용성(PU)과 인지된 용이성(PEOU) 중심의 신념·태도·의도·사용 인과관계로 설명하는 **행동과학 기반 기술수용 프레임워크**
+- **목적**: 신기술 도입 저해요인 조기 식별 및 변화관리를 통한 전사 정착(Shelfware 방지)
+
+### 2. 인과구조 및 구성체계
+
+```mermaid
+flowchart LR
+    EXT["외부 변수<br/>시스템 품질 · 교육훈련 · 지원체계"]
+    PEOU["인지된 용이성 (PEOU)<br/>'배우기 쉽고 다루기 편함'"]
+    PU["인지된 유용성 (PU)<br/>'업무성과 향상 및 생산성 기여'"]
+    ATT["태도 (Attitude)<br/>사용에 대한 심리적 선호도"]
+    BI["이용 의도 (BI)<br/>기술 사용 계획 및 의지"]
+    USE["실제 사용 (Actual Use)<br/>지속적 시스템 활용 및 정착"]
+
+    EXT --> PEOU
+    EXT --> PU
+    PEOU --> PU
+    PEOU --> ATT
+    PU --> ATT
+    PU -.->|직접 영향| BI
+    ATT --> BI
+    BI --> USE
+```
+
+### 3. 핵심 요소 및 실무 통제
+
+| 요소 | 의미 | 실무 통제 방안 |
+|---|---|---|
+| **PU** | 업무 성과에 도움이 되는가 | 핵심 KPI 연동 및 성과 가시화 |
+| **PEOU** | 쉽게 배워 사용할 수 있는가 | 직관적 UX 리디자인 및 온보딩 지원 |
+| **BI·사용** | 사용할 의도와 실제 행동 | 사용 로그(DAU/MAU)와 삼각 검증 |
 
 ## 출제 이력과 검증 출처
 
@@ -255,4 +190,3 @@ extra:
 - 이전 토픽: [적정 사업기간·과업심의](./091_public_sw_cost_and_scope_change_criteria.md)
 - 연관 토픽: [디자인 씽킹](./047_design_thinking.md), [TAM-SAM-SOM](./089_tam_sam_som.md)
 - 다음 토픽: [SW 사업 하도급 구조](./097_software_industry_subcontracting_structure.md)
-

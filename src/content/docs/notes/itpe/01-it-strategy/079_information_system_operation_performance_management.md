@@ -1,6 +1,6 @@
 ---
 title: "정보시스템 운영 성과관리"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T05:50:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "C"
 extra:
   keyword_grade: "C"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,21 +20,11 @@ extra:
   <strong>정보시스템 운영 성과관리</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: **정보시스템 운영 성과관리**는 정보시스템의 지속 운영 가치를 판단하고 업무·비용 성과를 높이는 활동
-- 메커니즘: 대상 선정 → 성과측정 → 성과평가 → 정비대상 결정·정비계획 환류
-- 산출물: 성과측정 결과 · 평가점수 · 정비권고 · 정비계획
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정보시스템 운영 성과관리의 대상 선정부터 정비계획까지 세로 흐름">
-  <div class="itpe-pipeline-node"><strong>① 대상 선정</strong><div class="itpe-step-detail"><strong>기준</strong><span>제23조의 성과측정 대상·제외대상 식별</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>② 성과측정</strong><div class="itpe-step-detail"><strong>비용</strong><span>40점</span></div><div class="itpe-step-detail"><strong>업무</strong><span>60점</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>③ 성과평가</strong><div class="itpe-step-detail"><strong>주체</strong><span>행정안전부장관</span></div><div class="itpe-step-detail"><strong>산출</strong><span>100점 만점 평가점수</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><strong>④ 정비권고·정비계획</strong><div class="itpe-step-detail"><strong>판정</strong><span>60점 미만 정비권고 가능</span></div><div class="itpe-step-detail"><strong>환류</strong><span>폐기·개선 등 정비계획 수립</span></div></div>
-</div>
+- 본질: 공공 정보시스템의 지속 운영 가치를 객관적으로 평가하여 저성과 시스템을 폐기·정비하는 관리제도
+- 메커니즘: 대상선정(제23조) → 성과측정(비용 40점+업무 60점) → 성과평가(행안부) → 정비권고(60점/40점 기준)
+- 판정 기준: 60점 미만 정비권고 대상(40~60점 통폐합/개선, 40점 미만 폐기 권고) 및 8대 법정예외 심의
 
 <details>
 <summary>핵심 용어</summary>
@@ -55,7 +45,7 @@ extra:
 > 성과측정·평가 결과를 근거로 저성과 정보시스템을 정비하되, 폐기 예외와 서비스 연속성을 함께 통제함.
 
 - 정의: 정보시스템의 지속 운영 가치를 판단하기 위해 운영 성과측정·평가 결과에 따라 **정비대상**을 결정하여 업무·비용 성과를 높이는 활동
-- 목적: 운영 성과의 객관적 진단 · 저성과 시스템 정비 · 정보화 투자 효율화
+- 목적: **운영 성과의 객관적 진단 · 저성과 시스템 정비 · 정보화 투자 효율화**
 
 ## Ⅱ. 현행 지침의 성과관리 조문 체계
 
@@ -67,7 +57,7 @@ extra:
 | **정보시스템 정비** | 제26조 | 60점 미만 시스템에 점수 구간별 정비권고 | 정비대상·정비권고 |
 | **정비계획 수립** | 제27조 | 정비권고 시스템의 폐기·개선 계획 수립 | 정비계획 |
 
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>통제 원칙</strong></span> · 정비계획에 이용자 불편 방지 · 정보 이관 또는 보존 · 전자정부서비스 연속성 보장 포함</div>
+- 통제 원칙: 정비계획에 이용자 불편 방지 · 정보 이관 또는 보존 · 전자정부서비스 연속성 보장 포함
 
 ## Ⅲ. 성과측정 구성, 비용 40점·업무 60점
 
@@ -84,49 +74,17 @@ extra:
 
 ## Ⅳ. 제26조 평가점수별 정비 판정
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="전자정부 정보시스템 운영 성과평가 100점 점수 구간별 정비 판정 체계도">
-    <!-- 100 Point Bar -->
-    <rect x="20" y="20" width="480" height="35" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="42" class="itpe-svg-title">종합 평가점수 = 비용 측면(40점) + 업무 측면(60점) [총 100점 만점]</text>
+```mermaid
+flowchart TD
+    TOTAL["종합 평가점수 (100점 만점)<br/>비용 측면 40점 + 업무 측면 60점"] --> JUDGE{"점수 구간 판정"}
 
-    <!-- Threshold 1: 60+ Points -->
-    <rect x="20" y="70" width="150" height="95" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="95" y="92" class="itpe-svg-title">60점 이상 (유지)</text>
-    <line x1="30" y1="102" x2="160" y2="102" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="95" y="122" class="itpe-svg-sub">정비권고 비해당</text>
-    <text x="95" y="140" class="itpe-svg-sub">지속 운영 및 고도화</text>
-    <text x="95" y="156" class="itpe-svg-sub">품질 수준 향상 관리</text>
+    JUDGE -->|60점 이상| S_KEEP["유지 및 지속 운영<br/>정비권고 제외 · 품질/운영 수준 향상"]
+    JUDGE -->|40점 이상 60점 미만| S_IMPROVE["정비권고 (개선 대상)<br/>통폐합 · 기능 재설계 · 전면 재개발"]
+    JUDGE -->|40점 미만| S_DISCARD{"폐기 권고 원칙<br/>8대 법정 예외 사유 심의"}
 
-    <!-- Threshold 2: 40 ~ 60 Points -->
-    <rect x="185" y="70" width="150" height="95" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="92" class="itpe-svg-title">40점 ~ 60점 (개선)</text>
-    <line x1="195" y1="102" x2="325" y2="102" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="260" y="122" class="itpe-svg-sub">정비권고 대상</text>
-    <text x="260" y="140" class="itpe-svg-sub">통폐합 / 기능 재설계</text>
-    <text x="260" y="156" class="itpe-svg-sub">전면 재개발 등 정비</text>
-
-    <!-- Threshold 3: Under 40 Points -->
-    <rect x="350" y="70" width="150" height="95" rx="6" class="itpe-svg-node"></rect>
-    <text x="425" y="92" class="itpe-svg-title">40점 미만 (폐기)</text>
-    <line x1="360" y1="102" x2="490" y2="102" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
-    <text x="425" y="122" class="itpe-svg-sub">원칙: 폐기 권고</text>
-    <text x="425" y="140" class="itpe-svg-sub">단, 8대 법정 예외 사유</text>
-    <text x="425" y="156" class="itpe-svg-sub">해당 시 폐기 유예</text>
-
-    <!-- Bottom Exception Callout -->
-    <rect x="20" y="175" width="480" height="35" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1"></rect>
-    <text x="260" y="196" class="itpe-svg-sub" text-anchor="middle">폐기 예외: 법령 근거, 안보/치안, 국민생활 필수, 취약계층 서비스, 3년 미경과 등 심의</text>
-  </svg>
-</div>
-
-<div class="itpe-flow-map" role="img" aria-label="정보시스템 성과평가 점수가 60점 이상인지 판정하고 60점 미만을 40점 기준으로 나누는 흐름">
-  <div class="itpe-flow-node"><strong>성과평가 총점</strong><div class="itpe-step-detail"><strong>만점</strong><span>100점</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>60점 미만인가?</strong><div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>아니요</strong><span>제26조 정비권고 대상 아님</span></div><div class="itpe-flow-branch"><strong>예</strong><span>정비권고 가능 → 40점 기준 판정</span></div></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>60점 미만 점수 구간</strong><div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>40점 미만</strong><span><span class="itpe-keyword"><strong>폐기</strong></span></span></div><div class="itpe-flow-branch"><strong>40점 이상 60점 미만</strong><span>폐기 또는 통폐합·기능고도화·전면재개발 등 개선방안 마련·시행</span></div></div></div>
-</div>
+    S_DISCARD -->|예외 인정| S_HOLD["폐기 유예 (조건부 유지)<br/>법령근거 · 안보/치안 · 취약계층 필수"]
+    S_DISCARD -->|예외 없음| S_END["최종 폐기 절차 집행<br/>데이터 안전 이관 및 보존"]
+```
 
 | 평가점수 | 제26조 판정 | 후속 조치 |
 |---:|---|---|
@@ -146,8 +104,6 @@ extra:
 
 ## Ⅵ. 증빙과 서비스 연속성을 확보하기 위한 기술사적 제언
 
-> 평가점수만 제시하지 않고 원천자료·폐기 예외·정비 이행의 판단 근거를 끝까지 추적해야 함.
-
 ### 학습자 통찰 메모 — 답안 밖
 
 - [핵심 통찰]: 현행 체계의 판정 단위는 업무·비용 2×2 유형이 아니라 **100점 평가점수와 60점·40점 구간**임.
@@ -160,6 +116,14 @@ extra:
 - **검증 체계 (Verification)**: 비용 40점(유지보수비 비율) 및 업무 60점(사용량 및 공통/고유 성과지표)의 기초 증빙데이터(로그, 결산서)의 무결성을 전수 교차 감사함.
 - **기대 효과 (Impact)**: 유령·저활용 공공시스템 유지보수 예산 낭비 차단, 전자정부 서비스 연속성 및 공공 데이터 안전 이관 보장을 달성함.
 
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>유령·저활용 공공시스템 유지보수비 누수 · 기초데이터 왜곡"] --> P2["개선 대안<br/>비용 40점/업무 60점 로그 전수 검증 · 60/40점 구간별 정비 이행"]
+    P2 --> P3{"검증 판정<br/>평가점수 60점 미만 정비계획 수립 & 데이터 보존 완료?"}
+    P3 -->|달성| P4["실행 효과<br/>예산 낭비 차단 · 전자정부 서비스 연속성 및 데이터 무결성 보장"]
+    P3 -->|미달| P5["보완 조치<br/>8대 법정 예외사유 재심의 및 유지보수 예산 강제 삭감"]
+```
+
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -167,21 +131,29 @@ extra:
 - 정의: 운영 성과측정·평가 결과에 따라 정비대상을 결정하여 정보시스템의 업무·비용 성과를 높이는 활동
 - 목적: 지속 운영 가치 판단 · 저성과 시스템 정비 · 정보화 투자 효율화
 
-### 2. 측정·판정체계
+### 2. 점수 구간별 정비 판정 체계
 
-| 구분 | 핵심 기준 | 결과 |
-|---|---|---|
-| **성과측정** | 비용 40점 · 업무 60점 | 100점 만점 평가점수 |
-| **60점 이상** | 제26조 정비권고 기준 비해당 | 지표 결과값 관리 · 수준 향상 |
-| **40점 이상 60점 미만** | 정비권고 가능 | 폐기 또는 통폐합·기능고도화·전면재개발 등 개선 |
-| **40점 미만** | 폐기 정비권고 가능 | 폐기 예외 검토 · 정비계획 수립 |
+```mermaid
+flowchart TD
+    TOTAL["종합 평가점수 (100점 만점)<br/>비용 측면 40점 + 업무 측면 60점"] --> JUDGE{"점수 구간 판정"}
+
+    JUDGE -->|60점 이상| S_KEEP["유지 및 지속 운영<br/>정비권고 제외 · 품질/운영 수준 향상"]
+    JUDGE -->|40점 이상 60점 미만| S_IMPROVE["정비권고 (개선 대상)<br/>통폐합 · 기능 재설계 · 전면 재개발"]
+    JUDGE -->|40점 미만| S_DISCARD{"폐기 권고 원칙<br/>8대 법정 예외 사유 심의"}
+
+    S_DISCARD -->|예외 인정| S_HOLD["폐기 유예 (조건부 유지)<br/>법령근거 · 안보/치안 · 취약계층 필수"]
+    S_DISCARD -->|예외 없음| S_END["최종 폐기 절차 집행<br/>데이터 안전 이관 및 보존"]
+```
+
+### 3. 핵심 통제
+
+- **비용(40점) + 업무(60점)**: 지표별 계량 평가 점수화
+- **정비 및 예외 심의**: 60점 미만 정비권고, 40점 미만 8대 예외 심의 후 폐기
 
 ## 출제 이력과 검증 출처
 
 - 국가법령정보센터, [전자정부 성과관리 지침](https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulId=61899&efYd=0) — 2025년 12월 19일 시행, 행정안전부고시 제2025-71호, 제2조·제23조~제27조
 - 국가법령정보센터, [정보시스템 운영 성과측정 지표별 배점 및 환산점수](https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200201&flNm=%5B%EB%B3%84%ED%91%9C%5D+%EC%A0%95%EB%B3%B4%EC%8B%9C%EC%8A%A4%ED%85%9C+%EC%9A%B4%EC%98%81+%EC%84%B1%EA%B3%BC%EC%B8%A1%EC%A0%95+%EC%A7%80%ED%91%9C%EB%B3%84+%EB%B0%B0%EC%A0%90+%EB%B0%8F+%ED%99%98%EC%82%B0%EC%A0%90%EC%88%98%28%EC%A0%9C25%EC%A1%B0%EC%A0%9C1%ED%95%AD+%EA%B4%80%EB%A0%A8%29&flSeq=148844105) — 제25조제1항 관련 현행 별표
-
-> 연혁 주의: 업무·비용 기준값의 2×2 유지관리유형 분류는 폐지된 구 지침 체계이며 현행 판정기준으로 사용하지 않음.
 
 ## 학습 체크
 

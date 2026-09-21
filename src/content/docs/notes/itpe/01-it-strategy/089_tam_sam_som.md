@@ -1,6 +1,6 @@
 ---
 title: "TAM-SAM-SOM"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T07:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,38 +8,24 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "B"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 사업 타당성 및 시장 분석을 거쳐 TAM-SAM-SOM으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>사업 타당성·시장 분석</span>
-  <strong>TAM-SAM-SOM</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["사업 타당성·시장 분석"]
+    B --> C["TAM-SAM-SOM"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 거대 시장 착시를 배제하고 전체 시장(**TAM**)에서 유효 시장(**SAM**), 실제 점유 가능한 수익 시장(**SOM**)으로 좁히는 3단계 추정 모델
-- 메커니즘: 전체 수요 정의 → 제품·지역·채널 제약 반영 → 자원·경쟁·영업역량 반영 → 상향식·하향식 교차검증
-- 산출: 시장 경계 · 고객 세그먼트 · 시장규모 근거 · 점유 시나리오
-
-<div class="itpe-svg-map" role="img" aria-label="TAM 안에 SAM, SAM 안에 SOM이 포함되는 시장 범위 모델">
-  <svg viewBox="0 0 640 440" role="img" aria-label="TAM SAM SOM 중첩 시장 구조">
-    <rect class="itpe-svg-node" x="40" y="30" width="560" height="360" rx="28" />
-    <rect class="itpe-svg-node" x="110" y="105" width="420" height="245" rx="24" />
-    <rect class="itpe-svg-node is-current" x="195" y="180" width="250" height="125" rx="22" />
-    <text class="itpe-svg-title" x="320" y="70" text-anchor="middle">TAM</text>
-    <text class="itpe-svg-sub" x="320" y="94" text-anchor="middle">전체 잠재시장</text>
-    <text class="itpe-svg-title" x="320" y="145" text-anchor="middle">SAM</text>
-    <text class="itpe-svg-sub" x="320" y="169" text-anchor="middle">서비스 가능시장</text>
-    <text class="itpe-svg-title" x="320" y="230" text-anchor="middle">SOM</text>
-    <text class="itpe-svg-sub" x="320" y="257" text-anchor="middle">현실적 획득시장</text>
-    <text class="itpe-svg-label" x="320" y="285" text-anchor="middle">고객 수 × 단가 × 획득 가능성</text>
-  </svg>
-</div>
+- 본질: 거대 시장 착시를 배제하고 전체 시장(TAM)에서 유효 시장(SAM), 실제 점유 가능한 수익 시장(SOM)으로 좁히는 3단계 추정 모델
+- 메커니즘: 전체 수요 정의(TAM) → 제품·지역·채널 제약 반영(SAM) → 자원·경쟁·영업역량 반영(SOM) → 상향식·하향식 교차검증
+- 판정 기준: 거시 통계 단순 인용 배제 및 유닛 이코노믹스(LTV > 3×CAC) 기반 SOM 산출 타당성 여부
 
 <details>
 <summary>핵심 용어</summary>
@@ -72,78 +58,32 @@ extra:
 
 ### 1. 3단계 시장 여과 구조 및 추정 방식 교차검증
 
-```xml
-<svg-diagram>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
-    </marker>
-  </defs>
-
-  <!-- Title -->
-  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">TAM-SAM-SOM 3단계 여과 및 Top-Down / Bottom-Up 교차검증</text>
-
-  <!-- Left: Concentric Circles (TAM, SAM, SOM) -->
-  <g transform="translate(15, 45)">
-    <!-- TAM Outer Circle/Box -->
-    <rect x="0" y="0" width="220" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="8"/>
-    <text x="110" y="20" fill="var(--sl-color-text)" font-size="11" font-weight="bold" text-anchor="middle">TAM (전체 시장)</text>
-    <text x="110" y="34" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">글로벌/국내 전체 잠재 시장 규모</text>
-
-    <!-- SAM Middle Box -->
-    <rect x="25" y="45" width="170" height="100" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="6"/>
-    <text x="110" y="65" fill="var(--sl-color-text-accent)" font-size="11" font-weight="bold" text-anchor="middle">SAM (유효 시장)</text>
-    <text x="110" y="78" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">자사 BM·솔루션 스펙 도달 시장</text>
-
-    <!-- SOM Inner Box -->
-    <rect x="50" y="90" width="120" height="50" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="2" rx="4"/>
-    <text x="110" y="112" fill="#ef4444" font-size="11" font-weight="bold" text-anchor="middle">SOM (획득 시장)</text>
-    <text x="110" y="128" fill="var(--sl-color-text)" font-size="8" text-anchor="middle">실제 획득 가능 시장 (단기)</text>
-  </g>
-
-  <!-- Center Arrow -->
-  <path d="M 245 120 L 265 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2" marker-end="url(#arrow)"/>
-
-  <!-- Right: Top-Down vs Bottom-Up Validation Box -->
-  <g transform="translate(275, 45)">
-    <rect x="0" y="0" width="230" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="6"/>
-    <rect x="0" y="0" width="230" height="24" fill="var(--sl-color-text-accent)" opacity="0.1" rx="6 6 0 0"/>
-    <text x="115" y="17" fill="var(--sl-color-text-accent)" font-size="11" font-weight="bold" text-anchor="middle">상향식 실측 및 단위 경제학 검증</text>
-
-    <!-- Top-Down Note -->
-    <text x="12" y="42" fill="var(--sl-color-text)" font-size="10" font-weight="bold">① 하향식(Top-Down) 한계선 설정</text>
-    <text x="22" y="56" fill="var(--sl-color-text-muted)" font-size="9">• 산업 리포트 거시 통계 기반 천장(Ceiling) 파악</text>
-
-    <!-- Bottom-Up Formula -->
-    <text x="12" y="76" fill="var(--sl-color-text)" font-size="10" font-weight="bold">② 상향식(Bottom-Up) SOM 산출</text>
-    <text x="22" y="90" fill="#ef4444" font-size="9" font-weight="bold">• SOM = 타깃 고객 수 × ARPU × 획득률</text>
-
-    <!-- Unit Economics -->
-    <text x="12" y="112" fill="var(--sl-color-text)" font-size="10" font-weight="bold">③ Unit Economics 수익성 검증</text>
-    <text x="22" y="126" fill="var(--sl-color-text)" font-size="9">• <tspan fill="var(--sl-color-text-accent)" font-weight="bold">LTV > 3 × CAC</tspan> 만족 여부 확인</text>
-    <text x="22" y="140" fill="var(--sl-color-text-muted)" font-size="8">• PoC 전환율 · 고객 이탈률(Churn) 실측 반영</text>
-  </g>
-</svg>
-</svg-diagram>
+```mermaid
+flowchart LR
+    subgraph MARKET["TAM-SAM-SOM 3단계 여과"]
+        TAM["TAM (전체 시장)<br/>글로벌/국내 전체 잠재 수요 총액"]
+        SAM["SAM (유효 시장)<br/>자사 BM·솔루션 스펙 도달 가능 시장"]
+        SOM["SOM (획득 시장)<br/>초기 실제 점유 가능한 단기 수익 시장"]
+        TAM --> SAM --> SOM
+    end
+    subgraph VALIDATION["추정 및 검증 체계"]
+        TD["① 하향식(Top-Down)<br/>산업 리포트 기반 성장 한계선(Ceiling) 파악"]
+        BU["② 상향식(Bottom-Up)<br/>SOM = 타깃 고객 수 × ARPU × 획득률"]
+        UE["③ Unit Economics 검증<br/>LTV > 3 × CAC & 손익분기점(BEP) 달성"]
+        TD -.-> BU -.-> UE
+    end
+    SOM ==> VALIDATION
 ```
 
 ### 2. 3단계 계층 상세 비교
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="TAM-SAM-SOM 3단계 계층 구조 및 산출 체계">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>① TAM (Total Addressable Market: 전체 시장)</strong><span>산업 보고서 기준 이론적 최대 수요 총액 → 거시 통계 인용 · 잠재 모수 × 이상 단가</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>② SAM (Serviceable Addressable Market: 유효 시장)</strong><span>자사 BM · 솔루션 스펙 · 지리적 도달 가능 영역 → 타깃 세그먼트 고객 수 × 패키지 단가</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>③ SOM (Serviceable Obtainable Market: 획득 시장)</strong><span>경쟁력·채널·자원 제약 하 실제 획득 가능 시장 → 집중 고객 수 × 단가 × 획득 가능성</span></div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>타당성 정합성</strong></span> · TAM의 범위에서 SAM 제약을 차감하고, SOM은 실제 영업·자원 근거로 검증</div>
+```mermaid
+flowchart TD
+    S1["① TAM (전체 시장)<br/>산업 보고서 기준 이론적 최대 수요 총액 (Top-down 거시 통계 인용)"]
+    S2["② SAM (유효 시장)<br/>자사 BM · 솔루션 스펙 · 지리적 도달 영역 (타깃 고객 수 × 패키지 단가)"]
+    S3["③ SOM (획득 시장)<br/>경쟁력·채널·자원 제약 하 실제 획득 가능 시장 (영업 파이프라인 · 전환율 실측)"]
+    S1 --> S2 --> S3
+```
 
 | 계층 | 범위 | 산출 근거 |
 |---|---|---|
@@ -188,23 +128,13 @@ extra:
 - **검증 체계**: 시장 경계 정의, 경쟁사 윈백 비용 반영, 분기별 실제 영업 전환율과 SOM 가설 간 편차 추적
 - **기대 효과**: 시장 규모 과대 추정에 따른 데스밸리(Death Valley) 사전 예방, 자본 효율성 극대화 및 신규 IT 서비스 성공률 제고
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="Unit Economics 연계 시장 타당성 검증 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>현행 한계</strong><span>Gartner 보고서 단순 인용 · "1% 점유"식 과대 매출 추정 · CAC 간과</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>개선 대안</strong><span>고객 수·단가·전환근거 기반 상향식 SOM 도출</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>검증 기준</strong><span>실제 PoC 전환율 · 고객사 윈백 비용 반영 · Top-down 역검증 매핑</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>실행 효과</strong><span>현실적 BEP 달성 · 초기 자본 고갈(Death Valley) 극복 및 신규 사업 성공</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>Gartner 보고서 단순 인용 · '1% 점유'식 과대 매출 추정 · CAC 간과"] --> P2["개선 대안<br/>고객 수·단가·전환근거 기반 상향식 SOM 도출"]
+    P2 --> P3{"검증 기준<br/>실제 PoC 전환율 · 고객사 윈백 비용 반영 · LTV > 3*CAC 만족?"}
+    P3 -->|충족| P4["실행 효과<br/>현실적 BEP 달성 · 초기 자본 고갈(Death Valley) 극복 및 신규 사업 성공"]
+    P3 -->|미흡| P5["보완 조치<br/>타깃 세그먼트 재조정 및 영업 파이프라인 실측치 반영"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -215,18 +145,28 @@ extra:
 
 ### 2. 구성체계 및 방법론
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="TAM-SAM-SOM 3단계 구성 요약">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>TAM (전체 시장)</strong><span>산업군 이론상 최대 총수요 (Top-down)</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>SAM (유효 시장)</strong><span>자사 BM · 스펙 부합 도달 시장 (Middle-out)</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>SOM (획득 시장)</strong><span>현실적 획득 가능: 고객 수 × 단가 × 획득 가능성</span></div></div>
-</div>
+```mermaid
+flowchart LR
+    subgraph MARKET["TAM-SAM-SOM 3단계 여과"]
+        TAM["TAM (전체 시장)<br/>글로벌/국내 전체 잠재 수요 총액"]
+        SAM["SAM (유효 시장)<br/>자사 BM·솔루션 스펙 도달 가능 시장"]
+        SOM["SOM (획득 시장)<br/>초기 실제 점유 가능한 단기 수익 시장"]
+        TAM --> SAM --> SOM
+    end
+    subgraph VALIDATION["추정 및 검증 체계"]
+        TD["① 하향식(Top-Down)<br/>산업 리포트 기반 성장 한계선(Ceiling) 파악"]
+        BU["② 상향식(Bottom-Up)<br/>SOM = 타깃 고객 수 × ARPU × 획득률"]
+        UE["③ Unit Economics 검증<br/>LTV > 3 × CAC & 손익분기점(BEP) 달성"]
+        TD -.-> BU -.-> UE
+    end
+    SOM ==> VALIDATION
+```
 
 ### 3. 핵심 통제
 
 - **추정 기법 교차 검증**: Top-down(잠재력 파악)과 Bottom-up(실행력 검증)의 상호 역대조
 - **단위 경제성 통제**: CAC·LTV·서비스원가·해지율을 함께 검토하여 사업성 확인
+- **SOM 산출 수식**: $\text{SOM} = \text{타깃 고객 수} \times \text{ARPU} \times \text{획득률}$
 
 ## 출제 이력과 검증 출처
 
@@ -244,4 +184,3 @@ extra:
 - 이전 토픽: [경영환경 분석(SWOT·3C·PEST)](./088_swot_3c_pest.md)
 - 연관 토픽: [기술수용모델(TAM)](./092_technology_acceptance_model.md), [SW 비용 산정](./113_software_cost_estimation.md)
 - 다음 토픽: [과업심의(과업변경·사업기간 적정성)](./091_public_sw_cost_and_scope_change_criteria.md)
-

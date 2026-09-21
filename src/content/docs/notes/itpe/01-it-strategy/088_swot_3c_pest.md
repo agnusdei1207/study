@@ -1,6 +1,6 @@
 ---
 title: "경영환경 분석(SWOT·3C·PEST)"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T07:15:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,45 +8,24 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "B"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 경영 전략 및 비즈니스 분석을 거쳐 경영환경 분석(SWOT·3C·PEST)으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>경영 전략·비즈니스 분석</span>
-  <strong>경영환경 분석(SWOT·3C·PEST)</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["경영 전략·비즈니스 분석"]
+    B --> C["경영환경 분석(SWOT·3C·PEST)"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: **PEST**는 거시환경, **3C**는 고객·경쟁사·자사, **SWOT**은 내부·외부 요인을 종합해 전략대안을 도출하는 분석도구
-- 메커니즘: 거시 변화 탐색 → 고객·경쟁·자사 검증 → 내부 S/W·외부 O/T 분류 → SO/ST/WO/WT 대안 도출
-- 산출: PEST 환경 스캔표 · 3C 경쟁 포지셔닝 맵 · SWOT 팩트시트 · 4대 교차 실행 로드맵
-
-<div class="itpe-flow-map" role="img" aria-label="PEST 거시분석과 3C 미시분석을 거쳐 SWOT 4대 교차 전략으로 이어지는 통합 경영환경 분석 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 거시환경 분석 (PEST)</strong>
-    <div class="itpe-step-detail"><span>정치(P) · 경제(E) · 사회(S) · 기술(T) 외생 변수 진단</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>기회(O) · 위협(T) 잠재 후보 도출</small></div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 미시환경 분석 (3C)</strong>
-    <div class="itpe-step-detail"><span>고객(Customer) · 경쟁사(Competitor) · 자사(Company) 3각 역학</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>강점(S) · 약점(W) 및 시장 차별점 구체화</small></div>
-  <div class="itpe-flow-node is-current">
-    <strong>3단계: 종합 전략 도출 (SWOT 매트릭스)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>SO</strong><span>강점 활용 시장 기회 선점 (공격·성장)</span></div>
-      <div class="itpe-flow-branch"><strong>ST</strong><span>강점 기반 외부 위협 방어 (차별화)</span></div>
-      <div class="itpe-flow-branch"><strong>WO</strong><span>기회 활용 내부 약점 만회 (국면전환)</span></div>
-      <div class="itpe-flow-branch"><strong>WT</strong><span>약점 보완 및 위협 회피 (철수·방어)</span></div>
-    </div>
-  </div>
-</div>
+- 본질: 거시 외생환경(PEST)과 미시 경쟁역학(3C)을 진단하고, 내부 역량과 외부 요인을 SWOT으로 교차하여 전략대안을 도출하는 분석도구
+- 메커니즘: PEST 거시 탐색(O/T 도출) → 3C 미시 검증(S/W 도출) → SWOT 매트릭스 교차 → 4대 전략(SO/ST/WO/WT) 수립
+- 판정 기준: 요인의 통제 가능성(내부 통제 가능=S/W, 통제 불가=O/T) 분리 및 환경-과제 간 추적성(Traceability) 확보 여부
 
 <details>
 <summary>핵심 용어</summary>
@@ -89,106 +68,31 @@ extra:
 
 ### 1. PEST-3C 입력 파이프라인 및 SWOT 4대 교차 매트릭스
 
-```xml
-<svg-diagram>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
-    </marker>
-  </defs>
-
-  <!-- Title -->
-  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">PEST·3C 환경 입력 및 SWOT 4대 교차 전략 구조도</text>
-
-  <!-- Left: Inputs (PEST & 3C) -->
-  <g transform="translate(15, 45)">
-    <!-- PEST Box -->
-    <rect x="0" y="0" width="140" height="68" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
-    <text x="70" y="18" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">PEST 거시분석</text>
-    <text x="10" y="36" fill="var(--sl-color-text)" font-size="9">P(정치) · E(경제)</text>
-    <text x="10" y="50" fill="var(--sl-color-text)" font-size="9">S(사회) · T(기술)</text>
-    <text x="10" y="63" fill="var(--sl-color-text-muted)" font-size="8">▶ 외부 환경 O / T 도출</text>
-
-    <!-- 3C Box -->
-    <rect x="0" y="82" width="140" height="68" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
-    <text x="70" y="100" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">3C 미시분석</text>
-    <text x="10" y="118" fill="var(--sl-color-text)" font-size="9">Customer (고객 니즈)</text>
-    <text x="10" y="132" fill="var(--sl-color-text)" font-size="9">Competitor · Company</text>
-    <text x="10" y="145" fill="var(--sl-color-text-muted)" font-size="8">▶ 내부 역량 S / W 도출</text>
-  </g>
-
-  <!-- Connectors -->
-  <path d="M 160 80 L 195 95" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.8" marker-end="url(#arrow)"/>
-  <path d="M 160 115 L 195 105" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.8" marker-end="url(#arrow)"/>
-
-  <!-- Right: SWOT 2x2 Matrix -->
-  <g transform="translate(205, 45)">
-    <!-- Column Headers: Opportunities & Threats -->
-    <rect x="75" y="0" width="115" height="20" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="2"/>
-    <text x="132" y="14" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">기회 (Opportunities)</text>
-
-    <rect x="195" y="0" width="115" height="20" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="2"/>
-    <text x="252" y="14" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">위협 (Threats)</text>
-
-    <!-- Row Header: Strengths -->
-    <rect x="0" y="25" width="70" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="2"/>
-    <text x="35" y="52" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">강점 (S)</text>
-    <text x="35" y="65" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">내부역량</text>
-
-    <!-- SO Cell -->
-    <rect x="75" y="25" width="115" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="3"/>
-    <text x="132" y="44" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">SO 전략 (공격/성장)</text>
-    <text x="82" y="60" fill="var(--sl-color-text)" font-size="9">• 시장 기회 선점</text>
-    <text x="82" y="74" fill="var(--sl-color-text-muted)" font-size="8">• AI 융합 신사업 확장</text>
-
-    <!-- ST Cell -->
-    <rect x="195" y="25" width="115" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="3"/>
-    <text x="252" y="44" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">ST 전략 (차별화/수비)</text>
-    <text x="202" y="60" fill="var(--sl-color-text)" font-size="9">• 강점 기반 위협 극복</text>
-    <text x="202" y="74" fill="var(--sl-color-text-muted)" font-size="8">• 금융 라이선스 차별화</text>
-
-    <!-- Row Header: Weaknesses -->
-    <rect x="0" y="90" width="70" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="2"/>
-    <text x="35" y="117" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">약점 (W)</text>
-    <text x="35" y="130" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">내부역량</text>
-
-    <!-- WO Cell -->
-    <rect x="75" y="90" width="115" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="3"/>
-    <text x="132" y="109" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">WO 전략 (국면전환)</text>
-    <text x="82" y="125" fill="var(--sl-color-text)" font-size="9">• 기회 활용 약점 만회</text>
-    <text x="82" y="139" fill="var(--sl-color-text-muted)" font-size="8">• 클라우드 전환 지원</text>
-
-    <!-- WT Cell -->
-    <rect x="195" y="90" width="115" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="3"/>
-    <text x="252" y="109" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">WT 전략 (철수/방어)</text>
-    <text x="202" y="125" fill="var(--sl-color-text)" font-size="9">• 취약점 보완/사업 축소</text>
-    <text x="202" y="139" fill="var(--sl-color-text-muted)" font-size="8">• 비핵심 매각·보안 집중</text>
-  </g>
-</svg>
-</svg-diagram>
+```mermaid
+flowchart TD
+    subgraph INPUTS["환경 입력 분석"]
+        P["PEST (거시분석)<br/>P(정치) · E(경제) · S(사회) · T(기술)<br/>➔ 외부 환경 기회(O) / 위협(T) 도출"]
+        C["3C (미시분석)<br/>Customer · Competitor · Company<br/>➔ 내부 역량 강점(S) / 약점(W) 도출"]
+    end
+    subgraph SWOT["SWOT 4대 교차 전략 매트릭스"]
+        SO["SO 전략 (공격/성장): 강점 활용 기회 선점"]
+        ST["ST 전략 (차별화/수비): 강점 기반 위협 극복"]
+        WO["WO 전략 (국면전환): 기회 활용 약점 만회"]
+        WT["WT 전략 (철수/방어): 취약점 보완 및 사업 축소"]
+    end
+    INPUTS ==> SWOT
 ```
 
 ### 2. SWOT 4대 교차 전략 매트릭스
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="PEST-3C-SWOT 통합 연계 4단계 방법론">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>① 거시환경 분석 (PEST)</strong><span>정치·법률, 경제 지표, 사회·문화, 기술 파괴 요인 진단 → 거시 기회(O) · 위협(T) 후보 목록</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>② 미시환경 분석 (3C)</strong><span>타깃 고객 니즈 세분화, 경쟁사 벤치마킹, 자사 역량 분석 → 핵심 성공요인(KSF) · 차별 강점(S) · 보완 약점(W)</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>③ SWOT 요인 배치 및 정제</strong><span>통제 가능성 기준으로 내부(S/W) 및 외부(O/T) 엄격 분류 → SWOT 2x2 팩트시트 확정</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>④ 4대 교차 전략 수립</strong><span>SO(공격), ST(차별화), WO(국면전환), WT(철수) 도출 → 전략 실행 로드맵 · AHP 연계 과제 우선순위</span></div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>전략 정합성</strong></span> · 각 SWOT 요인의 근거와 교차 전략의 실행과제를 추적 가능하게 연결</div>
+```mermaid
+flowchart TD
+    S1["① 거시환경 분석 (PEST)<br/>정치·경제·사회·기술 외생 변수 진단 (산출: 거시 기회 O · 위협 T)"]
+    S2["② 미시환경 분석 (3C)<br/>고객·경쟁사·자사 3각 역학 (산출: KSF · 강점 S · 약점 W)"]
+    S3["③ SWOT 요인 배치 및 정제<br/>통제 가능성 기준 내부(S/W) 및 외부(O/T) 엄격 분류"]
+    S4["④ 4대 교차 전략 수립<br/>SO(공격) · ST(차별화) · WO(국면전환) · WT(철수) 도출 및 AHP 연계"]
+    S1 --> S2 --> S3 --> S4
+```
 
 | 교차 전략 | 결합 축 | 전략 방향성 | 실무 IT 전략 적용 사례 |
 |---|---|---|---|
@@ -224,23 +128,13 @@ extra:
 - **검증 체계**: 환경 요인–SWOT 매트릭스–전략 과제 간 추적성(Traceability) 검증 및 분기별 가정 재평가
 - **기대 효과**: 전략 왜곡 원천 차단, 생성형 AI·규제 변화에 따른 기민한 전략 피벗(Pivot) 및 자원 낭비 방지
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="상시 전략 감지 체계 구축 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>현행 한계</strong><span>연례 1회성 파워포인트 보고서 · 도구 간 단절 · 환경 변화 즉시 대응 불가</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>개선 대안</strong><span>외부 뉴스/규제 API(PEST) + 시장 데이터(3C) + IT 메트릭 연계 동적 레이더</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>검증 기준</strong><span>요인 출처·관측시점 · S/W/O/T 분류 · 과제 우선순위</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <div class="itpe-step-detail"><strong>실행 효과</strong><span>전략적 모순 제거 · 급변하는 AI/규제 환경에 기민한 전략 피벗(Pivot) 실현</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>연례 1회성 파워포인트 · 도구 간 단절 · 환경 변화 즉시 대응 불가"] --> P2["개선 대안<br/>외부 뉴스/규제 API(PEST) + 시장 데이터(3C) + IT 메트릭 연계 동적 레이더"]
+    P2 --> P3{"검증 기준<br/>통제가능성 기준 엄격 분류 & 환경-과제 간 추적성 확보?"}
+    P3 -->|충족| P4["실행 효과<br/>전략적 모순 제거 · 급변하는 AI/규제 환경에 기민한 피벗(Pivot) 실현"]
+    P3 -->|미흡| P5["보완 조치<br/>외부 데이터 API 연동 및 분기별 가정 재평가"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -251,13 +145,20 @@ extra:
 
 ### 2. 구성체계 및 방법론
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="경영환경 분석 3단계 연계 요약">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>PEST (거시)</strong><span>정치 · 경제 · 사회 · 기술 외생 변수 → O / T 후보</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>3C (미시)</strong><span>고객 · 경쟁사 · 자사 3각 역학 → S / W 구체화</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>SWOT (전략)</strong><span>SO(공격) · ST(차별화) · WO(국면전환) · WT(철수)</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    subgraph INPUTS["환경 입력 분석"]
+        P["PEST (거시분석)<br/>P(정치) · E(경제) · S(사회) · T(기술)<br/>➔ 외부 환경 기회(O) / 위협(T) 도출"]
+        C["3C (미시분석)<br/>Customer · Competitor · Company<br/>➔ 내부 역량 강점(S) / 약점(W) 도출"]
+    end
+    subgraph SWOT["SWOT 4대 교차 전략 매트릭스"]
+        SO["SO 전략 (공격/성장): 강점 활용 기회 선점"]
+        ST["ST 전략 (차별화/수비): 강점 기반 위협 극복"]
+        WO["WO 전략 (국면전환): 기회 활용 약점 만회"]
+        WT["WT 전략 (철수/방어): 취약점 보완 및 사업 축소"]
+    end
+    INPUTS ==> SWOT
+```
 
 ### 3. 핵심 통제
 
@@ -282,4 +183,3 @@ extra:
 - 이전 토픽: [소프트웨어 기술자 구분(등급제·IT직무제)](./087_it_job_competency_system.md)
 - 연관 토픽: [TAM-SAM-SOM](./089_tam_sam_som.md), [ISP](./003_isp.md)
 - 다음 토픽: [TAM-SAM-SOM](./089_tam_sam_som.md)
-

@@ -1,6 +1,6 @@
 ---
 title: "적정 사업기간·과업심의"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T07:50:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,42 +8,24 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 공공 SW 사업관리를 거쳐 적정 사업기간과 과업심의로 이어지는 위치">
-  <span>IT 전략·관리</span>
-  <span>공공 SW 사업관리</span>
-  <strong>적정 사업기간·과업심의</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["공공 SW 사업관리"]
+    B --> C["적정 사업기간·과업심의"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- **적정 사업기간**: 발주 전에 과업 수행기간을 산정해 계약에 반영
-- **과업심의**: 과업 확정·변경과 그에 따른 계약금액·기간 조정을 심의
-- **통제 흐름**: 과업·기간 산정 → 과업 확정 → 변경 영향분석 → 심의 → 계약 Baseline 갱신
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="적정 사업기간 산정과 과업심의 흐름">
-  <div class="itpe-flow-node">
-    <strong>발주 전</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>과업·기간 산정</span></div>
-    <div class="itpe-step-detail"><strong>산출</strong><span>과업내용서·사업기간 산정서</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>과업심의</strong>
-    <div class="itpe-step-detail"><strong>판단</strong><span>과업 확정·변경과 계약 영향</span></div>
-    <div class="itpe-step-detail"><strong>산출</strong><span>심의 결과·조치계획</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>계약·계획 반영</strong>
-    <div class="itpe-step-detail"><strong>통제</strong><span>범위·금액·기간·RTM 갱신</span></div>
-  </div>
-</div>
+- 본질: 무리한 납기 방지를 위한 발주 전 '적정 사업기간' 산정과 수행 중 무상 과업 추가 방지를 위한 '과업심의' 통제 제도
+- 메커니즘: FP/유사통계 기반 기간 산정 → 발주 전 과업 확정 → 수행 중 변경요청 시 4차원 영향평가 → 과업심의위 심의 → 계약/Baseline 갱신
+- 판정 기준: 소프트웨어진흥법 제45조/50조 부합성, 4차원(범위·비용·일정·품질) 영향분석 타당성 및 계약금액·공기 조정 여부
 
 <details>
 <summary>약어·전문용어</summary>
@@ -62,7 +44,7 @@ extra:
 
 ## Ⅰ. 적정 사업기간·과업심의 개요
 
-> 발주 전에는 **적정 사업기간**을 계약에 반영하고, 수행 중에는 **과업심의위원회**를 통해 범위 변경과 계약 영향을 통제함
+> 발주 전에는 **적정 사업기간**을 계약에 반영하고, 수행 중에는 **과업심의위원회**를 통해 범위 변경과 계약 영향을 통제함.
 
 - **정의**: 공공 SW 사업의 수행기간을 합리적으로 산정하고, 과업 확정·변경과 계약 조정을 심의하는 제도
 - **목적**: 무리한 일정·무상 과업 확대·계약 분쟁 예방
@@ -73,110 +55,35 @@ extra:
 
 ### 1. 적정 사업기간 산정 및 과업심의 거버넌스 구조도
 
-```xml
-<svg-diagram>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
-    </marker>
-  </defs>
-
-  <!-- Title -->
-  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">공공 SW 적정 사업기간 산정 및 과업심의 통제 메커니즘</text>
-
-  <!-- Phase 1: 발주 전 (적정 사업기간) -->
-  <g transform="translate(15, 45)">
-    <rect x="0" y="0" width="145" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
-    <rect x="0" y="0" width="145" height="24" fill="var(--sl-color-hairline)" opacity="0.3" rx="6 6 0 0"/>
-    <text x="72" y="16" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">[발주 전] 적정사업기간</text>
-    
-    <text x="10" y="42" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold">소프트웨어법 제45조</text>
-    <text x="10" y="58" fill="var(--sl-color-text)" font-size="9">• 기능점수(FP) 산출</text>
-    <text x="10" y="74" fill="var(--sl-color-text)" font-size="9">• 유사사업 통계 대조</text>
-    <text x="10" y="90" fill="var(--sl-color-text)" font-size="9">• 난이도·특이사항 반영</text>
-    <rect x="8" y="105" width="129" height="36" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-hairline)" rx="3"/>
-    <text x="72" y="120" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">과업내용서 확정</text>
-    <text x="72" y="133" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">사업기간 산정서 첨부</text>
-  </g>
-
-  <!-- Arrow 1 -> 2 -->
-  <path d="M 165 120 L 180 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2" marker-end="url(#arrow)"/>
-
-  <!-- Phase 2: 사업 수행 중 (변경 요청 & 영향 분석) -->
-  <g transform="translate(185, 45)">
-    <rect x="0" y="0" width="145" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
-    <rect x="0" y="0" width="145" height="24" fill="var(--sl-color-hairline)" opacity="0.3" rx="6 6 0 0"/>
-    <text x="72" y="16" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">[수행 중] 과업변경 요청</text>
-
-    <text x="10" y="42" fill="#ef4444" font-size="10" font-weight="bold">4차원 영향평가</text>
-    <text x="10" y="58" fill="var(--sl-color-text)" font-size="9">• 범위: 요구사항/산출물</text>
-    <text x="10" y="74" fill="var(--sl-color-text)" font-size="9">• 비용: 추가 FP 및 단가</text>
-    <text x="10" y="90" fill="var(--sl-color-text)" font-size="9">• 일정: 주공정선(CP) 영향</text>
-    <text x="10" y="106" fill="var(--sl-color-text)" font-size="9">• 품질: 테스트/보안 리스크</text>
-    <rect x="8" y="115" width="129" height="28" fill="var(--sl-color-bg-sidebar)" stroke="#ef4444" rx="3"/>
-    <text x="72" y="132" fill="#ef4444" font-size="9" font-weight="bold" text-anchor="middle">변경요청·영향분석서</text>
-  </g>
-
-  <!-- Arrow 2 -> 3 -->
-  <path d="M 335 120 L 350 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2" marker-end="url(#arrow)"/>
-
-  <!-- Phase 3: 과업심의 및 Baseline 반영 -->
-  <g transform="translate(355, 45)">
-    <rect x="0" y="0" width="150" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.8" rx="6"/>
-    <rect x="0" y="0" width="150" height="24" fill="var(--sl-color-text-accent)" opacity="0.1" rx="6 6 0 0"/>
-    <text x="75" y="16" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">[심의] 과업심의위원회</text>
-
-    <text x="10" y="42" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold">소프트웨어법 제50조</text>
-    <text x="10" y="58" fill="var(--sl-color-text)" font-size="9">• 승인/조건부/불가 판정</text>
-    <text x="10" y="74" fill="var(--sl-color-text)" font-size="9">• 금액 및 사업기간 조정</text>
-    
-    <rect x="8" y="88" width="134" height="55" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-text-accent)" rx="3"/>
-    <text x="75" y="104" fill="var(--sl-color-text)" font-size="9" font-weight="bold" text-anchor="middle">계약 및 Baseline 갱신</text>
-    <text x="75" y="120" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">• 변경계약 체결</text>
-    <text x="75" y="134" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">• RTM & WBS 동기화</text>
-  </g>
-</svg>
-</svg-diagram>
+```mermaid
+flowchart LR
+    subgraph PRE["[발주 전] 적정사업기간 산정"]
+        P1["소프트웨어진흥법 제45조<br/>- 기능점수(FP) 산출<br/>- 유사사업 통계 대조<br/>- 사업기간 산정서 확정"]
+    end
+    subgraph EXEC["[수행 중] 과업변경 요청"]
+        E1["4차원 영향평가<br/>- 범위: 요구사항 / RTM<br/>- 비용: 추가 FP 및 단가<br/>- 일정: 주공정선(CP) 영향<br/>- 품질: 테스트·보안 리스크"]
+    end
+    subgraph REVIEW["[심의] 과업심의위원회"]
+        R1["소프트웨어진흥법 제50조<br/>- 승인 / 조건부 / 불가 판정<br/>- 금액 및 사업기간 조정<br/>- 변경계약 및 Baseline 갱신"]
+    end
+    PRE --> EXEC --> REVIEW
 ```
 
 ### 2. 과업 확정·변경 통제 파이프라인
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 소프트웨어 과업 확정과 변경 통제 5단계">
-  <div class="itpe-flow-node">
-    <strong>① 과업·기간 산정</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>요구사항·기초자료·FP·유사사업·특이사항 검토</span></div>
-    <div class="itpe-step-detail"><strong>산출</strong><span>과업내용서·사업기간 산정서</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>② 과업 확정</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>범위·산출물·검수기준 심의</span></div>
-    <div class="itpe-step-detail"><strong>산출</strong><span>확정 과업·심의 결과</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>③ 변경요청·영향분석</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>범위·비용·일정·품질 영향 분석</span></div>
-    <div class="itpe-step-detail"><strong>산출</strong><span>변경요청서·영향분석서</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>④ 변경 심의</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>승인·조건부 승인·불가</span></div>
-    <div class="itpe-step-detail"><strong>산출</strong><span>심의 결과·조치계획</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>⑤ 계약·Baseline 갱신</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>계약금액·기간·범위·RTM 반영</span></div>
-    <div class="itpe-step-detail"><strong>산출</strong><span>변경계약·갱신 계획서</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 과업·기간 산정 (발주 전)<br/>요구사항·FP·유사사업 통계 검토 (과업내용서·사업기간 산정서)"]
+    S2["② 과업 확정 (입찰·계약)<br/>범위·산출물·검수기준 심의 및 확정"]
+    S3["③ 변경요청·영향분석 (수행 중)<br/>범위·비용·일정·품질 4차원 영향평가서 작성"]
+    S4["④ 변경 심의 (과업심의위)<br/>승인·조건부 승인·불가 판정 및 조정안 의결"]
+    S5["⑤ 계약·Baseline 갱신 (사후 통제)<br/>변경계약 체결 및 WBS·RTM 일정 베이스라인 동기화"]
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅲ. 적정 사업기간과 과업심의 비교
 
-> 적정 사업기간은 발주 전 일정의 현실성을, 과업심의는 과업과 계약 변경의 정당성을 통제함
+> 적정 사업기간은 발주 전 일정의 현실성을, 과업심의는 과업과 계약 변경의 정당성을 통제함.
 
 | 구분 | 적정 사업기간 | 과업심의 |
 |---|---|---|
@@ -191,7 +98,7 @@ extra:
 
 ## Ⅳ. 과업 변경 영향분석
 
-> 변경 여부보다 변경이 범위·비용·일정·품질에 미치는 영향을 함께 판단하는 것이 핵심임
+> 변경 여부보다 변경이 범위·비용·일정·품질에 미치는 영향을 함께 판단하는 것이 핵심임.
 
 | 영향축 | 확인 항목 | 반영 대상 |
 |---|---|---|
@@ -204,7 +111,7 @@ extra:
 
 ## Ⅴ. 문제점·대응책
 
-> 과업 변경을 문서·심의·계약으로 연결하지 않으면 수행 현장의 합의가 분쟁으로 전환됨
+> 과업 변경을 문서·심의·계약으로 연결하지 않으면 수행 현장의 합의가 분쟁으로 전환됨.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
@@ -229,38 +136,42 @@ extra:
 - **검증 체계**: 심의 의결서와 변경 계약서 간 추적성 검증, RTM(요구사항추적표) 및 WBS 일정 베이스라인 동시 갱신
 - **기대 효과**: 구두 과업 추가 근절, 수주 기업의 적정 이윤 및 개발자 야근 예방, 공공 SW 품질 신뢰성 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="과업 변경의 실행 통제 방안">
-  <div class="itpe-flow-node">
-    <strong>변경요청</strong>
-    <div class="itpe-step-detail"><strong>근거</strong><span>요구사항·사유·요청자</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>통합 영향분석·심의</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>범위·비용·일정·품질</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>계약 Baseline 갱신</strong>
-    <div class="itpe-step-detail"><strong>반영</strong><span>계약·계획·RTM</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>구현·시험·검수</strong>
-    <div class="itpe-step-detail"><strong>검증</strong><span>승인 과업과 산출물 일치</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>구두 과업 추가 · 무상 변경 강요 · 심의 후 계약 미반영"] --> P2["개선 대안<br/>과업심의위 의결 연계 및 4차원 통합 영향평가서 의무화"]
+    P2 --> P3{"검증 기준<br/>FP 증감률 타당성 & 변경계약 체결 및 RTM-일정 베이스라인 동기화?"}
+    P3 -->|충족| P4["실행 효과<br/>구두 과업 근절 · 적정 대가 보장 · 공공 SW 품질 신뢰성 확보"]
+    P3 -->|미흡| P5["보완 조치<br/>발주기관 대상 시정 조치 및 과업심의 재상정"]
+```
 
 ## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
 
 - **정의**: 공공 SW 사업의 수행기간을 산정하고 과업 확정·변경과 계약 조정을 심의하는 제도
 - **목적**: 무리한 일정·무상 과업 확대·계약 분쟁 예방
 
-| 구분 | 핵심 |
-|---|---|
-| 적정 사업기간 | 발주 전 수행기간 산정·계약 반영 |
-| 과업심의 | 과업 확정·변경과 계약 영향 심의 |
-| 사후 통제 | 계약·Baseline·RTM 동시 갱신 |
+### 2. 구성체계 및 거버넌스
+
+```mermaid
+flowchart LR
+    subgraph PRE["[발주 전] 적정사업기간 산정"]
+        P1["소프트웨어진흥법 제45조<br/>- 기능점수(FP) 산출<br/>- 유사사업 통계 대조<br/>- 사업기간 산정서 확정"]
+    end
+    subgraph EXEC["[수행 중] 과업변경 요청"]
+        E1["4차원 영향평가<br/>- 범위: 요구사항 / RTM<br/>- 비용: 추가 FP 및 단가<br/>- 일정: 주공정선(CP) 영향<br/>- 품질: 테스트·보안 리스크"]
+    end
+    subgraph REVIEW["[심의] 과업심의위원회"]
+        R1["소프트웨어진흥법 제50조<br/>- 승인 / 조건부 / 불가 판정<br/>- 금액 및 사업기간 조정<br/>- 변경계약 및 Baseline 갱신"]
+    end
+    PRE --> EXEC --> REVIEW
+```
+
+### 3. 핵심 통제
+
+- **발주 전 통제**: 적정 사업기간 산정(소프트웨어진흥법 제45조) 통한 공기 확보
+- **수행 중 통제**: 과업심의위원회(소프트웨어진흥법 제50조) 심의 통한 무상 추가 방지
+- **사후 통제**: 심의 의결 후 변경 계약 체결 및 WBS, RTM 베이스라인 동기화
 
 ## 출제 이력과 검증 출처
 
