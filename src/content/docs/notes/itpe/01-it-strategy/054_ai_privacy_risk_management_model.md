@@ -1,6 +1,6 @@
 ---
 title: "AI 프라이버시 리스크 관리 모델"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T02:40:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -17,32 +17,11 @@ extra:
   <span>IT 전략·관리</span><span>AI 거버넌스·개인정보보호</span><strong>AI 프라이버시 리스크 관리</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: AI의 데이터 처리 특성에서 발생하는 프라이버시 위험을 **식별·분석·평가·경감**
-- 대상: 학습데이터·모델·입출력·정보주체 권리·개발자와 제공자 간 책임
-- 원칙: 위험의 가능성·영향에 비례한 기술적·관리적·절차적 보호조치
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 600" role="img" aria-label="AI 프라이버시 리스크를 식별 분석 평가 경감하고 모니터링하는 순환 구조">
-  <defs><marker id="arrow-ai-privacy" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <circle class="itpe-svg-node is-current" cx="380" cy="300" r="95" />
-  <text class="itpe-svg-title" x="380" y="288" text-anchor="middle">Privacy Risk</text>
-  <text class="itpe-svg-sub" x="380" y="318" text-anchor="middle">가능성 × 영향</text>
-  <rect class="itpe-svg-node" x="55" y="55" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="165" y="88" text-anchor="middle">① 식별</text><text class="itpe-svg-sub" x="165" y="113" text-anchor="middle">처리·정보·주체·위협</text>
-  <rect class="itpe-svg-node" x="485" y="55" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="595" y="88" text-anchor="middle">② 분석·평가</text><text class="itpe-svg-sub" x="595" y="113" text-anchor="middle">가능성 · 영향 · 우선순위</text>
-  <rect class="itpe-svg-node" x="485" y="469" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="595" y="502" text-anchor="middle">③ 경감</text><text class="itpe-svg-sub" x="595" y="527" text-anchor="middle">회피 · 감소 · 이전 · 수용</text>
-  <rect class="itpe-svg-node" x="55" y="469" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="165" y="502" text-anchor="middle">④ 모니터링</text><text class="itpe-svg-sub" x="165" y="527" text-anchor="middle">잔여위험 · 변경 · 사고</text>
-  <path class="itpe-svg-link" d="M275 93 H475" marker-end="url(#arrow-ai-privacy)" />
-  <path class="itpe-svg-link" d="M595 131 V459" marker-end="url(#arrow-ai-privacy)" />
-  <path class="itpe-svg-link" d="M485 507 H285" marker-end="url(#arrow-ai-privacy)" />
-  <path class="itpe-svg-link" d="M165 469 V141" marker-end="url(#arrow-ai-privacy)" />
-</svg>
-</div>
+- 본질: AI 데이터 처리 특성에서 발생하는 프라이버시 위험을 생애주기 전반에 걸쳐 식별·분석·평가하고 비례적 경감조치를 취하는 위험관리 프레임워크
+- 메커니즘: 처리맥락 정의 → 위험 식별(Risk Register) → 분석·평가 → 경감조치(차분 프라이버시/언러닝) 및 잔여위험 수용 → 런타임 모니터링
+- 판정 기준: 생성형 AI 추론 시 개인식별정보(PII) 누출률 0% 및 멤버십 추론 공격(MIA) 방어율 >= 99% 달성 여부
 
 <details>
 <summary>핵심 용어</summary>
@@ -69,6 +48,16 @@ extra:
 
 ## Ⅱ. AI 프라이버시 리스크 유형
 
+```mermaid
+flowchart TD
+    R1["1. 데이터 계층: 과잉수집 · 목적 외 이용 · 재식별"]
+    R2["2. 모델 계층: 모델 암기 · 추출 공격 · Membership Inference"]
+    R3["3. 서비스 계층: Prompt/Output/RAG 개인정보 노출"]
+    R4["4. 권리/관리: 고지·열람·정정·삭제(Unlearning) 권리 보장"]
+
+    R1 --> R2 --> R3 --> R4
+```
+
 | 영역 | 주요 위험 | 판단 관점 |
 |---|---|---|
 | 데이터 | 과잉수집·목적 외 이용·재식별 | 처리근거·최소처리·출처 |
@@ -79,67 +68,31 @@ extra:
 
 ## Ⅲ. AI 프라이버시 리스크 관리절차
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 프라이버시 리스크 관리의 식별부터 잔여위험 모니터링까지 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 처리맥락 정의</strong><strong>활동</strong><span>목적·데이터·주체·모델·흐름·책임자 확인</span><strong>산출</strong><span>Data Flow · 처리목록</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 위험 식별</strong><strong>활동</strong><span>원인·위협·취약점·피해 시나리오 도출</span><strong>산출</strong><span>Risk Register</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 분석·평가</strong><strong>활동</strong><span>발생가능성·권리영향·기존통제 평가</span><strong>산출</strong><span>위험등급 · 우선순위</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 경감·수용</strong><strong>활동</strong><span>기술·관리·절차 통제 선정·잔여위험 승인</span><strong>산출</strong><span>Treatment Plan · 승인기록</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 모니터링·개선</strong><strong>활동</strong><span>변경·사고·권리요청·통제효과 점검</span><strong>산출</strong><span>운영로그 · 개선조치</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 처리맥락 정의<br/>목적·데이터·주체·모델·흐름·책임자 확인<br/>(산출: Data Flow · 처리목록)"]
+    S2["② 위험 식별<br/>원인·위협·취약점·피해 시나리오 도출<br/>(산출: Risk Register)"]
+    S3["③ 분석·평가<br/>발생가능성·권리영향·기존통제 평가<br/>(산출: 위험등급 · 우선순위)"]
+    S4["④ 경감·수용<br/>기술·관리·절차 통제 선정·잔여위험 승인<br/>(산출: Treatment Plan · 승인기록)"]
+    S5["⑤ 모니터링·개선<br/>변경·사고·권리요청·통제효과 점검<br/>(산출: 운영로그 · 개선조치)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅳ. 생애주기별 경감방안
 
 > 특정 보호기술을 일률 적용하지 않고 처리목적·데이터 민감도·모델 구조·위험수준에 맞게 조합함.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="AI 생애주기별 프라이버시 위협 및 기술적 경감 체계">
-    <!-- Step 1: Ingestion -->
-    <rect x="15" y="20" width="90" height="70" rx="6" class="itpe-svg-node"></rect>
-    <text x="60" y="42" class="itpe-svg-title">1. 기획·수집</text>
-    <text x="60" y="60" class="itpe-svg-sub">위협: 과잉수집</text>
-    <text x="60" y="78" class="itpe-svg-sub">대책: PbD, PIA</text>
+```mermaid
+flowchart TD
+    L1["1. 기획·수집: 위협(과잉수집) ➔ 대책(PbD · PIA)"]
+    L2["2. 전처리: 위협(재식별) ➔ 대책(가명처리 · 합성데이터)"]
+    L3["3. 학습·평가: 위협(모델 암기) ➔ 대책(차분 프라이버시 · MIA 방어)"]
+    L4["4. 배포·추론: 위협(입출력 누출) ➔ 대책(가드레일 필터 · 접근통제)"]
+    L5["5. 변경·종료: 위협(삭제 불가) ➔ 대책(머신 언러닝 · 증적 폐기)"]
 
-    <!-- Step 2: Preprocessing -->
-    <rect x="115" y="20" width="90" height="70" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="160" y="42" class="itpe-svg-title">2. 전처리</text>
-    <text x="160" y="60" class="itpe-svg-sub">위협: 재식별</text>
-    <text x="160" y="78" class="itpe-svg-sub">대책: 가명·합성데이터</text>
-
-    <!-- Step 3: Training -->
-    <rect x="215" y="20" width="90" height="70" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="42" class="itpe-svg-title">3. 학습·평가</text>
-    <text x="260" y="60" class="itpe-svg-sub">위협: 모델 암기</text>
-    <text x="260" y="78" class="itpe-svg-sub">대책: 차분프라이버시</text>
-
-    <!-- Step 4: Inference -->
-    <rect x="315" y="20" width="90" height="70" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="360" y="42" class="itpe-svg-title">4. 배포·추론</text>
-    <text x="360" y="60" class="itpe-svg-sub">위협: 입출력 누출</text>
-    <text x="360" y="78" class="itpe-svg-sub">대책: 가드레일 필터</text>
-
-    <!-- Step 5: Retirement -->
-    <rect x="415" y="20" width="90" height="70" rx="6" class="itpe-svg-node"></rect>
-    <text x="460" y="42" class="itpe-svg-title">5. 변경·종료</text>
-    <text x="460" y="60" class="itpe-svg-sub">위협: 삭제불가</text>
-    <text x="460" y="78" class="itpe-svg-sub">대책: 머신 언러닝</text>
-
-    <!-- Connecting Arrows -->
-    <line x1="105" y1="55" x2="115" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
-    <line x1="205" y1="55" x2="215" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
-    <line x1="305" y1="55" x2="315" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
-    <line x1="405" y1="55" x2="415" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
-
-    <!-- Comprehensive Governance Bottom Box -->
-    <rect x="15" y="115" width="490" height="85" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1.5"></rect>
-    <text x="260" y="138" class="itpe-svg-title" text-anchor="middle">프라이버시 생명주기 거버넌스 및 통제 증적</text>
-    <text x="260" y="158" class="itpe-svg-sub" text-anchor="middle">데이터 리니지(Lineage) 추적 · PIA 사전평가서 · Differential Privacy 노이즈 ε 계량</text>
-    <text x="260" y="178" class="itpe-svg-sub" text-anchor="middle">멤버십 추론 공격(MIA) 방어 시험 · 정보주체 열람/정정/삭제(Unlearning) 권리 보장</text>
-  </svg>
-</div>
+    L1 --> L2 --> L3 --> L4 --> L5
+```
 
 | 단계 | 위험 | 경감방안 |
 |---|---|---|
@@ -174,23 +127,13 @@ extra:
 - **검증 체계 (Verification)**: 멤버십 추론 공격(MIA) 방어율 99% 이상 및 개인정보보호위원회 '생성형 AI 개인정보보호 수칙' 준수 여부를 레드팀(Red Teaming) 실증 검증함.
 - **기대 효과 (Impact)**: 개인정보 침해 과징금 리스크 원천 차단, 비정형 데이터 활용 적법성 확보, 정보주체 자기결정권 보장 및 서비스 지속가능성을 달성함.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 430" role="img" aria-label="AI 프라이버시 잔여위험 승인 게이트의 통과와 재경감 분기">
-  <defs><marker id="arrow-privacy-gate" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="170" y="24" width="420" height="72" rx="14" />
-  <text class="itpe-svg-title" x="380" y="56" text-anchor="middle">위험평가·경감시험</text><text class="itpe-svg-sub" x="380" y="81" text-anchor="middle">가능성 · 영향 · 통제효과</text>
-  <path class="itpe-svg-link" d="M380 96 V142" marker-end="url(#arrow-privacy-gate)" />
-  <rect class="itpe-svg-node is-current" x="170" y="150" width="420" height="82" rx="14" />
-  <text class="itpe-svg-title" x="380" y="182" text-anchor="middle">Residual Risk Gate</text><text class="itpe-svg-sub" x="380" y="208" text-anchor="middle">수용기준 · 책임자 · 증적 완결</text>
-  <path class="itpe-svg-link" d="M300 232 V275 H170 V315" marker-end="url(#arrow-privacy-gate)" />
-  <path class="itpe-svg-link" d="M460 232 V275 H590 V315" marker-end="url(#arrow-privacy-gate)" />
-  <text class="itpe-svg-label" x="210" y="269" text-anchor="middle">수용</text><text class="itpe-svg-label" x="550" y="269" text-anchor="middle">미수용</text>
-  <rect class="itpe-svg-node" x="50" y="323" width="240" height="70" rx="14" />
-  <text class="itpe-svg-title" x="170" y="354" text-anchor="middle">배포·모니터링</text><text class="itpe-svg-sub" x="170" y="379" text-anchor="middle">변경 시 재평가</text>
-  <rect class="itpe-svg-node" x="470" y="323" width="240" height="70" rx="14" />
-  <text class="itpe-svg-title" x="590" y="354" text-anchor="middle">추가 경감</text><text class="itpe-svg-sub" x="590" y="379" text-anchor="middle">설계·데이터·통제 수정</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["위험평가 및 경감시험<br/>가능성 · 영향 · 통제효과 평가"] --> P2["Residual Risk Gate<br/>수용기준 충족 · 책임자 승인 · 증적 완결"]
+    P2 --> P3{"검증 판정<br/>PII 누출률 0% 및 MIA 방어율 >= 99%?"}
+    P3 -->|수용| P4["배포 및 모니터링<br/>환경 및 모델 변경 시 재평가"]
+    P3 -->|미수용| P5["추가 경감 조치<br/>설계·데이터 가명화·차분 노이즈 재설계"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -199,14 +142,18 @@ extra:
 - 정의: AI 처리맥락을 바탕으로 프라이버시 위험을 식별·분석·평가하고 비례적 경감조치를 적용하는 관리모델
 - 목적: **정보주체 권리·적법한 활용·책임성·지속적 위험관리** 확보
 
-### 2. 절차
+### 2. 생애주기별 경감 통제
 
-| 단계 | 핵심 |
-|---|---|
-| 맥락·식별 | 처리흐름·위협·피해 시나리오 |
-| 분석·평가 | 가능성·영향·통제효과 |
-| 경감·수용 | 보호조치·잔여위험 승인 |
-| 모니터링 | 변경·사고·권리요청·개선 |
+```mermaid
+flowchart TD
+    L1["1. 기획·수집: 위협(과잉수집) ➔ 대책(PbD · PIA)"]
+    L2["2. 전처리: 위협(재식별) ➔ 대책(가명처리 · 합성데이터)"]
+    L3["3. 학습·평가: 위협(모델 암기) ➔ 대책(차분 프라이버시 · MIA 방어)"]
+    L4["4. 배포·추론: 위협(입출력 누출) ➔ 대책(가드레일 필터 · 접근통제)"]
+    L5["5. 변경·종료: 위협(삭제 불가) ➔ 대책(머신 언러닝 · 증적 폐기)"]
+
+    L1 --> L2 --> L3 --> L4 --> L5
+```
 
 ### 3. 핵심 통제
 

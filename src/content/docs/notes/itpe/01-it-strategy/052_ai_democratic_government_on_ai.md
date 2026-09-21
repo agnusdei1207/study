@@ -1,6 +1,6 @@
 ---
 title: "AI 민주정부·온AI"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T02:25:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -17,33 +17,11 @@ extra:
   <span>IT 전략·관리</span><span>디지털정부·공공 AI</span><strong>AI 민주정부·온AI</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: AI로 국민서비스·정책참여·공무원 업무를 개선하는 공공 AX 모델
-- 구조: 대국민 서비스 → 공무원 업무지원 → 범정부 AI 공통기반
-- 통제: 적법한 데이터·근거 제시·Human Oversight·이의제기·감사추적
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 590" role="img" aria-label="범정부 AI 공통기반 위에서 공무원 업무지원과 대국민 서비스가 운영되는 AI 민주정부 구조">
-  <defs><marker id="arrow-ai-govt" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="120" y="25" width="520" height="86" rx="14" />
-  <text class="itpe-svg-title" x="380" y="58" text-anchor="middle">대국민 AI 서비스</text>
-  <text class="itpe-svg-sub" x="380" y="87" text-anchor="middle">맞춤 안내 · 민원 지원 · 안전정보 · 정책참여</text>
-  <path class="itpe-svg-link" d="M380 111 V158" marker-end="url(#arrow-ai-govt)" />
-  <rect class="itpe-svg-node is-current" x="120" y="166" width="520" height="86" rx="14" />
-  <text class="itpe-svg-title" x="380" y="199" text-anchor="middle">공무원 온AI 업무지원</text>
-  <text class="itpe-svg-sub" x="380" y="228" text-anchor="middle">법령 검토 · 검색 · 보고서 초안 · 업무자동화</text>
-  <path class="itpe-svg-link" d="M380 252 V299" marker-end="url(#arrow-ai-govt)" />
-  <rect class="itpe-svg-node" x="120" y="307" width="520" height="86" rx="14" />
-  <text class="itpe-svg-title" x="380" y="340" text-anchor="middle">범정부 AI 공통기반</text>
-  <text class="itpe-svg-sub" x="380" y="369" text-anchor="middle">모델 · RAG · 데이터 · 보안 · 평가 · 관제</text>
-  <path class="itpe-svg-link" d="M380 393 V440" marker-end="url(#arrow-ai-govt)" />
-  <rect class="itpe-svg-node" x="120" y="448" width="520" height="102" rx="14" />
-  <text class="itpe-svg-title" x="380" y="482" text-anchor="middle">공공 책임 통제</text>
-  <text class="itpe-svg-sub" x="380" y="510" text-anchor="middle">법적 근거 · Human Oversight · 이의제기</text>
-  <text class="itpe-svg-sub" x="380" y="536" text-anchor="middle">개인정보 보호 · 기록 · 감사</text>
-</svg>
-</div>
+- 본질: 생성형 AI와 공통 플랫폼을 결합하여 대국민 선제 서비스와 공무원 행정(온AI)을 지능화하되, 민주적 통제와 책임성을 유지하는 공공 AX 모델
+- 메커니즘: 과제 발굴 → 적법성·영향평가 → 공통기반(RAG/보안) 연계 개발 → 인간 감독(HITL) 검증·승인 → 대국민 이의신청(Contestability) 및 사후 감사
+- 판정 기준: 공공 의사결정의 공무원 무비판적 수용(Automation Bias) < 90% 통제 및 대국민 이의신청 접수·처리 절차 100% 보장 여부
 
 <details>
 <summary>핵심 용어</summary>
@@ -69,30 +47,26 @@ extra:
 
 ## Ⅱ. AI 민주정부 구성체계
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="AI 민주정부 및 온AI 공공 서비스 전달체계">
-    <!-- Top: Citizens and Public Service -->
-    <rect x="20" y="15" width="235" height="55" rx="6" class="itpe-svg-node"></rect>
-    <text x="137" y="36" class="itpe-svg-title">대국민 AI 서비스 (포털/앱)</text>
-    <text x="137" y="54" class="itpe-svg-sub">선제적 맞춤 복지안내 · 민원 자동응대</text>
+```mermaid
+flowchart TD
+    subgraph USERS["사용자 서비스 접점"]
+        U1["대국민 AI 서비스 (포털/앱)<br/>선제적 맞춤 복지안내 · 민원 자동응대"]
+        U2["공무원 행정지원 (온AI)<br/>법령·판례 검색 · 보고서 초안 및 요약"]
+    end
 
-    <!-- Top: Civil Servants and onAI -->
-    <rect x="265" y="15" width="235" height="55" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="382" y="36" class="itpe-svg-title">공무원 행정지원 (온AI)</text>
-    <text x="382" y="54" class="itpe-svg-sub">법령 판례 검색 · 보고서 초안 · 요약</text>
+    subgraph PLATFORM["범정부 AI 공통기반 (공유 플랫폼)"]
+        P1["공공 특화 LLM/SLM · RAG(법령·규정 DB) · API 게이트웨이"]
+        P2["보안 필터(개인정보 비식별화) · MLOps/LLMOps 파이프라인"]
+        P1 --- P2
+    end
 
-    <!-- Mid: Pan-Government AI Common Platform -->
-    <rect x="20" y="85" width="480" height="60" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="105" class="itpe-svg-title">범정부 AI 공통기반 (공유 플랫폼)</text>
-    <text x="260" y="122" class="itpe-svg-sub">공공 특화 LLM / SLM · RAG(법령·규정 DB) · API 게이트웨이</text>
-    <text x="260" y="137" class="itpe-svg-sub">보안 필터(개인정보 비식별화) · MLOps / LLMOps 파이프라인</text>
+    subgraph GOV["민주적 통제 및 책임성 (Human-in-the-Loop)"]
+        G1["공무원 최종 서명 책임제 · 국민 이의신청(Contestability) 보장 · 감사추적"]
+    end
 
-    <!-- Bottom: Democratic Accountability & Oversight -->
-    <rect x="20" y="160" width="480" height="48" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="178" class="itpe-svg-title">민주적 통제 및 책임성 (Human-in-the-Loop)</text>
-    <text x="260" y="196" class="itpe-svg-sub">공무원 최종 서명 책임제 · 국민 이의신청(Contestability) 보장 · 감사추적</text>
-  </svg>
-</div>
+    USERS --> PLATFORM
+    PLATFORM --> GOV
+```
 
 | 계층 | 핵심 기능 | 책임 통제 |
 |---|---|---|
@@ -105,17 +79,16 @@ extra:
 
 > 서비스 편의보다 법적 근거와 국민 권리에 미치는 영향을 먼저 확인해야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 AI 서비스의 과제 발굴부터 운영 개선까지 추진절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 과제 발굴</strong><strong>활동</strong><span>국민 불편·업무 병목·이해관계자 식별</span><strong>산출</strong><span>Use Case · 서비스 목표</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 영향·적법성 평가</strong><strong>활동</strong><span>법적 근거·개인정보·권리·오류영향 검토</span><strong>산출</strong><span>영향평가 · 위험등급</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 설계·개발</strong><strong>활동</strong><span>데이터·RAG·모델·인적감독·이의제기 설계</span><strong>산출</strong><span>서비스 설계 · 통제계획</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 검증·도입</strong><strong>활동</strong><span>정확성·공정성·보안·사용성·접근성 평가</span><strong>산출</strong><span>평가결과 · 승인기록</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 운영·개선</strong><strong>활동</strong><span>오류·민원·이의제기·사고·변경 감시</span><strong>산출</strong><span>운영로그 · 개선조치</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 과제 발굴<br/>국민 불편·업무 병목·이해관계자 식별<br/>(산출: Use Case · 서비스 목표)"]
+    S2["② 영향·적법성 평가<br/>법적 근거·개인정보·권리·오류영향 검토<br/>(산출: 영향평가 · 위험등급)"]
+    S3["③ 설계·개발<br/>데이터·RAG·모델·인적감독·이의제기 설계<br/>(산출: 서비스 설계 · 통제계획)"]
+    S4["④ 검증·도입<br/>정확성·공정성·보안·사용성·접근성 평가<br/>(산출: 평가결과 · 승인기록)"]
+    S5["⑤ 운영·개선<br/>오류·민원·이의제기·사고·변경 감시<br/>(산출: 운영로그 · 개선조치)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅳ. 전자정부·DPG·AI 민주정부 비교
 
@@ -151,25 +124,12 @@ extra:
 - **검증 체계 (Verification)**: 행정기본법상 자동적 처분 요건 충족 여부 및 개인정보보호법상 자동화된 결정 거부권 처리 로그를 행정안전부 주관 정기 감찰을 통해 검증함.
 - **기대 효과 (Impact)**: 환각 기반 행정오류 원천 차단, 대국민 행정 신뢰도 제고, 디지털 취약계층 권익 보호 및 책임행정 구현을 달성함.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 470" role="img" aria-label="AI 추천과 인간 검토 및 국민 이의제기를 연결한 공공 AI 책임 구조">
-  <defs><marker id="arrow-ai-public" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="190" y="25" width="380" height="72" rx="14" />
-  <text class="itpe-svg-title" x="380" y="57" text-anchor="middle">AI 분석·추천</text>
-  <text class="itpe-svg-sub" x="380" y="82" text-anchor="middle">근거 · 한계 · 불확실성 표시</text>
-  <path class="itpe-svg-link" d="M380 97 V145" marker-end="url(#arrow-ai-public)" />
-  <rect class="itpe-svg-node is-current" x="190" y="153" width="380" height="72" rx="14" />
-  <text class="itpe-svg-title" x="380" y="185" text-anchor="middle">공무원 검토·결정</text>
-  <text class="itpe-svg-sub" x="380" y="210" text-anchor="middle">법적 근거 확인 · 승인기록</text>
-  <path class="itpe-svg-link" d="M380 225 V273" marker-end="url(#arrow-ai-public)" />
-  <rect class="itpe-svg-node" x="190" y="281" width="380" height="72" rx="14" />
-  <text class="itpe-svg-title" x="380" y="313" text-anchor="middle">통지·서비스 제공</text>
-  <text class="itpe-svg-sub" x="380" y="338" text-anchor="middle">AI 사용 · 근거 · 담당자 안내</text>
-  <path class="itpe-svg-link" d="M380 353 V401" marker-end="url(#arrow-ai-public)" />
-  <rect class="itpe-svg-node" x="190" y="409" width="380" height="48" rx="14" />
-  <text class="itpe-svg-title" x="380" y="440" text-anchor="middle">정정·이의제기·인간 재검토</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["AI 분석 및 추천<br/>근거 · 한계 · 불확실성 표시"] --> P2["공무원 검토 및 결정 (Human Oversight)<br/>법적 근거 확인 및 전자서명 승인"]
+    P2 --> P3["통지 및 서비스 제공<br/>AI 사용 사실 · 판단 근거 · 담당자 명시"]
+    P3 --> P4["정정 및 이의제기 (Contestability)<br/>국민 이의신청 및 인간 재검토 보장"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -178,14 +138,28 @@ extra:
 - 정의: AI로 국민서비스·정책참여·공무원 업무를 개선하고 공공 의사결정의 책임성과 투명성을 강화하는 정부 운영모델
 - 목적: **선제 안내·행정 생산성·정책 대응성·국민 신뢰** 향상
 
-### 2. 구성
+### 2. 구성 체계
 
-| 영역 | 핵심 |
-|---|---|
-| 대국민 | 맞춤 안내·민원·안전·참여 |
-| 공무원 | 검색·법령검토·초안·업무지원 |
-| 공통기반 | 모델·RAG·데이터·보안·평가 |
-| 책임통제 | 영향평가·인적감독·이의제기 |
+```mermaid
+flowchart TD
+    subgraph USERS["사용자 서비스 접점"]
+        U1["대국민 AI 서비스 (포털/앱)<br/>선제적 맞춤 복지안내 · 민원 자동응대"]
+        U2["공무원 행정지원 (온AI)<br/>법령·판례 검색 · 보고서 초안 및 요약"]
+    end
+
+    subgraph PLATFORM["범정부 AI 공통기반 (공유 플랫폼)"]
+        P1["공공 특화 LLM/SLM · RAG(법령·규정 DB) · API 게이트웨이"]
+        P2["보안 필터(개인정보 비식별화) · MLOps/LLMOps 파이프라인"]
+        P1 --- P2
+    end
+
+    subgraph GOV["민주적 통제 및 책임성 (Human-in-the-Loop)"]
+        G1["공무원 최종 서명 책임제 · 국민 이의신청(Contestability) 보장 · 감사추적"]
+    end
+
+    USERS --> PLATFORM
+    PLATFORM --> GOV
+```
 
 ### 3. 핵심 통제
 

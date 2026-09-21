@@ -1,6 +1,6 @@
 ---
 title: "ITSM"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-21T20:45:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,33 +20,11 @@ extra:
   <strong>ITSM</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 개별 인프라 장비가 아닌 고객 중심의 End-to-End IT 서비스 생명주기를 관리하여 비즈니스 가치를 공동 창출(Co-creation)하는 서비스 관리 체계.
-- 메커니즘: 서비스 데스크 단일 창구 인입 → 인시던트(신속 복구) → 문제(근본 원인 규명 및 **KEDB**) → 변경(위험 평가 및 **CAB** 승인) → 릴리즈/배포 및 **CMDB** 형상 갱신 → 지속적 서비스 개선(**CSI**).
-- 통제: 장애 복구와 원인 규명 R&R 분리 · 변경 승인 병목 해소를 위한 표준변경(Standard Change) 자동화 · **SLA 수박 효과(Green Melon)** 방지를 위한 **XLA(경험수준협약)** 병행.
-
-<div class="itpe-flow-map" role="img" aria-label="ITSM 핵심 프랙티스 연계 및 폐쇄 루프 흐름">
-  <div class="itpe-flow-node">
-    <strong>Service Desk (단일 접점)</strong>
-    <small>사용자 요청 접수 · 인시던트 티켓 발행</small>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>서비스 신속 복구 우선 (Workaround)</small></div>
-  <div class="itpe-flow-node is-current">
-    <strong>ITSM 핵심 운영 및 제어 루프</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>Incident</strong><span>서비스 신속 복구 (MTTR 최소화)</span></div>
-      <div class="itpe-flow-branch"><strong>Problem</strong><span>근본 원인 제거 · <span class="itpe-keyword"><strong>KEDB</strong></span>(Known Error DB) 구축</span></div>
-      <div class="itpe-flow-branch"><strong>Change</strong><span>위험 평가 · <span class="itpe-keyword"><strong>CAB</strong></span> 자문 · 변경 승인</span></div>
-      <div class="itpe-flow-branch"><strong>Release</strong><span>빌드·배포 검증 · <span class="itpe-keyword"><strong>CMDB</strong></span> 형상 동기화</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>SLA/XLA 측정 및 피드백</small></div>
-  <div class="itpe-flow-node">
-    <strong>지속적 서비스 개선 (CSI)</strong>
-    <small>ITIL 4 SVS 가치 실현 · 서비스 백로그 개선 환류</small>
-  </div>
-</div>
+- 본질: 개별 인프라 장비가 아닌 고객 중심의 End-to-End IT 서비스 생명주기를 관리하여 비즈니스 가치를 공동 창출(Co-creation)하는 서비스 관리 체계
+- 메커니즘: 서비스 데스크 단일 창구 인입 → 인시던트(신속 복구) → 문제(근본 원인 규명 및 KEDB) → 변경(위험 평가 및 CAB 승인) → 릴리즈/배포 및 CMDB 형상 갱신 → 지속적 서비스 개선(CSI)
+- 판정 기준: 변경 작업으로 인한 2차 장애율 < 1% 및 목표 MTTR 달성률 >= 99% 유지
 
 <details>
 <summary>핵심 용어</summary>
@@ -77,6 +55,13 @@ extra:
 
 > ITIL 4는 실천방법, ISO/IEC 20000-1은 SMS 요구사항, SLA는 고객과의 서비스 수준 약속을 담당함.
 
+```mermaid
+flowchart LR
+    SVS["ITIL 4<br/>(SVS & Practices)"] --> GOV["ISO/IEC 20000-1<br/>(SMS 체계 & 적합성)"]
+    GOV --> SLA_BOX["SLA / XLA<br/>(서비스 수준 & 경험 약속)"]
+    SLA_BOX --> TOOL["도구 인프라<br/>(Service Desk · KEDB · CMDB)"]
+```
+
 | 체계 | 역할 | 적용 초점 |
 |---|---|---|
 | **ITIL 4** | SVS·4 Dimensions·Practices | 가치흐름·실천방법 |
@@ -88,55 +73,14 @@ extra:
 
 > Incident 복구와 Problem 원인제거를 구분하고, Change·Release로 개선을 안전하게 반영함.
 
-<div class="itpe-diagram-box">
-  <svg viewBox="0 0 520 220" width="100%" height="220" role="img" aria-label="ITSM 핵심 프랙티스 연계 폐쇄 루프 아키텍처 다이어그램">
-    <!-- Outer boundary for Service Value Chain -->
-    <rect x="15" y="15" width="490" height="190" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
-
-    <!-- 1. Service Desk & Incident -->
-    <rect x="25" y="30" width="145" height="70" rx="5" fill="var(--sl-color-blue-low)" stroke="var(--sl-color-blue)" stroke-width="1.5"/>
-    <text x="97" y="52" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="11" font-weight="bold">① Incident Management</text>
-    <text x="97" y="70" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">서비스 데스크 단일 접점</text>
-    <text x="97" y="86" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">신속 복구 (Workaround)</text>
-
-    <!-- Arrow to Problem -->
-    <line x1="170" y1="65" x2="190" y2="65" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
-
-    <!-- 2. Problem Management -->
-    <rect x="190" y="30" width="145" height="70" rx="5" fill="var(--sl-color-purple-low)" stroke="var(--sl-color-purple)" stroke-width="1.5"/>
-    <text x="262" y="52" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="11" font-weight="bold">② Problem Management</text>
-    <text x="262" y="70" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">근본 원인 분석 (RCA)</text>
-    <text x="262" y="86" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="8.5">KEDB 등록 ➔ RFC 발행</text>
-
-    <!-- Arrow to Change -->
-    <line x1="335" y1="65" x2="355" y2="65" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
-
-    <!-- 3. Change Enablement -->
-    <rect x="355" y="30" width="140" height="70" rx="5" fill="var(--sl-color-green-low)" stroke="var(--sl-color-green)" stroke-width="1.5"/>
-    <text x="425" y="52" text-anchor="middle" fill="var(--sl-color-green-high)" font-size="11" font-weight="bold">③ Change Enablement</text>
-    <text x="425" y="70" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">위험·영향 평가 (CAB)</text>
-    <text x="425" y="86" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">표준/일반/긴급 변경 승인</text>
-
-    <!-- Down arrow from Change to Release -->
-    <line x1="425" y1="100" x2="425" y2="120" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
-
-    <!-- 4. Release & Deployment -->
-    <rect x="270" y="120" width="225" height="70" rx="5" fill="var(--sl-color-blue-low)" stroke="var(--sl-color-blue)" stroke-width="1.5"/>
-    <text x="382" y="142" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="11" font-weight="bold">④ Release &amp; Deployment</text>
-    <text x="382" y="160" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">스테이징 검증 및 운영 배포 (CI/CD)</text>
-    <text x="382" y="176" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="8.5">CMDB 형상 동기화 및 자산 최신화</text>
-
-    <!-- 5. CSI Loop back -->
-    <rect x="25" y="120" width="225" height="70" rx="5" fill="var(--sl-color-green-low)" stroke="var(--sl-color-green)" stroke-width="1.5"/>
-    <text x="137" y="142" text-anchor="middle" fill="var(--sl-color-green-high)" font-size="11" font-weight="bold">⑤ Continual Improvement (CSI)</text>
-    <text x="137" y="160" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">SLA/XLA 달성률 측정 및 개선 환류</text>
-    <text x="137" y="176" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">서비스 품질 개선 백로그 반영</text>
-
-    <!-- Feedback flow line -->
-    <line x1="270" y1="155" x2="250" y2="155" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
-    <path d="M 25 155 L 18 155 L 18 65 L 25 65" fill="none" stroke="var(--sl-color-gray-3)" stroke-width="1.5"/>
-  </svg>
-</div>
+```mermaid
+flowchart TD
+    SD["① Service Desk / Incident<br/>단일 접점 · 신속 복구(Workaround)"] -->|RCA 분석 요청| PM["② Problem Management<br/>근본 원인 분석 · KEDB 등록"]
+    PM -->|RFC 발행| CE["③ Change Enablement<br/>위험·영향 평가(CAB) · 변경 승인"]
+    CE -->|배포 위임| RD["④ Release & Deployment<br/>스테이징 검증 · CI/CD 배포 · CMDB 갱신"]
+    RD -->|성과 지표 환류| CSI["⑤ CSI (지속적 서비스 개선)<br/>SLA/XLA 측정 · 서비스 백로그 반영"]
+    CSI -.->|개선안 피드백| SD
+```
 
 | Practice | 목표 | 핵심 활동 | 산출 |
 |---|---|---|---|
@@ -150,17 +94,16 @@ extra:
 
 > 서비스 흐름의 입력·판정·산출이 구분되어야 티켓이 프로세스 사이에서 유실되지 않음.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ITSM 운영과 지속개선 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 접수·분류</strong><strong>활동</strong><span>요청·Incident 기록·우선순위화</span><strong>산출</strong><span>Ticket</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 복구·원인분석</strong><strong>활동</strong><span>Workaround·원인·Known Error 관리</span><strong>산출</strong><span>KEDB · 개선요청</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 변경평가</strong><strong>활동</strong><span>영향·위험·일정·복구계획 검토</span><strong>산출</strong><span>승인 Change</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 릴리즈·배포</strong><strong>활동</strong><span>검증·배포·서비스 확인</span><strong>산출</strong><span>Release · CMDB 갱신</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>⑤ 측정·개선</strong><strong>활동</strong><span>SLA·경험·추세·재발 분석</span><strong>산출</strong><span>개선 Backlog</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 접수·분류<br/>요청·Incident 기록·우선순위화<br/>(산출: Ticket)"]
+    S2["② 복구·원인분석<br/>Workaround·원인·Known Error 관리<br/>(산출: KEDB · 개선요청)"]
+    S3["③ 변경평가<br/>영향·위험·일정·복구계획 검토<br/>(산출: 승인 Change)"]
+    S4["④ 릴리즈·배포<br/>검증·배포·서비스 확인<br/>(산출: Release · CMDB 갱신)"]
+    S5["⑤ 측정·개선<br/>SLA·경험·추세·재발 분석<br/>(산출: 개선 Backlog)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅴ. 문제점·대응책
 
@@ -189,15 +132,13 @@ extra:
 - **검증 절차**: 분기별 KEDB 미해결 에러(Known Error) 재발 건수 분석 및 CAB 변경 승인 리드타임 측정.
 - **기대 효과**: 배포 속도와 시스템 안정성의 양립, 서비스 연속성 보장 및 최종 사용자 경험(XLA) 극대화.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ITSM 가치흐름 개선안">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>문제</strong><span>프로세스 단절 · 승인병목 · 지표왜곡</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>대책</strong><span>티켓–변경–배포–형상 추적 · 위험기반 자동화</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>판정</strong><span>복구시간 · 재발 · 변경실패 · 사용자경험</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>효과</strong><span>안정성·변경속도·서비스 가치 균형</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>프로세스 단절 · 승인 병목 · Green Melon 지표 왜곡"] --> P2["개선 대안<br/>티켓-변경-배포-형상 E2E 추적 및 위험 기반 Standard Change 자동화"]
+    P2 --> P3{"검증 판정<br/>변경 작업 2차 장애율 < 1% 및 MTTR 달성률 >= 99%?"}
+    P3 -->|달성| P4["실행 효과<br/>배포 속도와 시스템 안정성 양립 · 사용자 경험(XLA) 극대화"]
+    P3 -->|미달| P5["보완 조치<br/>KEDB 재발 원인 정밀 재분석 및 CAB 승인 리드타임 재설계"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -208,15 +149,14 @@ extra:
 
 ### 2. 핵심 연계
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ITSM 핵심 Practice 연계 요약">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Incident</strong><span>서비스 신속복구</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Problem</strong><span>원인·Known Error·Workaround</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Change</strong><span>영향·위험·승인</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>Release·Deployment</strong><span>검증·배포·CMDB 갱신</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    SD["① Service Desk / Incident<br/>단일 접점 · 신속 복구(Workaround)"] -->|RCA 분석 요청| PM["② Problem Management<br/>근본 원인 분석 · KEDB 등록"]
+    PM -->|RFC 발행| CE["③ Change Enablement<br/>위험·영향 평가(CAB) · 변경 승인"]
+    CE -->|배포 위임| RD["④ Release & Deployment<br/>스테이징 검증 · CI/CD 배포 · CMDB 갱신"]
+    RD -->|성과 지표 환류| CSI["⑤ CSI (지속적 서비스 개선)<br/>SLA/XLA 측정 · 서비스 백로그 반영"]
+    CSI -.->|개선안 피드백| SD
+```
 
 ### 3. 핵심 통제
 

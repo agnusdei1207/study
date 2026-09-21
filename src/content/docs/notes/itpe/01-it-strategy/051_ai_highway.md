@@ -1,6 +1,6 @@
 ---
 title: "AI 고속도로"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T02:10:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -17,41 +17,11 @@ extra:
   <span>IT 전략·관리</span><span>국가 AI 전략·인프라</span><strong>AI 고속도로</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: AI 개발·활용에 필요한 **컴퓨팅·데이터·네트워크·전력**을 공통기반으로 공급
-- 구조: 국가 AI컴퓨팅센터를 중심으로 산·학·연의 연산자원과 개발환경 연결
-- 통제: 수요기반 배분·상호운용성·데이터 권리·전력 효율·공급망 위험 관리
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 590" role="img" aria-label="국가 AI컴퓨팅센터를 중심으로 AI 고속도로 자원이 연결되는 허브 구조">
-  <defs><marker id="arrow-ai-hwy" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node is-current" x="210" y="214" width="340" height="130" rx="18" />
-  <text class="itpe-svg-title" x="380" y="258" text-anchor="middle">국가 AI컴퓨팅센터</text>
-  <text class="itpe-svg-sub" x="380" y="288" text-anchor="middle">가속기 · 클라우드 · 개발환경</text>
-  <text class="itpe-svg-sub" x="380" y="316" text-anchor="middle">배분 · 운영 · 보안 · 관제</text>
-
-  <rect class="itpe-svg-node" x="30" y="30" width="260" height="86" rx="14" />
-  <text class="itpe-svg-title" x="160" y="64" text-anchor="middle">Compute</text>
-  <text class="itpe-svg-sub" x="160" y="92" text-anchor="middle">GPU · NPU · Storage</text>
-  <path class="itpe-svg-link" d="M230 116 L320 214" marker-end="url(#arrow-ai-hwy)" />
-
-  <rect class="itpe-svg-node" x="470" y="30" width="260" height="86" rx="14" />
-  <text class="itpe-svg-title" x="600" y="64" text-anchor="middle">Data</text>
-  <text class="itpe-svg-sub" x="600" y="92" text-anchor="middle">품질 · 권리 · 보안 · Lineage</text>
-  <path class="itpe-svg-link" d="M530 116 L440 214" marker-end="url(#arrow-ai-hwy)" />
-
-  <rect class="itpe-svg-node" x="30" y="454" width="260" height="86" rx="14" />
-  <text class="itpe-svg-title" x="160" y="488" text-anchor="middle">Network</text>
-  <text class="itpe-svg-sub" x="160" y="516" text-anchor="middle">광대역 · 저지연 · 분산연결</text>
-  <path class="itpe-svg-link" d="M230 454 L320 344" marker-end="url(#arrow-ai-hwy)" />
-
-  <rect class="itpe-svg-node" x="470" y="454" width="260" height="86" rx="14" />
-  <text class="itpe-svg-title" x="600" y="488" text-anchor="middle">Power·Facility</text>
-  <text class="itpe-svg-sub" x="600" y="516" text-anchor="middle">전력 · 냉각 · 입지 · 재해대응</text>
-  <path class="itpe-svg-link" d="M530 454 L440 344" marker-end="url(#arrow-ai-hwy)" />
-</svg>
-</div>
+- 본질: 국가 차원의 AI 개발·활용을 위해 대규모 연산(GPU/NPU)·데이터·초고속 네트워크·전력망을 공통기반으로 구축·공급하는 국가 디지털 인프라
+- 메커니즘: Workload 수요 접수 → 적합성 심사 및 Quota 배분 → 국가 AI 컴퓨팅 센터 자원 배치 → 실행 및 FinOps 관제 → 유휴 자원 회수 및 환류
+- 판정 기준: 할당 GPU 자원의 72시간 연속 가동률 >= 30% 유지 및 PUE(전력효율지수) < 1.2 이하 달성 여부
 
 <details>
 <summary>핵심 용어</summary>
@@ -81,29 +51,16 @@ extra:
 
 > 자원 보유량보다 수요자가 필요한 환경을 적시에 사용할 수 있는 서비스 전달체계가 중요함.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="AI 고속도로 풀스택 아키텍처">
-    <!-- Layer 1: Platform & Services -->
-    <rect x="20" y="15" width="480" height="35" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="32" class="itpe-svg-title">1. 서비스·플랫폼 계층: AI MLOps · LLM Hub · 공통 API · 개발/서빙 포털</text>
+```mermaid
+flowchart TD
+    L1["1. 서비스·플랫폼 계층: AI MLOps · LLM Hub · 공통 API · 개발/서빙 포털"]
+    L2["2. 데이터 계층: 고품질 AI 학습데이터 · 합성데이터 · 안전구역 · 데이터 레이크"]
+    L3["3. 연산·컴퓨팅 계층: 국산 NPU · GPU 클러스터 · 초고속 스토리지 (GPUDirect)"]
+    L4["4. 초고속 네트워크 계층: RoCEv2 · InfiniBand · 백본 광전송망 (초저지연 패브릭)"]
+    L5["5. 에너지·인프라 계층: 전력 계통망 · 액침냉각(Immersion Cooling) · PUE 최적화"]
 
-    <!-- Layer 2: Data & Governance -->
-    <rect x="20" y="55" width="480" height="35" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="72" class="itpe-svg-title">2. 데이터 계층: 고품질 AI 학습데이터 · 합성데이터 · 안전구역 · 데이터 레이크</text>
-
-    <!-- Layer 3: Compute & Accelerator -->
-    <rect x="20" y="95" width="480" height="35" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="112" class="itpe-svg-title">3. 연산·컴퓨팅 계층: 국산 NPU · GPU 클러스터 · 초고속 스토리지 (GPUDirect)</text>
-
-    <!-- Layer 4: Network Fabric -->
-    <rect x="20" y="135" width="480" height="35" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="152" class="itpe-svg-title">4. 초고속 네트워크 계층: RoCEv2 · InfiniBand · 백본 광전송망 (초저지연 패브릭)</text>
-
-    <!-- Layer 5: Energy & Facilities -->
-    <rect x="20" y="175" width="480" height="35" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="192" class="itpe-svg-title">5. 에너지·인프라 계층: 전력 계통망 · 액침냉각(Immersion Cooling) · PUE 최적화</text>
-  </svg>
-</div>
+    L1 --> L2 --> L3 --> L4 --> L5
+```
 
 | 영역 | 구성 | 역할 |
 |---|---|---|
@@ -117,17 +74,16 @@ extra:
 
 > 수요-배분-실행-회수 전 과정을 계량하여 한정된 가속기의 유휴와 독점을 함께 줄여야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="국가 AI컴퓨팅 서비스의 수요 접수부터 성과 환류까지 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 수요 접수</strong><strong>활동</strong><span>목적·모델·데이터·자원·기간 확인</span><strong>산출</strong><span>Workload Profile</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 적합성·우선순위 평가</strong><strong>활동</strong><span>공익성·기술성·보안·자원량 심사</span><strong>산출</strong><span>배분결정 · 보안등급</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 자원 배치</strong><strong>활동</strong><span>가속기·Storage·Network·개발환경 구성</span><strong>산출</strong><span>Tenant · Quota · 실행환경</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 실행·관제</strong><strong>활동</strong><span>사용량·성능·비용·보안·장애 감시</span><strong>산출</strong><span>운영로그 · 이용량 · 사고기록</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 회수·환류</strong><strong>활동</strong><span>자원 회수·성과평가·용량계획 반영</span><strong>산출</strong><span>성과보고 · 수요예측</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 수요 접수<br/>목적·모델·데이터·자원·기간 확인<br/>(산출: Workload Profile)"]
+    S2["② 적합성·우선순위 평가<br/>공익성·기술성·보안·자원량 심사<br/>(산출: 배분결정 · 보안등급)"]
+    S3["③ 자원 배치<br/>가속기·Storage·Network·개발환경 구성<br/>(산출: Tenant · Quota · 실행환경)"]
+    S4["④ 실행·관제<br/>사용량·성능·비용·보안·장애 감시<br/>(산출: 운영로그 · 이용량 · 사고기록)"]
+    S5["⑤ 회수·환류<br/>자원 회수·성과평가·용량계획 반영<br/>(산출: 성과보고 · 수요예측)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅳ. 초고속정보통신망과 AI 고속도로 비교
 
@@ -167,26 +123,13 @@ extra:
 - **검증 체계 (Verification)**: 워크로드별 TCO(연산비용+전력비용+스토리지), 데이터센터 전력효율(PUE < 1.2 목표), 모델 학습 완료율을 계량화하여 분기별 투자 효과를 평가함.
 - **기대 효과 (Impact)**: 글로벌 GPU 벤더 종속 탈피(소버린 AI 인프라 자립), 자원 유휴 손실 50% 절감, 스타트업 및 연구계 AI 개발 진입 장벽의 획기적 완화를 달성함.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 440" role="img" aria-label="AI 인프라 수요와 자원 배분 및 성과가 순환하는 운영 구조">
-  <defs><marker id="arrow-ai-finops" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <circle class="itpe-svg-node" cx="380" cy="218" r="90" />
-  <text class="itpe-svg-title" x="380" y="208" text-anchor="middle">AI Infra FinOps</text>
-  <text class="itpe-svg-sub" x="380" y="238" text-anchor="middle">비용·성능·용량 최적화</text>
-  <rect class="itpe-svg-node" x="55" y="45" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="165" y="78" text-anchor="middle">수요 예측</text><text class="itpe-svg-sub" x="165" y="103" text-anchor="middle">Workload Profile</text>
-  <rect class="itpe-svg-node" x="485" y="45" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="595" y="78" text-anchor="middle">자원 배분</text><text class="itpe-svg-sub" x="595" y="103" text-anchor="middle">Placement · Quota</text>
-  <rect class="itpe-svg-node" x="485" y="319" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="595" y="352" text-anchor="middle">계량·성과</text><text class="itpe-svg-sub" x="595" y="377" text-anchor="middle">이용량 · 비용 · 결과</text>
-  <rect class="itpe-svg-node" x="55" y="319" width="220" height="76" rx="14" />
-  <text class="itpe-svg-title" x="165" y="352" text-anchor="middle">회수·용량계획</text><text class="itpe-svg-sub" x="165" y="377" text-anchor="middle">Scale · Reallocate</text>
-  <path class="itpe-svg-link" d="M275 83 H475" marker-end="url(#arrow-ai-finops)" />
-  <path class="itpe-svg-link" d="M595 121 V309" marker-end="url(#arrow-ai-finops)" />
-  <path class="itpe-svg-link" d="M485 357 H285" marker-end="url(#arrow-ai-finops)" />
-  <path class="itpe-svg-link" d="M165 319 V131" marker-end="url(#arrow-ai-finops)" />
-</svg>
-</div>
+```mermaid
+flowchart TD
+    D1["① 수요 예측<br/>Workload Profile 수집"] --> D2["② 자원 배분<br/>Placement 및 Dynamic Quota 할당"]
+    D2 --> D3["③ 계량 및 성과 측정<br/>이용량 · 비용 · 모델 학습 완료율"]
+    D3 --> D4["④ 자원 회수 및 용량계획<br/>72시간 가동률 < 30% 선점형 회수 및 Scale 재조정"]
+    D4 --> D1
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -195,14 +138,18 @@ extra:
 - 정의: AI 컴퓨팅·데이터·네트워크·전력·개발환경을 연계하여 AI 개발과 활용을 지원하는 국가 공통기반
 - 목적: **컴퓨팅 접근성·AI 생태계·기술자립·산업 AX** 강화
 
-### 2. 구성
+### 2. 구성 풀스택
 
-| 영역 | 핵심 |
-|---|---|
-| Compute | GPU·NPU·HPC·Storage |
-| Data·Network | 안전한 데이터·광대역 연결 |
-| Platform | Cloud·MLOps·개발도구 |
-| Power·Facility | 전력·냉각·입지·DR |
+```mermaid
+flowchart TD
+    L1["1. 서비스·플랫폼 계층: AI MLOps · LLM Hub · 공통 API · 개발/서빙 포털"]
+    L2["2. 데이터 계층: 고품질 AI 학습데이터 · 합성데이터 · 안전구역 · 데이터 레이크"]
+    L3["3. 연산·컴퓨팅 계층: 국산 NPU · GPU 클러스터 · 초고속 스토리지 (GPUDirect)"]
+    L4["4. 초고속 네트워크 계층: RoCEv2 · InfiniBand · 백본 광전송망 (초저지연 패브릭)"]
+    L5["5. 에너지·인프라 계층: 전력 계통망 · 액침냉각(Immersion Cooling) · PUE 최적화"]
+
+    L1 --> L2 --> L3 --> L4 --> L5
+```
 
 ### 3. 핵심 통제
 

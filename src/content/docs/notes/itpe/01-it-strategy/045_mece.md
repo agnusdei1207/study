@@ -1,6 +1,6 @@
 ---
 title: "MECE"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-21T21:05:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,22 +20,11 @@ extra:
   <strong>MECE</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 같은 계층을 **하나의 분할축**으로 나누어 중복(ME)과 누락(CE)을 줄이는 구조화 원칙
-- 절차: 전체 경계 정의 → 분할축 선택 → 계층 분해 → 중복·누락 검증 → 실행단위·책임 할당
-- 적용: Issue Tree · WBS · 요구사항 분류 · 조직·역할 · 위험분류
-
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 720 440" role="img" aria-label="MECE의 중복과 누락 검증 개념">
-    <rect x="40" y="25" width="640" height="360" rx="18" class="itpe-svg-node"></rect>
-    <text x="360" y="55" class="itpe-svg-title">전체 범위 U</text>
-    <rect x="75" y="95" width="170" height="210" rx="14" class="itpe-svg-node is-current"></rect><text x="160" y="130" class="itpe-svg-title">A</text><text x="160" y="165" class="itpe-svg-sub">상호 배타</text><text x="160" y="195" class="itpe-svg-sub">중복 없음</text>
-    <rect x="275" y="95" width="170" height="210" rx="14" class="itpe-svg-node is-current"></rect><text x="360" y="130" class="itpe-svg-title">B</text><text x="360" y="165" class="itpe-svg-sub">같은 분할축</text><text x="360" y="195" class="itpe-svg-sub">같은 추상수준</text>
-    <rect x="475" y="95" width="170" height="210" rx="14" class="itpe-svg-node is-current"></rect><text x="560" y="130" class="itpe-svg-title">C</text><text x="560" y="165" class="itpe-svg-sub">전체 포괄</text><text x="560" y="195" class="itpe-svg-sub">누락 없음</text>
-    <text x="360" y="345" class="itpe-svg-title">A ∪ B ∪ C = U</text><text x="360" y="375" class="itpe-svg-sub">A∩B = B∩C = A∩C = ∅</text>
-  </svg>
-</div>
+- 본질: 같은 계층을 하나의 분할축으로 나누어 상호 배타(ME)와 전체 포괄(CE)을 달성하는 문제 구조화 원칙
+- 메커니즘: 전체 경계 정의 → 단일 분할축 선정 → 동일 추상수준 계층 분해 → ME·CE 무결성 검증 → 실행단위·책임(RACI) 할당
+- 판정 기준: 동일 레벨 내 분할축 혼용 0건 및 잔여 '기타' 항목 비율 <= 10% 이내 유지
 
 <details>
 <summary>핵심 용어</summary>
@@ -64,6 +53,15 @@ extra:
 
 > 분류 경계·축·추상수준이 일치해야 ME와 CE를 검증할 수 있음.
 
+```mermaid
+flowchart TD
+    U["전체 문제 공간 (전체 범위 U)"] --> S1["단일 분할축 선정<br/>(동일 추상수준 유지)"]
+    S1 --> ME["ME 검증 (상호 배타)<br/>A ∩ B = ∅ (중복 누수 배제)"]
+    S1 --> CE["CE 검증 (전체 포괄)<br/>A ∪ B = U (누락 방지)"]
+    ME --> R["실행 단위 할당 (WBS / Issue Tree)"]
+    CE --> R
+```
+
 | 원칙 | 확인 질문 | 오류 징후 |
 |---|---|---|
 | **경계 정의** | 전체 U의 시작·끝은 어디인가? | 범위 밖 항목 혼입 |
@@ -76,51 +74,24 @@ extra:
 
 > 대상에 맞는 축을 선택하되 동일 계층에서는 혼용하지 않음.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="MECE 기반 Issue Tree 계층 분할 및 검증 구조">
-    <!-- Root Issue -->
-    <rect x="20" y="80" width="100" height="50" rx="8" class="itpe-svg-node"></rect>
-    <text x="70" y="102" class="itpe-svg-title">핵심 과제</text>
-    <text x="70" y="118" class="itpe-svg-sub">전체 범위 U</text>
+```mermaid
+flowchart LR
+    ROOT["핵심 과제<br/>(전체 범위 U)"] --> L1_A["영역 A (내부 요인)<br/>단일축: 귀속주체"]
+    ROOT --> L1_B["영역 B (외부 요인)<br/>단일축: 귀속주체"]
     
-    <!-- Lines to L1 -->
-    <line x1="120" y1="105" x2="160" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
-    <line x1="120" y1="105" x2="160" y2="155" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
+    L1_A --> A1["A-1. 프로세스"]
+    L1_A --> A2["A-2. 시스템"]
     
-    <!-- L1 Nodes -->
-    <rect x="160" y="30" width="130" height="50" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="225" y="52" class="itpe-svg-title">영역 A (내부 요인)</text>
-    <text x="225" y="68" class="itpe-svg-sub">단일축: 귀속주체</text>
+    L1_B --> B1["B-1. 고객/시장"]
+    L1_B --> B2["B-2. 법제/규제"]
     
-    <rect x="160" y="130" width="130" height="50" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="225" y="152" class="itpe-svg-title">영역 B (외부 요인)</text>
-    <text x="225" y="168" class="itpe-svg-sub">단일축: 귀속주체</text>
-    
-    <!-- Lines to L2 -->
-    <line x1="290" y1="45" x2="330" y2="25" stroke="var(--sl-color-gray-4)" stroke-width="1.5"></line>
-    <line x1="290" y1="65" x2="330" y2="75" stroke="var(--sl-color-gray-4)" stroke-width="1.5"></line>
-    <line x1="290" y1="145" x2="330" y2="135" stroke="var(--sl-color-gray-4)" stroke-width="1.5"></line>
-    <line x1="290" y1="165" x2="330" y2="185" stroke="var(--sl-color-gray-4)" stroke-width="1.5"></line>
-    
-    <!-- L2 Nodes -->
-    <rect x="330" y="10" width="105" height="35" rx="6" class="itpe-svg-node"></rect>
-    <text x="382" y="28" class="itpe-svg-title">A-1. 프로세스</text>
-    <rect x="330" y="55" width="105" height="35" rx="6" class="itpe-svg-node"></rect>
-    <text x="382" y="73" class="itpe-svg-title">A-2. 시스템</text>
-    
-    <rect x="330" y="115" width="105" height="35" rx="6" class="itpe-svg-node"></rect>
-    <text x="382" y="133" class="itpe-svg-title">B-1. 고객/시장</text>
-    <rect x="330" y="165" width="105" height="35" rx="6" class="itpe-svg-node"></rect>
-    <text x="382" y="183" class="itpe-svg-title">B-2. 법제/규제</text>
-    
-    <!-- Validation Box -->
-    <rect x="450" y="30" width="60" height="150" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-dasharray="3,3"></rect>
-    <text x="480" y="75" class="itpe-svg-sub" text-anchor="middle" font-weight="bold">ME 검증</text>
-    <text x="480" y="95" class="itpe-svg-sub" text-anchor="middle">A ∩ B = ∅</text>
-    <text x="480" y="135" class="itpe-svg-sub" text-anchor="middle" font-weight="bold">CE 검증</text>
-    <text x="480" y="155" class="itpe-svg-sub" text-anchor="middle">A ∪ B = U</text>
-  </svg>
-</div>
+    subgraph VAL["MECE 검증"]
+        V1["ME 검증: A ∩ B = ∅"]
+        V2["CE 검증: A ∪ B = U"]
+    end
+    L1_A -.-> VAL
+    L1_B -.-> VAL
+```
 
 | 방식 | 분할축 | 적용 예 |
 |---|---|---|
@@ -134,17 +105,16 @@ extra:
 
 > 논점 구조는 분석 가능한 질문으로, WBS는 책임 가능한 작업단위로 끝나야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="MECE 기반 Issue Tree와 WBS 작성 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 문제·범위 정의</strong><strong>활동</strong><span>핵심질문·포함·제외 경계 명시</span><strong>산출</strong><span>Problem Statement</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 분할축 선택</strong><strong>활동</strong><span>목적에 맞는 단일 기준 선정</span><strong>산출</strong><span>분류 기준</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 계층 분해</strong><strong>활동</strong><span>동일 추상수준의 형제 노드 도출</span><strong>산출</strong><span>Issue Tree · WBS</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>④ ME·CE 검증</strong><strong>활동</strong><span>교집합·미분류·범위 밖 항목 점검</span><strong>산출</strong><span>검증된 구조</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 실행 연결</strong><strong>활동</strong><span>우선순위·책임·추적성 부여</span><strong>산출</strong><span>Work Package · RACI</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 문제·범위 정의<br/>핵심질문·포함·제외 경계 명시<br/>(산출: Problem Statement)"]
+    S2["② 분할축 선택<br/>목적에 맞는 단일 기준 선정<br/>(산출: 분류 기준)"]
+    S3["③ 계층 분해<br/>동일 추상수준의 형제 노드 도출<br/>(산출: Issue Tree · WBS)"]
+    S4["④ ME·CE 검증<br/>교집합·미분류·범위 밖 항목 점검<br/>(산출: 검증된 구조)"]
+    S5["⑤ 실행 연결<br/>우선순위·책임·추적성 부여<br/>(산출: Work Package · RACI)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅴ. 문제점·대응책
 
@@ -172,15 +142,13 @@ extra:
 - **검증 체계 (Verification)**: 산출물 검토 시 상호배타성(RACI 매트릭스 책임 중복 여부)과 전체포괄성(100% Rule 및 RTM 요구사항 누락 여부)을 교차 매핑하여 형식적 완전성을 정량 검증함.
 - **기대 효과 (Impact)**: 프로젝트 범위 크립(Scope Creep) 원천 차단, 부서 간 업무 R&R 분쟁 40% 이상 감축, 의사결정 추적성 확보를 달성함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="MECE 구조의 검증과 실행 연결">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>문제</strong><span>축 혼용 · 중복 · 미분류</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>대책</strong><span>분할축 명시 · 교집합·미분류 검토</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>판정</strong><span>중복 책임 · 누락 요구사항 · 범위 밖 작업</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>효과</strong><span>논점·범위·책임의 명확화</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>분할축 혼용 · 중복 책임 · '기타' 항목 남발"] --> P2["개선 대안<br/>계층별 단일 분할축 명시 및 기타 항목 원인별 2차 분할"]
+    P2 --> P3{"검증 판정<br/>동일 레벨 축 혼용 0건 및 기타 항목 비율 <= 10%?"}
+    P3 -->|달성| P4["실행 효과<br/>범위 크립 원천 차단 · 부서 간 R&R 분쟁 40% 감축"]
+    P3 -->|미달| P5["보완 조치<br/>RACI 책임 매핑 재점검 및 100% Rule 무결성 재검토"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -189,15 +157,26 @@ extra:
 - 정의: 동일 계층 항목을 **상호 배타적(ME)**이고 **전체 포괄적(CE)**으로 구성하는 구조화 원칙
 - 목적: **논점 명확화 · 중복업무 축소 · 누락위험 감소**
 
-### 2. 적용 절차
+### 2. 구조화 및 검증 아키텍처
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="MECE 적용 절차 요약">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>범위 정의</strong><span>전체 U의 포함·제외 경계</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>분할축 선택</strong><span>같은 계층에 하나의 기준</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>ME·CE 검증</strong><span>교집합·미분류·범위 밖 항목 점검</span></div></div>
-</div>
+```mermaid
+flowchart LR
+    ROOT["핵심 과제<br/>(전체 범위 U)"] --> L1_A["영역 A (내부 요인)<br/>단일축: 귀속주체"]
+    ROOT --> L1_B["영역 B (외부 요인)<br/>단일축: 귀속주체"]
+    
+    L1_A --> A1["A-1. 프로세스"]
+    L1_A --> A2["A-2. 시스템"]
+    
+    L1_B --> B1["B-1. 고객/시장"]
+    L1_B --> B2["B-2. 법제/규제"]
+    
+    subgraph VAL["MECE 검증"]
+        V1["ME 검증: A ∩ B = ∅"]
+        V2["CE 검증: A ∪ B = U"]
+    end
+    L1_A -.-> VAL
+    L1_B -.-> VAL
+```
 
 ### 3. 핵심 통제
 

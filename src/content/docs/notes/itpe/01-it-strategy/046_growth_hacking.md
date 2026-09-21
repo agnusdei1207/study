@@ -1,6 +1,6 @@
 ---
 title: "그로스 해킹"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-21T21:25:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,26 +20,11 @@ extra:
   <strong>그로스 해킹</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 제품·마케팅·데이터를 결합하여 **지속 가능한 성장 메커니즘**을 실험으로 탐색
-- 분석: North Star Metric → AARRR Funnel → Cohort·Retention → 병목·가설
-- 실험: 가설 → 우선순위 → A/B Test → 효과·Guardrail 검증 → 학습·확산
-
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 720 540" role="img" aria-label="그로스 해킹의 분석 실험 학습 성장 순환">
-    <defs><marker id="growth-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
-    <circle cx="360" cy="270" r="85" class="itpe-svg-node is-current"></circle><text x="360" y="250" class="itpe-svg-title">Growth Loop</text><text x="360" y="282" class="itpe-svg-sub">가치 제공</text><text x="360" y="307" class="itpe-svg-sub">재사용·추천·수익</text>
-    <rect x="250" y="20" width="220" height="75" rx="14" class="itpe-svg-node"></rect><text x="360" y="48" class="itpe-svg-title">Measure</text><text x="360" y="73" class="itpe-svg-sub">NSM · AARRR · Cohort</text>
-    <rect x="500" y="220" width="190" height="75" rx="14" class="itpe-svg-node"></rect><text x="595" y="248" class="itpe-svg-title">Hypothesis</text><text x="595" y="273" class="itpe-svg-sub">병목 · 원인 · 기대효과</text>
-    <rect x="250" y="435" width="220" height="75" rx="14" class="itpe-svg-node"></rect><text x="360" y="463" class="itpe-svg-title">Experiment</text><text x="360" y="488" class="itpe-svg-sub">A/B · Guardrail · 검정</text>
-    <rect x="30" y="220" width="190" height="75" rx="14" class="itpe-svg-node"></rect><text x="125" y="248" class="itpe-svg-title">Learn</text><text x="125" y="273" class="itpe-svg-sub">채택 · 기각 · 재설계</text>
-    <path d="M470 58 Q620 75 610 215" class="itpe-svg-link" marker-end="url(#growth-arrow)"></path>
-    <path d="M595 295 Q590 455 475 470" class="itpe-svg-link" marker-end="url(#growth-arrow)"></path>
-    <path d="M250 472 Q105 455 115 300" class="itpe-svg-link" marker-end="url(#growth-arrow)"></path>
-    <path d="M125 220 Q115 70 245 58" class="itpe-svg-link" marker-end="url(#growth-arrow)"></path>
-  </svg>
-</div>
+- 본질: 제품·마케팅·데이터를 결합하여 지속 가능한 성장 메커니즘을 통제 실험으로 탐색하는 데이터 기반 제품 관리 접근법
+- 메커니즘: North Star Metric 정의 → AARRR 퍼널 및 코호트 병목 탐색 → 가설 수립(ICE 우선순위) → A/B 테스트 및 Guardrail 검정 → 학습 및 제품 환류
+- 판정 기준: p-value < 0.05 통계적 유의성 확보 및 목표 지표 개선 대비 Guardrail(이탈률·불만율) 침해 0건 유지
 
 <details>
 <summary>핵심 용어</summary>
@@ -70,34 +55,16 @@ extra:
 
 > 단계 순서는 서비스 특성에 따라 달라질 수 있으며, 각 단계의 의미 있는 행동을 먼저 정의함.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 230" role="img" aria-label="AARRR 해적 지표 퍼널 및 핵심 관리 지표">
-    <!-- Acquisition -->
-    <polygon points="40,15 480,15 440,55 80,55" class="itpe-svg-node"></polygon>
-    <text x="260" y="32" class="itpe-svg-title">1. Acquisition (획득)</text>
-    <text x="260" y="48" class="itpe-svg-sub">유입 경로 최적화 · CAC · 신규 가입자 수</text>
-    
-    <!-- Activation -->
-    <polygon points="85,58 435,58 400,98 120,98" class="itpe-svg-node is-current"></polygon>
-    <text x="260" y="75" class="itpe-svg-title">2. Activation (활성화 - Aha Moment)</text>
-    <text x="260" y="91" class="itpe-svg-sub">핵심 가치 최초 경험 · 온보딩 전환율 · 체류 시간</text>
-    
-    <!-- Retention -->
-    <polygon points="125,101 395,101 365,141 155,141" class="itpe-svg-node is-current"></polygon>
-    <text x="260" y="118" class="itpe-svg-title">3. Retention (유지 - 제품 적합성)</text>
-    <text x="260" y="134" class="itpe-svg-sub">Cohort 재방문율 · Churn Rate · 잔존 곡선 평탄화</text>
-    
-    <!-- Revenue -->
-    <polygon points="160,144 360,144 330,184 190,184" class="itpe-svg-node"></polygon>
-    <text x="260" y="161" class="itpe-svg-title">4. Revenue (매출)</text>
-    <text x="260" y="177" class="itpe-svg-sub">유료 전환율 · ARPU · LTV > 3×CAC</text>
-    
-    <!-- Referral -->
-    <polygon points="195,187 325,187 305,222 215,222" class="itpe-svg-node"></polygon>
-    <text x="260" y="202" class="itpe-svg-title">5. Referral (추천)</text>
-    <text x="260" y="216" class="itpe-svg-sub">바이럴 계수(K > 1) · NPS</text>
-  </svg>
-</div>
+```mermaid
+flowchart TD
+    A1["1. Acquisition (획득)<br/>유입 경로 최적화 · CAC · 신규 가입자"]
+    A2["2. Activation (활성화)<br/>Aha Moment 최초 경험 · 온보딩 전환율"]
+    R1["3. Retention (유지)<br/>Cohort 재방문율 · Churn Rate 통제"]
+    R2["4. Revenue (매출)<br/>유료 전환율 · ARPU · LTV > 3×CAC"]
+    R3["5. Referral (추천)<br/>바이럴 계수(K > 1) · NPS"]
+
+    A1 --> A2 --> R1 --> R2 --> R3
+```
 
 | 단계 | 핵심 질문 | 지표 예 |
 |---|---|---|
@@ -111,6 +78,13 @@ extra:
 
 > 관찰분석으로 병목을 찾고 통제실험으로 변경의 인과효과를 검증함.
 
+```mermaid
+flowchart LR
+    F["Funnel 분석<br/>(이탈 지점 탐지)"] --> C["Cohort 분석<br/>(집단별 잔존 추적)"]
+    C --> S["Segmentation<br/>(세부 그룹 특성화)"]
+    S --> AB["A/B Test<br/>(인과관계 및 통계 검정)"]
+```
+
 | 기법 | 질문 | 산출 |
 |---|---|---|
 | **Funnel Analysis** | 어느 단계에서 이탈하는가? | 단계별 전환·이탈 |
@@ -122,17 +96,16 @@ extra:
 
 > 결과를 확인한 뒤 가설을 사후 구성하지 않도록 실험계획과 판정기준을 먼저 정해야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="그로스 해킹의 데이터 기반 실험 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 목표·지표 정의</strong><strong>활동</strong><span>고객가치·NSM·Guardrail 정의</span><strong>산출</strong><span>Metric Tree</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 병목 분석</strong><strong>활동</strong><span>Funnel·Cohort·Segment 분석</span><strong>산출</strong><span>성장 병목</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 가설·우선순위</strong><strong>활동</strong><span>원인·대안·기대효과·비용 명시</span><strong>산출</strong><span>Experiment Backlog</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>④ 실험·검정</strong><strong>활동</strong><span>표본·기간·무작위배정·중단기준 설계</span><strong>산출</strong><span>효과크기 · 신뢰구간</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 학습·확산</strong><strong>활동</strong><span>채택·기각·재설계·모니터링</span><strong>산출</strong><span>Decision Log</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 목표·지표 정의<br/>고객가치·NSM·Guardrail 정의<br/>(산출: Metric Tree)"]
+    S2["② 병목 분석<br/>Funnel·Cohort·Segment 분석<br/>(산출: 성장 병목)"]
+    S3["③ 가설·우선순위<br/>원인·대안·기대효과·비용 명시<br/>(산출: Experiment Backlog)"]
+    S4["④ 실험·검정<br/>표본·기간·무작위배정·중단기준 설계<br/>(산출: 효과크기 · 신뢰구간)"]
+    S5["⑤ 학습·확산<br/>채택·기각·재설계·모니터링<br/>(산출: Decision Log)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅴ. 문제점·대응책
 
@@ -160,15 +133,13 @@ extra:
 - **검증 체계 (Verification)**: A/B 테스트 사전 승인제(Pre-registration) 및 최소 표본수(MDE 계산) 확정 후 통계적 유의수준(p < 0.05)과 코호트별 30일 잔존율 추적을 동시 검증함.
 - **기대 효과 (Impact)**: 허상 지표(Vanity Metric) 배제, 고객 LTV(생애가치) 25% 증대, 규제 컴플라이언스(다크패턴 방지법) 위반 리스크 원천 해소를 달성함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="신뢰 가능한 그로스 해킹 통제안">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>문제</strong><span>단기지표 · 선택적 보고 · Dark Pattern</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>대책</strong><span>NSM·Guardrail · 사전 실험계획 · Decision Log</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>판정</strong><span>효과크기 · 불확실성 · Cohort · 부작용</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>효과</strong><span>재현 가능한 학습 · 지속 가능한 성장</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>단기 지표 집착 · Dark Pattern · Vanity Metric"] --> P2["개선 대안<br/>NSM-Guardrail 결합 및 사전 등록(Pre-registration) 기반 A/B 테스트"]
+    P2 --> P3{"검증 판정<br/>단기 CVR 상승 시 불만 CS < 15% 및 Guardrail 미침해?"}
+    P3 -->|달성| P4["실행 효과<br/>고객 LTV 25% 증대 및 다크패턴 방지 규제 준수"]
+    P3 -->|미달| P5["보완 조치<br/>Kill Switch 발동 및 잔존율(Retention) 중심 재설계"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -177,15 +148,18 @@ extra:
 - 정의: 제품·마케팅·데이터 분석을 결합하여 성장 가설을 실험하고 제품·채널을 반복 개선하는 접근법
 - 목적: **고객가치 검증 · 성장병목 해소 · 학습속도 향상**
 
-### 2. AARRR
+### 2. AARRR 퍼널
 
-| 단계 | 핵심 |
-|---|---|
-| Acquisition | 유입채널·CAC |
-| Activation | 최초 핵심가치 경험 |
-| Retention | Cohort 재사용 |
-| Revenue | 전환·LTV |
-| Referral | 추천·확산 |
+```mermaid
+flowchart TD
+    A1["1. Acquisition (획득)<br/>유입 경로 최적화 · CAC · 신규 가입자"]
+    A2["2. Activation (활성화)<br/>Aha Moment 최초 경험 · 온보딩 전환율"]
+    R1["3. Retention (유지)<br/>Cohort 재방문율 · Churn Rate 통제"]
+    R2["4. Revenue (매출)<br/>유료 전환율 · ARPU · LTV > 3×CAC"]
+    R3["5. Referral (추천)<br/>바이럴 계수(K > 1) · NPS"]
+
+    A1 --> A2 --> R1 --> R2 --> R3
+```
 
 ### 3. 핵심 통제
 

@@ -1,6 +1,6 @@
 ---
 title: "디자인 씽킹"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-21T21:45:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,25 +20,11 @@ extra:
   <strong>디자인 씽킹</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 사용자 맥락을 관찰하여 **올바른 문제를 재정의**하고 시제품으로 해법을 학습
-- 5 Modes: Empathize · Define · Ideate · Prototype · Test — 비선형 반복
-- Double Diamond: Discover(발산) → Define(수렴) → Develop(발산) → Deliver(수렴)
-
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 760 390" role="img" aria-label="디자인 씽킹 더블 다이아몬드의 발견 정의 개발 전달 과정">
-    <defs><marker id="design-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
-    <path d="M45 195 L210 55 L375 195 L540 55 L705 195" class="itpe-svg-link"></path>
-    <path d="M45 195 L210 335 L375 195 L540 335 L705 195" class="itpe-svg-link" marker-end="url(#design-arrow)"></path>
-    <text x="125" y="35" class="itpe-svg-title">Discover</text><text x="125" y="365" class="itpe-svg-sub">사용자·맥락 탐색</text>
-    <text x="292" y="35" class="itpe-svg-title">Define</text><text x="292" y="365" class="itpe-svg-sub">문제 재정의</text>
-    <text x="458" y="35" class="itpe-svg-title">Develop</text><text x="458" y="365" class="itpe-svg-sub">대안·시제품</text>
-    <text x="625" y="35" class="itpe-svg-title">Deliver</text><text x="625" y="365" class="itpe-svg-sub">검증·전달</text>
-    <circle cx="45" cy="195" r="9" class="itpe-svg-node"></circle><circle cx="375" cy="195" r="9" class="itpe-svg-node is-current"></circle><circle cx="705" cy="195" r="9" class="itpe-svg-node"></circle>
-    <text x="45" y="225" class="itpe-svg-label">Challenge</text><text x="375" y="225" class="itpe-svg-label">Problem Definition</text><text x="705" y="225" class="itpe-svg-label">Solution</text>
-  </svg>
-</div>
+- 본질: 사용자 맥락을 관찰하여 올바른 문제를 재정의하고 시제품을 통해 해법을 빠르게 실험·학습하는 인간 중심 문제해결 방법론
+- 메커니즘: Discover(공감) → Define(POV 문제 재정의) → Develop(HMW 아이디어 발산 및 프로토타입) → Deliver(사용자 테스트 및 피드백 환류)
+- 판정 기준: 실사용자 검증 인터뷰 >= 5건 확보 및 테스트 기반 기각/수정 가설이 1건 이상 존재하는지 여부
 
 <details>
 <summary>핵심 용어</summary>
@@ -68,56 +54,17 @@ extra:
 
 > 5개 Mode는 필요에 따라 앞뒤로 이동하며 병렬·반복 수행할 수 있음.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="디자인 씽킹 5개 Mode와 비선형 피드백 루프">
-    <defs>
-      <marker id="dt-arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L6,3 z" fill="var(--sl-color-gray-3)"></path>
-      </marker>
-    </defs>
-    <!-- 5 Mode Nodes -->
-    <rect x="15" y="45" width="85" height="50" rx="8" class="itpe-svg-node"></rect>
-    <text x="57" y="68" class="itpe-svg-title">1. Empathize</text>
-    <text x="57" y="84" class="itpe-svg-sub">공감·관찰</text>
+```mermaid
+flowchart LR
+    E["1. Empathize<br/>(공감·관찰)"] --> D["2. Define<br/>(문제정의·POV)"]
+    D --> I["3. Ideate<br/>(대안발산·HMW)"]
+    I --> P["4. Prototype<br/>(가정 구체화)"]
+    P --> T["5. Test<br/>(행동관찰·평가)"]
 
-    <line x1="100" y1="70" x2="118" y2="70" stroke="var(--sl-color-gray-4)" stroke-width="2" marker-end="url(#dt-arr)"></line>
-
-    <rect x="118" y="45" width="85" height="50" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="160" y="68" class="itpe-svg-title">2. Define</text>
-    <text x="160" y="84" class="itpe-svg-sub">문제정의(POV)</text>
-
-    <line x1="203" y1="70" x2="221" y2="70" stroke="var(--sl-color-gray-4)" stroke-width="2" marker-end="url(#dt-arr)"></line>
-
-    <rect x="221" y="45" width="85" height="50" rx="8" class="itpe-svg-node"></rect>
-    <text x="263" y="68" class="itpe-svg-title">3. Ideate</text>
-    <text x="263" y="84" class="itpe-svg-sub">대안발산(HMW)</text>
-
-    <line x1="306" y1="70" x2="324" y2="70" stroke="var(--sl-color-gray-4)" stroke-width="2" marker-end="url(#dt-arr)"></line>
-
-    <rect x="324" y="45" width="85" height="50" rx="8" class="itpe-svg-node"></rect>
-    <text x="366" y="68" class="itpe-svg-title">4. Prototype</text>
-    <text x="366" y="84" class="itpe-svg-sub">가정의 구체화</text>
-
-    <line x1="409" y1="70" x2="427" y2="70" stroke="var(--sl-color-gray-4)" stroke-width="2" marker-end="url(#dt-arr)"></line>
-
-    <rect x="427" y="45" width="80" height="50" rx="8" class="itpe-svg-node is-current"></rect>
-    <text x="467" y="68" class="itpe-svg-title">5. Test</text>
-    <text x="467" y="84" class="itpe-svg-sub">행동관찰·평가</text>
-
-    <!-- Feedback Loops -->
-    <!-- Test to Empathize -->
-    <path d="M467 95 C467 180 57 180 57 95" fill="none" stroke="var(--sl-color-accent)" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#dt-arr)"></path>
-    <text x="260" y="195" class="itpe-svg-sub" text-anchor="middle" fill="var(--sl-color-accent)">사용자 심층 재이해 (Test → Empathize)</text>
-
-    <!-- Test to Define -->
-    <path d="M445 95 C445 150 160 150 160 95" fill="none" stroke="var(--sl-color-gray-3)" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#dt-arr)"></path>
-    <text x="300" y="145" class="itpe-svg-sub" text-anchor="middle">문제 재정의 (Test → Define)</text>
-
-    <!-- Prototype to Ideate -->
-    <path d="M345 45 C345 20 280 20 280 45" fill="none" stroke="var(--sl-color-gray-3)" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#dt-arr)"></path>
-    <text x="312" y="16" class="itpe-svg-sub" text-anchor="middle">시제품 제작 중 새 아이디어 발견</text>
-  </svg>
-</div>
+    T -.->|심층 재이해| E
+    T -.->|문제 재정의| D
+    P -.->|아이디어 재발견| I
+```
 
 | Mode | 주요 활동 | 산출 |
 |---|---|---|
@@ -131,6 +78,25 @@ extra:
 
 > Double Diamond는 발산·수렴의 큰 구조, 5 Modes는 각 구간에서 활용하는 사고·실행 방식임.
 
+```mermaid
+flowchart LR
+    subgraph PROBLEM["문제 영역 (Problem Space)"]
+        direction LR
+        DISC["Discover (발산)<br/>사용자·맥락 탐색<br/>(Empathize)"]
+        DEF["Define (수렴)<br/>올바른 문제 재정의<br/>(Define/POV)"]
+        DISC --> DEF
+    end
+
+    subgraph SOLUTION["해법 영역 (Solution Space)"]
+        direction LR
+        DEV["Develop (발산)<br/>복수 대안·시제품<br/>(Ideate/Prototype)"]
+        DEL["Deliver (수렴)<br/>사용자 검증·전달<br/>(Test)"]
+        DEV --> DEL
+    end
+
+    PROBLEM -->|Problem Definition| SOLUTION
+```
+
 | Double Diamond | 사고 | 연계 Mode | 판정 |
 |---|---|---|---|
 | **Discover** | 문제영역 발산 | Empathize | 충분한 사용자·맥락을 탐색했는가? |
@@ -142,17 +108,16 @@ extra:
 
 > 조사자료가 POV·Prototype·Backlog까지 추적되어야 워크숍 결과가 구현으로 이어짐.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="디자인 씽킹의 디지털 서비스 적용 절차">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 사용자 조사</strong><strong>활동</strong><span>관찰·인터뷰·Journey 수집</span><strong>산출</strong><span>Evidence · Pain Point</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 문제 재정의</strong><strong>활동</strong><span>패턴·인사이트·POV·HMW 도출</span><strong>산출</strong><span>Problem Statement</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 대안·Prototype</strong><strong>활동</strong><span>복수 아이디어·핵심가정 시각화</span><strong>산출</strong><span>Prototype · Test Plan</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>④ 사용자 Test</strong><strong>활동</strong><span>과업수행·행동·오류 관찰</span><strong>산출</strong><span>Finding · 수정가설</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 구현 연결</strong><strong>활동</strong><span>검증가설·수용기준·우선순위 전환</span><strong>산출</strong><span>Product Backlog</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 사용자 조사<br/>관찰·인터뷰·Journey 수집<br/>(산출: Evidence · Pain Point)"]
+    S2["② 문제 재정의<br/>패턴·인사이트·POV·HMW 도출<br/>(산출: Problem Statement)"]
+    S3["③ 대안·Prototype<br/>복수 아이디어·핵심가정 시각화<br/>(산출: Prototype · Test Plan)"]
+    S4["④ 사용자 Test<br/>과업수행·행동·오류 관찰<br/>(산출: Finding · 수정가설)"]
+    S5["⑤ 구현 연결<br/>검증가설·수용기준·우선순위 전환<br/>(산출: Product Backlog)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅴ. 문제점·대응책
 
@@ -180,15 +145,13 @@ extra:
 - **검증 체계 (Verification)**: 사용자 과업 성공률(Task Success Rate), 오류 빈도, SUS(시스템 사용성 척도) 등 정량 UT 지표와 고객 여정 맵(CJM)의 감정 저점을 실시간 매핑하여 검증함.
 - **기대 효과 (Impact)**: 엉뚱한 기능 개발로 인한 SW 재개발 비용 50% 절감, 사용자 채택률(Adoption Rate) 조기 극대화, 애자일 백로그와의 완벽한 정렬을 달성함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="사용자 증거에서 구현 Backlog까지의 추적 통제">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>증거</strong><span>관찰 · 발화 · 행동 · 맥락</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>통찰</strong><span>Pattern · Need · POV</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>검증</strong><span>가정 · Prototype · UT Finding</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>구현</strong><span>Backlog · 수용기준 · 우선순위</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>내부자 추측 · 해법 조기 고정 · 고충실도 프로토타입 집착"] --> P2["개선 대안<br/>Problem/Solution Space 게이트 분리 및 1가설 1프로토타입 검증"]
+    P2 --> P3{"검증 판정<br/>실제 사용자 인터뷰 >= 5건 및 기각/수정 가설 존재?"}
+    P3 -->|달성| P4["실행 효과<br/>SW 재개발 비용 50% 절감 및 애자일 백로그와의 정합성 완성"]
+    P3 -->|미달| P5["보완 조치<br/>페이퍼 목업 기반 가설 재검증 및 CJM Pain Point 재도출"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -199,13 +162,17 @@ extra:
 
 ### 2. 5개 Mode
 
-| Mode | 핵심 |
-|---|---|
-| Empathize | 사용자·맥락 이해 |
-| Define | POV 문제 재정의 |
-| Ideate | 대안 발산 |
-| Prototype | 핵심가정 표현 |
-| Test | 사용자 행동으로 학습 |
+```mermaid
+flowchart LR
+    E["1. Empathize<br/>(공감·관찰)"] --> D["2. Define<br/>(문제정의·POV)"]
+    D --> I["3. Ideate<br/>(대안발산·HMW)"]
+    I --> P["4. Prototype<br/>(가정 구체화)"]
+    P --> T["5. Test<br/>(행동관찰·평가)"]
+
+    T -.->|심층 재이해| E
+    T -.->|문제 재정의| D
+    P -.->|아이디어 재발견| I
+```
 
 ### 3. 핵심 통제
 

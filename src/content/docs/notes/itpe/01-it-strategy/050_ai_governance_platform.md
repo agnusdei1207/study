@@ -1,6 +1,6 @@
 ---
 title: "AI 거버넌스 플랫폼"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-21T23:30:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -17,35 +17,11 @@ extra:
   <span>IT 전략·관리</span><span>AI 거버넌스</span><strong>AI 거버넌스 플랫폼</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 거버넌스 **정책·책임·위험기준**을 AI 수명주기의 통제점과 증적으로 구현
-- 흐름: AI 자산 등록 → 위험평가 → 개발·검증 → 승인·배포 → 운영감시·사고대응
-- 증적: **AI Inventory·System Card·평가결과·승인기록·운영로그**
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 650" role="img" aria-label="AI 거버넌스 정책이 수명주기 통제와 감사 증적으로 구현되는 플랫폼 구조">
-  <defs><marker id="arrow-ai-gov" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node is-current" x="130" y="24" width="500" height="82" rx="14" />
-  <text class="itpe-svg-title" x="380" y="58" text-anchor="middle">거버넌스 정책·책임</text>
-  <text class="itpe-svg-sub" x="380" y="84" text-anchor="middle">위험기준 · 역할 · 승인 · 예외 · 규제 의무</text>
-  <path class="itpe-svg-link" d="M380 106 V146" marker-end="url(#arrow-ai-gov)" />
-  <rect class="itpe-svg-node" x="130" y="154" width="500" height="92" rx="14" />
-  <text class="itpe-svg-title" x="380" y="188" text-anchor="middle">Governance Control Plane</text>
-  <text class="itpe-svg-sub" x="380" y="216" text-anchor="middle">AI Inventory · 위험평가 · 승인 · 예외관리</text>
-  <path class="itpe-svg-link" d="M380 246 V286" marker-end="url(#arrow-ai-gov)" />
-  <rect class="itpe-svg-node" x="130" y="294" width="500" height="92" rx="14" />
-  <text class="itpe-svg-title" x="380" y="328" text-anchor="middle">Lifecycle Gate</text>
-  <text class="itpe-svg-sub" x="380" y="356" text-anchor="middle">데이터 · 모델 · 프롬프트 · 배포 검증</text>
-  <path class="itpe-svg-link" d="M380 386 V426" marker-end="url(#arrow-ai-gov)" />
-  <rect class="itpe-svg-node" x="130" y="434" width="500" height="92" rx="14" />
-  <text class="itpe-svg-title" x="380" y="468" text-anchor="middle">Runtime Control</text>
-  <text class="itpe-svg-sub" x="380" y="496" text-anchor="middle">성능·편향·보안 감시 · Human Oversight · 사고대응</text>
-  <path class="itpe-svg-link" d="M380 526 V566" marker-end="url(#arrow-ai-gov)" />
-  <rect class="itpe-svg-node" x="130" y="574" width="500" height="58" rx="14" />
-  <text class="itpe-svg-title" x="380" y="610" text-anchor="middle">감사 증적 · 지속 개선</text>
-</svg>
-</div>
+- 본질: 거버넌스 정책·책임·위험기준을 AI 수명주기 전반의 통제점과 감사 증적으로 구현하는 통합 통제 플랫폼
+- 메커니즘: AI 자산 등록(Inventory) → 위험평가(NIST AI RMF) → 파이프라인 검증(Lineage/편향) → 배포 게이트(System Card) → 런타임 감시 및 Human Oversight
+- 판정 기준: 고위험 AI 모델의 데이터 Lineage 100% 확보 및 런타임 드리프트(PSI > 0.25) 경보 시 즉각적 개입 증적 존재 여부
 
 <details>
 <summary>핵심 용어</summary>
@@ -77,29 +53,15 @@ extra:
 
 > 관리체계·통제평면·개발도구를 분리하고, 공통 식별자와 증적으로 연결해야 정책과 실행의 단절을 방지할 수 있음.
 
-<div class="itpe-svg-map">
-  <svg viewBox="0 0 520 220" role="img" aria-label="AI 거버넌스 플랫폼 4계층 아키텍처">
-    <!-- Layer 1: Policy Plane -->
-    <rect x="20" y="15" width="480" height="42" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="32" class="itpe-svg-title">1. 정책 및 관리 계층 (Governance Policy Plane)</text>
-    <text x="260" y="48" class="itpe-svg-sub">ISO/IEC 42001(AIMS) 정책 · 책임(RACI) · 윤리기준 · 예외 심의</text>
+```mermaid
+flowchart TD
+    L1["1. 정책 및 관리 계층 (Governance Policy Plane)<br/>ISO/IEC 42001(AIMS) 정책 · 책임(RACI) · 윤리기준 · 예외 심의"]
+    L2["2. 자산 및 위험 통제 계층 (Asset & Risk Control Plane)<br/>AI Inventory · NIST AI RMF 영향평가 · 위험등급 분류"]
+    L3["3. 수명주기 게이트 계층 (Lifecycle Quality Gate Plane)<br/>데이터 Lineage · 모델 검증 · System Card 승인 · CI/CD 연동"]
+    L4["4. 런타임 감시 및 증적 계층 (Runtime & Audit Evidence Plane)<br/>환각/드리프트 감시 · Human Oversight 개입 · 감사 로그 추적"]
 
-    <!-- Layer 2: Control Plane -->
-    <rect x="20" y="65" width="480" height="42" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="82" class="itpe-svg-title">2. 자산 및 위험 통제 계층 (Asset & Risk Control Plane)</text>
-    <text x="260" y="98" class="itpe-svg-sub">AI Inventory · NIST AI RMF 영향평가 · 고/중/저 위험등급 분류</text>
-
-    <!-- Layer 3: Pipeline & Gate -->
-    <rect x="20" y="115" width="480" height="42" rx="6" class="itpe-svg-node is-current"></rect>
-    <text x="260" y="132" class="itpe-svg-title">3. 수명주기 게이트 계층 (Lifecycle Quality Gate Plane)</text>
-    <text x="260" y="148" class="itpe-svg-sub">데이터 Lineage · 모델 편향/성능 검증 · System Card 승인 · CI/CD 연동</text>
-
-    <!-- Layer 4: Runtime & Evidence -->
-    <rect x="20" y="165" width="480" height="42" rx="6" class="itpe-svg-node"></rect>
-    <text x="260" y="182" class="itpe-svg-title">4. 런타임 감시 및 증적 계층 (Runtime & Audit Evidence Plane)</text>
-    <text x="260" y="198" class="itpe-svg-sub">환각/드리프트 감시 · Human Oversight 개입 · 감사 로그 추적</text>
-  </svg>
-</div>
+    L1 --> L2 --> L3 --> L4
+```
 
 | 계층 | 핵심 기능 | 주요 증적 |
 |---|---|---|
@@ -113,17 +75,16 @@ extra:
 
 > 각 단계는 활동과 산출물을 함께 관리하고, 위험 변화가 발생하면 이전 단계로 환류함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 거버넌스 플랫폼의 수명주기 통제 프로세스">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>① 등록·분류</strong><strong>활동</strong><span>목적·소유자·영향대상·사용환경 식별</span><strong>산출</strong><span>AI Inventory · 위험등급</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>② 설계·개발</strong><strong>활동</strong><span>데이터·모델·보안·인적감독 통제 설계</span><strong>산출</strong><span>통제계획 · Lineage</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>③ 검증·승인</strong><strong>활동</strong><span>성능·공정성·안전·보안·준수 평가</span><strong>산출</strong><span>평가결과 · System Card · 승인기록</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>④ 배포·운영</strong><strong>활동</strong><span>버전통제·모니터링·사용자 고지·인적개입</span><strong>산출</strong><span>배포기록 · 운영로그 · 경보</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>⑤ 사고·변경</strong><strong>활동</strong><span>영향평가·중단·완화·재승인·폐기</span><strong>산출</strong><span>사고기록 · 개선조치 · 폐기증적</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 등록·분류<br/>목적·소유자·영향대상·사용환경 식별<br/>(산출: AI Inventory · 위험등급)"]
+    S2["② 설계·개발<br/>데이터·모델·보안·인적감독 통제 설계<br/>(산출: 통제계획 · Lineage)"]
+    S3["③ 검증·승인<br/>성능·공정성·안전·보안·준수 평가<br/>(산출: 평가결과 · System Card · 승인기록)"]
+    S4["④ 배포·운영<br/>버전통제·모니터링·사용자 고지·인적개입<br/>(산출: 배포기록 · 운영로그 · 경보)"]
+    S5["⑤ 사고·변경<br/>영향평가·중단·완화·재승인·폐기<br/>(산출: 사고기록 · 개선조치 · 폐기증적)"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ## Ⅳ. Data Governance·MLOps·AI Governance 비교
 
@@ -142,10 +103,10 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| Shadow AI | AI Inventory·접근경로 등록 | 미승인 사용 식별 |
-| 형식적 승인 | 위험기반 Gate·예외 만료·재승인 | 책임 있는 출시 판단 |
-| 개발·규제 증적 단절 | 의무-통제-증적 매핑 | 감사 추적성 확보 |
-| 운영 중 성능·위험 변화 | 지속 감시·Human Oversight·사고대응 | 영향 확산 억제 |
+| **Shadow AI** | AI Inventory·접근경로 등록 | 미승인 사용 식별 |
+| **형식적 승인** | 위험기반 Gate·예외 만료·재승인 | 책임 있는 출시 판단 |
+| **개발·규제 증적 단절** | 의무-통제-증적 매핑 | 감사 추적성 확보 |
+| **운영 중 성능·위험 변화** | 지속 감시·Human Oversight·사고대응 | 영향 확산 억제 |
 
 ## Ⅵ. 증적 기반 Quality Gate 제언
 
@@ -162,28 +123,13 @@ extra:
 - **검증 체계 (Verification)**: ISO/IEC 42001(AIMS) 및 EU AI Act 기준 System Card 증적의 완결성과 런타임 데이터 드리프트 지표(PSI > 0.25)를 실시간 감사함.
 - **기대 효과 (Impact)**: Shadow AI 및 규제 위반 과징금 리스크 원천 차단, AI 시스템의 전사적 신뢰성 및 추적성 100% 확보를 달성함.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 440" role="img" aria-label="AI 거버넌스 증적 기반 품질 게이트의 통과와 보완 분기">
-  <defs><marker id="arrow-ai-qg" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="170" y="24" width="420" height="76" rx="14" />
-  <text class="itpe-svg-title" x="380" y="56" text-anchor="middle">위험·의무 식별</text>
-  <text class="itpe-svg-sub" x="380" y="82" text-anchor="middle">사용맥락 · 영향대상 · 규제 요구</text>
-  <path class="itpe-svg-link" d="M380 100 V142" marker-end="url(#arrow-ai-qg)" />
-  <rect class="itpe-svg-node is-current" x="170" y="150" width="420" height="86" rx="14" />
-  <text class="itpe-svg-title" x="380" y="182" text-anchor="middle">Evidence Quality Gate</text>
-  <text class="itpe-svg-sub" x="380" y="210" text-anchor="middle">통제 수행 · 판정기준 충족 · 증적 완결</text>
-  <path class="itpe-svg-link" d="M300 236 V282 H170 V318" marker-end="url(#arrow-ai-qg)" />
-  <path class="itpe-svg-link" d="M460 236 V282 H590 V318" marker-end="url(#arrow-ai-qg)" />
-  <text class="itpe-svg-label" x="210" y="276" text-anchor="middle">통과</text>
-  <text class="itpe-svg-label" x="550" y="276" text-anchor="middle">미통과</text>
-  <rect class="itpe-svg-node" x="50" y="326" width="240" height="76" rx="14" />
-  <text class="itpe-svg-title" x="170" y="358" text-anchor="middle">승인·배포</text>
-  <text class="itpe-svg-sub" x="170" y="384" text-anchor="middle">운영감시 · 재평가</text>
-  <rect class="itpe-svg-node" x="470" y="326" width="240" height="76" rx="14" />
-  <text class="itpe-svg-title" x="590" y="358" text-anchor="middle">보완·재검증</text>
-  <text class="itpe-svg-sub" x="590" y="384" text-anchor="middle">통제 수정 · 예외 심의</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["위험·의무 식별<br/>사용맥락 · 영향대상 · 규제 요구 파악"] --> P2["Evidence Quality Gate<br/>통제 수행 · 판정기준 충족 · 증적 완결성 검증"]
+    P2 --> P3{"검증 판정<br/>Lineage 확보 및 환각·편향 검증 충족?"}
+    P3 -->|통과| P4["승인 및 배포<br/>런타임 감시 및 주기적 재평가"]
+    P3 -->|미통과| P5["보완 및 재검증<br/>통제 수정 및 Human Oversight 재심의"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -192,14 +138,17 @@ extra:
 - 정의: AI 정책·책임·위험기준을 AI 자산·개발·배포·운영 통제와 증적관리로 구현하는 플랫폼
 - 목적: **책임성·추적성·규제 대응·운영위험 통제**
 
-### 2. 구성
+### 2. 구성 계층
 
-| 영역 | 핵심 |
-|---|---|
-| 관리체계 | 정책·역할·위험기준 |
-| 통제평면 | 자산·평가·승인·예외 |
-| 수명주기 | 데이터·모델·배포 Gate |
-| 운영·증적 | 감시·사고·감사추적 |
+```mermaid
+flowchart TD
+    L1["1. 정책 및 관리 계층 (Governance Policy Plane)<br/>ISO/IEC 42001(AIMS) 정책 · 책임(RACI) · 윤리기준 · 예외 심의"]
+    L2["2. 자산 및 위험 통제 계층 (Asset & Risk Control Plane)<br/>AI Inventory · NIST AI RMF 영향평가 · 위험등급 분류"]
+    L3["3. 수명주기 게이트 계층 (Lifecycle Quality Gate Plane)<br/>데이터 Lineage · 모델 검증 · System Card 승인 · CI/CD 연동"]
+    L4["4. 런타임 감시 및 증적 계층 (Runtime & Audit Evidence Plane)<br/>환각/드리프트 감시 · Human Oversight 개입 · 감사 로그 추적"]
+
+    L1 --> L2 --> L3 --> L4
+```
 
 ### 3. 핵심 통제
 
