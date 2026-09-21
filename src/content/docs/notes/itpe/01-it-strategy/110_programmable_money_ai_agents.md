@@ -1,47 +1,30 @@
 ---
 title: "Programmable Money·AI Agent 결제"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T11:05:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 디지털 금융과 AI Agent를 거쳐 Programmable Money로 이어지는 위치">
-  <span>IT 전략·관리</span><span>디지털 금융·AI(Artificial Intelligence) Agent</span><strong>Programmable Money·Payment</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["디지털 금융·AI Agent"]
+    B --> C["Programmable Money·Payment"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- **구분**: 화폐 사용조건을 제한하는 Programmable Money ≠ 결제 실행조건을 자동화하는 Programmable Payment
-- **구조**: Agent 권한 → 정책검사 → 조건부 결제 → 원장 정산 → 감사
-- **통제**: 소유자 책임·최소권한·지출한도·거래상대방·취소·분쟁처리
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 520" role="img" aria-label="AI Agent 조건부 결제 구조">
-  <defs><marker id="pay-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" class="itpe-svg-link"></path></marker></defs>
-  <rect x="250" y="25" width="260" height="80" rx="14" class="itpe-svg-node"></rect>
-  <text x="380" y="58" text-anchor="middle" class="itpe-svg-title">인간·법인 소유자</text><text x="380" y="86" text-anchor="middle" class="itpe-svg-sub">목적·예산·책임 위임</text>
-  <rect x="250" y="155" width="260" height="80" rx="14" class="itpe-svg-node"></rect>
-  <text x="380" y="188" text-anchor="middle" class="itpe-svg-title">AI Agent</text><text x="380" y="216" text-anchor="middle" class="itpe-svg-sub">탐색·선택·결제 요청</text>
-  <rect x="250" y="285" width="260" height="95" rx="14" class="itpe-svg-node is-current"></rect>
-  <text x="380" y="320" text-anchor="middle" class="itpe-svg-title">Policy Engine</text><text x="380" y="350" text-anchor="middle" class="itpe-svg-sub">한도·상대방·목적·승인</text>
-  <rect x="55" y="425" width="280" height="70" rx="14" class="itpe-svg-node"></rect>
-  <text x="195" y="468" text-anchor="middle" class="itpe-svg-title">조건부 결제 실행</text>
-  <rect x="425" y="425" width="280" height="70" rx="14" class="itpe-svg-node"></rect>
-  <text x="565" y="468" text-anchor="middle" class="itpe-svg-title">원장 정산·감사로그</text>
-  <path d="M380 105 L380 155" class="itpe-svg-link" marker-end="url(#pay-arrow)"></path>
-  <path d="M380 235 L380 285" class="itpe-svg-link" marker-end="url(#pay-arrow)"></path>
-  <path d="M330 380 L195 425" class="itpe-svg-link" marker-end="url(#pay-arrow)"></path>
-  <path d="M430 380 L565 425" class="itpe-svg-link" marker-end="url(#pay-arrow)"></path>
-</svg>
-</div>
+- 본질: 화폐 자체에 사용 조건이 부여된 Programmable Money와 결제 실행 조건이 자동화된 Programmable Payment를 AI Agent 거래에 적용하는 메커니즘
+- 메커니즘: 소유자 세션키 위임 → AI Agent 결제 요청 → Policy Engine(한도/AML) 검증 → 스마트 컨트랙트 DvP 정산 및 불변 감사로그
+- 판정 기준: ERC-4337 기반 계정 추상화/단기 세션키 적용 여부, 이상 거래 시 Circuit Breaker 작동 및 불가역 WORM 감사 추적성
 
 <details>
 <summary>약어·전문용어</summary>
@@ -64,7 +47,7 @@ extra:
 
 ## Ⅰ. 개요
 
-> AI Agent는 독립적 법적 주체라기보다 인간·법인이 정한 권한 안에서 결제 요청을 실행하는 대리 시스템으로 설계해야 함
+> AI Agent는 독립적 법적 주체라기보다 인간·법인이 정한 권한 안에서 결제 요청을 실행하는 대리 시스템으로 설계해야 함.
 
 - **정의**: Programmable Money는 화폐의 사용조건을, Programmable Payment는 결제지시의 실행조건을 코드로 통제하는 방식
 - **목적**: 조건부 거래 자동화·정산 효율화·기계 간 소액거래 지원
@@ -82,72 +65,36 @@ CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이
 
 ## Ⅲ. AI Agent 결제 아키텍처 및 절차
 
+```mermaid
+flowchart LR
+    subgraph PRINCIPAL["인간·법인 소유자"]
+        O["소유자<br/>- Session Key 위임<br/>- 예산/한도/목적 설정"]
+    end
+    subgraph AGENT["AI Agent (대리인)"]
+        A["AI Agent<br/>- API 기반 조건 탐색<br/>- 단기 권한 트랜잭션 서명"]
+    end
+    subgraph POLICY["Policy Engine (Gate)"]
+        P["가드레일 검증<br/>- AML / KYC / 한도 검사<br/>- Circuit Breaker 작동"]
+    end
+    subgraph EXEC["조건부 실행 & 정산"]
+        S["Smart Contract (에스크로)<br/>- DvP 동시이행 검증<br/>- 오라클(배송 등) 확인"]
+        L["결제원장 & Audit Trail<br/>- CBDC/토큰예금 정산<br/>- WORM 불변 감사로그"]
+    end
+
+    O -->|권한 위임| A
+    A -->|결제 지시| P
+    P -->|검증 통과| S
+    S -->|DvP 확정| L
 ```
-[인간 소유자] ──(세션키/예산/한도 위임)──> [AI Agent] ──(결제지시)──> [Policy Engine]
-                                                                        │
-┌─────────────────────────── 조건 검증 통과 시 ─────────────────────────┘
-▼
-[조건부 실행 (스마트컨트랙트/Escrow)] ──(DvP 정산)──> [결제원장(CBDC/토큰예금)] + 감사로그
+
+```mermaid
+flowchart TD
+    S1["① 권한 위임<br/>목적 · 한도 · 거래상대방 · 유효기간 정의 (위임정책 · ERC-4337 세션키)"]
+    S2["② 거래 요청<br/>AI Agent의 최적 가격/조건 탐색 및 결제 트랜잭션 서명"]
+    S3["③ 정책·위험 검사<br/>Policy Engine의 한도·KYC·AML·이상거래 탐지 및 Circuit Breaker 판정"]
+    S4["④ 조건부 실행·정산<br/>스마트 컨트랙트 기반 DvP 정산, 결제원장 기록 및 불변 감사로그 적재"]
+    S1 --> S2 --> S3 --> S4
 ```
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="AI Agent 프로그래머블 결제 아키텍처">
-  <!-- 배경 바운더리 -->
-  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
-
-  <!-- 1. 소유자 위임 -->
-  <rect x="25" y="25" width="135" height="75" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="92" y="47" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">인간·법인 소유자</text>
-  <text x="92" y="65" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">Session Key 위임</text>
-  <text x="92" y="82" text-anchor="middle" font-size="9" fill="var(--sl-color-accent)">최대 한도·사용처 지정</text>
-
-  <!-- 화살표 1 -> 2 -->
-  <line x1="160" y1="62" x2="190" y2="62" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <!-- 2. AI Agent -->
-  <rect x="190" y="25" width="140" height="75" rx="6" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <text x="260" y="47" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-accent-high)">AI Agent (대리인)</text>
-  <text x="260" y="65" text-anchor="middle" font-size="9" fill="var(--sl-color-text)">API 기반 가격/조건 탐색</text>
-  <text x="260" y="82" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">단기 권한 서명 트랜잭션</text>
-
-  <!-- 화살표 2 -> 3 -->
-  <line x1="330" y1="62" x2="360" y2="62" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <!-- 3. Policy Engine (가드레일) -->
-  <rect x="360" y="25" width="135" height="75" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="427" y="47" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">Policy Engine (Gate)</text>
-  <text x="427" y="65" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">AML / KYC / 한도 검증</text>
-  <text x="427" y="82" text-anchor="middle" font-size="9" fill="var(--sl-color-accent)">Circuit Breaker 가동</text>
-
-  <!-- 수직 연결선 -->
-  <line x1="427" y1="100" x2="427" y2="125" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <!-- 하단 1. 조건부 스마트 컨트랙트 -->
-  <rect x="25" y="125" width="240" height="70" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="145" y="147" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">조건부 실행 (Smart Contract)</text>
-  <text x="145" y="165" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">DvP(인도-대금동시지급) &amp; 에스크로</text>
-  <text x="145" y="182" text-anchor="middle" font-size="9" fill="var(--sl-color-accent)">오라클 검증(배송완료 등)</text>
-
-  <!-- 연결선 -->
-  <line x1="265" y1="160" x2="285" y2="160" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <!-- 하단 2. 결제 정산 원장 & 감사 -->
-  <rect x="285" y="125" width="210" height="70" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="390" y="147" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">결제원장 및 감사로그</text>
-  <text x="390" y="165" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">CBDC / 토큰예금 확정 정산</text>
-  <text x="390" y="182" text-anchor="middle" font-size="9" fill="var(--sl-color-accent)">불가역 감사 추적 (Audit Trail)</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI Agent 조건부 결제 절차">
-  <div class="itpe-flow-node"><strong>① 권한 위임</strong><div class="itpe-step-detail"><strong>활동</strong><span>목적·한도·상대방·기간 정의</span></div><div class="itpe-step-detail"><strong>산출</strong><span>위임정책·승인규칙</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>② 거래 요청</strong><div class="itpe-step-detail"><strong>활동</strong><span>서비스·가격·조건 선택</span></div><div class="itpe-step-detail"><strong>산출</strong><span>결제요청·거래문맥</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>③ 정책·위험 검사</strong><div class="itpe-step-detail"><strong>판정</strong><span>한도·KYC·AML·Fraud·추가승인</span></div><div class="itpe-step-detail"><strong>산출</strong><span>승인·차단·보류</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>④ 조건부 실행·정산</strong><div class="itpe-step-detail"><strong>활동</strong><span>조건 검증·지급·원장 기록</span></div><div class="itpe-step-detail"><strong>산출</strong><span>영수증·감사로그</span></div></div>
-</div>
 
 ## Ⅳ. 결제수단별 특성
 
@@ -172,9 +119,8 @@ CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이
 
 ### 학습자 통찰 메모 — 답안 밖
 
-> **[핵심 통찰]** Agent의 자율성은 자체 지갑 보유가 아니라, 책임주체(Principal)가 부여한 정책 범위 안에서 실시간 차단·취소·감사가 가능한 통제 거버넌스 위에서만 성립한다.
-> 
-> **나라면** AI Agent에 Master Key를 절대 위임하지 않고 ERC-4337 기반의 계정 추상화(Smart Account)와 세션 키(Session Key)를 적용하겠음. 이를 통해 건당 $50 미만 반복 결제는 허용하되 이상 패턴 탐지 시 서킷 브레이커로 자동 동결하는 안전망을 구축하겠다.
+- [핵심 통찰]: Agent의 자율성은 자체 지갑 보유가 아니라, 책임주체(Principal)가 부여한 정책 범위 안에서 실시간 차단·취소·감사가 가능한 통제 거버넌스 위에서만 성립함.
+- 나라면: AI Agent에 Master Key를 절대 위임하지 않고 ERC-4337 기반의 계정 추상화(Smart Account)와 세션 키(Session Key)를 적용하겠음. 이를 통해 건당 $50 미만 반복 결제는 허용하되 이상 패턴 탐지 시 서킷 브레이커로 자동 동결하는 안전망을 구축하겠다.
 
 ### 실전 답안용 기술사적 제언
 
@@ -183,30 +129,52 @@ CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이
 - **검증 체계**: 스마트 컨트랙트 보안 감사(Audit) 3중 교차 검증 및 트랜잭션 단위 불가역 WORM 감사로그 정합성 실시간 검증
 - **기대 효과**: 기계 간(M2M) 초소액 결제(Micro-payment) 자동화 효율 90% 달성 및 비정상 오발주·금융 사고 리스크 제로화
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 470" role="img" aria-label="AI Agent 결제 위험도별 승인 분기">
-  <rect x="250" y="25" width="260" height="85" rx="14" class="itpe-svg-node is-current"></rect>
-  <text x="380" y="60" text-anchor="middle" class="itpe-svg-title">Policy·Risk 판정</text><text x="380" y="88" text-anchor="middle" class="itpe-svg-sub">금액·상대방·목적·행동</text>
-  <rect x="25" y="300" width="210" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="130" y="338" text-anchor="middle" class="itpe-svg-title">저위험</text><text x="130" y="366" text-anchor="middle" class="itpe-svg-sub">자동승인</text>
-  <rect x="275" y="300" width="210" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="380" y="338" text-anchor="middle" class="itpe-svg-title">중위험</text><text x="380" y="366" text-anchor="middle" class="itpe-svg-sub">인간 추가승인</text>
-  <rect x="525" y="300" width="210" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="630" y="338" text-anchor="middle" class="itpe-svg-title">고위험</text><text x="630" y="366" text-anchor="middle" class="itpe-svg-sub">차단·조사</text>
-  <path d="M330 110 L130 300 M380 110 L380 300 M430 110 L630 300" class="itpe-svg-link"></path>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["Policy & Risk 판정<br/>(결제 금액 · 상대방 신원 · 거래 목적 · 이상 탐지 점수)"]
+    P1 -->|저위험: 한도 내 정상| P2["자동 승인<br/>스마트 컨트랙트 즉시 실행 & DvP 정산"]
+    P1 -->|중위험: 한도 초과 / 이상 징후| P3["인간 추가 승인 (Human-in-the-Loop)<br/>소유자 2FA 승인 후 결제 진행"]
+    P1 -->|고위험: 부정 거래 / 침해 탐지| P4["Circuit Breaker 차단<br/>트랜잭션 즉시 동결 및 감사 조사"]
+```
 
 ## 1교시 10점 답안 발췌
 
-- **정의**: Programmable Money는 화폐 사용조건을, Programmable Payment는 결제 실행조건을 코드로 통제하는 방식
-- **목적**: 조건부 거래 자동화·정산 효율화·기계 간 소액거래 지원
+### 1. 정의·목적
 
-| 통제층 | 핵심 |
+- **정의**: 화폐 사용 조건(Programmable Money)과 결제 실행 규칙(Programmable Payment)을 코드로 통제하여 AI Agent의 자율 거래를 안전하게 실행하는 **차세대 디지털 금융 아키텍처**
+- **목적**: 기계 간(M2M) 초소액 결제 자동화, 거래 신뢰성 확보 및 에이전트 오동작·자금 탈취 방지
+
+### 2. AI Agent 조건부 결제 아키텍처
+
+```mermaid
+flowchart LR
+    subgraph PRINCIPAL["인간·법인 소유자"]
+        O["소유자<br/>- Session Key 위임<br/>- 예산/한도/목적 설정"]
+    end
+    subgraph AGENT["AI Agent (대리인)"]
+        A["AI Agent<br/>- API 기반 조건 탐색<br/>- 단기 권한 트랜잭션 서명"]
+    end
+    subgraph POLICY["Policy Engine (Gate)"]
+        P["가드레일 검증<br/>- AML / KYC / 한도 검사<br/>- Circuit Breaker 작동"]
+    end
+    subgraph EXEC["조건부 실행 & 정산"]
+        S["Smart Contract (에스크로)<br/>- DvP 동시이행 검증<br/>- 오라클(배송 등) 확인"]
+        L["결제원장 & Audit Trail<br/>- CBDC/토큰예금 정산<br/>- WORM 불변 감사로그"]
+    end
+
+    O -->|권한 위임| A
+    A -->|결제 지시| P
+    P -->|검증 통과| S
+    S -->|DvP 확정| L
+```
+
+### 3. 핵심 통제 계층
+
+| 통제층 | 핵심 통제 내용 |
 |---|---|
-| 권한 | 목적·한도·상대방·기간 |
-| 위험 | KYC·AML·Fraud·추가승인 |
-| 정산 | 조건검증·지급·원장·감사 |
+| **권한 계층** | ERC-4337 계정 추상화, 단기 세션키, 화이트리스트 가맹점 한정 |
+| **위험 계층** | 실시간 Policy Engine, 이상 거래 탐지 시 Circuit Breaker 자동 차단 |
+| **정산 계층** | 스마트 컨트랙트 기반 DvP 조건부 정산 및 WORM 불변 감사 추적성 |
 
 ## 출제 이력과 검증 출처
 
@@ -229,4 +197,3 @@ CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이
 - 이전: [107. EA·ITA](./107_ea_ita.md)
 - 관련: [050. AI 거버넌스 플랫폼](./050_ai_governance_platform.md) · [036. NIST AI RMF](./036_nist_ai_rmf.md)
 - 다음: [111. Six Sigma DMAIC](./111_six_sigma_dmaic.md)
-

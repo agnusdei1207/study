@@ -1,47 +1,30 @@
 ---
 title: "CCPM·TOC"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T11:45:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 일정과 자원관리를 거쳐 CCPM으로 이어지는 위치">
-  <span>IT 전략·관리</span><span>일정·자원관리</span><strong>CCPM·TOC</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["일정·자원관리"]
+    B --> C["CCPM·TOC"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- **본질**: 작업 의존성과 자원 제약을 함께 반영한 Critical Chain 중심 일정관리
-- **메커니즘**: 개별 안전여유 통합 → PB·FB 배치 → RB 알림 → Buffer 상태 통제
-- **목적**: 다중작업·학생증후군·파킨슨 법칙으로 인한 일정지연 완화
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 780 520" role="img" aria-label="Critical Chain과 프로젝트 피딩 자원 버퍼 배치">
-  <defs><marker id="ccpm-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" class="itpe-svg-link"></path></marker></defs>
-  <rect x="35" y="185" width="105" height="70" rx="12" class="itpe-svg-node"></rect><text x="87" y="228" text-anchor="middle" class="itpe-svg-title">A</text>
-  <rect x="200" y="185" width="105" height="70" rx="12" class="itpe-svg-node"></rect><text x="252" y="228" text-anchor="middle" class="itpe-svg-title">B</text>
-  <rect x="365" y="185" width="105" height="70" rx="12" class="itpe-svg-node is-current"></rect><text x="417" y="215" text-anchor="middle" class="itpe-svg-title">C</text><text x="417" y="240" text-anchor="middle" class="itpe-svg-sub">RB</text>
-  <rect x="530" y="185" width="105" height="70" rx="12" class="itpe-svg-node"></rect><text x="582" y="228" text-anchor="middle" class="itpe-svg-title">D</text>
-  <rect x="665" y="185" width="90" height="70" rx="12" class="itpe-svg-node is-current"></rect><text x="710" y="215" text-anchor="middle" class="itpe-svg-title">PB</text><text x="710" y="240" text-anchor="middle" class="itpe-svg-sub">납기 보호</text>
-  <rect x="200" y="365" width="105" height="70" rx="12" class="itpe-svg-node"></rect><text x="252" y="408" text-anchor="middle" class="itpe-svg-title">E</text>
-  <rect x="365" y="365" width="105" height="70" rx="12" class="itpe-svg-node"></rect><text x="417" y="395" text-anchor="middle" class="itpe-svg-title">FB</text><text x="417" y="420" text-anchor="middle" class="itpe-svg-sub">합류 보호</text>
-  <path d="M140 220 L200 220" class="itpe-svg-link" marker-end="url(#ccpm-arrow)"></path>
-  <path d="M305 220 L365 220" class="itpe-svg-link" marker-end="url(#ccpm-arrow)"></path>
-  <path d="M470 220 L530 220" class="itpe-svg-link" marker-end="url(#ccpm-arrow)"></path>
-  <path d="M635 220 L665 220" class="itpe-svg-link" marker-end="url(#ccpm-arrow)"></path>
-  <path d="M305 400 L365 400" class="itpe-svg-link" marker-end="url(#ccpm-arrow)"></path>
-  <path d="M417 365 L417 255" class="itpe-svg-link" marker-end="url(#ccpm-arrow)"></path>
-  <text x="335" y="145" class="itpe-svg-label">Critical Chain: 작업·자원 의존성</text>
-</svg>
-</div>
+- 본질: 제약이론(TOC)을 프로젝트 일정에 적용하여, 작업 선후행과 자원 제약을 함께 고려한 Critical Chain을 도출하고 통합 버퍼로 납기를 통제하는 기법
+- 메커니즘: 개별 작업의 안전여유 회수(50% 추정) → Critical Chain 도출 → PB(프로젝트)·FB(피딩)·RB(자원) 버퍼 배치 → Fever Chart 기반 통제
+- 판정 기준: 작업자 안전여유 회수 및 통합 배치 여부, Fever Chart 상 진척 대비 버퍼 소진율(Green/Yellow/Red) 및 제약자원 WIP 상한 준수
 
 <details>
 <summary>약어·전문용어</summary>
@@ -64,92 +47,29 @@ extra:
 
 ## Ⅰ. CCPM 개요
 
-> 작업별 납기보다 전체 Chain의 흐름과 보호 Buffer를 관리해 프로젝트 납기를 통제함
+> 작업별 납기보다 전체 Chain의 흐름과 보호 Buffer를 관리해 프로젝트 납기를 통제함.
 
 - **정의**: TOC 기반으로 작업 의존성과 자원 제약을 반영한 Critical Chain을 도출하고 통합 Buffer로 일정을 관리하는 기법
 - **목적**: 자원 경합·다중작업·분산 안전여유로 인한 전체 일정지연 완화
 
 ## Ⅱ. Critical Chain 및 버퍼 관리 체계
 
+```mermaid
+flowchart LR
+    subgraph FEEDING["비임계 체인 (Non-critical)"]
+        T_FEED["비임계 Task"] --> FB["FB (Feeding Buffer)<br/>합류 지연 전파 차단"]
+    end
+    subgraph CRITICAL["Critical Chain (작업 + 자원 제약)"]
+        T1["CC Task 1<br/>(50% 공격적 추정)"] --> T2["CC Task 2<br/>(RB: 자원 준비 알림)"]
+        T2 --> T3["CC Task 3"]
+    end
+    subgraph DELIVERY["프로젝트 납기 보호"]
+        PB["PB (Project Buffer)<br/>전체 통합 버퍼"] --> END["프로젝트 납기 완료"]
+    end
+
+    FB --> T3
+    T1 --> T2 --> T3 --> PB
 ```
-[비임계 체인] ──(작업)──> [ FB (Feeding Buffer) ] ──┐ (합류 지연 전파 차단)
-                                                    ▼
-[Critical Chain] ─(작업 A)─> [작업 B (RB 알림)] ─> [작업 C] ──> [ PB (Project Buffer) ] ──> [납기 완료]
-(작업+자원 제약)
-```
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="CCPM 버퍼 배치 및 Fever Chart 관리 메커니즘">
-  <!-- 배경 바운더리 -->
-  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
-
-  <!-- 좌측 영역: 버퍼 구조 네트워크 -->
-  <g transform="translate(15, 20)">
-    <rect x="0" y="0" width="255" height="175" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-    <text x="127" y="18" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">Critical Chain &amp; Buffer 배치</text>
-
-    <!-- Feeding Chain -->
-    <rect x="15" y="32" width="65" height="28" rx="4" fill="var(--sl-color-gray-5)" stroke="var(--sl-color-gray-3)" stroke-width="1" />
-    <text x="47" y="49" text-anchor="middle" font-size="9" fill="var(--sl-color-text)">비임계 Task</text>
-
-    <line x1="80" y1="46" x2="105" y2="46" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-
-    <rect x="105" y="32" width="55" height="28" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
-    <text x="132" y="49" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent-high)">FB (피딩)</text>
-
-    <!-- 연결선: FB -> CC 합류 -->
-    <path d="M 160 46 L 185 46 L 185 85" fill="none" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-
-    <!-- Critical Chain -->
-    <rect x="15" y="85" width="65" height="32" rx="4" fill="var(--sl-color-gray-5)" stroke="var(--sl-color-gray-3)" stroke-width="1" />
-    <text x="47" y="101" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">CC Task 1</text>
-    <text x="47" y="112" text-anchor="middle" font-size="7.5" fill="var(--sl-color-gray-2)">50% 추정</text>
-
-    <line x1="80" y1="101" x2="105" y2="101" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-    <rect x="105" y="85" width="65" height="32" rx="4" fill="var(--sl-color-gray-5)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-    <text x="137" y="101" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent-high)">CC Task 2</text>
-    <text x="137" y="112" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">RB(자원알림)</text>
-
-    <line x1="170" y1="101" x2="190" y2="101" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-    <rect x="190" y="85" width="55" height="32" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-    <text x="217" y="101" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent-high)">PB (납기)</text>
-    <text x="217" y="112" text-anchor="middle" font-size="7.5" fill="var(--sl-color-gray-2)">총 버퍼</text>
-
-    <!-- 하단 설명 -->
-    <rect x="15" y="130" width="225" height="32" rx="4" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1" />
-    <text x="127" y="145" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text)">안전여유 회수(50%) 후 통합 배치</text>
-    <text x="127" y="157" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">파킨슨 법칙·학생 증후군 차단</text>
-  </g>
-
-  <!-- 우측 영역: Fever Chart (버퍼 소진 관리도) -->
-  <g transform="translate(285, 20)">
-    <rect x="0" y="0" width="215" height="175" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-    <text x="107" y="18" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">Fever Chart (버퍼 통제도)</text>
-
-    <!-- 차트 배경 3개 영역 -->
-    <!-- Red (조치) -->
-    <path d="M 25 140 L 25 35 L 195 35 Z" fill="#ef4444" fill-opacity="0.25" />
-    <!-- Yellow (경고) -->
-    <path d="M 25 140 L 195 35 L 195 90 Z" fill="#f59e0b" fill-opacity="0.25" />
-    <!-- Green (안전) -->
-    <path d="M 25 140 L 195 90 L 195 140 Z" fill="#10b981" fill-opacity="0.25" />
-
-    <!-- 축선 -->
-    <line x1="25" y1="140" x2="195" y2="140" stroke="var(--sl-color-gray-2)" stroke-width="1.5" />
-    <line x1="25" y1="140" x2="25" y2="35" stroke="var(--sl-color-gray-2)" stroke-width="1.5" />
-
-    <!-- 라벨 -->
-    <text x="110" y="154" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">Chain 진척률 (%) →</text>
-    <text x="20" y="30" text-anchor="start" font-size="8" fill="var(--sl-color-gray-2)">↑ 버퍼소진(%)</text>
-
-    <!-- 현재 프로젝트 상태 점 -->
-    <circle cx="110" cy="115" r="4" fill="#10b981" stroke="#ffffff" stroke-width="1.5" />
-    <text x="110" y="167" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--sl-color-text)">진척 50% / 소진 25% (안전)</text>
-  </g>
-</svg>
-</div>
 
 | 요소 | 위치 | 역할 |
 |---|---|---|
@@ -162,15 +82,14 @@ Buffer 크기는 작업 불확실성·추정방식·위험 데이터를 반영�
 
 ## Ⅲ. CCPM 적용 절차
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="CCPM 일정 수립과 통제 절차">
-  <div class="itpe-flow-node"><strong>① 작업·자원 분석</strong><div class="itpe-step-detail"><strong>활동</strong><span>선후행·자원가용성·경합 식별</span></div><div class="itpe-step-detail"><strong>산출</strong><span>자원제약 Network</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>② Critical Chain 도출</strong><div class="itpe-step-detail"><strong>활동</strong><span>자원 Leveling·다중작업 제거</span></div><div class="itpe-step-detail"><strong>산출</strong><span>Critical Chain 일정</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>③ Buffer 설계</strong><div class="itpe-step-detail"><strong>활동</strong><span>PB·FB 크기·RB 알림 정의</span></div><div class="itpe-step-detail"><strong>산출</strong><span>Buffer Plan</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>④ Buffer 통제</strong><div class="itpe-step-detail"><strong>판정</strong><span>진척 대비 소진 추세·예외 원인</span></div><div class="itpe-step-detail"><strong>산출</strong><span>Fever Chart·조치계획</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 작업·자원 분석<br/>선후행 의존성 및 제약 자원 가용성/경합 식별 (자원제약 네트워크)"]
+    S2["② Critical Chain 도출<br/>자원 평준화(Leveling) 및 다중작업 제거 후 최장 체인 확정"]
+    S3["③ Buffer 설계<br/>안전여유 통합 배치: PB(납기), FB(합류), RB(자원 사전알림)"]
+    S4["④ Buffer 통제 (Fever Chart)<br/>Chain 진척률 대 버퍼 소진율 모니터링 및 Red Zone 시 긴급 자원 집중"]
+    S1 --> S2 --> S3 --> S4
+```
 
 ## Ⅳ. CPM·CCPM 비교
 
@@ -194,9 +113,8 @@ Buffer 크기는 작업 불확실성·추정방식·위험 데이터를 반영�
 
 ### 학습자 통찰 메모 — 답안 밖
 
-> **[핵심 통찰]** CCPM의 본질은 무리하게 일정을 쥐어짜는 것이 아니라, 작업자 개개인이 숨겨둔 안전여유(Pad)를 프로젝트 수준(PB/FB)으로 통합하여 파킨슨 법칙과 학생 증후군을 원천 차단하고, 제약 자원의 멀티태스킹을 방지하는 흐름 최적화이다.
-> 
-> **나라면** 작업 완료 확률 50% 수준의 공격적 추정을 적용하되, Fever Chart의 적색(Red Zone) 진입 시점을 일방적 문책이 아닌 제약 자원(특급 개발자/장비)에 대한 즉각적인 전담 배치(Swarming) 신호로 활용하겠다.
+- [핵심 통찰]: CCPM의 본질은 무리하게 일정을 쥐어짜는 것이 아니라, 작업자 개개인이 숨겨둔 안전여유(Pad)를 프로젝트 수준(PB/FB)으로 통합하여 파킨슨 법칙과 학생 증후군을 원천 차단하고, 제약 자원의 멀티태스킹을 방지하는 흐름 최적화임.
+- 나라면: 작업 완료 확률 50% 수준의 공격적 추정을 적용하되, Fever Chart의 적색(Red Zone) 진입 시점을 일방적 문책이 아닌 제약 자원(특급 개발자/장비)에 대한 즉각적인 전담 배치(Swarming) 신호로 활용하겠음.
 
 ### 실전 답안용 기술사적 제언
 
@@ -205,24 +123,47 @@ Buffer 크기는 작업 불확실성·추정방식·위험 데이터를 반영�
 - **검증 체계**: 주간 단위 제약 자원 부하율(Load Factor) 전수 측정 및 동시 진행 작업(WIP) 상한선(WIP Limit) 강제 통제
 - **기대 효과**: 자원 경합에 의한 대기 지연 30% 단축, 전체 프로젝트 공기 20% 이상 단축 및 납기 준수율 98% 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="CCPM Buffer 상태 기반 의사결정">
-  <div class="itpe-flow-node"><strong>Chain 진척·Buffer 소진</strong><div class="itpe-step-detail"><strong>증거</strong><span>잔여시간·소진추세</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>제약·원인 분석</strong><div class="itpe-step-detail"><strong>판정</strong><span>자원경합·변경·재작업</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>조치 분기</strong><div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>회복 가능</strong><span>현 계획 유지·감시</span></div><div class="itpe-flow-branch"><strong>회복 곤란</strong><span>자원집중·범위·순서 조정</span></div></div></div>
-</div>
+```mermaid
+flowchart TD
+    P1["Chain 진척 및 Buffer 소진 측정<br/>(Fever Chart 상 버퍼 잔여량 및 소진 속도)"] --> P2["제약 원인 분석<br/>자원 경합 · 병목 작업 · 잦은 요구 변경 분석"]
+    P2 --> P3{"Fever Chart 판정 Gate<br/>버퍼 소진율 대비 회복 가능 여부?"}
+    P3 -->|Green/Yellow (회복 가능)| P4["현행 계획 유지 및 자원 집중 모니터링"]
+    P3 -->|Red Zone (회복 곤란)| P5["긴급 만회 조치 (Swarming, 범위/우선순위 조정, WIP 강제제한)"]
+```
 
 ## 1교시 10점 답안 발췌
 
-- **정의**: 작업 의존성과 자원 제약을 반영한 Critical Chain을 도출하고 통합 Buffer로 일정을 관리하는 기법
-- **목적**: 자원경합·다중작업·분산 안전여유로 인한 전체 일정지연 완화
+### 1. 정의·목적
 
-| Buffer | 역할 |
-|---|---|
-| PB | Critical Chain 끝에서 납기 보호 |
-| FB | 비임계 Chain 합류 지연 차단 |
-| RB | 핵심자원 투입 준비 알림 |
+- **정의**: 제약이론(TOC)을 바탕으로 작업 선후행 관계뿐만 아니라 자원 제약을 함께 고려해 Critical Chain을 도출하고, 통합 버퍼(PB, FB, RB)로 프로젝트를 통제하는 **일정관리 기법**
+- **목적**: 파킨슨 법칙, 학생 증후군, 멀티태스킹으로 인한 일정 지연 방지 및 납기 준수율 극대화
+
+### 2. Critical Chain 및 버퍼 배치 구조
+
+```mermaid
+flowchart LR
+    subgraph FEEDING["비임계 체인 (Non-critical)"]
+        T_FEED["비임계 Task"] --> FB["FB (Feeding Buffer)<br/>합류 지연 전파 차단"]
+    end
+    subgraph CRITICAL["Critical Chain (작업 + 자원 제약)"]
+        T1["CC Task 1<br/>(50% 공격적 추정)"] --> T2["CC Task 2<br/>(RB: 자원 준비 알림)"]
+        T2 --> T3["CC Task 3"]
+    end
+    subgraph DELIVERY["프로젝트 납기 보호"]
+        PB["PB (Project Buffer)<br/>전체 통합 버퍼"] --> END["프로젝트 납기 완료"]
+    end
+
+    FB --> T3
+    T1 --> T2 --> T3 --> PB
+```
+
+### 3. 3대 버퍼 및 관리 통제
+
+| 버퍼 유형 | 설치 위치 | 핵심 역할 |
+|---|---|---|
+| **PB (Project Buffer)** | Critical Chain 끝 | 프로젝트 전체 납기 보호 (개별 안전여유의 통합) |
+| **FB (Feeding Buffer)** | 비임계 체인 합류점 | 비임계 작업 지연이 주공정으로 전파되는 것 차단 |
+| **RB (Resource Buffer)** | 제약 자원 투입 직전 | 핵심 자원의 대기 및 적시 투입 사전 알림 |
 
 ## 출제 이력과 검증 출처
 
@@ -244,4 +185,3 @@ Buffer 크기는 작업 불확실성·추정방식·위험 데이터를 반영�
 - 이전: [111. Six Sigma DMAIC](./111_six_sigma_dmaic.md)
 - 관련: [081. CPM](./081_cpm.md) · [032. EVM](./032_evm.md)
 - 다음: [113. SW 비용 산정](./113_software_cost_estimation.md)
-

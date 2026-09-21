@@ -1,6 +1,6 @@
 ---
 title: "클라우드 전환사업 감리"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T10:05:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,31 +8,24 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "B"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 정보시스템 감리를 거쳐 클라우드 전환사업 감리로 이어지는 위치">
-  <span>IT 전략·관리</span><span>정보시스템 감리</span><strong>클라우드 전환사업 감리</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["정보시스템 감리"]
+    B --> C["클라우드 전환사업 감리"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- **본질**: 클라우드 전환 전략·설계·이행·운영의 적정성을 독립 검증
-- **메커니즘**: 전환대상·전략 → Cloud Architecture → Migration → 운영·비용
-- **통제**: 공유책임·데이터 정합성·복구 가능성·비용 가시성
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="클라우드 전환사업 감리 흐름">
-  <div class="itpe-flow-node"><strong>전략</strong><div class="itpe-step-detail"><strong>점검</strong><span>대상·전환방식·규제·TCO</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>설계</strong><div class="itpe-step-detail"><strong>점검</strong><span>가용성·IAM·망·암호화·백업</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>이행</strong><div class="itpe-step-detail"><strong>점검</strong><span>데이터·Cut-over·Rollback·IaC</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>운영</strong><div class="itpe-step-detail"><strong>점검</strong><span>SLA·모니터링·FinOps·DR</span></div></div>
-</div>
+- 본질: 온프레미스에서 클라우드로의 전환 과정에서 전략·아키텍처·이행·운영의 적정성과 리스크를 독립 검증하는 감리 활동
+- 메커니즘: 6R 전환전략 수립 → 랜딩존/공유책임 설계 → 데이터 CDC 및 Cut-over/Dry Run 이행 → FinOps 및 SLA 운영
+- 판정 기준: 6R 전략 적합성, CSP 공유책임(RACI) 명확성, 데이터 100% 무결성 대사 및 FinOps 태깅 준수 여부
 
 <details>
 <summary>약어·전문용어</summary>
@@ -52,7 +45,7 @@ extra:
 
 ## Ⅰ. 클라우드 전환사업 감리 개요
 
-> 서버 이전 여부보다 선택한 전환방식이 업무·규제·가용성·비용 조건에 적합한지를 검증함
+> 서버 이전 여부보다 선택한 전환방식이 업무·규제·가용성·비용 조건에 적합한지를 검증함.
 
 - **정의**: 온프레미스 정보시스템의 클라우드 전환 과정에서 전략·설계·이행·운영의 적정성을 독립 점검하는 감리 활동
 - **목적**: 전환 실패·보안책임 누락·데이터 오류·비용 통제 실패 예방
@@ -63,84 +56,21 @@ extra:
 
 ### 1. 클라우드 전환 4단계 감리 점검 아키텍처
 
-```xml
-<svg-diagram>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
-    </marker>
-  </defs>
-
-  <!-- Title -->
-  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">클라우드 전환사업 4단계 감리 점검 프레임워크</text>
-
-  <!-- Phase 1: 전략/기획 -->
-  <g transform="translate(15, 45)">
-    <rect x="0" y="0" width="115" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="5"/>
-    <rect x="0" y="0" width="115" height="24" fill="var(--sl-color-hairline)" opacity="0.3" rx="5 5 0 0"/>
-    <text x="57" y="16" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">① 전략/기획 감리</text>
-    <text x="8" y="42" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold">• 6R 전략 적정성</text>
-    <text x="8" y="58" fill="var(--sl-color-text)" font-size="8">  (Rehost/Refactor)</text>
-    <text x="8" y="74" fill="var(--sl-color-text)" font-size="9">• TCO/ROI 타당성</text>
-    <text x="8" y="90" fill="var(--sl-color-text)" font-size="9">• CSAP 보안인증</text>
-    <text x="8" y="106" fill="var(--sl-color-text)" font-size="9">• 클라우드 적합도</text>
-    <rect x="6" y="122" width="103" height="24" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-hairline)" rx="2"/>
-    <text x="57" y="137" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">전환 기본계획서</text>
-  </g>
-
-  <!-- Arrow 1 -> 2 -->
-  <path d="M 133 120 L 142 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <!-- Phase 2: 설계 -->
-  <g transform="translate(145, 45)">
-    <rect x="0" y="0" width="115" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="5"/>
-    <rect x="0" y="0" width="115" height="24" fill="var(--sl-color-hairline)" opacity="0.3" rx="5 5 0 0"/>
-    <text x="57" y="16" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">② 아키텍처 감리</text>
-    <text x="8" y="42" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold">• 랜딩존/IaC 설계</text>
-    <text x="8" y="58" fill="var(--sl-color-text)" font-size="9">• 공유책임 모델(RACI)</text>
-    <text x="8" y="74" fill="var(--sl-color-text)" font-size="9">• Multi-AZ 이중화</text>
-    <text x="8" y="90" fill="var(--sl-color-text)" font-size="9">• VPC 망분리/암호화</text>
-    <text x="8" y="106" fill="var(--sl-color-text)" font-size="9">• CSP Lock-in 방지</text>
-    <rect x="6" y="122" width="103" height="24" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-hairline)" rx="2"/>
-    <text x="57" y="137" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">클라우드 목표구조도</text>
-  </g>
-
-  <!-- Arrow 2 -> 3 -->
-  <path d="M 263 120 L 272 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <!-- Phase 3: 이행 -->
-  <g transform="translate(275, 45)">
-    <rect x="0" y="0" width="115" height="155" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="1.8" rx="5"/>
-    <rect x="0" y="0" width="115" height="24" fill="#ef4444" opacity="0.1" rx="5 5 0 0"/>
-    <text x="57" y="16" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">③ 이행/전환 감리</text>
-    <text x="8" y="42" fill="#ef4444" font-size="9" font-weight="bold">• 데이터 실시간 CDC</text>
-    <text x="8" y="58" fill="var(--sl-color-text)" font-size="9">• 건수/금액 무결성 대사</text>
-    <text x="8" y="74" fill="var(--sl-color-text)" font-size="9">• Cut-over 런북 검증</text>
-    <text x="8" y="90" fill="var(--sl-color-text)" font-size="9">• Rollback 시나리오</text>
-    <text x="8" y="106" fill="var(--sl-color-text)" font-size="9">• 모의이행(Dry Run)</text>
-    <rect x="6" y="122" width="103" height="24" fill="var(--sl-color-bg-sidebar)" stroke="#ef4444" rx="2"/>
-    <text x="57" y="137" fill="#ef4444" font-size="8" font-weight="bold" text-anchor="middle">이행/대사 결과서</text>
-  </g>
-
-  <!-- Arrow 3 -> 4 -->
-  <path d="M 393 120 L 402 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <!-- Phase 4: 운영/비용 -->
-  <g transform="translate(405, 45)">
-    <rect x="0" y="0" width="105" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="5"/>
-    <rect x="0" y="0" width="105" height="24" fill="var(--sl-color-text-accent)" opacity="0.1" rx="5 5 0 0"/>
-    <text x="52" y="16" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">④ 운영/비용 감리</text>
-    <text x="6" y="42" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold">• FinOps 자원 태깅</text>
-    <text x="6" y="58" fill="var(--sl-color-text)" font-size="9">• 이상비용 알림/거버넌스</text>
-    <text x="6" y="74" fill="var(--sl-color-text)" font-size="9">• SLA 및 가용성</text>
-    <text x="6" y="90" fill="var(--sl-color-text)" font-size="9">• DR 재해복구 체계</text>
-    <text x="6" y="106" fill="var(--sl-color-text)" font-size="9">• Exit Plan(자산반출)</text>
-    <rect x="4" y="122" width="97" height="24" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-text-accent)" rx="2"/>
-    <text x="52" y="137" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">운영/비용 검증서</text>
-  </g>
-</svg>
-</svg-diagram>
+```mermaid
+flowchart LR
+    subgraph STAGE1["① 전략/기획 감리"]
+        S1["- 6R 전략 적정성<br/>- TCO/ROI 타당성<br/>- CSAP 보안인증<br/>- 전환 기본계획서"]
+    end
+    subgraph STAGE2["② 아키텍처 감리"]
+        S2["- 랜딩존/IaC 설계<br/>- 공유책임 모델(RACI)<br/>- Multi-AZ 이중화<br/>- CSP Lock-in 방지"]
+    end
+    subgraph STAGE3["③ 이행/전환 감리"]
+        S3["- 데이터 실시간 CDC<br/>- 건수/금액 무결성 대사<br/>- Cut-over 런북/Rollback<br/>- 모의이행(Dry Run)"]
+    end
+    subgraph STAGE4["④ 운영/비용 감리"]
+        S4["- FinOps 자원 태깅<br/>- 이상비용 알림 체계<br/>- SLA 및 가용성<br/>- Exit Plan(자산반출)"]
+    end
+    STAGE1 --> STAGE2 --> STAGE3 --> STAGE4
 ```
 
 ### 2. 단계별 주요 활동 및 감리 증적
@@ -154,7 +84,7 @@ extra:
 
 ## Ⅲ. 6R 전환 전략 점검
 
-> Rehost·Replatform·Refactor 중 하나를 우월한 방식으로 정하지 않고 업무 가치와 제약으로 선택함
+> Rehost·Replatform·Refactor 중 하나를 우월한 방식으로 정하지 않고 업무 가치와 제약으로 선택함.
 
 | 전략 | 핵심 | 점검 기준 |
 |---|---|---|
@@ -200,30 +130,47 @@ extra:
 - **검증 체계**: 모의이행(Dry Run) 2회 이상 수행 증적, 원천-목표 데이터 건수/금액 일치 대사로그 전수 검증
 - **기대 효과**: 클라우드 이전 실패 위험 최소화, 불필요한 클라우드 과금 30% 이상 절감 및 안전한 공공 서비스 이행
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 500" role="img" aria-label="클라우드 전환 품질 게이트">
-  <rect x="250" y="25" width="260" height="85" rx="14" class="itpe-svg-node"></rect>
-  <text x="380" y="60" text-anchor="middle" class="itpe-svg-title">전환 증적</text><text x="380" y="88" text-anchor="middle" class="itpe-svg-sub">전략·설계·IaC·시험</text>
-  <rect x="250" y="175" width="260" height="100" rx="14" class="itpe-svg-node is-current"></rect>
-  <text x="380" y="212" text-anchor="middle" class="itpe-svg-title">Quality Gate</text><text x="380" y="242" text-anchor="middle" class="itpe-svg-sub">보안·복구·비용·Exit</text>
-  <rect x="70" y="355" width="240" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="190" y="392" text-anchor="middle" class="itpe-svg-title">통과</text><text x="190" y="420" text-anchor="middle" class="itpe-svg-sub">Cut-over·운영 전환</text>
-  <rect x="450" y="355" width="240" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="570" y="392" text-anchor="middle" class="itpe-svg-title">미통과</text><text x="570" y="420" text-anchor="middle" class="itpe-svg-sub">보완·재검증</text>
-  <path d="M380 110 L380 175 M315 275 L190 355 M445 275 L570 355" class="itpe-svg-link"></path>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["전환 증적 수집<br/>(전략 계획서 · 랜딩존 IaC · Dry Run 로그 · 대사 보고서)"]
+    P1 --> P2{"Quality Gate<br/>보안(IAM) · 복구(Rollback) · 비용(FinOps) · Exit Plan 충족?"}
+    P2 -->|통과| P3["Cut-over 승인 및 클라우드 본 가동 개시"]
+    P2 -->|미통과| P4["보완 조치 요구 및 2차 재검증 수행"]
+```
 
 ## 1교시 10점 답안 발췌
 
-- **정의**: 클라우드 전환 과정에서 전략·설계·이행·운영의 적정성을 독립 점검하는 감리 활동
-- **목적**: 전환 실패·보안책임 누락·데이터 오류·비용 통제 실패 예방
+### 1. 정의·목적
 
-| 단계 | 점검 |
+- **정의**: 온프레미스 시스템의 클라우드 전환 시 전략, 아키텍처, 이행 무결성, 운영/비용의 적정성을 독립적으로 점검하는 **신기술 전문 정보시스템 감리 프레임워크**
+- **목적**: CSP 종속 탈피, 전환 실패 및 보안 공백 예방, FinOps 기반 총소유비용(TCO) 최적화
+
+### 2. 4단계 수명주기별 감리 아키텍처
+
+```mermaid
+flowchart LR
+    subgraph STAGE1["① 전략/기획 감리"]
+        S1["- 6R 전략 적정성<br/>- TCO/ROI 타당성<br/>- CSAP 보안인증<br/>- 전환 기본계획서"]
+    end
+    subgraph STAGE2["② 아키텍처 감리"]
+        S2["- 랜딩존/IaC 설계<br/>- 공유책임 모델(RACI)<br/>- Multi-AZ 이중화<br/>- CSP Lock-in 방지"]
+    end
+    subgraph STAGE3["③ 이행/전환 감리"]
+        S3["- 데이터 실시간 CDC<br/>- 건수/금액 무결성 대사<br/>- Cut-over 런북/Rollback<br/>- 모의이행(Dry Run)"]
+    end
+    subgraph STAGE4["④ 운영/비용 감리"]
+        S4["- FinOps 자원 태깅<br/>- 이상비용 알림 체계<br/>- SLA 및 가용성<br/>- Exit Plan(자산반출)"]
+    end
+    STAGE1 --> STAGE2 --> STAGE3 --> STAGE4
+```
+
+### 3. 핵심 통제
+
+| 단계 | 점검 중점사항 |
 |---|---|
-| 전략·설계 | 전환방식·규제·Architecture·공유책임 |
-| 이행 | 데이터 대사·Cut-over·Rollback·IaC |
-| 운영 | SLA·DR·FinOps·Exit Plan |
+| **전략·설계** | 6R 전략, 랜딩존 IaC, CSAP 인증, 공유책임 RACI, Exit Plan |
+| **이행** | 데이터 100% 무결성 대사, Dry Run 2회 이상, Rollback 한계시점 통제 |
+| **운영** | FinOps 자원 태깅, SLA 및 Multi-AZ 이중화, 이상과금 경보 |
 
 ## 출제 이력과 검증 출처
 
@@ -246,4 +193,3 @@ extra:
 - 이전 토픽: [차세대 시스템 오픈 리스크](./103_next_generation_system_open_risk.md)
 - 연관 토픽: [지능정보기술 감리 실무 가이드](./102_intelligent_information_technology_audit_guide.md), [FinOps](./012_finops.md)
 - 다음 토픽: [품질비용(CoQ)](./106_cost_of_quality_coq.md)
-

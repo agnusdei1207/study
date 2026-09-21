@@ -1,6 +1,6 @@
 ---
 title: "차세대 시스템 오픈 리스크"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T09:45:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,31 +8,24 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 전환관리를 거쳐 차세대 시스템 오픈 리스크로 이어지는 위치">
-  <span>IT 전략·관리</span><span>전환관리·사업위험</span><strong>오픈 리스크</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["전환관리·사업위험"]
+    B --> C["차세대 시스템 오픈 리스크"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- **본질**: 신·구 시스템 절체 중 데이터·업무·연계·성능 중단 위험 통제
-- **메커니즘**: 리허설 → Cut-over → Go/No-Go → 안정화
-- **핵심**: 롤백 가능 시점 전에 증적 기반으로 계속·중단을 판정
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="차세대 시스템 오픈 리스크 통제 흐름">
-  <div class="itpe-flow-node"><strong>리허설</strong><div class="itpe-step-detail"><strong>검증</strong><span>절차·시간·데이터·복구</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>Cut-over</strong><div class="itpe-step-detail"><strong>실행</strong><span>업무중단·백업·이행·절체</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>Go/No-Go</strong><div class="itpe-flow-branches"><div class="itpe-flow-branch"><strong>Go</strong><span>신규 시스템 가동</span></div><div class="itpe-flow-branch"><strong>No-Go</strong><span>Rollback 실행</span></div></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>안정화</strong><div class="itpe-step-detail"><strong>통제</strong><span>모니터링·장애·현업 지원</span></div></div>
-</div>
+- 본질: 차세대 시스템 Cut-over 과정에서 발생 가능한 데이터 유실·성능 저하·연계 단절 등 서비스 중단 위험을 통제하는 기법
+- 메커니즘: 사전 리허설(Dry Run) → Cut-over 타임라인 실행 → Point of No Return 이전 Go/No-Go 판정 → 롤백 또는 대고객 오픈
+- 판정 기준: 4대 무결성 지표(데이터 100% 대사, 연계 정상, 부하 한계 충족, 현업 승인) 및 롤백 한계시각 준수 여부
 
 <details>
 <summary>약어·전문용어</summary>
@@ -52,7 +45,7 @@ extra:
 
 ## Ⅰ. 차세대 시스템 오픈 리스크 개요
 
-> Cut-over는 기술 배포가 아니라 업무·데이터·조직을 동시에 전환하는 고위험 변경임
+> Cut-over는 기술 배포가 아니라 업무·데이터·조직을 동시에 전환하는 고위험 변경임.
 
 - **정의**: 차세대 시스템 가동 과정에서 업무중단·데이터 오류·성능저하·연계장애를 예방·대응하는 전환 위험관리
 - **목적**: 전환 무결성·서비스 연속성·복구 가능성 확보
@@ -63,74 +56,21 @@ extra:
 
 ### 1. Cut-over 런북 타임라인 및 롤백 한계점(Point of No Return) 구조
 
-```xml
-<svg-diagram>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
-    </marker>
-    <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
-    </marker>
-  </defs>
-
-  <!-- Title -->
-  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">차세대 시스템 Cut-over 타임라인 및 Go/No-Go 롤백 한계선</text>
-
-  <!-- Timeline Base Bar -->
-  <g transform="translate(15, 55)">
-    <!-- Phase 1: Freeze & Backup -->
-    <rect x="0" y="0" width="100" height="45" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
-    <text x="50" y="18" fill="var(--sl-color-text)" font-size="9" font-weight="bold" text-anchor="middle">① 업무동결·백업</text>
-    <text x="50" y="32" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">00:00 ~ 02:00 (2h)</text>
-
-    <!-- Phase 2: ETL Migration & Verification -->
-    <rect x="105" y="0" width="125" height="45" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
-    <text x="167" y="18" fill="var(--sl-color-text)" font-size="9" font-weight="bold" text-anchor="middle">② 데이터 이행·대사</text>
-    <text x="167" y="32" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">02:00 ~ 04:30 (2.5h)</text>
-
-    <!-- Phase 3: Interface & Smoke Test -->
-    <rect x="235" y="0" width="100" height="45" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
-    <text x="285" y="18" fill="var(--sl-color-text)" font-size="9" font-weight="bold" text-anchor="middle">③ 연계·스모크테스트</text>
-    <text x="285" y="32" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">04:30 ~ 05:30 (1h)</text>
-
-    <!-- Point of No Return Line -->
-    <line x1="340" y1="-10" x2="340" y2="135" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="340" y="-14" fill="#ef4444" font-size="9" font-weight="bold" text-anchor="middle">Point of No Return (05:30)</text>
-
-    <!-- Phase 4: Decision & Open -->
-    <rect x="345" y="0" width="145" height="45" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.8" rx="4"/>
-    <text x="417" y="18" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold" text-anchor="middle">④ Go/No-Go 판정</text>
-    <text x="417" y="32" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">05:30 ~ 06:00 (30m)</text>
-  </g>
-
-  <!-- Branching: Go vs No-Go -->
-  <!-- Go Path -->
-  <g transform="translate(365, 120)">
-    <path d="M 0 0 L 25 0" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
-    <rect x="30" y="-18" width="105" height="36" fill="var(--sl-color-bg)" stroke="#10b981" stroke-width="1.5" rx="4"/>
-    <text x="82" y="-2" fill="#10b981" font-size="9" font-weight="bold" text-anchor="middle">✅ GO 판정</text>
-    <text x="82" y="12" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">09:00 대고객 오픈</text>
-  </g>
-
-  <!-- No-Go Path -->
-  <g transform="translate(365, 175)">
-    <path d="M 0 -15 L 25 0" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-red)"/>
-    <rect x="30" y="-18" width="105" height="36" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="1.5" rx="4"/>
-    <text x="82" y="-2" fill="#ef4444" font-size="9" font-weight="bold" text-anchor="middle">⛔ NO-GO (Rollback)</text>
-    <text x="82" y="12" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">구 시스템 원복 (09:00 이전)</text>
-  </g>
-
-  <!-- Note box on bottom left -->
-  <g transform="translate(15, 135)">
-    <rect x="0" y="0" width="315" height="55" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="4"/>
-    <text x="10" y="18" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold">핵심 통제 원칙: 롤백 소요시간 역산</text>
-    <text x="10" y="32" fill="var(--sl-color-text-muted)" font-size="8">• 구 시스템 복구 소요시간(약 3.5시간)을 09:00 영업개시에서 역산</text>
-    <text x="10" y="46" fill="#ef4444" font-size="8" font-weight="bold">• 05:30 초과 시 신규 시스템 가동 중단 불가 → 강제 롤백 의결</text>
-  </g>
-</svg>
-</svg-diagram>
+```mermaid
+flowchart LR
+    subgraph TIMELINE["Cut-over 런북 타임라인 (00:00 ~ 09:00)"]
+        T1["① 업무동결·백업<br/>(00:00~02:00, 2h)"] --> T2["② 데이터 이행·대사<br/>(02:00~04:30, 2.5h)"]
+        T2 --> T3["③ 연계·스모크테스트<br/>(04:30~05:30, 1h)"]
+        T3 --> T4["④ Go/No-Go 판정<br/>(05:30~06:00, 30m)"]
+    end
+    subgraph DECISION["Go / No-Go 분기"]
+        T4 -->|기준 충족| GO["✅ GO 판정 (06:00)<br/>09:00 대고객 서비스 개시"]
+        T4 -->|미충족 or 05:30 초과| NOGO["⛔ NO-GO 판정 (Rollback)<br/>구 시스템 원복 (09:00 정상영업)"]
+    end
+    subgraph RULE["핵심 통제 원칙: 롤백 소요시간 역산"]
+        R["Point of No Return (05:30): 09:00 영업개시 - 복구 소요시간(3.5h)"]
+    end
+    RULE -.-> T4
 ```
 
 ### 2. 단계별 통제 활동 및 산출물
@@ -187,31 +127,47 @@ extra:
 - **검증 체계**: 단일 런북(Runbook) 기반 분 단위 실시간 상황실 관제, PMO·감리·현업 공동 참여 Go/No-Go 서명제 운영
 - **기대 효과**: 개통 첫날 대규모 전산 마비 사태 원천 차단, 대고객 서비스 연속성 및 금융/공공 신뢰도 유지
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 500" role="img" aria-label="Go No-Go와 Rollback 판정 구조">
-  <rect x="245" y="25" width="270" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="380" y="62" text-anchor="middle" class="itpe-svg-title">판정 증적</text><text x="380" y="92" text-anchor="middle" class="itpe-svg-sub">데이터·성능·연계·업무</text>
-  <rect x="245" y="180" width="270" height="90" rx="14" class="itpe-svg-node is-current"></rect>
-  <text x="380" y="217" text-anchor="middle" class="itpe-svg-title">Rollback 결정시점</text><text x="380" y="247" text-anchor="middle" class="itpe-svg-sub">복구 소요시간 역산</text>
-  <rect x="70" y="350" width="240" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="190" y="387" text-anchor="middle" class="itpe-svg-title">Go</text><text x="190" y="417" text-anchor="middle" class="itpe-svg-sub">가동·안정화</text>
-  <rect x="450" y="350" width="240" height="90" rx="14" class="itpe-svg-node"></rect>
-  <text x="570" y="387" text-anchor="middle" class="itpe-svg-title">No-Go</text><text x="570" y="417" text-anchor="middle" class="itpe-svg-sub">Rollback·원인 보완</text>
-  <path d="M380 115 L380 180 M315 270 L190 350 M445 270 L570 350" class="itpe-svg-link"></path>
-  <text x="225" y="315" class="itpe-svg-label">기준 충족</text><text x="505" y="315" class="itpe-svg-label">미충족·시간 도달</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    E1["판정 증적 수집<br/>(데이터 대사율 100% · E2E 거래 · 목표 TPS · 현업 승인)"]
+    E1 --> P1{"Rollback 결정시점<br/>(05:30 Point of No Return 이전 & 기준 충족?)"}
+    P1 -->|충족| GO["Go 결정<br/>신규 시스템 최종 가동 및 대고객 서비스 개시"]
+    P1 -->|미충족 / 시간초과| NOGO["No-Go 결정<br/>즉시 Rollback 발동 및 구 시스템 원복 운영"]
+```
 
 ## 1교시 10점 답안 발췌
 
-- **정의**: 차세대 시스템 가동 과정에서 업무중단·데이터 오류·성능저하·연계장애를 예방·대응하는 전환 위험관리
-- **목적**: 전환 무결성·서비스 연속성·복구 가능성 확보
+### 1. 정의·목적
 
-| 구간 | 통제 |
+- **정의**: 차세대 시스템 가동(Cut-over) 과정에서 데이터 오류, 인터페이스 단절, 성능 지연을 통제하고 롤백 한계시점 내 Go/No-Go를 결정하는 **전환 위험관리 프레임워크**
+- **목적**: 대고객 서비스 연속성 보장 및 시스템 개통 실패에 따른 사회적·경제적 손실 예방
+
+### 2. Cut-over 타임라인 및 의사결정 체계
+
+```mermaid
+flowchart LR
+    subgraph TIMELINE["Cut-over 런북 타임라인 (00:00 ~ 09:00)"]
+        T1["① 업무동결·백업<br/>(00:00~02:00, 2h)"] --> T2["② 데이터 이행·대사<br/>(02:00~04:30, 2.5h)"]
+        T2 --> T3["③ 연계·스모크테스트<br/>(04:30~05:30, 1h)"]
+        T3 --> T4["④ Go/No-Go 판정<br/>(05:30~06:00, 30m)"]
+    end
+    subgraph DECISION["Go / No-Go 분기"]
+        T4 -->|기준 충족| GO["✅ GO 판정 (06:00)<br/>09:00 대고객 서비스 개시"]
+        T4 -->|미충족 or 05:30 초과| NOGO["⛔ NO-GO 판정 (Rollback)<br/>구 시스템 원복 (09:00 정상영업)"]
+    end
+    subgraph RULE["핵심 통제 원칙: 롤백 소요시간 역산"]
+        R["Point of No Return (05:30): 09:00 영업개시 - 복구 소요시간(3.5h)"]
+    end
+    RULE -.-> T4
+```
+
+### 3. 핵심 통제
+
+| 구간 | 통제 활동 |
 |---|---|
-| 오픈 전 | Dry Run·대사·부하·복구 시험 |
-| 오픈 중 | 실행로그·Go/No-Go·Rollback |
-| 오픈 후 | 상황실·모니터링·종료기준 |
+| **오픈 전** | 3회 이상 Dry Run 모의훈련, 대사 스크립트 검증, Point of No Return 확정 |
+| **오픈 중** | 분 단위 상황실 관제, 4대 무결성 증적 확인, Go/No-Go 독립적 판정 |
+| **오픈 후** | 종합상황실 가동, 긴급 핫픽스 체계, 특별 안정화 모니터링 |
 
 ## 출제 이력과 검증 출처
 
@@ -233,4 +189,3 @@ extra:
 - 이전 토픽: [지능정보기술 감리 실무 가이드](./102_intelligent_information_technology_audit_guide.md)
 - 연관 토픽: [부정적 위험 대응](./040_negative_risk_response_strategy.md), [클라우드 전환사업 감리](./104_cloud_migration_project_audit.md)
 - 다음 토픽: [클라우드 전환사업 감리](./104_cloud_migration_project_audit.md)
-

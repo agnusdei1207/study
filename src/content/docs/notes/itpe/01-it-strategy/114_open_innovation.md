@@ -1,6 +1,6 @@
 ---
 title: "개방형 혁신(Open Innovation)"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T11:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,51 +8,24 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 혁신관리와 개방형 혁신으로 이어지는 위치">
-  <span>IT 전략·관리</span>
-  <span>혁신관리</span>
-  <strong>개방형 혁신</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["혁신관리"]
+    B --> C["개방형 혁신"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 조직 경계를 넘어 지식·기술을 의도적으로 유입·유출하여 혁신과 사업화를 가속
-- 메커니즘: **Inbound · Outbound · Coupled** 지식 흐름과 IP·계약 통제
-- 산출물: 기술수요서 · PoC 결과 · 라이선스·공동개발 계약 · 사업화 포트폴리오
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 460" role="img" aria-label="인바운드 아웃바운드 커플드 개방형 혁신의 지식 흐름">
-  <defs>
-    <marker id="oi-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" class="itpe-svg-link" /></marker>
-  </defs>
-  <rect x="40" y="65" width="235" height="110" rx="16" class="itpe-svg-node" />
-  <text x="157" y="100" text-anchor="middle" class="itpe-svg-title">외부 생태계</text>
-  <text x="157" y="127" text-anchor="middle" class="itpe-svg-sub">대학 · 스타트업 · 고객 · 공급자</text>
-  <text x="157" y="151" text-anchor="middle" class="itpe-svg-label">기술 · 아이디어 · 시장경로</text>
-  <rect x="485" y="65" width="235" height="110" rx="16" class="itpe-svg-node is-current" />
-  <text x="602" y="100" text-anchor="middle" class="itpe-svg-title">기업 혁신체계</text>
-  <text x="602" y="127" text-anchor="middle" class="itpe-svg-sub">R&amp;D · 제품 · IP · 사업모델</text>
-  <text x="602" y="151" text-anchor="middle" class="itpe-svg-label">선택 · 결합 · 사업화</text>
-  <path d="M275 95 L475 95" class="itpe-svg-link" marker-end="url(#oi-arrow)" />
-  <text x="375" y="82" text-anchor="middle" class="itpe-svg-label">Inbound · 외부 지식 유입</text>
-  <path d="M485 148 L285 148" class="itpe-svg-link" marker-end="url(#oi-arrow)" />
-  <text x="385" y="170" text-anchor="middle" class="itpe-svg-label">Outbound · 내부 지식 활용경로 확장</text>
-  <rect x="205" y="270" width="350" height="112" rx="56" class="itpe-svg-node" />
-  <text x="380" y="305" text-anchor="middle" class="itpe-svg-title">Coupled Innovation</text>
-  <text x="380" y="332" text-anchor="middle" class="itpe-svg-sub">공동개발 · 합작 · 플랫폼 협업</text>
-  <text x="380" y="357" text-anchor="middle" class="itpe-svg-label">위험·비용·성과 공동 분담</text>
-  <path d="M157 175 L157 326 L195 326" class="itpe-svg-link" marker-end="url(#oi-arrow)" />
-  <path d="M602 175 L602 326 L565 326" class="itpe-svg-link" marker-end="url(#oi-arrow)" />
-  <text x="380" y="425" text-anchor="middle" class="itpe-svg-title">가치 실현: 제품화 · 라이선스 · 신시장</text>
-  <path d="M380 382 L380 405" class="itpe-svg-link" marker-end="url(#oi-arrow)" />
-</svg>
-</div>
+- 본질: 기업 내부의 경계를 넘어 지식과 기술을 의도적으로 유입·유출함으로써 내부 혁신을 가속하고 외부 사업화 경로를 확장하는 경영 전략
+- 메커니즘: Inbound(외부 소싱) · Outbound(스핀오프/라이선스) · Coupled(공동개발) 3대 흐름과 IP 권리 분리 통제
+- 판정 기준: PoC 후 상용화 전환율(40% 이상) 달성 여부 및 Background IP(기존 권리)와 Foreground IP(신규 창출 권리)의 명문화
 
 <details>
 <summary>핵심 용어</summary>
@@ -91,66 +64,37 @@ extra:
 
 ### 2. 체스브로의 개방형 혁신 깔때기(Innovation Funnel) 메커니즘
 
+```mermaid
+flowchart LR
+    subgraph INBOUND["Inbound (외부 지식 유입)"]
+        IN["대학 · 스타트업 · 고객 소싱<br/>(기술도입, 라이선스 인)"]
+    end
+    subgraph FUNNEL["내부 R&D 깔때기 (다공성 경계: Porous Boundary)"]
+        RD["연구개발 및 제품화 검증"]
+    end
+    subgraph OUTBOUND["Outbound (내부 지식 유출)"]
+        OUT["미활용 IP 외부 사업화<br/>(라이선스 아웃, Spin-off)"]
+    end
+    subgraph MARKETS["목표 시장 진출"]
+        M1["현재 주력 시장 (제품화 출시)"]
+        M2["신규 개척 시장 (외부 사업화 경로)"]
+    end
+
+    IN -->|유입| RD
+    RD -->|상용화| M1
+    RD -->|유출| OUT -->|진출| M2
 ```
-[외부 기술/아이디어] ────────┐ (Inbound: 라이선스 인, 스타트업 소싱)
-                             ▼
-[연구개발(R&D)] ────> [다공성 조직 경계 (Porous Boundary)] ────> [현재 시장 출시]
-                             │
-                             ├────────(Outbound: 라이선스 아웃, Spin-off) ──> [신규 시장 개척]
-                             ▼
-                     [Coupled: 공동개발/플랫폼 생태계]
-```
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="체스브로 개방형 혁신 깔때기 및 3대 지식 흐름">
-  <!-- 배경 바운더리 -->
-  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
-
-  <!-- 개방형 혁신 깔때기 (점선 경계) -->
-  <path d="M 50 35 L 340 85 L 340 135 L 50 185 Z" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-3)" stroke-width="1.5" stroke-dasharray="5,4" />
-  <text x="140" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">내부 R&amp;D 깔때기</text>
-  <text x="140" y="130" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2)">다공성 경계(Porous Boundary)</text>
-
-  <!-- Inbound: 외부 지식 유입 화살표 -->
-  <path d="M 120 20 L 160 65" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#oi-arrow)" />
-  <rect x="60" y="16" width="105" height="22" rx="4" fill="var(--sl-color-accent-low)" stroke="#10b981" stroke-width="1" />
-  <text x="112" y="30" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#10b981">Inbound (외부소싱)</text>
-
-  <!-- Outbound: 미활용 IP 유출 화살표 -->
-  <path d="M 230 145 L 270 190" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#oi-arrow)" />
-  <rect x="250" y="180" width="115" height="22" rx="4" fill="var(--sl-color-accent-low)" stroke="#f59e0b" stroke-width="1" />
-  <text x="307" y="195" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#f59e0b">Outbound (Spin-off/라이선스)</text>
-
-  <!-- 깔때기 출구 -> 시장 -->
-  <!-- 현재 시장 -->
-  <line x1="340" y1="100" x2="385" y2="90" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <rect x="385" y="75" width="110" height="32" rx="5" fill="var(--sl-color-gray-5)" stroke="var(--sl-color-gray-3)" stroke-width="1" />
-  <text x="440" y="91" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">현재 주력 시장</text>
-  <text x="440" y="102" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">제품화·상용화</text>
-
-  <!-- 신규 시장 (Outbound 연계) -->
-  <line x1="340" y1="120" x2="385" y2="135" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <rect x="385" y="120" width="110" height="32" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
-  <text x="440" y="136" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent-high)">신규 개척 시장</text>
-  <text x="440" y="147" text-anchor="middle" font-size="8" fill="var(--sl-color-accent)">외부 사업화 경로</text>
-
-  <!-- Coupled 상호작용 표시 -->
-  <rect x="385" y="165" width="110" height="26" rx="4" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1" />
-  <text x="440" y="181" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--sl-color-text)">Coupled: 공동플랫폼</text>
-</svg>
-</div>
 
 ### 3. 추진절차
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="개방형 혁신 추진절차와 산출물">
-  <div class="itpe-pipeline-node"><strong>① 전략·수요 정의</strong><div class="itpe-step-detail"><strong>활동</strong><span>내부 역량·기술 Gap · 개방범위 결정</span></div><div class="itpe-step-detail"><strong>산출</strong><span>기술수요서 · 보호대상</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>② 파트너 탐색</strong><div class="itpe-step-detail"><strong>활동</strong><span>대학·스타트업·공급자 후보 평가</span></div><div class="itpe-step-detail"><strong>산출</strong><span>후보군 · 평가기준</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>③ PoC·협업 설계</strong><div class="itpe-step-detail"><strong>활동</strong><span>가설·범위·데이터·IP 귀속 합의</span></div><div class="itpe-step-detail"><strong>산출</strong><span>PoC 계획 · 계약</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>④ 검증·사업화</strong><div class="itpe-step-detail"><strong>활동</strong><span>기술성·사업성·통합성 평가</span></div><div class="itpe-step-detail"><strong>산출</strong><span>도입 · 투자 · 라이선스 · 중단 결정</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 전략·수요 정의<br/>내부 핵심역량 및 기술 Gap 분석, 개방 범위 결정 (기술수요서)"]
+    S2["② 파트너 탐색<br/>대학 · 스타트업 · 전문 공급사 소싱 및 협업 후보군 평가"]
+    S3["③ PoC·협업 설계<br/>가설 수립, 데이터 범위 확정, Background/Foreground IP 계약 체결"]
+    S4["④ 검증·사업화 (Quality Gate)<br/>기술성·사업성·통합성 평가를 통한 본 시스템 도입 또는 라이선스 결정"]
+    S1 --> S2 --> S3 --> S4
+```
 
 ## Ⅲ. 폐쇄형·개방형 혁신 비교
 
@@ -177,9 +121,8 @@ extra:
 
 ### 학습자 통찰 메모 — 답안 밖
 
-> **[핵심 통찰]** 개방형 혁신의 성패는 외부 파트너 수나 PoC 과제 건수가 아니라, 외부 지식을 내부 핵심 파이프라인으로 흡수(Absorptive Capacity)하여 실제 사업화 매출로 연결하고, 기존 배경지식(Background IP)과 창출성과(Foreground IP)를 계약적으로 분리 방어하는 능력에 달려 있다.
-> 
-> **나라면** 핵심 알고리즘·데이터는 강력히 은닉·보호하고, API 및 인터페이스 계층은 오픈형 샌드박스로 개방하는 '경계형 IP 거버넌스'를 수립하며, PoC 단계부터 현업 사업부 담당자를 공동 PM으로 지정해 PoC 종료 즉시 본 시스템에 탑재되도록 통제하겠다.
+- [핵심 통찰]: 개방형 혁신의 성패는 외부 파트너 수나 PoC 과제 건수가 아니라, 외부 지식을 내부 핵심 파이프라인으로 흡수(Absorptive Capacity)하여 실제 사업화 매출로 연결하고, 기존 배경지식(Background IP)과 창출성과(Foreground IP)를 계약적으로 분리 방어하는 능력에 달려 있음.
+- 나라면: 핵심 알고리즘·데이터는 강력히 은닉·보호하고, API 및 인터페이스 계층은 오픈형 샌드박스로 개방하는 '경계형 IP 거버넌스'를 수립하며, PoC 단계부터 현업 사업부 담당자를 공동 PM으로 지정해 PoC 종료 즉시 본 시스템에 탑재되도록 통제하겠다.
 
 ### 실전 답안용 기술사적 제언
 
@@ -188,54 +131,53 @@ extra:
 - **검증 체계**: PoC Quality Gate(기술성·사업성·IP 침해·레거시 통합성) 4단계 다면 심사제 운영
 - **기대 효과**: R&D 비용 30% 절감, 타임투마켓(Time-to-Market) 50% 단축 및 글로벌 오픈 플랫폼 생태계 선점
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 470" role="img" aria-label="핵심자산 보호와 개방영역 확장을 결합한 개방형 혁신 거버넌스">
-  <defs><marker id="oi-control-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" class="itpe-svg-link" /></marker></defs>
-  <rect x="210" y="20" width="340" height="70" rx="14" class="itpe-svg-node" />
-  <text x="380" y="48" text-anchor="middle" class="itpe-svg-title">자산·경계 분류</text>
-  <text x="380" y="72" text-anchor="middle" class="itpe-svg-sub">핵심성 · 민감도 · 외부가치</text>
-  <path d="M380 90 L380 125" class="itpe-svg-link" marker-end="url(#oi-control-arrow)" />
-  <rect x="70" y="135" width="275" height="95" rx="14" class="itpe-svg-node" />
-  <text x="207" y="166" text-anchor="middle" class="itpe-svg-title">보호 영역</text>
-  <text x="207" y="191" text-anchor="middle" class="itpe-svg-sub">핵심 알고리즘 · 데이터 · 영업비밀</text>
-  <text x="207" y="214" text-anchor="middle" class="itpe-svg-label">최소공개 · 접근통제</text>
-  <rect x="415" y="135" width="275" height="95" rx="14" class="itpe-svg-node" />
-  <text x="552" y="166" text-anchor="middle" class="itpe-svg-title">개방 영역</text>
-  <text x="552" y="191" text-anchor="middle" class="itpe-svg-sub">API · 테스트베드 · 비핵심 모듈</text>
-  <text x="552" y="214" text-anchor="middle" class="itpe-svg-label">표준계약 · 파트너 확장</text>
-  <path d="M380 115 L207 115 L207 135" class="itpe-svg-link" marker-end="url(#oi-control-arrow)" />
-  <path d="M380 115 L552 115 L552 135" class="itpe-svg-link" marker-end="url(#oi-control-arrow)" />
-  <path d="M207 230 L207 285 L380 285" class="itpe-svg-link" />
-  <path d="M552 230 L552 285 L380 285" class="itpe-svg-link" />
-  <path d="M380 285 L380 310" class="itpe-svg-link" marker-end="url(#oi-control-arrow)" />
-  <rect x="210" y="320" width="340" height="70" rx="14" class="itpe-svg-node is-current" />
-  <text x="380" y="348" text-anchor="middle" class="itpe-svg-title">PoC Quality Gate</text>
-  <text x="380" y="372" text-anchor="middle" class="itpe-svg-sub">기술성 · 사업성 · IP · 통합성 판정</text>
-  <path d="M380 390 L380 425" class="itpe-svg-link" marker-end="url(#oi-control-arrow)" />
-  <text x="380" y="452" text-anchor="middle" class="itpe-svg-title">도입 · 확장 · 라이선스 · 중단</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    P1["자산 및 경계 분류<br/>(핵심성 · 민감도 · 외부 활용가치 분석)"]
+    P1 -->|보호 영역| P2["은닉 및 보호<br/>핵심 알고리즘 · 영업비밀 · 데이터 접근통제"]
+    P1 -->|개방 영역| P3["외부 개방<br/>표준 Open API · 테스트베드 샌드박스 · 비핵심 모듈"]
+    P2 & P3 --> P4{"PoC Quality Gate<br/>기술성 · 사업성 · IP 침해여부 · 레거시 통합성 통과?"}
+    P4 -->|통과| P5["본 프로젝트 상용화 도입 및 라이선스 확장"]
+    P4 -->|미달| P6["협업 보완 조치 또는 프로젝트 조기 중단"]
+```
 
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
 
-- 정의: 조직 경계를 넘어 지식·기술을 의도적으로 유입·유출하여 혁신과 사업화를 가속하는 방식
-- 목적: 탐색 범위 확대 · 개발위험 분담 · 미활용 IP 가치화
+- **정의**: 조직 경계를 넘어 외부 기술을 유입(Inbound)하고 내부 미활용 지식을 유출(Outbound)하여 혁신 속도를 극대화하는 **개방형 R&D 및 사업화 전략**
+- **목적**: R&D 비용 절감, 타임투마켓 단축 및 미활용 지식재산권(IP)의 다각적 사업화
 
-### 2. 3대 유형
+### 2. 체스브로의 개방형 혁신 깔때기 구조도
 
-| 유형 | 흐름 | 방식 |
+```mermaid
+flowchart LR
+    subgraph INBOUND["Inbound (외부 지식 유입)"]
+        IN["대학 · 스타트업 · 고객 소싱<br/>(기술도입, 라이선스 인)"]
+    end
+    subgraph FUNNEL["내부 R&D 깔때기 (다공성 경계: Porous Boundary)"]
+        RD["연구개발 및 제품화 검증"]
+    end
+    subgraph OUTBOUND["Outbound (내부 지식 유출)"]
+        OUT["미활용 IP 외부 사업화<br/>(라이선스 아웃, Spin-off)"]
+    end
+    subgraph MARKETS["목표 시장 진출"]
+        M1["현재 주력 시장 (제품화 출시)"]
+        M2["신규 개척 시장 (외부 사업화 경로)"]
+    end
+
+    IN -->|유입| RD
+    RD -->|상용화| M1
+    RD -->|유출| OUT -->|진출| M2
+```
+
+### 3. 핵심 유형 및 거버넌스 통제
+
+| 유형 | 지식 흐름 | 실행 방식 및 통제 |
 |---|---|---|
-| Inbound | 외부 → 내부 | 기술도입 · 공동연구 |
-| Outbound | 내부 → 외부 | 라이선스 · Spin-off |
-| Coupled | 상호 교환 | 공동개발 · 합작 |
-
-### 3. 핵심 고려사항
-
-- 기술수요·사업가설 우선
-- Background·Foreground IP 구분
-- PoC 이후 도입 Owner·Gate 지정
+| **Inbound** | 외부 → 내부 | 기술도입, 오픈 스타트업 협업, Background IP 보호 |
+| **Outbound** | 내부 → 외부 | 라이선스 아웃, Spin-off 분사, 신규 시장 진출 |
+| **Coupled** | 상호 교환 | 조인트벤처(JV), 오픈 플랫폼 생태계 구축, 성과 공정 배분 |
 
 ## 출제 이력과 검증 출처
 

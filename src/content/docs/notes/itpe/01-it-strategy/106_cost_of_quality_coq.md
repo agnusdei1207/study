@@ -1,6 +1,6 @@
 ---
 title: "품질비용(COQ)"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-22T10:25:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,37 +8,24 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 품질관리를 거쳐 품질비용으로 이어지는 위치">
-  <span>IT 전략·관리</span><span>품질관리·경제성</span><strong>COQ</strong>
-</div>
+```mermaid
+flowchart LR
+    A["IT 전략·관리"] --> B["품질관리·경제성"]
+    B --> C["품질비용(COQ)"]
+    style C fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+```
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- **본질**: 품질 확보 비용과 품질 실패 손실을 함께 측정
-- **구조**: 예방·평가 + 내부실패·외부실패
-- **활용**: 실패비용의 원인을 예방활동으로 전환해 총비용 최적화
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 760 500" role="img" aria-label="품질비용의 PAF 분류">
-  <rect x="45" y="35" width="300" height="85" rx="14" class="itpe-svg-node is-current"></rect>
-  <text x="195" y="70" text-anchor="middle" class="itpe-svg-title">예방비용</text><text x="195" y="98" text-anchor="middle" class="itpe-svg-sub">표준·교육·설계검토</text>
-  <rect x="415" y="35" width="300" height="85" rx="14" class="itpe-svg-node is-current"></rect>
-  <text x="565" y="70" text-anchor="middle" class="itpe-svg-title">평가비용</text><text x="565" y="98" text-anchor="middle" class="itpe-svg-sub">검토·시험·감사</text>
-  <rect x="45" y="300" width="300" height="85" rx="14" class="itpe-svg-node"></rect>
-  <text x="195" y="335" text-anchor="middle" class="itpe-svg-title">내부실패비용</text><text x="195" y="363" text-anchor="middle" class="itpe-svg-sub">재작업·재시험·폐기</text>
-  <rect x="415" y="300" width="300" height="85" rx="14" class="itpe-svg-node"></rect>
-  <text x="565" y="335" text-anchor="middle" class="itpe-svg-title">외부실패비용</text><text x="565" y="363" text-anchor="middle" class="itpe-svg-sub">장애·보상·신뢰손실</text>
-  <text x="380" y="190" text-anchor="middle" class="itpe-svg-title">COQ = 적합비용 + 부적합비용</text>
-  <text x="380" y="225" text-anchor="middle" class="itpe-svg-sub">예방·평가 투자 ↔ 실패비용 감소</text>
-  <path d="M195 120 L195 300 M565 120 L565 300" class="itpe-svg-link"></path>
-</svg>
-</div>
+- 본질: 품질을 확보하기 위한 적합비용(예방·평가)과 품질 미달로 발생하는 부적합비용(내부·외부 실패)의 총합을 측정·최적화하는 기법
+- 메커니즘: 계정 정의 → 결함 비용 수집 → 파레토 원인 분석 → Shift-Left(예방/평가 투자 확대) → 총 품질비용 최소화
+- 판정 기준: 부적합비용(COPQ) 비중 감소 추이 및 예방 투자에 따른 외부 장애/재작업 비용 절감액 타당성
 
 <details>
 <summary>약어·전문용어</summary>
@@ -57,7 +44,7 @@ extra:
 
 ## Ⅰ. 품질비용 개요
 
-> COQ는 품질부서 예산이 아니라 품질을 확보하거나 확보하지 못해 발생한 전체 비용임
+> COQ는 품질부서 예산이 아니라 품질을 확보하거나 확보하지 못해 발생한 전체 비용임.
 
 - **정의**: 품질 문제를 예방·평가하는 비용과 내부·외부 실패로 발생하는 손실을 분류·측정하는 관리기법
 - **목적**: 숨은 실패비용 가시화·개선 투자 우선순위 결정·총비용 최적화
@@ -73,17 +60,16 @@ extra:
 
 ## Ⅲ. 측정·개선 절차
 
-> 비용 분류 자체보다 반복되는 실패비용을 어떤 예방활동으로 전환할지가 핵심임
+> 비용 분류 자체보다 반복되는 실패비용을 어떤 예방활동으로 전환할지가 핵심임.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="품질비용 측정과 개선 절차">
-  <div class="itpe-flow-node"><strong>① 분류기준 정의</strong><div class="itpe-step-detail"><strong>활동</strong><span>예방·평가·내부·외부 계정 정의</span></div><div class="itpe-step-detail"><strong>산출</strong><span>COQ 분류표</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>② 비용 수집</strong><div class="itpe-step-detail"><strong>활동</strong><span>공수·도구·장애·보상 데이터 집계</span></div><div class="itpe-step-detail"><strong>산출</strong><span>COQ 현황표</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>③ 원인·우선순위 분석</strong><div class="itpe-step-detail"><strong>활동</strong><span>실패비용·결함원인 Pareto 분석</span></div><div class="itpe-step-detail"><strong>산출</strong><span>개선 후보·Business Case</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>④ 예방·평가 개선</strong><div class="itpe-step-detail"><strong>활동</strong><span>Review·자동시험·Quality Gate 적용</span></div><div class="itpe-step-detail"><strong>검증</strong><span>COQ 추세·재발결함 확인</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 분류기준 정의<br/>예방(P) · 평가(A) · 내부실패(IF) · 외부실패(EF) 계정 정립"]
+    S2["② 비용 수집<br/>공수 · 도구 라이선스 · 장애 복구 및 보상비용 집계"]
+    S3["③ 원인·우선순위 분석<br/>실패비용 대상 결함 원인 파레토(Pareto) 분석"]
+    S4["④ 예방·평가 개선 (Shift-Left)<br/>코드리뷰 · TDD · CI/CD 자동화 시험 및 Quality Gate 적용"]
+    S1 --> S2 --> S3 --> S4
+```
 
 ## Ⅳ. 적합비용 vs 부적합비용 상충 곡선 및 최적화
 
@@ -91,55 +77,17 @@ extra:
 
 ### 1. PAF 상충 곡선 및 총 품질비용 최적점(Optimal Point)
 
-```xml
-<svg-diagram>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
-  <!-- Title -->
-  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">품질비용(COQ) 상충 곡선 및 총비용 최소화 최적점</text>
-
-  <!-- Left: PAF Matrix Summary -->
-  <g transform="translate(15, 45)">
-    <!-- Conformance -->
-    <rect x="0" y="0" width="180" height="70" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="5"/>
-    <text x="10" y="18" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold">[적합비용: 통제 가능]</text>
-    <text x="10" y="36" fill="var(--sl-color-text)" font-size="9">• 예방(P): 표준, TDD, 코드리뷰</text>
-    <text x="10" y="52" fill="var(--sl-color-text)" font-size="9">• 평가(A): 단위/통합시험, 감리</text>
-
-    <!-- Non-conformance -->
-    <rect x="0" y="80" width="180" height="75" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="1.5" rx="5"/>
-    <text x="10" y="98" fill="#ef4444" font-size="10" font-weight="bold">[부적합비용: 실패 손실]</text>
-    <text x="10" y="116" fill="var(--sl-color-text)" font-size="9">• 내부실패(IF): 재작업, 빌드결함</text>
-    <text x="10" y="132" fill="var(--sl-color-text)" font-size="9">• 외부실패(EF): 운영장애, 보상, 이탈</text>
-    <text x="10" y="146" fill="var(--sl-color-text-muted)" font-size="8">※ 배포 후 발견 시 결함 비용 10~100배 폭증</text>
-  </g>
-
-  <!-- Right: Cost Trade-off Curve Graph -->
-  <g transform="translate(230, 45)">
-    <!-- Axes -->
-    <line x1="20" y1="140" x2="260" y2="140" stroke="var(--sl-color-hairline)" stroke-width="1.5"/>
-    <line x1="20" y1="140" x2="20" y2="10" stroke="var(--sl-color-hairline)" stroke-width="1.5"/>
-    <text x="260" y="152" fill="var(--sl-color-text-muted)" font-size="9" text-anchor="end">품질 수준 (%) ▶ 100%</text>
-    <text x="15" y="10" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="start">비용 (Cost)</text>
-
-    <!-- Conformance Curve (Increasing) -->
-    <path d="M 20 135 Q 140 125 240 25" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2"/>
-    <text x="245" y="30" fill="var(--sl-color-text-accent)" font-size="8">적합비용(P+A)</text>
-
-    <!-- Failure Cost Curve (Decreasing) -->
-    <path d="M 25 25 Q 100 120 250 138" fill="none" stroke="#ef4444" stroke-width="2"/>
-    <text x="30" y="20" fill="#ef4444" font-size="8">실패비용(COPQ)</text>
-
-    <!-- Total Cost Curve (U-Shape) -->
-    <path d="M 35 40 Q 130 115 245 45" fill="none" stroke="#10b981" stroke-width="2.5"/>
-    <text x="140" y="60" fill="#10b981" font-size="9" font-weight="bold">총 품질비용(Total COQ)</text>
-
-    <!-- Optimal Point Marker -->
-    <line x1="135" y1="78" x2="135" y2="140" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,3"/>
-    <circle cx="135" cy="78" r="4" fill="#10b981"/>
-    <text x="135" y="152" fill="#10b981" font-size="8" font-weight="bold" text-anchor="middle">최적점 (Min Cost)</text>
-  </g>
-</svg>
-</svg-diagram>
+```mermaid
+flowchart LR
+    subgraph CONFORMANCE["적합비용 (Cost of Conformance)"]
+        P["예방비용 (Prevention)<br/>- 코딩 표준, 아키텍처 리뷰<br/>- 개발자 품질 교육, TDD"]
+        A["평가비용 (Appraisal)<br/>- 단위/통합 테스트, 정적분석<br/>- 제3자 감리, 보안 취약점 진단"]
+    end
+    subgraph NON_CONFORMANCE["부적합비용 (Cost of Non-conformance: COPQ)"]
+        IF["내부실패비용 (Internal Failure)<br/>- 릴리스 전 결함 재작업<br/>- 빌드 실패 수정, 재시험"]
+        EF["외부실패비용 (External Failure)<br/>- 운영 환경 장애 복구, 배상<br/>- 긴급 핫픽스, 고객 이탈 손실"]
+    end
+    CONFORMANCE -.->|Shift-Left 예방 투자| NON_CONFORMANCE
 ```
 
 ### 2. 적합비용과 부적합비용 비교
@@ -178,24 +126,43 @@ extra:
 - **검증 체계**: 결함 원인 파레토(Pareto) 분석, 예방비용 집행 전·후 운영 장애 건수 및 복구비용 절감액 추적
 - **기대 효과**: 외부 장애에 따른 브랜드 실추 및 보상비용 원천 예방, 총 개발 라이프사이클 비용 30% 절감
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="실패비용을 예방통제로 전환하는 품질비용 폐루프">
-  <div class="itpe-flow-node"><strong>실패비용</strong><div class="itpe-step-detail"><strong>증거</strong><span>장애·재작업·보상</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>원인 Pareto</strong><div class="itpe-step-detail"><strong>판정</strong><span>비용·빈도·고객영향</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>예방·평가 통제</strong><div class="itpe-step-detail"><strong>실행</strong><span>Review·Test·Gate</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current"><strong>COQ 재측정</strong><div class="itpe-step-detail"><strong>검증</strong><span>실패비용·재발결함 추세</span></div></div>
-</div>
+```mermaid
+flowchart TD
+    P1["실패비용 증적 수집<br/>운영 장애 복구비 · 재작업 공수 · 고객 손해배상액"] --> P2["원인 분석 (Pareto)<br/>핵심 결함 유입 원인 및 아키텍처 취약점 식별"]
+    P2 --> P3["Shift-Left 예방 통제<br/>CI/CD 정적분석 자동화 · 단위테스트 · Quality Gate"]
+    P3 --> P4{"COQ 재측정 Gate<br/>외부 실패비용 및 재발 결함률 유의미하게 감소?"}
+    P4 -->|달성| P5["품질 최적점 도달 및 표준 개발 프로세스 정착"]
+    P4 -->|미달| P6["예방 프로세스 보완 및 검증 범위 확대"]
+```
 
 ## 1교시 10점 답안 발췌
 
-- **정의**: 품질 문제를 예방·평가하는 비용과 내부·외부 실패로 발생하는 손실을 분류·측정하는 관리기법
-- **목적**: 숨은 실패비용 가시화·개선 투자 우선순위 결정·총비용 최적화
+### 1. 정의·목적
 
-| 적합비용 | 부적합비용 |
+- **정의**: 품질을 보장하기 위한 적합비용(예방·평가)과 품질 미달로 인한 부적합비용(내부·외부 실패)을 화폐 단위로 측정·통제하는 **품질 경제성 관리 모델**
+- **목적**: 숨은 실패비용(COPQ) 가시화 및 Shift-Left 예방 투자를 통한 총 품질비용 최소화
+
+### 2. 품질비용(COQ) 구성체계
+
+```mermaid
+flowchart LR
+    subgraph CONFORMANCE["적합비용 (Cost of Conformance)"]
+        P["예방비용 (Prevention)<br/>- 코딩 표준, 아키텍처 리뷰<br/>- 개발자 품질 교육, TDD"]
+        A["평가비용 (Appraisal)<br/>- 단위/통합 테스트, 정적분석<br/>- 제3자 감리, 보안 취약점 진단"]
+    end
+    subgraph NON_CONFORMANCE["부적합비용 (Cost of Non-conformance: COPQ)"]
+        IF["내부실패비용 (Internal Failure)<br/>- 릴리스 전 결함 재작업<br/>- 빌드 실패 수정, 재시험"]
+        EF["외부실패비용 (External Failure)<br/>- 운영 환경 장애 복구, 배상<br/>- 긴급 핫픽스, 고객 이탈 손실"]
+    end
+    CONFORMANCE -.->|Shift-Left 예방 투자| NON_CONFORMANCE
+```
+
+### 3. 핵심 통제 및 최적화
+
+| 구분 | 핵심 통제 |
 |---|---|
-| 예방·평가 | 내부실패·외부실패 |
+| **적합비용** | TDD, 정적분석, 코드리뷰 등 개발 초기 예방·평가 투자 확대(Shift-Left) |
+| **부적합비용** | 파레토 분석 기반 고비용 결함 원인 차단, 배포 후 외부 실패비용 최소화 |
 
 ## 출제 이력과 검증 출처
 
@@ -216,4 +183,3 @@ extra:
 - 이전 토픽: [클라우드 전환사업 감리](./104_cloud_migration_project_audit.md)
 - 연관 토픽: [Six Sigma DMAIC](./111_six_sigma_dmaic.md), [소프트웨어 비용 산정](./113_software_cost_estimation.md)
 - 다음 토픽: [EA·ITA](./107_ea_ita.md)
-
