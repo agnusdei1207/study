@@ -9,10 +9,10 @@ tags:
   - "수익접근법"
   - "DCF"
   - "DataProduct"
-date: "2026-09-20T23:50:43+09:00"
-author: "Codex"
+date: "2026-09-21T17:15:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -64,12 +64,12 @@ sidebar:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-branches">
     <div class="itpe-flow-branch is-pass">
-      <strong>통과 (활용 후보)</strong>
-      <span>조치: Data Product 카탈로그 등록·거래 가능성 검토</span>
+      <strong>통과 (자산화 승인)</strong>
+      <span>Data Product 카탈로그 공식 등재 및 재무상 무형자산화 추진</span>
     </div>
     <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (권리·가치 근거 부족)</strong>
-      <span>조치: 활용 보류·권리 실사·가정 재검토</span>
+      <strong>미통과 (권리·가치 하자)</strong>
+      <span>자산화 보류 $\rightarrow$ 법률 권리 재실사 및 평가 모델(할인율/원가) 재검토</span>
     </div>
   </div>
 </div>
@@ -109,19 +109,64 @@ sidebar:
 
 > 가치는 데이터의 양(Volume)에 비례하지 않으며, 품질·활용성·희소성의 결합과 법률 리스크 차감에 의해 결정됨.
 
-```text
-               ┌──────────────────────────────────────────────┐
-               │         데이터 최종 평가가치 (Value)         │
-               └──────────────────────┬───────────────────────┘
-                                      │
-        ┌───────────────┬─────────────┴─┬───────────────┐
-        ▼               ▼               ▼               ▼
-┌──────────────┐┌──────────────┐┌──────────────┐┌──────────────┐
-│ 내재요인 (+) ││ 활용요인 (+) ││ 시장요인 (+) ││ 위험요인 (-) │
-│ 품질·정확성  ││ 비즈니스 기여││ 대체불가 희소││ 저작권·개인  │
-│ 계보(Lineage)││ 의사결정 속도││ 시장 수요 규모││ 정보 침해위험│
-└──────────────┘└──────────────┘└──────────────┘└──────────────┘
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 210" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="val-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <rect x="5" y="5" width="510" height="200" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+
+    <!-- Top Central Value Box -->
+    <rect x="135" y="15" width="250" height="35" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
+    <text x="260" y="32" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-primary, #2563eb)">데이터 최종 평가가치 (Economic Value)</text>
+    <text x="260" y="44" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">Value = f(내재, 활용, 시장) - Risk(법률·보안)</text>
+
+    <!-- 4 Arrows Down -->
+    <line x1="72" y1="50" x2="72" y2="70" stroke="var(--color-primary, #2563eb)" stroke-width="1.2" marker-end="url(#val-arrow)"/>
+    <line x1="197" y1="50" x2="197" y2="70" stroke="var(--color-primary, #2563eb)" stroke-width="1.2" marker-end="url(#val-arrow)"/>
+    <line x1="322" y1="50" x2="322" y2="70" stroke="var(--color-primary, #2563eb)" stroke-width="1.2" marker-end="url(#val-arrow)"/>
+    <line x1="447" y1="50" x2="447" y2="70" stroke="#dc2626" stroke-width="1.2" marker-end="url(#val-arrow)"/>
+
+    <!-- 4 Factors Cards -->
+    <!-- Card 1: Intrinsic -->
+    <rect x="15" y="72" width="115" height="120" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="15" y="72" width="115" height="22" rx="5" fill="var(--color-bg-subtle, #f0fdf4)"/>
+    <text x="72" y="87" text-anchor="middle" font-size="8" font-weight="bold" fill="#16a34a">내재요인 (+)</text>
+    <text x="72" y="108" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">품질 및 정확성</text>
+    <text x="72" y="125" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">완전성·최신성</text>
+    <text x="72" y="142" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">수집 Lineage 투명성</text>
+    <text x="72" y="172" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[데이터 본원 품질]</text>
+
+    <!-- Card 2: Utility -->
+    <rect x="140" y="72" width="115" height="120" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="140" y="72" width="115" height="22" rx="5" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="197" y="87" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">활용요인 (+)</text>
+    <text x="197" y="108" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">비즈니스 기여도</text>
+    <text x="197" y="125" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">매출 증대·원가 절감</text>
+    <text x="197" y="142" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">의사결정 적시성</text>
+    <text x="197" y="172" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[미래 현금 창출력]</text>
+
+    <!-- Card 3: Market -->
+    <rect x="265" y="72" width="115" height="120" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="265" y="72" width="115" height="22" rx="5" fill="var(--color-bg-subtle, #fefce8)"/>
+    <text x="322" y="87" text-anchor="middle" font-size="8" font-weight="bold" fill="#ca8a04">시장요인 (+)</text>
+    <text x="322" y="108" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">희소성 및 독점성</text>
+    <text x="322" y="125" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">대체재 부재</text>
+    <text x="322" y="142" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">시장 수요-공급 규모</text>
+    <text x="322" y="172" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#ca8a04">[유통 거래 경쟁력]</text>
+
+    <!-- Card 4: Risk -->
+    <rect x="390" y="72" width="115" height="120" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="#dc2626" stroke-width="1"/>
+    <rect x="390" y="72" width="115" height="22" rx="5" fill="var(--color-bg-subtle, #fef2f2)"/>
+    <text x="447" y="87" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">위험요인 (-)</text>
+    <text x="447" y="108" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">법률 및 보안 리스크</text>
+    <text x="447" y="125" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">개인정보·저작권 분쟁</text>
+    <text x="447" y="142" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">진부화 반감기(Half-life)</text>
+    <text x="447" y="172" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#dc2626">[가치 할인 감가]</text>
+  </svg>
+</div>
 
 - **내재요인(Intrinsic)**: 데이터의 정확성, 완전성, 유일성, 최신성 및 수집·가공 계보의 투명성
 - **활용요인(Utility)**: 업무 자동화, 고객 이탈 방지, 신규 비즈니스 모델 창출 등 조직의 현금흐름 개선 기여도
@@ -144,10 +189,73 @@ sidebar:
 
 > 가치평가는 일회성 계산으로 끝나지 않고 공식 자산화 및 수명주기 관리로 이어져야 함.
 
-```text
-[1단계: 목적 정의] ──> [2단계: 실사 수행] ──> [3단계: 가치요인] ──> [4단계: 가치 산정] ──> [5단계: 자산화·유통]
-  거래·담보·현물출자     품질·계보·권리 실사   4대 요인 가중치 부여   3대 접근법 교차검증   Data Product 등록
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 180" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="dp-flow-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <rect x="5" y="5" width="510" height="170" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+
+    <!-- Step 1 -->
+    <rect x="15" y="20" width="85" height="90" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="15" y="20" width="85" height="20" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="57" y="34" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">① 목적 정의</text>
+    <text x="57" y="55" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">거래/담보/출자</text>
+    <text x="57" y="70" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">평가 기준선 확정</text>
+    <text x="57" y="90" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[범위 획정]</text>
+
+    <!-- Arrow 1->2 -->
+    <line x1="100" y1="65" x2="113" y2="65" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#dp-flow-arrow)"/>
+
+    <!-- Step 2 -->
+    <rect x="115" y="20" width="85" height="90" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="115" y="20" width="85" height="20" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="157" y="34" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">② 실사 수행</text>
+    <text x="157" y="55" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">품질·Lineage</text>
+    <text x="157" y="70" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">권리·동의서 실사</text>
+    <text x="157" y="90" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[Due Diligence]</text>
+
+    <!-- Arrow 2->3 -->
+    <line x1="200" y1="65" x2="213" y2="65" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#dp-flow-arrow)"/>
+
+    <!-- Step 3 -->
+    <rect x="215" y="20" width="85" height="90" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="215" y="20" width="85" height="20" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="257" y="34" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">③ 요인 분석</text>
+    <text x="257" y="55" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">4대 요인 매핑</text>
+    <text x="257" y="70" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">가중치 모델 도출</text>
+    <text x="257" y="90" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[영향도 산출]</text>
+
+    <!-- Arrow 3->4 -->
+    <line x1="300" y1="65" x2="313" y2="65" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#dp-flow-arrow)"/>
+
+    <!-- Step 4 -->
+    <rect x="315" y="20" width="90" height="90" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="315" y="20" width="90" height="20" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="360" y="34" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">④ 가치 산정</text>
+    <text x="360" y="55" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">원가·시장·수익</text>
+    <text x="360" y="70" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">3대 기법 교차조정</text>
+    <text x="360" y="90" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[공정가치 확정]</text>
+
+    <!-- Arrow 4->5 -->
+    <line x1="405" y1="65" x2="418" y2="65" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#dp-flow-arrow)"/>
+
+    <!-- Step 5 -->
+    <rect x="420" y="20" width="85" height="90" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
+    <rect x="420" y="20" width="85" height="20" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="462" y="34" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">⑤ 자산화·유통</text>
+    <text x="462" y="55" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">Data Product 등록</text>
+    <text x="462" y="70" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">거래소/담보 연계</text>
+    <text x="462" y="90" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[무형자산화]</text>
+
+    <!-- Bottom note -->
+    <rect x="15" y="125" width="490" height="35" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="260" y="140" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">전략적 요체: 평가 보고서 작성으로 종료하지 않고, Data Product 카탈로그와 재무제표 무형자산으로 연계</text>
+    <text x="260" y="152" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">데이터 수명주기 및 감가상각(Half-life)을 반영하여 주기적 가치 재평가 체계 확립</text>
+  </svg>
+</div>
 
 1. **평가 목적 정의**: 내부 관리용, 외부 거래용, 세무/담보용 등 평가 목적에 따른 평가 기준선(Baseline) 설정
 2. **데이터 및 권리 실사**: 데이터 사전, ERD, Lineage 추적을 통한 품질 점검 및 개인정보 동의서, 라이선스 권리 검증
@@ -180,47 +288,66 @@ sidebar:
 
 ## Ⅶ. 기술사적 제언: Data Mesh 기반의 Data Product 체계 구축
 
-> "측정할 수 없는 것은 관리할 수 없고, 관리되지 않는 데이터는 자산이 아니라 부채다."
-
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 데이터 가치평가는 단순한 가격표 부착 행위가 아니라, 기업이 보유한 데이터의 신뢰성과 사업적 통제권을 외부에 입증하는 전략적 도구임. 가치평가서가 실질적인 자산화와 거래로 이어지지 않는다면 사장된 보고서에 불과함.
-- `나라면`: 사내 데이터 자산을 Data Mesh 철학에 기반한 'Data Product'로 정의하고, 각 Product마다 Data Owner, 메타데이터 카탈로그, 품질 SLA를 1:1로 매핑하여 데이터 가치평가 결과를 전사 ERP 및 회계 시스템과 연동하는 자산화 파이프라인을 구축하겠음.
+
+> **[핵심 통찰]**
+> 데이터 가치평가는 단순한 가격표 부착 행위가 아니라, 기업이 보유한 데이터의 신뢰성과 사업적 통제권을 외부에 입증하는 전략적 도구다. 아무리 정교한 DCF 모델로 수십억 원의 가치를 산정해도, 실제 시장에서 거래되지 않거나 사내 비즈니스 의사결정에 기여하지 못하면 사장된 보고서에 불과하다. 진정한 자산화는 원시 데이터를 패키징하여 **SLA와 권리관계가 보증된 Data Product로 전환**할 때 완성된다.
+
+> **[나라면 이렇게 쓴다]**
+> 2교시 논술 문제라면 사내 데이터 자산을 Data Mesh 철학에 기반한 **'Data Product' 단위로 구조화**하겠다. 각 Data Product마다 비즈니스 Data Owner를 지정하고, 메타데이터 카탈로그 및 품질 SLA를 결합하여 데이터 거래소 및 안심구역과 연계하는 전사 데이터 상품화 파이프라인을 제시하겠다. 아울러 평가 가액을 전사 ERP 무형자산 계정 및 담보 대출 심사와 연계하여 실질적 재무적 가치를 창출하겠다.
 
 ### 실전 답안용 기술사적 제언
-- 판정: 평가액의 절대적 크기보다 품질·권리·갱신 근거의 **재현 가능성(Reproducibility)**으로 자산성을 판정함
-- 대안: Data Product별 Owner·Lineage·품질 SLA·이용 조건을 전사 카탈로그에 결합 $\rightarrow$ 공인 평가기관 교차검증 수립
-- 검증: 복수 접근법의 가정·민감도·권리 증적 교차 검토
-- 효과: 일회성 보고서 작성을 탈피하여 실질적인 데이터 담보 금융 및 거래소 유통 활성화 달성
 
-<div class="itpe-flow-map" role="img" aria-label="데이터 가치평가 개선 제언">
-  <div class="itpe-flow-node"><strong>현행 한계</strong><div class="itpe-step-detail"><strong>판정</strong><span>일회성 평가·권리 근거 부족</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>개선안</strong><div class="itpe-step-detail"><strong>대안</strong><span>Owner·Lineage·품질·이용 조건 카탈로그화</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>검증</strong><div class="itpe-step-detail"><strong>검증</strong><span>평가 가정·민감도·권리 증적 교차 검토</span></div></div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node"><strong>활용</strong><div class="itpe-step-detail"><strong>효과</strong><span>거래·투자 판단 근거 강화</span></div></div>
+- **판정 기준**: 평가액의 절대적 크기보다 품질·권리·갱신 근거의 **재현 가능성(Reproducibility)**과 법률 리스크 0건을 자산화 승인 필수로 판정.
+- **대응 방안**: Data Product별 Data Owner, Lineage, 품질 SLA를 전사 데이터 카탈로그에 등록하고 스마트 계약 기반 라이선스 관리 체계 구축.
+- **검증 체계**: 원가·시장·수익 3대 접근법 교차 산정 및 민감도 분석(Sensitivity Analysis)을 통해 평가 가치 편차를 신뢰 구간(±15%) 내로 통제.
+- **기대 효과**: 일회성 가치 산정을 넘어 데이터 기반 현물출자, 담보 금융 및 데이터 거래소를 통한 신규 수익원 창출 달성.
+
+<div class="itpe-flow-map" role="img" aria-label="데이터 가치평가 및 자산화 전사 거버넌스 파이프라인">
+  <div class="itpe-flow-node">
+    <strong>원시 데이터 수집·실사</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>실사</strong><span>품질 계보 및 법적 권리 검증</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node">
+    <strong>3대 접근법 교차 산정</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>평가</strong><span>원가 + 시장 + 수익법 가중</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node is-current">
+    <strong>자산화 적합성 게이트</strong>
+    <div class="itpe-step-detail">
+      <strong>판정</strong><span>법적 권리 무결 + 편차 수렴</span>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node">
+    <strong>Data Product 유통·금융</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>활용</strong><span>거래소 매각 및 무형자산 등재</span></div>
+    </div>
+  </div>
 </div>
 
 ## 1교시 10점 답안 발췌
 
 ```text
 1. 데이터 가치평가 및 데이터 자산화의 정의
-- 가치평가: 품질, 법적 권리, 비즈니스 기여도를 분석하여 화폐 가치로 계량화하는 평가 기법
-- 자산화: 데이터를 기업의 정식 무형자산(Data Product)으로 등록하고 거래·담보화하는 활동
+- 가치평가: 품질, 법적 권리, 비즈니스 기여도를 종합 분석하여 화폐 가치로 계량화하는 평가 기법
+- 자산화: 데이터를 기업의 정식 무형자산(Data Product)으로 패키징하여 거래·담보화하는 활동
 
 2. 가치평가 3대 접근법 핵심 비교
-┌──────────────┬──────────────────────────┬──────────────────────────┐
-│ 접근법       │ 핵심 산정 메커니즘       │ 주 활용 대상             │
-├──────────────┼──────────────────────────┼──────────────────────────┤
-│ 원가접근법   │ 데이터 구축·대체 원가    │ 사내 구축 원시 DB, 공공  │
-│ 시장접근법   │ 유사 데이터셋 거래사례   │ 상용 유통 데이터, 금융   │
-│ 수익접근법   │ 미래 현금흐름 할인(DCF)  │ AI 학습용 독점 데이터    │
-└──────────────┴──────────────────────────┴──────────────────────────┘
+- 원가접근법: 데이터 수집·대체 원가 기반 산정 (사내 구축 원시 DB, 공공 데이터)
+- 시장접근법: 유사 데이터셋의 시장 거래사례 비교 (상용 금융/상권 데이터)
+- 수익접근법: 미래 기대 현금흐름의 할인 현재가치(DCF) 산정 (AI 학습용 고부가 데이터)
 
 3. 자산화 프레임워크 및 리스크 통제
-- Data Owner 지정, Lineage 메타데이터 구축, 데이터 안심구역 기반 유통
-- 권리 실사(Due Diligence) 강제로 개인정보 침해 및 저작권 분쟁 원천 방지
+- Data Owner 지정, Lineage 메타데이터 구축, 데이터 안심구역 기반 안전한 유통
+- 권리 실사(Due Diligence)를 선행하여 개인정보 침해 및 저작권 분쟁 원천 방지
 ```
 
 ## 출제 이력과 검증 출처
