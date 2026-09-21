@@ -9,10 +9,10 @@ tags:
   - "OLS"
   - "Ridge"
   - "Lasso"
-date: "2026-09-20T23:50:43+09:00"
-author: "Codex"
+date: "2026-09-21T17:20:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -58,7 +58,7 @@ sidebar:
   <div class="itpe-flow-node is-current">
     <span class="itpe-keyword"><strong>4단계: 모형 적합성 및 안정성 판정 (Quality Gate)</strong></span>
     <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>모든 독립변수의 VIF < 10이며 잔차 산점도가 특정 패턴 없이 무작위(등분산) 분포를 보이는가?</span>
+      <strong>판정 질문</strong><span>모든 독립변수의 VIF &lt; 10이며 잔차 산점도가 특정 패턴 없이 무작위(등분산) 분포를 보이는가?</span>
     </div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
@@ -112,13 +112,62 @@ sidebar:
 
 > 강한 다중공선성은 계수 분산을 키우고, 이분산성은 통상 OLS 표준오차를 왜곡하므로 두 문제의 영향과 대응을 구분한다.
 
-```text
-[독립변수 간 다중공선성 발생] ──> [X'X 역행렬 불안정 (Det ≈ 0)] ──> [계수 분산 Var(β) 급증]
-                                                                        │
-                                                                        ▼
-                                                       [t-값 급감 및 p-value 폭증]
-                                                       (유의한 변수가 무의미하게 탈락)
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="mc-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+
+    <!-- Step 1 -->
+    <rect x="15" y="20" width="105" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="15" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="67" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">① 독립변수 상관</text>
+    <text x="67" y="55" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">$X_i \leftrightarrow X_j$ 강한 선형</text>
+    <text x="67" y="70" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">상관계수 $r \ge 0.8$</text>
+    <text x="67" y="95" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[정보 중복]</text>
+
+    <!-- Arrow 1->2 -->
+    <line x1="120" y1="70" x2="138" y2="70" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#mc-arrow)"/>
+
+    <!-- Step 2 -->
+    <rect x="140" y="20" width="105" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="140" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="192" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">② 역행렬 불안정</text>
+    <text x="192" y="55" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">$\det(X^T X) \approx 0$</text>
+    <text x="192" y="70" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">특이행렬 근접</text>
+    <text x="192" y="95" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[수학적 불안정]</text>
+
+    <!-- Arrow 2->3 -->
+    <line x1="245" y1="70" x2="263" y2="70" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#mc-arrow)"/>
+
+    <!-- Step 3 -->
+    <rect x="265" y="20" width="110" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#ca8a04" stroke-width="1.5"/>
+    <rect x="265" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #fefce8)"/>
+    <text x="320" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#ca8a04">③ 계수 분산 팽창</text>
+    <text x="320" y="55" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">$\text{Var}(\hat{\beta}) = \sigma^2 (X^T X)^{-1}$</text>
+    <text x="320" y="70" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">분산팽창 $VIF \ge 10$</text>
+    <text x="320" y="95" text-anchor="middle" font-size="7" font-weight="bold" fill="#ca8a04">[SE 극단적 확대]</text>
+
+    <!-- Arrow 3->4 -->
+    <line x1="375" y1="70" x2="393" y2="70" stroke="#dc2626" stroke-width="1.5" marker-end="url(#mc-arrow)"/>
+
+    <!-- Step 4 -->
+    <rect x="395" y="20" width="110" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#dc2626" stroke-width="1.5"/>
+    <rect x="395" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #fef2f2)"/>
+    <text x="450" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">④ 가설검정 왜곡</text>
+    <text x="450" y="55" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">$t = \hat{\beta}/SE \downarrow$</text>
+    <text x="450" y="70" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">p-value 유의성 상실</text>
+    <text x="450" y="95" text-anchor="middle" font-size="7" font-weight="bold" fill="#dc2626">[제2종 오류 발생]</text>
+
+    <!-- Bottom Summary Box -->
+    <rect x="15" y="135" width="490" height="45" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="260" y="152" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">통계적 모순: 모델 전체의 F-검정 및 결정계수($R^2$)는 90% 이상으로 높으나,</text>
+    <text x="260" y="167" text-anchor="middle" font-size="7.5" fill="#dc2626">개별 변수의 t-검정은 전부 기각(p &gt; 0.05)되어 핵심 인과변수를 쓸모없다고 오판하는 치명적 오류 발생</text>
+  </svg>
+</div>
 
 - **다중공선성의 영향**:
   - 회귀계수의 추정치 자체는 여전히 불편(Unbiased)하지만, 분산이 극도로 커져 표본의 작은 변화에도 계수 부호가 반전되는 극도의 불안정성 노출
@@ -142,6 +191,48 @@ sidebar:
 ## Ⅳ. 분석 목적별(해석 vs 예측) 다중공선성 해결 전략
 
 > 인과관계 설명이 목적인지, 정밀한 수치 예측이 목적인지에 따라 처방이 완전히 달라짐.
+
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="st-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+
+    <!-- Top Problem Node -->
+    <rect x="160" y="15" width="200" height="32" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="260" y="32" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#dc2626">다중공선성 식별 (VIF ≥ 10)</text>
+    <text x="260" y="42" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">분석 목적 분기 (Branching)</text>
+
+    <!-- 2 Diagonal Arrows Down -->
+    <line x1="210" y1="48" x2="130" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#st-arrow)"/>
+    <line x1="310" y1="48" x2="390" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#st-arrow)"/>
+    <text x="145" y="60" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">[인과관계 설명]</text>
+    <text x="355" y="60" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">[일반화 예측]</text>
+
+    <!-- Left Box: Explanation Focus -->
+    <rect x="25" y="80" width="215" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
+    <rect x="25" y="80" width="215" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="132" y="95" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">인과 해석 모형 (도메인 중심)</text>
+    <text x="132" y="115" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">· 도메인 기반 파생변수 결합</text>
+    <text x="132" y="128" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">키, 몸무게 $\rightarrow$ BMI 지수 통합</text>
+    <text x="132" y="145" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">· WLS / White 강건 표준오차</text>
+    <text x="132" y="158" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">계수 부호 왜곡 방지 및 통계적 검정 복구</text>
+    <text x="132" y="173" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">목표: 비즈니스 설명력 100% 보존</text>
+
+    <!-- Right Box: Prediction Focus -->
+    <rect x="280" y="80" width="215" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="280" y="80" width="215" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="387" y="95" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">정밀 예측 모형 (머신러닝 중심)</text>
+    <text x="387" y="115" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">· 정규화 회귀 (Ridge/Lasso/ElasticNet)</text>
+    <text x="387" y="128" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">L2 계수 축소 / L1 변수 선택 페널티</text>
+    <text x="387" y="145" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">· 차원 축소 (PCA 주성분 회귀)</text>
+    <text x="387" y="158" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">직교 기저 변환으로 공선성 원천 제거</text>
+    <text x="387" y="173" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">목표: RMSE 최소화 및 과적합 방지</text>
+  </svg>
+</div>
 
 | 비교 항목 | 해석 목적 (인과관계 규명 모형) | 예측 목적 (머신러닝 추론 모형) |
 |---|---|---|
@@ -175,23 +266,51 @@ sidebar:
 
 ## Ⅶ. 기술사적 제언: 기계적 변수 삭제를 지양하는 공학적 절충
 
-> "다중공선성은 OLS 추정의 수학적 한계일 뿐이며, 비즈니스 목적에 부합하는 변수 엔지니어링이 통계적 기법보다 우선한다."
-
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 다중공선성은 OLS 추정의 수학적 한계일 뿐 데이터 자체의 죄가 아님. 예측이 목표라면 VIF가 높아도 예측력에 악영향이 적으므로 Ridge나 트리 기반 앙상블로 우회하면 되지만, 인과관계 설명이 목표라면 도메인 지식에 기반한 변수 재설계가 반드시 선행되어야 함.
-- `나라면`: 회귀모형 개발 표준 지침에 '1단계 탐색적 진단(VIF/잔차도) $\rightarrow$ 2단계 목적 분기(설명모형: 변수통합/WLS, 예측모형: Ridge/ElasticNet) $\rightarrow$ 3단계 교차검증 기반 계수 안정성 평가'를 규정하여 데이터 분석가의 자의적 변수 삭제를 통제하겠음.
+
+> **[핵심 통찰]**
+> 다중공선성은 OLS 추정의 수학적 한계일 뿐 데이터 자체의 죄가 아니다. 예측이 목표라면 VIF가 높아도 전체 모형의 예측력에는 지장이 없으므로 Ridge나 트리 기반 앙상블로 우회하면 그만이다. 그러나 정책 수립이나 비즈니스 인과관계 설명이 목표라면, VIF 숫자에 놀라 핵심 변수를 무턱대고 삭제해서는 안 된다. 변수 삭제는 필연적으로 누락변수 편향(Omitted Variable Bias)을 낳기 때문이다.
+
+> **[나라면 이렇게 쓴다]**
+> 2교시형 문제라면 회귀모형 개발 표준 지침으로 **'목적 기반 3단계 의사결정 프레임워크'**를 제시하겠다. 1단계에서 VIF $\ge 10$ 진단 시, 2단계에서 '인과 설명형(도메인 변수 결합 + WLS/White SE)'과 '예측 중심형(ElasticNet + PCA)'으로 경로를 명확히 분기하고, 3단계에서 부트스트랩(Bootstrap) 재표본을 통해 회귀계수 부호의 안정성을 교차 검증하는 엔지니어링 절차를 완결하겠다.
 
 ### 실전 답안용 기술사적 제언
-- 판정: 단일 VIF 임계치보다 **변수의 비즈니스적 가치, 계수 부호의 안정성, 일반화 검증 오차**를 종합 평가하여 조치 방안을 결정함
-- 대안: 설명 모형은 도메인 인과 파생변수로 융합하고, 예측 모형은 ElasticNet 정규화 및 PCA로 수렴시킴
-- 검증: 재표본에서 계수 부호·크기 안정성과 교차검증 오차 확인
-- 효과: 핵심 변수의 부당한 탈락을 방지하고, 통계적 설명력과 머신러닝 예측 성능의 최적 균형 달성
 
-```text
-[현행 한계] ─────────> [개선 방안] ─────────> [검증 기준] ─────────> [실행 효과]
-기계적 변수 삭제       분석 목적별 분기 대응  VIF < 10 충족           핵심 설명력 보존
-통계적 검정 왜곡       ElasticNet & Robust SE 부트스트랩 부호 검증    모형 일반화 성능 극대화
-```
+- **판정 기준**: VIF 단일 수치보다 **변수의 비즈니스적 가치, 계수 부호의 안정성, 일반화 검증 오차**를 종합 평가하여 조치 방안 결정.
+- **대응 방안**: 설명 모형은 도메인 인과 파생변수로 융합하고, 예측 모형은 ElasticNet 정규화 및 PCA로 수렴.
+- **검증 체계**: K-Fold 교차검증과 부트스트랩 1,000회 반복을 통해 회귀계수 부호 반전 여부 및 95% 신뢰구간 수렴성 확인.
+- **기대 효과**: 핵심 설명 변수의 부당한 탈락(제2종 오류)을 방지하고, 통계적 설명력과 머신러닝 예측 성능의 최적 균형 달성.
+
+<div class="itpe-flow-map" role="img" aria-label="다중공선성 목적 기반 진단 및 보정 거버넌스 파이프라인">
+  <div class="itpe-flow-node">
+    <strong>가우스-마르코프 진단</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>진단</strong><span>VIF 및 Breusch-Pagan 측정</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node">
+    <strong>분석 목적별 분기</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>설명</strong><span>파생변수 결합 / WLS</span></div>
+      <div class="itpe-flow-branch"><strong>예측</strong><span>Ridge / Lasso / PCA</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node is-current">
+    <strong>부트스트랩 안정성 게이트</strong>
+    <div class="itpe-step-detail">
+      <strong>검증</strong><span>계수 부호 안정 + VIF &lt; 10</span>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node">
+    <strong>최적 회귀모형 배포</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>결과</strong><span>신뢰성 높은 인과 분석 및 예측</span></div>
+    </div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
@@ -201,11 +320,9 @@ sidebar:
 - 등분산성: 모든 독립변수 수준에서 오차항의 분산이 일정하다는 가우스-마르코프 기본 가정
 
 2. 핵심 진단 수식 및 판정 기준
-┌─────────────────────────────────────────────────────────────┐
-│ VIF (분산팽창계수): VIF_j = 1 / (1 - R_j^2)                  │
-│  - VIF ≥ 10 : 다중공선성 존재 확정 (보정 필요)               │
-│ Breusch-Pagan 검정: 잔차 제곱을 독립변수로 회귀 (p < 0.05)   │
-└─────────────────────────────────────────────────────────────┘
+- VIF (분산팽창계수): VIF_j = 1 / (1 - R_j^2)
+  · VIF ≥ 10 : 다중공선성 존재 확정 (보정 조치 필수)
+- Breusch-Pagan 검정: 잔차 제곱을 독립변수로 회귀분석 (p < 0.05 시 이분산성 확인)
 
 3. 분석 목적별 해결 대책
 - 설명 목적: 도메인 기반 변수 결합(비율/지수화), WLS, White 강건 표준오차
@@ -226,4 +343,4 @@ sidebar:
 
 ## 연결 토픽
 
-- [로지스틱 회귀분석](./089_logistic_regression.md) · [차원 축소(PCA·MDS)](./069_dimensionality_reduction_pca_mds.md) · [편향](./038_bias.md) · [데이터 품질관리](./003_data_quality_management.md)
+- [로지스틱 회귀분석](./089_logistic_regression.md) · [차원 축소(PCA·MDS)](./069_dimensionality_reduction_pca_mds.md) · [이상치](./010_outlier.md) · [데이터 품질관리](./003_data_quality_management.md)

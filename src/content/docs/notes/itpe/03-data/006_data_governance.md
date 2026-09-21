@@ -8,10 +8,10 @@ tags:
   - "DataOwner"
   - "DataSteward"
   - "FederatedGovernance"
-date: "2026-09-20T23:50:43+09:00"
-author: "Codex"
+date: "2026-09-21T17:20:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -109,24 +109,36 @@ sidebar:
 
 > 원칙, 조직, 프로세스, 기술 도구, 성과 관리가 유기적으로 결합되어 전사 데이터 문화를 조성함.
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│ 1. 원칙 및 정책 (Principles & Policies)                    │
-│    - 데이터 관리 원칙, 분류 기준, 보안 정책, 보존 주기 규정 │
-├─────────────────────────────────────────────────────────────┤
-│ 2. 조직 체계 및 R&R (Organization & Roles)                 │
-│    - 데이터 거버넌스 위원회, Data Owner, Steward, Custodian │
-├─────────────────────────────────────────────────────────────┤
-│ 3. 관리 프로세스 (Management Processes)                     │
-│    - 데이터 요구 승인, 변경 관리, 품질 진단, 이슈 에스컬레이션 │
-├─────────────────────────────────────────────────────────────┤
-│ 4. 기술 및 도구 (Technology & Enablers)                     │
-│    - 메타데이터 카탈로그, Data Lineage 추적기, Policy as Code│
-├─────────────────────────────────────────────────────────────┤
-│ 5. 성과 및 성숙도 관리 (Metrics & Maturity)                 │
-│    - 품질 SLA 준수율, 활용도, CMMI/DMM 기반 성숙도 진단     │
-└─────────────────────────────────────────────────────────────┘
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+
+    <!-- Layer 1: Principles -->
+    <rect x="15" y="15" width="490" height="32" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
+    <text x="35" y="35" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">1. 원칙 및 정책</text>
+    <text x="130" y="35" font-size="7.5" fill="var(--color-text, #334155)">데이터 자산 소유권 규정, 공개 등급(기밀/대외비/공개), 수명주기 보존 지침</text>
+
+    <!-- Layer 2: Organization -->
+    <rect x="15" y="53" width="490" height="32" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="35" y="73" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">2. 조직 체계 및 R&amp;R</text>
+    <text x="130" y="73" font-size="7.5" fill="var(--color-text, #334155)">거버넌스 위원회(CDO), Data Owner(도메인 책임), Steward(실무), Custodian(IT)</text>
+
+    <!-- Layer 3: Process -->
+    <rect x="15" y="91" width="490" height="32" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="35" y="111" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">3. 관리 프로세스</text>
+    <text x="130" y="111" font-size="7.5" fill="var(--color-text, #334155)">데이터 요구 승인 워크플로우, 스키마 변경 통제, 품질 진단 및 에스컬레이션</text>
+
+    <!-- Layer 4: Tech & Tools -->
+    <rect x="15" y="129" width="490" height="32" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="35" y="149" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">4. 기술 및 도구</text>
+    <text x="130" y="149" font-size="7.5" fill="var(--color-text, #334155)">메타데이터 카탈로그, Data Lineage 자동 수집, Policy as Code (OPA, ABAC)</text>
+
+    <!-- Layer 5: Metrics & Maturity -->
+    <rect x="15" y="167" width="490" height="32" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.2"/>
+    <text x="35" y="187" font-size="8" font-weight="bold" fill="#16a34a">5. 성과 및 성숙도</text>
+    <text x="130" y="187" font-size="7.5" fill="var(--color-text, #334155)">품질 SLA 준수율, CMMI/DMM 성숙도 진단, 비즈니스 가치 환산 피드백 루프</text>
+  </svg>
+</div>
 
 - **원칙 및 정책**: 전사 데이터 소유권, 공개 등급(기밀/대외비/공개), 데이터 생명주기 관리 지침 제정
 - **조직 체계**: 의사결정 기구(CDO 주관 위원회)와 도메인 실무 책임자 간 명확한 RACI 책임 할당
@@ -161,22 +173,48 @@ sidebar:
 
 > "자율성은 최대로, 공통 통제는 코드로 자동화(Automated Platform Guardrail)한다."
 
-```text
-       ┌────────────────────────────────────────────────────────┐
-       │   중앙 거버넌스 위원회 (Global Governance Council)     │
-       │   - 공통 보안 기준, 표준 식별자 체계, Policy as Code 규칙 │
-       └──────────────────────────┬─────────────────────────────┘
-                                  │ Baseline 정책 배포
-      ┌───────────────────────────┴───────────────────────────┐
-      ▼                                                       ▼
-┌──────────────────────────┐             ┌──────────────────────────┐
-│ [도메인 A: 주문/결제]     │             │ [도메인 B: 마케팅/추천]  │
-│ - Data Owner: 결제팀장   │             │ - Data Owner: 마케팅팀장 │
-│ - Data Steward: 결제 분석│  전사 공유  │ - Data Steward: CRM 분석 │
-│ - Data Product: 결제 원장│<----------->│ - Data Product: 고객 선호│
-│ - 자체 CI/CD 품질 게이트 │ (카탈로그)  │ - 자체 CI/CD 품질 게이트 │
-└──────────────────────────┘             └──────────────────────────┘
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="fed-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+
+    <!-- Central Governance -->
+    <rect x="35" y="15" width="450" height="42" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
+    <text x="260" y="32" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-primary, #2563eb)">중앙 거버넌스 협의회 (Global Governance Council)</text>
+    <text x="260" y="46" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">공통 보안 Baseline, 표준 식별자 체계, Policy as Code (OPA) 자동 가드레일 배포</text>
+
+    <!-- 2 Downward Arrows -->
+    <line x1="140" y1="57" x2="140" y2="80" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fed-arrow)"/>
+    <line x1="380" y1="57" x2="380" y2="80" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fed-arrow)"/>
+    <text x="260" y="73" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">자동화된 정책 가드레일 (Policy as Code)</text>
+
+    <!-- Domain A -->
+    <rect x="25" y="82" width="220" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="25" y="82" width="220" height="20" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="135" y="96" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">[도메인 A] 주문·결제 도메인</text>
+    <text x="35" y="115" font-size="7" fill="var(--color-text, #334155)">· Data Owner: 결제비즈니스 부서장</text>
+    <text x="35" y="130" font-size="7" fill="var(--color-text, #334155)">· Data Steward: 거래 정합성 관리자</text>
+    <text x="35" y="145" font-size="7" fill="var(--color-text, #334155)">· Data Product: 결제 원장 API 및 스트림</text>
+    <text x="35" y="165" font-size="6.5" font-weight="bold" fill="#16a34a">[자율 운영 + 자체 CI/CD 게이트]</text>
+
+    <!-- Domain B -->
+    <rect x="275" y="82" width="220" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="275" y="82" width="220" height="20" rx="6" fill="var(--color-bg-subtle, #f0fdf4)"/>
+    <text x="385" y="96" text-anchor="middle" font-size="8" font-weight="bold" fill="#16a34a">[도메인 B] 마케팅·추천 도메인</text>
+    <text x="285" y="115" font-size="7" fill="var(--color-text, #334155)">· Data Owner: CRM 마케팅 부서장</text>
+    <text x="285" y="130" font-size="7" fill="var(--color-text, #334155)">· Data Steward: 고객 행동 분석가</text>
+    <text x="285" y="145" font-size="7" fill="var(--color-text, #334155)">· Data Product: 유저 선호 세그먼트</text>
+    <text x="285" y="165" font-size="6.5" font-weight="bold" fill="#16a34a">[자율 운영 + 자체 CI/CD 게이트]</text>
+
+    <!-- Center Lineage/Catalog link -->
+    <line x1="245" y1="130" x2="273" y2="130" stroke="var(--color-primary, #2563eb)" stroke-width="1.2" stroke-dasharray="3,2"/>
+    <text x="260" y="125" text-anchor="middle" font-size="6" fill="var(--color-text-muted, #64748b)">카탈로그</text>
+  </svg>
+</div>
 
 ## Ⅵ. 데이터 거버넌스 문제점·대응책
 
@@ -185,29 +223,56 @@ sidebar:
 | 위험 | 대책 | 효과 |
 |---|---|---|
 | 현업 부서의 거버넌스 외면 및 책임 회피 | Data Steward 직무 공식화 및 도메인 데이터 품질 KPI 인사 반영 | 현업 주도의 능동적 데이터 정제 및 오너십 정착 |
-| 수작업 승인으로 인한 분석 지연 | 속성 기반 접근제어·정책 자동 평가 | 반복 승인 대기 감소 |
+| 수작업 승인으로 인한 분석 지연 | 속성 기반 접근제어(ABAC) 및 OPA 기반 정책 자동 승인 파이프라인 구현 | 반복 승인 대기 시간 제거 및 데이터 접근성 개선 |
 | 시스템 변경 시 메타데이터 카탈로그 사장 | CI/CD 배포 파이프라인과 Data Lineage 자동 추출 도구 연동 | 메타데이터 최신성 100% 실시간 동기화 |
 | 전사 데이터 거버넌스의 과도한 중앙 통제 | 중앙은 가드레일만 규정하고 도메인은 자율화하는 연합형 거버넌스 전환 | 병목 현상 해소 및 비즈니스 변화 대응력 극대화 |
 
 ## Ⅶ. 기술사적 제언: 통제의 족쇄에서 비즈니스 인에이블러(Enabler)로
 
-> "데이터 거버넌스의 목적은 데이터 사용을 금지하는 것이 아니라, 누구나 신뢰할 수 있는 데이터를 가장 빠르고 안전하게 쓰도록 돕는 것이다."
-
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 거버넌스는 사용을 막는 결재체계가 아니라 신뢰할 수 있는 데이터를 빠르게 찾고 안전하게 쓰게 하는 운영체계다.
-- `나라면`: 중앙은 최소 공통 정책과 증적을 소유하고, 도메인은 데이터 제품 품질과 변경 책임을 지도록 연합형으로 설계하겠다.
+
+> **[핵심 통찰]**
+> 데이터 거버넌스의 목적은 '데이터 사용을 금지하고 감시하는 경찰'이 아니라, '누구나 신뢰할 수 있는 데이터를 가장 빠르고 안전하게 쓰도록 돕는 안내자(Enabler)'가 되는 것이다. 수작업 승인 서류와 관료주의적 위원회에 의존하는 거버넌스는 데이터 분석을 마비시키고 개발자의 우회로(그림자 IT)를 낳는다. 성공적인 거버넌스는 **코드로 자동화된 정책(Policy as Code)**과 **도메인 자율성**이 결합된 연합형 거버넌스(Federated Governance)로 진화해야 한다.
+
+> **[나라면 이렇게 쓴다]**
+> 2교시 논술 문제라면 기존 중앙집중형 거버넌스의 실패 요인(중앙 승인 병목, 도메인 맥락 상실)을 지적하고, Data Mesh 기반의 **'연합형 컴퓨터 거버넌스(Federated Computational Governance)'**를 해법으로 제시하겠다. 중앙 CDO 협의회는 OPA(Open Policy Agent)를 통해 공통 보안·접근 가드레일을 코드로 배포하고, 도메인 팀은 Data Owner의 책임 아래 독립적인 Data Product를 생성·배포하는 자율 분산 운영 체계를 구체화하겠다.
 
 ### 실전 답안용 기술사적 제언
-- 판정: 전사 데이터 거버넌스의 성공은 문서의 방대함이 아니라 **Policy as Code 기반의 자동화 통제율**과 **도메인 오너십 작동 여부**에 달려 있음
-- 대안: 중앙 CDO 주관 가드레일 제정 $\rightarrow$ 도메인 Data Owner 지정 $\rightarrow$ 카탈로그 기반 셀프서비스 개방 $\rightarrow$ CI/CD 정책 검증 자동화
-- 검증: Data Owner 지정률 100%, 데이터 접근 요청 자동 승인율 80% 이상, 메타데이터 현행화율 99% 달성
-- 효과: 중앙 병목과 데이터 사일로를 동시에 제거하고, 신뢰성 있는 AI 및 실시간 비즈니스 의사결정 인프라 확립
 
-```text
-[현행 한계] ─────────> [개선 방안] ─────────> [검증 기준] ─────────> [실행 효과]
-수작업 결재 병목       Policy as Code 자동화  자동 승인율 ≥ 80%       분석 리드타임 단축
-도메인 오너십 부재     연합형 거버넌스 체계   Owner 지정률 100%       전사 데이터 신뢰도 확보
-```
+- **판정 기준**: 거버넌스 문서의 방대함보다 **Policy as Code 기반의 자동화 통제율**과 **도메인 Data Owner의 실질적 작동 여부**를 성공 판정 기준으로 확립.
+- **대응 방안**: 중앙 가드레일 제정 $\rightarrow$ 도메인별 Owner/Steward 지정 $\rightarrow$ 전사 카탈로그 셀프서비스 개방 $\rightarrow$ CI/CD 정책 검증 자동화.
+- **검증 체계**: 도메인별 Data Owner 지정률 100%, 데이터 접근 요청 자동 승인율 80% 이상, 메타데이터 현행화율 99% 달성 관제.
+- **기대 효과**: 중앙 결재 병목과 데이터 사일로를 동시에 제거하고, 신뢰성 있는 AI 및 엔터프라이즈 실시간 의사결정 인프라 확립.
+
+<div class="itpe-flow-map" role="img" aria-label="연합형 데이터 거버넌스 실행 파이프라인">
+  <div class="itpe-flow-node">
+    <strong>중앙 가드레일 제정</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>규약</strong><span>보안 기준 및 Policy as Code 수립</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node">
+    <strong>도메인 Data Owner 지정</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>할당</strong><span>도메인 책임주의 및 Steward 배치</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node is-current">
+    <strong>자동 승인 게이트</strong>
+    <div class="itpe-step-detail">
+      <strong>통제</strong><span>ABAC 자동화 승인율 &ge; 80%</span>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node">
+    <strong>Data Product 자율 개방</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>결과</strong><span>안전한 셀프서비스 데이터 분석</span></div>
+    </div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
@@ -217,14 +282,11 @@ sidebar:
 - 목적: 데이터 사일로 해소, 신뢰성 있는 고품질 데이터 확보, 컴플라이언스 준수
 
 2. 거버넌스 핵심 R&R 및 프레임워크 5대 요소
-┌─────────────────┬───────────────────────────────────────────┐
-│ 역할            │ 주요 책임                                 │
-├─────────────────┼───────────────────────────────────────────┤
-│ CDO 위원회      │ 전사 거버넌스 전략 및 공통 정책 승인      │
-│ Data Owner      │ 비즈니스 도메인 데이터 승인 및 최종 책임  │
-│ Data Steward    │ 데이터 표준화 및 실무 품질 진단           │
-│ Data Custodian  │ DB 인프라 구축, 암호화, 백업/성능 관리    │
-└─────────────────┴───────────────────────────────────────────┘
+- 핵심 R&R:
+  · CDO 위원회: 전사 거버넌스 전략 및 공통 정책 승인
+  · Data Owner: 비즈니스 도메인 데이터 승인 및 최종 책임
+  · Data Steward: 데이터 표준화 및 실무 품질 진단
+  · Data Custodian: DB 인프라 구축, 암호화, 백업/성능 관리
 - 5대 요소: 원칙·정책, 조직, 프로세스, 기술 도구, 성과 지표
 
 3. 최신 트렌드: Data Mesh 기반 연합형 거버넌스(Federated Governance)
