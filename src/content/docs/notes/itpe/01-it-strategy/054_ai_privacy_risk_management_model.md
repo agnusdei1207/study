@@ -1,6 +1,6 @@
 ---
 title: "AI 프라이버시 리스크 관리 모델"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T02:40:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -95,6 +95,52 @@ extra:
 
 > 특정 보호기술을 일률 적용하지 않고 처리목적·데이터 민감도·모델 구조·위험수준에 맞게 조합함.
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="AI 생애주기별 프라이버시 위협 및 기술적 경감 체계">
+    <!-- Step 1: Ingestion -->
+    <rect x="15" y="20" width="90" height="70" rx="6" class="itpe-svg-node"></rect>
+    <text x="60" y="42" class="itpe-svg-title">1. 기획·수집</text>
+    <text x="60" y="60" class="itpe-svg-sub">위협: 과잉수집</text>
+    <text x="60" y="78" class="itpe-svg-sub">대책: PbD, PIA</text>
+
+    <!-- Step 2: Preprocessing -->
+    <rect x="115" y="20" width="90" height="70" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="160" y="42" class="itpe-svg-title">2. 전처리</text>
+    <text x="160" y="60" class="itpe-svg-sub">위협: 재식별</text>
+    <text x="160" y="78" class="itpe-svg-sub">대책: 가명·합성데이터</text>
+
+    <!-- Step 3: Training -->
+    <rect x="215" y="20" width="90" height="70" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="42" class="itpe-svg-title">3. 학습·평가</text>
+    <text x="260" y="60" class="itpe-svg-sub">위협: 모델 암기</text>
+    <text x="260" y="78" class="itpe-svg-sub">대책: 차분프라이버시</text>
+
+    <!-- Step 4: Inference -->
+    <rect x="315" y="20" width="90" height="70" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="360" y="42" class="itpe-svg-title">4. 배포·추론</text>
+    <text x="360" y="60" class="itpe-svg-sub">위협: 입출력 누출</text>
+    <text x="360" y="78" class="itpe-svg-sub">대책: 가드레일 필터</text>
+
+    <!-- Step 5: Retirement -->
+    <rect x="415" y="20" width="90" height="70" rx="6" class="itpe-svg-node"></rect>
+    <text x="460" y="42" class="itpe-svg-title">5. 변경·종료</text>
+    <text x="460" y="60" class="itpe-svg-sub">위협: 삭제불가</text>
+    <text x="460" y="78" class="itpe-svg-sub">대책: 머신 언러닝</text>
+
+    <!-- Connecting Arrows -->
+    <line x1="105" y1="55" x2="115" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
+    <line x1="205" y1="55" x2="215" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
+    <line x1="305" y1="55" x2="315" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
+    <line x1="405" y1="55" x2="415" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
+
+    <!-- Comprehensive Governance Bottom Box -->
+    <rect x="15" y="115" width="490" height="85" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1.5"></rect>
+    <text x="260" y="138" class="itpe-svg-title" text-anchor="middle">프라이버시 생명주기 거버넌스 및 통제 증적</text>
+    <text x="260" y="158" class="itpe-svg-sub" text-anchor="middle">데이터 리니지(Lineage) 추적 · PIA 사전평가서 · Differential Privacy 노이즈 ε 계량</text>
+    <text x="260" y="178" class="itpe-svg-sub" text-anchor="middle">멤버십 추론 공격(MIA) 방어 시험 · 정보주체 열람/정정/삭제(Unlearning) 권리 보장</text>
+  </svg>
+</div>
+
 | 단계 | 위험 | 경감방안 |
 |---|---|---|
 | 기획·수집 | 처리근거 부재·과잉수집 | PbD·목적명확화·최소수집·PIA |
@@ -115,9 +161,18 @@ extra:
 
 ## Ⅵ. Privacy Risk Acceptance Gate 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` AI 프라이버시는 개인정보 존재 여부만으로 판단할 수 없고, 사용맥락과 모델의 노출 가능성이 결합해 정보주체에게 어떤 영향을 주는지로 판단해야 함.
 
 `나라면` 보호기술 적용 자체를 완료기준으로 삼지 않고, 위험별 근거·통제·시험결과·잔여위험 책임자가 연결된 경우에만 배포를 승인하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: 생성형 AI 모델의 프롬프트 인젝션 및 추출 공격을 통한 개인식별정보(PII) 누출률 > 0% 발생 시 즉각 서빙 파이프라인 격리.
+- **대응 방안 (Action)**: 입출력단 이중 정규식/NER 가드레일 필터링, 차분 프라이버시(DP: ε budget 통제) 기반 가중치 보호, 삭제 요구 시 머신 언러닝(Machine Unlearning) 프로토콜 가동.
+- **검증 체계 (Verification)**: 멤버십 추론 공격(MIA) 방어율 99% 이상 및 개인정보보호위원회 '생성형 AI 개인정보보호 수칙' 준수 여부를 레드팀(Red Teaming) 실증 검증함.
+- **기대 효과 (Impact)**: 개인정보 침해 과징금 리스크 원천 차단, 비정형 데이터 활용 적법성 확보, 정보주체 자기결정권 보장 및 서비스 지속가능성을 달성함.
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 430" role="img" aria-label="AI 프라이버시 잔여위험 승인 게이트의 통과와 재경감 분기">

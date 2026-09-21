@@ -1,7 +1,7 @@
 ---
 title: "터크만 팀 발달 모델"
-author: "OpenAI Codex"
-date: "2026-09-21T16:40:00+09:00"
+author: "Antigravity"
+date: "2026-09-21T15:42:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: 팀의 관계·역할·과업 수행이 형성부터 해산까지 변화하는 발달 단계 모델
-- 메커니즘: Forming → Storming → Norming → Performing → Adjourning
-- 통제: 단계 진단 → 갈등 중재 → 규범 합의 → 자율성 확대 → 교훈 환류
+- 본질: **터크만 팀 발달 모델(Tuckman Team Development Model)**은 팀이 결성되어 고성과를 내고 해산하기까지 거치는 5단계 발달 사다리와 각 단계별 팀 심리·갈등 양상 및 PM의 리더십 전환을 설명한 조직 역학 프레임워크
+- 메커니즘: Forming(지시형) → Storming(코칭/중재형) → Norming(지원/참여형) → Performing(위임형) → Adjourning(기념/자산화)
+- 산출물: 프로젝트 헌장(RACI) · 팀 작업 협약서(Working Agreement) · 충돌 해결 규칙서 · 회고 및 교훈 자산(Lessons Learned)
 
 <div class="itpe-flow-map" role="img" aria-label="터크만 팀 발달 5단계 사다리 모델 및 리더십 전환 흐름">
   <div class="itpe-flow-node">
@@ -128,9 +128,46 @@ extra:
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 팀 성숙도 진단 ↔ 리더십 스타일 전환 ↔ 작업 협약 준수 ↔ 성과기 달성 양방향 연계</div>
 
-## Ⅲ. 터크만 팀 발달 단계별 행동 특성 및 핵심 산출물
+## Ⅲ. 터크만 팀 발달 5단계 사다리 및 PM 리더십 전환
 
-> 단계별로 팀원의 행동 양식이 변화하므로 PM은 관찰을 통해 현재 위치를 정확히 파악해야 함.
+> 팀 성숙도 사다리를 오름에 따라 팀원의 자율성은 점진적으로 증가하고, PM의 개입 방식은 지시형에서 코칭, 지원을 거쳐 전폭적 위임형으로 전환되어야 함.
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 330" role="img" aria-label="터크만 팀 발달 5단계 사다리 구조와 각 단계별 PM 리더십 전환을 나타낸 다이어그램">
+  <rect class="itpe-svg-node is-current" x="10" y="8" width="500" height="42" rx="10" />
+  <text class="itpe-svg-title" x="260" y="30">터크만 팀 발달 5단계 사다리</text>
+
+  <!-- 계단식 사다리 구조 -->
+  <rect class="itpe-svg-node" x="20" y="240" width="90" height="70" rx="6" />
+  <text class="itpe-svg-sub" x="65" y="265">1. Forming</text>
+  <text class="itpe-svg-label" x="65" y="285">형성기</text>
+  <text class="itpe-svg-label" x="65" y="300">지시형 리더</text>
+
+  <rect class="itpe-svg-node" x="118" y="195" width="90" height="115" rx="6" />
+  <text class="itpe-svg-sub" x="163" y="220">2. Storming</text>
+  <text class="itpe-svg-label" x="163" y="240">폭풍기</text>
+  <text class="itpe-svg-label" x="163" y="255">코칭/중재자</text>
+
+  <rect class="itpe-svg-node" x="216" y="150" width="90" height="160" rx="6" />
+  <text class="itpe-svg-sub" x="261" y="175">3. Norming</text>
+  <text class="itpe-svg-label" x="261" y="195">규범기</text>
+  <text class="itpe-svg-label" x="261" y="210">참여/촉진자</text>
+
+  <rect class="itpe-svg-node is-current" x="314" y="105" width="90" height="205" rx="6" />
+  <text class="itpe-svg-sub" x="359" y="130">4. Performing</text>
+  <text class="itpe-svg-label" x="359" y="150">성과기</text>
+  <text class="itpe-svg-label" x="359" y="165">위임/장애제거</text>
+
+  <rect class="itpe-svg-node" x="412" y="60" width="90" height="250" rx="6" />
+  <text class="itpe-svg-sub" x="457" y="85">5. Adjourning</text>
+  <text class="itpe-svg-label" x="457" y="105">해산기</text>
+  <text class="itpe-svg-label" x="457" y="120">기념/회고</text>
+
+  <!-- 상승 화살표 -->
+  <path class="itpe-svg-link" d="M65 230 L457 50" stroke-dasharray="4 4" />
+  <text class="itpe-svg-label" x="240" y="90" fill="#3b82f6" font-weight="bold">팀 자율성 및 상호 신뢰 상승 곡선 ↗</text>
+</svg>
+</div>
 
 | 발달 단계 | 팀원의 주요 심리 및 행동 양식 | 프로젝트 관리자(PM) 핵심 역할 | 주요 공식 산출물 |
 |---|---|---|---|
@@ -146,28 +183,36 @@ extra:
 
 | 기준 | 형성기 | 폭풍기 | 규범기 | 성과기 |
 |---|---|---|---|---|
-| **개입** | 목표·역할 명확화 | 갈등 표면화·중재 | 합의 촉진·권한 확대 | 장애 제거·위임 |
-| **의사결정** | PM 주도 | 원칙 기반 조정 | 팀 합의 확대 | 팀 자율 중심 |
-| **경계** | 역할 모호성 | 갈등 회피·억압 | 집단사고 | 마이크로매니지먼트 |
+| **개입 수준** | 목표·역할 명확화 | 갈등 표면화·중재 | 합의 촉진·권한 확대 | 장애 제거·위임 |
+| **의사결정** | PM 주도 (지시형) | 원칙 기반 조정 (코칭형) | 팀 합의 확대 (지원형) | 팀 자율 중심 (위임형) |
+| **경계 사항** | 역할 모호성 방치 | 갈등 회피·강압적 억압 | 동조 압력·집단사고 | 마이크로매니지먼트 |
 
 ## Ⅴ. 실무 프로젝트 환경별 리스크 및 공학적·관리적 해결 대책
 
-> 기술 갈등과 팀원 교체는 팀을 이전 단계로 퇴행시키는 주원인이므로 체계적 통제가 필수적임.
+> 기술 스택 선정 갈등과 핵심 인력 교체는 팀을 폭풍기로 급격히 퇴행시키는 주원인이므로 사전 거버넌스가 필수적임.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **폭풍기 장기화** | 객관적 PoC 지표 도입 및 PM의 원칙 중심 중재 | 감정 소모 차단 및 기술적 최적안 도출 |
+| **폭풍기 장기화** | 객관적 **PoC(Proof of Concept)** 지표 도입 및 PM의 원칙 중심 중재 | 감정 소모 차단 및 기술적 최적안 도출 |
 | **인력 교체 퇴행** | 버디(Buddy) 시스템, 페어 프로그래밍, 온보딩 문서화 | 신규 인력의 규범기 조기 안착 |
 | **원격 협업 고립** | 데일리 스탠드업, 비동기 소통 툴, 지라 보드 투명화 | 팀 결속력 유지 및 협업 투명성 확보 |
-| **규범기 집단사고** | '악마의 변호인' 지정 및 익명 회고 채널 운영 | 의사결정 편향 제거 및 품질 완성도 제고 |
+| **규범기 집단사고** | '악마의 변호인(Devil's Advocate)' 지정 및 익명 회고 채널 운영 | 의사결정 편향 제거 및 아키텍처 완성도 제고 |
 
 ## Ⅵ. 자기조직화 팀 진화를 위한 기술사적 제언
 
-> PM 1인의 마이크로매니지먼트에서 벗어나, 팀 스스로 갈등을 소화하고 자율 진화하는 **애자일 회고 문화**와 **심리적 안전감**이 팀 빌딩의 본질임.
+> PM 1인의 마이크로매니지먼트에서 벗어나, 팀 스스로 갈등을 성장의 지렛대로 삼고 자율 진화하는 **애자일 회고 문화**와 **심리적 안전감(Psychological Safety)**이 팀 빌딩의 본질임.
 
-`[핵심 통찰]` Storming은 제거할 실패가 아니라 다룰 갈등이며, 억압하면 Norming에 필요한 합의가 형성되지 않음.
+### 학습자 통찰 메모 — 답안 밖
 
-`나라면` 팀이 Working Agreement를 직접 정하고, 인력·목표 변화 때 현재 단계를 다시 진단하여 역할·규범·의사결정 방식을 재합의하겠음.
+- `[핵심 통찰]`: Storming(폭풍기)은 실패의 징후가 아니라 팀이 Norming(규범기)으로 도약하기 위해 반드시 거쳐야 할 필연적 통과의례이며, 이를 강압적으로 억압하면 건강한 규범이 형성되지 않는다.
+- `나라면`: 팀이 스스로 지킬 작업 협약서(Working Agreement)를 직접 작성하게 하고, 프로젝트 중 팀원 변동이나 목표 변경이 발생할 때마다 현재 단계를 재진단하여 신속히 규범을 재합의하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 팀 성숙도에 따른 리더십 전환 체계를 구축하고 폭풍기 갈등을 제도적으로 흡수하였는가
+- 대안: 팀원 주도 **Working Agreement** 제정 + 주기적 스프린트 회고(Retrospective) 내재화
+- 검증: 팀 그라운드 룰 합의율 100% · 정기 회고를 통한 실행 가능한 개선 액션 도출
+- 효과: 고성과 **자기조직화(Self-Organizing) 팀** 조기 달성 · 프로젝트 납기 및 품질 리스크 최소화
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="터크만 팀 발달 모델 실무 정착 제언 파이프라인">
   <div class="itpe-pipeline-node">

@@ -1,6 +1,6 @@
 ---
 title: "프로젝트 관리 통합 체계"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T03:45:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -69,6 +69,32 @@ extra:
 
 ## Ⅱ. Portfolio·Programme·Project 비교
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="Portfolio, Programme, Project 3단계 계층 정렬 및 가치 인도 체계">
+    <!-- Level 1: Portfolio -->
+    <rect x="60" y="15" width="400" height="50" rx="8" class="itpe-svg-node"></rect>
+    <text x="260" y="36" class="itpe-svg-title">1. Portfolio (포트폴리오: 전략 정렬 및 투자 최적화)</text>
+    <text x="260" y="52" class="itpe-svg-sub">"올바른 일을 하고 있는가?" · 자원 우선순위 배분 · 전사 ROI 극대화</text>
+
+    <!-- Down Arrow 1 -->
+    <line x1="260" y1="65" x2="260" y2="80" stroke="var(--sl-color-accent)" stroke-width="2"></line>
+
+    <!-- Level 2: Programme -->
+    <rect x="40" y="80" width="440" height="50" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="101" class="itpe-svg-title">2. Programme (프로그램: 상호 연계 편익 및 시너지 관리)</text>
+    <text x="260" y="117" class="itpe-svg-sub">"시너지를 창출하고 있는가?" · 프로젝트 간 의존성 조율 · 비즈니스 편익 실현</text>
+
+    <!-- Down Arrow 2 -->
+    <line x1="260" y1="130" x2="260" y2="145" stroke="var(--sl-color-accent)" stroke-width="2"></line>
+
+    <!-- Level 3: Project -->
+    <rect x="20" y="145" width="480" height="55" rx="8" class="itpe-svg-node"></rect>
+    <text x="260" y="166" class="itpe-svg-title">3. Project (프로젝트: 고유 산출물 인도 및 통제)</text>
+    <text x="260" y="182" class="itpe-svg-sub">"일을 올바르게 실행하는가?" · Scope, Schedule, Cost, Quality 통합 관리</text>
+    <text x="260" y="194" class="itpe-svg-sub">WBS 산출물 납품 → 수용(Acceptance) → 프로그램 편익 전환</text>
+  </svg>
+</div>
+
 | 기준 | Portfolio | Programme | Project |
 |---|---|---|---|
 | 목적 | 전략·투자 최적화 | 공동 편익 실현 | 고유 산출·성과 인도 |
@@ -114,9 +140,18 @@ extra:
 
 ## Ⅵ. Evidence-based Forecast 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` 프로젝트 파행은 계획과 실제의 차이보다 그 차이를 늦게 인식하고 의사결정을 미루는 데서 커지므로, 예측 신뢰도와 변경 결정시간을 관리해야 함.
 
 `나라면` 보고서의 주관적 완료율 대신 승인된 산출물·시험결과·EVM·Risk Exposure를 함께 보고, 기준 초과 시 범위·일정·원가 중 무엇을 조정할지 CCB가 즉시 결정하도록 하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: EVM 성과지수 SPI 또는 CPI < 0.85 하회 시 또는 비공식 요구사항 변경(Scope Creep) 누적률 > 10% 도달 시 즉시 프로젝트 비상 경보 발령.
+- **대응 방안 (Action)**: 공식 형상통제위원회(CCB) 긴급 소집, 크래싱(Crashing)/패스트트래킹(Fast-tracking) 일정 압축 및 WBS Baseline 재설정(Re-baselining).
+- **검증 체계 (Verification)**: 산출물 인수기준(Acceptance Criteria) 충족 여부 전수 검사 및 PMBOK 8판/ISO 21502 기반 성과 측정치(EVM 추정치 EAC, VAC)의 통계적 검증.
+- **기대 효과 (Impact)**: 90% 증후군(프로젝트 후반부 지연 누적) 차단, 납기 및 예산 초과 리스크 40% 감축, 사업 종료 후 운영 부서 편익 실현률 극대화를 달성함.
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 470" role="img" aria-label="프로젝트 증적을 기반으로 예측하고 변경을 결정하는 피드백 구조">

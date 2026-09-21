@@ -1,6 +1,6 @@
 ---
 title: "그로스 해킹"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-21T21:25:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -70,6 +70,35 @@ extra:
 
 > 단계 순서는 서비스 특성에 따라 달라질 수 있으며, 각 단계의 의미 있는 행동을 먼저 정의함.
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 230" role="img" aria-label="AARRR 해적 지표 퍼널 및 핵심 관리 지표">
+    <!-- Acquisition -->
+    <polygon points="40,15 480,15 440,55 80,55" class="itpe-svg-node"></polygon>
+    <text x="260" y="32" class="itpe-svg-title">1. Acquisition (획득)</text>
+    <text x="260" y="48" class="itpe-svg-sub">유입 경로 최적화 · CAC · 신규 가입자 수</text>
+    
+    <!-- Activation -->
+    <polygon points="85,58 435,58 400,98 120,98" class="itpe-svg-node is-current"></polygon>
+    <text x="260" y="75" class="itpe-svg-title">2. Activation (활성화 - Aha Moment)</text>
+    <text x="260" y="91" class="itpe-svg-sub">핵심 가치 최초 경험 · 온보딩 전환율 · 체류 시간</text>
+    
+    <!-- Retention -->
+    <polygon points="125,101 395,101 365,141 155,141" class="itpe-svg-node is-current"></polygon>
+    <text x="260" y="118" class="itpe-svg-title">3. Retention (유지 - 제품 적합성)</text>
+    <text x="260" y="134" class="itpe-svg-sub">Cohort 재방문율 · Churn Rate · 잔존 곡선 평탄화</text>
+    
+    <!-- Revenue -->
+    <polygon points="160,144 360,144 330,184 190,184" class="itpe-svg-node"></polygon>
+    <text x="260" y="161" class="itpe-svg-title">4. Revenue (매출)</text>
+    <text x="260" y="177" class="itpe-svg-sub">유료 전환율 · ARPU · LTV > 3×CAC</text>
+    
+    <!-- Referral -->
+    <polygon points="195,187 325,187 305,222 215,222" class="itpe-svg-node"></polygon>
+    <text x="260" y="202" class="itpe-svg-title">5. Referral (추천)</text>
+    <text x="260" y="216" class="itpe-svg-sub">바이럴 계수(K > 1) · NPS</text>
+  </svg>
+</div>
+
 | 단계 | 핵심 질문 | 지표 예 |
 |---|---|---|
 | **Acquisition** | 사용자는 어떤 채널로 유입되는가? | 채널별 유입 · CAC |
@@ -118,9 +147,18 @@ extra:
 
 ## Ⅵ. 신뢰 가능한 성장 실험 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` 성장 실험의 목적은 승리한 화면을 많이 만드는 것이 아니라, 어떤 고객가치가 반복 사용·추천·수익으로 이어지는지 학습하는 데 있음.
 
 `나라면` NSM마다 품질·이탈·불만·개인정보 Guardrail을 붙이고, 실험계획과 결과를 Decision Log로 남겨 선택적 보고와 재실험을 줄이겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: 단기 전환율(CVR) 지표는 상승하나 이탈률(Churn Rate) 급증 또는 불만 CS 접수가 15% 이상 증가할 시 다크 패턴 및 국소 최적화 위험으로 판정함.
+- **대응 방안 (Action)**: 북극성 지표(NSM)에 직교하는 보호 지표(Guardrail Metric: 페이지 응답시간, 구독 해지율, 프라이버시 동의 철회율)를 필수 지정하고, 하향 돌파 시 실험 자동 중단(Kill Switch)을 연동함.
+- **검증 체계 (Verification)**: A/B 테스트 사전 승인제(Pre-registration) 및 최소 표본수(MDE 계산) 확정 후 통계적 유의수준(p < 0.05)과 코호트별 30일 잔존율 추적을 동시 검증함.
+- **기대 효과 (Impact)**: 허상 지표(Vanity Metric) 배제, 고객 LTV(생애가치) 25% 증대, 규제 컴플라이언스(다크패턴 방지법) 위반 리스크 원천 해소를 달성함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="신뢰 가능한 그로스 해킹 통제안">
   <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>문제</strong><span>단기지표 · 선택적 보고 · Dark Pattern</span></div></div>

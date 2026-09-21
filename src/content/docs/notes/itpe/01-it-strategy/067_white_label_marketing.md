@@ -1,6 +1,6 @@
 ---
 title: "화이트 레이블 마케팅"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T04:10:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -39,7 +39,52 @@ extra:
 - 목적: 제품 개발 부담 축소 · 출시 기간 단축 · 판매 채널 확장
 
 ## Ⅱ. 역할·계약·데이터 운영 구조
+
 > 책임 경계·서비스 수준·데이터 권리를 계약과 연계 구조에 함께 고정해야 함.
+
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="화이트 레이블 B2B2C 아키텍처 및 책임 경계 다이어그램">
+    <!-- Provider Box -->
+    <rect x="20" y="20" width="140" height="135" rx="8" class="itpe-svg-node"></rect>
+    <text x="90" y="45" class="itpe-svg-title">원천 공급자 (B)</text>
+    <line x1="30" y1="55" x2="150" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="90" y="75" class="itpe-svg-sub">코어 엔진 개발</text>
+    <text x="90" y="95" class="itpe-svg-sub">인프라 / SLA 보증</text>
+    <text x="90" y="115" class="itpe-svg-sub">백엔드 API 제공</text>
+    <text x="90" y="135" class="itpe-svg-sub">기술지원 / 패치</text>
+
+    <!-- Arrow 1: API & White-label Contract -->
+    <line x1="160" y1="87" x2="190" y2="87" stroke="var(--sl-color-accent)" stroke-width="2"></line>
+    <text x="175" y="78" class="itpe-svg-sub" text-anchor="middle">API 연계</text>
+
+    <!-- Reseller / Brand Owner Box -->
+    <rect x="190" y="20" width="140" height="135" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="45" class="itpe-svg-title">브랜드 사업자 (B)</text>
+    <line x1="200" y1="55" x2="320" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="260" y="75" class="itpe-svg-sub">자사 브랜드 패키징</text>
+    <text x="260" y="95" class="itpe-svg-sub">UI/UX 커스터마이징</text>
+    <text x="260" y="115" class="itpe-svg-sub">요금 책정 / 결제</text>
+    <text x="260" y="135" class="itpe-svg-sub">1차 고객 응대(CS)</text>
+
+    <!-- Arrow 2: Sales & Service -->
+    <line x1="330" y1="87" x2="360" y2="87" stroke="var(--sl-color-accent)" stroke-width="2"></line>
+    <text x="345" y="78" class="itpe-svg-sub" text-anchor="middle">서비스제공</text>
+
+    <!-- End Customer Box -->
+    <rect x="360" y="20" width="140" height="135" rx="8" class="itpe-svg-node"></rect>
+    <text x="430" y="45" class="itpe-svg-title">최종 고객 (C)</text>
+    <line x1="370" y1="55" x2="490" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="430" y="75" class="itpe-svg-sub">완제품 / 서비스 이용</text>
+    <text x="430" y="95" class="itpe-svg-sub">브랜드 신뢰 기반 구매</text>
+    <text x="430" y="115" class="itpe-svg-sub">이용료 지불</text>
+    <text x="430" y="135" class="itpe-svg-sub">피드백 / 문의 제기</text>
+
+    <!-- Bottom Data Feedback Loop -->
+    <rect x="20" y="165" width="480" height="42" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="184" class="itpe-svg-title" text-anchor="middle">핵심 통제선: 탈출 전략(Exit Plan) · 고객 데이터 소유권 · 역외 이전 방지 SLA</text>
+    <text x="260" y="198" class="itpe-svg-sub" text-anchor="middle">공급자 종속(Lock-in) 방지를 위한 표준 RESTful API 및 데이터 정기 백업 의무화</text>
+  </svg>
+</div>
 
 | 주체 | 책임 | 통제 |
 |---|---|---|
@@ -74,10 +119,11 @@ extra:
 - `나라면`: 계약 전에 데이터 반출과 대체 공급자 전환을 시험하겠음.
 
 ### 실전 답안용 기술사적 제언
-- 판정: 데이터·연계·운영지식의 이동 가능성
-- 대안: 표준 반출 형식 · API 버전 정책 · 전환 지원 조항
-- 검증: 종료 모의훈련의 데이터 복원·채널 전환 성공
-- 효과: 공급 중단·협상력 약화 위험 완화
+
+- **판정 기준 (Trigger)**: 공급자 측 SLA 가용률(99.9% 등) 미달 빈발, 또는 핵심 고객 데이터의 반출 불가/폐쇄형 스키마 락인(Lock-in) 발생 시 위험 판정.
+- **대응 방안 (Action)**: 계약 체결 시 '표준 포맷(JSON/CSV) 기반 데이터 반출 권리' 및 '서비스 종료 지원(Exit Management) 조항'을 계약서에 필수 명문화.
+- **검증 체계 (Verification)**: 분기별 모의 종료 훈련(Mock Exit Drill)을 통해 공급자 장애 시 타 솔루션 또는 자체 시스템으로의 전환 시간(RTO)과 고객 이탈률을 검증함.
+- **기대 효과 (Impact)**: 공급자 종속 리스크 해소, 브랜드 신인도 보호, B2B2C 파트너십에서의 가격 협상력(Bargaining Power) 지속 유지를 달성함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공급자 종속 완화 흐름"><div class="itpe-pipeline-node"><strong>현행 한계</strong><div class="itpe-step-detail"><strong>문제</strong><span>전용 형식·연계·운영지식 종속</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>전환 설계</strong><div class="itpe-step-detail"><strong>대안</strong><span>표준 반출·API 정책·전환 지원 계약</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>종료 모의훈련</strong><div class="itpe-step-detail"><strong>판정</strong><span>데이터 복원·대체 채널 전환 성공</span></div></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>지속 가능한 소싱</strong><div class="itpe-step-detail"><strong>효과</strong><span>사업 연속성·협상력 확보</span></div></div></div>
 

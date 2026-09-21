@@ -1,13 +1,13 @@
 ---
 title: "Six Sigma DMAIC"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T11:25:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -69,7 +69,7 @@ extra:
 - **정의**: 고객 요구에 미달하는 기존 프로세스의 결함·변동을 데이터로 분석·개선·통제하는 방법론
 - **목적**: CTQ 개선·변동 감소·개선성과의 지속
 
-Six Sigma의 3.4 DPMO는 장기 공정 이동을 가정한 대표적 품질수준이며, 모든 IT 서비스에 일률 적용하는 의무 기준은 아님.
+Six Sigma의 3.4 DPMO는 장기 공정 이동(1.5σ Shift)을 가정한 대표적 품질수준(99.99966%)이며, 모든 IT 서비스에 일률 적용하는 의무 기준은 아님.
 
 ## Ⅱ. DMAIC 단계별 활동·산출
 
@@ -81,7 +81,76 @@ Six Sigma의 3.4 DPMO는 장기 공정 이동을 가정한 대표적 품질수�
 | Improve | 대안 설계·Pilot 검증 | DOE·FMEA·Pilot | 개선안·검증결과 |
 | Control | 표준화·감시·대응 | SPC·Control Plan·SOP | 관리계획·표준 |
 
-## Ⅲ. 적용 절차
+## Ⅲ. 6시그마 통계적 메커니즘과 DMAIC 파이프라인
+
+```
+[6 Sigma 통계적 기준]                         [DMAIC 5단계 로드맵]
+ 1.5σ Shift 고려 시 3.4 DPMO               Define   : VOC -> CTQ 도출 및 헌장 작성
+ LSL        μ        USL                   Measure  : 데이터 수집 및 현수준(DPMO) 산정
+ ───┼───────┼───────┼───                   Analyze  : 근본원인(Vital Few) 통계적 규명
+   -6σ     0      +6σ                     Improve  : 최적해 도출 및 파일럿 적용
+ (합격률 99.99966%)                        Control  : SPC 관리도 및 표준화/SOP 수립
+```
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="6시그마 통계적 정규분포 및 DMAIC 5단계 개선 파이프라인">
+  <!-- 배경 바운더리 -->
+  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
+
+  <!-- 좌측 영역: 6시그마 정규분포 곡선 -->
+  <g transform="translate(15, 20)">
+    <rect x="0" y="0" width="220" height="175" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+    <text x="110" y="20" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">6 Sigma 정규분포 (±6σ)</text>
+    
+    <!-- 정규분포 곡선 -->
+    <path d="M 15 130 C 60 130, 80 120, 95 65 C 105 35, 115 35, 125 65 C 140 120, 160 130, 205 130" fill="none" stroke="var(--sl-color-accent)" stroke-width="2" />
+    
+    <!-- 규격선 USL / LSL -->
+    <line x1="25" y1="35" x2="25" y2="135" stroke="var(--sl-color-gray-3)" stroke-width="1.5" stroke-dasharray="3,3" />
+    <text x="25" y="148" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2)">LSL</text>
+
+    <line x1="110" y1="30" x2="110" y2="135" stroke="var(--sl-color-accent)" stroke-width="1" />
+    <text x="110" y="148" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--sl-color-accent)">μ (평균)</text>
+
+    <line x1="195" y1="35" x2="195" y2="135" stroke="var(--sl-color-gray-3)" stroke-width="1.5" stroke-dasharray="3,3" />
+    <text x="195" y="148" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2)">USL</text>
+
+    <rect x="25" y="155" width="170" height="18" rx="3" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
+    <text x="110" y="167" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent-high)">3.4 DPMO (1.5σ Shift 반영)</text>
+  </g>
+
+  <!-- 우측 영역: DMAIC 5단계 파이프라인 -->
+  <g transform="translate(250, 20)">
+    <rect x="0" y="0" width="250" height="175" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+    <text x="125" y="20" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">DMAIC 5단계 문제해결</text>
+
+    <!-- Step D -->
+    <rect x="15" y="30" width="60" height="26" rx="4" fill="var(--sl-color-gray-5)" stroke="var(--sl-color-gray-3)" stroke-width="1" />
+    <text x="45" y="47" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">Define</text>
+    <text x="85" y="47" font-size="9" fill="var(--sl-color-gray-2)">VOC → CTQ, SIPOC</text>
+
+    <!-- Step M -->
+    <rect x="15" y="60" width="60" height="26" rx="4" fill="var(--sl-color-gray-5)" stroke="var(--sl-color-gray-3)" stroke-width="1" />
+    <text x="45" y="77" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">Measure</text>
+    <text x="85" y="77" font-size="9" fill="var(--sl-color-gray-2)">MSA, DPMO Baseline</text>
+
+    <!-- Step A -->
+    <rect x="15" y="90" width="60" height="26" rx="4" fill="var(--sl-color-gray-5)" stroke="var(--sl-color-gray-3)" stroke-width="1" />
+    <text x="45" y="107" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">Analyze</text>
+    <text x="85" y="107" font-size="9" fill="var(--sl-color-gray-2)">Vital Few 원인 (파레토/회귀)</text>
+
+    <!-- Step I -->
+    <rect x="15" y="120" width="60" height="26" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
+    <text x="45" y="137" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent-high)">Improve</text>
+    <text x="85" y="137" font-size="9" fill="var(--sl-color-text)">DOE 최적화, Pilot 검증</text>
+
+    <!-- Step C -->
+    <rect x="15" y="150" width="60" height="22" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
+    <text x="45" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent-high)">Control</text>
+    <text x="85" y="165" font-size="9" fill="var(--sl-color-gray-2)">SPC 관리도, SOP 표준화</text>
+  </g>
+</svg>
+</div>
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 서비스 DMAIC 적용 절차">
   <div class="itpe-flow-node"><strong>Define</strong><div class="itpe-step-detail"><strong>활동</strong><span>서비스 문제·CTQ·범위 정의</span></div><div class="itpe-step-detail"><strong>산출</strong><span>Charter·SIPOC</span></div></div>
@@ -115,9 +184,18 @@ Six Sigma의 3.4 DPMO는 장기 공정 이동을 가정한 대표적 품질수�
 
 ## Ⅵ. 결론·기술사적 제언
 
-> **[핵심 통찰]** DMAIC의 핵심은 복잡한 통계가 아니라 측정 가능한 문제와 검증된 원인을 연결하고 개선 후 회귀를 막는 것임.
+### 학습자 통찰 메모 — 답안 밖
 
-> **나라면** 서비스 로그로 CTQ Baseline을 만들고, 상위 원인만 Pilot으로 검증한 뒤 SLI·Alert·Runbook을 Control Plan에 연결하겠음.
+> **[핵심 통찰]** DMAIC의 성패는 복잡한 통계 기법 구사가 아니라, 고객 관점의 CTQ를 시스템 로그 및 APM 지표와 정확히 연계(MSA)하고, 개선 이후 성과가 원래 상태로 회귀하지 않도록 차단하는 Control Plan의 제도화에 달려 있다.
+> 
+> **나라면** 현업 VOC와 결제/트랜잭션 지연을 CTQ로 정의하고, APM 분산 추적 로그로 MSA를 수행하겠음. 이후 개선안은 Canary 배포를 통해 통계적 가설 검증(A/B Test)을 진행하고, Control 단계에서는 Prometheus Alerting Rule 및 자동 복구 Runbook과 연동해 모니터링을 무인 자동화하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 프로세스 품질 개선 착수 시 단기 공정능력지수 $C_p \ge 2.0$, $C_{pk} \ge 1.5$ 달성 여부 및 DPMO 3.4 수준 목표 타당성 검토
+- **대응 방안**: Lean의 낭비 제거(Lead-time 단축)와 6 Sigma의 변동 제거(Defect 최소화)를 결합한 Lean Six Sigma 체계 구축
+- **검증 체계**: 통계적 공정관리(SPC) X-bar 관리도를 통한 이상 원인 조기 감지 및 분기별 MSA 재검증
+- **기대 효과**: 대고객 트랜잭션 오류율 99.999% 무결성 유지, SLA 위반 패널티 제로화 및 연간 재작업 품질비용 40% 이상 절감
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 서비스 DMAIC 통제 폐루프">
   <div class="itpe-flow-node"><strong>CTQ Baseline</strong><div class="itpe-step-detail"><strong>증거</strong><span>지연·오류·가용성</span></div></div>
@@ -157,6 +235,7 @@ Six Sigma의 3.4 DPMO는 장기 공정 이동을 가정한 대표적 품질수�
 
 ## 연결 토픽
 
-- 이전: [110. Programmable Money·AI Agent 결제](./110_programmable_money_ai_agents/)
-- 관련: [106. 품질비용](./106_cost_of_quality_coq/) · [113. SW 비용 산정](./113_software_cost_estimation/)
-- 다음: [112. CCPM·TOC](./112_critical_chain_toc/)
+- 이전: [110. Programmable Money·AI Agent 결제](./110_programmable_money_ai_agents.md)
+- 관련: [106. 품질비용](./106_cost_of_quality_coq.md) · [113. SW 비용 산정](./113_software_cost_estimation.md)
+- 다음: [112. CCPM·TOC](./112_critical_chain_toc.md)
+

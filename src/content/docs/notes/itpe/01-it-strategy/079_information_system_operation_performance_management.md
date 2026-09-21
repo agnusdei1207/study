@@ -1,6 +1,6 @@
 ---
 title: "정보시스템 운영 성과관리"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T05:50:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
   keyword_grade: "C"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -84,6 +84,42 @@ extra:
 
 ## Ⅳ. 제26조 평가점수별 정비 판정
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="전자정부 정보시스템 운영 성과평가 100점 점수 구간별 정비 판정 체계도">
+    <!-- 100 Point Bar -->
+    <rect x="20" y="20" width="480" height="35" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="42" class="itpe-svg-title">종합 평가점수 = 비용 측면(40점) + 업무 측면(60점) [총 100점 만점]</text>
+
+    <!-- Threshold 1: 60+ Points -->
+    <rect x="20" y="70" width="150" height="95" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="95" y="92" class="itpe-svg-title">60점 이상 (유지)</text>
+    <line x1="30" y1="102" x2="160" y2="102" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="95" y="122" class="itpe-svg-sub">정비권고 비해당</text>
+    <text x="95" y="140" class="itpe-svg-sub">지속 운영 및 고도화</text>
+    <text x="95" y="156" class="itpe-svg-sub">품질 수준 향상 관리</text>
+
+    <!-- Threshold 2: 40 ~ 60 Points -->
+    <rect x="185" y="70" width="150" height="95" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="92" class="itpe-svg-title">40점 ~ 60점 (개선)</text>
+    <line x1="195" y1="102" x2="325" y2="102" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="260" y="122" class="itpe-svg-sub">정비권고 대상</text>
+    <text x="260" y="140" class="itpe-svg-sub">통폐합 / 기능 재설계</text>
+    <text x="260" y="156" class="itpe-svg-sub">전면 재개발 등 정비</text>
+
+    <!-- Threshold 3: Under 40 Points -->
+    <rect x="350" y="70" width="150" height="95" rx="6" class="itpe-svg-node"></rect>
+    <text x="425" y="92" class="itpe-svg-title">40점 미만 (폐기)</text>
+    <line x1="360" y1="102" x2="490" y2="102" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="425" y="122" class="itpe-svg-sub">원칙: 폐기 권고</text>
+    <text x="425" y="140" class="itpe-svg-sub">단, 8대 법정 예외 사유</text>
+    <text x="425" y="156" class="itpe-svg-sub">해당 시 폐기 유예</text>
+
+    <!-- Bottom Exception Callout -->
+    <rect x="20" y="175" width="480" height="35" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1"></rect>
+    <text x="260" y="196" class="itpe-svg-sub" text-anchor="middle">폐기 예외: 법령 근거, 안보/치안, 국민생활 필수, 취약계층 서비스, 3년 미경과 등 심의</text>
+  </svg>
+</div>
+
 <div class="itpe-flow-map" role="img" aria-label="정보시스템 성과평가 점수가 60점 이상인지 판정하고 60점 미만을 40점 기준으로 나누는 흐름">
   <div class="itpe-flow-node"><strong>성과평가 총점</strong><div class="itpe-step-detail"><strong>만점</strong><span>100점</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
@@ -119,10 +155,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 비용 40점·업무 60점 측정결과의 증빙 적정성 · 제26조 점수 구간
-- 대안: 원천자료 검증 · 폐기 예외 검토 · 정비계획 수립 · 이행점검
-- 검증: 평가점수 · 정비권고 근거 · 정보 이관·보존 · 서비스 연속성 증적
-- 효과: 저성과 시스템 정비 · 업무·비용 성과 제고 · 이용자 영향 최소화
+- **판정 기준 (Trigger)**: 행정안전부 정보시스템 운영 성과평가 점수가 60점 미만 도출 시 즉시 정비권고 대상으로 지정, 40점 미만 시 폐기 원칙 적용.
+- **대응 방안 (Action)**: 40~60점 구간은 통폐합/클라우드 전환/기능고도화 정비계획을 수립하고, 40점 미만은 8대 법정 예외(안보, 취약계층 등) 해당 여부를 위원회 심의 후 데이터 이관·보존 절차를 거쳐 안전 폐기.
+- **검증 체계 (Verification)**: 비용 40점(유지보수비 비율) 및 업무 60점(사용량 및 공통/고유 성과지표)의 기초 증빙데이터(로그, 결산서)의 무결성을 전수 교차 감사함.
+- **기대 효과 (Impact)**: 유령·저활용 공공시스템 유지보수 예산 낭비 차단, 전자정부 서비스 연속성 및 공공 데이터 안전 이관 보장을 달성함.
 
 ## 1교시 10점 답안 발췌
 

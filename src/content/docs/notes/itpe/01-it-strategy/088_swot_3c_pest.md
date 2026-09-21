@@ -1,6 +1,6 @@
 ---
 title: "경영환경 분석(SWOT·3C·PEST)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T07:15:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "B"
 ---
 
@@ -83,9 +83,93 @@ extra:
 | **핵심 산출물** | 거시 변화요인 | 고객 요구·경쟁구도·자사역량 | S/W/O/T 요인·전략대안 |
 | **핵심 질문** | 외부 거시 변화는 무엇인가? | 고객·경쟁사 대비 자사의 위치는? | 내·외부 요인을 어떻게 결합할 것인가? |
 
-## Ⅲ. PEST-3C-SWOT 연계 구성체계 및 방법론
+## Ⅲ. PEST-3C-SWOT 연계 구성체계 및 4대 교차 매트릭스
 
 > 각 분석 도구가 독립적으로 머물지 않고 이전 단계의 산출물이 다음 단계의 입력값으로 정합성을 갖추어야 전략의 모순이 차단됨.
+
+### 1. PEST-3C 입력 파이프라인 및 SWOT 4대 교차 매트릭스
+
+```xml
+<svg-diagram>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">PEST·3C 환경 입력 및 SWOT 4대 교차 전략 구조도</text>
+
+  <!-- Left: Inputs (PEST & 3C) -->
+  <g transform="translate(15, 45)">
+    <!-- PEST Box -->
+    <rect x="0" y="0" width="140" height="68" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
+    <text x="70" y="18" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">PEST 거시분석</text>
+    <text x="10" y="36" fill="var(--sl-color-text)" font-size="9">P(정치) · E(경제)</text>
+    <text x="10" y="50" fill="var(--sl-color-text)" font-size="9">S(사회) · T(기술)</text>
+    <text x="10" y="63" fill="var(--sl-color-text-muted)" font-size="8">▶ 외부 환경 O / T 도출</text>
+
+    <!-- 3C Box -->
+    <rect x="0" y="82" width="140" height="68" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
+    <text x="70" y="100" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">3C 미시분석</text>
+    <text x="10" y="118" fill="var(--sl-color-text)" font-size="9">Customer (고객 니즈)</text>
+    <text x="10" y="132" fill="var(--sl-color-text)" font-size="9">Competitor · Company</text>
+    <text x="10" y="145" fill="var(--sl-color-text-muted)" font-size="8">▶ 내부 역량 S / W 도출</text>
+  </g>
+
+  <!-- Connectors -->
+  <path d="M 160 80 L 195 95" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <path d="M 160 115 L 195 105" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Right: SWOT 2x2 Matrix -->
+  <g transform="translate(205, 45)">
+    <!-- Column Headers: Opportunities & Threats -->
+    <rect x="75" y="0" width="115" height="20" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="2"/>
+    <text x="132" y="14" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">기회 (Opportunities)</text>
+
+    <rect x="195" y="0" width="115" height="20" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="2"/>
+    <text x="252" y="14" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">위협 (Threats)</text>
+
+    <!-- Row Header: Strengths -->
+    <rect x="0" y="25" width="70" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="2"/>
+    <text x="35" y="52" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">강점 (S)</text>
+    <text x="35" y="65" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">내부역량</text>
+
+    <!-- SO Cell -->
+    <rect x="75" y="25" width="115" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="3"/>
+    <text x="132" y="44" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">SO 전략 (공격/성장)</text>
+    <text x="82" y="60" fill="var(--sl-color-text)" font-size="9">• 시장 기회 선점</text>
+    <text x="82" y="74" fill="var(--sl-color-text-muted)" font-size="8">• AI 융합 신사업 확장</text>
+
+    <!-- ST Cell -->
+    <rect x="195" y="25" width="115" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="3"/>
+    <text x="252" y="44" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">ST 전략 (차별화/수비)</text>
+    <text x="202" y="60" fill="var(--sl-color-text)" font-size="9">• 강점 기반 위협 극복</text>
+    <text x="202" y="74" fill="var(--sl-color-text-muted)" font-size="8">• 금융 라이선스 차별화</text>
+
+    <!-- Row Header: Weaknesses -->
+    <rect x="0" y="90" width="70" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="2"/>
+    <text x="35" y="117" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">약점 (W)</text>
+    <text x="35" y="130" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">내부역량</text>
+
+    <!-- WO Cell -->
+    <rect x="75" y="90" width="115" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="3"/>
+    <text x="132" y="109" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">WO 전략 (국면전환)</text>
+    <text x="82" y="125" fill="var(--sl-color-text)" font-size="9">• 기회 활용 약점 만회</text>
+    <text x="82" y="139" fill="var(--sl-color-text-muted)" font-size="8">• 클라우드 전환 지원</text>
+
+    <!-- WT Cell -->
+    <rect x="195" y="90" width="115" height="60" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="3"/>
+    <text x="252" y="109" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">WT 전략 (철수/방어)</text>
+    <text x="202" y="125" fill="var(--sl-color-text)" font-size="9">• 취약점 보완/사업 축소</text>
+    <text x="202" y="139" fill="var(--sl-color-text-muted)" font-size="8">• 비핵심 매각·보안 집중</text>
+  </g>
+</svg>
+</svg-diagram>
+```
+
+### 2. SWOT 4대 교차 전략 매트릭스
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="PEST-3C-SWOT 통합 연계 4단계 방법론">
   <div class="itpe-pipeline-node">
@@ -105,8 +189,6 @@ extra:
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>전략 정합성</strong></span> · 각 SWOT 요인의 근거와 교차 전략의 실행과제를 추적 가능하게 연결</div>
-
-### SWOT 4대 교차 전략 매트릭스
 
 | 교차 전략 | 결합 축 | 전략 방향성 | 실무 IT 전략 적용 사례 |
 |---|---|---|---|
@@ -137,10 +219,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 요인 근거·관측시점·실행책임·재검토 조건
-- 대안: 근거 등록 · 변화 신호 모니터링 · 과제 우선순위 재평가
-- 검증: 환경요인–SWOT–전략과제 추적성 · 가정 최신성
-- 효과: 전략 왜곡 감소 · 변화 대응력 향상
+- **판정 기준**: 요인별 통제 가능성(내부 S/W vs 외부 O/T), 데이터 출처 및 관측 시점 최신성 판정
+- **대응 방안**: PEST-3C-SWOT 연계 파이프라인 정립, 4대 교차 과제 도출 및 AHP 기반 투자 우선순위 정량화
+- **검증 체계**: 환경 요인–SWOT 매트릭스–전략 과제 간 추적성(Traceability) 검증 및 분기별 가정 재평가
+- **기대 효과**: 전략 왜곡 원천 차단, 생성형 AI·규제 변화에 따른 기민한 전략 피벗(Pivot) 및 자원 낭비 방지
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="상시 전략 감지 체계 구축 제언 흐름">
   <div class="itpe-pipeline-node">
@@ -200,3 +282,4 @@ extra:
 - 이전 토픽: [소프트웨어 기술자 구분(등급제·IT직무제)](./087_it_job_competency_system.md)
 - 연관 토픽: [TAM-SAM-SOM](./089_tam_sam_som.md), [ISP](./003_isp.md)
 - 다음 토픽: [TAM-SAM-SOM](./089_tam_sam_som.md)
+

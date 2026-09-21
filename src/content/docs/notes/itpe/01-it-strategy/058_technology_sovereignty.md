@@ -1,6 +1,6 @@
 ---
 title: "기술 주권"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T03:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -67,6 +67,37 @@ extra:
 
 ## Ⅱ. 기술 주권 대상과 통제수단
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="기술 주권 4대 핵심 기술 스택 및 다변화 통제 아키텍처">
+    <!-- AI & SW -->
+    <rect x="20" y="15" width="235" height="75" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="137" y="36" class="itpe-svg-title">AI 모델 및 SW 스택</text>
+    <text x="137" y="55" class="itpe-svg-sub">오픈소스 파운데이션 모델 활용</text>
+    <text x="137" y="72" class="itpe-svg-sub">SBOM 공급망 추적 · 상호운용 표준</text>
+
+    <!-- Cloud & Data -->
+    <rect x="265" y="15" width="235" height="75" rx="6" class="itpe-svg-node"></rect>
+    <text x="382" y="36" class="itpe-svg-title">클라우드 및 데이터 주권</text>
+    <text x="382" y="55" class="itpe-svg-sub">멀티 클라우드 이식성(Portability)</text>
+    <text x="382" y="72" class="itpe-svg-sub">데이터 관할권 보호 · 탈출(Exit) 전략</text>
+
+    <!-- Semiconductor & Accelerator -->
+    <rect x="20" y="105" width="235" height="75" rx="6" class="itpe-svg-node"></rect>
+    <text x="137" y="126" class="itpe-svg-title">반도체 및 하드웨어 가속기</text>
+    <text x="137" y="145" class="itpe-svg-sub">국산 NPU 실증 · 이기종 아키텍처</text>
+    <text x="137" y="162" class="itpe-svg-sub">글로벌 팹 파트너십 다변화</text>
+
+    <!-- Network & Security -->
+    <rect x="265" y="105" width="235" height="75" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="382" y="126" class="itpe-svg-title">네트워크 및 핵심 사이버보안</text>
+    <text x="382" y="145" class="itpe-svg-sub">제로트러스트 검증 · 장비 다중 벤더</text>
+    <text x="382" y="162" class="itpe-svg-sub">자체 보안 패치 권한 및 독립 관제</text>
+
+    <!-- Bottom Indicator -->
+    <text x="260" y="202" class="itpe-svg-sub" text-anchor="middle">목표: 특정 벤더·국가 락인(Lock-in) 방지 및 비상 시 전환시간(MTTS) 최소화</text>
+  </svg>
+</div>
+
 | 대상 | 주요 의존위험 | 통제수단 |
 |---|---|---|
 | 반도체·가속기 | 특정 공급자·장비·소재 | 다변화·비축·대체설계·공동 R&D |
@@ -111,9 +142,18 @@ extra:
 
 ## Ⅵ. Dependency Budget 기반 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` 기술 주권은 국산 비율이 아니라 특정 공급자가 중단돼도 핵심 기능을 얼마나 빨리 대체·복구할 수 있는가로 평가해야 함.
 
 `나라면` 핵심서비스마다 허용 가능한 공급집중도와 전환시간을 Dependency Budget으로 정하고, 초과 시 다중공급·Portability·대체훈련을 조달조건에 반영하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: 핵심 국가 기간망 및 주요 금융·공공 서비스의 단일 외산 SW/인프라 의존도(Herfindahl 지수)가 60%를 초과하거나 대체 전환시간(MTTS) > 7일일 때 공급망 주권 위기로 판정.
+- **대응 방안 (Action)**: 공공 조달 시 개방형 표준(Open Standard) 및 컨테이너 기반 멀티 클라우드 이식성을 필수화하고, SW 자산에 대한 SBOM 제출 및 소스코드 에스크로(Escrow)를 의무화함.
+- **검증 체계 (Verification)**: 연 1회 모의 공급망 단절(Vendor Blackout) 전환 훈련을 실시하여 예비 시스템으로의 업무 전환 시간(RTO)과 데이터 무결성을 실증함.
+- **기대 효과 (Impact)**: 지정학적 기술 수출 통제 및 벤더 라이선스 정책 급변에 대한 회복탄력성(Resilience) 확보, 독자적 협상력과 디지털 경제 주권 방어를 달성함.
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 430" role="img" aria-label="기술 의존도 예산을 이용해 유지와 완화를 결정하는 구조">

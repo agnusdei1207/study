@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어 비용 산정(Software Cost Estimation)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T10:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -94,7 +94,63 @@ extra:
 | 상향식 | **WBS(Work Breakdown Structure)** 작업별 공수 | 상세 범위 확정 후 |
 | 모형식 | FP · **COCOMO(Constructive Cost Model)** | 데이터 기반 검증 |
 
-### 2. FP 측정·대가 산정 절차
+### 2. FP 측정·대가 산정 메커니즘
+
+```
+[5대 기능 식별] ──> [미보정 FP] ──> [5대 보정계수] ──> [보정 FP] ──> [개발원가] ──> [총 SW 개발비]
+ - 데이터: ILF, EIF                    - 규모/연계복잡성          × 단가(605,784원)    + 이윤(최대 25%)
+ - 트랜잭션: EI, EO, EQ                - 성능/다중사이트/보안                         + 직접경비
+```
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="기능점수 기반 SW 개발비 산출 파이프라인">
+  <!-- 배경 바운더리 -->
+  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
+
+  <!-- 1. 5대 기능 식별 -->
+  <g transform="translate(25, 25)">
+    <rect x="0" y="0" width="145" height="80" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+    <text x="72" y="20" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">1. 5대 기능 식별</text>
+    <text x="72" y="40" text-anchor="middle" font-size="9" fill="var(--sl-color-accent)">데이터: ILF, EIF</text>
+    <text x="72" y="58" text-anchor="middle" font-size="9" fill="var(--sl-color-accent)">트랜잭션: EI, EO, EQ</text>
+    <text x="72" y="73" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">→ 미보정 기능점수(UFP)</text>
+  </g>
+
+  <!-- 화살표 1 -> 2 -->
+  <line x1="170" y1="65" x2="190" y2="65" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+
+  <!-- 2. 5대 보정계수 -->
+  <g transform="translate(190, 25)">
+    <rect x="0" y="0" width="145" height="80" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+    <text x="72" y="20" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-accent-high)">2. 5대 보정계수</text>
+    <text x="72" y="38" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text)">① 규모 (소규모~대규모)</text>
+    <text x="72" y="52" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text)">② 연계복잡성 ③ 성능요구</text>
+    <text x="72" y="66" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text)">④ 다중사이트 ⑤ 보안성</text>
+  </g>
+
+  <!-- 화살표 2 -> 3 -->
+  <line x1="335" y1="65" x2="355" y2="65" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+
+  <!-- 3. 보정 FP 및 개발원가 -->
+  <g transform="translate(355, 25)">
+    <rect x="0" y="0" width="135" height="80" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+    <text x="67" y="20" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">3. 개발원가 산출</text>
+    <text x="67" y="40" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">보정 FP (AFP)</text>
+    <text x="67" y="58" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">× 605,784원/FP</text>
+    <text x="67" y="73" text-anchor="middle" font-size="8" fill="var(--sl-color-accent)">(2025 개정단가)</text>
+  </g>
+
+  <!-- 수직 연결 -->
+  <line x1="422" y1="105" x2="422" y2="125" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+
+  <!-- 하단 최종 산출식 -->
+  <g transform="translate(25, 125)">
+    <rect x="0" y="0" width="465" height="65" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+    <text x="232" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-accent-high)">최종 SW 개발비 = 개발원가 + 이윤(최대 25%) + 직접경비</text>
+    <text x="232" y="45" text-anchor="middle" font-size="9.5" fill="var(--sl-color-gray-2)">직접경비: 엔지니어링 출장여비, 전산소모품, 도입SW 라이선스 등 실비 반영</text>
+  </g>
+</svg>
+</div>
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="기능점수 측정과 소프트웨어 개발비 산정 절차">
   <div class="itpe-pipeline-node"><strong>① 측정 범위 설정</strong><div class="itpe-step-detail"><strong>활동</strong><span>사용자 관점 애플리케이션 경계 확정</span></div><div class="itpe-step-detail"><strong>산출</strong><span>측정 범위 · 경계</span></div></div>
@@ -141,14 +197,18 @@ SW 개발비 = 개발원가 + 이윤 + 직접경비
 
 ## Ⅴ. 결론·기술사적 제언
 
-> 일회성 숫자 확정보다 요구사항 성숙도에 맞춘 재산정과 추적 가능한 산정근거가 중요하다.
-
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: 정확한 공식도 잘못된 경계와 누락된 요구사항을 보정하지 못한다. 견적 품질은 입력 품질과 변경 추적성에서 시작한다.
-- 나라면: 기획 견적을 계약 확정치로 고정하지 않고 분석·설계 종료 시 FP를 재검증하여 범위와 대가를 함께 Baseline화하겠다.
+> **[핵심 통찰]** 아무리 정밀한 공학적 FP 산식도 불명확한 시스템 경계와 과업 변경을 흡수하지 못한다. 견적의 신뢰성은 초기 산정의 정확도보다, 개발 생애주기 동안 발생하는 요구사항 변경을 RTM과 증분 FP로 추적하여 대가로 연결하는 과업심의 연계성에 달려 있다.
+> 
+> **나라면** RFP 기획 단계에서는 간이법 FP로 예산을 편성하되, 분석·설계 완료 단계에서 정통법 FP로 전수 재측정하여 과업 Baseline을 확정하고, 변경 발생 시 10% 이상 규모 증감에 대해 과업심의위원회를 즉각 소집하여 계약금액 조정을 신청하겠다.
 
 ### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 분석/설계 완료 시점 상세 FP 측정을 통해 기획 예산 대비 변동폭 ±10% 초과 시 즉시 계약 변경 및 과업심의 의무 상정
+- **대응 방안**: 5대 보정계수(규모, 연계, 성능, 사이트, 보안) 적용 시 객관적 정량 증적(연계 인터페이스 명세서, 보안성 검토 결과 등) 첨부 제도화
+- **검증 체계**: 전문 감리법인 및 공공 SW 대가 전문위원회의 교차 검증(Cross-Check)을 통한 기능 분류(ILF/EIF/EI/EO/EQ) 왜곡 방지
+- **기대 효과**: 공공 SW 사업 제값 받기 정착, 잦은 과업 추가에 따른 개발사 적자 리스크 원천 차단 및 납기 품질 보장
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 500" role="img" aria-label="기능점수 재산정과 변경통제를 결합한 비용 산정 개선안">
@@ -216,6 +276,7 @@ SW 개발비 = 개발원가 + 이윤 + 직접경비
 
 ## 연결 토픽
 
-- 이전: [112. CCPM·TOC](./112_critical_chain_toc/)
-- 관련: [026. SW 사업 대가산정](./026_software_cost_estimation/) · [091. 과업심의](./091_public_sw_cost_and_scope_change_criteria/)
-- 다음: [114. 개방형 혁신](./114_open_innovation/)
+- 이전: [112. CCPM·TOC](./112_critical_chain_toc.md)
+- 관련: [026. SW 사업 대가산정](./026_software_cost_estimation.md) · [091. 과업심의](./091_public_sw_cost_and_scope_change_criteria.md)
+- 다음: [114. 개방형 혁신](./114_open_innovation.md)
+

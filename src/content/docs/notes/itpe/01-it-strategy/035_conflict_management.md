@@ -1,6 +1,6 @@
 ---
 title: "갈등관리"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-21T18:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: 목표·자원·관계·업무방식의 충돌을 진단하고 상황에 맞는 대응으로 프로젝트 성과를 보호하는 활동
-- 메커니즘: 유형·원인 파악 → 이해관계 확인 → 대응모드 선택 → 합의·결정 → 이행 확인
-- 통제: Assertiveness·Cooperativeness · 객관적 기준 · 결정권 · 기록·후속조치
+- 본질: 프로젝트 이해관계자 간의 견해차를 조기에 감지하고, 파괴적인 관계 갈등은 차단하되 생산적인 과업 갈등은 유도하여 팀 성과와 품질을 극대화하는 관리 기법.
+- 메커니즘: 갈등 징후 감지 → 사람과 문제의 분리 → **Thomas-Kilmann 5대 모드(협력·경쟁·타협·회피·수용)** 선택 실행 → **PoC 실증 및 ADR(아키텍처 결정기록)** 합의 → 기준선 반영.
+- 통제: 감정 비난 차단(Fact 기반) · 기술 논쟁 시 **Disagree and Commit** 원칙 적용 · 회의 직후 액션 아이템 RACI 및 WBS 공식 변경 통제.
 
 <div class="itpe-flow-map" role="img" aria-label="갈등 발생 감지부터 Thomas-Kilmann 모델 적용 및 기준선 반영 흐름">
   <div class="itpe-flow-node">
@@ -88,6 +88,50 @@ extra:
 ## Ⅲ. Thomas-Kilmann 5대 갈등 해결 모델 아키텍처
 
 > **자기주장성(Assertiveness)**과 **협조성(Cooperativeness)**의 2차원 축을 기준으로 상황에 맞는 최적의 모드를 선택함.
+
+<div class="itpe-diagram-box">
+  <svg viewBox="0 0 520 230" width="100%" height="230" role="img" aria-label="Thomas-Kilmann 5대 갈등 해결 모델 2차원 매트릭스 다이어그램">
+    <!-- Axes and Background Grid -->
+    <line x1="80" y1="20" x2="80" y2="190" stroke="var(--sl-color-gray-4)" stroke-width="2"/>
+    <line x1="80" y1="190" x2="480" y2="190" stroke="var(--sl-color-gray-4)" stroke-width="2"/>
+    <text x="35" y="105" fill="var(--sl-color-gray-2)" font-size="10" font-weight="bold" transform="rotate(-90 40 105)">자기주장성 (Assertiveness)</text>
+    <text x="280" y="210" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="10" font-weight="bold">협조성 (Cooperativeness)</text>
+    <text x="110" y="205" fill="var(--sl-color-gray-3)" font-size="9">낮음(비협조적)</text>
+    <text x="410" y="205" fill="var(--sl-color-gray-3)" font-size="9">높음(협조적)</text>
+    <text x="45" y="160" fill="var(--sl-color-gray-3)" font-size="9">낮음</text>
+    <text x="45" y="45" fill="var(--sl-color-gray-3)" font-size="9">높음</text>
+
+    <!-- 1. Competing (Top-Left): High Assertive, Low Cooperative -->
+    <rect x="90" y="25" width="170" height="65" rx="5" fill="var(--sl-color-red-low)" stroke="var(--sl-color-red)" stroke-width="1.5"/>
+    <text x="175" y="45" text-anchor="middle" fill="var(--sl-color-red-high)" font-size="11" font-weight="bold">경쟁 (Competing)</text>
+    <text x="175" y="62" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9.5">긴급 대응 · 보안 규정 관철</text>
+    <text x="175" y="78" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">Win-Lose 독단적 결정</text>
+
+    <!-- 2. Collaborating (Top-Right): High Assertive, High Cooperative -->
+    <rect x="295" y="25" width="170" height="65" rx="5" fill="var(--sl-color-blue-low)" stroke="var(--sl-color-blue)" stroke-width="1.5"/>
+    <text x="380" y="45" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="11" font-weight="bold">협력 (Collaborating)</text>
+    <text x="380" y="62" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9.5">핵심 쟁점 통합 · 장기 신뢰</text>
+    <text x="380" y="78" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">Win-Win 시너지 대안 탐색</text>
+
+    <!-- 3. Compromising (Center): Mid Assertive, Mid Cooperative -->
+    <rect x="195" y="75" width="165" height="55" rx="5" fill="var(--sl-color-green-low)" stroke="var(--sl-color-green)" stroke-width="1.5"/>
+    <text x="277" y="95" text-anchor="middle" fill="var(--sl-color-green-high)" font-size="11" font-weight="bold">타협 (Compromising)</text>
+    <text x="277" y="110" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">납기 임박 · 상호 양보 절충안</text>
+    <text x="277" y="122" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">현실적 차선책 합의</text>
+
+    <!-- 4. Avoiding (Bottom-Left): Low Assertive, Low Cooperative -->
+    <rect x="90" y="115" width="170" height="65" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
+    <text x="175" y="135" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="11" font-weight="bold">회피 (Avoiding)</text>
+    <text x="175" y="152" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">사소한 쟁점 · 감정 냉각기</text>
+    <text x="175" y="168" text-anchor="middle" fill="var(--sl-color-gray-3)" font-size="8.5">판단 유예 및 후속 관찰</text>
+
+    <!-- 5. Accommodating (Bottom-Right): Low Assertive, High Cooperative -->
+    <rect x="295" y="115" width="170" height="65" rx="5" fill="var(--sl-color-purple-low)" stroke="var(--sl-color-purple)" stroke-width="1.5"/>
+    <text x="380" y="135" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="11" font-weight="bold">수용 (Accommodating)</text>
+    <text x="380" y="152" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9.5">관계 보존 우선 · 과실 인정</text>
+    <text x="380" y="168" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">Lose-Win 전략적 양보</text>
+  </svg>
+</div>
 
 | 대응 모드 | 행동적 특성 | 최적 적용 상황 (Best Practice) | 주의점 및 부작용 |
 |---|---|---|---|
@@ -166,9 +210,17 @@ extra:
 
 > 갈등의 부재는 평화가 아닌 무관심의 증거이며, 진정한 고성과 팀은 과업 갈등을 자유롭게 분출할 수 있는 심리적 안전감 위에서 탄생함.
 
-`[핵심 통찰]` 갈등을 없애려 하면 위험정보까지 침묵할 수 있으므로, 과업 이견은 근거와 실험으로 다루고 인신공격·보복은 분리 통제해야 함.
+### 학습자 통찰 메모 — 답안 밖
 
-`나라면` 쟁점별 결정권자·기한·객관적 기준을 먼저 정하고, 기술대안은 필요한 수준의 PoC와 ADR로 비교한 뒤 결정과 후속조치를 추적하겠음.
+- `[핵심 통찰]` 갈등을 없애려 하면 위험정보까지 침묵할 수 있으므로, 과업 이견은 근거와 실험으로 다루고 인신공격·보복은 분리 통제해야 함.
+- `나라면` 쟁점별 결정권자·기한·객관적 기준을 먼저 정하고, 기술대안은 필요한 수준의 PoC와 ADR로 비교한 뒤 결정과 후속조치를 추적하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 갈등 발생 후 프로젝트 일정에 미치는 지연이 3영업일 이내이고 도출된 합의안이 ADR로 100% 문서화되는지 여부.
+- **공학적 대안**: 감정적 논쟁 배제, 기술 스택 갈등 시 PoC 실측 성능 벤치마크 + **Disagree and Commit** 원칙 적용.
+- **검증 절차**: 합의된 의사결정 사항의 WBS 작업 패키지 및 RACI 매트릭스 반영 여부를 주간 PMO 회의에서 점검.
+- **기대 효과**: 파괴적 관계 갈등 원천 차단, 심리적 안전감(Psychological Safety)에 기반한 고품질 아키텍처 수렴.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="갈등관리 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">

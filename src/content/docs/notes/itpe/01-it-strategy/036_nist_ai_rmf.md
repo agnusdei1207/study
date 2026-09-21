@@ -1,6 +1,6 @@
 ---
 title: "NIST AI RMF"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-21T18:50:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: AI 제품·서비스·시스템의 설계·개발·사용·평가에 신뢰성 고려사항을 통합하는 자발적 위험관리 프레임워크
-- 메커니즘: GOVERN → MAP → MEASURE → MANAGE → 지속 환류
-- 통제: 사용맥락·영향·측정근거 · 위험 우선순위 · 잔여위험 책임
+- 본질: AI 시스템의 전 생명주기(설계·개발·배포·운영·평가)에 신뢰성(**Trustworthy AI**) 요구사항을 통합하여 잠재적 위험을 체계적으로 식별·측정·통제하는 미국 NIST의 자율적 위험관리 프레임워크.
+- 메커니즘: 전사 최상위 통제 **GOVERN** 체계 수립 → 맥락 및 위협 식별(**MAP**) → 7대 신뢰 특성 계측 및 레드팀 실측(**MEASURE**) → 인라인 가드레일 배포 및 위험 완화(**MANAGE**) 순환 루프.
+- 통제: 생성형 AI 특화 프로파일(**NIST AI 600-1**) 준용 · 환각(Confabulation) 및 탈옥 방지 · MLOps/LLMOps 배포 파이프라인 내 위험 게이트(Gate) 자동화.
 
 <div class="itpe-flow-map" role="img" aria-label="NIST AI RMF 4대 핵심 기능 순환 및 신뢰성 확보 흐름">
   <div class="itpe-flow-node">
@@ -91,6 +91,44 @@ extra:
 
 > 전사 통제인 GOVERN이 전체 생명주기를 관통하며, MAP(식별) → MEASURE(측정) → MANAGE(대응)가 순환함.
 
+<div class="itpe-diagram-box">
+  <svg viewBox="0 0 520 220" width="100%" height="220" role="img" aria-label="NIST AI RMF 4대 핵심 기능 및 신뢰성 연계 아키텍처 다이어그램">
+    <!-- Outer Govern Layer (Encompassing Framework) -->
+    <rect x="20" y="15" width="480" height="190" rx="8" fill="var(--sl-color-blue-low)" stroke="var(--sl-color-blue)" stroke-width="2"/>
+    <text x="35" y="38" fill="var(--sl-color-blue-high)" font-size="12" font-weight="bold">GOVERN (거버넌스): 전사 AI 위험관리 문화 · R&amp;R 책임성 · 규제 컴플라이언스 총괄</text>
+
+    <!-- Inner 3 Core Functions Tri-cycle -->
+    <!-- 1. MAP Box -->
+    <rect x="35" y="60" width="135" height="90" rx="6" fill="var(--sl-color-green-low)" stroke="var(--sl-color-green)" stroke-width="1.5"/>
+    <text x="102" y="82" text-anchor="middle" fill="var(--sl-color-green-high)" font-size="11" font-weight="bold">MAP (식별·매핑)</text>
+    <text x="102" y="100" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">비즈니스 맥락 분석</text>
+    <text x="102" y="115" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">잠재적 위험 식별</text>
+    <text x="102" y="130" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">이해관계자 영향 평가</text>
+
+    <!-- 2. MEASURE Box -->
+    <rect x="192" y="60" width="135" height="90" rx="6" fill="var(--sl-color-purple-low)" stroke="var(--sl-color-purple)" stroke-width="1.5"/>
+    <text x="260" y="82" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="11" font-weight="bold">MEASURE (측정·평가)</text>
+    <text x="260" y="100" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="9">7대 신뢰 특성 계측</text>
+    <text x="260" y="115" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">정량 벤치마크 평가</text>
+    <text x="260" y="130" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">레드팀 탈옥 모의시험</text>
+
+    <!-- 3. MANAGE Box -->
+    <rect x="350" y="60" width="135" height="90" rx="6" fill="var(--sl-color-red-low)" stroke="var(--sl-color-red)" stroke-width="1.5"/>
+    <text x="417" y="82" text-anchor="middle" fill="var(--sl-color-red-high)" font-size="11" font-weight="bold">MANAGE (관리·대응)</text>
+    <text x="417" y="100" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">위험 우선순위화</text>
+    <text x="417" y="115" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">인라인 가드레일 배포</text>
+    <text x="417" y="130" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">잔여 위험 지속 모니터링</text>
+
+    <!-- Connectors between Inner boxes -->
+    <line x1="170" y1="105" x2="192" y2="105" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
+    <line x1="327" y1="105" x2="350" y2="105" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
+
+    <!-- Bottom Continuous Feedback loop -->
+    <rect x="35" y="165" width="450" height="28" rx="4" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1"/>
+    <text x="260" y="183" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="10" font-weight="bold">지속적 순환 환류: MAP ➔ MEASURE ➔ MANAGE ➔ GOVERN 정책 개선 및 MLOps Gate 연계</text>
+  </svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="NIST AI RMF 4대 핵심 기능 순환 파이프라인">
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail">
@@ -148,9 +186,17 @@ extra:
 
 > 문서 작성용 체크리스트를 탈피하여 CI/CD 배포 파이프라인에 자동화된 신뢰성 테스트 게이트를 구축해야 함.
 
-`[핵심 통찰]` 신뢰성 특성은 동시에 최대화되는 점수가 아니며, 사용맥락과 피해 가능성에 따라 우선순위·측정방법·잔여위험 책임을 정해야 함.
+### 학습자 통찰 메모 — 답안 밖
 
-`나라면` MAP에서 사용맥락과 피해 시나리오를 먼저 확정하고, MEASURE의 시험결과를 배포 Gate에 연결하되 자동지표가 측정하지 못한 잔여위험은 책임자가 승인하도록 하겠음.
+- `[핵심 통찰]` 신뢰성 특성은 동시에 최대화되는 점수가 아니며, 사용맥락과 피해 가능성에 따라 우선순위·측정방법·잔여위험 책임을 정해야 함.
+- `나라면` MAP에서 사용맥락과 피해 시나리오를 먼저 확정하고, MEASURE의 시험결과를 배포 Gate에 연결하되 자동지표가 측정하지 못한 잔여위험은 책임자가 승인하도록 하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: AI 모델 배포 전 7대 신뢰성 자동 평가 테스트 통과율 100% 및 적대적 탈옥 공격 방어율 95% 이상.
+- **공학적 대안**: MLOps 파이프라인 내 **NIST AI 600-1** 가드레일 자동 주입 및 RAG 기반 팩트 체킹 검증기 결합.
+- **검증 절차**: 분기별 정기 레드팀(Red Teaming) 훈련 수행 및 식별된 취약점의 ADR 문서화 및 가드레일 갱신.
+- **기대 효과**: AI 서비스의 법적·윤리적 리스크 원천 차단, 대고객 신뢰성 확보 및 글로벌 AI 규제 선제 대응.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="NIST AI RMF 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">

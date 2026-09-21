@@ -1,6 +1,6 @@
 ---
 title: "TAM-SAM-SOM"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T07:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "B"
 ---
 
@@ -70,6 +70,66 @@ extra:
 
 > 거시 통계에서 비즈니스 모델 제약, 영업 파이프라인 실측치로 좁혀가는 3단계 계층 파이프라인을 운영함.
 
+### 1. 3단계 시장 여과 구조 및 추정 방식 교차검증
+
+```xml
+<svg-diagram>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">TAM-SAM-SOM 3단계 여과 및 Top-Down / Bottom-Up 교차검증</text>
+
+  <!-- Left: Concentric Circles (TAM, SAM, SOM) -->
+  <g transform="translate(15, 45)">
+    <!-- TAM Outer Circle/Box -->
+    <rect x="0" y="0" width="220" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="8"/>
+    <text x="110" y="20" fill="var(--sl-color-text)" font-size="11" font-weight="bold" text-anchor="middle">TAM (전체 시장)</text>
+    <text x="110" y="34" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">글로벌/국내 전체 잠재 시장 규모</text>
+
+    <!-- SAM Middle Box -->
+    <rect x="25" y="45" width="170" height="100" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="6"/>
+    <text x="110" y="65" fill="var(--sl-color-text-accent)" font-size="11" font-weight="bold" text-anchor="middle">SAM (유효 시장)</text>
+    <text x="110" y="78" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">자사 BM·솔루션 스펙 도달 시장</text>
+
+    <!-- SOM Inner Box -->
+    <rect x="50" y="90" width="120" height="50" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="2" rx="4"/>
+    <text x="110" y="112" fill="#ef4444" font-size="11" font-weight="bold" text-anchor="middle">SOM (획득 시장)</text>
+    <text x="110" y="128" fill="var(--sl-color-text)" font-size="8" text-anchor="middle">실제 획득 가능 시장 (단기)</text>
+  </g>
+
+  <!-- Center Arrow -->
+  <path d="M 245 120 L 265 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Right: Top-Down vs Bottom-Up Validation Box -->
+  <g transform="translate(275, 45)">
+    <rect x="0" y="0" width="230" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="6"/>
+    <rect x="0" y="0" width="230" height="24" fill="var(--sl-color-text-accent)" opacity="0.1" rx="6 6 0 0"/>
+    <text x="115" y="17" fill="var(--sl-color-text-accent)" font-size="11" font-weight="bold" text-anchor="middle">상향식 실측 및 단위 경제학 검증</text>
+
+    <!-- Top-Down Note -->
+    <text x="12" y="42" fill="var(--sl-color-text)" font-size="10" font-weight="bold">① 하향식(Top-Down) 한계선 설정</text>
+    <text x="22" y="56" fill="var(--sl-color-text-muted)" font-size="9">• 산업 리포트 거시 통계 기반 천장(Ceiling) 파악</text>
+
+    <!-- Bottom-Up Formula -->
+    <text x="12" y="76" fill="var(--sl-color-text)" font-size="10" font-weight="bold">② 상향식(Bottom-Up) SOM 산출</text>
+    <text x="22" y="90" fill="#ef4444" font-size="9" font-weight="bold">• SOM = 타깃 고객 수 × ARPU × 획득률</text>
+
+    <!-- Unit Economics -->
+    <text x="12" y="112" fill="var(--sl-color-text)" font-size="10" font-weight="bold">③ Unit Economics 수익성 검증</text>
+    <text x="22" y="126" fill="var(--sl-color-text)" font-size="9">• <tspan fill="var(--sl-color-text-accent)" font-weight="bold">LTV > 3 × CAC</tspan> 만족 여부 확인</text>
+    <text x="22" y="140" fill="var(--sl-color-text-muted)" font-size="8">• PoC 전환율 · 고객 이탈률(Churn) 실측 반영</text>
+  </g>
+</svg>
+</svg-diagram>
+```
+
+### 2. 3단계 계층 상세 비교
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="TAM-SAM-SOM 3단계 계층 구조 및 산출 체계">
   <div class="itpe-pipeline-node">
     <div class="itpe-step-detail"><strong>① TAM (Total Addressable Market: 전체 시장)</strong><span>산업 보고서 기준 이론적 최대 수요 총액 → 거시 통계 인용 · 잠재 모수 × 이상 단가</span></div>
@@ -84,8 +144,6 @@ extra:
   </div>
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>타당성 정합성</strong></span> · TAM의 범위에서 SAM 제약을 차감하고, SOM은 실제 영업·자원 근거로 검증</div>
-
-### 3단계 계층 상세 비교표
 
 | 계층 | 범위 | 산출 근거 |
 |---|---|---|
@@ -125,10 +183,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 거시 시장 보고서 인용 위주에서 바텀업 실측 단가와 Unit Economics 검증으로 전환
-- 대안: 상향식 고객·단가 모델과 하향식 시장통계 교차검증
-- 검증: 시장 경계·중복·출처·가정 · 실제 영업결과 편차
-- 효과: 과대 투자 예방 · 현실적 손익분기점(BEP) 달성 및 자본 효율성 극대화
+- **판정 기준**: 거시 보고서 단순 인용 여부 판정, 유닛 이코노믹스($LTV > 3 \times CAC$) 및 초기 손익분기점(BEP) 달성 가능성
+- **대응 방안**: Top-down(성장 한계선)과 Bottom-up(실행 영업 모수)의 교차검증 체계 구축, 타깃 세그먼트별 실측 단가 적용
+- **검증 체계**: 시장 경계 정의, 경쟁사 윈백 비용 반영, 분기별 실제 영업 전환율과 SOM 가설 간 편차 추적
+- **기대 효과**: 시장 규모 과대 추정에 따른 데스밸리(Death Valley) 사전 예방, 자본 효율성 극대화 및 신규 IT 서비스 성공률 제고
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Unit Economics 연계 시장 타당성 검증 제언 흐름">
   <div class="itpe-pipeline-node">
@@ -186,3 +244,4 @@ extra:
 - 이전 토픽: [경영환경 분석(SWOT·3C·PEST)](./088_swot_3c_pest.md)
 - 연관 토픽: [기술수용모델(TAM)](./092_technology_acceptance_model.md), [SW 비용 산정](./113_software_cost_estimation.md)
 - 다음 토픽: [과업심의(과업변경·사업기간 적정성)](./091_public_sw_cost_and_scope_change_criteria.md)
+

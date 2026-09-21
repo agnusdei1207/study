@@ -1,6 +1,6 @@
 ---
 title: "가치사슬(Value Chain)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T04:50:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
   keyword_grade: "C"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -64,9 +64,57 @@ extra:
 - 정의: 원자재 수급부터 최종 서비스까지 제품 변환 과정을 **5대 본원적 활동**과 **4대 지원 활동**으로 체계화하여 부가가치 창출 구조와 **마진(Margin)**을 분석하는 **경영 전략 분석 모델**
 - 목적: 활동별 원가 동인 분석 · 차별화 기회 포착 · 프로세스 연계 최적화
 
-## Ⅱ. 5대 본원적 활동의 순차적 가치 창출 파이프라인
+## Ⅱ. 5대 본원적 활동과 4대 지원 활동의 가치사슬 구조
 
-> 공급자로부터 원자재가 입고되어 가공, 출하, 판매, 사후 관리로 이어지는 흐름 속에서 부가가치가 누적됨.
+> 공급자로부터 원자재가 입고되어 가공, 출하, 판매, 사후 관리로 이어지는 흐름 속에서 부가가치가 누적되며 마진(Margin)을 창출함.
+
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="마이클 포터의 가치사슬(Value Chain) 9대 활동 및 마진 구조도">
+    <!-- Support Activities (4 Rows) -->
+    <rect x="20" y="15" width="410" height="24" rx="3" class="itpe-svg-node"></rect>
+    <text x="225" y="31" class="itpe-svg-sub">기업 하부구조 (Firm Infrastructure - 기획, 재무, 법무, 품질경영)</text>
+
+    <rect x="20" y="42" width="410" height="24" rx="3" class="itpe-svg-node"></rect>
+    <text x="225" y="58" class="itpe-svg-sub">인적자원 관리 (Human Resource Management - 채용, 교육, 평가, 보상)</text>
+
+    <rect x="20" y="69" width="410" height="24" rx="3" class="itpe-svg-node"></rect>
+    <text x="225" y="85" class="itpe-svg-sub">기술 개발 (Technology Development - R&D, IT 시스템, 제품/공정 설계)</text>
+
+    <rect x="20" y="96" width="410" height="24" rx="3" class="itpe-svg-node"></rect>
+    <text x="225" y="112" class="itpe-svg-sub">조달 활동 (Procurement - 원자재, 설비, 외주 용역 구매 협상)</text>
+
+    <!-- Primary Activities (5 Columns) -->
+    <rect x="20" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
+    <text x="59" y="152" class="itpe-svg-title">입고물류</text>
+    <text x="59" y="170" class="itpe-svg-sub">자재수급</text>
+    <text x="59" y="186" class="itpe-svg-sub">(WMS)</text>
+
+    <rect x="103" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
+    <text x="142" y="152" class="itpe-svg-title">생산운영</text>
+    <text x="142" y="170" class="itpe-svg-sub">가공/조립</text>
+    <text x="142" y="186" class="itpe-svg-sub">(MES)</text>
+
+    <rect x="186" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
+    <text x="225" y="152" class="itpe-svg-title">출고물류</text>
+    <text x="225" y="170" class="itpe-svg-sub">유통/배송</text>
+    <text x="225" y="186" class="itpe-svg-sub">(TMS)</text>
+
+    <rect x="269" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
+    <text x="308" y="152" class="itpe-svg-title">마케팅/영업</text>
+    <text x="308" y="170" class="itpe-svg-sub">판촉/판매</text>
+    <text x="308" y="186" class="itpe-svg-sub">(CRM)</text>
+
+    <rect x="352" y="125" width="78" height="80" rx="4" class="itpe-svg-node is-current"></rect>
+    <text x="391" y="152" class="itpe-svg-title">서비스</text>
+    <text x="391" y="170" class="itpe-svg-sub">유지보수</text>
+    <text x="391" y="186" class="itpe-svg-sub">(A/S)</text>
+
+    <!-- Margin Arrow (Right Wedge) -->
+    <polygon points="435,15 495,110 435,205 450,110" fill="var(--sl-color-accent)" opacity="0.85"></polygon>
+    <text x="470" y="105" fill="#ffffff" font-weight="bold" font-size="12" text-anchor="middle">마</text>
+    <text x="470" y="125" fill="#ffffff" font-weight="bold" font-size="12" text-anchor="middle">진</text>
+  </svg>
+</div>
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="가치사슬 5대 본원적 활동 파이프라인">
   <div class="itpe-pipeline-node">
@@ -127,10 +175,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 활동별 국소 최적화·연계 병목
-- 대안: 병목 활동의 데이터 추적성 확보 · 연계 개선안 단계 적용
-- 검증: 리드타임 · 결품률 · 단위당 원가 · 고객 유지율의 전후 비교
-- 효과: 병목 완화 · 비용 절감 · 차별화 강화
+- **판정 기준 (Trigger)**: 개별 단위 부서의 생산성은 향상되었으나 전사 재고일수 및 납기 리드타임이 오히려 10% 이상 증가할 시 연계성(Linkage) 단절로 판정.
+- **대응 방안 (Action)**: 본원적 활동(SCM-MES-TMS-CRM) 간 실시간 이벤트 드리븐(EDA) 연계를 구축하고, 전사 마진을 훼손하는 사일로(Silo) 부서 간 KPI를 통합 정렬함.
+- **검증 체계 (Verification)**: 활동별 원가 동인(Cost Drivers)과 차별화 동인(Uniqueness Drivers)을 정량 계측하여 가치사슬 전 구간의 E2E 현금전환주기(CCC)를 검증함.
+- **기대 효과 (Impact)**: 국소 최적화의 함정 탈피, 불필요한 재고 유지비용 35% 절감, 고객 맞춤형 차별화 경쟁 우위 및 영업이익률(마진) 극대화를 달성함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="가치사슬 활동 간 연계 개선 흐름">
   <div class="itpe-pipeline-node">

@@ -1,6 +1,6 @@
 ---
 title: "협상계약 제안서 평가"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T04:00:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5"
   keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -88,6 +88,33 @@ extra:
 
 > 전문평가제도는 모든 항목을 같은 위원이 평가하던 구조를 공통 60%·전문 40%로 분리하여, 전문영역 기술성을 전체 수행 역량과 함께 판정함.
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="대형 소프트웨어 사업 제안서 전문평가 2트랙 가중합산 구조">
+    <!-- Common Evaluation Lane (60%) -->
+    <rect x="20" y="20" width="235" height="135" rx="8" class="itpe-svg-node"></rect>
+    <text x="137" y="42" class="itpe-svg-title">공통평가 (가중치 60%)</text>
+    <line x1="30" y1="52" x2="245" y2="52" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="35" y="74" class="itpe-svg-sub">• 평가주체: 공통 평가위원단</text>
+    <text x="35" y="96" class="itpe-svg-sub">• 평가범위: 사업 전반 수행 역량</text>
+    <text x="35" y="118" class="itpe-svg-sub">• 세부항목: 사업관리, 투입공수/인력,</text>
+    <text x="35" y="138" class="itpe-svg-sub">  품질보증, 지원부문 등 일반역량</text>
+
+    <!-- Expert Evaluation Lane (40%) -->
+    <rect x="265" y="20" width="235" height="135" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="382" y="42" class="itpe-svg-title">전문평가 (가중치 40%)</text>
+    <line x1="275" y1="52" x2="490" y2="52" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="280" y="74" class="itpe-svg-sub">• 평가주체: 4대 전문분야 기술전문가</text>
+    <text x="280" y="96" class="itpe-svg-sub">• 전문영역 선택 (1~2개 집중):</text>
+    <text x="280" y="118" class="itpe-svg-sub">  ①정보기술개발 ②정보보호</text>
+    <text x="280" y="138" class="itpe-svg-sub">  ③데이터구축 ④디지털기술</text>
+
+    <!-- Score Aggregation Bottom -->
+    <rect x="20" y="165" width="480" height="42" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="184" class="itpe-svg-title" text-anchor="middle">종합 기술능력평가 점수 산출 = (공통평가 × 0.6) + (전문평가 × 0.4)</text>
+    <text x="260" y="198" class="itpe-svg-sub" text-anchor="middle">적용기준: 40억 이상 SW 구축사업, 100억 이상 유지관리 사업 의무 적용</text>
+  </svg>
+</div>
+
 ### 1. 적용대상·전문영역
 
 | 구분 | 기준 |
@@ -142,10 +169,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 전문영역·평가항목·위원 의견 사이의 추적 가능성
-- 대안: **RFP(Request for Proposal)** 요구사항별 공통·전문 평가 책임 매핑
-- 검증: 중복 평가 · 미평가 요구사항 · 근거 없는 감점 여부 확인
-- 효과: 심층평가의 일관성 · 이의제기 대응력 확보
+- **판정 기준 (Trigger)**: 대형 공공 SW 사업(40억 이상)에서 전문평가 분야(4대 영역)와 RFP 핵심 요구사항 불일치, 또는 공통·전문 항목 간 평가 지표 중복률이 15%를 초과할 때 평가 설계 하자 판정.
+- **대응 방안 (Action)**: 사업 특성에 부합하는 전문영역(정보기술개발, 정보보호, 데이터구축, 디지털기술)을 필수 지정하고, RFP 요구사항 ID ↔ 평가항목 ↔ 평가위원을 1:1 명시적으로 분리 배정.
+- **검증 체계 (Verification)**: 평가위원별 평가 의견서와 실물 제안서 증빙 대조, 허위 기재 및 상대 비방 시 계약심의회를 통한 감점 근거(조달청 개정 규정)의 객관적 적법성을 검증함.
+- **기대 효과 (Impact)**: 깜깜이 정성평가 및 입찰 담합·로비 차단, 고난도 신기술(AI, 클라우드 등) 제안서에 대한 기술 감별력 극대화, 탈락 업체의 이의제기 소송 리스크 원천 해소를 달성함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 추적 기반 제안서 평가 개선 흐름">
   <div class="itpe-pipeline-node">

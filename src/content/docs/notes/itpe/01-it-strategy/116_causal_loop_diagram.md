@@ -1,6 +1,6 @@
 ---
 title: "인과루프다이어그램(Causal Loop Diagram)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T12:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -118,9 +118,94 @@ extra:
   <div class="itpe-pipeline-node"><strong>⑤ 검증·개입 설계</strong><div class="itpe-step-detail"><strong>활동</strong><span>전문가·데이터로 인과 가설 검토</span></div><div class="itpe-step-detail"><strong>산출</strong><span>Leverage Point · 검증계획</span></div></div>
 </div>
 
-## Ⅲ. 강화·조절 루프 판정
+## Ⅲ. 강화·조절 루프 판정 및 IT 프로젝트 CLD 아키텍처
 
-> 링크 수가 아니라 폐쇄 루프 안의 음의 링크 개수로 전체 극성을 판정한다.
+> 링크 수가 아니라 폐쇄 루프 안의 음의 링크 개수로 전체 극성을 판정한다. (음의 부호가 짝수/0개면 R, 홀수면 B)
+
+```
+[R1 강화 악순환]                                  [B1 품질 조절 루프]
+일정 압박 ──(+)──> 결함 발생                      결함 발견 ──(+)──> 테스트/리뷰 강화
+   ▲                  │                              ▲                       │
+   │                  ▼                              │                  (Delay ║)
+재작업 ◀──(+)─── 품질 결함                       품질 Gap ◀──(－)── 잔존 결함 감소
+```
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="IT 프로젝트 CLD 강화루프 악순환 및 조절루프 메커니즘">
+  <!-- 배경 바운더리 -->
+  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
+
+  <!-- 좌측 영역: R1 악순환 강화루프 -->
+  <g transform="translate(25, 20)">
+    <rect x="0" y="0" width="220" height="175" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+    <circle cx="110" cy="85" r="22" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+    <text x="110" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-accent-high)">R1</text>
+    <text x="110" y="100" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">강화루프</text>
+
+    <!-- 노드들 -->
+    <rect x="15" y="15" width="80" height="26" rx="4" fill="var(--sl-color-gray-5)" />
+    <text x="55" y="32" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">일정 압박</text>
+
+    <rect x="125" y="15" width="80" height="26" rx="4" fill="var(--sl-color-gray-5)" />
+    <text x="165" y="32" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">결함 유입</text>
+
+    <rect x="125" y="130" width="80" height="26" rx="4" fill="var(--sl-color-gray-5)" />
+    <text x="165" y="147" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">재작업 증가</text>
+
+    <rect x="15" y="130" width="80" height="26" rx="4" fill="var(--sl-color-gray-5)" />
+    <text x="55" y="147" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">피로도 가중</text>
+
+    <!-- 링크 및 극성 -->
+    <line x1="95" y1="28" x2="125" y2="28" stroke="var(--sl-color-accent)" stroke-width="1.2" marker-end="url(#cld-arrow)" />
+    <text x="110" y="24" text-anchor="middle" font-size="9" font-weight="bold" fill="#ef4444">(+)</text>
+
+    <line x1="165" y1="41" x2="165" y2="130" stroke="var(--sl-color-accent)" stroke-width="1.2" marker-end="url(#cld-arrow)" />
+    <text x="175" y="85" text-anchor="middle" font-size="9" font-weight="bold" fill="#ef4444">(+)</text>
+
+    <line x1="125" y1="143" x2="95" y2="143" stroke="var(--sl-color-accent)" stroke-width="1.2" marker-end="url(#cld-arrow)" />
+    <text x="110" y="139" text-anchor="middle" font-size="9" font-weight="bold" fill="#ef4444">(+)</text>
+
+    <line x1="55" y1="130" x2="55" y2="41" stroke="var(--sl-color-accent)" stroke-width="1.2" marker-end="url(#cld-arrow)" />
+    <text x="45" y="85" text-anchor="middle" font-size="9" font-weight="bold" fill="#ef4444">(+)</text>
+    
+    <text x="110" y="167" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">음의 부호 0개 → 눈덩이 악순환 증폭</text>
+  </g>
+
+  <!-- 우측 영역: B1 안정화 조절루프 -->
+  <g transform="translate(275, 20)">
+    <rect x="0" y="0" width="220" height="175" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+    <circle cx="110" cy="85" r="22" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+    <text x="110" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-accent-high)">B1</text>
+    <text x="110" y="100" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent)">조절루프</text>
+
+    <!-- 노드들 -->
+    <rect x="15" y="15" width="80" height="26" rx="4" fill="var(--sl-color-gray-5)" />
+    <text x="55" y="32" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">품질 Gap</text>
+
+    <rect x="125" y="15" width="80" height="26" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
+    <text x="165" y="32" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent-high)">테스트/검증</text>
+
+    <rect x="125" y="130" width="80" height="26" rx="4" fill="var(--sl-color-gray-5)" />
+    <text x="165" y="147" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">잔존 결함</text>
+
+    <!-- 링크 및 극성 -->
+    <line x1="95" y1="28" x2="125" y2="28" stroke="var(--sl-color-accent)" stroke-width="1.2" marker-end="url(#cld-arrow)" />
+    <text x="110" y="24" text-anchor="middle" font-size="9" font-weight="bold" fill="#ef4444">(+)</text>
+
+    <!-- 시간지연 Delay 선 -->
+    <line x1="165" y1="41" x2="165" y2="130" stroke="var(--sl-color-accent)" stroke-width="1.2" marker-end="url(#cld-arrow)" />
+    <text x="175" y="78" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--sl-color-accent)">║ Delay</text>
+    <text x="175" y="93" text-anchor="middle" font-size="9" font-weight="bold" fill="#3b82f6">(－)</text>
+
+    <path d="M 125 143 L 55 143 L 55 41" fill="none" stroke="var(--sl-color-accent)" stroke-width="1.2" marker-end="url(#cld-arrow)" />
+    <text x="90" y="139" text-anchor="middle" font-size="9" font-weight="bold" fill="#ef4444">(+)</text>
+
+    <!-- 하단 레버리지 포인트 -->
+    <rect x="15" y="152" width="190" height="18" rx="3" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1" />
+    <text x="110" y="165" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--sl-color-accent)">Leverage: 자동화 검증으로 Delay 최소화</text>
+  </g>
+</svg>
+</div>
 
 | 기준 | 강화 루프 R | 조절 루프 B |
 |---|---|---|
@@ -152,14 +237,18 @@ B1 품질 조절
 
 ## Ⅴ. 결론·기술사적 제언
 
-> CLD는 개입 후보를 찾고 Stock·Flow 모델과 실증검증으로 넘기는 탐색도구로 사용해야 한다.
-
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: CLD의 가치는 화살표 수가 아니라 반복되는 문제를 만드는 폐쇄 루프와 Delay를 드러내는 데 있다.
-- 나라면: 악순환을 찾은 뒤 즉시 처방하지 않고 인과 근거·시간지연·부작용 루프를 먼저 검증하여 개입의 역효과를 줄이겠다.
+> **[핵심 통찰]** IT 프로젝트에서 반복되는 실패는 사람의 태만 때문이 아니라, '일정 지연 → 압박 → 테스트 생략 → 결함 증가 → 재작업 → 추가 지연'이라는 악순환 피드백 루프(R1) 구조 자체에 원인이 있다. 개입의 핵심은 증상을 땜질하는 것이 아니라 루프의 연결고리를 끊는 레버리지 포인트(Leverage Point)를 타격하는 것이다.
+> 
+> **나라면** 일정 지연 시 투입 인력을 무리하게 늘려 소통 비용을 가중시키는 브룩스의 법칙(Brooks's Law)을 피하고, CI/CD 자동화 파이프라인과 TDD를 레버리지 포인트로 설정하여 '테스트 피드백의 시간 지연(Delay ║)'을 0에 가깝게 단축하겠다.
 
 ### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 프로젝트 병목 분석 시 폐쇄 루프 내 음(-)의 링크 개수를 전수 검증하여 양의 피드백(R)에 의한 파멸적 발산 여부 조기 판정
+- **대응 방안**: 브룩스의 법칙 차단을 위해 지연 시 인력 추가 투입 대신 비핵심 요구사항 범위(Scope) 조정 및 병목 자원 집중 투입
+- **검증 체계**: 정성적 CLD 인과 가설을 시스템 다이내믹스 Stock-Flow(저류량-유량) 모델로 정량 수치화하여 시뮬레이션 검증 수행
+- **기대 효과**: 단기 처방에 의한 부작용(Fixes that Fail) 원천 차단 및 시스템 전반의 리드타임 35% 단축
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 500" role="img" aria-label="인과루프 가설에서 정량 검증과 정책 실행으로 이어지는 품질 게이트">
@@ -224,6 +313,7 @@ B1 품질 조절
 
 ## 연결 토픽
 
-- 이전: [114. 개방형 혁신](./114_open_innovation/)
-- 관련: [112. CCPM·TOC](./112_critical_chain_toc/) · [040. 부정적 위험 대응](./040_negative_risk_response_strategy/)
+- 이전: [114. 개방형 혁신](./114_open_innovation.md)
+- 관련: [112. CCPM·TOC](./112_critical_chain_toc.md) · [040. 부정적 위험 대응](./040_negative_risk_response_strategy.md)
 - 다음: [2과목 SW 공학](../02-software-engineering/)
+

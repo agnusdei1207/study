@@ -1,6 +1,6 @@
 ---
 title: "개방형 혁신(Open Innovation)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T11:30:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -89,7 +89,58 @@ extra:
 | **Outbound** | 내부 → 외부 | 라이선스 · Spin-off · 기술이전 |
 | **Coupled** | 상호 교환 | 공동개발 · 합작 · 플랫폼 생태계 |
 
-### 2. 추진절차
+### 2. 체스브로의 개방형 혁신 깔때기(Innovation Funnel) 메커니즘
+
+```
+[외부 기술/아이디어] ────────┐ (Inbound: 라이선스 인, 스타트업 소싱)
+                             ▼
+[연구개발(R&D)] ────> [다공성 조직 경계 (Porous Boundary)] ────> [현재 시장 출시]
+                             │
+                             ├────────(Outbound: 라이선스 아웃, Spin-off) ──> [신규 시장 개척]
+                             ▼
+                     [Coupled: 공동개발/플랫폼 생태계]
+```
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="체스브로 개방형 혁신 깔때기 및 3대 지식 흐름">
+  <!-- 배경 바운더리 -->
+  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
+
+  <!-- 개방형 혁신 깔때기 (점선 경계) -->
+  <path d="M 50 35 L 340 85 L 340 135 L 50 185 Z" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-3)" stroke-width="1.5" stroke-dasharray="5,4" />
+  <text x="140" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">내부 R&amp;D 깔때기</text>
+  <text x="140" y="130" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2)">다공성 경계(Porous Boundary)</text>
+
+  <!-- Inbound: 외부 지식 유입 화살표 -->
+  <path d="M 120 20 L 160 65" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#oi-arrow)" />
+  <rect x="60" y="16" width="105" height="22" rx="4" fill="var(--sl-color-accent-low)" stroke="#10b981" stroke-width="1" />
+  <text x="112" y="30" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#10b981">Inbound (외부소싱)</text>
+
+  <!-- Outbound: 미활용 IP 유출 화살표 -->
+  <path d="M 230 145 L 270 190" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#oi-arrow)" />
+  <rect x="250" y="180" width="115" height="22" rx="4" fill="var(--sl-color-accent-low)" stroke="#f59e0b" stroke-width="1" />
+  <text x="307" y="195" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#f59e0b">Outbound (Spin-off/라이선스)</text>
+
+  <!-- 깔때기 출구 -> 시장 -->
+  <!-- 현재 시장 -->
+  <line x1="340" y1="100" x2="385" y2="90" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <rect x="385" y="75" width="110" height="32" rx="5" fill="var(--sl-color-gray-5)" stroke="var(--sl-color-gray-3)" stroke-width="1" />
+  <text x="440" y="91" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-text)">현재 주력 시장</text>
+  <text x="440" y="102" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2)">제품화·상용화</text>
+
+  <!-- 신규 시장 (Outbound 연계) -->
+  <line x1="340" y1="120" x2="385" y2="135" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <rect x="385" y="120" width="110" height="32" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
+  <text x="440" y="136" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent-high)">신규 개척 시장</text>
+  <text x="440" y="147" text-anchor="middle" font-size="8" fill="var(--sl-color-accent)">외부 사업화 경로</text>
+
+  <!-- Coupled 상호작용 표시 -->
+  <rect x="385" y="165" width="110" height="26" rx="4" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1" />
+  <text x="440" y="181" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--sl-color-text)">Coupled: 공동플랫폼</text>
+</svg>
+</div>
+
+### 3. 추진절차
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="개방형 혁신 추진절차와 산출물">
   <div class="itpe-pipeline-node"><strong>① 전략·수요 정의</strong><div class="itpe-step-detail"><strong>활동</strong><span>내부 역량·기술 Gap · 개방범위 결정</span></div><div class="itpe-step-detail"><strong>산출</strong><span>기술수요서 · 보호대상</span></div></div>
@@ -124,14 +175,18 @@ extra:
 
 ## Ⅴ. 결론·기술사적 제언
 
-> 핵심은 닫고 인터페이스와 탐색경로는 열어, 보호와 확장을 동시에 달성해야 한다.
-
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: 개방형 혁신의 성패는 파트너 수가 아니라 외부 지식을 내부 제품·시장경로에 연결하는 흡수·사업화 역량에 달려 있다.
-- 나라면: 핵심 알고리즘·데이터는 보호하고 API·테스트베드·비핵심 모듈은 개방하는 경계형 IP 거버넌스를 적용하겠다.
+> **[핵심 통찰]** 개방형 혁신의 성패는 외부 파트너 수나 PoC 과제 건수가 아니라, 외부 지식을 내부 핵심 파이프라인으로 흡수(Absorptive Capacity)하여 실제 사업화 매출로 연결하고, 기존 배경지식(Background IP)과 창출성과(Foreground IP)를 계약적으로 분리 방어하는 능력에 달려 있다.
+> 
+> **나라면** 핵심 알고리즘·데이터는 강력히 은닉·보호하고, API 및 인터페이스 계층은 오픈형 샌드박스로 개방하는 '경계형 IP 거버넌스'를 수립하며, PoC 단계부터 현업 사업부 담당자를 공동 PM으로 지정해 PoC 종료 즉시 본 시스템에 탑재되도록 통제하겠다.
 
 ### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 파트너십 체결 전 PoC 종료 후 6개월 이내 상용화 전환율(Conversion Rate) 40% 이상 목표 설정 및 사전 IP 귀속 합의 완료 여부 판정
+- **대응 방안**: 계약 단계에서 Background IP(기존 권리)와 Foreground IP(신규 창출 권리)의 귀속을 명문화하고, 기여도 기반 공정 배분 계약(Tiered Royalty) 제도화
+- **검증 체계**: PoC Quality Gate(기술성·사업성·IP 침해·레거시 통합성) 4단계 다면 심사제 운영
+- **기대 효과**: R&D 비용 30% 절감, 타임투마켓(Time-to-Market) 50% 단축 및 글로벌 오픈 플랫폼 생태계 선점
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 470" role="img" aria-label="핵심자산 보호와 개방영역 확장을 결합한 개방형 혁신 거버넌스">
@@ -198,6 +253,6 @@ extra:
 
 ## 연결 토픽
 
-- 이전: [113. SW 비용 산정](./113_software_cost_estimation/)
-- 관련: [047. 디자인 씽킹](./047_design_thinking/) · [089. TAM·SAM·SOM](./089_tam_sam_som/)
-- 다음: [116. 인과루프다이어그램](./116_causal_loop_diagram/)
+- 이전: [113. SW 비용 산정](./113_software_cost_estimation.md)
+- 관련: [047. 디자인 씽킹](./047_design_thinking.md) · [089. TAM·SAM·SOM](./089_tam_sam_som.md)
+- 다음: [116. 인과루프다이어그램](./116_causal_loop_diagram.md)

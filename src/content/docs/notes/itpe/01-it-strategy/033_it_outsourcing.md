@@ -1,6 +1,6 @@
 ---
 title: "IT 아웃소싱"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-21T18:00:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: IT 업무 일부 또는 전부를 외부 전문조직에 위탁하되 성과·위험·통제권을 계약으로 관리하는 소싱 방식
-- 메커니즘: Make or Buy → 범위·책임 설계 → 공급자 선정 → 전환 → 운영통제 → 재계약·종료
-- 통제: Retained Organization · SLA · 지식이전 · Exit Plan · 공급자 종속 방지
+- 본질: 비핵심 IT 업무를 외부 전문 기업에 위탁하여 비용 최적화와 품질을 도모하되, 아키텍처·보안·데이터의 통제권은 내부 잔존 조직(**RO**)이 유지하는 전략적 소싱 관리 체계.
+- 메커니즘: **Make or Buy** 전략 수립 → RFP 및 **SLA/OLA** 계약 체결 → 지식 이전(KT) 및 전환 → 운영 통제 및 체감 품질(**XLA**) 평가 → **Exit Plan(출구 전략)** 실행 및 재소싱.
+- 통제: 역량 공동화(Hollowing-out) 방지 · 벤더 종속(**Lock-in**) 탈피를 위한 오픈 아키텍처 · 계약 시 타 사업자 이관 테스트 의무화.
 
 <div class="itpe-flow-map" role="img" aria-label="IT 아웃소싱 Make or Buy 판단부터 생명주기 및 거버넌스 흐름">
   <div class="itpe-flow-node">
@@ -113,6 +113,48 @@ extra:
 
 > 기업의 전략적 중요도와 내부 기술 역량의 2축 평가를 통해 최적의 소싱 유형을 판정함.
 
+<div class="itpe-diagram-box">
+  <svg viewBox="0 0 520 220" width="100%" height="220" role="img" aria-label="IT 소싱 Make or Buy 2x2 매트릭스 다이어그램">
+    <!-- Axes and Background Grid -->
+    <line x1="80" y1="20" x2="80" y2="180" stroke="var(--sl-color-gray-4)" stroke-width="2"/>
+    <line x1="80" y1="180" x2="480" y2="180" stroke="var(--sl-color-gray-4)" stroke-width="2"/>
+    <text x="35" y="100" fill="var(--sl-color-gray-2)" font-size="10" font-weight="bold" transform="rotate(-90 40 100)">내부 기술 역량</text>
+    <text x="250" y="200" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="10" font-weight="bold">전략적 중요도 (비즈니스 핵심도)</text>
+    <text x="175" y="195" fill="var(--sl-color-gray-3)" font-size="9">낮음(Low)</text>
+    <text x="375" y="195" fill="var(--sl-color-gray-3)" font-size="9">높음(High)</text>
+    <text x="50" y="150" fill="var(--sl-color-gray-3)" font-size="9">낮음</text>
+    <text x="50" y="55" fill="var(--sl-color-gray-3)" font-size="9">높음</text>
+
+    <!-- Quadrant Division Lines -->
+    <line x1="280" y1="20" x2="280" y2="180" stroke="var(--sl-color-gray-5)" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <line x1="80" y1="100" x2="480" y2="100" stroke="var(--sl-color-gray-5)" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+    <!-- Quadrant 1 (Top-Right): High Strategy, High Capability -> Make (Insourcing) -->
+    <rect x="290" y="25" width="180" height="70" rx="5" fill="var(--sl-color-blue-low)" stroke="var(--sl-color-blue)" stroke-width="1.5"/>
+    <text x="380" y="45" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="11" font-weight="bold">인소싱 (Make)</text>
+    <text x="380" y="62" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">핵심 아키텍처 · 데이터 주권</text>
+    <text x="380" y="78" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">경쟁우위 핵심 시스템 내재화</text>
+
+    <!-- Quadrant 2 (Top-Left): Low Strategy, High Capability -> Selective / Commercialize -->
+    <rect x="90" y="25" width="180" height="70" rx="5" fill="var(--sl-color-green-low)" stroke="var(--sl-color-green)" stroke-width="1.5"/>
+    <text x="180" y="45" text-anchor="middle" fill="var(--sl-color-green-high)" font-size="11" font-weight="bold">선택적 소싱 (Selective)</text>
+    <text x="180" y="62" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">기술력 있으나 비핵심 영역</text>
+    <text x="180" y="78" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">외부 솔루션 활용 및 잉여자원화</text>
+
+    <!-- Quadrant 3 (Bottom-Right): High Strategy, Low Capability -> Co-Sourcing -->
+    <rect x="290" y="105" width="180" height="70" rx="5" fill="var(--sl-color-purple-low)" stroke="var(--sl-color-purple)" stroke-width="1.5"/>
+    <text x="380" y="125" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="11" font-weight="bold">코소싱 (Co-Sourcing)</text>
+    <text x="380" y="142" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">신기술 파일럿 · 차세대 구축</text>
+    <text x="380" y="158" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">원팀 구성 ➔ 내부 역량 이전</text>
+
+    <!-- Quadrant 4 (Bottom-Left): Low Strategy, Low Capability -> Total Buy -->
+    <rect x="90" y="105" width="180" height="70" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
+    <text x="180" y="125" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="11" font-weight="bold">전체 위탁 (Total Buy)</text>
+    <text x="180" y="142" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">인프라 유지보수 · PC 관리</text>
+    <text x="180" y="158" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="9.5">표준화 기반 비용 절감 위주</text>
+  </svg>
+</div>
+
 | 소싱 유형 | 핵심 메커니즘 | 적용 대상 영역 | 통제 주안점 |
 |---|---|---|---|
 | **인소싱 (Make)** | 핵심 비즈니스 로직과 거버넌스를 내부 인력으로 전담 개발·운영 | 전사 아키텍처, 데이터 주권, 핵심 차별화 시스템 | 내부 인력 역량 유지 및 조직 경직성 방지 |
@@ -147,9 +189,17 @@ extra:
 
 > 아웃소싱은 통제를 포기하는 것이 아니라, 고도화된 거버넌스로 외부 전문성을 지휘하는 경영 기술이어야 함.
 
-`[핵심 통찰]` 실행을 위탁해도 아키텍처·데이터·보안·계약 판단까지 위탁하면 공급자를 평가하거나 교체할 능력을 잃음.
+### 학습자 통찰 메모 — 답안 밖
 
-`나라면` 잔존 조직의 의사결정권과 공급자의 전환지원 의무를 계약에 명시하고, 계약기간 중 다른 공급자 또는 내부조직으로의 인계 시험을 수행하겠음.
+- `[핵심 통찰]` 실행을 위탁해도 아키텍처·데이터·보안·계약 판단까지 위탁하면 공급자를 평가하거나 교체할 능력을 잃음.
+- `나라면` 잔존 조직(RO)의 기술 통제권을 제도화하고, 계약 만료 6개월 전 실서버 데이터를 기반으로 대체 벤더 또는 내부로의 가상 이관 리허설(Exit Drill)을 계약서 필수 조항으로 못박겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 발주사 단독으로 소스코드 빌드·배포·형상 통제가 가능하고 타 사업자 이관 기간이 30일 이내인지 여부.
+- **공학적 대안**: 단일 대형 위탁 탈피, **SIAM(Service Integration and Management)** 기반 멀티벤더 분할 및 **XLA** 결합.
+- **검증 절차**: 계약 단계에서 **Exit Plan** 및 전환 지원 의무 조항 명시, 반기별 산출물 최신화 및 역량 공동화 점검.
+- **기대 효과**: 공급사 기술 종속 탈피, 핵심 경쟁우위 기술 내재화, 서비스 안정성 및 최종 사용자 체감 만족도 제고.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT 아웃소싱 거버넌스 제언 흐름">
   <div class="itpe-pipeline-node">

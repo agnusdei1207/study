@@ -1,6 +1,6 @@
 ---
 title: "SWOT 분석"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-21T18:15:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: 내부 강점·약점과 외부 기회·위협을 구분하고 교차하여 전략대안을 만드는 환경분석 기법
-- 메커니즘: 근거 수집 → S·W·O·T 분류 → SO·ST·WO·WT 교차 → 실행과제·우선순위 결정
-- 통제: 내부·외부 기준 일관성 · 요인별 근거 · 전략과 과제의 Traceability
+- 본질: 조직 내부의 통제 가능한 강점·약점과 외부 통제 불가능한 기회·위협을 사실 기반으로 분석하여 전략적 적합성(**Strategic Fit**)을 달성하는 경영전략 프레임워크.
+- 메커니즘: 팩트 수집(PEST·5-Force / VRIO·가치사슬) → **MECE** 분류 → **TOWS 4대 전략(SO·ST·WO·WT)** 교차 도출 → **AHP** 가중치 평가 기반 로드맵 및 WBS 연계.
+- 통제: 주관적 나열 배제(Fact & Metric 명시) · 내/외부 통제 가능 여부(**Controllability**) 기준 엄격 적용 · 도출 전략의 WBS 실행 과제 추적성 확보.
 
 <div class="itpe-flow-map" role="img" aria-label="SWOT 대내외 환경 분석부터 TOWS 교차 및 로드맵 수립 흐름">
   <div class="itpe-flow-node">
@@ -120,6 +120,54 @@ extra:
 
 > 강점·약점과 기회·위협을 교차 결합하여 4가지 방향의 실행 전략을 구체화함.
 
+<div class="itpe-diagram-box">
+  <svg viewBox="0 0 520 220" width="100%" height="220" role="img" aria-label="TOWS 2x2 교차 전략 매트릭스 다이어그램">
+    <!-- Outer Frame & Grid -->
+    <rect x="20" y="20" width="480" height="185" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
+    <line x1="140" y1="20" x2="140" y2="205" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
+    <line x1="20" y1="65" x2="500" y2="65" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
+    <line x1="320" y1="20" x2="320" y2="205" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
+    <line x1="20" y1="135" x2="500" y2="135" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
+
+    <!-- Headers Top: External O & T -->
+    <text x="80" y="47" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="10" font-weight="bold">구분 / 매핑</text>
+    <text x="230" y="42" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="11" font-weight="bold">기회 (Opportunities, O)</text>
+    <text x="230" y="57" text-anchor="middle" fill="var(--sl-color-gray-3)" font-size="8.5">시장 성장 · 신기술 등장 · 규제 완화</text>
+    <text x="410" y="42" text-anchor="middle" fill="var(--sl-color-red-high)" font-size="11" font-weight="bold">위협 (Threats, T)</text>
+    <text x="410" y="57" text-anchor="middle" fill="var(--sl-color-gray-3)" font-size="8.5">경쟁 심화 · 경기 침체 · 규제 강화</text>
+
+    <!-- Headers Left: Internal S & W -->
+    <text x="80" y="93" text-anchor="middle" fill="var(--sl-color-green-high)" font-size="11" font-weight="bold">강점 (S)</text>
+    <text x="80" y="108" text-anchor="middle" fill="var(--sl-color-gray-3)" font-size="8.5">기술력·자본·브랜드</text>
+    <text x="80" y="163" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="11" font-weight="bold">약점 (W)</text>
+    <text x="80" y="178" text-anchor="middle" fill="var(--sl-color-gray-3)" font-size="8.5">인력부족·레거시·비용</text>
+
+    <!-- Cell 1: SO Strategy -->
+    <rect x="145" y="70" width="170" height="60" rx="4" fill="var(--sl-color-blue-low)"/>
+    <text x="230" y="88" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="10.5" font-weight="bold">SO 전략 (공격적 선점)</text>
+    <text x="230" y="104" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">강점으로 기회를 극대화</text>
+    <text x="230" y="118" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">신제품 출시 · 시장 선점 투자</text>
+
+    <!-- Cell 2: ST Strategy -->
+    <rect x="325" y="70" width="170" height="60" rx="4" fill="var(--sl-color-green-low)"/>
+    <text x="410" y="88" text-anchor="middle" fill="var(--sl-color-green-high)" font-size="10.5" font-weight="bold">ST 전략 (다각화 및 방어)</text>
+    <text x="410" y="104" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">강점으로 외부 위협을 극복</text>
+    <text x="410" y="118" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">사업 다각화 · 차별화 방어</text>
+
+    <!-- Cell 3: WO Strategy -->
+    <rect x="145" y="140" width="170" height="60" rx="4" fill="var(--sl-color-purple-low)"/>
+    <text x="230" y="158" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="10.5" font-weight="bold">WO 전략 (보완적 우회)</text>
+    <text x="230" y="174" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">약점을 보완하여 기회를 포착</text>
+    <text x="230" y="188" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">전략적 제휴 · 아웃소싱 조달</text>
+
+    <!-- Cell 4: WT Strategy -->
+    <rect x="325" y="140" width="170" height="60" rx="4" fill="var(--sl-color-red-low)"/>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sl-color-red-high)" font-size="10.5" font-weight="bold">WT 전략 (방어적 철수)</text>
+    <text x="410" y="174" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="9">약점을 최소화하고 위협 회피</text>
+    <text x="410" y="188" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">비핵심 매각 · 한계사업 일몰</text>
+  </svg>
+</div>
+
 | 전략 유형 | 핵심 접근법 | 실행 질문 및 전략 방향 | 대표적 IT 실행 과제 |
 |---|---|---|---|
 | **SO 전략 (공격적 선점)** | 강점을 활용하여 시장 기회를 적극적으로 포착 | "우리의 핵심 역량으로 어떤 기회를 조기 장악할 것인가?" | 생성형 AI 기반 차별화 대고객 서비스 선제 개발 |
@@ -144,18 +192,26 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **단순 나열식 매몰** | 요인별 근거·영향·기간 명시 | 검증 가능한 요인만 유지 |
+| **단순 나열식 매몰** | 요인별 객관적 지표·근거 데이터 명시 | 검증 가능한 요인만 유지 |
 | **내·외부 개념 혼동** | **통제 가능 여부(Controllability)** 기준 엄격 적용 | 조직 통제 가능=S/W, 통제 불가=O/T 분류 일치 |
 | **우선순위 부재** | **AHP(계층화분석법)** 쌍대비교 및 2×2 매트릭스 적용 | 가중치 상위 핵심 과제 선별 완료 |
-| **정적 분석의 한계** | 변화 신호 모니터링 · 시나리오별 재평가 | 환경변화 반영 |
+| **정적 분석의 한계** | 외부 환경 모니터링 주기화 및 반기별 롤링 갱신 | 동적 환경 변화 적시 대응 |
 
 ## Ⅵ. 실행 과제 연계 및 추적성 중심의 기술사적 제언
 
 > SWOT의 가치는 4개 상자를 채우는 데 있지 않고, Cross 전략이 예산과 책임자가 명시된 프로젝트로 이어지는 데 있음.
 
-`[핵심 통찰]` SWOT의 약점은 4분면이 아니라 근거 없는 요인과 실행되지 않는 전략이며, TOWS 대안이 책임·자원·성과지표를 가진 과제로 전환되어야 가치가 생김.
+### 학습자 통찰 메모 — 답안 밖
 
-`나라면` 각 요인에 근거와 유효기간을 붙이고, TOWS 대안을 효과·실행가능성·위험으로 평가하여 선택된 과제만 로드맵에 반영하겠음.
+- `[핵심 통찰]` SWOT의 약점은 4분면이 아니라 근거 없는 요인과 실행되지 않는 전략이며, TOWS 대안이 책임·자원·성과지표를 가진 과제로 전환되어야 가치가 생김.
+- `나라면` 각 요인에 데이터 출처와 유효기간을 붙이고, TOWS 전략을 BSC 4대 관점 KPI 및 WBS 프로젝트로 일대일 매핑하여 분기별 실행률을 모니터링하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 도출된 TOWS 전략 과제가 전사 중장기 예산 및 WBS 작업 패키지로 100% 추적 가능한지 여부.
+- **공학적 대안**: 정성적 나열 탈피, **AHP(쌍대비교)** 가중치 산정 + **BSC(Balanced Scorecard)** 연계 로드맵 수립.
+- **검증 절차**: 통제 가능성(Controllability)에 의한 S/W vs O/T 분류 검증 및 MECE 교차 검토.
+- **기대 효과**: 경영진 의사결정 신뢰도 제고, 대내외 Strategic Fit 달성 및 자원 배분의 최적화.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SWOT 전략 프레임워크 제언 흐름">
   <div class="itpe-pipeline-node">

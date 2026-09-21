@@ -1,13 +1,13 @@
 ---
 title: "EA·ITA"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T10:45:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -82,7 +82,64 @@ extra:
   <div class="itpe-flow-node is-current"><strong>④ 관리·활용</strong><div class="itpe-step-detail"><strong>활동</strong><span>현행화·적합성·성과·투자 연계</span></div><div class="itpe-step-detail"><strong>산출</strong><span>EAMS·검토결과·성과정보</span></div></div>
 </div>
 
-## Ⅲ. 범정부 EA 참조모형
+## Ⅲ. 범정부 EA 참조모형 및 4대 아키텍처 연계
+
+```
+[전략/성과] ──────── PRM (성과참조모델) : 정보화 투자효율/달성도 평가
+     │
+[업무 아키텍처] ─── BRM (업무참조모델) : 비즈니스 기능 독립적 분류 체계
+     │
+[데이터 아키텍처] ─ DRM (데이터참조모델) : 데이터 분류/표준화/상호운용성
+     │
+[응용 아키텍처] ─── SRM (서비스참조모델) : 컴포넌트 재사용 및 서비스 연계
+     │
+[기술 아키텍처] ─── TRM (기술참조모델) : 플랫폼/SW/표준기술 인프라 규격
+```
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="범정부 EA 5대 참조모형과 4대 뷰 연계 메커니즘">
+  <!-- 배경 바운더리 -->
+  <rect x="10" y="10" width="500" height="200" rx="8" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" />
+  
+  <!-- 상단: PRM -->
+  <rect x="25" y="25" width="470" height="32" rx="6" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <text x="260" y="46" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">PRM (성과참조) : 전략목표 정렬 &amp; IT 투자 성과지표 측정</text>
+
+  <!-- 중앙 4대 아키텍처 & 참조모형 -->
+  <!-- BA & BRM -->
+  <rect x="25" y="70" width="225" height="38" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="137" y="87" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">BA (비즈니스 아키텍처)</text>
+  <text x="137" y="101" text-anchor="middle" font-size="9.5" fill="var(--sl-color-gray-2)">업무기능·프로세스 구조</text>
+  <line x1="250" y1="89" x2="270" y2="89" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <rect x="270" y="70" width="225" height="38" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="382" y="87" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">BRM (업무참조모형)</text>
+  <text x="382" y="101" text-anchor="middle" font-size="9.5" fill="var(--sl-color-gray-2)">조직독립적 기능 분류 (재정·국방 등)</text>
+
+  <!-- AA/DA & SRM/DRM -->
+  <rect x="25" y="118" width="110" height="42" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="80" y="135" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">DA (데이터)</text>
+  <text x="80" y="150" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">DRM 연계 (표준)</text>
+  
+  <rect x="140" y="118" width="110" height="42" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="195" y="135" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">AA (응용)</text>
+  <text x="195" y="150" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">SRM 연계 (컴포넌트)</text>
+
+  <rect x="270" y="118" width="110" height="42" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="325" y="135" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">DRM (데이터참조)</text>
+  <text x="325" y="150" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">데이터모델/연계체계</text>
+
+  <rect x="385" y="118" width="110" height="42" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="440" y="135" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">SRM (서비스참조)</text>
+  <text x="440" y="150" text-anchor="middle" font-size="9" fill="var(--sl-color-gray-2)">재사용 서비스/API</text>
+
+  <!-- TA & TRM -->
+  <rect x="25" y="170" width="225" height="30" rx="5" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="137" y="189" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-text)">TA (기술) ── TRM (기술참조모형)</text>
+
+  <rect x="270" y="170" width="225" height="30" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
+  <text x="382" y="189" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-accent-high)">EAMS 자동화 현행화 폐루프</text>
+</svg>
+</div>
 
 | 모형 | 영문 | 역할 |
 |---|---|---|
@@ -112,9 +169,18 @@ extra:
 
 ## Ⅵ. 결론·기술사적 제언
 
-> **[핵심 통찰]** EA의 품질은 모델 개수가 아니라 투자·변경 의사결정을 얼마나 일관되게 바꾸는가로 판단해야 함.
+### 학습자 통찰 메모 — 답안 밖
 
-> **나라면** 신규사업 심의 시 원칙·재사용·데이터·기술표준의 준수·예외를 기록하고, 운영 자산과 EAMS 차이를 주기적으로 검증해 현행화를 최소비용으로 유지하겠음.
+> **[핵심 통찰]** EA의 품질은 모델 개수나 장표 분량이 아니라, 실제 예산 배정·신규 사업 심의·변경 의사결정을 얼마나 일관되고 구속력 있게 통제하는가로 평가되어야 한다.
+> 
+> **나라면** EAMS를 정적인 문서 저장소가 아닌 '실시간 자산 카탈로그(CI/CD 파이프라인 및 CMDB 연동)'로 전환하여 형상 변경 시 메타데이터가 자동 갱신되도록 구성하고, 아키텍처 적합성 검토를 전자정부 사전협의 필수 게이트로 묶어 무단 표준 위반을 차단하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 정보화 사업 기획 및 예산 편성 시 범정부 EA 5대 참조모형(PRM/BRM/SRM/DRM/TRM) 준수율 95% 이상 달성 여부 및 공통 컴포넌트 재사용 타당성 검토 의무화
+- **대응 방안**: EAMS 기반 아키텍처 적합성 검토(Review Gate) 제도화, 예외 승인 시 일몰제(최장 2년) 적용 및 기술부채 대장 등록
+- **검증 체계**: 단위 프로젝트 검수 단계 감리 시 As-Is/To-Be 산출물과 형상관리(CMDB/EAMS) 동기화 일치율 전수 실사
+- **기대 효과**: 범부처 시스템 중복 투자 방지(연간 예산 15% 절감), 데이터 상호운용성 보장 및 전자정부 서비스 무중단 연계 가속화
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="EA 활용과 현행화 폐루프">
   <div class="itpe-flow-node"><strong>사업·변경 요청</strong><div class="itpe-step-detail"><strong>입력</strong><span>요구사항·Solution·투자안</span></div></div>
@@ -155,6 +221,7 @@ extra:
 
 ## 연결 토픽
 
-- 이전: [106. 품질비용](./106_cost_of_quality_coq/)
-- 관련: [003. ISP](./003_isp/) · [001. ISMP](./001_ismp/)
-- 다음: [110. Programmable Money·AI Agent](./110_programmable_money_ai_agents/)
+- 이전: [106. 품질비용](./106_cost_of_quality_coq.md)
+- 관련: [003. ISP](./003_isp.md) · [001. ISMP](./001_ismp.md)
+- 다음: [110. Programmable Money·AI Agent](./110_programmable_money_ai_agents.md)
+

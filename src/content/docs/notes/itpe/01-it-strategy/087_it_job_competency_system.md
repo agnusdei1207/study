@@ -1,6 +1,6 @@
 ---
 title: "ITSQF(IT Sectoral Qualifications Framework)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T07:00:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "B"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "B"
 ---
 
@@ -66,9 +66,87 @@ extra:
 - 정의: **NCS(National Competency Standards)**를 기반으로 IT 산업의 표준 직무와 직무수준별 요구역량을 체계화한 **산업별역량체계**
 - 목적: 직무 용어 표준화 · 역량 미스매치 완화 · 채용·교육·경력개발 연계
 
-## Ⅱ. ITSQF 구성체계·활용 절차
+## Ⅱ. ITSQF 프레임워크 아키텍처 및 활용 절차
 
-> 직무기술서를 기준으로 현재 역량과 목표 수준의 차이를 진단하고 필요한 개발활동을 연결함.
+> 표준 직무와 8단계 직무수준 매트릭스를 기반으로 역량 진단 및 HR 라이프사이클을 순환함.
+
+### 1. ITSQF 2차원 매트릭스 및 역량 연계 구조
+
+```xml
+<svg-diagram>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">ITSQF 2차원 역량체계 매트릭스 및 HR 순환 구조</text>
+
+  <!-- Left: 2D Framework Grid (직무 × 수준) -->
+  <g transform="translate(15, 45)">
+    <!-- Header Labels -->
+    <rect x="0" y="0" width="75" height="24" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="37" y="16" fill="var(--sl-color-text-muted)" font-size="9" text-anchor="middle">수준 \ 직무</text>
+    
+    <rect x="78" y="0" width="60" height="24" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="108" y="16" fill="var(--sl-color-text)" font-size="9" font-weight="bold" text-anchor="middle">IT기획</text>
+    
+    <rect x="141" y="0" width="60" height="24" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="171" y="16" fill="var(--sl-color-text)" font-size="9" font-weight="bold" text-anchor="middle">SW개발</text>
+
+    <rect x="204" y="0" width="60" height="24" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="234" y="16" fill="var(--sl-color-text)" font-size="9" font-weight="bold" text-anchor="middle">AI/데이터</text>
+
+    <!-- Levels (Rows) -->
+    <!-- Level 7~8 -->
+    <rect x="0" y="27" width="75" height="34" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="37" y="42" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold" text-anchor="middle">L7~L8</text>
+    <text x="37" y="55" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">최고전문/전략</text>
+    <rect x="78" y="27" width="186" height="34" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="171" y="48" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">엔터프라이즈 아키텍트 · AI 최고과학자</text>
+
+    <!-- Level 4~6 -->
+    <rect x="0" y="64" width="75" height="34" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="37" y="79" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold" text-anchor="middle">L4~L6</text>
+    <text x="37" y="92" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">중급/선임/팀장</text>
+    <rect x="78" y="64" width="186" height="34" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="171" y="85" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">설계자 · MLOps 엔지니어 · 프로젝트 리더</text>
+
+    <!-- Level 1~3 -->
+    <rect x="0" y="101" width="75" height="34" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="37" y="116" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold" text-anchor="middle">L1~L3</text>
+    <text x="37" y="129" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">초급/단독실무</text>
+    <rect x="78" y="101" width="186" height="34" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="171" y="122" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">코딩/단위테스트 · 데이터 라벨링/전처리</text>
+
+    <text x="132" y="152" fill="var(--sl-color-text-muted)" font-size="9" text-anchor="middle">◀ 2026 IT분야 38개 표준 직무체계 ▶</text>
+  </g>
+
+  <!-- Right: Evidence & HR Lifecycle Integration -->
+  <g transform="translate(295, 45)">
+    <rect x="0" y="0" width="210" height="158" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="6"/>
+    <rect x="0" y="0" width="210" height="24" fill="var(--sl-color-text-accent)" opacity="0.1" rx="6 6 0 0"/>
+    <text x="105" y="17" fill="var(--sl-color-text-accent)" font-size="11" font-weight="bold" text-anchor="middle">수행증거 기반 HR 선순환</text>
+
+    <!-- Cycle items -->
+    <text x="12" y="44" fill="var(--sl-color-text)" font-size="10" font-weight="bold">① 역량진단 (Gap 분석)</text>
+    <text x="22" y="58" fill="var(--sl-color-text-muted)" font-size="9">• 직무기술서 요구수준 vs 현재 보유역량</text>
+
+    <text x="12" y="78" fill="var(--sl-color-text)" font-size="10" font-weight="bold">② 수행증거(Evidence) 검증</text>
+    <text x="22" y="92" fill="var(--sl-color-text-muted)" font-size="9">• 프로젝트 산출물 · 공인자격 · 교육 이력</text>
+
+    <text x="12" y="112" fill="var(--sl-color-text)" font-size="10" font-weight="bold">③ 맞춤형 교육훈련 & 경력개발</text>
+    <text x="22" y="126" fill="var(--sl-color-text-muted)" font-size="9">• CDP(Career Path) 설정 및 승급 연계</text>
+
+    <text x="12" y="146" fill="var(--sl-color-text)" font-size="10" font-weight="bold">④ 적재적소 인력 배치 및 채용</text>
+  </g>
+</svg>
+</svg-diagram>
+```
+
+### 2. ITSQF 구성체계·활용 절차
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ITSQF를 이용한 직무역량관리 절차">
   <div class="itpe-pipeline-node">
@@ -107,7 +185,7 @@ extra:
 
 > 직무 수와 내용은 개정될 수 있으므로 해당 연도 공식 직무기술서를 기준으로 적용함.
 
-## Ⅳ. 과거 기술자 등급제와 ITSQF 비교
+## Ⅳ. 과거 기술자 등급제 vs ITSQF 비교
 
 | 기준 | 과거 기술자 등급제 | ITSQF |
 |---|---|---|
@@ -136,10 +214,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 직무–역할 불일치 · 진단근거 부족 · 갱신주기
-- 대안: 직무기술서 매핑 · 수행증거 기반 진단 · 주기적 갱신
-- 검증: 직무 요구역량과 개인 수행증거의 추적성
-- 효과: 적재적소 배치 · 역량개발 투자 정교화
+- **판정 기준**: 직무–실제역할 불일치율, 수행증거(산출물/자격) 타당성 및 정기 갱신 주기 준수 여부 판정
+- **대응 방안**: 38개 표준 직무기술서 매핑, 다면 포트폴리오 기반 증거 중심 진단 및 맞춤형 CDP 수립
+- **검증 체계**: 직무 요구역량과 개인 수행증거 간 추적성 검증, 프로젝트 수행 후 역량 수준 갱신 감사
+- **기대 효과**: 연공서열식 인력 관리 탈피, 적재적소 인력 배치 및 SW 엔지니어링 역량 고도화 유도
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="ITSQF 기반 증거 중심 역량관리 개선 흐름">
   <div class="itpe-pipeline-node"><strong>직무 요구</strong><div class="itpe-step-detail"><strong>기준</strong><span>직무기술서·목표수준</span></div></div>
@@ -185,3 +263,4 @@ extra:
 - 이전 토픽: [IT서비스 산업 특수성](./086_it_service_industry_characteristics.md)
 - 연관 토픽: [소프트웨어산업 하도급 구조](./097_software_industry_subcontracting_structure.md), [소프트웨어 비용 산정](./113_software_cost_estimation.md)
 - 다음 토픽: [경영환경 분석(SWOT·3C·PEST)](./088_swot_3c_pest.md)
+

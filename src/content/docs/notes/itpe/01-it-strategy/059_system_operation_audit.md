@@ -1,6 +1,6 @@
 ---
 title: "시스템 운영·유지보수 감리"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T03:15:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -83,6 +83,34 @@ extra:
 
 ## Ⅲ. 핵심 점검영역
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="시스템 운영 및 유지보수 감리 핵심 점검 프레임워크">
+    <!-- Left: Operation Audit Core -->
+    <rect x="20" y="15" width="235" height="150" rx="8" class="itpe-svg-node"></rect>
+    <text x="137" y="38" class="itpe-svg-title">운영 감리 영역 (SLA/안전성)</text>
+    <line x1="30" y1="48" x2="245" y2="48" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="35" y="70" class="itpe-svg-sub">• 가용성/성능: SLA 준수율, APM 모니터링</text>
+    <text x="35" y="92" class="itpe-svg-sub">• 장애관리: Incident/Problem 조치, RCA</text>
+    <text x="35" y="114" class="itpe-svg-sub">• 재해복구: 백업 소산, 모의훈련 RTO/RPO</text>
+    <text x="35" y="136" class="itpe-svg-sub">• 보안통제: 권한관리, 패치, 감사로그</text>
+    <text x="35" y="155" class="itpe-svg-sub">• 사용자지원: 헬프데스크 접수 및 만족도</text>
+
+    <!-- Right: Maintenance Audit Core -->
+    <rect x="265" y="15" width="235" height="150" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="382" y="38" class="itpe-svg-title">유지보수 감리 영역 (변경/품질)</text>
+    <line x1="275" y1="48" x2="490" y2="48" stroke="var(--sl-color-gray-4)" stroke-width="1"></line>
+    <text x="280" y="70" class="itpe-svg-sub">• 요구관리: SR 공식 접수 및 타당성 검토</text>
+    <text x="280" y="92" class="itpe-svg-sub">• 변경승인: CAB 영향분석, Rollback 계획</text>
+    <text x="280" y="114" class="itpe-svg-sub">• 형상관리: 소스 Commit, 버전 브랜칭</text>
+    <text x="280" y="136" class="itpe-svg-sub">• 시험배포: 단위/통합/회귀시험 결과서</text>
+    <text x="280" y="155" class="itpe-svg-sub">• 계약범위: 무상 하자 vs 유상 변경 구분</text>
+
+    <!-- Bottom Bridge -->
+    <rect x="20" y="175" width="480" height="35" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="197" class="itpe-svg-title" text-anchor="middle">공통 증적: CAATs 기반 원시 로그(Raw Log) · 데이터베이스 트랜잭션 전수 교차검증</text>
+  </svg>
+</div>
+
 | 영역 | 점검사항 | 증적 |
 |---|---|---|
 | 서비스 | SLA·Incident·Problem·사용자지원 | SLA 보고·Ticket·RCA |
@@ -118,9 +146,18 @@ extra:
 
 ## Ⅵ. Evidence Traceability 기반 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` 운영 감리의 품질은 자료량이 아니라 하나의 장애·변경 사건이 승인부터 조치·시험·종결까지 끊김 없이 추적되는가에 달려 있음.
 
 `나라면` 위험기반 표본을 선정해 SLA 보고값을 원시 Log로 재계산하고, 백업은 격리환경에서 복원하며, SR은 Commit·Test·배포기록까지 연결해 통제의 실효성을 판정하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: 운영 보고서의 SLA 달성률(99.9% 등)과 시스템 원시 로그(APM, 웹서버 로그) 간 장애 시간 불일치가 5분 이상 발생 시 허위 보고로 판정.
+- **대응 방안 (Action)**: CAATs(컴퓨터보조감사기법)를 도입해 원시 로그를 전수 대조하고, 정기 백업본에 대해 격리된 스테이징 환경에서 무작위 표본 복구 실증(Mock Restore)을 의무화함.
+- **검증 체계 (Verification)**: 유지보수 SR 티켓 ID ↔ 형상관리 Commit 해시 ↔ 테스트 결과서 ↔ 배포 승인서(CAB)를 1:1 체결한 변경 추적성 매트릭스로 검증함.
+- **기대 효과 (Impact)**: 페이퍼 감리 한계 탈피, 미승인 변경으로 인한 대형 장애(전산망 먹통) 예방, 유지보수 사업자와 발주기관 간 과업범위 분쟁 원천 차단을 달성함.
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 470" role="img" aria-label="운영 유지보수 감리 증적 추적 구조">

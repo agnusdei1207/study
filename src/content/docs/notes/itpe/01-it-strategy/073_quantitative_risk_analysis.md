@@ -1,6 +1,6 @@
 ---
 title: "정량적 위험분석"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T05:05:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
   keyword_grade: "C"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -112,6 +112,48 @@ extra:
 
 > 네 가지 기법은 상호 배타적인 것이 아니라, 민감도 분석으로 변수를 좁히고 EMV·의사결정나무로 대안을 평가하며 몬테카를로로 종합 예비비를 산정하는 보완 관계임.
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="정량적 위험분석 토네이도 다이어그램 및 몬테카를로 누적 S-Curve">
+    <!-- Left: Tornado Diagram (Sensitivity) -->
+    <rect x="20" y="15" width="235" height="190" rx="8" class="itpe-svg-node"></rect>
+    <text x="137" y="38" class="itpe-svg-title">민감도 분석 (토네이도 차트)</text>
+    <line x1="137" y1="48" x2="137" y2="175" stroke="var(--sl-color-gray-4)" stroke-dasharray="2,2"></line>
+    <!-- Tornado Bars -->
+    <rect x="55" y="55" width="160" height="20" rx="3" fill="var(--sl-color-accent)" opacity="0.8"></rect>
+    <text x="45" y="70" class="itpe-svg-sub" text-anchor="end">핵심 기술인력 이탈</text>
+    
+    <rect x="75" y="85" width="125" height="20" rx="3" fill="var(--sl-color-accent)" opacity="0.65"></rect>
+    <text x="65" y="100" class="itpe-svg-sub" text-anchor="end">요구사항 잦은 변경</text>
+    
+    <rect x="95" y="115" width="85" height="20" rx="3" fill="var(--sl-color-accent)" opacity="0.5"></rect>
+    <text x="85" y="130" class="itpe-svg-sub" text-anchor="end">클라우드 라이선스 인상</text>
+    
+    <rect x="115" y="145" width="45" height="20" rx="3" fill="var(--sl-color-accent)" opacity="0.35"></rect>
+    <text x="105" y="160" class="itpe-svg-sub" text-anchor="end">하드웨어 납기 지연</text>
+    
+    <text x="137" y="195" class="itpe-svg-sub" text-anchor="middle">영향도 순위화 (최상위 집중 관리)</text>
+
+    <!-- Right: Monte Carlo S-Curve -->
+    <rect x="265" y="15" width="235" height="190" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="382" y="38" class="itpe-svg-title">몬테카를로 시뮬레이션 (S-Curve)</text>
+    
+    <!-- S-Curve Graphic -->
+    <path d="M 285 165 Q 350 160 382 105 T 480 50" fill="none" stroke="var(--sl-color-accent)" stroke-width="2.5"></path>
+    <!-- P50 Line -->
+    <line x1="382" y1="50" x2="382" y2="165" stroke="var(--sl-color-gray-4)" stroke-dasharray="2,2"></line>
+    <text x="382" y="180" class="itpe-svg-sub" text-anchor="middle">P50 (기준예산)</text>
+    
+    <!-- P80 Line -->
+    <line x1="435" y1="50" x2="435" y2="165" stroke="var(--sl-color-accent)" stroke-dasharray="2,2"></line>
+    <text x="445" y="180" class="itpe-svg-sub" text-anchor="middle">P80 (목표신뢰도)</text>
+    
+    <!-- Contingency Reserve Arrow -->
+    <line x1="382" y1="135" x2="435" y2="135" stroke="var(--sl-color-accent)" stroke-width="2"></line>
+    <text x="410" y="125" class="itpe-svg-sub" text-anchor="middle" font-weight="bold">비상예비비</text>
+    <text x="382" y="195" class="itpe-svg-sub" text-anchor="middle">Contingency Reserve = P80 - P50</text>
+  </svg>
+</div>
+
 | 분석 기법 | 핵심 메커니즘 | 실무 적용 역할 |
 |---|---|---|
 | **민감도 분석 (토네이도)** | 타 변수를 고정하고 특정 위험 변수의 변동 폭이 결과에 미치는 민감도 측정 | 프로젝트 성공을 좌우하는 최상위 핵심 리스크 식별 |
@@ -140,10 +182,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 입력 근거 · 분포 적합성 · 상관관계 · 분석 시점
-- 대안: 실적 기반 입력 보정 · 마일스톤별 재분석
-- 검증: 예측분포와 실제 비용·일정의 편차 추적
-- 효과: 예비비 과소·과다 계상 완화
+- **판정 기준 (Trigger)**: 프로젝트 목표 원가·일정의 몬테카를로 시뮬레이션 달성 확률이 조직 허용 임계치(예: P80) 미만으로 하회 시 예산 경보 발령.
+- **대응 방안 (Action)**: 토네이도 분석 상위 3대 위험에 대해 선제적 위험 대응(회피, 완화)을 집행하고, P80-P50 차액을 비상예비비(Contingency Reserve)로 공식 기준선에 반영.
+- **검증 체계 (Verification)**: 마일스톤별 실제 집행 원가 및 일정 진척 실적(EVM)을 피드백하여 시뮬레이션 확률분포를 롤링 웨이브(Rolling Wave) 방식으로 재보정.
+- **기대 효과 (Impact)**: 주관적 직관에 의한 예산 삭감/과대 계상 방지, 재무적 손실 가시화, 발주자·스폰서에 대한 통계적 신뢰도 기반 의사결정 설득력 확보를 달성함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="정량적 위험분석 동적 예비비 관리 제언 흐름">
   <div class="itpe-pipeline-node">

@@ -1,6 +1,6 @@
 ---
 title: "AI 고속도로"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T02:10:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -81,6 +81,30 @@ extra:
 
 > 자원 보유량보다 수요자가 필요한 환경을 적시에 사용할 수 있는 서비스 전달체계가 중요함.
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="AI 고속도로 풀스택 아키텍처">
+    <!-- Layer 1: Platform & Services -->
+    <rect x="20" y="15" width="480" height="35" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="32" class="itpe-svg-title">1. 서비스·플랫폼 계층: AI MLOps · LLM Hub · 공통 API · 개발/서빙 포털</text>
+
+    <!-- Layer 2: Data & Governance -->
+    <rect x="20" y="55" width="480" height="35" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="72" class="itpe-svg-title">2. 데이터 계층: 고품질 AI 학습데이터 · 합성데이터 · 안전구역 · 데이터 레이크</text>
+
+    <!-- Layer 3: Compute & Accelerator -->
+    <rect x="20" y="95" width="480" height="35" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="112" class="itpe-svg-title">3. 연산·컴퓨팅 계층: 국산 NPU · GPU 클러스터 · 초고속 스토리지 (GPUDirect)</text>
+
+    <!-- Layer 4: Network Fabric -->
+    <rect x="20" y="135" width="480" height="35" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="152" class="itpe-svg-title">4. 초고속 네트워크 계층: RoCEv2 · InfiniBand · 백본 광전송망 (초저지연 패브릭)</text>
+
+    <!-- Layer 5: Energy & Facilities -->
+    <rect x="20" y="175" width="480" height="35" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="192" class="itpe-svg-title">5. 에너지·인프라 계층: 전력 계통망 · 액침냉각(Immersion Cooling) · PUE 최적화</text>
+  </svg>
+</div>
+
 | 영역 | 구성 | 역할 |
 |---|---|---|
 | Compute | GPU·NPU·HPC·Storage | 학습·추론 자원 공급 |
@@ -130,9 +154,18 @@ extra:
 
 ## Ⅵ. 수요기반 AI Infrastructure FinOps 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` AI 고속도로의 성패는 가속기 보유 대수가 아니라, 다양한 수요를 적합한 자원에 배치하고 사용 성과를 다음 용량계획에 반영하는 운영능력에 달려 있음.
 
 `나라면` 사업별 서버 소유 방식 대신 공통 서비스 카탈로그와 Quota를 적용하고, 가속기 시간·전력·Storage·Network 비용을 Workload 단위로 계량하여 증설 판단에 사용하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: 국가 AI 컴퓨팅 센터 내 GPU 할당 자원의 72시간 연속 가동률(Utilization)이 30% 미만이거나 특정 기관 독점 점유율이 40%를 초과할 시 자원 회수 트리거 발동.
+- **대응 방안 (Action)**: AI Infra FinOps 기반 동적 쿼터제(Dynamic Quota)와 유휴 자원 선점형(Preemptible) 재할당 파이프라인을 가동하고, 국산 NPU 전용 추론 풀로 분산 유도.
+- **검증 체계 (Verification)**: 워크로드별 TCO(연산비용+전력비용+스토리지), 데이터센터 전력효율(PUE < 1.2 목표), 모델 학습 완료율을 계량화하여 분기별 투자 효과를 평가함.
+- **기대 효과 (Impact)**: 글로벌 GPU 벤더 종속 탈피(소버린 AI 인프라 자립), 자원 유휴 손실 50% 절감, 스타트업 및 연구계 AI 개발 진입 장벽의 획기적 완화를 달성함.
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 440" role="img" aria-label="AI 인프라 수요와 자원 배분 및 성과가 순환하는 운영 구조">

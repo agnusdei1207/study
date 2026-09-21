@@ -1,6 +1,6 @@
 ---
 title: "MECE"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-21T21:05:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -76,6 +76,52 @@ extra:
 
 > 대상에 맞는 축을 선택하되 동일 계층에서는 혼용하지 않음.
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="MECE 기반 Issue Tree 계층 분할 및 검증 구조">
+    <!-- Root Issue -->
+    <rect x="20" y="80" width="100" height="50" rx="8" class="itpe-svg-node"></rect>
+    <text x="70" y="102" class="itpe-svg-title">핵심 과제</text>
+    <text x="70" y="118" class="itpe-svg-sub">전체 범위 U</text>
+    
+    <!-- Lines to L1 -->
+    <line x1="120" y1="105" x2="160" y2="55" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
+    <line x1="120" y1="105" x2="160" y2="155" stroke="var(--sl-color-gray-4)" stroke-width="2"></line>
+    
+    <!-- L1 Nodes -->
+    <rect x="160" y="30" width="130" height="50" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="225" y="52" class="itpe-svg-title">영역 A (내부 요인)</text>
+    <text x="225" y="68" class="itpe-svg-sub">단일축: 귀속주체</text>
+    
+    <rect x="160" y="130" width="130" height="50" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="225" y="152" class="itpe-svg-title">영역 B (외부 요인)</text>
+    <text x="225" y="168" class="itpe-svg-sub">단일축: 귀속주체</text>
+    
+    <!-- Lines to L2 -->
+    <line x1="290" y1="45" x2="330" y2="25" stroke="var(--sl-color-gray-4)" stroke-width="1.5"></line>
+    <line x1="290" y1="65" x2="330" y2="75" stroke="var(--sl-color-gray-4)" stroke-width="1.5"></line>
+    <line x1="290" y1="145" x2="330" y2="135" stroke="var(--sl-color-gray-4)" stroke-width="1.5"></line>
+    <line x1="290" y1="165" x2="330" y2="185" stroke="var(--sl-color-gray-4)" stroke-width="1.5"></line>
+    
+    <!-- L2 Nodes -->
+    <rect x="330" y="10" width="105" height="35" rx="6" class="itpe-svg-node"></rect>
+    <text x="382" y="28" class="itpe-svg-title">A-1. 프로세스</text>
+    <rect x="330" y="55" width="105" height="35" rx="6" class="itpe-svg-node"></rect>
+    <text x="382" y="73" class="itpe-svg-title">A-2. 시스템</text>
+    
+    <rect x="330" y="115" width="105" height="35" rx="6" class="itpe-svg-node"></rect>
+    <text x="382" y="133" class="itpe-svg-title">B-1. 고객/시장</text>
+    <rect x="330" y="165" width="105" height="35" rx="6" class="itpe-svg-node"></rect>
+    <text x="382" y="183" class="itpe-svg-title">B-2. 법제/규제</text>
+    
+    <!-- Validation Box -->
+    <rect x="450" y="30" width="60" height="150" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-dasharray="3,3"></rect>
+    <text x="480" y="75" class="itpe-svg-sub" text-anchor="middle" font-weight="bold">ME 검증</text>
+    <text x="480" y="95" class="itpe-svg-sub" text-anchor="middle">A ∩ B = ∅</text>
+    <text x="480" y="135" class="itpe-svg-sub" text-anchor="middle" font-weight="bold">CE 검증</text>
+    <text x="480" y="155" class="itpe-svg-sub" text-anchor="middle">A ∪ B = U</text>
+  </svg>
+</div>
+
 | 방식 | 분할축 | 적용 예 |
 |---|---|---|
 | **이분법** | A / Not A | 내부·외부 · 정형·비정형 |
@@ -113,9 +159,18 @@ extra:
 
 ## Ⅵ. 검증 가능한 구조화 중심 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` MECE의 품질은 항목 수가 아니라 분할축이 명시되고, 중복·미분류 항목을 반례로 검증할 수 있는가에 달려 있음.
 
 `나라면` Issue Tree와 WBS의 각 계층에 분할축을 기록하고, 미분류 요구사항과 중복 책임을 검토한 뒤 Baseline으로 승인하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: WBS 및 Issue Tree 작성 시 동일 레벨 내 분할축 혼용(기능+조직 병렬), 미분류 잔여분(기타 항목) 비율이 10%를 초과할 때 즉시 구조 재검토를 발동함.
+- **대응 방안 (Action)**: 계층별 단일 분할축(이분법, 프로세스, 라이프사이클)을 정의서에 명시하고, '기타' 분류 항목을 세부 원인별로 2차 분할하여 MECE 무결성을 확보함.
+- **검증 체계 (Verification)**: 산출물 검토 시 상호배타성(RACI 매트릭스 책임 중복 여부)과 전체포괄성(100% Rule 및 RTM 요구사항 누락 여부)을 교차 매핑하여 형식적 완전성을 정량 검증함.
+- **기대 효과 (Impact)**: 프로젝트 범위 크립(Scope Creep) 원천 차단, 부서 간 업무 R&R 분쟁 40% 이상 감축, 의사결정 추적성 확보를 달성함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="MECE 구조의 검증과 실행 연결">
   <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>문제</strong><span>축 혼용 · 중복 · 미분류</span></div></div>

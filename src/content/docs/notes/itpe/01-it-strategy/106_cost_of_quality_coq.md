@@ -1,13 +1,14 @@
 ---
 title: "품질비용(COQ)"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T10:25:00+09:00"
-tags: ["notes-it-strategy"]
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -84,7 +85,64 @@ extra:
   <div class="itpe-flow-node is-current"><strong>④ 예방·평가 개선</strong><div class="itpe-step-detail"><strong>활동</strong><span>Review·자동시험·Quality Gate 적용</span></div><div class="itpe-step-detail"><strong>검증</strong><span>COQ 추세·재발결함 확인</span></div></div>
 </div>
 
-## Ⅳ. 적합비용·부적합비용 균형
+## Ⅳ. 적합비용 vs 부적합비용 상충 곡선 및 최적화
+
+> 예방 투자를 선제 집행하여(Shift-Left) 기하급수적으로 폭증하는 외부 실패비용을 차단하고 총 품질비용을 최소화함.
+
+### 1. PAF 상충 곡선 및 총 품질비용 최적점(Optimal Point)
+
+```xml
+<svg-diagram>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
+  <!-- Title -->
+  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">품질비용(COQ) 상충 곡선 및 총비용 최소화 최적점</text>
+
+  <!-- Left: PAF Matrix Summary -->
+  <g transform="translate(15, 45)">
+    <!-- Conformance -->
+    <rect x="0" y="0" width="180" height="70" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="5"/>
+    <text x="10" y="18" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold">[적합비용: 통제 가능]</text>
+    <text x="10" y="36" fill="var(--sl-color-text)" font-size="9">• 예방(P): 표준, TDD, 코드리뷰</text>
+    <text x="10" y="52" fill="var(--sl-color-text)" font-size="9">• 평가(A): 단위/통합시험, 감리</text>
+
+    <!-- Non-conformance -->
+    <rect x="0" y="80" width="180" height="75" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+    <text x="10" y="98" fill="#ef4444" font-size="10" font-weight="bold">[부적합비용: 실패 손실]</text>
+    <text x="10" y="116" fill="var(--sl-color-text)" font-size="9">• 내부실패(IF): 재작업, 빌드결함</text>
+    <text x="10" y="132" fill="var(--sl-color-text)" font-size="9">• 외부실패(EF): 운영장애, 보상, 이탈</text>
+    <text x="10" y="146" fill="var(--sl-color-text-muted)" font-size="8">※ 배포 후 발견 시 결함 비용 10~100배 폭증</text>
+  </g>
+
+  <!-- Right: Cost Trade-off Curve Graph -->
+  <g transform="translate(230, 45)">
+    <!-- Axes -->
+    <line x1="20" y1="140" x2="260" y2="140" stroke="var(--sl-color-hairline)" stroke-width="1.5"/>
+    <line x1="20" y1="140" x2="20" y2="10" stroke="var(--sl-color-hairline)" stroke-width="1.5"/>
+    <text x="260" y="152" fill="var(--sl-color-text-muted)" font-size="9" text-anchor="end">품질 수준 (%) ▶ 100%</text>
+    <text x="15" y="10" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="start">비용 (Cost)</text>
+
+    <!-- Conformance Curve (Increasing) -->
+    <path d="M 20 135 Q 140 125 240 25" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2"/>
+    <text x="245" y="30" fill="var(--sl-color-text-accent)" font-size="8">적합비용(P+A)</text>
+
+    <!-- Failure Cost Curve (Decreasing) -->
+    <path d="M 25 25 Q 100 120 250 138" fill="none" stroke="#ef4444" stroke-width="2"/>
+    <text x="30" y="20" fill="#ef4444" font-size="8">실패비용(COPQ)</text>
+
+    <!-- Total Cost Curve (U-Shape) -->
+    <path d="M 35 40 Q 130 115 245 45" fill="none" stroke="#10b981" stroke-width="2.5"/>
+    <text x="140" y="60" fill="#10b981" font-size="9" font-weight="bold">총 품질비용(Total COQ)</text>
+
+    <!-- Optimal Point Marker -->
+    <line x1="135" y1="78" x2="135" y2="140" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <circle cx="135" cy="78" r="4" fill="#10b981"/>
+    <text x="135" y="152" fill="#10b981" font-size="8" font-weight="bold" text-anchor="middle">최적점 (Min Cost)</text>
+  </g>
+</svg>
+</svg-diagram>
+```
+
+### 2. 적합비용과 부적합비용 비교
 
 | 기준 | 적합비용 중심 | 부적합비용 중심 |
 |---|---|---|
@@ -104,11 +162,21 @@ extra:
 | 지표 목표화 | 비용·결함·고객영향 함께 평가 | 숫자 맞추기 방지 |
 | 예방투자 효과 불명 | 전후 추세·재발률 검증 | 투자 근거 확보 |
 
-## Ⅵ. 결론·기술사적 제언
+## Ⅵ. Shift-Left 품질 최적화를 위한 기술사적 제언
 
-> **[핵심 통찰]** 품질비용의 목적은 테스트 예산을 늘리는 것이 아니라 가장 큰 실패손실을 가장 경제적인 예방 통제로 바꾸는 것임.
+> 품질비용의 목적은 테스트 예산을 늘리는 것이 아니라 가장 큰 실패손실을 가장 경제적인 예방 통제로 바꾸는 것임.
 
-> **나라면** 장애·재작업 비용을 원인별로 집계하고, 상위 원인에만 Review·자동시험·Quality Gate를 적용한 뒤 실패비용 감소로 투자를 재평가하겠음.
+### 학습자 통찰 메모 — 답안 밖
+
+- [핵심 통찰]: '배포 후 버그 수정 비용은 요구사항 단계 대비 100배'라는 보잉/IBM의 전통적 소프트웨어 공학 법칙은 현대 클라우드/마이크로서비스 환경에서도 유효함. 외부 실패 비용 1건(대형 금융 전산 마비)은 기업의 생존을 위협하므로, CI/CD 파이프라인에 정적 분석 및 보안 취약점 점검을 자동화하는 Shift-Left 체계가 가장 ROI가 높은 예방 투자임.
+- 나라면: 장애·재작업 비용을 원인별로 집계하고, 상위 원인에만 Review·자동시험·Quality Gate를 적용한 뒤 실패비용 감소로 투자를 재평가하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 총 품질비용 중 부적합비용(COPQ) 비중, 릴리스 단계별 결함 유입률 및 재작업 공수 추이 판정
+- **대응 방안**: 데브옵스 CI/CD 내 정적분석·단위테스트 자동화 등 Shift-Left 예방 투자 확대, Quality Gate 단계별 강제
+- **검증 체계**: 결함 원인 파레토(Pareto) 분석, 예방비용 집행 전·후 운영 장애 건수 및 복구비용 절감액 추적
+- **기대 효과**: 외부 장애에 따른 브랜드 실추 및 보상비용 원천 예방, 총 개발 라이프사이클 비용 30% 절감
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="실패비용을 예방통제로 전환하는 품질비용 폐루프">
   <div class="itpe-flow-node"><strong>실패비용</strong><div class="itpe-step-detail"><strong>증거</strong><span>장애·재작업·보상</span></div></div>
@@ -145,6 +213,7 @@ extra:
 
 ## 연결 토픽
 
-- 이전: [104. 클라우드 전환사업 감리](./104_cloud_migration_project_audit/)
-- 관련: [111. Six Sigma DMAIC](./111_six_sigma_dmaic/) · [113. SW 비용 산정](./113_software_cost_estimation/)
-- 다음: [107. EA·ITA](./107_ea_ita/)
+- 이전 토픽: [클라우드 전환사업 감리](./104_cloud_migration_project_audit.md)
+- 연관 토픽: [Six Sigma DMAIC](./111_six_sigma_dmaic.md), [소프트웨어 비용 산정](./113_software_cost_estimation.md)
+- 다음 토픽: [EA·ITA](./107_ea_ita.md)
+

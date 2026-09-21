@@ -1,7 +1,7 @@
 ---
 title: "공공부문 클라우드 네이티브 전환"
-author: "OpenAI Codex"
-date: "2026-09-21T12:05:00+09:00"
+author: "Antigravity"
+date: "2026-09-21T15:30:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: 서버 위치만 옮기는 이전이 아니라 애플리케이션·데이터·운영을 클라우드 특성에 맞게 현대화
-- 메커니즘: 진단 → 플랫폼 → 점진 현대화 → 배포 자동화 → 운영 검증
-- 통제: 서비스 중요도·보안등급·전환효과에 맞춰 MSA·Container·CI/CD·DevOps를 선택 적용
+- 본질: **공공부문 클라우드 네이티브 전환**은 서버 위치만 옮기는 단순 IaaS 이전(Lift & Shift)이 아니라 애플리케이션·데이터·운영을 클라우드 특성에 맞게 전면 현대화하는 전략
+- 메커니즘: 진단(6R) → 플랫폼(랜딩존) → 점진 현대화(Strangler Fig) → 무중단 배포(Canary) → 운영 검증(SRE)
+- 산출물: 서비스 중요도·보안등급별 6R 전략서 · 마이크로서비스 API 명세서 · SLO 기반 관측성 대시보드
 
 <div class="itpe-flow-map" role="img" aria-label="공공부문 클라우드 네이티브 전환 및 4대 기술 체계">
   <div class="itpe-flow-node">
@@ -122,9 +122,29 @@ extra:
 </div>
 <div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 공공 정보등급 ↔ 6R 현대화 ↔ 무중단 CI/CD 배포 ↔ SRE 가용성 전주기 추적</div>
 
-## Ⅲ. 클라우드 네이티브 대표 구현요소
+## Ⅲ. 클라우드 네이티브 4대 핵심 구현요소
 
-> 4대 요소가 결합되어야 장애 격리, 탄력적 오토스케일링, 신속한 기능 릴리즈가 공공 행정 시스템에서 실현됨.
+> 4대 요소 **MSA**·**Container(K8s)**·**CI/CD**·**DevOps/관측성**이 유기적으로 결합되어야 장애 격리, 탄력적 오토스케일링, 무중단 배포가 공공 행정 시스템에서 실현됨.
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 330" role="img" aria-label="클라우드 네이티브 4대 구현요소를 MSA, 컨테이너, CI/CD, DevOps 및 관측성으로 분기하고 각 역할과 효과를 표시한 트리">
+  <rect class="itpe-svg-node is-current" x="110" y="8" width="300" height="46" rx="12" />
+  <text class="itpe-svg-title" x="260" y="31">클라우드 네이티브 4대 요소</text>
+  <path class="itpe-svg-link" d="M260 54 V68 H40 V288 M40 102 H70 M40 164 H70 M40 226 H70 M40 288 H70" />
+  <rect class="itpe-svg-node" x="70" y="74" width="440" height="56" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="94">구조 · MSA(Microservices Architecture)</text>
+  <text class="itpe-svg-label" x="290" y="114">도메인 주도 분할 · 결합도 제거 · 장애 격리</text>
+  <rect class="itpe-svg-node" x="70" y="136" width="440" height="56" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="156">실행 · Container & Kubernetes(K8s)</text>
+  <text class="itpe-svg-label" x="290" y="176">표준 패키징 · 수평 확장(HPA) · 자가 치유</text>
+  <rect class="itpe-svg-node" x="70" y="198" width="440" height="56" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="218">배포 · CI/CD 자동화 파이프라인</text>
+  <text class="itpe-svg-label" x="290" y="238">빌드·시험 자동화 · 카나리/블루그린 무중단 릴리즈</text>
+  <rect class="itpe-svg-node" x="70" y="260" width="440" height="56" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="280">운영 · DevOps & Observability(관측성)</text>
+  <text class="itpe-svg-label" x="290" y="300">OpenTelemetry 분산 추적 · SRE 기반 SLO 보증</text>
+</svg>
+</div>
 
 | 요소 | 역할 | 효과 |
 |---|---|---|
@@ -135,32 +155,40 @@ extra:
 
 ## Ⅳ. 단순 클라우드 이전(Lift & Shift) vs 클라우드 네이티브 전환 비교
 
-> Lift & Shift가 하드웨어 장소만 바꾼 이전이라면, 클라우드 네이티브는 소프트웨어 구조와 배포 문화를 전면 혁신하는 것임.
+> **Lift & Shift(Rehost)**가 하드웨어 장소만 바꾼 인프라 이전이라면, **클라우드 네이티브(Cloud Native)**는 소프트웨어 아키텍처와 배포·운영 문화를 전면 혁신하는 것임.
 
 | 기준 | Lift & Shift | Cloud Native |
 |---|---|---|
-| **변화 범위** | 인프라 이전 | 애플리케이션·데이터·운영 현대화 |
-| **확장 방식** | 기존 구조 유지 | 자동화된 수평 확장 가능 |
-| **변경 방식** | 기존 배포 절차 유지 | CI/CD 기반 점진 배포 |
-| **적용 판단** | 신속 이전·변경 제약 | 지속 변경·탄력성 요구 |
+| **변화 범위** | 인프라 이전 (IaaS 중심) | 애플리케이션·데이터·운영 현대화 |
+| **확장 방식** | 기존 Scale-Up 위주 유지 | 자동화된 수평 확장(Scale-Out/HPA) |
+| **변경 방식** | 기존 수작업 정기 배포 유지 | **CI/CD** 기반 무중단 점진 릴리즈 |
+| **적용 판단** | 신속 단순 이전·코드 수정 제약 | 대민 트래픽 폭증 대응·지속 혁신 요구 |
 
 ## Ⅴ. 공공부문 전환의 문제점·대응책
 
-> 데이터베이스 강결합과 단일 턴키 발주 관행을 극복하기 위해 분할 발주와 스트랭글러 패턴을 적용해야 함.
+> 모놀리식 데이터베이스의 강결합과 단일 턴키 발주 관행을 극복하기 위해 **Strangler Fig 패턴**과 단계적 분할 발주 거버넌스를 적용해야 함.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **데이터베이스 강결합** | 바운디드 컨텍스트 도출 · CDC 기반 동기화 검증 | 정합성을 확인하며 점진 분리 |
-| **일괄 발주와 점진 전환 충돌** | 플랫폼·업무서비스의 책임·인터페이스·통합검증 기준 명시 | 단계별 검수 가능 |
-| **상용 COTS 패키지 전환 불가** | 패키지 시스템은 Replatform/Rehost로 존치하고 래퍼 API로 MSA 연계 | 레거시 인터페이스 무결성 유지 및 연계 지연 차단 |
+| **데이터베이스 강결합** | 바운디드 컨텍스트 도출 · **CDC(Change Data Capture)** 기반 동기화 검증 | 정합성을 확인하며 점진 분리 |
+| **일괄 발주와 점진 전환 충돌** | 플랫폼·업무서비스의 책임·인터페이스·통합검증 기준 명시 | 단계별 분할 발주 및 검수 가능 |
+| **상용 COTS 패키지 전환 불가** | 패키지 시스템은 Replatform/Rehost로 존치하고 래퍼 API로 **MSA** 연계 | 레거시 인터페이스 무결성 유지 및 연계 지연 차단 |
 
-## Ⅵ. 결론 — Strangler 패턴 중심의 점진 전환
+## Ⅵ. 결론 — Strangler Fig 패턴 중심의 점진 전환
 
-> 공공부문 클라우드 네이티브 전환의 성패는 수천억 원짜리 전면 재구축이 아니라 검증된 작은 단위부터 떼어내는 점진적 전환 거버넌스에 있음.
+> 공공부문 클라우드 네이티브 전환의 성패는 수천억 원짜리 전면 재구축(Big-Bang)이 아니라 검증된 작은 단위부터 떼어내는 **점진적 전환(Strangler Fig) 거버넌스**에 있음.
 
-`[핵심 통찰]` 클라우드 네이티브의 가치는 기술 개수보다 서비스 경계·데이터 소유권·배포 책임이 실제로 분리되는 데 있음.
+### 학습자 통찰 메모 — 답안 밖
 
-`나라면` 빅뱅 재구축 대신 변경 빈도와 장애영향이 큰 서비스부터 Strangler Fig 패턴으로 분리하고, 매 단계에서 정합성·성능·복구를 검증하겠음.
+- `[핵심 통찰]`: 클라우드 네이티브의 본질적 가치는 컨테이너 기술 도입 자체가 아니라 서비스 경계·데이터 소유권·배포 책임이 실제로 분리되는 데 있다.
+- `나라면`: 전면 빅뱅 재구축 대신 변경 빈도와 장애 영향도가 큰 서비스부터 Strangler Fig 패턴으로 분리하고, 매 단계마다 데이터 정합성·부하 확장성·복구 탄력성을 실측 검증하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 빅뱅 일괄 전환 위험을 회피하고 서비스 단위 점진 분리 및 인터페이스 계약 책임을 명시하였는가
+- 대안: 대민 파급력이 큰 핵심 모듈부터 **Strangler Fig 패턴** 적용 → 단계적 API 분리
+- 검증: **CDC(Change Data Capture)** 기반 데이터 정합성 실측 · 카나리 배포 트래픽 롤백 검증
+- 효과: 장애 전파 원천 차단 · 대민 행정서비스 24/365 무중단 가용성 확보
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 클라우드 네이티브 점진 전환 제언 흐름">
   <div class="itpe-pipeline-node">

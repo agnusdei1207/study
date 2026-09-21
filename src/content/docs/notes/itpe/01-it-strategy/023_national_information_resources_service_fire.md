@@ -1,7 +1,7 @@
 ---
 title: "국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성"
-author: "OpenAI Codex"
-date: "2026-09-21T12:30:00+09:00"
+author: "Antigravity"
+date: "2026-09-21T15:32:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,9 +22,9 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: 2025년 국정자원 대전센터 화재가 공공 디지털서비스의 센터 집중·DR 미비 위험을 드러낸 사건
-- 메커니즘: 시스템 중요도 분류 → 이중운영·대기형 DR 선택 → 데이터 이중화 → 전환훈련
-- 후속: 대전센터 시스템 재배치 ISP와 13개 시스템 Active-Active DR 설계 추진
+- 본질: **국정자원 화재와 공공 회복탄력성**은 단일 데이터센터 물리 설비 집중(SPOF)의 한계를 극복하고, 센터 상실 시에도 대민 행정서비스를 무중단 유지하는 다중 거점 연속성 체계
+- 메커니즘: 설비 물리 격리 → GSLB 트래픽 우회 → 무상태(Stateless) 앱 분산 → 데이터 실시간 동기화/에어갭 → 자동 절체(Failover)
+- 산출물: 업무등급별 RTO·RPO 목표정의서 · Active-Active DR 구성도 · 실전 모의전환 검증 결과서
 
 <div class="itpe-flow-map" role="img" aria-label="물리 재난에서 다중 거점 서비스 연속성으로 이어지는 회복탄력성 흐름">
   <div class="itpe-flow-node">
@@ -137,7 +137,27 @@ extra:
 
 ## Ⅳ. 계층별 회복탄력성 아키텍처 및 핵심 통제
 
-> 물리·네트워크·플랫폼·데이터의 공유 의존성을 분리해야 공통원인 장애의 전파 범위를 줄일 수 있음.
+> 물리·네트워크·플랫폼·데이터의 공유 의존성을 분리해야 공통원인 장애의 전파 범위를 원천 차단할 수 있음.
+
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 330" role="img" aria-label="계층별 회복탄력성 아키텍처를 시설, 네트워크, 플랫폼 및 앱, 데이터 계층으로 분기하고 핵심 통제 요소를 표시한 트리">
+  <rect class="itpe-svg-node is-current" x="110" y="8" width="300" height="46" rx="12" />
+  <text class="itpe-svg-title" x="260" y="31">계층별 회복탄력성 체계</text>
+  <path class="itpe-svg-link" d="M260 54 V68 H40 V288 M40 102 H70 M40 164 H70 M40 226 H70 M40 288 H70" />
+  <rect class="itpe-svg-node" x="70" y="74" width="440" height="56" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="94">시설 계층 · 물리적 격리 및 공급 다중화</text>
+  <text class="itpe-svg-label" x="290" y="114">배터리실 방화구획 분리 · 한전 수전 및 통신 인입 관로 이원화</text>
+  <rect class="itpe-svg-node" x="70" y="136" width="440" height="56" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="156">네트워크 계층 · 트래픽 자동 우회 및 백본망 이중화</text>
+  <text class="itpe-svg-label" x="290" y="176">GSLB 헬스체크 기반 DNS 우회 · 광역 전용 백본 이중화</text>
+  <rect class="itpe-svg-node" x="70" y="198" width="440" height="56" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="218">플랫폼·앱 계층 · 무상태 분산 및 독립 배포</text>
+  <text class="itpe-svg-label" x="290" y="238">공통 연계 게이트웨이 다중 거점 배치 · 컨테이너 무상태화</text>
+  <rect class="itpe-svg-node" x="70" y="260" width="440" height="56" rx="10" />
+  <text class="itpe-svg-sub" x="290" y="280">데이터 계층 · 실시간 복제 및 불변 격리 보관</text>
+  <text class="itpe-svg-label" x="290" y="300">스토리지 미러링 · Quorum Witness 펜싱 · 에어갭 WORM 백업</text>
+</svg>
+</div>
 
 | 계층 | 대책 | 검증 |
 |---|---|---|
@@ -152,18 +172,26 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **Split-Brain 발생** | 독립 Quorum Witness · 펜싱 통제 | 동시 쓰기·데이터 충돌 위험 완화 |
+| **Split-Brain 발생** | 독립 **Quorum Witness** · 펜싱(Fencing) 통제 | 동시 쓰기 차단 · 데이터 충돌 방지 |
 | **원격 동기 복제 지연** | 핵심 DB 동기 복제, 비정형 데이터 비동기 파이프라인 분리 | 주 센터 트랜잭션 성능 저하 억제 및 가용성 유지 |
-| **공통 연계망 단절** | 행정연계 게이트웨이의 Active-Active 다중 거점화 | 타 부처 및 대국민 연계 서비스 연속성 보증 |
-| **비상 절체(Failover) 실패** | IaC 기반 복구 자동화 · 전환훈련 | 목표 RTO 달성 가능성 확인 |
+| **공통 연계망 단절** | 행정연계 게이트웨이의 **Active-Active** 다중 거점화 | 타 부처 및 대국민 연계 서비스 연속성 보증 |
+| **비상 절체(Failover) 실패** | IaC 기반 복구 자동화 · 정기 전환훈련 | 목표 **RTO·RPO** 달성 가능성 확인 |
 
 ## Ⅵ. 결론 — 무상태 분산·전환훈련 기반 회복탄력성
 
 > 완벽한 건물이 아닌 언제든 한쪽 센터를 즉시 버릴 수 있는 **무상태(Stateless) 분산 구조**와 **실전 불시 절체 검증**이 회복탄력성의 본질임.
 
-`[핵심 통찰]` 시설 이중화만으로는 센터 단위 재난을 견딜 수 없으며, 서비스·데이터·운영절차가 다른 거점에서 실제 작동해야 회복탄력성이 성립함.
+### 학습자 통찰 메모 — 답안 밖
 
-`나라면` 모든 시스템에 고비용 Active-Active를 강제하지 않고, 업무등급별로 이중운영·대기형 DR을 선택한 뒤 전환훈련의 실측 RTO·RPO로 투자 적정성을 검증하겠음.
+- `[핵심 통찰]`: 시설 이중화만으로는 센터 단위 물리 재난을 견딜 수 없으며, 서비스·데이터·운영 절차가 다른 거점에서 실시간 작동해야 진정한 회복탄력성이 성립한다.
+- `나라면`: 모든 시스템에 천문학적 비용의 Active-Active를 일괄 강제하지 않고, 서비스 중요도(Tier 1~4)에 맞춰 Active-Active와 Active-Standby를 차등 설계하고, 정기 불시 전환 훈련의 실측 RTO·RPO로 운영 적정성을 입증하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- 판정: 단일 센터 물리 의존을 탈피하고 서비스 중요도별 거점 분산과 불시 실측 검증 체계를 확보하였는가
+- 대안: Tier 1 핵심 13개 시스템 **Active-Active DR** 우선 구축 + 제3 거점 **에어갭(Air-Gap)** WORM 백업
+- 검증: **GSLB** 자동 절체 시험 · 스토리지 **Quorum Witness** 스플릿브레인 차단 검증 · 연 2회 무중단 전환 실측
+- 효과: 단일 센터 전소 재난 시에도 핵심 행정망 가용성 99.999% 유지 · 데이터 유실 Zero화 달성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="다중 거점 회복탄력성 구축 제언 파이프라인">
   <div class="itpe-pipeline-node">

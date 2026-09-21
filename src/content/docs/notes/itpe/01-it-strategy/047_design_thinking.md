@@ -1,6 +1,6 @@
 ---
 title: "디자인 씽킹"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-21T21:45:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -68,6 +68,57 @@ extra:
 
 > 5개 Mode는 필요에 따라 앞뒤로 이동하며 병렬·반복 수행할 수 있음.
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="디자인 씽킹 5개 Mode와 비선형 피드백 루프">
+    <defs>
+      <marker id="dt-arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L6,3 z" fill="var(--sl-color-gray-3)"></path>
+      </marker>
+    </defs>
+    <!-- 5 Mode Nodes -->
+    <rect x="15" y="45" width="85" height="50" rx="8" class="itpe-svg-node"></rect>
+    <text x="57" y="68" class="itpe-svg-title">1. Empathize</text>
+    <text x="57" y="84" class="itpe-svg-sub">공감·관찰</text>
+
+    <line x1="100" y1="70" x2="118" y2="70" stroke="var(--sl-color-gray-4)" stroke-width="2" marker-end="url(#dt-arr)"></line>
+
+    <rect x="118" y="45" width="85" height="50" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="160" y="68" class="itpe-svg-title">2. Define</text>
+    <text x="160" y="84" class="itpe-svg-sub">문제정의(POV)</text>
+
+    <line x1="203" y1="70" x2="221" y2="70" stroke="var(--sl-color-gray-4)" stroke-width="2" marker-end="url(#dt-arr)"></line>
+
+    <rect x="221" y="45" width="85" height="50" rx="8" class="itpe-svg-node"></rect>
+    <text x="263" y="68" class="itpe-svg-title">3. Ideate</text>
+    <text x="263" y="84" class="itpe-svg-sub">대안발산(HMW)</text>
+
+    <line x1="306" y1="70" x2="324" y2="70" stroke="var(--sl-color-gray-4)" stroke-width="2" marker-end="url(#dt-arr)"></line>
+
+    <rect x="324" y="45" width="85" height="50" rx="8" class="itpe-svg-node"></rect>
+    <text x="366" y="68" class="itpe-svg-title">4. Prototype</text>
+    <text x="366" y="84" class="itpe-svg-sub">가정의 구체화</text>
+
+    <line x1="409" y1="70" x2="427" y2="70" stroke="var(--sl-color-gray-4)" stroke-width="2" marker-end="url(#dt-arr)"></line>
+
+    <rect x="427" y="45" width="80" height="50" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="467" y="68" class="itpe-svg-title">5. Test</text>
+    <text x="467" y="84" class="itpe-svg-sub">행동관찰·평가</text>
+
+    <!-- Feedback Loops -->
+    <!-- Test to Empathize -->
+    <path d="M467 95 C467 180 57 180 57 95" fill="none" stroke="var(--sl-color-accent)" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#dt-arr)"></path>
+    <text x="260" y="195" class="itpe-svg-sub" text-anchor="middle" fill="var(--sl-color-accent)">사용자 심층 재이해 (Test → Empathize)</text>
+
+    <!-- Test to Define -->
+    <path d="M445 95 C445 150 160 150 160 95" fill="none" stroke="var(--sl-color-gray-3)" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#dt-arr)"></path>
+    <text x="300" y="145" class="itpe-svg-sub" text-anchor="middle">문제 재정의 (Test → Define)</text>
+
+    <!-- Prototype to Ideate -->
+    <path d="M345 45 C345 20 280 20 280 45" fill="none" stroke="var(--sl-color-gray-3)" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#dt-arr)"></path>
+    <text x="312" y="16" class="itpe-svg-sub" text-anchor="middle">시제품 제작 중 새 아이디어 발견</text>
+  </svg>
+</div>
+
 | Mode | 주요 활동 | 산출 |
 |---|---|---|
 | **Empathize** | 관찰·인터뷰·맥락 탐색 | 관찰기록 · Empathy Map |
@@ -116,9 +167,18 @@ extra:
 
 ## Ⅵ. 사용자 증거 기반 기술사적 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` 디자인 씽킹의 실패는 아이디어 부족보다 해법을 먼저 정하고 사용자 조사를 정당화 자료로 사용하는 데서 발생함.
 
 `나라면` 각 Prototype에 검증할 가정과 폐기 기준을 하나씩 붙이고, 사용자 관찰 Finding이 연결된 Backlog만 구현 후보로 올리겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: 기획 단계에서 사용자 실증 인터뷰 5건 미만, 또는 프로토타입 단계에서 '기각/폐기된 가설'이 0건일 때 확증 편향 및 형식적 워크숍으로 판정함.
+- **대응 방안 (Action)**: Problem Space(문제 정의)와 Solution Space(해법 구현)를 엄격히 게이트 분리하고, 1가설 1프로토타입 원칙으로 페이퍼 목업 기반 빠른 실패를 의무화함.
+- **검증 체계 (Verification)**: 사용자 과업 성공률(Task Success Rate), 오류 빈도, SUS(시스템 사용성 척도) 등 정량 UT 지표와 고객 여정 맵(CJM)의 감정 저점을 실시간 매핑하여 검증함.
+- **기대 효과 (Impact)**: 엉뚱한 기능 개발로 인한 SW 재개발 비용 50% 절감, 사용자 채택률(Adoption Rate) 조기 극대화, 애자일 백로그와의 완벽한 정렬을 달성함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="사용자 증거에서 구현 Backlog까지의 추적 통제">
   <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>증거</strong><span>관찰 · 발화 · 행동 · 맥락</span></div></div>

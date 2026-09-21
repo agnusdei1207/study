@@ -1,6 +1,6 @@
 ---
 title: "AI 민주정부·온AI"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T02:25:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -69,6 +69,31 @@ extra:
 
 ## Ⅱ. AI 민주정부 구성체계
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="AI 민주정부 및 온AI 공공 서비스 전달체계">
+    <!-- Top: Citizens and Public Service -->
+    <rect x="20" y="15" width="235" height="55" rx="6" class="itpe-svg-node"></rect>
+    <text x="137" y="36" class="itpe-svg-title">대국민 AI 서비스 (포털/앱)</text>
+    <text x="137" y="54" class="itpe-svg-sub">선제적 맞춤 복지안내 · 민원 자동응대</text>
+
+    <!-- Top: Civil Servants and onAI -->
+    <rect x="265" y="15" width="235" height="55" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="382" y="36" class="itpe-svg-title">공무원 행정지원 (온AI)</text>
+    <text x="382" y="54" class="itpe-svg-sub">법령 판례 검색 · 보고서 초안 · 요약</text>
+
+    <!-- Mid: Pan-Government AI Common Platform -->
+    <rect x="20" y="85" width="480" height="60" rx="8" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="105" class="itpe-svg-title">범정부 AI 공통기반 (공유 플랫폼)</text>
+    <text x="260" y="122" class="itpe-svg-sub">공공 특화 LLM / SLM · RAG(법령·규정 DB) · API 게이트웨이</text>
+    <text x="260" y="137" class="itpe-svg-sub">보안 필터(개인정보 비식별화) · MLOps / LLMOps 파이프라인</text>
+
+    <!-- Bottom: Democratic Accountability & Oversight -->
+    <rect x="20" y="160" width="480" height="48" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="178" class="itpe-svg-title">민주적 통제 및 책임성 (Human-in-the-Loop)</text>
+    <text x="260" y="196" class="itpe-svg-sub">공무원 최종 서명 책임제 · 국민 이의신청(Contestability) 보장 · 감사추적</text>
+  </svg>
+</div>
+
 | 계층 | 핵심 기능 | 책임 통제 |
 |---|---|---|
 | 대국민 | 맞춤 안내·민원·안전·참여 | 고지·접근성·이의제기 |
@@ -113,9 +138,18 @@ extra:
 
 ## Ⅵ. 설명·이의제기 가능한 행정 Quality Gate
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` 공공 AI의 품질은 답변 정확도만으로 결정되지 않으며, 국민이 AI 사용 사실과 근거를 알고 오류를 정정하거나 이의를 제기할 수 있어야 완성됨.
 
 `나라면` 권리·의무에 영향을 주는 서비스에는 AI 역할·근거·담당자를 표시하고, 인간 재검토와 대체 절차가 확인되어야 운영을 승인하는 Quality Gate를 적용하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: 공공 처분 및 인허가 의사결정 과정에서 AI 권고안에 대한 공무원의 무비판적 수용(Automation Bias) 비율이 90% 이상이거나 이의제기 절차 미안내 시 행정 무효 판정.
+- **대응 방안 (Action)**: 공무원 최종 전자서명 의무화(Human Oversight), 법령 조항별 원문 인용 RAG 시스템 강제, 대국민 'AI 결정 사실 및 이의제기(Contestability) 신청권' 명문화.
+- **검증 체계 (Verification)**: 행정기본법상 자동적 처분 요건 충족 여부 및 개인정보보호법상 자동화된 결정 거부권 처리 로그를 행정안전부 주관 정기 감찰을 통해 검증함.
+- **기대 효과 (Impact)**: 환각 기반 행정오류 원천 차단, 대국민 행정 신뢰도 제고, 디지털 취약계층 권익 보호 및 책임행정 구현을 달성함.
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 470" role="img" aria-label="AI 추천과 인간 검토 및 국민 이의제기를 연결한 공공 AI 책임 구조">

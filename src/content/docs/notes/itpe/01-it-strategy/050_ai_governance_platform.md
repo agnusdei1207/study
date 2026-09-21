@@ -1,6 +1,6 @@
 ---
 title: "AI 거버넌스 플랫폼"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-21T23:30:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -77,6 +77,30 @@ extra:
 
 > 관리체계·통제평면·개발도구를 분리하고, 공통 식별자와 증적으로 연결해야 정책과 실행의 단절을 방지할 수 있음.
 
+<div class="itpe-svg-map">
+  <svg viewBox="0 0 520 220" role="img" aria-label="AI 거버넌스 플랫폼 4계층 아키텍처">
+    <!-- Layer 1: Policy Plane -->
+    <rect x="20" y="15" width="480" height="42" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="32" class="itpe-svg-title">1. 정책 및 관리 계층 (Governance Policy Plane)</text>
+    <text x="260" y="48" class="itpe-svg-sub">ISO/IEC 42001(AIMS) 정책 · 책임(RACI) · 윤리기준 · 예외 심의</text>
+
+    <!-- Layer 2: Control Plane -->
+    <rect x="20" y="65" width="480" height="42" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="82" class="itpe-svg-title">2. 자산 및 위험 통제 계층 (Asset & Risk Control Plane)</text>
+    <text x="260" y="98" class="itpe-svg-sub">AI Inventory · NIST AI RMF 영향평가 · 고/중/저 위험등급 분류</text>
+
+    <!-- Layer 3: Pipeline & Gate -->
+    <rect x="20" y="115" width="480" height="42" rx="6" class="itpe-svg-node is-current"></rect>
+    <text x="260" y="132" class="itpe-svg-title">3. 수명주기 게이트 계층 (Lifecycle Quality Gate Plane)</text>
+    <text x="260" y="148" class="itpe-svg-sub">데이터 Lineage · 모델 편향/성능 검증 · System Card 승인 · CI/CD 연동</text>
+
+    <!-- Layer 4: Runtime & Evidence -->
+    <rect x="20" y="165" width="480" height="42" rx="6" class="itpe-svg-node"></rect>
+    <text x="260" y="182" class="itpe-svg-title">4. 런타임 감시 및 증적 계층 (Runtime & Audit Evidence Plane)</text>
+    <text x="260" y="198" class="itpe-svg-sub">환각/드리프트 감시 · Human Oversight 개입 · 감사 로그 추적</text>
+  </svg>
+</div>
+
 | 계층 | 핵심 기능 | 주요 증적 |
 |---|---|---|
 | 관리체계 | 정책·역할·책임·위험기준·예외 | 정책·RACI·위험수용 기록 |
@@ -125,9 +149,18 @@ extra:
 
 ## Ⅵ. 증적 기반 Quality Gate 제언
 
+### 학습자 통찰 메모 — 답안 밖
+
 `[핵심 통찰]` AI 거버넌스의 성패는 원칙의 수가 아니라, 각 위험에 책임자·통제점·판정기준·증적이 연결되어 실제 배포 판단을 바꾸는가에 달려 있음.
 
 `나라면` 고위험 AI는 선언적 체크리스트로 승인하지 않고, 사용맥락별 필수 증적을 확인하는 Quality Gate와 예외 만료일을 두어 미충족 항목이 해소될 때만 배포하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준 (Trigger)**: 고위험 AI 모델의 데이터 리니지(Lineage) 누락, 또는 환각(Hallucination)·편향성 검증 미달 시 배포 파이프라인 자동 차단(Hard Gate).
+- **대응 방안 (Action)**: Policy-as-Code 기반 자동 검증 도구(CI/CD Gatekeeper)를 연동하고, 미충족 시 Human Oversight 승인위원회 재심의를 강제함.
+- **검증 체계 (Verification)**: ISO/IEC 42001(AIMS) 및 EU AI Act 기준 System Card 증적의 완결성과 런타임 데이터 드리프트 지표(PSI > 0.25)를 실시간 감사함.
+- **기대 효과 (Impact)**: Shadow AI 및 규제 위반 과징금 리스크 원천 차단, AI 시스템의 전사적 신뢰성 및 추적성 100% 확보를 달성함.
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 760 440" role="img" aria-label="AI 거버넌스 증적 기반 품질 게이트의 통과와 보완 분기">

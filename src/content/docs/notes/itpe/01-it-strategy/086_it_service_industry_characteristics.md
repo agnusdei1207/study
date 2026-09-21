@@ -1,6 +1,6 @@
 ---
 title: "IT서비스 산업 특수성"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T06:40:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -70,9 +70,79 @@ extra:
 - 정의: 일반 제조업과 달리 **무형성(Intangibility)**, **비가시성**, **주문생산성**과 높은 인적 의존성을 지녀 다단계 하도급과 헤드카운팅 관행이 발생하기 쉬운 **국내 IT서비스(SI/SM) 산업의 구조적 특성**
 - 목적: 불공정 거래 관행 개선, 엔지니어 처우 보장 및 SW 생태계 고부가가치화
 
-## Ⅱ. 국내 IT서비스 산업의 구조적 악순환 파이프라인
+## Ⅱ. IT서비스 다단계 하도급 악순환과 제도적 통제 구조
 
-> 모호한 발주가 원수급자의 저가 수주와 다단계 하도급으로 전이되며 말단 엔지니어의 처우 악화와 품질 결함으로 귀결됨.
+> 모호한 발주가 원수급자의 저가 수주와 다단계 하도급으로 전이되는 병폐를 소프트웨어 진흥법 3대 장치로 차단함.
+
+### 1. 피라미드식 하도급 구조와 제도적 정상화 메커니즘
+
+```xml
+<svg-diagram>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
+  <defs>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">IT서비스 다단계 하도급 구조 및 SW진흥법 통제 메커니즘</text>
+
+  <!-- Left: Pyramid of Subcontracting -->
+  <g transform="translate(15, 45)">
+    <!-- Level 1: 발주자 -->
+    <rect x="50" y="0" width="140" height="28" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
+    <text x="120" y="18" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">공공/기업 발주처 (수요자)</text>
+    <line x1="120" y1="28" x2="120" y2="40" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-down)"/>
+
+    <!-- Level 2: 원수급자 (대형 SI) -->
+    <rect x="30" y="42" width="180" height="28" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="1.5" rx="4"/>
+    <text x="120" y="60" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">원수급자 (대형 SI 종합 IT서비스)</text>
+    <line x1="120" y1="70" x2="120" y2="82" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-down)"/>
+
+    <!-- Level 3: 1차 하수급인 (중소 전문사) -->
+    <rect x="15" y="84" width="210" height="28" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="1.5" rx="4"/>
+    <text x="120" y="102" fill="var(--sl-color-text)" font-size="10" text-anchor="middle">1차 하수급인 (전문 SW / 솔루션사)</text>
+    <line x1="120" y1="112" x2="120" y2="124" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-down)"/>
+
+    <!-- Level 4: 재하도급 / 프리랜서 -->
+    <rect x="0" y="126" width="240" height="32" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="2" rx="4"/>
+    <text x="120" y="142" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">2차 재하도급 & 프리랜서 파견</text>
+    <text x="120" y="154" fill="var(--sl-color-text-muted)" font-size="9" text-anchor="middle">마진 누수 · 저임금 · 품질 결함 귀결</text>
+  </g>
+
+  <!-- Center Arrow -->
+  <path d="M 265 110 L 285 110" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2.5" marker-end="url(#arrow-right)"/>
+
+  <!-- Right: Regulatory Guards (SW진흥법) -->
+  <g transform="translate(295, 45)">
+    <rect x="0" y="0" width="210" height="158" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="6"/>
+    <rect x="0" y="0" width="210" height="24" fill="var(--sl-color-text-accent)" opacity="0.1" rx="6 6 0 0"/>
+    <text x="105" y="17" fill="var(--sl-color-text-accent)" font-size="11" font-weight="bold" text-anchor="middle">SW진흥법 기반 제도적 정상화</text>
+
+    <!-- Guard 1 -->
+    <text x="12" y="44" fill="var(--sl-color-text)" font-size="10" font-weight="bold">① 과업심의위원회 의무화</text>
+    <text x="22" y="58" fill="var(--sl-color-text-muted)" font-size="9">• 무상 과업변경 차단, 기간·대가 조정</text>
+
+    <!-- Guard 2 -->
+    <text x="12" y="80" fill="var(--sl-color-text)" font-size="10" font-weight="bold">② 50% 하도급 제한 & 사전승인</text>
+    <text x="22" y="94" fill="var(--sl-color-text-muted)" font-size="9">• 50% 초과 외주 금지, 재하도급 원칙 금지</text>
+
+    <!-- Guard 3 -->
+    <text x="12" y="116" fill="var(--sl-color-text)" font-size="10" font-weight="bold">③ 하도급대금 직불제 (하도급지킴이)</text>
+    <text x="22" y="130" fill="var(--sl-color-text-muted)" font-size="9">• 중간 착취 방지, 노임 직접 지급</text>
+
+    <!-- Guard 4 -->
+    <text x="12" y="148" fill="var(--sl-color-text)" font-size="9" font-weight="bold">④ 상용SW 직접구매 분리발주</text>
+  </g>
+</svg>
+</svg-diagram>
+```
+
+### 2. 악순환 파이프라인
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="국내 IT서비스 다단계 하도급 악순환 파이프라인">
   <div class="itpe-pipeline-node">
@@ -145,10 +215,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 표준 기능·차별 업무·연계 범위·검수기준
-- 대안: 상용SW 직접구매 검토 · 맞춤개발 최소화 · 인터페이스 기반 분리
-- 검증: 요구사항–계약–검수 추적성 · 변경 심의·대가 조정 증적
-- 효과: 중복개발·과업변경·하도급 위험 완화
+- **판정 기준**: 표준 공통 기능 대비 고유 차별 업무 비율, 상용 SW/SaaS 대체 가능성 및 검수 기준 명확성 판정
+- **대응 방안**: 상용SW 직접구매 분리발주 의무화, 과업심의위원회 조기 가동을 통한 과업 확정 및 인터페이스 기반 분리
+- **검증 체계**: 요구사항추적표(RTM) 기반 과업-계약-검수 추적성 검증, 하도급지킴이 직불 내역 정기 모니터링
+- **기대 효과**: 다단계 마진 누수 원천 차단, 개발자 처우 개선 및 공공 SW 사업의 예산 낭비·품질 결함 예방
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="IT서비스 산업 고부가가치화 제언 흐름">
   <div class="itpe-pipeline-node">
@@ -226,3 +296,4 @@ extra:
 - 이전 토픽: [CoE](./082_coe.md)
 - 연관 토픽: [SW 사업 대가산정](./026_software_cost_estimation.md), [과업심의 기준](./091_public_sw_cost_and_scope_change_criteria.md), [하도급 구조](./097_software_industry_subcontracting_structure.md)
 - 다음 토픽: [IT 역량체계(ITS-NCS)](./087_it_job_competency_system.md)
+

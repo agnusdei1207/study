@@ -1,13 +1,14 @@
 ---
 title: "공공 SW 사업 하도급 제한"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T08:45:00+09:00"
-tags: ["notes-it-strategy"]
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -66,9 +67,83 @@ extra:
 - **정의**: 소프트웨어진흥법 제51조에 따라 공공 SW 사업의 하도급 비율·재하도급·사전승인을 통제하는 제도
 - **목적**: 원수급인 책임 강화·다단계 하도급 방지·사업 품질 보호
 
-## Ⅱ. 제한 원칙·예외
+## Ⅱ. 제한 원칙·예외 및 산정 메커니즘
 
 > 50%는 직접수행 비율을 일률적으로 선언하는 표현보다 산정 기준과 법정 예외를 함께 제시해야 정확함
+
+### 1. 하도급 50% 제한 산정 기준 및 승인 메커니즘
+
+```xml
+<svg-diagram>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">공공 SW 하도급 50% 산정 기준 및 사전승인 통제 체계</text>
+
+  <!-- Left: Total Project Scope Breakdown -->
+  <g transform="translate(15, 45)">
+    <rect x="0" y="0" width="220" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
+    <text x="110" y="20" fill="var(--sl-color-text)" font-size="11" font-weight="bold" text-anchor="middle">전체 사업금액 분할 기준</text>
+
+    <!-- Excluded hardware/cots box -->
+    <rect x="10" y="32" width="200" height="32" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="110" y="47" fill="var(--sl-color-text-muted)" font-size="9" text-anchor="middle">단순 H/W 및 상용SW 물품구매</text>
+    <text x="110" y="58" fill="#ef4444" font-size="8" text-anchor="middle">[산정 모수에서 제외]</text>
+
+    <!-- Target SW Service amount -->
+    <rect x="10" y="72" width="200" height="75" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="3"/>
+    <text x="110" y="88" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">순수 SW용역 사업금액 (모수 100%)</text>
+
+    <!-- 50% Direct Execution -->
+    <rect x="15" y="96" width="92" height="42" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-text-accent)" rx="2"/>
+    <text x="61" y="113" fill="var(--sl-color-text-accent)" font-size="9" font-weight="bold" text-anchor="middle">원수급인 직접수행</text>
+    <text x="61" y="128" fill="var(--sl-color-text)" font-size="8" text-anchor="middle">50% 이상 필수</text>
+
+    <!-- 50% Max Subcontract -->
+    <rect x="113" y="96" width="92" height="42" fill="var(--sl-color-bg-sidebar)" stroke="#ef4444" rx="2"/>
+    <text x="159" y="113" fill="#ef4444" font-size="9" font-weight="bold" text-anchor="middle">하도급 허용 범위</text>
+    <text x="159" y="128" fill="var(--sl-color-text)" font-size="8" text-anchor="middle">50% 이하 (사전승인)</text>
+  </g>
+
+  <!-- Connectors -->
+  <path d="M 245 125 L 265 125" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Right: Control & Exception Architecture -->
+  <g transform="translate(275, 45)">
+    <!-- Contracting Authority -->
+    <rect x="0" y="0" width="230" height="38" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="4"/>
+    <text x="115" y="18" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">발주기관 (국가기관 등의 장)</text>
+    <text x="115" y="30" fill="var(--sl-color-text-accent)" font-size="8" text-anchor="middle">사전승인 및 하도급 적정성 평가</text>
+
+    <!-- Flow down -->
+    <path d="M 115 38 L 115 54" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Prime Contractor -->
+    <rect x="0" y="55" width="230" height="42" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.5" rx="4"/>
+    <text x="115" y="73" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">원수급인 (대형/중견 SI)</text>
+    <text x="115" y="87" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">직접수행 50% 이상 책임 / 대금 직접지급 준수</text>
+
+    <!-- Flow down -->
+    <path d="M 115 97 L 115 113" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Subcontractor -->
+    <rect x="0" y="114" width="230" height="41" fill="var(--sl-color-bg)" stroke="#ef4444" stroke-width="1.5" rx="4"/>
+    <text x="115" y="131" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">1차 하수급인 (전문 SW사)</text>
+    <text x="115" y="145" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">⛔ 재하도급 원칙적 금지 (법정 예외 제외)</text>
+  </g>
+</svg>
+</svg-diagram>
+```
+
+### 2. 제한 원칙 및 예외 상세 비교
 
 | 구분 | 원칙 | 예외·통제 |
 |---|---|---|
@@ -101,11 +176,21 @@ extra:
 | 승인 후 구조 변경 | 변경 사전승인·정기점검 | 계약·현장 일치 |
 | 대금 지연 | 지급계획·증빙 추적 | 하수급인 보호 |
 
-## Ⅴ. 결론·기술사적 제언
+## Ⅴ. 산출물 일치성 검증을 위한 기술사적 제언
 
-> **[핵심 통찰]** 하도급 비율 준수만으로 품질이 보장되지 않으며, 승인된 역할과 실제 산출물 책임의 일치가 핵심임.
+> 하도급 비율 준수만으로 품질이 보장되지 않으며, 승인된 역할과 실제 산출물 책임의 일치가 핵심임.
 
-> **나라면** 승인 범위·담당 조직·산출물 책임을 WBS(Work Breakdown Structure)와 RTM(Requirements Traceability Matrix)에 연결하고, 변경 시 재승인을 거쳐 계약·계획을 함께 갱신하겠음.
+### 학습자 통찰 메모 — 답안 밖
+
+- [핵심 통찰]: 하도급 계약 승인은 서류 절차에 불과할 수 있음. 실무에서 빈번한 '외주 인력 파견 위장'이나 '무단 2차 재하도급'을 방지하려면 형상관리 시스템(Git 커밋 로그, 작성자 서명)과 WBS 작업 패키지의 담당자를 실시간 매핑 검증해야 함.
+- 나라면: 승인 범위·담당 조직·산출물 책임을 WBS와 RTM에 연결하고, 하도급지킴이를 통한 노임 직불 체계를 의무화하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 물품 제외 순수 SW 금액 기준 50% 초과 여부, 법정 재하도급 예외 요건 충족 및 사전승인 신청 적시성 판정
+- **대응 방안**: 소프트웨어진흥법 제51조 기반 사전승인제 준수, 표준하도급계약서 작성 및 조달청 하도급지킴이 직불제 가동
+- **검증 체계**: WBS 작업 패키지-형상관리 커밋 기록 간 실제 수행주체 교차 검증, 분기별 정기 현장 감리 점검
+- **기대 효과**: 다단계 하도급 마진 누수 차단, 원수급자의 책임 완수 유도 및 중소 전문 SW 개발자의 정당한 처우 보장
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="하도급 승인과 실제 수행의 일치 검증">
   <div class="itpe-flow-node"><strong>승인 Baseline</strong><div class="itpe-step-detail"><strong>대상</strong><span>범위·금액·조직·역할</span></div></div>
@@ -143,6 +228,7 @@ extra:
 
 ## 연결 토픽
 
-- 이전: [092. TAM](./092_technology_acceptance_model/)
-- 관련: [039. 공공 SW 계약](./039_public_sw_contract/) · [091. 적정 사업기간·과업심의](./091_public_sw_cost_and_scope_change_criteria/)
-- 다음: [098. 전문성의 민주화](./098_democratization_of_expertise/)
+- 이전 토픽: [기술수용모델(TAM)](./092_technology_acceptance_model.md)
+- 연관 토픽: [공공 SW 계약](./039_public_sw_contract.md), [적정 사업기간·과업심의](./091_public_sw_cost_and_scope_change_criteria.md)
+- 다음 토픽: [전문성의 민주화](./098_democratization_of_expertise.md)
+

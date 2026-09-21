@@ -1,6 +1,6 @@
 ---
 title: "적정 사업기간·과업심의"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-22T07:50:00+09:00"
 tags:
   - "notes-it-strategy"
@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "C"
 extra:
-  model: "GPT-5"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "C"
 ---
 
@@ -67,9 +67,80 @@ extra:
 - **정의**: 공공 SW 사업의 수행기간을 합리적으로 산정하고, 과업 확정·변경과 계약 조정을 심의하는 제도
 - **목적**: 무리한 일정·무상 과업 확대·계약 분쟁 예방
 
-## Ⅱ. 과업 확정·변경 통제 절차
+## Ⅱ. 과업 확정·변경 통제 절차 및 거버넌스 메커니즘
 
-> 산정·심의 결과가 계약과 사업관리 Baseline까지 이어져야 실질적 통제가 됨
+> 발주 전 기간 산정부터 수행 중 변경 심의, 법적 계약 및 베이스라인 갱신으로 이어지는 전주기 통제를 구축함.
+
+### 1. 적정 사업기간 산정 및 과업심의 거버넌스 구조도
+
+```xml
+<svg-diagram>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background:var(--sl-color-bg-sidebar);border:1px solid var(--sl-color-hairline);border-radius:8px;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sl-color-text-accent)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="15" y="24" fill="var(--sl-color-text)" font-size="13" font-weight="bold">공공 SW 적정 사업기간 산정 및 과업심의 통제 메커니즘</text>
+
+  <!-- Phase 1: 발주 전 (적정 사업기간) -->
+  <g transform="translate(15, 45)">
+    <rect x="0" y="0" width="145" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
+    <rect x="0" y="0" width="145" height="24" fill="var(--sl-color-hairline)" opacity="0.3" rx="6 6 0 0"/>
+    <text x="72" y="16" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">[발주 전] 적정사업기간</text>
+    
+    <text x="10" y="42" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold">소프트웨어법 제45조</text>
+    <text x="10" y="58" fill="var(--sl-color-text)" font-size="9">• 기능점수(FP) 산출</text>
+    <text x="10" y="74" fill="var(--sl-color-text)" font-size="9">• 유사사업 통계 대조</text>
+    <text x="10" y="90" fill="var(--sl-color-text)" font-size="9">• 난이도·특이사항 반영</text>
+    <rect x="8" y="105" width="129" height="36" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-hairline)" rx="3"/>
+    <text x="72" y="120" fill="var(--sl-color-text)" font-size="9" text-anchor="middle">과업내용서 확정</text>
+    <text x="72" y="133" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">사업기간 산정서 첨부</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 165 120 L 180 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Phase 2: 사업 수행 중 (변경 요청 & 영향 분석) -->
+  <g transform="translate(185, 45)">
+    <rect x="0" y="0" width="145" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-hairline)" stroke-width="1.5" rx="6"/>
+    <rect x="0" y="0" width="145" height="24" fill="var(--sl-color-hairline)" opacity="0.3" rx="6 6 0 0"/>
+    <text x="72" y="16" fill="var(--sl-color-text)" font-size="10" font-weight="bold" text-anchor="middle">[수행 중] 과업변경 요청</text>
+
+    <text x="10" y="42" fill="#ef4444" font-size="10" font-weight="bold">4차원 영향평가</text>
+    <text x="10" y="58" fill="var(--sl-color-text)" font-size="9">• 범위: 요구사항/산출물</text>
+    <text x="10" y="74" fill="var(--sl-color-text)" font-size="9">• 비용: 추가 FP 및 단가</text>
+    <text x="10" y="90" fill="var(--sl-color-text)" font-size="9">• 일정: 주공정선(CP) 영향</text>
+    <text x="10" y="106" fill="var(--sl-color-text)" font-size="9">• 품질: 테스트/보안 리스크</text>
+    <rect x="8" y="115" width="129" height="28" fill="var(--sl-color-bg-sidebar)" stroke="#ef4444" rx="3"/>
+    <text x="72" y="132" fill="#ef4444" font-size="9" font-weight="bold" text-anchor="middle">변경요청·영향분석서</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 335 120 L 350 120" fill="none" stroke="var(--sl-color-text-accent)" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Phase 3: 과업심의 및 Baseline 반영 -->
+  <g transform="translate(355, 45)">
+    <rect x="0" y="0" width="150" height="155" fill="var(--sl-color-bg)" stroke="var(--sl-color-text-accent)" stroke-width="1.8" rx="6"/>
+    <rect x="0" y="0" width="150" height="24" fill="var(--sl-color-text-accent)" opacity="0.1" rx="6 6 0 0"/>
+    <text x="75" y="16" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold" text-anchor="middle">[심의] 과업심의위원회</text>
+
+    <text x="10" y="42" fill="var(--sl-color-text-accent)" font-size="10" font-weight="bold">소프트웨어법 제50조</text>
+    <text x="10" y="58" fill="var(--sl-color-text)" font-size="9">• 승인/조건부/불가 판정</text>
+    <text x="10" y="74" fill="var(--sl-color-text)" font-size="9">• 금액 및 사업기간 조정</text>
+    
+    <rect x="8" y="88" width="134" height="55" fill="var(--sl-color-bg-sidebar)" stroke="var(--sl-color-text-accent)" rx="3"/>
+    <text x="75" y="104" fill="var(--sl-color-text)" font-size="9" font-weight="bold" text-anchor="middle">계약 및 Baseline 갱신</text>
+    <text x="75" y="120" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">• 변경계약 체결</text>
+    <text x="75" y="134" fill="var(--sl-color-text-muted)" font-size="8" text-anchor="middle">• RTM & WBS 동기화</text>
+  </g>
+</svg>
+</svg-diagram>
+```
+
+### 2. 과업 확정·변경 통제 파이프라인
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="공공 소프트웨어 과업 확정과 변경 통제 5단계">
   <div class="itpe-flow-node">
@@ -86,7 +157,7 @@ extra:
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node">
     <strong>③ 변경요청·영향분석</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>범위·비용·기간·품질 영향 분석</span></div>
+    <div class="itpe-step-detail"><strong>활동</strong><span>범위·비용·일정·품질 영향 분석</span></div>
     <div class="itpe-step-detail"><strong>산출</strong><span>변경요청서·영향분석서</span></div>
   </div>
   <div class="itpe-flow-arrow">↓</div>
@@ -142,11 +213,21 @@ extra:
 | 심의 후 미반영 | 계약·Baseline·RTM 동시 갱신 | 승인 내용과 수행 일치 |
 | 시행시점 혼동 | 현행·시행 예정 조문 분리 확인 | 법적용 오류 예방 |
 
-## Ⅵ. 결론·기술사적 제언
+## Ⅵ. 계약 Baseline과 직결되는 기술사적 제언
 
-> **[핵심 통찰]** 과업심의의 성패는 회의 개최가 아니라 심의 결과가 계약과 사업관리 Baseline에 반영되는가에 달려 있음.
+> 과업심의의 성패는 단순 회의 개최가 아니라, 심의 결과가 법적 효력을 갖는 변경 계약 체결과 WBS/RTM 베이스라인 갱신으로 이어지는가에 달려 있음.
 
-> **나라면** 변경요청마다 범위·비용·일정·품질 영향표를 첨부하고, 심의 통과 후 계약·RTM·시험기준이 함께 갱신되어야 변경을 실행하겠음.
+### 학습자 통찰 메모 — 답안 밖
+
+- [핵심 통찰]: 과업심의위원회 의결서는 권고사항이 아닌 행정 처분적 성격을 가짐. 발주자의 구두 요구에 따른 무상 과업 확대를 원천 차단하고 정당한 대가(FP)와 기간 연장을 관철하는 법적 보호막임.
+- 나라면: 변경요청서 접수 즉시 범위·비용·일정·품질 4차원 영향평가서를 첨부하고, 심의 의결 즉시 변경계약서 체결 및 RTM-일정 베이스라인을 동기화하겠음.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 과업 변경 규모(FP 증감률), 적정 사업기간 산정 기준 부합성 및 계약금액·공기 조정 필요성 판정
+- **대응 방안**: 소프트웨어진흥법 제50조 기반 과업심의위원회 가동, 4차원(범위·비용·일정·품질) 통합 영향분석 실시
+- **검증 체계**: 심의 의결서와 변경 계약서 간 추적성 검증, RTM(요구사항추적표) 및 WBS 일정 베이스라인 동시 갱신
+- **기대 효과**: 구두 과업 추가 근절, 수주 기업의 적정 이윤 및 개발자 야근 예방, 공공 SW 품질 신뢰성 확보
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="과업 변경의 실행 통제 방안">
   <div class="itpe-flow-node">
@@ -200,6 +281,6 @@ extra:
 
 ## 연결 토픽
 
-- 이전: [089. TAM·SAM·SOM](./089_tam_sam_som/)
-- 관련: [001. ISMP](./001_ismp/) · [039. 공공 SW 계약](./039_public_sw_contract/) · [113. SW 비용 산정](./113_software_cost_estimation/)
-- 다음: [092. 기술수용모델](./092_technology_acceptance_model/)
+- 이전 토픽: [TAM-SAM-SOM](./089_tam_sam_som.md)
+- 연관 토픽: [ISMP](./001_ismp.md), [공공 SW 계약](./039_public_sw_contract.md), [SW 비용 산정](./113_software_cost_estimation.md)
+- 다음 토픽: [기술수용모델(TAM)](./092_technology_acceptance_model.md)
