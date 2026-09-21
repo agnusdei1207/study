@@ -9,9 +9,9 @@ tags:
   - "LieFactor"
   - "웹접근성"
 date: "2026-09-20T23:05:00+09:00"
-author: "기술사 수험생"
+author: "Antigravity"
 extra:
-  model: "Antigravity-v2"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -110,18 +110,42 @@ sidebar:
 
 > 인간의 눈은 '위치'와 '길이'를 가장 정밀하게 인지하며, '면적', '각도', '색상'은 정량적 수치 비교에 불리함.
 
-```text
-[가장 정확함 (Quantitative)]                                       [가장 부정확함]
-  1. 공통 척도 상의 위치 (Position on common scale)  ──> 산점도, 막대 차트
-  2. 비정렬 척도 상의 위치 (Position on non-aligned)
-  3. 길이 (Length)                                 ──> 오차 막대
-  4. 각도 / 기울기 (Angle / Slope)                 ──> 원형 차트 (파이 차트)
-  5. 면적 (Area)                                   ──> 버블 차트
-  6. 입체 부피 (Volume / 3D)                       ──> 3D 막대 (인지 오류 극대화)
-  7. 색상 채도 / 밝기 (Color saturation)           ──> 히트맵
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+<svg viewBox="0 0 520 170" width="100%" height="auto" style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <!-- Background -->
+  <rect x="0" y="0" width="520" height="170" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- Accuracy Indicator Header -->
+  <text x="20" y="24" font-size="12" font-weight="700" fill="var(--color-text-primary, #0f172a)">Cleveland-McGill 인코딩 채널 정확도 계층 (정량 데이터 기준)</text>
+  <path d="M 20 32 L 500 32" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <!-- Level 1: Position -->
+  <rect x="20" y="42" width="480" height="22" rx="4" fill="var(--color-primary, #2563eb)" fill-opacity="0.15" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
+  <text x="30" y="57" font-size="11" font-weight="700" fill="var(--color-primary, #1d4ed8)">1. 공통 척도 위치 (Position)</text>
+  <text x="250" y="57" font-size="10" fill="var(--color-text-secondary, #475569)">산점도, 점 도표, 공통 기준선 막대</text>
+  <text x="445" y="57" font-size="10" font-weight="700" fill="var(--color-primary, #1d4ed8)">최고 정확도</text>
+  <!-- Level 2: Length -->
+  <rect x="20" y="67" width="480" height="22" rx="4" fill="var(--color-info, #0284c7)" fill-opacity="0.12" stroke="var(--color-info, #0284c7)" stroke-width="1"/>
+  <text x="30" y="82" font-size="11" font-weight="700" fill="var(--color-info, #0284c7)">2. 비정렬 길이 (Length)</text>
+  <text x="250" y="82" font-size="10" fill="var(--color-text-secondary, #475569)">분할 막대 차트, 오차 막대</text>
+  <text x="445" y="82" font-size="10" font-weight="700" fill="var(--color-info, #0284c7)">고정확도</text>
+  <!-- Level 3: Angle / Slope -->
+  <rect x="20" y="92" width="480" height="22" rx="4" fill="var(--color-warning, #d97706)" fill-opacity="0.12" stroke="var(--color-warning, #d97706)" stroke-width="1"/>
+  <text x="30" y="107" font-size="11" font-weight="700" fill="var(--color-warning, #b45309)">3. 각도 / 기울기 (Angle)</text>
+  <text x="250" y="107" font-size="10" fill="var(--color-text-secondary, #475569)">파이 차트, 도넛 차트 (각도 오독 유발)</text>
+  <text x="445" y="107" font-size="10" font-weight="700" fill="var(--color-warning, #b45309)">보통 인지</text>
+  <!-- Level 4: Area / Volume -->
+  <rect x="20" y="117" width="480" height="22" rx="4" fill="var(--color-error, #dc2626)" fill-opacity="0.1" stroke="var(--color-error, #dc2626)" stroke-width="1"/>
+  <text x="30" y="132" font-size="11" font-weight="700" fill="var(--color-error, #b91c1c)">4. 면적 / 부피 (Area/3D)</text>
+  <text x="250" y="132" font-size="10" fill="var(--color-text-secondary, #475569)">버블 차트, 3D 차트 (인지 오차 200~400%)</text>
+  <text x="445" y="132" font-size="10" font-weight="700" fill="var(--color-error, #b91c1c)">왜곡 위험</text>
+  <!-- Level 5: Color -->
+  <rect x="20" y="142" width="480" height="22" rx="4" fill="var(--color-bg-muted, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="157" font-size="11" font-weight="700" fill="var(--color-text-muted, #64748b)">5. 색상 채도·명도 (Color)</text>
+  <text x="250" y="157" font-size="10" fill="var(--color-text-secondary, #475569)">히트맵 (정량 비교 불가, 범주/패턴용)</text>
+  <text x="445" y="157" font-size="10" font-weight="700" fill="var(--color-text-muted, #64748b)">정성용 권장</text>
+</svg>
+</div>
 
-- **설계 원칙**: 핵심 비즈니스 KPI(매출액, 전환율 등 정량 데이터)는 반드시 **1순위(위치)** 또는 **3순위(길이)**에 매핑하고, 부가적 범주형 정보에 한해 색상과 모양을 활용해야 함
+- **설계 원칙**: 핵심 비즈니스 KPI(매출액, 전환율 등 정량 데이터)는 반드시 **1순위(위치)** 또는 **2순위(길이)**에 매핑하고, 부가적 범주형 정보에 한해 색상과 모양을 활용해야 함
 
 ## Ⅲ. 분석 질문별 최적 차트 선택 체계
 
@@ -139,26 +163,47 @@ sidebar:
 
 > 데이터 왜곡을 방지하고 정보 밀도를 극대화하기 위한 시각 디자인의 고전적 표준임.
 
-```text
-1. 거짓말 계수 (Lie Factor) = (그래픽에 표현된 효과 크기) / (실제 데이터의 효과 크기)
-   - 이상적 수치: 1.0 (0.95 ~ 1.05 허용)
-   - 왜곡 사례: 데이터는 2배 증가했는데 막대의 가로·세로를 모두 2배로 키워 면적이 4배로 보이게 조작함!
+### 1. 거짓말 계수 (Lie Factor)
 
-2. 데이터-잉크 비율 (Data-Ink Ratio) = (데이터 표시에 쓰인 잉크) / (차트에 쓰인 총 잉크)
-   - 원칙: 불필요한 배경 격자선, 화려한 그라데이션, 테두리를 제거하고 정보 잉크를 극대화하라!
-```
+$$\text{Lie Factor} = \frac{\text{그래픽에 표현된 효과 크기 (Size of effect in graphic)}}{\text{실제 데이터의 효과 크기 (Size of effect in data)}} = \frac{|\Delta \text{Graphic}| / \text{Graphic}_{\text{initial}}}{|\Delta \text{Data}| / \text{Data}_{\text{initial}}}$$
 
-- **차트 정크(Chartjunk)의 배제**: 데이터 전달과 무관한 3D 입체 효과, 의사 장식, 비선형 그림 아이콘 등 인지적 부하를 유발하는 장식을 일체 금지함
+- **판정 기준**: 이상적 수치는 $1.0$ (허용 범위: $0.95 \le \text{Lie Factor} \le 1.05$).
+- **왜곡 사례**: 데이터는 2배(100%) 증가했으나, 막대의 폭과 높이를 동시 확대하여 시각적 면적이 4배(300%)로 과장되는 현상 ($\text{Lie Factor} = 3.0$).
+
+### 2. 데이터-잉크 비율 (Data-Ink Ratio)
+
+$$\text{Data-Ink Ratio} = \frac{\text{데이터 표시에 사용된 잉크 양}}{\text{차트 전체에 인쇄된 총 잉크 양}} = 1.0 - \text{삭제 가능한 장식 잉크 비율}$$
+
+- **차트 정크(Chartjunk)의 배제**: 데이터 전달과 무관한 3D 입체 효과, 불필요한 배경 모눈선, 의사 장식, 비선형 그림 아이콘 등 인지적 부하를 유발하는 장식을 일체 금지함.
 
 ## Ⅴ. 인터랙티브 대시보드 아키텍처: 슈나이더만 만트라
 
 > 대규모 데이터를 효과적으로 전달하기 위해 3단계 정보 탐색 흐름을 설계함.
 
-```text
-[1. Overview First]  ──>  [2. Zoom & Filter]  ──>  [3. Details-on-Demand]
-전사 핵심 지표 카드        특정 기간/지역 필터링        개별 고객/거래 상세 팝업
-(High-level KPI)           (인터랙티브 슬라이서)        (Raw-level Audit Data)
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+<svg viewBox="0 0 520 120" width="100%" height="auto" style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <rect x="0" y="0" width="520" height="120" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- Step 1: Overview First -->
+  <rect x="15" y="20" width="145" height="80" rx="6" fill="var(--color-primary, #2563eb)" fill-opacity="0.1" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
+  <text x="87" y="42" font-size="12" font-weight="700" fill="var(--color-primary, #1d4ed8)" text-anchor="middle">1. Overview First</text>
+  <text x="87" y="62" font-size="10" fill="var(--color-text-secondary, #475569)" text-anchor="middle">전사 핵심 KPI 카드</text>
+  <text x="87" y="80" font-size="10" fill="var(--color-text-secondary, #475569)" text-anchor="middle">전체 트렌드 요약</text>
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 165 60 L 180 60" stroke="var(--color-primary, #2563eb)" stroke-width="2" marker-end="url(#arrow16)"/>
+  <!-- Step 2: Zoom & Filter -->
+  <rect x="185" y="20" width="150" height="80" rx="6" fill="var(--color-info, #0284c7)" fill-opacity="0.1" stroke="var(--color-info, #0284c7)" stroke-width="1"/>
+  <text x="260" y="42" font-size="12" font-weight="700" fill="var(--color-info, #0284c7)" text-anchor="middle">2. Zoom &amp; Filter</text>
+  <text x="260" y="62" font-size="10" fill="var(--color-text-secondary, #475569)" text-anchor="middle">기간·지역·조직 슬라이서</text>
+  <text x="260" y="80" font-size="10" fill="var(--color-text-secondary, #475569)" text-anchor="middle">관심 세그먼트 축소</text>
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 340 60 L 355 60" stroke="var(--color-info, #0284c7)" stroke-width="2"/>
+  <!-- Step 3: Details-on-Demand -->
+  <rect x="360" y="20" width="145" height="80" rx="6" fill="var(--color-success, #16a34a)" fill-opacity="0.1" stroke="var(--color-success, #16a34a)" stroke-width="1"/>
+  <text x="432" y="42" font-size="12" font-weight="700" fill="var(--color-success, #15803d)" text-anchor="middle">3. Details-on-Demand</text>
+  <text x="432" y="62" font-size="10" fill="var(--color-text-secondary, #475569)" text-anchor="middle">개별 거래/로그 상세팝업</text>
+  <text x="432" y="80" font-size="10" fill="var(--color-text-secondary, #475569)" text-anchor="middle">원천 Audit Data 연계</text>
+</svg>
+</div>
 
 1. **Overview First**: 화면 최상단에 핵심 성과 지표(매출, DAU, 시스템 가용률)를 단일 숫자로 요약 제시
 2. **Zoom and Filter**: 사용자가 특정 일자, 부서, 카테고리를 클릭하여 대시보드 전체를 동적 필터링
@@ -180,41 +225,72 @@ sidebar:
 > "최고의 시각화는 보는 사람으로 하여금 차트의 아름다움을 칭찬하게 만드는 것이 아니라, 다음에 취해야 할 비즈니스 행동을 즉시 떠올리게 만드는 것이다."
 
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 시각화는 결론을 장식하는 단계가 아니라 질문·집계·표현을 검증하는 분석 인터페이스다. 원자료·변환식·필터·갱신시점을 함께 공개해 재현성과 신뢰성을 확보해야 함.
-- `나라면`: 전사 BI 대시보드 가이드라인에 '3D 금지, 막대 축 $y=0$ 강제, 색약 접근성 체크'를 필수 통과 게이트로 규정하고, 대용량 실시간 집계를 위한 사전 롤업(Cube) 엔진을 인프라로 결합하겠음.
+
+> **[핵심 통찰]**
+> 시각화는 결론을 장식하는 디자인 단계가 아니라 질문·집계·표현을 검증하는 분석 인터페이스다. 원자료·변환식·필터·갱신시점을 함께 투명하게 공개해 재현성과 데이터 무결성을 확보해야 한다.
+>
+> **[나라면 이렇게 쓴다]**
+> 전사 BI 대시보드 표준 가이드라인에 '3D 금지, 막대 축 $y=0$ 강제, 색약 접근성(WCAG AA)'을 배포 파이프라인의 필수 품질 게이트(Quality Gate)로 규정하고, 대용량 실시간 집계를 위해 백엔드에 OLAP 롤업 큐브 엔진을 결합한 반응형 대시보드 아키텍처를 제시하겠다.
 
 ### 실전 답안용 기술사적 제언
+
 - 판정: 시각화의 성공은 디자인적 심미성이 아니라 **거짓말 계수(Lie Factor $\approx 1$)의 정직성**과 **의사결정 도달 시간(Time-to-Insight)**의 단축으로 판정함
 - 대안: Cleveland-McGill 인코딩 순위 준수 $\rightarrow$ 슈나이더만 3단계 인터랙션 적용 $\rightarrow$ 웹 접근성(WCAG) 색상 팔레트 도입
 - 검증: Lie Factor 허용 범위(0.95~1.05) 충족 및 색약 시뮬레이터를 통한 가독성 100% 통과
 - 효과: 기만적 차트로 인한 잘못된 경영 의사결정을 방지하고, 전사 데이터 리터러시(Data Literacy) 극대화 달성
 
-```text
-[현행 한계] ─────────> [개선 방안] ─────────> [검증 기준] ─────────> [실행 효과]
-잘린 축/3D 왜곡       Tufte 원칙 & y=0 고정  Lie Factor ≈ 1.0        정직한 의사결정 수립
-색약자 접근 불가       WCAG 색약 팔레트 적용  대비율 4.5:1 통과       모든 사용자 접근성 보장
-```
+<div class="itpe-flow-map" role="img" aria-label="데이터 시각화 무결성 확보 및 접근성 개선 로드맵">
+  <div class="itpe-flow-node">
+    <strong>현행 한계</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>왜곡·소외</strong><span>잘린 축($y \ne 0$)·3D 차트로 데이터 과장, 색약자 식별 불가</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>개선 방안</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>무결성 확보</strong><span>Tufte 원칙(기준선 $0$ 고정, 차트정크 제거) 및 WCAG 2.1 AA 색약 팔레트</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>검증 기준</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>품질 게이트</strong><span>Lie Factor 허용 범위($0.95 \sim 1.05$) 및 명도 대비($4.5:1$) 통과</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node is-current">
+    <span class="itpe-keyword"><strong>실행 효과</strong></span>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass">
+        <strong>목표 달성</strong>
+        <span>기만적 의사결정 원천 배제, 전사 데이터 리터러시 및 정보 접근 평등 보장</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 데이터 시각화의 정의 및 목적
-- 정의: 데이터의 관계와 패턴을 위치, 길이, 색상 등 시각 채널로 부호화하여 직관적 인지를 지원하는 기술
-- 목적: 빠른 인사이트 도출, 의사결정 리드타임 단축, 이상치 발견
+1. **데이터 시각화의 정의 및 목적**
+   - **정의**: 데이터셋의 관계·패턴·이상치를 인간의 시각 채널(위치·길이·각도·색상)로 부호화하여 직관적 인지를 지원하는 표현 기술
+   - **목적**: 의사결정 리드타임 단축(Time-to-Insight), 탐색적 가설 검증, 전사적 데이터 커뮤니케이션 강화
 
-2. 시각 인코딩 정확도 계층 및 차트 선정 기준
-┌─────────────────────────────────────────────────────────────┐
-│ Cleveland-McGill 인코딩 순위:                               │
-│  위치(Position) > 길이(Length) > 각도(Angle) > 면적 > 색상  │
-├─────────────────────────────────────────────────────────────┤
-│ 질문별 차트: 비교(막대), 추세(선), 분포(히스토그램/Boxplot),│
-│              구성(트리맵), 상관관계(산점도)                 │
-└─────────────────────────────────────────────────────────────┘
+2. **Cleveland-McGill 시각 인코딩 정확도 순위 및 질문별 차트**
+   - **인지 계층**: 공통 위치(Position) > 비정렬 길이(Length) > 각도·기울기(Angle) > 면적(Area) > 색상 채도·명도(Color)
+   - **질문별 최적 차트**:
+     - 크기 비교: 막대 차트 ($y=0$ 기준선 필수)
+     - 시간 추세: 꺾은선 차트 (시간 간격 균등화)
+     - 분포 확인: 히스토그램, 박스플롯 (사분위수/이상치 표기)
+     - 부분 구성: 누적 막대, 트리맵 (조각 수 5개 이하)
+     - 상관 관계: 산점도, 히트맵 (투명도 조절로 중첩 해소)
 
-3. Tufte의 시각화 무결성 원칙
-- 거짓말 계수: Lie Factor = 그래픽 변화율 / 데이터 변화율 ≈ 1.0
-- 데이터-잉크 비율(Data-Ink Ratio) 극대화 및 3D 차트 정크 배제
-```
+3. **Tufte의 시각화 무결성 및 접근성 준수 원칙**
+   - **거짓말 계수(Lie Factor)**: $\text{Lie Factor} = \text{그래픽 변화율} / \text{데이터 변화율} \approx 1.0$ (허용 범위: 0.95 ~ 1.05)
+   - **데이터-잉크 비율(Data-Ink Ratio)**: 불필요한 배경 장식 및 3D 차트 정크(Chartjunk) 원천 배제
+   - **접근성(WCAG 2.1)**: 색약 안전 팔레트(ColorBrewer) 및 텍스트/패턴 병행 표기 (명도 대비 4.5:1 이상)
 
 ## 출제 이력과 검증 출처
 

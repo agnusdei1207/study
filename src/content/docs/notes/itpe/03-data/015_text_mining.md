@@ -9,9 +9,9 @@ tags:
   - "토픽모델링"
   - "감성분석"
 date: "2026-09-20T23:04:00+09:00"
-author: "기술사 수험생"
+author: "Antigravity"
 extra:
-  model: "Antigravity-v2"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -109,11 +109,63 @@ sidebar:
 
 > 수집에서 전처리, 특징 추출, 모델링, 평가 및 서빙으로 이어지는 파이프라인을 구축함.
 
-```text
-[1단계: 수집·정제] ──> [2단계: 형태소 분석] ──> [3단계: 특징 벡터화] ──> [4단계: 모델링] ──> [5단계: 평가·활용]
-  웹 크롤링/API/DB       토큰화, 불용어 제거     TF-IDF, 임베딩          분류, 군집, LDA, 감성    F1-score, Coherence
-  PII 비식별화           품사(PoS) 태깅          단어-문서 행렬(DTM)     NER 정보 추출            VOC 대시보드 서빙
-```
+<svg viewBox="0 0 520 150" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="텍스트 마이닝 5단계 표준 파이프라인" role="img">
+  <defs>
+    <marker id="nlp-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#58a6ff"/>
+    </marker>
+  </defs>
+  <!-- 5 Nodes in sequence -->
+  <g transform="translate(10, 20)">
+    <!-- Step 1 -->
+    <rect width="90" height="75" rx="5" fill="#21262d" stroke="#30363d"/>
+    <text x="45" y="20" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#c9d1d9" text-anchor="middle">1. 수집·정제</text>
+    <text x="45" y="42" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">크롤링/API</text>
+    <text x="45" y="58" font-family="system-ui, sans-serif" font-size="8" fill="#f85149" text-anchor="middle">PII 비식별화</text>
+    <path d="M 92 48 L 100 48" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#nlp-arrow)"/>
+
+    <!-- Step 2 -->
+    <g transform="translate(102, 0)">
+      <rect width="90" height="75" rx="5" fill="#21262d" stroke="#58a6ff"/>
+      <text x="45" y="20" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#58a6ff" text-anchor="middle">2. 형태소 분석</text>
+      <text x="45" y="42" font-family="system-ui, sans-serif" font-size="8" fill="#c9d1d9" text-anchor="middle">토큰화/불용어</text>
+      <text x="45" y="58" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">PoS 품사태깅</text>
+    </g>
+    <path d="M 194 48 L 202 48" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#nlp-arrow)"/>
+
+    <!-- Step 3 -->
+    <g transform="translate(204, 0)">
+      <rect width="90" height="75" rx="5" fill="#21262d" stroke="#3fb950"/>
+      <text x="45" y="20" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#3fb950" text-anchor="middle">3. 벡터화</text>
+      <text x="45" y="42" font-family="system-ui, sans-serif" font-size="8" fill="#c9d1d9" text-anchor="middle">TF-IDF 희소</text>
+      <text x="45" y="58" font-family="system-ui, sans-serif" font-size="8" fill="#3fb950" text-anchor="middle">임베딩 밀집</text>
+    </g>
+    <path d="M 296 48 L 304 48" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#nlp-arrow)"/>
+
+    <!-- Step 4 -->
+    <g transform="translate(306, 0)">
+      <rect width="90" height="75" rx="5" fill="#21262d" stroke="#d29922"/>
+      <text x="45" y="20" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#d29922" text-anchor="middle">4. 모델링</text>
+      <text x="45" y="42" font-family="system-ui, sans-serif" font-size="8" fill="#c9d1d9" text-anchor="middle">LDA 토픽/분류</text>
+      <text x="45" y="58" font-family="system-ui, sans-serif" font-size="8" fill="#d29922" text-anchor="middle">감성/NER추출</text>
+    </g>
+    <path d="M 398 48 L 406 48" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#nlp-arrow)"/>
+
+    <!-- Step 5 -->
+    <g transform="translate(408, 0)">
+      <rect width="90" height="75" rx="5" fill="#21262d" stroke="#a371f7"/>
+      <text x="45" y="20" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a371f7" text-anchor="middle">5. 평가·활용</text>
+      <text x="45" y="42" font-family="system-ui, sans-serif" font-size="8" fill="#c9d1d9" text-anchor="middle">F1 / Coherence</text>
+      <text x="45" y="58" font-family="system-ui, sans-serif" font-size="8" fill="#a371f7" text-anchor="middle">VOC 대시보드</text>
+    </g>
+  </g>
+
+  <!-- Bottom Bar -->
+  <g transform="translate(10, 105)">
+    <rect width="498" height="32" rx="4" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)"/>
+    <text x="249" y="20" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle">핵심 원칙: 철저한 PII 비식별화 선행 $\to$ 도메인 사용자 정의 사전 주입 $\to$ F1/Coherence 검증</text>
+  </g>
+</svg>
 
 1. **텍스트 수집 및 정제**: 웹 크롤링, 로그 수집기 연동, HTML 태그 및 특수문자 제거, 개인정보(PII) 마스킹
 2. **형태소 분석 및 토큰화**: 단어를 최소 의미 단위로 분할, 명사/동사 등 유효 품사 추출, 조사 및 불용어(Stopwords) 필터링
@@ -125,13 +177,31 @@ sidebar:
 
 > 전통적인 단어 빈도 기반 방식과 딥러닝 기반 밀집 임베딩 방식의 장단점을 절충하여 선택함.
 
-```text
-[TF-IDF 수식]
-  TF-IDF(t, d, D) = TF(t, d) × IDF(t, D)
-  - TF(t, d): 특정 문서 d에서 단어 t가 등장한 빈도
-  - IDF(t, D): log(전체 문서 수 N / 단어 t를 포함하는 문서 수 DF(t))
-  * 효과: "은, 는, 이, 가" 등 흔한 단어는 가중치 삭감, 특정 문서에만 자주 나오는 핵심어는 가중치 극대화
-```
+<svg viewBox="0 0 520 160" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="TF-IDF 희소 행렬과 Word Embedding 밀집 벡터 구조 비교" role="img">
+  <!-- Left: TF-IDF -->
+  <g transform="translate(15, 15)">
+    <rect width="235" height="130" rx="5" fill="#21262d" stroke="#f0883e" stroke-width="1"/>
+    <text x="117" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f0883e" text-anchor="middle">TF-IDF (고차원 희소 벡터)</text>
+    <rect x="15" y="32" width="205" height="26" rx="4" fill="#161b22" stroke="#30363d"/>
+    <text x="117" y="49" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9" text-anchor="middle">수식: TF(단어빈도) × IDF(역문서빈도)</text>
+    <text x="15" y="74" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• 차원: 전체 어휘 사전 크기 (수만 차원)</text>
+    <text x="15" y="90" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• 행렬: 대부분 값이 0인 Sparse Matrix</text>
+    <rect x="15" y="100" width="205" height="20" rx="3" fill="rgba(240,136,62,0.12)"/>
+    <text x="117" y="114" font-family="system-ui, sans-serif" font-size="8" font-weight="bold" fill="#f0883e" text-anchor="middle">문맥/유사도 미반영, 키워드 검색에 최적</text>
+  </g>
+
+  <!-- Right: Word Embedding -->
+  <g transform="translate(270, 15)">
+    <rect width="235" height="130" rx="5" fill="#21262d" stroke="#3fb950" stroke-width="1"/>
+    <text x="117" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#3fb950" text-anchor="middle">Word Embedding (저차원 밀집 벡터)</text>
+    <rect x="15" y="32" width="205" height="26" rx="4" fill="#161b22" stroke="#30363d"/>
+    <text x="117" y="49" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9" text-anchor="middle">모델: Word2Vec, FastText, BERT</text>
+    <text x="15" y="74" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• 차원: 저차원 실수 벡터 (100~768차원)</text>
+    <text x="15" y="90" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9">• 특성: 코사인 유사도 및 의미적 연산 보존</text>
+    <rect x="15" y="100" width="205" height="20" rx="3" fill="rgba(63,185,80,0.12)"/>
+    <text x="117" y="114" font-family="system-ui, sans-serif" font-size="8" font-weight="bold" fill="#3fb950" text-anchor="middle">문맥 완벽 반영, 감성분석/LLM RAG 최적</text>
+  </g>
+</svg>
 
 | 비교 항목 | TF-IDF (Term Frequency-IDF) | Word Embedding (Word2Vec, BERT) |
 |---|---|---|
@@ -180,42 +250,69 @@ sidebar:
 > "전통 텍스트 마이닝의 통계적 지표와 거대언어모델(LLM)의 생성 능력이 결합할 때, 진정한 엔터프라이즈 인텔리전스가 완성된다."
 
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 모델보다 말뭉치 정의·라벨 기준·전처리 재현성이 텍스트 분석 품질의 기준선이다. 최신 생성형 AI 도입에 앞서 텍스트 데이터 정제 파이프라인이 선행되어야 함.
-- `나라면`: 전통적인 텍스트 마이닝(TF-IDF, LDA)으로 사내 지식 문서를 고속 색인 및 클러스터링하고, LLM 기반 RAG(검색 증강 생성) 아키텍처와 결합하여 환각 현상을 억제하는 고정밀 엔터프라이즈 검색 시스템을 구축하겠음.
+
+> **[핵심 통찰]**
+> 모델의 파라미터 크기보다 말뭉치 정의·라벨링 기준·전처리 재현성이 텍스트 분석 품질의 성패를 결정한다. 최신 생성형 AI 도입에 앞서 신뢰할 수 있는 텍스트 정제 파이프라인 구축이 선행되어야 한다.
+>
+> **[나라면 이렇게 쓴다]**
+> 전통적인 텍스트 마이닝(TF-IDF, LDA)으로 사내 지식 문서를 고속 색인 및 클러스터링하고, LLM 기반 RAG(검색 증강 생성) 아키텍처와 결합하여 환각 현상을 억제하는 고정밀 엔터프라이즈 검색 시스템을 구축하겠다.
 
 ### 실전 답안용 기술사적 제언
-- 판정: 텍스트 마이닝의 성패는 고난도 딥러닝 모델의 복잡성이 아니라 **도메인 말뭉치 전처리의 정밀도**와 **비즈니스 실행 가능성(Actionability)**으로 판정함
-- 대안: 한국어 교착어 특화 형태소 전처리 $\rightarrow$ TF-IDF/임베딩 하이브리드 특징 추출 $\rightarrow$ LDA 토픽 모델링 $\rightarrow$ RAG 벡터 DB 색인 연계
-- 검증: 토픽 일관성 점수(Coherence Score $\ge 0.6$) 및 문서 분류 F1-Score 90% 이상 확보
-- 효과: 수작업 모니터링 비용 80% 절감 및 실시간 고객 VOC 이상 징후 조기 감지 체계 확립
 
-```text
-[현행 한계] ─────────> [개선 방안] ─────────> [검증 기준] ─────────> [실행 효과]
-수작업 VOC 분석       형태소 전처리 자동화   F1-Score ≥ 90%          VOC 분석 리드타임 단축
-한국어 신조어 오인식   도메인 사용자 사전 주입 Coherence ≥ 0.6         고객 불만 조기 감지 달성
-```
+- **판정 기준**: 텍스트 마이닝의 성패는 고난도 딥러닝 모델의 복잡성이 아니라 **도메인 말뭉치 전처리의 정밀도**와 **비즈니스 실행 가능성(Actionability)**으로 판정
+- **대응 방안**: 한국어 교착어 특화 형태소 전처리 $\rightarrow$ TF-IDF/임베딩 하이브리드 특징 추출 $\rightarrow$ LDA 토픽 모델링 $\rightarrow$ RAG 벡터 DB 색인 연계
+- **검증 체계**: 토픽 일관성 점수(Coherence Score $\ge 0.6$) 및 문서 분류 F1-Score 90% 이상 확보
+- **기대 효과**: 수작업 모니터링 비용 80% 절감 및 실시간 고객 VOC 이상 징후 조기 감지 체계 확립
+
+<div class="itpe-flow-map" role="img" aria-label="텍스트 마이닝 고도화 실행 로드맵">
+  <div class="itpe-flow-node">
+    <strong>1단계: 현행 한계 인식</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-fail"><strong>문제</strong><span>수작업 VOC 분석 지연 및 한국어 신조어·전문용어 형태소 오분절 발생</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>2단계: 아키텍처 개선 방안</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass"><strong>기술 적용</strong><span>도메인 사용자 사전 주입 + 형태소 전처리 자동화 + RAG 벡터 DB 결합</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>3단계: 정량 검증 기준</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>KPI 지표</strong><span>문서 분류 F1-Score 90% 이상, 토픽 Coherence 0.6 이상 달성</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>4단계: 궁극적 실행 효과</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass"><strong>가치 창출</strong><span>고객 VOC 리드타임 80% 단축 및 이상 징후 선제적 대응 체계 완성</span></div>
+    </div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 텍스트 마이닝(Text Mining)의 정의 및 목적
-- 정의: 자연어 문서에서 형태소 분석, 벡터화, 기계학습을 결합하여 유용한 패턴, 토픽, 감성을 추출하는 분석 기법
-- 목적: 비정형 데이터의 지식화, 고객 VOC 자동 분류, 트렌드 분석
+### 1. 텍스트 마이닝(Text Mining)의 정의 및 목적
 
-2. TF-IDF vs Word Embedding 비교
-┌───────────────┬─────────────────────────────────────────────┐
-│ 기법          │ 핵심 메커니즘 및 특성                       │
-├───────────────┼─────────────────────────────────────────────┤
-│ TF-IDF        │ 단어 빈도 × 역문서 빈도 (고차원 희소 벡터)  │
-│               │ - 단순하고 가벼우며 핵심어 추출에 탁월함     │
-├───────────────┼─────────────────────────────────────────────┤
-│ Embedding     │ 신경망 기반 저차원 밀집 벡터 (Word2Vec, BERT)│
-│               │ - 단어 간 문맥과 의미적 유사도를 완벽 보존   │
-└───────────────┴─────────────────────────────────────────────┘
+- **정의**: 대규모 비정형 자연어 텍스트에서 형태소 분석, 수치 벡터화, 머신러닝 기법을 결합하여 의미 있는 패턴, 주제, 감성을 발굴하는 데이터 마이닝 기술
+- **목적**: 비정형 데이터의 지식화, 고객 VOC 자동 분류, 소셜 여론 트렌드 분석
 
-3. 실무 제언: 한국어 형태소 분석과 RAG 연계
-- 한국어 교착어 특성을 극복하기 위해 사용자 정의 사전을 구축하고, 벡터 검색과 결합하여 생성형 AI(RAG)의 검색 품질을 고도화해야 함.
-```
+### 2. TF-IDF vs Word Embedding 비교
+
+| 비교 항목 | TF-IDF | Word Embedding |
+|---|---|---|
+| **표현 형태** | 고차원 희소 벡터 (단어-문서 행렬 DTM) | 저차원 밀집 벡터 (100~768차원 연속 공간) |
+| **핵심 원리** | 단어 빈도(TF) $\times$ 역문서 빈도(IDF) | 신경망 기반 문맥 학습 (Word2Vec, BERT) |
+| **의미 보존** | 단어 간 유사도 미반영 (독립 직교) | 코사인 거리 기반 의미적 유사도 완벽 보존 |
+| **적용 영역** | 키워드 검색, 법률 색인 | 감성 분석, 챗봇, 최신 LLM RAG 검색 |
+
+### 3. 기술사적 실무 제언: 한국어 특수성 극복과 RAG 연계
+
+- 한국어 교착어(어근+조사) 특성을 극복하기 위해 도메인 사용자 정의 사전을 필수 주입하고, TF-IDF의 키워드 색인과 임베딩의 의미 검색을 결합한 하이브리드 RAG 검색 아키텍처를 구축해야 함.
 
 ## 출제 이력과 검증 출처
 
