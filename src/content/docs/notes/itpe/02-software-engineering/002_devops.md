@@ -1,15 +1,15 @@
 ---
 title: "DevOps"
-author: "Codex"
-date: "2026-09-20T23:49:42+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:26:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -67,6 +67,68 @@ extra:
 
 > DevOps는 단순한 도구 도입이 아니라 CALMS 5대 축과 엔지니어링 툴체인이 유기적으로 결합할 때 완성된다.
 
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="개발과 운영을 연결하는 DevOps 무한대 루프 및 DevSecOps 보안 통제 체계">
+  <!-- 좌측: Dev 루프 (Plan, Code, Build, Test) -->
+  <rect x="15" y="10" width="235" height="200" rx="10" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="132" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--sl-color-accent-high)">Development (지속적 통합 CI)</text>
+  
+  <rect x="30" y="50" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="77" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">1. Plan (기획)</text>
+  
+  <line x1="125" y1="68" x2="145" y2="68" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  
+  <rect x="145" y="50" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="192" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">2. Code (작성)</text>
+  
+  <line x1="192" y1="86" x2="192" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  
+  <rect x="145" y="105" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="192" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">3. Build (빌드)</text>
+  
+  <line x1="145" y1="123" x2="125" y2="123" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  
+  <rect x="30" y="105" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="77" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">4. Test (검증)</text>
+
+  <!-- DevSecOps 게이트 -->
+  <rect x="30" y="155" width="210" height="42" rx="6" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+  <text x="135" y="173" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-accent-high)">Shift-Left DevSecOps (SAST / SCA)</text>
+  <text x="135" y="188" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">SonarQube 정적분석 · 의존성 취약점 차단</text>
+
+  <!-- 중앙 무한대 교차선 -->
+  <path d="M 235 123 C 255 123, 265 68, 285 68" stroke="var(--sl-color-accent)" stroke-width="2" fill="none" />
+  <path d="M 285 123 C 265 123, 255 178, 235 178" stroke="var(--sl-color-accent)" stroke-width="2" fill="none" />
+
+  <!-- 우측: Ops 루프 (Release, Deploy, Operate, Monitor) -->
+  <rect x="270" y="10" width="235" height="200" rx="10" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="387" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--sl-color-accent-high)">Operations (지속적 배포 CD &amp; SRE)</text>
+  
+  <rect x="285" y="50" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="332" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">5. Release</text>
+  
+  <line x1="380" y1="68" x2="400" y2="68" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  
+  <rect x="400" y="50" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="447" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">6. Deploy</text>
+  
+  <line x1="447" y1="86" x2="447" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  
+  <rect x="400" y="105" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="447" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">7. Operate</text>
+  
+  <line x1="400" y1="123" x2="380" y2="123" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  
+  <rect x="285" y="105" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="332" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">8. Monitor</text>
+
+  <!-- 관측성 & 피드백 -->
+  <rect x="285" y="155" width="210" height="42" rx="6" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+  <text x="390" y="173" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-accent-high)">SRE 관측성 &amp; DORA 4대 지표</text>
+  <text x="390" y="188" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">배포빈도·리드타임·변경실패율·MTTR 환류</text>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="DevOps 기술 파이프라인">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 지속적 통합(CI)</strong></span>
@@ -119,21 +181,21 @@ extra:
 | **조직 KPI 상충 및 저항** | 개발-운영 간 갈등을 중재하는 **에러 예산(Error Budget)** 제도화 | 변경 속도와 서비스 신뢰성의 수학적 균형 확보 |
 | **인프라 구성 불일치 (Drift)** | 콘솔 직접 수정을 금지하고 Git PR 기반 선언적 **IaC(GitOps)** 강제 | 환경 간 불일치 제거 및 배포 멱등성 보장 |
 
-## Ⅴ. 지속 개선 중심의 결론
+## Ⅴ. 결론 — 지속 개선 중심의 기술사적 제언
 
 > DevOps의 최종 목표는 배포 속도가 아니라 지속적인 비즈니스 민첩성이며, 이를 위해 플랫폼 엔지니어링 체계로 진화해야 한다.
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: DevOps를 도구 체인(Jenkins, Docker 등)의 나열로 이해하면 실패함. 핵심은 조직 내 '피드백 루프의 속도'와 '신뢰 문화'임. SRE의 에러 예산처럼 개발과 운영의 충돌을 수학적으로 중재하는 통제 기제가 수반되어야 함.
-- 나라면: 개발팀이 인프라를 직접 신경 쓰지 않도록 내부 개발자 플랫폼(IDP)을 구축하는 플랫폼 엔지니어링(Platform Engineering)을 도입하여 DevOps 인지 부하를 줄이겠음.
+- `[핵심 통찰]`: DevOps를 도구 체인(Jenkins, Docker 등)의 나열로 이해하면 실패한다. 핵심은 조직 내 '피드백 루프의 속도'와 '신뢰 문화'이다. SRE의 에러 예산처럼 개발과 운영의 충돌을 수학적으로 중재하는 통제 기제가 수반되어야 한다.
+- `나라면`: 개발팀이 인프라를 직접 신경 쓰지 않도록 내부 개발자 플랫폼(IDP)을 구축하는 플랫폼 엔지니어링(Platform Engineering)을 도입하여 DevOps 인지 부하를 줄이겠다.
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 단순 툴 도입 지양, DORA 4대 지표 기반 엔지니어링 성숙도 평가
-- 대안: **SRE** 모델 연계 및 **DevSecOps** 파이프라인 내재화
-- 검증: 배포 리드타임 1시간 이내 단축 · 변경 실패율 15% 이하 통제
-- 효과: 시장 요구 반영 속도 극대화 및 서비스 고가용성 달성
+- **판정 기준**: 단순 CI/CD 도구 도입 여부가 아니라, DORA 4대 지표(배포 빈도, 변경 리드타임, 변경 실패율, 서비스 복구 시간 MTTR)의 객관적 성숙도 등급(Elite/High) 도달 여부로 엔지니어링 경쟁력을 판정함
+- **대응 방안**: 개발-운영 간 갈등을 수학적으로 중재하는 SRE 에러 예산(Error Budget)을 제도화하고, 보안 검증을 좌측으로 전진 배치한 **DevSecOps** 및 셀프서비스 인프라를 제공하는 **플랫폼 엔지니어링(IDP)**으로 고도화함
+- **검증 체계**: Git PR 기반 선언적 GitOps 멱등성 감사, SAST/DAST 정적·동적 보안 취약점 제로 게이트 통과율, 무비난 회고(Blameless Postmortem) 보고서의 정기 발행 여부를 점검함
+- **기대 효과**: 변경 위험을 분산시켜 출시 리드타임을 1시간 이내로 단축하고, 프로덕션 장애 발생 시 자동 롤백 및 신속 복구를 통해 서비스 고가용성(99.99%)을 확고히 보장함
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="DevOps 성숙도 고도화 제언">
   <div class="itpe-pipeline-node">

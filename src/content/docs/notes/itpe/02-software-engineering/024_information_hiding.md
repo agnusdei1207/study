@@ -2,14 +2,14 @@
 title: "정보은닉(Information Hiding)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -82,6 +82,55 @@ extra:
   </div>
 </div>
 
+### 정보은닉(Information Hiding) 캡슐화 및 파급 효과(Ripple Effect) 차단 구조
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[Parnas 정보은닉 캡슐화 원리 및 변경 파급 차단선]</text>
+
+    <!-- Client Module (Left) -->
+    <rect x="20" y="55" width="120" height="135" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="80" y="78" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">외부 클라이언트</text>
+    <text x="80" y="95" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Client Component</text>
+    <line x1="30" y1="105" x2="130" y2="105" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="80" y="125" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">인터페이스에만 의존</text>
+    <text x="80" y="145" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-success, #10b981)" text-anchor="middle">(내부 구현 무관)</text>
+    <rect x="30" y="155" width="100" height="22" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
+    <text x="80" y="170" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">결합도(Coupling) 최소</text>
+
+    <!-- Interaction Arrow -->
+    <line x1="140" y1="110" x2="185" y2="110" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" marker-end="url(#arrow)" />
+
+    <!-- Protected Module Outer Boundary (Capsule) -->
+    <rect x="185" y="45" width="315" height="155" rx="8" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
+    <text x="342" y="65" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">은닉된 모듈 (Encapsulated Module)</text>
+
+    <!-- Public Interface Layer -->
+    <rect x="195" y="75" width="295" height="32" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-border, #93c5fd)" />
+    <text x="205" y="95" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">+ Public Interface:</text>
+    <text x="315" y="95" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">requestData(), executeProcess()</text>
+
+    <!-- Separation Line / Barrier -->
+    <line x1="195" y1="115" x2="490" y2="115" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" stroke-dasharray="4 2" />
+    <text x="480" y="112" class="itpe-svg-label" font-size="9" fill="var(--sl-color-danger, #ef4444)" text-anchor="end">정보은닉 방어벽 (Secrets Barrier)</text>
+
+    <!-- Private Secrets inside -->
+    <rect x="200" y="125" width="135" height="65" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="267" y="142" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">- Private Secrets</text>
+    <text x="267" y="158" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">• 자료구조 (Tree/List)</text>
+    <text x="267" y="174" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">• 알고리즘 세부로직</text>
+
+    <rect x="345" y="125" width="145" height="65" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="417" y="142" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">변경 국소화</text>
+    <text x="417" y="158" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">내부 변경 시에도</text>
+    <text x="417" y="174" class="itpe-svg-sub" font-size="9.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">외부 파급 효과(Ripple) 제로</text>
+  </svg>
+</div>
+
 ### 모듈 내부에 은닉해야 할 4대 핵심 비밀
 1. **자료구조의 비밀**: 데이터가 배열인지, 연결리스트인지, B-Tree인지 여부
 2. **알고리즘의 비밀**: 특정 수치 계산 공식이나 최적화 알고리즘의 세부 구현
@@ -131,10 +180,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 아키텍처 단위(클래스, 컴포넌트, 서비스) 전 계층의 정보은닉 원칙 적용
-- 대안: **인터페이스 기반 설계** 및 **MSA Database-per-service** 패턴 강제
-- 검증: 결합도 측정 메트릭(Afferent/Efferent Coupling) 분석 · 내용 결합도 제로화
-- 효과: 독립 배포 및 독립 교체 가능성 확보 · 소프트웨어 유지보수 비용 획기적 절감
+- **판정 기준**: 변경 가능성이 높은 기술적 설계 결정(자료구조, 외부 DB, 벤더 종속 라이브러리)의 은닉 여부 판정
+- **대응 방안**: **Parnas 분할 기준** 적용, 'Tell, Don't Ask' 원칙 준수 및 마이크로서비스 간 **Database-per-service** 아키텍처 강제
+- **검증 체계**: 모듈 간 결합도 지표(내용/공통 결합도 제로화) 정적 분석 및 공개 인터페이스 기반 단위 Mock 테스트 통과
+- **기대 효과**: 변경에 따른 파급 효과(Ripple Effect) 원천 차단, 모듈 독립 배포성 확보 및 소프트웨어 유지보수 공수 50% 절감
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="정보은닉 아키텍처 제언">
   <div class="itpe-pipeline-node">

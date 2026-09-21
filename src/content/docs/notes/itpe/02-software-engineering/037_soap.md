@@ -5,10 +5,10 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Codex"
-date: "2026-09-20T23:56:49+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -66,6 +66,41 @@ extra:
 ## Ⅱ. SOAP 메시지 구조: Envelope·Header·Body·Fault
 
 > 모든 SOAP 메시지는 단일 XML 문서로 구성되며, 봉투(Envelope) 안에 헤더와 바디가 중첩된다.
+
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="soap-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Envelope -->
+  <rect x="15" y="15" width="490" height="190" rx="10" fill="var(--sl-color-bg-inline-code, #f3f4f6)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2" filter="url(#soap-shadow)"/>
+  <rect x="15" y="15" width="490" height="30" rx="10" fill="var(--sl-color-gray-5, #e5e7eb)"/>
+  <rect x="15" y="35" width="490" height="10" fill="var(--sl-color-gray-5, #e5e7eb)"/>
+  <text x="30" y="35" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">&lt;soap:Envelope&gt; (루트 XML 규격 컨테이너 / 네임스페이스 선언)</text>
+
+  <!-- Header Box -->
+  <rect x="35" y="55" width="450" height="42" rx="6" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+  <text x="50" y="73" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">&lt;soap:Header&gt; [선택적 횡단 관심사]</text>
+  <text x="50" y="89" font-size="9.5" fill="var(--sl-color-text-muted, #4b5563)">WS-Security(전자서명/암호화), 트랜잭션 컨텍스트(WS-AtomicTransaction), 라우팅</text>
+
+  <!-- Body Box -->
+  <rect x="35" y="105" width="450" height="90" rx="6" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <text x="50" y="123" font-size="11" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">&lt;soap:Body&gt; [필수 비즈니스 페이로드]</text>
+
+  <!-- Normal Payload -->
+  <rect x="50" y="133" width="205" height="52" rx="4" fill="var(--sl-color-accent-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="60" y="152" font-size="10.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">정상 요청 / 응답 데이터</text>
+  <text x="60" y="168" font-size="9" fill="var(--sl-color-text, #374151)">호출 메서드명 및 XML 스키마 파라미터</text>
+
+  <!-- Fault Element -->
+  <rect x="270" y="133" width="205" height="52" rx="4" fill="var(--sl-color-red-subtle, #fef2f2)" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="1"/>
+  <text x="280" y="152" font-size="10.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">&lt;soap:Fault&gt; [예외 발생 시]</text>
+  <text x="280" y="168" font-size="9" fill="var(--sl-color-text, #374151)">faultcode, faultstring, detail 표준 규격</text>
+</svg>
+</div>
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SOAP XML 메시지 구조">
   <div class="itpe-pipeline-node">
@@ -140,10 +175,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 도메인 특성에 따른 통신 기술 이원화 (대외 B2B/금융: SOAP, 대고객/MSA: REST)
-- 대안: **API Gateway 및 ESB**를 통한 SOAP-REST 간 프로토콜 변환 중계
-- 검증: WS-Security 전자서명 무결성 검증 · WSDL 스키마 유효성 100% 일치
-- 효과: 기존 엔터프라이즈 자산 보호 및 클라우드 신기술과의 완벽한 상호운용성 달성
+- **판정 기준**: 대외 B2B/금융망 연계는 SOAP(WS-Security) 강제, 대고객 채널 및 MSA 내부 통신은 REST/gRPC 채택으로 분기 판정
+- **대응 방안**: API Gateway 및 ESB 멀티 프로토콜 변환 어댑터를 구축하여 기존 SOAP 백엔드를 신규 REST 인터페이스로 래핑
+- **검증 체계**: WS-Security 전자서명/암호화 유효성 및 WSDL 스키마 준수율 100% 검증, 프로토콜 변환 지연 30ms 이내 통제
+- **기대 효과**: 레거시 코어 자산의 연속성 보장과 현대적 MSA 클라우드 생태계 간 무중단 상호운용성 확보
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SOAP 현대화 거버넌스 제언">
   <div class="itpe-pipeline-node">

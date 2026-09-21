@@ -2,14 +2,14 @@
 title: "스크럼(Scrum)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -84,6 +84,72 @@ extra:
   </div>
 </div>
 
+### 스크럼(Scrum) 생명주기 및 3-5-3 프로세스 루프
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[Scrum 3대 산출물 및 스프린트(1~4주) 실행 사이클]</text>
+
+    <!-- 1. Product Backlog -->
+    <rect x="18" y="48" width="88" height="150" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="62" y="70" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">제품 백로그</text>
+    <text x="62" y="86" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Product Backlog</text>
+    <line x1="26" y1="96" x2="98" y2="96" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="62" y="115" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">PO가 우선순위화</text>
+    <text x="62" y="132" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">요구사항 목록</text>
+    <rect x="25" y="150" width="74" height="22" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="62" y="165" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text, #334155)" text-anchor="middle">제품 목표</text>
+
+    <!-- Arrow to Sprint Planning -->
+    <line x1="106" y1="120" x2="122" y2="120" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- 2. Sprint Planning -->
+    <rect x="122" y="75" width="78" height="90" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
+    <text x="161" y="98" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">스프린트 계획</text>
+    <text x="161" y="115" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Planning</text>
+    <line x1="130" y1="125" x2="192" y2="125" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="161" y="142" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text, #334155)" text-anchor="middle">목표 합의</text>
+    <text x="161" y="155" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text, #334155)" text-anchor="middle">태스크 분해</text>
+
+    <!-- Arrow to Sprint Loop -->
+    <line x1="200" y1="120" x2="216" y2="120" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- 3. Sprint Execution Loop (Middle) -->
+    <rect x="216" y="48" width="165" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
+    <text x="298" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">스프린트 (1~4주 Timebox)</text>
+    
+    <!-- Daily Scrum mini loop -->
+    <circle cx="298" cy="115" r="32" fill="none" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" stroke-dasharray="5 3" />
+    <text x="298" y="112" class="itpe-svg-title" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">일일 스크럼</text>
+    <text x="298" y="126" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">15분 (Daily)</text>
+    
+    <!-- Sprint Backlog tag -->
+    <rect x="226" y="162" width="145" height="26" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
+    <text x="298" y="179" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">스프린트 백로그 (Goal 보증)</text>
+
+    <!-- Arrow to Review/Retro -->
+    <line x1="381" y1="120" x2="397" y2="120" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- 4. Review & Retro -->
+    <rect x="397" y="52" width="105" height="68" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="449" y="70" class="itpe-svg-title" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">스프린트 리뷰</text>
+    <text x="449" y="85" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">데모 및 고객 피드백</text>
+    <line x1="405" y1="92" x2="493" y2="92" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="449" y="107" class="itpe-svg-title" font-size="10" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">스프린트 회고</text>
+
+    <!-- 5. Potentially Releasable Increment -->
+    <rect x="397" y="130" width="105" height="68" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
+    <text x="449" y="152" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">제품 증분</text>
+    <text x="449" y="168" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">Increment (출시가능)</text>
+    <rect x="407" y="174" width="85" height="18" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="449" y="186" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">DoD(완료정의) 통과</text>
+  </svg>
+</div>
+
 | 산출물 | 내포된 약속 (Commitment) | 핵심 통제 내용 |
 |---|---|---|
 | **제품 백로그 (Product Backlog)** | **제품 목표 (Product Goal)** | 제품의 미래 상태를 정의하며, PO가 가치 기반 우선순위 정렬 |
@@ -139,10 +205,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 단일 팀 스크럼에서 전사적 확장 스크럼(SAFe/LeSS)으로의 단계적 진화
-- 대안: **완료의 정의(DoD)** 품질 기준 고도화 및 **Jira/Confluence** 기반 협업 가시화
-- 검증: 스프린트 번다운 차트(Burn-down Chart) 모니터링 · 속도(Velocity) 안정화
-- 효과: 시장 요구 대응 리드타임 50% 단축 및 비즈니스 적합도 극대화
+- **판정 기준**: 프로젝트 요구사항 변동성 및 시장 출시 속도(Time-to-Market) 긴급도에 따른 스크럼 프레임워크 채택 판정
+- **대응 방안**: **완료의 정의(DoD)** 체크리스트(코드리뷰, 단위테스트, 정적분석) 엄격화 및 스프린트 타임박스 보호 규칙 강제
+- **검증 체계**: 스프린트 번다운 차트(Burn-down Chart) 및 속도(Velocity) 안정성 모니터링, 매 스프린트 동작하는 증분 검증
+- **기대 효과**: 형식적 좀비 스크럼 탈피, 고객 피드백 반영 리드타임 50% 단축 및 지속가능한 고품질 소프트웨어 적시 출시 달성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 조직 성숙도 제언">
   <div class="itpe-pipeline-node">

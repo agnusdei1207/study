@@ -5,10 +5,10 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Codex"
-date: "2026-09-20T23:56:49+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -53,6 +53,63 @@ extra:
 
 > 클라이언트는 계약만 알고 Composition Root가 구현 선택과 생명주기를 책임져야 변경 영향이 조립 경계에 머묾.
 
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="di-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: Direct Coupling (AS-IS) -->
+  <rect x="15" y="15" width="220" height="190" rx="8" fill="var(--sl-color-red-subtle, #fef2f2)" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="1.5" filter="url(#di-shadow)"/>
+  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">AS-IS: 직접 생성 및 강결합</text>
+
+  <rect x="30" y="50" width="190" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="40" y="68" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">클라이언트 (OrderService)</text>
+  <text x="40" y="83" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">new MysqlRepository() 직접 호출</text>
+
+  <path d="M 125 92 L 125 125" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="2" stroke-dasharray="3 3"/>
+  <text x="132" y="112" font-size="9" fill="var(--sl-color-red-high, #dc2626)">강한 결합</text>
+
+  <rect x="30" y="130" width="190" height="58" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="1"/>
+  <text x="40" y="148" font-size="10.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">구체 구현 (MysqlRepository)</text>
+  <text x="40" y="164" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• DB 변경 시 서비스 전면 수정</text>
+  <text x="40" y="179" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• 단위 테스트 Mock 주입 불가</text>
+
+  <!-- Right: Dependency Injection (TO-BE) -->
+  <rect x="255" y="15" width="250" height="190" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#di-shadow)"/>
+  <text x="268" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">TO-BE: DI 외부 조립 및 약결합</text>
+
+  <!-- DI Container Box -->
+  <rect x="268" y="46" width="224" height="38" rx="4" fill="var(--sl-color-accent-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <text x="278" y="63" font-size="10" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">IoC 컨테이너 (Spring DI / Guice)</text>
+  <text x="278" y="76" font-size="8.5" fill="var(--sl-color-text, #374151)">생성자 주입(Constructor Injection) 실행</text>
+
+  <!-- Service -->
+  <rect x="268" y="94" width="105" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="274" y="112" font-size="10" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">OrderService</text>
+  <text x="274" y="127" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">생성자로 수신</text>
+
+  <!-- Arrow to Interface -->
+  <path d="M 373 115 L 387 115" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+
+  <!-- Interface -->
+  <rect x="387" y="94" width="105" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5"/>
+  <text x="393" y="112" font-size="10" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">&lt;&lt;Interface&gt;&gt;</text>
+  <text x="393" y="127" font-size="8.5" fill="var(--sl-color-text, #1f2937)">Repository</text>
+
+  <!-- Injected Implementations -->
+  <rect x="268" y="146" width="105" height="48" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="274" y="165" font-size="9.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">MysqlRepo</text>
+  <text x="274" y="180" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">운영 환경 주입</text>
+
+  <rect x="387" y="146" width="105" height="48" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-purple-high, #7c3aed)" stroke-width="1"/>
+  <text x="393" y="165" font-size="9.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">MockRepo</text>
+  <text x="393" y="180" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">단위 테스트 주입</text>
+</svg>
+</div>
+
 | 요소 | 책임 | 통제점 |
 |---|---|---|
 | Client | 협력자 계약 사용 | 구체 구현 생성 금지 |
@@ -93,10 +150,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 숨은 의존과 Scope 불일치가 DI 적용 실패의 핵심 원인
-- 대안: 생성자 주입·Composition Root·의존 방향 규칙 표준화
-- 검증: 컨테이너 기동·격리 단위 테스트·순환 및 범위 검사
-- 효과: 변경 영향 국소화 · 객체 완전성 · 테스트 용이성 확보
+- **판정 기준**: 필드 주입(@Autowired) 전면 금지, 필수 의존성은 생성자 주입(Constructor Injection) 100% 강제 판정
+- **대응 방안**: Composition Root 기반 단일 조립 지점 집중 및 단방향 의존 그래프(DAG) 아키텍처 수립
+- **검증 체계**: CI 빌드 시 컨테이너 기동 테스트(ApplicationContext Test) 및 순환 의존·Scope 불일치 린트 정적 검증
+- **기대 효과**: 객체 불변성(Immutability) 확보, 컨테이너 없는 순수 POJO 단위 테스트 커버리지 90% 이상 달성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 개선 제언"><div class="itpe-pipeline-node"><strong>숨은 결합</strong><span><b>문제</b> 직접 생성·필드 주입·Scope 혼용</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>조립 경계</strong><span><b>대안</b> 생성자 주입과 Composition Root 집중</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>품질 게이트</strong><span><b>판정</b> 등록·순환·범위·격리 테스트 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>설계 품질</strong><span><b>효과</b> 교체 가능성과 변경 영향 국소화</span></div></div>
 

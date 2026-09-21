@@ -2,14 +2,14 @@
 title: "메타모픽 테스트(Metamorphic Test)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:56:49+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -89,6 +89,66 @@ extra:
   </div>
 </div>
 
+### 메타모픽 관계(MR) 기반 결함 검출 메커니즘
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[테스트 오라클 문제 해결: 메타모픽 관계(MR) 불변식 판정 흐름]</text>
+
+    <!-- 1. Source Track (Top) -->
+    <rect x="25" y="48" width="125" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
+    <text x="87" y="66" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">원본 입력 (x)</text>
+    <text x="87" y="80" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Source Input</text>
+
+    <!-- SUT (System Under Test) Top -->
+    <line x1="150" y1="69" x2="185" y2="69" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" marker-end="url(#arrow)" />
+    <rect x="185" y="48" width="115" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="242" y="66" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">대상 시스템</text>
+    <text x="242" y="80" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">실행 f(x)</text>
+
+    <!-- Source Output -->
+    <line x1="300" y1="69" x2="335" y2="69" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" marker-end="url(#arrow)" />
+    <rect x="335" y="48" width="85" height="42" rx="5" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" />
+    <text x="377" y="66" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">출력 f(x)</text>
+    <text x="377" y="80" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">정답 모름</text>
+
+    <!-- Downward Transform Arrow -->
+    <path d="M 87 90 L 87 135" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" stroke-dasharray="4 2" marker-end="url(#arrow)" />
+    <rect x="42" y="103" width="90" height="20" rx="3" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="87" y="117" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">변형: T(x)</text>
+
+    <!-- 2. Follow-up Track (Bottom) -->
+    <rect x="25" y="142" width="125" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.2" />
+    <text x="87" y="160" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">후속 입력 (x')</text>
+    <text x="87" y="174" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Follow-up Input</text>
+
+    <!-- SUT (System Under Test) Bottom -->
+    <line x1="150" y1="163" x2="185" y2="163" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" marker-end="url(#arrow)" />
+    <rect x="185" y="142" width="115" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="242" y="160" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">대상 시스템</text>
+    <text x="242" y="174" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">실행 f(x')</text>
+
+    <!-- Follow-up Output -->
+    <line x1="300" y1="163" x2="335" y2="163" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" marker-end="url(#arrow)" />
+    <rect x="335" y="142" width="85" height="42" rx="5" fill="var(--sl-color-bg-accent, #f5f3ff)" stroke="var(--sl-color-accent, #8b5cf6)" />
+    <text x="377" y="160" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">출력 f(x')</text>
+    <text x="377" y="174" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">정답 모름</text>
+
+    <!-- Right: MR Verification Diamond / Box -->
+    <line x1="420" y1="69" x2="445" y2="105" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
+    <line x1="420" y1="163" x2="445" y2="125" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
+
+    <rect x="435" y="80" width="75" height="70" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
+    <text x="472" y="103" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">MR 판정</text>
+    <text x="472" y="120" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">f(x) ~ f(x')</text>
+    <text x="472" y="136" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">위반시 결함</text>
+  </svg>
+</div>
+
 ## Ⅲ. 대표적인 메타모픽 관계(MR) 유형 및 도메인 적용 사례
 
 > 시스템의 수학적 성질에 따라 다양한 MR을 다층적으로 정의할 수 있다.
@@ -132,10 +192,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 오라클 부재 도메인(AI/BigData/복합시뮬레이션) 대상 메타모픽 테스트 도입 판정
-- 대안: **다중 메타모픽 관계(MR)** 정의 및 자동화 퍼징(Fuzzing) 파이프라인 결합
-- 검증: MR 위반율(Violation Rate) 0% 달성 · 원본 대비 결함 검출 효율 측정
-- 효과: 테스트 케이스 자동 증강(Data Augmentation) 및 AI 시스템 신뢰성 입증
+- **판정 기준**: 오라클 부재 도메인(AI/자율주행/빅데이터 검색/수학 시뮬레이션) 여부에 따른 메타모픽 테스트 도입 판정
+- **대응 방안**: **다차원 메타모픽 관계(MR: 동등·대칭·단조성)** 정의 및 CI 파이프라인 내 자동화 퍼징(Fuzzing) 도구 결합
+- **검증 체계**: 모델 배포 전 섭동(Perturbation) 후속 케이스에 대한 MR 불변성 위반율(Violation Rate) 0% 게이트 강제
+- **기대 효과**: 테스트 오라클 문제 원천 극복, 고비용 수작업 라벨링 없이 무한 테스트 케이스 자동 증강 및 AI 소프트웨어 고신뢰성 확보
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="메타모픽 테스팅 고도화 제언">
   <div class="itpe-pipeline-node">

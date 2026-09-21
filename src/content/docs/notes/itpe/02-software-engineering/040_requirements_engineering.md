@@ -5,10 +5,10 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Codex"
-date: "2026-09-20T23:56:49+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -70,6 +70,61 @@ extra:
 
 > 요구사항은 생성(Engineering)하는 것만큼이나 생애주기 동안 변질되지 않도록 통제(Governance)하는 것이 중요하다.
 
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="req-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Upper Box: Requirements Development (RD) -->
+  <rect x="15" y="15" width="490" height="92" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#req-shadow)"/>
+  <text x="25" y="34" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">요구사항 개발 (RD: Requirements Development)</text>
+  
+  <!-- RD Steps -->
+  <rect x="25" y="44" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="32" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">1. 도출(Elicitation)</text>
+  <text x="32" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">인터뷰 · 워크숍 · 프로토</text>
+
+  <rect x="145" y="44" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="152" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">2. 분석(Analysis)</text>
+  <text x="152" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">도메인 모델 · MoSCoW</text>
+
+  <rect x="265" y="44" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="272" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">3. 명세(Spec)</text>
+  <text x="272" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">SRS 작성 · IEEE 29148</text>
+
+  <rect x="385" y="44" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="392" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">4. 검증(Validation)</text>
+  <text x="392" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">인스펙션 · 프로토 시연</text>
+
+  <!-- Connecting Arrows -->
+  <path d="M 260 107 L 260 119" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2"/>
+
+  <!-- Lower Box: Requirements Management (REQM) -->
+  <rect x="15" y="119" width="490" height="92" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#req-shadow)"/>
+  <text x="25" y="138" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">요구사항 관리 (REQM: Requirements Management)</text>
+
+  <!-- REQM Elements -->
+  <rect x="25" y="148" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="32" y="167" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">기준선(Baseline)</text>
+  <text x="32" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">공식 서명 승인 · 형상화</text>
+
+  <rect x="145" y="148" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="152" y="167" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">변경통제(CCB)</text>
+  <text x="152" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">CR 심의 · 범위잠식 차단</text>
+
+  <rect x="265" y="148" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="272" y="167" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">추적표(RTM)</text>
+  <text x="272" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">요구-설계-코드-테스트</text>
+
+  <rect x="385" y="148" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="392" y="167" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">상태 모니터링</text>
+  <text x="392" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">제안·승인·구현·완료</text>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="요구공학 2대 프레임워크">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>1. 요구사항 개발 (RD: Requirements Development)</strong></span>
@@ -114,10 +169,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 요구사항 자산의 코드화(Specification as Code) 및 지속적 추적성 거버넌스 확립
-- 대안: **User Story + BDD(Given-When-Then)** 기반 실행 가능한 명세 도입
-- 검증: Git 커밋 및 CI 파이프라인과 RTM 자동 연동을 통한 요구사항 검증률 100%
-- 효과: 문서-코드 간 불일치 해소 · 요구사항 결함 수정 비용 80% 절감
+- **판정 기준**: 요구사항 자산의 코드화(Specification as Code) 및 Jira-Git 연계 기준선 강제 판정
+- **대응 방안**: User Story + BDD(Given-When-Then) 기반 실행 가능한 명세 및 RTM 자동 추적 체계 도입
+- **검증 체계**: Git 커밋-PR-테스트 연계 RTM 전수 검증 및 BDD 자동화 시나리오 통과율 100% 확인
+- **기대 효과**: 문서-코드 간 불일치 원천 해소 및 후반부 결함 수정 재작업 비용 80% 절감
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="현대적 요구공학 거버넌스 제언">
   <div class="itpe-pipeline-node">

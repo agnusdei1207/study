@@ -1,15 +1,15 @@
 ---
 title: "리팩토링(코드스멜)"
-author: "Codex"
-date: "2026-09-20T23:49:42+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:27:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -67,6 +67,56 @@ extra:
 
 > 코드스멜은 당장 오류는 아니지만 미래의 변경 비용을 폭증시키는 주범이므로 발생 즉시 정형화된 패턴으로 제거한다.
 
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="코드스멜 진단부터 단위테스트 안전망 확보, 마이크로 리팩토링 및 외부 동작 불변 검증 흐름">
+  <!-- 1. 코드스멜 진단 -->
+  <rect x="15" y="25" width="105" height="160" rx="8" fill="var(--sl-color-gray-6)" stroke="#f87171" stroke-width="1.2" />
+  <text x="67" y="48" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#fca5a5">① 악취 감지</text>
+  <line x1="15" y1="56" x2="120" y2="56" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="67" y="76" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">중복 코드</text>
+  <text x="67" y="96" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">장대 메서드</text>
+  <text x="67" y="116" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">거대 클래스</text>
+  <text x="67" y="136" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">스위치 분기</text>
+  <text x="67" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="#f87171">순환복잡도 &gt; 15</text>
+
+  <line x1="120" y1="105" x2="140" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+
+  <!-- 2. 테스트 안전망 구축 -->
+  <rect x="140" y="25" width="110" height="160" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+  <text x="195" y="48" text-anchor="middle" font-size="11.5" font-weight="bold" fill="var(--sl-color-accent-high)">② 테스트 안전망</text>
+  <line x1="140" y1="56" x2="250" y2="56" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <rect x="150" y="70" width="90" height="30" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
+  <text x="195" y="89" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-white)">회귀 테스트</text>
+  <text x="195" y="120" text-anchor="middle" font-size="9.5" fill="var(--sl-color-muted)">커버리지 80%+</text>
+  <text x="195" y="140" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">Test Suite All Pass</text>
+  <text x="195" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent)">Green 상태 확보</text>
+
+  <line x1="250" y1="105" x2="270" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+
+  <!-- 3. 마이크로 리팩토링 -->
+  <rect x="270" y="25" width="115" height="160" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="327" y="48" text-anchor="middle" font-size="11.5" font-weight="bold" fill="var(--sl-color-text)">③ 마이크로 변환</text>
+  <line x1="270" y1="56" x2="385" y2="56" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="327" y="76" text-anchor="middle" font-size="9.5" fill="var(--sl-color-accent)">Extract Method</text>
+  <text x="327" y="96" text-anchor="middle" font-size="9.5" fill="var(--sl-color-accent)">Extract Class</text>
+  <text x="327" y="116" text-anchor="middle" font-size="9.5" fill="var(--sl-color-accent)">Polymorphism</text>
+  <text x="327" y="140" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">1회 1변환 원칙</text>
+  <text x="327" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">마이크로 커밋</text>
+
+  <line x1="385" y1="105" x2="405" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+
+  <!-- 4. 외부 행위 불변 보장 -->
+  <rect x="405" y="25" width="105" height="160" rx="8" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <text x="457" y="48" text-anchor="middle" font-size="11.5" font-weight="bold" fill="var(--sl-color-accent-high)">④ 클린 코드</text>
+  <line x1="405" y1="56" x2="510" y2="56" stroke="var(--sl-color-accent)" stroke-width="1" />
+  <text x="457" y="78" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-white)">외부 동작 불변</text>
+  <text x="457" y="98" text-anchor="middle" font-size="9" fill="var(--sl-color-text)">입출력 동등성 100%</text>
+  <text x="457" y="122" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent-high)">복잡도 해소</text>
+  <text x="457" y="142" text-anchor="middle" font-size="9" fill="var(--sl-color-text)">순환복잡도 &lt; 10</text>
+  <text x="457" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent-high)">기술 부채 청산</text>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 절차">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 코드스멜 진단</strong></span>
@@ -118,21 +168,21 @@ extra:
 | **빅뱅 리팩토링으로 인한 형상 충돌** | 5분~10분 단위의 **마이크로 커밋(Micro-commit)** 유지 | 충돌(Merge Hell) 방지 및 안전한 롤백 지점 확보 |
 | **리팩토링 전용 기간에 따른 일정 반발** | 캠핑장 규칙(Boy Scout Rule) 기반 일상 업무 내 소단위 리팩토링 내재화 | 별도 공기 지연 없이 지속적 기술 부채 상환 |
 
-## Ⅴ. 지속적 리팩토링 중심의 결론
+## Ⅴ. 결론 — 지속적 리팩토링 중심의 기술사적 제언
 
 > 리팩토링은 별도 프로젝트로 몰아서 하는 것이 아니며, 일상 개발 문화와 CI 파이프라인에 완전히 내재화되어야 한다.
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: "기능 추가와 리팩토링의 모자를 동시에 쓰지 마라"는 파울러의 격언처럼, 신규 기능 코딩과 구조 개선을 한 번에 하려다 테스트가 깨지는 실수를 범하기 쉬움. 두 작업을 엄격히 분리하여 커밋해야 함.
-- 나라면: 정적 분석 도구(SonarQube)를 CI에 연동하여 신규 PR 생성 시 코드스멜 지수가 증가하거나 순환복잡도가 기준치(10 이상)를 초과하면 머지를 차단하는 Automated Quality Gate를 가동하겠음.
+- `[핵심 통찰]`: "기능 추가와 리팩토링의 모자를 동시에 쓰지 마라"는 마틴 파울러의 격언처럼, 신규 기능 코딩과 구조 개선을 한 번에 하려다 테스트가 깨지는 실수를 범하기 쉽다. 두 작업은 독립된 단위 커밋으로 엄격히 분리해야 한다.
+- `나라면`: 정적 분석 도구(SonarQube)를 CI 파이프라인에 연동하여 신규 PR 생성 시 코드스멜 지수가 증가하거나 순환복잡도가 기준치(10 이상)를 초과하면 머지를 원천 차단하는 Automated Quality Gate를 가동하겠다.
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 지속적 리팩토링 문화 정착 및 정적 분석 기반 기술 부채 통제
-- 대안: **SonarQube** 연동 CI Quality Gate 구축 및 단위 테스트 커버리지 기준선 설정
-- 검증: 순환복잡도(Cyclomatic Complexity) 10 이하 유지 · 중복 코드율 3% 미만 통제
-- 효과: 유지보수 비용 급감 · 소프트웨어 기대 수명 연장 및 개발팀 생산성 증대
+- **판정 기준**: 단순 주관적 코드 리뷰가 아니라, 정적 분석 도구(SonarQube) 기반 기술 부채 비율(Technical Debt Ratio < 5%), 순환복잡도($v(G) \le 10$), 중복 코드율(3% 미만) 등 정량적 지표를 기준으로 리팩토링 필요성을 판정함
+- **대응 방안**: 기존 기능의 외부 동작 불변성을 검증하는 자동화 단위 테스트 슈트(커버리지 80% 이상)를 안전망으로 확보하고, 메서드 추출(Extract Method) 및 다형성 전환(Polymorphism) 기반의 초소형 마이크로 단위 리팩토링을 수행함
+- **검증 체계**: CI 단계별 자동 회귀 테스트 통과율 100%, SonarQube Quality Gate 통과 여부, 그리고 리팩토링 전후 성능 벤치마크(메모리/CPU 프로파일링)를 대사 검증함
+- **기대 효과**: 레거시 코드의 스파게티화를 방지하여 소프트웨어 수명주기를 획기적으로 연장하고, 신규 비즈니스 요구사항 추가 시 개발 생산성과 코드 가독성을 극대화함
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 거버넌스 제언">
   <div class="itpe-pipeline-node">

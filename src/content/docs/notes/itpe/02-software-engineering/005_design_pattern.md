@@ -1,15 +1,15 @@
 ---
 title: "디자인 패턴(프록시 패턴)"
-author: "Codex"
-date: "2026-09-20T23:49:42+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:27:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -67,6 +67,51 @@ extra:
 
 > 프록시와 실제 객체는 동일한 인터페이스를 구현하므로 클라이언트는 프록시 존재 여부를 인식하지 않고 투명하게 사용한다.
 
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="프록시 패턴의 클래스 다이어그램 및 AOP 부가기능 가로채기 위임 메커니즘">
+  <!-- 상단 인터페이스: <<interface>> Subject -->
+  <rect x="180" y="10" width="160" height="52" rx="6" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <text x="260" y="28" text-anchor="middle" font-size="10.5" fill="var(--sl-color-accent-high)">&lt;&lt;interface&gt;&gt;</text>
+  <text x="260" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-white)">Subject</text>
+  <text x="260" y="56" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">+ request(): void</text>
+
+  <!-- 좌측 클라이언트: Client -->
+  <rect x="15" y="18" width="105" height="38" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="67" y="42" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">Client</text>
+  
+  <line x1="120" y1="36" x2="180" y2="36" stroke="var(--sl-color-accent)" stroke-width="1.5" marker-end="url(#arrow-proxy-dep)" />
+
+  <!-- 구현 상속 점선 (Subject -> Proxy, Subject -> RealSubject) -->
+  <path d="M 120 100 L 120 80 L 260 80 L 260 62" stroke="var(--sl-color-gray-3)" stroke-width="1.2" stroke-dasharray="3,3" fill="none" />
+  <path d="M 400 100 L 400 80 L 260 80" stroke="var(--sl-color-gray-3)" stroke-width="1.2" stroke-dasharray="3,3" fill="none" />
+
+  <!-- 하단 좌측: Proxy -->
+  <rect x="35" y="100" width="170" height="105" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <text x="120" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">Proxy (대리자)</text>
+  <line x1="35" y1="128" x2="205" y2="128" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="45" y="143" font-size="10" fill="var(--sl-color-muted)">- realSubject: RealSubject</text>
+  <line x1="35" y1="150" x2="205" y2="150" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="45" y="165" font-size="10" font-weight="bold" fill="var(--sl-color-text)">+ request(): void {</text>
+  <text x="55" y="179" font-size="9" fill="var(--sl-color-accent)">  preProcess(); // 보안/로깅</text>
+  <text x="55" y="191" font-size="9" fill="var(--sl-color-text)">  realSubject.request();</text>
+  <text x="45" y="201" font-size="10" font-weight="bold" fill="var(--sl-color-text)">}</text>
+
+  <!-- 연관 위임 화살표: Proxy -> RealSubject -->
+  <path d="M 205 145 L 315 145" stroke="var(--sl-color-accent)" stroke-width="2" marker-end="url(#arrow-proxy-del)" />
+  <text x="260" y="138" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent)">위임(Delegation)</text>
+
+  <!-- 하단 우측: RealSubject -->
+  <rect x="315" y="100" width="170" height="105" rx="8" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="400" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-text)">RealSubject (실체)</text>
+  <line x1="315" y1="128" x2="485" y2="128" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="325" y="143" font-size="10" fill="var(--sl-color-muted)">- coreData: BusinessData</text>
+  <line x1="315" y1="150" x2="485" y2="150" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="325" y="165" font-size="10" font-weight="bold" fill="var(--sl-color-text)">+ request(): void {</text>
+  <text x="335" y="180" font-size="9.5" fill="var(--sl-color-accent-high)">  // 핵심 비즈니스 로직</text>
+  <text x="325" y="195" font-size="10" font-weight="bold" fill="var(--sl-color-text)">}</text>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프록시 패턴의 인터페이스 기반 구조">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>Subject (인터페이스)</strong></span>
@@ -121,21 +166,21 @@ extra:
 | **CGLIB의 final 제약 및 생성자 제약** | `final` 키워드 지양 규칙 및 Objenesis 라이브러리 연계 프록시 생성 | 런타임 프록시 생성 실패 방지 및 호환성 확보 |
 | **지연 로딩 시점의 세션 종료 (LazyInitializationException)** | OSIV 패턴 또는 Fetch Join 기반 사전 조회 쿼리 최적화 | N+1 문제 방지 및 지연 로딩 런타임 에러 근절 |
 
-## Ⅴ. 투명한 접근 통제 중심의 결론
+## Ⅴ. 결론 — 투명한 접근 통제 중심의 기술사적 제언
 
 > 무분별한 프록시 중첩은 디버깅 난도를 높이고 스택 트레이스를 오염시키므로 명확한 거버넌스가 필요하다.
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: 프록시 패턴의 진정한 가치는 클라이언트와 실제 객체 모두의 코드를 손대지 않고도 새로운 인프라 로직(트랜잭션, 로깅, 캐시, 보안)을 직교(Orthogonal)하게 주입할 수 있다는 개방 폐쇄 원칙(OCP)의 구현에 있음.
-- 나라면: 스프링 기반 프로젝트에서 내부 호출(`self-invocation`)로 인한 트랜잭션 누락 문제를 방지하기 위해 정적 분석 규칙(SonarQube)을 수립하고, 구조적으로 서비스 분리를 유도하겠음.
+- `[핵심 통찰]`: 프록시 패턴의 진정한 가치는 클라이언트와 실제 객체 모두의 코드를 손대지 않고도 새로운 인프라 로직(트랜잭션, 로깅, 캐시, 보안)을 직교(Orthogonal)하게 주입할 수 있다는 개방 폐쇄 원칙(OCP)의 구현에 있다.
+- `나라면`: 스프링 기반 프로젝트에서 내부 호출(`self-invocation`)로 인한 트랜잭션 누락 문제를 방지하기 위해 정적 분석 규칙(SonarQube)을 수립하고, 구조적으로 서비스 분리를 유도하겠다.
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 횡단 관심사 분리 필요 시 프록시 패턴 기반 AOP 도입 판정
-- 대안: JDK Dynamic Proxy 및 CGLIB의 하이브리드 적용 (Spring Boot 2.x+ CGLIB 기본)
-- 검증: 내부 호출 트랜잭션 누락 방지 검증 · 지연 로딩 N+1 문제 사전 차단
-- 효과: 비즈니스 코드의 순수성 유지 및 횡단 관심사 중앙 통제 달성
+- **판정 기준**: 횡단 관심사(트랜잭션, 보안, 인가, 캐싱)가 핵심 비즈니스 로직에 침투하여 단일 책임 원칙(SRP)을 훼손하는지 여부 및 지연 로딩 필요성에 따라 프록시 적용을 판정함
+- **대응 방안**: 인터페이스 기반 설계 시 **JDK Dynamic Proxy**, 구체 클래스 기반 시 **CGLIB**(Spring Boot 기본)를 적용하고, 자기 호출(Self-Invocation) 누락 방지를 위해 계층형 서비스 분리 아키텍처를 강제함
+- **검증 체계**: 선언적 트랜잭션(`@Transactional`) 동작 여부에 대한 단위/통합 슬라이스 테스트(`@DataJpaTest`), 프록시 내부 호출 정적 린트 규칙, JPA N+1 방지 쿼리 실행 횟수 모니터링을 수행함
+- **기대 효과**: 비즈니스 코드와 인프라 횡단 로직의 완전한 관심사 분리를 달성하고, 무거운 리소스의 온디맨드 지연 로딩을 통해 시스템 초기 기동 속도 및 런타임 메모리 효율성을 극대화함
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="프록시 패턴 아키텍처 제언">
   <div class="itpe-pipeline-node">

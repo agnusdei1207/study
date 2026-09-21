@@ -2,14 +2,14 @@
 title: "유스케이스 다이어그램(유스케이스 명세)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -95,6 +95,63 @@ extra:
 
 > 두 관계의 화살표 방향과 실행 필수성은 기술사 채점관이 가장 엄격하게 판정하는 핵심 지점이다.
 
+### 포함(include)과 확장(extend) 관계 메커니즘
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[유스케이스 관계: 포함(include: 필수) vs 확장(extend: 조건부)]</text>
+
+    <!-- Actor (Left) -->
+    <!-- Head -->
+    <circle cx="55" cy="95" r="10" fill="none" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
+    <!-- Body -->
+    <line x1="55" y1="105" x2="55" y2="135" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
+    <!-- Arms -->
+    <line x1="40" y1="115" x2="70" y2="115" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
+    <!-- Legs -->
+    <line x1="55" y1="135" x2="42" y2="155" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
+    <line x1="55" y1="135" x2="68" y2="155" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
+    <text x="55" y="175" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">고객 (User)</text>
+
+    <!-- Association Line -->
+    <line x1="72" y1="120" x2="125" y2="120" stroke="var(--sl-color-text-muted, #64748b)" stroke-width="1.5" />
+
+    <!-- Base Use Case (Center) -->
+    <ellipse cx="195" cy="120" rx="65" ry="32" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" />
+    <text x="195" y="117" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">주문하기</text>
+    <text x="195" y="132" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(기본 유스케이스)</text>
+
+    <!-- 1. Include Relationship (Top Right) -->
+    <!-- Dashed Arrow from Base to Included -->
+    <path d="M 245 102 L 355 68" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" />
+    <rect x="260" y="65" width="85" height="18" rx="3" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="302" y="77" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">&lt;&lt;include&gt;&gt;</text>
+
+    <!-- Included Use Case -->
+    <ellipse cx="425" cy="62" rx="65" ry="28" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" />
+    <text x="425" y="59" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">본인 인증</text>
+    <text x="425" y="73" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">[100% 필수 실행]</text>
+
+    <!-- 2. Extend Relationship (Bottom Right) -->
+    <!-- Dashed Arrow from Extending to Base -->
+    <path d="M 360 165 L 250 135" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" />
+    <rect x="270" y="155" width="85" height="18" rx="3" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" />
+    <text x="312" y="167" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">&lt;&lt;extend&gt;&gt;</text>
+
+    <!-- Extending Use Case -->
+    <ellipse cx="425" cy="172" rx="65" ry="28" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
+    <text x="425" y="169" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">쿠폰 할인 적용</text>
+    <text x="425" y="183" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-success, #10b981)" text-anchor="middle">[조건부 선택 실행]</text>
+
+    <!-- Extension Point note -->
+    <text x="195" y="165" class="itpe-svg-label" font-size="8.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Extension Point: 결제전</text>
+  </svg>
+</div>
+
 | 비교 항목 | 포함 관계 (&lt;&lt;include&gt;&gt;) | 확장 관계 (&lt;&lt;extend&gt;&gt;) |
 |---|---|---|
 | **실행 필수성** | **필수적 실행** (기본 실행 시 반드시 호출) | **조건부 선택 실행** (조건 만족 시만 끼어듦) |
@@ -145,10 +202,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 과도한 세부 기능 타원화 금지 및 사용자 목적 중심 유스케이스 정립
-- 대안: 유스케이스 명세서 기반 **인수 테스트 케이스 자동 도출**
-- 검증: 요구사항정의서 ↔ 유스케이스 ↔ 테스트케이스 **RTM 매핑율 100%**
-- 효과: 과업 변경 분쟁 예방 및 사용자 요구와 개발 산출물 간 완전한 일치성 달성
+- **판정 기준**: 과도한 기능 분해(Functional Decomposition) 지양 및 사용자 목적 달성 가치 단위의 유스케이스 판정
+- **대응 방안**: **유스케이스 명세서(기본/대안/예외 흐름)** 정형화 및 명세서 기반 **인수 테스트 케이스(UAT)** 자동 도출
+- **검증 체계**: 요구사항정의서 ↔ 유스케이스 ↔ 인수 테스트 간 양방향 추적성 매트릭스(RTM) 100% 매핑 검증
+- **기대 효과**: 분석 단계 요구사항 누락 제로화, 발주자-수행사 간 과업 범위 분쟁 예방 및 공학적 인수 기준선 확립
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="유스케이스 거버넌스 제언">
   <div class="itpe-pipeline-node">

@@ -1,15 +1,15 @@
 ---
 title: "무중단 배포·배포 전략"
-author: "Codex"
-date: "2026-09-20T23:49:42+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:28:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -67,6 +67,73 @@ extra:
 
 > 인프라 자원 여력, 롤백 속도, 검증 정밀도에 따라 최적의 배포 전략을 선택해야 한다.
 
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="Rolling, Blue-Green, Canary 3대 무중단 배포 전략 및 트래픽 라우팅 메커니즘">
+  <!-- 1. Rolling Update -->
+  <rect x="15" y="10" width="155" height="200" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="92" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">① Rolling 배포</text>
+  <line x1="15" y1="40" x2="170" y2="40" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  
+  <!-- 인스턴스 3개 점진 교체 -->
+  <rect x="30" y="55" width="125" height="28" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="92" y="73" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">Pod 1: v1 (구버전)</text>
+  
+  <rect x="30" y="90" width="125" height="28" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+  <text x="92" y="108" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-white)">Pod 2: v2 (교체완료)</text>
+  
+  <rect x="30" y="125" width="125" height="28" rx="4" fill="var(--sl-color-surface)" stroke="#f87171" stroke-width="1" stroke-dasharray="3,2" />
+  <text x="92" y="143" text-anchor="middle" font-size="9.5" fill="#fca5a5">Pod 3: 드레이닝 중</text>
+  
+  <text x="92" y="175" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">자원 추가 없음 (100%)</text>
+  <text x="92" y="195" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent)">순차적 점진 교체</text>
+
+  <!-- 2. Blue/Green Switch -->
+  <rect x="182" y="10" width="155" height="200" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="260" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">② Blue/Green</text>
+  <line x1="182" y1="40" x2="337" y2="40" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+
+  <!-- LB 스위칭 -->
+  <rect x="200" y="50" width="120" height="26" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+  <text x="260" y="67" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent-high)">Router / LB</text>
+  
+  <path d="M 235 76 L 215 100" stroke="var(--sl-color-gray-4)" stroke-width="1.2" stroke-dasharray="2,2" />
+  <path d="M 285 76 L 305 100" stroke="var(--sl-color-accent)" stroke-width="2" />
+
+  <rect x="190" y="100" width="60" height="50" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="220" y="122" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">Blue</text>
+  <text x="220" y="137" text-anchor="middle" font-size="8.5" fill="var(--sl-color-muted)">구버전(대기)</text>
+
+  <rect x="270" y="100" width="60" height="50" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
+  <text x="300" y="122" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-white)">Green</text>
+  <text x="300" y="137" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text)">신버전(100%)</text>
+
+  <text x="260" y="175" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">인프라 2배 (200%)</text>
+  <text x="260" y="195" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent)">즉각 롤백(Switching)</text>
+
+  <!-- 3. Canary Deployment -->
+  <rect x="350" y="10" width="155" height="200" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="427" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">③ Canary 배포</text>
+  <line x1="350" y1="40" x2="505" y2="40" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+
+  <rect x="368" y="50" width="120" height="26" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+  <text x="428" y="67" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent-high)">가중치 라우팅</text>
+
+  <path d="M 405 76 L 385 100" stroke="var(--sl-color-accent)" stroke-width="2" />
+  <path d="M 450 76 L 470 100" stroke="#f87171" stroke-width="1.5" />
+
+  <rect x="360" y="100" width="60" height="50" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="390" y="122" text-anchor="middle" font-size="9" fill="var(--sl-color-text)">Main v1</text>
+  <text x="390" y="137" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent)">95% 트래픽</text>
+
+  <rect x="440" y="100" width="60" height="50" rx="4" fill="color-mix(in srgb, #f87171 16%, var(--sl-color-surface))" stroke="#f87171" stroke-width="1.2" />
+  <text x="470" y="122" text-anchor="middle" font-size="9" font-weight="bold" fill="#fca5a5">Canary v2</text>
+  <text x="470" y="137" text-anchor="middle" font-size="9" font-weight="bold" fill="#f87171">5% 트래픽</text>
+
+  <text x="427" y="175" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">에러율 실시간 감시</text>
+  <text x="427" y="195" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent)">위험 완벽 격리</text>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="3대 무중단 배포 전략 구조">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① Rolling 배포</strong></span>
@@ -123,21 +190,21 @@ extra:
 | **진행 중 요청(In-flight) 유실** | **Graceful Shutdown** 및 **Connection Draining**(30초 유예) 설정 | 강제 종료로 인한 502/504 에러 방지 |
 | **헬스체크 실패 및 조기 유입** | Kubernetes `readinessProbe` 및 `livenessProbe` 정밀 구성 | 기동 완료 전 트래픽 유입에 따른 장애 방지 |
 
-## Ⅴ. 호환성·복구 중심의 결론
+## Ⅴ. 결론 — 호환성·복구 중심의 기술사적 제언
 
 > 배포는 단순 스크립트 실행이 아니며, 인프라 라우팅, 관측성, 데이터 호환성이 삼위일체로 작동해야 한다.
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: 많은 기업이 쿠버네티스를 도입하면 무중단 배포가 저절로 된다고 착각하지만, 실제 장애의 80%는 DB 스키마 변경 불일치와 우아한 종료(Graceful Shutdown) 부재에서 발생함. 앱 배포 주기와 DB 마이그레이션 주기를 반드시 분리해야 함.
-- 나라면: 서비스 메시(Istio)와 Argo Rollouts를 결합하여 메트릭 기반 자동 카나리 분석(Automated Canary Analysis)을 구축하고, 오류율 1% 초과 시 사람 개입 없이 즉시 자동 롤백되도록 구성하겠음.
+- `[핵심 통찰]`: 많은 기업이 쿠버네티스를 도입하면 무중단 배포가 저절로 된다고 착각하지만, 실제 장애의 80%는 DB 스키마 변경 불일치와 우아한 종료(Graceful Shutdown) 부재에서 발생한다. 애플리케이션 배포 주기와 DB 마이그레이션 주기를 반드시 분리해야 한다.
+- `나라면`: 서비스 메시(Istio)와 Argo Rollouts를 결합하여 메트릭 기반 자동 카나리 분석(Automated Canary Analysis)을 구축하고, 오류율 1% 초과 시 사람 개입 없이 즉시 자동 롤백되도록 구성하겠다.
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 서비스 중요도에 따른 배포 전략 차등화 (핵심 코어: Blue/Green, 대고객: Canary)
-- 대안: **GitOps(ArgoCD)** 기반 선언적 배포 및 **Expand/Contract** DB 패턴 표준화
-- 검증: 배포 중 5xx 에러율 제로 검증 · 롤백 시간 10초 이내 검증
-- 효과: 배포 스트레스 제거 · 주간 업무시간 상시 배포 실현 및 고객 신뢰 제고
+- **판정 기준**: 서비스 중요도 및 비즈니스 특성에 따라 배포 전략을 명확히 분기(금융/결제 코어: Blue/Green, 대규모 B2C 포털: Canary, 리소스 제한 환경: Rolling)하여 적용함
+- **대응 방안**: ArgoCD 및 Istio 가중치 라우팅 기반의 **GitOps 자동화 파이프라인**을 구축하고, DB 변경 시에는 Expand(확장) → Transition(이행) → Contract(축소)의 3단계 스키마 분리 배포 패턴을 제도화함
+- **검증 체계**: 배포 과정 중 HTTP 5xx 에러율(0.1% 미만), P99 응답 지연 임계치 초과 여부 자동 감시 및 비정상 감지 시 10초 이내 자동 롤백(Automated Rollback) 실행을 검증함
+- **기대 효과**: 심야 야간 배포 및 서비스 점검 공지(Maintenance Window)를 완전히 폐지하고, 주간 업무 시간대 상시 안전 배포를 실현하여 비즈니스 가용성 99.999%를 달성함
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="무중단 배포 아키텍처 개선 제언">
   <div class="itpe-pipeline-node">

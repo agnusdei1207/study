@@ -2,14 +2,14 @@
 title: "SW 안전성 분석(FTA·FMEA·HAZOP)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:56:49+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -84,6 +84,66 @@ extra:
   </div>
 </div>
 
+### 3대 안전성 분석 기법(FTA · FMEA · HAZOP) 메커니즘 비교
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[소프트웨어 3대 안전성 분석 기법 관점 및 프로세스 비교]</text>
+
+    <!-- 1. FTA (Left) -->
+    <rect x="18" y="48" width="155" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.2" />
+    <text x="95" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">FTA (연역적)</text>
+    <text x="95" y="85" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Top-down 분석</text>
+    <line x1="28" y1="94" x2="163" y2="94" stroke="var(--sl-color-border, #e2e8f0)" />
+    
+    <!-- FTA Flow -->
+    <rect x="28" y="102" width="135" height="24" rx="3" fill="var(--sl-color-bg-accent, #fee2e2)" />
+    <text x="95" y="118" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">최상위 사고 (Top Event)</text>
+    
+    <text x="95" y="137" fill="var(--sl-color-text-muted, #94a3b8)" font-size="11" text-anchor="middle">↓ AND / OR 논리 게이트</text>
+
+    <rect x="28" y="146" width="135" height="42" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="95" y="162" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">최소 컷셋 (Cut Set)</text>
+    <text x="95" y="177" class="itpe-svg-label" font-size="9" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">단일 고장점(SPOF) 제거</text>
+
+    <!-- 2. FMEA (Center) -->
+    <rect x="182" y="48" width="155" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
+    <text x="260" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">FMEA (귀납적)</text>
+    <text x="260" y="85" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Bottom-up 분석</text>
+    <line x1="192" y1="94" x2="327" y2="94" stroke="var(--sl-color-border, #e2e8f0)" />
+
+    <!-- FMEA Flow -->
+    <rect x="192" y="102" width="135" height="24" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="260" y="118" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">단위 부품 고장 모드</text>
+
+    <text x="260" y="137" fill="var(--sl-color-text-muted, #94a3b8)" font-size="11" text-anchor="middle">↑ 상위 시스템 영향</text>
+
+    <rect x="192" y="146" width="135" height="42" rx="3" fill="var(--sl-color-bg-accent, #eff6ff)" />
+    <text x="260" y="162" class="itpe-svg-sub" font-size="9.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">RPN 지수 산출</text>
+    <text x="260" y="177" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text, #334155)" text-anchor="middle">S(심각) × O(발생) × D(검출)</text>
+
+    <!-- 3. HAZOP (Right) -->
+    <rect x="347" y="48" width="155" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.2" />
+    <text x="424" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">HAZOP (탐색적)</text>
+    <text x="424" y="85" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Guide Word 이탈 분석</text>
+    <line x1="357" y1="94" x2="492" y2="94" stroke="var(--sl-color-border, #e2e8f0)" />
+
+    <!-- HAZOP Flow -->
+    <rect x="357" y="102" width="135" height="24" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="424" y="118" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">공정 변수 (속도/전압/데이터)</text>
+
+    <text x="424" y="137" fill="var(--sl-color-text-muted, #94a3b8)" font-size="11" text-anchor="middle">+ Guide Word (No, More)</text>
+
+    <rect x="357" y="146" width="135" height="42" rx="3" fill="var(--sl-color-bg-accent, #f5f3ff)" />
+    <text x="424" y="162" class="itpe-svg-sub" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">이탈(Deviation) 도출</text>
+    <text x="424" y="177" class="itpe-svg-label" font-size="9" fill="var(--sl-color-success, #10b981)" text-anchor="middle">Fail-Safe 안전대책 수립</text>
+  </svg>
+</div>
+
 | 비교 항목 | FTA (결함 수목 분석) | FMEA (고장 모드 영향 분석) | HAZOP (위험 및 운전성 분석) |
 |---|---|---|---|
 | **분석 접근법** | **연역적 (Deductive, Top-down)** | **귀납적 (Inductive, Bottom-up)** | **탐색적 (브레인스토밍, Guide Word)** |
@@ -147,10 +207,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 도메인 기능안전 표준(ISO 26262 ASIL-D) 기반 전 주기 안전성 분석 판정
-- 대안: **FTA(연역) + FMEA(귀납)** 하이브리드 적용 및 **STPA** 상호작용 분석 보강
-- 검증: 최소 컷셋 단일 고장점 제로화 · RPN 100 이상 항목 안전 메커니즘 100% 반영
-- 효과: 소프트웨어 안전 무결성 인증 통과 및 치명적 시스템 재난 사고 원천 예방
+- **판정 기준**: 시스템 위험도 및 기능안전 등급(ISO 26262 ASIL, IEC 61508 SIL)에 따른 안전성 분석 기법 채택 판정
+- **대응 방안**: **FTA(연역적 하향)** + **FMEA(귀납적 상향)** 상호보완 분석 및 복잡계 상호작용 분석을 위한 **STPA** 병행 적용
+- **검증 체계**: FTA 최소 컷셋 기반 단일 고장점(SPOF) 제로화 및 RPN 100 이상 항목 대상 고장 주입 테스트(Fault Injection) 100% 통과
+- **기대 효과**: 잠재 위험원 조기 격리, Fail-Safe 안전 아키텍처 구현 및 기능안전 국제 공인 인증(SIL4/ASIL-D) 획득 달성
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SW 안전성 거버넌스 제언">
   <div class="itpe-pipeline-node">

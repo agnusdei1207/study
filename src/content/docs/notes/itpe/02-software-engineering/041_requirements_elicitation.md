@@ -5,10 +5,10 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Codex"
-date: "2026-09-20T23:56:49+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -60,6 +60,59 @@ extra:
 
 > 한 기법은 한 종류의 편향만 줄이므로 넓이·깊이·현장성·가시화 중 필요한 증거를 기준으로 상호 보완함.
 
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="elicit-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: Elicitation Techniques Grid -->
+  <rect x="15" y="15" width="230" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#elicit-shadow)"/>
+  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">다차원 요구 도출 기법 조합</text>
+
+  <rect x="25" y="46" width="98" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="32" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">심층 인터뷰</text>
+  <text x="32" y="78" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">의사결정·심층 탐색</text>
+
+  <rect x="135" y="46" width="98" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="142" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">설문조사</text>
+  <text x="142" y="78" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">대규모 통계 경향</text>
+
+  <rect x="25" y="96" width="98" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="32" y="113" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">현장 관찰</text>
+  <text x="32" y="128" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">암묵·그림자 업무</text>
+
+  <rect x="135" y="96" width="98" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="142" y="113" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">JAD 워크숍</text>
+  <text x="142" y="128" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">충돌 집중 합의</text>
+
+  <rect x="25" y="146" width="208" height="48" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <text x="35" y="166" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">프로토타이핑 (UI/UX Mockup)</text>
+  <text x="35" y="182" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">추상적 상호작용의 시각적 피드백 즉시 검증</text>
+
+  <!-- Arrow -->
+  <path d="M 248 110 L 272 110" fill="none" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2"/>
+
+  <!-- Right: Verification Gate & Output -->
+  <rect x="275" y="15" width="230" height="190" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#elicit-shadow)"/>
+  <text x="288" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">도출 품질 게이트 &amp; 확정 산출</text>
+
+  <rect x="288" y="48" width="204" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="298" y="65" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">1. 출처(Source) 명시화</text>
+  <text x="298" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">누가 어떤 권한으로 요구했는가?</text>
+
+  <rect x="288" y="98" width="204" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="298" y="115" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">2. 가정(Assumption) 분리</text>
+  <text x="298" y="130" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">사실과 추정의 엄격한 식별 통제</text>
+
+  <rect x="288" y="148" width="204" height="46" rx="4" fill="var(--sl-color-accent-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="298" y="166" font-size="10" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">3. 충돌 조정 &amp; 확정 요구 후보</text>
+  <text x="298" y="182" font-size="8.5" fill="var(--sl-color-text, #374151)">미결정 안건 소유자·기한 강제 지정</text>
+</svg>
+</div>
+
 | 기법 | 적합 조건 | 활동 | 산출·주의점 |
 |---|---|---|---|
 | **인터뷰** | 의사결정 근거·예외의 깊이 탐색 | 개방형 질문 후 폐쇄형 확인 | 발언 근거 · 질문자 편향 통제 |
@@ -104,10 +157,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 단일 기법 의존과 출처 없는 요구가 누락·오해의 핵심 원인
-- 대안: 역할별 인터뷰에 관찰·프로토타입을 조합하고 갈등 소유자 지정
-- 검증: 요구별 출처·목적·확인 상태와 미결정 소유자·기한 점검
-- 효과: 암묵 요구 가시화 · 충돌 조기 결정 · 명세 재작업 감소
+- **판정 기준**: 단일 기법 의존 금지, 출처(Source) 미식별 및 가정 미검증 요구의 분석 단계 유입 차단 판정
+- **대응 방안**: 심층 인터뷰 + 현장 관찰 + UI 프로토타이핑 삼각 검증 기법 적용 및 JAD 워크숍 합의
+- **검증 체계**: 요구별 출처·목적·인수기준 100% 매핑 확인 및 미결정 충돌 안건의 책임자·의결 기한 강제화
+- **기대 효과**: 암묵 요구 발굴률 40% 향상, 부서 간 이해 충돌 조기 종식 및 하류 공정 재작업 비용 60% 절감
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출 개선 제언">
   <div class="itpe-pipeline-node"><strong>현행 한계</strong><span><b>문제</b> 대표자 인터뷰와 회의록 의존으로 암묵 요구·충돌 누락</span></div>

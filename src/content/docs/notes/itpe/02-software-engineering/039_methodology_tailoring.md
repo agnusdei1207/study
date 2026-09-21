@@ -5,10 +5,10 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Codex"
-date: "2026-09-20T23:56:49+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -66,6 +66,57 @@ extra:
 ## Ⅱ. 테일러링 시 고려해야 할 내부적 및 외부적 기준
 
 > 테일러링은 직관이나 편의에 의해 결정되는 것이 아니며, 객관적 다차원 기준표에 의해 평가되어야 한다.
+
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="tailor-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: Inputs (Internal & External) -->
+  <rect x="15" y="15" width="150" height="90" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#tailor-shadow)"/>
+  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">내부적 요인 (Internal)</text>
+  <text x="25" y="55" font-size="9.5" fill="var(--sl-color-text, #374151)">• 프로젝트 규모 / 예산</text>
+  <text x="25" y="71" font-size="9.5" fill="var(--sl-color-text, #374151)">• 납기 및 일정 제약</text>
+  <text x="25" y="87" font-size="9.5" fill="var(--sl-color-text, #374151)">• 기술 난이도 / 팀 성숙도</text>
+
+  <rect x="15" y="115" width="150" height="90" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#tailor-shadow)"/>
+  <text x="25" y="136" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">외부적 요인 (External)</text>
+  <text x="25" y="155" font-size="9.5" fill="var(--sl-color-text, #374151)">• 법제도 / 규제 준수</text>
+  <text x="25" y="171" font-size="9.5" fill="var(--sl-color-text, #374151)">• 기능안전 표준 (ISO 등)</text>
+  <text x="25" y="187" font-size="9.5" fill="var(--sl-color-text, #374151)">• 발주자 감리 / 계약 요건</text>
+
+  <!-- Arrow to Center -->
+  <path d="M 165 60 L 188 100" fill="none" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 165 160 L 188 120" fill="none" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Center: Tailoring Matrix Decision -->
+  <rect x="190" y="30" width="145" height="160" rx="8" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2" filter="url(#tailor-shadow)"/>
+  <text x="205" y="55" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">테일러링 매트릭스</text>
+  <text x="205" y="73" font-size="9.5" fill="var(--sl-color-text-muted, #4b5563)">WBS / 산출물 판정</text>
+  <line x1="200" y1="82" x2="325" y2="82" stroke="var(--sl-color-gray-5, #e5e7eb)" stroke-width="1"/>
+  <text x="205" y="103" font-size="9.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">[필수] 표준 필수 이행</text>
+  <text x="205" y="125" font-size="9.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">[통합] 유사 산출물 결합</text>
+  <text x="205" y="147" font-size="9.5" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">[간소] 템플릿 경량화</text>
+  <text x="205" y="169" font-size="9.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">[생략] 비인가 생략 금지</text>
+
+  <!-- Arrow to Right -->
+  <path d="M 335 110 L 358 110" fill="none" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2"/>
+
+  <!-- Right: Customized Lifecycle & Golden Rule -->
+  <rect x="360" y="15" width="145" height="190" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#tailor-shadow)"/>
+  <text x="372" y="38" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">최적화된 방법론</text>
+  <text x="372" y="58" font-size="9.5" fill="var(--sl-color-text, #374151)">• 사업수행계획서 등록</text>
+  <text x="372" y="74" font-size="9.5" fill="var(--sl-color-text, #374151)">• 발주자/감리 공식 승인</text>
+  <line x1="370" y1="88" x2="495" y2="88" stroke="var(--sl-color-green-high, #16a34a)" stroke-dasharray="2 2"/>
+  <text x="372" y="112" font-size="10" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">★ Golden Rule</text>
+  <text x="372" y="130" font-size="9.5" fill="var(--sl-color-text, #374151)">• 요구추적표(RTM) 필수</text>
+  <text x="372" y="148" font-size="9.5" fill="var(--sl-color-text, #374151)">• 인수시험 증적 보존</text>
+  <text x="372" y="172" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">품질추적성 결코 양보 불가</text>
+</svg>
+</div>
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="테일러링 고려 기준">
   <div class="itpe-pipeline-node">
@@ -131,10 +182,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 프로젝트 특성 기반의 객관적 테일러링 기준 수립 및 공식 승인 판정
-- 대안: **공공 발주 거버넌스(폭포수 단계) + 스프린트 개발(애자일)** 하이브리드 테일러링
-- 검증: 생략 산출물에 대한 대체 검증 수단 확보 · RTM 추적성 100% 유지
-- 효과: 행정 공수 40% 절감 · 본질적 코딩 및 테스트 집중을 통한 프로젝트 성공률 제고
+- **판정 기준**: 프로젝트 규모/납기/도메인 위험도 기반 테일러링 매트릭스 가동 및 필수 산출물 제외 불가 원칙 판정
+- **대응 방안**: 공공 단계별 마일스톤(폭포수)과 내부 스프린트(애자일)를 결합한 하이브리드 테일러링 모델 적용
+- **검증 체계**: 생략·통합 산출물에 대한 CI/CD 자동화 증적 대체 및 요구사항 추적표(RTM) 100% 추적성 감리 검증
+- **기대 효과**: 행정적 페이퍼워크 공수 40% 절감, 본질적 코딩/테스트 집중을 통한 납기 준수 및 결함률 50% 개선
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="방법론 테일러링 거버넌스 제언">
   <div class="itpe-pipeline-node">

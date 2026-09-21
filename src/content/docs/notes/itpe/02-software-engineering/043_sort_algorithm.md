@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-21T16:36:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash (High)"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 ---
 
@@ -59,6 +59,55 @@ extra:
 ## Ⅱ. 정렬 구간을 확장하는 삽입정렬
 
 > 삽입정렬은 역전 쌍이 적을수록 이동량이 줄어드는 적응 정렬이며, 소규모·거의 정렬된 입력에서 단순한 제어와 지역성이 강점임.
+
+<div style="margin: 1.5rem 0; text-align: center;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="sort-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Left: Insertion Sort -->
+  <rect x="15" y="15" width="235" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#sort-shadow)"/>
+  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">삽입정렬 (Insertion Sort)</text>
+  <text x="25" y="52" font-size="9.5" fill="var(--sl-color-text-muted, #4b5563)">정렬 구간 확장 &amp; 적응적(Adaptive) 이동</text>
+
+  <!-- Step diagram for Insertion -->
+  <rect x="25" y="62" width="215" height="34" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
+  <text x="32" y="83" font-size="9.5" fill="var(--sl-color-text, #1f2937)">[2, 5, 8] <tspan fill="var(--sl-color-red-high, #dc2626)" font-weight="700">| 4 |</tspan> 9, 1  (Key: 4 선택)</text>
+
+  <path d="M 130 98 L 130 110" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+
+  <rect x="25" y="112" width="215" height="34" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
+  <text x="32" y="133" font-size="9.5" fill="var(--sl-color-text, #1f2937)">[2, <tspan fill="var(--sl-color-accent, #7c3aed)" font-weight="700">_</tspan>, 5, 8] | 9, 1  (5, 8 우측 시프트)</text>
+
+  <rect x="25" y="152" width="215" height="42" rx="4" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
+  <text x="32" y="169" font-size="9.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">[2, 4, 5, 8] 정렬 구간 확장 완료</text>
+  <text x="32" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">최선 O(n) · 최악 O(n²) · 공간 O(1) Stable</text>
+
+  <!-- Right: Tree Sort -->
+  <rect x="265" y="15" width="240" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#sort-shadow)"/>
+  <text x="275" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">트리정렬 (Tree Sort)</text>
+  <text x="275" y="52" font-size="9.5" fill="var(--sl-color-text-muted, #4b5563)">BST 구축 후 중위 순회(In-order)</text>
+
+  <!-- BST Nodes visual -->
+  <circle cx="385" cy="80" r="14" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
+  <text x="381" y="84" font-size="11" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">5</text>
+
+  <line x1="373" y1="88" x2="340" y2="110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+  <circle cx="335" cy="118" r="14" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+  <text x="331" y="122" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">2</text>
+
+  <line x1="397" y1="88" x2="430" y2="110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
+  <circle cx="435" cy="118" r="14" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
+  <text x="431" y="122" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">8</text>
+
+  <rect x="275" y="148" width="220" height="46" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
+  <text x="282" y="166" font-size="9.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">In-order 순회: Left → Root → Right</text>
+  <text x="282" y="183" font-size="8.5" fill="var(--sl-color-text, #1f2937)">방문 결과: 2 → 5 → 8 (정렬 열 산출)</text>
+</svg>
+</div>
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="삽입정렬 절차">
   <div class="itpe-pipeline-node"><strong>Key 선택</strong><span><b>활동</b> 미정렬 구간의 첫 원소 보관<br /><b>산출</b> 삽입 대상 Key</span></div><div class="itpe-pipeline-arrow">↓</div>
@@ -115,10 +164,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 평균 복잡도만으로 선택하면 편향 입력·안정성·메모리 제약을 놓침
-- 대안: 입력 분포와 안정성 계약을 명시하고 균형 트리 또는 검증된 하이브리드 구현 적용
-- 검증: 정렬·역순·중복·부분 정렬 입력의 비교 횟수와 공간 상한 시험
-- 효과: 최악 퇴화 조기 발견 · 동등 Key 의미 보존 · 운영 성능 예측
+- **판정 기준**: 입력 데이터 분포(거의 정렬 여부) 및 메모리 한계, 동등 키 보존(Stable) 요구조건 사전 판정
+- **대응 방안**: 소규모/부분 정렬은 삽입정렬, 동적 탐색 병행은 AVL/레드블랙 트리, 대용량 범용은 Timsort/Introsort 하이브리드 적용
+- **검증 체계**: 최악 편향 데이터(역순·동일키) 투입 벤치마크 검증 및 정렬 전후 동등 키 상대 순서 무결성 자동 테스트
+- **기대 효과**: 정렬 최악 시간 퇴화 $O(n^2)$ 원천 차단 및 비즈니스 데이터 정합성 100% 보증
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="정렬 알고리즘 선택 제언"><div class="itpe-pipeline-node"><strong>단일 복잡도 비교</strong><span><b>문제</b> 입력 질서·안정성·공간 제약 누락</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>입력 계약</strong><span><b>대안</b> 분포·중복·규모·메모리 상한 명시</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>경계 입력 시험</strong><span><b>판정</b> 최악 시간·안정성·공간 조건 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>선택 근거 확보</strong><span><b>효과</b> 성능 퇴화와 의미 손실 예방</span></div></div>
 

@@ -1,15 +1,15 @@
 ---
 title: "소프트웨어 테스트 종류·레벨(신뢰성·이식성 테스트 포함)"
-author: "Codex"
-date: "2026-09-20T23:49:42+09:00"
+author: "Antigravity"
+date: "2026-09-21T16:26:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
   keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -67,6 +67,65 @@ extra:
 
 > 각 테스트 레벨은 검증 기준선(Baseline)과 대상이 명확히 분리되며, 상위 레벨로 갈수록 시스템 전반의 동작을 검증한다.
 
+<div class="itpe-svg-map">
+<svg viewBox="0 0 520 220" role="img" aria-label="V-모델의 개발 단계와 테스트 레벨 대응 및 최적화 테스트 피라미드 전략">
+  <!-- 좌측: V-모델 대응 관계 -->
+  <rect x="15" y="10" width="280" height="200" rx="10" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="155" y="30" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--sl-color-accent-high)">V-Model 대응 검증 (V&amp;V)</text>
+  
+  <!-- 개발 4단계 -->
+  <rect x="25" y="45" width="85" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="67" y="63" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">요구사항 명세</text>
+  
+  <rect x="40" y="80" width="85" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="82" y="98" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">구조·아키텍처</text>
+  
+  <rect x="55" y="115" width="85" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="97" y="133" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">상세설계·모듈</text>
+  
+  <rect x="70" y="150" width="85" height="28" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+  <text x="112" y="168" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-white)">소스코드 구현</text>
+
+  <!-- 수평 검증 점선 화살표들 -->
+  <line x1="110" y1="59" x2="195" y2="59" stroke="var(--sl-color-accent)" stroke-width="1.2" stroke-dasharray="3,3" />
+  <line x1="125" y1="94" x2="180" y2="94" stroke="var(--sl-color-accent)" stroke-width="1.2" stroke-dasharray="3,3" />
+  <line x1="140" y1="129" x2="165" y2="129" stroke="var(--sl-color-accent)" stroke-width="1.2" stroke-dasharray="3,3" />
+
+  <!-- 테스트 4레벨 -->
+  <rect x="195" y="45" width="90" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="240" y="63" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent)">④ 인수(UAT)</text>
+  
+  <rect x="180" y="80" width="90" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="225" y="98" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">③ 시스템(기능/비기능)</text>
+  
+  <rect x="165" y="115" width="90" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="210" y="133" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">② 통합(Interface)</text>
+  
+  <rect x="155" y="150" width="90" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
+  <text x="200" y="168" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent)">① 단위(Unit)</text>
+
+  <text x="155" y="195" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-muted)">Shift-Left: 설계 시점에 테스트 계획 동시 수립</text>
+
+  <!-- 우측: 테스트 피라미드 -->
+  <rect x="305" y="10" width="200" height="200" rx="10" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
+  <text x="405" y="30" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--sl-color-accent-high)">테스트 자동화 피라미드</text>
+
+  <!-- 피라미드 상단: UI / E2E 10% -->
+  <polygon points="405,50 365,90 445,90" fill="color-mix(in srgb, #f87171 18%, var(--sl-color-surface))" stroke="#f87171" stroke-width="1" />
+  <text x="405" y="76" text-anchor="middle" font-size="9" font-weight="bold" fill="#fca5a5">E2E / UI (10%)</text>
+  
+  <!-- 피라미드 중단: Service / Integration 20% -->
+  <polygon points="365,92 445,92 465,135 345,135" fill="color-mix(in srgb, var(--sl-color-accent) 18%, var(--sl-color-surface))" stroke="var(--sl-color-accent)" stroke-width="1" />
+  <text x="405" y="118" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent-high)">통합·API (20%)</text>
+  
+  <!-- 피라미드 하단: Unit Tests 70% -->
+  <polygon points="345,137 465,137 485,180 325,180" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
+  <text x="405" y="162" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-white)">단위 테스트 (70%)</text>
+
+  <text x="405" y="198" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">속도 빠름 / 유지비용 저렴</text>
+</svg>
+</div>
+
 <div class="itpe-pipeline is-vertical" role="img" aria-label="4단계 테스트 레벨 흐름">
   <div class="itpe-pipeline-node">
     <span class="itpe-keyword"><strong>① 단위 테스트(Unit Test)</strong></span>
@@ -122,21 +181,21 @@ extra:
 | **테스트-운영 환경 불일치** | Docker 컨테이너 및 **IaC** 기반 테스트 환경 표준화 | 환경 차이로 인한 배포 후 결함 사전 차단 |
 | **코드 변경 시 회귀 결함 누출** | CI 파이프라인 내 스모크/회귀 테스트 자동화 강제 | 기존 정상 기능의 파괴 방지 및 릴리스 신뢰성 보장 |
 
-## Ⅴ. 품질 속성 확보 중심의 결론
+## Ⅴ. 결론 — 품질 속성 확보 중심의 기술사적 제언
 
 > 테스트는 단순한 버그 잡기가 아니며, 아키텍처 결함과 품질 위험을 조기에 가시화하는 거버넌스 수단이어야 한다.
 
 ### 학습자 통찰 메모 — 답안 밖
 
-- [핵심 통찰]: 테스트를 개발 완료 후 진행되는 후행 단계로 취급하면 결함 조치 비용이 10~100배로 폭증함. V-모델의 핵심은 '요구사항을 정의할 때 인수 테스트를 함께 설계하고, 상세설계를 할 때 단위 테스트를 설계하는' 시프트 레프트(Shift-Left) 실천임.
-- 나라면: CI/CD 파이프라인에 Quality Gate를 설정하여 단위 테스트 커버리지 80% 이상, 주요 신뢰성·보안 정적 분석 통과 시에만 통합 단계로 승급하도록 자동화하겠음.
+- `[핵심 통찰]`: 테스트를 개발 완료 후 진행되는 후행 단계로 취급하면 결함 조치 비용이 10~100배로 폭증한다. V-모델의 핵심은 '요구사항을 정의할 때 인수 테스트를 함께 설계하고, 상세설계를 할 때 단위 테스트를 설계하는' 시프트 레프트(Shift-Left) 실천이다.
+- `나라면`: CI/CD 파이프라인에 Quality Gate를 설정하여 단위 테스트 커버리지 80% 이상, 주요 신뢰성·보안 정적 분석 통과 시에만 통합 단계로 승급하도록 자동화하겠다.
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 단위 중심 테스트 전략 확립 및 Shift-Left 테스팅 전환
-- 대안: **CI/CD** 기반 자동화 테스트 파이프라인 및 **Quality Gate** 통제
-- 검증: 코드 커버리지(C0/C1) 80% 이상 · 신뢰성 MTBF 지표 충족
-- 효과: 프로덕션 결함 유출율 최소화 및 배포 신뢰도 극대화
+- **판정 기준**: 후반부 E2E 수작업 테스트 비중(소프트웨어 테스트 아이스크림 안티패턴)이 아니라, 테스트 피라미드 원칙 준수율(단위 70% 이상) 및 V-모델 개발 산출물과의 **요구사항 추적표(RTM)** 1:1 매핑 여부로 테스트 효과성을 판정함
+- **대응 방안**: 설계 단계부터 테스트 케이스를 병행 도출하는 **Shift-Left 테스팅**을 체계화하고, 신뢰성(MTBF/MTTR, 카오스 엔지니어링) 및 이식성(멀티 플랫폼 컨테이너 테스트 매트릭스) 비기능 검증을 파이프라인에 통합함
+- **검증 체계**: CI 단계별 자동 빌드 시 구문/분기 커버리지(C0/C1 $\ge$ 80%), SonarQube 정적 분석 Quality Gate 통과, 그리고 회귀 테스트(Regression Test) 스위트 자동 실행 결과를 검증함
+- **기대 효과**: 배포 직전 또는 운영 이관 후 치명적 결함 유출율을 90% 이상 절감하고, 결함 수정 비용(Cost of Defect)을 최소화하여 안정적인 비즈니스 릴리스 거버넌스를 확립함
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="테스트 고도화 및 품질 제언">
   <div class="itpe-pipeline-node">

@@ -2,14 +2,14 @@
 title: "McCabe 순환복잡도"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:56:49+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -84,6 +84,70 @@ extra:
   </div>
 </div>
 
+### CFG 모델링 및 McCabe 순환복잡도 3대 계산 공식
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[제어 흐름 그래프(CFG) 기반 McCabe 순환복잡도 산출 원리]</text>
+
+    <!-- Left: Sample CFG Diagram -->
+    <!-- Node 1 (Entry) -->
+    <circle cx="110" cy="46" r="12" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
+    <text x="110" y="50" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">1</text>
+
+    <!-- Edge 1->2 -->
+    <line x1="110" y1="58" x2="110" y2="78" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- Node 2 (Predicate 1: If) -->
+    <polygon points="110,80 128,96 110,112 92,96" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
+    <text x="110" y="99" class="itpe-svg-sub" font-size="10" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">2:P1</text>
+
+    <!-- Branch left: Node 3 -->
+    <line x1="92" y1="96" x2="60" y2="125" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <circle cx="60" cy="135" r="11" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="60" y="139" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">3</text>
+
+    <!-- Branch right: Node 4 (Predicate 2: If) -->
+    <line x1="128" y1="96" x2="160" y2="120" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <polygon points="160,120 176,135 160,150 144,135" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
+    <text x="160" y="138" class="itpe-svg-sub" font-size="9" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">4:P2</text>
+
+    <!-- Node 5 (Merge) -->
+    <line x1="60" y1="146" x2="100" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <line x1="144" y1="145" x2="115" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    <line x1="176" y1="145" x2="120" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+    
+    <circle cx="110" cy="185" r="12" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="2" />
+    <text x="110" y="189" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">5:End</text>
+
+    <!-- Region Indicators in CFG -->
+    <text x="90" y="135" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)">R1</text>
+    <text x="130" y="155" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)">R2</text>
+    <text x="30" y="185" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)">R3(외부)</text>
+
+    <!-- Right: 3 Formulas & Results -->
+    <rect x="220" y="44" width="280" height="156" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
+    <text x="235" y="66" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">그래프 지표: N=5, E=7, P=2, R=3</text>
+    <line x1="235" y1="76" x2="485" y2="76" stroke="var(--sl-color-border, #e2e8f0)" />
+
+    <!-- Formula 1 -->
+    <rect x="235" y="84" width="250" height="30" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="245" y="103" class="itpe-svg-sub" font-size="11" font-weight="600" fill="var(--sl-color-text, #1e293b)">1. V(G) = E - N + 2 = 7 - 5 + 2 = 4 (오류수정) / 3</text>
+
+    <!-- Formula 2 -->
+    <rect x="235" y="120" width="250" height="30" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1" />
+    <text x="245" y="139" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">2. V(G) = P + 1 = 2 (분기노드) + 1 = 3</text>
+
+    <!-- Formula 3 -->
+    <rect x="235" y="156" width="250" height="30" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="245" y="175" class="itpe-svg-sub" font-size="11" font-weight="600" fill="var(--sl-color-text, #1e293b)">3. V(G) = R = 2 (내부영역) + 1 (외부) = 3</text>
+  </svg>
+</div>
+
 ### 계산 예시: `if (A) then X; else Y; if (B) then Z;`
 - 서술 노드 P = 2개 (조건식 A, 조건식 B)
 - 순환복잡도 `V(G) = 2 + 1 = 3`
@@ -147,10 +211,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 메서드 단위 순환복잡도 10 이하 강제 및 CI 빌드 게이트 연동 판정
-- 대안: **SonarQube/Checkstyle** 자동 검사 및 복합 분기문 **다형성(Polymorphism)** 전환
-- 검증: 전사 코드베이스 평균 V(G) ≤ 5 유지 · 복잡도 15 초과 메서드 제로화
-- 효과: 소스코드 결함 밀도 50% 감소 · 단위 테스트 케이스 설계 공수 40% 절감
+- **판정 기준**: 메서드 단위 순환복잡도 V(G) ≤ 10 엄격 준수, 초과 시 기술부채 티켓 자동 발급 및 PR 머지 차단
+- **대응 방안**: SonarQube/Checkstyle CI 자동 검사 연동, 다중 if/switch 분기문을 Strategy/Command 패턴 다형성으로 리팩토링
+- **검증 체계**: 전사 코드베이스 평균 V(G) ≤ 5 유지 검증, V(G) > 15 고위험 메서드 제로화(Zero-defect) 정기 감사
+- **기대 효과**: 소스코드 결함 밀도 50% 감소, 단위 테스트 케이스 최소 필수 수치 명확화로 테스트 공수 40% 절감
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="순환복잡도 거버넌스 제언">
   <div class="itpe-pipeline-node">

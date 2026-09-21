@@ -2,14 +2,14 @@
 title: "SW 규모·비용 산정(FP·LOC·COCOMO)"
 tags:
   - "notes-software-engineering"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-20T23:53:43+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -107,6 +107,70 @@ extra:
   </div>
 </div>
 
+### 기능점수(FP) 5대 기능 분류 및 개발비 산정 메커니즘
+
+<div class="itpe-svg-wrapper">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
+    <!-- Background -->
+    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
+    
+    <!-- Title -->
+    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[기능점수(FP) 5대 기능 요소 분류 및 대가 산정 흐름]</text>
+
+    <!-- 1. Data Functions (Left) -->
+    <rect x="18" y="48" width="145" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
+    <text x="90" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">데이터 기능 (2종)</text>
+    <line x1="28" y1="80" x2="153" y2="80" stroke="var(--sl-color-border, #e2e8f0)" />
+    
+    <!-- ILF -->
+    <rect x="26" y="90" width="129" height="46" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
+    <text x="34" y="108" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">ILF (내부논리파일)</text>
+    <text x="34" y="125" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)">내부 유지·관리 데이터</text>
+
+    <!-- EIF -->
+    <rect x="26" y="142" width="129" height="46" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="34" y="160" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)">EIF (외부연계파일)</text>
+    <text x="34" y="177" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)">타 시스템 참조 데이터</text>
+
+    <!-- Arrow from Data to Transaction -->
+    <line x1="163" y1="123" x2="178" y2="123" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
+
+    <!-- 2. Transaction Functions (Center) -->
+    <rect x="178" y="48" width="165" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.2" />
+    <text x="260" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">트랜잭션 기능 (3종)</text>
+    <line x1="188" y1="80" x2="333" y2="80" stroke="var(--sl-color-border, #e2e8f0)" />
+
+    <!-- EI -->
+    <rect x="186" y="88" width="149" height="32" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="194" y="103" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #1e293b)">EI (외부입력): CUD</text>
+    <text x="194" y="115" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text-muted, #64748b)">데이터 등록/수정/삭제</text>
+
+    <!-- EO -->
+    <rect x="186" y="124" width="149" height="32" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
+    <text x="194" y="139" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-accent, #8b5cf6)">EO (외부출력): 계산/파생</text>
+    <text x="194" y="151" class="itpe-svg-label" font-size="9" fill="var(--sl-color-accent, #8b5cf6)">수학적 통계/리포트</text>
+
+    <!-- EQ -->
+    <rect x="186" y="160" width="149" height="32" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
+    <text x="194" y="175" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #1e293b)">EQ (외부조회): 단순검색</text>
+    <text x="194" y="187" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text-muted, #64748b)">단순 데이터 조회 출력</text>
+
+    <!-- Arrow to Formula Box -->
+    <line x1="343" y1="123" x2="358" y2="123" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- 3. Cost Calculation Formula Box (Right) -->
+    <rect x="358" y="48" width="146" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
+    <text x="431" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">SW 개발비 산정</text>
+    <line x1="368" y1="80" x2="494" y2="80" stroke="var(--sl-color-border, #e2e8f0)" />
+    <text x="431" y="100" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">총 기능점수 (FP)</text>
+    <text x="431" y="118" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">×</text>
+    <text x="431" y="134" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">FP당 단가 (원)</text>
+    <text x="431" y="150" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">×</text>
+    <rect x="368" y="158" width="126" height="28" rx="4" fill="var(--sl-color-bg-accent, #ecfdf5)" />
+    <text x="431" y="176" class="itpe-svg-label" font-size="9.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">보정계수 (규모·연계·품질)</text>
+  </svg>
+</div>
+
 ### 공공 SW 사업 기능점수 단가법 산식
 - **SW 개발비** = 기능점수(FP) × 해당 연도 기능점수당 단가 × 보정계수 + 직접경비 + 이윤
 
@@ -131,10 +195,10 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 정형화된 기능점수(FP) 단가법 기본 적용 및 R&D 성격 사업 M/M 혼용
-- 대안: **ISMP** 단계 정밀 FP 산정 및 **과업심의위원회** 연계 변경 대가 지급
-- 검증: SW사업 대가산정 가이드 준수율 100% · 기능/비기능 보정계수 타당성 검증
-- 효과: 소프트웨어 사업 수주기업 수익성 보장 및 고품질 시스템 적기 구축
+- **판정 기준**: 프로젝트 단계별 요구명세 구체화 수준에 따른 산정 기법 차등 적용 (기획/발주: 간이 FP, 상세설계: 정밀 FP)
+- **대응 방안**: 과학기술정보통신부/KOSA **SW사업 대가산정 가이드** 단가법 표준 준수 및 **과업심의위원회** 연계 변경 대가 지급 보장
+- **검증 체계**: ILF/EIF 및 EI/EO/EQ 복잡도 매트릭스 100% 검증 및 법정 4대 품질 보정계수(규모, 연계, 성능, 다국어) 객관적 산출
+- **기대 효과**: 소프트웨어 개발 사업자 적정 대가 보장, 무상 과업 변경 관행 타파 및 공정 소프트웨어 생태계 기반 고품질 산출물 확보
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="SW 비용 산정 거버넌스 제언">
   <div class="itpe-pipeline-node">
