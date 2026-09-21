@@ -10,9 +10,9 @@ tags:
   - "IsolationForest"
   - "Winsorizing"
 date: "2026-09-20T23:50:43+09:00"
-author: "Codex"
+author: "Antigravity"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -106,10 +106,27 @@ sidebar:
 
 > 노이즈는 측정·전송 오차인지, 이상치는 실제 현상인지를 먼저 판정한 뒤 제거·보정·격리·보존을 선택함.
 
-```text
-[노이즈 (Noise)]    원신호 + 무작위 측정 오차 (정보 가치 전무) ──> 평활화/필터링 제거
-[Outlier]  분포에서 멀리 떨어진 관측치 ──> 원인 판정 후 격리·보존·보정
-```
+<svg viewBox="0 0 520 150" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="노이즈와 이상치의 본질 및 처리 분기 대비" role="img">
+  <!-- Noise Box -->
+  <g transform="translate(15, 15)">
+    <rect width="235" height="120" rx="6" fill="#21262d" stroke="#8b949e" stroke-width="1"/>
+    <text x="117" y="24" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#8b949e" text-anchor="middle">노이즈 (Noise)</text>
+    <text x="15" y="46" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• 본질: 무작위 측정/통신 오차</text>
+    <text x="15" y="62" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• 정보 가치: 전무 (품질 저해요인)</text>
+    <rect x="15" y="78" width="205" height="28" rx="4" fill="#161b22" stroke="#8b949e"/>
+    <text x="117" y="96" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#8b949e" text-anchor="middle">대응: 평활화(Filter)로 영구 제거</text>
+  </g>
+
+  <!-- Outlier Box -->
+  <g transform="translate(270, 15)">
+    <rect width="235" height="120" rx="6" fill="#21262d" stroke="#f0883e" stroke-width="1"/>
+    <text x="117" y="24" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f0883e" text-anchor="middle">이상치 (Outlier)</text>
+    <text x="15" y="46" font-family="system-ui, sans-serif" font-size="9" fill="#c9d1d9">• 본질: 정상 분포 이탈 패턴</text>
+    <text x="15" y="62" font-family="system-ui, sans-serif" font-size="9" fill="#e3b341">• 정보 가치: 극대 (FDS/고장 징후)</text>
+    <rect x="15" y="78" width="205" height="28" rx="4" fill="rgba(240,136,62,0.12)" stroke="#f0883e"/>
+    <text x="117" y="96" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#f0883e" text-anchor="middle">대응: 원인 규명 후 격리·보존·모형화</text>
+  </g>
+</svg>
 
 | 비교 항목 | 노이즈 (Noise) | 이상치 (Outlier) |
 |---|---|---|
@@ -146,16 +163,43 @@ sidebar:
 
 > 차원의 저주를 극복하고 고차원 상관성을 포착하기 위한 패러다임 차이를 분석함.
 
-```text
-[단변량 IQR 판정]
-  ───[최솟값]──────[  Q1  |  중앙값  |  Q3  ]──────[최댓값]───  * (이상치)
-                   └─────── IQR ───────┘
-  * 판정: 단일 축 기준 1차원 이탈만 포착 (키 200cm, 몸무게 40kg의 결합 이상 포착 불가)
+<svg viewBox="0 0 520 180" class="w-full max-w-[520px] mx-auto block select-none my-4" style="background: var(--sl-color-bg-sidebar, #161b22); border-radius: 8px; border: 1px solid var(--sl-color-hairline, #30363d);" aria-label="단변량 IQR Boxplot과 다변량 Isolation Forest 탐지 구조 비교" role="img">
+  <!-- 1. IQR Boxplot -->
+  <g transform="translate(15, 15)">
+    <rect width="490" height="70" rx="5" fill="#21262d" stroke="#30363d"/>
+    <text x="15" y="18" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#58a6ff">단변량 기준: IQR Boxplot 메커니즘</text>
+    <!-- Whiskers & Box -->
+    <line x1="45" y1="42" x2="115" y2="42" stroke="#8b949e" stroke-width="1.5"/>
+    <line x1="45" y1="34" x2="45" y2="50" stroke="#8b949e" stroke-width="1.5"/>
+    <text x="45" y="60" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">Min(Q1-1.5*IQR)</text>
+    <rect x="115" y="28" width="160" height="28" fill="#161b22" stroke="#58a6ff"/>
+    <line x1="185" y1="28" x2="185" y2="56" stroke="#3fb950" stroke-width="2"/>
+    <text x="115" y="60" font-family="system-ui, sans-serif" font-size="8" fill="#58a6ff" text-anchor="middle">Q1</text>
+    <text x="185" y="60" font-family="system-ui, sans-serif" font-size="8" fill="#3fb950" text-anchor="middle">Median</text>
+    <text x="275" y="60" font-family="system-ui, sans-serif" font-size="8" fill="#58a6ff" text-anchor="middle">Q3</text>
+    <line x1="275" y1="42" x2="355" y2="42" stroke="#8b949e" stroke-width="1.5"/>
+    <line x1="355" y1="34" x2="355" y2="50" stroke="#8b949e" stroke-width="1.5"/>
+    <text x="355" y="60" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">Max(Q3+1.5*IQR)</text>
+    <!-- Outliers -->
+    <circle cx="410" cy="42" r="3.5" fill="#f85149"/>
+    <circle cx="450" cy="42" r="3.5" fill="#f85149"/>
+    <text x="430" y="60" font-family="system-ui, sans-serif" font-size="8" fill="#f85149" text-anchor="middle">이상치 (Outlier)</text>
+  </g>
 
-[Isolation Forest 고차원 격리]
-  정상 데이터: 많은 분할(깊은 깊이) 필요  ──>  Path Length 길다
-  이상치:     소수 분할(얕은 깊이)로 고립 ──>  Path Length 짧다 (Score → 1.0)
-```
+  <!-- 2. Isolation Forest -->
+  <g transform="translate(15, 95)">
+    <rect width="490" height="70" rx="5" fill="#21262d" stroke="#30363d"/>
+    <text x="15" y="18" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#3fb950">다변량 기준: Isolation Forest 분할 트리 메커니즘</text>
+    <!-- Normal Path -->
+    <rect x="25" y="28" width="205" height="30" rx="4" fill="#161b22" stroke="#58a6ff"/>
+    <text x="127" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#c9d1d9" text-anchor="middle">정상 데이터: 군집 내 밀집</text>
+    <text x="127" y="53" font-family="system-ui, sans-serif" font-size="8" fill="#58a6ff" text-anchor="middle">많은 분할 필요 $\to$ 깊은 깊이 (Path Length 길다)</text>
+    <!-- Anomaly Path -->
+    <rect x="255" y="28" width="215" height="30" rx="4" fill="rgba(248,81,73,0.1)" stroke="#f85149"/>
+    <text x="362" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#ff7b72" text-anchor="middle">이상치: 외곽에 희소 고립</text>
+    <text x="362" y="53" font-family="system-ui, sans-serif" font-size="8" fill="#f85149" text-anchor="middle">소수 분할로 격리 $\to$ 얕은 깊이 (Score $\to$ 1.0)</text>
+  </g>
+</svg>
 
 ## Ⅵ. 이상치 탐지·처리 문제점·대응책
 
@@ -173,41 +217,69 @@ sidebar:
 > "데이터 엔지니어에게 이상치는 성가신 쓰레기가 아니라, 시스템의 취약점과 새로운 비즈니스를 가리키는 황금 나침반이다."
 
 ### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 데이터 엔지니어링에서 가장 위험한 행위는 탐지된 이상치를 '평균을 갉아먹는 귀찮은 존재'로 보고 DELETE 문을 날리는 것임. 이상치는 비즈니스의 사각지대, 새로운 고객 세그먼트, 또는 시스템 장애의 전조 증상일 가능성이 높음.
-- `나라면`: 데이터 전처리 단계에서 '이상치 격리 큐(Anomaly Quarantine Queue)'를 구축하여, 탐지된 이상치 데이터를 원천 보존하고, SHAP/LIME 기반 XAI(설명가능 인공지능)를 연동해 이상치로 판정된 원인 피처를 현업 분석가에게 대시보드로 자동 제공하는 체계를 수립하겠음.
+
+> **[핵심 통찰]**
+> 데이터 엔지니어링에서 가장 위험한 행위는 탐지된 이상치를 '평균을 갉아먹는 귀찮은 존재'로 보고 기계적으로 DELETE하는 것이다. 이상치는 비즈니스의 사각지대, 새로운 고객 세그먼트, 또는 시스템 장애의 전조 증상일 가능성이 높다.
+>
+> **[나라면 이렇게 쓴다]**
+> 데이터 전처리 단계에서 '이상치 격리 큐(Anomaly Quarantine Queue)'를 구축하여, 탐지된 이상치 데이터를 원천 보존하고, SHAP/LIME 기반 XAI(설명가능 인공지능)를 연동해 이상치로 판정된 원인 피처를 현업 분석가에게 대시보드로 자동 제공하는 체계를 수립하겠다.
 
 ### 실전 답안용 기술사적 제언
-- 판정: 이상치 탐지 점수만으로 삭제하지 않고, **도메인 전문가 검토와 원인 분석(오류 vs 신호)**을 거쳐 격리 보존함
-- 대안: 이상치 격리 큐(Quarantine Queue) 신설 $\rightarrow$ XAI(SHAP) 기반 기여도 시각화 $\rightarrow$ 유효 신호는 FDS/예지보전 모델로 피드백
-- 검증: 이상 거래 탐지 정밀도(Precision) 90% 이상 및 오삭제율 제로(0%) 달성
-- 효과: 모델의 일반화 예측 안정성을 확보하면서 동시에 사기 범죄 및 설비 중대 고장 조기 차단
 
-```text
-[현행 한계] ─────────> [개선 방안] ─────────> [검증 기준] ─────────> [실행 효과]
-일괄 DELETE 삭제       이상치 격리 큐 구축    오삭제율 0% 달성        핵심 사기 신호 보존
-원인 분석 불가         XAI(SHAP) 원인 분석    탐지 정밀도 ≥ 90%       설비 고장 조기 예방
-```
+- **판정 기준**: 이상치 탐지 점수(Score) 단독으로 삭제하지 않고, **도메인 전문가 검토와 원인 분석(오류 vs 신호)**을 거쳐 격리 보존
+- **대응 방안**: 이상치 격리 큐(Quarantine Queue) 신설 $\rightarrow$ XAI(SHAP) 기반 기여도 시각화 $\rightarrow$ 유효 신호는 FDS/예지보전 모델로 피드백
+- **검증 체계**: 이상 거래 탐지 정밀도(Precision) 90% 이상 및 오삭제율 제로(0%) 달성
+- **기대 효과**: 모델의 일반화 예측 안정성을 확보하면서 동시에 사기 범죄 및 설비 중대 고장을 조기에 차단
+
+<div class="itpe-flow-map" role="img" aria-label="이상치 거버넌스 고도화 실행 로드맵">
+  <div class="itpe-flow-node">
+    <strong>1단계: 현행 한계 인식</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-fail"><strong>문제</strong><span>이상치 기계적 일괄 DELETE로 인한 핵심 사기/장애 신호 영구 유실</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>2단계: 아키텍처 개선 방안</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass"><strong>기술 적용</strong><span>이상치 격리 큐(Quarantine) 원본 보존 + XAI(SHAP) 원인 분석 대시보드 구축</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>3단계: 정량 검증 기준</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>KPI 지표</strong><span>핵심 신호 오삭제율 0%, 이상 징후 탐지 정밀도 90% 이상 유지</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">↓</div>
+  <div class="itpe-flow-node">
+    <strong>4단계: 궁극적 실행 효과</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch is-pass"><strong>가치 창출</strong><span>예측 모델 일반화 성능 제고 및 FDS 사기 거래 사전 차단 실현</span></div>
+    </div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 이상치(Outlier) 및 노이즈(Noise)의 정의
-- 이상치: 데이터 정상 분포에서 현저히 이탈한 관측치 (사기/고장 등 고가치 정보 내포)
-- 노이즈: 정보 가치가 없는 무작위 측정/통신 오차 (제거 대상)
+### 1. 이상치(Outlier) 및 노이즈(Noise)의 정의
 
-2. 3대 탐지 알고리즘 및 4대 처리 전략
-┌──────────────────┬──────────────────────────────────────────┐
-│ 탐지 기법        │ 핵심 알고리즘 및 수식                    │
-├──────────────────┼──────────────────────────────────────────┤
-│ 통계적 기법      │ IQR Boxplot (Q1-1.5*IQR ~ Q3+1.5*IQR), Z-Score │
-│ 거리/밀도 기법   │ Mahalanobis 거리, LOF (국소 상대 밀도)   │
-│ 머신러닝 기법    │ Isolation Forest (랜덤 트리 고립 경로 길이)│
-└──────────────────┴──────────────────────────────────────────┘
-- 4대 처리 전략: 삭제(Trimming), 대체(Imputation), 클리핑(Winsorizing), 강건 모형(Robust)
+- **이상치**: 정상 데이터의 일반적 분포나 규칙에서 현저히 이탈한 관측치로, 사기(FDS)나 장애 전조 등 고가치 비즈니스 정보를 내포함
+- **노이즈**: 측정 기기 오차나 통신 왜곡 등 정보 가치가 전무한 무작위 잡음 (평활화 제거 대상)
 
-3. 실무 제언
-- 기계적 삭제를 금지하고, '이상치 격리 큐(Quarantine)'를 도입하여 FDS 등 유효한 희귀 신호를 보존해야 함.
-```
+### 2. 이상치 3대 탐지 알고리즘 및 4대 처리 전략
+
+| 분류 | 핵심 알고리즘 및 판정 기준 | 4대 처리 전략 |
+|---|---|---|
+| **통계적 기법** | IQR Boxplot ($Q1-1.5 \times IQR \sim Q3+1.5 \times IQR$), Z-Score ($|Z| > 3$) | **삭제 (Trimming)**: 명백한 오류 제거 |
+| **거리/밀도 기법** | Mahalanobis 다변량 거리, LOF (국소 상대 밀도 기반 고립도) | **대체 (Imputation)**: 중앙값/MICE 대체 |
+| **머신러닝 기법** | Isolation Forest (무작위 분할 트리 격리 경로 길이) | **클리핑 (Winsorizing)**: 경계값 대체 |
+| **딥러닝 기법** | Autoencoder (정상 패턴 압축 복원 후 MSE 복원 오차 측정) | **강건 모델링 (Robust)**: Huber Loss 적용 |
+
+### 3. 기술사적 실무 제언: 이상치 격리 큐(Quarantine) 도입
+
+- 이상치를 기계적으로 일괄 삭제하지 않고 '격리 큐'에 적재하여 원본을 보존하고, XAI(SHAP)로 원인을 규명하여 FDS 및 설비 예지보전 모델의 학습 피처로 재활용해야 함.
 
 ## 출제 이력과 검증 출처
 
