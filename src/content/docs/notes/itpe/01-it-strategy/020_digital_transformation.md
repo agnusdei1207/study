@@ -22,31 +22,26 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: 디지털 기술로 고객가치·업무·사업모델·조직을 함께 전환하는 경영 혁신
-- 구분: Digitization(정보 변환) → Digitalization(업무 개선) → DX(사업 전환)
-- 통제: 현업 문제 → MVP 가치검증 → 제품화 → CoE 기반 확산
+- 본질: **DX(Digital Transformation)**는 문서를 전산화(Digitization)하거나 업무를 자동화(Digitalization)하는 데서 멈추지 않고 사업모델과 조직까지 바꾸는 경영 혁신
+- 메커니즘: 현업 문제 정의 → MVP 가치 검증 → 제품화 → CoE 전사 확산
+- 산출물: 신규 디지털 수익원 · 통합 고객 접점(CX) · 데이터 기반 제품 조직
 
-<div class="itpe-flow-map" role="img" aria-label="정보 전산화에서 업무 디지털화를 거쳐 사업모델 전환과 디지털 사업 성과로 이어지는 단계 흐름">
-  <div class="itpe-flow-node">
-    <strong>1단계: Digitization (정보 전산화)</strong>
-    <div class="itpe-step-detail"><strong>바뀌는 것</strong><span>아날로그 문서·신호 → 디지털 포맷 · 데이터 축적</span></div>
+<div class="itpe-pipeline is-vertical" role="img" aria-label="시장·고객 변화가 DX 추진을 촉발하고 디지털 사업 성과로 이어지는 지식 위치">
+  <div class="itpe-pipeline-node">
+    <strong>시장·고객 변화</strong>
+    <div class="itpe-step-detail"><strong>입력</strong><span>디지털 경쟁자 진입 · 고객 접점 이동</span></div>
   </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: Digitalization (업무 디지털화)</strong>
-    <div class="itpe-step-detail"><strong>바뀌는 것</strong><span>수작업 절차 → ERP/CRM·RPA 자동 처리</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>3단계: Digital Transformation (디지털 전환)</strong>
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
+    <span class="itpe-keyword"><strong>DX 추진</strong></span>
     <div class="itpe-step-detail">
-      <strong>사업모델</strong><span>제품 판매 → 구독형(XaaS) · 데이터 플랫폼</span>
-      <strong>조직</strong><span><span class="itpe-keyword"><strong>CoE</strong></span> 중심 애자일 제품 조직 · 데이터 기반 의사결정</span>
-      <strong>심화</strong><span>생성형 AI 결합 <span class="itpe-keyword"><strong>AX(AI Transformation)</strong></span> 자율 운영</span>
+      <strong>대상</strong><span>고객경험 · 운영 · 사업모델 · 조직역량</span>
+      <strong>수단</strong><span>데이터 · 클라우드 · 생성형 AI 결합 <span class="itpe-keyword"><strong>AX(AI Transformation)</strong></span></span>
+      <strong>조직</strong><span><span class="itpe-keyword"><strong>CoE</strong></span> 중심 애자일 제품 조직</span>
     </div>
   </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
+  <div class="itpe-pipeline-arrow">↓</div>
+  <div class="itpe-pipeline-node">
     <strong>디지털 사업 성과</strong>
     <div class="itpe-step-detail"><strong>성과</strong><span>신규 디지털 수익원 · 통합 고객 접점(CX) · 시장 선도 지위</span></div>
   </div>
