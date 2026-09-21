@@ -1,7 +1,7 @@
 ---
 title: "애자일 대응 전략"
 author: "Claude Code"
-date: "2026-09-21T11:20:00+09:00"
+date: "2026-09-21T12:40:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
@@ -76,11 +76,11 @@ extra:
 > 백로그 우선순위를 스프린트 목표로 좁히고 DoD를 충족한 증분만 검토하여 다음 주기를 조정함.
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="애자일 반복 프로세스의 단계별 활동과 산출물">
-  <div class="itpe-pipeline-node"><strong>① Product Backlog 정제</strong><div class="itpe-step-detail"><strong>활동</strong><span>요구 구체화 · 가치 우선순위 조정</span><strong>산출</strong><span>정제된 Product Backlog</span></div></div>
+  <div class="itpe-pipeline-node"><strong>① Product Backlog 정제</strong><div class="itpe-step-detail"><strong>활동</strong><span>요구 구체화 · 가치 우선순위 조정</span><strong>산출</strong><span>정제된 <span class="itpe-keyword"><strong>Product Backlog</strong></span></span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>② Sprint Planning</strong><div class="itpe-step-detail"><strong>활동</strong><span>목표 설정 · 작업 선택 · 실행계획 수립</span><strong>산출</strong><span>Sprint Goal · Sprint Backlog</span></div></div>
+  <div class="itpe-pipeline-node"><strong>② Sprint Planning</strong><div class="itpe-step-detail"><strong>활동</strong><span>목표 설정 · 작업 선택 · 실행계획 수립</span><strong>산출</strong><span><span class="itpe-keyword"><strong>Sprint Goal</strong></span> · Sprint Backlog</span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>③ Sprint 실행</strong><div class="itpe-step-detail"><strong>활동</strong><span>개발 · 통합 · 테스트 · Daily Scrum</span><strong>산출</strong><span>DoD 충족 Increment</span></div></div>
+  <div class="itpe-pipeline-node"><strong>③ Sprint 실행</strong><div class="itpe-step-detail"><strong>활동</strong><span>개발 · 통합 · 테스트 · Daily Scrum</span><strong>산출</strong><span><span class="itpe-keyword"><strong>DoD</strong></span> 충족 <span class="itpe-keyword"><strong>Increment</strong></span></span></div></div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node"><strong>④ Review·Retrospective</strong><div class="itpe-step-detail"><strong>활동</strong><span>증분 검토 · 피드백 반영 · 방식 개선</span><strong>산출</strong><span>갱신 Backlog · 개선 항목</span></div></div>
 </div>
@@ -127,9 +127,9 @@ extra:
 </svg>
 </div>
 
-- 안정성이 우선인 핵심 업무는 변경통제를 유지하고, 탐색 영역부터 반복 전달 적용
-- 다수 팀은 공통 목표·통합주기·아키텍처 원칙만 맞추고 팀 실행의 자율성 보장
-- Bimodal IT·SAFe는 조직 상황에 맞게 선택하는 보조 수단이며 애자일의 필수 구성요소가 아님
+- 안정성이 우선인 핵심 업무는 **변경통제**를 유지하고, 탐색 영역부터 반복 전달 적용
+- 다수 팀은 공통 목표·통합주기·아키텍처 원칙만 맞추고 실행 방식은 팀에 위임 → 팀 단위 의사결정의 상위 승인 대기 제거
+- **Bimodal IT(바이모달 IT)**·**SAFe(Scaled Agile Framework)**는 조직 상황에 맞게 선택하는 보조 수단이며 애자일의 필수 구성요소가 아님
 
 ## Ⅴ. 문제점·대응책
 
@@ -152,9 +152,9 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 반복 행사 준수 여부가 아니라 Increment가 다음 우선순위를 바꾸는지가 성패를 가름
-- 대안: 독립 배포 가능한 제품부터 적용 · 목표·기간 고정과 Backlog 범위 조정 규칙 병행
-- 검증: DoD 충족 · 고객 검증 · 피드백의 Backlog 반영 여부
+- 판정: 반복 행사 준수 여부가 아니라 **Increment**가 다음 우선순위를 바꾸는지가 성패를 가름
+- 대안: 독립 배포 가능한 제품부터 적용 · 목표·기간 고정과 **Product Backlog** 범위 조정 규칙 병행
+- 검증: **DoD** 충족 · 고객 검증 · 피드백의 Backlog 반영 여부
 - 효과: 가치 조기 검증 · 변경 손실 축소
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="애자일 적용을 가치 검증 체계로 전환하는 제언 흐름">

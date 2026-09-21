@@ -1,7 +1,7 @@
 ---
 title: "IT 투자평가·투자관리"
 author: "Claude Code"
-date: "2026-09-21T11:20:00+09:00"
+date: "2026-09-21T12:40:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -67,8 +67,8 @@ extra:
 
 > IT 투자평가는 IT 자본 배분의 정당성을 입증하고 전 생애주기 편익을 통제하며, 성패는 단순 시스템 개통이 아닌 **비즈니스 가치 실현율**로 판정함.
 
-- 정의: 투자 대안의 **비용·위험·편익**을 비교하고 생애주기 동안 가치 실현을 통제하는 활동
-- 목적: 투자 우선순위 결정 · 예산 낭비 방지 · 편익 실현
+- 정의: 투자 대안의 **비용·위험·편익**을 비교하고 **생애주기** 동안 가치 실현을 통제하는 활동
+- 목적: 투자 우선순위 결정 · 예산 낭비 방지 · **편익 실현**
 
 ## Ⅱ. IT 투자평가의 대표 생애주기
 
@@ -103,7 +103,7 @@ extra:
 
 ## Ⅲ. 비용·편익 평가체계
 
-> 초기 구축비뿐 아니라 운영·전환·중단 비용과 화폐의 시간가치를 함께 반영해야 하며, 재무 3축만으로는 잡히지 않는 가치는 **IT-BSC(IT Balanced Scorecard)**로 보완해야 판정이 닫힘.
+> 초기 구축비뿐 아니라 운영·전환·중단 비용과 화폐의 시간가치를 함께 반영해야 하며, 재무 3축 **TCO**·**NPV**·**IRR**만으로는 잡히지 않는 가치는 **IT-BSC(IT Balanced Scorecard)**로 보완해야 판정이 닫힘.
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 520 415" role="img" aria-label="비용·편익 평가체계 네 축을 재무 평가 세 개와 비재무 보완 하나로 나누고 각 기법의 산식과 판정 기준을 하위 박스로 분기한 트리">
@@ -114,19 +114,19 @@ extra:
   <text class="itpe-svg-title" x="288" y="98">재무 평가 3 · 화폐 단위 판정</text>
   <path class="itpe-svg-link" d="M96 118 V261 M96 153 H126 M96 207 H126 M96 261 H126" />
   <rect class="itpe-svg-node" x="126" y="130" width="384" height="46" rx="10" />
-  <text class="itpe-svg-label" x="318" y="144">TCO(Total Cost of Ownership) · 총소유비용</text>
+  <text class="itpe-svg-label" x="318" y="144">TCO · 총소유비용</text>
   <text class="itpe-svg-sub" x="318" y="165">구축·운영·전환·중단 → 판정: 생애주기 총비용</text>
   <rect class="itpe-svg-node" x="126" y="184" width="384" height="46" rx="10" />
-  <text class="itpe-svg-label" x="318" y="198">NPV(Net Present Value) · 순현재가치</text>
+  <text class="itpe-svg-label" x="318" y="198">NPV · 순현재가치</text>
   <text class="itpe-svg-sub" x="318" y="219">할인 현금유입 − 유출 → 판정: NPV &gt; 0</text>
   <rect class="itpe-svg-node" x="126" y="238" width="384" height="46" rx="10" />
-  <text class="itpe-svg-label" x="318" y="252">IRR(Internal Rate of Return) · 내부수익률</text>
+  <text class="itpe-svg-label" x="318" y="252">IRR · 내부수익률</text>
   <text class="itpe-svg-sub" x="318" y="273">NPV=0이 되는 할인율 → 판정: IRR &gt; 자본비용</text>
   <rect class="itpe-svg-node" x="66" y="304" width="444" height="40" rx="12" />
   <text class="itpe-svg-title" x="288" y="324">비재무 보완 1 · 전략 정렬</text>
   <path class="itpe-svg-link" d="M96 344 V379 M96 379 H126" />
   <rect class="itpe-svg-node" x="126" y="356" width="384" height="46" rx="10" />
-  <text class="itpe-svg-label" x="318" y="370">IT-BSC(IT Balanced Scorecard) · 균형성과표</text>
+  <text class="itpe-svg-label" x="318" y="370">IT-BSC · 균형성과표</text>
   <text class="itpe-svg-sub" x="318" y="391">재무·고객·프로세스·학습 → 판정: 전략 정렬</text>
 </svg>
 </div>
@@ -188,7 +188,7 @@ extra:
 |---|---|---|
 | **구축 후 운영비 폭증** | 5개년 누적 TCO(직접비+간접비+숨은비용) 산정 템플릿 의무화 | 총소유비용 예측 오차 최소화 |
 | **사후 편익 평가 부재** | 운영 안정화 후 편익 실현 검토 시점·책임자 지정 | 목표 대비 편익 편차 확인 |
-| **무형 가치 산정 왜곡** | AHP 다기준 평가 · IT-BSC로 평가 근거 기록 | 정성 평가의 일관성 향상 |
+| **무형 가치 산정 왜곡** | AHP 다기준 평가 · IT-BSC로 평가 근거 기록 | 정성 평가 근거 사후 추적 가능 |
 
 ## Ⅵ. 결론 — 가치 거버넌스 중심의 투자관리
 
@@ -201,9 +201,9 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- 판정: 승인 시 Business Case와 운영 후 실측 편익이 하나의 환류 고리로 이어지는지 여부
-- 대안: 생애주기 누적 TCO 산정 · 편익 책임자·측정 시점·중단 기준의 승인 시 확정
-- 검증: 사전 목표 대비 비용·편익·위험 편차와 편익 실현 검토 통과 여부
+- 판정: 승인 시 **Business Case**와 운영 후 실측 편익이 하나의 환류 고리로 이어지는지 여부
+- 대안: 생애주기 누적 **TCO** 산정 · **편익 책임자**·측정 시점·중단 기준의 승인 시 확정
+- 검증: 사전 목표 대비 비용·편익·위험 편차와 **편익 실현 검토** 통과 여부
 - 효과: 예산 낭비 방지 · 차기 투자 우선순위 환류
 
 <div class="itpe-pipeline is-vertical" role="img" aria-label="Val IT 기반 IT 투자 생애주기 가치 관리 흐름">

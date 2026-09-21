@@ -1,7 +1,7 @@
 ---
 title: "FinOps"
 author: "Claude Code"
-date: "2026-09-21T11:20:00+09:00"
+date: "2026-09-21T12:40:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -27,19 +27,21 @@ extra:
 - 산출물: 할당된 비용 데이터 · 최적화 실행안 · 단위비용 지표 · 운영 정책
 
 <div class="itpe-svg-map">
-<svg viewBox="0 0 520 380" role="img" aria-label="Inform, Optimize, Operate 세 단계가 같은 방향으로 순환하고 중앙에 Business Value 허브를 둔 FinOps 반복 주기">
-  <defs><marker id="arrow-finops-cycle" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
-  <path class="itpe-svg-link" d="M315 75 A 150 150 0 0 1 408 237" marker-end="url(#arrow-finops-cycle)" />
-  <path class="itpe-svg-link" d="M353 332 A 150 150 0 0 1 167 332" marker-end="url(#arrow-finops-cycle)" />
-  <path class="itpe-svg-link" d="M112 237 A 150 150 0 0 1 205 75" marker-end="url(#arrow-finops-cycle)" />
-  <circle class="itpe-svg-node" cx="260" cy="65" r="56" />
-  <text class="itpe-svg-title" x="260" y="57">Inform</text><text class="itpe-svg-sub" x="260" y="81">비용 가시화</text>
-  <circle class="itpe-svg-node" cx="390" cy="290" r="56" />
-  <text class="itpe-svg-title" x="390" y="282">Optimize</text><text class="itpe-svg-sub" x="390" y="306">개선 기회 식별</text>
-  <circle class="itpe-svg-node" cx="130" cy="290" r="56" />
-  <text class="itpe-svg-title" x="130" y="282">Operate</text><text class="itpe-svg-sub" x="130" y="306">정책·자동화</text>
-  <circle class="itpe-svg-node is-current" cx="260" cy="215" r="52" />
-  <text class="itpe-svg-title" x="260" y="206">Business</text><text class="itpe-svg-title" x="260" y="228">Value</text>
+<svg viewBox="0 0 520 320" role="img" aria-label="공급자별 청구·사용 데이터가 FinOps 운영 주기를 거쳐 단위비용 지표가 되고 IT 투자 판단으로 이어지는 위치도">
+  <defs><marker id="arrow-finops-map" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+  <rect class="itpe-svg-node" x="60" y="10" width="400" height="58" rx="12" />
+  <text class="itpe-svg-title" x="260" y="32">입력 · 클라우드 변동비</text>
+  <text class="itpe-svg-sub" x="260" y="54">공급자별 청구·사용 데이터</text>
+  <path class="itpe-svg-link" d="M260 68 V118" marker-end="url(#arrow-finops-map)" />
+  <text class="itpe-svg-label" x="370" y="93">사용량·단가</text>
+  <rect class="itpe-svg-node is-current" x="60" y="122" width="400" height="76" rx="12" />
+  <text class="itpe-svg-title" x="260" y="150">FinOps</text>
+  <text class="itpe-svg-sub" x="260" y="176">Inform → Optimize → Operate 반복</text>
+  <path class="itpe-svg-link" d="M260 198 V248" marker-end="url(#arrow-finops-map)" />
+  <text class="itpe-svg-label" x="370" y="223">단위비용 지표</text>
+  <rect class="itpe-svg-node" x="60" y="252" width="400" height="58" rx="12" />
+  <text class="itpe-svg-title" x="260" y="274">다음 · 투자 판단</text>
+  <text class="itpe-svg-sub" x="260" y="296">IT 투자평가 · 클라우드 네이티브 전환</text>
 </svg>
 </div>
 
@@ -65,14 +67,14 @@ extra:
 
 ## Ⅰ. 기술 비용을 비즈니스 가치로 전환하는 FinOps의 개요
 
-> FinOps는 비용 절감 조직이 아니라 기술 사용의 가치·속도·재무 책임을 함께 최적화하는 협업 운영체계임
+> **FinOps**는 비용 절감 조직이 아니라 기술 사용의 가치·속도·재무 책임을 함께 다루는 협업 운영체계임
 
-- 정의: 엔지니어링·재무·비즈니스가 기술 사용과 비용의 책임을 공유하여 비즈니스 가치를 극대화하는 운영 프레임워크·문화
-- 목적: 데이터 기반 의사결정 · 기술 투자 가치 극대화
+- 정의: 엔지니어링·재무·비즈니스가 기술 사용과 비용의 책임을 공유하여 지출을 **비즈니스 가치** 기준으로 판단하는 운영 프레임워크·문화
+- 목적: **데이터 기반 의사결정** · **단위비용** 기준 투자 판단
 
 ## Ⅱ. FinOps 라이프사이클·핵심 활동
 
-> 세 단계는 성숙도 순서가 아니라 각 조직·기술 범위에서 빠르게 반복하는 개선 주기이며, 한 바퀴의 성과는 다음 **Inform**의 입력이 되어야 환류가 성립함
+> **Inform** → **Optimize** → **Operate**는 성숙도 순서가 아니라 각 조직·기술 범위에서 빠르게 반복하는 개선 주기이며, 한 바퀴의 성과는 다음 Inform의 입력이 되어야 환류가 성립함
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 520 650" role="img" aria-label="FinOps 라이프사이클 안에서 Inform, Optimize, Operate가 Business Value 허브를 중심으로 순환하고, 단계별 산출물 세 개가 하위 박스로 분기된 구조">
@@ -106,7 +108,7 @@ extra:
 
 ## Ⅲ. 클라우드 비용 데이터 공통 사양 FOCUS
 
-> 공급자마다 다른 비용·사용 데이터를 공통 구조로 정규화해야 할당·비교·대사가 성립하며, 정규화 이전 단계에서는 어떤 최적화 권고도 근거를 갖지 못함
+> **FOCUS(FinOps Open Cost and Usage Specification)**로 공급자마다 다른 비용·사용 데이터를 공통 구조로 정규화해야 **Showback**·**Chargeback**과 대사·비교가 성립하며, 정규화 이전 단계에서는 어떤 최적화 권고도 근거를 갖지 못함
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 520 455" role="img" aria-label="공급자별 비용·사용 데이터가 FOCUS 공통 사양의 세 가지 정규화를 거쳐 Showback·Chargeback과 대사·예측·최적화 산출로 이어지는 흐름">
@@ -135,13 +137,13 @@ extra:
 
 ## Ⅳ. FinOps vs 전통적 IT 재무관리(ITFM) 비교
 
-> 전통적 ITFM의 예산 집행 관점에 기술 사용량·단가·가치의 지속 피드백을 결합함
+> 전통적 **ITFM(IT Financial Management)**의 예산 집행 관점에 기술 사용량·단가·가치의 지속 피드백을 결합함
 
 | 비교축 | 전통적 IT 재무관리(ITFM) | FinOps |
 |---|---|---|
-| **주기** | 연간·분기 예산 중심 | 지속 측정·개선 |
-| **책임** | 재무·구매 중심 | 엔지니어링·재무·비즈니스 공동 책임 |
-| **판정** | 예산 대비 집행 | 기술 사용 대비 비즈니스 가치 |
+| 주기 | 연간·분기 예산 중심 | **지속 측정·개선** |
+| 책임 | 재무·구매 중심 | 엔지니어링·재무·비즈니스 **공동 책임** |
+| 판정 | 예산 대비 집행 | 기술 사용 대비 비즈니스 가치 |
 
 ## Ⅴ. FinOps의 문제점·대응책
 
@@ -149,9 +151,9 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **비용 할당 불가** | 태그 강제 정책(Policy-as-Code) · FOCUS 기반 비용 배분 규칙 적용 | 미할당 리소스 비용 비율 감소 |
-| **최적화 권고 방치** | Rightsizing 검토 책임자 지정 · 조치 기한 설정 | 최적화 권고 처리 지연 해소 · 유휴 자원 제거 |
-| **약정 할인 과다·미달** | 수요 예측 기반 온디맨드·약정(RI/SP)·스팟 최적 포트폴리오 구성 | 약정 자원 유휴 감소 · 위약금 발생 차단 |
+| 비용 할당 불가 | 태그 강제 정책(**Policy-as-Code**) · FOCUS 기반 비용 배분 규칙 적용 | 미할당 리소스 비용 비율 감소 |
+| 최적화 권고 방치 | **Rightsizing** 검토 책임자 지정 · 조치 기한 설정 | 최적화 권고 처리 지연 해소 · 유휴 자원 제거 |
+| 약정 할인 과다·미달 | 수요 예측 기반 온디맨드·**약정(RI/SP)**·스팟 최적 포트폴리오 구성 | 약정 자원 유휴 감소 · 위약금 발생 차단 |
 
 ## Ⅵ. 결론 — Unit Economics 중심의 FinOps
 
@@ -165,7 +167,7 @@ extra:
 ### 실전 답안용 기술사적 제언
 
 - 판정: 비용 판단 시점을 청구 이후에서 배포 이전으로 옮겼는가
-- 대안: FOCUS 기반 비용 데이터 정규화 · IaC 변경의 비용 영향 사전 검토
+- 대안: **FOCUS** 기반 비용 데이터 정규화 · IaC 변경의 비용 영향 사전 검토
 - 검증: 미태깅 리소스 차단 여부 · 변경 요청 단위 비용 증감 산출 여부
 - 효과: 블랙박스 비용 제거 · 트랜잭션당 인프라 원가 개선
 
@@ -182,12 +184,12 @@ extra:
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>Policy-as-Code 미태깅 차단 · PR 생성 시 비용 증감 산출</span></div>
+    <div class="itpe-step-detail"><strong>판정</strong><span><span class="itpe-keyword"><strong>Policy-as-Code</strong></span> 미태깅 차단 · PR 생성 시 비용 증감 산출</span></div>
   </div>
   <div class="itpe-pipeline-arrow">↓</div>
   <div class="itpe-pipeline-node">
     <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>배포 전 비용 낭비 차단 · 트랜잭션당 인프라 원가(Unit Cost) 개선</span></div>
+    <div class="itpe-step-detail"><strong>효과</strong><span>배포 전 비용 낭비 차단 · 트랜잭션당 <span class="itpe-keyword"><strong>인프라 원가(Unit Cost)</strong></span> 개선</span></div>
   </div>
 </div>
 
@@ -196,7 +198,7 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **FinOps**는 엔지니어링·재무·비즈니스가 기술 사용의 가치를 높이고 재무 책임을 공유하는 운영 프레임워크·문화
-- 목적: 데이터 기반 의사결정 · 기술 투자 가치 극대화
+- 목적: **데이터 기반 의사결정** · **단위비용** 기준 투자 판단
 
 ### 2. 라이프사이클과 단계별 산출물
 
@@ -233,7 +235,7 @@ extra:
 ### 3. 핵심 통제
 
 - **FOCUS(FinOps Open Cost and Usage Specification)**: 공급자별 비용·사용 데이터를 공통 구조로 정규화하여 할당·비교·대사를 지원
-- Shift-Left FinOps: CI/CD 단계에서 인프라 변경의 비용 영향을 사전 검토
+- **Shift-Left FinOps**: CI/CD 단계에서 인프라 변경의 비용 영향을 사전 검토
 
 ## 출제 이력과 검증 출처
 

@@ -1,7 +1,7 @@
 ---
 title: "정보시스템 감리"
 author: "Claude Code"
-date: "2026-09-21T11:20:00+09:00"
+date: "2026-09-21T12:40:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -39,11 +39,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- `정보시스템 감리`: 독립된 제3자가 정보시스템 구축·운영을 종합 점검하고 문제를 개선하도록 하는 제도
-- `감리법인`: 「전자정부법」 제58조에 따라 등록하고 감리원이 감리업무를 수행하는 법인
-- `상주감리`: 현장 상주 또는 주기적 투입으로 위험요소·산출물 검토·자문을 수행하는 감리
-- `현장감리`: 계획한 점검항목에 따라 자료검토·인터뷰·시험 등 증거를 확보하는 감리 수행 구간
-- `감리 검사기준서`: 점검항목·검토항목·검증방법을 사업 특성에 맞게 구체화한 현장감리 작업 기준
+- **정보시스템 감리**: 독립된 제3자가 정보시스템 구축·운영을 종합 점검하고 문제를 개선하도록 하는 제도
+- **감리법인**: 「전자정부법」 제58조에 따라 등록하고 감리원이 감리업무를 수행하는 법인
+- **상주감리**: 현장 상주 또는 주기적 투입으로 위험요소·산출물 검토·자문을 수행하는 감리
+- **현장감리**: 계획한 점검항목에 따라 자료검토·인터뷰·시험 등 증거를 확보하는 감리 수행 구간
+- **감리 검사기준서**: 점검항목·검토항목·검증방법을 사업 특성에 맞게 구체화한 현장감리 작업 기준
 
 </details>
 
@@ -53,14 +53,14 @@ extra:
 
 ## Ⅰ. 독립적 제3자 통제, 정보시스템 감리
 
-> 정보시스템 감리는 발주자의 관리업무를 대신하는 조직이 아니라 독립된 제3자 점검이며, 성패는 지적 수보다 감리결과의 실제 반영으로 판정함
+> 정보시스템 감리는 발주자의 관리업무를 대신하는 조직이 아니라 **독립된 제3자** 점검이며, 성패는 지적 수보다 **감리결과**의 실제 반영으로 판정함
 
-- 정의: **정보시스템 감리**는 발주자·사업자 등의 이해관계로부터 독립된 자가 정보시스템의 효율성·안전성을 위해 구축·운영을 종합 점검하고 문제점을 개선하도록 하는 활동
-- 목적: 사업 위험 조기 발견·정보시스템 품질 확보
+- 정의: **정보시스템 감리**는 발주자·사업자 등의 이해관계로부터 독립된 자가 정보시스템의 **효율성·안전성**을 위해 구축·운영을 종합 점검하고 문제점을 개선하도록 하는 활동
+- 목적: 사업 위험 조기 발견, 결함 잔존·재작업 감소
 
 ## Ⅱ. 전자정부법령과 감리기준의 통제 구조
 
-> 법은 감리 대상·독립성·결과 반영 의무를 정하고, 고시는 감리의 업무범위·절차·준수사항을 구체화하여 점검의 실효성을 닫음
+> 법은 감리 대상·독립성·**감리결과 반영 의무**를 정하고, 고시 「**정보시스템 감리기준**」은 감리의 업무범위·절차·준수사항을 구체화하여 점검의 실효성을 닫음
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 520 576" role="img" aria-label="전자정부법이 시행령에 위임하고 정보시스템 감리기준이 이를 구체화하는 3계층 법령 통제 구조와 각 계층의 통제 항목 트리">
@@ -99,7 +99,7 @@ extra:
 </svg>
 </div>
 
-- 적용관계: 「전자정부법」 제64조의2에 따라 전자정부사업관리를 위탁한 경우에도 모든 사업이 감리에서 제외되는 것은 아니며, 같은 법 제57조제1항 단서와 시행령 제71조제2항이 정한 사업만 의무감리 예외에 해당함
+- 적용관계: 「전자정부법」 제64조의2에 따라 전자정부사업관리를 위탁한 경우에도 모든 사업이 감리에서 제외되는 것은 아니며, 같은 법 **제57조제1항 단서**와 **시행령 제71조제2항**이 정한 사업만 **의무감리** 예외에 해당함
 - 예외범위: 대국민·기관 공동사용 사업 중 사업비 1억 원 이상 5억 원 미만인 사업 · 사업기간 5개월 미만인 정보시스템 구축사업
 
 ## Ⅲ. 계약에서 조치 확인까지의 감리 수행체계
@@ -120,7 +120,7 @@ extra:
 
 ## Ⅳ. PMO와 상주감리의 역할 경계
 
-> PMO는 발주기관의 사업관리·의사결정을 계속 지원하고, 상주감리는 독립된 관점에서 위험·산출물을 점검하므로 두 역할을 섞으면 감리 독립성이 약해짐
+> PMO는 발주기관의 사업관리·의사결정을 계속 지원하고, 상주감리는 독립된 관점에서 위험·산출물을 점검하므로 두 역할을 섞으면 **감리 독립성**이 약해짐
 
 <div class="itpe-svg-map">
 <svg viewBox="0 0 520 348" role="img" aria-label="발주기관이 PMO에 사업관리를 위탁하고 상주감리는 독립 위치에서 결과를 보고하며, 두 주체가 사업자를 각각 관리하고 점검하는 역할 경계">
@@ -152,14 +152,14 @@ extra:
 | 업무 | 일정·위험·품질관리 · 보고·조정 | 위험요소·산출물 검토 · 자문 |
 | 위치 | 발주기관 관리·감독 지원 | 발주자·사업자와 독립된 제3자 |
 
-- 법적 적용: 전자정부사업관리 위탁은 감리와 같은 제도가 아니며, 의무감리 제외 여부는 사업별로 「전자정부법」 제57조제1항 단서와 시행령 제71조제2항의 조건을 확인함
+- 법적 적용: **전자정부사업관리 위탁**은 감리와 같은 제도가 아니며, 의무감리 제외 여부는 사업별로 「전자정부법」 제57조제1항 단서와 시행령 제71조제2항의 조건을 확인함
 
 ## Ⅴ. 검사기준서와 조치 증적의 확인 판정
 
-> 검사기준서가 계약·법령·기술기준과 연결되고 각 개선사항에 조치 증적이 대응해야 감리가 문서 검토를 넘어 실제 품질 통제로 작동함
+> **검사기준서**가 계약·법령·기술기준과 연결되고 각 개선사항에 **조치 증적**이 대응해야 감리가 문서 검토를 넘어 실제 품질 통제로 작동함
 
 <div class="itpe-flow-map" role="img" aria-label="감리 개선사항과 조치 증적의 확인 판정">
-  <div class="itpe-flow-node"><strong>검증 대상</strong><div class="itpe-step-detail"><strong>대상</strong><span>검사기준서 · 감리 발견사항 · 시정조치 증적</span></div></div>
+  <div class="itpe-flow-node"><strong>검증 대상</strong><div class="itpe-step-detail"><strong>대상</strong><span>검사기준서 · <span class="itpe-keyword"><strong>감리 발견사항</strong></span> · 시정조치 증적</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
   <div class="itpe-flow-node is-current"><span class="itpe-keyword"><strong>조치 확인 판정</strong></span><div class="itpe-step-detail"><strong>판정 질문</strong><span>개선사항별 반영 결과와 객관적 증거가 대응하는가</span></div></div>
   <div class="itpe-flow-arrow">↓</div>
@@ -174,43 +174,34 @@ extra:
 > 독립성 훼손·검사기준 부실·미조치 종결을 각각 책임 분리·근거 추적·증적 확인으로 통제해야 함
 
 <div class="itpe-svg-map">
-<svg viewBox="0 0 520 256" role="img" aria-label="독립 수행, 근거 추적, 조치 이행의 통제 체인과 각 지점에서 감리 실효성을 무너뜨리는 위험의 대응 관계">
+<svg viewBox="0 0 520 278" role="img" aria-label="감리 실효성을 지키는 독립 수행, 근거 추적, 조치 이행 3개 통제 지점이 확보 증거와 확정 개선사항을 주고받으며 이어지는 통제 체인">
   <defs><marker id="arrow-audit-risk" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="20" y="10" width="270" height="52" rx="12" />
-  <text class="itpe-svg-title" x="155" y="28">독립 수행</text>
-  <text class="itpe-svg-sub" x="155" y="48">감리업무 간섭 차단</text>
-  <path class="itpe-svg-link" d="M290 36 H306" marker-end="url(#arrow-audit-risk)" />
-  <rect class="itpe-svg-node" x="310" y="14" width="190" height="44" rx="10" />
-  <text class="itpe-svg-label" x="405" y="29">위험</text>
-  <text class="itpe-svg-sub" x="405" y="45">감리업무 개입</text>
-  <path class="itpe-svg-link" d="M155 62 V96" marker-end="url(#arrow-audit-risk)" />
-  <rect class="itpe-svg-node" x="20" y="100" width="270" height="52" rx="12" />
-  <text class="itpe-svg-title" x="155" y="118">근거 추적</text>
-  <text class="itpe-svg-sub" x="155" y="138">검사기준 ↔ 발견 ↔ 증거</text>
-  <path class="itpe-svg-link" d="M290 126 H306" marker-end="url(#arrow-audit-risk)" />
-  <rect class="itpe-svg-node" x="310" y="104" width="190" height="44" rx="10" />
-  <text class="itpe-svg-label" x="405" y="119">위험</text>
-  <text class="itpe-svg-sub" x="405" y="135">형식적 점검</text>
-  <path class="itpe-svg-link" d="M155 152 V186" marker-end="url(#arrow-audit-risk)" />
-  <rect class="itpe-svg-node" x="20" y="190" width="270" height="52" rx="12" />
-  <text class="itpe-svg-title" x="155" y="208">조치 이행</text>
-  <text class="itpe-svg-sub" x="155" y="228">담당자 · 기한 · 증적</text>
-  <path class="itpe-svg-link" d="M290 216 H306" marker-end="url(#arrow-audit-risk)" />
-  <rect class="itpe-svg-node" x="310" y="194" width="190" height="44" rx="10" />
-  <text class="itpe-svg-label" x="405" y="209">위험</text>
-  <text class="itpe-svg-sub" x="405" y="225">미조치 종결</text>
+  <text class="itpe-svg-label" x="260" y="18">감리 실효성 통제 3</text>
+  <rect class="itpe-svg-node" x="80" y="28" width="360" height="52" rx="12" />
+  <text class="itpe-svg-title" x="260" y="48">독립 수행</text>
+  <text class="itpe-svg-sub" x="260" y="68">감리업무 개입·간섭 차단</text>
+  <path class="itpe-svg-link" d="M260 80 V118" marker-end="url(#arrow-audit-risk)" />
+  <text class="itpe-svg-label" x="330" y="103">확보 증거</text>
+  <rect class="itpe-svg-node" x="80" y="122" width="360" height="52" rx="12" />
+  <text class="itpe-svg-title" x="260" y="142">근거 추적</text>
+  <text class="itpe-svg-sub" x="260" y="162">검사기준 ↔ 발견사항 ↔ 증거</text>
+  <path class="itpe-svg-link" d="M260 174 V212" marker-end="url(#arrow-audit-risk)" />
+  <text class="itpe-svg-label" x="337" y="197">확정 개선사항</text>
+  <rect class="itpe-svg-node is-current" x="80" y="216" width="360" height="52" rx="12" />
+  <text class="itpe-svg-title" x="260" y="236">조치 이행</text>
+  <text class="itpe-svg-sub" x="260" y="256">담당자 · 기한 · 조치 증적</text>
 </svg>
 </div>
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| 감리업무 개입 | 감리법인 독립성·보고 경로 명시 | 점검 결과 왜곡 방지 |
-| 형식적 점검 | 검사기준·발견사항·증거 연결 | 누락·자의적 판정 감소 |
-| 미조치 종결 | 개선사항별 담당자·기한·증적 확인 | 결함의 운영 전이 감소 |
+| 감리업무 개입 | **감리법인 독립성**·보고 경로 명시 | 점검 결과 왜곡 방지 |
+| 형식적 점검 | **검사기준**·발견사항·증거 연결 | 누락·자의적 판정 감소 |
+| 미조치 종결 | 개선사항별 담당자·기한·**증적** 확인 | 결함의 운영 전이 감소 |
 
 ## Ⅶ. 결론 — 증거 기반 조치 확인으로 닫는 감리
 
-> 감리보고서 작성이 종료점이 아니라 개선사항과 실제 시스템·산출물의 대응을 확인하는 것이 최종 품질 판정임
+> **감리보고서** 작성이 종료점이 아니라 **개선사항**과 실제 시스템·산출물의 대응을 확인하는 것이 최종 품질 판정임
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -239,7 +230,7 @@ extra:
 ### 1. 정의·목적
 
 - 정의: **정보시스템 감리**는 발주자·사업자와 독립된 제3자가 정보시스템 구축·운영을 종합 점검하고 문제점을 개선하도록 하는 활동
-- 목적: 사업 위험 조기 발견·정보시스템 품질 확보
+- 목적: 사업 위험 조기 발견, 결함 잔존·재작업 감소
 
 ### 2. 법적 통제 구조
 
