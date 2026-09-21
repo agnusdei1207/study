@@ -3,19 +3,19 @@ sidebar:
   order: 68
   label: "068. 잭나이프·부트스트랩"
   badge:
-    text: "B"
+    text: "A"
     variant: note
 title: "재표본화 기법 (잭나이프 vs 부트스트랩) 및 비모수 신뢰구간 추정"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:20:00+09:00"
 tags:
   - "notes-data"
+category: "03-data"
 weight: 68
 extra:
-  model: "GPT-5"
-  keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "068"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,24 +24,54 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[잭나이프와 부트스트랩의 재표본화(Resampling) 메커니즘 대조]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 280" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="260" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="32" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">재표본화(Resampling) 기법: 잭나이프 vs 부트스트랩</text>
 
-       [ 원본 관측 표본: D = { x_1, x_2, x_3, ..., x_n } ]
-                               │
-            ┌──────────────────┴──────────────────┐
-            ▼ (결정론적 1개 제외 비복원 추출)       ▼ (확률론적 복원 추출)
-   [ 잭나이프 (Jackknife) ]               [ 부트스트랩 (Bootstrap) ]
-    D_(1) = { x_2, x_3, ..., x_n }         B_1 = { x_1, x_1, x_4, ..., x_n }
-    D_(2) = { x_1, x_3, ..., x_n }         B_2 = { x_2, x_3, x_3, ..., x_5 }
-    ...                                    ...
-    D_(n) = { x_1, x_2, ..., x_{n-1} }     B_B = { x_3, x_7, x_7, ..., x_1 }
-   ──────────────────────────────────     ──────────────────────────────────
-   - 생성 표본 수: 정확히 n개 (고정)      - 생성 표본 수: B개 (보통 1,000~10,000회)
-   - 추출 방식: 비복원 (Leave-One-Out)     - 추출 방식: 중복 허용 복원 추출
-   - 연산 특성: 결정론적 (난수 불필요)    - 연산 특성: 확률적 (몬테카를로 시뮬레이션)
-   - 한계: 중앙값 등 비평활 통계량 파탄   - 장점: 임의의 복잡한 통계량 분포 추정 가능
-```
+  <!-- Raw Sample D -->
+  <g transform="translate(160, 48)">
+    <rect x="0" y="0" width="200" height="30" rx="4" fill="#ffffff" stroke="#64748b" stroke-width="1.2"/>
+    <text x="100" y="19" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">원본 표본: D = { x₁, x₂, x₃, ..., xₙ }</text>
+  </g>
+
+  <!-- Left: Jackknife -->
+  <g transform="translate(30, 95)">
+    <path d="M 180 -7 L 110 15" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="0" y="15" width="220" height="150" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <rect x="0" y="15" width="220" height="26" rx="6" fill="#eff6ff"/>
+    <text x="110" y="32" font-size="10.5" font-weight="bold" fill="#1e40af" text-anchor="middle">잭나이프 (Jackknife)</text>
+
+    <!-- Subsamples -->
+    <text x="20" y="60" font-size="8.5" fill="#334155">D₍₁₎ = { x₂, x₃, ..., xₙ } (x₁ 제외)</text>
+    <text x="20" y="76" font-size="8.5" fill="#334155">D₍₂₎ = { x₁, x₃, ..., xₙ } (x₂ 제외)</text>
+    <text x="20" y="92" font-size="8.5" fill="#334155">...</text>
+    <text x="20" y="108" font-size="8.5" fill="#334155">D₍ₙ₎ = { x₁, x₂, ..., xₙ₋₁ } (xₙ 제외)</text>
+
+    <line x1="15" y1="120" x2="205" y2="120" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="110" y="136" font-size="8.5" font-weight="bold" fill="#1e40af" text-anchor="middle">표본 수: 정확히 n개 (결정론적)</text>
+    <text x="110" y="152" font-size="8" fill="#64748b" text-anchor="middle">비복원 Leave-One-Out, 평활 통계량</text>
+  </g>
+
+  <!-- Right: Bootstrap -->
+  <g transform="translate(270, 95)">
+    <path d="M 40 -7 L 110 15" stroke="#ef4444" stroke-width="1.5"/>
+    <rect x="0" y="15" width="220" height="150" rx="6" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+    <rect x="0" y="15" width="220" height="26" rx="6" fill="#fef2f2"/>
+    <text x="110" y="32" font-size="10.5" font-weight="bold" fill="#991b1b" text-anchor="middle">부트스트랩 (Bootstrap)</text>
+
+    <!-- Subsamples -->
+    <text x="20" y="60" font-size="8.5" fill="#334155">B₁ = { x₁, x₁, x₄, ..., xₙ } (복원)</text>
+    <text x="20" y="76" font-size="8.5" fill="#334155">B₂ = { x₂, x₃, x₃, ..., x₅ } (복원)</text>
+    <text x="20" y="92" font-size="8.5" fill="#334155">...</text>
+    <text x="20" y="108" font-size="8.5" fill="#334155">B_B = { x₃, x₇, x₇, ..., x₁ } (복원)</text>
+
+    <line x1="15" y1="120" x2="205" y2="120" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="110" y="136" font-size="8.5" font-weight="bold" fill="#991b1b" text-anchor="middle">표본 수: B개 (수천~수만 회)</text>
+    <text x="110" y="152" font-size="8" fill="#64748b" text-anchor="middle">복원추출 몬테카를로, 임의 통계량 가능</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **모집단의 이론적 확률분포(정규성 등)를 알 수 없거나 수학적 유도가 불가능한 상황에서, 주어진 단일 표본 데이터로부터 체계적 또는 확률적으로 부분 표본을 반복 추출(Resampling)하여 통계량의 편향(Bias)을 보정하고 분산 및 신뢰구간을 비모수적(Non-parametric)으로 추정하는 양대 통계 기법**
 - 암기: `제-엔-결-비` (잭나이프: 1개 제외, n회 반복, 결정론적, 비복원) / `복-비-몬-확` (부트스트랩: 복원추출, B회 반복, 몬테카를로, 확률론적)
@@ -68,15 +98,36 @@ extra:
 
 #### 한줄 요약: 매 반복마다 관측치 1개씩을 순차적으로 제외(Leave-One-Out)하여 통계량의 편향을 체계적으로 제거하는 기법
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                       잭나이프(Jackknife)의 동작 절차                       │
-└─────────────────────────────────────────────────────────────────────────────┘
-  [1단계: 부분 표본 생성] ──▶ 전체 n개 관측치 중 i번째 관측치 1개를 뺀 n-1개 표본 D_(i) 구성
-  [2단계: 통계량 계산]   ──▶ n개의 각 부분 표본에 대해 통계량 θ^_(i) 계산 (총 n회 수행)
-  [3단계: 의사값 도출]   ──▶ 가상의 관측치인 의사값(Pseudovalue) 산출: θ*_i = n*θ^ - (n-1)*θ^_(i)
-  [4단계: 편향 및 분산]   ──▶ 의사값들의 표본 평균과 표본 분산을 통해 편향 제거 통계량 확정
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 115" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="95" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">잭나이프 4단계 동작 절차</text>
+
+  <g transform="translate(25, 42)">
+    <rect x="0" y="0" width="105" height="50" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="52" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">1. 부분 표본 생성</text>
+    <text x="52" y="35" font-size="8" fill="#475569" text-anchor="middle">i번째 제외 (n-1개)</text>
+
+    <path d="M 108 25 L 122 25" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="125" y="0" width="105" height="50" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="177" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">2. 통계량 계산</text>
+    <text x="177" y="35" font-size="8" fill="#475569" text-anchor="middle">θ^(i) 계산 (총 n회)</text>
+
+    <path d="M 233 25 L 247 25" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="250" y="0" width="105" height="50" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="302" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">3. 의사값 도출</text>
+    <text x="302" y="35" font-size="8" fill="#475569" text-anchor="middle">θ*ᵢ = nθ^ - (n-1)θ^(i)</text>
+
+    <path d="M 358 25 L 372 25" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="375" y="0" width="95" height="50" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="422" y="18" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">4. 편향·분산 확정</text>
+    <text x="422" y="35" font-size="8" fill="#475569" text-anchor="middle">의사값 표본평균</text>
+  </g>
+</svg>
+</div>
 
 ### 1. 잭나이프 수학적 추정 공식
 - **편향 보정 통계량 (Bias-corrected Estimator, $\hat{\theta}_{jack}$)**:
@@ -91,15 +142,36 @@ extra:
 
 #### 한줄 요약: 경험적 분포 함수로부터 복원 추출을 $B$회 반복하여 미지의 표본 분포를 몬테카를로 시뮬레이션으로 복원
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      부트스트랩(Bootstrap)의 동작 절차                      │
-└─────────────────────────────────────────────────────────────────────────────┘
-  [1단계: 복원 추출]     ──▶ 원본 데이터 D에서 중복을 허용하여 크기 n인 가상 표본 D* 추출
-  [2단계: 통계량 계산]   ──▶ 가상 표본 D*로부터 부트스트랩 통계량 θ^* 계산
-  [3단계: B회 반복]      ──▶ 1~2단계를 B회(보통 1,000 ~ 10,000회) 독립 반복 수행
-  [4단계: 표본 분포 구축] ──▶ 수집된 B개의 θ^* 집합으로부터 표준오차 및 신뢰구간 산출
-```
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 115" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="95" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">부트스트랩 4단계 동작 절차</text>
+
+  <g transform="translate(25, 42)">
+    <rect x="0" y="0" width="105" height="50" rx="4" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="52" y="18" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">1. 복원 추출</text>
+    <text x="52" y="35" font-size="8" fill="#475569" text-anchor="middle">중복 허용 크기 n</text>
+
+    <path d="M 108 25 L 122 25" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="125" y="0" width="105" height="50" rx="4" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="177" y="18" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">2. 통계량 계산</text>
+    <text x="177" y="35" font-size="8" fill="#475569" text-anchor="middle">θ^* 산출</text>
+
+    <path d="M 233 25 L 247 25" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="250" y="0" width="105" height="50" rx="4" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="302" y="18" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">3. B회 반복</text>
+    <text x="302" y="35" font-size="8" fill="#475569" text-anchor="middle">B = 1,000 ~ 10,000</text>
+
+    <path d="M 358 25 L 372 25" stroke="#64748b" stroke-width="1.5"/>
+
+    <rect x="375" y="0" width="95" height="50" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+    <text x="422" y="18" font-size="9" font-weight="bold" fill="#991b1b" text-anchor="middle">4. 표본분포 구축</text>
+    <text x="422" y="35" font-size="8" fill="#475569" text-anchor="middle">신뢰구간/표준오차</text>
+  </g>
+</svg>
+</div>
 
 ### 1. 경험적 분포 함수 (EDF, Empirical Distribution Function)
 - 모집단의 모분포 $F$ 대신, 각 관측치 $x_i$에 동일한 확률질량 $1/n$을 부여한 경험적 분포 $\hat{F}_n$을 모분포의 대리인(Plug-in)으로 간주
@@ -113,18 +185,6 @@ extra:
 ## Ⅳ. 잭나이프 vs 부트스트랩 심층 비교
 
 #### 한줄 요약: 결정론적 1개 제외 연산과 확률론적 복원 추출 시뮬레이션의 수학적·실무적 비교
-
-```text
-┌───────────────────────────────────┬───────────────────────────────────┐
-│        잭나이프 (Jackknife)       │        부트스트랩 (Bootstrap)     │
-├───────────────────────────────────┼───────────────────────────────────┤
-│ - 추출: 비복원 (Leave-One-Out)     │ - 추출: 중복 허용 복원 추출       │
-│ - 횟수: 정확히 n회 (표본 크기)    │ - 횟수: B회 (수천~수만 회)         │
-│ - 성격: 결정론적 (Deterministic)   │ - 성격: 확률적 (Monte Carlo 난수) │
-│ - 연산량: 매우 적음               │ - 연산량: 매우 큼 (컴퓨터 집약적) │
-│ - 적용: 평활 통계량(평균, 분산)   │ - 적용: 임의의 통계량(중앙값 가능)│
-└───────────────────────────────────┴───────────────────────────────────┘
-```
 
 | 비교 항목 | 잭나이프 (Jackknife) | 부트스트랩 (Bootstrap) |
 |:---|:---|:---|
@@ -140,17 +200,21 @@ extra:
 
 #### 한줄 요약: 데이터 1개의 변동이 통계량에 미치는 영향이 불연속적인 경우 잭나이프는 수학적으로 분산 추정에 실패함
 
-```text
-[표본 데이터 정렬: x_1 < x_2 < x_3 < x_4 < x_5 (n = 5, 중앙값 = x_3)]
+<div class="itpe-svg-wrapper">
+<svg viewBox="0 0 520 130" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="10" width="490" height="110" rx="8" fill="var(--color-bg-secondary, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+  <text x="30" y="30" font-size="12" font-weight="bold" fill="var(--color-text-primary, #0f172a)">비평활 통계량(중앙값)에서 잭나이프 파탄 원리 (n=5)</text>
 
- 1. x_1 제외 시: 남은 데이터 {x_2, x_3, x_4, x_5} ──▶ 중앙값 = (x_3 + x_4) / 2
- 2. x_2 제외 시: 남은 데이터 {x_1, x_3, x_4, x_5} ──▶ 중앙값 = (x_3 + x_4) / 2
- 3. x_3 제외 시: 남은 데이터 {x_1, x_2, x_4, x_5} ──▶ 중앙값 = (x_2 + x_4) / 2
- 4. x_4 제외 시: 남은 데이터 {x_1, x_2, x_3, x_5} ──▶ 중앙값 = (x_2 + x_3) / 2
- 5. x_5 제외 시: 남은 데이터 {x_1, x_2, x_3, x_4} ──▶ 중앙값 = (x_2 + x_3) / 2
- ──▶ [결과]: x_1, x_2, x_4, x_5의 실제 값 크기와 무관하게 단 몇 개 점으로만 통계량이 요동침!
-     (표본 크기가 무한대로 가도 분산 추정량이 모분산으로 수렴하지 않고 발산함)
-```
+  <g transform="translate(25, 42)">
+    <rect x="0" y="0" width="470" height="65" rx="4" fill="#ffffff" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="20" y="20" font-size="9" fill="#334155">x₁ 제외 시 남은 4개 중앙값: (x₃ + x₄)/2</text>
+    <text x="240" y="20" font-size="9" fill="#334155">x₂ 제외 시 남은 4개 중앙값: (x₃ + x₄)/2</text>
+    <text x="20" y="38" font-size="9" fill="#334155">x₃ 제외 시 남은 4개 중앙값: (x₂ + x₄)/2</text>
+    <text x="240" y="38" font-size="9" fill="#334155">x₄ 제외 시 남은 4개 중앙값: (x₂ + x₃)/2</text>
+    <text x="20" y="54" font-size="8.5" font-weight="bold" fill="#dc2626">결과: 실제 데이터 크기와 무관하게 단 2~3개 값으로만 진동 $\to$ 표본 크기 $n \to \infty$여도 모분산 불일치!</text>
+  </g>
+</svg>
+</div>
 
 - **평활 통계량(Smooth Statistic)**: 평균, 회귀 계수처럼 개별 관측치의 변화가 통계량에 미치는 영향이 연속적이고 미분 가능한 함수 $\rightarrow$ 잭나이프 완벽 작동
 - **비평활 통계량(Non-smooth Statistic)**: 중앙값, 최대값, 최소값처럼 순서(Order)에 의존하여 도함수가 불연속적인 함수 $\rightarrow$ **잭나이프 파탄, 부트스트랩 사용 필수**
@@ -167,47 +231,74 @@ extra:
 - 크기 $n$의 원본 데이터에서 복원 추출 시 선택되지 않는 $36.8\%$($\approx 1/e$)의 OOB 데이터를 활용
 - 별도의 Validation Set을 떼어놓지 않고도 트리 모델의 일반화 에러를 자체 검증하여 소표본 학습 효율 극대화
 
-## Ⅶ. 데이터 아키텍트 관점의 비모수 데이터 분석 파이프라인 제언
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 연산 비용과 통계량의 수학적 성질을 고려하여 자동 분기되는 하이브리드 리샘플링 프레임워크 구축
+### 학습자 통찰 메모 — 답안 밖
 
-- **"표본 수($n$)와 통계량 형태에 따른 자동 분기 알고리즘"**:
-  - 분석 파이프라인 설계 시, 대상 통계량이 평균/분산/회귀계수이고 $n$이 작다면 빠른 계산을 위해 **잭나이프**를 우선 호출
-  - 반면 분위수/중앙값/지니계수이거나 데이터 왜도가 심한 경우, GPU/병렬 CPU를 할당하여 **부트스트랩 BCa 알고리즘($B=5,000$)**으로 자동 분기되도록 설계해야 함
-- **빅데이터 환경에서의 연산 오버헤드 극복**:
-  - 데이터가 수천만 건을 넘어가면 부트스트랩의 복원 추출 및 $B$회 모델 훈련은 인프라 병목을 유발함
-  - 이 경우 전체 데이터를 복원 추출하지 않고 작은 서브샘플($b = n^{\gamma}, 0.5 < \gamma < 1$)을 복원 추출하는 **$m$-out-of-$n$ 부트스트랩**이나 **Bag of Little Bootstraps (BLB)** 분산 프레임워크를 도입하여 선형 확장성을 확보해야 함
+> **[핵심 통찰]**
+> 재표본화 기법은 단순한 "과거의 통계 기법"이 아니라 현대 머신러닝과 빅데이터 분석을 지탱하는 **기저 메커니즘**이다. 잭나이프는 Leave-One-Out 교차검증(LOOCV)으로 직결되고, 부트스트랩은 랜덤 포레스트(배깅)의 수학적 뿌리다. 표본이 수천만 건에 달하는 빅데이터 환경에서 부트스트랩의 $B$회 반복 연산이 병목을 일으킬 때는 $m$-out-of-$n$ 부트스트랩이나 **Bag of Little Bootstraps (BLB)** 분산 프레임워크를 연계하여 선형 확장성을 확보해야 한다.
+
+> **[나라면 이렇게 쓴다]**
+> 10점형 답안이라면 잭나이프(결정론적/비복원/n회)와 부트스트랩(확률적/복원/B회)의 핵심 대조표를 전면에 배치하고, 비평활 통계량(중앙값)에서의 잭나이프 한계를 명시하겠다. 25점형이라면 BCa 신뢰구간의 편향·왜도 보정 메커니즘과 빅데이터 환경의 BLB 분산 처리 아키텍처를 4단 제언으로 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 정규분포를 전제한 모수적 검정($t$-검정)은 왜도가 심한 이커머스 메트릭에서 심각한 오판을 초래하고, 단순 부트스트랩은 대용량 데이터에서 연산 병목 발생
+- **대응 (개선 방안)**: 비정규 메트릭에 부트스트랩 BCa 신뢰구간을 적용하고, 대규모 분산 환경에서는 Bag of Little Bootstraps (BLB) 알고리즘을 도입하여 병렬화 구현
+- **검증 (검증 기준)**: 재표본 수 $B \ge 2,000$ 회 수행 시 신뢰구간 수렴성(변동률 1% 이내) 검증, A/B 테스트 제1종 오류 5% 이하 통제
+- **효과 (실행 효과)**: 비정규 비즈니스 지표 판정 오탐 40% 감소, 대규모 데이터 분산 부트스트랩 연산 시간 90% 단축
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">1</div>
+    <div class="itpe-flow-step-title">현행 한계</div>
+    <div class="itpe-flow-step-desc">모수적 정규성 가정 위배로 인한 A/B 검정 오류 및 잭나이프 중앙값 한계</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">2</div>
+    <div class="itpe-flow-step-title">개선 방안</div>
+    <div class="itpe-flow-step-desc">비모수 부트스트랩 BCa 신뢰구간 산정 + BLB 분산 프레임워크 구축</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">3</div>
+    <div class="itpe-flow-step-title">검증 기준</div>
+    <div class="itpe-flow-step-desc">B &ge; 2,000 수렴 검증, 제1종 오류 &le; 5%, OOB 일반화 오차 검증</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step-num">4</div>
+    <div class="itpe-flow-step-title">실행 효과</div>
+    <div class="itpe-flow-step-desc">비정규 지표 판정 신뢰도 확보 및 대용량 표본 분석 연산시간 90% 단축</div>
+  </div>
+</div>
 
 ---
 
 ## 2교시 25점 답안 발췌
 
-```text
-[문제 2] 비모수적 재표본화 기법 (잭나이프와 부트스트랩)
+### Ⅰ. 비모수적 재표본화(Resampling) 기법의 개요
 
-Ⅰ. 비모수적 재표본화(Resampling) 기법의 개요
- 1. 배경: 모집단의 정규성 가정이 위배되는 소표본 및 비선형 지표의 신뢰구간 도출 한계
- 2. 정의: 주어진 표본으로부터 부분 표본을 반복 추출하여 통계량의 편향과 분산을 비모수 추정
+1. **배경**: 모집단의 정규성 가정이 위배되는 소표본 및 비선형 지표의 신뢰구간 도출 한계
+2. **정의**: 주어진 표본으로부터 부분 표본을 반복 추출하여 통계량의 편향과 분산을 비모수 추정
 
-Ⅱ. 잭나이프 vs 부트스트랩 메커니즘 비교
- ┌──────────────┬────────────────────────────┬────────────────────────────┐
- │  비교 항목   │     잭나이프 (Jackknife)   │     부트스트랩 (Bootstrap) │
- ├──────────────┼────────────────────────────┼────────────────────────────┤
- │ 추출 방식    │ 비복원 (Leave-One-Out)     │ 중복 허용 복원 추출        │
- │ 반복 횟수    │ 정확히 n회 (표본 크기)     │ B회 (보통 1,000~10,000회)  │
- │ 알고리즘 성격│ 결정론적 (난수 불필요)     │ 확률론적 (몬테카를로 난수) │
- │ 적용 가능성  │ 평균 등 평활 통계량 한정   │ 중앙값, 분위수 등 전 통계량│
- │ 머신러닝 연계│ LOOCV 모델 검증            │ 배깅 (Random Forest 앙상블)│
- └──────────────┴────────────────────────────┴────────────────────────────┘
+### Ⅱ. 잭나이프 vs 부트스트랩 메커니즘 비교
 
-Ⅲ. 잭나이프의 비평활 통계량 한계와 부트스트랩의 극복
- 1. 잭나이프 한계: 중앙값 추정 시 n이 커져도 분산 추정량이 모분산으로 수렴하지 않고 발산
- 2. 부트스트랩 극복: 경험적 분포(EDF)를 통째로 생성하여 BCa(편향·가속도 보정) 신뢰구간 산출
+| 비교 항목 | 잭나이프 (Jackknife) | 부트스트랩 (Bootstrap) |
+|:---|:---|:---|
+| **추출 방식** | 비복원 (Leave-One-Out) | 중복 허용 복원 추출 |
+| **반복 횟수** | 정확히 $n$회 (표본 크기) | $B$회 (보통 1,000~10,000회) |
+| **알고리즘 성격** | 결정론적 (난수 불필요) | 확률론적 (몬테카를로 난수) |
+| **적용 가능성** | 평균 등 평활 통계량 한정 | 중앙값, 분위수 등 전 통계량 |
+| **머신러닝 연계** | LOOCV 모델 검증 | 배깅 (Random Forest 앙상블) |
 
-Ⅳ. 실무 데이터 파이프라인 적용 및 아키텍처 제언
- 1. 실무 응용: 극단적 왜도를 갖는 이커머스 결제액(ARPU) A/B 테스트에 부트스트랩 적용
- 2. 대용량 분산 최적화: 수천만 건 데이터셋에서는 Bag of Little Bootstraps(BLB) 분산 기법 채택
-```
+### Ⅲ. 잭나이프의 비평활 통계량 한계와 부트스트랩의 극복
+
+1. **잭나이프 한계**: 중앙값 추정 시 $n$이 커져도 분산 추정량이 모분산으로 수렴하지 않고 발산
+2. **부트스트랩 극복**: 경험적 분포(EDF)를 통째로 생성하여 BCa(편향·가속도 보정) 신뢰구간 산출
+
+### Ⅳ. 실무 데이터 파이프라인 적용 및 아키텍처 제언
+
+1. **실무 응용**: 극단적 왜도를 갖는 이커머스 결제액(ARPU) A/B 테스트에 부트스트랩 적용
+2. **대용량 분산 최적화**: 수천만 건 데이터셋에서는 Bag of Little Bootstraps(BLB) 분산 기법 채택
 
 ---
 
