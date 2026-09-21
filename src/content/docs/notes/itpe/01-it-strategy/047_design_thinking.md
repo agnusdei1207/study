@@ -1,7 +1,7 @@
 ---
 title: "디자인 씽킹"
 author: "Codex"
-date: "2026-09-21T21:45:00+09:00"
+date: "2026-09-22T00:01:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -30,6 +30,9 @@ extra:
 <summary>핵심 용어</summary>
 
 - **Design Thinking**: 사용자 맥락을 이해하고 문제 재정의·아이디어·시제품·시험을 반복하는 인간 중심 문제해결 접근법
+- **Empathize**: 관찰·인터뷰로 사용자 맥락과 숨은 필요를 파악하는 Mode
+- **Define**: 조사 결과를 종합해 POV로 올바른 문제를 재정의하는 Mode
+- **Ideate**: HMW 질문으로 대안을 발산하고 가설을 선별하는 Mode
 - **POV(Point of View)**: 사용자·필요·인사이트를 결합한 문제 관점 진술
 - **HMW(How Might We)**: 문제를 다양한 해법 탐색이 가능한 질문으로 전환하는 기법
 - **Persona**: 조사자료를 바탕으로 목표·행동·맥락을 표현한 대표 사용자 모델
@@ -56,10 +59,10 @@ extra:
 
 ```mermaid
 flowchart LR
-    E["1. Empathize<br/>(공감·관찰)"] --> D["2. Define<br/>(문제정의·POV)"]
-    D --> I["3. Ideate<br/>(대안발산·HMW)"]
-    I --> P["4. Prototype<br/>(가정 구체화)"]
-    P --> T["5. Test<br/>(행동관찰·평가)"]
+    E["Empathize"] --> D["Define"]
+    D --> I["Ideate"]
+    I --> P["Prototype"]
+    P --> T["Test"]
 
     T -.->|심층 재이해| E
     T -.->|문제 재정의| D
@@ -82,16 +85,12 @@ flowchart LR
 flowchart LR
     subgraph PROBLEM["문제 영역 (Problem Space)"]
         direction LR
-        DISC["Discover (발산)<br/>사용자·맥락 탐색<br/>(Empathize)"]
-        DEF["Define (수렴)<br/>올바른 문제 재정의<br/>(Define/POV)"]
-        DISC --> DEF
+        DISC["Discover(발산)"] --> DEF["Define(수렴)"]
     end
 
     subgraph SOLUTION["해법 영역 (Solution Space)"]
         direction LR
-        DEV["Develop (발산)<br/>복수 대안·시제품<br/>(Ideate/Prototype)"]
-        DEL["Deliver (수렴)<br/>사용자 검증·전달<br/>(Test)"]
-        DEV --> DEL
+        DEV["Develop(발산)"] --> DEL["Deliver(수렴)"]
     end
 
     PROBLEM -->|Problem Definition| SOLUTION
@@ -110,13 +109,10 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    S1["① 사용자 조사<br/>관찰·인터뷰·Journey 수집<br/>(산출: Evidence · Pain Point)"]
-    S2["② 문제 재정의<br/>패턴·인사이트·POV·HMW 도출<br/>(산출: Problem Statement)"]
-    S3["③ 대안·Prototype<br/>복수 아이디어·핵심가정 시각화<br/>(산출: Prototype · Test Plan)"]
-    S4["④ 사용자 Test<br/>과업수행·행동·오류 관찰<br/>(산출: Finding · 수정가설)"]
-    S5["⑤ 구현 연결<br/>검증가설·수용기준·우선순위 전환<br/>(산출: Product Backlog)"]
-
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["사용자 조사"] --> S2["문제 재정의"]
+    S2 --> S3["대안·Prototype"]
+    S3 --> S4["사용자 Test"]
+    S4 --> S5["구현 연결"]
 ```
 
 ## Ⅴ. 문제점·대응책
@@ -145,14 +141,6 @@ flowchart TD
 - **검증 체계 (Verification)**: 사용자 과업 성공률(Task Success Rate), 오류 빈도, SUS(시스템 사용성 척도) 등 정량 UT 지표와 고객 여정 맵(CJM)의 감정 저점을 실시간 매핑하여 검증함.
 - **기대 효과 (Impact)**: 엉뚱한 기능 개발로 인한 SW 재개발 비용 50% 절감, 사용자 채택률(Adoption Rate) 조기 극대화, 애자일 백로그와의 완벽한 정렬을 달성함.
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>내부자 추측 · 해법 조기 고정 · 고충실도 프로토타입 집착"] --> P2["개선 대안<br/>Problem/Solution Space 게이트 분리 및 1가설 1프로토타입 검증"]
-    P2 --> P3{"검증 판정<br/>실제 사용자 인터뷰 >= 5건 및 기각/수정 가설 존재?"}
-    P3 -->|달성| P4["실행 효과<br/>SW 재개발 비용 50% 절감 및 애자일 백로그와의 정합성 완성"]
-    P3 -->|미달| P5["보완 조치<br/>페이퍼 목업 기반 가설 재검증 및 CJM Pain Point 재도출"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -164,10 +152,10 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    E["1. Empathize<br/>(공감·관찰)"] --> D["2. Define<br/>(문제정의·POV)"]
-    D --> I["3. Ideate<br/>(대안발산·HMW)"]
-    I --> P["4. Prototype<br/>(가정 구체화)"]
-    P --> T["5. Test<br/>(행동관찰·평가)"]
+    E["Empathize"] --> D["Define"]
+    D --> I["Ideate"]
+    I --> P["Prototype"]
+    P --> T["Test"]
 
     T -.->|심층 재이해| E
     T -.->|문제 재정의| D

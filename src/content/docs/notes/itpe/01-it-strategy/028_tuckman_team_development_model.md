@@ -1,7 +1,7 @@
 ---
 title: "터크만 팀 발달 모델"
 author: "Codex"
-date: "2026-09-21T22:36:00+09:00"
+date: "2026-09-21T23:46:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -53,10 +53,10 @@ IT 전략·관리 → 프로젝트 관리·팀 역학 → **터크만 팀 발달
 
 ```mermaid
 flowchart TD
-    A["Forming<br/>활동: 목표·역할 명확화<br/>산출: 헌장·RACI"] --> B["Storming<br/>활동: 갈등 표면화·중재<br/>산출: 해결 규칙"]
-    B --> C["Norming<br/>활동: 규범 합의<br/>산출: Working Agreement"]
-    C --> D["Performing<br/>활동: 위임·장애 제거<br/>산출: 팀 성과"]
-    D --> E["Adjourning<br/>활동: 회고·인정<br/>산출: Lessons Learned"]
+    A["Forming(형성기)"] --> B["Storming(폭풍기)"]
+    B --> C["Norming(규범기)"]
+    C --> D["Performing(성과기)"]
+    D --> E["Adjourning(해산기)"]
 ```
 
 - **Traceability**: 팀 상태 ↔ 리더십 개입 ↔ 작업 협약 ↔ 성과·교훈의 연결
@@ -105,13 +105,6 @@ flowchart TD
 - 검증: 역할·갈등규칙 합의 여부 · 회고 개선항목의 후속 이행 확인
 - 효과: **자기조직화(Self-Organizing) 팀**의 의사결정 대기·갈등 재발 감소
 
-```mermaid
-flowchart TD
-    A["문제: 갈등 억압·일방 지시"] --> B["대안: 단계 재진단·작업 협약·회고"]
-    B --> C["판정: 역할·규칙·개선항목 이행"]
-    C --> D["효과: 갈등의 규범 전환·자율 협업"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -123,10 +116,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["Forming<br/>활동: 목표·역할 명확화<br/>산출: 헌장·RACI"] --> B["Storming<br/>활동: 갈등 표면화·중재<br/>산출: 해결 규칙"]
-    B --> C["Norming<br/>활동: 규범 합의<br/>산출: Working Agreement"]
-    C --> D["Performing<br/>활동: 위임·장애 제거<br/>산출: 팀 성과"]
-    D --> E["Adjourning<br/>활동: 회고·인정<br/>산출: Lessons Learned"]
+    A["Forming(형성기)"] --> B["Storming(폭풍기)"]
+    B --> C["Norming(규범기)"]
+    C --> D["Performing(성과기)"]
+    D --> E["Adjourning(해산기)"]
 ```
 
 ### 3. 핵심 통제

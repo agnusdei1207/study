@@ -1,7 +1,7 @@
 ---
 title: "그로스 해킹"
 author: "Codex"
-date: "2026-09-21T21:25:00+09:00"
+date: "2026-09-22T00:01:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -57,13 +57,10 @@ extra:
 
 ```mermaid
 flowchart TD
-    A1["1. Acquisition (획득)<br/>유입 경로 최적화 · CAC · 신규 가입자"]
-    A2["2. Activation (활성화)<br/>Aha Moment 최초 경험 · 온보딩 전환율"]
-    R1["3. Retention (유지)<br/>Cohort 재방문율 · Churn Rate 통제"]
-    R2["4. Revenue (매출)<br/>유료 전환율 · ARPU · LTV > 3×CAC"]
-    R3["5. Referral (추천)<br/>바이럴 계수(K > 1) · NPS"]
-
-    A1 --> A2 --> R1 --> R2 --> R3
+    A1["Acquisition(획득)"] --> A2["Activation(활성화)"]
+    A2 --> R1["Retention(유지)"]
+    R1 --> R2["Revenue(매출)"]
+    R2 --> R3["Referral(추천)"]
 ```
 
 | 단계 | 핵심 질문 | 지표 예 |
@@ -80,9 +77,9 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    F["Funnel 분석<br/>(이탈 지점 탐지)"] --> C["Cohort 분석<br/>(집단별 잔존 추적)"]
-    C --> S["Segmentation<br/>(세부 그룹 특성화)"]
-    S --> AB["A/B Test<br/>(인과관계 및 통계 검정)"]
+    F["Funnel 분석"] --> C["Cohort 분석"]
+    C --> S["Segmentation"]
+    S --> AB["A/B Test"]
 ```
 
 | 기법 | 질문 | 산출 |
@@ -98,13 +95,10 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    S1["① 목표·지표 정의<br/>고객가치·NSM·Guardrail 정의<br/>(산출: Metric Tree)"]
-    S2["② 병목 분석<br/>Funnel·Cohort·Segment 분석<br/>(산출: 성장 병목)"]
-    S3["③ 가설·우선순위<br/>원인·대안·기대효과·비용 명시<br/>(산출: Experiment Backlog)"]
-    S4["④ 실험·검정<br/>표본·기간·무작위배정·중단기준 설계<br/>(산출: 효과크기 · 신뢰구간)"]
-    S5["⑤ 학습·확산<br/>채택·기각·재설계·모니터링<br/>(산출: Decision Log)"]
-
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["목표·지표 정의"] --> S2["병목 분석"]
+    S2 --> S3["가설·우선순위"]
+    S3 --> S4["실험·검정"]
+    S4 --> S5["학습·확산"]
 ```
 
 ## Ⅴ. 문제점·대응책
@@ -133,14 +127,6 @@ flowchart TD
 - **검증 체계 (Verification)**: A/B 테스트 사전 승인제(Pre-registration) 및 최소 표본수(MDE 계산) 확정 후 통계적 유의수준(p < 0.05)과 코호트별 30일 잔존율 추적을 동시 검증함.
 - **기대 효과 (Impact)**: 허상 지표(Vanity Metric) 배제, 고객 LTV(생애가치) 25% 증대, 규제 컴플라이언스(다크패턴 방지법) 위반 리스크 원천 해소를 달성함.
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>단기 지표 집착 · Dark Pattern · Vanity Metric"] --> P2["개선 대안<br/>NSM-Guardrail 결합 및 사전 등록(Pre-registration) 기반 A/B 테스트"]
-    P2 --> P3{"검증 판정<br/>단기 CVR 상승 시 불만 CS < 15% 및 Guardrail 미침해?"}
-    P3 -->|달성| P4["실행 효과<br/>고객 LTV 25% 증대 및 다크패턴 방지 규제 준수"]
-    P3 -->|미달| P5["보완 조치<br/>Kill Switch 발동 및 잔존율(Retention) 중심 재설계"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -152,13 +138,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A1["1. Acquisition (획득)<br/>유입 경로 최적화 · CAC · 신규 가입자"]
-    A2["2. Activation (활성화)<br/>Aha Moment 최초 경험 · 온보딩 전환율"]
-    R1["3. Retention (유지)<br/>Cohort 재방문율 · Churn Rate 통제"]
-    R2["4. Revenue (매출)<br/>유료 전환율 · ARPU · LTV > 3×CAC"]
-    R3["5. Referral (추천)<br/>바이럴 계수(K > 1) · NPS"]
-
-    A1 --> A2 --> R1 --> R2 --> R3
+    A1["Acquisition(획득)"] --> A2["Activation(활성화)"]
+    A2 --> R1["Retention(유지)"]
+    R1 --> R2["Revenue(매출)"]
+    R2 --> R3["Referral(추천)"]
 ```
 
 ### 3. 핵심 통제

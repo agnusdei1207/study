@@ -1,7 +1,7 @@
 ---
 title: "NIST AI RMF"
 description: "NIST AI RMF 1.0의 GOVERN·MAP·MEASURE·MANAGE 기능과 신뢰성 특성, 생성형 AI 프로파일 적용"
-date: "2026-09-21T23:22:00+09:00"
+date: "2026-09-21T23:46:00+09:00"
 author: "Codex"
 category: "IT 경영전략"
 tags: ["NIST AI RMF", "AI 위험관리", "Trustworthy AI", "NIST AI 600-1", "AI 거버넌스"]
@@ -11,7 +11,7 @@ sidebar:
     text: "A"
 draft: false
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
   quality_grade: "A"
 ---
 
@@ -42,30 +42,9 @@ IT 전략·관리 → AI 거버넌스·신뢰성 → **NIST AI RMF**
 
 AI RMF는 고정 체크리스트가 아니라 조직의 사용 맥락, 위험 허용수준, 자원에 맞게 프로파일을 구성하는 프레임워크다. 위험관리 활동을 설계·개발·배포·운영·평가 전반에 적용하고, 영향을 받는 개인과 공동체의 관점을 포함한다.
 
-```mermaid
-flowchart LR
-    C[사용 맥락] --> R[AI 위험 식별]
-    S[이해관계자·영향 대상] --> R
-    R --> T[신뢰성 특성 평가]
-    T --> P[위험 우선순위·처리]
-    P --> L[수명주기 모니터링]
-```
-
 ## Ⅱ. 신뢰할 수 있는 AI의 특성
 
 NIST는 특성 간 상충 가능성을 인정하므로, 모든 특성을 일률적으로 최대화하기보다 맥락에 맞는 우선순위와 측정 근거를 정해야 한다.
-
-```mermaid
-mindmap
-  root((신뢰할 수 있는 AI))
-    유효성·신뢰성
-    안전성
-    보안·회복탄력성
-    책임성·투명성
-    설명가능성·해석가능성
-    개인정보 강화
-    유해 편향이 관리된 공정성
-```
 
 | 특성 | 확인 관점 |
 |---|---|
@@ -81,17 +60,17 @@ mindmap
 
 ```mermaid
 flowchart TB
-    G[GOVERN 횡단 기능<br/>정책·역할·문화·감독]
-    subgraph C[반복 위험관리]
+    G["GOVERN"]
+    subgraph C["반복 위험관리"]
         direction LR
-        M1[MAP<br/>맥락·영향 식별] --> M2[MEASURE<br/>분석·평가·검증]
-        M2 --> M3[MANAGE<br/>우선순위·처리]
+        M1["MAP"] --> M2["MEASURE"]
+        M2 --> M3["MANAGE"]
         M3 --> M1
     end
     G -.-> M1
     G -.-> M2
     G -.-> M3
-    M3 --> E[증거·잔여위험·개선]
+    M3 --> E["증거·잔여위험"]
     E --> G
 ```
 
@@ -138,15 +117,6 @@ flowchart LR
 
 NIST AI RMF의 핵심은 문서 보유가 아니라 맥락·측정·처리의 증거를 반복적으로 연결하는 것이다. 생성형 AI 프로파일을 조직의 위험 프로파일과 시험체계에 결합하고, 잔여위험의 승인과 운영 중 재평가까지 폐쇄루프로 관리해야 한다.
 
-```mermaid
-flowchart LR
-    P[조직 AI 프로파일] --> T[위험 기반 시험]
-    T --> A[배포 승인]
-    A --> M[운영 모니터링]
-    M --> I[사고·변경·드리프트]
-    I --> P
-```
-
 ## 10점 답안 압축본
 
 ### NIST AI RMF 4대 기능
@@ -155,17 +125,17 @@ NIST AI RMF는 AI 위험과 신뢰성 고려사항을 수명주기에 통합하�
 
 ```mermaid
 flowchart TB
-    G[GOVERN 횡단 기능<br/>정책·역할·문화·감독]
-    subgraph C[반복 위험관리]
+    G["GOVERN"]
+    subgraph C["반복 위험관리"]
         direction LR
-        M1[MAP<br/>맥락·영향 식별] --> M2[MEASURE<br/>분석·평가·검증]
-        M2 --> M3[MANAGE<br/>우선순위·처리]
+        M1["MAP"] --> M2["MEASURE"]
+        M2 --> M3["MANAGE"]
         M3 --> M1
     end
     G -.-> M1
     G -.-> M2
     G -.-> M3
-    M3 --> E[증거·잔여위험·개선]
+    M3 --> E["증거·잔여위험"]
     E --> G
 ```
 

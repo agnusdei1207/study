@@ -1,7 +1,7 @@
 ---
 title: "ITSM"
 author: "Codex"
-date: "2026-09-21T20:45:00+09:00"
+date: "2026-09-22T00:01:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -35,6 +35,8 @@ extra:
 - **SLA(Service Level Agreement)**: 서비스 제공자와 고객이 합의한 서비스 수준과 측정·보고 기준
 - **KEDB(Known Error Database)**: Known Error와 Workaround를 관리하는 지식 저장소
 - **CAB(Change Advisory Board)**: 변경의 평가·우선순위·승인을 지원하는 자문기구
+- **RFC(Request for Change)**: 변경 제안을 공식적으로 요청하는 기록·절차
+- **XLA(eXperience Level Agreement)**: 사용자 경험 관점에서 서비스 수준을 약속하는 협약
 - **CMDB(Configuration Management Database)**: 서비스와 CI(Configuration Item)의 관계·속성·상태를 관리하는 데이터베이스
 - **SVS(Service Value System)**: ITIL 4에서 수요와 기회를 가치로 전환하는 구성요소 체계
 
@@ -57,9 +59,9 @@ extra:
 
 ```mermaid
 flowchart LR
-    SVS["ITIL 4<br/>(SVS & Practices)"] --> GOV["ISO/IEC 20000-1<br/>(SMS 체계 & 적합성)"]
-    GOV --> SLA_BOX["SLA / XLA<br/>(서비스 수준 & 경험 약속)"]
-    SLA_BOX --> TOOL["도구 인프라<br/>(Service Desk · KEDB · CMDB)"]
+    SVS["ITIL 4"] --> GOV["ISO/IEC 20000-1"]
+    GOV --> SLA_BOX["SLA / XLA"]
+    SLA_BOX --> TOOL["도구 인프라"]
 ```
 
 | 체계 | 역할 | 적용 초점 |
@@ -75,11 +77,11 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    SD["① Service Desk / Incident<br/>단일 접점 · 신속 복구(Workaround)"] -->|RCA 분석 요청| PM["② Problem Management<br/>근본 원인 분석 · KEDB 등록"]
-    PM -->|RFC 발행| CE["③ Change Enablement<br/>위험·영향 평가(CAB) · 변경 승인"]
-    CE -->|배포 위임| RD["④ Release & Deployment<br/>스테이징 검증 · CI/CD 배포 · CMDB 갱신"]
-    RD -->|성과 지표 환류| CSI["⑤ CSI (지속적 서비스 개선)<br/>SLA/XLA 측정 · 서비스 백로그 반영"]
-    CSI -.->|개선안 피드백| SD
+    SD["Incident 관리"] -->|"근본 원인 분석 요청"| PM["Problem 관리"]
+    PM -->|"RFC 발행"| CE["Change 관리"]
+    CE -->|"배포 위임"| RD["Release·Deployment"]
+    RD -->|"성과 지표 환류"| CSI["지속적 서비스 개선"]
+    CSI -.->|"개선안 피드백"| SD
 ```
 
 | Practice | 목표 | 핵심 활동 | 산출 |
@@ -96,13 +98,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    S1["① 접수·분류<br/>요청·Incident 기록·우선순위화<br/>(산출: Ticket)"]
-    S2["② 복구·원인분석<br/>Workaround·원인·Known Error 관리<br/>(산출: KEDB · 개선요청)"]
-    S3["③ 변경평가<br/>영향·위험·일정·복구계획 검토<br/>(산출: 승인 Change)"]
-    S4["④ 릴리즈·배포<br/>검증·배포·서비스 확인<br/>(산출: Release · CMDB 갱신)"]
-    S5["⑤ 측정·개선<br/>SLA·경험·추세·재발 분석<br/>(산출: 개선 Backlog)"]
-
-    S1 --> S2 --> S3 --> S4 --> S5
+    S1["접수·분류"] --> S2["복구·원인분석"]
+    S2 --> S3["변경평가"]
+    S3 --> S4["릴리즈·배포"]
+    S4 --> S5["측정·개선"]
 ```
 
 ## Ⅴ. 문제점·대응책
@@ -132,14 +131,6 @@ flowchart TD
 - **검증 절차**: 분기별 KEDB 미해결 에러(Known Error) 재발 건수 분석 및 CAB 변경 승인 리드타임 측정.
 - **기대 효과**: 배포 속도와 시스템 안정성의 양립, 서비스 연속성 보장 및 최종 사용자 경험(XLA) 극대화.
 
-```mermaid
-flowchart TD
-    P1["현행 한계<br/>프로세스 단절 · 승인 병목 · Green Melon 지표 왜곡"] --> P2["개선 대안<br/>티켓-변경-배포-형상 E2E 추적 및 위험 기반 Standard Change 자동화"]
-    P2 --> P3{"검증 판정<br/>변경 작업 2차 장애율 < 1% 및 MTTR 달성률 >= 99%?"}
-    P3 -->|달성| P4["실행 효과<br/>배포 속도와 시스템 안정성 양립 · 사용자 경험(XLA) 극대화"]
-    P3 -->|미달| P5["보완 조치<br/>KEDB 재발 원인 정밀 재분석 및 CAB 승인 리드타임 재설계"]
-```
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -151,11 +142,11 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    SD["① Service Desk / Incident<br/>단일 접점 · 신속 복구(Workaround)"] -->|RCA 분석 요청| PM["② Problem Management<br/>근본 원인 분석 · KEDB 등록"]
-    PM -->|RFC 발행| CE["③ Change Enablement<br/>위험·영향 평가(CAB) · 변경 승인"]
-    CE -->|배포 위임| RD["④ Release & Deployment<br/>스테이징 검증 · CI/CD 배포 · CMDB 갱신"]
-    RD -->|성과 지표 환류| CSI["⑤ CSI (지속적 서비스 개선)<br/>SLA/XLA 측정 · 서비스 백로그 반영"]
-    CSI -.->|개선안 피드백| SD
+    SD["Incident 관리"] -->|"근본 원인 분석 요청"| PM["Problem 관리"]
+    PM -->|"RFC 발행"| CE["Change 관리"]
+    CE -->|"배포 위임"| RD["Release·Deployment"]
+    RD -->|"성과 지표 환류"| CSI["지속적 서비스 개선"]
+    CSI -.->|"개선안 피드백"| SD
 ```
 
 ### 3. 핵심 통제

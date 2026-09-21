@@ -1,14 +1,14 @@
 ---
 title: "SWOT 분석"
 author: "Codex"
-date: "2026-09-21T23:13:00+09:00"
+date: "2026-09-21T23:46:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -48,10 +48,10 @@ IT 전략·관리 → 환경·역량 분석 → **SWOT 분석**
 
 ```mermaid
 flowchart TD
-    A["범위·목표<br/>활동: 대상·기간·결정 정의<br/>산출: 분석범위"] --> B["팩트 수집<br/>활동: 외부·내부 분석<br/>산출: 근거목록"]
-    B --> C["SWOT 분류<br/>활동: S·W·O·T 판정<br/>산출: SWOT"]
-    C --> D["TOWS 교차<br/>활동: SO·ST·WO·WT 도출<br/>산출: 전략대안"]
-    D --> E["우선순위·실행<br/>활동: 효과·실행성·위험 평가<br/>산출: 로드맵"]
+    A["범위·목표 정의"] --> B["팩트 수집"]
+    B --> C["SWOT 분류"]
+    C --> D["TOWS 교차"]
+    D --> E["우선순위·실행"]
 ```
 
 ## Ⅲ. TOWS 전략
@@ -60,10 +60,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    R["TOWS"] --> SO["SO<br/>강점으로 기회 활용"]
-    R --> ST["ST<br/>강점으로 위협 대응"]
-    R --> WO["WO<br/>약점 보완 후 기회 활용"]
-    R --> WT["WT<br/>약점·위협 노출 축소"]
+    R["TOWS 교차"] --> SO["SO: 강점으로 기회 활용"]
+    R --> ST["ST: 강점으로 위협 대응"]
+    R --> WO["WO: 약점 보완 후 기회 활용"]
+    R --> WT["WT: 약점·위협 노출 축소"]
 ```
 
 ## Ⅳ. 분석도구 비교
@@ -95,12 +95,6 @@ flowchart TD
 - 검증: 통제 가능성 · 전략 연결 · 책임·자원·KPI
 - 효과: 전략 정합성·실행력 향상
 
-```mermaid
-flowchart TD
-    A["문제: 나열·혼동·실행단절"] --> B["대안: 근거·TOWS·다기준 평가"]
-    B --> C["판정: 전략-과제-책임-KPI"] --> D["효과: 우선순위·실행력 확보"]
-```
-
 ## 1교시 10점 답안 발췌
 
 - 정의: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)**은 내부 역량과 외부 환경을 분류하고 TOWS로 실행전략을 도출하는 프레임워크
@@ -108,10 +102,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["범위·목표<br/>활동: 대상·기간·결정 정의<br/>산출: 분석범위"] --> B["팩트 수집<br/>활동: 외부·내부 분석<br/>산출: 근거목록"]
-    B --> C["SWOT 분류<br/>활동: S·W·O·T 판정<br/>산출: SWOT"]
-    C --> D["TOWS 교차<br/>활동: SO·ST·WO·WT 도출<br/>산출: 전략대안"]
-    D --> E["우선순위·실행<br/>활동: 효과·실행성·위험 평가<br/>산출: 로드맵"]
+    A["범위·목표 정의"] --> B["팩트 수집"]
+    B --> C["SWOT 분류"]
+    C --> D["TOWS 교차"]
+    D --> E["우선순위·실행"]
 ```
 
 ## 출제 이력과 검증 출처

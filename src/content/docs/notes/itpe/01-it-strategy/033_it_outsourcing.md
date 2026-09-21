@@ -1,14 +1,14 @@
 ---
 title: "IT 아웃소싱"
 author: "Codex"
-date: "2026-09-21T23:08:00+09:00"
+date: "2026-09-21T23:46:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GPT-5.6 Sol"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -48,10 +48,10 @@ IT 전략·관리 → IT 운영전략·소싱 거버넌스 → **IT 아웃소싱
 
 ```mermaid
 flowchart TD
-    A["전략<br/>활동: 범위·Make or Buy·RO<br/>산출: 소싱전략"] --> B["선정·계약<br/>활동: RFP·평가·SLA<br/>산출: 계약·SLA"]
-    B --> C["전환<br/>활동: 지식·자산·계정 인계<br/>산출: 전환계획"]
-    C --> D["운영<br/>활동: 성과·위험·변경 관리<br/>산출: 성과보고"]
-    D --> E["종료·재소싱<br/>활동: 이전·회수·검증<br/>산출: Exit 결과"]
+    A["전략 수립"] --> B["선정·계약"]
+    B --> C["전환"]
+    C --> D["운영·SLA 관리"]
+    D --> E["종료·재소싱"]
 ```
 
 ## Ⅲ. Make or Buy 선택
@@ -104,12 +104,6 @@ quadrantChart
 - 검증: 자료반환 · 계정회수 · 빌드·배포 · 전환 리허설
 - 효과: 통제권 유지 · 소싱 가역성 · 서비스 연속성
 
-```mermaid
-flowchart TD
-    A["문제: 공동화·Lock-in·SLA 착시"] --> B["대안: RO·XLA·Exit Plan"]
-    B --> C["판정: 승인권·자료반환·전환검증"] --> D["효과: 통제권·가역성 유지"]
-```
-
 ## 1교시 10점 답안 발췌
 
 - 정의: IT 업무를 외부 전문조직에 위탁하고 **SLA(Service Level Agreement)**로 성과·위험을 관리하는 소싱 체계
@@ -117,10 +111,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["전략<br/>활동: 범위·Make or Buy·RO<br/>산출: 소싱전략"] --> B["선정·계약<br/>활동: RFP·평가·SLA<br/>산출: 계약·SLA"]
-    B --> C["전환<br/>활동: 지식·자산·계정 인계<br/>산출: 전환계획"]
-    C --> D["운영<br/>활동: 성과·위험·변경 관리<br/>산출: 성과보고"]
-    D --> E["종료·재소싱<br/>활동: 이전·회수·검증<br/>산출: Exit 결과"]
+    A["전략 수립"] --> B["선정·계약"]
+    B --> C["전환"]
+    C --> D["운영·SLA 관리"]
+    D --> E["종료·재소싱"]
 ```
 
 ## 출제 이력과 검증 출처
