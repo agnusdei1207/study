@@ -11,6 +11,9 @@ tags:
   - "내장WAS"
   - "마이크로서비스"
 date: "2026-09-20"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -97,28 +100,90 @@ date: "2026-09-20"
 
 ## 2. 아키텍처 및 핵심 메커니즘
 
-### 스프링 부트 3대 핵심 아키텍처
+### 스프링 부트 3대 핵심 기둥 및 내장 컨테이너 구조
 
-```text
-+-------------------------------------------------------------------------+
-|                  스프링 부트(Spring Boot) 핵심 구성 구조                |
-+-------------------------------------------------------------------------+
-|                                                                         |
-|                       [ Spring Boot Application ]                       |
-|                                    │                                    |
-|          ┌─────────────────────────┼─────────────────────────┐          |
-|          v                         v                         v          |
-|  [ 1. Starters ]         [ 2. Auto-Config ]        [ 3. Actuator ]      |
-|  - starter-web           - @ConditionalOnClass     - /actuator/health   |
-|  - starter-data-jpa      - @ConditionalOnMissing   - /actuator/metrics  |
-|  - 의존성 버전 자동 조정 - 클래스패스 스캔 빈 등록 - 운영 관측성 및 프로브 |
-|                                    │                                    |
-|                                    v                                    |
-|                   [ 내장 서블릿 컨테이너 (Embedded WAS) ]               |
-|                   - 내장 Tomcat / Jetty / Undertow                      |
-|                   - 단일 Fat JAR 패키징 및 컨테이너 배포 최적화         |
-+-------------------------------------------------------------------------+
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <!-- Frame -->
+    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">스프링 부트(Spring Boot) 핵심 3대 기둥 및 아키텍처</text>
+
+    <!-- Column 1: Starters -->
+    <rect x="15" y="38" width="155" height="115" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="15" y="38" width="155" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="92" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">① Starters (의존성 관리)</text>
+    <text x="92" y="74" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">spring-boot-starter-*</text>
+    <text x="92" y="92" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- starter-web / data-jpa</text>
+    <text x="92" y="108" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 라이브러리 버전 충돌 0</text>
+    <text x="92" y="132" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[BOM 기반 버전 정합성]</text>
+
+    <!-- Column 2: Auto-Config -->
+    <rect x="180" y="38" width="160" height="115" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.4"/>
+    <rect x="180" y="38" width="160" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="260" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">② Auto-Configuration</text>
+    <text x="260" y="74" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">관례 우선 설정 (CoC)</text>
+    <text x="260" y="92" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- @ConditionalOnClass</text>
+    <text x="260" y="108" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- DataSource/Dispatcher 빈</text>
+    <text x="260" y="132" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[XML 설정 전면 제거]</text>
+
+    <!-- Column 3: Actuator -->
+    <rect x="350" y="38" width="155" height="115" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="350" y="38" width="155" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="427" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">③ Actuator (운영 모니터링)</text>
+    <text x="427" y="74" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">프로덕션 관측성</text>
+    <text x="427" y="92" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- /actuator/health (K8s)</text>
+    <text x="427" y="108" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- /actuator/metrics (Prometheus)</text>
+    <text x="427" y="132" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[클라우드 네이티브 프로브]</text>
+
+    <!-- Bottom: Embedded WAS & Fat JAR -->
+    <rect x="15" y="160" width="490" height="42" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
+    <text x="260" y="177" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">내장 서블릿 컨테이너(Embedded WAS) 기반 단일 실행 Fat JAR (app.jar)</text>
+    <text x="260" y="192" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">Tomcat/Jetty 내장 $\rightarrow$ 외장 WAS 설치 없이 `java -jar` 단독 실행 및 Docker 컨테이너화 최적화</text>
+  </svg>
+</div>
+
+### GraalVM 네이티브 이미지(AOT) 및 K8s 복원력 구조
+
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="sb-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Frame -->
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">Spring Boot 3.x GraalVM AOT 컴파일 및 K8s 지능적 프로브</text>
+
+    <!-- Left Box: AOT Build Pipeline -->
+    <rect x="15" y="42" width="240" height="135" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="15" y="42" width="240" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="135" y="57" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">GraalVM Native Image (AOT)</text>
+
+    <text x="25" y="80" font-size="7" fill="var(--color-text, #1e293b)">1. 소스코드 + 정적 분석 사전 수행</text>
+    <text x="25" y="98" font-size="7" fill="var(--color-text, #1e293b)">2. 동적 리플렉션/프록시 사전 바인딩</text>
+    <text x="25" y="116" font-size="7" fill="var(--color-text, #1e293b)">3. OS 네이티브 바이너리 기계어 빌드</text>
+    
+    <rect x="25" y="130" width="220" height="34" rx="4" fill="var(--color-bg-subtle, #f0fdf4)" stroke="#16a34a" stroke-width="1"/>
+    <text x="135" y="145" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">기동 시간: 15초 $\rightarrow$ 0.1초 단축</text>
+    <text x="135" y="157" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">서버리스 FaaS / 오토스케일링 최적화</text>
+
+    <!-- Right Box: K8s Probe Resilience -->
+    <rect x="265" y="42" width="240" height="135" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
+    <rect x="265" y="42" width="240" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="385" y="57" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">쿠버네티스 헬스 프로브 연동</text>
+
+    <!-- Liveness -->
+    <rect x="275" y="72" width="220" height="42" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="282" y="86" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">Liveness Probe: /actuator/health/liveness</text>
+    <text x="282" y="100" font-size="6.5" fill="var(--color-text-muted, #64748b)">치명적 데드락 시 컨테이너 재시작 (Restart)</text>
+
+    <!-- Readiness -->
+    <rect x="275" y="122" width="220" height="45" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="282" y="136" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">Readiness Probe: /actuator/health/readiness</text>
+    <text x="282" y="150" font-size="6.5" fill="var(--color-text-muted, #64748b)">DB 연결 일시 장애 시 트래픽 유입만 차단</text>
+  </svg>
+</div>
 
 ### 스프링 부트 3대 핵심 기둥
 
@@ -181,7 +246,53 @@ date: "2026-09-20"
 
 스프링 부트 Actuator의 `/actuator/health`는 단순한 성공/실패 응답을 넘어 **Liveness(생존 여부)와 Readiness(트래픽 수신 준비 여부)**를 분리 관리한다. DB 연결 실패 시 Readiness만 비활성화하여 트래픽 유입만 차단하고 인스턴스 불필요 재시작을 방지하는 지능적 복원력(Resilience) 설계 패턴을 실무적 강점으로 서술한다.
 
-## 5. 참고 및 연계 학습
+## 5. 결론 및 종합 제언
+
+### 학습자 통찰 메모 — 답안 밖
+
+[핵심 통찰]
+스프링 부트는 단순한 '편리한 프레임워크 도구'가 아니다. 복잡한 엔터프라이즈 자바를 **'마이크로서비스와 클라우드 컨테이너 환경에 최적화된 경량 독립 실행체(Fat JAR)'**로 재정의한 백엔드 아키텍처의 패러다임 전환이다. 특히 Spring Boot 3.x의 GraalVM AOT 컴파일과 K8s 헬스체크 결합은 클라우드 네이티브 개발의 완성을 보여준다.
+
+나라면:
+본 시험에서 스프링 부트가 출제되면, Starter-AutoConfig-Actuator 3대 기둥과 CoC 철학을 명쾌하게 정리한 뒤 **(1) 동적 리플렉션의 한계를 극복하고 0.1초 콜드 스타트를 달성하는 GraalVM AOT 컴파일, (2) K8s Liveness/Readiness와 1:1 매핑되는 무중단 배포 복원력, (3) 프로덕션 보안을 위한 Actuator 포트 분리 거버넌스**를 3단락에 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 마이크로서비스 컨테이너 환경에서 콜드 스타트 지연(10초 초과) 및 XML 설정 복잡도 심화 시 도입 판정
+- **대응 방안**: Spring Boot 3.x 표준화 및 GraalVM Native Image 도입, K8s 배포 파이프라인에 Actuator 헬스체크 연계
+- **검증 체계**: CI 단계에서 `management.server.port` 분리 검증 및 의존성 CVE 취약점 자동 점검 파이프라인 가동
+- **기대 효과**: 초기 프로젝트 부트스트랩 기간 80% 단축 및 컨테이너 메모리 60% 절감, 무중단 롤링 배포 안정성 확보
+
+<div class="itpe-pipeline-container" role="region" aria-label="스프링 부트 클라우드 네이티브 배포 및 관측성 파이프라인">
+  <div class="itpe-pipeline-header">
+    <span class="itpe-pipeline-title">스프링 부트 클라우드 네이티브 배포 및 관측성 파이프라인</span>
+    <span class="itpe-pipeline-badge">마이크로서비스</span>
+  </div>
+  <div class="itpe-pipeline-grid">
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">1단계: Starter 주입</div>
+      <div class="itpe-card-title">자동 의존성 해결</div>
+      <div class="itpe-card-body">검증된 호환 라이브러리 세트 자동 주입 및 BOM 기반 버전 충돌 제거</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">2단계: AOT 컴파일</div>
+      <div class="itpe-card-title">GraalVM 네이티브</div>
+      <div class="itpe-card-body">빌드 시 리플렉션 정적 사전 확정 및 0.1초 초경량 바이너리 생성</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">3단계: 단일 패키징</div>
+      <div class="itpe-card-title">Fat JAR 컨테이너</div>
+      <div class="itpe-card-body">내장 WAS 포함 단독 실행 파일 빌드 및 OCI 표준 컨테이너 이미지 패키징</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">4단계: 운영 통제</div>
+      <div class="itpe-card-title">K8s Actuator 프로브</div>
+      <div class="itpe-card-body">Liveness/Readiness 분리 관리로 장애 격리 및 무중단 배포 보증</div>
+    </div>
+  </div>
+</div>
+
+## 6. 참고 및 연계 학습
 
 - [메시지 큐(Message Queue)](./140_message_queue.md)
 - [성능 요구사항(Performance Requirement)](./149_performance_requirement.md)

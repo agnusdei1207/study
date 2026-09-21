@@ -10,6 +10,9 @@ tags:
   - "FTA"
   - "FMEA"
 date: "2026-09-20"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -97,32 +100,113 @@ date: "2026-09-20"
 
 ### SW 안전진단 4대 핵심 영역 프레임워크
 
-```text
-+-------------------------------------------------------------------------+
-|                  SW 안전진단 가이드 4대 진단 영역                       |
-+-------------------------------------------------------------------------+
-|                                                                         |
-|      [ 1. 안전성 분석 (Safety Analysis) ]                                |
-|      - 위험원(Hazard) 도출 및 리스크 등급 산정                          |
-|      - 연역적 고장 분석(FTA) 및 귀납적 고장 형태 영향 분석(FMEA)        |
-|                         │                                               |
-|                         v                                               |
-|      [ 2. 아키텍처 및 설계 (Architecture & Design) ]                     |
-|      - 결함 허용(Fault Tolerance) 및 페일세이프(Fail-Safe) 설계 검증     |
-|      - 하드웨어/소프트웨어 이중화, 감시 타이머(Watchdog Timer), 인터락   |
-|                         │                                               |
-|                         v                                               |
-|      [ 3. 소스코드 정적 진단 (Source Code Verification) ]                |
-|      - 안전 코딩 표준 준수 (MISRA-C, CWE-658, CERT C)                   |
-|      - 동적 메모리 할당 제한, 무한 루프, 버퍼 오버플로우, 레이스 컨디션  |
-|                         │                                               |
-|                         v                                               |
-|      [ 4. 안전성 동적 테스팅 (Safety Testing) ]                          |
-|      - 결함 주입 시험(Fault Injection): 센서 고장 및 통신 단절 시뮬레이션|
-|      - 극한 경계값 스트레스 테스트, 안전 요구사항 추적성(RTM) 검증      |
-|                                                                         |
-+-------------------------------------------------------------------------+
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="safety-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Background Frame -->
+    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">SW 안전진단 4대 핵심 진단 영역 프레임워크</text>
+
+    <!-- Card 1: Safety Analysis -->
+    <rect x="15" y="40" width="115" height="155" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="15" y="40" width="115" height="24" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="72" y="56" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">1. 안전성 분석</text>
+    <text x="72" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">위험원(Hazard) 도출</text>
+    <text x="72" y="98" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- FTA (연역 분석)</text>
+    <text x="72" y="114" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- FMEA (귀납 분석)</text>
+    <text x="72" y="130" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 위험도 등급(SIL)</text>
+    <text x="72" y="165" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[안전 요구사항]</text>
+
+    <line x1="130" y1="117" x2="138" y2="117" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#safety-arrow)"/>
+
+    <!-- Card 2: Architecture & Design -->
+    <rect x="140" y="40" width="115" height="155" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="140" y="40" width="115" height="24" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="197" y="56" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">2. 설계 검증</text>
+    <text x="197" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">방어적 구조 설계</text>
+    <text x="197" y="98" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- Fail-Safe 메커니즘</text>
+    <text x="197" y="114" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- H/W & S/W 이중화</text>
+    <text x="197" y="130" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 와치독 & 인터락</text>
+    <text x="197" y="165" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[결함 허용 설계]</text>
+
+    <line x1="255" y1="117" x2="263" y2="117" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#safety-arrow)"/>
+
+    <!-- Card 3: Source Code Verification -->
+    <rect x="265" y="40" width="115" height="155" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="265" y="40" width="115" height="24" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="322" y="56" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">3. 소스 정적 진단</text>
+    <text x="322" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">안전 코딩 표준</text>
+    <text x="322" y="98" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- MISRA-C / CWE</text>
+    <text x="322" y="114" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 동적할당(malloc) 금지</text>
+    <text x="322" y="130" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 무한루프/오버플로</text>
+    <text x="322" y="165" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[정적 분석 SAST]</text>
+
+    <line x1="380" y1="117" x2="388" y2="117" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#safety-arrow)"/>
+
+    <!-- Card 4: Dynamic Safety Testing -->
+    <rect x="390" y="40" width="115" height="155" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
+    <rect x="390" y="40" width="115" height="24" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="447" y="56" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">4. 동적 안전 시험</text>
+    <text x="447" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">견고성 및 복원력</text>
+    <text x="447" y="98" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 결함 주입 시험</text>
+    <text x="447" y="114" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 극한 경계값 스트레스</text>
+    <text x="447" y="130" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 안전 상태 전이 검증</text>
+    <text x="447" y="165" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[최종 안전 인증]</text>
+  </svg>
+</div>
+
+### 결함 주입(Fault Injection) 및 Fail-Safe 상태 전이 메커니즘
+
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="f-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+      <marker id="danger-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+      </marker>
+    </defs>
+    <!-- Background Frame -->
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">결함 주입(Fault Injection) 시 Fail-Safe 상태 전이 흐름</text>
+
+    <!-- State 1: Normal Operation -->
+    <rect x="20" y="50" width="125" height="65" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
+    <text x="82" y="72" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">정상 운영 상태</text>
+    <text x="82" y="90" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">실시간 제어 수행</text>
+    <text x="82" y="103" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">Watchdog Heartbeat 송신</text>
+
+    <!-- Fault Injection Arrow -->
+    <line x1="145" y1="82" x2="185" y2="82" stroke="#ef4444" stroke-width="1.8" marker-end="url(#danger-arrow)"/>
+    <text x="165" y="75" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#dc2626">결함 주입</text>
+
+    <!-- State 2: Fault Detection & Isolation -->
+    <rect x="190" y="50" width="140" height="65" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="260" y="72" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">결함 감지 및 인터락</text>
+    <text x="260" y="90" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">타임아웃 / 패킷 오류</text>
+    <text x="260" y="103" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">비정상 제어 즉시 차단</text>
+
+    <!-- Safe Transition Arrow -->
+    <line x1="330" y1="82" x2="370" y2="82" stroke="var(--color-primary, #2563eb)" stroke-width="1.8" marker-end="url(#f-arrow)"/>
+    <text x="350" y="75" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">전이 제어</text>
+
+    <!-- State 3: Safe State (Fail-Safe) -->
+    <rect x="375" y="50" width="125" height="65" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="437" y="72" text-anchor="middle" font-size="8" font-weight="bold" fill="#16a34a">안전 상태 (Safe State)</text>
+    <text x="437" y="90" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">신호 적색 전환 / 비상 정지</text>
+    <text x="437" y="103" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">인명 피해 원천 방지</text>
+
+    <!-- Bottom Verification Criteria -->
+    <rect x="20" y="135" width="480" height="42" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="260" y="153" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">안전성 진단 핵심 합격 기준 (Pass/Fail Gate)</text>
+    <text x="260" y="168" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">임의의 하드웨어/통신 단절 시 0.1초 이내 Safe State 진입 및 고장 알림 발생 여부</text>
+  </svg>
+</div>
 
 ### 안전진단 4대 상세 점검 항목
 
@@ -197,7 +281,53 @@ date: "2026-09-20"
 
 기존 가이드라인이 부품 고장 중심의 고전 기법(FTA, FMEA)에 머물러 있는 한계를 비판적으로 짚고, 현대의 복잡한 소프트웨어 집약형 시스템(자율주행, 스마트 철도)에서는 부품 고장이 없어도 상호작용 오류로 사고가 터질 수 있음을 지적한다. 따라서 MIT 낸시 레브슨 교수의 **STPA 기반 피드백 제어 루프 위험원 분석을 차세대 안전진단 가이드라인의 핵심 기법으로 도입해야 함**을 3단락 또는 결론으로 제시한다.
 
-## 5. 참고 및 연계 학습
+## 5. 결론 및 종합 제언
+
+### 학습자 통찰 메모 — 답안 밖
+
+[핵심 통찰]
+SW 안전진단은 기능이 '동작하는가'를 보는 것이 아니라, **'고장이 났을 때 사람이 죽지 않고 안전하게 멈추는가'**를 점검하는 학문이다. 따라서 핵심은 결함 0%를 장담하는 것이 아니라, 필연적으로 발생하는 하드웨어/네트워크 결함 앞에서도 시스템이 무조건 Safe State로 착륙하도록 보장하는 Fail-Safe 인터락 설계다.
+
+나라면:
+본 시험에서 SW 안전 관련 문제가 출제되면, 가이드라인의 4단계 점검 프로세스를 표로 정리한 뒤 **(1) 부품 결함뿐 아니라 복잡한 컴포넌트 상호작용 오류를 잡는 STPA 확장, (2) 소스코드 동적 메모리(malloc) 완전 배제를 위한 MISRA-C 정적 분석, (3) 소프트웨어진흥법 제46조에 따른 발주-감리 제도적 안전성 보증 체계**를 종합 제언으로 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 국가 기반시설 및 생명·안전 직결 소프트웨어 사업에서 위험원 분석(FTA/FMEA) 누락 및 Fail-Safe 미설계 시 부적격 판정
+- **대응 방안**: 전주기 안전 생명주기를 수립하고 MISRA-C 정적 검증 및 결함 주입(Fault Injection) 하드웨어 연동 시험 의무화
+- **검증 체계**: RTM(요구사항 추적표)을 기반으로 모든 위험원에 대해 1:1 안전 방어 로직과 테스트 케이스 커버리지 100% 입증
+- **기대 효과**: 소프트웨어 잠재 위험 조기 제거 및 재난 수준의 운영 사고 예방, 국가 핵심 인프라 신뢰도 확보
+
+<div class="itpe-pipeline-container" role="region" aria-label="SW 안전진단 가이드 기반 전주기 안전 무결성 파이프라인">
+  <div class="itpe-pipeline-header">
+    <span class="itpe-pipeline-title">SW 안전진단 가이드 기반 전주기 안전 무결성 파이프라인</span>
+    <span class="itpe-pipeline-badge">안전 거버넌스</span>
+  </div>
+  <div class="itpe-pipeline-grid">
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">1단계: 위험원 분석</div>
+      <div class="itpe-card-title">FTA & FMEA 수행</div>
+      <div class="itpe-card-body">시스템 사고 시나리오 및 최상위 위험원(Top Event) 도출</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">2단계: 방어 설계</div>
+      <div class="itpe-card-title">Fail-Safe 구조화</div>
+      <div class="itpe-card-body">워치독 타이머, 모듈 이중화, 비상 차단 인터락 아키텍처 구현</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">3단계: 정적 통제</div>
+      <div class="itpe-card-title">MISRA-C 정적 진단</div>
+      <div class="itpe-card-body">동적 메모리 할당 및 무한 루프 등 런타임 오류 원천 배제</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">4단계: 견고성 검증</div>
+      <div class="itpe-card-title">결함 주입 테스팅</div>
+      <div class="itpe-card-body">통신 단절·센서 오류 강제 주입 후 Safe State 천이 확인</div>
+    </div>
+  </div>
+</div>
+
+## 6. 참고 및 연계 학습
 
 - [소프트웨어 안전성 가이드라인](./097_sw_safety_guidelines.md)
 - [STPA(시스템 이론 프로세스 분석)](./108_stpa.md)

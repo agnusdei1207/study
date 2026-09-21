@@ -11,6 +11,9 @@ tags:
   - "레거시현대화"
   - "리먼의법칙"
 date: "2026-09-20"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -98,26 +101,94 @@ date: "2026-09-20"
 
 ### 3R 프레임워크의 유기적 순환 아키텍처
 
-```text
-+-------------------------------------------------------------------------+
-|                  소프트웨어 유지보수 3R 유기적 상호관계                  |
-+-------------------------------------------------------------------------+
-|                                                                         |
-|            [ 상위 설계 및 아키텍처 모델 ] <────── 재공학 ──────┐        |
-|                         ▲                                       │        |
-|                         │                                       │        |
-|              역공학     │ 설계 정보 추출            아키텍처    │ 신규   |
-|            (Reverse)    │ (코드 -> 설계)            현대화      │ 구현   |
-|                         │                                       v        |
-|            [ 레거시 소스코드 / 바이너리 ] ─── 재사용 ───> [ 신규 시스템 ]|
-|                                             (Reuse)                     |
-|                                                                         |
-|  * 3R 순환 단계:                                                        |
-|    1. 역공학: 소스코드/DB 스키마 정적 분석 ──> UML, ERD, 비즈니스 룰 복원|
-|    2. 재공학: 복원된 모델을 MSA/클라우드 네이티브로 리팩토링 및 재구축   |
-|    3. 재사용: 검증된 레거시 공통 모듈을 REST API 컴포넌트로 포장 자산화 |
-+-------------------------------------------------------------------------+
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="r-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Frame -->
+    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">소프트웨어 유지보수 3R 순환 체계 및 상호관계</text>
+
+    <!-- Top Box: Abstract Level (Design & Architecture) -->
+    <rect x="140" y="38" width="240" height="50" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
+    <text x="260" y="58" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">상위 설계 및 아키텍처 모델</text>
+    <text x="260" y="74" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">UML 클래스/시퀀스도 · 전사 ERD · 비즈니스 룰</text>
+
+    <!-- Bottom Left: Legacy Code -->
+    <rect x="25" y="145" width="180" height="55" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="115" y="165" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">레거시 시스템</text>
+    <text x="115" y="180" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">COBOL, C, 레거시 소스/바이너리</text>
+
+    <!-- Bottom Right: New Modern System -->
+    <rect x="315" y="145" width="180" height="55" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.4"/>
+    <text x="405" y="165" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">신규 현대화 시스템</text>
+    <text x="405" y="180" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">클라우드 네이티브 MSA / API</text>
+
+    <!-- Arrow 1: Reverse (Bottom-Left to Top) -->
+    <line x1="130" y1="145" x2="185" y2="92" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#r-arrow)"/>
+    <text x="140" y="115" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">① 역공학 (Reverse)</text>
+
+    <!-- Arrow 2: Re-engineering (Top to Bottom-Right) -->
+    <line x1="335" y1="92" x2="390" y2="145" stroke="#16a34a" stroke-width="1.5" marker-end="url(#r-arrow)"/>
+    <text x="380" y="115" font-size="7" font-weight="bold" fill="#16a34a)">② 재공학 (Re-eng)</text>
+
+    <!-- Arrow 3: Reuse (Bottom-Left to Bottom-Right) -->
+    <line x1="205" y1="172" x2="310" y2="172" stroke="#ca8a04" stroke-width="1.5" marker-end="url(#r-arrow)"/>
+    <text x="260" y="165" text-anchor="middle" font-size="7" font-weight="bold" fill="#ca8a04">③ 재사용 (Reuse)</text>
+  </svg>
+</div>
+
+### 스트랭글러 피그(Strangler Fig) 점진적 재공학 아키텍처
+
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="sf-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Frame -->
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">스트랭글러 피그(Strangler Fig) 점진적 레거시 잠식 아키텍처</text>
+
+    <!-- Client Request -->
+    <rect x="15" y="70" width="85" height="50" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="57" y="92" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">클라이언트</text>
+    <text x="57" y="106" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">모바일/웹 요청</text>
+
+    <line x1="100" y1="95" x2="128" y2="95" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#sf-arrow)"/>
+
+    <!-- API Gateway (Routing Hub) -->
+    <rect x="130" y="50" width="115" height="90" rx="6" fill="var(--color-bg-subtle, #eff6ff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
+    <text x="187" y="72" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">API Gateway</text>
+    <text x="187" y="90" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">트래픽 라우팅</text>
+    <text x="187" y="105" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">단계별 점진적 우회</text>
+    <text x="187" y="125" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[점진적 전환 허브]</text>
+
+    <!-- Branch Legacy (Top) -->
+    <line x1="245" y1="80" x2="278" y2="65" stroke="#ef4444" stroke-width="1.4" marker-end="url(#sf-arrow)"/>
+
+    <!-- Legacy Monolith (Top Right) -->
+    <rect x="280" y="42" width="225" height="52" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="392" y="60" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">기존 레거시 모노리스 (점점 축소)</text>
+    <text x="392" y="76" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">아직 전환되지 않은 잔여 기능 처리 $\rightarrow$ 최종 폐기</text>
+
+    <!-- Branch New MSA (Bottom) -->
+    <line x1="245" y1="110" x2="278" y2="125" stroke="#16a34a" stroke-width="1.4" marker-end="url(#sf-arrow)"/>
+
+    <!-- New MSA Services (Bottom Right) -->
+    <rect x="280" y="105" width="225" height="52" rx="5" fill="var(--color-bg-subtle, #f0fdf4)" stroke="#16a34a" stroke-width="1.4"/>
+    <text x="392" y="123" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">신규 마이크로서비스 (점진적 확장)</text>
+    <text x="392" y="139" text-anchor="middle" font-size="6.5" fill="var(--color-text, #334155)">주문/결제 등 핵심 도메인부터 순차 이관 구축</text>
+
+    <!-- Bottom Benefit Callout -->
+    <rect x="15" y="155" width="490" height="30" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="260" y="174" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">빅뱅(Big-Bang) 재구축의 실패 위험을 원천 제거하고 무중단 상태에서 100% 현대화 달성</text>
+  </svg>
+</div>
 
 ### 3R 핵심 활동 및 메커니즘
 
@@ -192,7 +263,53 @@ date: "2026-09-20"
 
 레거시 재공학의 성공률을 극대화하는 표준 실무 패턴으로 **스트랭글러 피그 패턴**을 강조한다. 나무를 둘러싸며 자라는 무화과나무처럼, 레거시 시스템 앞단에 API 게이트웨이를 두고 신규 기능을 마이크로서비스로 하나씩 개발하여 라우팅을 우회시킨다. 점진적으로 레거시 시스템을 잠식하여 최종적으로 레거시를 걷어내는 **"무중단 점진적 재공학 아키텍처"**를 결론으로 도식화한다.
 
-## 5. 참고 및 연계 학습
+## 5. 결론 및 종합 제언
+
+### 학습자 통찰 메모 — 답안 밖
+
+[핵심 통찰]
+소프트웨어는 건물이 아니다. 한 번 지어놓고 방치하면 부패하며, 리먼의 법칙처럼 환경에 맞추어 끊임없이 진화해야 한다. 유지보수 3R은 유실된 과거의 지식을 되살려내는 **역공학**, 현재의 낡은 구조를 갈아엎는 **재공학**, 그리고 미래의 중복 비용을 막아내는 **재사용**이 맞물린 소프트웨어 수명 연장의 생명공학이다.
+
+나라면:
+본 시험에서 3R이 출제되면, 4대 유지보수 분류와 3R의 개념적 순환도를 제시한 뒤 **(1) 빅뱅 전환의 참사를 막는 마틴 파울러의 스트랭글러 피그(Strangler Fig) 점진적 마이그레이션 아키텍처, (2) COBOL 등 레거시 코드를 자연어 스펙으로 복원하는 생성형 AI(LLM) 시맨틱 역공학, (3) OAS 기반 표준 컴포넌트 재사용 거버넌스**를 3단락에 명쾌하게 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 레거시 유지보수성 지수(MI) 40 이하 및 단순 기능 변경에 4주 이상 소요 시 3R 현대화 전환 판정
+- **대응 방안**: LLM 기반 시맨틱 역공학으로 업무 규칙을 복원하고 스트랭글러 피그 패턴을 통한 점진적 MSA 재공학 착수
+- **검증 체계**: 신·구 시스템 간 트랜잭션 듀얼 런(Dual Run)을 통해 데이터 정합성 및 기능 등가성(Equivalence) 100% 검증
+- **기대 효과**: 레거시 기술 부채 70% 해소, 시스템 유지보수 공수 절감 및 클라우드 네이티브 기반 비즈니스 민첩성 회복
+
+<div class="itpe-pipeline-container" role="region" aria-label="SW 유지보수 3R 기반 점진적 레거시 현대화 파이프라인">
+  <div class="itpe-pipeline-header">
+    <span class="itpe-pipeline-title">SW 유지보수 3R 기반 점진적 레거시 현대화 파이프라인</span>
+    <span class="itpe-pipeline-badge">레거시 현대화</span>
+  </div>
+  <div class="itpe-pipeline-grid">
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">1단계: 지식 복원</div>
+      <div class="itpe-card-title">LLM 시맨틱 역공학</div>
+      <div class="itpe-card-body">레거시 코드 정적/동적 분석으로 비즈니스 규칙 및 ERD 자동 복원</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">2단계: 우회 라우팅</div>
+      <div class="itpe-card-title">스트랭글러 구축</div>
+      <div class="itpe-card-body">API Gateway를 전진 배치하여 신규 기능부터 마이크로서비스로 분기</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">3단계: 점진적 재공학</div>
+      <div class="itpe-card-title">도메인 순차 이관</div>
+      <div class="itpe-card-body">핵심 도메인을 순차 재구축하고 듀얼 런을 통한 기능 등가성 검증</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">4단계: 자산 재사용</div>
+      <div class="itpe-card-title">표준 API 자산화</div>
+      <div class="itpe-card-body">검증된 핵심 로직을 OAS 표준 컴포넌트로 전사 레포지토리에 적재</div>
+    </div>
+  </div>
+</div>
+
+## 6. 참고 및 연계 학습
 
 - [리팩토링(Refactoring)](./006_refactoring.md)
 - [CBD(Component Based Development)](./128_cbd.md)

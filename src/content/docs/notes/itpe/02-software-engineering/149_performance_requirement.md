@@ -9,6 +9,9 @@ tags:
   - "품질속성시나리오"
   - "SLASLO"
 date: "2026-09-20"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -94,28 +97,103 @@ date: "2026-09-20"
 
 ## 2. 아키텍처 및 핵심 메커니즘
 
-### SEI 품질 속성 시나리오 기반 성능 요구사항 명세 구조
+### SEI 품질 속성 시나리오와 아키텍처 전술(Tactics) 연계
 
-```text
-+-------------------------------------------------------------------------+
-|              SEI 품질 속성 시나리오 (Quality Attribute Scenario)         |
-+-------------------------------------------------------------------------+
-|                                                                         |
-|  [ 1. 자극원 (Source) ]       : 외부 인터넷 모바일 뱅킹 사용자          |
-|  [ 2. 자극 (Stimulus) ]       : 월말 급여일 피크 트래픽 5,000 TPS 유입  |
-|  [ 3. 대상 (Artifact) ]       : 계좌 조회 및 이체 코어 API 서버         |
-|  [ 4. 환경 (Environment) ]    : 클라우드 운영 환경 정상 가동 상태       |
-|  [ 5. 응답 (Response) ]       : 모든 트랜잭션 정상 처리 및 응답 반환    |
-|  [ 6. 응답 측정 (Measure) ]   : 95% 요청 0.5초 이내 완료, CPU 70% 이하  |
-|                                                                         |
-|                                 │                                       |
-|                                 v 반영                                  |
-|                                                                         |
-|  [ 성능 아키텍처 전술 (Architectural Tactics) ]                         |
-|  - 수요 관리 : Redis 읽기 캐싱, 정적 자산 CDN 분산, API Rate Limiting   |
-|  - 공급 관리 : 메시지 큐 비동기 처리, 쓰레드 풀 튜닝, 오토스케일링       |
-+-------------------------------------------------------------------------+
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="scen-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Background Frame -->
+    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">SEI 품질 속성 시나리오 6요소 및 아키텍처 전술 연계</text>
+
+    <!-- Left Box: Scenario 6 Elements -->
+    <rect x="15" y="38" width="235" height="165" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="15" y="38" width="235" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="132" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">품질 속성 시나리오 6대 구성 요소</text>
+
+    <text x="25" y="75" font-size="7" fill="var(--color-text, #1e293b)">1. 자극원: 모바일 앱 사용자</text>
+    <text x="25" y="93" font-size="7" fill="var(--color-text, #1e293b)">2. 자극: 월말 피크 5,000 TPS 유입</text>
+    <text x="25" y="111" font-size="7" fill="var(--color-text, #1e293b)">3. 대상: 결제 및 주문 코어 API</text>
+    <text x="25" y="129" font-size="7" fill="var(--color-text, #1e293b)">4. 환경: 클라우드 정상 운영 모드</text>
+    <text x="25" y="147" font-size="7" fill="var(--color-text, #1e293b)">5. 응답: 모든 트랜잭션 정상 완료</text>
+    <text x="25" y="165" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">6. 응답측정: p95 &lt; 0.5초, CPU &lt; 70%</text>
+
+    <text x="132" y="190" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">모호한 비기능 요구의 정량적 객관화</text>
+
+    <!-- Transition Arrow -->
+    <line x1="250" y1="120" x2="270" y2="120" stroke="var(--color-primary, #2563eb)" stroke-width="1.8" marker-end="url(#scen-arrow)"/>
+
+    <!-- Right Box: Architecture Tactics -->
+    <rect x="275" y="38" width="230" height="165" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
+    <rect x="275" y="38" width="230" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="390" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">성능 아키텍처 전술 (Tactics)</text>
+
+    <!-- Tactic A: Demand Control -->
+    <rect x="285" y="68" width="210" height="52" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="390" y="84" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">자원 수요 조절 전술</text>
+    <text x="390" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- 인메모리 Redis 캐싱 (DB 부하 차단)</text>
+    <text x="390" y="112" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- API Rate Limiting 및 정적 CDN</text>
+
+    <!-- Tactic B: Supply Management -->
+    <rect x="285" y="128" width="210" height="65" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="390" y="144" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">자원 공급 관리 전술</text>
+    <text x="390" y="158" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- 비동기 메시지 큐 (Kafka Buffer)</text>
+    <text x="390" y="172" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- KEDA 기반 파드 오토스케일링</text>
+    <text x="390" y="185" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- DB 읽기 분제 (CQRS Read Replica)</text>
+  </svg>
+</div>
+
+### 테일 레이턴시(Tail Latency) 및 SRE Error Budget 거버넌스
+
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <!-- Frame -->
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">응답시간 백분위수 (p99 Tail Latency) 및 SRE 거버넌스</text>
+
+    <!-- Distribution Curve View (Left) -->
+    <rect x="15" y="38" width="245" height="145" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="137" y="54" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">응답시간 확률 밀도 분포</text>
+
+    <!-- Axis -->
+    <line x1="30" y1="150" x2="245" y2="150" stroke="var(--color-border, #64748b)" stroke-width="1.2"/>
+    <line x1="30" y1="150" x2="30" y2="65" stroke="var(--color-border, #64748b)" stroke-width="1.2"/>
+    <text x="245" y="162" text-anchor="end" font-size="6.5" fill="var(--color-text-muted, #64748b)">지연시간 (ms)</text>
+
+    <!-- Skewed Curve -->
+    <path d="M 30 150 Q 60 70 85 95 T 160 142 T 240 148" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="2"/>
+
+    <!-- Mean line -->
+    <line x1="75" y1="85" x2="75" y2="150" stroke="#16a34a" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="75" y="78" text-anchor="middle" font-size="6.5" fill="#16a34a">평균 0.2s</text>
+
+    <!-- p95 line -->
+    <line x1="140" y1="130" x2="140" y2="150" stroke="var(--color-accent, #0284c7)" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="140" y="125" text-anchor="middle" font-size="6.5" fill="var(--color-accent, #0284c7)">p95 0.5s</text>
+
+    <!-- p99 tail line -->
+    <line x1="210" y1="144" x2="210" y2="150" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="210" y="135" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#dc2626">p99 (테일) 2.8s</text>
+    <text x="137" y="174" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">평균에 가려진 1% 지연이 MSA 전체 마비 유발</text>
+
+    <!-- Right Box: SRE Error Budget Policy -->
+    <rect x="270" y="38" width="235" height="145" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
+    <rect x="270" y="38" width="235" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="387" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">SRE 에러 버짓(Error Budget) 연계</text>
+
+    <text x="280" y="76" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">- SLI: 실제 계측된 p95 응답시간</text>
+    <text x="280" y="94" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">- SLO: "p95 &lt; 0.5s 비율 99.9% 유지"</text>
+    
+    <rect x="280" y="106" width="215" height="65" rx="4" fill="var(--color-bg-subtle, #fef2f2)" stroke="#ef4444" stroke-width="1"/>
+    <text x="387" y="122" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">에러 버짓 소진 시 강제 정책</text>
+    <text x="387" y="140" text-anchor="middle" font-size="6.5" fill="var(--color-text, #334155)">신규 기능 배포 전면 중단 (Freeze)</text>
+    <text x="387" y="156" text-anchor="middle" font-size="6.5" fill="#dc2626">성능 튜닝 및 인프라 개선 스프린트 강제</text>
+  </svg>
+</div>
 
 ### ISO/IEC 25010 성능 효율성 3대 하위 품질 특성
 
@@ -178,9 +256,55 @@ date: "2026-09-20"
 
 성능 요구사항은 고정된 정적 문서가 아니라 운영 단계의 SRE 거버넌스로 이어져야 한다. 성능 요구사항을 기반으로 **SLI(측정값)와 SLO(내부 목표)**를 정의하고, SLO를 위반할 경우 할당된 **에러 버짓(Error Budget)**이 소진되어 신규 기능 배포를 중단하고 성능 튜닝 스프린트를 강제하는 현대적 데브옵스 운영 체계를 결론으로 제시한다.
 
-## 5. 참고 및 연계 학습
+## 5. 결론 및 종합 제언
+
+### 학습자 통찰 메모 — 답안 밖
+
+[핵심 통찰]
+성능 요구사항은 소프트웨어 개발이 다 끝난 뒤 부하를 걸어보는 '사후 시험 성적서'가 아니다. 시스템의 데이터 저장 방식, 분산 캐시 토폴로지, 비동기 큐 도입 여부를 결정짓는 **'최상위 아키텍처 드라이버(Architectural Driver)'**다. 정량적 시나리오가 초기에 수립되지 않으면 아키텍처는 반드시 침식된다.
+
+나라면:
+본 시험에서 성능 요구사항이 출제되면, SEI 품질 속성 시나리오의 6요소를 정확히 기술한 뒤 **(1) 평균값의 착시를 깨는 p95/p99 테일 레이턴시 관리, (2) 수요 조절(캐싱)과 공급 관리(오토스케일링) 아키텍처 전술 분기, (3) 성능 미달 시 기능 배포를 강제 중단시키는 SRE 에러 버짓(Error Budget) 거버넌스 파이프라인**을 3단락에 명쾌하게 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 통합 부하 시험 시 피크 트래픽(동시 5,000 TPS)에서 p99 응답시간 1.0초 초과 시 배포 부적격 판정
+- **대응 방안**: Redis 분산 캐시 계층 신설 및 슬로우 쿼리 튜닝, KEDA 기반 이벤트 주도형 오토스케일링 전술 적용
+- **검증 체계**: CI/CD 배포 파이프라인에 k6 성능 게이트를 연동하고 프로덕션 APM과 연계된 SLO/SLI 모니터링 가동
+- **기대 효과**: 대규모 트래픽 폭증 시 시스템 무중단 보장 및 명확한 정량적 성능 지표 기반 인수 분쟁 원천 방지
+
+<div class="itpe-pipeline-container" role="region" aria-label="성능 요구사항 엔지니어링 및 SRE 검증 파이프라인">
+  <div class="itpe-pipeline-header">
+    <span class="itpe-pipeline-title">성능 요구사항 엔지니어링 및 SRE 검증 파이프라인</span>
+    <span class="itpe-pipeline-badge">성능 거버넌스</span>
+  </div>
+  <div class="itpe-pipeline-grid">
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">1단계: 정량 명세</div>
+      <div class="itpe-card-title">시나리오 도출</div>
+      <div class="itpe-card-body">SEI 6대 요소를 기반으로 피크 부하 및 p95/p99 백분위수 정량화</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">2단계: 전술 설계</div>
+      <div class="itpe-card-title">아키텍처 반영</div>
+      <div class="itpe-card-body">분산 캐시, 비동기 큐, CQRS 분리, 파드 오토스케일링 전술 구현</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">3단계: 조기 검증</div>
+      <div class="itpe-card-title">Shift-Left 부하</div>
+      <div class="itpe-card-body">스프린트 단위 k6 자동화 부하 시험으로 성능 병목 조기 식별</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">4단계: 운영 통제</div>
+      <div class="itpe-card-title">SRE 에러 버짓</div>
+      <div class="itpe-card-body">SLO 위반 모니터링 및 버짓 소진 시 배포 동결·튜닝 강제 집행</div>
+    </div>
+  </div>
+</div>
+
+## 6. 참고 및 연계 학습
 
 - [소프트웨어 품질 비용(Cost of Quality)](./150_software_quality_cost.md)
 - [기능 점수(Function Point) 산정](./130_function_point.md)
 - [서비스 워커 및 웹 성능 최적화](./147_service_worker.md)
-- [CSS 스프라이트 성능 최적화](./158_sprite.md)
+- [웹 성능 최적화 기법](./164_web_performance_optimization.md)

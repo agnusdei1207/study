@@ -9,6 +9,9 @@ tags:
   - "Yamada"
   - "소프트웨어품질"
 date: "2026-09-20"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -88,29 +91,100 @@ SRGM은 결함 발견 이력을 바탕으로 **"시스템에 잠재된 총 결�
 
 ## 2. 아키텍처 및 핵심 메커니즘
 
-### SRGM 2대 대표 모델의 누적 결함 곡선
+### 누적 결함 발견 곡선 비교 (G-O vs Yamada)
 
-```text
-+-------------------------------------------------------------------------+
-|                  SRGM 대표 모델 누적 결함 발견 곡선 비교                |
-+-------------------------------------------------------------------------+
-|  누적 결함 수 (m(t))                                                    |
-|     ▲                                    [ 총 잠재 결함 수 a ]           |
-|     ├ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -     |
-|     │                                 _.-''''' (지수형: G-O 모델)       |
-|     │                          _.-''''                                  |
-|     │                    _.-'''         _.-'''' (S자형: Yamada 모델)    |
-|     │               _.-''          _.-''                                |
-|     │          _.-''          _.-'' (결함 급증 구간)                    |
-|     │     _.-''          _.-''                                          |
-|     │_.-''          _.-'' (초기 학습 구간)                              |
-|     └──────────┴────────────────────────────────────────────────▶       |
-|     0          t1 (학습 기간)                          시간 (t)         |
-|                                                                         |
-|  * 출시 판단 시점: 곡선의 기울기(결함 발견율)가 0에 수렴하여 수평선에  |
-|                   도달했을 때가 공학적인 최적의 테스트 종료 시점임       |
-+-------------------------------------------------------------------------+
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <!-- Frame -->
+    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">SRGM 누적 결함 발견 곡선 ($m(t)$) 및 포화 임계선</text>
+
+    <!-- Axes -->
+    <line x1="55" y1="180" x2="480" y2="180" stroke="var(--color-border, #64748b)" stroke-width="1.5"/>
+    <line x1="55" y1="180" x2="55" y2="40" stroke="var(--color-border, #64748b)" stroke-width="1.5"/>
+    <text x="480" y="195" font-size="7.5" fill="var(--color-text, #334155)">테스트 시간 (t)</text>
+    <text x="25" y="45" font-size="7.5" fill="var(--color-text, #334155)">결함 수</text>
+
+    <!-- Asymptote (Total Defects a) -->
+    <line x1="55" y1="65" x2="475" y2="65" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="475" y="62" text-anchor="end" font-size="7" font-weight="bold" fill="#dc2626">잠재 결함 총량 (a)</text>
+
+    <!-- G-O Curve (Concave exponential) -->
+    <path d="M 55 180 Q 130 90 460 70" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="2"/>
+    <text x="220" y="90" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">Goel-Okumoto (오목 지수형)</text>
+
+    <!-- Yamada Curve (S-shaped) -->
+    <path d="M 55 180 Q 150 178 220 135 T 460 75" fill="none" stroke="#ca8a04" stroke-width="2"/>
+    <text x="320" y="140" font-size="7.5" font-weight="bold" fill="#ca8a04">Yamada (지연 S자형)</text>
+
+    <!-- Annotations -->
+    <rect x="70" y="135" width="90" height="28" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="115" y="148" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">초기 학습 구간</text>
+    <text x="115" y="158" text-anchor="middle" font-size="6.5" fill="#ca8a04">(발견율 완만)</text>
+
+    <!-- Optimal Release Zone -->
+    <rect x="400" y="80" width="85" height="40" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
+    <text x="442" y="95" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">최적 릴리스</text>
+    <text x="442" y="108" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">기울기 0 수렴 구간</text>
+  </svg>
+</div>
+
+### 비용 최적화 기반 릴리스 판정 모델 구조
+
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="srgm-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Background Frame -->
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">SRGM 기반 최적 릴리스 판정 4대 프로세스</text>
+
+    <!-- Step 1 -->
+    <rect x="15" y="40" width="105" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="15" y="40" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="67" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">① 데이터 수집</text>
+    <text x="67" y="78" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">테스트 시간 ($t$)</text>
+    <text x="67" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">결함 발견 건수</text>
+    <text x="67" y="112" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[중복 결함 정제]</text>
+
+    <line x1="120" y1="87" x2="138" y2="87" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#srgm-arrow)"/>
+
+    <!-- Step 2 -->
+    <rect x="140" y="40" width="105" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="140" y="40" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="192" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">② 모수 추정</text>
+    <text x="192" y="78" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">NHPP 모델 적합</text>
+    <text x="192" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">최우도추정(MLE)</text>
+    <text x="192" y="112" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[파라미터 a, b 산출]</text>
+
+    <line x1="245" y1="87" x2="263" y2="87" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#srgm-arrow)"/>
+
+    <!-- Step 3 -->
+    <rect x="265" y="40" width="110" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="265" y="40" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="320" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">③ 신뢰도 계산</text>
+    <text x="320" y="78" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">잔존 결함 수 ($a - m$)</text>
+    <text x="320" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">고장률 $\lambda(t)$ / MTTF</text>
+    <text x="320" y="112" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[목표 신뢰도 검증]</text>
+
+    <line x1="375" y1="87" x2="393" y2="87" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#srgm-arrow)"/>
+
+    <!-- Step 4 -->
+    <rect x="395" y="40" width="110" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
+    <rect x="395" y="40" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="450" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">④ 최적 릴리스</text>
+    <text x="450" y="78" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">총비용 최소점 ($t^*$)</text>
+    <text x="450" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">테스트비용 vs 장애손실</text>
+    <text x="450" y="112" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[출시 최종 승인]</text>
+
+    <!-- Bottom Result Formula -->
+    <rect x="15" y="145" width="490" height="35" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="260" y="166" text-anchor="middle" font-size="7.5" fill="var(--color-text, #1e293b)">비용 목적함수: $C(t) = C_1 \cdot t + C_2 \cdot m(t) + C_3 \cdot (a - m(t))$ 의 극솟값 시점 도출</text>
+  </svg>
+</div>
 
 ### SRGM 분석 및 적용 4대 핵심 절차
 
@@ -188,7 +262,53 @@ $$C(t) = C_1(t) \times t + C_2 \times m(t) + C_3 \times (a - m(t))$$
 ($C_1$: 단위 시간당 테스트 비용, $C_2$: 테스트 중 결함 수정 비용, $C_3$: 출시 후 장애 처리 비용)
 출시 후 결함 수정 비용($C_3$)은 테스트 중 비용($C_2$)의 수십 배에 달하므로, 총비용 $C(t)$를 미분하여 최소가 되는 시점 $t^*$를 도출하는 수리적 접근을 3단락 또는 결론으로 제시한다.
 
-## 5. 참고 및 연계 학습
+## 5. 결론 및 종합 제언
+
+### 학습자 통찰 메모 — 답안 밖
+
+[핵심 통찰]
+SRGM의 가장 강력한 실무 가치는 '테스트를 언제 끝낼 것인가'라는 소프트웨어 프로젝트 최고의 난제에 **주관적 직관이 아닌 객관적 수학 공식**을 제공한다는 점이다. 특히 결함이 줄어들지 않는 초기 학습 단계를 지나 급증 후 포화되는 변곡점을 가진 Yamada 모델은 대규모 엔터프라이즈 프로젝트의 실제 현상을 매우 정밀하게 설명한다.
+
+나라면:
+본 시험에서 SRGM이 출제되면, 단순히 G-O와 Yamada 곡선 수식을 암기해 나열하는 데 그치지 않고 **(1) 현실의 버그 재유입을 반영한 불완전 디버깅(Imperfect Debugging) 모델로의 확장, (2) 테스트 인건비와 출시 후 장애 손실액을 절충한 총비용 함수 $C(t)$의 최적 릴리스 시점 수리 모델, (3) CI/CD 파이프라인의 이슈 트래커와 연동된 실시간 품질 게이트(Quality Gate)**의 3단계 실천 로드맵을 3단락에 명쾌하게 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 테스트 종료 예정일 기준 결함 검출률 기울기($dm/dt$)가 임계치 이상이거나 목표 MTTF 미달 시 릴리스 보류
+- **대응 방안**: 불완전 디버깅 파라미터를 반영하여 잔존 결함 수를 재추정하고 고위험 모듈 집중 회귀 테스팅 수행
+- **검증 체계**: Jira/GitLab 웹훅을 통해 결함 로그를 SRGM 분석 엔진에 실시간 피팅하여 품질 게이트 대시보드 운영
+- **기대 효과**: 출시 후 치명적 운영 장애율 70% 감소 및 비용 최소화 기반 최적 릴리스 일정 확정
+
+<div class="itpe-pipeline-container" role="region" aria-label="SRGM 기반 데이터 주도적 품질 게이트 파이프라인">
+  <div class="itpe-pipeline-header">
+    <span class="itpe-pipeline-title">SRGM 기반 데이터 주도적 품질 게이트 파이프라인</span>
+    <span class="itpe-pipeline-badge">품질 거버넌스</span>
+  </div>
+  <div class="itpe-pipeline-grid">
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">1단계: 실시간 집계</div>
+      <div class="itpe-card-title">결함 로그 수집</div>
+      <div class="itpe-card-body">테스트 실행 시간 대비 결함 건수 실시간 웹훅 파이프라인 적재</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">2단계: 확률 피팅</div>
+      <div class="itpe-card-title">Yamada NHPP 적합</div>
+      <div class="itpe-card-body">MLE 기법 기반 잠재 결함 총량($a$) 및 결함 검출률($b$) 실시간 산출</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">3단계: 비용 최적화</div>
+      <div class="itpe-card-title">총비용 곡선 도출</div>
+      <div class="itpe-card-body">테스트 투입 비용과 출시 후 결함 손실액의 합이 최소가 되는 $t^*$ 산정</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">4단계: 품질 승인</div>
+      <div class="itpe-card-title">릴리스 판정 배포</div>
+      <div class="itpe-card-body">목표 MTTF 충족 및 결함 포화 확인 시 운영 배포 승인</div>
+    </div>
+  </div>
+</div>
+
+## 6. 참고 및 연계 학습
 
 - [테스트 커버리지(Test Coverage)](./118_test_coverage.md)
 - [회귀 테스팅(Regression Test)](./061_regression_test.md)

@@ -9,6 +9,9 @@ tags:
   - "데이터기능"
   - "트랜잭션기능"
 date: "2026-09-20"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -93,30 +96,120 @@ date: "2026-09-20"
 
 ### 기능점수 5대 기능 분류 체계
 
-```text
-+-------------------------------------------------------------------------+
-|                  기능점수(Function Point) 5대 기능 분류 구조            |
-+-------------------------------------------------------------------------+
-|                                                                         |
-|                          [ 사용자 요구사항 ]                            |
-|                                   │                                     |
-|         ┌─────────────────────────┴─────────────────────────┐           |
-|         v                                                   v           |
-|  [ 데이터 기능 (Data Functions) ]             [ 트랜잭션 기능 (Transactions) ]|
-|  논리적 데이터 저장 및 참조                   데이터 입력, 가공, 출력, 조회     |
-|                                                                         |
-|  - ILF (내부논리파일) :                       - EI (외부입력) :                 |
-|    경계 내부에서 유지/수정되는 파일               내부 DB 등록/수정/삭제 처리   |
-|    (복잡도 결정: RET 서브그룹, DET 필드)         (복잡도: FTR 참조파일, DET)    |
-|                                                                         |
-|  - EIF (외부연계파일) :                       - EO (외부출력) :                 |
-|    타 시스템 파일이나 단순 참조용 파일            파생 계산, 통계 로직 포함 출력|
-|    (복잡도 결정: RET 서브그룹, DET 필드)      - EQ (외부조회) :                 |
-|                                                   계산 없는 단순 검색/조회 출력 |
-+-------------------------------------------------------------------------+
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="fp-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Background Frame -->
+    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">기능점수(Function Point) 5대 기능 및 경계(Boundary) 구조</text>
+
+    <!-- Application Boundary Line -->
+    <rect x="15" y="38" width="340" height="165" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <text x="30" y="54" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[애플리케이션 경계 내부]</text>
+
+    <!-- Internal Data: ILF -->
+    <rect x="25" y="65" width="145" height="60" rx="4" fill="var(--color-bg-subtle, #eff6ff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="97" y="82" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">ILF (내부논리파일)</text>
+    <text x="97" y="97" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">내부 등록/수정/관리</text>
+    <text x="97" y="112" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">복잡도: RET × DET</text>
+
+    <!-- Transactions: EI, EO, EQ inside boundary -->
+    <rect x="190" y="65" width="155" height="125" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="267" y="80" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">트랜잭션 기능 (3종)</text>
+    
+    <!-- EI -->
+    <rect x="200" y="88" width="135" height="28" rx="3" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="267" y="101" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">EI (외부입력)</text>
+    <text x="267" y="112" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">내부 ILF 변경 (등록/수정/삭제)</text>
+
+    <!-- EO -->
+    <rect x="200" y="120" width="135" height="28" rx="3" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="267" y="133" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">EO (외부출력)</text>
+    <text x="267" y="144" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">파생 계산/통계 포함 출력</text>
+
+    <!-- EQ -->
+    <rect x="200" y="152" width="135" height="28" rx="3" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="267" y="165" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">EQ (외부조회)</text>
+    <text x="267" y="176" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">단순 검색/데이터 조회 표시</text>
+
+    <!-- External System & EIF -->
+    <rect x="365" y="38" width="140" height="165" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="435" y="54" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text-muted, #64748b)">[외부 시스템 영역]</text>
+
+    <rect x="375" y="65" width="120" height="85" rx="4" fill="var(--color-bg-subtle, #fefce8)" stroke="#ca8a04" stroke-width="1"/>
+    <text x="435" y="85" text-anchor="middle" font-size="8" font-weight="bold" fill="#ca8a04">EIF (외부연계파일)</text>
+    <text x="435" y="105" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">타 시스템 관리</text>
+    <text x="435" y="120" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">단순 참조(Read)</text>
+    <text x="435" y="138" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">복잡도: RET × DET</text>
+
+    <!-- Interaction Line between EI and ILF -->
+    <line x1="200" y1="100" x2="170" y2="100" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fp-arrow)"/>
+  </svg>
+</div>
 
 ### 기능점수 산정 공식 및 보정 체계
+
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="calc-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Background -->
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    
+    <!-- Step 1 -->
+    <rect x="15" y="20" width="105" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="15" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="67" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">① 기능 식별</text>
+    <text x="67" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">5대 기능 분류</text>
+    <text x="67" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">경계 내외 식별</text>
+    <text x="67" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[ILF/EIF/EI/EO/EQ]</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="120" y1="72" x2="138" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#calc-arrow)"/>
+
+    <!-- Step 2 -->
+    <rect x="140" y="20" width="105" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="140" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="192" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">② 복잡도 매트릭스</text>
+    <text x="192" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">RET/DET/FTR 계수</text>
+    <text x="192" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">상/중/하 가중치</text>
+    <text x="192" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[간이법은 평균적용]</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="245" y1="72" x2="263" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#calc-arrow)"/>
+
+    <!-- Step 3 -->
+    <rect x="265" y="20" width="110" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
+    <rect x="265" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="320" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">③ 미조정 FP(UFP)</text>
+    <text x="320" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">기능별 FP 총합</text>
+    <text x="320" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">Σ(기능수 × 가중치)</text>
+    <text x="320" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">[순수 기능 규모]</text>
+
+    <!-- Arrow 3 -> 4 -->
+    <line x1="375" y1="72" x2="393" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#calc-arrow)"/>
+
+    <!-- Step 4 -->
+    <rect x="395" y="20" width="110" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <rect x="395" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
+    <text x="450" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">④ 보정 개발비</text>
+    <text x="450" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">5대 보정계수 곱셈</text>
+    <text x="450" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">FP 단가(원/FP) 적용</text>
+    <text x="450" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[최종 계약 대가]</text>
+
+    <!-- Bottom Result Formula -->
+    <rect x="15" y="140" width="490" height="42" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="260" y="157" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">공식: 최종 보정 FP = UFP × (규모) × (연계복잡도) × (성능요구수준) × (운영환경) × (보안성)</text>
+    <text x="260" y="172" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">개발비 = 최종 보정 FP × FP당 단가 (공공 SW 대가산정 가이드라인 법정 표준)</text>
+  </svg>
+</div>
 
 1. **미조정 기능점수(UFP) 계산**:
    $$UFP = \sum (\text{기능 유형별 개수} \times \text{복잡도 가중치})$$
@@ -135,17 +228,74 @@ date: "2026-09-20"
 | 단순 검색 조회를 계산 로직이 있는 EO(외부출력)로 둔갑시켜 기능점수를 부풀리는 행위 | 파생 데이터 계산(집계, 세금 계산 등) 여부를 검증하여 계산이 없는 건은 EQ(외부조회)로 재분류 | 기능 유형 식별의 객관성 및 신뢰성 확보 |
 | 기획 단계 간이법 예산이 확정된 후 구축 단계에서 비즈니스 요구사항 폭증으로 사업자 적자 | 설계·구축 분할 발주 또는 과업심의위원회를 통해 상세설계 시점의 정규 FP 기준으로 계약 변경 증액 | 적정 대가 보장 및 사업 유찰/품질 부실 방지 |
 
-## 4. 기술사 답안 차별화 포인트
+## 4. 점검 및 합격 기준 (Checklist & Exit Criteria)
 
-### 기획 단계와 구축 단계의 FP 단절 문제와 정산 계약 제언
+### 기능점수 산정 적정성 검증 체크리스트
 
-국내 공공 SW 사업의 고질적인 분쟁은 **"기획 단계 간이법으로 확정된 예산으로 구축 단계의 방대한 요구사항을 강요하는 구조"**에서 발생한다. 이를 해결하기 위해 기본설계 완료 시점에 산출된 정규 기능점수(Detailed FP) 결과를 바탕으로 계약 금액을 $\pm 10\%$ 범위 내에서 유연하게 사후 정산하는 **'가변형 계약 제도'** 및 과업심의위원회 정례화 방안을 3단락 또는 전문가 제언으로 제시한다.
+| 검증 영역 | 상세 점검 항목 | 판정 기준 |
+|---|---|---|
+| **경계 식별** | 배치/인터페이스/서브시스템 간 경계 중복 정의 여부 | 단일 애플리케이션 경계 원칙 준수 |
+| **데이터 기능** | 임시 테이블(Temp, Log), 코드성 테이블의 ILF 포함 여부 | 비즈니스 논리 엔터티만 ILF 계수 |
+| **트랜잭션 기능** | 단순 조회(EQ)와 파생 계산 출력(EO)의 명확한 구분 | 집계/통계/파생 로직 부재 시 EQ 분류 |
+| **보정계수** | 5대 보정계수(규모, 연계, 성능, 운영, 보안) 증빙 충족 | 가이드라인 상한선(0.85~1.15) 준수 |
 
-### 자동화된 소스코드 기반 FP 산정 도구(Automated FP) 동향
+## 5. 기대 효과 및 미래 전망
 
-기존 기능점수 산정은 산정자의 주관과 역량에 따라 동일 시스템에서도 최대 20~30%의 편차가 발생하는 한계가 있었다. 최근에는 형상관리(Git)와 정적 분석기를 연계하여 소스코드의 엔터티 클래스와 API 컨트롤러 매핑을 파싱하여 OMG Automated Function Points(AFP) 표준으로 자동 계측하는 **"Automated FP 파이프라인"**을 소개하여 신뢰성 혁신 방안을 제시한다.
+- **기대 효과**:
+  - **발주자-수주자 신뢰 회복**: 주관적 공수 산정을 배제하고 객관적 기능 규모 기반의 법정 대가 산정.
+  - **소프트웨어 제값주기 정착**: 과도한 저가 낙찰 및 무상 과업 추가 관행 차단.
+- **미래 전망**:
+  - 소스코드 AST 정적 분석 도구와 연계한 Automated Function Points(AFP) 자동 산정 파이프라인 도입.
+  - 마이크로서비스(MSA) 및 클라우드 네이티브 환경에 맞춘 API 단위 기능점수 산정 가이드 고도화.
 
-## 5. 참고 및 연계 학습
+## 6. 결론 및 실전 팁
+
+### 학습자 통찰 메모 — 답안 밖
+
+> **[핵심 통찰]**  
+> 기능점수는 단순한 '돈 계산 공식'이 아니라, 소프트웨어 공학에서 "기술 종속적 코딩(LOC)으로부터 비즈니스 가치(Function)를 분리해낸 위대한 표준 척도"이다. 그러나 현실 공공 프로젝트에서는 기획 단계 간이법으로 묶인 고정 예산과 구축 단계의 요구사항 폭증이 충돌하는 분쟁의 온상이 된다. 기술사는 산정 공식 암기에 그치지 않고, **설계 완료 후 정규 FP로 계약 금액을 조정하는 '과업심의위원회 사후 정산 거버넌스'**를 해결책으로 제시해야 한다.
+
+> **[나라면 이렇게 쓴다]**  
+> 2교시형 문제로 출제된다면, 1단락에 5대 기능(ILF/EIF/EI/EO/EQ)과 경계 다이어그램을 명쾌하게 배치하고, 2단락에서 정규법과 간이법의 차이를 비교하겠다. 그리고 3단락 실무 제언에서는 **"Git 형상관리와 정적 분석기를 결합하여 엔터티 클래스와 컨트롤러 API를 파싱하는 Automated Function Points(AFP) 자동 계측 체계"**를 제안하여 전통적 수작업 산정의 주관성 한계를 돌파하는 현대적 아키텍처 통찰을 보여주겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 기획 단계 예산 편성 시 간이법을 적용하되, 상세설계 완료 시점에 전수 정규 기능점수를 재산정하여 $\pm 10\%$ 초과 변동 시 과업 변경 심의 필수 판정.
+- **대응 방안**: 데이터 모델 정규화 검토를 통해 코드 테이블 및 임시 백업 테이블의 ILF 중복 계수를 사전 필터링하고, 단순 조회의 EO 왜곡 전면 방지.
+- **검증 체계**: 외부 전문 감리 및 기능점수 공인 검증 기관의 교차 실사를 수행하여 산정 오차율을 $5\%$ 이내로 통제.
+- **기대 효과**: 개발 사업자의 부당한 과업 추가 및 적자 리스크를 원천 차단하고, 공공 SW 프로젝트 납기 준수율 95% 이상 달성.
+
+<div class="itpe-flow-map" role="img" aria-label="기능점수 산정 및 적정 대가 보증 거버넌스 파이프라인">
+  <div class="itpe-flow-node">
+    <strong>기획 단계 간이법 산정</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>예산</strong><span>평균 가중치 기반 발주 예산</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node">
+    <strong>상세설계 정규법 재산정</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>실측</strong><span>RET/DET/FTR 전수 계수</span></div>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node is-current">
+    <strong>과업심의위원회 조정</strong>
+    <div class="itpe-step-detail">
+      <strong>판정</strong><span>사업 범위 및 예산 적정 정산</span>
+    </div>
+  </div>
+  <div class="itpe-flow-arrow">→</div>
+  <div class="itpe-flow-node">
+    <strong>소프트웨어 제값주기 달성</strong>
+    <div class="itpe-flow-branches">
+      <div class="itpe-flow-branch"><strong>결과</strong><span>고품질 무결 시스템 인도</span></div>
+    </div>
+  </div>
+</div>
+
+## 7. 참고 및 연계 학습
 
 - [ISMP(정보시스템 마스터플랜)](../../01-it-strategy/001_ismp.md)
 - [요구사항 추적표(RTM)](./102_requirement_traceability_matrix.md)

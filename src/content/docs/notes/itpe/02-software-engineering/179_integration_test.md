@@ -11,6 +11,9 @@ tags:
   - "테스트드라이버"
   - "Pact"
 date: "2026-09-20"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -99,26 +102,83 @@ date: "2026-09-20"
 
 ### 4대 통합 테스트 전략 아키텍처
 
-```text
-+-------------------------------------------------------------------------+
-|                  소프트웨어 4대 통합 테스트(Integration Test) 전략       |
-+-------------------------------------------------------------------------+
-|                                                                         |
-|  [ 1. 하향식 통합 (Top-Down) ]         [ 2. 상향식 통합 (Bottom-Up) ]   |
-|       [ 메인 제어 모듈 ]                      ( 가상 테스트 드라이버 )   |
-|               │                                       │                 |
-|       ┌───────┴───────┐                       ┌───────┴───────┐         |
-|       v               v                       v               v         |
-|  (가상 스텁 1)   (가상 스텁 2)           [ DB 액세스 ]   [ 연산 모듈 ]  |
-|  - 제어 흐름 및 UI 뼈대 조기 검증       - 핵심 알고리즘 및 DB 조기 검증  |
-|  - 많은 수의 스텁(Stub) 개발 필요        - 가상 드라이버(Driver) 필요    |
-|                                                                         |
-|  [ 3. 샌드위치 통합 (Sandwich) ]       [ 4. 빅뱅 통합 (Big-Bang) ]       |
-|       상위 계층: 하향식 (스텁)                모든 모듈 일괄 결합       |
-|       중간 계층: 목표 인터페이스              ──> 결함 발생 시 원인 추적 |
-|       하위 계층: 상향식 (드라이버)                극도로 어려움 (지양)   |
-+-------------------------------------------------------------------------+
-```
+통합 테스트는 시스템의 제어 흐름과 데이터 종속성에 따라 4가지 전략으로 구분된다.
+
+<div class="itpe-diagram-container" role="img" aria-label="하향식, 상향식, 샌드위치, 빅뱅 4대 통합 테스트 전략 비교 아키텍처">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
+  <defs>
+    <style>
+      .bg { fill: var(--color-surface, #1e293b); }
+      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
+      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
+      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
+      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
+      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
+      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
+      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-head); }
+    </style>
+    <marker id="arrow-head" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
+    </marker>
+  </defs>
+  <rect width="520" height="220" class="bg" rx="8"/>
+  <text x="16" y="20" class="title">소프트웨어 4대 통합 테스트 전략 및 테스트 하네스 구조</text>
+
+  <!-- 하향식 Top-Down -->
+  <rect x="14" y="32" width="115" height="174" class="box"/>
+  <text x="22" y="48" class="h-text">1. 하향식 (Top-Down)</text>
+  <rect x="22" y="56" width="99" height="28" class="box-active"/>
+  <text x="28" y="69" class="text">메인 제어 모듈 (실제)</text>
+  <text x="28" y="78" class="muted">상위 제어 로직 조기 검증</text>
+  <line x1="71" y1="84" x2="71" y2="98" class="arrow"/>
+  <rect x="22" y="98" width="99" height="30" class="box"/>
+  <text x="28" y="111" class="text">가상 스텁 (Stub 1/2)</text>
+  <text x="28" y="121" class="muted">하위 더미 응답 데이터 반환</text>
+  <text x="22" y="148" class="muted">• 장점: UI·골격 조기 시연</text>
+  <text x="22" y="162" class="muted">• 단점: 다수 스텁 제작 공수</text>
+  <text x="22" y="176" class="muted">• 깊이/너비 우선 통합 전개</text>
+
+  <!-- 상향식 Bottom-Up -->
+  <rect x="139" y="32" width="115" height="174" class="box"/>
+  <text x="147" y="48" class="h-text">2. 상향식 (Bottom-Up)</text>
+  <rect x="147" y="56" width="99" height="28" class="box"/>
+  <text x="153" y="69" class="text">가상 드라이버 (Driver)</text>
+  <text x="153" y="78" class="muted">상위 호출 및 테스트 데이터 주입</text>
+  <line x1="196" y1="84" x2="196" y2="98" class="arrow"/>
+  <rect x="147" y="98" width="99" height="30" class="box-active"/>
+  <text x="153" y="111" class="text">원자 모듈 클러스터</text>
+  <text x="153" y="121" class="muted">DB·알고리즘 실제 모듈 결합</text>
+  <text x="147" y="148" class="muted">• 장점: 핵심 로직 조기 검증</text>
+  <text x="147" y="162" class="muted">• 단점: 상위 골격 완성 지연</text>
+  <text x="147" y="176" class="muted">• 드라이버로 클러스터 시험</text>
+
+  <!-- 샌드위치 Sandwich -->
+  <rect x="264" y="32" width="115" height="174" class="box"/>
+  <text x="272" y="48" class="h-text">3. 샌드위치 (Sandwich)</text>
+  <rect x="272" y="56" width="99" height="28" class="box"/>
+  <text x="278" y="72" class="text">상위 계층: 하향식(스텁)</text>
+  <line x1="321" y1="84" x2="321" y2="98" class="arrow"/>
+  <rect x="272" y="98" width="99" height="30" class="box-active"/>
+  <text x="278" y="112" class="text">중간 계층: 핵심 인터페이스</text>
+  <text x="278" y="122" class="muted">양방향 통합 목표 결합점</text>
+  <text x="272" y="148" class="muted">• 하위 계층: 상향식(드라이버)</text>
+  <text x="272" y="162" class="muted">• 대규모 분산 환경 최적</text>
+  <text x="272" y="176" class="muted">• 설계 복잡도 및 비용 증가</text>
+
+  <!-- 빅뱅 Big-Bang -->
+  <rect x="389" y="32" width="117" height="174" class="box"/>
+  <text x="397" y="48" class="h-text">4. 빅뱅 (Big-Bang)</text>
+  <rect x="397" y="56" width="101" height="42" class="box"/>
+  <text x="403" y="73" class="text">모든 모듈 일괄 조립</text>
+  <text x="403" y="86" class="muted">단위 테스트 완료 후 동시 결합</text>
+  <line x1="447" y1="98" x2="447" y2="112" class="arrow"/>
+  <rect x="397" y="112" width="101" height="38" class="box-active"/>
+  <text x="403" y="127" class="text">결함 원인 추적 불능</text>
+  <text x="403" y="139" class="muted">엔터프라이즈 환경 금기</text>
+  <text x="397" y="168" class="muted">• 하네스 작성 비용 없음</text>
+  <text x="397" y="182" class="muted">• 일정 지연 리스크 극대화</text>
+</svg>
+</div>
 
 ### 통합 방식별 상세 특징 및 테스트 하네스
 
@@ -173,6 +233,66 @@ date: "2026-09-20"
   </div>
 </div>
 
+### 모던 MSA 통합 검증: Pact CDC 및 Testcontainers 아키텍처
+
+클라우드 및 마이크로서비스 환경에서는 모든 서비스를 직접 기동하지 않고도 인터페이스 계약을 검증하는 모던 테스팅 파이프라인이 필수적이다.
+
+<div class="itpe-diagram-container" role="img" aria-label="Pact 소비자 주도 계약 테스팅 및 Testcontainers 런타임 통합 파이프라인">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
+  <defs>
+    <style>
+      .bg { fill: var(--color-surface, #1e293b); }
+      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
+      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
+      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
+      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
+      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
+      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
+      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-head2); }
+    </style>
+    <marker id="arrow-head2" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
+    </marker>
+  </defs>
+  <rect width="520" height="220" class="bg" rx="8"/>
+  <text x="16" y="20" class="title">모던 클라우드 마이크로서비스 통합 검증 아키텍처 (Pact + Testcontainers)</text>
+
+  <!-- 1. Consumer -->
+  <rect x="16" y="36" width="145" height="74" class="box"/>
+  <text x="24" y="52" class="h-text">1. 소비자(Consumer) 서비스</text>
+  <text x="24" y="67" class="text">API 요구사항 단위 테스트 수행</text>
+  <text x="24" y="80" class="muted">기대 응답 명세(Pact JSON) 자동 발행</text>
+  <text x="24" y="94" class="muted">Mock 서버 기반 인터페이스 확정</text>
+
+  <!-- 화살표 1->2 -->
+  <line x1="161" y1="73" x2="183" y2="73" class="arrow"/>
+
+  <!-- 2. Pact Broker -->
+  <rect x="187" y="36" width="146" height="74" class="box-active"/>
+  <text x="195" y="52" class="h-text">2. Pact Broker (계약 중앙 저장소)</text>
+  <text x="195" y="67" class="text">인터페이스 계약 버전 관리</text>
+  <text x="195" y="80" class="muted">소비자-제공자 상호 호환성 매트릭스</text>
+  <text x="195" y="94" class="muted">can-i-deploy CLI 배포 승인 통제</text>
+
+  <!-- 화살표 2->3 -->
+  <line x1="333" y1="73" x2="355" y2="73" class="arrow"/>
+
+  <!-- 3. Provider -->
+  <rect x="359" y="36" width="145" height="74" class="box"/>
+  <text x="367" y="52" class="h-text">3. 제공자(Provider) 검증</text>
+  <text x="367" y="67" class="text">실제 API 구현체에 계약 재생</text>
+  <text x="367" y="80" class="muted">요청 주입 및 실제 응답 스키마 대조</text>
+  <text x="367" y="94" class="muted">검증 성공 시 결과 Broker 등록</text>
+
+  <!-- 하단: Testcontainers -->
+  <rect x="16" y="126" width="488" height="80" class="box-active"/>
+  <text x="26" y="143" class="h-text">4. Testcontainers 기반 실제 런타임 환경 자동화 통합 테스팅</text>
+  <text x="26" y="159" class="text">인메모리 H2 가짜 Mock 탈피 ──> 실제 PostgreSQL, Redis, Kafka 컨테이너 동적 생성 및 파기</text>
+  <text x="26" y="174" class="muted">• 실제 DBMS 방언(Dialect), 트랜잭션 격리수준, 브로커 메시지 라우팅 100% 동일 검증</text>
+  <text x="26" y="189" class="muted">• CI/CD 러너에서 Docker Daemon 자동 제어로 프로덕션 불일치 장애 원천 배제</text>
+</svg>
+</div>
+
 ## 3. 실무 적용 및 고려사항
 
 ### 위험 대응 매트릭스
@@ -192,6 +312,52 @@ date: "2026-09-20"
 ### Testcontainers 기반의 프로덕션 근접 통합 테스트
 
 과거에는 인메모리 DB(H2)나 가짜 Mock을 사용하다가 실제 Oracle/PostgreSQL의 방언(Dialect) 차이로 장애가 났다. 현대 통합 테스트는 **Testcontainers 라이브러리**를 사용하여 Docker 컨테이너로 실제 DBMS, Kafka, Redis를 테스트 시점에 자동 프로비저닝하고 테스트 후 폐기하는 실무적 테스트 엔지니어링 역량을 강조한다.
+
+### 학습자 통찰 메모 — 답안 밖
+
+- [핵심 통찰]: 단위 테스트가 '모듈이 자기 할 일을 제대로 하는가'를 증명한다면, 통합 테스트는 '모듈들이 말을 서로 알아듣는가'를 검증하는 공정이다. 빅뱅 방식의 파멸을 막기 위해 전통적으로는 스텁과 드라이버를 활용한 점진적 통합을 썼고, 클라우드 MSA로 넘어가면서는 Pact와 Testcontainers가 이를 완전히 계승·대체했다.
+- [나라면]: 2교시형 문제 출제 시, V-모델 상세설계와 통합 테스트의 관계를 1단락에 도식화하고, 2단락에서 하향식/상향식/샌드위치/빅뱅을 스텁과 드라이버 비용 측면에서 비교하겠다. 3단락에서는 MSA 전환 시 모든 서버를 로컬에 기동할 수 없는 한계를 지적하며, 'Pact CDC 계약 검증 + Testcontainers' 파이프라인을 실무 아키텍처로 제시하여 최고 득점을 확보하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 모듈 간 API 직렬화 스키마 호환성 100% 만족 및 통합 테스트 시 Mock 대체율 30% 이하(실제 컨테이너 기반 검증 비율 70% 이상) 달성 여부
+- **대응 방안**: 상위 기획 단계부터 OpenAPI/Proto 명세를 단일 진실 공급원(SSOT)으로 정의하고, Pact Broker 기반 계약 검증과 Testcontainers 런타임 검증을 CI/CD 품질 게이트로 의무화
+- **검증 체계**: PR 생성 시 Pact CDC 파이프라인 자동 구동 $\rightarrow$ 하위 호환성 위반 시 빌드 Fail 처리 $\rightarrow$ Testcontainers 통합 시험 통과 시 스테이징 배포 승인
+- **기대 효과**: 배포 후 인터페이스 불일치 장애 제로화 및 E2E 테스트 대기 시간 80% 단축으로 일일 다회 무중단 배포 실현
+
+<div class="itpe-pipeline-container" role="img" aria-label="통합 테스트 실전 엔지니어링 파이프라인">
+  <div class="itpe-pipeline-step">
+    <div class="itpe-pipeline-step-num">01</div>
+    <div class="itpe-pipeline-step-content">
+      <strong>인터페이스 계약 정의</strong>
+      <span>소비자 요구 기반 Pact 명세 작성 및 단위 테스트</span>
+    </div>
+  </div>
+  <div class="itpe-pipeline-arrow">➔</div>
+  <div class="itpe-pipeline-step">
+    <div class="itpe-pipeline-step-num">02</div>
+    <div class="itpe-pipeline-step-content">
+      <strong>계약 중앙 검증</strong>
+      <span>Pact Broker 등록 및 제공자 호환성 자동 검증</span>
+    </div>
+  </div>
+  <div class="itpe-pipeline-arrow">➔</div>
+  <div class="itpe-pipeline-step">
+    <div class="itpe-pipeline-step-num">03</div>
+    <div class="itpe-pipeline-step-content">
+      <strong>실환경 컨테이너 통합</strong>
+      <span>Testcontainers로 실제 DB/MQ 격리 연동 시험</span>
+    </div>
+  </div>
+  <div class="itpe-pipeline-arrow">➔</div>
+  <div class="itpe-pipeline-step">
+    <div class="itpe-pipeline-step-num">04</div>
+    <div class="itpe-pipeline-step-content">
+      <strong>품질 게이트 승인</strong>
+      <span>can-i-deploy 합격 판정 후 프로덕션 배포 이관</span>
+    </div>
+  </div>
+</div>
 
 ## 5. 참고 및 연계 학습
 

@@ -10,6 +10,9 @@ tags:
   - "폐쇄망협업"
   - "ALM"
 date: "2026-09-20"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -96,29 +99,111 @@ Jira, Asana, Monday.com 등 클라우드 SaaS 기반 상용 PM 도구는 뛰어�
 
 ## 2. 아키텍처 및 핵심 메커니즘
 
-### 오픈소스 기반 엔터프라이즈 협업 아키텍처
+### 폐쇄망 오픈소스 PM 및 통합 ALM 아키텍처
 
-```text
-+-------------------------------------------------------------------------+
-|             오픈소스 프로젝트 관리(PM) 및 통합 ALM 아키텍처              |
-+-------------------------------------------------------------------------+
-|                                                                         |
-|  [ 사내 폐쇄망 인프라 (On-Premises / Air-Gapped K8s Cluster) ]          |
-|                                                                         |
-|  +─────────────────── [ 오픈소스 PM 웹 플랫폼 ] ────────────────────+   |
-|  |  - WBS 및 Gantt 차트 엔진 (일정 관리)                           |   |
-|  |  - 칸반 보드 및 스크럼 백로그 (애자일 스프린트)                  |   |
-|  |  - 이슈 및 결함 추적기 (Bug Tracker, 워크플로우 정의)            |   |
-|  |  - 통합 위키 및 프로젝트 지식 베이스                            |   |
-|  +─────────────────────────────────┬───────────────────────────────+   |
-|                                    │                                    |
-|          ┌─────────────────────────┼─────────────────────────┐          |
-|          v                         v                         v          |
-|  [ 사내 인증 (SSO) ]       [ 사내 형상 관리 (Git) ]  [ 사내 CI/CD (Jenkins) ]  |
-|  - LDAP / Active Dir      - GitLab CE / Gitea       - 자동 테스트 결과 반영    |
-|  - 롤 기반 접근제어(RBAC) - 커밋(Fix #123) 자동연계 - 빌드 실패 시 결함 등록  |
-+-------------------------------------------------------------------------+
-```
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <!-- Frame -->
+    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">폐쇄망 온프레미스 오픈소스 PM 및 통합 ALM 도구 연계</text>
+
+    <!-- Top: Core PM Platform -->
+    <rect x="15" y="38" width="490" height="75" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
+    <rect x="15" y="38" width="490" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="260" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">오픈소스 PM 허브 (OpenProject / Redmine / GitLab CE)</text>
+
+    <!-- 3 Internal Functions -->
+    <rect x="25" y="65" width="150" height="40" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="100" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">WBS & 간트 차트</text>
+    <text x="100" y="94" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">일정 및 마일스톤 관리</text>
+
+    <rect x="185" y="65" width="150" height="40" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="260" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">이슈 & 결함 추적</text>
+    <text x="260" y="94" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">Bug Tracking / 상태전이</text>
+
+    <rect x="345" y="65" width="150" height="40" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
+    <text x="420" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">애자일 스크럼/칸반</text>
+    <text x="420" y="94" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">백로그 및 번다운 차트</text>
+
+    <!-- Bottom 3 Linked Systems -->
+    <rect x="15" y="125" width="155" height="75" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="92" y="145" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">사내 인증 (SSO)</text>
+    <text x="92" y="162" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">LDAP / Active Directory</text>
+    <text x="92" y="180" text-anchor="middle" font-size="6.5" fill="var(--color-primary, #2563eb)">[정밀한 RBAC 역할 매핑]</text>
+
+    <rect x="180" y="125" width="160" height="75" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="145" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">형상 관리 (Git)</text>
+    <text x="260" y="162" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">GitLab / Gitea 사내 서버</text>
+    <text x="260" y="180" text-anchor="middle" font-size="6.5" fill="var(--color-accent, #0284c7)">[커밋 메시지 자동 티켓 연동]</text>
+
+    <!-- Arrow between Git and CI -->
+    <rect x="350" y="125" width="155" height="75" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="427" y="145" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">CI/CD & 품질 검사</text>
+    <text x="427" y="162" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">Jenkins + SonarQube</text>
+    <text x="427" y="180" text-anchor="middle" font-size="6.5" fill="#16a34a">[빌드 실패 시 결함 자동 생성]</text>
+  </svg>
+</div>
+
+### 가치 흐름(Value Stream) 자동화 파이프라인
+
+<div style="max-width: 520px; margin: 1rem auto;">
+  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="alm-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
+      </marker>
+    </defs>
+    <!-- Frame -->
+    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">이슈 생성부터 배포까지의 Value Stream 자동화 흐름</text>
+
+    <!-- Step 1 -->
+    <rect x="15" y="42" width="105" height="135" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="15" y="42" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="67" y="57" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">① 요구/이슈 등록</text>
+    <text x="67" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">티켓 발행 #123</text>
+    <text x="67" y="100" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- WBS 작업 할당</text>
+    <text x="67" y="116" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 담당자/우선순위</text>
+    <text x="67" y="132" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 스토리 포인트</text>
+    <text x="67" y="158" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[작업 착수]</text>
+
+    <line x1="120" y1="105" x2="138" y2="105" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#alm-arrow)"/>
+
+    <!-- Step 2 -->
+    <rect x="140" y="42" width="105" height="135" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="140" y="42" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="192" y="57" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">② Git 형상 연동</text>
+    <text x="192" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">브랜치/커밋</text>
+    <text x="192" y="100" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- branch: feature/123</text>
+    <text x="192" y="116" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- commit: "Fix #123"</text>
+    <text x="192" y="132" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 웹훅 자동 감지</text>
+    <text x="192" y="158" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[추적성 확립]</text>
+
+    <line x1="245" y1="105" x2="263" y2="105" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#alm-arrow)"/>
+
+    <!-- Step 3 -->
+    <rect x="265" y="42" width="115" height="135" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
+    <rect x="265" y="42" width="115" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="322" y="57" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">③ CI/CD 검증</text>
+    <text x="322" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">빌드 및 테스트</text>
+    <text x="322" y="100" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 자동 단위/통합 시험</text>
+    <text x="322" y="116" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- SonarQube 정적 진단</text>
+    <text x="322" y="132" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 품질 게이트 통과</text>
+    <text x="322" y="158" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[자동 품질 통제]</text>
+
+    <line x1="380" y1="105" x2="398" y2="105" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#alm-arrow)"/>
+
+    <!-- Step 4 -->
+    <rect x="400" y="42" width="105" height="135" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
+    <rect x="400" y="42" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
+    <text x="452" y="57" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">④ 이슈 자동 종결</text>
+    <text x="452" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">Closed & 배포</text>
+    <text x="452" y="100" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 티켓 상태 '해결됨'</text>
+    <text x="452" y="116" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 릴리스 노트 자동 취합</text>
+    <text x="452" y="132" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 진척률 실시간 반영</text>
+    <text x="452" y="158" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[완전 자동 완결]</text>
+  </svg>
+</div>
 
 ### 대표 오픈소스 PM 소프트웨어 비교
 
@@ -193,7 +278,53 @@ Jira, Asana, Monday.com 등 클라우드 SaaS 기반 상용 PM 도구는 뛰어�
 
 국가 안보 및 금융 보안 가이드라인에 따라 폐쇄망 내부로 유입되는 모든 오픈소스 도구와 라이브러리는 **SBOM(Software Bill of Materials)** 기반으로 무결성을 검증받아야 한다. 오픈소스 PM 도구 내에 사내 소스코드 보안 검사(SonarQube)와 의존성 정적 점검(Dependency-Check) 결과를 자동으로 결함 티켓으로 생성하는 **데브섹옵스(DevSecOps) 거버넌스 결합**을 결론으로 제언한다.
 
-## 5. 참고 및 연계 학습
+## 5. 결론 및 종합 제언
+
+### 학습자 통찰 메모 — 답안 밖
+
+[핵심 통찰]
+오픈소스 프로젝트 관리 도구는 단순히 '상용 라이선스 비용을 아끼기 위한 대체재'가 아니다. 국가 안보, 금융, 국방 등 에어갭(Air-Gapped) 망분리 환경에서 **'데이터 주권을 지키고 소프트웨어 가치 흐름(Value Stream) 전체를 기업의 입맛대로 통제하기 위한 전략적 무기'**다. Git 형상 및 CI/CD와 결합될 때 최고의 엔지니어링 시너지를 발휘한다.
+
+나라면:
+본 시험에서 오픈소스 PM 도구가 출제되면, Redmine이나 OpenProject의 기능 나열에 그치지 않고 **(1) 망분리 규제 환경에서의 데이터 주권 및 사내 LDAP/AD 연동 아키텍처, (2) 커밋 해시부터 이슈 종결까지 이어지는 통합 ALM 가치 흐름 자동화, (3) 폐쇄망 소프트웨어 공급망 보안을 위한 SBOM 및 Trivy 컨테이너 취약점 거버넌스**를 3단락에 명쾌하게 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 기준**: 망분리 규제 기관에서 해외 클라우드 SaaS 사용 불가 및 상용 도구 구독료 부담률 40% 이상 급증 시 도입
+- **대응 방안**: Docker/K8s 기반 OpenProject 또는 GitLab CE 프라이빗 배포 및 사내 LDAP 연동 RBAC 구축
+- **검증 체계**: Git 커밋 웹훅 기반 티켓 자동 종결 및 SonarQube 정적 진단 연계 데브섹옵스 파이프라인 가동
+- **기대 효과**: 데이터 외부 유출 위험 100% 원천 차단 및 연간 소프트웨어 라이선스 비용 수억 원 절감
+
+<div class="itpe-pipeline-container" role="region" aria-label="오픈소스 기반 폐쇄망 통합 ALM 엔지니어링 파이프라인">
+  <div class="itpe-pipeline-header">
+    <span class="itpe-pipeline-title">오픈소스 기반 폐쇄망 통합 ALM 엔지니어링 파이프라인</span>
+    <span class="itpe-pipeline-badge">협업 거버넌스</span>
+  </div>
+  <div class="itpe-pipeline-grid">
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">1단계: 폐쇄망 배포</div>
+      <div class="itpe-card-title">온프레미스 격리</div>
+      <div class="itpe-card-body">K8s 클러스터 내 오픈소스 PM 플랫폼 자체 호스팅 및 데이터 주권 수호</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">2단계: 권한 일원화</div>
+      <div class="itpe-card-title">사내 SSO 연동</div>
+      <div class="itpe-card-body">LDAP/AD 기반 사원 인증 및 프로젝트별 RBAC 역할 접근 제어 적용</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">3단계: 가치 흐름</div>
+      <div class="itpe-card-title">Git-CI 파이프라인</div>
+      <div class="itpe-card-body">커밋 메시지(Fix #123) 감지 후 자동 테스트 및 이슈 종결 원스톱 처리</div>
+    </div>
+    <div class="itpe-pipeline-card">
+      <div class="itpe-card-badge">4단계: 공급망 보안</div>
+      <div class="itpe-card-title">SBOM 취약점 스캔</div>
+      <div class="itpe-card-body">Trivy 기반 컨테이너 이미지 정기 점검으로 폐쇄망 침해 위협 차단</div>
+    </div>
+  </div>
+</div>
+
+## 6. 참고 및 연계 학습
 
 - [애플리케이션 수명주기 관리(ALM)](./107_alm.md)
 - [스크럼(Scrum) 및 칸반(Kanban)](./025_scrum.md)
