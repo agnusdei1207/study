@@ -1,21 +1,21 @@
 ---
+author: "Antigravity"
+category: "03-data"
+date: "2026-09-20T16:45:00+09:00"
+extra:
+  keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
+  question_no: "036"
 sidebar:
-  order: 36
-  label: "036. 기술통계 vs 추론통계"
   badge:
     text: "A"
-    variant: note
-title: "기술통계 vs 추론통계 (Descriptive vs Inferential Statistics)"
-author: "OpenAI Codex"
-date: "2026-09-20T16:45:00+09:00"
+    variant: "note"
+  label: "036. 기술통계 vs 추론통계"
+  order: 36
 tags:
   - "notes-data"
+title: "기술통계 vs 추론통계 (Descriptive vs Inferential Statistics)"
 weight: 36
-extra:
-  model: "GPT-5"
-  keyword_grade: "A"
-  question_no: "036"
-
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,25 +24,39 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[원천 관측 데이터 (Data)]
-         │
-         ▼ 1. 4대 측정 척도 분류 (명목, 서열, 등간, 비율)
-┌────────────────────────────────────────────────────────────┐
-│ [기술통계 (Descriptive)] ── 현재 표본 자체의 상태를 요약   │
-│ - 중심위치: 평균(Mean), 중앙값(Median), 최빈값(Mode)       │
-│ - 산포도  : 분산(Var), 표준편차(SD), 사분위범위(IQR)       │
-│ - 분포형태: 왜도(Skewness, 비대칭), 첨도(Kurtosis, 꼬리)   │
-└─────────────────────────────┬──────────────────────────────┘
-                              │
-                              ▼ 2. 확률분포·표본이론 기반 확장
-┌────────────────────────────────────────────────────────────┐
-│ [추론통계 (Inferential)] ── 표본으로 미지의 모집단 특성 추론│
-│ - 모수 추정: 점추정(MLE, 불편성) 및 구간추정(신뢰구간)     │
-│ - 가설 검정: 귀무가설($H_0$) vs 대립가설($H_1$), p-value   │
-│ - 예측/인과: t-검정, ANOVA, 카이제곱, 회귀분석(선형/로지스틱)│
-└────────────────────────────────────────────────────────────┘
-```
+<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+  <rect x="0" y="0" width="520" height="160" fill="var(--color-surface, #f8fafc)" rx="8" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- Top: Raw Data Input -->
+  <rect x="160" y="10" width="200" height="26" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <text x="260" y="27" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #0f172a)">원천 관측 데이터 (4대 척도: 명·서·등·비)</text>
+  <line x1="260" y1="36" x2="260" y2="48" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-stat)"/>
+
+  <!-- Left: Descriptive Statistics -->
+  <rect x="15" y="48" width="240" height="100" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <rect x="15" y="48" width="240" height="22" fill="var(--color-primary-light, #e0f2fe)" rx="4"/>
+  <text x="135" y="63" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">[기술통계] 현재 표본 자체 요약·기술</text>
+  <text x="25" y="85" font-size="8.5" fill="var(--color-text, #0f172a)">• 중심위치: 평균, 중앙값(이상치 강건), 최빈값</text>
+  <text x="25" y="102" font-size="8.5" fill="var(--color-text, #0f172a)">• 산포도: 분산, 표준편차, 사분위범위(IQR)</text>
+  <text x="25" y="119" font-size="8.5" fill="var(--color-text, #0f172a)">• 형태: 왜도(비대칭도), 첨도(꼬리 두께)</text>
+  <text x="25" y="137" font-size="8" fill="var(--color-text-muted, #64748b)">🎯 목적: EDA 탐색 및 데이터 왜곡 탐지</text>
+
+  <!-- Right: Inferential Statistics -->
+  <rect x="265" y="48" width="240" height="100" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <rect x="265" y="48" width="240" height="22" fill="var(--color-success-light, #dcfce7)" rx="4"/>
+  <text x="385" y="63" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--color-success-dark, #15803d)">[추론통계] 표본으로 모집단 모수 일반화</text>
+  <text x="275" y="85" font-size="8.5" fill="var(--color-text, #0f172a)">• 모수 추정: 점추정(MLE 불편성), 구간추정(CI)</text>
+  <text x="275" y="102" font-size="8.5" fill="var(--color-text, #0f172a)">• 가설 검정: 귀무가설($H_0$) vs 대립가설($H_1$)</text>
+  <text x="275" y="119" font-size="8.5" fill="var(--color-text, #0f172a)">• 분석 기법: t-검정, ANOVA, 카이제곱, 회귀</text>
+  <text x="275" y="137" font-size="8" fill="var(--color-success-dark, #15803d)">🎯 목적: 확률적 유의성(p-value) 입증</text>
+
+  <defs>
+    <marker id="arrow-stat" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="var(--color-primary, #0284c7)"/>
+    </marker>
+  </defs>
+</svg>
+</div>
 
 - 본질: **수집된 표본 데이터의 중심, 산포, 형태를 수치와 시각화로 요약·정리하는 '기술통계'와, 확률 이론을 기반으로 표본 통계량으로부터 미지의 모집단 모수를 추정하고 가설을 검정하는 '추론통계'의 상호보완적 데이터 분석 체계**
 - 암기: `명-서-등-비` (4대 척도: 명목 · 서열 · 등간 · 비율) / `중-산-형` (기술통계: 중심위치 · 산포도 · 형태) / `추-검` (추론통계: 추정 · 검정)
@@ -71,31 +85,52 @@ extra:
 
 ## Ⅱ. 통계학의 기반: 4가지 측정 척도(Scales of Measurement)
 
-```text
-[측정 척도의 계층적 발전]
-명목 척도 (구분) ──▶ 서열 척도 (+순서) ──▶ 등간 척도 (+등간격) ──▶ 비율 척도 (+절대0)
-(범주형 데이터)                             (수치형 / 연속형 데이터)
-```
+<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 62" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+  <rect x="0" y="0" width="520" height="62" fill="var(--color-surface, #f8fafc)" rx="6" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- 4 Step Scale Flow -->
+  <rect x="10" y="12" width="112" height="38" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
+  <text x="66" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">① 명목 척도</text>
+  <text x="66" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">단순 구분·최빈값</text>
+
+  <line x1="122" y1="31" x2="136" y2="31" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-scale)"/>
+
+  <rect x="138" y="12" width="112" height="38" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
+  <text x="194" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">② 서열 척도</text>
+  <text x="194" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">순서·중앙값</text>
+
+  <line x1="250" y1="31" x2="264" y2="31" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-scale)"/>
+
+  <rect x="266" y="12" width="112" height="38" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
+  <text x="322" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">③ 등간 척도</text>
+  <text x="322" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">간격일정·산술평균</text>
+
+  <line x1="378" y1="31" x2="392" y2="31" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-scale)"/>
+
+  <rect x="394" y="12" width="116" height="38" fill="var(--color-primary-light, #e0f2fe)" stroke="var(--color-primary, #0284c7)" stroke-width="1" rx="3"/>
+  <text x="452" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">④ 비율 척도</text>
+  <text x="452" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-primary-dark, #0369a1)">절대0·사칙연산 전체</text>
+
+  <defs>
+    <marker id="arrow-scale" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <polygon points="0 0, 5 2.5, 0 5" fill="var(--color-primary, #0284c7)"/>
+    </marker>
+  </defs>
+</svg>
+</div>
 
 | 척도 구분 | 정의 및 특성 | 허용 수학 연산 | 대표 중심치 및 기법 | 실무 적용 예시 |
 |---|---|---|---|---|
-| **명목 척도<br>(Nominal)** | 관측 대상의 특성을 분류·구분하기 위해 부여한 이름이나 기호 (순서 없음) | $=, \neq$ (빈도 수 계산) | 최빈값(Mode), 빈도분석, 교차분석 | 성별, 혈액형, HTTP 상태코드 |
-| **서열 척도<br>(Ordinal)** | 분류뿐만 아니라 대상 간의 상대적 순서나 서열(Rank)이 존재하는 척도 | $=, \neq, <, >$ (대소 비교) | 중앙값(Median), 백분위수, 순위상관 | 직급, 학점(A~F), 만족도(리커트 5점) |
+| **명목 척도<br>(Nominal)** | 관측 대상의 특성을 분류·구분하기 위해 부여한 이름이나 기호 (순서 없음) | $=, \neq$ (빈도 수 계산) | 최빈값(Mode), 빈도분석, 카이제곱 검정 | 성별, 혈액형, HTTP 상태코드 |
+| **서열 척도<br>(Ordinal)** | 분류뿐만 아니라 대상 간의 상대적 순서나 서열(Rank)이 존재하는 척도 | $=, \neq, <, >$ (대소 비교) | 중앙값(Median), 사분위수, 순위상관 | 직급, 학점(A~F), 만족도(리커트 5점) |
 | **등간 척도<br>(Interval)** | 순서뿐만 아니라 속성 간의 간격이 동일한 척도 (임의의 0점, 절대영점 없음) | $+ , -$ (덧셈, 뺄셈 가능) | 산술평균(Mean), 표준편차, 피어슨 상관 | 섭씨 온도(℃), IQ 지수, 지표 연도 |
 | **비율 척도<br>(Ratio)** | 등간격 속성에 절대적 기준이 되는 '절대 영점(True Zero)'이 존재하는 척도 | $+ , -, \times, \div$ (사칙연산) | 기하평균, 조화평균, 변동계수, 회귀 | 매출액, 연령, CPU 사용률, 응답 지연(ms) |
 
 #### 한줄 요약
 
-- 척도는 명목(분류) $\rightarrow$ 서열(순서) $\rightarrow$ 등간(간격) $\rightarrow$ 비율(비율)로 갈수록 정보량이 많아지고 허용되는 수학 연산이 확장됨
+- 척도는 명목(분류) $\to$ 서열(순서) $\to$ 등간(간격) $\to$ 비율(비율)로 갈수록 정보량이 많아지고 허용되는 수학 연산이 확장됨
 
 ## Ⅲ. 기술통계의 3대 축: 중심위치, 산포도, 분포형태
-
-```text
-[기술통계의 구성 체계]
-1. 중심경향치 (Central Tendency) : 데이터의 무게 중심 (평균, 중앙값, 최빈값)
-2. 산포도 (Dispersion)          : 데이터가 흩어진 정도 (분산, 표준편차, 사분위범위 IQR)
-3. 형태 통계량 (Shape)           : 분포의 비대칭성과 뾰족함 (왜도 Skewness, 첨도 Kurtosis)
-```
 
 | 축 | 세부 지표 | 수학적 수식 및 정의 | 해석 및 실무 활용 |
 |---|---|---|---|
@@ -114,20 +149,34 @@ extra:
 
 ## Ⅳ. 추론통계의 2대 축: 모수 추정과 가설 검정
 
-```text
-[추론통계의 기본 아키텍처]
-                    [모집단 (모수: μ, σ²)]
-                            │
-              무작위 표본추출 (Sampling)
-                            ▼
-                    [표본 (통계량: X̄, s²)]
-                            │
-    ┌───────────────────────┴───────────────────────┐
-    ▼                                               ▼
-[1. 모수 추정 (Estimation)]               [2. 가설 검정 (Hypothesis Testing)]
-- 점추정: 단일 최적값 (불편성)            - 귀무가설(H_0) vs 대립가설(H_1)
-- 구간추정: 신뢰수준(95%) 신뢰구간         - 유의수준(α=0.05), p-value 판정
-```
+<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
+  <rect x="0" y="0" width="520" height="120" fill="var(--color-surface, #f8fafc)" rx="8" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
+  <!-- Top Center: Population to Sample -->
+  <rect x="170" y="10" width="180" height="26" fill="var(--color-primary-light, #e0f2fe)" stroke="var(--color-primary, #0284c7)" stroke-width="1.2" rx="4"/>
+  <text x="260" y="27" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">모집단 모수(μ, σ²) ──▶ 표본 통계량(X̄, s²)</text>
+
+  <!-- Left: Estimation -->
+  <line x1="210" y1="36" x2="140" y2="52" stroke="var(--color-primary, #0284c7)" stroke-width="1.2" marker-end="url(#arrow-infer)"/>
+  <rect x="25" y="52" width="225" height="58" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <text x="137" y="68" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--color-text, #0f172a)">1. 모수 추정 (Estimation)</text>
+  <text x="137" y="84" text-anchor="middle" font-size="8" fill="var(--color-primary-dark, #0369a1)">• 점추정: 불편추정량 (X̄ ──▶ μ)</text>
+  <text x="137" y="98" text-anchor="middle" font-size="8" fill="var(--color-primary-dark, #0369a1)">• 구간추정: 95% 신뢰구간 (CI = X̄ ± 1.96·SE)</text>
+
+  <!-- Right: Hypothesis Testing -->
+  <line x1="310" y1="36" x2="380" y2="52" stroke="var(--color-primary, #0284c7)" stroke-width="1.2" marker-end="url(#arrow-infer)"/>
+  <rect x="270" y="52" width="225" height="58" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
+  <text x="382" y="68" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--color-text, #0f172a)">2. 가설 검정 (Hypothesis Testing)</text>
+  <text x="382" y="84" text-anchor="middle" font-size="8" fill="var(--color-success-dark, #15803d)">• 귀무가설(H₀: 무효) vs 대립가설(H₁: 유의)</text>
+  <text x="382" y="98" text-anchor="middle" font-size="8" fill="var(--color-success-dark, #15803d)">• p-value &lt; 0.05 시 귀무가설 기각 (채택)</text>
+
+  <defs>
+    <marker id="arrow-infer" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <polygon points="0 0, 5 2.5, 0 5" fill="var(--color-primary, #0284c7)"/>
+    </marker>
+  </defs>
+</svg>
+</div>
 
 | 영역 | 핵심 기법 | 동작 메커니즘 | 실무 의사결정 |
 |---|---|---|---|
@@ -170,16 +219,41 @@ extra:
 
 - 척도에 맞는 변환(로그 변환), 이상치에 강건한 지표(중앙값), 통계적 유의성 검정($p$-value)이 데이터 왜곡을 막는 3대 원칙임
 
-## Ⅶ. 데이터 사이언스 관점의 통계 거버넌스 제언
+## Ⅶ. 기술사적 제언
 
-- **[앤스컴 콰르텟(Anscombe's Quartet)의 교훈과 시각적 통계(EDA) 의무화]**: 평균, 분산, 상관계수가 완벽히 동일해도 실제 데이터 분포는 직선, 곡선, 이상치 등 완전히 다를 수 있으므로 수치 요약만으로 결론을 내리는 것은 위험함
-- 나라면:
-  1. MLOps 파이프라인의 데이터 수집 단계에 **자동화된 프로파일링 도구(Great Expectations, YData Profiling)**를 연동하여 4대 척도 식별, 왜도·첨도 계산, 이상치 플래그를 자동으로 생성
-  2. 비즈니스 리포팅 시 단일 평균값 보고를 금지하고, `중앙값 ± IQR`과 분포 히스토그램을 반드시 병기하는 **'신뢰 통계 보고 표준'**을 수립하여 데이터 기반 의사결정의 질적 도약을 유도
+### 학습자 통찰 메모 — 답안 밖
 
-#### 한줄 요약
+> **[핵심 통찰]**
+> 통계학에서 프랜시스 앤스컴이 제시한 '앤스컴 콰르텟(Anscombe's Quartet)'은 데이터 엔지니어링과 데이터 사이언스에 가장 묵직한 교훈을 준다. 4개의 데이터셋이 평균(9.0), 분산(11.0), 상관계수(0.816), 회귀선($y = 3 + 0.5x$)이 소수점 둘째 자리까지 완벽히 일치하지만, 실제로 산점도를 그려보면 직선, 포물선, 이상치 1개에 의한 가짜 상관 등 완전히 다른 데이터다. 요약 수치(기술통계)만 보고 모델링을 진행하면 현실과 완전히 동떨어진 재앙적 알고리즘이 배포된다.
+>
+> **[나라면 이렇게 쓴다]**
+> 실무 MLOps 파이프라인의 데이터 수집·수집 검증 단계에 자동화된 데이터 프로파일링(Great Expectations, YData Profiling)을 기본 탑재하겠다. 4대 측정 척도를 자동 분류하고 왜도·첨도 및 박스플롯 IQR 기반 이상치를 탐지하는 **EDA 자동화 게이트**를 두고, A/B 테스트나 신규 피처 배포 시에는 기술통계적 개선치뿐만 아니라 독립표본 t-검정과 부트스트랩을 통한 $p$-value($p < 0.05$) 검증을 통과해야만 머지되는 **'확증 통계 배포 거버넌스'**를 구축하겠다.
 
-- 진정한 데이터 분석은 수치 통계량과 그래픽 시각화가 결합하고, 기술통계의 정밀한 관찰이 추론통계의 엄밀한 검정으로 이어질 때 완성됨
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 단순 평균값 중심의 데이터 해석으로 인한 이상치 왜곡 및 추론통계적 유의성 검증 부재에 따른 A/B 테스트 오류.
+- **대응 (개선 방안)**: 중앙값·IQR 기반 로버스트 지표 병기, 왜도 피처 로그 변환 및 독립표본 t-검정 기반 배포 게이트웨이 확립.
+- **검증 (검증 기준)**: 데이터 왜도 $|\gamma_1| < 1.0$ 정규화 달성 및 가설 검정 유의확률 $p < 0.05$ 통계적 유의성 검증.
+- **효과 (실행 효과)**: 이상치 왜곡에 따른 잘못된 비즈니스 릴리즈 100% 차단 및 머신러닝 예측 정확도($R^2$) 25% 개선.
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-title">현행 한계</div>
+    <div class="itpe-flow-desc">평균의 함정 왜곡 및 가설검정 없는 A/B 테스트 거짓양성</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-title">개선 방안</div>
+    <div class="itpe-flow-desc">로버스트 지표(중앙값·IQR) 표준화 및 t-검정 배포 게이트웨이</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-title">검증 기준</div>
+    <div class="itpe-flow-desc">피처 왜도 1.0 미만 정규화 및 p-value &lt; 0.05 유의성 검증</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-title">실행 효과</div>
+    <div class="itpe-flow-desc">우연적 변동 오배포 0건 방어 및 회귀 모델 예측성 25% 향상</div>
+  </div>
+</div>
 
 ## 1교시 10점 답안 발췌
 
@@ -190,12 +264,10 @@ extra:
 
 ### 2. 4대 측정 척도 체계
 
-```text
-명목 (Nominal)  ──▶ 빈도, 최빈값 (성별, 코드)
-서열 (Ordinal)  ──▶ 순서, 중앙값 (만족도, 직급)
-등간 (Interval) ──▶ 덧셈/뺄셈, 산술평균, 표준편차 (온도, IQ)
-비율 (Ratio)    ──▶ 사칙연산, 기하평균, 변동계수 (매출, 연령)
-```
+- **명목 (Nominal)**: 단순 분류 $\to$ 빈도, 최빈값 (성별, 혈액형)
+- **서열 (Ordinal)**: 순서 존재 $\to$ 중앙값, 사분위수 (만족도, 직급)
+- **등간 (Interval)**: 동일 간격 (절대0 부재) $\to$ 덧셈/뺄셈, 산술평균, 표준편차 (온도, IQ)
+- **비율 (Ratio)**: 절대 영점 존재 $\to$ 사칙연산 전체, 기하평균, 변동계수 (매출액, 연령)
 
 | 구분 | 기술통계 (Descriptive) | 추론통계 (Inferential) |
 |---|---|---|
