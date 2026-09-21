@@ -1,245 +1,169 @@
 ---
 title: "공공 SW 사업 발주·계약"
-author: "Antigravity"
-date: "2026-09-21T19:30:00+09:00"
-tags:
-  - "notes-it-strategy"
+description: "공공 소프트웨어 사업의 발주 준비, 사업자 선정, 계약 기준선과 과업변경 통제"
+date: "2026-09-21T23:30:00+09:00"
+author: "Codex"
+category: "IT 경영전략"
+tags: ["공공 SW 사업", "발주", "계약", "RFP", "과업변경"]
+badge: "B"
 sidebar:
   badge:
-    text: "A"
+    text: "B"
+draft: false
 extra:
-  keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
+  quality_grade: "B"
 ---
 
-## 지식 로드맵 내 현재 위치
+## 학습 로드맵
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 공공 소프트웨어 사업관리를 거쳐 발주와 계약으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>공공 SW 사업관리</span>
-  <strong>발주·계약</strong>
-</div>
+IT 전략·관리 → 공공 정보화·조달관리 → **공공 SW 사업 발주·계약**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 공공 소프트웨어 사업의 **범위·대가·기간·책임**을 법령에 따라 객관적으로 명시하고, 기술 평가와 협상을 통해 사업자를 선정하여 검수 기준선을 확정하는 조달 관리 체계.
-- 메커니즘: 발주 준비(FP 대가·적정기간 산정) → **과업심의위원회(발주 전 과업 확정)** → 입찰공고 및 기술·가격 평가(협상에 의한 계약) → 기술협상 및 계약 체결 → 사업 수행 및 **과업변경심의(추가 대가·기간 반영)** → 최종 검수.
-- 통제: 요구사항 상세화(RFP 모호성 제거) · 헤드카운팅 투입공수 산정 금지 · 무상 과업변경 차단 · 요구사항 추적표(RTM) 기반 계약-검수 일치성 확보.
+- **본질**: 공공 SW 사업 발주·계약은 목적·요구사항·대가·기간·책임·검수기준을 명확히 하고 적법한 절차로 사업자를 선정해 이행 기준선을 확정하는 활동이다.
+- **메커니즘**: 사업기획·규모산정 → 요구사항·RFP → 과업 심의·공고 → 제안평가·협상 → 계약 → 변경통제·검수로 이어진다.
+- **산출물**: RFP와 평가기록, 협상결과, 계약 기준선, 과업변경 기록, RTM 기반 검수 증거를 남긴다.
 
-<div class="itpe-flow-map" role="img" aria-label="공공 소프트웨어 사업 발주와 계약의 전체 흐름">
-  <div class="itpe-flow-node">
-    <strong>① 발주 기획 및 준비</strong>
-    <small>FP 기능점수 산정 · 적정 사업기간 산정 · RFP 초안</small>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>소프트웨어진흥법 제50조</small></div>
-  <div class="itpe-flow-node">
-    <strong>② 과업심의위원회 심의</strong>
-    <small>과업 내용 확정 · 적정 사업기간 및 대가 심의</small>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>입찰 공고 (나라장터)</small></div>
-  <div class="itpe-flow-node is-current">
-    <strong>③ 사업자 선정 및 계약</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>제안평가</strong><span>기술(90%) + 가격(10%) 평가</span></div>
-      <div class="itpe-flow-branch"><strong>기술협상</strong><span>요구사항 수용 여부 및 조건 조정</span></div>
-      <div class="itpe-flow-branch"><strong>계약확정</strong><span>계약 Baseline · 사업수행계획서</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓<small>수행 중 변경 요구 발생 시</small></div>
-  <div class="itpe-flow-node">
-    <strong>④ 이행 및 과업변경심의</strong>
-    <small>과업변경 심의 → 계약금액·기간 조정 → 최종 납품 검수</small>
-  </div>
-</div>
+## 핵심 용어
 
-<details>
-<summary>핵심 용어</summary>
+- **RFP(Request for Proposal)**: 사업 목적, 범위, 요구사항, 제안·평가기준, 계약조건을 제시하는 제안요청서
+- **기능점수(Function Point)**: 사용자 관점의 기능 규모를 측정해 비용·기간 산정에 활용하는 방식
+- **과업내용**: 계약상 수행해야 할 기능·업무·산출물·조건의 범위
+- **협상에 의한 계약**: 제안서 평가 후 우선협상대상자와 기술·가격·계약조건을 협상하는 방식
+- **RTM(Requirements Traceability Matrix)**: 요구사항을 설계·구현·시험·인수 증거와 연결하는 추적표
+- **계약 기준선(Baseline)**: 범위·일정·비용·품질·인수조건의 승인된 기준
 
-- **RFP(Request for Proposal)**: 사업범위·요구사항·평가기준·계약조건을 제시하는 제안요청서
-- **FP(Function Point)**: 사용자 관점의 논리적 기능으로 SW 규모를 측정하는 방법
-- **과업심의위원회**: 과업내용의 확정·변경과 이에 따른 계약금액·기간 조정을 심의하는 기구
-- **협상에 의한 계약**: 제안서의 기술·가격을 평가하고 우선협상대상자와 협상하여 체결하는 계약방식
-- **SLA(Service Level Agreement)**: 서비스 수준과 측정·보고·조치 기준을 합의한 문서
-- **Baseline**: 변경통제를 거쳐야 수정할 수 있도록 승인된 범위·요구사항·일정·비용 기준
+## 예상 문제
 
-</details>
+> 공공 SW 사업의 발주·계약 절차와 핵심 통제 제도를 설명하고, 과업변경 및 검수의 문제점과 대응방안을 제시하시오.
 
-## 예상문제
+## Ⅰ. 공공 SW 사업 발주·계약의 개념
 
-> 공공 SW 사업의 발주·계약 절차를 설명하고, 요구사항 불명확과 과업변경 분쟁을 예방하기 위한 통제방안을 제시하시오. **(미출제 예상·25점)**
+공공 SW 발주는 공공성과 예산 책임 아래 필요한 서비스를 정의하고 경쟁·평가 절차로 공급자를 선정하는 과정이다. 계약은 제안 내용을 단순 수용하는 문서가 아니라 발주기관과 사업자의 권리·의무, 변경 절차와 인수 기준을 확정하는 통제 기준선이다.
 
-## Ⅰ. 공공 SW 사업 발주·계약의 개요
+```mermaid
+flowchart LR
+    N[공공서비스 필요] --> S[사업 범위·규모]
+    S --> R[요구사항·평가기준]
+    R --> V[사업자 선정·협상]
+    V --> B[계약 기준선]
+    B --> O[이행·검수·책임]
+```
 
-> 발주·계약은 사업구상을 **검수 가능한 요구사항과 계약 Baseline**으로 전환하는 통제 활동임.
+## Ⅱ. 발주·계약 절차와 산출물
 
-- 정의: 공공 SW 사업의 범위·요구사항·대가·기간·책임을 명시하고 사업자를 선정하여 계약하는 조달 절차
-- 목적: **공정한 사업자 선정 · 적정 대가 · 과업분쟁 예방**
+```mermaid
+sequenceDiagram
+    participant A as 발주기관
+    participant C as 심의·조달 절차
+    participant B as 입찰자·사업자
+    A->>A: 기획·요구사항·대가·기간 산정
+    A->>C: 과업 심의·입찰 의뢰
+    C->>B: RFP·평가기준 공고
+    B-->>C: 제안서·가격 제출
+    C->>A: 평가·협상 대상 선정
+    A->>B: 기술·가격·조건 협상·계약
+    B-->>A: 이행 산출물·검수 증거
+```
 
-## Ⅱ. 발주·계약의 구성체계와 절차
-
-> RFP의 요구사항이 평가·협상·계약·검수까지 끊기지 않아야 함.
-
-<div class="itpe-diagram-box">
-  <svg viewBox="0 0 520 220" width="100%" height="220" role="img" aria-label="공공 SW 사업 발주 계약 5단계 생명주기 및 과업심의 추적성 다이어그램">
-    <!-- Pipeline Boxes -->
-    <rect x="15" y="20" width="85" height="90" rx="5" fill="var(--sl-color-blue-low)" stroke="var(--sl-color-blue)" stroke-width="1.5"/>
-    <text x="57" y="42" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="10" font-weight="bold">① 발주 준비</text>
-    <text x="57" y="60" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="8.5">FP 대가 산정</text>
-    <text x="57" y="75" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">사업기간 산정</text>
-    <text x="57" y="90" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">RFP 초안 작성</text>
-
-    <!-- Arrow 1 -->
-    <line x1="100" y1="65" x2="115" y2="65" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
-
-    <rect x="115" y="20" width="85" height="90" rx="5" fill="var(--sl-color-green-low)" stroke="var(--sl-color-green)" stroke-width="1.5"/>
-    <text x="157" y="42" text-anchor="middle" fill="var(--sl-color-green-high)" font-size="10" font-weight="bold">② 과업 확정</text>
-    <text x="157" y="60" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="8.5">과업심의위 심의</text>
-    <text x="157" y="75" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">RFP 요구 확정</text>
-    <text x="157" y="90" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">입찰 공고</text>
-
-    <!-- Arrow 2 -->
-    <line x1="200" y1="65" x2="215" y2="65" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
-
-    <rect x="215" y="20" width="85" height="90" rx="5" fill="var(--sl-color-purple-low)" stroke="var(--sl-color-purple)" stroke-width="1.5"/>
-    <text x="257" y="42" text-anchor="middle" fill="var(--sl-color-purple-high)" font-size="10" font-weight="bold">③ 입찰·평가</text>
-    <text x="257" y="60" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="8.5">기술(90%)+가격</text>
-    <text x="257" y="75" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">차등점수제 적용</text>
-    <text x="257" y="90" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">우선협상자 선정</text>
-
-    <!-- Arrow 3 -->
-    <line x1="300" y1="65" x2="315" y2="65" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
-
-    <rect x="315" y="20" width="85" height="90" rx="5" fill="var(--sl-color-blue-low)" stroke="var(--sl-color-blue)" stroke-width="1.5"/>
-    <text x="357" y="42" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="10" font-weight="bold">④ 기술 협상</text>
-    <text x="357" y="60" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="8.5">과업 범위 조율</text>
-    <text x="357" y="75" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">검수 기준 확정</text>
-    <text x="357" y="90" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">계약 체결</text>
-
-    <!-- Arrow 4 -->
-    <line x1="400" y1="65" x2="415" y2="65" stroke="var(--sl-color-gray-3)" stroke-width="2"/>
-
-    <rect x="415" y="20" width="90" height="90" rx="5" fill="var(--sl-color-red-low)" stroke="var(--sl-color-red)" stroke-width="1.5"/>
-    <text x="460" y="42" text-anchor="middle" fill="var(--sl-color-red-high)" font-size="10" font-weight="bold">⑤ 이행·변경</text>
-    <text x="460" y="60" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="8.5">과업변경심의</text>
-    <text x="460" y="75" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">금액·기간 조정</text>
-    <text x="460" y="90" text-anchor="middle" fill="var(--sl-color-gray-2)" font-size="8.5">최종 인수 검수</text>
-
-    <!-- Traceability Band below -->
-    <rect x="15" y="130" width="490" height="70" rx="6" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.5"/>
-    <text x="260" y="152" text-anchor="middle" fill="var(--sl-color-gray-1)" font-size="10.5" font-weight="bold">계약 추적성(Contract Traceability) 매핑 구조</text>
-    <text x="260" y="172" text-anchor="middle" fill="var(--sl-color-blue-high)" font-size="10">RFP 요구사항 식별자(REQ-01) ➔ 제안서 수용표 ➔ 기술협상 합의서 ➔ 계약서 명시 ➔ WBS 과업 ➔ 단위/인수 검수표</text>
-    <text x="260" y="190" text-anchor="middle" fill="var(--sl-color-red-high)" font-size="9.5">통제: 변경 요구 발생 시 사업자 단독 무상 변경 금지 ➔ 과업변경심의위원회 의결 후 변경계약 체결</text>
-  </svg>
-</div>
-
-| 단계 | 주요 활동 | 핵심 산출물 |
+| 단계 | 핵심 활동 | 대표 산출물 |
 |---|---|---|
-| **발주 준비** | 사업범위·요구사항·예산·기간 정의, FP 대가 산정 | 사업계획서 · RFP 초안 · 적정기간 산정서 |
-| **과업 확정** | 발주 전 과업내용·사업기간·대가 검토 심의 | 과업심의 결과서 · 확정 RFP |
-| **입찰·평가** | 공고·제안접수·기술평가(90%)+가격평가(10%) | 기술평가 결과표 · 우선협상대상자 선정 |
-| **협상·계약** | 제안내용·범위·대가·검수조건 조정 및 합의 | 기술협상 합의서 · 최종 계약서 |
-| **이행·변경** | 진척·품질관리·변경 발생 시 과업변경심의 | 과업변경 심의의결서 · 변경계약서 · 검수조서 |
+| 사업기획 | 목적·범위·예산·기간·조달방식 결정 | 사업계획, 규모·대가 산정근거 |
+| 발주준비 | 기능·비기능·보안·운영 요구 구체화 | RFP, 요구사항명세, 평가기준 |
+| 심의·공고 | 과업 적정성 검토, 입찰조건 공개 | 심의결과, 입찰공고 |
+| 평가·협상 | 제안 비교, 우선순위 선정, 조건 구체화 | 평가기록, 협상결과 |
+| 계약 | 범위·일정·대가·책임·변경·검수 확정 | 계약서, 산출물 목록, 기준선 |
+| 이행·검수 | 변경 영향 심의, 시험·인수 증거 확인 | 변경기록, RTM, 검수결과 |
 
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Contract Traceability</strong></span> · 요구사항 ↔ 평가항목 ↔ 제안내용 ↔ 계약조항 ↔ 검수기준</div>
+## Ⅲ. 핵심 통제
 
-## Ⅲ. 핵심 제도와 통제 역할
-
-> 제도명 나열보다 각 제도가 어느 위험을 통제하는지 연결해야 함.
-
-| 통제 제도 | 법적 근거 및 실무 적용 내용 | 핵심 기대 효과 |
+| 통제 영역 | 통제 내용 | 목적 |
 |---|---|---|
-| **발주 전 과업심의** | 소프트웨어진흥법 제50조 (발주 전 사업계획·RFP 필수 심의) | 모호한 요구사항 사전 제거, 부실 발주 차단 |
-| **적정 사업기간 산정** | 소프트웨어사업 계약 및 관리감독에 관한 지침 (개발기간 산정식 적용) | 무리한 납기 설정 방지, 개발 품질 및 안전 확보 |
-| **협상에 의한 계약** | 국가계약법 시행령 제43조 (기술 90%, 가격 10% 비중 확대) | 덤핑 저가입찰 방지 및 기술 우수 사업자 선정 |
-| **과업변경 심의** | 계약 체결 후 변경 발생 시 사업자 신청 권리 보장 | 무상 과업변경(추가 요구) 방지 및 예산·기간 증액 |
-| **헤드카운팅 금지** | 투입인력 등급·인원수 기준 대가 산정 및 근태 관리 금지 | 투입공수 관리 폐해 탈피, 기능·산출물 중심 계약 전환 |
+| 요구사항 명확화 | 기능·성능·보안·데이터·운영·인수조건 식별 | 누락·해석 차이 축소 |
+| 적정 대가·기간 | 사업 특성과 규모에 맞는 산정근거 기록 | 실행가능성·공정성 확보 |
+| 평가 공정성 | 사전 공개 기준, 이해충돌 관리, 평가근거 보존 | 사업자 선정의 객관성 확보 |
+| 과업변경 | 요청·원인·영향·승인·대가·기간을 연계 | 무상·구두 변경 방지 |
+| 검사·인수 | 요구사항별 시험방법·합격기준·증거 연결 | 결과물의 계약 충족 확인 |
 
-## Ⅳ. 일괄발주와 단계별 발주 비교
+```mermaid
+flowchart LR
+    R[요구사항] --> D[설계·개발]
+    D --> T[시험 사례]
+    T --> E[시험 증거]
+    E --> A[검사·인수]
+    C[변경 요청] --> I[영향 분석]
+    I --> B[승인된 기준선]
+    B --> R
+```
 
-> 사업 불확실성과 설계 독립성에 따라 발주방식을 선택함.
+## Ⅳ. 일괄발주와 단계별 발주
 
-| 기준 | 일괄발주 (Turn-key) | 단계별 발주 (설계·구현 분할) |
+| 구분 | 일괄발주 | 단계별 발주 |
 |---|---|---|
-| **범위** | 분석·설계·구현·테스트를 단일 사업으로 통합 | 1단계: 분석·설계(요구정의) / 2단계: 개발·구현 |
-| **장점** | 책임 창구 단일화, 조달 행정 절차 간소화 | 요구사항 및 아키텍처 상세화 후 구현비 산출 |
-| **위험** | 초기 RFP 모호성으로 인한 잦은 과업변경 및 분쟁 | 단계 간 책임 단절, 사업자 변경 시 학습비용 발생 |
-| **적합 대상** | 범위와 기술 스택이 이미 명확한 표준화 사업 | 불확실성이 크고 신기술(클라우드·AI) 결합된 대규모 사업 |
+| 방식 | 분석·설계·구축 등을 하나의 계약 범위로 구성 | 기획·분석·설계와 구축 등을 구분해 발주 |
+| 적합 상황 | 범위와 기술이 비교적 명확하고 통합책임이 중요한 경우 | 불확실성이 크고 선행 결과로 후속 범위를 구체화해야 하는 경우 |
+| 장점 | 책임창구 단일화, 연계조정 단순화 | 단계별 검증, 후속 대가·범위의 구체화 |
+| 위험 | 초기 요구 오류가 후반까지 전파 | 단계 간 인수·책임·연계 단절 |
+| 통제 | 상세 요구·변경·인수 기준 강화 | 단계별 산출물 품질·인터페이스·지식이전 강화 |
 
-## Ⅴ. 문제점·대응책
+## Ⅴ. 문제점 및 대응책
 
-> 계약문서 간 불일치를 변경통제와 검수 단계까지 추적해야 함.
-
-| 위험 | 대책 | 효과 |
+| 문제점 | 영향 | 대응책 |
 |---|---|---|
-| **요구사항 누락** | RFP·제안서·계약서·검수항목 추적표(RTM) 필수 작성 | 범위 누락 통제 |
-| **저가·과소산정** | 기능점수(FP) 기반 단가 산정 및 기술평가 차등점수제 도입 | 대가 근거 명확화 |
-| **무상 과업변경** | 사업자 과업변경 신청권 보장 및 과업심의위 심의 의무화 | 비용·기간 현실적 증액 |
-| **설계·구현 단절** | 상세 설계 산출물 검수 기준 강화 및 인수 인계 기간 보장 | 책임분쟁 완화 |
+| 모호한 RFP | 제안 비교 곤란·분쟁 | 요구사항 ID, 우선순위, 수용기준, 추적표 명시 |
+| 과소 산정 | 일정·품질·인력 압박 | 규모·복잡도·비기능 요구를 포함한 산정근거 검토 |
+| 가격 중심 선정 | 기술·운영 적합성 저하 | 사업 특성에 맞는 기술평가와 검증 가능한 근거 요구 |
+| 구두·무상 과업변경 | 비용 전가·기준선 붕괴 | 공식 변경요청, 영향분석, 심의·승인 후 대가·기간 조정 |
+| 형식적 검수 | 결함·운영부담 이관 | RTM 기반 시험, 데이터 이관·보안·운영준비 증거 확인 |
 
-## Ⅵ. 계약 Baseline을 지키는 기술사적 제언
+## Ⅵ. 결론
 
-> 공공 SW 사업 분쟁의 근본 원인은 기술 실패가 아닌 '모호한 계약과 무상 변경'에 있으므로, 엄격한 계약 Baseline 관리가 핵심임.
+공공 SW 사업의 성공은 입찰 완료보다 계약 기준선의 품질에 좌우된다. 요구사항과 평가·협상·변경·검수 증거를 한 추적선으로 연결하고, 변경 시 범위뿐 아니라 대가·기간·품질 영향을 함께 조정해야 공정성과 실행가능성을 확보할 수 있다.
 
-### 학습자 통찰 메모 — 답안 밖
+```mermaid
+flowchart LR
+    R[명확한 요구] --> E[객관적 평가]
+    E --> B[실행 가능한 기준선]
+    B --> C[공식 변경통제]
+    C --> A[증거 기반 인수]
+```
 
-- `[핵심 통찰]` 공공 SW 계약의 품질은 문서량이 아니라 요구사항이 평가·계약·검수 기준으로 이어지는가에 달려 있음.
-- `나라면` 기술협상 단계에서 요구사항별 수용 여부와 검수 방법을 일대일 매핑한 요구사항 추적표(RTM)를 계약서 별첨으로 확정하고, 발주처 구두 요구는 과업심의 접수 전까지 일체 작업을 거부하도록 공정 프로세스를 제도화하겠음.
+## 10점 답안 압축본
 
-### 실전 답안용 기술사적 제언
+### 공공 SW 발주·계약 절차
 
-- **판정 기준**: 사업 시작 전 요구사항 상세화율 90% 이상 확보 및 모든 과업변경 건의 과업심의위원회 의결 반영률 100%.
-- **공학적 대안**: 설계-구현 분할발주 확대 적용 및 기능점수(FP) 기반 정량적 대가 산정 체계 정착.
-- **검증 절차**: 발주 전 과업심의 의결서 준수 여부 및 최종 검수 시 RTM 기반 일대일 테스트 합격 검증.
-- **기대 효과**: 공공 SW 사업의 유찰 및 파행 방지, 적정 대가 보장을 통한 SW 생태계 선순환 구축.
+공공 SW 발주·계약은 사업 목적과 요구사항, 대가·기간·책임·검수기준을 정하고 적법한 절차로 사업자를 선정해 이행 기준선을 확정하는 활동이다. 요구사항 추적성, 객관적 평가, 공식 과업변경, 증거 기반 검수가 핵심 통제다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 소프트웨어 계약 Baseline 통제 방안">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>문제</strong><span>RFP·제안서·계약서·검수기준 단절</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>대책</strong><span>요구사항별 계약·검수 매핑</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node is-current"><div class="itpe-step-detail"><strong>변경 통제</strong><span>영향분석 → 과업심의 → 변경계약</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>효과</strong><span>범위·대가·기간·검수책임 일치</span></div></div>
-</div>
+```mermaid
+sequenceDiagram
+    participant A as 발주기관
+    participant C as 심의·조달 절차
+    participant B as 입찰자·사업자
+    A->>A: 기획·요구사항·대가·기간 산정
+    A->>C: 과업 심의·입찰 의뢰
+    C->>B: RFP·평가기준 공고
+    B-->>C: 제안서·가격 제출
+    C->>A: 평가·협상 대상 선정
+    A->>B: 기술·가격·조건 협상·계약
+    B-->>A: 이행 산출물·검수 증거
+```
 
-## 1교시 10점 답안 발췌
+## 참고문헌
 
-### 1. 정의·목적
+- [국가법령정보센터, 소프트웨어 진흥법](https://www.law.go.kr/법령/소프트웨어진흥법)
+- [국가법령정보센터, 소프트웨어사업 계약 및 관리감독에 관한 지침](https://www.law.go.kr/행정규칙/소프트웨어사업계약및관리감독에관한지침)
 
-- 정의: 공공 SW 사업의 **범위·요구사항·대가·기간·책임**을 명시하고 사업자를 선정하여 계약하는 조달 절차
-- 목적: **공정한 선정 · 적정 대가 · 과업분쟁 예방**
+## 학습 점검
 
-### 2. 발주·계약 절차
+- 발주 준비부터 변경·검수까지 활동과 산출물을 연결할 수 있는가?
+- 요구사항·대가·평가·과업변경·검수의 통제 목적을 설명할 수 있는가?
+- 일괄발주와 단계별 발주의 선택기준을 비교할 수 있는가?
+- 변경 요청을 영향·승인·계약 기준선에 연결할 수 있는가?
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 소프트웨어 발주와 계약 절차 요약">
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>발주 준비</strong><strong>활동</strong><span>범위·요구사항·예산 정의</span><strong>산출</strong><span>사업계획서 · RFP 초안</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>과업 확정</strong><strong>활동</strong><span>과업내용 심의</span><strong>산출</strong><span>RFP · 심의결과</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><div class="itpe-step-detail"><strong>선정·계약</strong><strong>활동</strong><span>평가·협상·계약</span><strong>산출</strong><span>계약 Baseline</span></div></div>
-</div>
+## 연결 노트
 
-### 3. 핵심 통제
-
-- **과업심의**: 과업내용 확정·변경과 계약금액·기간 조정
-- **추적성**: 요구사항 ↔ 계약조항 ↔ 검수기준 연결
-
-## 출제 이력과 검증 출처
-
-- 공식 문제지 원문으로 확인한 직접 기출 없음
-- [국가법령정보센터: 소프트웨어 진흥법](https://www.law.go.kr/법령/소프트웨어진흥법)
-- [국가법령정보센터: 소프트웨어사업 계약 및 관리감독에 관한 지침](https://www.law.go.kr/행정규칙/소프트웨어사업계약및관리감독에관한지침)
-
-## 학습 체크
-
-- [ ] Ⅰ. 발주·계약의 정의·목적을 설명할 수 있는가?
-- [ ] Ⅱ. 발주 준비부터 변경·검수까지 활동·산출물을 연결할 수 있는가?
-- [ ] Ⅲ. 과업내용 확정·변경과 협상계약의 통제 역할을 설명할 수 있는가?
-- [ ] Ⅳ. 일괄발주와 단계별 발주의 선택 기준을 비교할 수 있는가?
-- [ ] Ⅴ~Ⅵ. 요구사항 누락·과소산정·무상변경의 대응책을 제시할 수 있는가?
-
-## 연결 토픽
-
-- 이전 토픽: [POP](./038_pop.md)
-- 연관 토픽: [RFP](./049_rfp.md), [소프트웨어 사업 대가산정](./026_software_cost_estimation.md), [협상에 의한 계약 세부기준](./066_negotiated_contract_proposal_evaluation.md), [과업심의 기준](./091_public_sw_cost_and_scope_change_criteria.md)
-- 다음 토픽: [부정적 위험 대응 전략](./040_negative_risk_response_strategy.md)
+- 이전: [POP](./038_pop)
+- 관련: [IT 아웃소싱](./033_it_outsourcing)
+- 관련: [PMO](./004_pmo)
+- 다음: [부정적 위험 대응 전략](./040_negative_risk_response_strategy)

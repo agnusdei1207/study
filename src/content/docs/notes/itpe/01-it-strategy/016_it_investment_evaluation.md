@@ -1,7 +1,7 @@
 ---
 title: "IT 투자평가·투자관리"
-author: "Antigravity"
-date: "2026-09-21T16:21:00+09:00"
+author: "Codex"
+date: "2026-09-21T23:02:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -20,29 +20,13 @@ extra:
   <strong>IT 투자평가·투자관리</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 투자 승인보다 **비용·위험·편익**을 전 생애주기에서 검증하는 가치관리
 - 메커니즘: 사전 타당성 → 중간 집행통제 → 사후 편익검증 → 차기 투자 환류
-- 통제: **TCO·NPV·IRR**로 재무성을 판단하고 **IT-BSC**로 비재무 가치를 보완
+- 판정 기준: **TCO·NPV·IRR**로 재무성을 판단하고 **IT-BSC**로 비재무 가치를 보완
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 460" role="img" aria-label="사전 평가, 중간 평가, 사후 평가가 삼각으로 배치되어 같은 방향으로 순환하고 중앙에 투자 환류 루프 허브가 놓인 IT 투자평가 생애주기">
-  <defs><marker id="arrow-itev-cycle" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
-  <text class="itpe-svg-title" x="260" y="30">IT 투자평가 생애주기 · 3단계 환류</text>
-  <path class="itpe-svg-link" d="M306 216 Q 400 224 418 284" marker-end="url(#arrow-itev-cycle)" />
-  <path class="itpe-svg-link" d="M368 394 Q 268 442 168 390" marker-end="url(#arrow-itev-cycle)" />
-  <path class="itpe-svg-link" d="M78 306 Q 86 196 198 168" marker-end="url(#arrow-itev-cycle)" />
-  <circle class="itpe-svg-node" cx="260" cy="184" r="56" />
-  <text class="itpe-svg-title" x="260" y="176">사전 평가</text><text class="itpe-svg-sub" x="260" y="200">타당성 검토</text>
-  <circle class="itpe-svg-node" cx="400" cy="346" r="56" />
-  <text class="itpe-svg-title" x="400" y="338">중간 평가</text><text class="itpe-svg-sub" x="400" y="362">집행 통제</text>
-  <circle class="itpe-svg-node" cx="119" cy="346" r="56" />
-  <text class="itpe-svg-title" x="119" y="338">사후 평가</text><text class="itpe-svg-sub" x="119" y="362">편익 검증</text>
-  <circle class="itpe-svg-node is-current" cx="260" cy="315" r="54" />
-  <text class="itpe-svg-title" x="260" y="306">투자 환류</text><text class="itpe-svg-title" x="260" y="328">Loop</text>
-</svg>
-</div>
+## 핵심 용어
 
 <details>
 <summary>핵심 용어</summary>
@@ -74,88 +58,51 @@ extra:
 
 > 사전·중간·사후 평가는 투자관리의 대표 흐름이며, 조직의 의사결정 체계에 맞춰 활동·산출을 구체화함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="IT 투자평가 생애주기 3단계 구성체계 및 활동">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 사전 평가 (Ex-Ante)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>타당성 검토 · 우선순위 도출 · TCO 산출 · 재무 분석(NPV/IRR)</span>
-      <strong>산출</strong><span>사업계획서 · 투자 타당성 분석서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 중간 평가 (In-Itinere)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>EVM 공정/예산 실측 · 마일스톤 감리 · 사업 지속성 심의</span>
-      <strong>산출</strong><span>공정 현황 보고서 · 위험 대장</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 사후 평가 (Ex-Post)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>비즈니스 편익 실현율 검증 · 생산성 역설 진단 · 차기 계획 환류</span>
-      <strong>산출</strong><span>편익 실현 평가서 · 교훈(Lessons Learned) 원장</span>
-    </div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Val IT</strong></span> · 투자 타당성 Business Case ↔ EVM 공정 통제 ↔ 사후 편익 실현율 양방향 추적</div>
+```mermaid
+flowchart TD
+    subgraph LIFECYCLE["IT 투자평가 대표 생애주기"]
+        direction TB
+        S1["① 사전 평가 (Ex-Ante)<br/>활동: 타당성 검토 · 우선순위 도출 · TCO 산출 · 재무 분석(NPV/IRR)"] --> O1["산출: 사업계획서 · 투자 타당성 분석서"]
+        O1 --> S2["② 중간 평가 (In-Itinere)<br/>활동: EVM 공정/예산 실측 · 마일스톤 감리 · 사업 지속성 심의"]
+        S2 --> O2["산출: 공정 현황 보고서 · 위험 대장"]
+        O2 --> S3["③ 사후 평가 (Ex-Post)<br/>활동: 비즈니스 편익 실현율 검증 · 생산성 역설 진단 · 차기 계획 환류"]
+        S3 --> O3["산출: 편익 실현 평가서 · 교훈(Lessons Learned) 원장"]
+        O3 -.->|Business Case ↔ EVM ↔ 편익 실현율 양방향 추적| S1
+    end
+```
 
 ## Ⅲ. 비용·편익 평가체계
 
 > 초기 구축비뿐 아니라 운영·전환·중단 비용과 화폐의 시간가치를 함께 반영해야 하며, 재무 3축 **TCO**·**NPV**·**IRR**만으로는 잡히지 않는 가치는 **IT-BSC(IT Balanced Scorecard)**로 보완해야 판정이 닫힘.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 415" role="img" aria-label="비용·편익 평가체계 네 축을 재무 평가 세 개와 비재무 보완 하나로 나누고 각 기법의 산식과 판정 기준을 하위 박스로 분기한 트리">
-  <rect class="itpe-svg-node" x="110" y="8" width="300" height="44" rx="12" />
-  <text class="itpe-svg-title" x="260" y="30">비용·편익 평가체계 4축</text>
-  <path class="itpe-svg-link" d="M260 52 V64 H36 V324 M36 98 H66 M36 324 H66" />
-  <rect class="itpe-svg-node is-current" x="66" y="78" width="444" height="40" rx="12" />
-  <text class="itpe-svg-title" x="288" y="98">재무 평가 3 · 화폐 단위 판정</text>
-  <path class="itpe-svg-link" d="M96 118 V261 M96 153 H126 M96 207 H126 M96 261 H126" />
-  <rect class="itpe-svg-node" x="126" y="130" width="384" height="46" rx="10" />
-  <text class="itpe-svg-label" x="318" y="144">TCO · 총소유비용</text>
-  <text class="itpe-svg-sub" x="318" y="165">구축·운영·전환·중단 → 판정: 생애주기 총비용</text>
-  <rect class="itpe-svg-node" x="126" y="184" width="384" height="46" rx="10" />
-  <text class="itpe-svg-label" x="318" y="198">NPV · 순현재가치</text>
-  <text class="itpe-svg-sub" x="318" y="219">할인 현금유입 − 유출 → 판정: NPV &gt; 0</text>
-  <rect class="itpe-svg-node" x="126" y="238" width="384" height="46" rx="10" />
-  <text class="itpe-svg-label" x="318" y="252">IRR · 내부수익률</text>
-  <text class="itpe-svg-sub" x="318" y="273">NPV=0이 되는 할인율 → 판정: IRR &gt; 자본비용</text>
-  <rect class="itpe-svg-node" x="66" y="304" width="444" height="40" rx="12" />
-  <text class="itpe-svg-title" x="288" y="324">비재무 보완 1 · 전략 정렬</text>
-  <path class="itpe-svg-link" d="M96 344 V379 M96 379 H126" />
-  <rect class="itpe-svg-node" x="126" y="356" width="384" height="46" rx="10" />
-  <text class="itpe-svg-label" x="318" y="370">IT-BSC · 균형성과표</text>
-  <text class="itpe-svg-sub" x="318" y="391">재무·고객·프로세스·학습 → 판정: 전략 정렬</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    ROOT["비용·편익 평가체계 4축"] --> FIN["재무 평가 3축 (화폐 단위 판정)"]
+    ROOT --> NFIN["비재무 보완 1축 (전략 정렬)"]
+
+    FIN --> TCO["TCO (총소유비용)<br/>구축·운영·전환·중단 → 판정: 생애주기 총비용 최소화"]
+    FIN --> NPV["NPV (순현재가치)<br/>할인 현금유입 − 유출 → 판정: NPV > 0"]
+    FIN --> IRR["IRR (내부수익률)<br/>NPV=0이 되는 할인율 → 판정: IRR > 자본비용"]
+
+    NFIN --> BSC["IT-BSC (IT 균형성과표)<br/>기업 공헌·사용자·운영 우수성·미래지향 → 판정: 전략 정렬성 검증"]
+```
 
 ## Ⅳ. IT 생산성 역설의 원인·대응
 
 > IT 투자가 성과로 보이지 않는 원인을 측정·시차·업무혁신 관점에서 분리해야 하며, 세 지점 중 어디가 끊겼는지 지목하지 못하면 대응은 구호로 끝남.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 352" role="img" aria-label="IT 투자 집행에서 기대 편익이 성과로 관측되기까지 측정 누락, 성과 시차, 업무혁신 부재의 세 지점이 끊겨 생산성 역설로 이어지는 인과 흐름">
-  <defs><marker id="arrow-itev-paradox" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
-  <rect class="itpe-svg-node" x="110" y="8" width="300" height="44" rx="12" />
-  <text class="itpe-svg-title" x="260" y="30">IT 투자 집행 · 기대 편익</text>
-  <path class="itpe-svg-link" d="M260 52 V74" marker-end="url(#arrow-itev-paradox)" />
-  <rect class="itpe-svg-node" x="66" y="80" width="388" height="40" rx="12" />
-  <text class="itpe-svg-title" x="260" y="100">편익 실현 경로 단절 3</text>
-  <path class="itpe-svg-link" d="M96 120 V238 M96 150 H126 M96 194 H126 M96 238 H126" />
-  <rect class="itpe-svg-node" x="126" y="132" width="384" height="36" rx="10" />
-  <text class="itpe-svg-sub" x="318" y="150">측정 누락 · 비재무 편익 미포착</text>
-  <rect class="itpe-svg-node" x="126" y="176" width="384" height="36" rx="10" />
-  <text class="itpe-svg-sub" x="318" y="194">성과 시차 · 편익 실현 지연</text>
-  <rect class="itpe-svg-node" x="126" y="220" width="384" height="36" rx="10" />
-  <text class="itpe-svg-sub" x="318" y="238">업무혁신 부재 · 자동화 효과 미발생</text>
-  <path class="itpe-svg-link" d="M260 256 V278" marker-end="url(#arrow-itev-paradox)" />
-  <rect class="itpe-svg-node is-current" x="80" y="284" width="360" height="56" rx="12" />
-  <text class="itpe-svg-title" x="260" y="306">생산성 역설</text>
-  <text class="itpe-svg-sub" x="260" y="328">Productivity Paradox · 통계상 성과 미가시</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    A["IT 투자 집행<br/>(기대 편익 투입)"] --> B["편익 실현 경로 단절 (3대 요인)"]
+
+    B --> F1["① 측정 누락<br/>(비재무·정성 편익 미포착)"]
+    B --> F2["② 성과 시차<br/>(조직 학습 지연 및 Time-lag)"]
+    B --> F3["③ 업무혁신 부재<br/>(기존 프로세스 답습 및 BPR 부재)"]
+
+    F1 --> C["생산성 역설 (Productivity Paradox)<br/>(통계상 거시적 생산성 향상 미가시화)"]
+    F2 --> C
+    F3 --> C
+```
 
 | 원인 | 대응 | 효과 |
 |---|---|---|
@@ -167,26 +114,16 @@ extra:
 
 > 사전 평가의 장밋빛 왜곡과 사후 평가 부재를 방지하려면 승인 시 Business Case를 운영 후 실측 편익과 대조하는 판정 지점을 제도화해야 함.
 
-<div class="itpe-flow-map" role="img" aria-label="승인 시 Business Case를 기준으로 편익 실현 검토에서 통과와 미통과로 갈라지는 투자관리 판정 분기">
-  <div class="itpe-flow-node">
-    <strong>승인 시 Business Case</strong>
-    <div class="itpe-step-detail"><strong>기준</strong><span>목표 편익 · 누적 TCO · 편익 책임자</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>편익 실현 검토</strong>
-    <div class="itpe-step-detail"><strong>판정 질문</strong><span>운영 후 실측 편익이 승인 시 목표에 도달했는가?</span></div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass"><strong>통과</strong><span>차기 포트폴리오 우선순위 유지</span></div>
-    <div class="itpe-flow-branch is-fail"><strong>미통과</strong><span>편차 원인 분석 → 개선·중단 결정</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    BC["승인 시 Business Case<br/>(기준: 목표 편익 · 누적 TCO · 편익 책임자)"] --> QG{"편익 실현 검토 (판정 질문)<br/>운영 후 실측 편익이 승인 시 목표에 도달했는가?"}
+    QG -->|Pass| PASS["통과<br/>(차기 포트폴리오 우선순위 유지)"]
+    QG -->|Fail| FAIL["미통과<br/>(편차 원인 분석 → 개선·중단 결정)"]
+```
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **구축 후 운영비 폭증** | 5개년 누적 TCO(직접비+간접비+숨은비용) 산정 템플릿 의무화 | 총소유비용 예측 오차 최소화 |
+| **구축 후 운영비 폭증** | 생애주기 TCO(직접비·간접비·전환비·중단비용) 산정 | 운영비 누락 감소 |
 | **사후 편익 평가 부재** | 운영 안정화 후 편익 실현 검토 시점·책임자 지정 | 목표 대비 편익 편차 확인 |
 | **무형 가치 산정 왜곡** | AHP 다기준 평가 · IT-BSC로 평가 근거 기록 | 정성 평가 근거 사후 추적 가능 |
 
@@ -201,32 +138,18 @@ extra:
 
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준**: 사업 착수 승인을 위한 사전 기획 단계의 장밋빛 기대치(정적 ROI)가 아니라, 사전 승인 시 수립한 **비즈니스 케이스(Business Case)**와 가동 후 실제 달성된 실측 편익 간의 정량적 정합성 및 투자 회수 달성률로 판정함
-- **대응 방안**: 5개년 누적 총소유비용(TCO, 직접비·간접비·전환비·숨은비용) 산정을 의무화하고, 재무 지표(NPV, IRR)와 비재무 전략 지표(IT-BSC)를 결합한 다차원 평가와 함께 Val IT 기반 전 생애주기(사전-중간-사후) 가치 통제 체계를 구축함
-- **검증 체계**: 중간 개발 단계의 EVM(획득가치관리) 기반 공정·원가 감리, 그리고 가동 1년 후 실제 비즈니스 편익 달성 여부를 의무 검증하는 **편익 실현 감사(Benefits Realization Review)**를 수행함
-- **기대 효과**: IT 투자가 통계적 생산성 향상으로 이어지지 않는 생산성의 역설(Productivity Paradox)을 극복하고, 부적격 사업의 조기 중단(Kill Switch) 및 실측 레슨런 기반 차기 IT 포트폴리오 자본 배분 최적화를 실현함
+- 판정: 승인 시 Business Case와 운영 후 실측 비용·편익·위험이 일치하는지 확인
+- 대안: 생애주기 TCO와 NPV·IRR·IT-BSC를 결합하고 편익 책임자·측정 시점 지정
+- 검증: 중간에는 EVM으로 집행을 확인하고 사후에는 편익 실현 검토로 목표 대비 편차 점검
+- 효과: 부적격 투자 조기 조정과 차기 포트폴리오 판단 근거 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="Val IT 기반 IT 투자 생애주기 가치 관리 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>문제</strong><span>사전 승인용 장밋빛 ROI · 사후 편익 추적 부재 · 생산성 역설</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>대안</strong><span>생애주기 TCO · 편익 책임자 · 사후 검토 제도화</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>사전 목표 대비 비용·편익·위험 편차</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>예산 낭비 방지 · 차기 투자 우선순위 개선</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    A["현행 한계<br/>(사전 승인용 장밋빛 ROI 및 사후 편익 추적 부재)"] --> B["개선 대안<br/>(생애주기 TCO · 편익 책임자 지정 · 사후 검토 제도화)"]
+    B --> C{"검증 판정<br/>(사전 목표 대비 비용·편익·위험 편차가 허용 범위 내인가?)"}
+    C -->|예| D["실행 효과<br/>(차기 투자 판단 근거 확보)"]
+    C -->|아니오| E["시정 조치<br/>(사업 조정·중단 또는 계획 재수립)"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -237,27 +160,23 @@ extra:
 
 ### 2. 투자평가 3단계와 산출
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="IT 투자평가 생애주기 3단계 요약">
-  <div class="itpe-pipeline-node">
-    <strong>사전 평가</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>타당성 · TCO 산정</span><strong>산출</strong><span>투자 타당성서</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>중간 평가</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>EVM 공정/비용 실측</span><strong>산출</strong><span>공정 보고서</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>사후 평가</strong>
-    <div class="itpe-step-detail"><strong>활동</strong><span>편익 실현율 감사</span><strong>산출</strong><span>교훈 원장</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    subgraph LIFECYCLE["IT 투자평가 대표 생애주기"]
+        direction TB
+        S1["① 사전 평가 (Ex-Ante)<br/>활동: 타당성 검토 · 우선순위 도출 · TCO 산출 · 재무 분석(NPV/IRR)"] --> O1["산출: 사업계획서 · 투자 타당성 분석서"]
+        O1 --> S2["② 중간 평가 (In-Itinere)<br/>활동: EVM 공정/예산 실측 · 마일스톤 감리 · 사업 지속성 심의"]
+        S2 --> O2["산출: 공정 현황 보고서 · 위험 대장"]
+        O2 --> S3["③ 사후 평가 (Ex-Post)<br/>활동: 비즈니스 편익 실현율 검증 · 생산성 역설 진단 · 차기 계획 환류"]
+        S3 --> O3["산출: 편익 실현 평가서 · 교훈(Lessons Learned) 원장"]
+        O3 -.->|Business Case ↔ EVM ↔ 편익 실현율 양방향 추적| S1
+    end
+```
 
 ### 3. 핵심 통제
 
-- **TCO(Total Cost of Ownership)**: 도입 직접비 외에 5개년 누적 간접비·숨은 비용(교육, 다운타임) 전수 계상
-- 편익 실현 감사: 시스템 오픈 1년 후 Business Case 편익 달성도를 의무 실측하여 생산성 역설 차단
+- **TCO(Total Cost of Ownership)**: 도입비뿐 아니라 운영·전환·중단 비용을 생애주기 관점에서 계상
+- 편익 실현 검토: 운영 안정화 후 Business Case와 실측 편익을 대조해 차기 투자에 환류
 
 ## 출제 이력과 검증 출처
 

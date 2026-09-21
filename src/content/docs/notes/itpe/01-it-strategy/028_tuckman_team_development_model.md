@@ -1,7 +1,7 @@
 ---
 title: "터크만 팀 발달 모델"
-author: "Antigravity"
-date: "2026-09-21T15:42:00+09:00"
+author: "Codex"
+date: "2026-09-21T22:36:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,52 +9,18 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 프로젝트 관리와 팀 역학을 거쳐 터크만 팀 발달 모델로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>프로젝트 관리·팀 역학</span>
-  <strong>터크만 팀 발달 모델</strong>
-</div>
+IT 전략·관리 → 프로젝트 관리·팀 역학 → **터크만 팀 발달 모델**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **터크만 팀 발달 모델(Tuckman Team Development Model)**은 팀이 결성되어 고성과를 내고 해산하기까지 거치는 5단계 발달 사다리와 각 단계별 팀 심리·갈등 양상 및 PM의 리더십 전환을 설명한 조직 역학 프레임워크
 - 메커니즘: Forming(지시형) → Storming(코칭/중재형) → Norming(지원/참여형) → Performing(위임형) → Adjourning(기념/자산화)
 - 산출물: 프로젝트 헌장(RACI) · 팀 작업 협약서(Working Agreement) · 충돌 해결 규칙서 · 회고 및 교훈 자산(Lessons Learned)
-
-<div class="itpe-flow-map" role="img" aria-label="터크만 팀 발달 5단계 사다리 모델 및 리더십 전환 흐름">
-  <div class="itpe-flow-node">
-    <strong>① Forming (형성기)</strong>
-    <small>목표 탐색 · 역할 모호성 → 목표·역할 명확화</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>② Storming (폭풍기)</strong>
-    <small>권한·방식 갈등 분출 → 갈등 표면화·중재</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>③ Norming (규범기)</strong>
-    <small>신뢰 형성 · 규칙 합의 → 합의 촉진·자율성 확대</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>④ Performing (성과기)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>협업</strong><span>자율적 문제 해결 및 팀 시너지 극대화</span></div>
-      <div class="itpe-flow-branch"><strong>PM 개입</strong><span>장애 제거 · 의사결정 위임</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>⑤ Adjourning (해산기)</strong>
-    <small>과업 완수 및 팀 해체 → 성과 인정·교훈 환류</small>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -72,7 +38,7 @@ extra:
 
 ## 예상문제
 
-> Tuckman 팀 발달 5단계와 단계별 행동 특성을 설명하고, PM의 개입 및 갈등관리 방안을 제시하시오. **(미출제 예상·25점)**
+> Tuckman 팀 발달 5단계와 단계별 행동 특성을 설명하고, PM의 개입 및 갈등관리 방안을 제시하시오.
 
 ## Ⅰ. 고성과 자기조직화 팀 구축을 위한 터크만 팀 발달 모델의 개요
 
@@ -85,89 +51,19 @@ extra:
 
 > `형성 → 폭풍 → 규범 → 성과 → 해산`의 사다리 구조를 오르며 PM의 지시적 개입을 줄이고 팀 자율성을 확대함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="터크만 5단계 팀 발달 모델의 활동 및 산출물 파이프라인">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① Forming (형성기)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>프로젝트 비전 공유 · 역할 및 R&R 설정</span>
-      <strong>산출</strong><span>프로젝트 헌장 · RACI 매트릭스</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② Storming (폭풍기)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>적극적 경청 · 원칙 중심 갈등 중재 및 협력적 해결</span>
-      <strong>산출</strong><span>갈등 해결 규칙 · 기술 의사결정서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ Norming (규범기)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>팀 자율성 존중 · 프로세스 표준화 및 신뢰 구축</span>
-      <strong>산출</strong><span>팀 작업 협약서(Working Agreement)</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ Performing (성과기)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>외압 차단 · 서번트 리더십 기반 전폭적 권한 위임</span>
-      <strong>산출</strong><span>스프린트 산출물 · 고품질 소프트웨어</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ Adjourning (해산기)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>공식 성과 인정 · 프로젝트 회고 및 교훈 자산화</span>
-      <strong>산출</strong><span>프로젝트 최종 보고서 · 교훈 관리대장(Lessons Learned)</span>
-    </div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 팀 성숙도 진단 ↔ 리더십 스타일 전환 ↔ 작업 협약 준수 ↔ 성과기 달성 양방향 연계</div>
+```mermaid
+flowchart TD
+    A["Forming<br/>활동: 목표·역할 명확화<br/>산출: 헌장·RACI"] --> B["Storming<br/>활동: 갈등 표면화·중재<br/>산출: 해결 규칙"]
+    B --> C["Norming<br/>활동: 규범 합의<br/>산출: Working Agreement"]
+    C --> D["Performing<br/>활동: 위임·장애 제거<br/>산출: 팀 성과"]
+    D --> E["Adjourning<br/>활동: 회고·인정<br/>산출: Lessons Learned"]
+```
+
+- **Traceability**: 팀 상태 ↔ 리더십 개입 ↔ 작업 협약 ↔ 성과·교훈의 연결
 
 ## Ⅲ. 터크만 팀 발달 5단계 사다리 및 PM 리더십 전환
 
-> 팀 성숙도 사다리를 오름에 따라 팀원의 자율성은 점진적으로 증가하고, PM의 개입 방식은 지시형에서 코칭, 지원을 거쳐 전폭적 위임형으로 전환되어야 함.
-
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 330" role="img" aria-label="터크만 팀 발달 5단계 사다리 구조와 각 단계별 PM 리더십 전환을 나타낸 다이어그램">
-  <rect class="itpe-svg-node is-current" x="10" y="8" width="500" height="42" rx="10" />
-  <text class="itpe-svg-title" x="260" y="30">터크만 팀 발달 5단계 사다리</text>
-
-  <!-- 계단식 사다리 구조 -->
-  <rect class="itpe-svg-node" x="20" y="240" width="90" height="70" rx="6" />
-  <text class="itpe-svg-sub" x="65" y="265">1. Forming</text>
-  <text class="itpe-svg-label" x="65" y="285">형성기</text>
-  <text class="itpe-svg-label" x="65" y="300">지시형 리더</text>
-
-  <rect class="itpe-svg-node" x="118" y="195" width="90" height="115" rx="6" />
-  <text class="itpe-svg-sub" x="163" y="220">2. Storming</text>
-  <text class="itpe-svg-label" x="163" y="240">폭풍기</text>
-  <text class="itpe-svg-label" x="163" y="255">코칭/중재자</text>
-
-  <rect class="itpe-svg-node" x="216" y="150" width="90" height="160" rx="6" />
-  <text class="itpe-svg-sub" x="261" y="175">3. Norming</text>
-  <text class="itpe-svg-label" x="261" y="195">규범기</text>
-  <text class="itpe-svg-label" x="261" y="210">참여/촉진자</text>
-
-  <rect class="itpe-svg-node is-current" x="314" y="105" width="90" height="205" rx="6" />
-  <text class="itpe-svg-sub" x="359" y="130">4. Performing</text>
-  <text class="itpe-svg-label" x="359" y="150">성과기</text>
-  <text class="itpe-svg-label" x="359" y="165">위임/장애제거</text>
-
-  <rect class="itpe-svg-node" x="412" y="60" width="90" height="250" rx="6" />
-  <text class="itpe-svg-sub" x="457" y="85">5. Adjourning</text>
-  <text class="itpe-svg-label" x="457" y="105">해산기</text>
-  <text class="itpe-svg-label" x="457" y="120">기념/회고</text>
-
-  <!-- 상승 화살표 -->
-  <path class="itpe-svg-link" d="M65 230 L457 50" stroke-dasharray="4 4" />
-  <text class="itpe-svg-label" x="240" y="90" fill="#3b82f6" font-weight="bold">팀 자율성 및 상호 신뢰 상승 곡선 ↗</text>
-</svg>
-</div>
+> 팀 성숙도 사다리를 오름에 따라 팀원의 자율성은 점진적으로 증가하고, PM의 개입 방식은 지시형에서 코칭, 지원을 거쳐 전폭적 위임형으로 전환되어야 함. 단계 흐름은 Ⅱ의 도식을 재사용하고 아래 표에서 개입 차이를 구체화함.
 
 | 발달 단계 | 팀원의 주요 심리 및 행동 양식 | 프로젝트 관리자(PM) 핵심 역할 | 주요 공식 산출물 |
 |---|---|---|---|
@@ -202,39 +98,19 @@ extra:
 
 > PM 1인의 마이크로매니지먼트에서 벗어나, 팀 스스로 갈등을 성장의 지렛대로 삼고 자율 진화하는 **애자일 회고 문화**와 **심리적 안전감(Psychological Safety)**이 팀 빌딩의 본질임.
 
-### 학습자 통찰 메모 — 답안 밖
-
-- `[핵심 통찰]`: Storming(폭풍기)은 실패의 징후가 아니라 팀이 Norming(규범기)으로 도약하기 위해 반드시 거쳐야 할 필연적 통과의례이며, 이를 강압적으로 억압하면 건강한 규범이 형성되지 않는다.
-- `나라면`: 팀이 스스로 지킬 작업 협약서(Working Agreement)를 직접 작성하게 하고, 프로젝트 중 팀원 변동이나 목표 변경이 발생할 때마다 현재 단계를 재진단하여 신속히 규범을 재합의하겠다.
-
 ### 실전 답안용 기술사적 제언
 
 - 판정: 팀 성숙도에 따른 리더십 전환 체계를 구축하고 폭풍기 갈등을 제도적으로 흡수하였는가
 - 대안: 팀원 주도 **Working Agreement** 제정 + 주기적 스프린트 회고(Retrospective) 내재화
-- 검증: 팀 그라운드 룰 합의율 100% · 정기 회고를 통한 실행 가능한 개선 액션 도출
-- 효과: 고성과 **자기조직화(Self-Organizing) 팀** 조기 달성 · 프로젝트 납기 및 품질 리스크 최소화
+- 검증: 역할·갈등규칙 합의 여부 · 회고 개선항목의 후속 이행 확인
+- 효과: **자기조직화(Self-Organizing) 팀**의 의사결정 대기·갈등 재발 감소
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="터크만 팀 발달 모델 실무 정착 제언 파이프라인">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>문제</strong><span>일방적 지시 통제 · 폭풍기 갈등 억압 및 파벌화 위험</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>대안</strong><span>단계 재진단 · Working Agreement · 정기 회고</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>역할 명확성 · 갈등 해결 · 합의 이행 · 자율 의사결정</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>갈등의 규범 전환 · 팀 복원력 · 자율 협업</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    A["문제: 갈등 억압·일방 지시"] --> B["대안: 단계 재진단·작업 협약·회고"]
+    B --> C["판정: 역할·규칙·개선항목 이행"]
+    C --> D["효과: 갈등의 규범 전환·자율 협업"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -245,32 +121,13 @@ extra:
 
 ### 2. 구성체계 및 방법론
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 터크만 5단계 발달 구조 요약">
-  <div class="itpe-pipeline-node">
-    <strong>Forming (형성기)</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>목표 탐색 · 지시형 리더십</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>Storming (폭풍기)</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>갈등 표출 · 코칭/중재 리더십</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>Norming (규범기)</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>신뢰 형성 · 지원형 리더십</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>Performing (성과기)</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>자율 시너지 · 위임형 리더십</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>Adjourning (해산기)</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>성과 인정 · 기념/자산화</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    A["Forming<br/>활동: 목표·역할 명확화<br/>산출: 헌장·RACI"] --> B["Storming<br/>활동: 갈등 표면화·중재<br/>산출: 해결 규칙"]
+    B --> C["Norming<br/>활동: 규범 합의<br/>산출: Working Agreement"]
+    C --> D["Performing<br/>활동: 위임·장애 제거<br/>산출: 팀 성과"]
+    D --> E["Adjourning<br/>활동: 회고·인정<br/>산출: Lessons Learned"]
+```
 
 ### 3. 핵심 통제
 

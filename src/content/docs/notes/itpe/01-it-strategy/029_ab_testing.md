@@ -1,7 +1,7 @@
 ---
 title: "A/B 테스트"
-author: "Antigravity"
-date: "2026-09-21T15:44:00+09:00"
+author: "Codex"
+date: "2026-09-21T22:41:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,48 +9,18 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 데이터 기반 의사결정과 제품 실험을 거쳐 A/B 테스트로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>데이터 기반 의사결정·제품 실험</span>
-  <strong>A/B 테스트</strong>
-</div>
+IT 전략·관리 → 데이터 기반 의사결정·제품 실험 → **A/B 테스트**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **A/B 테스트(A/B Test)**는 사용자 집단을 대조군(Control)과 실험군(Variant)으로 무작위 배정(RCT)하여 단일 기능 변경이 핵심 지표에 미친 통계적 인과관계(Causality)를 검증하는 과학적 의사결정 프레임워크
 - 메커니즘: 가설 및 MDE 설정 → Feature Flag 무작위 배정 → 동일 기간 동시 노출 → SRM 검증 및 p-value 산정 → Guardrail 지표 확인 후 롤아웃
 - 산출물: A/B 실험 설계서(가설·표본수·지표) · SRM 카이제곱 검증표 · 통계적 유의성(p-value) 분석 보고서 및 기능 릴리즈 결정문
-
-<div class="itpe-flow-map" role="img" aria-label="사용자 트래픽 분할에서 통계적 가설검정 및 롤아웃 결정으로 이어지는 흐름">
-  <div class="itpe-flow-node">
-    <strong>전체 사용자 트래픽</strong>
-    <small>디지털 서비스 방문자 · 무작위 해시 기반 분할</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>통제 실험 환경 (Feature Flag)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>대조군 (Group A)</strong><span>기존 원본 서비스 노출 (Control)</span></div>
-      <div class="itpe-flow-branch"><strong>실험군 (Group B)</strong><span>단일 기능 변경 적용 노출 (Variant)</span></div>
-      <div class="itpe-flow-branch"><strong>관측 조건</strong><span>동일 기간 동시 관측 및 계절성 배제</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>통계적 가설검정</strong>
-    <small><span class="itpe-keyword"><strong>SRM</strong></span> 카이제곱 검사 · <span class="itpe-keyword"><strong>p-value</strong></span> 및 신뢰구간 도출</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>출시 및 롤아웃 결정</strong>
-    <small><span class="itpe-keyword"><strong>Guardrail</strong></span> 지표 통과 · 효과 크기 확인 후 전면 배포</small>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -68,7 +38,7 @@ extra:
 
 ## 예상문제
 
-> A/B 테스트의 개념과 실험 절차를 설명하고, SRM·Peeking 등 통계적 왜곡과 대응책을 제시하시오. **(미출제 예상·25점)**
+> A/B 테스트의 개념과 실험 절차를 설명하고, SRM·Peeking 등 통계적 왜곡과 대응책을 제시하시오.
 
 ## Ⅰ. 직관이 아닌 데이터 기반 의사결정, A/B 테스트의 개요
 
@@ -81,74 +51,27 @@ extra:
 
 > 가설 수립에서 배포 판정까지 `가설수립 → 표본설계 → 계측검증 → 실험실행 → 가설검정` 파이프라인을 거쳐 객관적 의사결정을 완성함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="A/B 테스트 5단계 실험 프로세스 및 단계별 활동과 산출물">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 문제 정의 및 가설 수립</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>독립변수 정의 · 귀무가설($H_0$) 및 대립가설($H_1$) 설정</span>
-      <strong>산출</strong><span>가설 정의서 · 핵심 성과지표 명세서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 표본수 및 실험 기간 산정</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>유의수준 · 검정력 · MDE 기준 표본수 계산</span>
-      <strong>산출</strong><span>실험 계획서 · 필요 표본수 계산서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 계측 구축 및 A/A 무편향 검증</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>Feature Flag 연동 · A/A 테스트로 그룹 간 사전 편향 부재 확인</span>
-      <strong>산출</strong><span>배정 파이프라인 검증서 · 트래킹 코드</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 무작위 실험 실행 및 모니터링</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>동일 기간 동시 노출 · 조기 종료 금지 및 SRM 실시간 감시</span>
-      <strong>산출</strong><span>일별 전환 로그 · 가드레일 모니터링 보고서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 통계적 가설검정 및 배포 결정</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>카이제곱 SRM 검사 · p-value 및 신뢰구간 평가 후 롤아웃 결정</span>
-      <strong>산출</strong><span>실험 결과 보고서 · 기능 배포 결정문</span>
-    </div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 사전 가설 ↔ Feature Flag 배정 ↔ SRM 적합도 ↔ 최종 롤아웃 양방향 연계</div>
+```mermaid
+flowchart TD
+    A["가설·지표<br/>활동: H0·H1·MDE 정의<br/>산출: 실험 명세"] --> B["표본 설계<br/>활동: 유의수준·검정력 결정<br/>산출: 표본·기간 계획"]
+    B --> C["배정·계측<br/>활동: Feature Flag·A/A 검증<br/>산출: 계측 검증서"]
+    C --> D["실험 실행<br/>활동: 동시 노출·SRM 감시<br/>산출: 관측 데이터"]
+    D --> E["검정·결정<br/>활동: 효과크기·신뢰구간 평가<br/>산출: 롤아웃 결정"]
+```
+
+- **Traceability**: 사전 가설 ↔ 배정 규칙 ↔ 관측 데이터 ↔ 배포 결정 추적
 
 ## Ⅲ. A/B 테스트 5계층 아키텍처 및 계측 파이프라인
 
 > 사용자 배정부터 통계 분석까지 5계층 파이프라인을 체계적으로 구축해야 데이터 결손과 통계적 왜곡을 사전에 완벽히 방어할 수 있음.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 330" role="img" aria-label="A/B 테스트 5계층 아키텍처인 배정 계층, 수집 계층, 가공 계층, 분석 계층, 시각화 계층을 나타낸 트리 다이어그램">
-  <rect class="itpe-svg-node is-current" x="110" y="8" width="300" height="46" rx="12" />
-  <text class="itpe-svg-title" x="260" y="31">A/B 테스트 5계층 아키텍처</text>
-  <path class="itpe-svg-link" d="M260 54 V68 H40 V288 M40 102 H70 M40 164 H70 M40 226 H70 M40 288 H70" />
-  <rect class="itpe-svg-node" x="70" y="74" width="440" height="50" rx="8" />
-  <text class="itpe-svg-sub" x="290" y="94">1. 배정 계층 · Feature Flag & Consistent Hash</text>
-  <text class="itpe-svg-label" x="290" y="112">사용자 ID 기반 무작위 군 배정 · 세션 고정</text>
-  <rect class="itpe-svg-node" x="70" y="128" width="440" height="50" rx="8" />
-  <text class="itpe-svg-sub" x="290" y="148">2. 수집 계층 · 로깅 SDK & 이벤트 게이트웨이</text>
-  <text class="itpe-svg-label" x="290" y="166">클릭·전환·체류시간 이벤트 실시간 무손실 수집</text>
-  <rect class="itpe-svg-node" x="70" y="182" width="440" height="50" rx="8" />
-  <text class="itpe-svg-sub" x="290" y="202">3. 가공 계층 · 스트리밍 ETL & 분산감소(CUPED)</text>
-  <text class="itpe-svg-label" x="290" y="220">봇 트래픽 필터링 · 결측 보정 · 통계 분산 감소 처리</text>
-  <rect class="itpe-svg-node" x="70" y="236" width="440" height="50" rx="8" />
-  <text class="itpe-svg-sub" x="290" y="256">4. 분석 계층 · 통계 검정기 & SRM 실시간 감시</text>
-  <text class="itpe-svg-label" x="290" y="274">카이제곱 적합도 검정 · p-value 및 신뢰구간 산출</text>
-  <rect class="itpe-svg-node is-current" x="70" y="290" width="440" height="36" rx="8" />
-  <text class="itpe-svg-sub" x="290" y="308">5. 시각화 계층 · 의사결정 대시보드 및 카나리 배포</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    A["배정<br/>Feature Flag·일관 해시"] --> B["수집<br/>이벤트 SDK·게이트웨이"]
+    B --> C["가공<br/>필터링·결측 처리"]
+    C --> D["분석<br/>SRM·효과크기·신뢰구간"]
+    D --> E["의사결정<br/>대시보드·롤아웃"]
+```
 
 | 계층 | 주요 구성요소 | 핵심 역할 및 통제 기능 |
 |---|---|---|
@@ -179,45 +102,25 @@ extra:
 | **피킹 문제(Peeking)** | 정해진 표본수 도달 전 분석 금지 또는 **순차 검정(Sequential Testing)** | 1종 오류(거짓 양성) 급증 원천 차단 |
 | **다중 검정 오류** | 본페로니(Bonferroni) 교정 또는 **FDR(False Discovery Rate)** 통제 | 우연에 의한 가짜 개선 효과 배제 |
 | **간섭 효과(Spillover)** | 사용자 단위 대신 클러스터(지역/시간) 단위 무작위 배정 | 네트워크 효과로 인한 데이터 오염 방지 |
-| **신규성 효과(Novelty)** | 충분한 관측기간(최소 2주) 확보 및 신규·기존 사용자 코호트 분리 | 일시적 호기심 착시 효과 식별 |
+| **신규성 효과(Novelty)** | 서비스 주기를 포함한 관측기간 확보 · 신규·기존 사용자 코호트 분리 | 일시적 호기심과 지속효과 구분 |
 
 ## Ⅵ. 실험 문화와 신뢰성 거버넌스 중심의 기술사적 제언
 
 > 단순 A/B 테스트 도구 도입을 넘어, 실패한 실험 데이터를 조직 자산화하고 카나리 배포와 긴밀히 연동하는 **실험 거버넌스 체계** 정립이 핵심임.
 
-### 학습자 통찰 메모 — 답안 밖
-
-- `[핵심 통찰]`: 단순히 유의한 p-value만으로 배포를 결정하면 효과 크기가 미미하거나 시스템 안정성을 훼손하는 변경안을 채택하는 우를 범하게 되므로, 배정 무결성(SRM)과 보호 지표(Guardrail)를 함께 판정해야 한다.
-- `나라면`: 실험 착수 전 가설·필요 표본수·종료 조건·보호 지표를 명문화하여 사전 등록하고, SRM 경보 발생 시 데이터 분석을 즉각 중단하고 Feature Flag 및 계측 파이프라인의 무결성부터 복구하겠다.
-
 ### 실전 답안용 기술사적 제언
 
 - 판정: 통계적 왜곡(SRM, Peeking)을 통제하고 보호 지표(Guardrail) 검증을 통과하였는가
 - 대안: **SRM 자동 모니터링** + **Guardrail Metrics** 기반 카나리 점진 롤아웃 연동
-- 검증: 카이제곱 SRM 유의확률 p > 0.001 확인 · 에러율/지연시간 등 시스템 가드레일 통과
+- 검증: 사전 정의한 SRM 판정기준 · 효과크기·신뢰구간 · 오류율·지연시간 Guardrail 확인
 - 효과: 거짓 양성에 의한 장애 배포 차단 · 데이터 기반의 확신 있는 제품 혁신 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="A/B 테스트 통계적 신뢰성 확보 제언 파이프라인">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>문제</strong><span>직관 의존 출시 · 피킹 편향 및 SRM 표본 왜곡 방치</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>대안</strong><span>A/B 테스트 표준 파이프라인 · SRM 자동 진단 및 순차 검정 도입</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>판정</strong><span>SRM 없음 · 종료조건 충족 · 효과크기·신뢰구간 · Guardrail</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>효과</strong><span>거짓 양성 축소 · 재현 가능한 배포 의사결정</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    A["문제: 피킹·SRM 왜곡"] --> B["대안: 사전등록·SRM 감시·순차검정"]
+    B --> C["판정: 종료조건·효과크기·Guardrail"]
+    C --> D["효과: 거짓 양성 축소·재현 가능한 결정"]
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -228,32 +131,13 @@ extra:
 
 ### 2. 구성체계 및 방법론
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 A/B 테스트 메커니즘 요약">
-  <div class="itpe-pipeline-node">
-    <strong>가설 수립</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>귀무/대립가설 · 성과지표</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>Feature Flag 배정</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>사용자 단위 무작위 배정</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>동일 기간 관측</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>Control vs Variant 동시 노출</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>통계 검정</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>SRM 진단 · p-value 및 신뢰구간</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>롤아웃 결정</strong>
-    <div class="itpe-step-detail"><strong>역할</strong><span>Guardrail 지표 점검 후 배포</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    A["가설·지표<br/>활동: H0·H1·MDE 정의<br/>산출: 실험 명세"] --> B["표본 설계<br/>활동: 유의수준·검정력 결정<br/>산출: 표본·기간 계획"]
+    B --> C["배정·계측<br/>활동: Feature Flag·A/A 검증<br/>산출: 계측 검증서"]
+    C --> D["실험 실행<br/>활동: 동시 노출·SRM 감시<br/>산출: 관측 데이터"]
+    D --> E["검정·결정<br/>활동: 효과크기·신뢰구간 평가<br/>산출: 롤아웃 결정"]
+```
 
 ### 3. 핵심 통제
 

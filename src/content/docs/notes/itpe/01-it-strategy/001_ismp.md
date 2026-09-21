@@ -20,11 +20,13 @@ extra:
   <strong>ISMP</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **ISMP(Information System Master Plan)**는 **ISP(Information Strategy Planning)**가 선정한 정보화 과제를 조달 가능한 **Baseline**으로 구체화
 - 메커니즘: 요구사항 분석 → 아키텍처 정의 → 규모·예산 산정 → **RFP(Request for Proposal)** 도출 과정을 **RTM(Requirements Traceability Matrix)**으로 연결
 - 산출물: 요구사항 명세서 · 목표 아키텍처 · **FP(Function Point)** 기반 예산서 · RFP
+
+## 핵심 용어
 
 <details>
 <summary>핵심 용어</summary>
@@ -145,9 +147,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    RTM["RTM 양방향 추적<br/>(요구사항 ↔ 아키텍처 ↔ FP·예산 ↔ RFP)"] --> QG{"Quality Gate 판정<br/>미추적 요구사항이 남았는가?"}
-    QG -->|없음| PASS["통과: 발주 Baseline 확정 → 조달 진행"]
-    QG -->|있음| FAIL["미통과: 누락·불일치 보완 → RTM 재검증"]
+    A["현행 한계<br/>(산출물별 분절적 검토 및 계약 연계 누락)"] --> B["개선 대안<br/>(RTM 기반 발주 전 Quality Gate 운영)"]
+    B --> C{"검증 판정<br/>(미추적 요구사항이 남았는가?)"}
+    C -->|없음| D["실행 효과<br/>(발주 Baseline 확정·조달 진행)"]
+    C -->|있음| E["보완·반려<br/>(누락·과잉 요구사항 정제·예산 재산정)"]
 ```
 
 ## 출제 이력과 검증 출처

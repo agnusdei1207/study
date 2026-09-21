@@ -1,7 +1,7 @@
 ---
 title: "국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성"
-author: "Antigravity"
-date: "2026-09-21T15:32:00+09:00"
+author: "Codex"
+date: "2026-09-21T22:14:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,48 +9,18 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 재해복구·서비스 연속성을 거쳐 국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>재해복구·서비스 연속성</span>
-  <strong>국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성</strong>
-</div>
+IT 전략·관리 → 재해복구·서비스 연속성 → **국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **국정자원 화재와 공공 회복탄력성**은 단일 데이터센터 물리 설비 집중(SPOF)의 한계를 극복하고, 센터 상실 시에도 대민 행정서비스를 무중단 유지하는 다중 거점 연속성 체계
-- 메커니즘: 설비 물리 격리 → GSLB 트래픽 우회 → 무상태(Stateless) 앱 분산 → 데이터 실시간 동기화/에어갭 → 자동 절체(Failover)
+- 메커니즘: 설비·거점의 지리적 분리 → GSLB 트래픽 우회 → 무상태(Stateless) 앱 분산 → 데이터 복제와 네트워크 단절형 에어갭 백업 → 자동 절체(Failover)
 - 산출물: 업무등급별 RTO·RPO 목표정의서 · Active-Active DR 구성도 · 실전 모의전환 검증 결과서
-
-<div class="itpe-flow-map" role="img" aria-label="물리 재난에서 다중 거점 서비스 연속성으로 이어지는 회복탄력성 흐름">
-  <div class="itpe-flow-node">
-    <strong>물리 설비 재난</strong>
-    <small>2025년 대전센터 화재 · 행정정보시스템 장애</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>장애 전파 차단</strong>
-    <small>방화구획 물리 격리 · 전력·통신 인입 관로 이원화</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>다중 거점 회복탄력성 체계</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>접속</strong><span><span class="itpe-keyword"><strong>GSLB</strong></span> 기반 트래픽 자동 우회</span></div>
-      <div class="itpe-flow-branch"><strong>애플리케이션</strong><span>무상태(Stateless) 컨테이너 분산</span></div>
-      <div class="itpe-flow-branch"><strong>데이터</strong><span>업무등급별 동기·비동기 복제 및 격리 백업</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>검증 가능한 행정서비스 연속성</strong>
-    <small>서비스별 <span class="itpe-keyword"><strong>RTO·RPO</strong></span> 실측 · 전환·복귀 검증</small>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -61,14 +31,14 @@ extra:
 - **Active-Active DR(이중운영체계)**: 복수 거점이 서비스를 운영하여 대기형 DR보다 전환시간을 줄이는 구성
 - **RTO(Recovery Time Objective)**: 재해 발생 시 서비스가 정상 수준으로 복구되기까지 허용되는 최대 시간
 - **RPO(Recovery Point Objective)**: 재해 발생 시 유실을 허용할 수 있는 최대 데이터 시점 간격
-- **에어갭(Air-Gap)**: 백업 저장소를 네트워크와 물리적으로 단절시켜 악성코드 감염 및 물리 재난으로부터 데이터를 보존
+- **에어갭(Air-Gap)**: 백업 저장소의 네트워크 연결을 물리적·논리적으로 단절해 악성코드와 원격 침해의 전파를 차단하는 방식. 센터 화재 등 물리 재난에는 별도 거점의 지리적 분리가 필요함
 - **Split-Brain**: 네트워크 단절 시 양 센터가 상호 다운으로 오판하여 독자 쓰기를 수행하며 발생하는 데이터 불일치 현상
 
 </details>
 
 ## 예상문제
 
-> 국가정보자원관리원 화재로 드러난 공공 디지털서비스의 연속성 문제를 분석하고, 시스템 등급별 재해복구체계와 검증 방안을 제시하시오. **(미출제 예상·25점)**
+> 국가정보자원관리원 화재로 드러난 공공 디지털서비스의 연속성 문제를 분석하고, 시스템 등급별 재해복구체계와 검증 방안을 제시하시오.
 
 ## Ⅰ. 물리적 설비 방호에서 디지털 회복탄력성으로의 전환 개요
 
@@ -81,48 +51,18 @@ extra:
 
 > 화재 전파 경로를 계층별로 차단하고 `물리격리 → 가상화망 → 공통분산 → 동기복제 → 자동절체` 파이프라인으로 연결해야 서비스가 지속됨.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="회복탄력성 5단계 구성체계 및 단계별 활동과 산출물">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 물리 설비 격리</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>배터리실 방화구획 분리 · 전원·통신 인입 관로 이원화</span>
-      <strong>산출</strong><span>물리 격리 설계서 · 관로 이원화 도면</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 인프라 가상화 및 망 분산</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>다중 거점 클라우드 배치 · 전용 백본망 이중화</span>
-      <strong>산출</strong><span>멀티 리전 인프라 구성도 · 대역폭 용량계획서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 플랫폼 및 공통 서비스 분산</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>공통 인증·행정연계 게이트웨이 거점별 독립 배포</span>
-      <strong>산출</strong><span>분산 게이트웨이 아키텍처 · 무상태 컨테이너 매니페스트</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 데이터 동기 복제 및 에어갭</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>업무등급별 데이터 이중화 · 원격지 격리 백업</span>
-      <strong>산출</strong><span>복제 정책서 · 복구 백업 대장</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 자동 장애 감지 및 절체</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>장애 감지 · 서비스 전환 · 데이터 정합성 확인 · 복귀</span>
-      <strong>산출</strong><span>Failover 절차서 · 전환훈련 결과서</span>
-    </div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 물리 재난 감지 ↔ GSLB 트래픽 우회 ↔ 스토리지 정합성 ↔ 서비스 무중단 검증</div>
+```mermaid
+flowchart TD
+    S1["① 물리 설비 격리<br/>• 활동: 배터리실 방화구획 분리 · 관로 이원화<br/>• 산출: 물리 격리 설계서 · 관로 이원화 도면"]
+    S2["② 인프라 가상화 및 망 분산<br/>• 활동: 다중 거점 클라우드 배치 · 백본망 이중화<br/>• 산출: 멀티 리전 인프라 구성도 · 대역폭 용량계획서"]
+    S3["③ 플랫폼 및 공통 서비스 분산<br/>• 활동: 공통 인증·연계 게이트웨이 독립 배포<br/>• 산출: 분산 게이트웨이 아키텍처 · 무상태 매니페스트"]
+    S4["④ 데이터 복제 및 격리 백업<br/>• 활동: 등급별 데이터 이중화 · 별도 거점 배치 · 에어갭 연결 단절<br/>• 산출: 복제 정책서 · 복구 백업 대장"]
+    S5["⑤ 자동 장애 감지 및 절체<br/>• 활동: 장애 감지 · 서비스 전환 · 정합성 확인 · 복귀<br/>• 산출: Failover 절차서 · 전환훈련 결과서"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
+
+- **Traceability**: 재난 감지 ↔ 트래픽 우회 ↔ 데이터 정합성 ↔ 서비스 복구 결과 추적
 
 ## Ⅲ. 단순 설비 이중화 vs 분산 서비스 다중화 비교
 
@@ -139,25 +79,15 @@ extra:
 
 > 물리·네트워크·플랫폼·데이터의 공유 의존성을 분리해야 공통원인 장애의 전파 범위를 원천 차단할 수 있음.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 330" role="img" aria-label="계층별 회복탄력성 아키텍처를 시설, 네트워크, 플랫폼 및 앱, 데이터 계층으로 분기하고 핵심 통제 요소를 표시한 트리">
-  <rect class="itpe-svg-node is-current" x="110" y="8" width="300" height="46" rx="12" />
-  <text class="itpe-svg-title" x="260" y="31">계층별 회복탄력성 체계</text>
-  <path class="itpe-svg-link" d="M260 54 V68 H40 V288 M40 102 H70 M40 164 H70 M40 226 H70 M40 288 H70" />
-  <rect class="itpe-svg-node" x="70" y="74" width="440" height="56" rx="10" />
-  <text class="itpe-svg-sub" x="290" y="94">시설 계층 · 물리적 격리 및 공급 다중화</text>
-  <text class="itpe-svg-label" x="290" y="114">배터리실 방화구획 분리 · 한전 수전 및 통신 인입 관로 이원화</text>
-  <rect class="itpe-svg-node" x="70" y="136" width="440" height="56" rx="10" />
-  <text class="itpe-svg-sub" x="290" y="156">네트워크 계층 · 트래픽 자동 우회 및 백본망 이중화</text>
-  <text class="itpe-svg-label" x="290" y="176">GSLB 헬스체크 기반 DNS 우회 · 광역 전용 백본 이중화</text>
-  <rect class="itpe-svg-node" x="70" y="198" width="440" height="56" rx="10" />
-  <text class="itpe-svg-sub" x="290" y="218">플랫폼·앱 계층 · 무상태 분산 및 독립 배포</text>
-  <text class="itpe-svg-label" x="290" y="238">공통 연계 게이트웨이 다중 거점 배치 · 컨테이너 무상태화</text>
-  <rect class="itpe-svg-node" x="70" y="260" width="440" height="56" rx="10" />
-  <text class="itpe-svg-sub" x="290" y="280">데이터 계층 · 실시간 복제 및 불변 격리 보관</text>
-  <text class="itpe-svg-label" x="290" y="300">스토리지 미러링 · Quorum Witness 펜싱 · 에어갭 WORM 백업</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    ROOT["계층별 회복탄력성 체계"]
+
+    ROOT --> FAC["시설 계층: 물리적 격리 및 공급 다중화<br/>• 방화구획 분리 · 한전 수전 및 통신 인입 관로 이원화"]
+    ROOT --> NET["네트워크 계층: 트래픽 자동 우회 및 백본망 이중화<br/>• GSLB 헬스체크 기반 DNS 우회 · 광역 전용 백본 이중화"]
+    ROOT --> APP["플랫폼·앱 계층: 무상태 분산 및 독립 배포<br/>• 공통 연계 게이트웨이 다중 거점 배치 · 컨테이너 무상태화"]
+    ROOT --> DATA["데이터 계층: 복제·지리 분리·연결 단절<br/>• 원격지 스토리지 복제 · 별도 거점 배치 · 에어갭 WORM 백업"]
+```
 
 | 계층 | 대책 | 검증 |
 |---|---|---|
@@ -181,47 +111,22 @@ extra:
 
 > 완벽한 건물이 아닌 언제든 한쪽 센터를 즉시 버릴 수 있는 **무상태(Stateless) 분산 구조**와 **실전 불시 절체 검증**이 회복탄력성의 본질임.
 
-### 학습자 통찰 메모 — 답안 밖
-
-- `[핵심 통찰]`: 시설 이중화만으로는 센터 단위 물리 재난을 견딜 수 없으며, 서비스·데이터·운영 절차가 다른 거점에서 실시간 작동해야 진정한 회복탄력성이 성립한다.
-- `나라면`: 모든 시스템에 천문학적 비용의 Active-Active를 일괄 강제하지 않고, 서비스 중요도(Tier 1~4)에 맞춰 Active-Active와 Active-Standby를 차등 설계하고, 정기 불시 전환 훈련의 실측 RTO·RPO로 운영 적정성을 입증하겠다.
-
 ### 실전 답안용 기술사적 제언
 
 - 판정: 단일 센터 물리 의존을 탈피하고 서비스 중요도별 거점 분산과 불시 실측 검증 체계를 확보하였는가
-- 대안: Tier 1 핵심 13개 시스템 **Active-Active DR** 우선 구축 + 제3 거점 **에어갭(Air-Gap)** WORM 백업
-- 검증: **GSLB** 자동 절체 시험 · 스토리지 **Quorum Witness** 스플릿브레인 차단 검증 · 연 2회 무중단 전환 실측
-- 효과: 단일 센터 전소 재난 시에도 핵심 행정망 가용성 99.999% 유지 · 데이터 유실 Zero화 달성
+- 대안: 최고 중요도 서비스 **Active-Active DR** 우선 적용 · 지리적으로 분리된 거점에 네트워크 단절형 **에어갭(Air-Gap)** 백업 보관
+- 검증: **GSLB** 자동 절체 · **Quorum Witness** 펜싱 · 업무별 RTO·RPO 실측
+- 효과: 센터 단위 장애의 서비스 전파 축소 · 복구목표 이행 근거 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="다중 거점 회복탄력성 구축 제언 파이프라인">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail">
-      <strong>문제</strong><span>단일 센터 설비 이중화 · 공통 연계망 중앙 집중 의존</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail">
-      <strong>대안</strong><span>업무등급별 이중운영·대기형 DR · 원격 백업</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail">
-      <strong>판정</strong><span>전환·복귀 성공 · RTO·RPO 실측 · 데이터 정합성</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail">
-      <strong>효과</strong><span>센터 상실 영향 축소 · 복구능력 증명</span>
-    </div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>(단일 센터 설비 이중화 · 공통 연계망 중앙 집중 의존)"]
+    P2["개선 대안<br/>(중요도별 DR · 별도 거점 격리 백업)"]
+    P3["검증 기준<br/>(GSLB 절체 · Quorum Witness 펜싱 · 무중단 전환 실측)"]
+    P4["실행 효과<br/>(장애 전파 축소 · 복구목표 이행)"]
+
+    P1 --> P2 --> P3 --> P4
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -232,39 +137,16 @@ extra:
 
 ### 2. 구성체계 및 방법론
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="1교시 10점용 회복탄력성 메커니즘 요약">
-  <div class="itpe-pipeline-node">
-    <strong>① 물리격리</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>배터리실 방화구획 분리</span>
-      <strong>산출</strong><span>관로 이원화 도면</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>② 트래픽우회</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>GSLB 자동 헬스체크</span>
-      <strong>산출</strong><span>Failover 경로</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>③ 데이터동기</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>Active-Active 스토리지 미러링</span>
-      <strong>산출</strong><span>동기 복제 정책서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>④ 불변보존</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>제3 거점 에어갭 WORM 백업</span>
-      <strong>산출</strong><span>불변 백업 대장</span>
-    </div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    S1["① 물리 설비 격리<br/>• 활동: 배터리실 방화구획 분리 · 관로 이원화<br/>• 산출: 물리 격리 설계서 · 관로 이원화 도면"]
+    S2["② 인프라 가상화 및 망 분산<br/>• 활동: 다중 거점 클라우드 배치 · 백본망 이중화<br/>• 산출: 멀티 리전 인프라 구성도 · 대역폭 용량계획서"]
+    S3["③ 플랫폼 및 공통 서비스 분산<br/>• 활동: 공통 인증·연계 게이트웨이 독립 배포<br/>• 산출: 분산 게이트웨이 아키텍처 · 무상태 매니페스트"]
+    S4["④ 데이터 복제 및 격리 백업<br/>• 활동: 등급별 데이터 이중화 · 별도 거점 배치 · 에어갭 연결 단절<br/>• 산출: 복제 정책서 · 복구 백업 대장"]
+    S5["⑤ 자동 장애 감지 및 절체<br/>• 활동: 장애 감지 · 서비스 전환 · 정합성 확인 · 복귀<br/>• 산출: Failover 절차서 · 전환훈련 결과서"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ### 3. 핵심 통제
 

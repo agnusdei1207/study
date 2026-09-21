@@ -1,7 +1,7 @@
 ---
 title: "공공부문 클라우드 네이티브 전환"
-author: "Antigravity"
-date: "2026-09-21T15:30:00+09:00"
+author: "Codex"
+date: "2026-09-21T22:10:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,44 +9,18 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-5.6 Sol"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 공공 디지털 혁신을 거쳐 공공부문 클라우드 네이티브 전환으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>공공 디지털 혁신</span>
-  <strong>공공부문 클라우드 네이티브 전환</strong>
-</div>
+IT 전략·관리 → 공공 디지털 혁신 → **공공부문 클라우드 네이티브 전환**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **공공부문 클라우드 네이티브 전환**은 서버 위치만 옮기는 단순 IaaS 이전(Lift & Shift)이 아니라 애플리케이션·데이터·운영을 클라우드 특성에 맞게 전면 현대화하는 전략
 - 메커니즘: 진단(6R) → 플랫폼(랜딩존) → 점진 현대화(Strangler Fig) → 무중단 배포(Canary) → 운영 검증(SRE)
 - 산출물: 서비스 중요도·보안등급별 6R 전략서 · 마이크로서비스 API 명세서 · SLO 기반 관측성 대시보드
-
-<div class="itpe-flow-map" role="img" aria-label="공공부문 클라우드 네이티브 전환 및 4대 기술 체계">
-  <div class="itpe-flow-node">
-    <strong>공공 레거시 모놀리식 시스템 한계</strong>
-    <small>특정 모듈 장애 시 전산망 전체 다운 · 트래픽 폭증 시 확장 불가</small>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <strong>클라우드 네이티브 대표 구현요소</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>구조</strong><span><span class="itpe-keyword"><strong>MSA(Microservices Architecture)</strong></span> · 장애 격리 및 독립 배포</span></div>
-      <div class="itpe-flow-branch"><strong>가상화</strong><span><span class="itpe-keyword"><strong>Container(K8s)</strong></span> · 오토스케일링 및 자가 치유(Self-healing)</span></div>
-      <div class="itpe-flow-branch"><strong>배포</strong><span><span class="itpe-keyword"><strong>CI/CD 자동화</strong></span> · 카나리/블루그린 무중단 배포</span></div>
-      <div class="itpe-flow-branch"><strong>운영</strong><span><span class="itpe-keyword"><strong>DevOps/관측성</strong></span> · OpenTelemetry 분산 추적 · SRE 운영</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>고신뢰 대국민 행정 서비스 달성</strong>
-    <small>24/365 무중단 서비스 · 변경 리드타임 단축 · 장애 전파 차단</small>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -66,7 +40,7 @@ extra:
 
 ## 예상문제
 
-> 공공부문 클라우드 네이티브 전환의 개념과 핵심 요소를 설명하고, 단순 이전과의 차이 및 전환상 문제점·대응책을 제시하시오. **(미출제 예상·25점)**
+> 공공부문 클라우드 네이티브 전환의 개념과 핵심 요소를 설명하고, 단순 이전과의 차이 및 전환상 문제점·대응책을 제시하시오.
 
 ## Ⅰ. 대국민 서비스 안정성과 민첩성을 확보하는 공공 클라우드 네이티브의 개요
 
@@ -79,72 +53,32 @@ extra:
 
 > 다음은 진단부터 상시 운영까지를 압축한 대표 흐름이며, 모든 사업에 동일한 공식 5단계를 강제하지 않음.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 클라우드 네이티브 5단계 전환 방법론">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 진단 및 6R 전략 수립 (Assessment & Strategy)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>정보자원 등급 진단 · BIA 분석 · 6R(Refactor, Replatform 등) 분류</span>
-      <strong>산출</strong><span>클라우드 전환 타당성 분석서 · 이행 우선순위표</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 랜딩존 및 표준 플랫폼 구축 (Landing Zone & Platform)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>보안 망분리 · CSAP 인증 공공존 확보 · K8s 클러스터 · 표준 배포 파이프라인</span>
-      <strong>산출</strong><span>클라우드 플랫폼 표준 명세서 · IAM 정책서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 점진적 애플리케이션 현대화 (Modernization & Strangler)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>도메인 주도 설계(DDD) 기반 MSA 분할 · Strangler Fig 적용 · DB 분리</span>
-      <strong>산출</strong><span>MSA 아키텍처 설계서 · 마이크로서비스 API 명세서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 무중단 배포 및 전환 (Zero-Downtime Deployment)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>카나리(Canary)/블루그린 배포 · 트래픽 점진적 롤아웃 · 데이터 정합성 검증</span>
-      <strong>산출</strong><span>전환 검수 보고서 · 롤백 시나리오</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>⑤ 관측성 및 상시 운영 (Observability & SRE)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>OpenTelemetry 분산 추적 · SLO 기반 SRE 운영 · FinOps 비용 최적화</span>
-      <strong>산출</strong><span>공공 서비스 가용성 리포트 · 장애 조기 경보 대시보드</span>
-    </div>
-  </div>
-</div>
-<div class="itpe-trace-band"><span class="itpe-keyword"><strong>Traceability</strong></span> · 공공 정보등급 ↔ 6R 현대화 ↔ 무중단 CI/CD 배포 ↔ SRE 가용성 전주기 추적</div>
+```mermaid
+flowchart TD
+    S1["진단·6R<br/>활동: 자원·업무영향 분석<br/>산출: 전환 전략"]
+    S2["랜딩존·플랫폼<br/>활동: 계정·네트워크·보안 설계<br/>산출: 플랫폼 표준"]
+    S3["점진 현대화<br/>활동: 서비스·데이터 경계 분리<br/>산출: API·아키텍처"]
+    S4["점진 배포<br/>활동: 카나리·롤백 검증<br/>산출: 전환 결과"]
+    S5["관측·운영<br/>활동: SLI·SLO 운영<br/>산출: 관측 대시보드"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
+
+- **Traceability**: 정보자원 분류 ↔ 6R 결정 ↔ 배포 방식 ↔ 운영 SLO의 전주기 추적
 
 ## Ⅲ. 클라우드 네이티브 4대 핵심 구현요소
 
 > 4대 요소 **MSA**·**Container(K8s)**·**CI/CD**·**DevOps/관측성**이 유기적으로 결합되어야 장애 격리, 탄력적 오토스케일링, 무중단 배포가 공공 행정 시스템에서 실현됨.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 330" role="img" aria-label="클라우드 네이티브 4대 구현요소를 MSA, 컨테이너, CI/CD, DevOps 및 관측성으로 분기하고 각 역할과 효과를 표시한 트리">
-  <rect class="itpe-svg-node is-current" x="110" y="8" width="300" height="46" rx="12" />
-  <text class="itpe-svg-title" x="260" y="31">클라우드 네이티브 4대 요소</text>
-  <path class="itpe-svg-link" d="M260 54 V68 H40 V288 M40 102 H70 M40 164 H70 M40 226 H70 M40 288 H70" />
-  <rect class="itpe-svg-node" x="70" y="74" width="440" height="56" rx="10" />
-  <text class="itpe-svg-sub" x="290" y="94">구조 · MSA(Microservices Architecture)</text>
-  <text class="itpe-svg-label" x="290" y="114">도메인 주도 분할 · 결합도 제거 · 장애 격리</text>
-  <rect class="itpe-svg-node" x="70" y="136" width="440" height="56" rx="10" />
-  <text class="itpe-svg-sub" x="290" y="156">실행 · Container & Kubernetes(K8s)</text>
-  <text class="itpe-svg-label" x="290" y="176">표준 패키징 · 수평 확장(HPA) · 자가 치유</text>
-  <rect class="itpe-svg-node" x="70" y="198" width="440" height="56" rx="10" />
-  <text class="itpe-svg-sub" x="290" y="218">배포 · CI/CD 자동화 파이프라인</text>
-  <text class="itpe-svg-label" x="290" y="238">빌드·시험 자동화 · 카나리/블루그린 무중단 릴리즈</text>
-  <rect class="itpe-svg-node" x="70" y="260" width="440" height="56" rx="10" />
-  <text class="itpe-svg-sub" x="290" y="280">운영 · DevOps & Observability(관측성)</text>
-  <text class="itpe-svg-label" x="290" y="300">OpenTelemetry 분산 추적 · SRE 기반 SLO 보증</text>
-</svg>
-</div>
+```mermaid
+flowchart TD
+    ROOT["클라우드 네이티브 4대 요소"]
+
+    ROOT --> MSA["구조: MSA<br/>• 역할: 도메인 주도 분할 · 결합도 제거<br/>• 효과: 장애 격리 · 독립 배포"]
+    ROOT --> CONT["실행: Container & Kubernetes<br/>• 역할: 표준 패키징 · 환경 일치성<br/>• 효과: 수평 확장(HPA) · 자가 치유"]
+    ROOT --> CICD["배포: CI/CD 자동화 파이프라인<br/>• 역할: 빌드·테스트 자동화<br/>• 효과: 카나리/블루그린 무중단 배포"]
+    ROOT --> OBS["운영: DevOps & Observability<br/>• 역할: OpenTelemetry 분산 추적<br/>• 효과: SRE 기반 SLO 가용성 보증"]
+```
 
 | 요소 | 역할 | 효과 |
 |---|---|---|
@@ -159,10 +93,10 @@ extra:
 
 | 기준 | Lift & Shift | Cloud Native |
 |---|---|---|
-| **변화 범위** | 인프라 이전 (IaaS 중심) | 애플리케이션·데이터·운영 현대화 |
-| **확장 방식** | 기존 Scale-Up 위주 유지 | 자동화된 수평 확장(Scale-Out/HPA) |
-| **변경 방식** | 기존 수작업 정기 배포 유지 | **CI/CD** 기반 무중단 점진 릴리즈 |
-| **적용 판단** | 신속 단순 이전·코드 수정 제약 | 대민 트래픽 폭증 대응·지속 혁신 요구 |
+| 범위 | 인프라 중심 | 애플리케이션·데이터·운영 |
+| 확장 | 기존 확장 방식 유지 | 자동 수평 확장 |
+| 배포 | 기존 배포 방식 유지 | **CI/CD** 기반 점진 배포 |
+| 선택 | 코드 변경 제약·신속 이전 | 탄력성·빈번한 변경 요구 |
 
 ## Ⅴ. 공공부문 전환의 문제점·대응책
 
@@ -178,47 +112,22 @@ extra:
 
 > 공공부문 클라우드 네이티브 전환의 성패는 수천억 원짜리 전면 재구축(Big-Bang)이 아니라 검증된 작은 단위부터 떼어내는 **점진적 전환(Strangler Fig) 거버넌스**에 있음.
 
-### 학습자 통찰 메모 — 답안 밖
-
-- `[핵심 통찰]`: 클라우드 네이티브의 본질적 가치는 컨테이너 기술 도입 자체가 아니라 서비스 경계·데이터 소유권·배포 책임이 실제로 분리되는 데 있다.
-- `나라면`: 전면 빅뱅 재구축 대신 변경 빈도와 장애 영향도가 큰 서비스부터 Strangler Fig 패턴으로 분리하고, 매 단계마다 데이터 정합성·부하 확장성·복구 탄력성을 실측 검증하겠다.
-
 ### 실전 답안용 기술사적 제언
 
 - 판정: 빅뱅 일괄 전환 위험을 회피하고 서비스 단위 점진 분리 및 인터페이스 계약 책임을 명시하였는가
 - 대안: 대민 파급력이 큰 핵심 모듈부터 **Strangler Fig 패턴** 적용 → 단계적 API 분리
 - 검증: **CDC(Change Data Capture)** 기반 데이터 정합성 실측 · 카나리 배포 트래픽 롤백 검증
-- 효과: 장애 전파 원천 차단 · 대민 행정서비스 24/365 무중단 가용성 확보
+- 효과: 장애 전파 범위 축소 · 배포 실패 시 신속 복구
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 클라우드 네이티브 점진 전환 제언 흐름">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail">
-      <strong>문제</strong><span>빅뱅 전환 위험 · DB 강결합 · 책임 경계 불명확</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail">
-      <strong>대안</strong><span>서비스 단위 점진 분리 · 계약·인터페이스 책임 명시</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail">
-      <strong>판정</strong><span>데이터 정합성 · 부하시 확장 · 장애시 복구 실측</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail">
-      <strong>효과</strong><span>장애영향 축소 · 변경 대응력 향상</span>
-    </div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    P1["현행 한계<br/>(빅뱅 전환 위험 · DB 강결합 · 책임 경계 불명확)"]
+    P2["개선 대안<br/>(Strangler Fig 점진 분리 · 계약·인터페이스 책임 명시)"]
+    P3["검증 기준<br/>(CDC 정합성 검증 · 부하 시 HPA 확장 · 카나리 롤백 실측)"]
+    P4["실행 효과<br/>(장애 전파 차단 · 24/365 무중단 행정서비스 확보)"]
+
+    P1 --> P2 --> P3 --> P4
+```
 
 ## 1교시 10점 답안 발췌
 
@@ -229,47 +138,16 @@ extra:
 
 ### 2. 구성체계 및 방법론
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="공공 클라우드 네이티브 전환 5단계 요약">
-  <div class="itpe-pipeline-node">
-    <strong>① 진단·6R</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>정보자원 등급 · BIA</span>
-      <strong>산출</strong><span>6R 전환전략서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>② 플랫폼구축</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>CSAP 공공존 · K8s</span>
-      <strong>산출</strong><span>랜딩존 명세서</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>③ 점진현대화</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>DDD 도메인 분할</span>
-      <strong>산출</strong><span>Strangler 아키텍처</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>④ 무중단배포</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>카나리/블루그린 전환</span>
-      <strong>산출</strong><span>롤백 시나리오</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>⑤ 관측성운영</strong>
-    <div class="itpe-step-detail">
-      <strong>활동</strong><span>OpenTelemetry · SRE</span>
-      <strong>산출</strong><span>가용성 모니터링</span>
-    </div>
-  </div>
-</div>
+```mermaid
+flowchart TD
+    S1["진단·6R<br/>활동: 자원·업무영향 분석<br/>산출: 전환 전략"]
+    S2["랜딩존·플랫폼<br/>활동: 계정·네트워크·보안 설계<br/>산출: 플랫폼 표준"]
+    S3["점진 현대화<br/>활동: 서비스·데이터 경계 분리<br/>산출: API·아키텍처"]
+    S4["점진 배포<br/>활동: 카나리·롤백 검증<br/>산출: 전환 결과"]
+    S5["관측·운영<br/>활동: SLI·SLO 운영<br/>산출: 관측 대시보드"]
+
+    S1 --> S2 --> S3 --> S4 --> S5
+```
 
 ### 3. 핵심 통제
 

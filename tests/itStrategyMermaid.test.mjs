@@ -1,0 +1,63 @@
+import assert from 'node:assert/strict';
+import { readdir, readFile } from 'node:fs/promises';
+import path from 'node:path';
+import test from 'node:test';
+
+const notesDir = 'src/content/docs/notes/itpe/01-it-strategy';
+
+async function targetNotes() {
+  const names = await readdir(notesDir);
+  return names.filter((name) => /^(?:00[1-9]|0[1-3][0-9]|040)_.+\.md$/u.test(name)).sort().map((name) => path.join(notesDir, name));
+}
+
+function sectionAfter(markdown, headingPattern) {
+  const match = markdown.match(headingPattern);
+  if (!match || match.index === undefined) return null;
+  const rest = markdown.slice(match.index + match[0].length);
+  const nextHeading = rest.search(/^##\s+/mu);
+  return nextHeading === -1 ? rest : rest.slice(0, nextHeading);
+}
+
+function mermaidBlocks(markdown) {
+  return [...markdown.matchAll(/```mermaid\s*\r?\n([\s\S]*?)```/gu)].map((match) => match[1].replace(/\r\n/gu, '\n').trim());
+}
+
+test('IT strategy notes 001 through 040 use Mermaid instead of legacy visual markup', async () => {
+  const files = await targetNotes();
+  assert.equal(files.length, 35, '현재 카탈로그의 001~040 범위에는 35개 노트가 있어야 합니다.');
+  for (const file of files) {
+    const note = await readFile(file, 'utf8');
+    assert.match(note, /```mermaid/u, `${file}: Mermaid 시각화가 필요합니다.`);
+    assert.doesNotMatch(note, /<svg\b/iu, `${file}: 인라인 SVG를 제거해야 합니다.`);
+    assert.doesNotMatch(note, /class="itpe-(?:flow|pipeline|trace|svg|edm|diagram)/iu, `${file}: 레거시 시각화 HTML 클래스를 제거해야 합니다.`);
+    assert.doesNotMatch(note, /[┌┐└┘├┤┬┴┼─│]/u, `${file}: ASCII 박스 다이어그램을 제거해야 합니다.`);
+  }
+});
+
+test('30초 인출은 본질·메커니즘·판정 한 줄씩만 사용한다', async () => {
+  for (const file of await targetNotes()) {
+    const note = await readFile(file, 'utf8');
+    const recall = sectionAfter(note, /^## 30초 인출\s*$/mu);
+    assert.notEqual(recall, null, `${file}: 30초 인출 절이 필요합니다.`);
+    assert.doesNotMatch(recall, /```mermaid/u, `${file}: 30초 인출에는 Mermaid를 넣지 않습니다.`);
+    const summary = recall.split(/<details\b/iu, 1)[0];
+    const lines = summary.split(/\r?\n/u).map((line) => line.trim()).filter(Boolean);
+    assert.equal(lines.length, 3, `${file}: 30초 인출은 정확히 3줄이어야 합니다.`);
+    assert.match(lines[0], /^- (?:\*\*)?본질(?:\*\*)?:/u, `${file}: 첫 줄은 본질이어야 합니다.`);
+    assert.match(lines[1], /^- (?:\*\*)?메커니즘(?:\*\*)?:/u, `${file}: 둘째 줄은 메커니즘이어야 합니다.`);
+    assert.match(lines[2], /^- (?:\*\*)?(?:산출물|결과|효과|판정 기준)(?:\*\*)?:/u, `${file}: 셋째 줄 라벨이 올바르지 않습니다.`);
+  }
+});
+
+test('10점 답안의 Mermaid는 본문에서 검증한 그림을 그대로 재사용한다', async () => {
+  for (const file of await targetNotes()) {
+    const note = await readFile(file, 'utf8');
+    const excerptHeading = /^## (?:1교시 10점 답안 발췌|10점 답안 압축본)\s*$/mu;
+    const heading = note.match(excerptHeading);
+    if (!heading || heading.index === undefined) continue;
+    const bodyDiagrams = new Set(mermaidBlocks(note.slice(0, heading.index)));
+    for (const diagram of mermaidBlocks(sectionAfter(note, excerptHeading) ?? '')) {
+      assert.ok(bodyDiagrams.has(diagram), `${file}: 10점 답안 Mermaid는 본문 그림을 그대로 재사용해야 합니다.`);
+    }
+  }
+});
