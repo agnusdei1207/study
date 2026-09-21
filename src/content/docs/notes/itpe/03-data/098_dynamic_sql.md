@@ -3,17 +3,17 @@ sidebar:
   order: 98
   label: "098. 정적 SQL vs 동적 SQL"
   badge:
-    text: "B"
+    text: "A"
     variant: note
 title: "정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL)의 비교 및 실행 메커니즘"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:40:00+09:00"
 tags:
   - "notes-data"
 weight: 98
 extra:
-  model: "GPT-5"
-  keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "098"
 ---
 
@@ -23,20 +23,69 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[정적 SQL과 동적 SQL의 라이프사이클 및 라이브러리 캐시 동작 비교]
+<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" width="100%" height="auto" role="img" aria-label="정적 SQL과 동적 SQL의 파싱 라이프사이클 비교">
+  <defs>
+    <marker id="sqlArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
+    </marker>
+    <marker id="sqlBad" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+    </marker>
+  </defs>
+  <!-- Background Card -->
+  <rect width="520" height="230" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
- [1. 정적 SQL (Static SQL): 컴파일 시점 구문 확정 및 캐시 재사용]
-  [소스 작성] ──► [Pre-compiler] ──► [바인드 변수] ──► [Library Cache 히트] ──► [즉시 실행]
-   EXEC SQL       문법/권한 사전검증    PreparedStatement   (Soft Parsing 달성)       (초저지연)
-   SELECT ...
+  <!-- Row 1: 정적 SQL -->
+  <g transform="translate(20, 20)">
+    <rect width="110" height="50" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5"/>
+    <text x="55" y="24" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">정적 SQL</text>
+    <text x="55" y="38" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2, #64748b)">컴파일 시점 확정</text>
 
- [2. 동적 SQL (Dynamic SQL): 런타임 문자열 조합 및 파싱 분기]
-  [사용자 입력] ──► [런타임 조립] ──► [파라미터 전달 방식에 따른 분기]
-   카테고리/가격     QueryDSL/MyBatis   │
-                                        ├─► [바인드 변수 (?)]: Soft Parsing 재사용, SQLi 차단
-                                        └─► [문자열 결합 (+)]: Hard Parsing 폭증, SQLi 노출
-```
+    <path d="M 110 25 L 135 25" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#sqlArr)"/>
+
+    <rect x="140" width="140" height="50" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
+    <text x="210" y="22" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-text, #1e293b)">동일 SQL 해시값</text>
+    <text x="210" y="38" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2, #64748b)">바인드 변수 전제</text>
+
+    <path d="M 280 25 L 305 25" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#sqlArr)"/>
+
+    <rect x="310" width="170" height="50" rx="6" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
+    <text x="395" y="22" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">소프트 파싱 (100%)</text>
+    <text x="395" y="38" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Library Cache 적중 · SQLi 면역</text>
+  </g>
+
+  <!-- Row 2: 동적 SQL -->
+  <g transform="translate(20, 95)">
+    <rect width="110" height="110" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1.5"/>
+    <text x="55" y="48" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #0f172a)">동적 SQL</text>
+    <text x="55" y="65" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2, #64748b)">런타임 문자열 조립</text>
+    <text x="55" y="80" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2, #64748b)">다차원 가변 검색</text>
+
+    <!-- Branch Good: 바인드 변수 사용 -->
+    <path d="M 110 30 L 135 20" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#sqlArr)"/>
+    <rect x="140" y="0" width="160" height="46" rx="5" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)"/>
+    <text x="220" y="18" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">바인드 변수 (?, #{})</text>
+    <text x="220" y="34" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #334155)">QueryDSL / PreparedStatement</text>
+
+    <path d="M 300 20 L 325 20" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#sqlArr)"/>
+    <rect x="330" y="0" width="150" height="46" rx="5" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)"/>
+    <text x="405" y="18" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">소프트 파싱 재사용</text>
+    <text x="405" y="34" text-anchor="middle" font-size="8.5" fill="var(--sl-color-accent, #1e40af)">SQL 인젝션 원천 차단</text>
+
+    <!-- Branch Bad: 문자열 리터럴 결합 -->
+    <path d="M 110 80 L 135 90" stroke="#ef4444" stroke-width="1.5" marker-end="url(#sqlBad)"/>
+    <rect x="140" y="65" width="160" height="46" rx="5" fill="var(--sl-color-bg, #ffffff)" stroke="#ef4444"/>
+    <text x="220" y="83" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">문자열 결합 (+, ${})</text>
+    <text x="220" y="99" text-anchor="middle" font-size="8.5" fill="#ef4444">리터럴 상수 인라인 매칭</text>
+
+    <path d="M 300 90 L 325 90" stroke="#ef4444" stroke-width="1.5" marker-end="url(#sqlBad)"/>
+    <rect x="330" y="65" width="150" height="46" rx="5" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="405" y="83" text-anchor="middle" font-size="9.5" font-weight="700" fill="#991b1b">하드 파싱 폭증 (위험)</text>
+    <text x="405" y="99" text-anchor="middle" font-size="8.5" fill="#b91c1c">CPU 100% · SQL Injection 취약</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **개발 및 컴파일 시점에 SQL 구조가 완전히 고정되어 문법 검증과 사전 최적화가 이루어지는 정적 SQL(Static SQL)과, 프로그램 실행 런타임(Runtime)에 사용자의 검색 조건 및 비즈니스 분기에 따라 문자열을 동적으로 조립·생성하는 동적 SQL(Dynamic SQL)의 성능·보안·유연성 간 트레이드오프 관계**
 - 암기: `정-컴-소-안` (정적 SQL: 컴파일 시점 확정, 소프트 파싱, 안전한 보안) / `동-런-유-하` (동적 SQL: 런타임 조립, 조건 유연성, 하드 파싱 위험) / `바-인-프` (바인드 변수, 인젝션 방어, PreparedStatement)
@@ -75,21 +124,17 @@ extra:
 
 #### 한줄 요약: 라이브러리 캐시(Library Cache) 적중 여부가 DBMS 전체 처리 성능을 결정
 
-```text
- [사용자 SQL 요청]
-        │
-        ▼ [SQL 텍스트 해시값 생성: SHA-1 / MD5]
-        │
-   ┌────┴───────────────────────────┐
-   ▼ (Cache Hit)                    ▼ (Cache Miss)
- [소프트 파싱 (Soft Parsing)]     [하드 파싱 (Hard Parsing)]
- - 문법 검증/최적화 생략          - Syntax Check -> Semantic Check
- - 캐시된 실행 계획 즉시 재사용   - Query Optimizer 비용 산정 -> 플랜 생성
- - CPU 점유율: 0.1% 미만          - 래치(Latch) 경합 발생, CPU 점유율 폭증
-```
-
-- **정적 SQL**: 쿼리 텍스트가 대소문자·공백까지 완벽히 일치하여 해시값이 동일하므로 99.9% 소프트 파싱 수행
-- **리터럴 동적 SQL (`WHERE id = 'user1'`, `WHERE id = 'user2'`)**: 매번 다른 텍스트로 인식되어 해시값이 변경됨 $\rightarrow$ 매 요청마다 하드 파싱 수행으로 공유 풀(Shared Pool) 메모리 단편화 및 Latch 경합으로 DB 다운 유발
+- **SQL 해시 생성 및 라이브러리 캐시 분기**:
+  - 사용자 질의 수신 시 SQL 텍스트 기반 해시값(SHA-1/MD5) 생성
+  - **소프트 파싱 (Soft Parsing, Cache Hit)**:
+    - 문법 검증 및 비용 계산 생략, 캐시된 실행 계획 즉시 재사용
+    - CPU 점유율 0.1% 미만, 수 밀리초 이내 처리 완료
+  - **하드 파싱 (Hard Parsing, Cache Miss)**:
+    - 문법/의미 분석 $\rightarrow$ 옵티마이저 비용 산정 $\rightarrow$ 실행 계획 신규 생성
+    - `Shared Pool Latch` 경합 발생, CPU 사용률 100% 폭증 및 락 경합 유발
+- **정적 SQL vs 리터럴 동적 SQL 비교**:
+  - 정적 SQL은 텍스트가 불변이므로 99.9% 소프트 파싱 유지
+  - 리터럴 동적 SQL(`WHERE id = 'user1'`, `WHERE id = 'user2'`)은 매번 다른 해시값을 생성하여 하드 파싱 폭증
 
 ## Ⅳ. 동적 SQL의 양대 보안·성능 위험 및 발생 메커니즘
 
@@ -108,13 +153,6 @@ extra:
 
 #### 한줄 요약: PreparedStatement 바인드 변수, ORM 빌더, 그리고 쿼리 분기 설계를 통한 최적화
 
-```text
- [안전한 동적 SQL 아키텍처: QueryDSL / MyBatis]
-  사용자 입력 ──► [QueryDSL BooleanExpression] ──► [PreparedStatement (?) 매핑]
-                       - 컴파일 타임 문법 검증         - 파라미터 리터럴 분리
-                       - 안전한 동적 조건 조립        - Soft Parsing 100% 보장
-```
-
 | 해결 방안 | 기술적 메커니즘 | 달성 효과 |
 |:---|:---|:---|
 | **PreparedStatement / 바인드 변수** | SQL 문장의 구조와 사용자 데이터를 완전히 분리하여 `?` 또는 `:var`로 처리 | 사용자 입력이 쿼리 구조를 바꾸지 못해 **SQL Injection 차단**, 해시값 고정으로 **소프트 파싱 100%** |
@@ -131,35 +169,66 @@ extra:
 | **바인드 변수 피킹에 의한 플랜 왜곡** | 데이터가 특정 값에 99% 몰려 있을 때 최초 입력된 드문 값(1%)에 맞춰 인덱스 플랜이 고착 | 편향이 극심한 컬럼은 예외적으로 리터럴 쿼리로 분기하거나 Adaptive Cursor Sharing 적용 |
 | **MyBatis `${}` 오용** | 바인드 변수 `#{}` 대신 문자열 치환 연산자인 `${}`를 무분별하게 컬럼/조건에 사용 | 컬럼명이나 정렬 기준(`ORDER BY`) 외에는 무조건 `#{}`를 사용하여 인젝션 원천 방어 |
 
-## Ⅶ. 기술사적 제언: 정적·동적 SQL의 현대적 공존 아키텍처
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 고빈도 코어 트랜잭션의 정적 SQL 최적화와 복합 검색 영역의 타입 세이프 동적 SQL 계층 분리
+### 학습자 통찰 메모 — 답안 밖
 
-- **아키텍처 분리 원칙**:
-  1. **Core OLTP (쓰기/단건 조회)**: 정적 SQL 및 Spring Data JPA 표준 메서드 적용 $\rightarrow$ 실행 계획 사전 검증, 최소 지연 보장
-  2. **Search / Analytics (다차원 조회)**: QueryDSL 기반의 동적 쿼리 계층 구축 $\rightarrow$ 파라미터 바인딩 강제 및 페이징 최적화
-  3. **초대용량 로그/검색**: RDBMS의 동적 SQL로 무리하게 풀스캔하지 않고, Elasticsearch/OpenSearch로 읽기 파이프라인을 분리하는 CQRS(명령-조회 책임 분리) 패턴 적용
+> **[핵심 통찰]**
+> 현업에서 빈번한 실수 중 하나는 개발자가 '모든 조건을 하나의 만능 정적 SQL'로 처리하겠다고 `WHERE (:name IS NULL OR name = :name)` 형태를 남발하는 것이다. 이러한 쿼리는 파싱 비용은 아낄 수 있을지 몰라도 옵티마이저가 인덱스를 타지 못해 무조건 풀 테이블 스캔(Full Table Scan)을 선택하게 만든다. 반대로 문자열 결합 동적 SQL은 하드 파싱과 SQL 인젝션 지옥을 부른다. 따라서 조건 조합이 다양한 업무는 반드시 QueryDSL 같은 타입 세이프 빌더로 바인드 변수를 결합한 동적 SQL을 생성하는 것이 정답이다.
+
+> **[나라면 이렇게 쓴다]**
+> 1교시형이라면 정적 SQL과 동적 SQL의 5대 비교표와 라이브러리 캐시 분기도를 깔끔하게 구성하겠다. 2교시 25점형이라면 하드 파싱 및 SQL 인젝션 공격 메커니즘을 실제 코드 전/후로 대조하고, 코어 트랜잭션(정적 SQL)과 다차원 검색(QueryDSL 동적 SQL), 대용량 검색(CQRS 패턴 기반 Search Engine 분리)으로 이어지는 계층별 공존 아키텍처를 제시하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 웹 애플리케이션에서 문자열 단순 연결 형태의 동적 SQL 남발 시 하드 파싱에 따른 CPU 과열 장애 및 SQL Injection 침해 사고가 필연적으로 발생함. 또한 만능 정적 SQL 작성 시 인덱스 무효화 초래.
+- **대응 (개선 방안)**: 코어 OLTP 트랜잭션은 정적 SQL(JPA 표준)로 고정하고, 다차원 가변 검색은 QueryDSL 타입 세이프 빌더를 도입하여 바인드 변수(`PreparedStatement`) 매핑을 강제하는 아키텍처 분리 전략 적용.
+- **검증 (검증 기준)**: 소프트 파싱률 99% 이상 유지 모니터링, 정적 코드 분석 도구(SonarQube)를 통한 문자열 결합 SQL 검출률 0건 달성, SQL Injection 모의해킹 전수 통과.
+- **효과 (실행 효과)**: 하드 파싱에 따른 DB CPU 점유율 70% 절감, 웹 애플리케이션 보안 취약점 원천 제거, 동적 검색 쿼리 응답 시간 80% 단축.
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">현행 한계</div>
+    <div class="itpe-flow-step__content">문자열 결합 동적 SQL로 하드 파싱 폭증 및 SQL Injection 노출</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">개선 방안</div>
+    <div class="itpe-flow-step__content">코어 OLTP 정적 분리 + 검색 영역 QueryDSL 바인드 변수 강제화</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">검증 기준</div>
+    <div class="itpe-flow-step__content">소프트 파싱 99% 이상, SonarQube 문자열 결합 0건, 모의해킹 통과</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">실행 효과</div>
+    <div class="itpe-flow-step__content">DB CPU 70% 절감, SQLi 보안 사고 원천 예방, 검색 성능 80% 향상</div>
+  </div>
+</div>
 
 ---
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. 정적 SQL과 동적 SQL의 정의
-  - 정적 SQL: 컴파일 시점에 쿼리 구조가 확정되어 사전 검증 및 소프트 파싱이 보장되는 고정 쿼리.
-  - 동적 SQL: 런타임에 사용자 조건에 따라 문자열을 조합하여 생성하는 가변형 쿼리.
+### [문제] 정적 SQL vs 동적 SQL
 
-2. 양자 간 특성 비교 및 실행 메커니즘
-  가. 비교:
-    - 결정시점: 컴파일 시점 vs 런타임.
-    - 성능/파싱: 소프트 파싱 재사용(우수) vs 하드 파싱 유발 위험(가변 시).
-    - 보안: Injection 원천 면역 vs 문자열 결합 시 취약.
-  나. 실행 메커니즘:
-    - 동일 해시값 유지 여부에 따라 Library Cache 적중(소프트 파싱) 또는 재최적화(하드 파싱) 분기.
+#### 1. 정적 SQL과 동적 SQL의 정의
+- **정적 SQL**: 컴파일 시점에 쿼리 구조가 확정되어 사전 검증 및 소프트 파싱이 보장되는 고정 쿼리
+- **동적 SQL**: 런타임에 사용자 조건에 따라 문자열을 조합하여 생성하는 가변형 쿼리
 
-3. 동적 SQL 최적화 및 보안 방안
-  - PreparedStatement 바인드 변수(#{파라미터}) 사용으로 SQL Injection 차단 및 소프트 파싱 보장.
-```
+#### 2. 양자 간 특성 비교 및 실행 메커니즘
+
+| 비교 항목 | 정적 SQL (Static SQL) | 동적 SQL (Dynamic SQL) |
+|:---|:---|:---|
+| **문맥 결정 시점** | 컴파일 타임 (Compile-time) | 실행 런타임 (Run-time) |
+| **파싱 메커니즘** | 소프트 파싱 (100% 캐시 적중) | 문자열 결합 시 하드 파싱 폭증 위험 |
+| **보안 (SQL Injection)** | 구조적 불변으로 원천 면역 | 바인드 변수 미사용 시 극도로 취약 |
+| **조건절 유연성** | 낮음 (고정된 쿼리만 실행) | 극도로 우수 (다차원 동적 필터링) |
+| **대표 기술** | Pro*C, JPA `@Query` | MyBatis `<if>`, QueryDSL |
+
+- **실행 메커니즘**: SQL 텍스트 해시값 일치 여부에 따라 라이브러리 캐시 적중(소프트 파싱) 또는 재최적화(하드 파싱) 분기
+
+#### 3. 동적 SQL 최적화 및 보안 방안
+- `PreparedStatement` 바인드 변수(`#{param}`, `?`) 전면 적용으로 SQL Injection 원천 차단 및 소프트 파싱 보장
 
 ---
 
@@ -184,5 +253,5 @@ extra:
 
 ## 연결 토픽
 
-- 상위 토픽: [03-088 데이터베이스 튜닝](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/088_database_tuning.md)
-- 연관 토픽: [03-091 옵티마이저(RBO·CBO)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/091_optimizer.md), [03-094 TEXT2SQL](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/094_text2sql.md)
+- 상위 토픽: [088. 데이터베이스 튜닝 (Database Tuning)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/088_database_tuning.md)
+- 연관 토픽: [091. 옵티마이저 (Optimizer)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/091_optimizer.md), [094. TEXT2SQL](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/094_text2sql.md)

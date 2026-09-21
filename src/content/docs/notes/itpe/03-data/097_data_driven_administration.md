@@ -3,17 +3,17 @@ sidebar:
   order: 97
   label: "097. AI·데이터 기반 행정"
   badge:
-    text: "B"
+    text: "A"
     variant: note
 title: "데이터기반행정 및 AI 기반 공공의사결정 거버넌스 체계"
-author: "OpenAI Codex"
+author: "Antigravity"
 date: "2026-09-20T18:35:00+09:00"
 tags:
   - "notes-data"
 weight: 97
 extra:
-  model: "GPT-5"
-  keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "A"
   question_no: "097"
 ---
 
@@ -23,22 +23,54 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[전통 데이터기반행정에서 AI·데이터 기반 지능형 행정으로의 진화]
+<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" role="img" aria-label="전통 데이터 행정에서 AI 데이터 기반 선제 행정으로의 진화">
+  <defs>
+    <marker id="admArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
+    </marker>
+  </defs>
+  <!-- Background Card -->
+  <rect width="520" height="220" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
- [과거: 데이터기반행정 (통계/현황 분석)]       [현재/미래: AI·데이터 기반 행정 (선제 예측)]
-  ┌───────────────────────────────────┐        ┌───────────────────────────────────┐
-  │ 정형 데이터 중심 (RDBMS/통계표)   │        │ 다차원 융합 (정형+비정형+공간/영상)│
-  │ - Excel, 행정 통계, 인구 센서스   │        │ - 민원 VoC, CCTV, IoT, SNS, GIS   │
-  └─────────────────┬─────────────────┘        └─────────────────┬─────────────────┘
-                    ▼ (사후 분석)                                ▼ (초거대 AI 융합)
-  ┌───────────────────────────────────┐        ┌───────────────────────────────────┐
-  │ 사후 대시보드 및 수동 보고서      │ ───►   │ 선제적 예측 시뮬레이션 및 자동화 │
-  │ "지난해 복지 사각지대 현황 집계"  │        │ "단전·단수 위험가구 AI 사전 발굴" │
-  └───────────────────────────────────┘        └─────────────────┬─────────────────┘
-                                                                 ▼
-                                               [Human-in-the-Loop (인간 감독 검증)]
-```
+  <!-- Left: Traditional Administration -->
+  <g transform="translate(20, 20)">
+    <rect width="215" height="180" rx="8" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
+    <rect width="215" height="32" rx="8" fill="#f1f5f9"/>
+    <text x="107" y="21" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-gray-2, #475569)">과거: 전통 데이터 행정</text>
+
+    <text x="18" y="58" font-size="10" font-weight="700" fill="var(--sl-color-text, #1e293b)">• 정형 데이터 중심</text>
+    <text x="28" y="75" font-size="9" fill="var(--sl-color-gray-2, #64748b)">RDBMS 통계표, 인구 센서스</text>
+
+    <text x="18" y="105" font-size="10" font-weight="700" fill="var(--sl-color-text, #1e293b)">• 사후 통계 집계</text>
+    <text x="28" y="122" font-size="9" fill="var(--sl-color-gray-2, #64748b)">"작년 복지 사각지대 보고서"</text>
+
+    <text x="18" y="152" font-size="10" font-weight="700" fill="var(--sl-color-text, #1e293b)">• 수동적 신청주의</text>
+    <text x="28" y="169" font-size="9" fill="var(--sl-color-gray-2, #64748b)">국민이 직접 증명서류 제출</text>
+  </g>
+
+  <!-- Center Arrow -->
+  <path d="M 240 110 L 275 110" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="2" marker-end="url(#admArr)"/>
+  <text x="258" y="98" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">초거대 AI</text>
+  <text x="258" y="128" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2, #64748b)">다차원 융합</text>
+
+  <!-- Right: AI & Data Driven Administration -->
+  <g transform="translate(285, 20)">
+    <rect width="215" height="180" rx="8" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
+    <rect width="215" height="32" rx="8" fill="var(--sl-color-accent, #dbeafe)"/>
+    <text x="107" y="21" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-accent, #1e40af)">미래: AI·데이터 기반 행정</text>
+
+    <text x="18" y="58" font-size="10" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">• 다차원 이종 데이터 융합</text>
+    <text x="28" y="75" font-size="9" fill="var(--sl-color-text, #334155)">단전/수도/통신 + 민원 VoC + GIS</text>
+
+    <text x="18" y="105" font-size="10" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">• 선제적 예측 시뮬레이션</text>
+    <text x="28" y="122" font-size="9" fill="var(--sl-color-text, #334155)">"위기 위험 가구 AI 사전 발굴"</text>
+
+    <text x="18" y="152" font-size="10" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">• 능동적 선제주의 (HITL)</text>
+    <text x="28" y="169" font-size="9" fill="var(--sl-color-text, #334155)">맞춤형 혜택 추천 + 인간 감독관</text>
+  </g>
+</svg>
+</div>
 
 - 본질: **공공기관이 보유한 행정 데이터와 외부 민간 데이터를 상호 연계·분석하여 직관과 경험 중심의 관행적 행정을 탈피하고, 초거대 AI(sLLM)와 예측 모델을 결합하여 복지 사각지대 발굴, 재난 대응, 정책 시뮬레이션 등 국민 중심의 선제적(Proactive) 공공서비스를 제공하는 지능형 정부 혁신 체계**
 - 암기: `수-연-분-활-평` (데이터기반행정 5대 생명주기: 수집, 연계, 분석, 활용, 평가) / `선-비-인-윤` (핵심요소: 선제적 예측, 비정형 융합, 인간개입 HITL, AI 윤리)
@@ -62,20 +94,6 @@ extra:
 ## Ⅱ. AI·데이터 기반 행정의 범정부 참조 아키텍처
 
 #### 한줄 요약: 범정부 데이터 연계 허브, 공공 특화 AI 모델, 대국민 선제 서비스 계층의 4단 구조
-
-```text
- [1. 대국민 선제 서비스 계층]
-   - 구비서류 제로화 / 맞춤형 혜택 자동 추천 / 스마트 복지 안전망 / 재난 조기경보
-                              ▲
- [2. 공공 업무 어시스턴트 & 정책 시뮬레이션 계층]
-   - 공공 sLLM 기반 공문서 자동 요약 / 법령 해석 지원 / 의사결정 시뮬레이션 (디지털 트윈)
-                              ▲
- [3. 범정부 데이터 통합 분석 & AI 인프라 계층]
-   - 국가 통합 데이터 레이크하우스 / MLOps & LLMOps / RAG 벡터 데이터베이스
-                              ▲
- [4. 데이터 연계 및 수집 거버넌스 계층]
-   - 중앙부처 / 지자체 / 공공기관 행정망 연계 / 통신·금융 민간데이터 가명결합 허브
-```
 
 | 아키텍처 계층 | 핵심 구성 요소 | 수행 역할 및 핵심 기술 |
 |:---|:---|:---|
@@ -101,20 +119,15 @@ extra:
 
 #### 한줄 요약: 다기관 복합 신호(Signal)를 감지하여 고독사 및 복지 사각지대를 자동 식별하는 실사례
 
-```text
- [다기관 이종 데이터 연계]
+- **다기관 이종 데이터 연계 신호**:
   - 한국전력: 3개월 연속 단전 징후
   - 상하수도: 수도 사용량 0L
   - 건강보험공단: 건보료 6개월 체납
   - 통신사: 통신요금 연체 및 위치 신호 부재
-            │
-            ▼ [빅데이터 가명결합 및 AI 위험도 스코어링]
-  - Random Forest / XGBoost 예측 모델 평가 (위기 지수 95점 산출)
-            │
-            ▼ [선제적 현장 복지 출동]
-  - 읍면동 사회복지사에게 고위험 알림 자동 전송 -> 긴급 복지 지원 집행
-```
-
+- **가명결합 및 머신러닝 스코어링**:
+  - 개인식별정보 가명화 후 XGBoost/Random Forest 위험도 예측 모델 실행 $\rightarrow$ 위기 지수(Score) 산출
+- **선제적 현장 복지 출동**:
+  - 읍면동 사회복지사 모바일 앱으로 고위험 가구 위치 및 사유 자동 전송 $\rightarrow$ 긴급 복지 지원 집행
 - **성과**: 복지 사각지대 발굴 기간을 기존 2~3개월에서 수일 이내로 단축하여 인명 사고 예방
 
 ## Ⅴ. 성공적 추진을 위한 공공 데이터 거버넌스 3대 축
@@ -140,41 +153,64 @@ extra:
 | **AI 행정 오류 및 환각** | 일반 LLM 활용 시 존재하지 않는 법령을 인용하거나 잘못된 복지 산정 | **공공 전용 sLLM 구축 + RAG 기반 법령 검증**, Human-in-the-Loop 최종 승인 의무화 |
 | **민감 개인정보 유출** | 대규모 행정 데이터 결합 시 재식별(Re-identification) 위험 | 차분 프라이버시(Differential Privacy), 동형암호 적용, 폐쇄망 AI 인프라 |
 
-## Ⅶ. 기술사적 제언: 공공 폐쇄망 특화 소형 언어모델(sLLM)과 AI 윤리
+## Ⅶ. 기술사적 제언
 
-#### 한줄 요약: 민간 상용 클라우드 유출 위험을 차단하는 온프레미스 공공 sLLM과 투명하고 설명 가능한 AI 행정 구현
+### 학습자 통찰 메모 — 답안 밖
 
-```text
- [국가 안보 및 개인정보 보호를 위한 공공 sLLM 아키텍처]
-  [공공 전용 데이터센터 (G-Cloud)]
-  ┌─────────────────────────────────────────────────────────────┐
-  │  국가 법령 / 공문서 / 행정 심판례 ──► [국산 경량 sLLM]     │
-  │                                            │ (온프레미스)   │
-  │  외부 인터넷 차단 (Air-Gapped 폐쇄망)      ▼                │
-  │  안전한 행정 보조 ◄── [RAG 지식 검색] ◄── 공무원 질의      │
-  └─────────────────────────────────────────────────────────────┘
-```
+> **[핵심 통찰]**
+> 공공 행정에 AI를 도입할 때 가장 경계해야 할 것은 '자동화의 맹신'이다. 민간 서비스의 추천 알고리즘 오류는 단순 불만에 그치지만, 공공 영역의 복지 대상 탈락이나 과세 행정 오류는 헌법상 기본권 침해와 국가 배상 책임으로 직결된다. 따라서 AI는 공무원의 의사결정을 보조(Copilot)하는 도구로 제한하고, 최종 처분권은 반드시 인간 공무원이 행사하는 'Human-in-the-Loop(HITL)'와 '설명 가능한 AI(XAI)' 거버넌스가 법제화되어야 한다.
 
-- 공공 데이터는 국가 안보와 국민의 민감한 개인정보를 포함하므로 글로벌 빅테크의 퍼블릭 API에 의존할 수 없음
-- 7B~14B 규모의 국산 경량 오픈소스 파운데이션 모델(sLLM)을 정부 폐쇄망에 온프레미스로 구축하고, 엄격한 RAG 파이프라인을 연동하여 보안성과 정확성을 동시 확보해야 함
+> **[나라면 이렇게 쓴다]**
+> 1교시형이라면 전통 데이터 행정과의 대조 다이어그램 및 4단 참조 아키텍처를 제시하겠다. 2교시 25점형이라면 위기 가구 선제 발굴 파이프라인 실사례를 도식화하고, 공공 폐쇄망(G-Cloud) 기반 국산 sLLM 구축 전략과 함께 부처 간 데이터 칸막이 해소를 위한 제도적 면책 조항, 그리고 AI 윤리 및 프라이버시 보호(가명정보 결합, 차분 프라이버시) 체계를 제언에 강조하겠다.
+
+### 실전 답안용 기술사적 제언
+
+- **판정 (현행 한계)**: 상용 글로벌 퍼블릭 AI 호출 시 국가 안보 및 민감 행정정보 유출 위험이 존재하며, 범정부 부처 간 데이터 사일로와 감사 부담으로 인해 기관 간 데이터 연계율이 저조함.
+- **대응 (개선 방안)**: 국가정보자원관리원 G-Cloud 내 공공 전용 소형 파운데이션 모델(sLLM)과 RAG 파이프라인을 온프레미스로 구축하고, 공공데이터 연계에 대한 공무원 면책권 법제화 및 차분 프라이버시 기반 가명정보 결합 허브 운영.
+- **검증 (검증 기준)**: 법령 인용 환각률 0% 달성(RAG 팩트체킹), 공공 서비스 응답 정확도 95% 이상 검증, 외부망 유출 차단(Air-Gapped) 보안 감사 통과.
+- **효과 (실행 효과)**: 복지 사각지대 발굴 기간 90% 단축, 공무원 단순 행정문서 작성 시간 50% 절감, 국민 체감형 선제 공공서비스 만족도 90% 이상 달성.
+
+<div class="itpe-flow-map">
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">현행 한계</div>
+    <div class="itpe-flow-step__content">부처 간 데이터 칸막이, 퍼블릭 AI 활용 시 민감 개인정보 유출 위험</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">개선 방안</div>
+    <div class="itpe-flow-step__content">공공 폐쇄망 sLLM + RAG 도입 및 데이터 연계 공무원 면책 법제화</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">검증 기준</div>
+    <div class="itpe-flow-step__content">법령 환각 0%, 행정 응답 정확도 95% 이상, 망분리 보안 통제 준수</div>
+  </div>
+  <div class="itpe-flow-step">
+    <div class="itpe-flow-step__label">실행 효과</div>
+    <div class="itpe-flow-step__content">위기 가구 선제 발굴 기간 90% 단축, 행정 공수 50% 절감, 신뢰성 제고</div>
+  </div>
+</div>
 
 ---
 
 ## 1교시 10점 답안 발췌
 
-```text
-1. AI·데이터 기반 행정의 정의
-  - 공공·민간 데이터를 연계 분석하고 초거대 AI(sLLM) 및 예측 모델을 정책 전주기에 적용하여 선제적 국민 맞춤 서비스를 제공하는 지능형 국정 운영 체계.
+### [문제] AI·데이터 기반 행정
 
-2. 추진 아키텍처 및 전통 행정과의 차이점
-  가. 4단 아키텍처:
-    - 선제 서비스 계층 -> AI 정책 지원(공공 sLLM/RAG) -> 통합 데이터 레이크하우스 -> 범정부 데이터 연계 허브.
-  나. 전통 행정 대비 진화:
-    - 사후 통계 집계에서 '실시간 사전 예측'으로, 수동적 신청주의에서 '능동적 선제주의'로 전환.
+#### 1. AI·데이터 기반 행정의 정의
+- 공공·민간 데이터를 연계 분석하고 초거대 AI(sLLM) 및 예측 모델을 정책 전주기에 적용하여 선제적 국민 맞춤 서비스를 제공하는 지능형 국정 운영 체계
 
-3. 성공 요건 및 신뢰성 확보 방안
-  - 부처 간 사일로 타파를 위한 법적 면책, 공공 폐쇄망 sLLM 구축, Human-in-the-Loop 기반 오류 검증.
-```
+#### 2. 추진 아키텍처 및 전통 행정과의 차이점
+
+| 구분 | 전통적 데이터기반행정 | AI·데이터 기반 행정 |
+|:---|:---|:---|
+| **의사결정 시점** | 사후 통계 분석 (Descriptive) | 실시간 미래 예측 및 처방 (Predictive) |
+| **서비스 방식** | 국민 신청주의 (수동적) | 능동적 선제주의 (사전 발굴 및 추천) |
+| **핵심 기술** | RDBMS, 통계 패키지, BI | sLLM, 머신러닝, RAG, 디지털 트윈 |
+| **데이터 범위** | 기관 내부 정형 데이터 | 범정부 행정 + 민원 VoC + 통신/IoT 비정형 |
+
+- **4단 참조 아키텍처**: 대국민 선제 서비스 $\rightarrow$ 공공 sLLM/정책 시뮬레이터 $\rightarrow$ 통합 데이터 레이크하우스 $\rightarrow$ 범정부 연계 허브
+
+#### 3. 성공 요건 및 신뢰성 확보 방안
+- 부처 간 사일로 타파를 위한 법적 면책, 공공 폐쇄망 sLLM 구축, Human-in-the-Loop 기반 오류 검증 체계 확립
 
 ---
 
@@ -198,5 +234,5 @@ extra:
 
 ## 연결 토픽
 
-- 상위 토픽: [03-006 데이터 거버넌스](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/006_data_governance.md)
-- 연관 토픽: [03-008 데이터 표준화](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/008_data_standardization.md), [03-034 가명정보 처리 가이드라인](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/034_pseudonymization_guidelines.md)
+- 상위 토픽: [006. 데이터 거버넌스 (Data Governance)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/006_data_governance.md)
+- 연관 토픽: [008. 데이터 표준화 (Data Standardization)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/008_data_standardization.md), [034. 가명정보 처리 가이드라인](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/034_pseudonymized_data_guidelines_unstructured.md)
