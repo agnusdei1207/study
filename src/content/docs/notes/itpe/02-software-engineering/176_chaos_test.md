@@ -9,10 +9,10 @@ tags:
   - "폭발반경"
   - "서킷브레이커"
   - "넷플릭스"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:26:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,52 +23,11 @@ extra:
   <strong>카오스 테스트(Chaos Test)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 분산 클라우드 환경에서 하드웨어 고장, 네트워크 지연, 인스턴스 크래시 등 불가피한 돌발 결함이 발생했을 때 시스템이 연쇄 장애로 붕괴하지 않고 스스로 복구하는지 검증하기 위해, 운영 및 유사 환경에 제어된 장애를 선제적으로 주입하여 시스템의 회복 탄력성(Resilience)을 실증하는 실험적 테스팅 기법
 - 메커니즘: 비즈니스 정상 상태(Steady State) 정의 $\rightarrow$ 장애 내결함 가설 수립 $\rightarrow$ 최소 폭발 반경(Blast Radius) 내 장애 주입 실험 $\rightarrow$ 지표 관측 및 자가 치유 판정 $\rightarrow$ 취약점 개선
 - 산출물: 카오스 실험 계획서 · 정상 상태 메트릭 정의서 · 회복력 검증 리포트 · 긴급 중단 롤백 절차서
-
-<div class="itpe-flow-map" role="img" aria-label="카오스 엔지니어링 4단계 실험 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 정상 상태(Steady State) 정의</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>계측</strong><span>초당 주문 성공 건수, p99 응답시간 등 정상 작동 대변 지표 확정</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 가설 수립 및 폭발 반경 통제</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>설계</strong><span>"결제 파드 1개가 급사해도 전체 결제 성공률은 99.9% 유지된다" 가설</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 통제된 결함 주입 (Fault Injection)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>주입</strong><span>Chaos Mesh/Litmus 기반 파드 강제 종료 및 500ms 네트워크 지연 발생</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: 회복 탄력성 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>서킷 브레이커와 오토스케일링이 작동하여 정상 상태 메트릭을 유지하는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (가설 검증 성공)</strong>
-      <span>자가 치유 확인 $\rightarrow$ 회복 탄력성 Baseline 승인 및 정기 자동화 실험 등록</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (연쇄 장애 전파)</strong>
-      <span>비상 중단(Rollback) 즉각 발동 $\rightarrow$ 타임아웃/서킷 브레이커 설정 재설계</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -101,160 +60,34 @@ extra:
 
 ### 카오스 엔지니어링 4단계 실험 및 폭발 반경 통제
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="ch-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">카오스 엔지니어링 4단계 순환 실험 및 폭발 반경 통제</text>
+```mermaid
+flowchart LR
+    A["정상 상태 정의(Steady State)"] --> B["가설 수립(Hypothesis)"]
+    B --> C["결함 주입(LitmusChaos·카나리 격리)"]
+    C --> D["자가 치유 검증(Self-Healing)"]
+```
 
-    <!-- Step 1 -->
-    <rect x="15" y="42" width="110" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="15" y="42" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="70" y="57" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">1. 정상 상태 정의</text>
-    <text x="70" y="80" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">Steady State</text>
-    <text x="70" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- 초당 결제 성공률</text>
-    <text x="70" y="114" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- p99 &lt; 500ms</text>
-    <text x="70" y="138" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[비즈니스 기준선]</text>
-
-    <line x1="125" y1="97" x2="138" y2="97" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#ch-arrow)"/>
-
-    <!-- Step 2 -->
-    <rect x="140" y="42" width="110" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="140" y="42" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="195" y="57" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">2. 가설 수립</text>
-    <text x="195" y="80" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">Hypothesis</text>
-    <text x="195" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- 결제 파드 급사 시</text>
-    <text x="195" y="114" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- 서킷브레이커 오픈</text>
-    <text x="195" y="138" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[복원력 설계]</text>
-
-    <line x1="250" y1="97" x2="263" y2="97" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#ch-arrow)"/>
-
-    <!-- Step 3 -->
-    <rect x="265" y="42" width="115" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#ef4444" stroke-width="1.4"/>
-    <rect x="265" y="42" width="115" height="22" rx="6" fill="var(--color-bg-subtle, #fef2f2)"/>
-    <text x="322" y="57" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">3. 결함 주입</text>
-    <text x="322" y="80" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">Fault Injection</text>
-    <text x="322" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- LitmusChaos 주입</text>
-    <text x="322" y="114" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- 폭발반경: 카나리</text>
-    <text x="322" y="138" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#dc2626">[통제된 재해]</text>
-
-    <line x1="380" y1="97" x2="393" y2="97" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#ch-arrow)"/>
-
-    <!-- Step 4 -->
-    <rect x="395" y="42" width="110" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.4"/>
-    <rect x="395" y="42" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #f0fdf4)"/>
-    <text x="450" y="57" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">4. 자가 치유 검증</text>
-    <text x="450" y="80" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">Self-Healing</text>
-    <text x="450" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- 정상 상태 유지 여부</text>
-    <text x="450" y="114" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">- 이상 시 자동 롤백</text>
-    <text x="450" y="138" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[가설 입증]</text>
-
-    <!-- Safety Bottom Switch -->
-    <rect x="15" y="162" width="490" height="38" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="178" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">안전장치(Dead Man's Switch): 비즈니스 에러율 임계치 초과 즉시 장애 주입 프로세스 자동 킬 및 원복</text>
-    <text x="260" y="192" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">최소 폭발 반경(Blast Radius) 원칙을 준수하여 실제 고객 피해 발생을 0%로 완벽 차단</text>
-  </svg>
-</div>
+정상 상태 기준선은 초당 결제 성공률, p99 500ms 미만 같은 비즈니스 메트릭이다. 안전장치(Dead Man's Switch)는 비즈니스 에러율 임계치 초과 시 장애 주입 프로세스를 즉시 자동 킬·원복하며, 최소 폭발 반경(Blast Radius) 원칙으로 실제 고객 피해 발생을 0%로 차단한다.
 
 ### GitOps 기반 Chaos-as-Code 및 K8s 복원력 지속 검증
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="k8s-c-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">GitOps 기반 Chaos-as-Code (Litmus/Chaos Mesh) 자동화 구조</text>
+```mermaid
+flowchart LR
+    G["Git 저장소(chaos-test.yaml CRD)"] -->|"정기 스케줄 동기화"| A["ArgoCD·GitOps"]
+    A --> O["Chaos Mesh Operator(PodKill·NetworkDelay·I/O Chaos)"]
+    O --> P["Prometheus 관측·DORA 감사 증적"]
+```
 
-    <!-- Git Repo -->
-    <rect x="15" y="45" width="100" height="65" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="65" y="68" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">Git 저장소</text>
-    <text x="65" y="85" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">chaos-test.yaml</text>
-    <text x="65" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">CRD 선언적 명세</text>
-
-    <line x1="115" y1="78" x2="145" y2="78" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#k8s-c-arrow)"/>
-
-    <!-- ArgoCD -->
-    <rect x="145" y="45" width="105" height="65" rx="5" fill="var(--color-bg-subtle, #eff6ff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
-    <text x="197" y="68" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">ArgoCD / GitOps</text>
-    <text x="197" y="85" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">지속적 배포</text>
-    <text x="197" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">정기 스케줄 동기화</text>
-
-    <line x1="250" y1="78" x2="280" y2="78" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#k8s-c-arrow)"/>
-
-    <!-- K8s Chaos Operator -->
-    <rect x="280" y="45" width="225" height="65" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#ef4444" stroke-width="1.4"/>
-    <text x="392" y="68" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">Chaos Mesh Operator (K8s 클러스터)</text>
-    <text x="392" y="85" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">- PodKill / NetworkDelay / I/O Chaos</text>
-    <text x="392" y="98" text-anchor="middle" font-size="6.5" fill="#dc2626">사전 정의된 네임스페이스 격리 주입</text>
-
-    <!-- Bottom Monitoring Feedback -->
-    <rect x="15" y="125" width="490" height="55" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="145" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">Prometheus 관측 및 금융권 DORA(디지털 운영 탄력성) 감사 증적 연계</text>
-    <text x="260" y="165" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">장애 주입 중 서킷 브레이커와 HPA 오토스케일링이 정상 가동되었음을 정량 리포트로 자동 생성</text>
-  </svg>
-</div>
+장애 주입 중 서킷 브레이커와 HPA 오토스케일링이 정상 가동되었음을 정량 리포트로 자동 생성한다.
 
 ### 카오스 실험 4대 핵심 구성요소
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>① 정상 상태 메트릭</strong></span>
-      <span class="itpe-badge">기준선 정의</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>CPU 등 단순 시스템 지표가 아닌 비즈니스 트랜잭션 지표 중심</li>
-        <li>Prometheus/Datadog 메트릭과 연계하여 실시간 편차 감시</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>② 결함 주입기 (Injector)</strong></span>
-      <span class="itpe-badge">실험 유발</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>컴퓨팅 장애: 프로세스 Kill, CPU 스로틀링, 메모리 릭</li>
-        <li>네트워크 장애: 패킷 드롭, 지연시간 추가, DNS 확인 실패</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>③ 폭발 반경 제어기</strong></span>
-      <span class="itpe-badge">안전 격리</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>전체 시스템이 아닌 단일 네임스페이스나 특정 카나리 파드에 한정</li>
-        <li>테스트용 모의 사용자(Synthetic User) 트래픽 대상 실험</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>④ 비상 정지 (Emergency Stop)</strong></span>
-      <span class="itpe-badge">자동 원복</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>SLA/SLO 허용 오차를 벗어나는 즉시 장애 주입 프로세스 강제 종료</li>
-        <li>원래 정상 상태 인프라 구성으로 자동 복구(Auto-Rollback)</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 구성요소 | 핵심 판단 |
+|---|---|
+| **① 정상 상태 메트릭** | 기준선 정의: CPU 등 단순 시스템 지표가 아닌 비즈니스 트랜잭션 지표 중심, Prometheus/Datadog 연계 실시간 편차 감시 |
+| **② 결함 주입기(Injector)** | 실험 유발: 컴퓨팅 장애(프로세스 Kill·CPU 스로틀링·메모리 릭), 네트워크 장애(패킷 드롭·지연 추가·DNS 확인 실패) |
+| **③ 폭발 반경 제어기** | 안전 격리: 단일 네임스페이스·카나리 파드 한정 주입, 테스트용 모의 사용자(Synthetic User) 트래픽 대상 실험 |
+| **④ 비상 정지(Emergency Stop)** | 자동 원복: SLA/SLO 허용 오차 이탈 시 장애 주입 프로세스 강제 종료, 원래 정상 상태 인프라 구성으로 Auto-Rollback |
 
 ## 3. 실무 적용 및 고려사항
 
@@ -292,35 +125,6 @@ extra:
 - **대응 방안**: LitmusChaos 기반의 주기적 카오스 실험을 카나리 네임스페이스에 선제 적용하고 비상 정지 연동
 - **검증 체계**: 서킷 브레이커 오픈 시 폴백 로직 정상 작동 여부 및 Prometheus 가용성 지표 실시간 검증
 - **기대 효과**: 미지의 분산 시스템 결함 사전 색출 및 대규모 운영 장애 사고 예방, 디지털 운영 복원력(DORA) 완벽 입증
-
-<div class="itpe-pipeline-container" role="region" aria-label="카오스 엔지니어링 기반 디지털 복원력 검증 파이프라인">
-  <div class="itpe-pipeline-header">
-    <span class="itpe-pipeline-title">카오스 엔지니어링 기반 디지털 복원력 검증 파이프라인</span>
-    <span class="itpe-pipeline-badge">회복 탄력성</span>
-  </div>
-  <div class="itpe-pipeline-grid">
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">1단계: 기준선 정의</div>
-      <div class="itpe-card-title">Steady State</div>
-      <div class="itpe-card-body">비즈니스 정상 가동을 입증하는 핵심 트랜잭션 지표(TPS, 성공률) 확정</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">2단계: 선언적 실험</div>
-      <div class="itpe-card-title">Chaos-as-Code</div>
-      <div class="itpe-card-body">K8s CRD 기반 결함 시나리오 작성 및 최소 폭발 반경 카나리 격리</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">3단계: 결함 주입</div>
-      <div class="itpe-card-title">통제된 장애 유발</div>
-      <div class="itpe-card-body">Chaos Mesh 기반 파드 삭제 및 네트워크 레이턴시 주입 후 자가치유 관측</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">4단계: 규제 대응</div>
-      <div class="itpe-card-title">DORA 탄력성 입증</div>
-      <div class="itpe-card-body">복원력 성적서 자동 발행 및 시스템 취약점 조기 개선 사이클 완결</div>
-    </div>
-  </div>
-</div>
 
 ## 6. 참고 및 연계 학습
 

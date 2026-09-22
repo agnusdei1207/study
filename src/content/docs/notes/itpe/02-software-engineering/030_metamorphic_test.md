@@ -2,44 +2,25 @@
 title: "메타모픽 테스트(Metamorphic Test)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:56:49+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 테스트·검증을 거쳐 메타모픽 테스트로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>테스트·검증</span>
-  <strong>메타모픽 테스트(Metamorphic Test)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 테스트·검증 → **메타모픽 테스트(Metamorphic Test)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **메타모픽 테스트(MT: Metamorphic Testing)**는 테스트 오라클(Test Oracle)이 없거나 판별 비용이 극도로 높은 시스템(AI, 검색, 그래픽, 과학 연산)에서 입력의 변형과 출력 간의 **메타모픽 관계(MR: Metamorphic Relation)**를 정의하여 결함을 검출하는 기법
 - 메커니즘: 원본 입력(Source Input) 실행 → 변형 규칙 적용(Follow-up Input) 실행 → 결과 간 **MR 불변성 검증**
 - 산출/효과: 오라클 부재 한계 극복 · AI/LLM 모델 신뢰성 검증 · 자율주행 및 검색 엔진의 잠재 결함 적발
-
-<div class="itpe-flow-map" role="img" aria-label="메타모픽 테스트 원리">
-  <div class="itpe-flow-node"><strong>원본 입력 (Source Input x)</strong><span>실행 결과: f(x)</span></div>
-  <div class="itpe-flow-arrow">→ 변형 규칙 적용 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>메타모픽 관계 (MR) 검증</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>후속 입력</strong><span>x' = Transform(x)</span></div>
-      <div class="itpe-flow-branch"><strong>후속 실행</strong><span>f(x') 산출</span></div>
-      <div class="itpe-flow-branch"><strong>관계 판정</strong><span><span class="itpe-keyword"><strong>MR: f(x) 와 f(x')의 수학적 일치성</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ MR 위반 시 결함 보고 →</div>
-  <div class="itpe-flow-node"><strong>오라클 없는 결함 검출</strong><span>AI 모델 및 알고리즘 검증</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,87 +48,13 @@ extra:
 
 > 원본 테스트 케이스를 바탕으로 도메인 불변식을 도출하고 후속 테스트 케이스를 자동 생성한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="메타모픽 테스트 4단계 프로세스">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 메타모픽 관계(MR) 식별</strong></span>
-    <span>도메인 특성, 수학적 성질(대칭성, 가역성, 단조성) 기반 입력 변형 및 출력 관계 공식화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 원본 테스트 케이스(Source) 생성 및 실행</strong></span>
-    <span>기존 테스트 기법(랜덤 등)으로 입력 x 생성 → 실행 결과 f(x) 획득 (정답 판별 불필요)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 후속 테스트 케이스(Follow-up) 생성 및 실행</strong></span>
-    <span>MR 변형 규칙에 따라 입력 x' = T(x) 생성 → 실행 결과 f(x') 획득</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>4. 메타모픽 관계(MR) 위반 여부 판정</strong></span>
-    <span>f(x)와 f(x')이 MR 관계를 만족하는지 검증 → 불만족 시 시스템 내부 결함(Defect) 확정</span>
-  </div>
-</div>
-
-### 메타모픽 관계(MR) 기반 결함 검출 메커니즘
-
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[테스트 오라클 문제 해결: 메타모픽 관계(MR) 불변식 판정 흐름]</text>
-
-    <!-- 1. Source Track (Top) -->
-    <rect x="25" y="48" width="125" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
-    <text x="87" y="66" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">원본 입력 (x)</text>
-    <text x="87" y="80" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Source Input</text>
-
-    <!-- SUT (System Under Test) Top -->
-    <line x1="150" y1="69" x2="185" y2="69" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" marker-end="url(#arrow)" />
-    <rect x="185" y="48" width="115" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="242" y="66" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">대상 시스템</text>
-    <text x="242" y="80" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">실행 f(x)</text>
-
-    <!-- Source Output -->
-    <line x1="300" y1="69" x2="335" y2="69" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" marker-end="url(#arrow)" />
-    <rect x="335" y="48" width="85" height="42" rx="5" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" />
-    <text x="377" y="66" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">출력 f(x)</text>
-    <text x="377" y="80" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">정답 모름</text>
-
-    <!-- Downward Transform Arrow -->
-    <path d="M 87 90 L 87 135" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" stroke-dasharray="4 2" marker-end="url(#arrow)" />
-    <rect x="42" y="103" width="90" height="20" rx="3" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="87" y="117" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">변형: T(x)</text>
-
-    <!-- 2. Follow-up Track (Bottom) -->
-    <rect x="25" y="142" width="125" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.2" />
-    <text x="87" y="160" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">후속 입력 (x')</text>
-    <text x="87" y="174" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Follow-up Input</text>
-
-    <!-- SUT (System Under Test) Bottom -->
-    <line x1="150" y1="163" x2="185" y2="163" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" marker-end="url(#arrow)" />
-    <rect x="185" y="142" width="115" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="242" y="160" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">대상 시스템</text>
-    <text x="242" y="174" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">실행 f(x')</text>
-
-    <!-- Follow-up Output -->
-    <line x1="300" y1="163" x2="335" y2="163" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" marker-end="url(#arrow)" />
-    <rect x="335" y="142" width="85" height="42" rx="5" fill="var(--sl-color-bg-accent, #f5f3ff)" stroke="var(--sl-color-accent, #8b5cf6)" />
-    <text x="377" y="160" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">출력 f(x')</text>
-    <text x="377" y="174" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">정답 모름</text>
-
-    <!-- Right: MR Verification Diamond / Box -->
-    <line x1="420" y1="69" x2="445" y2="105" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
-    <line x1="420" y1="163" x2="445" y2="125" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
-
-    <rect x="435" y="80" width="75" height="70" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
-    <text x="472" y="103" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">MR 판정</text>
-    <text x="472" y="120" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">f(x) ~ f(x')</text>
-    <text x="472" y="136" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">위반시 결함</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    A["MR 식별"] --> B["원본 케이스 실행 f(x)"]
+    B -->|"변형 T(x)"| C["후속 케이스 실행 f(x')"]
+    C --> D["MR 판정"]
+    D -->|위반| E["결함 확정"]
+```
 
 ## Ⅲ. 대표적인 메타모픽 관계(MR) 유형 및 도메인 적용 사례
 
@@ -197,28 +104,6 @@ extra:
 - **검증 체계**: 모델 배포 전 섭동(Perturbation) 후속 케이스에 대한 MR 불변성 위반율(Violation Rate) 0% 게이트 강제
 - **기대 효과**: 테스트 오라클 문제 원천 극복, 고비용 수작업 라벨링 없이 무한 테스트 케이스 자동 증강 및 AI 소프트웨어 고신뢰성 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="메타모픽 테스팅 고도화 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>AI 모델 오라클 부재로 인한 블랙박스 수동 검증 한계 · 안전 결함 누출</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>도메인 불변성 기반 MR 정립 및 자동화 후속 케이스 생성 체계화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>MR 불변성 검증 통과율 100% 및 섭동 강건성(Robustness) 지표</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>오라클 문제 완전 해소 · 자율주행 및 생성형 AI 소프트웨어 고신뢰성 확보</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -228,13 +113,13 @@ extra:
 
 ### 2. 핵심 메커니즘
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="메타모픽 테스트 요약">
-  <div class="itpe-pipeline-node"><strong>Source Test Case (x)</strong><span>원본 실행 결과 f(x)</span></div>
-  <div class="itpe-pipeline-arrow">↓ 변형 함수 T(x)</div>
-  <div class="itpe-pipeline-node"><strong>Follow-up Case (x')</strong><span>후속 실행 결과 f(x')</span></div>
-  <div class="itpe-pipeline-arrow">↓ MR 관계 판정</div>
-  <div class="itpe-pipeline-node"><strong>Relation 검증</strong><span>MR: f(x) ~ f(x') 위반 시 결함</span></div>
-</div>
+```mermaid
+flowchart TB
+    A["MR 식별"] --> B["원본 케이스 실행 f(x)"]
+    B -->|"변형 T(x)"| C["후속 케이스 실행 f(x')"]
+    C --> D["MR 판정"]
+    D -->|위반| E["결함 확정"]
+```
 
 ### 3. 핵심 통제
 

@@ -13,32 +13,28 @@ extra:
 ---
 
 ## 지식 로드맵 내 현재 위치
+현재 위치: IT 전략·관리 → ITSM
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 서비스 운영관리를 거쳐 ITSM으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>서비스 운영·관리</span>
-  <strong>ITSM</strong>
-</div>
 
 ## 30초 인출
 
-- 본질: 개별 인프라 장비가 아닌 고객 중심의 End-to-End IT 서비스 생명주기를 관리하여 비즈니스 가치를 공동 창출(Co-creation)하는 서비스 관리 체계
-- 메커니즘: 서비스 데스크 단일 창구 인입 → 인시던트(신속 복구) → 문제(근본 원인 규명 및 KEDB) → 변경(위험 평가 및 CAB 승인) → 릴리즈/배포 및 CMDB 형상 갱신 → 지속적 서비스 개선(CSI)
-- 판정 기준: 변경 작업으로 인한 2차 장애율 < 1% 및 목표 MTTR 달성률 >= 99% 유지
+- 본질: 개별 인프라 장비가 아닌 고객 중심의 End-to-End IT 서비스 생명주기를 관리하여 비즈니스 가치를 공동 창출(Co-creation)하는 서비스 관리 체계이다.
+- 메커니즘: 서비스 데스크를 중심으로 인시던트 복구, 문제 원인·KEDB, 변경·CAB, 릴리즈·CMDB 정보를 연결해 지속적으로 서비스를 개선한다.
+- 판정 기준: 변경 후 장애와 복구시간을 기준선과 비교하고 서비스 수준 목표의 충족 여부를 검증한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **ITSM(IT Service Management)**: 서비스의 기획·설계·전환·제공·개선을 통해 고객과 가치를 공동창출하는 관리 활동
-- **ITIL(Information Technology Infrastructure Library)**: 서비스 가치체계와 실천방법을 제공하는 ITSM 모범사례
-- **SMS(Service Management System)**: 서비스 관리 방침·목표·프로세스·자원을 수립·운영·개선하는 경영시스템
-- **SLA(Service Level Agreement)**: 서비스 제공자와 고객이 합의한 서비스 수준과 측정·보고 기준
-- **KEDB(Known Error Database)**: Known Error와 Workaround를 관리하는 지식 저장소
-- **CAB(Change Advisory Board)**: 변경의 평가·우선순위·승인을 지원하는 자문기구
-- **RFC(Request for Change)**: 변경 제안을 공식적으로 요청하는 기록·절차
-- **XLA(eXperience Level Agreement)**: 사용자 경험 관점에서 서비스 수준을 약속하는 협약
-- **CMDB(Configuration Management Database)**: 서비스와 CI(Configuration Item)의 관계·속성·상태를 관리하는 데이터베이스
-- **SVS(Service Value System)**: ITIL 4에서 수요와 기회를 가치로 전환하는 구성요소 체계
+- **ITSM(IT Service Management)**: 서비스의 기획·설계·전환·제공·개선을 통해 고객과 가치를 공동창출하는 관리 체계이다.
+- **ITIL(Information Technology Infrastructure Library)**: 서비스 가치체계와 실천방법을 제공하는 ITSM 모범사례이다.
+- **SMS(Service Management System)**: 서비스 관리 방침·목표·프로세스·자원을 수립·운영·개선하는 경영시스템이다.
+- **SLA(Service Level Agreement)**: 서비스 제공자와 고객이 합의한 서비스 수준과 측정·보고 기준이다.
+- **KEDB(Known Error Database)**: Known Error와 Workaround를 관리하는 지식 저장소이다.
+- **CAB(Change Advisory Board)**: 변경의 평가·우선순위·승인을 지원하는 자문기구이다.
+- **RFC(Request for Change)**: 변경 제안을 공식적으로 요청하는 기록·절차이다.
+- **XLA(eXperience Level Agreement)**: 사용자 경험 관점에서 서비스 수준을 약속하는 협약이다.
+- **CMDB(Configuration Management Database)**: 서비스와 CI(Configuration Item)의 관계·속성·상태를 관리하는 데이터베이스이다.
+- **SVS(Service Value System)**: ITIL 4에서 수요와 기회를 가치로 전환하는 구성요소 체계이다.
 
 </details>
 
@@ -50,8 +46,8 @@ extra:
 
 > ITSM의 관리대상은 개별 장비가 아니라 고객이 사용하는 **End-to-End 서비스와 가치흐름**임.
 
-- 정의: 서비스 요구사항을 충족하고 가치를 제공하도록 서비스의 기획·설계·전환·운영·개선을 관리하는 체계
-- 목적: **서비스 가치 · 품질 일관성 · 운영효율 · 지속개선**
+- 정의: **서비스 가치체계**를 기반으로 서비스의 기획·설계·전환·운영·개선을 통합 관리하는 체계
+- 목적: **서비스 가치** · **품질 일관성** · **운영효율** · **지속개선** 확보
 
 ## Ⅱ. ITSM 구성체계
 
@@ -126,10 +122,16 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준**: 변경 작업으로 인한 2차 장애 발생률 1% 미만 및 장애 발생 시 MTTR(평균 복구 시간) 목표치 달성률 99% 이상.
+- **판정 기준**: 변경 작업으로 인한 2차 장애 발생률 목표 기준 미만 및 장애 발생 시 MTTR(평균 복구 시간) 목표치 달성률 목표 기준 이상.
 - **공학적 대안**: 정적 문서 중심 탈피, CI/CD 자동화 파이프라인과 **CMDB 자동 디스커버리**, 그리고 **AIOps 기반 이상징후 조기 탐지** 결합.
 - **검증 절차**: 분기별 KEDB 미해결 에러(Known Error) 재발 건수 분석 및 CAB 변경 승인 리드타임 측정.
 - **기대 효과**: 배포 속도와 시스템 안정성의 양립, 서비스 연속성 보장 및 최종 사용자 경험(XLA) 극대화.
+
+```mermaid
+flowchart TD
+    P["변경 작업으로 인한 2차 장애 발생률 목표 기준 미만 및 "] --> A["정적 문서 중심 탈피, CI/CD 자동화 파이프라인과 CM"] --> V["분기별 KEDB 미해결 에러(Known Error) 재발 "] --> E["배포 속도와 시스템 안정성의 양립, 서비스 연속성 보장 및"]
+    V --> P
+```
 
 ## 1교시 10점 답안 발췌
 

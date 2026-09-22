@@ -13,30 +13,26 @@ extra:
 ---
 
 ## 지식 로드맵 내 현재 위치
+현재 위치: IT 전략·관리 → 그로스 해킹
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 데이터 기반 제품관리를 거쳐 그로스 해킹으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>데이터 기반 제품관리</span>
-  <strong>그로스 해킹</strong>
-</div>
 
 ## 30초 인출
 
-- 본질: 제품·마케팅·데이터를 결합하여 지속 가능한 성장 메커니즘을 통제 실험으로 탐색하는 데이터 기반 제품 관리 접근법
-- 메커니즘: North Star Metric 정의 → AARRR 퍼널 및 코호트 병목 탐색 → 가설 수립(ICE 우선순위) → A/B 테스트 및 Guardrail 검정 → 학습 및 제품 환류
-- 판정 기준: p-value < 0.05 통계적 유의성 확보 및 목표 지표 개선 대비 Guardrail(이탈률·불만율) 침해 0건 유지
+- 본질: 제품·마케팅·데이터를 결합하여 지속 가능한 성장 메커니즘을 통제 실험으로 탐색하는 데이터 기반 제품 관리 접근법이다.
+- 메커니즘: North Star Metric 정의 → AARRR 퍼널 및 코호트 병목 탐색 → 가설 수립(ICE 우선순위) → A/B 테스트 및 Guardrail 검정 → 학습 및 제품 환류한다.
+- 판정 기준: 실험 결과가 사전 정한 분석 기준을 충족하고 Guardrail 지표 악화 없이 목표 지표가 개선되는지 확인한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **Growth Hacking**: 제품·마케팅·데이터 역량을 결합해 성장 가설을 빠르게 실험·학습하는 접근법
-- **AARRR**: Acquisition·Activation·Retention·Revenue·Referral로 사용자 여정을 관찰하는 퍼널 프레임워크
-- **PMF(Product-Market Fit)**: 제품이 목표 고객의 중요한 문제를 해결하여 반복 사용·지불·추천이 나타나는 적합 상태
-- **NSM(North Star Metric)**: 고객이 받은 핵심가치와 장기 성장을 함께 반영하는 중심 지표
-- **Guardrail Metric**: 목표지표 개선 과정에서 품질·신뢰·수익 등 부작용을 감시하는 보호 지표
-- **Cohort Analysis**: 공통 특성을 가진 사용자 집단의 시간별 행동·잔존 변화를 비교하는 분석
-- **CAC(Customer Acquisition Cost)**: 고객 획득에 투입한 판매·마케팅 비용
-- **LTV(Customer Lifetime Value)**: 고객관계 기간에 기대되는 가치
+- **Growth Hacking**: 제품·마케팅·데이터 역량을 결합해 성장 가설을 빠르게 실험·학습하는 접근법이다.
+- **AARRR**: Acquisition·Activation·Retention·Revenue·Referral로 사용자 여정을 관찰하는 퍼널 프레임워크이다.
+- **PMF(Product-Market Fit)**: 제품이 목표 고객의 중요한 문제를 해결하여 반복 사용·지불·추천이 나타나는 적합 상태이다.
+- **NSM(North Star Metric)**: 고객이 받은 핵심가치와 장기 성장을 함께 반영하는 중심 지표이다.
+- **Guardrail Metric**: 목표지표 개선 과정에서 품질·신뢰·수익 등 부작용을 감시하는 보호 지표이다.
+- **Cohort Analysis**: 공통 특성을 가진 사용자 집단의 시간별 행동·잔존 변화를 비교하는 분석이다.
+- **CAC(Customer Acquisition Cost)**: 신규 고객 한 명을 확보하기 위해 판매·마케팅에 투입한 평균 비용이다.
+- **LTV(Customer Lifetime Value)**: 고객이 관계를 유지하는 동안 기업에 가져올 것으로 예상되는 누적 가치이다.
 
 </details>
 
@@ -48,8 +44,8 @@ extra:
 
 > 그로스 해킹은 단기 트래픽 확대가 아니라 **고객가치를 반복 전달하는 성장 루프**를 찾는 학습체계임.
 
-- 정의: 제품·마케팅·데이터 분석을 결합하여 성장 가설을 실험하고 제품·채널을 반복 개선하는 접근법
-- 목적: **고객가치 검증 · 성장병목 해소 · 학습속도 향상**
+- 정의: 제품·마케팅·데이터 분석을 결합하여 **성장 가설**을 실험하고 제품·채널을 반복 개선하는 접근법
+- 목적: **고객가치 검증** · **성장병목 해소** · **학습속도 향상**
 
 ## Ⅱ. AARRR 프레임워크
 
@@ -122,10 +118,16 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준 (Trigger)**: 단기 전환율(CVR) 지표는 상승하나 이탈률(Churn Rate) 급증 또는 불만 CS 접수가 15% 이상 증가할 시 다크 패턴 및 국소 최적화 위험으로 판정함.
+- **판정 기준 (Trigger)**: 단기 전환율(CVR) 지표는 상승하나 이탈률(Churn Rate) 급증 또는 불만 CS 접수가 목표 기준 이상 증가할 시 다크 패턴 및 국소 최적화 위험으로 판정함.
 - **대응 방안 (Action)**: 북극성 지표(NSM)에 직교하는 보호 지표(Guardrail Metric: 페이지 응답시간, 구독 해지율, 프라이버시 동의 철회율)를 필수 지정하고, 하향 돌파 시 실험 자동 중단(Kill Switch)을 연동함.
 - **검증 체계 (Verification)**: A/B 테스트 사전 승인제(Pre-registration) 및 최소 표본수(MDE 계산) 확정 후 통계적 유의수준(p < 0.05)과 코호트별 30일 잔존율 추적을 동시 검증함.
-- **기대 효과 (Impact)**: 허상 지표(Vanity Metric) 배제, 고객 LTV(생애가치) 25% 증대, 규제 컴플라이언스(다크패턴 방지법) 위반 리스크 원천 해소를 달성함.
+- **기대 효과 (Impact)**: 허상 지표(Vanity Metric) 배제, 고객 LTV(생애가치) 목표 기준 증대, 규제 컴플라이언스(다크패턴 방지법) 위반 리스크 원천 해소를 달성함.
+
+```mermaid
+flowchart TD
+    P["단기 전환율(CVR) 지표는 상승하나 이탈률(Churn R"] --> A["북극성 지표(NSM)에 직교하는 보호 지표(Guardrai"] --> V["A/B 테스트 사전 승인제(Pre-registration)"] --> E["허상 지표(Vanity Metric) 배제, 고객 LTV("]
+    V --> P
+```
 
 ## 1교시 10점 답안 발췌
 

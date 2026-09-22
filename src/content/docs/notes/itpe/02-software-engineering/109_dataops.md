@@ -6,8 +6,9 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
+date: "2026-09-22T07:25:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -18,103 +19,18 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **메커니즘**: 데이터 소스 수집 $\rightarrow$ 인라인 데이터 품질 검증(Data Assertion) $\rightarrow$ ELT 변환(dbt) $\rightarrow$ 스키마 버전 관리 및 카탈로그 등록 $\rightarrow$ 실시간 공정 모니터링(SPC 한계선) 및 피드백 순으로 제어된다.
 - **산출물**: 데이터 파이프라인 코드(Data as Code), 데이터 계약(Data Contracts), 데이터 리니지(Data Lineage) 맵, 통계적 공정 관리 모니터링 대시보드.
 
-<div class="itpe-flow">
-  <div class="itpe-flow-steps">
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>1. 데이터 계약</strong></span>
-      <div class="itpe-step-detail">Data Contracts 기반 스키마·SLA·전송 주기 정의</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>2. 수집 & 품질검증</strong></span>
-      <div class="itpe-step-detail">결측치·이상치 인라인 Assertion (Great Expectations)</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>3. 파이프라인 변환</strong></span>
-      <div class="itpe-step-detail">dbt 기반 SQL 버전 관리 및 Airflow 워크플로 오케스트레이션</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node is-current">
-      <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-      <div class="itpe-step-detail"><strong>판정 질문</strong><span>SPC 통계적 관리 한계선 이내이며 스키마 변경이 합의되었는가?</span></div>
-      <div class="itpe-flow-branches">
-        <div class="itpe-flow-branch"><strong>통과</strong><span>데이터 웨어하우스 적재 및 BI 리포트 자동 서빙</span></div>
-        <div class="itpe-flow-branch"><strong>미통과</strong><span>파이프라인 일시 중단(Fail-Fast) 및 격리 테이블 격리</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 ---
 
 ## 핵심 메커니즘과 3대 기반 축
 
-<div style="max-width: 520px; margin: 1.5rem auto;">
-  <!-- SVG: DataOps 3대 사상 결합 및 파이프라인 아키텍처 -->
-  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-    <!-- 배경 -->
-    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-    
-    <!-- 3대 기반 축 상단 박스들 -->
-    <!-- 1. Agile -->
-    <rect x="15" y="15" width="150" height="75" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2"/>
-    <text x="90" y="32" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-primary, #3b82f6)">애자일 (Agile)</text>
-    <text x="90" y="48" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">1~2주 스프린트 반복</text>
-    <text x="90" y="62" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">비즈니스 요구 기민 대응</text>
-    <text x="90" y="76" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">데이터 엔지니어-현업 협업</text>
-
-    <!-- 2. DevOps -->
-    <rect x="185" y="15" width="150" height="75" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-text, #0f172a)" stroke-width="1.2"/>
-    <text x="260" y="32" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">데브옵스 (DevOps)</text>
-    <text x="260" y="48" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">파이프라인 CI/CD 자동화</text>
-    <text x="260" y="62" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">Data as Code (Git, dbt)</text>
-    <text x="260" y="76" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">컨테이너 기반 오케스트레이션</text>
-
-    <!-- 3. Lean SPC -->
-    <rect x="355" y="15" width="150" height="75" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
-    <text x="430" y="32" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-accent, #10b981)">린 통계적 공정관리 (SPC)</text>
-    <text x="430" y="48" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">연속 제조 공정 모델링</text>
-    <text x="430" y="62" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">관리한계선 이상치 감시</text>
-    <text x="430" y="76" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Great Expectations 가드레일</text>
-
-    <!-- 화살표 하향 수렴 -->
-    <path d="M 90 90 L 220 115" stroke="var(--color-primary, #3b82f6)" stroke-width="1.3"/>
-    <path d="M 260 90 L 260 115" stroke="var(--color-text, #0f172a)" stroke-width="1.3"/>
-    <path d="M 430 90 L 300 115" stroke="var(--color-accent, #10b981)" stroke-width="1.3"/>
-
-    <!-- 중앙: DataOps 융합 파이프라인 본체 -->
-    <g transform="translate(15, 120)">
-      <rect x="0" y="0" width="490" height="85" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.3"/>
-      <text x="245" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">DataOps 엔터프라이즈 실행 체계</text>
-
-      <!-- 4단계 내부 흐름 -->
-      <g transform="translate(15, 30)">
-        <rect x="0" y="0" width="105" height="42" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-        <text x="52" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">① Data Contracts</text>
-        <text x="52" y="30" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">생산자 스키마 협약</text>
-
-        <path d="M 108 21 L 118 21" stroke="var(--color-border, #94a3b8)" stroke-width="1.3"/>
-
-        <rect x="120" y="0" width="105" height="42" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-        <text x="172" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">② 인라인 Assertion</text>
-        <text x="172" y="30" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">품질 결함 격리</text>
-
-        <path d="M 228 21 L 238 21" stroke="var(--color-border, #94a3b8)" stroke-width="1.3"/>
-
-        <rect x="240" y="0" width="105" height="42" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-        <text x="292" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">③ ELT 변환 (dbt)</text>
-        <text x="292" y="30" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Airflow 오케스트레이션</text>
-
-        <path d="M 348 21 L 358 21" stroke="var(--color-border, #94a3b8)" stroke-width="1.3"/>
-
-        <rect x="360" y="0" width="100" height="42" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-accent, #10b981)" stroke-width="1"/>
-        <text x="410" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-accent, #10b981)">④ Data Lineage</text>
-        <text x="410" y="30" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">OpenLineage 관측</text>
-      </g>
-    </g>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    subgraph T["3대 기반 축"]
+        direction LR
+        A["애자일"] ~~~ D["데브옵스"] ~~~ S["린 통계적 공정관리"]
+    end
+    T --> C["데이터 계약"] --> Q["인라인 검증"] --> E["ELT 변환 (dbt)"] --> L["리니지 관측"]
+```
 
 ### (1) DataOps vs DevOps vs MLOps 비교
 
@@ -164,14 +80,10 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ### 학습자 통찰 메모 — 답안 밖
 - **[핵심 통찰]**: DataOps의 가장 큰 차별점은 "코드가 정상이더라도 데이터가 깨질 수 있다"는 본질적 위험을 통제하는 것이다. 따라서 일반 DevOps와의 차이점을 서술할 때 "코드 테스트 vs 데이터 값 테스트(Assertion)"의 이원화 구조를 명확히 제시해야 높은 점수를 받는다.
-- **나라면**: 답안 2단락에 Agile-DevOps-SPC 3대 축과 4단계 파이프라인(계약-검증-변환-리니지)을 SVG처럼 명쾌하게 시각화하고, 3단락에서 Data Contracts를 통한 생산자-소비자 분쟁 해결 방안을 서술하겠다. 4단락에서는 Data Mesh 패러다임과 결합된 도메인 주도 데이터 제품(Data as a Product) 체계를 기술사적 제언으로 완성하겠다.
+- **나라면**: 답안 2단락에 Agile-DevOps-SPC 3대 축과 4단계 파이프라인(계약-검증-변환-리니지)을 도해로 명쾌하게 시각화하고, 3단락에서 Data Contracts를 통한 생산자-소비자 분쟁 해결 방안을 서술하겠다. 4단락에서는 Data Mesh 패러다임과 결합된 도메인 주도 데이터 제품(Data as a Product) 체계를 기술사적 제언으로 완성하겠다.
 
 ### 실전 답안용 기술사적 제언
 - **판정 기준**: 파이프라인 내 데이터 결측치·이상치 유입 차단율 100% 및 소스 스키마 비호환 변경에 따른 다운스트림 장애 발생 0건.
 - **대응 방안**: 소스 서비스 CI 파이프라인에 Data Contracts 검증 린터를 결합하고, Great Expectations 인라인 Assertion 및 OpenLineage 자동 수집 체계 구축.
 - **검증 체계**: 통계적 공정 관리(SPC) 기법을 적용하여 데이터 볼륨 및 갱신 주기(Freshness) 이상 징후 감지 시 1분 이내 Slack/PagerDuty 알림 및 격리 테이블 자동 분기.
 - **기대 효과**: 데이터 파이프라인 장애 복구 시간(MTTR) 70% 단축, 데이터 사일로 해소 및 전사 BI/AI 모델의 데이터 신뢰도 극대화.
-
-<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
-  <strong>실전 제언 파이프라인 요약</strong>: <code>Data Contracts 스키마 사전 합의</code> → <code>Great Expectations 인라인 검증</code> → <code>dbt 자동 변환</code> → <code>OpenLineage SPC 관측</code>
-</div>

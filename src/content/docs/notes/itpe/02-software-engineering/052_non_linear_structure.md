@@ -5,41 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 자료구조와 알고리즘을 거쳐 비선형 구조로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>자료구조 · 알고리즘</span>
-  <strong>비선형 구조</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 자료구조 · 알고리즘 → **비선형 구조**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **비선형 구조(Non-Linear Structure)**는 데이터 요소 간의 관계가 1:1이 아닌 1:N(계층형) 또는 N:M(망형)으로 연결되어 다차원적 분기와 순환을 표현하는 자료구조
 - 메커니즘: **트리(Tree: 루트 존재, 무사이클, 간선 N-1)** + **그래프(Graph: 정점/간선, 방향/무방향, 사이클 허용, DAG)**
 - 산출/효과: 파일시스템 디렉터리 체계 · DBMS B-Tree 색인 블록 최적화 · 분산 파이프라인(Airflow/Spark) DAG 기반 의존성 실행 보장
-
-<div class="itpe-flow-map" role="img" aria-label="비선형 자료구조 체계">
-  <div class="itpe-flow-node"><strong>원시 데이터</strong><span>복합 관계·계층성</span></div>
-  <div class="itpe-flow-arrow">→ 구조화 및 모델링 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>비선형 자료구조 2대 축</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>트리 (Tree)</strong><span><span class="itpe-keyword"><strong>1:N 계층 · BST · B+Tree</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>그래프 (Graph)</strong><span><span class="itpe-keyword"><strong>N:M 망형 · DAG · 위상정렬</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>순회 알고리즘</strong><span>전위/중위/후위 · DFS · BFS</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 인덱싱 및 워크플로우 최적화 →</div>
-  <div class="itpe-flow-node"><strong>엔터프라이즈 응용</strong><span>DBMS 인덱스 · 빅데이터 분산 DAG</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -70,65 +51,21 @@ extra:
 
 > 데이터의 배치 형태와 탐색 메커니즘의 근본적 차이로 인해 적용 도메인이 명확히 분기된다.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="nl-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Left: Tree Structure (1:N Hierarchy) -->
-  <rect x="15" y="15" width="235" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#nl-shadow)"/>
-  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">트리 (Tree) — 1:N 계층형</text>
-  <text x="25" y="52" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">단일 Root · 무사이클 · 간선 N-1</text>
-
-  <!-- Tree Diagram -->
-  <circle cx="132" cy="78" r="14" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
-  <text x="132" y="82" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">Root</text>
-
-  <line x1="122" y1="90" x2="82" y2="114" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-  <line x1="142" y1="90" x2="182" y2="114" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-
-  <circle cx="75" cy="125" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
-  <text x="75" y="129" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">A</text>
-
-  <circle cx="190" cy="125" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
-  <text x="190" y="129" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">B</text>
-
-  <rect x="25" y="152" width="215" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="32" y="168" font-size="9.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">응용: RDBMS B+Tree 인덱스</text>
-  <text x="32" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">디스크 블록 I/O 최소화 및 O(log N) 탐색</text>
-
-  <!-- Right: Graph & DAG Structure (N:M Network) -->
-  <rect x="265" y="15" width="240" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#nl-shadow)"/>
-  <text x="275" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">그래프 (Graph / DAG) — N:M 망형</text>
-  <text x="275" y="52" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">정점(V) &amp; 간선(E) · 사이클/비순환 방향</text>
-
-  <!-- DAG Diagram -->
-  <circle cx="310" cy="95" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <text x="310" y="99" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">T1</text>
-
-  <line x1="323" y1="95" x2="368" y2="78" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <line x1="323" y1="95" x2="368" y2="114" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-
-  <circle cx="385" cy="75" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <text x="385" y="79" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">T2</text>
-
-  <circle cx="385" cy="115" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <text x="385" y="119" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">T3</text>
-
-  <line x1="398" y1="78" x2="443" y2="95" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <line x1="398" y1="114" x2="443" y2="95" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-
-  <circle cx="455" cy="95" r="13" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <text x="455" y="99" text-anchor="middle" font-size="10" fill="var(--sl-color-text, #1f2937)">T4</text>
-
-  <rect x="275" y="152" width="220" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
-  <text x="282" y="168" font-size="9.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">응용: Airflow / Spark 분산 DAG</text>
-  <text x="282" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">의존성 위상정렬 기반 병렬 실행 보증</text>
-</svg>
-</div>
+```mermaid
+flowchart TB
+    subgraph TREE["트리 · 1:N 계층"]
+        direction TB
+        R["루트"] --- A["자식 A"]
+        R --- B["자식 B"]
+    end
+    subgraph GRAPH["그래프·DAG · N:M 망형"]
+        direction LR
+        T1["작업 1"] --> T2["작업 2"]
+        T1 --> T3["작업 3"]
+        T2 --> T4["작업 4"]
+        T3 --> T4
+    end
+```
 
 | 비교 항목 | 선형 자료구조 (Linear) | 비선형 자료구조 (Non-Linear) |
 |---|---|---|
@@ -142,17 +79,14 @@ extra:
 
 > 트리는 엄격한 계층성과 순서 불변식을, 그래프는 유연한 연결성과 경로 탐색을 핵심으로 한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="비선형 구조 핵심 알고리즘 체계">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 트리 (Tree) 메커니즘</strong></span>
-    <span>• 이진 탐색 트리(BST): 왼쪽 < 부모 < 오른쪽 불변식 (평균 $O(\log N)$)<br />• 자가균형 트리(AVL/Red-Black): 노드 회전을 통해 높이 왜곡 방지<br />• B+Tree: 인덱스 노드와 리프 데이터 노드 분리 및 리프 간 연결 리스트 체인</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕ 순회 및 탐색 기법 분기</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 그래프 (Graph) 및 DAG 메커니즘</strong></span>
-    <span>• 인접 행렬($O(V^2)$) vs 인접 리스트($O(V+E)$) 표현<br />• DFS(스택/재귀: 깊이 탐색) vs BFS(큐: 최단 경로 탐색)<br />• DAG 및 위상 정렬: 진입차수(In-degree) 기반 작업 실행 순서 확정</span>
-  </div>
-</div>
+| 축 | 메커니즘 | 핵심 근거 |
+|---|---|---|
+| 트리 | 이진 탐색 트리(BST) 순서 불변식 | 왼쪽 < 부모 < 오른쪽 · 평균 $O(\log N)$ 탐색 |
+| 트리 | 자가균형 트리(AVL·Red-Black) 노드 회전 | 높이 왜곡 방지 · 최악 $O(\log N)$ 보장 |
+| 트리 | B+Tree 인덱스·리프 분리 | 리프 연결 리스트 체인 · 디스크 I/O 효율 |
+| 그래프 | 인접 행렬($O(V^2)$) vs 인접 리스트($O(V+E)$) | 밀도에 따른 표현 선택 |
+| 그래프 | DFS(스택·재귀) vs BFS(큐) | 깊이 탐색 vs 최단 경로 탐색 |
+| 그래프 | DAG 위상 정렬 | 진입차수 기반 작업 실행 순서 확정 |
 
 ## Ⅳ. 비선형 구조 운영 위험 및 실무 통제 대책
 
@@ -180,28 +114,6 @@ extra:
 - **검증 체계**: Tarjan 알고리즘 기반 순환 의존성 CI 정적 검출 100% 및 B+Tree 인덱스 높이(Depth ≤ 4) 정기 모니터링
 - **기대 효과**: 파이프라인 교착 상태 원천 차단, 대용량 트랜잭션 $O(\log N)$ 검색 보증 및 시스템 처리율 극대화
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="비선형 구조 엔터프라이즈 활용 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>선형적 접근의 한계로 인한 복잡 네트워크 쿼리 병목 및 순환 교착 발생</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>B+Tree 색인과 DAG 기반 분산 오케스트레이션(Airflow/Spark) 전면 채택</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>SCC 기반 무사이클 검증 100% 및 인덱스 트리 높이 3~4 이내 유지</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>시스템 처리율 극대화 · 복잡 의존성 환경에서의 결함 제로 달성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -211,11 +123,8 @@ extra:
 
 ### 2. 비선형 구조 2대 축
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="비선형 구조 요약">
-  <div class="itpe-pipeline-node"><strong>트리 (Tree)</strong><span>1:N 계층 구조 · 루트 단일 · 사이클 없음 · 간선 $N-1$</span></div>
-  <div class="itpe-pipeline-arrow">↕ 관계 차원 비교</div>
-  <div class="itpe-pipeline-node"><strong>그래프 (Graph)</strong><span>N:M 망형 구조 · 루트 없음 · 사이클 가능 · DAG(비순환 방향)</span></div>
-</div>
+- **트리(Tree)**: 1:N 계층 구조 · 루트 단일 · 사이클 없음 · 간선 $N-1$
+- **그래프(Graph)**: N:M 망형 구조 · 루트 없음 · 사이클 가능 · DAG(비순환 방향)
 
 ### 3. 핵심 통제
 

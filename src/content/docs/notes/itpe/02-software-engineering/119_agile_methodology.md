@@ -9,10 +9,10 @@ tags:
   - "XP"
   - "스프린트"
   - "개발방법론"
-date: "2026-09-20"
+date: "2026-09-22T07:25:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -28,40 +28,6 @@ extra:
 - 본질: 불확실성이 높고 요구사항이 급변하는 시장 환경에서 초기 고정 계획에 매몰되는 실패를 방지하기 위해, 1~4주 단위의 짧은 이터레이션(Sprint)을 반복하며 '동작하는 소프트웨어 증분'을 조기에 출시하고 고객 피드백을 지속 반영하는 적응형(Adaptive) 개발 패러다임
 - 메커니즘: 비전 수립 → 제품 백로그(Product Backlog) 우선순위화 → 스프린트 계획 및 개발(일일 스탠드업, CI/CD) → 동작 소프트웨어 시연(Sprint Review) → 프로세스 개선(회고) 반복
 - 산출물: 제품 백로그 · 스프린트 백로그 · 잠재적 출시 가능 제품 증분(Increment) · 스프린트 번다운 차트(Burndown Chart)
-
-<div class="itpe-flow-map" role="img" aria-label="애자일 개발 이터레이션 및 피드백 루프">
-  <div class="itpe-flow-node">
-    <strong>1단계: 제품 백로그 수립 및 우선순위화</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>주체</strong><span>제품 책임자(PO)가 비즈니스 가치 기반 사용자 스토리 정제</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 스프린트 계획 및 실행 (1~4주)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>실천</strong><span>일일 스탠드업 미팅 · TDD · 페어 프로그래밍 · 지속적 통합(CI)</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>3단계: 스프린트 리뷰 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>완료 정의(DoD)를 충족하고 동작하는 소프트웨어 증분인가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (Pass)</strong>
-      <span>이해관계자 승인 → 프로덕션 즉시 배포 가능 증분 확정</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (Fail)</strong>
-      <span>미완료 스토리 백로그 재등록 → 다음 스프린트 재계획</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -94,114 +60,22 @@ extra:
 
 ### 애자일 4대 핵심 선언 (Agile Manifesto)
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="ag-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="26" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">애자일 선언문 4대 가치 (우측 가치에 더 높은 우선순위 부여)</text>
+애자일 선언문의 4대 가치는 좌측의 전통 가치를 배제하지 않고, 우측 가치에 더 높은 실천적 우선순위를 부여한다.
 
-    <!-- 4 Rows Comparison -->
-    <!-- Row 1 -->
-    <rect x="20" y="38" width="195" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="117" y="58" text-anchor="middle" font-size="8" fill="var(--color-text-muted, #64748b)">공정과 도구 (Processes & Tools)</text>
-    <line x1="220" y1="54" x2="295" y2="54" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
-    <text x="257" y="50" text-anchor="middle" font-size="7" fill="var(--color-primary, #2563eb)">보다</text>
-    <rect x="305" y="38" width="195" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="402" y="58" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">개인과 상호작용 (Individuals)</text>
-
-    <!-- Row 2 -->
-    <rect x="20" y="76" width="195" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="117" y="96" text-anchor="middle" font-size="8" fill="var(--color-text-muted, #64748b)">포괄적인 문서 (Documentation)</text>
-    <line x1="220" y1="92" x2="295" y2="92" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
-    <text x="257" y="88" text-anchor="middle" font-size="7" fill="var(--color-primary, #2563eb)">보다</text>
-    <rect x="305" y="76" width="195" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="402" y="96" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">동작하는 소프트웨어 (Working SW)</text>
-
-    <!-- Row 3 -->
-    <rect x="20" y="114" width="195" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="117" y="134" text-anchor="middle" font-size="8" fill="var(--color-text-muted, #64748b)">계약 협상 (Contract Negotiation)</text>
-    <line x1="220" y1="130" x2="295" y2="130" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
-    <text x="257" y="126" text-anchor="middle" font-size="7" fill="var(--color-primary, #2563eb)">보다</text>
-    <rect x="305" y="114" width="195" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="402" y="134" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">고객과의 협력 (Collaboration)</text>
-
-    <!-- Row 4 -->
-    <rect x="20" y="152" width="195" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="117" y="172" text-anchor="middle" font-size="8" fill="var(--color-text-muted, #64748b)">계획 준수 (Following a Plan)</text>
-    <line x1="220" y1="168" x2="295" y2="168" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
-    <text x="257" y="164" text-anchor="middle" font-size="7" fill="var(--color-primary, #2563eb)">보다</text>
-    <rect x="305" y="152" width="195" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="402" y="172" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">변화에 대응 (Responding to Change)</text>
-
-    <!-- Bottom Principle -->
-    <text x="260" y="202" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">좌측의 가치를 배제하는 것이 아니며, 우측 항목에 더 높은 실천적 우선순위를 둠</text>
-  </svg>
-</div>
+| 전통 가치 | 애자일 우선 가치 |
+|---|---|
+| 공정과 도구 (Processes & Tools) | **개인과 상호작용 (Individuals)** |
+| 포괄적인 문서 (Documentation) | **동작하는 소프트웨어 (Working SW)** |
+| 계약 협상 (Contract Negotiation) | **고객과의 협력 (Collaboration)** |
+| 계획 준수 (Following a Plan) | **변화에 대응 (Responding to Change)** |
 
 ### 애자일 실천 프레임워크 4대 축
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="sp-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    
-    <!-- Stage 1: Product Backlog -->
-    <rect x="15" y="20" width="105" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="15" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="67" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">① 제품 백로그</text>
-    <text x="67" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">PO 요구사항 정제</text>
-    <text x="67" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">사용자 스토리 관리</text>
-    <text x="67" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[비즈니스 가치순]</text>
-
-    <!-- Arrow 1 -> 2 -->
-    <line x1="120" y1="72" x2="138" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#sp-arrow)"/>
-
-    <!-- Stage 2: Sprint Planning -->
-    <rect x="140" y="20" width="105" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="140" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="192" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">② 스프린트 계획</text>
-    <text x="192" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">스프린트 백로그 확정</text>
-    <text x="192" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">팀 작업량 추정</text>
-    <text x="192" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[1~4주 타임박스]</text>
-
-    <!-- Arrow 2 -> 3 -->
-    <line x1="245" y1="72" x2="263" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#sp-arrow)"/>
-
-    <!-- Stage 3: Sprint Execution -->
-    <rect x="265" y="20" width="110" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <rect x="265" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="320" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">③ 스프린트 개발</text>
-    <text x="320" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">일일 스탠드업(15분)</text>
-    <text x="320" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">TDD / CI 파이프라인</text>
-    <text x="320" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">[번다운 차트 관리]</text>
-
-    <!-- Arrow 3 -> 4 -->
-    <line x1="375" y1="72" x2="393" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#sp-arrow)"/>
-
-    <!-- Stage 4: Review & Retro -->
-    <rect x="395" y="20" width="110" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="395" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="450" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">④ 리뷰 및 회고</text>
-    <text x="450" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">동작 SW 시연</text>
-    <text x="450" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">프로세스 KPT 개선</text>
-    <text x="450" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[출시 가능 증분]</text>
-
-    <!-- Bottom Feedback Loop -->
-    <path d="M 450 125 L 450 155 L 67 155 L 67 135" fill="none" stroke="var(--color-accent, #0284c7)" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#sp-arrow)"/>
-    <rect x="170" y="165" width="180" height="22" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-accent, #0284c7)" stroke-width="1"/>
-    <text x="260" y="179" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-accent, #0284c7)">지속적 피드백 및 다음 이터레이션 반복</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    A["제품 백로그"] --> B["스프린트 계획"] --> C["스프린트 개발"] --> D["리뷰·회고"]
+    D -->|피드백 반영| A
+```
 
 <div class="itpe-component-grid">
   <div class="itpe-component-card">
@@ -300,36 +174,6 @@ extra:
 - **대응 방안**: 스크럼 관리 프로세스에 XP의 엔지니어링 실천법(TDD, CI/CD 자동화)을 필수 내재화하여 기술 부채 누적 원천 방지.
 - **검증 체계**: DORA 4대 지표(배포 빈도 주 1회 이상, 리드타임 1일 이내 등)를 대시보드화하여 분기별 애자일 성숙도 실사 수행.
 - **기대 효과**: 요구사항 변경 수용 리드타임을 70% 단축하고, 릴리스 결함 밀도를 0.2건/FP 이하로 유지하여 비즈니스 적응성 극대화.
-
-<div class="itpe-flow-map" role="img" aria-label="애자일 거버넌스 및 성숙도 개선 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>스프린트 실행</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>개발</strong><span>XP 기반 TDD / CI 자동화</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>완료 정의 (DoD) 검증</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>게이트</strong><span>품질/보안 기준 100% 통과</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node is-current">
-    <strong>DORA 성숙도 측정</strong>
-    <div class="itpe-step-detail">
-      <strong>평가</strong><span>배포 빈도 및 리드타임 계측</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>지속적 조직 개선</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>결과</strong><span>비즈니스 가치 즉시 전달</span></div>
-    </div>
-  </div>
-</div>
 
 ## 7. 참고 및 연계 학습
 

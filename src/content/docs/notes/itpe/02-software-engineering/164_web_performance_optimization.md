@@ -10,10 +10,10 @@ tags:
   - "CRP"
   - "렌더링최적화"
   - "트리셰이킹"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:26:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,52 +24,11 @@ extra:
   <strong>웹 성능 최적화(Web Performance Optimization)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 브라우저의 중요 렌더링 경로(Critical Rendering Path)와 네트워크 자원 전송 파이프라인 전반을 분석하여, 사용자가 첫 화면을 인지하고 인터랙션하기까지의 시간(LCP, INP)을 최소화하고 화면의 시각적 흔들림(CLS)을 제거하는 전주기 웹 엔지니어링 최적화 체계
 - 메커니즘: Lighthouse 기반 성능 계측 $\rightarrow$ 전송 계층 최적화(HTTP/2·3, CDN, Brotli) $\rightarrow$ 리소스 최적화(트리 셰이킹, WebP/AVIF) $\rightarrow$ 브라우저 렌더링 최적화(CSSOM 블로킹 제거, GPU 합성) $\rightarrow$ Core Web Vitals 통과 판정
 - 산출물: 성능 진단 보고서(Lighthouse Audit) · 번들 시각화 분석서(Bundle Analyzer) · 성능 예산 규칙서(Performance Budget)
-
-<div class="itpe-flow-map" role="img" aria-label="웹 성능 최적화 및 Core Web Vitals 검증 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 성능 측정 및 병목 프로파일링</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>계측</strong><span>Lighthouse 및 Chrome DevTools를 통해 LCP, INP, CLS 실측치 추출</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 네트워크 및 리소스 전송 가속</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>가속</strong><span>CDN 엣지 캐싱, Brotli 압축, `<link rel="preload">` 핵심 자원 선제 다운로드</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 브라우저 중요 렌더링 경로(CRP) 최적화</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>최적화</strong><span>자바스크립트 비동기화(`defer`/`async`), CSS 블로킹 제거, GPU 레이어 합성</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: Core Web Vitals 적합성 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>LCP(≤2.5초), INP(≤200ms), CLS(≤0.1) 3대 핵심 품질 기준을 만족하는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (성능 Baseline 충족)</strong>
-      <span>배포 승인 $\rightarrow$ 검색 엔진 최적화(SEO) 상위 랭크 및 고객 이탈률 최소화</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (임계치 초과)</strong>
-      <span>배포 차단 $\rightarrow$ 이미지 WebP 차세대 변환 및 번들 트리 셰이킹(Tree-Shaking) 재수행</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -100,160 +59,24 @@ extra:
 
 ### 브라우저 중요 렌더링 경로(CRP)와 최적화 접점
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="crp-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">브라우저 중요 렌더링 경로(CRP) 5단계 및 최적화 포인트</text>
+```mermaid
+flowchart LR
+    A["DOM·CSSOM 파싱"] --> B["Render Tree 결합"]
+    B --> C["Layout(Reflow)"]
+    C --> D["Paint"]
+    D --> E["Composite(GPU 합성)"]
+```
 
-    <!-- Step 1: DOM + CSSOM -->
-    <rect x="15" y="42" width="90" height="70" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
-    <text x="60" y="62" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">1. DOM/CSSOM</text>
-    <text x="60" y="78" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">HTML/CSS 파싱</text>
-    <text x="60" y="96" text-anchor="middle" font-size="6.5" fill="#ca8a04">defer / async</text>
-
-    <line x1="105" y1="77" x2="118" y2="77" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#crp-arrow)"/>
-
-    <!-- Step 2: Render Tree -->
-    <rect x="120" y="42" width="90" height="70" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="165" y="62" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">2. Render Tree</text>
-    <text x="165" y="78" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">표시 노드 결합</text>
-    <text x="165" y="96" text-anchor="middle" font-size="6.5" fill="var(--color-primary, #2563eb)">Critical CSS 인라인</text>
-
-    <line x1="210" y1="77" x2="223" y2="77" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#crp-arrow)"/>
-
-    <!-- Step 3: Layout (Reflow) -->
-    <rect x="225" y="42" width="85" height="70" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="#ef4444" stroke-width="1.2"/>
-    <text x="267" y="62" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">3. Layout</text>
-    <text x="267" y="78" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">기하학 위치 계산</text>
-    <text x="267" y="96" text-anchor="middle" font-size="6.5" fill="#dc2626">Reflow 최소화</text>
-
-    <line x1="310" y1="77" x2="323" y2="77" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#crp-arrow)"/>
-
-    <!-- Step 4: Paint -->
-    <rect x="325" y="42" width="85" height="70" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="367" y="62" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">4. Paint</text>
-    <text x="367" y="78" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">픽셀 시각화</text>
-    <text x="367" y="96" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">Repaint 억제</text>
-
-    <line x1="410" y1="77" x2="423" y2="77" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#crp-arrow)"/>
-
-    <!-- Step 5: Composite -->
-    <rect x="425" y="42" width="80" height="70" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.4"/>
-    <text x="465" y="62" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">5. Composite</text>
-    <text x="465" y="78" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">레이어 합성</text>
-    <text x="465" y="96" text-anchor="middle" font-size="6.5" fill="#16a34a">GPU 하드가속</text>
-
-    <!-- Bottom Actionable Rule Box -->
-    <rect x="15" y="125" width="490" height="75" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="145" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">CRP 최적화 황금률: Reflow/Repaint 우회하고 Composite 단계로 직행</text>
-    <text x="260" y="163" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">`top`, `left`, `width` 변경 금지 $\rightarrow$ `transform: translate()` 및 `opacity`로 GPU 가속 유도</text>
-    <text x="260" y="180" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">스크립트는 `defer`로 파서 블로킹을 차단하고 폰트는 `font-display: swap`으로 FOIT 제거</text>
-  </svg>
-</div>
-
-### Core Web Vitals 3대 지표 및 Lighthouse CI 게이트
-
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">Google Core Web Vitals 3대 지표 및 Lighthouse CI 품질 게이트</text>
-
-    <!-- Card 1: LCP -->
-    <rect x="15" y="38" width="155" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
-    <rect x="15" y="38" width="155" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="92" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">LCP (로딩 속도)</text>
-    <text x="92" y="75" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">최대 콘텐츠 렌더링</text>
-    <text x="92" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">기준: ≤ 2.5초 (Good)</text>
-    <text x="92" y="112" text-anchor="middle" font-size="6.5" fill="var(--color-primary, #2563eb)">대책: WebP/CDN/Preload</text>
-    <text x="92" y="132" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[첫인상 사수]</text>
-
-    <!-- Card 2: INP -->
-    <rect x="180" y="38" width="160" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#ca8a04" stroke-width="1.2"/>
-    <rect x="180" y="38" width="160" height="22" rx="6" fill="var(--color-bg-subtle, #fefce8)"/>
-    <text x="260" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#ca8a04">INP (인터랙션 반응)</text>
-    <text x="260" y="75" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">다음 페인트까지 지연</text>
-    <text x="260" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">기준: ≤ 200ms (Good)</text>
-    <text x="260" y="112" text-anchor="middle" font-size="6.5" fill="#ca8a04">대책: Long Task 분할/Worker</text>
-    <text x="260" y="132" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[체감 랙 제거]</text>
-
-    <!-- Card 3: CLS -->
-    <rect x="350" y="38" width="155" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.2"/>
-    <rect x="350" y="38" width="155" height="22" rx="6" fill="var(--color-bg-subtle, #f0fdf4)"/>
-    <text x="427" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#16a34a">CLS (시각 안정성)</text>
-    <text x="427" y="75" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">누적 레이아웃 이동</text>
-    <text x="427" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">기준: ≤ 0.1 (Good)</text>
-    <text x="427" y="112" text-anchor="middle" font-size="6.5" fill="#16a34a">대책: aspect-ratio 공간예약</text>
-    <text x="427" y="132" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[덜컥거림 방지]</text>
-
-    <!-- Bottom: Lighthouse CI Policy -->
-    <rect x="15" y="155" width="490" height="35" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="176" text-anchor="middle" font-size="7.5" fill="var(--color-text, #1e293b)">CI/CD 배포 게이트: Lighthouse 점수 90점 미만 또는 번들 300KB 초과 시 PR 머지 자동 차단</text>
-  </svg>
-</div>
+CRP 최적화 황금률은 Reflow/Repaint를 우회하고 Composite 단계로 직행하는 것이다. `top`, `left`, `width` 변경 대신 `transform: translate()`와 `opacity`로 GPU 가속을 유도하고, 스크립트는 `defer`로 파서 블로킹을 차단하며 폰트는 `font-display: swap`으로 FOIT을 제거한다.
 
 ### 4대 계층별 웹 성능 최적화 전략
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>① 네트워크 계층</strong></span>
-      <span class="itpe-badge">전송 지연 단축</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>CDN 엣지 서버 캐싱 및 정적 자산 분산 배포</li>
-        <li>HTTP/2 다중화(Multiplexing) 및 HTTP/3 QUIC 프로토콜 도입</li>
-        <li>Brotli/Gzip 알고리즘을 통한 텍스트 리소스 압축 전송</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>② 리소스 계층</strong></span>
-      <span class="itpe-badge">용량 경량화</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>Webpack/Vite 기반 정적 모듈 트리 셰이킹(Tree-Shaking)</li>
-        <li>이미지 차세대 포맷(WebP, AVIF) 전환 및 지연 로딩(`loading="lazy"`)</li>
-        <li>웹 폰트 깜빡임 방지를 위한 `font-display: swap` 적용</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>③ 파싱·실행 계층</strong></span>
-      <span class="itpe-badge">블로킹 해소</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>자바스크립트 비동기 로딩(`defer`, `async`)으로 파서 차단 방지</li>
-        <li>코드 분할(Code Splitting) 및 동적 임포트를 통한 초기 번들 축소</li>
-        <li>웹 워커(Web Worker) 도입으로 무거운 연산의 백그라운드 격리</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>④ 렌더링 계층</strong></span>
-      <span class="itpe-badge">CPU 부하 최소화</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>`top/left` 대신 `transform`, `opacity`로 GPU 레이어 합성 유도</li>
-        <li>DOM 조작 일괄 처리(`requestAnimationFrame`)로 강제 동기식 레이아웃 방지</li>
-        <li>이미지 및 광고 컨테이너에 명시적 크기 예약으로 CLS 차단</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 계층 | 핵심 판단 |
+|---|---|
+| **① 네트워크 계층** | 전송 지연 단축: CDN 엣지 캐싱·정적 자산 분산 배포, HTTP/2 다중화·HTTP/3 QUIC 도입, Brotli/Gzip 텍스트 압축 전송 |
+| **② 리소스 계층** | 용량 경량화: 트리 셰이킹(Tree-Shaking), 차세대 포맷(WebP·AVIF) 전환 및 `loading="lazy"` 지연 로딩, `font-display: swap` |
+| **③ 파싱·실행 계층** | 블로킹 해소: `defer`·`async` 비동기 로딩으로 파서 차단 방지, 코드 분할(Code Splitting)·동적 임포트, 웹 워커 백그라운드 격리 |
+| **④ 렌더링 계층** | CPU 부하 최소화: `top/left` 대신 `transform`·`opacity` GPU 합성, `requestAnimationFrame` 일괄 처리, 명시적 크기 예약으로 CLS 차단 |
 
 ## 3. 실무 적용 및 고려사항
 
@@ -291,35 +114,6 @@ extra:
 - **대응 방안**: 이미지 차세대 포맷(WebP/AVIF) 변환, Critical CSS 인라인 및 Long Task 쪼개기(`scheduler.yield()`) 적용
 - **검증 체계**: CI/CD 배포 파이프라인에 Lighthouse CI를 결합하여 성능 점수 90점 미달 시 프로덕션 배포 차단
 - **기대 효과**: 모바일 사용자 이탈률 40% 감소, 구글 검색 상위 랭킹(SEO) 확보 및 전자상거래 전환율 15% 개선
-
-<div class="itpe-pipeline-container" role="region" aria-label="웹 성능 최적화 및 Core Web Vitals 사수 파이프라인">
-  <div class="itpe-pipeline-header">
-    <span class="itpe-pipeline-title">웹 성능 최적화 및 Core Web Vitals 사수 파이프라인</span>
-    <span class="itpe-pipeline-badge">프론트엔드 엔지니어링</span>
-  </div>
-  <div class="itpe-pipeline-grid">
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">1단계: 네트워크 가속</div>
-      <div class="itpe-card-title">전송 최적화</div>
-      <div class="itpe-card-body">CDN 엣지 배포, Brotli 압축, HTTP/3 QUIC 및 핵심 자원 사전 로딩</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">2단계: 리소스 경량</div>
-      <div class="itpe-card-title">트리 셰이킹</div>
-      <div class="itpe-card-body">미사용 JS 코드 제거, WebP 변환 및 코드 분할(Code Splitting)</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">3단계: 렌더링 최적화</div>
-      <div class="itpe-card-title">CRP 블로킹 제거</div>
-      <div class="itpe-card-body">script defer 비동기화, Reflow 최소화 및 GPU 레이어 합성 유도</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">4단계: CI/CD 통제</div>
-      <div class="itpe-card-title">Lighthouse 게이트</div>
-      <div class="itpe-card-body">LCP/INP/CLS 임계치 및 성능 예산 검증 후 프로덕션 자동 배포</div>
-    </div>
-  </div>
-</div>
 
 ## 6. 참고 및 연계 학습
 

@@ -1,7 +1,7 @@
 ---
 title: "소프트웨어 테스트 종류·레벨(신뢰성·이식성 테스트 포함)"
-author: "Antigravity"
-date: "2026-09-21T16:26:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -9,37 +9,18 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 테스트·검증을 거쳐 소프트웨어 테스트 종류·레벨로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>테스트·검증</span>
-  <strong>소프트웨어 테스트 종류·레벨</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 테스트·검증 → **소프트웨어 테스트 종류·레벨**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **소프트웨어 테스트 레벨 및 종류**는 V-모델의 생명주기 단계별 개발 산출물과 품질속성을 다각도로 검증(Verification & Validation)하는 체계
 - 메커니즘: V-모델 대응 검증(단위→통합→시스템→인수) + 품질속성별 검증(기능, 성능, 보안, **신뢰성**, **이식성**)
-- 산출/효과: 결함 조기 격리 · 품질 결함 수정 비용 최소화 · 비즈니스 릴리스 위험 통제
-
-<div class="itpe-flow-map" role="img" aria-label="소프트웨어 테스트 레벨 및 V-모델 대응 체계">
-  <div class="itpe-flow-node"><strong>개발 단계 산출물</strong><div class="itpe-step-detail"><span>요구명세 → 구조설계 → 상세설계 → 구현</span></div></div>
-  <div class="itpe-flow-arrow">↔ V&amp;V 양방향 검증 ↔</div>
-  <div class="itpe-flow-node is-current">
-    <strong>테스트 레벨 &amp; 종류</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>레벨</strong><span>단위 → 통합 → 시스템 → 인수</span></div>
-      <div class="itpe-flow-branch"><strong>기능</strong><span>명세 기반 동등분할 · 경계값</span></div>
-      <div class="itpe-flow-branch"><strong>비기능</strong><span>성능 · 보안 · <span class="itpe-keyword"><strong>신뢰성</strong></span> · <span class="itpe-keyword"><strong>이식성</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 릴리스 판정 →</div>
-  <div class="itpe-flow-node"><strong>품질 보증(QA)</strong><div class="itpe-step-detail"><span>ISO/IEC 25010 제품 품질 충족</span></div></div>
-</div>
+- 효과: 결함 조기 격리 · 품질 결함 수정 비용 최소화 · 비즈니스 릴리스 위험 통제
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,86 +48,16 @@ extra:
 
 > 각 테스트 레벨은 검증 기준선(Baseline)과 대상이 명확히 분리되며, 상위 레벨로 갈수록 시스템 전반의 동작을 검증한다.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="V-모델의 개발 단계와 테스트 레벨 대응 및 최적화 테스트 피라미드 전략">
-  <!-- 좌측: V-모델 대응 관계 -->
-  <rect x="15" y="10" width="280" height="200" rx="10" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="155" y="30" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--sl-color-accent-high)">V-Model 대응 검증 (V&amp;V)</text>
-  
-  <!-- 개발 4단계 -->
-  <rect x="25" y="45" width="85" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="67" y="63" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">요구사항 명세</text>
-  
-  <rect x="40" y="80" width="85" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="82" y="98" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">구조·아키텍처</text>
-  
-  <rect x="55" y="115" width="85" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="97" y="133" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">상세설계·모듈</text>
-  
-  <rect x="70" y="150" width="85" height="28" rx="5" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-  <text x="112" y="168" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-white)">소스코드 구현</text>
+```mermaid
+flowchart TB
+    REQ["요구사항 정의"] -.-> ACC["인수 테스트"]
+    ARC["구조 설계"] -.-> SYS["시스템 테스트"]
+    DET["상세 설계"] -.-> INT["통합 테스트"]
+    COD["구현"] -.-> UNT["단위 테스트"]
+    UNT --> INT --> SYS --> ACC
+```
 
-  <!-- 수평 검증 점선 화살표들 -->
-  <line x1="110" y1="59" x2="195" y2="59" stroke="var(--sl-color-accent)" stroke-width="1.2" stroke-dasharray="3,3" />
-  <line x1="125" y1="94" x2="180" y2="94" stroke="var(--sl-color-accent)" stroke-width="1.2" stroke-dasharray="3,3" />
-  <line x1="140" y1="129" x2="165" y2="129" stroke="var(--sl-color-accent)" stroke-width="1.2" stroke-dasharray="3,3" />
-
-  <!-- 테스트 4레벨 -->
-  <rect x="195" y="45" width="90" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="240" y="63" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent)">④ 인수(UAT)</text>
-  
-  <rect x="180" y="80" width="90" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="225" y="98" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">③ 시스템(기능/비기능)</text>
-  
-  <rect x="165" y="115" width="90" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="210" y="133" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-text)">② 통합(Interface)</text>
-  
-  <rect x="155" y="150" width="90" height="28" rx="5" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="200" y="168" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent)">① 단위(Unit)</text>
-
-  <text x="155" y="195" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-muted)">Shift-Left: 설계 시점에 테스트 계획 동시 수립</text>
-
-  <!-- 우측: 테스트 피라미드 -->
-  <rect x="305" y="10" width="200" height="200" rx="10" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="405" y="30" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--sl-color-accent-high)">테스트 자동화 피라미드</text>
-
-  <!-- 피라미드 상단: UI / E2E 10% -->
-  <polygon points="405,50 365,90 445,90" fill="color-mix(in srgb, #f87171 18%, var(--sl-color-surface))" stroke="#f87171" stroke-width="1" />
-  <text x="405" y="76" text-anchor="middle" font-size="9" font-weight="bold" fill="#fca5a5">E2E / UI (10%)</text>
-  
-  <!-- 피라미드 중단: Service / Integration 20% -->
-  <polygon points="365,92 445,92 465,135 345,135" fill="color-mix(in srgb, var(--sl-color-accent) 18%, var(--sl-color-surface))" stroke="var(--sl-color-accent)" stroke-width="1" />
-  <text x="405" y="118" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent-high)">통합·API (20%)</text>
-  
-  <!-- 피라미드 하단: Unit Tests 70% -->
-  <polygon points="345,137 465,137 485,180 325,180" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-  <text x="405" y="162" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-white)">단위 테스트 (70%)</text>
-
-  <text x="405" y="198" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">속도 빠름 / 유지비용 저렴</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="4단계 테스트 레벨 흐름">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 단위 테스트(Unit Test)</strong></span>
-    <div class="itpe-step-detail"><strong>모듈 검증</strong><span>상세설계 기준, 클래스·함수 단위 검증 및 구문·분기 커버리지</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 통합 테스트(Integration Test)</strong></span>
-    <div class="itpe-step-detail"><strong>인터페이스 검증</strong><span>아키텍처 기준, 모듈 간 상호작용 검증(상향식·하향식·샌드위치)</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 시스템 테스트(System Test)</strong></span>
-    <div class="itpe-step-detail"><strong>전체 시스템 검증</strong><span>요구사항정의서 기준, 기능 및 비기능(성능·보안·신뢰성) 전수 검증</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 인수 테스트(Acceptance Test)</strong></span>
-    <div class="itpe-step-detail"><strong>인도 판정</strong><span>계약서 및 사용자 요구사항 기준 비즈니스 시나리오 검증(UAT)</span></div>
-  </div>
-</div>
+- 개발 단계 산출물이 검증 기준선, 대응 테스트 레벨이 검증 활동이며 **Shift-Left**(테스트 계획을 설계 시점에 동시 수립)로 결함을 조기 격리함
 
 | 테스트 레벨 | 기준 산출물 | 주요 기법 및 통제점 | 주 담당자 |
 |---|---|---|---|
@@ -197,28 +108,6 @@ extra:
 - **검증 체계**: CI 단계별 자동 빌드 시 구문/분기 커버리지(C0/C1 $\ge$ 80%), SonarQube 정적 분석 Quality Gate 통과, 그리고 회귀 테스트(Regression Test) 스위트 자동 실행 결과를 검증함
 - **기대 효과**: 배포 직전 또는 운영 이관 후 치명적 결함 유출율을 90% 이상 절감하고, 결함 수정 비용(Cost of Defect)을 최소화하여 안정적인 비즈니스 릴리스 거버넌스를 확립함
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="테스트 고도화 및 품질 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>후반 편중</strong><span>후반부 수작업 시스템 테스트 편중 및 결함 수정비용 과다</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>좌측 이동</strong><span>Shift-Left 테스팅 및 테스트 피라미드 기반 자동화</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>품질 게이트</strong><span>테스트 커버리지 80% 달성 및 Quality Gate 통과</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>결함 격리</strong><span>결함 조기 격리 및 안정적 프로덕션 릴리스 달성</span></div>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -228,15 +117,14 @@ extra:
 
 ### 2. 구성체계 및 레벨별 특징
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="4대 테스트 레벨 요약">
-  <div class="itpe-pipeline-node"><strong>단위(Unit)</strong><div class="itpe-step-detail"><span>상세설계 · 모듈 단위</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>통합(Integration)</strong><div class="itpe-step-detail"><span>인터페이스 · 데이터 흐름</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>시스템(System)</strong><div class="itpe-step-detail"><span>전체 기능 및 비기능(신뢰성·성능)</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>인수(Acceptance)</strong><div class="itpe-step-detail"><span>비즈니스 적합성 · 계약 검수</span></div></div>
-</div>
+```mermaid
+flowchart TB
+    REQ["요구사항 정의"] -.-> ACC["인수 테스트"]
+    ARC["구조 설계"] -.-> SYS["시스템 테스트"]
+    DET["상세 설계"] -.-> INT["통합 테스트"]
+    COD["구현"] -.-> UNT["단위 테스트"]
+    UNT --> INT --> SYS --> ACC
+```
 
 ### 3. 핵심 통제
 

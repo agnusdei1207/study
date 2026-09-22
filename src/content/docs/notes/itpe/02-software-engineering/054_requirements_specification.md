@@ -5,41 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 요구공학을 거쳐 요구사항 명세로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>요구공학 · 분석·설계</span>
-  <strong>요구사항 명세</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 요구공학 · 분석·설계 → **요구사항 명세**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **요구사항 명세(Requirements Specification)**는 시스템이 수행해야 할 기능적 요구사항과 준수해야 할 비기능적 품질속성을 이해관계자 간에 모호함 없이 공식 계약 문서(SRS)로 구체화하는 공학적 활동
 - 메커니즘: **표준 템플릿(IEEE 830, ISO/IEC/IEEE 29148)** + **8대 우수 특성(정확성·명확성·완전성·일관성·순위화·검증가능성·수정가능성·추적성)** + **품질 시나리오 정량화**
 - 산출/효과: 소프트웨어 요구사항 명세서(SRS) · 발주자-개발자 간 분쟁 차단 · BDD 기반 실행 가능한 명세(Living Documentation) 구축
-
-<div class="itpe-flow-map" role="img" aria-label="요구사항 명세 프로세스 및 품질 체계">
-  <div class="itpe-flow-node"><strong>도출·분석 요구</strong><span>비즈니스·사용자 니즈</span></div>
-  <div class="itpe-flow-arrow">→ 표준 규격화 및 명세 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>명세서 (SRS) 표준 구조</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>표준 구조</strong><span><span class="itpe-keyword"><strong>서론 · 전반적 설명 · 세부 요구사항</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>8대 품질 특성</strong><span><span class="itpe-keyword"><strong>정·명·완·일·순·검·수·추</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>명세 기법</strong><span>자연어 vs 정형(Z/VDM) vs BDD(Gherkin)</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 공식 기준선(Baseline) 확정 →</div>
-  <div class="itpe-flow-node"><strong>아키텍처 및 검수</strong><span>추적성 기반 무결점 인도</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -70,67 +51,18 @@ extra:
 
 > 명세서는 단순 기능 나열이 아니라, 시스템의 맥락과 외부 인터페이스를 아우르는 3대 섹션으로 구성된다.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="srs-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
+```mermaid
+flowchart TB
+    SRS["SRS · IEEE 830"] --> A["서론"]
+    SRS --> B["전반적 설명"]
+    SRS --> C["세부 요구사항"]
+```
 
-  <!-- Left: SRS Structure (3 Sections) -->
-  <rect x="15" y="15" width="235" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#srs-shadow)"/>
-  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">SRS 표준 3대 구조 (IEEE 830)</text>
-
-  <rect x="25" y="46" width="215" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="32" y="63" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">1. 서론 (Introduction)</text>
-  <text x="32" y="78" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">목적 · 범위 · 용어 정의 · 참조 표준</text>
-
-  <rect x="25" y="94" width="215" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="32" y="111" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">2. 전반적 설명 (Overall)</text>
-  <text x="32" y="126" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">제품 관점 · 기능 요약 · 제약 및 가정</text>
-
-  <rect x="25" y="142" width="215" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="32" y="159" font-size="10" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">3. 세부 요구사항 (Specific)</text>
-  <text x="32" y="174" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 기능적 요구 (입력/처리/출력/예외)</text>
-  <text x="32" y="188" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• 외부 인터페이스 &amp; 비기능 품질속성</text>
-
-  <!-- Right: 8 Quality Attributes -->
-  <rect x="265" y="15" width="240" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#srs-shadow)"/>
-  <text x="275" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">우수 SRS 8대 품질 특성</text>
-
-  <!-- Content Integrity Box -->
-  <rect x="275" y="46" width="220" height="68" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
-  <text x="283" y="63" font-size="10" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">[내용적 무결성] 정 · 명 · 완 · 일</text>
-  <text x="283" y="80" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 정확성(Correct) · 명확성(Unambiguous)</text>
-  <text x="283" y="96" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 완전성(Complete) · 일관성(Consistent)</text>
-  <text x="283" y="109" font-size="8" fill="var(--sl-color-text-muted, #4b5563)">해석 다의성 및 모순의 원천 배제</text>
-
-  <!-- Management Integrity Box -->
-  <rect x="275" y="122" width="220" height="72" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="283" y="139" font-size="10" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">[관리적 검증성] 순 · 검 · 수 · 추</text>
-  <text x="283" y="156" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 순위화(Ranked) · 검증가능성(Verifiable)</text>
-  <text x="283" y="172" font-size="8.5" fill="var(--sl-color-text, #1f2937)">• 수정가능성(Modifiable) · 추적가능성(Traceable)</text>
-  <text x="283" y="187" font-size="8" fill="var(--sl-color-text-muted, #4b5563)">정량적 수치화 &amp; RTM 100% 매핑</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="SRS 표준 목차 3대 섹션">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 서론 (Introduction)</strong></span>
-    <span>시스템 목적, 프로젝트 범위, 용어 정의, 참조 규격 및 표준 명시</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 전반적 설명 (Overall Description)</strong></span>
-    <span>제품 조망, 주요 기능 개요, 사용자 특성 및 역량, 일반 제약조건, 가정 및 의존성</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 세부 요구사항 (Specific Requirements)</strong></span>
-    <span>• 기능적 요구사항 (입력, 처리 로직, 출력, 예외 처리)<br />• 외부 인터페이스 (사용자 UI, H/W, S/W, 통신 프로토콜)<br />• 비기능 품질속성 (성능 TPS/응답시간, 가용성, 보안 암호화, 유지보수성)</span>
-  </div>
-</div>
+| 섹션 | 포함 내용 |
+|---|---|
+| 1. 서론 (Introduction) | 시스템 목적 · 프로젝트 범위 · 용어 정의 · 참조 규격 및 표준 |
+| 2. 전반적 설명 (Overall Description) | 제품 조망 · 주요 기능 개요 · 사용자 특성 및 역량 · 일반 제약조건 · 가정 및 의존성 |
+| 3. 세부 요구사항 (Specific Requirements) | 기능적 요구사항(입력·처리 로직·출력·예외 처리) · 외부 인터페이스(사용자 UI·H/W·S/W·통신 프로토콜) · 비기능 품질속성(성능 TPS·응답시간, 가용성, 보안 암호화, 유지보수성) |
 
 ## Ⅲ. 우수 명세서의 8대 품질 특성 및 작성 기법 비교
 
@@ -184,28 +116,6 @@ extra:
 - **검증 체계**: CI/CD 파이프라인 BDD 인수 테스트 100% 자동 통과 및 RTM 양방향 전수 매핑 감리 검증
 - **기대 효과**: 준공 검수 분쟁 제로화, 문서 사문화 방지 및 명세-코드 간 100% 실시간 동기화 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 명세 현대화 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>자연어 명세의 모호성으로 인한 준공 분쟁 및 문서 사문화 발생</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>정량적 품질속성 시나리오 수립 및 BDD 기반 Living Documentation 전환</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>CI 연동 인수 테스트 100% 통과 및 요구사항-테스트 간 RTM 양방향 추적</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>발주자-개발자 간 완벽한 신뢰 구축 및 납기 내 무장애 인도 달성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -215,11 +125,8 @@ extra:
 
 ### 2. 우수 SRS 8대 품질 특성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="8대 특성 요약">
-  <div class="itpe-pipeline-node"><strong>내용적 무결성</strong><span>정확성(Correct) · 명확성(Unambiguous) · 완전성(Complete) · 일관성(Consistent)</span></div>
-  <div class="itpe-pipeline-arrow">↕ 관리 및 검증 통제</div>
-  <div class="itpe-pipeline-node"><strong>공학적 관리성</strong><span>순위화(Ranked) · 검증가능성(Verifiable) · 수정가능성(Modifiable) · 추적가능성(Traceable)</span></div>
-</div>
+- 내용적 무결성: 정확성(Correct) · 명확성(Unambiguous) · 완전성(Complete) · 일관성(Consistent)
+- 공학적 관리성: 순위화(Ranked) · 검증가능성(Verifiable) · 수정가능성(Modifiable) · 추적가능성(Traceable)
 
 ### 3. 핵심 통제
 

@@ -1,48 +1,39 @@
 ---
 title: "인스펙션(Inspection)"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
-  - "소프트웨어공학"
-  - "정적테스트"
-  - "동료검토"
-  - "Fagan인스펙션"
-  - "품질보증"
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
     variant: "tip"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
+  keyword_grade: "A"
 ---
 
-> **로드맵 경로**: 소프트웨어공학 > 소프트웨어 테스트 및 품질 > 정적 테스트 > 인스펙션(Inspection)
+## 지식 로드맵 내 현재 위치
 
----
-
-## 큰 그림과 30초 인출
-
-```text
-[인스펙션(Michael Fagan 6단계)]
- ├── 목적: 코드를 실행하지 않고 개발 산출물의 결함을 조기 적출하여 결함 수정 비용 최소화
- ├── 5대 역할: 중재자(Moderator: 총괄 진행) · 작성자(Author) · 낭독자(Reader) · 기록자(Recorder) · 검토자(Inspector)
- ├── 6단계 절차: 계획(Planning) → 개요(Overview) → 개별준비(Preparation) → 회의(Meeting) → 재작업(Rework) → 후속조치(Follow-up)
- └── 핵심 원칙: "해결책 논의 금지(Find, not Solve)", "작성자 평가 배제", 진입/종료 기준(Entry/Exit Criteria) 강제
-```
-
-- **30초 인출 구호**: "계-개-준-회의-재-후속, 중재자-작성자-낭독자-기록자-검토자, 해결책 논쟁 금지, Entry/Exit 엄수!"
+지식 위치: 소프트웨어공학 → 소프트웨어 테스트 및 품질 → 정적 테스트 → **인스펙션(Inspection)**
 
 ---
 
-## 핵심 용어 (5개 내외)
+## 30초 인출
 
-| 핵심 용어 | 영문 표기 | 핵심 정의 및 특징 |
-|---|---|---|
-| **마이클 패건** | Michael Fagan | 1976년 IBM에서 제안한 가장 엄격하고 정형화된 정적 결함 적출 기법의 창시자 |
-| **중재자** | Moderator | 인스펙션 전 주기를 주관하며, 해결책 논의 차단 및 회의 진행을 통제하는 핵심 관리자 |
-| **낭독자** | Reader | 회의 시 산출물을 자신의 언어로 해석·낭독하여 작성자의 인지적 편향을 제거하는 역할 |
-| **진입/종료 기준** | Entry / Exit Criteria | 회의 준비 미흡 시 직권 취소(Entry) 및 크리티컬 결함 완결 검증 후 승인(Exit) 조건 |
-| **결함 수정 비용 곡선** | Boehm's Cost of Change | 개발 초기 단계 결함 제거가 유지보수 단계 대비 비용을 1/10~1/80 절감한다는 공학적 원리 |
+- 본질: 코드를 실행하지 않고 개발 산출물의 결함을 조기 적출하여 결함 수정 비용을 최소화하는 정형 검토 (마이클 패건 6단계)
+- 절차·역할: 중재자(Moderator·총괄 진행) · 작성자(Author) · 낭독자(Reader) · 기록자(Recorder) · 검토자(Inspector)의 5대 역할이 계획(Planning) → 개요(Overview) → 개별준비(Preparation) → 회의(Meeting) → 재작업(Rework) → 후속조치(Follow-up)의 6단계 절차를 수행
+- 핵심 원칙: 해결책 논의 금지(Find, not Solve) · 작성자 평가 배제 · 진입/종료 기준(Entry/Exit Criteria) 강제
+
+---
+
+| 핵심 용어 | 핵심 정의 및 특징 |
+|---|---|
+| **마이클 패건 (Michael Fagan)** | 1976년 IBM에서 제안한 가장 엄격하고 정형화된 정적 결함 적출 기법의 창시자 |
+| **중재자 (Moderator)** | 인스펙션 전 주기를 주관하며, 해결책 논의 차단 및 회의 진행을 통제하는 핵심 관리자 |
+| **낭독자 (Reader)** | 회의 시 산출물을 자신의 언어로 해석·낭독하여 작성자의 인지적 편향을 제거하는 역할 |
+| **진입/종료 기준 (Entry/Exit Criteria)** | 회의 준비 미흡 시 직권 취소(Entry) 및 크리티컬 결함 완결 검증 후 승인(Exit) 조건 |
+| **결함 수정 비용 곡선 (Boehm's Cost of Change)** | 개발 초기 단계 결함 제거가 유지보수 단계 대비 비용을 1/10~1/80 절감한다는 공학적 원리 |
 
 ---
 
@@ -62,10 +53,13 @@ extra:
 - **결함 조기 격리**: 요구사항 사양서, 설계서, 소스코드 단계에서 결함을 차단하여 테스트 단계 전이를 방지.
 - **비용 절감 효과**: 배리 보엠(Barry Boehm)의 결함 수정 비용 곡선에 따라 동적 테스트 대비 결함 조치 비용을 1/10~1/80 수준으로 절감.
 
-```text
-[요구사항/설계 인스펙션] ──(비용 1x)──> [구현 인스펙션] ──(비용 5x~10x)──> [운영 결함 조치] ──(비용 80x~100x)
-      └─ 마이클 패건 6단계 프로세스를 통한 결함 조기 적출로 결함 전이 비용 최소화 ─┘
+```mermaid
+flowchart LR
+    A["요구사항·설계 인스펙션 · 비용 1x"] --> B["구현 인스펙션 · 비용 5x~10x"]
+    B --> C["운영 결함 조치 · 비용 80x~100x"]
 ```
+
+마이클 패건 6단계 프로세스를 통한 결함 조기 적출로 결함 전이 비용을 최소화한다.
 
 ---
 
@@ -73,104 +67,14 @@ extra:
 
 #### 1. 인스펙션 6단계 프로세스 및 5대 역할 메커니즘
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" width="100%" height="auto" style="max-width: 520px;">
-  <!-- 전체 배경 -->
-  <rect x="0" y="0" width="520" height="230" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
-  
-  <!-- 영역 1: 6단계 프로세스 (상단) -->
-  <rect x="10" y="10" width="500" height="95" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
-  <text x="25" y="28" font-size="11" font-weight="700" fill="var(--sl-color-text, #0f172a)">마이클 패건(Michael Fagan) 인스펙션 6단계 프로세스</text>
-
-  <!-- Step 1: 계획 -->
-  <rect x="20" y="38" width="70" height="52" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-  <text x="55" y="56" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">1. 계획</text>
-  <text x="55" y="70" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">자원/일정</text>
-  <text x="55" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">역할 배정</text>
-
-  <path d="M 92 64 L 99 64" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5" marker-end="url(#arr-ins)"/>
-
-  <!-- Step 2: 개요 -->
-  <rect x="102" y="38" width="70" height="52" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-  <text x="137" y="56" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">2. 개요</text>
-  <text x="137" y="70" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">배경 브리핑</text>
-  <text x="137" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">작성자 주관</text>
-
-  <path d="M 174 64 L 181 64" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-
-  <!-- Step 3: 준비 -->
-  <rect x="184" y="38" width="70" height="52" rx="4" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-  <text x="219" y="56" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">3. 준비</text>
-  <text x="219" y="70" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">체크리스트</text>
-  <text x="219" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">개별 결함도출</text>
-
-  <path d="M 256 64 L 263 64" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-
-  <!-- Step 4: 회의 (핵심) -->
-  <rect x="266" y="38" width="74" height="52" rx="4" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
-  <text x="303" y="56" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">4. 회의</text>
-  <text x="303" y="70" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">낭독 및 결함</text>
-  <text x="303" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">해결책 논의 금지</text>
-
-  <path d="M 342 64 L 349 64" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-
-  <!-- Step 5: 재작업 -->
-  <rect x="352" y="38" width="70" height="52" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-  <text x="387" y="56" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">5. 재작업</text>
-  <text x="387" y="70" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">작성자 수정</text>
-  <text x="387" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">결함 로그 반영</text>
-
-  <path d="M 424 64 L 431 64" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-
-  <!-- Step 6: 후속조치 -->
-  <rect x="434" y="38" width="66" height="52" rx="4" fill="var(--sl-color-primary-subtle, #f0fdf4)" stroke="var(--sl-color-primary, #16a34a)" stroke-width="1.5"/>
-  <text x="467" y="56" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">6. 후속</text>
-  <text x="467" y="70" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">중재자 확인</text>
-  <text x="467" y="82" font-size="8" text-anchor="middle" fill="var(--sl-color-primary, #16a34a)">Exit 판정</text>
-
-  <!-- 영역 2: 5대 핵심 역할 및 원칙 (하단) -->
-  <rect x="10" y="115" width="500" height="105" rx="6" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
-  <text x="25" y="133" font-size="11" font-weight="700" fill="var(--sl-color-text, #0f172a)">인스펙션 5대 핵심 역할 및 거버넌스 원칙</text>
-
-  <!-- 역할 5개 카드 -->
-  <g transform="translate(20, 142)">
-    <!-- 중재자 -->
-    <rect x="0" y="0" width="90" height="66" rx="4" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="45" y="16" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">중재자(총괄)</text>
-    <text x="45" y="32" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">진행 통제 및 조율</text>
-    <text x="45" y="46" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Entry/Exit 판정</text>
-    <text x="45" y="58" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">토론 중단 권한</text>
-
-    <!-- 작성자 -->
-    <rect x="98" y="0" width="90" height="66" rx="4" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="143" y="16" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">작성자(개발)</text>
-    <text x="143" y="32" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">산출물 배경 설명</text>
-    <text x="143" y="46" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">질의 응답 참여</text>
-    <text x="143" y="58" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">결함 수정(재작업)</text>
-
-    <!-- 낭독자 -->
-    <rect x="196" y="0" width="90" height="66" rx="4" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-    <text x="241" y="16" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">낭독자(구술)</text>
-    <text x="241" y="32" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">제3자 해석 낭독</text>
-    <text x="241" y="46" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">문서 행간 구체화</text>
-    <text x="241" y="58" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">편향/건너뛰기 방지</text>
-
-    <!-- 기록자 -->
-    <rect x="294" y="0" width="90" height="66" rx="4" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="339" y="16" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">기록자(서기)</text>
-    <text x="339" y="32" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">결함 실시간 로깅</text>
-    <text x="339" y="46" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">위치·유형·등급</text>
-    <text x="339" y="58" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">결함 로그 관리</text>
-
-    <!-- 검토자 -->
-    <rect x="392" y="0" width="88" height="66" rx="4" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="436" y="16" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">검토자(전문가)</text>
-    <text x="436" y="32" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">체크리스트 기반</text>
-    <text x="436" y="46" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">사전 정독/의문 제기</text>
-    <text x="436" y="58" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">작성자 평가 배제</text>
-  </g>
-</svg>
-</div>
+```mermaid
+flowchart LR
+    S1["계획"] --> S2["개요"]
+    S2 --> S3["개별 준비"]
+    S3 --> S4["회의"]
+    S4 --> S5["재작업"]
+    S5 --> S6["후속 조치"]
+```
 
 | 단계 | 주요 활동 내용 | 산출물 및 관리 기준 |
 |---|---|---|
@@ -221,17 +125,9 @@ extra:
 ### Ⅴ. 기술사적 제언: 현대적 비동기 PR과 결합된 하이브리드 인스펙션 거버넌스
 
 ### 학습자 통찰 메모 — 답안 밖
-```text
-[핵심 통찰]
-인스펙션의 생명은 '낭독자(Reader)'의 제3자 시각과 '해결책 논의 금지'라는 엄격한 룰이다.
-개발자들은 본능적으로 결함을 발견하면 "이렇게 고치자"며 회의가 산으로 가기 십상이다.
-현대 CI/CD 환경에서는 1단계 정적 린터(SonarQube), 2단계 비동기 GitHub PR 동료 검토,
-3단계 고위험/미합의 안건 대상 30분 마이클 패건 집중 인스펙션의 하이브리드 3계층 방어선 구축이 핵심이다.
 
-[나라면]
-실전 답안에서 단순히 6단계 절차만 나열하지 않고, '낭독자'의 주관 배제 효과와 'Entry/Exit Criteria'의 통제력을 강조하겠다.
-또한 현대적 확장 모델로서 Shift-Left 자동화와 비동기 PR 거버넌스를 결합한 파이프라인을 제시하겠다.
-```
+- [핵심 통찰]: 인스펙션의 생명은 '낭독자(Reader)'의 제3자 시각과 '해결책 논의 금지'라는 엄격한 룰임. 개발자들은 본능적으로 결함을 발견하면 "이렇게 고치자"며 회의가 산으로 가기 십상함. 현대 CI/CD 환경에서는 1단계 정적 린터(SonarQube), 2단계 비동기 GitHub PR 동료 검토, 3단계 고위험/미합의 안건 대상 30분 마이클 패건 집중 인스펙션의 하이브리드 3계층 방어선 구축이 핵심임.
+- 나라면: 실전 답안에서 단순히 6단계 절차만 나열하지 않고, '낭독자'의 주관 배제 효과와 'Entry/Exit Criteria'의 통제력을 강조하겠음. 또한 현대적 확장 모델로서 Shift-Left 자동화와 비동기 PR 거버넌스를 결합한 파이프라인을 제시하겠음.
 
 ### 실전 답안용 기술사적 제언
 - **판정 기준**: 정적 분석 도구의 품질 게이트(Quality Gate) 실패율 및 핵심 아키텍처/보안 도메인 코드 변경 발생 여부를 기준으로 전수 비동기 PR 검토 대상과 동기식 대면 인스펙션 대상을 자동 분류함.
@@ -239,9 +135,10 @@ extra:
 - **검증 체계**: 중재자 직권의 회의 진입 기준(체크리스트 미작성 시 회의 자동 취소)과 종료 기준(Critical 결함 100% 수정 확인 및 회귀 테스트 통과)을 시스템화하여 검증 누락 방지.
 - **기대 효과**: 정형 인스펙션 대면 소집 비용을 60% 이상 절감하면서도 미션 크리티컬 결함 누출률 0%를 달성하고, 결함 전이 비용(Boehm 곡선 1x vs 80x)을 극소화함.
 
-```text
-[1단계: 자동화 린팅] ──> [2단계: 비동기 PR 검토] ──(고위험/이견)──> [3단계: 대면 패건 인스펙션]
-(SonarQube 정적차단)     (체크리스트 기반 P2P)                   (중재자 통제 30분 집중)
+```mermaid
+flowchart LR
+    A["1단계 · 자동화 린팅"] --> B["2단계 · 비동기 PR 검토"]
+    B -->|"고위험·이견"| C["3단계 · 대면 패건 인스펙션"]
 ```
 
 ---

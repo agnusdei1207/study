@@ -1,7 +1,7 @@
 ---
 title: "무중단 배포·배포 전략"
-author: "Antigravity"
-date: "2026-09-21T16:28:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -9,37 +9,18 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 빌드·배포·DevOps를 거쳐 무중단 배포로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>빌드·배포·DevOps</span>
-  <strong>무중단 배포·배포 전략</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 빌드·배포·DevOps → **무중단 배포·배포 전략**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **무중단 배포(Zero-Downtime Deployment)**는 서비스 운영 중단(Downtime) 없이 신규 버전을 프로덕션에 배포하고 즉각 롤백을 지원하는 아키텍처 전략
 - 메커니즘: **Rolling**(점진 교체) · **Blue/Green**(이중 환경 스위칭) · **Canary**(소규모 카나리 트래픽 검증 후 전면 전환)
-- 산출/효과: 가용성(High Availability) 99.999% 유지 · 배포 위험 최소화 · 무중단 사용자 경험 보장
-
-<div class="itpe-flow-map" role="img" aria-label="무중단 배포 전략 흐름도">
-  <div class="itpe-flow-node"><strong>로드밸런서(LB)</strong><div class="itpe-step-detail"><span>트래픽 라우팅 제어</span></div></div>
-  <div class="itpe-flow-arrow">→ 배포 전략 선택 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>무중단 배포 방식</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>Rolling</strong><span>인스턴스 순차 갱신 (자원 절약)</span></div>
-      <div class="itpe-flow-branch"><strong>Blue/Green</strong><span><span class="itpe-keyword"><strong>환경 전체 스위칭</strong></span> (즉시 롤백)</span></div>
-      <div class="itpe-flow-branch"><strong>Canary</strong><span><span class="itpe-keyword"><strong>가중치 기반 점진 노출</strong></span> (위험 격리)</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 검증 및 전환 →</div>
-  <div class="itpe-flow-node"><strong>프로덕션 서비스</strong><div class="itpe-step-detail"><span>Downtime Zero 운영</span></div></div>
-</div>
+- 효과: 가용성(High Availability) 99.999% 유지 · 배포 위험 최소화 · 무중단 사용자 경험 보장
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,89 +48,15 @@ extra:
 
 > 인프라 자원 여력, 롤백 속도, 검증 정밀도에 따라 최적의 배포 전략을 선택해야 한다.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="Rolling, Blue-Green, Canary 3대 무중단 배포 전략 및 트래픽 라우팅 메커니즘">
-  <!-- 1. Rolling Update -->
-  <rect x="15" y="10" width="155" height="200" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="92" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">① Rolling 배포</text>
-  <line x1="15" y1="40" x2="170" y2="40" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  
-  <!-- 인스턴스 3개 점진 교체 -->
-  <rect x="30" y="55" width="125" height="28" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="92" y="73" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">Pod 1: v1 (구버전)</text>
-  
-  <rect x="30" y="90" width="125" height="28" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-  <text x="92" y="108" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-white)">Pod 2: v2 (교체완료)</text>
-  
-  <rect x="30" y="125" width="125" height="28" rx="4" fill="var(--sl-color-surface)" stroke="#f87171" stroke-width="1" stroke-dasharray="3,2" />
-  <text x="92" y="143" text-anchor="middle" font-size="9.5" fill="#fca5a5">Pod 3: 드레이닝 중</text>
-  
-  <text x="92" y="175" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">자원 추가 없음 (100%)</text>
-  <text x="92" y="195" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent)">순차적 점진 교체</text>
+```mermaid
+flowchart TB
+    LB["라우터·로드밸런서"]
+    LB -->|"순차 교체"| RO["Rolling"]
+    LB -->|"일괄 전환"| BG["Blue/Green"]
+    LB -->|"가중치 확대"| CA["Canary"]
+```
 
-  <!-- 2. Blue/Green Switch -->
-  <rect x="182" y="10" width="155" height="200" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="260" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">② Blue/Green</text>
-  <line x1="182" y1="40" x2="337" y2="40" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-
-  <!-- LB 스위칭 -->
-  <rect x="200" y="50" width="120" height="26" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-  <text x="260" y="67" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent-high)">Router / LB</text>
-  
-  <path d="M 235 76 L 215 100" stroke="var(--sl-color-gray-4)" stroke-width="1.2" stroke-dasharray="2,2" />
-  <path d="M 285 76 L 305 100" stroke="var(--sl-color-accent)" stroke-width="2" />
-
-  <rect x="190" y="100" width="60" height="50" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="220" y="122" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">Blue</text>
-  <text x="220" y="137" text-anchor="middle" font-size="8.5" fill="var(--sl-color-muted)">구버전(대기)</text>
-
-  <rect x="270" y="100" width="60" height="50" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <text x="300" y="122" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-white)">Green</text>
-  <text x="300" y="137" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text)">신버전(100%)</text>
-
-  <text x="260" y="175" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">인프라 2배 (200%)</text>
-  <text x="260" y="195" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent)">즉각 롤백(Switching)</text>
-
-  <!-- 3. Canary Deployment -->
-  <rect x="350" y="10" width="155" height="200" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="427" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">③ Canary 배포</text>
-  <line x1="350" y1="40" x2="505" y2="40" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-
-  <rect x="368" y="50" width="120" height="26" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-  <text x="428" y="67" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-accent-high)">가중치 라우팅</text>
-
-  <path d="M 405 76 L 385 100" stroke="var(--sl-color-accent)" stroke-width="2" />
-  <path d="M 450 76 L 470 100" stroke="#f87171" stroke-width="1.5" />
-
-  <rect x="360" y="100" width="60" height="50" rx="4" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="390" y="122" text-anchor="middle" font-size="9" fill="var(--sl-color-text)">Main v1</text>
-  <text x="390" y="137" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent)">95% 트래픽</text>
-
-  <rect x="440" y="100" width="60" height="50" rx="4" fill="color-mix(in srgb, #f87171 16%, var(--sl-color-surface))" stroke="#f87171" stroke-width="1.2" />
-  <text x="470" y="122" text-anchor="middle" font-size="9" font-weight="bold" fill="#fca5a5">Canary v2</text>
-  <text x="470" y="137" text-anchor="middle" font-size="9" font-weight="bold" fill="#f87171">5% 트래픽</text>
-
-  <text x="427" y="175" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">에러율 실시간 감시</text>
-  <text x="427" y="195" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent)">위험 완벽 격리</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="3대 무중단 배포 전략 구조">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① Rolling 배포</strong></span>
-    <div class="itpe-step-detail"><strong>순차 교체</strong><span>인스턴스를 n개씩 점진 교체하여 추가 자원 최소화 및 롤링 배포</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② Blue/Green 배포</strong></span>
-    <div class="itpe-step-detail"><strong>전체 스위칭</strong><span>Green 환경 완벽 검증 후 로드밸런서 일괄 전환 및 즉각 롤백 확보</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ Canary 배포</strong></span>
-    <div class="itpe-step-detail"><strong>점진 노출</strong><span>1% → 10% → 100% 트래픽 점진 확대 및 실시간 오류 감지 자동 롤백</span></div>
-  </div>
-</div>
+- 트래픽을 전환하는 방식이 전략을 가르며, Rolling은 기존 자원 절약, Blue/Green은 즉각 롤백, Canary는 오류 감지 자동 롤백에 강점
 
 | 비교 기준 | Rolling Update | Blue/Green | Canary |
 |---|---|---|---|
@@ -163,22 +70,14 @@ extra:
 
 > 애플리케이션 코드는 무중단 배포가 가능하지만, DB 스키마가 하위 호환성을 깨뜨리면 전체 시스템 장애로 이어진다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="Expand-Contract DB 스키마 변경 패턴">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Phase 1: Expand (확장)</strong></span>
-    <div class="itpe-step-detail"><strong>하위 호환 유지</strong><span>기존 컬럼 유지 상태에서 신규 컬럼 추가 및 구버전 정상 동작 보장</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Phase 2: Transition (이행 및 양방향 쓰기)</strong></span>
-    <div class="itpe-step-detail"><strong>양방향 동기화</strong><span>신버전 앱 배포, 신규 컬럼 읽기/쓰기 및 백그라운드 데이터 마이그레이션</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Phase 3: Contract (축소 및 정리)</strong></span>
-    <div class="itpe-step-detail"><strong>구버전 제거</strong><span>전체 인스턴스 전환 확인 후 구버전 컬럼 삭제로 스키마 정리 완료</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    P1["Expand 확장"] --> P2["Transition 이행"] --> P3["Contract 축소"]
+```
+
+- **Expand**: 기존 컬럼을 유지한 상태에서 신규 컬럼만 추가하여 구버전 정상 동작 보장
+- **Transition**: 신버전 배포 후 신규 컬럼 양방향 읽기·쓰기 및 백그라운드 데이터 마이그레이션
+- **Contract**: 전체 인스턴스 전환 확인 후 구버전 컬럼 삭제로 스키마 정리
 
 ## Ⅳ. 무중단 배포 문제점·대응책
 
@@ -206,28 +105,6 @@ extra:
 - **검증 체계**: 배포 과정 중 HTTP 5xx 에러율(0.1% 미만), P99 응답 지연 임계치 초과 여부 자동 감시 및 비정상 감지 시 10초 이내 자동 롤백(Automated Rollback) 실행을 검증함
 - **기대 효과**: 심야 야간 배포 및 서비스 점검 공지(Maintenance Window)를 완전히 폐지하고, 주간 업무 시간대 상시 안전 배포를 실현하여 비즈니스 가용성 99.999%를 달성함
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="무중단 배포 아키텍처 개선 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>야간 의존</strong><span>야간 배포 의존 및 DB 스키마 불일치로 인한 롤백 불가</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>자동화 전환</strong><span>Canary 자동화 파이프라인 및 Expand/Contract DB 분리</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>무장애 검증</strong><span>SLO 위반 에러율 0% · Connection Draining 및 자동 롤백</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>상시 배포</strong><span>주간 상시 무중단 배포 달성 및 릴리스 리스크 완벽 제거</span></div>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -237,13 +114,13 @@ extra:
 
 ### 2. 3대 배포 전략 요약
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="무중단 배포 3대 전략 요약">
-  <div class="itpe-pipeline-node"><strong>Rolling</strong><div class="itpe-step-detail"><span>인스턴스 점진 교체 · 자원 효율</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Blue/Green</strong><div class="itpe-step-detail"><span>전체 환경 일괄 스위칭 · 즉시 롤백</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Canary</strong><div class="itpe-step-detail"><span>일부 트래픽 선 검증 · 점진적 확대</span></div></div>
-</div>
+```mermaid
+flowchart TB
+    LB["라우터·로드밸런서"]
+    LB -->|"순차 교체"| RO["Rolling"]
+    LB -->|"일괄 전환"| BG["Blue/Green"]
+    LB -->|"가중치 확대"| CA["Canary"]
+```
 
 ### 3. 핵심 통제
 

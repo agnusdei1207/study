@@ -8,10 +8,10 @@ tags:
   - "공간복잡도"
   - "점근표기법"
   - "알고리즘최적화"
-date: "2026-09-20"
+date: "2026-09-22T07:25:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -27,47 +27,6 @@ extra:
 - 본질: CPU 클록이나 실행 환경의 물리적 차이에 좌우되지 않고 알고리즘의 본질적 효율성을 수학적으로 평가하기 위해, 입력 데이터의 크기 $n$이 무한히 증가할 때 연산 횟수 및 메모리 점유율의 증가율을 점근적 상한(Asymptotic Upper Bound)으로 단순화하여 나타내는 성능 표기법
 - 메커니즘: 알고리즘 기본 연산 식별 → 입력 크기 $n$에 대한 총 연산 횟수 함수 $f(n)$ 도출 → 저차항 및 상수 계수 생략 → 최고차항 기반 빅오($O(g(n))$) 점근 표기
 - 산출물: 시간 복잡도 수식 · 공간 복잡도 수식 · 점근 분석 그래프 · 3대 점근 표기($O$, $\Omega$, $\Theta$)
-
-<div class="itpe-flow-map" role="img" aria-label="알고리즘 복잡도 도출 파이프라인 및 Quality Gate">
-  <div class="itpe-flow-node">
-    <strong>1단계: 기본 단위 연산 식별</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>추출</strong><span>비교(Comparison), 대입(Assignment), 산술 연산 등 지배적 연산 분리</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 연산 횟수 함수 f(n) 도출</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>계산</strong><span>최악의 경우(Worst-case) 시나리오 기준 $f(n) = 3n^2 + 5n + 2$ 등 정밀 수식 유도</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 점근적 추상화 (Big-O 추출)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>규칙</strong><span>영향력이 미미한 저차항($5n + 2$) 및 계수($3$) 소거 $\rightarrow$ $O(n^2)$</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: 성능 목표 적합성 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>대량 트래픽 입력 $n$ 증가 시 다항 시간($O(n \log n)$ 이하)을 보장하는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (Pass)</strong>
-      <span>선형/로그 시간 검증 $\rightarrow$ 대규모 분산 환경 배포 승인</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (Fail)</strong>
-      <span>이차 이상 시간($O(n^2)$) $\rightarrow$ 해시맵/인덱스 자료구조 리팩토링</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -99,99 +58,17 @@ extra:
 
 ### Big-O 복잡도 계층별 증가 추세
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="bo-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-text, #1e293b)"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">Big-O 복잡도 유형별 연산 시간 증가 곡선</text>
-    
-    <!-- Axes -->
-    <line x1="50" y1="180" x2="490" y2="180" stroke="var(--color-text, #1e293b)" stroke-width="1.5" marker-end="url(#bo-arrow)"/>
-    <line x1="50" y1="180" x2="50" y2="35" stroke="var(--color-text, #1e293b)" stroke-width="1.5" marker-end="url(#bo-arrow)"/>
-    <text x="485" y="195" text-anchor="end" font-size="7.5" fill="var(--color-text, #1e293b)">입력 크기 (n) →</text>
-    <text x="45" y="42" text-anchor="end" font-size="7.5" fill="var(--color-text, #1e293b)">시간</text>
-
-    <!-- Curves -->
-    <!-- O(1) Constant -->
-    <line x1="50" y1="172" x2="470" y2="172" stroke="#16a34a" stroke-width="2"/>
-    <text x="475" y="170" font-size="7.5" font-weight="bold" fill="#16a34a">O(1)</text>
-
-    <!-- O(log n) Logarithmic -->
-    <path d="M 50 180 Q 150 150 460 145" fill="none" stroke="#0284c7" stroke-width="2"/>
-    <text x="465" y="145" font-size="7.5" font-weight="bold" fill="#0284c7">O(log n)</text>
-
-    <!-- O(n) Linear -->
-    <line x1="50" y1="180" x2="420" y2="105" stroke="#2563eb" stroke-width="2"/>
-    <text x="425" y="105" font-size="7.5" font-weight="bold" fill="#2563eb">O(n)</text>
-
-    <!-- O(n log n) Linearithmic -->
-    <path d="M 50 180 Q 250 140 370 65" fill="none" stroke="#4f46e5" stroke-width="2"/>
-    <text x="375" y="65" font-size="7.5" font-weight="bold" fill="#4f46e5">O(n log n)</text>
-
-    <!-- O(n^2) Quadratic -->
-    <path d="M 50 180 Q 180 170 230 45" fill="none" stroke="#ea580c" stroke-width="2"/>
-    <text x="235" y="45" font-size="7.5" font-weight="bold" fill="#ea580c">O(n²)</text>
-
-    <!-- O(2^n) Exponential -->
-    <path d="M 50 180 Q 110 175 140 45" fill="none" stroke="#dc2626" stroke-width="2"/>
-    <text x="145" y="45" font-size="7.5" font-weight="bold" fill="#dc2626">O(2ⁿ)</text>
-
-    <!-- Bottom Scale Order -->
-    <rect x="50" y="193" width="420" height="16" rx="3" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="204" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-text, #1e293b)">우열: O(1) &lt; O(log n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(2ⁿ) &lt; O(n!)</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    A["O(1)"] --> B["O(log n)"] --> C["O(n)"] --> D["O(n log n)"] --> E["O(n²)"] --> F["O(2ⁿ)"] --> G["O(n!)"]
+```
 
 ### 대표 복잡도 4대 유형 상세 분석
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <!-- Background -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    
-    <!-- Box 1: O(1) -->
-    <rect x="15" y="20" width="115" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.2"/>
-    <rect x="15" y="20" width="115" height="22" rx="6" fill="var(--color-bg-subtle, #f0fdf4)"/>
-    <text x="72" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#16a34a">① O(1) 상수 시간</text>
-    <text x="72" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">입력 n 무관 일정</text>
-    <text x="72" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">해시테이블 조회</text>
-    <text x="72" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="#16a34a">[배열 인덱스 접근]</text>
-
-    <!-- Box 2: O(log n) -->
-    <rect x="140" y="20" width="115" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#0284c7" stroke-width="1.2"/>
-    <rect x="140" y="20" width="115" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="197" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#0284c7">② O(log n) 로그</text>
-    <text x="197" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">연산 단계별 절반 축소</text>
-    <text x="197" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">이진 탐색(BST)</text>
-    <text x="197" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="#0284c7">[DB B-Tree 색인]</text>
-
-    <!-- Box 3: O(n log n) -->
-    <rect x="265" y="20" width="115" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#2563eb" stroke-width="1.2"/>
-    <rect x="265" y="20" width="115" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="322" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#2563eb">③ O(n log n) 선형로그</text>
-    <text x="322" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">비교 정렬의 하한</text>
-    <text x="322" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">병합/힙/퀵 정렬</text>
-    <text x="322" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="#2563eb">[대용량 정렬 표준]</text>
-
-    <!-- Box 4: O(n^2) -->
-    <rect x="390" y="20" width="115" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="#ea580c" stroke-width="1.2"/>
-    <rect x="390" y="20" width="115" height="22" rx="6" fill="var(--color-bg-subtle, #fff7ed)"/>
-    <text x="447" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#ea580c">④ O(n²) 이차 시간</text>
-    <text x="447" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">중첩 루프 전수 탐색</text>
-    <text x="447" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">버블 정렬, 이중 for</text>
-    <text x="447" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="#ea580c">[배치 병목의 주원인]</text>
-
-    <!-- Bottom Insight -->
-    <rect x="15" y="140" width="490" height="42" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="157" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">실무 최적화 법칙: O(n²)의 이중 루프는 HashMap 사전 인덱싱을 통해 O(n)으로 반드시 리팩토링</text>
-    <text x="260" y="172" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">상수 계수(c)의 한계: n이 작은 경우 캐시 지역성(Cache Locality) 높은 O(n) 배열이 O(log n) 트리보다 빠름</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    A["O(n²) 이중 루프 전수 탐색"] -->|HashMap 사전 인덱싱| B["O(n+m) 선형 조회"]
+```
 
 <div class="itpe-component-grid">
   <div class="itpe-component-card">
@@ -290,36 +167,6 @@ extra:
 - **대응 방안**: 데이터 대조 작업 시 중첩 반복문을 전면 금지하고, 기준 데이터를 해시맵(HashMap)이나 셋(HashSet)에 사전 색인하여 $O(1)$ 즉시 조회로 전환.
 - **검증 체계**: 성능 부하 테스트(JMeter, nGrinder) 시 데이터 크기 $n$을 10배, 100배로 증분하여 측정 곡선이 선형/로그 차수를 유지하는지 정량 검증.
 - **기대 효과**: 데이터 급증 환경에서도 서비스 응답 지연을 밀리초 단위로 방어하고, 서버 스케일아웃에 따른 자원 선형 효율성 확보.
-
-<div class="itpe-flow-map" role="img" aria-label="알고리즘 복잡도 분석 및 최적화 리팩토링 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>기본 연산 함수 식별</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>분석</strong><span>최악 시나리오 $f(n)$ 유도</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>Big-O 점근 추상화</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>도출</strong><span>최고차항 기반 차수 판정</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node is-current">
-    <strong>병목 리팩토링</strong>
-    <div class="itpe-step-detail">
-      <strong>개선</strong><span>$O(n^2) \rightarrow O(n)$ 해시 전환</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>대규모 트래픽 안정화</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>결과</strong><span>선형 확장성 및 SLA 보장</span></div>
-    </div>
-  </div>
-</div>
 
 ## 7. 참고 및 연계 학습
 

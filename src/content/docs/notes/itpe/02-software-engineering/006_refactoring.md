@@ -1,7 +1,7 @@
 ---
 title: "리팩토링(코드스멜)"
-author: "Antigravity"
-date: "2026-09-21T16:27:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -9,37 +9,18 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 유지보수·형상관리를 거쳐 리팩토링으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>유지보수·형상관리</span>
-  <strong>리팩토링(코드스멜)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 유지보수·형상관리 → **리팩토링(코드스멜)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **리팩토링(Refactoring)**은 소프트웨어의 외부 동작(동등성)을 유지하면서 내부 구조를 개선하여 가독성, 유지보수성, 확장성을 높이는 기법
 - 메커니즘: **코드스멜(Code Smell)** 식별 → 자동화 테스트 확보 → 마이크로 단위 단계별 구조 개선 → 회귀테스트 통과 검증
-- 산출/효과: 기술 부채 청산 · 복잡도(순환복잡도) 감소 · 신규 기능 추가 생산성 향상
-
-<div class="itpe-flow-map" role="img" aria-label="리팩토링 수행 사이클">
-  <div class="itpe-flow-node"><strong>코드스멜 감지</strong><div class="itpe-step-detail"><span>중복 코드 · 거대 클래스 · 긴 메서드</span></div></div>
-  <div class="itpe-flow-arrow">→ 회귀 테스트 확보 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>마이크로 리팩토링</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>메서드 추출</strong><span>Extract Method</span></div>
-      <div class="itpe-flow-branch"><strong>클래스 추출</strong><span>Extract Class</span></div>
-      <div class="itpe-flow-branch"><strong>조건문 단순화</strong><span>Decompose Conditional</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 자동화 테스트 검증 →</div>
-  <div class="itpe-flow-node"><strong>클린 코드 달성</strong><div class="itpe-step-detail"><span>외부 행위 불변 · 유지보수성 극대화</span></div></div>
-</div>
+- 효과: 기술 부채 청산 · 복잡도(순환복잡도) 감소 · 신규 기능 추가 생산성 향상
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,77 +48,14 @@ extra:
 
 > 코드스멜은 당장 오류는 아니지만 미래의 변경 비용을 폭증시키는 주범이므로 발생 즉시 정형화된 패턴으로 제거한다.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="코드스멜 진단부터 단위테스트 안전망 확보, 마이크로 리팩토링 및 외부 동작 불변 검증 흐름">
-  <!-- 1. 코드스멜 진단 -->
-  <rect x="15" y="25" width="105" height="160" rx="8" fill="var(--sl-color-gray-6)" stroke="#f87171" stroke-width="1.2" />
-  <text x="67" y="48" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#fca5a5">① 악취 감지</text>
-  <line x1="15" y1="56" x2="120" y2="56" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="67" y="76" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">중복 코드</text>
-  <text x="67" y="96" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">장대 메서드</text>
-  <text x="67" y="116" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">거대 클래스</text>
-  <text x="67" y="136" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">스위치 분기</text>
-  <text x="67" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="#f87171">순환복잡도 &gt; 15</text>
+```mermaid
+flowchart LR
+    SM["코드스멜 감지"] --> UT["단위 테스트 확보"] --> RF["마이크로 변환"] --> RT["회귀 테스트"]
+    RT -->|통과·커밋| SM
+    RT -->|미통과| RF
+```
 
-  <line x1="120" y1="105" x2="140" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <!-- 2. 테스트 안전망 구축 -->
-  <rect x="140" y="25" width="110" height="160" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-  <text x="195" y="48" text-anchor="middle" font-size="11.5" font-weight="bold" fill="var(--sl-color-accent-high)">② 테스트 안전망</text>
-  <line x1="140" y1="56" x2="250" y2="56" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <rect x="150" y="70" width="90" height="30" rx="4" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1" />
-  <text x="195" y="89" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--sl-color-white)">회귀 테스트</text>
-  <text x="195" y="120" text-anchor="middle" font-size="9.5" fill="var(--sl-color-muted)">커버리지 80%+</text>
-  <text x="195" y="140" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">Test Suite All Pass</text>
-  <text x="195" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent)">Green 상태 확보</text>
-
-  <line x1="250" y1="105" x2="270" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <!-- 3. 마이크로 리팩토링 -->
-  <rect x="270" y="25" width="115" height="160" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="327" y="48" text-anchor="middle" font-size="11.5" font-weight="bold" fill="var(--sl-color-text)">③ 마이크로 변환</text>
-  <line x1="270" y1="56" x2="385" y2="56" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="327" y="76" text-anchor="middle" font-size="9.5" fill="var(--sl-color-accent)">Extract Method</text>
-  <text x="327" y="96" text-anchor="middle" font-size="9.5" fill="var(--sl-color-accent)">Extract Class</text>
-  <text x="327" y="116" text-anchor="middle" font-size="9.5" fill="var(--sl-color-accent)">Polymorphism</text>
-  <text x="327" y="140" text-anchor="middle" font-size="9" fill="var(--sl-color-muted)">1회 1변환 원칙</text>
-  <text x="327" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-text)">마이크로 커밋</text>
-
-  <line x1="385" y1="105" x2="405" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-
-  <!-- 4. 외부 행위 불변 보장 -->
-  <rect x="405" y="25" width="105" height="160" rx="8" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <text x="457" y="48" text-anchor="middle" font-size="11.5" font-weight="bold" fill="var(--sl-color-accent-high)">④ 클린 코드</text>
-  <line x1="405" y1="56" x2="510" y2="56" stroke="var(--sl-color-accent)" stroke-width="1" />
-  <text x="457" y="78" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-white)">외부 동작 불변</text>
-  <text x="457" y="98" text-anchor="middle" font-size="9" fill="var(--sl-color-text)">입출력 동등성 100%</text>
-  <text x="457" y="122" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent-high)">복잡도 해소</text>
-  <text x="457" y="142" text-anchor="middle" font-size="9" fill="var(--sl-color-text)">순환복잡도 &lt; 10</text>
-  <text x="457" y="165" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--sl-color-accent-high)">기술 부채 청산</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 절차">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 코드스멜 진단</strong></span>
-    <div class="itpe-step-detail"><strong>악취 식별</strong><span>정적 분석 도구(SonarQube) 및 코드 리뷰로 스멜 영역 탐지</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 단위 테스트 케이스 확보</strong></span>
-    <div class="itpe-step-detail"><strong>안전망 구축</strong><span>현재 기능의 정상 동작을 보증하는 촘촘한 단위 테스트 작성</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 소규모 점진적 변환</strong></span>
-    <div class="itpe-step-detail"><strong>마이크로 변환</strong><span>테스트가 항상 통과하는 초소형 단위로 점진적 코드 수정</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 회귀 테스트 및 커밋</strong></span>
-    <div class="itpe-step-detail"><strong>동작 검증</strong><span>전체 테스트 슈트 통과 확인 후 형상관리 마이크로 커밋</span></div>
-  </div>
-</div>
+- 마이크로 변환 1회마다 회귀 테스트를 통과시켜 **외부 동작 불변**을 입증하며, 다음 코드스멜로 순환 반복함
 
 | 코드스멜 (Code Smell) | 스멜의 본질적 문제 | 적용 리팩토링 기법 |
 |---|---|---|
@@ -184,28 +102,6 @@ extra:
 - **검증 체계**: CI 단계별 자동 회귀 테스트 통과율 100%, SonarQube Quality Gate 통과 여부, 그리고 리팩토링 전후 성능 벤치마크(메모리/CPU 프로파일링)를 대사 검증함
 - **기대 효과**: 레거시 코드의 스파게티화를 방지하여 소프트웨어 수명주기를 획기적으로 연장하고, 신규 비즈니스 요구사항 추가 시 개발 생산성과 코드 가독성을 극대화함
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>부채 방치</strong><span>일정 압박으로 스파게티 코드 방치 및 기술 부채 누적</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>품질 강제</strong><span>CI 파이프라인 내 정적 분석 및 자동화 회귀테스트 강제</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>스멜 제로</strong><span>코드스멜 제로, 단위테스트 통과 및 순환복잡도 10 이하</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>클린 코드</strong><span>외부 행위 불변 보장 및 클린 코드 기반 고품질 유지보수 실현</span></div>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -215,13 +111,12 @@ extra:
 
 ### 2. 핵심 메커니즘 및 3단계 사이클
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="리팩토링 핵심 사이클 요약">
-  <div class="itpe-pipeline-node"><strong>코드스멜 식별</strong><div class="itpe-step-detail"><span>중복 · 장대함수 · 거대클래스</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>소규모 리팩토링</strong><div class="itpe-step-detail"><span>메서드 추출 · 다형성 전환</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>회귀테스트 통과</strong><div class="itpe-step-detail"><span>외부 동작 불변성 입증</span></div></div>
-</div>
+```mermaid
+flowchart LR
+    SM["코드스멜 감지"] --> UT["단위 테스트 확보"] --> RF["마이크로 변환"] --> RT["회귀 테스트"]
+    RT -->|통과·커밋| SM
+    RT -->|미통과| RF
+```
 
 ### 3. 핵심 통제
 

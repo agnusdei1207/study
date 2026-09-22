@@ -9,10 +9,10 @@ tags:
   - "A알고리즘"
   - "간선경감"
   - "음수사이클"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:26:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,52 +23,11 @@ extra:
   <strong>최단경로 알고리즘(Shortest Path Algorithm)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 가중치 그래프에서 가능한 모든 경로를 전수 조사할 때 발생하는 팩토리얼($N!$) 수준의 지수적 폭증을 방지하기 위해, "부분 경로의 최적합이 전체 최단 경로를 이룬다"는 최적 부분 구조(Optimal Substructure)를 기반으로 간선 경감(Edge Relaxation)을 수행하여 목적지까지의 최소 비용 경로를 다항 시간 내에 도출하는 핵심 알고리즘군
 - 메커니즘: 그래프 토폴로지 모델링 $\rightarrow$ 가중치 특성(양수/음수) 및 탐색 범위(단일점/전체쌍) 판정 $\rightarrow$ 최적 알고리즘 선정 $\rightarrow$ 간선 경감(Relaxation) 반복 $\rightarrow$ 최단 거리 배열 및 역추적 경로 확정
 - 산출물: 최단 거리 배열(Distance Array) · 직전 선행 노드 테이블(Predecessor Table) · 네트워크 라우팅 테이블
-
-<div class="itpe-flow-map" role="img" aria-label="최단 경로 알고리즘 선정 및 실행 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 그래프 모델링 및 제약조건 분석</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>분석</strong><span>정점($V$), 간선($E$), 가중치 부호(양수/음수) 및 탐색 범위(단일/전체) 파악</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 문제 유형별 최적 알고리즘 선정</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>선정</strong><span>양수 가중치 $\rightarrow$ 다익스트라, 음수 허용 $\rightarrow$ 벨만-포드, 모든 쌍 $\rightarrow$ 플로이드</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 간선 경감(Edge Relaxation) 반복</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>경감</strong><span>`if (dist[v] > dist[u] + w(u,v)) dist[v] = dist[u] + w(u,v)` 거리 갱신</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: 음수 사이클 및 경로 수렴 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>$V$번째 간선 경감 시에도 거리가 줄어드는 음수 사이클(Negative Cycle)이 존재하는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (수렴 완료)</strong>
-      <span>최단 경로 확정 $\rightarrow$ OSPF 라우팅 테이블 반영 및 내비게이션 최적 경로 제공</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (음수 사이클 탐지)</strong>
-      <span>최단 경로 부재(무한 비용 감소) $\rightarrow$ 비정상 환차익 경보 발생 및 데이터 검증</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -101,167 +60,34 @@ extra:
 
 ### 4대 최단경로 알고리즘 선택 의사결정 트리
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="sp-tree-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">최단경로 알고리즘 선정 의사결정 트리 및 복잡도</text>
-
-    <!-- Root Decision -->
-    <rect x="185" y="38" width="150" height="30" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
-    <text x="260" y="56" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">최단 경로 탐색 요구</text>
-
-    <!-- Branch Left: Single Source -->
-    <line x1="210" y1="68" x2="130" y2="95" stroke="var(--color-primary, #2563eb)" stroke-width="1.2" marker-end="url(#sp-tree-arrow)"/>
-    <text x="150" y="80" font-size="6.5" fill="var(--color-text, #1e293b)">단일 시작점</text>
-
-    <!-- Branch Right: All Pairs -->
-    <line x1="310" y1="68" x2="390" y2="95" stroke="var(--color-primary, #2563eb)" stroke-width="1.2" marker-end="url(#sp-tree-arrow)"/>
-    <text x="365" y="80" font-size="6.5" fill="var(--color-text, #1e293b)">모든 정점 쌍</text>
-
-    <!-- Right Result: Floyd-Warshall -->
-    <rect x="345" y="98" width="155" height="105" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="345" y="98" width="155" height="20" rx="5" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="422" y="112" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">플로이드-워셜 (DP)</text>
-    <text x="422" y="132" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">복잡도: O(V^3)</text>
-    <text x="422" y="150" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">3중 루프 DP 행렬 갱신</text>
-    <text x="422" y="168" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">음수 가중치/사이클 허용</text>
-    <text x="422" y="190" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[전체 도시 거리표]</text>
-
-    <!-- Left Sub-decisions: Dijkstra, Bellman-Ford, A* -->
-    <rect x="15" y="98" width="100" height="105" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="15" y="98" width="100" height="20" rx="5" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="65" y="112" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">다익스트라</text>
-    <text x="65" y="132" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">O((V+E)logV)</text>
-    <text x="65" y="150" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">Min-Heap 우선순위큐</text>
-    <text x="65" y="168" text-anchor="middle" font-size="6.5" fill="#dc2626">양수 가중치 한정</text>
-    <text x="65" y="190" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[OSPF 라우팅]</text>
-
-    <rect x="125" y="98" width="100" height="105" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="125" y="98" width="100" height="20" rx="5" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="175" y="112" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">벨만-포드</text>
-    <text x="175" y="132" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">O(V · E)</text>
-    <text x="175" y="150" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">V-1회 전수 간선경감</text>
-    <text x="175" y="168" text-anchor="middle" font-size="6.5" fill="#16a34a">음수 사이클 탐지</text>
-    <text x="175" y="190" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[금융 차익거래]</text>
-
-    <rect x="235" y="98" width="100" height="105" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="235" y="98" width="100" height="20" rx="5" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="285" y="112" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">A* 탐색</text>
-    <text x="285" y="132" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">f(n) = g + h</text>
-    <text x="285" y="150" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">휴리스틱 잔여추정</text>
-    <text x="285" y="168" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">목적지 방향 탐색</text>
-    <text x="285" y="190" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#ca8a04">[내비/게임길찾기]</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    R["최단 경로 탐색 요구"] -->|"단일 시작점"| S["단일점 탐색 분기"]
+    R -->|"모든 정점 쌍"| FW["플로이드-워셜(DP 3중 루프)"]
+    S -->|"양수 가중치 한정"| D["다익스트라(Min-Heap 우선순위큐)"]
+    S -->|"음수 가중치 허용"| B["벨만-포드(V-1회 전수 경감)"]
+    S -->|"목적지 방향"| A["A* 탐색(f(n)=g+h 휴리스틱)"]
+```
 
 ### 간선 경감(Relaxation) 원리 및 OSPF/RIP 라우팅 연계
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="relax-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">간선 경감(Edge Relaxation) 메커니즘 및 라우팅 프로토콜</text>
+```mermaid
+flowchart LR
+    S["S(0)"] -->|"w=5"| U["U(5)"]
+    U -->|"w=2 경감"| V["V(7)"]
+    S -.->|"직접경로 dist 10"| V
+```
 
-    <!-- Node S (Start) -->
-    <circle cx="55" cy="100" r="20" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="55" y="104" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">S (0)</text>
-
-    <!-- Node U -->
-    <circle cx="155" cy="65" r="20" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="155" y="69" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">U (5)</text>
-
-    <!-- Node V -->
-    <circle cx="255" cy="100" r="20" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.5"/>
-    <text x="255" y="104" text-anchor="middle" font-size="8" font-weight="bold" fill="#16a34a">V (7)</text>
-
-    <!-- Direct edge S -> V: weight 10 -->
-    <line x1="75" y1="100" x2="235" y2="100" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3,2"/>
-    <text x="155" y="115" text-anchor="middle" font-size="6.5" fill="#dc2626">기존 dist[V] = 10 (직접경로)</text>
-
-    <!-- Edge S -> U: weight 5 -->
-    <line x1="73" y1="90" x2="137" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.2" marker-end="url(#relax-arrow)"/>
-    <text x="100" y="75" text-anchor="middle" font-size="6.5" fill="var(--color-primary, #2563eb)">w=5</text>
-
-    <!-- Edge U -> V: weight 2 -->
-    <line x1="173" y1="72" x2="237" y2="90" stroke="#16a34a" stroke-width="1.5" marker-end="url(#relax-arrow)"/>
-    <text x="210" y="75" text-anchor="middle" font-size="6.5" fill="#16a34a">w=2 (경감)</text>
-
-    <!-- Relaxation Formula Box -->
-    <rect x="295" y="45" width="205" height="65" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1.2"/>
-    <text x="397" y="65" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">간선 경감 공식 (Relaxation)</text>
-    <text x="397" y="82" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">if (dist[V] &gt; dist[U] + w(U,V))</text>
-    <text x="397" y="98" text-anchor="middle" font-size="6.5" fill="#16a34a">dist[V] = 5 + 2 = 7 (거리 갱신 성공)</text>
-
-    <!-- Network Protocol Mapping Bottom -->
-    <rect x="15" y="125" width="490" height="55" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="145" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">네트워크 엔지니어링 1:1 프로토콜 매핑</text>
-    <text x="260" y="165" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- OSPF / IS-IS : 링크 상태 프로토콜 $\rightarrow$ 다익스트라(Dijkstra) 기반 SPF 트리 계산</text>
-  </svg>
-</div>
+간선 경감 공식 `if (dist[V] > dist[U] + w(U,V))`에 따라 `dist[V] = 5 + 2 = 7`로 거리 갱신에 성공한다. 링크 상태 프로토콜인 OSPF·IS-IS는 다익스트라 기반 SPF 트리를 계산한다.
 
 ### 핵심 알고리즘별 동작 원리
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>① 다익스트라</strong></span>
-      <span class="itpe-badge">그리디·우선순위큐</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>미방문 노드 중 시작점으로부터 거리가 가장 짧은 노드를 선택 확정</li>
-        <li>확정된 노드의 인접 간선만 경감 수행 (음수 가중치 시 역전 오류 발생)</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>② 벨만-포드</strong></span>
-      <span class="itpe-badge">음수 사이클 탐지</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>모든 간선 $E$개에 대해 경감 연산을 $V-1$번 반복하여 최단 거리 확정</li>
-        <li>$V$번째에도 거리가 줄어들면 음수 사이클이 존재하는 것으로 판정</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>③ 플로이드-워셜</strong></span>
-      <span class="itpe-badge">DP 3중 루프</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>중간 경유지 노드 $k$를 거쳐가는 경로(`D[i][j] = min(D[i][j], D[i][k]+D[k][j])`)</li>
-        <li>모든 정점 쌍 간의 최단 거리를 $V \times V$ 2차원 행렬로 일괄 산출</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>④ A* 알고리즘</strong></span>
-      <span class="itpe-badge">휴리스틱 가이드</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>평가 함수 $f(n) = g(n) + h(n)$ (시작점 비용 $g$ + 목적지 잔여 추정치 $h$)</li>
-        <li>목적지 방향으로 우선 탐색하여 다익스트라 대비 탐색 공간 90% 축소</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 알고리즘 | 핵심 판단 |
+|---|---|
+| **① 다익스트라** | 그리디·우선순위큐: 미방문 노드 중 시작점에서 가장 가까운 노드를 선택 확정하고 인접 간선만 경감 (음수 가중치 시 역전 오류) |
+| **② 벨만-포드** | 음수 사이클 탐지: 모든 간선 E개에 경감 연산을 V-1번 반복하여 확정, V번째에도 거리가 줄면 음수 사이클 판정 |
+| **③ 플로이드-워셜** | DP 3중 루프: 경유지 k를 거치는 `D[i][j] = min(D[i][j], D[i][k]+D[k][j])`로 모든 정점 쌍 최단 거리를 V×V 행렬로 일괄 산출 |
+| **④ A* 알고리즘** | 휴리스틱 가이드: 평가 함수 f(n) = g(n) + h(n)으로 목적지 방향 우선 탐색, 다익스트라 대비 탐색 공간 90% 축소 |
 
 ## 3. 실무 적용 및 고려사항
 
@@ -299,35 +125,6 @@ extra:
 - **대응 방안**: 양수 단일점은 Min-Heap 다익스트라, 음수 가중치는 벨만-포드, 1:1 목적점은 A* 알고리즘 적용
 - **검증 체계**: $V$번째 간선 경감 시 거리 변화 여부를 계측하여 음수 사이클(Negative Cycle) 존재 100% 무결성 검증
 - **기대 효과**: $N!$ 경로 전수 탐색 대비 다항 시간 내 경로 확정 및 패킷 라우팅 수렴 속도 극대화
-
-<div class="itpe-pipeline-container" role="region" aria-label="최단경로 알고리즘 엔지니어링 및 라우팅 파이프라인">
-  <div class="itpe-pipeline-header">
-    <span class="itpe-pipeline-title">최단경로 알고리즘 엔지니어링 및 라우팅 파이프라인</span>
-    <span class="itpe-pipeline-badge">알고리즘 엔지니어링</span>
-  </div>
-  <div class="itpe-pipeline-grid">
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">1단계: 토폴로지 분석</div>
-      <div class="itpe-card-title">그래프 제약 분류</div>
-      <div class="itpe-card-body">정점/간선 규모, 음수 가중치 유무, 목적점 특정 여부 분석</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">2단계: 알고리즘 선정</div>
-      <div class="itpe-card-title">최적 모델 매핑</div>
-      <div class="itpe-card-body">다익스트라(양수), 벨만포드(음수), A*(내비), 플로이드(행렬) 결정</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">3단계: 간선 경감</div>
-      <div class="itpe-card-title">Relaxation 반복</div>
-      <div class="itpe-card-body">우선순위 큐 또는 DP 메모이제이션 기반 최단 거리 배열 갱신</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">4단계: 프로토콜 연계</div>
-      <div class="itpe-card-title">라우팅 테이블 반영</div>
-      <div class="itpe-card-body">OSPF/BGP 라우터 테이블 및 내비게이션 길안내 경로 무결성 배포</div>
-    </div>
-  </div>
-</div>
 
 ## 6. 참고 및 연계 학습
 

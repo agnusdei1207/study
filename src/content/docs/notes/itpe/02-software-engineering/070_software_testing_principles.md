@@ -1,48 +1,40 @@
 ---
 title: "소프트웨어 테스트 7대 원리"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
-  - "소프트웨어공학"
-  - "테스팅원리"
-  - "ISTQB"
-  - "살충제패러독스"
-  - "ShiftLeft"
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
     variant: "tip"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
+  keyword_grade: "A"
 ---
 
-> **로드맵 경로**: 소프트웨어공학 > 소프트웨어 테스트 및 품질 > 소프트웨어 테스팅 > 소프트웨어 테스트 7대 원리
+## 지식 로드맵 내 현재 위치
 
----
-
-## 큰 그림과 30초 인출
-
-```text
-[ISTQB 소프트웨어 테스트 7대 기본 원리]
- ├── 한계 인식: 1. 결함 존재 증명(무결점 증명 불가) · 2. 완벽한 테스팅 불가(전수검사 불가능)
- ├── 전략적 배분: 3. 조기 테스팅(Shift-Left, 비용절감) · 4. 결함 집중(파레토 80:20 복잡모듈 편중)
- ├── 실행 역설 극복: 5. 살충제 패러독스(내성 발생, 케이스 갱신) · 6. 정황 의존성(도메인별 차등)
- └── 최종 가치: 7. 오류-부재의 궤변(버그 0건이라도 사용자 요구 미충족 시 무용지물)
-```
-
-- **30초 인출 구호**: "결함존재-완벽불가-조기테스팅-결함집중-살충제패러독스-정황의존-오류부재궤변! RBT로 최적화!"
+지식 위치: 소프트웨어공학 → 소프트웨어 테스트 및 품질 → 소프트웨어 테스팅 → **소프트웨어 테스트 7대 원리**
 
 ---
 
-## 핵심 용어 (5개 내외)
+## 30초 인출
 
-| 핵심 용어 | 영문 표기 | 핵심 정의 및 특징 |
-|---|---|---|
-| **결함 존재 증명** | Testing Shows Defects | 테스트는 결함이 있음을 보일 뿐, 결함이 전혀 없음을 증명할 수는 없다는 공리 |
-| **조기 테스팅** | Early Testing / Shift-Left | 요구사항 및 설계 단계부터 테스트를 개시하여 결함 전이 비용을 최소화하는 원리 |
-| **결함 집중** | Defect Clustering | 파레토 원칙(80:20)에 따라 소수의 복잡하고 결합도 높은 모듈에 결함의 80%가 편중되는 현상 |
-| **살충제 패러독스** | Pesticide Paradox | 동일한 테스트 케이스를 반복 실행하면 내성이 생겨 신규 결함을 잡지 못하므로 케이스를 갱신해야 한다는 원리 |
-| **오류-부재의 궤변** | Absence-of-Errors Fallacy | 요구사항 정의서대로 구현되어 결함이 0건이라도 사용자의 실제 목적을 충족하지 못하면 무가치하다는 역설 |
+- 본질: **소프트웨어 테스트 7대 원리**는 무한한 입력·경로 앞에서 유한한 시간·예산으로 품질을 달성하기 위한 ISTQB의 7가지 공학적 공리
+- 메커니즘: 한계 인식(결함 존재 증명·완벽 테스팅 불가) → 전략적 배분(조기 테스팅·결함 집중) → 실행 역설 극복(살충제 패러독스·정황 의존성·오류-부재의 궤변)
+- 판정 기준: 결함 부재를 증명하지 못함을 전제로 **리스크 기반 테스팅(RBT)**으로 잔존 위험을 관리하는가
+
+<details>
+<summary>핵심 용어</summary>
+
+- **결함 존재 증명(Testing Shows Defects)**: 테스트는 결함이 있음을 보일 뿐, 결함이 전혀 없음을 증명할 수는 없다는 공리
+- **조기 테스팅(Early Testing / Shift-Left)**: 요구사항 및 설계 단계부터 테스트를 개시하여 결함 전이 비용을 최소화하는 원리
+- **결함 집중(Defect Clustering)**: 파레토 원칙(80:20)에 따라 소수의 복잡하고 결합도 높은 모듈에 결함이 편중되는 현상
+- **살충제 패러독스(Pesticide Paradox)**: 동일한 테스트 케이스를 반복 실행하면 내성이 생겨 신규 결함을 잡지 못하므로 케이스를 갱신해야 한다는 원리
+- **오류-부재의 궤변(Absence-of-Errors Fallacy)**: 요구사항 정의서대로 구현되어 결함이 0건이라도 사용자의 실제 목적을 충족하지 못하면 무가치하다는 역설
+
+</details>
 
 ---
 
@@ -60,86 +52,36 @@ extra:
 
 #### 2. 7대 원리의 3단계 유기적 연계 및 극복 구조
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
-  <!-- 전체 배경 -->
-  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
-  
-  <!-- 그룹 1: 한계 인식 (좌측) -->
-  <g transform="translate(15, 15)">
-    <rect x="0" y="0" width="155" height="190" rx="6" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
-    <text x="77" y="24" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">1. 한계 인식 (공리)</text>
-    <text x="77" y="38" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">테스팅의 근본적 경계</text>
-
-    <!-- 카드 1 -->
-    <rect x="10" y="52" width="135" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="77" y="70" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">① 결함 존재 증명</text>
-    <text x="77" y="86" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">결함 있음만 증명</text>
-    <text x="77" y="98" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">무결점 증명 불가능</text>
-
-    <!-- 카드 2 -->
-    <rect x="10" y="118" width="135" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="77" y="136" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">② 완벽 테스팅 불가</text>
-    <text x="77" y="152" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">전수 검사 수학적 불가</text>
-    <text x="77" y="164" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">위험기반 표본 추출</text>
-  </g>
-
-  <!-- 그룹 2: 전략적 배분 (중앙) -->
-  <g transform="translate(182, 15)">
-    <rect x="0" y="0" width="155" height="190" rx="6" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-    <text x="77" y="24" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">2. 전략적 배분 (효율)</text>
-    <text x="77" y="38" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">한정 자원의 최적화</text>
-
-    <!-- 카드 3 -->
-    <rect x="10" y="52" width="135" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="77" y="70" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">③ 조기 테스팅</text>
-    <text x="77" y="86" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Shift-Left 원칙</text>
-    <text x="77" y="98" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">요구/설계부터 정적검토</text>
-
-    <!-- 카드 4 -->
-    <rect x="10" y="118" width="135" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="77" y="136" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">④ 결함 집중 (80:20)</text>
-    <text x="77" y="152" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">파레토의 법칙</text>
-    <text x="77" y="164" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">고위험 20% 모듈 집중</text>
-  </g>
-
-  <!-- 그룹 3: 실행 역설 극복 (우측) -->
-  <g transform="translate(350, 15)">
-    <rect x="0" y="0" width="155" height="190" rx="6" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
-    <text x="77" y="24" font-size="11" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">3. 실행 역설 극복</text>
-    <text x="77" y="38" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">품질 왜곡 함정 방어</text>
-
-    <!-- 카드 5 -->
-    <rect x="10" y="52" width="135" height="36" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="77" y="67" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">⑤ 살충제 패러독스</text>
-    <text x="77" y="80" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">반복 내성 극복 / 케이스 쇄신</text>
-
-    <!-- 카드 6 -->
-    <rect x="10" y="94" width="135" height="36" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="77" y="109" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">⑥ 정황 의존성</text>
-    <text x="77" y="122" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">도메인/안전성별 차등 전략</text>
-
-    <!-- 카드 7 -->
-    <rect x="10" y="136" width="135" height="36" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="77" y="151" font-size="9" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">⑦ 오류-부재의 궤변</text>
-    <text x="77" y="164" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">요구 미충족 시 버그 0도 무용</text>
-  </g>
-</svg>
-</div>
+```mermaid
+flowchart LR
+    subgraph G1["한계 인식"]
+        direction TB
+        P1["결함 존재 증명"] ~~~ P2["완벽 테스팅 불가"]
+    end
+    subgraph G2["전략적 배분"]
+        direction TB
+        P3["조기 테스팅"] ~~~ P4["결함 집중"]
+    end
+    subgraph G3["실행 역설 극복"]
+        direction TB
+        P5["살충제 패러독스"] ~~~ P6["정황 의존성"] ~~~ P7["오류-부재의 궤변"]
+    end
+    G1 --> G2 --> G3
+```
 
 ---
 
 ### Ⅱ. ISTQB 테스트 7대 원리 상세 분석
 
-| 원리 | 영문명 | 공학적 메커니즘 | 실무 적용 및 관리 방안 |
-|---|---|---|---|
-| **1. 결함 존재 증명** | Testing shows defect | 테스트는 잠재 결함을 들추어낼 뿐, 결함 부재를 입증하지 못함 | "버그 0건"을 출시 기준으로 삼지 않고 잔존 위험률(Residual Risk) 평가 |
-| **2. 완벽 테스팅 불가** | Exhaustive testing impossible | 모든 입력과 상태 조건의 전수 검사는 수학적/비용상 불가능 | 동등 분할, 경계값 분석, 리스크 기반 테스팅(RBT)으로 표본 추출 |
-| **3. 조기 테스팅** | Early testing (Shift-Left) | 개발 초기(요구분석, 아키텍처)에 착수할수록 결함 수정 비용 지수적 감소 | 정적 분석, 요구사항 인스펙션, BDD 인수 조건 사전 정의 |
-| **4. 결함 집중** | Defect clustering | 파레토 원칙(80:20) 성립. 복잡도 높은 20% 모듈에 결함 80% 밀집 | 복잡도(McCabe) 및 변경 빈도가 높은 모듈에 테스트 자원 80% 집중 |
-| **5. 살충제 패러독스** | Pesticide paradox | 동일 테스트 스위트만 반복 실행 시 시스템 내성 발생 | 정기적 테스트 케이스 리팩토링, 탐색적 테스팅, 뮤테이션 테스팅 |
-| **6. 정황 의존성** | Context dependent | 비즈니스 도메인 및 안전성 등급에 따라 테스트 전략이 달라짐 | 전자상거래(UX/가용성) vs 의료/자동차(ISO 26262 기능안전) |
-| **7. 오류-부재의 궤변** | Absence-of-errors fallacy | 사양서대로 완벽히 구현되어 결함이 0건이라도 현업이 외면하면 실패 | 단순 검증(Verification)을 넘어 고객 가치 확인(Validation) 병행 |
+| 원리 | 공학적 메커니즘 | 실무 적용 및 관리 방안 |
+|---|---|---|
+| **1. 결함 존재 증명** Testing shows defect | 테스트는 잠재 결함을 들추어낼 뿐, 결함 부재를 입증하지 못함 | "버그 0건"을 출시 기준으로 삼지 않고 잔존 위험률(Residual Risk) 평가 |
+| **2. 완벽 테스팅 불가** Exhaustive testing impossible | 모든 입력과 상태 조건의 전수 검사는 수학적/비용상 불가능 | 동등 분할, 경계값 분석, 리스크 기반 테스팅(RBT)으로 표본 추출 |
+| **3. 조기 테스팅** Early testing (Shift-Left) | 개발 초기(요구분석, 아키텍처)에 착수할수록 결함 수정 비용 지수적 감소 | 정적 분석, 요구사항 인스펙션, BDD 인수 조건 사전 정의 |
+| **4. 결함 집중** Defect clustering | 파레토 원칙(80:20) 성립. 복잡도 높은 20% 모듈에 결함 80% 밀집 | 복잡도(McCabe) 및 변경 빈도가 높은 모듈에 테스트 자원 집중 |
+| **5. 살충제 패러독스** Pesticide paradox | 동일 테스트 스위트만 반복 실행 시 시스템 내성 발생 | 정기적 테스트 케이스 리팩토링, 탐색적 테스팅, 뮤테이션 테스팅 |
+| **6. 정황 의존성** Context dependent | 비즈니스 도메인 및 안전성 등급에 따라 테스트 전략이 달라짐 | 전자상거래(UX/가용성) vs 의료/자동차(ISO 26262 기능안전) |
+| **7. 오류-부재의 궤변** Absence-of-errors fallacy | 사양서대로 완벽히 구현되어 결함이 0건이라도 현업이 외면하면 실패 | 단순 검증(Verification)을 넘어 고객 가치 확인(Validation) 병행 |
 
 ---
 
@@ -149,7 +91,7 @@ extra:
 
 | 핵심 역설 | 발생 원인 | 현장 문제점 | 공학적 극복 대책 |
 |---|---|---|---|
-| **살충제 패러독스** | 자동화 회귀 스위트의 무비판적 반복 실행 | 신규 기능 및 경계 엣지 케이스 탐지 실패 | **탐색적 테스팅(40%) 병행 + 뮤테이션 테스트 기반 케이스 쇄신** |
+| **살충제 패러독스** | 자동화 회귀 스위트의 무비판적 반복 실행 | 신규 기능 및 경계 엣지 케이스 탐지 실패 | **탐색적 테스팅 병행 + 뮤테이션 테스트 기반 케이스 쇄신** |
 | **결함 집중** | 모듈 간 복잡도 및 의존성 불균형 | 자원을 전체 모듈에 균등 분배하여 주요 결함 누락 | **복잡도 지표(McCabe, Chidamber) 기반 RBT 집중 테스트** |
 | **오류-부재의 궤변** | 개발자 중심의 기능 사양서 매몰 | 시스템 오픈 후 사용자의 실질적 인수 거부 | **현업 주도 BDD(행위 주도 개발) 및 조기 사용자 인수 테스트(UAT)** |
 
@@ -159,39 +101,25 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **자동화 회귀 테스트 100% Pass 맹신으로 운영 배포 후 대형 장애 발생** | 고정 테스트 외에 전문 테스터 주관의 탐색적 테스팅(Exploratory Testing) 40% 편성 | 엣지 케이스 결함 적출률 35% 향상 |
-| **일정 부족으로 인한 후반부 테스트 생략 및 불완전 출시** | 시스템 실패 가능성과 비즈니스 영향도 기반 리스크 기반 테스팅(RBT) 적용 | 핵심 비즈니스 크리티컬 패스 테스트 커버리지 100% 달성 |
-| **사양서 일치 검증에만 매몰되어 오픈 후 현업 사용 거부 (오류 부재 궤변)** | 개발 초기부터 현업이 참여하는 BDD(Gherkin) 인수 기준 수립 및 조기 UAT | 요구사항 불일치 결함 90% 사전 예방 |
-| **개발 후반부 동적 테스트 단계에서 아키텍처 결함 발견으로 일정 마비** | 요구사항 및 설계 단계부터 정적 인스펙션을 수행하는 Shift-Left 체계 구축 | 결함 수정 비용 80% 절감 및 일정 준수율 확보 |
+| **자동화 회귀 테스트 전수 Pass 맹신으로 운영 배포 후 대형 장애 발생** | 고정 테스트 외에 전문 테스터 주관의 탐색적 테스팅(Exploratory Testing) 편성 | 엣지 케이스 결함 적출률 향상 |
+| **일정 부족으로 인한 후반부 테스트 생략 및 불완전 출시** | 시스템 실패 가능성과 비즈니스 영향도 기반 리스크 기반 테스팅(RBT) 적용 | 핵심 비즈니스 크리티컬 패스 테스트 커버리지 확보 |
+| **사양서 일치 검증에만 매몰되어 오픈 후 현업 사용 거부 (오류 부재 궤변)** | 개발 초기부터 현업이 참여하는 BDD(Gherkin) 인수 기준 수립 및 조기 UAT | 요구사항 불일치 결함 사전 예방 |
+| **개발 후반부 동적 테스트 단계에서 아키텍처 결함 발견으로 일정 마비** | 요구사항 및 설계 단계부터 정적 인스펙션을 수행하는 Shift-Left 체계 구축 | 결함 수정 비용 절감 및 일정 준수율 확보 |
 
 ---
 
 ### Ⅴ. 기술사적 제언: Shift-Left와 리스크 기반 테스팅(RBT) 통합 거버넌스
 
 ### 학습자 통찰 메모 — 답안 밖
-```text
-[핵심 통찰]
-테스트 7대 원리는 단순한 암기 사항이 아니다.
-"완벽한 테스팅은 불가능하므로(1,2)" -> "요구사항부터 시작해 위험한 20%에 80% 자원을 몰아주고(3,4)"
--> "반복 실행의 내성을 깨며 도메인과 비즈니스 목적에 부합해야 한다(5,6,7)"는 완벽한 논리적 폐루프다.
-실무에서 '버그 제로'를 외치는 것은 공학에 대한 무지이며,
-남아있는 잔존 위험(Residual Risk)을 RBT(위험 기반 테스팅)로 관리하고 탐색적 테스팅으로 내성을 깨는 것이 참된 품질 거버넌스다.
 
-[나라면]
-실전 답안에서 7개 원리를 단순 열거하지 않고 [한계 인식 - 전략적 배분 - 실행 역설 극복]의 3단계로 구조화하겠다.
-그리고 3단락에서 살충제 패러독스를 깨는 탐색적 테스팅(ET)과 Shift-Left 기반 RBT 프레임워크를 연계하여 최고 득점을 견인하겠다.
-```
+- `[핵심 통찰]`: 테스트 7대 원리는 단순한 암기 사항이 아니라 "완벽한 테스팅은 불가능하므로(1,2)" → "요구사항부터 시작해 위험한 모듈에 자원을 몰아주고(3,4)" → "반복 실행의 내성을 깨며 도메인과 비즈니스 목적에 부합해야 한다(5,6,7)"의 논리적 폐루프다. 실무에서 '버그 제로'를 외치는 것은 공학에 대한 무지이며, 남아있는 잔존 위험(Residual Risk)을 RBT(위험 기반 테스팅)로 관리하고 탐색적 테스팅으로 내성을 깨는 것이 참된 품질 거버넌스다.
+- `나라면`: 실전 답안에서 7개 원리를 단순 열거하지 않고 [한계 인식 - 전략적 배분 - 실행 역설 극복]의 3단계로 구조화하고, 3단락에서 살충제 패러독스를 깨는 탐색적 테스팅(ET)과 Shift-Left 기반 RBT 프레임워크를 연계하겠다.
 
 ### 실전 답안용 기술사적 제언
-- **판정 기준**: 모듈 복잡도(McCabe 10 초과), 비즈니스 장애 영향도(재무/생명 직결 여부), 테스트 스위트의 뮤테이션 스코어(내성 발생률 30% 초과)를 기준으로 테스팅 자원 집중 여부를 판정함.
-- **대응 방안**: 전수 검사의 비현실성을 극복하기 위해 RBT(리스크 기반 테스팅)를 통해 위험 상위 20% 모듈에 80%의 테스트 엔지니어링 역량을 집중하고, Shift-Left(정적 인스펙션 및 단위 TDD)를 전면 강제함.
-- **검증 체계**: 고정 회귀 스위트의 살충제 패러독스를 타파하기 위해 전체 테스트 시간의 30~40%를 시나리오 없는 탐색적 테스팅(Exploratory Testing)에 배정하고, 뮤테이션 테스트를 통해 TC 검출력을 상시 실증함.
-- **기대 효과**: 결함 전이 비용을 80% 이상 절감하면서 핵심 비즈니스 장애 누출률 0%를 달성하고, 오류-부재의 궤변을 극복하여 실제 고객 만족도 및 시스템 인수 성공률 100%를 보장함.
-
-```text
-[한계 인식 (1,2)] ──> [전략 배분: Shift-Left & RBT (3,4)] ──> [역설 극복: 탐색적 쇄신 & BDD (5,6,7)]
-(완벽 테스팅 불가)      (조기 착수 및 위험 모듈 집중)            (살충제 내성 타파 및 고객가치)
-```
+- **판정 기준**: 모듈 복잡도(McCabe), 비즈니스 장애 영향도(재무/생명 직결 여부), 테스트 스위트의 뮤테이션 스코어를 기준으로 테스팅 자원 집중 여부를 판정함.
+- **대응 방안**: 전수 검사의 비현실성을 극복하기 위해 RBT(리스크 기반 테스팅)로 위험 상위 모듈에 테스트 엔지니어링 역량을 집중하고, Shift-Left(정적 인스펙션 및 단위 TDD)를 전면 강제함.
+- **검증 체계**: 고정 회귀 스위트의 살충제 패러독스를 타파하기 위해 상당 비율의 테스트 시간을 시나리오 없는 탐색적 테스팅(Exploratory Testing)에 배정하고, 뮤테이션 테스트를 통해 TC 검출력을 상시 실증함.
+- **기대 효과**: 결함 전이 비용을 절감하고 핵심 비즈니스 장애 누출을 억제하며, 오류-부재의 궤변을 극복하여 실제 고객 만족도 및 시스템 인수 성공률을 높임.
 
 ---
 

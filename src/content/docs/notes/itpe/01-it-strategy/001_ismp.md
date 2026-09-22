@@ -14,29 +14,25 @@ extra:
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략·관리에서 정보화 기획·발주를 거쳐 ISMP로 이어지는 지식 위치">
-  <span>IT 전략·관리</span>
-  <span>정보화 기획·발주</span>
-  <strong>ISMP</strong>
-</div>
+지식 위치: IT 전략·관리 → 정보화 기획·발주 → **ISMP**
 
 ## 30초 인출
 
-- 본질: **ISMP(Information System Master Plan)**는 **ISP(Information Strategy Planning)**가 선정한 정보화 과제를 조달 가능한 **Baseline**으로 구체화
-- 메커니즘: 요구사항 분석 → 아키텍처 정의 → 규모·예산 산정 → **RFP(Request for Proposal)** 도출 과정을 **RTM(Requirements Traceability Matrix)**으로 연결
-- 산출물: 요구사항 명세서 · 목표 아키텍처 · **FP(Function Point)** 기반 예산서 · RFP
+- 본질: **ISMP(Information System Master Plan)**는 **ISP(Information Strategy Planning)**가 선정한 정보화 과제를 조달 가능한 **Baseline**으로 구체화한다.
+- 메커니즘: 요구사항 분석 → 아키텍처 정의 → 규모·예산 산정 → **RFP(Request for Proposal)** 도출 과정을 **RTM(Requirements Traceability Matrix)**으로 연결한다.
+- 산출물: 요구사항 명세서 · 목표 아키텍처 · **FP(Function Point)** 기반 예산서 · RFP이다.
 
 ## 핵심 용어
 
 <details>
 <summary>핵심 용어</summary>
 
-- **ISMP(Information System Master Plan)**: 특정 시스템의 요구사항·구조·예산을 발주 가능한 수준으로 구체화하는 마스터플랜
-- **ISP(Information Strategy Planning)**: 조직의 비전 달성을 위해 정보화 방향과 투자 과제를 선정하는 상위 전략 계획
-- **Baseline(기준선)**: 승인된 범위·요구사항·비용의 공식적인 변경 통제 기준
-- **RTM(Requirements Traceability Matrix)**: 요구사항이 설계·비용·계약 산출물에 빠짐없이 반영되었는지 양방향으로 검증하는 추적 매트릭스
-- **FP(Function Point)**: 사용자 관점의 논리적 기능을 기준으로 소프트웨어 규모와 비용을 산정하는 기법
-- **RFP(Request for Proposal)**: 발주자가 제안사에게 시스템 구축 범위·요구사항·평가·계약 조건을 제시하는 제안요청서
+- **ISMP(Information System Master Plan)**: 선정된 시스템의 요구사항·구조·예산을 발주 가능한 수준으로 구체화해 조달 기준을 만드는 계획이다.
+- **ISP(Information Strategy Planning)**: 조직의 비전과 현황을 바탕으로 정보화 방향과 투자 과제를 선정하는 상위 계획이다.
+- **Baseline(기준선)**: 승인된 범위·요구사항·비용을 이후 변경과 비교하고 통제하는 공식 기준이다.
+- **RTM(Requirements Traceability Matrix)**: 요구사항을 설계·비용·계약 산출물과 양방향으로 연결해 누락과 과잉 반영을 검증하는 추적표다.
+- **FP(Function Point)**: 사용자에게 제공되는 논리적 기능을 세어 소프트웨어 규모와 비용을 산정하는 기법이다.
+- **RFP(Request for Proposal)**: 발주자가 제안사에 구축 범위·요구사항·평가 기준·계약 조건을 제시해 제안을 요청하는 문서다.
 
 </details>
 
@@ -48,8 +44,8 @@ extra:
 
 > ISMP는 특정 정보시스템의 요구사항을 실행 가능한 조달 Baseline으로 전환하며, 품질 성패는 산출물 두께가 아닌 Traceability로 판정함
 
-- 정의: 특정 정보시스템의 요구사항을 **FP 산정 수준**으로 상세화하여 조달을 위한 발주 **Baseline**을 수립하는 활동
-- 목적: 과업 범위 기준선 확정 및 조달 분쟁·과업 변경 차단
+- 정의: 특정 정보시스템의 **요구사항**을 **FP(Function Point) 산정 수준**으로 상세화하여 **RFP(Request for Proposal)**와 발주 **Baseline**을 수립하는 활동
+- 목적: 과업 범위 기준선을 확정하고 요구사항 추적성을 확보해 조달 분쟁·과업 변경을 줄이는 것
 
 ## Ⅱ. ISMP 구성체계 및 5단계 방법론
 

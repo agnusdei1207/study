@@ -9,10 +9,10 @@ tags:
   - "부적합비용"
   - "Shift-Left"
   - "보엠의법칙"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:26:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,52 +23,11 @@ extra:
   <strong>소프트웨어 품질비용(Cost of Quality)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 소프트웨어 제품이 명시된 품질 요구수준을 만족하도록 보장하기 위해 투입되는 적합 비용(예방·평가 비용)과, 품질 결함으로 인해 사후에 발생하는 부적합 비용(내부·외부 실패 비용)의 총합을 체계적으로 분류하여 총원가를 최소화하는 경제학적 품질 통제 모델
 - 메커니즘: PAF(Prevention-Appraisal-Failure) 비용 체계 수립 $\rightarrow$ 요구·설계 단계 예방/평가 선제 투자(Shift-Left) $\rightarrow$ 개발 공정 결함 조기 격리 $\rightarrow$ 외부 실패 비용(장애·소송) 급감 $\rightarrow$ 총 품질비용(Total CoQ) 최적점 달성
 - 산출물: 품질비용 분류 보고서(CoQ Report) · 공정별 결함 처리 비용 분석서 · 품질 투자 수익률(ROI) 대시보드
-
-<div class="itpe-flow-map" role="img" aria-label="품질비용 관리 및 최적화 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: PAF 품질비용 체계 수립</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>분류</strong><span>예방(교육·프로세스), 평가(테스트), 내부실패(재작업), 외부실패(장애보상) 계정화</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 선행 적합 비용 투자 (Shift-Left)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>투자</strong><span>요구사항 인스펙션, 아키텍처 리뷰(ATAM), CI 자동화 정적 분석 도입</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 공정별 결함 조기 격리</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>검출</strong><span>빌드 단계 단위 테스트로 결함을 조기 수정하여 내부 재작업 비용 최소화</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: 총 품질비용 최적성 평가 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>예방·평가 투자를 통해 외부 실패 비용이 통제되며 총 품질비용(Total CoQ) 최적점에 도달했는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (최적 CoQ 달성)</strong>
-      <span>배포 승인 $\rightarrow$ 운영 단계 장애율 급감 및 지속적 품질 모니터링 체계 가동</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (실패 비용 과다)</strong>
-      <span>예방·평가 체계 취약 $\rightarrow$ 코드 리뷰 의무화 및 테스트 자동화 커버리지 확대</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -101,130 +60,28 @@ extra:
 
 ### PAF 모델 상충 곡선 및 총 품질비용 최적점
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">소프트웨어 품질비용(CoQ) 상충 곡선과 경제적 최적점</text>
-
-    <!-- Axes -->
-    <line x1="55" y1="180" x2="480" y2="180" stroke="var(--color-border, #64748b)" stroke-width="1.5"/>
-    <line x1="55" y1="180" x2="55" y2="40" stroke="var(--color-border, #64748b)" stroke-width="1.5"/>
-    <text x="480" y="195" font-size="7.5" fill="var(--color-text, #334155)">품질 수준 (Quality Level)</text>
-    <text x="25" y="45" font-size="7.5" fill="var(--color-text, #334155)">비용</text>
-
-    <!-- Conformance Curve (Prevention + Appraisal) -> Upward -->
-    <path d="M 55 170 Q 250 160 460 60" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <text x="460" y="55" text-anchor="end" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">적합비용 (예방 + 평가)</text>
-
-    <!-- Non-conformance Curve (Internal + External Failures) -> Downward -->
-    <path d="M 65 55 Q 160 150 460 175" fill="none" stroke="#ef4444" stroke-width="1.8"/>
-    <text x="75" y="50" font-size="7" font-weight="bold" fill="#dc2626">부적합비용 (실패 손실)</text>
-
-    <!-- Total CoQ Curve (U-Shape) -->
-    <path d="M 80 65 Q 260 185 450 75" fill="none" stroke="#16a34a" stroke-width="2.2"/>
-    <text x="350" y="70" font-size="7.5" font-weight="bold" fill="#16a34a">총 품질비용 (Total CoQ)</text>
-
-    <!-- Optimum Point Marker -->
-    <circle cx="260" cy="125" r="4" fill="#16a34a"/>
-    <line x1="260" y1="125" x2="260" y2="180" stroke="#16a34a" stroke-width="1" stroke-dasharray="3,2"/>
-    <text x="260" y="115" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">최적점 (Min CoQ)</text>
-    <text x="260" y="195" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">최적 품질 영역</text>
-  </svg>
-</div>
+품질 수준을 높일수록 적합비용(예방+평가)은 증가하고 부적합비용(실패 손실)은 급감하며, 두 곡선의 합인 총 품질비용(Total CoQ)은 U자형이 되어 최적점(Min CoQ)이 존재한다.
 
 ### 보엠의 법칙(Boehm's Law) 및 Shift-Left 절감 효과
 
-<div style="max-width: 520px; margin: 200px auto 1rem;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">공정 단계별 결함 수정 비용 급증 (보엠의 법칙) 및 Shift-Left 효과</text>
+| 공정 단계 | 결함 수정 비용 |
+|---|---|
+| 요구분석 | 1배 (기준) |
+| 설계 단계 | 3~5배 |
+| 구현(코딩) | 10배 |
+| 통합시험 | 20~30배 |
+| 운영 배포 | 50~100배 (장애·소송·리콜) |
 
-    <!-- Bar 1: Requirements -->
-    <rect x="25" y="140" width="75" height="35" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
-    <text x="62" y="155" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">1. 요구분석</text>
-    <text x="62" y="168" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">1배 (기준)</text>
-
-    <!-- Bar 2: Design -->
-    <rect x="120" y="125" width="75" height="50" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
-    <text x="157" y="145" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">2. 설계단계</text>
-    <text x="157" y="162" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">3~5배</text>
-
-    <!-- Bar 3: Coding -->
-    <rect x="215" y="105" width="75" height="70" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="252" y="130" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">3. 구현(코딩)</text>
-    <text x="252" y="148" text-anchor="middle" font-size="7" font-weight="bold" fill="#ca8a04">10배</text>
-
-    <!-- Bar 4: Testing -->
-    <rect x="310" y="80" width="75" height="95" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="347" y="115" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">4. 통합시험</text>
-    <text x="347" y="135" text-anchor="middle" font-size="7" font-weight="bold" fill="#ca8a04">20~30배</text>
-
-    <!-- Bar 5: Operation -->
-    <rect x="405" y="45" width="85" height="130" rx="4" fill="var(--color-bg-subtle, #fef2f2)" stroke="#ef4444" stroke-width="1.4"/>
-    <text x="447" y="85" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">5. 운영 배포</text>
-    <text x="447" y="105" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">50~100배</text>
-    <text x="447" y="125" text-anchor="middle" font-size="6.5" fill="#dc2626">장애·소송·리콜</text>
-
-    <!-- Shift-Left Highlight Arrow -->
-    <path d="M 380 40 Q 250 25 70 125" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-dasharray="4,2"/>
-    <text x="230" y="40" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">Shift-Left: 조기 발견 시 비용 90% 이상 절감</text>
-  </svg>
-</div>
+Shift-Left로 조기 발견 시 비용 90% 이상 절감이 가능하다.
 
 ### PAF 4대 품질비용 구성 요소
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>① 예방 비용 (Prevention)</strong></span>
-      <span class="itpe-badge">결함 원천 차단</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>소프트웨어 엔지니어 교육 및 시큐어 코딩 훈련</li>
-        <li>개발 방법론 표준화, 요구사항 정형 명세 및 인스펙션</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>② 평가 비용 (Appraisal)</strong></span>
-      <span class="itpe-badge">품질 수준 계측</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>단위 테스트, 통합 테스트, 시스템 부하 시험(BMT)</li>
-        <li>SonarQube 정적 코드 분석 및 서드파티 보안 점검</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>③ 내부 실패 비용 (Internal Failure)</strong></span>
-      <span class="itpe-badge">릴리스 전 손실</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>배포 전 스테이징 환경에서 발견된 버그 디버깅 및 재작업</li>
-        <li>빌드 실패로 인한 컴파일 재수행 및 회귀 테스트 공수</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>④ 외부 실패 비용 (External Failure)</strong></span>
-      <span class="itpe-badge">운영 후 파괴적 손실</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>운영 오픈 후 대규모 전산 장애 복구 및 긴급 핫픽스</li>
-        <li>고객 신뢰도 추락, SLA 위약금, 과징금, 법적 집단 소송</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 품질비용 구성 | 핵심 판단 |
+|---|---|
+| **예방 비용(Prevention)** | 결함 원천 차단: 엔지니어 교육·시큐어 코딩 훈련, 개발 방법론 표준화, 요구사항 정형 명세·인스펙션 |
+| **평가 비용(Appraisal)** | 품질 수준 계측: 단위·통합 테스트, 시스템 부하 시험(BMT), SonarQube 정적 분석·서드파티 보안 점검 |
+| **내부 실패 비용(Internal Failure)** | 릴리스 전 손실: 스테이징 버그 디버깅·재작업, 빌드 실패 재컴파일·회귀 테스트 공수 |
+| **외부 실패 비용(External Failure)** | 운영 후 파괴적 손실: 전산 장애 복구·긴급 핫픽스, 고객 신뢰도 추락·SLA 위약금·과징금·집단 소송 |
 
 ## 3. 실무 적용 및 고려사항
 
@@ -262,35 +119,6 @@ extra:
 - **대응 방안**: 예방 및 평가 단계로 예산의 20%를 선제 이전(Shift-Left)하고 단위/통합 테스트 자동화 파이프라인 구축
 - **검증 체계**: SonarQube 기술 부채 지수 및 Jira 결함 수습 공수 데이터를 결합한 실시간 CoQ 대시보드 운영
 - **기대 효과**: 운영 결함 75% 사전 예방 및 불필요한 사후 재작업 비용 절감을 통한 소프트웨어 총소유비용(TCO) 30% 절감
-
-<div class="itpe-pipeline-container" role="region" aria-label="품질비용(CoQ) 최적화 및 Shift-Left 거버넌스 파이프라인">
-  <div class="itpe-pipeline-header">
-    <span class="itpe-pipeline-title">품질비용(CoQ) 최적화 및 Shift-Left 거버넌스 파이프라인</span>
-    <span class="itpe-pipeline-badge">품질 경제학</span>
-  </div>
-  <div class="itpe-pipeline-grid">
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">1단계: 선제 예방</div>
-      <div class="itpe-card-title">Shift-Left 투자</div>
-      <div class="itpe-card-body">요구사항 인스펙션 및 시큐어 코딩 교육으로 결함 유입 원천 차단</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">2단계: 한계비용 0화</div>
-      <div class="itpe-card-title">CI/CD 자동 평가</div>
-      <div class="itpe-card-body">빌드 시 자동화 단위/정적 테스트 수행으로 평가 비용 최소화</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">3단계: 부채 상환</div>
-      <div class="itpe-card-title">기술 부채 통제</div>
-      <div class="itpe-card-body">정기 리팩토링 스프린트를 예방 비용으로 집행하여 미래 장애 방어</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">4단계: ROI 분석</div>
-      <div class="itpe-card-title">Total CoQ 최적화</div>
-      <div class="itpe-card-body">실패 비용 감소 추이를 실시간 집계하여 품질 투자의 재무적 가치 입증</div>
-    </div>
-  </div>
-</div>
 
 ## 6. 참고 및 연계 학습
 

@@ -8,10 +8,10 @@ tags:
   - "정규언어"
   - "어휘분석"
   - "ReDoS"
-date: "2026-09-20"
+date: "2026-09-22T07:25:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -27,36 +27,6 @@ extra:
 - 본질: 무한한 추가 메모리 없이 유한한 개수의 내부 상태와 전이 규칙만을 활용하여, 입력된 기호열(문자열)이 특정 정규 언어(Regular Language)의 규칙에 부합하는지 수학적으로 판별하는 추상 계산 모델
 - 메커니즘: 정규 표현식(Regex) → NFA 변환(톰슨 구성법) → DFA 변환(부분집합 구성법) → 상태 최소화(홉크로프트 알고리즘) → 선형 시간($O(n)$) 고속 어휘 분석 실행
 - 산출물: 5-튜플 $(Q, \Sigma, \delta, q_0, F)$ 수학 모델 · 상태 전이 다이어그램 · 상태 전이 테이블 · 컴파일러 어휘 분석기(Lexer) 엔진
-
-<div class="itpe-flow-map" role="img" aria-label="정규표현식에서 최소화 DFA로 이어지는 어휘 분석 변환 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 정규 표현식 (Regex)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>표현</strong><span>패턴 명세 (선택, 연결, 클레이니 스타 * )</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓ (톰슨 구성법, Thompson's Construction)</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 비결정적 유한 오토마타 (NFA)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>특징</strong><span>$\epsilon$(입력 없는 전이) 허용 · 동일 입력 시 다중 다음 상태 분기</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓ (부분집합 구성법, Subset Construction)</div>
-  <div class="itpe-flow-node is-current">
-    <strong>3단계: 결정적 유한 오토마타 (DFA)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>특징</strong><span>단일 확정 전이 · 백트래킹 없음 · 선형 탐색 시간 보장</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓ (홉크로프트 알고리즘, Hopcroft's Minimization)</div>
-  <div class="itpe-flow-node">
-    <strong>4단계: 최소화 DFA (Min-DFA)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>결과</strong><span>동등 상태(Equivalent States) 통합 · 메모리 및 실행 속도 최적화</span></div>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -90,143 +60,27 @@ extra:
 
 ### DFA와 NFA 상태 전이 다이어그램 비교
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="fa-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="none" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    
-    <!-- Left: DFA Container -->
-    <rect x="15" y="15" width="240" height="150" rx="6" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="135" y="32" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">DFA (단일 확정 전이 · 선형 O(n))</text>
-    
-    <!-- DFA Nodes & Transitions -->
-    <!-- Start arrow -->
-    <line x1="25" y1="85" x2="40" y2="85" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-arrow)"/>
-    <!-- q0 -->
-    <circle cx="65" cy="85" r="18" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <text x="65" y="89" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">q0</text>
-    <!-- Arrow q0 -> q1 -->
-    <line x1="83" y1="85" x2="122" y2="85" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-arrow)"/>
-    <text x="102" y="78" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-accent, #0284c7)">'a'</text>
-    <!-- q1 -->
-    <circle cx="145" cy="85" r="18" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <text x="145" y="89" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">q1</text>
-    <!-- Arrow q1 -> q2 -->
-    <line x1="163" y1="85" x2="202" y2="85" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-arrow)"/>
-    <text x="182" y="78" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-accent, #0284c7)">'b'</text>
-    <!-- q2 (Accept State: Double Circle) -->
-    <circle cx="225" cy="85" r="18" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <circle cx="225" cy="85" r="14" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="225" y="89" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">q2</text>
-    <text x="135" y="130" text-anchor="middle" font-size="8" fill="var(--color-text-muted, #64748b)">입력당 단 1개 전이 · 백트래킹 없음</text>
-    <text x="135" y="146" text-anchor="middle" font-size="7.5" fill="var(--color-primary, #2563eb)">[ReDoS 완전 차단 보장]</text>
-
-    <!-- Right: NFA Container -->
-    <rect x="265" y="15" width="240" height="150" rx="6" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="385" y="32" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">NFA (다중 분기 · ε-전이 허용)</text>
-    
-    <!-- NFA Nodes & Transitions -->
-    <line x1="275" y1="85" x2="290" y2="85" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-arrow)"/>
-    <!-- q0 -->
-    <circle cx="310" cy="85" r="16" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <text x="310" y="89" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">q0</text>
-    
-    <!-- Top Branch: q1 -->
-    <path d="M 324 75 Q 350 55 375 58" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-arrow)"/>
-    <text x="350" y="58" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-accent, #0284c7)">'a'</text>
-    <circle cx="392" cy="62" r="15" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <text x="392" y="66" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">q1</text>
-    <path d="M 407 65 Q 435 75 455 82" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-arrow)"/>
-    <text x="435" y="68" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-accent, #0284c7)">'b'</text>
-
-    <!-- Bottom Branch: q2 -->
-    <path d="M 324 95 Q 350 115 375 112" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-arrow)"/>
-    <text x="350" y="118" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-accent, #0284c7)">'a'</text>
-    <circle cx="392" cy="108" r="15" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <text x="392" y="112" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">q2</text>
-    <path d="M 407 105 Q 435 95 455 88" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-arrow)"/>
-    <text x="435" y="108" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-accent, #0284c7)">ε</text>
-
-    <!-- Merge Accept State: q3 -->
-    <circle cx="475" cy="85" r="16" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <circle cx="475" cy="85" r="12" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="475" y="89" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">q3</text>
-    
-    <text x="385" y="144" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">동일 입력 다중 경로 · 최악 O(2^n) 백트래킹</text>
-
-    <!-- Bottom Unification Notice -->
-    <rect x="15" y="175" width="490" height="32" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
-    <text x="260" y="195" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">등가성 원리: 부분집합 구성법(Subset Construction)으로 모든 NFA는 등가의 DFA로 100% 변환 가능</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    subgraph D["DFA · 단일 확정 전이"]
+        direction LR
+        q0["q0"] -->|"a"| q1["q1"] -->|"b"| q2["q2 수용"]
+    end
+    subgraph N["NFA · 다중 분기"]
+        direction LR
+        n0["q0"] -->|"a"| n1["q1"]
+        n0 -->|"a"| n2["q2"]
+        n1 -->|"b"| n3["q3 수용"]
+        n2 -->|"ε"| n3
+    end
+```
 
 ### 정규식에서 실행 코드까지의 변환 4대 단계
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="fa-flow-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    
-    <!-- Stage 1 -->
-    <rect x="15" y="25" width="105" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="15" y="25" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="67" y="39" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">① 정규식 (Regex)</text>
-    <text x="67" y="65" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">패턴 문법 명세</text>
-    <text x="67" y="80" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">(선택, 연결, *)</text>
-    <text x="67" y="105" text-anchor="middle" font-size="7" fill="var(--color-primary, #2563eb)">입력 패턴 정의</text>
-
-    <!-- Arrow 1 -> 2 -->
-    <line x1="120" y1="75" x2="138" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-flow-arrow)"/>
-    <text x="130" y="70" text-anchor="middle" font-size="6.5" fill="var(--color-accent, #0284c7)">톰슨법</text>
-
-    <!-- Stage 2 -->
-    <rect x="140" y="25" width="105" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="140" y="25" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="192" y="39" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">② NFA 생성</text>
-    <text x="192" y="65" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">ε-전이 허용</text>
-    <text x="192" y="80" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">상태 수 O(m)</text>
-    <text x="192" y="105" text-anchor="middle" font-size="7" fill="var(--color-accent, #0284c7)">기초 오토마타</text>
-
-    <!-- Arrow 2 -> 3 -->
-    <line x1="245" y1="75" x2="263" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-flow-arrow)"/>
-    <text x="255" y="70" text-anchor="middle" font-size="6.5" fill="var(--color-accent, #0284c7)">부분집합</text>
-
-    <!-- Stage 3 -->
-    <rect x="265" y="25" width="110" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <rect x="265" y="25" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="320" y="39" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-primary, #2563eb)">③ DFA 결정화</text>
-    <text x="320" y="65" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">단일 전이 확정</text>
-    <text x="320" y="80" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">백트래킹 제거</text>
-    <text x="320" y="105" text-anchor="middle" font-size="7" fill="var(--color-primary, #2563eb)">선형 시간 O(n)</text>
-
-    <!-- Arrow 3 -> 4 -->
-    <line x1="375" y1="75" x2="393" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#fa-flow-arrow)"/>
-    <text x="385" y="70" text-anchor="middle" font-size="6.5" fill="var(--color-accent, #0284c7)">홉크로프트</text>
-
-    <!-- Stage 4 -->
-    <rect x="395" y="25" width="110" height="100" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="395" y="25" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="450" y="39" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">④ 최소화 Min-DFA</text>
-    <text x="450" y="65" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">동등 상태 통합</text>
-    <text x="450" y="80" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">2차원 전이 테이블</text>
-    <text x="450" y="105" text-anchor="middle" font-size="7" fill="var(--color-accent, #0284c7)">초고속 Lexer 실행</text>
-
-    <!-- Bottom Result Summary -->
-    <rect x="15" y="140" width="490" height="42" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="157" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">실행 아키텍처: Table[State][Input] 2차원 배열 조회를 통한 1클록 선형 탐색</text>
-    <text x="260" y="172" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">ReDoS 방어(Google RE2 엔진) · 패킷 필터링(Snort) · 컴파일러 렉서(Lex/Flex)의 표준 엔진</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    R["정규식 (Regex)"] -->|톰슨 구성법| N["NFA 생성"] -->|부분집합 구성법| D["DFA 결정화"] -->|홉크로프트 최소화| M["최소화 Min-DFA"]
+```
 
 <div class="itpe-component-grid">
   <div class="itpe-component-card">
@@ -325,36 +179,6 @@ extra:
 - **대응 방안**: Java/Python 표준 Regex 라이브러리 대신 Google RE2 또는 Rust Regex 엔진을 도입하여 악의적 입력에도 엄격한 $O(n)$ 선형 시간 복잡도 강제.
 - **검증 체계**: CI/CD 정적 분석 파이프라인에 `safe-regex`, `vuln-regex-detector` 도구를 연동하여 지수 시간 폭증을 유발하는 중첩 수량자 사전 차단.
 - **기대 효과**: ReDoS 공격으로 인한 컨테이너 CPU 100% 고갈 장애를 100% 예방하고 초당 수만 건의 텍스트 패턴 고속 검증 달성.
-
-<div class="itpe-flow-map" role="img" aria-label="유한 오토마타 기반 정규식 보안 및 최적화 실행 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>정규식 패턴 작성</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>검증</strong><span>CI 단계 ReDoS 정적 탐지</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>DFA 엔진 컴파일</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>변환</strong><span>부분집합 구성 및 최소화</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node is-current">
-    <strong>2차원 테이블 매칭</strong>
-    <div class="itpe-step-detail">
-      <strong>실행</strong><span>선형 시간 $O(n)$ 고속 판별</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>안전한 서비스 운영</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>결과</strong><span>ReDoS 원천 차단 및 가용성</span></div>
-    </div>
-  </div>
-</div>
 
 ## 7. 참고 및 연계 학습
 

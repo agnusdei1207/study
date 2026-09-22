@@ -10,10 +10,10 @@ tags:
   - "리틀의법칙"
   - "TPS"
   - "APM"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:25:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,52 +24,11 @@ extra:
   <strong>성능 테스트(Performance Test)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 실제 운영 환경에서 예상되는 다양한 트래픽 조건하에서 시스템의 응답 시간(Response Time), 처리량(TPS), 자원 사용률(CPU, 메모리, I/O)을 정량적으로 계측하여 목표 SLA/SLO 준수 여부를 검증하고, 시스템의 파괴 임계점(Breakpoint)과 인프라 병목을 선제 도출하는 비기능 테스트 엔지니어링
-- 메커니즘: SLA 성능 목표 설정 $\rightarrow$ 리틀의 법칙 기반 부하 모델링 $\rightarrow$ 유형별(Load/Stress/Soak/Spike) 부하 주입 및 APM 계측 $\rightarrow$ 병목 프로파일링 및 튜닝 $\rightarrow$ 성능 기준선 확정
+- 메커니즘: SLA 성능 목표 설정 → 리틀의 법칙 기반 부하 모델링 → 유형별(Load/Stress/Soak/Spike) 부하 주입 및 APM 계측 → 병목 프로파일링 및 튜닝 → 성능 기준선 확정
 - 산출물: 성능 테스트 계획서 · 부하 모델 정의서 · 성능 시험 성적서(BMT Report) · 병목 구간 튜닝 권고서
-
-<div class="itpe-flow-map" role="img" aria-label="성능 테스트 추진 절차 및 성능 게이트 판정 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 성능 목표(SLA) 정의 및 부하 모델링</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>모델링</strong><span>피크 TPS, 목표 응답시간, 동시 사용자(VUser) 규모 수학적 산정</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 부하 시나리오 스크립팅</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>스크립트</strong><span>사용자 체류 시간(Think Time)을 반영한 k6/JMeter 테스트 코드 작성</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 유형별 부하 주입 및 APM 심층 계측</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>주입</strong><span>Load, Stress, Soak, Spike 부하 인가 및 DB 락, JVM 힙 메모리 추적</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: 성능 기준선 적합성 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>최대 부하 시 TPS가 유지되고 95th 백분위 응답시간이 SLA를 만족하며 자원 누수가 없는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (성능 검수 승인)</strong>
-      <span>배포 기준선 통과 $\rightarrow$ 프로덕션 오픈 승인 및 모니터링 임계치 알림 연동</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (응답 지연 / 메모리 릭)</strong>
-      <span>배포 보류 $\rightarrow$ APM 트레이싱 기반 슬로우 쿼리 인덱싱 및 힙 덤프 튜닝</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -103,122 +62,25 @@ extra:
 
 성능 테스트는 목적에 따라 부하 인가 패턴을 완전히 다르게 설계한다.
 
-<div class="itpe-diagram-container" role="img" aria-label="부하, 스트레스, 스파이크, 내구성 4대 성능 테스트 부하 인가 곡선 비교">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .line-curve { stroke: #38bdf8; stroke-width: 1.8; fill: none; }
-      .line-red { stroke: #ef4444; stroke-width: 1.8; fill: none; }
-    </style>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">성능 테스트 4대 유형별 부하 인가 패턴 및 검증 목적</text>
-
-  <!-- 1. Load Test -->
-  <rect x="14" y="34" width="115" height="172" class="box"/>
-  <text x="22" y="48" class="h-text">1. 부하 테스트 (Load)</text>
-  <!-- 사다리꼴 곡선 -->
-  <polyline points="24,100 45,70 95,70 115,100" class="line-curve"/>
-  <text x="22" y="118" class="text">목표 SLA 용량 검증</text>
-  <text x="22" y="130" class="muted">• 피크 트래픽 인가</text>
-  <text x="22" y="142" class="muted">• 응답시간 SLA 준수</text>
-  <text x="22" y="154" class="muted">• 병목 쿼리 조기 도출</text>
-  <text x="22" y="174" class="muted">평상시 2~4시간 유지</text>
-
-  <!-- 2. Stress Test -->
-  <rect x="139" y="34" width="115" height="172" class="box-active"/>
-  <text x="147" y="48" class="h-text">2. 스트레스 (Stress)</text>
-  <!-- 계단식 상승 후 절벽 -->
-  <polyline points="149,100 170,82 190,82 210,64 230,64 245,100" class="line-red"/>
-  <text x="147" y="118" class="text">한계 임계점(Breakpoint)</text>
-  <text x="147" y="130" class="muted">• 시스템 파괴점 탐색</text>
-  <text x="147" y="142" class="muted">• 장애 격리 여부 확인</text>
-  <text x="147" y="154" class="muted">• 부하 제거 후 자가회복</text>
-  <text x="147" y="174" class="muted">최대 수용력 한계 측정</text>
-
-  <!-- 3. Spike Test -->
-  <rect x="264" y="34" width="115" height="172" class="box"/>
-  <text x="272" y="48" class="h-text">3. 스파이크 (Spike)</text>
-  <!-- 급격한 첨두 파형 -->
-  <polyline points="274,100 310,100 320,55 330,100 370,100" class="line-curve"/>
-  <text x="272" y="118" class="text">돌발 트래픽 폭증 검증</text>
-  <text x="272" y="130" class="muted">• 티켓팅/선착순 이벤트</text>
-  <text x="272" y="142" class="muted">• 오토스케일링 지연</text>
-  <text x="272" y="154" class="muted">• 서킷브레이커 작동</text>
-  <text x="272" y="174" class="muted">순간 10배 폭증 대응</text>
-
-  <!-- 4. Soak Test -->
-  <rect x="389" y="34" width="117" height="172" class="box"/>
-  <text x="397" y="48" class="h-text">4. 내구성 (Soak)</text>
-  <!-- 장기 평탄선 -->
-  <polyline points="399,75 495,75" class="line-curve"/>
-  <text x="397" y="118" class="text">장시간 누수(Leak) 검증</text>
-  <text x="397" y="130" class="muted">• 메모리 릭 탐지</text>
-  <text x="397" y="142" class="muted">• 커넥션 풀 고갈 추적</text>
-  <text x="397" y="154" class="muted">• 디스크 로그 적재</text>
-  <text x="397" y="174" class="muted">24~72시간 연속 인가</text>
-</svg>
-</div>
+| 유형 | 부하 인가 패턴 | 검증 목적 |
+|---|---|---|
+| **부하 테스트(Load)** | 예상 피크 트래픽을 목표치로 유지 인가 | 응답시간 SLA 준수·병목 쿼리 조기 도출 |
+| **스트레스(Stress)** | 부하를 단계적으로 증가시켜 한계 도달 | 파괴 임계점(Breakpoint) 탐색·부하 제거 후 자가 회복 확인 |
+| **스파이크(Spike)** | 순간 폭증 후 급감하는 파형 인가 | 티켓팅 등 돌발 트래픽 대응 — 오토스케일링 지연·서킷브레이커 작동 검증 |
+| **내구성(Soak)** | 24~72시간 연속 평탄 부하 인가 | 메모리 릭·커넥션 풀 고갈·디스크 로그 적재 추적 |
 
 ### 리틀의 법칙(Little's Law) 기반 가상 사용자 모델링
 
 성능 테스트의 가상 사용자(VUser) 규모는 단순 추정이 아니라 리틀의 대기행렬 수식을 기반으로 산출한다.
 
-<div class="itpe-diagram-container" role="img" aria-label="리틀의 법칙 공식 및 가상 사용자 산정 파이프라인 아키텍처">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-    </style>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">리틀의 법칙(Little's Law)과 부하 모델링 수학적 아키텍처</text>
+> **리틀의 법칙: N = X × (Response Time + Think Time)**
+> N: 동시 사용자 수(VUser) · X: 목표 처리량(TPS) · Response Time: 시스템 처리 응답시간 · Think Time: 사용자가 화면을 읽고 다음 클릭까지 머무는 대기시간
 
-  <!-- 공식 상자 -->
-  <rect x="16" y="34" width="488" height="52" class="box-active"/>
-  <text x="26" y="52" fill="#38bdf8" font-size="10px" font-weight="bold">리틀의 법칙 공식 : N = X × (Response Time + Think Time)</text>
-  <text x="26" y="68" class="text">• N (VUser: 동시 사용자 수)  |  X (Throughput: 목표 초당 트랜잭션 건수 TPS)</text>
-  <text x="26" y="78" class="muted">• Response Time: 시스템 처리 응답시간  |  Think Time: 사용자가 화면을 읽고 다음 클릭까지 머무는 대기시간</text>
-
-  <!-- 하단 3개 분석 카드 -->
-  <rect x="16" y="96" width="155" height="110" class="box"/>
-  <text x="24" y="112" class="h-text">1. Think Time 누락의 오류</text>
-  <text x="24" y="126" class="text">사용자 체류시간을 0으로 두면</text>
-  <text x="24" y="138" class="muted">VUser가 봇처럼 난사하여</text>
-  <text x="24" y="150" class="muted">운영 현실과 괴리된 비정상 부하</text>
-  <text x="24" y="162" class="muted">초래 ➔ 정확한 프로파일링 실패</text>
-  <text x="24" y="184" class="h-text">▶ 평균 Think Time 반영 필수</text>
-
-  <rect x="181" y="96" width="158" height="110" class="box-active"/>
-  <text x="189" y="112" class="h-text">2. 성능 포화(Saturation) 구간</text>
-  <text x="189" y="126" class="text">부하 증가 시 TPS 증가가 멈추고</text>
-  <text x="189" y="138" class="muted">응답시간만 급격히 치솟는 지점</text>
-  <text x="189" y="150" class="muted">➔ CPU/DB Lock 병목 발생</text>
-  <text x="189" y="162" class="muted">➔ 시스템 최대 한계 도달</text>
-  <text x="189" y="184" class="h-text">▶ 튜닝 및 스케일아웃 기준점</text>
-
-  <rect x="349" y="96" width="155" height="110" class="box"/>
-  <text x="357" y="112" class="h-text">3. 테일 레이턴시 (p99) 관리</text>
-  <text x="357" y="126" class="text">단순 평균(Mean)의 왜곡 극복</text>
-  <text x="357" y="138" class="muted">99%의 사용자가 겪는 지연 측정</text>
-  <text x="357" y="150" class="muted">JVM Full GC, I/O 스파이크 등</text>
-  <text x="357" y="162" class="muted">숨겨진 악성 지연 100% 포착</text>
-  <text x="357" y="184" class="h-text">▶ SLA p95/p99 기준선 관리</text>
-</svg>
-</div>
+| 모델링 관점 | 내용 | 판단 |
+|---|---|---|
+| **Think Time 누락** | 체류시간을 0으로 두면 VUser가 봇처럼 난사 | 운영 현실과 괴리된 비정상 부하 — 평균 Think Time 반영 필수 |
+| **성능 포화(Saturation)** | 부하 증가에 TPS가 정체하고 응답시간만 급등하는 지점 | CPU·DB 락 병목 도달 — 튜닝 및 스케일아웃 기준점 |
+| **테일 레이턴시(p99)** | 단순 평균의 왜곡을 극복해 99% 사용자 지연 측정 | JVM Full GC·I/O 스파이크 포착 — SLA p95/p99 기준선 관리 |
 
 ## 3. 실무 적용 및 고려사항
 
@@ -249,42 +111,8 @@ extra:
 
 - **판정 기준**: 피크 부하 시 TPS 목표치 100% 유지, 99th 백분위 응답시간 p99 2초 이하 및 24시간 Soak 테스트 간 힙 메모리 누수 0건
 - **대응 방안**: 리틀의 법칙에 기반한 현실적 부하 모델을 수립하고, CI/CD에 통합된 k6 성능 게이트와 APM 분산 추적 체계 구축
-- **검증 체계**: 부하 테스트(Load) ➔ 한계 스트레스(Stress) ➔ 돌발 스파이크(Spike) ➔ 내구성(Soak) ➔ p99 테일 레이턴시 심사
+- **검증 체계**: 부하 테스트(Load) → 한계 스트레스(Stress) → 돌발 스파이크(Spike) → 내구성(Soak) → p99 테일 레이턴시 심사
 - **기대 효과**: 프로덕션 오픈 후 트래픽 폭증 장애 제로화, 인프라 과다 증설 방지를 통한 클라우드 비용 30% 최적화
-
-<div class="itpe-pipeline-container" role="img" aria-label="성능 테스트 엔지니어링 파이프라인">
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">01</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>부하 모델링</strong>
-      <span>SLA 목표 및 리틀의 법칙 기반 VUser/ThinkTime 산정</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">02</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>시나리오 스크립팅</strong>
-      <span>k6 분산 스크립트 작성 및 테스트 데이터 프로비저닝</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">03</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>4대 유형 부하 주입</strong>
-      <span>Load/Stress/Spike/Soak 인가 및 APM 풀스택 계측</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">04</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>p99 품질 게이트</strong>
-      <span>테일 레이턴시 및 메모리 릭 검증 후 릴리스 승인</span>
-    </div>
-  </div>
-</div>
 
 ## 5. 참고 및 연계 학습
 

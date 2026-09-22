@@ -2,44 +2,25 @@
 title: "오픈소스 라이선스(Permissive·Copyleft)와 Source-Available 라이선스"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 공공 SW·거버넌스를 거쳐 오픈소스 라이선스로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>공공 SW·거버넌스</span>
-  <strong>오픈소스 라이선스</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 공공 SW·거버넌스 → **오픈소스 라이선스**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **오픈소스 라이선스(OSS License)**는 오픈소스 소프트웨어의 사용, 복제, 수정, 재배포 시 준수해야 하는 법적 권리와 의무(저작권 고지, 소스코드 공개 등)를 규정한 계약
 - 메커니즘: **Permissive**(최소 조건) · **Copyleft**(동일 조건 제공) · **Source-Available**(용도 제한 가능)을 구분
-- 산출/효과: 라이선스 위반 소송 방지 · 기업 지식재산권(IP) 보호 · **SBOM** 기반 컴플라이언스 체계 확립
-
-<div class="itpe-flow-map" role="img" aria-label="오픈소스 라이선스 스펙트럼">
-  <div class="itpe-flow-node"><strong>Permissive (허용적)</strong><span>MIT · Apache 2.0 · BSD (상용화 자유, 고지만 요구)</span></div>
-  <div class="itpe-flow-arrow">→ 의무 범위 확대 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>Copyleft (카피레프트)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>Weak</strong><span>LGPL (동적 링크 시 비공개 허용)</span></div>
-      <div class="itpe-flow-branch"><strong>Strong</strong><span><span class="itpe-keyword"><strong>GPL (파생 저작물 소스코드 전면 공개)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>Network</strong><span><span class="itpe-keyword"><strong>AGPL (네트워크 서비스 시에도 소스 공개)</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ SaaS 프리라이더 방어 →</div>
-  <div class="itpe-flow-node"><strong>비OSI 라이선스</strong><span>SSPL · BSL (클라우드 상업화 제한)</span></div>
-</div>
+- 효과: 라이선스 위반 소송 방지 · 기업 지식재산권(IP) 보호 · **SBOM** 기반 컴플라이언스 체계 확립
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,84 +48,14 @@ extra:
 
 > 의무 범위는 라이선스 원문·결합 방식·배포 형태에 따라 달라지므로 개별 조건을 판정해야 한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="오픈소스 라이선스 분류 체계">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. Permissive (MIT, Apache 2.0, BSD)</strong></span>
-    <span>수정본 소스코드 공개 의무 없음 · 저작권 고지만 유지 시 독점 상용화 가능</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 동일 조건 의무 확대</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. Weak Copyleft (LGPL, MPL)</strong></span>
-    <span>해당 구성요소의 수정·결합·배포 조건에 따라 공개 의무 범위 판정</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 배포 범위 판정</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. Strong Copyleft (GPL v2/v3)</strong></span>
-    <span>배포되는 파생 저작물에는 GPL의 대응 소스 제공 조건 적용</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ SaaS 환경 확장</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>4. Network Copyleft (AGPL)</strong></span>
-    <span>수정 프로그램과 네트워크로 상호작용하는 이용자에게 대응 소스 제공 기회 부여</span>
-  </div>
-</div>
-
 ### 오픈소스 라이선스 스펙트럼 및 의무 강도 비교
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[오픈소스 라이선스 소스코드 공개 의무 스펙트럼]</text>
-
-    <!-- Spectrum Arrow Line -->
-    <line x1="25" y1="42" x2="495" y2="42" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="2" marker-end="url(#arrow)" />
-    <text x="25" y="38" class="itpe-svg-label" font-size="10" fill="var(--sl-color-success, #10b981)">자유도 높음 (기업 친화적)</text>
-    <text x="495" y="38" class="itpe-svg-label" font-size="10" fill="var(--sl-color-danger, #ef4444)" text-anchor="end">공개 의무 엄격 (상용화 주의)</text>
-
-    <!-- Block 1: Permissive -->
-    <rect x="20" y="55" width="112" height="145" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
-    <text x="76" y="77" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">Permissive</text>
-    <text x="76" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">MIT, Apache 2.0</text>
-    <line x1="28" y1="102" x2="124" y2="102" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="76" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">소스 비공개 허용</text>
-    <text x="76" y="140" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">독점 상용화 가능</text>
-    <rect x="28" y="160" width="96" height="24" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="76" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-success, #10b981)" text-anchor="middle">고지의무만 준수</text>
-
-    <!-- Block 2: Weak Copyleft -->
-    <rect x="142" y="55" width="112" height="145" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
-    <text x="198" y="77" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Weak Copyleft</text>
-    <text x="198" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">LGPL, MPL</text>
-    <line x1="150" y1="102" x2="246" y2="102" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="198" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">해당 모듈 수정 시</text>
-    <text x="198" y="140" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">수정분만 공개</text>
-    <rect x="150" y="160" width="96" height="24" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="198" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">동적링크 시 비공개</text>
-
-    <!-- Block 3: Strong Copyleft -->
-    <rect x="264" y="55" width="112" height="145" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.2" />
-    <text x="320" y="77" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">Strong Copyleft</text>
-    <text x="320" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">GPL v2 / v3</text>
-    <line x1="272" y1="102" x2="368" y2="102" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="320" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">결합된 전체 코드</text>
-    <text x="320" y="140" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">GPL로 소스 공개</text>
-    <rect x="272" y="160" width="96" height="24" rx="4" fill="var(--sl-color-bg-accent, #fee2e2)" />
-    <text x="320" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">라이선스 전염</text>
-
-    <!-- Block 4: Network / Cloud -->
-    <rect x="386" y="55" width="114" height="145" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
-    <text x="443" y="77" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">Network Copyleft</text>
-    <text x="443" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">AGPL / SSPL</text>
-    <line x1="394" y1="102" x2="492" y2="102" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="443" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">네트워크 SaaS 이용자</text>
-    <text x="443" y="140" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">소스코드 제공 의무</text>
-    <rect x="394" y="160" width="98" height="24" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
-    <text x="443" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">클라우드 서비스 방어</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    P["Permissive (MIT·Apache)"] -->|"공개 의무 확대"| W["Weak Copyleft (LGPL·MPL)"]
+    W -->|"라이선스 전염"| S["Strong Copyleft (GPL)"]
+    S -->|"SaaS 확장"| N["Network Copyleft (AGPL)"]
+```
 
 | 라이선스 계열 | 대표 라이선스 | 소스코드 공개 의무 범위 | 특허 조항 | 상용 소프트웨어 결합 위험도 |
 |---|---|---|---|---|
@@ -176,27 +87,12 @@ extra:
 
 ### 1. 오픈소스 컴플라이언스 절차
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="오픈소스 컴플라이언스 절차">
-  <div class="itpe-pipeline-node">
-    <strong>1. 오픈소스 도입 심의</strong>
-    <span>사전 승인 프로세스 · AGPL 및 비OSI 라이선스 도입 원천 차단</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>2. SCA(Software Composition Analysis) 분석</strong>
-    <span>CI 파이프라인 내 블랙덕(Black Duck), Snyk 연동 자동 스캔</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>3. SBOM(소프트웨어 자재명세서) 생성</strong>
-    <span>SPDX, CycloneDX 표준 규격의 오픈소스 목록 및 의존성 명세 발행</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>4. 법적 고지문 생성 및 배포 검수</strong>
-    <span>오픈소스 라이선스 전문 및 저작권 고지문 자동 생성, 릴리스 승인</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    A["오픈소스 도입 심의"] --> B["SCA(Software Composition Analysis) 분석"]
+    B --> C["SBOM(소프트웨어 자재명세서) 생성"]
+    C --> D["법적 고지문 생성 및 배포 검수"]
+```
 
 ### 2. 오픈소스 라이선스 실무 위험 및 대응 통제
 
@@ -222,28 +118,6 @@ extra:
 - **검증 체계**: Strong/Network Copyleft(GPL/AGPL) 유입 0건 통제 및 빌드 시 라이선스 고지문(Notice) 자동 생성 일치성 검증
 - **기대 효과**: 저작권 침해 소송 및 상용 독점 소스코드 강제 공개 위험 원천 제거, 글로벌 소프트웨어 공급망 투명성 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="오픈소스 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>오픈소스 무단 사용 · 라이선스 전염으로 인한 핵심 자산 유출 위험</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>SCA 기반 SBOM 자동 생성 및 CI 단계 라이선스 검증 차단</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>GPL/AGPL 혼입률 0% · 오픈소스 고지의무 100% 준수</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>법적 분쟁 방지 · 안전하고 지속가능한 오픈소스 활용 생태계 확립</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -253,13 +127,12 @@ extra:
 
 ### 2. 주요 라이선스 스펙트럼
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="라이선스 3대 스펙트럼 요약">
-  <div class="itpe-pipeline-node"><strong>Permissive (MIT/Apache)</strong><span>소스 비공개 허용 · 저작권 고지만 필수</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Copyleft (GPL/AGPL)</strong><span>파생 저작물 소스코드 전면 공개 강제</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Cloud-Protective (SSPL/BSL)</strong><span>클라우드 서비스 제공자의 상업적 무단 이용 방어</span></div>
-</div>
+```mermaid
+flowchart LR
+    P["Permissive (MIT·Apache)"] -->|"공개 의무 확대"| W["Weak Copyleft (LGPL·MPL)"]
+    W -->|"라이선스 전염"| S["Strong Copyleft (GPL)"]
+    S -->|"SaaS 확장"| N["Network Copyleft (AGPL)"]
+```
 
 ### 3. 핵심 통제
 

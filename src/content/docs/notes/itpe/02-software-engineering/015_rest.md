@@ -2,44 +2,25 @@
 title: "REST"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 구현·객체지향·API를 거쳐 REST로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>구현·객체지향·API</span>
-  <strong>REST</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 구현·객체지향·API → **REST**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **REST(Representational State Transfer)**는 웹(Web)의 기존 HTTP 인프라와 표준을 그대로 활용하여 자원(Resource) 중심의 상태 전송을 정의하는 분산 하이퍼미디어 아키텍처 스타일
 - 메커니즘: **자원(URI)** + **행위(HTTP Method)** + **표현(Representation, JSON/XML)** + **무상태(Stateless)**
-- 산출/효과: 시스템 간 느슨한 결합(Loose Coupling) · 높은 확장성(Scalability) · 플랫폼 독립적 연계
-
-<div class="itpe-flow-map" role="img" aria-label="REST 통신 아키텍처 흐름">
-  <div class="itpe-flow-node"><strong>클라이언트</strong><span>HTTP 표준 요청 (URI + Method)</span></div>
-  <div class="itpe-flow-arrow">→ 무상태(Stateless) 요청 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>RESTful API 서버</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>자원(URI)</strong><span>명사형 고유 식별자 (/users/1)</span></div>
-      <div class="itpe-flow-branch"><strong>행위(Method)</strong><span><span class="itpe-keyword"><strong>GET, POST, PUT, DELETE</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>메시지(Representation)</strong><span><span class="itpe-keyword"><strong>JSON/XML 포맷 + HATEOAS</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">← 상태 코드 및 표현 반환 ←</div>
-  <div class="itpe-flow-node"><strong>웹 인프라 캐시</strong><span>HTTP 표준 캐시 재활용</span></div>
-</div>
+- 효과: 시스템 간 느슨한 결합(Loose Coupling) · 높은 확장성(Scalability) · 플랫폼 독립적 연계
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,84 +48,22 @@ extra:
 
 > 6대 제약조건을 온전히 준수해야만 진정한 RESTful 시스템으로 인정받을 수 있다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="REST 6대 제약조건">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. Client-Server (클라이언트-서버 분리)</strong></span>
-    <span>UI/사용자 관심사와 데이터 저장 관심사를 엄격히 분리하여 독립적 진화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. Stateless (무상태성)</strong></span>
-    <span>클라이언트의 세션 상태를 서버에 저장하지 않음 · 모든 요청은 완전한 정보를 포함</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. Cacheable (캐시 가능성)</strong></span>
-    <span>모든 HTTP 응답은 캐시 가능 여부를 명시 · 대역폭 절감 및 성능 향상</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>4. Uniform Interface (일관된 인터페이스)</strong></span>
-    <span>자원 식별, 표현 조작, 자기서술적 메시지, HATEOAS</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>5. Layered System (계층화 시스템)</strong></span>
-    <span>프록시, 게이트웨이, 방화벽 등 중간 매개체를 자유롭게 배치 가능</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>6. Code on Demand (선택적)</strong></span>
-    <span>자바스크립트 등 실행 코드를 클라이언트에 전송하여 기능 확장</span>
-  </div>
-</div>
+| 제약조건 | 요구 내용 |
+|---|---|
+| **1. Client-Server (클라이언트-서버 분리)** | UI/사용자 관심사와 데이터 저장 관심사를 엄격히 분리하여 독립적 진화 |
+| **2. Stateless (무상태성)** | 클라이언트의 세션 상태를 서버에 저장하지 않음 · 모든 요청은 완전한 정보를 포함 |
+| **3. Cacheable (캐시 가능성)** | 모든 HTTP 응답은 캐시 가능 여부를 명시 · 대역폭 절감 및 성능 향상 |
+| **4. Uniform Interface (일관된 인터페이스)** | 자원 식별, 표현 조작, 자기서술적 메시지, HATEOAS |
+| **5. Layered System (계층화 시스템)** | 프록시, 게이트웨이, 방화벽 등 중간 매개체를 자유롭게 배치 가능 |
+| **6. Code on Demand (선택적)** | 자바스크립트 등 실행 코드를 클라이언트에 전송하여 기능 확장 |
 
 ### REST 아키텍처 상호작용 및 무상태(Stateless) 메커니즘
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[REST 자원 중심 상호작용 및 무상태(Stateless) 원리]</text>
-
-    <!-- Client Box (Left) -->
-    <rect x="20" y="50" width="110" height="145" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="75" y="75" class="itpe-svg-title" font-size="12.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">클라이언트</text>
-    <text x="75" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Client (SPA/App)</text>
-    <line x1="30" y1="105" x2="120" y2="105" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="75" y="125" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">세션 상태 유지</text>
-    <text x="75" y="145" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(Client Context)</text>
-    <rect x="30" y="158" width="90" height="24" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
-    <text x="75" y="174" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Bearer JWT</text>
-
-    <!-- Middle Request / Response Channel -->
-    <!-- Request Arrow & Box -->
-    <path d="M 135 85 L 365 85" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" marker-end="url(#arrow)" />
-    <rect x="160" y="55" width="180" height="26" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1" />
-    <text x="250" y="72" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">GET /api/v1/users/42</text>
-
-    <!-- Response Arrow & Box -->
-    <path d="M 365 155 L 135 155" stroke="var(--sl-color-success, #10b981)" stroke-width="2" marker-end="url(#arrow)" />
-    <rect x="160" y="160" width="180" height="26" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1" />
-    <text x="250" y="177" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">200 OK (JSON Payload)</text>
-
-    <!-- Middle Stateless Note -->
-    <text x="250" y="115" class="itpe-svg-label" font-size="10" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">전송마다 완전한 인증·컨텍스트 동봉</text>
-    <text x="250" y="132" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(Stateless: 서버 세션 비보관)</text>
-
-    <!-- Server Box (Right) -->
-    <rect x="375" y="50" width="125" height="145" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="437" y="75" class="itpe-svg-title" font-size="12.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">REST 서버</text>
-    <text x="437" y="93" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Stateless API Node</text>
-    <line x1="385" y1="105" x2="490" y2="105" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="437" y="125" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">독립적 스케일아웃</text>
-    <text x="437" y="145" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(Auto-Scaling 용이)</text>
-    <rect x="385" y="158" width="105" height="24" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="437" y="174" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">HTTP Cache 활용</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    C["클라이언트 (세션 보유)"] -->|"GET /users/42 + JWT 인증 동봉"| S["REST 서버 (세션 비보관)"]
+    S -->|"200 OK (JSON)"| C
+```
 
 ## Ⅲ. HTTP Method의 안전성(Safety)과 멱등성(Idempotency)
 
@@ -164,27 +83,12 @@ extra:
 
 ### 1. 리차드슨 성숙도 모델(Richardson Maturity Model, RMM)
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="리차드슨 성숙도 모델 4단계">
-  <div class="itpe-pipeline-node">
-    <strong>Level 0: The Swamp of POX (원격 프로시저 호출)</strong>
-    <span>단일 URI(`/endpoint`)와 단일 HTTP Method(POST)로 통신하는 RPC 방식</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ URI 도입</div>
-  <div class="itpe-pipeline-node">
-    <strong>Level 1: Resources (개별 자원 식별)</strong>
-    <span>개별 자원마다 고유한 URI 부여 (`/orders`, `/users/1`), 여전히 POST 위주</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ Method 표준화</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Level 2: HTTP Verbs (표준 동사 및 상태 코드)</strong></span>
-    <span>GET, POST, PUT, DELETE 메서드 준수 및 200, 201, 404 등 표준 상태코드 활용 (기업 실무 표준)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 하이퍼미디어 결합</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Level 3: Hypermedia Controls (HATEOAS 달성)</strong></span>
-    <span>응답 본문에 다음 상태 전이를 위한 링크(`_links`) 포함 · 진정한 REST 완성</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    L0["Level 0: POX (단일 URI·POST RPC)"] -->|"URI 도입"| L1["Level 1: Resources (자원별 URI)"]
+    L1 -->|"Method 표준화"| L2["Level 2: HTTP Verbs (상태코드)"]
+    L2 -->|"하이퍼미디어 결합"| L3["Level 3: HATEOAS"]
+```
 
 ### 2. REST API 설계 실무 위험 및 대응 통제
 
@@ -210,28 +114,6 @@ extra:
 - **검증 체계**: CI 파이프라인 내 Spectral API Linting 자동화 및 HTTP Method별 멱등성(Idempotency) 계약 검증 테스트 수행
 - **기대 효과**: 엔터프라이즈 시스템 간 상호운용성 극대화, 클라이언트 연계 비용 50% 절감 및 클라우드 오토스케일링 무상태 확장성 보증
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="REST API 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>POST 편중 통신 · 제각각의 응답 포맷 및 상태코드 오용</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>RMM Level 2 준수 및 RFC 7807 표준 에러 규격 정형화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>OpenAPI Linting 통과 및 HTTP 멱등성 준수 검증</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>완벽한 무상태성 확보 · 클라우드 환경 고확장성 달성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -241,13 +123,10 @@ extra:
 
 ### 2. 핵심 3대 구성요소
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="REST 3요소 요약">
-  <div class="itpe-pipeline-node"><strong>자원(Resource)</strong><span>고유 식별자 URI (명사형)</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>행위(Verb)</strong><span>HTTP Method (GET, POST, PUT, DELETE)</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>표현(Representation)</strong><span>JSON / XML 메시지 페이로드</span></div>
-</div>
+```mermaid
+flowchart LR
+    R["자원(Resource) · URI"] --> V["행위(Verb) · HTTP Method"] --> P["표현(Representation) · JSON/XML"]
+```
 
 ### 3. 핵심 통제
 

@@ -9,10 +9,10 @@ tags:
   - "ATAM"
   - "DSM"
   - "아키텍처침식"
-date: "2026-09-20"
+date: "2026-09-22T07:25:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -28,47 +28,6 @@ extra:
 - 본질: 소프트웨어 개발 및 유지보수 과정에서 설계 문서와 실제 구현 코드 간의 간극이 벌어지는 아키텍처 침식(Erosion)을 방지하기 위해, 요구사항으로부터 최적 구조를 도출·평가하는 정방향(Forward) 분석과 소스코드로부터 실제 구조를 역추출하여 설계 일치성을 검증하는 역방향(Reverse) 분석을 통합 적용하는 무결성 보증 기법
 - 메커니즘: 정방향(품질 속성 시나리오 도출 → 스타일 선정 → ATAM/CBAM 평가) ↔ 역방향(코드 파싱 → 의존성 행렬 DSM 추출 → 의도된 설계 대비 갭 분석 및 아키텍처 규칙 검증)
 - 산출물: 소프트웨어 아키텍처 기술서(SAD) · ATAM 평가 보고서 · 복원된 아키텍처 모델 · 의존성 구조 매트릭스(DSM) 갭 분석서
-
-<div class="itpe-flow-map" role="img" aria-label="소프트웨어 아키텍처 정방향 및 역방향 분석 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 정방향 분석 (Forward Analysis)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>흐름</strong><span>비즈니스 목표/품질 속성 요구사항 → 아키텍처 스타일 선정 → ATAM/CBAM 평가</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓ (구현 Implementation)</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 소스코드 및 바이너리 자산</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>현실</strong><span>일정 압박 및 편의적 코딩으로 인한 불법 참조 및 기술 부채 누적</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓ (역공학 Reverse Engineering)</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 역방향 분석 (Reverse Analysis)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>추출</strong><span>코드 AST 파싱 → 컴포넌트 호출 관계 복원 → DSM(Design Structure Matrix) 도출</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: Gap 분석 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>복원된 구조가 의도된 아키텍처 계층과 규칙을 완벽히 준수하는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (Pass)</strong>
-      <span>아키텍처 일치 입증 → CI/CD 메인 브랜치 머지 승인</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (Fail)</strong>
-      <span>아키텍처 침식/순환 참조 식별 → DIP 리팩토링 강제</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -101,119 +60,20 @@ extra:
 
 ### 정방향-역방향 통합 아키텍처 거버넌스 프레임워크
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="arc-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    
-    <!-- Left: Forward Analysis -->
-    <rect x="15" y="15" width="150" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="15" y="15" width="150" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="90" y="30" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[정방향] As-Designed</text>
-    <text x="90" y="50" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">품질 시나리오 도출</text>
-    <text x="90" y="65" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">스타일 선정 및 ATAM</text>
-    <text x="90" y="85" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">[의도된 아키텍처]</text>
-
-    <!-- Center: Implementation -->
-    <rect x="185" y="35" width="150" height="60" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="55" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">실제 구현 소스코드</text>
-    <text x="260" y="72" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">(As-Implemented 코딩)</text>
-
-    <!-- Right: Reverse Analysis -->
-    <rect x="355" y="15" width="150" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.5"/>
-    <rect x="355" y="15" width="150" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="430" y="30" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[역방향] As-Recovered</text>
-    <text x="430" y="50" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">AST 정적 분석</text>
-    <text x="430" y="65" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">DSM 의존성 매트릭스</text>
-    <text x="430" y="85" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[복원된 아키텍처]</text>
-
-    <!-- Flow Arrows -->
-    <line x1="165" y1="65" x2="183" y2="65" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#arc-arrow)"/>
-    <line x1="335" y1="65" x2="353" y2="65" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#arc-arrow)"/>
-
-    <!-- Bottom: Conformance Checking & Gap Analysis -->
-    <rect x="15" y="125" width="490" height="80" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="260" y="142" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-text, #1e293b)">아키텍처 일치성 검증 (Architecture Conformance Checking)</text>
-    
-    <!-- 3 Pillars of Gap Analysis -->
-    <rect x="25" y="150" width="150" height="45" rx="4" fill="var(--color-bg-subtle, #f0fdf4)" stroke="#16a34a" stroke-width="1"/>
-    <text x="100" y="166" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">수렴 (Convergence)</text>
-    <text x="100" y="182" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">설계와 구현 완전 일치</text>
-
-    <rect x="185" y="150" width="150" height="45" rx="4" fill="var(--color-bg-subtle, #fef2f2)" stroke="#dc2626" stroke-width="1"/>
-    <text x="260" y="166" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">발산 (Divergence)</text>
-    <text x="260" y="182" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">불법 참조·순환 의존성 침식</text>
-
-    <rect x="345" y="150" width="150" height="45" rx="4" fill="var(--color-bg-subtle, #fefce8)" stroke="#ca8a04" stroke-width="1"/>
-    <text x="420" y="166" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#ca8a04">결여 (Absence)</text>
-    <text x="420" y="182" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">설계된 모듈 미구현 누락</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    F["정방향 설계 (As-Designed)"] -->|구현| I["실제 구현 소스코드"]
+    I -->|역공학| R["역방향 복원 (As-Recovered)"]
+    F --> G{"일치성 검증 Gap 분석"}
+    R --> G
+```
 
 ### 역방향 분석 4대 핵심 절차
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="arc-flow-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    
-    <!-- Stage 1 -->
-    <rect x="15" y="20" width="105" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="15" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="67" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">① 코드 파싱</text>
-    <text x="67" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">AST 구문 트리 변환</text>
-    <text x="67" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">import/호출 추출</text>
-    <text x="67" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[관계 데이터 추출]</text>
-
-    <!-- Arrow 1 -> 2 -->
-    <line x1="120" y1="72" x2="138" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#arc-flow-arrow)"/>
-
-    <!-- Stage 2 -->
-    <rect x="140" y="20" width="105" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="140" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="192" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">② DSM 모델링</text>
-    <text x="192" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">N x N 의존성 행렬</text>
-    <text x="192" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">순환 참조 즉시 식별</text>
-    <text x="192" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[구조 가시화]</text>
-
-    <!-- Arrow 2 -> 3 -->
-    <line x1="245" y1="72" x2="263" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#arc-flow-arrow)"/>
-
-    <!-- Stage 3 -->
-    <rect x="265" y="20" width="110" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <rect x="265" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="320" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">③ 갭(Gap) 분석</text>
-    <text x="320" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">설계-구현 편차 판정</text>
-    <text x="320" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">불법 발산 라인 적발</text>
-    <text x="320" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">[침식 수준 진단]</text>
-
-    <!-- Arrow 3 -> 4 -->
-    <line x1="375" y1="72" x2="393" y2="72" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#arc-flow-arrow)"/>
-
-    <!-- Stage 4 -->
-    <rect x="395" y="20" width="110" height="105" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="395" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="450" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">④ ArchUnit 코드화</text>
-    <text x="450" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">DIP 리팩토링 수행</text>
-    <text x="450" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">CI 빌드 실패 규칙 강제</text>
-    <text x="450" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[재발 방지 자동화]</text>
-
-    <!-- Bottom Result Bar -->
-    <rect x="15" y="145" width="490" height="38" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="161" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">선순환: 정방향 설계(SAD) 수립 → 소스 구현 → 역방향 DSM 검증 → ArchUnit CI 상시 감시</text>
-    <text x="260" y="174" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">레거시 MSA 전환 시 Bounded Context 경계 도출 및 데이터 커플링 분석에 핵심 활용</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    A["코드 파싱"] --> B["DSM 모델링"] --> C["갭 분석"] --> D["ArchUnit 규칙 코드화"]
+```
 
 <div class="itpe-component-grid">
   <div class="itpe-component-card">
@@ -312,36 +172,6 @@ extra:
 - **대응 방안**: 불법 결합 모듈에 대해 의존관계 역전 원칙(DIP)을 적용하여 인터페이스를 분리하고, 서비스 간 통신은 이벤트 브로커로 비동기 디커플링.
 - **검증 체계**: SonarQube 및 Structure101을 Git PR 파이프라인에 연계하여 아키텍처 일치성 지수 95% 미달 시 머지 불가 통제.
 - **기대 효과**: 아키텍처 침식으로 인한 재개발 비용을 80% 절감하고, 신규 기능 추가 시의 파급 영향도를 국소 모듈 내로 격리.
-
-<div class="itpe-flow-map" role="img" aria-label="아키텍처 일치성 자동 검증 및 거버넌스 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>정방향 설계 수립</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>명세</strong><span>SAD 및 계층 규칙 정의</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>코드 구현 (PR 제출)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>개발</strong><span>비즈니스 로직 작성</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node is-current">
-    <strong>ArchUnit / DSM 검증</strong>
-    <div class="itpe-step-detail">
-      <strong>검증</strong><span>계층 침범 및 순환참조 0건</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>무결 아키텍처 머지</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>결과</strong><span>기술 부채 원천 차단</span></div>
-    </div>
-  </div>
-</div>
 
 ## 7. 참고 및 연계 학습
 

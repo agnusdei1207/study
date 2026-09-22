@@ -10,10 +10,10 @@ tags:
   - "SOP"
   - "DOM조작"
   - "SPA"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:25:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,52 +24,11 @@ extra:
   <strong>AJAX(Asynchronous JavaScript and XML)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 전체 웹페이지를 새로고침하여 화면이 하얗게 깜빡이는 블로킹 현상 없이, 브라우저 백그라운드에서 XMLHttpRequest 또는 Fetch API를 통해 서버와 비동기적으로 경량 데이터(JSON/XML)를 교환하고 DOM을 부분 갱신하여 데스크톱 앱 수준의 매끄러운 사용자 경험을 제공하는 웹 기술의 결합체
-- 메커니즘: 사용자 이벤트 발생 $\rightarrow$ XHR/Fetch 비동기 HTTP 요청 $\rightarrow$ 백엔드 JSON 데이터 반환 $\rightarrow$ Promise 비동기 수신 $\rightarrow$ DOM 동적 부분 조작 및 렌더링
+- 메커니즘: 사용자 이벤트 발생 → XHR/Fetch 비동기 HTTP 요청 → 백엔드 JSON 데이터 반환 → Promise 비동기 수신 → DOM 동적 부분 조작 및 렌더링
 - 산출물: 비동기 데이터 통신 모듈 · REST API 엔드포인트 정의서 · CORS 보안 설정 명세서
-
-<div class="itpe-flow-map" role="img" aria-label="AJAX 비동기 통신 및 DOM 부분 갱신 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 사용자 이벤트 및 비동기 요청 생성</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>요청</strong><span>사용자 조작을 가로채어 Fetch/XHR 객체로 백그라운드 HTTP 요청 전송</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 무중단 백그라운드 통신</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>비동기</strong><span>브라우저 UI 스레드는 멈추지 않고 사용자와 상호작용 계속 유지</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 경량 데이터 응답 및 파싱</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>파싱</strong><span>서버로부터 전체 HTML 대신 필요한 JSON 데이터 조각만 수신</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: 보안 정책 및 렌더링 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>동일 출처 정책(SOP)을 준수하거나 적법한 CORS 응답을 수신하여 렌더링에 성공했는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (부분 갱신 완료)</strong>
-      <span>DOM 조작 및 렌더링 $\rightarrow$ 화면 깜빡임 없는 리치 인터랙션 제공</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (CORS 차단 / 타임아웃)</strong>
-      <span>오류 핸들링 $\rightarrow$ 서버 Access-Control 헤더 수정 또는 프록시 서버 경유</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -95,7 +54,7 @@ extra:
 | **통신 방식** | **동기식 요청/응답 (요청 중 브라우저 UI 정지)** | **비동기식 백그라운드 요청 (UI 멈춤 없음)** |
 | **데이터 교환**| **HTML 전체 페이지 일괄 다운로드** | **필요한 데이터 조각(JSON/XML)만 선별 전송** |
 | **화면 갱신** | **전체 화면 새로고침 (깜빡임 발생, Blank)** | **DOM(Document Object Model) 부분 갱신** |
-| **네트워크 부하**| 헤더, 메뉴, 푸터 등 중복 데이터 반복 전송 | 순수 페이로드만 교환하여 트래픽 80% 이상 절감 |
+| **네트워크 부하**| 헤더, 메뉴, 푸터 등 중복 데이터 반복 전송 | 순수 페이로드만 교환하여 중복 전송 제거·트래픽 대폭 절감 |
 | **사용자 경험**| 느리고 단절된 웹페이지 탐색 경험 | **데스크톱 및 모바일 네이티브 앱 수준의 리치 UX** |
 
 ## 2. 아키텍처 및 핵심 메커니즘
@@ -104,123 +63,36 @@ extra:
 
 전체 페이지 재요청 방식과 백그라운드 비동기 통신 방식의 구조적 차이이다.
 
-<div class="itpe-diagram-container" role="img" aria-label="전통적 동기식 웹과 AJAX 비동기 웹 통신의 아키텍처 비교도">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-aj); }
-    </style>
-    <marker id="arrow-aj" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
-    </marker>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">통신 모델 비교: 전통적 동기식(Synchronous) vs AJAX 비동기식(Asynchronous)</text>
+```mermaid
+flowchart TB
+    subgraph SYNC["전통적 웹 · 동기식 전체 재전송"]
+        direction LR
+        B1["브라우저 UI · 요청 중 화면 멈춤 Block"] -->|"전체 HTML 왕복"| S1["웹 서버 WAS · 전체 HTML 생성"]
+    end
+    subgraph ASYNC["AJAX · 비동기 백그라운드 부분 갱신"]
+        direction LR
+        B2["브라우저 UI · 정상 인터랙션 유지"] -->|"경량 JSON 왕복"| S2["REST 백엔드 · JSON 데이터만 반환"]
+    end
+```
 
-  <!-- 왼쪽: 전통적 동기식 모델 -->
-  <rect x="16" y="34" width="236" height="172" class="box"/>
-  <text x="24" y="50" class="h-text">전통적 웹: 동기식 (전체 페이지 재전송)</text>
-
-  <rect x="24" y="58" width="90" height="42" class="box"/>
-  <text x="30" y="74" class="text">브라우저 UI</text>
-  <text x="30" y="86" class="muted">화면 멈춤(Block)</text>
-  <line x1="114" y1="79" x2="148" y2="79" class="arrow"/>
-
-  <rect x="150" y="58" width="92" height="42" class="box"/>
-  <text x="156" y="74" class="text">웹 서버 (WAS)</text>
-  <text x="156" y="86" class="muted">전체 HTML 생성</text>
-
-  <line x1="150" y1="92" x2="114" y2="92" class="arrow"/>
-  <text x="116" y="112" fill="#ef4444" font-size="6.5px">전체 HTML 반환</text>
-
-  <rect x="24" y="126" width="220" height="42" style="fill:rgba(239,68,68,0.15); stroke:#ef4444; stroke-width:1; rx:4;"/>
-  <text x="30" y="142" fill="#ef4444" font-size="7px" font-weight="bold">화면 하얗게 깜빡임 (Whiteout / Blank)</text>
-  <text x="30" y="154" class="muted">사용자 입력 불가능 ➔ 응답 도착까지 대기열 정지</text>
-  <text x="24" y="194" class="muted">트래픽 낭비 극심 (헤더, CSS, JS 재다운로드)</text>
-
-  <!-- 오른쪽: AJAX 비동기 모델 -->
-  <rect x="268" y="34" width="236" height="172" class="box-active"/>
-  <text x="276" y="50" class="h-text">AJAX: 비동기식 (백그라운드 부분 갱신)</text>
-
-  <rect x="276" y="58" width="92" height="42" class="box-active"/>
-  <text x="282" y="74" class="text">브라우저 UI</text>
-  <text x="282" y="86" class="muted">정상 인터랙션 유지</text>
-
-  <line x1="368" y1="79" x2="402" y2="79" class="arrow"/>
-  <rect x="404" y="58" width="90" height="42" class="box"/>
-  <text x="410" y="74" class="text">REST 백엔드</text>
-  <text x="410" y="86" class="muted">JSON 데이터만</text>
-
-  <line x1="404" y1="92" x2="368" y2="92" class="arrow"/>
-  <text x="372" y="112" fill="#38bdf8" font-size="6.5px">경량 JSON 반환</text>
-
-  <rect x="276" y="126" width="220" height="42" class="box-active"/>
-  <text x="282" y="142" class="h-text">DOM 동적 부분 갱신 (No Reloading)</text>
-  <text x="282" y="154" class="muted">자바스크립트가 필요한 div 요소만 즉각 변경</text>
-  <text x="276" y="194" class="muted">초고속 반응성 &amp; 네트워크 대역폭 80% 절감</text>
-</svg>
-</div>
+- **동기식의 대가**: 화면이 하얗게 깜빡임(Whiteout)하며 응답 도착까지 사용자 입력이 정지하고, 헤더·CSS·JS 재다운로드로 트래픽 낭비가 극심하다
+- **비동기의 이점**: 자바스크립트가 필요한 div 요소만 즉각 교체하는 DOM 동적 부분 갱신(No Reloading)으로 초고속 반응성을 확보한다
 
 ### AJAX 보안의 핵심: SOP와 CORS 프리플라이트(Preflight) 메커니즘
 
 브라우저의 동일 출처 정책(SOP)을 안전하게 우회하여 이기종 API 서버와 통신하기 위한 CORS 메커니즘이다.
 
-<div class="itpe-diagram-container" role="img" aria-label="CORS 프리플라이트 OPTIONS 요청 및 실제 요청 처리 시퀀스 다이어그램">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-cors); }
-    </style>
-    <marker id="arrow-cors" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
-    </marker>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">AJAX 보안 메커니즘: CORS 사전 요청(Preflight)과 실제 요청 파이프라인</text>
+```mermaid
+sequenceDiagram
+    participant B as 브라우저 · Origin a.com
+    participant S as API 서버 · Origin b.com
+    B->>S: 1. Preflight · OPTIONS /api/data (Origin: a.com)
+    S-->>B: 2. 200 OK · Access-Control-Allow-Origin: a.com
+    B->>S: 3. 실제 요청 · POST /api/data (JSON Payload)
+    S-->>B: 4. 200 OK · JSON 데이터 반환
+```
 
-  <!-- 클라이언트와 서버 기둥 -->
-  <rect x="50" y="34" width="120" height="30" class="box-active"/>
-  <text x="62" y="52" class="h-text">브라우저 (Origin: a.com)</text>
-
-  <rect x="350" y="34" width="120" height="30" class="box"/>
-  <text x="362" y="52" class="text">API 서버 (Origin: b.com)</text>
-
-  <!-- 1. Preflight OPTIONS -->
-  <line x1="110" y1="80" x2="400" y2="80" class="arrow"/>
-  <text x="140" y="74" fill="#38bdf8" font-size="6.8px">1. Preflight: OPTIONS /api/data (Origin: a.com)</text>
-
-  <!-- 2. Preflight 응답 -->
-  <line x1="400" y1="104" x2="110" y2="104" class="arrow"/>
-  <text x="140" y="100" fill="#10b981" font-size="6.8px">2. 200 OK (Access-Control-Allow-Origin: a.com)</text>
-
-  <!-- 3. 실제 비즈니스 요청 -->
-  <line x1="110" y1="130" x2="400" y2="130" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrow-cors)"/>
-  <text x="140" y="125" fill="#38bdf8" font-size="6.8px" font-weight="bold">3. Actual Request: POST /api/data (JSON Payload)</text>
-
-  <!-- 4. 실제 데이터 응답 -->
-  <line x1="400" y1="154" x2="110" y2="154" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-cors)"/>
-  <text x="140" y="150" fill="#10b981" font-size="6.8px" font-weight="bold">4. 200 OK: {"result": "success", "data": [...]}</text>
-
-  <!-- 하단 요약 -->
-  <rect x="16" y="172" width="488" height="36" class="box-active"/>
-  <text x="26" y="186" class="h-text">SOP/CORS 보안 통제의 실무적 가치</text>
-  <text x="26" y="198" class="muted">악의적인 제3자 사이트가 사용자의 쿠키나 세션으로 타사 API를 위조 호출(CSRF)하는 것을 브라우저 엔진이 원천 차단</text>
-</svg>
-</div>
+- **SOP/CORS 보안 통제의 실무적 가치**: 악의적인 제3자 사이트가 사용자의 쿠키나 세션으로 타사 API를 위조 호출(CSRF)하는 것을 브라우저 엔진이 원천 차단한다
 
 ## 3. 실무 적용 및 고려사항
 
@@ -251,42 +123,8 @@ AJAX는 단순한 통신 기법을 넘어 **React, Vue, Angular 기반의 SPA(Si
 
 - **판정 기준**: 비동기 데이터 통신 시 CORS 보안 정책 준수율 100% 및 중복 요청 발생 시 이전 요청 취소(Abort) 적용률 100% 충족 여부
 - **대응 방안**: 레거시 XHR을 퇴출하고 Promise 기반 Fetch API와 Async/Await를 표준화하며, 마이크로서비스 연동 시 Nginx 리버스 프록시로 SOP 준수
-- **검증 체계**: CORS 프리플라이트 헤더 유효성 검증 ➔ 비동기 경쟁 상태(Race Condition) 시뮬레이션 ➔ 프론트엔드 단위 테스트(Jest/MSW)
+- **검증 체계**: CORS 프리플라이트 헤더 유효성 검증 → 비동기 경쟁 상태(Race Condition) 시뮬레이션 → 프론트엔드 단위 테스트(Jest/MSW)
 - **기대 효과**: 화면 깜빡임 없는 리치 UX 달성, 네트워크 데이터 전송량 80% 감축 및 모던 SPA 아키텍처 완성
-
-<div class="itpe-pipeline-container" role="img" aria-label="AJAX 비동기 통신 엔지니어링 파이프라인">
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">01</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>비동기 요청 가로채기</strong>
-      <span>사용자 이벤트 발생 시 Fetch API 백그라운드 호출</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">02</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>CORS/SOP 보안 검증</strong>
-      <span>Preflight OPTIONS 검증 후 안전한 출처 간 통신</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">03</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>Abort 경쟁 제어</strong>
-      <span>신규 요청 시 이전 요청 취소로 상태 불일치 방지</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">04</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>DOM 동적 부분 갱신</strong>
-      <span>전체 새로고침 없이 특정 컴포넌트만 즉각 렌더링</span>
-    </div>
-  </div>
-</div>
 
 ## 5. 참고 및 연계 학습
 

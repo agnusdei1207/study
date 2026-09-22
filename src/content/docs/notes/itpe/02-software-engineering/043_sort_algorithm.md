@@ -5,16 +5,16 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 알고리즘과 비교 정렬을 거쳐 삽입정렬과 트리정렬로 이어지는 지식 위치"><span>소프트웨어 공학</span><span>알고리즘 · 비교 정렬</span><strong>정렬 알고리즘</strong></div>
+지식 위치: 소프트웨어 공학 → 알고리즘 · 비교 정렬 → **정렬 알고리즘**
 
 ## 딸려 나오는 하위 토픽
 
@@ -23,17 +23,11 @@ extra:
 | 02-087 | 삽입정렬 | 정렬 구간 · 이동 · 적응성 |
 | 02-180 | 트리정렬 | BST 구축 · 중위 순회 · 균형 |
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **Sorting Algorithm(정렬 알고리즘)**은 키의 순서 관계에 따라 레코드를 재배치하여 탐색·병합·표시의 전제 조건을 만드는 절차
 - 메커니즘: 삽입정렬은 정렬 구간에 키를 삽입하고, 트리정렬은 BST를 만든 뒤 중위 순회함
 - 산출: 순서화된 레코드와 안정성·시간·공간 특성이 명시된 선택 근거
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="삽입정렬과 트리정렬의 핵심 동작 비교">
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>삽입정렬</strong></span><span><b>입력</b> 정렬 구간과 다음 Key<br /><b>처리</b> 큰 원소 이동 후 빈 위치 삽입<br /><b>산출</b> 한 칸 확장된 안정 정렬 구간</span></div>
-  <div class="itpe-pipeline-arrow"><span aria-label="비교">vs</span></div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>트리정렬</strong></span><span><b>입력</b> 비교 가능한 Key 열<br /><b>처리</b> BST 삽입 후 중위 순회<br /><b>산출</b> 오름차순 방문 열</span></div>
-</div>
 
 <details><summary>핵심 용어</summary>
 
@@ -60,60 +54,11 @@ extra:
 
 > 삽입정렬은 역전 쌍이 적을수록 이동량이 줄어드는 적응 정렬이며, 소규모·거의 정렬된 입력에서 단순한 제어와 지역성이 강점임.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="sort-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Left: Insertion Sort -->
-  <rect x="15" y="15" width="235" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#sort-shadow)"/>
-  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">삽입정렬 (Insertion Sort)</text>
-  <text x="25" y="52" font-size="9.5" fill="var(--sl-color-text-muted, #4b5563)">정렬 구간 확장 &amp; 적응적(Adaptive) 이동</text>
-
-  <!-- Step diagram for Insertion -->
-  <rect x="25" y="62" width="215" height="34" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="32" y="83" font-size="9.5" fill="var(--sl-color-text, #1f2937)">[2, 5, 8] <tspan fill="var(--sl-color-red-high, #dc2626)" font-weight="700">| 4 |</tspan> 9, 1  (Key: 4 선택)</text>
-
-  <path d="M 130 98 L 130 110" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
-
-  <rect x="25" y="112" width="215" height="34" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="32" y="133" font-size="9.5" fill="var(--sl-color-text, #1f2937)">[2, <tspan fill="var(--sl-color-accent, #7c3aed)" font-weight="700">_</tspan>, 5, 8] | 9, 1  (5, 8 우측 시프트)</text>
-
-  <rect x="25" y="152" width="215" height="42" rx="4" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="32" y="169" font-size="9.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">[2, 4, 5, 8] 정렬 구간 확장 완료</text>
-  <text x="32" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">최선 O(n) · 최악 O(n²) · 공간 O(1) Stable</text>
-
-  <!-- Right: Tree Sort -->
-  <rect x="265" y="15" width="240" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#sort-shadow)"/>
-  <text x="275" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">트리정렬 (Tree Sort)</text>
-  <text x="275" y="52" font-size="9.5" fill="var(--sl-color-text-muted, #4b5563)">BST 구축 후 중위 순회(In-order)</text>
-
-  <!-- BST Nodes visual -->
-  <circle cx="385" cy="80" r="14" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <text x="381" y="84" font-size="11" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">5</text>
-
-  <line x1="373" y1="88" x2="340" y2="110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-  <circle cx="335" cy="118" r="14" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
-  <text x="331" y="122" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">2</text>
-
-  <line x1="397" y1="88" x2="430" y2="110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-  <circle cx="435" cy="118" r="14" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
-  <text x="431" y="122" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">8</text>
-
-  <rect x="275" y="148" width="220" height="46" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
-  <text x="282" y="166" font-size="9.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">In-order 순회: Left → Root → Right</text>
-  <text x="282" y="183" font-size="8.5" fill="var(--sl-color-text, #1f2937)">방문 결과: 2 → 5 → 8 (정렬 열 산출)</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="삽입정렬 절차">
-  <div class="itpe-pipeline-node"><strong>Key 선택</strong><span><b>활동</b> 미정렬 구간의 첫 원소 보관<br /><b>산출</b> 삽입 대상 Key</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>후방 탐색·이동</strong><span><b>활동</b> Key보다 큰 원소를 오른쪽으로 이동<br /><b>산출</b> Key가 들어갈 빈 위치</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>삽입·확장</strong><span><b>활동</b> 빈 위치에 Key 저장<br /><b>산출</b> 확장된 안정 정렬 구간</span></div>
-</div>
+```mermaid
+flowchart LR
+    A["Key 선택"] --> B["후방 탐색·이동"]
+    B --> C["삽입·구간 확장"]
+```
 
 - **최선 $O(n)$**: 이미 정렬된 입력은 원소별 한 번의 경계 비교로 통과함
 - **평균·최악 $O(n^2)$**: 역전 쌍만큼 비교·이동이 누적되며 역순 입력에서 최대가 됨
@@ -123,11 +68,11 @@ extra:
 
 > 트리정렬의 성능은 순회가 아니라 BST 높이가 결정하므로, 최악 시간을 제한하려면 균형 트리를 선택해야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="트리정렬 절차">
-  <div class="itpe-pipeline-node"><strong>BST 구축</strong><span><b>활동</b> Key 비교로 왼쪽·오른쪽 자식에 삽입<br /><b>산출</b> 순서 불변식을 가진 트리</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>중위 순회</strong><span><b>활동</b> 왼쪽·루트·오른쪽 순으로 방문<br /><b>산출</b> 오름차순 Key 열</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>높이 통제</strong><span><b>판정</b> 편향 여부와 균형 규칙 확인<br /><b>산출</b> 최악 시간 경계</span></div>
-</div>
+```mermaid
+flowchart LR
+    A["BST 구축"] --> B["중위 순회"]
+    B --> C["높이 통제"]
+```
 
 - **평균 $O(n\log n)$**: 트리 높이가 로그 수준일 때 각 삽입 비용이 제한됨
 - **최악 $O(n^2)$**: 정렬 입력이 단순 BST를 한쪽으로 편향시키면 삽입 경로가 선형화됨
@@ -169,14 +114,10 @@ extra:
 - **검증 체계**: 최악 편향 데이터(역순·동일키) 투입 벤치마크 검증 및 정렬 전후 동등 키 상대 순서 무결성 자동 테스트
 - **기대 효과**: 정렬 최악 시간 퇴화 $O(n^2)$ 원천 차단 및 비즈니스 데이터 정합성 100% 보증
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정렬 알고리즘 선택 제언"><div class="itpe-pipeline-node"><strong>단일 복잡도 비교</strong><span><b>문제</b> 입력 질서·안정성·공간 제약 누락</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>입력 계약</strong><span><b>대안</b> 분포·중복·규모·메모리 상한 명시</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>경계 입력 시험</strong><span><b>판정</b> 최악 시간·안정성·공간 조건 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>선택 근거 확보</strong><span><b>효과</b> 성능 퇴화와 의미 손실 예방</span></div></div>
-
 ## 1교시 10점 답안 발췌
 
 - 정의: **Sorting Algorithm(정렬 알고리즘)**은 **비교 연산**으로 Key 순서를 판정해 레코드를 재배치하는 **순서화 알고리즘**
 - 목적: 탐색·병합의 순서 전제 확보 → 후속 처리의 예측 가능성 향상
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정렬 알고리즘 1교시 핵심 그림"><div class="itpe-pipeline-node"><strong>삽입정렬</strong><span><b>처리</b> Key 선택·큰 원소 이동·삽입<br /><b>산출</b> 확장된 안정 정렬 구간</span></div><div class="itpe-pipeline-arrow"><span aria-label="비교">vs</span></div><div class="itpe-pipeline-node"><strong>트리정렬</strong><span><b>처리</b> BST 구축·중위 순회<br /><b>산출</b> 오름차순 방문 열</span></div></div>
 
 | 기준 | 삽입정렬 | 트리정렬 |
 |---|---|---|

@@ -10,10 +10,10 @@ tags:
   - "Prim"
   - "UnionFind"
   - "서로소집합"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:25:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,52 +24,11 @@ extra:
   <strong>최소신장트리(Minimum Spanning Tree)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 무향 연결 가중치 그래프에서 모든 정점($V$)을 사이클 없이 연결하는 여러 신장 트리(Spanning Tree) 중에서, 간선들의 총 가중치 합이 최소가 되도록 정확히 $V-1$개의 간선을 탐욕적(Greedy)으로 선택하는 최적화 그래프 알고리즘
-- 메커니즘: 그래프 간선 밀도 분석 $\rightarrow$ 알고리즘 선택(간선 중심 크루스칼 vs 정점 중심 프림) $\rightarrow$ 최소 가중치 선택 및 사이클 검증(Union-Find) $\rightarrow$ $V-1$개 간선 도달 시 트리 확정
+- 메커니즘: 그래프 간선 밀도 분석 → 알고리즘 선택(간선 중심 크루스칼 vs 정점 중심 프림) → 최소 가중치 선택 및 사이클 검증(Union-Find) → $V-1$개 간선 도달 시 트리 확정
 - 산출물: 최소 신장 트리 간선 집합 · 백본 네트워크 케이블 포설 설계서 · 최적 배관망 토폴로지
-
-<div class="itpe-flow-map" role="img" aria-label="최소신장트리(MST) 구축 및 사이클 검증 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 그래프 모델링 및 알고리즘 선정</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>선정</strong><span>간선이 적으면 크루스칼($O(E \log E)$), 간선이 많으면 프림($O(V^2)$) 선택</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 최소 가중치 간선 탐욕적 추출</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>추출</strong><span>정렬된 간선 배열 또는 우선순위 큐(Min-Heap)에서 최소 비용 간선 선택</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 사이클 형성 여부 판별 (Union-Find)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>검사</strong><span>양 끝점의 루트 노드를 비교하여 이미 같은 집합이면 배제, 다르면 병합(Union)</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: 신장 트리 완결 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>선택된 간선의 수가 정확히 $V-1$개에 도달하여 모든 정점이 연결되었는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (최소 비용 트리 완성)</strong>
-      <span>MST 확정 $\rightarrow$ 전력망/광케이블 인프라 최적 시공 및 토폴로지 구축</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (간선 부족 / 비연결)</strong>
-      <span>그래프 검증 $\rightarrow$ 고립 정점(Isolated Node) 유무 확인 및 연결 컴포넌트 재구성</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -105,134 +64,36 @@ extra:
 
 간선 중심의 크루스칼과 정점 중심의 프림 알고리즘의 동작 메커니즘을 비교한다.
 
-<div class="itpe-diagram-container" role="img" aria-label="크루스칼 간선 정렬 방식과 프림 트리 외연 확장 방식의 아키텍처 비교도">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-mst); }
-    </style>
-    <marker id="arrow-mst" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
-    </marker>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">최소신장트리(MST) 양대 알고리즘: 크루스칼 vs 프림</text>
+```mermaid
+flowchart TB
+    subgraph K["크루스칼 · 간선 중심 탐욕"]
+        direction LR
+        K1["전체 간선 오름차순 정렬"] --> K2["Union-Find 사이클 검증"]
+    end
+    subgraph P["프림 · 정점 중심 탐욕"]
+        direction LR
+        P1["시작 정점 트리 등록 · 인접 간선 힙 푸시"] --> P2["최소 간선 추출로 트리 외연 확장"]
+    end
+```
 
-  <!-- 왼쪽: 크루스칼 -->
-  <rect x="16" y="34" width="236" height="172" class="box-active"/>
-  <text x="24" y="50" class="h-text">크루스칼 알고리즘 (간선 중심 탐욕법)</text>
-
-  <rect x="24" y="58" width="220" height="34" class="box"/>
-  <text x="30" y="72" class="text">1. 전체 간선 오름차순 정렬 (O(E log E))</text>
-  <text x="30" y="84" class="muted">가장 가벼운 간선부터 순차 탐색</text>
-
-  <line x1="134" y1="92" x2="134" y2="102" class="arrow"/>
-  <rect x="24" y="102" width="220" height="42" class="box-active"/>
-  <text x="30" y="116" class="text">2. 사이클 검증 (Union-Find)</text>
-  <text x="30" y="128" class="muted">find(u) == find(v) ➔ 사이클 발생 (버림)</text>
-  <text x="30" y="138" class="muted">find(u) != find(v) ➔ union(u, v) 병합 채택</text>
-
-  <text x="24" y="162" class="muted">• 포레스트 조각들이 합쳐져 단일 트리 완성</text>
-  <text x="24" y="174" class="muted">• 선택된 간선 수 = V - 1 개 도달 시 즉시 종료</text>
-  <text x="24" y="196" class="h-text">적합: 희소 그래프 (간선 수가 적을 때 유리)</text>
-
-  <!-- 오른쪽: 프림 -->
-  <rect x="268" y="34" width="236" height="172" class="box"/>
-  <text x="276" y="50" class="h-text">프림 알고리즘 (정점 중심 탐욕법)</text>
-
-  <rect x="276" y="58" width="220" height="34" class="box-active"/>
-  <text x="282" y="72" class="text">1. 시작 정점 선택 및 트리 등록</text>
-  <text x="282" y="84" class="muted">인접 간선들을 Min-Heap 우선순위 큐에 푸시</text>
-
-  <line x1="386" y1="92" x2="386" y2="102" class="arrow"/>
-  <rect x="276" y="102" width="220" height="42" class="box"/>
-  <text x="282" y="116" class="text">2. 최소 간선 추출 및 외연 확장</text>
-  <text x="282" y="128" class="muted">이미 트리에 포함된 정점과 미포함 정점을</text>
-  <text x="282" y="138" class="muted">연결하는 최소 가중치 간선 선택 (사이클 없음)</text>
-
-  <text x="276" y="162" class="muted">• 단일 트리가 물방울 번지듯 커져 나감</text>
-  <text x="276" y="174" class="muted">• 복잡도: O(V²) 또는 O(E log V)</text>
-  <text x="276" y="196" class="h-text">적합: 밀집 그래프 (간선 수가 매우 많을 때 유리)</text>
-</svg>
-</div>
+- **크루스칼**: `find(u) = find(v)`면 사이클이라 버리고, 다르면 `union(u, v)`로 병합 채택 — 포레스트 조각이 합쳐져 단일 트리가 되고 간선 수가 $V-1$개에 도달하면 종료
+- **프림**: 트리에 포함된 정점과 미포함 정점을 잇는 최소 가중치 간선만 선택하므로 사이클이 구조적으로 발생하지 않는다
 
 ### 크루스칼 사이클 판별을 위한 유니온-파인드(Union-Find) 메커니즘
 
 간선을 추가할 때 사이클이 발생하는지를 트리 부모 노드를 역추적하여 즉각 검증하는 아키텍처이다.
 
-<div class="itpe-diagram-container" role="img" aria-label="Union-Find 경로 압축 및 사이클 판별 트리 구조도">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-uf); }
-    </style>
-    <marker id="arrow-uf" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
-    </marker>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">유니온-파인드(Union-Find) 자료구조를 통한 사이클 검출 메커니즘</text>
-
-  <!-- 왼쪽: 서로 다른 집합 병합 (Union) -->
-  <rect x="16" y="34" width="236" height="172" class="box"/>
-  <text x="24" y="50" class="h-text">[케이스 A: 루트가 서로 다름 ➔ 병합 승인]</text>
-
-  <circle cx="50" cy="80" r="14" class="box-active"/>
-  <text x="46" y="83" class="h-text">1</text>
-  <circle cx="50" cy="120" r="14" class="box"/>
-  <text x="46" y="123" class="text">2</text>
-  <line x1="50" y1="106" x2="50" y2="94" class="arrow"/>
-
-  <circle cx="160" cy="80" r="14" class="box-active"/>
-  <text x="156" y="83" class="h-text">3</text>
-  <circle cx="160" cy="120" r="14" class="box"/>
-  <text x="156" y="123" class="text">4</text>
-  <line x1="160" y1="106" x2="160" y2="94" class="arrow"/>
-
-  <rect x="24" y="146" width="220" height="50" class="box-active"/>
-  <text x="30" y="160" class="text">간선 (2, 4) 연결 검토:</text>
-  <text x="30" y="172" class="text">find(2)=1, find(4)=3 (루트 불일치)</text>
-  <text x="30" y="186" fill="#38bdf8" font-size="6.8px" font-weight="bold">▶ 사이클 없음! union(1, 3) 트리 연결 채택</text>
-
-  <!-- 오른쪽: 같은 집합 연결 시도 (사이클 발생 ➔ 폐기) -->
-  <rect x="268" y="34" width="236" height="172" class="box-active"/>
-  <text x="276" y="50" fill="#ef4444" font-size="8px" font-weight="bold">[케이스 B: 루트가 동일함 ➔ 사이클 발생 배제]</text>
-
-  <circle cx="386" cy="72" r="14" class="box-active"/>
-  <text x="382" y="75" class="h-text">1</text>
-
-  <circle cx="336" cy="116" r="14" class="box"/>
-  <text x="332" y="119" class="text">2</text>
-  <line x1="346" y1="106" x2="376" y2="82" class="arrow"/>
-
-  <circle cx="436" cy="116" r="14" class="box"/>
-  <text x="432" y="119" class="text">3</text>
-  <line x1="426" y1="106" x2="396" y2="82" class="arrow"/>
-
-  <!-- 가상 간선 2-3 점선 연결 (사이클) -->
-  <line x1="350" y1="116" x2="422" y2="116" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="3,3"/>
-  <text x="365" y="110" fill="#ef4444" font-size="6.5px" font-weight="bold">사이클 발생!</text>
-
-  <rect x="276" y="146" width="220" height="50" style="fill:rgba(239,68,68,0.15); stroke:#ef4444; stroke-width:1; rx:4;"/>
-  <text x="282" y="160" class="text">간선 (2, 3) 연결 시도:</text>
-  <text x="282" y="172" class="text">find(2)=1, find(3)=1 (루트 동일)</text>
-  <text x="282" y="186" fill="#ef4444" font-size="6.8px" font-weight="bold">▶ 1-2-3 폐로(Cycle) 형성 ➔ 간선 즉시 폐기</text>
-</svg>
-</div>
+```mermaid
+flowchart TB
+    subgraph CA["케이스 A · 루트 불일치 → 병합 승인"]
+        direction LR
+        A1["간선 (2, 4) 검토 · find(2)=1 ≠ find(4)=3"] --> A2["사이클 없음 · union(1, 3) 채택"]
+    end
+    subgraph CB["케이스 B · 루트 동일 → 사이클 배제"]
+        direction LR
+        B1["간선 (2, 3) 시도 · find(2)=1 = find(3)=1"] --> B2["1-2-3 폐로 형성 · 간선 즉시 폐기"]
+    end
+```
 
 ## 3. 실무 적용 및 고려사항
 
@@ -263,42 +124,8 @@ MST는 데이터 마이닝과 군집화(Clustering)에도 강력하게 활용된
 
 - **판정 기준**: 그래프 내 사이클 제로화 및 정확히 $V-1$개 간선 연결을 통한 전체 정점 도달 가능성 100% 충족 여부
 - **대응 방안**: 그래프 밀도($E/V$)를 분석하여 희소 그래프는 크루스칼, 밀집 그래프는 프림으로 자동 분기하는 알고리즘 파이프라인 구축
-- **검증 체계**: Union-Find 경로 압축 검증 ➔ $V-1$개 간선 수렴 확인 ➔ 연결성(Connectivity) BFS 검사 ➔ 가중치 총합 검증
+- **검증 체계**: Union-Find 경로 압축 검증 → $V-1$개 간선 수렴 확인 → 연결성(Connectivity) BFS 검사 → 가중치 총합 검증
 - **기대 효과**: 백본 네트워크 통신 선로 구축 비용 35% 절감 및 L2 브로드캐스트 스톰 루프 원천 차단
-
-<div class="itpe-pipeline-container" role="img" aria-label="최소신장트리 최적화 구축 파이프라인">
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">01</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>그래프 밀도 분석</strong>
-      <span>간선 수 기반 크루스칼 또는 프림 최적 엔진 선택</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">02</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>최소 간선 탐욕 추출</strong>
-      <span>오름차순 정렬 또는 Min-Heap에서 최소 비용 간선 선택</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">03</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>Union-Find 사이클 검증</strong>
-      <span>루트 노드 대조 후 비사이클 간선만 병합 채택</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">04</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>V-1 트리 완성</strong>
-      <span>최소 비용 MST 확정 및 네트워크 선로 시공 반영</span>
-    </div>
-  </div>
-</div>
 
 ## 5. 참고 및 연계 학습
 

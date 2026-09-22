@@ -5,42 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 아키텍처 설계를 거쳐 아키텍처 스타일로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>아키텍처 설계</span>
-  <strong>아키텍처 스타일</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 아키텍처 설계 → **아키텍처 스타일**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **아키텍처 스타일(Architecture Style)**은 소프트웨어 시스템의 거시적 골격을 정의하는 재사용 가능한 패턴으로, 컴포넌트의 유형, 상호작용 커넥터, 그리고 배치와 동작을 규정하는 제약조건(Constraints)의 집합
 - 메커니즘: **4대 고전 계열(데이터 흐름 · 호출/복귀 · 독립 컴포넌트 · 데이터 중심)** + **품질속성 트레이드오프(ATAM)** + **하이브리드 조합(EDA + 헥사고날)**
 - 산출/효과: 비기능 요구사항(성능/확장성/유지보수성) 사전 예측 · 아키텍처 설계 재사용 · 시스템 결합도 최소화
-
-<div class="itpe-flow-map" role="img" aria-label="소프트웨어 아키텍처 스타일 체계도">
-  <div class="itpe-flow-node"><strong>비즈니스·품질 요구</strong><span>성능·확장성·변경성</span></div>
-  <div class="itpe-flow-arrow">→ 4대 계열 패턴 선정 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>대표 아키텍처 스타일</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>데이터 흐름</strong><span><span class="itpe-keyword"><strong>파이프-필터 (Pipes & Filters)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>호출 및 복귀</strong><span><span class="itpe-keyword"><strong>계층화 아키텍처 (Layered)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>독립 컴포넌트</strong><span><span class="itpe-keyword"><strong>이벤트 주도 (EDA) · MSA</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>데이터 중심</strong><span>블랙보드 (Blackboard) · 저장소</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 트레이드오프 분석 및 최적화 →</div>
-  <div class="itpe-flow-node"><strong>하이브리드 구현</strong><span>도메인 격리 및 고확장성 달성</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -71,83 +51,12 @@ extra:
 
 > 데이터 전달 방식과 제어 흐름에 따라 4대 고전 계열로 체계화된다.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="style-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- 1. Pipes & Filters -->
-  <rect x="15" y="15" width="235" height="90" rx="6" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#style-shadow)"/>
-  <text x="25" y="34" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">1. 데이터 흐름: Pipes &amp; Filters</text>
-  <rect x="25" y="44" width="48" height="28" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="49" y="62" text-anchor="middle" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">Filter1</text>
-  <path d="M 73 58 L 93 58" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-  <rect x="93" y="44" width="48" height="28" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="117" y="62" text-anchor="middle" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">Filter2</text>
-  <path d="M 141 58 L 161 58" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-  <rect x="161" y="44" width="48" height="28" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="185" y="62" text-anchor="middle" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">Filter3</text>
-  <text x="25" y="92" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">단방향 순차 스트리밍 변환 (Unix 파이프, ETL)</text>
-
-  <!-- 2. Layered Architecture -->
-  <rect x="270" y="15" width="235" height="90" rx="6" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#style-shadow)"/>
-  <text x="280" y="34" font-size="11" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">2. 호출/복귀: Layered (계층형)</text>
-  <rect x="280" y="44" width="215" height="15" rx="2" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
-  <text x="387" y="55" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">표현 계층 (Presentation Layer)</text>
-  <rect x="280" y="61" width="215" height="15" rx="2" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
-  <text x="387" y="72" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">비즈니스 계층 (Business Logic)</text>
-  <rect x="280" y="78" width="215" height="15" rx="2" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
-  <text x="387" y="89" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">데이터 영속 계층 (Persistence Layer)</text>
-  <text x="280" y="101" font-size="7.5" fill="var(--sl-color-text-muted, #4b5563)">상위가 직하위에만 의존하는 수평 분할</text>
-
-  <!-- 3. Event-Driven Architecture (EDA) -->
-  <rect x="15" y="115" width="235" height="90" rx="6" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#style-shadow)"/>
-  <text x="25" y="134" font-size="11" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">3. 독립 컴포넌트: Event-Driven (EDA)</text>
-  <rect x="25" y="144" width="55" height="26" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
-  <text x="52" y="161" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">Producer</text>
-  <path d="M 80 157 L 98 157" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <rect x="98" y="142" width="70" height="30" rx="3" fill="var(--sl-color-accent, #7c3aed)"/>
-  <text x="133" y="161" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">Broker/Topic</text>
-  <path d="M 168 157 L 186 157" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <rect x="186" y="144" width="55" height="26" rx="3" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
-  <text x="213" y="161" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">Consumer</text>
-  <text x="25" y="193" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">비동기 발행-구독 기반 결합도 제로 (Kafka)</text>
-
-  <!-- 4. Blackboard / Repository -->
-  <rect x="270" y="115" width="235" height="90" rx="6" fill="var(--sl-color-orange-subtle, #fffbeb)" stroke="var(--sl-color-orange-high, #d97706)" stroke-width="1.5" filter="url(#style-shadow)"/>
-  <text x="280" y="134" font-size="11" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">4. 데이터 중심: Blackboard (저장소)</text>
-  <rect x="345" y="145" width="85" height="30" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-orange-high, #d97706)" stroke-width="1.5"/>
-  <text x="387" y="164" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">Blackboard</text>
-  <text x="300" y="160" font-size="8.5" fill="var(--sl-color-text, #1f2937)">KS1 ⇄</text>
-  <text x="440" y="160" font-size="8.5" fill="var(--sl-color-text, #1f2937)">⇄ KS2</text>
-  <text x="280" y="193" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">중앙 공유 저장소와 독립 지식원 협업 (AI/음성)</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="4대 고전 아키텍처 스타일 체계">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 데이터 흐름 계열: 파이프 앤 필터 (Pipes & Filters)</strong></span>
-    <span>데이터를 순차 변환하는 독립적 Filter와 단방향 데이터 통로 Pipe의 연결 · 재사용성 및 병렬성 우수 (Unix 쉘, ETL)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 호출 및 복귀 계열: 계층화 아키텍처 (Layered Architecture)</strong></span>
-    <span>기능을 수평 계층으로 분할하여 상위가 직하위 계층에만 의존 · 추상화 및 유지보수성 우수 (OSI 7계층, 웹 3계층)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 독립 컴포넌트 계열: 이벤트 주도 아키텍처 (EDA)</strong></span>
-    <span>발행자가 이벤트를 메시지 채널에 게시하고 구독자가 비동기 수신 · 확장성 극대화 및 결합도 최소화 (Kafka, IoT)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>4. 데이터 중심 계열: 블랙보드 (Blackboard / Repository)</strong></span>
-    <span>중앙 공유 저장소(Blackboard)를 두고 독립 에이전트(지식원)들이 협업하여 비결정적 해 도출 (음성인식, AI 추론)</span>
-  </div>
-</div>
+| 계열 | 대표 스타일 | 핵심 메커니즘 | 적용 사례 |
+|---|---|---|---|
+| 데이터 흐름 | 파이프 앤 필터 (Pipes & Filters) | 독립 Filter의 순차 변환 · 단방향 Pipe 연결 · 재사용성·병렬성 우수 | Unix 쉘, ETL |
+| 호출 및 복귀 | 계층화 아키텍처 (Layered Architecture) | 수평 계층 분할 · 상위가 직하위 계층에만 의존 · 추상화·유지보수성 우수 | OSI 7계층, 웹 3계층 |
+| 독립 컴포넌트 | 이벤트 주도 아키텍처 (EDA) | 발행자가 이벤트 게시 · 구독자 비동기 수신 · 확장성 극대화·결합도 최소화 | Kafka, IoT |
+| 데이터 중심 | 블랙보드 (Blackboard / Repository) | 중앙 공유 저장소에 독립 지식원(에이전트) 협업 · 비결정적 해 도출 | 음성인식, AI 추론 |
 
 ## Ⅲ. 아키텍처 추상화 3단계 비교: 스타일 vs 디자인 패턴 vs 관용구
 
@@ -186,28 +95,6 @@ extra:
 - **검증 체계**: ATAM 기반 품질 시나리오 평가 및 비즈니스 코어와 인프라 간 결합도 ArchUnit 정적 검증
 - **기대 효과**: 트래픽 스파이크 완벽 흡수, 분산 복잡도 최소화 및 비즈니스 로직 변경 비용 60% 절감
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="하이브리드 아키텍처 스타일 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>단일 스타일 맹신으로 인한 데이터 유실 또는 과도한 분산 복잡도 발생</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>경계별 하이브리드 조합 (외부: EDA/파이프-필터, 내부: 헥사고날 코어)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>ATAM 절충점 충족도 및 비즈니스 로직의 외부 인프라 비의존성 검증</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>트래픽 스파이크 완벽 흡수 · 도메인 변경 비용 60% 절감 달성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -217,11 +104,8 @@ extra:
 
 ### 2. 쇼 & 갈란 4대 고전 계열 요약
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="4대 계열 요약">
-  <div class="itpe-pipeline-node"><strong>데이터 흐름 & 호출/복귀</strong><span>Pipes & Filters (순차 변환) · Layered (수평 계층 추상화)</span></div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node"><strong>독립 컴포넌트 & 데이터 중심</strong><span>Event-Driven (비동기 디커플링) · Blackboard (중앙 저장소 공유 협업)</span></div>
-</div>
+- 데이터 흐름 & 호출/복귀: Pipes & Filters(순차 변환) · Layered(수평 계층 추상화)
+- 독립 컴포넌트 & 데이터 중심: Event-Driven(비동기 디커플링) · Blackboard(중앙 저장소 공유 협업)
 
 ### 3. 핵심 통제
 

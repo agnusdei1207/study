@@ -8,10 +8,10 @@ tags:
   - "RTM"
   - "ExitCriteria"
   - "QualityGate"
-date: "2026-09-20"
+date: "2026-09-22T07:25:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -27,40 +27,6 @@ extra:
 - 본질: "테스트를 충분히 수행했는가"와 "언제 테스트를 종료할 것인가"를 정량적으로 증명하기 위해, 시스템의 요구사항 명세(기능)와 소스코드 내부 구조(구문·분기) 대비 테스트 케이스가 실제로 통과한 검증 비율을 백분율(%)로 계측하는 품질 완료 판정 지표
 - 메커니즘: 검증 기준 수립 → 테스트 케이스 실행 및 동적 계측(Instrumentation) → 기능·구조 다차원 커버리지 수집 → 미달 구간 보완 → 테스트 완료 기준(Exit Criteria) 및 Quality Gate 판정
 - 산출물: 요구사항 추적 매트릭스(RTM) 커버리지 표 · 코드 커버리지 계측 보고서(JaCoCo, Coverage.py) · 테스트 완료 보고서 · 품질 게이트 승인 기록
-
-<div class="itpe-flow-map" role="img" aria-label="테스트 커버리지 측정 파이프라인 및 Quality Gate 판정 흐름">
-  <div class="itpe-flow-node">
-    <strong>1단계: 커버리지 목표 및 기준 수립</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>설정</strong><span>기능 요구사항 100% (RTM) · 핵심 모듈 분기 80% 이상</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 테스트 실행 및 동적 계측</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>도구</strong><span>동적 바이트코드 계측(JaCoCo) · 명세 기반 RTM 매핑 실행</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>3단계: Quality Gate (종료 기준 판정)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>기능 100% 및 목표 코드 커버리지를 모두 충족하는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (Pass)</strong>
-      <span>테스트 공식 종료(Exit Criteria) → 운영 배포 승인</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (Fail)</strong>
-      <span>미달 영역 식별 → 보완 테스트 케이스 추가 작성</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -93,119 +59,20 @@ extra:
 
 ### 다차원 테스트 커버리지 모델
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="tc-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    
-    <!-- Top-Left: Functional Coverage -->
-    <rect x="15" y="15" width="155" height="75" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="15" y="15" width="155" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="92" y="30" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[기능/명세] RTM 100%</text>
-    <text x="92" y="52" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">요구사항 추적 매트릭스</text>
-    <text x="92" y="68" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">유스케이스 시나리오 실행률</text>
-
-    <!-- Top-Right: Architecture/API Coverage -->
-    <rect x="350" y="15" width="155" height="75" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="350" y="15" width="155" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="427" y="30" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[인터페이스] API 커버리지</text>
-    <text x="427" y="52" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">REST 엔드포인트 호출률</text>
-    <text x="427" y="68" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">이벤트/메시지 큐 검증</text>
-
-    <!-- Center: Quality Gate (Exit Criteria) -->
-    <rect x="180" y="65" width="160" height="90" rx="8" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.8"/>
-    <rect x="180" y="65" width="160" height="24" rx="8" fill="var(--color-primary, #2563eb)"/>
-    <text x="260" y="81" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#ffffff">종합 Quality Gate</text>
-    <text x="260" y="105" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">테스트 완료 판정</text>
-    <text x="260" y="122" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">(Exit Criteria 수렴)</text>
-    <text x="260" y="142" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-accent, #0284c7)">기능 100% + 코드 80%</text>
-
-    <!-- Bottom-Left: Structural/Code Coverage -->
-    <rect x="15" y="130" width="155" height="75" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="15" y="130" width="155" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="92" y="145" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[구조/코드] 화이트박스</text>
-    <text x="92" y="167" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">구문(C0) · 분기(C1) 80%</text>
-    <text x="92" y="183" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">고안전 도메인 MC/DC</text>
-
-    <!-- Bottom-Right: Operational Coverage -->
-    <rect x="350" y="130" width="155" height="75" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="350" y="130" width="155" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="427" y="145" text-anchor="middle" font-size="8.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[운영/비기능] 신뢰성</text>
-    <text x="427" y="167" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">OS / 단말 호환성</text>
-    <text x="427" y="183" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">부하 및 장애 복구 테스트</text>
-
-    <!-- Connecting Arrows into Center -->
-    <line x1="170" y1="55" x2="195" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#tc-arrow)"/>
-    <line x1="350" y1="55" x2="325" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#tc-arrow)"/>
-    <line x1="170" y1="165" x2="195" y2="145" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#tc-arrow)"/>
-    <line x1="350" y1="165" x2="325" y2="145" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#tc-arrow)"/>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    F["기능 커버리지 (RTM)"] --> G{"종합 Quality Gate"}
+    A["API 커버리지"] --> G
+    C["코드 커버리지 (C0·C1)"] --> G
+    R["운영 신뢰성"] --> G
+```
 
 ### 구조적 코드 커버리지 4대 단계 상세
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="cov-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    
-    <!-- Level 1: C0 구문 -->
-    <rect x="15" y="20" width="115" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="15" y="20" width="115" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="72" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">① 구문 (C0)</text>
-    <text x="72" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">라인 1회 이상 실행</text>
-    <text x="72" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">false 분기 누락 가능</text>
-    <text x="72" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-accent, #0284c7)">[기본 수준: 80%]</text>
-
-    <!-- Arrow 1 -> 2 -->
-    <line x1="130" y1="75" x2="143" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#cov-arrow)"/>
-
-    <!-- Level 2: C1 분기/결정 -->
-    <rect x="145" y="20" width="115" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <rect x="145" y="20" width="115" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="202" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">② 분기/결정 (C1)</text>
-    <text x="202" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">조건문 T / F 분기</text>
-    <text x="202" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">모든 경로 1회 통과</text>
-    <text x="202" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">[실무 표준: 80%+]</text>
-
-    <!-- Arrow 2 -> 3 -->
-    <line x1="260" y1="75" x2="273" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#cov-arrow)"/>
-
-    <!-- Level 3: C2 조건 -->
-    <rect x="275" y="20" width="110" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="275" y="20" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="330" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">③ 조건 (C2)</text>
-    <text x="330" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">개별 조건식 T/F</text>
-    <text x="330" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">복합 판정 결과 미보장</text>
-    <text x="330" y="94" text-anchor="middle" font-size="7" fill="var(--color-accent, #0284c7)">[세부 로직 검증]</text>
-
-    <!-- Arrow 3 -> 4 -->
-    <line x1="385" y1="75" x2="398" y2="75" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#cov-arrow)"/>
-
-    <!-- Level 4: MC/DC -->
-    <rect x="400" y="20" width="105" height="110" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <rect x="400" y="20" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #fef2f2)"/>
-    <text x="452" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#dc2626">④ MC/DC</text>
-    <text x="452" y="58" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">조건식 독립 영향</text>
-    <text x="452" y="74" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">N+1개 케이스 검증</text>
-    <text x="452" y="94" text-anchor="middle" font-size="7" font-weight="bold" fill="#dc2626">[ISO 26262 필수]</text>
-
-    <!-- Bottom Summary Bar -->
-    <rect x="15" y="145" width="490" height="38" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="161" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">위계적 포함 관계: MC/DC ⊃ 분기 커버리지(C1) ⊃ 구문 커버리지(C0)</text>
-    <text x="260" y="174" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">일반 IT는 C1 80% 기준, 전장·원자력·철도 등 고안전 시스템은 MC/DC 100% 강제</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    A["구문 (C0)"] --> B["분기 (C1)"] --> C["조건 (C2)"] --> D["MC/DC"]
+```
 
 <div class="itpe-component-grid">
   <div class="itpe-component-card">
@@ -304,36 +171,6 @@ extra:
 - **대응 방안**: 커버리지 수치 왜곡(단순 호출 후 미검증) 방지를 위해 돌연변이 테스트(Pitest)를 도입하여 뮤테이션 점수 70% 이상을 병행 평가.
 - **검증 체계**: GitHub Actions PR 단계에서 JaCoCo 계측 및 SonarQube 분석을 자동 트리거하고, 기준 미달 시 Merge 버튼 자동 비활성화.
 - **기대 효과**: 배포 전 잠재 결함의 85% 이상을 빌드 단계에서 조기 격리하고, 테스트 종료에 대한 정량적 감사 증적 100% 확보.
-
-<div class="itpe-flow-map" role="img" aria-label="테스트 커버리지 기반 품질 게이트 자동화 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>코드 PR 제출</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>트리거</strong><span>CI 빌드 및 단위테스트</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>동적 계측 (JaCoCo)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>계측</strong><span>C0/C1 커버리지 수집</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node is-current">
-    <strong>Quality Gate 판정</strong>
-    <div class="itpe-step-detail">
-      <strong>기준</strong><span>분기 80% + RTM 100%</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→</div>
-  <div class="itpe-flow-node">
-    <strong>배포 승인 / 차단</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>결과</strong><span>운영 무장애 릴리스 달성</span></div>
-    </div>
-  </div>
-</div>
 
 ## 7. 참고 및 연계 학습
 

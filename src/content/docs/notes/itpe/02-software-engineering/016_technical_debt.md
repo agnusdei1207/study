@@ -2,44 +2,25 @@
 title: "기술 부채(불명확한 요구사항과 품질 저하)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 유지보수·형상관리를 거쳐 기술 부채로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>유지보수·형상관리</span>
-  <strong>기술 부채(불명확한 요구사항과 품질 저하)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 유지보수·형상관리 → **기술 부채(불명확한 요구사항과 품질 저하)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **기술 부채(Technical Debt)**는 단기적 출시 속도를 위해 채택한 임시방편적 설계·코딩이 장기적으로 이자(유지보수 비용 폭증, 개발 생산성 급감)를 발생시키는 현상
 - 메커니즘: 불명확한 요구사항 / 무리한 일정 압박 → 아키텍처 타협 및 품질 부채 차입 → 복잡도 누적 → 시스템 경직
-- 산출/효과: SQALE 기반 기술 부채 측정 · 정기적 리팩토링 및 아키텍처 리팩토링으로 부채 상환
-
-<div class="itpe-flow-map" role="img" aria-label="기술 부채 발생 및 악순환 사이클">
-  <div class="itpe-flow-node"><strong>원인: 일정 압박</strong><span>불명확한 요구사항 · 안티패턴 양산</span></div>
-  <div class="itpe-flow-arrow">→ 부채 차입 (단기 출시) →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>기술 부채 누적</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>원금</strong><span>임시방편 코드 및 설계 결함</span></div>
-      <div class="itpe-flow-branch"><strong>이자</strong><span><span class="itpe-keyword"><strong>수정 비용 폭증 · 생산성 저하</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>파산</strong><span><span class="itpe-keyword"><strong>기능 추가 불가 (시스템 동결)</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 부채 상환 전략 →</div>
-  <div class="itpe-flow-node"><strong>리팩토링 및 아키텍처 개선</strong><span>코드 품질 회복 및 지속가능성 확보</span></div>
-</div>
+- 효과: SQALE 기반 기술 부채 측정 · 정기적 리팩토링 및 아키텍처 리팩토링으로 부채 상환
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,67 +48,19 @@ extra:
 
 > 기술 부채는 의도성(Deliberate vs Inadvertent)과 신중함(Prudent vs Reckless)의 두 축으로 분류된다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="마틴 파울러 기술 부채 사분면">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 신중하고 의도적인 부채 (Prudent &amp; Deliberate)</strong></span>
-    <span>"지금 출시하고 결과 본 뒤 즉시 리팩토링하자" → 가장 이상적인 전략적 차입</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↔</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 무모하고 의도적인 부채 (Reckless &amp; Deliberate)</strong></span>
-    <span>"설계할 시간 없어, 일단 돌아가게만 짜" → 장기 파멸을 부르는 안티패턴</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 신중하고 우발적인 부채 (Prudent &amp; Inadvertent)</strong></span>
-    <span>"개발 완료하고 나서야 더 좋은 구조를 깨달았다" → 학습에 의한 자연스러운 부채</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↔</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>4. 무모하고 우발적인 부채 (Reckless &amp; Inadvertent)</strong></span>
-    <span>"디자인 패턴이나 레이어링이 뭔지도 모른 채 코딩" → 무능과 훈련 부재로 발생</span>
-  </div>
-</div>
-
 ### 마틴 파울러의 기술 부채 사분면(Technical Debt Quadrant)
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="22" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[Martin Fowler 기술 부채 4분면 매트릭스]</text>
-
-    <!-- Axis Labels -->
-    <text x="145" y="40" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">← 신중함 (Prudent)</text>
-    <text x="375" y="40" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">무모함 (Reckless) →</text>
-
-    <!-- Quadrant 1: Prudent & Deliberate (Top-Left) -->
-    <rect x="25" y="48" width="230" height="74" rx="5" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
-    <text x="35" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">신중함 &amp; 의도적 (전략적 차입)</text>
-    <text x="35" y="86" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">"지금 출시하고 바로 리팩토링하자"</text>
-    <text x="35" y="103" class="itpe-svg-label" font-size="10" fill="var(--sl-color-success, #10b981)">→ 출시 후 즉시 부채 상환 계획 수립</text>
-
-    <!-- Quadrant 2: Reckless & Deliberate (Top-Right) -->
-    <rect x="265" y="48" width="230" height="74" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.2" stroke-dasharray="4 2" />
-    <text x="275" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-danger, #ef4444)">무모함 &amp; 의도적 (안티패턴)</text>
-    <text x="275" y="86" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">"설계할 시간 없어, 일단 돌아가게만 해"</text>
-    <text x="275" y="103" class="itpe-svg-label" font-size="10" fill="var(--sl-color-danger, #ef4444)">→ 미래 유지보수 비용 폭증 유발</text>
-
-    <!-- Quadrant 3: Prudent & Inadvertent (Bottom-Left) -->
-    <rect x="25" y="130" width="230" height="74" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="35" y="150" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">신중함 &amp; 우발적 (자연적 학습)</text>
-    <text x="35" y="168" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">"구현 후에야 더 나은 설계를 깨달았다"</text>
-    <text x="35" y="185" class="itpe-svg-label" font-size="10" fill="var(--sl-color-primary, #3b82f6)">→ 점진적 아키텍처 진화로 흡수</text>
-
-    <!-- Quadrant 4: Reckless & Inadvertent (Bottom-Right) -->
-    <rect x="265" y="130" width="230" height="74" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.2" />
-    <text x="275" y="150" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-danger, #ef4444)">무모함 &amp; 우발적 (역량 부족)</text>
-    <text x="275" y="168" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">"레이어링이나 패턴이 뭔지도 모름"</text>
-    <text x="275" y="185" class="itpe-svg-label" font-size="10" fill="var(--sl-color-danger, #ef4444)">→ 코드 리뷰 의무화 및 교육 필요</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    subgraph D["의도적 (Deliberate)"]
+        Q1["신중·의도적: 전략적 차입"]
+        Q2["무모·의도적: 안티패턴"]
+    end
+    subgraph I["우발적 (Inadvertent)"]
+        Q3["신중·우발적: 자연적 학습"]
+        Q4["무모·우발적: 역량 부족"]
+    end
+```
 
 ### 불명확한 요구사항이 품질 저하로 이어지는 인과관계
 1. **요구사항 모호성**: 비즈니스 요구사항이 명확하지 않아 도메인 모델링 실패
@@ -139,22 +72,13 @@ extra:
 
 > 기술 부채를 비즈니스 이해관계자에게 설득하기 위해서는 기술적 결함을 '시간 및 금액'으로 환산해야 한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="SQALE 정량화 메커니즘">
-  <div class="itpe-pipeline-node">
-    <strong>정적 분석 규칙 위반 식별</strong>
-    <span>SonarQube를 통한 버그, 취약점, 코드스멜 전수 검출</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>위반별 시정 비용(Remediation Cost) 산출</strong>
-    <span>스멜 1건당 수정 예상 시간 부여 (예: 복잡한 메서드 추출 = 30분)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>기술 부채 비율 (Technical Debt Ratio) 계산</strong>
-    <span>TDR = (총 시정 비용 / 시스템 신규 재구축 비용) × 100%</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    A["정적 분석 규칙 위반 식별"] --> B["위반별 시정 비용(Remediation Cost) 산출"]
+    B --> C["기술 부채 비율(TDR) 계산"]
+```
+
+- 산식: `TDR = (총 시정 비용 ÷ 시스템 신규 재구축 비용) × 100%`
 
 | TDR 등급 | SQALE 비율 기준선 | 시스템 상태 판정 |
 |---|---|---|
@@ -200,28 +124,6 @@ extra:
 - **검증 체계**: CI 파이프라인 내 신규 기술 부채 유입 0건 통제 및 릴리스별 TDR 지수 추이 경영진 대시보드 공표
 - **기대 효과**: 아키텍처 부패 및 기술적 파산 원천 방지, 개발 생산성 30% 향상 및 엔터프라이즈 소프트웨어 자산 수명 극대화
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="기술 부채 관리 고도화 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>일정 맞추기용 땜질 코딩 방치 · 생산성 고갈 및 기술적 파산</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>SQALE 기반 부채 정량화 및 20% 리팩토링 예산 공식화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>TDR 지수 5% 이내 통제 및 CI Quality Gate 엄격 적용</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>지속가능한 개발 속도 유지 · 엔터프라이즈 소프트웨어 자산 가치 보존</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -231,15 +133,17 @@ extra:
 
 ### 2. 기술 부채 사분면 (Martin Fowler)
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="기술 부채 사분면 요약">
-  <div class="itpe-pipeline-node"><strong>신중/의도적</strong><span>전략적 출시 후 상환 계획</span></div>
-  <div class="itpe-pipeline-arrow">↔</div>
-  <div class="itpe-pipeline-node"><strong>무모/의도적</strong><span>품질 무시 맹목적 코딩</span></div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node"><strong>신중/우발적</strong><span>학습을 통해 발견된 개선점</span></div>
-  <div class="itpe-pipeline-arrow">↔</div>
-  <div class="itpe-pipeline-node"><strong>무모/우발적</strong><span>기초 지식 부재로 발생</span></div>
-</div>
+```mermaid
+flowchart TB
+    subgraph D["의도적 (Deliberate)"]
+        Q1["신중·의도적: 전략적 차입"]
+        Q2["무모·의도적: 안티패턴"]
+    end
+    subgraph I["우발적 (Inadvertent)"]
+        Q3["신중·우발적: 자연적 학습"]
+        Q4["무모·우발적: 역량 부족"]
+    end
+```
 
 ### 3. 핵심 통제
 

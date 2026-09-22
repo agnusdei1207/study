@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
@@ -16,13 +16,11 @@ extra:
 
 <div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 공공 소프트웨어사업 관리와 과업 통제를 거쳐 과업심의위원회로 이어지는 지식 위치"><span>소프트웨어 공학</span><span>공공 SW 사업관리 · 과업 통제</span><strong>과업심의위원회</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **과업심의위원회**는 국가기관등의 소프트웨어사업에서 과업내용의 확정·변경과 계약금액·계약기간 조정을 심의하는 법정 위원회
 - 메커니즘: 과업 확정 또는 변경 요청 → 외부위원 과반의 심의·의결 → 결과와 조치계획 통보 → 계약 반영
 - 산출: 확정 과업내용 · 변경 타당성 판단 · 계약금액·기간 조정안 · 조치계획
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의위원회의 과업 통제 흐름"><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>심의 사유</strong></span><span><b>입력</b> 과업내용 확정·변경 · 계약 조정 필요<br /><b>주체</b> 국가기관등 또는 계약 사업자</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>심의·의결</strong></span><span><b>활동</b> 범위·대가·기간·근거 검토<br /><b>통제</b> 외부위원 과반 · 제척·기피·회피</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>통보·반영</strong></span><span><b>산출</b> 심의결과 · 조치계획<br /><b>효과</b> 계약금액·기간과 과업 Baseline 정합화</span></div></div>
 
 <details><summary>핵심 용어</summary>
 
@@ -49,59 +47,12 @@ extra:
 
 > 위원회의 독립성은 외부위원 비율과 이해충돌 배제에서, 실효성은 결과를 계약에 반영하는 후속 조치에서 확보됨.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="tdc-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Left: Requestors -->
-  <rect x="15" y="15" width="110" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#tdc-shadow)"/>
-  <text x="70" y="38" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">요청 주체</text>
-  <rect x="23" y="50" width="94" height="65" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="70" y="75" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">국가기관 등</text>
-  <text x="70" y="95" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">과업내용 확정</text>
-  
-  <rect x="23" y="125" width="94" height="65" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="70" y="150" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">계약 사업자</text>
-  <text x="70" y="170" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">변경 요청권</text>
-
-  <!-- Arrow to Center -->
-  <path d="M 125 110 L 145 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-
-  <!-- Center: Committee Deliberation -->
-  <rect x="145" y="15" width="225" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#tdc-shadow)"/>
-  <text x="257" y="38" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">과업심의위원회 (법 제50조)</text>
-  <text x="257" y="53" text-anchor="middle" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">위원 5~10인 (외부위원 과반 강제 / 제척·기피·회피)</text>
-
-  <!-- 3 Deliberation Pillars -->
-  <rect x="155" y="65" width="205" height="38" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
-  <text x="165" y="88" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">① 과업 범위 확정 및 변경 적정성</text>
-
-  <rect x="155" y="110" width="205" height="38" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="165" y="133" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">② 계약금액 조정 (FP 기반 대가 산정)</text>
-
-  <rect x="155" y="155" width="205" height="38" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="165" y="178" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">③ 사업기간 연장 (납기 연동 검토)</text>
-
-  <!-- Arrow to Right -->
-  <path d="M 370 110 L 390 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-
-  <!-- Right: Result & Action -->
-  <rect x="390" y="15" width="115" height="190" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#tdc-shadow)"/>
-  <text x="447" y="38" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">결과 및 계약</text>
-  <rect x="398" y="50" width="99" height="140" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="405" y="72" font-size="9" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">★ 14일 이내 통보</text>
-  <text x="405" y="90" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">결과 및 조치계획</text>
-  <line x1="405" y1="100" x2="490" y2="100" stroke="var(--sl-color-gray-5, #e5e7eb)"/>
-  <text x="405" y="122" font-size="9" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">계약서 변경 반영</text>
-  <text x="405" y="140" font-size="8.5" fill="var(--sl-color-text, #374151)">• 과업 Baseline</text>
-  <text x="405" y="156" font-size="8.5" fill="var(--sl-color-text, #374151)">• 금액/기간 확정</text>
-  <text x="405" y="174" font-size="8.5" fill="var(--sl-color-text, #374151)">• 무상 과업 차단</text>
-</svg>
-</div>
+```mermaid
+flowchart LR
+    RQ["국가기관등 · 계약 사업자"] -->|"확정·변경 요청"| C["과업심의위원회"]
+    C -->|"14일 이내 통보"| RS["결과·조치계획"]
+    RS -->|"계약 반영"| BL["과업 Baseline 정합화"]
+```
 
 | 구분 | 법정 내용 | 통제점 |
 |---|---|---|
@@ -115,7 +66,12 @@ extra:
 
 > 사업자의 개최 요청권이 실제 변경 통제로 이어지려면 요청서·영향분석·결과 통보·계약 변경이 하나의 추적 경로로 남아야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="사업자의 과업심의위원회 개최 요청 절차"><div class="itpe-pipeline-node"><strong>변경 요청</strong><span><b>활동</b> 변경 사유·범위·비용·기간 영향 제출<br /><b>산출</b> 과업내용 변경요청서와 근거</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>요청 수용·소집</strong><span><b>활동</b> 국가기관등이 위원장에게 개최 통보<br /><b>산출</b> 안건·위원·심의자료</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>심의·의결</strong><span><b>활동</b> 타당성·영향·계약 조정 검토<br /><b>산출</b> 위원별 결과와 종합 결과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>결과 통보·조치</strong><span><b>활동</b> 요청일부터 14일 이내 결과·조치계획 통보<br /><b>산출</b> 계약 변경 또는 미반영 사유</span></div></div>
+```mermaid
+flowchart TB
+    A["변경 요청"] --> B["요청 수용·소집"]
+    B --> C["심의·의결"]
+    C --> D["결과 통보·조치"]
+```
 
 - 불가피한 추가 조사 시 사업자와 협의하여 한 차례, 14일 이내 범위에서 통보기한 연기 가능
 - 입찰공고에 사업자의 개최 요청권과 과업 변경 절차를 명시
@@ -147,14 +103,17 @@ extra:
 - **검증 체계**: 사업자 요청 후 14일 이내 심의결과 통보 준수율 및 변경계약 체결 내역 감리 전수 검증
 - **기대 효과**: 구두 지시에 의한 무상 과업 추가 원천 근절, 공공 SW 제값 주기 실현 및 법적 분쟁 예방
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의 실효성 개선 제언"><div class="itpe-pipeline-node"><strong>사후·형식 심의</strong><span><b>문제</b> 변경 실행 뒤 범위만 승인</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>변경 전 Gate</strong><span><b>대안</b> 범위·금액·기간과 증거를 한 안건으로 심의</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>계약 추적</strong><span><b>판정</b> 의결 결과와 계약·일정·검수 기준 일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>공정한 변경 통제</strong><span><b>효과</b> 책임·대가·납기 분쟁 예방</span></div></div>
-
 ## 1교시 10점 답안 발췌
 
 - 정의: **과업심의위원회**는 국가기관등의 **과업내용 확정·변경**과 **계약금액·계약기간 조정**을 심의하는 법정 위원회
 - 목적: 과업 확대와 계약조건 불일치 방지 → 객관적 과업 Baseline 유지
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="과업심의위원회 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>확정·변경 요청</strong><span><b>입력</b> 과업·금액·기간 영향 근거</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>심의·의결</strong><span><b>통제</b> 외부위원 과반·이해충돌 배제</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>통보·계약 반영</strong><span><b>산출</b> 결과·조치계획·변경 계약</span></div></div>
+```mermaid
+flowchart TB
+    A["변경 요청"] --> B["요청 수용·소집"]
+    B --> C["심의·의결"]
+    C --> D["결과 통보·조치"]
+```
 
 | 구분 | 핵심 내용 |
 |---|---|

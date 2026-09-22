@@ -5,41 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 분석·설계를 거쳐 요구공학으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>분석·설계</span>
-  <strong>요구공학</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 분석·설계 → **요구공학**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **요구공학(Requirements Engineering)**은 고객의 모호한 요구를 정확히 수집·분석·명세·검증하고, 소프트웨어 생애주기 전반에 걸쳐 요구사항의 변경과 추적성을 체계적으로 관리하는 공학적 프로세스
 - 메커니즘: **요구사항 개발(RD: 도출 → 분석 → 명세 → 검증)** + **요구사항 관리(REQM: 기준선 수립 · 형상관리 · 변경통제 CCB · 추적표 RTM)**
 - 산출/효과: 완결된 요구사항 명세서(SRS) · 프로젝트 납기/예산 초과 방지 · 결함 조기 발견을 통한 재작업 비용 극소화(보엠의 법칙 방어)
-
-<div class="itpe-flow-map" role="img" aria-label="요구공학 전주기 프레임워크">
-  <div class="itpe-flow-node"><strong>고객/이해관계자</strong><span>암묵적·모호한 니즈</span></div>
-  <div class="itpe-flow-arrow">→ 요구사항 개발 (RD) →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>요구공학 2대 축</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>개발(RD)</strong><span><span class="itpe-keyword"><strong>도출 · 분석 · 명세 · 검증</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>관리(REQM)</strong><span><span class="itpe-keyword"><strong>기준선 · CCB · RTM 추적성</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>분류 축</strong><span>기능적 요구사항 vs 비기능적 요구사항</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 기준선(SRS) 확정 및 통제 →</div>
-  <div class="itpe-flow-node"><strong>설계·구현·테스트</strong><span>추적성 기반 품질 보증</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -70,72 +51,18 @@ extra:
 
 > 요구사항은 생성(Engineering)하는 것만큼이나 생애주기 동안 변질되지 않도록 통제(Governance)하는 것이 중요하다.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="req-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Upper Box: Requirements Development (RD) -->
-  <rect x="15" y="15" width="490" height="92" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#req-shadow)"/>
-  <text x="25" y="34" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">요구사항 개발 (RD: Requirements Development)</text>
-  
-  <!-- RD Steps -->
-  <rect x="25" y="44" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="32" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">1. 도출(Elicitation)</text>
-  <text x="32" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">인터뷰 · 워크숍 · 프로토</text>
-
-  <rect x="145" y="44" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="152" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">2. 분석(Analysis)</text>
-  <text x="152" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">도메인 모델 · MoSCoW</text>
-
-  <rect x="265" y="44" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="272" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">3. 명세(Spec)</text>
-  <text x="272" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">SRS 작성 · IEEE 29148</text>
-
-  <rect x="385" y="44" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="392" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">4. 검증(Validation)</text>
-  <text x="392" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">인스펙션 · 프로토 시연</text>
-
-  <!-- Connecting Arrows -->
-  <path d="M 260 107 L 260 119" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2"/>
-
-  <!-- Lower Box: Requirements Management (REQM) -->
-  <rect x="15" y="119" width="490" height="92" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#req-shadow)"/>
-  <text x="25" y="138" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">요구사항 관리 (REQM: Requirements Management)</text>
-
-  <!-- REQM Elements -->
-  <rect x="25" y="148" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="32" y="167" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">기준선(Baseline)</text>
-  <text x="32" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">공식 서명 승인 · 형상화</text>
-
-  <rect x="145" y="148" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="152" y="167" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">변경통제(CCB)</text>
-  <text x="152" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">CR 심의 · 범위잠식 차단</text>
-
-  <rect x="265" y="148" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="272" y="167" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">추적표(RTM)</text>
-  <text x="272" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">요구-설계-코드-테스트</text>
-
-  <rect x="385" y="148" width="105" height="52" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="392" y="167" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">상태 모니터링</text>
-  <text x="392" y="184" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">제안·승인·구현·완료</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구공학 2대 프레임워크">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 요구사항 개발 (RD: Requirements Development)</strong></span>
-    <span>• 도출(Elicitation): 인터뷰, 설문, 워크숍, 프로토타이핑<br />• 분석(Analysis): 도메인 모델링, 유스케이스 분석, 우선순위화<br />• 명세(Specification): SRS 작성 (IEEE 830, ISO/IEC/IEEE 29148)<br />• 검증(Validation): 인스펙션, 워크스루, 프로토타입 검증</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕ 양방향 기준선(Baseline) 연계 및 피드백</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 요구사항 관리 (REQM: Requirements Management)</strong></span>
-    <span>• 기준선(Baseline) 수립: 이해관계자 공식 서명 및 형상 등록<br />• 변경 통제: 변경요청서(CR) 접수, 영향도 평가, CCB 심의<br />• 추적성(Traceability) 관리: RTM 기반 순방향/역방향 전수 추적<br />• 상태 추적: 요구사항 생애주기 상태(제안, 승인, 구현, 검증) 모니터링</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    subgraph RD["요구사항 개발 RD"]
+        direction LR
+        R1["도출"] --> R2["분석"] --> R3["명세"] --> R4["검증"]
+    end
+    subgraph REQM["요구사항 관리 REQM"]
+        direction LR
+        M1["기준선"] ~~~ M2["변경통제 CCB"] ~~~ M3["추적표 RTM"] ~~~ M4["상태 모니터링"]
+    end
+    RD <-->|"기준선 연계·피드백"| REQM
+```
 
 ## Ⅲ. 요구사항 개발(RD) 4단계 상세 프로세스
 
@@ -174,28 +101,6 @@ extra:
 - **검증 체계**: Git 커밋-PR-테스트 연계 RTM 전수 검증 및 BDD 자동화 시나리오 통과율 100% 확인
 - **기대 효과**: 문서-코드 간 불일치 원천 해소 및 후반부 결함 수정 재작업 비용 80% 절감
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="현대적 요구공학 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>문서 중심 명세의 정체로 인한 코드-명세 간 동기화 단절 및 스코프 잠식</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>Specification as Code 도입 및 Jira-Git-Test 간 RTM 자동 추적 체계 구축</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>BDD 시나리오 통과율 100% 및 변경 요청(CR)에 대한 영향도 자동 분석</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>고객 만족도 극대화 · 후반부 과업 변경 재작업 비용 최소화 달성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -205,11 +110,18 @@ extra:
 
 ### 2. 요구공학 2대 프레임워크
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구공학 프레임워크 요약">
-  <div class="itpe-pipeline-node"><strong>요구사항 개발 (RD)</strong><span>도출 → 분석 → 명세(SRS) → 검증(인스펙션)</span></div>
-  <div class="itpe-pipeline-arrow">↕ 기준선(Baseline) 및 추적 관리</div>
-  <div class="itpe-pipeline-node"><strong>요구사항 관리 (REQM)</strong><span>형상관리, 변경통제(CCB), 추적표(RTM), 상태 모니터링</span></div>
-</div>
+```mermaid
+flowchart TB
+    subgraph RD["요구사항 개발 RD"]
+        direction LR
+        R1["도출"] --> R2["분석"] --> R3["명세"] --> R4["검증"]
+    end
+    subgraph REQM["요구사항 관리 REQM"]
+        direction LR
+        M1["기준선"] ~~~ M2["변경통제 CCB"] ~~~ M3["추적표 RTM"] ~~~ M4["상태 모니터링"]
+    end
+    RD <-->|"기준선 연계·피드백"| REQM
+```
 
 ### 3. 핵심 통제
 

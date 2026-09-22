@@ -12,28 +12,26 @@ extra:
 ---
 
 ## 지식 로드맵 내 현재 위치
+현재 위치: IT 전략·관리 → AI 거버넌스 플랫폼
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략 관리에서 AI 거버넌스를 거쳐 AI 거버넌스 플랫폼으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span><span>AI 거버넌스</span><strong>AI 거버넌스 플랫폼</strong>
-</div>
 
 ## 30초 인출
 
-- 본질: 거버넌스 정책·책임·위험기준을 AI 수명주기 전반의 통제점과 감사 증적으로 구현하는 통합 통제 플랫폼
-- 메커니즘: AI 자산 등록(Inventory) → 위험평가(NIST AI RMF) → 파이프라인 검증(Lineage/편향) → 배포 게이트(System Card) → 런타임 감시 및 Human Oversight
-- 판정 기준: 고위험 AI 모델의 데이터 Lineage 100% 확보 및 런타임 드리프트(PSI > 0.25) 경보 시 즉각적 개입 증적 존재 여부
+- 본질: 거버넌스 정책·책임·위험기준을 AI 수명주기 전반의 통제점과 감사 증적으로 구현하는 통합 통제 플랫폼이다.
+- 메커니즘: AI 자산 등록 → 위험평가 → 데이터 계보·편향 검증 → 배포 게이트 → 런타임 감시·Human Oversight로 수명주기 통제를 연결한다.
+- 판정 기준: 고위험 AI의 데이터·모델 계보가 추적되고 드리프트 경보에 대한 사람의 개입 증적이 남는지 확인한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **AIMS(Artificial Intelligence Management System)**: AI의 책임 있는 개발·제공·사용을 위한 방침·목표·프로세스의 관리체계
-- **AI Inventory**: 조직이 개발·구매·운영하는 AI 시스템의 목적·소유자·위험등급·상태 목록
-- **System Card**: AI 시스템의 목적·범위·성능·한계·위험·평가결과를 기록한 증적
-- **Policy-as-Code**: 정책의 판정 규칙을 코드화하여 개발·배포 과정에서 반복 검증하는 방식
-- **Human Oversight**: 위험도와 영향에 따라 사람이 검토·승인·중단할 수 있도록 한 통제
-- **Lineage**: 데이터·모델·프롬프트·배포 버전의 생성과 변경 관계를 추적하는 정보
-- **MLOps(Machine Learning Operations)**: ML 모델의 개발·배포·운영을 연결하는 실무체계
-- **LLMOps(Large Language Model Operations)**: LLM 서비스의 프롬프트·평가·배포·운영을 관리하는 실무체계
+- **AIMS(Artificial Intelligence Management System)**: AI의 책임 있는 개발·제공·사용을 위한 방침·목표·프로세스의 관리체계이다.
+- **AI Inventory**: 조직이 개발·구매·운영하는 AI 시스템의 목적·소유자·위험등급·상태 목록이다.
+- **System Card**: AI 시스템의 목적·범위·성능·한계·위험·평가결과를 기록한 증적이다.
+- **Policy-as-Code**: 정책의 판정 규칙을 코드화하여 개발·배포 과정에서 반복 검증하는 방식이다.
+- **Human Oversight**: 위험도와 영향에 따라 사람이 검토·승인·중단할 수 있도록 한 통제이다.
+- **Lineage**: 데이터·모델·프롬프트·배포 버전의 생성과 변경 관계를 추적하는 정보이다.
+- **MLOps(Machine Learning Operations)**: ML 모델의 개발·배포·운영을 연결하는 실무체계이다.
+- **LLMOps(Large Language Model Operations)**: LLM 서비스의 프롬프트·평가·배포·운영을 관리하는 실무체계이다.
 
 </details>
 
@@ -45,9 +43,9 @@ extra:
 
 > AI 거버넌스 플랫폼은 선언적 원칙을 **승인 Gate·운영 통제·감사 증적**으로 전환하여 AI 위험을 수명주기 전반에서 관리함.
 
-- 정의: 조직의 AI 정책·책임·위험기준을 AI 자산·개발·배포·운영 통제와 증적관리로 구현하는 통합 플랫폼
-- 목적: **책임성·추적성·규제 대응·운영위험 통제**
-- 기준: **ISO/IEC 42001:2023**의 AIMS와 **NIST AI RMF(Artificial Intelligence Risk Management Framework)**의 Govern·Map·Measure·Manage를 조직 환경에 맞게 적용
+- 정의: 조직의 **AI 정책**·**책임체계**·위험기준을 AI 자산·개발·배포·운영 통제와 증적관리로 구현하는 통합 플랫폼
+- 목적: **책임성**·**추적성**·**규제 대응**·**운영위험 통제**
+ISO/IEC 42001:2023의 AIMS와 NIST AI RMF의 Govern·Map·Measure·Manage를 조직 환경에 맞게 적용한다.
 
 ## Ⅱ. AI 거버넌스 플랫폼 구성체계
 
@@ -110,7 +108,13 @@ flowchart TD
 - **판정 기준 (Trigger)**: 고위험 AI 모델의 데이터 리니지(Lineage) 누락, 또는 환각(Hallucination)·편향성 검증 미달 시 배포 파이프라인 자동 차단(Hard Gate).
 - **대응 방안 (Action)**: Policy-as-Code 기반 자동 검증 도구(CI/CD Gatekeeper)를 연동하고, 미충족 시 Human Oversight 승인위원회 재심의를 강제함.
 - **검증 체계 (Verification)**: ISO/IEC 42001(AIMS) 및 EU AI Act 기준 System Card 증적의 완결성과 런타임 데이터 드리프트 지표(PSI > 0.25)를 실시간 감사함.
-- **기대 효과 (Impact)**: Shadow AI 및 규제 위반 과징금 리스크 원천 차단, AI 시스템의 전사적 신뢰성 및 추적성 100% 확보를 달성함.
+- **기대 효과 (Impact)**: Shadow AI 및 규제 위반 과징금 리스크 감소, AI 시스템의 전사적 신뢰성 및 추적성 목표 기준 확보를 달성함.
+
+```mermaid
+flowchart TD
+    P["고위험 AI 모델의 데이터 리니지(Lineage) 누락, "] --> A["Policy-as-Code 기반 자동 검증 도구(CI/CD"] --> V["ISO/IEC 42001(AIMS) 및 EU AI Act "] --> E["Shadow AI 및 규제 위반 과징금 리스크 감소, AI"]
+    V --> P
+```
 
 ## 1교시 10점 답안 발췌
 

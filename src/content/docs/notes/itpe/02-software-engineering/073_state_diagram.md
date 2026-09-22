@@ -1,50 +1,40 @@
 ---
 title: "상태 다이어그램(State Diagram)"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
-  - "소프트웨어공학"
-  - "UML"
-  - "상태다이어그램"
-  - "FSM"
-  - "상태패턴"
-  - "StateMachine"
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
+  keyword_grade: "B"
 ---
 
-> **로드맵 경로**: 소프트웨어공학 > 소프트웨어 분석 및 설계 > UML 모델링 > 상태 다이어그램(State Diagram)
+## 지식 로드맵 내 현재 위치
 
----
-
-## 큰 그림과 30초 인출
-
-```text
-[상태 다이어그램(State Machine Diagram)]
- ├── 본질: 단일 객체가 외부 이벤트에 반응하여 시간에 따라 어떤 상태로 변하고 동작하는지 생애주기를 추적·통제하는 유한 상태 머신(FSM) 모델링 기법
- ├── 핵심 요소: 상태(State) · 전이(Transition) · 이벤트(Event) · 가드 조건(Guard) · 액션(Entry/Do/Exit)
- ├── 상태 폭발 해결: 복합 상태(Composite State) · 직교 영역(Orthogonal) · 이력 상태(History)
- ├── UML 3대 행위 비교: 유스케이스(외부 상호작용) vs 액티비티(업무 흐름) vs 상태(객체 생애주기)
- └── 구현 연계: GoF State 디자인 패턴, Spring State Machine, MSA 분산 사가 오케스트레이터
-```
-
-- **30초 인출 구호**: "FSM 기반 객체 생애주기, 상태-전이-이벤트-가드-액션, 상태 폭발은 복합/직교/이력으로 해결!"
+지식 위치: 소프트웨어공학 → 소프트웨어 분석 및 설계 → UML 모델링 → **상태 다이어그램(State Diagram)**
 
 ---
 
-## 핵심 용어 (5개 내외)
+## 30초 인출
 
-| 핵심 용어 | 영문 표기 | 핵심 정의 및 특징 |
-|---|---|---|
-| **유한 상태 머신** | FSM (Finite State Machine) | 객체가 가질 수 있는 유한한 개수의 상태와 외부 입력에 따른 전이를 수학적으로 모델링한 기법 |
-| **가드 조건** | Guard Condition | 상태 전이가 실행되기 위해 반드시 참(True)으로 평가되어야 하는 전이 사전 조건 (`[조건]`) |
-| **상태 폭발** | State Explosion | 도메인의 복잡도 증가에 따라 상태와 전이의 조합 수가 기하급수적으로 폭증하는 현상 |
-| **복합 상태** | Composite State | 상태 폭발을 방지하기 위해 여러 하위 상태를 묶어 계층화한 슈퍼 상태(Super-state) |
-| **이력 상태** | History State ($H$) | 복합 상태를 벗어났다가 재진입할 때 이전에 머물렀던 마지막 활성 하위 상태를 복원하는 의사 상태 |
+- 본질: **상태 다이어그램**은 단일 객체가 외부 이벤트에 반응해 상태가 변하는 생애주기를 유한 상태 머신(FSM)으로 모델링한 UML 행위 다이어그램
+- 메커니즘: 이벤트 발생 → 가드 조건 `[조건]` 판정 → 상태 전이 → 액션(Entry/Do/Exit) 실행
+- 판정 기준: 상태 폭발은 복합 상태·직교 영역·이력 상태(H)로 압축하고 불법 전이는 전이 규칙으로 원천 차단
+
+<details>
+<summary>핵심 용어</summary>
+
+- **유한 상태 머신(FSM: Finite State Machine)**: 객체가 가질 수 있는 유한한 개수의 상태와 외부 입력에 따른 전이를 수학적으로 모델링한 기법
+- **가드 조건(Guard Condition)**: 상태 전이가 실행되기 위해 반드시 참(True)으로 평가되어야 하는 전이 사전 조건 (`[조건]`)
+- **상태 폭발(State Explosion)**: 도메인의 복잡도 증가에 따라 상태와 전이의 조합 수가 기하급수적으로 폭증하는 현상
+- **복합 상태(Composite State)**: 상태 폭발을 방지하기 위해 여러 하위 상태를 묶어 계층화한 슈퍼 상태(Super-state)
+- **이력 상태(History State, H)**: 복합 상태를 벗어났다가 재진입할 때 이전에 머물렀던 마지막 활성 하위 상태를 복원하는 의사 상태
+
+</details>
 
 ---
 
@@ -70,66 +60,16 @@ extra:
 
 #### 1. 주문(Order) 도메인 상태 다이어그램 구조도
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
-  <!-- 전체 배경 -->
-  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
-  
-  <!-- 초기 상태 (검은 원) -->
-  <circle cx="25" cy="80" r="8" fill="var(--sl-color-text, #0f172a)"/>
-  <path d="M 33 80 L 55 80" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-  <text x="44" y="72" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">주문생성</text>
-
-  <!-- 상태 1: 주문대기 -->
-  <rect x="55" y="58" width="85" height="44" rx="8" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #64748b)" stroke-width="1.5"/>
-  <text x="97" y="84" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">주문 대기</text>
-
-  <!-- 전이 1 (정상 경로): 주문대기 -> 결제완료 -->
-  <path d="M 140 80 L 175 80" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
-  <text x="157" y="70" font-size="7.5" text-anchor="middle" fill="var(--sl-color-success, #15803d)">결제승인 [재고있음]</text>
-
-  <!-- 상태 2: 결제완료 -->
-  <rect x="175" y="58" width="85" height="44" rx="8" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-  <text x="217" y="78" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">결제 완료</text>
-  <text x="217" y="92" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">entry / 패키징</text>
-
-  <!-- 전이 2: 결제완료 -> 배송출발 -->
-  <path d="M 260 80 L 295 80" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-  <text x="277" y="72" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">물품출고</text>
-
-  <!-- 상태 3: 배송출발 -->
-  <rect x="295" y="58" width="85" height="44" rx="8" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #64748b)" stroke-width="1.5"/>
-  <text x="337" y="84" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">배송 중</text>
-
-  <!-- 전이 3: 배송출발 -> 배송완료 -->
-  <path d="M 380 80 L 415 80" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
-  <text x="397" y="72" font-size="7.5" text-anchor="middle" fill="var(--sl-color-success, #15803d)">배송완료</text>
-
-  <!-- 상태 4: 배송완료 -->
-  <rect x="415" y="58" width="70" height="44" rx="8" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
-  <text x="450" y="84" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">수령 완료</text>
-
-  <!-- 최종 상태 (배송완료 -> 종료) -->
-  <path d="M 485 80 L 500 80" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-  <circle cx="508" cy="80" r="8" fill="none" stroke="var(--sl-color-text, #0f172a)" stroke-width="1.5"/>
-  <circle cx="508" cy="80" r="5" fill="var(--sl-color-text, #0f172a)"/>
-
-  <!-- 예외 전이 경로: 주문대기 -> 주문취소 (하단) -->
-  <path d="M 97 102 L 97 150 L 175 150" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
-  <text x="136" y="142" font-size="7.5" fill="var(--sl-color-danger, #ef4444)">결제타임아웃 / 재고반환</text>
-
-  <!-- 상태 5: 주문취소 -->
-  <rect x="175" y="128" width="85" height="44" rx="8" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
-  <text x="217" y="154" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">주문 취소</text>
-
-  <!-- 주문취소 -> 종료 상태 -->
-  <path d="M 260 150 L 508 150 L 508 92" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-
-  <!-- 하단 설명 배너 -->
-  <rect x="15" y="185" width="490" height="24" rx="4" fill="var(--sl-color-bg-inline-code, #f8fafc)"/>
-  <text x="260" y="201" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">핵심 5대 요소: 상태(State) · 전이(Transition) · 이벤트(Event) · 가드[Guard] · 액션(/Action)</text>
-</svg>
-</div>
+```mermaid
+stateDiagram-v2
+    [*] --> 주문대기: 주문 생성
+    주문대기 --> 결제완료: 결제 승인 [재고 있음]
+    결제완료 --> 배송중: 물품 출고
+    배송중 --> 수령완료: 배송 완료
+    주문대기 --> 주문취소: 결제 타임아웃
+    수령완료 --> [*]
+    주문취소 --> [*]
+```
 
 #### 2. 5대 핵심 구성요소
 
@@ -165,39 +105,25 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **환불 처리 중인 주문이 배송 완료로 잘못 전이되는 불법 전이 발생** | 상태 다이어그램 전이 매트릭스 도출 및 Spring State Machine 기반 불법 전이 예외화 | 불법 상태 전이로 인한 비즈니스 사고 0건 달성 |
-| **주문 상태를 20여 개의 boolean 플래그로 관리하여 조건문 충돌 발생** | GoF State 디자인 패턴을 적용하여 상태별 행위를 독립 클래스로 캡슐화 | 조건문 복잡도(McCabe) 80% 감소 및 코드 가독성 확보 |
-| **사용자의 결제창 방치로 인한 재고 락(Lock) 고갈 및 타 고객 구매 불가** | 상태 진입 시 타이머를 가동하는 Entry 액션과 타임아웃 이벤트 명세 | 방치 주문 10분 내 자동 취소 및 재고 즉시 회수 100% |
-| **설계서의 상태 다이어그램과 소스코드의 상태 구현 불일치** | XState 또는 상태 머신 엔진을 활용하여 다이어그램을 소스코드로 직접 컴파일 | 모델-코드 간 정합성 100% 유지 |
+| **환불 처리 중인 주문이 배송 완료로 잘못 전이되는 불법 전이 발생** | 상태 다이어그램 전이 매트릭스 도출 및 Spring State Machine 기반 불법 전이 예외화 | 불법 상태 전이로 인한 비즈니스 사고 차단 |
+| **주문 상태를 다수의 boolean 플래그로 관리하여 조건문 충돌 발생** | GoF State 디자인 패턴을 적용하여 상태별 행위를 독립 클래스로 캡슐화 | 조건문 복잡도 감소 및 코드 가독성 확보 |
+| **사용자의 결제창 방치로 인한 재고 락(Lock) 고갈 및 타 고객 구매 불가** | 상태 진입 시 타이머를 가동하는 Entry 액션과 타임아웃 이벤트 명세 | 방치 주문 자동 취소 및 재고 즉시 회수 |
+| **설계서의 상태 다이어그램과 소스코드의 상태 구현 불일치** | XState 또는 상태 머신 엔진을 활용하여 다이어그램을 소스코드로 직접 컴파일 | 모델-코드 간 정합성 유지 |
 
 ---
 
 ### Ⅴ. 기술사적 제언: 실행 가능한 상태 머신(Executable State Machine) 및 분산 사가 거버넌스
 
 ### 학습자 통찰 메모 — 답안 밖
-```text
-[핵심 통찰]
-실무에서 상태 다이어그램 없이 주문/결제 도메인을 짜면 수십 개의 boolean 플래그와 if-else 조건문 지옥에 빠진다.
-상태 다이어그램은 단순한 문서가 아니라 '허용되지 않은 불법 전이를 컴파일/런타임에 원천 차단'하는 강력한 방화벽이다.
-상태 수가 늘어날 때 생기는 '상태 폭발'은 복합 상태(계층화)와 직교 영역(동시성), 이력 상태(H)로 압축해야 하며,
-현대 MSA 환경에서는 카프카 이벤트 기반의 사가(Saga) 오케스트레이터와 보상 트랜잭션 전이 경로로 확장된다.
 
-[나라면]
-실전 답안에서 5대 핵심 요소(상태-전이-이벤트-가드-액션)의 표준 표기 형식을 정확히 도해하겠다.
-그리고 2단락에서 유스케이스(외부) vs 활동(프로세스) vs 상태(객체 생애주기)의 관점 차이를 비교하고,
-3단락에서 Spring State Machine 및 MSA 사가(Saga) 보상 트랜잭션 전이 모델을 제시하겠다.
-```
+- `[핵심 통찰]`: 실무에서 상태 다이어그램 없이 주문/결제 도메인을 짜면 수십 개의 boolean 플래그와 if-else 조건문 지옥에 빠진다. 상태 다이어그램은 단순한 문서가 아니라 '허용되지 않은 불법 전이를 컴파일/런타임에 원천 차단'하는 강력한 방화벽이며, 상태 폭발은 복합 상태(계층화)와 직교 영역(동시성), 이력 상태(H)로 압축해야 한다. 현대 MSA 환경에서는 이벤트 기반의 사가(Saga) 오케스트레이터와 보상 트랜잭션 전이 경로로 확장된다.
+- `나라면`: 실전 답안에서 5대 핵심 요소(상태-전이-이벤트-가드-액션)의 표준 표기 형식을 정확히 도해하고, 2단락에서 유스케이스(외부) vs 활동(프로세스) vs 상태(객체 생애주기)의 관점 차이를 비교한 뒤, 3단락에서 Spring State Machine 및 MSA 사가(Saga) 보상 트랜잭션 전이 모델을 제시하겠다.
 
 ### 실전 답안용 기술사적 제언
 - **판정 기준**: 도메인 객체의 생애주기 상태 전이 시 가드 조건(재고, 결제 유효성) 충족 여부 및 비정상 이벤트 유입 시 불법 전이 예외 발생 여부를 기준으로 전이 타당성을 판정함.
 - **대응 방안**: 소스코드 레벨에서 if-else 플래그를 전면 제거하고 GoF State 패턴 및 Spring State Machine 프레임워크를 적용하여 상태별 행위 캡슐화와 전이 검증을 런타임 엔진에 위임함.
 - **검증 체계**: 상태 폭발 방지를 위한 직교 영역 및 복합 상태 계층을 검증하고, MSA 분산 사가 오케스트레이터와 결합하여 장애 시 보상 트랜잭션(Compensating Transaction) 전이 경로를 자동 검증함.
-- **기대 효과**: 비정상적 상태 전이로 인한 재고/결제 정산 사고를 0건으로 차단하고, 분산 트랜잭션 환경에서 궁극적 일관성(Eventual Consistency)을 100% 달성함.
-
-```text
-[상태 다이어그램 설계] ──> [Spring State Machine 엔진] ──> [MSA Saga 오케스트레이터] ──> [보상 트랜잭션 자동복구]
-(FSM 전이 및 가드조건)       (불법 전이 런타임 차단)          (분산 이벤트 기반 전이)          (궁극적 일관성 확보)
-```
+- **기대 효과**: 비정상적 상태 전이로 인한 재고/결제 정산 사고를 차단하고, 분산 트랜잭션 환경에서 궁극적 일관성(Eventual Consistency)을 확보함.
 
 ---
 

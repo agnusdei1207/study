@@ -5,34 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 요구공학과 요구사항 개발을 거쳐 요구사항 도출 기법으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>요구공학 · 요구사항 개발</span>
-  <strong>요구사항 도출 기법</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 요구공학 · 요구사항 개발 → **요구사항 도출 기법**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **Requirements Elicitation(요구사항 도출)**은 이해관계자의 표현된 요구와 업무에 숨은 요구를 발견하는 활동
 - 메커니즘: 이해관계자 식별 → 목적과 불확실성에 맞는 기법 조합 → 사실·가정·갈등 확인
 - 산출: 출처가 식별된 요구 후보 · 용어집 · 미결정 쟁점 · 확인 기록
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출의 준비부터 확인까지의 흐름">
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>① 범위·정보원 식별</strong></span><span><b>활동</b> 목표·업무·권한·이해관계자 분석<br /><b>산출</b> 이해관계자 지도 · 도출 계획</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>② 기법 조합·수행</strong></span><span><b>활동</b> 인터뷰·JAD·관찰·프로토타이핑<br /><b>산출</b> 사실 · 요구 후보 · 가정 · 갈등</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>③ 확인·합의</strong></span><span><b>활동</b> 재진술·시나리오 검토·충돌 조정<br /><b>산출</b> 확인 요구 · 결정 근거 · 미결정 목록</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -60,59 +48,6 @@ extra:
 
 > 한 기법은 한 종류의 편향만 줄이므로 넓이·깊이·현장성·가시화 중 필요한 증거를 기준으로 상호 보완함.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="elicit-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Left: Elicitation Techniques Grid -->
-  <rect x="15" y="15" width="230" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#elicit-shadow)"/>
-  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">다차원 요구 도출 기법 조합</text>
-
-  <rect x="25" y="46" width="98" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="32" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">심층 인터뷰</text>
-  <text x="32" y="78" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">의사결정·심층 탐색</text>
-
-  <rect x="135" y="46" width="98" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="142" y="63" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">설문조사</text>
-  <text x="142" y="78" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">대규모 통계 경향</text>
-
-  <rect x="25" y="96" width="98" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="32" y="113" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">현장 관찰</text>
-  <text x="32" y="128" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">암묵·그림자 업무</text>
-
-  <rect x="135" y="96" width="98" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="142" y="113" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">JAD 워크숍</text>
-  <text x="142" y="128" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">충돌 집중 합의</text>
-
-  <rect x="25" y="146" width="208" height="48" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <text x="35" y="166" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">프로토타이핑 (UI/UX Mockup)</text>
-  <text x="35" y="182" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">추상적 상호작용의 시각적 피드백 즉시 검증</text>
-
-  <!-- Arrow -->
-  <path d="M 248 110 L 272 110" fill="none" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2"/>
-
-  <!-- Right: Verification Gate & Output -->
-  <rect x="275" y="15" width="230" height="190" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#elicit-shadow)"/>
-  <text x="288" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">도출 품질 게이트 &amp; 확정 산출</text>
-
-  <rect x="288" y="48" width="204" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="298" y="65" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">1. 출처(Source) 명시화</text>
-  <text x="298" y="80" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">누가 어떤 권한으로 요구했는가?</text>
-
-  <rect x="288" y="98" width="204" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="298" y="115" font-size="10" font-weight="700" fill="var(--sl-color-text, #1f2937)">2. 가정(Assumption) 분리</text>
-  <text x="298" y="130" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">사실과 추정의 엄격한 식별 통제</text>
-
-  <rect x="288" y="148" width="204" height="46" rx="4" fill="var(--sl-color-accent-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
-  <text x="298" y="166" font-size="10" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">3. 충돌 조정 &amp; 확정 요구 후보</text>
-  <text x="298" y="182" font-size="8.5" fill="var(--sl-color-text, #374151)">미결정 안건 소유자·기한 강제 지정</text>
-</svg>
-</div>
-
 | 기법 | 적합 조건 | 활동 | 산출·주의점 |
 |---|---|---|---|
 | **인터뷰** | 의사결정 근거·예외의 깊이 탐색 | 개방형 질문 후 폐쇄형 확인 | 발언 근거 · 질문자 편향 통제 |
@@ -125,15 +60,12 @@ extra:
 
 > 도출 품질은 회의 횟수가 아니라 각 요구가 출처·목적·확인 결과를 가지며 미해결 충돌이 결정권자에게 전달되는지로 검증함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출의 품질 통제 절차">
-  <div class="itpe-pipeline-node"><strong>도출 준비</strong><span><b>활동</b> 목표·범위·정보원·기법·질문 설계<br /><b>산출</b> 도출 계획 · 질문지 · 업무 자료 목록</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>증거 수집</strong><span><b>활동</b> 발언과 관찰 사실을 분리하고 예외·가정 기록<br /><b>산출</b> 원시 기록 · 요구 후보 · 용어집</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>정제·분류</strong><span><b>활동</b> 중복 병합, 유형 분류, 충돌 식별<br /><b>산출</b> 구조화 요구 · 충돌·미결정 목록</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>확인·결정</strong><span><b>활동</b> 재진술·시나리오·프로토타입으로 이해 검증<br /><b>산출</b> 확인 요구 · 결정 근거 · 후속 조치</span></div>
-</div>
+| 단계 | 활동 | 산출 |
+|---|---|---|
+| **1. 도출 준비** | 목표·범위·정보원·기법·질문 설계 | 도출 계획, 질문지, 업무 자료 목록 |
+| **2. 증거 수집** | 발언과 관찰 사실 분리, 예외·가정 기록 | 원시 기록, 요구 후보, 용어집 |
+| **3. 정제·분류** | 중복 병합, 유형 분류, 충돌 식별 | 구조화 요구, 충돌·미결정 목록 |
+| **4. 확인·결정** | 재진술·시나리오·프로토타입으로 이해 검증 | 확인 요구, 결정 근거, 후속 조치 |
 
 ## Ⅳ. 요구사항 도출 문제점·대응책
 
@@ -162,22 +94,16 @@ extra:
 - **검증 체계**: 요구별 출처·목적·인수기준 100% 매핑 확인 및 미결정 충돌 안건의 책임자·의결 기한 강제화
 - **기대 효과**: 암묵 요구 발굴률 40% 향상, 부서 간 이해 충돌 조기 종식 및 하류 공정 재작업 비용 60% 절감
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출 개선 제언">
-  <div class="itpe-pipeline-node"><strong>현행 한계</strong><span><b>문제</b> 대표자 인터뷰와 회의록 의존으로 암묵 요구·충돌 누락</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>교차 도출</strong><span><b>대안</b> 역할별 인터뷰 · 관찰 · 프로토타입 증거 결합</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>도출 게이트</strong><span><b>판정</b> 출처·목적·가정·확인 상태와 갈등 소유자 완비</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>실행 결과</strong><span><b>효과</b> 합의 요구 확보 · 명세와 추적의 신뢰 가능한 입력 제공</span></div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 - 정의: **Requirements Elicitation(요구사항 도출)**은 **이해관계자**와 운영 환경에서 **요구·제약·가정**을 발견해 요구 후보로 구조화하는 활동
 - 목적: 표현된 요청과 실제 업무의 간극 식별 → 누락·오해·충돌을 줄인 요구 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="요구사항 도출 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>정보원 식별</strong><span><b>활동</b> 역할·업무·권한 파악<br /><b>산출</b> 이해관계자 지도</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>교차 도출</strong><span><b>활동</b> 인터뷰·관찰·프로토타입 조합<br /><b>산출</b> 요구 후보·가정·갈등</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>확인·합의</strong><span><b>활동</b> 재진술·충돌 조정<br /><b>산출</b> 확인 요구·미결정 목록</span></div></div>
+```mermaid
+flowchart TB
+    A["정보원 식별"] --> B["교차 도출"]
+    B --> C["확인·합의"]
+```
 
 | 위험 | 대책 | 효과 |
 |---|---|---|

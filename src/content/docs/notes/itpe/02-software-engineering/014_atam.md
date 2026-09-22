@@ -2,44 +2,25 @@
 title: "ATAM(Architecture Tradeoff Analysis Method)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 아키텍처·설계를 거쳐 ATAM으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>아키텍처·설계</span>
-  <strong>ATAM(Architecture Tradeoff Analysis Method)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 아키텍처·설계 → **ATAM(Architecture Tradeoff Analysis Method)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **ATAM**은 아키텍처가 비즈니스 목표와 상충하는 품질속성 요구사항을 얼마나 만족하는지 시나리오 기반으로 평가·절충하는 SEI의 분석 방법론
 - 메커니즘: 파트너십 구축 → **유틸리티 트리(Utility Tree)** 생성 → 아키텍처 접근법 분석 → **민감점/절충점** 식별 → 위험 평가
-- 산출/효과: 민감점(Sensitivity Point) · 절충점(Tradeoff Point) · 리스크 테마 도출 · 아키텍처 재설계 의사결정 지원
-
-<div class="itpe-flow-map" role="img" aria-label="ATAM 아키텍처 평가 흐름">
-  <div class="itpe-flow-node"><strong>비즈니스 동인</strong><span>핵심 품질요구사항(QAR)</span></div>
-  <div class="itpe-flow-arrow">→ 시나리오 구체화 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>ATAM 평가 코어</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>유틸리티 트리</strong><span>중요도·난이도 (H/M/L) 우선순위화</span></div>
-      <div class="itpe-flow-branch"><strong>아키텍처 분석</strong><span>접근법 및 뷰 매핑</span></div>
-      <div class="itpe-flow-branch"><strong>판정 도출</strong><span><span class="itpe-keyword"><strong>민감점 · 절충점(Tradeoff)</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 리스크 테마 도출 →</div>
-  <div class="itpe-flow-node"><strong>아키텍처 리스크 완화</strong><span>재설계 및 품질 보증</span></div>
-</div>
+- 효과: 민감점(Sensitivity Point) · 절충점(Tradeoff Point) · 리스크 테마 도출 · 아키텍처 재설계 의사결정 지원
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,97 +48,28 @@ extra:
 
 > 평가는 평가팀과 프로젝트 이해관계자가 참여하는 단계적 워크숍 형태로 진행된다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ATAM 4단계 9개 프로세스">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Phase 1: 소개 (Presentation)</strong></span>
-    <div class="itpe-step-detail"><strong>1. 방법론 소개</strong><span>평가팀 주관 ATAM 절차 및 기대 산출물 설명</span></div>
-    <div class="itpe-step-detail"><strong>2. 비즈니스 동인 소개</strong><span>고객/PM 주관 사업 목표 및 주요 품질 요구사항 제시</span></div>
-    <div class="itpe-step-detail"><strong>3. 아키텍처 소개</strong><span>수석 아키텍트 주관 뷰(View) 및 설계 결정 설명</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Phase 2: 조사 및 분석 (Investigation &amp; Analysis)</strong></span>
-    <div class="itpe-step-detail"><strong>4. 아키텍처 접근법 식별</strong><span>적용된 패턴(계층형, 마이크로서비스 등) 파악</span></div>
-    <div class="itpe-step-detail"><strong>5. 유틸리티 트리 생성</strong><span>품질속성 시나리오 도출 및 (중요도, 난이도) 우선순위화</span></div>
-    <div class="itpe-step-detail"><strong>6. 아키텍처 접근법 분석</strong><span>우선순위 시나리오 기반 민감점·절충점·위험 판정</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Phase 3: 테스팅 (Testing)</strong></span>
-    <div class="itpe-step-detail"><strong>7. 시나리오 브레인스토밍</strong><span>광범위한 이해관계자 참여 통한 유스케이스·성장 시나리오 발굴</span></div>
-    <div class="itpe-step-detail"><strong>8. 추가 아키텍처 분석</strong><span>투표로 선정된 핵심 시나리오 기반 아키텍처 재검증</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Phase 4: 보고 (Reporting)</strong></span>
-    <div class="itpe-step-detail"><strong>9. 평가 결과 보고</strong><span>민감점, 절충점, 리스크 테마 및 재설계 권고사항 최종 발표</span></div>
-  </div>
-</div>
+| 단계 | 세부 프로세스 | 핵심 활동 |
+|---|---|---|
+| **Phase 1: 소개 (Presentation)** | 1. 방법론 소개 | 평가팀이 ATAM 절차 및 기대 산출물 설명 |
+| **Phase 1: 소개** | 2. 비즈니스 동인 소개 | 고객/PM이 사업 목표 및 주요 품질 요구사항 제시 |
+| **Phase 1: 소개** | 3. 아키텍처 소개 | 수석 아키텍트가 뷰(View) 및 설계 결정 설명 |
+| **Phase 2: 조사 및 분석 (Investigation & Analysis)** | 4. 아키텍처 접근법 식별 | 적용된 패턴(계층형, 마이크로서비스 등) 파악 |
+| **Phase 2: 조사 및 분석** | 5. 유틸리티 트리 생성 | 품질속성 시나리오 도출 및 (중요도, 난이도) 우선순위화 |
+| **Phase 2: 조사 및 분석** | 6. 아키텍처 접근법 분석 | 우선순위 시나리오 기반 민감점·절충점·위험 판정 |
+| **Phase 3: 테스팅 (Testing)** | 7. 시나리오 브레인스토밍 | 이해관계자 참여로 유스케이스·성장 시나리오 발굴 |
+| **Phase 3: 테스팅** | 8. 추가 아키텍처 분석 | 투표로 선정된 핵심 시나리오 기반 아키텍처 재검증 |
+| **Phase 4: 보고 (Reporting)** | 9. 평가 결과 보고 | 민감점, 절충점, 리스크 테마 및 재설계 권고사항 발표 |
 
 ## Ⅲ. 유틸리티 트리와 핵심 평가 지표(민감점 vs 절충점)
 
 > 유틸리티 트리는 모호한 품질 요구사항을 측정 가능한 시나리오로 변환하는 핵심 도구이다.
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[유틸리티 트리(Utility Tree) 계층 분해 및 판정 메커니즘]</text>
-
-    <!-- Root: Utility -->
-    <rect x="20" y="85" width="80" height="50" rx="6" fill="var(--sl-color-primary, #3b82f6)" />
-    <text x="60" y="110" class="itpe-svg-title" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Utility</text>
-    <text x="60" y="125" class="itpe-svg-sub" font-size="10" fill="#e0f2fe" text-anchor="middle">(전체 효용)</text>
-
-    <!-- Branch Lines -->
-    <line x1="100" y1="110" x2="135" y2="55" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
-    <line x1="100" y1="110" x2="135" y2="110" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
-    <line x1="100" y1="110" x2="135" y2="165" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
-
-    <!-- Quality Attributes -->
-    <rect x="135" y="37" width="85" height="36" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="177" y="59" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">성능 (Perf)</text>
-
-    <rect x="135" y="92" width="85" height="36" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="177" y="114" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">보안 (Sec)</text>
-
-    <rect x="135" y="147" width="85" height="36" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="177" y="169" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">가용성 (Avail)</text>
-
-    <!-- Branch Lines to Scenarios -->
-    <line x1="220" y1="55" x2="250" y2="55" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
-    <line x1="220" y1="110" x2="250" y2="110" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
-    <line x1="220" y1="165" x2="250" y2="165" stroke="var(--sl-color-border, #94a3b8)" stroke-width="1.5" />
-
-    <!-- Scenarios -->
-    <rect x="250" y="37" width="125" height="36" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="260" y="52" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #334155)">피크시 1초내 응답</text>
-    <text x="260" y="66" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-danger, #ef4444)">(High, High)</text>
-
-    <rect x="250" y="92" width="125" height="36" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="260" y="107" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #334155)">전송구간 암호화</text>
-    <text x="260" y="121" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-danger, #ef4444)">(High, Med)</text>
-
-    <rect x="250" y="147" width="125" height="36" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="260" y="162" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #334155)">장애시 30초 복구</text>
-    <text x="260" y="176" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)">(Med, High)</text>
-
-    <!-- Right Evaluation: Sensitivity vs Tradeoff -->
-    <!-- Sensitivity box -->
-    <rect x="395" y="37" width="115" height="65" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
-    <text x="452" y="57" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">민감점 (Sensitivity)</text>
-    <text x="452" y="74" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">단일 품질에 영향</text>
-    <text x="452" y="89" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(예: DB 풀 크기)</text>
-
-    <!-- Tradeoff box -->
-    <rect x="395" y="118" width="115" height="65" rx="5" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
-    <text x="452" y="138" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">절충점 (Tradeoff)</text>
-    <text x="452" y="155" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-accent, #8b5cf6)" font-weight="600" text-anchor="middle">복수 품질 상충</text>
-    <text x="452" y="170" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(예: HTTPS 암호화)</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    U["Utility"] --> P["성능"] --> S1["피크시 1초내 응답 (High, High)"]
+    U --> SEC["보안"] --> S2["전송구간 암호화 (High, Med)"]
+    U --> AV["가용성"] --> S3["장애시 30초 복구 (Med, High)"]
+```
 
 ### 1. 유틸리티 트리(Utility Tree) 구조
 - **루트**: Utility
@@ -212,28 +124,6 @@ extra:
 - **검증 체계**: 우선순위 시나리오 프로토타입 PoC 100% 검증 및 식별된 아키텍처 리스크 테마별 완화 계획서 승인
 - **기대 효과**: 구축 후반 아키텍처 재설계(빅뱅 결함) 비용 원천 차단 및 이해관계자 간 품질 요구사항 합의 보증
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ATAM 아키텍처 평가 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>아키텍처 감정적 설계 · 구축 후반 품질 속성 미달로 재구축</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>ATAM 유틸리티 트리 기반 품질 트레이드오프 워크숍 정례화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>민감점/절충점 도출 리포트 및 PoC 기반 핵심 시나리오 검증</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>아키텍처 위험 조기 완화 · 비즈니스 목표 일치성 완벽 보증</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -243,13 +133,12 @@ extra:
 
 ### 2. 핵심 메커니즘
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="ATAM 핵심 3대 축">
-  <div class="itpe-pipeline-node"><strong>유틸리티 트리</strong><span>품질속성 시나리오 우선순위화(H/M/L)</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>민감점(Sensitivity)</strong><span>단일 품질에 결정적 영향을 미치는 요소</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>절충점(Tradeoff)</strong><span>다중 품질 간 상충(Tradeoff)을 유발하는 결정</span></div>
-</div>
+```mermaid
+flowchart TB
+    U["Utility"] --> P["성능"] --> S1["피크시 1초내 응답 (High, High)"]
+    U --> SEC["보안"] --> S2["전송구간 암호화 (High, Med)"]
+    U --> AV["가용성"] --> S3["장애시 30초 복구 (Med, High)"]
+```
 
 ### 3. 핵심 통제
 

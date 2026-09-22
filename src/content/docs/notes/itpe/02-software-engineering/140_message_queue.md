@@ -9,10 +9,10 @@ tags:
   - "비동기메시징"
   - "DLQ"
   - "멱등성"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:26:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,45 +23,11 @@ extra:
   <strong>메시지 큐(Message Queue)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 서비스 간 직접적인 동기식(REST/RPC) 호출 연쇄로 인해 발생하는 시간적·공간적 강결합과 하위 서비스 장애 전파(Cascading Failure)를 차단하기 위해, 생산자(Producer)와 소비자(Consumer) 사이에 메시지 브로커를 배치하여 데이터를 비동기로 중계하고 피크 트래픽을 완충하는 분산 미들웨어
 - 메커니즘: 생산자 메시지 발행 → 브로커 메모리/디스크 큐 버퍼링 → 소비자 비동기 풀링(Pull) 및 멱등 처리 → 정상 처리 후 ACK 회신(3회 실패 시 DLQ 격리)
 - 산출물: 메시지 토폴로지 구성도 · 메시지 스키마 정의서 · 멱등성 처리 규격서 · 데드 레터 큐(DLQ) 운영 정책서
-
-<div class="itpe-flow-map" role="img" aria-label="메시지 큐 비동기 파이프라인 및 결함 격리 흐름">
-  <div class="itpe-flow-node">
-    <strong>1단계: 생산자 메시지 발행 (Producer)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>동작</strong><span>주문 접수 즉시 큐로 이벤트 발행 후 클라이언트에 200 OK 응답</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 브로커 버퍼링 및 피크 완충</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>완충</strong><span>트래픽 폭증 시 큐에 메시지 안전 적재 (Traffic Leveling)</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>3단계: 소비자 멱등 처리 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>메시지가 성공적으로 처리되고 중복 처리가 방지되었는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>성공 (ACK 반환)</strong>
-      <span>비즈니스 로직 완료 $\rightarrow$ 큐에서 메시지 삭제 또는 오프셋 커밋</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>실패 (재시도 초과)</strong>
-      <span>독성 메시지 판정 $\rightarrow$ 데드 레터 큐(DLQ) 격리 및 알림 발송</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -95,167 +61,33 @@ extra:
 
 ### 메시지 큐 기반 결합 분리 및 재시도·DLQ 아키텍처
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="mq-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-      <marker id="mq-danger" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
-      </marker>
-      <marker id="mq-success" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">메시지 큐 비동기 버퍼링 및 장애 격리(DLQ) 구조</text>
-
-    <!-- Producer -->
-    <rect x="15" y="45" width="100" height="70" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
-    <text x="65" y="70" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">생산자 (Producer)</text>
-    <text x="65" y="88" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">주문 서비스</text>
-    <text x="65" y="103" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">200 OK 즉시 반환</text>
-
-    <!-- Arrow 1 -->
-    <line x1="115" y1="80" x2="148" y2="80" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#mq-arrow)"/>
-    <text x="132" y="74" text-anchor="middle" font-size="6.5" fill="var(--color-primary, #2563eb)">Publish</text>
-
-    <!-- Message Broker / Queue -->
-    <rect x="150" y="45" width="150" height="70" rx="6" fill="var(--color-bg-subtle, #eff6ff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.5"/>
-    <text x="225" y="66" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">메시지 브로커 (MQ)</text>
-    <text x="225" y="82" text-anchor="middle" font-size="7" fill="var(--color-text, #1e293b)">피크 트래픽 완충 버퍼</text>
-    <text x="225" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">디스크 WAL 영속화 (Durable)</text>
-
-    <!-- Arrow 2 -->
-    <line x1="300" y1="80" x2="338" y2="80" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#mq-arrow)"/>
-    <text x="320" y="74" text-anchor="middle" font-size="6.5" fill="var(--color-primary, #2563eb)">Consume</text>
-
-    <!-- Consumer -->
-    <rect x="340" y="45" width="165" height="70" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="422" y="66" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">소비자 (Consumer)</text>
-    <text x="422" y="82" text-anchor="middle" font-size="7" fill="var(--color-text, #334155)">결제/배송 멱등 처리</text>
-    <text x="422" y="98" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">Redis 분산락 중복 방지</text>
-
-    <!-- Branch Success (ACK) -->
-    <line x1="422" y1="115" x2="422" y2="145" stroke="#16a34a" stroke-width="1.4" marker-end="url(#mq-success)"/>
-    <rect x="360" y="148" width="125" height="48" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="#16a34a" stroke-width="1"/>
-    <text x="422" y="166" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#16a34a">정상: 수동 ACK 회신</text>
-    <text x="422" y="182" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">큐에서 메시지 삭제/커밋</text>
-
-    <!-- Branch Fail (DLQ) -->
-    <line x1="340" y1="100" x2="230" y2="145" stroke="#ef4444" stroke-width="1.4" marker-end="url(#mq-danger)"/>
-    <rect x="130" y="148" width="190" height="48" rx="4" fill="var(--color-bg-subtle, #fef2f2)" stroke="#ef4444" stroke-width="1"/>
-    <text x="225" y="166" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#dc2626">3회 실패 시: DLQ 격리</text>
-    <text x="225" y="182" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">독성 메시지 우회 및 운영자 알림</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    P["생산자"] -->|"발행 후 200 OK"| MQ["메시지 브로커"]
+    MQ -->|"소비자 풀링"| C["소비자 멱등 처리"]
+    C -->|"정상: 수동 ACK"| OK["메시지 삭제·커밋"]
+    C -.->|"3회 실패"| DLQ["DLQ 격리·운영자 알림"]
+```
 
 ### 트랜잭셔널 아웃박스 패턴(Transactional Outbox Pattern)
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="tx-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">이중 쓰기(Dual-Write) 문제 극복: 트랜잭셔널 아웃박스 패턴</text>
-
-    <!-- Service Boundary -->
-    <rect x="15" y="38" width="220" height="145" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
-    <text x="125" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">단일 로컬 DB 트랜잭션 (ACID)</text>
-
-    <!-- Table 1: Business Table -->
-    <rect x="25" y="68" width="200" height="42" rx="4" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="125" y="85" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">1. 비즈니스 테이블 (주문 저장)</text>
-    <text x="125" y="99" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">INSERT INTO orders ...</text>
-
-    <!-- Table 2: Outbox Table -->
-    <rect x="25" y="122" width="200" height="48" rx="4" fill="var(--color-bg-subtle, #eff6ff)" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
-    <text x="125" y="140" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">2. 아웃박스 테이블 (이벤트 저장)</text>
-    <text x="125" y="156" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">INSERT INTO outbox (order_created ...)</text>
-
-    <!-- Arrow from DB to CDC -->
-    <line x1="235" y1="146" x2="265" y2="146" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#tx-arrow)"/>
-
-    <!-- CDC / Relay Engine -->
-    <rect x="270" y="115" width="105" height="62" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="322" y="136" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-accent, #0284c7)">메시지 릴레이</text>
-    <text x="322" y="152" text-anchor="middle" font-size="6.5" fill="var(--color-text, #334155)">Debezium (CDC)</text>
-    <text x="322" y="165" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">DB 트랜잭션 로그 판독</text>
-
-    <!-- Arrow to Broker -->
-    <line x1="375" y1="146" x2="400" y2="146" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#tx-arrow)"/>
-
-    <!-- Message Broker -->
-    <rect x="405" y="115" width="100" height="62" rx="5" fill="var(--color-bg-subtle, #eff6ff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.2"/>
-    <text x="455" y="136" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">메시지 브로커</text>
-    <text x="455" y="152" text-anchor="middle" font-size="6.5" fill="var(--color-text, #1e293b)">Kafka / RabbitMQ</text>
-    <text x="455" y="165" text-anchor="middle" font-size="6.5" fill="#16a34a">유실 0% 발행 보증</text>
-
-    <!-- Top Callout -->
-    <rect x="250" y="45" width="255" height="52" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="377" y="65" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">핵심 효과: Dual-Write 불일치 원천 차단</text>
-    <text x="377" y="82" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">DB 성공 후 브로커 다운되어도 로그 재발행으로 최종 일관성 보장</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    subgraph TX["로컬 DB 트랜잭션(ACID)"]
+        ORD["비즈니스 테이블 저장"] ~~~ OUT["아웃박스 테이블 저장"]
+    end
+    TX -->|"트랜잭션 로그 판독(CDC)"| RELAY["메시지 릴레이(Debezium)"]
+    RELAY -->|"무손실 발행"| MQ["메시지 브로커"]
+```
 
 ### 메시지 큐 신뢰성 보증 4대 핵심 기법
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>① 브로커 디스크 영속화 (Durable)</strong></span>
-      <span class="itpe-badge">유실 방지</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>큐 및 메시지를 인메모리에만 두지 않고 디스크 WAL에 기록</li>
-        <li>브로커 서버가 급작스럽게 재부팅되어도 메시지 무손실 복구</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>② 수동 확인 응답 (Manual ACK)</strong></span>
-      <span class="itpe-badge">처리 보증</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>소비자가 비즈니스 로직(DB 저장 등)을 완전히 끝낸 후 명시적 ACK 전송</li>
-        <li>처리 중 컨슈머 장애 발생 시 브로커가 다른 컨슈머에게 자동 재전송</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>③ 컨슈머 멱등성 (Idempotency)</strong></span>
-      <span class="itpe-badge">중복 방어</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>At-least-once 재전송으로 인한 동일 메시지 2회 수신 대비</li>
-        <li>고유 메시지 ID 기반 Redis 분산 락 또는 DB 유니크 제약으로 중복 실행 차단</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>④ 데드 레터 큐 (DLQ)</strong></span>
-      <span class="itpe-badge">파이프라인 보호</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>데이터 파싱 에러 등으로 재시도 한도(Max Retry)를 초과한 메시지 격리</li>
-        <li>정상적인 다른 메시지들의 처리가 블로킹되지 않도록 파이프라인 우회</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 핵심 기법 | 핵심 판단 |
+|---|---|
+| **브로커 디스크 영속화(Durable)** | 유실 방지: 큐·메시지를 인메모리가 아닌 디스크 WAL에 기록하여 브로커 재부팅 후에도 무손실 복구 |
+| **수동 확인 응답(Manual ACK)** | 처리 보증: 소비자가 비즈니스 로직(DB 저장 등)을 완전히 끝낸 뒤 명시적 ACK 전송, 처리 중 장애 시 다른 컨슈머로 자동 재전송 |
+| **컨슈머 멱등성(Idempotency)** | 중복 방어: 고유 메시지 ID 기반 Redis 분산 락 또는 DB 유니크 제약으로 At-least-once 재전송의 중복 실행 차단 |
+| **데드 레터 큐(DLQ)** | 파이프라인 보호: 재시도 한도(Max Retry) 초과 메시지를 격리·우회시켜 정상 메시지 처리 블로킹 방지 |
 
 ## 3. 실무 적용 및 고려사항
 
@@ -293,35 +125,6 @@ extra:
 - **대응 방안**: 트랜잭셔널 아웃박스 패턴(CDC 연동)을 적용하고 컨슈머 계층에 Redis 분산락 기반 멱등 처리 로직 구현
 - **검증 체계**: 재시도 3회 초과 메시지의 DLQ 자동 전이 검증 및 Prometheus/Grafana 기반 메시지 적체(Lag) 임계 알림 가동
 - **기대 효과**: 트래픽 폭증 시 백엔드 DB 다운 방지(Traffic Leveling) 및 서비스 간 결합 분리를 통한 가용성 99.99% 달성
-
-<div class="itpe-pipeline-container" role="region" aria-label="메시지 큐 엔터프라이즈 신뢰성 및 무손실 파이프라인">
-  <div class="itpe-pipeline-header">
-    <span class="itpe-pipeline-title">메시지 큐 엔터프라이즈 신뢰성 및 무손실 파이프라인</span>
-    <span class="itpe-pipeline-badge">메시징 거버넌스</span>
-  </div>
-  <div class="itpe-pipeline-grid">
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">1단계: 원자적 저장</div>
-      <div class="itpe-card-title">Outbox 패턴</div>
-      <div class="itpe-card-body">로컬 DB 트랜잭션 내 비즈니스 데이터와 아웃박스 이벤트 원자적 저장</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">2단계: 로그 릴레이</div>
-      <div class="itpe-card-title">CDC 무손실 발행</div>
-      <div class="itpe-card-body">Debezium이 DB WAL을 실시간 판독하여 브로커로 유실 없이 퍼블리시</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">3단계: 멱등 소비</div>
-      <div class="itpe-card-title">소비자 멱등 처리</div>
-      <div class="itpe-card-body">메시지 UUID 기반 분산 락 및 유니크 키 검증으로 중복 실행 원천 차단</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">4단계: 결함 격리</div>
-      <div class="itpe-card-title">DLQ 안전 격리</div>
-      <div class="itpe-card-body">재시도 한도 초과 독성 메시지를 우회 격리하고 파이프라인 지속 유지</div>
-    </div>
-  </div>
-</div>
 
 ## 6. 참고 및 연계 학습
 

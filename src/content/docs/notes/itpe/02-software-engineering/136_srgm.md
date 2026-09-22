@@ -8,10 +8,10 @@ tags:
   - "Goel-Okumoto"
   - "Yamada"
   - "소프트웨어품질"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:26:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,45 +22,11 @@ extra:
   <strong>SW 신뢰성 성장 모델(SRGM)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 테스트 종료 시점을 관리자의 주관적 감이나 납기 일정에 타협하여 조기 출시 후 대규모 운영 장애가 터지는 참사를 방지하기 위해, 테스트 기간 동안 발견·제거된 결함의 시계열 데이터를 수학적 확률 모델(NHPP)에 대입하여 잔존 결함 수와 목표 신뢰도 달성 시점(최적 릴리스 시기)을 과학적으로 예측하는 신뢰성 평가 기법
 - 메커니즘: 테스트 결함 데이터(시간/건수) 수집 → 통계 모델 선정(지수형 G-O vs 지연 S자형 Yamada) → 파라미터 추정(MLE) 및 곡선 적합도 검정 → 잔존 결함 및 평균 고장 시간(MTTF) 산출 → 최적 출시 판정
 - 산출물: 누적 결함 발견 곡선($m(t)$) · 잔존 결함 추정서 · 목표 신뢰도(MTTF) 달성 평가서
-
-<div class="itpe-flow-map" role="img" aria-label="SRGM 기반 신뢰도 예측 및 최적 릴리스 판정 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 테스트 결함 시계열 데이터 수집</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>데이터</strong><span>일별/주별 테스트 시간($t$) 대비 누적 발견 결함 수($m(t)$) 기록</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: NHPP 수학 모델 피팅 및 모수 추정</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>모델</strong><span>Goel-Okumoto(오목 지수형) 또는 Yamada(지연 S자형) 선택 $\rightarrow$ MLE 추정</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>3단계: 릴리스 신뢰도 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>누적 결함 곡선이 포화 상태에 도달하고 목표 MTTF를 달성했는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (출시 승인)</strong>
-      <span>최적 릴리스 시점 도달 $\rightarrow$ 운영 배포 및 상용화 승인</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (테스트 지속)</strong>
-      <span>결함 발견율 미포화/잔존 결함 과다 $\rightarrow$ 추가 테스트 기간 확보</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -91,153 +57,14 @@ SRGM은 결함 발견 이력을 바탕으로 **"시스템에 잠재된 총 결�
 
 ## 2. 아키텍처 및 핵심 메커니즘
 
-### 누적 결함 발견 곡선 비교 (G-O vs Yamada)
-
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">SRGM 누적 결함 발견 곡선 ($m(t)$) 및 포화 임계선</text>
-
-    <!-- Axes -->
-    <line x1="55" y1="180" x2="480" y2="180" stroke="var(--color-border, #64748b)" stroke-width="1.5"/>
-    <line x1="55" y1="180" x2="55" y2="40" stroke="var(--color-border, #64748b)" stroke-width="1.5"/>
-    <text x="480" y="195" font-size="7.5" fill="var(--color-text, #334155)">테스트 시간 (t)</text>
-    <text x="25" y="45" font-size="7.5" fill="var(--color-text, #334155)">결함 수</text>
-
-    <!-- Asymptote (Total Defects a) -->
-    <line x1="55" y1="65" x2="475" y2="65" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3"/>
-    <text x="475" y="62" text-anchor="end" font-size="7" font-weight="bold" fill="#dc2626">잠재 결함 총량 (a)</text>
-
-    <!-- G-O Curve (Concave exponential) -->
-    <path d="M 55 180 Q 130 90 460 70" fill="none" stroke="var(--color-primary, #2563eb)" stroke-width="2"/>
-    <text x="220" y="90" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">Goel-Okumoto (오목 지수형)</text>
-
-    <!-- Yamada Curve (S-shaped) -->
-    <path d="M 55 180 Q 150 178 220 135 T 460 75" fill="none" stroke="#ca8a04" stroke-width="2"/>
-    <text x="320" y="140" font-size="7.5" font-weight="bold" fill="#ca8a04">Yamada (지연 S자형)</text>
-
-    <!-- Annotations -->
-    <rect x="70" y="135" width="90" height="28" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="115" y="148" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">초기 학습 구간</text>
-    <text x="115" y="158" text-anchor="middle" font-size="6.5" fill="#ca8a04">(발견율 완만)</text>
-
-    <!-- Optimal Release Zone -->
-    <rect x="400" y="80" width="85" height="40" rx="4" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
-    <text x="442" y="95" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--color-primary, #2563eb)">최적 릴리스</text>
-    <text x="442" y="108" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">기울기 0 수렴 구간</text>
-  </svg>
-</div>
-
-### 비용 최적화 기반 릴리스 판정 모델 구조
-
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="srgm-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">SRGM 기반 최적 릴리스 판정 4대 프로세스</text>
-
-    <!-- Step 1 -->
-    <rect x="15" y="40" width="105" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="15" y="40" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="67" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">① 데이터 수집</text>
-    <text x="67" y="78" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">테스트 시간 ($t$)</text>
-    <text x="67" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">결함 발견 건수</text>
-    <text x="67" y="112" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[중복 결함 정제]</text>
-
-    <line x1="120" y1="87" x2="138" y2="87" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#srgm-arrow)"/>
-
-    <!-- Step 2 -->
-    <rect x="140" y="40" width="105" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="140" y="40" width="105" height="22" rx="6" fill="var(--color-bg-subtle, #f1f5f9)"/>
-    <text x="192" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-text, #1e293b)">② 모수 추정</text>
-    <text x="192" y="78" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">NHPP 모델 적합</text>
-    <text x="192" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">최우도추정(MLE)</text>
-    <text x="192" y="112" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[파라미터 a, b 산출]</text>
-
-    <line x1="245" y1="87" x2="263" y2="87" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#srgm-arrow)"/>
-
-    <!-- Step 3 -->
-    <rect x="265" y="40" width="110" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <rect x="265" y="40" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="320" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">③ 신뢰도 계산</text>
-    <text x="320" y="78" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">잔존 결함 수 ($a - m$)</text>
-    <text x="320" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">고장률 $\lambda(t)$ / MTTF</text>
-    <text x="320" y="112" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-accent, #0284c7)">[목표 신뢰도 검증]</text>
-
-    <line x1="375" y1="87" x2="393" y2="87" stroke="var(--color-primary, #2563eb)" stroke-width="1.5" marker-end="url(#srgm-arrow)"/>
-
-    <!-- Step 4 -->
-    <rect x="395" y="40" width="110" height="95" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
-    <rect x="395" y="40" width="110" height="22" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="450" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">④ 최적 릴리스</text>
-    <text x="450" y="78" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">총비용 최소점 ($t^*$)</text>
-    <text x="450" y="93" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">테스트비용 vs 장애손실</text>
-    <text x="450" y="112" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[출시 최종 승인]</text>
-
-    <!-- Bottom Result Formula -->
-    <rect x="15" y="145" width="490" height="35" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="260" y="166" text-anchor="middle" font-size="7.5" fill="var(--color-text, #1e293b)">비용 목적함수: $C(t) = C_1 \cdot t + C_2 \cdot m(t) + C_3 \cdot (a - m(t))$ 의 극솟값 시점 도출</text>
-  </svg>
-</div>
-
 ### SRGM 분석 및 적용 4대 핵심 절차
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>① 데이터 수집 및 정제</strong></span>
-      <span class="itpe-badge">실측 데이터</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>일별/주별 테스트 투입 시간, 실행 건수, 발견된 결함 건수 로깅</li>
-        <li>단순 환경 문제나 중복 결함은 필터링하여 순수 소프트웨어 결함만 추출</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>② 모델 선정 및 모수 추정</strong></span>
-      <span class="itpe-badge">수학적 피팅</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>초기 결함 발생 추세에 따라 G-O 지수형 또는 Yamada S자형 모델 선택</li>
-        <li>최우도추정법(MLE) 또는 최소제곱법(LSE)을 활용하여 모수 $a, b$ 산출</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>③ 신뢰도 지표 계산</strong></span>
-      <span class="itpe-badge">정량 평가</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>잔존 결함 수: 총 결함 추정치($a$) - 현재까지 발견된 결함 수($m(t)$)</li>
-        <li>순간 고장률 $\lambda(t)$ 및 평균 고장 시간(MTTF) 수학적 산출</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>④ 최적 릴리스 시점 도출</strong></span>
-      <span class="itpe-badge">비용 최적화</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>테스트 지속 비용(인건비)과 출시 후 결함 발생 손실 비용의 합 최소화</li>
-        <li>목표 신뢰도와 비용 곡선의 교차점에서 공식 배포 승인</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 절차 | 핵심 판단 |
+|---|---|
+| **데이터 수집·정제** | 테스트 시간·실행 건수·결함 건수 로깅, 환경 문제·중복 결함 필터링 |
+| **모델 선정·모수 추정** | 초기 발생 추세로 G-O 지수형 또는 Yamada S자형 선택, MLE·LSE로 모수 $a, b$ 산출 |
+| **신뢰도 지표 계산** | 잔존 결함 수($a - m(t)$), 순간 고장률 $\lambda(t)$·평균 고장 시간(MTTF) 산출 |
+| **최적 릴리스 시점 도출** | 테스트 비용과 출시 후 손실의 합 최소점 $t^*$에서 배포 승인 |
 
 ## 3. 실무 적용 및 고려사항
 
@@ -278,35 +105,6 @@ SRGM의 가장 강력한 실무 가치는 '테스트를 언제 끝낼 것인가'
 - **대응 방안**: 불완전 디버깅 파라미터를 반영하여 잔존 결함 수를 재추정하고 고위험 모듈 집중 회귀 테스팅 수행
 - **검증 체계**: Jira/GitLab 웹훅을 통해 결함 로그를 SRGM 분석 엔진에 실시간 피팅하여 품질 게이트 대시보드 운영
 - **기대 효과**: 출시 후 치명적 운영 장애율 70% 감소 및 비용 최소화 기반 최적 릴리스 일정 확정
-
-<div class="itpe-pipeline-container" role="region" aria-label="SRGM 기반 데이터 주도적 품질 게이트 파이프라인">
-  <div class="itpe-pipeline-header">
-    <span class="itpe-pipeline-title">SRGM 기반 데이터 주도적 품질 게이트 파이프라인</span>
-    <span class="itpe-pipeline-badge">품질 거버넌스</span>
-  </div>
-  <div class="itpe-pipeline-grid">
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">1단계: 실시간 집계</div>
-      <div class="itpe-card-title">결함 로그 수집</div>
-      <div class="itpe-card-body">테스트 실행 시간 대비 결함 건수 실시간 웹훅 파이프라인 적재</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">2단계: 확률 피팅</div>
-      <div class="itpe-card-title">Yamada NHPP 적합</div>
-      <div class="itpe-card-body">MLE 기법 기반 잠재 결함 총량($a$) 및 결함 검출률($b$) 실시간 산출</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">3단계: 비용 최적화</div>
-      <div class="itpe-card-title">총비용 곡선 도출</div>
-      <div class="itpe-card-body">테스트 투입 비용과 출시 후 결함 손실액의 합이 최소가 되는 $t^*$ 산정</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">4단계: 품질 승인</div>
-      <div class="itpe-card-title">릴리스 판정 배포</div>
-      <div class="itpe-card-body">목표 MTTF 충족 및 결함 포화 확인 시 운영 배포 승인</div>
-    </div>
-  </div>
-</div>
 
 ## 6. 참고 및 연계 학습
 

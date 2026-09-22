@@ -5,28 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 객체지향 설계와 결합도 관리를 거쳐 의존성 주입으로 이어지는 지식 위치"><span>소프트웨어 공학</span><span>객체지향 설계 · 결합도 관리</span><strong>의존성 주입</strong></div>
+지식 위치: 소프트웨어 공학 → 객체지향 설계 · 결합도 관리 → **의존성 주입**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **DI(Dependency Injection)**는 객체가 협력자를 직접 생성·탐색하지 않고 외부 조립자가 제공하게 하는 설계 기법
 - 메커니즘: 구현 등록 → 의존 그래프 해결 → 생성자 등 주입 지점으로 전달 → 수명주기 관리
 - 산출: 생성 책임과 사용 책임 분리 · 구현 교체 가능성 · 격리 단위 테스트
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입의 등록 해결 주입 흐름">
-  <div class="itpe-pipeline-node"><strong>등록</strong><span><b>활동</b> 추상화와 구현·범위 연결<br /><b>산출</b> 구성 메타데이터</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>해결</strong><span><b>활동</b> 의존 그래프·생성 순서·순환 검사<br /><b>산출</b> 객체 생성 계획</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>주입</strong><span><b>활동</b> 생성자·수정자로 협력자 전달<br /><b>산출</b> 사용 가능한 객체 그래프</span></div>
-</div>
 
 <details><summary>핵심 용어</summary>
 
@@ -53,62 +47,13 @@ extra:
 
 > 클라이언트는 계약만 알고 Composition Root가 구현 선택과 생명주기를 책임져야 변경 영향이 조립 경계에 머묾.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="di-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Left: Direct Coupling (AS-IS) -->
-  <rect x="15" y="15" width="220" height="190" rx="8" fill="var(--sl-color-red-subtle, #fef2f2)" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="1.5" filter="url(#di-shadow)"/>
-  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">AS-IS: 직접 생성 및 강결합</text>
-
-  <rect x="30" y="50" width="190" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="40" y="68" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">클라이언트 (OrderService)</text>
-  <text x="40" y="83" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">new MysqlRepository() 직접 호출</text>
-
-  <path d="M 125 92 L 125 125" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="2" stroke-dasharray="3 3"/>
-  <text x="132" y="112" font-size="9" fill="var(--sl-color-red-high, #dc2626)">강한 결합</text>
-
-  <rect x="30" y="130" width="190" height="58" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="1"/>
-  <text x="40" y="148" font-size="10.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">구체 구현 (MysqlRepository)</text>
-  <text x="40" y="164" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• DB 변경 시 서비스 전면 수정</text>
-  <text x="40" y="179" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• 단위 테스트 Mock 주입 불가</text>
-
-  <!-- Right: Dependency Injection (TO-BE) -->
-  <rect x="255" y="15" width="250" height="190" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#di-shadow)"/>
-  <text x="268" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">TO-BE: DI 외부 조립 및 약결합</text>
-
-  <!-- DI Container Box -->
-  <rect x="268" y="46" width="224" height="38" rx="4" fill="var(--sl-color-accent-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5"/>
-  <text x="278" y="63" font-size="10" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">IoC 컨테이너 (Spring DI / Guice)</text>
-  <text x="278" y="76" font-size="8.5" fill="var(--sl-color-text, #374151)">생성자 주입(Constructor Injection) 실행</text>
-
-  <!-- Service -->
-  <rect x="268" y="94" width="105" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="274" y="112" font-size="10" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">OrderService</text>
-  <text x="274" y="127" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">생성자로 수신</text>
-
-  <!-- Arrow to Interface -->
-  <path d="M 373 115 L 387 115" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-
-  <!-- Interface -->
-  <rect x="387" y="94" width="105" height="42" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5"/>
-  <text x="393" y="112" font-size="10" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">&lt;&lt;Interface&gt;&gt;</text>
-  <text x="393" y="127" font-size="8.5" fill="var(--sl-color-text, #1f2937)">Repository</text>
-
-  <!-- Injected Implementations -->
-  <rect x="268" y="146" width="105" height="48" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="274" y="165" font-size="9.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">MysqlRepo</text>
-  <text x="274" y="180" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">운영 환경 주입</text>
-
-  <rect x="387" y="146" width="105" height="48" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-purple-high, #7c3aed)" stroke-width="1"/>
-  <text x="393" y="165" font-size="9.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">MockRepo</text>
-  <text x="393" y="180" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">단위 테스트 주입</text>
-</svg>
-</div>
+```mermaid
+flowchart LR
+    CR["Composition Root"] -->|"생성자 주입"| CL["클라이언트"]
+    CL -->|"계약만 의존"| IF["추상화 인터페이스"]
+    CR -->|"구현 선택·조립"| IM["구현 객체·테스트 대역"]
+    IM -.->|"계약 구현"| IF
+```
 
 | 요소 | 책임 | 통제점 |
 |---|---|---|
@@ -155,14 +100,16 @@ extra:
 - **검증 체계**: CI 빌드 시 컨테이너 기동 테스트(ApplicationContext Test) 및 순환 의존·Scope 불일치 린트 정적 검증
 - **기대 효과**: 객체 불변성(Immutability) 확보, 컨테이너 없는 순수 POJO 단위 테스트 커버리지 90% 이상 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 개선 제언"><div class="itpe-pipeline-node"><strong>숨은 결합</strong><span><b>문제</b> 직접 생성·필드 주입·Scope 혼용</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>조립 경계</strong><span><b>대안</b> 생성자 주입과 Composition Root 집중</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>품질 게이트</strong><span><b>판정</b> 등록·순환·범위·격리 테스트 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>설계 품질</strong><span><b>효과</b> 교체 가능성과 변경 영향 국소화</span></div></div>
-
 ## 1교시 10점 답안 발췌
 
 - 정의: **DI(Dependency Injection)**는 **외부 조립자**가 객체의 **의존 객체**를 제공하여 생성과 사용 책임을 분리하는 **IoC(Inversion of Control)** 구현 기법
 - 목적: 구체 구현 결합 제거 → 구현 교체 · 객체 완전성 · 격리 테스트 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="의존성 주입 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>등록</strong><span><b>활동</b> 추상화와 구현·Scope 연결<br /><b>산출</b> 구성 메타데이터</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>해결·주입</strong><span><b>활동</b> 그래프 검사 후 생성자 전달<br /><b>산출</b> 완전한 객체 그래프</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>폐기</strong><span><b>활동</b> Scope 종료와 자원 해제<br /><b>산출</b> 수명주기 정합성</span></div></div>
+```mermaid
+flowchart LR
+    A["등록"] --> B["해결·주입"]
+    B --> C["폐기"]
+```
 
 | 방식 | 적합 대상 | 통제 |
 |---|---|---|

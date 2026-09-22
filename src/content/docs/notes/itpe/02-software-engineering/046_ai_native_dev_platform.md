@@ -6,9 +6,9 @@ sidebar:
   badge:
     text: "A"
 author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
@@ -16,18 +16,11 @@ extra:
 
 <div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 지능형 개발환경과 에이전틱 소프트웨어 개발을 거쳐 AI 네이티브 개발 플랫폼으로 이어지는 지식 위치"><span>소프트웨어 공학</span><span>지능형 개발환경 · 에이전틱 개발 수명주기</span><strong>AI 네이티브 개발 플랫폼</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **AI Native Development Platform**은 **SDLC(Software Development Life Cycle)**에서 모델이 코드 제안에 그치지 않고 저장소 문맥·개발 도구·검증 정책을 이용해 작업을 계획하고 실행하는 개발환경
 - 메커니즘: 목표·권한 입력 → 문맥 검색·계획 → 격리 실행 → 테스트·보안 검증 → 인간 승인
 - 산출: 변경 근거·실행 로그·검증 결과를 동반한 검토 가능한 변경 집합
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼의 통제된 개발 폐루프">
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>사양·권한</strong></span><span><b>입력</b> 작업 목표 · 인수 조건 · 허용 도구<br /><b>산출</b> 실행 가능한 작업 계약</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>문맥·계획</strong></span><span><b>처리</b> 저장소 검색 · 의존 분석 · 단계 분해<br /><b>산출</b> 근거가 연결된 변경 계획</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>격리 실행</strong></span><span><b>처리</b> 파일 변경 · 빌드 · 테스트<br /><b>산출</b> 패치 · 로그 · 실패 피드백</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>검증·승인</strong></span><span><b>판정</b> 품질·보안·정책 Gate<br /><b>산출</b> 승인·수정·중단 결정</span></div>
-</div>
 
 <details><summary>핵심 용어</summary>
 
@@ -56,65 +49,6 @@ extra:
 
 > 모델·검색·도구·실행환경·정책을 분리해야 오류 원인을 추적하고 각 경계에 최소 권한을 적용할 수 있음.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="ain-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Step 1: Spec & Goal -->
-  <rect x="15" y="15" width="110" height="190" rx="6" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#ain-shadow)"/>
-  <text x="70" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">1. 사양 계약</text>
-  <rect x="23" y="48" width="94" height="145" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="30" y="70" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">• 작업 명세 (BDD)</text>
-  <text x="30" y="88" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• 인수 조건 정의</text>
-  <text x="30" y="106" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">• Spec-lock 잠금</text>
-  <text x="30" y="132" font-size="9" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">• 도구 허용 목록</text>
-  <text x="30" y="150" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">최소 권한 부여</text>
-
-  <!-- Arrow -->
-  <path d="M 125 110 L 140 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-
-  <!-- Step 2: Context & Planning -->
-  <rect x="140" y="15" width="110" height="190" rx="6" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#ain-shadow)"/>
-  <text x="195" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">2. 문맥 &amp; 계획</text>
-  <rect x="148" y="48" width="94" height="145" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="155" y="70" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">• Repo RAG</text>
-  <text x="155" y="88" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">코드베이스 검색</text>
-  <text x="155" y="106" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">AST 의존성 분석</text>
-  <text x="155" y="132" font-size="9" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">• 에이전트 계획</text>
-  <text x="155" y="150" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">단계적 변경 분해</text>
-
-  <!-- Arrow -->
-  <path d="M 250 110 L 265 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-
-  <!-- Step 3: Isolated Execution Sandbox -->
-  <rect x="265" y="15" width="115" height="190" rx="6" fill="var(--sl-color-orange-subtle, #fffbeb)" stroke="var(--sl-color-orange-high, #d97706)" stroke-width="1.5" filter="url(#ain-shadow)"/>
-  <text x="322" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">3. 격리 Sandbox</text>
-  <rect x="273" y="48" width="99" height="145" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="280" y="70" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">• Tool Gateway</text>
-  <text x="280" y="88" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">파일 수정 / 패치</text>
-  <text x="280" y="106" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">빌드 &amp; 단위테스트</text>
-  <text x="280" y="132" font-size="9" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">• 자원 격리</text>
-  <text x="280" y="150" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">네트워크·권한 제한</text>
-
-  <!-- Arrow -->
-  <path d="M 380 110 L 395 110" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-
-  <!-- Step 4: Verification & Gate -->
-  <rect x="395" y="15" width="110" height="190" rx="6" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#ain-shadow)"/>
-  <text x="450" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">4. 검증 &amp; Gate</text>
-  <rect x="403" y="48" width="94" height="145" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="410" y="70" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">• 독립 Gate</text>
-  <text x="410" y="88" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">SCA 공급망 검사</text>
-  <text x="410" y="106" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">시크릿 유출 스캔</text>
-  <text x="410" y="132" font-size="9" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">• Human-Loop</text>
-  <text x="410" y="150" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">최종 PR 승인·병합</text>
-</svg>
-</div>
-
 | 구성 | 책임 | 통제 |
 |---|---|---|
 | Model·Agent | 계획·코드·도구 호출 결정 | 목표 이탈·불확실성 보고 |
@@ -128,12 +62,13 @@ extra:
 
 > 에이전트가 스스로 반복하더라도 인수 조건과 시도 한계가 없으면 실패를 확대하므로, 매 반복은 관찰 가능한 증거와 종료 조건을 가져야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발의 계획 실행 검증 절차">
-  <div class="itpe-pipeline-node"><strong>작업 계약</strong><span><b>활동</b> 범위·인수 조건·금지 행동 명세<br /><b>산출</b> 승인된 목표와 권한</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>문맥 수집·계획</strong><span><b>활동</b> 관련 코드·테스트·정책 검색과 단계 분해<br /><b>산출</b> 근거 링크와 변경 계획</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>최소 변경·실행</strong><span><b>활동</b> Sandbox에서 패치·빌드·테스트<br /><b>산출</b> 변경 집합과 실행 로그</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Gate·피드백</strong><span><b>판정</b> 인수·회귀·보안·정책 결과 확인<br /><b>산출</b> 승인·재계획·중단 결정</span></div>
-</div>
+```mermaid
+flowchart LR
+    A["작업 계약"] --> B["문맥 수집·계획"]
+    B --> C["최소 변경·실행"]
+    C --> D["Gate·피드백"]
+    D -->|"재계획"| A
+```
 
 ## Ⅳ. AI 보조 개발과 AI 네이티브 개발 비교
 
@@ -176,14 +111,18 @@ extra:
 - **검증 체계**: SCA 공급망 검사, 시크릿 스캐너, 독립 회귀 테스트 전수 통과 확인 및 감사 로그 실시간 보존
 - **기대 효과**: 비결정적 생성의 결정적 통제 완성, 개발 생산성 3배 증대 및 프로덕션 보안 결함 99% 차단
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼 거버넌스 제언"><div class="itpe-pipeline-node"><strong>무제한 자율 실행</strong><span><b>문제</b> 사양 오류와 과잉 권한이 변경 전반으로 확산</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>위험 기반 권한</strong><span><b>대안</b> 작업 등급별 도구·데이터·승인 경계 설정</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>독립 Quality Gate</strong><span><b>판정</b> 요구·회귀·공급망·비밀정보 검사 통과</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>점진적 자율성</strong><span><b>효과</b> 증거가 있는 범위만 실행 권한 확대</span></div></div>
-
 ## 1교시 10점 답안 발췌
 
 - 정의: **AI Native Development Platform**은 **SDLC(Software Development Life Cycle)**에서 **AI 에이전트**가 개발 도구와 Quality Gate를 결합해 계획·변경·검증을 수행하는 환경
 - 목적: 반복 구현·검증 자동화 → 개발자의 사양·아키텍처·위험 승인 집중
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="AI 네이티브 개발 플랫폼 1교시 핵심 흐름"><div class="itpe-pipeline-node"><strong>작업 계약</strong><span><b>입력</b> 목표·인수 조건·권한<br /><b>산출</b> 실행 범위</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>문맥·격리 실행</strong><span><b>처리</b> 검색·계획·패치·테스트<br /><b>산출</b> 변경·로그</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>Gate·승인</strong><span><b>판정</b> 품질·보안·정책<br /><b>산출</b> 승인·재계획·중단</span></div></div>
+```mermaid
+flowchart LR
+    A["작업 계약"] --> B["문맥 수집·계획"]
+    B --> C["최소 변경·실행"]
+    C --> D["Gate·피드백"]
+    D -->|"재계획"| A
+```
 
 | 위험 | 대책 | 효과 |
 |---|---|---|

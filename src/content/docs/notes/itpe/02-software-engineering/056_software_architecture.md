@@ -5,41 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 아키텍처 설계를 거쳐 소프트웨어 아키텍처로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>아키텍처 설계</span>
-  <strong>소프트웨어 아키텍처</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 아키텍처 설계 → **소프트웨어 아키텍처**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **소프트웨어 아키텍처(Software Architecture)**는 시스템의 소프트웨어 구성요소(Component), 상호작용(Connector), 제약조건(Constraints)을 포함하는 시스템의 근본적인 구조적 틀이자 나중에 바꾸기 가장 어려운 최고 수준의 공학적 의사결정 집합
 - 메커니즘: **3대 구성요소(컴포넌트 · 커넥터 · 제약조건)** + **Kruchten 4+1 View(유스케이스 · 논리 · 프로세스 · 구현 · 배포)** + **평가(ATAM/CBAM)**
 - 산출/효과: 아키텍처 기술서(SAD) · 비기능 품질속성(성능/가용성/보안) 달성 · 아키텍처 침식(Erosion) 방지 및 진화형 구조 확립
-
-<div class="itpe-flow-map" role="img" aria-label="소프트웨어 아키텍처 체계도">
-  <div class="itpe-flow-node"><strong>품질 시나리오</strong><span>기능 및 비기능 요구사항</span></div>
-  <div class="itpe-flow-arrow">→ 4+1 View 관점 분리 및 설계 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>아키텍처 설계 및 거버넌스</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>구성요소</strong><span><span class="itpe-keyword"><strong>컴포넌트 · 커넥터 · 제약조건</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>다중 뷰</strong><span><span class="itpe-keyword"><strong>Kruchten 4+1 View 매핑</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>지속적 검증</strong><span>ADR 의사결정 · 피트니스 함수</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ ATAM 평가 및 파이프라인 검증 →</div>
-  <div class="itpe-flow-node"><strong>진화형 시스템</strong><span>침식 방지 및 품질속성 보증</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -78,83 +59,21 @@ extra:
 
 ### 2. Kruchten 4+1 View 체계
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="kru-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
+```mermaid
+flowchart TB
+    UC["유스케이스 뷰 · +1 중심"] --- LV["논리 뷰"]
+    UC --- PV["프로세스 뷰"]
+    UC --- IV["구현 뷰"]
+    UC --- DV["배포 뷰"]
+```
 
-  <!-- Central Box: Use Case View (+1) -->
-  <rect x="185" y="65" width="150" height="90" rx="8" fill="var(--sl-color-accent-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="2" filter="url(#kru-shadow)"/>
-  <text x="260" y="90" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">유스케이스 뷰 (+1)</text>
-  <text x="260" y="108" text-anchor="middle" font-size="9" fill="var(--sl-color-text, #1f2937)">최종 사용자 · 발주자 관점</text>
-  <text x="260" y="125" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">기능 요구 명세 &amp; 통합 검증</text>
-  <text x="260" y="142" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">모든 뷰의 검증 기준</text>
-
-  <!-- Top-Left: Logical View -->
-  <rect x="15" y="15" width="150" height="85" rx="6" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#kru-shadow)"/>
-  <text x="90" y="36" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">논리 뷰 (Logical)</text>
-  <text x="90" y="54" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">설계자 · 분석가 관점</text>
-  <text x="90" y="72" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">클래스 다이어그램 · 패키지</text>
-  <text x="90" y="88" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">도메인 모델 &amp; 기능 책임</text>
-
-  <!-- Top-Right: Process View -->
-  <rect x="355" y="15" width="150" height="85" rx="6" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#kru-shadow)"/>
-  <text x="430" y="36" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">프로세스 뷰 (Process)</text>
-  <text x="430" y="54" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">시스템 통합자 관점</text>
-  <text x="430" y="72" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">동시성 · 스레드 · 프로세스</text>
-  <text x="430" y="88" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">성능(TPS) · 확장성 · 가용성</text>
-
-  <!-- Bottom-Left: Implementation View -->
-  <rect x="15" y="120" width="150" height="85" rx="6" fill="var(--sl-color-orange-subtle, #fffbeb)" stroke="var(--sl-color-orange-high, #d97706)" stroke-width="1.5" filter="url(#kru-shadow)"/>
-  <text x="90" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">구현 뷰 (Development)</text>
-  <text x="90" y="159" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">프로그래머 · 개발자 관점</text>
-  <text x="90" y="177" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">컴포넌트 · 모듈 라이브러리</text>
-  <text x="90" y="193" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">정적 의존성 및 빌드 관리</text>
-
-  <!-- Bottom-Right: Deployment View -->
-  <rect x="355" y="120" width="150" height="85" rx="6" fill="var(--sl-color-red-subtle, #fef2f2)" stroke="var(--sl-color-red-high, #dc2626)" stroke-width="1.5" filter="url(#kru-shadow)"/>
-  <text x="430" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">배포 뷰 (Physical)</text>
-  <text x="430" y="159" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">시스템 엔지니어 · 운영자</text>
-  <text x="430" y="177" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">물리 서버 노드 · K8s 파드</text>
-  <text x="430" y="193" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">네트워크 토폴로지 · 통신망</text>
-
-  <!-- Connecting Lines -->
-  <line x1="165" y1="75" x2="185" y2="85" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-  <line x1="335" y1="85" x2="355" y2="75" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-  <line x1="165" y1="145" x2="185" y2="135" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-  <line x1="335" y1="135" x2="355" y2="145" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5"/>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="Kruchten 4+1 View 구조">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>중심 뷰: 유스케이스 뷰 (Use Case View, +1)</strong></span>
-    <span>최종 사용자 및 발주자 관점 · 시스템이 제공해야 할 기능 요구사항 명세 및 시나리오 검증</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 4개 핵심 뷰 검증 및 통합</div>
-  <div class="itpe-pipeline-node">
-    <strong>1. 논리 뷰 (Logical View)</strong>
-    <span>설계자·분석가 관점 · 클래스, 패키지, 인터페이스 분할 및 도메인 상호작용 (Class/Sequence Diagram)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node">
-    <strong>2. 프로세스 뷰 (Process View)</strong>
-    <span>시스템 통합자 관점 · 런타임 동시성, 스레드 제어, 성능, 확장성, IPC 통신 (Activity/State Diagram)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node">
-    <strong>3. 구현 뷰 (Implementation View)</strong>
-    <span>프로그래머 관점 · 소스코드 모듈화, 컴포넌트 라이브러리 패키징, 정적 의존성 (Component/Package Diagram)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node">
-    <strong>4. 배포 뷰 (Deployment View)</strong>
-    <span>시스템 엔지니어 관점 · 물리적 서버 노드, 네트워크 토폴로지, K8s 파드 배치 (Deployment Diagram)</span>
-  </div>
-</div>
+| 뷰 | 관점·이해관계자 | 주요 기술 대상 |
+|---|---|---|
+| 유스케이스 뷰 (+1) | 최종 사용자·발주자 | 기능 요구 명세·시나리오 검증 · 모든 뷰의 검증 기준 |
+| 논리 뷰 (Logical) | 설계자·분석가 | 클래스·패키지·인터페이스 분할 및 도메인 상호작용 |
+| 프로세스 뷰 (Process) | 시스템 통합자 | 런타임 동시성·스레드 제어·성능·확장성·IPC 통신 |
+| 구현 뷰 (Implementation) | 프로그래머 | 소스코드 모듈화·컴포넌트 라이브러리 패키징·정적 의존성 |
+| 배포 뷰 (Deployment) | 시스템 엔지니어·운영자 | 물리 서버 노드·네트워크 토폴로지·K8s 파드 배치 |
 
 ## Ⅲ. 아키텍처 모델 유형 및 평가 체계
 
@@ -198,28 +117,6 @@ extra:
 - **검증 체계**: CI 빌드 파이프라인 계층 의존성 위반 0건 확인 및 야간 부하 PoC(k6) 기반 SLO 준수율 검증
 - **기대 효과**: 아키텍처 침식(Erosion) 원천 방지, 유지보수 비용 50% 절감 및 클라우드 진화형 시스템 완성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="진화형 아키텍처 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>문서와 코드의 괴리로 인한 아키텍처 침식 및 비기능 품질 목표 미달</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>ADR 기반 의사결정 추적 및 CI/CD 파이프라인 내 피트니스 함수 자동화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>계층 위반 0건 빌드 통과 및 ATAM 품질속성 시나리오 100% 충족</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>유지보수 비용 50% 절감 · 클라우드 네이티브 환경에서의 지속적 진화 달성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -229,11 +126,13 @@ extra:
 
 ### 2. Kruchten 4+1 View 체계 요약
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="4+1 View 요약">
-  <div class="itpe-pipeline-node"><strong>중심 (+1)</strong><span>유스케이스 뷰: 최종 사용자 관점의 기능 요구사항 명세</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>4대 뷰</strong><span>논리 뷰(설계자) · 프로세스 뷰(통합자) · 구현 뷰(프로그래머) · 배포 뷰(운영자)</span></div>
-</div>
+```mermaid
+flowchart TB
+    UC["유스케이스 뷰 · +1 중심"] --- LV["논리 뷰"]
+    UC --- PV["프로세스 뷰"]
+    UC --- IV["구현 뷰"]
+    UC --- DV["배포 뷰"]
+```
 
 ### 3. 핵심 통제
 

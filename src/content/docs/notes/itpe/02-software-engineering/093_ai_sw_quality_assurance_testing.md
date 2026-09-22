@@ -6,27 +6,18 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
-date: "2026-09-20T22:15:00+09:00"
+date: "2026-09-22T07:25:00+09:00"
 lastmod: "2026-09-20T22:15:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 > **소프트웨어공학 > 테스트 및 검증 > AI SW 품질보증 테스트**
 
 ---
 
-## 1. 큰 그림 및 30초 인출 공식
-
-```
-             [ AI 소프트웨어 품질보증 3계층 검증 체계 ]
-  ┌────────────────────────────────────────────────────────┐
-  │ 1. 데이터 검증 : 라벨링 노이즈, 데이터 편향, 결측치    │
-  │ 2. 모델 검증   : 뉴런 커버리지(NC/KMNC), 메타모픽(MR)   │
-  │ 3. 운영 검증   : 데이터/컨셉 드리프트, Fallback 안전망  │
-  └────────────────────────────────────────────────────────┘
-```
+## 1. 30초 인출
 
 > **30초 인출 공식 (키워드 체인)**:  
 > **테스트 오라클 부재 극복** ➔ **데이터 품질 (편향·노이즈)** ➔ **화이트박스 (뉴런 커버리지·DeepGauge KMNC)** ➔ **블랙박스 (메타모픽 테스팅 MR·FGSM 적대적 공격)** ➔ **운영 드리프트 감시** ➔ **ISO/IEC 25059**
@@ -39,18 +30,18 @@ extra:
 
 ## 2. 핵심 용어 정리
 
-| 용어 | 영문 표기 | 핵심 정의 및 설명 |
-|---|---|---|
-| **AI SW 품질보증** | AI SW Quality Assurance | 비결정론적이고 블랙박스인 인공지능 모델의 안전성, 공정성, 강건성을 다계층으로 검증하는 엔지니어링 체계 |
-| **테스트 오라클 문제** | Test Oracle Problem | 입력값에 대한 기대 결과값(참/거짓)을 사전에 명확히 알 수 없어 테스트 통과 여부를 판정하기 어려운 현상 |
-| **뉴런 커버리지** | Neuron Coverage (NC) | 입력 테스트 데이터에 의해 신경망 내부 은닉층 뉴런의 활성화 값이 임계치를 초과하여 발화된 비율 |
-| **DeepGauge** | DeepGauge | 단순 NC의 조기 포화 한계를 극복하기 위해 제안된 다차원 신경망 커버리지 지표 세트(KMNC, NBC, SNAC) |
-| **KMNC** | K-Multisection Neuron Coverage | 뉴런의 활성화 값 범위를 K개 구간으로 나누어 테스트 데이터가 전 구간을 고루 자극하는지 측정하는 지표 |
-| **메타모픽 테스팅** | Metamorphic Testing (MT) | 정답 오라클이 없을 때, 입력의 변형과 출력의 변형 사이에 성립해야 하는 불변 관계(MR)를 검증하는 기법 |
-| **적대적 섭동** | Adversarial Perturbation | 사람이 인지할 수 없는 미세한 노이즈(FGSM 등)를 입력에 주입하여 모델의 오분류를 유도하는 공격 기법 |
-| **데이터 드리프트** | Data Drift | 운영 환경에서 입력 데이터의 통계적 분포가 학습 데이터의 분포와 달라지는 현상(P(X) 변화) |
-| **컨셉 드리프트** | Concept Drift | 입력 데이터와 출력 라벨 간의 실제 관계 자체가 시간 경과에 따라 변하는 현상(P(Y\|X) 변화) |
-| **ISO/IEC 25059** | ISO/IEC 25059 | 인공지능 기반 시스템의 품질 특성(신뢰성, 공정성, 강건성, 투명성 등)을 정의한 국제 표준 품질 모델 |
+| 용어 | 핵심 정의 및 설명 |
+|---|---|
+| **AI SW 품질보증** AI SW Quality Assurance | 비결정론적이고 블랙박스인 인공지능 모델의 안전성, 공정성, 강건성을 다계층으로 검증하는 엔지니어링 체계 |
+| **테스트 오라클 문제** Test Oracle Problem | 입력값에 대한 기대 결과값(참/거짓)을 사전에 명확히 알 수 없어 테스트 통과 여부를 판정하기 어려운 현상 |
+| **뉴런 커버리지(NC)** Neuron Coverage | 입력 테스트 데이터에 의해 신경망 내부 은닉층 뉴런의 활성화 값이 임계치를 초과하여 발화된 비율 |
+| **DeepGauge** | 단순 NC의 조기 포화 한계를 극복하기 위해 제안된 다차원 신경망 커버리지 지표 세트(KMNC, NBC, SNAC) |
+| **KMNC** K-Multisection Neuron Coverage | 뉴런의 활성화 값 범위를 K개 구간으로 나누어 테스트 데이터가 전 구간을 고루 자극하는지 측정하는 지표 |
+| **메타모픽 테스팅(MT)** Metamorphic Testing | 정답 오라클이 없을 때, 입력의 변형과 출력의 변형 사이에 성립해야 하는 불변 관계(MR)를 검증하는 기법 |
+| **적대적 섭동** Adversarial Perturbation | 사람이 인지할 수 없는 미세한 노이즈(FGSM 등)를 입력에 주입하여 모델의 오분류를 유도하는 공격 기법 |
+| **데이터 드리프트** Data Drift | 운영 환경에서 입력 데이터의 통계적 분포가 학습 데이터의 분포와 달라지는 현상(P(X) 변화) |
+| **컨셉 드리프트** Concept Drift | 입력 데이터와 출력 라벨 간의 실제 관계 자체가 시간 경과에 따라 변하는 현상(P(Y\|X) 변화) |
+| **ISO/IEC 25059** | 인공지능 기반 시스템의 품질 특성(신뢰성, 공정성, 강건성, 투명성 등)을 정의한 국제 표준 품질 모델 |
 
 ---
 
@@ -65,78 +56,17 @@ extra:
   - **코드 커버리지의 무용성**: 구문(Statement), 분기(Branch) 커버리지는 모델 파라미터(가중치) 내부의 결함을 전혀 포착하지 못함.
   - **비결정론적 취약성**: 미세한 픽셀 노이즈(적대적 공격) 하나로 예측 결과가 180도 뒤집히는 강건성 결여.
 
-```
-   [전통적 SW: 코드 중심 테스팅]                [AI SW: 데이터·신경망 테스팅]
- ┌───────────────────────────┐                ┌───────────────────────────┐
- │ 코드 구문/분기 커버리지   │                │ 뉴런 커버리지 (NC / KMNC) │
- │ 명확한 참/거짓 오라클     │                │ 메타모픽 불변 관계 (MR)   │
- └─────────────┬─────────────┘                └─────────────┬─────────────┘
-               │                                            │
-               ▼                                            ▼
- [AI 내부 가중치 결함 검출 불가]               [비결정론적 블랙박스 품질 입증]
-```
-
 ---
 
 ### Ⅱ. AI SW 3계층 품질보증 프레임워크 및 뉴런 커버리지
 
 #### 1. AI SW 품질보증 3계층 통합 아키텍처
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background: var(--vp-c-bg-alt); border: 1px solid var(--vp-c-border); border-radius: 8px;">
-  <defs>
-    <marker id="ai-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--vp-c-brand)" />
-    </marker>
-  </defs>
-
-  <!-- Title Header -->
-  <rect x="15" y="8" width="490" height="22" rx="4" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" />
-  <text x="260" y="23" font-size="10" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">AI SW 3계층(데이터·모델·운영) 품질보증 및 뉴런 커버리지 체계도</text>
-
-  <!-- Layer 1: Data Quality -->
-  <rect x="15" y="38" width="150" height="135" rx="5" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" stroke-width="1.2" />
-  <text x="90" y="55" font-size="9.5" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">1. 데이터 품질 검증</text>
-  <line x1="25" y1="62" x2="155" y2="62" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-  <text x="90" y="78" font-size="8.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">라벨 노이즈 검증</text>
-  <text x="90" y="93" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">오라벨링 / 결측치 정제</text>
-  <text x="90" y="112" font-size="8.5" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">데이터 편향성 분석</text>
-  <text x="90" y="127" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">인구통계 / 클래스 불균형</text>
-  <text x="90" y="152" font-size="7.5" fill="#10b981" text-anchor="middle">PSI 지수 / 통계적 균질성</text>
-
-  <!-- Arrow 1 -> 2 -->
-  <line x1="165" y1="105" x2="180" y2="105" stroke="var(--vp-c-brand)" stroke-width="1.8" marker-end="url(#ai-arrow)" />
-
-  <!-- Layer 2: Model Quality (White & Black) -->
-  <rect x="180" y="38" width="175" height="135" rx="5" fill="var(--vp-c-bg)" stroke="var(--vp-c-brand)" stroke-width="1.5" />
-  <text x="267" y="55" font-size="9.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">2. 모델 품질 다계층 검증</text>
-  <line x1="190" y1="62" x2="345" y2="62" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-  <text x="267" y="76" font-size="8.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">[화이트박스] 뉴런 커버리지</text>
-  <text x="267" y="90" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">DeepGauge KMNC (1000구간 자극)</text>
-  <text x="267" y="103" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">NBC (뉴런 경계값 코너케이스)</text>
-  <text x="267" y="122" font-size="8.5" font-weight="700" fill="#e06c75" text-anchor="middle">[블랙박스] 메타모픽 (MR)</text>
-  <text x="267" y="136" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">오라클 부재 극복 불변성 검증</text>
-  <text x="267" y="152" font-size="7.5" font-weight="700" fill="#e06c75" text-anchor="middle">FGSM 적대적 섭동 공격 저항</text>
-
-  <!-- Arrow 2 -> 3 -->
-  <line x1="355" y1="105" x2="370" y2="105" stroke="var(--vp-c-brand)" stroke-width="1.8" marker-end="url(#ai-arrow)" />
-
-  <!-- Layer 3: Serving Quality -->
-  <rect x="370" y="38" width="135" height="135" rx="5" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" stroke-width="1.2" />
-  <text x="437" y="55" font-size="9.5" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">3. 운영 서빙 검증</text>
-  <line x1="380" y1="62" x2="495" y2="62" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-  <text x="437" y="78" font-size="8.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">드리프트 감시</text>
-  <text x="437" y="93" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">Data / Concept Drift</text>
-  <text x="437" y="112" font-size="8.5" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">안전망 (Harness)</text>
-  <text x="437" y="127" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">신뢰도 저하 시 Fallback</text>
-  <text x="437" y="152" font-size="7.5" fill="#10b981" text-anchor="middle">자동 재학습 트리거</text>
-
-  <!-- Bottom Quality Gate Bar -->
-  <rect x="15" y="180" width="490" height="30" rx="4" fill="var(--vp-c-bg)" stroke="#10b981" stroke-width="1.2" />
-  <text x="260" y="195" font-size="8" font-weight="700" fill="#10b981" text-anchor="middle">품질 게이트: ISO/IEC 25059 기반 KMNC 85% 이상 &amp; 메타모픽 관계 통과율 95% 달성</text>
-  <text x="260" y="205" font-size="7" fill="var(--vp-c-text-2)" text-anchor="middle">데이터 편향 제거 ➔ 신경망 내부 발화 검증 ➔ 적대적 강건성 ➔ 실시간 서빙 모니터링 완결</text>
-</svg>
-</div>
+```mermaid
+flowchart TB
+    D["데이터 품질 검증"] --> M["모델 품질 검증"] --> S["운영 서빙 검증"]
+    S -->|재학습 트리거| D
+```
 
 #### 2. 전통적 SW 테스트 vs AI SW 테스트 상세 비교
 | 비교 항목 | 전통적 SW 테스트 | AI SW 테스트 |
@@ -198,10 +128,6 @@ AI 소프트웨어 테스트의 핵심은 "코드에는 버그가 없지만, 모
 - **대응 방안**: 단순 정답률(Accuracy) 맹신을 탈피하고, 취약 코너케이스 식별을 위해 **합성 데이터 생성(GAN/디퓨전) 및 적대적 예제 증강(Adversarial Data Augmentation)**을 파이프라인에 내재화해야 함.
 - **검증 체계**: 프로덕션 서빙 구간에 PSI(Population Stability Index) 기반 **실시간 데이터/컨셉 드리프트 감시 대시보드**를 연동하고, 신뢰도 80% 미만 추론 시 룰 기반 Fallback을 강제해야 함.
 - **기대 효과**: 비결정론적 AI 모델의 실환경 오작동 사고를 95% 이상 사전 예방하고, ISO/IEC 25059 및 EU AI Act 등 글로벌 AI 안전 규제 컴플라이언스를 완벽히 충족함.
-
-<div style="margin: 1rem 0; padding: 0.8rem 1rem; background: var(--vp-c-bg-alt); border-left: 4px solid var(--vp-c-brand); border-radius: 4px; font-size: 0.88rem; line-height: 1.6;">
-<strong>AI 신뢰성 보증 파이프라인</strong>: <code>데이터 편향 검증</code> ➔ <code>뉴런 다구간(KMNC) 자극</code> ➔ <code>메타모픽 불변성(MR) 검증</code> ➔ <code>적대적 강건성 훈련</code> ➔ <code>실시간 드리프트 Fallback 완성</code>
-</div>
 
 ---
 

@@ -9,10 +9,10 @@ tags:
   - "CoE"
   - "ShadowIT"
   - "ALM"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:25:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,52 +23,11 @@ extra:
   <strong>로우코드·노코드(LCNC)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 복잡한 텍스트 코딩 대신 시각적 드래그 앤 드롭 UI, 사전 구성 컴포넌트, 표준 API 커넥터를 조합해 소프트웨어를 신속히 조립·배포함으로써 현업(시민 개발자)의 IT 백로그를 해소하고 개발 생산성을 극대화하는 개발 패러다임
-- 메커니즘: 업무 요구 가시화 $\rightarrow$ 시각적 UI·데이터 모델링 $\rightarrow$ 비즈니스 로직·워크플로우 조립 $\rightarrow$ 커넥터·API 연계 $\rightarrow$ 자동 빌드·테스트·배포(ALM) $\rightarrow$ 거버넌스 통제
+- 메커니즘: 업무 요구 가시화 → 시각적 UI·데이터 모델링 → 비즈니스 로직·워크플로우 조립 → 커넥터·API 연계 → 자동 빌드·테스트·배포(ALM) → 거버넌스 통제
 - 산출물: 시각적 앱 메타데이터 모델 · 자동 생성 배포 패키지 · 서비스 API 커넥터 명세서 · LCNC 거버넌스 운영 지침(CoE 규정)
-
-<div class="itpe-flow-map" role="img" aria-label="로우코드 노코드 개발 및 엔터프라이즈 거버넌스 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1단계: 업무 분석 및 적합성 평가</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>분류</strong><span>데이터 민감도, 로직 복잡도, 트랜잭션 규모 기반 No/Low/Pro-Code 대상 선정</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 시각적 모델링 및 통합 연계</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>조립</strong><span>드래그 앤 드롭 UI 폼 구성, 시각적 워크플로우 매핑, 표준 OpenAPI 커넥터 연결</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 자동화 빌드 및 ALM 검증</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>검증</strong><span>원클릭 빌드·테스트, 정적 코드 분석, 격리 샌드박스 환경 내 기능 단위 테스트</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>4단계: 엔터프라이즈 거버넌스 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>보안 취약점, 데이터 권한(RBAC), 성능 기준을 충족하고 CoE의 프로덕션 승인을 획득했는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (사내 정식 배포)</strong>
-      <span>기업 전사 앱 카탈로그 등록 $\rightarrow$ 정식 서비스 개시 및 생명주기 모니터링 가동</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (보안 미흡 / Shadow IT 우려)</strong>
-      <span>배포 차단 $\rightarrow$ 취약점 수정, CoE 보안 가이드라인 재적용 및 IT 전문팀 이관 검토</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -103,121 +62,27 @@ extra:
 
 LCNC 플랫폼은 시각적 개발 환경, 백엔드 연계 계층, 자동화된 ALM 런타임이 유기적으로 결합된 3계층 구조로 동작한다.
 
-<div class="itpe-diagram-container" role="img" aria-label="LCNC 플랫폼 핵심 3계층 아키텍처 다이어그램">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-lc); }
-    </style>
-    <marker id="arrow-lc" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
-    </marker>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">LCNC 플랫폼 엔터프라이즈 핵심 3계층 아키텍처</text>
-
-  <!-- 1. 시각적 모델링 계층 -->
-  <rect x="16" y="34" width="488" height="42" class="box-active"/>
-  <text x="26" y="48" class="h-text">1. 시각적 모델링 계층 (Visual Modeling Layer)</text>
-  <text x="26" y="60" class="text">WYSIWYG 반응형 UI 빌더 · 시각적 ERD 데이터 모델러 · 드래그 앤 드롭 BPMN 워크플로우 엔진 · 폼 유효성 규칙</text>
-  <text x="26" y="70" class="muted">산출물: 애플리케이션 메타데이터 스키마 (JSON/XML)</text>
-  <line x1="260" y1="76" x2="260" y2="84" class="arrow"/>
-
-  <!-- 2. 통합 및 연계 계층 -->
-  <rect x="16" y="84" width="488" height="44" class="box"/>
-  <text x="26" y="98" class="h-text">2. 통합 및 연계 계층 (Integration &amp; Connector Layer)</text>
-  <text x="26" y="110" class="text">표준 RESTful OpenAPI 커넥터 · RDBMS/NoSQL 데이터 소스 매핑 · SAP/Salesforce 엔터프라이즈 어댑터</text>
-  <text x="26" y="121" class="muted">역할: 레거시 백엔드 및 클라우드 SaaS와의 무중단 데이터 바인딩 및 프로토콜 변환</text>
-  <line x1="260" y1="128" x2="260" y2="136" class="arrow"/>
-
-  <!-- 3. 런타임 및 ALM 통제 계층 -->
-  <rect x="16" y="136" width="488" height="68" class="box-active"/>
-  <text x="26" y="150" class="h-text">3. 런타임 및 ALM 통제 계층 (Runtime &amp; ALM Governance Layer)</text>
-  <text x="26" y="164" class="text">원클릭 자동 패키징 및 컨테이너(Docker/K8s) 배포 · IAM/RBAC 역할 권한 제어 · 격리 샌드박스 실행 환경</text>
-  <text x="26" y="177" class="muted">• 전사 공용 앱 카탈로그 등록 ➔ 중복 개발 방지 및 감사 로그(Audit Log) 추적</text>
-  <text x="26" y="190" class="muted">• CoE 거버넌스 가드레일: 보안 취약점 사전 스캔 및 민감 데이터 DLP 통제</text>
-</svg>
-</div>
+| 계층 | 구성 요소 | 역할 |
+|---|---|---|
+| **1. 시각적 모델링(Visual Modeling)** | WYSIWYG 반응형 UI 빌더 · 시각적 ERD 데이터 모델러 · 드래그 앤 드롭 BPMN 워크플로우 엔진 · 폼 유효성 규칙 | 애플리케이션 메타데이터 스키마(JSON/XML) 산출 |
+| **2. 통합·연계(Integration & Connector)** | 표준 RESTful OpenAPI 커넥터 · RDBMS/NoSQL 데이터 소스 매핑 · SAP/Salesforce 엔터프라이즈 어댑터 | 레거시 백엔드 및 클라우드 SaaS와의 무중단 데이터 바인딩 및 프로토콜 변환 |
+| **3. 런타임·ALM 통제(Runtime & ALM Governance)** | 원클릭 자동 패키징 및 Docker/K8s 배포 · IAM/RBAC 역할 권한 제어 · 격리 샌드박스 실행 환경 | 전사 공용 앱 카탈로그 등록으로 중복 개발 방지·감사 로그 추적, CoE 가드레일(보안 취약점 사전 스캔·민감 데이터 DLP 통제) |
 
 ### LCNC 엔터프라이즈 거버넌스 및 CoE 운영 라이프사이클
 
 무분별한 도입으로 인한 섀도우 IT를 방지하기 위해 CoE 중심의 엄격한 품질 게이트를 운영한다.
 
-<div class="itpe-diagram-container" role="img" aria-label="CoE 중심 LCNC 거버넌스 및 Shadow IT 통제 라이프사이클">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-coe); }
-    </style>
-    <marker id="arrow-coe" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
-    </marker>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">Center of Excellence(CoE) 기반 LCNC 엔터프라이즈 거버넌스 파이프라인</text>
+```mermaid
+flowchart LR
+    A["1. 요구 적합성 평가 · No/Low/Pro-Code 분류"] -->|"부적합 시 IT 전문팀 이관"| B["2. 샌드박스 개발 · 격리 환경에서 표준 템플릿 조립"]
+    B --> C["3. CoE 승인 게이트 · 보안·성능 Quality Gate 심의"]
+    C -->|"승인"| D["4. 앱 카탈로그 · 전사 배포 및 생명주기 모니터링"]
+    C -.->|"미통과 시 배포 차단"| B
+```
 
-  <!-- 1. 요구 평가 -->
-  <rect x="16" y="36" width="115" height="166" class="box"/>
-  <text x="24" y="52" class="h-text">1. 요구 적합성 평가</text>
-  <rect x="24" y="60" width="99" height="42" class="box-active"/>
-  <text x="30" y="74" class="text">업무 분류 기준</text>
-  <text x="30" y="86" class="muted">No / Low / Pro-Code</text>
-  <text x="24" y="118" class="muted">• 데이터 민감도 검토</text>
-  <text x="24" y="132" class="muted">• 트랜잭션 규모 분석</text>
-  <text x="24" y="146" class="muted">• 시민개발자 배정</text>
-  <text x="24" y="174" class="muted">▶ 부적합 시 IT 전문팀</text>
-  <line x1="131" y1="110" x2="147" y2="110" class="arrow"/>
-
-  <!-- 2. 샌드박스 빌드 -->
-  <rect x="147" y="36" width="115" height="166" class="box-active"/>
-  <text x="155" y="52" class="h-text">2. 샌드박스 개발</text>
-  <rect x="155" y="60" width="99" height="42" class="box"/>
-  <text x="161" y="74" class="text">격리 환경 조립</text>
-  <text x="161" y="86" class="muted">드래그 앤 드롭 UI/BPMN</text>
-  <text x="155" y="118" class="muted">• CoE 표준 템플릿</text>
-  <text x="155" y="132" class="muted">• 가상 Mock 데이터 연동</text>
-  <text x="155" y="146" class="muted">• 원클릭 단위 테스트</text>
-  <text x="155" y="174" class="muted">▶ 운영 DB 직접 접근 차단</text>
-  <line x1="262" y1="110" x2="278" y2="110" class="arrow"/>
-
-  <!-- 3. CoE 품질 게이트 -->
-  <rect x="278" y="36" width="115" height="166" class="box"/>
-  <text x="286" y="52" class="h-text">3. CoE 승인 게이트</text>
-  <rect x="286" y="60" width="99" height="42" class="box-active"/>
-  <text x="292" y="74" class="text">보안·성능 검증</text>
-  <text x="292" y="86" class="muted">Quality Gate 심의</text>
-  <text x="286" y="118" class="muted">• RBAC 권한 정책 검증</text>
-  <text x="286" y="132" class="muted">• API 호출 트래픽 검증</text>
-  <text x="286" y="146" class="muted">• 소스 취약점 정적 분석</text>
-  <text x="286" y="174" class="muted">▶ Shadow IT 100% 차단</text>
-  <line x1="393" y1="110" x2="409" y2="110" class="arrow"/>
-
-  <!-- 4. 정식 배포 및 카탈로그 -->
-  <rect x="409" y="36" width="95" height="166" class="box-active"/>
-  <text x="417" y="52" class="h-text">4. 앱 카탈로그</text>
-  <rect x="417" y="60" width="79" height="42" class="box"/>
-  <text x="423" y="74" class="text">전사 서비스 배포</text>
-  <text x="423" y="86" class="muted">생명주기 모니터링</text>
-  <text x="417" y="118" class="muted">• 단일 레지스트리</text>
-  <text x="417" y="132" class="muted">• 사용률 감사 로그</text>
-  <text x="417" y="146" class="muted">• 미사용 앱 자동 폐기</text>
-  <text x="417" y="174" class="muted">▶ 지속 가능한 ALM</text>
-</svg>
-</div>
+- **샌드박스 규칙**: 데이터 민감도·트랜잭션 규모 검토 후 시민개발자를 배정하고, CoE 표준 템플릿과 Mock 데이터로 조립하며 운영 DB 직접 접근을 차단한다
+- **게이트 심의 항목**: RBAC 권한 정책, API 호출 트래픽, 소스 취약점 정적 분석으로 Shadow IT를 원천 차단한다
+- **카탈로그 운영**: 단일 레지스트리 등록, 사용률 감사 로그 추적, 미사용 앱 자동 폐기로 지속 가능한 ALM을 유지한다
 
 ## 3. 실무 적용 및 고려사항
 
@@ -248,42 +113,8 @@ LCNC의 가장 큰 적은 무분별한 개발로 보안 구멍을 만드는 **�
 
 - **판정 기준**: 전사 앱 카탈로그 미등록 섀도우 IT 발생률 0% 및 CoE 사전 보안 적합성 평가 통과율 100% 충족 여부
 - **대응 방안**: CoE 전담 조직을 발족하여 표준 UI 템플릿과 API 게이트웨이 가드레일을 수립하고, 비즈니스-IT 퓨전 팀 모델을 정착
-- **검증 체계**: 업무 적합성 사전 평가 ➔ 샌드박스 런타임 테스트 ➔ DLP 개인정보 노출 검사 ➔ CoE 배포 승인
+- **검증 체계**: 업무 적합성 사전 평가 → 샌드박스 런타임 테스트 → DLP 개인정보 노출 검사 → CoE 배포 승인
 - **기대 효과**: 현업 IT 백로그 대기 시간 80% 단축, 신규 비즈니스 서비스 출시 기간(TTM) 70% 단축 및 보안 무결성 확보
-
-<div class="itpe-pipeline-container" role="img" aria-label="LCNC 엔터프라이즈 거버넌스 파이프라인">
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">01</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>업무 적합성 분류</strong>
-      <span>데이터 민감도와 복잡도 기반 LCNC 대상 선정</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">02</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>시각적 샌드박스 조립</strong>
-      <span>표준 템플릿 및 API 커넥터 기반 신속 프로토타이핑</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">03</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>CoE 보안 품질 게이트</strong>
-      <span>RBAC 권한 검증 및 Shadow IT 방지 승인 심사</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">04</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>앱 카탈로그 배포</strong>
-      <span>전사 레지스트리 등록 및 생명주기 자동 감사 통제</span>
-    </div>
-  </div>
-</div>
 
 ## 5. 참고 및 연계 학습
 

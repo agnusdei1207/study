@@ -6,51 +6,39 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
-date: "2026-09-20T22:00:00+09:00"
-lastmod: "2026-09-20T22:00:00+09:00"
+date: "2026-09-22T07:24:00+09:00"
+lastmod: "2026-09-22T07:24:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
+  keyword_grade: "B"
 ---
 
 > **소프트웨어공학 > 품질 관리 및 표준 > 소프트웨어 품질인증 및 GS 인증**
 
 ---
 
-## 1. 큰 그림 및 30초 인출 공식
-
-```
-               [ 소프트웨어 품질인증 3대 축 체계 ]
-  ┌────────────────────────────────────────────────────────┐
-  │ 1. 제품 품질인증 (Product)    : GS 인증 (ISO/IEC 25023)│
-  │ 2. 프로세스 품질인증 (Process) : SP 인증, CMMI         │
-  │ 3. 보안성 인증 (Security)     : CC 인증 (ISO/IEC 15408)│
-  └────────────────────────────────────────────────────────┘
-```
-
-> **30초 인출 공식 (키워드 체인)**:  
-> **소프트웨어진흥법 제20조** ➔ **ISO/IEC 25023 (8대 품질특성)** ➔ **TTA/KTL 실환경 시험** ➔ **1등급·2등급** ➔ **공공 우선구매·수의계약·분리발주**
+## 1. 30초 인출
 
 - **본질**: **GS(Good Software) 인증**은 공인 시험기관(TTA/KTL)이 실제 운영 환경에서 완제품 SW를 구동하여 결함을 전수 검증하고, 공공기관이 믿고 도입하도록 **우선구매·수의계약·분리발주 자격을 부여하는 국가 품질 보증 제도**
 - **메커니즘**: ISO/IEC 25023 8대 품질특성 및 매뉴얼 일치성 블랙박스 시험 ➔ 결함 보완(결함 0건) ➔ 1등급·2등급 인증서 발급 ➔ 나라장터 등록 및 우선구매 연계
 - **산출물**: GS 시험성적서 · GS 인증서(1등급/2등급) · 조달청 나라장터 3자 단가계약 자격 증명서
 
----
+<details>
+<summary>핵심 용어</summary>
 
-## 2. 핵심 용어 정리
+- **GS 인증(Good Software)**: 소프트웨어진흥법 제20조에 근거하여 국산 상용 SW의 완성도와 품질을 평가·보증하는 국가 공인 인증제도
+- **ISO/IEC 25023(SQuaRE Product Quality)**: 제품 품질 평가를 위한 8대 특성(기능적합성, 성능, 호환성, 사용성, 신뢰성, 보안성, 유지보수성, 이식성) 표준
+- **ISO/IEC 25051(COTS SW Requirements)**: 상용 완제품 패키지 소프트웨어(COTS)의 사용자 매뉴얼 및 제품 설명서 정합성 평가 기준
+- **SP 인증(Software Process)**: 소프트웨어진흥법 제21조에 근거하여 개발 조직의 프로젝트 관리 및 개발 프로세스 성숙도를 평가하는 제도
+- **CC 인증(Common Criteria)**: ISO/IEC 15408 기반 국가·공공기관 납품용 정보보호 제품의 보안 기능 및 신뢰성을 평가하는 제도
+- **공공 우선구매(Priority Purchasing)**: 중소기업제품 구매촉진 및 판로지원법에 따라 공공기관이 GS 인증 획득 제품을 우선 의무 구매하는 법적 혜택
+- **제3자 단가계약(Third-party Unit Price)**: 조달청 종합쇼핑몰(나라장터)에 사전 등록되어 공공기관이 수의계약 형태로 편리하게 구매 가능한 방식
+- **SW 분리발주(Split Ordering)**: SI 종합 구축 사업 시 일정 규모 이상의 상용 SW를 원도급 구축 사업과 분리하여 직접 발주·구매하는 제도
+- **1등급 / 2등급(Level 1 / Level 2)**: 1등급(국제표준 전수 시험 및 결함 0건 요건, 모든 법적 혜택), 2등급(주요 핵심 기능 선별 시험, 수수료 경감)
+- **SaaS 인증 패스트트랙(SaaS Fast-track)**: 클라우드 환경에서 지속 배포되는 SaaS 특성을 반영하여 멀티테넌시, API, 복원력을 신속 검증하는 개편 체계
 
-| 용어 | 영문 표기 | 핵심 정의 및 설명 |
-|---|---|---|
-| **GS 인증** | Good Software | 소프트웨어진흥법 제20조에 근거하여 국산 상용 SW의 완성도와 품질을 평가·보증하는 국가 공인 인증제도 |
-| **ISO/IEC 25023** | SQuaRE Product Quality | 제품 품질 평가를 위한 8대 특성(기능적합성, 성능, 호환성, 사용성, 신뢰성, 보안성, 유지보수성, 이식성) 표준 |
-| **ISO/IEC 25051** | COTS SW Requirements | 상용 완제품 패키지 소프트웨어(COTS)의 사용자 매뉴얼 및 제품 설명서 정합성 평가 기준 |
-| **SP 인증** | Software Process | 소프트웨어진흥법 제21조에 근거하여 개발 조직의 프로젝트 관리 및 개발 프로세스 성숙도를 평가하는 제도 |
-| **CC 인증** | Common Criteria | ISO/IEC 15408 기반 국가·공공기관 납품용 정보보호 제품의 보안 기능 및 신뢰성을 평가하는 제도 |
-| **공공 우선구매** | Priority Purchasing | 중소기업제품 구매촉진 및 판로지원법에 따라 공공기관이 GS 인증 획득 제품을 우선 의무 구매하는 법적 혜택 |
-| **제3자 단가계약** | Third-party Unit Price | 조달청 종합쇼핑몰(나라장터)에 사전 등록되어 공공기관이 수의계약 형태로 편리하게 구매 가능한 방식 |
-| **SW 분리발주** | Split Ordering | SI 종합 구축 사업 시 일정 규모 이상의 상용 SW를 원도급 구축 사업과 분리하여 직접 발주·구매하는 제도 |
-| **1등급 / 2등급** | Level 1 / Level 2 | 1등급(국제표준 전수 시험 및 결함 0건 요건, 모든 법적 혜택), 2등급(주요 핵심 기능 선별 시험, 수수료 경감) |
-| **SaaS 인증 패스트트랙** | SaaS Fast-track | 클라우드 환경에서 지속 배포되는 SaaS 특성을 반영하여 멀티테넌시, API, 복원력을 신속 검증하는 개편 체계 |
+</details>
 
 ---
 
@@ -65,15 +53,15 @@ extra:
   2. **프로세스 품질 (Process)**: 소프트웨어 개발 조직의 공정 관리 성숙도 심사 (**SP 인증**, CMMI).
   3. **보안 품질 (Security)**: 정보보호제품의 안전성 및 보안 메커니즘 검증 (**CC 인증**, ISO/IEC 15408).
 
-```
-   [제품 품질 : GS 인증]         [공정 품질 : SP 인증]        [보안 품질 : CC 인증]
- ┌──────────────────────┐      ┌──────────────────────┐      ┌──────────────────────┐
- │ ISO/IEC 25023 (8특성) │      │ SW 진흥법 제21조     │      │ ISO/IEC 15408 (ST/EAL)│
- │ 실환경 블랙박스 시험 │      │ 개발/관리 공정 심사  │      │ 취약점 분석 및 보안성│
- └──────────────────────┘      └──────────────────────┘      └──────────────────────┘
-            └─────────────────────────────┼─────────────────────────────┘
-                                          ▼
-                       [신뢰성 높은 국가 IT 소프트웨어 생태계 구축]
+```mermaid
+flowchart TB
+    subgraph Q["품질인증 3대 축"]
+        direction LR
+        G1["제품 품질 · GS 인증"] ~~~ G2["공정 품질 · SP 인증"] ~~~ G3["보안 품질 · CC 인증"]
+    end
+    G1 --> T["신뢰성 높은 국가 IT 소프트웨어 생태계"]
+    G2 --> T
+    G3 --> T
 ```
 
 #### 2. GS 인증의 법적 근거 및 도입 목적
@@ -86,87 +74,25 @@ extra:
 
 #### 1. GS 인증 평가 프로세스 및 체계도
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background: var(--vp-c-bg-alt); border: 1px solid var(--vp-c-border); border-radius: 8px;">
-  <defs>
-    <marker id="gs-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--vp-c-brand)" />
-    </marker>
-    <marker id="gs-ret-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#e06c75" />
-    </marker>
-  </defs>
-
-  <!-- Title Header -->
-  <rect x="15" y="10" width="490" height="24" rx="4" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" />
-  <text x="260" y="26" font-size="10.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">GS(Good Software) 인증 평가 및 법적 혜택 연계 체계도 (소프트웨어진흥법 제20조)</text>
-
-  <!-- Step 1: Input -->
-  <rect x="15" y="42" width="105" height="135" rx="6" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" stroke-width="1.2" />
-  <text x="67" y="60" font-size="10" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">1. 대상 및 서류</text>
-  <line x1="25" y1="67" x2="110" y2="67" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-  <text x="67" y="84" font-size="8.5" fill="var(--vp-c-text-2)" text-anchor="middle">상용 완제품 SW</text>
-  <text x="67" y="102" font-size="8.5" fill="var(--vp-c-text-2)" text-anchor="middle">제품 설명서</text>
-  <text x="67" y="120" font-size="8.5" fill="var(--vp-c-text-2)" text-anchor="middle">사용자 매뉴얼</text>
-  <text x="67" y="145" font-size="8" fill="var(--vp-c-brand)" text-anchor="middle">ISO 25051 적합성</text>
-  <text x="67" y="162" font-size="8" fill="var(--vp-c-text-2)" text-anchor="middle">설치본 및 라이선스</text>
-
-  <!-- Arrow 1 -> 2 -->
-  <line x1="120" y1="109" x2="135" y2="109" stroke="var(--vp-c-brand)" stroke-width="1.8" marker-end="url(#gs-arrow)" />
-
-  <!-- Step 2: Testing -->
-  <rect x="140" y="42" width="135" height="135" rx="6" fill="var(--vp-c-bg)" stroke="var(--vp-c-brand)" stroke-width="1.5" />
-  <text x="207" y="60" font-size="10" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">2. 실환경 시험·평가</text>
-  <line x1="150" y1="67" x2="265" y2="67" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-  <text x="207" y="82" font-size="8.5" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">TTA / KTL 공인 시험</text>
-  <text x="207" y="100" font-size="8" fill="var(--vp-c-text-2)" text-anchor="middle">ISO/IEC 25023 (8특성)</text>
-  <text x="207" y="118" font-size="8" fill="var(--vp-c-text-2)" text-anchor="middle">기능·성능·신뢰·보안</text>
-  <text x="207" y="136" font-size="8" fill="var(--vp-c-text-2)" text-anchor="middle">호환·사용·유지·이식</text>
-  <text x="207" y="158" font-size="8" font-weight="700" fill="#e06c75" text-anchor="middle">블랙박스 결함 전수 검출</text>
-
-  <!-- Arrow 2 -> 3 -->
-  <line x1="275" y1="109" x2="290" y2="109" stroke="var(--vp-c-brand)" stroke-width="1.8" marker-end="url(#gs-arrow)" />
-
-  <!-- Step 3: Certification -->
-  <rect x="295" y="42" width="105" height="135" rx="6" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" stroke-width="1.2" />
-  <text x="347" y="60" font-size="10" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">3. 인증서 발급</text>
-  <line x1="305" y1="67" x2="390" y2="67" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-  <text x="347" y="84" font-size="8.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">1등급 (전수 시험)</text>
-  <text x="347" y="100" font-size="8" fill="var(--vp-c-text-2)" text-anchor="middle">결함 0건 완결 요건</text>
-  <text x="347" y="122" font-size="8.5" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">2등급 (핵심 선별)</text>
-  <text x="347" y="138" font-size="8" fill="var(--vp-c-text-2)" text-anchor="middle">주요 기능 경량 검증</text>
-  <text x="347" y="160" font-size="8" fill="var(--vp-c-brand)" text-anchor="middle">시험성적서 교부</text>
-
-  <!-- Arrow 3 -> 4 -->
-  <line x1="400" y1="109" x2="413" y2="109" stroke="var(--vp-c-brand)" stroke-width="1.8" marker-end="url(#gs-arrow)" />
-
-  <!-- Step 4: Benefits -->
-  <rect x="418" y="42" width="87" height="135" rx="6" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" stroke-width="1.2" />
-  <text x="461" y="60" font-size="10" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">4. 법적 혜택</text>
-  <line x1="426" y1="67" x2="497" y2="67" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-  <text x="461" y="84" font-size="8" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">공공 우선구매</text>
-  <text x="461" y="100" font-size="8" fill="var(--vp-c-text-2)" text-anchor="middle">판로지원법 제12조</text>
-  <text x="461" y="122" font-size="8" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">제3자 단가계약</text>
-  <text x="461" y="138" font-size="8" fill="var(--vp-c-text-2)" text-anchor="middle">나라장터 수의계약</text>
-  <text x="461" y="160" font-size="8" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">상용SW 분리발주</text>
-
-  <!-- Bottom Defect Feedback Loop -->
-  <path d="M 207 177 L 207 202 L 67 202 L 67 182" fill="none" stroke="#e06c75" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#gs-ret-arrow)" />
-  <text x="137" y="196" font-size="7.5" fill="#e06c75" text-anchor="middle">결함 통보 ➔ 개발사 수정·보완 ➔ 재시험 (결함 0건 확보)</text>
-</svg>
-</div>
+```mermaid
+flowchart LR
+    A["대상 및 서류 · 완제품 SW · ISO 25051"] --> B["실환경 시험 TTA·KTL · 25023 8특성"]
+    B --> C["인증서 발급 1등급 전수 · 2등급 선별"]
+    C --> D["법적 혜택 우선구매 · 단가계약 · 분리발주"]
+    B -.->|"결함 통보 · 보완 후 재시험"| A
+```
 
 #### 2. ISO/IEC 25023 기반 8대 품질 특성 및 세부 기준
-| 품질 특성 | 영문 명칭 | 세부 평가 항목 및 검증 기준 |
-|---|---|---|
-| **기능 적합성** | Functional Suitability | 기능 완전성, 기능 정확성, 기능 적절성 (매뉴얼 기재 기능의 100% 정상 작동) |
-| **성능 효율성** | Performance Efficiency | 시간 반응성(응답시간, 트랜잭션 처리량), 자원 활용성(CPU·메모리 누수 여부) |
-| **호환성** | Compatibility | 공존성(타 SW 동시 구동 시 충돌 여부), 상호운용성(표준 프로토콜 연계) |
-| **사용성** | Usability | 적절성 인식성, 학습 용이성, 운영 용이성, 사용자 오류 방지 및 접근성 |
-| **신뢰성** | Reliability | 성숙도, 무결함성, 결함 허용성(장애 자동 복구), 가용성(연속 가동 안정성) |
-| **보안성** | Security | 기밀성(데이터 암호화), 무결성, 부인방지, 책임추적성, 권한 인증 체계 |
-| **유지보수성** | Maintainability | 모듈성, 재사용성, 결함 분석성, 변경 용이성, 시험 가능성 |
-| **이식성** | Portability | 환경 적응성, 설치/제거 용이성, 대체 용이성 (이종 OS·DB·브라우저 지원) |
+| 품질 특성 | 세부 평가 항목 및 검증 기준 |
+|---|---|
+| **기능 적합성 Functional Suitability** | 기능 완전성, 기능 정확성, 기능 적절성 (매뉴얼 기재 기능의 전수 정상 작동) |
+| **성능 효율성 Performance Efficiency** | 시간 반응성(응답시간, 트랜잭션 처리량), 자원 활용성(CPU·메모리 누수 여부) |
+| **호환성 Compatibility** | 공존성(타 SW 동시 구동 시 충돌 여부), 상호운용성(표준 프로토콜 연계) |
+| **사용성 Usability** | 적절성 인식성, 학습 용이성, 운영 용이성, 사용자 오류 방지 및 접근성 |
+| **신뢰성 Reliability** | 성숙도, 무결함성, 결함 허용성(장애 자동 복구), 가용성(연속 가동 안정성) |
+| **보안성 Security** | 기밀성(데이터 암호화), 무결성, 부인방지, 책임추적성, 권한 인증 체계 |
+| **유지보수성 Maintainability** | 모듈성, 재사용성, 결함 분석성, 변경 용이성, 시험 가능성 |
+| **이식성 Portability** | 환경 적응성, 설치/제거 용이성, 대체 용이성 (이종 OS·DB·브라우저 지원) |
 
 ---
 
@@ -187,9 +113,9 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **매뉴얼-UI 명칭 불일치로 인한 시험 탈락** | 문서-코드 추적성 매트릭스 구축 및 E2E UI 텍스트 자동 검증 파이프라인 연계 | 문서 정합성 결함 0건 달성 및 재시험 비용 방어 |
-| **동시 다중 접속 시 응답 지연 기준 미달** | 사전 k6/JMeter 기반 모의 부하 테스트베드 구축 및 쿼리/커넥션 풀 최적화 | GS 인증 성능평가 기준(응답 2초 이내) 100% 충족 |
-| **인증 버전과 공공 납품 배포 버전 불일치** | CI/CD 파이프라인에 시맨틱 버저닝 및 변경인증 대상 판정 자동화 게이트 적용 | 공공 납품 컴플라이언스 위반 리스크 원천 차단 |
+| **매뉴얼-UI 명칭 불일치로 인한 시험 탈락** | 문서-코드 추적성 매트릭스 구축 및 E2E UI 텍스트 자동 검증 파이프라인 연계 | 문서 정합성 결함 방지 및 재시험 비용 절감 |
+| **동시 다중 접속 시 응답 지연 기준 미달** | 사전 k6/JMeter 기반 모의 부하 테스트베드 구축 및 쿼리/커넥션 풀 최적화 | GS 인증 성능평가 기준 충족 |
+| **인증 버전과 공공 납품 배포 버전 불일치** | CI/CD 파이프라인에 시맨틱 버저닝 및 변경인증 대상 판정 자동화 게이트 적용 | 공공 납품 컴플라이언스 위반 리스크 차단 |
 
 ---
 
@@ -197,39 +123,24 @@ extra:
 
 ### 학습자 통찰 메모 — 답안 밖
 
-```text
-[핵심 통찰]
-GS 인증의 본질은 "공공 발주처가 믿고 수의계약할 수 있도록 제3자 공인기관(TTA/KTL)이 기술적 무결성을 보증해 주는 제도적 보증수표"이다.
-그러나 최근 소프트웨어 생태계가 설치형 온프레미스 패키지에서 지속 배포(CI/CD) 기반의 멀티테넌트 SaaS로 급변함에 따라, 수개월간 설치 환경을 고정해 두고 검증하는 기존 GS 인증 방식은 명백한 병목이 되고 있다.
-기술사 답안에서는 단순한 8대 품질특성 나열을 넘어, SaaS 패스트트랙(멀티테넌시 데이터 격리·API 신뢰성 중심 평가)과 CI/CD 파이프라인 상의 '지속적 적격성 보증(Continuous Compliance)'으로 인증 제도가 진화해야 함을 제언해야 차별화된 고득점을 얻는다.
-
-[나라면 이렇게 쓴다]
-1단락: GS(제품)-SP(프로세스)-CC(보안) 3대 축 품질 거버넌스 도식화로 큰 그림 제시.
-2단락: ISO 25023 8대 품질특성과 실환경 결함 전수 검증 프로세스 및 1/2등급 판정 기준 제시.
-3단락: 온프레미스 패키지 한계를 돌파하는 'SaaS형 GS 인증 패스트트랙' 및 '공공 분리발주 의무화 실효성 확보' 방안 제언.
-```
+- `[핵심 통찰]`: GS 인증의 본질은 "공공 발주처가 믿고 수의계약할 수 있도록 제3자 공인기관(TTA/KTL)이 기술적 무결성을 보증해 주는 제도적 보증수표"이다. 그러나 소프트웨어 생태계가 설치형 온프레미스 패키지에서 지속 배포(CI/CD) 기반의 멀티테넌트 SaaS로 급변함에 따라, 수개월간 설치 환경을 고정해 두고 검증하는 기존 방식은 병목이 되고 있다. SaaS 패스트트랙(멀티테넌시 데이터 격리·API 신뢰성 중심 평가)과 CI/CD 파이프라인 상의 '지속적 적격성 보증(Continuous Compliance)'으로의 진화가 제도적 과제다.
+- `나라면`: 1단락에서 GS(제품)-SP(프로세스)-CC(보안) 3대 축 품질 거버넌스를 도식화하고, 2단락에서 ISO 25023 8대 품질특성과 실환경 결함 전수 검증 프로세스 및 1·2등급 판정 기준을 제시한 뒤, 3단락에서 'SaaS형 GS 인증 패스트트랙'과 '공공 분리발주 의무화 실효성 확보' 방안을 제언하겠다.
 
 ### 실전 답안용 기술사적 제언
 
 - **판정 기준**: 기능 추가 및 패치가 주/일 단위로 일어나는 클라우드 환경에서는 변경인증 대상 여부를 수작업 심사하지 말고, API 계약(Contract) 파괴 및 데이터 스키마 브레이킹 체인지 발생 여부를 기준으로 판정해야 함.
 - **대응 방안**: 전통 설치형 검증 항목 중 불필요한 OS 호환성 테스트를 간소화하고, **멀티테넌트 테넌트 간 데이터 격리성, 오픈 API 정합성, 오토스케일링 및 장애 복원력(Chaos Engineering)** 중심의 'SaaS 전용 패스트트랙'을 전면 표준화해야 함.
 - **검증 체계**: 개발사의 배포 파이프라인(CI/CD)에 공인 시험기관의 자동화 테스트 슈트를 API로 연동하여, 빌드 시점마다 품질 메트릭을 실시간 검증하고 인증 상태를 갱신하는 **지속적 품질 보증(Continuous Assurance)** 체계를 구축해야 함.
-- **기대 효과**: 상용 소프트웨어 인증 소요 기간을 평균 3개월에서 2주 이내로 대폭 단축하여 공공 시장 진입 속도를 극대화하고, 우수 국산 SaaS의 조달청 디지털서비스몰 조기 등록을 촉진함.
-
-<div style="margin: 1rem 0; padding: 0.8rem 1rem; background: var(--vp-c-bg-alt); border-left: 4px solid var(--vp-c-brand); border-radius: 4px; font-size: 0.88rem; line-height: 1.6;">
-<strong>품질인증 거버넌스 파이프라인</strong>: <code>COTS/SaaS 완제품</code> ➔ <code>ISO 25023 8대 특성 실환경 시험</code> ➔ <code>GS 1등급 획득</code> ➔ <code>나라장터 종합쇼핑몰 3자 단가계약</code> ➔ <code>공공 소프트웨어 분리발주 활성화</code>
-</div>
+- **기대 효과**: 상용 소프트웨어 인증 소요 기간을 대폭 단축하여 공공 시장 진입 속도를 극대화하고, 우수 국산 SaaS의 조달청 디지털서비스몰 조기 등록을 촉진함.
 
 ---
 
 ## 4. 1교시 10점형 대비 핵심 요약
 
-```text
-- 법적 근거: 소프트웨어진흥법 제20조 (주관: 과기정통부, 시험기관: TTA, KTL)
-- 평가 기준: ISO/IEC 25023 (8대 품질특성: 기능, 성능, 호환, 사용, 신뢰, 보안, 유지보수, 이식)
-- 등급 체계: 1등급 (전수 시험 및 종합 보증), 2등급 (주요 핵심 기능 선별 검증)
-- 핵심 혜택: 공공기관 우선구매 대상 지정, 조달청 우수제품 등록, 3자 단가계약, 상용SW 분리발주 대상
-```
+- **법적 근거**: 소프트웨어진흥법 제20조 (주관: 과기정통부, 시험기관: TTA, KTL)
+- **평가 기준**: ISO/IEC 25023 (8대 품질특성: 기능, 성능, 호환, 사용, 신뢰, 보안, 유지보수, 이식)
+- **등급 체계**: 1등급 (전수 시험 및 종합 보증), 2등급 (주요 핵심 기능 선별 검증)
+- **핵심 혜택**: 공공기관 우선구매 대상 지정, 조달청 우수제품 등록, 3자 단가계약, 상용SW 분리발주 대상
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "DevOps"
-author: "Antigravity"
-date: "2026-09-21T16:26:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -9,37 +9,18 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 빌드·배포·DevOps를 거쳐 DevOps로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>빌드·배포·DevOps</span>
-  <strong>DevOps</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 빌드·배포·DevOps → **DevOps**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **DevOps**는 개발(Dev)과 운영(Ops)의 단절을 극복하고, 자동화 파이프라인과 협업 문화로 소프트웨어를 신속·안정적으로 지속 전달하는 체계
 - 메커니즘: Plan → Code → Build → Test → Release → Deploy → Operate → Monitor 무한 루프 피드백
-- 산출/효과: 리드타임 단축 · 배포 빈도 극대화 · 장애 복구 시간(MTTR) 단축 · 고객 가치 조기 실현
-
-<div class="itpe-flow-map" role="img" aria-label="DevOps 생명주기 및 지속적 피드백 흐름">
-  <div class="itpe-flow-node"><strong>개발 영역(Dev)</strong><div class="itpe-step-detail"><span>Plan · Code · Build · Test</span></div></div>
-  <div class="itpe-flow-arrow">→ CI/CD 자동화 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>DevOps 파이프라인</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>문화</strong><span>CALMS 프레임워크 실천</span></div>
-      <div class="itpe-flow-branch"><strong>기술</strong><span><span class="itpe-keyword"><strong>CI/CD</strong></span> · <span class="itpe-keyword"><strong>IaC</strong></span> · 컨테이너</span></div>
-      <div class="itpe-flow-branch"><strong>운영</strong><span><span class="itpe-keyword"><strong>SRE</strong></span> · 가시성 · 자동복구</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 피드백 및 환류 →</div>
-  <div class="itpe-flow-node"><strong>운영 영역(Ops)</strong><div class="itpe-step-detail"><span>Release · Deploy · Operate · Monitor</span></div></div>
-</div>
+- 효과: 리드타임 단축 · 배포 빈도 극대화 · 장애 복구 시간(MTTR) 단축 · 고객 가치 조기 실현
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,94 +48,19 @@ extra:
 
 > DevOps는 단순한 도구 도입이 아니라 CALMS 5대 축과 엔지니어링 툴체인이 유기적으로 결합할 때 완성된다.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="개발과 운영을 연결하는 DevOps 무한대 루프 및 DevSecOps 보안 통제 체계">
-  <!-- 좌측: Dev 루프 (Plan, Code, Build, Test) -->
-  <rect x="15" y="10" width="235" height="200" rx="10" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="132" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--sl-color-accent-high)">Development (지속적 통합 CI)</text>
-  
-  <rect x="30" y="50" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="77" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">1. Plan (기획)</text>
-  
-  <line x1="125" y1="68" x2="145" y2="68" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  
-  <rect x="145" y="50" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="192" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">2. Code (작성)</text>
-  
-  <line x1="192" y1="86" x2="192" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  
-  <rect x="145" y="105" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="192" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">3. Build (빌드)</text>
-  
-  <line x1="145" y1="123" x2="125" y2="123" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  
-  <rect x="30" y="105" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="77" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">4. Test (검증)</text>
+```mermaid
+flowchart LR
+    P["Plan"] --> C["Code"] --> B["Build"] --> T["Test"]
+    T --> R["Release"] --> D["Deploy"] --> O["Operate"] --> M["Monitor"]
+    M --> P
+```
 
-  <!-- DevSecOps 게이트 -->
-  <rect x="30" y="155" width="210" height="42" rx="6" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-  <text x="135" y="173" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-accent-high)">Shift-Left DevSecOps (SAST / SCA)</text>
-  <text x="135" y="188" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">SonarQube 정적분석 · 의존성 취약점 차단</text>
-
-  <!-- 중앙 무한대 교차선 -->
-  <path d="M 235 123 C 255 123, 265 68, 285 68" stroke="var(--sl-color-accent)" stroke-width="2" fill="none" />
-  <path d="M 285 123 C 265 123, 255 178, 235 178" stroke="var(--sl-color-accent)" stroke-width="2" fill="none" />
-
-  <!-- 우측: Ops 루프 (Release, Deploy, Operate, Monitor) -->
-  <rect x="270" y="10" width="235" height="200" rx="10" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="387" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--sl-color-accent-high)">Operations (지속적 배포 CD &amp; SRE)</text>
-  
-  <rect x="285" y="50" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="332" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">5. Release</text>
-  
-  <line x1="380" y1="68" x2="400" y2="68" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  
-  <rect x="400" y="50" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="447" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">6. Deploy</text>
-  
-  <line x1="447" y1="86" x2="447" y2="105" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  
-  <rect x="400" y="105" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="447" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">7. Operate</text>
-  
-  <line x1="400" y1="123" x2="380" y2="123" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  
-  <rect x="285" y="105" width="95" height="36" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="332" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">8. Monitor</text>
-
-  <!-- 관측성 & 피드백 -->
-  <rect x="285" y="155" width="210" height="42" rx="6" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.2" />
-  <text x="390" y="173" text-anchor="middle" font-size="10.5" font-weight="bold" fill="var(--sl-color-accent-high)">SRE 관측성 &amp; DORA 4대 지표</text>
-  <text x="390" y="188" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">배포빈도·리드타임·변경실패율·MTTR 환류</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="DevOps 기술 파이프라인">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 지속적 통합(CI)</strong></span>
-    <div class="itpe-step-detail"><strong>품질 내재화</strong><span>Git 브랜치 병합, 정적 분석(SonarQube), 자동 빌드 및 단위테스트</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 지속적 배포(CD)</strong></span>
-    <div class="itpe-step-detail"><strong>무중단 배포</strong><span>컨테이너 이미지 패키징, 스테이징 검증 및 프로덕션 무중단 릴리스</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 인프라 자동화(IaC)</strong></span>
-    <div class="itpe-step-detail"><strong>코드형 인프라</strong><span>Terraform 선언적 인프라 구성으로 환경 불일치(Drift) 원천 차단</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>④ 관측성 및 환류(Observability)</strong></span>
-    <div class="itpe-step-detail"><strong>지속적 관측</strong><span>로그·메트릭·트레이싱 통합 모니터링 및 자동 복구 메커니즘 가동</span></div>
-  </div>
-</div>
+- 개발 영역(Plan~Test)은 **지속적 통합(CI)**, 운영 영역(Release~Monitor)은 **지속적 배포(CD)**·**SRE** 관측성이 담당하며 Monitor 결과가 다음 Plan으로 환류됨
 
 | 구성요소 | 핵심 기술 및 프레임워크 | 달성 목표 |
 |---|---|---|
 | **Culture** | Blameless Postmortem, 원팀(One-team) | 심리적 안전감 확보, 책임 전가 방지 |
-| **Automation** | Jenkins, GitHub Actions, ArgoCD | 수작업 휴먼 에러 원천 차단 |
+| **Automation** | Jenkins, GitHub Actions, ArgoCD, Terraform(**IaC**) | 수작업 휴먼 에러 원천 차단 |
 | **Lean** | Wip(재공) 제한, 스몰 배치(Small Batch) | 배포 단위 축소로 변경 위험 통제 |
 | **Measurement** | DORA 4대 지표(배포빈도, 리드타임, 변경실패율, MTTR) | 객관적 데이터 기반 엔지니어링 개선 |
 | **Sharing** | 내부 지식 포털, 엔지니어링 커뮤니티 | 성공/실패 사례 전사 전파 |
@@ -197,28 +103,6 @@ extra:
 - **검증 체계**: Git PR 기반 선언적 GitOps 멱등성 감사, SAST/DAST 정적·동적 보안 취약점 제로 게이트 통과율, 무비난 회고(Blameless Postmortem) 보고서의 정기 발행 여부를 점검함
 - **기대 효과**: 변경 위험을 분산시켜 출시 리드타임을 1시간 이내로 단축하고, 프로덕션 장애 발생 시 자동 롤백 및 신속 복구를 통해 서비스 고가용성(99.99%)을 확고히 보장함
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="DevOps 성숙도 고도화 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>도구 편중</strong><span>도구 중심 도입 및 개발/운영 KPI 상충, 보안 병목</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>플랫폼 진화</strong><span>SRE 에러 예산 도입 및 플랫폼 엔지니어링(IDP) 구축</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>지표 측정</strong><span>DORA 4대 핵심 지표 지속 측정 및 보안 취약점 제로</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>민첩성 확보</strong><span>비즈니스 출시 가속화 및 무중단 고신뢰 운영 환경 확보</span></div>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -228,15 +112,12 @@ extra:
 
 ### 2. 구성체계 및 방법론
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="DevOps 핵심 사이클 요약">
-  <div class="itpe-pipeline-node"><strong>Plan &amp; Code</strong><div class="itpe-step-detail"><span>Git 협업</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Build &amp; Test</strong><div class="itpe-step-detail"><span>CI 자동화</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Deploy &amp; Operate</strong><div class="itpe-step-detail"><span>CD 및 IaC</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Monitor &amp; Learn</strong><div class="itpe-step-detail"><span>관측성 환류</span></div></div>
-</div>
+```mermaid
+flowchart LR
+    P["Plan"] --> C["Code"] --> B["Build"] --> T["Test"]
+    T --> R["Release"] --> D["Deploy"] --> O["Operate"] --> M["Monitor"]
+    M --> P
+```
 
 ### 3. 핵심 통제
 

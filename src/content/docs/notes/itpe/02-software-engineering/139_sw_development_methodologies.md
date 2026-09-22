@@ -8,10 +8,10 @@ tags:
   - "객체지향방법론"
   - "CBD"
   - "방법론테일러링"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:26:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -22,59 +22,11 @@ extra:
   <strong>SW 개발방법론 비교(구조적·정보공학·객체지향·CBD)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 소프트웨어 개발의 생산성 저하와 품질 편차를 극복하기 위해, 시스템을 분석·설계하는 핵심 추상화의 중심축을 기능(구조적), 전사 데이터(정보공학), 객체(객체지향), 독립 실행 부품(CBD)으로 발전시켜 온 공학적 절차·기법·산출물의 종합 수행 체계
 - 메커니즘: 비즈니스 도메인 및 제약 분석 → 핵심 추상화 관점 선택 → 생명주기 및 산출물 테일러링(Tailoring) → 단계별 엔지니어링 수행(DFD, ERD, UML, 컴포넌트) → 요구-산출물 추적성 검증
 - 산출물: DFD/DD/Mini-Spec (구조적) · 주제영역/ERD/CRUD 매트릭스 (정보공학) · 유스케이스/클래스/시퀀스 UML (객체지향) · 컴포넌트 및 인터페이스 명세서 (CBD)
-
-<div class="itpe-flow-map" role="img" aria-label="SW 개발방법론 패러다임 진화 및 선택 Quality Gate">
-  <div class="itpe-flow-node">
-    <strong>1단계: 구조적 방법론 (기능 분할 관점)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>특징</strong><span>하향식(Top-Down) 기능 분해 · DFD(자료흐름도), DD(자료사전), 소단위명세서</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 정보공학 방법론 (전사 데이터 관점)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>특징</strong><span>ISP 연계 · 데이터 중심(Data-Driven) · ERD 모델링 · CRUD 매트릭스</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 객체지향 방법론 (현실 세계 모델링 관점)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>특징</strong><span>상태와 행위의 캡슐화 · 상속과 다형성 · 표준 UML 모델링 체계</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>4단계: CBD 방법론 (독립 부품 조립 관점)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>특징</strong><span>바이너리 실행 부품 · 명확한 인터페이스 계약 · 블랙박스 조립 재사용</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>5단계: 방법론 선정 및 테일러링 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>프로젝트 특성(데이터 정합 vs 잦은 변경 vs 부품 재사용)에 부합하는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>적합 (테일러링 승인)</strong>
-      <span>필수 산출물 정의 $\rightarrow$ 엔지니어링 공정 착수 및 전 구간 추적성 보장</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>부적합 (방법론 재선정)</strong>
-      <span>단일 방법론 맹신 $\rightarrow$ 도메인 특성에 맞춘 하이브리드 조합 재수립</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -108,147 +60,32 @@ extra:
 
 ### 4대 방법론 추상화 중심축 및 모델링 체계
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="meth-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-primary, #2563eb)"/>
-      </marker>
-    </defs>
-    <!-- Background Frame -->
-    <rect x="5" y="5" width="510" height="210" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">SW 개발방법론 패러다임별 핵심 추상화 및 산출물 체계</text>
-
-    <!-- Column 1: Structured -->
-    <rect x="15" y="38" width="115" height="165" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="15" y="38" width="115" height="24" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="72" y="54" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">구조적 (기능)</text>
-    <text x="72" y="78" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">하향식 기능 분해</text>
-    <text x="72" y="98" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 배경도/DFD</text>
-    <text x="72" y="114" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 자료사전 (DD)</text>
-    <text x="72" y="130" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 소단위 명세서</text>
-    <text x="72" y="155" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[입출력 변환 명료]</text>
-    <text x="72" y="172" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">배치/트랜잭션 최적</text>
-
-    <!-- Column 2: Information Engineering -->
-    <rect x="140" y="38" width="115" height="165" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="140" y="38" width="115" height="24" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="197" y="54" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">정보공학 (데이터)</text>
-    <text x="197" y="78" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">전사 데이터 중심</text>
-    <text x="197" y="98" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- ISP 전략 계획</text>
-    <text x="197" y="114" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 전사 주제영역/ERD</text>
-    <text x="197" y="130" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- CRUD 매트릭스</text>
-    <text x="197" y="155" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[데이터 무결성 최우선]</text>
-    <text x="197" y="172" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">ERP/금융 코어뱅킹</text>
-
-    <!-- Column 3: Object-Oriented -->
-    <rect x="265" y="38" width="115" height="165" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <rect x="265" y="38" width="115" height="24" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="322" y="54" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">객체지향 (객체)</text>
-    <text x="322" y="78" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">상태+행위 캡슐화</text>
-    <text x="322" y="98" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 유스케이스 모델</text>
-    <text x="322" y="114" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 클래스 다이어그램</text>
-    <text x="322" y="130" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 시퀀스 다이어그램</text>
-    <text x="322" y="155" text-anchor="middle" font-size="6.5" font-weight="bold" fill="var(--color-primary, #2563eb)">[변경 격리 및 유연성]</text>
-    <text x="322" y="172" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">이커머스/도메인 설계</text>
-
-    <!-- Column 4: CBD -->
-    <rect x="390" y="38" width="115" height="165" rx="6" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-primary, #2563eb)" stroke-width="1.4"/>
-    <rect x="390" y="38" width="115" height="24" rx="6" fill="var(--color-bg-subtle, #eff6ff)"/>
-    <text x="447" y="54" text-anchor="middle" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">CBD (부품 조립)</text>
-    <text x="447" y="78" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-text, #1e293b)">독립 배포 단위 조립</text>
-    <text x="447" y="98" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 컴포넌트 식별</text>
-    <text x="447" y="114" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 인터페이스 명세서</text>
-    <text x="447" y="130" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">- 조립 배포 아키텍처</text>
-    <text x="447" y="155" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#16a34a">[블랙박스 고도 재사용]</text>
-    <text x="447" y="172" text-anchor="middle" font-size="6.5" fill="var(--color-text-muted, #64748b)">공통플랫폼/MSA 선조</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    ST["구조적(기능)"] -->|"추상화 중심축 진화"| IE["정보공학(데이터)"]
+    IE --> OO["객체지향(객체)"]
+    OO --> CB["CBD(부품)"]
+```
 
 ### 현대 엔터프라이즈 하이브리드 방법론 통합 구조
 
-<div style="max-width: 520px; margin: 1rem auto;">
-  <svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-    <!-- Frame -->
-    <rect x="5" y="5" width="510" height="190" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="260" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #1e293b)">실무 프로젝트를 위한 '현대적 하이브리드 방법론' 아키텍처</text>
-
-    <!-- Layer 1: Data Governance (Information Engineering) -->
-    <rect x="20" y="42" width="480" height="34" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="35" y="63" font-size="8" font-weight="bold" fill="var(--color-primary, #2563eb)">[전사 거버넌스층]</text>
-    <text x="145" y="63" font-size="7.5" fill="var(--color-text, #1e293b)">정보공학: 전사 주제영역 정의 및 데이터 모델링(ERD, CRUD)</text>
-    <text x="480" y="63" text-anchor="end" font-size="6.5" fill="var(--color-text-muted, #64748b)">데이터 무결성</text>
-
-    <!-- Layer 2: Domain Modeling (Object-Oriented) -->
-    <rect x="20" y="82" width="480" height="34" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="35" y="103" font-size="8" font-weight="bold" fill="var(--color-accent, #0284c7)">[도메인 설계층]</text>
-    <text x="145" y="103" font-size="7.5" fill="var(--color-text, #1e293b)">객체지향 & DDD: 유스케이스 분석 및 Bounded Context 도출</text>
-    <text x="480" y="103" text-anchor="end" font-size="6.5" fill="var(--color-text-muted, #64748b)">변경 격리</text>
-
-    <!-- Layer 3: Service Delivery (CBD & MSA) -->
-    <rect x="20" y="122" width="480" height="34" rx="5" fill="var(--color-card-bg, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-    <text x="35" y="143" font-size="8" font-weight="bold" fill="#ca8a04">[컴포넌트 조립층]</text>
-    <text x="145" y="143" font-size="7.5" fill="var(--color-text, #1e293b)">CBD 사상 & MSA: 독립 컨테이너 패키징 및 API 인터페이스 연계</text>
-    <text x="480" y="143" text-anchor="end" font-size="6.5" fill="var(--color-text-muted, #64748b)">독립 배포</text>
-
-    <!-- Wrapping Project Management: Agile -->
-    <rect x="20" y="162" width="480" height="24" rx="4" fill="var(--color-bg-subtle, #eff6ff)" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
-    <text x="260" y="178" text-anchor="middle" font-size="7.5" font-weight="bold" fill="var(--color-primary, #2563eb)">프로젝트 관리 외피: 애자일(Scrum) 2~3주 스프린트 반복 및 RTM 전 구간 추적성 보증</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    subgraph SCRUM["애자일 스크럼 · RTM 전 구간 추적"]
+        direction TB
+        IE["정보공학: 전사 데이터 거버넌스"] --> OO["객체지향·DDD: 도메인 설계"]
+        OO --> CB["CBD·MSA: 컴포넌트 조립 배포"]
+    end
+```
 
 ### 프로젝트 특성에 따른 방법론 선정 매트릭스
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>① 데이터 정합성 최우선</strong></span>
-      <span class="itpe-badge">정보공학 추천</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>전사적 자원 관리(ERP), 금융권 코어뱅킹 등 전사 데이터 무결성이 핵심인 사업</li>
-        <li>ISP 단계의 주제영역 정의와 전사 데이터 아키텍처(DA) 정립 필수</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>② 비즈니스 규칙 변경 빈번</strong></span>
-      <span class="itpe-badge">객체지향 추천</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>이커머스, 핀테크 등 사용자 인터랙션과 정책이 수시로 변하는 도메인</li>
-        <li>도메인 주도 설계(DDD) 및 디자인 패턴을 적용하여 변경 영향 격리</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>③ 기구축 자산 재사용 극대화</strong></span>
-      <span class="itpe-badge">CBD 추천</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>공통 행정 플랫폼, 프로덕트 라인(PLE) 등 유사 패키지를 대량 생산하는 사업</li>
-        <li>표준 인터페이스 기반 조립 및 어댑터 패턴으로 납기 단축</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>④ 명확한 순차 데이터 변환</strong></span>
-      <span class="itpe-badge">구조적 추천</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>배치(Batch) 집계 파이프라인, 컴파일러, 단순 신호 처리 시스템</li>
-        <li>입력에서 출력으로의 데이터 변환 경로를 DFD로 명료하게 시각화</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 프로젝트 특성 (추천 방법론) | 핵심 판단 |
+|---|---|
+| **데이터 정합성 최우선** → 정보공학 | ERP·금융권 코어뱅킹 등 전사 데이터 무결성이 핵심인 사업은 ISP 주제영역 정의와 전사 데이터 아키텍처(DA) 정립이 필수 |
+| **비즈니스 규칙 변경 빈번** → 객체지향 | 이커머스·핀테크 등 정책이 수시로 변하는 도메인은 DDD·디자인 패턴으로 변경 영향을 격리 |
+| **기구축 자산 재사용 극대화** → CBD | 공통 행정 플랫폼·프로덕트 라인(PLE) 등 유사 패키지 대량 생산 사업은 표준 인터페이스 조립과 어댑터 패턴으로 납기 단축 |
+| **명확한 순차 데이터 변환** → 구조적 | 배치(Batch) 집계·컴파일러·단순 신호 처리는 입력→출력 변환 경로를 DFD로 명료하게 시각화 |
 
 ## 3. 실무 적용 및 고려사항
 
@@ -286,35 +123,6 @@ extra:
 - **대응 방안**: 데이터 레이어(정보공학) + 도메인 로직(객체지향) + 서비스 배포(CBD/MSA)의 계층별 최적 방법론 조합 적용
 - **검증 체계**: ALM 툴체인을 활용하여 요구사항 명세서부터 최종 테스트 케이스까지 양방향 추적성(RTM) 100% 매핑 보증
 - **기대 효과**: 단일 방법론의 경직성 탈피 및 개발 생산성 30% 향상, 릴리스 주기 단축 및 아키텍처 유지보수성 극대화
-
-<div class="itpe-pipeline-container" role="region" aria-label="현대적 하이브리드 SW 개발방법론 엔지니어링 파이프라인">
-  <div class="itpe-pipeline-header">
-    <span class="itpe-pipeline-title">현대적 하이브리드 SW 개발방법론 엔지니어링 파이프라인</span>
-    <span class="itpe-pipeline-badge">엔지니어링 거버넌스</span>
-  </div>
-  <div class="itpe-pipeline-grid">
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">1단계: 전사 기획</div>
-      <div class="itpe-card-title">정보공학 거버넌스</div>
-      <div class="itpe-card-body">전사 업무 분석 및 ERD, CRUD 매트릭스 기반 데이터 무결성 확보</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">2단계: 도메인 설계</div>
-      <div class="itpe-card-title">객체지향 DDD 모델링</div>
-      <div class="itpe-card-body">유스케이스 분석 및 클래스 다이어그램 기반 비즈니스 로직 캡슐화</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">3단계: 부품 조립</div>
-      <div class="itpe-card-title">CBD / MSA 조립</div>
-      <div class="itpe-card-body">표준 인터페이스 계약 기반 독립 배포 가능 바이너리 컨테이너 조립</div>
-    </div>
-    <div class="itpe-pipeline-card">
-      <div class="itpe-card-badge">4단계: 반복 이행</div>
-      <div class="itpe-card-title">애자일 & RTM 추적</div>
-      <div class="itpe-card-body">2주 단위 스프린트 검증 및 요구사항-코드-테스트 전 구간 무결성 입증</div>
-    </div>
-  </div>
-</div>
 
 ## 6. 참고 및 연계 학습
 

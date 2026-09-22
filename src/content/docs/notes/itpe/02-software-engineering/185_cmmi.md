@@ -9,10 +9,10 @@ tags:
   - "연속적표현"
   - "SPICE"
   - "테일러링"
-date: "2026-09-20"
-author: "Antigravity"
+date: "2026-09-22T07:25:00+09:00"
+author: "Codex"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,52 +23,11 @@ extra:
   <strong>CMMI(Capability Maturity Model Integration)</strong>
 </div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 소프트웨어 개발 조직의 품질과 납기 통제를 특정 개인의 영웅적 역량에 의존하지 않고, 조직 차원의 표준 프로세스와 정량적 데이터 기반의 통계적 공정 관리(SPC)를 통해 예측 가능하고 재현 가능한 고품질 소프트웨어를 반복 생산하도록 지원하는 SEI/ISACA 프로세스 통합 성숙도 모델
-- 메커니즘: 프로세스 혼돈(Level 1) $\rightarrow$ 프로젝트 차원 관리(Level 2) $\rightarrow$ 전사 표준화 및 테일러링(Level 3) $\rightarrow$ 통계적 정량 관리(Level 4) $\rightarrow$ 지속적 결함 예방 및 공정 최적화(Level 5)
+- 메커니즘: 프로세스 혼돈(Level 1) → 프로젝트 차원 관리(Level 2) → 전사 표준화 및 테일러링(Level 3) → 통계적 정량 관리(Level 4) → 지속적 결함 예방 및 공정 최적화(Level 5)
 - 산출물: 조직 표준 프로세스 자산(OSSP) · 테일러링 계획서 · 통계적 공정 관리도(Control Chart) · CMMI 심사 결과 보고서
-
-<div class="itpe-flow-map" role="img" aria-label="CMMI 성숙도 레벨 5단계 발전 및 공정 판정 파이프라인">
-  <div class="itpe-flow-node">
-    <strong>1~2단계: 프로젝트 차원 관리 (Managed)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>통제</strong><span>개별 프로젝트 단위로 요구사항, 일정, 형상 관리 베이스라인 수립</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 조직 표준 프로세스 확립 (Defined)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>표준화</strong><span>전사 표준 프로세스 자산화(OSSP) 및 프로젝트별 테일러링 수행</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>4단계: 통계적 정량 관리 (Quantitatively Managed)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>계측</strong><span>관리도(Control Chart) 기반 결함 밀도 및 생산성의 통계적 예측 제어</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>5단계: 지속적 최적화 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>공정 변동이 통계 한계선 내에서 통제되며 근본 원인 분석(CAR) 기반 결함 예방이 작동하는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (Level 5 Optimizing 달성)</strong>
-      <span>자가 혁신 조직 안착 $\rightarrow$ 비즈니스 품질 예측 신뢰성 99% 달성</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (이상 변동 탐지)</strong>
-      <span>Level 4 관리 강화 $\rightarrow$ 통계 지표 이상치(Outlier) 근본 원인 재분석</span>
-    </div>
-  </div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -102,156 +61,39 @@ CMMI는 **"우수한 프로세스에서 우수한 품질의 제품이 나온다"
 
 CMMI 단계적 모델은 조직의 프로세스 진화 과정을 5단계의 계층 구조로 정의한다.
 
-<div class="itpe-diagram-container" role="img" aria-label="CMMI 5단계 성숙도 레벨 계층 구조도">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-cmmi); }
-    </style>
-    <marker id="arrow-cmmi" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
-    </marker>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">CMMI 5대 성숙도 레벨 계층 구조 (Staged Representation)</text>
+```mermaid
+flowchart TB
+    L1["Level 1 초기 Initial · 혼돈"] --> L2["Level 2 관리 Managed · 프로젝트 통제"]
+    L2 --> L3["Level 3 정의 Defined · 전사 표준·테일러링"]
+    L3 --> L4["Level 4 정량적 관리 · 통계 SPC"]
+    L4 --> L5["Level 5 최적화 Optimizing · 결함 예방 CAR"]
+```
 
-  <!-- Level 5 -->
-  <rect x="16" y="34" width="488" height="32" class="box-active"/>
-  <text x="26" y="48" class="h-text">Level 5: 최적화 단계 (Optimizing)</text>
-  <text x="26" y="59" class="text">지속적 프로세스 혁신, 원인 분석 및 해결(CAR), 정량적 결함 예방 및 공정 자가 튜닝</text>
-
-  <!-- Level 4 -->
-  <rect x="16" y="70" width="488" height="32" class="box"/>
-  <text x="26" y="84" class="h-text">Level 4: 정량적 관리 단계 (Quantitatively Managed)</text>
-  <text x="26" y="95" class="text">통계적 공정 관리(SPC), 공정 성능 베이스라인(QPM/OPP), 수학적 모델 기반 품질·납기 정밀 예측</text>
-
-  <!-- Level 3 -->
-  <rect x="16" y="106" width="488" height="32" class="box-active"/>
-  <text x="26" y="120" class="h-text">Level 3: 정의 단계 (Defined)</text>
-  <text x="26" y="131" class="text">전사 표준 프로세스 자산화(OSSP), 프로젝트별 테일러링(Tailoring) 가이드라인 준수, 기술 솔루션 확립</text>
-
-  <!-- Level 2 -->
-  <rect x="16" y="142" width="488" height="32" class="box"/>
-  <text x="26" y="156" class="h-text">Level 2: 관리 단계 (Managed)</text>
-  <text x="26" y="167" class="text">개별 프로젝트 수준의 계획, 요구사항 관리, 형상 관리(CM), 측정 및 분석, 협력업체 계약 관리</text>
-
-  <!-- Level 1 -->
-  <rect x="16" y="178" width="488" height="32" class="box"/>
-  <text x="26" y="192" class="h-text">Level 1: 초기 단계 (Initial)</text>
-  <text x="26" y="203" class="text">표준 프로세스 부재, 특정 영웅적 개인 역량에 의존, 일정·비용 초과 다발, 혼돈(Chaos) 상태</text>
-</svg>
-</div>
+| 레벨 | 핵심 활동 |
+|---|---|
+| **Level 5** 최적화 | 지속적 프로세스 혁신, 원인 분석·해결(CAR), 정량적 결함 예방 |
+| **Level 4** 정량적 관리 | 통계적 공정 관리(SPC), 공정 성능 베이스라인, 품질·납기 수학적 예측 |
+| **Level 3** 정의 | 전사 표준 프로세스 자산화(OSSP), 프로젝트별 테일러링 준수 |
+| **Level 2** 관리 | 프로젝트 단위 계획, 요구사항·형상 관리, 측정 및 분석 |
+| **Level 1** 초기 | 표준 프로세스 부재, 영웅적 개인 의존, 일정·비용 초과 다발 |
 
 ### 단계적 표현 vs 연속적 표현 구조
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>단계적 표현 (Staged)</strong></span>
-      <span class="itpe-badge">조직 성숙도</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>조직 전체를 1단계부터 5단계까지 레벨(Maturity Level)로 종합 평가</li>
-        <li>기업 대외 홍보, 입찰 자격 심사, 공인 인증 획득에 주로 활용</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>연속적 표현 (Continuous)</strong></span>
-      <span class="itpe-badge">프로세스 영역별 능력</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>조직이 개선하려는 특정 프로세스 영역(PA)을 골라 능력 레벨(0~3) 평가</li>
-        <li>조직의 단기 병목 영역(예: 요구사항 관리, 형상 관리) 집중 개선에 최적</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 표현 방식 | 평가 단위 | 판단 |
+|---|---|---|
+| **단계적 표현** Staged | 조직 전체를 성숙도 레벨(1~5)로 종합 평가 | 입찰 자격·공인 인증 등 대외 신뢰 입증에 활용 |
+| **연속적 표현** Continuous | 개별 프로세스 영역(PA)별 능력 레벨(0~3) 평가 | 요구사항·형상 관리처럼 병목 영역 집중 개선에 적합 |
 
 ### Level 4 통계적 공정 관리(SPC)와 결함 통제 메커니즘
 
-CMMI 고성숙도(High Maturity, Level 4/5)의 핵심은 관리도(Control Chart)를 통한 이상치 감지와 근본 원인 해결이다.
+CMMI 고성숙도(High Maturity, Level 4/5)의 핵심은 관리도(Control Chart)의 관리 상한선(UCL)과 하한선(LCL) 사이에서 공정 변동을 통제하고, 한계선 밖 이상치를 근본 원인 분석으로 제거하는 폐루프다.
 
-<div class="itpe-diagram-container" role="img" aria-label="통계적 공정 관리 관리도 및 근본 원인 분석 피드백 루프">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto">
-  <defs>
-    <style>
-      .bg { fill: var(--color-surface, #1e293b); }
-      .box { fill: var(--color-surface-card, #334155); stroke: var(--color-border, #475569); stroke-width: 1.2; rx: 5; }
-      .box-active { fill: var(--color-primary-subtle, rgba(56,189,248,0.12)); stroke: var(--color-primary, #38bdf8); stroke-width: 1.5; rx: 5; }
-      .title { fill: var(--color-text-strong, #f8fafc); font-family: system-ui, sans-serif; font-size: 9.5px; font-weight: 700; }
-      .h-text { fill: var(--color-primary, #38bdf8); font-family: system-ui, sans-serif; font-size: 8px; font-weight: 700; }
-      .text { fill: var(--color-text, #e2e8f0); font-family: system-ui, sans-serif; font-size: 7px; }
-      .muted { fill: var(--color-text-muted, #94a3b8); font-family: system-ui, sans-serif; font-size: 6.2px; }
-      .arrow { stroke: var(--color-border-strong, #64748b); stroke-width: 1.2; marker-end: url(#arrow-spc); }
-      .line-ucl { stroke: #ef4444; stroke-width: 1.5; stroke-dasharray: 4,4; }
-      .line-cl { stroke: #38bdf8; stroke-width: 1.5; }
-      .line-lcl { stroke: #ef4444; stroke-width: 1.5; stroke-dasharray: 4,4; }
-    </style>
-    <marker id="arrow-spc" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--color-border-strong, #64748b)"/>
-    </marker>
-  </defs>
-  <rect width="520" height="220" class="bg" rx="8"/>
-  <text x="16" y="20" class="title">통계적 공정 관리(SPC) 관리도 및 Level 5 결함 예방(CAR) 피드백 루프</text>
-
-  <!-- 왼쪽: 관리도 차트 -->
-  <rect x="16" y="34" width="270" height="170" class="box"/>
-  <text x="24" y="50" class="h-text">소프트웨어 공정 성능 관리도 (Control Chart)</text>
-  
-  <!-- 기준선들 -->
-  <line x1="30" y1="72" x2="270" y2="72" class="line-ucl"/>
-  <text x="210" y="68" fill="#ef4444" font-size="6.5px" font-weight="bold">UCL (관리상한: +3σ)</text>
-
-  <line x1="30" y1="114" x2="270" y2="114" class="line-cl"/>
-  <text x="210" y="110" fill="#38bdf8" font-size="6.5px" font-weight="bold">CL (공정평균: Mean)</text>
-
-  <line x1="30" y1="156" x2="270" y2="156" class="line-lcl"/>
-  <text x="210" y="152" fill="#ef4444" font-size="6.5px" font-weight="bold">LCL (관리하한: -3σ)</text>
-
-  <!-- 데이터 포인트 및 이상치 -->
-  <circle cx="50" cy="118" r="3" fill="#38bdf8"/>
-  <circle cx="85" cy="100" r="3" fill="#38bdf8"/>
-  <circle cx="120" cy="125" r="3" fill="#38bdf8"/>
-  <circle cx="155" cy="62" r="4.5" fill="#ef4444"/> <!-- 이상치 -->
-  <text x="145" y="54" fill="#ef4444" font-size="6.5px" font-weight="bold">이상치(Outlier)</text>
-  <circle cx="190" cy="108" r="3" fill="#38bdf8"/>
-  <circle cx="225" cy="120" r="3" fill="#38bdf8"/>
-
-  <!-- 연결선 -->
-  <polyline points="50,118 85,100 120,125 155,62 190,108 225,120" fill="none" stroke="var(--color-border-strong, #64748b)" stroke-width="1.2"/>
-  <text x="24" y="188" class="muted">통계적 공정 상태: 관리 한계선(UCL~LCL) 내 변동은 정상(우연원인)</text>
-
-  <!-- 오른쪽: CAR 피드백 루프 -->
-  <rect x="300" y="34" width="204" height="170" class="box-active"/>
-  <text x="310" y="50" class="h-text">Level 5 근본 원인 분석 (CAR)</text>
-  
-  <rect x="310" y="60" width="184" height="34" class="box"/>
-  <text x="316" y="74" class="text">1. 이상치 발생 탐지</text>
-  <text x="316" y="86" class="muted">UCL 초과 결함 밀도 급증 감지</text>
-  <line x1="402" y1="94" x2="402" y2="104" class="arrow"/>
-
-  <rect x="310" y="104" width="184" height="34" class="box"/>
-  <text x="316" y="118" class="text">2. 근본 원인 도출 (Fishbone)</text>
-  <text x="316" y="130" class="muted">특수원인(인력 교체, 툴 오류) 격리</text>
-  <line x1="402" y1="138" x2="402" y2="148" class="arrow"/>
-
-  <rect x="310" y="148" width="184" height="42" class="box-active"/>
-  <text x="316" y="162" class="text">3. 표준 프로세스 자산 영구 개정</text>
-  <text x="316" y="174" class="muted">동일 결함 재발 원천 차단 (결함 예방)</text>
-  <text x="316" y="184" class="muted">▶ 자가 혁신(Self-Optimizing) 조직 안착</text>
-</svg>
-</div>
+```mermaid
+flowchart LR
+    M["관리도 관찰 UCL·LCL"] -->|"이상치 탐지"| C["근본 원인 분석 CAR"]
+    C --> F["표준 프로세스 개정"]
+    F -->|"공정 안정화"| M
+```
 
 ## 3. 실무 적용 및 고려사항
 
@@ -282,42 +124,8 @@ CMMI 고성숙도(High Maturity)는 단순한 인증 마크가 아니라 비즈�
 
 - **판정 기준**: 전사 프로젝트 표준 테일러링 준수율 100% 및 결함 밀도 관리도 상한선(UCL) 이내 통제율 98% 달성 여부
 - **대응 방안**: CMMI v2.0/v3.0 거버넌스를 기반으로 GitOps CI/CD 파이프라인과 자동 연동되는 정량적 품질 통제 체계 구축
-- **검증 체계**: 동료 인스펙션 증적 자동 추출 ➔ 공정 성능 모델(PPM) 분석 ➔ 통계적 공정 관리도 이상치 모니터링 ➔ SCAMPI 심사
+- **검증 체계**: 동료 인스펙션 증적 자동 추출 → 공정 성능 모델(PPM) 분석 → 통계적 공정 관리도 이상치 모니터링 → SCAMPI 심사
 - **기대 효과**: 소프트웨어 납기 지연율 0% 수렴, 프로젝트 재작업 비용 40% 절감 및 글로벌 수주 경쟁력 확보
-
-<div class="itpe-pipeline-container" role="img" aria-label="CMMI 프로세스 성숙도 고도화 파이프라인">
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">01</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>프로젝트 통제</strong>
-      <span>요구사항·형상관리 베이스라인 및 산출물 추적 확립</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">02</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>전사 표준 테일러링</strong>
-      <span>조직 표준 프로세스(OSSP) 수립 및 프로젝트별 최적화</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">03</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>통계적 정량 관리</strong>
-      <span>관리도(SPC) 기반 결함 밀도 및 생산성 변동 제어</span>
-    </div>
-  </div>
-  <div class="itpe-pipeline-arrow">➔</div>
-  <div class="itpe-pipeline-step">
-    <div class="itpe-pipeline-step-num">04</div>
-    <div class="itpe-pipeline-step-content">
-      <strong>원인 분석 및 최적화</strong>
-      <span>CAR 결함 예방 루프 가동 및 프로세스 자가 혁신</span>
-    </div>
-  </div>
-</div>
 
 ## 5. 참고 및 연계 학습
 

@@ -2,44 +2,25 @@
 title: "유스케이스 다이어그램(유스케이스 명세)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 요구공학을 거쳐 유스케이스 다이어그램으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>요구공학</span>
-  <strong>유스케이스 다이어그램(유스케이스 명세)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 요구공학 → **유스케이스 다이어그램(유스케이스 명세)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **유스케이스 다이어그램(Use Case Diagram)**은 사용자(액터) 관점에서 시스템이 제공해야 하는 기능적 요구사항과 시스템 경계를 시각적으로 모델링하는 행위 다이어그램
 - 메커니즘: **시스템 경계** + **액터(Actor)** + **유스케이스(Use Case)** + **관계(연관, 포함 `<include>`, 확장 `<extend>`, 일반화)**
-- 산출/효과: 시스템 개발 범위(Scope) 확정 · 사용자 관점의 요구사항 가시화 · **유스케이스 명세서(Use Case Specification)** 작성을 통한 분석·설계·테스트 기준선 제공
-
-<div class="itpe-flow-map" role="img" aria-label="유스케이스 모델링 흐름">
-  <div class="itpe-flow-node"><strong>액터(Actor)</strong><span>시스템 외부 사용자/연계시스템</span></div>
-  <div class="itpe-flow-arrow">→ 상호작용 (Association) →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>유스케이스 (Use Case)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>포함 관계</strong><span>&lt;&lt;include&gt;&gt; 필수 공통 기능</span></div>
-      <div class="itpe-flow-branch"><strong>확장 관계</strong><span>&lt;&lt;extend&gt;&gt; 특정 조건부 부가 기능</span></div>
-      <div class="itpe-flow-branch"><strong>일반화</strong><span>상위-하위 개념 상속</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 상세화 →</div>
-  <div class="itpe-flow-node"><strong>유스케이스 명세서</strong><span>사전/사후조건 · 기본/대안 흐름</span></div>
-</div>
+- 효과: 시스템 개발 범위(Scope) 확정 · 사용자 관점의 요구사항 가시화 · **유스케이스 명세서(Use Case Specification)** 작성을 통한 분석·설계·테스트 기준선 제공
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,22 +48,13 @@ extra:
 
 > 다이어그램은 큰 그림을 보여주고, 세부적인 입출력과 조건은 유스케이스 명세서에 위임한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="유스케이스 관계 체계">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 액터 (Actor) — 졸라맨 심볼</strong></span>
-    <span>시스템 외부에 위치하며 시스템과 정보를 교환하는 역할 (주 액터, 부 액터)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 실선 연관 (Association)</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 기본 유스케이스 (Base Use Case) — 타원 심볼</strong></span>
-    <span>시스템 경계(Subject Boundary 사각형) 내부에서 사용자 목적을 달성하는 작업 단위</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 점선 화살표 관계</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 포함(&lt;&lt;include&gt;&gt;) 및 확장(&lt;&lt;extend&gt;&gt;)</strong></span>
-    <span>include: 기본 → 피포함 (필수 실행) / extend: 확장 → 기본 (조건부 선택 실행, 확장점 명시)</span>
-  </div>
-</div>
+```mermaid
+flowchart LR
+    subgraph SB["시스템 경계 (사각형)"]
+        U["유스케이스 (타원 심볼)"]
+    end
+    A["액터 (졸라맨 심볼)"] ---|"연관 (Association)"| U
+```
 
 | 관계 유형 | 표기법 (Stereotype) | 화살표 방향 | 핵심 의미 및 동작 조건 |
 |---|---|---|---|
@@ -97,60 +69,12 @@ extra:
 
 ### 포함(include)과 확장(extend) 관계 메커니즘
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[유스케이스 관계: 포함(include: 필수) vs 확장(extend: 조건부)]</text>
-
-    <!-- Actor (Left) -->
-    <!-- Head -->
-    <circle cx="55" cy="95" r="10" fill="none" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
-    <!-- Body -->
-    <line x1="55" y1="105" x2="55" y2="135" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
-    <!-- Arms -->
-    <line x1="40" y1="115" x2="70" y2="115" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
-    <!-- Legs -->
-    <line x1="55" y1="135" x2="42" y2="155" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
-    <line x1="55" y1="135" x2="68" y2="155" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
-    <text x="55" y="175" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">고객 (User)</text>
-
-    <!-- Association Line -->
-    <line x1="72" y1="120" x2="125" y2="120" stroke="var(--sl-color-text-muted, #64748b)" stroke-width="1.5" />
-
-    <!-- Base Use Case (Center) -->
-    <ellipse cx="195" cy="120" rx="65" ry="32" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" />
-    <text x="195" y="117" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">주문하기</text>
-    <text x="195" y="132" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">(기본 유스케이스)</text>
-
-    <!-- 1. Include Relationship (Top Right) -->
-    <!-- Dashed Arrow from Base to Included -->
-    <path d="M 245 102 L 355 68" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" />
-    <rect x="260" y="65" width="85" height="18" rx="3" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="302" y="77" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">&lt;&lt;include&gt;&gt;</text>
-
-    <!-- Included Use Case -->
-    <ellipse cx="425" cy="62" rx="65" ry="28" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" />
-    <text x="425" y="59" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">본인 인증</text>
-    <text x="425" y="73" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">[100% 필수 실행]</text>
-
-    <!-- 2. Extend Relationship (Bottom Right) -->
-    <!-- Dashed Arrow from Extending to Base -->
-    <path d="M 360 165 L 250 135" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" />
-    <rect x="270" y="155" width="85" height="18" rx="3" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="312" y="167" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">&lt;&lt;extend&gt;&gt;</text>
-
-    <!-- Extending Use Case -->
-    <ellipse cx="425" cy="172" rx="65" ry="28" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
-    <text x="425" y="169" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">쿠폰 할인 적용</text>
-    <text x="425" y="183" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-success, #10b981)" text-anchor="middle">[조건부 선택 실행]</text>
-
-    <!-- Extension Point note -->
-    <text x="195" y="165" class="itpe-svg-label" font-size="8.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Extension Point: 결제전</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    A["고객 (User)"] --- U["주문하기 (기본 유스케이스)"]
+    U -->|"&lt;&lt;include&gt;&gt; 필수 실행"| I["본인 인증"]
+    E["쿠폰 할인 적용"] -.->|"&lt;&lt;extend&gt;&gt; 조건부 실행"| U
+```
 
 | 비교 항목 | 포함 관계 (&lt;&lt;include&gt;&gt;) | 확장 관계 (&lt;&lt;extend&gt;&gt;) |
 |---|---|---|
@@ -166,22 +90,11 @@ extra:
 
 ### 1. 유스케이스 명세서 기술 항목
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="유스케이스 명세서 기술 항목">
-  <div class="itpe-pipeline-node">
-    <strong>기본 정보</strong>
-    <span>유스케이스명, 식별자, 주 액터, 담당자, 개요</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>사전/사후 조건 (Pre/Post-conditions)</strong></span>
-    <span>사전조건: 실행 전 참이어야 할 상태 (예: 로그인 완료)<br />사후조건: 실행 후 보장되는 시스템 상태 (예: 주문DB 저장, 결제 승인)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>이벤트 흐름 (Flow of Events)</strong></span>
-    <span>1. 기본 흐름(Happy Path): 오류 없는 이상적 진행 단계<br />2. 대안 흐름(Alternative Flow): 다른 방식으로 목적 달성<br />3. 예외 흐름(Exception Flow): 장애 발생 시 롤백 및 에러 처리</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    B["기본 정보 (유스케이스명·주 액터)"] --> C["사전·사후 조건 (Pre/Post-conditions)"]
+    C --> F["이벤트 흐름 (기본·대안·예외)"]
+```
 
 ### 2. 유스케이스 모델링 실무 위험 및 대응 통제
 
@@ -207,28 +120,6 @@ extra:
 - **검증 체계**: 요구사항정의서 ↔ 유스케이스 ↔ 인수 테스트 간 양방향 추적성 매트릭스(RTM) 100% 매핑 검증
 - **기대 효과**: 분석 단계 요구사항 누락 제로화, 발주자-수행사 간 과업 범위 분쟁 예방 및 공학적 인수 기준선 확립
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="유스케이스 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>순서도식 과도한 유스케이스 분할 · 명세서 부실로 개발자 자의적 구현</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>사용자 가치 중심 유스케이스 통합 및 이벤트 흐름(기본/대안/예외) 정형화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>RTM 추적성 검증 및 유스케이스 기반 인수 테스트(UAT) 커버리지</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>요구사항 누락 제로화 · 발주자-개발자 간 완벽한 합의 형성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -238,11 +129,12 @@ extra:
 
 ### 2. 포함 vs 확장 핵심 차이
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="포함 vs 확장 요약">
-  <div class="itpe-pipeline-node"><strong>&lt;&lt;include&gt;&gt; (포함)</strong><span>기본 → 포함 · 필수 실행 · 공통 모듈 재사용</span></div>
-  <div class="itpe-pipeline-arrow">↕ 반대 성격</div>
-  <div class="itpe-pipeline-node"><strong>&lt;&lt;extend&gt;&gt; (확장)</strong><span>확장 → 기본 · 조건부 실행 · 확장점(Extension Point) 명시</span></div>
-</div>
+```mermaid
+flowchart LR
+    A["고객 (User)"] --- U["주문하기 (기본 유스케이스)"]
+    U -->|"&lt;&lt;include&gt;&gt; 필수 실행"| I["본인 인증"]
+    E["쿠폰 할인 적용"] -.->|"&lt;&lt;extend&gt;&gt; 조건부 실행"| U
+```
 
 ### 3. 핵심 통제
 

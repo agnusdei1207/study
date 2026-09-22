@@ -2,44 +2,25 @@
 title: "SW 안전성 분석(FTA·FMEA·HAZOP)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:56:49+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 품질·안전·신뢰성을 거쳐 SW 안전성 분석으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>품질·안전·신뢰성</span>
-  <strong>SW 안전성 분석(FTA·FMEA·HAZOP)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 품질·안전·신뢰성 → **SW 안전성 분석(FTA·FMEA·HAZOP)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **SW 안전성 분석**은 자동차, 철도, 항공, 원자력 등 안전 필수(Safety-Critical) 시스템에서 소프트웨어 결함으로 인한 인명 피해나 물리적 재난을 예방하기 위해 위험원(Hazard)을 조기 식별·통제하는 공학 기법
 - 메커니즘: 연역적 결함 분석(**FTA**) + 귀납적 고장 모드 분석(**FMEA**) + 가이드워드 공정 분석(**HAZOP**)
-- 산출/효과: 위험원 식별 · 위험도(Risk Matrix) 산출 · **안전 요구사항(Safety Requirements)** 도출 · 기능안전(ISO 26262/IEC 61508) 인증 획득
-
-<div class="itpe-flow-map" role="img" aria-label="SW 안전성 분석 프레임워크">
-  <div class="itpe-flow-node"><strong>시스템 위험원 식별</strong><span>PHA · FHA 사전 분석</span></div>
-  <div class="itpe-flow-arrow">→ 분석 기법 적용 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>3대 안전성 분석 기법</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>FTA</strong><span><span class="itpe-keyword"><strong>연역적 Top-Down (불 대수·Cut Set)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>FMEA</strong><span><span class="itpe-keyword"><strong>귀납적 Bottom-Up (RPN 지수)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>HAZOP</strong><span>가이드워드 기반 이탈 분석</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 안전 통제책 수립 →</div>
-  <div class="itpe-flow-node"><strong>안전 무결성 기준 충족</strong><span>Fail-Safe · SIL/ASIL 달성</span></div>
-</div>
+- 효과: 위험원 식별 · 위험도(Risk Matrix) 산출 · **안전 요구사항(Safety Requirements)** 도출 · 기능안전(ISO 26262/IEC 61508) 인증 획득
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,82 +48,20 @@ extra:
 
 > 연역적 하향식 분석(FTA)과 귀납적 상향식 분석(FMEA), 프로세스 편차 분석(HAZOP)을 상호 보완적으로 적용한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="3대 안전성 분석 기법 체계">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. FTA (Fault Tree Analysis) — 연역적 / Top-Down</strong></span>
-    <span>사고 발생(Top Event) → AND/OR 논리 게이트 전개 → 최소 컷셋(Minimal Cut Set) 도출</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. FMEA (Failure Mode and Effects Analysis) — 귀납적 / Bottom-Up</strong></span>
-    <span>단위 컴포넌트 고장 모드 나열 → 시스템 영향 분석 → 위험우선순위(RPN) 산출 및 조치</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. HAZOP (Hazard and Operability Analysis) — 가이드워드 기반</strong></span>
-    <span>설계 의도 변수(온도, 전압, 데이터) + 가이드워드(No, More, Reverse) → 이탈 및 대책 도출</span>
-  </div>
-</div>
-
 ### 3대 안전성 분석 기법(FTA · FMEA · HAZOP) 메커니즘 비교
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[소프트웨어 3대 안전성 분석 기법 관점 및 프로세스 비교]</text>
-
-    <!-- 1. FTA (Left) -->
-    <rect x="18" y="48" width="155" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.2" />
-    <text x="95" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">FTA (연역적)</text>
-    <text x="95" y="85" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Top-down 분석</text>
-    <line x1="28" y1="94" x2="163" y2="94" stroke="var(--sl-color-border, #e2e8f0)" />
-    
-    <!-- FTA Flow -->
-    <rect x="28" y="102" width="135" height="24" rx="3" fill="var(--sl-color-bg-accent, #fee2e2)" />
-    <text x="95" y="118" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">최상위 사고 (Top Event)</text>
-    
-    <text x="95" y="137" fill="var(--sl-color-text-muted, #94a3b8)" font-size="11" text-anchor="middle">↓ AND / OR 논리 게이트</text>
-
-    <rect x="28" y="146" width="135" height="42" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="95" y="162" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">최소 컷셋 (Cut Set)</text>
-    <text x="95" y="177" class="itpe-svg-label" font-size="9" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">단일 고장점(SPOF) 제거</text>
-
-    <!-- 2. FMEA (Center) -->
-    <rect x="182" y="48" width="155" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
-    <text x="260" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">FMEA (귀납적)</text>
-    <text x="260" y="85" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Bottom-up 분석</text>
-    <line x1="192" y1="94" x2="327" y2="94" stroke="var(--sl-color-border, #e2e8f0)" />
-
-    <!-- FMEA Flow -->
-    <rect x="192" y="102" width="135" height="24" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="260" y="118" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">단위 부품 고장 모드</text>
-
-    <text x="260" y="137" fill="var(--sl-color-text-muted, #94a3b8)" font-size="11" text-anchor="middle">↑ 상위 시스템 영향</text>
-
-    <rect x="192" y="146" width="135" height="42" rx="3" fill="var(--sl-color-bg-accent, #eff6ff)" />
-    <text x="260" y="162" class="itpe-svg-sub" font-size="9.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">RPN 지수 산출</text>
-    <text x="260" y="177" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text, #334155)" text-anchor="middle">S(심각) × O(발생) × D(검출)</text>
-
-    <!-- 3. HAZOP (Right) -->
-    <rect x="347" y="48" width="155" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.2" />
-    <text x="424" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">HAZOP (탐색적)</text>
-    <text x="424" y="85" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Guide Word 이탈 분석</text>
-    <line x1="357" y1="94" x2="492" y2="94" stroke="var(--sl-color-border, #e2e8f0)" />
-
-    <!-- HAZOP Flow -->
-    <rect x="357" y="102" width="135" height="24" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="424" y="118" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">공정 변수 (속도/전압/데이터)</text>
-
-    <text x="424" y="137" fill="var(--sl-color-text-muted, #94a3b8)" font-size="11" text-anchor="middle">+ Guide Word (No, More)</text>
-
-    <rect x="357" y="146" width="135" height="42" rx="3" fill="var(--sl-color-bg-accent, #f5f3ff)" />
-    <text x="424" y="162" class="itpe-svg-sub" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">이탈(Deviation) 도출</text>
-    <text x="424" y="177" class="itpe-svg-label" font-size="9" fill="var(--sl-color-success, #10b981)" text-anchor="middle">Fail-Safe 안전대책 수립</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    subgraph F["FTA (연역적 Top-down)"]
+        TE["최상위 사고 (Top Event)"] -->|"AND/OR 논리 게이트"| MCS["최소 컷셋 (SPOF 제거)"]
+    end
+    subgraph M["FMEA (귀납적 Bottom-up)"]
+        FM["단위 부품 고장 모드"] -->|"상위 영향 분석"| RP["RPN 산출 (S×O×D)"]
+    end
+    subgraph H["HAZOP (탐색적)"]
+        PV["공정 변수 (속도·전압·데이터)"] -->|"가이드워드 적용"| DE["이탈(Deviation) 도출"]
+    end
+```
 
 | 비교 항목 | FTA (결함 수목 분석) | FMEA (고장 모드 영향 분석) | HAZOP (위험 및 운전성 분석) |
 |---|---|---|---|
@@ -171,22 +90,11 @@ extra:
 
 ### 1. 안전 아키텍처 메커니즘
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="안전 아키텍처 메커니즘">
-  <div class="itpe-pipeline-node">
-    <strong>Fail-Safe (고장 시 안전 보장)</strong>
-    <span>고장 발생 시 시스템을 사전에 정의된 무해한 상태(정지, 전원 차단)로 전이</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>Fail-Operational (고장 시 운용 유지)</strong>
-    <span>자율주행, 항공 제어 등 즉시 정지가 위험한 경우 이중화로 기능 지속 제공</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1oo2D / 2oo3 (다수결 투표 및 안전 다중화)</strong></span>
-    <span>서로 다른 알고리즘(N-Version Programming) 결과 비교 및 워치독 모니터링</span>
-  </div>
-</div>
+| 아키텍처 메커니즘 | 동작 원리 | 적용 상황 |
+|---|---|---|
+| **Fail-Safe (고장 시 안전 보장)** | 고장 발생 시 시스템을 사전에 정의된 무해한 상태(정지, 전원 차단)로 전이 | 일반 제어 시스템의 안전 정지 |
+| **Fail-Operational (고장 시 운용 유지)** | 즉시 정지가 위험한 경우 이중화로 기능 지속 제공 | 자율주행, 항공 제어 |
+| **1oo2D / 2oo3 (다수결 투표·안전 다중화)** | 서로 다른 알고리즘(N-Version Programming) 결과 비교 및 워치독 모니터링 | 고신뢰 안전 채널 구성 |
 
 ### 2. 안전성 분석 실무 위험 및 대응 통제
 
@@ -212,28 +120,6 @@ extra:
 - **검증 체계**: FTA 최소 컷셋 기반 단일 고장점(SPOF) 제로화 및 RPN 100 이상 항목 대상 고장 주입 테스트(Fault Injection) 100% 통과
 - **기대 효과**: 잠재 위험원 조기 격리, Fail-Safe 안전 아키텍처 구현 및 기능안전 국제 공인 인증(SIL4/ASIL-D) 획득 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="SW 안전성 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>기능 테스트 편중 · 극한 상황 및 다중 고장에 대한 안전 분석 부재</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>FTA/FMEA/HAZOP 연계 위험원 분석 및 Fail-Safe 안전 아키텍처 구현</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>고장 주입 테스트(Fault Injection) 통과 및 RPN 리스크 완화 검증</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>무결점 기능안전 달성 · 인명 및 물리적 자산 피해 원천 차단</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -243,13 +129,18 @@ extra:
 
 ### 2. 3대 분석 기법 핵심 비교
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="3대 기법 비교 요약">
-  <div class="itpe-pipeline-node"><strong>FTA</strong><span>연역적 Top-Down · 사고(Top Event)에서 출발 · 부울 대수</span></div>
-  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node"><strong>FMEA</strong><span>귀납적 Bottom-Up · 부품 고장에서 출발 · RPN 지수</span></div>
-  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node"><strong>HAZOP</strong><span>탐색적 · 가이드워드(No, More, Less) 기반 이탈 분석</span></div>
-</div>
+```mermaid
+flowchart TB
+    subgraph F["FTA (연역적 Top-down)"]
+        TE["최상위 사고 (Top Event)"] -->|"AND/OR 논리 게이트"| MCS["최소 컷셋 (SPOF 제거)"]
+    end
+    subgraph M["FMEA (귀납적 Bottom-up)"]
+        FM["단위 부품 고장 모드"] -->|"상위 영향 분석"| RP["RPN 산출 (S×O×D)"]
+    end
+    subgraph H["HAZOP (탐색적)"]
+        PV["공정 변수 (속도·전압·데이터)"] -->|"가이드워드 적용"| DE["이탈(Deviation) 도출"]
+    end
+```
 
 ### 3. 핵심 통제
 

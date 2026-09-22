@@ -17,17 +17,18 @@ IT 전략·관리 → 환경·역량 분석 → **SWOT 분석**
 
 ## 30초 인출
 
-- 본질: 내부 강점·약점과 외부 기회·위협을 근거로 분류하고 교차해 실행전략을 만드는 프레임워크
-- 메커니즘: 외부·내부 사실 수집 → SWOT 분류 → TOWS 교차 → 우선순위 → 실행과제
-- 산출물: SWOT·TOWS 매트릭스 · 전략대안 · 우선과제·로드맵
+- 본질: 내부 강점·약점과 외부 기회·위협을 근거로 분류하고 교차해 실행전략을 만드는 프레임워크이다.
+- 메커니즘: 외부·내부 사실을 SWOT으로 분류하고 TOWS로 교차해 우선순위와 실행과제를 도출한다.
+- 산출물: SWOT·TOWS 매트릭스 · 전략대안 · 우선과제·로드맵이다.
 
-<details><summary>핵심 용어</summary>
+<details>
+<summary>핵심 용어</summary>
 
-- **SWOT(Strengths, Weaknesses, Opportunities, Threats)**: 내부 역량과 외부 환경을 네 범주로 구조화하는 분석
-- **TOWS**: SWOT 요인을 교차해 SO·ST·WO·WT 전략을 만드는 매트릭스
-- **PEST**: 정치·경제·사회·기술 거시환경 분석
-- **VRIO(Value, Rarity, Inimitability, Organization)**: 자원의 경쟁우위 가능성 분석
-- **AHP(Analytic Hierarchy Process)**: 기준과 대안을 쌍대비교해 우선순위를 구하는 기법
+- **SWOT(Strengths, Weaknesses, Opportunities, Threats)**: 내부 역량과 외부 환경을 네 범주로 구조화해 전략 판단에 활용하는 분석이다.
+- **TOWS**: SWOT 요인을 교차해 SO·ST·WO·WT 전략을 도출하는 매트릭스이다.
+- **PEST**: 정치·경제·사회·기술 요인으로 거시환경을 분석하는 방법이다.
+- **VRIO(Value, Rarity, Inimitability, Organization)**: 자원의 경쟁우위 가능성 분석. 이는 해당 용어의 역할과 작동을 설명한다.
+- **AHP(Analytic Hierarchy Process)**: 평가 기준과 대안을 계층으로 나누고 쌍대비교해 우선순위를 산출하는 기법. 이는 해당 용어의 역할과 작동을 설명한다.
 
 </details>
 
@@ -39,8 +40,8 @@ IT 전략·관리 → 환경·역량 분석 → **SWOT 분석**
 
 > 네 칸을 채우는 것이 아니라 근거 있는 요인을 실행 가능한 전략으로 교차하는 것이 핵심임.
 
-- 정의: 내부 S·W와 외부 O·T를 사실 기반으로 분석해 **TOWS** 전략을 도출하는 프레임워크
-- 목적: 전략적 적합성 확보 · 실행 가능한 과제 선정
+- 정의: 내부 **강점(Strengths)·약점(Weaknesses)**과 외부 **기회(Opportunities)·위협(Threats)**을 분석해 **TOWS** 전략을 도출하는 프레임워크
+- 목적: 내부 역량과 외부 환경의 전략적 적합성을 검토하고 실행 가능한 과제를 선정하는 것
 
 ## Ⅱ. SWOT 수행절차
 
@@ -89,6 +90,14 @@ flowchart TD
 > TOWS 결과가 책임·자원·성과지표를 가진 과제로 전환되어야 분석이 의사결정에 기여함.
 
 ### 실전 답안용 기술사적 제언
+
+```mermaid
+flowchart LR
+    s["내·외부 요인"] --> a["SWOT 분석"]
+    a --> v["TOWS 전략"]
+    v --> r["KPI 실행 점검"]
+    r --> a
+```
 
 - 판정: 요인 근거부터 실행과제까지 추적되는가
 - 대안: 출처·유효기간 · TOWS 교차 · 다기준 우선순위

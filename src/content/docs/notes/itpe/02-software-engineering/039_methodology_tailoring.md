@@ -5,41 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 개발 방법론을 거쳐 개발방법론 테일러링으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>개발 방법론</span>
-  <strong>개발방법론 테일러링</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 개발 방법론 → **개발방법론 테일러링**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **개발방법론 테일러링(Methodology Tailoring)**은 표준 소프트웨어 개발방법론을 특정 프로젝트의 규모, 성격, 기술 환경, 발주자 요구에 맞게 활동, 절차, 산출물을 가감·조정하는 최적화 활동
 - 메커니즘: 프로젝트 특성 분석 → 베이스라인 방법론 선정 → 테일러링 기준 수립 → 절차/산출물 가감 조정 → **테일러링 승인 및 형상화**
 - 산출/효과: 불필요한 형식적 문서 작업 제거 · 프로젝트 적합도 향상 · 개발 생산성 극대화 · 예산/일정 낭비 방지
-
-<div class="itpe-flow-map" role="img" aria-label="개발방법론 테일러링 프로세스">
-  <div class="itpe-flow-node"><strong>조직 표준 방법론</strong><span>폭포수, 애자일, CBD 등</span></div>
-  <div class="itpe-flow-arrow">→ 프로젝트 환경 분석 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>테일러링 매트릭스</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>내부 기준</strong><span>규모, 기간, 기술 난이도, 팀 역량</span></div>
-      <div class="itpe-flow-branch"><strong>외부 기준</strong><span><span class="itpe-keyword"><strong>법제도, 규제, 발주자 요구</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>가감 조정</strong><span><span class="itpe-keyword"><strong>단계/활동/산출물 통합 및 생략</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 이해관계자 공식 승인 →</div>
-  <div class="itpe-flow-node"><strong>프로젝트 맞춤형 방법론</strong><span>사업수행계획서 반영</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,99 +48,38 @@ extra:
 
 > 테일러링은 직관이나 편의에 의해 결정되는 것이 아니며, 객관적 다차원 기준표에 의해 평가되어야 한다.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="tailor-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Left: Inputs (Internal & External) -->
-  <rect x="15" y="15" width="150" height="90" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#tailor-shadow)"/>
-  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">내부적 요인 (Internal)</text>
-  <text x="25" y="55" font-size="9.5" fill="var(--sl-color-text, #374151)">• 프로젝트 규모 / 예산</text>
-  <text x="25" y="71" font-size="9.5" fill="var(--sl-color-text, #374151)">• 납기 및 일정 제약</text>
-  <text x="25" y="87" font-size="9.5" fill="var(--sl-color-text, #374151)">• 기술 난이도 / 팀 성숙도</text>
-
-  <rect x="15" y="115" width="150" height="90" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#tailor-shadow)"/>
-  <text x="25" y="136" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">외부적 요인 (External)</text>
-  <text x="25" y="155" font-size="9.5" fill="var(--sl-color-text, #374151)">• 법제도 / 규제 준수</text>
-  <text x="25" y="171" font-size="9.5" fill="var(--sl-color-text, #374151)">• 기능안전 표준 (ISO 등)</text>
-  <text x="25" y="187" font-size="9.5" fill="var(--sl-color-text, #374151)">• 발주자 감리 / 계약 요건</text>
-
-  <!-- Arrow to Center -->
-  <path d="M 165 60 L 188 100" fill="none" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <path d="M 165 160 L 188 120" fill="none" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <!-- Center: Tailoring Matrix Decision -->
-  <rect x="190" y="30" width="145" height="160" rx="8" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2" filter="url(#tailor-shadow)"/>
-  <text x="205" y="55" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">테일러링 매트릭스</text>
-  <text x="205" y="73" font-size="9.5" fill="var(--sl-color-text-muted, #4b5563)">WBS / 산출물 판정</text>
-  <line x1="200" y1="82" x2="325" y2="82" stroke="var(--sl-color-gray-5, #e5e7eb)" stroke-width="1"/>
-  <text x="205" y="103" font-size="9.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">[필수] 표준 필수 이행</text>
-  <text x="205" y="125" font-size="9.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">[통합] 유사 산출물 결합</text>
-  <text x="205" y="147" font-size="9.5" font-weight="700" fill="var(--sl-color-orange-high, #d97706)">[간소] 템플릿 경량화</text>
-  <text x="205" y="169" font-size="9.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">[생략] 비인가 생략 금지</text>
-
-  <!-- Arrow to Right -->
-  <path d="M 335 110 L 358 110" fill="none" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="2"/>
-
-  <!-- Right: Customized Lifecycle & Golden Rule -->
-  <rect x="360" y="15" width="145" height="190" rx="8" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1.5" filter="url(#tailor-shadow)"/>
-  <text x="372" y="38" font-size="11.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">최적화된 방법론</text>
-  <text x="372" y="58" font-size="9.5" fill="var(--sl-color-text, #374151)">• 사업수행계획서 등록</text>
-  <text x="372" y="74" font-size="9.5" fill="var(--sl-color-text, #374151)">• 발주자/감리 공식 승인</text>
-  <line x1="370" y1="88" x2="495" y2="88" stroke="var(--sl-color-green-high, #16a34a)" stroke-dasharray="2 2"/>
-  <text x="372" y="112" font-size="10" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">★ Golden Rule</text>
-  <text x="372" y="130" font-size="9.5" fill="var(--sl-color-text, #374151)">• 요구추적표(RTM) 필수</text>
-  <text x="372" y="148" font-size="9.5" fill="var(--sl-color-text, #374151)">• 인수시험 증적 보존</text>
-  <text x="372" y="172" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">품질추적성 결코 양보 불가</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="테일러링 고려 기준">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>내부적 기준 (Internal Factors) — 프로젝트 내부 특성</strong></span>
-    <span>1. 사업 규모 및 복잡도 (소규모/중규모/대규모 FP)<br />2. 일정 및 예산 제약 (단기 집중 vs 장기 단계적)<br />3. 기술 난이도 및 신기술 적용 여부 (검증된 기술 vs AI/클라우드)<br />4. 개발팀 성숙도 및 도메인 지식 수준</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕ 상호 작용</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>외부적 기준 (External Factors) — 외부 환경 및 규제</strong></span>
-    <span>1. 법적/제도적 규제 (전자정부법, 공공 SW사업 가이드, 개인정보보호법)<br />2. 기능안전 및 표준 인증 (ISO 26262, CMMI, GS인증 기준)<br />3. 발주기관 및 고객의 감리/품질 요구조건<br />4. 타 시스템과의 연계 복잡성 및 보안 감사 등급</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    subgraph INT["내부적 기준"]
+        direction TB
+        I1["사업 규모·복잡도"]
+        I2["일정·예산 제약"]
+        I3["기술 난이도"]
+        I4["팀 성숙도·도메인 지식"]
+    end
+    subgraph EXT["외부적 기준"]
+        direction TB
+        E1["법제도·규제"]
+        E2["표준 인증·기능안전"]
+        E3["발주자 감리·계약 요건"]
+        E4["연계 복잡성·보안 등급"]
+    end
+    INT --> TM["테일러링 매트릭스"]
+    EXT --> TM
+    TM --> OPT["프로젝트 맞춤 방법론"]
+```
 
 ## Ⅲ. 개발방법론 테일러링 학습용 5단계 절차
 
 > 테일러링 결과는 반드시 공식적인 사업수행계획서에 반영되어 발주자와 감리원의 승인을 득해야 한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="테일러링 5단계 수행 절차">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 프로젝트 특성 정의 (Project Characterization)</strong></span>
-    <span>규모, 일정, 기술, 인력, 규제 등 내/외부 영향 요소를 객관적으로 파악</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 기본 표준 방법론 선정 (Base Methodology Selection)</strong></span>
-    <span>조직 자산 중 가장 적합한 모델(폭포수, 애자일, 하이브리드 등)을 기본 틀로 선정</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 테일러링 가감 조정 (Tailoring Customization)</strong></span>
-    <span>테일러링 매트릭스를 기반으로 WBS 활동 및 산출물의 통합, 분할, 생략 수행</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>4. 테일러링 결과 문서화 및 검토 (Documentation &amp; Review)</strong></span>
-    <span>가감 사유와 대체 방안을 '방법론 테일러링 계획서'로 명시하고 품질팀 검토</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>5. 공식 승인 및 베이스라인 확정 (Approval &amp; Baseling)</strong></span>
-    <span>발주자, PMO, 감리원의 공식 승인을 획득하여 사업수행계획서 베이스라인 등록</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    A["프로젝트 특성 정의"] --> B["표준 방법론 선정"]
+    B --> C["테일러링 가감 조정"]
+    C --> D["결과 문서화·검토"]
+    D --> E["공식 승인·베이스라인 확정"]
+```
 
 ## Ⅳ. 방법론 테일러링 문제점·대응책
 
@@ -187,28 +107,6 @@ extra:
 - **검증 체계**: 생략·통합 산출물에 대한 CI/CD 자동화 증적 대체 및 요구사항 추적표(RTM) 100% 추적성 감리 검증
 - **기대 효과**: 행정적 페이퍼워크 공수 40% 절감, 본질적 코딩/테스트 집중을 통한 납기 준수 및 결함률 50% 개선
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="방법론 테일러링 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>획일적 산출물 강요로 인한 페이퍼워크 낭비 또는 무단 생략으로 인한 품질 붕괴</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>내/외부 기준 매트릭스에 기반한 정량적 테일러링 및 대체 증적(CI) 인정</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>발주자·감리원 서면 승인 및 요구사항-설계-시험 간 추적성 100%</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>프로젝트 납기 준수율 극대화 · 실질적 품질 보증 중심의 사업 수행 달성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -218,11 +116,26 @@ extra:
 
 ### 2. 테일러링 2대 고려 기준
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="테일러링 2대 기준 요약">
-  <div class="itpe-pipeline-node"><strong>내부적 기준</strong><span>사업 규모, 기간, 기술 난이도, 팀 역량</span></div>
-  <div class="itpe-pipeline-arrow">↕ 상호 조율</div>
-  <div class="itpe-pipeline-node"><strong>외부적 기준</strong><span>법제도, 규제, 기능안전 표준, 발주자 요구</span></div>
-</div>
+```mermaid
+flowchart TB
+    subgraph INT["내부적 기준"]
+        direction TB
+        I1["사업 규모·복잡도"]
+        I2["일정·예산 제약"]
+        I3["기술 난이도"]
+        I4["팀 성숙도·도메인 지식"]
+    end
+    subgraph EXT["외부적 기준"]
+        direction TB
+        E1["법제도·규제"]
+        E2["표준 인증·기능안전"]
+        E3["발주자 감리·계약 요건"]
+        E4["연계 복잡성·보안 등급"]
+    end
+    INT --> TM["테일러링 매트릭스"]
+    EXT --> TM
+    TM --> OPT["프로젝트 맞춤 방법론"]
+```
 
 ### 3. 핵심 통제
 

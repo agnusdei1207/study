@@ -2,44 +2,25 @@
 title: "UML 다이어그램 체계(구조·행위, 활동 다이어그램)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 아키텍처·설계를 거쳐 UML 다이어그램 체계로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>아키텍처·설계</span>
-  <strong>UML 다이어그램 체계(활동 다이어그램)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 아키텍처·설계 → **UML 다이어그램 체계(활동 다이어그램)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **UML(Unified Modeling Language)**은 객체지향 소프트웨어 시스템의 산출물을 가시화, 명세화, 구축, 문서화하기 위한 OMG 표준 통합 모델링 언어
 - 메커니즘: **구조 다이어그램(7종)**(정적 구조: Class, Component 등) + **행위 다이어그램(7종)**(동적 흐름: Use Case, **Activity**, Sequence 등)
-- 산출/효과: 이해관계자 간 명확한 의사소통 · 아키텍처 가시화 · **활동 다이어그램(Activity Diagram)**을 통한 복잡한 비즈니스 로직 및 병렬 워크플로우 완벽 명세
-
-<div class="itpe-flow-map" role="img" aria-label="UML 2.5 다이어그램 체계 분류">
-  <div class="itpe-flow-node"><strong>UML 2.5 체계 (14종)</strong><span>OMG 표준 통합 모델링 언어</span></div>
-  <div class="itpe-flow-arrow">→ 관점별 이원화 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>다이어그램 분류</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>구조 다이어그램 (7종)</strong><span><span class="itpe-keyword"><strong>Class · Component · Deployment</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>행위 다이어그램 (7종)</strong><span><span class="itpe-keyword"><strong>Use Case · Activity · State</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>상호작용 하위군</strong><span>Sequence · Communication</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 비즈니스 프로세스 상세화 →</div>
-  <div class="itpe-flow-node"><strong>활동 다이어그램</strong><span>Action · Fork/Join · Swimlane</span></div>
-</div>
+- 효과: 이해관계자 간 명확한 의사소통 · 아키텍처 가시화 · **활동 다이어그램(Activity Diagram)**을 통한 복잡한 비즈니스 로직 및 병렬 워크플로우 완벽 명세
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,114 +48,40 @@ extra:
 
 > 시스템의 정적 청사진을 나타내는 구조 다이어그램과 동적 실행 흐름을 나타내는 행위 다이어그램으로 체계화된다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="UML 2.x 다이어그램 분류">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>구조 다이어그램 (7종) — 정적 구조</strong></span>
-    <span>1. Class(클래스/관계) 2. Object(객체 인스턴스) 3. Package(모듈 구조)<br />4. Component(컴포넌트/인터페이스) 5. Composite Structure(복합체 구조)<br />6. Deployment(배치/인프라 노드) 7. Profile(UML 확장 메커니즘)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>행위 다이어그램 (7종) — 동적 흐름</strong></span>
-    <span>1. Use Case(요구기능/액터) 2. <span class="itpe-keyword"><strong>Activity(업무 흐름/병렬)</strong></span> 3. State Machine(상태 전이)<br /><strong>[상호작용 다이어그램군]</strong> 4. Sequence(시간순 메시지 교환) 5. Communication(객체 간 관계 중심)<br />6. Timing(시간 제약/상태) 7. Interaction Overview(상호작용 개요)</span>
-  </div>
-</div>
+| 분류 | 다이어그램 | 표현 초점 |
+|---|---|---|
+| **구조 (7종) · 정적** | Class | 클래스 및 관계 |
+| 구조 | Object | 객체 인스턴스 |
+| 구조 | Package | 모듈 구조 |
+| 구조 | Component | 컴포넌트/인터페이스 |
+| 구조 | Composite Structure | 복합체 구조 |
+| 구조 | Deployment | 배치/인프라 노드 |
+| 구조 | Profile | UML 확장 메커니즘 |
+| **행위 (7종) · 동적** | Use Case | 요구기능/액터 |
+| 행위 | **Activity** | 업무 흐름/병렬 |
+| 행위 | State Machine | 상태 전이 |
+| 행위 | Sequence | 시간순 메시지 교환 |
+| 행위 | Communication | 객체 간 관계 중심 |
+| 행위 | Timing | 시간 제약/상태 |
+| 행위 | Interaction Overview | 상호작용 개요 |
 
 ## Ⅲ. 활동 다이어그램(Activity Diagram)의 구조 및 구성요소
 
 > 전통적 순서도(Flowchart)를 객체지향 관점으로 확장하여 병렬 처리와 책임 주체를 명확히 표현한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="활동 다이어그램 주요 흐름 예시">
-  <div class="itpe-pipeline-node">
-    <strong>Initial Node (시작 노드)</strong>
-    <span>채워진 검은 원(●) · 활동의 시작점</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ Control Flow</div>
-  <div class="itpe-pipeline-node">
-    <strong>Action / Activity Node (액션 노드)</strong>
-    <span>모서리가 둥근 사각형 · 원자적 연산 또는 복합 작업 수행</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ Fork Node</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Fork Node (동기화 분기: 굵은 가로선)</strong></span>
-    <span>단일 입력 흐름을 2개 이상의 동시 병렬 실행 흐름으로 분할</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 병렬 처리 수행</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Join Node (동기화 결합: 굵은 가로선)</strong></span>
-    <span>모든 병렬 흐름이 완료될 때까지 대기 후 단일 흐름으로 합류</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ Control Flow</div>
-  <div class="itpe-pipeline-node">
-    <strong>Activity Final Node (종료 노드)</strong>
-    <span>테두리가 있는 채워진 원(◎) · 모든 흐름 종료</span>
-  </div>
-</div>
-
 ### 활동 다이어그램(Activity Diagram) 표기법 및 스윔레인(Swimlane)
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Swimlane Divider -->
-    <line x1="260" y1="35" x2="260" y2="210" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.5" stroke-dasharray="4 3" />
-    
-    <!-- Swimlane Headers -->
-    <rect x="15" y="10" width="235" height="26" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
-    <text x="132" y="27" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">고객 (User)</text>
-
-    <rect x="270" y="10" width="235" height="26" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="387" y="27" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">주문 시스템 (Order System)</text>
-
-    <!-- Initial Node (User lane) -->
-    <circle cx="65" cy="62" r="10" fill="var(--sl-color-text, #1e293b)" />
-    <text x="65" y="47" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">시작 (●)</text>
-
-    <line x1="75" y1="62" x2="105" y2="62" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-
-    <!-- Action 1: 주문 요청 -->
-    <rect x="105" y="46" width="125" height="32" rx="10" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
-    <text x="167" y="66" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">상품 주문 및 결제</text>
-
-    <!-- Cross to System lane -->
-    <line x1="230" y1="62" x2="280" y2="62" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" marker-end="url(#arrow)" />
-
-    <!-- Fork Node (Thick vertical or horizontal bar) -->
-    <rect x="280" y="48" width="8" height="110" rx="3" fill="var(--sl-color-text, #1e293b)" />
-    <text x="268" y="105" class="itpe-svg-label" font-size="9.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">Fork (분기)</text>
-
-    <!-- Branch 1: 재고 차감 (Top) -->
-    <line x1="288" y1="65" x2="320" y2="65" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-    <rect x="320" y="50" width="105" height="30" rx="10" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="372" y="69" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">재고 차감</text>
-
-    <!-- Branch 2: 결제 승인 (Bottom) -->
-    <line x1="288" y1="140" x2="320" y2="140" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-    <rect x="320" y="125" width="105" height="30" rx="10" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="372" y="144" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">결제 승인 통보</text>
-
-    <!-- Join Node (Thick bar) -->
-    <line x1="425" y1="65" x2="450" y2="65" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-    <line x1="425" y1="140" x2="450" y2="140" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-    <rect x="450" y="48" width="8" height="110" rx="3" fill="var(--sl-color-text, #1e293b)" />
-    <text x="472" y="105" class="itpe-svg-label" font-size="9.5" font-weight="700" fill="var(--sl-color-text, #1e293b)">Join (합류)</text>
-
-    <!-- Flow down from Join to Action -->
-    <line x1="454" y1="158" x2="454" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-    <line x1="454" y1="175" x2="280" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-
-    <!-- Action: 주문 확정 및 배송 접수 -->
-    <rect x="155" y="160" width="125" height="30" rx="10" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.2" />
-    <text x="217" y="179" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-success, #10b981)" text-anchor="middle">주문 확정 처리</text>
-
-    <!-- Final Node -->
-    <line x1="155" y1="175" x2="90" y2="175" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-    <circle cx="75" cy="175" r="11" fill="none" stroke="var(--sl-color-text, #1e293b)" stroke-width="2" />
-    <circle cx="75" cy="175" r="6" fill="var(--sl-color-text, #1e293b)" />
-    <text x="75" y="200" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">종료 (◎)</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    S(("시작")) --> A1["상품 주문 및 결제"]
+    A1 --> F["Fork 분기"]
+    F --> A2["재고 차감"]
+    F --> A3["결제 승인 통보"]
+    A2 --> J["Join 합류"]
+    A3 --> J
+    J --> A4["주문 확정 처리"]
+    A4 --> E(("종료"))
+```
 
 | 구성요소 | 표기법 심볼 | 설명 및 역할 |
 |---|---|---|
@@ -222,28 +129,6 @@ extra:
 - **검증 체계**: 요구사항(SRS)-UML 다이어그램-구현 코드 간 RTM 100% 추적성 및 Git 커밋 시 다이어그램 자동 빌드 검증
 - **기대 효과**: 형식적 모델링 공수 60% 절감, 아키텍처 문서의 최신성 보장 및 비즈니스 동시성(Fork/Join) 설계 무결성 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="UML 모델링 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>형식적 다이어그램 작성 · 구현 후 코드와 모델의 영구적 괴리</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>Docs-as-Code(PlantUML/Mermaid) 도입 및 핵심 3종 다이어그램 선별</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>Git 브랜치 연동 문서 자동 빌드 및 RTM 양방향 추적성 점검</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>설계 의사소통 표준화 · 살아 숨쉬는 아키텍처 문서 자산화 달성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -253,11 +138,10 @@ extra:
 
 ### 2. 구조(7종) vs 행위(7종) 체계 요약
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="UML 2체계 요약">
-  <div class="itpe-pipeline-node"><strong>구조 다이어그램 (7종)</strong><span>Class · Component · Deployment · Package 등 (정적 구조)</span></div>
-  <div class="itpe-pipeline-arrow">↕ 상호 보완</div>
-  <div class="itpe-pipeline-node"><strong>행위 다이어그램 (7종)</strong><span>Use Case · Activity · Sequence · State 등 (동적 실행)</span></div>
-</div>
+```mermaid
+flowchart LR
+    ST["구조 다이어그램 (7종) · 정적 구조"] ---|"상호 보완"| BE["행위 다이어그램 (7종) · 동적 흐름"]
+```
 
 ### 3. 활동 다이어그램 핵심 통제
 

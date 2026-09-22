@@ -14,29 +14,27 @@ extra:
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략 관리에서 개발 전략 방법론을 거쳐 애자일 대응 전략으로 이어지는 지식 위치">
-  <span>IT 전략·관리</span><span>개발 전략·방법론</span><strong>애자일 대응 전략</strong>
-</div>
+지식 위치: IT 전략·관리 → 개발 전략·방법론 → **애자일 대응 전략**
 
 ## 30초 인출
 
-- 본질: **짧은 반복**마다 작동하는 증분을 검증하고 고객 피드백으로 다음 우선순위를 조정
-- 메커니즘: **Product Backlog → Sprint Goal → Increment → Review·Retrospective → Feedback**
-- 판정 기준: **Definition of Done(DoD)** 충족 여부로 완료 품질을 확인하고 범위는 가치 순으로 조정
+- 본질: **짧은 반복**마다 작동하는 증분을 검증하고 고객 피드백으로 다음 우선순위를 조정한다.
+- 메커니즘: **Product Backlog → Sprint Goal → Increment → Review·Retrospective → Feedback**을 짧은 주기로 순환한다.
+- 판정 기준: **Definition of Done(DoD)** 충족 여부로 완료 품질을 확인하고 범위는 가치 순으로 조정한다.
 
 ## 핵심 용어
 
 <details>
 <summary>핵심 용어</summary>
 
-- **Agile(애자일)**: 계획 준수보다 변화 대응과 작동하는 결과의 반복 전달을 중시하는 개발 철학
-- **Product Backlog(제품 백로그)**: 제품 개선에 필요한 작업을 가치 순으로 정렬한 단일 목록
-- **Sprint(스프린트)**: 일관성을 위해 한 달 이하로 고정한 개발 주기
-- **Sprint Goal(스프린트 목표)**: 스프린트가 달성해야 할 단일 목표
-- **Increment(증분)**: 기존 결과에 누적되며 사용할 수 있고 DoD를 충족한 결과
-- **DoD(Definition of Done, 완료 정의)**: 증분이 제품 품질 기준을 충족한 상태에 대한 공식 설명
-- **Bimodal IT(바이모달 IT)**: 안정 중심 운영과 탐색 중심 개발을 병행하는 조직 적용 관점
-- **SAFe(Scaled Agile Framework)**: 다수 팀의 계획·의존성을 조정하는 확장 애자일 프레임워크
+- **Agile(애자일)**: 계획을 고정하기보다 변화에 대응하며 작동하는 결과를 반복 전달하는 개발 철학이다.
+- **Product Backlog(제품 백로그)**: 제품 개선에 필요한 작업을 가치와 우선순위에 따라 정렬한 단일 목록이다.
+- **Sprint(스프린트)**: 정해진 기간 안에 목표한 증분을 만들고 검토하는 한 달 이하의 개발 주기다.
+- **Sprint Goal(스프린트 목표)**: 한 스프린트에서 팀이 달성해야 할 단일 목표다.
+- **Increment(증분)**: 기존 제품에 누적되고 사용할 수 있으며 DoD를 충족한 결과다.
+- **DoD(Definition of Done, 완료 정의)**: 증분이 제품 품질 기준을 충족했다고 판단하는 조건을 공식화한 설명이다.
+- **Bimodal IT(바이모달 IT)**: 안정 중심 운영과 탐색 중심 개발을 병행하는 조직 적용 관점. 이는 해당 용어의 역할과 작동을 설명한다.
+- **SAFe(Scaled Agile Framework)**: 다수 팀의 계획·의존성을 조정하는 확장 애자일 프레임워크. 이는 해당 용어의 역할과 작동을 설명한다.
 
 </details>
 
@@ -121,6 +119,14 @@ flowchart TD
 - `나라면`: 대규모 조직의 전면 전환보다 독립 배포 가능한 제품부터 적용하고, DoD 충족·피드백 반영·가치 실현을 통과 조건으로 삼겠음.
 
 ### 실전 답안용 기술사적 제언
+
+```mermaid
+flowchart LR
+    s["Product Backlog"] --> a["Sprint 실행"]
+    a --> v["Increment 검토"]
+    v --> r["우선순위 환류"]
+    r --> a
+```
 
 - 판정: DoD를 충족한 Increment가 고객 검증을 거쳐 Product Backlog 우선순위를 바꾸는지 확인
 - 대안: 독립 배포 가능한 제품부터 적용하고 예산·기간 안에서 Backlog 범위 조정 규칙 명시

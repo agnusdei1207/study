@@ -1,45 +1,26 @@
 ---
 title: "화이트박스 테스트(White Box Test)"
-author: "Antigravity"
-date: "2026-09-20T23:49:42+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 테스트·검증을 거쳐 화이트박스 테스트로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>테스트·검증</span>
-  <strong>화이트박스 테스트(White Box Test)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 테스트·검증 → **화이트박스 테스트(White Box Test)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **화이트박스 테스트(White-box Testing)**는 소스코드 내부 논리 구조와 제어 흐름을 직접 분석하여 모든 실행 경로의 정확성을 검증하는 구조 기반 테스트
 - 메커니즘: **제어 흐름 그래프(CFG)** 도출 → 테스트 커버리지 기준 선정(구문, 결정, 조건, **MC/DC**) → 입력 케이스 생성
-- 산출/효과: 미실행 데드코드(Dead Code) 적발 · 내부 로직 오류 및 메모리 누수 격리 · 고신뢰성 안전 등급 보증
-
-<div class="itpe-flow-map" role="img" aria-label="화이트박스 테스트 제어 흐름 분석도">
-  <div class="itpe-flow-node"><strong>소스코드 분석</strong><div class="itpe-step-detail"><span>AST 및 제어 흐름 파악</span></div></div>
-  <div class="itpe-flow-arrow">→ 그래프 모델링 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>제어 흐름 그래프(CFG)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>구문 커버리지</strong><span>모든 문장 최소 1회 실행</span></div>
-      <div class="itpe-flow-branch"><strong>결정 커버리지</strong><span><span class="itpe-keyword"><strong>분기 참/거짓 최소 1회</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>MC/DC</strong><span><span class="itpe-keyword"><strong>개별 조건식 독립 영향력 검증</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 경로 기반 테스트 도출 →</div>
-  <div class="itpe-flow-node"><strong>테스트 스위트</strong><div class="itpe-step-detail"><span>미실행 경로 제로화 달성</span></div></div>
-</div>
+- 효과: 미실행 데드코드(Dead Code) 적발 · 내부 로직 오류 및 메모리 누수 격리 · 고신뢰성 안전 등급 보증
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,92 +48,16 @@ extra:
 
 > 커버리지 기준의 포함 관계를 구분하되, 높은 커버리지를 결함 부재의 증거로 오인하지 않아야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="화이트박스 커버리지 계층도">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 구문 커버리지 (Statement, C0)</strong></span>
-    <div class="itpe-step-detail"><strong>문장 실행</strong><span>모든 실행 가능한 문장(Statement)을 최소 1회 실행</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 포함 (상위 커버리지)</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 결정/분기 커버리지 (Decision/Branch, C1)</strong></span>
-    <div class="itpe-step-detail"><strong>분기 실행</strong><span>모든 조건문의 참(True)/거짓(False) 분기 전체를 최소 1회 실행</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 조건 커버리지 (Condition, C2)</strong></span>
-    <div class="itpe-step-detail"><strong>조건 실행</strong><span>복합 조건식 내부의 각 개별 조건이 참/거짓을 최소 1회 만족</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 결합</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>4. 조건/결정 커버리지 (Condition/Decision)</strong></span>
-    <div class="itpe-step-detail"><strong>조건·분기 동시</strong><span>개별 조건 참/거짓 + 전체 결정 참/거짓을 동시에 만족</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 실용적 최적화</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>5. MC/DC (Modified Condition/Decision)</strong></span>
-    <div class="itpe-step-detail"><strong>독립 영향력</strong><span>N+1개 케이스로 각 개별 조건의 독립적 영향력 증명</span></div>
-  </div>
-</div>
+### 제어 흐름 그래프(CFG)
 
-### 제어 흐름 그래프(CFG) 및 커버리지 검증 스펙트럼
-
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Left: CFG Diagram -->
-    <text x="25" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[제어 흐름 그래프(CFG) 모델링]</text>
-    
-    <!-- Node 1: Entry/Stmt -->
-    <circle cx="120" cy="48" r="14" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" />
-    <text x="120" y="52" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">1</text>
-    
-    <!-- Flow arrow down -->
-    <line x1="120" y1="62" x2="120" y2="82" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-
-    <!-- Node 2: Decision (Diamond/Circle) -->
-    <polygon points="120,84 146,104 120,124 94,104" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
-    <text x="120" y="108" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">2: If</text>
-
-    <!-- Branch True (Left) -->
-    <line x1="94" y1="104" x2="60" y2="135" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
-    <text x="66" y="115" class="itpe-svg-label" font-size="10" fill="var(--sl-color-success, #10b981)">True</text>
-    <circle cx="60" cy="145" r="12" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.5" />
-    <text x="60" y="149" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">3</text>
-
-    <!-- Branch False (Right) -->
-    <line x1="146" y1="104" x2="180" y2="135" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" />
-    <text x="175" y="115" class="itpe-svg-label" font-size="10" fill="var(--sl-color-danger, #ef4444)">False</text>
-    <circle cx="180" cy="145" r="12" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.5" />
-    <text x="180" y="149" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">4</text>
-
-    <!-- Merge to Node 5 -->
-    <line x1="60" y1="157" x2="110" y2="185" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-    <line x1="180" y1="157" x2="130" y2="185" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-    <circle cx="120" cy="192" r="14" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" />
-    <text x="120" y="196" class="itpe-svg-sub" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">5</text>
-
-    <!-- Right: Coverage Levels Spectrum -->
-    <text x="245" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[커버리지 검증 기준 비교]</text>
-
-    <!-- Level 1: C0 -->
-    <rect x="245" y="42" width="255" height="46" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="255" y="60" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">C0 구문(Statement) 커버리지</text>
-    <text x="255" y="76" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)">모든 실행 문장 1회 이상 통과 (최소 기준)</text>
-
-    <!-- Level 2: C1 -->
-    <rect x="245" y="96" width="255" height="46" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
-    <text x="255" y="114" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">C1 결정(Decision/Branch) 커버리지</text>
-    <text x="255" y="130" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)">모든 분기의 True/False 경로 최소 1회 실행</text>
-
-    <!-- Level 3: MC/DC -->
-    <rect x="245" y="150" width="255" height="52" rx="5" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
-    <text x="255" y="168" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)">MC/DC (N+1 최적화 검증)</text>
-    <text x="255" y="184" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)">각 개별 조건의 독립적 영향력 입증</text>
-    <text x="255" y="196" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)">항공(DO-178C Level A), 차량(ISO 26262 ASIL-D)</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    N1(("1")) --> N2{"2: If"}
+    N2 -->|"True"| N3(("3"))
+    N2 -->|"False"| N4(("4"))
+    N3 --> N5(("5"))
+    N4 --> N5
+```
 
 | 커버리지 유형 | 핵심 정의 | 최소 필요 케이스 수 | 특징 및 한계 |
 |---|---|---|---|
@@ -216,28 +121,6 @@ extra:
 - **검증 체계**: CI/CD 파이프라인 내 JaCoCo/VectorCAST 연동 Quality Gate 강제 (커버리지 미달 시 배포 빌드 실패 차단)
 - **기대 효과**: 제어 경로 및 복합 조건 내부 논리 오류 완전 적발, 기능안전 최고 안전 무결성 등급(DO-178C Level A) 공인 인증 통과
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="화이트박스 테스팅 고도화 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>형식적 C0</strong><span>형식적 C0 구문 커버리지 위주 및 분기 결함 간과</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>MC/DC 강제</strong><span>결정 커버리지(C1) 표준화 및 핵심 모듈 MC/DC 강제</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>품질 게이트</strong><span>CI Quality Gate 연동 및 커버리지 미달 시 빌드 중단</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>안전 등급</strong><span>내부 논리 오류 차단 및 기능안전 최고 등급 달성</span></div>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -247,13 +130,10 @@ extra:
 
 ### 2. 주요 커버리지 계층
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="커버리지 계층 요약">
-  <div class="itpe-pipeline-node"><strong>구문(C0)</strong><div class="itpe-step-detail"><span>모든 문장 1회 실행</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>결정(C1)</strong><div class="itpe-step-detail"><span>모든 분기 True/False 실행</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>MC/DC</strong><div class="itpe-step-detail"><span>N+1개 케이스로 개별 조건 독립 영향력 검증</span></div></div>
-</div>
+```mermaid
+flowchart LR
+    C0["구문(C0)"] -->|"포함"| C1["결정(C1)"] -->|"포함"| M["MC/DC"]
+```
 
 ### 3. 핵심 통제
 

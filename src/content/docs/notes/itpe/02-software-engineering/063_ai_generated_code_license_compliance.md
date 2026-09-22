@@ -1,48 +1,40 @@
 ---
 title: "AI 생성코드·오픈웨이트 라이선스 컴플라이언스"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
-  - "소프트웨어공학"
-  - "AI컴플라이언스"
-  - "오픈소스라이선스"
-  - "오픈웨이트"
-  - "SBOM"
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
+  keyword_grade: "B"
 ---
 
-> **로드맵 경로**: 소프트웨어공학 > 소프트웨어 개발 환경 및 도구 > 생성형 AI 개발 > AI 생성코드·오픈웨이트 라이선스 컴플라이언스
+## 지식 로드맵 내 현재 위치
 
----
-
-## 큰 그림과 30초 인출
-
-```text
-[AI 생성코드 및 오픈웨이트 컴플라이언스 체계]
- ├── 리스크: 저작권 침해(학습데이터 복제), 카피레프트(GPL/AGPL) 오염, 독소 조항(AUP/MAU 제한)
- ├── 3자 비교: 전통 오픈소스(OSD 공인) vs 오픈웨이트(기업 가중치 공개/용도 제한) vs AI 생성코드(무라이선스/오염 위험)
- ├── 검증 도구: IDE 중복 필터 → CI 단계 SCA(FOSSID/Black Duck) → 정적 분석(SAST) → AI-SBOM 생성
- └── 거버넌스: OSRB(오픈소스 심의회), 클린룸 재작성, AI 모델 카드 및 프롬프트 계보 관리
-```
-
-- **30초 인출 구호**: "오픈웨이트는 진정한 오픈소스 아님! GPL 오염 차단, SCA 스니펫 매칭, CycloneDX 기반 AI-SBOM!"
+지식 위치: 소프트웨어공학 → 소프트웨어 개발 환경 및 도구 → 생성형 AI 개발 → **AI 생성코드·오픈웨이트 라이선스 컴플라이언스**
 
 ---
 
-## 핵심 용어 (5개 내외)
+## 30초 인출
 
-| 핵심 용어 | 영문 표기 | 핵심 정의 및 특징 |
-|---|---|---|
-| **오픈웨이트 모델** | Open-weight Model | 모델 가중치는 공개하나 상업적 용도 제한이나 허용 사용 정책(AUP)을 부과하는 준개방형 AI 모델 |
-| **카피레프트 오염** | Copyleft Contamination | AI 도구가 생성한 코드에 GPL/AGPL 코드가 포함되어 전체 독점 소프트웨어의 공개 의무가 발생하는 위험 |
-| **소프트웨어 구성 분석** | SCA (Software Composition Analysis) | 코드 토큰 및 지문(Fingerprint) 매칭을 통해 오픈소스 라이선스 위반 및 취약점을 식별하는 기술 |
-| **허용 사용 정책** | AUP (Acceptable Use Policy) | 특정 산업군 활용 금지, 경쟁 모델 학습 금지, MAU 한도 등 오픈웨이트 모델에 부과된 법적 제한 조항 |
-| **AI-SBOM** | AI Software Bill of Materials | 모델 가중치, 학습 데이터셋, 의존 패키지, 생성 프롬프트 계보를 명시한 차세대 소프트웨어 자재명세서 |
+- 본질: **AI 생성코드·오픈웨이트 라이선스 컴플라이언스**는 LLM 코딩 도구·오픈웨이트 모델 활용 시 발생하는 저작권 침해·카피레프트 오염·용도 제한 위반을 통제하는 거버넌스
+- 메커니즘: IDE 중복 필터 → CI 단계 **SCA** 스니펫 매칭 → SAST 보안 분석 → **AI-SBOM** 생성으로 공급망 전반 검증
+- 판정 기준: 가중치만 공개하고 용도 제한(AUP)을 두는 오픈웨이트를 전통 오픈소스(OSI 공인)와 구별하는가
+
+<details>
+<summary>핵심 용어</summary>
+
+- **오픈웨이트 모델(Open-weight Model)**: 모델 가중치는 공개하나 상업적 용도 제한이나 허용 사용 정책(AUP)을 부과하는 준개방형 AI 모델
+- **카피레프트 오염(Copyleft Contamination)**: AI 도구가 생성한 코드에 GPL/AGPL 코드가 포함되어 전체 독점 소프트웨어의 공개 의무가 발생하는 위험
+- **소프트웨어 구성 분석(SCA: Software Composition Analysis)**: 코드 토큰 및 지문(Fingerprint) 매칭을 통해 오픈소스 라이선스 위반 및 취약점을 식별하는 기술
+- **허용 사용 정책(AUP: Acceptable Use Policy)**: 특정 산업군 활용 금지, 경쟁 모델 학습 금지, MAU 한도 등 오픈웨이트 모델에 부과된 법적 제한 조항
+- **AI-SBOM(AI Software Bill of Materials)**: 모델 가중치, 학습 데이터셋, 의존 패키지, 생성 프롬프트 계보를 명시한 차세대 소프트웨어 자재명세서
+
+</details>
 
 ---
 
@@ -80,65 +72,15 @@ extra:
 
 ### Ⅲ. CI/CD 연계 컴플라이언스 자동화 검증 파이프라인
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
-  <!-- 전체 배경 -->
-  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
-  
-  <!-- 상단: 5단계 검증 파이프라인 흐름 -->
-  <g transform="translate(15, 15)">
-    <rect x="0" y="0" width="490" height="98" rx="6" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
-    <text x="15" y="20" font-size="11" font-weight="700" fill="var(--sl-color-text, #0f172a)">AI 코드 컴플라이언스 5단계 CI/CD 자동화 게이트</text>
-
-    <!-- 1단계: IDE 필터 -->
-    <rect x="10" y="32" width="86" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="53" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">1. IDE 필터</text>
-    <text x="53" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Copilot 차단</text>
-    <text x="53" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">150자 매칭 차단</text>
-
-    <!-- 2단계: PR 생성 -->
-    <rect x="106" y="32" width="86" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="149" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">2. PR 생성</text>
-    <text x="149" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">CI 트리거</text>
-    <text x="149" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">변경 Diff 추출</text>
-
-    <!-- 3단계: SCA 스캔 -->
-    <rect x="202" y="32" width="92" height="54" rx="4" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
-    <text x="248" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">3. SCA 스캔</text>
-    <text x="248" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">FOSSID 매칭</text>
-    <text x="248" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">GPL 오염 탐지</text>
-
-    <!-- 4단계: SAST 분석 -->
-    <rect x="304" y="32" width="86" height="54" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="347" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">4. SAST 분석</text>
-    <text x="347" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">SonarQube</text>
-    <text x="347" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">보안취약점 적출</text>
-
-    <!-- 5단계: AI-SBOM -->
-    <rect x="400" y="32" width="80" height="54" rx="4" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-    <text x="440" y="48" font-size="9.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">5. AI-SBOM</text>
-    <text x="440" y="62" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">CycloneDX</text>
-    <text x="440" y="74" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">계보/모델명시</text>
-  </g>
-
-  <!-- 하단: 게이트 판정 및 사후 조치 구조 -->
-  <g transform="translate(15, 122)">
-    <rect x="0" y="0" width="490" height="88" rx="6" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
-    
-    <!-- 부적합 경로 (오염 감지) -->
-    <rect x="20" y="14" width="215" height="60" rx="5" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1"/>
-    <text x="127" y="32" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">[위반 판정: 카피레프트 오염]</text>
-    <text x="127" y="48" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">PR 머지 자동 차단 및 OSRB 회부</text>
-    <text x="127" y="60" font-size="8" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">클린룸(Clean-room) 격리 재작성</text>
-
-    <!-- 적합 경로 (통과) -->
-    <rect x="255" y="14" width="215" height="60" rx="5" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1"/>
-    <text x="362" y="32" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">[적합 판정: 컴플라이언스 준수]</text>
-    <text x="362" y="48" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">AI-SBOM 패키징 및 메인 병합</text>
-    <text x="362" y="60" font-size="8" text-anchor="middle" fill="var(--sl-color-success, #15803d)">프로덕션 안전 릴리즈 승인</text>
-  </g>
-</svg>
-</div>
+```mermaid
+flowchart TB
+    A["IDE 중복 필터"] --> B["SCA 스니펫 매칭"]
+    B --> C["SAST 보안 분석"]
+    C --> D["AI-SBOM 패키징"]
+    D --> G{"게이트 판정"}
+    G -->|"카피레프트 감지"| H["머지 차단 · 클린룸 재작성"]
+    G -->|"적합"| I["프로덕션 배포"]
+```
 
 1. **IDE 레벨 1차 방어**: GitHub Copilot의 퍼블릭 코드 매칭 차단(Duplication Filter) 기능을 강제 활성화하여 150자 이상 일치 코드 유입 차단.
 2. **CI 단계 정밀 SCA 스캔**: FOSSID, Black Duck 등을 통해 토큰 기반 지문(Fingerprint) 매칭으로 GPL 계열 카피레프트 코드 혼입 여부 전수 검사.
@@ -151,40 +93,25 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **AI 생성 코드에 GPL 카피레프트 스니펫 유입으로 상용 소스 강제 공개 위험** | PR 단계 SCA(FOSSID/Black Duck) 스니펫 정밀 스캔 게이트 의무화 | 카피레프트 오염 코드 프로덕션 유입 0건 차단 |
+| **AI 생성 코드에 GPL 카피레프트 스니펫 유입으로 상용 소스 강제 공개 위험** | PR 단계 SCA(FOSSID/Black Duck) 스니펫 정밀 스캔 게이트 의무화 | 카피레프트 오염 코드의 프로덕션 유입 차단 |
 | **오픈웨이트 모델 상업 배포 후 MAU 초과로 인한 라이선스 위반 소송** | 모델 도입 전 OSRB(오픈소스 심의회) 사전 스크리닝 및 순수 Apache 2.0 모델 우선 채택 | 비즈니스 중단 및 라이선스 위반 분쟁 원천 해소 |
-| **검증되지 않은 오픈소스 학습 코드로 인한 보안 취약점 대량 유입** | CI 파이프라인 내 SAST 및 시큐어 코딩 룰셋을 AI 생성 코드에 엄격 적용 | 보안 취약점 배포 전 98% 사전 차단 |
-| **AI 생성 산출물의 저작권 귀속 불명확성으로 인한 지식재산권 분쟁** | 개발 도구 사용 정책 수립 및 프롬프트-출력 로그 아카이빙 체계 구축 | 법적 증빙 체계 확보 및 감사 대응력 100% 달성 |
+| **검증되지 않은 오픈소스 학습 코드로 인한 보안 취약점 대량 유입** | CI 파이프라인 내 SAST 및 시큐어 코딩 룰셋을 AI 생성 코드에 엄격 적용 | 보안 취약점의 배포 전 사전 차단 |
+| **AI 생성 산출물의 저작권 귀속 불명확성으로 인한 지식재산권 분쟁** | 개발 도구 사용 정책 수립 및 프롬프트-출력 로그 아카이빙 체계 구축 | 법적 증빙 체계 확보 및 감사 대응력 강화 |
 
 ---
 
 ### Ⅴ. 기술사적 제언: 전략적 오픈(Strategic Openness) 대응 및 AI-SBOM 거버넌스
 
 ### 학습자 통찰 메모 — 답안 밖
-```text
-[핵심 통찰]
-오픈웨이트(Open-weight)는 진정한 오픈소스(OSD)가 아니다.
-빅테크 기업들이 생태계를 장악하면서도 법적 통제권(경쟁 모델 학습 금지, MAU 한도, 용도 제한)을 쥐려는 '전략적 오픈'이다.
-또한 AI 코딩 도구가 생성한 코드는 원본 저장소의 GPL 라이선스가 고지문 없이 그대로 복제되어 상용 코드를 오염시킬 수 있다.
-따라서 기업은 사내 OSRB(오픈소스 심의회)의 법률 검토와 CI/CD 파이프라인의 SCA 스니펫 매칭,
-그리고 모델-데이터-프롬프트 계보를 명시하는 AI-SBOM(CycloneDX) 확립이 필수적이다.
 
-[나라면]
-실전 답안에서 전통 오픈소스(OSI 공인)와 오픈웨이트의 본질적 차이(OSD 5, 6조 차별금지 위배 사실)를 명시하겠다.
-그리고 CI/CD에 결합된 5단계 자동화 검증 파이프라인(IDE 필터 -> SCA -> SAST -> AI-SBOM -> Gate)을 제시하겠다.
-```
+- `[핵심 통찰]`: 오픈웨이트(Open-weight)는 진정한 오픈소스(OSD)가 아니라, 빅테크 기업이 생태계를 장악하면서도 법적 통제권(경쟁 모델 학습 금지, MAU 한도, 용도 제한)을 쥐려는 '전략적 오픈'이다. AI 코딩 도구가 생성한 코드는 원본 저장소의 GPL 라이선스가 고지문 없이 복제되어 상용 코드를 오염시킬 수 있으므로, OSRB 법률 검토·SCA 스니펫 매칭·AI-SBOM(CycloneDX) 계보 관리가 필수다.
+- `나라면`: 실전 답안에서 전통 오픈소스(OSI 공인)와 오픈웨이트의 본질적 차이(OSD 5, 6조 차별금지 위배 사실)를 명시하고, CI/CD에 결합된 자동화 검증 파이프라인(IDE 필터 → SCA → SAST → AI-SBOM → Gate)을 제시하겠다.
 
 ### 실전 답안용 기술사적 제언
 - **판정 기준**: CI 파이프라인 상 SCA 스니펫 일치율(GPL/AGPL 카피레프트 코드 조각 검출 여부), 오픈웨이트 모델 라이선스의 상업적 제한(MAU 한도 및 AUP 용도 제한), 보안 취약점 심각도(Critical/High)를 기준으로 통과 여부를 판정함.
 - **대응 방안**: 카피레프트 오염 감지 시 PR 머지를 자동 차단하고 클린룸(Clean-room) 환경에서 독립 재작성을 수행하며, 오픈웨이트 모델은 도입 전 OSRB 심의를 통해 순수 허용형(Apache 2.0/MIT) 모델 우선 채택 정책을 유지함.
 - **검증 체계**: CycloneDX 1.6+ 표준 기반 AI-SBOM을 자동 생성하여 기본 모델 버전, 가중치 체크섬, 학습 데이터 출처, 생성 프롬프트 계보를 소프트웨어 공급망 자산에 동기화함.
-- **기대 효과**: 상용 프로덕션 코드의 카피레프트 오염 위험을 0%로 차단하고, 글로벌 AI 규제(EU AI Act 등) 감사 및 지식재산권 분쟁에 대한 완벽한 법적 소명력을 확보함.
-
-```text
-[AI 도구 생성] ──> [SCA 스니펫 매칭] ──(GPL 감지)──> [머지 차단 & 클린룸 재작성]
-                           │ (정상)
-                           └──> [AI-SBOM 패키징] ──> [프로덕션 안전 배포]
-```
+- **기대 효과**: 상용 프로덕션 코드의 카피레프트 오염 위험을 차단하고, 글로벌 AI 규제(EU AI Act 등) 감사 및 지식재산권 분쟁에 대한 법적 소명력을 확보함.
 
 ---
 

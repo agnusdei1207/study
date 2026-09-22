@@ -6,8 +6,9 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
+date: "2026-09-22T07:25:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -18,104 +19,14 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **메커니즘**: 요구사항 고유 ID 부여 $\rightarrow$ 설계/코드/테스트 산출물 1:N 매핑 $\rightarrow$ 정방향 추적(누락 차단) 및 역방향 추적(고아 코드 차단) $\rightarrow$ 요구사항 변경 시 영향 범위(Impact) 산출 순으로 제어한다.
 - **산출물**: 요구사항 추적표(RTM), 양방향 추적성 보고서, 변경 영향도 분석서, 프로젝트 감리 적합성 증빙.
 
-<div class="itpe-flow">
-  <div class="itpe-flow-steps">
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>1. 요구사항 ID화</strong></span>
-      <div class="itpe-step-detail">RFP 및 SRS 기반 기능/비기능 요구사항 고유 ID 부여</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>2. 설계·구현 매핑</strong></span>
-      <div class="itpe-step-detail">UML 모델(클래스/시퀀스) 및 소스코드 파일 매핑</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>3. 테스트 케이스 연계</strong></span>
-      <div class="itpe-step-detail">단위/통합/인수 테스트 시나리오 및 통과 여부 연결</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node is-current">
-      <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-      <div class="itpe-step-detail"><strong>판정 질문</strong><span>모든 요구사항이 테스트까지 양방향 추적되고 미매핑 항목이 0건인가?</span></div>
-      <div class="itpe-flow-branches">
-        <div class="itpe-flow-branch"><strong>통과</strong><span>베이스라인 확정 및 개발 단계 승인</span></div>
-        <div class="itpe-flow-branch"><strong>미통과</strong><span>누락·중복 제거 및 산출물 보완 매핑</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 ---
 
 ## 핵심 메커니즘과 양방향 추적 구조
 
-<div style="max-width: 520px; margin: 1.5rem auto;">
-  <!-- SVG: 요구사항 추적표 양방향 추적성 및 라이프사이클 매핑 -->
-  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-    <!-- 배경 -->
-    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-    
-    <!-- 상단: 정방향 추적성 라벨 화살표 -->
-    <rect x="25" y="15" width="470" height="24" rx="4" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1"/>
-    <text x="260" y="31" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-primary, #3b82f6)">정방향 추적 (Forward): 요구사항 누락 방지 및 구현 완전성 보증 ➔</text>
-
-    <!-- 4대 산출물 블록 -->
-    <g transform="translate(25, 48)">
-      <!-- 1. 요구사항 (REQ) -->
-      <rect x="0" y="0" width="105" height="110" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-      <rect x="0" y="0" width="105" height="26" rx="6" fill="var(--color-bg, #f1f5f9)"/>
-      <text x="52" y="17" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">1. 요구사항 (REQ)</text>
-      <text x="52" y="45" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">REQ-001</text>
-      <text x="52" y="60" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">생체인증 로그인</text>
-      <text x="52" y="85" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">REQ-002</text>
-      <text x="52" y="100" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">이상거래 탐지</text>
-
-      <!-- 화살표 1 -->
-      <path d="M 108 55 L 118 55" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
-      <path d="M 118 65 L 108 65" stroke="var(--color-accent, #10b981)" stroke-width="1.5"/>
-
-      <!-- 2. 설계 (DSN) -->
-      <rect x="122" y="0" width="105" height="110" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-      <rect x="122" y="0" width="105" height="26" rx="6" fill="var(--color-bg, #f1f5f9)"/>
-      <text x="174" y="17" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">2. 시스템 설계</text>
-      <text x="174" y="45" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">DSN-101 / 102</text>
-      <text x="174" y="60" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">인증 아키텍처/화면</text>
-      <text x="174" y="85" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">DSN-201</text>
-      <text x="174" y="100" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">FDS AI 모델설계</text>
-
-      <!-- 화살표 2 -->
-      <path d="M 230 55 L 240 55" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
-      <path d="M 240 65 L 230 65" stroke="var(--color-accent, #10b981)" stroke-width="1.5"/>
-
-      <!-- 3. 소스코드 (SRC) -->
-      <rect x="244" y="0" width="105" height="110" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-      <rect x="244" y="0" width="105" height="26" rx="6" fill="var(--color-bg, #f1f5f9)"/>
-      <text x="296" y="17" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">3. 소스코드</text>
-      <text x="296" y="45" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">AuthService.java</text>
-      <text x="296" y="60" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">LoginView.vue</text>
-      <text x="296" y="85" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">FdsEngine.py</text>
-      <text x="296" y="100" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">탐지 모듈 소스</text>
-
-      <!-- 화살표 3 -->
-      <path d="M 352 55 L 362 55" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
-      <path d="M 362 65 L 352 65" stroke="var(--color-accent, #10b981)" stroke-width="1.5"/>
-
-      <!-- 4. 테스트 (TC) -->
-      <rect x="365" y="0" width="105" height="110" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1.2"/>
-      <rect x="365" y="0" width="105" height="26" rx="6" fill="var(--color-bg, #f1f5f9)"/>
-      <text x="417" y="17" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--color-text, #0f172a)">4. 테스트케이스</text>
-      <text x="417" y="45" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">TC-001 / TC-002</text>
-      <text x="417" y="60" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">단위 / 통합 테스트</text>
-      <text x="417" y="85" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">TC-010</text>
-      <text x="417" y="100" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">E2E 인수 시나리오</text>
-    </g>
-
-    <!-- 하단: 역방향 추적성 라벨 화살표 -->
-    <rect x="25" y="172" width="470" height="24" rx="4" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1"/>
-    <text x="260" y="188" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-accent, #10b981)">◀ 역방향 추적 (Backward): 고아 코드 방지 및 Gold Plating(범위 크립) 차단</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    R["요구사항"] <--> D["설계"] <--> S["소스코드"] <--> T["테스트 케이스"]
+```
 
 ### (1) 정방향 추적성(Forward) vs 역방향 추적성(Backward)
 
@@ -175,7 +86,3 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **대응 방안**: Jira-GitLab-SonarQube 연동 체계를 수립하고, Git 커밋 시 커밋 메시지에 요구사항 ID 입력을 강제하는 Commitlint 정책 적용.
 - **검증 체계**: CI/CD 파이프라인 빌드 시 Living RTM 검증 스크립트를 실행하여 미매핑 요구사항 발견 시 빌드를 차단하는 Quality Gate 운영.
 - **기대 효과**: 변경 영향도 분석 리드타임 90% 단축, 요구사항 누락으로 인한 재작업 비용 절감 및 프로젝트 감리 통과 신뢰성 극대화.
-
-<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
-  <strong>실전 제언 파이프라인 요약</strong>: <code>REQ ID 부여</code> → <code>Git Commitlint 연계</code> → <code>Living RTM 자동 빌드</code> → <code>Quality Gate 무결성 검증</code>
-</div>

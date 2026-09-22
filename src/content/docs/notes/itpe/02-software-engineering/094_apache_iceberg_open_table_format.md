@@ -6,31 +6,18 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
-date: "2026-09-20T22:15:00+09:00"
+date: "2026-09-22T07:25:00+09:00"
 lastmod: "2026-09-20T22:15:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 > **소프트웨어공학 > 데이터 아키텍처 및 레이크하우스 > Apache Iceberg 오픈 테이블 포맷**
 
 ---
 
-## 1. 큰 그림 및 30초 인출 공식
-
-```
-               [ Apache Iceberg 3계층 메타데이터 트리 ]
-  ┌────────────────────────────────────────────────────────┐
-  │ [Iceberg Catalog] ──▶ [Table Metadata (JSON)]          │
-  │                             │                          │
-  │                             ▼                          │
-  │               [Manifest List (Avro)]                   │
-  │                    ├──▶ [Manifest File A (Avro)] ──▶ Data Files (Parquet)
-  │                    └──▶ [Manifest File B (Avro)] ──▶ Data Files (Parquet)
-  │ * 원자적 커밋(Atomic Pointer Swap) & 히든 파티셔닝     │
-  └────────────────────────────────────────────────────────┘
-```
+## 1. 30초 인출
 
 > **30초 인출 공식 (키워드 체인)**:  
 > **오브젝트 스토리지 RDBMS화** ➔ **3계층 메타데이터 트리 (Catalog-Metadata-Manifest)** ➔ **완전한 ACID (원자적 포인터 스왑)** ➔ **히든 파티셔닝 (Hidden Partitioning)** ➔ **Iceberg vs Delta vs Hudi** ➔ **오픈 카탈로그 (Polaris)**
@@ -43,18 +30,18 @@ extra:
 
 ## 2. 핵심 용어 정리
 
-| 용어 | 영문 표기 | 핵심 정의 및 설명 |
-|---|---|---|
-| **오픈 테이블 포맷** | Open Table Format | 오브젝트 스토리지 상의 분산 데이터 파일들을 표준 RDBMS 테이블처럼 다룰 수 있게 해주는 메타데이터 규격 |
-| **Apache Iceberg** | Apache Iceberg | 넷플릭스가 개발한 오픈소스 테이블 포맷으로, 높은 엔진 독립성과 확장성을 갖춘 레이크하우스 표준 기술 |
-| **Iceberg Catalog** | Iceberg Catalog | 테이블의 최신 메타데이터 파일 위치를 원자적으로 추적·교체하는 중앙 저장소(REST, AWS Glue 등) |
-| **매니페스트 리스트** | Manifest List | 특정 스냅샷을 구성하는 매니페스트 파일 목록과 파티션 범위 요약 통계를 담고 있는 Avro 파일 |
-| **매니페스트 파일** | Manifest File | 실제 물리적 데이터 파일 경로, 파티션 값, 컬럼별 최소/최대(Min/Max) 통계를 보관하는 Avro 파일 |
-| **히든 파티셔닝** | Hidden Partitioning | 쿼리 작성자가 파티션 컬럼을 명시하지 않아도 원천 컬럼 조건절을 인식해 자동으로 파티션을 스킵하는 기술 |
-| **파티션 진화** | Partition Evolution | 테이블 재생성이나 데이터 마이그레이션 없이 운영 중에 파티셔닝 기준(일➔시간 단위 등)을 즉시 변경하는 기능 |
-| **원자적 스왑** | Atomic Pointer Swap | 쓰기 작업 완료 시 카탈로그의 메타데이터 파일 포인터를 단일 원자적 연산으로 교체하여 완벽한 ACID를 보장하는 기법 |
-| **컴팩션** | Compaction (Bin-packing) | 스트리밍 적재 등으로 양산된 수천 개의 작은 소형 파일들을 대형 표준 Parquet 파일로 비동기 병합하는 작업 |
-| **타임 트래블** | Time Travel | 과거 특정 시점의 스냅샷 ID를 지정하여 이전 버전의 테이블 상태를 질의하거나 롤백할 수 있는 기능 |
+| 용어 | 핵심 정의 및 설명 |
+|---|---|
+| **오픈 테이블 포맷** Open Table Format | 오브젝트 스토리지 상의 분산 데이터 파일들을 표준 RDBMS 테이블처럼 다룰 수 있게 해주는 메타데이터 규격 |
+| **Apache Iceberg** | 넷플릭스가 개발한 오픈소스 테이블 포맷으로, 높은 엔진 독립성과 확장성을 갖춘 레이크하우스 표준 기술 |
+| **Iceberg Catalog** | 테이블의 최신 메타데이터 파일 위치를 원자적으로 추적·교체하는 중앙 저장소(REST, AWS Glue 등) |
+| **매니페스트 리스트** Manifest List | 특정 스냅샷을 구성하는 매니페스트 파일 목록과 파티션 범위 요약 통계를 담고 있는 Avro 파일 |
+| **매니페스트 파일** Manifest File | 실제 물리적 데이터 파일 경로, 파티션 값, 컬럼별 최소/최대(Min/Max) 통계를 보관하는 Avro 파일 |
+| **히든 파티셔닝** Hidden Partitioning | 쿼리 작성자가 파티션 컬럼을 명시하지 않아도 원천 컬럼 조건절을 인식해 자동으로 파티션을 스킵하는 기술 |
+| **파티션 진화** Partition Evolution | 테이블 재생성이나 데이터 마이그레이션 없이 운영 중에 파티셔닝 기준(일➔시간 단위 등)을 즉시 변경하는 기능 |
+| **원자적 스왑** Atomic Pointer Swap | 쓰기 작업 완료 시 카탈로그의 메타데이터 파일 포인터를 단일 원자적 연산으로 교체하여 완벽한 ACID를 보장하는 기법 |
+| **컴팩션** Compaction(Bin-packing) | 스트리밍 적재 등으로 양산된 수천 개의 작은 소형 파일들을 대형 표준 Parquet 파일로 비동기 병합하는 작업 |
+| **타임 트래블** Time Travel | 과거 특정 시점의 스냅샷 ID를 지정하여 이전 버전의 테이블 상태를 질의하거나 롤백할 수 있는 기능 |
 
 ---
 
@@ -69,82 +56,21 @@ extra:
   - **파티셔닝 락인**: 파티션 전략을 바꾸려면 수십 TB의 전체 데이터를 재적재해야 하는 치명적 경직성.
 - **Iceberg의 해결책**: 디렉터리가 아닌 **개별 파일 단위 메타데이터 트리**를 직접 참조함으로써, 디렉터리 리스팅을 전면 제거하고 완전한 스냅샷 격리(Snapshot Isolation)를 달성함.
 
-```
-   [전통적 하이브(Hive): 디렉터리 기반]           [Apache Iceberg: 파일 기반 메타데이터 트리]
- ┌───────────────────────────┐                ┌───────────────────────────┐
- │ /table/year=2026/month=03 │                │ [Catalog] ➔ [Metadata JSON]│
- │ S3 파일 수백만 개 리스팅  │                │      │                    │
- │ 쿼리 플래닝에 수 분 지연  │                │      ▼                    │
- └─────────────┬─────────────┘                │ [Manifest List] ➔ [Files] │
-               │                              └─────────────┬─────────────┘
-               ▼                                            │
- [ACID 부재 / 잦은 정합성 파탄]                              ▼
-                                               [원자적 ACID & 즉각적 파일 프루닝]
-```
-
 ---
 
 ### Ⅱ. Apache Iceberg 3계층 메타데이터 아키텍처
 
 #### 1. Iceberg 계층 구조 및 원자적 커밋 흐름도
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background: var(--vp-c-bg-alt); border: 1px solid var(--vp-c-border); border-radius: 8px;">
-  <defs>
-    <marker id="ice-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--vp-c-brand)" />
-    </marker>
-  </defs>
-
-  <!-- Title Header -->
-  <rect x="15" y="8" width="490" height="22" rx="4" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" />
-  <text x="260" y="23" font-size="10" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">Apache Iceberg 3계층 메타데이터 트리 및 원자적 커밋 메커니즘</text>
-
-  <!-- Layer 1: Catalog Layer -->
-  <rect x="15" y="36" width="145" height="42" rx="4" fill="var(--vp-c-bg)" stroke="var(--vp-c-brand)" stroke-width="1.2" />
-  <text x="87" y="52" font-size="8.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">1. Iceberg Catalog</text>
-  <text x="87" y="66" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">REST / Polaris / AWS Glue</text>
-
-  <!-- Pointer Arrow -->
-  <line x1="160" y1="57" x2="185" y2="57" stroke="var(--vp-c-brand)" stroke-width="1.8" marker-end="url(#ice-arrow)" />
-  <text x="172" y="51" font-size="7" fill="var(--vp-c-brand)" text-anchor="middle">포인터</text>
-
-  <!-- Layer 2: Metadata Layer -->
-  <rect x="190" y="36" width="315" height="42" rx="4" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" stroke-width="1.2" />
-  <text x="347" y="52" font-size="8.5" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">2. Table Metadata (`v2.metadata.json`)</text>
-  <text x="347" y="66" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">테이블 스키마 · 히든 파티션 명세 · 현재/과거 스냅샷 목록 (Time Travel)</text>
-
-  <!-- Arrow Down to Manifest List -->
-  <line x1="347" y1="78" x2="347" y2="92" stroke="var(--vp-c-brand)" stroke-width="1.8" marker-end="url(#ice-arrow)" />
-
-  <!-- Layer 3: Manifest List -->
-  <rect x="120" y="94" width="385" height="34" rx="4" fill="var(--vp-c-bg-alt)" stroke="var(--vp-c-brand)" stroke-width="1.2" />
-  <text x="312" y="108" font-size="8.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">3. Manifest List (`snap-2.avro`)</text>
-  <text x="312" y="120" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">스냅샷에 속한 Manifest 파일 경로 목록 및 파티션 범위 요약 통계</text>
-
-  <!-- Forks Down to Manifest Files -->
-  <line x1="220" y1="128" x2="160" y2="142" stroke="var(--vp-c-border)" stroke-width="1.5" marker-end="url(#ice-arrow)" />
-  <line x1="400" y1="128" x2="420" y2="142" stroke="var(--vp-c-border)" stroke-width="1.5" marker-end="url(#ice-arrow)" />
-
-  <!-- Layer 4: Manifest Files -->
-  <rect x="65" y="144" width="185" height="32" rx="3" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" />
-  <text x="157" y="157" font-size="8" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">Manifest File A (`m-1.avro`)</text>
-  <text x="157" y="169" font-size="7" fill="var(--vp-c-text-2)" text-anchor="middle">컬럼별 Min/Max 통계 &amp; 물리 경로</text>
-
-  <rect x="275" y="144" width="185" height="32" rx="3" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" />
-  <text x="367" y="157" font-size="8" font-weight="700" fill="var(--vp-c-text-1)" text-anchor="middle">Manifest File B (`m-2.avro`)</text>
-  <text x="367" y="169" font-size="7" fill="var(--vp-c-text-2)" text-anchor="middle">컬럼별 Min/Max 통계 &amp; 물리 경로</text>
-
-  <!-- Data Files Link -->
-  <line x1="157" y1="176" x2="157" y2="186" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2 2" />
-  <line x1="367" y1="176" x2="367" y2="186" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2 2" />
-
-  <!-- Bottom Data Layer -->
-  <rect x="15" y="186" width="490" height="26" rx="4" fill="var(--vp-c-bg)" stroke="#10b981" stroke-width="1.2" />
-  <text x="260" y="198" font-size="8" font-weight="700" fill="#10b981" text-anchor="middle">실제 데이터 파일 레이어 (S3 Parquet / ORC) : Min/Max 기반 불필요 파일 O(1) 프루닝</text>
-  <text x="260" y="208" font-size="7" fill="var(--vp-c-text-2)" text-anchor="middle">신규 스냅샷 선작성 ➔ Catalog 포인터 원자적 교체(Atomic Swap)로 동시성 충돌 해결</text>
-</svg>
-</div>
+```mermaid
+flowchart TB
+    C["Iceberg Catalog"] -->|포인터 스왑| M["테이블 메타데이터"]
+    M --> L["매니페스트 리스트"]
+    L --> A["매니페스트 파일 A"]
+    L --> B["매니페스트 파일 B"]
+    A --> F["데이터 파일"]
+    B --> F
+```
 
 #### 2. 오픈 테이블 포맷 3대 기술 비교 (Iceberg vs Delta vs Hudi)
 | 비교 항목 | Apache Iceberg | Delta Lake | Apache Hudi |
@@ -205,10 +131,6 @@ Iceberg를 쓰면 S3의 단일 데이터 사본(Single Source of Truth)을 두�
 - **대응 방안**: 데이터 레이크의 스토리지 계층을 **Apache Iceberg 단일 포맷으로 표준화**하고, 컴퓨트 엔진(Spark/Flink/Trino)과의 결합도를 제거하기 위해 **벤더 중립적인 Apache Polaris 오픈 REST 카탈로그**를 도입해야 함.
 - **검증 체계**: 데이터 파이프라인 CI/CD 단계에 **일일 비동기 컴팩션(Bin-packing) 프로시저와 고아 파일 삭제 스크립트**를 강제 연동하여 메타데이터 및 스몰 파일 건강 상태를 상시 감시해야 함.
 - **기대 효과**: 데이터 중복 복제 비용을 60% 이상 감축하고, 디렉터리 리스팅 없는 고속 프루닝으로 대규모 OLAP 질의 속도를 4배 이상 가속함.
-
-<div style="margin: 1rem 0; padding: 0.8rem 1rem; background: var(--vp-c-bg-alt); border-left: 4px solid var(--vp-c-brand); border-radius: 4px; font-size: 0.88rem; line-height: 1.6;">
-<strong>개방형 레이크하우스 파이프라인</strong>: <code>S3 오브젝트 적재</code> ➔ <code>Iceberg 3계층 메타데이터 트리</code> ➔ <code>원자적 스냅샷 스왑</code> ➔ <code>히든 파티셔닝 프루닝</code> ➔ <code>멀티 엔진 자유 질의 완성</code>
-</div>
 
 ---
 

@@ -1,45 +1,26 @@
 ---
 title: "스택(Stack) 자료구조"
-author: "Antigravity"
-date: "2026-09-20T23:49:42+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 알고리즘·자료구조를 거쳐 스택으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>알고리즘·자료구조</span>
-  <strong>스택(Stack) 자료구조</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 알고리즘·자료구조 → **스택(Stack) 자료구조**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **스택(Stack)**은 한쪽 끝에서만 자료의 삽입과 삭제가 일어나는 **후입선출(LIFO: Last In First Out)** 선형 자료구조
 - 메커니즘: **Top** 포인터를 통한 **Push**(삽입), **Pop**(삭제), **Peek**(조회) 연산 (모두 **O(1)** 상수 시간)
-- 산출/효과: 함수 호출 스택 관리 · 괄호 검사 · 후위 표기법 연산 · DFS(깊이우선탐색) 및 브라우저 뒤로가기 구현
-
-<div class="itpe-flow-map" role="img" aria-label="스택 자료구조의 LIFO 동작 흐름">
-  <div class="itpe-flow-node"><strong>Push(데이터)</strong><div class="itpe-step-detail"><span>Top 증가 및 데이터 삽입</span></div></div>
-  <div class="itpe-flow-arrow">→ Top 포인터 조작 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>스택(Stack) 메모리</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>Top 위치</strong><span><span class="itpe-keyword"><strong>항상 최상단 노드 가리킴</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>LIFO 원칙</strong><span>가장 나중에 들어온 자료가 먼저 나감</span></div>
-      <div class="itpe-flow-branch"><strong>복잡도</strong><span><span class="itpe-keyword"><strong>Push/Pop O(1)</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ Top 감소 및 반환 →</div>
-  <div class="itpe-flow-node"><strong>Pop() 결과</strong><div class="itpe-step-detail"><span>최상단 데이터 추출</span></div></div>
-</div>
+- 효과: 함수 호출 스택 관리 · 괄호 검사 · 후위 표기법 연산 · DFS(깊이우선탐색) 및 브라우저 뒤로가기 구현
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,80 +48,13 @@ extra:
 
 > 스택 구현은 고정 크기 배열 방식과 동적 연결 리스트 방식으로 나뉘며 메모리 제약에 따라 선택한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="스택 기본 연산 흐름">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① Push(Item)</strong></span>
-    <div class="itpe-step-detail"><strong>삽입 연산</strong><span>isFull() 확인 및 Overflow 방지 후 Top 증가, 데이터 저장</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② Peek()</strong></span>
-    <div class="itpe-step-detail"><strong>단순 조회</strong><span>isEmpty() 확인 후 데이터 삭제 없이 최상단 데이터 반환</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ Pop()</strong></span>
-    <div class="itpe-step-detail"><strong>추출 연산</strong><span>isEmpty() 확인 후 Underflow 방지, 데이터 반환 및 Top 감소</span></div>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    PU["Push 삽입"] --> TOP["Top 최상단"] --> PO["Pop 반환"]
+    TOP --- D1["Data 1"] --- D0["최하단 Base"]
+```
 
-### 스택 구조 및 호출 스택(Call Stack) 프레임
-
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Left: LIFO Operation Model -->
-    <text x="25" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[LIFO 연산 메커니즘]</text>
-    
-    <!-- Stack container -->
-    <rect x="35" y="45" width="110" height="155" rx="4" fill="none" stroke="var(--sl-color-border, #94a3b8)" stroke-width="2" stroke-dasharray="155 0 0 110" />
-    <!-- Stack base indicator -->
-    <line x1="30" y1="200" x2="150" y2="200" stroke="var(--sl-color-text-muted, #64748b)" stroke-width="3" />
-    <text x="90" y="213" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Stack Bottom (Base)</text>
-
-    <!-- Element 1 -->
-    <rect x="42" y="160" width="96" height="32" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="90" y="180" class="itpe-svg-sub" font-size="12" fill="var(--sl-color-text, #334155)" text-anchor="middle">Data [0]</text>
-
-    <!-- Element 2 -->
-    <rect x="42" y="120" width="96" height="32" rx="4" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="90" y="140" class="itpe-svg-sub" font-size="12" fill="var(--sl-color-text, #334155)" text-anchor="middle">Data [1]</text>
-
-    <!-- Element 3 (Top) -->
-    <rect x="42" y="80" width="96" height="32" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
-    <text x="90" y="100" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Data [2] (Top)</text>
-
-    <!-- Top Pointer Arrow -->
-    <path d="M 175 96 L 145 96" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" marker-end="url(#arrow)" />
-    <text x="180" y="100" class="itpe-svg-label" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">Top Pointer</text>
-
-    <!-- Push/Pop Action Labels -->
-    <text x="90" y="48" class="itpe-svg-label" font-size="11" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">Push ↓  ↑ Pop</text>
-
-    <!-- Right: Call Stack Frame -->
-    <text x="270" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[함수 호출 스택 프레임(Stack Frame) 구조]</text>
-    
-    <!-- Call Stack container -->
-    <rect x="270" y="45" width="225" height="155" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    
-    <!-- Frame 1 (Main) -->
-    <rect x="278" y="152" width="209" height="42" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1" />
-    <text x="288" y="169" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">main() Frame</text>
-    <text x="288" y="185" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)">지역변수, 초기화 정보</text>
-
-    <!-- Frame 2 (Func A) -->
-    <rect x="278" y="102" width="209" height="42" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1" />
-    <text x="288" y="119" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)">calculate() Frame</text>
-    <text x="288" y="135" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)">매개변수, 복귀주소(main)</text>
-
-    <!-- Frame 3 (Func B - Active) -->
-    <rect x="278" y="52" width="209" height="42" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
-    <text x="288" y="69" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">parse() Frame (Active)</text>
-    <text x="288" y="85" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">지역변수, 복귀주소(calculate)</text>
-  </svg>
-</div>
+- 삽입·삭제가 Top 한 지점에서만 일어나며, Push 전 `isFull()`, Pop·Peek 전 `isEmpty()` 경계 검증으로 Overflow·Underflow를 방지함
 
 | 비교 항목 | 배열(Array) 기반 스택 | 연결 리스트(Linked List) 기반 스택 |
 |---|---|---|
@@ -187,28 +101,6 @@ extra:
 - **검증 체계**: 컴파일러 보안 옵션(Stack Canary, DEP) 적용 및 정적 분석 도구를 통한 스택 프레임 최대 깊이 프로파일링
 - **기대 효과**: 스택 고갈(Stack Overflow) 비정상 종료 예방 및 버퍼 오버플로우 메모리 변조 취약점 원천 차단
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="스택 메모리 안정성 확보 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>고갈 위험</strong><span>과도한 재귀 호출로 인한 스택 오버플로우 및 메모리 변조 위험</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>힙 스택 전환</strong><span>명시적 힙 스택 전환 및 스택 카나리(Canary) 방어 체계화</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>한계 모니터링</strong><span>스택 한계선 모니터링 및 경계 검사 단위 테스트 100%</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>안정성 확보</strong><span>런타임 안정성 보장 및 시스템 보안 취약점 원천 제거</span></div>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -218,13 +110,11 @@ extra:
 
 ### 2. 핵심 메커니즘
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="스택 동작 요약">
-  <div class="itpe-pipeline-node"><strong>Push(X)</strong><div class="itpe-step-detail"><span>Top 증가 후 데이터 저장</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Peek()</strong><div class="itpe-step-detail"><span>Top 위치 데이터 단순 조회</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Pop()</strong><div class="itpe-step-detail"><span>Top 데이터 반환 후 Top 감소</span></div></div>
-</div>
+```mermaid
+flowchart TB
+    PU["Push 삽입"] --> TOP["Top 최상단"] --> PO["Pop 반환"]
+    TOP --- D1["Data 1"] --- D0["최하단 Base"]
+```
 
 ### 3. 핵심 통제
 

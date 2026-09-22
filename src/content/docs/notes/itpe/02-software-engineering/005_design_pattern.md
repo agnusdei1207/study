@@ -1,7 +1,7 @@
 ---
 title: "디자인 패턴(프록시 패턴)"
-author: "Antigravity"
-date: "2026-09-21T16:27:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -9,42 +9,24 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 아키텍처·설계를 거쳐 디자인 패턴(프록시)으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>아키텍처·설계</span>
-  <strong>디자인 패턴(프록시 패턴)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 아키텍처·설계 → **디자인 패턴(프록시 패턴)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **프록시 패턴(Proxy Pattern)**은 실제 객체(RealSubject)에 대한 대리 객체(Proxy)를 두어 객체 접근을 제어하고 부가 기능을 투명하게 제공하는 구조 디자인 패턴
 - 메커니즘: 동일 인터페이스(Subject) 구현 → 클라이언트는 대리자 호출 → 프록시가 사전/사후 처리(지연로딩, 접근제어, 캐싱) 후 실제 객체 위임
-- 산출/효과: 실제 비즈니스 로직과 부가 관심사 분리(AOP 기반) · 성능 최적화 · OCP/SRP 준수
-
-<div class="itpe-flow-map" role="img" aria-label="프록시 패턴의 호출 중계 구조">
-  <div class="itpe-flow-node"><strong>클라이언트(Client)</strong><div class="itpe-step-detail"><span>인터페이스 호출</span></div></div>
-  <div class="itpe-flow-arrow">→ request() →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>프록시(Proxy)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>사전 처리</strong><span>권한 검증 · 지연 생성</span></div>
-      <div class="itpe-flow-branch"><strong>위임 호출</strong><span><span class="itpe-keyword"><strong>RealSubject.request()</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>사후 처리</strong><span>로깅 · 트랜잭션 커밋</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 결과 반환 →</div>
-  <div class="itpe-flow-node"><strong>실제 객체(RealSubject)</strong><div class="itpe-step-detail"><span>핵심 비즈니스 로직 수행</span></div></div>
-</div>
+- 효과: 실제 비즈니스 로직과 부가 관심사 분리(AOP 기반) · 성능 최적화 · OCP/SRP 준수
 
 <details>
 <summary>핵심 용어</summary>
 
 - **Proxy Pattern**: 특정 객체에 대한 접근을 통제하거나 부가 기능을 부여하기 위해 대리 객체를 제공하는 GoF 디자인 패턴
+- **Subject**: Proxy와 RealSubject가 공동으로 구현하는 공통 인터페이스 규격
 - **Virtual Proxy(가상 프록시)**: 리소스 소모가 큰 객체의 생성을 실제로 필요한 시점까지 지연(Lazy Initialization)시키는 프록시
 - **Protection Proxy(보호 프록시)**: 호출자의 권한에 따라 실제 객체의 메서드 접근 권한을 제어하는 프록시
 - **Remote Proxy(원격 프록시)**: 서로 다른 주소 공간에 있는 객체를 로컬 객체처럼 다룰 수 있게 해주는 프록시(RPC/RMI 기반)
@@ -67,67 +49,26 @@ extra:
 
 > 프록시와 실제 객체는 동일한 인터페이스를 구현하므로 클라이언트는 프록시 존재 여부를 인식하지 않고 투명하게 사용한다.
 
-<div class="itpe-svg-map">
-<svg viewBox="0 0 520 220" role="img" aria-label="프록시 패턴의 클래스 다이어그램 및 AOP 부가기능 가로채기 위임 메커니즘">
-  <!-- 상단 인터페이스: <<interface>> Subject -->
-  <rect x="180" y="10" width="160" height="52" rx="6" fill="var(--sl-color-accent-low)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <text x="260" y="28" text-anchor="middle" font-size="10.5" fill="var(--sl-color-accent-high)">&lt;&lt;interface&gt;&gt;</text>
-  <text x="260" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-white)">Subject</text>
-  <text x="260" y="56" text-anchor="middle" font-size="9.5" fill="var(--sl-color-text)">+ request(): void</text>
+```mermaid
+classDiagram
+    class Subject {
+        <<interface>>
+        +request()
+    }
+    class Proxy {
+        -realSubject
+        +request()
+    }
+    class RealSubject {
+        +request()
+    }
+    Client ..> Subject : request()
+    Subject <|.. Proxy
+    Subject <|.. RealSubject
+    Proxy --> RealSubject : 위임
+```
 
-  <!-- 좌측 클라이언트: Client -->
-  <rect x="15" y="18" width="105" height="38" rx="6" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="67" y="42" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--sl-color-text)">Client</text>
-  
-  <line x1="120" y1="36" x2="180" y2="36" stroke="var(--sl-color-accent)" stroke-width="1.5" marker-end="url(#arrow-proxy-dep)" />
-
-  <!-- 구현 상속 점선 (Subject -> Proxy, Subject -> RealSubject) -->
-  <path d="M 120 100 L 120 80 L 260 80 L 260 62" stroke="var(--sl-color-gray-3)" stroke-width="1.2" stroke-dasharray="3,3" fill="none" />
-  <path d="M 400 100 L 400 80 L 260 80" stroke="var(--sl-color-gray-3)" stroke-width="1.2" stroke-dasharray="3,3" fill="none" />
-
-  <!-- 하단 좌측: Proxy -->
-  <rect x="35" y="100" width="170" height="105" rx="8" fill="var(--sl-color-gray-6)" stroke="var(--sl-color-accent)" stroke-width="1.5" />
-  <text x="120" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-accent-high)">Proxy (대리자)</text>
-  <line x1="35" y1="128" x2="205" y2="128" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="45" y="143" font-size="10" fill="var(--sl-color-muted)">- realSubject: RealSubject</text>
-  <line x1="35" y1="150" x2="205" y2="150" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="45" y="165" font-size="10" font-weight="bold" fill="var(--sl-color-text)">+ request(): void {</text>
-  <text x="55" y="179" font-size="9" fill="var(--sl-color-accent)">  preProcess(); // 보안/로깅</text>
-  <text x="55" y="191" font-size="9" fill="var(--sl-color-text)">  realSubject.request();</text>
-  <text x="45" y="201" font-size="10" font-weight="bold" fill="var(--sl-color-text)">}</text>
-
-  <!-- 연관 위임 화살표: Proxy -> RealSubject -->
-  <path d="M 205 145 L 315 145" stroke="var(--sl-color-accent)" stroke-width="2" marker-end="url(#arrow-proxy-del)" />
-  <text x="260" y="138" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--sl-color-accent)">위임(Delegation)</text>
-
-  <!-- 하단 우측: RealSubject -->
-  <rect x="315" y="100" width="170" height="105" rx="8" fill="var(--sl-color-surface)" stroke="var(--sl-color-gray-4)" stroke-width="1.2" />
-  <text x="400" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--sl-color-text)">RealSubject (실체)</text>
-  <line x1="315" y1="128" x2="485" y2="128" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="325" y="143" font-size="10" fill="var(--sl-color-muted)">- coreData: BusinessData</text>
-  <line x1="315" y1="150" x2="485" y2="150" stroke="var(--sl-color-gray-4)" stroke-width="1" />
-  <text x="325" y="165" font-size="10" font-weight="bold" fill="var(--sl-color-text)">+ request(): void {</text>
-  <text x="335" y="180" font-size="9.5" fill="var(--sl-color-accent-high)">  // 핵심 비즈니스 로직</text>
-  <text x="325" y="195" font-size="10" font-weight="bold" fill="var(--sl-color-text)">}</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="프록시 패턴의 인터페이스 기반 구조">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Subject (인터페이스)</strong></span>
-    <div class="itpe-step-detail"><strong>오퍼레이션 규격</strong><span>RealSubject와 Proxy가 공동 구현하여 Client 의존성 격리</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 구현(Implements)</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>Proxy (대리 객체)</strong></span>
-    <div class="itpe-step-detail"><strong>호출 가로채기</strong><span>RealSubject 참조 보유, 부가기능 수행 후 실제 호출 위임</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 위임(Delegation)</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>RealSubject (실제 객체)</strong></span>
-    <div class="itpe-step-detail"><strong>핵심 로직</strong><span>실제 핵심 비즈니스 로직을 수행하는 본체 객체</span></div>
-  </div>
-</div>
+- Client는 Subject 규격에만 의존하며, Proxy가 사전 처리(보안·로깅) 후 RealSubject에 위임하므로 프록시 존재는 투명함
 
 | 유형 | 핵심 동작 메커니즘 | 실무 적용 사례 |
 |---|---|---|
@@ -182,28 +123,6 @@ extra:
 - **검증 체계**: 선언적 트랜잭션(`@Transactional`) 동작 여부에 대한 단위/통합 슬라이스 테스트(`@DataJpaTest`), 프록시 내부 호출 정적 린트 규칙, JPA N+1 방지 쿼리 실행 횟수 모니터링을 수행함
 - **기대 효과**: 비즈니스 코드와 인프라 횡단 로직의 완전한 관심사 분리를 달성하고, 무거운 리소스의 온디맨드 지연 로딩을 통해 시스템 초기 기동 속도 및 런타임 메모리 효율성을 극대화함
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="프록시 패턴 아키텍처 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>관심사 혼재</strong><span>비즈니스 코드에 트랜잭션·보안·로깅 등 횡단 관심사 침투</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>AOP 내재화</strong><span>프록시 기반 AOP 구축 및 인터페이스 표준화</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>누락 검증</strong><span>내부 호출 방지 단위테스트 및 지연로딩 사전 검증</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>단일 책임</strong><span>단일 책임 원칙(SRP) 준수 및 엔터프라이즈 유지보수성 극대화</span></div>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -213,13 +132,24 @@ extra:
 
 ### 2. 구성체계 및 구조
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="프록시 구조 요약">
-  <div class="itpe-pipeline-node"><strong>Subject Interface</strong><div class="itpe-step-detail"><span>공통 오퍼레이션 규격</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>Proxy</strong><div class="itpe-step-detail"><span>사전/사후 처리 · 위임 제어</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>RealSubject</strong><div class="itpe-step-detail"><span>핵심 비즈니스 수행</span></div></div>
-</div>
+```mermaid
+classDiagram
+    class Subject {
+        <<interface>>
+        +request()
+    }
+    class Proxy {
+        -realSubject
+        +request()
+    }
+    class RealSubject {
+        +request()
+    }
+    Client ..> Subject : request()
+    Subject <|.. Proxy
+    Subject <|.. RealSubject
+    Proxy --> RealSubject : 위임
+```
 
 ### 3. 핵심 통제
 

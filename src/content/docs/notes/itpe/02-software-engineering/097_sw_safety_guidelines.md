@@ -6,8 +6,9 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
+date: "2026-09-22T07:25:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -18,100 +19,14 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **메커니즘**: 안전 계획 $\rightarrow$ 위험원 분석(PHA/FMEA/FTA/STPA) $\rightarrow$ 안전 요구사항 도출 $\rightarrow$ 안전 아키텍처 설계(이중화, 격리) $\rightarrow$ 안전 검증(V&V, HIL 결함 주입) $\rightarrow$ 안전 운영 순서로 통제한다.
 - **산출물**: SW 안전관리 계획서, 위험원 등록부(Hazard Log), 안전 요구사항 추적표, 안전성 검증 보고서(V&V Report).
 
-<div class="itpe-flow">
-  <div class="itpe-flow-steps">
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>1. 안전 계획</strong></span>
-      <div class="itpe-step-detail">안전관리 조직 지정 및 안전 보증 계획서(Safety Plan) 작성</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>2. 위험원 분석</strong></span>
-      <div class="itpe-step-detail">PHA(예비), FTA(하향식), FMEA(상향식), STPA(상호작용) 분석</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>3. 안전 설계 & 구현</strong></span>
-      <div class="itpe-step-detail">Fail-Safe 전이, 하드웨어 와치독, MISRA-C 코딩 표준 준수</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node is-current">
-      <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-      <div class="itpe-step-detail"><strong>판정 질문</strong><span>모든 위험원이 설계 및 V&V 테스트까지 양방향 추적되는가?</span></div>
-      <div class="itpe-flow-branches">
-        <div class="itpe-flow-branch"><strong>통과</strong><span>시스템 통합 및 안전성 인증 검증 승인</span></div>
-        <div class="itpe-flow-branch"><strong>미통과</strong><span>누락·중복 제거 및 위험원 완화 대책 재설계</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 ---
 
 ## 핵심 메커니즘과 SW안전 프레임워크
 
-<div style="max-width: 520px; margin: 1.5rem auto;">
-  <!-- SVG: SW안전 확보 지침 생명주기 및 위험원 완화 아키텍처 -->
-  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-    <!-- 배경 -->
-    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-    
-    <!-- 영역 1: 위험원 분석 & 도출 (SDLC 초기) -->
-    <rect x="15" y="15" width="235" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2"/>
-    <text x="132" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">위험원 분석 및 안전 요구</text>
-    <text x="132" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Hazard 식별 및 ALARP 위험도 완화</text>
-
-    <!-- 4대 분석 기법 그리드 -->
-    <g transform="translate(25, 55)">
-      <rect x="0" y="0" width="102" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="51" y="15" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">PHA (예비분석)</text>
-      <text x="51" y="27" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">초기 잠재위험 식별</text>
-
-      <rect x="112" y="0" width="102" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="163" y="15" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">FMEA (상향식)</text>
-      <text x="163" y="27" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">단위 고장 영향추적</text>
-
-      <rect x="0" y="42" width="102" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="51" y="57" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">FTA (하향식)</text>
-      <text x="51" y="69" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">최상위 참사 원인도출</text>
-
-      <rect x="112" y="42" width="102" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="163" y="57" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">STPA (복잡계)</text>
-      <text x="163" y="69" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">상호작용 결함제어</text>
-
-      <!-- 산출물: Hazard Log -->
-      <rect x="0" y="85" width="214" height="42" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2"/>
-      <text x="107" y="102" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-primary, #3b82f6)">단일 진실 공급원: Hazard Log</text>
-      <text x="107" y="117" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">위험원 ID ↔ 안전 요구사항 ↔ 설계 모듈 맵핑</text>
-    </g>
-
-    <!-- 연결 화살표 -->
-    <path d="M 252 110 L 268 110" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
-
-    <!-- 영역 2: 안전 아키텍처 & 검증 (SDLC 후기) -->
-    <rect x="270" y="15" width="235" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
-    <text x="387" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-accent, #10b981)">안전 아키텍처 및 V&V 검증</text>
-    <text x="387" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">Fail-Safe 전이 및 결함 주입 시험</text>
-
-    <!-- 아키텍처 및 검증 3단 -->
-    <g transform="translate(280, 55)">
-      <!-- 1. Fail-Safe 설계 -->
-      <rect x="0" y="0" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="107" y="15" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">안전 아키텍처 (Fail-Safe & Redundancy)</text>
-      <text x="107" y="29" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">2oo3 투표, 하드웨어 와치독, 메모리 파티셔닝</text>
-
-      <!-- 2. 안전 코딩 표준 -->
-      <rect x="0" y="45" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="107" y="60" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">정적 분석 (MISRA-C / C++)</text>
-      <text x="107" y="74" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">동적 메모리(malloc) 전면 금지, 널 포인터 검증</text>
-
-      <!-- 3. V&V 검증 -->
-      <rect x="0" y="90" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="107" y="105" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">HIL 결함 주입 시험 (Fault Injection)</text>
-      <text x="107" y="119" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">MC/DC 100% 달성 및 최악 시간 분석(WCET)</text>
-    </g>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    A["위험원 분석"] --> L["Hazard Log"] --> R["안전 요구사항"] --> D["안전 설계"] --> V["V&V 검증"]
+```
 
 ### (1) SW 품질(Quality) vs SW 보안(Security) vs SW 안전(Safety)
 
@@ -175,7 +90,3 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **대응 방안**: 시스템 개발 초기부터 위험원 등록부(Hazard Log)를 가동하고, 2oo3 삼중화 투표 메커니즘과 하드웨어 독립 와치독 타이머를 적용한 Fail-Safe 아키텍처 설계.
 - **검증 체계**: HIL(Hardware-in-the-Loop) 시뮬레이터 기반 물리적 단선·단락 및 센서 노이즈 결함 주입 시험(FIT)을 통해 10ms 이내 안전 상태 전이 검증.
 - **기대 효과**: 제어 소프트웨어 단일 장애점(SPOF) 원천 배제 및 재난급 물리적 사고 예방을 통한 최고 수준의 기능 안전성(ASIL-D / SIL-4) 보증.
-
-<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
-  <strong>실전 제언 파이프라인 요약</strong>: <code>Hazard Log Registration</code> → <code>Safety Architecture (Fail-Safe)</code> → <code>MISRA-C & MC/DC 100%</code> → <code>HIL Fault Injection Testing</code>
-</div>

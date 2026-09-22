@@ -12,27 +12,25 @@ extra:
 ---
 
 ## 지식 로드맵 내 현재 위치
+현재 위치: IT 전략·관리 → AI 에너지 인프라
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략 관리에서 AI 인프라와 데이터센터를 거쳐 AI 에너지 인프라로 이어지는 지식 위치">
-  <span>IT 전략·관리</span><span>AI 인프라·Data Center</span><strong>AI 에너지 인프라</strong>
-</div>
 
 ## 30초 인출
 
-- 본질: AI Workload의 전력·열·물·탄소 제약을 전원부터 IT 장비까지 통합 관리하는 물리 인프라 체계
-- 메커니즘: 전력조달(PPA·Grid) → 수배전·UPS → AI 랙 전력할당 → 고효율 냉각(D2C/액침) → 계측·스케줄링
-- 판정 기준: PUE <= 1.3 통제 및 GPU 랙 온도 <= 85℃ 이하 임계치 유지
+- 본질: AI Workload의 전력·열·물·탄소 제약을 전원부터 IT 장비까지 통합 관리하는 물리 인프라 체계이다.
+- 메커니즘: 전력조달에서 수배전·UPS, AI 랙, 냉각, 계측·스케줄링까지 전력과 열의 흐름을 계층적으로 연결한다.
+- 판정 기준: 전력효율과 GPU 랙 열 상태를 지속 관측하고 임계 초과 시 냉각·부하 조정이 실행되는지 확인한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **PUE(Power Usage Effectiveness)**: 데이터센터 총 전력량을 IT 장비 전력량으로 나눈 지표
-- **WUE(Water Usage Effectiveness)**: IT 에너지 사용량 대비 물 사용량 지표
-- **CUE(Carbon Usage Effectiveness)**: IT 에너지 사용량 대비 탄소배출 지표
-- **PPA(Power Purchase Agreement)**: 전력 생산자와 수요자가 체결하는 전력구매계약
-- **D2C(Direct-to-Chip)**: 발열 칩에 Cold Plate를 접촉해 액체로 열을 제거하는 방식
-- **Immersion Cooling**: 전자장비를 비전도성 유체에 침지해 열을 제거하는 방식
-- **BESS(Battery Energy Storage System)**: 전력을 저장·방전하는 배터리 기반 설비
+- **PUE(Power Usage Effectiveness)**: 데이터센터 총 전력량을 IT 장비 전력량으로 나눈 지표이다.
+- **WUE(Water Usage Effectiveness)**: 데이터센터의 IT 장비 운영에 사용한 물의 양을 IT 에너지 사용량과 비교하는 효율 지표이다.
+- **CUE(Carbon Usage Effectiveness)**: IT 장비가 소비한 에너지에 대응하는 탄소배출량을 나타내는 지표이다.
+- **PPA(Power Purchase Agreement)**: 전력 생산자와 수요자가 체결하는 전력구매계약이다.
+- **D2C(Direct-to-Chip)**: 발열 칩에 Cold Plate를 접촉해 액체로 열을 제거하는 방식이다.
+- **Immersion Cooling**: 전자장비를 비전도성 유체에 침지해 열을 제거하는 방식이다.
+- **BESS(Battery Energy Storage System)**: 전력을 저장·방전하는 배터리 기반 설비이다.
 
 </details>
 
@@ -44,8 +42,8 @@ extra:
 
 > AI 에너지 인프라는 전력 확보만이 아니라 변동하는 AI 부하와 고밀도 발열을 안정적으로 수용하는 전원·설비·운영체계임.
 
-- 정의: AI 컴퓨팅의 전력수요와 발열을 안정적으로 수용하기 위한 전원·계통·배전·냉각·계측의 통합 인프라
-- 목적: **용량 적기확보·서비스 연속성·에너지 효율·환경 지속가능성** 달성
+- 정의: AI 컴퓨팅의 전력수요와 발열을 안정적으로 수용하기 위한 **전원**·**계통**·**배전**·냉각·계측의 통합 인프라
+- 목적: **용량 적기확보**·**서비스 연속성**·**에너지 효율**·**환경 지속가능성** 달성
 
 ## Ⅱ. 구성체계
 
@@ -104,7 +102,13 @@ flowchart LR
 - **판정 기준 (Trigger)**: 데이터센터 PUE(전력효율지수) > 1.3 초과 또는 특정 GPU 랙(Rack) 온도가 85℃ 임계치를 초과할 시 에너지 비상 모드 가동.
 - **대응 방안 (Action)**: 고밀도 GPU 랙에 D2C 액체냉각 및 액침냉각(Immersion)을 단계적 전환하고, 야간 잉여 재생에너지 시간대로 대규모 LLM 사전학습(Pre-training) 부하를 동적 배치.
 - **검증 체계 (Verification)**: DCIM/EMS를 통한 실시간 전력·온도 텔레메트리 수집, PUE/WUE/CUE 지표의 국제표준(ISO/IEC 30134) 공인 인증 및 탄소배출권 거래제와 연동 검증.
-- **기대 효과 (Impact)**: 냉각 소비전력 30% 이상 절감, 전력망 피크 부하 안정화, 글로벌 RE100 규제 준수 및 AI 인프라 운영 지속가능성을 달성함.
+- **기대 효과 (Impact)**: 냉각 소비전력 목표 기준 이상 절감, 전력망 피크 부하 안정화, 글로벌 RE100 규제 준수 및 AI 인프라 운영 지속가능성을 달성함.
+
+```mermaid
+flowchart TD
+    P["데이터센터 PUE(전력효율지수) 1"] --> A["고밀도 GPU 랙에 D2C 액체냉각 및 액침냉각(Immer"] --> V["DCIM/EMS를 통한 실시간 전력·온도 텔레메트리 수집,"] --> E["냉각 소비전력 목표 기준 이상 절감, 전력망 피크 부하 안"]
+    V --> P
+```
 
 ## 1교시 10점 답안 발췌
 

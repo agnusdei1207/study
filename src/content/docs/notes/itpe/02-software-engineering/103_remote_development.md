@@ -6,8 +6,9 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
+date: "2026-09-22T07:25:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -18,96 +19,17 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **메커니즘**: 제안요청서(RFP) 원격지 허용 $\rightarrow$ 수주 기업의 작업장소 제안 $\rightarrow$ 발주처 보안 적합성 검토 및 승인 $\rightarrow$ VDI/DaaS 가상화 환경 구축 $\rightarrow$ 비대면 애자일 협업 수행 순으로 전개된다.
 - **산출물**: 원격지 개발 계획서, 작업장소 보안 점검 체크리스트, VDI 접근 통제 감사 로그, 비대면 진척도 대시보드.
 
-<div class="itpe-flow">
-  <div class="itpe-flow-steps">
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>1. 작업장소 제안</strong></span>
-      <div class="itpe-step-detail">수주 기업이 자사 사무소 또는 거점 오피스 제안</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>2. 보안성 검토</strong></span>
-      <div class="itpe-step-detail">망분리, 매체제어, 암호화, CCTV 등 보안 설비 실사</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>3. DaaS 환경 구성</strong></span>
-      <div class="itpe-step-detail">화면 스트리밍 가상 데스크톱 및 소스 유출 통제</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node is-current">
-      <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-      <div class="itpe-step-detail"><strong>판정 질문</strong><span>국가 보안 가이드라인 준수 및 산출물 가시성이 확보되었는가?</span></div>
-      <div class="itpe-flow-branches">
-        <div class="itpe-flow-branch"><strong>통과</strong><span>원격지 개발 승인 및 비대면 개발 착수</span></div>
-        <div class="itpe-flow-branch"><strong>미통과</strong><span>보안 취약점 조치 및 현장 실사 재수행</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 ---
 
 ## 핵심 메커니즘과 보안·협업 아키텍처
 
-<div style="max-width: 520px; margin: 1.5rem auto;">
-  <!-- SVG: 원격지 개발 보안 및 협업 아키텍처 -->
-  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-    <!-- 배경 -->
-    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-    
-    <!-- 영역 1: 수주기업 원격지 사업장 (좌측) -->
-    <rect x="15" y="15" width="150" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.2"/>
-    <text x="90" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">원격지 개발 사업장</text>
-    <text x="90" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">수주사 본사 / 거점 오피스</text>
-
-    <!-- 원격지 3대 통제 -->
-    <rect x="25" y="55" width="130" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="90" y="70" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">단말 물리적 보안</text>
-    <text x="90" y="82" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">CCTV, 출입통제, 클린데스크</text>
-
-    <rect x="25" y="97" width="130" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="90" y="112" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">단말 에이전트 통제</text>
-    <text x="90" y="124" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">USB 차단, 캡처방지, 워터마크</text>
-
-    <rect x="25" y="139" width="130" height="34" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="90" y="154" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">MFA 2단계 인증</text>
-    <text x="90" y="166" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">생체 / 모바일 OTP 필수</text>
-
-    <!-- 중앙: 전송 구간 암호화 터널 -->
-    <g transform="translate(175, 75)">
-      <rect x="0" y="0" width="80" height="70" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-primary, #3b82f6)" stroke-width="1" stroke-dasharray="3 2"/>
-      <text x="40" y="24" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-primary, #3b82f6)">IPsec / SSL</text>
-      <text x="40" y="38" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-primary, #3b82f6)">VPN 터널</text>
-      <text x="40" y="55" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">전송구간 암호화</text>
-    </g>
-
-    <path d="M 165 110 L 175 110" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
-    <path d="M 255 110 L 268 110" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
-
-    <!-- 영역 2: 발주처 / 클라우드 보안존 (우측) -->
-    <rect x="270" y="15" width="235" height="190" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
-    <text x="387" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-accent, #10b981)">발주처 인프라 / 공공 DaaS 존</text>
-    <text x="387" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">데이터 반출 원천 차단 (논리적 망분리)</text>
-
-    <g transform="translate(280, 55)">
-      <!-- DaaS 화면 스트리밍 -->
-      <rect x="0" y="0" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-accent, #10b981)" stroke-width="1.2"/>
-      <text x="107" y="16" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-accent, #10b981)">DaaS / VDI (가상 데스크톱)</text>
-      <text x="107" y="29" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">화면만 스트리밍 전송 (로컬 소스 저장 절대 불가)</text>
-
-      <!-- 중앙 소스 및 형상관리 -->
-      <rect x="0" y="45" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="107" y="60" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">중앙 형상관리 & CI/CD (GitLab)</text>
-      <text x="107" y="74" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">모든 커밋 및 빌드 기록 중앙 감사 로깅</text>
-
-      <!-- 비대면 애자일 협업 -->
-      <rect x="0" y="90" width="214" height="38" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="107" y="105" text-anchor="middle" font-size="9" font-weight="700" fill="var(--color-text, #0f172a)">비대면 협업 플랫폼 (Jira / Confluence)</text>
-      <text x="107" y="119" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">일일 화상 스크럼, 실시간 칸반 진척도 공유</text>
-    </g>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    A["원격지 개발 단말"] -->|VPN 암호화| B
+    subgraph B["발주처 보안존"]
+        V["DaaS 가상 데스크톱"] --> R["중앙 형상관리·CI/CD"]
+    end
+```
 
 ### (1) 발주처 상주 개발(On-site) vs 원격지 개발(Remote/Off-site)
 
@@ -164,14 +86,10 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ### 학습자 통찰 메모 — 답안 밖
 - **[핵심 통찰]**: 원격지 개발의 승패는 '물리적 통제에서 논리적 신뢰로의 전환'에 있다. 과거처럼 청사 지하실에 몰아넣고 근태를 눈으로 감시하던 SI 패러다임은 지방 이전과 함께 붕괴되었다. 핵심 답안 논리는 "DaaS를 통한 완벽한 데이터 격리(보안 우려 해소)"와 "Jira/Git 애자일 지표를 통한 실시간 업무 가시성(근태 불신 해소)"의 결합이다.
-- **나라면**: 답안 2단락에 SW진흥법 제49조와 DaaS-VPN-단말통제 3선 방어 아키텍처를 SVG처럼 구성하고, 3단락에서 상주와 원격의 장단점 비교 및 비대면 협업 거버넌스를 서술하겠다. 4단락에서는 공공 CSAP 인증 DaaS 표준 플랫폼 보급을 제언하겠다.
+- **나라면**: 답안 2단락에 SW진흥법 제49조와 DaaS-VPN-단말통제 3선 방어 아키텍처를 도해로 구성하고, 3단락에서 상주와 원격의 장단점 비교 및 비대면 협업 거버넌스를 서술하겠다. 4단락에서는 공공 CSAP 인증 DaaS 표준 플랫폼 보급을 제언하겠다.
 
 ### 실전 답안용 기술사적 제언
 - **판정 기준**: 수주 공급자가 제안한 원격 작업장소의 보안 가이드라인 적합성 판정 100% 및 소스코드 로컬 유출 리스크 0건.
 - **대응 방안**: 공공 인증 DaaS(가상 데스크톱) 기반 화면 스트리밍 환경을 구축하여 소스코드의 로컬 저장을 원천 봉쇄하고, IPsec VPN과 단말 매체제어(USB/캡처 방지) 결합.
 - **검증 체계**: 주간 단위 정기 보안 감사 로그 점검 및 Jira 백로그-Git 커밋 기반 스프린트 번다운 차트 중심의 투명한 공정률 검증.
 - **기대 효과**: 지방 원격 파견 체재비(수억 원) 절감, 핵심 아키텍트 참여율 2배 제고 및 개발 생산성 30% 향상.
-
-<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
-  <strong>실전 제언 파이프라인 요약</strong>: <code>SW진흥법 제49조 제안</code> → <code>보안 가이드라인 실사</code> → <code>공공 DaaS 화면 스트리밍</code> → <code>Jira/Git 투명성 검증</code>
-</div>

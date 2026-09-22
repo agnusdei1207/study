@@ -5,41 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 자료구조와 알고리즘을 거쳐 선형 구조로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>자료구조 · 알고리즘</span>
-  <strong>선형 구조</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 자료구조 · 알고리즘 → **선형 구조**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **선형 구조(Linear Structure)**는 데이터 요소 간의 관계가 1:1로 연결되어 유일한 선행자와 후속자를 갖는 일차원적 순서 나열 자료구조
 - 메커니즘: **임의 접근 구조(배열, 순차 리스트)** + **참조 연결 구조(연결 리스트)** + **입출력 제약 구조(스택-LIFO, 큐-FIFO, 덱-양방향)**
 - 산출/효과: CPU 캐시 공간 지역성(Spatial Locality) 극대화 · 링 버퍼(원형 큐)를 통한 메모리 재활용 및 제로 카피 스트리밍 버퍼 구현
-
-<div class="itpe-flow-map" role="img" aria-label="선형 자료구조 체계도">
-  <div class="itpe-flow-node"><strong>선형 데이터</strong><span>1:1 연속 나열</span></div>
-  <div class="itpe-flow-arrow">→ 접근 방식 및 제약 분기 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>선형 자료구조 분류</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>비제약</strong><span><span class="itpe-keyword"><strong>배열(Array) · 리스트(ArrayList/LinkedList)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>제약(LIFO/FIFO)</strong><span><span class="itpe-keyword"><strong>스택(Stack) · 큐(Queue) · 덱(Deque)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>버퍼 최적화</strong><span>원형 큐(Ring Buffer) 모듈로 연산</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 하드웨어 캐시 및 버퍼링 →</div>
-  <div class="itpe-flow-node"><strong>시스템 최적화</strong><span>배압 제어 · 초저지연 I/O 큐</span></div>
-</div>
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,68 +48,26 @@ extra:
 
 > 메모리 연속성 여부와 입출력 제약 조건에 따라 구조적 특성과 사용 목적이 명확히 분기된다.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="lin-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
+```mermaid
+flowchart LR
+    subgraph STK["스택 · LIFO"]
+        direction TB
+        P["Push"] --> PO["Pop · 같은 Top"]
+    end
+    subgraph QUE["큐 · FIFO"]
+        direction TB
+        EN["Enqueue · Rear"] --> DE["Dequeue · Front"]
+    end
+```
 
-  <!-- Left: Stack & Queue Constraints -->
-  <rect x="15" y="15" width="235" height="190" rx="8" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5" filter="url(#lin-shadow)"/>
-  <text x="25" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">입출력 제약 구조 (스택 vs 큐)</text>
-
-  <!-- Stack Box -->
-  <rect x="25" y="48" width="100" height="92" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1"/>
-  <text x="75" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">스택 (LIFO)</text>
-  <rect x="35" y="76" width="80" height="18" rx="2" fill="var(--sl-color-blue-subtle, #eff6ff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="0.8"/>
-  <text x="75" y="89" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1f2937)">Top: Push/Pop</text>
-  <rect x="35" y="98" width="80" height="16" rx="2" fill="var(--sl-color-gray-5, #e5e7eb)"/>
-  <text x="75" y="110" text-anchor="middle" font-size="8" fill="var(--sl-color-text-muted, #4b5563)">Bottom (폐쇄)</text>
-  <text x="75" y="132" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">호출스택·파싱</text>
-
-  <!-- Queue Box -->
-  <rect x="135" y="48" width="105" height="92" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="1"/>
-  <text x="187" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-green-high, #16a34a)">큐 (FIFO)</text>
-  <rect x="143" y="76" width="89" height="18" rx="2" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
-  <text x="187" y="89" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">Rear: Enqueue</text>
-  <rect x="143" y="98" width="89" height="18" rx="2" fill="var(--sl-color-green-subtle, #f0fdf4)" stroke="var(--sl-color-green-high, #16a34a)" stroke-width="0.8"/>
-  <text x="187" y="111" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #1f2937)">Front: Dequeue</text>
-  <text x="187" y="132" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">비동기 버퍼링</text>
-
-  <rect x="25" y="148" width="215" height="46" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1"/>
-  <text x="32" y="165" font-size="9" font-weight="700" fill="var(--sl-color-text, #1f2937)">캐시 친화성: ArrayList &gt;&gt; LinkedList</text>
-  <text x="32" y="182" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">연속 메모리 공간 지역성으로 L1/L2 적중률 극대화</text>
-
-  <!-- Right: Circular Queue (Ring Buffer) -->
-  <rect x="265" y="15" width="240" height="190" rx="8" fill="var(--sl-color-purple-subtle, #f5f3ff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1.5" filter="url(#lin-shadow)"/>
-  <text x="275" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-accent, #7c3aed)">원형 큐 (Circular Queue / Ring Buffer)</text>
-  <text x="275" y="52" font-size="9" fill="var(--sl-color-text-muted, #4b5563)">선형 큐의 False Overflow 극복 (모듈로 연산)</text>
-
-  <!-- Circular Visual -->
-  <circle cx="385" cy="108" r="42" fill="none" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="12" stroke-dasharray="24 4"/>
-  <circle cx="385" cy="108" r="30" fill="var(--sl-color-bg-card, #ffffff)"/>
-  <text x="385" y="105" text-anchor="middle" font-size="9" font-weight="700" fill="var(--sl-color-accent-high, #5b21b6)">Size: N</text>
-  <text x="385" y="118" text-anchor="middle" font-size="8" fill="var(--sl-color-text-muted, #4b5563)">Ring</text>
-
-  <rect x="275" y="158" width="220" height="38" rx="4" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-accent, #7c3aed)" stroke-width="1"/>
-  <text x="282" y="172" font-size="8.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">포화 판별: (Rear + 1) % Size == Front</text>
-  <text x="282" y="186" font-size="8" fill="var(--sl-color-accent-high, #5b21b6)">공백과 구분 위해 1칸을 비워두고 만석 판정</text>
-</svg>
-</div>
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="선형 구조 분류 체계">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 접근 제약 없는 구조 (자유로운 탐색)</strong></span>
-    <span>• 배열 (Array): 연속 메모리 배치, 인덱스 오프셋 기반 $O(1)$ 임의 접근<br />• 순차 리스트 (ArrayList): 동적 가변 배열, 캐시 공간 지역성 압도적 우수<br />• 연결 리스트 (LinkedList): 노드 포인터 체인, 선행자 확보 시 $O(1)$ 중간 삽입/삭제</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕ 무결성 보장을 위한 입출력 제약 부여</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 접근 제약 구조 (엄격한 순서 보장)</strong></span>
-    <span>• 스택 (Stack): Top 한쪽 끝에서만 입출력되는 후입선출 (LIFO: 백트래킹, 실행 스택)<br />• 큐 (Queue): Rear 삽입, Front 삭제가 일어나는 선입선출 (FIFO: 작업 대기열)<br />• 덱 (Deque): 양쪽 끝(Front, Rear)에서 모두 삽입/삭제 가능한 양방향 결합형</span>
-  </div>
-</div>
+| 분류 | 구조 | 특성 |
+|---|---|---|
+| 비제약 | 배열(Array) | 연속 메모리 배치 · 인덱스 오프셋 기반 $O(1)$ 임의 접근 |
+| 비제약 | 순차 리스트(ArrayList) | 동적 가변 배열 · 캐시 공간 지역성 우수 |
+| 비제약 | 연결 리스트(LinkedList) | 노드 포인터 체인 · 선행자 확보 시 $O(1)$ 중간 삽입·삭제 |
+| 제약 | 스택(Stack) | Top 한쪽 끝에서만 입출력 · 후입선출 LIFO(백트래킹·실행 스택) |
+| 제약 | 큐(Queue) | Rear 삽입·Front 삭제 · 선입선출 FIFO(작업 대기열) |
+| 제약 | 덱(Deque) | 양쪽 끝에서 모두 삽입·삭제 · 양방향 결합형 |
 
 ## Ⅲ. 4대 선형 구조 복잡도 및 원형 큐 수식 메커니즘
 
@@ -178,28 +117,6 @@ extra:
 - **검증 체계**: APM 기반 큐 적재 임계치(80%) 초과 알람 및 CPU L1/L2 캐시 미스율 프로파일링 정기 검증
 - **기대 효과**: 힙 메모리 고갈(OOM) 원천 차단, 트랜잭션 처리 지연 80% 단축 및 GC 부하 없는 초저지연 버퍼링 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="선형 구조 엔터프라이즈 최적화 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>언바운디드 큐로 인한 OOM 및 포인터 체인으로 인한 캐시 미스 성능 저하</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>연속 메모리(ArrayList/원형 큐) 기반 설계 및 배압 제어 파이프라인 구축</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>큐 임계치 초과 시 트래픽 스로틀링 검증 및 CPU 캐시 적중률 95% 이상</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>서버 다운 없는 안정적 트래픽 수용 및 고성능 스트리밍 I/O 완성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -209,11 +126,8 @@ extra:
 
 ### 2. 원형 큐 핵심 수식
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="원형 큐 요약">
-  <div class="itpe-pipeline-node"><strong>포인터 이동</strong><span>`Next = (Current + 1) % Size`</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>공백·포화 판별</strong><span>공백: `Front == Rear` / 포화: `(Rear + 1) % Size == Front`</span></div>
-</div>
+- 포인터 이동: `Next = (Current + 1) % Size`
+- 공백 판별: `Front == Rear` · 포화 판별: `(Rear + 1) % Size == Front`
 
 ### 3. 핵심 통제
 

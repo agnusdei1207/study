@@ -6,8 +6,9 @@ sidebar:
   badge:
     text: "A"
     variant: "tip"
+date: "2026-09-22T07:25:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -18,74 +19,15 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **메커니즘**: 시스템 손실·위험원 정의 $\rightarrow$ 계층적 제어 구조 모델링 $\rightarrow$ 4대 불안전 제어 행위(UCA) 도출 $\rightarrow$ 손실 인과 시나리오 분석 및 안전 제약조건(Safety Constraint) 소프트웨어 요구사항(SRS) 반영 순으로 진행된다.
 - **산출물**: 계층적 제어 구조 다이어그램, UCA 명세서, 손실 인과 시나리오 분석서, 안전 제약조건 요구사항 정의서.
 
-<div class="itpe-flow">
-  <div class="itpe-flow-steps">
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>1. 위험원 정의</strong></span>
-      <div class="itpe-step-detail">시스템 손실(Losses) 및 위험원(Hazards) 식별</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>2. 제어구조 모델링</strong></span>
-      <div class="itpe-step-detail">제어기 ↔ 제어 행위 ↔ 제어 대상 ↔ 센서 피드백 루프 구성</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>3. UCA 도출</strong></span>
-      <div class="itpe-step-detail">4대 가이드워드: 미제공, 잘못 제공, 타이밍 오류, 지속시간 오류</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node is-current">
-      <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-      <div class="itpe-step-detail"><strong>판정 질문</strong><span>모든 UCA에 대해 안전 제약조건이 도출되고 SRS에 1:1 매핑되었는가?</span></div>
-      <div class="itpe-flow-branches">
-        <div class="itpe-flow-branch"><strong>통과</strong><span>안전 아키텍처 반영 및 V&V 음의 테스트 케이스 전이</span></div>
-        <div class="itpe-flow-branch"><strong>미통과</strong><span>프로세스 모델 불일치 재분석 및 제약조건 보완</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 ---
 
 ## 핵심 메커니즘과 피드백 제어 아키텍처
 
-<div style="max-width: 520px; margin: 1.5rem auto;">
-  <!-- SVG: STPA 피드백 제어 루프 및 4대 UCA 메커니즘 -->
-  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-    <!-- 배경 -->
-    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-    
-    <!-- 상단: 제어기 (Controller / SW) -->
-    <rect x="25" y="15" width="470" height="52" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.3"/>
-    <text x="260" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">제어기 (Controller / 소프트웨어)</text>
-    <text x="260" y="48" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">내부 프로세스 모델 (현재 시스템 인지 상태) ↔ 제어 알고리즘 (의사결정 로직)</text>
-
-    <!-- 제어 명령 (하향 화살표) -->
-    <path d="M 160 67 L 160 90" stroke="var(--color-accent, #ef4444)" stroke-width="1.5"/>
-    <text x="160" y="82" text-anchor="end" font-size="7.5" font-weight="700" fill="var(--color-accent, #ef4444)">제어 명령 ➔</text>
-
-    <!-- 중앙: 4대 불안전 제어 행위 (UCA) 박스 -->
-    <g transform="translate(100, 90)">
-      <rect x="0" y="0" width="320" height="42" rx="4" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #ef4444)" stroke-width="1.2"/>
-      <text x="160" y="15" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-accent, #ef4444)">4대 불안전 제어 행위 (Unsafe Control Action, UCA)</text>
-      <text x="160" y="28" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">① 미제공 (Not Providing)  ② 잘못 제공 (Providing Causes Hazard)</text>
-      <text x="160" y="37" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">③ 타이밍/순서 오류 (Too Early/Late)  ④ 지속 시간 오류 (Too Soon/Long)</text>
-    </g>
-
-    <!-- 제어 대상 전달 화살표 -->
-    <path d="M 260 132 L 260 148" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5"/>
-
-    <!-- 하단: 제어 대상 (Controlled Process) -->
-    <rect x="25" y="150" width="470" height="52" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.3"/>
-    <text x="260" y="168" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-accent, #10b981)">제어 대상 (Controlled Process / 구동기 및 물리 환경)</text>
-    <text x="260" y="184" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">차량 구동계, 항공기 조종면, 로봇 암 등 물리적 프로세스 동작</text>
-
-    <!-- 센서 피드백 (상향 화살표) -->
-    <path d="M 440 150 L 440 67" stroke="var(--color-primary, #3b82f6)" stroke-width="1.5" stroke-dasharray="4 2"/>
-    <text x="448" y="112" font-size="7.5" font-weight="700" fill="var(--color-primary, #3b82f6)">센서 피드백 루프 (계측값 / 상태 신호)</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    C["제어기 (소프트웨어)"] -->|제어 명령| P["제어 대상 (물리 프로세스)"]
+    P -->|센서 피드백| C
+```
 
 ### (1) 전통적 안전 분석(FTA·FMEA) vs STPA 비교
 
@@ -135,14 +77,10 @@ lastModified: "2026-03-30T10:00:00+09:00"
 
 ### 학습자 통찰 메모 — 답안 밖
 - **[핵심 통찰]**: STPA의 본질은 "부품은 멀쩡한데 시스템이 참사를 일으키는 이유"를 밝혀내는 것이다. 보잉 737 MAX 사고가 가장 완벽한 예시이다. 받음각 센서의 오작동보다, 그 센서 값을 맹신하고 기수를 계속 찍어누른 MCAS 소프트웨어의 '불안전 제어 행위(UCA)'가 본질적 원인이었다.
-- **나라면**: 답안 1단락에 부품 고장 중심(FTA/FMEA)과 상호작용 제어 실패(STPA)의 패러다임 전환을 명확히 대조하고, 2단락에 제어기-프로세스 피드백 루프와 4대 UCA 가이드워드를 SVG처럼 제시하겠다. 4단락에서는 자율주행 SOTIF(ISO 21448)와 HIL 결함 주입 시험 파이프라인으로의 자동 연계를 제언하겠다.
+- **나라면**: 답안 1단락에 부품 고장 중심(FTA/FMEA)과 상호작용 제어 실패(STPA)의 패러다임 전환을 명확히 대조하고, 2단락에 제어기-프로세스 피드백 루프와 4대 UCA 가이드워드를 도해로 제시하겠다. 4단락에서는 자율주행 SOTIF(ISO 21448)와 HIL 결함 주입 시험 파이프라인으로의 자동 연계를 제언하겠다.
 
 ### 실전 답안용 기술사적 제언
 - **판정 기준**: 식별된 모든 UCA에 대한 안전 제약조건(Safety Constraint) 수립률 100% 및 SRS 안전 요구사항 1:1 매핑율 100% 준수.
 - **대응 방안**: 시스템 개념 설계 초기부터 STPA 4단계 프레임워크를 적용하고, 제어기 내 프로세스 모델 왜곡을 방어하는 다중 센서 퓨전 및 와치독 메커니즘 설계.
 - **검증 체계**: STPA 손실 시나리오를 HIL(Hardware-in-the-Loop) 시뮬레이터 결함 주입 시험(FIT) 케이스로 자동 변환하여 음의 테스트(Negative Test) 100% 통과 입증.
 - **기대 효과**: 복잡계 상호작용 결함의 사전 예방, 보잉 737 MAX형 소프트웨어 제어 참사 원천 차단 및 ISO 26262 / SOTIF 인증 획득.
-
-<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
-  <strong>실전 제언 파이프라인 요약</strong>: <code>계층적 제어구조 모델링</code> → <code>4대 UCA 도출</code> → <code>안전 제약조건(SRS) 반영</code> → <code>HIL 결함 주입 검증</code>
-</div>

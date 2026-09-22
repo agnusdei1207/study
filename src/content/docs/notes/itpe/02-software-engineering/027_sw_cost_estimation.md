@@ -2,44 +2,25 @@
 title: "SW 규모·비용 산정(FP·LOC·COCOMO)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 공공 SW·거버넌스를 거쳐 SW 규모·비용 산정으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>공공 SW·거버넌스</span>
-  <strong>SW 규모·비용 산정</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 공공 SW·거버넌스 → **SW 규모·비용 산정**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **SW 규모·비용 산정**은 소프트웨어 개발 프로젝트의 공수, 일정, 소요 예산을 합리적으로 예측하여 예산 왜곡과 사업 부실을 방지하는 정량적 측정 체계
 - 메커니즘: 규모 측정(**LOC, FP, 스토리 포인트**) → 노력(Man-Month) 추정(**COCOMO II, Putnam, 기능점수 단가법**) → 개발 원가 산출
-- 산출/효과: 합리적 발주 예산 확정 · 과업 변경 대가 산정 기준선(Baseline) 마련 · 개발 생산성 평가
-
-<div class="itpe-flow-map" role="img" aria-label="SW 규모 및 비용 산정 프로세스">
-  <div class="itpe-flow-node"><strong>소프트웨어 요구사항</strong><span>기능 및 비기능 요구명세</span></div>
-  <div class="itpe-flow-arrow">→ 규모 측정 모델 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>규모 산정 기법</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>LOC</strong><span>라인 수 기반 (언어 의존적)</span></div>
-      <div class="itpe-flow-branch"><strong>기능점수(FP)</strong><span><span class="itpe-keyword"><strong>사용자 관점 논리적 기능 수량화</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>COCOMO</strong><span><span class="itpe-keyword"><strong>규모 + 비용동인 기반 공수 계산</strong></span></span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 투입 공수 및 원가 도출 →</div>
-  <div class="itpe-flow-node"><strong>사업 대가 확정</strong><span>SW 사업 대가산정 가이드 준수</span></div>
-</div>
+- 효과: 합리적 발주 예산 확정 · 과업 변경 대가 산정 기준선(Baseline) 마련 · 개발 생산성 평가
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,22 +48,11 @@ extra:
 
 > 규모 측정 단위가 원시 코드 라인 수(LOC)에서 사용자 관점의 논리적 기능 단위(FP)로 진화하였다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="SW 비용 산정 모델 계층">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. LOC 기반 기법 (원시 코드 라인 수)</strong></span>
-    <span>낙관치, 비관치, 기대치를 가중 평균(PERT 산식)하여 규모 산정 (언어·숙련도 편차 극심)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 공학적 발전</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. COCOMO 모델 (수학적 공수 산정)</strong></span>
-    <span>MM = a × (KLOC)^b × EAF (Organic, Semi-detached, Embedded 프로젝트 유형별 가중치)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 사용자 기능 관점 전환</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 기능점수(FP) 기법 (국제 표준 ISO/IEC 20926)</strong></span>
-    <span>데이터 기능(ILF, EIF) + 트랜잭션 기능(EI, EO, EQ) (언어 독립적, 조기 산정 가능)</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    L["LOC 기반 기법 (PERT 가중 평균)"] -->|"공학적 발전"| C["COCOMO 모델 (MM = a × KLOC^b × EAF)"]
+    C -->|"사용자 기능 관점 전환"| F["기능점수(FP) (ISO/IEC 20926)"]
+```
 
 | 비교 항목 | LOC 기법 | COCOMO 기법 | 기능점수 (Function Point) |
 |---|---|---|---|
@@ -95,81 +65,21 @@ extra:
 
 > 공공 SW 사업의 대가산정 가이드는 기능점수를 단일 표준으로 채택하고 있다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="기능점수 5대 기능 구성도">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>데이터 기능 (Data Functions)</strong></span>
-    <span>1. 내부논리파일(ILF): 시스템 내부에서 유지·관리하는 논리적 데이터 그룹<br />2. 외부연계파일(EIF): 타 시스템에서 유지되며 현재 시스템이 참조만 하는 데이터</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↕ 상호 작용</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>트랜잭션 기능 (Transaction Functions)</strong></span>
-    <span>1. 외부입력(EI): 내부 데이터를 등록, 수정, 삭제하는 트랜잭션<br />2. 외부출력(EO): 수학적 계산이나 파생 데이터를 포함하여 외부로 출력<br />3. 외부조회(EQ): 단순 검색을 통해 데이터를 외부로 표출하는 트랜잭션</span>
-  </div>
-</div>
-
 ### 기능점수(FP) 5대 기능 분류 및 개발비 산정 메커니즘
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[기능점수(FP) 5대 기능 요소 분류 및 대가 산정 흐름]</text>
-
-    <!-- 1. Data Functions (Left) -->
-    <rect x="18" y="48" width="145" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
-    <text x="90" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">데이터 기능 (2종)</text>
-    <line x1="28" y1="80" x2="153" y2="80" stroke="var(--sl-color-border, #e2e8f0)" />
-    
-    <!-- ILF -->
-    <rect x="26" y="90" width="129" height="46" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
-    <text x="34" y="108" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">ILF (내부논리파일)</text>
-    <text x="34" y="125" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)">내부 유지·관리 데이터</text>
-
-    <!-- EIF -->
-    <rect x="26" y="142" width="129" height="46" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="34" y="160" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-text, #1e293b)">EIF (외부연계파일)</text>
-    <text x="34" y="177" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)">타 시스템 참조 데이터</text>
-
-    <!-- Arrow from Data to Transaction -->
-    <line x1="163" y1="123" x2="178" y2="123" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" />
-
-    <!-- 2. Transaction Functions (Center) -->
-    <rect x="178" y="48" width="165" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.2" />
-    <text x="260" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">트랜잭션 기능 (3종)</text>
-    <line x1="188" y1="80" x2="333" y2="80" stroke="var(--sl-color-border, #e2e8f0)" />
-
-    <!-- EI -->
-    <rect x="186" y="88" width="149" height="32" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="194" y="103" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #1e293b)">EI (외부입력): CUD</text>
-    <text x="194" y="115" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text-muted, #64748b)">데이터 등록/수정/삭제</text>
-
-    <!-- EO -->
-    <rect x="186" y="124" width="149" height="32" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
-    <text x="194" y="139" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-accent, #8b5cf6)">EO (외부출력): 계산/파생</text>
-    <text x="194" y="151" class="itpe-svg-label" font-size="9" fill="var(--sl-color-accent, #8b5cf6)">수학적 통계/리포트</text>
-
-    <!-- EQ -->
-    <rect x="186" y="160" width="149" height="32" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="194" y="175" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #1e293b)">EQ (외부조회): 단순검색</text>
-    <text x="194" y="187" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text-muted, #64748b)">단순 데이터 조회 출력</text>
-
-    <!-- Arrow to Formula Box -->
-    <line x1="343" y1="123" x2="358" y2="123" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" marker-end="url(#arrow)" />
-
-    <!-- 3. Cost Calculation Formula Box (Right) -->
-    <rect x="358" y="48" width="146" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
-    <text x="431" y="70" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">SW 개발비 산정</text>
-    <line x1="368" y1="80" x2="494" y2="80" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="431" y="100" class="itpe-svg-sub" font-size="10.5" font-weight="600" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">총 기능점수 (FP)</text>
-    <text x="431" y="118" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">×</text>
-    <text x="431" y="134" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">FP당 단가 (원)</text>
-    <text x="431" y="150" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">×</text>
-    <rect x="368" y="158" width="126" height="28" rx="4" fill="var(--sl-color-bg-accent, #ecfdf5)" />
-    <text x="431" y="176" class="itpe-svg-label" font-size="9.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">보정계수 (규모·연계·품질)</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    subgraph D["데이터 기능 (2종)"]
+        ILF["ILF (내부논리파일): 내부 유지·관리 데이터"]
+        EIF["EIF (외부연계파일): 타 시스템 참조"]
+    end
+    subgraph T["트랜잭션 기능 (3종)"]
+        EI["EI (외부입력): 등록·수정·삭제"]
+        EO["EO (외부출력): 계산·파생 데이터"]
+        EQ["EQ (외부조회): 단순 검색"]
+    end
+    D ---|"상호 작용"| T
+```
 
 ### 공공 SW 사업 기능점수 단가법 산식
 - **SW 개발비** = 기능점수(FP) × 해당 연도 기능점수당 단가 × 보정계수 + 직접경비 + 이윤
@@ -200,28 +110,6 @@ extra:
 - **검증 체계**: ILF/EIF 및 EI/EO/EQ 복잡도 매트릭스 100% 검증 및 법정 4대 품질 보정계수(규모, 연계, 성능, 다국어) 객관적 산출
 - **기대 효과**: 소프트웨어 개발 사업자 적정 대가 보장, 무상 과업 변경 관행 타파 및 공정 소프트웨어 생태계 기반 고품질 산출물 확보
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="SW 비용 산정 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>주먹구구식 예산 책정 · 과업 변경에 대한 대가 미지급 및 사업 부실</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>FP 기반 객관적 규모 측정 표준화 및 변경 FP 법정 대가 지급 의무화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>KOSA 가이드라인 검증 · ILF/EIF 및 EI/EO/EQ 복잡도 매트릭스 검증</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>공정 소프트웨어 거래 생태계 확립 · 적정 대가 보장을 통한 품질 혁신</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -231,11 +119,19 @@ extra:
 
 ### 2. 기능점수(FP) 5대 기능 구성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="FP 5대 구성 요약">
-  <div class="itpe-pipeline-node"><strong>데이터 기능</strong><span>ILF (내부논리파일) · EIF (외부연계파일)</span></div>
-  <div class="itpe-pipeline-arrow">↕</div>
-  <div class="itpe-pipeline-node"><strong>트랜잭션 기능</strong><span>EI (외부입력) · EO (외부출력) · EQ (외부조회)</span></div>
-</div>
+```mermaid
+flowchart TB
+    subgraph D["데이터 기능 (2종)"]
+        ILF["ILF (내부논리파일): 내부 유지·관리 데이터"]
+        EIF["EIF (외부연계파일): 타 시스템 참조"]
+    end
+    subgraph T["트랜잭션 기능 (3종)"]
+        EI["EI (외부입력): 등록·수정·삭제"]
+        EO["EO (외부출력): 계산·파생 데이터"]
+        EQ["EQ (외부조회): 단순 검색"]
+    end
+    D ---|"상호 작용"| T
+```
 
 ### 3. 핵심 통제
 

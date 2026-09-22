@@ -5,28 +5,22 @@ tags:
 sidebar:
   badge:
     text: "A"
-author: "Antigravity"
-date: "2026-09-21T16:36:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 UML 정적 모델과 객체지향 구조를 거쳐 클래스 다이어그램으로 이어지는 지식 위치"><span>소프트웨어 공학</span><span>UML · 정적 구조 모델</span><strong>클래스 다이어그램</strong></div>
+지식 위치: 소프트웨어 공학 → UML · 정적 구조 모델 → **클래스 다이어그램**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **UML(Unified Modeling Language) Class Diagram**은 분류자의 특성과 관계를 표현하는 정적 구조 모델
 - 메커니즘: 클래스의 이름·속성·오퍼레이션을 구획하고 연관·일반화·실체화·의존 관계를 연결함
 - 산출: 책임·다중성·탐색 방향·생명주기 소유권이 명시된 설계 모델
-
-<div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램의 클래스 내부와 외부 관계">
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>클래스 구획</strong></span><span><b>구성</b> 이름 · 속성 · 오퍼레이션<br /><b>표기</b> 가시성 · 타입 · 매개변수</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>관계 명세</strong></span><span><b>구성</b> 연관 · 일반화 · 실체화 · 의존<br /><b>표기</b> 다중성 · 역할 · 탐색 방향</span></div><div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><span class="itpe-keyword"><strong>소유권 판정</strong></span><span><b>구성</b> 집약 · 합성<br /><b>판정</b> 공유 여부 · 생명주기 종속</span></div>
-</div>
 
 <details><summary>핵심 용어</summary>
 
@@ -54,70 +48,6 @@ extra:
 
 > 구획에는 의사결정에 필요한 도메인 특성만 남기고 기계적으로 생성되는 접근자는 생략해야 모델의 책임 경계가 보임.
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <defs>
-    <filter id="cd-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- Left: 3-Compartment Class Box -->
-  <rect x="15" y="15" width="220" height="190" rx="6" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="2" filter="url(#cd-shadow)"/>
-  
-  <!-- Section 1: Name -->
-  <rect x="15" y="15" width="220" height="42" rx="6" fill="var(--sl-color-blue-subtle, #eff6ff)"/>
-  <text x="125" y="34" text-anchor="middle" font-size="10" fill="var(--sl-color-text-muted, #4b5563)">&lt;&lt;Entity&gt;&gt;</text>
-  <text x="125" y="49" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--sl-color-blue-high, #2563eb)">Order</text>
-  <line x1="15" y1="57" x2="235" y2="57" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
-
-  <!-- Section 2: Attributes -->
-  <text x="25" y="75" font-size="9.5" fill="var(--sl-color-text, #1f2937)">- orderId: String</text>
-  <text x="25" y="93" font-size="9.5" fill="var(--sl-color-text, #1f2937)">- orderDate: Date</text>
-  <text x="25" y="111" font-size="9.5" fill="var(--sl-color-text, #1f2937)"># totalAmount: Money</text>
-  <line x1="15" y1="122" x2="235" y2="122" stroke="var(--sl-color-blue-high, #2563eb)" stroke-width="1.5"/>
-
-  <!-- Section 3: Operations -->
-  <text x="25" y="142" font-size="9.5" fill="var(--sl-color-text, #1f2937)">+ calculateTotal(): Money</text>
-  <text x="25" y="160" font-size="9.5" fill="var(--sl-color-text, #1f2937)">+ cancel(): Boolean</text>
-  <text x="25" y="178" font-size="9.5" fill="var(--sl-color-text, #1f2937)">~ notifyUser(): void</text>
-  <text x="25" y="196" font-size="8.5" fill="var(--sl-color-text-muted, #4b5563)">가시성: +Public, -Private, #Protected, ~Package</text>
-
-  <!-- Right: 6 Key Relationships -->
-  <rect x="255" y="15" width="250" height="190" rx="8" fill="var(--sl-color-bg-card, #ffffff)" stroke="var(--sl-color-gray-4, #9ca3af)" stroke-width="1.5" filter="url(#cd-shadow)"/>
-  <text x="268" y="36" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1f2937)">UML 6대 관계 표기법</text>
-
-  <!-- Rel 1: Generalization -->
-  <line x1="270" y1="58" x2="350" y2="58" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <polygon points="350,53 362,58 350,63" fill="none" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <text x="372" y="61" font-size="9.5" fill="var(--sl-color-text, #1f2937)">일반화 (is-a 상속)</text>
-
-  <!-- Rel 2: Realization -->
-  <line x1="270" y1="84" x2="350" y2="84" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <polygon points="350,79 362,84 350,89" fill="none" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <text x="372" y="87" font-size="9.5" fill="var(--sl-color-text, #1f2937)">실체화 (인터페이스 구현)</text>
-
-  <!-- Rel 3: Composition -->
-  <polygon points="270,110 279,105 288,110 279,115" fill="var(--sl-color-text, #1f2937)" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <line x1="288" y1="110" x2="362" y2="110" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <text x="372" y="113" font-size="9.5" font-weight="700" fill="var(--sl-color-red-high, #dc2626)">합성 (생명주기 종속)</text>
-
-  <!-- Rel 4: Aggregation -->
-  <polygon points="270,136 279,131 288,136 279,141" fill="none" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <line x1="288" y1="136" x2="362" y2="136" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <text x="372" y="139" font-size="9.5" fill="var(--sl-color-text, #1f2937)">집약 (독립적 부분-전체)</text>
-
-  <!-- Rel 5: Association -->
-  <line x1="270" y1="162" x2="362" y2="162" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <text x="372" y="165" font-size="9.5" fill="var(--sl-color-text, #1f2937)">연관 (1 .. * 구조적 참조)</text>
-
-  <!-- Rel 6: Dependency -->
-  <line x1="270" y1="188" x2="354" y2="188" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <polyline points="346,183 356,188 346,193" fill="none" stroke="var(--sl-color-text, #1f2937)" stroke-width="1.5"/>
-  <text x="372" y="191" font-size="9.5" fill="var(--sl-color-text, #1f2937)">의존 (일시적 파라미터 사용)</text>
-</svg>
-</div>
-
 | 구획 | 표기 | 판정 |
 |---|---|---|
 | 이름 | 스테레오타입 · 클래스명 | 추상화 수준과 역할 식별 |
@@ -131,13 +61,10 @@ extra:
 
 > 관계는 선 모양을 외우는 데서 끝나지 않고 참조 지속성·계약 이행·상속·소유권 중 무엇을 뜻하는지 코드와 일치해야 함.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="시험장에서 재현하는 UML 클래스와 관계 기호">
-  <div class="itpe-pipeline-node"><strong>Order</strong><span><b>속성</b> -orderNo: String<br /><b>오퍼레이션</b> +total(): Money</span></div>
-  <div class="itpe-pipeline-arrow"><strong>◆ 합성</strong><br /><span>다중성 1 : 1..*</span><br />↓</div>
-  <div class="itpe-pipeline-node"><strong>OrderItem</strong><span><b>소유</b> Order에 배타적으로 귀속<br /><b>생명주기</b> Order와 함께 생성·삭제</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>관계 기호</strong><span><b>일반화</b> ──▷ · <b>실체화</b> - -▷<br /><b>집약</b> ◇── · <b>합성</b> ◆──</span></div>
-</div>
+```mermaid
+flowchart LR
+    O["Order"] -->|"◆ 합성 · 1 : 1..*"| OI["OrderItem"]
+```
 
 | 관계 | 표기 | 의미 | 검증 질문 |
 |---|---|---|---|
@@ -184,14 +111,15 @@ extra:
 - **검증 체계**: 모델-코드 간 정적 분석(ArchUnit) 자동 검증 및 다중성 불일치/고아 객체 참조 여부 PR 게이트 통제
 - **기대 효과**: 객체지향 무결성 확보, 런타임 NullPointerException 예방 및 시스템 리팩토링 유지보수성 50% 향상
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램 품질 개선 제언"><div class="itpe-pipeline-node"><strong>표기 중심 모델</strong><span><b>문제</b> 다중성·역할·소유권 해석 불일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>관계 의미 규칙</strong><span><b>대안</b> 참조 지속성·치환성·생명주기 질문 적용</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>모델-코드 대조</strong><span><b>판정</b> 관계·다중성·생성·삭제 규칙 일치</span></div><div class="itpe-pipeline-arrow">↓</div><div class="itpe-pipeline-node"><strong>정적 구조 정합성</strong><span><b>효과</b> 변경 영향과 무결성 경계 명료화</span></div></div>
-
 ## 1교시 10점 답안 발췌
 
 - 정의: **UML(Unified Modeling Language) Class Diagram**은 **클래스**의 특성과 **정적 관계**를 명세하는 구조 다이어그램
 - 목적: 책임·타입·관계 제약의 공통 이해 확보 → 설계와 구현의 구조 정합성 유지
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="클래스 다이어그램 1교시 핵심 그림"><div class="itpe-pipeline-node"><strong>Order</strong><span><b>속성</b> -orderNo: String<br /><b>오퍼레이션</b> +total(): Money</span></div><div class="itpe-pipeline-arrow"><strong>◆ 합성</strong><br /><span>다중성 1 : 1..*</span><br />↓</div><div class="itpe-pipeline-node"><strong>OrderItem</strong><span><b>소유</b> Order에 배타적으로 귀속<br /><b>생명주기</b> Order와 함께 생성·삭제</span></div></div>
+```mermaid
+flowchart LR
+    O["Order"] -->|"◆ 합성 · 1 : 1..*"| OI["OrderItem"]
+```
 
 | 관계 | 기호 | 의미 |
 |---|---|---|

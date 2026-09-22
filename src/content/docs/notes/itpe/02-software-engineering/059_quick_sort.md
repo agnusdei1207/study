@@ -1,48 +1,39 @@
 ---
 title: "퀵 정렬(Quick Sort)"
-author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
-  - "소프트웨어공학"
-  - "알고리즘"
-  - "퀵정렬"
-  - "분할정복"
-  - "정렬알고리즘"
+  - "notes-software-engineering"
 sidebar:
   badge:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
+  keyword_grade: "B"
 ---
 
-> **로드맵 경로**: 소프트웨어공학 > 자료구조 및 알고리즘 > 정렬 알고리즘 > 퀵 정렬(Quick Sort)
+## 지식 로드맵 내 현재 위치
 
----
-
-## 큰 그림과 30초 인출
-
-```text
-[퀵 정렬(찰스 호어 분할 정복)]
- ├── 본질: 피벗(Pivot) 기준 비균등 분할 후 제자리(In-place) 재귀 정렬 수행
- ├── 파티셔닝 전략: Hoare 파티션(양방향 포인터, 스왑 최소) vs Lomuto 파티션(단방향 포인터, 구현 단순)
- ├── 복잡도: 평균 O(N log N) [캐시 적중률 최고], 최악 O(N^2) [정렬/역순 시 편향 트리]
- └── 극복 기법: 삼수중앙값(Median-of-Three), 듀얼 피벗(Dual-Pivot), 인트로소트(Introsort 힙 전환)
-```
-
-- **30초 인출 구호**: "피벗 분할-정복-결합, 호어 vs 로무토, 평균 NlogN 최악 N제곱, 삼수중앙값과 인트로소트 전환!"
+지식 위치: 소프트웨어공학 → 자료구조 및 알고리즘 → 정렬 알고리즘 → **퀵 정렬(Quick Sort)**
 
 ---
 
-## 핵심 용어 (5개 내외)
+## 30초 인출
 
-| 핵심 용어 | 영문 표기 | 핵심 정의 및 특징 |
-|---|---|---|
-| **찰스 호어** | C. A. R. Hoare | 1959년 퀵 정렬 알고리즘 및 양방향 파티셔닝(Hoare Partition)을 창안한 컴퓨터 과학자 |
-| **피벗** | Pivot | 데이터를 대·소 두 그룹으로 분할하기 위한 기준 원소 |
-| **호어 파티션** | Hoare Partition | 양 끝 포인터가 중앙으로 이동하며 스왑을 수행하여 교환 횟수를 로무토의 1/3로 줄인 기법 |
-| **삼수중앙값** | Median-of-Three | 첫째, 중간, 마지막 원소 중 중간값을 피벗으로 택해 최악 편향 분할을 방지하는 전략 |
-| **인트로소트** | Introsort | 재귀 깊이가 일정 임계치($2 \log N$)를 넘어서면 힙 정렬로 전환하여 최악 $O(N \log N)$을 보장하는 하이브리드 기법 |
+- 본질: 피벗(Pivot) 기준 비균등 분할 후 제자리(In-place) 재귀 정렬을 수행하는 분할 정복 (찰스 호어)
+- 파티셔닝 전략: Hoare 파티션(양방향 포인터·스왑 최소) vs Lomuto 파티션(단방향 포인터·구현 단순)
+- 복잡도·극복: 평균 $O(N \log N)$(캐시 적중률 최고) · 최악 $O(N^2)$(정렬/역순 입력 시 편향 트리) → 삼수중앙값(Median-of-Three) · 듀얼 피벗(Dual-Pivot) · 인트로소트(Introsort·힙 전환)으로 극복
+
+---
+
+| 핵심 용어 | 핵심 정의 및 특징 |
+|---|---|
+| **찰스 호어 (C. A. R. Hoare)** | 1959년 퀵 정렬 알고리즘 및 양방향 파티셔닝(Hoare Partition)을 창안한 컴퓨터 과학자 |
+| **피벗 (Pivot)** | 데이터를 대·소 두 그룹으로 분할하기 위한 기준 원소 |
+| **호어 파티션 (Hoare Partition)** | 양 끝 포인터가 중앙으로 이동하며 스왑을 수행하여 교환 횟수를 로무토의 1/3로 줄인 기법 |
+| **삼수중앙값 (Median-of-Three)** | 첫째, 중간, 마지막 원소 중 중간값을 피벗으로 택해 최악 편향 분할을 방지하는 전략 |
+| **인트로소트 (Introsort)** | 재귀 깊이가 일정 임계치($2 \log N$)를 넘어서면 힙 정렬로 전환하여 최악 $O(N \log N)$을 보장하는 하이브리드 기법 |
 
 ---
 
@@ -69,107 +60,13 @@ extra:
 
 #### 1. 호어(Hoare) 파티셔닝 양방향 탐색 및 제자리 스왑 메커니즘
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
-  <!-- 전체 배경 -->
-  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
-  
-  <!-- Step 1: 초기 상태 & 피벗 설정 -->
-  <g transform="translate(15, 12)">
-    <rect x="0" y="0" width="490" height="52" rx="5" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
-    <text x="12" y="16" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #0f172a)">[Step 1] 피벗 설정 및 양방향 포인터 초기화 (배열 크기 N=7)</text>
-    
-    <!-- 배열 원소들 -->
-    <g transform="translate(12, 22)">
-      <rect x="0" y="0" width="34" height="22" rx="3" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-      <text x="17" y="15" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">50(P)</text>
-      
-      <rect x="40" y="0" width="34" height="22" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="57" y="15" font-size="10" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">70</text>
-      
-      <rect x="80" y="0" width="34" height="22" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="97" y="15" font-size="10" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">20</text>
-      
-      <rect x="120" y="0" width="34" height="22" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="137" y="15" font-size="10" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">90</text>
-      
-      <rect x="160" y="0" width="34" height="22" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="177" y="15" font-size="10" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">10</text>
-      
-      <rect x="200" y="0" width="34" height="22" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="217" y="15" font-size="10" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">60</text>
-      
-      <rect x="240" y="0" width="34" height="22" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="257" y="15" font-size="10" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">40</text>
-      
-      <!-- 포인터 주석 -->
-      <text x="290" y="15" font-size="8.5" fill="var(--sl-color-text-accent, #64748b)">Low: 50초과 탐색 ──▶  |  ◀── High: 50미만 탐색</text>
-    </g>
-  </g>
-
-  <!-- Step 2: 원소 교환 (스왑) -->
-  <g transform="translate(15, 74)">
-    <rect x="0" y="0" width="490" height="58" rx="5" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #cbd5e1)" stroke-width="1"/>
-    <text x="12" y="16" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #0f172a)">[Step 2] Low(70) ↔ High(40) 스왑 후 추가 진행 시 Low/High 교차 감지</text>
-    
-    <g transform="translate(12, 24)">
-      <rect x="0" y="0" width="34" height="22" rx="3" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-      <text x="17" y="15" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">50(P)</text>
-      
-      <!-- 스왑된 40 -->
-      <rect x="40" y="0" width="34" height="22" rx="3" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
-      <text x="57" y="15" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">40</text>
-      
-      <rect x="80" y="0" width="34" height="22" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="97" y="15" font-size="10" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">20</text>
-      
-      <!-- 스왑 진행 10 -->
-      <rect x="120" y="0" width="34" height="22" rx="3" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
-      <text x="137" y="15" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">10(H)</text>
-      
-      <!-- 교차된 Low -->
-      <rect x="160" y="0" width="34" height="22" rx="3" fill="var(--sl-color-danger-subtle, #fef2f2)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5"/>
-      <text x="177" y="15" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-danger, #ef4444)">90(L)</text>
-      
-      <rect x="200" y="0" width="34" height="22" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="217" y="15" font-size="10" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">60</text>
-      
-      <!-- 스왑된 70 -->
-      <rect x="240" y="0" width="34" height="22" rx="3" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
-      <text x="257" y="15" font-size="10" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">70</text>
-      
-      <text x="290" y="15" font-size="8.5" fill="var(--sl-color-danger, #dc2626)">포인터 교차(High &lt; Low) 발생 ──▶ 탐색 중단</text>
-    </g>
-  </g>
-
-  <!-- Step 3: 최종 피벗 교환 및 분할 완료 -->
-  <g transform="translate(15, 142)">
-    <rect x="0" y="0" width="490" height="66" rx="5" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-    <text x="12" y="16" font-size="10.5" font-weight="700" fill="var(--sl-color-primary, #1d4ed8)">[Step 3] High 위치(10)와 피벗(50) 교환 후 좌·우 독립 재귀 분할 수행</text>
-    
-    <g transform="translate(20, 24)">
-      <!-- 좌측 부분배열 -->
-      <rect x="0" y="0" width="105" height="28" rx="4" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="52" y="15" font-size="9.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">[ 10 , 40 , 20 ]</text>
-      <text x="52" y="25" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">좌측 재귀 정렬</text>
-
-      <!-- 피벗 확정 위치 -->
-      <rect x="135" y="0" width="60" height="28" rx="4" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2"/>
-      <text x="165" y="15" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">50</text>
-      <text x="165" y="25" font-size="7.5" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">정렬 위치 확정</text>
-
-      <!-- 우측 부분배열 -->
-      <rect x="225" y="0" width="105" height="28" rx="4" fill="var(--sl-color-bg-inline-code, #f8fafc)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="277" y="15" font-size="9.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">[ 90 , 60 , 70 ]</text>
-      <text x="277" y="25" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">우측 재귀 정렬</text>
-
-      <!-- 요약 태그 -->
-      <text x="350" y="14" font-size="8.5" font-weight="700" fill="var(--sl-color-text, #0f172a)">평균: O(N log N)</text>
-      <text x="350" y="26" font-size="8" fill="var(--sl-color-text-accent, #64748b)">캐시 지역성 최적화</text>
-    </g>
-  </g>
-</svg>
-</div>
+```mermaid
+flowchart TB
+    A["피벗 설정 · Low·High 초기화"] --> B["Low·High 양방향 탐색 후 스왑"]
+    B --> C["포인터 교차 감지"]
+    C --> D["High 위치와 피벗 교환 · 분할 확정"]
+    D --> E["좌·우 부분배열 재귀 정렬"]
+```
 
 #### 2. 호어 파티션과 로무토 파티션 비교
 
@@ -213,17 +110,9 @@ extra:
 ### Ⅴ. 기술사적 제언: 현대 표준 라이브러리의 하이브리드 정렬 거버넌스
 
 ### 학습자 통찰 메모 — 답안 밖
-```text
-[핵심 통찰]
-퀵 정렬이 빅오 수식이 같은 병합/힙 정렬보다 실제 2~3배 이상 빠른 본질적 이유는 '하드웨어 캐시 라인 적중률'이다.
-연속된 메모리 공간을 양방향으로 스위핑하기 때문에 CPU 프리페처(Prefetcher)와 L1/L2 캐시의 성능을 극한으로 뽑아낸다.
-현대 프로그래밍 언어의 런타임(Java, C++)은 순수 퀵소트를 쓰지 않고,
-크기 32 이하는 삽입 정렬, 악의적 편향 시 힙 정렬 폴백(인트로소트), 대규모 시 듀얼 피벗 퀵소트를 결합한다.
 
-[나라면]
-실전 답안에서 알고리즘 복잡도 수식에 그치지 않고, L1/L2 캐시 지역성과 분기 예측(Branch Prediction) 관점을 제시하겠다.
-또한 C++ std::sort의 인트로소트(Introsort) 아키텍처와 Java의 Dual-Pivot 전략을 3단락 차별화 포인트로 삼겠다.
-```
+- [핵심 통찰]: 퀵 정렬이 빅오 수식이 같은 병합/힙 정렬보다 실제 2~3배 이상 빠른 본질적 이유는 '하드웨어 캐시 라인 적중률'임. 연속된 메모리 공간을 양방향으로 스위핑하기 때문에 CPU 프리페처(Prefetcher)와 L1/L2 캐시의 성능을 극한으로 뽑아냄. 현대 프로그래밍 언어의 런타임(Java, C++)은 순수 퀵소트를 쓰지 않고, 크기 32 이하는 삽입 정렬, 악의적 편향 시 힙 정렬 폴백(인트로소트), 대규모 시 듀얼 피벗 퀵소트를 결합함.
+- 나라면: 실전 답안에서 알고리즘 복잡도 수식에 그치지 않고, L1/L2 캐시 지역성과 분기 예측(Branch Prediction) 관점을 제시하겠음. 또한 C++ std::sort의 인트로소트(Introsort) 아키텍처와 Java의 Dual-Pivot 전략을 3단락 차별화 포인트로 삼겠음.
 
 ### 실전 답안용 기술사적 제언
 - **판정 기준**: 입력 데이터의 정렬 여부 추정치 및 재귀 호출 깊이가 임계치($2 \log_2 N$)를 초과하는지 여부를 기준으로 편향 악화(Degeneration) 위험을 판정함.
@@ -231,10 +120,11 @@ extra:
 - **검증 체계**: 단위 테스트 파이프라인에서 최악 패턴(이미 정렬, 역순, 모든 원소 동일) 데이터셋을 인입시켜 최대 실행 시간 및 콜스택 메모리 한계 초과 여부를 지속 모니터링함.
 - **기대 효과**: 최악의 악의적 입력 주입 시에도 $O(N \log N)$의 상한 성능을 100% 보장하여 DoS 취약점을 원천 방어하고, 일반적인 입력 환경에서는 최고 수준의 캐시 적중률을 발휘함.
 
-```text
-[입력 데이터 인입] ──(N ≤ 32)──> [삽입 정렬 (캐시 최적화)]
-         │
-    (N > 32) ──> [듀얼 피벗 퀵 정렬] ──(깊이 > 2 log N)──> [힙 정렬 폴백 (O(N log N) 보장)]
+```mermaid
+flowchart TB
+    A["입력 데이터 인입"] -->|"N ≤ 32"| B["삽입 정렬 · 캐시 최적화"]
+    A -->|"N > 32"| C["듀얼 피벗 퀵 정렬"]
+    C -->|"깊이 > 2 log N"| D["힙 정렬 폴백 · O(N log N) 보장"]
 ```
 
 ---

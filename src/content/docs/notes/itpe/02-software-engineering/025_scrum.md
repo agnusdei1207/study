@@ -2,44 +2,25 @@
 title: "스크럼(Scrum)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 개발 방법론을 거쳐 스크럼으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>개발 방법론</span>
-  <strong>스크럼(Scrum)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 개발 방법론 → **스크럼(Scrum)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **스크럼(Scrum)**은 불확실성이 높은 프로젝트 환경에서 1~4주의 짧은 반복 주기인 **스프린트(Sprint)**를 통해 동작 가능한 소프트웨어를 점진적으로 출시하는 경험주의 기반 애자일 프레임워크
 - 메커니즘: **3대 역할(PO, SM, Dev)** + **5대 이벤트(Sprint, Planning, Daily, Review, Retro)** + **3대 산출물(PB, SB, Increment)**
-- 산출/효과: 고객 피드백 조기 수용 · 개발 리스크 분산 · 비즈니스 가치 전달 속도(Time-to-Market) 극대화
-
-<div class="itpe-flow-map" role="img" aria-label="스크럼 프레임워크 동작 프로세스">
-  <div class="itpe-flow-node"><strong>제품 백로그</strong><span>우선순위화된 요구사항 (PO 소유)</span></div>
-  <div class="itpe-flow-arrow">→ 스프린트 계획 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>스프린트 (1~4주)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>일일 스크럼</strong><span>15분 기립 미팅 · 장애 제거</span></div>
-      <div class="itpe-flow-branch"><strong>개발 활동</strong><span><span class="itpe-keyword"><strong>스프린트 백로그 구현</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>투명성·점검·적응</strong><span>경험주의 3대 기둥 실천</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 리뷰 &amp; 회고 →</div>
-  <div class="itpe-flow-node"><strong>잠재적 출시 가능 제품 증분</strong><span>완료의 정의(DoD) 충족 산출물</span></div>
-</div>
+- 효과: 고객 피드백 조기 수용 · 개발 리스크 분산 · 비즈니스 가치 전달 속도(Time-to-Market) 극대화
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,88 +48,29 @@ extra:
 
 > 스크럼은 3가지 역할(Role), 5가지 이벤트(Event), 3가지 산출물(Artifact)의 유기적 결합으로 완성된다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 3-5-3 체계">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3대 역할 (Accountabilities)</strong></span>
-    <span>1. Product Owner (가치 극대화, 백로그 소유)<br />2. Scrum Master (프로세스 촉진, 장애 제거, 서번트 리더십)<br />3. Developers (동작 가능한 제품 증분 개발 전문가)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 산출물 생성 및 관리</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3대 산출물 (Artifacts)</strong></span>
-    <span>1. Product Backlog (제품 목표 약속)<br />2. Sprint Backlog (스프린트 목표 약속)<br />3. Increment (완료의 정의 DoD 약속)</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 이벤트 수행 주기</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>5대 이벤트 (Events)</strong></span>
-    <span>1. The Sprint (모든 이벤트의 컨테이너)<br />2. Sprint Planning (스프린트 계획)<br />3. Daily Scrum (일일 15분 점검)<br />4. Sprint Review (이해관계자 검토/피드백)<br />5. Sprint Retrospective (팀 프로세스 개선 회고)</span>
-  </div>
-</div>
+| 체계 | 구성요소 | 핵심 내용 |
+|---|---|---|
+| **3대 역할** | Product Owner (PO) | 제품 가치 극대화 및 제품 백로그 우선순위 결정 |
+| 3대 역할 | Scrum Master (SM) | 프로세스 촉진 및 장애(Impediment) 제거, 서번트 리더십 |
+| 3대 역할 | Developers | 동작 가능한 제품 증분 개발 전문가 |
+| **3대 산출물** | Product Backlog | 제품 목표(Product Goal) 약속 |
+| 3대 산출물 | Sprint Backlog | 스프린트 목표(Sprint Goal) 약속 |
+| 3대 산출물 | Increment | 완료의 정의(DoD) 약속 |
+| **5대 이벤트** | The Sprint | 모든 이벤트의 컨테이너 (1~4주 타임박스) |
+| 5대 이벤트 | Sprint Planning | 스프린트 계획 수립 |
+| 5대 이벤트 | Daily Scrum | 일일 15분 점검 |
+| 5대 이벤트 | Sprint Review | 이해관계자 검토 및 피드백 |
+| 5대 이벤트 | Sprint Retrospective | 팀 프로세스 개선 회고 |
 
 ### 스크럼(Scrum) 생명주기 및 3-5-3 프로세스 루프
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[Scrum 3대 산출물 및 스프린트(1~4주) 실행 사이클]</text>
-
-    <!-- 1. Product Backlog -->
-    <rect x="18" y="48" width="88" height="150" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="62" y="70" class="itpe-svg-title" font-size="11.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">제품 백로그</text>
-    <text x="62" y="86" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Product Backlog</text>
-    <line x1="26" y1="96" x2="98" y2="96" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="62" y="115" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">PO가 우선순위화</text>
-    <text x="62" y="132" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">요구사항 목록</text>
-    <rect x="25" y="150" width="74" height="22" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="62" y="165" class="itpe-svg-label" font-size="9" fill="var(--sl-color-text, #334155)" text-anchor="middle">제품 목표</text>
-
-    <!-- Arrow to Sprint Planning -->
-    <line x1="106" y1="120" x2="122" y2="120" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" marker-end="url(#arrow)" />
-
-    <!-- 2. Sprint Planning -->
-    <rect x="122" y="75" width="78" height="90" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.2" />
-    <text x="161" y="98" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">스프린트 계획</text>
-    <text x="161" y="115" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Planning</text>
-    <line x1="130" y1="125" x2="192" y2="125" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="161" y="142" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text, #334155)" text-anchor="middle">목표 합의</text>
-    <text x="161" y="155" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text, #334155)" text-anchor="middle">태스크 분해</text>
-
-    <!-- Arrow to Sprint Loop -->
-    <line x1="200" y1="120" x2="216" y2="120" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" marker-end="url(#arrow)" />
-
-    <!-- 3. Sprint Execution Loop (Middle) -->
-    <rect x="216" y="48" width="165" height="150" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" />
-    <text x="298" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">스프린트 (1~4주 Timebox)</text>
-    
-    <!-- Daily Scrum mini loop -->
-    <circle cx="298" cy="115" r="32" fill="none" stroke="var(--sl-color-accent, #8b5cf6)" stroke-width="1.5" stroke-dasharray="5 3" />
-    <text x="298" y="112" class="itpe-svg-title" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)" text-anchor="middle">일일 스크럼</text>
-    <text x="298" y="126" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">15분 (Daily)</text>
-    
-    <!-- Sprint Backlog tag -->
-    <rect x="226" y="162" width="145" height="26" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
-    <text x="298" y="179" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">스프린트 백로그 (Goal 보증)</text>
-
-    <!-- Arrow to Review/Retro -->
-    <line x1="381" y1="120" x2="397" y2="120" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="1.5" marker-end="url(#arrow)" />
-
-    <!-- 4. Review & Retro -->
-    <rect x="397" y="52" width="105" height="68" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="449" y="70" class="itpe-svg-title" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">스프린트 리뷰</text>
-    <text x="449" y="85" class="itpe-svg-sub" font-size="9" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">데모 및 고객 피드백</text>
-    <line x1="405" y1="92" x2="493" y2="92" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="449" y="107" class="itpe-svg-title" font-size="10" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">스프린트 회고</text>
-
-    <!-- 5. Potentially Releasable Increment -->
-    <rect x="397" y="130" width="105" height="68" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="1.5" />
-    <text x="449" y="152" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">제품 증분</text>
-    <text x="449" y="168" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">Increment (출시가능)</text>
-    <rect x="407" y="174" width="85" height="18" rx="3" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="449" y="186" class="itpe-svg-label" font-size="9" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">DoD(완료정의) 통과</text>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    PB["제품 백로그 (PO 우선순위화)"] -->|"스프린트 계획"| S["스프린트 (1~4주 타임박스)"]
+    S -->|"매일"| DS["일일 스크럼 (15분)"]
+    S -->|"스프린트 종료"| RR["스프린트 리뷰·회고"]
+    RR --> INC["제품 증분 (DoD 통과)"]
+```
 
 | 산출물 | 내포된 약속 (Commitment) | 핵심 통제 내용 |
 |---|---|---|
@@ -174,17 +96,10 @@ extra:
 
 ### 1. 백로그 정제와 완료의 정의(DoD)
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="백로그 정제와 완료의 정의">
-  <div class="itpe-pipeline-node">
-    <strong>제품 백로그 정제</strong>
-    <span>제품 백로그 항목을 더 작고 명확하게 분해 · 설명·순서·크기 지속 보완</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 스프린트 개발 수행</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>DoD (Definition of Done: 완료의 정의)</strong></span>
-    <span>조직이 제품 증분에 요구하는 품질 상태를 공식 정의 · 충족한 작업만 증분에 포함</span>
-  </div>
-</div>
+```mermaid
+flowchart TB
+    RB["제품 백로그 정제 (더 작고 명확하게 분해)"] -->|"스프린트 개발 수행"| DOD["DoD(완료의 정의) 충족 작업만 증분에 포함"]
+```
 
 ### 2. 스크럼 프로젝트 실무 위험 및 대응 통제
 
@@ -210,28 +125,6 @@ extra:
 - **검증 체계**: 스프린트 번다운 차트(Burn-down Chart) 및 속도(Velocity) 안정성 모니터링, 매 스프린트 동작하는 증분 검증
 - **기대 효과**: 형식적 좀비 스크럼 탈피, 고객 피드백 반영 리드타임 50% 단축 및 지속가능한 고품질 소프트웨어 적시 출시 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 조직 성숙도 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>형식적 스크럼 미팅 · DoD 부재로 인한 품질 결함 누적</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>엄격한 DoD 확립 및 서번트 리더십 기반 장애 제거 체계화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>스프린트 목표 달성률 90% 이상 및 증분 릴리스 가능성 검증</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>팀 자율성 극대화 · 지속가능한 고품질 증분 전달 체계 완성</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -241,13 +134,11 @@ extra:
 
 ### 2. 스크럼 3-5-3 체계 요약
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="스크럼 3-5-3 요약">
-  <div class="itpe-pipeline-node"><strong>3대 역할</strong><span>PO (가치 결정) · SM (장애 제거) · Developers (개발)</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>3대 산출물</strong><span>제품 백로그 · 스프린트 백로그 · 제품 증분(DoD)</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>5대 이벤트</strong><span>스프린트, 계획, 일일 스크럼, 리뷰, 회고</span></div>
-</div>
+```mermaid
+flowchart TB
+    R["3대 역할 (PO·SM·Developers)"] --> A["3대 산출물 (PB·SB·Increment)"]
+    A --> E["5대 이벤트 (Sprint·Planning·Daily·Review·Retro)"]
+```
 
 ### 3. 핵심 통제
 

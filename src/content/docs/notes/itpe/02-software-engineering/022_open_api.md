@@ -2,44 +2,25 @@
 title: "Open API(API 일반)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 구현·객체지향·API를 거쳐 Open API로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>구현·객체지향·API</span>
-  <strong>Open API(API 일반)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 구현·객체지향·API → **Open API(API 일반)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **Open API**는 기업·기관이 보유한 데이터와 비즈니스 기능을 외부 개발자 및 파트너가 자유롭게 활용할 수 있도록 표준 규격으로 공개한 프로그래밍 인터페이스
 - 메커니즘: 표준화된 프로토콜(REST/JSON) + 보안 인가(**OAuth 2.0/API Key**) + 제어/모니터링(**API Gateway**)
-- 산출/효과: 디지털 생태계 확장 · 마이데이터 활성화 · 서비스 융합 혁신 · 신규 수익 모델(Monetization) 창출
-
-<div class="itpe-flow-map" role="img" aria-label="Open API 생태계 연계 흐름도">
-  <div class="itpe-flow-node"><strong>API 제공자</strong><span>핵심 데이터 및 서비스</span></div>
-  <div class="itpe-flow-arrow">→ API Gateway 통제 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>Open API 플랫폼</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>보안/인증</strong><span><span class="itpe-keyword"><strong>OAuth 2.0 · API Key</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>명세 표준</strong><span><span class="itpe-keyword"><strong>OpenAPI Spec (OAS)</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>트래픽 제어</strong><span>Throttling · Rate Limiting</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 외부 개발자 활용 →</div>
-  <div class="itpe-flow-node"><strong>융합 서비스 생태계</strong><span>핀테크 · 마이데이터 앱</span></div>
-</div>
+- 효과: 디지털 생태계 확장 · 마이데이터 활성화 · 서비스 융합 혁신 · 신규 수익 모델(Monetization) 창출
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,85 +48,13 @@ extra:
 
 > Open API는 개발자 포털, 게이트웨이, 코어 백엔드의 3계층으로 유기적으로 연결된다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 3계층 아키텍처">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 개발자 포털 (Developer Portal)</strong></span>
-    <span>API 카탈로그 · OAS 기반 인터랙티브 문서(Swagger) · 샌드박스 테스트</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ API 호출</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. API 게이트웨이 (API Gateway)</strong></span>
-    <span>보안 인증(OAuth 2.0/mTLS) · 트래픽 제어(Rate Limit) · 라우팅 및 변환</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓ 백엔드 전달</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 백엔드 서비스 (Core Services)</strong></span>
-    <span>비즈니스 마이크로서비스(MSA) · 레거시 시스템 래핑 · 데이터베이스</span>
-  </div>
-</div>
-
 ### Open API 3계층 아키텍처 및 API Gateway 보안·제어 흐름
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[Open API 생태계 3계층 구조 및 API Gateway 통제 메커니즘]</text>
-
-    <!-- Tier 1: External Consumer & Portal (Left) -->
-    <rect x="18" y="45" width="135" height="155" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="85" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">외부 생태계</text>
-    <text x="85" y="85" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">3rd-party Developers</text>
-    <line x1="28" y1="95" x2="143" y2="95" stroke="var(--sl-color-border, #e2e8f0)" />
-    
-    <!-- Developer Portal Box -->
-    <rect x="26" y="105" width="119" height="42" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" />
-    <text x="85" y="122" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">개발자 포털</text>
-    <text x="85" y="137" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">OAS 문서 · 샌드박스</text>
-
-    <rect x="26" y="155" width="119" height="34" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="85" y="176" class="itpe-svg-label" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">API Key / App 등록</text>
-
-    <!-- Arrow from Tier 1 to Tier 2 -->
-    <line x1="153" y1="125" x2="185" y2="125" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" marker-end="url(#arrow)" />
-
-    <!-- Tier 2: API Gateway (Middle) -->
-    <rect x="185" y="45" width="155" height="155" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
-    <text x="262" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">API Gateway (관문)</text>
-    <text x="262" y="85" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">통합 인증·보안·제어</text>
-    <line x1="195" y1="95" x2="330" y2="95" stroke="var(--sl-color-border, #e2e8f0)" />
-
-    <!-- Features inside Gateway -->
-    <rect x="195" y="103" width="135" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="262" y="120" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">OAuth 2.0 / JWT 검증</text>
-
-    <rect x="195" y="134" width="135" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="262" y="151" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">Rate Limit (트래픽 차단)</text>
-
-    <rect x="195" y="165" width="135" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="262" y="182" class="itpe-svg-sub" font-size="10" font-weight="600" fill="var(--sl-color-text, #334155)" text-anchor="middle">WAF &amp; 동적 라우팅</text>
-
-    <!-- Arrow from Tier 2 to Tier 3 -->
-    <line x1="340" y1="125" x2="370" y2="125" stroke="var(--sl-color-success, #10b981)" stroke-width="2" marker-end="url(#arrow)" />
-
-    <!-- Tier 3: Core Backend (Right) -->
-    <rect x="370" y="45" width="132" height="155" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="436" y="68" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">코어 백엔드</text>
-    <text x="436" y="85" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Backend Core MSA</text>
-    <line x1="380" y1="95" x2="492" y2="95" stroke="var(--sl-color-border, #e2e8f0)" />
-
-    <rect x="380" y="105" width="112" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="436" y="122" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">사용자 마이크로서비스</text>
-
-    <rect x="380" y="136" width="112" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="436" y="153" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">결제/정산 서비스</text>
-
-    <rect x="380" y="167" width="112" height="26" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" />
-    <text x="436" y="184" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-text, #334155)" text-anchor="middle">마이데이터 DB</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    P["개발자 포털 (OAS 문서·샌드박스)"] -->|"API 호출"| G["API Gateway (OAuth 2.0·Rate Limit)"]
+    G -->|"백엔드 전달"| B["백엔드 서비스 (MSA·DB)"]
+```
 
 | 핵심 구성요소 | 주요 기술 및 메커니즘 | 실무 역할 |
 |---|---|---|
@@ -191,28 +100,6 @@ extra:
 - **검증 체계**: OWASP API Security Top 10(BOLA 등) 취약점 전수 진단 및 모니터링 기반 SLA 99.95% 가용성 검증
 - **기대 효과**: 외부 제3자 연계 리드타임 70% 단축, 안전한 마이데이터 생태계 활성화 및 데이터 자산 기반 신규 수익 모델(Monetization) 창출
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 거버넌스 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>파편화된 개별 API 노출 · 보안 통제 부재 및 개발자 경험 저하</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>API Gateway 중앙 통제 및 개발자 포털·샌드박스 표준화</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>OAuth 2.0/mTLS 보안 검증 및 Rate Limiting 트래픽 방어</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>안전한 데이터 개방 달성 · 융합 서비스 창출 및 생태계 확장</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -222,13 +109,11 @@ extra:
 
 ### 2. 핵심 아키텍처 3요소
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="Open API 핵심 3요소">
-  <div class="itpe-pipeline-node"><strong>개발자 포털</strong><span>OAS 명세 · 문서 · 샌드박스</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>API Gateway</strong><span>OAuth 2.0 · Rate Limit · 라우팅</span></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>백엔드 서비스</strong><span>코어 비즈니스 로직 수행</span></div>
-</div>
+```mermaid
+flowchart LR
+    P["개발자 포털 (OAS 문서·샌드박스)"] -->|"API 호출"| G["API Gateway (OAuth 2.0·Rate Limit)"]
+    G -->|"백엔드 전달"| B["백엔드 서비스 (MSA·DB)"]
+```
 
 ### 3. 핵심 통제
 

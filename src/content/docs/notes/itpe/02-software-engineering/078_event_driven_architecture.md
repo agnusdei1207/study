@@ -1,7 +1,7 @@
 ---
 title: "EDA(이벤트 기반 아키텍처)와 2대 토폴로지(브로커·중재자)"
 author: "Antigravity"
-date: "2026-09-20T21:40:00+09:00"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "소프트웨어공학"
   - "EDA"
@@ -15,36 +15,30 @@ sidebar:
     text: "B"
     variant: "note"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
+  keyword_grade: "B"
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 분산 시스템 및 아키텍처 > 비동기 메시징 > EDA와 2대 토폴로지(브로커·중재자)
 
 ---
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-```text
-[EDA(Event-Driven Architecture)와 2대 토폴로지]
- ├── 본질: 상태 변화(이벤트)를 비동기로 발행·구독하여 시공간적 결합도 해소 및 확장성 극대화
- ├── 중재자 토폴로지: 오케스트레이션(중앙 집중) · 시작큐/중재자/액션큐/프로세서 · 복합 워크플로우/보상 제어
- ├── 브로커 토폴로지: 코레오그래피(탈중앙 자율) · 이벤트 브로커(Kafka)/프로세서 연쇄반응 · 고성능/대용량
- └── 실무 거버넌스: 코어 주문·결제는 중재자(Saga), 후속 알림·통계는 브로커(Kafka) + Transactional Outbox
-```
+- 본질: **EDA(Event-Driven Architecture)**는 상태 변화(이벤트)를 비동기로 발행·구독하여 서비스 간 시공간적 결합도를 끊고 확장성을 극대화하는 분산 아키텍처
+- 메커니즘: 중앙 중재자가 워크플로우와 보상 트랜잭션을 지휘하는 중재자 토폴로지(오케스트레이션) vs 브로커를 통해 자율 연쇄 반응하는 브로커 토폴로지(코레오그래피)
+- 판정 기준: 코어 주문·결제 등 보상이 필요한 다단계 트랜잭션은 중재자(Saga), 알림·통계 등 부가 처리는 브로커(Kafka) + 트랜잭셔널 아웃박스
 
-- **30초 인출 구호**: "상태 변화 비동기 전파, 중재자(오케스트레이션) vs 브로커(코레오그래피), 아웃박스 패턴과 하이브리드 설계!"
+<details>
+<summary>핵심 용어</summary>
 
----
+- **이벤트 기반 아키텍처(EDA: Event-Driven Architecture)**: 이벤트의 생성, 감지, 소비를 중심으로 컴포넌트 간 비동기 결합을 실현하는 분산 아키텍처
+- **중재자 토폴로지(Mediator Topology)**: 중앙의 이벤트 중재자(Mediator)가 다단계 비즈니스 절차와 보상 트랜잭션을 지휘하는 오케스트레이션 모델
+- **브로커 토폴로지(Broker Topology)**: 중앙 제어자 없이 메시지 브로커를 통해 컴포넌트들이 이벤트를 자율적으로 릴레이 소비하는 코레오그래피 모델
+- **사가 패턴(Saga Pattern)**: 분산 환경에서 2PC 대신 로컬 트랜잭션과 보상 트랜잭션(Compensating Transaction)을 연쇄 실행하는 패턴
+- **트랜잭셔널 아웃박스(Transactional Outbox)**: DB 상태 변경과 이벤트 발행을 단일 로컬 트랜잭션으로 묶어 CDC(Debezium)로 발행하는 원자성 보장 기법
 
-## 핵심 용어 (5개 내외)
-
-| 핵심 용어 | 영문 표기 | 핵심 정의 및 특징 |
-|---|---|---|
-| **이벤트 기반 아키텍처** | EDA (Event-Driven Architecture) | 이벤트의 생성, 감지, 소비를 중심으로 컴포넌트 간 비동기 결합을 실현하는 분산 아키텍처 |
-| **중재자 토폴로지** | Mediator Topology | 중앙의 이벤트 중재자(Mediator)가 다단계 비즈니스 절차와 보상 트랜잭션을 지휘하는 오케스트레이션 모델 |
-| **브로커 토폴로지** | Broker Topology | 중앙 제어자 없이 메시지 브로커를 통해 컴포넌트들이 이벤트를 자율적으로 릴레이 소비하는 코레오그래피 모델 |
-| **사가 패턴** | Saga Pattern | 분산 환경에서 2PC 대신 로컬 트랜잭션과 보상 트랜잭션(Compensating Transaction)을 연쇄 실행하는 패턴 |
-| **트랜잭셔널 아웃박스** | Transactional Outbox | DB 상태 변경과 이벤트 발행을 단일 로컬 트랜잭션으로 묶어 CDC(Debezium)로 발행하는 원자성 보장 기법 |
+</details>
 
 ---
 
@@ -70,93 +64,28 @@ extra:
 
 #### 1. 2대 토폴로지(중재자 vs 브로커) 구조 비교도
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" style="max-width: 520px;">
-  <!-- 전체 배경 -->
-  <rect x="0" y="0" width="520" height="220" fill="var(--sl-color-bg-page, #ffffff)" rx="8"/>
-  
-  <!-- 좌측: 중재자 토폴로지 (오케스트레이션) -->
-  <g transform="translate(15, 12)">
-    <rect x="0" y="0" width="240" height="195" rx="6" fill="var(--sl-color-primary-subtle, #eff6ff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-    <text x="120" y="20" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">1. 중재자 (오케스트레이션)</text>
-    <text x="120" y="34" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">중앙 집중 워크플로우 통제 / 보상 트랜잭션</text>
-
-    <!-- 시작 큐 -->
-    <rect x="15" y="44" width="210" height="26" rx="4" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-    <text x="120" y="61" font-size="8.5" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">시작 큐 (Initiator Queue)</text>
-
-    <!-- 중앙 중재자 -->
-    <rect x="15" y="80" width="210" height="34" rx="4" fill="var(--sl-color-primary, #3b82f6)"/>
-    <text x="120" y="101" font-size="9.5" font-weight="700" text-anchor="middle" fill="#ffffff">이벤트 중재자 (Mediator)</text>
-
-    <!-- 액션 큐들 -->
-    <g transform="translate(15, 124)">
-      <rect x="0" y="0" width="66" height="32" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="33" y="15" font-size="7.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">결제 큐</text>
-      <text x="33" y="26" font-size="7" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Payment</text>
-
-      <rect x="72" y="0" width="66" height="32" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="105" y="15" font-size="7.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">재고 큐</text>
-      <text x="105" y="26" font-size="7" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Stock</text>
-
-      <rect x="144" y="0" width="66" height="32" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="177" y="15" font-size="7.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">배송 큐</text>
-      <text x="177" y="26" font-size="7" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">Delivery</text>
-    </g>
-
-    <!-- 화살표 -->
-    <path d="M 120 70 L 120 80" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1.5"/>
-    <path d="M 48 114 L 48 124" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-    <path d="M 120 114 L 120 124" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-    <path d="M 192 114 L 192 124" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5"/>
-
-    <text x="120" y="178" font-size="8" font-weight="700" text-anchor="middle" fill="var(--sl-color-primary, #1d4ed8)">특징: 높은 트랜잭션 가시성 및 복구</text>
-  </g>
-
-  <!-- 우측: 브로커 토폴로지 (코레오그래피) -->
-  <g transform="translate(265, 12)">
-    <rect x="0" y="0" width="240" height="195" rx="6" fill="var(--sl-color-success-subtle, #f0fdf4)" stroke="var(--sl-color-success, #22c55e)" stroke-width="1.5"/>
-    <text x="120" y="20" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">2. 브로커 (코레오그래피)</text>
-    <text x="120" y="34" font-size="7.5" text-anchor="middle" fill="var(--sl-color-text-accent, #64748b)">탈중앙 자율 연쇄 반응 / 초고속 수평 확장</text>
-
-    <!-- 중앙 브로커 (Kafka) -->
-    <rect x="15" y="44" width="210" height="42" rx="5" fill="var(--sl-color-success, #22c55e)"/>
-    <text x="120" y="64" font-size="10" font-weight="700" text-anchor="middle" fill="#ffffff">이벤트 브로커 (Kafka Topic)</text>
-    <text x="120" y="78" font-size="7.5" text-anchor="middle" fill="#ffffff">대용량 분산 메시지 버스</text>
-
-    <!-- 프로세서 연쇄 반응 카드들 -->
-    <g transform="translate(15, 100)">
-      <!-- 주문생성 -->
-      <rect x="0" y="0" width="98" height="28" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="49" y="18" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">주문 서비스 (발행)</text>
-
-      <!-- 결제처리 -->
-      <rect x="112" y="0" width="98" height="28" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="161" y="18" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">결제 서비스 (구독/발행)</text>
-
-      <!-- 재고처리 -->
-      <rect x="0" y="36" width="98" height="28" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="49" y="54" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">재고 서비스 (구독/발행)</text>
-
-      <!-- 알림/통계 -->
-      <rect x="112" y="36" width="98" height="28" rx="3" fill="var(--sl-color-bg-page, #ffffff)" stroke="var(--sl-color-hairline, #94a3b8)" stroke-width="1"/>
-      <text x="161" y="54" font-size="8" text-anchor="middle" fill="var(--sl-color-text, #0f172a)">알림/통계 (구독)</text>
-    </g>
-
-    <text x="120" y="178" font-size="8" font-weight="700" text-anchor="middle" fill="var(--sl-color-success, #15803d)">특징: 극도의 탈결합 및 초고성능</text>
-  </g>
-</svg>
-</div>
+```mermaid
+flowchart LR
+    subgraph MED["중재자 토폴로지 · 오케스트레이션"]
+        direction LR
+        M1["시작 큐"] --> M2["이벤트 중재자 Mediator"] --> M3["액션 큐 결제·재고·배송"]
+    end
+    MED ~~~ BRK
+    subgraph BRK["브로커 토폴로지 · 코레오그래피"]
+        direction LR
+        B1["주문 서비스 발행"] --> B2["이벤트 브로커 Kafka Topic"] --> B3["구독 프로세서 결제·재고·알림"]
+    end
+```
 
 #### 2. 토폴로지별 핵심 구성요소 분석
 
 | 토폴로지 | 핵심 구성요소 | 역할 및 동작 원리 |
 |---|---|---|
-| **중재자 토폴로지**<br>(Mediator) | **시작 큐 (Initiator Queue)** | 최초의 비즈니스 요청 이벤트를 수신하여 버퍼링 |
+| **중재자 토폴로지(Mediator)** | **시작 큐 (Initiator Queue)** | 최초의 비즈니스 요청 이벤트를 수신하여 버퍼링 |
 | | **이벤트 중재자 (Mediator)** | 전체 비즈니스 워크플로우 상태를 유지하며 순차/병렬 액션 지휘 |
 | | **액션 큐 (Action Queue)** | 중재자가 개별 도메인 프로세서에 구체적 작업을 전달하는 큐 |
 | | **이벤트 프로세서 (Processor)** | 액션 큐의 작업을 수행하고 결과를 다시 중재자에게 회신 |
-| **브로커 토폴로지**<br>(Broker) | **이벤트 브로커 (Broker)** | 대량 이벤트를 고속으로 수집·버퍼링·분배하는 분산 엔진 (Kafka, RabbitMQ) |
+| **브로커 토폴로지(Broker)** | **이벤트 브로커 (Broker)** | 대량 이벤트를 고속으로 수집·버퍼링·분배하는 분산 엔진 (Kafka, RabbitMQ) |
 | | **이벤트 프로세서 (Processor)** | 브로커의 특정 토픽을 구독하여 처리 후, 후속 이벤트를 스스로 재발행 |
 
 ---
@@ -178,42 +107,25 @@ extra:
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
-| **배송 실패 시 결제 취소 누락으로 분산 트랜잭션 데이터 파탄** | 복합 트랜잭션 구간을 오케스트레이션(Saga Orchestrator) 중재자 구조로 전환 | 분산 트랜잭션 실패 시 자동 보상 롤백 100% 보장 |
-| **중재자 서버 다운으로 전사 주문 접수 마비 (단일 장애점 SPOF)** | 중재자는 무상태(Stateless) 엔진으로 경량화하고 워크플로우 상태는 외부 분산 DB에 영속화 | SPOF 제거 및 99.99% 고가용성 확보 |
-| **네트워크 재전송으로 인한 동일 결제 이벤트 중복 소비 및 이중 결제** | 이벤트 고유 UUID 기반 멱등성(Idempotency) 검증 테이블 구축 및 처리 전 조회 | 중복 결제 및 중복 차감 사고 0건 차단 |
-| **DB 저장 성공 후 브로커 장애로 이벤트 발행 유실 (원자성 분절)** | RDBMS 로컬 트랜잭션에 이벤트 로그를 함께 기록하는 트랜잭셔널 아웃박스 및 Debezium CDC 연동 | 이벤트 유실률 0% 및 데이터 정합성 100% 보장 |
+| **배송 실패 시 결제 취소 누락으로 분산 트랜잭션 데이터 파탄** | 복합 트랜잭션 구간을 오케스트레이션(Saga Orchestrator) 중재자 구조로 전환 | 분산 트랜잭션 실패 시 자동 보상 롤백 보장 |
+| **중재자 서버 다운으로 전사 주문 접수 마비 (단일 장애점 SPOF)** | 중재자는 무상태(Stateless) 엔진으로 경량화하고 워크플로우 상태는 외부 분산 DB에 영속화 | SPOF 제거 및 고가용성 확보 |
+| **네트워크 재전송으로 인한 동일 결제 이벤트 중복 소비 및 이중 결제** | 이벤트 고유 UUID 기반 멱등성(Idempotency) 검증 테이블 구축 및 처리 전 조회 | 중복 결제 및 중복 차감 사고 차단 |
+| **DB 저장 성공 후 브로커 장애로 이벤트 발행 유실 (원자성 분절)** | RDBMS 로컬 트랜잭션에 이벤트 로그를 함께 기록하는 트랜잭셔널 아웃박스 및 Debezium CDC 연동 | 이벤트 유실 방지 및 데이터 정합성 보장 |
 
 ---
 
 ### Ⅴ. 기술사적 제언: 하이브리드 토폴로지 및 트랜잭셔널 아웃박스 거버넌스
 
 ### 학습자 통찰 메모 — 답안 밖
-```text
-[핵심 통찰]
-EDA는 단순히 메시지 큐를 넣는 것이 아니라, 서비스 간 '시공간적 결합'을 완전히 끊어내는 패러다임이다.
-브로커(코레오그래피)는 춤추듯 자율 연쇄 반응하여 성능과 확장이 압도적이지만, 장애 시 되돌리기(보상 트랜잭션)가 지옥이다.
-반면 중재자(오케스트레이션)는 지휘자가 상태를 쥐고 있어 보상 트랜잭션이 쉽지만 중재자가 병목이 될 수 있다.
-따라서 실무는 '코어 주문/결제는 중재자(Saga)' + '부가 알림/통계는 브로커(Kafka)'의 하이브리드 조합이 정답이며,
-DB 저장과 이벤트 발행의 분절을 막는 '트랜잭셔널 아웃박스(Transactional Outbox)' 패턴이 필수 불가결하다.
 
-[나라면]
-실전 답안에서 중재자(오케스트레이션) vs 브로커(코레오그래피)의 구조도를 1단락 또는 2단락에 대조 도해하겠다.
-그리고 3단락에서 실무 하이브리드 토폴로지(코어=중재자, 부가=브로커)와
-DB-브로커 이원화 정합성을 해결하는 트랜잭셔널 아웃박스(Outbox + CDC Debezium)를 핵심 차별화로 제시하겠다.
-```
+- `[핵심 통찰]`: EDA는 단순히 메시지 큐를 넣는 것이 아니라 서비스 간 '시공간적 결합'을 끊어내는 패러다임이다. 브로커(코레오그래피)는 자율 연쇄 반응으로 성능과 확장성이 압도적이지만 장애 시 보상 트랜잭션이 어렵고, 중재자(오케스트레이션)는 상태를 쥔 지휘자 덕에 보상이 쉽지만 병목이 될 수 있다. 실무는 '코어 주문·결제는 중재자(Saga)' + '부가 알림·통계는 브로커(Kafka)'의 하이브리드 조합이 정답이며, DB 저장과 이벤트 발행의 분절을 막는 트랜잭셔널 아웃박스 패턴이 필수다.
+- `나라면`: 1단락 또는 2단락에서 중재자(오케스트레이션) vs 브로커(코레오그래피)의 구조도를 대조 도해하고, 3단락에서 하이브리드 토폴로지(코어=중재자, 부가=브로커)와 DB-브로커 이원화 정합성을 해결하는 트랜잭셔널 아웃박스(Outbox + CDC Debezium)를 핵심 차별화로 제시하겠다.
 
 ### 실전 답안용 기술사적 제언
 - **판정 기준**: 비즈니스 프로세스의 복잡도(다단계 보상 트랜잭션 필요 여부), 처리량 요구치(초당 수만 건 스트리밍 여부), 트랜잭션 가시성 요구 수준을 기준으로 중재자 vs 브로커 토폴로지를 선별 판정함.
 - **대응 방안**: 결제·주문 등 코어 도메인은 중재자(Saga Orchestrator)를 채택하여 즉각적인 보상 롤백을 통제하고, 부가 서비스(알림, 통계, 마일리지)는 Kafka 브로커 토폴로지로 자율 연쇄 분기하는 하이브리드 거버넌스를 구축함.
 - **검증 체계**: DB 상태 변경과 메시지 발행의 원자성을 보장하기 위해 트랜잭셔널 아웃박스(Transactional Outbox) 및 Debezium CDC 파이프라인을 의무화하고, 컨슈머 멱등성 검증 테이블을 구축함.
-- **기대 효과**: 서비스 간 동기 호출 블로킹 및 계단식 장애를 100% 근절하고, 분산 환경에서의 이벤트 유실률 0% 및 궁극적 일관성(Eventual Consistency)을 완벽히 보장함.
-
-```text
-[주문/결제 요청] ──> [중재자 Saga 오케스트레이션] ──(커밋)──> [Transactional Outbox DB]
-                          │ (보상 롤백 지휘)                          │ (Debezium CDC)
-                          ▼                                          ▼
-                   [장애 시 보상 트랜잭션]                    [Kafka 브로커 (알림/통계/적재)]
-```
+- **기대 효과**: 서비스 간 동기 호출 블로킹 및 계단식 장애를 근절하고, 분산 환경에서의 이벤트 유실을 방지하며 궁극적 일관성(Eventual Consistency)을 보장함.
 
 ---
 

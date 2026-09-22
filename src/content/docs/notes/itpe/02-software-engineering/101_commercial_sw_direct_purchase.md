@@ -6,8 +6,9 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
+date: "2026-09-22T07:25:00+09:00"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 author: "Antigravity"
 lastModified: "2026-03-30T10:00:00+09:00"
 ---
@@ -18,81 +19,17 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **메커니즘**: 사업 기획 $\rightarrow$ 직접구매 대상 검토(과업심의위원회) $\rightarrow$ 조달청 디지털서비스몰 분리 발주 공고 $\rightarrow$ 직접 계약 및 대금 직불 $\rightarrow$ SI 주사업자 연계 통합(통합관리비 지급) 순으로 진행된다.
 - **산출물**: 상용SW 직접구매 타당성 검토서, 과업심의위원회 심의의결서, 조달청 분리발주 계약서, 상용SW-SI 인터페이스 연계 확약서.
 
-<div class="itpe-flow">
-  <div class="itpe-flow-steps">
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>1. 대상 검토</strong></span>
-      <div class="itpe-step-detail">총사업비 3억 이상 및 상용SW 5천만 원 이상 대상 식별</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>2. 과업심의위원회</strong></span>
-      <div class="itpe-step-detail">직접구매 여부 확정 및 예외 통합발주 사유 타당성 심의</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node">
-      <span class="itpe-keyword"><strong>3. 분리 발주 공고</strong></span>
-      <div class="itpe-step-detail">조달청 디지털서비스몰 등록 제품 우선 직접 계약 추진</div>
-    </div>
-    <div class="itpe-flow-arrow">→</div>
-    <div class="itpe-flow-node is-current">
-      <span class="itpe-keyword"><strong>Quality Gate</strong></span>
-      <div class="itpe-step-detail"><strong>판정 질문</strong><span>직접구매 대상 기준 충족 및 통합관리비가 적정 계상되었는가?</span></div>
-      <div class="itpe-flow-branches">
-        <div class="itpe-flow-branch"><strong>통과</strong><span>상용SW 직접 계약 체결 및 SI 연계 검수 착수</span></div>
-        <div class="itpe-flow-branch"><strong>미통과</strong><span>과업심의위 재심의 및 예산 재편성</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 ---
 
 ## 핵심 메커니즘과 계약·거버넌스 구조
 
-<div style="max-width: 520px; margin: 1.5rem auto;">
-  <!-- SVG: 상용SW 직접구매(분리발주) vs 통합발주 비교 거버넌스 -->
-  <svg viewBox="0 0 520 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-    <!-- 배경 -->
-    <rect width="520" height="220" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-    
-    <!-- 발주 공공기관 (중앙 최상단) -->
-    <rect x="180" y="15" width="160" height="42" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-primary, #3b82f6)" stroke-width="1.3"/>
-    <text x="260" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--color-primary, #3b82f6)">발주기관 (공공기관)</text>
-    <text x="260" y="46" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">총사업비 3억 이상 과업심의위 의결</text>
-
-    <!-- 왼쪽: SI 주사업자 계약 체결 -->
-    <rect x="25" y="85" width="190" height="75" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-    <text x="120" y="103" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text, #0f172a)">SI 주사업자 (원청)</text>
-    <text x="120" y="118" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">응용시스템 구축 및 통합 책임</text>
-    <rect x="35" y="127" width="170" height="24" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-accent, #10b981)" stroke-width="1"/>
-    <text x="120" y="143" text-anchor="middle" font-size="7.5" font-weight="700" fill="var(--color-accent, #10b981)">통합관리비 수령 (상용SW가의 3~5%)</text>
-
-    <!-- 오른쪽: 상용SW 제조사 (직접구매) -->
-    <rect x="305" y="85" width="190" height="75" rx="6" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-accent, #10b981)" stroke-width="1.3"/>
-    <text x="400" y="103" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-accent, #10b981)">상용SW 제조사 (분리발주)</text>
-    <text x="400" y="118" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">조달청 디지털서비스몰 등록 제품</text>
-    <rect x="315" y="127" width="170" height="24" rx="4" fill="var(--color-bg, #f1f5f9)" stroke="var(--color-primary, #3b82f6)" stroke-width="1"/>
-    <text x="400" y="143" text-anchor="middle" font-size="7.5" font-weight="700" fill="var(--color-primary, #3b82f6)">제값 보장 (대금 100% 직불)</text>
-
-    <!-- 계약/지급 화살표들 -->
-    <path d="M 220 57 L 150 85" stroke="var(--color-border, #94a3b8)" stroke-width="1.3"/>
-    <text x="170" y="66" text-anchor="middle" font-size="7" fill="var(--color-text-muted, #64748b)">SI 용역계약</text>
-
-    <path d="M 300 57 L 370 85" stroke="var(--color-accent, #10b981)" stroke-width="1.3"/>
-    <text x="350" y="66" text-anchor="middle" font-size="7" font-weight="700" fill="var(--color-accent, #10b981)">직접계약 & 직불</text>
-
-    <!-- 하단: 시스템 연계 및 품질 보증 상호작용 -->
-    <g transform="translate(25, 172)">
-      <rect x="0" y="0" width="470" height="36" rx="4" fill="var(--color-bg-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1"/>
-      <text x="235" y="16" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-text, #0f172a)">시스템 인터페이스 연계 및 E2E 합동 테스트</text>
-      <text x="235" y="28" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">RFP 상 연계 규격 명시 ↔ 책임 분쟁 예방 ↔ 기술지원 확약서 제출</text>
-    </g>
-
-    <path d="M 120 160 L 120 172" stroke="var(--color-border, #94a3b8)" stroke-width="1.2"/>
-    <path d="M 400 160 L 400 172" stroke="var(--color-border, #94a3b8)" stroke-width="1.2"/>
-  </svg>
-</div>
+```mermaid
+flowchart TB
+    G["발주기관"] -->|용역계약·통합관리비| S["SI 주사업자"]
+    G -->|직접계약·대금 직불| V["상용SW 제조사"]
+    S --> I["시스템 연계·통합"]
+    V --> I
+```
 
 ### (1) 상용SW 직접구매(분리발주) vs SI 통합발주 비교
 
@@ -154,7 +91,3 @@ lastModified: "2026-03-30T10:00:00+09:00"
 - **대응 방안**: 주사업자 용역 계약 시 상용SW 금액의 3~5%를 '소프트웨어 통합관리비'로 법정 계상하고, 상용SW 제조사의 기술지원 확약서 징구를 의무화.
 - **검증 체계**: 발주 단계의 제안요청서(RFP) API 규격 사전 명시 검증 및 통합 단계의 E2E 합동 테스트 시나리오 기반 연계 적합성 판정.
 - **기대 효과**: 상용SW 하도급 단가 후려치기 근절로 국내 패키지 SW R&D 선순환 유도 및 연계 장애 시 책임 공백 해소.
-
-<div style="background: var(--color-bg-subtle, #f8fafc); border: 1px solid var(--color-border, #e2e8f0); border-radius: 6px; padding: 0.85rem; font-size: 0.85rem; margin-top: 1rem;">
-  <strong>실전 제언 파이프라인 요약</strong>: <code>과업심의위 대상 식별</code> → <code>조달청 분리발주 직불</code> → <code>통합관리비(3~5%) 계상</code> → <code>E2E 합동 연계 검증</code>
-</div>

@@ -12,27 +12,25 @@ extra:
 ---
 
 ## 지식 로드맵 내 현재 위치
+현재 위치: IT 전략·관리 → AI 고속도로
 
-<div class="itpe-topic-path" role="img" aria-label="IT 전략 관리에서 국가 AI 전략과 AI 인프라를 거쳐 AI 고속도로로 이어지는 지식 위치">
-  <span>IT 전략·관리</span><span>국가 AI 전략·인프라</span><strong>AI 고속도로</strong>
-</div>
 
 ## 30초 인출
 
-- 본질: 국가 차원의 AI 개발·활용을 위해 대규모 연산(GPU/NPU)·데이터·초고속 네트워크·전력망을 공통기반으로 구축·공급하는 국가 디지털 인프라
-- 메커니즘: Workload 수요 접수 → 적합성 심사 및 Quota 배분 → 국가 AI 컴퓨팅 센터 자원 배치 → 실행 및 FinOps 관제 → 유휴 자원 회수 및 환류
-- 판정 기준: 할당 GPU 자원의 72시간 연속 가동률 >= 30% 유지 및 PUE(전력효율지수) < 1.2 이하 달성 여부
+- 본질: 국가 차원의 AI 개발·활용을 위해 대규모 연산(GPU/NPU)·데이터·초고속 네트워크·전력망을 공통기반으로 구축·공급하는 국가 디지털 인프라이다.
+- 메커니즘: Workload 수요 접수 → 적합성 심사 및 Quota 배분 → 국가 AI 컴퓨팅 센터 자원 배치 → 실행 및 FinOps 관제 → 유휴 자원 회수 및 환류한다.
+- 판정 기준: 수요에 맞는 GPU 자원 배분과 전력효율을 운영 기록으로 확인하고 유휴 자원을 조정하는지 검증한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **GPU(Graphics Processing Unit)**: 대규모 병렬연산을 수행하는 범용 가속기
-- **NPU(Neural Processing Unit)**: 신경망 연산에 최적화한 AI 전용 가속기
-- **HPC(High Performance Computing)**: 대규모 계산을 병렬로 처리하는 고성능 컴퓨팅
-- **MLOps(Machine Learning Operations)**: ML 모델의 개발·배포·운영을 연결하는 실무체계
-- **AX(AI Transformation)**: 업무·서비스·산업 구조에 AI를 적용하는 전환
-- **TCO(Total Cost of Ownership)**: 도입부터 운영·전력·폐기까지 포함한 총소유비용
-- **PUE(Power Usage Effectiveness)**: 데이터센터 총 전력 대비 IT 장비 전력의 비율
+- **GPU(Graphics Processing Unit)**: 많은 연산을 동시에 처리해 AI·과학계산을 가속하는 프로세서이다.
+- **NPU(Neural Processing Unit)**: 신경망의 행렬·텐서 연산을 효율적으로 처리하도록 설계한 AI 가속기이다.
+- **HPC(High Performance Computing)**: 여러 프로세서와 고속 네트워크로 대규모 계산을 병렬 처리하는 컴퓨팅 환경이다.
+- **MLOps(Machine Learning Operations)**: ML 모델의 개발·배포·운영을 연결하는 실무체계이다.
+- **AX(AI Transformation)**: AI를 업무와 서비스의 의사결정·실행 과정에 적용해 운영방식을 바꾸는 전환이다.
+- **TCO(Total Cost of Ownership)**: 도입부터 운영·전력·폐기까지 포함한 총소유비용이다.
+- **PUE(Power Usage Effectiveness)**: 데이터센터 총 전력 대비 IT 장비 전력의 비율이다.
 
 </details>
 
@@ -44,8 +42,8 @@ extra:
 
 > AI 고속도로는 통신망만을 뜻하지 않고, AI의 개발·실증·서비스에 필요한 희소 자원을 연결·공급하는 정책적 인프라 개념임.
 
-- 정의: AI 컴퓨팅·데이터·네트워크·전력·개발환경을 연계하여 산·학·연의 AI 개발과 활용을 지원하는 국가 공통기반
-- 목적: **컴퓨팅 접근성·AI 생태계·기술자립·산업 AX** 강화
+- 정의: **AI 컴퓨팅**·**데이터**·**네트워크**·전력·개발환경을 연계하여 산·학·연의 AI 개발과 활용을 지원하는 국가 공통기반
+- 목적: **컴퓨팅 접근성**·**AI 생태계**·**기술자립**·**산업 AX** 강화
 
 ## Ⅱ. AI 고속도로 구성체계
 
@@ -106,10 +104,16 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준 (Trigger)**: 국가 AI 컴퓨팅 센터 내 GPU 할당 자원의 72시간 연속 가동률(Utilization)이 30% 미만이거나 특정 기관 독점 점유율이 40%를 초과할 시 자원 회수 트리거 발동.
+- **판정 기준 (Trigger)**: 국가 AI 컴퓨팅 센터 내 GPU 할당 자원의 72시간 연속 가동률(Utilization)이 목표 기준 미만이거나 특정 기관 독점 점유율이 목표 기준를 초과할 시 자원 회수 트리거 발동.
 - **대응 방안 (Action)**: AI Infra FinOps 기반 동적 쿼터제(Dynamic Quota)와 유휴 자원 선점형(Preemptible) 재할당 파이프라인을 가동하고, 국산 NPU 전용 추론 풀로 분산 유도.
 - **검증 체계 (Verification)**: 워크로드별 TCO(연산비용+전력비용+스토리지), 데이터센터 전력효율(PUE < 1.2 목표), 모델 학습 완료율을 계량화하여 분기별 투자 효과를 평가함.
-- **기대 효과 (Impact)**: 글로벌 GPU 벤더 종속 탈피(소버린 AI 인프라 자립), 자원 유휴 손실 50% 절감, 스타트업 및 연구계 AI 개발 진입 장벽의 획기적 완화를 달성함.
+- **기대 효과 (Impact)**: 글로벌 GPU 벤더 종속 탈피(소버린 AI 인프라 자립), 자원 유휴 손실 목표 기준 절감, 스타트업 및 연구계 AI 개발 진입 장벽의 획기적 완화를 달성함.
+
+```mermaid
+flowchart TD
+    P["국가 AI 컴퓨팅 센터 내 GPU 할당 자원의 72시간 연"] --> A["AI Infra FinOps 기반 동적 쿼터제(Dynami"] --> V["워크로드별 TCO(연산비용+전력비용+스토리지), 데이터센터"] --> E["글로벌 GPU 벤더 종속 탈피(소버린 AI 인프라 자립),"]
+    V --> P
+```
 
 ## 1교시 10점 답안 발췌
 

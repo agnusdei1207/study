@@ -2,42 +2,25 @@
 title: "정보은닉(Information Hiding)"
 tags:
   - "notes-software-engineering"
-author: "Antigravity"
-date: "2026-09-20T23:53:43+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 sidebar:
   badge:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 아키텍처·설계를 거쳐 정보은닉으로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>아키텍처·설계</span>
-  <strong>정보은닉(Information Hiding)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 아키텍처·설계 → **정보은닉(Information Hiding)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **정보은닉(Information Hiding)**은 데이비드 파나스(David Parnas)가 제안한 모듈화의 기본 원리로, 변경될 가능성이 높은 내부 구현 상세(자료구조, 알고리즘)를 감추고 안정적인 공개 인터페이스만을 외부에 노출하는 설계 원칙
 - 메커니즘: 내부 상태 비공개(**Private**) + 공개 메서드(**Public Interface**) 노출 + 구현 상세의 캡슐화
-- 산출/효과: 모듈 간 결합도(Coupling) 최소화 · 파급 효과(Ripple Effect) 차단 · 독립적 모듈 변경 및 유지보수성 극대화
-
-<div class="itpe-flow-map" role="img" aria-label="정보은닉 아키텍처 원리">
-  <div class="itpe-flow-node"><strong>외부 클라이언트 모듈</strong><span>안정된 인터페이스에만 의존</span></div>
-  <div class="itpe-flow-arrow">↔ 공개 인터페이스 (Public Interface) ↔</div>
-  <div class="itpe-flow-node is-current">
-    <strong>은닉된 모듈 내부 (Private)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>데이터 은닉</strong><span>내부 변수 및 자료구조 격리</span></div>
-      <div class="itpe-flow-branch"><strong>알고리즘 은닉</strong><span><span class="itpe-keyword"><strong>세부 처리 로직 캡슐화</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>변경 격리</strong><span><span class="itpe-keyword"><strong>내부 변경 시 외부 파급 제로</strong></span></span></div>
-    </div>
-  </div>
-</div>
+- 효과: 모듈 간 결합도(Coupling) 최소화 · 파급 효과(Ripple Effect) 차단 · 독립적 모듈 변경 및 유지보수성 극대화
 
 <details>
 <summary>핵심 용어</summary>
@@ -65,71 +48,21 @@ extra:
 
 > 데이비드 파나스는 처리 순서(Flowchart)에 따라 시스템을 쪼개지 말고, '숨겨야 할 비밀'을 기준으로 모듈을 분할하라고 역설했다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정보은닉 분할 절차">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>1. 변경 취약점(Secret) 식별</strong></span>
-    <span>향후 기술 발전, 요구 변경, 하드웨어 교체로 바뀔 가능성이 높은 설계 결정 도출</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>2. 비밀의 모듈화 격리</strong></span>
-    <span>식별된 비밀(예: 특정 DB 쿼리, 파일 포맷, 통신 프로토콜)을 단일 모듈 내부에 감금</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>3. 추상 인터페이스 정의</strong></span>
-    <span>외부 모듈이 내부 구현 방식을 알 필요 없도록 최소한의 추상 오퍼레이션만 공개</span>
-  </div>
-</div>
+### 파나스(Parnas) 모듈 분할 3단계 절차
+
+```mermaid
+flowchart TB
+    ID["변경 취약점(Secret) 식별"] --> ISO["비밀의 모듈화 격리"]
+    ISO --> DEF["추상 인터페이스 정의"]
+```
 
 ### 정보은닉(Information Hiding) 캡슐화 및 파급 효과(Ripple Effect) 차단 구조
 
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[Parnas 정보은닉 캡슐화 원리 및 변경 파급 차단선]</text>
-
-    <!-- Client Module (Left) -->
-    <rect x="20" y="55" width="120" height="135" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="80" y="78" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">외부 클라이언트</text>
-    <text x="80" y="95" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">Client Component</text>
-    <line x1="30" y1="105" x2="130" y2="105" stroke="var(--sl-color-border, #e2e8f0)" />
-    <text x="80" y="125" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">인터페이스에만 의존</text>
-    <text x="80" y="145" class="itpe-svg-sub" font-size="10" fill="var(--sl-color-success, #10b981)" text-anchor="middle">(내부 구현 무관)</text>
-    <rect x="30" y="155" width="100" height="22" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" />
-    <text x="80" y="170" class="itpe-svg-label" font-size="9.5" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">결합도(Coupling) 최소</text>
-
-    <!-- Interaction Arrow -->
-    <line x1="140" y1="110" x2="185" y2="110" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="2" marker-end="url(#arrow)" />
-
-    <!-- Protected Module Outer Boundary (Capsule) -->
-    <rect x="185" y="45" width="315" height="155" rx="8" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-primary, #3b82f6)" stroke-width="1.5" />
-    <text x="342" y="65" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">은닉된 모듈 (Encapsulated Module)</text>
-
-    <!-- Public Interface Layer -->
-    <rect x="195" y="75" width="295" height="32" rx="4" fill="var(--sl-color-bg-accent, #eff6ff)" stroke="var(--sl-color-border, #93c5fd)" />
-    <text x="205" y="95" class="itpe-svg-title" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">+ Public Interface:</text>
-    <text x="315" y="95" class="itpe-svg-sub" font-size="10.5" fill="var(--sl-color-text, #1e293b)">requestData(), executeProcess()</text>
-
-    <!-- Separation Line / Barrier -->
-    <line x1="195" y1="115" x2="490" y2="115" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" stroke-dasharray="4 2" />
-    <text x="480" y="112" class="itpe-svg-label" font-size="9" fill="var(--sl-color-danger, #ef4444)" text-anchor="end">정보은닉 방어벽 (Secrets Barrier)</text>
-
-    <!-- Private Secrets inside -->
-    <rect x="200" y="125" width="135" height="65" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="267" y="142" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-text, #1e293b)" text-anchor="middle">- Private Secrets</text>
-    <text x="267" y="158" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">• 자료구조 (Tree/List)</text>
-    <text x="267" y="174" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">• 알고리즘 세부로직</text>
-
-    <rect x="345" y="125" width="145" height="65" rx="4" fill="var(--sl-color-bg-subtle, #f1f5f9)" stroke="var(--sl-color-border, #cbd5e1)" />
-    <text x="417" y="142" class="itpe-svg-sub" font-size="10.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">변경 국소화</text>
-    <text x="417" y="158" class="itpe-svg-sub" font-size="9.5" fill="var(--sl-color-text, #334155)" text-anchor="middle">내부 변경 시에도</text>
-    <text x="417" y="174" class="itpe-svg-sub" font-size="9.5" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">외부 파급 효과(Ripple) 제로</text>
-  </svg>
-</div>
+```mermaid
+flowchart LR
+    C["외부 클라이언트 모듈"] -->|"공개 인터페이스 (Public Interface)"| PB["정보은닉 방어벽 (Secrets Barrier)"]
+    PB --> SEC["- Private Secrets (자료구조·알고리즘)"]
+```
 
 ### 모듈 내부에 은닉해야 할 4대 핵심 비밀
 1. **자료구조의 비밀**: 데이터가 배열인지, 연결리스트인지, B-Tree인지 여부
@@ -185,28 +118,6 @@ extra:
 - **검증 체계**: 모듈 간 결합도 지표(내용/공통 결합도 제로화) 정적 분석 및 공개 인터페이스 기반 단위 Mock 테스트 통과
 - **기대 효과**: 변경에 따른 파급 효과(Ripple Effect) 원천 차단, 모듈 독립 배포성 확보 및 소프트웨어 유지보수 공수 50% 절감
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정보은닉 아키텍처 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <span>무분별한 public 변수 노출 · 내부 변경 시 전사 시스템 연쇄 장애</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <span>Parnas 분할 기준 적용 및 인터페이스 뒤로 세부 구현 은닉</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <span>모듈 간 인터페이스 계약 준수율 100% 및 단위 모듈 독립 테스트</span>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <span>파급 효과 원천 차단 · 결합도 최소화 및 고품질 소프트웨어 자산 구축</span>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -216,11 +127,11 @@ extra:
 
 ### 2. 핵심 메커니즘 (Public vs Private)
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="정보은닉 2대 영역 요약">
-  <div class="itpe-pipeline-node"><strong>공개 인터페이스 (Public)</strong><span>안정적 계약 · 외부 모듈이 호출하는 창구</span></div>
-  <div class="itpe-pipeline-arrow">↓ 보호벽 (Capsule)</div>
-  <div class="itpe-pipeline-node"><strong>은닉된 내부 구현 (Private)</strong><span>자료구조, 알고리즘, 저수준 제어 비밀</span></div>
-</div>
+```mermaid
+flowchart LR
+    C["외부 클라이언트 모듈"] -->|"공개 인터페이스 (Public Interface)"| PB["정보은닉 방어벽 (Secrets Barrier)"]
+    PB --> SEC["- Private Secrets (자료구조·알고리즘)"]
+```
 
 ### 3. 핵심 통제
 

@@ -6,27 +6,18 @@ sidebar:
   badge:
     text: "B"
     variant: "note"
-date: "2026-09-20T22:15:00+09:00"
+date: "2026-09-22T07:25:00+09:00"
 lastmod: "2026-09-20T22:15:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
 ---
 
 > **소프트웨어공학 > 테스트 및 검증 > 테스트 자동화(Test Automation)**
 
 ---
 
-## 1. 큰 그림 및 30초 인출 공식
-
-```
-                   [ 테스트 피라미드 vs 아이스크림 콘 ]
-       [이상적 테스트 피라미드]                 [아이스크림 콘 안티패턴]
-               /  UI 10%  \                     |===================| UI 70%
-              /  API 20%   \                    \     API 20%      /
-             /   Unit 70%   \                    \    Unit 10%    /
-      (고속·저비용·멱등성 보장)                   (지연·고비용·Flaky 방치)
-```
+## 1. 30초 인출
 
 > **30초 인출 공식 (키워드 체인)**:  
 > **테스트 피라미드 (Unit 70% ➔ API 20% ➔ UI 10%)** ➔ **아이스크림 콘 안티패턴 극복** ➔ **4대 프레임워크 (모듈·DDT·KDT·BDD)** ➔ **Flaky 방어 (POM·Explicit Wait)** ➔ **지속적 테스팅 (CT)**
@@ -39,18 +30,18 @@ extra:
 
 ## 2. 핵심 용어 정리
 
-| 용어 | 영문 표기 | 핵심 정의 및 설명 |
-|---|---|---|
-| **테스트 자동화** | Test Automation | 테스트 실행, 결과 비교, 사전 조건 설정 등을 소프트웨어 도구로 기계화하여 수행하는 활동 |
-| **테스트 피라미드** | Test Pyramid | Mike Cohn이 제안한 계층 구조로, 단위(70%), 서비스/API(20%), UI(10%) 비율로 구성된 최적화 모델 |
-| **아이스크림 콘** | Ice Cream Cone Anti-pattern | 단위 테스트는 부실하고 유지보수가 어렵고 불안정한 UI E2E 테스트에만 과도하게 치중된 안티패턴 |
-| **플래키 테스트** | Flaky Test | 소스코드 변경이 없음에도 비동기 렌더링 지연, 네트워크 상태 등에 따라 성공과 실패를 무작위 반복하는 불안정 테스트 |
-| **POM** | Page Object Model | 웹 화면의 UI 요소(DOM 셀렉터)와 비즈니스 검증 로직을 클래스로 분리하여 유지보수성을 극대화하는 설계 패턴 |
-| **DDT** | Data-Driven Testing | 테스트 로직은 하나로 유지하고 다양한 입력값과 기대값 데이터를 외부(CSV, JSON, DB)로부터 주입받아 반복 검증하는 기법 |
-| **KDT** | Keyword-Driven Testing | Click, Type, Verify 등 표준 동작 키워드를 정의하여 비개발자도 테이블 형태로 테스트 시나리오를 작성할 수 있게 한 기법 |
-| **BDD** | Behavior-Driven Development | 자연어 형식(Given-When-Then)으로 사용자 관점의 행위 시나리오를 정의하고 이를 실행 가능한 테스트 코드로 연동하는 방법론 |
-| **지속적 테스팅** | Continuous Testing (CT) | CI/CD 파이프라인 전 구간에 걸쳐 코드 커밋부터 프로덕션 카나리 배포까지 연속적으로 품질을 검증하는 체계 |
-| **자가 치유 테스트** | Self-Healing Test | UI 변경으로 버튼 셀렉터가 깨졌을 때 AI/ML 모델이 대체 속성을 찾아 스크립트를 실시간 자동 보정하는 차세대 기술 |
+| 용어 | 핵심 정의 및 설명 |
+|---|---|
+| **테스트 자동화** Test Automation | 테스트 실행, 결과 비교, 사전 조건 설정 등을 소프트웨어 도구로 기계화하여 수행하는 활동 |
+| **테스트 피라미드** Test Pyramid | Mike Cohn이 제안한 계층 구조로, 단위(70%), 서비스/API(20%), UI(10%) 비율로 구성된 최적화 모델 |
+| **아이스크림 콘** Ice Cream Cone Anti-pattern | 단위 테스트는 부실하고 유지보수가 어렵고 불안정한 UI E2E 테스트에만 과도하게 치중된 안티패턴 |
+| **플래키 테스트** Flaky Test | 소스코드 변경이 없음에도 비동기 렌더링 지연, 네트워크 상태 등에 따라 성공과 실패를 무작위 반복하는 불안정 테스트 |
+| **POM** Page Object Model | 웹 화면의 UI 요소(DOM 셀렉터)와 비즈니스 검증 로직을 클래스로 분리하여 유지보수성을 극대화하는 설계 패턴 |
+| **DDT** Data-Driven Testing | 테스트 로직은 하나로 유지하고 다양한 입력값과 기대값 데이터를 외부(CSV, JSON, DB)로부터 주입받아 반복 검증하는 기법 |
+| **KDT** Keyword-Driven Testing | Click, Type, Verify 등 표준 동작 키워드를 정의하여 비개발자도 테이블 형태로 테스트 시나리오를 작성할 수 있게 한 기법 |
+| **BDD** Behavior-Driven Development | 자연어 형식(Given-When-Then)으로 사용자 관점의 행위 시나리오를 정의하고 이를 실행 가능한 테스트 코드로 연동하는 방법론 |
+| **지속적 테스팅** Continuous Testing(CT) | CI/CD 파이프라인 전 구간에 걸쳐 코드 커밋부터 프로덕션 카나리 배포까지 연속적으로 품질을 검증하는 체계 |
+| **자가 치유 테스트** Self-Healing Test | UI 변경으로 버튼 셀렉터가 깨졌을 때 AI/ML 모델이 대체 속성을 찾아 스크립트를 실시간 자동 보정하는 차세대 기술 |
 
 ---
 
@@ -65,72 +56,23 @@ extra:
   - **배포 주기(Deployment Frequency) 가속**: 수일 걸리던 회귀 테스트 시간을 CI 빌드 시점의 수 분 단위로 압축.
   - **비용 절감**: 초기 스크립트 작성 비용 이후 실행당 한계 비용을 '0'에 수렴시킴.
 
-```
-   [수동 회귀 테스트: 비용 급증]                [테스트 자동화: 지속적 품질 보증]
- ┌───────────────────────────┐                ┌───────────────────────────┐
- │ 릴리스마다 수동 전수 검사 │                │ 커밋 즉시 파이프라인 구동 │
- │ 수일 소요, 휴먼 에러 상존 │                │ 10분 내 회귀 결함 포착    │
- └─────────────┬─────────────┘                └─────────────┬─────────────┘
-               │                                            │
-               ▼                                            ▼
- [배포 병목 및 프로덕션 결함]                  [Fail-Fast & 일일 다중 배포]
-```
-
 ---
 
 ### Ⅱ. 테스트 피라미드 및 자동화 아키텍처
 
 #### 1. 이상적 테스트 피라미드 vs 아이스크림 콘 안티패턴 구조도
 
-<div style="margin: 1.5rem 0; text-align: center;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="220" style="background: var(--vp-c-bg-alt); border: 1px solid var(--vp-c-border); border-radius: 8px;">
-  <!-- Title Header -->
-  <rect x="15" y="8" width="490" height="22" rx="4" fill="var(--vp-c-bg)" stroke="var(--vp-c-border)" />
-  <text x="260" y="23" font-size="10" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">테스트 피라미드(Mike Cohn) vs 아이스크림 콘(Ice Cream Cone) 안티패턴</text>
-
-  <!-- Left: Ideal Test Pyramid -->
-  <rect x="15" y="38" width="235" height="165" rx="6" fill="var(--vp-c-bg)" stroke="var(--vp-c-brand)" stroke-width="1.2" />
-  <text x="132" y="55" font-size="9.5" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">[이상적 구조] 테스트 피라미드</text>
-  <line x1="25" y1="62" x2="240" y2="62" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-
-  <!-- Top Tier: UI/E2E (10%) -->
-  <polygon points="132,70 170,95 94,95" fill="var(--vp-c-bg-alt)" stroke="#e06c75" stroke-width="1.2" />
-  <text x="132" y="89" font-size="7.5" font-weight="700" fill="#e06c75" text-anchor="middle">UI / E2E (10%)</text>
-
-  <!-- Mid Tier: Service / API (20%) -->
-  <polygon points="94,97 170,97 195,127 69,127" fill="var(--vp-c-bg-alt)" stroke="var(--vp-c-brand)" stroke-width="1.2" />
-  <text x="132" y="115" font-size="8" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">Service / API (20%)</text>
-
-  <!-- Base Tier: Unit (70%) -->
-  <polygon points="69,129 195,129 225,165 39,165" fill="var(--vp-c-bg-alt)" stroke="#10b981" stroke-width="1.5" />
-  <text x="132" y="148" font-size="8.5" font-weight="700" fill="#10b981" text-anchor="middle">단위 테스트 (Unit 70%)</text>
-  <text x="132" y="160" font-size="7" fill="var(--vp-c-text-2)" text-anchor="middle">초고속 (ms 단위) · 멱등성 · 저비용</text>
-
-  <text x="132" y="185" font-size="7.5" font-weight="700" fill="#10b981" text-anchor="middle">안정적 신뢰도 · 회귀 결함 80% 조기 색출</text>
-  <text x="132" y="196" font-size="7" fill="var(--vp-c-text-2)" text-anchor="middle">Shift-Left 실현 / CI 빌드 10분 내 완결</text>
-
-  <!-- Right: Anti-pattern Ice Cream Cone -->
-  <rect x="270" y="38" width="235" height="165" rx="6" fill="var(--vp-c-bg)" stroke="#e06c75" stroke-width="1.2" />
-  <text x="387" y="55" font-size="9.5" font-weight="700" fill="#e06c75" text-anchor="middle">[안티패턴] 아이스크림 콘 (Ice Cream Cone)</text>
-  <line x1="280" y1="62" x2="495" y2="62" stroke="var(--vp-c-border)" stroke-dasharray="2 2" />
-
-  <!-- Top Inverted Base: UI 70% -->
-  <polygon points="290,70 484,70 455,108 319,108" fill="var(--vp-c-bg-alt)" stroke="#e06c75" stroke-width="1.5" />
-  <text x="387" y="88" font-size="8.5" font-weight="700" fill="#e06c75" text-anchor="middle">과도한 UI / E2E (70%)</text>
-  <text x="387" y="100" font-size="7" fill="var(--vp-c-text-2)" text-anchor="middle">느린 속도 (수 시간) · 극심한 Flaky 결함</text>
-
-  <!-- Mid Inverted: API 20% -->
-  <polygon points="319,110 455,110 430,138 344,138" fill="var(--vp-c-bg-alt)" stroke="var(--vp-c-brand)" stroke-width="1.2" />
-  <text x="387" y="126" font-size="8" font-weight="700" fill="var(--vp-c-brand)" text-anchor="middle">API 테스트 (20%)</text>
-
-  <!-- Bottom Tip: Unit 10% -->
-  <polygon points="344,140 430,140 387,165" fill="var(--vp-c-bg-alt)" stroke="var(--vp-c-border)" stroke-width="1.2" />
-  <text x="387" y="152" font-size="7.5" fill="var(--vp-c-text-2)" text-anchor="middle">단위 (10%)</text>
-
-  <text x="387" y="185" font-size="7.5" font-weight="700" fill="#e06c75" text-anchor="middle">거짓 경보(False Alarm) 빈발 ➔ 자동화 폐기</text>
-  <text x="387" y="196" font-size="7" fill="var(--vp-c-text-2)" text-anchor="middle">화면 수정 시 스크립트 전면 붕괴</text>
-</svg>
-</div>
+```mermaid
+flowchart TB
+    subgraph P["테스트 피라미드 · 이상 구조"]
+        direction TB
+        P1["UI·E2E 10%"] ~~~ P2["API 20%"] ~~~ P3["단위 70%"]
+    end
+    subgraph I["아이스크림 콘 · 안티패턴"]
+        direction TB
+        C1["UI·E2E 70%"] ~~~ C2["API 20%"] ~~~ C3["단위 10%"]
+    end
+```
 
 #### 2. 테스트 자동화 프레임워크 4대 유형 비교
 | 프레임워크 유형 | 동작 원리 및 아키텍처 | 핵심 장점 | 주의 사항 및 한계 |
@@ -187,10 +129,6 @@ UI는 가장 자주 바뀌고 가장 느린 계층이므로, 여기에 자동화
 - **대응 방안**: UI E2E 테스트를 최소화하고 **단위 테스트(70%)와 API 계약 테스트(Pact 등 20%) 중심의 테스트 피라미드 거버넌스**를 강제하며, UI 자동화에는 DOM 종속성을 제거한 **`data-testid` 표준 태그 정책**을 수립해야 함.
 - **검증 체계**: 빌드 파이프라인에 JaCoCo 커버리지(최소 80%) 게이트와 함께, **LLM 기반의 자가 치유(Self-Healing) 및 OpenAPI 스펙 기반 경계값 테스트 케이스 자동 합성 엔진**을 도입해야 함.
 - **기대 효과**: 회귀 결함의 프로덕션 유출률을 90% 차단하고, 배포 리드타임을 수일에서 수십 분 이내로 단축하여 진정한 의미의 지속적 배포(CD)를 달성함.
-
-<div style="margin: 1rem 0; padding: 0.8rem 1rem; background: var(--vp-c-bg-alt); border-left: 4px solid var(--vp-c-brand); border-radius: 4px; font-size: 0.88rem; line-height: 1.6;">
-<strong>지속적 테스팅(CT) 파이프라인</strong>: <code>단위 테스트(70%)</code> ➔ <code>API 통합 검증(20%)</code> ➔ <code>핵심 E2E 스모크(10%)</code> ➔ <code>Flaky 격리 & Self-Healing</code> ➔ <code>무결함 무중단 배포</code>
-</div>
 
 ---
 

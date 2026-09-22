@@ -1,45 +1,26 @@
 ---
 title: "블랙박스 테스트(명세 기반 기법: 동등 분할·경계값 분석)"
-author: "Antigravity"
-date: "2026-09-20T23:49:42+09:00"
+author: "Codex"
+date: "2026-09-22T07:24:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GLM-5.3-Flash"
   keyword_grade: "A"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="소프트웨어 공학에서 테스트·검증을 거쳐 블랙박스 테스트로 이어지는 지식 위치">
-  <span>소프트웨어 공학</span>
-  <span>테스트·검증</span>
-  <strong>블랙박스 테스트(명세 기반 기법)</strong>
-</div>
+지식 위치: 소프트웨어 공학 → 테스트·검증 → **블랙박스 테스트(명세 기반 기법)**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **블랙박스 테스트(Black-box Testing)**는 내부 소스코드를 보지 않고 요구사항 명세서를 기반으로 입출력 도메인을 체계적으로 검증하는 기법
 - 메커니즘: **동등 분할(Equivalence Partitioning)**(입력 도메인을 동치 클래스로 분할) + **경계값 분석(Boundary Value Analysis)**(경계선 및 인접값 집중 검증)
-- 산출/효과: 최소 테스트 케이스로 최대 결함 검출 · 요구사항 불일치 적발 · 경계 결함 집중 격리
-
-<div class="itpe-flow-map" role="img" aria-label="블랙박스 테스트 명세 기반 설계 흐름">
-  <div class="itpe-flow-node"><strong>요구사항 명세서</strong><div class="itpe-step-detail"><span>입력 조건 및 비즈니스 규칙</span></div></div>
-  <div class="itpe-flow-arrow">→ 도메인 분할 →</div>
-  <div class="itpe-flow-node is-current">
-    <strong>명세 기반 설계 기법</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>동등 분할</strong><span><span class="itpe-keyword"><strong>유효/무효 동치 클래스</strong></span> 대표값</span></div>
-      <div class="itpe-flow-branch"><strong>경계값 분석</strong><span><span class="itpe-keyword"><strong>최솟값·최댓값 경계 및 인접값</strong></span></span></div>
-      <div class="itpe-flow-branch"><strong>의사결정 테이블</strong><span>복합 조건 조합 규칙</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">→ 테스트 케이스 도출 →</div>
-  <div class="itpe-flow-node"><strong>테스트 슈트</strong><div class="itpe-step-detail"><span>결함 검출력 극대화</span></div></div>
-</div>
+- 효과: 최소 테스트 케이스로 최대 결함 검출 · 요구사항 불일치 적발 · 경계 결함 집중 격리
 
 <details>
 <summary>핵심 용어</summary>
@@ -67,73 +48,12 @@ extra:
 
 > 동등 분할이 도메인의 전반적 대표성을 확보한다면, 경계값 분석은 결함이 집중되는 경계선을 정밀 타격한다.
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="동등분할 및 경계값 설계 절차">
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>① 입력 명세 분석</strong></span>
-    <div class="itpe-step-detail"><strong>명세 분석</strong><span>입력 변수별 유효 허용 범위 및 비즈니스 제약조건 식별</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>② 동치 클래스 분할</strong></span>
-    <div class="itpe-step-detail"><strong>도메인 분할</strong><span>유효 동치 클래스 및 상·하한 무효 동치 클래스 분할 도출</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <span class="itpe-keyword"><strong>③ 경계값 도출 (BVA)</strong></span>
-    <div class="itpe-step-detail"><strong>경계선 타격</strong><span>2-Value 및 3-Value 경계선 인접값 선정 및 정밀 검증</span></div>
-  </div>
-</div>
+```mermaid
+flowchart LR
+    A["무효 클래스 x &lt; 1"] --- B["유효 클래스 1 ≤ x ≤ 10"] --- C["무효 클래스 x &gt; 10"]
+```
 
-### 동등 분할 및 경계값 분석(BVA) 메커니즘
-
-<div class="itpe-svg-wrapper">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" class="itpe-svg">
-    <!-- Background grid -->
-    <rect width="520" height="220" fill="var(--sl-color-bg-subtle, #f8fafc)" rx="8" />
-    
-    <!-- Title / Section Label -->
-    <text x="20" y="24" class="itpe-svg-label" fill="var(--sl-color-text-accent, #2563eb)">[입력 도메인 동등 분할 및 경계값 분석 원리 (기준: 1 ~ 10)]</text>
-    
-    <!-- Equivalence Partitioning Bar -->
-    <!-- Invalid Class 1: x < 1 -->
-    <rect x="25" y="45" width="130" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" stroke-dasharray="4 2" />
-    <text x="90" y="62" class="itpe-svg-title" font-size="13" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">무효 클래스 1</text>
-    <text x="90" y="77" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">x &lt; 1 (대표값: -2)</text>
-    
-    <!-- Valid Class: 1 <= x <= 10 -->
-    <rect x="165" y="45" width="190" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-success, #10b981)" stroke-width="2" />
-    <text x="260" y="62" class="itpe-svg-title" font-size="13" font-weight="700" fill="var(--sl-color-success, #10b981)" text-anchor="middle">유효 클래스 (정상)</text>
-    <text x="260" y="77" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">1 &le; x &le; 10 (대표값: 5)</text>
-    
-    <!-- Invalid Class 2: x > 10 -->
-    <rect x="365" y="45" width="130" height="42" rx="5" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-danger, #ef4444)" stroke-width="1.5" stroke-dasharray="4 2" />
-    <text x="430" y="62" class="itpe-svg-title" font-size="13" font-weight="700" fill="var(--sl-color-danger, #ef4444)" text-anchor="middle">무효 클래스 2</text>
-    <text x="430" y="77" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text-muted, #64748b)" text-anchor="middle">x &gt; 10 (대표값: 15)</text>
-
-    <!-- Boundary Points Line -->
-    <line x1="40" y1="125" x2="480" y2="125" stroke="var(--sl-color-text-muted, #94a3b8)" stroke-width="2" stroke-linecap="round" />
-    
-    <!-- 2-Value BVA Section -->
-    <rect x="25" y="145" width="225" height="60" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="35" y="163" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-primary, #3b82f6)">2-Value BVA (경계 + 직전/직후)</text>
-    <text x="35" y="180" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">• 하한 경계: 0(오류), 1(정상)</text>
-    <text x="35" y="195" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">• 상한 경계: 10(정상), 11(오류)</text>
-
-    <!-- 3-Value BVA Section -->
-    <rect x="270" y="145" width="225" height="60" rx="6" fill="var(--sl-color-bg, #fff)" stroke="var(--sl-color-border, #cbd5e1)" stroke-width="1.2" />
-    <text x="280" y="163" class="itpe-svg-title" font-size="12" font-weight="700" fill="var(--sl-color-accent, #8b5cf6)">3-Value BVA (경계 ± 1 정밀)</text>
-    <text x="280" y="180" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">• 하한 정밀: 0, 1, 2 (오류, 정상, 정상)</text>
-    <text x="280" y="195" class="itpe-svg-sub" font-size="11" fill="var(--sl-color-text, #334155)">• 상한 정밀: 9, 10, 11 (정상, 정상, 오류)</text>
-
-    <!-- Markers on line for Boundaries -->
-    <!-- min boundary marker (1) -->
-    <circle cx="165" cy="125" r="5" fill="var(--sl-color-primary, #3b82f6)" />
-    <text x="165" y="115" class="itpe-svg-label" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Min: 1</text>
-    <!-- max boundary marker (10) -->
-    <circle cx="355" cy="125" r="5" fill="var(--sl-color-primary, #3b82f6)" />
-    <text x="355" y="115" class="itpe-svg-label" font-size="11" font-weight="700" fill="var(--sl-color-primary, #3b82f6)" text-anchor="middle">Max: 10</text>
-  </svg>
-</div>
+- 입력 도메인을 유효·무효 동치 클래스로 분할해 대표값을 뽑고, 결함 집중 경계인 1과 10의 인접값을 경계값 분석으로 추가 검증함
 
 ### 입력값 설계 예시: 정수 범위 [1, 10]
 
@@ -195,28 +115,6 @@ extra:
 - **검증 체계**: 요구사항 추적성 매트릭스(RTM) 100% 매핑 및 경계 결함 조기 격리율 기반 회귀 테스트 자동화 파이프라인 구축
 - **기대 효과**: 테스트 설계 공수 40% 절감 및 프로덕션 오프바이원(Off-by-one) 경계 결함 누출률 0% 달성
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="블랙박스 테스팅 최적화 제언">
-  <div class="itpe-pipeline-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-step-detail"><strong>임의 입력</strong><span>비체계적 임의 입력(Ad-hoc) 및 경계값 누락 위험</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>개선 대안</strong>
-    <div class="itpe-step-detail"><strong>체계적 설계</strong><span>동등분할 + 3-Value BVA + Pairwise 조합 최적화</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-step-detail"><strong>명세 매핑</strong><span>요구사항 대비 케이스 커버리지 100% 및 자동화 회귀</span></div>
-  </div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node">
-    <strong>실행 효과</strong>
-    <div class="itpe-step-detail"><strong>공수 절감</strong><span>테스트 설계 공수 40% 절감 및 경계 결함 조기 격리</span></div>
-  </div>
-</div>
-
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
@@ -226,11 +124,10 @@ extra:
 
 ### 2. 핵심 메커니즘 (동등분할 vs 경계값)
 
-<div class="itpe-pipeline is-vertical" role="img" aria-label="명세 기반 기법 요약">
-  <div class="itpe-pipeline-node"><strong>동등 분할</strong><div class="itpe-step-detail"><span>유효 / 무효 클래스별 대표값 1개 추출</span></div></div>
-  <div class="itpe-pipeline-arrow">↓</div>
-  <div class="itpe-pipeline-node"><strong>경계값 분석</strong><div class="itpe-step-detail"><span>경계선 최소/최대 및 인접값(3-Value) 집중 검증</span></div></div>
-</div>
+```mermaid
+flowchart LR
+    A["무효 클래스 x &lt; 1"] --- B["유효 클래스 1 ≤ x ≤ 10"] --- C["무효 클래스 x &gt; 10"]
+```
 
 ### 3. 핵심 통제
 
