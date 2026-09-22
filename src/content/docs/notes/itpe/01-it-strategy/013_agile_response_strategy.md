@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **짧은 반복**마다 작동하는 증분을 검증하고 고객 피드백으로 다음 우선순위를 조정한다.
+- 본질: **짧은 반복**마다 작동하는 **증분**을 검증하고 고객 피드백으로 다음 우선순위를 조정한다.
 - 메커니즘: **Product Backlog → Sprint Goal → Increment → Review·Retrospective → Feedback**을 짧은 주기로 순환한다.
 - 판정 기준: **Definition of Done(DoD)** 충족 여부로 완료 품질을 확인하고 범위는 가치 순으로 조정한다.
 

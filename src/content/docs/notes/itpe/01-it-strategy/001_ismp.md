@@ -20,7 +20,7 @@ extra:
 
 - 본질: **ISMP(Information System Master Plan)**는 **ISP(Information Strategy Planning)**가 선정한 정보화 과제를 조달 가능한 **Baseline**으로 구체화한다.
 - 메커니즘: 요구사항 분석 → 아키텍처 정의 → 규모·예산 산정 → **RFP(Request for Proposal)** 도출 과정을 **RTM(Requirements Traceability Matrix)**으로 연결한다.
-- 산출물: 요구사항 명세서 · 목표 아키텍처 · **FP(Function Point)** 기반 예산서 · RFP이다.
+- 산출물: 요구사항 명세서 · 목표 아키텍처 · **FP(Function Point)** 기반 예산서 · **RFP**이다.
 
 <details>
 <summary>핵심 용어</summary>

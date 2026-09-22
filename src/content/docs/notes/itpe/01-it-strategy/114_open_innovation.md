@@ -20,7 +20,7 @@ extra:
 
 - 본질: 기업 내부의 경계를 넘어 지식과 기술을 의도적으로 유입·유출함으로써 내부 혁신을 가속하고 외부 사업화 경로를 확장하는 경영 전략이다.
 - 메커니즘: Inbound(외부 소싱) · Outbound(스핀오프/라이선스) · Coupled(공동개발) 3대 흐름과 **IP** 권리 분리 통제한다.
-- 판정 기준: PoC의 기술·사업성 검증 결과와 Background **IP**·Foreground **IP** 귀속의 명문화 여부를 확인한다.
+- 판정 기준: **PoC**의 기술·사업성 검증 결과와 Background **IP**·Foreground **IP** 귀속의 명문화 여부를 확인한다.
 
 <details>
 <summary>핵심 용어</summary>

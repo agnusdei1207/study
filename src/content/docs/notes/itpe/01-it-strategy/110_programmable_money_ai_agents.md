@@ -18,8 +18,8 @@ extra:
 ## 30초 인출
 
 - 본질: 화폐 자체에 사용 조건이 부여된 **Programmable Money**와 결제 실행 조건이 자동화된 **Programmable Payment**를 **AI Agent** 거래에 적용하는 메커니즘이다.
-- 메커니즘: 소유자가 세션키를 위임하면 AI Agent가 결제를 요청하고, Policy Engine 검증을 통과한 거래만 DvP 정산과 감사로그로 연결한다.
-- 판정 기준: ERC-4337 기반 계정 추상화/단기 세션키 적용 여부, 이상 거래 시 Circuit Breaker 작동 및 불가역 WORM 감사 추적성이다.
+- 메커니즘: 소유자가 세션키를 위임하면 AI Agent가 결제를 요청하고, Policy Engine 검증을 통과한 거래만 **DvP** 정산과 감사로그로 연결한다.
+- 판정 기준: **ERC-4337** 기반 계정 추상화/단기 세션키 적용 여부, 이상 거래 시 Circuit Breaker 작동 및 불가역 **WORM** 감사 추적성이다.
 
 <details>
 <summary>핵심 용어</summary>

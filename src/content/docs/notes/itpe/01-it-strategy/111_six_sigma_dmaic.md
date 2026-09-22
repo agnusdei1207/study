@@ -18,8 +18,8 @@ extra:
 ## 30초 인출
 
 - 본질: 고객 관점의 핵심 품질특성(**CTQ**)을 기준으로 기존 프로세스의 결함과 변동을 데이터 기반으로 축소하는 5단계 품질혁신 방법론이다.
-- 메커니즘: Define(**CTQ** 정의) → Measure(현수준/MSA) → Analyze(Vital Few 규명) → Improve(최적화/Pilot) → Control(SPC/SOP 표준화)한다.
-- 판정 기준: 1.5σ Shift 감안 3.4 DPMO(높은 수준) 달성 여부, 공정능력지수(Cp ≥ 2.0, Cpk ≥ 1.5) 및 성과 회귀 방지 Control Plan이다.
+- 메커니즘: Define(**CTQ** 정의) → Measure(현수준/**MSA**) → Analyze(Vital Few 규명) → Improve(최적화/Pilot) → Control(**SPC**/**SOP** 표준화)한다.
+- 판정 기준: 1.5σ Shift 감안 3.4 **DPMO**(높은 수준) 달성 여부, 공정능력지수(Cp ≥ 2.0, Cpk ≥ 1.5) 및 성과 회귀 방지 Control Plan이다.
 
 <details>
 <summary>핵심 용어</summary>

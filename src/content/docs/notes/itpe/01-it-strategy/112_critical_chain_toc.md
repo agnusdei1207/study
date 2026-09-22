@@ -18,8 +18,8 @@ extra:
 ## 30초 인출
 
 - 본질: 제약이론(**TOC**)을 프로젝트 일정에 적용하여, 작업 선후행과 자원 제약을 함께 고려한 **Critical Chain**을 도출하고 통합 **버퍼**로 납기를 통제하는 기법이다.
-- 메커니즘: 개별 작업의 안전여유를 통합해 **Critical Chain**을 도출하고 PB·FB·RB **버퍼**와 Fever Chart로 통제한다.
-- 판정 기준: 작업자 안전여유 회수 및 통합 배치 여부, Fever Chart 상 진척 대비 **버퍼** 소진율(Green/Yellow/Red) 및 제약자원 WIP 상한 준수한다.
+- 메커니즘: 개별 작업의 안전여유를 통합해 **Critical Chain**을 도출하고 **PB**·**FB**·**RB** **버퍼**와 **Fever Chart**로 통제한다.
+- 판정 기준: 작업자 안전여유 회수 및 통합 배치 여부, **Fever Chart** 상 진척 대비 **버퍼** 소진율(Green/Yellow/Red) 및 제약자원 **WIP** 상한 준수한다.
 
 <details>
 <summary>핵심 용어</summary>

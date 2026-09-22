@@ -19,8 +19,8 @@ extra:
 ## 30초 인출
 
 - 본질: **터크만 팀 발달 모델(Tuckman Team Development Model)**은 팀이 결성되어 고성과를 내고 해산하기까지 거치는 5단계 발달 사다리와 각 단계별 팀 심리·갈등 양상 및 PM의 리더십 전환을 설명한 조직 역학 프레임워크이다.
-- 메커니즘: 팀은 Forming → Storming → Norming → Performing → Adjourning으로 전이하며, 리더십 방식도 지시형에서 위임형으로 조정한다.
-- 산출물: 프로젝트 헌장(RACI) · 팀 작업 협약서(Working Agreement) · 충돌 해결 규칙서 · 회고 및 교훈 자산(Lessons Learned)이다.
+- 메커니즘: 팀은 **Forming** → **Storming** → **Norming** → **Performing** → **Adjourning**으로 전이하며, 리더십 방식도 지시형에서 위임형으로 조정한다.
+- 산출물: 프로젝트 헌장(**RACI**) · 팀 작업 협약서(**Working Agreement**) · 충돌 해결 규칙서 · 회고 및 교훈 자산(**Lessons Learned**)이다.
 
 <details>
 <summary>핵심 용어</summary>
