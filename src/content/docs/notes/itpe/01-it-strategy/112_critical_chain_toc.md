@@ -1,5 +1,5 @@
 ---
-title: "CCPM·**TOC**"
+title: "CCPM·TOC"
 author: "Codex"
 date: "2026-09-22T23:45:00+09:00"
 tags: ["notes-it-strategy"]
@@ -12,27 +12,27 @@ extra:
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → CCPM·**TOC**
+현재 위치: IT 전략·관리 → CCPM· **TOC**
 
 
 ## 30초 인출
 
-- 본질: 제약이론(**TOC**)을 프로젝트 일정에 적용하여, 작업 선후행과 자원 제약을 함께 고려한 **Critical Chain**을 도출하고 통합 **버퍼**로 납기를 통제하는 기법이다.
-- 메커니즘: 개별 작업의 안전여유를 통합해 **Critical Chain**을 도출하고 **PB**·**FB**·**RB** **버퍼**와 **Fever Chart**로 통제한다.
+- 본질: 제약이론( **TOC** )을 프로젝트 일정에 적용하여, 작업 선후행과 자원 제약을 함께 고려한 **Critical Chain** 을 도출하고 통합 **버퍼** 로 납기를 통제하는 기법이다.
+- 메커니즘: 개별 작업의 안전여유를 통합해 **Critical Chain** 을 도출하고 **PB** · **FB** · **RB** **버퍼** 와 **Fever Chart** 로 통제한다.
 - 판정 기준: 작업자 안전여유 회수 및 통합 배치 여부, **Fever Chart** 상 진척 대비 **버퍼** 소진율(Green/Yellow/Red) 및 제약자원 **WIP** 상한 준수한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **TOC(Theory of Constraints)**: 시스템 성과를 제한하는 제약을 식별·활용·개선하는 접근이다.
-- **CCPM(Critical Chain Project Management)**: 작업·자원 의존성과 통합 Buffer로 일정을 관리하는 기법이다.
-- **PB(Project Buffer)**: **Critical Chain** 뒤에 배치해 전체 프로젝트 납기를 지연으로부터 보호하는 시간 여유이다.
-- **FB(Feeding Buffer)**: 비임계 체인의 지연이 **Critical Chain**으로 전달되기 전에 흡수하는 시간 여유이다.
-- **RB(Resource Buffer)**: **Critical Chain** 작업에 필요한 제약 자원이 제때 투입되도록 준비 시점을 알리는 장치이다.
-- **Fever Chart**: Chain 진척과 Buffer 소진의 관계를 표시한 관리도이다.
-- **CPM(Critical Path Method)**: 작업 선후행 관계에서 프로젝트 기간을 결정하는 경로를 분석하는 기법이다.
-- **WIP(Work in Progress)**: 동시에 진행 중인 작업량이다.
-- **EVM(Earned Value Management)**: 범위·일정·원가 성과를 통합 측정하는 기법이다.
+- **TOC(Theory of Constraints)** : 시스템 성과를 제한하는 제약을 식별·활용·개선하는 접근이다.
+- **CCPM(Critical Chain Project Management)** : 작업·자원 의존성과 통합 Buffer로 일정을 관리하는 기법이다.
+- **PB(Project Buffer)** : **Critical Chain** 뒤에 배치해 전체 프로젝트 납기를 지연으로부터 보호하는 시간 여유이다.
+- **FB(Feeding Buffer)** : 비임계 체인의 지연이 **Critical Chain** 으로 전달되기 전에 흡수하는 시간 여유이다.
+- **RB(Resource Buffer)** : **Critical Chain** 작업에 필요한 제약 자원이 제때 투입되도록 준비 시점을 알리는 장치이다.
+- **Fever Chart** : Chain 진척과 Buffer 소진의 관계를 표시한 관리도이다.
+- **CPM(Critical Path Method)** : 작업 선후행 관계에서 프로젝트 기간을 결정하는 경로를 분석하는 기법이다.
+- **WIP(Work in Progress)** : 동시에 진행 중인 작업량이다.
+- **EVM(Earned Value Management)** : 범위·일정·원가 성과를 통합 측정하는 기법이다.
 
 </details>
 
@@ -42,10 +42,10 @@ extra:
 
 ## Ⅰ. CCPM 개요
 
-- 정의: **TOC**의 제약 관리 원리를 프로젝트 일정에 적용해 **작업 의존성**과 **자원 제약**을 함께 반영한 **Critical Chain**을 도출하고 **버퍼** 소비로 납기를 통제하는 기법
+- 정의: **TOC** 의 제약 관리 원리를 프로젝트 일정에 적용해 **작업 의존성** 과 **자원 제약** 을 함께 반영한 **Critical Chain** 을 도출하고 **버퍼** 소비로 납기를 통제하는 기법
 - 목적: 자원 충돌과 작업 지연의 전파를 관리해 프로젝트 납기 예측 가능성을 높인다.
 
-## Ⅱ. **Critical Chain** 및 **버퍼** 관리 체계
+## Ⅱ. Critical Chain 및 버퍼 관리 체계
 
 ```mermaid
 flowchart LR
@@ -132,10 +132,10 @@ flowchart TD
 - 정의: 엘리 골드렛의 제약이론(TOC)을 프로젝트 일정 관리에 적용하여, 개별 작업의 안전 여유를 제거하고 프로젝트 및 합류 지점에 집중 버퍼를 배치하여 납기 준수율을 극대화하는 관리 기법
 - 목적: 파킨슨 법칙 및 학생 증후군 타파 · 자원 제약을 반영한 현실적 주공정 관리 · 집중 버퍼 관리를 통한 납기 단축
 
-- **정의**: 제약이론(**TOC**)을 바탕으로 작업 선후행 관계뿐만 아니라 자원 제약을 함께 고려해 **Critical Chain**을 도출하고, 통합 **버퍼**(PB, FB, RB)로 프로젝트를 통제하는 **일정관리 기법**.
-- **목적**: 파킨슨 법칙, 학생 증후군, 멀티태스킹으로 인한 일정 지연 방지 및 납기 준수율 극대화.
+- **정의** : 제약이론( **TOC** )을 바탕으로 작업 선후행 관계뿐만 아니라 자원 제약을 함께 고려해 **Critical Chain** 을 도출하고, 통합 **버퍼** (PB, FB, RB)로 프로젝트를 통제하는 **일정관리 기법** .
+- **목적** : 파킨슨 법칙, 학생 증후군, 멀티태스킹으로 인한 일정 지연 방지 및 납기 준수율 극대화.
 
-### 2. **Critical Chain** 및 **버퍼** 배치 구조
+### 2. Critical Chain 및 버퍼 배치 구조
 
 ```mermaid
 flowchart LR
@@ -154,7 +154,7 @@ flowchart LR
     T1 --> T2 --> T3 --> PB
 ```
 
-### 3. 3대 **버퍼** 및 관리 통제
+### 3. 3대 버퍼 및 관리 통제
 
 | **버퍼** 유형 | 설치 위치 | 핵심 역할 |
 |---|---|---|
@@ -165,13 +165,13 @@ flowchart LR
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
-- Eliyahu M. Goldratt, ***Critical Chain***
+- Eliyahu M. Goldratt, * **Critical Chain** *
 - [PMI, **Critical Chain** Method](https://www.pmi.org/learning/library/critical-chain-project-management-7986)
 
 ## 학습 체크
 
 - [ ] Ⅰ: CCPM 정의·목적을 설명할 수 있는가?
-- [ ] Ⅱ: **Critical Chain**과 PB·FB·RB의 위치·역할을 그릴 수 있는가?
+- [ ] Ⅱ: **Critical Chain** 과 PB·FB·RB의 위치·역할을 그릴 수 있는가?
 - [ ] Ⅲ: 작업·자원 분석부터 Buffer 통제까지 활동·산출을 연결할 수 있는가?
 - [ ] Ⅳ: CPM과 CCPM의 제약·여유·진척 기준을 비교할 수 있는가?
 - [ ] Ⅴ: 추정강요·Buffer 오용·자원경합·임계치 오판의 대응책을 제시할 수 있는가?

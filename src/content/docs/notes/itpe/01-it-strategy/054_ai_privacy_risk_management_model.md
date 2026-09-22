@@ -24,12 +24,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **PbD(Privacy by Design)**: 기획·설계부터 개인정보 보호를 기본값으로 반영하는 원칙이다.
-- **PIA(Privacy Impact Assessment)**: 개인정보 처리가 정보주체에게 미치는 영향을 사전 분석하는 제도이다.
-- **DPIA(Data Protection Impact Assessment)**: 고위험 개인정보 처리의 필요성·비례성·위험·조치를 평가하는 절차이다.
-- **Differential Privacy**: 개인 한 명의 포함 여부가 결과에 미치는 영향을 수학적으로 제한하는 기법이다.
-- **Machine Unlearning**: 특정 학습데이터의 영향을 모델에서 제거하거나 감소시키는 기술이다.
-- **Membership Inference Attack**: 특정 정보가 모델 학습에 사용되었는지 추론하는 공격이다.
+- **PbD(Privacy by Design)** : 기획·설계부터 개인정보 보호를 기본값으로 반영하는 원칙이다.
+- **PIA(Privacy Impact Assessment)** : 개인정보 처리가 정보주체에게 미치는 영향을 사전 분석하는 제도이다.
+- **DPIA(Data Protection Impact Assessment)** : 고위험 개인정보 처리의 필요성·비례성·위험·조치를 평가하는 절차이다.
+- **Differential Privacy** : 개인 한 명의 포함 여부가 결과에 미치는 영향을 수학적으로 제한하는 기법이다.
+- **Machine Unlearning** : 특정 학습데이터의 영향을 모델에서 제거하거나 감소시키는 기술이다.
+- **Membership Inference Attack** : 특정 정보가 모델 학습에 사용되었는지 추론하는 공격이다.
 
 </details>
 
@@ -37,12 +37,12 @@ extra:
 
 > AI 프라이버시 리스크 관리 모델의 개념과 절차를 설명하고, AI 생애주기별 위험 및 경감방안을 제시하시오. **(미출제 예상·25점)**
 
-## Ⅰ. AI 데이터 처리 특성에 맞춘 프라이버시 위험관리
+## Ⅰ. AI 데이터 처리 특성에 맞춘 프라이버시 위험관리의 개요
 
 > AI는 학습데이터뿐 아니라 모델과 입출력에서도 개인정보가 노출될 수 있으므로 생애주기 전체를 관리해야 함.
 
-- 정의: AI 데이터 처리의 특성과 맥락을 바탕으로 **프라이버시 위험**을 식별·분석·평가하고 비례적 경감조치를 적용하는 관리모델
-- 목적: **정보주체 권리**·**적법한 데이터 활용**·**책임성**·**지속적 위험관리** 확보
+- 정의: AI 데이터 처리의 특성과 맥락을 바탕으로 **프라이버시 위험** 을 식별·분석·평가하고 비례적 경감조치를 적용하는 관리모델
+- 목적: **정보주체 권리** · **적법한 데이터 활용** · **책임성** · **지속적 위험관리** 확보
 
 ## Ⅱ. AI 프라이버시 리스크 유형
 
@@ -133,8 +133,8 @@ flowchart TD
 
 ### 3. 핵심 통제
 
-- **Risk-proportionate Control**: 위험수준에 맞춘 기술·관리·절차 통제 조합
-- **Residual Risk Accountability**: 잔여위험·수용기준·승인책임·증적 연결
+- **Risk-proportionate Control** : 위험수준에 맞춘 기술·관리·절차 통제 조합
+- **Residual Risk Accountability** : 잔여위험·수용기준·승인책임·증적 연결
 
 ## 출제 이력과 검증 출처
 

@@ -20,16 +20,16 @@ extra:
 
 - 본질: IT 실행업무를 외부 전문조직에 맡기되 아키텍처·데이터·보안·계약 통제권은 내부에 유지하는 소싱 체계이다.
 - 메커니즘: Make or Buy 판단 → 공급자·계약 선정 → 전환·지식이전 → **SLA** 운영 → Exit·재소싱으로 생애주기를 관리한다.
-- 산출물: 소싱전략 · RFP·**SLA** · 전환계획 · 성과보고 · **Exit Plan**이다.
+- 산출물: 소싱전략 · RFP· **SLA** · 전환계획 · 성과보고 · **Exit Plan** 이다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **SLA(Service Level Agreement)**: 고객과 공급자가 서비스 수준, 측정방법, 책임범위를 합의한 기준이다.
-- **RO(Retained Organization)**: 위탁 후에도 통제권과 핵심 역량을 유지하는 내부 조직이다.
-- **SIAM(Service Integration and Management)**: 다중 공급자의 서비스를 하나의 서비스로 통합 관리하는 운영 모델이다.
-- **XLA(eXperience Level Agreement)**: 사용자 경험 결과를 서비스 평가에 반영하는 협약이다.
-- **Exit Plan**: 계약 종료 시 서비스·지식·자산을 다른 공급자나 내부로 이전하는 계획이다.
+- **SLA(Service Level Agreement)** : 고객과 공급자가 서비스 수준, 측정방법, 책임범위를 합의한 기준이다.
+- **RO(Retained Organization)** : 위탁 후에도 통제권과 핵심 역량을 유지하는 내부 조직이다.
+- **SIAM(Service Integration and Management)** : 다중 공급자의 서비스를 하나의 서비스로 통합 관리하는 운영 모델이다.
+- **XLA(eXperience Level Agreement)** : 사용자 경험 결과를 서비스 평가에 반영하는 협약이다.
+- **Exit Plan** : 계약 종료 시 서비스·지식·자산을 다른 공급자나 내부로 이전하는 계획이다.
 
 </details>
 
@@ -41,8 +41,8 @@ extra:
 
 > 실행을 위탁해도 최종 책임과 통제권은 발주자에게 남으며, 교체 가능한 구조가 소싱의 가역성을 결정함.
 
-- 정의: IT 업무 일부 또는 전부를 **외부 전문조직**에 위탁하고 **계약·SLA(Service Level Agreement)**로 성과와 위험을 관리하는 **소싱** 체계
-- 목적: 핵심 역량과 **아키텍처·데이터·보안 통제권**은 내부에 유지하면서 전문성·비용 효율을 확보하는 것
+- 정의: IT 업무 일부 또는 전부를 **외부 전문조직** 에 위탁하고 **계약·SLA(Service Level Agreement)** 로 성과와 위험을 관리하는 **소싱** 체계
+- 목적: 핵심 역량과 **아키텍처·데이터·보안 통제권** 은 내부에 유지하면서 전문성·비용 효율을 확보하는 것
 
 ## Ⅱ. 아웃소싱 생명주기
 
@@ -128,12 +128,12 @@ flowchart TD
 
 ### 1. 정의·목적
 
-- 정의: IT 업무를 외부 전문조직에 위탁하고 **SLA(Service Level Agreement)**로 성과·위험을 관리하는 소싱 체계
+- 정의: IT 업무를 외부 전문조직에 위탁하고 **SLA(Service Level Agreement)** 로 성과·위험을 관리하는 소싱 체계
 - 목적: 핵심 역량 집중 · 전문성 활용 · 품질·비용 통제
 
 ### 2. 핵심 구조 및 매커니즘
 
-- 정의: IT 업무를 외부 전문조직에 위탁하고 **SLA(Service Level Agreement)**로 성과·위험을 관리하는 소싱 체계
+- 정의: IT 업무를 외부 전문조직에 위탁하고 **SLA(Service Level Agreement)** 로 성과·위험을 관리하는 소싱 체계
 - 목적: 핵심 역량 집중 · 전문성 활용 · 품질·비용 통제
 
 ```mermaid

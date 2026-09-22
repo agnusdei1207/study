@@ -24,12 +24,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **SLA(Service Level Agreement)**: 서비스 수준과 측정·보고·책임을 합의한 문서이다.
-- **ITSM(IT Service Management)**: IT 서비스를 계획·제공·운영·개선하는 관리체계이다.
-- **SR(Service Request)**: 사용자 또는 운영자가 공식 절차로 등록한 서비스 요청이다.
-- **RTO(Recovery Time Objective)**: 중단 후 서비스를 복구해야 하는 목표시간이다.
-- **RPO(Recovery Point Objective)**: 복구 시 허용 가능한 데이터 손실 시점이다.
-- **CAATs(Computer-Assisted Audit Techniques)**: 데이터·Log 분석 등에 사용하는 컴퓨터 기반 감사기법이다.
+- **SLA(Service Level Agreement)** : 서비스 수준과 측정·보고·책임을 합의한 문서이다.
+- **ITSM(IT Service Management)** : IT 서비스를 계획·제공·운영·개선하는 관리체계이다.
+- **SR(Service Request)** : 사용자 또는 운영자가 공식 절차로 등록한 서비스 요청이다.
+- **RTO(Recovery Time Objective)** : 중단 후 서비스를 복구해야 하는 목표시간이다.
+- **RPO(Recovery Point Objective)** : 복구 시 허용 가능한 데이터 손실 시점이다.
+- **CAATs(Computer-Assisted Audit Techniques)** : 데이터·Log 분석 등에 사용하는 컴퓨터 기반 감사기법이다.
 
 </details>
 
@@ -37,12 +37,12 @@ extra:
 
 > 시스템 운영 감리와 유지보수 감리의 개념·점검영역을 비교하고, 증적 기반 감리절차 및 문제점·대응책을 설명하시오. **(미출제 예상·25점)**
 
-## Ⅰ. 가동 후 효율성·안전성·계약이행을 검증하는 독립 활동
+## Ⅰ. 가동 후 효율성·안전성·계약이행을 검증하는 독립 활동의 개요
 
 > 운영·유지보수 감리는 체크리스트 확인이 아니라 통제가 실제 작동하고 결과가 추적되는지 증적으로 판단하는 활동임.
 
-- 정의: **독립된 제3자**가 정보시스템 운영·유지보수의 효율성·안전성·계약이행을 종합 점검하고 개선을 권고하는 활동
-- 목적: **서비스 연속성**·**운영통제 실효성**·**변경 품질**·**계약 투명성** 확보
+- 정의: **독립된 제3자** 가 정보시스템 운영·유지보수의 효율성·안전성·계약이행을 종합 점검하고 개선을 권고하는 활동
+- 목적: **서비스 연속성** · **운영통제 실효성** · **변경 품질** · **계약 투명성** 확보
 
 ## Ⅱ. 운영 감리와 유지보수 감리 비교
 
@@ -168,8 +168,8 @@ flowchart TD
 
 ### 3. 핵심 통제
 
-- **Evidence Cross-check**: 보고서와 원시 Log·설정·Ticket 교차검증
-- **End-to-end Traceability**: SR → 승인 → Commit → Test → 배포 → 종결
+- **Evidence Cross-check** : 보고서와 원시 Log·설정·Ticket 교차검증
+- **End-to-end Traceability** : SR → 승인 → Commit → Test → 배포 → 종결
 
 ## 출제 이력과 검증 출처
 

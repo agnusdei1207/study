@@ -18,21 +18,21 @@ extra:
 
 ## 30초 인출
 
-- 본질: 거대 시장 착시를 배제하고 전체 시장(**TAM**)에서 유효 시장(**SAM**), 실제 점유 가능한 수익 시장(**SOM**)으로 좁히는 3단계 추정 모델이다.
-- 메커니즘: 전체 수요 정의(**TAM**) → 제품·지역·채널 제약 반영(**SAM**) → 자원·경쟁·영업역량 반영(**SOM**) → 상향식·하향식 교차검증한다.
-- 판정 기준: **TAM**·**SAM**·**SOM** 산정 근거와 고객 단위 수익성 가정을 상향식·하향식으로 교차검증한다.
+- 본질: 거대 시장 착시를 배제하고 전체 시장( **TAM** )에서 유효 시장( **SAM** ), 실제 점유 가능한 수익 시장( **SOM** )으로 좁히는 3단계 추정 모델이다.
+- 메커니즘: 전체 수요 정의( **TAM** ) → 제품·지역·채널 제약 반영( **SAM** ) → 자원·경쟁·영업역량 반영( **SOM** ) → 상향식·하향식 교차검증한다.
+- 판정 기준: **TAM** · **SAM** · **SOM** 산정 근거와 고객 단위 수익성 가정을 상향식·하향식으로 교차검증한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **TAM(Total Addressable Market)**: 특정 제품·서비스가 이론적으로 도달할 수 있는 전체 시장의 최대 수요 규모이다.
-- **SAM(Serviceable Addressable Market)**: 자사의 비즈니스 모델, 제품 스펙, 유통 채널, 지리적 영역 내에서 실제 도달 가능한 유효 시장이다.
-- **SOM(Serviceable Obtainable Market)**: 자사의 경쟁력·채널·자원 제약을 반영하여 현실적으로 획득 가능한 시장이다.
-- **ARPU(Average Revenue Per User)**: 고객 또는 계정당 연간/월간 평균 결제 단가이다.
-- **CAC(Customer Acquisition Cost)**: 고객 1개사를 신규 획득하기 위해 소요되는 마케팅 및 영업 총비용이다.
-- **LTV(Customer Lifetime Value)**: 고객 한 명 또는 한 계정이 거래기간 동안 창출할 것으로 예상되는 누적 수익·가치이다.
-- **Unit Economics**: 고객·계정 등 단위당 수익과 획득·서비스 비용을 비교하는 사업성 지표이다.
-- **BEP(Break-Even Point)**: 총매출이 고정비와 변동비의 합계와 일치하여 손익이 0이 되는 손익분기점이다.
+- **TAM(Total Addressable Market)** : 특정 제품·서비스가 이론적으로 도달할 수 있는 전체 시장의 최대 수요 규모이다.
+- **SAM(Serviceable Addressable Market)** : 자사의 비즈니스 모델, 제품 스펙, 유통 채널, 지리적 영역 내에서 실제 도달 가능한 유효 시장이다.
+- **SOM(Serviceable Obtainable Market)** : 자사의 경쟁력·채널·자원 제약을 반영하여 현실적으로 획득 가능한 시장이다.
+- **ARPU(Average Revenue Per User)** : 고객 또는 계정당 연간/월간 평균 결제 단가이다.
+- **CAC(Customer Acquisition Cost)** : 고객 1개사를 신규 획득하기 위해 소요되는 마케팅 및 영업 총비용이다.
+- **LTV(Customer Lifetime Value)** : 고객 한 명 또는 한 계정이 거래기간 동안 창출할 것으로 예상되는 누적 수익·가치이다.
+- **Unit Economics** : 고객·계정 등 단위당 수익과 획득·서비스 비용을 비교하는 사업성 지표이다.
+- **BEP(Break-Even Point)** : 총매출이 고정비와 변동비의 합계와 일치하여 손익이 0이 되는 손익분기점이다.
 
 </details>
 
@@ -42,9 +42,9 @@ extra:
 
 ## Ⅰ. 시장 기획의 3단계 여과기, TAM-SAM-SOM의 개요
 
-> 거대 시장의 착시를 걷어내고 **TAM(전체 시장)**에서 **SAM(유효 시장)**을 거쳐 **SOM(수익 시장)**으로 좁혀 단기 실행력을 확보함.
+> 거대 시장의 착시를 걷어내고 **TAM(전체 시장)** 에서 **SAM(유효 시장)** 을 거쳐 **SOM(수익 시장)** 으로 좁혀 단기 실행력을 확보함.
 
-- 정의: 신규 IT 제품 및 디지털 서비스 기획 시 **TAM(Total Addressable Market)**, **SAM(Serviceable Addressable Market)**, **SOM(Serviceable Obtainable Market)**의 3단계 동심원으로 시장 규모를 단계별 여과 추정하는 **사업 타당성 분석 프레임워크**
+- 정의: 신규 IT 제품 및 디지털 서비스 기획 시 **TAM(Total Addressable Market)** , **SAM(Serviceable Addressable Market)** , **SOM(Serviceable Obtainable Market)** 의 3단계 동심원으로 시장 규모를 단계별 여과 추정하는 **사업 타당성 분석 프레임워크**
 - 목적: 시장 경계 명확화 · 과대추정 방지 · 실행 가능한 매출가설 수립
 
 ## Ⅱ. TAM-SAM-SOM 3단계 계층 구조 및 추정 체계
@@ -124,7 +124,7 @@ flowchart TD
 
 ### 1. 정의·목적
 
-- 정의: 신규 IT 사업 기획 시 전체 시장(**TAM**), 서비스 가능 유효 시장(**SAM**), 조기 실현 가능한 수익 시장(**SOM**)으로 시장 규모를 3단계 동심원으로 여과 추정하는 **사업 타당성 분석 프레임워크**
+- 정의: 신규 IT 사업 기획 시 전체 시장( **TAM** ), 서비스 가능 유효 시장( **SAM** ), 조기 실현 가능한 수익 시장( **SOM** )으로 시장 규모를 3단계 동심원으로 여과 추정하는 **사업 타당성 분석 프레임워크**
 - 목적: 거대 시장 착시 배제 및 Unit Economics 기반 손익분기점(BEP) 달성
 
 ### 2. 구성체계 및 방법론
@@ -142,9 +142,9 @@ flowchart LR
 
 ### 3. 핵심 통제
 
-- **추정 기법 교차 검증**: Top-down(잠재력 파악)과 Bottom-up(실행력 검증)의 상호 역대조
-- **단위 경제성 통제**: CAC·LTV·서비스원가·해지율을 함께 검토하여 사업성 확인
-- **SOM 산출 수식**: $\text{SOM} = \text{타깃 고객 수} \times \text{ARPU} \times \text{획득률}$
+- **추정 기법 교차 검증** : Top-down(잠재력 파악)과 Bottom-up(실행력 검증)의 상호 역대조
+- **단위 경제성 통제** : CAC·LTV·서비스원가·해지율을 함께 검토하여 사업성 확인
+- **SOM 산출 수식** : $\text{SOM} = \text{타깃 고객 수} \times \text{ARPU} \times \text{획득률}$
 
 ## 출제 이력과 검증 출처
 

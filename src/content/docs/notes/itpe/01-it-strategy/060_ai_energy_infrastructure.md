@@ -24,13 +24,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **PUE(Power Usage Effectiveness)**: 데이터센터 총 전력량을 IT 장비 전력량으로 나눈 지표이다.
-- **WUE(Water Usage Effectiveness)**: 데이터센터의 IT 장비 운영에 사용한 물의 양을 IT 에너지 사용량과 비교하는 효율 지표이다.
-- **CUE(Carbon Usage Effectiveness)**: IT 장비가 소비한 에너지에 대응하는 탄소배출량을 나타내는 지표이다.
-- **PPA(Power Purchase Agreement)**: 전력 생산자와 수요자가 체결하는 전력구매계약이다.
-- **D2C(Direct-to-Chip)**: 발열 칩에 Cold Plate를 접촉해 액체로 열을 제거하는 방식이다.
-- **Immersion Cooling**: 전자장비를 비전도성 유체에 침지해 열을 제거하는 방식이다.
-- **BESS(Battery Energy Storage System)**: 전력을 저장·방전하는 배터리 기반 설비이다.
+- **PUE(Power Usage Effectiveness)** : 데이터센터 총 전력량을 IT 장비 전력량으로 나눈 지표이다.
+- **WUE(Water Usage Effectiveness)** : 데이터센터의 IT 장비 운영에 사용한 물의 양을 IT 에너지 사용량과 비교하는 효율 지표이다.
+- **CUE(Carbon Usage Effectiveness)** : IT 장비가 소비한 에너지에 대응하는 탄소배출량을 나타내는 지표이다.
+- **PPA(Power Purchase Agreement)** : 전력 생산자와 수요자가 체결하는 전력구매계약이다.
+- **D2C(Direct-to-Chip)** : 발열 칩에 Cold Plate를 접촉해 액체로 열을 제거하는 방식이다.
+- **Immersion Cooling** : 전자장비를 비전도성 유체에 침지해 열을 제거하는 방식이다.
+- **BESS(Battery Energy Storage System)** : 전력을 저장·방전하는 배터리 기반 설비이다.
 
 </details>
 
@@ -38,12 +38,12 @@ extra:
 
 > AI 데이터센터 에너지 인프라의 구성체계를 설명하고, 전력·냉각·환경 문제점과 대응책을 제시하시오. **(미출제 예상·25점)**
 
-## Ⅰ. 전력·열·물·탄소를 통합하는 AI 물리 인프라
+## Ⅰ. 전력·열·물·탄소를 통합하는 AI 물리 인프라의 개요
 
 > AI 에너지 인프라는 전력 확보만이 아니라 변동하는 AI 부하와 고밀도 발열을 안정적으로 수용하는 전원·설비·운영체계임.
 
-- 정의: AI 컴퓨팅의 전력수요와 발열을 안정적으로 수용하기 위한 **전원**·**계통**·**배전**·냉각·계측의 통합 인프라
-- 목적: **용량 적기확보**·**서비스 연속성**·**에너지 효율**·**환경 지속가능성** 달성
+- 정의: AI 컴퓨팅의 전력수요와 발열을 안정적으로 수용하기 위한 **전원** · **계통** · **배전** ·냉각·계측의 통합 인프라
+- 목적: **용량 적기확보** · **서비스 연속성** · **에너지 효율** · **환경 지속가능성** 달성
 
 ## Ⅱ. 구성체계
 
@@ -133,8 +133,8 @@ flowchart LR
 
 ### 3. 핵심 통제
 
-- **Integrated Capacity Planning**: Workload·전력·열·물·입지 공동계획
-- **Carbon-aware Scheduling**: 전력여건과 SLA에 따른 시간·지역·가속기 배치
+- **Integrated Capacity Planning** : Workload·전력·열·물·입지 공동계획
+- **Carbon-aware Scheduling** : 전력여건과 SLA에 따른 시간·지역·가속기 배치
 
 ## 출제 이력과 검증 출처
 

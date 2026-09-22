@@ -18,19 +18,19 @@ extra:
 
 ## 30초 인출
 
-- 본질: **ISMP(Information System Master Plan)**는 **ISP(Information Strategy Planning)**가 선정한 정보화 과제를 조달 가능한 **Baseline**으로 구체화한다.
-- 메커니즘: 요구사항 분석 → 아키텍처 정의 → 규모·예산 산정 → **RFP(Request for Proposal)** 도출 과정을 **RTM(Requirements Traceability Matrix)**으로 연결한다.
-- 산출물: 요구사항 명세서 · 목표 아키텍처 · **FP(Function Point)** 기반 예산서 · **RFP**이다.
+- 본질: **ISMP(Information System Master Plan)** 는 **ISP(Information Strategy Planning)** 가 선정한 정보화 과제를 조달 가능한 **Baseline** 으로 구체화한다.
+- 메커니즘: 요구사항 분석 → 아키텍처 정의 → 규모·예산 산정 → **RFP(Request for Proposal)** 도출 과정을 **RTM(Requirements Traceability Matrix)** 으로 연결한다.
+- 산출물: 요구사항 명세서 · 목표 아키텍처 · **FP(Function Point)** 기반 예산서 · **RFP** 이다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **ISMP(Information System Master Plan)**: 선정된 시스템의 요구사항·구조·예산을 발주 가능한 수준으로 구체화해 조달 기준을 만드는 계획이다.
-- **ISP(Information Strategy Planning)**: 조직의 비전과 현황을 바탕으로 정보화 방향과 투자 과제를 선정하는 상위 계획이다.
-- **Baseline(기준선)**: 승인된 범위·요구사항·비용을 이후 변경과 비교하고 통제하는 공식 기준이다.
-- **RTM(Requirements Traceability Matrix)**: 요구사항을 설계·비용·계약 산출물과 양방향으로 연결해 누락과 과잉 반영을 검증하는 추적표다.
-- **FP(Function Point)**: 사용자에게 제공되는 논리적 기능을 세어 소프트웨어 규모와 비용을 산정하는 기법이다.
-- **RFP(Request for Proposal)**: 발주자가 제안사에 구축 범위·요구사항·평가 기준·계약 조건을 제시해 제안을 요청하는 문서다.
+- **ISMP(Information System Master Plan)** : 선정된 시스템의 요구사항·구조·예산을 발주 가능한 수준으로 구체화해 조달 기준을 만드는 계획이다.
+- **ISP(Information Strategy Planning)** : 조직의 비전과 현황을 바탕으로 정보화 방향과 투자 과제를 선정하는 상위 계획이다.
+- **Baseline(기준선)** : 승인된 범위·요구사항·비용을 이후 변경과 비교하고 통제하는 공식 기준이다.
+- **RTM(Requirements Traceability Matrix)** : 요구사항을 설계·비용·계약 산출물과 양방향으로 연결해 누락과 과잉 반영을 검증하는 추적표다.
+- **FP(Function Point)** : 사용자에게 제공되는 논리적 기능을 세어 소프트웨어 규모와 비용을 산정하는 기법이다.
+- **RFP(Request for Proposal)** : 발주자가 제안사에 구축 범위·요구사항·평가 기준·계약 조건을 제시해 제안을 요청하는 문서다.
 
 </details>
 
@@ -40,7 +40,7 @@ extra:
 
 ## Ⅰ. ISMP의 개요
 
-- 정의: 특정 정보시스템의 **요구사항**을 **FP(Function Point) 산정 수준**으로 상세화하여 **RFP(Request for Proposal)**와 발주 **Baseline**을 수립하는 활동
+- 정의: 특정 정보시스템의 **요구사항** 을 **FP(Function Point) 산정 수준** 으로 상세화하여 **RFP(Request for Proposal)** 와 발주 **Baseline** 을 수립하는 활동
 - 목적: 과업 범위 기준선을 확정하고 요구사항 추적성을 확보해 조달 분쟁·과업 변경을 방지하는 것
 
 ## Ⅱ. ISMP 구성체계 및 5단계 방법론
@@ -82,7 +82,7 @@ flowchart TD
 | 위험 | 대책 | 효과 |
 |---|---|---|
 | 잦은 과업 변경 | **RTM** 기반 요구사항 전수 점검 | 미반영 요구사항 및 과잉 설계 제거 |
-| 예산 왜곡 및 초과 | **FP**와 인프라·운영 비용 분리 산정 | 기능 규모와 예산 일치 확보 |
+| 예산 왜곡 및 초과 | **FP** 와 인프라·운영 비용 분리 산정 | 기능 규모와 예산 일치 확보 |
 | 구조적 불일치 | 요구사항별 아키텍처 구성요소 1:1 매핑 | 누락 및 중복 제거 |
 | 발주·계약 분쟁 | RFP 내 검수조건 및 발주단위 명시 | 명확한 검수 및 책임 소재 확정 |
 
@@ -118,7 +118,7 @@ flowchart TD
 
 ### 1. 정의·목적
 
-- 정의: 특정 정보시스템의 요구사항을 **FP 산정 수준**으로 구체화하여 발주 **Baseline**을 수립하는 활동
+- 정의: 특정 정보시스템의 요구사항을 **FP 산정 수준** 으로 구체화하여 발주 **Baseline** 을 수립하는 활동
 - 목적: 과업 범위 기준선 확정을 통한 조달 분쟁 방지 및 과업 변경 최소화
 
 ### 2. ISMP 5단계 방법론·RTM 추적체계
@@ -157,7 +157,7 @@ flowchart TD
 ## 학습 체크
 
 - [ ] Ⅰ 개요: ISMP를 `특정 시스템 · FP 산정 수준 · 발주 Baseline`으로 정의하고 목적을 말할 수 있는가?
-- [ ] Ⅱ 방법론: 5단계를 순서대로 쓰고, 각 단계의 **활동과 산출물**을 한 쌍으로 재현할 수 있는가?
+- [ ] Ⅱ 방법론: 5단계를 순서대로 쓰고, 각 단계의 **활동과 산출물** 을 한 쌍으로 재현할 수 있는가?
 - [ ] Ⅲ 비교: ISP와 ISMP를 `목적 · 대상 범위 · 분석 상세도 · 핵심 산출물 · 종료 기준` 5개 축으로 비교할 수 있는가?
 - [ ] Ⅳ 통제: `위험 · 대책 · 효과`를 기준으로 구축사업 이행방안의 조달 위험 통제 방안을 설명할 수 있는가?
 - [ ] Ⅴ 제언: 문서 분량이 아닌 Traceability 중심의 RTM 기반 Quality Gate를 통과 조건으로 제시할 수 있는가?

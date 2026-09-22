@@ -20,22 +20,22 @@ extra:
 ## 30초 인출
 
 - 본질: 개별 인프라 장비가 아닌 고객 중심의 End-to-End IT 서비스 생명주기를 관리하여 비즈니스 가치를 공동 창출(Co-creation)하는 서비스 관리 체계이다.
-- 메커니즘: 서비스 데스크를 중심으로 인시던트 복구, 문제 원인·**KEDB**, 변경·**CAB**, 릴리즈·**CMDB** 정보를 연결해 지속적으로 서비스를 개선한다.
+- 메커니즘: 서비스 데스크를 중심으로 인시던트 복구, 문제 원인· **KEDB** , 변경· **CAB** , 릴리즈· **CMDB** 정보를 연결해 지속적으로 서비스를 개선한다.
 - 판정 기준: 변경 후 장애와 복구시간을 기준선과 비교하고 서비스 수준 목표의 충족 여부를 검증한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **ITSM(IT Service Management)**: 서비스의 기획·설계·전환·제공·개선을 통해 고객과 가치를 공동창출하는 관리 체계이다.
-- **ITIL(Information Technology Infrastructure Library)**: 서비스 가치체계와 실천방법을 제공하는 ITSM 모범사례이다.
-- **SMS(Service Management System)**: 서비스 관리 방침·목표·프로세스·자원을 수립·운영·개선하는 경영시스템이다.
-- **SLA(Service Level Agreement)**: 서비스 제공자와 고객이 합의한 서비스 수준과 측정·보고 기준이다.
-- **KEDB(Known Error Database)**: Known Error와 Workaround를 관리하는 지식 저장소이다.
-- **CAB(Change Advisory Board)**: 변경의 평가·우선순위·승인을 지원하는 자문기구이다.
-- **RFC(Request for Change)**: 변경 제안을 공식적으로 요청하는 기록·절차이다.
-- **XLA(eXperience Level Agreement)**: 사용자 경험 관점에서 서비스 수준을 약속하는 협약이다.
-- **CMDB(Configuration Management Database)**: 서비스와 CI(Configuration Item)의 관계·속성·상태를 관리하는 데이터베이스이다.
-- **SVS(Service Value System)**: ITIL 4에서 수요와 기회를 가치로 전환하는 구성요소 체계이다.
+- **ITSM(IT Service Management)** : 서비스의 기획·설계·전환·제공·개선을 통해 고객과 가치를 공동창출하는 관리 체계이다.
+- **ITIL(Information Technology Infrastructure Library)** : 서비스 가치체계와 실천방법을 제공하는 ITSM 모범사례이다.
+- **SMS(Service Management System)** : 서비스 관리 방침·목표·프로세스·자원을 수립·운영·개선하는 경영시스템이다.
+- **SLA(Service Level Agreement)** : 서비스 제공자와 고객이 합의한 서비스 수준과 측정·보고 기준이다.
+- **KEDB(Known Error Database)** : Known Error와 Workaround를 관리하는 지식 저장소이다.
+- **CAB(Change Advisory Board)** : 변경의 평가·우선순위·승인을 지원하는 자문기구이다.
+- **RFC(Request for Change)** : 변경 제안을 공식적으로 요청하는 기록·절차이다.
+- **XLA(eXperience Level Agreement)** : 사용자 경험 관점에서 서비스 수준을 약속하는 협약이다.
+- **CMDB(Configuration Management Database)** : 서비스와 CI(Configuration Item)의 관계·속성·상태를 관리하는 데이터베이스이다.
+- **SVS(Service Value System)** : ITIL 4에서 수요와 기회를 가치로 전환하는 구성요소 체계이다.
 
 </details>
 
@@ -45,9 +45,9 @@ extra:
 
 ## Ⅰ. ITSM의 개요
 
-> ITSM의 관리대상은 개별 장비가 아니라 고객이 사용하는 **End-to-End 서비스와 가치흐름**임.
+> ITSM의 관리대상은 개별 장비가 아니라 고객이 사용하는 **End-to-End 서비스와 가치흐름** 임.
 
-- 정의: **서비스 가치체계**를 기반으로 서비스의 기획·설계·전환·운영·개선을 통합 관리하는 체계
+- 정의: **서비스 가치체계** 를 기반으로 서비스의 기획·설계·전환·운영·개선을 통합 관리하는 체계
 - 목적: **서비스 가치** · **품질 일관성** · **운영효율** · **지속개선** 확보
 
 ## Ⅱ. ITSM 구성체계
@@ -144,7 +144,7 @@ flowchart TD
 
 ### 1. 정의·목적
 
-- 정의: **서비스 가치체계**를 기반으로 서비스의 기획·설계·전환·운영·개선을 통합 관리하는 체계
+- 정의: **서비스 가치체계** 를 기반으로 서비스의 기획·설계·전환·운영·개선을 통합 관리하는 체계
 - 목적: **서비스 가치** · **품질 일관성** · **운영효율** · **지속개선** 확보
 
 ### 2. 핵심 구조 및 체계

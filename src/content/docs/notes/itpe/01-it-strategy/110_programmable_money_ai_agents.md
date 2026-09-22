@@ -1,5 +1,5 @@
 ---
-title: "**Programmable Money**·**AI Agent** 결제"
+title: "Programmable Money·AI Agent 결제"
 author: "Codex"
 date: "2026-09-22T23:45:00+09:00"
 tags: ["notes-it-strategy"]
@@ -12,40 +12,40 @@ extra:
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → **Programmable Money**·**AI Agent** 결제
+현재 위치: IT 전략·관리 → **Programmable Money** · **AI Agent** 결제
 
 
 ## 30초 인출
 
-- 본질: 화폐 자체에 사용 조건이 부여된 **Programmable Money**와 결제 실행 조건이 자동화된 **Programmable Payment**를 **AI Agent** 거래에 적용하는 메커니즘이다.
+- 본질: 화폐 자체에 사용 조건이 부여된 **Programmable Money** 와 결제 실행 조건이 자동화된 **Programmable Payment** 를 **AI Agent** 거래에 적용하는 메커니즘이다.
 - 메커니즘: 소유자가 세션키를 위임하면 AI Agent가 결제를 요청하고, Policy Engine 검증을 통과한 거래만 **DvP** 정산과 감사로그로 연결한다.
 - 판정 기준: **ERC-4337** 기반 계정 추상화/단기 세션키 적용 여부, 이상 거래 시 Circuit Breaker 작동 및 불가역 **WORM** 감사 추적성이다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **Programmable Money**: 화폐의 사용처·기간·지역 등 사용조건을 디지털 규칙으로 부여한 화폐이다.
-- **Programmable Payment**: 사전에 정한 조건이 충족되면 결제지시를 자동으로 실행하는 기능이다.
-- **AI(Artificial Intelligence) Agent**: 목표와 권한 범위에서 도구를 사용해 과업을 수행하는 인공지능 시스템이다.
-- **CBDC(Central Bank Digital Currency)**: 중앙은행이 발행하는 디지털 형태의 중앙은행 화폐이다.
-- **DvP(Delivery versus Payment)**: 자산 인도와 대금 지급을 조건부로 연계하는 결제 방식이다.
-- **KYC(Know Your Customer)**: 고객 신원 확인 절차이다.
-- **AML(Anti-Money Laundering)**: 자금세탁 방지 통제이다.
-- **PSP(Payment Service Provider)**: 지급결제 서비스를 제공하는 사업자이다.
-- **RACI(Responsible, Accountable, Consulted, Informed)**: 역할별 수행·책임·협의·통보 관계를 정한 표이다.
-- **ERC-4337**: 블록체인 계정을 스마트 컨트랙트로 추상화해 맞춤 권한·검증 로직을 허용하는 이더리움 표준이다.
-- **WORM(Write Once Read Many)**: 한 번 기록 후 변경·삭제가 불가능한 기록 방식이다.
+- **Programmable Money** : 화폐의 사용처·기간·지역 등 사용조건을 디지털 규칙으로 부여한 화폐이다.
+- **Programmable Payment** : 사전에 정한 조건이 충족되면 결제지시를 자동으로 실행하는 기능이다.
+- **AI(Artificial Intelligence) Agent** : 목표와 권한 범위에서 도구를 사용해 과업을 수행하는 인공지능 시스템이다.
+- **CBDC(Central Bank Digital Currency)** : 중앙은행이 발행하는 디지털 형태의 중앙은행 화폐이다.
+- **DvP(Delivery versus Payment)** : 자산 인도와 대금 지급을 조건부로 연계하는 결제 방식이다.
+- **KYC(Know Your Customer)** : 고객 신원 확인 절차이다.
+- **AML(Anti-Money Laundering)** : 자금세탁 방지 통제이다.
+- **PSP(Payment Service Provider)** : 지급결제 서비스를 제공하는 사업자이다.
+- **RACI(Responsible, Accountable, Consulted, Informed)** : 역할별 수행·책임·협의·통보 관계를 정한 표이다.
+- **ERC-4337** : 블록체인 계정을 스마트 컨트랙트로 추상화해 맞춤 권한·검증 로직을 허용하는 이더리움 표준이다.
+- **WORM(Write Once Read Many)** : 한 번 기록 후 변경·삭제가 불가능한 기록 방식이다.
 
 </details>
 
 ## 예상문제
 
-> **(미출제 예상·25점)** **Programmable Money**와 **Programmable Payment**의 차이를 설명하고, **AI Agent** 결제 구조와 위험·통제방안을 제시하시오.
+> **(미출제 예상·25점)** **Programmable Money** 와 **Programmable Payment** 의 차이를 설명하고, **AI Agent** 결제 구조와 위험·통제방안을 제시하시오.
 
 ## Ⅰ. 개요
 
-- 정의: **화폐** 또는 **결제 조건**을 디지털 규칙으로 표현하고 **AI Agent**의 권한·정책 검증과 연계해 조건 충족 시 거래를 실행하는 자동화 결제 구조
-- 목적: 자동화 거래에서 **결제 조건**의 통제, 책임 추적, 자산 인도와 대금 지급의 일관성을 확보한다.
+- 정의: **화폐** 또는 **결제 조건** 을 디지털 규칙으로 표현하고 **AI Agent** 의 권한·정책 검증과 연계해 조건 충족 시 거래를 실행하는 자동화 결제 구조
+- 목적: 자동화 거래에서 **결제 조건** 의 통제, 책임 추적, 자산 인도와 대금 지급의 일관성을 확보한다.
 
 ## Ⅱ. Money·Payment 비교
 
@@ -56,9 +56,9 @@ extra:
 | 쟁점 | 화폐 단일성·범용성 | 오류·취소·분쟁·책임 |
 | 예시 | 목적 제한형 Voucher | Pay-on-delivery·Escrow |
 
-CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이며, 그 자체만으로 **Programmable Money**라고 단정하지 않음.
+CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이며, 그 자체만으로 **Programmable Money** 라고 단정하지 않음.
 
-## Ⅲ. **AI Agent** 결제 아키텍처 및 절차
+## Ⅲ. AI Agent 결제 아키텍처 및 절차
 
 ```mermaid
 flowchart LR
@@ -145,10 +145,10 @@ flowchart TD
 - 정의: 블록체인 스마트 계약 기술과 중앙은행 디지털화폐(CBDC) 또는 토큰화 자산을 결합하여, 특정 조건이 충족될 때만 화폐가 프로그래밍된 로직대로 자동 실행·결제되는 디지털 화폐 기술
 - 목적: AI 에이전트 간 머신 투 머신(M2M) 자율 경제 거래 구현 · 조건부 결제를 통한 거래 신뢰성 및 투명성 극대화 · 정산 비용 및 시간의 획기적 절감
 
-- **정의**: 화폐 사용 조건(**Programmable Money**)과 결제 실행 규칙(**Programmable Payment**)을 코드로 통제하여 **AI Agent**의 자율 거래를 안전하게 실행하는 **차세대 디지털 금융 아키텍처**.
-- **목적**: 기계 간(M2M) 초소액 결제 자동화, 거래 신뢰성 확보 및 에이전트 오동작·자금 탈취 방지.
+- **정의** : 화폐 사용 조건( **Programmable Money** )과 결제 실행 규칙( **Programmable Payment** )을 코드로 통제하여 **AI Agent** 의 자율 거래를 안전하게 실행하는 **차세대 디지털 금융 아키텍처** .
+- **목적** : 기계 간(M2M) 초소액 결제 자동화, 거래 신뢰성 확보 및 에이전트 오동작·자금 탈취 방지.
 
-### 2. **AI Agent** 조건부 결제 아키텍처
+### 2. AI Agent 조건부 결제 아키텍처
 
 ```mermaid
 flowchart LR
@@ -188,7 +188,7 @@ flowchart LR
 
 ## 학습 체크
 
-- [ ] Ⅰ: **Programmable Money**·Payment의 정의·목적을 설명할 수 있는가?
+- [ ] Ⅰ: **Programmable Money** ·Payment의 정의·목적을 설명할 수 있는가?
 - [ ] Ⅱ: Money와 Payment의 조건 대상·쟁점을 비교할 수 있는가?
 - [ ] Ⅲ: 권한 위임부터 정산까지 활동·산출을 연결할 수 있는가?
 - [ ] Ⅳ: 결제수단별 강점·위험을 비교할 수 있는가?
