@@ -1,19 +1,20 @@
 ---
 title: "IT 아웃소싱"
 author: "Codex"
-date: "2026-09-21T23:46:00+09:00"
-tags: ["notes-it-strategy"]
+date: "2026-09-22T23:15:00+09:00"
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → IT 운영전략·소싱 거버넌스 → **IT 아웃소싱**
+지식 위치: IT 전략·관리 → IT 운영전략·소싱 거버넌스 → **IT 아웃소싱**
 
 ## 30초 인출
 
@@ -27,8 +28,8 @@ IT 전략·관리 → IT 운영전략·소싱 거버넌스 → **IT 아웃소싱
 - **SLA(Service Level Agreement)**: 고객과 공급자가 서비스 수준, 측정방법, 책임범위를 합의한 기준이다.
 - **RO(Retained Organization)**: 위탁 후에도 통제권과 핵심 역량을 유지하는 내부 조직이다.
 - **SIAM(Service Integration and Management)**: 다중 공급자의 서비스를 하나의 서비스로 통합 관리하는 운영 모델이다.
-- **XLA(eXperience Level Agreement)**: 사용자 경험 결과를 서비스 평가에 반영하는 협약. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Exit Plan**: 계약 종료 시 서비스·지식·자산을 다른 공급자나 내부로 이전하는 계획. 이는 해당 용어의 역할과 작동을 설명한다.
+- **XLA(eXperience Level Agreement)**: 사용자 경험 결과를 서비스 평가에 반영하는 협약이다.
+- **Exit Plan**: 계약 종료 시 서비스·지식·자산을 다른 공급자나 내부로 이전하는 계획이다.
 
 </details>
 
@@ -101,11 +102,29 @@ quadrantChart
 ### 실전 답안용 기술사적 제언
 
 ```mermaid
-flowchart LR
-    s["업무 범위"] --> a["SLA 계약"]
-    a --> v["공급자 운영"]
-    v --> r["서비스·Exit 검증"]
-    r --> a
+flowchart TD
+    subgraph RO["발주사 잔존 조직 (RO)"]
+        A1["IT 전략·아키텍처 승인"]
+        A2["데이터·보안 거버넌스"]
+        A3["계약 권한·Exit 통제"]
+    end
+    subgraph SIAM["통합 관리 계층 (SIAM)"]
+        B1["SLA / XLA 종합 평가"]
+        B2["멀티 벤더 OLA 조정"]
+    end
+    subgraph Vendors["공급자 실행 계층"]
+        C1["인프라 MSP"]
+        C2["애플리케이션 SM/SI"]
+    end
+    subgraph Exit["가역성 확보 (Exit Governance)"]
+        D1["소스코드 Escrow·산출물 관리"]
+        D2["지식 이전·정기 전환 리허설"]
+    end
+
+    RO -->|통제·감독| SIAM
+    SIAM -->|SLA/OLA 관리| Vendors
+    Vendors -.->|산출물·데이터 환원| Exit
+    Exit -->|가역성 보장| RO
 ```
 
 - 판정: 발주자가 핵심 승인권과 재소싱 능력을 보유하는가

@@ -1,19 +1,20 @@
 ---
 title: "SWOT 분석"
 author: "Codex"
-date: "2026-09-21T23:46:00+09:00"
-tags: ["notes-it-strategy"]
+date: "2026-09-22T23:15:00+09:00"
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
-    text: "A"
+    text: "B"
 extra:
-  keyword_grade: "A"
-  model: "GLM-5.3-Flash"
+  keyword_grade: "B"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → 환경·역량 분석 → **SWOT 분석**
+지식 위치: IT 전략·관리 → 환경·역량 분석 → **SWOT 분석**
 
 ## 30초 인출
 
@@ -27,8 +28,8 @@ IT 전략·관리 → 환경·역량 분석 → **SWOT 분석**
 - **SWOT(Strengths, Weaknesses, Opportunities, Threats)**: 내부 역량과 외부 환경을 네 범주로 구조화해 전략 판단에 활용하는 분석이다.
 - **TOWS**: SWOT 요인을 교차해 SO·ST·WO·WT 전략을 도출하는 매트릭스이다.
 - **PEST**: 정치·경제·사회·기술 요인으로 거시환경을 분석하는 방법이다.
-- **VRIO(Value, Rarity, Inimitability, Organization)**: 자원의 경쟁우위 가능성 분석. 이는 해당 용어의 역할과 작동을 설명한다.
-- **AHP(Analytic Hierarchy Process)**: 평가 기준과 대안을 계층으로 나누고 쌍대비교해 우선순위를 산출하는 기법. 이는 해당 용어의 역할과 작동을 설명한다.
+- **VRIO(Value, Rarity, Inimitability, Organization)**: 자원의 경쟁우위 가능성 분석이다.
+- **AHP(Analytic Hierarchy Process)**: 평가 기준과 대안을 계층으로 나누고 쌍대비교해 우선순위를 산출하는 기법이다.
 
 </details>
 
@@ -92,11 +93,26 @@ flowchart TD
 ### 실전 답안용 기술사적 제언
 
 ```mermaid
-flowchart LR
-    s["내·외부 요인"] --> a["SWOT 분석"]
-    a --> v["TOWS 전략"]
-    v --> r["KPI 실행 점검"]
-    r --> a
+flowchart TD
+    subgraph Input["1. 환경분석 및 요인 정량화"]
+        I1["외부: PEST / 5-Force → 기회·위협 도출"]
+        I2["내부: VRIO / 밸류체인 → 강점·약점 도출"]
+        I3["AHP 쌍대비교 → 핵심 요인 가중치 부여"]
+    end
+    subgraph TOWS["2. TOWS 전략 매트릭스 도출"]
+        T1["SO 전략: 공격적 시장확대"]
+        T2["ST 전략: 차별화·위협 방어"]
+        T3["WO 전략: 역량보강·기회포착"]
+        T4["WT 전략: 사업재편·철수/우회"]
+    end
+    subgraph Exec["3. 전략 연계 및 실행 거버넌스"]
+        E1["전략 이니셔티브 우선순위 선정"]
+        E2["BSC 관점별 KPI / OKR 연계"]
+        E3["분기별 전략 점검 및 피드백 루프"]
+    end
+
+    Input --> TOWS
+    TOWS --> Exec
 ```
 
 - 판정: 요인 근거부터 실행과제까지 추적되는가

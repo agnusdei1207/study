@@ -1,7 +1,7 @@
 ---
 title: "디자인 씽킹"
 author: "Codex"
-date: "2026-09-22T00:01:00+09:00"
+date: "2026-09-22T23:15:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,11 +9,12 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → 디자인 씽킹
+
+지식 위치: IT 전략·관리 → 인간중심 혁신·문제해결 → **디자인 씽킹**
 
 
 ## 30초 인출
@@ -124,35 +125,39 @@ flowchart TD
 
 ## Ⅵ. 사용자 증거 기반 기술사적 제언
 
-### 학습자 통찰 메모 — 답안 밖
-
-`[핵심 통찰]` 디자인 씽킹의 실패는 아이디어 부족보다 해법을 먼저 정하고 사용자 조사를 정당화 자료로 사용하는 데서 발생함.
-
-`나라면` 각 Prototype에 검증할 가정과 폐기 기준을 하나씩 붙이고, 사용자 관찰 Finding이 연결된 Backlog만 구현 후보로 올리겠음.
-
 ### 실전 답안용 기술사적 제언
+
+```mermaid
+flowchart TD
+    subgraph ProblemSpace["1. 문제 공간 탐색 (Problem Space)"]
+        P1["사용자 심층 인터뷰 및 관찰 조사"]
+        P2["공감 지도(Empathy Map) 및 고객 여정 지도(CJM) 도출"]
+        P3["POV 관점 정의 및 HMW(How Might We) 질문 전환"]
+    end
+    subgraph SolutionSpace["2. 해법 공간 실험 (Solution Space)"]
+        S1["핵심 가설 수립 및 아이디어 우선순위화"]
+        S2["저비용 프로토타입(Low-Fi Prototype) 신속 제작"]
+        S3["사용자 과업 수행(UT) 및 정량/정성 피드백 측정"]
+    end
+    subgraph Agile["3. 제품 백로그 연계 (Agile Transition)"]
+        A1["검증된 Finding 기반 User Story 및 인수기준(AC) 도출"]
+        A2["스프린트 백로그 등록 및 개발 우선순위 반영"]
+    end
+
+    ProblemSpace --> SolutionSpace
+    SolutionSpace --> Agile
+    SolutionSpace -.->|가설 기각 시 문제 재정의 환류| ProblemSpace
+```
 
 - **진단**: 문제정의가 관찰·인터뷰 증거와 연결되고, 프로토타입이 검증할 사용자 가설을 명시하는지 확인한다.
 - **설계**: Problem Space와 Solution Space를 구분하고, 핵심 가설마다 학습에 필요한 최소 프로토타입과 사용자 과업을 대응시킨다.
 - **검증**: 과업 성공률·오류 빈도·SUS와 사용자 발화를 함께 분석해 가설의 유지·수정·폐기를 결정한다.
-
-```mermaid
-flowchart LR
-    OBS["관찰·인터뷰 증거"] --> POV["POV·HMW 문제정의"]
-    POV --> HYP["검증 가설"]
-    HYP --> PROTO["최소 프로토타입"]
-    PROTO --> UT["사용자 과업·UT 지표"]
-    UT -->|유지·수정·폐기| POV
-```
+- **효과**: 개발 착수 전 잘못된 문제 정의로 인한 재작업 위험을 원천 차단하고 실제 시장 적합성(Product-Market Fit)을 조기 확보한다.
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의·목적
-
-- 정의: 사용자 맥락을 이해하고 문제 재정의·대안 발산·시제품 시험을 반복하는 인간 중심 문제해결 접근법
-- 목적: **문제 오정의 감소 · 조기학습 · 사용자 가치 향상**
-
-### 2. 5개 Mode
+- 정의: 사용자의 잠재적 니즈를 공감·관찰하여 문제를 올바르게 재정의하고, 프로토타입을 통해 조기 검증을 반복하는 인간 중심 문제해결 방법론
+- 핵심 메커니즘: 공감(Empathize) → 문제정의(Define) → 아이디어(Ideate) → 시제품(Prototype) → 테스트(Test)의 5단계 반복 및 더블 다이아몬드(발산/수렴) 구조
 
 ```mermaid
 flowchart LR
@@ -165,11 +170,6 @@ flowchart LR
     T -.->|문제 재정의| D
     P -.->|아이디어 재발견| I
 ```
-
-### 3. 핵심 통제
-
-- **Double Diamond**: Discover·Define·Develop·Deliver의 2회 발산·수렴
-- **추적성**: 사용자 Evidence → POV → Prototype → Finding → Backlog
 
 ## 출제 이력과 검증 출처
 

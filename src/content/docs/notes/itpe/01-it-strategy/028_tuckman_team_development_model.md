@@ -1,7 +1,7 @@
 ---
 title: "터크만 팀 발달 모델"
 author: "Codex"
-date: "2026-09-21T23:46:00+09:00"
+date: "2026-09-22T23:15:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,12 +9,12 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → 프로젝트 관리·팀 역학 → **터크만 팀 발달 모델**
+지식 위치: IT 전략·관리 → 프로젝트 관리·팀 역학 → **터크만 팀 발달 모델**
 
 ## 30초 인출
 
@@ -30,9 +30,9 @@ IT 전략·관리 → 프로젝트 관리·팀 역학 → **터크만 팀 발달
 - **Norming(규범기)**: 갈등을 극복하고 상호 신뢰를 구축하며 팀 작업 협약과 프로세스 표준을 수립·준수하는 단계다.
 - **Performing(성과기)**: 팀원 간 고도의 상호보완적 협업을 통해 자율적으로 문제를 해결하고 최고의 생산성을 발휘하는 단계다.
 - **Adjourning(해산기)**: 프로젝트 과업을 완료하고 성과를 평가한 후 팀을 공식적으로 해체하는 단계다.
-- **RACI(Responsible-Accountable-Consulted-Informed)**: 업무별 책임자, 승인자, 자문자, 통보자를 명시하는 역할 분담 매트릭스. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Working Agreement**: 팀 내부의 작업 방식, 소통 원칙, 갈등 해결 기준을 팀원 전원이 자발적으로 합의한 규범서. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Lessons Learned**: 프로젝트 종료 단계에서 성공 및 실패 경험을 체계적으로 정리한 조직 지식 자산. 이는 해당 용어의 역할과 작동을 설명한다.
+- **RACI(Responsible-Accountable-Consulted-Informed)**: 업무별 책임자, 승인자, 자문자, 통보자를 명시하는 역할 분담 매트릭스이다.
+- **Working Agreement**: 팀 내부의 작업 방식, 소통 원칙, 갈등 해결 기준을 팀원 전원이 자발적으로 합의한 규범서이다.
+- **Lessons Learned**: 프로젝트 종료 단계에서 성공 및 실패 경험을 체계적으로 정리한 조직 지식 자산이다.
 
 </details>
 
@@ -102,10 +102,11 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    s["팀 형성"] --> a["갈등 조정"]
-    a --> v["Working Agreement"]
-    v --> r["Lessons Learned"]
-    r --> a
+    Team["팀 갈등·저항 (Storming)"] --> Agree["Working Agreement 수립"]
+    Agree --> Retro["스프린트 회고 (Retrospective)"]
+    Retro --> SelfOrg["자기조직화 팀 (Performing)"]
+    SelfOrg -->|"팀원 교체·환경 변화"| Retreat["폭풍기 퇴행 예방·온보딩"]
+    Retreat --> Agree
 ```
 
 - 판정: 팀 성숙도에 따른 리더십 전환 체계를 구축하고 폭풍기 갈등을 제도적으로 흡수하였는가
@@ -138,7 +139,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 제134회 정보관리기술사 1교시 기출 (터크만 사다리 모델의 팀 발달 단계별 특징)
+- 제136회 정보관리기술사 기출 (터크만의 팀 발달 5단계)
 - [PMI: A Guide to the Project Management Body of Knowledge](https://www.pmi.org/pmbok-guide-standards/foundational/pmbok)
 - Bruce W. Tuckman, ["Developmental Sequence in Small Groups", Psychological Bulletin](https://doi.org/10.1037/h0022100)
 

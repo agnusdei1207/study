@@ -1,23 +1,20 @@
 ---
 title: "NIST AI RMF"
-description: "NIST AI RMF 1.0의 GOVERN·MAP·MEASURE·MANAGE 기능과 신뢰성 특성, 생성형 AI 프로파일 적용"
-date: "2026-09-21T23:46:00+09:00"
 author: "Codex"
-category: "IT 경영전략"
-tags: ["NIST AI RMF", "AI 위험관리", "Trustworthy AI", "NIST AI 600-1", "AI 거버넌스"]
-badge: "A"
+date: "2026-09-22T23:15:00+09:00"
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
     text: "A"
-draft: false
 extra:
-  model: "GLM-5.3-Flash"
-  quality_grade: "A"
+  keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
 ---
 
-## 학습 로드맵
+## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → AI 거버넌스·신뢰성 → **NIST AI RMF**
+지식 위치: IT 전략·관리 → AI 거버넌스·신뢰성 → **NIST AI RMF**
 
 ## 30초 인출
 
@@ -25,21 +22,19 @@ IT 전략·관리 → AI 거버넌스·신뢰성 → **NIST AI RMF**
 - 메커니즘: 전 기능에 걸친 **GOVERN**을 기반으로 **MAP → MEASURE → MANAGE**를 반복하며 맥락·평가·처리 증거를 연결한다.
 - 결과: 신뢰성 특성의 맥락별 측정근거와 위험 처리 증거를 남기고 운영 중 재평가한다.
 
-## 핵심 용어
-
 <details>
 <summary>핵심 용어</summary>
 
-- **AI RMF**: AI 위험을 개인·조직·사회 관점에서 관리하고 신뢰성 고려사항을 수명주기에 통합하는 프레임워크. 이는 해당 용어의 역할과 작동을 설명한다.
-- **GOVERN**: 위험관리 문화, 정책, 역할, 책임, 문서화와 감독을 수립하는 횡단 기능. 이는 해당 용어의 역할과 작동을 설명한다.
-- **MAP**: 사용 맥락, 이해관계자, 편익·위험과 영향을 파악하는 기능. 이는 해당 용어의 역할과 작동을 설명한다.
-- **MEASURE**: 정성·정량 방법으로 위험과 신뢰성 특성을 분석·평가·추적하는 기능. 이는 해당 용어의 역할과 작동을 설명한다.
-- **MANAGE**: 위험을 우선순위화하고 처리·모니터링하는 기능. 이는 해당 용어의 역할과 작동을 설명한다.
-- **NIST AI 600-1**: AI RMF 1.0을 생성형 AI 위험에 적용하기 위한 교차산업 프로파일. 이는 해당 용어의 역할과 작동을 설명한다.
+- **AI RMF**: AI 위험을 개인·조직·사회 관점에서 관리하고 신뢰성 고려사항을 수명주기에 통합하는 프레임워크이다.
+- **GOVERN**: 위험관리 문화, 정책, 역할, 책임, 문서화와 감독을 수립하는 횡단 기능이다.
+- **MAP**: 사용 맥락, 이해관계자, 편익·위험과 영향을 파악하는 기능이다.
+- **MEASURE**: 정성·정량 방법으로 위험과 신뢰성 특성을 분석·평가·추적하는 기능이다.
+- **MANAGE**: 위험을 우선순위화하고 처리·모니터링하는 기능이다.
+- **NIST AI 600-1**: AI RMF 1.0을 생성형 AI 위험에 적용하기 위한 교차산업 프로파일이다.
 
 </details>
 
-## 예상 문제
+## 예상문제
 
 > NIST AI RMF 1.0의 개념, 4대 기능과 신뢰성 특성을 설명하고 생성형 AI 위험관리 적용방안을 제시하시오.
 
@@ -123,11 +118,40 @@ flowchart LR
 
 NIST AI RMF의 핵심은 문서 보유가 아니라 맥락·측정·처리의 증거를 반복적으로 연결하는 것이다. 생성형 AI 프로파일을 조직의 위험 프로파일과 시험체계에 결합하고, 잔여위험의 승인과 운영 중 재평가까지 폐쇄루프로 관리해야 한다.
 
-## 10점 답안 압축본
+### 실전 답안용 기술사적 제언
 
-### NIST AI RMF 4대 기능
+```mermaid
+flowchart TD
+    subgraph GOVERN["횡단 거버넌스 (GOVERN)"]
+        G1["조직 차원의 AI 위험 수용 한계선 및 RACI 정의"]
+        G2["제3자 파운데이션 모델 실사 및 투명성 규정"]
+    end
+    subgraph Execution["수명주기 위험 통제 루프"]
+        direction TB
+        E1["MAP: 사용 맥락 정의, 법적 의무 및 잠재 유해성 식별"]
+        E2["MEASURE: 7대 신뢰성 지표 정량·정성 평가 및 벤치마킹"]
+        E3["MANAGE: 환각·탈옥 방어 가드레일 및 잔여위험 승인"]
+        E1 --> E2 --> E3
+    end
+    subgraph Operations["배포 및 사후 거버넌스"]
+        O1["LLMOps / MLOps 기반 모델 드리프트 및 악용 실시간 모니터링"]
+        O2["사고 발생 시 롤백 및 MAP 단계로 긴급 피드백 환류"]
+    end
 
-NIST AI RMF는 AI 위험과 신뢰성 고려사항을 수명주기에 통합하는 자발적 프레임워크다. GOVERN은 선행 단계가 아니라 MAP·MEASURE·MANAGE 전반에 적용되는 횡단 기능이며, 나머지 세 기능은 맥락 식별·측정·처리를 반복한다.
+    GOVERN --> Execution
+    Execution --> Operations
+    Operations -.->|신규 위험 시나리오 환류| Execution
+```
+
+- 판정: 일회성 체크리스트 평가를 넘어 배포 후 드리프트와 편향을 추적하는 지속적 거버넌스 루프가 작동하는가
+- 대안: GOVERN 횡단 통제 · NIST AI 600-1 생성형 AI 프로파일 적용 · 가드레일 필터링 다중화
+- 검증: Red-Teaming 적대적 공격 시험 · 모델 카드 및 데이터 계보(Lineage) 검증 · 잔여위험 경영진 공식 승인
+- 효과: AI 시스템의 설명가능성·공정성·보안성 확보를 통한 규제(EU AI Act 등) 선제 대응 및 사회적 신뢰 획득
+
+## 1교시 10점 답안 발췌
+
+- 정의: AI 시스템의 고유 위험을 관리하고 7대 신뢰성 특성을 전 생애주기에 통합하기 위한 NIST의 자발적·맥락 중심 프레임워크
+- 핵심 메커니즘: 전 과정 횡단 거버넌스(GOVERN)를 기반으로 맥락 분석(MAP) → 정량·정성 평가(MEASURE) → 대응 및 잔여위험 관리(MANAGE)의 반복 루프 수행
 
 ```mermaid
 flowchart TB
@@ -145,30 +169,22 @@ flowchart TB
     E --> G
 ```
 
-## 참고문헌
+## 출제 이력과 검증 출처
 
+- 제138회 정보관리기술사 기출 (NIST AI RMF)
 - [NIST, AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 - [NIST AI 100-1, Artificial Intelligence Risk Management Framework 1.0](https://doi.org/10.6028/NIST.AI.100-1)
 - [NIST AI 600-1, Generative Artificial Intelligence Profile](https://doi.org/10.6028/NIST.AI.600-1)
 
-### 실전 답안용 기술사적 제언
+## 학습 체크
 
-AI 사용 맥락별 위험 등록부와 평가 증거를 연결하고 잔여위험 승인 후 운영 모니터링으로 환류한다.
+- [ ] AI RMF의 자발적·맥락 기반 성격을 설명할 수 있는가?
+- [ ] 7개 신뢰성 특성과 상충 가능성을 설명할 수 있는가?
+- [ ] GOVERN·MAP·MEASURE·MANAGE의 활동과 산출물을 연결할 수 있는가?
+- [ ] 생성형 AI 위험을 통제와 검증 증거에 연결할 수 있는가?
 
-```mermaid
-flowchart LR
- A[사용 맥락·위험 등록] --> B[신뢰성 측정] --> C[처리·잔여위험 승인] --> D[운영 모니터링] --> B
-```
+## 연결 토픽
 
-## 학습 점검
-
-- AI RMF의 자발적·맥락 기반 성격을 설명할 수 있는가?
-- 7개 신뢰성 특성과 상충 가능성을 설명할 수 있는가?
-- GOVERN·MAP·MEASURE·MANAGE의 활동과 산출물을 연결할 수 있는가?
-- 생성형 AI 위험을 통제와 검증 증거에 연결할 수 있는가?
-
-## 연결 노트
-
-- 이전: [갈등관리](./035_conflict_management)
-- 관련: [국가 AI 전략](./024_korea_ai_action_plan)
-- 다음: [POP](./038_pop)
+- 이전 토픽: [갈등관리](./035_conflict_management.md)
+- 연관 토픽: [국가 AI 전략](./024_korea_ai_action_plan.md)
+- 다음 토픽: [POP](./038_pop.md)

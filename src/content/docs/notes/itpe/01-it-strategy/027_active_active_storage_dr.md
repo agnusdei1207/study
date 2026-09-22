@@ -1,7 +1,7 @@
 ---
 title: "액티브-액티브 이중화와 스토리지 DR"
 author: "Codex"
-date: "2026-09-21T23:46:00+09:00"
+date: "2026-09-22T23:15:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,12 +9,12 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → 재해복구·서비스 연속성 → **액티브-액티브 이중화와 스토리지 DR**
+지식 위치: IT 전략·관리 → 재해복구·서비스 연속성 → **액티브-액티브 이중화와 스토리지 DR**
 
 ## 30초 인출
 
@@ -25,14 +25,14 @@ IT 전략·관리 → 재해복구·서비스 연속성 → **액티브-액티�
 <details>
 <summary>핵심 용어</summary>
 
-- **Active-Active**: 복수 센터의 서버와 스토리지가 동시에 실제 트래픽을 분산 처리하는 상시 가동 구성. 이는 해당 용어의 역할과 작동을 설명한다.
-- **스토리지 DR(Disaster Recovery)**: 재해에 대비해 원격지에 데이터를 복제하고 장애 시 대체 스토리지로 서비스를 복구하는 체계. 이는 해당 용어의 역할과 작동을 설명한다.
-- **GSLB(Global Server Load Balancing)**: DNS 쿼리 단계에서 서버 헬스체크 및 지연시간을 측정하여 최적 거점으로 트래픽을 분산. 이는 해당 용어의 역할과 작동을 설명한다.
-- **동기 복제(Synchronous Replication)**: 로컬과 원격 스토리지의 쓰기 완료를 확인한 후 호스트에 응답하는 복제 기법. 이는 해당 용어의 역할과 작동을 설명한다.
-- **비동기 복제(Asynchronous Replication)**: 로컬 스토리지 완료 즉시 응답 후 원격지로 백그라운드 전송하여 원거리 지연을 방어하는 기법. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Split-Brain**: 센터 간 네트워크 단절 시 양 센터가 상호 다운으로 오판하여 독자 쓰기를 수행하며 데이터가 분열되는 현상. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Quorum Witness**: 네트워크 단절 시 양 센터 중 어느 센터가 쓰기를 지속할지 판정하는 제3 거점 독립 중재자. 이는 해당 용어의 역할과 작동을 설명한다.
-- **N-1 용량 설계**: 한 거점 상실 후에도 잔여 자원으로 목표 서비스를 운영할 수 있게 수용용량을 확보하는 설계 원칙. 이는 해당 용어의 역할과 작동을 설명한다.
+- **Active-Active**: 복수 센터의 서버와 스토리지가 동시에 실제 트래픽을 분산 처리하는 상시 가동 구성이다.
+- **스토리지 DR(Disaster Recovery)**: 재해에 대비해 원격지에 데이터를 복제하고 장애 시 대체 스토리지로 서비스를 복구하는 체계다.
+- **GSLB(Global Server Load Balancing)**: DNS 쿼리 단계에서 서버 헬스체크 및 지연시간을 측정하여 최적 거점으로 트래픽을 분산하는 기술이다.
+- **동기 복제(Synchronous Replication)**: 로컬과 원격 스토리지의 쓰기 완료를 확인한 후 호스트에 응답하는 복제 기법이다.
+- **비동기 복제(Asynchronous Replication)**: 로컬 스토리지 완료 즉시 응답 후 원격지로 백그라운드 전송하여 원거리 지연을 방어하는 기법이다.
+- **Split-Brain**: 센터 간 네트워크 단절 시 양 센터가 상호 다운으로 오판하여 독자 쓰기를 수행하며 데이터가 분열되는 현상이다.
+- **Quorum Witness**: 네트워크 단절 시 양 센터 중 어느 센터가 쓰기를 지속할지 판정하는 제3 거점 독립 중재자다.
+- **N-1 용량 설계**: 한 거점 상실 후에도 잔여 자원으로 목표 서비스를 운영할 수 있게 수용용량을 확보하는 설계 원칙이다.
 
 </details>
 
@@ -120,10 +120,15 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    s["센터 트래픽"] --> a["동기·비동기 복제"]
-    a --> v["Quorum Witness"]
-    v --> r["Split-Brain 점검"]
-    r --> a
+    subgraph DC1["센터 A (Active)"]
+        App1["무상태 App"] --- Sto1["Primary Storage"]
+    end
+    subgraph DC2["센터 B (Active)"]
+        App2["무상태 App"] --- Sto2["Secondary Storage"]
+    end
+    Sto1 <-->|"ISL 동기 복제"| Sto2
+    Witness["제3 거점 Quorum Witness"] -.->|"헬스체크·I/O Fencing"| Sto1
+    Witness -.->|"헬스체크·I/O Fencing"| Sto2
 ```
 
 - 판정: 단일 거점 전소 시에도 잔여 센터 단독으로 목표 SLA를 보증할 수 있는 공학적 안전장치를 갖추었는가

@@ -1,7 +1,7 @@
 ---
 title: "MECE"
 author: "Codex"
-date: "2026-09-22T00:01:00+09:00"
+date: "2026-09-22T23:15:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,11 +9,12 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → MECE
+
+지식 위치: IT 전략·관리 → 전략적 사고·문제 구조화 → **MECE**
 
 
 ## 30초 인출
@@ -113,33 +114,44 @@ flowchart TD
 
 ## Ⅵ. 검증 가능한 구조화 중심 제언
 
-### 학습자 통찰 메모 — 답안 밖
-
-`[핵심 통찰]` MECE의 품질은 항목 수가 아니라 분할축이 명시되고, 중복·미분류 항목을 반례로 검증할 수 있는가에 달려 있음.
-
-`나라면` Issue Tree와 WBS의 각 계층에 분할축을 기록하고, 미분류 요구사항과 중복 책임을 검토한 뒤 Baseline으로 승인하겠음.
-
 ### 실전 답안용 기술사적 제언
-
-- **판정 기준 (Trigger)**: WBS 및 Issue Tree 작성 시 동일 레벨 내 분할축 혼용(기능+조직 병렬), 미분류 잔여분(기타 항목) 비율이 목표 기준를 초과할 때 즉시 구조 재검토를 발동함.
-- **대응 방안 (Action)**: 계층별 단일 분할축(이분법, 프로세스, 라이프사이클)을 정의서에 명시하고, '기타' 분류 항목을 세부 원인별로 2차 분할하여 MECE 무결성을 확보함.
-- **검증 체계 (Verification)**: 산출물 검토 시 상호배타성(RACI 매트릭스 책임 중복 여부)과 전체포괄성(목표 기준 Rule 및 RTM 요구사항 누락 여부)을 교차 매핑하여 형식적 완전성을 정량 검증함.
-- **기대 효과 (Impact)**: 프로젝트 범위 크립(Scope Creep) 감소, 부서 간 업무 R&R 분쟁 목표 기준 이상 감축, 의사결정 추적성 확보를 달성함.
 
 ```mermaid
 flowchart TD
-    P["WBS 및 Issue Tree 작성 시 동일 레벨 내 분할"] --> A["계층별 단일 분할축(이분법, 프로세스, 라이프사이클)을 정"] --> V["산출물 검토 시 상호배타성(RACI 매트릭스 책임 중복 여"] --> E["프로젝트 범위 크립(Scope Creep) 감소, 부서 간"]
-    V --> P
+    subgraph Boundary["1. 전체 경계 정의 (Scope Boundary)"]
+        B1["전체 문제 공간(Universe) 명확화"]
+        B2["단일 분할 기준(Single Dimension) 설정"]
+    end
+    subgraph Decomp["2. 동일 추상화 수준 분해 (Decomposition)"]
+        D1["상위 과제 / 전략 목표"]
+        D2["하위 과제 A (ME: 배타적 분리)"]
+        D3["하위 과제 B (ME: 배타적 분리)"]
+        D1 --> D2
+        D1 --> D3
+    end
+    subgraph Validation["3. 무결성 검증 (MECE Verification)"]
+        V1["ME 검증: 교집합 유무 확인 (RACI 중복 배제)"]
+        V2["CE 검증: 100% Rule 및 미분류 기타(Others) 배제"]
+    end
+    subgraph Execution["4. 실행 연계 (Actionable Mapping)"]
+        E1["WBS 작업 패키지 및 일정/예산 매핑"]
+        E2["RTM 및 KPI 성과지표 연결"]
+    end
+
+    Boundary --> Decomp
+    Decomp --> Validation
+    Validation --> Execution
 ```
+
+- **판정 기준 (Trigger)**: WBS 및 Issue Tree 작성 시 동일 레벨 내 분할축 혼용(기능+조직 병렬), 미분류 잔여분(기타 항목) 비율이 5%를 초과할 때 즉시 구조 재검토를 발동함.
+- **대응 방안 (Action)**: 계층별 단일 분할축(이분법, 프로세스, 라이프사이클)을 정의서에 명시하고, '기타' 분류 항목을 세부 원인별로 2차 분할하여 MECE 무결성을 확보함.
+- **검증 체계 (Verification)**: 산출물 검토 시 상호배타성(RACI 매트릭스 책임 중복 여부)과 전체포괄성(100% Rule 및 RTM 요구사항 누락 여부)을 교차 매핑하여 형식적 완전성을 정량 검증함.
+- **기대 효과 (Impact)**: 프로젝트 범위 크립(Scope Creep) 방지, 부서 간 업무 R&R 분쟁 최소화, 의사결정 추적성 확보를 달성함.
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의·목적
-
-- 정의: 동일 계층 항목을 **상호 배타적(ME)**이고 **전체 포괄적(CE)**으로 구성하는 구조화 원칙
-- 목적: **논점 명확화 · 중복업무 축소 · 누락위험 감소**
-
-### 2. 구조화 및 검증 아키텍처
+- 정의: 어떤 대상이나 문제를 분석할 때 상위 개념을 중복 없이(Mutually Exclusive) 완벽히 포괄(Collectively Exhaustive)하도록 분해하는 구조화 원칙
+- 핵심 메커니즘: 전체 경계 정의 → 단일 분할축(프로세스/구성요소/이분법) 선정 → 동일 추상화 수준 분해 → ME·CE 무결성 및 100% Rule 검증
 
 ```mermaid
 flowchart TD
@@ -150,11 +162,6 @@ flowchart TD
     L1_B --> B1["고객·시장"]
     L1_B --> B2["법제·규제"]
 ```
-
-### 3. 핵심 통제
-
-- **ME**: 의미·범위·책임의 교집합 확인
-- **CE**: 미분류 요구사항·업무·위험 확인
 
 ## 출제 이력과 검증 출처
 

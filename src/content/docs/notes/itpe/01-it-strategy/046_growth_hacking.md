@@ -1,7 +1,7 @@
 ---
 title: "그로스 해킹"
 author: "Codex"
-date: "2026-09-22T00:01:00+09:00"
+date: "2026-09-22T23:15:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,11 +9,12 @@ sidebar:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → 그로스 해킹
+
+지식 위치: IT 전략·관리 → 데이터 기반 마케팅·성장전략 → **그로스 해킹**
 
 
 ## 30초 인출
@@ -110,33 +111,43 @@ flowchart TD
 
 ## Ⅵ. 신뢰 가능한 성장 실험 제언
 
-### 학습자 통찰 메모 — 답안 밖
-
-`[핵심 통찰]` 성장 실험의 목적은 승리한 화면을 많이 만드는 것이 아니라, 어떤 고객가치가 반복 사용·추천·수익으로 이어지는지 학습하는 데 있음.
-
-`나라면` NSM마다 품질·이탈·불만·개인정보 Guardrail을 붙이고, 실험계획과 결과를 Decision Log로 남겨 선택적 보고와 재실험을 줄이겠음.
-
 ### 실전 답안용 기술사적 제언
-
-- **판정 기준 (Trigger)**: 단기 전환율(CVR) 지표는 상승하나 이탈률(Churn Rate) 급증 또는 불만 CS 접수가 목표 기준 이상 증가할 시 다크 패턴 및 국소 최적화 위험으로 판정함.
-- **대응 방안 (Action)**: 북극성 지표(NSM)에 직교하는 보호 지표(Guardrail Metric: 페이지 응답시간, 구독 해지율, 프라이버시 동의 철회율)를 필수 지정하고, 하향 돌파 시 실험 자동 중단(Kill Switch)을 연동함.
-- **검증 체계 (Verification)**: A/B 테스트 사전 승인제(Pre-registration) 및 최소 표본수(MDE 계산) 확정 후 통계적 유의수준(p < 0.05)과 코호트별 30일 잔존율 추적을 동시 검증함.
-- **기대 효과 (Impact)**: 허상 지표(Vanity Metric) 배제, 고객 LTV(생애가치) 목표 기준 증대, 규제 컴플라이언스(다크패턴 방지법) 위반 리스크 원천 해소를 달성함.
 
 ```mermaid
 flowchart TD
-    P["단기 전환율(CVR) 지표는 상승하나 이탈률(Churn R"] --> A["북극성 지표(NSM)에 직교하는 보호 지표(Guardrai"] --> V["A/B 테스트 사전 승인제(Pre-registration)"] --> E["허상 지표(Vanity Metric) 배제, 고객 LTV("]
-    V --> P
+    subgraph Funnel["1. AARRR 퍼널 및 코호트 분석"]
+        F1["사용자 여정 데이터 수집 (Clickstream)"]
+        F2["단계별 이탈률 및 코호트 잔존율 병목 식별"]
+    end
+    subgraph Hypothesis["2. 가설 수립 및 우선순위화"]
+        H1["성장 가설 도출 (If-Then-Because)"]
+        H2["ICE / RICE 스코어링 기반 실험 백로그 선정"]
+    end
+    subgraph Experiment["3. 통제 실험 및 통계적 검정"]
+        E1["A/B 테스트 트래픽 무작위 분할 (Randomization)"]
+        E2["SRM 검증 및 Guardrail 지표 동시 감시"]
+        E3["통계적 유의성(p-value) 및 MDE 검정"]
+    end
+    subgraph Loop["4. 전사 롤아웃 및 학습 환류"]
+        L1["성공 가설: Feature Flag 100% 롤아웃"]
+        L2["실패 가설: 회고 및 인사이트 지식베이스화"]
+    end
+
+    Funnel --> Hypothesis
+    Hypothesis --> Experiment
+    Experiment --> Loop
+    Loop -.->|신규 성장 가설 피드백| Funnel
 ```
+
+- **판정 기준 (Trigger)**: 단기 전환율(CVR) 지표는 상승하나 이탈률(Churn Rate) 급증 또는 불만 CS 접수가 20% 이상 증가할 시 다크 패턴 및 국소 최적화 위험으로 판정함.
+- **대응 방안 (Action)**: 북극성 지표(NSM)에 직교하는 보호 지표(Guardrail Metric: 페이지 응답시간, 구독 해지율, 프라이버시 동의 철회율)를 필수 지정하고, 하향 돌파 시 실험 자동 중단(Kill Switch)을 연동함.
+- **검증 체계 (Verification)**: A/B 테스트 사전 승인제(Pre-registration) 및 최소 표본수(MDE 계산) 확정 후 통계적 유의수준(p < 0.05)과 코호트별 30일 잔존율 추적을 동시 검증함.
+- **기대 효과 (Impact)**: 허상 지표(Vanity Metric) 배제, 고객 LTV(생애가치) 30% 이상 증대, 규제 컴플라이언스(다크패턴 방지법) 위반 리스크 원천 해소를 달성함.
 
 ## 1교시 10점 답안 발췌
 
-### 1. 정의·목적
-
-- 정의: 제품·마케팅·데이터 분석을 결합하여 성장 가설을 실험하고 제품·채널을 반복 개선하는 접근법
-- 목적: **고객가치 검증 · 성장병목 해소 · 학습속도 향상**
-
-### 2. AARRR 퍼널
+- 정의: 제품·마케팅·데이터 분석을 융합하여 가설 수립과 통제 실험(A/B Test)을 통해 지속 가능한 성장을 반복 달성하는 데이터 기반 제품 관리 접근법
+- 핵심 메커니즘: 북극성 지표(NSM) 정의 → AARRR 퍼널 병목 분석 → ICE 우선순위 가설 수립 → A/B 테스트 및 가드레일 검증 → 기능 배포 및 환류
 
 ```mermaid
 flowchart TD
@@ -145,11 +156,6 @@ flowchart TD
     R1 --> R2["Revenue(매출)"]
     R2 --> R3["Referral(추천)"]
 ```
-
-### 3. 핵심 통제
-
-- **NSM·Guardrail**: 성장성과와 품질·신뢰 부작용 동시 측정
-- **실험 거버넌스**: 사전 가설·표본·기간·판정기준·Decision Log
 
 ## 출제 이력과 검증 출처
 

@@ -1,7 +1,7 @@
 ---
 title: "A/B 테스트"
 author: "Codex"
-date: "2026-09-21T23:46:00+09:00"
+date: "2026-09-22T23:15:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,12 +9,12 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → 데이터 기반 의사결정·제품 실험 → **A/B 테스트**
+지식 위치: IT 전략·관리 → 데이터 기반 의사결정·제품 실험 → **A/B 테스트**
 
 ## 30초 인출
 
@@ -29,10 +29,10 @@ IT 전략·관리 → 데이터 기반 의사결정·제품 실험 → **A/B 테
 - **Causality(인과관계)**: 다른 조건을 통제했을 때 특정 기능 변경이 사용자 행동 변화를 일으켰다고 판단할 수 있는 관계다.
 - **SRM(Sample Ratio Mismatch)**: 설계한 비율과 실제 유입된 A/B 표본 비율이 통계적으로 다르게 나타나는 현상이다.
 - **Peeking(피킹)**: 실험이 끝나기 전에 p-value를 반복 확인하고 조기 종료해 1종 오류를 키우는 편향이다.
-- **Feature Flag**: 코드 재배포 없이 특정 사용자 그룹에 기능을 동적으로 켜고 끄는 제어 플래그. 이는 해당 용어의 역할과 작동을 설명한다.
+- **Feature Flag**: 코드 재배포 없이 특정 사용자 그룹에 기능을 동적으로 켜고 끄는 제어 플래그이다.
 - **p-value**: 귀무가설이 참일 때 현재 관측된 차이 이상으로 극단적인 결과가 우연히 나타날 확률이다.
-- **MDE(Minimum Detectable Effect)**: 실험을 통해 통계적으로 감지해내고자 하는 최소한의 개선 효과 크기. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Guardrail Metrics(보호 지표)**: 주 성과지표 상승 시 희생될 수 있는 시스템 레이턴시, 오류율 등 핵심 안정성 지표. 이는 해당 용어의 역할과 작동을 설명한다.
+- **MDE(Minimum Detectable Effect)**: 실험을 통해 통계적으로 감지해내고자 하는 최소한의 개선 효과 크기다.
+- **Guardrail Metrics(보호 지표)**: 주 성과지표 상승 시 희생될 수 있는 시스템 레이턴시, 오류율 등 핵심 안정성 지표다.
 
 </details>
 
@@ -112,10 +112,15 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    s["실험 가설"] --> a["무작위 분배"]
-    a --> v["Guardrail Metrics"]
-    v --> r["통계 결과 환류"]
-    r --> a
+    Traffic["실시간 트래픽"] --> FF["Feature Flag (Consistent Hashing)"]
+    FF -->|"50%"| Ctrl["Control (기존 A)"]
+    FF -->|"50%"| Var["Variant (개선 B)"]
+    Ctrl & Var --> Coll["이벤트 계측 게이트웨이"]
+    Coll --> SRM{"SRM 판정 (Chi-Square)"}
+    SRM -->|"SRM 감지"| Alarm["실험 중단·배정 점검"]
+    SRM -->|"정상"| Guard{"Guardrail 통과?"}
+    Guard -->|"합격"| Rollout["점진적 카나리 배포"]
+    Guard -->|"성능저하"| Rollback["롤백 및 가설 재수립"]
 ```
 
 - 판정: 통계적 왜곡(SRM, Peeking)을 통제하고 보호 지표(Guardrail) 검증을 통과하였는가
@@ -148,7 +153,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 제137회 정보관리기술사 1교시 기출 (A/B 테스트)
 - Ron Kohavi et al., [Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing](https://experimentguide.com)
 - NIST/SEMATECH, [e-Handbook of Statistical Methods, Comparing Two Proportions](https://www.itl.nist.gov)
 

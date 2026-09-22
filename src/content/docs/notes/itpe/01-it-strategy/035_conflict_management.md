@@ -1,23 +1,20 @@
 ---
 title: "갈등관리"
-description: "프로젝트 갈등을 과업·관계·프로세스 관점으로 진단하고 Thomas–Kilmann 대응모드와 원칙협상으로 조정하는 방법"
-date: "2026-09-21T23:46:00+09:00"
 author: "Codex"
-category: "IT 경영전략"
-tags: ["갈등관리", "TKI", "Thomas-Kilmann", "원칙협상", "프로젝트관리"]
-badge: "A"
+date: "2026-09-22T23:15:00+09:00"
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
     text: "A"
-draft: false
 extra:
-  model: "GLM-5.3-Flash"
-  quality_grade: "A"
+  keyword_grade: "A"
+  model: "Gemini 3.8 Flash"
 ---
 
-## 학습 로드맵
+## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → 프로젝트 관리·이해관계자 → **갈등관리**
+지식 위치: IT 전략·관리 → 프로젝트 관리·이해관계자 → **갈등관리**
 
 ## 30초 인출
 
@@ -25,20 +22,18 @@ IT 전략·관리 → 프로젝트 관리·이해관계자 → **갈등관리**
 - 메커니즘: 갈등을 과업·관계·프로세스로 진단하고, 자기주장성과 협조성에 따라 TKI 모드를 선택한 뒤 원칙협상으로 조정한다.
 - 결과: 합의 결과를 의사결정 기록, RACI, 일정·범위 기준선과 후속조치에 반영한다.
 
-## 핵심 용어
-
 <details>
 <summary>핵심 용어</summary>
 
-- **TKI(Thomas–Kilmann Conflict Mode Instrument)**: 자기주장성과 협조성의 조합으로 갈등 대응을 다섯 모드로 설명하는 도구. 이는 해당 용어의 역할과 작동을 설명한다.
-- **자기주장성(Assertiveness)**: 자신의 목표를 충족하려는 정도. 이는 해당 용어의 역할과 작동을 설명한다.
-- **협조성(Cooperativeness)**: 상대방의 목표를 충족하도록 돕는 정도. 이는 해당 용어의 역할과 작동을 설명한다.
-- **원칙협상(Principled Negotiation)**: 사람과 문제를 분리하고 입장보다 이해관계, 객관 기준, 상호이익 대안에 집중하는 협상 방식. 이는 해당 용어의 역할과 작동을 설명한다.
-- **의사결정 기록(Decision Record)**: 선택 대안과 근거·영향, 후속조치를 남긴 기록. 이는 해당 용어의 역할과 작동을 설명한다.
+- **TKI(Thomas–Kilmann Conflict Mode Instrument)**: 자기주장성과 협조성의 조합으로 갈등 대응을 다섯 모드로 설명하는 도구이다.
+- **자기주장성(Assertiveness)**: 자신의 목표를 충족하려는 정도이다.
+- **협조성(Cooperativeness)**: 상대방의 목표를 충족하도록 돕는 정도이다.
+- **원칙협상(Principled Negotiation)**: 사람과 문제를 분리하고 입장보다 이해관계, 객관 기준, 상호이익 대안에 집중하는 협상 방식이다.
+- **의사결정 기록(Decision Record)**: 선택 대안과 근거·영향, 후속조치를 남긴 공식 기록이다.
 
 </details>
 
-## 예상 문제
+## 예상문제
 
 > 프로젝트 갈등의 유형을 설명하고, Thomas–Kilmann 5대 대응모드와 상황별 적용 및 중재방안을 제시하시오.
 
@@ -105,11 +100,38 @@ flowchart LR
 
 효과적인 갈등관리는 특정 모드를 고집하는 것이 아니라 갈등 유형, 긴급성, 관계 지속성, 권한과 손실 규모에 맞춰 대응을 선택하는 역량이다. 사실과 이해관계를 분리하고 결정 근거를 기준선에 연결해야 합의가 실행으로 이어진다.
 
-## 10점 답안 압축본
+### 실전 답안용 기술사적 제언
 
-### 갈등 유형과 TKI 대응모드
+```mermaid
+flowchart TD
+    subgraph Diagnosis["1. 갈등 진단 및 분리"]
+        D1["갈등 유형 진단 (과업·관계·프로세스)"]
+        D2["사람과 문제 분리 (감정 배제)"]
+        D3["입장(Position) 뒤 숨은 이해관계(Interest) 발굴"]
+    end
+    subgraph Mode["2. 상황별 대응 전략 선택"]
+        M1["TKI 모드 매핑 (긴급성·중요도·관계 지속성)"]
+        M2["원칙협상 적용 (객관적 데이터·기준선 근거)"]
+    end
+    subgraph Institutionalization["3. 합의 결과 제도화 및 추적"]
+        I1["RACI 매트릭스 재정의 및 의사결정 기록"]
+        I2["통제 불가 시 PMO / Sponsor 공식 에스컬레이션"]
+        I3["베이스라인 변경 통제 및 스프린트/정기 점검"]
+    end
 
-갈등은 과업·관계·프로세스 갈등으로 구분하며, TKI는 자기주장성과 협조성에 따라 경쟁·협력·타협·회피·수용 모드를 제시한다. 유형과 상황을 먼저 진단한 후 적합한 모드를 선택하고, 합의를 의사결정 기록·RACI·기준선에 반영해야 한다.
+    Diagnosis --> Mode
+    Mode --> Institutionalization
+```
+
+- 판정: 갈등이 개인 감정이 아닌 과업·프로세스 문제로 객관화되고 공식 통제 체계로 합의되는가
+- 대안: TKI 5대 모드 전략적 선택 · 원칙협상 프레임워크 · RACI 재정의
+- 검증: 의사결정 기록(Decision Record) 발행 · 프로젝트 기준선(Baseline) 갱신 · PMO 보고
+- 효과: 갈등의 순기능(혁신적 대안 도출) 극대화 및 일정·비용 훼손 방지
+
+## 1교시 10점 답안 발췌
+
+- 정의: 제한된 자원과 상충하는 목표 속에서 과업·관계·프로세스 갈등을 조기 식별하고 TKI 모드와 원칙협상으로 조정하는 관리 활동
+- 메커니즘: 갈등 유형 진단 → TKI 5대 모드 선택 → 원칙협상 및 합의 → 의사결정 기록 및 RACI 반영
 
 ```mermaid
 quadrantChart
@@ -123,29 +145,20 @@ quadrantChart
     타협: [0.50, 0.50]
 ```
 
-## 참고문헌
+## 출제 이력과 검증 출처
 
+- 제136회 정보관리기술사 1교시 기출 (프로젝트 갈등관리)
 - [The Myers-Briggs Company, Thomas–Kilmann Conflict Mode Instrument](https://www.themyersbriggs.com/en-US/Products-and-Services/TKI)
 - [Harvard Program on Negotiation, Principled Negotiation](https://www.pon.harvard.edu/daily/negotiation-skills-daily/principled-negotiation-focus-interests-to-create-value/)
 
-### 실전 답안용 기술사적 제언
+## 학습 체크
 
-갈등 유형별 조정권자와 합의 조건을 의사결정 기록에 남기고 재발 여부를 다음 회의에서 확인한다.
+- [ ] 갈등을 과업·관계·프로세스 유형으로 구분할 수 있는가?
+- [ ] TKI 5개 모드를 두 축과 함께 설명할 수 있는가?
+- [ ] 중재 결과를 프로젝트 통제 산출물에 연결할 수 있는가?
 
-```mermaid
-flowchart LR
- A[갈등 유형·영향] --> B[당사자·조정권자 지정] --> C[원칙협상 합의] --> D[결정기록·RACI 반영] --> E[후속 회의 재발 확인]
-```
+## 연결 토픽
 
-## 학습 점검
-
-- 갈등을 과업·관계·프로세스 유형으로 구분할 수 있는가?
-- TKI 5개 모드를 두 축과 함께 설명할 수 있는가?
-- 중재 결과를 프로젝트 통제 산출물에 연결할 수 있는가?
-
-## 연결 노트
-
-- 이전: [SWOT 분석](./034_swot_analysis)
-- 관련: [PMO](./004_pmo)
-- 관련: [프로젝트 리스크 관리](./009_project_risk_management_negative)
-- 다음: [NIST AI RMF](./036_nist_ai_rmf)
+- 이전 토픽: [SWOT 분석](./034_swot_analysis.md)
+- 연관 토픽: [PMO](./004_pmo.md), [프로젝트 리스크 관리](./009_project_risk_management_negative.md)
+- 다음 토픽: [NIST AI RMF](./036_nist_ai_rmf.md)
