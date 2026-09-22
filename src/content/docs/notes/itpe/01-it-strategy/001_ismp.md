@@ -1,7 +1,7 @@
 ---
 title: "ISMP"
 author: "Codex"
-date: "2026-09-21T22:03:31+09:00"
+date: "2026-09-22T23:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -93,11 +93,6 @@ flowchart TD
 ## Ⅴ. Traceability 중심의 기술사적 제언
 
 > ISMP의 실효성은 방대한 문서가 아니라, 최초 요구사항이 계약 기준(RFP)까지 훼손 없이 연결되는 Traceability 통제에 있음
-
-### 학습자 통찰 메모 — 답안 밖
-
-- `[핵심 통찰]`: ISMP의 성패는 보고서의 두께가 아니라, 사용자의 업무 요구사항이 목표 아키텍처·예산·계약 문서(RFP)로 단절 없이 추적되는가에 달려 있다. 연결이 끊기면 구축 단계에서 과업 변경과 예산 분쟁이 커진다.
-- `나라면`: ISMP 산출물 검수 시 단순 양식 채우기를 넘어, RTM 기반의 `요구사항 → 아키텍처 → FP·예산 → RFP` 전수 추적 매핑을 조달 전 Quality Gate 통과 조건으로 강제하겠다.
 
 ### 실전 답안용 기술사적 제언
 

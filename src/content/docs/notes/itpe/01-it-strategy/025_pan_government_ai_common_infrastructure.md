@@ -1,7 +1,7 @@
 ---
 title: "범정부 AI 공통기반"
 author: "Codex"
-date: "2026-09-22T00:14:00+09:00"
+date: "2026-09-22T23:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,12 +9,12 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → 공공 디지털정책·AI 플랫폼 → **범정부 AI 공통기반**
+지식 위치: IT 전략·관리 → 공공 디지털정책·AI 플랫폼 → **범정부 AI 공통기반**
 
 ## 30초 인출
 
@@ -25,14 +25,14 @@ IT 전략·관리 → 공공 디지털정책·AI 플랫폼 → **범정부 AI �
 <details>
 <summary>핵심 용어</summary>
 
-- **LLM(Large Language Model)**: 대규모 텍스트 데이터를 사전 학습하여 언어 생성 및 추론 능력을 제공하는 거대 모델. 이는 해당 용어의 역할과 작동을 설명한다.
-- **sLLM(Small Language Model)**: 규모를 줄여 특정 업무·제한된 자원 환경에 적용하는 언어모델. 이는 해당 용어의 역할과 작동을 설명한다.
-- **RAG(Retrieval-Augmented Generation)**: 외부 공공 행정 지식베이스를 실시간 검색하여 근거 기반으로 답변을 생성하는 기법. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Model Gateway**: 다중 모델에 대한 단일 진입점으로 라우팅, 부하분산, 캐싱, 장애 대체(Fallback)를 수행. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Guardrail(가드레일)**: 입력·출력·도구사용이 정해진 정책을 벗어나지 않도록 검사·제어하는 안전장치. 이는 해당 용어의 역할과 작동을 설명한다.
-- **API(Application Programming Interface)**: 개별 공공시스템이 공통 플랫폼의 AI 기능을 손쉽게 호출하는 표준 연계 규격. 이는 해당 용어의 역할과 작동을 설명한다.
-- **TCO(Total Cost of Ownership)**: 정보시스템 도입부터 운영·유지보수·폐기까지 수명주기 전반에 걸친 총 소유비용. 이는 해당 용어의 역할과 작동을 설명한다.
-- **RACI**: 업무 수행 시 Responsible(실무자), Accountable(최종책임자), Consulted(자문자), Informed(통보대상자)를 명확히 지정하는 책임 매트릭스. 이는 해당 용어의 역할과 작동을 설명한다.
+- **LLM(Large Language Model)**: 대규모 텍스트 데이터를 사전 학습하여 언어 생성 및 추론 능력을 제공하는 거대 모델.
+- **sLLM(Small Language Model)**: 규모를 줄여 특정 업무·제한된 자원 환경에 적용하는 언어모델.
+- **RAG(Retrieval-Augmented Generation)**: 외부 공공 행정 지식베이스를 실시간 검색하여 근거 기반으로 답변을 생성하는 기법.
+- **Model Gateway**: 다중 모델에 대한 단일 진입점으로 라우팅, 부하분산, 캐싱, 장애 대체(Fallback)를 수행이다.
+- **Guardrail(가드레일)**: 입력·출력·도구사용이 정해진 정책을 벗어나지 않도록 검사·제어하는 안전장치.
+- **API(Application Programming Interface)**: 개별 공공시스템이 공통 플랫폼의 AI 기능을 손쉽게 호출하는 표준 연계 규격이다.
+- **TCO(Total Cost of Ownership)**: 정보시스템 도입부터 운영·유지보수·폐기까지 수명주기 전반에 걸친 총 소유비용이다.
+- **RACI**: 업무 수행 시 Responsible(실무자), Accountable(최종책임자), Consulted(자문자), Informed(통보대상자)를 명확히 지정하는 책임 매트릭스이다.
 
 </details>
 

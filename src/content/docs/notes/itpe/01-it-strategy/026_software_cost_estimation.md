@@ -1,7 +1,7 @@
 ---
 title: "SW사업 대가산정"
 author: "Codex"
-date: "2026-09-22T00:14:00+09:00"
+date: "2026-09-22T23:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,12 +9,12 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-IT 전략·관리 → 공공 SW사업 관리 → **SW사업 대가산정**
+지식 위치: IT 전략·관리 → 공공 SW사업 관리 → **SW사업 대가산정**
 
 ## 30초 인출
 
@@ -25,13 +25,13 @@ IT 전략·관리 → 공공 SW사업 관리 → **SW사업 대가산정**
 <details>
 <summary>핵심 용어</summary>
 
-- **FP(Function Point)**: 사용자 관점의 논리적 기능을 기준으로 SW 규모를 측정하는 단위. 이는 해당 용어의 역할과 작동을 설명한다.
-- **ILF(Internal Logical File)**: 대상 애플리케이션 내부에서 유지되는 논리적 데이터 그룹. 이는 해당 용어의 역할과 작동을 설명한다.
-- **EIF(External Interface File)**: 다른 애플리케이션이 유지하고 대상 애플리케이션이 참조하는 논리적 데이터 그룹. 이는 해당 용어의 역할과 작동을 설명한다.
-- **EI(External Input)**: 외부 입력으로 내부 데이터 또는 처리 상태를 변경하는 기능. 이는 해당 용어의 역할과 작동을 설명한다.
-- **EO(External Output)**: 처리 결과를 외부로 제공하는 출력 기능. 이는 해당 용어의 역할과 작동을 설명한다.
-- **EQ(External Inquiry)**: 별도 파생처리 없이 데이터를 조회하는 기능. 이는 해당 용어의 역할과 작동을 설명한다.
-- **Traceability**: 요구사항부터 규모·비용·계약범위까지 근거를 추적할 수 있는 성질. 이는 해당 용어의 역할과 작동을 설명한다.
+- **FP(Function Point)**: 사용자 관점의 논리적 기능을 기준으로 SW 규모를 측정하는 단위.
+- **ILF(Internal Logical File)**: 대상 애플리케이션 내부에서 유지되는 논리적 데이터 그룹이다.
+- **EIF(External Interface File)**: 다른 애플리케이션이 유지하고 대상 애플리케이션이 참조하는 논리적 데이터 그룹이다.
+- **EI(External Input)**: 외부 입력으로 내부 데이터 또는 처리 상태를 변경하는 기능이다.
+- **EO(External Output)**: 처리 결과를 외부로 제공하는 출력 기능이다.
+- **EQ(External Inquiry)**: 별도 파생처리 없이 데이터를 조회하는 기능이다.
+- **Traceability**: 요구사항부터 규모·비용·계약범위까지 근거를 추적할 수 있는 성질이다.
 
 </details>
 
