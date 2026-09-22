@@ -25,11 +25,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **LCNC(Low-Code/No-Code)** : 적은 코드 또는 코드 없이 화면·업무 규칙을 조합해 애플리케이션을 만드는 개발 방식이다.
-- **BI(Business Intelligence)** : 업무 데이터를 수집·분석해 의사결정에 필요한 정보를 제공하는 체계이다.
-- **AutoML(Automated Machine Learning)** : 데이터 전처리·모델 선택·학습 등 기계학습 개발 일부를 자동화하는 기술이다.
-- **CoE(Center of Excellence)** : 표준·가드레일·재사용 자산·교육을 제공하는 전문 조직이다.
-- **Shadow IT** : 중앙 IT의 승인·통제 밖에서 사용하는 시스템·서비스이다.
+- **LCNC(Low-Code/No-Code)** : 시각적 도구와 사전 정의된 블록을 조합해 애플리케이션을 신속 제작하는 개발 플랫폼
+- **BI(Business Intelligence)** : 기업 데이터를 정제·시각화하여 현업의 데이터 기반 의사결정을 지원하는 비즈니스 지능 체계
+- **AutoML(Automated Machine Learning)** : 특징 추출·모델 탐색·하이퍼파라미터 튜닝 등 머신러닝 개발 과정을 자동화하는 기술
+- **CoE(Center of Excellence)** : 시민 개발자를 위한 표준·가드레일·재사용 자산·교육을 총괄 지원하는 전사 역량 센터
+- **Shadow IT** : 중앙 IT 부서의 승인과 통제 범위를 벗어나 현업이 독자적으로 도입·운용하는 비인가 정보시스템
 
 </details>
 

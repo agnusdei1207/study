@@ -25,14 +25,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **LLM(Large Language Model)** : 대규모 텍스트 데이터를 사전 학습하여 언어 생성 및 추론 능력을 제공하는 거대 모델.
-- **sLLM(Small Language Model)** : 규모를 줄여 특정 업무·제한된 자원 환경에 적용하는 언어모델.
-- **RAG(Retrieval-Augmented Generation)** : 외부 공공 행정 지식베이스를 실시간 검색하여 근거 기반으로 답변을 생성하는 기법.
-- **Model Gateway** : 다중 모델에 대한 단일 진입점으로 라우팅, 부하분산, 캐싱, 장애 대체(Fallback)를 수행이다.
-- **Guardrail(가드레일)** : 입력·출력·도구사용이 정해진 정책을 벗어나지 않도록 검사·제어하는 안전장치.
-- **API(Application Programming Interface)** : 개별 공공시스템이 공통 플랫폼의 AI 기능을 손쉽게 호출하는 표준 연계 규격이다.
-- **TCO(Total Cost of Ownership)** : 정보시스템 도입부터 운영·유지보수·폐기까지 수명주기 전반에 걸친 총 소유비용이다.
-- **RACI** : 업무 수행 시 Responsible(실무자), Accountable(최종책임자), Consulted(자문자), Informed(통보대상자)를 명확히 지정하는 책임 매트릭스이다.
+- **LLM(Large Language Model)** : 방대한 텍스트 코퍼스를 사전 학습하여 인간 수준의 언어 이해와 생성 능력을 제공하는 거대 언어 모델
+- **sLLM(Small Language Model)** : 매개변수 규모를 경량화하여 특정 행정 도메인에 특화 및 온프레미스 구축이 용이한 소형 언어 모델
+- **RAG(Retrieval-Augmented Generation)** : 외부 공공 지식베이스를 벡터 검색하여 최신성 확보와 할루시네이션을 방지하는 검색 증강 생성 기법
+- **Model Gateway** : 다중 파운데이션 모델에 대해 통합 진입점을 제공하고 라우팅·캐싱·로드밸런싱·폴백을 관장하는 중계 게이트웨이
+- **Guardrail(가드레일)** : 사용자 프롬프트와 모델 출력의 유해성·개인정보 유출·탈옥 시도를 실시간 필터링하는 안전 제어 장치
+- **API(Application Programming Interface)** : 개별 공공시스템이 공통기반의 AI 서비스를 유연하게 호출하고 연동하기 위한 표준 인터페이스 규격
+- **TCO(Total Cost of Ownership)** : 부처별 AI 개별 구축에 따른 중복투자를 방지하고 공동 활용을 통해 절감하는 총 소유비용
+- **RACI** : 공공 AI 도입 및 운영 과정에서 실무자(R)·책임자(A)·자문자(C)·통보자(I)의 행정적 책무를 명확화하는 책임 매트릭스
 
 </details>
 

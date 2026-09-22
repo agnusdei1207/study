@@ -26,15 +26,15 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **온AI** : 공무원의 법령 검토·문서 작성·협업 등을 AI로 지원하는 지능형 업무관리 플랫폼이다.
-- **RAG(Retrieval-Augmented Generation)** : 외부 자료에서 검색한 근거를 생성모델의 입력에 넣어 답변을 생성하는 방식이다.
-- **Human Oversight** : AI 결과를 사람이 검토·승인·중단할 수 있도록 한 통제이다.
-- **Contestability** : AI의 판단으로 영향을 받은 사람이 근거 설명을 요구하고 결과에 이의를 제기할 수 있는 성질이다.
-- **DPG(Digital Platform Government)** : 데이터와 서비스를 연계해 국민 중심 서비스를 제공하는 디지털플랫폼정부이다.
-- **LLM(Large Language Model)** : 대규모 텍스트로 학습한 범용 생성 언어모델이다.
-- **SLM(Small Language Model)** : 특정 용도에 맞춰 경량화한 소형 언어모델이다.
-- **MLOps(Machine Learning Operations)** : ML 모델의 개발·배포·운영을 연결하는 실무체계이다.
-- **LLMOps(Large Language Model Operations)** : LLM 서비스의 프롬프트·평가·배포·운영을 관리하는 실무체계이다.
+- **온AI** : 공무원의 법령 검토·문서 작성·행정 협업을 지원하는 공공 지능형 업무관리 플랫폼
+- **RAG(Retrieval-Augmented Generation)** : 외부 지식 베이스에서 관련 문서를 검색하여 생성 모델의 문맥으로 주입하는 검색 증강 생성 기술
+- **Human Oversight** : 공공 의사결정 과정에서 AI 출력을 공무원이 검토·승인·중단할 수 있도록 보장하는 인간 감독 통제
+- **Contestability** : AI 판단으로 처분을 받은 당사자가 결정 근거를 확인하고 이의를 제기할 수 있는 권리 보장성
+- **DPG(Digital Platform Government)** : 민관 데이터와 서비스를 연계해 국민 중심 맞춤형 혜택을 제공하는 디지털플랫폼정부
+- **LLM(Large Language Model)** : 대규모 텍스트 코퍼스를 학습하여 복잡한 언어 이해와 추론을 수행하는 거대 언어 모델
+- **SLM(Small Language Model)** : 특정 도메인과 온프레미스 보안 환경에 최적화된 경량 소형 언어 모델
+- **MLOps(Machine Learning Operations)** : 머신러닝 모델의 개발·배포·운영 수명주기를 자동화하는 협업 프레임워크
+- **LLMOps(Large Language Model Operations)** : LLM 기반 서비스의 프롬프트·평가·가드레일·배포를 관리하는 운영 체계
 
 </details>
 

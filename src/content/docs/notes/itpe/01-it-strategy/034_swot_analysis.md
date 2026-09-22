@@ -25,11 +25,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **SWOT(Strengths, Weaknesses, Opportunities, Threats)** : 내부 역량과 외부 환경을 네 범주로 구조화해 전략 판단에 활용하는 분석이다.
-- **TOWS** : SWOT 요인을 교차해 SO·ST·WO·WT 전략을 도출하는 매트릭스이다.
-- **PEST** : 정치·경제·사회·기술 요인으로 거시환경을 분석하는 방법이다.
-- **VRIO(Value, Rarity, Inimitability, Organization)** : 자원의 경쟁우위 가능성 분석이다.
-- **AHP(Analytic Hierarchy Process)** : 평가 기준과 대안을 계층으로 나누고 쌍대비교해 우선순위를 산출하는 기법이다.
+- **SWOT(Strengths, Weaknesses, Opportunities, Threats)** : 내부 환경의 강점·약점과 외부 환경의 기회·위협 요인을 구조화하는 상황 분석 프레임워크
+- **TOWS** : SWOT 분석 요소를 2×2로 교차 결합하여 SO·ST·WO·WT 실행 전략을 도출하는 전략 수립 매트릭스
+- **PEST** : 정치(P)·경제(E)·사회(S)·기술(T) 요인을 바탕으로 조직을 둘러싼 거시환경을 진단하는 외부환경 분석 기법
+- **VRIO(Value, Rarity, Inimitability, Organization)** : 기업 보유 자원의 가치·희소성·모방불가능성·조직활용도를 평가하여 지속적 경쟁우위를 진단하는 내부역량 분석 모델
+- **AHP(Analytic Hierarchy Process)** : 복잡한 의사결정 기준과 대안을 계층화하고 쌍대비교를 통해 정량적 가중치와 우선순위를 도출하는 계층화 분석법
 
 </details>
 

@@ -24,12 +24,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **PbD(Privacy by Design)** : 기획·설계부터 개인정보 보호를 기본값으로 반영하는 원칙이다.
-- **PIA(Privacy Impact Assessment)** : 개인정보 처리가 정보주체에게 미치는 영향을 사전 분석하는 제도이다.
-- **DPIA(Data Protection Impact Assessment)** : 고위험 개인정보 처리의 필요성·비례성·위험·조치를 평가하는 절차이다.
-- **Differential Privacy** : 개인 한 명의 포함 여부가 결과에 미치는 영향을 수학적으로 제한하는 기법이다.
-- **Machine Unlearning** : 특정 학습데이터의 영향을 모델에서 제거하거나 감소시키는 기술이다.
-- **Membership Inference Attack** : 특정 정보가 모델 학습에 사용되었는지 추론하는 공격이다.
+- **PbD(Privacy by Design)** : 기획·설계 초기 단계부터 개인정보 보호 기능을 기본값으로 내재화하는 설계 원칙
+- **PIA(Privacy Impact Assessment)** : 개인정보 파일 운용이 정보주체에게 미치는 침해 위험을 사전 분석하는 영향평가 제도
+- **DPIA(Data Protection Impact Assessment)** : 고위험 데이터 처리의 필요성·비례성·위험 경감 조치를 종합 평가하는 절차(GDPR 기준)
+- **Differential Privacy** : 통계적 노이즈를 주입하여 특정 개인 데이터의 포함 여부를 수학적으로 은닉하는 차분 프라이버시 기법
+- **Machine Unlearning** : 모델 전체 재학습 없이 특정 데이터셋의 학습 기여분을 선별적으로 제거하는 머신 언러닝 기술
+- **Membership Inference Attack** : 모델 출력값의 신뢰도를 분석하여 특정 데이터가 학습에 사용되었는지 여부를 역추적하는 공격 기법
 
 </details>
 

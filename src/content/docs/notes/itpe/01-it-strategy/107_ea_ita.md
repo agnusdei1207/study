@@ -24,11 +24,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **EA(Enterprise Architecture)** : 조직의 전략·업무와 데이터·응용·기술 구조의 관계를 전사 관점에서 설계·관리하는 체계이다.
-- **ITA(Information Technology Architecture)** : 공공기관의 정보기술 자원을 업무와 연계해 관리하기 위한 정보기술 아키텍처이다.
-- **EAMS(Enterprise Architecture Management System)** : Architecture 정보를 등록·관리·활용하는 시스템이다.
-- **Gap Analysis** : 현행과 목표 상태의 차이와 전환과제를 식별하는 분석이다.
-- **Reference Model** : 기관 간 공통 분류·표준·재사용을 지원하는 참조모형이다.
+- **EA(Enterprise Architecture)** : 경영 전략과 비즈니스·데이터·응용·기술 인프라 간의 관계를 전사 관점에서 설계·통제하는 종합 청사진
+- **ITA(Information Technology Architecture)** : 정보화 자원을 체계적으로 기획·도입·운영하기 위한 공공 부문 정보기술 아키텍처
+- **EAMS(Enterprise Architecture Management System)** : 전사 아키텍처 메타모델과 산출물 정보를 등록·검색·활용하는 관리 시스템
+- **Gap Analysis** : 현행(As-Is)과 목표(To-Be) 아키텍처 간의 격차를 식별하여 전환 이행 과제를 도출하는 분석 기법
+- **Reference Model** : 기관 간 아키텍처 연계와 컴포넌트 재사용을 지원하는 표준 참조 모형 체계(PRM·BRM·SRM·DRM·TRM)
 
 </details>
 

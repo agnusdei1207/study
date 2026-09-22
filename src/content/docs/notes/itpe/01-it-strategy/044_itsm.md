@@ -26,16 +26,16 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **ITSM(IT Service Management)** : 서비스의 기획·설계·전환·제공·개선을 통해 고객과 가치를 공동창출하는 관리 체계이다.
-- **ITIL(Information Technology Infrastructure Library)** : 서비스 가치체계와 실천방법을 제공하는 ITSM 모범사례이다.
-- **SMS(Service Management System)** : 서비스 관리 방침·목표·프로세스·자원을 수립·운영·개선하는 경영시스템이다.
-- **SLA(Service Level Agreement)** : 서비스 제공자와 고객이 합의한 서비스 수준과 측정·보고 기준이다.
-- **KEDB(Known Error Database)** : Known Error와 Workaround를 관리하는 지식 저장소이다.
-- **CAB(Change Advisory Board)** : 변경의 평가·우선순위·승인을 지원하는 자문기구이다.
-- **RFC(Request for Change)** : 변경 제안을 공식적으로 요청하는 기록·절차이다.
-- **XLA(eXperience Level Agreement)** : 사용자 경험 관점에서 서비스 수준을 약속하는 협약이다.
-- **CMDB(Configuration Management Database)** : 서비스와 CI(Configuration Item)의 관계·속성·상태를 관리하는 데이터베이스이다.
-- **SVS(Service Value System)** : ITIL 4에서 수요와 기회를 가치로 전환하는 구성요소 체계이다.
+- **ITSM(IT Service Management)** : 서비스 기획·설계·전환·운영·개선을 통해 비즈니스 가치를 공동 창출하는 IT 관리 체계
+- **ITIL(Information Technology Infrastructure Library)** : 서비스 가치 사슬과 실천 프랙티스를 제공하는 ITSM 모범 실무 프레임워크
+- **SMS(Service Management System)** : 서비스 관리 방침·목표·프로세스를 통합 통제하는 경영 시스템(ISO/IEC 20000 기반)
+- **SLA(Service Level Agreement)** : 서비스 제공자와 고객 간 합의한 정량적 서비스 수준과 측정·평가 기준
+- **KEDB(Known Error Database)** : 기인지된 오류의 근본원인과 임시 우회책(Workaround)을 관리하는 지식 저장소
+- **CAB(Change Advisory Board)** : 변경의 비즈니스 영향도와 위험을 평가하고 우선순위·승인을 심의하는 자문 기구
+- **RFC(Request for Change)** : 서비스 및 인프라의 구성 변경을 공식적으로 제안·신청하는 표준 절차 및 문서
+- **XLA(eXperience Level Agreement)** : 최종 사용자 체감 품질과 만족도 관점에서 서비스 수준을 정의한 경험 협약
+- **CMDB(Configuration Management Database)** : 서비스와 구성항목(CI)의 속성 및 상호 연관관계를 관리하는 통합 데이터베이스
+- **SVS(Service Value System)** : ITIL 4에서 비즈니스 수요와 기회를 실질적 가치로 전환하는 구성요소 프레임워크
 
 </details>
 

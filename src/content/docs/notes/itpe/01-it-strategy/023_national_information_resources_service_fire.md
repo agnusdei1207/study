@@ -25,14 +25,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **SPOF(Single Point of Failure)** : 단일 구성요소 고장이 시스템 전체 마비로 파급되는 단일 실패점.
-- **공통원인 장애(Common Cause Failure)** : 하나의 물리적 사건(화재·정전)이 공유 인프라를 통해 다수 서비스로 전파되는 장애이다.
-- **GSLB(Global Server Load Balancing)** : DNS 기반 헬스체크를 통해 장애 센터를 배제하고 정상 거점으로 트래픽을 자동 분산이다.
-- **Active-Active DR(이중운영체계)** : 복수 거점이 서비스를 운영하여 대기형 DR보다 전환시간을 줄이는 구성.
-- **RTO(Recovery Time Objective)** : 재해 발생 시 서비스가 정상 수준으로 복구되기까지 허용되는 최대 시간이다.
-- **RPO(Recovery Point Objective)** : 재해 발생 시 유실을 허용할 수 있는 최대 데이터 시점 간격이다.
-- **에어갭(Air-Gap)** : 백업 저장소의 네트워크 연결을 물리적·논리적으로 단절해 악성코드와 원격 침해의 전파를 차단하는 방식. 센터 화재 등 물리 재난에는 별도 거점의 지리적 분리가 필요함.
-- **Split-Brain** : 네트워크 단절 시 양 센터가 상호 다운으로 오판하여 독자 쓰기를 수행하며 발생하는 데이터 불일치 현상이다.
+- **SPOF(Single Point of Failure)** : 단일 구성요소의 결함이나 장애가 시스템 전체 마비로 파급되는 단일 장애점
+- **공통원인 장애(Common Cause Failure)** : 화재·정전 등 단일 물리적 사건이 공유 인프라를 통해 복수 시스템으로 동시 전파되는 장애
+- **GSLB(Global Server Load Balancing)** : DNS 기반 헬스체크를 통해 장애 데이터센터를 격리하고 정상 거점으로 트래픽을 자동 절체하는 기술
+- **Active-Active DR(이중운영체계)** : 둘 이상의 데이터센터가 동시에 트래픽을 처리하여 RTO를 0에 수렴시키는 무중단 재해복구 구성
+- **RTO(Recovery Time Objective)** : 재해 발생 후 업무 및 서비스를 정상 수준으로 재개하기까지 허용되는 최대 중단 시간
+- **RPO(Recovery Point Objective)** : 재해 발생 시 복구 기준 시점으로 허용되는 최대 데이터 손실 시점
+- **에어갭(Air-Gap)** : 백업 데이터를 운영 네트워크로부터 물리적·논리적으로 완전 격리하여 보관하는 데이터 보호 방식
+- **Split-Brain** : 센터 간 통신 단절 시 양측이 모두 주 센터로 오판하여 독자 쓰기를 수행함에 따라 발생하는 데이터 불일치 현상
 
 </details>
 

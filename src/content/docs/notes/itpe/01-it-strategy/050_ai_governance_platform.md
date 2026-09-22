@@ -26,14 +26,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **AIMS(Artificial Intelligence Management System)** : AI의 책임 있는 개발·제공·사용을 위한 방침·목표·프로세스의 관리체계이다.
-- **AI Inventory** : 조직이 개발·구매·운영하는 AI 시스템의 목적·소유자·위험등급·상태 목록이다.
-- **System Card** : AI 시스템의 목적·범위·성능·한계·위험·평가결과를 기록한 증적이다.
-- **Policy-as-Code** : 정책의 판정 규칙을 코드화하여 개발·배포 과정에서 반복 검증하는 방식이다.
-- **Human Oversight** : 위험도와 영향에 따라 사람이 검토·승인·중단할 수 있도록 한 통제이다.
-- **Lineage** : 데이터·모델·프롬프트·배포 버전의 생성과 변경 관계를 추적하는 정보이다.
-- **MLOps(Machine Learning Operations)** : ML 모델의 개발·배포·운영을 연결하는 실무체계이다.
-- **LLMOps(Large Language Model Operations)** : LLM 서비스의 프롬프트·평가·배포·운영을 관리하는 실무체계이다.
+- **AIMS(Artificial Intelligence Management System)** : 책임 있는 AI 개발·제공·활용을 위한 조직적 방침·목표·프로세스 경영시스템(ISO/IEC 42001)
+- **AI Inventory** : 조직 내 개발·도입·운영 중인 AI 시스템의 목적·책임자·위험등급을 관리하는 자산 목록
+- **System Card** : AI 시스템의 목적·성능·한계·위험 완화 조치를 표준 양식으로 기록한 공학적 설명서
+- **Policy-as-Code** : 거버넌스 및 보안 정책을 코드로 정의하여 배포 파이프라인에서 자동 검증하는 통제 메커니즘
+- **Human Oversight** : 위험 수준에 따라 인간이 AI 시스템을 감독·개입·중단할 수 있도록 보장하는 통제 체계
+- **Lineage** : 데이터셋·모델 가중치·프롬프트·배포 버전 간의 생성 및 변경 이력을 추적하는 계보 정보
+- **MLOps(Machine Learning Operations)** : 머신러닝 모델의 개발·테스트·배포·모니터링을 자동화하는 협업 운영 체계
+- **LLMOps(Large Language Model Operations)** : LLM 기반 서비스의 프롬프트·평가·가드레일·배포를 전문 관리하는 운영 프레임워크
 
 </details>
 

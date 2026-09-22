@@ -24,17 +24,17 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **Programmable Money** : 화폐의 사용처·기간·지역 등 사용조건을 디지털 규칙으로 부여한 화폐이다.
-- **Programmable Payment** : 사전에 정한 조건이 충족되면 결제지시를 자동으로 실행하는 기능이다.
-- **AI(Artificial Intelligence) Agent** : 목표와 권한 범위에서 도구를 사용해 과업을 수행하는 인공지능 시스템이다.
-- **CBDC(Central Bank Digital Currency)** : 중앙은행이 발행하는 디지털 형태의 중앙은행 화폐이다.
-- **DvP(Delivery versus Payment)** : 자산 인도와 대금 지급을 조건부로 연계하는 결제 방식이다.
-- **KYC(Know Your Customer)** : 고객 신원 확인 절차이다.
-- **AML(Anti-Money Laundering)** : 자금세탁 방지 통제이다.
-- **PSP(Payment Service Provider)** : 지급결제 서비스를 제공하는 사업자이다.
-- **RACI(Responsible, Accountable, Consulted, Informed)** : 역할별 수행·책임·협의·통보 관계를 정한 표이다.
-- **ERC-4337** : 블록체인 계정을 스마트 컨트랙트로 추상화해 맞춤 권한·검증 로직을 허용하는 이더리움 표준이다.
-- **WORM(Write Once Read Many)** : 한 번 기록 후 변경·삭제가 불가능한 기록 방식이다.
+- **Programmable Money** : 사용처·유효기간·용도 등의 사용 조건을 디지털 규칙으로 내재화한 프로그래머블 화폐
+- **Programmable Payment** : 사전 정의된 조건 충족 시 결제 지시와 이체가 자동으로 실행되는 자동 결제 메커니즘
+- **AI Agent** : 부여된 목표와 정책 가드레일 내에서 도구(API)를 호출하여 자율 결제를 수행하는 지능형 시스템
+- **CBDC(Central Bank Digital Currency)** : 중앙은행이 전자적 형태로 직접 발행하는 법정 디지털 화폐
+- **DvP(Delivery versus Payment)** : 디지털 자산 인도와 대금 지급이 동시에 상호 조건부로 완결되는 동시결제 방식
+- **KYC(Know Your Customer)** : 금융 거래 당사자의 실원과 법적 자격을 검증하는 고객확인제도
+- **AML(Anti-Money Laundering)** : 불법 자금 유통과 금융 범죄를 모니터링·차단하는 자금세탁방지 통제
+- **PSP(Payment Service Provider)** : 가맹점과 금융망을 연계하여 전자결제와 정산을 대행하는 지급결제사업자
+- **RACI(Responsible, Accountable, Consulted, Informed)** : 역할별 실무수행(R)·최종책임(A)·사전자문(C)·사후통보(I) 관계를 명시한 책임 매트릭스
+- **ERC-4337** : 스마트 컨트랙트 기반 지갑으로 세션키 위임과 프로그래머블 결제를 지원하는 계정 추상화 표준
+- **WORM(Write Once Read Many)** : 단 한 번만 기록되고 사후 위·변조 및 삭제가 불가능한 불변성 감사 기록 방식
 
 </details>
 

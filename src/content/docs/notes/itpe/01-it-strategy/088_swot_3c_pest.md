@@ -25,14 +25,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **PEST(Political, Economic, Social, Technological)** : 기업이 통제 불가능한 거시 환경을 4대 축으로 진단하여 외생적 기회와 위협을 식별하는 기법이다.
-- **3C(Customer, Competitor, Company)** : 오마에 겐이치가 제시한 고객·경쟁사·자사 간의 3각 상호작용을 통해 미시적 경쟁 우위를 분석하는 모델이다.
-- **SWOT(Strengths, Weaknesses, Opportunities, Threats)** : 기업의 내부 역량(강점·약점)과 외부 환경(기회·위협)을 2x2 매트릭스로 결합하는 전략 프레임워크이다.
-- **SO 전략** : 내부 강점(S)을 바탕으로 외부 기회(O)를 극대화하는 공격적 확장 전략이다.
-- **ST 전략** : 내부 강점(S)을 무기 삼아 외부 위협(T)을 방어하고 차별화를 꾀하는 전략이다.
-- **WO 전략** : 외부 기회(O)를 레버리지하여 내부 약점(W)을 개선·보완하는 국면 전환 전략이다.
-- **WT 전략** : 외부 위협(T)을 회피하고 내부 약점(W)을 최소화하는 방어·축소·철수 전략이다.
-- **AHP(Analytic Hierarchy Process)** : 도출된 전략 과제의 다차원 평가 기준을 계층화하여 우선순위를 정량 산출하는 의사결정 기법이다.
+- **PEST(Political, Economic, Social, Technological)** : 통제 불가능한 거시 환경을 4대 축으로 진단하여 외생적 기회와 위협을 식별하는 기법
+- **3C(Customer, Competitor, Company)** : 고객·경쟁사·자사의 3각 상호작용을 통해 미시적 경쟁 우위를 분석하는 모델
+- **SWOT(Strengths, Weaknesses, Opportunities, Threats)** : 내부 역량(강점·약점)과 외부 환경(기회·위협)을 결합하는 2x2 교차 전략 매트릭스
+- **SO 전략** : 내부 강점을 바탕으로 외부 기회를 극대화하는 공격적 성장 전략
+- **ST 전략** : 내부 강점을 활용하여 외부 위협을 방어하고 차별화하는 우회 전략
+- **WO 전략** : 외부 기회를 활용하여 내부 약점을 보완·개선하는 만회 전략
+- **WT 전략** : 외부 위협을 회피하고 내부 약점을 최소화하는 방어·철수 전략
+- **AHP(Analytic Hierarchy Process)** : 도출된 전략 과제의 다차원 평가 기준을 계층화하여 우선순위를 산출하는 의사결정 기법
 
 </details>
 

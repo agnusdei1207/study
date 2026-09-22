@@ -25,16 +25,16 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **IT 투자평가** : 전 생애주기에서 IT 비용과 기대 편익을 측정하고 투자 가치를 지속 관리하는 활동이다.
-- **Productivity Paradox(생산성의 역설)** : IT 투자 규모는 커졌지만 거시적 생산성 향상이 통계상 뚜렷하게 나타나지 않는 현상이다.
-- **TCO(Total Cost of Ownership)** : 도입 구매비와 운영·유지보수·다운타임 등 수명주기 비용을 합산한 총소유비용이다.
-- **ROI(Return on Investment)** : 투자 비용 대비 순편익의 비율로, 화폐의 시간가치는 반영하지 않는 지표다.
-- **NPV(Net Present Value)** : 미래 현금유입의 현재가치에서 현금유출의 현재가치를 차감한 순현재가치다.
-- **IRR(Internal Rate of Return)** : NPV를 0으로 만드는 할인율이며 자본비용보다 높을 때 투자 매력이 있다고 판단한다.
-- **EVM(Earned Value Management)** : 계획 가치(PV), 획득 가치(EV), 실제 원가(AC)를 대비하여 공정·예산을 실측 통제하는 기법이다.
-- **IT-BSC(IT Balanced Scorecard)** : 기업 공헌·사용자·운영 우수성·미래지향 관점에서 IT 투자의 전략 정렬을 평가하는 균형성과표다.
-- **Val IT** : IT 투자의 비즈니스 가치 창출을 보증하기 위해 ISACA가 제정한 거버넌스 프레임워크이다.
-- **Benefits Realization Review(편익 실현 검토)** : 시스템 운영 후 실제 편익과 비즈니스 목표 달성 여부를 계획값과 비교하는 사후 평가이다.
+- **IT 투자평가** : 전 생애주기(사전·중간·사후)에 걸쳐 IT 비용과 편익 및 위험을 측정·통제하는 가치 거버넌스 활동
+- **Productivity Paradox(생산성의 역설)** : IT 투자의 급격한 증가에도 불구하고 기업 및 국가 차원의 생산성 향상이 뚜렷하게 나타나지 않는 현상
+- **TCO(Total Cost of Ownership)** : 초기 획득 비용과 운영·유지보수·폐기 등 수명주기 전체에 걸쳐 발생하는 직·간접 비용의 총합
+- **ROI(Return on Investment)** : 투자 비용 대비 회수되는 순이익의 비율을 백분율로 나타낸 단순 투자수익률 지표
+- **NPV(Net Present Value)** : 현금 유입의 현재가치에서 현금 유출의 현재가치를 차감한 순현재가치
+- **IRR(Internal Rate of Return)** : 순현재가치(NPV)를 0으로 만드는 할인율로서 기대수익률을 의미하는 내부수익률
+- **EVM(Earned Value Management)** : 계획 가치(PV)·획득 가치(EV)·실제 원가(AC)를 비교하여 사업의 공정과 원가를 정량 통제하는 기법
+- **IT-BSC(IT Balanced Scorecard)** : 기업 기여·사용자·내부 프로세스·미래 지향 관점에서 IT 전략 정렬 및 성과를 측정하는 균형성과표
+- **Val IT** : IT 투자 관리, 포트폴리오 관리, 편익 실현을 체계화한 ISACA의 IT 투자 거버넌스 프레임워크
+- **Benefits Realization Review(편익 실현 검토)** : 시스템 가동 후 계획된 비즈니스 편익의 실현 여부와 목표 달성도를 측정·환류하는 사후 평가
 
 </details>
 

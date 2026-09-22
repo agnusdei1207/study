@@ -25,11 +25,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **SLA(Service Level Agreement)** : 고객과 공급자가 서비스 수준, 측정방법, 책임범위를 합의한 기준이다.
-- **RO(Retained Organization)** : 위탁 후에도 통제권과 핵심 역량을 유지하는 내부 조직이다.
-- **SIAM(Service Integration and Management)** : 다중 공급자의 서비스를 하나의 서비스로 통합 관리하는 운영 모델이다.
-- **XLA(eXperience Level Agreement)** : 사용자 경험 결과를 서비스 평가에 반영하는 협약이다.
-- **Exit Plan** : 계약 종료 시 서비스·지식·자산을 다른 공급자나 내부로 이전하는 계획이다.
+- **SLA(Service Level Agreement)** : 서비스 제공자와 수용자 간에 서비스 품질 수준, 평가지표, 위약금 체계를 명시한 공식 협약
+- **RO(Retained Organization)** : IT 아웃소싱 이후에도 전사 전략, 아키텍처, 데이터 거버넌스 통제권을 유지하는 발주사 내부 잔류 조직
+- **SIAM(Service Integration and Management)** : 복수(Multi-Vendor)의 외주 공급자 서비스들을 단일 서비스로 통합·조율하는 운영 관리 모델
+- **XLA(eXperience Level Agreement)** : 정량적 IT 가동률을 넘어 실제 사용자의 만족도와 업무 체감 가치를 평가하는 경험 수준 협약
+- **Exit Plan(출구 전략)** : 계약 만료나 분쟁 시 서비스 연속성 단절 없이 타 공급자 또는 인소싱으로 자산과 지식을 원활히 이전하기 위한 전환 계획
 
 </details>
 

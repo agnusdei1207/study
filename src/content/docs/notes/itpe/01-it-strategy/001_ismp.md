@@ -25,12 +25,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **ISMP(Information System Master Plan)** : 선정된 시스템의 요구사항·구조·예산을 발주 가능한 수준으로 구체화해 조달 기준을 만드는 계획이다.
-- **ISP(Information Strategy Planning)** : 조직의 비전과 현황을 바탕으로 정보화 방향과 투자 과제를 선정하는 상위 계획이다.
-- **Baseline(기준선)** : 승인된 범위·요구사항·비용을 이후 변경과 비교하고 통제하는 공식 기준이다.
-- **RTM(Requirements Traceability Matrix)** : 요구사항을 설계·비용·계약 산출물과 양방향으로 연결해 누락과 과잉 반영을 검증하는 추적표다.
-- **FP(Function Point)** : 사용자에게 제공되는 논리적 기능을 세어 소프트웨어 규모와 비용을 산정하는 기법이다.
-- **RFP(Request for Proposal)** : 발주자가 제안사에 구축 범위·요구사항·평가 기준·계약 조건을 제시해 제안을 요청하는 문서다.
+- **ISMP(Information System Master Plan)** : 선정된 시스템의 요구사항·구조·예산을 발주 가능한 수준으로 구체화한 조달 기준 계획
+- **ISP(Information Strategy Planning)** : 조직의 비전과 현황을 바탕으로 정보화 방향과 투자 과제를 선정하는 중장기 전략 계획
+- **Baseline(기준선)** : 승인된 범위·요구사항·비용을 변경 관리 및 통제 기준으로 삼는 공식 기준선
+- **RTM(Requirements Traceability Matrix)** : 요구사항을 설계·비용·계약 산출물과 양방향으로 연결해 누락과 과잉 반영을 검증하는 추적표
+- **FP(Function Point)** : 사용자에게 제공되는 논리적 기능을 측정하여 소프트웨어 규모와 대가를 산정하는 기법
+- **RFP(Request for Proposal)** : 발주자가 제안사에 구축 범위·요구사항·평가 기준·계약 조건을 제시해 제안을 요청하는 문서
 
 </details>
 

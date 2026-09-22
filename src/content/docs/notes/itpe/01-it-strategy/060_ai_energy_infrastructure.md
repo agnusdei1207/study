@@ -24,13 +24,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **PUE(Power Usage Effectiveness)** : 데이터센터 총 전력량을 IT 장비 전력량으로 나눈 지표이다.
-- **WUE(Water Usage Effectiveness)** : 데이터센터의 IT 장비 운영에 사용한 물의 양을 IT 에너지 사용량과 비교하는 효율 지표이다.
-- **CUE(Carbon Usage Effectiveness)** : IT 장비가 소비한 에너지에 대응하는 탄소배출량을 나타내는 지표이다.
-- **PPA(Power Purchase Agreement)** : 전력 생산자와 수요자가 체결하는 전력구매계약이다.
-- **D2C(Direct-to-Chip)** : 발열 칩에 Cold Plate를 접촉해 액체로 열을 제거하는 방식이다.
-- **Immersion Cooling** : 전자장비를 비전도성 유체에 침지해 열을 제거하는 방식이다.
-- **BESS(Battery Energy Storage System)** : 전력을 저장·방전하는 배터리 기반 설비이다.
+- **PUE(Power Usage Effectiveness)** : 데이터센터 총 투입 전력을 IT 장비 소비 전력으로 나눈 에너지 효율 지표
+- **WUE(Water Usage Effectiveness)** : 냉각에 투입된 총 물 사용량을 IT 장비 전력 소비량으로 나눈 수자원 효율 지표
+- **CUE(Carbon Usage Effectiveness)** : 데이터센터 운영에 따른 총 탄소배출량을 IT 소비 전력으로 나눈 탄소 효율 지표
+- **PPA(Power Purchase Agreement)** : 전력 생산자와 수요자가 사전 합의한 고정 가격으로 직접 거래하는 전력구매계약
+- **D2C(Direct-to-Chip)** : 고발열 칩 표면에 냉각 플레이트를 직접 부착해 액체로 열을 제거하는 직접 냉각 방식
+- **Immersion Cooling** : IT 서버 장비 전체를 비전도성 유체에 완전히 담가 냉각하는 액침 냉각 기술
+- **BESS(Battery Energy Storage System)** : 전력을 저장해 두었다가 피크 부하 및 비상 시 방전하는 배터리 기반 에너지 저장 시스템
 
 </details>
 

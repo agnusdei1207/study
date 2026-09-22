@@ -25,14 +25,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **TAM(Total Addressable Market)** : 특정 제품·서비스가 이론적으로 도달할 수 있는 전체 시장의 최대 수요 규모이다.
-- **SAM(Serviceable Addressable Market)** : 자사의 비즈니스 모델, 제품 스펙, 유통 채널, 지리적 영역 내에서 실제 도달 가능한 유효 시장이다.
-- **SOM(Serviceable Obtainable Market)** : 자사의 경쟁력·채널·자원 제약을 반영하여 현실적으로 획득 가능한 시장이다.
-- **ARPU(Average Revenue Per User)** : 고객 또는 계정당 연간/월간 평균 결제 단가이다.
-- **CAC(Customer Acquisition Cost)** : 고객 1개사를 신규 획득하기 위해 소요되는 마케팅 및 영업 총비용이다.
-- **LTV(Customer Lifetime Value)** : 고객 한 명 또는 한 계정이 거래기간 동안 창출할 것으로 예상되는 누적 수익·가치이다.
-- **Unit Economics** : 고객·계정 등 단위당 수익과 획득·서비스 비용을 비교하는 사업성 지표이다.
-- **BEP(Break-Even Point)** : 총매출이 고정비와 변동비의 합계와 일치하여 손익이 0이 되는 손익분기점이다.
+- **TAM(Total Addressable Market)** : 제품·서비스가 도달 가능한 전체 시장의 이론적 최대 수요 규모
+- **SAM(Serviceable Addressable Market)** : 자사 비즈니스 모델과 타깃 영역 내에서 실제 서비스 가능한 유효 시장
+- **SOM(Serviceable Obtainable Market)** : 초기 자원과 영업 역량을 고려하여 현실적으로 점유 가능한 수익 시장
+- **ARPU(Average Revenue Per User)** : 고객 또는 가입자당 일정 기간 동안 발생하는 평균 결제 매출액
+- **CAC(Customer Acquisition Cost)** : 신규 고객 1인을 확보하기 위해 투입되는 마케팅 및 영업 총비용
+- **LTV(Customer Lifetime Value)** : 고객 1인이 거래 기간 동안 기업에 기여할 것으로 기대되는 누적 생애 가치
+- **Unit Economics** : 고객 1인당 수익과 비용 구조를 분석하여 수익성을 검증하는 단위 경제성 지표
+- **BEP(Break-Even Point)** : 총매출과 총비용이 일치하여 영업이익이 0이 되는 손익분기점
 
 </details>
 

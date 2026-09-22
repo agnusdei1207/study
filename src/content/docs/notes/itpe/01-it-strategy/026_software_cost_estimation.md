@@ -25,13 +25,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **FP(Function Point)** : 사용자 관점의 논리적 기능을 기준으로 SW 규모를 측정하는 단위.
-- **ILF(Internal Logical File)** : 대상 애플리케이션 내부에서 유지되는 논리적 데이터 그룹이다.
-- **EIF(External Interface File)** : 다른 애플리케이션이 유지하고 대상 애플리케이션이 참조하는 논리적 데이터 그룹이다.
-- **EI(External Input)** : 외부 입력으로 내부 데이터 또는 처리 상태를 변경하는 기능이다.
-- **EO(External Output)** : 처리 결과를 외부로 제공하는 출력 기능이다.
-- **EQ(External Inquiry)** : 별도 파생처리 없이 데이터를 조회하는 기능이다.
-- **Traceability** : 요구사항부터 규모·비용·계약범위까지 근거를 추적할 수 있는 성질이다.
+- **FP(Function Point)** : 사용자 관점에서 소프트웨어가 제공하는 논리적 기능을 정량화한 소프트웨어 규모 측정 단위
+- **ILF(Internal Logical File)** : 대상 시스템 내부에서 등록·수정·삭제되며 유지·관리되는 내부 논리 파일
+- **EIF(External Interface File)** : 타 시스템에서 유지·관리되며 대상 시스템이 참조 목적으로 사용하는 외부 연계 파일
+- **EI(External Input)** : 외부에서 유입된 데이터나 제어 정보를 통해 내부 논리 파일(ILF)을 갱신하는 외부 입력 트랜잭션
+- **EO(External Output)** : 수학적 계산이나 파생 데이터 생성 로직을 거쳐 시스템 외부로 정보를 출력하는 외부 출력 트랜잭션
+- **EQ(External Inquiry)** : 별도의 연산이나 가공 없이 단순히 데이터를 검색하여 화면 등에 표출하는 외부 조회 트랜잭션
+- **Traceability(추적성)** : 요구사항 정의부터 FP 규모 산정, 사업 예산서, 계약 과업 범위까지 상호 연결 근거를 검증하는 추적성
 
 </details>
 

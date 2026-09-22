@@ -25,14 +25,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **DX(Digital Transformation)** : 디지털 기술을 활용해 비즈니스 모델·업무 프로세스·조직 운영을 근본적으로 바꾸는 경영 혁신이다.
-- **Digitization(전산화)** : 아날로그 문서, 아날로그 신호를 0과 1의 디지털 포맷으로 변환하는 정보 전산화 단계다.
-- **Digitalization(프로세스 디지털화)** : 디지털화된 데이터를 활용하여 기존 업무 프로세스를 최적화하고 자동화하는 단계다.
-- **CoE(Center of Excellence)** : 클라우드, 데이터, AI 등 디지털 신기술 표준, 거버넌스, 교육을 전담 지원하는 전문 핵심 조직이다.
-- **CX(Customer Experience)** : 고객이 제품·서비스와 상호작용하는 모든 접점에서 느끼는 종합적인 디지털 경험이다.
-- **XaaS(Everything as a Service)** : 하드웨어 판매 중심에서 벗어나 클라우드 기반 구독형 서비스로 전환하는 사업 모델.
-- **PoC(Proof of Concept)** : 신기술의 비즈니스 타당성을 검증하는 실증 단계로 본 사업 연계 실패 시 'PoC의 무덤' 발생이다.
-- **MVP(Minimum Viable Product)** : 최소 기능만으로 고객 가치 가설을 조기 검증하는 제품 형태 → 본투자 여부를 가르는 판단 근거이다.
+- **DX(Digital Transformation)** : 디지털 기술을 활용하여 비즈니스 모델·프로세스·조직 문화를 근본적으로 재혁신하는 경영 전략
+- **Digitization(전산화)** : 아날로그 형태의 정보와 문서를 0과 1의 디지털 데이터로 변환하는 전산화 단계
+- **Digitalization(디지털화)** : 디지털 데이터를 활용하여 기존 업무 프로세스를 효율화하고 자동화하는 운영 최적화 단계
+- **CoE(Center of Excellence)** : 클라우드·데이터·AI 등 신기술의 표준 수립과 확산을 지원하는 전사 역량 센터
+- **CX(Customer Experience)** : 고객이 제품·서비스의 모든 접점에서 인지하고 경험하는 총체적 고객경험
+- **XaaS(Everything as a Service)** : 제품 소유 방식에서 벗어나 모든 IT 자원과 기능을 클라우드 구독형으로 제공하는 서비스 모델
+- **PoC(Proof of Concept)** : 신기술 도입 전 기술적 타당성과 비즈니스 실현 가능성을 사전 검증하는 개념 증명
+- **MVP(Minimum Viable Product)** : 핵심 가설 검증에 필요한 최소한의 기능만을 구현하여 고객 반응을 학습하는 최소 실행 가능 제품
 
 </details>
 

@@ -24,12 +24,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **Technology Sovereignty** : 핵심기술의 개발·조달·운영을 특정 외부 공급자에 일방적으로 의존하지 않고 수행할 수 있는 역량이다.
-- **Strategic Autonomy** : 외부 충격 속에서도 국가가 필요한 행동을 선택·지속할 수 있는 능력이다.
-- **GVC(Global Value Chain)** : 연구·부품·생산·서비스가 국가 간 분업되는 가치사슬이다.
-- **Friend-shoring** : 공급망을 신뢰 가능한 국가·지역 중심으로 재편하는 전략이다.
-- **Open Strategic Autonomy** : 개방성과 국제협력을 유지하면서 핵심 의존 위험을 줄이는 접근이다.
-- **SBOM(Software Bill of Materials)** : SW 구성요소·버전·의존관계를 기록한 명세이다.
+- **Technology Sovereignty** : 핵심 기술의 개발·조달·운영을 특정 공급자에 종속되지 않고 자주적으로 통제하는 전략적 역량
+- **Strategic Autonomy** : 공급망 충격이나 지정학적 위기 속에서도 국가가 필요한 전략을 자율적으로 선택·지속하는 능력
+- **GVC(Global Value Chain)** : 연구개발·생산·유통·서비스가 국가 간 분업으로 연결된 글로벌 가치 사슬
+- **Friend-shoring** : 공급망 단절 위험을 완화하기 위해 가치를 공유하는 동맹·우방국 중심으로 공급망을 재편하는 전략
+- **Open Strategic Autonomy** : 다자간 개방 무역을 유지하면서도 핵심 기술의 대외 의존 위험을 완화하는 개방형 전략적 자율성
+- **SBOM(Software Bill of Materials)** : 소프트웨어를 구성하는 컴포넌트·오픈소스·버전·종속성을 명시한 소프트웨어 자재명세서
 
 </details>
 

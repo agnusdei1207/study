@@ -25,11 +25,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **TKI(Thomas–Kilmann Conflict Mode Instrument)** : 자기주장성과 협조성의 조합으로 갈등 대응을 다섯 모드로 설명하는 도구이다.
-- **자기주장성(Assertiveness)** : 자신의 목표를 충족하려는 정도이다.
-- **협조성(Cooperativeness)** : 상대방의 목표를 충족하도록 돕는 정도이다.
-- **원칙협상(Principled Negotiation)** : 사람과 문제를 분리하고 입장보다 이해관계, 객관 기준, 상호이익 대안에 집중하는 협상 방식이다.
-- **의사결정 기록(Decision Record)** : 선택 대안과 근거·영향, 후속조치를 남긴 공식 기록이다.
+- **TKI(Thomas–Kilmann Conflict Mode Instrument)** : 자기주장성과 협조성을 축으로 5가지 갈등 해결 유형(경쟁·협력·타협·회피·수용)을 정의한 진단 모델
+- **자기주장성(Assertiveness)** : 갈등 상황에서 타인의 요구보다 자신의 목표와 입장을 관철하려는 성향 수준
+- **협조성(Cooperativeness)** : 갈등 상황에서 자신의 입장보다 상대방의 요구와 관계 유지를 우선적으로 배려하는 성향 수준
+- **원칙협상(Principled Negotiation)** : 사람과 문제를 분리하고 주관적 입장 대신 본질적 이해관계와 객관적 기준에 근거해 상호 이익을 도출하는 협상 기법
+- **의사결정 기록(Decision Record)** : 갈등 중재 과정에서 도출된 최종 합의안, 선택 근거, 책임자 및 후속 조치를 명문화한 공식 문서
 
 </details>
 

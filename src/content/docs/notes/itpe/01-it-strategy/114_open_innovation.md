@@ -25,12 +25,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **Open Innovation** : 의도적인 **지식 유입** ·유출로 내부 혁신을 가속하고 외부 사업화 경로를 확장하는 혁신 방식이다.
-- **Inbound Innovation** : 외부 기술·아이디어를 내부 R&D·제품에 결합하는 흐름이다.
-- **Outbound Innovation** : 내부 지식·기술을 라이선스·분사 등 외부 경로로 사업화하는 흐름이다.
-- **Coupled Innovation** : 파트너와 지식을 상호 교환하며 공동개발·사업화를 수행하는 흐름이다.
-- **PoC(Proof of Concept)** : 기술·사업 가설의 실현 가능성을 제한된 범위에서 검증하는 활동이다.
-- **IP(Intellectual Property)** : 특허·저작권·영업비밀 등 혁신 성과의 권리 자산이다.
+- **Open Innovation** : 기업 내외부 경계를 넘어 지식과 기술을 유입·유출하여 혁신을 가속하는 전략
+- **Inbound Innovation** : 외부 기술과 아이디어를 내부 R&D 및 제품 개발에 결합하는 유입형 혁신
+- **Outbound Innovation** : 내부 유휴 지식과 기술을 라이선스·스핀오프 등을 통해 외부에 사업화하는 유출형 혁신
+- **Coupled Innovation** : 협력 파트너와 지식을 상호 교환하며 공동 R&D와 사업화를 추진하는 결합형 혁신
+- **PoC(Proof of Concept)** : 기술적 구현 가능성과 사업 가설의 타당성을 소규모로 사전 검증하는 개념 검증 활동
+- **IP(Intellectual Property)** : 특허·영업비밀 등 혁신 협업 과정에서 권리 귀속을 관리해야 하는 지식재산권
 
 </details>
 

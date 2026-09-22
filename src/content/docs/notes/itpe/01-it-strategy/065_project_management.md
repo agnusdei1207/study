@@ -24,12 +24,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **PM(Project Management)** : 프로젝트 목표 달성을 위해 지식·기술·도구·기법을 적용하는 활동이다.
-- **WBS(Work Breakdown Structure)** : 프로젝트 범위를 계층적으로 분할한 구조이다.
-- **Baseline** : 성과 측정과 변경통제의 기준이 되는 승인된 범위·일정·원가 계획이다.
-- **CCB(Change Control Board)** : 변경요청을 검토·승인·기각하는 의사결정기구이다.
-- **EVM(Earned Value Management)** : 계획가치·획득가치·실제원가를 통합해 성과를 측정하는 기법이다.
-- **Tailoring** : 프로젝트 맥락에 맞게 접근법·프로세스·도구·통제를 조정하는 활동이다.
+- **PM(Project Management)** : 프로젝트 목표 달성을 위해 지식·기량·도구·기법을 적용하는 통합 관리 활동
+- **WBS(Work Breakdown Structure)** : 프로젝트 전체 범위를 인도물 중심의 하위 작업 요소로 계층 분해한 체계
+- **Baseline** : 성과 측정과 공식 변경 통제의 기준이 되는 승인된 범위·일정·원가 계획 기준선
+- **CCB(Change Control Board)** : 프로젝트 변경 요청의 타당성을 심의하여 승인·기각을 결정하는 의사결정 기구
+- **EVM(Earned Value Management)** : 계획가치(PV)·획득가치(EV)·실제원가(AC)를 통합해 일정과 원가 성과를 통제하는 관리 기법
+- **Tailoring** : 조직 규모와 프로젝트 특성에 맞추어 관리 프로세스·도구·산출물을 최적화하는 맞춤화 활동
 
 </details>
 

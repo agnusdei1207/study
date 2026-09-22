@@ -25,12 +25,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **FP(Function Point)** : 사용자가 요구하는 논리적 기능의 규모를 수치로 나타내는 측정 단위이다.
-- **ILF(Internal Logical File)** : 애플리케이션 경계 안에서 해당 애플리케이션이 식별·유지하는 논리적 데이터 집합이다.
-- **EIF(External Interface File)** : 다른 애플리케이션이 유지하고 측정 대상 애플리케이션이 참조하는 논리적 데이터 집합이다.
-- **EI(External Input)** : 경계 밖에서 들어와 내부 데이터·동작을 변경하는 트랜잭션 기능이다.
-- **EO(External Output)** : 처리·계산을 포함해 경계 밖으로 정보를 제공하는 트랜잭션 기능이다.
-- **EQ(External Inquiry)** : 중요한 처리 없이 입력에 대응한 정보를 조회하는 트랜잭션 기능이다.
+- **FP(Function Point)** : 사용자 관점의 논리적 기능 규모를 수치화한 소프트웨어 규모 측정 단위
+- **ILF(Internal Logical File)** : 애플리케이션 경계 내부에서 직접 유지·관리되는 논리적 데이터 파일
+- **EIF(External Interface File)** : 타 시스템에 의해 유지되며 대상 애플리케이션이 참조만 하는 외부 연계 데이터 파일
+- **EI(External Input)** : 경계 외부에서 유입되어 내부 논리 파일(ILF)을 갱신하는 트랜잭션 기능
+- **EO(External Output)** : 계산 로직이나 데이터 처리를 거쳐 경계 외부로 정보를 제공하는 트랜잭션 기능
+- **EQ(External Inquiry)** : 가공이나 연산 없이 단순 검색을 통해 데이터를 표출하는 조회 트랜잭션 기능
 
 </details>
 

@@ -25,12 +25,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **ITSQF(IT Sectoral Qualifications Framework)** : IT 산업의 표준 직무와 직무수준별 요구역량을 정리한 산업별역량체계이다.
-- **NCS(National Competency Standards)** : 산업현장의 직무 수행에 필요한 지식·기술·태도를 국가가 체계화한 기준이다.
-- **SQF(Sectoral Qualifications Framework)** : NCS를 기반으로 산업 특성을 반영하여 직무·교육훈련·자격·경력의 연계를 지원하는 체계이다.
-- **직무기술서** : 직무 정의, 주요 업무, 직무수준, 필요 지식·기술 등을 정리한 문서이다.
-- **직무수준** : 직무의 수행범위·난이도·자율성·책임을 기준으로 요구역량의 깊이를 구분한 단계이다.
-- **CDP(경력개발경로)** : 직무수준별 요구역량 진단 결과를 교육훈련과 성장 경로로 연결하는 계획이다.
+- **ITSQF(IT Sectoral Qualifications Framework)** : IT 산업 표준 직무와 수준별 요구역량을 체계화한 산업별 역량 프레임워크
+- **NCS(National Competency Standards)** : 산업 현장의 직무 수행에 필요한 지식·기술·태도를 국가가 표준화한 기준
+- **SQF(Sectoral Qualifications Framework)** : 산업계 특성을 반영하여 직무·교육·자격·경력을 유기적으로 연계하는 체계
+- **직무기술서** : 직무 정의와 주요 업무, 요구 역량 및 자격 요건을 상세히 기술한 직무 명세서
+- **직무수준** : 업무 난이도와 자율성, 책임 범위를 기준으로 요구 역량 단계를 구분한 레벨 체계(L1~L8)
+- **CDP(경력개발경로)** : 개인의 역량 진단 결과를 토대로 교육훈련과 중장기 성장 단계를 설계하는 경력개발계획
 
 </details>
 

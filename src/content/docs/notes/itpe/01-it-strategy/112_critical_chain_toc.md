@@ -24,15 +24,15 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **TOC(Theory of Constraints)** : 시스템 성과를 제한하는 제약을 식별·활용·개선하는 접근이다.
-- **CCPM(Critical Chain Project Management)** : 작업·자원 의존성과 통합 Buffer로 일정을 관리하는 기법이다.
-- **PB(Project Buffer)** : **Critical Chain** 뒤에 배치해 전체 프로젝트 납기를 지연으로부터 보호하는 시간 여유이다.
-- **FB(Feeding Buffer)** : 비임계 체인의 지연이 **Critical Chain** 으로 전달되기 전에 흡수하는 시간 여유이다.
-- **RB(Resource Buffer)** : **Critical Chain** 작업에 필요한 제약 자원이 제때 투입되도록 준비 시점을 알리는 장치이다.
-- **Fever Chart** : Chain 진척과 Buffer 소진의 관계를 표시한 관리도이다.
-- **CPM(Critical Path Method)** : 작업 선후행 관계에서 프로젝트 기간을 결정하는 경로를 분석하는 기법이다.
-- **WIP(Work in Progress)** : 동시에 진행 중인 작업량이다.
-- **EVM(Earned Value Management)** : 범위·일정·원가 성과를 통합 측정하는 기법이다.
+- **TOC(Theory of Constraints)** : 전체 시스템 성과를 제약하는 병목 요인을 식별·집중 개선하는 제약이론
+- **CCPM(Critical Chain Project Management)** : 작업 선후행과 자원 제약을 통합 반영하고 프로젝트 통합 버퍼로 공기를 통제하는 일정 관리 기법
+- **PB(Project Buffer)** : Critical Chain 맨 끝에 배치하여 전체 프로젝트 납기를 보호하는 프로젝트 버퍼
+- **FB(Feeding Buffer)** : 비임계 경로가 Critical Chain으로 합류하는 지점에 배치하여 지연 전이를 방지하는 공급 버퍼
+- **RB(Resource Buffer)** : Critical Chain 착수 전 제약 자원이 적시에 투입되도록 준비를 통보하는 자원 버퍼
+- **Fever Chart** : 체인 공정률과 버퍼 소진율을 3개 구역(녹·황·적)으로 시각화한 버퍼 통제 관리도
+- **CPM(Critical Path Method)** : 자원 제약을 배제하고 작업 선후행 의존성만을 기준으로 최장 경로를 도출하는 공정관리 기법
+- **WIP(Work in Progress)** : 비효율적 멀티태스킹을 방지하기 위해 제한하는 진행 중인 작업 수량
+- **EVM(Earned Value Management)** : 계획·획득가치와 실제원가를 결합해 프로젝트 성과를 측정하는 진도 관리 기법
 
 </details>
 

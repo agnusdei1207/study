@@ -25,12 +25,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **CLD(Causal Loop Diagram)** : 변수·인과 링크·극성· **Feedback Loop** 를 표현하는 정성적 시스템 모델이다.
-- **R(Reinforcing Loop)** : 초기 변화를 같은 방향으로 증폭하는 강화 루프이다.
-- **B(Balancing Loop)** : 초기 변화에 맞서 목표·균형으로 접근하는 조절 루프이다.
-- **Delay** : 원인 변화와 결과 발현 사이의 시간 지연이다.
-- **BOT(Behavior Over Time)** : 주요 변수의 시간에 따른 변화 패턴이다.
-- **Leverage Point** : 작은 개입으로 시스템 행동을 크게 바꾸는 구조적 지점이다.
+- **CLD(Causal Loop Diagram)** : 변수 간 인과관계·극성·피드백 루프와 시간 지연을 시각화한 정성적 시스템 모델
+- **R(Reinforcing Loop)** : 초기 변화를 동일한 방향으로 지속 증폭시키는 양의 피드백 강화 루프
+- **B(Balancing Loop)** : 목표 상태를 추종하여 시스템을 안정과 균형으로 수렴시키는 조절 루프
+- **Delay** : 원인의 입력과 결과의 발현 사이에 존재하는 시간적 지연 현상
+- **BOT(Behavior Over Time)** : 주요 변수의 시간 경과에 따른 동적 추세 패턴 그래프
+- **Leverage Point** : 작은 개입으로 시스템 전체의 근본적 행동 변화를 견인하는 전략적 지렛대 지점
 
 </details>
 

@@ -26,13 +26,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **GPU(Graphics Processing Unit)** : 많은 연산을 동시에 처리해 AI·과학계산을 가속하는 프로세서이다.
-- **NPU(Neural Processing Unit)** : 신경망의 행렬·텐서 연산을 효율적으로 처리하도록 설계한 AI 가속기이다.
-- **HPC(High Performance Computing)** : 여러 프로세서와 고속 네트워크로 대규모 계산을 병렬 처리하는 컴퓨팅 환경이다.
-- **MLOps(Machine Learning Operations)** : ML 모델의 개발·배포·운영을 연결하는 실무체계이다.
-- **AX(AI Transformation)** : AI를 업무와 서비스의 의사결정·실행 과정에 적용해 운영방식을 바꾸는 전환이다.
-- **TCO(Total Cost of Ownership)** : 도입부터 운영·전력·폐기까지 포함한 총소유비용이다.
-- **PUE(Power Usage Effectiveness)** : 데이터센터 총 전력 대비 IT 장비 전력의 비율이다.
+- **GPU(Graphics Processing Unit)** : 대규모 병렬 연산 구조로 AI 모델 학습 및 추론을 가속하는 그래픽 처리 프로세서
+- **NPU(Neural Processing Unit)** : 딥러닝 신경망 연산에 특화되어 전력 대비 연산 효율을 극대화한 AI 전용 반도체
+- **HPC(High Performance Computing)** : 고성능 분산 노드와 초저지연 네트워크로 대규모 연산을 병렬 처리하는 컴퓨팅 체계
+- **MLOps(Machine Learning Operations)** : ML/DL 모델의 데이터 수집부터 학습·배포·모니터링을 자동화하는 운영 관리 프레임워크
+- **AX(AI Transformation)** : AI 기술을 비즈니스 프로세스와 의사결정에 융합하여 업무 방식을 혁신하는 인공지능 전환
+- **TCO(Total Cost of Ownership)** : 인프라 도입부터 상면·전력·운영·유지보수·폐기까지 생애주기 전반의 총소유비용
+- **PUE(Power Usage Effectiveness)** : 데이터센터 총 투입 전력을 IT 장비 소비 전력으로 나눈 에너지 효율성 평가지표
 
 </details>
 

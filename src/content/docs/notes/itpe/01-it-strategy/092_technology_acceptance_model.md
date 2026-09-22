@@ -25,11 +25,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **TAM(Technology Acceptance Model)** : 지각된 유용성과 사용 용이성이 태도·사용 의도·실제 사용에 미치는 관계로 기술 수용을 설명하는 모델이다.
-- **PU(Perceived Usefulness)** : 해당 기술을 사용하면 직무 성과가 높아진다고 사용자가 믿는 정도이다.
-- **PEOU(Perceived Ease of Use)** : 해당 기술을 배우고 사용하는 데 큰 노력이 들지 않는다고 사용자가 믿는 정도이다.
-- **BI(Behavioral Intention)** : 기술을 사용하려는 행동 의도이다.
-- **UTAUT(Unified Theory of Acceptance and Use of Technology)** : 성과기대·노력기대·사회적 영향·촉진조건을 통합한 수용 모델이다.
+- **TAM(Technology Acceptance Model)** : 지각된 유용성과 사용 용이성이 태도·이용의도·실제 사용에 미치는 인과관계를 설명하는 모델
+- **PU(Perceived Usefulness)** : 신기술 도입이 업무 성과와 생산성을 향상시킬 것이라고 믿는 지각된 유용성
+- **PEOU(Perceived Ease of Use)** : 시스템 사용 과정에 많은 노력이 요구되지 않는다고 믿는 지각된 사용 용이성
+- **BI(Behavioral Intention)** : 특정 신기술을 향후 실제로 사용하려는 주관적 행동 의도
+- **UTAUT(Unified Theory of Acceptance and Use of Technology)** : 성과기대·노력기대·사회적영향·촉진조건을 통합한 확장 기술수용이론
 
 </details>
 

@@ -26,14 +26,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **Growth Hacking** : 제품·마케팅·데이터 역량을 결합해 성장 가설을 빠르게 실험·학습하는 접근법이다.
-- **AARRR** : Acquisition·Activation·Retention·Revenue·Referral로 사용자 여정을 관찰하는 퍼널 프레임워크이다.
-- **PMF(Product-Market Fit)** : 제품이 목표 고객의 중요한 문제를 해결하여 반복 사용·지불·추천이 나타나는 적합 상태이다.
-- **NSM(North Star Metric)** : 고객이 받은 핵심가치와 장기 성장을 함께 반영하는 중심 지표이다.
-- **Guardrail Metric** : 목표지표 개선 과정에서 품질·신뢰·수익 등 부작용을 감시하는 보호 지표이다.
-- **Cohort Analysis** : 공통 특성을 가진 사용자 집단의 시간별 행동·잔존 변화를 비교하는 분석이다.
-- **CAC(Customer Acquisition Cost)** : 신규 고객 한 명을 확보하기 위해 판매·마케팅에 투입한 평균 비용이다.
-- **LTV(Customer Lifetime Value)** : 고객이 관계를 유지하는 동안 기업에 가져올 것으로 예상되는 누적 가치이다.
+- **Growth Hacking** : 제품·마케팅·데이터 역량을 결합해 성장 가설을 빠르게 실험·학습하는 데이터 기반 제품 관리 접근법
+- **AARRR** : Acquisition·Activation·Retention·Revenue·Referral로 사용자 여정을 관찰하는 퍼널 프레임워크
+- **PMF(Product-Market Fit)** : 제품이 목표 시장의 문제를 해결하여 반복 사용과 성장이 일어나는 제품-시장 적합 상태
+- **NSM(North Star Metric)** : 고객이 체감하는 핵심 가치와 기업의 장기 성장을 대표하는 단일 북극성 지표
+- **Guardrail Metric** : 목표 지표 개선 과정에서 품질·신뢰·수익성 저하 등 부작용을 감시하는 보호 지표
+- **Cohort Analysis** : 공통 특성을 가진 사용자 집단의 시간 경과에 따른 행동·잔존율 변화를 비교하는 분석 기법
+- **CAC(Customer Acquisition Cost)** : 신규 고객 1인을 확보하기 위해 투입되는 평균 마케팅·영업 비용
+- **LTV(Customer Lifetime Value)** : 고객 1인이 전체 관계 기간 동안 기업에 기여할 것으로 예상되는 누적 생애 가치
 
 </details>
 

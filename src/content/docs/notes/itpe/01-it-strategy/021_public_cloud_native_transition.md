@@ -25,16 +25,16 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **Cloud Native(클라우드 네이티브)** : 클라우드의 탄력성과 복원력을 극대화하여 신속한 변경과 안정성을 달성하는 현대화 접근법.
-- **Lift & Shift(Rehost)** : 기존 온프레미스 VM을 아키텍처나 코드 수정 없이 클라우드 IaaS로 그대로 단순 복사 이전하는 방식.
-- **MSA(Microservices Architecture)** : 거대 단일 시스템을 비즈니스 도메인 단위로 분할하여 독립적 배포와 확장을 지원하는 구조이다.
-- **Container** : 애플리케이션과 실행 라이브러리를 가볍게 패키징하여 환경 격리와 신속한 구동을 보장하는 경량 가상화 기술이다.
-- **Kubernetes(쿠버네티스/K8s)** : 컨테이너의 자동 배치, 수평 확장(HPA), 롤링 업데이트 및 헬스체크를 수행하는 표준 오케스트레이션 엔진이다.
-- **CI/CD** : 코드 커밋부터 빌드, 자동화 테스트, 프로덕션 배포까지의 전 과정을 자동화하는 파이프라인이다.
-- **6R** : Rehost, Replatform, Repurchase, Refactor, Retain, Retire로 구성된 클라우드 마이그레이션 6대 전략 프레임워크이다.
-- **Strangler Fig 패턴** : 기존 모놀리식 레거시 시스템을 일괄 교체하지 않고 점진적으로 마이크로서비스로 대체하는 전환 패턴이다.
-- **CSAP(Cloud Security Assurance Program)** : 클라우드서비스의 정보보호 기준 준수 여부를 평가·인증하는 제도.
-- **SRE(Site Reliability Engineering)** : 소프트웨어 공학 기법을 인프라 운영에 적용하여 SLO 기반 가용성을 보증하는 운영 체계.
+- **Cloud Native(클라우드 네이티브)** : 클라우드의 탄력성과 복원력을 극대화하여 신속한 서비스 배포와 장애 격리를 달성하는 현대화 아키텍처
+- **Lift & Shift(Rehost)** : 기존 온프레미스 워크로드를 아키텍처 변경 없이 IaaS 가상머신으로 단순 마이그레이션하는 이전 방식
+- **MSA(Microservices Architecture)** : 비즈니스 도메인을 독립적인 소규모 서비스 단위로 분할하여 개별 배포와 확장을 지원하는 아키텍처
+- **Container** : 애플리케이션과 실행 런타임을 함께 격리 패키징하여 환경 일관성과 신속한 기동성을 보장하는 경량 가상화 기술
+- **Kubernetes(쿠버네티스/K8s)** : 대규모 컨테이너의 자동 배포, 스케일링, 복구 및 로드밸런싱을 전담하는 표준 오케스트레이션 플랫폼
+- **CI/CD** : 지속적 통합과 지속적 배포를 통해 소스코드 커밋부터 운영 반영까지 전 과정을 자동화한 파이프라인
+- **6R** : Rehost·Replatform·Repurchase·Refactor·Retain·Retire로 구성된 클라우드 전환 전략 프레임워크
+- **Strangler Fig 패턴** : 기존 모놀리식 시스템 외곽부터 점진적으로 마이크로서비스로 분리·대체해 나가는 현대화 전환 패턴
+- **CSAP(Cloud Security Assurance Program)** : 공공기관에 도입되는 민간 클라우드 서비스의 안전성과 신뢰성을 검증하는 보안인증제도
+- **SRE(Site Reliability Engineering)** : 소프트웨어 엔지니어링 방법론을 운영에 접목하여 SLO와 에러 예산 기반으로 대규모 시스템 가용성을 보증하는 운영 체계
 
 </details>
 

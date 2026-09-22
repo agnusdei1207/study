@@ -25,11 +25,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **COQ(Cost of Quality)** : 품질을 예방·평가하는 데 드는 비용과 품질 실패로 발생하는 내부·외부 비용을 합산한 관리 지표이다.
-- **PAF(Prevention, Appraisal, Failure)** : 예방·평가·실패로 **품질비용** 을 분류하는 모델이다.
-- **COPQ(Cost of Poor Quality)** : 내부·외부 실패로 발생하는 부적합 비용이다.
-- **Shift-Left** : 검토·시험·보안활동을 개발 초기로 이동하는 접근이다.
-- **Quality Gate** : 정의된 품질기준을 충족해야 다음 단계로 진행하게 하는 통제이다.
+- **COQ(Cost of Quality)** : 품질 예방·평가 비용과 결함 실패 비용을 통합하여 최적점을 찾는 총품질비용 관리 지표
+- **PAF(Prevention, Appraisal, Failure)** : 품질비용을 예방·평가·실패(내부/외부) 3개 영역으로 체계화한 분류 모델
+- **COPQ(Cost of Poor Quality)** : 결함 발생 및 재작업, 대외 장애로 초래되는 내부·외부 저품질 비용
+- **Shift-Left** : 요구사항 및 설계 등 개발 초기 단계로 검증 활동을 앞당겨 결함 비용을 낮추는 엔지니어링 실무
+- **Quality Gate** : 사전 정의된 품질 측정 기준을 충족해야 다음 단계 진행을 승인하는 품질 통제 관문
 
 </details>
 

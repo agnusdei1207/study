@@ -25,13 +25,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **TCO(Total Cost of Ownership)** : 도입·이행·운영·종료를 포함한 총소유비용이다.
-- **IAM(Identity and Access Management)** : 사용자와 서비스의 신원을 확인하고 자원 접근권한을 부여·회수하는 관리체계이다.
-- **IaC(Infrastructure as Code)** : 인프라 구성을 코드로 정의·배포·변경하는 방식이다.
-- **SLA(Service Level Agreement)** : 서비스 수준과 책임을 정한 합의이다.
-- **FinOps(Financial Operations)** : 기술·재무·업무가 함께 클라우드 비용과 가치를 관리하는 운영방식이다.
-- **DR(Disaster Recovery)** : 재해 발생 후 시스템·데이터를 복구하는 체계이다.
-- **CSAP(Cloud Security Assurance Program)** : 클라우드 서비스의 보안·신뢰성을 인증하는 국가 보안인증 제도이다.
+- **TCO(Total Cost of Ownership)** : 도입·이행·운영·폐기 등 클라우드 수명주기 전반에 걸친 총소유비용
+- **IAM(Identity and Access Management)** : 클라우드 사용자 및 시스템의 신원을 확인하고 접근 권한을 통제하는 식별·인증 체계
+- **IaC(Infrastructure as Code)** : 클라우드 인프라 구성을 코드로 정의하여 자동 프로비저닝하는 기술
+- **SLA(Service Level Agreement)** : 서비스 제공자와 이용자 간 가용성 및 성능 목표를 합의한 서비스 수준 협약
+- **FinOps(Financial Operations)** : 엔지니어링·재무·사업 부서가 협력하여 클라우드 비용과 비즈니스 가치를 최적화하는 운영 체계
+- **DR(Disaster Recovery)** : 시스템 장애나 센터 재해 발생 시 비즈니스 연속성을 확보하는 재해복구 체계
+- **CSAP(Cloud Security Assurance Program)** : 공공 부문 클라우드 서비스의 보안성과 신뢰성을 검증하는 보안인증 제도
 
 </details>
 

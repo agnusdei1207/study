@@ -24,17 +24,17 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **DMAIC(Define, Measure, Analyze, Improve, Control)** : 기존 프로세스 개선을 위한 5단계 문제해결 절차이다.
-- **VOC(Voice of Customer)** : 고객이 제시하는 요구·불만·기대를 수집한 정보이다.
-- **CTQ(Critical to Quality)** : 고객 요구를 충족하는지를 판단할 수 있도록 수치화한 핵심 품질특성이다.
-- **DPMO(Defects Per Million Opportunities)** : 결함 기회 백만 건당 발생한 결함 수를 나타내는 품질 지표이다.
-- **MSA(Measurement System Analysis)** : 측정시스템의 변동·신뢰성을 평가하는 분석이다.
-- **SPC(Statistical Process Control)** : 관리도로 프로세스 변동을 감시·통제하는 기법이다.
-- **SIPOC(Supplier, Input, Process, Output, Customer)** : 프로세스 범위와 이해관계를 요약하는 도식이다.
-- **DOE(Design of Experiments)** : 여러 요인의 효과와 상호작용을 검증하는 실험계획법이다.
-- **FMEA(Failure Mode and Effects Analysis)** : 잠재 고장형태와 영향을 분석해 위험을 우선순위화하는 기법이다.
-- **SOP(Standard Operating Procedure)** : 표준운영절차이다.
-- **SLI(Service Level Indicator)** : 서비스 수준을 측정하는 지표이다.
+- **DMAIC(Define, Measure, Analyze, Improve, Control)** : 프로세스 결함과 산포를 축소하기 위한 6시그마 5단계 문제해결 절차
+- **VOC(Voice of Customer)** : 설문·인터뷰 등을 통해 수집된 고객의 직접적인 요구와 피드백 정보
+- **CTQ(Critical to Quality)** : VOC를 측정 가능한 정량적 목표치로 전환한 핵심 품질특성
+- **DPMO(Defects Per Million Opportunities)** : 결함 기회 100만 건당 실제 발생한 결함 수를 나타내는 통계적 품질 척도
+- **MSA(Measurement System Analysis)** : 데이터 측정 오차와 시스템 신뢰성을 검증하는 측정시스템 분석(Gage R&R)
+- **SPC(Statistical Process Control)** : 관리도를 활용해 프로세스의 비정상적 변동을 감시·통제하는 통계적 공정관리 기법
+- **SIPOC(Supplier, Input, Process, Output, Customer)** : 공급자부터 고객까지 프로세스 전반의 경계와 흐름을 조망하는 요약 도식
+- **DOE(Design of Experiments)** : 프로세스 인자들의 주효과와 상호작용을 검증해 최적 조건을 도출하는 실험계획법
+- **FMEA(Failure Mode and Effects Analysis)** : 잠재 고장 형태의 심각도·발생도·검출도를 평가해 위험 우선순위를 도출하는 분석 기법
+- **SOP(Standard Operating Procedure)** : 개선된 프로세스의 재발 방지와 현장 안착을 위해 정의한 표준운영절차서
+- **SLI(Service Level Indicator)** : 가용성·지연시간 등 IT 서비스 수준의 현 상태를 정량 측정한 지표
 
 </details>
 

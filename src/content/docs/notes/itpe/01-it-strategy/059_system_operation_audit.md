@@ -24,12 +24,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **SLA(Service Level Agreement)** : 서비스 수준과 측정·보고·책임을 합의한 문서이다.
-- **ITSM(IT Service Management)** : IT 서비스를 계획·제공·운영·개선하는 관리체계이다.
-- **SR(Service Request)** : 사용자 또는 운영자가 공식 절차로 등록한 서비스 요청이다.
-- **RTO(Recovery Time Objective)** : 중단 후 서비스를 복구해야 하는 목표시간이다.
-- **RPO(Recovery Point Objective)** : 복구 시 허용 가능한 데이터 손실 시점이다.
-- **CAATs(Computer-Assisted Audit Techniques)** : 데이터·Log 분석 등에 사용하는 컴퓨터 기반 감사기법이다.
+- **SLA(Service Level Agreement)** : 서비스 수준 목표와 측정·보고·위반 페널티를 규정한 계약 협약
+- **ITSM(IT Service Management)** : IT 서비스의 기획·운영·개선을 지원하는 Best Practice 기반 관리 체계
+- **SR(Service Request)** : 시스템 아키텍처 변경 없이 정보 제공·계정 권한 등을 처리하는 표준 서비스 요청
+- **RTO(Recovery Time Objective)** : 장애 발생 시 서비스 정상 가동까지 허용되는 최대 목표 복구 시간
+- **RPO(Recovery Point Objective)** : 서비스 복원 시 데이터 유실을 감내할 수 있는 최대 목표 복구 시점
+- **CAATs(Computer-Assisted Audit Techniques)** : 대용량 로그와 트랜잭션을 전산 도구로 추출·검증하는 컴퓨터 기반 감사 기법
 
 </details>
 

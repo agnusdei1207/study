@@ -25,10 +25,10 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **White Label** : 공급자가 만든 제품·서비스를 판매자가 자신의 브랜드와 채널로 고객에게 제공하는 형태이다.
-- **B2B2C(Business-to-Business-to-Consumer)** : 화이트 레이블을 적용할 수 있는 전달 구조 중 하나로, 공급자와 판매자의 기업 간 거래를 거쳐 최종 소비자에게 도달하는 방식이다.
-- **SLA(Service Level Agreement)** : 공급자와 판매자가 서비스 수준, 측정방법, 장애 대응책임을 합의한 문서이다.
-- **API(Application Programming Interface)** : 판매자 채널이 공급자의 기능·데이터를 호출할 수 있도록 정한 인터페이스 규격이다.
+- **White Label** : 공급자의 완성 제품·서비스에 판매자의 브랜드를 부착하여 시장에 유통하는 비즈니스 형태
+- **B2B2C(Business-to-Business-to-Consumer)** : 공급 기업과 판매 기업 간 협업을 거쳐 최종 소비자에게 서비스를 제공하는 전달 구조
+- **SLA(Service Level Agreement)** : 원천 공급자와 판매 사업자 간 서비스 수준 목표와 장애 대응 책임을 합의한 계약 협약
+- **API(Application Programming Interface)** : 판매자 채널과 공급자 코어 엔진 간 기능·데이터를 연동하는 표준 인터페이스 규격
 
 </details>
 

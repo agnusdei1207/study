@@ -26,12 +26,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **MECE(Mutually Exclusive, Collectively Exhaustive)** : 분류 항목이 서로 겹치지 않으면서 정의한 전체 범위를 빠짐없이 포괄하도록 구조화하는 원칙이다.
-- **ME(Mutually Exclusive)** : 동일 계층 항목의 의미와 범위가 서로 겹치지 않는 상태이다.
-- **CE(Collectively Exhaustive)** : 동일 계층 항목을 합친 범위가 정의한 전체 대상을 빠짐없이 포함하는 상태이다.
-- **Issue Tree** : 핵심 질문을 하나의 분할축에 따라 원인·해법·가설의 계층으로 분해한 구조이다.
-- **WBS(Work Breakdown Structure)** : 프로젝트 범위를 인도물과 작업 중심의 계층으로 분해한 구조이다.
-- **100% Rule** : WBS 하위 구성요소가 상위 범위를 빠짐없이 나타내고 범위 밖 작업을 포함하지 않도록 하는 원칙이다.
+- **MECE(Mutually Exclusive, Collectively Exhaustive)** : 사안을 상호 배타적이면서 전체를 누락 없이 포괄하도록 구조화하는 분석 원칙
+- **ME(Mutually Exclusive)** : 동일 계층 내 항목 간 의미와 범위가 서로 겹치지 않는 상호 배타 상태
+- **CE(Collectively Exhaustive)** : 동일 계층 항목의 합이 전체 대상을 빠짐없이 포괄하는 완전 포괄 상태
+- **Issue Tree** : 핵심 과제를 단일 분할축에 따라 하위 원인·가설·해법으로 분해한 계층 트리 구조
+- **WBS(Work Breakdown Structure)** : 프로젝트 범위를 최종 인도물 중심의 작업 단위로 계층 분해한 체계
+- **100% Rule** : 하위 요소의 작업 범위 합이 상위 요소의 전체 범위를 100% 충족해야 한다는 원칙
 
 </details>
 
