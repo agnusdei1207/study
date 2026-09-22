@@ -1,18 +1,20 @@
 ---
 title: "AI 거버넌스 플랫폼"
 author: "Codex"
-date: "2026-09-21T23:47:00+09:00"
-tags: ["notes-it-strategy"]
+date: "2026-09-22T23:40:00+09:00"
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → AI 거버넌스 플랫폼
+
+지식 위치: IT 전략·관리 → AI 거버넌스·신뢰성 → **AI 거버넌스 플랫폼**
 
 
 ## 30초 인출
@@ -97,43 +99,53 @@ flowchart TD
 
 ## Ⅵ. 증적 기반 Quality Gate 제언
 
-### 학습자 통찰 메모 — 답안 밖
-
-`[핵심 통찰]` AI 거버넌스의 성패는 원칙의 수가 아니라, 각 위험에 책임자·통제점·판정기준·증적이 연결되어 실제 배포 판단을 바꾸는가에 달려 있음.
-
-`나라면` 고위험 AI는 선언적 체크리스트로 승인하지 않고, 사용맥락별 필수 증적을 확인하는 Quality Gate와 예외 만료일을 두어 미충족 항목이 해소될 때만 배포하겠음.
-
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준 (Trigger)**: 고위험 AI 모델의 데이터 리니지(Lineage) 누락, 또는 환각(Hallucination)·편향성 검증 미달 시 배포 파이프라인 자동 차단(Hard Gate).
-- **대응 방안 (Action)**: Policy-as-Code 기반 자동 검증 도구(CI/CD Gatekeeper)를 연동하고, 미충족 시 Human Oversight 승인위원회 재심의를 강제함.
-- **검증 체계 (Verification)**: ISO/IEC 42001(AIMS) 및 EU AI Act 기준 System Card 증적의 완결성과 런타임 데이터 드리프트 지표(PSI > 0.25)를 실시간 감사함.
-- **기대 효과 (Impact)**: Shadow AI 및 규제 위반 과징금 리스크 감소, AI 시스템의 전사적 신뢰성 및 추적성 목표 기준 확보를 달성함.
+- 문제: 조직 내 무분별한 섀도우 AI 도입과 환각·편향·보안 취약점 모델이 전사 통제 없이 배포되어 법적 제재 및 신뢰 실추 위험이 발생함.
+- 해결 방안: AI 자산 등록부터 모델 리니지 추적, Policy-as-Code 기반 자동 배포 게이트(Hard Gate), 런타임 데이터 드리프트 모니터링을 통합하는 AI 거버넌스 플랫폼을 구축하고 Human-in-the-loop 심의를 강제함.
 
 ```mermaid
 flowchart TD
-    P["고위험 AI 모델의 데이터 리니지(Lineage) 누락, "] --> A["Policy-as-Code 기반 자동 검증 도구(CI/CD"] --> V["ISO/IEC 42001(AIMS) 및 EU AI Act "] --> E["Shadow AI 및 규제 위반 과징금 리스크 감소, AI"]
-    V --> P
+    subgraph Registry["1. AI 자산 등록 및 위험 분류"]
+        R1["모델·데이터셋·API 인벤토리 등록"]
+        R2["위험 등급 판정 (고위험 / 저위험 분류)"]
+        R1 --> R2
+    end
+    subgraph Gatekeeper["2. 생애주기 통제 게이트 (Policy-as-Code)"]
+        G1["CI/CD Gatekeeper: 가드레일 및 환각·편향 검증"]
+        G2{"검증 임계치 통과?"}
+        G3["통과: 자동 배포 승인"]
+        G4["미달: Human Oversight 승인위원회 회부"]
+        G1 --> G2
+        G2 -->|Yes| G3
+        G2 -->|No| G4
+    end
+    subgraph Runtime["3. 런타임 감시 및 감사 증적"]
+        M1["데이터 드리프트(PSI > 0.25) 및 악의적 질의 실시간 감시"]
+        M2["ISO/IEC 42001 및 EU AI Act System Card 증적 자동 생성"]
+        M1 --> M2
+    end
+
+    Registry --> Gatekeeper
+    Gatekeeper --> Runtime
 ```
 
 ## 1교시 10점 답안 발췌
 
 ### 1. 정의·목적
 
-- 정의: AI 정책·책임·위험기준을 AI 자산·개발·배포·운영 통제와 증적관리로 구현하는 플랫폼
-- 목적: **책임성·추적성·규제 대응·운영위험 통제**
+- 정의: 조직의 AI 윤리·정책·위험기준을 모델 개발·배포·운영 전 생애주기 통제점(Quality Gate)과 감사 증적으로 자동 구현하는 통합 관리 플랫폼
+- 목적: Shadow AI 차단 · 규제 위반 과징금 리스크 최소화 · AI 시스템의 전사적 신뢰성 및 추적성 100% 확보
 
-### 2. 구성 계층
+### 2. 핵심 아키텍처 및 메커니즘
+
+- 정의: 조직의 AI 윤리·정책·위험기준을 모델 개발·배포·운영 전 생애주기 통제점(Quality Gate)과 감사 증적으로 자동 구현하는 통합 관리 플랫폼
+- 핵심 메커니즘: AI 자산 등록(Inventory) → 위험도 분류 → 데이터/모델 리니지 검증 → 배포 게이트(Policy-as-Code) → 런타임 모니터링 및 Human Oversight
 
 ```mermaid
 flowchart TD
     L1["정책·관리 계층"] --> L2["자산·위험 통제 계층"] --> L3["수명주기 게이트 계층"] --> L4["런타임 감시·증적 계층"]
 ```
-
-### 3. 핵심 통제
-
-- **Risk-based Gate**: 사용맥락과 영향에 따라 평가·승인 강도 차등화
-- **Evidence Traceability**: 의무 → 통제 → 평가결과 → 승인기록 연결
 
 ## 출제 이력과 검증 출처
 

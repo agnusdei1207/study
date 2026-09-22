@@ -1,7 +1,7 @@
 ---
 title: "디지털 트랜스포메이션(DX)"
 author: "Codex"
-date: "2026-09-22T23:00:00+09:00"
+date: "2026-09-22T23:30:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -110,18 +110,33 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-```mermaid
-flowchart LR
-    s["사업 문제"] --> a["PoC·MVP"]
-    a --> v["DX 운영"]
-    v --> r["CX·성과 검증"]
-    r --> a
-```
+- 문제: 현업과 IT 간 사일로 현상과 단기 기술 과시형 PoC(Proof of Concept)만 반복된 채, 전사적 비즈니스 모델 혁신과 수익 창출로 연결되지 못하고 좌초됨.
+- 해결 방안: 현업 중심 제품팀이 비즈니스 성과(KPI)를 직접 소유하게 하고, 전담 거버넌스 조직인 CoE(Center of Excellence)를 가동하여 공통 기술 표준·플랫폼 재사용을 지원하며, MVP(최소 기능 제품) 검증 기반 단계적 확산 체계를 구축함.
 
-- 판정: 현업 제품팀이 고객·사업 성과를 소유하고 MVP 결과가 제품화·확산 결정으로 이어지는지 확인
-- 대안: 고객 문제가 분명한 도메인에서 MVP로 가치를 검증하고 CoE가 표준·플랫폼 재사용 지원
-- 검증: 고객·운영·수익 지표 변화와 검증 자산의 제품 반영·재사용 여부 점검
-- 효과: 기술 과시형 PoC 반복과 현업-IT 사일로 감소
+```mermaid
+flowchart TD
+    subgraph Ideation["1. 현업 주도 가치 발굴 및 MVP 검증"]
+        I1["고객 통증점(Pain Point) 및 사업 기회 발굴"]
+        I2["MVP(Minimum Viable Product) 신속 구현"]
+        I3["실사용자 반응 및 고객 경험(CX) 데이터 측정"]
+        I1 --> I2 --> I3
+    end
+    subgraph CoE_Gate["2. CoE 거버넌스 및 플랫폼 표준화"]
+        C1["CoE(Center of Excellence) 기술 타당성 심의"]
+        C2["클라우드·AI 공통 플랫폼 및 재사용 컴포넌트 제공"]
+        C3{"사업화 및 전사 확산 적합성 평가"}
+        C1 & C2 --> C3
+    end
+    subgraph Scaling["3. 전사 비즈니스 모델(BM) 확산"]
+        S1["현업 제품팀(Product Team) 주도 정식 릴리즈"]
+        S2["신규 수익 모델 창출 및 운영 프로세스 최적화"]
+        S1 --> S2
+    end
+
+    Ideation --> CoE_Gate
+    C3 -->|통과| Scaling
+    C3 -->|피벗| I2
+```
 
 ## 1교시 10점 답안 발췌
 

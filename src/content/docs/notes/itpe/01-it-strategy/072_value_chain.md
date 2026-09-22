@@ -1,7 +1,7 @@
 ---
 title: "가치사슬(Value Chain)"
 author: "Codex"
-date: "2026-09-22T00:00:00+09:00"
+date: "2026-09-22T23:40:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "C"
 extra:
   keyword_grade: "C"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -110,22 +110,31 @@ flowchart TD
 
 > 병목 활동과 연계 원인을 먼저 측정하고 필요한 범위에만 데이터 통합·업무 재설계를 적용함.
 
-### 학습자 통찰 메모 — 답안 밖
-
-- [핵심 통찰]: 마이클 포터의 가치사슬은 각 활동의 비용 절감도 중요하지만, 핵심은 '연계성(Linkages)'에 있음. 영업 부서가 프로모션을 실행할 때 입고·생산·출고 시스템에 즉시 공유되지 않으면 품절과 재고 비용 폭증으로 마진이 훼손됨.
-- 나라면: 활동별 비용·고객가치와 활동 간 인과를 확인한 뒤, 병목 연계에만 데이터 통합·자동화를 적용하겠음.
-
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준 (Trigger)**: 개별 단위 부서의 생산성은 향상되었으나 전사 재고일수 및 납기 리드타임이 오히려 목표 기준 이상 증가할 시 연계성(Linkage) 단절로 판정.
-- **대응 방안 (Action)**: 본원적 활동(SCM-MES-TMS-CRM) 간 실시간 이벤트 드리븐(EDA) 연계를 구축하고, 전사 마진을 훼손하는 사일로(Silo) 부서 간 KPI를 통합 정렬함.
-- **검증 체계 (Verification)**: 활동별 원가 동인(Cost Drivers)과 차별화 동인(Uniqueness Drivers)을 정량 계측하여 가치사슬 전 구간의 E2E 현금전환주기(CCC)를 검증함.
-- **기대 효과 (Impact)**: 국소 최적화의 함정 탈피, 불필요한 재고 유지비용 목표 기준 절감, 고객 맞춤형 차별화 경쟁 우위 및 영업이익률(마진) 극대화를 달성함.
+- 문제: 기업 활동이 기능 부서별 사일로(Silo)로 단절되어 고객 요구 변화에 민첩하게 대응하지 못하고 디지털 생태계와의 실시간 가치 연계에 실패함.
+- 해결 방안: 마이클 포터의 5대 주활동(물류, 운영, 마케팅 등)과 4대 지원활동을 전면 디지털화(Digital Value Chain)하고, 공급자부터 고객까지 엔드투엔드 데이터 공유 및 파트너 생태계 플랫폼 연계를 구축함.
 
 ```mermaid
 flowchart TD
-    P["개별 단위 부서의 생산성은 향상되었으나 전사 재고일수 및 "] --> A["본원적 활동(SCM-MES-TMS-CRM) 간 실시간 이벤"] --> V["활동별 원가 동인(Cost Drivers)과 차별화 동인("] --> E["국소 최적화의 함정 탈피, 불필요한 재고 유지비용 목표 기"]
-    V --> P
+    subgraph Support["지원 활동 (Support Activities)"]
+        S1["기업 인프라 (경영, 재무, 법무, IT)"]
+        S2["인적 자원 관리 (HR)"]
+        S3["기술 개발 (R&D, SW 엔지니어링)"]
+        S4["조달 활동 (Procurement)"]
+    end
+    subgraph Primary["주 활동 (Primary Activities)"]
+        P1["입고 물류<br/>(Inbound)"] --> P2["운영/생산<br/>(Operations)"]
+        P2 --> P3["출고 물류<br/>(Outbound)"]
+        P3 --> P4["마케팅/영업<br/>(Marketing)"]
+        P4 --> P5["서비스<br/>(Service)"]
+    end
+    subgraph Margin["마진 (Margin)"]
+        M["기업의 최종 부가가치 및 이익 창출"]
+    end
+
+    Support --- Primary
+    Primary --> Margin
 ```
 
 ## 1교시 10점 답안 발췌

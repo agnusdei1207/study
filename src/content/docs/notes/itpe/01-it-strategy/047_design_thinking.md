@@ -1,7 +1,7 @@
 ---
 title: "디자인 씽킹"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -127,34 +127,38 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
+- 문제: 기술 공급자 관점에서 솔루션을 조급하게 결정하여 실제 사용자의 숨겨진 니즈(Pain Point)를 해결하지 못하고 시장에서 외면받는 실패가 반복됨.
+- 해결 방안: 스탠퍼드 d.school 5단계(공감, 정의, 아이디어, 시제품, 테스트)의 발산과 수렴 다이아몬드 모델을 반복 적용하여, 사용자 관찰 기반의 문제 재정의와 신속한 프로토타입 피드백 루프를 구축함.
+
 ```mermaid
 flowchart TD
-    subgraph ProblemSpace["1. 문제 공간 탐색 (Problem Space)"]
-        P1["사용자 심층 인터뷰 및 관찰 조사"]
-        P2["공감 지도(Empathy Map) 및 고객 여정 지도(CJM) 도출"]
-        P3["POV 관점 정의 및 HMW(How Might We) 질문 전환"]
-    end
-    subgraph SolutionSpace["2. 해법 공간 실험 (Solution Space)"]
-        S1["핵심 가설 수립 및 아이디어 우선순위화"]
-        S2["저비용 프로토타입(Low-Fi Prototype) 신속 제작"]
-        S3["사용자 과업 수행(UT) 및 정량/정성 피드백 측정"]
-    end
-    subgraph Agile["3. 제품 백로그 연계 (Agile Transition)"]
-        A1["검증된 Finding 기반 User Story 및 인수기준(AC) 도출"]
-        A2["스프린트 백로그 등록 및 개발 우선순위 반영"]
-    end
+    subgraph DoubleDiamond["디자인 씽킹 5단계 프로세스"]
+        E["1. Empathize (공감)<br/>사용자 관찰·인터뷰 (발산)"]
+        D["2. Define (정의)<br/>핵심 문제 명확화 (수렴)"]
+        I["3. Ideate (아이디어)<br/>창의적 대안 발굴 (발산)"]
+        P["4. Prototype (시제품)<br/>신속한 저비용 프로토타입"]
+        T["5. Test (테스트)<br/>실사용자 피드백 및 검증 (수렴)"]
 
-    ProblemSpace --> SolutionSpace
-    SolutionSpace --> Agile
-    SolutionSpace -.->|가설 기각 시 문제 재정의 환류| ProblemSpace
+        E --> D --> I --> P --> T
+        T -.->|문제 재정의| D
+        T -.->|아이디어 재발굴| I
+        T -.->|시제품 보완| P
+    end
+    subgraph Culture["성공 요건: 실패 조기 학습"]
+        C1["Fail Fast, Learn Faster 문화 확립"]
+        C2["다학제간(Cross-functional) 융합 팀 구성"]
+    end
+    DoubleDiamond -.-> Culture
 ```
 
-- **진단**: 문제정의가 관찰·인터뷰 증거와 연결되고, 프로토타입이 검증할 사용자 가설을 명시하는지 확인한다.
-- **설계**: Problem Space와 Solution Space를 구분하고, 핵심 가설마다 학습에 필요한 최소 프로토타입과 사용자 과업을 대응시킨다.
-- **검증**: 과업 성공률·오류 빈도·SUS와 사용자 발화를 함께 분석해 가설의 유지·수정·폐기를 결정한다.
-- **효과**: 개발 착수 전 잘못된 문제 정의로 인한 재작업 위험을 원천 차단하고 실제 시장 적합성(Product-Market Fit)을 조기 확보한다.
-
 ## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **사용자 맥락**을 이해하고 **문제 재정의**·대안 발산·**시제품 시험**을 반복하는 인간 중심 문제해결 접근법
+- 목적: **문제 오정의 감소** · **조기학습** · **사용자 가치 향상**
+
+### 2. 핵심 구조 및 체계
 
 - 정의: 사용자의 잠재적 니즈를 공감·관찰하여 문제를 올바르게 재정의하고, 프로토타입을 통해 조기 검증을 반복하는 인간 중심 문제해결 방법론
 - 핵심 메커니즘: 공감(Empathize) → 문제정의(Define) → 아이디어(Ideate) → 시제품(Prototype) → 테스트(Test)의 5단계 반복 및 더블 다이아몬드(발산/수렴) 구조

@@ -1,14 +1,14 @@
 ---
 title: "프로젝트 관리 통합 체계"
 author: "Codex"
-date: "2026-09-21T23:47:00+09:00"
+date: "2026-09-22T23:40:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "GLM-5.3-Flash"
+  model: "Gemini 3.8 Flash"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -90,23 +90,33 @@ flowchart TD
 
 ## Ⅵ. Evidence-based Forecast 제언
 
-### 학습자 통찰 메모 — 답안 밖
-
-`[핵심 통찰]` 프로젝트 파행은 계획과 실제의 차이보다 그 차이를 늦게 인식하고 의사결정을 미루는 데서 커지므로, 예측 신뢰도와 변경 결정시간을 관리해야 함.
-
-`나라면` 보고서의 주관적 완료율 대신 승인된 산출물·시험결과·EVM·Risk Exposure를 함께 보고, 기준 초과 시 범위·일정·원가 중 무엇을 조정할지 CCB가 즉시 결정하도록 하겠음.
-
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준 (Trigger)**: EVM 성과지수 SPI 또는 CPI < 0.85 하회 시 또는 비공식 요구사항 변경(Scope Creep) 누적률 > 목표 기준 도달 시 즉시 프로젝트 비상 경보 발령.
-- **대응 방안 (Action)**: 공식 형상통제위원회(CCB) 긴급 소집, 크래싱(Crashing)/패스트트래킹(Fast-tracking) 일정 압축 및 WBS Baseline 재설정(Re-baselining).
-- **검증 체계 (Verification)**: 산출물 인수기준(Acceptance Criteria) 충족 여부 전수 검사 및 PMBOK 8판/ISO 21502 기반 성과 측정치(EVM 추정치 EAC, VAC)의 통계적 검증.
-- **기대 효과 (Impact)**: 목표 기준 증후군(프로젝트 후반부 지연 누적) 차단, 납기 및 예산 초과 리스크 목표 기준 감축, 사업 종료 후 운영 부서 편익 실현률 극대화를 달성함.
+- 문제: 개별 프로젝트 중심의 단편적 관리로 인해 전사 경영 전략과의 불일치, 프로젝트 간 핵심 자원 경합 및 중복 투자로 전사적 ROI가 저하됨.
+- 해결 방안: 경영 목표 달성을 위한 포트폴리오 관리(Portfolio, 올바른 일의 선택), 복수 프로젝트 간 시너지를 극대화하는 프로그램 관리(Program, 연계 통합), 개별 납기·원가를 준수하는 프로젝트 관리(Project, 올바른 실행)의 3계층 거버넌스를 확립함.
 
 ```mermaid
 flowchart TD
-    P["EVM 성과지수 SPI 또는 CPI 0"] --> A["공식 형상통제위원회(CCB) 긴급 소집, 크래싱(Crash"] --> V["산출물 인수기준(Acceptance Criteria) 충족"] --> E["목표 기준 증후군(프로젝트 후반부 지연 누적) 차단, 납기"]
-    V --> P
+    subgraph Portfolio["1. 포트폴리오 관리 (Portfolio Management)"]
+        PF1["조직의 전략 목표 및 가치 극대화"]
+        PF2["투자 우선순위화 및 전사 자원 최적 배분"]
+        PF1 --> PF2
+    end
+    subgraph Program["2. 프로그램 관리 (Program Management)"]
+        PG1["상호 연관된 프로젝트 군(群)의 통합 관리"]
+        PG2["개별 프로젝트 차원을 넘는 통합 시너지 창출"]
+        PG1 --> PG2
+    end
+    subgraph Project["3. 프로젝트 관리 (Project Management)"]
+        PJ1["특정 산출물 완성을 위한 유일한 노력"]
+        PJ2["범위·일정·원가·품질(Triple Constraints) 완결"]
+        PJ1 --> PJ2
+    end
+
+    Portfolio -->|전략 정렬 및 지시| Program
+    Program -->|조정 및 가치 연결| Project
+    Project -.->|성과 보고 및 피드백| Program
+    Program -.->|전략적 가치 환류| Portfolio
 ```
 
 ## 1교시 10점 답안 발췌

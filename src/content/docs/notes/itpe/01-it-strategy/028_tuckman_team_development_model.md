@@ -1,7 +1,7 @@
 ---
 title: "터크만 팀 발달 모델"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -100,19 +100,27 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-```mermaid
-flowchart LR
-    Team["팀 갈등·저항 (Storming)"] --> Agree["Working Agreement 수립"]
-    Agree --> Retro["스프린트 회고 (Retrospective)"]
-    Retro --> SelfOrg["자기조직화 팀 (Performing)"]
-    SelfOrg -->|"팀원 교체·환경 변화"| Retreat["폭풍기 퇴행 예방·온보딩"]
-    Retreat --> Agree
-```
+- 문제: SW 개발 프로젝트 착수 후 혼돈기(Storming)에서 R&R 불명확과 구성원 간 주도권 갈등이 장기화되어 개발 일정 지연 및 팀 사기 저하가 발생함.
+- 해결 방안: PM의 서번트 리더십(Servant Leadership)을 통해 팀 협약(Working Agreement)과 명확한 완료 정의(DoD)를 조기 확립하여 규범기(Norming)로 신속 전환하고, 스프린트 회고(Retrospective)를 정례화하여 성과기(Performing)의 자기조직화 팀으로 성숙시킴.
 
-- 판정: 팀 성숙도에 따른 리더십 전환 체계를 구축하고 폭풍기 갈등을 제도적으로 흡수하였는가
-- 대안: 팀원 주도 **Working Agreement** 제정 + 주기적 스프린트 회고(Retrospective) 내재화
-- 검증: 역할·갈등규칙 합의 여부 · 회고 개선항목의 후속 이행 확인
-- 효과: **자기조직화(Self-Organizing) 팀**의 의사결정 대기·갈등 재발 감소
+```mermaid
+flowchart TD
+    subgraph Stages["1. 터크만 5단계 발달 흐름"]
+        S1["형성기 (Forming): 방향성 탐색"] --> S2["혼돈기 (Storming): R&R 갈등·의견 대립"]
+        S2 --> S3["규범기 (Norming): 신뢰 형성·규칙 합의"]
+        S3 --> S4["성과기 (Performing): 자율적 성과 창출"]
+        S4 --> S5["해체기 (Adjourning): 교훈 정리·해산"]
+    end
+    subgraph Interventions["2. PM 리더십 개입 전략"]
+        L1["Storming 통제: 팀 협약 수립 & DoD/DoR 명문화"]
+        L2["Norming 지원: 회고(Retrospective) 정례화 & 권한 위임"]
+        L3["Performing 유지: 서번트 리더십 & 외부 장애물(Impediment) 제거"]
+    end
+
+    S2 -.-> L1
+    S3 -.-> L2
+    S4 -.-> L3
+```
 
 ## 1교시 10점 답안 발췌
 

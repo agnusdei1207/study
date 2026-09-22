@@ -1,7 +1,7 @@
 ---
 title: "국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성"
 author: "Codex"
-date: "2026-09-22T23:00:00+09:00"
+date: "2026-09-22T23:30:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -114,18 +114,31 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-```mermaid
-flowchart LR
-    s["공유 인프라"] --> a["화재 격리"]
-    a --> v["Active-Active DR"]
-    v --> r["RTO·RPO 점검"]
-    r --> a
-```
+- 문제: 국가 전산센터의 단일 물리적 거점 의존과 전력/배터리 화재 시 수동 복구 체계로 인해 행정 전산망 전면 마비 및 장시간 복구 지연이 발생함.
+- 해결 방안: 행정 1·2등급 핵심 정보시스템에 대해 대전-광주-대구 센터 간 물리적 액티브-액티브(Active-Active) 멀티 거점 분산을 의무화하고, 무상태(Stateless) 컨테이너 아키텍처와 카오스 엔지니어링 기반 불시 절체 훈련을 제도화함.
 
-- 판정: 단일 센터 물리 의존을 탈피하고 서비스 중요도별 거점 분산과 불시 실측 검증 체계를 확보하였는가
-- 대안: 최고 중요도 서비스 **Active-Active DR** 우선 적용 · 지리적으로 분리된 거점에 네트워크 단절형 **에어갭(Air-Gap)** 백업 보관
-- 검증: **GSLB** 자동 절체 · **Quorum Witness** 펜싱 · 업무별 RTO·RPO 실측
-- 효과: 센터 단위 장애의 서비스 전파 축소 · 복구목표 이행 근거 확보
+```mermaid
+flowchart TD
+    subgraph Design["1. 다중 거점 분산 및 인프라 격리"]
+        I1["공주/대전/광주 물리 센터 간 망 분산"]
+        I2["UPS·배터리실 완전 내화 격리 및 배터리 이상징후 조기감지"]
+        I3["글로벌 로드밸런서(GSLB) 기반 Active-Active 트래픽 분산"]
+        I1 & I2 --> I3
+    end
+    subgraph Architecture["2. 무상태(Stateless) 아키텍처 전환"]
+        A1["앱 세션 분리 및 컨테이너(K8s) 오케스트레이션"]
+        A2["원격지 간 데이터베이스 실시간 양방향 복제 (Active-Active DR)"]
+        A1 & A2 --> A3["단일 센터 장애 시 0초 자동 무중단 우회"]
+    end
+    subgraph Validation["3. 카오스 엔지니어링 및 불시 절체 검증"]
+        V1["정기적 전원 단절 모의 주입 (Chaos Engineering)"]
+        V2["대국민 행정 서비스 RTO/RPO 실측 및 전주기 평가"]
+        V1 --> V2
+    end
+
+    Design --> Architecture
+    Architecture --> Validation
+```
 
 ## 1교시 10점 답안 발췌
 

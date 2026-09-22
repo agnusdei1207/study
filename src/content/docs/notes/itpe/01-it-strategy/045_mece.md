@@ -1,7 +1,7 @@
 ---
 title: "MECE"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -116,39 +116,39 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
+- 문제: IT 전략 기획 및 문제 해결 시 분석 항목의 중복(Overlap)과 누락(Gap)으로 인해 잘못된 진단과 자원 낭비가 초래됨.
+- 해결 방안: 상호 배타적이고 전체를 포괄하는 MECE 원칙에 따라 로직트리(Logic Tree)와 표준 프레임워크(3C, 4P, SWOT, 프로세스 단계)를 적용하여 문제 공간을 빈틈없이 구조화하고 우선순위화함.
+
 ```mermaid
 flowchart TD
-    subgraph Boundary["1. 전체 경계 정의 (Scope Boundary)"]
-        B1["전체 문제 공간(Universe) 명확화"]
-        B2["단일 분할 기준(Single Dimension) 설정"]
+    subgraph Problem["1. 문제 정의 및 분해"]
+        P0["해결할 핵심 과제 (Root Issue)"]
+        P0 --> B1["상호 배타적 (Mutually Exclusive) -> 중복 배제"]
+        P0 --> B2["전체 포괄적 (Collectively Exhaustive) -> 누락 배제"]
     end
-    subgraph Decomp["2. 동일 추상화 수준 분해 (Decomposition)"]
-        D1["상위 과제 / 전략 목표"]
-        D2["하위 과제 A (ME: 배타적 분리)"]
-        D3["하위 과제 B (ME: 배타적 분리)"]
-        D1 --> D2
-        D1 --> D3
+    subgraph Frameworks["2. MECE 기반 3대 분해 축"]
+        F1["프로세스 축: 기획 -> 설계 -> 개발 -> 테스트 -> 운영"]
+        F2["요소 축: 인력(People) · 프로세스(Process) · 기술(Technology)"]
+        F3["관점 축: 비즈니스 · 데이터 · 애플리케이션 · 인프라"]
     end
-    subgraph Validation["3. 무결성 검증 (MECE Verification)"]
-        V1["ME 검증: 교집합 유무 확인 (RACI 중복 배제)"]
-        V2["CE 검증: 100% Rule 및 미분류 기타(Others) 배제"]
-    end
-    subgraph Execution["4. 실행 연계 (Actionable Mapping)"]
-        E1["WBS 작업 패키지 및 일정/예산 매핑"]
-        E2["RTM 및 KPI 성과지표 연결"]
+    subgraph LogicTree["3. 로직트리 및 가설 검증"]
+        T1["Issue Tree (What / Why / How) 전개"]
+        T2["핵심 가설 수립 및 80/20 법칙 우선순위 실행"]
+        T1 --> T2
     end
 
-    Boundary --> Decomp
-    Decomp --> Validation
-    Validation --> Execution
+    Problem --> Frameworks
+    Frameworks --> LogicTree
 ```
 
-- **판정 기준 (Trigger)**: WBS 및 Issue Tree 작성 시 동일 레벨 내 분할축 혼용(기능+조직 병렬), 미분류 잔여분(기타 항목) 비율이 5%를 초과할 때 즉시 구조 재검토를 발동함.
-- **대응 방안 (Action)**: 계층별 단일 분할축(이분법, 프로세스, 라이프사이클)을 정의서에 명시하고, '기타' 분류 항목을 세부 원인별로 2차 분할하여 MECE 무결성을 확보함.
-- **검증 체계 (Verification)**: 산출물 검토 시 상호배타성(RACI 매트릭스 책임 중복 여부)과 전체포괄성(100% Rule 및 RTM 요구사항 누락 여부)을 교차 매핑하여 형식적 완전성을 정량 검증함.
-- **기대 효과 (Impact)**: 프로젝트 범위 크립(Scope Creep) 방지, 부서 간 업무 R&R 분쟁 최소화, 의사결정 추적성 확보를 달성함.
-
 ## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **MECE** 원칙에 따라 **동일 계층**을 하나의 분할축으로 나누어 **중복과 누락**을 검증하는 문제 구조화 방법
+- 목적: **Issue Tree**와 **WBS**의 범위를 명확히 하여 논점·책임·작업의 누락과 중복을 줄이는 것
+
+### 2. 핵심 구조 및 체계
 
 - 정의: 어떤 대상이나 문제를 분석할 때 상위 개념을 중복 없이(Mutually Exclusive) 완벽히 포괄(Collectively Exhaustive)하도록 분해하는 구조화 원칙
 - 핵심 메커니즘: 전체 경계 정의 → 단일 분할축(프로세스/구성요소/이분법) 선정 → 동일 추상화 수준 분해 → ME·CE 무결성 및 100% Rule 검증

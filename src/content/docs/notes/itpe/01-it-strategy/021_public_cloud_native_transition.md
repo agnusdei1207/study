@@ -1,7 +1,7 @@
 ---
 title: "공공부문 클라우드 네이티브 전환"
 author: "Codex"
-date: "2026-09-22T23:00:00+09:00"
+date: "2026-09-22T23:30:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -115,18 +115,32 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-```mermaid
-flowchart LR
-    s["레거시 워크로드"] --> a["6R 선택"]
-    a --> v["클라우드 배포"]
-    v --> r["SLO·보안 검증"]
-    r --> a
-```
+- 문제: 대규모 공공 모놀리식 시스템을 일괄 전환(Big-Bang)하려다 데이터베이스 강결합 및 인터페이스 결함으로 사업 지연·예산 낭비·서비스 장애가 초래됨.
+- 해결 방안: 6R 분석으로 대상을 선별하고, 검증된 단위 업무부터 점진적으로 분리 교체하는 Strangler Fig 패턴을 적용하며, CDC 기반 데이터 동기화와 카나리 배포 파이프라인을 구축하여 무중단 전환을 달성함.
 
-- 판정: 빅뱅 일괄 전환 위험을 회피하고 서비스 단위 점진 분리 및 인터페이스 계약 책임을 명시하였는가
-- 대안: 대민 파급력이 큰 핵심 모듈부터 **Strangler Fig 패턴** 적용 → 단계적 API 분리
-- 검증: **CDC(Change Data Capture)** 기반 데이터 정합성 실측 · 카나리 배포 트래픽 롤백 검증
-- 효과: 장애 전파 범위 축소 · 배포 실패 시 신속 복구
+```mermaid
+flowchart TD
+    subgraph Strategy["1. 6R 워크로드 진단 및 대상 선별"]
+        A1["레거시 시스템 업무·데이터 결합도 분석"]
+        A2["Rehost / Replatform / Refactor 분류"]
+        A3["대민 파급력 및 변경 빈도 높은 핵심 서비스 우선 선정"]
+        A1 --> A2 --> A3
+    end
+    subgraph Strangler["2. Strangler Fig 점진 전환 실행"]
+        S1["API Gateway 설치 및 신규 트래픽 라우팅"]
+        S2["마이크로서비스(MSA) 및 컨테이너(K8s) 구축"]
+        S3["CDC(Change Data Capture) 기반 실시간 데이터 동기화"]
+        S1 --> S2 & S3
+    end
+    subgraph Verification["3. 카나리 배포 및 레거시 단계적 퇴역"]
+        V1["Canary 배포 (5% -> 25% -> 100% 점진 확대)"]
+        V2["SLO 및 보안 통제 검증 완료 시 레거시 모듈 폐기"]
+        V1 --> V2
+    end
+
+    Strategy --> Strangler
+    Strangler --> Verification
+```
 
 ## 1교시 10점 답안 발췌
 

@@ -1,7 +1,7 @@
 ---
 title: "NIST AI RMF"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -120,35 +120,35 @@ NIST AI RMF의 핵심은 문서 보유가 아니라 맥락·측정·처리의 �
 
 ### 실전 답안용 기술사적 제언
 
+- 문제: 생성형 AI 도입 시 환각(Hallucination), 편향성, 프라이버시 침해, 악의적 탈옥(Jailbreak) 등 신종 보안·윤리 리스크에 대한 체계적 통제 기준이 부재함.
+- 해결 방안: NIST AI RMF 1.0의 4대 핵심 기능(Govern, Map, Measure, Manage)과 AI 600-1 생성형 AI 프로파일을 전사 AI 생애주기에 매핑하고, 자동화된 가드레일(Guardrails) 및 레드팀(Red Teaming) 검증을 의무화함.
+
 ```mermaid
 flowchart TD
-    subgraph GOVERN["횡단 거버넌스 (GOVERN)"]
-        G1["조직 차원의 AI 위험 수용 한계선 및 RACI 정의"]
-        G2["제3자 파운데이션 모델 실사 및 투명성 규정"]
-    end
-    subgraph Execution["수명주기 위험 통제 루프"]
+    subgraph Core["NIST AI RMF 4대 핵심 기능 순환"]
         direction TB
-        E1["MAP: 사용 맥락 정의, 법적 의무 및 잠재 유해성 식별"]
-        E2["MEASURE: 7대 신뢰성 지표 정량·정성 평가 및 벤치마킹"]
-        E3["MANAGE: 환각·탈옥 방어 가드레일 및 잔여위험 승인"]
-        E1 --> E2 --> E3
+        G["1. GOVERN (거버넌스)<br/>조직 내 AI 위험 문화, 책임성, 정책 수립"]
+        M["2. MAP (컨텍스트 매핑)<br/>AI 사용 환경, 잠재적 위험 및 영향 식별"]
+        MS["3. MEASURE (측정 및 평가)<br/>신뢰성 지표 정량 평가, 레드팀 테스트"]
+        MG["4. MANAGE (관리 및 완화)<br/>위험 대응 우선순위화, 모니터링, 가드레일"]
+        G --> M --> MS --> MG --> G
     end
-    subgraph Operations["배포 및 사후 거버넌스"]
-        O1["LLMOps / MLOps 기반 모델 드리프트 및 악용 실시간 모니터링"]
-        O2["사고 발생 시 롤백 및 MAP 단계로 긴급 피드백 환류"]
+    subgraph Profile["AI 600-1 생성형 AI 특화 통제"]
+        P1["입력 가드레일: 프롬프트 인젝션 및 PII 차단"]
+        P2["출력 가드레일: 환각 검증 및 유해 콘텐츠 필터링"]
+        P3["AI Red Teaming: 적대적 공격 취약점 상시 점검"]
     end
-
-    GOVERN --> Execution
-    Execution --> Operations
-    Operations -.->|신규 위험 시나리오 환류| Execution
+    MG -.-> Profile
 ```
 
-- 판정: 일회성 체크리스트 평가를 넘어 배포 후 드리프트와 편향을 추적하는 지속적 거버넌스 루프가 작동하는가
-- 대안: GOVERN 횡단 통제 · NIST AI 600-1 생성형 AI 프로파일 적용 · 가드레일 필터링 다중화
-- 검증: Red-Teaming 적대적 공격 시험 · 모델 카드 및 데이터 계보(Lineage) 검증 · 잔여위험 경영진 공식 승인
-- 효과: AI 시스템의 설명가능성·공정성·보안성 확보를 통한 규제(EU AI Act 등) 선제 대응 및 사회적 신뢰 획득
-
 ## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **NIST AI RMF 1.0**은 AI의 사용 맥락과 영향을 **MAP**하고 **GOVERN·MEASURE·MANAGE**로 위험을 수명주기 전반에서 관리하는 자발적 프레임워크다.
+- 목적: **신뢰성 특성**의 측정 근거와 위험 처리 증거를 연결해 AI의 **안전성·공정성·투명성·책임성**을 의사결정에 반영하는 것
+
+### 2. 핵심 구조 및 체계
 
 - 정의: AI 시스템의 고유 위험을 관리하고 7대 신뢰성 특성을 전 생애주기에 통합하기 위한 NIST의 자발적·맥락 중심 프레임워크
 - 핵심 메커니즘: 전 과정 횡단 거버넌스(GOVERN)를 기반으로 맥락 분석(MAP) → 정량·정성 평가(MEASURE) → 대응 및 잔여위험 관리(MANAGE)의 반복 루프 수행

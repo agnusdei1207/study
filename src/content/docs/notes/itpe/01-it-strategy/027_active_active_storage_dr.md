@@ -1,7 +1,7 @@
 ---
 title: "액티브-액티브 이중화와 스토리지 DR"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -118,23 +118,32 @@ sequenceDiagram
 
 ### 실전 답안용 기술사적 제언
 
-```mermaid
-flowchart LR
-    subgraph DC1["센터 A (Active)"]
-        App1["무상태 App"] --- Sto1["Primary Storage"]
-    end
-    subgraph DC2["센터 B (Active)"]
-        App2["무상태 App"] --- Sto2["Secondary Storage"]
-    end
-    Sto1 <-->|"ISL 동기 복제"| Sto2
-    Witness["제3 거점 Quorum Witness"] -.->|"헬스체크·I/O Fencing"| Sto1
-    Witness -.->|"헬스체크·I/O Fencing"| Sto2
-```
+- 문제: 원격지 간 스토리지 동기 복제 시 왕복 지연(RTT)으로 인한 메인 트랜잭션 성능 저하와 네트워크 단절 시 Split-Brain으로 인한 데이터 불일치 위험이 발생함.
+- 해결 방안: 100km 이내 전용 광전송망(DWDM) 기반 동기 복제를 적용하고, 제3의 중재 사이트(Witness/Quorum)를 배치하여 Split-Brain을 방지하며, 상위 GSLB 및 무상태(Stateless) 컨테이너 클러스터와 연계해 RTO 0 / RPO 0 수준의 무중단 자동 절체를 구현함.
 
-- 판정: 단일 거점 전소 시에도 잔여 센터 단독으로 목표 SLA를 보증할 수 있는 공학적 안전장치를 갖추었는가
-- 대안: **Quorum Witness** 기반 I/O Fencing + **N-1 용량 설계** 기반 자동 부하 차단 거버넌스
-- 검증: 거점 단절 훈련 · 업무별 RTO·RPO 실측 · 쓰기 정합성·잔여 용량 확인
-- 효과: 장애 전파·데이터 충돌·잔여 거점 과부하 위험 축소
+```mermaid
+flowchart TD
+    subgraph Sites["1. 물리 거점 및 스토리지 동기 복제"]
+        S1["센터 A (Primary Storage)"] <-->|DWDM 전용망 동기 복제| S2["센터 B (Secondary Storage)"]
+        W["제3 거점 중재 노드 (Quorum/Witness)"]
+        S1 & S2 <-->|Heartbeat 감시| W
+    end
+    subgraph Routing["2. 지능형 트래픽 라우팅 (GSLB)"]
+        GSLB["GSLB (Active-Active DNS 질의 분산)"]
+        APP1["센터 A App 클러스터 (K8s)"]
+        APP2["센터 B App 클러스터 (K8s)"]
+        GSLB --> APP1 & APP2
+    end
+    subgraph Failover["3. 장애 격리 및 0초 절체"]
+        F1{"단일 센터 장애 발생?"}
+        F2["Witness가 정상 센터 생존 승인 -> 단독 승격"]
+        F3["GSLB 정상 센터로 100% 트래픽 자동 집중"]
+        F1 --> F2 --> F3
+    end
+
+    Sites --> Routing
+    Routing --> Failover
+```
 
 ## 1교시 10점 답안 발췌
 

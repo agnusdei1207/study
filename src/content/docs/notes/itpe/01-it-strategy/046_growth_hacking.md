@@ -1,7 +1,7 @@
 ---
 title: "그로스 해킹"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -113,38 +113,38 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
+- 문제: 대규모 마케팅 비용을 투입해 사용자를 유치해도 제품 내 가치 경험 부재로 결제 전환에 실패하고 이탈(Churn)하는 밑 빠진 독 현상이 발생함.
+- 해결 방안: AARRR(획득, 활성화, 유지, 추천, 매출) 깔때기 모델 기반 종단 데이터를 실시간 추적하고, 아하 모먼트(Aha-Moment) 도출과 고속 가설-실험(A/B Test) 반복을 통해 제품-시장 적합성(PMF)을 달성함.
+
 ```mermaid
 flowchart TD
-    subgraph Funnel["1. AARRR 퍼널 및 코호트 분석"]
-        F1["사용자 여정 데이터 수집 (Clickstream)"]
-        F2["단계별 이탈률 및 코호트 잔존율 병목 식별"]
+    subgraph Funnel["1. AARRR 깔때기 프레임워크"]
+        A1["Acquisition (획득): 유입 채널별 CAC 최적화"]
+        A2["Activation (활성화): 첫 경험 최적화 & Aha-Moment 도달"]
+        A3["Retention (유지): 재방문율 및 코호트 분석"]
+        A4["Referral (추천): 바이럴 루프 및 추천 보상"]
+        A5["Revenue (매출): LTV 극대화 및 결제 전환 최적화"]
+        A1 --> A2 --> A3 --> A4 --> A5
     end
-    subgraph Hypothesis["2. 가설 수립 및 우선순위화"]
-        H1["성장 가설 도출 (If-Then-Because)"]
-        H2["ICE / RICE 스코어링 기반 실험 백로그 선정"]
-    end
-    subgraph Experiment["3. 통제 실험 및 통계적 검정"]
-        E1["A/B 테스트 트래픽 무작위 분할 (Randomization)"]
-        E2["SRM 검증 및 Guardrail 지표 동시 감시"]
-        E3["통계적 유의성(p-value) 및 MDE 검정"]
-    end
-    subgraph Loop["4. 전사 롤아웃 및 학습 환류"]
-        L1["성공 가설: Feature Flag 100% 롤아웃"]
-        L2["실패 가설: 회고 및 인사이트 지식베이스화"]
+    subgraph GrowthLoop["2. 고속 가설 실험 사이클"]
+        L1["데이터 분석 및 기회 발굴"]
+        L2["가설 수립 및 우선순위화 (ICE 점수)"]
+        L3["최소 기능 실험 (A/B 테스트)"]
+        L4["결과 분석 및 학습 환류"]
+        L1 --> L2 --> L3 --> L4 --> L1
     end
 
-    Funnel --> Hypothesis
-    Hypothesis --> Experiment
-    Experiment --> Loop
-    Loop -.->|신규 성장 가설 피드백| Funnel
+    Funnel <--> GrowthLoop
 ```
 
-- **판정 기준 (Trigger)**: 단기 전환율(CVR) 지표는 상승하나 이탈률(Churn Rate) 급증 또는 불만 CS 접수가 20% 이상 증가할 시 다크 패턴 및 국소 최적화 위험으로 판정함.
-- **대응 방안 (Action)**: 북극성 지표(NSM)에 직교하는 보호 지표(Guardrail Metric: 페이지 응답시간, 구독 해지율, 프라이버시 동의 철회율)를 필수 지정하고, 하향 돌파 시 실험 자동 중단(Kill Switch)을 연동함.
-- **검증 체계 (Verification)**: A/B 테스트 사전 승인제(Pre-registration) 및 최소 표본수(MDE 계산) 확정 후 통계적 유의수준(p < 0.05)과 코호트별 30일 잔존율 추적을 동시 검증함.
-- **기대 효과 (Impact)**: 허상 지표(Vanity Metric) 배제, 고객 LTV(생애가치) 30% 이상 증대, 규제 컴플라이언스(다크패턴 방지법) 위반 리스크 원천 해소를 달성함.
-
 ## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: 제품·마케팅·데이터 분석을 결합하여 **성장 가설**을 실험하고 제품·채널을 반복 개선하는 접근법
+- 목적: **고객가치 검증** · **성장병목 해소** · **학습속도 향상**
+
+### 2. 핵심 구조 및 체계
 
 - 정의: 제품·마케팅·데이터 분석을 융합하여 가설 수립과 통제 실험(A/B Test)을 통해 지속 가능한 성장을 반복 달성하는 데이터 기반 제품 관리 접근법
 - 핵심 메커니즘: 북극성 지표(NSM) 정의 → AARRR 퍼널 병목 분석 → ICE 우선순위 가설 수립 → A/B 테스트 및 가드레일 검증 → 기능 배포 및 환류

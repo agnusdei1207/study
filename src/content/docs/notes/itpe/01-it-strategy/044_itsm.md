@@ -1,7 +1,7 @@
 ---
 title: "ITSM"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -118,37 +118,36 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
+- 문제: IT 운영 조직이 시스템 가동률 등 내부 기술 지표에만 매몰되어 실제 비즈니스 사용자의 체감 가치 및 신속한 변경 요구에 부응하지 못함.
+- 해결 방안: ITIL 4 기반 SVS(서비스 가치 시스템)를 도입하여 4차원 모델(조직, 정보, 파트너, 가치흐름)을 통합 관리하고, 인시던트-문제-변경 관리의 자동화 워크플로우와 서비스 데스크 중심의 SLA 모니터링을 확립함.
+
 ```mermaid
 flowchart TD
-    subgraph ServiceDesk["1. 서비스 데스크 및 장애 복구"]
-        SD1["사용자 문의 / 이벤트 접수"]
-        SD2["인시던트 긴급 복구 (Workaround 활용)"]
+    subgraph DemandToValue["ITIL 4 SVS (Service Value System)"]
+        D["수요 (Demand) / 기회"] --> GP["지도 원칙 (Guiding Principles)"]
+        GP --> GOV["거버넌스 (Governance)"]
+        GOV --> SVC["서비스 가치 사슬 (Service Value Chain)"]
+        SVC --> PRAC["실천 관행 (Practices)"]
+        PRAC --> CSI["지속적 개선 (Continual Improvement)"]
+        CSI --> V["가치 (Value)"]
     end
-    subgraph Problem["2. 문제 관리 및 지식화"]
-        PB1["근본 원인 분석 (RCA)"]
-        PB2["KEDB 지식 저장 및 회피책 등록"]
+    subgraph CorePractices["핵심 운영 실천 관행"]
+        P1["인시던트 관리: 서비스 신속 복구"]
+        P2["문제 관리: 근본 원인 분석(RCA) 및 영구 제거"]
+        P3["변경 통제: CAB 심의 및 릴리즈 안전성 확보"]
+        P1 --> P2 --> P3
     end
-    subgraph Change["3. 통제된 변경 및 릴리즈"]
-        CH1["RFC 발행 및 CAB 위험도 평가"]
-        CH2["CI/CD 배포 및 CMDB 형상 자동 갱신"]
-    end
-    subgraph Improvement["4. 지속적 개선 (CSI & XLA)"]
-        IM1["SLA 가용성 + XLA 체감 만족도 측정"]
-        IM2["AIOps 기반 이상 탐지 및 사전 예방 환류"]
-    end
-
-    ServiceDesk -->|해결 안 된 근본원인| Problem
-    Problem -->|영구 결함 해결| Change
-    Change -->|서비스 배포| Improvement
-    Improvement -.->|모니터링 및 개선 피드백| ServiceDesk
+    SVC -.-> CorePractices
 ```
 
-- **판정 기준**: 변경 작업으로 인한 2차 장애 발생률 최소화 및 장애 발생 시 MTTR(평균 복구 시간) 목표치 준수율
-- **공학적 대안**: 정적 문서 중심 탈피, CI/CD 자동화 파이프라인과 CMDB 자동 디스커버리 및 AIOps 기반 이상징후 조기 탐지 결합
-- **검증 절차**: 분기별 KEDB 미해결 에러(Known Error) 재발 건수 추적 및 CAB 변경 승인 리드타임 측정
-- **기대 효과**: 배포 속도와 시스템 안정성의 양립, 서비스 연속성 보장 및 최종 사용자 경험(XLA) 극대화
-
 ## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **서비스 가치체계**를 기반으로 서비스의 기획·설계·전환·운영·개선을 통합 관리하는 체계
+- 목적: **서비스 가치** · **품질 일관성** · **운영효율** · **지속개선** 확보
+
+### 2. 핵심 구조 및 체계
 
 - 정의: 고객 중심의 IT 서비스 수명주기를 관리하고 가치를 공동 창출(Co-creation)하기 위한 프로세스·조직·도구의 통합 프레임워크
 - 핵심 메커니즘: 인시던트 관리(신속 복구) → 문제 관리(근본 원인 분석 및 KEDB 축적) → 변경·릴리즈 관리(CAB 평가 및 CMDB 갱신) → 지속적 서비스 개선(SLA/XLA)

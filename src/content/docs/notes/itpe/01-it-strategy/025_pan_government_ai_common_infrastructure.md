@@ -1,7 +1,7 @@
 ---
 title: "범정부 AI 공통기반"
 author: "Codex"
-date: "2026-09-22T23:00:00+09:00"
+date: "2026-09-22T23:30:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -114,18 +114,31 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-```mermaid
-flowchart LR
-    s["행정 질의"] --> a["RAG·Model Gateway"]
-    a --> v["Guardrail 검사"]
-    v --> r["답변 품질 환류"]
-    r --> a
-```
+- 문제: 공공기관별 초거대 AI 도입 시 고가의 GPU 인프라 중복 구축과 AI 생성 답변의 환각(Hallucination)으로 인한 행정 오류 및 데이터 유출 리스크가 발생함.
+- 해결 방안: 범정부 AI 공통기반을 통해 고성능 GPU와 표준 LLM API를 중앙 집약적으로 제공하고, 행정 신뢰도 확보를 위한 법령·내부 규정 기반 RAG(검색증강생성)와 주요 처분에 대한 공무원의 Human-in-the-loop 검토를 제도화함.
 
-- 판정: 플랫폼 운영책임과 행정청의 처분 권한·책임을 구분하고 업무별 검토수준을 정하였는가
-- 대안: **공공 RAG** 기반 출처 검증 + 고영향·권리영향 업무의 **Human-in-the-loop** 및 예외·이의제기 절차
-- 검증: 응답 근거 연결 여부 · 권한 있는 담당자의 검토기록 · 처분근거와 감사로그 확인
-- 효과: 근거 없는 업무 적용 감소 · 행정 판단의 책임 추적성 확보
+```mermaid
+flowchart TD
+    subgraph Infrastructure["1. 범정부 AI 공통 인프라 계층"]
+        I1["국가 AI 컴퓨팅 GPU 클러스터 풀(Pool)"]
+        I2["공공 특화 파운데이션 LLM 및 임베딩 모델"]
+        I1 --> I2
+    end
+    subgraph Platform["2. AI 게이트웨이 및 RAG 서비스 계층"]
+        P1["Model Gateway: 부처별 트래픽 라우팅 및 과금 관리"]
+        P2["RAG 파이프라인: 공공 행정 문서·법령 벡터DB 연동"]
+        P3["Guardrail: 개인정보 필터링 및 유해 질의 차단"]
+        P1 & P2 --> P3
+    end
+    subgraph Administrative["3. 행정 서비스 및 통제 조치"]
+        A1["행정 처분 지원 및 대민 복지 질의응답"]
+        A2["공무원 최종 승인(Human-in-the-loop) 후 대외 통보"]
+        A1 --> A2
+    end
+
+    Infrastructure --> Platform
+    Platform --> Administrative
+```
 
 ## 1교시 10점 답안 발췌
 

@@ -1,7 +1,7 @@
 ---
 title: "A/B 테스트"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -110,23 +110,36 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-```mermaid
-flowchart LR
-    Traffic["실시간 트래픽"] --> FF["Feature Flag (Consistent Hashing)"]
-    FF -->|"50%"| Ctrl["Control (기존 A)"]
-    FF -->|"50%"| Var["Variant (개선 B)"]
-    Ctrl & Var --> Coll["이벤트 계측 게이트웨이"]
-    Coll --> SRM{"SRM 판정 (Chi-Square)"}
-    SRM -->|"SRM 감지"| Alarm["실험 중단·배정 점검"]
-    SRM -->|"정상"| Guard{"Guardrail 통과?"}
-    Guard -->|"합격"| Rollout["점진적 카나리 배포"]
-    Guard -->|"성능저하"| Rollback["롤백 및 가설 재수립"]
-```
+- 문제: 실험 표본 크기 부족과 조기 종료(Peeking Problem)로 인해 우연한 결과를 효과로 오판하는 1종 오류(False Positive) 및 SRM(Sample Ratio Mismatch) 왜곡이 발생함.
+- 해결 방안: 사전 검정력 분석(Power Analysis)을 통해 최소 표본 크기와 최소 실험 기간(1~2주)을 사전에 동결하고, 순차 검정(Sequential Testing) 프레임워크와 SRM 자동 감지 모니터링을 파이프라인에 내재화함.
 
-- 판정: 통계적 왜곡(SRM, Peeking)을 통제하고 보호 지표(Guardrail) 검증을 통과하였는가
-- 대안: **SRM 자동 모니터링** + **Guardrail Metrics** 기반 카나리 점진 롤아웃 연동
-- 검증: 사전 정의한 SRM 판정기준 · 효과크기·신뢰구간 · 오류율·지연시간 Guardrail 확인
-- 효과: 거짓 양성에 의한 장애 배포 차단 · 데이터 기반의 확신 있는 제품 혁신 달성
+```mermaid
+flowchart TD
+    subgraph Design["1. 실험 설계 및 표본 동결"]
+        D1["가설 설정 및 핵심 지표(OEC) 선정"]
+        D2["검정력 분석: MDE, 유의수준(α=0.05), 검정력(1-β=0.8)"]
+        D3["최소 표본 수 및 최소 실험 기간(고정) 확정"]
+        D1 --> D2 --> D3
+    end
+    subgraph Execution["2. 무작위 분할 및 SRM 검증"]
+        E1["해시 기반 무작위 사용자 트래픽 50:50 할당"]
+        E2{"SRM(Sample Ratio Mismatch) 카이제곱 검정 통과?"}
+        E3["불통과: 트래픽 할당 버그 격리 및 실험 무효화"]
+        E1 --> E2
+        E2 -->|No| E3
+    end
+    subgraph Decision["3. 통계적 유의성 판정"]
+        P1{"p-value < 0.05 & 효과 크기 유의?"}
+        P2["채택: B안 100% 전사 롤아웃"]
+        P3["기각: 기존 A안 유지 및 새로운 가설 수립"]
+        E2 -->|Yes| P1
+        P1 -->|Yes| P2
+        P1 -->|No| P3
+    end
+
+    Design --> Execution
+    Execution --> Decision
+```
 
 ## 1교시 10점 답안 발췌
 

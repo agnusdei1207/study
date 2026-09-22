@@ -1,7 +1,7 @@
 ---
 title: "IT 아웃소싱"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -101,38 +101,37 @@ quadrantChart
 
 ### 실전 답안용 기술사적 제언
 
+- 문제: 단순 비용 절감 위주의 전면 외주화로 인해 기업의 핵심 IT 역량이 유실되고 벤더 록인(Lock-in)이 발생하며, SLA 불명확으로 서비스 품질 분쟁이 반복됨.
+- 해결 방안: 핵심 IT 전략 및 아키텍처는 내재화하고 비핵심 운영은 전문화하는 스마트 소싱(Smart Sourcing) 전략을 수립하며, 다원화 벤더(Multi-sourcing) 체계 및 인센티브·페널티 연동형 SLM 거버넌스를 구축함.
+
 ```mermaid
 flowchart TD
-    subgraph RO["발주사 잔존 조직 (RO)"]
-        A1["IT 전략·아키텍처 승인"]
-        A2["데이터·보안 거버넌스"]
-        A3["계약 권한·Exit 통제"]
+    subgraph Strategy["1. 소싱 포트폴리오 분석 및 내재화 영역 확정"]
+        S1["핵심 역량 (전략·아키텍처·핵심 데이터): 100% 내재화"]
+        S2["범용 운영 및 인프라: 멀티 벤더 외주화 대상 분류"]
+        S1 & S2 --> S3["단일 벤더 의존 탈피 (Multi-Sourcing)"]
     end
-    subgraph SIAM["통합 관리 계층 (SIAM)"]
-        B1["SLA / XLA 종합 평가"]
-        B2["멀티 벤더 OLA 조정"]
+    subgraph Contract["2. 서비스 수준 협약(SLA/SLM) 체결"]
+        C1["비즈니스 지향 SLI/SLO 지표 명문화"]
+        C2["달성도 기반 차등 인센티브 및 페널티 산식 규정"]
+        C3["인수인계 의무 및 지식재산권 귀속 조항 명시"]
+        S3 --> C1 & C2 & C3
     end
-    subgraph Vendors["공급자 실행 계층"]
-        C1["인프라 MSP"]
-        C2["애플리케이션 SM/SI"]
+    subgraph Governance["3. 상시 관리감독 및 거버넌스"]
+        G1["정기적 SLA 측정 및 서비스 리뷰 회의"]
+        G2["보안 및 컴플라이언스 제3자 독립 점검"]
+        C1 & C2 & C3 --> G1 & G2
     end
-    subgraph Exit["가역성 확보 (Exit Governance)"]
-        D1["소스코드 Escrow·산출물 관리"]
-        D2["지식 이전·정기 전환 리허설"]
-    end
-
-    RO -->|통제·감독| SIAM
-    SIAM -->|SLA/OLA 관리| Vendors
-    Vendors -.->|산출물·데이터 환원| Exit
-    Exit -->|가역성 보장| RO
 ```
 
-- 판정: 발주자가 핵심 승인권과 재소싱 능력을 보유하는가
-- 대안: RO 권한 · SLA/XLA · Exit Plan·이전지원 결합
-- 검증: 자료반환 · 계정회수 · 빌드·배포 · 전환 리허설
-- 효과: 통제권 유지 · 소싱 가역성 · 서비스 연속성
-
 ## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: IT 업무를 외부 전문조직에 위탁하고 **SLA(Service Level Agreement)**로 성과·위험을 관리하는 소싱 체계
+- 목적: 핵심 역량 집중 · 전문성 활용 · 품질·비용 통제
+
+### 2. 핵심 구조 및 매커니즘
 
 - 정의: IT 업무를 외부 전문조직에 위탁하고 **SLA(Service Level Agreement)**로 성과·위험을 관리하는 소싱 체계
 - 목적: 핵심 역량 집중 · 전문성 활용 · 품질·비용 통제

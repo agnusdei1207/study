@@ -1,7 +1,7 @@
 ---
 title: "SWOT 분석"
 author: "Codex"
-date: "2026-09-22T23:15:00+09:00"
+date: "2026-09-22T23:35:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -92,35 +92,37 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
+- 문제: SWOT 요소를 단순 나열하는 정적 분석에 그쳐 구체적인 비즈니스 및 IT 실행 전략으로 연결되지 못하고, 분석가의 주관에 치우치는 한계가 발생함.
+- 해결 방안: 내외부 요인을 상호 교차하는 Cross-SWOT 매트릭스(SO, ST, WO, WT)를 작성하여 실행 가능한 전략 과제를 도출하고, AHP(계층화분석법)를 연계하여 전략 과제의 우선순위를 정량화함.
+
 ```mermaid
 flowchart TD
-    subgraph Input["1. 환경분석 및 요인 정량화"]
-        I1["외부: PEST / 5-Force → 기회·위협 도출"]
-        I2["내부: VRIO / 밸류체인 → 강점·약점 도출"]
-        I3["AHP 쌍대비교 → 핵심 요인 가중치 부여"]
+    subgraph Scan["1. 내외부 환경 분석 및 요인 도출"]
+        E1["외부 환경 분석 (PEST, 5-Force) -> 기회(O) · 위협(T)"]
+        I1["내부 역량 분석 (VRIO, 가치사슬) -> 강점(S) · 약점(W)"]
     end
-    subgraph TOWS["2. TOWS 전략 매트릭스 도출"]
-        T1["SO 전략: 공격적 시장확대"]
-        T2["ST 전략: 차별화·위협 방어"]
-        T3["WO 전략: 역량보강·기회포착"]
-        T4["WT 전략: 사업재편·철수/우회"]
+    subgraph Matrix["2. 교차 SWOT 매트릭스 (Cross-SWOT) 전략 도출"]
+        SO["SO 공격 전략: 강점으로 기회 선점"]
+        ST["ST 다각화 전략: 강점으로 위협 회피"]
+        WO["WO 우회 전략: 약점 보완하여 기회 포착"]
+        WT["WT 방어 전략: 약점 최소화 및 위협 회피"]
+        E1 & I1 --> SO & ST & WO & WT
     end
-    subgraph Exec["3. 전략 연계 및 실행 거버넌스"]
-        E1["전략 이니셔티브 우선순위 선정"]
-        E2["BSC 관점별 KPI / OKR 연계"]
-        E3["분기별 전략 점검 및 피드백 루프"]
+    subgraph Prioritize["3. 정량적 우선순위화 및 로드맵"]
+        AHP["AHP 기반 중요도 및 실행 용이성 가중치 산출"]
+        ROADMAP["중장기 IT 전략 로드맵 및 Quick-Win 과제 확정"]
+        SO & ST & WO & WT --> AHP --> ROADMAP
     end
-
-    Input --> TOWS
-    TOWS --> Exec
 ```
 
-- 판정: 요인 근거부터 실행과제까지 추적되는가
-- 대안: 출처·유효기간 · TOWS 교차 · 다기준 우선순위
-- 검증: 통제 가능성 · 전략 연결 · 책임·자원·KPI
-- 효과: 전략 정합성·실행력 향상
-
 ## 1교시 10점 답안 발췌
+
+### 1. 정의·목적
+
+- 정의: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)**은 내부 역량과 외부 환경을 분류하고 TOWS로 실행전략을 도출하는 프레임워크
+- 목적: 전략적 적합성·실행과제 도출
+
+### 2. 핵심 구조 및 매커니즘
 
 - 정의: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)**은 내부 역량과 외부 환경을 분류하고 TOWS로 실행전략을 도출하는 프레임워크
 - 목적: 전략적 적합성·실행과제 도출
