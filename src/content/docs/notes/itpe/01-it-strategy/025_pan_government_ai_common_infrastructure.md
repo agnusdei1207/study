@@ -82,8 +82,10 @@ flowchart TD
 
 > 개별 기관의 자체 LLM 구축에 따른 예산 낭비를 차단하며, 성패는 단순 API 제공이 아닌 **공공 RAG 정확도** 와 **행정 데이터 격리** 로 판정함.
 
-- 정의: 행정·공공기관이 **LLM(Large Language Model)** , **GPU** , **RAG(Retrieval-Augmented Generation)** 를 공동 활용하는 범정부 AI 플랫폼 체계
-- 목적: **Model Gateway** 와 **Guardrail** 로 중복투자를 줄이고 안전한 공공 AI 활용을 지원하는 것
+| 구분 | 핵심 |
+|---|---|
+| 정의 | 행정·공공기관이 **LLM(Large Language Model)** , **GPU** , **RAG(Retrieval-Augmented Generation)** 를 공동 활용하는 범정부 AI 플랫폼 체계 |
+| 목적 | **Model Gateway** 와 **Guardrail** 로 중복투자를 줄이고 안전한 공공 AI 활용을 지원하는 것 |
 
 ## Ⅱ. 범정부 AI 공통기반의 대표 활용 흐름
 

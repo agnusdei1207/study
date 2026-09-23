@@ -84,8 +84,10 @@ flowchart LR
 
 > 거대 시장의 착시를 걷어내고 **TAM(전체 시장)** 에서 **SAM(유효 시장)** 을 거쳐 **SOM(수익 시장)** 으로 좁혀 단기 실행력을 확보함.
 
-- 정의: 신규 IT 제품 및 디지털 서비스 기획 시 **TAM(Total Addressable Market)** , **SAM(Serviceable Addressable Market)** , **SOM(Serviceable Obtainable Market)** 의 3단계 동심원으로 시장 규모를 단계별 여과 추정하는 **사업 타당성 분석 프레임워크**
-- 목적: 시장 경계 명확화 · 과대추정 방지 · 실행 가능한 매출가설 수립
+| 구분 | 핵심 |
+|---|---|
+| 정의 | 신규 IT 제품 및 디지털 서비스 기획 시 **TAM(Total Addressable Market)** , **SAM(Serviceable Addressable Market)** , **SOM(Serviceable Obtainable Market)** 의 3단계 동심원으로 시장 규모를 단계별 여과 추정하는 **사업 타당성 분석 프레임워크** |
+| 목적 | 시장 경계 명확화 · 과대추정 방지 · 실행 가능한 매출가설 수립 |
 
 ## Ⅱ. TAM-SAM-SOM 3단계 계층 구조 및 추정 체계
 
