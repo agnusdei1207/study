@@ -18,17 +18,17 @@ test('ISO 38500 shows EDM as a feedback cycle and explains the framework', async
   }
 });
 
-test('each answer section carries its own relationship diagram', async () => {
+test('EDM cycle and dated-principles reference stay focused', async () => {
   const note = await readFile(notePath, 'utf8');
   const body = note.slice(note.indexOf('## Ⅰ.'), note.indexOf(excerptHeading));
 
-  for (const section of ['## Ⅱ.', '## Ⅲ.']) {
-    const start = body.indexOf(section);
-    const rest = body.slice(start + section.length);
-    const end = rest.indexOf('\n## ');
-    const block = end === -1 ? rest : rest.slice(0, end);
-    assert.match(block, /```mermaid/u, `${section} 절에는 Mermaid 관계 그림이 필요합니다.`);
-  }
+  const modelStart = body.indexOf('## Ⅱ.');
+  const modelEnd = body.indexOf('\n## Ⅲ.', modelStart);
+  assert.match(body.slice(modelStart, modelEnd), /```mermaid/u, 'EDM 순환은 관계 그림으로 표현합니다.');
+  const principlesStart = body.indexOf('## Ⅲ.');
+  const principlesEnd = body.indexOf('\n## Ⅳ.', principlesStart);
+  assert.match(body.slice(principlesStart, principlesEnd), /\| \*\*책임\*\*/u, '구판 원칙은 판본을 명시한 표로 간결하게 설명합니다.');
+  assert.doesNotMatch(body.slice(principlesStart, principlesEnd), /```mermaid/u, '여섯 항목의 나열은 별도 도해로 중복하지 않습니다.');
 });
 
 test('the 10 point excerpt reuses a body diagram instead of a meta table', async () => {
