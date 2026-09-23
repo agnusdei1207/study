@@ -1,7 +1,7 @@
 ---
 title: "애자일 대응 전략"
 author: "Codex"
-date: "2026-09-22T23:00:00+09:00"
+date: "2026-09-23T22:58:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "A"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -111,33 +111,12 @@ flowchart TD
 
 ### 실전 답안용 기술사적 제언
 
-- 문제: 스프린트 이벤트만 형식적으로 반복되고 실제 작동하는 소프트웨어 증분(Increment) 검증이 부재하여, 프로젝트 후반 통합 실패와 기술 부채가 폭발함.
-- 해결 방안: 완료 정의(DoD)에 자동화 빌드·테스트 통과를 필수 Quality Gate로 지정하고, 스프린트 리뷰 시 실제 작동하는 증분의 사용자 피드백을 제품 백로그 우선순위에 즉각 환류하는 통제 체계를 확립함.
+문제: 반복 주기만 운영하고 사용자 검토가 빠지면 요구 불일치를 늦게 발견할 수 있다. 제언: 검토 가능한 제품 증분을 주기적으로 제시하고, 피드백을 다음 우선순위에 반영한다.
 
-```mermaid
-flowchart TD
-    subgraph SprintWork["1. 스프린트 개발 및 자동화 검증"]
-        DEV["기능 구현 및 코드 커밋"]
-        CI["CI 파이프라인: 자동 빌드 & 단위/통합 테스트"]
-        DEV --> CI
-    end
-    subgraph DoDGate["2. 완료 정의(DoD) Quality Gate"]
-        GATE{"DoD 기준 충족 여부<br/>(테스트 통과 & 보안 취약점 0건)"}
-        INC["배포 가능한 증분(Increment) 확정"]
-        REWORK["결함 수정 및 기술 부채 백로그 등록"]
-        CI --> GATE
-        GATE -->|통과| INC
-        GATE -->|미달| REWORK
-        REWORK -.->|보완| DEV
-    end
-    subgraph FeedbackLoop["3. 스프린트 리뷰 및 백로그 환류"]
-        REV["스프린트 리뷰: 이해관계자 시연"]
-        FEEDBACK["실사용자 피드백 수렴"]
-        P_BACKLOG["제품 백로그(Product Backlog) 우선순위 재조정"]
-        INC --> REV --> FEEDBACK --> P_BACKLOG
-        P_BACKLOG -.->|차기 스프린트 계획 반영| DEV
-    end
-```
+| 문제 | 해결 방안 |
+|---|---|
+| 반복 개발과 사용자 검토가 분리됨 | 검토 가능한 증분을 제시해 사용자 피드백 수렴 |
+| 피드백이 다음 작업에 반영되지 않음 | 제품 백로그 우선순위를 조정해 다음 반복에 반영 |
 
 ## 1교시 10점 답안 발췌
 
@@ -160,6 +139,7 @@ flowchart TD
 
 - **Product Backlog** : 고객가치 중심 우선순위 동적 관리
 - **Sprint Goal & DoD** : 반복의 목표 고정 및 엄격한 완료 정의(DoD) 기반 품질 게이트 통제
+- 한 줄 제언: 짧은 주기의 사용자 피드백을 다음 우선순위와 작업에 반영한다.
 
 ## 출제 이력과 검증 출처
 
