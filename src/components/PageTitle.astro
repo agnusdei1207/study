@@ -61,17 +61,17 @@ const dateLabel = formatNoteDate(date);
       align-items: baseline;
       gap: 0.45rem;
       margin: 1rem 0 0;
-      border: 1px solid color-mix(in srgb, var(--palette-accent) 55%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
       border-radius: 999px;
       padding: 0.2rem 0.65rem;
-      color: var(--palette-muted);
-      background: color-mix(in srgb, var(--palette-accent) 12%, transparent);
+      color: var(--color-text-muted);
+      background: color-mix(in srgb, var(--color-primary) 12%, transparent);
       font-size: var(--sl-text-sm);
       line-height: 1.35;
     }
 
     .note-number strong {
-      color: var(--palette-accent-glow);
+      color: var(--color-primary);
       font-family: var(--sl-font-mono);
       font-size: var(--sl-text-base);
       font-variant-numeric: tabular-nums;
@@ -83,7 +83,7 @@ const dateLabel = formatNoteDate(date);
       font-size: var(--sl-text-h1);
       line-height: var(--sl-line-height-headings);
       font-weight: 600;
-      color: var(--palette-text);
+      color: var(--color-text);
       font-family: Georgia, "Noto Serif KR", serif;
     }
 
@@ -110,7 +110,7 @@ const dateLabel = formatNoteDate(date);
     }
 
     .note-written-at {
-      color: var(--palette-muted);
+      color: var(--color-text-muted);
       font-size: var(--sl-text-xs);
       font-variant-numeric: tabular-nums;
     }

@@ -106,25 +106,38 @@
   --palette-code-bg: #f0e9df;
 }
 
-/* ---------- 3. Map semantic → Starlight variables ---------- */
+/* ---------- 3. Palette values → semantic roles ---------- */
 :root {
-  --sl-color-accent: var(--palette-accent);
-  --sl-color-accent-low: color-mix(in srgb, var(--palette-accent) 25%, var(--palette-bg));
-  --sl-color-accent-high: var(--palette-accent-glow);
-  --sl-color-white: var(--palette-text);
-  --sl-color-black: var(--palette-bg);
-  --sl-color-gray-1: var(--palette-text);
-  --sl-color-gray-2: var(--palette-muted);
-  --sl-color-gray-3: color-mix(in srgb, var(--palette-muted) 80%, transparent);
-  --sl-color-gray-4: var(--palette-line);
-  --sl-color-gray-5: var(--palette-surface);
-  --sl-color-gray-6: var(--palette-bg);
-  --sl-color-bg: var(--palette-bg);
-  --sl-color-bg-nav: color-mix(in srgb, var(--palette-bg) 85%, transparent);
-  --sl-color-bg-sidebar: var(--palette-bg);
-  --sl-color-hairline-light: var(--palette-line);
-  --sl-color-hairline-shade: var(--palette-line);
-  --sl-color-bg-inline-code: var(--palette-code-bg);
+  --color-primary: var(--palette-accent);
+  --color-primary-hover: var(--palette-accent-glow);
+  --color-primary-active: var(--palette-accent-deep);
+  --color-background: var(--palette-bg);
+  --color-surface: var(--palette-surface);
+  --color-text: var(--palette-text);
+  --color-text-muted: var(--palette-muted);
+  --color-border: var(--palette-line);
+  --color-code-background: var(--palette-code-bg);
+}
+
+/* ---------- 4. Semantic roles → Starlight variables ---------- */
+:root {
+  --sl-color-accent: var(--color-primary);
+  --sl-color-accent-low: color-mix(in srgb, var(--color-primary) 25%, var(--color-background));
+  --sl-color-accent-high: var(--color-primary-hover);
+  --sl-color-white: var(--color-text);
+  --sl-color-black: var(--color-background);
+  --sl-color-gray-1: var(--color-text);
+  --sl-color-gray-2: var(--color-text-muted);
+  --sl-color-gray-3: color-mix(in srgb, var(--color-text-muted) 80%, transparent);
+  --sl-color-gray-4: var(--color-border);
+  --sl-color-gray-5: var(--color-surface);
+  --sl-color-gray-6: var(--color-background);
+  --sl-color-bg: var(--color-background);
+  --sl-color-bg-nav: color-mix(in srgb, var(--color-background) 85%, transparent);
+  --sl-color-bg-sidebar: var(--color-background);
+  --sl-color-hairline-light: var(--color-border);
+  --sl-color-hairline-shade: var(--color-border);
+  --sl-color-bg-inline-code: var(--color-code-background);
   --sl-content-width: 56rem;
   --sl-text-5xl: 2.75rem;
   --sl-font: Pretendard, Inter, "Noto Sans KR", system-ui, -apple-system, sans-serif;
@@ -137,8 +150,8 @@ html, body {
 }
 
 body {
-  background-color: var(--palette-bg);
-  color: var(--palette-text);
+  background-color: var(--color-background);
+  color: var(--color-text);
   letter-spacing: -0.01em;
 }
 
@@ -155,8 +168,8 @@ body {
   gap: 1.25rem;
   margin-block: 1rem 1.5rem;
   padding: 0.5rem 0.75rem;
-  background: color-mix(in srgb, var(--palette-surface) 65%, transparent);
-  border: 1px solid var(--palette-line);
+  background: color-mix(in srgb, var(--color-surface) 65%, transparent);
+  border: 1px solid var(--color-border);
   border-radius: 0.55rem;
   max-width: 100%;
 }
@@ -166,9 +179,9 @@ body {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.6rem;
-  border: 1px solid var(--palette-line);
+  border: 1px solid var(--color-border);
   border-radius: 0.4rem;
-  background: var(--palette-surface);
+  background: var(--color-surface);
   font-size: 0.85rem;
   line-height: 1.35;
   white-space: normal;
@@ -182,15 +195,15 @@ body {
   top: 50%;
   left: calc(100% + 0.43rem);
   transform: translateY(-50%);
-  color: var(--palette-muted);
+  color: var(--color-text-muted);
   font-weight: 700;
   font-size: 1.1em;
 }
 
 .sl-markdown-content .itpe-topic-path > strong {
-  border-color: var(--palette-accent);
-  color: var(--palette-accent-glow);
-  background: color-mix(in srgb, var(--palette-accent) 14%, var(--palette-surface));
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));
   font-weight: 700;
 }
 
@@ -232,45 +245,31 @@ body {
 
 ::selection {
   color: #ffffff;
-  background: color-mix(in srgb, var(--palette-accent) 60%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 60%, transparent);
 }
 
 a:not([class]) {
-  color: var(--palette-accent);
+  color: var(--color-primary);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
   transition: color 0.15s ease;
 }
 
 a:not([class]):hover {
-  color: var(--palette-accent-glow);
+  color: var(--color-primary-hover);
 }
 
-/* 일반 굵기와 채점 키워드 색상을 분리한다. */
+/* Bold text and keyword spans share the palette's primary color. */
 .sl-markdown-content strong {
-  color: inherit;
+  color: var(--color-primary);
   font-weight: 700;
   letter-spacing: 0.01em;
 }
 
 .sl-markdown-content .itpe-keyword,
 .sl-markdown-content .itpe-keyword strong {
-  color: var(--palette-accent-glow);
+  color: var(--color-primary);
   font-weight: 700;
-}
-
-/* ITPE Markdown의 **채점 키워드**는 자동으로 강조색을 적용한다. */
-.sl-markdown-content:has(.itpe-topic-path) :is(p, li, td, th, blockquote) strong {
-  color: var(--palette-accent-glow);
-}
-
-:root[data-theme='light'] .sl-markdown-content .itpe-keyword,
-:root[data-theme='light'] .sl-markdown-content .itpe-keyword strong {
-  color: var(--palette-accent-deep);
-}
-
-:root[data-theme='light'] .sl-markdown-content:has(.itpe-topic-path) :is(p, li, td, th, blockquote) strong {
-  color: var(--palette-accent-deep);
 }
 
 /* Clean Blockquote styling matching studynote */
@@ -278,10 +277,10 @@ a:not([class]):hover {
   margin-inline: 0;
   margin-block: 1.25rem;
   padding: 0.9rem 1.2rem;
-  border-inline-start: 3px solid var(--palette-accent);
+  border-inline-start: 3px solid var(--color-primary);
   border-radius: 0 6px 6px 0;
-  background: color-mix(in srgb, var(--palette-surface) 75%, transparent);
-  color: var(--palette-text);
+  background: color-mix(in srgb, var(--color-surface) 75%, transparent);
+  color: var(--color-text);
 }
 
 .sl-markdown-content blockquote p {
@@ -297,7 +296,7 @@ a:not([class]):hover {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
-  border: 1px solid var(--palette-line);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   font-size: 0.92rem;
   margin-block: 1.5rem;
@@ -307,18 +306,18 @@ a:not([class]):hover {
 .sl-markdown-content td {
   min-width: 95px;
   padding: 0.65rem 0.85rem;
-  border: 1px solid var(--palette-line);
+  border: 1px solid var(--color-border);
   text-align: left;
   vertical-align: top;
 }
 
 .sl-markdown-content th {
-  background: color-mix(in srgb, var(--palette-surface) 90%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 90%, transparent);
   font-weight: 600;
 }
 
 .sl-markdown-content tr:nth-child(even) td {
-  background: color-mix(in srgb, var(--palette-surface) 40%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 40%, transparent);
 }
 
 @media (max-width: 40rem) {
@@ -337,9 +336,9 @@ a:not([class]):hover {
 
 /* Code & Pre styling */
 .sl-markdown-content pre {
-  border: 1px solid var(--palette-line) !important;
+  border: 1px solid var(--color-border) !important;
   border-radius: 6px !important;
-  background: var(--palette-code-bg) !important;
+  background: var(--color-code-background) !important;
   overflow-x: auto !important;
   max-width: 100% !important;
   -webkit-overflow-scrolling: touch;
@@ -357,8 +356,8 @@ a:not([class]):hover {
 }
 
 .sl-markdown-content :not(pre) > code {
-  background: var(--palette-code-bg);
-  border: 1px solid var(--palette-line);
+  background: var(--color-code-background);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 0.15em 0.35em;
   font-size: 0.88em;
@@ -366,14 +365,14 @@ a:not([class]):hover {
 
 .sl-markdown-content hr {
   border: 0;
-  border-top: 1px solid var(--palette-line);
+  border-top: 1px solid var(--color-border);
   margin-block: 2.25rem;
 }
 
 /* ---------- 5. Badge colors ---------- */
 .sl-badge {
   font-variant-numeric: tabular-nums;
-  border-color: color-mix(in srgb, var(--palette-accent) 40%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
 }
 
 .sl-badge.priority-badge {
@@ -403,9 +402,9 @@ a:not([class]):hover {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-color: color-mix(in srgb, var(--palette-surface) 80%, transparent);
-  color: var(--palette-text);
-  border: 1px solid var(--palette-line);
+  background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
   border-radius: 0.375rem;
   padding: 0.28rem 1.6rem 0.28rem 0.65rem;
   font-size: var(--sl-text-xs, 0.8125rem);
@@ -422,18 +421,18 @@ a:not([class]):hover {
 }
 
 .palette-select:hover {
-  border-color: var(--palette-accent);
-  background-color: var(--palette-surface);
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
 }
 
 .palette-select:focus-visible {
-  border-color: var(--palette-accent);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--palette-accent) 30%, transparent);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 30%, transparent);
 }
 
 .palette-select option {
-  background-color: var(--palette-bg);
-  color: var(--palette-text);
+  background-color: var(--color-background);
+  color: var(--color-text);
   padding: 0.35rem 0.5rem;
 }
 
@@ -466,7 +465,7 @@ a:not([class]):hover {
   );
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--palette-line);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .page > .header > .header {
@@ -494,8 +493,8 @@ a:not([class]):hover {
 .sidebar .sidebar-pane {
   --sl-sidebar-visibility: hidden;
   width: 100%;
-  background-color: var(--palette-bg);
-  border-inline-end: 1px solid var(--palette-line);
+  background-color: var(--color-background);
+  border-inline-end: 1px solid var(--color-border);
 }
 
 .sidebar starlight-menu-button[aria-expanded='true'] ~ .sidebar-pane {
@@ -533,10 +532,10 @@ a:not([class]):hover {
 
 mobile-starlight-toc nav {
   inset-inline-start: 0;
-  background-color: var(--palette-bg);
+  background-color: var(--color-background);
   opacity: 1;
   isolation: isolate;
-  border-bottom: 1px solid var(--palette-line);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .katex-display {
@@ -560,13 +559,13 @@ mobile-starlight-toc nav {
   font-size: clamp(2rem, 5vw, 3rem) !important;
   font-weight: 700 !important;
   letter-spacing: -0.03em !important;
-  color: var(--palette-text) !important;
+  color: var(--color-text) !important;
   margin-bottom: 1rem !important;
 }
 
 .hero .tagline {
   font-size: 1.15rem !important;
-  color: var(--palette-muted) !important;
+  color: var(--color-text-muted) !important;
   max-width: 44rem;
   margin-inline: auto;
   line-height: 1.6;
@@ -581,8 +580,8 @@ mobile-starlight-toc nav {
 }
 
 .dashboard-stat-card {
-  background: var(--palette-surface);
-  border: 1px solid var(--palette-line);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 1.25rem 1rem;
   text-align: center;
@@ -591,22 +590,22 @@ mobile-starlight-toc nav {
 
 .dashboard-stat-card:hover {
   transform: translateY(-2px);
-  border-color: var(--palette-accent);
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--palette-accent) 15%, transparent);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 15%, transparent);
 }
 
 .dashboard-stat-num {
   font-size: 1.75rem;
   font-weight: 800;
   font-family: var(--sl-font-mono);
-  color: var(--palette-accent);
+  color: var(--color-primary);
   letter-spacing: -0.02em;
   margin-bottom: 0.25rem;
 }
 
 .dashboard-stat-label {
   font-size: 0.85rem;
-  color: var(--palette-muted);
+  color: var(--color-text-muted);
   font-weight: 500;
 }
 
@@ -617,7 +616,7 @@ mobile-starlight-toc nav {
   gap: 0.75rem;
   margin-block: 2.5rem 1.25rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--palette-line);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .section-heading h2 {
@@ -625,7 +624,7 @@ mobile-starlight-toc nav {
   font-weight: 700 !important;
   margin: 0 !important;
   border: none !important;
-  color: var(--palette-text) !important;
+  color: var(--color-text) !important;
 }
 
 .section-badge {
@@ -633,9 +632,9 @@ mobile-starlight-toc nav {
   padding: 0.2rem 0.6rem;
   border-radius: 9999px;
   font-weight: 600;
-  background: color-mix(in srgb, var(--palette-accent) 15%, var(--palette-surface));
-  color: var(--palette-accent);
-  border: 1px solid color-mix(in srgb, var(--palette-accent) 30%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 15%, var(--color-surface));
+  color: var(--color-primary);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
 }
 
 /* 3. 8대 학습 영역 카드 그리드 */
@@ -650,8 +649,8 @@ mobile-starlight-toc nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: var(--palette-surface);
-  border: 1px solid var(--palette-line);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   padding: 1.5rem;
   text-decoration: none !important;
@@ -668,15 +667,15 @@ mobile-starlight-toc nav {
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, var(--palette-accent-deep), var(--palette-accent));
+  background: linear-gradient(90deg, var(--color-primary-active), var(--color-primary));
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 
 .subject-card:hover {
   transform: translateY(-3px);
-  border-color: var(--palette-accent);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--palette-accent) 18%, transparent);
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 
 .subject-card:hover::before {
@@ -694,28 +693,28 @@ mobile-starlight-toc nav {
   font-family: var(--sl-font-mono);
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--palette-accent);
-  background: color-mix(in srgb, var(--palette-accent) 12%, transparent);
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
 }
 
 .subject-card-count {
   font-size: 0.78rem;
-  color: var(--palette-muted);
+  color: var(--color-text-muted);
 }
 
 .subject-card-title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--palette-text);
+  color: var(--color-text);
   margin-bottom: 0.5rem;
   line-height: 1.4;
 }
 
 .subject-card-desc {
   font-size: 0.88rem;
-  color: var(--palette-muted);
+  color: var(--color-text-muted);
   line-height: 1.55;
   margin-bottom: 1.25rem;
   flex-grow: 1;
@@ -727,9 +726,9 @@ mobile-starlight-toc nav {
   justify-content: space-between;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--palette-accent);
+  color: var(--color-primary);
   padding-top: 0.75rem;
-  border-top: 1px solid color-mix(in srgb, var(--palette-line) 60%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
 }
 
 .subject-card-footer span {
@@ -739,7 +738,7 @@ mobile-starlight-toc nav {
 }
 
 .subject-card:hover .subject-card-footer span {
-  color: var(--palette-accent-glow);
+  color: var(--color-primary-hover);
 }
 
 /* 4. 핵심 원칙 하이라이트 박스 */
@@ -751,9 +750,9 @@ mobile-starlight-toc nav {
 }
 
 .principle-item {
-  background: color-mix(in srgb, var(--palette-surface) 60%, transparent);
-  border: 1px solid var(--palette-line);
-  border-left: 3px solid var(--palette-accent);
+  background: color-mix(in srgb, var(--color-surface) 60%, transparent);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
   border-radius: 0 8px 8px 0;
   padding: 1.1rem 1.25rem;
 }
@@ -761,13 +760,13 @@ mobile-starlight-toc nav {
 .principle-title {
   font-weight: 700;
   font-size: 0.95rem;
-  color: var(--palette-text);
+  color: var(--color-text);
   margin-bottom: 0.35rem;
 }
 
 .principle-desc {
   font-size: 0.85rem;
-  color: var(--palette-muted);
+  color: var(--color-text-muted);
   line-height: 1.5;
   margin: 0;
 }
@@ -781,9 +780,9 @@ mobile-starlight-toc nav {
 }
 
 .quote-card {
-  background: var(--palette-surface);
-  border: 1px solid var(--palette-line);
-  border-left: 3px solid var(--palette-accent);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
   border-radius: 0 10px 10px 0;
   padding: 1.35rem 1.5rem;
   display: flex;
@@ -794,22 +793,22 @@ mobile-starlight-toc nav {
 
 .quote-card:hover {
   transform: translateY(-2px);
-  border-color: var(--palette-accent);
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--palette-accent) 15%, transparent);
+  border-color: var(--color-primary);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--color-primary) 15%, transparent);
 }
 
 .quote-text {
   font-family: Georgia, "Noto Serif KR", serif;
   font-size: 0.98rem;
   line-height: 1.65;
-  color: var(--palette-text);
+  color: var(--color-text);
   font-weight: 500;
   margin-bottom: 0.6rem;
 }
 
 .quote-note {
   font-size: 0.82rem;
-  color: var(--palette-muted);
+  color: var(--color-text-muted);
   line-height: 1.5;
   margin-bottom: 0.75rem;
 }
@@ -817,7 +816,7 @@ mobile-starlight-toc nav {
 .quote-author {
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--palette-accent);
+  color: var(--color-primary);
   text-align: right;
   font-family: var(--sl-font-mono);
   letter-spacing: 0.02em;
