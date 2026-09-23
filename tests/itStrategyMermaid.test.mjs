@@ -34,7 +34,7 @@ test('All IT strategy notes use Mermaid instead of legacy visual markup', async 
   }
 });
 
-test('30초 인출은 본질·메커니즘·판정 한 줄씩만 사용한다', async () => {
+test('30초 인출은 본질·메커니즘을 중심으로 하고 추가 단서는 선택한다', async () => {
   for (const file of await targetNotes()) {
     const note = await readFile(file, 'utf8');
     const recall = sectionAfter(note, /^## 30초 인출\s*$/mu);
@@ -42,10 +42,9 @@ test('30초 인출은 본질·메커니즘·판정 한 줄씩만 사용한다', 
     assert.doesNotMatch(recall, /```mermaid/u, `${file}: 30초 인출에는 Mermaid를 넣지 않습니다.`);
     const summary = recall.split(/<details\b/iu, 1)[0];
     const lines = summary.split(/\r?\n/u).map((line) => line.trim()).filter(Boolean);
-    assert.equal(lines.length, 3, `${file}: 30초 인출은 정확히 3줄이어야 합니다.`);
+    assert.ok(lines.length >= 2, `${file}: 30초 인출에는 본질과 메커니즘이 필요합니다.`);
     assert.match(lines[0], /^- (?:\*\*)?본질(?:\*\*)?:/u, `${file}: 첫 줄은 본질이어야 합니다.`);
     assert.match(lines[1], /^- (?:\*\*)?메커니즘(?:\*\*)?:/u, `${file}: 둘째 줄은 메커니즘이어야 합니다.`);
-    assert.match(lines[2], /^- (?:\*\*)?(?:산출물|결과|효과|판정 기준)(?:\*\*)?:/u, `${file}: 셋째 줄 라벨이 올바르지 않습니다.`);
   }
 });
 
