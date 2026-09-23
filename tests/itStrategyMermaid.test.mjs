@@ -70,3 +70,18 @@ test('IT strategy notes place each question above its answer, with 10 points fir
     assert.ok(note.indexOf('## 1교시 10점 답안') < note.indexOf('## 2~4교시 25점 답안'), file);
   }
 });
+
+test('each Roman-numbered IT strategy answer section has its own visual', async () => {
+  for (const file of await targetNotes()) {
+    const note = await readFile(file, 'utf8');
+    const body = note.slice(note.indexOf('## 2~4교시 25점 답안'));
+    const headings = [...body.matchAll(/^## [Ⅰ-Ⅻ]+\.[^\n]*$/gmu)];
+    assert.ok(headings.length > 0, `${file}: numbered answer sections are required`);
+    for (let index = 0; index < headings.length; index += 1) {
+      const start = headings[index].index + headings[index][0].length;
+      const end = index + 1 < headings.length ? headings[index + 1].index : body.length;
+      const section = body.slice(start, end);
+      assert.match(section, /\|---|```mermaid/u, `${file}: ${headings[index][0]} needs a table or diagram`);
+    }
+  }
+});
