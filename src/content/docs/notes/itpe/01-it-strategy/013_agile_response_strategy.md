@@ -1,7 +1,7 @@
 ---
 title: "애자일 대응 전략"
 author: "Codex"
-date: "2026-09-23T22:58:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **짧은 반복** 마다 작동하는 **증분** 을 검증하고 고객 피드백으로 다음 우선순위를 조정한다.
+- 본질: 애자일(Agile)은 일을 짧은 주기로 나눠 작동하는 결과를 자주 확인하고, 사용자 의견에 따라 다음에 할 일을 바꾸는 개발 방식이다.
 - 메커니즘: **Product Backlog → Sprint Goal → Increment → Review·Retrospective → Feedback** 을 짧은 주기로 순환한다.
 - 판정 기준: **Definition of Done(DoD)** 충족 여부로 완료 품질을 확인하고 범위는 가치 순으로 조정한다.
 
@@ -146,15 +146,6 @@ flowchart TD
 - 공식 문제지 원문으로 확인한 직접 기출 없음
 - [Agile Manifesto](https://agilemanifesto.org/)
 - [The Scrum Guide 2020](https://scrumguides.org/scrum-guide.html)
-
-## 학습 체크
-
-- [ ] Ⅰ: 애자일을 짧은 반복·고객 피드백·작동하는 증분으로 정의할 수 있는가?
-- [ ] Ⅱ: ① Backlog 정제부터 ④ Review·Retrospective까지 네 단계의 활동·산출을 한 쌍으로 재현하고, Review 결과가 Backlog로 환류하는 고리를 그릴 수 있는가?
-- [ ] Ⅲ: 전통적 개발과 애자일을 요구 관리·가치 전달·품질 통제 세 축으로 비교할 수 있는가?
-- [ ] Ⅳ: 제품·팀·조직 세 수준의 핵심 통제와 각 수준의 적용 방식 2개씩을 트리로 재현할 수 있는가?
-- [ ] Ⅴ: 형식화·계약 충돌·기술 부채의 위험·대책·효과 세 쌍을 연결할 수 있는가?
-- [ ] Ⅵ: DoD 기반의 자동화 테스트와 백로그 환류를 적용한 기술사적 문제 해결 방안을 제시할 수 있는가?
 
 ## 연결 토픽
 

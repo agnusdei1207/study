@@ -1,7 +1,7 @@
 ---
 title: "프로젝트 위험관리"
 author: "Codex"
-date: "2026-09-23T22:58:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **Project Risk Management(프로젝트 위험관리)** 는 프로젝트 목표에 영향을 주는 불확실성을 다루는 반복 관리 활동이다.
+- 본질: 프로젝트 위험관리는 앞으로 생길지 모르는 일을 미리 살펴보고, 목표에 나쁜 영향을 줄이거나 좋은 기회를 살릴 방법을 정하는 일이다.
 - 메커니즘: 식별 → 분석 → 대응계획·실행 → 감시 → 신규·잔여· **2차 위험** 재식별한다.
 
 <details>
@@ -126,8 +126,8 @@ flowchart TD
 
 ### 1. 정의·목적
 
-- 정의: **Negative Risk(부정적 위험)** 는 프로젝트 목표(일정·원가·품질)에 손실을 끼치는 불확실한 사건·조건
-- 목적: 위협 발생 확률과 손실 영향을 최소화하여 프로젝트 목표를 보호하는 것
+- 정의: 프로젝트 위험은 발생 여부와 영향이 불확실한 사건·조건이며, 위협은 목표에 부정적 영향을 주는 위험이다.
+- 목적: 위협의 가능성·영향을 줄이고 기회를 활용해 프로젝트 목표를 달성한다.
 
 ### 2. 위협·기회 대응전략
 
@@ -157,14 +157,6 @@ flowchart TD
 - 제139회 정보관리기술사 1교시: "IT 프로젝트에서 발생할 수 있는 부정적 위험(Negative Risk)과 대응 전략"
 - [PMI, PMBOK Guide Sixth Edition](https://www.pmi.org/-/media/pmi/documents/public/pdf/pmbok-standards/pmbok-guide-6th-edition-5th-printing.pdf)
 - [PMI Lexicon of Project Management Terms, Version 5.0](https://www.pmi.org/-/media/pmi/documents/registered/pdf/pmbok-standards/pmi-lexicon-pm-terms.pdf)
-
-## 학습 체크
-
-- [ ] Ⅰ: 위험을 불확실한 사건·조건으로 정의하고 이슈와 구분할 수 있는가?
-- [ ] Ⅱ: PMBOK 6판의 7개 프로세스와 Monitor Risks의 환류를 그릴 수 있는가?
-- [ ] Ⅲ: 원인 → 사건 → 영향에 Risk Owner·Trigger를 연결할 수 있는가?
-- [ ] Ⅳ: 위협과 기회의 대응전략을 구분할 수 있는가?
-- [ ] Ⅴ~Ⅵ: 잔여·2차 위험 재평가 및 폐루프 통제를 적용한 기술사적 문제 해결 방안을 제시할 수 있는가?
 
 ## 연결 토픽
 

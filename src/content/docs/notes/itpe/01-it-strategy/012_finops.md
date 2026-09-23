@@ -1,7 +1,7 @@
 ---
 title: "FinOps"
 author: "Codex"
-date: "2026-09-23T22:58:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **FinOps** 는 엔지니어링·재무·비즈니스가 기술 사용과 비용의 책임을 공유하여 비즈니스 가치를 높이는 운영 프레임워크·문화이다.
+- 본질: FinOps는 클라우드 비용을 쓰는 기술팀과 예산을 보는 재무팀이 함께 사용량과 가치를 살펴 낭비를 줄이는 운영 방식이다.
 - 메커니즘: **Inform** → **Optimize** → **Operate** 를 반복하며 사용량·단가·단위가치를 지속 개선한다.
 - 산출물: 할당된 비용 데이터 · 최적화 실행안 · 단위비용 지표 · 운영 정책이다.
 
@@ -137,15 +137,6 @@ flowchart TD
 - [FinOps Foundation 공식 프레임워크 (FinOps Framework)](https://www.finops.org/framework/)
 - [FinOps Foundation, What is FinOps?](https://www.finops.org/introduction/what-is-finops/)
 - [Linux Foundation FOCUS 공식 사양 (FinOps Open Cost and Usage Specification)](https://focus.finops.org/)
-
-## 학습 체크
-
-- [ ] Ⅰ 개요: FinOps를 공동 책임·클라우드 가치·데이터 기반 의사결정으로 정의할 수 있는가?
-- [ ] Ⅱ 라이프사이클: Inform·Optimize·Operate를 Business Value 중심의 원형 순환으로 그리고 단계별 산출물 3개를 연결할 수 있는가?
-- [ ] Ⅲ 비용 데이터: 공통 형식화가 비용 귀속과 비교를 돕는 이유를 설명할 수 있는가?
-- [ ] Ⅳ 비교: ITFM과 FinOps의 비용 성격·주기·책임 차이를 설명할 수 있는가?
-- [ ] Ⅴ 문제점·대응책: 비용 미할당·권고 방치·약정 불균형의 위험·대책·효과를 연결할 수 있는가?
-- [ ] Ⅵ 제언: Shift-Left FinOps 및 단위 경제성을 적용한 기술사적 문제 해결 방안을 제시할 수 있는가?
 
 ## 연결 토픽
 

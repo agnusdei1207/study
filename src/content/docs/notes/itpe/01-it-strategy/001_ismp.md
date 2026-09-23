@@ -1,7 +1,7 @@
 ---
 title: "ISMP"
 author: "Codex"
-date: "2026-09-23T22:58:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **ISMP(Information System Master Plan)** 는 **ISP(Information Strategy Planning)** 가 선정한 정보화 과제를 조달 가능한 **Baseline** 으로 구체화한다.
+- 본질: ISMP(Information System Master Plan, 정보시스템 마스터플랜)는 이미 선정한 정보화 사업을 발주할 수 있게 필요한 기능, 시스템 구조와 비용을 구체적으로 정리하는 계획이다.
 - 메커니즘: 요구사항을 분석해 아키텍처·규모·예산·**RFP(Request for Proposal)** 로 구체화하고, **RTM(Requirements Traceability Matrix)** 으로 반영 여부를 추적한다.
 
 <details>
@@ -116,14 +116,6 @@ flowchart TD
 
 - 제138회 정보관리기술사 2교시: ISP 정의·목적, 수행방법론, ISP·ISMP 비교
 - 한국지능정보사회진흥원(NIA), [ISP·ISMP 수립 공통가이드 제9판](https://nia.or.kr/site/nia_kor/ex/bbs/View.do?bcIdx=28088&cbIdx=99835&parentSeq=28088)
-
-## 학습 체크
-
-- [ ] Ⅰ 개요: ISMP를 `특정 시스템 · FP 산정 수준 · 발주 Baseline`으로 정의하고 목적을 말할 수 있는가?
-- [ ] Ⅱ 방법론: 5단계를 순서대로 쓰고, 각 단계의 **활동과 산출물** 을 한 쌍으로 재현할 수 있는가?
-- [ ] Ⅲ 비교: ISP와 ISMP를 `목적 · 대상 범위 · 분석 상세도 · 핵심 산출물 · 종료 기준` 5개 축으로 비교할 수 있는가?
-- [ ] Ⅳ 통제: `위험 · 대책 · 효과`를 기준으로 구축사업 이행방안의 조달 위험 통제 방안을 설명할 수 있는가?
-- [ ] Ⅴ 제언: 발주 전에 요구사항 추적성을 확인해 누락과 불일치를 줄이는 방안을 제시할 수 있는가?
 
 ## 연결 토픽
 
