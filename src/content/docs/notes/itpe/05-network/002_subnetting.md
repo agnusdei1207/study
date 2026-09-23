@@ -1,17 +1,17 @@
 ---
 title: "서브네팅·슈퍼네팅(CIDR·VLSM)"
 author: "OpenAI Codex"
-date: "2026-09-20T20:08:10+09:00"
+date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-network"
 sidebar: { badge: { text: "A" } }
 extra:
   keyword_grade: "A"
-  model: "GPT-5.6 Sol"
+  model: "GPT-6"
 
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:08 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -36,9 +36,34 @@ extra:
 - `LPM(Longest Prefix Match)`: 목적지와 가장 길게 일치하는 경로를 선택함
 </details>
 
-## 예상문제
+---
 
-> CIDR 기반 서브네팅과 VLSM의 개념 및 설계 절차를 설명하고, 슈퍼네팅과의 차이 및 IPv4·IPv6 주소 설계 시 고려사항을 논하시오. (25점)
+## 1교시 예상문제 (10점)
+> CIDR 기반 서브네팅과 VLSM의 개념 및 슈퍼네팅과의 차이를 설명하시오. (예상)
+
+---
+
+## 1교시 10점 답안
+### 1. 정의·목적
+- 정의: **CIDR(Classless Inter-Domain Routing)** 기반 서브네팅은 prefix를 늘려 주소 블록을 분할하고, **VLSM(Variable Length Subnet Mask)**은 요구량에 따라 서로 다른 prefix 길이를 적용한다.
+- 목적: 주소를 필요한 크기로 배분하고 네트워크 영역을 구분한다.
+
+| 구분 | 서브네팅·VLSM | 슈퍼네팅 |
+|---|---|---|
+| 방향 | Prefix 증가·분할 | Prefix 감소·집계 |
+| 목적 | 주소·영역 배정 | 경로 정보 축소 |
+| 조건·위험 | 경계 정렬, 단편화·중복 | 연속·정렬 필요, 과잉 집계 위험 |
+
+- 제언: 할당 전 주소 중복과 요약 가능 범위를 IPAM에서 확인한다.
+
+---
+
+## 2~4교시 예상문제 (25점)
+> CIDR·VLSM에 따른 주소 설계와 슈퍼네팅의 차이를 설명하고, 주소 분할 절차 및 IPv4·IPv6 적용 시 고려사항을 제시하시오. (예상)
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. Prefix로 주소 공간을 설계하는 서브네팅 개요
 
@@ -130,36 +155,11 @@ extra:
 
 - 주소 설계는 계산표 작성으로 끝나지 않고 IPAM·라우팅·VLAN·ACL·DHCP와 같은 기준정보로 운영되어야 함
 
-## Ⅶ. 주소-경로-정책 추적성으로 완성하는 결론
+## 기술사적 제언
 
-> 좋은 주소 설계는 빈 주소 수가 아니라 Prefix·경로·정책의 실제 상태가 동일한 Baseline으로 유지되는지로 판정함.
-
-### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 주소를 촘촘히 쓰는 것보다 연속성과 성장 여지를 보존해야 경로 집계와 변경 통제가 쉬워진다.
-- `나라면`: 변경 전 IPAM에서 경계·중복·요약을 검사하고 배포 후 제어 평면과 전달 평면을 대조하겠다.
-
-### 실전 답안용 기술사적 제언
-- 판정: 계획 Prefix와 실제 주소·경로·정책의 일치
-- 대안: IPAM을 Baseline으로 주소·VLAN·VRF·DHCP·ACL 연결
-- 검증: RIB·FIB·Lease·ACL Hit·도달성 교차 확인
-- 효과: 주소 충돌·요약 Blackhole·정책 누락 예방
-
-<div class="itpe-flow itpe-flow--vertical" aria-label="주소 설계 개선"><div class="itpe-flow__node"><strong>분산 관리</strong><small><b>문제:</b> 주소·경로·정책 불일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>IPAM Baseline</strong><small><b>대안:</b> Prefix와 운영 객체 연결</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>배포 대조</strong><small><b>판정:</b> 계획·RIB·FIB·정책 일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>일관성 확보</strong><small><b>효과:</b> 충돌·Blackhole 예방</small></div></div>
-
-## 1교시 10점 답안 발췌
-
-- 정의: **CIDR(Classless Inter-Domain Routing)** 기반 서브네팅은 Prefix를 늘려 주소 블록을 분할하고, **VLSM(Variable Length Subnet Mask)**은 요구량별 길이를 달리하는 설계임
-- 목적: 주소 효율과 장애·보안 영역 분리 → 확장 가능한 계층 주소 확보
-
-<div class="itpe-flow itpe-flow--vertical" aria-label="서브네팅 1교시 그림"><div class="itpe-flow__node"><strong>요구량</strong><small><b>입력:</b> Host·성장량</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>VLSM 분할</strong><small><b>활동:</b> 큰 요구부터 경계 배치</small><small><b>산출:</b> Subnet Prefix</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>CIDR 집계</strong><small><b>판정:</b> 연속·정렬·동일 정책</small><small><b>산출:</b> 요약 경로</small></div></div>
-
-| 축 | 서브네팅·VLSM | 슈퍼네팅 |
-|---|---|---|
-| 방향 | Prefix 증가·분할 | Prefix 감소·집계 |
-| 목적 | 주소·영역 배정 | 경로 상태 축소 |
-| 위험 | 단편화·중복 | Blackhole·과잉 광고 |
-
-- 결론: IPAM Baseline과 RIB·FIB·정책 대조로 주소 계산을 운영 일관성까지 닫음
+| 문제 | 해결 방안 |
+|---|---|
+| 주소 계획과 실제 IP·경로·보안 정책이 어긋나면 중복 할당이나 요약 경로 오류가 생길 수 있음 | IPAM을 기준으로 주소·VLAN·VRF·DHCP·ACL을 관리하고 배포 후 RIB·FIB와 정책을 대조 |
 
 ## 출제 이력과 검증 출처
 
@@ -168,14 +168,6 @@ extra:
 - [RFC 950, Internet Standard Subnetting Procedure](https://www.rfc-editor.org/info/rfc950/)
 - [RFC 4291, IPv6 Addressing Architecture](https://www.rfc-editor.org/info/rfc4291/)
 - [RFC 5375, IPv6 Unicast Address Assignment Considerations](https://www.rfc-editor.org/info/rfc5375/)
-
-## 학습 체크
-
-- [ ] `prefix-분할-집계` 큰 그림을 30초 안에 그림
-- [ ] 큰 요구부터 prefix와 block size를 계산함
-- [ ] network·usable·broadcast·잔여 범위를 표로 검증함
-- [ ] VLSM과 슈퍼네팅을 방향·목적·조건으로 비교함
-- [ ] Classful 표현을 현재 주소 설계 기준으로 사용하지 않음
 
 ## 연결 토픽
 

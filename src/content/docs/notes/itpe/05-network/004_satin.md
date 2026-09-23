@@ -1,12 +1,12 @@
 ---
 title: "위성·공중·지상 통합망(SATIN·NTN)"
 author: "OpenAI Codex"
-date: "2026-09-20T20:08:30+09:00"
+date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-network"]
 sidebar: { badge: { text: "A" } }
 extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 ---
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:08 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>
 ## 지식 로드맵 내 현재 위치
 <div class="itpe-topic-path" aria-label="지식 경로"><span>차세대 이동통신</span><span>비지상 통합 접속</span><strong>SATIN·NTN</strong></div>
 
@@ -29,8 +29,35 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 - `LEO(Low Earth Orbit)`: 낮은 궤도로 지연을 줄이나 빠른 이동·Handover가 필요함
 </details>
 
-## 예상문제
-- SATIN과 NTN의 개념·구조·핵심 기술을 설명하고 지상망 연동 시 기술적 문제와 대책을 제시하시오.
+---
+
+## 1교시 예상문제 (10점)
+> SATIN과 NTN의 개념 및 구성 계층을 설명하시오. (예상)
+
+---
+
+## 1교시 10점 답안
+### 1. 정의·목적
+- 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)** 은 위성·공중 플랫폼·지상망을 통합해 3차원 접속을 제공하는 네트워크다.
+- 목적: 지상망의 음영 지역과 재난 단절을 보완해 접속을 이어 간다.
+
+| 계층 | 역할 |
+|---|---|
+| Space | 위성으로 광역 접속 제공 |
+| Air | 공중 플랫폼으로 지역 보강 |
+| Terrestrial | 지상 기지국·코어망으로 고용량 서비스 제공 |
+| 통합 제어 | 링크 품질과 이동성에 따라 경로 선택·전환 |
+
+- 제언: 지연·가용성·전환 연속성을 서비스별로 시험한다.
+
+---
+
+## 2~4교시 예상문제 (25점)
+> SATIN·NTN의 구조와 Payload 유형을 설명하고, 위성·지상망 연동에서 발생하는 주요 문제와 대응책을 제시하시오. (예상)
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. 3차원 커버리지를 제공하는 SATIN·NTN 개요
 > SATIN은 계층을 단순 연결하는 망이 아니라 각 Access의 지연·용량·가용성을 서비스 정책으로 전환하는 통합망임.
@@ -58,32 +85,11 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 | 빈번한 전환 | Moving Cell | 예측 Handover·Multi-connectivity | 단절·재전송 |
 | Link 불안 | 강우·차폐 | Link Adaptation·다중 경로 | 가용성·지연 |
 
-## Ⅳ. 서비스 중심 통합 제어 결론
-> 단일 Access 고정보다 서비스 SLA(Service Level Agreement)와 궤도 예측을 결합한 Multi-access 선택이 성능과 연속성을 함께 지킴.
-### 학습자 통찰 메모 — 답안 밖
-- `[핵심 통찰]`: 위성망의 넓은 Coverage는 지연·Doppler·용량 제약과 교환된다. 통합의 가치는 이를 숨기는 것이 아니라 예측 가능한 정책으로 노출하는 데 있다.
-- `나라면`: 재난·해상 등 우선 서비스부터 지상망 Failover를 시험하고 Access별 품질을 측정해 확대하겠다.
-### 실전 답안용 기술사적 제언
-- 판정: 서비스별 지연·가용성·Handover 연속성 충족
-- 대안: 궤도 예측과 Telemetry 기반 Multi-access Steering
-- 검증: Gateway 장애·강우·Beam 전환 시나리오 시험
-- 효과: 음영·단절 대응과 불필요한 위성 자원 사용 억제
+## 기술사적 제언
 
-<div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 개선 제언"><div class="itpe-flow__node"><strong>Access 고정</strong><small><b>문제:</b> 환경 변화와 경로 품질 불일치</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>예측 Steering</strong><small><b>대안:</b> 궤도 · 품질 · 서비스 정책 결합</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>전환 시험</strong><small><b>판정:</b> 지연 · 가용성 · 연속성</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>통합 운용</strong><small><b>효과:</b> Coverage와 자원효율 균형</small></div></div>
-
-## 1교시 10점 답안 발췌
-- 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)**은 **NTN(Non-Terrestrial Network)**과 **지상망**을 통합하여 3차원 접속을 제공하는 아키텍처임
-- 목적: 음영·재난 단절 보완 → 서비스 연속성 확보
-
-<div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 1교시 구조"><div class="itpe-flow__node"><strong>Space</strong><small><b>활동:</b> 광역 중계</small><small><b>산출:</b> Wide Coverage</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>Air</strong><small><b>활동:</b> 지역 보강</small><small><b>산출:</b> 임시 Coverage</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>Ground</strong><small><b>활동:</b> Core 연동</small><small><b>산출:</b> 서비스 연속성</small></div></div>
-
-| 문제 | 대책 |
+| 문제 | 해결 방안 |
 |---|---|
-| Doppler·긴 RTT | 사전 보상·Timer 조정 |
-| Moving Cell | 예측 Handover |
-| Payload | Transparent: 지상 gNB·단순 위성 / Regenerative: 위성 처리·짧은 경로 |
-
-- 결론: 궤도·품질·서비스 정책 기반 Steering을 장애 시나리오로 검증함
+| 빠른 위성 이동과 링크 품질 변화로 고정 경로의 지연·전환 품질이 흔들림 | 궤도 예측과 링크 상태를 반영해 경로를 선택하고, 강우·Gateway 장애·Beam 전환 시험으로 확인 |
 
 ## 출제 이력과 검증 출처
 - 제128·130회: 원문 미확보(회차만 확인)
@@ -91,13 +97,6 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 - [3GPP TR 38.811, NR to support non-terrestrial networks](https://www.3gpp.org/dynareport/38811.htm)
 - [ITU-R M.2160-0, IMT-2030 Framework](https://www.itu.int/rec/R-REC-M.2160-0-202311-I/en)
 - [IEEE Access, Satellite-Aerial-Terrestrial Integrated Network for 6G](https://ieeexplore.ieee.org/document/9350208)
-
-## 학습 체크
-- [ ] Ⅰ 개요: SATIN·NTN·지상망 관계와 목적을 재현할 수 있는가?
-- [ ] 상단 그림: Space·Air·Ground의 역할과 산출을 연결할 수 있는가?
-- [ ] Ⅱ 표: Transparent와 Regenerative Payload를 비교할 수 있는가?
-- [ ] Ⅲ 표: Doppler·RTT·Moving Cell의 원인·대책·판정을 연결할 수 있는가?
-- [ ] Ⅳ 제언: 문제·대안·판정·효과의 Steering 흐름을 재현할 수 있는가?
 
 ## 연결 토픽
 - [NTN](./006_ntn/) · [6G 이동통신](./027_6g_mobile_communication/) · [5G-Advanced](./039_5g_advanced/)

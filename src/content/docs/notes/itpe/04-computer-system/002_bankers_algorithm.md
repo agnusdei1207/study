@@ -1,17 +1,17 @@
 ---
 title: "은행가 알고리즘(Banker's Algorithm)"
 author: "Codex"
-date: "2026-09-20T20:02:55+09:00"
+date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GPT-6"
   keyword_grade: "A"
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:02 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -43,9 +43,35 @@ extra:
 
 </details>
 
-## 예상문제
+---
 
-- 교착상태 회피를 위한 은행가 알고리즘의 개념과 자료구조를 설명하고, 자원 요청·안전성 판정 절차와 적용 한계를 제시하시오.
+## 1교시 예상문제 (10점)
+> 은행가 알고리즘(Banker's Algorithm)을 설명하시오. (제138회 1교시 11번)
+
+---
+
+## 1교시 10점 답안
+### 1. 정의·목적
+- 정의: 프로세스별 최대 요구량을 전제로 자원을 시험 할당하고, 안전 순서열이 있을 때만 승인하는 교착상태 회피 알고리즘이다.
+- 목적: 불안전한 자원 할당을 보류해 모든 프로세스의 완료 가능성을 보존한다.
+
+| 단계 | 핵심 판단 |
+|---|---|
+| 요청 검사 | `Request ≤ Need`, `Request ≤ Available` |
+| 시험 할당 | Available·Allocation·Need를 임시 갱신 |
+| 안전성 검사 | `Needᵢ ≤ Work`인 프로세스를 완료 처리하고 자원 반환 |
+| 결정 | 모든 프로세스 완료 가능하면 승인, 아니면 원복·대기 |
+
+- 제언: 최대 요구량을 신뢰할 수 있는 자원 풀에 선별 적용한다.
+
+---
+
+## 2~4교시 예상문제 (25점)
+> 은행가 알고리즘의 자료구조와 자원 요청·안전성 판정 절차를 설명하고, 교착상태 처리 기법과 비교하여 적용 한계를 제시하시오. (예상)
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. 안전상태를 보존하는 은행가 알고리즘 개요
 
@@ -104,76 +130,20 @@ extra:
 | 문제 | 원인 | 대책 | 효과 |
 |---|---|---|---|
 | 최대량 오류 | 동적 요구량·과대 선언 | 워크로드별 상한과 재측정 | 안전성과 이용률 균형 |
-| 판정 지연 | 요청마다 행렬 반복 탐색 | 제한 자원 풀에 선택 적용 | 통제 비용 억제 |
+| 판정 지연 | 요청마다 행렬 반복 탐색 | 제한 자원 풀에 선택 적용 | 반복 계산 부담 완화 |
 | 장기 대기 | 불안전 요청의 반복 보류 | 대기시간 기반 우선순위·예약 | 기아 완화 |
 
-## Ⅴ. 안전성과 자원 활용을 함께 보는 결론
+## 기술사적 제언
 
-> 핵심은 계산식을 외우는 데 있지 않고, 시험 할당을 되돌릴 수 있는 원자적 상태관리와 안전 순서열 검증을 하나의 승인 통제로 묶는 데 있음.
-
-### 학습자 통찰 메모 — 답안 밖
-
-- `[핵심 통찰]`: 불안전상태가 곧 교착상태는 아니지만, 미래 요청까지 고려하면 완료 가능성을 보증할 수 없으므로 보수적으로 거절한다.
-- `나라면`: 최대량을 신뢰할 수 있는 배치·테넌트 자원 풀부터 적용하고, 대기와 이용률을 관측해 상한을 조정하겠다.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 최대 요구량의 신뢰성과 시험 할당 원복의 원자성이 적용 가능성을 결정
-- 대안: 제한 자원 풀에 상한 선언·우선순위 노화·상태 스냅샷을 결합
-- 검증: 불안전 판정, 장기 대기, 자원 유휴의 추세를 함께 확인
-- 효과: 교착 회피를 유지하면서 과도한 보류와 기아를 완화
-
-<div class="itpe-flow itpe-flow--vertical" aria-label="은행가 알고리즘 적용 개선 흐름">
-  <div class="itpe-flow__node"><strong>현행 한계</strong><small><b>문제:</b> 부정확한 Max와 반복 보류</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>선별 적용</strong><small><b>대안:</b> 상한을 통제할 수 있는 자원 풀부터 도입</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>운영 검증</strong><small><b>판정:</b> 안전성·대기·이용률의 동시 관찰</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>상한 재조정</strong><small><b>효과:</b> 교착 회피와 자원 활용의 균형</small></div>
-</div>
-
-## 1교시 10점 답안 발췌
-
-- 정의: 프로세스별 **Max(최대 요구량)**를 전제로 자원을 시험 할당하고 **Safe Sequence(안전 순서열)**가 존재할 때만 승인하는 **교착상태 회피** 알고리즘
-- 목적: **안전상태** 보존 → 모든 프로세스의 완료 가능성 확보
-
-<div class="itpe-flow itpe-flow--vertical" aria-label="은행가 알고리즘 1교시 흐름">
-  <div class="itpe-flow__node"><strong>요청 검사</strong><small><b>판정:</b> Request ≤ Need, Request ≤ Available</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>시험 할당</strong><small><b>활동:</b> Available·Allocation·Need 갱신</small><small><b>산출:</b> 후보 상태</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>안전성 검사</strong><small><b>판정:</b> Needᵢ ≤ Work 반복</small><small><b>산출:</b> 안전이면 승인, 아니면 원복</small></div>
-</div>
-
-- 한계: 최대 요구량 사전 선언과 반복 행렬 계산 때문에 요구량이 급변하는 범용 환경에는 제한적 적용
-
-| 비교 | 예방 | 은행가 알고리즘 | 탐지·복구 |
-|---|---|---|---|
-| 시점 | 할당 규칙 사전 제한 | 할당 직전 안전성 검사 | 할당 후 교착 탐지 |
-| 기준 | 필요조건 제거 | 안전 순서열 존재 | 대기 사이클·교착 집합 |
-| 대가 | 자원 활용 저하 | Max 선언·반복 계산 | 종료·선점·롤백 |
-
-| 문제 | 원인 | 대책 |
-|---|---|---|
-| 장기 대기 | 불안전 요청 반복 보류 | Aging·예약량 |
-| 이용률 저하 | Max 과대 선언 | 실측 기반 상한 재조정 |
-
-- 결론: 통제 가능한 자원 풀에서 최대량의 신뢰성과 장기 대기를 함께 관리
+| 문제 | 해결 방안 |
+|---|---|
+| 최대 요구량이 부정확하면 보수적 판정으로 장기 대기와 자원 유휴가 커질 수 있음 | 최대량을 신뢰할 수 있는 자원 풀에 선별 적용하고, 상한 선언과 대기 우선순위를 운영 조건에 맞게 조정 |
 
 ## 출제 이력과 검증 출처
 
 - 제138회 정보관리기술사 1교시 11번: `은행가 알고리즘(Banker's Algorithm)`
 - [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
 - [University of Illinois Chicago — Operating Systems: Deadlocks, Banker's Algorithm](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/7_Deadlocks)
-
-## 학습 체크
-
-- [ ] Ⅰ 개요: 안전·불안전·교착상태를 판정 기준과 조치로 구분할 수 있는가?
-- [ ] Ⅱ 자료구조: Available·Max·Allocation·Need의 관계와 크기를 재현할 수 있는가?
-- [ ] Ⅲ 절차: 요청 검사·시험 할당·안전성 검사·승인 또는 원복을 순서대로 그릴 수 있는가?
-- [ ] Ⅳ 비교·대책: 예방·회피·탐지의 시점과 대가를 비교하고 세 가지 한계의 원인·대책을 연결할 수 있는가?
-- [ ] Ⅴ 제언: 적용 대상, 검증 항목, 상한 재조정의 관계를 설명할 수 있는가?
 
 ## 연결 토픽
 

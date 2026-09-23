@@ -1,11 +1,11 @@
 ---
 title: "TCP 혼잡제어(Congestion Control)"
 author: "OpenAI Codex"
-date: "2026-09-20T16:00:00+09:00"
+date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-network"
 extra:
-  model: "GPT-5"
+  model: "GPT-6"
 
 ---
 
@@ -29,9 +29,39 @@ extra:
 - 구분: 흐름제어는 receiver 보호, 혼잡제어는 network 보호
 - 현대화: Reno만 외우지 않고 CUBIC·QUIC의 손실 탐지와 운영 지표까지 연결
 
-## 예상문제
+---
 
-> TCP 혼잡제어의 원리와 상태전이, Slow Start·Congestion Avoidance·Fast Retransmit/Recovery를 설명하고 CUBIC 및 QUIC과 비교한 뒤 운영 고려사항을 논하시오. (25점)
+## 1교시 예상문제 (10점)
+
+> TCP 혼잡제어의 목적과 cwnd를 이용한 핵심 동작을 설명하시오. (예상)
+
+---
+
+## 1교시 10점 답안
+
+- 정의: TCP 혼잡제어는 송신자가 경로의 혼잡 신호에 따라 혼잡 윈도(cwnd)를 조절하는 폐루프 제어이다.
+- 목적: 네트워크 혼잡을 완화하면서 경로 용량을 효율적으로 사용한다.
+
+```text
+전송(cwnd) → ACK·RTT·loss·ECN 관측 → cwnd 조정 → 다음 전송량 결정
+```
+
+| 구분 | 보호 대상 |
+|---|---|
+| 흐름제어(rwnd) | 수신자 버퍼 |
+| 혼잡제어(cwnd) | 네트워크 경로 |
+
+제언: 처리량과 함께 RTT·손실·재전송을 관찰해 제어 동작을 검증한다.
+
+---
+
+## 2~4교시 예상문제 (25점)
+
+> TCP 혼잡제어의 원리와 상태전이, Slow Start·Congestion Avoidance·Fast Retransmit/Recovery를 설명하고 CUBIC 및 QUIC과 비교한 뒤 운영 고려사항을 논하시오. (예상)
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. ACK clock으로 경로 수용량을 탐색하는 TCP 혼잡제어 개요
 
@@ -185,14 +215,6 @@ ACK → cwnd 증가 → 전송 → queue 혼잡 → loss/ECN → cwnd 감소
 - [RFC 5681, TCP Congestion Control](https://www.rfc-editor.org/info/rfc5681/)
 - [RFC 9438, CUBIC for Fast and Long-Distance Networks](https://www.rfc-editor.org/info/rfc9438/)
 - [RFC 9002, QUIC Loss Detection and Congestion Control](https://www.rfc-editor.org/rfc/rfc9002.html)
-
-## 학습 체크
-
-- [ ] ACK-feedback 큰 그림을 30초 안에 그림
-- [ ] cwnd·rwnd·ssthresh를 구분함
-- [ ] Slow Start·Avoidance·Fast Recovery 전이를 설명함
-- [ ] Reno·CUBIC·QUIC을 증가·손실복구 축으로 비교함
-- [ ] throughput과 tail latency·loss·fairness를 함께 제시함
 
 ## 연결 토픽
 

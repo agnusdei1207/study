@@ -1,17 +1,17 @@
 ---
 title: "프로세스 동기화 기법(뮤텍스·세마포어·모니터)"
 author: "Codex"
-date: "2026-09-20T20:02:55+09:00"
+date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
     text: "A"
 extra:
-  model: "GPT-5.6 Sol"
+  model: "GPT-6"
   keyword_grade: "A"
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-5.6 Sol<br />작성 · 2026.09.20 20:02 KST</p>
+<p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
@@ -52,9 +52,36 @@ extra:
 
 </details>
 
-## 예상문제
+---
 
-- 운영체제의 프로세스 동기화 기법인 뮤텍스·세마포어·모니터의 구조와 동작을 설명하고 비교한 후 동기화 오류 통제방안을 제시하시오.
+## 1교시 예상문제 (10점)
+
+> 뮤텍스·세마포어·모니터의 개념과 핵심 차이를 설명하시오. (예상)
+
+---
+
+## 1교시 10점 답안
+
+- 정의: 프로세스 동기화는 공유 상태에 대한 동시 접근과 조건 대기를 조정하는 기법이다.
+- 목적: 경쟁 상태를 막고 공유 데이터의 불변식을 지킨다.
+
+| 기법 | 핵심 통제 | 주 사용 |
+|---|---|---|
+| 뮤텍스 | 소유권이 있는 단일 잠금 | 임계구역 보호 |
+| 세마포어 | P/V로 허가증 수량·신호 통제 | 자원 풀·순서 동기화 |
+| 모니터 | 상태·프로시저·조건변수 캡슐화 | 복합 공유 상태 보호 |
+
+제언: 통제 대상의 소유권·허용 수량·조건 복잡성에 맞춰 기법을 선택한다.
+
+---
+
+## 2~4교시 예상문제 (25점)
+
+> 운영체제의 프로세스 동기화 기법인 뮤텍스·세마포어·모니터의 구조와 동작을 설명하고 비교한 후 동기화 오류 통제방안을 제시하시오. (예상)
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. 공유상태 불변식을 지키는 프로세스 동기화 개요
 
@@ -188,14 +215,6 @@ extra:
 - [The Open Group Base Specifications Issue 8 — sem_wait](https://pubs.opengroup.org/onlinepubs/9799919799/functions/sem_wait.html)
 - [The Open Group Base Specifications Issue 8 — sem_post](https://pubs.opengroup.org/onlinepubs/9799919799/functions/sem_post.html)
 - [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
-
-## 학습 체크
-
-- [ ] Ⅰ 개요: 뮤텍스·세마포어·모니터의 목적과 Binary·Counting 세마포어의 용도를 구분할 수 있는가?
-- [ ] Ⅱ 동작: Mutex Lock·Semaphore P/V·Monitor Condition의 활동과 산출을 순서대로 그릴 수 있는가?
-- [ ] Ⅲ 비교: 세 기법을 추상화·진입 수·소유권·조건 대기로 비교할 수 있는가?
-- [ ] Ⅳ 통제: 교착·누수·기아·우선순위 역전의 원인과 대책을 연결할 수 있는가?
-- [ ] Ⅴ 제언: 원시기법 선택부터 Baseline·검증·상위 추상화 전환까지 설명할 수 있는가?
 
 ## 연결 토픽
 
