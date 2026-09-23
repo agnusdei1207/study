@@ -17,7 +17,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: AI Workload의 전력·열·물·탄소 제약을 전원부터 IT 장비까지 통합 관리하는 물리 인프라 체계이다.
+- 본질: AI 에너지 인프라는 AI 데이터센터에 필요한 전력과 냉각·계측 설비다. 변동하는 부하와 고밀도 발열을 안정적으로 감당해야 한다.
 - 메커니즘: 전력조달에서 수배전·UPS, AI 랙, 냉각, 계측·스케줄링까지 전력과 열의 흐름을 계층적으로 연결한다.
 - 판정 기준: 전력효율과 GPU 랙 열 상태를 지속 관측하고 임계 초과 시 냉각·부하 조정이 실행되는지 확인한다.
 
@@ -34,9 +34,42 @@ extra:
 
 </details>
 
-## 예상문제
+---
+
+## 1교시 예상문제 (10점)
+
+> AI 데이터센터의 전력·냉각 구조와 에너지 통제를 설명하시오. (예상·10점)
+
+---
+
+## 1교시 10점 답안
+
+### 1. 정의·목적
+
+- 정의: AI 컴퓨팅의 전력수요와 발열을 수용하기 위한 전원·계통·배전·냉각·계측의 통합 인프라
+- 목적: **용량 적기확보·서비스 연속성·에너지 효율·환경 지속가능성**
+
+### 2. 3대 냉각 방식 비교 아키텍처
+
+```mermaid
+flowchart LR
+    A["공랭식 · ~15kW·PUE 1.4~1.6"] --> B["D2C · 40~100kW·PUE 1.15~1.25"] --> C["액침식 · 100kW+·PUE 1.05~1.10"]
+```
+
+### 3. 핵심 통제
+
+- **Integrated Capacity Planning** : Workload·전력·열·물·입지 공동계획
+- **Carbon-aware Scheduling** : 전력여건과 SLA에 따른 시간·지역·가속기 배치
+
+---
+
+## 2~4교시 예상문제 (25점)
 
 > AI 데이터센터 에너지 인프라의 구성체계를 설명하고, 전력·냉각·환경 문제점과 대응책을 제시하시오. **(미출제 예상·25점)**
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. 전력·열·물·탄소를 통합하는 AI 물리 인프라의 개요
 
@@ -117,40 +150,12 @@ flowchart TD
     Cooling & Power --> Scheduling
 ```
 
-## 1교시 10점 답안 발췌
-
-### 1. 정의·목적
-
-- 정의: AI 컴퓨팅의 전력수요와 발열을 수용하기 위한 전원·계통·배전·냉각·계측의 통합 인프라
-- 목적: **용량 적기확보·서비스 연속성·에너지 효율·환경 지속가능성**
-
-### 2. 3대 냉각 방식 비교 아키텍처
-
-```mermaid
-flowchart LR
-    A["공랭식 · ~15kW·PUE 1.4~1.6"] --> B["D2C · 40~100kW·PUE 1.15~1.25"] --> C["액침식 · 100kW+·PUE 1.05~1.10"]
-```
-
-### 3. 핵심 통제
-
-- **Integrated Capacity Planning** : Workload·전력·열·물·입지 공동계획
-- **Carbon-aware Scheduling** : 전력여건과 SLA에 따른 시간·지역·가속기 배치
-
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문으로 확인한 직접 기출 없음
 - [IEA, Energy and AI](https://www.iea.org/reports/energy-and-ai)
 - [IEA, Energy demand from AI](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai)
 - [U.S. DOE, Best Practices Guide for Energy-Efficient Data Center Design](https://www.energy.gov/cmei/femp/articles/best-practices-guide-energy-efficient-data-center-design)
-
-## 학습 체크
-
-- [ ] Ⅰ: AI 에너지 인프라의 정의·목적을 설명할 수 있는가?
-- [ ] Ⅱ: 전원·수배전·IT·냉각·운영 계층을 구분할 수 있는가?
-- [ ] Ⅲ: 수요예측부터 운영최적화까지 활동과 산출물을 연결할 수 있는가?
-- [ ] Ⅳ: Air·D2C·Immersion을 비교할 수 있는가?
-- [ ] Ⅴ: 계통·부하·열·환경·가용성 위험의 대응책을 제시할 수 있는가?
-- [ ] Ⅵ: Carbon-aware Workload Orchestration을 제언할 수 있는가?
 
 ## 연결 토픽
 

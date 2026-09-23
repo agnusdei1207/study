@@ -17,7 +17,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: 핵심기술을 직접 개발하거나 신뢰 가능한 경로로 조달할 선택권·통제력·회복력이다.
+- 본질: 기술 주권은 핵심기술을 직접 만들거나 신뢰할 수 있는 곳에서 조달할 선택권과 통제력이다.
 - 메커니즘: 핵심기능 식별 → 의존성 분석 → 전략 선택(내재화/다변화/비축) → 실행·실증 → 감시·재평가한다.
 - 판정 기준: 핵심 기술의 공급 의존성과 대체 경로를 점검하고 전환 훈련 결과로 복원 가능성을 검증한다.
 
@@ -33,9 +33,49 @@ extra:
 
 </details>
 
-## 예상문제
+---
+
+## 1교시 예상문제 (10점)
+
+> 기술 주권의 핵심 기술 스택과 공급망 의존 위험 통제를 설명하시오. (예상·10점)
+
+---
+
+## 1교시 10점 답안
+
+### 1. 정의·목적
+
+- 정의: 핵심기술을 개발하거나 일방적 구조 의존 없이 조달·운용할 수 있는 국가 역량
+- 목적: **공급망 회복력·전략적 자율성·산업경쟁력·서비스 연속성** 확보
+
+### 2. 핵심 기술 스택 및 통제 아키텍처
+
+```mermaid
+flowchart TD
+    subgraph STACK["기술 주권 4대 핵심 기술 스택"]
+        direction TB
+        S1["AI 모델·SW 스택"]
+        S2["클라우드·데이터 주권"]
+        S3["반도체·HW 가속기"]
+        S4["네트워크·사이버보안"]
+    end
+    STACK --> GOAL["통제 목표: 락인 방지·전환시간 최소화"]
+```
+
+### 3. 핵심 통제
+
+- **Dependency Map** : 공급자·국가·기술·계약 의존 가시화
+- **Dependency Budget** : 허용 집중도·목표 전환시간 기반 완화 투자
+
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 기술 주권의 개념과 확보전략을 설명하고, 디지털 기술 공급망의 문제점과 대응책을 제시하시오. **(미출제 예상·25점)**
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. 일방적 기술 의존을 줄이는 전략적 역량의 개요
 
@@ -122,47 +162,12 @@ flowchart TD
     Cloud_Layer --> Model_Layer
 ```
 
-## 1교시 10점 답안 발췌
-
-### 1. 정의·목적
-
-- 정의: 핵심기술을 개발하거나 일방적 구조 의존 없이 조달·운용할 수 있는 국가 역량
-- 목적: **공급망 회복력·전략적 자율성·산업경쟁력·서비스 연속성** 확보
-
-### 2. 핵심 기술 스택 및 통제 아키텍처
-
-```mermaid
-flowchart TD
-    subgraph STACK["기술 주권 4대 핵심 기술 스택"]
-        direction TB
-        S1["AI 모델·SW 스택"]
-        S2["클라우드·데이터 주권"]
-        S3["반도체·HW 가속기"]
-        S4["네트워크·사이버보안"]
-    end
-    STACK --> GOAL["통제 목표: 락인 방지·전환시간 최소화"]
-```
-
-### 3. 핵심 통제
-
-- **Dependency Map** : 공급자·국가·기술·계약 의존 가시화
-- **Dependency Budget** : 허용 집중도·목표 전환시간 기반 완화 투자
-
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문으로 확인한 직접 기출 없음
 - [OECD, Strategic autonomy and promotion of critical technologies](https://stip.oecd.org/stip/interactive-dashboards/themes/TH111)
 - [OECD, Science, technology and innovation policy in times of strategic competition](https://www.oecd.org/en/publications/oecd-science-technology-and-innovation-outlook-2023_0b55736e-en/full-report/component-6.html)
 - [OECD, Digital public goods: Enablers of digital sovereignty](https://www.oecd.org/en/publications/development-co-operation-report-2021_ce08832f-en/full-report/component-41.html)
-
-## 학습 체크
-
-- [ ] Ⅰ: 기술 주권의 정의·목적을 설명할 수 있는가?
-- [ ] Ⅱ: 반도체·Cloud·AI·Network·인재의 의존위험을 구분할 수 있는가?
-- [ ] Ⅲ: 핵심기능 식별부터 재평가까지 활동과 산출물을 연결할 수 있는가?
-- [ ] Ⅳ: 효율성 중심 조달과 기술 주권 조달을 비교할 수 있는가?
-- [ ] Ⅴ: 자원분산·고립·Lock-in 위험의 대응책을 제시할 수 있는가?
-- [ ] Ⅵ: Dependency Budget을 제언할 수 있는가?
 
 ## 연결 토픽
 

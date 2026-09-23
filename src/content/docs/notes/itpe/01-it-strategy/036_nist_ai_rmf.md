@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: NIST **AI RMF** 1.0은 AI 위험을 관리하고 신뢰성 고려사항을 AI 수명주기에 통합하기 위한 자발적·권리보호적·비산업특정 프레임워크다.
+- 본질: NIST AI RMF는 AI의 위험과 신뢰성을 관리할 때 참고하는 자발적 프레임워크다. 개발·운영 전 과정에서 위험을 찾고 측정·대응하도록 돕는다.
 - 메커니즘: 전 기능에 걸친 **GOVERN** 을 기반으로 **MAP → MEASURE → MANAGE** 를 반복하며 맥락·평가·처리 증거를 연결한다.
 - 결과: 신뢰성 특성의 맥락별 측정근거와 위험 처리 증거를 남기고 운영 중 재평가한다.
 
@@ -34,9 +34,51 @@ extra:
 
 </details>
 
-## 예상문제
+---
+
+## 1교시 예상문제 (10점)
+
+> NIST AI RMF의 네 기능과 AI 위험관리 적용 방식을 설명하시오. (예상·10점)
+
+---
+
+## 1교시 10점 답안
+
+### 1. 정의·목적
+
+- 정의: **NIST AI RMF 1.0** 은 AI의 사용 맥락과 영향을 **MAP** 하고 **GOVERN·MEASURE·MANAGE** 로 위험을 수명주기 전반에서 관리하는 자발적 프레임워크다.
+- 목적: **신뢰성 특성** 의 측정 근거와 위험 처리 증거를 연결해 AI의 **안전성·공정성·투명성·책임성** 을 의사결정에 반영하는 것
+
+### 2. 핵심 구조 및 체계
+
+- 정의: AI 시스템의 고유 위험을 관리하고 7대 신뢰성 특성을 전 생애주기에 통합하기 위한 NIST의 자발적·맥락 중심 프레임워크
+- 핵심 메커니즘: 전 과정 횡단 거버넌스(GOVERN)를 기반으로 맥락 분석(MAP) → 정량·정성 평가(MEASURE) → 대응 및 잔여위험 관리(MANAGE)의 반복 루프 수행
+
+```mermaid
+flowchart TB
+    G["GOVERN"]
+    subgraph C["반복 위험관리"]
+        direction LR
+        M1["MAP"] --> M2["MEASURE"]
+        M2 --> M3["MANAGE"]
+        M3 --> M1
+    end
+    G -.-> M1
+    G -.-> M2
+    G -.-> M3
+    M3 --> E["증거·잔여위험"]
+    E --> G
+```
+
+---
+
+## 2~4교시 예상문제 (25점)
 
 > NIST AI RMF 1.0의 개념, 4대 기능과 신뢰성 특성을 설명하고 생성형 AI 위험관리 적용방안을 제시하시오.
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. NIST AI RMF의 개념과 원칙의 개요
 
@@ -141,47 +183,12 @@ flowchart TD
     MG -.-> Profile
 ```
 
-## 1교시 10점 답안 발췌
-
-### 1. 정의·목적
-
-- 정의: **NIST AI RMF 1.0** 은 AI의 사용 맥락과 영향을 **MAP** 하고 **GOVERN·MEASURE·MANAGE** 로 위험을 수명주기 전반에서 관리하는 자발적 프레임워크다.
-- 목적: **신뢰성 특성** 의 측정 근거와 위험 처리 증거를 연결해 AI의 **안전성·공정성·투명성·책임성** 을 의사결정에 반영하는 것
-
-### 2. 핵심 구조 및 체계
-
-- 정의: AI 시스템의 고유 위험을 관리하고 7대 신뢰성 특성을 전 생애주기에 통합하기 위한 NIST의 자발적·맥락 중심 프레임워크
-- 핵심 메커니즘: 전 과정 횡단 거버넌스(GOVERN)를 기반으로 맥락 분석(MAP) → 정량·정성 평가(MEASURE) → 대응 및 잔여위험 관리(MANAGE)의 반복 루프 수행
-
-```mermaid
-flowchart TB
-    G["GOVERN"]
-    subgraph C["반복 위험관리"]
-        direction LR
-        M1["MAP"] --> M2["MEASURE"]
-        M2 --> M3["MANAGE"]
-        M3 --> M1
-    end
-    G -.-> M1
-    G -.-> M2
-    G -.-> M3
-    M3 --> E["증거·잔여위험"]
-    E --> G
-```
-
 ## 출제 이력과 검증 출처
 
 - 제138회 정보관리기술사 기출 (NIST AI RMF)
 - [NIST, AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 - [NIST AI 100-1, Artificial Intelligence Risk Management Framework 1.0](https://doi.org/10.6028/NIST.AI.100-1)
 - [NIST AI 600-1, Generative Artificial Intelligence Profile](https://doi.org/10.6028/NIST.AI.600-1)
-
-## 학습 체크
-
-- [ ] AI RMF의 자발적·맥락 기반 성격을 설명할 수 있는가?
-- [ ] 7개 신뢰성 특성과 상충 가능성을 설명할 수 있는가?
-- [ ] GOVERN·MAP·MEASURE·MANAGE의 활동과 산출물을 연결할 수 있는가?
-- [ ] 생성형 AI 위험을 통제와 검증 증거에 연결할 수 있는가?
 
 ## 연결 토픽
 

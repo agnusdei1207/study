@@ -17,7 +17,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: 화폐 자체에 사용 조건이 부여된 **Programmable Money** 와 결제 실행 조건이 자동화된 **Programmable Payment** 를 **AI Agent** 거래에 적용하는 메커니즘이다.
+- 본질: 프로그래머블 머니와 AI 에이전트 결제는 돈이나 결제에 미리 정한 조건을 적용해 에이전트가 허용된 거래만 실행하도록 하는 방식이다.
 - 메커니즘: 소유자가 세션키를 위임하면 AI Agent가 결제를 요청하고, Policy Engine 검증을 통과한 거래만 **DvP** 정산과 감사로그로 연결한다.
 - 판정 기준: **ERC-4337** 기반 계정 추상화/단기 세션키 적용 여부, 이상 거래 시 Circuit Breaker 작동 및 불가역 **WORM** 감사 추적성이다.
 
@@ -38,9 +38,64 @@ extra:
 
 </details>
 
-## 예상문제
+---
+
+## 1교시 예상문제 (10점)
+
+> AI Agent 조건부 결제 구조와 결제 통제 계층을 설명하시오. (예상·10점)
+
+---
+
+## 1교시 10점 답안
+
+### 1. 정의·목적
+
+- 정의: 블록체인 스마트 계약 기술과 중앙은행 디지털화폐(CBDC) 또는 토큰화 자산을 결합하여, 특정 조건이 충족될 때만 화폐가 프로그래밍된 로직대로 자동 실행·결제되는 디지털 화폐 기술
+- 목적: AI 에이전트 간 머신 투 머신(M2M) 자율 경제 거래 구현 · 조건부 결제를 통한 거래 신뢰성 및 투명성 극대화 · 정산 비용 및 시간의 획기적 절감
+
+- **정의** : 화폐 사용 조건( **Programmable Money** )과 결제 실행 규칙( **Programmable Payment** )을 코드로 통제하여 **AI Agent** 의 자율 거래를 안전하게 실행하는 **차세대 디지털 금융 아키텍처** .
+- **목적** : 기계 간(M2M) 초소액 결제 자동화, 거래 신뢰성 확보 및 에이전트 오동작·자금 탈취 방지.
+
+### 2. AI Agent 조건부 결제 아키텍처
+
+```mermaid
+flowchart LR
+    subgraph PRINCIPAL["인간·법인 소유자"]
+        O["소유자"]
+    end
+    subgraph AGENT["AI Agent · 대리인"]
+        A["AI Agent"]
+    end
+    subgraph POLICY["Policy Engine · Gate"]
+        P["가드레일 검증"]
+    end
+    subgraph EXEC["조건부 실행·정산"]
+        S["스마트 컨트랙트"] --> L["결제원장·감사로그"]
+    end
+
+    O -->|권한 위임| A
+    A -->|결제 지시| P
+    P -->|검증 통과| S
+    S -->|DvP 확정| L
+```
+
+### 3. 핵심 통제 계층
+
+| 통제층 | 핵심 통제 내용 |
+|---|---|
+| **권한 계층** | ERC-4337 계정 추상화, 단기 세션키, 화이트리스트 가맹점 한정 |
+| **위험 계층** | 실시간 Policy Engine, 이상 거래 탐지 시 Circuit Breaker 자동 차단 |
+| **정산 계층** | 스마트 컨트랙트 기반 DvP 조건부 정산 및 WORM 불변 감사 추적성 |
+
+---
+
+## 2~4교시 예상문제 (25점)
 
 > **(미출제 예상·25점)** **Programmable Money** 와 **Programmable Payment** 의 차이를 설명하고, **AI Agent** 결제 구조와 위험·통제방안을 제시하시오.
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. 개요
 
@@ -138,62 +193,12 @@ flowchart TD
     end
 ```
 
-## 1교시 10점 답안 발췌
-
-### 1. 정의·목적
-
-- 정의: 블록체인 스마트 계약 기술과 중앙은행 디지털화폐(CBDC) 또는 토큰화 자산을 결합하여, 특정 조건이 충족될 때만 화폐가 프로그래밍된 로직대로 자동 실행·결제되는 디지털 화폐 기술
-- 목적: AI 에이전트 간 머신 투 머신(M2M) 자율 경제 거래 구현 · 조건부 결제를 통한 거래 신뢰성 및 투명성 극대화 · 정산 비용 및 시간의 획기적 절감
-
-- **정의** : 화폐 사용 조건( **Programmable Money** )과 결제 실행 규칙( **Programmable Payment** )을 코드로 통제하여 **AI Agent** 의 자율 거래를 안전하게 실행하는 **차세대 디지털 금융 아키텍처** .
-- **목적** : 기계 간(M2M) 초소액 결제 자동화, 거래 신뢰성 확보 및 에이전트 오동작·자금 탈취 방지.
-
-### 2. AI Agent 조건부 결제 아키텍처
-
-```mermaid
-flowchart LR
-    subgraph PRINCIPAL["인간·법인 소유자"]
-        O["소유자"]
-    end
-    subgraph AGENT["AI Agent · 대리인"]
-        A["AI Agent"]
-    end
-    subgraph POLICY["Policy Engine · Gate"]
-        P["가드레일 검증"]
-    end
-    subgraph EXEC["조건부 실행·정산"]
-        S["스마트 컨트랙트"] --> L["결제원장·감사로그"]
-    end
-
-    O -->|권한 위임| A
-    A -->|결제 지시| P
-    P -->|검증 통과| S
-    S -->|DvP 확정| L
-```
-
-### 3. 핵심 통제 계층
-
-| 통제층 | 핵심 통제 내용 |
-|---|---|
-| **권한 계층** | ERC-4337 계정 추상화, 단기 세션키, 화이트리스트 가맹점 한정 |
-| **위험 계층** | 실시간 Policy Engine, 이상 거래 탐지 시 Circuit Breaker 자동 차단 |
-| **정산 계층** | 스마트 컨트랙트 기반 DvP 조건부 정산 및 WORM 불변 감사 추적성 |
-
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
 - [ECB, Progress on the investigation phase of a digital euro](https://www.ecb.europa.eu/euro/digital_euro/timeline/profuse/shared/pdf/ecb.degov230424_progress.en.pdf)
 - [BIS, Pushing the monetary frontier: stablecoins and tokenised deposits](https://www.bis.org/speeches/20260828-pushing-monetary-frontier-stablecoins-and-tokenised-deposits)
 - [Ethereum, ERC-4337](https://eips.ethereum.org/EIPS/eip-4337)
-
-## 학습 체크
-
-- [ ] Ⅰ: **Programmable Money** ·Payment의 정의·목적을 설명할 수 있는가?
-- [ ] Ⅱ: Money와 Payment의 조건 대상·쟁점을 비교할 수 있는가?
-- [ ] Ⅲ: 권한 위임부터 정산까지 활동·산출을 연결할 수 있는가?
-- [ ] Ⅳ: 결제수단별 강점·위험을 비교할 수 있는가?
-- [ ] Ⅴ: 오판·탈취·사기·책임·취소 위험의 대응책을 제시할 수 있는가?
-- [ ] Ⅵ: 위험도별 승인 분기를 그릴 수 있는가?
 
 ## 연결 토픽
 

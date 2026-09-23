@@ -5,7 +5,8 @@ import test from 'node:test';
 const notePath = 'src/content/docs/notes/itpe/01-it-strategy/002_iso_iec_38500.md';
 const cssPath = 'src/styles/custom.css';
 
-const excerptHeading = '## 1교시 10점 답안 발췌';
+const shortHeading = '## 1교시 10점 답안';
+const longHeading = '## 2~4교시 25점 답안';
 
 test('ISO 38500 shows EDM as a feedback cycle and explains the framework', async () => {
   const note = await readFile(notePath, 'utf8');
@@ -20,7 +21,7 @@ test('ISO 38500 shows EDM as a feedback cycle and explains the framework', async
 
 test('EDM cycle and dated-principles reference stay focused', async () => {
   const note = await readFile(notePath, 'utf8');
-  const body = note.slice(note.indexOf('## Ⅰ.'), note.indexOf(excerptHeading));
+  const body = note.slice(note.indexOf(longHeading), note.indexOf('## 출제 이력과 검증 출처'));
 
   const modelStart = body.indexOf('## Ⅱ.');
   const modelEnd = body.indexOf('\n## Ⅲ.', modelStart);
@@ -31,11 +32,11 @@ test('EDM cycle and dated-principles reference stay focused', async () => {
   assert.doesNotMatch(body.slice(principlesStart, principlesEnd), /```mermaid/u, '여섯 항목의 나열은 별도 도해로 중복하지 않습니다.');
 });
 
-test('the 10 point excerpt reuses a body diagram instead of a meta table', async () => {
+test('the 10 point answer reuses a body diagram instead of a meta table', async () => {
   const note = await readFile(notePath, 'utf8');
-  const excerpt = note.slice(note.indexOf(excerptHeading));
+  const excerpt = note.slice(note.indexOf(shortHeading), note.indexOf('## 2~4교시 예상문제'));
 
-  const body = note.slice(note.indexOf('## Ⅰ.'), note.indexOf(excerptHeading));
+  const body = note.slice(note.indexOf(longHeading), note.indexOf('## 출제 이력과 검증 출처'));
   const mermaidBlocks = (text) => [...text.matchAll(/```mermaid\s*\n([\s\S]*?)```/gu)]
     .map(([, source]) => source.trim().replaceAll(/\s+/gu, ' '));
   const bodyDiagrams = new Set(mermaidBlocks(body));

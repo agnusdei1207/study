@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: 내부 강점·약점과 외부 기회·위협을 근거로 분류하고 교차해 실행전략을 만드는 프레임워크이다.
+- 본질: SWOT 분석은 내부 강점·약점과 외부 기회·위협을 나눠 전략 대안을 찾는 방법이다.
 - 메커니즘: 외부·내부 사실을 **SWOT** 으로 분류하고 **TOWS** 로 교차해 우선순위와 실행과제를 도출한다.
 - 산출물: **SWOT** · **TOWS** 매트릭스 · 전략대안 · 우선과제·로드맵이다.
 
@@ -33,9 +33,43 @@ extra:
 
 </details>
 
-## 예상문제
+---
+
+## 1교시 예상문제 (10점)
+
+> SWOT 분석에서 내·외부 요인을 전략으로 연결하는 절차를 설명하시오. (예상·10점)
+
+---
+
+## 1교시 10점 답안
+
+### 1. 정의·목적
+
+- 정의: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)** 은 내부 역량과 외부 환경을 분류하고 TOWS로 실행전략을 도출하는 프레임워크
+- 목적: 전략적 적합성·실행과제 도출
+
+### 2. 핵심 구조 및 매커니즘
+
+- 정의: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)** 은 내부 역량과 외부 환경을 분류하고 TOWS로 실행전략을 도출하는 프레임워크
+- 목적: 전략적 적합성·실행과제 도출
+
+```mermaid
+flowchart TD
+    A["범위·목표 정의"] --> B["팩트 수집"]
+    B --> C["SWOT 분류"]
+    C --> D["TOWS 교차"]
+    D --> E["우선순위·실행"]
+```
+
+---
+
+## 2~4교시 예상문제 (25점)
 
 > SWOT 분석의 개념과 수행절차를 설명하고, TOWS 전략 도출 및 단순 나열식 분석의 대응책을 제시하시오.
+
+---
+
+## 2~4교시 25점 답안
 
 ## Ⅰ. SWOT 분석의 개요
 
@@ -115,37 +149,10 @@ flowchart TD
     end
 ```
 
-## 1교시 10점 답안 발췌
-
-### 1. 정의·목적
-
-- 정의: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)** 은 내부 역량과 외부 환경을 분류하고 TOWS로 실행전략을 도출하는 프레임워크
-- 목적: 전략적 적합성·실행과제 도출
-
-### 2. 핵심 구조 및 매커니즘
-
-- 정의: **SWOT 분석(Strengths, Weaknesses, Opportunities, Threats)** 은 내부 역량과 외부 환경을 분류하고 TOWS로 실행전략을 도출하는 프레임워크
-- 목적: 전략적 적합성·실행과제 도출
-
-```mermaid
-flowchart TD
-    A["범위·목표 정의"] --> B["팩트 수집"]
-    B --> C["SWOT 분류"]
-    C --> D["TOWS 교차"]
-    D --> E["우선순위·실행"]
-```
-
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문으로 확인한 직접 기출 없음
 - [Harvard Business School: The Five Competitive Forces That Shape Strategy](https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-competitive-forces-that-shape-strategy.aspx)
-
-## 학습 체크
-
-- [ ] Ⅰ: SWOT의 정의·목적과 내부·외부 구분기준을 설명할 수 있는가?
-- [ ] Ⅱ: 범위부터 실행과제까지 활동·산출을 연결할 수 있는가?
-- [ ] Ⅲ: SO·ST·WO·WT의 조합을 재현할 수 있는가?
-- [ ] Ⅳ~Ⅵ: 분석도구 차이와 나열식 SWOT의 대응책을 제시할 수 있는가?
 
 ## 연결 토픽
 

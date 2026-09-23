@@ -51,12 +51,22 @@ test('30초 인출은 본질·메커니즘을 중심으로 하고 추가 단서�
 test('10점 답안의 Mermaid는 본문에서 검증한 그림을 그대로 재사용한다', async () => {
   for (const file of await targetNotes()) {
     const note = await readFile(file, 'utf8');
-    const excerptHeading = /^## (?:1교시 10점 답안 발췌|10점 답안 압축본)\s*$/mu;
-    const heading = note.match(excerptHeading);
-    if (!heading || heading.index === undefined) continue;
-    const bodyDiagrams = new Set(mermaidBlocks(note.slice(0, heading.index)));
-    for (const diagram of mermaidBlocks(sectionAfter(note, excerptHeading) ?? '')) {
-      assert.ok(bodyDiagrams.has(diagram), `${file}: 10점 답안 Mermaid는 본문 그림을 그대로 재사용해야 합니다.`);
+    const short = sectionAfter(note, /^## 1교시 10점 답안\s*$/mu) ?? '';
+    const longStart = note.indexOf('## 2~4교시 25점 답안');
+    const longEnd = note.indexOf('## 출제 이력과 검증 출처', longStart);
+    assert.ok(longStart >= 0 && longEnd > longStart, `${file}: 25점 답안 절이 필요합니다.`);
+    const bodyDiagrams = new Set(mermaidBlocks(note.slice(longStart, longEnd)));
+    for (const diagram of mermaidBlocks(short)) {
+      assert.ok(bodyDiagrams.has(diagram), `${file}: 10점 답안 Mermaid는 25점 답안 그림을 그대로 재사용해야 합니다.`);
     }
+  }
+});
+
+test('IT strategy notes place each question above its answer, with 10 points first', async () => {
+  for (const file of await targetNotes()) {
+    const note = await readFile(file, 'utf8');
+    assert.match(note, /---\s+## 1교시 예상문제 \(10점\)\s+>[^\n]+\s+---\s+## 1교시 10점 답안/u, file);
+    assert.match(note, /---\s+## 2~4교시 예상문제 \(25점\)\s+(?:>[^\n]+\s*)+---\s+## 2~4교시 25점 답안/u, file);
+    assert.ok(note.indexOf('## 1교시 10점 답안') < note.indexOf('## 2~4교시 25점 답안'), file);
   }
 });
