@@ -7,13 +7,13 @@ sidebar:
     variant: note
 author: "Antigravity"
 category: "03-data"
-date: "2026-09-20T09:30:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 weight: 135
 title: "빅데이터 플랫폼 아키텍처(5계층)와 람다·카파 및 데이터 레이크하우스 진화"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
   question_no: "135"
 ---
@@ -89,12 +89,45 @@ extra:
   - **카파 아키텍처 (Kappa)**: 배치 레이어를 제거하고 카프카 로그 기반 단일 스트림 엔진(Flink)으로 재처리 일원화
   - **데이터 레이크하우스 (Lakehouse)**: 저비용 오브젝트 스토리지(S3) 위에 오픈 테이블 포맷(Iceberg)을 얹어 배치와 스트리밍 쓰기 모두에 ACID 보장
 - 주의: 람다 아키텍처 적용 시 비즈니스 집계 룰이 변경될 때 배치 코드(Spark)와 스트림 코드(Flink)를 동시에 완벽히 수정하지 않으면 배치 결과와 실시간 대시보드 숫자가 불일치하는 심각한 정합성 오류 발생
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> 빅데이터 플랫폼 아키텍처(5계층)와 람다·카파 및 데이터 레이크하우스 진화의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+| 항목 | 핵심 서술 내용 |
+|:---|:---|
+| **1. 개념** | 대규모 데이터를 수집, 저장, 처리, 서빙, 관리하기 위해 분산 컴퓨팅 기술을 결합한 5계층 엔드투엔드 데이터 플랫폼 |
+| **2. 5대 계층** | 수집(Kafka/CDC), 저장(S3/Iceberg), 처리(Spark/Flink), 서빙(Trino/ClickHouse), 거버넌스(DataHub/Ranger) |
+| **3. 람다 vs 카파** | - **람다**: 배치와 스피드 레이어 병렬 운영, 코드 이원화 부채 존재<br/>- **카파**: 배치 제거, Kafka 로그 기반 단일 스트림 재처리로 일원화 |
+| **4. 레이크하우스 진화** | 저비용 S3 위에 Apache Iceberg 오픈 테이블 포맷을 도입하여 ACID 트랜잭션과 메달리온(Bronze/Silver/Gold) 아키텍처 완성 |
+---
+
+### 핵심 관계
+
+| 아키텍처 계층 | 핵심 기능 및 역할 | 표준 기술 스택 |
+|:---|:---|:---|
+| **1. 수집 계층 (Ingestion)** | 다양한 이종 소스(RDB CDC, 웹 로그, 센서)로부터 데이터를 무손실 버퍼링 수집 | **Apache Kafka**, Debezium(CDC), Fluentbit, Apache NiFi, AWS Kinesis |
+| **2. 저장 계층 (Storage)** | 저비용 무제한 확장 스토리지 및 트랜잭션 보장 테이블 포맷 제공 | **AWS S3 / HDFS**, **Apache Iceberg**, Delta Lake, Apache Hudi |
+| **3. 처리 계층 (Processing)** | 분산 컴퓨팅 엔진을 통한 대규모 배치 변환(ETL) 및 실시간 이벤트 스트림 연산 | **Apache Spark** (배치), **Apache Flink** (스트리밍), Apache Beam |
+| **4. 서빙 계층 (Serving)** | 분석가와 비즈니스 앱이 즉시 소비할 수 있도록 초고속 쿼리 및 대시보드 제공 | **Trino** (애드혹 SQL), **ClickHouse** (실시간 OLAP), Redis, Superset |
+| **5. 거버넌스 계층 (Governance)** | 전사 메타데이터 카탈로그, 데이터 계보(Lineage), 보안/권한 통제 및 품질 모니터링 | **DataHub, Apache Atlas**, Apache Ranger (RBAC), Great Expectations |
+
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 빅데이터 플랫폼 아키텍처의 5대 계층 구조를 설명하고, 대용량 실시간 처리를 위한 람다(Lambda) 아키텍처와 카파(Kappa) 아키텍처의 동작 원리 및 장단점을 비교한 후, 현대적 데이터 레이크하우스(Data Lakehouse)로의 진화 방향을 기술하시오. (25점)
 
-## Ⅰ. 데이터 가치 창출의 기반 인프라: 빅데이터 플랫폼 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 데이터 가치 창출의 기반 인프라: 빅데이터 플랫폼 개요
 
 #### 한줄 요약: 실시간 이벤트 스트림과 페타바이트 대용량 데이터를 단절 없이 수집·저장·분석하여 데이터 제품으로 서빙하는 통합 인프라
 
@@ -103,7 +136,7 @@ extra:
   - 분산 환경에서의 고가용성, 탄력적 스케일아웃, 스토리지와 컴퓨팅의 분리(Disaggregation)를 지원하는 표준 참조 아키텍처 필요
 - **정의**: 대규모 데이터의 전체 생명주기(수집 $\rightarrow$ 저장 $\rightarrow$ 처리 $\rightarrow$ 서빙 $\rightarrow$ 거버넌스)를 엔지니어링 관점에서 지원하는 분산 소프트웨어 스택의 유기적 결합체
 
-## Ⅱ. 엔드투엔드 5대 계층 구조 및 핵심 기술 스택
+### Ⅱ. 엔드투엔드 5대 계층 구조 및 핵심 기술 스택
 
 #### 한줄 요약: 파이프라인의 흐름에 따른 수집, 저장, 처리, 서빙 및 전 계층을 관통하는 거버넌스 계층
 
@@ -115,7 +148,7 @@ extra:
 | **4. 서빙 계층 (Serving)** | 분석가와 비즈니스 앱이 즉시 소비할 수 있도록 초고속 쿼리 및 대시보드 제공 | **Trino** (애드혹 SQL), **ClickHouse** (실시간 OLAP), Redis, Superset |
 | **5. 거버넌스 계층 (Governance)** | 전사 메타데이터 카탈로그, 데이터 계보(Lineage), 보안/권한 통제 및 품질 모니터링 | **DataHub, Apache Atlas**, Apache Ranger (RBAC), Great Expectations |
 
-## Ⅲ. 실시간·배치 통합 처리 패러다임: 람다(Lambda) vs 카파(Kappa)
+### Ⅲ. 실시간·배치 통합 처리 패러다임: 람다(Lambda) vs 카파(Kappa)
 
 #### 한줄 요약: 이원화 병렬 파이프라인의 람다와 단일 스트림 재처리의 카파
 
@@ -171,7 +204,7 @@ extra:
    - 람다의 이중 코드 문제를 해결하기 위해 배치 레이어를 전면 폐지
    - Kafka에 원천 이벤트를 보관하고, 단일 스트림 처리 엔진(Flink)으로 실시간 처리와 과거 데이터 재처리(Log Replay)를 단일 코드로 일원화
 
-## Ⅳ. 데이터 레이크하우스(Data Lakehouse)와 메달리온 패턴
+### Ⅳ. 데이터 레이크하우스(Data Lakehouse)와 메달리온 패턴
 
 #### 한줄 요약: 오브젝트 스토리지의 경제성과 데이터 웨어하우스의 ACID 무결성을 결합한 현대적 종착지
 
@@ -207,7 +240,7 @@ extra:
   - **Silver**: 결측치 정제, 개인정보 가명처리, 비즈니스 엔티티 결합 (Enriched & Filtered)
   - **Gold**: 현업 부서별 KPI 집계 및 머신러닝 피처 스토어로 서빙 (Aggregated Business Mart)
 
-## Ⅴ. 람다 vs 카파 vs 데이터 레이크하우스 상세 비교
+### Ⅴ. 람다 vs 카파 vs 데이터 레이크하우스 상세 비교
 
 #### 한줄 요약: 파이프라인 복잡도, 일관성, 운영 비용 관점에서의 비교
 
@@ -219,7 +252,7 @@ extra:
 | **데이터 정합성** | 서빙 뷰 병합 시 불일치 위험 | 단일 스트림으로 정합성 우수 | **ACID 트랜잭션으로 완벽한 일관성** |
 | **대표 기술** | Spark + Flink + Cassandra | Kafka + Flink + ClickHouse | **S3 + Apache Iceberg + Spark/Trino** |
 
-## Ⅵ. 실무 운영 이슈 및 트러블슈팅
+### Ⅵ. 실무 운영 이슈 및 트러블슈팅
 
 #### 한줄 요약: 작은 파일 문제(Small File Problem), 스트림 백엔드 OOM, 스토리지-컴퓨팅 분리
 
@@ -229,7 +262,7 @@ extra:
 | **Flink 스트리밍 장기 가동 시 RocksDB 상태 OOM** | 윈도우 조인 및 긴 상태(State) 데이터가 메모리를 초과하여 파드 강제 종료 | 증분 체크포인트(Incremental Checkpointing) 활성화 및 상태 TTL(유효시간) 강제 설정 |
 | **야간 배치 폭증 시 인프라 자원 부족** | 온프레미스 고정 클러스터의 물리적 컴퓨팅 용량 한계 | 클라우드 객체 스토리지와 연산 엔진을 분리하여 배치 시간에만 컨테이너 스케일아웃 |
 
-## Ⅶ. 기술사적 제언
+### Ⅶ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -273,18 +306,6 @@ extra:
     <div class="itpe-flow-desc">유지보수 비용 50% 절감 및 초고속 실시간 의사결정 체계 완성</div>
   </div>
 </div>
-
----
-
-## 1교시 10점 답안 발췌
-
-| 항목 | 핵심 서술 내용 |
-|:---|:---|
-| **1. 개념** | 대규모 데이터를 수집, 저장, 처리, 서빙, 관리하기 위해 분산 컴퓨팅 기술을 결합한 5계층 엔드투엔드 데이터 플랫폼 |
-| **2. 5대 계층** | 수집(Kafka/CDC), 저장(S3/Iceberg), 처리(Spark/Flink), 서빙(Trino/ClickHouse), 거버넌스(DataHub/Ranger) |
-| **3. 람다 vs 카파** | - **람다**: 배치와 스피드 레이어 병렬 운영, 코드 이원화 부채 존재<br/>- **카파**: 배치 제거, Kafka 로그 기반 단일 스트림 재처리로 일원화 |
-| **4. 레이크하우스 진화** | 저비용 S3 위에 Apache Iceberg 오픈 테이블 포맷을 도입하여 ACID 트랜잭션과 메달리온(Bronze/Silver/Gold) 아키텍처 완성 |
-
 ---
 
 ## 출제 이력과 검증 출처
@@ -294,15 +315,6 @@ extra:
 - **검증 출처**:
   - Michael Armbrust et al., "Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics", CIDR
   - Nathan Marz & James Warren, "Big Data: Principles and best practices of scalable realtime data systems", Manning
-
----
-
-## 학습 체크
-
-- [ ] 빅데이터 플랫폼의 5대 계층(수집, 저장, 처리, 서빙, 거버넌스)과 대표 오픈소스 기술을 도식화할 수 있는가?
-- [ ] 람다 아키텍처의 배치/스피드 레이어 구조와 이중 코드 문제점, 그리고 카파 아키텍처의 해결 원리를 비교할 수 있는가?
-- [ ] Apache Iceberg를 활용한 데이터 레이크하우스와 메달리온(Bronze/Silver/Gold) 아키텍처의 개념을 설명할 수 있는가?
-
 ---
 
 ## 연결 토픽

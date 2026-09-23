@@ -1,10 +1,10 @@
 ---
 author: "Antigravity"
 category: "03-data"
-date: "2026-09-20T16:50:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   question_no: "038"
 sidebar:
   badge:
@@ -65,12 +65,46 @@ weight: 38
   - **인프로세싱(In-processing)**: 손실함수에 공정성 제약조건 추가, 적대적 디바이어싱
   - **후처리(Post-processing)**: 그룹별 결정 임계값(Threshold) 차등 조정 (Equal Opportunity)
 - 주의: 이상치(Outlier)는 소수의 극단값이나, 편향(Bias)은 데이터 전체에 일관되게 작용하는 체계적 기울어짐임
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> 편향 (Bias)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. 편향(Bias)의 정의
+
+- 데이터의 수집, 측정, 모델링 과정에서 특정 방향으로 발생하는 **체계적(Systematic) 왜곡**으로, 표본 크기를 늘려도 상쇄되지 않고 AI 공정성을 훼손하는 오차
+
+### 2. 편향 완화 3단계 메커니즘
+
+- **전처리 (Pre-processing)**: 소수 계층 가중치 상향(Reweighting) 및 SMOTE 합성 데이터 증강
+- **인프로세싱 (In-processing)**: 적대적 디바이어싱(Adversarial) 및 공정성 제약조건 추가 손실함수
+- **후처리 (Post-processing)**: 모델 재학습 없이 보호 집단별 분류 임계치(Threshold) 차등 최적화 (Equalized Odds)
+
+| 구분 | 편향 (Bias) | 이상치 (Outlier) |
+|---|---|---|
+| 오차 성격 | 전체 데이터의 체계적 기울어짐 (방향성) | 소수 관측치의 극단적 이탈 (단발성) |
+| 표본 확대 | 표본 수($n$)를 늘려도 **감소하지 않음** | 표본 수 확대 시 탐지 및 격리 용이 |
+| 해결 방안 | AIF360 디바이어싱, 표본틀 재설계 | IQR/Z-score 탐지 후 제거, 윈저라이징 |
+
+### 3. 차별화 제언
+
+- 단순 민감 속성 제거의 대리 변수(Proxy Variable) 한계를 극복하기 위해 **적대적 디바이어싱**을 적용하고, MLOps 기반 **상시 편향 감사(Bias Audit)** 체계를 가동함
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 데이터 분석 및 머신러닝 시스템에서 발생하는 이상치(Outlier)와 편향(Bias)의 개념을 비교하고, 편향의 주요 발생 원인과 파이프라인 단계별(수집, 학습, 배포) 완화 기법 및 AI 공정성 확보 방안을 논하시오. (25점)
 
-## Ⅰ. 통계적 왜곡과 인공지능 불공정의 근원, 편향(Bias) 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 통계적 왜곡과 인공지능 불공정의 근원, 편향(Bias) 개요
 
 - 정의: **편향(Bias)**은 연구 대상의 선정, 데이터 수집, 측정 도구, 알고리즘 설계, 인간의 인지적 한계로 인해 데이터나 추정 결과가 참된 모수(Ground Truth)로부터 체계적이고 일관되게 한쪽으로 치우치는 통계적 왜곡 현상
 - 목적: 데이터 파이프라인 전반에 내재된 편향의 원인을 규명하고, 데이터 중심의 기술적 교정 및 거버넌스를 통해 모델의 일반화 성능과 AI 윤리적 신뢰성 확보
@@ -80,7 +114,7 @@ weight: 38
 
 - 편향은 무작위 오차와 달리 데이터를 아무리 많이 모아도 사라지지 않는 구조적이고 체계적인 왜곡임
 
-## Ⅱ. 편향(Bias) vs 이상치(Outlier) vs 분산(Variance) 비교
+### Ⅱ. 편향(Bias) vs 이상치(Outlier) vs 분산(Variance) 비교
 
 $$\text{MSE} = \text{Bias}^2 + \text{Variance} + \sigma^2$$
 
@@ -96,7 +130,7 @@ $$\text{MSE} = \text{Bias}^2 + \text{Variance} + \sigma^2$$
 
 - 편향은 조준점이 빗나간 영점 오차이고, 분산은 탄착군이 넓게 퍼진 정밀도 오차이며, 이상치는 엉뚱한 곳에 맞은 불발탄임
 
-## Ⅲ. 데이터 생명주기별 편향의 5대 핵심 유형
+### Ⅲ. 데이터 생명주기별 편향의 5대 핵심 유형
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 62" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -150,7 +184,7 @@ $$\text{MSE} = \text{Bias}^2 + \text{Variance} + \sigma^2$$
 
 - 편향은 표본 선정(선택), 살아남은 것만 보기(생존), 자의 눈금 오류(측정), 과거 관행(역사)에서 비롯됨
 
-## Ⅳ. 머신러닝 파이프라인 단계별 편향 완화(Debiasing) 전략
+### Ⅳ. 머신러닝 파이프라인 단계별 편향 완화(Debiasing) 전략
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 115" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -194,7 +228,7 @@ $$\text{MSE} = \text{Bias}^2 + \text{Variance} + \sigma^2$$
 
 - 편향 교정은 데이터를 정제하는 전처리, 손실함수에 공정성을 넣는 인프로세싱, 판정 기준을 조정하는 후처리로 구현됨
 
-## Ⅴ. AI 공정성(Fairness) 3대 수학적 척도와 상충성
+### Ⅴ. AI 공정성(Fairness) 3대 수학적 척도와 상충성
 
 | 공정성 지표 | 수학적 수식 정의 | 의미 및 적용 분야 |
 |---|---|---|
@@ -206,7 +240,7 @@ $$\text{MSE} = \text{Bias}^2 + \text{Variance} + \sigma^2$$
 
 - 합격 비율을 맞출지(인구통계), 진짜 실력자의 합격률을 맞출지(기회균등)는 비즈니스 가치판단의 문제임
 
-## Ⅵ. 편향으로 인한 실무 실패 사례 및 엔지니어링 대책
+### Ⅵ. 편향으로 인한 실무 실패 사례 및 엔지니어링 대책
 
 | 실패 사례 | 근본 원인 | 실무 엔지니어링 대책 | 개선 효과 |
 |---|---|---|---|
@@ -219,7 +253,7 @@ $$\text{MSE} = \text{Bias}^2 + \text{Variance} + \sigma^2$$
 
 - 민감 변수를 지우는 것만으로는 대리 변수를 막을 수 없으므로, 상호정보량 검증과 적대적 디바이어싱이 필요함
 
-## Ⅶ. 기술사적 제언
+### Ⅶ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -254,42 +288,13 @@ $$\text{MSE} = \text{Bias}^2 + \text{Variance} + \sigma^2$$
     <div class="itpe-flow-desc">AI 윤리·법적 리스크 원천 차단 및 그룹 간 공정 판정 신뢰 확보</div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-### 1. 편향(Bias)의 정의
-
-- 데이터의 수집, 측정, 모델링 과정에서 특정 방향으로 발생하는 **체계적(Systematic) 왜곡**으로, 표본 크기를 늘려도 상쇄되지 않고 AI 공정성을 훼손하는 오차
-
-### 2. 편향 완화 3단계 메커니즘
-
-- **전처리 (Pre-processing)**: 소수 계층 가중치 상향(Reweighting) 및 SMOTE 합성 데이터 증강
-- **인프로세싱 (In-processing)**: 적대적 디바이어싱(Adversarial) 및 공정성 제약조건 추가 손실함수
-- **후처리 (Post-processing)**: 모델 재학습 없이 보호 집단별 분류 임계치(Threshold) 차등 최적화 (Equalized Odds)
-
-| 구분 | 편향 (Bias) | 이상치 (Outlier) |
-|---|---|---|
-| 오차 성격 | 전체 데이터의 체계적 기울어짐 (방향성) | 소수 관측치의 극단적 이탈 (단발성) |
-| 표본 확대 | 표본 수($n$)를 늘려도 **감소하지 않음** | 표본 수 확대 시 탐지 및 격리 용이 |
-| 해결 방안 | AIF360 디바이어싱, 표본틀 재설계 | IQR/Z-score 탐지 후 제거, 윈저라이징 |
-
-### 3. 차별화 제언
-
-- 단순 민감 속성 제거의 대리 변수(Proxy Variable) 한계를 극복하기 위해 **적대적 디바이어싱**을 적용하고, MLOps 기반 **상시 편향 감사(Bias Audit)** 체계를 가동함
+---
 
 ## 출제 이력과 검증 출처
 
 - 제139회 3교시 2번: 데이터분석에서 이상치(Outlier)와 편향(Bias)의 개념을 설명하고, 분석결과에 미치는 영향 및 처리 방안
 - [IBM AI Fairness 360 (AIF360) Open Source Toolkit](https://aif360.res.ibm.com/)
 - [Kleinberg, J., et al. (2016). Inherent Trade-Offs in the Fair Determination of Risk Scores](https://arxiv.org/abs/1609.05807)
-
-## 학습 체크
-
-- [ ] 편향(체계적 오차)과 이상치(극단 관측치), 분산(과적합)의 차이를 명확히 설명할 수 있는가
-- [ ] 선택 편향, 생존 편향, 역사적 편향, 대리 변수 편향의 메커니즘을 예시와 함께 아는가
-- [ ] 편향 완화의 3단계(전처리, 인프로세싱, 후처리) 핵심 알고리즘을 도식화할 수 있는가
-- [ ] AI 공정성의 3대 척도(인구통계학적 패리티, 기회 균등, 예측 동등성)의 상충 관계를 이해하는가
-- [ ] Ⅶ 결론에서 MLOps 기반 상시 편향 감사 거버넌스 방안을 제시할 수 있는가
 
 ## 연결 토픽
 

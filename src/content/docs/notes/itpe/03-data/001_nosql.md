@@ -8,10 +8,10 @@ tags:
   - "BASE"
   - "Polyglot"
   - "Sharding"
-date: "2026-09-21T17:15:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -84,12 +84,35 @@ sidebar:
 - `CDC(Change Data Capture)`: 데이터베이스의 트랜잭션 로그를 실시간 감지하여 이기종 저장소로 이벤트를 전송·동기화하는 기술
 
 </details>
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
 
-> 대규모 비정형 데이터 처리 및 고가용성 분산 환경 구축을 위한 NoSQL의 개념과 4대 핵심 모델(Key-Value, Document, Column Family, Graph)의 특징을 비교하고, Query-First 모델링 5단계 절차 및 RDBMS와의 Polyglot Persistence 구축 방안을 제시하시오. (25점)
+> NoSQL의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
 
-## 딸려 나오는 하위 토픽
+## 1교시 10점 답안
+
+```text
+1. NoSQL의 정의 및 목적
+- 정의: 고정 스키마와 조인을 배제하고, 접근 패턴(Query-First)에 맞춰 유연한 데이터 모델과 수평 확장을 제공하는 비관계형 DBMS
+- 목적: Scale-Out 기반 대규모 트래픽 수용 및 고가용성(BASE) 확보
+
+2. 핵심 메커니즘 및 4대 저장 유형
+- Query-First 모델링: SLA 정의 → Access Pattern → 모델 선정 → 파티션/쿼럼 설계
+- 4대 저장 유형:
+  · Key-Value: 단건 초고속 조회, 인메모리 캐시, 세션 관리 (Redis)
+  · Document: JSON/BSON 계층 구조, 중첩 속성 인덱싱, 상품 카탈로그 (MongoDB)
+  · Column Family: Row Key 기반 동적 열군, 대규모 시계열 로그 (Cassandra)
+  · Graph: Node-Edge-Property 관계망 순회, FDS 탐색 (Neo4j)
+
+3. 분산 리스크 통제 대책
+- 핫 파티션 방지: 복합 파티션 키 및 솔트(Salt) 기법 적용으로 I/O 분산
+- 일관성 보장: Quorum 정책(R + W > N) 및 CDC 기반 Eventual Consistency 수렴
+```
+---
+
+### 핵심 관계
 
 | 하위 토픽 | 핵심 키워드 | 통합 답안 위치 |
 |---|---|---|
@@ -97,7 +120,26 @@ sidebar:
 | **BASE 원칙** | Basically Available, Soft-state, Eventual consistency, 가용성 절충 | Ⅰ·Ⅱ |
 | **Polyglot Persistence** | 업무 도메인별 저장소 분리, 트랜잭셔널 아웃박스, CDC 동기화 | Ⅴ·Ⅶ |
 
-## Ⅰ. 대규모 분산 환경의 목적형 데이터베이스, NoSQL의 개요
+---
+
+## 2~4교시 예상문제 (25점)
+
+> 대규모 비정형 데이터 처리 및 고가용성 분산 환경 구축을 위한 NoSQL의 개념과 4대 핵심 모델(Key-Value, Document, Column Family, Graph)의 특징을 비교하고, Query-First 모델링 5단계 절차 및 RDBMS와의 Polyglot Persistence 구축 방안을 제시하시오. (25점)
+
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### 딸려 나오는 하위 토픽
+
+| 하위 토픽 | 핵심 키워드 | 통합 답안 위치 |
+|---|---|---|
+| **컬럼 패밀리 DB(Column Family DB)** | Row Key, 동적 컬럼 패밀리, 대규모 시계열 쓰기, 분산 NoSQL | Ⅲ·Ⅴ |
+| **BASE 원칙** | Basically Available, Soft-state, Eventual consistency, 가용성 절충 | Ⅰ·Ⅱ |
+| **Polyglot Persistence** | 업무 도메인별 저장소 분리, 트랜잭셔널 아웃박스, CDC 동기화 | Ⅴ·Ⅶ |
+
+### Ⅰ. 대규모 분산 환경의 목적형 데이터베이스, NoSQL의 개요
 
 > NoSQL은 관계형 모델의 스키마 제약과 조인 병목을 해소하기 위해 질의 중심 분산 저장을 지원하며, 성패는 저장 모델보다 접근 패턴과 일관성 요구의 일치로 판정함.
 
@@ -105,7 +147,7 @@ sidebar:
 - 목적: **Scale-Out** 기반의 선형 처리량 확장과 고가용성 확보를 통한 서비스 지연 최소화
 - 배경: 웹 2.0, 빅데이터, 마이크로서비스 확산에 따른 비정형 데이터의 폭발적 증가
 
-## Ⅱ. NoSQL의 4대 핵심 특징 및 메커니즘
+### Ⅱ. NoSQL의 4대 핵심 특징 및 메커니즘
 
 > 유연한 스키마·수평 분산·비정규화는 조인 비용을 제거하지만 중복과 정합성 비용을 애플리케이션으로 이동시키므로 Aggregate 경계가 성패를 가름함.
 
@@ -116,7 +158,7 @@ sidebar:
 | **비정규화 모델링(Query-First)** | 질의 패턴에 맞추어 연관 데이터를 단일 문서·열군에 중복 저장 | 분산 환경에서 비용이 큰 다중 노드 조인 원천 제거 |
 | **BASE 일관성 절충** | Basically Available, Soft-state, Eventual consistency 적용 | CAP 이론상 네트워크 분할(P) 시 가용성(A) 우선 확보 |
 
-## Ⅲ. 질의 목적에 따른 NoSQL 4대 저장 유형
+### Ⅲ. 질의 목적에 따른 NoSQL 4대 저장 유형
 
 > 질의 패턴이 단건·계층 문서·동적 열군·다단계 관계 순회 중 무엇인지가 모델 선택 기준이며, 제품 선호보다 주 접근 경로를 먼저 검증해야 함.
 
@@ -181,7 +223,7 @@ sidebar:
 | **Column Family** | Row Key 아래 동적 Column 집합 관리 | 대규모 시계열 쓰기, 특정 열군 범위 검색 | 대용량 로그 수집, IoT 센서 데이터, 통계 집계 | 파티션 키(분산)와 클러스터링 키(정렬) 최적화 |
 | **Graph** | Node(개체), Edge(관계), Property로 구성 | 재귀적·다단계 관계 순회(Traversal) | 소셜 네트워크 분석, 이상금융거래 탐지(FDS) | 노드 간 연결 밀도 관리 및 인덱스-프리 인접성 확보 |
 
-## Ⅳ. NoSQL Query-First 모델링 5단계 절차
+### Ⅳ. NoSQL Query-First 모델링 5단계 절차
 
 > 데이터 관계보다 애플리케이션의 Access Pattern을 먼저 고정하며, 각 단계의 산출물이 다음 단계의 파티션·복제 결정을 추적 가능하게 해야 함.
 
@@ -259,7 +301,7 @@ sidebar:
 4. **파티션 및 색인 설계**: 노드 간 균등 부하 분산을 위한 파티션 키 설정 및 보조 인덱스 최소화 설계
 5. **부하 및 정합성 검증**: 시뮬레이션 테스트를 통해 특정 노드 쏠림(Hotspot)과 네트워크 분할 시 복제 수렴 속도 검증
 
-## Ⅴ. RDBMS vs NoSQL 비교 및 Polyglot Persistence
+### Ⅴ. RDBMS vs NoSQL 비교 및 Polyglot Persistence
 
 > 금융 원장은 RDBMS의 ACID로, 대규모 사용자 트래픽은 NoSQL의 확장성으로 수용하되 도메인 간 정합성 경계를 명시해야 공존 구조가 안정됨.
 
@@ -315,7 +357,7 @@ sidebar:
   </svg>
 </div>
 
-## Ⅵ. NoSQL 문제점·대응책
+### Ⅵ. NoSQL 문제점·대응책
 
 > 분산 저장소 도입 시 수반되는 핫스팟, 복제 지연, 데이터 불일치 위험을 사전에 통제함.
 
@@ -326,7 +368,7 @@ sidebar:
 | 비정규화 중복 데이터 간 불일치 | 트랜잭셔널 아웃박스 패턴 및 Kafka-Debezium CDC 동기화 파이프라인 구축 | 분산 이종 저장소 간 최종 일관성(Eventual Consistency) 신속 수렴 |
 | 스키마 부재로 인한 데이터 오염 | 애플리케이션 계층 유효성 검증(Schema Validation) 및 버전 태깅 강제 | 불완전한 JSON 데이터 유입 차단 및 하위 호환성 유지 |
 
-## Ⅶ. 기술사적 제언: 일관성과 가용성의 균형 잡힌 Polyglot 설계
+### Ⅶ. 기술사적 제언: 일관성과 가용성의 균형 잡힌 Polyglot 설계
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -372,38 +414,12 @@ sidebar:
     </div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-```text
-1. NoSQL의 정의 및 목적
-- 정의: 고정 스키마와 조인을 배제하고, 접근 패턴(Query-First)에 맞춰 유연한 데이터 모델과 수평 확장을 제공하는 비관계형 DBMS
-- 목적: Scale-Out 기반 대규모 트래픽 수용 및 고가용성(BASE) 확보
-
-2. 핵심 메커니즘 및 4대 저장 유형
-- Query-First 모델링: SLA 정의 → Access Pattern → 모델 선정 → 파티션/쿼럼 설계
-- 4대 저장 유형:
-  · Key-Value: 단건 초고속 조회, 인메모리 캐시, 세션 관리 (Redis)
-  · Document: JSON/BSON 계층 구조, 중첩 속성 인덱싱, 상품 카탈로그 (MongoDB)
-  · Column Family: Row Key 기반 동적 열군, 대규모 시계열 로그 (Cassandra)
-  · Graph: Node-Edge-Property 관계망 순회, FDS 탐색 (Neo4j)
-
-3. 분산 리스크 통제 대책
-- 핫 파티션 방지: 복합 파티션 키 및 솔트(Salt) 기법 적용으로 I/O 분산
-- 일관성 보장: Quorum 정책(R + W > N) 및 CDC 기반 Eventual Consistency 수렴
-```
+---
 
 ## 출제 이력과 검증 출처
 
 - **기출 근거**: Q-Net 공식 문제지 제133회 확인 · 제123회는 KPC 보조자료이며 공식 원문 미확보
 - **검증 출처**: [MongoDB Data Modeling Guide](https://www.mongodb.com/docs/manual/data-modeling/), [Apache Cassandra Architecture Documentation](https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html)
-
-## 학습 체크
-
-- [ ] [Ⅰ 개요]: NoSQL의 정의와 목적을 Query-First·수평 분할·Scale-Out을 포함해 정확히 기술하였는가?
-- [ ] [Ⅲ 저장 유형]: Key-Value, Document, Column Family, Graph 4대 모델의 특성을 비교하였는가?
-- [ ] [Ⅳ 모델링]: Query-First 5단계 절차(SLA $\rightarrow$ Access Pattern $\rightarrow$ 모델 $\rightarrow$ 파티션 $\rightarrow$ 검증)를 제시하였는가?
-- [ ] [Ⅵ 통제]: 핫 파티션, 복제 지연, 데이터 불일치에 대한 3단 위험 대책을 기술하였는가?
 
 ## 연결 토픽
 

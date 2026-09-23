@@ -10,10 +10,10 @@ tags:
   - "CRP"
   - "렌더링최적화"
   - "트리셰이킹"
-date: "2026-09-22T07:26:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 author: "Codex"
 extra:
-  model: "GLM-5.3-Flash"
+  model: "GPT-6"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -38,8 +38,41 @@ extra:
 - **트리 셰이킹(Tree-Shaking)**: ES 모듈 시스템(`import`/`export`)의 정적 구조를 분석하여 실제 호출되지 않는 무용 코드(Dead Code)를 빌드 번들에서 자동 제거하는 기법
 - **Reflow vs Repaint**: 레이아웃 위치/크기가 바뀌어 전체 기하학적 구조를 재계산하는 연산(Reflow)과, 색상 등 시각적 변화만 다시 그리는 연산(Repaint)
 </details>
+---
 
-## 1. 개요 및 필요성
+## 1교시 예상문제 (10점)
+
+> 웹 성능 최적화(Web Performance Optimization)의 정의와 목적, 핵심 메커니즘을 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. 정의·목적
+
+- 정의: 브라우저의 중요 렌더링 경로(Critical Rendering Path)와 네트워크 자원 전송 파이프라인 전반을 분석하여, 사용자가 첫 화면을 인지하고 인터랙션하기까지의 시간(LCP, INP)을 최소화하고 화면의 시각적 흔들림(CLS)을 제거하는 전주기 웹 엔지니어링 최적화 체계
+- 목적: 해당 토픽의 주요 문제를 해결하고 필요한 기능을 제공한다.
+
+### 2. 핵심 관계
+
+```mermaid
+flowchart LR
+    A["DOM·CSSOM 파싱"] --> B["Render Tree 결합"]
+    B --> C["Layout(Reflow)"]
+    C --> D["Paint"]
+    D --> E["Composite(GPU 합성)"]
+```
+
+- 제언: 핵심 작동 원리를 적용해 직접 효과를 검증한다.
+---
+
+## 2~4교시 예상문제 (25점)
+
+> 웹 성능 최적화(Web Performance Optimization)의 개념과 목적을 설명하고, 핵심 메커니즘과 구성요소·절차, 적용 시 문제점과 대응 방안을 제시하시오. (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### 1. 개요 및 필요성
 
 ### 모던 웹의 비대화(Bloatware)와 비즈니스 파급 효과
 
@@ -55,7 +88,7 @@ extra:
 | **INP** | Interaction to Next Paint | **응답 반응성 (클릭/키보드 입력 반응 지연)** | **200ms 이하** | 500ms 초과 |
 | **CLS** | Cumulative Layout Shift | **시각적 안정성 (콘텐츠의 예기치 않은 밀림)** | **0.1 이하** | 0.25 초과 |
 
-## 2. 아키텍처 및 핵심 메커니즘
+### 2. 아키텍처 및 핵심 메커니즘
 
 ### 브라우저 중요 렌더링 경로(CRP)와 최적화 접점
 
@@ -78,7 +111,7 @@ CRP 최적화 황금률은 Reflow/Repaint를 우회하고 Composite 단계로 �
 | **③ 파싱·실행 계층** | 블로킹 해소: `defer`·`async` 비동기 로딩으로 파서 차단 방지, 코드 분할(Code Splitting)·동적 임포트, 웹 워커 백그라운드 격리 |
 | **④ 렌더링 계층** | CPU 부하 최소화: `top/left` 대신 `transform`·`opacity` GPU 합성, `requestAnimationFrame` 일괄 처리, 명시적 크기 예약으로 CLS 차단 |
 
-## 3. 실무 적용 및 고려사항
+### 3. 실무 적용 및 고려사항
 
 ### 위험 대응 매트릭스
 
@@ -88,7 +121,7 @@ CRP 최적화 황금률은 Reflow/Repaint를 우회하고 Composite 단계로 �
 | 폰트 및 늦게 로딩된 배너 때문에 텍스트와 버튼이 아래로 덜컥 밀려 오클릭 발생(CLS 불합격) | 이미지 및 iframe 영역에 CSS `aspect-ratio` 사전 할당 및 폰트 사전 로딩(preload) | CLS 수치 0.03으로 안정화 및 오클릭 방지 |
 | 수십 개의 외부 마케팅 트래커 스크립트가 메인 스레드를 장시간 점유하여 클릭 반응(INP) 지연 | Google Tag Manager 비동기 지연 실행 및 고부하 연산 작업의 Web Worker 이관 | 인터랙션 지연(INP) 120ms 이내 보장 |
 
-## 4. 기술사 답안 차별화 포인트
+### 4. 기술사 답안 차별화 포인트
 
 ### FID에서 INP(Interaction to Next Paint)로의 표준 전환 분석
 
@@ -98,7 +131,7 @@ CRP 최적화 황금률은 Reflow/Repaint를 우회하고 Composite 단계로 �
 
 개발자가 기능을 추가할 때마다 번들 크기가 야금야금 늘어나는 현상을 방지하기 위해, **Lighthouse CI**를 도입하여 배포 파이프라인에서 성능 예산을 강제화해야 한다. "초기 JS 번들 300KB 초과 시 빌드 실패", "LCP 2.5초 초과 시 PR 머지 차단"과 같은 **정량적 성능 거버넌스 게이트**를 운영 모델로 제언한다.
 
-## 5. 결론 및 종합 제언
+### 5. 결론 및 종합 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -115,9 +148,10 @@ CRP 최적화 황금률은 Reflow/Repaint를 우회하고 Composite 단계로 �
 - **검증 체계**: CI/CD 배포 파이프라인에 Lighthouse CI를 결합하여 성능 점수 90점 미달 시 프로덕션 배포 차단
 - **기대 효과**: 모바일 사용자 이탈률 40% 감소, 구글 검색 상위 랭킹(SEO) 확보 및 전자상거래 전환율 15% 개선
 
-## 6. 참고 및 연계 학습
+### 6. 참고 및 연계 학습
 
 - [서비스 워커(Service Worker)](./147_service_worker.md)
 - [스프라이트(Sprite) 최적화](./158_sprite.md)
 - [성능 요구사항(Performance Requirement)](./149_performance_requirement.md)
 - [성능 테스트(Performance Test)](./191_performance_test.md)
+---

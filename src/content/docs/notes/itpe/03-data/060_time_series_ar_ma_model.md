@@ -7,12 +7,12 @@ sidebar:
     variant: note
 title: "시계열 AR·MA 모형 (자기회귀 및 이동평균 모형) 및 ARIMA"
 author: "Antigravity"
-date: "2026-09-20T18:00:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 weight: 60
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
   question_no: "060"
 ---
@@ -75,12 +75,45 @@ extra:
   - **AR($p$) 모형**: 과거 시점의 충격이 계수($\phi$)를 타고 미래로 영구히 감쇄하며 전파되는 '관성(Momentum)' 모델링 $\rightarrow$ PACF가 $p$에서 절단
   - **MA($q$) 모형**: 과거 시점의 충격이 정확히 $q$ 시점까지만 영향을 미치고 이후 완전히 소멸하는 '유한 충격(Transitory Shock)' 모델링 $\rightarrow$ ACF가 $q$에서 절단
 - 주의: 현실의 대다수 데이터(주가, 트래픽, 전력 사용량 등)는 평균이나 분산이 시간에 따라 변하는 비정상(Non-stationary) 시계열이므로, 직접 적용 시 '허위 회귀(Spurious Regression)'가 발생함. 반드시 차분(Differencing)을 통해 정상화한 후 ARIMA($p, d, q$)로 확장해야 함
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> 시계열 AR·MA 모형 (자기회귀 및 이동평균 모형) 및 ARIMA의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. 자기회귀모형(AR)과 이동평균모형(MA)의 개념
+
+- **자기회귀모형 (AR)**: 현재 데이터가 과거 자기 자신의 관측치 선형결합으로 결정되는 모형 (관성 반영)
+- **이동평균모형 (MA)**: 현재 데이터가 과거 외부 충격(백색잡음 오차항)들의 선형결합으로 결정되는 모형 (유한 충격)
+- **핵심 전제**: 시계열의 평균과 분산이 시간에 무관하게 일정한 **정상성(Stationarity)** 충족 필수
+
+### 2. 모형별 수식 및 식별 패턴 비교
+
+| 구분 | 자기회귀모형 (AR($p$)) | 이동평균모형 (MA($q$)) |
+|---|---|---|
+| **기본 수식** | $Y_t = c + \sum \phi_i Y_{t-i} + \epsilon_t$ | $Y_t = \mu + \epsilon_t + \sum \theta_j \epsilon_{t-j}$ |
+| **충격 지속성** | 무한히 점진적 감쇄 (관성 유지) | $q$ 시점 경과 후 완전히 소멸 |
+| **ACF 패턴** | **지수적 점진 감쇄 (Tails off)** | **$q$차수 이후 급격 절단 (Cuts off)** |
+| **PACF 패턴** | **$p$차수 이후 급격 절단 (Cuts off)** | **지수적 점진 감쇄 (Tails off)** |
+
+### 3. 차별화 제언
+
+- 비정상 시계열은 차분($d$)을 거쳐 **ARIMA($p, d, q$)**로 변환하고, 경량 통계 모형(ARIMA)을 1차 신뢰 밴드 이상 탐지 엔진으로 활용하여 실시간성을 극대화함
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 시계열 분석에서 사용되는 자기회귀모형(Autoregressive Model)과 이동평균모형(Moving Average Model)의 개념, 수식 및 동작 특성을 설명하고, 정상성(Stationarity)의 조건과 자기상관함수(ACF) 및 편자기상관함수(PACF)를 활용한 모형 식별 방법을 비교하시오. (10점 / 25점)
 
-## Ⅰ. 시간 경과에 따른 자기상관성을 규명하는 시계열 모형 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 시간 경과에 따른 자기상관성을 규명하는 시계열 모형 개요
 
 - **시계열 분석의 본질**:
   - 독립변수와 종속변수 간의 관계를 다루는 일반 회귀분석과 달리, **동일한 변수의 시간 경과에 따른 자기 자신과의 상관성(Autocorrelation)**을 분석함
@@ -93,7 +126,7 @@ extra:
 
 - 과거 관측치와 예측 오차의 확률적 결합을 통해 미래 시계열 값을 예측하는 선형 통계 모형과 정상성 조건임
 
-## Ⅱ. 자기회귀모형 (AR, Autoregressive Model)
+### Ⅱ. 자기회귀모형 (AR, Autoregressive Model)
 
 - **수학적 정의 (AR($p$))**:
   $$Y_t = c + \sum_{i=1}^{p} \phi_i Y_{t-i} + \epsilon_t = c + \phi_1 Y_{t-1} + \phi_2 Y_{t-2} + \dots + \phi_p Y_{t-p} + \epsilon_t$$
@@ -108,7 +141,7 @@ extra:
 
 - 현재 시점의 데이터를 과거 $p$개 시점의 자기 자신 관측치들의 가중합과 백색잡음의 합으로 표현하는 모형임
 
-## Ⅲ. 이동평균모형 (MA, Moving Average Model)
+### Ⅲ. 이동평균모형 (MA, Moving Average Model)
 
 - **수학적 정의 (MA($q$))**:
   $$Y_t = \mu + \epsilon_t + \sum_{j=1}^{q} \theta_j \epsilon_{t-j} = \mu + \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \dots + \theta_q \epsilon_{t-q}$$
@@ -123,7 +156,7 @@ extra:
 
 - 현재 시점의 데이터를 현재 및 과거 $q$개 시점의 백색잡음(외부 충격)들의 선형 결합으로 표현하는 모형임
 
-## Ⅳ. AR 모형 vs MA 모형 심층 비교 및 ACF/PACF 식별 메커니즘
+### Ⅳ. AR 모형 vs MA 모형 심층 비교 및 ACF/PACF 식별 메커니즘
 
 <div class="itpe-diagram-box" role="img" aria-label="ACF 및 PACF 식별 패턴 도해">
 <svg viewBox="0 0 520 160" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +203,7 @@ extra:
 
 - AR은 PACF가 $p$에서 잘리고, MA는 ACF가 $q$에서 잘리는 특성을 통해 모형과 차수를 감별함
 
-## Ⅴ. 비정상 시계열 확장을 위한 ARIMA 및 SARIMA 모델링
+### Ⅴ. 비정상 시계열 확장을 위한 ARIMA 및 SARIMA 모델링
 
 - **ARIMA($p, d, q$) (Autoregressive Integrated Moving Average)**:
   - $p$: 자기회귀(AR) 차수
@@ -183,7 +216,7 @@ extra:
 
 - 차분($d$)을 통해 비정상 시계열을 정상화한 ARIMA와 계절성을 반영한 SARIMA로 실무 예측을 확장함
 
-## Ⅵ. Box-Jenkins 방법론과 실무 시계열 분석 프로세스
+### Ⅵ. Box-Jenkins 방법론과 실무 시계열 분석 프로세스
 
 <div class="itpe-diagram-box" role="img" aria-label="Box-Jenkins 4단계 시계열 분석 프로세스">
 <svg viewBox="0 0 520 80" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
@@ -236,7 +269,7 @@ extra:
 
 - 식별, 추정, 진단, 예측의 4단계 Box-Jenkins 절차를 통해 최적 모형을 과학적으로 도출함
 
-## Ⅶ. 기술사적 제언
+### Ⅶ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -274,27 +307,7 @@ extra:
     <div class="itpe-flow-step__desc">서버 트래픽 이상치 실시간 탐지율 98% 달성 및 장애 선제 차단</div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-### 1. 자기회귀모형(AR)과 이동평균모형(MA)의 개념
-
-- **자기회귀모형 (AR)**: 현재 데이터가 과거 자기 자신의 관측치 선형결합으로 결정되는 모형 (관성 반영)
-- **이동평균모형 (MA)**: 현재 데이터가 과거 외부 충격(백색잡음 오차항)들의 선형결합으로 결정되는 모형 (유한 충격)
-- **핵심 전제**: 시계열의 평균과 분산이 시간에 무관하게 일정한 **정상성(Stationarity)** 충족 필수
-
-### 2. 모형별 수식 및 식별 패턴 비교
-
-| 구분 | 자기회귀모형 (AR($p$)) | 이동평균모형 (MA($q$)) |
-|---|---|---|
-| **기본 수식** | $Y_t = c + \sum \phi_i Y_{t-i} + \epsilon_t$ | $Y_t = \mu + \epsilon_t + \sum \theta_j \epsilon_{t-j}$ |
-| **충격 지속성** | 무한히 점진적 감쇄 (관성 유지) | $q$ 시점 경과 후 완전히 소멸 |
-| **ACF 패턴** | **지수적 점진 감쇄 (Tails off)** | **$q$차수 이후 급격 절단 (Cuts off)** |
-| **PACF 패턴** | **$p$차수 이후 급격 절단 (Cuts off)** | **지수적 점진 감쇄 (Tails off)** |
-
-### 3. 차별화 제언
-
-- 비정상 시계열은 차분($d$)을 거쳐 **ARIMA($p, d, q$)**로 변환하고, 경량 통계 모형(ARIMA)을 1차 신뢰 밴드 이상 탐지 엔진으로 활용하여 실시간성을 극대화함
+---
 
 ## 출제 이력과 검증 출처
 
@@ -302,14 +315,6 @@ extra:
 - 컴퓨터시스템응용기술사 제128회 1교시: 시계열 데이터 분석과 정상성 조건
 - George E. P. Box, Gwilym M. Jenkins et al., *Time Series Analysis: Forecasting and Control (5th Edition)*
 - Rob J. Hyndman & George Athanasopoulos, *Forecasting: Principles and Practice (3rd Edition)*
-
-## 학습 체크
-
-- [ ] 시계열 정상성을 만족하기 위한 3대 수학적 조건(평균, 분산, 공분산)을 설명할 수 있는가
-- [ ] AR($p$) 모형과 MA($q$) 모형의 수식을 오차항과 관측값 관점에서 제시할 수 있는가
-- [ ] ACF와 PACF 플롯을 보고 AR 모형과 MA 모형의 차수를 식별하는 규칙을 아는가
-- [ ] ARIMA($p, d, q$)에서 차분($d$)이 필요한 이유와 단위근 검정(ADF Test)의 역할을 아는가
-- [ ] Ⅶ 결론에서 ARIMA 기반의 실시간 이상치 탐지 파이프라인 연계 방안을 제시할 수 있는가
 
 ## 연결 토픽
 

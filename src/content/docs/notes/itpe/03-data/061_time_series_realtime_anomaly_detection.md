@@ -7,13 +7,13 @@ sidebar:
     variant: note
 title: "시계열 실시간 이상치 탐지 (Time Series Real-time Anomaly Detection)"
 author: "Antigravity"
-date: "2026-09-20T18:05:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 category: "03-data"
 weight: 61
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
   question_no: "061"
 ---
@@ -89,10 +89,6 @@ extra:
   - **컨텍스트 이상치(Contextual Anomaly)**: 값 자체는 정상 범위이나 특정 시간대 맥락상 비정상 (예: 새벽 3시 대규모 송금)
   - **집단 이상치(Collective Anomaly)**: 개별 포인트는 정상이지만 연속된 시퀀스 조합이 비정상 패턴을 형성 (예: 평탄화 고원 현상)
 - 주의: 고정 정적 임계값(Static Threshold)은 출퇴근 시간대 트래픽 증가나 계절적 변동을 이상치로 오판하여 극심한 알람 피로(Alert Fatigue)를 유발하므로, 최근 윈도우의 평균과 분산을 실시간 추종하는 **동적 임계 밴드(Dynamic Band)** 적용이 필수적임
-
-## 예상문제
-
-> 스마트 팩토리, 금융 사기 탐지(FDS), IT 인프라 모니터링 등 다양한 산업 분야에서 중요성이 증가하고 있는 시계열 데이터 실시간 이상치 탐지(Real-time Anomaly Detection)의 개념과 이상치의 3가지 유형을 설명하고, 주요 탐지 알고리즘(통계, 머신러닝, 딥러닝) 및 실시간 스트리밍 아키텍처를 제시하시오. (25점)
 
 ## Ⅰ. 사후 배치 분석을 극복하는 시계열 실시간 이상치 탐지 개요
 
@@ -315,10 +311,47 @@ extra:
     <div class="itpe-flow-step-desc">알람 피로 해소, 추론 자원 80% 절감 및 MTTR 70% 단축</div>
   </div>
 </div>
-
 ---
 
-## 2교시 25점 답안 발췌
+## 1교시 예상문제 (10점)
+
+> 시계열 실시간 이상치 탐지 (Time Series Real-time Anomaly Detection)의 정의, 목적, 핵심 메커니즘을 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. 정의·목적
+
+- 정의: 고속 스트림 데이터에서 시간 순서와 자기상관성을 반영하여 정상 패턴 이탈을 초저지연(수 ms)으로 검출하는 선제적 품질·보안 관측 체계
+- 목적: 해당 문제의 주요 분석과 의사결정에 적용한다.
+
+### 2. 핵심 관계
+
+| 비교 항목 | 통계적 기법 (EWMA) | 딥러닝 기법 (AutoEncoder) |
+|:---|:---|:---|
+| **처리 레이턴시** | 극도로 낮음 (1ms 이내) | 보통 (50~300ms, GPU 요구) |
+| **탐지 대상** | 단발성 포인트 이상치 | 복합 시퀀스 및 집단 이상치 |
+| **다변량 지원** | 단변량 중심 | 수백 개 센서 다변량 지원 |
+| **판정 메커니즘** | 동적 관리한계선($\mu \pm 3\sigma$) | 재구성 오차(Reconstruction Error) |
+
+### 핵심 관계
+
+| 비교 항목 | 통계적 기법 (EWMA) | 딥러닝 기법 (AutoEncoder) |
+|:---|:---|:---|
+| **처리 레이턴시** | 극도로 낮음 (1ms 이내) | 보통 (50~300ms, GPU 요구) |
+| **탐지 대상** | 단발성 포인트 이상치 | 복합 시퀀스 및 집단 이상치 |
+| **다변량 지원** | 단변량 중심 | 수백 개 센서 다변량 지원 |
+| **판정 메커니즘** | 동적 관리한계선($\mu \pm 3\sigma$) | 재구성 오차(Reconstruction Error) |
+
+- 제언: 핵심 메커니즘을 기준으로 설계하고 검증한다.
+---
+
+## 2~4교시 예상문제 (25점)
+
+> 스마트 팩토리, 금융 사기 탐지(FDS), IT 인프라 모니터링 등 다양한 산업 분야에서 중요성이 증가하고 있는 시계열 데이터 실시간 이상치 탐지(Real-time Anomaly Detection)의 개념과 이상치의 3가지 유형을 설명하고, 주요 탐지 알고리즘(통계, 머신러닝, 딥러닝) 및 실시간 스트리밍 아키텍처를 제시하시오. (25점)
+---
+
+## 2~4교시 25점 답안
 
 ### Ⅰ. 시계열 실시간 이상치 탐지의 개요 및 3대 이상치 유형
 
@@ -347,7 +380,6 @@ extra:
 
 1. **알람 피로 극복**: 3회 연속 윈도우 초과 시 경보 발송(Persistence Check)으로 노이즈 제거
 2. **콘셉트 드리프트 대응**: 윈도우 통계치 실시간 갱신 및 지속 학습(MLOps) 파이프라인 확립
-
 ---
 
 ## 출제 이력과 검증 출처
@@ -360,18 +392,6 @@ extra:
   - Charu C. Aggarwal, *Outlier Analysis (2nd Edition)*, Chapter 9: Time Series Anomaly Detection
   - Fei Tony Liu et al. (2008), "Isolation Forest", *IEEE ICDM*
   - Apache Flink Official Documentation, "Stateful Stream Processing & Event Time Windows"
-
----
-
-## 학습 체크
-
-- [ ] 시계열 이상치의 3대 유형(포인트, 컨텍스트, 집단 이상치)을 실제 사례와 함께 구분할 수 있는가?
-- [ ] 정적 임계값 대비 동적 임계 밴드(Dynamic Threshold Band)가 알람 피로를 줄이는 메커니즘은 무엇인가?
-- [ ] Isolation Forest가 이상치를 탐지하는 수학적 원리(트리 분할 경로 길이)를 설명할 수 있는가?
-- [ ] AutoEncoder 모델이 재구성 오차(Reconstruction Error)를 통해 비정상 시퀀스를 찾아내는 원리는 무엇인가?
-- [ ] **서술 연습 1**: EWMA의 수식을 제시하고, 동적 관리한계선($\mu_t \pm 3\sigma_t$)을 활용한 실시간 이상 탐지 원리를 10점형 답안으로 작성하시오.
-- [ ] **서술 연습 2**: Kafka와 Flink, 2-Tier 필터링(통계 + 딥러닝)을 결합한 엔드투엔드 시계열 실시간 이상치 탐지 아키텍처를 25점형으로 서술하시오.
-
 ---
 
 ## 연결 토픽

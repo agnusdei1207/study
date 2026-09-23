@@ -9,10 +9,10 @@ tags:
   - "Serializable"
   - "MVCC"
   - "WriteSkew"
-date: "2026-09-20T23:09:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -88,12 +88,31 @@ sidebar:
 - `Snapshot Isolation(스냅샷 격리)`: 트랜잭션 시작 시점의 일관된 DB 스냅샷을 읽도록 하여 읽기 작업이 락 없이 완벽한 Repeatable Read를 달성하는 MVCC 기법
 
 </details>
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
 
-> 데이터베이스 트랜잭션의 ACID 속성 중 고립성(Isolation)을 보장하기 위한 ANSI/ISO SQL 표준의 4대 트랜잭션 격리 수준(Read Uncommitted, Read Committed, Repeatable Read, Serializable)을 비교하고, 각 수준에서 방지되는 이상현상(Dirty Read, Non-repeatable Read, Phantom Read, Write Skew)과 DBMS 제품별 구현 차이(Lock vs MVCC)를 설명하시오. (25점)
+> 트랜잭션 격리 수준 (Isolation Level)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
 
-## 딸려 나오는 하위 토픽
+## 1교시 10점 답안
+
+1. **트랜잭션 격리 수준(Isolation Level)의 정의 및 목적**
+   - **정의**: 동시 실행되는 트랜잭션 간 데이터 변경 가시성 범위를 규정하여 정합성과 동시성을 절충하는 수준
+   - **목적**: 4대 이상현상(Dirty Read, Non-repeatable Read, Phantom Read, Write Skew) 차단
+
+2. **ANSI 4대 격리 수준 및 이상현상 방지 매트릭스**
+   - **Read Uncommitted**: 락 미사용, 3대 이상현상 모두 발생 (최대 동시성)
+   - **Read Committed**: 커밋된 데이터만 조회, Dirty Read 방지 (Oracle/PostgreSQL 기본)
+   - **Repeatable Read**: 트랜잭션 내 일관된 스냅샷, Non-repeatable Read 방지 (MySQL InnoDB는 Next-Key Lock으로 Phantom도 차단)
+   - **Serializable**: 직렬 수행 보장, Phantom Read 및 Write Skew 원천 차단 (최고 정합성)
+
+3. **실무 제언: Write Skew 방지 및 하이브리드 전략**
+   - **한계**: Repeatable Read에서도 서로 다른 행 수정 시 Write Skew가 발생할 수 있음
+   - **대책**: 일반 업무는 Read Committed로 처리율을 높이고, 금융 원장 및 좌석 예약은 `SELECT ... FOR UPDATE` 비관 락 또는 Serializable을 선별 적용하는 하이브리드 아키텍처 필수 권고
+---
+
+### 핵심 관계
 
 | 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
 |---|---|---|
@@ -101,7 +120,26 @@ sidebar:
 | **Write Skew와 SSI** | 스냅샷 격리의 맹점인 쓰기 왜곡과 직렬화 가능 스냅샷(Serializable Snapshot Isolation) | Ⅳ 이상현상 심층 |
 | **DBMS별 기본 격리 수준** | Oracle/PostgreSQL(Read Committed), MySQL InnoDB(Repeatable Read) 구현 차이 | Ⅴ 제품별 비교 |
 
-## Ⅰ. 동시성 제어의 가시성 계약, 트랜잭션 격리 수준의 개요
+---
+
+## 2~4교시 예상문제 (25점)
+
+> 데이터베이스 트랜잭션의 ACID 속성 중 고립성(Isolation)을 보장하기 위한 ANSI/ISO SQL 표준의 4대 트랜잭션 격리 수준(Read Uncommitted, Read Committed, Repeatable Read, Serializable)을 비교하고, 각 수준에서 방지되는 이상현상(Dirty Read, Non-repeatable Read, Phantom Read, Write Skew)과 DBMS 제품별 구현 차이(Lock vs MVCC)를 설명하시오. (25점)
+
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### 딸려 나오는 하위 토픽
+
+| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
+|---|---|---|
+| **ANSI 격리 수준 4단계** | Read Uncommitted, Read Committed, Repeatable Read, Serializable 비교 | Ⅲ 격리 수준 |
+| **Write Skew와 SSI** | 스냅샷 격리의 맹점인 쓰기 왜곡과 직렬화 가능 스냅샷(Serializable Snapshot Isolation) | Ⅳ 이상현상 심층 |
+| **DBMS별 기본 격리 수준** | Oracle/PostgreSQL(Read Committed), MySQL InnoDB(Repeatable Read) 구현 차이 | Ⅴ 제품별 비교 |
+
+### Ⅰ. 동시성 제어의 가시성 계약, 트랜잭션 격리 수준의 개요
 
 > 격리 수준은 완전한 고립성을 추구할 때 발생하는 성능 저하를 방지하기 위해, 허용 가능한 이상현상의 범위를 정의한 실무적 타협선임.
 
@@ -109,7 +147,7 @@ sidebar:
 - 배경: ACID 원칙 중 격리성(Isolation)을 100% 만족시키는 직렬(Serializable) 모드는 동시성(Concurrency)과 시스템 처리량을 심각하게 훼손하므로 단계별 절충안 필요
 - 목적: 비즈니스 도메인의 정합성 요구에 맞추어 성능(동시성)과 무결성(일관성) 사이의 최적 균형점 제공
 
-## Ⅱ. 병행수행 시 발생하는 4대 주요 이상현상
+### Ⅱ. 병행수행 시 발생하는 4대 주요 이상현상
 
 > 격리 수준이 낮을수록 더 많은 데이터 오염 현상이 허용됨.
 
@@ -120,7 +158,7 @@ sidebar:
 | **유령 읽기 (Phantom Read)** | $T_1$이 범위 조건으로 다중 튜플을 조회한 후, $T_2$가 해당 조건에 부합하는 새 튜플을 삽입·커밋하여 재조회 시 없던 행이 출현 | **Serializable** (InnoDB는 Next-Key Lock으로 RR에서도 방지) |
 | **쓰기 왜곡 (Write Skew)** | 스냅샷 격리에서 두 트랜잭션이 서로 다른 행을 수정하여 개별적으로는 성공하나, 전체 비즈니스 불변식이 깨지는 현상 | **Serializable (SSI)** |
 
-## Ⅲ. ANSI/ISO SQL 표준 격리 수준 4단계 비교
+### Ⅲ. ANSI/ISO SQL 표준 격리 수준 4단계 비교
 
 > 표준 정의와 실제 DBMS 제품의 구현 메커니즘을 함께 이해해야 함.
 
@@ -163,7 +201,7 @@ sidebar:
 | **Repeatable Read** | **방지** | **방지** | **발생** (표준 기준)| 트랜잭션 시작 시점의 단일 MVCC 스냅샷 유지 | MySQL (InnoDB 엔진) |
 | **Serializable** | **방지** | **방지** | **방지** | 2PL 잠금(인덱스 넥스트-키 락) 또는 SSI 검증 | 고정밀 금융/원장 시스템 |
 
-## Ⅳ. 스냅샷 격리의 한계: 쓰기 왜곡(Write Skew) 메커니즘
+### Ⅳ. 스냅샷 격리의 한계: 쓰기 왜곡(Write Skew) 메커니즘
 
 > MVCC 기반의 Repeatable Read는 유령 읽기는 막아도 쓰기 왜곡(Write Skew)을 완벽히 방어하지 못함.
 
@@ -193,7 +231,7 @@ sidebar:
   1. 비관적 명시 잠금: 조회 시 `SELECT ... FOR UPDATE`로 대상 레코드 전체에 배타 락 강제
   2. **직렬화 가능 스냅샷(SSI: Serializable Snapshot Isolation)**: 트랜잭션 간의 읽기-쓰기 의존성 그래프(Dependency Graph)를 추적하여 사이클 발생 시 한쪽을 자동 롤백
 
-## Ⅴ. 주요 DBMS 제품별 격리 수준 구현 차이
+### Ⅴ. 주요 DBMS 제품별 격리 수준 구현 차이
 
 > 동일한 'Repeatable Read'라 하더라도 오라클과 MySQL의 내부 구현과 동작이 다름.
 
@@ -204,7 +242,7 @@ sidebar:
 | **Repeatable Read 구현**| 미지원 (Serializable로 대체) | Snapshot Isolation 기반 (Write Skew 가능) | MVCC + **Next-Key Lock** (Phantom Read 자동 방지) |
 | **Serializable 구현** | Snapshot Isolation (엄밀히 직렬성 아님)| **SSI (Serializable Snapshot Isolation)** | 2PL 기반 공유 락 강제 변환 |
 
-## Ⅵ. 트랜잭션 격리 수준 실무 위험 관리
+### Ⅵ. 트랜잭션 격리 수준 실무 위험 관리
 
 > 동시성 저하와 교착상태, 정합성 파손을 업무별로 차등 통제함.
 
@@ -215,7 +253,7 @@ sidebar:
 | 긴 트랜잭션으로 인한 MVCC 언두(Undo) 공간 고갈 | 트랜잭션 타임아웃 설정 및 대량 배치를 작은 청크(Chunk) 단위 분할 | 테이블 팽창(Bloat) 방지 및 DB 락 다운 차단 |
 | DBMS 제품별 격리 동작 차이로 인한 버그 | DB 마이그레이션 시 격리 수준별 회귀 테스트(Jepsen 검증) 수행 | 엔진 교체에 따른 정합성 붕괴 사고 예방 |
 
-## Ⅶ. 기술사적 제언: 도메인 격리 수준 분리와 명시적 잠금 전략
+### Ⅶ. 기술사적 제언: 도메인 격리 수준 분리와 명시적 잠금 전략
 
 > "모든 트랜잭션을 Serializable로 돌리는 것은 무책임한 성능 포기이며, 무조건 Read Committed를 고집하는 것은 잠재적 금융 사고의 방조다."
 
@@ -266,34 +304,12 @@ sidebar:
     </div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-1. **트랜잭션 격리 수준(Isolation Level)의 정의 및 목적**
-   - **정의**: 동시 실행되는 트랜잭션 간 데이터 변경 가시성 범위를 규정하여 정합성과 동시성을 절충하는 수준
-   - **목적**: 4대 이상현상(Dirty Read, Non-repeatable Read, Phantom Read, Write Skew) 차단
-
-2. **ANSI 4대 격리 수준 및 이상현상 방지 매트릭스**
-   - **Read Uncommitted**: 락 미사용, 3대 이상현상 모두 발생 (최대 동시성)
-   - **Read Committed**: 커밋된 데이터만 조회, Dirty Read 방지 (Oracle/PostgreSQL 기본)
-   - **Repeatable Read**: 트랜잭션 내 일관된 스냅샷, Non-repeatable Read 방지 (MySQL InnoDB는 Next-Key Lock으로 Phantom도 차단)
-   - **Serializable**: 직렬 수행 보장, Phantom Read 및 Write Skew 원천 차단 (최고 정합성)
-
-3. **실무 제언: Write Skew 방지 및 하이브리드 전략**
-   - **한계**: Repeatable Read에서도 서로 다른 행 수정 시 Write Skew가 발생할 수 있음
-   - **대책**: 일반 업무는 Read Committed로 처리율을 높이고, 금융 원장 및 좌석 예약은 `SELECT ... FOR UPDATE` 비관 락 또는 Serializable을 선별 적용하는 하이브리드 아키텍처 필수 권고
+---
 
 ## 출제 이력과 검증 출처
 
 - **공식 출제 이력**: 정보관리기술사 제130회 1교시 단답형 (격리 수준과 이상현상), 제121회 2교시 논술형 (스냅샷 격리와 Write Skew, ANSI 격리 수준 비교)
 - **표준 및 레퍼런스**: ANSI/ISO SQL-92 Isolation Levels, [PostgreSQL Documentation on Transaction Isolation](https://www.postgresql.org/docs/current/transaction-iso.html), [MySQL InnoDB Transaction Isolation Levels](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)
-
-## 학습 체크
-
-- [ ] [Ⅰ 개요]: 동시성과 일관성의 절충 관점에서 트랜잭션 격리 수준의 정의를 기술하였는가?
-- [ ] [Ⅱ 이상]: Dirty Read, Non-repeatable Read, Phantom Read, Write Skew의 발생 원리를 구분하였는가?
-- [ ] [Ⅲ 수준]: ANSI 4대 격리 수준(RU, RC, RR, Serializable)의 이상현상 방지 매트릭스를 제시하였는가?
-- [ ] [Ⅳ 왜곡]: 스냅샷 격리 하에서 발생하는 Write Skew 메커니즘과 해결책을 설명하였는가?
 
 ## 연결 토픽
 

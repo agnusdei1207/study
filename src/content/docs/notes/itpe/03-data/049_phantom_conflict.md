@@ -7,12 +7,12 @@ sidebar:
     variant: note
 title: "팬텀 충돌 (Phantom Conflict) 및 방지 기법 (Next-Key Lock, Predicate Lock)"
 author: "Antigravity"
-date: "2026-09-20T17:30:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 weight: 49
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
   question_no: "049"
 ---
@@ -72,12 +72,47 @@ extra:
   - **Non-Repeatable Read**: 이미 존재하는 특정 단일 행의 컬럼 '값'이 타 트랜잭션의 UPDATE에 의해 변경됨 (Row Lock으로 방지 가능)
   - **Phantom Conflict**: 조건절을 만족하는 '집합의 크기(카디널리티)'가 타 트랜잭션의 INSERT/DELETE에 의해 변경됨 (Row Lock으로 방지 불가, Gap/Predicate Lock 필요)
 - 주의: 단순 MVCC(다중 버전 동시성 제어)의 일관된 읽기(Consistent Read)는 일반 SELECT 문의 팬텀 리드를 언두 로그(Undo Log)로 은폐하지만, `SELECT ... FOR UPDATE` 같은 비관적 락 조회나 UPDATE/DELETE 직접 실행(Current Read) 시에는 갭 락(Gap Lock)이 없으면 여전히 팬텀 충돌이 발현됨
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> 팬텀 충돌 (Phantom Conflict) 및 방지 기법 (Next-Key Lock, Predicate Lock)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. 팬텀 충돌의 정의 및 발생 원인
+
+- **정의**: 트랜잭션 내 동일 조건의 범위 검색 시, 타 트랜잭션의 신규 INSERT/DELETE로 인해 이전 결과 집합에 없던 유령(Phantom) 행이 나타나 직렬성을 위반하는 동시성 이상
+- **발생 원인**: 기존 행 락(Row Lock)은 물리적으로 존재하지 않는 인덱스 간격(Gap)의 미래 레코드를 잠글 수 없음
+
+### 2. 팬텀 충돌 발생 메커니즘 및 락 해결 구조
+
+- **발생 타임라인 요약**:
+  - T1: `SELECT WHERE age >= 20;` (기존 행 A, B에 Row S-Lock 획득)
+  - T2: `INSERT VALUES (C, 25);` (C는 신규 Gap이므로 T1의 락을 우회하여 성공)
+  - T2 커밋 후 T1 재조회 시 신규 C 출현 $\rightarrow$ 팬텀 충돌 발생
+
+| 락킹 해결 기법 | 동작 메커니즘 | 특징 및 적용 환경 |
+|---|---|---|
+| **서술어 락 (Predicate Lock)** | WHERE 조건식 자체를 락 테이블에 등록 | 이론상 완벽 방지, 조건 교집합 판정 오버헤드 극심 |
+| **넥스트 키 락 (Next-Key Lock)** | 인덱스 레코드 락 + 선행 인덱스 갭 락 결합 | 실무 표준 (MySQL InnoDB Repeatable Read 기본값) |
+
+### 3. 차별화 제언
+
+- 단순 SELECT는 MVCC 스냅샷으로 팬텀을 방지하고, Current Read 환경의 선착순 트래픽은 **Redis 원자적 연산(`DECR`)과 유니크 인덱스**를 결합하여 DB 갭 락 데드락을 원천 차단함
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 트랜잭션 동시성 제어에서 발생하는 팬텀 충돌(Phantom Conflict)의 발생 원인과 메커니즘을 설명하고, 이를 해결하기 위한 서술어 락(Predicate Lock), 넥스트 키 락(Next-Key Lock) 및 격리 수준(Isolation Level)별 대응 방안을 비교 설명하시오. (25점)
 
-## Ⅰ. 행 기반 락의 한계를 드러내는 팬텀 충돌(Phantom Conflict) 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 행 기반 락의 한계를 드러내는 팬텀 충돌(Phantom Conflict) 개요
 
 - 발생 배경:
   - 전통적인 2단계 락킹 프로토콜(2PL)은 이미 디스크에 존재하는 물리적 데이터 블록 또는 개별 행(Row)에 락을 설정함
@@ -89,7 +124,7 @@ extra:
 
 - 범위 검색 조건 만족 집합에 타 트랜잭션이 신규 레코드를 삽입함으로써 동일 트랜잭션 내 재조회 결과가 달라지는 직렬성 위반 이상 현상임
 
-## Ⅱ. 팬텀 충돌 발생 메커니즘 및 단계별 타임라인
+### Ⅱ. 팬텀 충돌 발생 메커니즘 및 단계별 타임라인
 
 ### 1. 단계별 발생 타임라인
 
@@ -110,7 +145,7 @@ extra:
 
 - 기존 레코드에만 락을 건 틈을 타 인덱스 갭(Gap)에 신규 행이 삽입·커밋되어 재검색 시 카디널리티 불일치를 초래함
 
-## Ⅲ. 팬텀 충돌 방지를 위한 핵심 락킹(Locking) 메커니즘
+### Ⅲ. 팬텀 충돌 방지를 위한 핵심 락킹(Locking) 메커니즘
 
 <div class="itpe-diagram-box" role="img" aria-label="서술어 락 대 넥스트 키 락 메커니즘 비교도">
 <svg viewBox="0 0 520 180" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
@@ -175,7 +210,7 @@ extra:
 
 - 서술어 락이 조건식 자체를 잠그는 이론적 모델이라면, 넥스트 키 락은 B+Tree 인덱스 간격을 잠가 실용성을 확보한 엔지니어링 구현체임
 
-## Ⅳ. 트랜잭션 격리 수준(Isolation Level) 및 MVCC와의 상관관계
+### Ⅳ. 트랜잭션 격리 수준(Isolation Level) 및 MVCC와의 상관관계
 
 ### 1. ANSI/ISO SQL-92 표준 vs 상용 DBMS의 팬텀 처리 비교
 
@@ -200,7 +235,7 @@ extra:
 
 - 일반 조회는 MVCC 언두 스냅샷으로 팬텀을 숨기지만, 쓰기 및 락 조회의 Current Read에서는 넥스트 키 락이 있어야만 팬텀을 차단할 수 있음
 
-## Ⅴ. Non-Repeatable Read vs Phantom Conflict 상세 비교
+### Ⅴ. Non-Repeatable Read vs Phantom Conflict 상세 비교
 
 | 비교 항목 | Non-Repeatable Read (비반복 읽기) | Phantom Conflict (팬텀 충돌) |
 |:---|:---|:---|
@@ -214,7 +249,7 @@ extra:
 
 - 비반복 읽기는 단일 행의 속성값 변경이고, 팬텀 충돌은 범위 조건 집합의 원소 개수(카디널리티) 변화임
 
-## Ⅵ. 실무 아키텍처 적용 사례 및 장애 예방 패턴
+### Ⅵ. 실무 아키텍처 적용 사례 및 장애 예방 패턴
 
 ### 1. 전형적 장애 사례: 수강신청/선착순 이벤트 정원 초과 버그
 
@@ -246,7 +281,7 @@ COMMIT;
 
 - 선착순 로직은 부모 행 비관적 락이나 Redis 원자 연산으로 방어하고, 갭 락 데드락은 Read Committed 전환 또는 유니크 인덱스로 해소함
 
-## Ⅶ. 기술사적 제언
+### Ⅶ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -284,29 +319,7 @@ COMMIT;
     <div class="itpe-flow-step__desc">금융·예약 시스템 직렬성 100% 보장 및 DB 락 경합 지연 60% 단축</div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-### 1. 팬텀 충돌의 정의 및 발생 원인
-
-- **정의**: 트랜잭션 내 동일 조건의 범위 검색 시, 타 트랜잭션의 신규 INSERT/DELETE로 인해 이전 결과 집합에 없던 유령(Phantom) 행이 나타나 직렬성을 위반하는 동시성 이상
-- **발생 원인**: 기존 행 락(Row Lock)은 물리적으로 존재하지 않는 인덱스 간격(Gap)의 미래 레코드를 잠글 수 없음
-
-### 2. 팬텀 충돌 발생 메커니즘 및 락 해결 구조
-
-- **발생 타임라인 요약**:
-  - T1: `SELECT WHERE age >= 20;` (기존 행 A, B에 Row S-Lock 획득)
-  - T2: `INSERT VALUES (C, 25);` (C는 신규 Gap이므로 T1의 락을 우회하여 성공)
-  - T2 커밋 후 T1 재조회 시 신규 C 출현 $\rightarrow$ 팬텀 충돌 발생
-
-| 락킹 해결 기법 | 동작 메커니즘 | 특징 및 적용 환경 |
-|---|---|---|
-| **서술어 락 (Predicate Lock)** | WHERE 조건식 자체를 락 테이블에 등록 | 이론상 완벽 방지, 조건 교집합 판정 오버헤드 극심 |
-| **넥스트 키 락 (Next-Key Lock)** | 인덱스 레코드 락 + 선행 인덱스 갭 락 결합 | 실무 표준 (MySQL InnoDB Repeatable Read 기본값) |
-
-### 3. 차별화 제언
-
-- 단순 SELECT는 MVCC 스냅샷으로 팬텀을 방지하고, Current Read 환경의 선착순 트래픽은 **Redis 원자적 연산(`DECR`)과 유니크 인덱스**를 결합하여 DB 갭 락 데드락을 원천 차단함
+---
 
 ## 출제 이력과 검증 출처
 
@@ -314,14 +327,6 @@ COMMIT;
 - 컴퓨터시스템응용기술사 제121회 1교시: 트랜잭션 격리수준과 동시성 이상 현상
 - MySQL 8.0 Reference Manual, "InnoDB Locking - Next-Key Locks and Phantom Rows"
 - Jim Gray & Andreas Reuter, *Transaction Processing: Concepts and Techniques*
-
-## 학습 체크
-
-- [ ] 팬텀 충돌이 기존 행 락(Row Lock)만으로는 방지될 수 없는 근본적인 구조적 원인은 무엇인가
-- [ ] 서술어 락(Predicate Lock)과 넥스트 키 락(Next-Key Lock)의 개념 및 차이점을 설명할 수 있는가
-- [ ] MySQL InnoDB 엔진에서 레코드 락, 갭 락, 넥스트 키 락의 상호 결합 구조를 도식화할 수 있는가
-- [ ] MVCC 스냅샷 읽기 상황에서도 팬텀 충돌이 발현될 수 있는 시나리오(Current Read)를 설명할 수 있는가
-- [ ] Ⅶ 결론에서 다계층 동시성 방어 전략(Redis + 유니크 인덱스)을 제시할 수 있는가
 
 ## 연결 토픽
 

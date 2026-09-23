@@ -1,10 +1,10 @@
 ---
 author: "Antigravity"
 category: "03-data"
-date: "2026-09-20T16:10:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   question_no: "027"
 sidebar:
   badge:
@@ -58,12 +58,52 @@ weight: 27
 - 암기: `좌-루-우 (중위 순회 오름차순)` / `경사 트리 퇴화 위험 → AVL·Red-Black 회전(LL, RR, LR, RL)`
 - 연계 확장: 네트워크 IP 라우팅 테이블의 최장 일치 접두사(LPM) 탐색 시 2진 트라이(Binary Trie) 및 Radix 트리로 응용
 - 주의: 디스크 기반 대용량 인덱스는 노드 분기율(Fan-out)이 큰 B-Tree/B+Tree를 사용하며, BST는 메모리 내 탐색 구조로 적합
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> 트리·이진 탐색 트리 (Binary Search Tree)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. 이진 탐색 트리(BST) 정의
+
+- 모든 노드가 $Key(Left) < Key(Root) < Key(Right)$ 속성을 만족하여, 중위 순회(In-order) 시 오름차순 정렬을 보장하는 $O(\log n)$ 동적 탐색 이진 트리
+
+### 2. 핵심 구조 및 연산
+
+- **중위 순회 정렬**: Left $\to$ Root $\to$ Right 순서로 방문하여 $O(n)$ 시간에 정렬된 배열 생성
+- **동적 연산 특성**:
+  - **탐색 (Search)**: 대소 비교를 통해 단계마다 탐색 대상 공간을 $1/2$씩 소거 ($O(\log n)$)
+  - **삽입 (Insert)**: 탐색 실패 지점(NULL)에 신규 노드를 동적으로 링크 연결 ($O(\log n)$)
+  - **삭제 (Delete)**:
+    - Case 1 (리프 노드): 부모 포인터 NULL 처리
+    - Case 2 (자식 1개): 자식 노드를 부모와 직결 승격
+    - Case 3 (자식 2개): 오른쪽 서브트리의 최소값(In-order Successor)으로 대체 후 해당 노드 삭제
+
+| 연산 | 핵심 메커니즘 | 시간복잡도 (평균 / 최악) |
+|---|---|:---:|
+| 탐색 (Search) | 대소 비교를 통해 매 단계 탐색 공간 1/2 축소 | $O(\log n)$ / $O(n)$ |
+| 삽입 (Insert) | 탐색 실패 지점(NULL)에 신규 노드 동적 링크 | $O(\log n)$ / $O(n)$ |
+| 삭제 (Delete) | 외자식: 자식 승격 / 두 자식: In-order Successor 대체 | $O(\log n)$ / $O(n)$ |
+
+### 3. 편향 트리 한계 및 라우팅 연계
+
+- **편향 트리 극복**: 순차 데이터 입력 시 $O(n)$ 퇴화를 막기 위해 회전 연산 기반 AVL 및 Red-Black 트리 도입
+- **라우팅 테이블 연계**: IP 비트 단위(0/1)로 좌우 분기하는 2진 트라이(Binary Trie) 및 Radix 트리를 통해 최장 일치 접두사(LPM) 고속 경로 탐색 구현
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 이진 탐색 트리(Binary Search Tree)의 정의와 주요 연산 메커니즘을 설명하고, 편향 트리(Skewed Tree) 발생 원인과 해결 방안(자가 균형 트리) 및 네트워크 라우팅 테이블 최장 일치 접두사(LPM) 탐색 알고리즘과의 상관관계를 논하시오. (25점)
 
-## Ⅰ. 계층적 순서성을 보장하는 이진 탐색 트리(BST) 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 계층적 순서성을 보장하는 이진 탐색 트리(BST) 개요
 
 - 정의: **이진 탐색 트리(BST, Binary Search Tree)**는 각 노드가 최대 2개의 자식 노드를 가지며, 모든 노드에 대해 왼쪽 서브트리의 모든 키값은 부모보다 작고, 오른쪽 서브트리의 모든 키값은 부모보다 큰 속성을 만족하는 이진 트리
 - 목적: 정렬된 배열의 고속 탐색 속도($O(\log n)$)와 연결 리스트의 빠른 동적 데이터 삽입·삭제 유연성을 동시에 확보
@@ -73,7 +113,7 @@ weight: 27
 
 - BST는 좌우 분기 규칙을 통해 비교할 때마다 탐색 대상 공간을 절반씩 소거해 나가는 $O(\log n)$ 동적 탐색 자료구조임
 
-## Ⅱ. 이진 탐색 트리의 핵심 특징과 순회(Traversal) 메커니즘
+### Ⅱ. 이진 탐색 트리의 핵심 특징과 순회(Traversal) 메커니즘
 
 | 특징 | 기술적 메커니즘 | 실무적 의의 |
 |---|---|---|
@@ -91,7 +131,7 @@ weight: 27
 
 - BST는 중위 순회를 통해 정렬된 출력을 얻으며, 순서성을 유지하는 대가로 편향 트리의 성능 저하 위험을 내포함
 
-## Ⅲ. 이진 탐색 트리의 동적 구조 및 3대 핵심 연산
+### Ⅲ. 이진 탐색 트리의 동적 구조 및 3대 핵심 연산
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -132,7 +172,7 @@ weight: 27
 
 - BST의 삽입·삭제·탐색은 모두 높이($h$)에 비례하므로, 트리의 높이를 $\lfloor\log_2 n\rfloor$로 제한하는 것이 핵심 과제임
 
-## Ⅳ. 편향 트리(Skewed Tree) 극복을 위한 자가 균형 BST 구조
+### Ⅳ. 편향 트리(Skewed Tree) 극복을 위한 자가 균형 BST 구조
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 115" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -183,7 +223,7 @@ weight: 27
 
 - 실무에서는 탐색 중심의 AVL보다 삽입·삭제 시 회전 비용이 적고 안정적인 Red-Black 트리가 시스템 표준 자료구조로 쓰임
 
-## Ⅴ. 탐색 자료구조 비교: BST vs B-Tree vs Trie (라우팅 연계)
+### Ⅴ. 탐색 자료구조 비교: BST vs B-Tree vs Trie (라우팅 연계)
 
 | 구분 | 이진 탐색 트리 (BST) | B-Tree (다원 탐색 트리) | 접두사 트리 (Trie / Radix Tree) |
 |---|---|---|---|
@@ -197,7 +237,7 @@ weight: 27
 
 - 메모리 단건 탐색은 BST/Red-Black, 블록 I/O 기반 저장은 B-Tree, 문자열 및 IP 비트열 접두사 탐색은 Trie가 최적임
 
-## Ⅵ. IP 라우팅 테이블(LPM)과 이진 트리 탐색 알고리즘의 상관관계
+### Ⅵ. IP 라우팅 테이블(LPM)과 이진 트리 탐색 알고리즘의 상관관계
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 115" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -236,7 +276,7 @@ weight: 27
 
 - IP 라우팅의 LPM은 이진 분기 원리를 IP 비트열에 적용한 Trie/Radix 구조를 통해 $O(K)$의 결정론적 고속 패킷 포워딩을 구현함
 
-## Ⅶ. 기술사적 제언
+### Ⅶ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -271,34 +311,7 @@ weight: 27
     <div class="itpe-flow-desc">탐색 지연 최악 퇴화 차단 및 수억 패킷급(Mpps) 라우팅 성능 확보</div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-### 1. 이진 탐색 트리(BST) 정의
-
-- 모든 노드가 $Key(Left) < Key(Root) < Key(Right)$ 속성을 만족하여, 중위 순회(In-order) 시 오름차순 정렬을 보장하는 $O(\log n)$ 동적 탐색 이진 트리
-
-### 2. 핵심 구조 및 연산
-
-- **중위 순회 정렬**: Left $\to$ Root $\to$ Right 순서로 방문하여 $O(n)$ 시간에 정렬된 배열 생성
-- **동적 연산 특성**:
-  - **탐색 (Search)**: 대소 비교를 통해 단계마다 탐색 대상 공간을 $1/2$씩 소거 ($O(\log n)$)
-  - **삽입 (Insert)**: 탐색 실패 지점(NULL)에 신규 노드를 동적으로 링크 연결 ($O(\log n)$)
-  - **삭제 (Delete)**:
-    - Case 1 (리프 노드): 부모 포인터 NULL 처리
-    - Case 2 (자식 1개): 자식 노드를 부모와 직결 승격
-    - Case 3 (자식 2개): 오른쪽 서브트리의 최소값(In-order Successor)으로 대체 후 해당 노드 삭제
-
-| 연산 | 핵심 메커니즘 | 시간복잡도 (평균 / 최악) |
-|---|---|:---:|
-| 탐색 (Search) | 대소 비교를 통해 매 단계 탐색 공간 1/2 축소 | $O(\log n)$ / $O(n)$ |
-| 삽입 (Insert) | 탐색 실패 지점(NULL)에 신규 노드 동적 링크 | $O(\log n)$ / $O(n)$ |
-| 삭제 (Delete) | 외자식: 자식 승격 / 두 자식: In-order Successor 대체 | $O(\log n)$ / $O(n)$ |
-
-### 3. 편향 트리 한계 및 라우팅 연계
-
-- **편향 트리 극복**: 순차 데이터 입력 시 $O(n)$ 퇴화를 막기 위해 회전 연산 기반 AVL 및 Red-Black 트리 도입
-- **라우팅 테이블 연계**: IP 비트 단위(0/1)로 좌우 분기하는 2진 트라이(Binary Trie) 및 Radix 트리를 통해 최장 일치 접두사(LPM) 고속 경로 탐색 구현
+---
 
 ## 출제 이력과 검증 출처
 
@@ -306,14 +319,6 @@ weight: 27
 - 제139회 3교시 5번: 이진 탐색 트리와 라우팅 테이블 탐색 알고리즘의 상관관계
 - [Introduction to Algorithms (CLRS), Binary Search Trees & Red-Black Trees](https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)
 - [RFC 1812: Requirements for IP Version 4 Routers (LPM Algorithms)](https://datatracker.ietf.org/doc/html/rfc1812)
-
-## 학습 체크
-
-- [ ] BST의 기본 조건과 중위 순회 시 오름차순 출력 원리를 설명할 수 있는가
-- [ ] 노드 삭제 시 자식이 2개인 경우(In-order Successor)의 처리 절차를 도식화할 수 있는가
-- [ ] 경사 트리의 발생 원인과 AVL/Red-Black 트리의 균형 유지 메커니즘 차이를 아는가
-- [ ] IP 라우팅 테이블의 LPM(최장 일치 접두사) 탐색에서 Trie/Radix 트리가 동작하는 원리를 연계할 수 있는가
-- [ ] Ⅶ 결론에서 CPU 캐시 친화도 및 하드웨어(TCAM)와의 결합 관점을 제시할 수 있는가
 
 ## 연결 토픽
 

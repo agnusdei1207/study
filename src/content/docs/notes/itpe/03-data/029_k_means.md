@@ -1,10 +1,10 @@
 ---
 author: "Antigravity"
 category: "03-data"
-date: "2026-09-20T16:20:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   question_no: "029"
 sidebar:
   badge:
@@ -64,12 +64,48 @@ weight: 29
 - 암기: `초-할-갱-수` = 초기화(K-Means++) $\to$ 할당(최근접 거리) $\to$ 갱신(평균 계산) $\to$ 수렴(SSE 안정화)
 - 한계와 대안: 구형(Spherical) 군집 가정 및 이상치 민감 $\to$ K-Medoids(중앙값) 또는 DBSCAN(밀도 기반)
 - 최적 $k$ 판정: 엘보우 기법(Elbow Method, SSE 급감 변곡점) + 실루엣 계수(Silhouette Coefficient, 0.5 이상)
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> K-Means 군집화 (K-Means Clustering)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. K-Means 군집화의 정의
+
+- 데이터 간 유클리디안 거리를 기반으로 군집 내 오차제곱합(SSE)을 최소화하도록 중심점을 반복 갱신하는 **비지도 분할 군집화 알고리즘**
+
+### 2. K-Means 4단계 수렴 절차 및 목적함수
+
+$$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
+
+- **1단계 (초기화)**: K-Means++ 방식으로 기존 중심 간 거리 제곱에 비례하는 확률 기반 $k$개 중심점 선정
+- **2단계 (할당)**: 각 데이터를 가장 가까운 중심점에 배정 ($c(j) = \arg\min_i \|x_j - \mu_i\|^2$)
+- **3단계 (갱신)**: 군집 내 배정된 데이터의 산술평균으로 중심점 좌표 갱신 ($\mu_i = \frac{1}{|C_i|} \sum x$)
+- **4단계 (수렴)**: 중심점 이동 거리 또는 SSE 변화량이 임계치 $\epsilon$ 미만일 때 종료
+
+| 핵심 비교 | K-Means | DBSCAN |
+|---|---|---|
+| 군집 기준 / 형태 | 평균 중심점 / 볼록한 구형 군집 | 데이터 밀도 (MinPts, Epsilon) / 임의 기하 형태 |
+| 파라미터 / 이상치 | $k$ 사전 입력 필수 / 이상치에 매우 취약 | $k$ 불필요 / 노이즈(Noise) 자동 분리 |
+
+### 3. 차별화 제언
+
+- 초기 중심점 편향 방지를 위해 **K-Means++**를 기본 적용하고, **엘보우 변곡점 + 실루엣 계수(0.5 이상)**의 이중 검증으로 비즈니스 수용 가능한 최적 $k$를 결정함
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 비지도 학습의 대표적 분할 군집화 기법인 K-Means의 개념, 동작 절차 및 수학적 목적함수를 제시하고, 초기값 민감성 극복 방안(K-Means++)과 최적의 군집 수($k$) 결정 기법 및 DBSCAN과의 비교를 논하시오. (25점)
 
-## Ⅰ. 대용량 데이터 세분화를 위한 K-Means 군집화 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 대용량 데이터 세분화를 위한 K-Means 군집화 개요
 
 - 정의: **K-Means**는 사전 정의된 라벨이 없는 $n$개의 다차원 데이터를 사용자가 지정한 $k$개의 군집으로 묶되, 각 군집 내부의 응집도를 나타내는 군집 내 오차제곱합(SSE)이 최소가 되도록 중심점을 반복 이동시키는 분할 기반 비지도 머신러닝 알고리즘
 - 목적: 고객 세분화(Segmentation), 이상 거래 탐지(사전 클러스터링), 추천 시스템의 프로파일링을 위해 데이터의 고유한 패턴을 비지도 방식으로 집단화
@@ -79,7 +115,7 @@ weight: 29
 
 - K-Means는 데이터와 중심점 간 유클리디안 거리를 기반으로 반복적인 할당과 갱신을 통해 최적의 군집 중심을 찾아가는 고속 알고리즘임
 
-## Ⅱ. K-Means의 핵심 속성과 수학적 목적함수(SSE)
+### Ⅱ. K-Means의 핵심 속성과 수학적 목적함수(SSE)
 
 $$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
 
@@ -99,7 +135,7 @@ $$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
 
 - K-Means는 $O(nkt)$의 초고속 연산이라는 강점이 있으나, 구형 군집 가정과 이상치 왜곡이라는 뚜렷한 한계를 가짐
 
-## Ⅲ. K-Means 4단계 수렴 알고리즘 및 K-Means++ 초기화
+### Ⅲ. K-Means 4단계 수렴 알고리즘 및 K-Means++ 초기화
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 125" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -147,7 +183,7 @@ $$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
 
 - K-Means는 기댓값-최대화(EM, Expectation-Maximization) 원리에 따라 할당(E-step)과 갱신(M-step)을 반복 수렴시킴
 
-## Ⅳ. 최적 군집 수($k$) 결정을 위한 이중 검증 프레임워크
+### Ⅳ. 최적 군집 수($k$) 결정을 위한 이중 검증 프레임워크
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -190,7 +226,7 @@ $$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
 
 - 최적 $k$는 엘보우 그래프의 변곡점으로 1차 후보군을 좁히고, 실루엣 점수의 평균 및 군집별 편차로 2차 정밀 검증함
 
-## Ⅴ. 비지도 군집화 알고리즘 심층 비교: K-Means vs K-Medoids vs DBSCAN
+### Ⅴ. 비지도 군집화 알고리즘 심층 비교: K-Means vs K-Medoids vs DBSCAN
 
 | 비교 항목 | K-Means | K-Medoids (PAM) | DBSCAN |
 |---|---|---|---|
@@ -205,7 +241,7 @@ $$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
 
 - 대규모 수치형 구형 데이터는 K-Means, 이상치가 많은 데이터는 K-Medoids, 복잡한 비선형 분포 및 노이즈 검출은 DBSCAN이 적합함
 
-## Ⅵ. K-Means 실무 적용 시 주요 실패 요인 및 엔지니어링 대책
+### Ⅵ. K-Means 실무 적용 시 주요 실패 요인 및 엔지니어링 대책
 
 | 문제 상황 | 근본 원인 | 실무 대책 | 기대 효과 |
 |---|---|---|---|
@@ -218,7 +254,7 @@ $$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
 
 - 데이터 표준화(Scaling), K-Means++ 초기화, 사전 이상치 제거는 K-Means 파이프라인의 필수 전처리 단계임
 
-## Ⅶ. 기술사적 제언
+### Ⅶ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -253,44 +289,13 @@ $$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
     <div class="itpe-flow-desc">마케팅 전환율 2.5배 향상 및 세그먼트 추론 레이턴시 10ms 보장</div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-### 1. K-Means 군집화의 정의
-
-- 데이터 간 유클리디안 거리를 기반으로 군집 내 오차제곱합(SSE)을 최소화하도록 중심점을 반복 갱신하는 **비지도 분할 군집화 알고리즘**
-
-### 2. K-Means 4단계 수렴 절차 및 목적함수
-
-$$\text{SSE} = \sum_{i=1}^{k} \sum_{x \in C_i} \|x - \mu_i\|^2$$
-
-- **1단계 (초기화)**: K-Means++ 방식으로 기존 중심 간 거리 제곱에 비례하는 확률 기반 $k$개 중심점 선정
-- **2단계 (할당)**: 각 데이터를 가장 가까운 중심점에 배정 ($c(j) = \arg\min_i \|x_j - \mu_i\|^2$)
-- **3단계 (갱신)**: 군집 내 배정된 데이터의 산술평균으로 중심점 좌표 갱신 ($\mu_i = \frac{1}{|C_i|} \sum x$)
-- **4단계 (수렴)**: 중심점 이동 거리 또는 SSE 변화량이 임계치 $\epsilon$ 미만일 때 종료
-
-| 핵심 비교 | K-Means | DBSCAN |
-|---|---|---|
-| 군집 기준 / 형태 | 평균 중심점 / 볼록한 구형 군집 | 데이터 밀도 (MinPts, Epsilon) / 임의 기하 형태 |
-| 파라미터 / 이상치 | $k$ 사전 입력 필수 / 이상치에 매우 취약 | $k$ 불필요 / 노이즈(Noise) 자동 분리 |
-
-### 3. 차별화 제언
-
-- 초기 중심점 편향 방지를 위해 **K-Means++**를 기본 적용하고, **엘보우 변곡점 + 실루엣 계수(0.5 이상)**의 이중 검증으로 비즈니스 수용 가능한 최적 $k$를 결정함
+---
 
 ## 출제 이력과 검증 출처
 
 - 제129회 1교시 5번: K-Means Clustering과 DBSCAN 개념, 구성요소, 장/단점
 - [Scikit-learn User Guide, K-means Clustering](https://scikit-learn.org/stable/modules/clustering.html#k-means)
 - [Arthur, D., & Vassilvitskii, S. (2007). k-means++: The advantages of careful seeding](https://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf)
-
-## 학습 체크
-
-- [ ] K-Means의 목적함수인 군집 내 오차제곱합(SSE) 수식을 전개할 수 있는가
-- [ ] 4단계 반복 수렴(할당-갱신)의 메커니즘을 도식화할 수 있는가
-- [ ] K-Means++가 초기 중심점 간 거리를 최대화하는 확률적 원리를 설명할 수 있는가
-- [ ] 엘보우 기법과 실루엣 계수의 산식 및 판정 기준을 제시할 수 있는가
-- [ ] DBSCAN과의 비교에서 구형 군집과 밀도 기반 임의 형태 군집의 차이를 명확히 서술할 수 있는가
 
 ## 연결 토픽
 

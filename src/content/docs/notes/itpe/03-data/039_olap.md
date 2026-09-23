@@ -1,10 +1,10 @@
 ---
 author: "Antigravity"
 category: "03-data"
-date: "2026-09-20T16:55:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 extra:
   keyword_grade: "A"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   question_no: "039"
 sidebar:
   badge:
@@ -73,12 +73,44 @@ weight: 39
 - 암기: `롤-드-슬-다-피` = 롤업(상위 요약) · 드릴다운(하위 상세) · 슬라이싱(단면) · 다이싱(작은 큐브) · 피보팅(차원축 회전)
 - 3대 아키텍처: `ROLAP(확장성/관계형)` vs `MOLAP(고속 응답/다차원 배열/큐브 폭증)` vs `HOLAP(하이브리드)`
 - 현대적 진화: 레거시 정적 큐브(Pre-aggregation)에서 **컬럼형 분산 쿼리 엔진(ClickHouse, Snowflake, DuckDB)** 기반의 온디맨드 실시간 OLAP로 패러다임 전환
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> OLAP (Online Analytical Processing) 및 MOLAP·ROLAP·HOLAP의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. OLAP의 정의
+
+- 데이터 웨어하우스의 다차원 모델(Cube)을 기반으로 의사결정자가 대화식으로 데이터를 분석하는 **온라인 분석 처리 기술**
+
+### 2. 다차원 연산 및 3대 아키텍처 비교
+
+- **5대 연산**: 롤업(요약) $\to$ 드릴다운(상세) $\to$ 슬라이싱(단면) $\to$ 다이싱(부분 큐브) $\to$ 피보팅(축 회전)
+
+| 구분 | ROLAP (관계형) | MOLAP (다차원) | HOLAP (혼합형) |
+|---|---|---|---|
+| 기반 엔진 | 관계형 DB (스타 스키마) | 전용 다차원 배열 큐브 | 큐브(상위) + RDBMS(하위) |
+| 집계 시점 | 쿼리 시 동적 집계 중심 | 사전 완제 계산 (Pre-calculated) | 상위 계층만 선별 사전 집계 |
+| 장단점 | 대용량 확장성 우수 / 속도 한계 | 초고속 응답 / 큐브 폭증 위험 | 성능과 확장성의 절충 |
+
+### 3. 차별화 제언
+
+- 사전 집계 배치 지연을 해소하기 위해 **컬럼 지향 엔진(ClickHouse/DuckDB)** 기반의 온디맨드 벡터화 연산을 결합하여 **실시간 Zero-Cube OLAP**를 구현함
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 데이터 웨어하우스 환경에서 다차원 데이터 분석을 지원하는 OLAP(Online Analytical Processing)의 개념을 설명하고, 다차원 큐브의 4대 핵심 연산과 ROLAP, MOLAP, HOLAP의 구조적 차이 및 최신 현대적 모던 데이터 스택(MDS) 관점의 발전 방향을 논하시오. (25점)
 
-## Ⅰ. 대화식 다차원 의사결정 지원 인프라, OLAP 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 대화식 다차원 의사결정 지원 인프라, OLAP 개요
 
 - 정의: **OLAP(Online Analytical Processing)**은 다차원 데이터 모델(Cube)을 기반으로 사용자가 정형화되지 않은 복잡한 집계 및 추세 분석 쿼리를 대화형(Interactive)으로 수행하여 신속하게 비즈니스 통찰을 도출하는 기술 체계
 - 목적: 운영계 RDBMS(OLTP)의 부하를 차단하고, 수억 건의 이력 데이터를 시간, 조직, 제품 등 다양한 업무 차원(Dimension)별로 즉시 요약·대조할 수 있는 분석 환경 제공
@@ -88,7 +120,7 @@ weight: 39
 
 - OLAP는 단건 트랜잭션을 처리하는 OLTP와 달리, 다차원 큐브를 통해 대규모 데이터를 다각도에서 즉각 분석하는 시스템임
 
-## Ⅱ. OLTP vs OLAP의 핵심 특성 비교
+### Ⅱ. OLTP vs OLAP의 핵심 특성 비교
 
 | 비교 항목 | OLTP (Online Transaction Processing) | OLAP (Online Analytical Processing) |
 |---|---|---|
@@ -103,7 +135,7 @@ weight: 39
 
 - OLTP는 '데이터의 정확한 기록과 갱신'이 핵심이고, OLAP는 '기록된 데이터의 다각도 통찰 인출'이 핵심임
 
-## Ⅲ. 다차원 모델(Cube)의 정적 구조와 5대 핵심 연산
+### Ⅲ. 다차원 모델(Cube)의 정적 구조와 5대 핵심 연산
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -145,7 +177,7 @@ weight: 39
 
 - OLAP 연산은 롤업으로 넓게 보고, 드릴다운으로 깊게 파고들며, 슬라이싱·다이싱·피보팅으로 각도를 바꾸어 입체적으로 분석함
 
-## Ⅳ. OLAP 3대 구현 아키텍처 심층 비교: ROLAP vs MOLAP vs HOLAP
+### Ⅳ. OLAP 3대 구현 아키텍처 심층 비교: ROLAP vs MOLAP vs HOLAP
 
 | 비교 항목 | ROLAP (Relational OLAP) | MOLAP (Multidimensional OLAP) | HOLAP (Hybrid OLAP) |
 |---|---|---|---|
@@ -161,7 +193,7 @@ weight: 39
 
 - ROLAP는 확장성과 갱신이 유연하고, MOLAP는 사전 계산으로 응답이 가장 빠르며, HOLAP는 둘의 장점을 결합한 하이브리드임
 
-## Ⅴ. 다차원 모델링 스키마 구조: 스타 스키마 vs 스노우플레이크 스키마
+### Ⅴ. 다차원 모델링 스키마 구조: 스타 스키마 vs 스노우플레이크 스키마
 
 <div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 115" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
@@ -196,7 +228,7 @@ weight: 39
 
 - DW 환경에서는 저장 공간 절약보다 쿼리 조인 단순화가 우선이므로 스타 스키마가 산업계 표준으로 채택됨
 
-## Ⅵ. OLAP 구축 시 실무 장애 요인 및 엔지니어링 대책
+### Ⅵ. OLAP 구축 시 실무 장애 요인 및 엔지니어링 대책
 
 | 문제 상황 | 근본 원인 | 실무 엔지니어링 대책 | 개선 효과 |
 |---|---|---|---|
@@ -209,7 +241,7 @@ weight: 39
 
 - 큐브 폭증 억제, 구체화 뷰 활용, 시맨틱 레이어 도입이 안정적 OLAP 운영의 3대 요소임
 
-## Ⅶ. 기술사적 제언
+### Ⅶ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -244,40 +276,13 @@ weight: 39
     <div class="itpe-flow-desc">무거운 큐브 빌드 배치 폐지 및 스트리밍 즉시 대화형 분석 보장</div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-### 1. OLAP의 정의
-
-- 데이터 웨어하우스의 다차원 모델(Cube)을 기반으로 의사결정자가 대화식으로 데이터를 분석하는 **온라인 분석 처리 기술**
-
-### 2. 다차원 연산 및 3대 아키텍처 비교
-
-- **5대 연산**: 롤업(요약) $\to$ 드릴다운(상세) $\to$ 슬라이싱(단면) $\to$ 다이싱(부분 큐브) $\to$ 피보팅(축 회전)
-
-| 구분 | ROLAP (관계형) | MOLAP (다차원) | HOLAP (혼합형) |
-|---|---|---|---|
-| 기반 엔진 | 관계형 DB (스타 스키마) | 전용 다차원 배열 큐브 | 큐브(상위) + RDBMS(하위) |
-| 집계 시점 | 쿼리 시 동적 집계 중심 | 사전 완제 계산 (Pre-calculated) | 상위 계층만 선별 사전 집계 |
-| 장단점 | 대용량 확장성 우수 / 속도 한계 | 초고속 응답 / 큐브 폭증 위험 | 성능과 확장성의 절충 |
-
-### 3. 차별화 제언
-
-- 사전 집계 배치 지연을 해소하기 위해 **컬럼 지향 엔진(ClickHouse/DuckDB)** 기반의 온디맨드 벡터화 연산을 결합하여 **실시간 Zero-Cube OLAP**를 구현함
+---
 
 ## 출제 이력과 검증 출처
 
 - 제122회 공식 문제지: 다차원 분석 및 ROLAP, MOLAP, HOLAP을 비교하여 설명하시오
 - [The Data Warehouse Toolkit (Ralph Kimball & Margy Ross)](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/data-warehouse-toolkit/)
 - [Codd, E. F., et al. (1993). Providing OLAP to User-Analysts: An IT Mandate](https://en.wikipedia.org/wiki/Online_analytical_processing)
-
-## 학습 체크
-
-- [ ] OLTP와 OLAP의 목적, 데이터 특성, 트랜잭션 차이를 비교표로 제시할 수 있는가
-- [ ] 팩트 테이블(Measure)과 차원 테이블(Context)의 모델링 역할을 이해하는가
-- [ ] 5대 다차원 연산(롤업, 드릴다운, 슬라이싱, 다이싱, 피보팅)의 동작을 도식화할 수 있는가
-- [ ] ROLAP, MOLAP, HOLAP의 저장 구조, 응답 속도, 큐브 폭증 취약성을 상호 비교할 수 있는가
-- [ ] Ⅶ 결론에서 ClickHouse 등 컬럼 지향 실시간 온디맨드 OLAP로의 발전 방향을 기술할 수 있는가
 
 ## 연결 토픽
 

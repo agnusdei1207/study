@@ -7,13 +7,13 @@ sidebar:
     variant: note
 author: "Antigravity"
 category: "03-data"
-date: "2026-09-20T19:35:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 weight: 118
 title: "MongoDB 문서 지향(Document-Oriented) NoSQL 아키텍처 및 샤딩·복제 체계"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
   question_no: "118"
 ---
@@ -84,12 +84,43 @@ extra:
   - **Embedding (중첩)**: 1:1 또는 유한한 1:N 관계에서 함께 조회되는 데이터, 단 1회의 디스크 I/O로 고속 완결
   - **Referencing (참조)**: 1:N에서 N이 수천 건 이상 무한 증가하거나 M:N 다대다 관계, 독립적인 갱신이 빈번한 경우
 - 주의: 단일 BSON 문서의 최대 용량은 **16MB**로 엄격히 제한되므로, 무한히 누적되는 로그나 댓글을 배열로 중첩하면 문서 크기 초과 오류가 발생하므로 버킷 패턴(Bucket Pattern)이나 참조 모델로 분리 필수
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> MongoDB 문서 지향(Document-Oriented) NoSQL 아키텍처 및 샤딩·복제 체계의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+| 항목 | 핵심 서술 내용 |
+|:---|:---|
+| **1. 개념** | JSON 기반의 BSON 문서를 저장 단위로 사용하여 복잡한 계층 데이터를 테이블 조인 없이 처리하고, 샤딩과 복제셋으로 수평 확장을 지원하는 문서 지향 NoSQL |
+| **2. 샤딩 3대 구성요소** | - **Mongos**: 쿼리 라우팅 및 분산 질의 머지 게이트웨이<br/>- **Config Server**: 청크 범위 및 라우팅 메타데이터 보관 (Raft 3노드)<br/>- **Shard Nodes**: 실제 파티션 데이터를 보관하는 독립 Replica Set |
+| **3. 모델링 비교** | - **Embedding(중첩)**: 1회 I/O 고속 완결 및 단일 문서 원자성 보장, 16MB 한도 주의<br/>- **Referencing(참조)**: $lookup 조인 필요하나 무제한 용량 및 N:M 관계 수용 |
+| **4. 핵심 차별점** | WiredTiger 엔진의 문서 레벨 동시성 제어 및 Snappy 디스크 압축, 최신 Vector Search 내장 |
+---
+
+### 핵심 관계
+
+| 구성요소 | 핵심 역할 | 분산 동작 메커니즘 |
+|:---|:---|:---|
+| **Mongos (Query Router)** | 샤딩 클러스터의 단일 진입 게이트웨이 | 클라이언트의 쿼리를 수신하여 Config Server의 청크 매핑 메타데이터를 캐싱·참조한 후, 해당 데이터가 존재하는 샤드로만 질의를 전송하고 결과를 머지하여 반환 |
+| **Config Server** | 클러스터 메타데이터 및 카탈로그 저장소 | 어떤 청크(Chunk)가 어느 샤드 노드에 위치하는지 범위 정보를 저장. 자체 3노드 복제셋으로 엄격한 일관성(CP) 유지 |
+| **Shard Nodes** | 실제 파티션 데이터를 영속 저장하는 노드 | 전체 데이터의 분할 서브셋(청크)을 보관. 데이터 유실 방지와 고가용성을 위해 각 샤드 자체를 **독립된 3노드 이상의 Replica Set**으로 구축 |
+
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 대용량 비정형 데이터 처리를 위한 문서 지향(Document-oriented) NoSQL 데이터베이스인 MongoDB의 개념과 핵심 특징을 설명하고, 분산 샤딩(Sharding) 클러스터의 3대 구성요소와 데이터 모델링 기법(Embedding vs Referencing)을 비교하시오. (25점)
 
-## Ⅰ. 유연한 스키마와 수평 확장을 제공하는 MongoDB 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 유연한 스키마와 수평 확장을 제공하는 MongoDB 개요
 
 #### 한줄 요약: 테이블 대신 컬렉션, 행 대신 BSON 문서를 사용하여 스키마 제약 없이 대규모 복합 객체를 고속 처리하는 문서 지향 NoSQL
 
@@ -103,7 +134,7 @@ extra:
   - RDBMS Row $\rightarrow$ MongoDB **Document (BSON 문서)**
   - RDBMS Column $\rightarrow$ MongoDB **Field (필드)**
 
-## Ⅱ. MongoDB의 4대 핵심 아키텍처 특성
+### Ⅱ. MongoDB의 4대 핵심 아키텍처 특성
 
 #### 한줄 요약: BSON 이진 포맷, WiredTiger 스토리지 엔진, 자동 복제셋, 수평 샤딩의 결합
 
@@ -148,7 +179,7 @@ extra:
 3. **고가용성 복제셋 (Replica Set)**: Primary-Secondary 구조로 동작하며, Heartbeat를 통해 Primary 장애 감지 시 2초 이내에 과반수 투표로 Secondary 중 하나를 새 Primary로 자동 승격
 4. **수평적 샤딩 (Sharding)**: 단일 노드의 스토리지와 연산 한계를 초과하는 빅데이터를 샤드 키(Shard Key)를 기준으로 여러 샤드 복제셋에 64MB 청크(Chunk) 단위로 자동 분산 및 밸런싱
 
-## Ⅲ. 분산 샤딩(Sharding) 클러스터의 3대 핵심 구성요소
+### Ⅲ. 분산 샤딩(Sharding) 클러스터의 3대 핵심 구성요소
 
 #### 한줄 요약: 요청을 라우팅하는 Mongos, 메타데이터를 보관하는 Config Server, 데이터를 담는 Shard 노드
 
@@ -158,7 +189,7 @@ extra:
 | **Config Server** | 클러스터 메타데이터 및 카탈로그 저장소 | 어떤 청크(Chunk)가 어느 샤드 노드에 위치하는지 범위 정보를 저장. 자체 3노드 복제셋으로 엄격한 일관성(CP) 유지 |
 | **Shard Nodes** | 실제 파티션 데이터를 영속 저장하는 노드 | 전체 데이터의 분할 서브셋(청크)을 보관. 데이터 유실 방지와 고가용성을 위해 각 샤드 자체를 **독립된 3노드 이상의 Replica Set**으로 구축 |
 
-## Ⅳ. MongoDB 데이터 모델링 전략: Embedding vs Referencing
+### Ⅳ. MongoDB 데이터 모델링 전략: Embedding vs Referencing
 
 #### 한줄 요약: 조인을 없애고 단일 I/O로 읽는 중첩(Embedding)과 관계를 분리하여 대용량을 수용하는 참조(Referencing)
 
@@ -194,7 +225,7 @@ extra:
 | **문서 크기 제한** | 16MB 한도 초과 위험 존재 (무한 증가 배열 주의) | 16MB 제한으로부터 완전히 자유로움 |
 | **적합한 관계** | 1:1 관계, 유한하고 적은 수의 1:N 관계 (댓글 100개 미만) | 1:N에서 N이 수천 건 이상 폭증하거나 N:M 다대다 관계 |
 
-## Ⅴ. RDBMS vs MongoDB vs Redis 3대 데이터베이스 비교
+### Ⅴ. RDBMS vs MongoDB vs Redis 3대 데이터베이스 비교
 
 #### 한줄 요약: 엄격한 정규화의 RDBMS, 유연한 문서 저장의 MongoDB, 초고속 인메모리 캐시의 Redis
 
@@ -206,7 +237,7 @@ extra:
 | **확장 방식** | 수직 확장(Scale-up), 읽기 복제본 | **수평 샤딩(Scale-out) 기본 내장** | 레디스 클러스터 샤딩 |
 | **주요 사용 사례** | 금융, 결제, ERP 코어 원장 데이터 | 콘텐츠 관리, 상품 카탈로그, IoT 로그, 모바일 백엔드 | 세션 저장소, 캐싱 계층, 실시간 랭킹보드 |
 
-## Ⅵ. 실무 운영 이슈 및 트러블슈팅
+### Ⅵ. 실무 운영 이슈 및 트러블슈팅
 
 #### 한줄 요약: 샤드 키 단조 증가로 인한 Hotspot, 점보 청크(Jumbo Chunk), 16MB 문서 초과 에러 방지
 
@@ -216,7 +247,7 @@ extra:
 | **점보 청크 (Jumbo Chunk)** | 샤드 키 값이 동일한 데이터가 64MB 청크 제한을 초과하여 밸런서 분할(Split) 불가 상태 발생 | 세부 식별자를 추가하여 샤드 키를 복합 키(`{ country: 1, userId: 1 }`)로 재설계 및 수동 분할 |
 | **16MB 문서 초과 에러** | 사용자의 활동 로그나 대댓글 목록을 단일 문서 내 무한 배열로 누적 | 버킷 패턴(Bucket Pattern)을 적용하여 100건 단위로 문서를 분할 저장하거나 GridFS 활용 |
 
-## Ⅶ. 기술사적 제언
+### Ⅶ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -258,18 +289,6 @@ extra:
     <div class="itpe-flow-desc">페타바이트급 수평 Scale-out 및 Vector Search 통합 AI 백엔드 완성</div>
   </div>
 </div>
-
----
-
-## 1교시 10점 답안 발췌
-
-| 항목 | 핵심 서술 내용 |
-|:---|:---|
-| **1. 개념** | JSON 기반의 BSON 문서를 저장 단위로 사용하여 복잡한 계층 데이터를 테이블 조인 없이 처리하고, 샤딩과 복제셋으로 수평 확장을 지원하는 문서 지향 NoSQL |
-| **2. 샤딩 3대 구성요소** | - **Mongos**: 쿼리 라우팅 및 분산 질의 머지 게이트웨이<br/>- **Config Server**: 청크 범위 및 라우팅 메타데이터 보관 (Raft 3노드)<br/>- **Shard Nodes**: 실제 파티션 데이터를 보관하는 독립 Replica Set |
-| **3. 모델링 비교** | - **Embedding(중첩)**: 1회 I/O 고속 완결 및 단일 문서 원자성 보장, 16MB 한도 주의<br/>- **Referencing(참조)**: $lookup 조인 필요하나 무제한 용량 및 N:M 관계 수용 |
-| **4. 핵심 차별점** | WiredTiger 엔진의 문서 레벨 동시성 제어 및 Snappy 디스크 압축, 최신 Vector Search 내장 |
-
 ---
 
 ## 출제 이력과 검증 출처
@@ -279,15 +298,6 @@ extra:
 - **검증 출처**:
   - Shannon Bradshaw et al., "MongoDB: The Definitive Guide (3rd Edition)", O'Reilly
   - MongoDB Manual, "Sharding Architecture and Data Modeling Concepts"
-
----
-
-## 학습 체크
-
-- [ ] MongoDB 분산 샤딩의 3대 구성요소(Mongos, Config Server, Shard)의 역할을 설명할 수 있는가?
-- [ ] Embedding(중첩)과 Referencing(참조)의 장단점 및 16MB 한계에 대한 대응책을 제시할 수 있는가?
-- [ ] 단조 증가 샤드 키의 핫스팟 문제와 해시 샤드 키(Hashed Shard Key)의 해결 원리를 설명할 수 있는가?
-
 ---
 
 ## 연결 토픽

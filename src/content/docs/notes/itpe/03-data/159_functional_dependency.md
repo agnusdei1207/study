@@ -7,12 +7,12 @@ sidebar:
     variant: note
 title: "함수적 종속성 (Functional Dependency, FD)"
 author: "Antigravity"
-date: "2026-09-21T18:40:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 weight: 159
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
   question_no: "159"
 ---
@@ -46,12 +46,44 @@ extra:
   - **부분 함수 종속(PFD)**: 종속자가 복합키의 '일부 속성'에만 종속되는 상태 $\rightarrow$ 제2정규화(2NF) 분해 대상.
   - **이행적 함수 종속(TFD)**: $X \rightarrow Y$이고 $Y \rightarrow Z$인 간접 종속 상태 $\rightarrow$ 제3정규화(3NF) 분해 대상.
 - 주의: 함수적 종속성은 현재 저장된 인스턴스 데이터의 우연한 일치가 아니라, 비즈니스 도메인 업무 규칙(Business Rules)에 의해 영구적으로 정의되는 불변의 제약조건임
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
+
+> 함수적 종속성 (Functional Dependency, FD)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+| 항목 | 핵심 서술 내용 |
+|:---|:---|
+| **정의** | 릴레이션 내에서 속성 집합 $X$의 값이 다른 속성 집합 $Y$의 값을 고유하게 결정하는 의미론적 제약조건 ($X \rightarrow Y$) |
+| **3대 종속성 유형** | ① 완전 함수 종속(FFD: 복합키 전체에 종속, 2NF 기준) ② 부분 함수 종속(PFD: 복합키 일부에 종속, 2NF 대상) ③ 이행적 함수 종속(TFD: $X \rightarrow Y \rightarrow Z$, 3NF 대상) |
+| **암스트롱 3대 기본 공리** | ① 반사 규칙($Y \subseteq X \implies X \rightarrow Y$) ② 첨가 규칙($X \rightarrow Y \implies XZ \rightarrow YZ$) ③ 이행 규칙($X \rightarrow Y, Y \rightarrow Z \implies X \rightarrow Z$) |
+| **확장 3대 규칙** | 분해 규칙($X \rightarrow YZ \implies X \rightarrow Y, X \rightarrow Z$), 결합 규칙, 의사이행 규칙 |
+| **실무 제언** | 논리 모델링 시 함수 종속 다이어그램(FDD) 작성을 의무화하여 PFD/TFD를 시각적으로 검증 후 물리 스키마로 이관 |
+---
+
+### 핵심 관계
+
+| 종속성 유형 | 학술적 정의 및 조건 | 위배 시 이상현상 | 정규화 조치 |
+|:---|:---|:---|:---|
+| **완전 함수 종속 (FFD)** | $X \rightarrow Y$에서 $X$의 임의의 진부분집합 $X'$에 대해 $X' \rightarrow Y$가 성립하지 않음 | 정상 (데이터 이상현상 없음) | 제2정규형(2NF) 만족 기준 |
+| **부분 함수 종속 (PFD)** | $X \rightarrow Y$에서 $X$의 진부분집합 $X'$에 대해 $X' \rightarrow Y$가 성립함 | 학생 이름 변경 시 수강 과목마다 중복 수정 발생 | **제2정규화 (2NF)**: 복합키 분해 |
+| **이행적 함수 종속 (TFD)** | $X \rightarrow Y$이고 $Y \rightarrow Z$일 때 $X \rightarrow Z$가 성립 ($Y$는 비후보키) | 학과명 변경 시 모든 학생 튜플 수정, 학생 없는 학과 등록 불가 | **제3정규화 (3NF)**: $X-Y$, $Y-Z$ 분해 |
+
+---
+
+## 2~4교시 예상문제 (25점)
 
 > 관계 데이터 모델에서 정규화의 기초가 되는 함수적 종속성(Functional Dependency)의 개념과 표기법을 설명하고, 3대 종속성 유형(완전, 부분, 이행적)의 특징 및 정규화 단계와의 연계성, 그리고 함수 종속성을 추론하기 위한 암스트롱의 공리(Armstrong's Axioms)를 설명하시오. (25점)
 
-## Ⅰ. 정규화의 수학적 기초인 함수적 종속성(FD) 개요
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### Ⅰ. 정규화의 수학적 기초인 함수적 종속성(FD) 개요
 
 #### 한줄 요약: 한 속성의 값이 정해지면 다른 속성의 값이 오직 하나로 결정되는 속성 간의 종속 관계
 
@@ -65,7 +97,7 @@ extra:
   - $X$: **결정자 (Determinant)** — 다른 속성의 값을 고유하게 결정짓는 속성 집합
   - $Y$: **종속자 (Dependent)** — 결정자에 의해 종속되는 속성 집합
 
-## Ⅱ. 함수적 종속성의 3대 핵심 유형
+### Ⅱ. 함수적 종속성의 3대 핵심 유형
 
 #### 한줄 요약: 복합키 전체에 걸리는 '완전', 일부에 걸리는 '부분', 징검다리를 건너는 '이행적' 종속성
 
@@ -147,7 +179,7 @@ extra:
 | **부분 함수 종속 (PFD)** | $X \rightarrow Y$에서 $X$의 진부분집합 $X'$에 대해 $X' \rightarrow Y$가 성립함 | 학생 이름 변경 시 수강 과목마다 중복 수정 발생 | **제2정규화 (2NF)**: 복합키 분해 |
 | **이행적 함수 종속 (TFD)** | $X \rightarrow Y$이고 $Y \rightarrow Z$일 때 $X \rightarrow Z$가 성립 ($Y$는 비후보키) | 학과명 변경 시 모든 학생 튜플 수정, 학생 없는 학과 등록 불가 | **제3정규화 (3NF)**: $X-Y$, $Y-Z$ 분해 |
 
-## Ⅲ. 암스트롱의 공리 (Armstrong's Axioms)
+### Ⅲ. 암스트롱의 공리 (Armstrong's Axioms)
 
 #### 한줄 요약: 주어진 함수 종속성 집합으로부터 새로운 모든 참인 종속성을 논리적으로 유도하는 6대 공리
 
@@ -174,7 +206,7 @@ extra:
 - 속성 집합 $X$에 의해 결정될 수 있는 모든 속성들의 집합을 $X$의 폐포($X^+$)라 함
 - $X^+ = R$ 전체 속성 집합이면, $X$는 해당 릴레이션의 **슈퍼키(Super Key)**임
 
-## Ⅳ. 함수 종속 다이어그램(FDD) 작성 및 정규화 절차
+### Ⅳ. 함수 종속 다이어그램(FDD) 작성 및 정규화 절차
 
 #### 한줄 요약: 속성 간 결정 화살표를 시각화하여 비정규형에서 BCNF까지 단계별 무손실 분해 진행
 
@@ -193,7 +225,7 @@ extra:
   [4단계: BCNF 분해] ──► 후보키가 아닌 결정자(화살표 출발점)를 독립 릴레이션으로 분해
 ```
 
-## Ⅴ. 실무 아키텍처 장애 및 설계 지침
+### Ⅴ. 실무 아키텍처 장애 및 설계 지침
 
 #### 한줄 요약: 데이터 모델링 시 FDD 검증 누락으로 인한 대규모 갱신 이상과 성능 저하 방지
 
@@ -203,7 +235,7 @@ extra:
 - **함수 종속성 보존 손실 주의**:
   - BCNF 분해 시 기존 복합키에 걸려 있던 업무 규칙이 분실되지 않도록 외래키 및 체크 제약조건을 신중히 설계
 
-## Ⅵ. 기술사적 제언
+### Ⅵ. 기술사적 제언
 
 ### 학습자 통찰 메모 — 답안 밖
 
@@ -245,19 +277,6 @@ extra:
     <span class="step-desc">이상현상 원천 차단 및 비즈니스 룰을 100% 반영한 고신뢰 관계형 스키마 구축</span>
   </div>
 </div>
-
----
-
-## 1교시 10점 답안 발췌
-
-| 항목 | 핵심 서술 내용 |
-|:---|:---|
-| **정의** | 릴레이션 내에서 속성 집합 $X$의 값이 다른 속성 집합 $Y$의 값을 고유하게 결정하는 의미론적 제약조건 ($X \rightarrow Y$) |
-| **3대 종속성 유형** | ① 완전 함수 종속(FFD: 복합키 전체에 종속, 2NF 기준) ② 부분 함수 종속(PFD: 복합키 일부에 종속, 2NF 대상) ③ 이행적 함수 종속(TFD: $X \rightarrow Y \rightarrow Z$, 3NF 대상) |
-| **암스트롱 3대 기본 공리** | ① 반사 규칙($Y \subseteq X \implies X \rightarrow Y$) ② 첨가 규칙($X \rightarrow Y \implies XZ \rightarrow YZ$) ③ 이행 규칙($X \rightarrow Y, Y \rightarrow Z \implies X \rightarrow Z$) |
-| **확장 3대 규칙** | 분해 규칙($X \rightarrow YZ \implies X \rightarrow Y, X \rightarrow Z$), 결합 규칙, 의사이행 규칙 |
-| **실무 제언** | 논리 모델링 시 함수 종속 다이어그램(FDD) 작성을 의무화하여 PFD/TFD를 시각적으로 검증 후 물리 스키마로 이관 |
-
 ---
 
 ## 출제 이력과 검증 출처
@@ -269,16 +288,6 @@ extra:
   - W.W. Armstrong, "Dependency Structures of Data Base Relationships", IFIP Congress, 1974
   - Abraham Silberschatz et al., "Database System Concepts 7th Edition", Chapter 14 Relational Database Design
   - C.J. Date, "An Introduction to Database Systems 8th Edition", Functional Dependencies
-
----
-
-## 학습 체크
-
-- [ ] 함수적 종속성 $X \rightarrow Y$의 수학적 정의를 튜플 관점에서 기술할 수 있는가?
-- [ ] 완전 함수 종속(FFD), 부분 함수 종속(PFD), 이행적 함수 종속(TFD)의 차이점과 정규화 분해 매핑을 설명할 수 있는가?
-- [ ] 암스트롱의 3대 기본 공리(반사, 첨가, 이행)와 3대 확장 공리(분해, 결합, 의사이행)를 유도할 수 있는가?
-- [ ] 주어진 종속성 집합 $F$로부터 속성 폐포($X^+$)를 계산하여 후보키를 판정하는 절차를 제시할 수 있는가?
-
 ---
 
 ## 연결 토픽

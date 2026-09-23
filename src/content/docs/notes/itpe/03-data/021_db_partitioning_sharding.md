@@ -9,10 +9,10 @@ tags:
   - "Sharding"
   - "파티션프루닝"
   - "파티션인덱스"
-date: "2026-09-20T23:10:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 author: "Antigravity"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
 sidebar:
   badge:
@@ -85,12 +85,29 @@ sidebar:
 - `ILM(Information Lifecycle Management)`: 데이터의 생성-보관-폐기 주기별로 고성능 NVMe에서 저비용 압축 스토리지로 파티션을 자동 마이그레이션하는 수명주기 관리
 
 </details>
+---
 
-## 예상문제
+## 1교시 예상문제 (10점)
 
-> 대용량 데이터베이스 환경에서 테이블 분할(Partitioning)의 개념과 필요성을 설명하고, 수평 분할과 수직 분할의 기준, 파티션 인덱스 유형 및 설계 시 고려사항을 논하시오. (25점)
+> 데이터베이스 분할 (수평·수직 분할)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+---
 
-## 딸려 나오는 하위 토픽
+## 1교시 10점 답안
+
+1. **데이터베이스 분할의 정의 및 목적**
+   - **정의**: 대용량 단일 테이블을 논리 구조 변경 없이 물리 세그먼트 단위로 분할하는 기법
+   - **목적**: 파티션 프루닝(Pruning)을 통한 I/O 절감, 인덱스 깊이 축소, 단위 데이터 수명주기(ILM) 관리
+
+2. **수평 분할 vs 수직 분할 핵심 비교**
+   - **수평 분할 (Horizontal)**: 행(Row) 단위 분할 (Range, List, Hash, Composite) $\rightarrow$ 범위 스캔 블록 최소화
+   - **수직 분할 (Vertical)**: 열(Column) 단위 분할 (핫/콜드 컬럼, LOB 분리) $\rightarrow$ 블록 당 유효 튜플 밀도 증가
+
+3. **파티션 인덱스 및 실무 제언**
+   - **Local Partitioned Index**: 테이블과 1:1 동등 분할 $\rightarrow$ 특정 파티션 DROP 시 타 파티션 무영향(권장)
+   - **실무 관리**: 파티션 키 컬럼 가공 금지로 프루닝 실패를 방지하고, DDL 시 `UPDATE GLOBAL INDEXES` 명시 필수
+---
+
+### 핵심 관계
 
 | 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
 |---|---|---|
@@ -99,13 +116,33 @@ sidebar:
 | **수평 분할 4대 방식** | Range(시계열), List(코드), Hash(균등), Composite(복합) 결정 절차 | Ⅳ 4대 방식 |
 | **파티셔닝 vs 샤딩** | 단일 DBMS 세그먼트 분할(공유자원) vs 복수 인스턴스 분산(Shared-Nothing) | Ⅴ 샤딩 비교 |
 
-## Ⅰ. 대용량 I/O 병목 해소와 고가용성을 위한 데이터베이스 분할 개요
+---
+
+## 2~4교시 예상문제 (25점)
+
+> 대용량 데이터베이스 환경에서 테이블 분할(Partitioning)의 개념과 필요성을 설명하고, 수평 분할과 수직 분할의 기준, 파티션 인덱스 유형 및 설계 시 고려사항을 논하시오. (25점)
+
+> (25점, 예상)
+---
+
+## 2~4교시 25점 답안
+
+### 딸려 나오는 하위 토픽
+
+| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
+|---|---|---|
+| **수평 vs 수직 분할** | 행(Row) 단위 분할(Range/List/Hash) vs 열(Column) 단위 핫/콜드 속성 분리 | Ⅱ 분할 메커니즘 |
+| **파티션 인덱스 3대 유형** | Local Partitioned, Global Partitioned, Global Non-Partitioned Index DDL 내결함성 | Ⅲ 인덱스 구조 |
+| **수평 분할 4대 방식** | Range(시계열), List(코드), Hash(균등), Composite(복합) 결정 절차 | Ⅳ 4대 방식 |
+| **파티셔닝 vs 샤딩** | 단일 DBMS 세그먼트 분할(공유자원) vs 복수 인스턴스 분산(Shared-Nothing) | Ⅴ 샤딩 비교 |
+
+### Ⅰ. 대용량 I/O 병목 해소와 고가용성을 위한 데이터베이스 분할 개요
 
 - 정의: **데이터베이스 분할(Database Partitioning)**은 수천만~수억 건의 거대 테이블 또는 인덱스를 관리상·성능상 목적으로 작은 물리적 단위(세그먼트·파일스페이스)로 나누어 저장하되, 애플리케이션에는 단일 논리 테이블로 투명하게 제공하는 기법
 - 목적: 쿼리 시 불필요한 파티션 접근을 차단하는 **파티션 프루닝(Partition Pruning)**을 통한 조회 성능 개선 및 백업·복구·삭제 등 관리 작업의 단위 격리
 - 필요성: 단일 테이블 크기가 수백 GB~수 TB에 달하면 B*Tree 인덱스 깊이 증가로 탐색 비용이 급증하고, 일괄 삭제(DELETE) 시 트랜잭션 로그 포화 및 락 경합 발생
 
-## Ⅱ. 수평 분할과 수직 분할의 메커니즘 및 특징
+### Ⅱ. 수평 분할과 수직 분할의 메커니즘 및 특징
 
 | 구분 | 수평 분할 (Horizontal Partitioning) | 수직 분할 (Vertical Partitioning) |
 |---|---|---|
@@ -116,7 +153,7 @@ sidebar:
 | **주요 적용** | 시계열 로그, 결제/주문 이력, 정산 데이터 | 회원 테이블(기본정보 vs 프로필 사진/상세소개) |
 | **트레이드오프** | 파티션 키가 조건절에 없을 시 전체 파티션 브로드캐스트 | 두 분할 속성을 동시 조회 시 JOIN 부하 발생 |
 
-## Ⅲ. 파티션 인덱스(Partitioned Index)의 정적 구조 및 유형
+### Ⅲ. 파티션 인덱스(Partitioned Index)의 정적 구조 및 유형
 
 > 테이블 세그먼트와 인덱스 세그먼트 간의 매핑 구조에 따라 가용성과 정비 비용이 결정됨.
 
@@ -155,7 +192,7 @@ sidebar:
 | **Global Partitioned Index** | 테이블 파티션 구조와 무관하게 인덱스 자체의 독립 키로 분할 | 업무 고유 식별자(PK 등)의 전역 유일성 보장에 유리 | 특정 파티션 DDL 작업 시 전체 글로벌 인덱스가 Unusable 상태로 전이 |
 | **Global Non-Partitioned** | 파티션된 테이블 전체를 단일 B*Tree 인덱스로 관리 | 전역 단건 조회 성능 최고 | 파티션 관리 작업 시 인덱스 재생성(Rebuild) 비용 극대화 |
 
-## Ⅳ. 수평 분할의 4대 방식과 분할 결정 절차
+### Ⅳ. 수평 분할의 4대 방식과 분할 결정 절차
 
 <div style="max-width: 520px; margin: 1rem auto;">
 <svg viewBox="0 0 520 60" width="100%" height="auto" style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
@@ -194,7 +231,7 @@ sidebar:
 | **Hash (해시)** | 해시 함수 결과값에 따라 균등 분할 | 뚜렷한 기준 컬럼이 없고 균등 분산이 필요할 때 | 범위 검색 불가능, 파티션 개수는 2의 거듭제곱($2^n$) 권장 |
 | **Composite (복합)** | 주 파티션(Range) + 서브 파티션(Hash/List) | 대용량 주문(월별 Range + 고객ID Hash) | 관리 대상 세그먼트 수가 기하급수적으로 증가 |
 
-## Ⅴ. 단일 DB 파티셔닝과 분산 샤딩(Sharding) 비교
+### Ⅴ. 단일 DB 파티셔닝과 분산 샤딩(Sharding) 비교
 
 | 비교 항목 | 데이터베이스 파티셔닝 (Partitioning) | 애플리케이션 샤딩 (Sharding) |
 |---|---|---|
@@ -205,7 +242,7 @@ sidebar:
 | **JOIN 연산** | 파티션 간 자유로운 SQL JOIN 가능 | 샤드 간 크로스 조인 불가(애플리케이션 병합 필요) |
 | **도입 기준** | 수직 확장(Scale-Up) 한계 이전 디스크 I/O 분산 | 단일 서버의 CPU/메모리/커넥션 한계 도달 시 |
 
-## Ⅵ. 테이블 분할 실무 적용 시 주요 장애 요인 및 대책
+### Ⅵ. 테이블 분할 실무 적용 시 주요 장애 요인 및 대책
 
 | 문제 상황 | 근본 원인 | 실무 대책 | 기대 효과 |
 |---|---|---|---|
@@ -215,7 +252,7 @@ sidebar:
 | **인덱스 파손 (Index Unusable)** | 파티션 DROP/EXCHANGE 시 Global Index 동기화 누락 | DDL 문장에 `UPDATE GLOBAL INDEXES` 절 명시 또는 Local Index 원칙 준수 | 쿼리 중단 없는 무중단 데이터 파티션 순환 |
 | **파티션 키 값 변경에 따른 에러** | UPDATE 문으로 파티션 키 값이 변경되어 타 파티션 이동 필요 | `ENABLE ROW MOVEMENT` 절 활성화 (이동 빈번 시 성능 저하 감시) | 파티션 간 행 자동 재배치 |
 
-## Ⅶ. 기술사적 제언: 성능과 운영 복잡성의 균형을 위한 기술사적 제언
+### Ⅶ. 기술사적 제언: 성능과 운영 복잡성의 균형을 위한 기술사적 제언
 
 > "파티셔닝은 단순한 물리 분할이 아니라, 핫/콜드 데이터 수명주기(ILM)와 인덱스 무결성을 단일 관리 체계로 묶는 물리 데이터 아키텍처다."
 
@@ -266,20 +303,7 @@ sidebar:
     </div>
   </div>
 </div>
-
-## 1교시 10점 답안 발췌
-
-1. **데이터베이스 분할의 정의 및 목적**
-   - **정의**: 대용량 단일 테이블을 논리 구조 변경 없이 물리 세그먼트 단위로 분할하는 기법
-   - **목적**: 파티션 프루닝(Pruning)을 통한 I/O 절감, 인덱스 깊이 축소, 단위 데이터 수명주기(ILM) 관리
-
-2. **수평 분할 vs 수직 분할 핵심 비교**
-   - **수평 분할 (Horizontal)**: 행(Row) 단위 분할 (Range, List, Hash, Composite) $\rightarrow$ 범위 스캔 블록 최소화
-   - **수직 분할 (Vertical)**: 열(Column) 단위 분할 (핫/콜드 컬럼, LOB 분리) $\rightarrow$ 블록 당 유효 튜플 밀도 증가
-
-3. **파티션 인덱스 및 실무 제언**
-   - **Local Partitioned Index**: 테이블과 1:1 동등 분할 $\rightarrow$ 특정 파티션 DROP 시 타 파티션 무영향(권장)
-   - **실무 관리**: 파티션 키 컬럼 가공 금지로 프루닝 실패를 방지하고, DDL 시 `UPDATE GLOBAL INDEXES` 명시 필수
+---
 
 ## 출제 이력과 검증 출처
 
@@ -287,14 +311,6 @@ sidebar:
 - 제127회 공식 문제지: 데이터베이스 샤딩 및 분할 기법
 - [Oracle Database VLDB and Partitioning Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/vldbg/partition-concepts.html)
 - [PostgreSQL Documentation, Table Partitioning](https://www.postgresql.org/docs/current/ddl-partitioning.html)
-
-## 학습 체크
-
-- [ ] 수평 분할의 4대 방식(Range, List, Hash, Composite)의 선택 기준을 제시할 수 있는가
-- [ ] 수직 분할에서 LOB 및 빈번 접근 컬럼 분리 효과를 설명할 수 있는가
-- [ ] Local Partitioned Index와 Global Partitioned Index의 DDL 내결함성 차이를 비교할 수 있는가
-- [ ] 파티션 프루닝이 무효화되는 안티패턴과 방지 대책을 작성할 수 있는가
-- [ ] Ⅶ 결론에서 ILM(계층화 수명주기 관리)과 연계한 아키텍처 전략을 제시할 수 있는가
 
 ## 연결 토픽
 

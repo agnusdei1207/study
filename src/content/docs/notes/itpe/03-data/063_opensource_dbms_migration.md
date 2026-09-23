@@ -7,13 +7,13 @@ sidebar:
     variant: note
 title: "오픈소스 DBMS 전환 (Open Source DBMS Migration) 및 무중단 마이그레이션"
 author: "Antigravity"
-date: "2026-09-20T18:15:00+09:00"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 category: "03-data"
 weight: 63
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "A"
   question_no: "063"
 ---
@@ -98,10 +98,6 @@ extra:
   - **빅뱅(Big-Bang) 전환**: 일정 시간 시스템을 전면 셧다운 후 일괄 이관 $\rightarrow$ 다운타임 길고 실패 시 롤백 치명적 (중소형 시스템 적합)
   - **무중단 단계적(Phased / CDC) 전환**: 초기 적재 후 CDC로 실시간 동기화 상태를 유지하며 섀도우 런(Shadow Run) 후 수 초 내 컷오버 $\rightarrow$ 무중단 비즈니스 보장 (엔터프라이즈 필수)
 - 주의: 오픈소스 DBMS 소프트웨어는 무료이지만, 상용 전용 패키지(PL/SQL, NVL, CONNECT BY, 힌트 절)의 재작성과 CBO 옵티마이저 차이에 따른 쿼리 튜닝 공수가 프로젝트 비용의 70% 이상을 차지하므로 철저한 사전 호환성 진단이 필수적임
-
-## 예상문제
-
-> 최근 기업들의 고비용 상용 DBMS(Oracle 등) 종속성을 탈피하고 클라우드 환경으로 전환하기 위한 오픈소스 DBMS(PostgreSQL, MySQL 등) 전환 수요가 급증하고 있다. 오픈소스 DBMS 전환의 추진 배경과 기대효과를 제시하고, 무중단 마이그레이션 6단계 절차 및 기술적 난제(호환성, 성능, 롤백)에 대한 대응 방안을 설명하시오. (25점)
 
 ## Ⅰ. 벤더 락인을 탈피하는 오픈소스 DBMS 전환 개요
 
@@ -300,10 +296,47 @@ extra:
     <div class="itpe-flow-step-desc">DBMS TCO 70% 절감, 벤더 종속 해소 및 클라우드 네이티브 현대화</div>
   </div>
 </div>
-
 ---
 
-## 2교시 25점 답안 발췌
+## 1교시 예상문제 (10점)
+
+> 오픈소스 DBMS 전환 (Open Source DBMS Migration) 및 무중단 마이그레이션의 정의, 목적, 핵심 메커니즘을 설명하시오. (예상)
+---
+
+## 1교시 10점 답안
+
+### 1. 정의·목적
+
+- 정의: **스키마 변환**: AWS SCT를 활용한 DDL 자동 변환 및 오라클-PostgreSQL 데이터 타입 매핑
+- 목적: 해당 문제의 주요 분석과 의사결정에 적용한다.
+
+### 2. 핵심 관계
+
+| 비교 항목 | 상용 DBMS (Oracle) | 오픈소스 (PostgreSQL) |
+|:---|:---|:---|
+| **라이선스 비용** | CPU 코어당 고액 영구비용 + 연간 유지보수비 | 완전 무료 커뮤니티 에디션 (TCO 획기적 절감) |
+| **SQL 표준 준수** | 자체 오라클 방언 다수 포함 | 엄격한 ANSI SQL 표준 준수 |
+| **확장성 (Extension)** | 제한적 상용 옵션 | PostGIS, pgvector 플러그인 무한 확장 |
+| **아키텍처 결합도** | PL/SQL 중심 높은 결합도 | 백엔드(Spring) 중심 클라우드 친화적 결합도 |
+
+### 핵심 관계
+
+| 비교 항목 | 상용 DBMS (Oracle) | 오픈소스 (PostgreSQL) |
+|:---|:---|:---|
+| **라이선스 비용** | CPU 코어당 고액 영구비용 + 연간 유지보수비 | 완전 무료 커뮤니티 에디션 (TCO 획기적 절감) |
+| **SQL 표준 준수** | 자체 오라클 방언 다수 포함 | 엄격한 ANSI SQL 표준 준수 |
+| **확장성 (Extension)** | 제한적 상용 옵션 | PostGIS, pgvector 플러그인 무한 확장 |
+| **아키텍처 결합도** | PL/SQL 중심 높은 결합도 | 백엔드(Spring) 중심 클라우드 친화적 결합도 |
+
+- 제언: 핵심 메커니즘을 기준으로 설계하고 검증한다.
+---
+
+## 2~4교시 예상문제 (25점)
+
+> 최근 기업들의 고비용 상용 DBMS(Oracle 등) 종속성을 탈피하고 클라우드 환경으로 전환하기 위한 오픈소스 DBMS(PostgreSQL, MySQL 등) 전환 수요가 급증하고 있다. 오픈소스 DBMS 전환의 추진 배경과 기대효과를 제시하고, 무중단 마이그레이션 6단계 절차 및 기술적 난제(호환성, 성능, 롤백)에 대한 대응 방안을 설명하시오. (25점)
+---
+
+## 2~4교시 25점 답안
 
 ### Ⅰ. 오픈소스 DBMS 전환의 추진 배경 및 기대 효과
 
@@ -330,7 +363,6 @@ extra:
 
 1. **PL/SQL 호환성 극복**: 핵심 비즈니스 로직을 백엔드(Spring Boot)로 흡수하고 단기적으로 EDB Postgres 활용
 2. **비상 롤백(Rollback) 대책**: 컷오버 즉시 오픈소스 $\to$ 구 상용 DB로 역방향 CDC를 가동하여 신규 시스템 장애 시 데이터 유실 없는 무손실 롤백(RPO=0) 보장
-
 ---
 
 ## 출제 이력과 검증 출처
@@ -343,18 +375,6 @@ extra:
   - AWS Prescriptive Guidance, "Database Migration Strategy: Migrating from Oracle to PostgreSQL"
   - Debezium Project Documentation, "Change Data Capture for Modern Data Platforms"
   - PostgreSQL Global Development Group Official Documentation (Migration Guide)
-
----
-
-## 학습 체크
-
-- [ ] 오픈소스 DBMS 전환을 추진하는 핵심 비즈니스 요인 3가지(TCO 절감, 락인 탈피, 클라우드 네이티브)를 설명할 수 있는가?
-- [ ] 무중단 마이그레이션을 가능케 하는 CDC(Change Data Capture)의 동작 원리는 무엇인가?
-- [ ] 상용 DB의 PL/SQL 패키지와 CBO 옵티마이저 차이에서 발생하는 기술적 난제와 해결책은 무엇인가?
-- [ ] 컷오버(Cutover) 직후 시스템 이상 시 무손실 복구를 위해 역복제(Reverse CDC)를 구축하는 이유를 설명할 수 있는가?
-- [ ] **서술 연습 1**: 상용 DBMS에서 오픈소스 DBMS로의 무중단 전환 6단계 파이프라인을 10점형 답안으로 도식화하시오.
-- [ ] **서술 연습 2**: Oracle에서 PostgreSQL로의 이기종 마이그레이션 시 발생하는 호환성 문제와 이를 해결하기 위한 아키텍처 전략을 25점형으로 서술하시오.
-
 ---
 
 ## 연결 토픽
