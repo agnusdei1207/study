@@ -37,7 +37,7 @@ extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
 ---
 
 ## 1교시 10점 답안
-### 1. 정의·목적
+### Ⅰ. 정의·목적
 - 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)** 은 위성·공중 플랫폼·지상망을 통합해 3차원 접속을 제공하는 네트워크다.
 - 목적: 지상망의 음영 지역과 재난 단절을 보완해 접속을 이어 간다.
 

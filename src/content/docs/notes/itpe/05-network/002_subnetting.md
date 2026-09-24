@@ -44,7 +44,7 @@ extra:
 ---
 
 ## 1교시 10점 답안
-### 1. 정의·목적
+### Ⅰ. 정의·목적
 - 정의: **CIDR(Classless Inter-Domain Routing)** 기반 서브네팅은 prefix를 늘려 주소 블록을 분할하고, **VLSM(Variable Length Subnet Mask)**은 요구량에 따라 서로 다른 prefix 길이를 적용한다.
 - 목적: 주소를 필요한 크기로 배분하고 네트워크 영역을 구분한다.
 
