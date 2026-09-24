@@ -30,7 +30,7 @@ test('does not number subject index routes', () => {
   );
 });
 
-test('accepts only A, B, or C as a public keyword grade', () => {
+test('shows Korean study roles and maps legacy letter labels', () => {
   assert.equal(getKeywordGrade('A'), '기초');
   assert.equal(getKeywordGrade(' b '), '서브');
   assert.equal(getKeywordGrade('C'), '응용');
