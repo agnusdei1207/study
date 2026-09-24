@@ -1,7 +1,7 @@
 ---
 title: "4-way handshake"
 author: "Gemini 3.8 Flash"
-date: "2026-09-24T21:00:00+09:00"
+date: "2026-09-24T21:25:00+09:00"
 tags:
   - "notes-network"
 extra:
@@ -15,14 +15,19 @@ extra:
 
 ## 30초 인출
 
-- 본질: 양방향으로 동시에 데이터를 쏘는 전이중 통신에서 일방적으로 연결을 끊으면 반대편에서 날아오던 잔여 데이터가 유실되는 문제
-- 메커니즘: 송수신 양측이 각자의 송신 스트림을 독립적으로 닫고 확인 응답을 교환(FIN-ACK, FIN-ACK)하는 4단계 종료 수행
+- 본질: **4-way handshake** 는 TCP (Transmission Control Protocol) 양방향 송신을 각각 종료하는 정상 연결 해제 절차
+- 메커니즘: 한쪽 FIN을 상대가 ACK하고, 상대도 송신을 마친 뒤 FIN을 보내면 첫 쪽이 ACK
 
-## 핵심 용어
+<details>
+<summary>핵심 용어</summary>
 
-- Half-Close(절반 종료): 클라이언트가 "나는 더 이상 보낼 데이터가 없다(FIN)"고 선언했으나, 서버가 아직 보내지 못한 잔여 데이터를 마저 다 보낼 수 있도록 한쪽 방향 채널만 열어두는 상태
-- TIME_WAIT: 능동적으로 연결 종료를 요청한(Active Close) 단말이 마지막 4번째 ACK를 보낸 뒤, 패킷 유실로 서버가 FIN을 재전송할 경우에 대비해 2MSL 동안 소켓을 닫지 않고 기다리는 상태
-- 2MSL(Maximum Segment Lifetime): 패킷이 네트워크 상에서 살아남을 수 있는 최대 수명(MSL, 보통 1~2분)의 2배 동안 대기하여, 이전 세션의 지연 패킷이 다음 새 연결에 섞여 들어가는 것을 방지
+- **TCP (Transmission Control Protocol)**: 양 끝점 간 연결 상태와 순서·재전송을 관리하는 전송 계층 프로토콜
+- **Half-Close**: 한 방향 송신만 끝난 상태로, 반대 방향 데이터의 수신은 계속 가능한 TCP 상태
+- **4-way handshake**: 양 끝점이 FIN과 ACK를 주고받아 TCP의 두 송신 방향을 각각 종료하는 절차
+- **TIME-WAIT**: 능동 종료 측이 최종 ACK 뒤 일정 시간 대기해 상대 FIN 재전송에 응답하고 이전 연결의 지연 세그먼트가 새 연결에 섞이는 일을 막는 상태
+- **MSL (Maximum Segment Lifetime)**: IP 네트워크에서 세그먼트가 유효할 수 있는 최대 시간
+
+</details>
 
 ---
 
@@ -36,30 +41,31 @@ extra:
 
 ### Ⅰ. 정의·목적
 
-- 정의: 4-way handshake은/는 송수신 양측이 각자의 송신 스트림을 독립적으로 닫고 확인 응답을 교환(FIN-ACK, FIN-ACK)하는 4단계 종료 수행 방식이다.
-- 목적: 잔여 패킷의 안전한 도착과 연결의 우아한 종료(Graceful Close) 보장에 기여한다.
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **4-way handshake** 는 TCP 양 끝점이 각 방향의 송신 종료를 FIN과 ACK로 개별 확인하는 정상 연결 해제 절차 |
+| 목적 | 미전달 데이터의 수신을 마친 뒤 양방향 연결을 종료 |
 
 ### Ⅱ. 핵심 구조와 작동
 
 ```text
-[ TCP 4-way handshake 연결 종료 시퀀스 및 상태 전이 ]
-
-  [ 클라이언트 (Active Close) ]                      [ 서버 (Passive Close) ]
-       ESTABLISHED                                       ESTABLISHED
-            |                                                 |
-            |-------- 1. FIN (seq=u) ------------------------>|
-        FIN_WAIT_1                                        CLOSE_WAIT
-            |                                                 |
-            |<------- 2. ACK (ack=u+1) -----------------------| (Half-Close 상태)
-        FIN_WAIT_2                                            | (서버 잔여 데이터 계속 전송)
-            |                                                 |
-            |<------- 3. FIN (seq=w, ack=u+1) ----------------|
-            |                                              LAST_ACK
-            |-------- 4. ACK (ack=w+1) ---------------------->|
-        TIME_WAIT (2MSL 대기!)                                |
-            |                                               CLOSED
-          CLOSED (타이머 만료 후 소켓 소멸)
+A: 능동 종료                         B: 수동 종료
+ESTABLISHED                         ESTABLISHED
+    └─ FIN ───────────────────────────→
+FIN-WAIT-1                          CLOSE-WAIT
+    ←────────────────────────────── ACK
+FIN-WAIT-2                          CLOSE-WAIT
+                                     (남은 데이터 송신 가능)
+    ←────────────────────────────── FIN
+TIME-WAIT                           LAST-ACK
+    └─ ACK ───────────────────────────→ CLOSED
+    │
+  2 MSL 대기
+    ↓
+CLOSED
 ```
+
+제언: 능동·수동 종료 상태와 FIN/ACK 로그를 함께 대조해 연결 정리 지연을 진단
 
 ---
 
@@ -71,55 +77,62 @@ extra:
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 핵심 구조와 작동
+### Ⅰ. 개요
+
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **4-way handshake** 는 TCP 양 끝점이 각 방향의 송신 종료를 FIN과 ACK로 개별 확인하는 정상 연결 해제 절차 |
+| 목적 | 미전달 데이터의 수신을 마친 뒤 양방향 연결을 종료 |
+
+### Ⅱ. 종료 순서와 상태
 
 ```text
-[ TCP 4-way handshake 연결 종료 시퀀스 및 상태 전이 ]
-
-  [ 클라이언트 (Active Close) ]                      [ 서버 (Passive Close) ]
-       ESTABLISHED                                       ESTABLISHED
-            |                                                 |
-            |-------- 1. FIN (seq=u) ------------------------>|
-        FIN_WAIT_1                                        CLOSE_WAIT
-            |                                                 |
-            |<------- 2. ACK (ack=u+1) -----------------------| (Half-Close 상태)
-        FIN_WAIT_2                                            | (서버 잔여 데이터 계속 전송)
-            |                                                 |
-            |<------- 3. FIN (seq=w, ack=u+1) ----------------|
-            |                                              LAST_ACK
-            |-------- 4. ACK (ack=w+1) ---------------------->|
-        TIME_WAIT (2MSL 대기!)                                |
-            |                                               CLOSED
-          CLOSED (타이머 만료 후 소켓 소멸)
+A: 능동 종료                         B: 수동 종료
+ESTABLISHED                         ESTABLISHED
+    └─ FIN ───────────────────────────→
+FIN-WAIT-1                          CLOSE-WAIT
+    ←────────────────────────────── ACK
+FIN-WAIT-2                          CLOSE-WAIT
+                                     (남은 데이터 송신 가능)
+    ←────────────────────────────── FIN
+TIME-WAIT                           LAST-ACK
+    └─ ACK ───────────────────────────→ CLOSED
+    │
+  2 MSL 대기
+    ↓
+CLOSED
 ```
 
-### Ⅱ. 핵심 특성
+### Ⅲ. 종료 특성
 
-- 연결을 맺을 때는 SYN과 ACK를 묶어서 보낼 수 있어 3단계(3-way)로 끝나지만, 끊을 때는 서버 쪽에 아직 처리 중인 데이터가 남아 있을 수 있어 ACK와 FIN을 분리해 보내야 하므로 반드시 4단계(4-way)가 됨
-- 만약 클라이언트가 TIME_WAIT 대기 없이 즉시 소켓을 닫아버리면, 마지막 ACK가 유실되었을 때 서버는 평생 LAST_ACK 상태에 갇혀 자원을 회수하지 못하는 데드락 발생
-- 대규모 API 게이트웨이나 웹 프록시 서버에서 수만 건의 연결을 맺고 끊으면 수많은 소켓이 TIME_WAIT 상태로 남아 사용할 수 있는 가용 포트(약 6만 개)가 순식간에 고갈
-
-### Ⅲ. 관련 개념과 구분
-
-- 3-way handshake vs 4-way handshake: 3-way는 통신을 시작할 때 ISN(초기 순서 번호)을 교환하는 3단계 / 4-way는 통신을 끝낼 때 잔여 데이터 유실 없이 양방향 채널을 닫는 4단계
-
-### Ⅳ. 적용 문제와 대응
-
-- 적용 상황: 대규모 트래픽을 처리하는 API 프록시 서버의 포트 고갈 장애
-| 문제 | 원인 | 대책 | 효과 |
-|---|---|---|---|
-| 신규 소켓 생성 실패 (`Cannot assign requested address`) | 서버가 먼저 Close하여 수만 개의 TIME_WAIT 소켓이 로컬 포트 점유 | 커널 파라미터 `tcp_tw_reuse = 1` 및 Keep-Alive 활성화 | 안전한 범위 내에서 TIME_WAIT 소켓을 재사용하고 연결 유지 |
-| 서버 프로세스에 CLOSE_WAIT 소켓 무한 누적 | 애플리케이션 개발자가 소켓 `close()` 함수 호출 누락 | 소켓 타임아웃 예외 처리 및 `close()` 명시적 호출 버그 수정 | 자원 누수를 차단하고 소켓 정상 해제 완료 |
-
-### Ⅴ. 기술사적 제언
-
-| 문제 | 해결 방안 |
+| 관점 | 핵심 |
 |---|---|
-| 적용 환경에서 발생하는 핵심 제약 | 기존 대책을 적용하고 핵심 운영 지표를 확인해 개선한다. |
+| 독립 송신 방향 | 각 끝점이 자기 데이터 송신 종료를 별도로 결정하므로 FIN과 ACK 교환이 필요 |
+| Half-Close | 한쪽 FIN을 받은 뒤에도 상대 송신이 끝날 때까지 열린 방향의 데이터 수신 가능 |
+| TIME-WAIT | 능동 종료 측이 2×MSL 동안 대기해 최종 ACK 재전송에 대응하고 지연 세그먼트와 새 연결을 분리 |
+
+### Ⅳ. 관련 개념과 구분
+
+| 구분 | 3-way handshake | 4-way handshake |
+|---|---|---|
+| 시점 | 연결 수립 | 정상 연결 종료 |
+| 핵심 교환 | SYN, SYN-ACK, ACK | FIN, ACK, FIN, ACK |
+| 이유 | 양 끝점의 초기 순서 번호와 도달 확인 | 각 방향의 송신 종료가 독립적 |
+
+### Ⅴ. 적용 한계와 대응
+
+| 한계 | 대응 |
+|---|---|
+| 짧은 연결을 과도하게 반복하면 TIME-WAIT 소켓과 포트 사용량 증가 | 연결 재사용·풀링을 먼저 검토하고, 실제 튜플·포트 범위와 커널 동작을 측정한 뒤 설정 변경 |
+| CLOSE-WAIT 누적은 애플리케이션이 로컬 소켓을 닫지 않는 징후 | 프로세스별 상태 수와 종료 경로를 추적해 닫기 누락·예외 처리를 수정 |
+
+### Ⅵ. 기술사적 제언
+
+| 한계 | 해결 방안 |
+|---|---|
+| 종료 지연은 TCP 상태만으로 애플리케이션의 원인을 확정하기 어려움 | 요청 ID 기준으로 FIN/ACK와 프로세스 소켓 상태를 함께 기록해 장애 원인을 구분 |
 
 ## 출제 이력과 검증 출처
 
-- 제133회 1교시 13번: "TCP(Transmission Control Protocol) 프로토콜의 3-way handshake와 4-way handshake를 설명하시오." → 요구 포인트: 양 핸드셰이크의 시퀀스 다이어그램, 상태 전이, Half-Close의 필요성, TIME_WAIT의 역할 비교
-
-## 찾아볼 것
-- 리눅스 커널의 `net.ipv4.tcp_fin_timeout` 값 조정 및 위험성
+- 제133회 1교시 13번: “TCP(Transmission Control Protocol) 프로토콜의 3-way handshake와 4-way handshake를 설명하시오.”
+- [RFC 9293, Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293.html)
