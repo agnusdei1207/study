@@ -1,12 +1,12 @@
----
+﻿---
 sidebar:
   order: 45
-  label: "045. 샤딩 (Sharding)"
+  label: "045. 데이터베이스 샤딩"
   badge:
     text: "기초"
     variant: note
 title: "데이터베이스 샤딩 (Database Sharding)"
-author: "Antigravity"
+author: "Codex"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
@@ -19,318 +19,138 @@ extra:
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터 저장·처리</span><span>분산 데이터베이스·확장성 아키텍처</span><strong>샤딩</strong></div>
+데이터 저장·처리 → 분산 데이터베이스·확장성 → 데이터베이스 샤딩
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-<div class="itpe-diagram-box" role="img" aria-label="데이터베이스 샤딩 아키텍처 및 분산 라우팅 개요도">
-<svg viewBox="0 0 520 230" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="arrow-shard" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #2563eb)"/>
-    </marker>
-    <filter id="shadow-shard" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.1)"/>
-    </filter>
-  </defs>
+- 본질: **데이터베이스 샤딩(Database Sharding)**은 한 데이터 집합을 여러 노드에 나누어 저장·처리하는 수평 확장 방식.
+- 메커니즘: 샤드 키 결정 → 키 값으로 데이터 위치 지정 → 라우터가 질의를 해당 샤드 또는 여러 샤드로 전달.
+- 회상 단서: 키 분포가 불균형하거나 질의에 샤드 키가 없으면 핫스팟·여러 샤드 조회가 생길 수 있음.
 
-  <!-- 상단 트래픽 및 앱 -->
-  <rect x="15" y="15" width="490" height="40" rx="8" fill="var(--sl-color-gray-6, #f8fafc)" stroke="var(--sl-color-gray-4, #94a3b8)" stroke-width="1.5" filter="url(#shadow-shard)"/>
-  <text x="260" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">초대규모 쓰기 I/O 트랜잭션 (단일 DB 수직 확장 Scale-Up 한계 도달)</text>
-  <text x="260" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">클라이언트 쿼리 요청 ──▶ 샤드 키(Shard Key) 기반 라우팅 분기</text>
+<details>
+<summary>핵심 용어</summary>
 
-  <path d="M 260 55 L 260 75" stroke="var(--sl-color-accent, #2563eb)" stroke-width="2" marker-end="url(#arrow-shard)"/>
+- **샤딩(Sharding)**: 데이터 집합을 여러 노드에 분할해 저장하는 수평 분산 방식.
+- **샤드(Shard)**: 분할된 데이터의 일부를 저장·처리하는 노드 또는 노드 그룹.
+- **샤드 키(Shard Key)**: 각 데이터 항목을 어느 샤드에 둘지 결정하는 키.
+- **범위 샤딩(Range Sharding)**: 키 값의 범위에 따라 데이터를 나누는 방식.
+- **해시 샤딩(Hash Sharding)**: 키의 해시값을 기준으로 데이터를 분산하는 방식.
+- **핫스팟(Hotspot)**: 일부 샤드에 요청이나 데이터가 집중되는 상태.
+- **샤드 라우팅(Shard Routing)**: 질의 조건에 따라 요청을 대상 샤드로 전달하는 기능.
 
-  <!-- 라우터 계층 -->
-  <rect x="135" y="75" width="250" height="35" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5" filter="url(#shadow-shard)"/>
-  <text x="260" y="93" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">샤드 라우터 (Proxy / Middleware)</text>
-  <text x="260" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">SQL 파싱 · 샤드 키 추출 · 타깃 노드 매핑</text>
+</details>
 
-  <!-- 분기 경로 -->
-  <path d="M 180 110 L 95 130" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5" marker-end="url(#arrow-shard)"/>
-  <path d="M 260 110 L 260 130" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5" marker-end="url(#arrow-shard)"/>
-  <path d="M 340 110 L 425 130" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5" marker-end="url(#arrow-shard)"/>
-
-  <!-- 샤드 노드들 (Shared-Nothing) -->
-  <rect x="25" y="132" width="140" height="52" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-gray-4, #cbd5e1)" stroke-width="1.5"/>
-  <text x="95" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">샤드 노드 1</text>
-  <text x="95" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">Shard Key: 0 ~ 999</text>
-  <text x="95" y="177" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">독립 CPU / RAM / Disk</text>
-
-  <rect x="190" y="132" width="140" height="52" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-gray-4, #cbd5e1)" stroke-width="1.5"/>
-  <text x="260" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">샤드 노드 2</text>
-  <text x="260" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">Shard Key: 1000 ~ 1999</text>
-  <text x="260" y="177" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">독립 CPU / RAM / Disk</text>
-
-  <rect x="355" y="132" width="140" height="52" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-gray-4, #cbd5e1)" stroke-width="1.5"/>
-  <text x="425" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">샤드 노드 3</text>
-  <text x="425" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">Shard Key: 2000 ~</text>
-  <text x="425" y="177" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">독립 CPU / RAM / Disk</text>
-
-  <!-- 하단 트레이드오프 바 -->
-  <rect x="15" y="195" width="490" height="24" rx="5" fill="var(--sl-color-gray-6, #f8fafc)" stroke="var(--sl-color-gray-4, #94a3b8)" stroke-width="1"/>
-  <text x="260" y="211" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">핵심 가치: 선형적 스케일아웃(Scale-Out) ── 트레이드오프: 크로스 샤드 조인 및 분산 트랜잭션 오버헤드</text>
-</svg>
-</div>
-
-- 본질: **단일 데이터베이스 인스턴스의 CPU, 메모리, 디스크 I/O 한계를 극복하기 위해, 대규모 데이터셋을 특정 기준 속성인 샤드 키(Shard Key)에 따라 수평으로 분할하여 물리적으로 독립된 복수의 데이터베이스 노드에 분산 저장·처리하는 Shared-Nothing 수평 확장(Scale-Out) 아키텍처**
-- 암기: `키-라-노-분` = 샤드 키(Shard Key) · 라우터(Router) · 독립 노드(Nodes) · 분산 트랜잭션 통제
-- 3대 분할 방식:
-  - **레인지 샤딩 (Range)**: 연속된 키 구간별 분할 $\rightarrow$ 범위 검색 용이, 최신 데이터 핫스팟(Hotspot) 취약
-  - **해시 샤딩 (Hash)**: 해시 함수 기반 분할 $\rightarrow$ 균등 부하 분산, 범위 검색 불가, 노드 증설 시 리밸런싱 비용
-  - **디렉터리/엔티티 샤딩 (Directory)**: 룩업 테이블 매핑 $\rightarrow$ 유연한 노드 배치, 룩업 서버 병목(SPOF)
-- 대안 및 최적화: 노드 증설 시 데이터 이동을 최소화하는 **일관된 해싱(Consistent Hashing)**과 분산 락 지연을 회피하는 **Saga 패턴** 결합
 ---
 
 ## 1교시 예상문제 (10점)
 
-> 데이터베이스 샤딩 (Database Sharding)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> 데이터베이스 샤딩의 개념과 분할·라우팅 구조, 주요 설계 유의점을 설명하시오. (예상·10점)
 
 ---
 
 ## 1교시 10점 답안
 
-### 1. 데이터베이스 샤딩의 정의
+### Ⅰ. 개요
 
-- 단일 DB의 물리적 쓰기 한계를 극복하기 위해, 대규모 테이블 데이터를 **샤드 키(Shard Key)** 기준으로 수평 분할하여 물리적으로 독립된 복수 노드에 분산 저장하는 **Shared-Nothing 수평 확장(Scale-Out) 아키텍처**
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **데이터베이스 샤딩**은 한 데이터 집합을 여러 노드에 나누어 저장·처리하는 수평 확장 방식 |
+| 목적 | 단일 노드의 저장·처리 용량 한계를 분산해 시스템 용량을 확장 |
 
-### 2. 3대 분할 방식 및 핵심 비교
+### Ⅱ. 분할과 질의 처리
 
-- **3대 분할 방식 요약**:
-  - 레인지 샤딩: 연속 키 구간 분할 $\rightarrow$ 범위 검색 유리, 핫스팟 취약
-  - 해시 샤딩: 해시 함수 모듈러 $\rightarrow$ 균등 분산 우수, 범위 검색 불가, 리샤딩 비용
-  - 일관된 해싱: 가상 노드 해시 링 $\rightarrow$ 노드 증설 시 $1/N$ 데이터만 최소 재분배
+| 구성요소 | 역할 |
+|---|---|
+| 샤드 키 | 각 데이터의 분할 위치를 결정 |
+| 샤드 | 할당된 데이터의 일부를 저장·처리 |
+| 라우터·카탈로그 | 키 범위·매핑 정보를 보고 요청을 대상 샤드로 전달 |
 
-| 구분 | 파티셔닝 (Partitioning) | 샤딩 (Sharding) |
-|---|---|---|
-| **물리 서버** | 단일 인스턴스 (CPU/메모리 공유) | 복수 독립 서버 (Shared-Nothing) |
-| **트랜잭션 / 조인** | 로컬 ACID 100% 보장 / 자유로운 조인 | 분산 트랜잭션 (Saga 필요) / 크로스 조인 불가 |
-| **확장성** | 단일 하드웨어 한계 종속 | 노드 추가를 통한 선형적 무한 확장 |
+```mermaid
+flowchart TD
+    Q[질의·샤드 키] -->|위치 정보 조회| R[라우터]
+    R -->|해당 데이터가 있는 샤드로 전달| S[대상 샤드]
+    S -->|결과 반환| R
+    R -->|질의 결과 전달| O[응용 서비스]
+```
 
-### 3. 차별화 제언
+### Ⅲ. 설계상 유의점
 
-- 크로스 샤드 조인을 방지하기 위해 **엔티티 코로케이션(Colocation)**으로 연관 데이터를 동일 샤드에 배치하고, 노드 증설 비용을 최소화하기 위해 **일관된 해싱(Consistent Hashing)**과 **Vitess/ShardingSphere** 분산 미들웨어를 도입함
+| 선택·상황 | 고려사항 |
+|---|---|
+| 범위·해시 키 선택 | 질의 패턴, 키 분포, 증가성 검토 |
+| 키가 포함된 질의 | 해당 샤드로 좁힐 수 있는지 확인 |
+| 키가 없는 질의 | 여러 샤드 조회와 결과 통합 비용 고려 |
+| 데이터 증가·편중 | 재분배·재샤딩 절차와 핫스팟 감시 |
+
+**제언:** 주요 질의 패턴과 예상 데이터 분포를 함께 기준으로 삼아 샤드 키를 선정.
+
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> 초대규모 트래픽 처리를 위한 데이터베이스 샤딩(Sharding)의 개념과 아키텍처 구성요소를 설명하고, 샤드 분할 방식 3가지(Range, Hash, Directory)의 장단점 비교 및 크로스 샤드 조인과 분산 트랜잭션 해결 방안을 논하시오. (25점)
-
-> (25점, 예상)
+> 데이터베이스 샤딩의 구조와 분할 방식을 설명하고, 샤드 키·질의 라우팅·데이터 재분배의 설계 고려사항을 제시하시오. (예상·25점)
 
 ---
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 단일 DBMS의 물리적 한계를 돌파하는 데이터베이스 샤딩 개요
+## Ⅰ. 개요
 
-- 정의: **데이터베이스 샤딩(Sharding)**은 관계형 데이터베이스의 거대한 테이블 데이터를 행(Row) 단위로 쪼개어, 네트워크로 연결된 물리적으로 독립된 여러 대의 데이터베이스 서버(샤드, Shard)에 분산 적재하고 병렬 처리하는 수평적 분할 기술
-- 목적: 단일 고성능 서버의 수직 확장(Scale-Up) 비용 한계 및 단일 마스터 쓰기(Write) I/O 병목을 해소하여, 저비용 상용 서버의 증설만으로 처리량과 저장 용량을 선형적으로 확장(Scale-Out)
-- 필요성: 캐싱(Redis), 읽기 복제본(Read Replica), 테이블 파티셔닝(Partitioning)을 모두 소진한 상태에서도 초당 쓰기 트랜잭션이 수만~수십만 건에 달하면 물리적 분산 샤딩 외에 대안이 없음
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **데이터베이스 샤딩**은 한 데이터 집합을 여러 노드에 나누어 저장·처리하는 수평 확장 방식 |
+| 목적 | 단일 노드의 저장·처리 용량 한계를 분산해 시스템 용량을 확장 |
 
-#### 한줄 요약
+## Ⅱ. 구성과 책임
 
-- 샤딩은 데이터베이스 인스턴스 자체를 물리적으로 여러 대 복제·분할하여 쓰기 부하를 분산시키는 수평 확장 전략임
+| 구성요소 | 책임 |
+|---|---|
+| 샤드 키 | 데이터의 분할·배치 기준 |
+| 샤드 | 데이터 일부의 저장·질의 처리 |
+| 라우터 | 샤드 키·위치 정보를 바탕으로 질의 전달 |
+| 메타데이터·카탈로그 | 키 범위나 샤드 배치 정보를 관리 |
+| 복제본(선택) | 가용성·읽기 처리 등을 지원하는 별도 복제 구성 |
 
-### Ⅱ. 샤딩과 테이블 파티셔닝(Partitioning) 심층 비교
+샤딩은 데이터를 나누는 방식이며, 복제는 동일 데이터의 복사본을 두는 방식. 실제 시스템은 두 구조를 함께 사용할 수 있음.
 
-| 비교 항목 | 데이터베이스 파티셔닝 (Partitioning) | 데이터베이스 샤딩 (Sharding) |
-|---|---|---|
-| **물리적 환경** | **단일 DB 서버 (Single Instance)** 내부 분할 | **복수의 독립 DB 서버 (Multiple Instances)** 분산 |
-| **자원 공유 구조** | CPU, 메모리(Buffer Pool), 디스크 컨트롤러 공유 | **완전 무공유 (Shared-Nothing Architecture)** |
-| **투명성 주체** | DBMS 엔진 내부가 파티션 프루닝 자동 수행 | 애플리케이션 또는 전용 샤딩 미들웨어(Router) |
-| **트랜잭션(ACID)**| 단일 인스턴스 로컬 트랜잭션 (100% 완전 보장) | **분산 트랜잭션** (2PC 블로킹 오버헤드, Saga 필요) |
-| **조인(JOIN) 연산**| 테이블/파티션 간 자유로운 SQL JOIN 가능 | **크로스 샤드 조인 불가** (앱 계층 병합 필요) |
-| **확장성 한계** | 단일 하드웨어의 CPU/메모리 한계에 종속 | 노드 추가를 통한 **이론상 무제한 선형 확장** |
+## Ⅲ. 분할 방식 비교
 
-#### 한줄 요약
-
-- 파티셔닝은 단일 서버 내부의 디스크 I/O 최적화이고, 샤딩은 물리 서버 경계를 넘어서는 클러스터 확장 기술임
-
-### Ⅲ. 샤딩의 4대 핵심 구성요소 및 아키텍처
-
-<div class="itpe-diagram-box" role="img" aria-label="샤딩 시스템 4대 구성요소 및 라우팅 흐름도">
-<svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="arrow-sarch" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #2563eb)"/>
-    </marker>
-  </defs>
-
-  <!-- 클라이언트 -->
-  <rect x="20" y="20" width="280" height="35" rx="5" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-gray-4, #94a3b8)" stroke-width="1"/>
-  <text x="160" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">클라이언트 App 질의: SELECT * WHERE USER_ID = 1050</text>
-  <text x="160" y="49" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">샤드 키(USER_ID) 포함 질의</text>
-
-  <!-- 컨피그 서버 -->
-  <rect x="340" y="20" width="160" height="55" rx="5" fill="var(--sl-color-gray-6, #f8fafc)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
-  <text x="420" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">컨피그 서버 (Config / Raft)</text>
-  <text x="420" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">- 샤드 매핑 메타데이터 보관</text>
-  <text x="420" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">- 샤드 토폴로지 동기화</text>
-
-  <path d="M 160 55 L 160 80" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5" marker-end="url(#arrow-sarch)"/>
-  <path d="M 285 100 L 340 50" stroke="var(--sl-color-gray-4, #94a3b8)" stroke-width="1" stroke-dasharray="3 3"/>
-
-  <!-- 샤드 라우터 -->
-  <rect x="20" y="80" width="280" height="42" rx="6" fill="var(--sl-color-gray-6, #f8fafc)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
-  <text x="160" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">샤드 라우터 (Shard Router / Proxy)</text>
-  <text x="160" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">SQL 파싱 ──▶ USER_ID=1050 식별 ──▶ 샤드 2 매핑 결정</text>
-
-  <!-- 하단 샤드 분기 -->
-  <path d="M 80 122 L 80 145" stroke="var(--sl-color-gray-4, #94a3b8)" stroke-width="1" marker-end="url(#arrow-sarch)"/>
-  <path d="M 160 122 L 260 145" stroke="var(--sl-color-accent, #2563eb)" stroke-width="2" marker-end="url(#arrow-sarch)"/>
-  <path d="M 240 122 L 430 145" stroke="var(--sl-color-gray-4, #94a3b8)" stroke-width="1" marker-end="url(#arrow-sarch)"/>
-
-  <!-- 샤드 1, 2, 3 -->
-  <rect x="20" y="147" width="130" height="42" rx="5" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-gray-4, #cbd5e1)" stroke-width="1"/>
-  <text x="85" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">샤드 1 (0 ~ 999)</text>
-  <text x="85" y="176" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">Primary - Replica</text>
-
-  <rect x="195" y="147" width="130" height="42" rx="5" fill="rgba(37, 99, 235, 0.1)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
-  <text x="260" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">샤드 2 (1000 ~ 1999)</text>
-  <text x="260" y="176" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#10b981" text-anchor="middle">★ 타깃 라우팅 질의 실행</text>
-
-  <rect x="370" y="147" width="130" height="42" rx="5" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-gray-4, #cbd5e1)" stroke-width="1"/>
-  <text x="435" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="var(--sl-color-foreground, #0f172a)" text-anchor="middle">샤드 3 (2000 ~ )</text>
-  <text x="435" y="176" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">Primary - Replica</text>
-</svg>
-</div>
-
-| 구성요소 | 핵심 역할 | 기술적 고려사항 |
-|---|---|---|
-| **샤드 키 (Shard Key)** | 데이터를 어느 샤드 노드에 분산할지 결정하는 기준 속성 | 균등한 데이터 분산도, 쿼리 조건절 포함 빈도, 불변성 |
-| **샤드 라우터 (Router/Proxy)** | 클라이언트 쿼리를 파싱하여 샤드 키를 식별하고 타깃 노드로 질의 전달 | 프록시 병목 최소화, 커넥션 풀링, 다중 노드 쿼리 병합 |
-| **컨피그 서버 (Config Server)** | 샤드 클러스터의 토폴로지, 키 범위, 라우팅 테이블 메타데이터 보관 | 고가용성(HA) 필수, Raft/Paxos 기반 복제 운용 |
-| **샤드 노드 (Data Shards)** | 분할된 데이터 조각을 영속 저장하고 로컬 트랜잭션을 처리하는 DB 인스턴스 | 단일 장애점(SPOF) 방지를 위해 각 샤드별 Primary-Replica 구성 |
-
-#### 한줄 요약
-
-- 샤딩 시스템은 샤드 키, 라우터, 컨피그 서버, 데이터 샤드의 4개 요소가 협력하여 분산 질의를 라우팅함
-
-### Ⅳ. 3대 샤드 분할 방식(Sharding Strategies) 비교
-
-| 분할 방식 | 분할 논리 | 장점 | 단점 및 실무 위험 |
+| 방식 | 배치 원리 | 장점 | 주의점 |
 |---|---|---|---|
-| **레인지 샤딩<br>(Range-based)** | 숫자, 알파벳, 날짜 등 연속적인 키 값의 구간별로 노드 분할 | - 구현이 매우 단순함<br>- 범위 검색(BETWEEN, ORDER BY) 최적화 | - 최신 일자 샤드에만 쓰기가 몰리는 **핫스팟(Hotspot) 발생**<br>- 특정 샤드만 용량이 넘치는 불균형 초래 |
-| **해시 샤딩<br>(Hash-based)** | 샤드 키에 해시 함수를 적용한 결과값($Hash(key) \pmod N$)으로 분할 | - 전 샤드 노드에 걸쳐 **데이터와 트래픽이 매우 균등 분산**됨 | - 범위 검색 시 모든 샤드를 전부 조회(Scatter-Gather)해야 함<br>- 노드 증설 시 전체 데이터의 대규모 재분배(Resharding) 발생 |
-| **디렉터리 샤딩<br>(Directory-based)** | 별도의 룩업 테이블(매핑 딕셔너리)을 두어 동적으로 샤드 위치 결정 | - 특정 고객을 특정 샤드로 유연하게 이동 및 배치 가능 | - 매 쿼리마다 룩업 테이블을 먼저 조회해야 하므로 오버헤드 증가<br>- 룩업 테이블 장애 시 전체 클러스터 마비 |
+| 범위 | 키 값의 연속 범위로 분할 | 범위 검색과 순서 질의에 유리할 수 있음 | 단조 증가 키나 불균등 범위에서 핫스팟 가능 |
+| 해시 | 키의 해시 결과로 분할 | 특정 키 값의 편중 완화에 유리할 수 있음 | 범위 검색이 여러 샤드로 퍼질 수 있음 |
 
-#### 한줄 요약
+## Ⅳ. 질의 라우팅과 결과 통합
 
-- 범위 검색이 많으면 레인지, 균등 분산이 중요하면 해시 샤딩을 선택하며, 노드 증설 비용을 위해 일관된 해싱을 결합함
+```mermaid
+flowchart TD
+    A[응용 질의] -->|샤드 키 조건 확인| B{대상 샤드 식별 가능?}
+    B -->|가능| C[대상 샤드로 전달]
+    B -->|불가| D[복수 샤드에 질의]
+    C --> E[결과 반환]
+    D -->|결과 병합·정렬·집계| E
+```
 
-### Ⅴ. 일관된 해싱(Consistent Hashing)을 통한 리샤딩(Resharding) 비용 극복
+## Ⅴ. 주요 설계 위험
 
-<div class="itpe-diagram-box" role="img" aria-label="일관된 해싱 가상 노드 링 구조도">
-<svg viewBox="0 0 520 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="arrow-ch" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #2563eb)"/>
-    </marker>
-  </defs>
+| 한계 | 설계 대응 |
+|---|---|
+| 키 분포 불균형·단조 증가로 인한 핫스팟 | 키 빈도·증가성 분석, 분할 기준·배치 전략 검토 |
+| 키 조건 없는 질의의 팬아웃 | 주요 질의에 샤드 키를 포함하고 복수 샤드 결과 통합 비용 측정 |
+| 데이터 성장에 따른 재분배 | 이동량·운영 영향·복구 절차를 포함한 재샤딩 계획 |
+| 샤드 간 트랜잭션·조인 | 업무 경계와 트랜잭션 범위를 고려해 데이터 배치 설계 |
 
-  <!-- 원형 해시 링 -->
-  <circle cx="160" cy="100" r="75" fill="none" stroke="var(--sl-color-gray-4, #94a3b8)" stroke-width="2" stroke-dasharray="4 4"/>
-  <text x="160" y="103" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="var(--sl-color-gray-3, #64748b)" text-anchor="middle">가상 해시 링 (0 ~ 2³²-1)</text>
+## Ⅵ. 기술사적 제언
 
-  <!-- 노드 A, B, C (가상 노드 배치) -->
-  <circle cx="160" cy="25" r="9" fill="var(--sl-color-accent, #2563eb)"/>
-  <text x="160" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">Shard A-1</text>
-
-  <circle cx="235" cy="100" r="9" fill="#10b981"/>
-  <text x="275" y="103" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#10b981" text-anchor="middle">Shard B-1</text>
-
-  <circle cx="85" cy="100" r="9" fill="#f59e0b"/>
-  <text x="45" y="103" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#f59e0b" text-anchor="middle">Shard C-1</text>
-
-  <circle cx="160" cy="175" r="9" fill="var(--sl-color-accent, #2563eb)"/>
-  <text x="160" y="195" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="var(--sl-color-accent, #2563eb)" text-anchor="middle">Shard A-2</text>
-
-  <!-- 시계방향 할당 화살표 -->
-  <path d="M 180 30 C 220 50 230 70 233 85" fill="none" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5" marker-end="url(#arrow-ch)"/>
-
-  <!-- 우측 설명 카드 -->
-  <rect x="290" y="25" width="215" height="150" rx="6" fill="var(--sl-color-gray-6, #f8fafc)" stroke="var(--sl-color-gray-4, #94a3b8)" stroke-width="1"/>
-  <text x="305" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="var(--sl-color-accent, #2563eb)">일관된 해싱의 핵심 이점</text>
-  <text x="305" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="var(--sl-color-foreground, #0f172a)">1. 재배치 비용 $1/N$ 최소화</text>
-  <text x="305" y="85" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)">- 노드 증설 시 전체 재분배(100%) 방지</text>
-  <text x="305" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)">- 인접 노드의 데이터 구간만 국소 이동</text>
-
-  <text x="305" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="var(--sl-color-foreground, #0f172a)">2. 가상 노드(Virtual Nodes)</text>
-  <text x="305" y="135" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)">- 물리 서버 1대당 수십 개 가상 포인트 배치</text>
-  <text x="305" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="var(--sl-color-gray-3, #64748b)">- 특정 물리 서버로의 데이터 쏠림 완전 방지</text>
-  <text x="305" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#10b981">무중단 동적 리샤딩(Resharding) 보장</text>
-</svg>
-</div>
-
-- 메커니즘: $0 \sim 2^{32}-1$의 거대한 가상 해시 링(Hash Ring) 공간에 샤드 서버 노드와 데이터 키를 동일하게 해싱 배치하고, 시계 방향으로 가장 가까운 노드에 데이터를 할당
-- 효과: 신규 노드가 추가되거나 삭제될 때, 단순 모듈러 해싱은 전체 데이터의 거의 $100\%$가 다른 노드로 재배치되는 대재앙이 발생하지만, 일관된 해싱은 **오직 $1/N$의 데이터만 이동**하여 서비스 중단 없는 무중단 리샤딩 실현
-- 가상 노드(Virtual Nodes): 해시 링 내에 물리 노드당 수십~수백 개의 가상 노드를 분산 배치하여 데이터 쏠림 불균형 완벽 해소
-
-#### 한줄 요약
-
-- 일관된 해싱은 해시 링과 가상 노드를 도입하여 노드 증설 시 데이터 재배치 비용을 $1/N$로 최소화함
-
-### Ⅵ. 샤딩 실무 적용 시 3대 핵심 난제 및 엔지니어링 대책
-
-| 문제 상황 | 근본 원인 | 실무 엔지니어링 대책 | 개선 효과 |
-|---|---|---|---|
-| **크로스 샤드 조인 (Cross-Shard Join) 성능 파탄** | 서로 다른 물리 노드에 분산된 테이블 간의 JOIN 쿼리 발생 | 1. **글로벌 테이블 복제**: 공통 코드/마스터 테이블을 전 샤드에 동기화 복제<br>2. **엔티티 그룹화(Colocation)**: 부모-자식(고객-주문)을 동일 샤드 키로 묶어 같은 노드에 강제 배치 | 로컬 조인으로 전환되어 네트워크 전송 비용 제거 |
-| **분산 트랜잭션 시 성능 급락 및 데드락** | 여러 샤드의 데이터를 동시 수정하기 위해 2단계 커밋(2PC) 적용 시 네트워크 블로킹 | **사가 패턴 (Saga Pattern)** 기반 비동기 이벤트 주도 보상 트랜잭션 전환 또는 TCC(Try-Confirm-Cancel) 적용 | 락 대기 시간 제거 및 TPS 10배 이상 증대 |
-| **특정 샤드 핫스팟 (Hotspot) 과부하** | 유명 인플루언서, 대형 판매자 등 특정 키 값에 트랜잭션 집중 | **복합 샤드 키(Composite Key)** 설계 (예: 판매자ID + 주문일자 해시) 또는 Salt(난수) 접두사 부가 | 트래픽 핫스팟 균등 분산 |
-| **전체 샤드 브로드캐스트 (Scatter-Gather) 지연** | 쿼리 조건절에 샤드 키가 누락되어 모든 샤드에 쿼리를 동시 전송 | **글로벌 보조 인덱스(Global Secondary Index)** 별도 구축 및 검색 전용 엔진(Elasticsearch) 오프로딩 | 불필요한 전 노드 풀스캔 차단 |
-
-#### 한줄 요약
-
-- 엔티티 코로케이션(Colocation), 사가 패턴 비동기 트랜잭션, 복합 샤드 키가 샤딩의 3대 필수 설계 기법임
-
-### Ⅶ. 기술사적 제언
-
-### 학습자 통찰 메모 — 답안 밖
-
-> **[핵심 통찰]**
-> 샤딩은 데이터베이스 확장성의 "최후의 보루(Last Resort)"여야 한다. 시스템에 성능 병목이 발생했다고 해서 섣불리 샤딩을 도입하면, 크로스 샤드 조인 불가, 분산 트랜잭션 복잡성, 스키마 마이그레이션 및 무중단 리샤딩 고통이라는 막대한 운영 부채를 안게 된다. 엔지니어의 진짜 실력은 샤딩 이전에 (1) 쿼리 튜닝 및 인덱스 최적화, (2) Redis 캐싱 레이어 전진 배치, (3) 읽기 복제본(Read Replica) 기반 CQRS 분리, (4) 단일 인스턴스 테이블 파티셔닝의 4단계를 극한까지 소진하는 데 있다.
-
-> **[나라면 이렇게 쓴다]**
-> 25점 답안 3단락 차별화로 "자체 샤딩 프록시 개발의 안티패턴 탈피와 NewSQL(분산 SQL) 전환 전략"을 제시하겠다. 애플리케이션 계층 샤딩이나 수작업 프록시 유지보수의 한계를 지적하고, Google Spanner/CockroachDB/TiDB와 같이 Raft 합의 알고리즘과 자동 리밸런싱(Auto-split & Rebalance)을 내장한 NewSQL 아키텍처 도입을 제언한다. 이를 통해 개발자는 분산 트랜잭션과 샤딩 키 관리에 대한 짐을 덜고 비즈니스 로직에만 집중할 수 있음을 설득력 있게 제시한다.
-
-### 실전 답안용 기술사적 제언
-
-- **[샤딩의 관리 복잡성 폭증과 운영 장애 한계]**: 수작업 샤딩 구축 시 분산 락, 크로스 노드 트랜잭션 블로킹, 스키마 마이그레이션 고비용 문제 수반
-- **[실무 최적화 방안]**: 엔티티 코로케이션(Colocation) 및 사가 패턴(Saga)을 적용하고, 오픈소스 샤딩 미들웨어(**Vitess, ShardingSphere**)를 통해 표준 SQL 인터페이스 유지
-- **[현대적 NewSQL 진화 대응]**: 신규 코어 뱅킹 및 대규모 금융 시스템 설계 시 물리 샤딩 대신 Raft 합의 기반 분산 RDBMS(**CockroachDB, TiDB**)를 도입하여 분산 ACID와 자동 리밸런싱 달성
-
-<div class="itpe-flow-map" role="group" aria-label="데이터베이스 샤딩 한계 극복 및 고도화 4단계 흐름">
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__num">1</div>
-    <div class="itpe-flow-step__title">현행 한계</div>
-    <div class="itpe-flow-step__desc">크로스 샤드 조인 성능 파탄 및 2PC 분산 트랜잭션 병목 발생</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__num">2</div>
-    <div class="itpe-flow-step__title">개선 방안</div>
-    <div class="itpe-flow-step__desc">엔티티 코로케이션 + Saga 비동기 보상 트랜잭션 및 일관된 해싱 도입</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__num">3</div>
-    <div class="itpe-flow-step__title">검증 기준</div>
-    <div class="itpe-flow-step__desc">노드 증설 시 데이터 이동량 1/N 유지, 분산 트랜잭션 실패율 &lt; 0.001%</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__num">4</div>
-    <div class="itpe-flow-step__title">실행 효과</div>
-    <div class="itpe-flow-step__desc">쓰기 TPS 10배 선형 확장 및 무중단 동적 리샤딩(Zero-Downtime) 달성</div>
-  </div>
-</div>
-
----
+| 한계 | 해결 방안 |
+|---|---|
+| 처리량 분산만으로 키 편중·전체 샤드 질의 문제가 해결되지 않는 구조 | 서비스의 주요 읽기·쓰기 질의와 키 분포를 함께 평가해 키를 정하고, 용량 증가 시 재분배를 시험할 운영 절차를 마련 |
 
 ## 출제 이력과 검증 출처
 
-- 제127회 공식 문제지: 데이터베이스 샤딩(Sharding)의 개념, 샤드 분할 방식 3가지 및 구축 시 고려사항
-- [Designing Data-Intensive Applications (Martin Kleppmann), Partitioning & Replication](https://dataintensive.net/)
-- [Vitess Documentation, Sharding Concepts](https://vitess.io/docs/overview/what-is-vitess/)
+- [MongoDB Manual, Sharding](https://www.mongodb.com/docs/manual/sharding/)
+- [MongoDB Manual, Choose a Shard Key](https://www.mongodb.com/docs/manual/core/sharding-choose-a-shard-key/)
 
 ## 연결 토픽
 
-- [데이터베이스 분할](./021_db_partitioning_sharding/) · [분산 데이터베이스 투명성](./025_distributed_db_transparency/) · [CAP·PACELC 이론](./113_cap_pacelc/) · [트랜잭션(ACID)](./078_transaction/)
+- 연관 토픽: [데이터베이스 인덱스](./047_index.md) · [확장성 해싱](./050_extendible_hashing.md) · [고가용성 아키텍처](./051_ha_architecture.md)
