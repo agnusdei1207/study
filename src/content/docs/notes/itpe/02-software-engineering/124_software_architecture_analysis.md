@@ -84,21 +84,15 @@ extra:
 | 정의 | 소프트웨어 아키텍처 분석은 요구·설계에서 구조를 평가하고 구현 코드에서 실제 구조를 복원해 비교하는 활동 |
 | 목적 | 품질 요구에 맞는 설계 선택과 구현의 구조적 이탈을 확인 |
 
-### 의도된 아키텍처와 구현된 아키텍처의 괴리
-
-프로젝트 초기에는 소프트웨어 아키텍트가 정교한 3계층 아키텍처(Presentation - Business - Data)나 헥사고날 아키텍처를 설계한다. 그러나 실제 개발이 진행되고 유지보수가 지속되면서, 개발자들은 빠른 납기를 위해 비즈니스 로직을 건너뛰고 컨트롤러에서 DB를 직접 쿼리하거나, 서비스 간에 양방향 순환 참조를 만드는 등 **설계 원칙을 위반(아키텍처 침식)**하게 된다.
-
-이로 인해 시스템은 점차 스파게티 구조로 전락하여 모듈 분리가 불가능해지고 작은 수정에도 시스템 전체가 마비된다. 따라서 **요구사항으로부터 최적 설계를 도출하는 정방향 분석**과 **구현 코드가 설계를 지키고 있는지 감시하는 역방향 분석**을 상호 연계하는 종합 아키텍처 통제가 필수적이다.
+**핵심:** 설계가 의도한 모듈·의존 관계와 코드에서 관찰되는 실제 관계를 비교해 구조적 이탈을 찾는 활동. 품질 속성 평가는 요구와 설계의 연결에서 수행.
 
 ### 정방향 분석 vs 역방향 분석 핵심 비교
 
 | 구분 | 정방향 아키텍처 분석 (Forward) | 역방향 아키텍처 분석 (Reverse) |
 |---|---|---|
 | **분석 출발점** | 비즈니스 목표, 품질 속성 요구사항 | 실제 소스코드, 설정 파일, 바이너리 |
-| **추론 방식** | 연역적 (Top-Down: 요구사항 $\rightarrow$ 설계) | 귀납적 (Bottom-Up: 코드 $\rightarrow$ 아키텍처 복원) |
-| **핵심 목적** | 아키텍처 스타일 선정 및 품질 트레이드오프 평가 | 아키텍처 침식 탐지 및 설계-구현 갭(Gap) 검증 |
-| **적용 시점** | 아키텍처 수립 및 상세 설계 초기 단계 | 개발 진행 중(CI 연계) 및 레거시 유지보수 단계 |
-| **대표 도구** | ATAM, CBAM, ADD(Attribute-Driven Design) | ArchUnit, SonarQube, Structure101, Lattix(DSM) |
+| 분석 방향 | 요구·품질 속성 → 설계 대안 평가 | 코드·설정 → 실제 의존 구조 복원 |
+| 확인 대상 | 품질 시나리오와 설계 결정의 적합성 | 설계 제약과 실제 의존 관계의 차이 |
 
 ### Ⅱ. 아키텍처 및 핵심 메커니즘
 
@@ -125,56 +119,12 @@ DSM 등으로 결합 관계 표시
 아키텍처 규칙을 자동 검사에 반영
 ```
 
-<div class="itpe-component-grid">
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>① 소스코드 파싱 (Parsing)</strong></span>
-      <span class="itpe-badge">데이터 추출</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>구문 분석기를 통해 소스코드를 추상 구문 트리(AST)로 변환</li>
-        <li>클래스 간 import, 상속, 호출, 객체 생성 관계 추출</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>② 의존성 모델링 (DSM)</strong></span>
-      <span class="itpe-badge">구조 가시화</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>모듈 간 의존 관계를 N x N 매트릭스(Design Structure Matrix)로 변환</li>
-        <li>대각선 상단의 0이 아닌 값을 통해 순환 참조(Circular Dependency) 즉시 식별</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>③ 갭 분석 (Gap Analysis)</strong></span>
-      <span class="itpe-badge">침식 판정</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>설계와 일치하는 수렴(Convergence), 누락된 결여(Absence) 판정</li>
-        <li>설계 규칙을 위반하여 발생한 불법 발산(Divergence) 라인 적발</li>
-      </ul>
-    </div>
-  </div>
-  <div class="itpe-component-card">
-    <div class="itpe-component-header">
-      <span class="itpe-keyword"><strong>④ 리팩토링 및 규칙 코드화</strong></span>
-      <span class="itpe-badge">재발 방지</span>
-    </div>
-    <div class="itpe-component-body">
-      <ul>
-        <li>의존관계 역전 원칙(DIP)을 적용하여 불법 순환 결합 해소</li>
-        <li>ArchUnit 단위 테스트 코드로 아키텍처 규칙을 작성하여 CI에 등록</li>
-      </ul>
-    </div>
-  </div>
-</div>
+| 단계 | 핵심 판단 |
+|---|---|
+| 관계 추출 | 모듈·패키지의 호출·참조·상속 관계 확인 |
+| 구조 복원 | 의존 그래프 또는 DSM(Design Structure Matrix)으로 관계 표시 |
+| 차이 분석 | 설계에 없는 관계·설계에만 있는 관계·순환 의존 확인 |
+| 조치 | 설계 변경 또는 구현 수정 후 자동 규칙과 문서 갱신 |
 
 ### Ⅲ. 실무 적용 및 고려사항
 
@@ -183,7 +133,7 @@ DSM 등으로 결합 관계 표시
 | 위험 | 대책 | 효과 |
 |---|---|---|
 | 컨트롤러 계층에서 리포지토리 계층을 직접 참조하여 비즈니스 규칙이 우회되는 아키텍처 침식 | ArchUnit 등 아키텍처 검증 도구를 빌드 파이프라인에 연결해 계층 위반을 확인 | 계층 의존 규칙의 반복 검증 |
-| 서비스 간 A $\rightarrow$ B $\rightarrow$ C $\rightarrow$ A 순환 참조로 인해 독립 배포 및 단위 테스트 불가 | DSM(Design Structure Matrix) 정적 분석으로 순환 결합점을 탐지하고 인터페이스 분리 및 이벤트(Kafka) 기반 디커플링 | 순환 의존성 원천 제거 및 서비스 독립 배포성 확보 |
+| 모듈 간 순환 의존성으로 변경 영향이 확대 | 의존 관계 분석으로 순환 경로를 확인하고 책임·인터페이스를 재설계 | 변경 영향 범위 축소 여부 확인 |
 | 초기 아키텍처 문서(SAD)가 코드와 동기화되지 않고 사문화되어 설계 지침 무력화 | 아키텍처 규칙을 코드로 관리하고 변경 때 설계와 구현의 차이를 검토 | 문서와 구현 사이의 차이 조기 확인 |
 
 ### Ⅳ. 점검 기준
@@ -199,9 +149,15 @@ DSM 등으로 결합 관계 표시
 
 ### Ⅴ. 기술사적 제언
 
-| 한계 | 해결 방안 |
-|---|---|
-| 예외가 필요한 설계 변경까지 일률 차단하면 팀이 규칙을 우회하거나 승인 절차가 지연될 수 있음 | 아키텍처 경계별 필수 규칙과 예외 가능 항목을 구분하고, 예외에는 근거·책임자·재검토 시점을 기록 |
+```text
+요구·품질 시나리오 → 설계 제약
+                    │ 대조
+코드·설정 → 실제 의존 관계
+                    ↓
+차이 분석 → 설계 변경 또는 구현 수정 → 규칙·문서 갱신
+```
+
+**제언:** 실제 구조와 설계가 다르면 위반만 단정하지 말고 변경 근거를 평가해 설계·구현을 함께 갱신.
 
 ### 참고 및 연계 학습
 
@@ -209,4 +165,5 @@ DSM 등으로 결합 관계 표시
 - [CBAM(Cost Benefit Analysis Method)](./076_cbam.md)
 - [소프트웨어 아키텍처 스타일](./057_architecture_style.md)
 - [리팩토링(Refactoring) 및 코드 냄새](./006_refactoring.md)
+- [CMU SEI, Architecture Reconstruction Guidelines](https://www.sei.cmu.edu/library/architecture-reconstruction-guidelines/)
 ---
