@@ -54,17 +54,11 @@ extra:
 
 ### Ⅱ. 네 기능의 관계
 
-```mermaid
-flowchart TD
-    G["GOVERN · 조직 정책·역할·책임을 전 과정에 반영"]
-    subgraph F["AI RMF Core 기능"]
-        M["MAP · 맥락과 영향 파악"]
-        E["MEASURE · 위험 평가·추적"]
-        R["MANAGE · 우선순위와 대응"]
-    end
-    G ---|전 기능에 반영| M
-    G ---|전 기능에 반영| E
-    G ---|전 기능에 반영| R
+```text
+GOVERN: 정책·역할·책임이 전 기능에 적용
+  ├─ MAP: 맥락·영향 파악
+  ├─ MEASURE: 위험 측정·추적
+  └─ MANAGE: 우선순위·대응
 ```
 
 ### Ⅲ. 적용 원칙
@@ -96,17 +90,11 @@ NIST AI RMF 1.0의 2023년 발표와 2026년 9월 기준 NIST의 개정 작업 �
 
 ## Ⅱ. AI RMF Core의 기능 관계
 
-```mermaid
-flowchart TD
-    G["GOVERN · 조직 정책·역할·책임을 전 과정에 반영"]
-    subgraph F["AI RMF Core 기능"]
-        M["MAP · 맥락과 영향 파악"]
-        E["MEASURE · 위험 평가·추적"]
-        R["MANAGE · 우선순위와 대응"]
-    end
-    G ---|전 기능에 반영| M
-    G ---|전 기능에 반영| E
-    G ---|전 기능에 반영| R
+```text
+GOVERN: 정책·역할·책임이 전 기능에 적용
+  ├─ MAP: 맥락·영향 파악
+  ├─ MEASURE: 위험 측정·추적
+  └─ MANAGE: 우선순위·대응
 ```
 
 네 기능의 비체크리스트·비순차적 성격. 다른 세 기능 전반에 작용하는 **GOVERN**, 맥락·위험에 맞춘 MAP·MEASURE·MANAGE 활동의 반복·조정.
