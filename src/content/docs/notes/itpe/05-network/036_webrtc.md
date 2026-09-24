@@ -60,21 +60,14 @@ extra:
 
 ### Ⅱ. 연결 절차와 통신
 
-```mermaid
-sequenceDiagram
-    participant A as 피어 A
-    participant S as 응용 Signaling
-    participant B as 피어 B
-    participant I as ICE 경로 확인
-    A->>S: SDP Offer·ICE 후보
-    S->>B: Offer·후보 전달
-    B->>S: SDP Answer·ICE 후보
-    S->>A: Answer·후보 전달
-    A->>I: 후보 쌍 연결성 검사
-    B->>I: 후보 쌍 연결성 검사
-    I-->>A: 선택 경로·DTLS 협상
-    I-->>B: 선택 경로·DTLS 협상
-    A->>B: 보호된 미디어·데이터
+```text
+피어 A·B 간 SDP Offer/Answer·ICE 후보 교환
+                 ↓ 응용 signaling 경로
+ICE 후보 쌍 연결성 검사 (STUN·TURN 활용 가능)
+                 ↓ 경로 선택
+DTLS 키 협상
+                 ↓
+SRTP 미디어 · SCTP 데이터 채널
 ```
 
 - 제언: signaling·ICE 경로 확인·보안 미디어 전송을 함께 설계.
@@ -98,21 +91,14 @@ sequenceDiagram
 
 ### Ⅱ. 연결 절차와 통신
 
-```mermaid
-sequenceDiagram
-    participant A as 피어 A
-    participant S as 응용 Signaling
-    participant B as 피어 B
-    participant I as ICE 경로 확인
-    A->>S: SDP Offer·ICE 후보
-    S->>B: Offer·후보 전달
-    B->>S: SDP Answer·ICE 후보
-    S->>A: Answer·후보 전달
-    A->>I: 후보 쌍 연결성 검사
-    B->>I: 후보 쌍 연결성 검사
-    I-->>A: 선택 경로·DTLS 협상
-    I-->>B: 선택 경로·DTLS 협상
-    A->>B: 보호된 미디어·데이터
+```text
+피어 A·B 간 SDP Offer/Answer·ICE 후보 교환
+                 ↓ 응용 signaling 경로
+ICE 후보 쌍 연결성 검사 (STUN·TURN 활용 가능)
+                 ↓ 경로 선택
+DTLS 키 협상
+                 ↓
+SRTP 미디어 · SCTP 데이터 채널
 ```
 
 Signaling은 응용이 구현하는 SDP·ICE 후보 교환 경로. ICE는 직접 후보뿐 아니라 TURN 릴레이 후보를 포함해 연결 가능한 경로를 검사.

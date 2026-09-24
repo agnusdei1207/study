@@ -59,12 +59,11 @@ extra:
 
 ### Ⅱ. 주요 기능
 
-```mermaid
-flowchart TB
-    A[SCTP association]
-    A --- B[멀티스트리밍<br/>스트림별 순서화]
-    A --- C[멀티호밍<br/>복수 전송 주소]
-    A --- D[청크 기반 메시지 전송]
+```text
+SCTP association
+    ├─ 멀티스트리밍 · 스트림별 순서화
+    ├─ 멀티호밍 · 복수 전송 주소
+    └─ 청크 기반 메시지 전송
 ```
 
 - 제언: 메시지 경계·스트림 독립성·경로 전환 요구를 기준으로 전송 방식 선정.
@@ -86,16 +85,20 @@ flowchart TB
 | 정의 | **SCTP** : 메시지 기반 신뢰 전송과 다중 스트림·복수 경로 주소를 지원하는 전송 프로토콜 |
 | 목적 | 메시지 경계 유지, 스트림 간 순서 분리, 경로 장애 대응 지원 |
 
+```text
+SCTP association
+    ├─ 멀티스트리밍 · 스트림별 순서화
+    ├─ 멀티호밍 · 복수 전송 주소
+    └─ 청크 기반 메시지 전송
+```
+
 ### Ⅱ. Association 설정
 
-```mermaid
-sequenceDiagram
-    participant A as SCTP Initiator
-    participant B as SCTP Responder
-    A->>B: INIT
-    B-->>A: INIT ACK + State Cookie
-    A->>B: COOKIE ECHO
-    B-->>A: COOKIE ACK
+```text
+Initiator → INIT → Responder
+Initiator ← INIT ACK + state cookie ← Responder
+Initiator → COOKIE ECHO → Responder
+Initiator ← COOKIE ACK ← Responder
 ```
 
 상태 쿠키를 이용해 INIT 단계에서 응답자가 association 상태를 바로 생성하지 않도록 해 자원 남용 위험을 완화.
@@ -111,15 +114,11 @@ sequenceDiagram
 
 ### Ⅳ. 멀티스트리밍과 순서 제어
 
-```mermaid
-flowchart TB
-    A[하나의 association]
-    A --> B[스트림 0 · 메시지 순서 관리]
-    A --> C[스트림 1 · 별도 순서 관리]
-    A --> D[스트림 2 · 별도 순서 관리]
-    B --- E[스트림 간 순서 독립]
-    C --- E
-    D --- E
+```text
+하나의 association
+    ├─ Stream 0 · 메시지 순서 관리
+    ├─ Stream 1 · 독립된 순서 관리
+    └─ Stream 2 · 독립된 순서 관리
 ```
 
 한 스트림의 순서화 데이터 지연이 다른 스트림의 애플리케이션 순서 처리까지 막는 현상을 완화. 공통 경로 혼잡·패킷 손실·수신 자원 영향까지 제거하는 것은 아님.
