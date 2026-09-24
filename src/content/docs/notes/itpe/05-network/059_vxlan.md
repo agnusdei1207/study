@@ -1,125 +1,143 @@
 ---
 title: "VXLAN(Virtual eXtensible LAN)"
-author: "Gemini 3.8 Flash"
+author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
-tags:
-  - "notes-network"
+tags: ["notes-network"]
+sidebar:
+  badge:
+    text: "기초"
 extra:
   model: "GPT-6"
-
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-컴퓨터 시스템 및 네트워크 → 핵심 개념 → VXLAN
+네트워크 → 데이터센터 오버레이 → VXLAN
 
 ## 30초 인출
 
-- 본질: IEEE 802.1Q VLAN의 4,094개 ID 한계와 클라우드 데이터센터 내 L2 브로드캐스트 스톰 위험
-- 메커니즘: 기존 L2 이더넷 프레임 앞에 24비트 VNI 헤더를 붙여 표준 L3 UDP 패킷으로 감싸는 오버레이 터널링 전송
+- 본질: **VXLAN(Virtual eXtensible LAN)** 은 L3 네트워크 위에 가상 L2 세그먼트를 제공하는 캡슐화 방식
+- 메커니즘: VTEP가 내부 Ethernet 프레임을 VNI가 든 VXLAN 헤더와 UDP/IP로 캡슐화하고, 상대 VTEP가 이를 풀어 내부 프레임을 전달
 
-## 핵심 용어
+<details>
+<summary>핵심 용어</summary>
 
-- VTEP(VXLAN Tunnel Endpoint): VXLAN 오버레이 터널의 시작점이자 종단점으로, 테넌트의 L2 이더넷 프레임을 UDP 패킷으로 캡슐화하거나 역캡슐화하는 주체(하이퍼바이저 가상 스위치 또는 물리 리프 스위치)
-- VNI(VXLAN Network Identifier): 24비트로 구성된 가상 네트워크 식별자로, 기존 12비트 VLAN(4,094개)의 한계를 넘어 최대 약 1,677만 개($2^{24}$)의 독립된 가상 세그먼트 분할을 지원
-- EVPN-BGP(Ethernet VPN via BGP): 데이터 플레인의 무분별한 멀티캐스트 플러딩(Flood and Learn) 없이, BGP 라우팅 프로토콜을 통해 각 VTEP의 MAC 및 IP 주소를 제어 평면에서 사전에 교환하는 최신 표준 기술
+- **VXLAN(Virtual eXtensible LAN):** L2 프레임을 UDP/IP로 캡슐화해 L3 네트워크 위에 가상 L2 세그먼트를 만드는 방식
+- **VTEP(VXLAN Tunnel Endpoint):** VXLAN 프레임을 캡슐화·역캡슐화하는 터널 종단
+- **VNI(VXLAN Network Identifier):** VXLAN 오버레이 세그먼트를 구분하는 24비트 식별자
+- **EVPN(Ethernet VPN):** BGP 제어 평면으로 MAC·IP 도달 정보를 교환하는 Ethernet VPN 기술
+- **MTU(Maximum Transmission Unit):** 한 링크에서 전달 가능한 최대 패킷 크기
+- **BGP(Border Gateway Protocol):** 경로 정보를 교환하며 EVPN에서는 MAC·IP 도달 정보를 전달하는 프로토콜
+- **VLAN(Virtual Local Area Network):** 물리 LAN을 논리적 브로드캐스트 도메인으로 분리하는 기술
+
+</details>
 
 ---
 
 ## 1교시 예상문제 (10점)
 
-> VXLAN의 개념과 핵심 구조 또는 동작을 설명하시오. (예상)
+> VXLAN의 개념과 캡슐화 동작을 설명하시오. (예상)
 
 ---
 
 ## 1교시 10점 답안
 
-### Ⅰ. 정의·목적
+## Ⅰ. VXLAN 개요
 
-- 정의: VXLAN은/는 기존 L2 이더넷 프레임 앞에 24비트 VNI 헤더를 붙여 표준 L3 UDP 패킷으로 감싸는 오버레이 터널링 전송 방식이다.
-- 목적: 1,600만 개 대규모 테넌트 격리 및 L3 경계를 넘는 VM 무중단 이전 달성에 기여한다.
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **VXLAN(Virtual eXtensible LAN):** 내부 L2 프레임을 UDP/IP로 캡슐화해 L3 위에 가상 L2 세그먼트를 제공하는 방식 |
+| 목적 | 데이터센터 L2 세그먼트의 확장과 테넌트별 논리적 분리 |
 
-### Ⅱ. 핵심 구조와 작동
+## Ⅱ. 캡슐화 구조
 
-```text
-[ VXLAN 캡슐화 패킷 포맷 (50바이트 추가 오버헤드) ]
-
-+-------------+-------------+-------------+-------------+---------------------+
-| Outer MAC   | Outer IP    | Outer UDP   | VXLAN 헤더  | Inner Original L2   |
-| (언더레이)  | (VTEP IP)   | (Dst: 4789) | (24-bit VNI)| Ethernet Frame      |
-| 14 Bytes    | 20 Bytes    | 8 Bytes     | 8 Bytes     | (Payload + Inner MAC|
-+-------------+-------------+-------------+-------------+---------------------+
-|<------------------- 50 Bytes 추가 오버레이 헤더 ------->|
-
-[ 데이터센터 Spine-Leaf 언더레이 상의 VXLAN 통신 ]
-  [ VM 1 (L2) ]                                     [ VM 2 (L2) ]
-        │                                                 ▲
-        v                                                 │
-  [ Leaf 1 / VTEP A ]                             [ Leaf 2 / VTEP B ]
-  (VXLAN 캡슐화: UDP)                             (역캡슐화: L2 복원)
-        │                                                 ▲
-        +========> [ Spine Switch (L3 ECMP) ] ===========+
+```mermaid
+flowchart TD
+    A[송신 VM의 내부 Ethernet 프레임] --> B[송신 VTEP]
+    B -->|VNI를 포함한 VXLAN·UDP·IP 캡슐화| C[L3 언더레이 전달]
+    C --> D[수신 VTEP]
+    D -->|VXLAN 역캡슐화| E[수신 VM에 내부 프레임 전달]
 ```
+
+| 필드 | 기능 |
+|---|---|
+| 내부 Ethernet 프레임 | 테넌트의 원래 L2 데이터 |
+| VXLAN 헤더의 VNI | 오버레이 세그먼트 식별 |
+| 외부 UDP/IP | 언더레이가 VTEP 간 패킷을 전달할 주소·전송 정보 |
+
+제언: 오버레이 VNI와 언더레이 VTEP 주소·경로를 분리해 관리
 
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> VXLAN의 구조와 동작을 설명하고, 주요 비교 또는 적용 시 문제와 대응책을 제시하시오. (예상)
+> VXLAN의 구조와 제어·데이터 평면 동작을 설명하고, 기존 VLAN과 비교하여 구축 시 고려사항을 제시하시오. (예상)
 
 ---
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 핵심 구조와 작동
+## Ⅰ. VXLAN 개요
 
-```text
-[ VXLAN 캡슐화 패킷 포맷 (50바이트 추가 오버헤드) ]
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **VXLAN(Virtual eXtensible LAN):** 내부 L2 프레임을 UDP/IP로 캡슐화해 L3 위에 가상 L2 세그먼트를 제공하는 방식 |
+| 목적 | 데이터센터 L2 세그먼트의 확장과 테넌트별 논리적 분리 |
 
-+-------------+-------------+-------------+-------------+---------------------+
-| Outer MAC   | Outer IP    | Outer UDP   | VXLAN 헤더  | Inner Original L2   |
-| (언더레이)  | (VTEP IP)   | (Dst: 4789) | (24-bit VNI)| Ethernet Frame      |
-| 14 Bytes    | 20 Bytes    | 8 Bytes     | 8 Bytes     | (Payload + Inner MAC|
-+-------------+-------------+-------------+-------------+---------------------+
-|<------------------- 50 Bytes 추가 오버레이 헤더 ------->|
+## Ⅱ. VTEP 간 캡슐화 동작
 
-[ 데이터센터 Spine-Leaf 언더레이 상의 VXLAN 통신 ]
-  [ VM 1 (L2) ]                                     [ VM 2 (L2) ]
-        │                                                 ▲
-        v                                                 │
-  [ Leaf 1 / VTEP A ]                             [ Leaf 2 / VTEP B ]
-  (VXLAN 캡슐화: UDP)                             (역캡슐화: L2 복원)
-        │                                                 ▲
-        +========> [ Spine Switch (L3 ECMP) ] ===========+
+```mermaid
+flowchart TD
+    A[테넌트 내부 Ethernet 프레임] --> B[Ingress VTEP]
+    B -->|VXLAN 헤더·VNI와 외부 UDP/IP 추가| C[IP 언더레이 라우팅]
+    C --> D[Egress VTEP]
+    D -->|외부 헤더 제거·내부 프레임 복원| E[대상 테넌트 포트]
 ```
 
-### Ⅱ. 핵심 특성
+| 추가 헤더 | 역할 | 크기·설계 영향 |
+|---|---|---|
+| VXLAN | VNI 등 오버레이 정보 | VXLAN 헤더 8 octets |
+| UDP/IP | VTEP 주소 사이의 언더레이 전달 | IP 버전·옵션에 따라 크기 상이 |
+| 외부 Ethernet | 인접 언더레이 홉 전달 | 실제 L2 구간·태그 구성에 따라 추가 |
 
-- L2의 유연성과 L3의 확장성을 양립시킨 오버레이 혁신: 물리 인프라는 STP(Spanning Tree)의 링크 차단 없이 모든 회선을 사용하는 L3 ECMP(Equal-Cost Multi-Path) 스파인-리프 패브릭으로 구축하고, 그 위에서 가상머신은 동일한 L2 브로드캐스트 도메인에 있는 것처럼 자유롭게 통신
-- 50바이트 오버헤드는 단순한 헤더 추가가 아닌 인프라 설정 변경 요구: 원래 1500바이트 크기의 패킷에 50바이트 VXLAN 헤더가 붙어 1550바이트가 되므로, 언더레이 물리 스위치의 MTU를 최소 1600바이트(점보 프레임) 이상으로 키우지 않으면 패킷 단편화 또는 드롭 발생
-- 초기 멀티캐스트 기반 주소 학습의 한계를 BGP 제어평면으로 극복: 초기의 데이터 플레인 플러딩 방식은 브로드캐스트 트래픽으로 망을 오염시켰으나, MP-BGP EVPN을 결합하면서 완전한 유니캐스트 제어망으로 진화
+기본 VXLAN 헤더는 8 octets이며 전체 캡슐화 오버헤드는 IP 버전·외부 링크 구성에 따라 달라짐. 언더레이 MTU는 실제 패킷 경로의 캡슐화 크기를 수용해야 함
 
-### Ⅲ. 관련 개념과 구분
+## Ⅲ. VLAN 및 제어 평면 비교
 
-- VLAN vs VXLAN: VLAN은 스위치 하드웨어에서 12비트 태그(802.1Q)로 L2 망을 분할하는 기술(최대 4,094개, L3 경계 통과 불가) / VXLAN은 L3 IP 망 위에 UDP 터널을 뚫어 24비트 VNI로 L2 망을 오버레이하는 기술(최대 1,600만 개, L3 라우팅 구간 횡단 가능)
-
-### Ⅳ. 적용 문제와 대응
-
-- 적용 상황: 수만 대의 컨테이너/VM이 가동되는 퍼블릭 클라우드 데이터센터
-| 문제 | 원인 | 대책 | 효과 |
+| 구분 | VLAN(802.1Q) | VXLAN 기본 동작 | EVPN 연계 VXLAN |
 |---|---|---|---|
-| 대용량 파일 전송 시 스위치 단편화 및 처리량 급감 | 50바이트 VXLAN 오버헤드로 인한 MTU(1500B) 초과 패킷 단편화 발생 | 언더레이 물리 스위치 및 라우터 인터페이스 MTU를 9000B(점보 프레임)로 상향 | 단편화 원천 제거 및 스위치 패킷 처리 성능 최적화 |
-| 브로드캐스트(ARP) 패킷의 데이터센터 전체 플러딩 | 알지 못하는 목적지 MAC 처리를 위한 멀티캐스트 플러딩(Flood-and-Learn) | EVPN-BGP Type-2 라우트 기반의 제어 평면 ARP 억제(ARP Suppression) 적용 | 불필요한 브로드캐스트 트래픽을 차단하고 VTEP 로컬에서 즉시 응답 |
+| 식별 | 12-bit VLAN ID | 24-bit VNI | VNI와 EVPN 서비스 매핑 |
+| 세그먼트 범위 | L2 도메인 | L3 언더레이 위 오버레이 | BGP 제어 평면과 오버레이 |
+| 주소 학습 | 브리지 학습 | 기본적으로 데이터 평면 학습·BUM 처리 | MAC/IP 도달 정보를 BGP EVPN으로 배포 |
+| 확장 고려 | VLAN·브리지 도메인 운영 | VTEP·언더레이 도달성 | EVPN 정책·경로·멀티호밍 설계 |
 
-### Ⅴ. 기술사적 제언
+EVPN 제어 평면을 쓰더라도 브로드캐스트·unknown unicast·multicast(BUM) 전달 방식은 구성에 따라 별도 설계 대상
 
-| 문제 | 해결 방안 |
+## Ⅳ. 구축 고려사항과 통제
+
+| 한계 | 대응 |
 |---|---|
-| 적용 환경에서 발생하는 핵심 제약 | 기존 대책을 적용하고 핵심 운영 지표를 확인해 개선한다. |
+| 캡슐화 오버헤드로 경로 MTU 초과 | 종단부터 경로 전체의 MTU·PMTUD 동작 확인 |
+| VTEP 주소·VNI 매핑 불일치 | 중앙 할당·구성 검증과 중복 식별자 점검 |
+| MAC/IP 학습·BUM 확산 부하 | 토폴로지에 맞춰 flood-and-learn 또는 EVPN 제어 평면과 복제 방식을 설계 |
+| 테넌트 경계 설정 오류 | VNI·VRF·정책의 매핑과 교차 테넌트 차단 시험 |
+
+## Ⅴ. 기술사적 제언
+
+| 한계 | 해결 방안 |
+|---|---|
+| 세그먼트 수만 늘리면 MTU 불일치와 VNI·경로 정책 오류가 함께 늘어날 수 있음 | VTEP 주소·VNI·VRF 관계를 기준 모델로 관리하고, 파일럿 트래픽으로 경로 MTU와 테넌트 격리를 확인한 뒤 세그먼트 단위로 확장 |
 
 ## 출제 이력과 검증 출처
 
-- 제130회 1교시 8번: "VXLAN(Virtual eXtensible LAN)" → 요구 포인트: 등장 배경(VLAN 한계, 멀티테넌시), 캡슐화 구조(MAC-in-UDP, 24bit VNI), VTEP 동작 및 EVPN-BGP 연계
+- 제130회 1교시 8번: `VXLAN(Virtual eXtensible LAN)`
+- [RFC 7348 — Virtual eXtensible LAN](https://www.rfc-editor.org/rfc/rfc7348)
+- [RFC 8365 — A Network Virtualization Overlay Solution Using EVPN](https://www.rfc-editor.org/rfc/rfc8365)
+- [RFC 7432 — BGP MPLS-Based Ethernet VPN](https://www.rfc-editor.org/rfc/rfc7432)
+- [IANA Service Name and Transport Protocol Port Number Registry — vxlan 4789/udp](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)
+- [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
 
-## 찾아볼 것
-- IETF RFC 7348(VXLAN) 표준 규격 및 RFC 8365 기반의 BGP EVPN 오버레이 라우팅 구조
+## 연결 토픽
+
+- [VLAN](./050_vlan/) · [SDN](./035_sdn/) · [NFV](./001_nfv/)
