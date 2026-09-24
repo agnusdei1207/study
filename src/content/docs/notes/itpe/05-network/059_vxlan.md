@@ -52,12 +52,16 @@ extra:
 
 ## Ⅱ. 캡슐화 구조
 
-```mermaid
-flowchart TD
-    A[송신 VM의 내부 Ethernet 프레임] --> B[송신 VTEP]
-    B -->|VNI를 포함한 VXLAN·UDP·IP 캡슐화| C[L3 언더레이 전달]
-    C --> D[수신 VTEP]
-    D -->|VXLAN 역캡슐화| E[수신 VM에 내부 프레임 전달]
+```text
+송신 VM의 내부 Ethernet 프레임
+              ↓
+       송신 VTEP
+              ↓ VNI·VXLAN·UDP/IP 캡슐화
+        L3 언더레이
+              ↓
+       수신 VTEP
+              ↓ 역캡슐화
+       수신 VM 포트
 ```
 
 | 필드 | 기능 |
@@ -87,12 +91,16 @@ flowchart TD
 
 ## Ⅱ. VTEP 간 캡슐화 동작
 
-```mermaid
-flowchart TD
-    A[테넌트 내부 Ethernet 프레임] --> B[Ingress VTEP]
-    B -->|VXLAN 헤더·VNI와 외부 UDP/IP 추가| C[IP 언더레이 라우팅]
-    C --> D[Egress VTEP]
-    D -->|외부 헤더 제거·내부 프레임 복원| E[대상 테넌트 포트]
+```text
+테넌트 프레임
+    ↓ ingress VTEP
+내부 프레임 + VXLAN 헤더(VNI)
+    ↓ 외부 UDP/IP 헤더 추가
+IP 언더레이 라우팅
+    ↓ egress VTEP
+외부 헤더 제거·VNI 확인
+    ↓ 내부 프레임 전달
+대상 테넌트 포트
 ```
 
 | 추가 헤더 | 역할 | 크기·설계 영향 |
