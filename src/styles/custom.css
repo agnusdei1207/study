@@ -272,6 +272,37 @@ a:not([class]):hover {
   font-weight: 700;
 }
 
+.sl-markdown-content .itpe-glossary-trigger {
+  cursor: help;
+  text-decoration: underline dotted color-mix(in srgb, var(--color-primary) 55%, transparent);
+  text-underline-offset: 0.2em;
+}
+
+.sl-markdown-content .itpe-glossary-trigger:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.itpe-glossary-tooltip {
+  position: fixed;
+  z-index: 1000;
+  width: max-content;
+  max-width: min(24rem, calc(100vw - 1rem));
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.5rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.18);
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.itpe-glossary-tooltip[hidden] { display: none; }
+.itpe-glossary-tooltip strong { display: block; color: var(--color-primary); }
+.itpe-glossary-tooltip span { display: block; }
+
 /* Clean Blockquote styling matching studynote */
 .sl-markdown-content blockquote {
   margin-inline: 0;
