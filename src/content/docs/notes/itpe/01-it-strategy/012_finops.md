@@ -55,17 +55,15 @@ extra:
 
 ### Ⅱ. 라이프사이클
 
-```mermaid
-flowchart TD
-    subgraph LC["FinOps Lifecycle"]
-        direction TB
-        INF["① Inform"] --> OPT["② Optimize"]
-        OPT --> OPR["③ Operate"]
-        OPR --> INF
-        INF --- BV((Business Value))
-        OPT --- BV
-        OPR --- BV
-    end
+```text
+Inform: 비용·사용량 가시화
+    ↓
+Optimize: 비용·성능 개선
+    ↓
+Operate: 운영 책임·성과 관리
+    └→ 다음 Inform에 반영
+
+공통 목표 ── 비즈니스 가치
 ```
 
 ### Ⅲ. 핵심 통제 방안
@@ -98,17 +96,15 @@ flowchart TD
 
 > **Inform** → **Optimize** → **Operate** 는 성숙도 순서가 아니라 각 조직·기술 범위에서 빠르게 반복하는 개선 주기이며, 한 바퀴의 성과는 다음 Inform의 입력이 되어야 환류가 성립함
 
-```mermaid
-flowchart TD
-    subgraph LC["FinOps Lifecycle"]
-        direction TB
-        INF["① Inform"] --> OPT["② Optimize"]
-        OPT --> OPR["③ Operate"]
-        OPR --> INF
-        INF --- BV((Business Value))
-        OPT --- BV
-        OPR --- BV
-    end
+```text
+Inform: 비용·사용량 가시화
+    ↓
+Optimize: 비용·성능 개선
+    ↓
+Operate: 운영 책임·성과 관리
+    └→ 다음 Inform에 반영
+
+공통 목표 ── 비즈니스 가치
 ```
 
 - Inform: 비용 배분 · 예산·예측 · 단위지표

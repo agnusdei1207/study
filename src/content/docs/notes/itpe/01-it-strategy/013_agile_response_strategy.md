@@ -56,12 +56,15 @@ extra:
 
 ### Ⅱ. 반복 구조 — Feedback Loop
 
-```mermaid
-flowchart TD
-    PB["① Product Backlog 정제"] --> PL["② Sprint Planning"]
-    PL --> EX["③ Sprint 실행"]
-    EX --> RR["④ Review·Retrospective"]
-    RR -->|"갱신 Backlog로 환류"| PB
+```text
+Product Backlog 정제
+    ↓
+Sprint Planning
+    ↓
+Sprint 실행
+    ↓
+Review·Retrospective
+    └→ Backlog 갱신
 ```
 
 ### Ⅲ. 핵심 통제 방안
@@ -94,12 +97,15 @@ flowchart TD
 
 > 백로그 우선순위의 스프린트 목표 구체화, DoD 충족 증분만의 검토, 검토 결과에 따른 다음 주기 조정
 
-```mermaid
-flowchart TD
-    PB["① Product Backlog 정제"] --> PL["② Sprint Planning"]
-    PL --> EX["③ Sprint 실행"]
-    EX --> RR["④ Review·Retrospective"]
-    RR -->|"갱신 Backlog로 환류"| PB
+```text
+Product Backlog 정제
+    ↓
+Sprint Planning
+    ↓
+Sprint 실행
+    ↓
+Review·Retrospective
+    └→ Backlog 갱신
 ```
 
 | 단계 | 활동 | 산출 |
@@ -123,17 +129,11 @@ flowchart TD
 
 > 팀 단위 반복 개발을 넘어 제품·투자·아키텍처 의사결정까지 같은 주기로 연계
 
-```mermaid
-flowchart TD
-    A["애자일 조직 적용"] --> P["제품 · 가치 우선순위"]
-    A --> T["팀 · 완료 품질"]
-    A --> O["조직 · 팀 간 의존성"]
-    P --> PG["Product Goal"]
-    P --> PB["Product Backlog"]
-    T --> SG["Sprint Goal"]
-    T --> DD["DoD"]
-    O --> C["공통 Cadence"]
-    O --> IV["통합검증"]
+```text
+애자일 적용의 관리 범위
+  ├─ 제품: Product Goal·Backlog
+  ├─ 팀: Sprint Goal·DoD
+  └─ 조직: 팀 간 의존성·통합 검증
 ```
 
 - 안정성이 우선인 핵심 업무는 **변경통제** 를 유지하고, 탐색 영역부터 반복 전달 적용
@@ -154,12 +154,12 @@ flowchart TD
 
 > 제안: 반복마다 사용자 피드백 중 영향이 큰 항목 하나를 골라 **수용·보류 이유와 백로그 변경**을 기록하고, 실제 우선순위 변경 여부 확인
 
-```mermaid
-flowchart TD
-    A["증분 시연·사용자 피드백"] --> B["영향 큰 항목 선정"]
-    B --> C{"수용 여부 결정"}
-    C -->|"수용"| D["백로그 우선순위 변경"]
-    C -->|"보류"| E["이유 기록·재검토 시점 지정"]
+```text
+증분 시연·사용자 피드백
+    ↓
+영향 큰 항목 선정
+    ├→ 수용: Backlog 우선순위 변경
+    └→ 보류: 이유·재검토 시점 기록
 ```
 
 Ⅴ절의 형식적 행사·계약·품질 위험과 구분되는 **고객 피드백의 실제 계획 반영 여부 확인 방법**
