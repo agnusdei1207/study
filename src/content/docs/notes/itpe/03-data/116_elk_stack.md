@@ -102,12 +102,12 @@ extra:
 </svg>
 </div>
 
-- 본질: **분산 MSA 환경에서 발생하는 테라바이트급 비정형 로그 및 이벤트를 경량 에이전트(Beats)로 수집하고, 파이프라인 엔진(Logstash)으로 전처리·정제하여, Lucene 기반 역색인 분산 검색엔진(Elasticsearch)에 실시간 색인·저장한 후, 대시보드(Kibana)를 통해 시각화 및 관측성(Observability)을 제공하는 엔드투엔드 데이터 플랫폼**
+- 본질: **Elastic Stack은 로그·이벤트를 수집·변환·색인·검색·시각화해 운영 상태를 분석하는 데이터 플랫폼**
 - 암기: `비-로그-엘-키` (Beats, Logstash, Elasticsearch, Kibana) / `인-샤-레-역` (인덱스, 샤드, 레플리카, 역색인) / `핫-웜-콜-프` (ILM: Hot, Warm, Cold, Frozen)
 - 판단축:
   - **Beats vs Logstash**: 각 서버에는 CPU/메모리 오버헤드가 적은 경량 Go 에이전트(Filebeat)를 배포하고, 무거운 JVM 기반 Logstash는 중앙 집중 클러스터로 격리
   - **로그 버퍼링 (Kafka 연계)**: 피크 시간대 대량 로그 유입 시 ES 클러스터의 OOM 장애를 차단하기 위해 Kafka 메시지 큐를 중간 버퍼로 배치
-- 주의: 인덱스를 과도하게 세분화하여 **샤드(Shard) 수가 수천 개로 폭증**할 경우 노드 간 마스터 상태 동기화 병목 및 JVM 힙 메모리 고갈(OOM)이 발생하므로 ILM(Index Lifecycle Management) 정책 수립이 필수적임
+- 주의: 샤드 수와 크기는 검색·색인 부하, 데이터 보존, 노드 자원을 고려해 설계하며, ILM은 인덱스 수명주기 요구가 있을 때 정책에 맞춰 구성
 ---
 
 ## 1교시 예상문제 (10점)
@@ -130,7 +130,7 @@ extra:
 | **1. Edge 수집** | 단말 서버 자원 최소화 로그 수집 | Filebeat, Metricbeat |
 | **2. 완충 버퍼** | 피크 트래픽 흡수 및 유실 차단 | Apache Kafka |
 | **3. 정제·변환** | 비정형 문자열을 JSON 구조화 파싱 | Logstash (Grok, Dissect) |
-| **4. 색인·저장** | 단어별 문서 매핑 $O(1)$ 역색인 | Elasticsearch (Lucene) |
+| **4. 색인·저장** | 용어와 문서 간 역색인을 이용한 전문 검색 | Elasticsearch (Lucene) |
 | **5. 시각화** | 실시간 KQL 쿼리 및 대시보드 | Kibana |
 
 - **역색인(Inverted Index)**: 문서 전체 스캔 대신 단어(Term)를 키로 문서 ID 포스팅 리스트를 매핑하여 초고속 전문 검색 실현
@@ -145,7 +145,7 @@ extra:
 |:---|:---|:---|
 | **Beats** | 경량 데이터 수집기 | 각 단말 노드에 데몬으로 상주, 최소의 CPU/RAM 자원으로 로그(Filebeat), 메트릭(Metricbeat) 수집 |
 | **Logstash** | 데이터 전처리 파이프라인 | Input $\rightarrow$ Filter $\rightarrow$ Output 3단계 처리, Grok 플러그인 기반 정규표현식 파싱, GeoIP 위치 추가 |
-| **Elasticsearch** | 분산 검색·분석 엔진 | Apache Lucene 기반, RESTful JSON API 지원, Primary/Replica 샤딩으로 수평 확장 및 무정지 서비스 |
+| **Elasticsearch** | 분산 검색·분석 엔진 | Lucene 기반으로 인덱스와 샤드를 구성하며 가용성과 확장은 토폴로지·설정에 따름 |
 | **Kibana** | 데이터 탐색 및 시각화 | Elasticsearch 데이터를 실시간 차트·대시보드로 렌더링, KQL(Kibana Query Language) 지원, 알람 발송 |
 
 ---
@@ -181,7 +181,7 @@ extra:
 
 ### Ⅲ. Elasticsearch의 핵심: 역색인(Inverted Index) 구조와 샤딩
 
-#### 한줄 요약: 단어(Term)를 기준으로 해당 단어가 등장하는 문서 ID 목록을 매핑하여 $O(1)$ 전문 검색 속도 실현
+#### 한줄 요약: 용어에서 해당 용어가 포함된 문서 식별자로 연결하는 역색인으로 전문 검색을 지원
 
 - **원천 문서 vs 역색인 테이블 대조**:
   - Doc 1: `"Spring Cloud Gateway Log"`
@@ -234,20 +234,12 @@ extra:
 
 ### Ⅶ. 기술사적 제언
 
-### 학습자 통찰 메모 — 답안 밖
-
-> **[핵심 통찰]**
-> ELK 클러스터를 운영할 때 가장 흔한 장애는 '샤드(Shard) 폭증으로 인한 마스터 노드 OOM'이다. 하루에 수십 개씩 인덱스를 만들고 방치하면 몇 달 만에 클러스터 전체 샤드가 1만 개를 넘어서며, 마스터 노드가 샤드 상태(Cluster State)를 브로드캐스팅하다 메모리 고갈로 뻗어버린다. 샤드는 노드당 힙 메모리 1GB당 최대 20개 이하로 통제되어야 하며, 단일 샤드 크기는 30~50GB 수준으로 유지되어야 한다. 이를 위해 ILM(Index Lifecycle Management) 정책을 통해 Rollover와 Shrink, Force Merge를 자동화하는 것이 운영의 핵심이다.
-
-> **[나라면 이렇게 쓴다]**
-> 1교시형이라면 Filebeat-Kafka-Logstash-ES-Kibana의 5단 파이프라인 다이어그램과 역색인(Inverted Index) 구조 표를 컴팩트하게 작성하겠다. 2교시 25점형이라면 Hot-Warm-Cold-Delete 4단계 ILM 매트릭스를 상세히 도식화하고, Elastic 라이선스 분기(SSPL)에 따른 AWS OpenSearch 전환 고려사항 및 분산 트레이싱(OpenTelemetry)과 연계한 로그-메트릭-트레이스 통합 3대 관측성(Observability) 체계를 제언에 강조하겠다.
-
 ### 실전 답안용 기술사적 제언
 
 - **판정 (현행 한계)**: 로그 수집 시 샤드 수 무제한 증가로 인한 ES 마스터 노드 OOM 장애 빈발, 복잡한 Grok 필터 연산으로 Logstash CPU 병목 및 피크 트래픽 유실 위험 상존.
-- **대응 (개선 방안)**: 전면에 Kafka 완충 큐를 배치하여 피크 트래픽을 흡수하고, 인덱스 크기(50GB) 기반의 Rollover 및 Hot-Warm-Cold ILM 정책 자동화, Trace ID 주입을 통한 OpenTelemetry 분산 추적 연계.
+- **대응 (개선 방안)**: 수집량과 장애 복구 목표에 맞춘 완충·재시도 경로를 설계하고, 데이터 보존 요건에 맞춘 rollover·ILM 정책 및 Trace ID 기반 추적 연계 검토.
 - **검증 (검증 기준)**: 노드당 힙 1GB당 샤드 수 20개 이하 준수, 피크 시간대 로그 유실율 0%, 30일 경과 콜드 인덱스 S3 티어링을 통한 스토리지 비용 60% 절감 검증.
-- **효과 (실행 효과)**: 대규모 장애 원인 분석 리드타임 90% 단축(수 시간 $\rightarrow$ 수 분), 클러스터 장애 발생 빈도 제로화, 시스템 가시성 100% 확보.
+- **효과 (실행 효과)**: 검색 가능한 운영 이벤트와 서비스 지표의 연계로 장애 원인 분석 지원.
 
 <div class="itpe-flow-map">
   <div class="itpe-flow-step">
