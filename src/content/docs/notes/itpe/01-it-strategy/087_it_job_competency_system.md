@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **ITSQF(IT Sectoral Qualifications Framework)**: IT 직무와 직무수준별 요구역량을 정리한 산업별 역량체계.
+- 본질: **ITSQF(IT Sectoral Qualifications Framework)** : IT 직무와 직무수준별 요구역량을 정리한 산업별 역량체계.
 - 메커니즘: 직무기술서의 요구역량과 개인의 수행근거를 비교한 교육·배치·경력개발 활용.
 
 <details>
@@ -46,7 +46,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **ITSQF(IT Sectoral Qualifications Framework)**: IT 표준 직무·직무수준별 요구역량을 정리한 산업별 역량체계 |
+| 정의 | **ITSQF(IT Sectoral Qualifications Framework)** : IT 표준 직무·직무수준별 요구역량을 정리한 산업별 역량체계 |
 | 목적 | 직무 요구와 개인 역량의 비교를 통한 채용·배치·교육·경력개발 지원 |
 
 ### Ⅱ. 직무수준 진단과 활용
@@ -77,7 +77,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **ITSQF(IT Sectoral Qualifications Framework)**: IT 표준 직무·직무수준별 요구역량을 정리한 산업별 역량체계 |
+| 정의 | **ITSQF(IT Sectoral Qualifications Framework)** : IT 표준 직무·직무수준별 요구역량을 정리한 산업별 역량체계 |
 | 목적 | 직무 요구와 개인 역량의 비교를 통한 채용·배치·교육·경력개발 지원 |
 
 ## Ⅱ. 체계의 구성
