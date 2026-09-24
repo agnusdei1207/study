@@ -129,4 +129,4 @@ flowchart TD
 
 ## 연결 토픽
 
-- 연계: [TAM·SAM·SOM](./089_tam_sam_som.md), [변화관리](./021_change_management.md)
+- 연계: [TAM·SAM·SOM](./089_tam_sam_som.md), [CoE](./082_coe.md)
