@@ -1,5 +1,5 @@
 (() => {
-  if (!location.pathname.includes('/notes/itpe/01-it-strategy/')) return;
+  if (!location.pathname.includes('/notes/itpe/')) return;
 
   function normalize(value) {
     return value.toLocaleLowerCase().replace(/[^\p{L}\p{N}]/gu, '');

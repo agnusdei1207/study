@@ -5,6 +5,19 @@ import { JSDOM } from 'jsdom';
 
 const script = readFileSync(new URL('../public/itpe-glossary-tooltips.js', import.meta.url), 'utf8');
 
+test('glossary tooltips work in software engineering notes', () => {
+  const dom = new JSDOM(`<!doctype html><article class="sl-markdown-content">
+    <details><summary>핵심 용어</summary><ul><li><strong>EIP(Enterprise Integration Patterns)</strong> : 메시지 기반 통합 설계 패턴</li></ul></details>
+    <h2>1교시 10점 답안</h2><p><strong>EIP</strong>의 역할을 설명한다.</p>
+  </article>`, { url: 'https://example.com/study/notes/itpe/02-software-engineering/182_eip/', runScripts: 'outside-only' });
+  dom.window.eval(script);
+  dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+  const term = dom.window.document.querySelector('p strong');
+  term.click();
+  assert.match(dom.window.document.querySelector('.itpe-glossary-tooltip').textContent, /메시지 기반 통합 설계 패턴/);
+  dom.window.close();
+});
+
 test('IT strategy glossary opens from matching bold terms by click and keyboard', () => {
   const dom = new JSDOM(`<!doctype html><article class="sl-markdown-content">
     <details><summary>핵심 용어</summary><ul><li><strong>PMO(Project Management Office)</strong> : 발주기관의 사업관리 지원 조직</li><li><strong>Risk Register(위험 등록부)</strong> : 식별한 위험을 추적하는 문서</li></ul></details>
