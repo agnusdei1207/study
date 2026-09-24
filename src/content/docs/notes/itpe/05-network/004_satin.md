@@ -1,102 +1,156 @@
 ---
-title: "위성·공중·지상 통합망(SATIN·NTN)"
-author: "OpenAI Codex"
-date: "2026-09-24T21:00:00+09:00"
-tags: ["notes-network"]
-sidebar: { badge: { text: "기초" } }
-extra: { keyword_grade: "기초", model: "GPT-5.6 Sol" }
+sidebar:
+  order: 4
+  label: "004. 위성·공중·지상 통합망"
+  badge:
+    text: "서브"
+    variant: tip
+title: "위성·공중·지상 통합망(SATIN)"
+author: "Codex"
+date: "2026-09-24T00:00:00+09:00"
+tags:
+  - "notes-network"
+weight: 4
+extra:
+  model: "GPT-6"
+  keyword_grade: "서브"
+  question_no: "004"
 ---
-<p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>
+
 ## 지식 로드맵 내 현재 위치
-<div class="itpe-topic-path" aria-label="지식 경로"><span>차세대 이동통신</span><span>비지상 통합 접속</span><strong>SATIN·NTN</strong></div>
 
-## 큰 그림과 30초 인출
-- 본질: 위성·공중 플랫폼·지상망을 공통 서비스와 이동성 제어 아래 결합함
-- 메커니즘: 궤도·전파·지연이 다른 Access를 위치·품질·부하 정책으로 선택하고 Handover함
-- 산출: 음영지역·재난·해상·항공까지 이어지는 광역 연속 커버리지임
-| 병렬 Access | 구성 | 역할 |
-|---|---|---|
-| Space | GEO(Geostationary Earth Orbit)·MEO(Medium Earth Orbit)·LEO 위성 | 광역 Coverage |
-| Air | HAPS·UAV(Uncrewed Aerial Vehicle) | 지역 보강·재난 복구 |
-| Terrestrial | 지상 기지국·5G Core | 고용량 접속·서비스 제어 |
+지식 위치: 네트워크 → 비지상·이동통신 → **위성·공중·지상 연계**
 
-<div class="itpe-flow itpe-flow--vertical" aria-label="SATIN 통합 관계"><div class="itpe-flow__node"><strong>병렬 Access</strong><small><b>입력:</b> Space · Air · Terrestrial Link 상태</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><span class="itpe-keyword"><strong>통합 제어</strong></span><small><b>처리:</b> 경로 선택 · 이동성 · 서비스 정책</small></div><div class="itpe-flow__arrow">↓</div><div class="itpe-flow__node"><strong>서비스 연속성</strong><small><b>산출:</b> 광역 Coverage · 장애 우회</small></div></div>
-<details><summary>핵심 용어</summary>
+## 30초 인출
 
-- `SATIN(Satellite-Aerial-Terrestrial Integrated Network)`: 이질 Access를 통합 제어하는 전체 망 관점임
-- `NTN(Non-Terrestrial Network)`: 위성·공중 플랫폼을 이용하는 3GPP 비지상 접속망임
-- `HAPS(High-Altitude Platform Station)`: 성층권에서 지역 커버리지를 제공함
-- `LEO(Low Earth Orbit)`: 낮은 궤도로 지연을 줄이나 빠른 이동·Handover가 필요함
+- 본질: **SATIN** : 위성·공중 플랫폼·지상망을 연계해 한 종류의 망만으로 닿기 어려운 지역까지 접속을 제공하는 통합망 개념
+- 메커니즘: 세 접속 영역의 커버리지·지연·용량을 비교해 연결을 선택하고 이동 시 경로를 전환
+
+<details>
+<summary>핵심 용어</summary>
+
+- **SATIN(Satellite-Aerial-Terrestrial Integrated Network)** : 위성·공중·지상 통신망을 통합해 접속 범위를 넓히는 연구·설계 개념
+- **NTN(Non-Terrestrial Network)** : 위성·고고도 플랫폼 등을 활용하는 비지상 접속망
+- **HAPS(High-Altitude Platform Station)** : 높은 고도에서 통신 서비스를 제공하는 공중 플랫폼
+- **LEO(Low Earth Orbit)** : 지구에 비교적 가까운 저궤도 위성의 궤도 범주
+- **핸드오버(Handover)** : 단말의 연결을 다른 셀·빔·접속망으로 옮기는 절차
+- **GEO(Geostationary Earth Orbit)** : 지표의 일정 지역에 대해 상대적으로 고정된 위치를 유지하는 정지궤도
+
 </details>
 
 ---
 
 ## 1교시 예상문제 (10점)
-> SATIN과 NTN의 개념 및 구성 계층을 설명하시오. (예상)
+
+> 위성·공중·지상 통합망의 개념과 구성 요소를 설명하시오. (예상·10점)
 
 ---
 
 ## 1교시 10점 답안
-### Ⅰ. 정의·목적
-- 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)** 은 위성·공중 플랫폼·지상망을 통합해 3차원 접속을 제공하는 네트워크다.
-- 목적: 지상망의 음영 지역과 재난 단절을 보완해 접속을 이어 간다.
 
-| 계층 | 역할 |
+### Ⅰ. 위성·공중·지상 통합망의 개요
+
+| 구분 | 핵심 |
 |---|---|
-| Space | 위성으로 광역 접속 제공 |
-| Air | 공중 플랫폼으로 지역 보강 |
-| Terrestrial | 지상 기지국·코어망으로 고용량 서비스 제공 |
-| 통합 제어 | 링크 품질과 이동성에 따라 경로 선택·전환 |
+| 정의 | **SATIN** : 위성·공중 플랫폼·지상망을 연계해 접속 범위와 서비스 연속성을 높이는 통합망 개념 |
+| 목적 | 지상망 음영·장애 지역의 접속 보완 |
 
-- 제언: 지연·가용성·전환 연속성을 서비스별로 시험한다.
+### Ⅱ. 세 접속 영역
+
+```mermaid
+flowchart TB
+    A[위성망<br/>광역 커버리지] --- D[통합 접속]
+    B[공중 플랫폼<br/>지역 보강] --- D
+    C[지상망<br/>기존 이동통신 접속] --- D
+```
+
+- 제언: 통합 여부는 연결 개수보다 단말 접속·이동 시 서비스 연속성으로 검증.
 
 ---
 
 ## 2~4교시 예상문제 (25점)
-> SATIN·NTN의 구조와 Payload 유형을 설명하고, 위성·지상망 연동에서 발생하는 주요 문제와 대응책을 제시하시오. (예상)
+
+> 위성·공중·지상 통합망의 구성과 접속 연계 원리를 설명하고, NTN과의 관계 및 운영 한계·대응을 제시하시오. (예상·25점)
 
 ---
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. 3차원 커버리지를 제공하는 SATIN·NTN 개요
-> SATIN은 계층을 단순 연결하는 망이 아니라 각 Access의 지연·용량·가용성을 서비스 정책으로 전환하는 통합망임.
+## Ⅰ. 위성·공중·지상 통합망의 개요
 
-- 정의: **SATIN(Satellite-Aerial-Terrestrial Integrated Network)**은 **NTN(Non-Terrestrial Network)**과 **지상 이동통신망**을 통합하여 3차원 접속을 제공하는 아키텍처임
-- 목적: 지리적 음영과 지상 인프라 단절 보완 → 서비스 연속성과 재난 복원력 확보
-
-## Ⅱ. 투명·재생 Payload와 링크 구성
-> Payload 처리 위치는 위성 복잡도와 지상 의존성을 교환하므로 서비스 지연·수명·업그레이드 가능성으로 선택해야 함.
-
-| 축 | Transparent Payload | Regenerative Payload |
-|---|---|---|
-| 처리 | RF(Radio Frequency) 중계 | On-board 처리 |
-| gNB(next Generation Node B) | 지상 | 위성 전체·일부 |
-| 지연 | Gateway 경유 | 경로 단축 가능 |
-| 대가 | Feeder 의존 | 위성 복잡도·전력 |
-
-## Ⅲ. Doppler·지연·이동성 문제와 대책
-> NTN의 핵심 난제는 긴 전파지연과 빠른 위성 이동이 지상망의 Timing·주파수·Mobility 가정을 깨뜨리는 데 있음.
-
-| 문제 | 원인 | 대책 | 판정 |
-|---|---|---|---|
-| 동기 이탈 | 큰 Doppler | Ephemeris·주파수 사전 보상 | 잔류 주파수 오차 |
-| 접속 실패 | 긴 RTT(Round-Trip Time) | Timing Advance 확장·Timer 조정 | Random Access 성공 |
-| 빈번한 전환 | Moving Cell | 예측 Handover·Multi-connectivity | 단절·재전송 |
-| Link 불안 | 강우·차폐 | Link Adaptation·다중 경로 | 가용성·지연 |
-
-## 기술사적 제언
-
-| 문제 | 해결 방안 |
+| 구분 | 핵심 |
 |---|---|
-| 빠른 위성 이동과 링크 품질 변화로 고정 경로의 지연·전환 품질이 흔들림 | 궤도 예측과 링크 상태를 반영해 경로를 선택하고, 강우·Gateway 장애·Beam 전환 시험으로 확인 |
+| 정의 | **SATIN** : 위성·공중 플랫폼·지상망을 연계해 접속 범위와 서비스 연속성을 높이는 통합망 개념 |
+| 목적 | 지상망 음영·장애 지역의 접속 보완 |
 
-## 출제 이력과 검증 출처
-- 제128·130회: 원문 미확보(회차만 확인)
-- [3GPP TS 23.501, System architecture for the 5G System](https://www.3gpp.org/dynareport/23501.htm)
-- [3GPP TR 38.811, NR to support non-terrestrial networks](https://www.3gpp.org/dynareport/38811.htm)
-- [ITU-R M.2160-0, IMT-2030 Framework](https://www.itu.int/rec/R-REC-M.2160-0-202311-I/en)
-- [IEEE Access, Satellite-Aerial-Terrestrial Integrated Network for 6G](https://ieeexplore.ieee.org/document/9350208)
+## Ⅱ. 접속 영역의 구성
+
+```mermaid
+flowchart TB
+    A[위성<br/>LEO·GEO 등] --- D[접속·이동성 연계]
+    B[공중 플랫폼<br/>HAPS 등] --- D
+    C[지상 기지국·코어망] --- D
+    D --- E[단말·서비스]
+```
+
+정적 구성 요소는 연결선으로 표현. 위성·공중·지상 영역이 항상 모두 설치되거나 한 단말이 동시에 모두 접속하는 것은 아님.
+
+## Ⅲ. 영역별 특성
+
+| 영역 | 기여 | 설계상 확인 |
+|---|---|---|
+| 위성 | 넓은 지역·원격지 접속 | 궤도별 지연·빔 이동·게이트웨이 |
+| 공중 플랫폼 | 특정 지역의 접속 보강 | 체공·전력·기상 영향 |
+| 지상망 | 기존 이동통신 서비스와 수용 용량 | 음영·재난 시 장애 범위 |
+| 통합 제어 | 적합한 접속·경로 선택 | 서비스 품질과 핸드오버 조건 |
+
+## Ⅳ. SATIN과 NTN의 관계
+
+| 구분 | SATIN | NTN |
+|---|---|---|
+| 성격 | 위성·공중·지상 연계의 넓은 통합망 개념 | 비지상 접속망을 다루는 용어·표준화 영역 |
+| 초점 | 이종 망의 커버리지·서비스 연계 | 비지상 플랫폼과 이동통신 시스템의 접속 |
+| 관계 | NTN을 통합 구성의 한 부분으로 활용 가능 | 지상 연계 절차와 함께 운용 가능 |
+
+SATIN은 연구 문헌에서 쓰는 약어이며 3GPP의 단일 표준 이름으로 취급하지 않음.
+
+## Ⅴ. 접속 전환의 동작
+
+```mermaid
+flowchart TB
+    A[단말 위치·링크 상태 확인] --> B[후보 접속망 평가]
+    B --> C[지연·용량·가용성 정책 적용]
+    C --> D[접속·경로 선택]
+    D --> E[이동·장애 시 핸드오버]
+    E --> F[서비스 품질 확인]
+```
+
+연계 경로의 선택은 서비스 요구와 장비 기능에 따라 달라짐. 단순히 세 망을 물리적으로 연결하는 것만으로 끊김 없는 서비스가 보장되지는 않음.
+
+## Ⅵ. 한계와 대응
+
+| 한계 | 대응 |
+|---|---|
+| 위성 경로의 긴 전파 지연·도플러 영향 | 궤도·링크 조건을 반영한 접속·동기화 설계 |
+| 빔·플랫폼 이동 중 접속 단절 | 핸드오버 조건과 상태 전환 시험 |
+| 공중 플랫폼의 체공·전력 제약 | 서비스 가능 시간·대체 경로 계획 |
+| 이종망 간 정책·보안 경계 불일치 | 인증·경로·서비스 품질 정책의 연동 검증 |
+
+## Ⅶ. 기술사적 제언
+
+| 우선 제언 | 실행·확인 |
+|---|---|
+| 광역 커버리지와 서비스 연속성을 구별 | 접속 가능 면적뿐 아니라 전환 중 단절·지연 측정 |
+| 망별 역할을 서비스 요구에 연결 | 재난·원격지·이동체 업무별 접속·복구 경로 시험 |
+
+---
+
+## 검증 출처
+
+- [3GPP TR 38.811: NR to Support Non-Terrestrial Networks](https://www.3gpp.org/dynareport/38811.htm)
+- [3GPP TS 23.501: System Architecture for the 5G System](https://www.3gpp.org/dynareport/23501.htm)
+- [SATIN research survey: Space-Aerial-Terrestrial Integrated 5G Networks](https://www.sciencedirect.com/science/article/abs/pii/S1389128619314045)
 
 ## 연결 토픽
-- [NTN](./006_ntn/) · [6G 이동통신](./027_6g_mobile_communication/) · [5G-Advanced](./039_5g_advanced/)
+
+- 연관 토픽: [NTN](./006_ntn.md), [6G 이동통신](./027_6g_mobile_communication.md)
