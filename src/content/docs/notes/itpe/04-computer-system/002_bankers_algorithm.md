@@ -23,23 +23,15 @@ extra:
 - 메커니즘: `Need = Max - Allocation` 계산 → 요청 적합성 검사 → 안전성 알고리즘 실행
 - 산출: 승인 또는 원복·대기 결정이며, 불안전상태는 교착상태가 아니라 교착 가능성을 배제하지 못한 상태임
 
-<div class="itpe-flow itpe-flow--vertical" aria-label="은행가 알고리즘 판정 흐름">
-  <div class="itpe-flow__node"><strong>자원 요청</strong><small><b>입력:</b> Request, Need, Available</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>시험 할당</strong><small><b>처리:</b> 가용량 차감 · 할당량 증가 · 필요량 감소</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>안전성 검사</strong></span><small><b>판정:</b> 모든 프로세스를 끝낼 안전 순서열 존재 여부</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>승인 또는 원복</strong><small><b>산출:</b> 안전이면 승인, 불안전이면 원복·대기</small></div>
-</div>
-
 <details>
 <summary>핵심 용어</summary>
 
-- `Safe Sequence(안전 순서열)`: 현재 가용 자원과 반환 자원으로 모든 프로세스를 완료할 수 있는 실행 순서
-- `Need`: 완료까지 더 필요한 자원량이며 `Max - Allocation`으로 산출
-- `Available`: 즉시 배분할 수 있는 자원 종류별 잔여량
-- `Work·Finish`: 안전성 검사에서 가상 가용량과 완료 가능 여부를 추적하는 임시 벡터
+- **은행가 알고리즘 (Banker's Algorithm)** : 최대 요구량을 바탕으로 자원 요청을 시험 배정하고 안전 순서가 있을 때만 승인하는 교착 회피 기법.
+- **안전 순서열 (Safe Sequence)** : 각 프로세스가 현재 가용량과 앞선 프로세스의 반환량으로 완료 가능한 순서.
+- **Need** : 프로세스가 완료까지 추가로 요구하는 자원량으로, `Max - Allocation` 계산 결과.
+- **Allocation** : 프로세스에 현재 배정된 자원 종류별 수량.
+- **Available** : 현재 즉시 배정 가능한 자원 종류별 수량.
+- **Work·Finish** : 안전성 검사에서 가용량과 완료 여부를 임시 기록하는 벡터.
 
 </details>
 
@@ -51,9 +43,12 @@ extra:
 ---
 
 ## 1교시 10점 답안
-### Ⅰ. 정의·목적
-- 정의: 프로세스별 최대 요구량을 전제로 자원을 시험 할당하고, 안전 순서열이 있을 때만 승인하는 교착상태 회피 알고리즘이다.
-- 목적: 불안전한 자원 할당을 보류해 모든 프로세스의 완료 가능성을 보존한다.
+### Ⅰ. 은행가 알고리즘의 개요
+
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **은행가 알고리즘 (Banker's Algorithm)** 은 프로세스별 최대 자원 요구량을 기준으로 요청을 시험 할당하고 안전 순서열이 있는 상태만 승인하는 교착 회피 알고리즘 |
+| 목적 | 자원 할당 뒤에도 모든 프로세스의 완료 순서가 존재하도록 유지 |
 
 | 단계 | 핵심 판단 |
 |---|---|
@@ -62,7 +57,7 @@ extra:
 | 안전성 검사 | `Needᵢ ≤ Work`인 프로세스를 완료 처리하고 자원 반환 |
 | 결정 | 모든 프로세스 완료 가능하면 승인, 아니면 원복·대기 |
 
-- 제언: 최대 요구량을 신뢰할 수 있는 자원 풀에 선별 적용한다.
+- 제언: 최대 요구량을 신뢰할 수 있는 자원 풀에 선별 적용
 
 ---
 
@@ -73,12 +68,12 @@ extra:
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. 안전상태를 보존하는 은행가 알고리즘 개요
+## Ⅰ. 은행가 알고리즘의 개요
 
-> 은행가 알고리즘은 교착 발생을 사후 탐지하지 않고 할당 직전의 안전성을 증명하며, 최대 요구량의 신뢰성이 회피 성패를 좌우함.
-
-- 정의: 프로세스별 **최대 요구량**을 전제로 요청을 시험 할당한 뒤 **안전상태**를 유지하는 요청만 승인하는 **교착상태 회피** 알고리즘
-- 목적: 위험한 자원 할당 차단 → 모든 프로세스의 완료 가능성 보존
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **은행가 알고리즘 (Banker's Algorithm)** 은 프로세스별 최대 자원 요구량을 기준으로 요청을 시험 할당하고 안전 순서열이 있는 상태만 승인하는 교착 회피 알고리즘 |
+| 목적 | 자원 할당 뒤에도 모든 프로세스의 완료 순서가 존재하도록 유지 |
 
 | 상태 | 판정 | 조치 |
 |---|---|---|
@@ -101,17 +96,17 @@ extra:
 
 ## Ⅲ. 요청 승인과 안전성 판정 절차
 
-> 요청 적합성 검사는 선언 위반과 일시 부족을 가르고, 시험 할당 이후의 안전 순서열 검사가 최종 승인 Gate가 됨.
-
-<div class="itpe-flow itpe-flow--vertical" aria-label="자원 요청과 안전성 검사 절차">
-  <div class="itpe-flow__node"><strong>요청 적합성 검사</strong><small><b>판정:</b> <span class="itpe-keyword"><strong>Request ≤ Need</strong></span>, <span class="itpe-keyword"><strong>Request ≤ Available</strong></span></small><small><b>산출:</b> 선언 초과는 오류, 가용량 부족은 대기</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>시험 할당</strong><small><b>활동:</b> Available 감소 · Allocation 증가 · Need 감소</small><small><b>산출:</b> 후보 자원 상태</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>완료 후보 탐색</strong><small><b>활동:</b> Needᵢ ≤ Work인 프로세스 선택</small><small><b>산출:</b> Work에 Allocationᵢ 반환 · Finishᵢ 설정</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>안전성 판정</strong><small><b>판정:</b> 모든 Finish가 참이면 <span class="itpe-keyword"><strong>안전 순서열</strong></span> 확정</small><small><b>산출:</b> 승인 또는 시험 할당 원복</small></div>
-</div>
+```mermaid
+flowchart TD
+    A[요청 검사: Request ≤ Need] -->|선언 범위 이내| B[가용량 검사: Request ≤ Available]
+    B -->|요청량만큼 가상 할당| C[Work·Need·Allocation 임시 갱신]
+    C --> D{Needᵢ ≤ Work인 프로세스 존재?}
+    D -->|예| E[프로세스 완료 처리·Allocation 반환]
+    E -->|다음 완료 후보 탐색| D
+    D -->|후보 없음| G{모든 프로세스 완료 처리?}
+    G -->|예: 안전 순서열 존재| H[실제 할당 승인]
+    G -->|아니오: 불안전 상태| F[시험 할당 원복·대기]
+```
 
 - 벡터 비교: 모든 자원 종류에서 조건을 만족해야 해당 프로세스를 완료 후보로 선택함
 - 종료 조건: 한 개 이상의 안전 순서열을 찾으면 안전상태이며, 순서열의 유일성은 요구하지 않음
@@ -127,7 +122,7 @@ extra:
 | 이점 | 단순한 차단 | 자원 활용 여지 | 정상 요청 제약 최소 |
 | 대가 | 낮은 이용률 | **Max 사전 선언**, 반복 계산 | 종료·선점·롤백 비용 |
 
-| 문제 | 원인 | 대책 | 효과 |
+| 한계 | 원인 | 대응 | 기대 결과 |
 |---|---|---|---|
 | 최대량 오류 | 동적 요구량·과대 선언 | 워크로드별 상한과 재측정 | 안전성과 이용률 균형 |
 | 판정 지연 | 요청마다 행렬 반복 탐색 | 제한 자원 풀에 선택 적용 | 반복 계산 부담 완화 |
@@ -135,7 +130,7 @@ extra:
 
 ## 기술사적 제언
 
-| 문제 | 해결 방안 |
+| 한계 | 해결 방안 |
 |---|---|
 | 최대 요구량이 부정확하면 보수적 판정으로 장기 대기와 자원 유휴가 커질 수 있음 | 최대량을 신뢰할 수 있는 자원 풀에 선별 적용하고, 상한 선언과 대기 우선순위를 운영 조건에 맞게 조정 |
 

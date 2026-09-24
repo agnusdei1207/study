@@ -20,24 +20,20 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-┌────────────── Process Address Space ──────────────┐
-│ 공유: Code │ Data │ Heap │ Open Files            │
-│                                                  │
-│ Thread A      Thread B       Thread C             │
-│ TID·PC·Reg    TID·PC·Reg     TID·PC·Reg          │
-│ Stack·TLS     Stack·TLS      Stack·TLS           │
-└──────────────────────┬────────────────────────────┘
-                       ▼
-             Scheduler / Kernel Threads
-```
+- 본질: **스레드(Thread)** 는 프로세스 안에서 스케줄되는 실행 흐름으로, 주소 공간의 자원을 공유하면서 실행 문맥은 각각 보유
+- 구조: 프로세스는 코드·데이터·힙·열린 파일을 공유하고 각 스레드는 식별자·프로그램 카운터·레지스터·스택을 별도 보유
+- 관리: 공유 상태의 동기화와 스레드 수·종료 처리의 통제
 
-```text
-Thread = 프로세스 안의 단일 제어 흐름
-공유 = Code·Data·Heap·File / 독립 = ID·PC·Register·Stack·TLS
-장점 = 낮은 통신 비용·병렬성 / 위험 = Race·Deadlock·격리 약화
-통제 = Mutex·Semaphore·Condition·Atomic·Thread Pool
-```
+<details><summary>핵심 용어</summary>
+
+- **스레드 (Thread)** : 프로세스 안에서 스케줄되는 실행 흐름으로, 프로세스 자원을 공유하고 독립 실행 문맥을 보유.
+- **프로세스 (Process)** : 독립된 주소 공간과 실행 자원을 가진 프로그램 실행 단위.
+- **TCB (Thread Control Block)** : 운영체제가 스레드의 상태·레지스터·스택 포인터·스케줄 정보를 관리하는 자료구조.
+- **TLS (Thread-Local Storage)** : 각 스레드가 다른 스레드와 공유하지 않고 사용하는 스레드별 저장 영역.
+- **사용자 수준 스레드 (User-Level Thread)** : 사용자 공간 런타임이 관리하는 스레드 실행 단위.
+- **커널 수준 스레드 (Kernel-Level Thread)** : 운영체제 커널이 인식하고 스케줄하는 실행 단위.
+
+</details>
 
 ---
 
@@ -47,9 +43,12 @@ Thread = 프로세스 안의 단일 제어 흐름
 ---
 
 ## 1교시 10점 답안
-### Ⅰ. 정의·목적
-- 정의: 스레드는 프로세스 안에서 실행되는 하나의 제어 흐름이며, 같은 프로세스의 다른 스레드와 주소 공간을 공유한다.
-- 목적: 공유 메모리로 통신 비용을 줄이고 동시·병렬 실행을 지원한다.
+### Ⅰ. 스레드의 개요
+
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **스레드 (Thread)** 는 프로세스 안에서 스케줄되는 실행 흐름으로, 프로세스 자원을 공유하고 독립 실행 문맥을 보유하는 단위 |
+| 목적 | 공유 메모리 통신 비용 절감과 동시·병렬 실행 지원 |
 
 | 구분 | 스레드 간 공유 | 스레드별 독립 |
 |---|---|---|
@@ -57,7 +56,7 @@ Thread = 프로세스 안의 단일 제어 흐름
 | 실행 문맥 | 프로세스 주소 공간 | TID·PC·Register |
 | 주의점 | 빠른 공유와 통신 | Race·Deadlock·격리 약화 |
 
-- 제언: 공유 상태를 줄이고 동기화와 종료 처리를 함께 설계한다.
+- 제언: 공유 상태를 줄이고 동기화·취소·종료 처리를 함께 설계
 
 ---
 
@@ -68,9 +67,12 @@ Thread = 프로세스 안의 단일 제어 흐름
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. 개요 ───── 정의·필요성
+## Ⅰ. 스레드의 개요
 
-스레드는 POSIX 관점에서 **프로세스 내부의 단일 제어 흐름**이며, 같은 프로세스의 다른 스레드와 주소 가능한 메모리를 공유하면서 독립적인 실행 문맥을 갖는다.
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **스레드 (Thread)** 는 프로세스 안에서 스케줄되는 실행 흐름으로, 프로세스 자원을 공유하고 독립 실행 문맥을 보유하는 단위 |
+| 목적 | 공유 메모리 통신 비용 절감과 동시·병렬 실행 지원 |
 
 | 필요성 | 효과 | 위험 |
 |---|---|---|
@@ -86,18 +88,9 @@ Thread = 프로세스 안의 단일 제어 흐름
 | 실행 문맥 | 프로세스 자원 한계·주소 공간 | Thread ID, PC, Register, Scheduling 속성 |
 | 결과 | 빠른 데이터 교환 | 독립 호출 흐름·재진입 |
 
-공유 여부의 상세 범위는 OS와 런타임 구현에 좌우되므로 TCB 필드나 스택 크기를 보편적 고정값으로 단정하지 않는다.
+구현 유의점: 공유 범위와 TCB 필드·스택 크기는 OS·런타임별 차이.
 
-## Ⅲ. 구조 ───── 사용자·커널 매핑과 TCB
-
-```text
-User Threads       Runtime/Library       Kernel Threads       CPU
- U1 ─┐                                  K1 ────────────────> Core0
- U2 ─┼── 1:1 / M:N Mapping ──────────── K2 ────────────────> Core1
- U3 ─┘                                  K3 ────────────────> Run Queue
-
-TCB: TID·State·PC·Registers·Stack Pointer·Scheduling Info·TLS Reference
-```
+## Ⅲ. 구조와 스레드 매핑 방식
 
 | 모델 | 구조 | 장점 | 제약 |
 |---|---|---|---|
@@ -105,20 +98,26 @@ TCB: TID·State·PC·Registers·Stack Pointer·Scheduling Info·TLS Reference
 | 커널 수준 | 커널이 개별 스케줄 | 멀티코어·블로킹 처리 | 커널 전환·관리 비용 |
 | 혼합 M:N | 다수 사용자를 다수 커널에 매핑 | 유연한 병렬성 | 런타임 복잡성 |
 
+| 실행 문맥 항목 | 스레드별 보유 정보 |
+|---|---|
+| 식별·상태 | Thread ID, 실행 상태, 스케줄 속성 |
+| CPU 문맥 | Program Counter, 레지스터 |
+| 메모리 문맥 | Stack Pointer, TLS 참조 |
+
 ## Ⅳ. 동작 ───── 생명주기·문맥 교환
 
-```text
-             preempt/yield
- [Running] ───────────────> [Ready]
-     │                         ▲
- I/O │wait                     │ dispatch
-     ▼                         │
- [Blocked] ─── event/signal ───┘
-     │
-     └── exit/cancel ──> [Terminated]
+```mermaid
+stateDiagram-v2
+    [*] --> Ready: 스레드 생성·실행 가능
+    Ready --> Running: 스케줄러 배정
+    Running --> Ready: 선점·양보
+    Running --> Blocked: I/O·동기화 대기
+    Blocked --> Ready: 이벤트 완료·잠금 획득
+    Running --> Terminated: 정상 종료·취소 완료
+    Terminated --> [*]
 ```
 
-문맥 교환 시 현재 스레드의 실행 문맥을 저장하고 다음 스레드의 문맥을 복원한다. 같은 프로세스라고 해서 캐시·TLB 비용이 항상 사라지는 것은 아니다.
+문맥 교환: 현재 스레드의 실행 문맥 저장과 다음 스레드 문맥 복원. 같은 프로세스 안의 전환에서도 캐시·TLB 비용이 발생할 수 있음.
 
 ## Ⅴ. 비교 ───── 프로세스·스레드
 
@@ -133,7 +132,7 @@ TCB: TID·State·PC·Registers·Stack Pointer·Scheduling Info·TLS Reference
 
 ## Ⅵ. 고려 ───── 안전성·성능·운영 검증
 
-| 문제 | 원인 | 대응 | 검증 |
+| 한계 | 원인 | 대응 | 확인 기준 |
 |---|---|---|---|
 | Race Condition | 무동기 공유 쓰기 | Mutex·Atomic·불변 데이터 | 경쟁 탐지·부하 시험 |
 | Deadlock | 순환 대기·잠금 순서 불일치 | 잠금 순서, Timeout, 구조 축소 | 교착 탐지·덤프 |
@@ -144,7 +143,7 @@ TCB: TID·State·PC·Registers·Stack Pointer·Scheduling Info·TLS Reference
 
 ## 기술사적 제언
 
-| 문제 | 해결 방안 |
+| 한계 | 해결 방안 |
 |---|---|
 | 공유 상태와 요청별 무제한 스레드 생성은 경쟁·교착 및 문맥 교환 부담을 키움 | 공유 상태를 줄이고 제한된 스레드 풀과 명시적 동기화·취소·종료 처리를 적용 |
 
@@ -152,13 +151,6 @@ TCB: TID·State·PC·Registers·Stack Pointer·Scheduling Info·TLS Reference
 
 - [The Open Group POSIX Definitions — Thread·Thread-Safe](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html)
 - [The Open Group pthread.h](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/pthread.h.html)
-
-## 답안 체크
-
-- [ ] 공유 영역과 독립 영역을 한 그림에 배치했는가
-- [ ] 상태 전이와 문맥 교환을 구분했는가
-- [ ] Race·Deadlock·가시성·과다 스레드 대응을 썼는가
-- [ ] 확인되지 않은 140회 기출 표기를 제거했는가
 
 ## 연결 토픽
 

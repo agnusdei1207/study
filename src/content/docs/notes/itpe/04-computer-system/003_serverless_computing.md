@@ -19,30 +19,28 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-- 본질: 서버가 없는 기술이 아니라 공급자가 실행 인프라의 프로비저닝·확장·운영을 맡는 클라우드 실행 모델임
+- 본질: 서버리스 컴퓨팅은 공급자가 실행 인프라를 운영하고 이용자가 함수 코드와 관리형 백엔드를 조합하는 클라우드 실행 모델
 - 메커니즘: 이벤트 수신 → **FaaS** 함수 실행 → **BaaS** 상태·공통 기능 연계 → 실행량 계측
 - 산출: 부하 변화에 민첩한 서비스이며, 대가는 Cold Start·상태 외부화·벤더 종속·분산 관측 복잡성임
 
-<div class="itpe-flow itpe-flow--vertical" aria-label="서버리스 실행 구조">
-  <div class="itpe-flow__node"><strong>이벤트 소스</strong><small><b>입력:</b> HTTP · 메시지 · 파일 · 스케줄</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>이벤트 라우터</strong><small><b>처리:</b> 인증 · 트리거 · 라우팅</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>FaaS</strong></span><small><b>처리:</b> 실행환경 준비 · 함수 실행 · 자동 확장</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>BaaS</strong></span><small><b>산출:</b> DB · 객체 · 인증 · 메시징 연계 결과</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>관측·계측</strong><small><b>통제:</b> 로그 · 추적 · 메트릭 · 사용량</small></div>
-</div>
+```mermaid
+flowchart TD
+    A[이벤트 소스: HTTP·메시지·파일·스케줄] -->|트리거 전달| B[이벤트 라우터]
+    B -->|함수 호출| C[FaaS 실행환경]
+    C -->|상태·공통 기능 호출| D[BaaS: 데이터베이스·인증·메시징]
+    C -->|로그·추적·사용량 기록| E[관측·계측]
+```
 
 <details>
 <summary>핵심 용어</summary>
 
-- `FaaS(Function as a Service)`: 이벤트마다 함수 실행환경을 제공하는 계산 계층 → 짧은 수명과 실행 제한을 고려
-- `BaaS(Backend as a Service)`: 인증·DB·메시징 등 공통 백엔드를 관리형 서비스로 제공 → 서비스 간 의존을 줄임
-- `Cold Start`: 유휴 상태에서 실행환경을 새로 준비하며 생기는 초기 지연 → 지연 민감 업무를 가르는 기준
-- `Stateless`: 함수 내부 상태에 다음 호출이 의존하지 않는 설계 → 상태를 외부 저장소로 이동
-- `Idempotency(멱등성)`: 같은 이벤트가 반복돼도 결과가 달라지지 않는 성질 → 재시도 중복을 차단
+- **서버리스 컴퓨팅 (Serverless Computing)** : 공급자가 실행 인프라의 프로비저닝·확장·운영을 맡고, 이용자가 함수와 관리형 서비스를 조합하는 클라우드 실행 모델.
+- **FaaS (Function as a Service)** : 이벤트에 따라 함수 코드를 실행하는 관리형 계산 서비스.
+- **BaaS (Backend as a Service)** : 데이터베이스·인증·메시징 같은 백엔드 기능을 관리형 API로 제공하는 서비스.
+- **DLQ (Dead Letter Queue)** : 재시도 후에도 처리되지 않은 메시지를 격리해 원인 조사·재처리하는 대기열.
+- **VM (Virtual Machine)** : 가상화된 하드웨어 위에서 독립 운영체제를 실행하는 컴퓨팅 환경.
+- **Cold Start** : 유휴 실행환경을 다시 준비할 때 추가되는 초기 실행 지연.
+- **멱등성 (Idempotency)** : 같은 요청을 반복 처리해도 업무 결과가 중복 변경되지 않는 성질.
 
 </details>
 
@@ -54,9 +52,12 @@ extra:
 ---
 
 ## 1교시 10점 답안
-### Ⅰ. 정의·목적
-- 정의: 클라우드 공급자가 실행 인프라를 운영하고 이용자는 이벤트 기반 함수와 관리형 서비스를 조합하는 실행 모델이다.
-- 목적: 인프라 운영 부담을 줄이고 변동 부하에 대응한다.
+### Ⅰ. 서버리스 컴퓨팅의 개요
+
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **서버리스 컴퓨팅 (Serverless Computing)** 은 이용자가 함수 코드와 관리형 백엔드를 조합하고 공급자가 실행 인프라의 운영·확장을 맡는 클라우드 실행 모델 |
+| 목적 | 인프라 관리 부담을 줄이고 변동하는 수요에 맞춘 실행 자원 사용 |
 
 | 구성 | 역할 |
 |---|---|
@@ -65,7 +66,7 @@ extra:
 | **BaaS** | 상태·인증·메시징 등 관리형 기능 제공 |
 | **Observability** | 실행 로그·메트릭·추적 연결 |
 
-- 제언: 멱등성·동시성 제한·실패 큐를 이벤트 계약과 함께 설계한다.
+- 제언: 멱등성·동시성 제한·실패 큐를 이벤트 계약에 포함
 
 ---
 
@@ -76,12 +77,12 @@ extra:
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. 운영 책임을 추상화한 서버리스 컴퓨팅 개요
+## Ⅰ. 서버리스 컴퓨팅의 개요
 
-> 서버리스의 가치는 서버 제거가 아니라 운영 책임 경계의 이동이며, 업무가 이벤트 기반·무상태로 분해될 때 효과가 커짐.
-
-- 정의: 클라우드 공급자가 **프로비저닝**, **자동 확장**, **실행환경 운영**을 담당하고 이용자가 이벤트 기반 코드와 관리형 서비스를 조합하는 실행 모델
-- 목적: 인프라 운영 책임 위임 → 변동 부하 대응과 업무 로직 집중
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **서버리스 컴퓨팅 (Serverless Computing)** 은 이용자가 함수 코드와 관리형 백엔드를 조합하고 공급자가 실행 인프라의 운영·확장을 맡는 클라우드 실행 모델 |
+| 목적 | 인프라 관리 부담을 줄이고 변동하는 수요에 맞춘 실행 자원 사용 |
 
 | 특징 | 메커니즘 | 설계 의미 |
 |---|---|---|
@@ -90,19 +91,16 @@ extra:
 | **Metering** | 호출·실행 자원 계측 | 유휴 비용 감소, 단위비용 변동 |
 | **Stateless** | 실행환경 수명과 상태 분리 | DB·캐시로 상태 외부화 |
 
-## Ⅱ. FaaS·BaaS 기반 구성과 실행 흐름
+## Ⅱ. FaaS·BaaS 구성과 실행 흐름
 
-> FaaS는 계산, BaaS는 상태와 공통 기능을 맡으며, 재시도·실패 경로까지 이벤트 계약에 포함해야 운영 가능한 구조가 됨.
-
-<div class="itpe-flow itpe-flow--vertical" aria-label="서버리스 처리 절차">
-  <div class="itpe-flow__node"><strong>이벤트 계약</strong><small><b>활동:</b> 스키마 · 인증 · 라우팅 규칙 정의</small><small><b>산출:</b> 트리거와 실패 정책</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>실행환경 준비</strong><small><b>활동:</b> 런타임 로드 · 인스턴스 할당</small><small><b>산출:</b> 실행 가능한 함수 컨텍스트</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>함수·백엔드 실행</strong><small><b>활동:</b> <span class="itpe-keyword"><strong>FaaS</strong></span> 로직 · <span class="itpe-keyword"><strong>BaaS</strong></span> 상태 연계</small><small><b>산출:</b> 결과 또는 재시도 이벤트</small></div>
-  <div class="itpe-flow__arrow" aria-hidden="true">↓</div>
-  <div class="itpe-flow__node"><strong>관측·회수</strong><small><b>활동:</b> 로그 · 분산추적 · 메트릭 기록</small><small><b>산출:</b> 실행량·오류·지연과 유휴 환경 회수</small></div>
-</div>
+```mermaid
+flowchart TD
+    A[이벤트 계약: 스키마·인증·실패 정책] -->|유효 이벤트 전달| B[런타임 준비]
+    B -->|함수 실행 요청| C[FaaS 함수 실행]
+    C -->|상태·공통 기능 요청| D[BaaS 서비스]
+    D -->|결과 또는 오류 반환| C
+    C -->|실행 정보 기록| E[로그·추적·메트릭]
+```
 
 - 횡단 통제: 함수별 최소권한, Secret 분리, 상관 ID, Timeout, 재시도 제한, **DLQ(Dead Letter Queue)** 적용
 
@@ -123,7 +121,7 @@ extra:
 
 > 서버리스 장애는 함수 코드보다 재시도·동시성·관리형 서비스 사이에서 확산되므로 E2E 관측과 실패 격리가 핵심임.
 
-| 문제 | 원인 | 대책 | 검증 |
+| 한계 | 원인 | 대응 | 확인 기준 |
 |---|---|---|---|
 | 초기 지연 | 런타임·의존성 준비 | 경량 패키지·사전 준비 | 지연 분포 |
 | 중복 처리 | 비동기 전달·재시도 | **멱등키**, 조건부 쓰기·DLQ | 중복·실패 이벤트 |
@@ -133,7 +131,7 @@ extra:
 
 ## 기술사적 제언
 
-| 문제 | 해결 방안 |
+| 한계 | 해결 방안 |
 |---|---|
 | 함수 자동 확장이 DB·외부 API의 처리 한도를 넘어 재시도와 장애를 증폭할 수 있음 | 멱등키·동시성 제한·DLQ를 공통 이벤트 Baseline으로 두고, 파일럿에서 종단 지연과 하위 서비스 포화를 확인한 뒤 확대 |
 
