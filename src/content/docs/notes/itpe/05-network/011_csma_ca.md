@@ -152,4 +152,4 @@ sequenceDiagram
 
 ## 연결 노트
 
-- 연계 개념: [Wi-Fi 7](./005_wifi_7.md), [TDMA](./023_tdma.md)
+- 연계 개념: [Wi-Fi 7](./005_wifi_7.md), [TDMA](./021_tdma.md)
