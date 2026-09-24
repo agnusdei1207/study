@@ -20,7 +20,7 @@ extra:
 ## 30초 인출
 
 - 본질: **디자인 씽킹**: 사용자의 문제를 관찰·재정의하고 시제품으로 해법을 시험하는 방법.
-- 메커니즘: Discover의 관찰 → **Define** 의 문제 재정의 → Develop·Deliver의 시제품 제작·시험과 피드백 반영.
+- 메커니즘: 사용자 관찰 → **Define** 의 문제 재정의 → 아이디어·시제품 제작·시험과 피드백에 따른 반복 수정.
 - 판정 기준: 실제 사용자 관찰·시험 결과의 문제정의 및 가설 수정·채택 근거 여부.
 
 <details>
@@ -77,7 +77,7 @@ flowchart TD
 
 ## 2~4교시 예상문제 (25점)
 
-> 디자인 씽킹의 개념과 5개 Mode·Double Diamond를 설명하고, 디지털 서비스 개발 적용절차와 고려사항을 제시하시오. **(미출제 예상·25점)**
+> 디자인 씽킹의 핵심 과정과 반복 검증 방식을 설명하고, 디지털 서비스 개발 적용절차와 고려사항을 제시하시오. **(미출제 예상·25점)**
 
 ---
 
@@ -118,33 +118,7 @@ flowchart TD
 | **Prototype** | 핵심 가정의 저비용 표현 | Storyboard · Mock-up |
 | **Test** | 사용자 과업 관찰·피드백 | 관찰결과 · 수정 가설 |
 
-## Ⅲ. Double Diamond와 5 Modes 관계
-
-> Double Diamond는 발산·수렴의 큰 구조, 5 Modes는 각 구간에서 활용하는 사고·실행 방식임.
-
-```mermaid
-flowchart LR
-    subgraph PROBLEM["문제 영역 (Problem Space)"]
-        direction LR
-        DISC["Discover(발산)"] --> DEF["Define(수렴)"]
-    end
-
-    subgraph SOLUTION["해법 영역 (Solution Space)"]
-        direction LR
-        DEV["Develop(발산)"] --> DEL["Deliver(수렴)"]
-    end
-
-    PROBLEM -->|Problem Definition| SOLUTION
-```
-
-| Double Diamond | 사고 | 연계 Mode | 판정 |
-|---|---|---|---|
-| **Discover** | 문제영역 발산 | Empathize | 충분한 사용자·맥락을 탐색했는가? |
-| **Define** | 문제영역 수렴 | Define | 근거 있는 문제정의인가? |
-| **Develop** | 해법영역 발산 | Ideate·Prototype | 복수 대안을 시험했는가? |
-| **Deliver** | 해법영역 수렴 | Prototype·Test | 가치·사용성·실현성을 검증했는가? |
-
-## Ⅳ. 디지털 서비스 적용 절차
+## Ⅲ. 디지털 서비스 적용 절차
 
 > 조사자료가 POV·Prototype·Backlog까지 추적되어야 워크숍 결과가 구현으로 이어짐.
 
@@ -156,7 +130,7 @@ flowchart TD
     S4 --> S5["구현 연결"]
 ```
 
-## Ⅴ. 문제점·대응책
+## Ⅳ. 문제점·대응책
 
 > 워크숍의 산출물이 사용자 증거와 개발 의사결정으로 이어지지 않으면 형식 활동에 머묾.
 
@@ -167,7 +141,7 @@ flowchart TD
 | **고충실도 집착** | 검증가정별 최소 Prototype | 학습비용 절감 |
 | **개발 단절** | Finding–POV–Backlog 추적 | 구현 정합성 향상 |
 
-## Ⅵ. 출시 후 사용자 증거 환류 제언
+## Ⅴ. 출시 후 사용자 증거 환류 제언
 
 | 문제 | 해결 방안 |
 |---|---|
@@ -179,7 +153,6 @@ flowchart TD
 
 - 공식 문제지 원문으로 확인한 직접 기출 없음
 - [Stanford d.school: Design Thinking Bootleg](https://dschool.stanford.edu/tools/design-thinking-bootleg)
-- [Design Council: Double Diamond](https://www.designcouncil.org.uk/resources/the-double-diamond/)
 
 ## 연결 토픽
 
