@@ -1,7 +1,7 @@
 ---
 title: "가명·익명·비식별 처리"
 author: "OpenAI"
-date: "2026-09-24T21:40:00+09:00"
+date: "2026-09-24T21:52:00+09:00"
 tags:
   - "notes-security"
 extra:
@@ -146,6 +146,7 @@ extra:
 
 - [국가법령정보센터: 개인정보 보호법 제2조(정의)](https://law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=1000559948)
 - [국가법령정보센터: 개인정보 보호법 제28조의4(가명정보에 대한 안전조치의무 등)](https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1020398635)
+- [개인정보보호위원회: 가명정보 처리 가이드라인 전면 개정 안내(2026.03.)](https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=11928)
 - Sweeney, L. [k-Anonymity: A Model for Protecting Privacy](https://doi.org/10.1142/S0218488502001648)
 - Machanavajjhala et al. [l-Diversity: Privacy Beyond k-Anonymity](https://doi.org/10.1109/ICDE.2006.1)
 - Li, Li, Venkatasubramanian. [t-Closeness: Privacy Beyond k-Anonymity and l-Diversity](https://doi.org/10.1109/ICDE.2007.367856)
