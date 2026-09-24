@@ -1,7 +1,7 @@
 ---
 title: "MODBUS"
 author: "Codex"
-date: "2026-09-24T21:05:00+09:00"
+date: "2026-09-24T21:17:00+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -65,13 +65,10 @@ extra:
 
 ### Ⅲ. 요청·응답
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-    C->>S: 기능 코드·주소·요청 데이터
-    S->>S: 요청 검사·데이터 처리
-    S-->>C: 기능 코드·응답 데이터 또는 예외
+```text
+Client ── 기능 코드·주소·요청 데이터 → Server
+Server ── 요청 검사·데이터 처리
+Server ── 기능 코드·응답 데이터 또는 예외 → Client
 ```
 
 제언: 데이터 항목의 읽기·쓰기 권한을 장치 역할과 제어 요구에 맞춰 설정
@@ -106,17 +103,12 @@ sequenceDiagram
 
 ## Ⅲ. 요청·응답 처리
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-    C->>S: Function Code + 주소·데이터
-    S->>S: 요청 유효성·권한 확인
-    alt 정상 처리
-        S-->>C: 요청 기능 코드 + 결과 데이터
-    else 요청 오류
-        S-->>C: 예외 응답
-    end
+```text
+Client ── 기능 코드·주소·데이터 요청 → Server
+Server: 요청 유효성·권한 확인
+    ├─ 정상 처리 → 결과 데이터 응답
+    └─ 요청 오류 → 예외 응답
+Server ── 결과 데이터 또는 예외 → Client
 ```
 
 요청과 응답은 동일한 기능 코드 맥락으로 연결되며 오류 시 예외 응답. 세부 기능 동작은 기능 코드별 규격에 따름.
@@ -132,11 +124,9 @@ sequenceDiagram
 
 전통 Modbus 자체는 사용자 인증·암호화 기능을 제공하지 않음. Modbus Security는 TLS와 인증서를 이용하며, 기존 TCP형 Modbus와 동일한 포트·보안 특성으로 혼동하지 않도록 별도 구성 확인.
 
-```mermaid
-flowchart TD
-    C["Modbus Client 요청"] -->|"기능 코드·PDU 전달"| T["RTU 또는 TCP 전송"]
-    T -->|"대상 장치로 전달"| S["Modbus Server 처리"]
-    S -->|"응답 또는 예외"| C
+```text
+Modbus Client ── 기능 코드·PDU 요청 → RTU 또는 TCP 전송 → Modbus Server
+Modbus Server ── 결과 응답 또는 예외 → RTU 또는 TCP 전송 → Modbus Client
 ```
 
 요청이 전송 방식을 거쳐 장치에 처리된 뒤 응답으로 돌아오는 관계.
