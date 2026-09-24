@@ -52,9 +52,12 @@ extra:
 
 ### Ⅱ. 자원·요청·표현 관계
 
-```mermaid
-flowchart TD
-    R["자원 식별"] --> V["일관된 메서드로 요청"] --> P["자원 표현 응답"]
+```text
+자원 URI 식별
+    ↓ HTTP 메서드로 요청
+서버의 자원 상태 처리
+    ↓ 표현·상태코드
+클라이언트 응답 수신
 ```
 
 ### Ⅲ. 메서드 의미와 요청 통제
@@ -97,10 +100,12 @@ flowchart TD
 
 ### REST 아키텍처 상호작용 및 무상태(Stateless) 메커니즘
 
-```mermaid
-flowchart TD
-    C["클라이언트: 요청에 필요한 상태 전송"] --> S["서버: 요청별 독립 처리"]
-    S --> R["자원 표현과 캐시 정보 응답"]
+```text
+클라이언트: 요청에 필요한 정보 전송
+    ↓
+서버: 이전 요청 상태에 의존하지 않고 처리
+    ↓
+자원 표현·캐시 지시 응답
 ```
 
 ### Ⅲ. HTTP Method의 안전성(Safety)과 멱등성(Idempotency)
@@ -121,11 +126,14 @@ flowchart TD
 
 ### 1. 리차드슨 성숙도 모델(Richardson Maturity Model, RMM)
 
-```mermaid
-flowchart TB
-    L0["Level 0: POX (단일 URI·POST RPC)"] -->|"URI 도입"| L1["Level 1: Resources (자원별 URI)"]
-    L1 -->|"Method 표준화"| L2["Level 2: HTTP Verbs (상태코드)"]
-    L2 -->|"하이퍼미디어 결합"| L3["Level 3: HATEOAS"]
+```text
+Level 0: 단일 URI·POST 호출
+    ↓ 자원별 URI 구분
+Level 1: 자원 식별
+    ↓ HTTP 메서드·상태코드 활용
+Level 2: 메서드 의미 준수
+    ↓ 하이퍼미디어로 다음 동작 안내
+Level 3: HATEOAS
 ```
 
 ### 2. REST API 설계 실무 위험 및 대응 통제
