@@ -77,7 +77,7 @@ SOAP Envelope
 
 ## Ⅰ. SOAP 개요와 메시지 구조
 
-> SOAP은 XML 메시지 형식과 확장 표준을 정의하며, SOAP을 선택할지는 상대 시스템의 계약·보안 요구와 운영 여건에 맞춰 판단한다.
+> **SOAP**은 XML 기반 메시지 형식과 처리 규칙을 정의하는 프로토콜. 채택 여부는 연계 계약·보안 요구에 따라 판단.
 
 | 구분 | 핵심 |
 |---|---|
@@ -96,7 +96,7 @@ SOAP Envelope
 
 ## Ⅱ. 메시징과 서비스 설명·탐색의 연계
 
-> 세 기술은 서비스 출판(Publish), 검색(Find), 바인딩(Bind)의 삼각관계를 형성한다.
+> 서비스 기술·등록·검색을 맡는 WSDL·UDDI·SOAP의 전통적 연계 관계.
 
 ```text
 제공자: 서비스 계약(WSDL) 게시
@@ -108,7 +108,7 @@ SOAP Envelope
 
 ## Ⅲ. SOAP 적용 한계·대응책
 
-> 경량성과 모바일 확장을 중시하는 웹 환경은 REST로 재편되었으나, 레거시 금융과 보안 연계에서는 여전히 SOAP이 공존한다.
+> 시스템 간 계약·보안 확장 요구와 기존 연계 자산을 고려한 SOAP 적용 범위 판단.
 
 | 비교 항목 | SOAP (Simple Object Access Protocol) | REST (Representational State Transfer) |
 |---|---|---|
