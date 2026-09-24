@@ -51,15 +51,11 @@ extra:
 
 ### Ⅱ. 구성요소와 시간 흐름
 
-```mermaid
-sequenceDiagram
-    participant U as 사용자
-    participant A as 주문 서비스
-    participant P as 결제 서비스
-    U->>A: 주문 요청
-    A->>P: 결제 요청
-    P-->>A: 결제 결과
-    A-->>U: 주문 처리 결과
+```text
+① 사용자 → 주문 서비스: 주문 요청
+② 주문 서비스 → 결제 서비스: 결제 요청
+③ 결제 서비스 → 주문 서비스: 승인·실패 결과
+④ 주문 서비스 → 사용자: 주문 처리 결과
 ```
 
 ### Ⅲ. 주요 표기
@@ -92,15 +88,11 @@ sequenceDiagram
 
 ## Ⅱ. 구성요소와 상호작용 흐름
 
-```mermaid
-sequenceDiagram
-    participant U as 사용자
-    participant A as 주문 서비스
-    participant P as 결제 서비스
-    U->>A: 주문 요청
-    A->>P: 결제 요청
-    P-->>A: 결제 결과
-    A-->>U: 주문 처리 결과
+```text
+① 사용자 → 주문 서비스: 주문 요청
+② 주문 서비스 → 결제 서비스: 결제 요청
+③ 결제 서비스 → 주문 서비스: 승인·실패 결과
+④ 주문 서비스 → 사용자: 주문 처리 결과
 ```
 
 | 요소 | 의미 |
