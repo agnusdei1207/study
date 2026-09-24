@@ -51,12 +51,13 @@ extra:
 
 ### Ⅱ. 핵심 변수의 관계
 
-```mermaid
-flowchart TD
-    PEOU[사용 용이성 PEOU] --> PU[유용성 PU]
-    PEOU --> BI[사용 의도 BI]
-    PU --> BI
-    BI --> USE[실제 사용]
+```text
+PEOU → PU → BI → 실제 사용
+PEOU ─────→ BI
+
+PEOU: 인지된 사용 용이성
+PU: 인지된 유용성
+BI: 사용 의도
 ```
 
 ### Ⅲ. 도입 시 확인 사항
@@ -88,12 +89,13 @@ flowchart TD
 
 ## Ⅱ. 핵심 변수의 관계
 
-```mermaid
-flowchart TD
-    PEOU[사용 용이성 PEOU] --> PU[유용성 PU]
-    PEOU --> BI[사용 의도 BI]
-    PU --> BI
-    BI --> USE[실제 사용]
+```text
+PEOU → PU → BI → 실제 사용
+PEOU ─────→ BI
+
+PEOU: 인지된 사용 용이성
+PU: 인지된 유용성
+BI: 사용 의도
 ```
 
 기본 구조는 **PEOU** 에서 **PU** 와 사용 의도로 이어지고, **PU** 가 사용 의도를 설명하는 관계. 연구에 따라 태도 등 매개 변수를 포함하므로 모든 도입 사례에 동일한 경로와 효과 크기를 적용하지 않음.
