@@ -61,16 +61,18 @@ extra:
 
 - 핵심 메커니즘: 공감(**Empathize**) → 문제정의(**Define**) → 아이디어(**Ideate**) → 시제품(**Prototype**) → 테스트(Test)의 5개 Mode에 따른 사용자 중심 문제해결 과정
 
-```mermaid
-flowchart TD
-    E["Empathize"] --> D["Define"]
-    D --> I["Ideate"]
-    I --> P["Prototype"]
-    P --> T["Test"]
+```text
+공감(Empathize)
+    ↓
+문제 정의(Define)
+    ↓
+아이디어(Ideate)
+    ↓
+시제품(Prototype)
+    ↓
+사용자 검증(Test)
 
-    T -.->|심층 재이해| E
-    T -.->|문제 재정의| D
-    P -.->|아이디어 재발견| I
+검증 결과 → 필요 단계로 돌아가 재탐색
 ```
 
 제언: 시제품 시험에서 관찰한 사용자 행동을 바탕으로 문제정의·가설 갱신.
@@ -100,16 +102,18 @@ flowchart TD
 
 > 5개 Mode는 필요에 따라 앞뒤로 이동하며 병렬·반복 수행할 수 있음.
 
-```mermaid
-flowchart TD
-    E["Empathize"] --> D["Define"]
-    D --> I["Ideate"]
-    I --> P["Prototype"]
-    P --> T["Test"]
+```text
+공감(Empathize)
+    ↓
+문제 정의(Define)
+    ↓
+아이디어(Ideate)
+    ↓
+시제품(Prototype)
+    ↓
+사용자 검증(Test)
 
-    T -.->|심층 재이해| E
-    T -.->|문제 재정의| D
-    P -.->|아이디어 재발견| I
+검증 결과 → 필요 단계로 돌아가 재탐색
 ```
 
 | Mode | 주요 활동 | 산출 |
@@ -124,12 +128,14 @@ flowchart TD
 
 > 조사자료가 POV·Prototype·Backlog까지 추적되어야 워크숍 결과가 구현으로 이어짐.
 
-```mermaid
-flowchart TD
-    S1["사용자 조사"] --> S2["문제 재정의"]
-    S2 --> S3["대안·Prototype"]
-    S3 --> S4["사용자 Test"]
-    S4 --> S5["구현 연결"]
+```text
+사용자 관찰·인터뷰
+    ↓ 발견한 문제 검증
+핵심 문제 재정의
+    ↓
+대안 발상·시제품
+    ↓ 사용자 피드백
+수정·재검증 → 구현 판단
 ```
 
 ## Ⅳ. 한계·대응

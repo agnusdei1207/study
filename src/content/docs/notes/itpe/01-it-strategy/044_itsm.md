@@ -60,13 +60,12 @@ extra:
 
 - 핵심 메커니즘: 인시던트 관리(신속 복구) → 문제 관리(근본 원인 분석 및 **KEDB** 축적) → 변경·릴리즈 관리(**CAB** 평가 및 **CMDB** 갱신) → 지속적 서비스 개선(**SLA**/**XLA**)
 
-```mermaid
-flowchart TD
-    SD["Incident 관리"] -->|"근본 원인 분석 요청"| PM["Problem 관리"]
-    PM -->|"RFC 발행"| CE["Change 관리"]
-    CE -->|"배포 위임"| RD["Release·Deployment"]
-    RD -->|"성과 지표 환류"| CSI["지속적 서비스 개선"]
-    CSI -.->|"개선안 피드백"| SD
+```text
+서비스 중단 → Incident: 신속 복구
+반복·중대 장애 → Problem: 원인·재발 방지
+개선안 → Change: 위험 평가·승인
+승인된 변경 → Release·Deployment: 배포
+성과·장애 지표 → 지속적 서비스 개선
 ```
 
 제언: 반복 장애의 원인 분석 결과를 승인된 변경·릴리즈와 서비스 개선으로 연결.
@@ -96,12 +95,12 @@ flowchart TD
 
 > 기준별 역할: **ITIL** 4의 서비스관리 지침, ISO/IEC 20000-1의 **SMS** 요구사항, **SLA**의 고객 서비스수준 약속.
 
-```mermaid
-flowchart LR
-    ITSM["ITSM 관리체계"] ---|"실천 지침"| ITIL["ITIL 4"]
-    ITSM ---|"SMS 요구사항"| ISO["ISO/IEC 20000-1"]
-    ITSM ---|"고객과 합의한 수준"| SLA["SLA·XLA"]
-    ITSM ---|"기록·자동화 지원"| TOOLS["Service Desk·CMDB 등 도구"]
+```text
+ITSM 서비스 관리체계
+    ├─ ITIL 4: 실천 지침
+    ├─ ISO/IEC 20000-1: SMS 요구사항
+    ├─ SLA·XLA: 고객과 합의한 수준
+    └─ Service Desk·CMDB: 실행 도구
 ```
 
 | 체계 | 역할 | 적용 초점 |
@@ -115,13 +114,12 @@ flowchart LR
 
 > 운영관리의 구분: Incident 복구, Problem 원인분석·재발방지, Change·Release를 통한 개선 반영.
 
-```mermaid
-flowchart TD
-    SD["Incident 관리"] -->|"근본 원인 분석 요청"| PM["Problem 관리"]
-    PM -->|"RFC 발행"| CE["Change 관리"]
-    CE -->|"배포 위임"| RD["Release·Deployment"]
-    RD -->|"성과 지표 환류"| CSI["지속적 서비스 개선"]
-    CSI -.->|"개선안 피드백"| SD
+```text
+서비스 중단 → Incident: 신속 복구
+반복·중대 장애 → Problem: 원인·재발 방지
+개선안 → Change: 위험 평가·승인
+승인된 변경 → Release·Deployment: 배포
+성과·장애 지표 → 지속적 서비스 개선
 ```
 
 | Practice | 목표 | 핵심 활동 | 산출 |
@@ -136,12 +134,14 @@ flowchart TD
 
 > 서비스 흐름의 입력·판정·산출이 구분되어야 티켓이 프로세스 사이에서 유실되지 않음.
 
-```mermaid
-flowchart TD
-    S1["접수·분류"] --> S2["복구·원인분석"]
-    S2 --> S3["변경평가"]
-    S3 --> S4["릴리즈·배포"]
-    S4 --> S5["측정·개선"]
+```text
+요청·사건 접수
+    ↓ 성격·우선순위 분류
+복구 또는 문제 분석
+    ↓ 변경이 필요한 경우
+변경 위험 평가·승인
+    ↓
+릴리즈·배포 → 성과 측정·개선
 ```
 
 ## Ⅴ. 한계·대응
