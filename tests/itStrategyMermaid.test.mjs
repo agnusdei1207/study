@@ -100,6 +100,15 @@ test('10-point answers reuse the overview table and core visuals of 25-point ans
   }
 });
 
+test('every 10-point answer ends with a one-line proposal', async () => {
+  for (const file of await targetNotes()) {
+    const note = await readFile(file, 'utf8');
+    const short = sectionAfter(note, /^## 1교시 10점 답안\s*$/mu) ?? '';
+    const lastLine = short.split(/\r?\n/u).map((line) => line.trim()).filter((line) => line && line !== '---').at(-1) ?? '';
+    assert.match(lastLine, /^(?:-\s*)?(?:\*\*)?(?:한 줄 )?제언\s*:(?:\*\*)?/u, `${file}: 10점 답안의 마지막 줄에 제언이 필요합니다.`);
+  }
+});
+
 test('each first answer term has a matching glossary explanation', async () => {
   for (const file of await targetNotes()) {
     const note = await readFile(file, 'utf8');

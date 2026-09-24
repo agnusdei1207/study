@@ -103,7 +103,7 @@ flowchart TD
 | 방향 | 비전·원칙·범위·Framework | **EA** 원칙·메타모델 |
 | Architecture | 업무·데이터·응용·기술의 As-Is·To-Be | 현행·목표 모델 |
 | 이행 | Gap·과제·우선순위·의존성 | Transition Plan |
-| 관리 | 조직·절차· **EA** MS·성과 | 적합성 검토·현행화 기록 |
+| 관리 | 조직·절차· **EAMS** ·성과 | 적합성 검토·현행화 기록 |
 
 ```mermaid
 flowchart TD

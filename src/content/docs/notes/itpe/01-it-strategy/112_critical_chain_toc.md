@@ -23,7 +23,7 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **CCPM·TOC**: 제약이론을 일정관리에 적용해 자원 제약과 작업 순서를 함께 다루는 관리 방식.
+- **CCPM·TOC** : 제약이론을 일정관리에 적용해 자원 제약과 작업 순서를 함께 다루는 관리 방식
 - **TOC(Theory of Constraints)** : 전체 시스템 성과를 제약하는 병목 요인을 식별·집중 개선하는 제약이론
 - **CCPM(Critical Chain Project Management)** : 작업 선후행과 자원 제약을 통합 반영하고 프로젝트 통합 버퍼로 공기를 통제하는 일정 관리 기법
 - **PB(Project Buffer)** : Critical Chain 맨 끝에 배치하여 전체 프로젝트 납기를 보호하는 프로젝트 버퍼
@@ -69,7 +69,7 @@ flowchart LR
     end
 
     FB --> T3
-    T1 --> T2 --> T3 --> PB
+    T3 --> PB
 ```
 
 ### Ⅲ. 버퍼별 역할
@@ -79,6 +79,8 @@ flowchart LR
 | **PB (Project Buffer)** | **Critical Chain** 끝 | 프로젝트 전체 납기 보호 (개별 안전여유의 통합) |
 | **FB (Feeding Buffer)** | 비임계 체인 합류점 | 비임계 작업 지연이 주공정으로 전파되는 것 차단 |
 | **RB (Resource Buffer)** | 제약 자원 투입 직전 | 핵심 자원의 대기 및 적시 투입 사전 알림 |
+
+제언: 자원 경합을 반영해 핵심 체인을 정하고 지연을 개별 작업보다 버퍼 소진으로 관리
 
 ---
 
@@ -113,7 +115,7 @@ flowchart LR
     end
 
     FB --> T3
-    T1 --> T2 --> T3 --> PB
+    T3 --> PB
 ```
 
 | 요소 | 위치 | 역할 |

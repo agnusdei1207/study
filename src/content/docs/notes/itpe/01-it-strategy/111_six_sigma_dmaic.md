@@ -18,13 +18,13 @@ extra:
 ## 30초 인출
 
 - 본질: Six Sigma DMAIC는 기존 프로세스의 문제 원인을 찾아 개선하고 성과를 유지하는 방법
-- 메커니즘: Define 문제 규정 → Measure 현수준 측정 → Analyze 원인 검증 → Improve 대안 시험 → Control 개선 결과 유지.
+- 메커니즘: Define 문제 규정 → Measure 현수준 측정 → Analyze 원인 검증 → Improve 대안 시험 → Control 개선 결과 유지
 
 <details>
 <summary>핵심 용어</summary>
 
 - **DMAIC(Define, Measure, Analyze, Improve, Control)** : 프로세스 결함과 산포를 축소하기 위한 6시그마 5단계 문제해결 절차
-- **Six Sigma DMAIC**: 프로세스 문제를 데이터로 분석·개선하고 개선 결과를 관리하는 다섯 단계 방법.
+- **Six Sigma DMAIC** : 프로세스 문제를 데이터로 분석·개선하고 개선 결과를 관리하는 다섯 단계 방법
 - **VOC(Voice of Customer)** : 설문·인터뷰 등을 통해 수집된 고객의 직접적인 요구와 피드백 정보
 - **CTQ(Critical to Quality)** : VOC를 측정 가능한 정량적 목표치로 전환한 핵심 품질특성
 - **DPMO(Defects Per Million Opportunities)** : 결함 기회 100만 건당 실제 발생한 결함 수를 나타내는 통계적 품질 척도
@@ -70,6 +70,8 @@ flowchart TD
 | Analyze·Improve | 자료와 분석을 통해 원인을 검증하고, 개선안을 시험해 결과를 비교 |
 | Control | **SPC** 등 적절한 감시방법·책임자·대응 기준을 정해 성과 변화를 관리 |
 
+제언: 개선 전에 고객 요구를 측정 가능한 기준으로 정하고 개선 후 감시 책임자를 지정
+
 ---
 
 ## 2~4교시 예상문제 (25점)
@@ -89,6 +91,11 @@ flowchart TD
 
 ## Ⅱ. DMAIC 단계별 활동·산출
 
+```mermaid
+flowchart TD
+    S1["Define · 문제와 CTQ 정의"] --> S2["Measure · 측정체계와 현수준 확인"] --> S3["Analyze · 주요 원인 검증"] --> S4["Improve · 개선안 시험"] --> S5["Control · 결과 유지·감시"]
+```
+
 | 단계 | 활동 | 주요 도구 | 산출 |
 |---|---|---|---|
 | Define | 문제·고객·범위·목표 정의 | VOC· **CTQ** ·SIPOC | Project Charter |
@@ -97,12 +104,13 @@ flowchart TD
 | Improve | 대안 설계·Pilot 검증 | DOE·FMEA·Pilot | 개선안·검증결과 |
 | Control | 표준화·감시·대응 | SPC·Control Plan·SOP | 관리계획·표준 |
 
-## Ⅲ. 6시그마 통계적 메커니즘과 DMAIC 파이프라인
+## Ⅲ. 측정·원인 검증·유지의 판단 기준
 
-```mermaid
-flowchart TD
-    S1["Define · 문제와 CTQ 정의"] --> S2["Measure · 측정체계와 현수준 확인"] --> S3["Analyze · 주요 원인 검증"] --> S4["Improve · 개선안 시험"] --> S5["Control · 결과 유지·감시"]
-```
+| 판단 | 확인할 근거 | 후속 결정 |
+|---|---|---|
+| 측정값을 믿을 수 있는가 | **MSA** 와 데이터 수집 기준 | 측정체계 보완 또는 현수준 확정 |
+| 원인이 확인되었는가 | 원인별 자료·가설검정·실험 결과 | 영향이 큰 원인부터 개선안 시험 |
+| 개선이 유지되는가 | 개선 전후 **CTQ** 와 **SPC** 추세 | 표준화·이탈 시 대응 기준 조정 |
 
 수치 기준은 업종·특성·고객 요구와 목표에 따라 설정. 흔히 제시되는 3.4 DPMO는 1.5σ 평균 이동 가정을 둔 장기 시그마 수준의 관례이며 모든 DMAIC 과제에 강제되는 합격선과는 구분.
 

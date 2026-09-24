@@ -61,7 +61,8 @@ extra:
 flowchart TD
     P["Plan Risk Management"] -->|"위험관리 계획서"| I["Identify Risks"]
     I -->|"Risk Register·위험 보고서"| QL["Perform Qualitative Risk Analysis"]
-    QL -->|"우선순위·Risk Owner"| QT["Perform Quantitative Risk Analysis"]
+    QL -->|"정량 분석 필요"| QT["Perform Quantitative Risk Analysis"]
+    QL -->|"정량 분석 생략 가능"| PR["Plan Risk Responses"]
     QT -->|"정량 분석 결과"| PR["Plan Risk Responses"]
     PR -->|"대응계획"| IR["Implement Risk Responses"]
     IR -->|"조치 결과·변경 요청"| M["Monitor Risks"]
@@ -97,7 +98,8 @@ flowchart TD
 flowchart TD
     P["Plan Risk Management"] -->|"위험관리 계획서"| I["Identify Risks"]
     I -->|"Risk Register·위험 보고서"| QL["Perform Qualitative Risk Analysis"]
-    QL -->|"우선순위·Risk Owner"| QT["Perform Quantitative Risk Analysis"]
+    QL -->|"정량 분석 필요"| QT["Perform Quantitative Risk Analysis"]
+    QL -->|"정량 분석 생략 가능"| PR["Plan Risk Responses"]
     QT -->|"정량 분석 결과"| PR["Plan Risk Responses"]
     PR -->|"대응계획"| IR["Implement Risk Responses"]
     IR -->|"조치 결과·변경 요청"| M["Monitor Risks"]

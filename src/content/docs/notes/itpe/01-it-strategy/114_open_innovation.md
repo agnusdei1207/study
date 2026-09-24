@@ -24,7 +24,7 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **개방형 혁신(Open Innovation)**: 조직 안팎의 지식 유입·유출 경로를 활용해 혁신을 추진하는 전략.
+- **개방형 혁신(Open Innovation)** : 조직 안팎의 지식 유입·유출 경로를 활용해 혁신을 추진하는 전략
 - **Inbound Innovation** : 외부 기술과 아이디어를 내부 R&D 및 제품 개발에 결합하는 유입형 혁신
 - **Outbound Innovation** : 내부 유휴 지식과 기술을 라이선스·스핀오프 등을 통해 외부에 사업화하는 유출형 혁신
 - **Coupled Innovation** : 협력 파트너와 지식을 상호 교환하며 공동 R&D와 사업화를 추진하는 결합형 혁신
@@ -37,7 +37,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> 개방형 혁신의 지식 흐름과 외부 협력 통제를 설명하시오. (예상·10점)
+> 개방형 혁신의 세 가지 지식 흐름을 설명하시오. (예상·10점)
 
 ---
 
@@ -53,24 +53,10 @@ extra:
 ### Ⅱ. 지식 유입·유출 구조
 
 ```mermaid
-flowchart LR
-    subgraph INBOUND["Inbound (외부 지식 유입)"]
-        IN["대학·스타트업·고객 소싱"]
-    end
-    subgraph FUNNEL["다공성 경계의 내부 R&D 깔때기"]
-        RD["연구개발·제품화 검증"]
-    end
-    subgraph OUTBOUND["Outbound (내부 지식 유출)"]
-        OUT["미활용 IP 외부 사업화"]
-    end
-    subgraph MARKETS["목표 시장 진출"]
-        M1["현재 주력 시장"]
-        M2["신규 개척 시장"]
-    end
-
-    IN -->|유입| RD
-    RD -->|상용화| M1
-    RD -->|유출| OUT -->|진출| M2
+flowchart TD
+    IN["외부 지식"] -->|Inbound| RD["내부 연구개발·사업화"]
+    RD -->|Outbound| OUT["외부 사업화 경로"]
+    RD <-->|Coupled · 공동개발| PARTNER["협력 파트너"]
 ```
 
 ### Ⅲ. 세 가지 지식 흐름
@@ -80,6 +66,8 @@ flowchart LR
 | **Inbound** | 외부 지식 → 내부 혁신 | 기술도입·공동연구 |
 | **Outbound** | 내부 지식 → 외부 사업화 | 라이선스·기술이전·Spin-off |
 | **Coupled** | 외부와 내부 간 상호 교환 | 파트너 공동개발·합작 |
+
+제언: 필요한 외부 지식과 내부 사업화 자산을 구분하고 협업 범위와 지식재산권을 사전에 합의
 
 ---
 
@@ -115,24 +103,10 @@ flowchart LR
 ### 2. 지식 유입·유출 구조
 
 ```mermaid
-flowchart LR
-    subgraph INBOUND["Inbound (외부 지식 유입)"]
-        IN["대학·스타트업·고객 소싱"]
-    end
-    subgraph FUNNEL["다공성 경계의 내부 R&D 깔때기"]
-        RD["연구개발·제품화 검증"]
-    end
-    subgraph OUTBOUND["Outbound (내부 지식 유출)"]
-        OUT["미활용 IP 외부 사업화"]
-    end
-    subgraph MARKETS["목표 시장 진출"]
-        M1["현재 주력 시장"]
-        M2["신규 개척 시장"]
-    end
-
-    IN -->|유입| RD
-    RD -->|상용화| M1
-    RD -->|유출| OUT -->|진출| M2
+flowchart TD
+    IN["외부 지식"] -->|Inbound| RD["내부 연구개발·사업화"]
+    RD -->|Outbound| OUT["외부 사업화 경로"]
+    RD <-->|Coupled · 공동개발| PARTNER["협력 파트너"]
 ```
 
 ### 3. 추진 단계와 산출

@@ -63,6 +63,8 @@ flowchart TD
 - **Risk-proportionate Control** : 위험수준에 맞춘 기술·관리·절차 통제 조합
 - **Residual Risk Accountability** : 잔여위험·수용기준·승인책임·증적 연결
 
+제언: 단계별 개인정보 위험 조치와 잔여위험 승인 책임의 기록.
+
 ---
 
 ## 2~4교시 예상문제 (25점)

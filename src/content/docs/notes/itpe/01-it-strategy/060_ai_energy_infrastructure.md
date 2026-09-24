@@ -62,8 +62,12 @@ extra:
 
 ### Ⅲ. 핵심 통제
 
-- **Integrated Capacity Planning** : Workload·전력·열·물·입지 공동계획
-- **Carbon-aware Scheduling** : 전력여건과 SLA에 따른 시간·지역·가속기 배치
+| 통제 | 결정 기준 |
+|---|---|
+| **Integrated Capacity Planning** | AI 부하·전력·열·물·입지의 공동 용량계획 |
+| **Carbon-aware Scheduling** | 전력여건·SLA·설비 여유에 따른 연산 시간·지역 조정 |
+
+제언: 전력·냉각 용량과 AI 부하를 함께 검토한 단계별 증설 계획 수립.
 
 ---
 
