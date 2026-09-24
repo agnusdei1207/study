@@ -132,7 +132,7 @@ flowchart TD
     D --> E[보완 시험 또는 수용 근거 기록]
 ```
 
-커버리지 비율은 일반적으로 측정 대상 중 기준을 충족한 항목의 비율로 표현한다. 다만 분모·제외 항목·도구 계측 범위를 명시해야 비교 가능한 결과가 된다. 실행 여부 중심의 커버리지는 기대 결과를 제대로 확인했는지, 요구사항이 빠졌는지까지 단독으로 판단하지 못한다.
+커버리지 비율은 측정 대상 중 기준을 충족한 항목의 비율. 분모·제외 항목·도구 계측 범위를 명시해야 비교 가능한 결과이며, 실행 여부 중심의 커버리지 하나만으로 기대 결과의 확인 여부나 요구사항 누락까지 판단하기 어려움
 
 | 해석 질문 | 점검 내용 |
 |---|---|
@@ -159,8 +159,7 @@ flowchart TD
 ## 출제 이력과 검증 출처
 
 - [ISTQB 공식 용어집 포털](https://glossary.istqb.org/)
-- [ISTQB Glossary, Coverage 정의 자료](https://istqb-glossary.page/coverage/)
-- [ISTQB, Certified Tester Foundation Level Syllabus v4.0](https://www.istqb.org/certifications/certified-tester-foundation-level/)
+- [ISTQB Certified Tester Foundation Level Syllabus v4.0.1](https://istqb.org/?download_id=3345&sdm_process_download=1)
 
 ## 연결 토픽
 
