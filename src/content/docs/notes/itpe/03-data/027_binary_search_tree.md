@@ -31,7 +31,7 @@ weight: 27
 <details>
 <summary>핵심 용어</summary>
 
-- **BST(Binary Search Tree)**: 왼쪽 자식 < 부모 < 오른쪽 자식 순서 관계를 유지하는 이진트리
+- **BST(Binary Search Tree)**: 각 노드에서 왼쪽 서브트리의 모든 키 < 부모 키 < 오른쪽 서브트리의 모든 키를 유지하는 이진 트리
 - **In-order Traversal(중위 순회)**: `Left → Root → Right` 순으로 노드를 방문하여 오름차순 키를 추출하는 기법
 - **Skewed Tree(편향 트리)**: 정렬된 데이터 연속 삽입으로 트리가 선형 리스트화되어 높이가 N이 된 상태
 - **AVL Tree**: 좌우 서브트리의 높이 차(Balance Factor)를 1 이하로 엄격히 제한하는 자가 균형 트리
@@ -95,7 +95,7 @@ flowchart TB
 
 ## Ⅱ. BST 구조 및 주요 연산 메커니즘
 
-> 삽입·삭제 후에도 `Left < Node < Right` 규칙이 보존되어야 하며, 자식 2개 노드 삭제 시의 대체자 선정이 무결성의 핵심이다.
+> 삽입·삭제 후에도 왼쪽·오른쪽 **전체 서브트리**의 순서 불변식이 보존되어야 하며, 자식 2개 노드 삭제 시의 대체자 선정이 핵심이다.
 
 ```mermaid
 flowchart TB

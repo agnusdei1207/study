@@ -107,9 +107,9 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-    A["A의 기저율·사전확률"] --> B["A 여부별 B의 가능도"]
-    B --> C["B의 전체 발생 확률"]
-    C --> D["B 관측 후 A의 사후확률"]
+    A["A인 경우<br/>P(A)P(B|A)"] --> C["증거 전체 확률 P(B)"]
+    B["A가 아닌 경우<br/>P(¬A)P(B|¬A)"] --> C
+    C --> D["P(A)P(B|A) ÷ P(B)<br/>사후확률 P(A|B)"]
 ```
 
 | 판단 질문 | 확인할 것 |
