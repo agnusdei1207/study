@@ -84,11 +84,13 @@ sidebar:
 - `Law of Total Probability(전확률 공식)`: 표본공간을 상호 배타적으로 분할하는 가설들을 이용하여 전체 증거의 발생 확률 $P(E) = \sum P(E|H_i)P(H_i)$를 구하는 공식
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 베이즈 정리 (Bayes' Theorem)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -123,6 +125,7 @@ sidebar:
 > 인공지능 및 머신러닝의 확률적 의사결정 기반인 베이즈 정리(Bayes' Theorem)의 개념, 수학적 유도 과정, 4대 구성요소를 설명하고, 빈도주의(Frequentist)와 베이지안(Bayesian) 관점을 비교하며, 기저율 오류(Base Rate Fallacy)의 사례와 머신러닝 적용 시 시사점을 논하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -301,6 +304,7 @@ $$P(\text{Class} \mid X_1, X_2, \dots, X_n) \propto P(\text{Class}) \prod_{i=1}^
     </div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

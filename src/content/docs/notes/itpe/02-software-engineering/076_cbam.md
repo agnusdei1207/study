@@ -19,6 +19,7 @@ extra:
 ---
 
 > **로드맵 경로**: 소프트웨어공학 > 소프트웨어 아키텍처 및 구현 > 아키텍처 평가 > CBAM(Cost Benefit Analysis Method)
+
 ---
 
 ## 30초 인출
@@ -37,11 +38,13 @@ extra:
 - **FinOps(Cloud Financial Operations)**: 클라우드 인프라 아키텍처 변경에 따른 실시간 비용과 비즈니스 가치를 추적·최적화하는 재무 거버넌스
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > CBAM(Cost Benefit Analysis Method)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -67,9 +70,11 @@ flowchart LR
 ## 2~4교시 예상문제 (25점)
 
 > "소프트웨어 아키텍처 평가 기법 중 ATAM의 한계를 보완하기 위해 제안된 CBAM(Cost Benefit Analysis Method)의 개념과 필요성을 설명하고, 핵심 메커니즘인 유틸리티 함수와 ROI 산출 수식, 6단계 수행 절차 및 클라우드 FinOps와 연계된 아키텍처 거버넌스를 제시하시오."
+
 ---
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

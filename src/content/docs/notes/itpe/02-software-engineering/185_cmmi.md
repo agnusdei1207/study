@@ -37,11 +37,13 @@ extra:
 - **통계적 공정 관리(SPC, Statistical Process Control)**: 공정의 변동성을 관리 상한선(UCL)과 관리 하한선(LCL)으로 통제하여 결함 발생률과 개발 생산성을 수학적으로 예측하는 기법
 - **테일러링(Tailoring)**: 조직 표준 프로세스(OSSP)를 개별 프로젝트의 특성, 규모, 위험도, 계약 조건에 맞추어 합리적으로 가감 조정하는 표준 활동
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > CMMI(Capability Maturity Model Integration)의 정의와 목적, 핵심 메커니즘을 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -67,6 +69,7 @@ flowchart TB
 ## 2~4교시 예상문제 (25점)
 
 > CMMI(Capability Maturity Model Integration)의 개념과 목적을 설명하고, 핵심 메커니즘과 구성요소·절차, 적용 시 문제점과 대응 방안을 제시하시오. (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

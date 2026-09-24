@@ -77,6 +77,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 팬텀 충돌 (Phantom Conflict) 및 방지 기법 (Next-Key Lock, Predicate Lock)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -108,6 +109,7 @@ extra:
 > 트랜잭션 동시성 제어에서 발생하는 팬텀 충돌(Phantom Conflict)의 발생 원인과 메커니즘을 설명하고, 이를 해결하기 위한 서술어 락(Predicate Lock), 넥스트 키 락(Next-Key Lock) 및 격리 수준(Isolation Level)별 대응 방안을 비교 설명하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -319,6 +321,7 @@ COMMIT;
     <div class="itpe-flow-step__desc">금융·예약 시스템 직렬성 100% 보장 및 DB 락 경합 지연 60% 단축</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

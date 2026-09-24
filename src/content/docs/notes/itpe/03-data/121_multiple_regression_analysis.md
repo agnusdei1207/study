@@ -77,6 +77,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 다중회귀분석(Multiple Regression Analysis)의 모형 추정과 다중공선성 진단 및 정규화 해법의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -106,6 +107,7 @@ extra:
 > 다중회귀분석(Multiple Regression Analysis)의 기본 가정 4가지와 회귀계수 추정 원리를 설명하고, 다중공선성(Multicollinearity)의 문제점과 판별 기준(VIF) 및 정규화 회귀(Ridge, Lasso)를 통한 해결 방안을 기술하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -275,6 +277,7 @@ $$\text{VIF}_j = \frac{1}{1 - R_j^2}$$
     <div class="itpe-flow-desc">해석 가능한 고신뢰 회귀 모델 도출 및 실무 예측 오차 최소화</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

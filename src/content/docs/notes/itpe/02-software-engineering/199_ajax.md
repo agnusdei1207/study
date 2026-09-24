@@ -38,11 +38,13 @@ extra:
 - **동일 출처 정책(SOP, Same-Origin Policy)**: 브라우저가 보안을 위해 프로토콜, 도메인, 포트가 일치하는 동일 출처의 자원에만 AJAX 통신을 허용하는 핵심 보안 원칙
 - **교차 출처 리소스 공유(CORS)**: 서로 다른 출처 간에도 서버가 특정 HTTP 헤더(`Access-Control-Allow-Origin`)를 응답하여 안전하게 자원을 공유하도록 허용하는 W3C 표준 메커니즘
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > AJAX(Asynchronous JavaScript and XML)의 정의와 목적, 핵심 메커니즘을 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -72,6 +74,7 @@ flowchart TB
 ## 2~4교시 예상문제 (25점)
 
 > AJAX(Asynchronous JavaScript and XML)의 개념과 목적을 설명하고, 핵심 메커니즘과 구성요소·절차, 적용 시 문제점과 대응 방안을 제시하시오. (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

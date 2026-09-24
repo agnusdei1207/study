@@ -32,11 +32,13 @@ extra:
 - **WS-Security**: 메시지 수준(Message-level)에서 XML 서명 및 암호화를 제공하여 전송 프로토콜과 무관하게 종단 간 보안을 보장하는 표준
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > SOAP의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -67,6 +69,7 @@ flowchart TB
 > 엔터프라이즈 SOA(Service-Oriented Architecture)의 핵심 통신 프로토콜인 SOAP의 개념 및 메시지 구조(Envelope, Header, Body, Fault)를 설명하고, WSDL/UDDI와의 연계 메커니즘 및 현대 RESTful 웹 서비스와의 다각적 비교를 제시하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

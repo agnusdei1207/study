@@ -120,6 +120,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 선형 vs 비선형 자료구조 (Linear vs Non-linear Data Structures)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -148,6 +149,7 @@ extra:
 > 소프트웨어 및 데이터베이스 시스템 설계의 기초가 되는 선형 자료구조(Linear Data Structure)와 비선형 자료구조(Non-linear Data Structure)의 개념을 정의하고, 주요 유형, 시간·공간 복잡도, 캐시 지역성(Cache Locality) 관점에서 비교 설명하시오. (10점 / 25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -307,6 +309,7 @@ extra:
     <div class="itpe-flow-step__desc">단일 노드 트랜잭션 처리량(TPS) 5배 향상 및 안정적 메모리 풋프린트 유지</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

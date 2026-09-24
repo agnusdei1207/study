@@ -32,11 +32,13 @@ extra:
 - **Expand/Contract Pattern**: 무중단 배포 시 DB 스키마 호환성을 유지하기 위해 확장(Expand) 후 이전(Transition) 및 축소(Contract)하는 3단계 기법
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 무중단 배포의 개념과 Rolling·Blue/Green·Canary 배포의 트래픽 전환 방식을 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -67,6 +69,7 @@ flowchart TD
 > 클라우드 네이티브 환경에서 무중단 배포(Zero-Downtime Deployment)의 필요성을 설명하고, 3대 배포 전략(Rolling, Blue/Green, Canary)의 장단점 및 데이터베이스 스키마 변경 시 호환성 확보 방안을 제시하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

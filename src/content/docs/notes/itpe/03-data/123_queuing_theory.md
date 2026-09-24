@@ -83,6 +83,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 대기행렬이론(Queuing Theory) 구조와 켄달 표기법 및 리틀의 법칙 기반 시스템 사이징의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -111,6 +112,7 @@ extra:
 > 대기행렬이론(Queuing Theory)의 기본 구조와 켄달의 표기법(Kendall's Notation)을 기술하고, 리틀의 법칙(Little's Law)의 수식 및 IT 시스템 성능 용량 산정(Capacity Sizing)에서의 활용 방안을 설명하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -267,6 +269,7 @@ $$\rho = \frac{\lambda}{\mu} \quad (\text{안정 상태 조건: } \rho < 1)$$
     <div class="itpe-flow-desc">SLA 응답속도 준수 및 무장애 고가용성 서비스 환경 실현</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

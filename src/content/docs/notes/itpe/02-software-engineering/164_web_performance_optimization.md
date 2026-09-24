@@ -38,11 +38,13 @@ extra:
 - **트리 셰이킹(Tree-Shaking)**: ES 모듈 시스템(`import`/`export`)의 정적 구조를 분석하여 실제 호출되지 않는 무용 코드(Dead Code)를 빌드 번들에서 자동 제거하는 기법
 - **Reflow vs Repaint**: 레이아웃 위치/크기가 바뀌어 전체 기하학적 구조를 재계산하는 연산(Reflow)과, 색상 등 시각적 변화만 다시 그리는 연산(Repaint)
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 웹 성능 최적화(Web Performance Optimization)의 정의와 목적, 핵심 메커니즘을 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -68,6 +70,7 @@ flowchart LR
 ## 2~4교시 예상문제 (25점)
 
 > 웹 성능 최적화(Web Performance Optimization)의 개념과 목적을 설명하고, 핵심 메커니즘과 구성요소·절차, 적용 시 문제점과 대응 방안을 제시하시오. (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

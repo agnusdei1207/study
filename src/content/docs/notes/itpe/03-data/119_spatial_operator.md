@@ -67,6 +67,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 공간 연산자 (Spatial Operator) 체계 및 공간 인덱스 기반 2단계(Filter & Refine) 처리의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -94,6 +95,7 @@ extra:
 > 공간 데이터베이스(Spatial Database)의 공간 연산자(Spatial Operator)의 개념과 주요 유형(위상 연산자, 거리 연산자, 공간 변환 연산자)을 설명하고, 공간 질의 처리 시의 2단계(Filter & Refine) 처리 메커니즘 및 성능 최적화 방안을 기술하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -247,6 +249,7 @@ $$\begin{pmatrix} \dim(I(A) \cap I(B)) & \dim(I(A) \cap B(B)) & \dim(I(A) \cap E
     <div class="itpe-flow-desc">초고속 LBS 반경 검색 실현 및 서버 자원 사용량 80% 절감</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

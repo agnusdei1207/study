@@ -32,11 +32,13 @@ extra:
 - **ATAM(Architecture Tradeoff Analysis Method)**: 품질속성 시나리오를 바탕으로 아키텍처의 민감점과 절충점(Trade-off)을 평가하는 기법
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 소프트웨어 아키텍처(Software Architecture)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -67,6 +69,7 @@ flowchart TB
 > 시스템의 근본적인 구조적 틀을 형성하는 소프트웨어 아키텍처(Software Architecture)의 개념과 구성요소를 설명하고, Kruchten 4+1 View 모델의 구조 및 아키텍처 침식(Erosion) 방지를 위한 통제 방안을 제시하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

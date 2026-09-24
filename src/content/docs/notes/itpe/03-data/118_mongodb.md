@@ -89,6 +89,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > MongoDB 문서 지향(Document-Oriented) NoSQL 아키텍처 및 샤딩·복제 체계의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -116,6 +117,7 @@ extra:
 > 대용량 비정형 데이터 처리를 위한 문서 지향(Document-oriented) NoSQL 데이터베이스인 MongoDB의 개념과 핵심 특징을 설명하고, 분산 샤딩(Sharding) 클러스터의 3대 구성요소와 데이터 모델링 기법(Embedding vs Referencing)을 비교하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -289,6 +291,7 @@ extra:
     <div class="itpe-flow-desc">페타바이트급 수평 Scale-out 및 Vector Search 통합 AI 백엔드 완성</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

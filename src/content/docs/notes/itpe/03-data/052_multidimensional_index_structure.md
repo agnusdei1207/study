@@ -111,6 +111,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 다차원 색인구조 (Multidimensional Index Structure) 및 공간·고차원 데이터 색인의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -140,6 +141,7 @@ extra:
 > 다차원 색인구조(Multidimensional Index Structure)의 개념과 필요성을 설명하고, 포인트 접근법(PAM)과 공간 객체 접근법(SAM)의 핵심 유형(Grid File, K-D Tree, R-Tree, R* Tree)을 비교한 후, 실무 GIS/AI 환경에서의 한계점과 대응 방안을 서술하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -333,6 +335,7 @@ extra:
     <div class="itpe-flow-step__desc">LBS 대규모 모빌리티 관제 처리량 10배 증대 및 실시간 AI RAG 서빙 달성</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

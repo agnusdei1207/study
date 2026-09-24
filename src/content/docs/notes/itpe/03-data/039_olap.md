@@ -78,6 +78,7 @@ weight: 39
 ## 1교시 예상문제 (10점)
 
 > OLAP (Online Analytical Processing) 및 MOLAP·ROLAP·HOLAP의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -106,6 +107,7 @@ weight: 39
 > 데이터 웨어하우스 환경에서 다차원 데이터 분석을 지원하는 OLAP(Online Analytical Processing)의 개념을 설명하고, 다차원 큐브의 4대 핵심 연산과 ROLAP, MOLAP, HOLAP의 구조적 차이 및 최신 현대적 모던 데이터 스택(MDS) 관점의 발전 방향을 논하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -276,6 +278,7 @@ weight: 39
     <div class="itpe-flow-desc">무거운 큐브 빌드 배치 폐지 및 스트리밍 즉시 대화형 분석 보장</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

@@ -73,6 +73,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > IMDF(Indoor Mapping Data Format) 실내 공간정보 표준 규격 및 디지털 트윈 응용의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -102,6 +103,7 @@ extra:
 > 스마트 시티 및 실내 위치기반서비스(LBS)를 위한 OGC 국제 표준 데이터 포맷인 IMDF(Indoor Mapping Data Format)의 개념과 특징을 설명하고, 5단계 계층적 공간 모델 및 실내 공간 표준(IndoorGML, CityGML)과의 차이점을 비교하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -295,6 +297,7 @@ extra:
     <div class="itpe-flow-desc">초경량 실내 LBS 서비스 및 자율주행 로봇 물류 HD-Map 실현</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

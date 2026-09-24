@@ -36,11 +36,13 @@ extra:
 - **비결정적 유한 오토마타(NFA, Non-deterministic Finite Automata)**: 현재 상태에서 동일 입력에 대해 여러 상태로 전이할 수 있거나, 입력 없이 상태가 바뀌는 $\epsilon$(엡실론) 전이를 허용하는 오토마타 ($\delta: Q \times (\Sigma \cup \{\epsilon\}) \to 2^Q$)
 - **ReDoS(Regular Expression Denial of Service)**: NFA 기반 정규식 매칭 엔진이 특정 악의적 입력에 대해 지수 함수적($O(2^n)$) 백트래킹을 수행하여 CPU 자원을 100% 고갈시키는 서비스 거부 공격
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 유한 오토마타(Finite Automata)의 정의와 목적, 핵심 메커니즘을 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -73,6 +75,7 @@ flowchart LR
 ## 2~4교시 예상문제 (25점)
 
 > 유한 오토마타(Finite Automata)의 개념과 목적을 설명하고, 핵심 메커니즘과 구성요소·절차, 적용 시 문제점과 대응 방안을 제시하시오. (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

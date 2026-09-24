@@ -87,6 +87,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 로지컬 DW(Logical Data Warehouse) 가상화 아키텍처 및 쿼리 푸시다운 최적화의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -117,6 +118,7 @@ extra:
 > 가트너(Gartner)가 제안한 로지컬 데이터웨어하우스(LDW, Logical Data Warehouse)의 개념과 구성요소, 쿼리 푸시다운(Query Pushdown) 메커니즘을 설명하고, 전통적인 물리적 DW와의 장단점을 비교하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -264,6 +266,7 @@ extra:
     <div class="itpe-flow-desc">Zero-Copy 실시간 데이터 분석 실현 및 스토리지 TCO 60% 절감</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

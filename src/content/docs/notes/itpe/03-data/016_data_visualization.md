@@ -83,11 +83,13 @@ sidebar:
 - `Shneiderman's Mantra`: 정보 시각화의 황금률로, "개요를 먼저 보여주고, 줌/필터링을 제공하며, 필요 시 세부사항을 제공하라(Overview first, zoom and filter, then details-on-demand)"
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 데이터 시각화 (Data Visualization)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -126,6 +128,7 @@ sidebar:
 > 전사적 데이터 기반 의사결정 지원을 위한 데이터 시각화(Data Visualization)의 개념, 시각적 인코딩 채널의 정확도 계층, 분석 질문별 최적 차트 유형, 데이터 왜곡 방지를 위한 터프티(Tufte)의 원칙 및 웹 접근성 준수 방안을 설명하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -313,6 +316,7 @@ $$\text{Data-Ink Ratio} = \frac{\text{데이터 표시에 사용된 잉크 양}}
     </div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

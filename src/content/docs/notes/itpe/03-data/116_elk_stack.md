@@ -113,6 +113,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > ELK(Elasticsearch·Logstash·Kibana) 스택 기반 분산 로그 분석 및 관측성 플랫폼의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -154,6 +155,7 @@ extra:
 > 마이크로서비스 아키텍처(MSA) 및 클라우드 환경에서 시스템 통합 모니터링을 위한 ELK(Elasticsearch, Logstash, Kibana) 스택의 개념과 아키텍처를 제시하고, Elasticsearch의 역색인(Inverted Index) 구조 및 대규모 로그 운영을 위한 인덱스 수명주기 관리(ILM) 방안을 설명하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -265,6 +267,7 @@ extra:
     <div class="itpe-flow-step__content">장애 분석 리드타임 90% 단축, OOM 재발 방지, 스토리지 비용 60% 절감</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

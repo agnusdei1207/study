@@ -83,11 +83,13 @@ sidebar:
 - `MSE(Mean Squared Error)`: 추정량의 분산과 편향의 제곱의 합 ($MSE = Var(\hat{\theta}) + Bias^2$)으로, 총 예측 오차를 나타내는 척도
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 불편추정량(Unbiased Estimator)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -129,6 +131,7 @@ sidebar:
 > 통계적 점추정(Point Estimation)에서 불편추정량(Unbiased Estimator)의 개념과 좋은 추정량이 갖추어야 할 4대 조건(불·효·일·충)을 설명하고, 표본분산 계산 시 분모가 $n$이 아닌 $n-1$인 수학적 이유 및 편향-분산 트레이드오프(Bias-Variance Tradeoff) 관점에서의 시사점을 논하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -308,6 +311,7 @@ sidebar:
     </div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

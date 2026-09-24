@@ -84,11 +84,13 @@ sidebar:
 - `Federated Governance(연합형 거버넌스)`: 중앙 거버넌스 위원회는 공통 보안·표준 정책만 수립하고, 실제 관리는 분산 도메인 팀이 자율적으로 수행하는 운영 모델
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 데이터 거버넌스(Data Governance)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -126,6 +128,7 @@ sidebar:
 > 전사 데이터 사일로 해소 및 신뢰성 있는 AI 활용을 위한 데이터 거버넌스(Data Governance)의 개념, DAMA DMBOK 기반 프레임워크 5대 구성요소, 조직 체계(CDO, Owner, Steward, Custodian)의 R&R을 설명하고, Data Mesh 환경에서의 연합형 거버넌스(Federated Governance) 구축 방안을 제시하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -314,6 +317,7 @@ sidebar:
     </div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

@@ -98,6 +98,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL)의 비교 및 실행 메커니즘의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -142,6 +143,7 @@ extra:
 > 데이터베이스 응용 개발에서 사용되는 정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL)의 개념과 실행 메커니즘을 비교하고, 동적 SQL의 성능 저하 원인인 하드 파싱(Hard Parsing)의 문제점 및 SQL Injection 보안 취약점 극복 방안을 설명하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -252,6 +254,7 @@ extra:
     <div class="itpe-flow-step__content">DB CPU 70% 절감, SQLi 보안 사고 원천 예방, 검색 성능 80% 향상</div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

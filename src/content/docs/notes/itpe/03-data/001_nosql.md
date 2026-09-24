@@ -84,11 +84,13 @@ sidebar:
 - `CDC(Change Data Capture)`: 데이터베이스의 트랜잭션 로그를 실시간 감지하여 이기종 저장소로 이벤트를 전송·동기화하는 기술
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > NoSQL의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -127,6 +129,7 @@ sidebar:
 > 대규모 비정형 데이터 처리 및 고가용성 분산 환경 구축을 위한 NoSQL의 개념과 4대 핵심 모델(Key-Value, Document, Column Family, Graph)의 특징을 비교하고, Query-First 모델링 5단계 절차 및 RDBMS와의 Polyglot Persistence 구축 방안을 제시하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -414,6 +417,7 @@ sidebar:
     </div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

@@ -32,11 +32,13 @@ extra:
 - **Risk / Non-Risk**: 비즈니스 목표를 위협할 잠재적 결정(Risk)과 충분한 근거로 타당성이 입증된 결정(Non-Risk)
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > ATAM(Architecture Tradeoff Analysis Method)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -66,6 +68,7 @@ flowchart TB
 > 소프트웨어 아키텍처 평가 방법론인 ATAM(Architecture Tradeoff Analysis Method)의 개념 및 목적을 설명하고, 4단계 9개 세부 프로세스, 유틸리티 트리(Utility Tree)의 역할 및 민감점(Sensitivity Point)과 절충점(Tradeoff Point)의 차이를 제시하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

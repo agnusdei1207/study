@@ -32,11 +32,13 @@ extra:
 - **Idempotency(멱등성)**: 동일한 요청을 반복해도 서버에 의도한 효과가 한 번 수행한 것과 같은 성질(GET, PUT, DELETE 등)
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > REST의 개념과 주요 제약조건, HTTP 메서드의 멱등성을 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -66,6 +68,7 @@ flowchart TD
 > Roy Fielding이 제안한 REST(Representational State Transfer) 아키텍처 스타일의 개념과 6대 제약조건을 설명하고, HTTP Method의 멱등성(Idempotency) 및 리차드슨 성숙도 모델(Richardson Maturity Model) 4단계를 제시하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안

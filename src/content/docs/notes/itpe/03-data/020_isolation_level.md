@@ -88,11 +88,13 @@ sidebar:
 - `Snapshot Isolation(스냅샷 격리)`: 트랜잭션 시작 시점의 일관된 DB 스냅샷을 읽도록 하여 읽기 작업이 락 없이 완벽한 Repeatable Read를 달성하는 MVCC 기법
 
 </details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
 > 트랜잭션 격리 수준 (Isolation Level)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -127,6 +129,7 @@ sidebar:
 > 데이터베이스 트랜잭션의 ACID 속성 중 고립성(Isolation)을 보장하기 위한 ANSI/ISO SQL 표준의 4대 트랜잭션 격리 수준(Read Uncommitted, Read Committed, Repeatable Read, Serializable)을 비교하고, 각 수준에서 방지되는 이상현상(Dirty Read, Non-repeatable Read, Phantom Read, Write Skew)과 DBMS 제품별 구현 차이(Lock vs MVCC)를 설명하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
@@ -304,6 +307,7 @@ sidebar:
     </div>
   </div>
 </div>
+
 ---
 
 ## 출제 이력과 검증 출처

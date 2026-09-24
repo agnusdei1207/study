@@ -51,6 +51,7 @@ extra:
 ## 1교시 예상문제 (10점)
 
 > 점추정(Point Estimation)과 구간추정(Interval Estimation)의 비교 및 신뢰구간 평가의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+
 ---
 
 ## 1교시 10점 답안
@@ -89,6 +90,7 @@ extra:
 > 추론 통계(Inferential Statistics)에서 모집단의 모수를 추정하는 점추정(Point Estimation)과 구간추정(Interval Estimation)의 개념 및 차이점을 비교하고, 좋은 점추정량이 갖추어야 할 4대 조건과 신뢰수준(Confidence Level) 및 표본 크기($n$) 결정 원리를 설명하시오. (25점)
 
 > (25점, 예상)
+
 ---
 
 ## 2~4교시 25점 답안
