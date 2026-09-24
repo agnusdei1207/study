@@ -25,6 +25,7 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
+- **ITFM(IT Financial Management)** : IT 예산·비용을 계획하고 집행·보고하는 재무관리 활동이다.
 - **FinOps** : 엔지니어링·재무·비즈니스 부서가 협력하여 클라우드 비용 책임을 공유하고 비즈니스 가치를 극대화하는 운영 프레임워크
 - **FOCUS(FinOps Open Cost and Usage Specification)** : 기술 비용·사용 데이터를 공통 형식으로 나타내기 위한 사양
 - **Inform(가시화)** : 기술 사용량·비용·가치를 배부·분석해 개선 대상을 찾는 반복 단계

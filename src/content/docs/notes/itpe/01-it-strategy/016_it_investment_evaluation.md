@@ -25,6 +25,8 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
+- **AHP(Analytic Hierarchy Process)** : 여러 평가 기준의 쌍대비교로 중요도와 대안의 우선순위를 산정하는 의사결정 기법이다.
+- **BPR(Business Process Reengineering)** : 업무 프로세스를 근본적으로 재설계하는 방법이다.
 - **IT 투자평가** : 전 생애주기(사전·중간·사후)에 걸쳐 IT 비용과 편익 및 위험을 측정·통제하는 가치 거버넌스 활동
 - **Productivity Paradox(생산성의 역설)** : IT 투자의 급격한 증가에도 불구하고 기업 및 국가 차원의 생산성 향상이 뚜렷하게 나타나지 않는 현상
 - **TCO(Total Cost of Ownership)** : 초기 획득 비용과 운영·유지보수·폐기 등 수명주기 전체에 걸쳐 발생하는 직·간접 비용의 총합
