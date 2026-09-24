@@ -27,9 +27,9 @@ extra:
 
 - **SOAP**: 플랫폼과 프로그래밍 언어에 독립적으로 XML 기반 메시지를 교환하기 위한 W3C 표준 분산 프로토콜
 - **WSDL(Web Services Description Language)**: 웹 서비스의 위치, 제공하는 메서드, 매개변수 타입을 XML로 엄격히 기술한 인터페이스 계약서
-- **UDDI(Universal Description, Discovery, and Integration)**: 웹 서비스를 등록하고 검색할 수 있는 전역 비즈니스 레지스트리 표준
+- **UDDI(Universal Description, Discovery, and Integration)**: 웹 서비스 등록·검색을 위한 디렉터리 표준
 - **SOAP Fault**: SOAP 메시지 처리 중 오류가 발생했을 때 상세 에러 정보를 표준 규격으로 반환하는 Body 하위 엘리먼트
-- **WS-Security**: 메시지 수준(Message-level)에서 XML 서명 및 암호화를 제공하여 전송 프로토콜과 무관하게 종단 간 보안을 보장하는 표준
+- **WS-Security**: 메시지 수준에서 서명·암호화·보안 토큰을 다루는 웹 서비스 보안 표준
 
 </details>
 
@@ -43,25 +43,27 @@ extra:
 
 ## 1교시 10점 답안
 
-### 1. 정의·목적
+### Ⅰ. 정의·목적
 
-- 정의: **SOAP(Simple Object Access Protocol)**은 분산 환경에서 프로토콜 독립적으로 XML 기반 구조화된 메시지를 교환하는 W3C 표준 프로토콜
-- 목적: 엄격한 인터페이스 계약(WSDL)과 메시지 수준 보안(WS-Security) 기반 B2B 연계
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **SOAP(Simple Object Access Protocol)**은 분산 환경에서 프로토콜 바인딩에 따라 XML 기반 메시지를 교환하는 W3C 표준 메시징 프로토콜이다. |
+| 목적 | 시스템 간 메시지 형식을 표준화하고 확장 표준을 적용해 상호운용성을 지원한다. |
 
-### 2. SOAP 메시지 구조
+### Ⅱ. SOAP 메시지 구조
 
 ```mermaid
 flowchart TB
-    ENV["Envelope"] -->|"선택"| HDR["Header"]
-    ENV -->|"필수"| BODY["Body"]
-    BODY --> PAY["요청·응답 데이터"]
-    BODY -->|"오류 시"| FAULT["Fault"]
+ENV["Envelope"] ---|"선택 요소"| HDR["Header"]
+ENV ---|"필수 요소"| BODY["Body"]
+BODY ---|"일반 데이터"| PAY["요청·응답 데이터"]
+BODY ---|"오류 표현"| FAULT["Fault"]
 ```
 
-### 3. 핵심 통제
+### Ⅲ. 핵심 통제
 
-- **WSDL 계약**: 서비스 규격, 오퍼레이션, 파라미터 타입을 사전 엄격 통제
-- **WS-Security**: XML 서명/암호화로 중간 매개체 통과 시에도 종단 간 기밀성 보증
+- **WSDL 기술**: 서비스 인터페이스의 오퍼레이션·메시지 형식을 기술할 수 있다.
+- **WS-Security**: 메시지 수준 서명·암호화 표준을 적용해 중간 전달 구간에서도 보안 요구를 유지한다.
 ---
 
 ## 2~4교시 예상문제 (25점)
@@ -74,26 +76,26 @@ flowchart TB
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 엄격한 계약 기반 엔터프라이즈 메시징, SOAP의 개요
+### Ⅰ. SOAP 개요와 메시지 구조
 
-> 웹의 유연함보다는 기업 간(B2B) 금융·공공 거래의 엄격한 보안과 형식적 계약 무결성이 최우선일 때 SOAP이 채택된다.
+> SOAP은 XML 메시지 형식과 확장 표준을 정의하며, SOAP을 선택할지는 상대 시스템의 계약·보안 요구와 운영 여건에 맞춰 판단한다.
 
-- 정의: 분산 환경에서 서로 다른 기종의 시스템 간에 구조화된 정보(XML)를 전송 프로토콜(HTTP, SMTP, JMS 등)에 독립적으로 교환할 수 있도록 정의한 W3C 표준 프로토콜
-- 목적: 분산 객체 간 상호운용성 보장, **WS-* 표준(보안, 트랜잭션, 신뢰성)** 기반 엔터프라이즈 B2B 연계, 엄격한 인터페이스 계약 준수
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **SOAP(Simple Object Access Protocol)**은 분산 환경에서 프로토콜 바인딩에 따라 XML 기반 메시지를 교환하는 W3C 표준 메시징 프로토콜이다. |
+| 목적 | 시스템 간 메시지 형식을 표준화하고 확장 표준을 적용해 상호운용성을 지원한다. |
 
-### Ⅱ. SOAP 메시지 구조: Envelope·Header·Body·Fault
-
-> 모든 SOAP 메시지는 단일 XML 문서로 구성되며, 봉투(Envelope) 안에 헤더와 바디가 중첩된다.
+> SOAP 메시지는 Envelope를 최상위 요소로 두며, Header는 선택 요소이고 Body는 필수 요소다.
 
 ```mermaid
 flowchart TB
-    ENV["Envelope"] -->|"선택"| HDR["Header"]
-    ENV -->|"필수"| BODY["Body"]
-    BODY --> PAY["요청·응답 데이터"]
-    BODY -->|"오류 시"| FAULT["Fault"]
+    ENV["Envelope"] ---|"선택 요소"| HDR["Header"]
+    ENV ---|"필수 요소"| BODY["Body"]
+    BODY ---|"일반 데이터"| PAY["요청·응답 데이터"]
+    BODY ---|"오류 표현"| FAULT["Fault"]
 ```
 
-### Ⅲ. 웹 서비스 3대 표준 스택: SOAP, WSDL, UDDI
+### Ⅱ. 웹 서비스 표준 간 연계: SOAP, WSDL, UDDI
 
 > 세 기술은 서비스 출판(Publish), 검색(Find), 바인딩(Bind)의 삼각관계를 형성한다.
 
@@ -104,16 +106,16 @@ flowchart LR
     REQ -->|"Bind · SOAP 호출"| PROV
 ```
 
-### Ⅳ. SOAP 적용 문제점·대응책
+### Ⅲ. SOAP 적용 문제점·대응책
 
 > 경량성과 모바일 확장을 중시하는 웹 환경은 REST로 재편되었으나, 레거시 금융과 보안 연계에서는 여전히 SOAP이 공존한다.
 
 | 비교 항목 | SOAP (Simple Object Access Protocol) | REST (Representational State Transfer) |
 |---|---|---|
 | **본질적 위상** | **엄격한 프로토콜 (Protocol)** | **유연한 아키텍처 스타일 (Style)** |
-| **데이터 포맷** | **오직 XML만 지원** (장황함, 무거움) | **JSON**, XML, Text 등 다양한 포맷 지원 (경량) |
-| **인터페이스 계약**| **WSDL 기반 강력한 사전 계약 강제** | 자유로움 (OpenAPI/Swagger로 사후 문서화) |
-| **전송 프로토콜** | 프로토콜 독립적 (HTTP, SMTP, TCP, JMS) | **HTTP 프로토콜에 전적으로 종속** |
+| **데이터 포맷** | XML 기반 메시지 | 자원 표현 형식은 구현에 따라 다양 |
+| **인터페이스 계약**| WSDL로 서비스 인터페이스를 기술할 수 있음 | 자원·제약 조건에 따라 계약을 기술하고 OpenAPI를 활용할 수 있음 |
+| **전송 프로토콜** | 바인딩에 따라 여러 전송을 사용할 수 있음 | 보통 HTTP 제약과 메서드를 활용하지만 REST 자체는 HTTP 전용이 아님 |
 | **보안 메커니즘** | **WS-Security (메시지 레벨 암호화/무결성)** | 전송 레벨 HTTPS(TLS) 및 애플리케이션 JWT |
 | **성능 및 복잡도** | 파싱 오버헤드 큼, 학습 곡선 높음 | 빠르고 단순함, 브라우저/모바일 친화적 |
 
@@ -123,27 +125,18 @@ flowchart LR
 | 계약 변경으로 소비자 장애 | WSDL 버전 관리 · 호환성 테스트 | 연계 시스템 회귀 방지 |
 | 메시지 보안 설정 오류 | WS-Security 프로파일 검증 · 키 수명주기 통제 | 종단 간 무결성·기밀성 확보 |
 
-### Ⅴ. 계약·상호운용성 중심의 결론
-
-> SOAP을 무조건적인 레거시로 배척할 것이 아니라, 고도의 B2B 금융 컴플라이언스 환경에 맞는 적재적소 운용이 필요하다.
-
-### 학습자 통찰 메모 — 답안 밖
-
-- [핵심 통찰]: REST가 웹과 모바일의 천하통일을 이룬 이유는 JSON의 가벼움과 HTTP의 단순성 덕분임. 하지만 중간 프록시를 거치며 메시지 자체가 여러 라우터를 통과해야 하는 은행 간 망(Swift, 금융결제원) 연계에서는 전송 계층 암호화(HTTPS)만으로는 부족하며, 메시지 본문 자체를 전자서명하고 암호화하는 SOAP의 WS-Security가 여전히 강력한 기술적 정당성을 가짐.
-- 나라면: 신규 대고객 서비스 및 MSA 환경에서는 REST/JSON과 gRPC를 표준으로 채택하되, 금융사 코어 뱅킹이나 대외 정부 공공 연계 시스템과의 인터페이스는 ESB(Enterprise Service Bus) 기반의 SOAP/WSDL 어댑터를 배치하여 이중화 거버넌스를 구축하겠음.
-
 ### 실전 답안용 기술사적 제언
 
-- **판정 기준**: 대외 B2B/금융망 연계는 SOAP(WS-Security) 강제, 대고객 채널 및 MSA 내부 통신은 REST/gRPC 채택으로 분기 판정
-- **대응 방안**: API Gateway 및 ESB 멀티 프로토콜 변환 어댑터를 구축하여 기존 SOAP 백엔드를 신규 REST 인터페이스로 래핑
-- **검증 체계**: WS-Security 전자서명/암호화 유효성 및 WSDL 스키마 준수율 100% 검증, 프로토콜 변환 지연 30ms 이내 통제
-- **기대 효과**: 레거시 코어 자산의 연속성 보장과 현대적 MSA 클라우드 생태계 간 무중단 상호운용성 확보
+| 문제 | 해결 방안 |
+|---|---|
+| 연계 방식이 과거 선택이나 유행에 따라 고정되어 상대 시스템의 실제 계약 요구를 반영하지 못함 | 제언: 새 연계마다 XML 계약·메시지 수준 보안·기존 소비자 호환성이 필요한지 확인하고, 요구를 만족하는 가장 단순한 방식과 어댑터 범위를 선택한다. |
 ---
 
 ## 출제 이력과 검증 출처
 
 - 제134회 정보관리기술사 2교시: 웹 서비스(SOAP)와 RESTful 아키텍처의 심층 비교
 - W3C SOAP Version 1.2 Specification
+- [W3C SOAP Version 1.2 Part 1: Messaging Framework](https://www.w3.org/TR/soap12/)
 - OASIS Web Services Security (WSS) TC Standard
 
 ## 연결 토픽
