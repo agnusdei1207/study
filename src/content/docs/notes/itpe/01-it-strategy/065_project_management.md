@@ -1,14 +1,14 @@
 ---
 title: "프로젝트 관리 통합 체계"
-author: "Codex"
-date: "2026-09-22T23:40:00+09:00"
+author: "OpenAI"
+date: "2026-09-24T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "B"
 extra:
   keyword_grade: "B"
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -24,7 +24,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **PM(Project Management)** : 프로젝트 목표 달성을 위해 지식·기량·도구·기법을 적용하는 통합 관리 활동
+- **프로젝트 관리 통합 체계**: 조직 전략과 포트폴리오·프로그램·프로젝트를 연결해 투자와 실행을 관리하는 구조
+- **Portfolio(포트폴리오)**: 전략 목표에 맞추어 프로젝트·프로그램 등 구성요소를 선택하고 우선순위·자원을 조정하는 관리 대상
+- **Programme(프로그램)**: 개별 관리만으로 얻기 어려운 편익을 위해 연관 프로젝트와 활동을 조정하는 관리 방식
+- **Project(프로젝트)**: 한시적으로 수행해 고유한 제품·서비스·결과를 만드는 활동
+- **편익 실현**: 프로젝트 산출물이 업무 성과와 조직 가치로 이어지는 정도를 계획·측정하는 활동
 - **WBS(Work Breakdown Structure)** : 프로젝트 전체 범위를 인도물 중심의 하위 작업 요소로 계층 분해한 체계
 - **Baseline** : 성과 측정과 공식 변경 통제의 기준이 되는 승인된 범위·일정·원가 계획 기준선
 - **CCB(Change Control Board)** : 프로젝트 변경 요청의 타당성을 심의하여 승인·기각을 결정하는 의사결정 기구
@@ -43,19 +47,28 @@ extra:
 
 ## 1교시 10점 답안
 
-### 1. 정의·목적
+### Ⅰ. 개요
 
-- 정의: 제한된 기간과 자원으로 고유한 산출·성과를 만들고 가치를 인도하도록 기획·실행·통제하는 활동
-- 목적: **전략 정렬·성과 인도·제약 균형·위험 통제·조직 학습**
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **프로젝트 관리 통합 체계** 는 조직 전략을 포트폴리오·프로그램·프로젝트의 투자·편익·산출로 연결하는 관리 구조다. |
+| 목적 | 전략에 맞는 투자를 선택하고, 연관 사업의 편익과 프로젝트 산출물을 통해 조직 가치를 실현한다. |
 
-### 2. 계층 정렬 및 가치 인도 체계
+### Ⅱ. 계층 정렬 및 가치 인도 체계
 
 ```mermaid
 flowchart TD
-    PORT["Portfolio · 전략·투자 최적화"] --> PROG["Programme · 편익 실현"] --> PROJ["Project · 산출 인도"]
+    STR["조직 전략·가치 목표"] -->|투자 기준| PF["Portfolio · 구성요소 선택·우선순위"]
+    PF -->|구성요소: 연관 사업군| PG["Programme · 연관 프로젝트 조정·편익"]
+    PF -->|구성요소: 독립 과제| PJ["Project · 고유 산출·성과"]
+    PG -->|조정·통합| P1["Project A"]
+    PG -->|조정·통합| P2["Project B"]
+    P1 -->|산출·성과 기여| VAL["업무 편익·조직 가치"]
+    P2 -->|산출·성과 기여| VAL
+    PJ -->|산출·성과 기여| VAL
 ```
 
-### 3. 핵심 통제
+### Ⅲ. 핵심 통제
 
 - **Baseline·CCB** : 승인계획 대비 편차와 변경의 공식 통제
 - **Evidence-based Forecast** : 산출·시험·EVM·위험 기반 완료예측
@@ -70,21 +83,27 @@ flowchart TD
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. 산출물을 조직 가치로 연결하는 통합 관리의 개요
-
-> 프로젝트 성공은 납기·예산 준수만이 아니라 결과가 의도한 편익과 조직 가치로 전환되는가로 판단해야 함.
+### Ⅰ. 프로젝트 관리 통합 체계의 개요
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | 제한된 기간과 자원으로 고유한 **산출물** 과 **성과** 를 만들고 의도한 가치를 인도하도록 프로젝트를 기획·실행·통제하는 활동 |
-| 목적 | **전략 정렬** · **성과 인도** · **제약 균형** · **위험 통제** · **조직 학습** |
-PMBOK(Project Management Body of Knowledge) 8판과 ISO 21502:2020을 프로젝트 관리 기준으로 참고한다.
+| 정의 | **프로젝트 관리 통합 체계** 는 조직 전략을 포트폴리오·프로그램·프로젝트의 투자·편익·산출로 연결하는 관리 구조다. |
+| 목적 | 전략에 맞는 투자를 선택하고, 연관 사업의 편익과 프로젝트 산출물을 통해 조직 가치를 실현한다. |
 
-## Ⅱ. Portfolio·Programme·Project 비교
+이 답안에서는 PMI의 PMBOK Guide 제8판과 ISO 21500:2021의 프로젝트·프로그램·포트폴리오 맥락을 참고한다. ISO 21502:2020은 프로젝트 관리 지침이다.
+
+### Ⅱ. Portfolio·Programme·Project 비교
 
 ```mermaid
 flowchart TD
-    PORT["Portfolio · 전략·투자 최적화"] --> PROG["Programme · 편익 실현"] --> PROJ["Project · 산출 인도"]
+    STR["조직 전략·가치 목표"] -->|투자 기준| PF["Portfolio · 구성요소 선택·우선순위"]
+    PF -->|구성요소: 연관 사업군| PG["Programme · 연관 프로젝트 조정·편익"]
+    PF -->|구성요소: 독립 과제| PJ["Project · 고유 산출·성과"]
+    PG -->|조정·통합| P1["Project A"]
+    PG -->|조정·통합| P2["Project B"]
+    P1 -->|산출·성과 기여| VAL["업무 편익·조직 가치"]
+    P2 -->|산출·성과 기여| VAL
+    PJ -->|산출·성과 기여| VAL
 ```
 
 | 기준 | Portfolio | Programme | Project |
@@ -94,7 +113,7 @@ flowchart TD
 | 통제 | 선정·우선순위·자원균형 | 의존성·변화·편익 | 범위·일정·원가·품질 |
 | 성공 | 전략 기여·투자성과 | 편익·역량 전환 | 인수·성과·가치 기여 |
 
-## Ⅲ. 프로젝트 관리 절차
+### Ⅲ. 프로젝트 관리 절차
 
 > 프로젝트의 접근법이 예측형·적응형·Hybrid 중 무엇이든 승인·인도·측정·학습의 관리흐름은 필요함.
 
@@ -103,7 +122,7 @@ flowchart TD
     S1["① 정당화·착수"] --> S2["② 계획·Baseline"] --> S3["③ 실행·인도"] --> S4["④ 측정·변경통제"] --> S5["⑤ 인수·종료·환류"]
 ```
 
-## Ⅳ. 예측형·적응형·Hybrid 비교
+### Ⅳ. 예측형·적응형·Hybrid 비교
 
 | 기준 | Predictive | Adaptive | Hybrid |
 |---|---|---|---|
@@ -113,7 +132,7 @@ flowchart TD
 | 변경 | CCB·Baseline | Backlog 재우선순위 | 수준별 이원통제 |
 | 적합 | 규제·물리·계약 고정 | 탐색·디지털 제품 | 대규모 IT 전환 |
 
-## Ⅴ. 문제점·대응책
+### Ⅴ. 문제점·대응책
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
@@ -121,44 +140,22 @@ flowchart TD
 | Scope Creep | 요구-WBS-Baseline·CCB 추적 | 변경 투명성 |
 | 낙관적 진척 보고 | EVM·Milestone·실물 증적 | 예측력 향상 |
 | 통합결함 후반 집중 | 조기통합·자동시험·Definition of Done | 재작업 감소 |
-| 종료 후 편익 단절 | 편익 Owner·측정시점·이관계획 | 가치 실현 |
+| 완료 기준이 일정·원가에 치우침 | 인수 기준·품질 증거·사용자 확인 | 산출물 검증 |
 
-## Ⅵ. Evidence-based Forecast 제언
+### Ⅵ. 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- 문제: 개별 프로젝트 중심의 단편적 관리로 인해 전사 경영 전략과의 불일치, 프로젝트 간 핵심 자원 경합 및 중복 투자로 전사적 ROI가 저하됨.
-- 해결 방안: 경영 목표 달성을 위한 포트폴리오 관리(Portfolio, 올바른 일의 선택), 복수 프로젝트 간 시너지를 극대화하는 프로그램 관리(Program, 연계 통합), 개별 납기·원가를 준수하는 프로젝트 관리(Project, 올바른 실행)의 3계층 거버넌스를 확립함.
-
-```mermaid
-flowchart TD
-    subgraph Portfolio["1. 포트폴리오 관리 (Portfolio Management)"]
-        PF1["조직의 전략 목표 및 가치 극대화"]
-        PF2["투자 우선순위화 및 전사 자원 최적 배분"]
-        PF1 --> PF2
-    end
-    subgraph Program["2. 프로그램 관리 (Program Management)"]
-        PG1["상호 연관된 프로젝트 군(群)의 통합 관리"]
-        PG2["개별 프로젝트 차원을 넘는 통합 시너지 창출"]
-        PG1 --> PG2
-    end
-    subgraph Project["3. 프로젝트 관리 (Project Management)"]
-        PJ1["특정 산출물 완성을 위한 유일한 노력"]
-        PJ2["범위·일정·원가·품질(Triple Constraints) 완결"]
-        PJ1 --> PJ2
-    end
-
-    Portfolio -->|전략 정렬 및 지시| Program
-    Program -->|조정 및 가치 연결| Project
-    Project -.->|성과 보고 및 피드백| Program
-    Program -.->|전략적 가치 환류| Portfolio
-```
+| 문제 | 해결 방안 |
+|---|---|
+| EVM과 일정 달성만으로 프로젝트 완료를 판정하면 산출물이 실제 업무 성과와 편익으로 이어졌는지 놓칠 수 있다. | 착수 시 편익 책임자와 측정 기준을 정하고, 종료 시 인수 증거와 운영 이관을 확인한 뒤 사후 평가에서 실제 편익을 기준선과 비교한다. |
 
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문으로 확인한 직접 기출 없음
 - [PMI, PMBOK Guide Eighth Edition](https://www.pmi.org/standards/pmbok)
+- [ISO, ISO 21500:2021 Context and concepts](https://committee.iso.org/sites/tc258/home/projects/published/iso-3.html)
 - [ISO, ISO 21502:2020 Guidance on project management](https://www.iso.org/standard/74947.html)
+- [ISO, ISO 21503:2022 Guidance on programme management](https://committee.iso.org/sites/tc258/home/projects/published/iso-21503.html)
+- [ISO, ISO 21504:2022 Guidance on portfolio management](https://committee.iso.org/sites/tc258/home/projects/published/iso-21504.html)
 
 ## 연결 토픽
 
