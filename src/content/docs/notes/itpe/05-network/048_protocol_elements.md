@@ -1,7 +1,7 @@
 ---
 title: "통신 프로토콜 기본 요소"
 author: "Codex"
-date: "2026-09-24T21:11:00+09:00"
+date: "2026-09-24T21:17:00+09:00"
 tags:
   - "notes-network"
 sidebar:

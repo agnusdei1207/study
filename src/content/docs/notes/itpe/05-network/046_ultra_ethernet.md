@@ -1,7 +1,7 @@
 ---
 title: "Ultra Ethernet (UEC)"
 author: "Codex"
-date: "2026-09-24T21:11:00+09:00"
+date: "2026-09-24T21:17:00+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -98,7 +98,7 @@ UET 전송 계층
 Ethernet NIC·스위치·링크
 ```
 
-UEC Specification 1.0은 2025년 6월 공개. Ethernet의 익숙한 물리·링크 생태계를 바탕으로 고성능 통신 스택을 규정하는 방향.
+UEC Specification 1.0은 2025년 6월 공개. 2026년 9월 공식 다운로드 페이지에 게시된 사양 버전은 1.0.3. Ethernet의 물리·링크 생태계를 바탕으로 고성능 통신 스택을 규정하는 방향.
 
 ## Ⅲ. 기존 구성과의 비교 관점
 
@@ -131,3 +131,4 @@ UEC 사양을 적용한다고 기존 RoCE 구성에 PFC가 항상 필요한 것 
 - 관련 기출 미확인으로 예상문제 구성
 - [Ultra Ethernet Consortium, Specification 1.0 release](https://ultraethernet.org/ultra-ethernet-consortium-uec-launches-specification-1-0-transforming-ethernet-for-ai-and-hpc-at-scale/)
 - [Ultra Ethernet Consortium, Specification and downloads](https://ultraethernet.org/uec-1-0-spec)
+- [Ultra Ethernet Consortium, Specification History (v1.0.3 current version, July 16, 2026)](https://ultraethernet.org/specification-history/)
