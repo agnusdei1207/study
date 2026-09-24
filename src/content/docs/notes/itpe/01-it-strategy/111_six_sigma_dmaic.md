@@ -5,10 +5,10 @@ date: "2026-09-24T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
-    text: "응용"
+    text: "서브"
 extra:
   model: "GPT-6"
-  keyword_grade: "응용"
+  keyword_grade: "서브"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +26,7 @@ extra:
 - **DMAIC(Define, Measure, Analyze, Improve, Control)** : 프로세스 결함과 산포를 축소하기 위한 6시그마 5단계 문제해결 절차
 - **Six Sigma DMAIC** : 프로세스 문제를 데이터로 분석·개선하고 개선 결과를 관리하는 다섯 단계 방법
 - **VOC(Voice of Customer)** : 설문·인터뷰 등을 통해 수집된 고객의 직접적인 요구와 피드백 정보
-- **CTQ(Critical to Quality)** : VOC를 측정 가능한 정량적 목표치로 전환한 핵심 품질특성
+- **CTQ(Critical to Quality)** : 고객 요구에서 도출해 제품·서비스·프로세스의 품질을 좌우하는 핵심 특성 및 측정 기준
 - **DPMO(Defects Per Million Opportunities)** : 결함 기회 100만 건당 실제 발생한 결함 수를 나타내는 통계적 품질 척도
 - **MSA(Measurement System Analysis)** : 데이터 측정 오차와 시스템 신뢰성을 검증하는 측정시스템 분석(Gage R&R)
 - **SPC(Statistical Process Control)** : 관리도를 활용해 프로세스의 비정상적 변동을 감시·통제하는 통계적 공정관리 기법
@@ -34,7 +34,6 @@ extra:
 - **DOE(Design of Experiments)** : 프로세스 인자들의 주효과와 상호작용을 검증해 최적 조건을 도출하는 실험계획법
 - **FMEA(Failure Mode and Effects Analysis)** : 잠재 고장 형태의 심각도·발생도·검출도를 평가해 위험 우선순위를 도출하는 분석 기법
 - **SOP(Standard Operating Procedure)** : 개선된 프로세스의 재발 방지와 현장 안착을 위해 정의한 표준운영절차서
-- **SLI(Service Level Indicator)** : 가용성·지연시간 등 IT 서비스 수준의 현 상태를 정량 측정한 지표
 
 </details>
 
@@ -42,7 +41,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> Six Sigma의 DMAIC 단계와 단계별 핵심 통제를 설명하시오. (예상·10점)
+> Six Sigma DMAIC에 관하여 설명하시오. (예상·10점)
 
 ---
 
@@ -52,7 +51,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Six Sigma DMAIC**는 기존 프로세스의 문제를 데이터로 분석·개선하고 성과를 관리하는 다섯 단계 방법 |
+| 정의 | **Six Sigma DMAIC** 는 기존 프로세스의 문제를 데이터로 분석·개선하고 성과를 관리하는 다섯 단계 방법 |
 | 목적 | 고객의 핵심 품질 요구 충족과 결함·변동 감소 |
 
 ### Ⅱ. DMAIC 단계 흐름
@@ -76,7 +75,7 @@ flowchart TD
 
 ## 2~4교시 예상문제 (25점)
 
-> Six Sigma의 DMAIC 단계별 활동과 주요 도구를 설명하고, Lean과 비교해 적용 시 유의점을 제시하시오. (예상·25점)
+> Six Sigma DMAIC의 단계·주요 도구·적용 시 고려사항을 설명하시오. (예상·25점)
 
 ---
 
@@ -86,7 +85,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Six Sigma DMAIC**는 기존 프로세스의 문제를 데이터로 분석·개선하고 성과를 관리하는 다섯 단계 방법 |
+| 정의 | **Six Sigma DMAIC** 는 기존 프로세스의 문제를 데이터로 분석·개선하고 성과를 관리하는 다섯 단계 방법 |
 | 목적 | 고객의 핵심 품질 요구 충족과 결함·변동 감소 |
 
 ## Ⅱ. DMAIC 단계별 활동·산출

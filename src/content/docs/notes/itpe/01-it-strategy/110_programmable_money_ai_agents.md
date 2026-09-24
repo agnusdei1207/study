@@ -24,9 +24,9 @@ extra:
 <summary>핵심 용어</summary>
 
 - **Programmable Money·AI Agent 결제** : 결제 조건을 자동 처리하고 에이전트의 거래 권한을 통제하는 지급 방식
-- **Programmable Money** : 사용 목적·시점·상대방 등에 제약을 둔 디지털 화폐
+- **Programmable Money** : 바우처처럼 화폐 자체에 사전 지정 목적·사용 장소·시점·상대방 제한을 둔 디지털 화폐 개념
 - **Programmable Payment** : 정한 조건이 충족될 때 결제 지시가 자동 실행되는 지급 방식
-- **AI Agent** : 목표를 받아 도구를 선택·호출하고, 설정된 권한 안에서 여러 작업을 수행하는 소프트웨어 시스템
+- **AI Agent(Artificial Intelligence Agent)** : 목표를 받아 도구를 선택·호출하고, 설정된 권한 안에서 여러 작업을 수행하는 소프트웨어 시스템
 - **PSP(Payment Service Provider)** : 이용자·가맹점에 지급결제 서비스를 제공하거나 결제망을 연결하는 사업자
 - **Conditional Payment** : 상품 인도나 서비스 조건 확인 뒤 대금을 지급하도록 설계한 조건부 결제
 
@@ -36,7 +36,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> AI Agent 결제의 권한 위임 구조와 주요 통제를 설명하시오. (예상·10점)
+> Programmable Money·AI Agent 결제의 개념과 통제방안에 관하여 설명하시오. (예상·10점)
 
 ---
 
@@ -46,7 +46,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Programmable Money·AI Agent 결제**는 조건부 결제 처리와 에이전트의 거래 권한을 통제하는 지급 방식 |
+| 정의 | **Programmable Money·AI Agent 결제** 는 조건부 결제 처리와 에이전트의 거래 권한을 통제하는 지급 방식 |
 | 목적 | 반복·조건부 거래의 자동화와 위임된 권한 범위 안에서의 결제 실행 |
 
 ### Ⅱ. 결제 권한과 실행 흐름
@@ -74,7 +74,7 @@ flowchart TD
 
 ## 2~4교시 예상문제 (25점)
 
-> Programmable Money와 Programmable Payment의 차이를 설명하고, AI Agent 결제의 권한 위임 구조와 주요 위험·통제방안을 제시하시오. (예상·25점)
+> Programmable Money·AI Agent 결제의 개념·구조·위험관리 방안을 설명하시오. (예상·25점)
 
 ---
 
@@ -84,7 +84,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Programmable Money·AI Agent 결제**는 조건부 결제 처리와 에이전트의 거래 권한을 통제하는 지급 방식 |
+| 정의 | **Programmable Money·AI Agent 결제** 는 조건부 결제 처리와 에이전트의 거래 권한을 통제하는 지급 방식 |
 | 목적 | 반복·조건부 거래의 자동화와 위임된 권한 범위 안에서의 결제 실행 |
 
 ## Ⅱ. Money·Payment 비교

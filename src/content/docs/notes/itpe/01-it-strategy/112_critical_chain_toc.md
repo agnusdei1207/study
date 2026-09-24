@@ -5,10 +5,10 @@ date: "2026-09-24T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
-    text: "응용"
+    text: "서브"
 extra:
   model: "GPT-6"
-  keyword_grade: "응용"
+  keyword_grade: "서브"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -40,7 +40,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> CCPM의 Critical Chain과 프로젝트·피딩 버퍼의 역할을 설명하시오. (예상·10점)
+> CCPM·TOC에 관하여 설명하시오. (예상·10점)
 
 ---
 
@@ -50,7 +50,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **CCPM·TOC**는 작업 순서와 자원 제약을 함께 고려해 프로젝트 완료일과 지연 위험을 관리하는 일정 방식 |
+| 정의 | **CCPM·TOC** 는 작업 순서와 자원 제약을 함께 고려해 프로젝트 완료일과 지연 위험을 관리하는 일정 방식 |
 | 목적 | 자원 경합과 작업 지연의 전체 납기 영향 감소 |
 
 ### Ⅱ. Critical Chain 및 버퍼 배치 구조
@@ -61,8 +61,8 @@ flowchart LR
         T_FEED["비임계 Task"] --> FB["FB 피딩 버퍼"]
     end
     subgraph CRITICAL["Critical Chain (작업 + 자원 제약)"]
-        T1["CC Task 1"] --> T2["CC Task 2"]
-        T2 --> T3["CC Task 3"]
+        T1["Chain Task 1"] --> T2["Chain Task 2"]
+        T2 --> T3["Chain Task 3"]
     end
     subgraph DELIVERY["프로젝트 납기 보호"]
         PB["PB 프로젝트 버퍼"] --> END["프로젝트 납기 완료"]
@@ -86,7 +86,7 @@ flowchart LR
 
 ## 2~4교시 예상문제 (25점)
 
-> CCPM의 개념과 Critical Chain 도출·버퍼 관리방식을 설명하고, CPM과 비교해 적용 시 유의점을 제시하시오. (예상·25점)
+> CCPM·TOC의 개념·핵심 구조·적용 시 고려사항을 설명하시오. (예상·25점)
 
 ---
 
@@ -96,7 +96,7 @@ flowchart LR
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **CCPM·TOC**는 작업 순서와 자원 제약을 함께 고려해 프로젝트 완료일과 지연 위험을 관리하는 일정 방식 |
+| 정의 | **CCPM·TOC** 는 작업 순서와 자원 제약을 함께 고려해 프로젝트 완료일과 지연 위험을 관리하는 일정 방식 |
 | 목적 | 자원 경합과 작업 지연의 전체 납기 영향 감소 |
 
 ## Ⅱ. Critical Chain 및 버퍼 관리 체계
@@ -107,8 +107,8 @@ flowchart LR
         T_FEED["비임계 Task"] --> FB["FB 피딩 버퍼"]
     end
     subgraph CRITICAL["Critical Chain (작업 + 자원 제약)"]
-        T1["CC Task 1"] --> T2["CC Task 2"]
-        T2 --> T3["CC Task 3"]
+        T1["Chain Task 1"] --> T2["Chain Task 2"]
+        T2 --> T3["Chain Task 3"]
     end
     subgraph DELIVERY["프로젝트 납기 보호"]
         PB["PB 프로젝트 버퍼"] --> END["프로젝트 납기 완료"]
