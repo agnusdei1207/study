@@ -29,8 +29,16 @@ test('IT strategy authored explanations end as noun phrases', async () => {
         if (/^\s*(?:- \[|https?:\/\/)/u.test(line)) continue;
         if (/다\.(?=\s|\||$)/u.test(line)) violations.push(`${name}: ${line.trim()}`);
         if (/(?:함|됨)\.(?=\s|\||$)/u.test(line)) violations.push(`${name}: ${line.trim()}`);
+        if (/(?:해야|하도록|되어야|수행|확인|설명|판단|적용|관리|기록|검토|정의|분석|제공|지원|처리|반영|설정|결정|활용|개선|보완|보장|확보|유지|운영|평가|파악|도출|구분)\s*(?:함|됨)(?:\.|\s*\|)?\s*$/u.test(line)) violations.push(`${name}: ${line.trim()}`);
       }
     }
   }
-  assert.equal(violations.length, 0, `${violations.length}개 평서형·기계적 종결:\n${violations.slice(0, 20).join('\n')}`);
+  const firstByFile = new Map();
+  for (const violation of violations) {
+    const name = violation.split(':', 1)[0];
+    const previous = firstByFile.get(name);
+    firstByFile.set(name, previous ? { count: previous.count + 1, sample: previous.sample } : { count: 1, sample: violation });
+  }
+  const summary = [...firstByFile].map(([name, { count, sample }]) => `${name} (${count}건): ${sample.slice(name.length + 2)}`);
+  assert.equal(violations.length, 0, `${violations.length}개 평서형·기계적 종결:\n${summary.join('\n')}`);
 });
