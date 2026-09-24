@@ -41,55 +41,62 @@
 
     writtenTerms.sort((a, b) => b.alias.length - a.alias.length);
 
-    // A glossary entry is an explanation target even when its first answer mention
-    // was left as plain text in the source Markdown.
-    for (const answerTitle of [...content.querySelectorAll('h2')].filter((heading) => /(?:1교시 10점 답안|2~4교시 25점 답안)/.test(heading.textContent))) {
-      const seen = new Set();
-      for (let block = answerTitle.nextElementSibling; block && !(block.matches('h2') && /^(?:2~4교시 예상문제|출제 이력|연결 토픽)/.test(block.textContent.trim())); block = block.nextElementSibling) {
-        for (const element of block.matches('p, td, li') ? [block] : block.querySelectorAll('p, td, li')) {
-          const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-          const nodes = [];
-          while (walker.nextNode()) nodes.push(walker.currentNode);
-          for (const node of nodes) {
-            if (node.parentElement.closest('a, code, pre, strong, .itpe-keyword, .itpe-glossary-trigger')) {
-              if (node.parentElement.closest('strong')) {
-                const match = definitions.get(normalize(node.parentElement.closest('strong').textContent));
-                if (match) seen.add(match);
-              }
-              continue;
-            }
-            let remaining = node.textContent;
-            const fragment = document.createDocumentFragment();
-            let changed = false;
-            while (remaining) {
-              let found = null;
-              for (const candidate of writtenTerms) {
-                if (seen.has(candidate.definition)) continue;
-                const index = remaining.toLocaleLowerCase().indexOf(candidate.alias.toLocaleLowerCase());
-                if (index < 0) continue;
-                const before = remaining[index - 1] ?? '';
-                const after = remaining[index + candidate.alias.length] ?? '';
-                if (/^[A-Za-z0-9]$/.test(candidate.alias[0]) && /[A-Za-z0-9]/.test(before)) continue;
-                if (/[A-Za-z0-9]$/.test(candidate.alias) && /[A-Za-z0-9]/.test(after)) continue;
+    function annotate(element, skippedAncestors) {
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      for (const node of nodes) {
+        if (node.parentElement.closest(skippedAncestors)) continue;
+        let remaining = node.textContent;
+        const fragment = document.createDocumentFragment();
+        let changed = false;
+        while (remaining) {
+          let found = null;
+          for (const candidate of writtenTerms) {
+            let searchFrom = 0;
+            while (searchFrom < remaining.length) {
+              const index = remaining.toLocaleLowerCase().indexOf(candidate.alias.toLocaleLowerCase(), searchFrom);
+              if (index < 0) break;
+              const before = remaining[index - 1] ?? '';
+              const after = remaining[index + candidate.alias.length] ?? '';
+              const embeddedBefore = /^[A-Za-z0-9]$/.test(candidate.alias[0]) && /[A-Za-z0-9]/.test(before);
+              const embeddedAfter = /[A-Za-z0-9]$/.test(candidate.alias) && /[A-Za-z0-9]/.test(after);
+              if (!embeddedBefore && !embeddedAfter) {
                 if (!found || index < found.index || (index === found.index && candidate.alias.length > found.candidate.alias.length)) found = { index, candidate };
+                break;
               }
-              if (!found) break;
-              fragment.append(document.createTextNode(remaining.slice(0, found.index)));
-              const span = document.createElement('span');
-              span.className = 'itpe-keyword';
-              span.textContent = remaining.slice(found.index, found.index + found.candidate.alias.length);
-              fragment.append(span);
-              seen.add(found.candidate.definition);
-              remaining = remaining.slice(found.index + found.candidate.alias.length);
-              changed = true;
-            }
-            if (changed) {
-              fragment.append(document.createTextNode(remaining));
-              node.replaceWith(fragment);
+              searchFrom = index + 1;
             }
           }
+          if (!found) break;
+          fragment.append(document.createTextNode(remaining.slice(0, found.index)));
+          const span = document.createElement('span');
+          span.className = 'itpe-keyword';
+          span.textContent = remaining.slice(found.index, found.index + found.candidate.alias.length);
+          fragment.append(span);
+          remaining = remaining.slice(found.index + found.candidate.alias.length);
+          changed = true;
+        }
+        if (changed) {
+          fragment.append(document.createTextNode(remaining));
+          node.replaceWith(fragment);
         }
       }
+    }
+
+    // Mark every written occurrence from the recall block through the answers.
+    const start = [...content.querySelectorAll('h2')].find((heading) => /(?:30초 인출|1교시 10점 답안)/.test(heading.textContent));
+    for (let block = start?.nextElementSibling; block && !(block.matches('h2') && /^(?:출제 이력|연결 토픽)/.test(block.textContent.trim())); block = block.nextElementSibling) {
+      if (block.matches('details')) continue;
+      for (const element of block.matches('p, td, th, li') ? [block] : block.querySelectorAll('p, td, th, li')) {
+        annotate(element, 'a, code, pre, strong, details, .itpe-keyword, .itpe-glossary-trigger');
+      }
+    }
+
+    // A bold phrase can contain multiple glossary terms, such as RTO·RPO.
+    for (const term of content.querySelectorAll('strong')) {
+      if (term.closest('details') || aliases(term.textContent).some((alias) => definitions.has(alias))) continue;
+      annotate(term, 'a, code, pre, details, .itpe-keyword, .itpe-glossary-trigger');
     }
 
     const popup = document.createElement('div');
@@ -130,6 +137,7 @@
 
     for (const target of content.querySelectorAll('strong, .itpe-keyword')) {
       if (target.matches('.itpe-keyword') && target.querySelector('strong')) continue;
+      if (target.matches('strong') && target.querySelector('.itpe-keyword')) continue;
       if (target.closest('.itpe-glossary-trigger')) continue;
       const definition = glossaryTerms.get(target) ?? aliases(target.textContent)
         .map((alias) => definitions.get(alias)).find(Boolean);

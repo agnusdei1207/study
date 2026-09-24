@@ -52,3 +52,59 @@ test('plain first mentions of selected glossary terms receive the same tooltip i
   }
   dom.window.close();
 });
+
+test('every answer mention of a glossary term receives a tooltip', () => {
+  const dom = new JSDOM(`<!doctype html><article class="sl-markdown-content">
+    <details><summary>핵심 용어</summary><ul><li><strong>PMO(Project Management Office)</strong> : 프로젝트 관리 조직</li></ul></details>
+    <h2>1교시 10점 답안</h2><p><strong>PMO</strong>가 기준을 정한다. PMO가 결과를 확인한다.</p>
+    <h2>2~4교시 예상문제</h2><h2>2~4교시 25점 답안</h2><p>PMO의 권한과 PMO의 책임을 구분한다.</p>
+    <h2>출제 이력과 검증 출처</h2>
+  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/004_pmo/', runScripts: 'outside-only' });
+  dom.window.eval(script);
+  dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+  const triggers = [...dom.window.document.querySelectorAll('article p .itpe-glossary-trigger')];
+  assert.deepEqual(triggers.map((trigger) => trigger.textContent), ['PMO', 'PMO', 'PMO', 'PMO']);
+  const popup = dom.window.document.querySelector('.itpe-glossary-tooltip');
+  for (const trigger of triggers) {
+    trigger.click();
+    assert.match(popup.textContent, /프로젝트 관리 조직/);
+  }
+  dom.window.close();
+});
+
+test('combined bold terms and terms outside answers link to their own definitions', () => {
+  const dom = new JSDOM(`<!doctype html><article class="sl-markdown-content">
+    <h2>30초 인출</h2><p>RTO·RPO 목표를 확인한다.</p>
+    <details><summary>핵심 용어</summary><ul>
+      <li><strong>RTO(Recovery Time Objective)</strong> : 복구 목표시간</li>
+      <li><strong>RPO(Recovery Point Objective)</strong> : 복구 목표시점</li>
+    </ul></details>
+    <h2>1교시 10점 답안</h2><p><strong>RTO·RPO</strong>를 비교한다.</p>
+    <table><thead><tr><th>RTO</th><th>RPO</th></tr></thead></table>
+    <h2>출제 이력과 검증 출처</h2>
+  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/006_sla/', runScripts: 'outside-only' });
+  dom.window.eval(script);
+  dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+  const body = dom.window.document.querySelector('article');
+  const triggers = [...body.querySelectorAll('p .itpe-glossary-trigger, th .itpe-glossary-trigger')];
+  assert.deepEqual(triggers.map((trigger) => trigger.textContent), ['RTO', 'RPO', 'RTO', 'RPO', 'RTO', 'RPO']);
+  const popup = dom.window.document.querySelector('.itpe-glossary-tooltip');
+  triggers[2].click();
+  assert.match(popup.textContent, /복구 목표시간/);
+  triggers[3].click();
+  assert.match(popup.textContent, /복구 목표시점/);
+  dom.window.close();
+});
+
+test('a later standalone acronym still matches after an embedded occurrence', () => {
+  const dom = new JSDOM(`<!doctype html><article class="sl-markdown-content">
+    <details><summary>핵심 용어</summary><ul><li><strong>AI(Artificial Intelligence)</strong> : 인공지능</li></ul></details>
+    <h2>1교시 10점 답안</h2><p>OpenAI 기반 AI 서비스</p>
+    <h2>출제 이력과 검증 출처</h2>
+  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/050_ai_governance_platform/', runScripts: 'outside-only' });
+  dom.window.eval(script);
+  dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+  const triggers = [...dom.window.document.querySelectorAll('p .itpe-glossary-trigger')];
+  assert.deepEqual(triggers.map((trigger) => trigger.textContent), ['AI']);
+  dom.window.close();
+});

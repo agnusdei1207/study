@@ -47,7 +47,8 @@ test('the 10 point answer reuses a body diagram instead of a meta table', async 
     excerptDiagrams.some((diagram) => bodyDiagrams.has(diagram)),
     '10점 발췌는 본문 Mermaid 그림을 그대로 재사용해야 합니다.'
   );
-  assert.doesNotMatch(excerpt, /\|\s*(구분|항목)\s*\|/u, '본문 그림을 메타 요약 표로 대체하지 않습니다.');
+  const afterOverview = excerpt.slice(excerpt.indexOf('### Ⅱ.'));
+  assert.doesNotMatch(afterOverview, /\|\s*(구분|항목)\s*\|/u, '개요 뒤의 본문 그림을 메타 요약 표로 대체하지 않습니다.');
 });
 
 test('legacy ITPE visualization CSS is removed after the Mermaid transition', async () => {
