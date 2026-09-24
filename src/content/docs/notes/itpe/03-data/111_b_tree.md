@@ -23,79 +23,7 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" width="100%" height="auto" role="img" aria-label="B-Tree와 B+Tree 구조 비교 및 리프 노드 순차 연결">
-  <defs>
-    <marker id="bTreeArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
-    </marker>
-    <marker id="linkArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #1d4ed8)"/>
-    </marker>
-  </defs>
-  <!-- Background Card -->
-  <rect width="520" height="230" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
-  <!-- Left: B-Tree -->
-  <g transform="translate(18, 18)">
-    <rect width="235" height="194" rx="7" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="235" height="26" rx="7" fill="#f8fafc"/>
-    <text x="117" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-gray-2, #475569)">1. B-Tree (모든 노드 데이터 보유)</text>
-
-    <!-- Internal Node -->
-    <rect x="25" y="40" width="185" height="38" rx="4" fill="#f1f5f9" stroke="var(--sl-color-hairline, #94a3b8)"/>
-    <text x="117" y="56" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-text, #1e293b)">[ P0 | Key 20, RID | P1 | Key 50, RID | P2 ]</text>
-    <text x="117" y="70" text-anchor="middle" font-size="8.5" fill="var(--sl-color-gray-2, #64748b)">내부 노드에 레코드 포인터(RID) 직접 보관</text>
-
-    <!-- Branch Lines -->
-    <path d="M 60 78 L 40 100" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2" marker-end="url(#bTreeArr)"/>
-    <path d="M 175 78 L 195 100" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2" marker-end="url(#bTreeArr)"/>
-
-    <!-- Leaf Nodes -->
-    <rect x="15" y="102" width="95" height="32" rx="4" fill="#f8fafc" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <text x="62" y="122" text-anchor="middle" font-size="9" fill="var(--sl-color-text, #334155)">[ K10, RID ]</text>
-
-    <rect x="125" y="102" width="95" height="32" rx="4" fill="#f8fafc" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <text x="172" y="122" text-anchor="middle" font-size="9" fill="var(--sl-color-text, #334155)">[ K30, RID ]</text>
-
-    <!-- Trait Notes -->
-    <text x="15" y="155" font-size="8.5" fill="var(--sl-color-text, #1e293b)">• Fan-out 작음 $\rightarrow$ 트리 높이(Depth) 증가</text>
-    <text x="15" y="172" font-size="8.5" fill="#dc2626">• 범위 검색(BETWEEN) 시 In-order 트리 재순회</text>
-    <text x="15" y="186" font-size="8" fill="var(--sl-color-gray-2, #64748b)">(부모-자식 오르내리며 Random I/O 다발)</text>
-  </g>
-
-  <!-- Right: B+Tree -->
-  <g transform="translate(267, 18)">
-    <rect width="235" height="194" rx="7" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
-    <rect width="235" height="26" rx="7" fill="var(--sl-color-accent, #dbeafe)"/>
-    <text x="117" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-accent, #1e40af)">2. B+Tree (현대 RDBMS 표준)</text>
-
-    <!-- Internal Node: Keys only -->
-    <rect x="25" y="40" width="185" height="38" rx="4" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)"/>
-    <text x="117" y="56" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">[ P0 | Key 20 | P1 | Key 50 | P2 ]</text>
-    <text x="117" y="70" text-anchor="middle" font-size="8.5" fill="var(--sl-color-accent, #2563eb)">라우팅 전용 (RID 배제로 Fan-out 극대화)</text>
-
-    <!-- Branch Lines -->
-    <path d="M 60 78 L 40 100" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.2" marker-end="url(#bTreeArr)"/>
-    <path d="M 175 78 L 195 100" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.2" marker-end="url(#bTreeArr)"/>
-
-    <!-- Leaf Nodes with Linked List -->
-    <rect x="15" y="102" width="95" height="32" rx="4" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)"/>
-    <text x="62" y="122" text-anchor="middle" font-size="9" font-weight="600" fill="var(--sl-color-text, #1e293b)">[K10,RID | K20,RID]</text>
-
-    <!-- Bidirectional Pointer -->
-    <path d="M 112 118 L 123 118" stroke="var(--sl-color-accent, #1d4ed8)" stroke-width="2" marker-end="url(#linkArr)" marker-start="url(#linkArr)"/>
-
-    <rect x="125" y="102" width="95" height="32" rx="4" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)"/>
-    <text x="172" y="122" text-anchor="middle" font-size="9" font-weight="600" fill="var(--sl-color-text, #1e293b)">[K30,RID | K50,RID]</text>
-
-    <!-- Trait Notes -->
-    <text x="15" y="155" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">• Fan-out 1,000+ $\rightarrow$ 3~4 레벨로 10억 건 탐색</text>
-    <text x="15" y="172" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">• 리프 노드 수평 연결 리스트 (순차 스캔)</text>
-    <text x="15" y="186" font-size="8" fill="var(--sl-color-text, #334155)">Range Scan / Full Scan 시 Multi-block Read</text>
-  </g>
-</svg>
-</div>
 
 - 본질: **B-Tree는 한 노드에 여러 키와 자식 포인터를 두는 균형 탐색 트리이며, B+Tree는 레코드 탐색 키를 리프에 모으고 리프 페이지를 연결해 범위 검색을 지원하는 인덱스 구조**
 - 암기: `균-다-블-분` (균형트리, 다원탐색, 디스크블록 매핑, 분할/병합) / `비플-리-연-팬` (B+Tree는 리프집중, 양방향연결, 팬아웃극대화)
@@ -113,13 +41,20 @@ extra:
 
 ## 1교시 10점 답안
 
-### [문제] B-Tree vs B+Tree
+### Ⅰ. 개요
 
-#### 1. B-Tree와 B+Tree의 정의
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | B-Tree는 여러 키를 한 노드에 두는 균형 탐색 트리이며, B+Tree는 레코드 탐색 키를 리프에 모아 범위 순회를 지원하는 인덱스 구조 |
+| 목적 | 페이지 단위 탐색과 범위 검색을 효율화하고, 갱신 시 균형을 유지 |
+
+### Ⅱ. 핵심 개념
+
+### Ⅲ. B-Tree와 B+Tree의 정의
 - **B-Tree**: 디스크 I/O를 최소화하기 위해 노드당 다수의 키를 배치하는 자가 균형 다원 탐색 트리
 - **B+Tree**: 내부 노드는 라우팅 키만 두고 모든 실제 데이터를 리프 노드에 모아 양방향 연결 리스트로 결합한 현대 RDBMS 표준 인덱스 구조
 
-#### 2. B-Tree vs B+Tree 핵심 구조 비교
+### Ⅳ. B-Tree vs B+Tree 핵심 구조 비교
 
 | 비교 항목 | B-Tree | B+Tree |
 |:---|:---|:---|
@@ -128,12 +63,12 @@ extra:
 | **범위 검색 (Range)** | 구현에 따라 다음 키 탐색 | 리프 페이지 연결을 활용하는 구현에서 범위 순회에 유리 |
 | **키 중복성** | 트리 전체에서 유일하게 1회 등장 | 내부 노드 키가 리프 노드에 중복 보관 |
 
-#### 3. RDBMS 표준 채택 이유 및 실무 제언
+### Ⅴ. RDBMS 표준 채택 이유 및 실무 제언
 - 높은 Fan-out을 통한 디스크 I/O 최소화와 범위 검색(`BETWEEN`, `ORDER BY`) 시 압도적 효율 제공
 - 키 분포와 삽입 패턴을 부하 시험해 페이지 분할·쓰기 비용을 평가하고, 필요하면 순차성 키를 검토
 ---
 
-### 핵심 관계
+### Ⅵ. 핵심 관계
 
 | 노드 구성요소 | B-Tree 구조 | B+Tree 구조 |
 |:---|:---|:---|
@@ -142,6 +77,8 @@ extra:
 | **키의 중복성** | 트리 전체에서 각 키는 **단 1회만 유일하게 등장** | 내부 노드의 키가 리프 노드에 **다시 한 번 중복 등장** |
 
 ---
+
+제언: 인덱스 선택은 DBMS 구현과 실제 질의·갱신 부하를 측정해 결정
 
 ## 2~4교시 예상문제 (25점)
 
@@ -153,6 +90,13 @@ extra:
 
 ## 2~4교시 25점 답안
 
+### Ⅰ. 개요
+
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | B-Tree는 여러 키를 한 노드에 두는 균형 탐색 트리이며, B+Tree는 레코드 탐색 키를 리프에 모아 범위 순회를 지원하는 인덱스 구조 |
+| 목적 | 페이지 단위 탐색과 범위 검색을 효율화하고, 갱신 시 균형을 유지 |
+
 ### Ⅰ. 디스크 I/O 병목을 해결하는 다원 균형 트리 개요
 
 #### 한줄 요약: 디스크 페이지에 다수의 키를 저장해 트리 높이와 디스크 탐색 비용을 줄이는 다원 균형 인덱스
@@ -161,6 +105,11 @@ extra:
 - **정의**:
   - **B-Tree**: 차수 $M$을 기준으로 모든 노드가 최대 $M-1$개의 키와 $M$개의 자식 포인터를 가지며, 모든 리프 노드가 동일한 깊이를 유지하는 자가 균형 다원 탐색 트리
   - **B+Tree**: B-Tree를 개량하여 내부 노드는 분기(라우팅) 목적의 키만 보관하고, 모든 실제 데이터(RID)는 리프 노드에만 중복 저장하며 리프 노드들을 포인터로 연결한 구조
+
+| 층 | 역할 |
+|:---|:---|
+| 루트·내부 페이지 | 키 구간에 따라 다음 자식 페이지 선택 |
+| 리프 페이지 | 정렬된 키와 레코드 참조 보관, 범위 순회 출발점 |
 
 ### Ⅱ. B-Tree의 구조적 규칙과 수학적 제약조건
 
@@ -210,6 +159,11 @@ extra:
 4. 형제 노드도 여유가 없으면 두 노드를 하나로 합침 (Merge)
 5. 부모 노드의 분기 키를 제거하고, 언더플로우가 상향 전파되어 루트 노드 병합 시 높이 감소
 
+| 갱신 상황 | 조정 |
+|:---|:---|
+| 삽입으로 페이지 초과 | 페이지를 나누고 분기 정보를 상위 페이지에 반영 |
+| 삭제로 점유 부족 | 형제 페이지에서 재분배하거나 병합하고 상위 분기 갱신 |
+
 ### Ⅴ. B+Tree가 현대 RDBMS의 표준이 된 3대 공학적 이유
 
 #### 한줄 요약: 극대화된 팬아웃, 완벽한 범위 스캔 성능, 디스크 프리페치(Prefetch) 친화성
@@ -221,6 +175,11 @@ extra:
    - `BETWEEN 20 AND 50` 쿼리 실행 시, 20이 위치한 리프 노드를 $O(\log N)$에 한 번만 찾으면, 이후 50을 만날 때까지 리프 노드의 `Next` 포인터를 따라 수평으로 디스크 블록을 연속 순차 읽기(Multi-block Read) 수행
 3. **안정적인 쿼리 응답 시간 보장**:
    - B-Tree는 어떤 키는 루트(1회 I/O)에서 끝나고 어떤 키는 리프(4회 I/O)에서 끝나 응답 속도 편차가 심하지만, B+Tree는 모든 탐색 경로가 정확히 동일한 깊이를 거치므로 예측 가능한 일정한 레이턴시 제공
+
+| 특성 | 질의에 주는 이점 |
+|:---|:---|
+| 내부 노드에 레코드 주소 없음 | 동일 페이지 크기에서 더 많은 분기 키를 둘 수 있음 |
+| 리프 수준 순회 | 인덱스 키 순서의 범위 조회에 활용 |
 
 ### Ⅵ. 실무 운영 이슈 및 인덱스 튜닝 (Troubleshooting)
 
@@ -234,31 +193,9 @@ extra:
 
 ### Ⅶ. 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- **판정 (현행 한계)**: 대량 트랜잭션 시스템에서 무작위 UUID v4를 클러스터드 인덱스 PK로 사용 시 연쇄적 리프 노드 Page Split 발생으로 쓰기 처리량(TPS)이 70% 이상 급락하고 인덱스 단편화 가속.
-- **대응 (개선 방안)**: 시계열 정렬성을 갖춘 UUID v7 또는 64비트 TSID로 기본키 체계를 전환하여 B+Tree 우측 추가(Append-only)를 유도하고, 대규모 쓰기 전용 워크로드는 LSM-Tree 기반 저장소(RocksDB/Cassandra)로 분리.
-- **검증 (검증 기준)**: 인덱스 페이지 분할 발생 빈도 90% 이상 감축, 인덱스 단편화율 10% 이하 유지, 배치 INSERT 처리 시간 60% 단축 검증.
-- **효과 (실행 효과)**: 디스크 I/O 부하 대폭 절감, 데이터베이스 쓰기 처리량 3배 향상, 인덱스 리빌드 운영 점검 공수 80% 절감.
-
-<div class="itpe-flow-map">
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">현행 한계</div>
-    <div class="itpe-flow-step__content">난수 UUID 삽입으로 인한 B+Tree Page Split 폭증 및 쓰기 지연</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">개선 방안</div>
-    <div class="itpe-flow-step__content">시계열 정렬형 UUID v7/TSID 전환 및 우측 Append 최적화 유도</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">검증 기준</div>
-    <div class="itpe-flow-step__content">Page Split 90% 감축, 인덱스 단편화율 10% 미만, TPS 3배 향상</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">실행 효과</div>
-    <div class="itpe-flow-step__content">디스크 쓰기 증폭 해소, CUD 처리량 극대화, 인덱스 수명주기 안정화</div>
-  </div>
-</div>
+| 한계 | 해결 방안 |
+|:---|:---|
+| 키 분포·삽입 패턴과 엔진 구현을 고려하지 않은 채 구조만으로 성능을 단정 | 실행계획·인덱스 통계·대표 쓰기/읽기 부하를 검증한 뒤 키·인덱스 설계 선택 |
 
 ---
 

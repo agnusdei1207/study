@@ -23,84 +23,7 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" role="img" aria-label="엔터프라이즈 ELK 및 Kafka 분산 로그 파이프라인 아키텍처">
-  <defs>
-    <marker id="elkArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
-    </marker>
-  </defs>
-  <!-- Background Card -->
-  <rect width="520" height="220" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
-  <!-- Step 1: Filebeat -->
-  <g transform="translate(15, 20)">
-    <rect width="88" height="175" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="88" height="28" rx="6" fill="#f8fafc"/>
-    <text x="44" y="19" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">1. Filebeat</text>
-    <text x="44" y="55" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-text, #1e293b)">경량 Go 에이전트</text>
-    <text x="44" y="75" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2, #64748b)">서버/컨테이너</text>
-    <text x="44" y="90" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2, #64748b)">로그 실시간 감지</text>
-    <text x="44" y="115" text-anchor="middle" font-size="8" fill="var(--sl-color-accent, #2563eb)">자원 최소화</text>
-  </g>
-
-  <!-- Arrow 1 -> 2 -->
-  <path d="M 103 107 L 112 107" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#elkArr)"/>
-
-  <!-- Step 2: Kafka Buffer -->
-  <g transform="translate(115, 20)">
-    <rect width="88" height="175" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="88" height="28" rx="6" fill="#f8fafc"/>
-    <text x="44" y="19" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">2. Kafka</text>
-    <text x="44" y="55" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-text, #1e293b)">메시지 큐 버퍼</text>
-    <text x="44" y="75" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2, #64748b)">피크 트래픽 흡수</text>
-    <text x="44" y="90" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2, #64748b)">데이터 유실 차단</text>
-    <text x="44" y="115" text-anchor="middle" font-size="8" fill="var(--sl-color-accent, #2563eb)">디커플링 완충</text>
-  </g>
-
-  <!-- Arrow 2 -> 3 -->
-  <path d="M 203 107 L 212 107" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#elkArr)"/>
-
-  <!-- Step 3: Logstash -->
-  <g transform="translate(215, 20)">
-    <rect width="88" height="175" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="88" height="28" rx="6" fill="#f8fafc"/>
-    <text x="44" y="19" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">3. Logstash</text>
-    <text x="44" y="55" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-text, #1e293b)">전처리 파이프라인</text>
-    <text x="44" y="75" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2, #64748b)">Grok 정규화 파싱</text>
-    <text x="44" y="90" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2, #64748b)">JSON 구조화 변환</text>
-    <text x="44" y="115" text-anchor="middle" font-size="8" fill="var(--sl-color-accent, #2563eb)">GeoIP 위치 보정</text>
-  </g>
-
-  <!-- Arrow 3 -> 4 -->
-  <path d="M 303 107 L 312 107" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#elkArr)"/>
-
-  <!-- Step 4: Elasticsearch -->
-  <g transform="translate(315, 20)">
-    <rect width="98" height="175" rx="6" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
-    <rect width="98" height="28" rx="6" fill="var(--sl-color-accent, #dbeafe)"/>
-    <text x="49" y="19" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">4. Elasticsearch</text>
-    <text x="49" y="55" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">Lucene 역색인</text>
-    <text x="49" y="75" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #334155)">Inverted Index</text>
-    <text x="49" y="90" text-anchor="middle" font-size="8" fill="var(--sl-color-text, #334155)">Primary/Replica</text>
-    <text x="49" y="115" text-anchor="middle" font-size="8" font-weight="600" fill="var(--sl-color-accent, #1e40af)">ILM 수명주기</text>
-  </g>
-
-  <!-- Arrow 4 -> 5 -->
-  <path d="M 413 107 L 422 107" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#elkArr)"/>
-
-  <!-- Step 5: Kibana -->
-  <g transform="translate(425, 20)">
-    <rect width="80" height="175" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="80" height="28" rx="6" fill="#f8fafc"/>
-    <text x="40" y="19" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">5. Kibana</text>
-    <text x="40" y="55" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-text, #1e293b)">시각화 대시보드</text>
-    <text x="40" y="75" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2, #64748b)">실시간 검색(KQL)</text>
-    <text x="40" y="90" text-anchor="middle" font-size="8" fill="var(--sl-color-gray-2, #64748b)">이상 탐지 알람</text>
-    <text x="40" y="115" text-anchor="middle" font-size="8" fill="var(--sl-color-accent, #2563eb)">통합 관측성</text>
-  </g>
-</svg>
-</div>
 
 - 본질: **Elastic Stack은 로그·이벤트를 수집·변환·색인·검색·시각화해 운영 상태를 분석하는 데이터 플랫폼**
 - 암기: `비-로그-엘-키` (Beats, Logstash, Elasticsearch, Kibana) / `인-샤-레-역` (인덱스, 샤드, 레플리카, 역색인) / `핫-웜-콜-프` (ILM: Hot, Warm, Cold, Frozen)
@@ -112,18 +35,25 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> ELK(Elasticsearch·Logstash·Kibana) 스택 기반 분산 로그 분석 및 관측성 플랫폼의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> Elastic Stack의 개념과 데이터 수집부터 검색·시각화까지의 주요 역할을 설명하시오. (예상)
 
 ---
 
 ## 1교시 10점 답안
 
-### [문제] ELK 스택 (Elasticsearch·Logstash·Kibana)
+### Ⅰ. 개요
 
-#### 1. ELK 스택의 정의
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | Elastic Stack은 데이터를 수집·변환·색인·검색·시각화하는 구성요소의 조합 |
+| 목적 | 로그·이벤트를 검색 가능한 형태로 분석해 운영 현황과 문제 진단을 지원 |
+
+### Ⅱ. 핵심 개념
+
+### Ⅲ. ELK 스택의 정의
 - Beats(경량수집), Logstash(전처리/정제), Elasticsearch(Lucene 역색인 분산검색), Kibana(시각화)로 구성된 분산 로그 분석 및 관측성 플랫폼
 
-#### 2. Elasticsearch 역색인(Inverted Index) 및 데이터 파이프라인
+### Ⅳ. Elasticsearch 역색인(Inverted Index) 및 데이터 파이프라인
 
 | 파이프라인 계층 | 핵심 역할 | 적용 솔루션/기법 |
 |:---|:---|:---|
@@ -135,11 +65,11 @@ extra:
 
 - **역색인(Inverted Index)**: 문서 전체 스캔 대신 단어(Term)를 키로 문서 ID 포스팅 리스트를 매핑하여 초고속 전문 검색 실현
 
-#### 3. 대용량 운영을 위한 인덱스 수명주기 관리(ILM)
+### Ⅴ. 대용량 운영을 위한 인덱스 수명주기 관리(ILM)
 - Hot(NVMe, 활발한 쓰기) $\rightarrow$ Warm(읽기전용, 세그먼트 병합) $\rightarrow$ Cold(스냅샷 마운트) $\rightarrow$ Delete(보관주기 만료 삭제)
 ---
 
-### 핵심 관계
+### Ⅵ. 핵심 관계
 
 | 구성요소 | 핵심 역할 | 주요 동작 메커니즘 및 특징 |
 |:---|:---|:---|
@@ -149,6 +79,8 @@ extra:
 | **Kibana** | 데이터 탐색 및 시각화 | Elasticsearch 데이터를 실시간 차트·대시보드로 렌더링, KQL(Kibana Query Language) 지원, 알람 발송 |
 
 ---
+
+제언: 수집량·검색 부하·보존 기간을 함께 고려해 색인과 수명주기 정책 구성
 
 ## 2~4교시 예상문제 (25점)
 
@@ -160,7 +92,19 @@ extra:
 
 ## 2~4교시 25점 답안
 
+### Ⅰ. 개요
+
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | Elastic Stack은 데이터를 수집·변환·색인·검색·시각화하는 구성요소의 조합 |
+| 목적 | 로그·이벤트를 검색 가능한 형태로 분석해 운영 현황과 문제 진단을 지원 |
+
 ### Ⅰ. 분산 시스템의 가시성을 확보하는 ELK 스택 개요
+
+| 구성 요소 | 핵심 역할 |
+|:---|:---|
+| 수집·처리 | Beats·Logstash 등으로 데이터 수집과 변환 |
+| 검색·표시 | Elasticsearch에 색인하고 Kibana로 조회·시각화 |
 
 #### 한줄 요약: 분산 환경 전반의 로그를 실시간 수집, 정제, 역색인 분산 검색, 시각화하는 오픈소스 기반 관측성 플랫폼
 
@@ -203,6 +147,12 @@ extra:
 
 ### Ⅳ. ELK 스택의 엔드투엔드 데이터 처리 파이프라인
 
+| 단계 | 관계 |
+|:---|:---|
+| 수집 | 에이전트·입력 커넥터가 로그를 전달 |
+| 처리 | 필요한 파싱·정규화·필드 변환 수행 |
+| 색인·활용 | Elasticsearch가 검색용 색인에 저장하고 Kibana가 조회 화면 제공 |
+
 #### 한줄 요약: Input 수신 $\rightarrow$ Filter 구조화 $\rightarrow$ Output 색인 $\rightarrow$ Visual 표출의 4단계 라이프사이클
 
 1. **로그 수집 (Edge)**: 각 마이크로서비스 컨테이너의 stdout 로그를 `Filebeat`가 실시간 감지하여 Kafka 토픽으로 전송
@@ -234,31 +184,9 @@ extra:
 
 ### Ⅶ. 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- **판정 (현행 한계)**: 로그 수집 시 샤드 수 무제한 증가로 인한 ES 마스터 노드 OOM 장애 빈발, 복잡한 Grok 필터 연산으로 Logstash CPU 병목 및 피크 트래픽 유실 위험 상존.
-- **대응 (개선 방안)**: 수집량과 장애 복구 목표에 맞춘 완충·재시도 경로를 설계하고, 데이터 보존 요건에 맞춘 rollover·ILM 정책 및 Trace ID 기반 추적 연계 검토.
-- **검증 (검증 기준)**: 노드당 힙 1GB당 샤드 수 20개 이하 준수, 피크 시간대 로그 유실율 0%, 30일 경과 콜드 인덱스 S3 티어링을 통한 스토리지 비용 60% 절감 검증.
-- **효과 (실행 효과)**: 검색 가능한 운영 이벤트와 서비스 지표의 연계로 장애 원인 분석 지원.
-
-<div class="itpe-flow-map">
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">현행 한계</div>
-    <div class="itpe-flow-step__content">샤드 폭증으로 마스터 노드 OOM 및 피크 시 Logstash 병목·로그 유실</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">개선 방안</div>
-    <div class="itpe-flow-step__content">Kafka 완충 버퍼 도입 + Hot-Warm-Cold ILM 자동화 및 OTel 연계</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">검증 기준</div>
-    <div class="itpe-flow-step__content">샤드/힙 20개 이하 유지, 로그 유실 0%, 검색 레이턴시 1초 이내</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">실행 효과</div>
-    <div class="itpe-flow-step__content">장애 분석 리드타임 90% 단축, OOM 재발 방지, 스토리지 비용 60% 절감</div>
-  </div>
-</div>
+| 한계 | 해결 방안 |
+|:---|:---|
+| 로그 증가와 인덱스 분할이 자원·검색 비용을 키울 수 있음 | 검색·보존 목표에 따라 샤드·rollover·ILM 정책을 부하 시험 후 구성 |
 
 ---
 

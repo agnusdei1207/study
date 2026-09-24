@@ -27,10 +27,7 @@ extra:
 - 메커니즘: 측정 도구의 반복 결과를 비교해 무작위 오차를 살피고, 측정하려는 개념을 대표하는 증거를 모아 해석·사용의 타당성을 검토
 - 핵심 용어: **신뢰도(Reliability)**, **타당도(Validity)**, **측정 오차(Measurement Error)**
 
-<div class="itpe-flow-map">
-  <div class="itpe-flow-step"><div class="itpe-flow-step__label">반복 측정</div><div class="itpe-flow-step__content">결과의 일관성 확인 → 신뢰도 증거</div></div>
-  <div class="itpe-flow-step"><div class="itpe-flow-step__label">개념 검토</div><div class="itpe-flow-step__content">내용·구조·외부 관계 확인 → 타당도 증거</div></div>
-</div>
+
 
 ## 핵심 용어
 

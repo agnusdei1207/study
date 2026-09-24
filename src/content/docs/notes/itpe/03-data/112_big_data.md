@@ -23,90 +23,7 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="100%" height="auto" role="img" aria-label="빅데이터 엔드투엔드 처리 파이프라인 아키텍처">
-  <defs>
-    <marker id="bdArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
-    </marker>
-  </defs>
-  <!-- Background Card -->
-  <rect width="520" height="220" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
-  <!-- Col 1: 수집 계층 -->
-  <g transform="translate(15, 20)">
-    <rect width="112" height="175" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="112" height="28" rx="6" fill="#f8fafc"/>
-    <text x="56" y="19" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-accent, #2563eb)">1. 수집 (Ingest)</text>
-
-    <text x="10" y="52" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• Apache Kafka</text>
-    <text x="16" y="66" font-size="8" fill="var(--sl-color-gray-2, #64748b)">실시간 분산 큐</text>
-
-    <text x="10" y="90" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• Debezium CDC</text>
-    <text x="16" y="104" font-size="8" fill="var(--sl-color-gray-2, #64748b)">DB 트랜잭션 로그</text>
-
-    <text x="10" y="128" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• Fluentd / Beats</text>
-    <text x="16" y="142" font-size="8" fill="var(--sl-color-gray-2, #64748b)">서버/앱 로그 수집</text>
-  </g>
-
-  <!-- Arrow 1 -> 2 -->
-  <path d="M 127 107 L 138 107" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#bdArr)"/>
-
-  <!-- Col 2: 저장 계층 -->
-  <g transform="translate(140, 20)">
-    <rect width="112" height="175" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="112" height="28" rx="6" fill="#f8fafc"/>
-    <text x="56" y="19" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-accent, #2563eb)">2. 저장 (Storage)</text>
-
-    <text x="10" y="52" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• Data Lake (S3)</text>
-    <text x="16" y="66" font-size="8" fill="var(--sl-color-gray-2, #64748b)">저비용 객체스토리지</text>
-
-    <text x="10" y="90" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• Apache Iceberg</text>
-    <text x="16" y="104" font-size="8" fill="var(--sl-color-gray-2, #64748b)">오픈 테이블 포맷</text>
-
-    <text x="10" y="128" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• Delta Lake</text>
-    <text x="16" y="142" font-size="8" fill="var(--sl-color-gray-2, #64748b)">ACID 트랜잭션 보장</text>
-  </g>
-
-  <!-- Arrow 2 -> 3 -->
-  <path d="M 252 107 L 263 107" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#bdArr)"/>
-
-  <!-- Col 3: 처리·분석 계층 -->
-  <g transform="translate(265, 20)">
-    <rect width="115" height="175" rx="6" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
-    <rect width="115" height="28" rx="6" fill="var(--sl-color-accent, #dbeafe)"/>
-    <text x="57" y="19" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-accent, #1e40af)">3. 처리·분석 (Engine)</text>
-
-    <text x="10" y="52" font-size="9" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">• Apache Spark</text>
-    <text x="16" y="66" font-size="8" fill="var(--sl-color-text, #334155)">인메모리 대규모 배치</text>
-
-    <text x="10" y="90" font-size="9" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">• Apache Flink</text>
-    <text x="16" y="104" font-size="8" fill="var(--sl-color-text, #334155)">초저지연 스트리밍</text>
-
-    <text x="10" y="128" font-size="9" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">• PyTorch / MLlib</text>
-    <text x="16" y="142" font-size="8" fill="var(--sl-color-text, #334155)">머신러닝·피처엔지니어링</text>
-  </g>
-
-  <!-- Arrow 3 -> 4 -->
-  <path d="M 380 107 L 391 107" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#bdArr)"/>
-
-  <!-- Col 4: 서빙·활용 계층 -->
-  <g transform="translate(393, 20)">
-    <rect width="112" height="175" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="112" height="28" rx="6" fill="#f8fafc"/>
-    <text x="56" y="19" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-accent, #2563eb)">4. 서빙 (Serving)</text>
-
-    <text x="10" y="52" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• Trino / Presto</text>
-    <text x="16" y="66" font-size="8" fill="var(--sl-color-gray-2, #64748b)">대화형 분산 SQL 질의</text>
-
-    <text x="10" y="90" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• BI 대시보드</text>
-    <text x="16" y="104" font-size="8" fill="var(--sl-color-gray-2, #64748b)">Superset, Tableau</text>
-
-    <text x="10" y="128" font-size="9" font-weight="700" fill="var(--sl-color-text, #1e293b)">• Feature Store</text>
-    <text x="16" y="142" font-size="8" fill="var(--sl-color-gray-2, #64748b)">실시간 AI/LLM 서빙</text>
-  </g>
-</svg>
-</div>
 
 - 본질: **빅데이터는 규모·생성 속도·형태가 기존 처리 방식의 한계를 넘는 데이터를 분산 기술과 적절한 분석 방법으로 다루는 접근**
 - 암기: `볼-벨-바-베-발` (5V: Volume, Velocity, Variety, Veracity, Value) / `수-저-처-분-서` (수집, 저장, 처리, 분석, 서빙) / `람-카` (람다 vs 카파 아키텍처)
@@ -124,12 +41,19 @@ extra:
 
 ## 1교시 10점 답안
 
-### [문제] 빅데이터 (Big Data)
+### Ⅰ. 개요
 
-#### 1. 빅데이터(Big Data)의 정의
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | 빅데이터는 기존 처리 방식으로 비용·시간·품질 요구를 충족하기 어려운 규모·속도·다양성의 데이터를 다루는 접근 |
+| 목적 | 업무 요구에 맞는 수집·저장·처리·분석으로 데이터 활용 가치와 품질 관리 지원 |
+
+### Ⅱ. 핵심 개념
+
+### Ⅲ. 빅데이터(Big Data)의 정의
 - 기존 처리 방식만으로 다루기 어려운 규모·속도·다양성의 데이터를 목적에 맞는 분산 컴퓨팅으로 수집·저장·처리·분석하는 접근
 
-#### 2. 빅데이터 5V 특성 및 플랫폼 아키텍처
+### Ⅳ. 빅데이터 5V 특성 및 플랫폼 아키텍처
 
 | 5V 차원 | 핵심 의미 | 대표 엔지니어링 기술 |
 |:---|:---|:---|
@@ -141,12 +65,12 @@ extra:
 
 - **4단 아키텍처**: 수집(Kafka/CDC) $\rightarrow$ 저장(S3/Iceberg) $\rightarrow$ 처리(Spark/Flink) $\rightarrow$ 서빙(Trino/BI)
 
-#### 3. 스트리밍 아키텍처: Lambda vs Kappa
+### Ⅴ. 스트리밍 아키텍처: Lambda vs Kappa
 - **Lambda**: Batch Layer와 Speed Layer를 이중 구축하여 정확성과 실시간성 동시 만족
 - **Kappa**: 단일 스트림 엔진(Flink)으로 일원화하고 Kafka 오프셋 Replay로 과거 데이터 재처리 통합
 ---
 
-### 핵심 관계
+### Ⅵ. 핵심 관계
 
 | 5V 차원 | 핵심 개념 및 특징 | 적용 기술 및 도전 과제 |
 |:---|:---|:---|
@@ -158,6 +82,8 @@ extra:
 
 ---
 
+제언: 데이터 규모·속도·품질 요구를 근거로 분산 처리 구조를 선택
+
 ## 2~4교시 예상문제 (25점)
 
 > 데이터 기반 의사결정의 핵심 기반인 빅데이터(Big Data)의 5V 특성을 설명하고, 수집-저장-처리-분석-서빙으로 이어지는 엔드투엔드 빅데이터 플랫폼의 참조 아키텍처 및 람다(Lambda)와 카파(Kappa) 아키텍처의 차이점을 기술하시오. (25점)
@@ -168,7 +94,19 @@ extra:
 
 ## 2~4교시 25점 답안
 
+### Ⅰ. 개요
+
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | 빅데이터는 기존 처리 방식으로 비용·시간·품질 요구를 충족하기 어려운 규모·속도·다양성의 데이터를 다루는 접근 |
+| 목적 | 업무 요구에 맞는 수집·저장·처리·분석으로 데이터 활용 가치와 품질 관리 지원 |
+
 ### Ⅰ. 데이터 경제 시대를 견인하는 빅데이터 개요
+
+| 특성 | 핵심 해석 |
+|:---|:---|
+| 규모·속도·다양성 | 기존 처리 방식으로 감당하기 어려운 데이터 특성과 처리 요구 |
+| 신뢰성·가치 | 품질·출처를 점검하고 업무 판단에 활용할 조건 |
 
 #### 한줄 요약: 업무 요구에 맞춰 다양한 데이터의 수집·저장·처리·분석 흐름을 구성하는 분산 데이터 접근
 
@@ -189,6 +127,11 @@ extra:
 | **5. Value (가치)** | 방대한 데이터를 처리하여 최종적으로 기업 수익 및 공공 가치 창출 | 머신러닝/DL 모델링, 개인화 추천, 사기 탐지(FDS) |
 
 ### Ⅲ. 빅데이터 플랫폼 4대 계층 참조 아키텍처
+
+| 단계 | 역할 |
+|:---|:---|
+| 수집·저장 | 다양한 원천 데이터를 배치·스트림으로 적재하고 보존 |
+| 처리·활용 | 품질·변환·분석을 수행해 서비스와 사용자에게 제공 |
 
 #### 한줄 요약: 수집, 분산 저장, 연산 처리, 서빙 및 거버넌스의 유기적 파이프라인
 
@@ -241,31 +184,9 @@ extra:
 
 ### Ⅶ. 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- **판정 (현행 한계)**: 대규모 데이터 파이프라인에서 람다 아키텍처 적용 시 배치(Spark)와 실시간(Flink) 로직의 이중 개발로 코드 불일치가 빈발하며, 중앙 데이터 엔지니어링 팀의 파이프라인 병목으로 현업 분석 지연 초래.
-- **대응 (개선 방안)**: Kafka 기반 단일 스트림 카파(Kappa) 아키텍처로 파이프라인을 일원화하고, Apache Iceberg 기반 데이터 레이크하우스 구축 및 도메인 중심의 데이터 메시(Data Mesh) 분산 거버넌스 도입.
-- **검증 (검증 기준)**: 배치-스트림 데이터 불일치율 0%, 파이프라인 재처리(Replay) 소요 시간 80% 단축, S3 작은 파일 Compaction을 통한 쿼리 레이턴시 50% 개선 검증.
-- **효과 (실행 효과)**: 파이프라인 유지보수 공수 50% 절감, 실시간 데이터 분석 리드타임 초 단위 단축, 데이터 레이크 운영 비용 40% 절감.
-
-<div class="itpe-flow-map">
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">현행 한계</div>
-    <div class="itpe-flow-step__content">람다 아키텍처 이중 개발 부채, 데이터 늪 전락 및 중앙 집중 병목</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">개선 방안</div>
-    <div class="itpe-flow-step__content">카파 아키텍처 단일화 + Apache Iceberg 레이크하우스 및 Data Mesh</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">검증 기준</div>
-    <div class="itpe-flow-step__content">로직 불일치 0%, Replay 80% 단축, Compaction 쿼리 50% 개선</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">실행 효과</div>
-    <div class="itpe-flow-step__content">파이프라인 공수 50% 절감, 실시간 분석 서빙, 인프라 비용 40% 절감</div>
-  </div>
-</div>
+| 한계 | 해결 방안 |
+|:---|:---|
+| 출처·품질·접근 책임이 불명확하면 데이터가 쌓여도 활용과 재현이 어려움 | 업무 목적·보유기간·품질 규칙·접근 통제를 파이프라인 운영에 포함 |
 
 ---
 

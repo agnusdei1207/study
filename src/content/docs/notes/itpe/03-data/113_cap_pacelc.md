@@ -23,64 +23,7 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" width="100%" height="auto" role="img" aria-label="CAP 정리와 PACELC 이론 트레이드오프 결정 구조">
-  <defs>
-    <marker id="pacArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
-    </marker>
-  </defs>
-  <!-- Background Card -->
-  <rect width="520" height="230" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
-  <!-- Left: CAP Triangle -->
-  <g transform="translate(20, 18)">
-    <rect width="215" height="194" rx="7" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="215" height="26" rx="7" fill="#f8fafc"/>
-    <text x="107" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-gray-2, #475569)">1. CAP 정리 (장애 중심)</text>
-
-    <!-- Triangle polygon -->
-    <polygon points="107,45 40,140 174,140" fill="none" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="2"/>
-
-    <!-- Vertex C -->
-    <circle cx="107" cy="45" r="14" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)"/>
-    <text x="107" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">C</text>
-
-    <!-- Vertex A -->
-    <circle cx="40" cy="140" r="14" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)"/>
-    <text x="40" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">A</text>
-
-    <!-- Vertex P -->
-    <circle cx="174" cy="140" r="14" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)"/>
-    <text x="174" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">P</text>
-
-    <!-- Bottom Caption -->
-    <text x="107" y="168" text-anchor="middle" font-size="9" font-weight="700" fill="#dc2626">물리 분산 시 P는 필수 전제</text>
-    <text x="107" y="182" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #334155)">실질적 선택: <tspan font-weight="700">CP</tspan> (HBase) vs <tspan font-weight="700">AP</tspan> (Cassandra)</text>
-  </g>
-
-  <!-- Right: PACELC Framework -->
-  <g transform="translate(255, 18)">
-    <rect width="245" height="194" rx="7" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
-    <rect width="245" height="26" rx="7" fill="var(--sl-color-accent, #dbeafe)"/>
-    <text x="122" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="var(--sl-color-accent, #1e40af)">2. PACELC 확장 (평상시 반영)</text>
-
-    <!-- Partition Branch (P) -->
-    <rect x="15" y="38" width="215" height="65" rx="5" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)"/>
-    <text x="25" y="54" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">If Partition (P) : 장애 상황</text>
-    <text x="35" y="70" font-size="8.5" fill="var(--sl-color-text, #1e293b)">• <tspan font-weight="700" fill="#2563eb">PC</tspan> : 일관성 사수 (HBase, Spanner)</text>
-    <text x="35" y="85" font-size="8.5" fill="var(--sl-color-text, #1e293b)">• <tspan font-weight="700" fill="#2563eb">PA</tspan> : 가용성 사수 (Cassandra, DynamoDB)</text>
-
-    <!-- Normal Branch (Else, E) -->
-    <rect x="15" y="112" width="215" height="68" rx="5" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-accent, #3b82f6)"/>
-    <text x="25" y="128" font-size="9.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">Else (E) : 99.9% 평상시 정상 상태</text>
-    <text x="35" y="145" font-size="8.5" fill="var(--sl-color-text, #1e293b)">• <tspan font-weight="700" fill="#1d4ed8">EL</tspan> : 지연시간 최소화 (비동기 복제)</text>
-    <text x="35" y="160" font-size="8.5" fill="var(--sl-color-text, #1e293b)">• <tspan font-weight="700" fill="#1d4ed8">EC</tspan> : 엄격한 일관성 (동기화 지연 감수)</text>
-
-    <text x="122" y="196" text-anchor="middle" font-size="8" font-weight="600" fill="var(--sl-color-accent, #1e40af)">대표: PC/EC (금융 원장), PA/EL (SNS/로그)</text>
-  </g>
-</svg>
-</div>
 
 - 본질: **물리적 분산 데이터 환경에서 네트워크 분할(P)은 불가피하므로 일관성(C)과 가용성(A) 중 하나를 선택해야 한다는 CAP 정리를 확장하여, 네트워크 분할(P) 시에는 가용성(A)과 일관성(C)의 상충을, 정상 상태(Else)에서는 지연시간(Latency)과 일관성(Consistency)의 상충을 체계화한 분산 시스템 아키텍처 설계 이론**
 - 암기: `일-가-분` (Consistency, Availability, Partition Tolerance) / `피-씨-피-에이 / 이-엘-이-씨` (PC/EC, PA/EL) / `쿼-알-더-엔` (Quorum: $R + W > N$)
@@ -92,19 +35,26 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> CAP 정리 및 PACELC 이론을 적용한 분산 데이터 저장소 아키텍처의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> CAP 정리와 PACELC 모형의 개념 및 핵심 절충을 설명하시오. (예상)
 
 ---
 
 ## 1교시 10점 답안
 
-### [문제] CAP 정리 vs PACELC 이론
+### Ⅰ. 개요
 
-#### 1. CAP 정리와 PACELC 이론의 개념
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | CAP은 네트워크 분할 중 일관성과 가용성의 동시 보장 한계를, PACELC는 정상 상태의 지연과 일관성 절충까지 설명하는 분산 시스템 모형 |
+| 목적 | 장애·정상 상태에서 요구하는 일관성, 가용성, 지연 간 선택을 명확히 하는 기준 |
+
+### Ⅱ. 핵심 개념
+
+### Ⅲ. CAP 정리와 PACELC 이론의 개념
 - **CAP 정리**: 분산 환경에서 일관성(C), 가용성(A), 분할용인(P) 중 최대 2개만 만족 가능하다는 기본 정리
 - **PACELC 이론**: 장애 시(If P: A vs C)와 평상 시(Else: L vs C)의 2단계 트레이드오프를 규명한 확장 모델
 
-#### 2. PACELC 4대 모델 비교 및 대표 DBMS
+### Ⅳ. PACELC 4대 모델 비교 및 대표 DBMS
 
 | 분류 유형 | 장애 시 (Partition) | 평상 시 (Else) | 대표 DBMS 및 최적 도메인 |
 |:---|:---:|:---:|:---|
@@ -112,11 +62,11 @@ extra:
 | **PC/EL** | 일관성 (C) 사수 | 저지연 (L) 우선 | MongoDB, Redis (인증 세션, 캐시) |
 | **PA/EL** | 가용성 (A) 사수 | 저지연 (L) 우선 | Cassandra, DynamoDB (SNS, 피드, 로그) |
 
-#### 3. 분산 일관성 제어 방안 (Quorum)
+### Ⅴ. 분산 일관성 제어 방안 (Quorum)
 - 쿼럼 크기와 복제 프로토콜, 읽기·쓰기 경로를 함께 검토하며, $R+W>N$은 해당 시스템의 정족수 정의와 장애 가정이 맞을 때 적용
 ---
 
-### 핵심 관계
+### Ⅵ. 핵심 관계
 
 | CAP 분류 | 시스템 특성 및 동작 방식 | 포기 속성 | 대표 솔루션 |
 |:---|:---|:---|:---|
@@ -125,6 +75,8 @@ extra:
 | **CA (Consistency + Availability)** | 네트워크 단절이 전혀 없는 환경에서만 성립 가능 (분산 시스템에서는 비현실적) | Partition Tolerance (분할용인) | 전통적 단일 노드 RDBMS (Oracle, MySQL 단일 인스턴스) |
 
 ---
+
+제언: 장애와 정상 상태의 요구를 나눠 일관성·가용성·지연의 선택 기준을 명시
 
 ## 2~4교시 예상문제 (25점)
 
@@ -136,7 +88,20 @@ extra:
 
 ## 2~4교시 25점 답안
 
+### Ⅰ. 개요
+
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | CAP은 네트워크 분할 중 일관성과 가용성의 동시 보장 한계를, PACELC는 정상 상태의 지연과 일관성 절충까지 설명하는 분산 시스템 모형 |
+| 목적 | 장애·정상 상태에서 요구하는 일관성, 가용성, 지연 간 선택을 명확히 하는 기준 |
+
 ### Ⅰ. 분산 시스템의 근본적 트레이드오프: CAP 정리 개요
+
+| 속성 | 의미 |
+|:---|:---|
+| C | 분산 데이터의 읽기·쓰기 일관성 요구 |
+| A | 정상 동작 중인 노드가 요청에 응답하는 가용성 요구 |
+| P | 노드 간 네트워크 분할이 발생한 조건 |
 
 #### 한줄 요약: 분산 네트워크 환경에서 일관성(C), 가용성(A), 분할 용인(P)의 3가지 속성을 동시에 모두 만족하는 것은 불가능하다는 Eric Brewer의 기본 정리
 
@@ -165,6 +130,11 @@ extra:
 
 ### Ⅲ. CAP 이론의 구조적 한계와 PACELC 이론의 탄생
 
+| 관점 | CAP | PACELC |
+|:---|:---|:---|
+| 장애 중 | 분할 상태의 C/A 절충 | P일 때 C/A 절충 |
+| 정상 상태 | 다루지 않음 | Else일 때 L/C 절충 |
+
 #### 한줄 요약: CAP 정리가 간과한 99.9%의 '정상 상태(Else)'에서 지연시간(Latency)과 일관성(Consistency)의 상충 관계를 정립한 Daniel Abadi의 확장 모델
 
 $$\text{If } [P] \implies [A] \text{ vs } [C], \quad [E]\text{lse} \implies [L] \text{ vs } [C]$$
@@ -186,6 +156,11 @@ $$\text{If } [P] \implies [A] \text{ vs } [C], \quad [E]\text{lse} \implies [L] 
 | **PA/EC** | Availability (가용성) | Consistency (일관성) | 분할 시에는 일단 응답을 허용하지만, 평상시에는 복제본 동기화 완료를 기다려 일관성을 유지 (이론적 조합) | 매우 드묾 (일부 커스텀 동기화 엔진) |
 
 ### Ⅴ. 분산 일관성 조절 메커니즘: 쿼럼(Quorum) 합의 모델
+
+| 설정 요소 | 검토 사항 |
+|:---|:---|
+| 읽기·쓰기 정족수 | 중첩 여부와 최신 버전의 반환 규칙 |
+| 장애·복제 프로토콜 | 정족수 산식이 전제하는 장애 수와 복제 순서 |
 
 #### 한줄 요약: 읽기 노드 수($R$)와 쓰기 노드 수($W$)의 합이 전체 복제본 수($N$)를 초과하도록 설정하여 강력한 일관성을 튜닝하는 기법
 
@@ -210,31 +185,9 @@ $$R + W > N \implies \text{Strong Consistency (강한 일관성 보장)}$$
 
 ### Ⅶ. 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- **판정 (현행 한계)**: 분산 NoSQL 도입 시 CAP의 극단적 이분법만 고려하여 평상시 지연시간(Latency) 상충을 간과함에 따라, 무리한 동기 복제로 인한 응답 지연 또는 과도한 비동기 복제로 인한 데이터 손실 발생.
-- **대응 (개선 방안)**: PACELC 프레임워크에 기반하여 업무 도메인별(원장계 PC/EC, 조회계 PA/EL)로 분산 저장소를 분리하고, 쿼럼 파라미터($R, W, N$)를 동적으로 튜닝하며, 충돌 해결을 위한 CRDT 데이터 구조 도입.
-- **검증 (검증 기준)**: 네트워크 분할 시 SLA 응답 성공률 99.99% 준수(AP 영역), 원장 데이터 복제 불일치 0건 검증(CP 영역), 쿼럼 읽기/쓰기 레이턴시 10ms 이내 유지.
-- **효과 (실행 효과)**: 대규모 분산 장애 시 서비스 다운타임 0건 달성, 글로벌 트랜잭션 지연시간 60% 단축, 금융급 데이터 정합성과 가용성의 동시 확보.
-
-<div class="itpe-flow-map">
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">현행 한계</div>
-    <div class="itpe-flow-step__content">CAP 이분법적 설계로 평상시 지연시간(L) 무시 및 복제 지연 데이터 손실</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">개선 방안</div>
-    <div class="itpe-flow-step__content">PACELC 기반 도메인 격리 + 쿼럼 튜닝(R+W&gt;N) 및 CRDT 적용</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">검증 기준</div>
-    <div class="itpe-flow-step__content">분할 시 가용성 99.99%, 원장 불일치 0건, 쿼럼 응답 10ms 이내</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">실행 효과</div>
-    <div class="itpe-flow-step__content">장애 다운타임 0건, 글로벌 트랜잭션 60% 가속, 정합성·가용성 달성</div>
-  </div>
-</div>
+| 한계 | 해결 방안 |
+|:---|:---|
+| 서비스별로 다른 일관성 요구를 제품의 단일 CAP 라벨로 판단하기 어려움 | API·복제 설정·장애 동작을 검증하고 업무별 일관성·가용성·지연 목표를 정리 |
 
 ---
 

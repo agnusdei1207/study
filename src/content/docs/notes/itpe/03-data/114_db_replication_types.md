@@ -23,104 +23,7 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-<div class="itpe-diagram-container" style="max-width: 520px; margin: 1rem auto;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" width="100%" height="auto" role="img" aria-label="데이터베이스 3대 복제 동기화 시퀀스 비교">
-  <defs>
-    <marker id="repArr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--sl-color-accent, #3b82f6)"/>
-    </marker>
-    <marker id="repAck" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
-    </marker>
-  </defs>
-  <!-- Background Card -->
-  <rect width="520" height="230" rx="10" fill="var(--sl-color-bg-sidebar, #f8fafc)" stroke="var(--sl-color-hairline, #e2e8f0)" stroke-width="1.5"/>
 
-  <!-- Col 1: 동기 복제 -->
-  <g transform="translate(15, 15)">
-    <rect width="155" height="198" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="155" height="26" rx="6" fill="#f8fafc"/>
-    <text x="77" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">1. 동기 복제 (Sync)</text>
-
-    <!-- Nodes Lifeline -->
-    <line x1="40" y1="35" x2="40" y2="155" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2"/>
-    <line x1="115" y1="35" x2="115" y2="155" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2"/>
-    <text x="40" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Primary</text>
-    <text x="115" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Replica</text>
-
-    <!-- Messages -->
-    <path d="M 40 65 L 115 75" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" marker-end="url(#repArr)"/>
-    <text x="77" y="66" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent, #2563eb)">로그 전송</text>
-
-    <text x="115" y="92" text-anchor="middle" font-size="7" fill="var(--sl-color-gray-2, #64748b)">디스크 기록</text>
-
-    <path d="M 115 105 L 40 115" stroke="#10b981" stroke-width="1.5" marker-end="url(#repAck)"/>
-    <text x="77" y="106" text-anchor="middle" font-size="7.5" font-weight="700" fill="#059669">ACK 응답</text>
-
-    <circle cx="40" cy="130" r="3" fill="#2563eb"/>
-    <text x="48" y="133" font-size="8" font-weight="700" fill="var(--sl-color-accent, #1d4ed8)">최종 커밋</text>
-
-    <!-- Bottom Trait -->
-    <text x="77" y="172" text-anchor="middle" font-size="8.5" font-weight="700" fill="#059669">RPO = 0 (무유실)</text>
-    <text x="77" y="186" text-anchor="middle" font-size="8" fill="#dc2626">네트워크 RTT 지연</text>
-  </g>
-
-  <!-- Col 2: 비동기 복제 -->
-  <g transform="translate(182, 15)">
-    <rect width="155" height="198" rx="6" fill="var(--sl-color-bg, #ffffff)" stroke="var(--sl-color-hairline, #cbd5e1)"/>
-    <rect width="155" height="26" rx="6" fill="#f8fafc"/>
-    <text x="77" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #2563eb)">2. 비동기 복제 (Async)</text>
-
-    <!-- Nodes Lifeline -->
-    <line x1="40" y1="35" x2="40" y2="155" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2"/>
-    <line x1="115" y1="35" x2="115" y2="155" stroke="var(--sl-color-gray-3, #94a3b8)" stroke-width="1.2"/>
-    <text x="40" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Primary</text>
-    <text x="115" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Replica</text>
-
-    <!-- Messages -->
-    <circle cx="40" cy="65" r="3" fill="#2563eb"/>
-    <text x="48" y="68" font-size="8" font-weight="700" fill="#2563eb">즉시 커밋!</text>
-
-    <path d="M 40 85 L 115 100" stroke="var(--sl-color-accent, #3b82f6)" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#repArr)"/>
-    <text x="77" y="88" text-anchor="middle" font-size="7.5" fill="var(--sl-color-gray-2, #64748b)">백그라운드 전송</text>
-
-    <text x="115" y="120" text-anchor="middle" font-size="7" fill="var(--sl-color-gray-2, #64748b)">릴레이 적용</text>
-
-    <!-- Bottom Trait -->
-    <text x="77" y="172" text-anchor="middle" font-size="8.5" font-weight="700" fill="#2563eb">초저지연 최고성능</text>
-    <text x="77" y="186" text-anchor="middle" font-size="8" fill="#dc2626">장애 시 RPO &gt; 0 유실</text>
-  </g>
-
-  <!-- Col 3: 반동기 복제 -->
-  <g transform="translate(350, 15)">
-    <rect width="155" height="198" rx="6" fill="var(--sl-color-accent, #eff6ff)" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5"/>
-    <rect width="155" height="26" rx="6" fill="var(--sl-color-accent, #dbeafe)"/>
-    <text x="77" y="18" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">3. 반동기 (Semi-Sync)</text>
-
-    <!-- Nodes Lifeline -->
-    <line x1="40" y1="35" x2="40" y2="155" stroke="var(--sl-color-accent, #93c5fd)" stroke-width="1.2"/>
-    <line x1="115" y1="35" x2="115" y2="155" stroke="var(--sl-color-accent, #93c5fd)" stroke-width="1.2"/>
-    <text x="40" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Primary</text>
-    <text x="115" y="44" text-anchor="middle" font-size="8.5" fill="var(--sl-color-text, #1e293b)">Replica 1</text>
-
-    <!-- Messages -->
-    <path d="M 40 65 L 115 75" stroke="var(--sl-color-accent, #2563eb)" stroke-width="1.5" marker-end="url(#repArr)"/>
-    <text x="77" y="66" text-anchor="middle" font-size="7.5" fill="var(--sl-color-accent, #1d4ed8)">로그 전송</text>
-
-    <text x="115" y="92" text-anchor="middle" font-size="7" fill="var(--sl-color-accent, #1e40af)">메모리(Relay) 수신</text>
-
-    <path d="M 115 105 L 40 115" stroke="#10b981" stroke-width="1.5" marker-end="url(#repAck)"/>
-    <text x="77" y="106" text-anchor="middle" font-size="7.5" font-weight="700" fill="#059669">최소 1대 ACK</text>
-
-    <circle cx="40" cy="130" r="3" fill="#1e40af"/>
-    <text x="48" y="133" font-size="8" font-weight="700" fill="var(--sl-color-accent, #1e40af)">최종 커밋</text>
-
-    <!-- Bottom Trait -->
-    <text x="77" y="172" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--sl-color-accent, #1e40af)">성능과 무유실 절충</text>
-    <text x="77" y="186" text-anchor="middle" font-size="8" fill="var(--sl-color-accent, #2563eb)">엔터프라이즈 사실상 표준</text>
-  </g>
-</svg>
-</div>
 
 - 본질: **데이터베이스 복제는 원본의 변경을 다른 노드에 전달해 가용성·읽기 확장·복구를 지원하는 기법이며, 동기화 방식에 따라 응답 지연과 장애 시점의 데이터 손실 위험이 달라짐**
 - 암기: `동-비-반` (3대 동기화 방식: 동기, 비동기, 반동기 복제) / `마-슬 / 멀-마` (토폴로지: Master-Slave, Multi-Master) / `복-지-랙` (복제 지연 Replication Lag)
@@ -133,18 +36,25 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> 데이터베이스 복제 유형(동기·비동기·반동기)과 고가용성 복제 아키텍처의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> 데이터베이스 복제의 개념과 동기·비동기 방식의 핵심 차이를 설명하시오. (예상)
 
 ---
 
 ## 1교시 10점 답안
 
-### [문제] DB 복제 유형 (Replication Types)
+### Ⅰ. 개요
 
-#### 1. DB 복제(Replication)의 정의
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | 데이터베이스 복제는 원본의 변경을 복제 노드에 전달·반영하는 기술 |
+| 목적 | 가용성·읽기 확장·복구 요구에 맞춰 데이터 사본을 유지하고 동기화 수준을 선택 |
+
+### Ⅱ. 핵심 개념
+
+### Ⅲ. DB 복제(Replication)의 정의
 - 데이터베이스의 고가용성(HA), 부하 분산, 재해 복구를 위해 트랜잭션 로그를 네트워크를 통해 둘 이상의 노드 간에 동기화하는 복제 기술
 
-#### 2. 복제 동기화 3대 방식 비교
+### Ⅳ. 복제 동기화 3대 방식 비교
 
 | 복제 방식 | 커밋 완료 시점 | 데이터 유실 (RPO) | 성능 (Latency) |
 |:---|:---|:---:|:---:|
@@ -152,11 +62,11 @@ extra:
 | **비동기 복제 (Async)** | Primary 로컬 기록 즉시 완료 | 유실 발생 가능 ($> 0$) | **가장 빠름 (초저지연)** |
 | **반동기 복제 (Semi-Sync)** | 최소 1개 복제 노드의 릴레이 로그 수신 후 | **거의 0 ($\approx 0$)** | **우수 (성능-정합성 최적 절충)** |
 
-#### 3. 복제 지연(Replication Lag) 극복 방안
+### Ⅴ. 복제 지연(Replication Lag) 극복 방안
 - 쓰기 직후 세션은 일정 시간 Primary에서 직접 읽도록 라우팅(Read-your-writes)하여 데이터 불일치 해소
 ---
 
-### 핵심 관계
+### Ⅵ. 핵심 관계
 
 | 비교 항목 | 동기 복제 (Synchronous) | 비동기 복제 (Asynchronous) | 반동기 복제 (Semi-Synchronous) |
 |:---|:---|:---|:---|
@@ -168,6 +78,8 @@ extra:
 
 ---
 
+제언: 복제 방식은 업무별 손실 허용치와 장애 모델에 맞춰 선정
+
 ## 2~4교시 예상문제 (25점)
 
 > 엔터프라이즈 데이터베이스의 고가용성과 확장성을 보장하기 위한 복제(Replication)의 동기화 3대 방식(동기, 비동기, 반동기)의 메커니즘과 장단점을 비교하고, 읽기 분산 환경에서 발생하는 복제 지연(Replication Lag)의 해결 방안과 스플릿 브레인(Split-Brain) 방어 체계를 서술하시오. (25점)
@@ -178,7 +90,19 @@ extra:
 
 ## 2~4교시 25점 답안
 
+### Ⅰ. 개요
+
+| 구분 | 핵심 |
+|:---|:---|
+| 정의 | 데이터베이스 복제는 원본의 변경을 복제 노드에 전달·반영하는 기술 |
+| 목적 | 가용성·읽기 확장·복구 요구에 맞춰 데이터 사본을 유지하고 동기화 수준을 선택 |
+
 ### Ⅰ. 무중단 서비스를 지탱하는 데이터베이스 복제(Replication) 개요
+
+| 구성 | 역할 |
+|:---|:---|
+| 원본 노드 | 트랜잭션을 처리하고 변경 로그 생성 |
+| 복제 노드 | 변경을 받아 적용해 읽기·장애 복구에 활용 |
 
 #### 한줄 요약: 트랜잭션 로그를 네트워크를 통해 보조 노드에 동기화하여 서비스 가용성과 읽기 처리량을 극대화하는 기술
 
@@ -216,6 +140,11 @@ extra:
 
 ### Ⅳ. 복제 지연(Replication Lag) 메커니즘과 읽기 일관성 보장 전략
 
+| 지연 원인 | 대응 |
+|:---|:---|
+| 원본 쓰기량이 복제 적용량을 초과 | 복제 지연·대기열을 계측하고 쓰기 부하·대상 용량 조정 |
+| 갱신 직후 보조노드 읽기 | 세션 요구에 따라 원본 읽기나 읽기 시점 보장 기능 검토 |
+
 #### 한줄 요약: Primary와 Replica 간의 시간차로 인한 데이터 불일치를 애플리케이션 레벨에서 라우팅하여 해결
 
 - **복제 지연(Replication Lag)의 발생 원인**:
@@ -228,6 +157,10 @@ extra:
   3. **GTID(Global Transaction Identifier) 기반 동기화 확인**: 읽기 요청 시 클라이언트가 방금 커밋한 트랜잭션의 GTID를 복제본이 이미 반영했는지 확인 후 쿼리 수행
 
 ### Ⅴ. 스플릿 브레인(Split-Brain) 방어 및 고가용성 오케스트레이션
+
+| 위험 | 통제 |
+|:---|:---|
+| 단절된 양쪽 노드에서 쓰기 허용 | 단일 쓰기 리더, 장애 판정, 펜싱 절차와 복구 리허설 |
 
 #### 한줄 요약: 네트워크 단절 시 복수의 노드가 마스터를 자처하는 뇌 분리 현상을 정족수(Quorum) 투표로 차단
 
@@ -251,31 +184,9 @@ extra:
 
 ### Ⅶ. 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- **판정 (현행 한계)**: 비동기 복제 환경에서 마스터 장애 시 수십 초~수 분의 최신 데이터가 유실(RPO > 0)되며, 수작업 기반의 장애 복구 체계는 목표 RTO(5분 이내) 달성이 불가능함.
-- **대응 (개선 방안)**: 반동기 복제(Semi-Sync)를 기본 채택하여 최소 1개 복제본의 메모리 수신 ACK를 보장하고, Raft 합의 기반 무인 자동 장애조치(Orchestrator) 및 카오스 엔지니어링 훈련 도입.
-- **검증 (검증 기준)**: 마스터 강제 종료 모의훈련 시 RPO = 0 달성 검증, 자동 승격 및 DNS/VIP 스위칭 RTO 30초 이내 완료, 복제 지연 시간 1초 미만 통제.
-- **효과 (실행 효과)**: 데이터 유실 사고 100% 예방, 데이터베이스 고가용성 SLA 99.999% 달성, 야간 긴급 장애 대응 인건비 80% 절감.
-
-<div class="itpe-flow-map">
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">현행 한계</div>
-    <div class="itpe-flow-step__content">비동기 복제로 장애 시 데이터 유실 위험, 수동 Failover로 RTO 수 시간 지연</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">개선 방안</div>
-    <div class="itpe-flow-step__content">반동기(Semi-Sync) 복제 표준화 + Raft 기반 무인 자동 장애조치 구축</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">검증 기준</div>
-    <div class="itpe-flow-step__content">RPO = 0 달성, 자동 페일오버 RTO 30초 이내, Replication Lag 1초 이내</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-step__label">실행 효과</div>
-    <div class="itpe-flow-step__content">데이터 무유실 보장, 연간 가용성 99.999% 확보, 24x365 무중단 운영 달성</div>
-  </div>
-</div>
+| 한계 | 해결 방안 |
+|:---|:---|
+| 자동 승격도 장애 판정 오류·미반영 로그·분기 쓰기를 낳을 수 있음 | 복제 확인 조건과 펜싱·재동기화 절차를 정의하고 장애 훈련으로 검증 |
 
 ---
 
