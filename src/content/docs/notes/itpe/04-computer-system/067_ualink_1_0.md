@@ -34,7 +34,6 @@ AI 시스템 → 가속기 연결 → 스케일업 인터커넥트 → UALink
 - **로드·스토어 (Load/Store)**: 메모리 주소를 대상으로 값을 읽고 쓰는 명령 의미
 - **UALink 컨소시엄 (Ultra Accelerator Link Consortium)**: UALink 사양을 제정·관리하는 산업 표준화 단체
 - **InfiniBand**: 고성능 컴퓨팅·데이터센터의 패킷 기반 네트워크 인터커넥트 기술
-- **UEC (Ultra Ethernet Consortium)**: AI·고성능 컴퓨팅용 Ethernet 기반 스케일아웃 기술을 개발하는 산업 단체
 </details>
 
 ---

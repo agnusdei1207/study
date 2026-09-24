@@ -33,7 +33,6 @@ extra:
 - **PUE (Power Usage Effectiveness)**: 데이터센터 총 에너지를 IT 장비 에너지로 나눈 에너지 효율 지표
 - **CDU (Coolant Distribution Unit)**: 설비 냉각 회로와 IT 장비 냉각 회로 사이에서 냉각수 흐름·열교환을 관리하는 장치
 - **직접 칩 냉각 (Direct-to-Chip Cooling, D2C)**: 냉각판 등을 통해 칩 가까이에서 냉각 유체로 열을 전달하는 방식
-- **SMR (Small Modular Reactor)**: 소형 모듈형 원자로 설계 개념; 특정 데이터센터에 공급한다는 뜻이나 상용화 일정을 보장하지 않음
 </details>
 
 ---
@@ -146,7 +145,7 @@ flowchart TD
 - **기출 이력**: 기출 확인 없음; AI 인프라 개념 중심 예상문제
 - **검증 출처**:
   - [U.S. Department of Energy, Best Practices Guide for Energy-Efficient Data Center Design](https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design_0.pdf)
-  - [The Green Grid, PUE: A Comprehensive Examination of the Metric](https://www.thegreengrid.org/en/resources/library-and-tools/237-PUE%3A-A-Comprehensive-Examination-of-the-Metric)
+  - [Lawrence Berkeley National Laboratory: PUE, a Green Grid metric](https://datacenters.lbl.gov/resources/pue-comprehensive-examination-metric)
 
 ---
 
