@@ -23,11 +23,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **XaaS(Everything as a Service)**: 인프라·플랫폼·소프트웨어 등 기능을 서비스 형태로 제공하는 모델
-- **IaaS(Infrastructure as a Service)**: 컴퓨팅·스토리지·네트워크 기반 자원을 제공하는 서비스
-- **PaaS(Platform as a Service)**: 애플리케이션 개발·실행에 필요한 플랫폼을 제공하는 서비스
-- **SaaS(Software as a Service)**: 완성된 애플리케이션을 네트워크로 제공하는 서비스
-- **공유 책임 모델(Shared Responsibility Model)**: 제공자와 이용자의 보안·운영 책임을 서비스 경계에 따라 나누는 원칙
+- **XaaS(Everything as a Service):** 인프라·플랫폼·소프트웨어 등 기능을 서비스 형태로 제공하는 모델
+- **IaaS(Infrastructure as a Service):** 컴퓨팅·스토리지·네트워크 기반 자원을 제공하는 서비스
+- **PaaS(Platform as a Service):** 애플리케이션 개발·실행에 필요한 플랫폼을 제공하는 서비스
+- **SaaS(Software as a Service):** 완성된 애플리케이션을 네트워크로 제공하는 서비스
+- **공유 책임 모델(Shared Responsibility Model):** 제공자와 이용자의 보안·운영 책임을 서비스 경계에 따라 나누는 원칙
 
 </details>
 
@@ -45,7 +45,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **XaaS(Everything as a Service)**: IT 기능·자원을 서비스로 제공해 네트워크로 이용하는 모델 |
+| 정의 | **XaaS(Everything as a Service):** IT 기능·자원을 서비스로 제공해 네트워크로 이용하는 모델 |
 | 목적 | 초기 구축 부담을 낮추고 필요한 기능을 수요에 맞게 이용 |
 
 ### Ⅱ. 서비스 제공 구조
@@ -80,7 +80,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **XaaS(Everything as a Service)**: IT 기능·자원을 서비스로 제공해 네트워크로 이용하는 모델 |
+| 정의 | **XaaS(Everything as a Service):** IT 기능·자원을 서비스로 제공해 네트워크로 이용하는 모델 |
 | 목적 | 초기 구축 부담을 낮추고 필요한 기능을 수요에 맞게 이용 |
 
 ## Ⅱ. 서비스 유형과 관리 범위
