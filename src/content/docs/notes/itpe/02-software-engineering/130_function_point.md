@@ -58,20 +58,15 @@ extra:
 
 ### 2. 핵심 관계
 
-```mermaid
-flowchart TB
-    subgraph APP["애플리케이션 경계"]
-        ILF["ILF"]
-        subgraph TX["트랜잭션 기능"]
-            direction LR
-            EI["EI"] ~~~ EO["EO"] ~~~ EQ["EQ"]
-        end
-        EI -->|"ILF 갱신"| ILF
-    end
-    subgraph EXT["외부 시스템"]
-        EIF["EIF"]
-    end
-    TX -.->|"읽기 참조"| EIF
+```text
+기능점수 산정 경계
+    ├─ 데이터 기능
+    │    ├─ ILF: 내부 유지 데이터
+    │    └─ EIF: 외부 참조 데이터
+    └─ 트랜잭션 기능
+         ├─ EI: 외부 입력
+         ├─ EO: 외부 출력
+         └─ EQ: 외부 조회
 ```
 
 - 제언: 측정 경계와 기능 유형을 먼저 합의하고 산정 근거를 검토자와 대조
@@ -112,20 +107,15 @@ flowchart TB
 
 ### 기능점수 5대 기능 분류 체계
 
-```mermaid
-flowchart TB
-    subgraph APP["애플리케이션 경계"]
-        ILF["ILF"]
-        subgraph TX["트랜잭션 기능"]
-            direction LR
-            EI["EI"] ~~~ EO["EO"] ~~~ EQ["EQ"]
-        end
-        EI -->|"ILF 갱신"| ILF
-    end
-    subgraph EXT["외부 시스템"]
-        EIF["EIF"]
-    end
-    TX -.->|"읽기 참조"| EIF
+```text
+기능점수 산정 경계
+    ├─ 데이터 기능
+    │    ├─ ILF: 내부 유지 데이터
+    │    └─ EIF: 외부 참조 데이터
+    └─ 트랜잭션 기능
+         ├─ EI: 외부 입력
+         ├─ EO: 외부 출력
+         └─ EQ: 외부 조회
 ```
 
 ### 기능점수 산정 공식 및 보정 체계

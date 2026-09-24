@@ -57,11 +57,14 @@ extra:
 
 ### Ⅱ. 핵심 관계
 
-```mermaid
-flowchart TB
-    SRC["파이썬 소스"] --> R["CPython 런타임"] --> OUT["프로그램 동작"]
-    R -->|"GIL 빌드"| G["GIL을 획득한 스레드가 Python 코드 실행"]
-    R -->|"선택형 free-threaded 빌드"| F["GIL 비활성화 환경에서 다중 스레드 실행 가능"]
+```text
+Python 소스(.py)
+    ↓ 컴파일
+바이트코드
+    ↓ 실행
+CPython 런타임
+    ├─ 일반 빌드: GIL 동작
+    └─ free-threaded 빌드: GIL 비활성화
 ```
 
 - 제언: 타입·테스트·패키지 경계를 명확히 하고 정적 검사와 자동 시험으로 오류를 조기에 탐지
@@ -102,11 +105,14 @@ flowchart TB
 
 ### CPython 실행 구조 및 GIL 병목 메커니즘
 
-```mermaid
-flowchart TB
-    SRC["소스코드 .py"] --> BC["CPython 바이트코드"] --> PVM["CPython 런타임"]
-    PVM -->|"GIL 빌드"| GIL["한 스레드씩 Python 코드 실행"]
-    PVM -->|"free-threaded 빌드"| FT["GIL 비활성화, 여러 스레드 실행"]
+```text
+Python 소스(.py)
+    ↓ 컴파일
+바이트코드
+    ↓ 실행
+CPython 런타임
+    ├─ 일반 빌드: GIL 동작
+    └─ free-threaded 빌드: GIL 비활성화
 ```
 
 ### 파이썬 핵심 아키텍처 4대 구성요소

@@ -67,14 +67,12 @@ extra:
 
 ### Ⅱ. 위험 통제 관계
 
-```mermaid
-stateDiagram-v2
-    state "정상 운영" as N
-    state "결함 감지·인터락" as D
-    state "안전 상태" as S
-    [*] --> N
-    N --> D: 결함 주입
-    D --> S: 전이 제어(Fail-Safe)
+```text
+정상 운영
+    ↓ 결함 감지
+인터락·제어 차단
+    ↓ Fail-Safe 전이
+안전 상태
 ```
 
 - 제언: 진단 항목을 위험 분석·안전 요구사항·검증 기록에 연결해 미흡 사항을 추적하는 운영 원칙
@@ -110,14 +108,12 @@ stateDiagram-v2
 
 ### 결함 주입(Fault Injection) 및 Fail-Safe 상태 전이 메커니즘
 
-```mermaid
-stateDiagram-v2
-    state "정상 운영" as N
-    state "결함 감지·인터락" as D
-    state "안전 상태" as S
-    [*] --> N
-    N --> D: 결함 주입
-    D --> S: 전이 제어(Fail-Safe)
+```text
+정상 운영
+    ↓ 결함 감지
+인터락·제어 차단
+    ↓ Fail-Safe 전이
+안전 상태
 ```
 
 ### 안전진단 4대 상세 점검 항목

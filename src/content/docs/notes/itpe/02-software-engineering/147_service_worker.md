@@ -61,12 +61,12 @@ extra:
 
 ### Ⅱ. 요청 처리 관계
 
-```mermaid
-flowchart LR
-    UI["웹 페이지(UI)"] -->|"fetch 요청"| SW["서비스 워커 프록시"]
-    SW -->|"Cache Hit"| CS["Cache Storage"]
-    SW -.->|"Cache Miss"| NET["원격 서버"]
-    NET -.->|"응답 후 캐시 갱신"| CS
+```text
+웹 페이지의 fetch 요청
+    ↓ 제어 중인 페이지에 한해
+서비스 워커 fetch 이벤트
+    ├─ 캐시 적중 → Cache Storage 응답
+    └─ 캐시 미스 → 네트워크 응답·캐시 갱신
 ```
 
 - 제언: 캐시 버전·갱신·폐기 절차와 오프라인·업데이트 경로를 함께 검증하는 기준
@@ -101,12 +101,12 @@ flowchart LR
 
 ### 서비스 워커 프록시 및 생명주기 아키텍처
 
-```mermaid
-flowchart LR
-    UI["웹 페이지(UI)"] -->|"fetch 요청"| SW["서비스 워커 프록시"]
-    SW -->|"Cache Hit"| CS["Cache Storage"]
-    SW -.->|"Cache Miss"| NET["원격 서버"]
-    NET -.->|"응답 후 캐시 갱신"| CS
+```text
+웹 페이지의 fetch 요청
+    ↓ 제어 중인 페이지에 한해
+서비스 워커 fetch 이벤트
+    ├─ 캐시 적중 → Cache Storage 응답
+    └─ 캐시 미스 → 네트워크 응답·캐시 갱신
 ```
 
 ### 4대 런타임 캐싱 전략 (Caching Strategies)
