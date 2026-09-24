@@ -92,7 +92,7 @@ flowchart TD
 
 ## Ⅱ. ITSM 구성체계
 
-> **ITIL** 4는 실천방법, ISO/IEC 20000-1은 **SMS** 요구사항, **SLA**는 고객과의 서비스 수준 약속을 담당함.
+> 기준별 역할: **ITIL** 4의 서비스관리 지침, ISO/IEC 20000-1의 **SMS** 요구사항, **SLA**의 고객 서비스수준 약속.
 
 ```mermaid
 flowchart LR
@@ -111,7 +111,7 @@ flowchart LR
 
 ## Ⅲ. 핵심 Practice 연계
 
-> Incident 복구와 Problem 원인제거를 구분하고, Change·Release로 개선을 안전하게 반영함.
+> 운영관리의 구분: Incident 복구, Problem 원인분석·재발방지, Change·Release를 통한 개선 반영.
 
 ```mermaid
 flowchart TD
@@ -144,7 +144,7 @@ flowchart TD
 
 ## Ⅴ. 문제점·대응책
 
-> 프로세스 통제와 자동화의 균형이 서비스 안정성과 변경속도를 좌우함.
+> 운영 설계의 균형축: 프로세스 통제와 자동화, 서비스 안정성과 변경속도.
 
 | 위험 | 대책 | 효과 |
 |---|---|---|

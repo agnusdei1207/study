@@ -129,7 +129,7 @@ flowchart TD
 
 ## Ⅳ. **Issue Tree**·**WBS** 적용 절차
 
-> 논점 구조는 분석 가능한 질문으로, WBS는 책임 가능한 작업단위로 끝나야 함.
+> 결과물의 구분: 논점 구조는 분석 가능한 질문, WBS는 책임질 수 있는 작업단위.
 
 ```mermaid
 flowchart TD
