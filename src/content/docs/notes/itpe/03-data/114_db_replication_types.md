@@ -32,6 +32,19 @@ extra:
   - **비동기 복제(Asynchronous)**: 초당 트랜잭션 수(TPS)가 최우선이고 미세 유실이 허용되는 대용량 로그 수집 및 SNS 피드 영역
   - **반동기 복제(Semi-Synchronous)**: 여러 복제 노드 중 최소 1개 노드 수신 확인 후 커밋하여 성능과 무유실의 균형을 맞춘 엔터프라이즈 최적해
 - 주의: 비동기 복제 환경에서 읽기/쓰기 분리(Read Replica)를 적용할 경우, 쓰기 직후 복제 지연(Replication Lag)으로 인해 사용자가 방금 작성한 글을 조회하지 못하는 **읽기 일관성(Read-your-writes) 불일치**가 발생하므로 세션 라우팅 대책이 필수적임
+<details><summary>핵심 용어</summary>
+
+- **데이터베이스 복제 (Database Replication)** : 원본 데이터 변경을 복제 노드에 전달·반영해 사본을 유지하는 기술.
+- **동기 복제 (Synchronous Replication)** : 설정된 복제 확인을 커밋 완료 조건에 포함하는 방식.
+- **비동기 복제 (Asynchronous Replication)** : 원본 커밋 후 복제 대상에 변경을 전달하는 방식.
+- **반동기 복제 (Semi-Synchronous Replication)** : 복제 대상의 일부 확인을 커밋 응답 조건으로 사용하는 제품별 복제 방식.
+- **복제 지연 (Replication Lag)** : 원본의 변경과 복제본에 해당 변경이 반영되는 시점 사이의 차이.
+- **읽기 후 쓰기 일관성 (Read-your-writes Consistency)** : 사용자가 갱신한 값을 이후 읽기에서 확인할 수 있도록 하는 읽기 보장.
+- **GTID (Global Transaction Identifier)** : MySQL 복제에서 트랜잭션을 식별하는 전역 식별자.
+- **RPO (Recovery Point Objective)** : 장애 후 복구할 데이터 시점에 관한 목표.
+
+</details>
+
 ---
 
 ## 1교시 예상문제 (10점)
