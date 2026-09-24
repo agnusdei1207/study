@@ -3,7 +3,7 @@ sidebar:
   order: 163
   label: "163. 점추정 vs 구간추정"
   badge:
-    text: "B"
+    text: "서브"
     variant: note
 title: "점추정(Point Estimation)과 구간추정(Interval Estimation)의 비교 및 신뢰구간 평가"
 author: "OpenAI Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 163
 extra:
   model: "GPT-6"
-  keyword_grade: "B"
+  keyword_grade: "서브"
   question_no: "163"
 ---
 

@@ -5,10 +5,10 @@ date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
-    text: "A"
+    text: "기초"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
 ---
 
 <p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>

@@ -3,7 +3,7 @@ sidebar:
   order: 94
   label: "094. TEXT2SQL"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "Text-to-SQL(NL2SQL) 아키텍처 및 LLM 기반 자연어 쿼리 변환 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 94
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "094"
 ---
 

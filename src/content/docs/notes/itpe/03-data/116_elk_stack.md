@@ -3,7 +3,7 @@ sidebar:
   order: 116
   label: "116. ELK 스택"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "ELK(Elasticsearch·Logstash·Kibana) 스택 기반 분산 로그 분석 및 관측성 플랫폼"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 116
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "116"
 ---
 

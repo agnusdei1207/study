@@ -3,7 +3,7 @@ sidebar:
   order: 149
   label: "149. 분산 데이터베이스(Distributed Database)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "분산 데이터베이스 (Distributed Database System)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 149
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "149"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 158
   label: "158. 프로세스 마이닝(Process Mining)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "프로세스 마이닝 (Process Mining)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 158
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "158"
 ---
 

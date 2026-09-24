@@ -3,7 +3,7 @@ sidebar:
   order: 81
   label: "081. CRUD 매트릭스 (CRUD Matrix)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "CRUD 매트릭스 (CRUD Matrix) 및 프로세스-데이터 정합성 검증"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 81
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "081"
 ---
 

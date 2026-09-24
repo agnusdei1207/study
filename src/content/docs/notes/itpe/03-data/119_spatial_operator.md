@@ -3,7 +3,7 @@ sidebar:
   order: 119
   label: "119. 공간 연산자 (Spatial Operator)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 119
 title: "공간 연산자 (Spatial Operator) 체계 및 공간 인덱스 기반 2단계(Filter & Refine) 처리"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "119"
 ---
 

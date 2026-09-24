@@ -3,7 +3,7 @@ sidebar:
   order: 63
   label: "063. 오픈소스 DBMS 전환"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "오픈소스 DBMS 전환 (Open Source DBMS Migration) 및 무중단 마이그레이션"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 63
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "063"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 97
   label: "097. AI·데이터 기반 행정"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터기반행정 및 AI 기반 공공의사결정 거버넌스 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 97
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "097"
 ---
 

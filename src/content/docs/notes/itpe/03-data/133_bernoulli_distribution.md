@@ -3,7 +3,7 @@ sidebar:
   order: 133
   label: "133. 베르누이 분포 (Bernoulli Distribution)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 133
 title: "베르누이 분포(Bernoulli Distribution)의 수학적 유도와 머신러닝 교차 엔트로피 손실 함수"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "133"
 ---
 

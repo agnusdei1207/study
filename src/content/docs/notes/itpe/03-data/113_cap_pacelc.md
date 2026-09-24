@@ -3,7 +3,7 @@ sidebar:
   order: 113
   label: "113. CAP·PACELC 이론"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "CAP 정리 및 PACELC 이론을 적용한 분산 데이터 저장소 아키텍처"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 113
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "113"
 ---
 

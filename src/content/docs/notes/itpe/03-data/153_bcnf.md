@@ -3,7 +3,7 @@ sidebar:
   order: 153
   label: "153. BCNF(Boyce-Codd Normal Form)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "BCNF (Boyce-Codd Normal Form, 보이스-코드 정규형)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 153
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "153"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 44
   label: "044. 벡터 데이터베이스 (Vector Database)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "벡터 데이터베이스 (Vector Database) 및 HNSW·IVF"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 44
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "044"
 ---
 

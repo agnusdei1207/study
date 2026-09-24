@@ -3,7 +3,7 @@ sidebar:
   order: 68
   label: "068. 잭나이프·부트스트랩"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "재표본화 기법 (잭나이프 vs 부트스트랩) 및 비모수 신뢰구간 추정"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 68
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "068"
 ---
 

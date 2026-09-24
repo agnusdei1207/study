@@ -3,7 +3,7 @@ sidebar:
   order: 122
   label: "122. 다차원척도법 (MDS)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 122
 title: "다차원척도법(MDS, Multidimensional Scaling)의 거리 보존 원리와 스트레스(Stress) 적합도 진단"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "122"
 ---
 

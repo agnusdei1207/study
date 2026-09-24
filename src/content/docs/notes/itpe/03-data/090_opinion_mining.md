@@ -3,7 +3,7 @@ sidebar:
   order: 90
   label: "090. 오피니언 마이닝 (Opinion Mining)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "오피니언 마이닝(Opinion Mining) 및 속성 기반 감성 분석(ABSA) 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 90
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "090"
 ---
 

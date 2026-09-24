@@ -3,7 +3,7 @@ sidebar:
   order: 69
   label: "069. 차원 축소 (PCA·다차원척도법)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "차원 축소 (Dimensionality Reduction) 및 PCA·다차원척도법(MDS)"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 69
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "069"
 ---
 

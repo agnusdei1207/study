@@ -3,7 +3,7 @@ sidebar:
   order: 47
   label: "047. 인덱스 (Index)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터베이스 인덱스 (Index) 및 클러스터드·논클러스터드 인덱스"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 47
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "047"
 ---
 

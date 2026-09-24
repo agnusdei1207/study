@@ -3,7 +3,7 @@ sidebar:
   order: 134
   label: "134. 빅데이터 분석도구 선택 원칙"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 134
 title: "빅데이터 분석도구 선정 원칙과 지연시간·데이터 규모 기반 의사결정 매트릭스"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "134"
 ---
 

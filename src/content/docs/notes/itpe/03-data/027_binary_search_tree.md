@@ -3,12 +3,12 @@ author: "Antigravity"
 category: "03-data"
 date: "2026-09-24T00:00:00+09:00"
 extra:
-  keyword_grade: "A"
+  keyword_grade: "기초"
   model: "GPT-6"
   question_no: "027"
 sidebar:
   badge:
-    text: "A"
+    text: "기초"
     variant: "note"
   label: "027. 트리·이진 탐색 트리"
   order: 27

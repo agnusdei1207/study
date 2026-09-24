@@ -5,10 +5,10 @@ date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   badge:
-    text: "A"
+    text: "기초"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
 
 ---
 

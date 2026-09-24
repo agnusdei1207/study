@@ -3,7 +3,7 @@ sidebar:
   order: 88
   label: "088. 데이터베이스 튜닝 (Database Tuning)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터베이스 튜닝 (Database Tuning) 및 3대 계층별 접근 전략"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 88
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "088"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 117
   label: "117. IMDF (Indoor Mapping Data Format)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 117
 title: "IMDF(Indoor Mapping Data Format) 실내 공간정보 표준 규격 및 디지털 트윈 응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "117"
 ---
 

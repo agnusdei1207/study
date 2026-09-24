@@ -3,7 +3,7 @@ sidebar:
   order: 131
   label: "131. 로지컬 DW (Logical Data Warehouse)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 131
 title: "로지컬 DW(Logical Data Warehouse) 가상화 아키텍처 및 쿼리 푸시다운 최적화"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "131"
 ---
 

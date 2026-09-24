@@ -3,7 +3,7 @@ sidebar:
   order: 156
   label: "156. 데이터 이관 (Data Migration)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "대용량 데이터 이관(Data Migration) 및 무결성·정합성 검증 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 156
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "156"
 ---
 

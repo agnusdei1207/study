@@ -3,7 +3,7 @@ sidebar:
   order: 137
   label: "137. 스타 스키마 (Star Schema)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 137
 title: "스타 스키마(Star Schema) 차원 모델링과 스타 조인 최적화 및 스노우플레이크 비교"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "137"
 ---
 

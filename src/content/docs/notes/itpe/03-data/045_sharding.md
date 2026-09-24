@@ -3,7 +3,7 @@ sidebar:
   order: 45
   label: "045. 샤딩 (Sharding)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터베이스 샤딩 (Database Sharding)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 45
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "045"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 159
   label: "159. 함수적 종속성(Functional Dependency)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "함수적 종속성 (Functional Dependency, FD)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 159
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "159"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 138
   label: "138. 음성데이터 마이닝"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 138
 title: "음성데이터 마이닝(Voice Data Mining) 다계층 파이프라인과 AICC 실시간 감성 분석"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "138"
 ---
 

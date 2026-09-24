@@ -3,7 +3,7 @@ sidebar:
   order: 109
   label: "109. 신뢰도 vs 타당도"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "신뢰도(Reliability)와 타당도(Validity)의 개념 비교 및 측정 평가 프레임워크"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 109
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "109"
 ---
 

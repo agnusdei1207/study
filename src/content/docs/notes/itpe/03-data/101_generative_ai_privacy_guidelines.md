@@ -3,7 +3,7 @@ sidebar:
   order: 101
   label: "101. 생성형 AI 개인정보 안내서"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "생성형 AI 개발·활용 개인정보 처리 안내서 및 프라이버시 보호 가이드라인"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 101
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "101"
 ---
 

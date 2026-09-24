@@ -3,7 +3,7 @@ sidebar:
   order: 105
   label: "105. 데이터 프로파일링"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터 프로파일링(Data Profiling) 분석 기법 및 데이터 품질 진단 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 105
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "105"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 91
   label: "091. 옵티마이저 (RBO·CBO)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터베이스 옵티마이저(Optimizer) 아키텍처 및 RBO와 CBO 비교 분석"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 91
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "091"
 ---
 

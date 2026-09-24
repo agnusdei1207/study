@@ -3,7 +3,7 @@ sidebar:
   order: 112
   label: "112. 빅데이터 (Big Data)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "빅데이터(Big Data) 5V 특성 및 엔드투엔드 분산 데이터 플랫폼 아키텍처"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 112
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "112"
 ---
 

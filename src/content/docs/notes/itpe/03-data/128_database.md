@@ -3,7 +3,7 @@ sidebar:
   order: 128
   label: "128. 데이터베이스 (Database)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 128
 title: "데이터베이스(Database) 4대 특성과 ANSI/SPARC 3단계 스키마 및 데이터 독립성"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "128"
 ---
 

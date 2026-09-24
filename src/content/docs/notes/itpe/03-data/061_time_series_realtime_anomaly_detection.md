@@ -3,7 +3,7 @@ sidebar:
   order: 61
   label: "061. 시계열 실시간 이상치 탐지"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "시계열 실시간 이상치 탐지 (Time Series Real-time Anomaly Detection)"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 61
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "061"
 ---
 

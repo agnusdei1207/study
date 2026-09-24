@@ -3,7 +3,7 @@ sidebar:
   order: 148
   label: "148. 힙 (Max·Min Heap)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "힙(Heap) 자료구조와 우선순위 큐(PQ) 및 힙 정렬(Heap Sort)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 148
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "148"
 ---
 

@@ -3,12 +3,12 @@ author: "Antigravity"
 category: "03-data"
 date: "2026-09-24T00:00:00+09:00"
 extra:
-  keyword_grade: "A"
+  keyword_grade: "기초"
   model: "GPT-6"
   question_no: "038"
 sidebar:
   badge:
-    text: "A"
+    text: "기초"
     variant: "note"
   label: "038. 편향"
   order: 38

@@ -3,7 +3,7 @@ sidebar:
   order: 62
   label: "062. 앙상블 (배깅·부스팅)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "앙상블 학습 (Ensemble Learning) 및 배깅(Bagging)과 부스팅(Boosting)"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 62
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "062"
 ---
 

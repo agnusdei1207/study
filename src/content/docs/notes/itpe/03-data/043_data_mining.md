@@ -3,7 +3,7 @@ sidebar:
   order: 43
   label: "043. 데이터마이닝 (Data Mining)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터마이닝 (Data Mining)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 43
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "043"
 ---
 

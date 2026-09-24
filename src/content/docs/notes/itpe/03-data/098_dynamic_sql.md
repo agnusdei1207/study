@@ -3,7 +3,7 @@ sidebar:
   order: 98
   label: "098. 정적 SQL vs 동적 SQL"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL)의 비교 및 실행 메커니즘"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 98
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "098"
 ---
 

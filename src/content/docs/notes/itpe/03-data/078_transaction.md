@@ -3,7 +3,7 @@ sidebar:
   order: 78
   label: "078. 트랜잭션 (Transaction)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "트랜잭션 (Transaction) 및 ACID 특성과 상태 전이도"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 78
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "078"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 86
   label: "086. t-검정 (t-test)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "t-검정 (Student's t-test) 및 독립표본·대응표본 가설검정"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 86
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "086"
 ---
 

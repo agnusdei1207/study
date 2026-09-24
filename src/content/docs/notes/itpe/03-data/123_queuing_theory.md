@@ -3,7 +3,7 @@ sidebar:
   order: 123
   label: "123. 대기행렬이론 (Queuing Theory)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 123
 title: "대기행렬이론(Queuing Theory) 구조와 켄달 표기법 및 리틀의 법칙 기반 시스템 사이징"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "123"
 ---
 

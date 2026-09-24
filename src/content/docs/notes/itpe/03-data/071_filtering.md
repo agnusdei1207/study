@@ -3,7 +3,7 @@ sidebar:
   order: 71
   label: "071. 필터링 (Filtering)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "필터링 기법 (Filtering) 및 추천 시스템과 데이터 엔지니어링"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 71
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "071"
 ---
 

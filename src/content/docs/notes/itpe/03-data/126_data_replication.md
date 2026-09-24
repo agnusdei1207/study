@@ -3,7 +3,7 @@ sidebar:
   order: 126
   label: "126. 데이터 복제 (Data Replication)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 126
 title: "데이터 복제(Data Replication) 아키텍처와 계층별 복제 기술 및 DR 구축 전략"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "126"
 ---
 

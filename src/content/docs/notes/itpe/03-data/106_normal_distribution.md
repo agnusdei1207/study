@@ -3,7 +3,7 @@ sidebar:
   order: 106
   label: "106. 정규분포 (Normal Distribution)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "정규분포(Normal Distribution)와 표준정규분포(Z-분포)의 통계적 특성 및 활용"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 106
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "106"
 ---
 

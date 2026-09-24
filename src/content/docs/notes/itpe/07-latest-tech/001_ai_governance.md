@@ -6,10 +6,10 @@ tags:
   - "notes-latest-tech"
 sidebar:
   badge:
-    text: "A"
+    text: "기초"
 extra:
   model: "GPT-5"
-  keyword_grade: "A"
+  keyword_grade: "기초"
 ---
 
 ## 큰 그림과 30초 인출

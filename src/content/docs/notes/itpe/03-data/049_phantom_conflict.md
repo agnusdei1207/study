@@ -3,7 +3,7 @@ sidebar:
   order: 49
   label: "049. 팬텀 충돌 (Phantom Conflict)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "팬텀 충돌 (Phantom Conflict) 및 방지 기법 (Next-Key Lock, Predicate Lock)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 49
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "049"
 ---
 

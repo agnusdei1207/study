@@ -3,7 +3,7 @@ sidebar:
   order: 51
   label: "051. 고가용성(HA) 아키텍처"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "고가용성(HA) 아키텍처 및 페일오버(Failover) 무중단 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 51
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "051"
 ---
 

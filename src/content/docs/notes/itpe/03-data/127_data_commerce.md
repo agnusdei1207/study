@@ -3,7 +3,7 @@ sidebar:
   order: 127
   label: "127. 데이터 커머스 (Data Commerce)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 127
 title: "데이터 커머스(Data Commerce) 밸류체인과 DaaS 기반 데이터 유통 생태계"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "127"
 ---
 

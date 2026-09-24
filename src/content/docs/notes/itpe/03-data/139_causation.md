@@ -3,7 +3,7 @@ sidebar:
   order: 139
   label: "139. 인과관계 (Causation)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 139
 title: "인과관계(Causation)의 3대 성립 조건과 인과추론(Causal Inference) 및 A/B 테스트"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "139"
 ---
 

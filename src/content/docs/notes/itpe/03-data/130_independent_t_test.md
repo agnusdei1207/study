@@ -3,7 +3,7 @@ sidebar:
   order: 130
   label: "130. 독립표본 t-검정 (Independent t-test)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 130
 title: "독립표본 t-검정(Independent t-test)의 3대 기본 가정과 등분산·이분산(Welch) 통계량 검정"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "130"
 ---
 

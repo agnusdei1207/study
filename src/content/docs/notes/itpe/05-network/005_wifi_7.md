@@ -6,7 +6,7 @@ tags:
   - "notes-network"
 sidebar: { badge: { text: "A" } }
 extra:
-  keyword_grade: "A"
+  keyword_grade: "기초"
   model: "GPT-6"
 
 ---

@@ -3,7 +3,7 @@ sidebar:
   order: 89
   label: "089. 로지스틱 회귀분석 (Logistic Regression)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "로지스틱 회귀분석 (Logistic Regression) 및 오즈비와 시그모이드 수학적 유도"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 89
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "089"
 ---
 

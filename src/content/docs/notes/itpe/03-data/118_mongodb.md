@@ -3,7 +3,7 @@ sidebar:
   order: 118
   label: "118. MongoDB"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 118
 title: "MongoDB 문서 지향(Document-Oriented) NoSQL 아키텍처 및 샤딩·복제 체계"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "118"
 ---
 

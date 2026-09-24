@@ -3,7 +3,7 @@ sidebar:
   order: 121
   label: "121. 다중회귀분석 (Multiple Regression Analysis)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 121
 title: "다중회귀분석(Multiple Regression Analysis)의 모형 추정과 다중공선성 진단 및 정규화 해법"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "121"
 ---
 

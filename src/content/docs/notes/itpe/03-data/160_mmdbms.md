@@ -3,7 +3,7 @@ sidebar:
   order: 160
   label: "160. MMDBMS(Main Memory DBMS)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "메인 메모리 데이터베이스 (MMDBMS, Main Memory DBMS)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 160
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "160"
 ---
 

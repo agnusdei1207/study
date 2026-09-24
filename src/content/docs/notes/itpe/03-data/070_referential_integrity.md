@@ -3,7 +3,7 @@ sidebar:
   order: 70
   label: "070. 참조 무결성 (Referential Integrity)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "참조 무결성 (Referential Integrity) 및 외래키 연쇄 동작 (CASCADE, RESTRICT)"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 70
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "070"
 ---
 

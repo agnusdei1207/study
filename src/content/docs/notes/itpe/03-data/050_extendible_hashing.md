@@ -3,7 +3,7 @@ sidebar:
   order: 50
   label: "050. 확장성 해싱 (Extendible Hashing)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "확장성 해싱 (Extendible Hashing) 및 동적 해싱 메커니즘"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 50
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "050"
 ---
 

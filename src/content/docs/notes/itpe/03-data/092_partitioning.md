@@ -3,7 +3,7 @@ sidebar:
   order: 92
   label: "092. 파티셔닝 (Partitioning)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터베이스 파티셔닝(Partitioning) 전략과 데이터 분할 아키텍처"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 92
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "092"
 ---
 

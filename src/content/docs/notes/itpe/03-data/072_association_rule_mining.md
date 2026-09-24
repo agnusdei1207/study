@@ -3,7 +3,7 @@ sidebar:
   order: 72
   label: "072. 연관규칙분석 (Association Rule Mining)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "연관규칙분석 (Association Rule Mining) 및 3대 핵심 지표 (지지도·신뢰도·향상도)"
 author: "Antigravity"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 72
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "072"
 ---
 

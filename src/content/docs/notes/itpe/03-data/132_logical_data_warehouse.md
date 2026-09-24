@@ -3,7 +3,7 @@ sidebar:
   order: 132
   label: "132. 로지컬 데이터웨어하우스(LDW)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 132
 title: "로지컬 데이터웨어하우스(LDW) 엔터프라이즈 4계층 아키텍처와 데이터 패브릭 진화"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "132"
 ---
 

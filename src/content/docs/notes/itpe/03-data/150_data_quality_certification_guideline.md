@@ -3,7 +3,7 @@ sidebar:
   order: 150
   label: "150. 데이터 품질인증 가이드라인"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터 품질인증 가이드라인 (Data Quality Certification)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 150
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "150"
 ---
 

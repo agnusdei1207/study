@@ -3,7 +3,7 @@ sidebar:
   order: 124
   label: "124. 대응 표본 t-검정 (Paired t-test)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 124
 title: "대응 표본 t-검정(Paired t-test)의 차이값(D) 분석과 사전·사후 효과 검증"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "124"
 ---
 

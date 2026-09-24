@@ -3,7 +3,7 @@ sidebar:
   order: 136
   label: "136. 상관관계 (Correlation)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 136
 title: "상관관계(Correlation)의 통계적 척도와 허위상관 배제 및 피어슨·스피어만 검정"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "136"
 ---
 

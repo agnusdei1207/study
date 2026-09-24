@@ -3,7 +3,7 @@ sidebar:
   order: 58
   label: "058. 선형 vs 비선형 자료구조"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "선형 vs 비선형 자료구조 (Linear vs Non-linear Data Structures)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 58
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "058"
 ---
 

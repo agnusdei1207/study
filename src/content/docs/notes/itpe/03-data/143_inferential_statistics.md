@@ -3,7 +3,7 @@ sidebar:
   order: 143
   label: "143. 추론통계(Inferential Statistics)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "추론통계 (Inferential Statistics)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 143
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "143"
 ---
 

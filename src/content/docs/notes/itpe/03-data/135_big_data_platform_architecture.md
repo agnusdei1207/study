@@ -3,7 +3,7 @@ sidebar:
   order: 135
   label: "135. 빅데이터 플랫폼 아키텍처"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 author: "Antigravity"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 135
 title: "빅데이터 플랫폼 아키텍처(5계층)와 람다·카파 및 데이터 레이크하우스 진화"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "135"
 ---
 

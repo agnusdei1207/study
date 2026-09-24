@@ -3,7 +3,7 @@ sidebar:
   order: 114
   label: "114. DB 복제 유형 (Replication Types)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터베이스 복제 유형(동기·비동기·반동기)과 고가용성 복제 아키텍처"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 114
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "114"
 ---
 

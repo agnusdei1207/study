@@ -3,7 +3,7 @@ sidebar:
   order: 147
   label: "147. 파일 시스템 데이터 관리"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "파일 시스템 데이터 관리 (File System Data Storage)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 147
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "147"
 ---
 

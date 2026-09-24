@@ -3,7 +3,7 @@ sidebar:
   order: 111
   label: "111. B-Tree·B+Tree"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "B-Tree와 B+Tree 색인 구조의 동작 메커니즘 및 DBMS 인덱스 최적화"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 111
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "111"
 ---
 

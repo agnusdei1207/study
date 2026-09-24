@@ -3,7 +3,7 @@ sidebar:
   order: 52
   label: "052. 다차원 색인구조 (Multidimensional Index Structure)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "다차원 색인구조 (Multidimensional Index Structure) 및 공간·고차원 데이터 색인"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 52
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "052"
 ---
 

@@ -12,10 +12,10 @@ date: "2026-09-24T00:00:00+09:00"
 author: "Antigravity"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
 sidebar:
   badge:
-    text: "A"
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치

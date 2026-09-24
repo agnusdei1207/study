@@ -3,7 +3,7 @@ sidebar:
   order: 54
   label: "054. 데이터 관측가능성 (Data Observability)"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "데이터 관측가능성 (Data Observability) 및 5대 핵심 기둥"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 54
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "054"
 ---
 

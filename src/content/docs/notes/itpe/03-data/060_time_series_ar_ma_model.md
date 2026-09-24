@@ -3,7 +3,7 @@ sidebar:
   order: 60
   label: "060. 시계열 AR·MA 모형"
   badge:
-    text: "A"
+    text: "기초"
     variant: note
 title: "시계열 AR·MA 모형 (자기회귀 및 이동평균 모형) 및 ARIMA"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 60
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
   question_no: "060"
 ---
 
