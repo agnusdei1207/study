@@ -1,18 +1,11 @@
 ---
-title: "정규화 (Normalization)"
+title: "정규화"
 category: "03-data"
 tags:
   - "정규화"
-  - "Normalization"
-  - "함수적종속성"
-  - "이상현상"
-  - "1NF"
-  - "2NF"
-  - "3NF"
-  - "BCNF"
-  - "무손실분해"
+  - "관계형데이터모델"
 date: "2026-09-24T00:00:00+09:00"
-author: "Antigravity"
+author: "Codex"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -23,74 +16,25 @@ sidebar:
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" role="img" aria-label="데이터베이스에서 논리 데이터 모델 및 정규화로 이어지는 지식 위치">
-  <span>자료처리·데이터</span>
-  <span>논리 데이터 모델링·정규화</span>
-  <strong>정규화 (Normalization)</strong>
-</div>
+지식 위치: 자료처리·데이터 → 관계형 데이터 모델링 → **정규화**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: 관계형 데이터베이스에서 데이터의 중복을 최소화하고 삽입·갱신·삭제 이상현상(Anomaly)을 방지하기 위해, 속성 간의 함수적 종속성(FD)에 기반하여 릴레이션을 단계적으로 무손실 분해하는 논리 모델링 프로세스
-- 메커니즘: 비정규 릴레이션 $\rightarrow$ 1NF(도메인 원자값) $\rightarrow$ 2NF(부분종속 제거) $\rightarrow$ 3NF(이행종속 제거) $\rightarrow$ BCNF(결정자가 후보키) $\rightarrow$ 무손실 조인 및 종속성 보존 검증
-- 산출물: 함수적 종속성 다이어그램(FDD) · 정규화 논리 ERD · 릴레이션 스키마 명세서 · 무손실 조인/종속성 보존 검증서
-
-<div class="itpe-flow-map" role="img" aria-label="정규화 4단계 분해 파이프라인 및 무손실 판정 체계">
-  <div class="itpe-flow-node">
-    <strong>1단계: 비정규 릴레이션 및 반복 속성 분해 (1NF)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>1NF</strong><span>반복 그룹 및 다중값 속성 제거 $\rightarrow$ 모든 도메인을 원자값(Atomic Value)으로 변환</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>2단계: 복합키의 부분 함수 종속성 제거 (2NF)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>2NF</strong><span>기본키의 진부분집합에 종속되는 속성 분리 $\rightarrow$ 완전 함수 종속(Full FD) 달성</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>3단계: 비기본 속성 간 이행적 함수 종속성 제거 (3NF)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>3NF</strong><span>$X \to Y$이고 $Y \to Z$일 때 발생하는 $X \to Z$ 이행 종속 분리 $\rightarrow$ 주식별자에만 직접 종속</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>4단계: 후보키가 아닌 결정자 분리 (BCNF)</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>BCNF</strong><span>모든 결정자(Determinant)가 반드시 후보키(Candidate Key)가 되도록 강화 분해</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>5단계: 무손실 조인 및 종속성 보존 판정 (Quality Gate)</strong></span>
-    <div class="itpe-step-detail">
-      <strong>판정 질문</strong><span>자연 조인 시 가짜 튜플(Spurious Tuple)이 발생하지 않으며, 모든 함수 종속성이 보존되는가?</span>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-branches">
-    <div class="itpe-flow-branch is-pass">
-      <strong>통과 (논리 데이터 모델 확정)</strong>
-      <span>3NF/BCNF 승인 $\rightarrow$ 물리 설계 단계로 이관 (인덱스 설계 및 필요시 통제된 반정규화)</span>
-    </div>
-    <div class="itpe-flow-branch is-fail">
-      <strong>미통과 (정보 손실 / 종속성 유실)</strong>
-      <span>분해 기각 $\rightarrow$ 공통 속성(PK-FK) 재점검 및 프로젝션 분해 경로 재설계</span>
-    </div>
-  </div>
-</div>
+- 본질: **정규화**는 데이터의 함수적 종속관계를 분석해 테이블을 분해함으로써 중복과 삽입·수정·삭제 이상을 줄이는 설계 방법
+- 메커니즘: 키·종속관계 파악 → 정규형 위반 확인 → 관계 분해 → 무손실 결합·필요한 종속관계 보존 검토
 
 <details>
 <summary>핵심 용어</summary>
 
-- `Functional Dependency(함수적 종속성, X → Y)`: 릴레이션에서 속성 X의 값이 속성 Y의 값을 유일하게 결정하는 관계
-- `Anomaly(이상현상)`: 릴레이션 내 데이터 중복으로 인해 삽입(Insert), 삭제(Delete), 갱신(Update) 시 원치 않는 부작용이 발생하는 현상
-- `Lossless-Join Decomposition(무손실 조인 분해)`: 분해된 릴레이션들을 자연 조인(Natural Join)했을 때 원래의 릴레이션으로 정보의 유실이나 가짜 튜플 없이 완벽히 복원되는 성질
-- `Dependency Preservation(종속성 보존)`: 원 릴레이션의 모든 함수적 종속성이 분해된 릴레이션들 각각의 종속성 집합의 합집합에 의해 논리적으로 보존되는 성질
-- `BCNF(Boyce-Codd Normal Form)`: 3정규형을 만족하면서, 복합 후보키가 다수 존재하는 환경에서 모든 결정자가 반드시 후보키여야 한다는 엄격한 정규형
+- **정규화(Normalization)** : 관계형 테이블의 종속관계에 따라 구조를 분해해 중복·갱신 이상을 줄이는 설계
+- **함수적 종속(Functional Dependency)** : X 값이 같으면 Y 값도 같다는 관계, X → Y
+- **후보키(Candidate Key)** : 행을 유일하게 식별하는 최소 속성 집합
+- **삽입·수정·삭제 이상** : 중복·혼합된 사실 때문에 데이터 변경 시 불일치·정보 손실이 생기는 현상
+- **1NF(제1정규형)** : 각 속성값을 관계형 모델에서 하나의 값으로 다루는 형태
+- **2NF(제2정규형)** : 1NF에서 비주요 속성의 후보키 일부에 대한 부분 종속을 없앤 형태
+- **3NF(제3정규형)** : 2NF에서 비주요 속성의 키에 대한 이행 종속을 제거한 형태
+- **BCNF(Boyce–Codd Normal Form)** : 모든 비자명한 함수적 종속의 결정자가 슈퍼키인 정규형
+- **무손실 분해** : 분해한 관계들을 다시 조인했을 때 원래의 관계를 복원할 수 있는 성질
 
 </details>
 
@@ -98,237 +42,112 @@ sidebar:
 
 ## 1교시 예상문제 (10점)
 
-> 정규화 (Normalization)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> 정규화에 관하여 설명하시오. (예상·10점)
 
 ---
 
 ## 1교시 10점 답안
 
-1. **정규화(Normalization)의 정의 및 목적**
-   - **정의**: 속성 간 함수적 종속성을 기반으로 중복을 최소화하여 릴레이션을 무손실 분해하는 논리 모델링 기법
-   - **목적**: 3대 이상현상(삽입, 삭제, 갱신 이상) 제거 및 데이터 무결성 보증
+### Ⅰ. 정규화의 개요
 
-2. **정규화 4단계 요약 (원-부-이-결)**
-   - **1NF (원자값)**: 반복 그룹, 비원자값 제거 $\rightarrow$ 모든 도메인 원자값화
-   - **2NF (부분종속 제거)**: 기본키의 진부분집합에 종속되는 속성 분리 $\rightarrow$ 완전 함수 종속 달성
-   - **3NF (이행종속 제거)**: 기본키가 아닌 일반 속성 간 종속 관계($X \to Y \to Z$) 분해
-   - **BCNF (결정자=후보키)**: 모든 결정자가 반드시 후보키가 되도록 강화 분해
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **정규화**는 함수적 종속관계에 따라 테이블을 분해해 중복과 삽입·수정·삭제 이상을 줄이는 설계 방법 |
+| 목적 | 데이터의 일관성과 변경 용이성 확보 |
 
-3. **분해의 2대 원칙 및 실무 제언**
-   - **무손실 조인 분해**: 자연 조인 복원 시 가짜 튜플(Spurious Tuple)이 발생하지 않아야 함 ($(R_1 \cap R_2) \to R_1 \text{ or } R_2$)
-   - **종속성 보존**: 분해된 릴레이션들의 종속성 합집합이 원 종속성 집합과 동등해야 함 ($F \equiv F_1 \cup F_2$)
-   - **실무 권고**: 논리 모델은 3NF를 필수 고수하고, 조회 병목은 인덱스 및 CQRS 분리 저장소로 해결함
----
+### Ⅱ. 주요 정규형
 
-### 핵심 관계
+```mermaid
+flowchart TB
+    A["1NF<br/>값의 기본 구조"] --> B["2NF<br/>부분 종속 제거"]
+    B --> C["3NF<br/>이행 종속 제거"]
+    C --> D["BCNF<br/>결정자 후보 검토"]
+```
 
-| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
-|---|---|---|
-| **데이터베이스 이상현상(Anomaly)** | 갱신 이상, 삽입 이상, 삭제 이상의 메커니즘과 비즈니스 피해 | Ⅱ 이상현상 |
-| **정규화 4단계 (1NF~BCNF)** | 원자값(1NF) $\to$ 부분종속 제거(2NF) $\to$ 이행종속 제거(3NF) $\to$ 결정자=후보키(BCNF) | Ⅲ 단계별 정규형 |
-| **무손실 조인과 종속성 보존** | 분해의 타당성을 입증하는 2대 수학적 검증 정리 및 BCNF의 종속성 보존 한계 | Ⅳ 정규화 원칙 |
+### Ⅲ. 분해 확인
+
+| 기준 | 질문 |
+|---|---|
+| 무손실 결합 | 분해한 테이블을 조인하면 원래 정보를 복원하는가? |
+| 종속관계 보존 | 필요한 업무 규칙을 분해 후에도 검사할 수 있는가? |
+
+- 제언: 정규형 이름만 맞추지 말고 실제 중복·갱신 이상과 조인 결과를 확인.
 
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> 데이터베이스 논리적 설계 단계에서 데이터 중복 및 이상현상(Anomaly)을 해결하기 위한 정규화(Normalization)의 개념, 필요성, 1NF부터 BCNF까지의 단계별 정규화 과정과 분해 원칙(무손실 조인, 종속성 보존)을 설명하시오. (25점)
-
-> (25점, 예상)
+> 정규화의 개념과 정규형별 기준, 관계 분해의 효과 및 설계 시 고려사항을 설명하시오. (예상·25점)
 
 ---
 
 ## 2~4교시 25점 답안
 
-### 딸려 나오는 하위 토픽
+## Ⅰ. 정규화의 개요
 
-| 하위 토픽 | 핵심 내용 | 본문 답안 위치 |
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **정규화**는 함수적 종속관계에 따라 테이블을 분해해 중복과 삽입·수정·삭제 이상을 줄이는 설계 방법 |
+| 목적 | 데이터의 일관성과 변경 용이성 확보 |
+
+## Ⅱ. 중복과 이상현상
+
+| 이상현상 | 발생 모습 |
+|---|---|
+| 삽입 | 한 사실을 기록하려면 관계없는 다른 사실도 필요 |
+| 수정 | 같은 사실이 여러 행에 있어 일부만 바뀜 |
+| 삭제 | 한 사실을 지우다 다른 필요한 사실도 사라짐 |
+
+이상현상의 원인은 관련 없는 사실이 같은 테이블에 반복 저장되는 구조.
+
+## Ⅲ. 정규형과 분해 기준
+
+| 정규형 | 확인할 종속 | 설계 방향 |
 |---|---|---|
-| **데이터베이스 이상현상(Anomaly)** | 갱신 이상, 삽입 이상, 삭제 이상의 메커니즘과 비즈니스 피해 | Ⅱ 이상현상 |
-| **정규화 4단계 (1NF~BCNF)** | 원자값(1NF) $\to$ 부분종속 제거(2NF) $\to$ 이행종속 제거(3NF) $\to$ 결정자=후보키(BCNF) | Ⅲ 단계별 정규형 |
-| **무손실 조인과 종속성 보존** | 분해의 타당성을 입증하는 2대 수학적 검증 정리 및 BCNF의 종속성 보존 한계 | Ⅳ 정규화 원칙 |
+| **1NF** | 속성값의 기본 단위 | 반복 항목·다중값 분리 |
+| **2NF** | 복합 후보키의 일부 → 비주요 속성 | 부분 종속 분리 |
+| **3NF** | 키 → 중간 속성 → 비주요 속성 | 이행 종속 분리 |
+| **BCNF** | 비자명한 X → Y에서 X가 슈퍼키인가? | 위반 결정자 분리 |
 
-### Ⅰ. 단일 사실은 단일 장소에, 정규화의 개요
+3NF·BCNF의 정확한 판정은 후보키·주요 속성과 함수적 종속을 모두 확인해야 함.
 
-> 정규화는 데이터 구조의 군더더기를 제거하여 '하나의 사실은 오직 한 곳에만 존재(Single Fact in Single Place)'하게 만드는 공학적 정제 과정임.
+## Ⅳ. 정규화 절차
 
-- 정의: 관계형 데이터베이스 설계에서 속성 간의 함수적 종속성을 분석하여, 데이터 중복성을 최소화하고 구조적 불일치를 제거하기 위해 하나의 릴레이션을 둘 이상의 독립된 릴레이션으로 분해(Decomposition)하는 과정
-- 목적:
-  1. 저장 공간 절약 및 삽입·갱신·삭제 이상현상(Anomaly) 원천 배제
-  2. 데이터 모델의 유연성 확보 및 스키마 변경 시 영향도 최소화
-  3. 무결성 제약조건의 손쉬운 구현 및 데이터 일관성 보증
-
-### Ⅱ. 정규화가 해결하는 3대 이상현상(Anomaly)
-
-> 한 테이블에 여러 주제(개념)가 혼재될 때 데이터 불일치가 발생함.
-
-```text
-[학생수강(학번, 과목코드, 과목명, 지도교수, 교수연구실)] 테이블의 이상현상
-  - 삽입 이상: 수강 신청을 하지 않은 신입생은 과목코드가 없어 학생 정보 자체를 입력 불가 (PK Null 위배)
-  - 삭제 이상: 1명만 수강하는 과목의 수강 취소 시 해당 과목명과 교수 정보까지 통째로 영구 삭제됨
-  - 갱신 이상: 특정 교수의 연구실 이전 시 수천 건의 수강 레코드 중 일부만 수정되면 데이터 불일치 발생
+```mermaid
+flowchart TB
+    A["업무 사실·속성·후보키 확인"] --> B["함수적 종속 정리"]
+    B --> C["정규형 위반 찾기"]
+    C --> D["테이블 분해"]
+    D --> E["무손실 결합·종속 보존 검증"]
 ```
 
-| 이상현상 종류 | 발생 원인 | 구체적 현상 및 비즈니스 피해 |
+| 검증 | 이유 |
+|---|---|
+| 무손실 결합 | 조인 시 잘못된 행이 생기거나 원래 정보가 사라지는지 확인 |
+| 종속 보존 | 분해 후에도 중요한 업무 규칙을 검사할 수 있는지 확인 |
+| 실제 질의 | 변경 일관성과 조회 비용의 절충 검토 |
+
+## Ⅴ. 반정규화와 관계
+
+| 설계 | 주된 목표 | 고려할 대가 |
 |---|---|---|
-| **삽입 이상 (Insertion Anomaly)** | 필수 식별자(PK)가 결합되어 원치 않는 속성을 억지로 입력해야 하거나, 특정 데이터 없이는 삽입 불가 | 수강 신청 전 신입생 등록 불가 |
-| **삭제 이상 (Deletion Anomaly)** | 한 튜플을 삭제할 때 상관없는 다른 유용한 정보까지 연쇄적으로 함께 영구 손실 | 마지막 수강자 삭제 시 과목 정보 완전 소멸 |
-| **갱신 이상 (Update Anomaly)** | 중복 저장된 데이터 중 일부 레코드만 수정되어 서로 다른 값을 갖는 데이터 불일치 초래 | 교수 연구실 변경 시 일부 학생 레코드 미갱신 |
+| 정규화 | 중복·갱신 이상 감소 | 일부 조회에서 조인 증가 |
+| 반정규화 | 측정된 조회 병목 완화 | 중복값 갱신·정합성 관리 |
 
-### Ⅲ. 1NF부터 BCNF까지의 단계별 정규화 과정 (원-부-이-결)
+정규화를 기본 구조로 설계하고 성능 문제가 확인된 경우 반정규화의 필요성을 검토.
 
-> 아래로 내려갈수록 더 엄격한 함수적 종속성을 적용하여 이상현상을 근절함.
+## Ⅵ. 한계와 대응
 
-<div style="max-width: 520px; margin: 1rem auto;">
-<svg viewBox="0 0 520 100" width="100%" height="auto" style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <rect x="0" y="0" width="520" height="100" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-  <!-- 1NF -->
-  <rect x="12" y="15" width="112" height="70" rx="5" fill="var(--color-primary, #2563eb)" fill-opacity="0.1" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
-  <text x="68" y="35" font-size="11" font-weight="700" fill="var(--color-primary, #1d4ed8)" text-anchor="middle">1NF (원자값)</text>
-  <text x="68" y="53" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">반복 그룹 제거</text>
-  <text x="68" y="70" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">도메인 원자화</text>
-  <!-- Arrow 1->2 -->
-  <text x="130" y="55" font-size="12" fill="var(--color-border, #94a3b8)">→</text>
-  <!-- 2NF -->
-  <rect x="140" y="15" width="112" height="70" rx="5" fill="var(--color-info, #0284c7)" fill-opacity="0.1" stroke="var(--color-info, #0284c7)" stroke-width="1"/>
-  <text x="196" y="35" font-size="11" font-weight="700" fill="var(--color-info, #0284c7)" text-anchor="middle">2NF (부분종속)</text>
-  <text x="196" y="53" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">부분 함수종속 제거</text>
-  <text x="196" y="70" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">완전 함수종속 달성</text>
-  <!-- Arrow 2->3 -->
-  <text x="258" y="55" font-size="12" fill="var(--color-border, #94a3b8)">→</text>
-  <!-- 3NF -->
-  <rect x="268" y="15" width="112" height="70" rx="5" fill="var(--color-warning, #d97706)" fill-opacity="0.1" stroke="var(--color-warning, #d97706)" stroke-width="1"/>
-  <text x="324" y="35" font-size="11" font-weight="700" fill="var(--color-warning, #b45309)" text-anchor="middle">3NF (이행종속)</text>
-  <text x="324" y="53" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">이행 함수종속 제거</text>
-  <text x="324" y="70" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">X → Y → Z 분리</text>
-  <!-- Arrow 3->BCNF -->
-  <text x="386" y="55" font-size="12" fill="var(--color-border, #94a3b8)">→</text>
-  <!-- BCNF -->
-  <rect x="396" y="15" width="112" height="70" rx="5" fill="var(--color-success, #16a34a)" fill-opacity="0.1" stroke="var(--color-success, #16a34a)" stroke-width="1"/>
-  <text x="452" y="35" font-size="11" font-weight="700" fill="var(--color-success, #15803d)" text-anchor="middle">BCNF (결정자)</text>
-  <text x="452" y="53" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">모든 결정자=후보키</text>
-  <text x="452" y="70" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">강화된 3NF 완성</text>
-</svg>
-</div>
+| 한계 | 대응 방안 |
+|---|---|
+| 함수적 종속을 업무 확인 없이 추정 | 업무 규칙·키·실제 데이터로 검증 |
+| 분해 후 조인으로 원본 복원 불가 | 무손실 결합 조건 확인 |
+| 정규형만 보고 성능 무시 | 주요 질의·갱신 부하 시험 |
 
-| 정규형 단계 | 정의 및 핵심 규칙 | 제거 대상 (불순물) | 분해 메커니즘 및 예시 |
-|---|---|---|---|
-| **제1정규형 (1NF)** | 릴레이션의 모든 속성 값이 단일한 **원자값(Atomic Value)**을 가짐 | 반복 그룹(Repeating Group), 다중값(Multi-valued) | 콤마로 나열된 전화번호나 자격증 목록을 별도 튜플로 분리 |
-| **제2정규형 (2NF)** | 1NF를 만족하고, 기본키의 진부분집합이 아닌 모든 속성이 기본키에 **완전 함수 종속(Full FD)** | **부분 함수 종속 (Partial FD)** | 복합키(학번+과목코드) 중 과목코드에만 종속되는 '과목명'을 별도 테이블로 분해 |
-| **제3정규형 (3NF)** | 2NF를 만족하고, 기본키가 아닌 일반 속성 간에 **이행적 함수 종속(Transitive FD)**이 없음 | **이행 함수 종속 ($X \to Y \to Z$)** | 학번(X) $\to$ 학과(Y) $\to$ 학과사무실(Z) 구조에서 학과와 사무실을 별도 학과 테이블로 분해 |
-| **BCNF (보이스-코드)** | 3NF를 만족하고, 모든 결정자(Determinant)가 반드시 **후보키(Candidate Key)**임 | **후보키가 아닌 결정자** | 교수가 한 과목만 강의하고(교수 $\to$ 과목), 한 과목을 여러 교수가 가르칠 때 교수 결정자 분리 |
+## Ⅶ. 기술사적 제언
 
-### Ⅳ. 릴레이션 분해의 2대 절대 원칙
-
-> 분해 후 원래 데이터를 잃어버리거나 제약조건을 검증할 수 없다면 잘못된 정규화임.
-
-<div style="max-width: 520px; margin: 1rem auto;">
-<svg viewBox="0 0 520 100" width="100%" height="auto" style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <rect x="0" y="0" width="520" height="100" rx="8" fill="var(--color-bg-subtle, #f8fafc)" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-  <!-- Principle 1: Lossless Join -->
-  <rect x="15" y="15" width="235" height="70" rx="5" fill="var(--color-primary, #2563eb)" fill-opacity="0.1" stroke="var(--color-primary, #2563eb)" stroke-width="1"/>
-  <text x="132" y="35" font-size="11" font-weight="700" fill="var(--color-primary, #1d4ed8)" text-anchor="middle">1. 무손실 조인 분해 (Lossless-Join)</text>
-  <text x="132" y="53" font-size="10" fill="var(--color-text-primary, #0f172a)" text-anchor="middle">(R₁ ∩ R₂) → R₁  or  (R₁ ∩ R₂) → R₂</text>
-  <text x="132" y="72" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">공통 속성이 어느 하나의 슈퍼키 (가짜 튜플 방지)</text>
-  <!-- Principle 2: Dependency Preservation -->
-  <rect x="270" y="15" width="235" height="70" rx="5" fill="var(--color-success, #16a34a)" fill-opacity="0.1" stroke="var(--color-success, #16a34a)" stroke-width="1"/>
-  <text x="387" y="35" font-size="11" font-weight="700" fill="var(--color-success, #15803d)" text-anchor="middle">2. 종속성 보존 (Dependency Preserving)</text>
-  <text x="387" y="53" font-size="10" fill="var(--color-text-primary, #0f172a)" text-anchor="middle">F ≡ (F₁ ∪ F₂)</text>
-  <text x="387" y="72" font-size="9" fill="var(--color-text-secondary, #475569)" text-anchor="middle">조인 없이 개별 테이블만으로 FD 검증 보장</text>
-</svg>
-</div>
-
-1. **무손실 조인 분해 (Lossless-Join Decomposition)**:
-   - 분해된 릴레이션 $R_1$과 $R_2$를 자연 조인했을 때 원래 $R$과 정확히 일치해야 함
-   - 판정 조건: $(R_1 \cap R_2) \to R_1$ 또는 $(R_1 \cap R_2) \to R_2$ (공통 속성이 둘 중 하나의 슈퍼키여야 함)
-2. **종속성 보존 (Dependency Preservation)**:
-   - 원 릴레이션 $R$의 모든 함수적 종속성 $F$가 분해된 $R_1, R_2$의 종속성 합집합 $(F_1 \cup F_2)$에서 추론 가능해야 함
-   - 중요성: 조인 연산 없이 개별 테이블만으로 데이터베이스 무결성 제약 검증 가능
-
-- **BCNF의 한계와 트레이드오프**: 3정규형은 항상 무손실 조인과 종속성 보존을 동시에 만족하지만, **BCNF는 무손실 조인은 보장하되 종속성이 보존되지 않을 수 있음** $\rightarrow$ 실무에서는 종속성 보존을 위해 3NF까지만 적용하는 경우가 많음
-
-### Ⅴ. 정규화 vs 반정규화(Denormalization) 비교
-
-> 논리적 무결성과 물리적 성능의 균형을 유지함.
-
-| 비교 기준 | 정규화 (Normalization) | 반정규화 (Denormalization) |
-|---|---|---|
-| **수행 단계** | 논리 데이터 모델링 단계 (선행 필수) | 물리 데이터 모델링 단계 (측정 기반) |
-| **핵심 목적** | 데이터 중복 배제 및 무결성 보증 (SSOT) | 다중 조인 회피 및 시스템 조회(Read) 성능 향상 |
-| **테이블 구조** | 여러 개의 작고 응집도 높은 릴레이션으로 분해 | 테이블 병합, 파생/중복 컬럼 추가, 집계 테이블 |
-| **성능 영향** | 쓰기(DML) 빠름, 다중 조인 시 조회 지연 가능 | 조회 극도로 빠름, 쓰기 시 다중 갱신 부하 발생 |
-| **위험 요인** | 쿼리 복잡도 증가 | 데이터 불일치 및 정합성 붕괴 위험 상존 |
-
-### Ⅵ. 정규화 실무 위험 관리 및 통제 방안
-
-> 과도한 분해로 인한 성능 저하와 종속성 유실을 통제함.
-
-| 위험 | 대책 | 효과 |
-|---|---|---|
-| 과도한 정규화로 인한 다중 조인 성능 병목 | 성능 측정(AWR) 후 커버링 인덱스 우선 적용, 미해결 시 통제된 반정규화 | 조회 성능 지연 해소 및 무결성 유지 |
-| BCNF 분해 시 함수적 종속성 유실 | 종속성 보존이 필수적인 도메인은 3NF 수준에서 정규화 완료 | 비싼 다중 테이블 조인 없이 단일 테이블에서 무결성 검증 보장 |
-| 분해 시 공통 속성 누락으로 가짜 튜플 생성 | 무손실 조인 정리($R_1 \cap R_2 \to R_1 \text{ or } R_2$) 수학적 검증 의무화 | 자연 조인 시 유령 데이터 발생 원천 차단 |
-| 논리 모델 정규화 후 물리 DDL 제약조건 미구현 | 스키마 생성 시 PK/FK/UNIQUE DDL 100% 반영 강제 | 설계된 정규화 규칙이 운영 환경에서 누락되는 사태 방지 |
-
-### Ⅶ. 기술사적 제언: 3NF/BCNF 논리 베이스라인과 CQRS의 조화
-
-> "정규화는 절대 타협할 수 없는 데이터의 헌법이다. 성능 타협은 논리 모델을 망가뜨리는 방식이 아니라, 읽기 뷰를 분리하는 아키텍처로 풀어내야 한다."
-
-### 학습자 통찰 메모 — 답안 밖
-
-> **[핵심 통찰]**
-> 정규화는 논리 모델링의 기본이자 절대적인 기준선이다. 성능을 핑계로 초기 논리 설계부터 반정규화를 시도하는 것은 엔지니어링 실패의 지름길이다.
->
-> **[나라면 이렇게 쓴다]**
-> 논리 모델은 철저하게 3NF/BCNF 무손실 조인 모델로 완성하여 SSOT(단일 원천)를 확립하고, 읽기 병목은 물리 인덱스 및 CQRS(Command Query Responsibility Segregation) 분리 저장소로 해결하겠다.
-
-### 실전 답안용 기술사적 제언
-
-- 판정: 모든 엔터프라이즈 데이터 모델은 **3정규형(3NF) 이상의 무손실 조인 분해**를 논리 모델링 완료 기준으로 판정함
-- 대안: 논리 설계 단계에서 함수종속성 다이어그램(FDD) 작성 $\rightarrow$ 3NF/BCNF 분해 $\rightarrow$ 물리 설계 단계에서 실측 기반 조회 전용 캐시/마트 분리
-- 검증: DML 이상현상 0건 및 자연 조인을 통한 원천 릴레이션 복원율 100% 확인
-- 효과: 데이터 중복으로 인한 금융/결제 오류를 원천 차단하고, 장기적인 비즈니스 변경에 유연한 확장성 확보
-
-<div class="itpe-flow-map" role="img" aria-label="정규화 기반 데이터 무결성 확립 및 성능 양립 로드맵">
-  <div class="itpe-flow-node">
-    <strong>현행 한계</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>이상현상 상존</strong><span>중복 데이터 난립, 갱신·삭제·삽입 이상현상, 다중 조인 우려</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>개선 방안</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>공학적 분해</strong><span>함수종속성 기반 3NF/BCNF 무손실 분해 및 물리 계층 CQRS/인덱스 튜닝</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node">
-    <strong>검증 기준</strong>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch"><strong>품질 게이트</strong><span>무손실 조인 복원율 100%, 종속성 보존 및 이상현상 0건 통과</span></div>
-    </div>
-  </div>
-  <div class="itpe-flow-arrow">↓</div>
-  <div class="itpe-flow-node is-current">
-    <span class="itpe-keyword"><strong>실행 효과</strong></span>
-    <div class="itpe-flow-branches">
-      <div class="itpe-flow-branch is-pass">
-        <strong>목표 달성</strong>
-        <span>단일 진실 공급원(SSOT) 확립, 금융권 수준 무결성 및 읽기 성능 동시 달성</span>
-      </div>
-    </div>
-  </div>
-</div>
-
----
-
-## 출제 이력과 검증 출처
-
-- **공식 출제 이력**: 정보관리기술사 제132회 1교시 단답형 (정규화 단계와 이상현상), 제126회 2교시 논술형 (함수적 종속성과 1NF~BCNF 무손실 분해 검증)
-- **표준 및 레퍼런스**: C.J. Date, An Introduction to Database Systems, 한국데이터산업진흥원(K-DATA) 데이터아키텍처 전문가(DAP) 가이드
+테이블별로 어떤 사실이 어느 키에 종속되는지 먼저 명시. 분해 후 무손실 결합과 업무 규칙 보존을 확인하고, 실제 조회 성능은 별도로 측정해 필요한 곳만 반정규화.
 
 ## 연결 토픽
 
-- [반정규화](./017_denormalization.md) · [함수적 종속성](./159_functional_dependency.md) · [BCNF](./153_bcnf.md) · [무결성 제약](./013_integrity_constraint.md)
+- 연관 토픽: [반정규화](./017_denormalization.md), [4NF·5NF](./033_4nf_5nf.md)
