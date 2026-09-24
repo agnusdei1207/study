@@ -100,7 +100,7 @@ Gateway: 인증·유량 제어·라우팅
 요청 경계에 인증·라우팅·유량 제어 정책을 적용하고, 응답에 필요한 공통 처리를 수행.
 ---
 
-### Ⅱ. API Gateway의 핵심 아키텍처 및 5대 주요 기능
+## Ⅱ. API Gateway의 핵심 아키텍처 및 5대 주요 기능
 
 #### 1. API Gateway 3단계 필터 파이프라인 구조도
 
@@ -126,7 +126,7 @@ Gateway: 인증·유량 제어·라우팅
 | **통합 관측성 (Observability)** | 전사 트랜잭션 추적을 위한 TraceId 발급 및 메트릭 수집 | OpenTelemetry, Prometheus, W3C TraceContext |
 ---
 
-### Ⅲ. API Gateway vs BFF vs Service Mesh 비교
+## Ⅲ. API Gateway vs BFF vs Service Mesh 비교
 
 | 비교 항목 | API Gateway | BFF (Backend for Frontend) | Service Mesh |
 |---|---|---|---|
@@ -137,7 +137,7 @@ Gateway: 인증·유량 제어·라우팅
 | **담당 주체** | 플랫폼 인프라 / DevOps 팀 | 각 프론트엔드 전담 개발팀 | 인프라 / SRE 팀 |
 ---
 
-### Ⅳ. API Gateway 운용 시 발생 위험 및 대응 전략
+## Ⅳ. API Gateway 운용 시 발생 위험 및 대응 전략
 
 | 위험 | 대책 | 효과 |
 |---|---|---|
@@ -147,7 +147,7 @@ Gateway: 인증·유량 제어·라우팅
 | **대규모 분산 환경에서 요청 경로 유실로 인한 장애 추적 불가** | W3C 표준 TraceId/SpanId 헤더를 인그레스 단계에서 자동 채번하여 전파 | 전사 분산 트랜잭션 추적성 확보 |
 ---
 
-### Ⅴ. 적용 제언
+## Ⅴ. 적용 제언
 
 | 한계 | 해결 방안 |
 |---|---|
