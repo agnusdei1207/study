@@ -1,10 +1,14 @@
 ---
 title: "적대적 공격(Adversarial Attack)"
 author: "OpenAI"
-date: "2026-09-24T21:54:00+09:00"
+date: "2026-09-24T22:07:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  badge:
+    text: "서브"
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 
 ---
@@ -26,6 +30,7 @@ extra:
 - **전이성:** 한 모델에서 만든 적대적 예제가 다른 모델의 예측에도 영향을 줄 수 있는 현상
 - **적대적 훈련:** 훈련에 적대적 예제를 포함해 정의된 공격 조건에서 모델 강건성을 높이는 방법
 - **데이터 중독:** 학습데이터나 학습과정을 조작해 모델의 동작을 변경하는 공격
+- **NIST (National Institute of Standards and Technology):** 인공지능·암호·정보보호 표준과 기술 지침을 발행하는 미국 연방기관
 </details>
 
 ---

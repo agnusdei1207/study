@@ -1,10 +1,14 @@
 ---
 title: "양자내성암호(Post-Quantum Cryptography)"
 author: "OpenAI"
-date: "2026-09-24T22:13:00+09:00"
+date: "2026-09-24T22:07:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  badge:
+    text: "서브"
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 
@@ -28,6 +32,9 @@ extra:
 - **SLH-DSA (Stateless Hash-Based Digital Signature Algorithm):** NIST FIPS 205의 무상태 해시 기반 전자서명 알고리즘
 - **HNDL (Harvest Now, Decrypt Later):** 현재 암호문을 수집해 보관한 뒤 미래의 해독 능력으로 복호화를 시도하는 위협 시나리오
 - **QKD (Quantum Key Distribution):** 양자 통신을 이용해 키를 분배하는 기술로, 암호 알고리즘인 PQC와 적용 방식이 다른 기술
+- **FIPS (Federal Information Processing Standards):** 미국 NIST가 공표하는 연방 정보처리 표준군
+- **NIST (National Institute of Standards and Technology):** 미국 연방의 표준·기술기관
+- **Shor 알고리즘:** 양자 푸리에 변환을 활용해 인수분해·이산로그 문제를 효율적으로 풀도록 설계된 양자 알고리즘
 </details>
 
 ---
@@ -76,8 +83,8 @@ extra:
 
 | 위협·요인 | 보안 영향 | 관리 방향 |
 |---|---|---|
-| 양자 알고리즘의 공개키 암호 위협 | 현재 암호화한 장기 기밀 데이터의 미래 복호화 위험 | 장기 보호 데이터·암호 의존성 파악 |
-| HNDL 시나리오 | 지금 수집한 암호문을 미래에 복호화할 수 있는 위험 | 데이터 민감도·보호기간에 따라 우선순위 결정 |
+| 대규모 양자컴퓨터에서의 Shor 알고리즘 | 인수분해·이산로그 기반 공개키 암호의 키 설정·서명 위협 | 장기 보호 데이터·암호 의존성 파악 |
+| **HNDL** (Harvest Now, Decrypt Later) 시나리오 | 지금 수집한 암호문을 미래에 복호화할 수 있는 위험 | 데이터 민감도·보호기간에 따라 우선순위 결정 |
 | 암호 의존성이 코드·장비에 고정 | 알고리즘 변경 시 서비스·상호운용 영향 | 암호 사용현황과 교체 경로 관리 |
 
 ## Ⅲ. 표준 알고리즘의 기능
@@ -134,6 +141,7 @@ KEM은 대칭 암호에 쓸 공유키 설정에 활용되며, 그 자체가 메�
 - NIST, [FIPS 205: SLH-DSA](https://csrc.nist.gov/pubs/fips/205/final)
 - NIST, [SP 800-227: Recommendations for Key-Encapsulation Mechanisms](https://csrc.nist.gov/pubs/sp/800/227/final)
 - NIST, [Post-Quantum Cryptography publications](https://csrc.nist.gov/Projects/post-quantum-cryptography/publications)
+- NIST, [IR 8105: Report on Post-Quantum Cryptography](https://csrc.nist.gov/pubs/ir/8105/final)
 
 ## 연결 토픽
 

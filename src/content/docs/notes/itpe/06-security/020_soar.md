@@ -1,10 +1,14 @@
 ---
 title: "SOAR(Security Orchestration, Automation and Response)"
 author: "OpenAI"
-date: "2026-09-24T22:08:00+09:00"
+date: "2026-09-24T22:07:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  badge:
+    text: "서브"
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 
@@ -25,6 +29,7 @@ extra:
 - **오케스트레이션:** 서로 다른 보안도구·정보·업무절차 사이의 작업 연결
 - **플레이북:** 특정 경보나 사건의 조회·판단·승인·조치 순서를 정의한 대응 절차
 - **SIEM (Security Information and Event Management):** 로그·이벤트를 수집·분석해 보안 경보 생성에 활용하는 시스템
+- **CISA (Cybersecurity and Infrastructure Security Agency):** 미국의 사이버보안·핵심기반시설 보호를 담당하는 연방기관
 </details>
 
 ---

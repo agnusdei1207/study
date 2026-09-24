@@ -1,10 +1,14 @@
 ---
 title: "MCP(Model Context Protocol) 보안 취약점"
 author: "OpenAI"
-date: "2026-09-24T22:02:00+09:00"
+date: "2026-09-24T22:07:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -22,6 +26,11 @@ AI 보안 → LLM 연계 보안 → MCP 보안
 <summary>핵심 용어</summary>
 
 - **MCP (Model Context Protocol):** LLM 애플리케이션이 외부 컨텍스트와 기능을 표준 방식으로 연동하는 프로토콜
+- **LLM (Large Language Model, 대규모 언어 모델):** 대규모 텍스트 데이터로 학습해 언어 입력을 처리·생성하는 모델
+- **JSON (JavaScript Object Notation):** 구조화된 데이터를 표현하는 경량 텍스트 형식
+- **RPC (Remote Procedure Call):** 네트워크를 통해 원격 시스템의 기능을 호출하는 방식
+- **STDIO (standard input/output):** 프로세스의 표준 입력·출력 스트림을 이용하는 통신 방식
+- **HTTP (Hypertext Transfer Protocol):** 웹에서 요청·응답을 교환하는 애플리케이션 계층 프로토콜
 - **Host:** 사용자·모델 상호작용을 관리하고 Client를 포함하는 애플리케이션
 - **Client:** Host 안에서 MCP Server와 요청·응답을 교환하는 연결 구성요소
 - **Server:** Host·Client에 리소스, 프롬프트, 도구 등 기능을 제공하는 구성요소

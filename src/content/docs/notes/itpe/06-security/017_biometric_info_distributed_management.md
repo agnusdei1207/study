@@ -1,10 +1,14 @@
 ---
 title: "바이오정보(Biometric Information) 분산관리"
 author: "OpenAI"
-date: "2026-09-24T22:01:00+09:00"
+date: "2026-09-24T22:07:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -26,6 +30,7 @@ extra:
 - **인증중계센터:** 참가기관 공동의 분산관리 시스템을 구축·운영하고 인증 연계를 지원하는 금융결제원 역할
 - **이용기관:** 금융결제원과 이용계약을 맺고 생체정보 활용 서비스를 제공하는 기관
 - **FIDO (Fast Identity Online):** 사용자 기기 내 사용자 검증과 공개키 기반 인증을 결합하는 인증표준군
+- **API (Application Programming Interface):** 시스템 사이의 기능·데이터 요청 규약
 - **사용자 검증:** 기기에서 생체정보 등으로 사용자 본인을 확인하고 인증기에 대한 접근을 허용하는 과정
 </details>
 
