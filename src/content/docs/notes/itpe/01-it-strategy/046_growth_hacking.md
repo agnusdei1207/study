@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
-  keyword_grade: "서브"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -27,7 +27,7 @@ extra:
 <summary>핵심 용어</summary>
 
 - **그로스 해킹(Growth Hacking)** : 제품·마케팅·데이터를 결합해 성장 가설을 빠르게 검증하는 접근법
-- **Growth Hacking** : 제품·마케팅·데이터 역량을 결합해 성장 가설을 빠르게 실험·학습하는 데이터 기반 제품 관리 접근법
+
 - **AARRR** : Acquisition·Activation·Retention·Revenue·Referral로 사용자 여정을 관찰하는 퍼널 프레임워크
 - **PMF(Product-Market Fit)** : 제품이 목표 시장의 문제를 해결하여 반복 사용과 성장이 일어나는 제품-시장 적합 상태
 - **NSM(North Star Metric)** : 고객이 체감하는 핵심 가치와 기업의 장기 성장을 대표하는 단일 북극성 지표
@@ -42,7 +42,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> 그로스 해킹의 AARRR 구조와 데이터 기반 실험 방식을 설명하시오. (예상·10점)
+> 그로스 해킹의 본질·목적과 제품 성장 가설을 실험·학습으로 검증하는 원칙을 설명하시오. (예상·10점)
 
 ---
 

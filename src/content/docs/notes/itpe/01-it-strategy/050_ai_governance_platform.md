@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
-  keyword_grade: "서브"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -26,7 +26,7 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **AI 거버넌스 플랫폼** : 조직의 AI 정책과 위험통제를 자산·개발·배포·운영 절차에 연결하는 관리 도구
+- **AI 거버넌스 플랫폼**: 조직의 AI 정책과 위험통제를 자산·개발·배포·운영 절차에 연결하는 도구의 조합. ISO/IEC 42001의 AIMS와 동일한 표준·제품을 뜻하지 않는 구현 개념
 - **AIMS(Artificial Intelligence Management System)** : 책임 있는 AI 개발·제공·활용을 위한 조직적 방침·목표·프로세스 경영시스템(ISO/IEC 42001)
 - **AI Inventory** : 조직 내 개발·도입·운영 중인 AI 시스템의 목적·책임자·위험등급을 관리하는 자산 목록
 - **System Card** : AI 시스템의 목적·성능·한계·위험 완화 조치를 표준 양식으로 기록한 공학적 설명서
@@ -36,13 +36,15 @@ extra:
 - **MLOps(Machine Learning Operations)** : 머신러닝 모델의 개발·테스트·배포·모니터링을 자동화하는 협업 운영 체계
 - **LLMOps(Large Language Model Operations)** : LLM 기반 서비스의 프롬프트·평가·가드레일·배포를 전문 관리하는 운영 프레임워크
 
+- **NIST AI RMF(National Institute of Standards and Technology AI Risk Management Framework)**: AI 위험을 Govern·Map·Measure·Manage 기능으로 관리하는 프레임워크. 특정 소프트웨어 플랫폼 규격은 아님
+
 </details>
 
 ---
 
 ## 1교시 예상문제 (10점)
 
-> AI 거버넌스 플랫폼의 구성체계와 수명주기 통제를 설명하시오. (예상·10점)
+> AI 거버넌스 플랫폼의 개념·목적과 거버넌스 기능의 핵심 구성을 설명하시오. (예상·10점)
 
 ---
 
@@ -90,7 +92,7 @@ flowchart TD
 | 정의 | **AI 거버넌스 플랫폼**: 조직의 AI 정책·위험통제를 AI 자산·개발·배포·운영 과정에 연결하는 관리 도구 |
 | 목적 | AI 사용현황 파악과 책임·위험·준수 증거의 추적 지원 |
 
-ISO/IEC 42001:2023의 **AIMS** 및 NIST AI RMF의 Govern·Map·Measure·Manage 기능을 조직 환경에 맞춘 적용.
+ISO/IEC 42001:2023의 **AIMS**는 조직 관리체계의 요구사항, NIST AI RMF는 위험관리 프레임워크이며, 플랫폼은 이를 지원하도록 선택·연계하는 도구의 구현 개념.
 
 ## Ⅱ. AI 거버넌스 플랫폼 구성체계
 

@@ -26,12 +26,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **MECE(Mutually Exclusive, Collectively Exhaustive)** : 사안을 상호 배타적이면서 전체를 누락 없이 포괄하도록 구조화하는 분석 원칙
+- **MECE(Mutually Exclusive, Collectively Exhaustive)**: 항목을 서로 겹치지 않게 나누고 전체 범위를 빠짐없이 포괄하는 구조화 원칙
 - **ME(Mutually Exclusive)** : 동일 계층 내 항목 간 의미와 범위가 서로 겹치지 않는 상호 배타 상태
 - **CE(Collectively Exhaustive)** : 동일 계층 항목의 합이 전체 대상을 빠짐없이 포괄하는 완전 포괄 상태
 - **Issue Tree** : 핵심 과제를 단일 분할축에 따라 하위 원인·가설·해법으로 분해한 계층 트리 구조
 - **WBS(Work Breakdown Structure)** : 프로젝트 범위를 최종 인도물 중심의 작업 단위로 계층 분해한 체계
 - **100% Rule** : 하위 요소의 작업 범위 합이 상위 요소의 전체 범위를 100% 충족해야 한다는 원칙
+
+- **RACI(Responsible, Accountable, Consulted, Informed)**: 역할·책임을 구분하는 매트릭스. MECE의 분할축이나 검증 기준과는 구별되는 적용 수단.\n\n- **RACI(Responsible, Accountable, Consulted, Informed)**: 역할과 책임을 구분하는 매트릭스. MECE의 분할축·검증 기준과 구별되는 적용 수단.
 
 </details>
 
@@ -39,7 +41,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> MECE의 분해 원칙과 이슈 트리 적용 방식을 설명하시오. (예상·10점)
+> MECE의 의미·목적과 중복·누락을 확인하는 구조화 원칙을 설명하시오. (예상·10점)
 
 ---
 
@@ -117,8 +119,8 @@ flowchart TD
 flowchart TD
     ROOT["전체 문제"] -->|"분할축 예: 업무 영역"| A["업무 영역 A"]
     ROOT -->|"같은 분할축의 다른 항목"| B["업무 영역 B"]
-    A ---|"같은 기준·같은 수준으로 추가 분해"| CHECK["형제 항목의 중복·누락 검증"]
-    B ---|"같은 기준·같은 수준으로 추가 분해"| CHECK
+    A --- CHECK["같은 기준·같은 수준인지 확인"]
+    B --- CHECK
 ```
 
 | 방식 | 분할축 | 적용 예 |

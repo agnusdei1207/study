@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "응용"
+    text: "서브"
 extra:
-  keyword_grade: "응용"
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 
@@ -31,7 +31,7 @@ extra:
 - **Tornado Diagram(토네이도 차트)**: 입력변수별 영향도를 큰 순서로 비교해 결과 민감도를 보여주는 차트.
 - **Decision Tree(의사결정나무)**: 의사결정 대안과 불확실한 결과를 분기해 비교하는 분석 도구.
 - **Contingency Reserve(비상예비비)**: 식별된 불확실성에 대응하기 위해 프로젝트 계획에 배정한 비용 또는 일정 여유.
-- **S-Curve(누적확률곡선)**: 비용·일정 결과가 특정 값 이하일 누적확률을 보여주는 곡선.
+- **S-Curve(누적확률곡선)**: 비용·일정 결과가 특정 값 이하일 누적확률을 보여주는 곡선.\n- **P-I Matrix(Probability-Impact Matrix)**: 위험 발생가능성과 영향을 조합해 정성적 우선순위를 분류하는 표.\n- **RBS(Risk Breakdown Structure)**: 위험 원인을 범주별로 계층화한 분류체계.
 
 </details>
 

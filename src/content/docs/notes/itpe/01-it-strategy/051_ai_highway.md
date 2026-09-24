@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
-  keyword_grade: "서브"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -26,7 +26,7 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **AI 고속도로** : AI 개발·활용에 필요한 연산·데이터·네트워크 자원을 연결해 제공하는 국가 기반
+- **AI 고속도로**: AI 개발·활용에 필요한 연산·데이터·네트워크 자원을 연결해 제공하는 정책적 인프라 구상. 단일 국제표준의 고정 아키텍처를 가리키는 용어는 아님
 - **GPU(Graphics Processing Unit)** : 대규모 병렬 연산 구조로 AI 모델 학습 및 추론을 가속하는 그래픽 처리 프로세서
 - **NPU(Neural Processing Unit)** : 딥러닝 신경망 연산에 특화되어 전력 대비 연산 효율을 극대화한 AI 전용 반도체
 - **HPC(High Performance Computing)** : 고성능 분산 노드와 초저지연 네트워크로 대규모 연산을 병렬 처리하는 컴퓨팅 체계
@@ -41,7 +41,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> AI 고속도로의 구성 요소와 AI 컴퓨팅 자원 운영 통제를 설명하시오. (예상·10점)
+> AI 고속도로의 개념·목적과 연산자원·데이터·AI 서비스의 연결 구조를 설명하시오. (예상·10점)
 
 ---
 

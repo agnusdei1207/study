@@ -4,7 +4,11 @@ author: "Codex"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
+sidebar:
+  badge:
+    text: "서브"
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 
@@ -14,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **TAM·SAM·SOM**은 전체 시장, 현재 서비스 가능한 시장, 실제 확보를 기대할 수 있는 시장을 구분한 시장 규모 지표.
+- 본질: **TAM(Total Addressable Market)·SAM(Serviceable Addressable Market)·SOM(Serviceable Obtainable Market)**은 전체 시장, 현재 서비스 가능한 시장, 실제 확보를 기대할 수 있는 시장을 구분한 시장 규모 지표.
 - 메커니즘: 고객·지역·제품 범위에 따른 TAM·SAM 설정과 경쟁·영업 역량·실제 전환 근거에 따른 SOM 추정.
 
 <details>

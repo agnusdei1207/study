@@ -4,7 +4,11 @@ author: "Codex"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-it-strategy"
+sidebar:
+  badge:
+    text: "기초"
 extra:
+  keyword_grade: "기초"
   model: "GPT-6"
 ---
 
@@ -15,7 +19,7 @@ extra:
 ## 30초 인출
 
 - 본질: **경영환경 분석**: 조직 안팎의 변화와 역량을 살펴 실행전략을 선택하는 활동.
-- 메커니즘: PEST의 거시환경·3C의 고객·경쟁사·자사 분석과 SWOT의 내부 강점·약점·외부 기회·위협 교차.
+- 메커니즘: PEST(Political, Economic, Social, Technological)의 거시환경·3C(Customer, Competitor, Company)의 시장·기업과 SWOT(Strengths, Weaknesses, Opportunities, Threats)의 내부·외부 요인 분석.
 
 <details>
 <summary>핵심 용어</summary>
@@ -35,7 +39,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> PEST·3C·SWOT의 분석 관점과 SWOT 교차전략을 설명하시오. (예상·10점)
+> PEST(Political, Economic, Social, Technological)·3C(Customer, Competitor, Company)·SWOT(Strengths, Weaknesses, Opportunities, Threats)의 분석 관점과 SWOT 교차전략을 설명하시오. (예상·10점)
 
 ---
 
@@ -71,7 +75,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> PEST·3C·SWOT의 분석 범위와 연계 방식을 설명하고, 교차전략의 실행력을 높일 방안을 제시하시오. (예상·25점)
+> PEST(Political, Economic, Social, Technological)·3C(Customer, Competitor, Company)·SWOT(Strengths, Weaknesses, Opportunities, Threats)의 분석 범위와 연계 방식을 설명하고, 교차전략의 실행력을 높일 방안을 제시하시오. (예상·25점)
 
 ---
 

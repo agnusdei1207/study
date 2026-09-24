@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
-  keyword_grade: "서브"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -27,9 +27,9 @@ extra:
 
 - **화이트 레이블 마케팅(White Label Marketing)**: 공급자의 제품·서비스를 판매자 브랜드로 시장에 제공하는 브랜드·유통 방식.
 - **화이트 레이블(White Label)**: 공급자가 만든 제품·서비스를 판매자 브랜드로 제공하는 방식.
-- **B2B2C**: 공급 기업과 판매 기업이 협력해 최종 소비자에게 제품·서비스를 제공하는 구조.
-- **SLA**: 서비스 수준과 장애 대응 책임을 당사자 간 합의한 계약.
-- **API**: 서로 다른 소프트웨어가 기능이나 데이터를 주고받는 인터페이스.
+- **B2B2C(Business-to-Business-to-Consumer)**: 공급 기업과 판매 기업이 협력해 최종 소비자에게 제품·서비스를 제공하는 구조.
+- **SLA(Service Level Agreement)**: 서비스 수준과 장애 대응 책임을 당사자 간 합의한 계약.
+- **API(Application Programming Interface)**: 서로 다른 소프트웨어가 기능이나 데이터를 주고받는 인터페이스.
 - **Exit Plan**: 계약 종료나 공급자 교체 때 데이터와 서비스를 이전하는 계획.
 
 </details>
