@@ -25,6 +25,8 @@ extra:
 <summary>핵심 용어</summary>
 
 - **프로젝트 위험관리** : 프로젝트 목표에 영향을 줄 수 있는 불확실한 사건을 식별·분석·대응·감시하는 관리 활동
+- **위협(Threat)** : 발생하면 일정·원가·품질 등 프로젝트 목표에 불리한 영향을 주는 불확실한 사건·조건
+- **기회(Opportunity)** : 발생하면 일정·원가·품질 등 프로젝트 목표에 유리한 영향을 주는 불확실한 사건·조건
 - **PMBOK(Project Management Body of Knowledge)** : PMI가 프로젝트 관리 지식을 체계화한 지침서. 이 답안의 위험관리 7개 프로세스는 제6판 기준
 - **Risk Register(위험 등록부)** : 식별된 위험의 원인·우선순위·대응 전략·담당자를 기록하고 추적하는 핵심 관리 문서
 - **Residual Risk(잔여 위험)** : 위험 대응 조치를 실행한 후에도 수용 또는 잔존하여 지속 관리해야 하는 위험
@@ -52,6 +54,8 @@ extra:
 | 목적 | 위협의 영향 감소와 기회의 활용을 통한 프로젝트 목표 달성 가능성 향상 |
 
 ### Ⅱ. 위협·기회 대응전략
+
+여기서 기회는 일반적인 사업 기회가 아닌, 프로젝트 목표에 긍정적 영향을 줄 수 있는 불확실한 사건·조건
 
 ```mermaid
 flowchart TD
@@ -126,7 +130,7 @@ flowchart TD
 
 ## Ⅳ. 위협·기회 대응전략
 
-> 위험 성격에 따른 대응전략 구분: 위협의 부정적 영향 감소와 기회의 긍정적 영향 확대·실현
+> 위험 성격에 따른 대응전략 구분: 위협의 부정적 영향 감소와 프로젝트 목표에 유리한 불확실한 사건·조건인 기회의 실현 가능성 확대
 
 ```mermaid
 flowchart TD
@@ -171,13 +175,14 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 제134회 정보관리기술사 4교시: "IT 프로젝트 관리에서 리스크 대응에 대하여 설명하시오."
+- [제134회 정보관리기술사 4교시](https://www.q-net.or.kr/cst006.do?artlSeq=5213580&brdId=Q006&gSite=Q&id=cst00602): "IT 프로젝트 관리에서 리스크 대응에 대하여 설명하시오."
   - 가. 리스크 대응 계획 수립 절차
   - 나. 위협에 대한 대응 전략
   - 다. 기회에 대한 대응 전략
 - 제138회 정보관리기술사 1교시: "프로젝트 위험관리"
 - 제139회 정보관리기술사 1교시: "IT 프로젝트에서 발생할 수 있는 부정적 위험(Negative Risk)과 대응 전략"
-- [PMI, PMBOK Guide Sixth Edition](https://www.pmi.org/-/media/pmi/documents/public/pdf/pmbok-standards/pmbok-guide-6th-edition-5th-printing.pdf)
+- [PMI, PMBOK Guide Sixth Edition 위험관리 7개 프로세스 요약](https://www.pmi.org/-/media/pmi/chapters/lebanon-chapter/pdf-and-ppt/march-2019-importance-of-project-risk.pdf?v=5d9ad009-e751-46f4-a5a9-457fab46b594)
+- [PMI, The Standard for Risk Management in Portfolios, Programs, and Projects](https://www.pmi.org/standards/risk-management)
 - [PMI Lexicon of Project Management Terms, Version 5.0](https://www.pmi.org/-/media/pmi/documents/registered/pdf/pmbok-standards/pmi-lexicon-pm-terms.pdf)
 
 ## 연결 토픽
