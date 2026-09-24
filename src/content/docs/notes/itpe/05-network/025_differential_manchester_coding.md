@@ -29,7 +29,7 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **차동 맨체스터 부호화(Differential Manchester Encoding)** : 비트 중앙 전이를 동기 기준으로 삼고 비트 경계 전이로 비트값을 표현하는 라인 코드
+- **차동적 맨체스터 부호화** : Differential Manchester Encoding; 비트 중앙 전이를 동기 기준으로 삼고 비트 경계 전이로 비트값을 표현하는 라인 코드
 - **라인 코드(Line Code)** : 디지털 비트열을 물리 전송 신호로 나타내는 부호 방식
 - **자가 클로킹(Self-clocking)** : 신호의 주기적 전이에서 수신기가 타이밍 정보를 얻는 성질
 - **비트 경계 전이(Bit-boundary Transition)** : 비트 구간 시작에서 신호 레벨이 바뀌는 현상

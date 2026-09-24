@@ -1,121 +1,172 @@
 ---
+sidebar:
+  order: 36
+  label: "036. WebRTC"
+  badge:
+    text: "기초"
+    variant: note
 title: "WebRTC(Web Real-Time Communication)"
-author: "Gemini 3.8 Flash"
-date: "2026-09-24T21:00:00+09:00"
+author: "Codex"
+date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-network"
+weight: 36
 extra:
   model: "GPT-6"
-
+  keyword_grade: "기초"
+  question_no: "036"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-컴퓨터 시스템 및 네트워크 → 핵심 개념 → WebRTC
+지식 위치: 네트워크 → 실시간 브라우저 통신 → **WebRTC**
 
 ## 30초 인출
 
-- 본질: 웹 브라우저에서 화상 통신 시 무거운 플러그인 설치 강제와 서버 경유 지연의 한계
-- 메커니즘: 브라우저에 내장된 표준 API와 ICE/STUN NAT 관통 기술로 단말 간 UDP 암호화 P2P 터널을 직접 형성
+- 본질: **WebRTC(Web Real-Time Communication)** : 브라우저·응용에서 실시간 오디오·영상·데이터 통신을 지원하는 웹 API와 프로토콜 체계
+- 메커니즘: 응용의 signaling으로 SDP 교환 → ICE로 통신 경로 확인 → DTLS-SRTP 미디어·SCTP 데이터 통신
 
-## 핵심 용어
+<details>
+<summary>핵심 용어</summary>
 
-- SDP(Session Description Protocol): 내가 지원하는 비디오 코덱(VP8, H.264), 해상도, 오디오 샘플링 레이트 등의 미디어 메타데이터를 텍스트로 표현한 세션 기술서
-- ICE(Interactive Connectivity Establishment): STUN과 TURN 프로토콜을 결합하여 다양한 방화벽과 NAT 환경 속에서 단말 간 최적의 통신 경로 후보를 찾아내는 프레임워크
-- STUN vs TURN: STUN은 단말에게 자신의 "공인 IP와 포트"를 알려주어 P2P 직결을 돕는 경량 서버 / TURN은 보안이 엄격한 대칭형 NAT 환경에서 P2P가 불가능할 때 트래픽을 대신 중계해 주는 릴레이 서버
+- **WebRTC(Web Real-Time Communication)** : 실시간 미디어·데이터 연결을 위한 웹 API와 관련 통신 체계
+- **Signaling(시그널링)** : 세션 설명과 ICE 후보를 교환하는 응용 경로; WebRTC 표준이 특정 signaling 전송 프로토콜을 정하지 않음
+- **SDP(Session Description Protocol)** : 세션·미디어 속성을 표현하는 형식; 자체적으로 미디어를 전달하지 않음
+- **ICE(Interactive Connectivity Establishment)** : 후보 주소·포트를 시험해 통신 경로를 찾는 NAT 통과 프레임워크
+- **STUN(Session Traversal Utilities for NAT)** : NAT 환경의 주소 정보를 파악하고 연결성 검사를 지원하는 프로토콜
+- **TURN(Traversal Using Relays around NAT)** : 직접 연결이 어려울 때 미디어·데이터를 중계하는 릴레이 프로토콜
+- **DTLS-SRTP(Datagram Transport Layer Security–Secure Real-time Transport Protocol)** : WebRTC 미디어 전송 보안에 쓰이는 키 교환·보호 구조
+- **SCTP(Stream Control Transmission Protocol)** : WebRTC 데이터 채널의 신뢰성 있는 메시지 전달에 사용되는 전송 프로토콜
+- **SFU(Selective Forwarding Unit)** : 참가자 미디어를 선택·전달하는 다자 통화 서버 구조
+
+</details>
 
 ---
 
 ## 1교시 예상문제 (10점)
 
-> WebRTC의 개념과 핵심 구조 또는 동작을 설명하시오. (예상)
+> WebRTC의 개념과 signaling·ICE 기반 연결 과정을 설명하시오. (예상·10점)
 
 ---
 
 ## 1교시 10점 답안
 
-### Ⅰ. 정의·목적
+### Ⅰ. WebRTC의 개요
 
-- 정의: WebRTC은/는 브라우저에 내장된 표준 API와 ICE/STUN NAT 관통 기술로 단말 간 UDP 암호화 P2P 터널을 직접 형성 방식이다.
-- 목적: 서브 200ms 초저지연 화상에 기여한다.
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **WebRTC** : 실시간 미디어·데이터 통신을 위한 브라우저·응용 API와 프로토콜 체계 |
+| 목적 | 웹 응용에서 피어 간 실시간 통신과 미디어·데이터 연결 지원 |
 
-### Ⅱ. 핵심 구조와 작동
+### Ⅱ. 연결 절차와 통신
 
-```text
-[ WebRTC 연결 수립 (Signaling 및 ICE) 및 미디어 전송 흐름 ]
-
-  [ 브라우저 A ]                 [ 시그널링 서버 (WebSocket) ]           [ 브라우저 B ]
-        |                                       |                                     |
-        |---- 1. SDP Offer (코덱/해상도) ------>|                                     |
-        |                                       |---- 1. SDP Offer 전달 ------------->|
-        |                                       |<--- 2. SDP Answer ------------------|
-        |<--- 2. SDP Answer 전달 ---------------|                                     |
-        |                                                                             |
-        +======== 3. STUN 서버 질의 (공인 IP/Port 후보 수집: ICE Candidates) ========+
-        |                                       |                                     |
-        |---- 4. ICE 후보 교환 ---------------->|---- 4. ICE 후보 전달 -------------->|
-        |                                       |                                     |
-        |================ 5. P2P 직접 미디어 연결 (SRTP / DTLS 암호화) ================|
-        |   (단, P2P 실패 시 TURN 중계 서버를 경유하여 미디어 릴레이)                 |
+```mermaid
+sequenceDiagram
+    participant A as 피어 A
+    participant S as 응용 Signaling
+    participant B as 피어 B
+    participant I as ICE 경로 확인
+    A->>S: SDP Offer·ICE 후보
+    S->>B: Offer·후보 전달
+    B->>S: SDP Answer·ICE 후보
+    S->>A: Answer·후보 전달
+    A->>I: 후보 쌍 연결성 검사
+    B->>I: 후보 쌍 연결성 검사
+    I-->>A: 선택 경로·DTLS 협상
+    I-->>B: 선택 경로·DTLS 협상
+    A->>B: 보호된 미디어·데이터
 ```
+
+- 제언: signaling·ICE 경로 확인·보안 미디어 전송을 함께 설계.
 
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> WebRTC의 구조와 동작을 설명하고, 주요 비교 또는 적용 시 문제와 대응책을 제시하시오. (예상)
+> WebRTC의 세션 협상·ICE 연결·보안 전송 구조를 설명하고, NAT·망 정책·다자 통화의 한계와 대응 방안을 제시하시오. (예상·25점)
 
 ---
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 핵심 구조와 작동
+### Ⅰ. WebRTC의 개요
 
-```text
-[ WebRTC 연결 수립 (Signaling 및 ICE) 및 미디어 전송 흐름 ]
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **WebRTC** : 실시간 미디어·데이터 통신을 위한 브라우저·응용 API와 프로토콜 체계 |
+| 목적 | 웹 응용에서 피어 간 실시간 통신과 미디어·데이터 연결 지원 |
 
-  [ 브라우저 A ]                 [ 시그널링 서버 (WebSocket) ]           [ 브라우저 B ]
-        |                                       |                                     |
-        |---- 1. SDP Offer (코덱/해상도) ------>|                                     |
-        |                                       |---- 1. SDP Offer 전달 ------------->|
-        |                                       |<--- 2. SDP Answer ------------------|
-        |<--- 2. SDP Answer 전달 ---------------|                                     |
-        |                                                                             |
-        +======== 3. STUN 서버 질의 (공인 IP/Port 후보 수집: ICE Candidates) ========+
-        |                                       |                                     |
-        |---- 4. ICE 후보 교환 ---------------->|---- 4. ICE 후보 전달 -------------->|
-        |                                       |                                     |
-        |================ 5. P2P 직접 미디어 연결 (SRTP / DTLS 암호화) ================|
-        |   (단, P2P 실패 시 TURN 중계 서버를 경유하여 미디어 릴레이)                 |
+### Ⅱ. 연결 절차와 통신
+
+```mermaid
+sequenceDiagram
+    participant A as 피어 A
+    participant S as 응용 Signaling
+    participant B as 피어 B
+    participant I as ICE 경로 확인
+    A->>S: SDP Offer·ICE 후보
+    S->>B: Offer·후보 전달
+    B->>S: SDP Answer·ICE 후보
+    S->>A: Answer·후보 전달
+    A->>I: 후보 쌍 연결성 검사
+    B->>I: 후보 쌍 연결성 검사
+    I-->>A: 선택 경로·DTLS 협상
+    I-->>B: 선택 경로·DTLS 협상
+    A->>B: 보호된 미디어·데이터
 ```
 
-### Ⅱ. 핵심 특성
+Signaling은 응용이 구현하는 SDP·ICE 후보 교환 경로. ICE는 직접 후보뿐 아니라 TURN 릴레이 후보를 포함해 연결 가능한 경로를 검사.
 
-- WebRTC 표준 기구는 "시그널링(누가 누구에게 전화 거는지)" 방식을 일부러 표준화하지 않음 → 개발자가 WebSocket, SIP, REST 등 원하는 방식을 자유롭게 쓰도록 유연성 보장
-- 기본 보안(Security by Default) 원칙에 따라, 모든 미디어는 SRTP로, 모든 데이터 채널은 DTLS로 암호화되지 않으면 브라우저가 통신 자체를 차단
-- 3인 이상의 다자간 통화에서 순수 P2P(Mesh)는 단말이 $N-1$개의 스트림을 중복 업로드해야 하므로 단말이 과열됨 → 서버가 영상 인코딩 없이 패킷만 라우팅해 주는 SFU(Selective Forwarding Unit) 아키텍처 채택 필수
+### Ⅲ. 주요 구성요소
 
-### Ⅲ. 관련 개념과 구분
+| 구성 | 역할 | 참고 |
+|---|---|---|
+| SDP | 미디어 종류·코덱·전송 매개변수 교환 | Offer/Answer 등 협상 절차에 사용 |
+| ICE | 후보 수집·연결성 검사·경로 선택 | STUN·TURN 사용 가능 |
+| DTLS-SRTP | 미디어 키 설정·보호 | 브라우저 간 미디어 보안 |
+| SCTP over DTLS | 데이터 채널 메시지 전송 | 순서·신뢰성 모드는 응용에서 설정 |
 
-- HLS/DASH vs WebRTC: HLS/DASH는 HTTP 기반 청크 스트리밍으로 지연 시간 2~5초 발생(대규모 1:N 방송용) / WebRTC는 UDP 기반 프레임 즉시 전송으로 지연 0.2초 미만(양방향 화상회의용)
+### Ⅳ. NAT·방화벽 연결 경로
 
-### Ⅳ. 적용 문제와 대응
+| 경로 후보 | 역할 | 운용상 고려 |
+|---|---|---|
+| Host candidate | 로컬 인터페이스 주소 후보 | 로컬 네트워크·접근 정책 |
+| Server-reflexive candidate | STUN 기반 공인 측 주소 후보 | NAT 매핑·필터 동작 |
+| Relay candidate | TURN 서버를 통한 중계 경로 | 서버 비용·대역폭·중계 지연 |
 
-- 적용 상황: 기업 방화벽 내부 단말 간 WebRTC 연결 실패
-| 문제 | 원인 | 대책 | 효과 |
-|---|---|---|---|
-| 엄격한 기업 방화벽(Symmetric NAT)으로 P2P 연결 100% 실패 | 포트 매핑 규칙이 목적지마다 달라 STUN 공인 주소 무효화 | 443번 포트 기반 TURN(Traversal Using Relays around NAT) 릴레이 배치 | P2P 불가 환경에서도 100% 연결 성공률 보장 |
-| 5인 이상 다자 회의 시 참가자 PC 발열 및 프레임 드롭 | P2P Mesh 방식의 다중 업로드 대역폭 및 CPU 인코딩 과부하 | 미디어 분배 서버인 SFU(Selective Forwarding Unit) 도입 | 단말은 1개 스트림만 업로드하고 서버가 구독자에게 분배 |
+### Ⅴ. 다자 통화 토폴로지
 
-### Ⅴ. 기술사적 제언
+| 구조 | 미디어 처리 | 주요 고려 |
+|---|---|---|
+| Mesh | 참가자 간 직접 연결 | 참가자 수 증가 시 단말 업로드·연결 수 증가 |
+| SFU(Selective Forwarding Unit) | 수신자별 미디어 스트림 선택 전달 | 서버 네트워크·미디어 라우팅 비용 |
+| MCU(Multipoint Control Unit) | 서버에서 미디어 합성·처리 | 서버 연산·지연·코덱 처리 부담 |
 
-| 문제 | 해결 방안 |
+### Ⅵ. 한계와 대응
+
+| 한계 | 대응 |
 |---|---|
-| 적용 환경에서 발생하는 핵심 제약 | 기존 대책을 적용하고 핵심 운영 지표를 확인해 개선한다. |
+| NAT·방화벽 정책으로 직접 후보 연결 실패 | TURN 경로·전송 프로토콜 후보를 포함해 기업망 연결 시험 |
+| 네트워크·장치 성능에 따른 지연 편차 | 실제 단말·망 조건에서 종단 지연·손실·지터 측정 |
+| 다자 Mesh의 단말 업로드 증가 | 참가자 규모·기기 성능 기준으로 SFU·MCU 검토 |
+| signaling 서버 장애로 신규 연결 협상 실패 | signaling 가용성·인증·세션 상태 복구 설계 |
+
+### Ⅶ. 기술사적 제언
+
+| 우선 선택 | 적용·검증 |
+|---|---|
+| 단말·망 조건과 회의 규모에 맞는 연결·미디어 토폴로지 선택 | P2P·TURN·SFU/MCU를 장애·부하·보안 조건별 시험 후 비용·품질 기준 수립 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 제123회 2교시: "WebRTC의 개념, 주요 프로토콜 스택, 세션 연결 절차(SDP, ICE, STUN, TURN) 및 1:N/N:M 통화 구성을 위한 아키텍처(Mesh, MCU, SFU)를 설명하시오." → 요구 포인트: Ⅲ 계층 구조 + Ⅳ 시퀀스 다이어그램 + Ⅴ 미디어 서버 3종 비교표
+- 제123회 2교시: “WebRTC의 개념, 주요 프로토콜 스택, 세션 연결 절차(SDP, ICE, STUN, TURN) 및 1:N/N:M 통화 구성을 위한 아키텍처(Mesh, MCU, SFU)를 설명하시오.”
+- [W3C WebRTC: Real-Time Communication in Browsers](https://www.w3.org/TR/webrtc/)
+- [RFC 8825: Overview: Real-Time Protocols for Browser-Based Applications](https://www.rfc-editor.org/rfc/rfc8825)
+- [RFC 8445: Interactive Connectivity Establishment (ICE)](https://www.rfc-editor.org/rfc/rfc8445)
+- [RFC 8827: WebRTC Security Architecture](https://www.rfc-editor.org/rfc/rfc8827)
 
-## 찾아볼 것
-- 차세대 코덱 AV1의 WebRTC 실시간 인코딩 성능 및 브라우저 하드웨어 가속 현황
+## 연결 토픽
+
+- 연관 토픽: [SCTP](./034_sctp.md), [NAT](./071_nat.md)

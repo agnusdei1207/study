@@ -30,6 +30,7 @@ extra:
 <summary>핵심 용어</summary>
 
 - **IMT-2030(International Mobile Telecommunications-2030)** : ITU-R이 정한 2030년 및 이후 IMT 발전 프레임워크
+- **6G 이동통신(IMT-2030)** : IMT-2030 프레임워크를 바탕으로 2030년 이후 발전시키는 차세대 이동통신
 - **IMT-2020(International Mobile Telecommunications-2020)** : 5G 이동통신 세대의 ITU 명칭
 - **ISAC(Integrated Sensing and Communication)** : 통신과 센싱 기능을 함께 다루는 사용 시나리오·기능 영역
 - **AI(Artificial Intelligence)** : IMT-2030의 네트워크·서비스 활용을 지원할 수 있는 인공지능 기능
