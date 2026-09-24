@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기초"
+    text: "응용"
 extra:
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -39,7 +39,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> 공공 디지털서비스의 회복탄력성 확보 절차와 재해복구 검증 방안을 설명하시오. (예상·10점)
+> 국가정보자원관리원 화재 사례의 정보시스템 운영상 쟁점과 재해복구 시사점을 설명하시오. (예상·10점)
 
 ---
 
