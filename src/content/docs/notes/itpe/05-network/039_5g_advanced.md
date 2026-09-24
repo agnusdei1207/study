@@ -1,7 +1,7 @@
 ---
 title: "5G-Advanced"
 author: "Codex"
-date: "2026-09-24T21:03:00+09:00"
+date: "2026-09-24T21:17:00+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -84,10 +84,12 @@ Rel-18/19에 포함된 기능과 적용 시점은 세부 규격별로 다름. �
 
 ## Ⅱ. 릴리스 진화
 
-```mermaid
-flowchart TD
-    R17["Release 17: 5G 기능 확장"] -->|"Rel-18로 진화"| R18["Release 18: 첫 5G-Advanced 릴리스"]
-    R18 -->|"후속 개선"| R19["Release 19: 두 번째 5G-Advanced 릴리스"]
+```text
+Release 17: 5G 기능 확장
+        ↓ 후속 진화
+Release 18: 첫 5G-Advanced 릴리스
+        ↓ 후속 개선
+Release 19: 두 번째 5G-Advanced 릴리스
 ```
 
 3GPP Release 18은 2024년 6월 동결, Release 19는 2025년 12월 동결. 릴리스 동결은 모든 구현·서비스의 같은 시점 상용화를 뜻하지 않음.
@@ -101,15 +103,7 @@ flowchart TD
 | 비지상망 | NTN 연동 기능 개선 | 위성 구성·지연·서비스 범위 |
 | 지능화·서비스 | AI/ML, XR 등 관련 기능 연구·개선 | 적용 규격과 실제 장비 지원 |
 
-```mermaid
-flowchart TD
-    NEED["서비스·단말 요구"] -->|"기능 선택"| RADIO["무선 성능·운영 개선"]
-    NEED -->|"기능 선택"| DEVICE["RedCap 단말 지원"]
-    NEED -->|"연결 범위 요구"| NTN["NTN 연동 기능"]
-    NEED -->|"서비스 요구"| AI["AI/ML·XR 개선 항목"]
-```
-
-분야 분류도이며 네 기술 영역이 순차 처리된다는 뜻은 아님.
+Rel-18/19 기능은 릴리스별·규격별로 구분되는 독립 개선 항목이며, 한 기능의 출력이 다음 기능의 입력이 되는 절차가 아님.
 
 ## Ⅳ. 도입 한계와 관리
 
