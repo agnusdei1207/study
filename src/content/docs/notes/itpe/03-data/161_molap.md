@@ -17,6 +17,20 @@ extra:
   question_no: "161"
 ---
 
+<details>
+<summary>핵심 용어</summary>
+
+- **MOLAP (Multidimensional Online Analytical Processing, 다차원 온라인 분석 처리)** : 분석 데이터를 다차원 큐브에 저장·집계해 분석 질의에 응답하는 OLAP 방식
+- **OLAP (Online Analytical Processing, 온라인 분석 처리)** : 다차원 관점에서 데이터를 집계·조회해 분석하는 처리 방식
+- **차원(Dimension)** : 측정값을 분류하고 분석하는 축(예: 시간·지역·상품)
+- **측정값(Measure)** : 차원 조합에 따라 집계하거나 비교하는 수치 데이터
+- **ROLAP (Relational OLAP, 관계형 온라인 분석 처리)** : 관계형 데이터베이스를 중심으로 분석 질의를 처리하는 OLAP 방식
+- **HOLAP (Hybrid OLAP, 하이브리드 온라인 분석 처리)** : 다차원 저장과 관계형 저장·질의를 조합하는 OLAP 방식
+
+</details>
+
+---
+
 ## 1교시 예상문제 (10점)
 
 > MOLAP (Multidimensional OLAP)의 정의와 목적, 핵심 메커니즘을 설명하시오. (예상)

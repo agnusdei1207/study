@@ -23,27 +23,11 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[DRDBMS(디스크 기반) vs MMDBMS(메모리 기반) 핵심 아키텍처]
-
-  [1. 전통적 디스크 기반 (DRDBMS)]            [2. 메인 메모리 기반 (MMDBMS)]
-     [응용 프로그램]                              [응용 프로그램]
-           │                                            │
-           ▼                                            ▼
-  ┌─────────────────┐                          ┌─────────────────┐
-  │ 버퍼 캐시 관리자 │ (페이지 스왑/래치)        │ 메모리 직접 주소│ (포인터 직접 역참조)
-  └────────┬────────┘                          └────────┬────────┘
-           │ 디스크 I/O (ms 단위 지연)                  │
-           ▼                                            ▼
-  ┌─────────────────┐                          ┌─────────────────┐
-  │ 디스크 데이터   │ (주 저장소)              │ 메인 메모리 RAM │ (주 저장소! μs 단위)
-  └─────────────────┘                          └────────┬────────┘
-                                                        │ 비동기 백업/로깅
-                                                        ▼
-                                               ┌─────────────────┐
-                                               │ NVRAM / SSD 로그│ (영속성 보장 사본)
-                                               └─────────────────┘
-```
+| 회상 축 | DRDBMS | MMDBMS |
+|:---|:---|:---|
+| **주 저장소** | 디스크·SSD 중심 | RAM 중심 |
+| **접근 경로** | 버퍼 관리 후 저장장치 접근 | 메모리 상주 데이터 처리 |
+| **복구 필요성** | 로그·백업으로 장애 복구 | 휘발성 메모리 보호를 위한 로그·복제·체크포인트 검토 |
 
 - 본질: **메인 메모리 DBMS(MMDBMS)는 주 데이터를 RAM에 두고 처리하는 DBMS로, 디스크 입출력을 줄여 지연을 낮추며 데이터 영속성은 체크포인트·로그·복제 등 제품별 회복 방식으로 확보**
 - 암기: `주-포-티-비` (주기억장치상주, 포인터직접참조, T-Tree인덱스, 비동기로깅) / `퍼-엔-그` (영속성 기법: 퍼지체크포인트, NVRAM, 그룹커밋)
@@ -52,6 +36,19 @@ extra:
   - **MMDBMS**: 주요 데이터를 RAM에 두어 디스크 접근을 줄임. 인덱스·버퍼·저장 방식은 제품별 구현에 따라 달라짐.
   - **인메모리 데이터 저장소**: 자료 모델·질의·트랜잭션·내구성 기능은 제품마다 다르므로 메모리 상주만으로 관계형 DBMS와 동등하다고 볼 수 없음.
 - 주의: 커밋 후 로그를 영속 저장하기 전에 응답하는 비내구성 설정에서는 장애 시 최근 커밋 일부를 잃을 수 있음. 동기 로그 기록, 복제, 체크포인트 등 실제 설정과 RPO를 확인.
+---
+
+<details>
+<summary>핵심 용어</summary>
+
+- **MMDBMS (Main Memory Database Management System, 메인 메모리 DBMS)** : 주요 데이터를 주기억장치에 상주시켜 처리하는 데이터베이스 관리 시스템
+- **DRDBMS (Disk-Resident Database Management System, 디스크 기반 DBMS)** : 데이터를 디스크에 저장하고 메모리를 주로 버퍼로 활용하는 데이터베이스 관리 시스템
+- **T-Tree** : 메인 메모리 데이터베이스에서 정렬 데이터 검색에 쓰이는 균형 탐색 트리 계열 인덱스
+- **체크포인트(Checkpoint)** : 복구를 위해 메모리의 데이터 상태를 영속 저장소에 기록하는 시점 또는 작업
+- **트랜잭션 로그(Transaction Log)** : 데이터 변경 기록을 저장해 장애 복구에 사용하는 로그
+
+</details>
+
 ---
 
 ## 1교시 예상문제 (10점)
@@ -117,65 +114,14 @@ extra:
 
 #### 한줄 요약: '데이터가 디스크에 있다'는 가정의 DRDBMS와, '데이터가 메모리에 상주한다'는 전제의 MMDBMS
 
-<div class="itpe-diagram-box">
-  <div class="itpe-diagram-header">
-    <span class="itpe-tag">아키텍처 다이어그램</span>
-    <span class="itpe-title">디스크 기반 DBMS(DRDBMS)와 메인 메모리 DBMS(MMDBMS) 내부 구조 비교</span>
-  </div>
-  <div class="itpe-diagram-body">
-    <svg class="itpe-svg" viewBox="0 0 520 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="arrow-mm" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--color-text, #333)" />
-        </marker>
-      </defs>
-      <!-- 좌측: DRDBMS -->
-      <rect x="20" y="15" width="225" height="250" rx="6" fill="var(--color-bg-secondary, #f0f4f8)" stroke="var(--color-border, #0284c7)" stroke-width="1.5" />
-      <text x="132" y="38" font-size="12" font-weight="bold" text-anchor="middle" fill="var(--color-primary, #0284c7)">[디스크 기반 DBMS (DRDBMS)]</text>
-
-      <rect x="40" y="55" width="185" height="32" rx="3" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
-      <text x="132" y="75" font-size="10" text-anchor="middle" fill="#1e293b">응용 프로그램 (SQL 질의)</text>
-
-      <path d="M 132 87 L 132 110" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrow-mm)" />
-
-      <rect x="40" y="112" width="185" height="48" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2" />
-      <text x="132" y="130" font-size="10" font-weight="bold" text-anchor="middle" fill="#991b1b">버퍼 캐시 관리자 (병목 계층)</text>
-      <text x="132" y="146" font-size="8" text-anchor="middle" fill="#b91c1c">페이지 테이블 래치 / LRU 스왑 / 핀 고정</text>
-
-      <path d="M 132 160 L 132 185" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-mm)" />
-      <text x="132" y="177" font-size="8" text-anchor="middle" fill="#dc2626">디스크 블록 I/O (수 ms)</text>
-
-      <rect x="40" y="190" width="185" height="58" rx="3" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" />
-      <text x="132" y="212" font-size="11" font-weight="bold" text-anchor="middle" fill="#0369a1">하드디스크 / SSD</text>
-      <text x="132" y="230" font-size="9" text-anchor="middle" fill="#475569">주 저장소 (Primary Storage)</text>
-
-      <!-- 우측: MMDBMS -->
-      <rect x="275" y="15" width="225" height="250" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" />
-      <text x="387" y="38" font-size="12" font-weight="bold" text-anchor="middle" fill="#1d4ed8">[메인 메모리 DBMS (MMDBMS)]</text>
-
-      <rect x="295" y="55" width="185" height="32" rx="3" fill="#ffffff" stroke="#3b82f6" stroke-width="1" />
-      <text x="387" y="75" font-size="10" text-anchor="middle" fill="#1e293b">응용 프로그램 (SQL 질의)</text>
-
-      <path d="M 387 87 L 387 110" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#arrow-mm)" />
-      <text x="387" y="102" font-size="8" text-anchor="middle" fill="#1d4ed8">직접 포인터 역참조 (버퍼 계층 제거!)</text>
-
-      <rect x="295" y="112" width="185" height="60" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" />
-      <text x="387" y="132" font-size="11" font-weight="bold" text-anchor="middle" fill="#1e40af">주기억장치 (RAM / NVRAM)</text>
-      <text x="387" y="148" font-size="9" text-anchor="middle" fill="#1d4ed8">주 저장소 (Primary Storage, 수 μs)</text>
-      <text x="387" y="162" font-size="8" text-anchor="middle" fill="#2563eb">• T-Tree 인덱스 • 포인터 직접 연산</text>
-
-      <path d="M 387 172 L 387 200" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arrow-mm)" />
-      <text x="387" y="190" font-size="8" text-anchor="middle" fill="#047857">비동기 백업 로깅 / 체크포인트</text>
-
-      <rect x="295" y="205" width="185" height="45" rx="3" fill="#f0fdf4" stroke="#10b981" stroke-width="1.2" />
-      <text x="387" y="224" font-size="10" font-weight="bold" text-anchor="middle" fill="#065f46">디스크 / 스토리지</text>
-      <text x="387" y="240" font-size="8" text-anchor="middle" fill="#047857">백업 및 장애 회복 전용 (사본)</text>
-    </svg>
-  </div>
-  <div class="itpe-diagram-footer">
-    MMDBMS는 버퍼 관리 오버헤드가 없으며, 주 저장소가 RAM이므로 마이크로초 단위 응답을 달성함
-  </div>
-</div>
+```mermaid
+flowchart LR
+    A[응용 질의] --> B[DRDBMS 버퍼 캐시]
+    B --> C[디스크 주 저장소]
+    A --> D[MMDBMS 메모리 상주 데이터]
+    D --> E[메모리 인덱스]
+    D -. 체크포인트·로그 .-> F[디스크 복구 사본]
+```
 
 ## Ⅲ. 인메모리 전용 인덱스: T-Tree 구조와 특징
 
