@@ -62,7 +62,7 @@ Client → Proxy.request()
 Proxy → RealSubject.request() 위임
 ```
 
-### Ⅲ. 적용 유형
+**적용 유형**
 
 - **가상/보호/원격 프록시**: 리소스 지연 로딩, 보안 인가, 분산 통신 추상화
 - **Spring AOP**: 동적 프록시(JDK/CGLIB) 기반 트랜잭션 및 보안 인터셉트

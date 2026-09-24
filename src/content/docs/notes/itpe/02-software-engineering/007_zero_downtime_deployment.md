@@ -59,7 +59,7 @@ extra:
     └─ Canary: 신규 버전 유입 비율 확대
 ```
 
-### Ⅲ. 데이터베이스·연결 통제
+**데이터베이스·연결 통제**
 
 - **DB 무중단**: Expand/Contract 패턴으로 하위 호환성 유지 후 구버전 컬럼 제거
 - **연결 보장**: Graceful Shutdown 및 Connection Draining으로 인플라이트 요청 보존

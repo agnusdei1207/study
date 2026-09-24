@@ -67,7 +67,7 @@ extra:
 변경·종료
 ```
 
-### Ⅲ. 핵심 통제
+**핵심 통제**
 
 - **Risk-proportionate Control** : 위험수준에 맞춘 기술·관리·절차 통제 조합
 - **Residual Risk Accountability** : 잔여위험·수용기준·승인책임·증적 연결

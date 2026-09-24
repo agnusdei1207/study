@@ -63,7 +63,7 @@ extra:
 고지·저작권 표시·소스 제공 의무 정리
 ```
 
-### Ⅲ. 준수 통제
+**준수 통제**
 
 - **SBOM 관리**: SPDX(Software Package Data Exchange)·CycloneDX 기반 오픈소스 자재명세서 작성
 - **SCA 자동화**: 구성요소와 라이선스를 식별하고, 조직의 검토 정책에 따라 담당자 확인을 요청
