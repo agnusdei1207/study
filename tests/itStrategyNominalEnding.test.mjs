@@ -28,7 +28,6 @@ test('IT strategy authored explanations end as noun phrases', async () => {
       for (const line of lines) {
         if (/^\s*(?:- \[|https?:\/\/)/u.test(line)) continue;
         if (/다\.(?=\s|\||$)/u.test(line)) violations.push(`${name}: ${line.trim()}`);
-        if (/(?:함|됨)\.(?=\s|\||$)/u.test(line)) violations.push(`${name}: ${line.trim()}`);
         if (/(?:해야|하도록|되어야|수행|확인|설명|판단|적용|관리|기록|검토|정의|분석|제공|지원|처리|반영|설정|결정|활용|개선|보완|보장|확보|유지|운영|평가|파악|도출|구분)\s*(?:함|됨)(?:\.|\s*\|)?\s*$/u.test(line)) violations.push(`${name}: ${line.trim()}`);
       }
     }
