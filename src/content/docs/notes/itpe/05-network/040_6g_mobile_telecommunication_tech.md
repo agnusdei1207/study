@@ -1,7 +1,7 @@
 ---
 title: "6G 이동통신기술"
 author: "Codex"
-date: "2026-09-24T21:04:00+09:00"
+date: "2026-09-24T21:17:00+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -85,11 +85,14 @@ extra:
 
 ## Ⅱ. 표준화 구조와 현황
 
-```mermaid
-flowchart TD
-    ITU["ITU IMT-2030 프레임워크·요구조건"] -->|"공통 평가 기준 제공"| RIT["후보 무선 인터페이스 제안·평가"]
-    RIT -->|"표준 규격으로 구체화"| SPEC["표준화 기구 규격"]
-    SPEC -->|"구현·적합성 검증"| DEPLOY["장비·망 적용"]
+```text
+ITU IMT-2030 프레임워크·요구조건
+        ↓ 공통 평가 기준 제공
+후보 무선 인터페이스 제안·평가
+        ↓ 표준 규격으로 구체화
+표준화 기구 규격
+        ↓ 구현·적합성 검증
+장비·망 적용
 ```
 
 표준화 흐름은 목표·평가 기준에서 기술 제안과 규격화를 거쳐 구현으로 이어지는 단계. 2026년 9월 현재 ITU-R의 IMT-2030 프레임워크와 성능 요구 개발이 진행 중이며, 구체 무선 기술을 최종 6G 표준으로 확정한 상태는 아님.
@@ -107,17 +110,7 @@ flowchart TD
 
 ITU-R M.2160의 프레임워크는 시나리오와 역량 목표를 제시하며, 구체 기술 구현을 하나로 지정하지 않음.
 
-```mermaid
-flowchart TD
-    SC["IMT-2030 이용 시나리오"] --- IMM["몰입형 통신"]
-    SC --- REL["초고신뢰·저지연"]
-    SC --- MASS["대규모 통신"]
-    SC --- UBI["보편적 연결"]
-    SC --- AI["AI와 통신"]
-    SC --- SENS["통신·센싱 통합"]
-```
-
-정적 분류도이며 시나리오 간 처리 순서를 뜻하지 않음.
+시나리오는 서로 독립된 분류이며 처리 순서가 아님.
 
 ## Ⅳ. 적용 고려사항
 
@@ -138,7 +131,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 제135회 2교시의 6G 이동통신기술 문항을 바탕으로 기본 개념·기술 방향·고려사항으로 재구성
+- 제135회 2교시 4번 기록: “6G 이동통신기술에 대하여 다음을 설명하시오.” 기본 개념·기술 방향·고려사항 중심의 재구성.
 - [ITU-R Recommendation M.2160, IMT-2030 Framework](https://www.itu.int/rec/R-REC-M.2160-0-202311-I)
 - [ITU, IMT-2030 technical requirements update (2026)](https://www.itu.int/hub/2026/03/imt-2030-technical-requirements-for-the-6g-future/)
 - [3GPP, Working Group Reports to RAN Plenary #113](https://www.3gpp.org/news-events/3gpp-news/ran113-reports)
