@@ -1,5 +1,5 @@
 ---
-author: "Antigravity"
+author: "Codex"
 category: "03-data"
 date: "2026-09-24T00:00:00+09:00"
 extra:
@@ -14,323 +14,140 @@ sidebar:
   order: 25
 tags:
   - "notes-data"
-title: "분산 데이터베이스 투명성 (Distributed Database Transparency)"
+title: "분산 데이터베이스 투명성"
 weight: 25
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>분산 데이터베이스 시스템</span><strong>분산 DB 투명성</strong></div>
+지식 위치: 자료처리·데이터 → 분산 데이터베이스 → **분산 데이터베이스 투명성**
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 170" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-  <rect x="0" y="0" width="520" height="170" fill="var(--color-surface, #f8fafc)" rx="8" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-  <!-- Top: App/User -->
-  <rect x="170" y="12" width="180" height="28" fill="var(--color-primary-light, #e0f2fe)" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" rx="5"/>
-  <text x="260" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">애플리케이션 / 사용자 (단일 논리 뷰)</text>
-  <line x1="260" y1="40" x2="260" y2="52" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-trans)"/>
-  <!-- Middle: 6 Transparencies (2 rows of 3) -->
-  <!-- Row 1 -->
-  <rect x="15" y="55" width="155" height="40" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
-  <text x="92" y="71" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--color-text, #0f172a)">위치 투명성</text>
-  <text x="92" y="86" text-anchor="middle" font-size="9" fill="var(--color-text-muted, #64748b)">물리 저장 IP·호스트 은닉</text>
+- 본질: **분산 DB 투명성**은 데이터가 여러 노드에 나뉘거나 복제되어 있어도 이용자가 분산 구조의 세부 위치·배치를 매번 알지 않고 접근할 수 있게 하는 성질
+- 메커니즘: 논리 데이터 요청 → 분할·위치·복제 메타데이터로 실제 대상 결정 → 노드 간 조회·결과 통합
 
-  <rect x="182" y="55" width="155" height="40" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
-  <text x="260" y="71" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--color-text, #0f172a)">분할 투명성</text>
-  <text x="260" y="86" text-anchor="middle" font-size="9" fill="var(--color-text-muted, #64748b)">수평·수직 조각화 은닉</text>
+<details>
+<summary>핵심 용어</summary>
 
-  <rect x="350" y="55" width="155" height="40" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
-  <text x="427" y="71" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--color-text, #0f172a)">복제 투명성</text>
-  <text x="427" y="86" text-anchor="middle" font-size="9" fill="var(--color-text-muted, #64748b)">다중 사본 존재 은닉</text>
+- **분산 데이터베이스(Distributed Database)** : 여러 노드에 배치된 데이터를 논리적으로 함께 관리하는 데이터베이스
+- **분산 투명성(Distribution Transparency)** : 이용자가 데이터의 분산 배치 세부 사항을 의식하지 않고 논리적으로 접근할 수 있는 성질
+- **분할 투명성(Fragmentation Transparency)** : 데이터가 어떻게 조각났는지 몰라도 전체를 조회할 수 있는 성질
+- **위치 투명성(Location Transparency)** : 어느 노드에 데이터가 있는지 몰라도 접근할 수 있는 성질
+- **복제 투명성(Replication Transparency)** : 복제본의 존재·선택을 이용자가 직접 관리하지 않아도 되는 성질
+- **글로벌 스키마(Global Schema)** : 분산 데이터의 논리적 전체 구조를 표현한 스키마
+- **분산 질의 처리** : 여러 노드에 필요한 작업을 보내고 결과를 합쳐 질의에 응답하는 처리
 
-  <!-- Row 2 -->
-  <rect x="15" y="102" width="155" height="40" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
-  <text x="92" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--color-text, #0f172a)">병행 투명성</text>
-  <text x="92" y="133" text-anchor="middle" font-size="9" fill="var(--color-text-muted, #64748b)">다중 트랜잭션 정합성</text>
+</details>
 
-  <rect x="182" y="102" width="155" height="40" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
-  <text x="260" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--color-text, #0f172a)">장애 투명성</text>
-  <text x="260" y="133" text-anchor="middle" font-size="9" fill="var(--color-text-muted, #64748b)">노드 장애 시 자동 우회</text>
-
-  <rect x="350" y="102" width="155" height="40" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
-  <text x="427" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--color-text, #0f172a)">지역사상 투명성</text>
-  <text x="427" y="133" text-anchor="middle" font-size="9" fill="var(--color-text-muted, #64748b)">이기종 DBMS 명칭 은닉</text>
-
-  <!-- Bottom Arrow & Base -->
-  <line x1="260" y1="142" x2="260" y2="150" stroke="var(--color-text-muted, #94a3b8)" stroke-width="1" stroke-dasharray="2 2"/>
-  <text x="260" y="162" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">[기반 인프라] 전역 데이터 디렉토리 (GDD) 메타데이터 카탈로그</text>
-
-  <defs>
-    <marker id="arrow-trans" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-      <polygon points="0 0, 6 3, 0 6" fill="var(--color-primary, #0284c7)"/>
-    </marker>
-  </defs>
-</svg>
-</div>
-
-- 본질: **데이터가 물리적으로 여러 네트워크 노드에 분산·복제·단편화되어 있어도, 사용자와 애플리케이션은 마치 단일 중앙 집중식 데이터베이스를 다루는 것처럼 느끼게 하는 은닉 메커니즘**
-- 암기: `위-분-복-병-장-지` = 위치 · 분할(단편화) · 복제 · 병행 · 장애 · 지역사상
-- 5대 투명성 출제 시: 위치, 분할, 복제, 병행, 장애 투명성 중심 구성 (지역사상은 부가 설명)
-- 주의: 완벽한 투명성은 네트워크 RTT 및 직렬화 비용(Leaky Abstraction)을 수반하므로 비용 인지적 설계 필수
 ---
 
 ## 1교시 예상문제 (10점)
 
-> 분산 데이터베이스 투명성 (Distributed Database Transparency)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> 분산 데이터베이스 투명성에 관하여 설명하시오. (예상·10점)
 
 ---
 
 ## 1교시 10점 답안
 
-### 1. 분산 데이터베이스 투명성의 정의
+### Ⅰ. 분산 DB 투명성의 개요
 
-- 물리적으로 분산·복제·단편화된 데이터베이스의 복잡성을 DDBMS가 내부적으로 은닉하여, 사용자에게 **단일 로컬 시스템 뷰**를 제공하는 시스템적 특성
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **분산 DB 투명성**은 여러 노드에 나뉘거나 복제된 데이터를 분산 구조의 세부 배치를 의식하지 않고 접근할 수 있게 하는 성질 |
+| 목적 | 논리적 데이터 접근의 일관성과 분산 구조 변경의 영향 감소 |
 
-### 2. 5대 핵심 투명성의 개념 및 메커니즘
+### Ⅱ. 주요 종류
 
-- **위치 투명성 (Location)**: 물리적 저장 위치(IP/호스트) 은닉 $\to$ 전역 데이터 디렉토리(GDD) 기반 논리-물리 주소 매핑
-- **분할 투명성 (Fragmentation)**: 수평/수직 조각화 은닉 $\to$ 전역 SQL 쿼리 분해 및 프래그먼트 자동 병합(Union/Join)
-- **복제 투명성 (Replication)**: 다중 사본 존재 은닉 $\to$ 동기식 2PC 복제 및 Paxos/Raft 분산 합의 쿼럼 적용
-- **병행 투명성 (Concurrency)**: 동시 트랜잭션 간섭 은닉 $\to$ 분산 2단계 락킹(2PL) 및 글로벌 타임스탬프 순서화
-- **장애 투명성 (Failure)**: 노드/링크 장애 은닉 $\to$ Heartbeat 기반 헬스체크 및 무중단 자동 쿼리 페일오버
+```mermaid
+flowchart TB
+    T["분산 DB 투명성"] --- F["분할<br/>어떻게 나뉘었는가"]
+    T --- L["위치<br/>어디에 있는가"]
+    T --- R["복제<br/>몇 곳에 있는가"]
+```
 
-| 투명성 | 은닉 대상 | 핵심 구현 기술 |
-|---|---|---|
-| 위치 (Location) | 물리적 서버 IP/디렉토리 | 전역 데이터 디렉토리(GDD) |
-| 분할 (Fragmentation) | 수평/수직 단편화 구조 | 쿼리 분해기(Query Decomposer) |
-| 복제 (Replication) | 다중 복제본 사본 존재 | 분산 2단계 커밋(2PC), Paxos |
-| 병행 (Concurrency) | 다중 트랜잭션 동시 수행 | 분산 2PL, 분산 MVCC |
-| 장애 (Failure) | 노드/네트워크 결함 | Heartbeat 헬스체크, 리더 선출 |
+### Ⅲ. 작동
 
-### 3. 차별화 제언
+| 이용자 | DBMS 내부 |
+|---|---|
+| 논리적 테이블·질의 사용 | 분할·위치·복제 정보 확인 후 노드에 작업 전달 |
 
-- 물리적 네트워크 RTT의 추상화 누수를 극복하기 위해 **지리적 위치 인지 라우팅(Geo-Locality)**과 **Raft 합의 기반 쿼럼 복제**를 결합하여 일관성과 성능의 균형을 확보함
+- 제언: 투명성의 편리함과 분산 질의·복제 동기화 비용을 함께 평가.
+
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> 분산 데이터베이스 시스템(DDBMS)의 핵심 요건인 투명성(Transparency)의 개념과 필요성을 기술하고, 5대(또는 6대) 투명성의 유형별 메커니즘 및 분산 환경에서 발생하는 트레이드오프와 대응 방안을 논하시오. (25점)
-
-> (25점, 예상)
+> 분산 데이터베이스 투명성의 개념과 유형, 구현 구조 및 운영상 한계를 설명하시오. (예상·25점)
 
 ---
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 물리적 분산 복잡성을 논리적으로 은닉하는 분산 DB 투명성 개요
+## Ⅰ. 분산 DB 투명성의 개요
 
-- 정의: **분산 데이터베이스 투명성(Transparency)**은 물리적으로 여러 지리적 위치의 컴퓨터 네트워크 노드에 분산된 데이터베이스를 관리하면서, 사용자가 데이터의 물리적 저장 위치, 분할 방식, 복제 유무, 장애 상태 등을 알지 못해도 단일 로컬 시스템과 동일하게 쿼리를 수행할 수 있도록 보장하는 시스템적 특성
-- 목적: 분산 시스템의 복잡성을 DDBMS 소프트웨어 계층 내부로 흡수하여 응용 프로그램 개발 생산성 향상 및 위치 독립적 데이터 접근성 보장
-- 필요성: 투명성이 결여되면 데이터 이동, 샤드 증설, 노드 장애 시마다 애플리케이션 소스코드를 수정해야 하므로 유지보수 비용이 급증함
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **분산 DB 투명성**은 여러 노드에 나뉘거나 복제된 데이터를 분산 구조의 세부 배치를 의식하지 않고 접근할 수 있게 하는 성질 |
+| 목적 | 논리적 데이터 접근의 일관성과 분산 구조 변경의 영향 감소 |
 
-#### 한줄 요약
+## Ⅱ. 유형
 
-- 분산 DB 투명성은 사용자가 물리적 네트워크 분산 환경을 의식하지 않고 단일 논리 뷰로 데이터에 접근하게 하는 추상화 계층임
-
-### Ⅱ. 분산 데이터베이스 6대 투명성의 유형과 동작 메커니즘
-
-| 투명성 유형 | 은닉 대상 | 핵심 동작 메커니즘 | 사용자 체감 효과 |
-|---|---|---|---|
-| **위치 투명성**<br>(Location) | 데이터의 물리적 저장 위치(IP, 호스트명, 디스크 경로) | 전역 데이터 디렉토리(GDD)가 논리 테이블명을 물리 노드 주소로 변환 매핑 | 쿼리문에 특정 서버 IP 없이 테이블명만으로 조회 가능 |
-| **분할 투명성**<br>(Fragmentation) | 하나의 릴레이션이 수평(Row) 또는 수직(Column)으로 조각난 상태 | 쿼리 플래너가 글로벌 SQL을 여러 프래그먼트 하위 쿼리로 분해 후 결과 병합(Union/Join) | 쪼개진 복수 테이블 조각을 하나의 완전한 릴레이션으로 조회 |
-| **복제 투명성**<br>(Replication) | 가용성·성능을 위해 여러 노드에 동일 데이터 사본이 존재하는 상태 | 읽기는 최단 거리 노드 선택, 쓰기는 2PC 또는 분산 합의(Raft/Paxos)로 모든 복제본 동기화 | 데이터 복제본 존재 여부와 무관하게 일관된 단일 값 응답 |
-| **병행 투명성**<br>(Concurrency) | 다수의 분산 트랜잭션이 여러 노드에서 동시에 실행되는 상태 | 분산 2단계 락킹(2PL), 분산 타임스탬프 순서화, 분산 MVCC로 직렬성(Serializability) 보장 | 타 사용자의 갱신 간섭 없이 독립적 트랜잭션 수행 |
-| **장애 투명성**<br>(Failure) | 특정 노드, 통신 링크, 디스크 장애 발생 상태 | 헬스체크 기반 장애 감지, 리더 선출(Leader Election), 쿼리 재라우팅, 분산 저널링 기반 트랜잭션 복구 | 노드가 다운되어도 시스템 전체는 에러 없이 자동 우회 처리 |
-| **지역사상 투명성**<br>(Local Mapping) | 이기종 분산 DB 환경에서 각 노드별 로컬 DBMS 명명 규칙과 자료형 차이 | 데이터 통신 인터페이스 및 게이트웨이가 전역 데이터 모델과 로컬 데이터 모델 간 변환 수행 | 이기종 DBMS(Oracle, PostgreSQL 등) 간 차이 의식 없이 질의 |
-
-#### 한줄 요약
-
-- 6대 투명성은 물리 노드 주소(위치), 데이터 파편(분할), 사본(복제), 동시 실행(병행), 시스템 결함(장애), 로컬 방언(지역사상)을 각각 은닉함
-
-### Ⅲ. 투명성을 실현하는 전역 데이터 디렉토리(GDD) 기반 아키텍처
-
-<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 145" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-  <rect x="0" y="0" width="520" height="145" fill="var(--color-surface, #f8fafc)" rx="8" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-  <!-- Step 1: Client SQL -->
-  <rect x="15" y="15" width="140" height="40" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="4"/>
-  <text x="85" y="32" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-text, #0f172a)">클라이언트 애플리케이션</text>
-  <text x="85" y="46" text-anchor="middle" font-size="8" fill="var(--color-primary-dark, #0369a1)">SELECT * FROM ORDER...</text>
-
-  <line x1="155" y1="35" x2="190" y2="35" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-gdd)"/>
-
-  <!-- Step 2: Distributed Query Processor + GDD -->
-  <rect x="195" y="10" width="170" height="50" fill="var(--color-primary-light, #e0f2fe)" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" rx="5"/>
-  <text x="280" y="27" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">분산 쿼리 처리기 (DQP)</text>
-  <text x="280" y="40" text-anchor="middle" font-size="8" fill="var(--color-text, #334155)">GDD 메타데이터 참조·쿼리 분해</text>
-  <text x="280" y="52" text-anchor="middle" font-size="8" fill="var(--color-text-muted, #64748b)">분산 최적화 실행계획 수립</text>
-
-  <!-- Step 3: Local Nodes -->
-  <line x1="365" y1="28" x2="400" y2="22" stroke="var(--color-primary, #0284c7)" stroke-width="1.2" marker-end="url(#arrow-gdd)"/>
-  <line x1="365" y1="42" x2="400" y2="48" stroke="var(--color-primary, #0284c7)" stroke-width="1.2" marker-end="url(#arrow-gdd)"/>
-
-  <rect x="405" y="8" width="105" height="26" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
-  <text x="457" y="24" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">서울 노드 (Frag 1)</text>
-
-  <rect x="405" y="38" width="105" height="26" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
-  <text x="457" y="54" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">도쿄 노드 (Frag 2)</text>
-
-  <!-- Step 4: Merge & Return -->
-  <path d="M 457 64 L 457 95 L 280 95" fill="none" stroke="var(--color-success, #16a34a)" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#arrow-merge)"/>
-  <rect x="180" y="80" width="200" height="30" fill="var(--color-success-light, #dcfce7)" stroke="var(--color-success, #16a34a)" stroke-width="1" rx="4"/>
-  <text x="280" y="99" text-anchor="middle" font-size="9.5" font-weight="bold" fill="var(--color-success-dark, #15803d)">결과 데이터 병합·정렬 후 단일 셋 반환</text>
-
-  <path d="M 180 95 L 85 95 L 85 55" fill="none" stroke="var(--color-success, #16a34a)" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#arrow-merge)"/>
-
-  <!-- Footer description -->
-  <text x="260" y="132" text-anchor="middle" font-size="8.5" fill="var(--color-text-muted, #64748b)">GDD(전역 데이터 디렉토리)가 논리 객체와 물리 저장소 간 사상을 전담하여 완전 은닉 실현</text>
-
-  <defs>
-    <marker id="arrow-gdd" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-      <polygon points="0 0, 6 3, 0 6" fill="var(--color-primary, #0284c7)"/>
-    </marker>
-    <marker id="arrow-merge" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-      <polygon points="0 0, 6 3, 0 6" fill="var(--color-success, #16a34a)"/>
-    </marker>
-  </defs>
-</svg>
-</div>
-
-| 구성요소 | 핵심 역할 | 투명성 기여 |
+| 유형 | 숨기는 배치 정보 | 내부에서 필요한 처리 |
 |---|---|---|
-| **전역 데이터 디렉토리 (GDD)** | 분산 시스템 내 모든 논리적 객체의 단편화 정보, 위치 맵핑, 복제 상태 메타데이터 전역 저장 | 위치·분할·복제 투명성의 핵심 근거 |
-| **분산 쿼리 분해기 (Query Decomposer)** | 사용자 SQL을 검증하고, 단편화 규칙에 따라 로컬 노드별 하위 쿼리(Sub-query)로 분할 | 분할 투명성 보장 |
-| **분산 쿼리 최적화기 (Distributed Optimizer)** | 노드 간 데이터 전송량, 네트워크 대역폭, CPU 처리 비용을 계산해 최적 실행계획 수립 | 성능 투명성 제공 |
-| **분산 트랜잭션 관리자 (DTM)** | 분산 노드 간 원자성을 보장하기 위해 2PC/3PC 및 분산 데드락 탐지 수행 | 병행·장애 투명성 구현 |
+| 분할 투명성 | 데이터의 조각 구분 | 질의 대상 조각 식별·결과 합침 |
+| 위치 투명성 | 조각이 있는 노드 | 노드 라우팅 |
+| 복제 투명성 | 복제본의 존재·선택 | 읽기 대상·갱신 전파 |
 
-#### 한줄 요약
+분할·위치·복제는 서로 다른 관점이며 제품·구성에 따라 제공 범위가 다름.
 
-- 분산 쿼리 처리기와 GDD가 협력하여 사용자의 단일 쿼리를 분해·최적화·병합함으로써 물리적 분산을 완벽히 은닉함
+## Ⅲ. 논리 질의와 물리 배치
 
-### Ⅳ. 분산 쿼리 처리 절차와 투명성 적용 흐름
+```mermaid
+flowchart TB
+    A["이용자: 논리 질의"] --> B["글로벌 스키마·배치 정보"]
+    B --> C["분할·위치·복제본 선택"]
+    C --> D["노드별 질의 수행"]
+    D --> E["결과 통합·반환"]
+```
 
-<div class="itpe-diagram-container" style="max-width: 540px; margin: 1rem auto;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 62" width="100%" height="auto" style="display: block; font-family: system-ui, -apple-system, sans-serif;">
-  <rect x="0" y="0" width="520" height="62" fill="var(--color-surface, #f8fafc)" rx="6" stroke="var(--color-border, #e2e8f0)" stroke-width="1"/>
-  <!-- 5 sequential flow boxes -->
-  <rect x="8" y="12" width="90" height="38" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
-  <text x="53" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">① 쿼리 접수</text>
-  <text x="53" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">단일 SQL 수신</text>
+| 계층 | 역할 |
+|---|---|
+| 논리 | 테이블·속성·질의의 공통 관점 |
+| 배치 메타데이터 | 분할 키·노드·복제본 정보 |
+| 실행 | 노드별 연산·결과 병합 |
 
-  <line x1="98" y1="31" x2="108" y2="31" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-proc)"/>
+## Ⅳ. 구현·운영 고려사항
 
-  <rect x="110" y="12" width="92" height="38" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
-  <text x="156" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">② 정규화·분해</text>
-  <text x="156" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">프래그먼트 치환</text>
+| 대상 | 확인할 것 |
+|---|---|
+| 질의 계획 | 필요한 노드만 읽는지, 노드 간 데이터 이동은 얼마나 되는지 |
+| 복제 | 읽기 최신성·갱신 전파·충돌 처리 |
+| 구조 변경 | 분할·노드 이동 시 배치 정보 갱신 |
+| 장애 | 일부 노드 실패 때 결과의 완전성·오류 처리 |
 
-  <line x1="202" y1="31" x2="212" y2="31" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-proc)"/>
+투명성은 분산 비용이나 장애를 없애는 보장이 아님.
 
-  <rect x="214" y="12" width="92" height="38" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
-  <text x="260" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">③ 분산 최적화</text>
-  <text x="260" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">전송비용 최소화</text>
+## Ⅴ. 투명성의 효과와 절충
 
-  <line x1="306" y1="31" x2="316" y2="31" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-proc)"/>
+| 효과 | 절충 |
+|---|---|
+| 이용자가 물리 노드에 덜 의존 | 내부 라우팅·메타데이터 관리 필요 |
+| 분산 배치 변경 영향 감소 | 노드 간 통신·질의 최적화 비용 |
+| 복제본 선택 단순화 | 최신성·정합성 정책 확인 필요 |
 
-  <rect x="318" y="12" width="92" height="38" fill="var(--color-surface-card, #ffffff)" stroke="var(--color-border, #cbd5e1)" stroke-width="1" rx="3"/>
-  <text x="364" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-text, #0f172a)">④ 병렬 전송·실행</text>
-  <text x="364" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-text-muted, #64748b)">위치기반 디스패치</text>
+## Ⅵ. 한계와 대응
 
-  <line x1="410" y1="31" x2="420" y2="31" stroke="var(--color-primary, #0284c7)" stroke-width="1.5" marker-end="url(#arrow-proc)"/>
+| 한계 | 대응 방안 |
+|---|---|
+| 투명성 때문에 느린 분산 질의가 숨겨짐 | 실제 노드별 실행 계획·통신량 확인 |
+| 복제본이 늘면 최신성도 자동 보장된다고 가정 | 읽기·쓰기 일관성 수준 검증 |
+| 노드 장애 시 전체 결과를 당연히 기대 | 부분 실패·재시도·오류 정책 시험 |
 
-  <rect x="422" y="12" width="90" height="38" fill="var(--color-primary-light, #e0f2fe)" stroke="var(--color-primary, #0284c7)" stroke-width="1" rx="3"/>
-  <text x="467" y="27" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--color-primary-dark, #0369a1)">⑤ 결과 통합</text>
-  <text x="467" y="41" text-anchor="middle" font-size="7.5" fill="var(--color-text, #334155)">2PC 합의·응답</text>
+## Ⅶ. 기술사적 제언
 
-  <defs>
-    <marker id="arrow-proc" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
-      <polygon points="0 0, 5 2.5, 0 5" fill="var(--color-primary, #0284c7)"/>
-    </marker>
-  </defs>
-</svg>
-</div>
-
-| 단계 | 수행 작업 | 투명성 제어 요소 |
-|---|---|---|
-| **쿼리 정규화** | 사용자 SQL 문법 검증 및 전역 스키마 대조 | 지역사상 투명성 (로컬 명칭 치환) |
-| **단편화 치환** | 전역 릴레이션을 단편화 조건(프레디킷)과 매핑하여 대수식 재작성 | 분할 투명성 (불필요 조각 제거) |
-| **위치/복제 결정** | 최단 RTT 및 가용 리소스를 고려해 최적의 복제본 노드 선정 | 위치 및 복제 투명성 |
-| **분산 실행** | 타임스탬프 또는 분산 락을 획득하며 로컬 쿼리 실행 | 병행 투명성 |
-| **커밋 및 장애 대응** | 코디네이터 노드의 지휘 하에 2단계 커밋(Prepare/Commit) 수행 | 장애 투명성 (타임아웃 시 롤백) |
-
-#### 한줄 요약
-
-- 분산 질의 처리는 사용자 쿼리를 메타데이터 기반으로 쪼개고, 분산 비용을 최소화하여 실행한 뒤 안전하게 합의하는 일련의 파이프라인임
-
-### Ⅴ. 분산 DB 6대 투명성 심층 비교
-
-| 투명성 구분 | 핵심 보장 가치 | 구현 기술 / 알고리즘 | 실패 시 나타나는 현상 |
-|---|---|---|---|
-| **위치 투명성** | IP/서버 무관 접근 | GDD 이름 해석, DNS/L4 로드밸런싱 | 서버 이전 시 앱 소스코드 일괄 재컴파일 |
-| **분할 투명성** | 조각난 테이블 단일 뷰 | 쿼리 분해(Query Decomposition), 프루닝 | 개발자가 수평/수직 분할 테이블을 직접 UNION/JOIN |
-| **복제 투명성** | 복제본 불일치 차단 | 동기식 2PC 복제, Raft/Paxos 쿼럼 합의 | 복제 노드마다 서로 다른 데이터가 조회되는 팬텀 현상 |
-| **병행 투명성** | 동시 갱신 직렬성 보장 | 분산 2PL(Two-Phase Locking), 글로벌 타임스탬프 | Lost Update, Dirty Read 등 동시성 이상현상 발생 |
-| **장애 투명성** | 무중단 서비스 연속성 | Heartbeat 감시, 자동 Failover, 분산 로그 WAL | 특정 서버 다운 시 전체 서비스 블로킹 및 에러 발생 |
-| **지역사상 투명성** | 이기종 DBMS 단일 접근 | 표준 SQL 게이트웨이, JDBC/ODBC 브릿지 | DBMS 기종 변경 시 SQL 전면 재작성 |
-
-#### 한줄 요약
-
-- 6대 투명성은 시스템의 '어디에(위치)', '어떻게 쪼개져(분할)', '몇 개가(복제)', '동시에(병행)', '장애에도(장애)', '어떤 DBMS든(지역사상)' 접근할지를 규정함
-
-### Ⅵ. 분산 투명성의 기술적 한계(추상화의 누수)와 실무 대책
-
-| 문제 상황 | 근본 원인 | 실무 대책 | 기대 효과 |
-|---|---|---|---|
-| **대륙 간 쿼리 지연시간 폭증** | 완벽한 투명성에 의존하여 수천 건의 네트워크 왕복(RTT)을 유발하는 N+1 쿼리 발생 | 위치 인지형 쿼리 라우팅(Geo-Partitioning) 및 로컬 배치 조회 도입 | 네트워크 홉 수 감소로 지연시간 절감 |
-| **분산 트랜잭션 블로킹** | 장애 투명성 보장을 위한 동기식 2PC 수행 중 코디네이터 장애로 인한 락 지속 | 3단계 커밋(3PC) 또는 Paxos/Raft 기반 분산 합의 엔진으로 전환 | 과반수 노드 합의로 무중단 커밋 보장 |
-| **복제 지연에 따른 데이터 왜곡** | 복제 투명성 달성을 위해 비동기 복제 적용 시 최신 데이터 미반영 (Eventual Consistency) | 업무 중요도에 따라 원장성 업무는 Strict Serializability, 조회 업무는 Read-Your-Writes 적용 | 정합성과 가용성의 균형 달성 |
-| **분산 교착상태 (Distributed Deadlock)** | 병행 투명성을 위한 분산 락 획득 시 노드 간 순환 대기 탐지 지연 | 전역 대기 그래프(WFG) 주기적 교환 및 Wait-Die / Wound-Wait 타임스탬프 기법 적용 | 데드락 조기 탐지 및 트랜잭션 자동 해소 |
-
-#### 한줄 요약
-
-- 분산 투명성의 맹목적 추구는 성능 저하를 부르므로, 지리적 위치 인지 라우팅과 완화된 일관성(SAGA, Quorum)을 결합해야 함
-
-### Ⅶ. 기술사적 제언
-
-### 학습자 통찰 메모 — 답안 밖
-
-> **[핵심 통찰]**
-> 분산 투명성은 분산 시스템의 물리적 복잡성을 소프트웨어 추상화 계층으로 흡수하는 강력한 도구이지만, "모든 추상화는 누수된다(The Law of Leaky Abstractions)"는 조엘 스폴스키의 격언이 가장 뼈아프게 적용되는 영역이다. 네트워크 왕복 시간(RTT)과 분할 장애(Partition)는 물리 법칙의 한계이므로 소프트웨어 계층에서 완벽히 은닉할 수 없다. 맹목적으로 완벽한 투명성을 추구하면 대륙 간 조인 쿼리로 수 초의 레이턴시가 발생하고, 동기식 2PC로 인한 전면 블로킹이 발생한다.
->
-> **[나라면 이렇게 쓴다]**
-> 실무에서는 '완벽한 투명성'에서 '비용 인지적 투명성(Cost-Aware Transparency)'으로 아키텍처 패러다임을 전환해야 한다. 논리 모델 레벨에서는 개발 생산성을 위해 투명성을 제공하되, 물리 설계에서는 사용자와 가까운 리전에 데이터를 배치하는 위치 인지형 테이블 분할(Geo-Partitioning)을 강제하고, 금융 결제 원장은 Raft 기반 강한 일관성을, 대용량 조회·로그는 결과적 일관성(Eventual Consistency)과 SAGA 패턴을 적용하는 **선택적 투명성 계층화**를 제언하겠다.
-
-### 실전 답안용 기술사적 제언
-
-- **판정 (현행 한계)**: 분산 투명성 맹신 시 네트워크 지연(RTT) 누수와 동기식 2PC의 코디네이터 단일 장애점(SPOF)으로 인한 시스템 병목 및 블로킹 발생.
-- **대응 (개선 방안)**: 글로벌 지리적 분할(Geo-Partitioning) 기반 위치 인지형 라우팅 도입 및 2PC 한계를 극복하는 Paxos/Raft 분산 합의 쿼럼 복제 적용.
-- **검증 (검증 기준)**: 분산 쿼리 응답시간 P99 50ms 이내 유지 및 노드 장애 시 자동 리더 재선출(Failover) 타임아웃 3초 이내 검증.
-- **효과 (실행 효과)**: 대륙 간 네트워크 홉 수 70% 절감, 단일 노드 장애 시에도 가용성 99.999% 무중단 서비스 연속성 확보.
-
-<div class="itpe-flow-map">
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-title">현행 한계</div>
-    <div class="itpe-flow-desc">물리 은닉 과신으로 네트워크 RTT 폭증 및 동기식 2PC 블로킹 발생</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-title">개선 방안</div>
-    <div class="itpe-flow-desc">Geo-Partitioning 위치 인지 라우팅 및 Raft 분산 합의 엔진 도입</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-title">검증 기준</div>
-    <div class="itpe-flow-desc">P99 지연시간 50ms 미만 및 자동 페일오버 RTO 3초 이내 정량 검증</div>
-  </div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-title">실행 효과</div>
-    <div class="itpe-flow-desc">대륙 간 통신비용 70% 절감 및 서비스 가용성 99.999% 무중단 달성</div>
-  </div>
-</div>
-
----
-
-## 출제 이력과 검증 출처
-
-- 제139회 1교시 7번: 분산 데이터베이스의 투명성
-- 제132회 1교시 13번: 분산 데이터베이스의 5가지 투명성
-- [Principles of Distributed Database Systems (M. Tamer Özsu, Patrick Valduriez)](https://link.springer.com/book/10.1007/978-3-030-26253-2)
-- [Google Cloud Spanner Architecture Whitepaper](https://cloud.google.com/spanner/docs/whitepapers/life-of-reads-and-writes)
+이용자에게는 논리 스키마를 제공하되, 운영자는 질의별 접근 노드·통신량·복제 지연을 관찰. 배치 변경과 노드 장애 시험으로 투명성의 범위와 예외를 명시.
 
 ## 연결 토픽
 
-- [분산 데이터베이스](./149_distributed_database/) · [CAP·PACELC 이론](./113_cap_pacelc/) · [샤딩](./045_sharding/) · [데이터베이스 분할](./021_db_partitioning_sharding/)
+- 연관 토픽: [DB 파티셔닝·샤딩](./021_db_partitioning_sharding.md), [데이터 복제](./126_data_replication.md)
