@@ -31,9 +31,12 @@ test('does not number subject index routes', () => {
 });
 
 test('accepts only A, B, or C as a public keyword grade', () => {
-  assert.equal(getKeywordGrade('A'), 'A');
-  assert.equal(getKeywordGrade(' b '), 'B');
-  assert.equal(getKeywordGrade('C'), 'C');
+  assert.equal(getKeywordGrade('A'), '기초');
+  assert.equal(getKeywordGrade(' b '), '서브');
+  assert.equal(getKeywordGrade('C'), '응용');
+  assert.equal(getKeywordGrade('기초'), '기초');
+  assert.equal(getKeywordGrade('서브'), '서브');
+  assert.equal(getKeywordGrade('응용'), '응용');
   assert.equal(getKeywordGrade('기출 · 100%'), undefined);
   assert.equal(getKeywordGrade('100%'), undefined);
 });

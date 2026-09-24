@@ -5,9 +5,9 @@ date: "2026-09-24"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
-    text: "B"
+    text: "서브"
 extra:
-  keyword_grade: "B"
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 

@@ -17,9 +17,10 @@ export function getNoteLabel(label, href) {
   return { number: fromSlug[1], keyword: label.trim() };
 }
 
-/** Return the public cumulative study grade and reject legacy status/percent badges. */
+/** Return the study role; accept legacy letter metadata during migration. */
 export function getKeywordGrade(value) {
   if (!value) return undefined;
-  const grade = String(value).trim().toUpperCase();
-  return /^[ABC]$/u.test(grade) ? grade : undefined;
+  const label = String(value).trim();
+  const roles = { A: '기초', B: '서브', C: '응용' };
+  return roles[label.toUpperCase()] ?? (['기초', '서브', '응용'].includes(label) ? label : undefined);
 }
