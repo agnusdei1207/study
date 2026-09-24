@@ -23,19 +23,14 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```text
-[데이터 이관 5단계 생명주기 및 컷오버(Cut-over) 롤백 마지노선 타임라인]
-
-  [1. 계획 수립] ──► [2. 이관 설계] ──► [3. 이관 개발] ──► [4. 모의 이관] ──► [5. 본 이관]
-   - 이관 범위        - 매핑 정의서       - ETL/CDC 스크립트   - 1차: 룰 정합성    - 컷오버 실행
-   - 빅뱅/단계적       - 데이터 정제 규칙   - 병렬 벌크 로더      - 2차: 성능/튜닝    - 최종 대사검증
-   - 다운타임 목표     - 정합성 검증 쿼리   - 예외 처리 루틴      - 3차: 실전 리허설   - Go/No-Go 판정
-
-  [컷오버 타임라인 (D-Day 금요일 20:00 ~ 일요일 18:00)]
-   20:00        02:00          10:00          14:00 (Go/No-Go)   18:00
-  ──┼─────────────┼──────────────┼──────────────┼──────────────────┼───►
-  서비스차단    초기적재 완료    CDC 증분반영   정합성 검증 완료   시스템오픈
-  (Downtime)   (Bulk Load)    (Catch-up)     [롤백 마지노선]
+```mermaid
+flowchart TD
+    A[대상·업무 영향·전환 조건 정의] --> B[원천·목표 매핑과 변환 설계]
+    B --> C[이관 도구와 대사 절차 구현]
+    C --> D[모의 전환·복구 검증]
+    D --> E{정합성·시간·롤백 기준 충족?}
+    E -->|예| F[승인 후 컷오버]
+    E -->|아니오| G[현행 유지·원인 수정·재시험]
 ```
 
 - 본질: **데이터 이관은 원천의 데이터를 목표 시스템으로 옮기고 변환 결과를 검증하는 활동으로, 계획·매핑·전환 방식과 데이터 대사를 정해 서비스 중단 및 정보 손실 위험을 관리**
@@ -44,6 +39,20 @@ extra:
   - **빅뱅(Big-Bang)**: 한 번에 전환하는 방식으로, 준비가 단순할 수 있으나 전환 위험과 중단 시간을 한 시점에 감당.
   - **단계적(Phased)**: 기능·데이터 범위별로 나누어 전환하는 방식으로 위험을 분산할 수 있지만, 이행 중 신·구 데이터 정합과 운영 복잡성 관리가 필요.
 - 주의: 리허설 횟수·허용 다운타임·롤백 기준은 서비스 요구와 계약·운영 조건에 따라 정하며, 일률적 횟수나 무중단·무손실을 보장하는 표현은 피함
+
+<details><summary>핵심 용어</summary>
+
+- **데이터 이관 (Data Migration)** : 원천 데이터를 목표 시스템으로 옮기고 변환·검증하는 활동.
+- **ETL (Extract, Transform, Load)** : 원천에서 추출한 데이터를 변환한 뒤 목표 저장소에 적재하는 처리 방식.
+- **CDC (Change Data Capture)** : 데이터베이스 변경을 포착해 후속 시스템에 전달하는 방식.
+- **소스-타깃 매핑 (Source-to-Target Mapping)** : 원천 항목과 목표 항목 및 변환 규칙의 대응 정의.
+- **대사 (Reconciliation)** : 원천과 목표의 건수·값·업무 규칙 결과를 비교해 이관 완전성을 확인하는 절차.
+- **컷오버 (Cutover)** : 서비스 사용 대상을 기존 시스템에서 목표 시스템으로 전환하는 시점·절차.
+- **빅뱅 이관 (Big-Bang Migration)** : 정한 전환 시점에 대상 범위를 한꺼번에 전환하는 방식.
+- **단계적 이관 (Phased Migration)** : 기능·데이터 범위를 나누어 순차 전환하는 방식.
+
+</details>
+
 ---
 
 ## 1교시 예상문제 (10점)
@@ -109,95 +118,14 @@ extra:
 
 #### 한줄 요약: 사전 분석과 모의 이관으로 소요 시간·정합성·롤백 조건을 확인하는 체계
 
-<div class="itpe-diagram-box">
-  <div class="itpe-diagram-header">
-    <span class="itpe-tag">아키텍처 다이어그램</span>
-    <span class="itpe-title">데이터 이관 5단계 생명주기 및 컷오버 롤백 마지노선 타임라인</span>
-  </div>
-  <div class="itpe-diagram-body">
-    <svg class="itpe-svg" viewBox="0 0 520 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="arrow-mig" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--color-text, #333)" />
-        </marker>
-      </defs>
-      <!-- 상단: 5단계 라이프사이클 -->
-      <text x="260" y="22" font-size="12" font-weight="bold" text-anchor="middle" fill="var(--color-primary, #0284c7)">[데이터 이관 5단계 표준 추진 절차]</text>
-      <!-- 5개 단계 박스 -->
-      <rect x="10" y="32" width="92" height="48" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" />
-      <text x="56" y="50" font-size="10" font-weight="bold" text-anchor="middle" fill="#1d4ed8">1. 이관 계획</text>
-      <text x="56" y="65" font-size="8" text-anchor="middle" fill="#1e40af">범위·전략 수립</text>
+```mermaid
+flowchart TD
+    A[초기 적재·변경분 반영] -->|이관 자료 준비| B[건수·값·업무 규칙 대사]
+    B -->|검증 결과와 전환 기준 대조| C{승인 조건 충족?}
+    C -->|예| D[최종 동기화·컷오버]
+    C -->|아니오| E[현행 유지·원인 조치·재시험]
+```
 
-      <path d="M 103 56 L 112 56" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-mig)" />
-
-      <rect x="114" y="32" width="92" height="48" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" />
-      <text x="160" y="50" font-size="10" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2. 이관 설계</text>
-      <text x="160" y="65" font-size="8" text-anchor="middle" fill="#1e40af">매핑·정제 규칙</text>
-
-      <path d="M 207 56 L 216 56" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-mig)" />
-
-      <rect x="218" y="32" width="92" height="48" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" />
-      <text x="264" y="50" font-size="10" font-weight="bold" text-anchor="middle" fill="#1d4ed8">3. 이관 개발</text>
-      <text x="264" y="65" font-size="8" text-anchor="middle" fill="#1e40af">ETL/검증 쿼리</text>
-
-      <path d="M 311 56 L 320 56" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-mig)" />
-
-      <rect x="322" y="32" width="92" height="48" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1.2" />
-      <text x="368" y="50" font-size="10" font-weight="bold" text-anchor="middle" fill="#b45309">4. 모의 이관</text>
-      <text x="368" y="65" font-size="8" text-anchor="middle" fill="#92400e">모의 이관 결과 검토</text>
-
-      <path d="M 415 56 L 424 56" stroke="#d97706" stroke-width="1.5" marker-end="url(#arrow-mig)" />
-
-      <rect x="426" y="32" width="84" height="48" rx="4" fill="#d1fae5" stroke="#10b981" stroke-width="1.5" />
-      <text x="468" y="50" font-size="10" font-weight="bold" text-anchor="middle" fill="#065f46">5. 본 이관</text>
-      <text x="468" y="65" font-size="8" text-anchor="middle" fill="#047857">컷오버·오픈</text>
-
-      <!-- 중단/하단: 컷오버 타임라인 및 롤백 마지노선 -->
-      <rect x="10" y="95" width="500" height="175" rx="6" fill="var(--color-bg-secondary, #f0f4f8)" stroke="var(--color-border, #0284c7)" stroke-width="1.5" />
-      <text x="260" y="115" font-size="11" font-weight="bold" text-anchor="middle" fill="var(--color-text, #111)">[실전 컷오버(Cut-over) 타임라인과 Go/No-Go 의사결정 마지노선]</text>
-
-      <!-- 타임라인 축 -->
-      <line x1="30" y1="160" x2="480" y2="160" stroke="#64748b" stroke-width="2" />
-      <polygon points="480,156 490,160 480,164" fill="#64748b" />
-
-      <!-- 시점 마커들 -->
-      <!-- 1. D-Day 20:00 -->
-      <circle cx="50" cy="160" r="5" fill="#ef4444" />
-      <text x="50" y="145" font-size="9" font-weight="bold" text-anchor="middle" fill="#dc2626">20:00 (D-Day)</text>
-      <text x="50" y="180" font-size="9" text-anchor="middle" fill="#1e293b">서비스 차단</text>
-      <text x="50" y="195" font-size="8" text-anchor="middle" fill="#64748b">다운타임 시작</text>
-
-      <!-- 2. 02:00 -->
-      <circle cx="150" cy="160" r="5" fill="#3b82f6" />
-      <text x="150" y="145" font-size="9" font-weight="bold" text-anchor="middle" fill="#2563eb">02:00 (D+1)</text>
-      <text x="150" y="180" font-size="9" text-anchor="middle" fill="#1e293b">초기 벌크 적재</text>
-      <text x="150" y="195" font-size="8" text-anchor="middle" fill="#64748b">Direct Path 완료</text>
-
-      <!-- 3. 10:00 -->
-      <circle cx="260" cy="160" r="5" fill="#3b82f6" />
-      <text x="260" y="145" font-size="9" font-weight="bold" text-anchor="middle" fill="#2563eb">10:00 (D+1)</text>
-      <text x="260" y="180" font-size="9" text-anchor="middle" fill="#1e293b">CDC 증분 반영</text>
-      <text x="260" y="195" font-size="8" text-anchor="middle" fill="#64748b">Kafka Lag=0</text>
-
-      <!-- 4. 14:00 마지노선 (강조) -->
-      <line x1="365" y1="125" x2="365" y2="230" stroke="#dc2626" stroke-width="2" stroke-dasharray="4" />
-      <circle cx="365" cy="160" r="7" fill="#dc2626" />
-      <rect x="315" y="128" width="100" height="22" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1" />
-      <text x="365" y="142" font-size="9" font-weight="bold" text-anchor="middle" fill="#991b1b">14:00 Go/No-Go</text>
-      <text x="365" y="245" font-size="9" font-weight="bold" text-anchor="middle" fill="#dc2626">[롤백 마지노선]</text>
-      <text x="365" y="258" font-size="8" text-anchor="middle" fill="#991b1b">정합성 검증 완료 시점</text>
-
-      <!-- 5. 18:00 -->
-      <circle cx="465" cy="160" r="5" fill="#10b981" />
-      <text x="465" y="145" font-size="9" font-weight="bold" text-anchor="middle" fill="#059669">18:00 (D+1)</text>
-      <text x="465" y="180" font-size="9" text-anchor="middle" fill="#1e293b">시스템 오픈</text>
-      <text x="465" y="195" font-size="8" text-anchor="middle" fill="#64748b">서비스 정상화</text>
-    </svg>
-  </div>
-  <div class="itpe-diagram-footer">
-    14:00 이전 정합성 불일치 시 구 시스템으로 전면 롤백하며, 통과 시 영구 절체(Point of No Return)로 진입함
-  </div>
-</div>
 
 | 이관 단계 | 주요 핵심 활동 (Activity) | 주요 산출물 (Deliverables) |
 |:---|:---|:---|
@@ -233,25 +161,17 @@ flowchart TD
     E -->|아니오| G[오류 분석·재처리 또는 롤백]
 ```
 
-1. **Direct Path Insert 활용**:
+1. **Oracle Direct-Path INSERT 활용 예**:
    - DB 버퍼 캐시를 거치지 않고 데이터 파일의 HWM(High Water Mark) 뒤에 직접 블록을 할당하여 쓰는 `/*+ APPEND */` 힌트 및 `NOLOGGING` 옵션 적용.
-2. **병렬 DML (Parallel DML)**:
+2. **Oracle 병렬 DML (Parallel DML)**:
    - 서버 CPU 코어 수에 맞추어 `ALTER SESSION ENABLE PARALLEL DML;` 설정 후 파티션 단위 병렬 적재.
-3. **인덱스 및 제약조건 사후 재구축**:
+3. **DBMS별 인덱스 및 제약조건 처리**:
    - 적재 중에는 인덱스 갱신 부하를 없애기 위해 `UNUSABLE` 처리하고, 적재 완료 후 병렬로 일괄 `REBUILD` 수행.
-   - 제약조건은 `ENABLE NOVALIDATE`로 고속 활성화 후 백그라운드에서 검증.
+   - Oracle의 `ENABLE NOVALIDATE`처럼 기존 데이터 검증과 신규 변경 검사를 분리하는 기능은 DBMS별 동작·제약을 확인해 적용.
 
 ## Ⅴ. 데이터 정합성·무결성 3대 검증 체계
 
 #### 한줄 요약: 단순 건수 대사에서 출발하여 집계 금액 대사, 행 단위 해시 체크섬 대사로 이어지는 다계층 무결성 검증
-
-```text
-[데이터 정합성 3단계 검증 파이프라인]
-
-  [1단계: 건수 대사 (Count)]  ──► [2단계: 금액/합계 대사 (Sum)] ──► [3단계: 행 해시 대사 (Hash)]
-   - 소스 vs 타겟 총 건수         - 잔액 합계, 거래 총액             - 주요 컬럼 MD5/SHA256
-   - 테이블별 레코드 수 일치       - 통계 집계치 1원 단위 대사        - 샘플링/전건 1:1 비교
-```
 
 | 검증 계층 | 검증 기법 및 쿼리 | 검증 내용 및 판정 기준 | 오류 감지 수준 |
 |:---|:---|:---|:---:|
@@ -299,6 +219,7 @@ flowchart TD
   - 한국지능정보사회진흥원(NIA), "공공기관 정보시스템 데이터 이관 가이드라인"
   - AWS Database Migration Service (AWS DMS) Best Practices Guide
   - Oracle Corporation, "Database Migration and Large-Scale Data Loading Guide"
+  - Oracle Database Administrator's Guide, [Managing Tables: Direct-Path INSERT](https://docs.oracle.com/en/database/oracle/oracle-database/26/admin/managing-tables.html)
 ---
 
 ## 연결 토픽

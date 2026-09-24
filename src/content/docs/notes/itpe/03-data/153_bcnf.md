@@ -23,17 +23,11 @@ extra:
 
 ## 큰 그림과 30초 인출
 
-```mermaid
-flowchart TD
-    A[원 릴레이션 R 학번·과목·담당교수] --> B{FD 점검}
-    B -->|학번·과목 → 담당교수| C[결정자 후보키]
-    B -->|담당교수 → 과목| D[3NF 허용 가능: 종속자가 주속성]
-    D --> E[BCNF 위반: 담당교수가 슈퍼키가 아님]
-    E --> F[R1 담당교수·과목]
-    E --> G[R2 학번·담당교수]
-    F --> H[무손실 분해 가능]
-    G --> I[종속성 보존 여부 별도 검토]
-```
+| 회상 축 | 핵심 |
+|:---|:---|
+| **판정 규칙** | 모든 비자명한 FD에서 결정자가 슈퍼키인지 확인 |
+| **목적** | 비키 결정자에서 생길 수 있는 갱신 이상 감소 |
+| **분해 시 확인** | 무손실 조인과 종속성 보존을 따로 검토 |
 
 - 본질: **제3정규형(3NF)을 만족하면서도 복합 후보키가 중첩될 때 발생하는 갱신 이상을 해결하기 위해, 릴레이션 내에 존재하는 모든 비자명한 함수적 종속성($X \rightarrow Y$)에서 결정자($X$)가 예외 없이 반드시 슈퍼키(Super Key)가 되도록 강제한 엄격한 정규형(Strong 3NF)**
 - 암기: `비자명 FD → 결정자 슈퍼키` / BCNF 분해는 무손실 조인이 가능하지만 종속성 보존을 잃을 수 있음
@@ -41,6 +35,18 @@ flowchart TD
   - **3NF**: $X \rightarrow Y$에서 $X$가 슈퍼키이거나, $Y$가 후보키의 일부(주속성, Prime Attribute)이면 허용. 표준 3NF 합성 절차는 종속성 보존 분해를 제공하지만, 분해 결과와 보장 조건을 확인해야 함.
   - **BCNF**: 종속되는 속성($Y$)이 주속성이든 비주속성이든 상관없이, 결정자($X$)는 무조건 슈퍼키여야 함 $\rightarrow$ 이상현상은 완전 제거되나 함수 종속성 보존이 깨질 수 있음.
 - 주의: BCNF 분해에서는 원래의 복합 함수 종속성 제약을 분해된 릴레이션 각각에서 직접 검증하지 못하는 종속성 보존 손실이 발생할 수 있으므로, 실무에서는 업무 무결성 규칙에 따라 3NF와 BCNF를 선택함
+
+<details><summary>핵심 용어</summary>
+
+- **함수적 종속성 (Functional Dependency, FD)** : 속성 집합 $X$가 정해지면 $Y$ 값이 하나로 결정되는 관계 $X \rightarrow Y$.
+- **결정자 (Determinant)** : 함수적 종속성의 왼쪽 속성 집합 $X$.
+- **슈퍼키 (Superkey)** : 릴레이션의 각 튜플을 유일하게 식별하는 속성 집합.
+- **주속성 (Prime Attribute)** : 후보키 가운데 하나 이상에 포함되는 속성.
+- **무손실 조인 분해 (Lossless-Join Decomposition)** : 분해된 릴레이션을 조인했을 때 원래 릴레이션을 정확히 복원하는 분해.
+- **종속성 보존 (Dependency Preservation)** : 분해된 릴레이션별 종속성만 검사해 원래 함수 종속성을 확인할 수 있는 성질.
+
+</details>
+
 ---
 
 ## 1교시 예상문제 (10점)
@@ -119,56 +125,22 @@ flowchart TD
 - **비주속성**: 어떤 후보키에도 속하지 않는 속성
 - 3NF는 "비주속성이 후보키에 이행적 종속이 아닐 것"을 요구하지만, BCNF는 "주속성이든 비주속성이든 모든 속성이 비후보키에 종속되는 것을 금지"함
 
+| 판정 항목 | 조건 | 판단 |
+|---|---|---|
+| BCNF 위반 후보 | 비자명한 $X \rightarrow Y$ 존재 | 결정자 $X$가 슈퍼키인지 검사 |
+| 3NF 예외 | $X$가 슈퍼키가 아니지만 $Y$가 주속성 | 3NF는 허용 가능, BCNF는 위반 |
+| 분해 후 | 분해 릴레이션마다 투영된 함수 종속성 검사 | 무손실 조인과 종속성 보존을 각각 확인 |
+
 ## Ⅲ. 3NF 만족 및 BCNF 위배 사례와 분해 아키텍처
 
 #### 한줄 요약: (학번, 과목 $\rightarrow$ 교수)와 (교수 $\rightarrow$ 과목) 관계에서 발생하는 이상현상과 무손실 분해
 
-<div class="itpe-diagram-box">
-  <div class="itpe-diagram-header">
-    <span class="itpe-tag">아키텍처 다이어그램</span>
-    <span class="itpe-title">3NF 만족 및 BCNF 위배 릴레이션의 무손실 분해 구조</span>
-  </div>
-  <div class="itpe-diagram-body">
-    <svg class="itpe-svg" viewBox="0 0 520 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="arrow-bcnf" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--color-text, #333)" />
-        </marker>
-      </defs>
-      <!-- 상단: 3NF 만족 위배 릴레이션 R -->
-      <rect x="30" y="15" width="460" height="85" rx="6" fill="var(--color-bg-secondary, #f0f4f8)" stroke="var(--color-border, #0284c7)" stroke-width="2" />
-      <text x="260" y="38" font-size="13" font-weight="bold" text-anchor="middle" fill="var(--color-text, #111)">수강 릴레이션 R (학번, 과목, 담당교수)</text>
-      <text x="260" y="56" font-size="11" text-anchor="middle" fill="#0369a1">• 후보키 1: {학번, 과목} ┃ 후보키 2: {학번, 담당교수}</text>
-      <!-- 종속성 선 및 텍스트 -->
-      <text x="70" y="78" font-size="10" fill="#059669">FD1: {학번, 과목} ──► 담당교수 (3NF 통과)</text>
-      <text x="280" y="78" font-size="10" fill="#dc2626" font-weight="bold">FD2: 담당교수 ──► 과목 (BCNF 위배! 비후보키 결정자)</text>
+| 원 릴레이션·함수 종속성 | 분해 결과·검증 |
+|---|---|
+| $R(학번, 과목, 교수)$; $(학번, 과목) \rightarrow 교수$, $교수 \rightarrow 과목$ | $R_1(교수, 과목)$, $R_2(학번, 교수)$ |
+| 후보키 $(학번, 과목)$와 $(학번, 교수)$; $교수$는 슈퍼키가 아니므로 BCNF 위반 | $R_1$에서 $교수 \rightarrow 과목$ 확인 가능; 첫 번째 종속성은 조인 없이 확인 불가 |
+| 분해는 $교수 \rightarrow 과목$을 기준으로 수행 | 공통 속성 $교수$가 $R_1$을 결정하므로 무손실 조인; 종속성 보존 손실 가능 |
 
-      <!-- 분해 화살표 -->
-      <path d="M 170 100 L 120 145" stroke="var(--color-primary, #0284c7)" stroke-width="2" marker-end="url(#arrow-bcnf)" />
-      <path d="M 350 100 L 400 145" stroke="var(--color-primary, #0284c7)" stroke-width="2" marker-end="url(#arrow-bcnf)" />
-      <text x="260" y="125" font-size="11" font-weight="bold" text-anchor="middle" fill="var(--color-primary, #0284c7)">비후보키 결정자 '담당교수' 기준 무손실 분해</text>
-
-      <!-- 분해된 릴레이션 R1 -->
-      <rect x="20" y="150" width="225" height="75" rx="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" />
-      <text x="132" y="172" font-size="12" font-weight="bold" text-anchor="middle" fill="#1d4ed8">R1 (담당교수, 과목)</text>
-      <text x="132" y="190" font-size="10" text-anchor="middle" fill="#1e40af">• PK (후보키): 담당교수</text>
-      <text x="132" y="208" font-size="10" text-anchor="middle" fill="#047857">모든 결정자가 후보키 ──► BCNF 만족!</text>
-
-      <!-- 분해된 릴레이션 R2 -->
-      <rect x="275" y="150" width="225" height="75" rx="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" />
-      <text x="387" y="172" font-size="12" font-weight="bold" text-anchor="middle" fill="#1d4ed8">R2 (학번, 담당교수)</text>
-      <text x="387" y="190" font-size="10" text-anchor="middle" fill="#1e40af">• PK (후보키): {학번, 담당교수}</text>
-      <text x="387" y="208" font-size="10" text-anchor="middle" fill="#047857">모든 결정자가 후보키 ──► BCNF 만족!</text>
-
-      <!-- 하단 트레이드오프 경고 배너 -->
-      <rect x="20" y="235" width="480" height="35" rx="4" fill="#fef2f2" stroke="#ef4444" stroke-width="1" />
-      <text x="260" y="255" font-size="10" font-weight="bold" text-anchor="middle" fill="#991b1b">※ 트레이드오프: 무손실 조인은 보장되나, 기존 FD ({학번, 과목} ──► 담당교수) 보존 손실 발생</text>
-    </svg>
-  </div>
-  <div class="itpe-diagram-footer">
-    결정자 '담당교수'가 후보키가 아니어서 분해했으나, 분해 후 두 테이블을 조인하지 않고는 단일 테이블 제약 검증 불가
-  </div>
-</div>
 
 ### 1. 전형적 비즈니스 시나리오
 - 한 학생은 여러 과목을 수강할 수 있음
@@ -211,11 +183,17 @@ flowchart TD
 
 - **체이스 알고리즘(Chase Algorithm) 판정**:
   - BCNF 분해는 항상 무손실 조인(Lossless-join)을 만족함을 체이스 표로 증명 가능함
-  - 그러나 분해된 릴레이션들의 함수 종속성 합집합의 폐포(Closure)가 원래의 함수 종속성 집합 $F^+$와 일치하지 않으므로, **종속성 보존은 영구 손실**됨
+  - 이 사례에서는 분해된 릴레이션에 투영된 함수 종속성만으로 원래의 $(학번, 과목) \rightarrow 담당교수$를 직접 검사할 수 없어 종속성 보존이 되지 않음. 이는 모든 BCNF 분해에 공통인 결과는 아님
 
 ## Ⅵ. 실무 아키텍처 적용 및 모델러의 의사결정 기준
 
 #### 한줄 요약: 데이터 갱신 빈도와 비즈니스 유일성 제약 검증 비용 간의 트레이드오프를 평가하여 타협
+
+| 선택 기준 | 3NF 유지 검토 | BCNF 분해 검토 |
+|---|---|---|
+| 종속성 검증 | 원래 업무 종속성을 릴레이션 제약으로 직접 유지해야 함 | 분해 뒤 별도 검증 방식 마련 가능 |
+| 갱신 이상 | 중복으로 인한 변경·삽입·삭제 이상 감수 여부 검토 | 결정자 슈퍼키 규칙으로 해당 중복 감소 |
+| 구현 비용 | 적은 조인으로 제약 적용 용이 | 추가 조인과 응용 계층 제약 검증 비용 고려 |
 
 - **의사결정 매트릭스**:
   1. **BCNF 분해를 단행하는 경우**:
