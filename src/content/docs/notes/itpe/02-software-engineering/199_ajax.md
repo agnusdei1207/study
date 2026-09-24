@@ -51,15 +51,13 @@ extra:
 
 ### Ⅱ. 동작 구조
 
-```mermaid
-sequenceDiagram
-    actor U as 사용자
-    participant B as 브라우저 JavaScript
-    participant S as 서버
-    U->>B: 동작 수행
-    B->>S: 비동기 HTTP 요청
-    S-->>B: 데이터 응답
-    B->>U: 해당 화면 영역 갱신
+```text
+사용자 동작
+    ↓
+브라우저 JavaScript → 서버: 비동기 HTTP 요청
+브라우저 JavaScript ← 서버: 데이터 응답
+    ↓
+필요한 화면 영역 갱신
 ```
 
 XHR 또는 Fetch로 요청을 수행하며 응답 형식은 JSON, XML, 텍스트 등 서비스 계약에 따라 결정.
@@ -93,18 +91,14 @@ XHR 또는 Fetch로 요청을 수행하며 응답 형식은 JSON, XML, 텍스트
 
 ## Ⅱ. 구성 요소와 데이터 흐름
 
-```mermaid
-sequenceDiagram
-    actor U as 사용자
-    participant V as 화면·이벤트 처리
-    participant C as XHR 또는 Fetch
-    participant A as 서버 애플리케이션
-    U->>V: 동작 입력
-    V->>C: 요청 생성
-    C->>A: HTTP 요청
-    A-->>C: 상태 코드·응답 데이터
-    C-->>V: 비동기 완료 처리
-    V->>U: 필요한 화면 영역 갱신
+```text
+사용자 동작
+    ↓
+화면 이벤트 처리 → Fetch·XHR 요청 생성
+    ↓
+서버에 HTTP 요청 → 상태 코드·데이터 응답
+    ↓
+비동기 완료 처리 → 필요한 화면 영역 갱신
 ```
 
 AJAX는 특정 데이터 형식이나 단일 API에 한정되지 않는 설계 방식. 클라이언트는 요청을 보내고 완료 시 결과를 반영하며, 전체 문서의 재탐색을 피할 수 있음.
@@ -120,12 +114,12 @@ AJAX는 특정 데이터 형식이나 단일 API에 한정되지 않는 설계 �
 
 ## Ⅳ. 보안과 교차 출처
 
-```mermaid
-flowchart TD
-    A[브라우저 요청] -->|같은 출처| B[서버 응답 처리]
-    A -->|다른 출처| C[CORS 정책 확인]
-    C -->|서버 허용 응답| D[브라우저가 응답 접근 허용]
-    C -->|허용되지 않음| E[브라우저가 응답 접근 차단]
+```text
+브라우저 요청
+  ├─ 같은 출처 → 응답 접근 가능
+  └─ 다른 출처 → CORS 정책 확인
+                    ├─ 서버 허용 → 응답 접근 가능
+                    └─ 미허용 → 브라우저가 접근 차단
 ```
 
 교차 출처 리소스 공유(CORS)는 서버의 허용 정책을 브라우저가 검사하도록 하는 통제. 일부 요청은 사전 요청(preflight)이 수행될 수 있음. CORS만으로 CSRF, 인증, 인가가 해결되지 않으므로 각 방어를 별도로 설계.

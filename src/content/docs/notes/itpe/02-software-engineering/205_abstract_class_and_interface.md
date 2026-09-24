@@ -59,12 +59,12 @@ extra:
 
 ### Ⅲ. 선택 기준
 
-```mermaid
-flowchart TD
-    A[공통 모델링 요구] -->|상태·기본 구현 공유 필요| B[추상 클래스 검토]
-    A -->|구현체가 제공할 계약 정의| C[인터페이스 검토]
-    B --> D[클라이언트는 상위 타입으로 사용]
-    C --> D
+```text
+공통 모델링 요구
+  ├─ 상태·기본 구현 공유 → 추상 클래스
+  └─ 구현체의 공통 계약 → 인터페이스
+                              ↓
+                    클라이언트는 상위 타입으로 사용
 ```
 
 **제언**: 구현 재사용을 위한 상속과 구현 계약을 위한 인터페이스를 목적에 따라 구분.
@@ -99,33 +99,24 @@ Java 인터페이스의 필드는 암묵적으로 `public static final`. 기본�
 
 ## Ⅲ. 타입 관계와 다형성
 
-```mermaid
-classDiagram
-    class PaymentMethod {
-      <<interface>>
-      +pay(amount)
-    }
-    class CardPayment {
-      +pay(amount)
-    }
-    class WalletPayment {
-      +pay(amount)
-    }
-    PaymentMethod <|.. CardPayment : 구현
-    PaymentMethod <|.. WalletPayment : 구현
+```text
+PaymentMethod 인터페이스: pay(amount)
+  ├─ CardPayment 구현체: pay(amount)
+  └─ WalletPayment 구현체: pay(amount)
 ```
 
 클라이언트가 구체 클래스보다 공통 타입에 의존하면 구현체 선택을 분리할 수 있음. 다형성 자체가 자동으로 개방-폐쇄 원칙이나 의존 역전 원칙을 충족시키지는 않으며, 의존 방향과 변경 경계 설계가 함께 필요.
 
 ## Ⅳ. 선택 절차
 
-```mermaid
-flowchart TD
-    A[공통 동작·타입 요구 확인] -->|여러 구현의 계약이 핵심| B[인터페이스 정의]
-    A -->|관련 클래스 간 상태·기본 구현 공유| C[추상 클래스 검토]
-    B --> D[구현체를 상위 타입으로 주입·사용]
-    C --> D
-    D -->|요구 변화·확장성 검토| E[책임과 의존 관계 재평가]
+```text
+공통 동작·타입 요구 확인
+  ├─ 여러 구현의 계약 필요 → 인터페이스
+  └─ 상태·기본 구현 공유 필요 → 추상 클래스
+                              ↓
+                     상위 타입으로 주입·사용
+                              ↓
+                     책임·의존 관계 재평가
 ```
 
 선택은 IS-A·CAN-DO 문구만으로 결정하지 않고 상태 공유, 계약 안정성, 클래스 계층 제약, 테스트 가능성을 검토.

@@ -59,12 +59,11 @@ extra:
 
 ### Ⅲ. 이벤트 처리
 
-```mermaid
-flowchart TD
-    A[사용자 입력] -->|이벤트 전달| B[UI 이벤트 스레드]
-    B -->|짧은 핸들러 실행| C[화면 상태 갱신]
-    B -->|긴 작업 분리| D[백그라운드 작업]
-    D -->|UI 결과 전달| B
+```text
+사용자 입력 → UI 이벤트 스레드
+                ├─ 짧은 처리 → 화면 갱신
+                └─ 긴 처리 → 백그라운드 작업
+                               └─ 결과를 UI 스레드에 전달
 ```
 
 **제언**: 화면 갱신은 UI 스레드에서 수행하고 오래 걸리는 작업은 분리해 반응성을 유지.
@@ -88,11 +87,11 @@ flowchart TD
 
 ## Ⅱ. 툴킷 구조와 계보
 
-```mermaid
-flowchart TD
-    A[Java 애플리케이션 UI 요구] -->|기본 GUI·이벤트 API| B[AWT]
-    B -->|기반 활용·컴포넌트 확장| C[Swing]
-    A -->|별도 UI 플랫폼 선택| D[JavaFX·OpenJFX]
+```text
+Java 데스크톱 UI 도구
+  ├─ AWT: 기본 GUI·이벤트 API
+  │    └─ Swing: AWT 기반의 컴포넌트 확장
+  └─ JavaFX·OpenJFX: 별도 UI 플랫폼
 ```
 
 AWT는 일부 컴포넌트에서 네이티브 피어를 사용하며, Swing은 AWT 기반의 경량 컴포넌트를 제공. AWT와 Swing은 혼합 사용을 전제로 한 예외·제약도 있으므로 무조건 혼합 금지로 단정하지 않음. JavaFX는 현재 JDK에 항상 포함된 것으로 간주하지 않고 배포 환경을 확인.
@@ -107,12 +106,13 @@ AWT는 일부 컴포넌트에서 네이티브 피어를 사용하며, Swing은 A
 
 ## Ⅳ. 이벤트·스레드 처리
 
-```mermaid
-flowchart TD
-    A[입력 이벤트] -->|UI 이벤트 큐 전달| B[EDT 또는 JavaFX Application Thread]
-    B -->|짧은 UI 처리| C[화면 갱신]
-    B -->|시간이 오래 걸리는 처리| D[백그라운드 스레드]
-    D -->|결과를 UI 스레드로 전달| B
+```text
+입력 이벤트 → UI 이벤트 큐
+                  ↓
+       EDT·JavaFX Application Thread
+         ├─ 짧은 작업 → 화면 갱신
+         └─ 긴 작업 → 백그라운드 스레드
+                           └─ 결과를 UI 스레드로 전달
 ```
 
 Swing 컴포넌트 접근은 일반적으로 EDT에서 수행하고, JavaFX 장면 그래프 변경은 JavaFX Application Thread에서 처리. 긴 작업이 UI 이벤트 스레드를 점유하면 입력·화면 갱신이 지연되므로 백그라운드 작업과 안전한 결과 전달 필요.
