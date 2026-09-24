@@ -34,6 +34,9 @@ extra:
 - **기본키(Primary Key, PK)**: 테이블 행을 고유하게 식별하는 키
 - **참조 동작(Referential Action)**: 참조된 부모 키의 삭제·수정 시 자식 행을 처리하는 규칙
 - **고아 행(Orphan Row)**: 유효한 부모 행과 연결되지 않는 자식 행
+- **DDL (Data Definition Language)**: 데이터베이스 객체와 제약조건을 정의·변경하는 SQL 명령어 범주
+- **CASCADE**: 부모 키의 삭제·수정에 따라 참조 자식 행에도 지정 변경을 적용하는 참조 동작
+- **RESTRICT**: 참조 자식 행이 남아 있는 부모 키의 삭제·수정을 제한하는 참조 동작
 
 </details>
 

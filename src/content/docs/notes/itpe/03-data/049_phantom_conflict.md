@@ -37,6 +37,8 @@ extra:
 - **술어 잠금(Predicate Lock)**: 검색 조건과 충돌하는 동시 쓰기를 추적해 직렬화 이상을 감지하는 잠금 개념.
 - **직렬화 실패(Serialization Failure)**: 동시 실행이 직렬 실행과 동등한 결과를 보장할 수 없어 트랜잭션을 취소하는 오류.
 - **격리 수준(Isolation Level)**: 동시 트랜잭션 간 읽기·쓰기 상호작용을 제한하는 보장 수준.
+- **MVCC (Multi-Version Concurrency Control)**: 트랜잭션이 데이터 버전을 이용해 동시 읽기·쓰기를 조정하는 방식.
+- **DBMS (Database Management System)**: 데이터베이스를 정의·저장·조회·관리하는 소프트웨어.
 
 </details>
 

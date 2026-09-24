@@ -35,6 +35,8 @@ extra:
 - **격리성(Isolation)**: 동시에 수행되는 트랜잭션 간 간섭을 제어하는 성질
 - **영속성(Durability)**: 성공 처리된 변경을 장애 복구 후에도 보존하는 성질
 - **로그 선행 기록(Write-Ahead Logging, WAL)**: 데이터 페이지 변경보다 로그를 먼저 안정 저장해 복구에 활용하는 방식
+- **DBMS (Database Management System)**: 데이터베이스를 정의·저장·조회·관리하는 소프트웨어.
+- **MVCC (Multi-Version Concurrency Control)**: 데이터 버전을 유지해 트랜잭션 간 읽기·쓰기 간섭을 조정하는 동시성 제어 방식.
 
 </details>
 
