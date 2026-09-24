@@ -154,4 +154,4 @@ flowchart TB
 
 ## 연결 토픽
 
-- 연관 토픽: [고가용성](./042_ha_availability.md), [클라우드 네이티브 재해 복구](./049_cloud_native_disaster_recovery.md)
+- 연관 토픽: [고가용성](./042_ha_availability_assurance.md), [클라우드 네이티브 재해 복구](./049_cloud_native_disaster_recovery.md)
