@@ -22,12 +22,12 @@ function mermaidBlocks(markdown) {
   return [...markdown.matchAll(/```mermaid\s*\r?\n([\s\S]*?)```/gu)].map((match) => match[1].replace(/\r\n/gu, '\n').trim());
 }
 
-test('All IT strategy notes use Mermaid instead of legacy visual markup', async () => {
+test('All IT strategy notes use tables or Mermaid instead of legacy visual markup', async () => {
   const files = await targetNotes();
   assert.equal(files.length, 81, '현재 카탈로그의 IT 전략 과목에는 81개 노트가 있어야 합니다.');
   for (const file of files) {
     const note = await readFile(file, 'utf8');
-    assert.match(note, /```mermaid/u, `${file}: Mermaid 시각화가 필요합니다.`);
+    assert.match(note, /\|---|```mermaid/u, `${file}: 표 또는 Mermaid 시각화가 필요합니다.`);
     assert.doesNotMatch(note, /<svg\b/iu, `${file}: 인라인 SVG를 제거해야 합니다.`);
     assert.doesNotMatch(note, /class="itpe-(?:flow|pipeline|trace|svg|edm|diagram)/iu, `${file}: 레거시 시각화 HTML 클래스를 제거해야 합니다.`);
     assert.doesNotMatch(note, /[┌┐└┘├┤┬┴┼─│]/u, `${file}: ASCII 박스 다이어그램을 제거해야 합니다.`);

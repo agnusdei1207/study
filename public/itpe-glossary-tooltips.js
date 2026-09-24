@@ -1,11 +1,15 @@
 (() => {
   if (!location.pathname.includes('/notes/itpe/01-it-strategy/')) return;
 
+  function normalize(value) {
+    return value.toLocaleLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
+  }
+
   function aliases(label) {
     const parts = label.match(/^([^()]+)(?:\(([^)]+)\))?/);
     return [label, parts?.[1], parts?.[2]]
       .filter(Boolean)
-      .map((value) => value.trim().toLocaleLowerCase());
+      .map(normalize);
   }
 
   function init() {
@@ -16,12 +20,15 @@
     if (!glossary) return;
 
     const definitions = new Map();
+    const glossaryTerms = new Map();
     for (const item of glossary.querySelectorAll('li')) {
       const term = item.querySelector('strong');
       if (!term) continue;
       const description = item.textContent.replace(term.textContent, '').replace(/^\s*[:：-]\s*/, '').trim();
       if (!description) continue;
-      for (const alias of aliases(term.textContent)) definitions.set(alias, { label: term.textContent.trim(), description });
+      const definition = { label: term.textContent.trim(), description };
+      glossaryTerms.set(term, definition);
+      for (const alias of aliases(term.textContent)) definitions.set(alias, definition);
     }
 
     const popup = document.createElement('div');
@@ -62,9 +69,9 @@
 
     for (const target of content.querySelectorAll('strong, .itpe-keyword')) {
       if (target.matches('.itpe-keyword') && target.querySelector('strong')) continue;
-      if (glossary.contains(target) || target.closest('.itpe-glossary-trigger')) continue;
-      const key = target.textContent.trim().toLocaleLowerCase();
-      const definition = definitions.get(key);
+      if (target.closest('.itpe-glossary-trigger')) continue;
+      const definition = glossaryTerms.get(target) ?? aliases(target.textContent)
+        .map((alias) => definitions.get(alias)).find(Boolean);
       if (!definition) continue;
       target.classList.add('itpe-glossary-trigger');
       target.tabIndex = 0;
