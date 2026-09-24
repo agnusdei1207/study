@@ -53,23 +53,13 @@ extra:
 
 ### Ⅱ. 대리 객체와 실제 객체의 관계
 
-```mermaid
-classDiagram
-    class Subject {
-        <<interface>>
-        +request()
-    }
-    class Proxy {
-        -realSubject
-        +request()
-    }
-    class RealSubject {
-        +request()
-    }
-    Client ..> Subject : request()
-    Subject <|.. Proxy
-    Subject <|.. RealSubject
-    Proxy --> RealSubject : 위임
+```text
+Subject 인터페이스: request()
+    ├─ Proxy: 호출 가로채기·접근 통제
+    └─ RealSubject: 실제 기능
+
+Client → Proxy.request()
+Proxy → RealSubject.request() 위임
 ```
 
 ### Ⅲ. 적용 유형
@@ -100,23 +90,13 @@ classDiagram
 
 > 프록시와 실제 객체는 동일한 인터페이스를 구현하므로 클라이언트는 프록시 존재 여부를 인식하지 않고 투명하게 사용한다.
 
-```mermaid
-classDiagram
-    class Subject {
-        <<interface>>
-        +request()
-    }
-    class Proxy {
-        -realSubject
-        +request()
-    }
-    class RealSubject {
-        +request()
-    }
-    Client ..> Subject : request()
-    Subject <|.. Proxy
-    Subject <|.. RealSubject
-    Proxy --> RealSubject : 위임
+```text
+Subject 인터페이스: request()
+    ├─ Proxy: 호출 가로채기·접근 통제
+    └─ RealSubject: 실제 기능
+
+Client → Proxy.request()
+Proxy → RealSubject.request() 위임
 ```
 
 - Client는 Subject 규격에만 의존하며, Proxy가 사전 처리(보안·로깅) 후 RealSubject에 위임하므로 프록시 존재는 투명함

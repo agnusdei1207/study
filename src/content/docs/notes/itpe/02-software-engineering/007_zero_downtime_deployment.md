@@ -52,12 +52,11 @@ extra:
 
 ### Ⅱ. 배포 전략의 선택
 
-```mermaid
-flowchart TD
-    LB["라우터·로드밸런서"]
-    LB -->|"순차 교체"| RO["Rolling"]
-    LB -->|"일괄 전환"| BG["Blue/Green"]
-    LB -->|"가중치 확대"| CA["Canary"]
+```text
+무중단 배포의 트래픽 전환
+    ├─ Rolling: 인스턴스 순차 교체
+    ├─ Blue/Green: 신·구 환경 일괄 전환
+    └─ Canary: 신규 버전 유입 비율 확대
 ```
 
 ### Ⅲ. 데이터베이스·연결 통제
@@ -88,12 +87,11 @@ flowchart TD
 
 > Rolling은 순차 교체, Blue/Green은 환경 전환, Canary는 일부 트래픽부터 점진 확대한다.
 
-```mermaid
-flowchart TD
-    LB["라우터·로드밸런서"]
-    LB -->|"순차 교체"| RO["Rolling"]
-    LB -->|"일괄 전환"| BG["Blue/Green"]
-    LB -->|"가중치 확대"| CA["Canary"]
+```text
+무중단 배포의 트래픽 전환
+    ├─ Rolling: 인스턴스 순차 교체
+    ├─ Blue/Green: 신·구 환경 일괄 전환
+    └─ Canary: 신규 버전 유입 비율 확대
 ```
 
 - 롤백 속도와 추가 자원은 구현·운영 조건에 따라 달라지므로 트래픽 전환과 검증 방법을 함께 비교한다.
@@ -109,9 +107,12 @@ flowchart TD
 
 > 애플리케이션 코드는 무중단 배포가 가능하지만, DB 스키마가 하위 호환성을 깨뜨리면 전체 시스템 장애로 이어진다.
 
-```mermaid
-flowchart TD
-    P1["Expand: 신구 버전 호환 스키마 추가"] --> P2["Transition: 코드·데이터 이행"] --> P3["Contract: 구버전 참조 제거 후 축소"]
+```text
+Expand: 신·구 버전 호환 스키마 추가
+    ↓
+Transition: 코드·데이터 전환
+    ↓
+Contract: 구버전 참조 제거 후 축소
 ```
 
 - **Expand**: 기존 컬럼을 유지한 상태에서 신규 컬럼만 추가하여 구버전 정상 동작 보장

@@ -52,10 +52,14 @@ extra:
 
 ### Ⅱ. 핵심 연산과 구조
 
-```mermaid
-flowchart TB
-    PU["Push 삽입"] --> TOP["Top 최상단"] --> PO["Pop 반환"]
-    TOP --- D1["Data 1"] --- D0["최하단 Base"]
+```text
+Push(삽입) → Top ← Pop(반환)
+              │
+             값 2
+              │
+             값 1
+              │
+             Base
 ```
 
 ### Ⅲ. 경계·메모리 통제
@@ -86,10 +90,14 @@ flowchart TB
 
 > 스택 구현은 고정 크기 배열 방식과 동적 연결 리스트 방식으로 나뉘며 메모리 제약에 따라 선택한다.
 
-```mermaid
-flowchart TB
-    PU["Push 삽입"] --> TOP["Top 최상단"] --> PO["Pop 반환"]
-    TOP --- D1["Data 1"] --- D0["최하단 Base"]
+```text
+Push(삽입) → Top ← Pop(반환)
+              │
+             값 2
+              │
+             값 1
+              │
+             Base
 ```
 
 - 삽입·삭제가 Top 한 지점에서만 일어나며, Push 전 `isFull()`, Pop·Peek 전 `isEmpty()` 경계 검증으로 Overflow·Underflow를 방지함
