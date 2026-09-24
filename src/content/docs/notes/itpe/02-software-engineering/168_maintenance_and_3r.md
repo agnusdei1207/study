@@ -8,9 +8,12 @@ tags:
   - "재사용"
 date: "2026-09-24T15:54:00+09:00"
 author: "Codex"
+sidebar:
+  badge:
+    text: "A"
 extra:
   model: "GPT-6"
-  grade: "A"
+  keyword_grade: "A"
 ---
 
 ## 학습 위치

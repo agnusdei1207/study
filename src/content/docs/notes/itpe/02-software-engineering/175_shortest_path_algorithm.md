@@ -9,9 +9,12 @@ tags:
   - "A스타"
 date: "2026-09-24T15:56:00+09:00"
 author: "Codex"
+sidebar:
+  badge:
+    text: "C"
 extra:
   model: "GPT-6"
-  grade: "C"
+  keyword_grade: "C"
 ---
 
 ## 학습 위치
