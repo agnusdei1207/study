@@ -57,16 +57,14 @@ extra:
 
 > 정량 분석은 필요에 따라 수행하며, 감시 중 발견한 신규·변경 위험은 다시 식별·분석
 
-```mermaid
-flowchart TD
-    P["Plan Risk Management"] -->|"위험관리 계획서"| I["Identify Risks"]
-    I -->|"Risk Register·위험 보고서"| QL["Perform Qualitative Risk Analysis"]
-    QL -->|"정량 분석 필요"| QT["Perform Quantitative Risk Analysis"]
-    QL -->|"정량 분석 생략 가능"| PR["Plan Risk Responses"]
-    QT -->|"정량 분석 결과"| PR["Plan Risk Responses"]
-    PR -->|"대응계획"| IR["Implement Risk Responses"]
-    IR -->|"조치 결과·변경 요청"| M["Monitor Risks"]
-    M -->|"신규·변경 위험"| I
+```text
+위험관리 계획
+    ↓
+위험 식별·정성 분석
+    ↓ 필요 시 정량 분석
+대응 계획·실행
+    ↓
+위험 감시 → 새 위험 재식별
 ```
 
 위험별 우선순위·**Risk Owner** ·트리거를 정하고, 대응 후 **잔여 위험(Residual Risk)** ·**2차 위험(Secondary Risk)** 을 재평가하는 통제
@@ -94,16 +92,14 @@ flowchart TD
 
 > 7개 프로세스는 일회성 직선 절차가 아니며, Monitor Risks에서 발견한 변화가 식별·분석·대응으로 환류되고 정량 분석은 프로젝트 필요에 따라 선택함
 
-```mermaid
-flowchart TD
-    P["Plan Risk Management"] -->|"위험관리 계획서"| I["Identify Risks"]
-    I -->|"Risk Register·위험 보고서"| QL["Perform Qualitative Risk Analysis"]
-    QL -->|"정량 분석 필요"| QT["Perform Quantitative Risk Analysis"]
-    QL -->|"정량 분석 생략 가능"| PR["Plan Risk Responses"]
-    QT -->|"정량 분석 결과"| PR["Plan Risk Responses"]
-    PR -->|"대응계획"| IR["Implement Risk Responses"]
-    IR -->|"조치 결과·변경 요청"| M["Monitor Risks"]
-    M -->|"신규·변경 위험"| I
+```text
+위험관리 계획
+    ↓
+위험 식별·정성 분석
+    ↓ 필요 시 정량 분석
+대응 계획·실행
+    ↓
+위험 감시 → 새 위험 재식별
 ```
 
 | 프로세스 | 활동 |
@@ -156,12 +152,12 @@ flowchart TD
 
 > 제안: 영향이 큰 위험부터 **트리거·대응 책임자**를 위험 등록부에 함께 기록해 실제 징후 발생 시 대응 착수 여부를 신속히 판단
 
-```mermaid
-flowchart TD
-    A["우선 관리 위험 선정"] --> B["트리거·대응 책임자 지정"]
-    B --> C{"트리거 발생?"}
-    C -->|"예"| D["담당자 대응 착수"]
-    C -->|"아니오"| E["징후 감시"]
+```text
+우선 관리 위험 선정
+    ↓
+징후·대응 책임자 지정
+    ├→ 징후 발생: 담당자 대응 착수
+    └→ 미발생: 징후 감시
 ```
 
 Ⅴ절의 위험 유형별 대책과 구분되는 **대응 착수 시점·책임자 지정**. 조치 후 잔여·2차 위험의 위험관리 절차에 따른 재평가
