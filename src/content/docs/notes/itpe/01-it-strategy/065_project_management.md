@@ -56,16 +56,16 @@ extra:
 
 ### Ⅱ. 계층 정렬 및 가치 인도 체계
 
-```mermaid
-flowchart TD
-    STR["조직 전략·가치 목표"] -->|투자 기준| PF["Portfolio · 구성요소 선택·우선순위"]
-    PF -->|구성요소: 연관 사업군| PG["Programme · 연관 프로젝트 조정·편익"]
-    PF -->|구성요소: 독립 과제| PJ["Project · 고유 산출·성과"]
-    PG -->|조정·통합| P1["Project A"]
-    PG -->|조정·통합| P2["Project B"]
-    P1 -->|산출·성과 기여| VAL["업무 편익·조직 가치"]
-    P2 -->|산출·성과 기여| VAL
-    PJ -->|산출·성과 기여| VAL
+```text
+조직 전략·가치 목표
+    ↓ 투자 기준
+Portfolio: 과제 선택·우선순위
+    ├─ Programme: 연관 프로젝트 조정·편익
+    │    ├─ Project A
+    │    └─ Project B
+    └─ 독립 Project: 고유 산출·성과
+
+프로젝트 성과 → 업무 편익·조직 가치
 ```
 
 ### Ⅲ. 핵심 통제
@@ -96,16 +96,16 @@ flowchart TD
 
 ## Ⅱ. Portfolio·Programme·Project 비교
 
-```mermaid
-flowchart TD
-    STR["조직 전략·가치 목표"] -->|투자 기준| PF["Portfolio · 구성요소 선택·우선순위"]
-    PF -->|구성요소: 연관 사업군| PG["Programme · 연관 프로젝트 조정·편익"]
-    PF -->|구성요소: 독립 과제| PJ["Project · 고유 산출·성과"]
-    PG -->|조정·통합| P1["Project A"]
-    PG -->|조정·통합| P2["Project B"]
-    P1 -->|산출·성과 기여| VAL["업무 편익·조직 가치"]
-    P2 -->|산출·성과 기여| VAL
-    PJ -->|산출·성과 기여| VAL
+```text
+조직 전략·가치 목표
+    ↓ 투자 기준
+Portfolio: 과제 선택·우선순위
+    ├─ Programme: 연관 프로젝트 조정·편익
+    │    ├─ Project A
+    │    └─ Project B
+    └─ 독립 Project: 고유 산출·성과
+
+프로젝트 성과 → 업무 편익·조직 가치
 ```
 
 | 기준 | Portfolio | Programme | Project |
@@ -119,9 +119,16 @@ flowchart TD
 
 > 예측형·적응형·Hybrid 접근법에 공통으로 필요한 승인·인도·측정·학습의 관리 흐름.
 
-```mermaid
-flowchart TD
-    S1["① 정당화·착수"] --> S2["② 계획·Baseline"] --> S3["③ 실행·인도"] --> S4["④ 측정·변경통제"] --> S5["⑤ 인수·종료·환류"]
+```text
+① 사업 정당화·착수
+    ↓
+② 계획·기준선 확정
+    ↓
+③ 실행·산출물 인도
+    ↓ 측정·승인된 변경 반영
+④ 성과·변경 통제
+    ↓
+⑤ 인수·종료·편익 환류
 ```
 
 ## Ⅳ. 예측형·적응형·Hybrid 비교

@@ -53,33 +53,17 @@ extra:
 
 ### Ⅱ. 화이트 레이블 B2B2C 구조
 
-```mermaid
-flowchart LR
-    subgraph P["원천 공급자 (Provider)"]
-        direction TB
-        P1["코어 엔진 개발"]
-        P2["인프라 / SLA 보증"]
-        P3["백엔드 API 제공"]
-    end
+```text
+원천 공급자
+  코어 엔진·인프라·API 제공
+    ↓ 기술·서비스 공급
+브랜드 사업자
+  자사 브랜드·UI·요금·1차 고객 지원
+    ↓ 완제품·서비스 제공
+최종 고객
+  이용·문의·피드백
 
-    subgraph B["브랜드 사업자 (Brand Owner)"]
-        direction TB
-        B1["자사 브랜드 패키징"]
-        B2["UI/UX 커스터마이징"]
-        B3["요금 책정 및 1차 CS"]
-    end
-
-    subgraph C["최종 고객 (Customer)"]
-        direction TB
-        C1["완제품 / 서비스 이용"]
-        C2["브랜드 신뢰 기반 구매"]
-        C3["피드백 및 문의 제기"]
-    end
-
-    P -->|표준 API 연계| B
-    B -->|서비스 제공| C
-    C -.->|수요·품질 데이터 환류| B
-    B -.->|장애·개선 요구| P
+고객 피드백 → 브랜드 사업자 → 공급자 개선 요청
 ```
 
 ### Ⅲ. 운영 통제
@@ -114,33 +98,17 @@ flowchart LR
 
 > 계약·연계 구조에 반영할 책임 경계·서비스 수준·데이터 권리.
 
-```mermaid
-flowchart LR
-    subgraph P["원천 공급자 (Provider)"]
-        direction TB
-        P1["코어 엔진 개발"]
-        P2["인프라 / SLA 보증"]
-        P3["백엔드 API 제공"]
-    end
+```text
+원천 공급자
+  코어 엔진·인프라·API 제공
+    ↓ 기술·서비스 공급
+브랜드 사업자
+  자사 브랜드·UI·요금·1차 고객 지원
+    ↓ 완제품·서비스 제공
+최종 고객
+  이용·문의·피드백
 
-    subgraph B["브랜드 사업자 (Brand Owner)"]
-        direction TB
-        B1["자사 브랜드 패키징"]
-        B2["UI/UX 커스터마이징"]
-        B3["요금 책정 및 1차 CS"]
-    end
-
-    subgraph C["최종 고객 (Customer)"]
-        direction TB
-        C1["완제품 / 서비스 이용"]
-        C2["브랜드 신뢰 기반 구매"]
-        C3["피드백 및 문의 제기"]
-    end
-
-    P -->|표준 API 연계| B
-    B -->|서비스 제공| C
-    C -.->|수요·품질 데이터 환류| B
-    B -.->|장애·개선 요구| P
+고객 피드백 → 브랜드 사업자 → 공급자 개선 요청
 ```
 
 | 주체 | 책임 | 통제 |
