@@ -68,17 +68,16 @@ extra:
 
 #### 핵심 관계
 
-```mermaid
-flowchart LR
-    subgraph INAPP["전통적 인앱 방식 · 결합도 높음"]
-        direction TB
-        A1["Service A Java · Hystrix 라이브러리"] -->|"평문 통신"| A2["Service B Node.js · 언어 종속적"]
-    end
-    INAPP ~~~ MESH
-    subgraph MESH["서비스 메시 방식 · 인프라 외주화"]
-        direction TB
-        B1["Pod A · Service A + Envoy 사이드카"] <-->|"mTLS 암호화"| B2["Pod B · Service B + Envoy 사이드카"]
-    end
+```text
+서비스 A
+    ↓
+프록시 A
+    ↓ 서비스 간 요청
+프록시 B
+    ↓
+서비스 B
+
+서비스 메시: 라우팅·보안·관측 정책 적용
 ```
 
 
@@ -106,17 +105,16 @@ flowchart LR
   - **인앱 라이브러리(Spring Cloud 등)의 한계**: 서비스마다 타임아웃, 서킷브레이커, 인증 코드를 중복 삽입해야 하며, Java 외 타 언어(Node, Go, Python) 지원 불가.
   - **내부망 제로 트러스트 보안 요구**: 서비스 간 통신에 일관된 인증·암호화 정책을 적용하고 상태를 관측할 필요.
 
-```mermaid
-flowchart LR
-    subgraph INAPP["전통적 인앱 방식 · 결합도 높음"]
-        direction TB
-        A1["Service A Java · Hystrix 라이브러리"] -->|"평문 통신"| A2["Service B Node.js · 언어 종속적"]
-    end
-    INAPP ~~~ MESH
-    subgraph MESH["서비스 메시 방식 · 인프라 외주화"]
-        direction TB
-        B1["Pod A · Service A + Envoy 사이드카"] <-->|"mTLS 암호화"| B2["Pod B · Service B + Envoy 사이드카"]
-    end
+```text
+서비스 A
+    ↓
+프록시 A
+    ↓ 서비스 간 요청
+프록시 B
+    ↓
+서비스 B
+
+서비스 메시: 라우팅·보안·관측 정책 적용
 ```
 ---
 
@@ -124,14 +122,12 @@ flowchart LR
 
 #### 1. Istio 기반 서비스 메시 아키텍처 구조도
 
-```mermaid
-flowchart TB
-    CP["컨트롤 플레인 Istiod · 라우팅 정책 · SPIFFE CA · 인가 규칙"]
-    subgraph DP["데이터 플레인 Data Plane · East-West"]
-        direction LR
-        PODA["Pod A · 앱 코드 + Envoy 사이드카"] <-->|"mTLS 상호암호화 · 서킷브레이커 · 분산 추적"| PODB["Pod B · 앱 코드 + Envoy 사이드카"]
-    end
-    CP -.->|"xDS gRPC API 정책 동기화"| DP
+```text
+제어 평면: 라우팅·인증·인가 정책
+    ↓ 정책 배포
+데이터 평면: 서비스별 프록시
+    ↓ 서비스 간 요청 처리
+트래픽 제어·mTLS·관측 데이터
 ```
 
 #### 2. 2대 플레인 핵심 역할 및 기술 매핑

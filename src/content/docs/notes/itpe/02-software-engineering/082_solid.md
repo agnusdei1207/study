@@ -67,10 +67,13 @@ extra:
 
 #### 핵심 관계
 
-```mermaid
-flowchart TB
-    C["고객 요구사항의 빈번한 변경"] --> S["SOLID 5대 원칙 기반 설계 · SRP·ISP 응집도 / DIP·OCP 결합도 / LSP 다형성"]
-    S --> R["사이드이펙트 없는 확장 · TDD 환경 확보"]
+```text
+SOLID 객체 설계 원칙
+    ├─ SRP: 변경 이유 하나
+    ├─ OCP: 확장에 열림·수정에 닫힘
+    ├─ LSP: 하위형의 대체 가능성
+    ├─ ISP: 필요한 계약만 의존
+    └─ DIP: 구현보다 추상화에 의존
 ```
 
 
@@ -99,10 +102,13 @@ flowchart TB
   - **결합도 최소화**: 구체 구현 대신 추상화된 규격 중심 결합(DIP, OCP).
   - **신뢰성 보장**: 다형성 활용 시 런타임 계약 무결성 유지(LSP).
 
-```mermaid
-flowchart TB
-    C["고객 요구사항의 빈번한 변경"] --> S["SOLID 5대 원칙 기반 설계 · SRP·ISP 응집도 / DIP·OCP 결합도 / LSP 다형성"]
-    S --> R["사이드이펙트 없는 확장 · TDD 환경 확보"]
+```text
+SOLID 객체 설계 원칙
+    ├─ SRP: 변경 이유 하나
+    ├─ OCP: 확장에 열림·수정에 닫힘
+    ├─ LSP: 하위형의 대체 가능성
+    ├─ ISP: 필요한 계약만 의존
+    └─ DIP: 구현보다 추상화에 의존
 ```
 ---
 
@@ -122,18 +128,15 @@ flowchart TB
 
 #### 1. 전통적 의존 vs DIP 의존 구조 비교
 
-```mermaid
-flowchart LR
-    subgraph OLD["전통적 구조 · 상위가 하위에 직접 종속"]
-        direction TB
-        O1["OrderService 고수준 정책"] -->|"직접 의존 new"| O2["MySQLRepository 저수준 구현"]
-    end
-    OLD ~~~ DIP
-    subgraph DIP["DIP 적용 · 둘 다 추상화에 의존"]
-        direction TB
-        D1["OrderService 고수준 정책"] --> D2["OrderRepositoryPort 인터페이스"]
-        D3["MySQL·Mongo·Mock 구현체"] -.->|"DI 컨테이너 주입 IoC"| D2
-    end
+```text
+직접 의존
+OrderService → MySQLRepository 구현
+
+DIP 적용
+OrderService ─ OrderRepository 계약
+MySQL·Mock 구현 ─ 같은 계약 구현
+
+실행 시 구현 선택·주입
 ```
 
 #### 2. DIP 구현 핵심 메커니즘

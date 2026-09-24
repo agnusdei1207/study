@@ -68,17 +68,18 @@ extra:
 
 #### 핵심 관계
 
-```mermaid
-flowchart LR
-    subgraph PUSH["전통적 푸시 Push · WIP 과다"]
-        direction TB
-        P1["요구사항 무제한 밀어넣기 · 잦은 컨텍스트 스위칭"] --> P2["병목 적체 및 리드타임 폭증"]
-    end
-    PUSH ~~~ PULL
-    subgraph PULL["칸반 풀 Pull · WIP 제한"]
-        direction TB
-        K1["단계별 슬롯 제한 · 여유 시에만 착수"] --> K2["Stop Starting, Start Finishing"]
-    end
+```text
+요청
+    ↓
+준비
+    ↓
+진행 [WIP 제한]
+    ↓
+검증
+    ↓
+완료
+
+다음 단계에 여유 발생 → 앞 단계 작업 당김
 ```
 
 
@@ -106,17 +107,18 @@ flowchart LR
   - **스프린트 타임박스의 유연성 한계**: 주 단위로 고정된 스크럼 스프린트는 일상적인 운영 장애 핫픽스나 긴급 배포 티켓을 실시간으로 수용하기 어려움.
   - **멀티태스킹으로 인한 납기 파탄**: 동시에 너무 많은 일(WIP 과다)을 벌려놓아 컨텍스트 스위칭 비용이 급증하고 어떤 작업도 제때 끝나지 않는 현상 극복.
 
-```mermaid
-flowchart LR
-    subgraph PUSH["전통적 푸시 Push · WIP 과다"]
-        direction TB
-        P1["요구사항 무제한 밀어넣기 · 잦은 컨텍스트 스위칭"] --> P2["병목 적체 및 리드타임 폭증"]
-    end
-    PUSH ~~~ PULL
-    subgraph PULL["칸반 풀 Pull · WIP 제한"]
-        direction TB
-        K1["단계별 슬롯 제한 · 여유 시에만 착수"] --> K2["Stop Starting, Start Finishing"]
-    end
+```text
+요청
+    ↓
+준비
+    ↓
+진행 [WIP 제한]
+    ↓
+검증
+    ↓
+완료
+
+다음 단계에 여유 발생 → 앞 단계 작업 당김
 ```
 ---
 
@@ -124,13 +126,18 @@ flowchart LR
 
 #### 1. 칸반 보드 WIP Limit 및 흐름 제어 아키텍처
 
-```mermaid
-flowchart LR
-    B["Backlog · 우선순위 정렬"] --> A["분석·설계 · WIP 2"]
-    A -->|"여유 시 풀 Pull"| D["개발 구현 · WIP 만석 병목"]
-    D -->|"신규 유입 차단 · Swarming"| T["검수·테스트 · DoD 검증"]
-    T --> E["Done · 수시 배포"]
-    E -.->|"완료 즉시 후속 작업 풀"| A
+```text
+준비
+    ↓ 여유 슬롯에서 당김
+분석·설계 [WIP 2]
+    ↓
+개발 [WIP 한도]
+    ↓
+검증 [WIP 한도]
+    ↓
+완료
+
+병목 단계 포화 → 신규 착수 제한·완료 지원
 ```
 
 #### 2. 리틀의 법칙(Little's Law)의 수학적 공학 원리

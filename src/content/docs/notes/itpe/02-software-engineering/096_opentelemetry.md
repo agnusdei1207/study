@@ -53,12 +53,14 @@ extra:
 
 ### Ⅱ. 수집 구성
 
-```mermaid
-flowchart TD
-    A["애플리케이션 계측"] -->|OTLP 등으로 전송| C["Collector 수신"]
-    C --> P["필요한 데이터 가공"]
-    P --> E["Exporter"]
-    E --> B["관측 백엔드"]
+```text
+애플리케이션 계측: Trace·Metric·Log
+    ↓ OTLP 등
+Collector Receiver
+    ↓ Processor: 필터·가공
+Exporter
+    ↓
+관측 백엔드
 ```
 
 ### Ⅲ. 텔레메트리 신호
@@ -90,12 +92,14 @@ flowchart TD
 
 ## Ⅱ. 구성요소와 데이터 흐름
 
-```mermaid
-flowchart TD
-    A["애플리케이션 API·SDK 계측"] -->|텔레메트리| C["Collector Receiver"]
-    C --> P["Processor: 필터·가공"]
-    P --> E["Exporter"]
-    E --> B["관측 백엔드"]
+```text
+애플리케이션 계측: Trace·Metric·Log
+    ↓ OTLP 등
+Collector Receiver
+    ↓ Processor: 필터·가공
+Exporter
+    ↓
+관측 백엔드
 ```
 
 | 구성요소 | 역할 |
@@ -107,12 +111,12 @@ flowchart TD
 
 ## Ⅲ. 분산 추적 문맥 전파
 
-```mermaid
-sequenceDiagram
-    participant A as 서비스 A
-    participant B as 서비스 B
-    A->>B: 요청 + traceparent 문맥
-    B-->>A: 응답
+```text
+서비스 A
+    ↓ traceparent를 요청에 전파
+서비스 B
+    ↓ 자식 Span 생성·요청 처리
+서비스 A: 같은 Trace로 응답 연결
 ```
 
 서비스 A가 추적 식별 문맥을 요청에 담아 전달하고, 서비스 B가 이를 이어받아 같은 요청 경로에 새 작업을 기록하는 관계.

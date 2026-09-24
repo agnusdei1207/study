@@ -69,18 +69,15 @@ extra:
 
 ### 핵심 관계
 
-```mermaid
-flowchart LR
-    C["클라이언트 · 단일 도메인"] --> GW
-    subgraph GW["API Gateway 단일 진입점"]
-        direction TB
-        F1["사전 필터 JWT · SSL · 유량 제어"] --> F2["라우팅 필터 LB · 서킷 브레이커"] --> F3["사후 필터 TraceId 로깅"]
-    end
-    GW -->|"동적 라우팅"| MS
-    subgraph MS["백엔드 마이크로서비스"]
-        direction TB
-        M1["주문 서비스"] ~~~ M2["결제 서비스"] ~~~ M3["회원 서비스"]
-    end
+```text
+클라이언트
+    ↓ 단일 API 진입점
+Gateway: 인증·유량 제어·라우팅
+    ├─ 주문 서비스
+    ├─ 결제 서비스
+    └─ 회원 서비스
+
+응답·오류·추적 정보 → Gateway → 클라이언트
 ```
 
 ---
@@ -107,18 +104,15 @@ flowchart LR
 
 #### 1. API Gateway 3단계 필터 파이프라인 구조도
 
-```mermaid
-flowchart LR
-    C["클라이언트 · 단일 도메인"] --> GW
-    subgraph GW["API Gateway 단일 진입점"]
-        direction TB
-        F1["사전 필터 JWT · SSL · 유량 제어"] --> F2["라우팅 필터 LB · 서킷 브레이커"] --> F3["사후 필터 TraceId 로깅"]
-    end
-    GW -->|"동적 라우팅"| MS
-    subgraph MS["백엔드 마이크로서비스"]
-        direction TB
-        M1["주문 서비스"] ~~~ M2["결제 서비스"] ~~~ M3["회원 서비스"]
-    end
+```text
+클라이언트
+    ↓ 단일 API 진입점
+Gateway: 인증·유량 제어·라우팅
+    ├─ 주문 서비스
+    ├─ 결제 서비스
+    └─ 회원 서비스
+
+응답·오류·추적 정보 → Gateway → 클라이언트
 ```
 
 #### 2. API Gateway의 5대 주요 기능
