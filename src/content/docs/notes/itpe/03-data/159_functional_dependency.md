@@ -7,7 +7,7 @@ sidebar:
     variant: note
 title: "함수적 종속성 (Functional Dependency, FD)"
 author: "Antigravity"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-24T20:16:00+09:00"
 tags:
   - "notes-data"
 weight: 159
@@ -19,249 +19,144 @@ extra:
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>관계형 데이터 모델</span><span>정규화 이론</span><strong>함수적 종속성(FD)과 암스트롱 공리</strong></div>
+데이터베이스 → 관계형 데이터 모델 → 정규화 이론 → 함수적 종속성
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-```text
-[함수적 종속성(FD) 3대 유형 및 정규화 단계별 해소 매핑]
+| 회상 축 | 관계 |
+|:---|:---|
+| **완전 종속** | 복합키 전체가 종속자를 결정 |
+| **부분 종속** | 복합키의 일부가 종속자를 결정; 2NF 검토 대상 |
+| **이행 종속** | $X\rightarrow Y$, $Y\rightarrow Z$ 관계; 3NF 검토 대상 |
 
-  [1. 완전 함수 종속 (FFD)]           [2. 부분 함수 종속 (PFD)]       [3. 이행적 함수 종속 (TFD)]
-   복합키 전체에 종속                 복합키 일부에 종속 (2NF 위배)    A -> B 이고 B -> C (3NF 위배)
+- 본질: **함수적 종속성 (Functional Dependency, FD)** 은 한 속성 집합의 값이 다른 속성 집합의 값을 결정한다는 관계형 데이터의 제약
+- 메커니즘: 결정자 $X$가 종속자 $Y$를 결정하면 $X \rightarrow Y$로 표기하며, 업무 규칙을 후보키·정규화 검토에 활용
 
-     {학번, 과목코드}                    {학번, 과목코드}                  [학번]
-      │        │                          │      │                           │
-      │        ▼                          │      ▼                           ▼
-      └──────► 성적                       └────► [학생이름]                 [학과코드]
-     (학번+과목코드 전체가                (오직 '학번'에만 종속되므로        │
-      있어야 성적이 결정됨)                복합키 전체에 완전 종속 X)         ▼
-     ==> 2NF 달성 상태                    ==> 제2정규화 분해 대상!           [학과이름]
-                                                                            ==> 제3정규화 분해 대상!
-```
+<details>
+<summary>핵심 용어</summary>
 
-- 본질: **관계형 데이터베이스 릴레이션 내에서 어떤 속성 집합($X$)의 값이 다른 속성 집합($Y$)의 값을 고유하게 결정할 때 성립하는 속성 간의 의미론적 제약조건($X \rightarrow Y$)이자, 데이터 중복과 갱신 이상(Anomaly)을 수학적으로 분해·제거하기 위한 정규화의 핵심 이론적 토대**
-- 암기: `결-종` (결정자 X, 종속자 Y) / `완-부-이` (3대 종속성: 완전, 부분, 이행적 함수 종속) / `반-첨-이-분-결-의` (암스트롱 공리: 반사, 첨가, 이행, 분해, 결합, 의사이행)
-- 판단축:
-  - **완전 함수 종속(FFD)**: 종속자가 복합키의 '모든 속성'에 온전히 종속되는 정상 상태 $\rightarrow$ 2NF 만족.
-  - **부분 함수 종속(PFD)**: 종속자가 복합키의 '일부 속성'에만 종속되는 상태 $\rightarrow$ 제2정규화(2NF) 분해 대상.
-  - **이행적 함수 종속(TFD)**: $X \rightarrow Y$이고 $Y \rightarrow Z$인 간접 종속 상태 $\rightarrow$ 제3정규화(3NF) 분해 대상.
-- 주의: 함수적 종속성은 현재 저장된 인스턴스 데이터의 우연한 일치가 아니라, 비즈니스 도메인 업무 규칙(Business Rules)에 의해 영구적으로 정의되는 불변의 제약조건임
+- **함수적 종속성 (Functional Dependency, FD)**: 릴레이션의 합법적 상태에서 $X$ 값이 $Y$ 값을 결정하는 속성 간 제약
+- **결정자 (Determinant)**: 종속 속성의 값을 결정하는 속성 집합 $X$
+- **종속자 (Dependent)**: 결정자 $X$에 의해 값이 정해지는 속성 집합 $Y$
+- **속성 폐포 (Attribute Closure, $X^+$)**: 함수 종속성 집합에 따라 $X$가 결정하는 모든 속성의 집합
+- **암스트롱 공리 (Armstrong's Axioms)**: 함수적 종속성을 추론하는 건전하고 완전한 기본 규칙 집합
+- **제2정규형 (Second Normal Form, 2NF)**: 후보키 일부에 종속하는 비주요 속성이 없는 정규형
+- **제3정규형 (Third Normal Form, 3NF)**: 모든 비자명 함수 종속성에서 결정자가 슈퍼키이거나 종속 속성이 주요 속성인 정규형
+- **보이스-코드 정규형 (Boyce–Codd Normal Form, BCNF)**: 모든 비자명 함수 종속성의 결정자가 슈퍼키인 정규형
+
+</details>
+
 ---
 
 ## 1교시 예상문제 (10점)
 
-> 함수적 종속성 (Functional Dependency, FD)의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> 함수적 종속성에 관하여 설명하시오. (예상)
 
 ---
 
 ## 1교시 10점 답안
 
-### Ⅰ. 정의와 목적
+## Ⅰ. 함수적 종속성의 개요
 
-| 항목 | 핵심 서술 내용 |
-|:---|:---|
-| **정의** | 속성 집합 $X$의 값이 릴레이션의 모든 합법적 상태에서 $Y$의 값을 하나로 결정할 때 성립하는 제약 $X \rightarrow Y$ |
-| **목적** | 속성 간 업무 규칙을 명시해 후보키 판정과 정규화 분해의 근거를 제공 |
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **함수적 종속성 (Functional Dependency, FD)** 은 릴레이션의 합법적 상태에서 속성 집합 $X$의 값이 $Y$의 값을 결정하는 제약 $X \rightarrow Y$ |
+| 목적 | 속성 간 업무 규칙을 나타내 후보키 판정과 정규화 검토의 근거 제공 |
 
-### Ⅱ. 종속 유형과 정규화
+## Ⅱ. 종속 유형과 정규화 기준
 
 | 종속 유형 | 핵심 구분 |
 |---|---|
 | **완전 함수 종속** | 복합 결정자의 진부분집합으로는 종속자가 결정되지 않는 관계 |
 | **부분 함수 종속** | 복합 결정자의 일부 속성으로 종속자가 결정되는 관계, 2NF 검토 대상 |
-| **이행적 함수 종속** | $X \rightarrow Y$와 $Y \rightarrow Z$가 성립하는 관계, 비주요 속성 간 종속이면 3NF 위반 여부 검토 대상 |
+| **이행적 함수 종속** | $X \rightarrow Y$와 $Y \rightarrow Z$가 성립하는 관계; 비키 결정자와 비주요 종속자일 때 3NF 검토 대상 |
 
-### Ⅲ. 추론 규칙과 제언
+## Ⅲ. 암스트롱의 기본 공리
 
-| 구분 | 핵심 |
+| 공리 | 추론 규칙 |
 |---|---|
-| **암스트롱 공리** | 반사·첨가·이행 규칙으로 함수 종속성을 추론 |
-| **10점 제언** | 핵심 엔터티의 결정자와 종속자를 확인해 논리 모델의 함수 종속성을 문서화 |
----
+| 반사 (Reflexivity) | $Y \subseteq X$이면 $X \rightarrow Y$ |
+| 첨가 (Augmentation) | $X \rightarrow Y$이면 $XZ \rightarrow YZ$ |
+| 이행 (Transitivity) | $X \rightarrow Y$이고 $Y \rightarrow Z$이면 $X \rightarrow Z$ |
 
-### 핵심 관계
-
-| 종속성 유형 | 학술적 정의 및 조건 | 위배 시 이상현상 | 정규화 조치 |
-|:---|:---|:---|:---|
-| **완전 함수 종속 (FFD)** | $X \rightarrow Y$에서 $X$의 임의의 진부분집합 $X'$에 대해 $X' \rightarrow Y$가 성립하지 않음 | 정상 (데이터 이상현상 없음) | 제2정규형(2NF) 만족 기준 |
-| **부분 함수 종속 (PFD)** | $X \rightarrow Y$에서 $X$의 진부분집합 $X'$에 대해 $X' \rightarrow Y$가 성립함 | 학생 이름 변경 시 수강 과목마다 중복 수정 발생 | **제2정규화 (2NF)**: 복합키 분해 |
-| **이행적 함수 종속 (TFD)** | $X \rightarrow Y$이고 $Y \rightarrow Z$일 때 $X \rightarrow Z$가 성립 | 학과명 변경 시 학생 튜플마다 값 수정 가능성 | 결정자와 종속 속성의 키·주요 속성 여부를 확인해 3NF 위반이면 분해 |
-
----
-
+- 제언: 업무 규칙에서 결정자와 종속자를 확인해 논리 모델에 기록
 ## 2~4교시 예상문제 (25점)
 
-> 관계 데이터 모델에서 정규화의 기초가 되는 함수적 종속성(Functional Dependency)의 개념과 표기법을 설명하고, 3대 종속성 유형(완전, 부분, 이행적)의 특징 및 정규화 단계와의 연계성, 그리고 함수 종속성을 추론하기 위한 암스트롱의 공리(Armstrong's Axioms)를 설명하시오. (25점)
-
-> (25점, 예상)
+> 함수적 종속성에 관하여 설명하시오. (예상·25점)
 
 ---
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. 정규화의 수학적 기초인 함수적 종속성(FD) 개요
+## Ⅰ. 함수적 종속성의 개요
 
-| 항목 | 핵심 서술 내용 |
-|:---|:---|
-| **정의** | 속성 집합 $X$의 값이 릴레이션의 모든 합법적 상태에서 $Y$의 값을 하나로 결정할 때 성립하는 제약 $X \rightarrow Y$ |
-| **목적** | 속성 간 업무 규칙을 명시해 후보키 판정과 정규화 분해의 근거를 제공 |
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **함수적 종속성 (Functional Dependency, FD)** 은 릴레이션의 합법적 상태에서 속성 집합 $X$의 값이 $Y$의 값을 결정하는 제약 $X \rightarrow Y$ |
+| 목적 | 속성 간 업무 규칙을 나타내 후보키 판정과 정규화 검토의 근거 제공 |
 
-#### 한줄 요약: 한 속성의 값이 정해지면 다른 속성의 값이 오직 하나로 결정되는 속성 간의 종속 관계
+## Ⅱ. 완전·부분·이행적 종속
 
-- **등장 배경**:
-  - 데이터베이스 스키마 설계 시 속성들이 아무런 규칙 없이 단일 테이블에 뭉쳐 있으면, 튜플 삽입·삭제·수정 시 데이터 불일치(이상현상) 발생
-  - 테이블을 어떤 기준으로 쪼개야 중복이 사라지고 무손실 복원이 보장되는가를 판별하기 위한 수학적 기준 마련
-- **정의**:
-  - 릴레이션 $R$의 속성 부분집합 $X$와 $Y$에 대하여, 임의의 튜플 $t_1, t_2 \in R$이 $t_1[X] = t_2[X]$일 때 항상 $t_1[Y] = t_2[Y]$를 만족하면, "속성 집합 $Y$는 속성 집합 $X$에 함수적으로 종속된다"고 정의함
-- **표기법**:
-  $$X \rightarrow Y$$
-  - $X$: **결정자 (Determinant)** — 다른 속성의 값을 고유하게 결정짓는 속성 집합
-  - $Y$: **종속자 (Dependent)** — 결정자에 의해 종속되는 속성 집합
+```mermaid
+flowchart TD
+    K[학번 + 과목코드] -->|전체 결정자| G[성적]
+    S[학번] -->|복합키 일부로 결정| N[학생 이름]
+    S --> D[학과코드]
+    D --> M[학과명]
+```
 
-## Ⅱ. 함수적 종속성의 3대 핵심 유형
-
-#### 한줄 요약: 복합키 전체에 걸리는 '완전', 일부에 걸리는 '부분', 징검다리를 건너는 '이행적' 종속성
-
-<div class="itpe-diagram-box">
-  <div class="itpe-diagram-header">
-    <span class="itpe-tag">아키텍처 다이어그램</span>
-    <span class="itpe-title">함수적 종속성 3대 유형(FFD, PFD, TFD) 구조 및 정규화 분해 매핑</span>
-  </div>
-  <div class="itpe-diagram-body">
-    <svg class="itpe-svg" viewBox="0 0 520 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="arrow-fd" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--color-text, #333)" />
-        </marker>
-      </defs>
-      <!-- 1. 완전 함수 종속 (FFD) -->
-      <rect x="15" y="15" width="235" height="120" rx="5" fill="var(--color-bg-secondary, #f0f4f8)" stroke="var(--color-border, #0284c7)" stroke-width="1.5" />
-      <text x="132" y="35" font-size="11" font-weight="bold" text-anchor="middle" fill="var(--color-primary, #0284c7)">1. 완전 함수 종속 (FFD)</text>
-      <text x="132" y="50" font-size="9" text-anchor="middle" fill="var(--color-text-muted, #555)">복합키 전체 속성에 종속 ┃ 2NF 만족 상태</text>
-      <!-- 복합키 박스 -->
-      <rect x="35" y="62" width="90" height="25" rx="3" fill="#ffffff" stroke="#0284c7" stroke-width="1" />
-      <text x="80" y="78" font-size="10" font-weight="bold" text-anchor="middle" fill="#0369a1">{학번, 과목코드}</text>
-      <!-- 화살표 -->
-      <path d="M 125 74 L 160 74" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrow-fd)" />
-      <!-- 종속자 -->
-      <rect x="165" y="62" width="65" height="25" rx="3" fill="#eff6ff" stroke="#0284c7" stroke-width="1" />
-      <text x="197" y="78" font-size="10" font-weight="bold" text-anchor="middle" fill="#1e40af">성적</text>
-      <text x="132" y="112" font-size="9" text-anchor="middle" fill="#059669">둘 중 하나라도 빠지면 성적 결정 불가</text>
-
-      <!-- 2. 부분 함수 종속 (PFD) -->
-      <rect x="270" y="15" width="235" height="120" rx="5" fill="var(--color-bg-secondary, #f0f4f8)" stroke="var(--color-border, #0284c7)" stroke-width="1.5" />
-      <text x="387" y="35" font-size="11" font-weight="bold" text-anchor="middle" fill="#dc2626">2. 부분 함수 종속 (PFD)</text>
-      <text x="387" y="50" font-size="9" text-anchor="middle" fill="#dc2626">복합키 일부 속성에만 종속 ┃ 2NF 위배!</text>
-      <!-- 복합키 박스 -->
-      <rect x="285" y="62" width="95" height="25" rx="3" fill="#ffffff" stroke="#64748b" stroke-width="1" />
-      <text x="332" y="78" font-size="10" text-anchor="middle" fill="#1e293b">{학번, 과목코드}</text>
-      <!-- 부분 추출 화살표 -->
-      <path d="M 310 87 L 310 105 L 390 105" stroke="#dc2626" stroke-width="1.8" marker-end="url(#arrow-fd)" />
-      <text x="315" y="100" font-size="8" fill="#dc2626">학번만으로 결정</text>
-      <!-- 종속자 -->
-      <rect x="395" y="93" width="75" height="25" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1" />
-      <text x="432" y="109" font-size="10" font-weight="bold" text-anchor="middle" fill="#991b1b">학생이름</text>
-      <text x="387" y="125" font-size="8" text-anchor="middle" fill="#b91c1c">==► 제2정규화 분해 대상</text>
-
-      <!-- 3. 이행적 함수 종속 (TFD) -->
-      <rect x="15" y="145" width="490" height="120" rx="5" fill="var(--color-bg-secondary, #f0f4f8)" stroke="var(--color-border, #0284c7)" stroke-width="1.5" />
-      <text x="260" y="165" font-size="11" font-weight="bold" text-anchor="middle" fill="#d97706">3. 이행적 함수 종속 (TFD: Transitive Functional Dependency)</text>
-      <text x="260" y="180" font-size="9" text-anchor="middle" fill="#b45309">X ──► Y 이고 Y ──► Z (Y는 비후보키) 일 때 X ──► Z 성립 ┃ 3NF 위배!</text>
-
-      <!-- X -> Y -> Z 시퀀스 -->
-      <rect x="40" y="195" width="90" height="30" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" />
-      <text x="85" y="214" font-size="10" font-weight="bold" text-anchor="middle" fill="#1e40af">X (학번)</text>
-
-      <path d="M 130 210 L 175 210" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arrow-fd)" />
-      <text x="152" y="204" font-size="8" text-anchor="middle" fill="#2563eb">직접 결정</text>
-
-      <rect x="180" y="195" width="110" height="30" rx="3" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5" />
-      <text x="235" y="214" font-size="10" font-weight="bold" text-anchor="middle" fill="#b45309">Y (학과코드)</text>
-
-      <path d="M 290 210 L 335 210" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#arrow-fd)" />
-      <text x="312" y="204" font-size="8" text-anchor="middle" fill="#b45309">직접 결정</text>
-
-      <rect x="340" y="195" width="110" height="30" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" />
-      <text x="395" y="214" font-size="10" font-weight="bold" text-anchor="middle" fill="#991b1b">Z (학과이름)</text>
-
-      <!-- 간접 이행 화살표 -->
-      <path d="M 85 225 L 85 250 L 395 250 L 395 225" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrow-fd)" />
-      <text x="240" y="246" font-size="9" font-weight="bold" text-anchor="middle" fill="#dc2626">이행 종속 (X ──► Z) ==> 제3정규화 분해 대상!</text>
-    </svg>
-  </div>
-  <div class="itpe-diagram-footer">
-    2NF는 복합키의 부분 함수 종속(PFD)을 제거하고, 3NF는 비주요 속성 간의 이행적 함수 종속(TFD)을 분해함
-  </div>
-</div>
-
-| 종속성 유형 | 학술적 정의 및 조건 | 위배 시 이상현상 | 정규화 조치 |
-|:---|:---|:---|:---|
-| **완전 함수 종속 (FFD)** | $X \rightarrow Y$에서 $X$의 임의의 진부분집합 $X'$에 대해 $X' \rightarrow Y$가 성립하지 않음 | 정상 (데이터 이상현상 없음) | 제2정규형(2NF) 만족 기준 |
-| **부분 함수 종속 (PFD)** | $X \rightarrow Y$에서 $X$의 진부분집합 $X'$에 대해 $X' \rightarrow Y$가 성립함 | 학생 이름 변경 시 수강 과목마다 중복 수정 발생 | **제2정규화 (2NF)**: 복합키 분해 |
-| **이행적 함수 종속 (TFD)** | $X \rightarrow Y$이고 $Y \rightarrow Z$일 때 $X \rightarrow Z$가 성립 ($Y$는 비후보키) | 학과명 변경 시 모든 학생 튜플 수정, 학생 없는 학과 등록 불가 | **제3정규화 (3NF)**: $X-Y$, $Y-Z$ 분해 |
+| 유형 | 예시·판정 | 정규화와의 관계 |
+|---|---|---|
+| 완전 함수 종속 | `(학번, 과목코드) → 성적`; 어느 한 속성만으로는 성적 결정 불가 | 복합 후보키 전체에 종속하는 비주요 속성은 2NF 조건에 부합 |
+| 부분 함수 종속 | `학번 → 학생 이름`; 복합 후보키의 일부가 속성을 결정 | 비주요 속성의 부분 종속은 2NF 위반 요인 |
+| 이행적 함수 종속 | `학번 → 학과코드`, `학과코드 → 학과명` | 3NF는 각 비자명 종속의 결정자와 종속 속성의 키 조건으로 판정 |
 
 ## Ⅲ. 암스트롱의 공리 (Armstrong's Axioms)
 
-#### 한줄 요약: 주어진 함수 종속성 집합으로부터 새로운 모든 참인 종속성을 논리적으로 유도하는 6대 공리
+| 규칙 | 의미 |
+|---|---|
+| 반사 (Reflexivity) | $Y\subseteq X$이면 $X\rightarrow Y$ |
+| 첨가 (Augmentation) | $X\rightarrow Y$이면 $XZ\rightarrow YZ$ |
+| 이행 (Transitivity) | $X\rightarrow Y$, $Y\rightarrow Z$이면 $X\rightarrow Z$ |
 
-```text
-[암스트롱 공리의 3대 기본 규칙 및 3대 확장 규칙]
+이 세 규칙은 건전하고 완전하며, 분해·결합·의사이행 규칙은 이들로부터 유도 가능.
 
-  [기본 3대 규칙 (Sound & Complete)]
-  1. 반사 규칙 (Reflexivity)   : Y ⊆ X 이면 X ──► Y
-  2. 첨가 규칙 (Augmentation)  : X ──► Y 이면 XZ ──► YZ
-  3. 이행 규칙 (Transitivity)  : X ──► Y 이고 Y ──► Z 이면 X ──► Z
-            │
-            ▼ 기본 규칙으로부터 수학적으로 유도됨
-  [확장 3대 규칙]
-  4. 분해 규칙 (Decomposition) : X ──► YZ 이면 X ──► Y 이고 X ──► Z
-  5. 결합 규칙 (Union)         : X ──► Y 이고 X ──► Z 이면 X ──► YZ
-  6. 의사이행 (Pseudo-transitivity) : X ──► Y 이고 WY ──► Z 이면 WX ──► Z
+| 추론 개념 | 데이터 모델링 활용 |
+|---|---|
+| 속성 폐포 $X^+$ | 함수 종속 집합 $F$로부터 $X$가 결정하는 속성 집합 계산 |
+| 슈퍼키 판정 | $X^+$가 릴레이션의 전체 속성을 포함하면 $X$는 슈퍼키 |
+| 후보키 판정 | 슈퍼키에서 불필요한 속성을 더 제거할 수 없는지 확인 |
+
+## Ⅳ. 함수 종속성 분석과 정규화 절차
+
+```mermaid
+flowchart TD
+    A[업무 규칙에서 함수 종속성 도출] --> B[후보키와 속성 폐포 판정]
+    B --> C[정규형별 종속 조건 확인]
+    C -->|위반 발견| D[릴레이션 분해]
+    C -->|조건 충족| E[모델 검토]
+    D --> F[무손실 결합 검증]
+    D --> G[종속성 보존 여부 검토]
+    F --> H[업무 질의·제약 시험]
+    G --> H
 ```
 
-### 1. 기본 3대 규칙 (기초 공리계)
-- **건전성(Soundness)**: 공리를 통해 유도된 모든 종속성은 참임
-- **완전성(Completeness)**: 주어진 집합 $F$로부터 논리적으로 도출 가능한 모든 참인 종속성을 이 3대 규칙만으로 남김없이 유도 가능함
+정규화는 종속성과 키 조건을 확인하는 설계 과정. 제2정규형 (Second Normal Form, 2NF)은 후보키 일부에 종속하는 비주요 속성이 없어야 하며, 제3정규형 (Third Normal Form, 3NF)은 모든 비자명 종속성에서 결정자가 슈퍼키이거나 종속 속성이 주요 속성이어야 함. 보이스-코드 정규형 (Boyce–Codd Normal Form, BCNF)은 모든 비자명 종속성의 결정자가 슈퍼키여야 함. 분해 결과의 무손실 결합과 종속성 보존은 별도로 검토.
 
-### 2. 폐포 (Closure, $X^+$)
-- 속성 집합 $X$에 의해 결정될 수 있는 모든 속성들의 집합을 $X$의 폐포($X^+$)라 함
-- $X^+ = R$ 전체 속성 집합이면, $X$는 해당 릴레이션의 **슈퍼키(Super Key)**임
+## Ⅴ. 함수적 종속성과 갱신 이상
 
-## Ⅳ. 함수 종속 다이어그램(FDD) 작성 및 정규화 절차
-
-#### 한줄 요약: 속성 간 결정 화살표를 시각화하여 비정규형에서 BCNF까지 단계별 무손실 분해 진행
-
-```text
-[함수 종속 다이어그램 기반 정규화 4단계 흐름]
-
-  [1단계: FDD 작성] ──► 엔터티 내 모든 속성 간 결정자-종속자 화살표 도식화
-           │
-           ▼
-  [2단계: 2NF 분해] ──► 복합 기본키의 일부에서 뻗어나가는 PFD 화살표 절단
-           │            - R1(학번, 과목, 성적), R2(학번, 이름) 분해
-           ▼
-  [3단계: 3NF 분해] ──► 기본키가 아닌 일반 속성에서 뻗어나가는 TFD 화살표 절단
-           │            - R1(학번, 학과코드), R2(학과코드, 학과명) 분해
-           ▼
-  [4단계: BCNF 분해] ──► 후보키가 아닌 결정자(화살표 출발점)를 독립 릴레이션으로 분해
-```
-
-## Ⅴ. 실무 아키텍처 장애 및 설계 지침
-
-#### 한줄 요약: 데이터 모델링 시 FDD 검증 누락으로 인한 대규모 갱신 이상과 성능 저하 방지
-
-- **이행적 종속 방치로 인한 연쇄 락 장애**:
-  - 주문 테이블에 고객 주소 속성을 중복 저장하면, 주소 변경 시 여러 주문 레코드의 값을 함께 갱신해야 하는 부담
-  - **대응**: 고객 주소 및 우편번호는 별도의 `CUSTOMER_ADDRESS` 테이블로 3NF 분해하고 주문에는 `배송지_스냅샷_ID`만 보관
-- **함수 종속성 보존 손실 주의**:
-  - BCNF 분해 시 기존 복합키에 걸려 있던 업무 규칙이 분실되지 않도록 외래키 및 체크 제약조건을 신중히 설계
+| 종속 관계 예 | 한 테이블에 함께 저장할 때의 위험 | 설계 검토 |
+|---|---|---|
+| `(학번, 과목코드) → 성적`, `학번 → 학생 이름` | 학생 이름 반복 저장에 따른 갱신 이상 | 학생 속성을 학생 릴레이션으로 분리 검토 |
+| `학번 → 학과코드`, `학과코드 → 학과명` | 학과명 반복 저장과 변경 시 불일치 가능성 | 학과 속성 분리와 참조 관계 검토 |
+| BCNF 분해 중 결정자 종속 분리 | 분해 후 원래 제약을 조인 없이 확인하기 어려울 수 있음 | 무손실 결합과 종속성 보존을 각각 검증 |
 
 ## Ⅵ. 기술사적 제언
 
-| 한계 | 우선 제안 |
-|:---|:---|
-| 업무 규칙을 확인하지 않고 테이블만 분해하면 필요한 종속성이 누락되거나 조인 결과가 달라질 수 있음 | 핵심 엔터티의 함수 종속성을 업무 담당자와 확인하고, 후보키·무손실성·종속성 보존을 함께 검증 |
-| BCNF 분해가 종속성 보존을 항상 보장하지는 않음 | 종속성 보존이 필수인 제약은 분해 후 별도 제약·검증 절차로 관리 |
+| 한계 | 해결 방안 |
+|---|---|
+| 현재 인스턴스에서 우연히 관측된 값의 일치를 업무 규칙으로 오인할 수 있음 | 업무 담당자와 속성의 의미·유효 범위를 확인해 함수 종속성을 명시 |
+| BCNF 분해 뒤 모든 종속성이 개별 릴레이션에서 보존된다고 볼 수 없음 | 제약별 종속성 보존 여부를 검토하고, 필요한 검증을 모델·업무 규칙에 반영 |
 
 ---
 
@@ -278,6 +173,6 @@ extra:
 
 ## 연결 토픽
 
-- 상위 토픽: [03-024 정규화 종합](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/024_normalization_overview.md)
-- 선수 토픽: [03-157 키(Key)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/157_key.md)
-- 후속 토픽: [03-028 제2정규형(2NF)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/028_2nf.md), [03-029 제3정규형(3NF)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/029_3nf.md), [03-153 BCNF](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/153_bcnf.md)
+- 상위 토픽: [03-024 정규화 종합](./024_normalization_overview.md)
+- 선수 토픽: [03-157 키(Key)](./157_key.md)
+- 후속 토픽: [03-028 제2정규형(2NF)](./028_2nf.md), [03-029 제3정규형(3NF)](./029_3nf.md), [03-153 BCNF](./153_bcnf.md)
