@@ -24,6 +24,7 @@ extra:
 
 <details><summary>핵심 용어</summary>
 
+- **NIST CSF 2.0**: 조직의 사이버보안 위험을 식별하고 관리하는 NIST 발간 프레임워크.
 - **NIST(National Institute of Standards and Technology, 미국 국립표준기술연구소)**: CSF를 발간하는 미국 연방 기관.
 - **CSF(Cybersecurity Framework, 사이버보안 프레임워크)**: 조직의 사이버보안 위험관리 성과를 정리하고 개선하는 체계.
 - **Govern(GV)**: 사이버보안 위험관리 전략·정책·역할·감독을 정하는 CSF 기능.
@@ -63,7 +64,7 @@ Govern (GV) ────────┼─ Detect (DE): 이상 탐지
 
 ### Ⅲ. 한 줄 제언
 
-경영진이 위험 수용 기준과 책임자를 정하고 이를 보안 활동의 우선순위와 자원 배분에 반영.
+제언: 경영진이 위험 수용 기준과 책임자를 정하고 이를 보안 활동의 우선순위와 자원 배분에 반영.
 
 ---
 
