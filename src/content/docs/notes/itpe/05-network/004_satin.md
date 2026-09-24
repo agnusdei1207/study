@@ -3,8 +3,8 @@ title: "위성·공중·지상 통합망(SATIN·NTN)"
 author: "OpenAI Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-network"]
-sidebar: { badge: { text: "A" } }
-extra: { keyword_grade: "A", model: "GPT-5.6 Sol" }
+sidebar: { badge: { text: "기초" } }
+extra: { keyword_grade: "기초", model: "GPT-5.6 Sol" }
 ---
 <p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>
 ## 지식 로드맵 내 현재 위치

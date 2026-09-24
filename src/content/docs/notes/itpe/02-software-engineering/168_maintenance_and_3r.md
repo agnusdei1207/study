@@ -10,10 +10,10 @@ date: "2026-09-24T15:54:00+09:00"
 author: "Codex"
 sidebar:
   badge:
-    text: "A"
+    text: "기초"
 extra:
   model: "GPT-6"
-  keyword_grade: "A"
+  keyword_grade: "기초"
 ---
 
 ## 학습 위치

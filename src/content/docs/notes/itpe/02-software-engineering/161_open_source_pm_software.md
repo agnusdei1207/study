@@ -5,9 +5,9 @@ date: "2026-09-24T15:45:00+09:00"
 tags: ["notes-software-engineering"]
 sidebar:
   badge:
-    text: "C"
+    text: "응용"
 extra:
-  keyword_grade: "C"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 

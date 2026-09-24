@@ -4,7 +4,7 @@ author: "OpenAI Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-network"
-sidebar: { badge: { text: "A" } }
+sidebar: { badge: { text: "기초" } }
 extra:
   keyword_grade: "기초"
   model: "GPT-6"
