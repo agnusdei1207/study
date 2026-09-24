@@ -48,7 +48,7 @@ extra:
 
 ## 1교시 10점 답안
 
-### Ⅰ. AI 거버넌스 플랫폼 개요
+### Ⅰ. **AI 거버넌스 플랫폼** 개요
 
 | 구분 | 핵심 |
 |---|---|
@@ -57,7 +57,7 @@ extra:
 
 ### Ⅱ. 핵심 아키텍처 및 메커니즘
 
-- 핵심 메커니즘: AI 자산 등록(Inventory) → 위험도 분류 → 데이터/모델 리니지 검증 → 배포 게이트(Policy-as-Code) → 런타임 모니터링 및 Human Oversight
+- 핵심 메커니즘: AI 자산 등록(Inventory) → 위험도 분류 → 데이터/모델 리니지 검증 → 배포 게이트(**Policy-as-Code**) → 런타임 모니터링 및 **Human Oversight**
 
 ```mermaid
 flowchart TD
@@ -77,7 +77,7 @@ flowchart TD
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. AI 거버넌스 플랫폼 개요
+## Ⅰ. **AI 거버넌스 플랫폼** 개요
 
 > AI 거버넌스 플랫폼은 선언적 원칙을 **승인 Gate·운영 통제·감사 증적** 으로 전환하여 AI 위험을 수명주기 전반에서 관리함.
 
@@ -88,7 +88,7 @@ flowchart TD
 | 정의 | **AI 거버넌스 플랫폼**은 조직의 AI 정책과 위험통제를 AI 자산·개발·배포·운영 과정에 연결하는 관리 도구다. |
 | 목적 | AI 사용을 파악하고 책임·위험·준수 증거를 추적하도록 돕는다. |
 
-ISO/IEC 42001:2023의 AIMS와 NIST AI RMF의 Govern·Map·Measure·Manage를 조직 환경에 맞게 적용한다.
+ISO/IEC 42001:2023의 **AIMS**와 NIST AI RMF의 Govern·Map·Measure·Manage를 조직 환경에 맞게 적용한다.
 
 ## Ⅱ. AI 거버넌스 플랫폼 구성체계
 
@@ -97,9 +97,9 @@ ISO/IEC 42001:2023의 AIMS와 NIST AI RMF의 Govern·Map·Measure·Manage를 조
 | 계층 | 핵심 기능 | 주요 증적 |
 |---|---|---|
 | 관리체계 | 정책·역할·책임·위험기준·예외 | 정책·RACI·위험수용 기록 |
-| 통제평면 | AI 자산·위험평가·승인·변경관리 | AI Inventory·승인 이력 |
-| 수명주기 연계 | 데이터·모델·프롬프트·배포 Gate | Lineage·평가결과·System Card |
-| 운영통제 | 성능·편향·보안 감시·Human Oversight | 운영로그·경보·개입 기록 |
+| 통제평면 | AI 자산·위험평가·승인·변경관리 | **AI Inventory**·승인 이력 |
+| 수명주기 연계 | 데이터·모델·프롬프트·배포 Gate | **Lineage**·평가결과·**System Card** |
+| 운영통제 | 성능·편향·보안 감시·**Human Oversight** | 운영로그·경보·개입 기록 |
 | 증적관리 | 의무-통제-증적 매핑·감사·개선 | 통제목록·감사추적·개선조치 |
 
 ## Ⅲ. AI 수명주기 통제 프로세스
@@ -114,11 +114,11 @@ flowchart TD
     S4 -->|"변경·위험 증가 시 재평가"| S2
 ```
 
-## Ⅳ. Data Governance·MLOps·AI Governance 비교
+## Ⅳ. Data Governance·**MLOps**·AI Governance 비교
 
 > 세 영역은 대체관계가 아니라 데이터 품질, 생산운영, 책임통제를 분담하는 결합관계임.
 
-| 기준 | Data Governance | MLOps·LLMOps | AI Governance Platform |
+| 기준 | Data Governance | MLOps·**LLMOps** | AI Governance Platform |
 |---|---|---|---|
 | 초점 | 데이터 품질·보호 | 개발·배포·운영 | 책임·위험·준수 |
 | 대상 | 데이터·메타데이터 | 모델·프롬프트·파이프라인 | AI 시스템·사용맥락 |
