@@ -40,7 +40,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> FinOps의 개념과 Inform·Optimize·Operate 반복 구조를 설명하시오. (예상·10점)
+> FinOps에 관하여 설명하시오. (예상·10점)
 
 ---
 
