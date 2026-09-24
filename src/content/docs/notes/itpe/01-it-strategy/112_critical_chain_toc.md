@@ -1,29 +1,29 @@
 ---
 title: "CCPM·TOC"
-author: "Codex"
-date: "2026-09-22T23:45:00+09:00"
+author: "OpenAI"
+date: "2026-09-24T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → CCPM· **TOC**
+현재 위치: IT 전략·관리 → CCPM·TOC
 
 
 ## 30초 인출
 
-- 본질: CCPM은 작업 순서와 자원 제약을 함께 고려해 핵심 경로를 찾고 통합 버퍼로 납기를 관리하는 일정 기법이다.
-- 메커니즘: 개별 작업의 안전여유를 통합해 **Critical Chain** 을 도출하고 **PB** · **FB** · **RB** **버퍼** 와 **Fever Chart** 로 통제한다.
-- 판정 기준: 작업자 안전여유 회수 및 통합 배치 여부, **Fever Chart** 상 진척 대비 **버퍼** 소진율(Green/Yellow/Red) 및 제약자원 **WIP** 상한 준수한다.
+- 본질: CCPM·TOC는 프로젝트의 완료일을 좌우하는 작업 의존성과 자원 제약을 함께 고려해 일정을 관리하는 방식이다.
+- 메커니즘: 자원 경합을 반영해 Critical Chain을 정하고, 프로젝트·피딩 버퍼로 지연 위험을 모아 관리한다.
 
 <details>
 <summary>핵심 용어</summary>
 
+- **CCPM·TOC**: 제약이론을 일정관리에 적용해 자원 제약과 작업 순서를 함께 다루는 관리 방식.
 - **TOC(Theory of Constraints)** : 전체 시스템 성과를 제약하는 병목 요인을 식별·집중 개선하는 제약이론
 - **CCPM(Critical Chain Project Management)** : 작업 선후행과 자원 제약을 통합 반영하고 프로젝트 통합 버퍼로 공기를 통제하는 일정 관리 기법
 - **PB(Project Buffer)** : Critical Chain 맨 끝에 배치하여 전체 프로젝트 납기를 보호하는 프로젝트 버퍼
@@ -46,15 +46,14 @@ extra:
 
 ## 1교시 10점 답안
 
-### 1. 정의·목적
+### Ⅰ. 개요
 
-- 정의: 엘리 골드렛의 제약이론(TOC)을 프로젝트 일정 관리에 적용하여, 개별 작업의 안전 여유를 제거하고 프로젝트 및 합류 지점에 집중 버퍼를 배치하여 납기 준수율을 극대화하는 관리 기법
-- 목적: 파킨슨 법칙 및 학생 증후군 타파 · 자원 제약을 반영한 현실적 주공정 관리 · 집중 버퍼 관리를 통한 납기 단축
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **CCPM·TOC**는 작업 순서와 자원 제약을 함께 고려해 프로젝트의 완료일과 지연 위험을 관리하는 일정 방식이다. |
+| 목적 | 자원 경합과 작업 지연이 전체 납기에 미치는 영향을 줄인다. |
 
-- **정의** : 제약이론( **TOC** )을 바탕으로 작업 선후행 관계뿐만 아니라 자원 제약을 함께 고려해 **Critical Chain** 을 도출하고, 통합 **버퍼** (PB, FB, RB)로 프로젝트를 통제하는 **일정관리 기법** .
-- **목적** : 파킨슨 법칙, 학생 증후군, 멀티태스킹으로 인한 일정 지연 방지 및 납기 준수율 극대화.
-
-### 2. Critical Chain 및 버퍼 배치 구조
+### Ⅱ. Critical Chain 및 버퍼 배치 구조
 
 ```mermaid
 flowchart LR
@@ -73,7 +72,7 @@ flowchart LR
     T1 --> T2 --> T3 --> PB
 ```
 
-### 3. 3대 버퍼 및 관리 통제
+### Ⅲ. 버퍼별 역할
 
 | **버퍼** 유형 | 설치 위치 | 핵심 역할 |
 |---|---|---|
@@ -85,7 +84,7 @@ flowchart LR
 
 ## 2~4교시 예상문제 (25점)
 
-> **(미출제 예상·25점)** CCPM의 개념과 **Critical Chain** 도출·Buffer 관리방식을 설명하고, CPM과 비교하여 문제점·대응책을 제시하시오.
+> CCPM의 개념과 Critical Chain 도출·버퍼 관리방식을 설명하고, CPM과 비교해 적용 시 유의점을 제시하시오. (예상·25점)
 
 ---
 
@@ -95,8 +94,8 @@ flowchart LR
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **TOC** 의 제약 관리 원리를 프로젝트 일정에 적용해 **작업 의존성** 과 **자원 제약** 을 함께 반영한 **Critical Chain** 을 도출하고 **버퍼** 소비로 납기를 통제하는 기법 |
-| 목적 | 자원 충돌과 작업 지연의 전파를 관리해 프로젝트 납기 예측 가능성을 높인다. |
+| 정의 | **CCPM·TOC**는 작업 순서와 자원 제약을 함께 고려해 프로젝트의 완료일과 지연 위험을 관리하는 일정 방식이다. |
+| 목적 | 자원 경합과 작업 지연이 전체 납기에 미치는 영향을 줄인다. |
 
 ## Ⅱ. Critical Chain 및 버퍼 관리 체계
 
@@ -119,10 +118,10 @@ flowchart LR
 
 | 요소 | 위치 | 역할 |
 |---|---|---|
-| **Critical Chain** | 작업·자원 제약 반영 핵심 Chain | 프로젝트 완료일 결정 |
-| PB | **Critical Chain** 끝 | 전체 납기 보호 |
-| FB | 비임계 Chain 합류점 | 합류 지연 전파 차단 |
-| RB | 핵심자원 투입 전 | 자원 준비 알림 |
+| **Critical Chain** | 선후행 관계와 자원 제약을 반영한 작업 연결 | 프로젝트 완료일을 좌우 |
+| PB | **Critical Chain** 끝 | 체인 전체의 지연을 흡수 |
+| FB | 비임계 경로가 **Critical Chain** 에 합류하는 지점 | 합류 작업으로 지연이 번지는 것을 완화 |
+| RB | 중요 자원 투입 전에 알림 | 필요한 자원이 제때 준비되도록 함 |
 
 Buffer 크기는 작업 불확실성·추정방식·위험 데이터를 반영해 정하며 일률적인 절반 규칙을 강제하지 않음.
 
@@ -147,42 +146,25 @@ flowchart TD
 
 ## Ⅴ. 문제점·대응책
 
-| 위험 | 대책 | 효과 |
+| 위험 | 대책 |
 |---|---|---|
-| 공격적 추정 강요 | 추정 근거·범위·위험 합의 | 일정 신뢰 확보 |
-| Buffer를 예비시간으로 소진 | 변경승인·소진원인 기록 | Buffer 목적 보호 |
-| 다중 프로젝트 자원경합 | Portfolio 우선순위·WIP 제한 | Multitasking 감소 |
-| 신호등 임계치 기계 적용 | 추세·잔여위험·복구계획 병행 | 오판 방지 |
+| 지나치게 공격적인 작업 기간 | 작업 근거와 불확실성을 팀이 검토 | 실현 가능한 일정 확보 |
+| 버퍼 소진 원인 불명 | 소진 이유와 복구조치를 기록 | 지연 원인을 추적 |
+| 공유 자원 경합 | 여러 프로젝트의 착수 순서와 자원 가용성 조정 | 동시작업·대기 감소 |
+| 신호 구간을 기계적으로 적용 | 남은 작업량·소진 추세·복구안을 함께 검토 | 대응 우선순위 개선 |
 
-## Ⅵ. 결론·기술사적 제언
+## Ⅵ. 버퍼 크기와 대응 기준을 프로젝트 위험에 맞추는 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- 문제: 파킨슨 법칙과 학생 증후군으로 인해 개별 작업마다 숨겨둔 안전 여유(Safety Buffer)가 낭비되고 프로젝트 납기가 지연됨.
-- 해결 방안: 제약이론(TOC) 기반 CCPM을 도입하여 개별 작업 안전 여유를 50% 축소하고, 회수된 여유시간을 프로젝트 버퍼(PB)와 피딩 버퍼(FB)로 통합 집중 배치하여 버퍼 소진율 신호등(Green/Yellow/Red)으로 공정을 통제함.
-
-```mermaid
-flowchart TD
-    subgraph Traditional["전통적 방식의 문제점"]
-        T1["개별 작업마다 과도한 안전시간 포함 -> 파킨슨 법칙 및 학생 증후군으로 낭비"]
-    end
-    subgraph CCPM_Approach["CCPM 제약이론 기반 혁신"]
-        C1["개별 작업 기간을 50% 공격적 일정으로 단축 (안전시간 제거)"]
-        C2["통합 프로젝트 버퍼 (Project Buffer): 주공정 말단에 집중 배치"]
-        C3["통합 피딩 버퍼 (Feeding Buffer): 비주공정 합류 지점에 배치"]
-        C1 --> C2 & C3
-    end
-    subgraph BufferMgmt["버퍼 관리 및 조기 경보"]
-        BM1["버퍼 소진율 vs 공정 진척률 3색 신호등 관리 (초록: 정상, 노랑: 주의, 빨강: 비상 조치)"]
-        C2 & C3 --> BM1
-    end
-```
+| 문제 | 해결 방안 |
+|---|---|
+| 버퍼를 일률적인 비율로 정하면 프로젝트별 불확실성과 납기 신뢰수준을 반영하지 못한다. | 시범 일정에서 작업기간의 불확실성과 의존관계를 근거로 버퍼를 정하고, 착수 전에 남은 작업량과 버퍼 소진에 따른 점검·복구 기준을 합의한다. 실행 자료를 검토해 다음 일정의 크기와 기준을 조정한다. |
 
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
-- Eliyahu M. Goldratt, * **Critical Chain** *
-- [PMI, **Critical Chain** Method](https://www.pmi.org/learning/library/critical-chain-project-management-7986)
+- Eliyahu M. Goldratt, *Critical Chain*.
+- PMI, [Improving focus and predictability with critical chain project management](https://www.pmi.org/learning/library/critical-chain-project-management-5852).
+- PMI, [Analysis of resource buffer management in critical chain scheduling](https://www.pmi.org/learning/library/resource-buffer-management-critical-chain-scheduling-8027).
 
 ## 연결 토픽
 

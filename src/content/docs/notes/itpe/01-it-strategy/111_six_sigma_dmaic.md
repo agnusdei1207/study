@@ -1,30 +1,30 @@
 ---
 title: "Six Sigma DMAIC"
-author: "Codex"
-date: "2026-09-22T23:45:00+09:00"
+author: "OpenAI"
+date: "2026-09-24T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → **Six Sigma** **DMAIC**
+현재 위치: IT 전략·관리 → Six Sigma DMAIC
 
 
 ## 30초 인출
 
-- 본질: Six Sigma DMAIC는 결함과 변동을 줄이기 위해 문제를 정의하고 측정·분석·개선·관리하는 다섯 단계 방법이다.
-- 메커니즘: Define( **CTQ** 정의) → Measure(현수준/ **MSA** ) → Analyze(Vital Few 규명) → Improve(최적화/Pilot) → Control( **SPC** / **SOP** 표준화)한다.
-- 판정 기준: 1.5σ Shift 감안 3.4 **DPMO** (높은 수준) 달성 여부, 공정능력지수(Cp ≥ 2.0, Cpk ≥ 1.5) 및 성과 회귀 방지 Control Plan이다.
+- 본질: Six Sigma DMAIC는 이미 운영 중인 프로세스의 문제 원인을 찾아 개선하고, 성과가 유지되도록 관리하는 방법이다.
+- 메커니즘: Define 문제 규정 → Measure 현수준 측정 → Analyze 원인 검증 → Improve 대안 시험 → Control 개선 결과 유지.
 
 <details>
 <summary>핵심 용어</summary>
 
 - **DMAIC(Define, Measure, Analyze, Improve, Control)** : 프로세스 결함과 산포를 축소하기 위한 6시그마 5단계 문제해결 절차
+- **Six Sigma DMAIC**: 프로세스 문제를 데이터로 분석·개선하고 개선 결과를 관리하는 다섯 단계 방법.
 - **VOC(Voice of Customer)** : 설문·인터뷰 등을 통해 수집된 고객의 직접적인 요구와 피드백 정보
 - **CTQ(Critical to Quality)** : VOC를 측정 가능한 정량적 목표치로 전환한 핵심 품질특성
 - **DPMO(Defects Per Million Opportunities)** : 결함 기회 100만 건당 실제 발생한 결함 수를 나타내는 통계적 품질 척도
@@ -48,34 +48,33 @@ extra:
 
 ## 1교시 10점 답안
 
-### 1. 정의·목적
+### Ⅰ. 개요
 
-- 정의: 모든 프로세스의 변동(Variation)을 통계적으로 측정·분석하여 100만 번의 기회 중 3.4개의 결함(3.4 DPMO)만을 허용하는 무결점 품질 혁신 방법론
-- 목적: 데이터 기반의 통계적 결함 원인 규명 · 프로세스 변동성 최소화 · 비용 절감 및 고객 만족 극대화
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **Six Sigma DMAIC**는 기존 프로세스의 문제를 데이터로 분석·개선하고 그 성과를 관리하는 다섯 단계 방법이다. |
+| 목적 | 고객이 중요하게 여기는 품질 요구를 충족하고 결함·변동을 줄인다. |
 
-- **정의** : 고객 관점의 핵심 품질특성( **CTQ** )을 기준으로 기존 프로세스의 결함과 변동을 통계적 데이터로 분석·개선·통제하는 **5단계 품질혁신 방법론** .
-- **목적** : 3.4 DPMO 수준의 결함 최소화, 프로세스 산포 감소 및 개선 성과의 영속적 유지.
-
-### 2. 6시그마 통계 기준 및 DMAIC 로드맵
+### Ⅱ. DMAIC 단계 흐름
 
 ```mermaid
 flowchart TD
-    S1["Define · IT 장애 CTQ 정의"] --> S2["Measure · APM·로그 MSA·Baseline"] --> S3["Analyze · Vital Few 원인 검정"] --> S4["Improve · 카나리 배포·A/B 검증"] --> S5["Control · SPC·자동 복구 Runbook"]
+    S1["Define · 문제와 CTQ 정의"] --> S2["Measure · 측정체계와 현수준 확인"] --> S3["Analyze · 주요 원인 검증"] --> S4["Improve · 개선안 시험"] --> S5["Control · 결과 유지·감시"]
 ```
 
-### 3. 단계별 핵심 통제
+### Ⅲ. 단계별 핵심 통제
 
 | 단계 | 핵심 활동 및 산출물 |
 |---|---|
-| **D·M** | VOC 기반 **CTQ** 정의, MSA 측정시스템 신뢰성 확보, DPMO Baseline 산출 |
-| **A·I** | 파레토·회귀분석 기반 Vital Few 규명, DOE 최적화 및 카나리 Pilot 검증 |
-| **C** | SPC X-bar 관리도, SOP 표준운영절차 수립, 모니터링 무인 자동화 |
+| Define·Measure | 고객 요구를 **CTQ** 로 구체화하고, **MSA** 로 측정자료의 신뢰성을 점검한 뒤 현재 성과를 기록 |
+| Analyze·Improve | 자료와 분석을 통해 원인을 검증하고, 개선안을 시험해 결과를 비교 |
+| Control | **SPC** 등 적절한 감시방법·책임자·대응 기준을 정해 성과 변화를 관리 |
 
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> **(미출제 예상·25점)** **Six Sigma** 의 개념과 **DMAIC** 단계별 활동·도구·산출물을 설명하고, Lean과의 차이 및 IT 서비스 적용방안을 제시하시오.
+> Six Sigma의 DMAIC 단계별 활동과 주요 도구를 설명하고, Lean과 비교해 적용 시 유의점을 제시하시오. (예상·25점)
 
 ---
 
@@ -85,8 +84,8 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | 고객의 **CTQ** 를 기준으로 **프로세스 변동** 과 결함 원인을 데이터로 분석하고 **DMAIC** 단계에 따라 개선을 관리하는 품질혁신 방법론 |
-| 목적 | 원인에 근거한 개선으로 프로세스 성능을 안정화하고 재발을 통제한다. |
+| 정의 | **Six Sigma DMAIC**는 기존 프로세스의 문제를 데이터로 분석·개선하고 그 성과를 관리하는 다섯 단계 방법이다. |
+| 목적 | 고객이 중요하게 여기는 품질 요구를 충족하고 결함·변동을 줄인다. |
 
 ## Ⅱ. DMAIC 단계별 활동·산출
 
@@ -102,10 +101,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    S1["Define · IT 장애 CTQ 정의"] --> S2["Measure · APM·로그 MSA·Baseline"] --> S3["Analyze · Vital Few 원인 검정"] --> S4["Improve · 카나리 배포·A/B 검증"] --> S5["Control · SPC·자동 복구 Runbook"]
+    S1["Define · 문제와 CTQ 정의"] --> S2["Measure · 측정체계와 현수준 확인"] --> S3["Analyze · 주요 원인 검증"] --> S4["Improve · 개선안 시험"] --> S5["Control · 결과 유지·감시"]
 ```
 
-- **DMAIC** 5단계 공식 활동·도구·산출은 Ⅱ 표와 같으며, 통계 기준은 1.5σ Shift 감안 3.4 DPMO(높은 수준), 단기 공정능력 Cp ≥ 2.0·Cpk ≥ 1.5임.
+수치 기준은 업종·특성·고객 요구와 목표에 따라 정한다. 흔히 제시되는 3.4 DPMO는 1.5σ 평균 이동 가정을 둔 장기 시그마 수준의 관례이며, 모든 개선 과제에 강제되는 DMAIC 합격선은 아니다.
 
 ## Ⅳ. Six Sigma·Lean 비교
 
@@ -125,32 +124,18 @@ flowchart TD
 | 상관관계를 원인으로 오인 | 가설검정·실험·Pilot | 인과 근거 강화 |
 | 개선 후 회귀 | Control Plan·Owner·반응계획 | 성과 지속 |
 
-## Ⅵ. 결론·기술사적 제언
+## Ⅵ. 측정 가능한 개선목표와 유지 책임을 함께 정하는 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- 문제: IT 공정 및 SW 개발 결함의 근본 원인을 통계적으로 분석하지 않고 직관적 땜질 처방에 의존하여 동일 결함이 반복 재발함.
-- 해결 방안: DMAIC(정의-측정-분석-개선-통제)의 5단계 정량 방법론을 적용하여 고객 핵심 요구(CTQ)를 도출하고, 공정능력지수(Cp, Cpk) 실측 및 가설 검정을 통해 결함 원인을 규명하며 3.4 DPMO 수준의 통제 상태를 유지함.
-
-```mermaid
-flowchart TD
-    subgraph DMAIC["식스시그마 DMAIC 5단계 로드맵"]
-        D["1. Define (정의)<br/>고객 핵심 요구사항(CTQ) 정의 및 프로젝트 헌장 작성"]
-        M["2. Measure (측정)<br/>현행 공정능력(Cp, Cpk) 및 결함률(DPMO) 정량 실측"]
-        A["3. Analyze (분석)<br/>데이터 분석, 특성요인도, 가설 검정을 통한 근본 원인 도출"]
-        I["4. Improve (개선)<br/>실험계획법(DOE) 적용 최적 솔루션 도출 및 시범 적용"]
-        C["5. Control (통제)<br/>관리도(Control Chart) 및 표준화를 통한 개선 성과 유지"]
-
-        D --> M --> A --> I --> C
-        C -.->|성과 유지 및 확산| D
-    end
-```
+| 문제 | 해결 방안 |
+|---|---|
+| 개선 활동이 분석 도구 사용에 치우치면 고객이 체감하는 품질과 성과 유지 책임이 흐려질 수 있다. | 착수 때 고객 요구를 측정 가능한 CTQ와 기준선으로 정하고, 개선 뒤에는 프로세스 책임자·감시 지표·이상 시 대응을 Control Plan에 명시한다. 결과가 유지되는지 정한 기간 동안 검토한다. |
 
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
 - [ASQ, DMAIC Process](https://asq.org/quality-resources/dmaic)
 - [ASQ, **Six Sigma** ](https://asq.org/quality-resources/six-sigma)
+- ASQ, [What Is 3.4 per Million?](https://asq.org/quality-progress/articles/what-is-34-per-million?id=d3d31b31c1da4f60b281025df9ccd057)
 
 ## 연결 토픽
 

@@ -1,40 +1,34 @@
 ---
 title: "Programmable Money·AI Agent 결제"
-author: "Codex"
-date: "2026-09-22T23:45:00+09:00"
+author: "OpenAI"
+date: "2026-09-24T00:00:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
     text: "C"
 extra:
-  model: "Gemini 3.8 Flash"
+  model: "GPT-6"
   keyword_grade: "C"
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → **Programmable Money** · **AI Agent** 결제
+현재 위치: IT 전략·관리 → Programmable Money·AI Agent 결제
 
 
 ## 30초 인출
 
-- 본질: 프로그래머블 머니와 AI 에이전트 결제는 돈이나 결제에 미리 정한 조건을 적용해 에이전트가 허용된 거래만 실행하도록 하는 방식이다.
-- 메커니즘: 소유자가 세션키를 위임하면 AI Agent가 결제를 요청하고, Policy Engine 검증을 통과한 거래만 **DvP** 정산과 감사로그로 연결한다.
-- 판정 기준: **ERC-4337** 기반 계정 추상화/단기 세션키 적용 여부, 이상 거래 시 Circuit Breaker 작동 및 불가역 **WORM** 감사 추적성이다.
+- 본질: Programmable Money·AI Agent 결제는 정해 둔 규칙으로 결제 조건을 자동 처리하고, AI 에이전트의 거래 권한을 통제하는 방식이다.
+- 메커니즘: 사용자가 목적·한도를 정해 권한을 위임하고, 에이전트의 결제 요청을 정책·한도 확인 뒤 지급결제 절차로 전달한다.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **Programmable Money** : 사용처·유효기간·용도 등의 사용 조건을 디지털 규칙으로 내재화한 프로그래머블 화폐
-- **Programmable Payment** : 사전 정의된 조건 충족 시 결제 지시와 이체가 자동으로 실행되는 자동 결제 메커니즘
-- **AI Agent** : 부여된 목표와 정책 가드레일 내에서 도구(API)를 호출하여 자율 결제를 수행하는 지능형 시스템
-- **CBDC(Central Bank Digital Currency)** : 중앙은행이 전자적 형태로 직접 발행하는 법정 디지털 화폐
-- **DvP(Delivery versus Payment)** : 디지털 자산 인도와 대금 지급이 동시에 상호 조건부로 완결되는 동시결제 방식
-- **KYC(Know Your Customer)** : 금융 거래 당사자의 실원과 법적 자격을 검증하는 고객확인제도
-- **AML(Anti-Money Laundering)** : 불법 자금 유통과 금융 범죄를 모니터링·차단하는 자금세탁방지 통제
-- **PSP(Payment Service Provider)** : 가맹점과 금융망을 연계하여 전자결제와 정산을 대행하는 지급결제사업자
-- **RACI(Responsible, Accountable, Consulted, Informed)** : 역할별 실무수행(R)·최종책임(A)·사전자문(C)·사후통보(I) 관계를 명시한 책임 매트릭스
-- **ERC-4337** : 스마트 컨트랙트 기반 지갑으로 세션키 위임과 프로그래머블 결제를 지원하는 계정 추상화 표준
-- **WORM(Write Once Read Many)** : 단 한 번만 기록되고 사후 위·변조 및 삭제가 불가능한 불변성 감사 기록 방식
+- **Programmable Money·AI Agent 결제**: 결제 조건을 자동 처리하고 에이전트의 거래 권한을 통제하는 지급 방식.
+- **Programmable Money**: 사용 목적·시점·상대방 등에 제약을 둔 디지털 화폐.
+- **Programmable Payment**: 정한 조건이 충족될 때 결제 지시가 자동 실행되는 지급 방식.
+- **AI Agent**: 목표를 받아 도구를 선택·호출하고, 설정된 권한 안에서 여러 작업을 수행하는 소프트웨어 시스템.
+- **PSP(Payment Service Provider)**: 이용자·가맹점에 지급결제 서비스를 제공하거나 결제망을 연결하는 사업자.
+- **Conditional Payment**: 상품 인도나 서비스 조건 확인 뒤 대금을 지급하도록 설계한 조건부 결제.
 
 </details>
 
@@ -48,50 +42,39 @@ extra:
 
 ## 1교시 10점 답안
 
-### 1. 정의·목적
+### Ⅰ. 개요
 
-- 정의: 블록체인 스마트 계약 기술과 중앙은행 디지털화폐(CBDC) 또는 토큰화 자산을 결합하여, 특정 조건이 충족될 때만 화폐가 프로그래밍된 로직대로 자동 실행·결제되는 디지털 화폐 기술
-- 목적: AI 에이전트 간 머신 투 머신(M2M) 자율 경제 거래 구현 · 조건부 결제를 통한 거래 신뢰성 및 투명성 극대화 · 정산 비용 및 시간의 획기적 절감
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **Programmable Money·AI Agent 결제**는 결제 조건을 자동 처리하고 에이전트의 거래 권한을 통제하는 지급 방식이다. |
+| 목적 | 반복·조건부 거래의 자동화를 지원하고, 위임된 권한 안에서 결제를 실행한다. |
 
-- **정의** : 화폐 사용 조건( **Programmable Money** )과 결제 실행 규칙( **Programmable Payment** )을 코드로 통제하여 **AI Agent** 의 자율 거래를 안전하게 실행하는 **차세대 디지털 금융 아키텍처** .
-- **목적** : 기계 간(M2M) 초소액 결제 자동화, 거래 신뢰성 확보 및 에이전트 오동작·자금 탈취 방지.
-
-### 2. AI Agent 조건부 결제 아키텍처
+### Ⅱ. 결제 권한과 실행 흐름
 
 ```mermaid
-flowchart LR
-    subgraph PRINCIPAL["인간·법인 소유자"]
-        O["소유자"]
-    end
-    subgraph AGENT["AI Agent · 대리인"]
-        A["AI Agent"]
-    end
-    subgraph POLICY["Policy Engine · Gate"]
-        P["가드레일 검증"]
-    end
-    subgraph EXEC["조건부 실행·정산"]
-        S["스마트 컨트랙트"] --> L["결제원장·감사로그"]
-    end
-
-    O -->|권한 위임| A
-    A -->|결제 지시| P
-    P -->|검증 통과| S
-    S -->|DvP 확정| L
+flowchart TD
+    U["사용자: 목적·한도·기간 설정"] -->|제한된 권한 위임| A["AI Agent: 거래 요청"]
+    A --> P{"정책·한도·수취인 확인"}
+    P -->|허용| R["결제 서비스·지급결제망"]
+    P -->|거부| X["요청 중단·기록"]
+    R --> M["상태·거래기록 반환"]
 ```
 
-### 3. 핵심 통제 계층
+### Ⅲ. 권한 통제
 
 | 통제층 | 핵심 통제 내용 |
 |---|---|
-| **권한 계층** | ERC-4337 계정 추상화, 단기 세션키, 화이트리스트 가맹점 한정 |
-| **위험 계층** | 실시간 Policy Engine, 이상 거래 탐지 시 Circuit Breaker 자동 차단 |
-| **정산 계층** | 스마트 컨트랙트 기반 DvP 조건부 정산 및 WORM 불변 감사 추적성 |
+| 통제 지점 | 설계 기준 |
+|---|---|
+| 위임 권한 | 거래 목적·금액 한도·유효기간·취소 방법을 사전에 설정 |
+| 요청 검증 | 수취인·중복 요청·잔액·위험 신호를 지급 전에 확인 |
+| 실패 처리 | 거부·시간초과·외부 시스템 오류 때 자동 재시도 범위와 사람 승인 조건을 정함 |
 
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> **(미출제 예상·25점)** **Programmable Money** 와 **Programmable Payment** 의 차이를 설명하고, **AI Agent** 결제 구조와 위험·통제방안을 제시하시오.
+> Programmable Money와 Programmable Payment의 차이를 설명하고, AI Agent 결제의 권한 위임 구조와 주요 위험·통제방안을 제시하시오. (예상·25점)
 
 ---
 
@@ -101,106 +84,61 @@ flowchart LR
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **화폐** 또는 **결제 조건** 을 디지털 규칙으로 표현하고 **AI Agent** 의 권한·정책 검증과 연계해 조건 충족 시 거래를 실행하는 자동화 결제 구조 |
-| 목적 | 자동화 거래에서 **결제 조건** 의 통제, 책임 추적, 자산 인도와 대금 지급의 일관성을 확보한다. |
+| 정의 | **Programmable Money·AI Agent 결제**는 결제 조건을 자동 처리하고 에이전트의 거래 권한을 통제하는 지급 방식이다. |
+| 목적 | 반복·조건부 거래의 자동화를 지원하고, 위임된 권한 안에서 결제를 실행한다. |
 
 ## Ⅱ. Money·Payment 비교
 
-| 기준 | **Programmable Money** | **Programmable Payment** |
+| 구분 | Programmable Money | Programmable Payment |
 |---|---|---|
-| 조건 대상 | 화폐 단위 | 결제지시·업무규칙 |
-| 제약 | 사용처·기간·지역 등 | 지급시점·검수·승인 등 |
-| 쟁점 | 화폐 단일성·범용성 | 오류·취소·분쟁·책임 |
-| 예시 | 목적 제한형 Voucher | Pay-on-delivery·Escrow |
+| 규칙이 적용되는 곳 | 화폐 자체의 사용 가능 목적·조건 | 결제 지시와 이체가 실행되는 조건 |
+| 예 | 사용처·기간이 제한된 바우처 | 배송 확인 뒤 대금을 지급하는 조건부 결제 |
+| 주의점 | 제한된 용도의 화폐가 범용 화폐와 혼동되지 않도록 설계 | 조건 확인·분쟁·환급 절차를 설계 |
 
-CBDC·토큰화 예금·Stablecoin은 구현 가능한 결제자산의 유형이며, 그 자체만으로 **Programmable Money** 라고 단정하지 않음.
+중앙은행 디지털화폐처럼 디지털 형태의 화폐라고 해서 곧바로 용도가 제한된 Programmable Money가 되는 것은 아니다. ECB는 디지털 유로를 제한된 용도의 돈과 구분하면서 조건부 결제 지원은 별도로 설명한다.
 
-## Ⅲ. AI Agent 결제 아키텍처 및 절차
-
-```mermaid
-flowchart LR
-    subgraph PRINCIPAL["인간·법인 소유자"]
-        O["소유자"]
-    end
-    subgraph AGENT["AI Agent · 대리인"]
-        A["AI Agent"]
-    end
-    subgraph POLICY["Policy Engine · Gate"]
-        P["가드레일 검증"]
-    end
-    subgraph EXEC["조건부 실행·정산"]
-        S["스마트 컨트랙트"] --> L["결제원장·감사로그"]
-    end
-
-    O -->|권한 위임| A
-    A -->|결제 지시| P
-    P -->|검증 통과| S
-    S -->|DvP 확정| L
-```
+## Ⅲ. 에이전트 권한 위임과 결제 요청
 
 ```mermaid
 flowchart TD
-    S1["권한 위임"] --> S2["거래 요청"] --> S3["정책·위험 검사"] --> S4["조건부 실행·정산"]
+    U["사용자: 목적·한도·기간 설정"] -->|제한된 권한 위임| A["AI Agent: 거래 요청"]
+    A --> P{"정책·한도·수취인 확인"}
+    P -->|허용| R["결제 서비스·지급결제망"]
+    P -->|거부| X["요청 중단·기록"]
+    R --> M["상태·거래기록 반환"]
 ```
 
-- 활동: 목적·한도·거래상대방·유효기간 정의 → 조건 탐색·결제 트랜잭션 서명 → 한도·KYC·AML·이상거래 검사 → DvP 정산·원장 기록·감사로그 적재
-- 산출: 위임정책·세션키 → 결제 지시 → 검사 판정 → 정산 결과·불변 감사로그
+사용자는 거래 목적·한도·기간과 중지 방법을 먼저 정한다. 에이전트가 만든 요청은 지급 서비스의 인증·사기방지 절차를 거쳐야 하며, 결제 완료 여부와 실패 사유를 사용자에게 돌려준다. 이 그림은 제안 아키텍처이며 특정 표준이나 단일 결제망을 뜻하지 않는다.
 
-## Ⅳ. 결제수단별 특성
+## Ⅳ. 결제 실행 전후의 책임 구분
 
-| 수단 | 강점 | 주요 위험 |
+| 참여자 | 책임 |
 |---|---|---|
-| Tokenised Deposit | 은행 예금 기반·액면 상환 | 은행 간 상호운용성 |
-| Stablecoin | 개방형 네트워크 활용 | 준비자산·가격·규제 |
-| Wholesale CBDC | 중앙은행 화폐 결제 | 접근범위·시스템 연계 |
-| 기존 지급결제망 | 법·운영체계 성숙 | API·소액거래 제약 |
+| 사용자·기관 | 위임할 목적과 한도 설정, 계정·권한 회수 |
+| 에이전트 운영자 | 모델·도구 접근 통제, 요청·결과 기록 |
+| PSP·결제 서비스 | 본인확인·거래 승인·정산·분쟁 절차 수행 |
 
 ## Ⅴ. 문제점·대응책
 
-| 위험 | 대책 | 효과 |
+| 위험 | 대책 |
 |---|---|---|
-| Agent 오판·반복 결제 | 한도·속도제한·Circuit Breaker | 손실 범위 제한 |
-| 권한 탈취 | 단기자격·키 격리·거래서명 | 자금 접근 보호 |
-| 상대방·서비스 사기 | Allowlist·평판·Escrow | 거래위험 감소 |
-| 책임 불명확 | 소유자·운영자·PSP의 RACI | 분쟁 책임 명확화 |
-| 취소 불가·오라클 오류 | 보류·취소·이의제기 절차 | 소비자·기업 보호 |
+| 에이전트 오류·중복 요청 | 금액·빈도 제한, 요청 식별자와 중복 검사 |
+| 자격정보 탈취 | 최소 권한, 안전한 자격정보 저장, 즉시 회수 절차 |
+| 수취인·조건 오류 | 승인된 수취인 목록, 독립된 조건 확인, 중요 거래 사람 승인 |
+| 분쟁·오결제 | 취소·환급 가능 범위와 이의제기 창구 사전 안내 |
 
-## Ⅵ. 결론·기술사적 제언
+## Ⅵ. 권한 회수와 사람 승인 기준을 먼저 정하는 기술사적 제언
 
-### 실전 답안용 기술사적 제언
-
-- 문제: AI 자율 에이전트가 금융 거래의 주체가 될 때 모델 오작동, 프롬프트 탈옥, 악의적 해킹으로 인한 대규모 자산 탈취 및 금융 사고 위험이 상존함.
-- 해결 방안: 스마트 계약 기반의 조건부 자동 지불(Conditional Escrow)과 건당/일일 지출 한도(Rate Limiting)를 강제하고, 프라이버시 보호를 위한 영지식증명(ZKP) 및 고액 거래 시 인간 승인(HITL) 체계를 결합함.
-
-```mermaid
-flowchart TD
-    subgraph Agent["1. AI 자율 에이전트 계층"]
-        A1["사용자 위임 목표 분석 및 의사결정"]
-        A2["스마트 계약 호출 및 거래 트랜잭션 서명"]
-        A1 --> A2
-    end
-    subgraph SmartContract["2. 프로그래머블 머니 & 가드레일 (Smart Contract)"]
-        SC1["지출 한도 통제: 일일/건당 최대 지출 금액 하드코딩"]
-        SC2["조건부 실행 (Escrow): 작업 완료 검증 오라클(Oracle) 연동"]
-        SC3["영지식증명 (ZKP): 개인정보 노출 없는 익명 검증"]
-        A2 --> SC1 & SC2 & SC3
-    end
-    subgraph Settlement["3. 최종 정산 및 안전 통제"]
-        G1{"고액 거래 or 이상 징후 발생?"}
-        S1["정상 자동 정산 및 송금 완료"]
-        S2["거래 일시 동결 및 소유자 인간 승인(HITL) 요구"]
-        SC1 & SC2 & SC3 --> G1
-        G1 -->|No| S1
-        G1 -->|Yes| S2
-    end
-```
+| 문제 | 해결 방안 |
+|---|---|
+| 위임 권한이 포괄적이거나 만료·회수 절차가 없으면 에이전트 오류가 반복 결제로 이어질 수 있다. | 시범 적용은 허용 목적·수취인·건별 한도·유효기간을 좁혀 시작하고, 한도 초과·조건 불일치 때 요청을 멈춰 사람이 확인하게 한다. 거래 취소·권한 회수와 책임자를 운영 절차에 명시한 뒤 범위를 단계적으로 넓힌다. |
 
 ## 출제 이력과 검증 출처
 
 - 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
-- [ECB, Progress on the investigation phase of a digital euro](https://www.ecb.europa.eu/euro/digital_euro/timeline/profuse/shared/pdf/ecb.degov230424_progress.en.pdf)
-- [BIS, Pushing the monetary frontier: stablecoins and tokenised deposits](https://www.bis.org/speeches/20260828-pushing-monetary-frontier-stablecoins-and-tokenised-deposits)
-- [Ethereum, ERC-4337](https://eips.ethereum.org/EIPS/eip-4337)
+- European Central Bank, [FAQs on the digital euro, Q20: Would the digital euro be programmable money?](https://www.ecb.europa.eu/euro/digital_euro/faqs/html/ecb.faq_digital_euro.en.html)
+- European Central Bank, [Preparation phase of a digital euro: Closing report](https://www.ecb.europa.eu/euro/digital_euro/progress/html/ecb.deprp202510.en.html)
+- Bank for International Settlements, [AI agents for cash management in payment systems](https://www.bis.org/publ/work1310.pdf)
 
 ## 연결 토픽
 
