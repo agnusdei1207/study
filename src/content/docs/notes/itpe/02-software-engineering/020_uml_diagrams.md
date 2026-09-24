@@ -20,7 +20,7 @@ extra:
 
 - 본질: **UML(Unified Modeling Language)**은 객체지향 소프트웨어 시스템의 산출물을 가시화, 명세화, 구축, 문서화하기 위한 OMG 표준 통합 모델링 언어
 - 메커니즘: **구조 다이어그램(7종)**(정적 구조: Class, Component 등) + **행위 다이어그램(7종)**(동적 흐름: Use Case, **Activity**, Sequence 등)
-- 효과: 이해관계자 간 명확한 의사소통 · 아키텍처 가시화 · **활동 다이어그램(Activity Diagram)**을 통한 복잡한 비즈니스 로직 및 병렬 워크플로우 완벽 명세
+- 효과: 이해관계자 간 의사소통 · 아키텍처 가시화 · **활동 다이어그램(Activity Diagram)**을 통한 업무 흐름과 병렬 활동의 명시
 
 <details>
 <summary>핵심 용어</summary>

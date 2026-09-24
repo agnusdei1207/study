@@ -137,7 +137,7 @@ flowchart LR
 - **공식**:
   $$\text{WIP} = \text{Throughput} \times \text{Lead Time} \quad \Longleftrightarrow \quad \text{Lead Time} = \frac{\text{WIP}}{\text{Throughput}}$$
 - **공학적 시사점**:
-  - 소프트웨어 팀의 개발 속도(Throughput)는 단기간에 2배로 증가시키기 어려움(브룩스의 법칙).
+  - 인원 추가만으로 처리량이 곧바로 늘지는 않으므로, WIP·대기·병목을 관찰해 흐름 개선 지점을 찾음.
   - 처리량과 흐름 조건이 유지된다면, **진행 중 작업(WIP) 제한은 평균 리드 타임을 낮추는 선택지**가 될 수 있음.
 ---
 

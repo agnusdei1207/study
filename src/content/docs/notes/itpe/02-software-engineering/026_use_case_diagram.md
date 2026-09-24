@@ -67,9 +67,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 요구사항 분석 단계에서 사용되는 UML 유스케이스 다이어그램(Use Case Diagram)의 구성요소(액터, 유스케이스, 관계)를 설명하고, 포함(&lt;&lt;include&gt;&gt;)과 확장(&lt;&lt;extend&gt;&gt;) 관계의 명확한 차이점 및 유스케이스 명세서(Use Case Specification)의 핵심 기술 항목을 제시하시오. (25점)
-
-> (25점, 예상)
+> 유스케이스 다이어그램의 구성요소와 포함(&lt;&lt;include&gt;&gt;)·확장(&lt;&lt;extend&gt;&gt;) 관계, 유스케이스 명세서의 핵심 항목을 설명하시오. (25점, 예상)
 
 ---
 
@@ -103,7 +101,7 @@ flowchart LR
 | **확장 (&lt;&lt;extend&gt;&gt;)** | 점선 화살표 + `<<extend>>` | **확장 → 기본** | 기본 유스케이스의 확장 지점에서 조건에 따라 선택 실행 |
 | **일반화 (Generalization)**| 실선 + 빈 삼각형 화살표 | 하위 → 상위 | 유스케이스나 액터 간의 상속(Inheritance) 관계 |
 
-### Ⅲ. 포함(&lt;&lt;include&gt;&gt;) vs 확장(&lt;&lt;extend&gt;&gt;)의 완벽 비교
+### Ⅲ. 포함(&lt;&lt;include&gt;&gt;)과 확장(&lt;&lt;extend&gt;&gt;)의 비교
 
 > include는 필요한 동작을 포함하고, extend는 기본 유스케이스에 확장 지점의 동작을 더한다.
 
