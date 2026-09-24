@@ -18,7 +18,7 @@ export function getNoteLabel(label, href) {
 }
 
 /** Return the study role; accept legacy letter metadata during migration. */
-export function getKeywordGrade(value) {
+export function getStudyRole(value) {
   if (!value) return undefined;
   const label = String(value).trim();
   const roles = { A: '기초', B: '서브', C: '응용' };

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { getKeywordGrade, getNoteLabel } from '../src/utils/noteLabels.mjs';
+import { getStudyRole, getNoteLabel } from '../src/utils/noteLabels.mjs';
 
 test('derives a three-digit note number from the route and preserves the full keyword', () => {
   assert.deepEqual(
@@ -31,12 +31,12 @@ test('does not number subject index routes', () => {
 });
 
 test('shows Korean study roles and maps legacy letter labels', () => {
-  assert.equal(getKeywordGrade('A'), '기초');
-  assert.equal(getKeywordGrade(' b '), '서브');
-  assert.equal(getKeywordGrade('C'), '응용');
-  assert.equal(getKeywordGrade('기초'), '기초');
-  assert.equal(getKeywordGrade('서브'), '서브');
-  assert.equal(getKeywordGrade('응용'), '응용');
-  assert.equal(getKeywordGrade('기출 · 100%'), undefined);
-  assert.equal(getKeywordGrade('100%'), undefined);
+  assert.equal(getStudyRole('A'), '기초');
+  assert.equal(getStudyRole(' b '), '서브');
+  assert.equal(getStudyRole('C'), '응용');
+  assert.equal(getStudyRole('기초'), '기초');
+  assert.equal(getStudyRole('서브'), '서브');
+  assert.equal(getStudyRole('응용'), '응용');
+  assert.equal(getStudyRole('기출 · 100%'), undefined);
+  assert.equal(getStudyRole('100%'), undefined);
 });

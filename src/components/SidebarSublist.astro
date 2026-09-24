@@ -3,7 +3,7 @@ import { Badge, Icon } from '@astrojs/starlight/components';
 import SidebarRestorePoint from '@astrojs/starlight/components/SidebarRestorePoint.astro';
 import NoteBadges from './badges/NoteBadges.astro';
 import { parseNoteBadgeText } from '../utils/noteBadges';
-import { getKeywordGrade, getNoteLabel } from '../utils/noteLabels.mjs';
+import { getStudyRole, getNoteLabel } from '../utils/noteLabels.mjs';
 
 type SidebarEntry = (typeof Astro.locals.starlightRoute.sidebar)[number];
 
@@ -26,7 +26,7 @@ function hasCurrentEntry(entries: SidebarEntry[]): boolean {
   {
     sublist.map((entry) => {
       const parsedBadge = entry.badge ? parseNoteBadgeText(entry.badge.text) : {};
-      const keywordGrade = entry.badge ? getKeywordGrade(entry.badge.text) : undefined;
+      const studyRole = entry.badge ? getStudyRole(entry.badge.text) : undefined;
       const isStructuredNoteBadge = Boolean(
         parsedBadge.status || parsedBadge.priority !== undefined
       );
@@ -53,12 +53,12 @@ function hasCurrentEntry(entries: SidebarEntry[]): boolean {
                 ) : entry.label}
               </span>
               {entry.badge && (
-                keywordGrade ? (
+                studyRole ? (
                   <span
-                    class:list={['keyword-grade-badge', `grade-${keywordGrade.toLowerCase()}`]}
-                    aria-label={`학습 역할 ${keywordGrade}`}
+                    class:list={['study-role-badge', `role-${studyRole}`]}
+                    aria-label={`학습 역할 ${studyRole}`}
                   >
-                    {keywordGrade}
+                    {studyRole}
                   </span>
                 ) : isStructuredNoteBadge ? (
                   <NoteBadges
@@ -84,12 +84,12 @@ function hasCurrentEntry(entries: SidebarEntry[]): boolean {
                 <span class="group-label">
                   <span class="large">{entry.label}</span>
                   {entry.badge && (
-                    keywordGrade ? (
+                    studyRole ? (
                       <span
-                        class:list={['keyword-grade-badge', `grade-${keywordGrade.toLowerCase()}`]}
-                        aria-label={`학습 역할 ${keywordGrade}`}
+                        class:list={['study-role-badge', `role-${studyRole}`]}
+                        aria-label={`학습 역할 ${studyRole}`}
                       >
-                        {keywordGrade}
+                        {studyRole}
                       </span>
                     ) : isStructuredNoteBadge ? (
                       <NoteBadges
@@ -213,7 +213,7 @@ function hasCurrentEntry(entries: SidebarEntry[]): boolean {
       font-weight: 700;
     }
 
-    .keyword-grade-badge {
+    .study-role-badge {
       display: inline-flex;
       flex: 0 0 auto;
       align-items: center;
@@ -229,32 +229,32 @@ function hasCurrentEntry(entries: SidebarEntry[]): boolean {
       line-height: 1;
     }
 
-    .keyword-grade-badge.grade-기초 {
+    .study-role-badge.role-기초 {
       color: #86efac;
       background: color-mix(in srgb, #22c55e 22%, transparent);
     }
 
-    .keyword-grade-badge.grade-서브 {
+    .study-role-badge.role-서브 {
       color: #93c5fd;
       background: color-mix(in srgb, #3b82f6 22%, transparent);
     }
 
-    .keyword-grade-badge.grade-응용 {
+    .study-role-badge.role-응용 {
       color: #d8b4fe;
       background: color-mix(in srgb, #a855f7 22%, transparent);
     }
 
-    :global(:root[data-theme='light']) .keyword-grade-badge.grade-기초 {
+    :global(:root[data-theme='light']) .study-role-badge.role-기초 {
       color: #166534;
       background: #dcfce7;
     }
 
-    :global(:root[data-theme='light']) .keyword-grade-badge.grade-서브 {
+    :global(:root[data-theme='light']) .study-role-badge.role-서브 {
       color: #1e40af;
       background: #dbeafe;
     }
 
-    :global(:root[data-theme='light']) .keyword-grade-badge.grade-응용 {
+    :global(:root[data-theme='light']) .study-role-badge.role-응용 {
       color: #6b21a8;
       background: #f3e8ff;
     }
