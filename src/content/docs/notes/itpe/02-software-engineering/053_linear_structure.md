@@ -63,10 +63,9 @@ extra:
 
 ### Ⅲ. 스택과 큐의 처리 순서
 
-```mermaid
-flowchart LR
-    S1["스택: 마지막 입력"] -->|"먼저 꺼냄"| S2["LIFO"]
-    Q1["큐: 먼저 입력"] -->|"먼저 꺼냄"| Q2["FIFO"]
+```text
+스택: 마지막 삽입 → 첫 반환 (LIFO)
+큐: 첫 삽입 → 첫 반환 (FIFO)
 ```
 
 제언: 접근·삽입삭제·처리 순서 요구에 맞춘 자료구조 선택.
@@ -109,12 +108,13 @@ flowchart LR
 
 ## Ⅳ. 스택·큐의 처리 메커니즘
 
-```mermaid
-flowchart TD
-    A["스택: Top에 삽입"] -->|"push"| B["가장 최근 항목이 위에 위치"]
-    B -->|"pop"| C["최근 항목부터 제거"]
-    D["큐: Rear에 삽입"] -->|"enqueue"| E["Front에 먼저 온 항목 유지"]
-    E -->|"dequeue"| F["먼저 온 항목부터 제거"]
+```text
+스택
+Push → Top 삽입 → Pop: 최근 항목 반환
+
+큐
+Enqueue → Rear 삽입
+Dequeue → Front에서 가장 오래된 항목 반환
 ```
 
 ## Ⅴ. 큐 구현과 운영 고려사항

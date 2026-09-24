@@ -54,11 +54,10 @@ extra:
 | 정의 | **클래스 다이어그램**은 클래스의 특성과 정적 관계를 UML로 나타내는 구조 모델 |
 | 목적 | 책임·타입·관계 제약을 공유해 설계와 구현의 구조 정합성 지원 |
 
-```mermaid
-classDiagram
-    class Order
-    class OrderItem
-    Order "1" *-- "1..*" OrderItem : owns
+```text
+Order (1) ◆── OrderItem (1..*)
+
+합성: 주문이 주문항목의 생명주기를 소유
 ```
 
 ### Ⅱ. 관계 표기
@@ -106,11 +105,10 @@ classDiagram
 
 > 관계는 선 모양을 외우는 데서 끝나지 않고 참조 지속성·계약 이행·상속·소유권 중 무엇을 뜻하는지 코드와 일치해야 함.
 
-```mermaid
-classDiagram
-    class Order
-    class OrderItem
-    Order "1" *-- "1..*" OrderItem : owns
+```text
+Order (1) ◆── OrderItem (1..*)
+
+합성: 주문이 주문항목의 생명주기를 소유
 ```
 
 | 관계 | 표기 | 의미 | 검증 질문 |
