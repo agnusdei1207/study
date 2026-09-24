@@ -31,6 +31,12 @@ function visualCount(answer) {
   return [...answer.matchAll(/^\|---|^```mermaid\s*$/gmu)].length;
 }
 
+function termAliases(label) {
+  const parts = label.match(/^([^()]+)(?:\(([^)]+)\))?/u);
+  return [label, parts?.[1], parts?.[2]].filter(Boolean)
+    .map((value) => value.toLocaleLowerCase().replace(/[^\p{L}\p{N}]/gu, ''));
+}
+
 test('All IT strategy notes use tables or Mermaid instead of legacy visual markup', async () => {
   const files = await targetNotes();
   assert.equal(files.length, 81, '현재 카탈로그의 IT 전략 과목에는 81개 노트가 있어야 합니다.');
@@ -91,6 +97,18 @@ test('10-point answers reuse the overview table and core visuals of 25-point ans
     assert.equal(overviewTable(short), overviewTable(long), `${file}: 10점·25점 정의·목적 표가 같아야 합니다.`);
     assert.ok(visualCount(short) >= 1, `${file}: 10점 답안에 시각화가 필요합니다.`);
     assert.ok(visualCount(long) >= 3, `${file}: 25점 답안에 시각화가 3개 이상 필요합니다.`);
+  }
+});
+
+test('each first answer term has a matching glossary explanation', async () => {
+  for (const file of await targetNotes()) {
+    const note = await readFile(file, 'utf8');
+    const glossary = note.match(/<summary>핵심 용어<\/summary>([\s\S]*?)<\/details>/u)?.[1] ?? '';
+    const labels = [...glossary.matchAll(/^- \*\*([^*]+)\*\*/gmu)].flatMap((match) => termAliases(match[1]));
+    const short = sectionAfter(note, /^## 1교시 10점 답안\s*$/mu) ?? '';
+    const term = short.match(/^\| 정의 \| \*\*([^*]+)\*\*/mu)?.[1];
+    assert.ok(term, `${file}: 10점 정의의 주제명을 강조해야 합니다.`);
+    assert.ok(termAliases(term).some((alias) => labels.includes(alias)), `${file}: ${term} 설명이 핵심 용어에 필요합니다.`);
   }
 });
 
