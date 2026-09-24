@@ -56,9 +56,16 @@ extra:
 
 ### Ⅱ. DMAIC 단계 흐름
 
-```mermaid
-flowchart TD
-    S1["Define · 문제와 CTQ 정의"] --> S2["Measure · 측정체계와 현수준 확인"] --> S3["Analyze · 주요 원인 검증"] --> S4["Improve · 개선안 시험"] --> S5["Control · 결과 유지·감시"]
+```text
+Define: 문제·CTQ 정의
+    ↓
+Measure: 현수준 측정
+    ↓
+Analyze: 핵심 원인 검증
+    ↓
+Improve: 개선안 시험
+    ↓
+Control: 성과 유지·감시
 ```
 
 ### Ⅲ. 단계별 핵심 통제
@@ -90,9 +97,16 @@ flowchart TD
 
 ## Ⅱ. DMAIC 단계별 활동·산출
 
-```mermaid
-flowchart TD
-    S1["Define · 문제와 CTQ 정의"] --> S2["Measure · 측정체계와 현수준 확인"] --> S3["Analyze · 주요 원인 검증"] --> S4["Improve · 개선안 시험"] --> S5["Control · 결과 유지·감시"]
+```text
+Define: 문제·CTQ 정의
+    ↓
+Measure: 현수준 측정
+    ↓
+Analyze: 핵심 원인 검증
+    ↓
+Improve: 개선안 시험
+    ↓
+Control: 성과 유지·감시
 ```
 
 | 단계 | 활동 | 주요 도구 | 산출 |

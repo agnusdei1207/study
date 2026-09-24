@@ -55,21 +55,12 @@ extra:
 
 ### Ⅱ. Critical Chain 및 버퍼 배치 구조
 
-```mermaid
-flowchart LR
-    subgraph FEEDING["비임계 체인 (Non-critical)"]
-        T_FEED["비임계 Task"] --> FB["FB 피딩 버퍼"]
-    end
-    subgraph CRITICAL["Critical Chain (작업 + 자원 제약)"]
-        T1["Chain Task 1"] --> T2["Chain Task 2"]
-        T2 --> T3["Chain Task 3"]
-    end
-    subgraph DELIVERY["프로젝트 납기 보호"]
-        PB["PB 프로젝트 버퍼"] --> END["프로젝트 납기 완료"]
-    end
-
-    FB --> T3
-    T3 --> PB
+```text
+비임계 경로: 작업 → 피딩 버퍼(FB)
+                     ↓ 핵심 체인 합류 지점 보호
+핵심 체인: 작업 1 → 작업 2 → 작업 3
+                              ↓
+프로젝트 버퍼(PB) → 납기 목표 보호
 ```
 
 ### Ⅲ. 버퍼별 역할
@@ -101,21 +92,12 @@ flowchart LR
 
 ## Ⅱ. Critical Chain 및 버퍼 관리 체계
 
-```mermaid
-flowchart LR
-    subgraph FEEDING["비임계 체인 (Non-critical)"]
-        T_FEED["비임계 Task"] --> FB["FB 피딩 버퍼"]
-    end
-    subgraph CRITICAL["Critical Chain (작업 + 자원 제약)"]
-        T1["Chain Task 1"] --> T2["Chain Task 2"]
-        T2 --> T3["Chain Task 3"]
-    end
-    subgraph DELIVERY["프로젝트 납기 보호"]
-        PB["PB 프로젝트 버퍼"] --> END["프로젝트 납기 완료"]
-    end
-
-    FB --> T3
-    T3 --> PB
+```text
+비임계 경로: 작업 → 피딩 버퍼(FB)
+                     ↓ 핵심 체인 합류 지점 보호
+핵심 체인: 작업 1 → 작업 2 → 작업 3
+                              ↓
+프로젝트 버퍼(PB) → 납기 목표 보호
 ```
 
 | 요소 | 위치 | 역할 |
@@ -129,9 +111,14 @@ Buffer 크기는 작업 불확실성·추정방식·위험 데이터를 반영�
 
 ## Ⅲ. CCPM 적용 절차
 
-```mermaid
-flowchart TD
-    S1["작업·자원 분석"] --> S2["Critical Chain 도출"] --> S3["Buffer 설계"] --> S4["Buffer 통제"]
+```text
+작업 의존성·자원 제약 분석
+    ↓
+핵심 체인 도출
+    ↓
+피딩·프로젝트 버퍼 설정
+    ↓
+버퍼 소진량으로 납기 위험 통제
 ```
 
 - 활동: 선후행 의존성 및 제약 자원 가용성·경합 식별 → 자원 평준화(Leveling)·다중작업 제거 후 최장 체인 확정 → PB·FB·RB 안전여유 통합 배치 → Fever Chart로 진척률 대비 소진율 모니터링 및 Red Zone 긴급 자원 집중

@@ -10,33 +10,32 @@ weight: 1
 
 ## 전체 로드맵에서 현재 위치
 
-```mermaid
-flowchart TD
-    GOAL["경영 목표·법규"] --> NOW["01 전략·관리 · 현재 과목"]
-    NOW --> SW["02 SW공학 · 구축 생애주기"]
-    SW --> BASE["구현 기반"]
-    BASE --- DATA["03 데이터"]
-    BASE --- SYSTEM["04 시스템"]
-    BASE --- NETWORK["05 네트워크"]
-    BASE --- SECURITY["06 보안"]
-    BASE --> NEW["07 최신기술 · AI·클라우드 융합"]
-    RULE["08 법규·정책 · 전 과목의 준수 기준"] --- NOW
-    RULE --- BASE
-    RULE --- NEW
+```text
+01 전략·관리: 경영 목표·투자·성과
+    ↓ 구축 계획
+02 SW공학: 개발 생애주기
+    ↓ 구현 기반
+03 데이터 · 04 시스템 · 05 네트워크 · 06 보안
+    ↓ 신기술 융합
+07 최신기술: AI·클라우드 등
+
+08 법규·정책: 전 과목에 적용되는 준수 기준
 ```
 
 ## 01과목 확대 로드맵
 
-```mermaid
-flowchart TD
-    GOAL["기업 경영·정책 목표"] --> STRATEGY["전략"]
-    GOAL --> GOVERNANCE["거버넌스"]
-    GOAL --> COMPLIANCE["규제·준수"]
-    STRATEGY --- EXEC["투자·조달·PM·성과관리"]
-    GOVERNANCE --- EXEC
-    COMPLIANCE --- EXEC
-    EXEC --> SERVICE["프로세스 혁신·정보시스템 통합·IT 서비스"]
-    SERVICE --> REVIEW["측정·감사·지속 개선"]
+```text
+경영·정책 목표
+    ├─ 전략: 투자 방향·우선순위
+    ├─ 거버넌스: 결정 권한·책임
+    └─ 규제 준수: 법적 요구·통제
+
+세 관점의 실행 영역
+투자·조달·PM·성과관리
+    ↓
+프로세스 혁신·시스템 통합·IT 서비스
+    ↓
+성과 측정·감사·지속 개선
 ```
 
 ## 30초 인출

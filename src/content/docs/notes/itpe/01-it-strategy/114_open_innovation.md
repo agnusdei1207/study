@@ -53,11 +53,11 @@ extra:
 
 ### Ⅱ. 지식 유입·유출 구조
 
-```mermaid
-flowchart TD
-    IN["외부 지식"] -->|Inbound| RD["내부 연구개발·사업화"]
-    RD -->|Outbound| OUT["외부 사업화 경로"]
-    RD <-->|Coupled · 공동개발| PARTNER["협력 파트너"]
+```text
+개방형 혁신
+    ├─ Inbound: 외부 지식 → 내부 R&D
+    ├─ Outbound: 내부 기술 → 외부 사업화
+    └─ Coupled: 파트너와 지식 교환·공동개발
 ```
 
 ### Ⅲ. 세 가지 지식 흐름
@@ -103,11 +103,11 @@ flowchart TD
 
 ### 2. 지식 유입·유출 구조
 
-```mermaid
-flowchart TD
-    IN["외부 지식"] -->|Inbound| RD["내부 연구개발·사업화"]
-    RD -->|Outbound| OUT["외부 사업화 경로"]
-    RD <-->|Coupled · 공동개발| PARTNER["협력 파트너"]
+```text
+개방형 혁신
+    ├─ Inbound: 외부 지식 → 내부 R&D
+    ├─ Outbound: 내부 기술 → 외부 사업화
+    └─ Coupled: 파트너와 지식 교환·공동개발
 ```
 
 ### 3. 추진 단계와 산출
