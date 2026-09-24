@@ -54,17 +54,12 @@ extra:
 
 ### Ⅱ. 분석 기법 비교
 
-```mermaid
-flowchart TB
-    subgraph F["FTA (연역적 Top-down)"]
-        TE["최상위 사고 (Top Event)"] -->|"AND/OR 논리 게이트"| MCS["최소 컷셋 (SPOF 제거)"]
-    end
-    subgraph M["FMEA (귀납적 Bottom-up)"]
-        FM["단위 부품 고장 모드"] -->|"상위 영향 분석"| RP["RPN 산출 (S×O×D)"]
-    end
-    subgraph H["HAZOP (탐색적)"]
-        PV["공정 변수 (속도·전압·데이터)"] -->|"가이드워드 적용"| DE["이탈(Deviation) 도출"]
-    end
+```text
+SW 안전 분석
+    ├─ FTA: 사고 → 원인 조합 역추적
+    │        AND/OR 게이트·최소 컷셋
+    ├─ FMEA: 고장 모드 → 영향·우선순위
+    └─ HAZOP: 변수·가이드워드 → 이탈
 ```
 
 ### Ⅲ. 핵심 통제
@@ -96,17 +91,12 @@ flowchart TB
 
 ### 3대 안전성 분석 기법(FTA · FMEA · HAZOP) 메커니즘 비교
 
-```mermaid
-flowchart TB
-    subgraph F["FTA (연역적 Top-down)"]
-        TE["최상위 사고 (Top Event)"] -->|"AND/OR 논리 게이트"| MCS["최소 컷셋 (SPOF 제거)"]
-    end
-    subgraph M["FMEA (귀납적 Bottom-up)"]
-        FM["단위 부품 고장 모드"] -->|"상위 영향 분석"| RP["RPN 산출 (S×O×D)"]
-    end
-    subgraph H["HAZOP (탐색적)"]
-        PV["공정 변수 (속도·전압·데이터)"] -->|"가이드워드 적용"| DE["이탈(Deviation) 도출"]
-    end
+```text
+SW 안전 분석
+    ├─ FTA: 사고 → 원인 조합 역추적
+    │        AND/OR 게이트·최소 컷셋
+    ├─ FMEA: 고장 모드 → 영향·우선순위
+    └─ HAZOP: 변수·가이드워드 → 이탈
 ```
 
 | 비교 항목 | FTA (결함 수목 분석) | FMEA (고장 모드 영향 분석) | HAZOP (위험 및 운전성 분석) |

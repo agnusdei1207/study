@@ -52,12 +52,12 @@ extra:
 
 ### Ⅱ. SOAP 메시지 구조
 
-```mermaid
-flowchart TB
-ENV["Envelope"] ---|"선택 요소"| HDR["Header"]
-ENV ---|"필수 요소"| BODY["Body"]
-BODY ---|"일반 데이터"| PAY["요청·응답 데이터"]
-BODY ---|"오류 표현"| FAULT["Fault"]
+```text
+SOAP Envelope
+    ├─ Header: 선택·메타 정보
+    └─ Body: 필수·메시지 본문
+         ├─ 요청·응답 데이터
+         └─ Fault: 오류 정보
 ```
 
 ### Ⅲ. 서비스 계약·보안 연계
@@ -86,23 +86,24 @@ BODY ---|"오류 표현"| FAULT["Fault"]
 
 > SOAP 메시지는 Envelope를 최상위 요소로 두며, Header는 선택 요소이고 Body는 필수 요소다.
 
-```mermaid
-flowchart TB
-    ENV["Envelope"] ---|"선택 요소"| HDR["Header"]
-    ENV ---|"필수 요소"| BODY["Body"]
-    BODY ---|"일반 데이터"| PAY["요청·응답 데이터"]
-    BODY ---|"오류 표현"| FAULT["Fault"]
+```text
+SOAP Envelope
+    ├─ Header: 선택·메타 정보
+    └─ Body: 필수·메시지 본문
+         ├─ 요청·응답 데이터
+         └─ Fault: 오류 정보
 ```
 
 ### Ⅱ. 메시징과 서비스 설명·탐색의 연계
 
 > 세 기술은 서비스 출판(Publish), 검색(Find), 바인딩(Bind)의 삼각관계를 형성한다.
 
-```mermaid
-flowchart LR
-    PROV["서비스 제공자"] -->|"Publish · WSDL 등록"| UDDI["UDDI"]
-    UDDI -->|"Find · WSDL 검색"| REQ["서비스 요청자"]
-    REQ -->|"Bind · SOAP 호출"| PROV
+```text
+제공자: 서비스 계약(WSDL) 게시
+    ↓ 선택적 발견
+요청자: 계약·엔드포인트 확인
+    ↓ SOAP 요청
+제공자: SOAP 응답·Fault 반환
 ```
 
 ### Ⅲ. SOAP 적용 한계·대응책
