@@ -1,105 +1,156 @@
 ---
-title: "오류제어(검출·정정·ARQ)"
-author: "OpenAI Codex"
-date: "2026-09-24T21:00:00+09:00"
-tags: ["notes-network"]
-sidebar: { badge: { text: "기초" } }
-extra: { keyword_grade: "기초", model: "GPT-5.6 Sol" }
+sidebar:
+  order: 3
+  label: "003. 오류제어"
+  badge:
+    text: "기초"
+    variant: note
+title: "오류제어(Error Control)"
+author: "Codex"
+date: "2026-09-24T00:00:00+09:00"
+tags:
+  - "notes-network"
+weight: 3
+extra:
+  model: "GPT-6"
+  keyword_grade: "기초"
+  question_no: "003"
 ---
-<p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>
 
 ## 지식 로드맵 내 현재 위치
-<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터 통신</span><span>신뢰성 제어</span><strong>오류제어</strong></div>
 
-## 큰 그림과 30초 인출
-- 본질: 전송 중 변형된 비트를 검출하고 정정하거나 재전송하여 신뢰성을 회복함
-- 메커니즘: 중복 부호·ACK(Acknowledgement)·Timer·Sequence Number를 채널 오류와 지연 특성에 맞춰 결합함
-- 산출: 잔류 오류·재전송 지연·중복 트래픽 사이의 통제된 균형임
-<div class="itpe-flow itpe-flow--vertical" aria-label="오류제어 흐름">
-  <div class="itpe-flow__node"><strong>송신 부호화</strong><small><b>입력:</b> Data</small><small><b>산출:</b> 검사용 Redundancy</small></div><div class="itpe-flow__arrow">↓</div>
-  <div class="itpe-flow__node"><span class="itpe-keyword"><strong>오류 검출</strong></span><small><b>판정:</b> Parity · Checksum · CRC</small></div><div class="itpe-flow__arrow">↓</div>
-  <div class="itpe-flow__node"><strong>복구 선택</strong><small><b>대안:</b> FEC 정정 또는 ARQ 재전송</small></div><div class="itpe-flow__arrow">↓</div>
-  <div class="itpe-flow__node"><strong>신뢰 전달</strong><small><b>산출:</b> 순서 보존 · 잔류 오류 통제</small></div>
-</div>
-<details><summary>핵심 용어</summary>
+지식 위치: 네트워크 → 데이터 통신 → **전송 오류 검출·복구**
 
-- `CRC(Cyclic Redundancy Check)`: 다항식 나눗셈의 나머지로 Burst 오류를 검출함
-- `FEC(Forward Error Correction)`: 수신 측 정정을 위해 추가 중복을 전송함
-- `ARQ(Automatic Repeat reQuest)`: 오류·손실 프레임을 ACK와 Timer로 재전송함
-- `ACK(Acknowledgement)`: ARQ에서는 프레임 수신 성공을, TCP에서는 누적된 다음 기대 순서를 피드백함
+## 30초 인출
+
+- 본질: **오류제어** : 전송 중 손상되거나 손실된 데이터를 검출하고 정정 또는 재전송으로 복구하는 체계
+- 메커니즘: 검사 정보로 오류 판정 → **FEC**는 수신 측 정정, **ARQ**는 확인 응답·시간 초과를 이용한 재전송
+
+<details>
+<summary>핵심 용어</summary>
+
+- **오류제어(Error Control)** : 전송 중 발생한 데이터 오류·손실을 검출하고 복구하는 체계
+- **CRC(Cyclic Redundancy Check)** : 다항식 연산으로 만든 검사값을 비교해 오류를 검출하는 기법
+- **FEC(Forward Error Correction)** : 추가 부호를 전송해 수신 측에서 일정 범위의 오류를 정정하는 기법
+- **ARQ(Automatic Repeat reQuest)** : 수신 확인과 시간 초과 등을 근거로 전송 데이터를 다시 보내는 기법
+- **ACK(Acknowledgement)** : 데이터 수신 상태를 송신 측에 알리는 확인 응답
+- **RTT(Round-Trip Time)** : 송신 측에서 보낸 신호가 수신 측을 거쳐 응답으로 돌아오는 왕복 시간
+- **Go-Back-N ARQ** : 오류나 손실이 난 프레임부터 이후 송신분까지 다시 보내는 방식
+- **Selective Repeat ARQ** : 손실·오류가 있는 프레임을 선택해 다시 보내는 방식
+
 </details>
 
 ---
 
 ## 1교시 예상문제 (10점)
-> 오류제어의 개념과 검출·정정·재전송 방식을 설명하시오. (예상)
+
+> 오류제어의 검출·정정·재전송 방식을 설명하시오. (예상·10점)
 
 ---
 
 ## 1교시 10점 답안
-### Ⅰ. 정의·목적
-- 정의: 오류제어는 검출·정정 부호와 **ARQ(Automatic Repeat reQuest)** 를 사용해 전송 오류를 식별하고 복구하는 방식이다.
-- 목적: 잔류 오류와 손실을 줄여 데이터 무결성을 확보한다.
 
-| 방식 | 역할 | 한계 |
+### Ⅰ. 오류제어의 개요
+
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **오류제어** : 손상·손실 데이터를 검출하고 정정 또는 재전송으로 복구하는 체계 |
+| 목적 | 전송 오류의 영향과 잔류 오류를 줄여 신뢰성 확보 |
+
+### Ⅱ. 복구 수단
+
+| 구분 | 대표 기법 | 역할 |
 |---|---|---|
-| **CRC** | 오류 검출 | 자체 정정은 못함 |
-| **FEC** | 추가 부호로 수신 측 정정 | 중복 전송량 증가 |
-| **ARQ** | ACK·Timer를 사용해 재전송 | RTT와 재전송 지연 |
+| 검출 | CRC | 오류 여부 판정 |
+| 정정 | FEC | 수신 측에서 복구 |
+| 재전송 | ARQ | 확인 응답·시간 초과에 따라 다시 전송 |
 
-- 제언: 오류율과 RTT에 맞춰 FEC와 ARQ를 선택하고 시험한다.
+- 제언: 채널 오류와 왕복 지연에 따라 중복 부호량과 재전송 비용을 함께 판단.
 
 ---
 
 ## 2~4교시 예상문제 (25점)
-> 오류 검출·정정과 ARQ의 원리를 설명하고, ARQ 유형을 비교한 뒤 채널 특성별 선택 및 개선 방안을 제시하시오. (예상)
+
+> 오류제어의 검출·정정·재전송 원리를 설명하고 ARQ 방식별 특성과 적용 한계·대응 방안을 제시하시오. (예상·25점)
 
 ---
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. 중복정보로 신뢰성을 회복하는 오류제어 개요
-> 오류제어는 오류를 없애는 기술이 아니라 검출 누락·중복량·재전송 지연의 대가를 채널에 맞게 배분하는 기술임.
+## Ⅰ. 오류제어의 개요
 
-- 정의: **오류제어**는 **오류 검출·정정 부호**와 **ARQ(Automatic Repeat reQuest)**로 전송 오류를 식별·복구하는 신뢰성 제어임
-- 목적: 잔류 오류와 손실을 통제 → 상위 서비스의 데이터 무결성 확보
-
-## Ⅱ. 검출·정정·재전송 구성과 동작
-> 검출은 복구의 출발점이며, 왕복지연이 큰 채널은 FEC를, 오류율이 낮고 피드백이 빠른 채널은 ARQ를 우선함.
-
-| 방식 | 원리 | 강점 | 대가 |
-|---|---|---|---|
-| Parity | 1 bit 중복 | 단순 | 짝수 오류 누락 |
-| Checksum | Word 합 | 구현 용이 | Burst 검출 한계 |
-| **CRC** | 생성다항식 나머지 | Burst 검출 | 자체 정정 불가 |
-| **FEC** | Code Distance | 무재전송 정정 | 대역폭·연산 |
-| **ARQ** | ACK·Timer·Sequence | 적응적 복구 | RTT(Round-Trip Time)·재전송 |
-
-## Ⅲ. ARQ 유형 비교
-> Window 크기와 재전송 범위가 링크 이용률과 복구 트래픽을 가르므로 오류율·RTT·수신 버퍼를 함께 보아야 함.
-
-| 축 | Stop-and-Wait | Go-Back-N | Selective Repeat |
-|---|---|---|---|
-| Window | 1 | 송신 N | 송·수신 N |
-| 오류 복구 | 해당 Frame | 오류 이후 전체 | 오류 Frame만 |
-| 순서 | 단순 | 누적 ACK | 개별 ACK·재정렬 |
-| 적합 | 짧은 RTT | 낮은 오류율 | 긴 RTT·높은 오류율 |
-
-## 기술사적 제언
-
-| 문제 | 해결 방안 |
+| 구분 | 핵심 |
 |---|---|
-| 고정된 부호 강도와 재전송 설정은 채널 오류·왕복 지연이 달라질 때 중복 전송이나 복구 지연을 키울 수 있음 | 오류 패턴과 RTT를 측정해 FEC 강도·재전송 범위를 조정하고 오류 주입 시험으로 확인 |
+| 정의 | **오류제어** : 손상·손실 데이터를 검출하고 정정 또는 재전송으로 복구하는 체계 |
+| 목적 | 전송 오류의 영향과 잔류 오류를 줄여 신뢰성 확보 |
 
-## 출제 이력과 검증 출처
-- 제137·138회: 원문 미확보(회차만 확인)
-- [RFC 9293, Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293)
-- [RFC 6298, Computing TCP's Retransmission Timer](https://www.rfc-editor.org/rfc/rfc6298)
-- [ITU-T X.25, LAPB의 Go-Back-N ARQ 절차](https://www.itu.int/rec/T-REC-X.25/en)
-- [RFC 3366, Advice to link designers on link Automatic Repeat reQuest](https://www.rfc-editor.org/rfc/rfc3366)
-- [RFC 3385, Internet Protocol Small Computer System Interface cyclic redundancy check](https://www.rfc-editor.org/rfc/rfc3385)
-- [RFC 6363, Forward Error Correction Framework](https://www.rfc-editor.org/rfc/rfc6363)
-- [RFC 1982, Serial Number Arithmetic for Sequence Number Space](https://www.rfc-editor.org/rfc/rfc1982)
+## Ⅱ. 검출에서 복구까지
+
+```mermaid
+flowchart TB
+    A[송신 데이터·검사 정보] --> B[수신·오류 검출]
+    B --> C{복구 가능?}
+    C -->|FEC 정정 가능| D[수신 측 정정]
+    C -->|재전송 필요| E[ARQ 재전송 요청·시간 초과]
+    E --> B
+    D --> F[데이터 전달]
+    C -->|오류 없음| F
+```
+
+CRC 같은 검출 부호는 손상을 알아내는 수단이며, 자체적으로 손상 데이터를 고치지는 않음. FEC와 ARQ는 채널에 따라 결합 가능.
+
+## Ⅲ. 검출·정정·재전송 비교
+
+| 기법 | 추가 정보 | 장점 | 한계 |
+|---|---|---|---|
+| CRC | 검사값 | 다양한 비트 오류 검출 | 검출 범위의 한계·자체 정정 불가 |
+| FEC | 정정 부호 | 피드백 없이 일정 오류 정정 | 부호 중복·연산 비용 |
+| ARQ | 순서 번호·ACK·타이머 | 필요할 때 재전송 | 왕복 지연·재전송 트래픽 |
+
+## Ⅳ. ARQ 유형
+
+| 방식 | 전송 창 | 손실 시 재전송 | 주요 부담 |
+|---|---|---|---|
+| Stop-and-Wait | 1개 | 해당 프레임 | 긴 RTT에서 대기 |
+| Go-Back-N | 여러 개 | 손실분부터 후속분까지 | 오류 시 중복 재전송 |
+| Selective Repeat | 여러 개 | 손실분 선택 | 수신 버퍼·순서 재조립 |
+
+방식별 실제 효율은 오류율·RTT·창 크기·구현의 확인 응답 규칙에 따라 달라짐.
+
+## Ⅴ. 채널 특성에 따른 선택
+
+| 조건 | 우선 확인 | 대응 예 |
+|---|---|---|
+| 왕복 지연이 큼 | 재전송 대기 비용 | FEC 결합·전송 창 조정 |
+| 오류가 드묾 | 부호 중복 비용 | 검출 후 ARQ |
+| 연속 오류가 잦음 | 손실 패턴·정정 능력 | FEC 강도와 재전송 범위 조정 |
+
+한 방식이 항상 유리한 것은 아니므로 실제 오류 패턴과 응용의 지연 허용치를 함께 판단.
+
+## Ⅵ. 한계와 대응
+
+| 한계 | 대응 |
+|---|---|
+| 검출 부호만 쓰고 복구 경로 없음 | 정정 또는 재전송 절차 마련 |
+| 타이머가 너무 짧아 불필요한 재전송 증가 | RTT 변동을 반영해 시간 초과 값 설정 |
+| 재전송으로 지연 목표 초과 | FEC·ARQ 조합과 오류 주입 시험 |
+| 수신 순서 뒤바뀜·중복 전달 | 순서 번호·버퍼·중복 제거 검증 |
+
+## Ⅶ. 기술사적 제언
+
+| 우선 제언 | 실행·확인 |
+|---|---|
+| 검출·정정·재전송의 책임 분리 | 계층별 CRC·FEC·ARQ 적용 위치와 잔류 오류 확인 |
+| 채널 특성 기반의 복구 선택 | 오류율·RTT·허용 지연을 측정하고 재전송·부호 비용 비교 |
+
+---
+
+## 검증 출처
+
+- [RFC 3366: Advice to link designers on link ARQ](https://www.rfc-editor.org/rfc/rfc3366)
+- [RFC 6363: Forward Error Correction Framework](https://www.rfc-editor.org/rfc/rfc6363)
+- [RFC 6298: Computing TCP's Retransmission Timer](https://www.rfc-editor.org/rfc/rfc6298)
 
 ## 연결 토픽
-- [ARQ](./015_arq/) · [Go-Back-N ARQ](./020_go_back_n_arq/) · [CRC](./068_crc/) · [슬라이딩 윈도우](./018_sliding_window/)
+
+- 연관 토픽: [ARQ](./015_arq.md), [CRC](./068_crc.md), [슬라이딩 윈도우](./018_sliding_window.md)
