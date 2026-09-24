@@ -6,9 +6,9 @@ tags:
   - "notes-software-engineering"
 sidebar:
   badge:
-    text: "A"
+    text: "기초"
 extra:
-  keyword_grade: "A"
+  keyword_grade: "기초"
   model: "GPT-6"
 ---
 
@@ -18,7 +18,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **DevOps**는 개발(Dev)과 운영(Ops)의 단절을 극복하고, 자동화 파이프라인과 협업 문화로 소프트웨어를 신속·안정적으로 지속 전달하는 체계
+- 본질: **DevOps**는 개발과 운영이 함께 소프트웨어를 만들고 운영하며 지속적으로 전달하는 협업 방식
 - 메커니즘: Plan → Code → Build → Test → Release → Deploy → Operate → Monitor 무한 루프 피드백
 - 효과: 리드타임 단축 · 배포 빈도 극대화 · 장애 복구 시간(MTTR) 단축 · 고객 가치 조기 실현
 
@@ -29,6 +29,7 @@ extra:
 - **CI/CD(Continuous Integration/Continuous Delivery)**: 코드 통합, 테스트, 빌드, 배포 전 과정을 자동화하는 파이프라인
 - **IaC(Infrastructure as Code)**: 인프라 구성을 코드로 정의·버전 관리하여 프로비저닝을 자동화하는 기술
 - **CALMS**: Culture(문화), Automation(자동화), Lean(린), Measurement(측정), Sharing(공유)의 DevOps 성공 프레임워크
+- **DORA(DevOps Research and Assessment)**: 소프트웨어 전달·운영 성과를 조사하고 측정 지침을 제공하는 연구 조직
 - **SRE(Site Reliability Engineering)**: 소프트웨어 공학적 접근법을 적용해 시스템 신뢰성과 운영 가용성을 관리하는 실천 모델
 
 </details>
@@ -43,12 +44,14 @@ extra:
 
 ## 1교시 10점 답안
 
-### 1. 정의·목적
+### Ⅰ. DevOps 개요
 
-- 정의: **DevOps**는 개발(Development)과 운영(Operations)을 통합하여 **CI/CD** 파이프라인으로 소프트웨어를 지속 전달하는 문화이자 공학 체계
-- 목적: 리드타임 단축 및 배포 주기 가속화 → 고품질 서비스의 시장 적시 출시
+| 구분 | 핵심 |
+|---|---|
+| 정의 | **DevOps** 는 개발과 운영이 협력해 변경을 지속적으로 전달·운영하는 방식 |
+| 목적 | 변경을 더 빠르고 안전하게 전달하고 운영 피드백을 개발에 반영 |
 
-### 2. 구성체계 및 방법론
+### Ⅱ. 지속 전달과 피드백
 
 ```mermaid
 flowchart TD
@@ -58,30 +61,31 @@ flowchart TD
     M -->|피드백| P
 ```
 
-### 3. 핵심 통제
+### Ⅲ. 실천 기반
 
-- **CALMS 실천**: 문화 혁신 및 DORA 4대 지표 기반 성능 측정
+- **CALMS 실천**: 문화·자동화·린·측정·공유의 결합, DORA 지표로 전달 성능 점검
 - SRE 연계: **Error Budget(에러 예산)**을 통한 혁신 속도와 서비스 신뢰성의 정량적 통제
+- 한 줄 제언: 배포 속도와 안정성 지표를 함께 관찰하고 팀이 후속 개선을 결정할 수 있게 공유
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> DevOps의 개념 및 등장 배경을 설명하고, CALMS 프레임워크의 핵심 요소, CI/CD 및 IaC 기반 기술 구성요소, 전통적 운영 모델과의 비교 및 조직 도입 시 성패 요인을 제시하시오. (25점, 예상)
+> DevOps의 개념과 등장 배경을 설명하고, 개발·운영 협업과 지속적 전달의 핵심 활동, 도입 시 조직·기술 측면의 고려사항을 제시하시오. (25점, 예상)
 
 ---
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 개발과 운영 장벽을 극복하는 DevOps의 개요
+## Ⅰ. 개발과 운영 장벽을 극복하는 DevOps의 개요
 
 > DevOps는 사일로(Silo)화된 개발과 운영 조직의 이해관계를 일치시키며, 성패는 자동화 파이프라인과 실패 수용 문화로 판정된다.
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | 개발과 운영이 협력해 소프트웨어의 변경·배포·운영을 지속적으로 개선하는 방식 |
-| 목적 | 변경을 더 안전하고 빠르게 전달하고 장애 복구를 개선 |
+| 정의 | **DevOps** 는 개발과 운영이 협력해 변경을 지속적으로 전달·운영하는 방식 |
+| 목적 | 변경을 더 빠르고 안전하게 전달하고 운영 피드백을 개발에 반영 |
 
-### Ⅱ. CALMS 프레임워크와 기술 구성요소
+## Ⅱ. CALMS 실천과 전달 파이프라인
 
 > DevOps는 단순한 도구 도입이 아니라 CALMS 5대 축과 엔지니어링 툴체인이 유기적으로 결합할 때 완성된다.
 
@@ -100,10 +104,10 @@ flowchart TD
 | **Culture** | Blameless Postmortem, 원팀(One-team) | 심리적 안전감 확보, 책임 전가 방지 |
 | **Automation** | Jenkins, GitHub Actions, ArgoCD, Terraform(**IaC**) | 수작업 휴먼 에러 원천 차단 |
 | **Lean** | Wip(재공) 제한, 스몰 배치(Small Batch) | 배포 단위 축소로 변경 위험 통제 |
-| **Measurement** | DORA 4대 지표(배포빈도, 리드타임, 변경실패율, MTTR) | 객관적 데이터 기반 엔지니어링 개선 |
+| **Measurement** | DORA의 현행 전달 성능 지표(변경 리드타임, 배포 빈도, 배포 실패 복구시간, 변경 실패율, 배포 재작업률) | 처리량·불안정성에 대한 개선 근거 |
 | **Sharing** | 내부 지식 포털, 엔지니어링 커뮤니티 | 성공/실패 사례 전사 전파 |
 
-### Ⅲ. 전통적 운영 모델 vs DevOps 모델 비교
+## Ⅲ. 전통적 운영 모델과 DevOps 비교
 
 > 전통적 모델은 변경 통제와 안정성을 위해 출시를 지연시키나, DevOps는 작은 배치를 자주 배포함으로써 안정성을 획득한다.
 
@@ -115,7 +119,7 @@ flowchart TD
 | **인프라 관리** | 엔지니어 수작업 GUI/CLI 구성 | Git 기반 선언적 **IaC** 및 GitOps |
 | **장애 대응** | 장애 발생 시 원인 규명 및 문책 중심 | 비난 없는 사후 분석(Blameless) 및 시스템 보완 |
 
-### Ⅳ. DevOps 도입 문제점·대응책
+## Ⅳ. DevOps 도입 문제점·대응책
 
 > 도구만 도입하고 조직 문화와 평가 체계를 바꾸지 않으면 '도구 사일로'가 심화되므로 체계적인 거버넌스가 필요하다.
 
@@ -125,7 +129,7 @@ flowchart TD
 | **조직 KPI 상충 및 저항** | 개발-운영 간 갈등을 중재하는 **에러 예산(Error Budget)** 제도화 | 변경 속도와 서비스 신뢰성의 수학적 균형 확보 |
 | **인프라 구성 불일치 (Drift)** | 콘솔 직접 수정을 금지하고 Git PR 기반 선언적 **IaC(GitOps)** 강제 | 환경 간 불일치 제거 및 배포 멱등성 보장 |
 
-### Ⅴ. 결론 — 지속 개선 중심의 기술사적 제언
+## Ⅴ. 기술사적 제언 — 공동 지표에 따른 개선
 
 | 문제 | 해결 방안 |
 |---|---|
@@ -136,6 +140,7 @@ flowchart TD
 
 - 제136회 정보관리기술사 2교시: DevOps와 SRE, DevSecOps 연계 방안
 - DORA(DevOps Research and Assessment), State of DevOps Report
+- [DORA, Software delivery performance metrics](https://dora.dev/guides/dora-metrics/)
 - Google SRE Book, Site Reliability Engineering: How Google Runs Production Systems
 
 ## 연결 토픽
