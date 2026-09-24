@@ -147,4 +147,4 @@ extra:
 
 ## 연결 토픽
 
-- [침해사고 대응](./036_incident_response/) · [디지털 증거](./008_digital_artifacts/)
+- [디지털 아티팩트](./008_digital_artifacts/)

@@ -1,7 +1,7 @@
 ---
 title: "제로트러스트(Zero Trust)"
 author: "OpenAI"
-date: "2026-09-24T21:50:00+09:00"
+date: "2026-09-24T21:48:00+09:00"
 tags:
   - "notes-security"
 extra:
