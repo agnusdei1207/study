@@ -22,6 +22,15 @@ function mermaidBlocks(markdown) {
   return [...markdown.matchAll(/```mermaid\s*\r?\n([\s\S]*?)```/gu)].map((match) => match[1].replace(/\r\n/gu, '\n').trim());
 }
 
+function overviewTable(answer) {
+  const table = answer.match(/^\| 구분 \| 핵심 \|\r?\n\|[^\r\n]+\|\r?\n\| 정의 \|[^\r\n]+\|\r?\n\| 목적 \|[^\r\n]+\|/mu);
+  return table?.[0].replace(/\r\n/gu, '\n') ?? null;
+}
+
+function visualCount(answer) {
+  return [...answer.matchAll(/^\|---|^```mermaid\s*$/gmu)].length;
+}
+
 test('All IT strategy notes use tables or Mermaid instead of legacy visual markup', async () => {
   const files = await targetNotes();
   assert.equal(files.length, 81, '현재 카탈로그의 IT 전략 과목에는 81개 노트가 있어야 합니다.');
@@ -68,6 +77,20 @@ test('IT strategy notes place each question above its answer, with 10 points fir
     assert.match(note, /---\s+## 1교시 예상문제 \(10점\)\s+>[^\n]+\s+---\s+## 1교시 10점 답안/u, file);
     assert.match(note, /---\s+## 2~4교시 예상문제 \(25점\)\s+(?:>[^\n]+\s*)+---\s+## 2~4교시 25점 답안/u, file);
     assert.ok(note.indexOf('## 1교시 10점 답안') < note.indexOf('## 2~4교시 25점 답안'), file);
+  }
+});
+
+test('10-point answers reuse the overview table and core visuals of 25-point answers', async () => {
+  for (const file of await targetNotes()) {
+    const note = await readFile(file, 'utf8');
+    const short = sectionAfter(note, /^## 1교시 10점 답안\s*$/mu) ?? '';
+    const longStart = note.indexOf('## 2~4교시 25점 답안');
+    const longEnd = note.indexOf('## 출제 이력과 검증 출처', longStart);
+    const long = note.slice(longStart, longEnd);
+    assert.ok(overviewTable(short), `${file}: 10점 답안에 정의·목적 표가 필요합니다.`);
+    assert.equal(overviewTable(short), overviewTable(long), `${file}: 10점·25점 정의·목적 표가 같아야 합니다.`);
+    assert.ok(visualCount(short) >= 1, `${file}: 10점 답안에 시각화가 필요합니다.`);
+    assert.ok(visualCount(long) >= 3, `${file}: 25점 답안에 시각화가 3개 이상 필요합니다.`);
   }
 });
 

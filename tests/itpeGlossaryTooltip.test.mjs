@@ -15,6 +15,10 @@ test('IT strategy glossary opens from matching bold terms by click and keyboard'
   const term = [...dom.window.document.querySelectorAll('article strong')].at(-2);
   const popup = dom.window.document.querySelector('.itpe-glossary-tooltip');
   assert.equal(term.tabIndex, 0);
+  term.dispatchEvent(new dom.window.Event('pointerenter'));
+  assert.equal(popup.hidden, false);
+  term.dispatchEvent(new dom.window.Event('pointerleave'));
+  assert.equal(popup.hidden, true);
   term.click();
   assert.equal(popup.hidden, false);
   assert.match(popup.textContent, /발주기관의 사업관리 지원 조직/);
