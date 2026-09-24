@@ -162,5 +162,6 @@ LangChain의 역할은 언어모델 자체를 대체하는 것이 아니라, 모
 
 ## 출제 이력과 검증 출처
 - 기존 노트의 기출 기록: 제132회 4교시 3번 설비예지정비 시스템에서 LangChain 활용 방안. 공식 원문은 별도 대조하지 못했으므로 기록 문구를 기출 원문으로 단정하지 않음.
+- 기존 노트에 기록된 문항: “설비예지정비(Predictive Maintenance)시스템 구축 시 LangChain 프레임워크를 활용할 수 있는 방안에 대하여 다음을 설명하시오.” (공식 원문 대조 미확인)
 - [LangChain OSS Overview](https://www.langchain.com/oss-overview), LangChain 구성 역할 및 LangGraph와의 구분.
 - [LangChain Runnable reference](https://reference.langchain.com/python/langchain-classic/schema/runnable), Runnable·LCEL 조합의 동작 개요.

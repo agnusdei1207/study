@@ -156,5 +156,6 @@ CT는 파이프라인의 필수 속성이 아니라 재학습을 언제 실행�
 
 ## 출제 이력과 검증 출처
 - 기존 노트의 기출 기록: 제121회 1교시 머신러닝 파이프라인. 공식 문항 원문은 별도 대조하지 못했으므로 기존 문구를 확정 기출문으로 인용하지 않음.
+- 기존 노트에 기록된 문항: “머신러닝 수명주기(Lifecycle) 관리를 위한 머신러닝 파이프라인(ML Pipeline)의 개념, 주요 구성요소 및 지속적 학습(CT)의 동작 메커니즘을 설명하시오.” (공식 원문 대조 미확인)
 - [TensorFlow Extended: Understanding TFX Pipelines](https://www.tensorflow.org/tfx/guide/understanding_tfx_pipelines), 데이터 검증·변환·학습·평가·배포 단계의 파이프라인 예.
 - Sculley et al., [Hidden Technical Debt in Machine Learning Systems](https://papers.nips.cc/paper_files/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf), 2015. 모델 운영에서 데이터·시스템 의존성이 만드는 위험 분석.
