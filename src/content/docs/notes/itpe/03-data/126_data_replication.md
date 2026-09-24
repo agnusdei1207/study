@@ -1,17 +1,17 @@
 ---
 sidebar:
   order: 126
-  label: "126. 데이터 복제 (Data Replication)"
+  label: "126. 데이터 복제"
   badge:
     text: "기초"
     variant: note
-author: "Antigravity"
+author: "Codex"
 category: "03-data"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 weight: 126
-title: "데이터 복제(Data Replication) 아키텍처와 계층별 복제 기술 및 DR 구축 전략"
+title: "데이터 복제(Data Replication)의 구조와 동기화 방식"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -20,223 +20,108 @@ extra:
 
 ## 지식 로드맵 내 현재 위치
 
-<div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>분산 데이터베이스·고가용성</span><strong>데이터 복제</strong></div>
+데이터베이스 → 분산 데이터베이스·고가용성 → 데이터 복제
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-<div class="itpe-svg-container" style="margin: 1.5rem 0; overflow-x: auto;">
-<svg viewBox="0 0 520 260" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif; background: var(--sl-color-bg-inline-code, #f8fafc); border-radius: 8px; border: 1px solid var(--sl-color-gray-5, #e2e8f0);">
-  <!-- Layer 1: App/CDC -->
-  <rect x="25" y="20" width="470" height="60" rx="6" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-width="1.5"/>
-  <text x="45" y="42" font-size="12" font-weight="bold" fill="#1d4ed8">1. 애플리케이션 및 CDC 계층 (Kafka, Debezium, GoldenGate)</text>
-  <text x="45" y="62" font-size="11" fill="var(--sl-color-text, #334155)">- 트랜잭션 로그를 이벤트로 발행하여 이기종 DBMS(Oracle to PG) 간 실시간 동기화</text>
+- 본질: **데이터 복제는 한 데이터의 변경을 다른 노드나 저장소에 전달해 사본을 유지하는 기술**
+- 메커니즘: 복제 단위와 확인 시점을 정해 가용성·복구·읽기 확장 목표와 데이터 손실·지연의 균형을 설계
 
-  <!-- Layer 2: DBMS Engine -->
-  <rect x="25" y="95" width="470" height="60" rx="6" fill="#0ea5e9" fill-opacity="0.1" stroke="#0ea5e9" stroke-width="1.5"/>
-  <text x="45" y="117" font-size="12" font-weight="bold" fill="#0284c7">2. DBMS 엔진 계층 (PostgreSQL Streaming, MySQL Binlog)</text>
-  <text x="45" y="137" font-size="11" fill="var(--sl-color-text, #334155)">- WAL/Redo 로그 전송, 엔진 차원의 완벽한 ACID 정합성 및 RPO=0 반동기 복제 지원</text>
+<details><summary>핵심 용어</summary>
 
-  <!-- Layer 3: Storage Block -->
-  <rect x="25" y="170" width="470" height="60" rx="6" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-width="1.5"/>
-  <text x="45" y="192" font-size="12" font-weight="bold" fill="#059669">3. 스토리지 블록 계층 (SAN 미러링, AWS EBS 복제, DRBD)</text>
-  <text x="45" y="212" font-size="11" fill="var(--sl-color-text, #334155)">- OS/DBMS에 완전히 투명한 블록 I/O 미러링, 대용량 초고속 복제 및 DR 센터 구성</text>
+- **데이터 복제 (Data Replication)** : 원본 데이터 변경을 복제 대상에 전달·반영해 사본을 유지하는 기술
+- **동기 복제 (Synchronous Replication)** : 설정한 복제 확인 조건을 커밋 응답 전에 기다리는 방식
+- **비동기 복제 (Asynchronous Replication)** : 원본 커밋 후 복제 대상에 변경을 전달하는 방식
+- **RPO (Recovery Point Objective)** : 재해 시 복구해야 하는 데이터 시점 목표로, 허용 데이터 손실 범위를 나타내는 계획값
+- **RTO (Recovery Time Objective)** : 장애 후 서비스를 복구하기까지의 목표 시간
+- **CDC (Change Data Capture)** : 데이터 변경을 로그·기능 등으로 포착해 이벤트로 전달하는 방식
 
-  <defs>
-    <marker id="arrow126" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
-    </marker>
-  </defs>
-</svg>
-</div>
+</details>
 
-- 본질: **데이터 복제는 원본 변경을 다른 노드나 저장 계층에 전달해 가용성·복구·읽기 확장을 지원하는 기술이며, 동기화 지연과 장애 시점의 손실 가능성은 방식과 설정에 따라 달라짐**
-- 암기: `애-디-스` (3대 구현 계층: 애플리케이션/CDC 계층, DBMS 엔진 계층, 스토리지 블록 계층) / `동-비-반` (동기화 3대 방식: 동기 Synchronous, 비동기 Asynchronous, 반동기 Semi-sync) / `스-엘-씨` (충돌 해결: Split-Brain 방지 쿼럼, Last-Write-Wins, CRDT)
-- 판단축:
-  - **스토리지 복제**: 블록 변경을 복제해 DBMS 상위 계층에서 투명하게 보일 수 있으나, 복제본 활용 가능성은 스토리지·파일시스템·DBMS 구성에 따름
-  - **DBMS 엔진 복제**: 동종 DBMS 최적화, 보조 노드 읽기 트래픽 분산 가능, 반동기 복제로 RPO=0 달성
-  - **CDC 복제**: 변경 이벤트를 전달해 이기종 데이터 파이프라인을 구성할 수 있으나, 변환·순서·중복·스키마 처리를 설계해야 함
-- 주의: 데이터 복제는 시스템 장애를 극복하는 HA/DR 기술이지 '데이터 백업'을 대체할 수 없음 (운영 DB에서 `DROP TABLE` 발생 시 수 밀리초 만에 복제본까지 연쇄 삭제됨)
 ---
 
 ## 1교시 예상문제 (10점)
 
-> 데이터 복제(Data Replication) 아키텍처와 계층별 복제 기술 및 DR 구축 전략의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> 데이터 복제의 개념과 주요 복제 방식 및 적용 목적을 설명하시오. (예상)
 
 ---
 
 ## 1교시 10점 답안
 
-| 항목 | 핵심 서술 내용 |
-|:---|:---|
-| **1. 개념** | 고가용성(HA)과 재해 복구(DR)를 위해 동일한 최신 데이터를 복수의 분산 노드 또는 원격 센터에 실시간 동기화 유지하는 기술 |
-| **2. 3대 구현 계층** | - **스토리지 블록**: SAN 미러링, OS/DBMS 투명성, 전사 DR 센터 전용<br/>- **DBMS 엔진**: WAL/Binlog 스트리밍, 읽기 복제본 지원, RPO=0 반동기<br/>- **애플리케이션/CDC**: Debezium/Kafka, 이기종 DB 간 변환 및 이벤트 파이프라인 |
-| **3. 동기 vs 비동기** | - 동기(Sync): 원격 ACK 후 커밋, RPO=0, 트랜잭션 지연 발생<br/>- 비동기(Async): 로컬 커밋 후 전송, 성능 우수하나 RPO>0 데이터 유실 가능 |
-| **4. 충돌 및 장애 방지** | 3노드 쿼럼 기반 과반수 합의로 스플릿 브레인을 방지하고, 쓰기 리전 고정 샤딩으로 충돌 원천 차단 |
----
+### Ⅰ. 데이터 복제 개요
 
-### 핵심 관계
+| 구분 | 핵심 |
+|---|---|
+| 정의 | 데이터 복제는 원본 데이터 변경을 다른 노드·저장소에 전달해 사본을 유지하는 기술 |
+| 목적 | 장애 복구·가용성·읽기 확장 요구에 맞춘 데이터 사본 제공 |
 
-| 비교 항목 | 스토리지 블록 복제 | DBMS 엔진 로그 복제 | CDC 애플리케이션 복제 |
-|:---|:---|:---|:---|
-| **복제 단위** | 디스크 블록(Block, 4KB/8KB) | 트랜잭션 로그(WAL, Redo, Binlog) | 테이블 단위 변경 이벤트(JSON/Avro) |
-| **대표 기술** | EMC SRDF, NetApp SnapMirror, DRBD | PG Streaming Replication, MySQL Group | Debezium, Oracle GoldenGate, Kafka Connect |
-| **DBMS 종속성** | DBMS 바깥 블록 계층에 의존 | 제품·버전·로그 호환 조건 확인 | 변환기와 스키마 매핑에 따라 이기종 연계 가능 |
-| **보조노드 조회** | 스토리지 스냅샷·복구 절차 등 구성에 따름 | 엔진 기능과 복제 모드에 따름 | 소비 파이프라인과 대상 저장소에 따름 |
-| **네트워크 부하** | 높음 (빈 블록까지 전송될 수 있음) | 중간 (로그 파일 압축 전송) | 낮음 (변경된 레코드 컬럼만 전송) |
-| **적합한 영역** | 전사 차원의 무중단 원격 DR 센터 | 고가용성 HA 클러스터 및 읽기 분산 | MSA 간 이벤트 동기화 및 실시간 DW/Lake 적재 |
+### Ⅱ. 방식과 판단축
+
+| 구분 | 방식 |
+|---|---|
+| 구현 계층 | 스토리지 블록 복제, DBMS 로그 복제, CDC 이벤트 복제 |
+| 확인 시점 | 동기 복제는 원격 확인 대기, 비동기 복제는 원본 커밋 후 전송 |
+| 운영 지표 | RPO·RTO 목표, 지연, 장애 시 승격·복구 절차 |
+
+**제언:** 복제만으로 백업을 대체하지 말고 복구 가능한 백업과 장애 복구 훈련을 함께 운영
 
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> 데이터베이스 및 스토리지 레벨에서의 데이터 복제(Data Replication) 기술 유형을 비교하고, 재해복구(DR) 센터 구축 시 RPO와 RTO 관점에서의 동기/비동기 복제 방식 선정 기준 및 충돌 해결 방안을 기술하시오. (25점)
-
-> (25점, 예상)
+> 데이터 복제의 개념과 구현 계층을 설명하고, 동기·비동기 복제 및 RPO·RTO에 따른 설계 판단과 운영 고려사항을 기술하시오. (예상)
 
 ---
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 무중단 비즈니스를 보장하는 데이터 복제(Data Replication) 개요
+## Ⅰ. 데이터 복제 개요
 
-#### 한줄 요약: 시스템 장애와 재해로부터 무손실 회복탄력성을 확보하기 위해 복수의 이중화 노드에 데이터 사본을 유지하는 기술
+| 구분 | 핵심 |
+|---|---|
+| 정의 | 데이터 복제는 원본 데이터 변경을 다른 노드·저장소에 전달해 사본을 유지하는 기술 |
+| 목적 | 장애 복구·가용성·읽기 확장 요구에 맞춘 데이터 사본 제공 |
 
-- **배경**:
-  - 단일 데이터 저장소에 하드웨어 장애, 지진/화재 등 물리적 재난 발생 시 데이터 영구 유실 및 서비스 전면 중단 초래
-  - 글로벌 사용자 확대로 중앙 단일 DB로의 네트워크 왕복 지연(RTT) 증가 및 읽기 트랜잭션 집중 병목 발생
-- **정의**: 원천(Primary) 노드에서 발생한 데이터 생성·수정·삭제 트랜잭션을 변경 로그 형태로 캡처하여 하나 이상의 복제 대상(Replica/Standby) 노드에 전송 및 반영하는 기술
-- **핵심 목표**: 고가용성(HA), 무중단 재해 복구(DR), 읽기 트래픽 분산(Scale-out), 지리적 근접 서비스 제공
+## Ⅱ. 복제 계층과 단위
 
-### Ⅱ. 데이터 복제의 3대 구현 계층 및 기술 메커니즘
+| 계층 | 복제 단위 | 활용·제약 |
+|---|---|---|
+| 스토리지 | 블록·볼륨 변경 | DBMS 아래 계층 복제; 일관된 DB 복구와 복제본 활용은 스토리지·DBMS 구성에 의존 |
+| DBMS | 물리·논리 로그 또는 엔진 복제 데이터 | 엔진 기능을 이용한 Standby·읽기 복제; 제품·모드별 기능 확인 |
+| CDC | 행 변경 이벤트 | 이기종 분석 파이프라인에 활용; 순서·중복·스키마·재처리 설계 필요 |
 
-#### 한줄 요약: 스토리지 블록 미러링, DBMS 내장 로그 스트리밍, 애플리케이션 CDC 계층의 상호보완적 공존
+## Ⅲ. 동기화 방식과 복구 목표
 
-<div class="itpe-svg-container" style="margin: 1.5rem 0; overflow-x: auto;">
-<svg viewBox="0 0 520 180" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif; background: var(--sl-color-bg-inline-code, #f8fafc); border-radius: 8px; border: 1px solid var(--sl-color-gray-5, #e2e8f0);">
-  <!-- Box 1 -->
-  <rect x="15" y="20" width="155" height="140" rx="6" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-width="1.5"/>
-  <text x="92" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">1. 스토리지 계층</text>
-  <text x="92" y="70" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">블록 I/O 미러링</text>
-  <text x="92" y="90" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">SAN / SRDF / DRBD</text>
-  <text x="92" y="110" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">DBMS 무관 투명성</text>
-  <text x="92" y="135" text-anchor="middle" font-size="10" fill="#64748b">원격 DR 센터 전용</text>
+| 방식 | 확인·전달 | 장점 | 한계 |
+|---|---|---|---|
+| 동기 | 커밋 응답 전 복제 확인 조건 대기 | 설정된 장애 범위에서 손실 가능성 감소 | 원격 지연이 커밋 응답에 반영; 보장 범위는 제품 설정·장애 모델에 따름 |
+| 비동기 | 원본 커밋 뒤 로그·변경 전달 | 원격 응답 대기 부담을 줄일 수 있음 | 장애 시 미전달 변경 손실 가능성 |
+| 반동기 | 제품이 정한 수신·기록 확인 조건 대기 | 동기와 비동기 사이의 절충 | ACK 단계가 디스크 반영·복구 보장을 뜻하는지 제품별 확인 |
 
-  <!-- Box 2 -->
-  <rect x="182" y="20" width="155" height="140" rx="6" fill="#0ea5e9" fill-opacity="0.1" stroke="#0ea5e9" stroke-width="1.5"/>
-  <text x="260" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#0284c7">2. DBMS 엔진 계층</text>
-  <text x="260" y="70" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">트랜잭션 로그 전송</text>
-  <text x="260" y="90" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">WAL / Binlog 스트림</text>
-  <text x="260" y="110" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">읽기 복제본(Read) 지원</text>
-  <text x="260" y="135" text-anchor="middle" font-size="10" fill="#64748b">HA 클러스터 표준</text>
+RPO는 허용 데이터 손실 시점, RTO는 서비스 복구 시간 목표; 어느 방식도 설정과 장애 조건을 벗어난 절대 보장을 의미하지 않음
 
-  <!-- Box 3 -->
-  <rect x="350" y="20" width="155" height="140" rx="6" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-width="1.5"/>
-  <text x="427" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">3. CDC / 앱 계층</text>
-  <text x="427" y="70" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">변경 데이터 캡처</text>
-  <text x="427" y="90" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">Debezium / Kafka</text>
-  <text x="427" y="110" text-anchor="middle" font-size="11" fill="var(--sl-color-text, #334155)">이기종 DB 간 변환</text>
-  <text x="427" y="135" text-anchor="middle" font-size="10" fill="#64748b">MSA 이벤트 스트림</text>
-</svg>
-</div>
+## Ⅳ. 운영·복구 설계
 
-| 비교 항목 | 스토리지 블록 복제 | DBMS 엔진 로그 복제 | CDC 애플리케이션 복제 |
-|:---|:---|:---|:---|
-| **복제 단위** | 디스크 블록(Block, 4KB/8KB) | 트랜잭션 로그(WAL, Redo, Binlog) | 테이블 단위 변경 이벤트(JSON/Avro) |
-| **대표 기술** | EMC SRDF, NetApp SnapMirror, DRBD | PG Streaming Replication, MySQL Group | Debezium, Oracle GoldenGate, Kafka Connect |
-| **DBMS 종속성** | **완전 독립** (어떤 DBMS도 가능) | 동종 동일 버전 DBMS 필수 | **이기종 DBMS 간 복제 가능** (Oracle $\rightarrow$ PG) |
-| **보조노드 조회** | **불가** (블록 잠금으로 DB 기동 불가) | **가능** (Read Replica 활성화) | **가능** (실시간 조회 및 DW 적재) |
-| **네트워크 부하** | 높음 (빈 블록까지 전송될 수 있음) | 중간 (로그 파일 압축 전송) | 낮음 (변경된 레코드 컬럼만 전송) |
-| **적합한 영역** | 전사 차원의 무중단 원격 DR 센터 | 고가용성 HA 클러스터 및 읽기 분산 | MSA 간 이벤트 동기화 및 실시간 DW/Lake 적재 |
+| 위험 | 관리 방법 |
+|---|---|
+| 복제 지연 | 지연·재생 속도·로그 보존량 관측, 장애 시 승격 기준 점검 |
+| 장애 후 양쪽 쓰기 | 단일 쓰기 권한과 펜싱·쿼럼 등 제품별 보호기능 검토 |
+| 논리적 삭제·손상 복제 | 별도 백업·시점 복구와 복구 시험 유지 |
+| CDC 재처리·중복 | 이벤트 식별자, 순서, 멱등 처리와 스키마 변경 절차 설계 |
 
-### Ⅲ. 복제 동기화 3대 방식: 동기 vs 비동기 vs 반동기
+## Ⅴ. 기술사적 제언
 
-#### 한줄 요약: 데이터 정합성(RPO)과 트랜잭션 응답 지연(Latency)의 트레이드오프
-
-| 복제 방식 | 동작 원리 | 장점 | 단점 | DR 지표 (RPO) |
-|:---|:---|:---|:---|:---:|
-| **동기 복제 (Sync)** | 설정된 복제 대상의 지정 확인 조건을 기다린 뒤 커밋 응답 | 장애 모델·확인 시점에 따라 손실 위험 감소 | 원격 응답 지연이 커밋 지연에 반영될 수 있음 | 구성·장애 조건에 따른 목표 |
-| **비동기 복제 (Async)** | Primary가 로컬 커밋을 완료하고 클라이언트에 즉시 응답한 뒤, 백그라운드로 로그 전송 | 원천 트랜잭션 성능 영향 없음, 장거리 DR 적합 | Primary 장애 시 미전송분 유실 발생 위험 존재 | **RPO > 0** (초~분 단위 유실) |
-| **반동기 복제 (Semi-Sync)** | 제품이 정한 복제 수신·확인 조건을 충족한 뒤 응답 | 비동기와 동기 사이의 절충 | 장애 시점과 확인 단계에 따라 미반영분이 남을 수 있음 | 제품별 동작·장애 조건 확인 |
-
-### Ⅳ. 고가용성(HA) 및 재해복구(DR) 연계 전략
-
-#### 한줄 요약: 목표 복구 시점(RPO)과 복구 시간(RTO)에 따른 이중화 구조 선정
-
-1. **RPO / RTO 핵심 지표 매핑**:
-   - **RPO (Recovery Point Objective, 목표 복구 시점)**: 장애 발생 시 허용 가능한 데이터 손실 시점. 업무 영향과 비용을 바탕으로 목표 설정
-   - **RTO (Recovery Time Objective, 목표 복구 시간)**: 서비스가 중단된 시점부터 정상 가동될 때까지의 허용 시간. 자동 Failover 솔루션(Pacemaker, Patroni 등) 연계 필수
-2. **이중화 토폴로지 비교**:
-   - **Active-Standby (Hot-Standby)**: Primary만 쓰기를 처리하고 Standby는 복제만 수신하다가 장애 시 승격 (스플릿 브레인 방지 용이, 가장 안정적)
-   - **Active-Active (Multi-Master)**: 복수의 노드가 동시에 쓰기/읽기를 처리하고 상호 복제 (확장성은 극대화되나 동시 수정 충돌 해결 알고리즘 필수)
-
-### Ⅴ. 분산 복제 충돌 해결 전략 (Conflict Resolution)
-
-#### 한줄 요약: 양방향 동시 쓰기 환경에서의 데이터 덮어쓰기 왜곡 방지 및 무결성 보장
-
-1. **스플릿 브레인(Split-Brain) 방지**:
-   - 네트워크 단절 시 독립된 두 노드가 각자 Primary로 승격하여 데이터가 분기되는 재앙 발생
-   - **대책**: 3노드 이상의 홀수 쿼럼(Quorum, 과반수 투표) 체계를 구축하여 과반수의 지지를 얻은 노드만 Primary를 유지하도록 격리(STONITH/Fencing)
-2. **동시 수정 충돌 해결 메커니즘**:
-   - **LWW (Last Write Wins)**: 충돌 시 물리적 또는 논리적 타임스탬프가 가장 최신인 트랜잭션만 남기고 이전 덮어쓰기 (클럭 동기화 NTP 필수)
-   - **리전 샤딩(Region Sharding)**: 고객 ID 해시를 기반으로 특정 데이터의 쓰기 권한을 단일 리전에만 배타적 할당하여 원천 충돌 배제
-   - **CRDT (Conflict-free Replicated Data Types)**: 수학적으로 교환 법칙과 결합 법칙이 성립하는 특수 자료구조를 사용하여 중앙 조율 없이 자동 병합
-
-### Ⅵ. 실무 운영 이슈 및 트러블슈팅
-
-#### 한줄 요약: 복제 지연(Replication Lag) 해소, 이기종 DB 데이터 타입 비호환, Split-Brain 차단
-
-| 장애 요인 | 발생 원인 | 실무 엔지니어링 극복 방안 |
-|:---|:---|:---|
-| **복제 지연(Lag) 누적으로 읽기 불일치** | 대용량 배치성 UPDATE 실행 시 Standby가 단일 스레드로 릴레이 로그를 재생하며 지연 누적 | 병렬 복제(Multi-threaded Replication) 엔진 활성화 및 대량 배치는 청크 단위로 쪼개어 실행 |
-| **이기종 DB 복제 시 타임스탬프/문자셋 왜곡** | Oracle의 `DATE` 타입(초 단위)과 PostgreSQL의 `TIMESTAMP`(마이크로초) 간 정밀도 차이 | CDC 전송 계층(Debezium)에서 스키마 레지스트리를 통해 데이터 타입 및 UTC 타임존 자동 변환 매핑 강제 |
-| **네트워크 단절 시 데이터 분기** | 심장박동(Heartbeat) 두절로 Standby가 임의로 Primary로 승격하여 양쪽 모두에 독립 쓰기 발생 | Raft/Paxos 기반 3노드 쿼럼 합의를 의무화하고 하드웨어 전원 차단(Fencing) 에이전트 연동 |
-
-### Ⅶ. 기술사적 제언
-
-### 실전 답안용 기술사적 제언
-
-- **판정**: 금융 및 이커머스 핵심 업무의 영속성을 위해 단순 백업을 넘어 계층화된 고성능 데이터 복제 체계 구축이 필수적임.
-- **대응**:
-  1. **3-데이터센터(2DC+1DR) 구축**: 주센터-제2센터 간은 반동기 복제로 RPO 0 확보, 원격 DR 센터는 비동기 복제로 지연 최소화.
-  2. **이기종 CDC 파이프라인 통합**: 분석용 DW 및 검색 엔진 연계를 위해 Debezium/Kafka 기반의 비동기 이벤트 복제 분리.
-  3. **쿼럼 기반 스플릿 브레인 방지**: Patroni/Consul을 연계하여 3노드 과반수 합의 실패 시 장애 노드를 즉시 Fencing.
-- **검증**: 분기 1회 모의 재해복구 훈련을 통해 실측 RTO 30분 이내 및 실측 RPO 0 검증.
-- **효과**: 시스템 단일 장애점(SPOF) 원천 제거 및 99.999% 엔터프라이즈 비즈니스 연속성 달성.
-
-<div class="itpe-flow-map">
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-title">1. 현행 한계</div>
-    <div class="itpe-flow-desc">단일 DB 장애 시 데이터 유실, 원거리 복제 시 트랜잭션 지연</div>
-  </div>
-  <div class="itpe-flow-arrow">&#x2192;</div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-title">2. 개선 방안</div>
-    <div class="itpe-flow-desc">근거리 반동기(RPO 0) + 원거리 비동기 3센터 복제 구축</div>
-  </div>
-  <div class="itpe-flow-arrow">&#x2192;</div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-title">3. 검증 기준</div>
-    <div class="itpe-flow-desc">모의 DR 훈련 실측(RTO &lt; 30분, RPO = 0), 복제 지연 &lt; 1초</div>
-  </div>
-  <div class="itpe-flow-arrow">&#x2192;</div>
-  <div class="itpe-flow-step">
-    <div class="itpe-flow-title">4. 실행 효과</div>
-    <div class="itpe-flow-desc">엔터프라이즈 무중단 연속성 보장 및 읽기 성능 선형 확장</div>
-  </div>
-</div>
+| 문제 | 해결 방안 |
+|---|---|
+| 복제 성공을 곧 재해 복구 성공으로 간주하면 실제 복구 시간·손실 목표를 충족하지 못할 위험 | 업무별 RPO·RTO를 먼저 정하고 장애 시나리오별 승격·복구 훈련을 수행해 목표와 실제 복구 결과의 차이를 조정 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**:
-  - 제120회 정보관리 1교시: 데이터베이스 및 분산 시스템에서의 데이터 복제(Data Replication) 방식과 재해복구(DR) 적용 방안
-- **검증 출처**:
-  - Martin Kleppmann, "Designing Data-Intensive Applications", O'Reilly
-  - PostgreSQL Global Development Group, "High Availability, Load Balancing, and Replication"
----
+- 출제 이력: 제120회 정보관리 1교시 출제 이력으로 기록된 데이터 복제·재해복구 문항(원문 출처 확인 필요)
+- 검증 출처: [PostgreSQL 17 WAL 복제와 동기화](https://www.postgresql.org/docs/17/warm-standby.html), [MongoDB 복제 동기화](https://www.mongodb.com/docs/manual/core/replica-set-sync), [Debezium CDC 기능](https://debezium.io/documentation/reference/stable/features.html)
 
 ## 연결 토픽
 
-- 상위 토픽: [03-051 고가용성(HA) 아키텍처](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/051_ha_architecture.md)
-- 연관 토픽: [03-114 DB 복제 유형](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/114_db_replication_types.md), [03-149 분산 데이터베이스](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/149_distributed_database.md)
+- 고가용성 아키텍처, 백업·복구, 분산 데이터베이스, CDC
