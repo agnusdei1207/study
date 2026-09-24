@@ -59,16 +59,16 @@ extra:
 
 ### Ⅱ. RSVP 예약 절차
 
-```mermaid
-sequenceDiagram
-    participant S as 송신자
-    participant R as 경로상 라우터
-    participant D as 수신자
-    S->>R: PATH 트래픽·경로 정보
-    R->>D: PATH 전달·경로 상태 기록
-    D->>R: RESV 서비스·자원 요청
-    R->>R: 수락 제어·흐름 상태 설정
-    R->>S: RESV 요청 전달·상태 설정
+```text
+송신자
+  ↓ PATH·트래픽 특성
+경로상 라우터 (경로 기록)
+  ↓ PATH 전달
+수신자
+  ↑ RESV·자원 요청
+경로상 라우터 (수락 제어·상태 설정)
+  ↑ RESV 전달
+송신자
 ```
 
 - 제언: 트래픽 특성·요청 서비스·경로 자원을 함께 검토하는 흐름별 QoS 설계.
@@ -92,16 +92,16 @@ sequenceDiagram
 
 ### Ⅱ. RSVP 예약 절차
 
-```mermaid
-sequenceDiagram
-    participant S as 송신자
-    participant R as 경로상 라우터
-    participant D as 수신자
-    S->>R: PATH 트래픽·경로 정보
-    R->>D: PATH 전달·경로 상태 기록
-    D->>R: RESV 서비스·자원 요청
-    R->>R: 수락 제어·흐름 상태 설정
-    R->>S: RESV 요청 전달·상태 설정
+```text
+송신자
+  ↓ PATH·트래픽 특성
+경로상 라우터 (경로 기록)
+  ↓ PATH 전달
+수신자
+  ↑ RESV·자원 요청
+경로상 라우터 (수락 제어·상태 설정)
+  ↑ RESV 전달
+송신자
 ```
 
 라우터는 RESV 요청을 처리하며 서비스·자원 정책에 따라 수락하거나 거절. 상태는 주기적 RSVP 갱신을 통해 유지되며 갱신이 사라지면 만료 가능.
