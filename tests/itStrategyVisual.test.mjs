@@ -18,8 +18,8 @@ function sectionAfter(markdown, headingPattern) {
   return nextHeading === -1 ? rest : rest.slice(0, nextHeading);
 }
 
-function mermaidBlocks(markdown) {
-  return [...markdown.matchAll(/```mermaid\s*\r?\n([\s\S]*?)```/gu)].map((match) => match[1].replace(/\r\n/gu, '\n').trim());
+function textDiagrams(markdown) {
+  return [...markdown.matchAll(/```text\s*\r?\n([\s\S]*?)```/gu)].map((match) => match[1].replace(/\r\n/gu, '\n').trim());
 }
 
 function overviewTable(answer) {
@@ -28,7 +28,7 @@ function overviewTable(answer) {
 }
 
 function visualCount(answer) {
-  return [...answer.matchAll(/^\|---|^```mermaid\s*$/gmu)].length;
+  return [...answer.matchAll(/^\|---|^```text\s*$/gmu)].length;
 }
 
 function termAliases(label) {
@@ -37,15 +37,15 @@ function termAliases(label) {
     .map((value) => value.toLocaleLowerCase().replace(/[^\p{L}\p{N}]/gu, ''));
 }
 
-test('All IT strategy notes use tables or Mermaid instead of legacy visual markup', async () => {
+test('All IT strategy notes use readable text diagrams or tables', async () => {
   const files = await targetNotes();
   assert.equal(files.length, 81, '현재 카탈로그의 IT 전략 과목에는 81개 노트가 있어야 합니다.');
   for (const file of files) {
     const note = await readFile(file, 'utf8');
-    assert.match(note, /\|---|```mermaid/u, `${file}: 표 또는 Mermaid 시각화가 필요합니다.`);
+    assert.match(note, /\|---|```text/u, `${file}: 표 또는 텍스트 도해가 필요합니다.`);
+    assert.doesNotMatch(note, /```mermaid/u, `${file}: Mermaid 도해를 제거해야 합니다.`);
     assert.doesNotMatch(note, /<svg\b/iu, `${file}: 인라인 SVG를 제거해야 합니다.`);
     assert.doesNotMatch(note, /class="itpe-(?:flow|pipeline|trace|svg|edm|diagram)/iu, `${file}: 레거시 시각화 HTML 클래스를 제거해야 합니다.`);
-    assert.doesNotMatch(note, /[┌┐└┘├┤┬┴┼─│]/u, `${file}: ASCII 박스 다이어그램을 제거해야 합니다.`);
   }
 });
 
@@ -54,7 +54,7 @@ test('30초 인출은 본질·메커니즘을 중심으로 하고 추가 단서�
     const note = await readFile(file, 'utf8');
     const recall = sectionAfter(note, /^## 30초 인출\s*$/mu);
     assert.notEqual(recall, null, `${file}: 30초 인출 절이 필요합니다.`);
-    assert.doesNotMatch(recall, /```mermaid/u, `${file}: 30초 인출에는 Mermaid를 넣지 않습니다.`);
+    assert.doesNotMatch(recall, /```(?:mermaid|text)/u, `${file}: 30초 인출에는 도해를 넣지 않습니다.`);
     const summary = recall.split(/<details\b/iu, 1)[0];
     const lines = summary.split(/\r?\n/u).map((line) => line.trim()).filter(Boolean);
     assert.ok(lines.length >= 2, `${file}: 30초 인출에는 본질과 메커니즘이 필요합니다.`);
@@ -63,16 +63,16 @@ test('30초 인출은 본질·메커니즘을 중심으로 하고 추가 단서�
   }
 });
 
-test('10점 답안의 Mermaid는 본문에서 검증한 그림을 그대로 재사용한다', async () => {
+test('10점 답안의 텍스트 도해는 25점 답안에서 재사용한다', async () => {
   for (const file of await targetNotes()) {
     const note = await readFile(file, 'utf8');
     const short = sectionAfter(note, /^## 1교시 10점 답안\s*$/mu) ?? '';
     const longStart = note.indexOf('## 2~4교시 25점 답안');
     const longEnd = note.indexOf('## 출제 이력과 검증 출처', longStart);
     assert.ok(longStart >= 0 && longEnd > longStart, `${file}: 25점 답안 절이 필요합니다.`);
-    const bodyDiagrams = new Set(mermaidBlocks(note.slice(longStart, longEnd)));
-    for (const diagram of mermaidBlocks(short)) {
-      assert.ok(bodyDiagrams.has(diagram), `${file}: 10점 답안 Mermaid는 25점 답안 그림을 그대로 재사용해야 합니다.`);
+    const bodyDiagrams = new Set(textDiagrams(note.slice(longStart, longEnd)));
+    for (const diagram of textDiagrams(short)) {
+      assert.ok(bodyDiagrams.has(diagram), `${file}: 10점 답안의 텍스트 도해는 25점 답안에서 그대로 재사용해야 합니다.`);
     }
   }
 });
@@ -131,7 +131,7 @@ test('each Roman-numbered IT strategy answer section has its own visual', async 
       const start = headings[index].index + headings[index][0].length;
       const end = index + 1 < headings.length ? headings[index + 1].index : body.length;
       const section = body.slice(start, end);
-      assert.match(section, /\|---|```mermaid/u, `${file}: ${headings[index][0]} needs a table or diagram`);
+      assert.match(section, /\|---|```text/u, `${file}: ${headings[index][0]} needs a table or diagram`);
     }
   }
 });
