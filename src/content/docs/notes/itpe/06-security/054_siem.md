@@ -1,7 +1,7 @@
 ---
 title: "SIEM(Security Information and Event Management)"
 author: "OpenAI"
-date: "2026-09-24T23:50:00+09:00"
+date: "2026-09-24T22:50:00+09:00"
 tags:
   - "notes-security"
 sidebar:
@@ -67,8 +67,6 @@ extra:
 ```
 
 로그 발생시각 정합과 필드 품질, 누락 감시가 분석의 전제.
-
-### Ⅲ. 한 줄 제언
 
 제언: 위협 시나리오에 필요한 로그부터 선정하고 경보 처리 결과를 규칙 개선에 환류.
 

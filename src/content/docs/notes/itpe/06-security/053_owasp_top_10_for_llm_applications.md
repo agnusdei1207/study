@@ -1,7 +1,7 @@
 ---
 title: "OWASP Top 10 for LLM Applications"
 author: "OpenAI"
-date: "2026-09-24T23:45:00+09:00"
+date: "2026-09-24T22:50:00+09:00"
 tags:
   - "notes-security"
 sidebar:
@@ -63,8 +63,6 @@ AI 보안 → 생성형 AI 애플리케이션 위험 → OWASP LLM Top 10
 ```
 
 핵심 위험은 지시 조작, 정보 노출, 권한 오용, 출력의 안전하지 않은 사용, 자원 남용 등.
-
-### Ⅲ. 한 줄 제언
 
 제언: 모델 응답과 검색 자료를 비신뢰 입력으로 다루고 권한·실행 통제를 모델 외부에 둘 것.
 
