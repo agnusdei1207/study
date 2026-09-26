@@ -131,6 +131,8 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
+제123·126회 출제 기록은 기존 노트의 표기이며 공식 문제 원문은 미확인.
+
 - 제126회 1교시: 메타버스의 4가지 유형(ASF 기준)과 유형별 특징·사례
 - 제123회 2교시: 메타버스의 개념, 기반 기술, 사회적·윤리적 문제점
 - [Acceleration Studies Foundation, Metaverse Roadmap](https://www.metaverseroadmap.accelerating.org/): ASF 4대 유형 분류 확인

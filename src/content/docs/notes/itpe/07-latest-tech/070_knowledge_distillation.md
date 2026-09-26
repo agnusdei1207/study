@@ -136,5 +136,5 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 원문 출제 이력 표기: 미출제. 두 문항은 예상.
+- 확인한 제132~140회 공식 문제지에서 표제어 직접 출제 미확인. 그 밖의 회차는 원문 미대조. 두 문항은 예상문제
 - Hinton, Vinyals & Dean, [Distilling the Knowledge in a Neural Network](https://arxiv.org/abs/1503.02531): 소프트 타깃·온도 기반 지식 전달의 원 논문 참고.

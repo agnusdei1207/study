@@ -134,6 +134,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
+- [Fagin 등, Extendible Hashing 원 논문](https://research.ibm.com/publications/extendible-hashinga-fast-access-method-for-dynamic-files): 디렉터리·버킷의 동적 확장과 탐색 구조
+
 - Ronald Fagin et al., “Extendible Hashing—A Fast Access Method for Dynamic Files,” *ACM Transactions on Database Systems*, 1979.
 - Abraham Silberschatz et al., *Database System Concepts*, 7th ed., Chapter 14.
 

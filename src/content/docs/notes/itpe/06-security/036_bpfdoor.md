@@ -146,6 +146,7 @@ extra:
 
 ## 검증 출처
 
+- 제137회 4교시 1번에 BPFdoor 개념·기존 백도어와의 차이, 위협 요소·기업 영향이 출제됨(Q-net 공식 문제지 전사본 대조).
 - Rapid7 Labs, [BPFDoor in Telecom Networks: Sleeper Cells in the Backbone](https://www.rapid7.com/blog/post/tr-bpfdoor-telecom-networks-sleeper-cells-threat-research-report/) — 감염 호스트의 필터 감시·트리거 패킷·셸 활성화와 변종 동작
 - Rapid7 Labs, [Linux BPFDoor Detection Script](https://github.com/rapid7/Rapid7-Labs/blob/main/BPFDoor/README.md) — BPF·패킷 소켓·프로세스·메모리 기반 탐지 점검
 

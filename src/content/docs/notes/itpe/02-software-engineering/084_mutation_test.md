@@ -6,8 +6,8 @@ sidebar:
   badge:
     text: "기초"
     variant: "tip"
-date: "2026-09-24T00:00:00+09:00"
-lastmod: "2026-09-22T07:24:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
+lastmod: "2026-09-27T00:24:59+09:00"
 author: "Antigravity"
 extra:
   model: "GPT-6"
@@ -171,3 +171,6 @@ $$\text{Mutation Score (\%)} = \frac{K}{M - E} \times 100$$
 - **선행 토픽**: 화이트박스 테스트, 코드 커버리지(구문, 분기, MC/DC)
 - **유사/비교 토픽**: 결함 주입 테스팅(Fault Injection), 카오스 엔지니어링(Chaos Engineering)
 - **후속/연계 토픽**: TDD(테스트 주도 개발), CI/CD 파이프라인 자동화, PITest
+
+## 검증 출처
+- [PIT Mutation Testing 기본 개념](https://pitest.org/quickstart/basic_concepts/): 뮤턴트 생성·검출과 점수의 의미

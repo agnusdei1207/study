@@ -1,7 +1,7 @@
 ﻿---
 title: "공공 SW 사업 발주·계약"
 author: "Codex"
-date: "2026-09-24T12:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -131,7 +131,7 @@ RFP·입찰공고
 | 변경 근거·영향 분석 누락 | 범위·기간·대가 이견과 검수 추적 단절 | 변경 사유·영향·심의·승인·계약 조정 내역 기록 |
 | 산출물·인수 조건 불일치 | 미완료 기능·품질 결함의 누락 가능성 | 요구사항별 시험·검수 기준·결과의 RTM 연결 |
 
-## Ⅵ. 기술적 제언
+## Ⅵ. 기술사적 제언
 
 | 한계 | 해결 방안 |
 |---|---|
@@ -139,7 +139,7 @@ RFP·입찰공고
 
 ## 출제 이력과 검증 출처
 
-- 정보관리기술사 제121회·제122회 기출 주제: 공공 SW 사업 발주·계약
+- 제121회·제122회 관련 문항은 공식 문제지 원문 미확인
 - [소프트웨어진흥법 제44조](https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1027884491), [제50조](https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1031614471)
 - [국가계약법 시행령 제43조](https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1031494261)
 - [SW사업 계약 및 관리감독에 관한 지침](https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulId=33440&efYd=0)

@@ -142,6 +142,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
+- [PostgreSQL GiST 인덱스 문서](https://www.postgresql.org/docs/current/gist.html): R-Tree 등 다차원 탐색 구조를 구현할 수 있는 균형 검색 트리 프레임워크
+
 - Antonin Guttman, “R-Trees: A Dynamic Index Structure for Spatial Searching,” *ACM SIGMOD*, 1984.
 - Norbert Beckmann et al., “The R*-tree: An Efficient and Robust Access Method for Points and Rectangles,” *ACM SIGMOD*, 1990.
 

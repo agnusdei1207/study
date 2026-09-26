@@ -158,7 +158,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트에는 제128회 2교시 공공부문 클라우드 활용 문항과 제134회 2교시 1번 SaaS 이용 가이드라인 문항이 기록되어 있으나 공식 문항 원문은 별도 대조하지 못함.
+- [Q-Net 제134회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5213580&brdId=Q006&gSite=Q&id=cst00602) 2교시 1번은 클라우드 서비스 위험 관리원칙·기준, 보안대책·보안성 검토, 서비스 수준 협약을 요구한다. 이전 노트의 제128회 관련 기록은 공식 원문을 대조하지 못했다.
 - [국가법령정보센터, 행정기관 및 공공기관의 클라우드컴퓨팅서비스 이용 기준 및 안전성 확보 등에 관한 고시(2025-12-29 시행)](https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000270616&chrClsCd=010201)
 - [국가법령정보센터, 공공 클라우드 이용 고시 제11조(보안성 기준)](https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000270616&chrClsCd=010202&lsId=81348)
 - [국가법령정보센터, 클라우드서비스 이용정보·인증등급 기록](https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200201&flNm=%5B%EB%B3%84%ED%91%9C+1%5D+%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C%EC%BB%B4%ED%93%A8%ED%8C%85%EC%84%9C%EB%B9%84%EC%8A%A4+%EC%9D%B4%EC%9A%A9%EC%A0%95%EB%B3%B4%28%EC%A0%9C9%EC%A1%B0+%EA%B4%80%EB%A0%A8%29&flSeq=160669565)

@@ -143,6 +143,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
+- [IBM 감성 분석·오피니언 마이닝 개요](https://www.ibm.com/think/topics/sentiment-analysis): 텍스트의 의견·감성 분석과 규칙·학습 기반 처리
+
 - 정보관리기술사 제122회 2교시: 빅데이터 분석에서 오피니언 마이닝의 개념·절차·감성 분석 기법
 - Bing Liu, *Sentiment Analysis and Opinion Mining*, Morgan & Claypool Publishers
 - Bing Liu, “Sentiment Analysis and Opinion Mining,” *Synthesis Lectures on Human Language Technologies*, 2012

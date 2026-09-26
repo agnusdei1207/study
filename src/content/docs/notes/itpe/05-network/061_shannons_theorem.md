@@ -51,7 +51,7 @@ extra:
 
 | 조건 | 용량 관계 |
 |---|---|
-| 대역폭 (B), SNR (S/N)인 AWGN 채널 | (C = B\log_2(1+S/N)) bit/s |
+| 대역폭 (B), SNR (S/N)인 AWGN 채널 | $C = B\log_2(1+S/N)$ bit/s |
 | 전송률 (R<C) | 충분히 긴 부호를 사용하면 오류 확률을 임의로 작게 설계 가능 |
 | 전송률 (R>C) | 임의로 작은 오류 확률을 보장하는 통신 불가 |
 
@@ -90,7 +90,7 @@ extra:
 수 있는 부호화     보장 불가
 ```
 
-AWGN 채널에서 (C=B\log_2(1+S/N)). 이 결과는 특정 부호가 아니라 장거리 부호의 존재와 한계를 제시하는 점근적 정리
+AWGN 채널에서 $C=B\log_2(1+S/N)$. 이 결과는 특정 부호가 아니라 긴 블록 길이의 부호가 달성할 수 있는 한계를 제시하는 점근적 정리
 
 ## Ⅲ. 나이퀴스트 기준과 구분
 
@@ -115,5 +115,5 @@ AWGN 채널에서 (C=B\log_2(1+S/N)). 이 결과는 특정 부호가 아니라 �
 
 ## 출제 이력과 검증 출처
 
-- 제125회 4교시 2번: 정보이론과 샤논의 정리
+- 제125회 4교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [Claude E. Shannon, A Mathematical Theory of Communication, Bell System Technical Journal (1948)](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf)

@@ -138,7 +138,7 @@ ITU는 해저케이블이 국제 데이터 흐름의 99% 이상을 전달하는 
 
 ## 출제 이력과 검증 출처
 
-- 제123회 1교시 13번: `해저케이블 에퀴아노(Equiano)프로젝트`
+- 제123회 1교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [ITU — Submarine cable resilience](https://www.itu.int/en/mediacentre/backgrounders/Pages/submarine-cable-resilience.aspx)
 - [ITU-T G.971 (12/2024) — General features of optical fibre submarine cable systems](https://www.itu.int/epublications/publication/itu-t-g-971-2024-12-general-features-of-optical-fibre-submarine-cable-systems)
 - [ITU-T G.977 — Characteristics of optically amplified optical fibre submarine cable systems](https://www.itu.int/rec/T-REC-G.977)

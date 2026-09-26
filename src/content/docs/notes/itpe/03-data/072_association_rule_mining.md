@@ -156,6 +156,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
+- [IBM Db2 연관규칙 모델 문서](https://www.ibm.com/docs/en/db2/11.1?topic=steps-building-association-rule-models): 규칙의 선행·후행 항목과 지지도·신뢰도
+
 - Rakesh Agrawal and Ramakrishnan Srikant, “Fast Algorithms for Mining Association Rules,” *VLDB*, 1994.
 - Jiawei Han, Jian Pei, and Yiwen Yin, “Mining Frequent Patterns without Candidate Generation,” *ACM SIGMOD*, 2000.
 - Pang-Ning Tan, Michael Steinbach, and Vipin Kumar, *Introduction to Data Mining*, 2nd ed., Chapter 5.

@@ -3,7 +3,7 @@ title: "McCabe 순환복잡도"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -19,7 +19,7 @@ extra:
 ## 30초 인출
 
 - 본질: **McCabe 순환복잡도(Cyclomatic Complexity)**는 프로그램의 제어 흐름 그래프(CFG)를 바탕으로 선형적으로 독립적인 기본 경로(Basis Path)의 수를 정량적으로 측정하는 소프트웨어 복잡도 메트릭
-- 메커니즘: 그래프 이론 기반 계산 `V(G) = E - N + 2P = P + 1 = R` (Edge 수, Node 수, 분기 노드 수, 면 수)
+- 메커니즘: 그래프 이론 기반 계산 `V(G) = E - N + 2C` (간선 E, 노드 N, 연결 성분 C); 단일 구조화 흐름은 이진 분기 수 `D + 1`로도 계산
 - 추가 단서: 독립 경로 수에 따른 기본 경로 시험 설계와 복잡 모듈 검토 근거
 
 <details>
@@ -151,7 +151,7 @@ V(G)=E−N+2P 또는 분기 수+1 계산
 
 ## 출제 이력과 검증 출처
 
-- 제139회 정보관리기술사 1교시: 맥케이브 순환복잡도 계산 및 활용 방안
+- 제139회 정보관리기술사 1교시: 맥케이브 순환복잡도
 - Thomas J. McCabe, A Complexity Measure (IEEE Transactions on Software Engineering 1976)
 - [NIST, Structured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric](https://www.nist.gov/publications/structured-testing-software-testing-methodology-using-cyclomatic-complexity-metric)
 - Roger S. Pressman, Software Engineering: A Practitioner's Approach

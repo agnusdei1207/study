@@ -156,6 +156,10 @@ flowchart TB
 | 수집 관리 | 추출 방법·표본 수·비응답 현황 기록 | 표본 구성과 수집 과정 |
 | 해석 범위 | 표본의 대표성과 편향 가능성 검토 | 결과를 일반화할 수 있는 집단과 한계 |
 
+## 검증 출처
+
+- [NIST 통계 핸드북, 모집단과 표본추출](https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc134.htm).
+
 ## 연결 토픽
 
 - 연관 토픽: [중심극한정리](./014_central_limit_theorem.md), [불편추정량](./011_unbiased_estimator.md)

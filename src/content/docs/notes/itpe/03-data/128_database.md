@@ -124,6 +124,8 @@ extra:
 
 ## 출제 이력과 검증 출처
 
+- [IBM 데이터베이스 개요](https://www.ibm.com/think/topics/database): 데이터베이스와 DBMS의 역할 및 관계형·비관계형 저장 방식
+
 - 출제 이력: KPC 기출검색 자료 기준 제130회 정보관리기술사 2교시 관련 문항. Q-net 원문은 확인하지 못한 상태.
 - A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed., McGraw-Hill.
 - R. Elmasri, S. Navathe, *Fundamentals of Database Systems*, 7th ed., Pearson.

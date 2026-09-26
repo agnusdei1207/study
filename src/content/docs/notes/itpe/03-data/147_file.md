@@ -151,6 +151,10 @@ flowchart TB
 | 원본 파일과 메타데이터의 저장 역할 분리 | 원본은 파일·객체 저장소, 검색·권한·업무 관계는 DBMS에서 관리 |
 | 연결 정보의 무결성 확인 | 파일 삭제·복구 시 메타데이터 연결 상태를 함께 시험 |
 
+## 출제 이력과 검증 출처
+
+- [PostgreSQL 데이터베이스 물리 저장 문서](https://www.postgresql.org/docs/current/storage.html): 데이터 파일·페이지와 DBMS 물리 저장의 관계
+
 ## 연결 토픽
 
 - 연관 토픽: [데이터베이스](./128_database.md), [무결성 제약](./013_integrity_constraint.md)

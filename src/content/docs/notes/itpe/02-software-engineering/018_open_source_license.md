@@ -3,7 +3,7 @@ title: "오픈소스 라이선스(Permissive·Copyleft)와 Source-Available 라�
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -148,8 +148,8 @@ SBOM으로 구성·의존성 기록
 
 ## 출제 이력과 검증 출처
 
-- 제134회 정보관리기술사 1교시: 오픈소스 라이선스(GPL, LGPL, Apache, MIT) 비교
-- 제140회 정보관리기술사 2교시: 오픈소스 컴플라이언스 체계와 SBOM 및 AI 생성코드 라이선스 이슈
+- 제134회 정보관리기술사 3교시: 일부 오픈소스 라이선스 정책 변경의 배경과 산업 영향
+- 제140회 정보관리기술사 2교시: AI 생성 코드·오픈웨이트 모델의 오픈소스 라이선스 위험과 컴플라이언스 점검
 - [Open Source Initiative, The Open Source Definition](https://opensource.org/osd)
 - Free Software Foundation, [Frequently Asked Questions about the GNU Licenses](https://www.gnu.org/licenses/gpl-faq.en.html): 결합·배포 방식에 따라 GPL 조건을 판정해야 함을 확인.
 

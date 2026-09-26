@@ -152,6 +152,10 @@ flowchart TB
 | 릴레이션 분해 | 정규형에 맞춰 분해하고 업무 규칙 반영 | 무손실 결합과 필요한 종속성 보존 |
 | 운영 확인 | 대표 조회·갱신 성능 측정 후 필요한 곳에만 반정규화 검토 | 정합성과 성능의 균형 |
 
+## 검증 출처
+
+- [IBM Db2 공식 문서, 데이터베이스 정규화](https://www.ibm.com/docs/en/db2-for-zos/12.0.0?topic=modeling-normalization-in-database-design).
+
 ## 연결 토픽
 
 - 연관 토픽: [반정규화](./017_denormalization.md), [4NF·5NF](./033_4nf_5nf.md)

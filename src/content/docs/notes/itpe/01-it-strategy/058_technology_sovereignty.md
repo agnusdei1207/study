@@ -1,7 +1,7 @@
 ---
 title: "기술 주권"
 author: "Codex"
-date: "2026-09-24"
+date: "2026-09-27T00:24:59+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
@@ -71,7 +71,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 기술 주권의 개념과 확보전략을 설명하고, 디지털 기술 공급망의 문제점과 대응책을 제시하시오. **(미출제 예상·25점)**
+> 기술 주권의 개념과 확보전략을 설명하고, 디지털 기술 공급망의 문제점과 대응책을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -142,7 +142,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [OECD, Strategic autonomy and promotion of critical technologies](https://stip.oecd.org/stip/interactive-dashboards/themes/TH111)
 - [OECD, Science, technology and innovation policy in times of strategic competition](https://www.oecd.org/en/publications/oecd-science-technology-and-innovation-outlook-2023_0b55736e-en/full-report/component-6.html)
 - [OECD, Digital public goods: Enablers of digital sovereignty](https://www.oecd.org/en/publications/development-co-operation-report-2021_ce08832f-en/full-report/component-41.html)

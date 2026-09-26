@@ -1,7 +1,7 @@
 ---
 title: "공공 소프트웨어(SW) 사업 하도급 제한"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -134,7 +134,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지로 확인한 직접 기출 없음. 위 문항은 예상문제다.
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인. 위 문항은 예상문제.
 - [국가법령정보센터, 소프트웨어 진흥법 제51조](https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1031614557)
 - [국가법령정보센터, 소프트웨어사업 하도급 계획서](https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200203&flNm=%5B%EB%B3%84%EC%A7%80+7%5D+%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%EC%82%AC%EC%97%85+%ED%95%98%EB%8F%84%EA%B8%89+%EA%B3%84%ED%9A%8D%EC%84%9C%28%EA%B3%84%EC%95%BD%EC%B2%B4%EA%B2%B0%EC%8B%9C%29&flSeq=157388055)
 

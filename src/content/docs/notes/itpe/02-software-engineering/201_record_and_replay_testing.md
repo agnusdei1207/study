@@ -2,7 +2,7 @@
 title: "기록·재생 테스트(Record and Replay Testing)"
 category: "02-software-engineering"
 tags: ["기록재생테스트", "회귀테스트", "테스트자동화", "테스트데이터"]
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -151,3 +151,6 @@ GUI 기록 → 테스트 계정·화면 구성 → UI 환경에서 재생
 - [회귀 테스트](./061_regression_test.md)
 - [성능 테스트](./191_performance_test.md)
 - [카오스 테스트](./176_chaos_test.md)
+
+## 검증 출처
+- [Selenium IDE 공식 문서](https://www.selenium.dev/documentation/ide/): 사용자 동작 기록과 재생 방식

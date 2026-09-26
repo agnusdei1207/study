@@ -132,3 +132,4 @@ sequenceDiagram
 ## 출제 이력과 검증 출처
 
 - 회차·문항 원문은 공식 자료 대조 전 미확인
+- [Oracle Java Tutorials, 공유 변수에 대한 스레드 간 간섭 사례](https://docs.oracle.com/javase/tutorial/essential/concurrency/interfere.html)

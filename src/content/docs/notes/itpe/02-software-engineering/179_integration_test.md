@@ -7,7 +7,7 @@ tags:
   - "상향식통합"
   - "테스트스텁"
   - "테스트드라이버"
-date: "2026-09-24T15:56:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -151,3 +151,10 @@ extra:
 | 모듈 완성 후 일괄 결합해 결함 위치 불명 | 위험·의존성 기준으로 단계적 통합과 회귀 시험 수행 |
 | 스텁만 통과하고 실제 하위 서비스에서 실패 | 시험 대역 교체 후 실제 연결 시험 수행 |
 | 정상 요청만 검증해 오류 전파 누락 | 타임아웃·재시도·비정상 응답까지 시험 |
+
+**제언:** 시험 대역으로 빠르게 연결부를 검증한 뒤 실제 의존 구성요소를 연결해 계약과 오류 경로를 재확인한다.
+
+### 참고 자료
+
+- [ISTQB, Certified Tester Foundation Level](https://istqb.org/certifications/certified-tester-foundation-level/)
+- [소프트웨어 테스트 유형과 수준](./003_sw_test_types_and_levels.md)

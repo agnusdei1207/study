@@ -8,7 +8,7 @@ tags:
   - "소프트웨어대가산정"
   - "데이터기능"
   - "트랜잭션기능"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -154,7 +154,7 @@ ILF·EIF / EI·EO·EQ 식별·계수
 
 ### 참고 및 연계 학습
 
-- [ISMP(정보시스템 마스터플랜)](../../01-it-strategy/001_ismp.md)
+- [ISMP(정보시스템 마스터플랜)](../01-it-strategy/001_ismp.md)
 - [요구사항 추적표(RTM)](./102_requirement_traceability_matrix.md)
 - [상용SW 직접구매 제도](./101_commercial_sw_direct_purchase.md)
 - [소프트웨어 품질 비용(COQ)](./150_software_quality_cost.md)

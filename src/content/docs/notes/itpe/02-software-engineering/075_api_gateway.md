@@ -1,7 +1,7 @@
 ---
 title: "API Gateway"
 author: "Antigravity"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "소프트웨어공학"
   - "APIGateway"
@@ -26,7 +26,7 @@ extra:
 
 - 본질: **API Gateway**는 클라이언트와 백엔드 마이크로서비스 사이의 단일 진입점(Single Point of Entry)을 담당하는 역방향 프록시
 - 메커니즘: 사전 필터(JWT·SSL 종료·유량 제어) → 라우팅 필터(서비스 디스커버리·LB·서킷 브레이커) → 사후 필터(TraceId 로깅)의 3단계 파이프라인
-- 판정 기준: North-South 외부 경계는 게이트웨이, 화면 데이터 취합은 BFF, East-West 내부 통신은 Service Mesh로 분격하는 2계층 거버넌스
+- 판정 기준: 외부 요청의 공통 경계에는 게이트웨이, 화면별 데이터 취합에는 BFF, 내부 서비스 통신 정책에는 서비스 메시를 검토
 
 <details>
 <summary>핵심 용어</summary>
@@ -131,7 +131,7 @@ Gateway: 인증·유량 제어·라우팅
 | 비교 항목 | API Gateway | BFF (Backend for Frontend) | Service Mesh |
 |---|---|---|---|
 | **통신 트래픽 방향** | **North-South (외부 $\rightarrow$ 내부 인그레스)** | North-South (특정 UI $\rightarrow$ 내부 연계) | **East-West (내부 서비스 $\leftrightarrow$ 내부 서비스)** |
-| **배치 위치** | 시스템 최외곽 DMZ 망 (클라우드 관문) | API Gateway와 마이크로서비스 사이 계층 | 각 마이크로서비스 파드(Pod) 내 사이드카 |
+| **배치 위치** | 클라이언트와 백엔드 사이의 진입 경계 | 클라이언트별 백엔드 계층 | 서비스 통신 경계; 사이드카 또는 다른 데이터 플레인 구성 |
 | **주요 초점** | 전사 보안, 글로벌 라우팅, Rate Limit | **클라이언트(모바일/웹)별 화면 데이터 취합** | 서비스 간 상호 mTLS 보안, 카나리 배포, 추적 |
 | **비즈니스 로직** | **절대 배제 (Stateless dumb pipe)** | 일부 허용 (DTO 변환, 비동기 응답 조인) | 절대 배제 (인프라 네트워크 계층) |
 | **담당 주체** | 플랫폼 인프라 / DevOps 팀 | 각 프론트엔드 전담 개발팀 | 인프라 / SRE 팀 |
@@ -152,6 +152,11 @@ Gateway: 인증·유량 제어·라우팅
 | 한계 | 해결 방안 |
 |---|---|
 | 공통 진입점에 업무 로직과 서비스별 정책이 집중될 가능성 | 인증·라우팅 등 공통 경계 기능에 책임을 한정하고 업무 규칙은 해당 서비스에 유지 |
+
+## 출제 이력과 검증 출처
+
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
+- [Microsoft Learn, API gateways for microservices](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway)
 
 ## 연결 토픽
 

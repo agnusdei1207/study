@@ -54,7 +54,7 @@ export default defineConfig({
       pagefind: false,
       head: [
         { tag: 'script', attrs: { src: '/study/palette-app.js', defer: true } },
-        { tag: 'script', attrs: { src: '/study/itpe-glossary-tooltips.js', defer: true } },
+        { tag: 'script', attrs: { src: '/study/itpe-glossary-tooltips.js?v=20260926-brr', defer: true } },
       ],
     }),
   ],

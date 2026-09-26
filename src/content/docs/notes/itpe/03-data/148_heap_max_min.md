@@ -154,6 +154,10 @@ flowchart TB
 | 반복적인 최댓값·최솟값 추출 | 힙 기반 우선순위 큐 |
 | 임의 키·범위 질의 | 균형 BST·인덱스와 검색 비용 비교 |
 
+## 출제 이력과 검증 출처
+
+- [Python heapq 공식 문서](https://docs.python.org/3/library/heapq.html): 최소·최대 힙의 부모·자식 불변식과 우선순위 큐
+
 ## 연결 토픽
 
 - 연관 토픽: [이진 탐색 트리](./027_binary_search_tree.md), [K-Means](./029_k_means.md)

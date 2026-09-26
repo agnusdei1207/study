@@ -141,7 +141,7 @@ PAT 방향 제어
 
 ## 출제 이력과 검증 출처
 
-- 제121회 1교시 8번: `모바일 FSO(Free Space Optics) 통신`
+- 제121회 1교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [ITU-T G.641 — Terrestrial free-space optics for mobile backhaul with short reach interfaces](https://www.itu.int/rec/T-REC-G.641/en)
 - [ITU-R P.1814-1 — Prediction methods required for the design of terrestrial free-space optical links](https://www.itu.int/rec/R-REC-P.1814)
 - [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)

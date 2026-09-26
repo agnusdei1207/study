@@ -152,6 +152,10 @@ flowchart TB
 | 처리 선택 | 목적에 따라 유지·수정·제외·강건한 분석 방법을 선택 | 선택 이유와 적용 범위 |
 | 영향 검토 | 처리 전후 분석 결과를 비교하고 결론 변화를 확인 | 민감도 비교와 최종 판단 |
 
+## 검증 출처
+
+- [NIST, Detection of Outliers](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm) — 이상치 식별의 조건과 한계.
+
 ## 연결 토픽
 
 - 연관 토픽: [군집분석](./005_cluster_analysis.md), [표본추출](./032_sampling.md)

@@ -150,6 +150,10 @@ flowchart TB
 | 가정 확인 | 관측 독립성, 모집단 분산 정보와 표준오차 산출 근거 검토 | 가정 충족 여부와 계산식 |
 | 결과 해석 | p값을 관측 차이·신뢰구간과 함께 검토 | 통계적 근거와 실무적 크기의 구분 |
 
+## 검증 출처
+
+- [NIST 통계 핸드북, 모집단 표준편차를 아는 평균 검정](https://www.itl.nist.gov/div898/handbook/prc/section2/prc22.htm).
+
 ## 연결 토픽
 
 - 연관 토픽: [t-검정](./086_t_test.md), [중심극한정리](./014_central_limit_theorem.md)

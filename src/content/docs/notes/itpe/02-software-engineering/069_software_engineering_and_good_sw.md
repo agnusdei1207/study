@@ -1,7 +1,7 @@
 ---
 title: "소프트웨어 공학과 좋은 소프트웨어의 조건"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -141,8 +141,9 @@ Fred Brooks는 이 특성들을 소프트웨어 개발의 본질적 어려움으
 | 품질 목표가 일정·범위·개발 절차와 따로 관리되어 제품 인수 시점에 요구 미충족이 드러날 가능성 | 품질 요구별 책임자·설계 결정·시험 증거를 계획과 추적 정보에 연결하고, 각 단계의 검토 결과를 다음 단계 진입 조건에 반영 |
 
 ## 출제 이력과 검증 출처
+- [IEEE Computer Society, SWEBOK v4](https://www.computer.org/education/bodies-of-knowledge/software-engineering): 소프트웨어공학 지식영역과 실무 범위
 
-- 공식 문제지 원문에서 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - Fred Brooks, “No Silver Bullet: Essence and Accidents of Software Engineering,” 1986
 - Ian Sommerville, *Software Engineering*, 10th edition, Pearson
 - IEEE Std 610.12-1990, *Standard Glossary of Software Engineering Terminology* (용어의 역사적 정의 참고)

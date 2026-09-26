@@ -137,7 +137,6 @@ extra:
 ---
 
 ## 출제 이력과 검증 출처
-- 기존 노트의 기출 기록: 제132회 1교시 3번 베이지안 최적화. 공식 문항 원문은 별도 대조 미확인.
-- 기존 노트에 기록된 문항: “베이지안 최적화(Bayesian Optimization)” (공식 원문 대조 미확인)
+- [Q-Net 제132회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5212856&brdId=Q006&gSite=Q&id=cst00602) 1교시 3번의 문항은 “베이지안 최적화(Bayesian Optimization)”다.
 - Snoek, Larochelle, Adams, [Practical Bayesian Optimization of Machine Learning Algorithms](https://proceedings.neurips.cc/paper/2012/hash/05311655a15b75fab86956663e1819cd-Abstract.html), NeurIPS 2012.
 - Bergstra et al., [Algorithms for Hyper-Parameter Optimization](https://papers.nips.cc/paper_files/paper/2011/file/86e8f7ab32cfd12577bc2619bc635690-Paper.pdf), NeurIPS 2011. TPE 방법.

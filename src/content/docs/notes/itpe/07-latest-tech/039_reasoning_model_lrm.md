@@ -126,6 +126,6 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
-- 원문 출제 이력 표기: 미출제
+- 확인한 제132~140회 공식 문제지에서 표제어 직접 출제 미확인. 그 밖의 회차는 원문 미대조
 - OpenAI, [Learning to reason with LLMs](https://openai.com/index/learning-to-reason-with-llms/): 추론 시 계산을 활용하는 모델 접근의 예 확인
 - 추론 모델의 효과는 과업·평가 방법에 따라 달라지므로 정답 보장이나 일정한 성능 상승으로 단정하지 않음

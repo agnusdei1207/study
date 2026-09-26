@@ -138,7 +138,7 @@ UDP/IP 네트워크
 
 ## 출제 이력과 검증 출처
 
-- 제108회 1교시: `CoAP(Constrained Application Protocol)의 특징과 메시지 유형을 설명하시오.`
+- 제108회 1교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [RFC 7252 — The Constrained Application Protocol (CoAP)](https://www.rfc-editor.org/rfc/rfc7252)
 - [RFC 7641 — Observing Resources in the Constrained Application Protocol](https://www.rfc-editor.org/rfc/rfc7641)
 - [RFC 7959 — Block-Wise Transfers in the Constrained Application Protocol](https://www.rfc-editor.org/rfc/rfc7959)

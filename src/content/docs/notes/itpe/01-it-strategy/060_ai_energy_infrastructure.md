@@ -1,7 +1,7 @@
 ---
 title: "AI 에너지 인프라"
 author: "Codex"
-date: "2026-09-24"
+date: "2026-09-27T00:24:59+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
@@ -27,7 +27,7 @@ extra:
 - **AI 에너지 인프라** : AI 데이터센터의 전력·냉각·계측과 운영을 뒷받침하는 설비·관리체계
 - **PUE(Power Usage Effectiveness)** : 데이터센터 총 투입 전력을 IT 장비 소비 전력으로 나눈 에너지 효율 지표
 - **WUE(Water Usage Effectiveness)** : 데이터센터 운영에 사용된 물의 양을 IT 장비 에너지 소비량으로 나눈 수자원 효율 지표
-- **CUE(Carbon Usage Effectiveness)** : 데이터센터 운영에 따른 총 탄소배출량을 IT 소비 전력으로 나눈 탄소 효율 지표
+- **CUE(Carbon Usage Effectiveness)** : 데이터센터 운영에 따른 총 탄소배출량을 IT 장비의 에너지 소비량으로 나눈 탄소 효율 지표
 - **PPA(Power Purchase Agreement)** : 전력 생산자와 수요자가 일정 기간의 전력 공급·가격·조건을 계약하는 전력구매계약
 - **D2C(Direct-to-Chip)** : 고발열 칩 표면에 냉각 플레이트를 직접 부착해 액체로 열을 제거하는 직접 냉각 방식
 - **Immersion Cooling** : IT 서버 장비 전체를 비전도성 유체에 완전히 담가 냉각하는 액침 냉각 기술
@@ -73,7 +73,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> AI 데이터센터 에너지 인프라의 구성체계를 설명하고, 전력·냉각·환경 문제점과 대응책을 제시하시오. **(미출제 예상·25점)**
+> AI 데이터센터 에너지 인프라의 구성체계를 설명하고, 전력·냉각·환경 문제점과 대응책을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -144,7 +144,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [IEA, Energy and AI](https://www.iea.org/reports/energy-and-ai)
 - [IEA, Energy demand from AI](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai)
 - [U.S. DOE, Best Practices Guide for Energy-Efficient Data Center Design](https://www.energy.gov/cmei/femp/articles/best-practices-guide-energy-efficient-data-center-design)

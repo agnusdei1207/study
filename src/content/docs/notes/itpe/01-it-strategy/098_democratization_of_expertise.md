@@ -1,7 +1,7 @@
 ---
 title: "전문성의 민주화"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -130,7 +130,7 @@ CoE: 표준·교육·기술 지원
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지로 확인한 직접 기출 없음. 위 문항은 예상문제다.
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인. 위 문항은 예상문제.
 - [Microsoft Learn, Power Platform Center of Excellence](https://learn.microsoft.com/en-us/power-platform/guidance/adoption/coe)
 - [Microsoft Learn, Power Platform adoption guidance](https://learn.microsoft.com/en-us/power-platform/guidance/adoption/methodology)
 

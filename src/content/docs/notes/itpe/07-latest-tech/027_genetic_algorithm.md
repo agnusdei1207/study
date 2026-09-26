@@ -133,5 +133,8 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
+- [Q-Net 제137회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5242749&brdId=Q006&gSite=Q&id=cst00602) 4교시 5번: 유전자 알고리즘.
+- [MIT OpenCourseWare, Genetic Algorithm 절차](https://www.ocw.mit.edu/courses/ids-338j-multidisciplinary-system-design-optimization-spring-2010/f67f430da9d1bc6c018ce661c4a717b9_MITESD_77S10_rec06.pdf).
+
 - 제137회 4교시 5번: 유전자 알고리즘에 대하여 설명
 - 유전 연산은 확률적 탐색 구성요소로 기술하고, 전역 최적해 보장으로 해석하지 않도록 구분

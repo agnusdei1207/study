@@ -156,6 +156,10 @@ Steward: 표준·규칙 반영
 |---|---|
 | 같은 고객 지표가 부서마다 다른 정의로 계산되어 승인된 표준의 효과를 확인하기 어려움 | 핵심 지표 하나를 선정해 Owner가 정의를 승인하고 Steward가 두 사용 시스템의 산식·카탈로그를 함께 갱신한 뒤 결과 차이를 확인 |
 
+## 검증 출처
+
+- [NIA, 데이터 거버넌스의 의사결정·운영체계 연구](https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?bcIdx=25995&cbIdx=65684).
+
 ## 연결 토픽
 
 - 연관 토픽: [데이터 품질관리](./003_data_quality_management.md), [데이터 표준화](./008_data_standardization.md)

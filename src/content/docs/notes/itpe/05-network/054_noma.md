@@ -32,7 +32,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> NOMA의 개념과 핵심 구조 또는 동작을 설명하시오. (예상)
+> NOMA의 개념과 전력 도메인 신호 중첩·순차 간섭 제거 원리를 설명하시오. (예상)
 
 ---
 
@@ -61,7 +61,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> NOMA의 구조와 동작을 설명하고, 주요 비교 또는 적용 시 문제와 대응책을 제시하시오. (예상)
+> NOMA의 비직교 자원 공유와 SIC 동작을 설명하고, OMA와 비교하여 채널 추정·복호 오류의 한계와 대응책을 제시하시오. (예상)
 
 ---
 
@@ -116,6 +116,6 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제129회 1교시 12번: “비직교 다중접속(NOMA, Non-Orthogonal Multiple Access)”
+- 제129회 1교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [3GPP TR 38.812, Study on Non-Orthogonal Multiple Access for NR](https://portal.3gpp.org/Specifications.aspx?WiUid=750046&q=1)
 - [ETSI GR MAT 001 V1.1.1, Multiple Access Techniques](https://www.etsi.org/deliver/etsi_gr/MAT/001_099/001/01.01.01_60/gr_MAT001v010101p.pdf)

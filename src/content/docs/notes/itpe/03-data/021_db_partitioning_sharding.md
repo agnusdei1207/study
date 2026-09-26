@@ -152,6 +152,11 @@ flowchart TB
 | 분할 시험 | 대표 조회·갱신으로 노드 간 요청과 핫스폿 측정 | 부하·지연·확장 여유 |
 | 운영 계획 | 데이터 재분배와 장애 복구 절차 정의 | 재배치 중 가용성과 복구 검증 |
 
+## 검증 출처
+
+- [PostgreSQL 공식 문서, 테이블 파티셔닝](https://www.postgresql.org/docs/current/ddl-partitioning.html).
+- [MongoDB 공식 문서, 샤딩](https://www.mongodb.com/docs/manual/sharding/) — 분산 배치 방식의 구현 사례.
+
 ## 연결 토픽
 
 - 연관 토픽: [NoSQL](./001_nosql.md), [데이터 복제](./126_data_replication.md)

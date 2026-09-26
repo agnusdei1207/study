@@ -143,7 +143,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트에는 제138회 3교시 1번을 2025-02-28 가이드라인 문항으로 기록했으나 공식 기출 원문은 별도 대조하지 못함.
+- [Q-Net 제138회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5253558&brdId=Q006&gSite=Q&id=cst00602) 3교시 1번은 가이드라인 제정 배경·필요성과 이용자 보호 실행방식 네 가지 및 각각의 중요성을 요구한다.
 - [방송미디어통신위원회, 생성형 인공지능 서비스 이용자 보호 가이드라인 발표(2025-02-28)](https://www.kmcc.go.kr/user.do?boardId=1113&boardSeq=65685&dc=K00000200&mode=view&page=A05030000)
 - [가이드라인 본문 PDF](https://www.kmcc.go.kr/download.do?fileSeq=60677)
 - [가이드라인 실행 방식 PDF](https://www.kmcc.go.kr/download.do?fileSeq=60676)

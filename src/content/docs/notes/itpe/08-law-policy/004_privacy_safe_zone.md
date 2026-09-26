@@ -126,7 +126,9 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트 기록: 제135회 1교시 7번 “개인정보 안심구역”, 제136회 1교시 10번 “개인정보 안심구역과 데이터안심구역 비교”. 공식 문제지 원문과 대조하지 않았으므로 문구는 기존 기록으로 남김.
+- 제135회 1교시 7번: 개인정보 안심구역. 제136회 1교시 10번: 개인정보 안심구역과 데이터안심구역 비교(공식 문제지 확인).
+- [Q-Net, 제135회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5226360&brdId=Q006&gSite=Q&id=cst00602)
+- [Q-Net, 제136회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5234951&brdId=Q006&gSite=Q&id=cst00602)
 - [개인정보보호위원회, 개인정보 안심구역에서 통계데이터를 안전하게 연계·분석](https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=10029)
 - [개인정보보호위원회, 개인정보 안심구역 본격 운영 관련 정책 안내](https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=9404)
 - [국가법령정보센터, 데이터 산업진흥 및 이용촉진에 관한 기본법](https://www.law.go.kr/법령/데이터산업진흥및이용촉진에관한기본법)

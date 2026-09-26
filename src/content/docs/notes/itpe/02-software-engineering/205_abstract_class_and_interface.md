@@ -2,7 +2,7 @@
 title: "추상 클래스와 인터페이스(Abstract Class and Interface)"
 category: "02-software-engineering"
 tags: ["추상클래스", "인터페이스", "객체지향", "Java"]
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -147,7 +147,7 @@ PaymentMethod 인터페이스: pay(amount)
 ## 참고 및 연계 학습
 
 - [Java Language Specification](https://docs.oracle.com/javase/specs/jls/se24/html/index.html)
-- [객체지향 설계 원칙](./047_solid_principles.md)
+- [객체지향 설계 원칙](./082_solid.md)
 - [모듈성](./190_modularity.md)
 - [스프링 부트](./159_spring_boot.md)
 - [Enterprise Beans](./200_ejb.md)

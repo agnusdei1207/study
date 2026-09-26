@@ -3,7 +3,7 @@ title: "유스케이스 다이어그램(유스케이스 명세)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -153,11 +153,10 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제137회 정보관리기술사 1교시: 유스케이스 다이어그램과 관계(&lt;&lt;include&gt;&gt;, &lt;&lt;extend&gt;&gt;)
+- 제137회 정보관리기술사 4교시: UML 행위 다이어그램 중 유스케이스 다이어그램
 - [OMG, Unified Modeling Language 2.5.1](https://www.omg.org/spec/UML/2.5.1/PDF)
 - Ivar Jacobson, Object-Oriented Software Engineering: A Use Case Driven Approach
 - Craig Larman, Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design
-- [OMG, Unified Modeling Language 2.5.1](https://www.omg.org/spec/UML/2.5.1/PDF)
 
 ## 연결 토픽
 

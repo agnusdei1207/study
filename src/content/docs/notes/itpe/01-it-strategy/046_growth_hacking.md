@@ -1,7 +1,7 @@
 ---
 title: "그로스 해킹"
 author: "Codex"
-date: "2026-09-24"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -71,7 +71,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 그로스 해킹의 개념과 AARRR 프레임워크를 설명하고, 데이터 기반 실험 절차와 적용 시 고려사항을 제시하시오. **(미출제 예상·25점)**
+> 그로스 해킹의 개념과 AARRR 프레임워크를 설명하고, 데이터 기반 실험 절차와 적용 시 고려사항을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -146,7 +146,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [GrowthHackers: Growth Hacking Resources](https://growthhackers.com/)
 - [500 Global: Startup Metrics for Pirates](https://500.co/content/startup-metrics-for-pirates)
 

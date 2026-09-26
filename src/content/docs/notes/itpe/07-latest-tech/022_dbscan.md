@@ -127,6 +127,8 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
+제129·130회 출제 기록은 기존 노트의 표기이며 공식 문제 원문은 미확인.
+
 - 제129회 1교시: DBSCAN의 개념과 특징
 - 제130회 2교시: K-Means와 DBSCAN 비교
 - [scikit-learn, Clustering: DBSCAN](https://scikit-learn.org/stable/modules/clustering.html#dbscan): 핵심·경계·노이즈 점과 매개변수 설명 확인

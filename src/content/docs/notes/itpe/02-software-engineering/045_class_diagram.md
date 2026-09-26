@@ -6,7 +6,7 @@ sidebar:
   badge:
     text: "기초"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -32,8 +32,6 @@ extra:
 - **Composition(합성)**: 부분이 한 전체에 배타적으로 속하고 생명주기를 함께하는 강한 전체-부분 관계
 - **Association(연관)**: 분류자 인스턴스 사이에 구조적 연결이 있음을 나타내는 관계
 - **Dependency(의존)**: 한 분류자의 정의·동작이 다른 분류자를 일시적으로 사용함을 나타내는 관계
-- **Generalization(일반화)**: 하위 분류자가 상위 분류자의 공통 특성을 물려받는 관계
-- **Realization(실체화)**: 분류자가 인터페이스 등 명세 계약을 구현하는 관계
 
 </details>
 

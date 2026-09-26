@@ -1,7 +1,7 @@
 ---
 title: "AI SW 품질보증 테스트(뉴런 커버리지 포함)"
 author: "Codex"
-date: "2026-09-24T16:43:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -122,7 +122,9 @@ extra:
 | 운영 입력 변화나 드문 실패 사례가 다음 모델 시험에 반영되지 않을 가능성 | 실패 사례의 개인정보·품질을 검토한 뒤 회귀 시험 자료에 편입하고, 재학습 모델의 기준 시험과 함께 비교 |
 
 ## 출제 이력과 검증 출처
+- [ISO/IEC 25059:2023](https://www.iso.org/standard/80655.html): AI 시스템 품질 특성과 평가 모델
 
+- 제135회 정보관리기술사 4교시: AI 기반 SW 품질보증 테스트 중 메타모픽·뉴런 커버리지 테스트
 - ISO/IEC 25059, *Software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Quality model for AI systems*.
 - Tian et al., “DeepTest: Automated Testing of Deep-Neural-Network-driven Autonomous Cars,” ICSE 2018.
 - Ma et al., “DeepGauge: Multi-Granularity Testing Criteria for Deep Learning Systems,” ASE 2018.

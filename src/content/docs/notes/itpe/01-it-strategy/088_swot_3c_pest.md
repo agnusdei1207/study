@@ -1,7 +1,7 @@
 ---
 title: "경영환경 분석(SWOT·3C·PEST)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -127,7 +127,7 @@ PEST·3C의 관계: 고정 순서의 단계가 아닌 서로 다른 분석관점
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지로 확인한 직접 기출 없음. 위 문항은 예상문제다.
+- 제133회 정보관리기술사 3교시: SWOT·3C·PEST 분석의 특성, 적용 조건과 분석 방법. 위 문항은 이를 바탕으로 구성한 예상문제다.
 - [Australian Government, Do a SWOT analysis](https://business.gov.au/planning/business-plans/do-a-swot-analysis)
 - [CIPD, PESTLE analysis](https://www.cipd.org/uk/knowledge/factsheets/pestle-analysis-factsheet/)
 - [Kenichi Ohmae, The strategic triangle: A new perspective on business unit strategy](https://www.sciencedirect.com/science/article/abs/pii/S0263237382800169)

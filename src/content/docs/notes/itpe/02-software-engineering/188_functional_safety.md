@@ -2,7 +2,7 @@
 title: "기능안전(Functional Safety)"
 category: "02-software-engineering"
 tags: ["기능안전", "IEC 61508", "ISO 26262", "안전요구사항"]
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -133,7 +133,7 @@ extra:
 
 ISO 26262의 HARA·ASIL은 **자동차 도메인**의 판단 틀이며, 모든 산업의 기능안전 등급을 ASIL로 부르지 않음.
 
-## Ⅵ. 한계과 제언
+## Ⅵ. 한계와 제언
 
 | 한계 | 대응 |
 |---|---|

@@ -157,6 +157,10 @@ K-Means는 군집 내 거리 제곱합을 줄이지만 초기값에 따라 다�
 | 모형 비교 | k와 초기값을 바꿔 군집 결과·안정성 비교 | 군집 내 응집도와 군집 간 분리도 |
 | 활용 판단 | 군집별 특성을 업무 적용 사례와 대조 | 해석 가능성과 실제 활용성 |
 
+## 검증 출처
+
+- [scikit-learn 공식 문서, KMeans](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html) — 중심점 갱신과 초기화의 구현 사례.
+
 ## 연결 토픽
 
 - 연관 토픽: [군집분석](./005_cluster_analysis.md), [이상치](./010_outlier.md)

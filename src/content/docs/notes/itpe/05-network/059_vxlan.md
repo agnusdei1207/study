@@ -139,7 +139,7 @@ EVPN 제어 평면을 쓰더라도 브로드캐스트·unknown unicast·multicas
 
 ## 출제 이력과 검증 출처
 
-- 제130회 1교시 8번: `VXLAN(Virtual eXtensible LAN)`
+- 제130회 1교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [RFC 7348 — Virtual eXtensible LAN](https://www.rfc-editor.org/rfc/rfc7348)
 - [RFC 8365 — A Network Virtualization Overlay Solution Using EVPN](https://www.rfc-editor.org/rfc/rfc8365)
 - [RFC 7432 — BGP MPLS-Based Ethernet VPN](https://www.rfc-editor.org/rfc/rfc7432)

@@ -139,5 +139,5 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 원문 출제 이력은 미출제 표기. 예상문제로 구성.
+- 확인한 제132~140회 공식 문제지에서 표제어 직접 출제 미확인. 그 밖의 회차는 원문 미대조. 아래 문항은 예상문제
 - [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai): LLM·검색·도구 호출 관측 항목 참고.

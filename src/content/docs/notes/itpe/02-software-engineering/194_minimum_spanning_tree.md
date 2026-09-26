@@ -2,7 +2,7 @@
 title: "최소 신장 트리(Minimum Spanning Tree)"
 category: "02-software-engineering"
 tags: ["최소신장트리", "그래프", "크루스칼", "프림"]
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -151,3 +151,6 @@ Union-Find로 양 끝 정점의 연결 집합을 확인해 사이클을 방지. 
 - [다익스트라 알고리즘](./189_dijkstra_algorithm.md)
 - [탐욕 알고리즘](./196_greedy_algorithm.md)
 - [최단 경로 알고리즘 비교](./175_shortest_path_algorithm.md)
+
+## 검증 출처
+- [MIT OCW, Greedy Algorithms and Minimum Spanning Trees](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/07deed5b5a439ef982ef40aaa282d444_lec16.pdf): MST의 절단 속성과 Prim·Kruskal 알고리즘

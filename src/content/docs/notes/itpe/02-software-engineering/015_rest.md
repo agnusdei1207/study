@@ -3,7 +3,7 @@ title: "REST"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -155,8 +155,8 @@ Level 3: HATEOAS
 
 ## 출제 이력과 검증 출처
 
-- 제133회 정보관리기술사 1교시: RESTful 웹 서비스와 HATEOAS
-- 제134회 정보관리기술사 2교시: REST의 제약조건과 SOAP과의 비교
+- 제133회 정보관리기술사 1교시: REST API
+- 제134회 정보관리기술사 4교시: SOAP 및 REST의 구성요소
 - Roy Thomas Fielding, Architectural Styles and the Design of Network-based Software Architectures (Doctoral dissertation)
 - [RFC 9110 — HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)
 - [RFC 9457 — Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457.html)

@@ -204,6 +204,8 @@ $$R + W > N \implies \text{Strong Consistency (강한 일관성 보장)}$$
 
 ## 출제 이력과 검증 출처
 
+- [Abadi, Consistency Tradeoffs 원 논문](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf): 분할 시 가용성·일관성, 정상 시 지연·일관성 절충을 구분한 PACELC
+
 - **기출 이력**:
   - 제126회 정보관리 2교시: 분산 데이터베이스 환경에서의 CAP 이론과 PACELC 이론을 비교하고 NoSQL 선정 기준 제시
   - 제93회, 제117회 기출

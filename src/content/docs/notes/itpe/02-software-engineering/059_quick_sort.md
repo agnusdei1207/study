@@ -1,7 +1,7 @@
 ---
 title: "퀵 정렬(Quick Sort)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -139,7 +139,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문에서 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - Charles A. R. Hoare, “Quicksort,” *The Computer Journal*, 1962
 - [Open Data Structures, Quicksort](https://opendatastructures.org/ods-java/11_Quicksort.html)
 

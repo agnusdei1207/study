@@ -150,6 +150,10 @@ flowchart TB
 | DB 적용 | NOT NULL·UNIQUE·CHECK·FOREIGN KEY 등 적합한 제약 구현 | 정상·위반 입력의 처리 결과 |
 | 변경·이관 | 스키마 변경 전 기존 데이터 검사와 이관 시험 | 위반 건수·참조 무결성·복구 가능성 |
 
+## 검증 출처
+
+- [PostgreSQL 공식 문서, 제약조건](https://www.postgresql.org/docs/current/ddl-constraints.html) — 무결성 제약의 구현 사례.
+
 ## 연결 토픽
 
 - 연관 토픽: [ERD](./028_erd.md), [동시성 제어](./009_concurrency_control.md)

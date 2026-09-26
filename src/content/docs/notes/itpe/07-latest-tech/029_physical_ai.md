@@ -128,5 +128,8 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
+- [Q-Net 제140회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5274150&brdId=Q006&gSite=Q&id=cst00602) 1교시 9번: 피지컬 AI와 생성형 AI 비교.
+- [NVIDIA Research, Physical AI 연구 사례](https://research.nvidia.com/research-area/physical-ai).
+
 - 제140회 1교시 9번: 피지컬 AI와 생성형 AI 비교
 - 실제 비교 문항은 출제 이력에 보존하고, 기본 예상문제는 피지컬 AI 자체의 인식·판단·행동 구조를 묻도록 구성

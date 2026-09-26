@@ -6,7 +6,7 @@ sidebar:
   badge:
     text: "기초"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -130,8 +130,9 @@ extra:
 ---
 
 ## 출제 이력과 검증 출처
+- [ISO/IEC/IEEE 12207:2017](https://committee.iso.org/sites/jtc1sc7/home/projects/flagship-standards/isoiecieee-122072017.html): 소프트웨어 생명주기 프로세스의 조직·프로젝트 적용
 
-- 제138회 정보관리기술사 1교시: 소프트웨어 개발방법론 테일러링의 개념 및 고려사항
+- 제138회 정보관리기술사 1교시: 소프트웨어 개발 프로젝트에서 선도개발을 위한 개발방법론 테일러링
 - ISO/IEC/IEEE 12207 Systems and software engineering - Software life cycle processes
 - 한국지능정보사회진흥원(NIA), 정보시스템 구축·운영 지침 및 방법론 테일러링 가이드
 

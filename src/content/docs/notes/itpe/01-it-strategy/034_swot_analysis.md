@@ -1,7 +1,7 @@
 ---
 title: "SWOT 분석"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -134,8 +134,9 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
-- [Harvard Business School: The Five Competitive Forces That Shape Strategy](https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-competitive-forces-that-shape-strategy.aspx)
+- 제133회 정보관리기술사 3교시: SWOT·3C·PEST 분석의 특성, 적용 조건과 분석 방법 비교
+- [The Open University, SWOT analysis](https://www.open.edu/openlearn/mod/oucontent/view.php?id=139110&section=_unit2.5.3)
+- [Harvard Business Review, From SWOT to TOWS](https://hbr.org/2007/03/from-swot-to-tows-answering-a-readers-strategy-question)
 
 ## 연결 토픽
 

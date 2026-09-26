@@ -130,6 +130,6 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제131회 2교시 5번: 소켓(Socket) 통신
+- 제131회 2교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [RFC 9293 — Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293)
 - [RFC 768 — User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc768)

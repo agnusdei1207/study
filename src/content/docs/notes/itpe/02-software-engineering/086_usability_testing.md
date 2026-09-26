@@ -6,8 +6,8 @@ sidebar:
   badge:
     text: "서브"
     variant: "note"
-date: "2026-09-24T00:00:00+09:00"
-lastmod: "2026-09-22T07:24:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
+lastmod: "2026-09-27T00:24:59+09:00"
 author: "Antigravity"
 extra:
   model: "GPT-6"
@@ -20,7 +20,7 @@ extra:
 
 ## 1. 큰 그림 및 30초 인출 공식
 
-- **본질**: **사용성 테스트(UT)**는 대표 사용자에게 과업 수행을 요청하고, 어려움과 오류를 관찰해 인터페이스 개선점을 찾는 평가 활동**
+- **본질**: **사용성 테스트(UT)**는 대표 사용자에게 과업 수행을 요청하고, 어려움과 오류를 관찰해 인터페이스 개선점을 찾는 평가 활동
 - **메커니즘**: 대표 과업 설정 ➔ 사용자의 수행과 오류 관찰 ➔ 효과성·효율성·만족도 자료 해석 ➔ 개선 과제 도출
 - **산출물**: 과업 수행 기록 · 사용자 의견 · 사용성 개선 과제
 ---
@@ -161,3 +161,6 @@ extra:
 - **선행 토픽**: 요구공학, HCI(Human Computer Interaction)
 - **유사/비교 토픽**: 휴리스틱 평가(Heuristic), A/B 테스트, 고객 여정 지도(Customer Journey Map)
 - **후속/연계 토픽**: 웹 접근성(KWCAG 2.2), 디자인 시스템, Lean UX, 제품 분석(Product Analytics)
+
+## 검증 출처
+- [Nielsen Norman Group, Usability Testing 101](https://www.nngroup.com/articles/usability-testing-101/): 실제 사용자·과제·관찰을 통한 사용성 시험

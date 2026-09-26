@@ -128,6 +128,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
+- [NIST 대기 시스템 성능 자료](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nbsspecialpublication500-65.pdf): 평균 체류 시간·처리량·시스템 내 평균 건수의 Little 법칙
+
 - 출제 이력: 제120회 정보관리 2교시 출제 이력으로 기록된 문항(원문 출처 확인 필요)
 - 검증 출처: J. D. C. Little, “A Proof for the Queuing Formula: L = λW,” *Operations Research*, 1961; Kleinrock, *Queueing Systems, Volume I: Theory*
 

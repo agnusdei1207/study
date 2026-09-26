@@ -147,7 +147,7 @@ Signaling은 응용이 구현하는 SDP·ICE 후보 교환 경로. ICE는 직접
 
 ## 출제 이력과 검증 출처
 
-- 제123회 2교시: “WebRTC의 개념, 주요 프로토콜 스택, 세션 연결 절차(SDP, ICE, STUN, TURN) 및 1:N/N:M 통화 구성을 위한 아키텍처(Mesh, MCU, SFU)를 설명하시오.”
+- 제123회 관련 출제 이력은 공식 원문 미확보로 회차·문구 미검증. 위 10점·25점 문항은 학습용 예상문제.
 - [W3C WebRTC: Real-Time Communication in Browsers](https://www.w3.org/TR/webrtc/)
 - [RFC 8825: Overview: Real-Time Protocols for Browser-Based Applications](https://www.rfc-editor.org/rfc/rfc8825)
 - [RFC 8445: Interactive Connectivity Establishment (ICE)](https://www.rfc-editor.org/rfc/rfc8445)

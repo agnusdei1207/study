@@ -6,7 +6,7 @@ sidebar:
   badge:
     text: "기초"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -143,7 +143,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문에서 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [국가법령정보센터, 소프트웨어 진흥법 제50조](https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1031614471)
 - [국가법령정보센터, 소프트웨어 진흥법 시행령 제45조~제47조](https://law.go.kr/LSW/lumLsLinkPop.do?chrClsCd=010202&lspttninfSeq=162563)
 

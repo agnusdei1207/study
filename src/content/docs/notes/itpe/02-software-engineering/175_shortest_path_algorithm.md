@@ -7,7 +7,7 @@ tags:
   - "벨만포드"
   - "플로이드워셜"
   - "A스타"
-date: "2026-09-24T15:56:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -152,3 +152,11 @@ S → U → V: 합계 7 < 직접 10
 | 음수 간선이 있는데 다익스트라 적용 | 가중치 특성을 확인하고 벨만–포드 등으로 전환 |
 | 음수 사이클로 최단거리 정의 불가 | 도달 가능한 사이클 탐지 및 문제 조건 재검토 |
 | 거리만 저장해 경로를 제시하지 못함 | 선행 정점을 함께 기록하고 역추적 검증 |
+
+**제언:** 가중치의 부호와 필요한 경로 범위를 먼저 확인하고, 음수 사이클 및 경로 복원 결과를 시험한다.
+
+### 참고 자료
+
+- [MIT OpenCourseWare, Shortest Paths](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/pages/lecture-notes/)
+- [다익스트라 알고리즘](./189_dijkstra_algorithm.md)
+- [A* 알고리즘](./127_a_star_algorithm.md)

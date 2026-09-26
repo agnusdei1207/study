@@ -149,6 +149,10 @@ sidebar:
 |---|---|
 | 변수 제거·정규화 후 계수 안정성과 예측 성능의 변화가 별도로 보고되어 모형 선택 근거가 흐려짐 | 후보 변수 집합별 **VIF**·계수 방향·표준오차·검증 성능을 한 비교표에 기록하고 분석 목적에 맞는 채택 기준을 먼저 확정 |
 
+## 검증 출처
+
+- [NIST, Variance Inflation Factors](https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/vif.htm) — 다중공선성과 VIF의 의미·한계.
+
 ## 연결 토픽
 
 - 연관 토픽: [표본추출](./032_sampling.md), [t 검정](./086_t_test.md)

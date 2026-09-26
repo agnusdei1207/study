@@ -106,7 +106,8 @@ GCM은 CTR 방식의 암호화와 GHASH 기반 인증 태그를 결합한다. �
 flowchart LR
   A[평문] --> B[CTR 암호화]
   B --> C[암호문]
-  D[암호문과 연관 데이터] --> E[GHASH 인증 계산]
+  C --> E[GHASH 인증 계산]
+  D[연관 데이터] --> E
   F[키와 nonce] --> B
   F --> E
   E --> G[인증 태그]

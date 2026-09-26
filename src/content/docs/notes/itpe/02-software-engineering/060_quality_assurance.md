@@ -1,7 +1,7 @@
 ---
 title: "소프트웨어 품질보증(SQA)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -136,8 +136,9 @@ extra:
 | 모든 변경에 같은 검사 강도를 적용해 중요 변경을 놓치거나 검토 부담이 커질 가능성 | 변경 영향·품질 위험에 따라 검토·시험 수준을 나누고, 중요 기준 미달 시 책임자 검토가 끝날 때까지 다음 단계 진행을 보류하는 Gate 운영 |
 
 ## 출제 이력과 검증 출처
+- [NASA Software Assurance and Software Safety](https://sma.nasa.gov/sma-disciplines/software-assurance-and-software-safety): QA·QC·품질공학의 역할 구분
 
-- 공식 문제지 원문에서 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - ISO/IEC/IEEE 12207, *Software Life Cycle Processes*
 - ISO/IEC/IEEE 90003, *Guidelines for the Application of ISO 9001 to Computer Software*
 

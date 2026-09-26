@@ -153,3 +153,5 @@ flowchart TD
 
 - 제137회 4교시 5번: “유전 알고리즘 (Genetic Algorithm)에 대하여 설명하시오.” 출제 이력 유지
 - 출제문 원문을 바탕으로 기본 원리와 처리 절차에 초점을 맞춤
+- [Q-Net 제137회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5242749&brdId=Q006&gSite=Q&id=cst00602)
+- [MIT OpenCourseWare, Genetic Algorithm 절차](https://www.ocw.mit.edu/courses/ids-338j-multidisciplinary-system-design-optimization-spring-2010/f67f430da9d1bc6c018ce661c4a717b9_MITESD_77S10_rec06.pdf)

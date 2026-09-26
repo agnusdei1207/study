@@ -127,7 +127,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 제139회 1교시 6번: 기존 기출 목록에 기록된 문항명은 “엣지 컴퓨팅과 클라우드 컴퓨팅의 차이점”; 원문 문항지 확인은 미완료.
+- 제139회 정보관리기술사 1교시 6번: 엣지 컴퓨팅과 클라우드 컴퓨팅의 차이점(공식 Q-Net 문제지 대조).
 - [ETSI, Multi-access Edge Computing (MEC)](https://www.etsi.org/technical-groups/mec/)
 - [ETSI GS MEC 003 V4.1.1, Framework and Reference Architecture](https://www.etsi.org/deliver/etsi_gs/MEC/001_099/003/04.01.01_60/gs_mec003v040101p.pdf)
 

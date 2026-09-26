@@ -1,7 +1,7 @@
 ---
 title: "부정적 위험 대응 전략"
 author: "Codex"
-date: "2026-09-24T12:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -127,7 +127,7 @@ extra:
 | 발동 기준 없는 수용 계획 | 위험 증가에도 우발 대응 미개시 | 지표·임계값·통보 대상·의사결정 시점 지정 |
 | 대응 후 상태 미갱신 | 잔여·2차 위험의 관리 누락 | 조치 완료 시 위험대장 갱신과 정기 검토 |
 
-## Ⅵ. 기술적 제언
+## Ⅵ. 기술사적 제언
 
 | 한계 | 해결 방안 |
 |---|---|
@@ -135,7 +135,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 정보관리기술사 제34회·제39회 기출 주제: 위험 대응 전략
+- 제34회·제39회 관련 문항은 공식 문제지 원문 미확인
 - [PMI, PMBOK Guide](https://www.pmi.org/standards/pmbok)
 - [PMI, Lexicon of Project Management Terms](https://www.pmi.org/-/media/pmi/documents/registered/pdf/pmbok-standards/pmi-lexicon-pm-terms.pdf)
 - [ISO 31000 Risk management](https://www.iso.org/iso-31000-risk-management.html)

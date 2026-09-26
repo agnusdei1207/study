@@ -1,7 +1,7 @@
 ---
 title: "IT 아웃소싱"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -140,7 +140,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [ISO 37500:2014: Guidance on outsourcing](https://committee.iso.org/standard/56269.html)
 - [ISO/IEC 20000-1:2018 및 Amendment 1:2024: Service management system requirements](https://committee.iso.org/cms/live/live/en/sites/isoorg/contents/data/standard/07/06/70636.html?browse=tc)
 

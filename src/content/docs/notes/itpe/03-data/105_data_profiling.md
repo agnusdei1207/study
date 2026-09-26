@@ -139,6 +139,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
+- [IBM 데이터 프로파일링 절차](https://www.ibm.com/docs/en/iis/11.5.0?topic=columns-data-profiling-process): 열·키·도메인 분석을 통한 구조·품질 점검
+
 - 정보관리기술사 제128회 2교시: 데이터 품질 관리를 위한 데이터 프로파일링 기법과 분석 단계
 - DAMA International, *DAMA-DMBOK: Data Management Body of Knowledge*, 2nd ed., Data Quality
 - 한국지능정보사회진흥원, *공공데이터 품질관리 매뉴얼*

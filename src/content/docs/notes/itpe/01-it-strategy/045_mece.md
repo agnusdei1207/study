@@ -1,7 +1,7 @@
 ---
 title: "MECE"
 author: "Codex"
-date: "2026-09-24"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -33,7 +33,7 @@ extra:
 - **WBS(Work Breakdown Structure)** : 프로젝트 범위를 최종 인도물 중심의 작업 단위로 계층 분해한 체계
 - **100% Rule** : 하위 요소의 작업 범위 합이 상위 요소의 전체 범위를 100% 충족해야 한다는 원칙
 
-- **RACI(Responsible, Accountable, Consulted, Informed)**: 역할·책임을 구분하는 매트릭스. MECE의 분할축이나 검증 기준과는 구별되는 적용 수단.\n\n- **RACI(Responsible, Accountable, Consulted, Informed)**: 역할과 책임을 구분하는 매트릭스. MECE의 분할축·검증 기준과 구별되는 적용 수단.
+- **RACI(Responsible, Accountable, Consulted, Informed)**: 역할과 책임을 구분하는 매트릭스. MECE의 분할축·검증 기준과 구별되는 적용 수단.
 
 </details>
 
@@ -73,7 +73,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> MECE의 개념과 구조화 절차를 설명하고, Issue Tree·WBS 적용 시 문제점과 대응책을 제시하시오. **(미출제 예상·25점)**
+> MECE의 개념과 구조화 절차를 설명하고, Issue Tree·WBS 적용 시 문제점과 대응책을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -165,7 +165,7 @@ ME·CE 검증 → 실행 과제 연결
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [PMI Lexicon of Project Management Terms](https://www.pmi.org/-/media/pmi/documents/registered/pdf/pmbok-standards/pmi-lexicon-pm-terms.pdf)
 - [PMI Practice Standard for Work Breakdown Structures](https://www.pmi.org/pmbok-guide-standards/framework/practice-standard-work-breakdown-structures-3rd-edition)
 

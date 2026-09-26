@@ -2,7 +2,7 @@
 title: "다익스트라 알고리즘(Dijkstra Algorithm)"
 category: "02-software-engineering"
 tags: ["다익스트라", "최단경로", "간선완화", "우선순위큐"]
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -150,3 +150,6 @@ OSPF에서는 각 라우터가 링크 상태 데이터베이스를 바탕으로 
 - [최단 경로 알고리즘](./175_shortest_path_algorithm.md)
 - [탐욕 알고리즘](./196_greedy_algorithm.md)
 - [최소 신장 트리](./194_minimum_spanning_tree.md)
+
+## 검증 출처
+- [MIT OCW, Dijkstra's Algorithm](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/d819e7f4568aced8d5b59e03db6c7b67_MIT6_006S20_lec13.pdf): 비음수 가중치 조건과 최단 경로 이완

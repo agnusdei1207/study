@@ -3,7 +3,7 @@ title: "스크럼(Scrum)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -166,8 +166,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제123회 정보관리기술사 1교시: 스크럼의 3대 역할 및 5대 이벤트
-- 제129회 정보관리기술사 2교시: 애자일 스크럼의 성공 요인과 DoD의 중요성
+- 제123회·제129회 회차별 출제 서술은 공식 문제지 원문 미대조로 직접 기출로 단정하지 않음
 - [Ken Schwaber, Jeff Sutherland, The Scrum Guide (2020)](https://scrumguides.org/scrum-guide.html)
 
 ## 연결 토픽

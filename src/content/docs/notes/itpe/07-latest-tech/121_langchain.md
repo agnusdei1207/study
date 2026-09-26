@@ -161,7 +161,6 @@ LangChain의 역할은 언어모델 자체를 대체하는 것이 아니라, 모
 ---
 
 ## 출제 이력과 검증 출처
-- 기존 노트의 기출 기록: 제132회 4교시 3번 설비예지정비 시스템에서 LangChain 활용 방안. 공식 원문은 별도 대조하지 못했으므로 기록 문구를 기출 원문으로 단정하지 않음.
-- 기존 노트에 기록된 문항: “설비예지정비(Predictive Maintenance)시스템 구축 시 LangChain 프레임워크를 활용할 수 있는 방안에 대하여 다음을 설명하시오.” (공식 원문 대조 미확인)
+- [Q-Net 제132회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5212856&brdId=Q006&gSite=Q&id=cst00602) 4교시 3번: 설비 예지정비 시스템 구축 시 LangChain 활용 방안을 묻고, 가. 예지정비 개념·필요성, 나. LangChain과 LLM, 다. LangChain을 이용한 예지정비를 요구한다. 기본 예상문제는 LangChain 자체의 구조를 학습하는 문항으로 구분한다.
 - [LangChain OSS Overview](https://www.langchain.com/oss-overview), LangChain 구성 역할 및 LangGraph와의 구분.
 - [LangChain Runnable reference](https://reference.langchain.com/python/langchain-classic/schema/runnable), Runnable·LCEL 조합의 동작 개요.

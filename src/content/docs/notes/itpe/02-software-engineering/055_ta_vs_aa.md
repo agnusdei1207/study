@@ -6,7 +6,7 @@ sidebar:
   badge:
     text: "서브"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 extra:
   model: "GPT-6"
   keyword_grade: "서브"
@@ -135,7 +135,7 @@ AA·TA 설계 대응 검토 → ADR 기록
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문에서 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [ISO/IEC/IEEE 42010:2022, Architecture Description](https://www.iso.org/standard/74393.html)
 - [ISO/IEC 25010:2023, Product Quality Model](https://www.iso.org/standard/78176.html)
 

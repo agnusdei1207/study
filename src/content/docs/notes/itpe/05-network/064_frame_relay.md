@@ -129,5 +129,5 @@ DE 표시 프레임 ── 혼잡 시 우선 폐기 가능한 대상
 
 ## 출제 이력과 검증 출처
 
-- 제124회 1교시 10번: `프레임릴레이(Frame Relay)`
+- 제124회 1교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [ITU-T Recommendation Q.922 — ISDN data link layer specification for frame mode bearer services](https://www.itu.int/rec/T-REC-Q.922)

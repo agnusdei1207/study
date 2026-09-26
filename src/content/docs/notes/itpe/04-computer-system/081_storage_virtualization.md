@@ -156,3 +156,4 @@ flowchart TD
 ## 출제 이력과 검증 출처
 
 - 기출 확인 없음. 예상문제는 스토리지 가상화의 자원 추상화·매핑을 직접 질문
+- [SNIA, Storage Virtualization 정의와 계층](https://www.snia.org/sites/default/files/sniavirt.pdf)

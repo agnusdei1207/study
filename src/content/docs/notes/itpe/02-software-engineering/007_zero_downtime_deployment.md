@@ -1,7 +1,7 @@
 ---
 title: "무중단 배포·배포 전략"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -20,7 +20,7 @@ extra:
 
 - 본질: **무중단 배포(Zero-Downtime Deployment)**는 서비스 운영 중단(Downtime) 없이 신규 버전을 프로덕션에 배포하고 즉각 롤백을 지원하는 아키텍처 전략
 - 메커니즘: **Rolling**(점진 교체) · **Blue/Green**(이중 환경 스위칭) · **Canary**(소규모 카나리 트래픽 검증 후 전면 전환)
-- 효과: 가용성(High Availability) 99.999% 유지 · 배포 위험 최소화 · 무중단 사용자 경험 보장
+- 효과: 배포 중 서비스 가용성 유지 · 배포 위험 완화 · 사용자 요청 처리 지속
 
 <details>
 <summary>핵심 용어</summary>
@@ -139,9 +139,10 @@ Contract: 구버전 참조 제거 후 축소
 ---
 
 ## 출제 이력과 검증 출처
+- [Martin Fowler, Blue Green Deployment](https://martinfowler.com/bliki/BlueGreenDeployment.html): 이중 환경 전환과 중단 시간 관리
 
-- 제134회 정보관리기술사 1교시: 무중단 배포 전략
-- 제139회 정보관리기술사 2교시: 클라우드 네이티브 배포 전략(Rolling, Blue/Green, Canary) 비교
+- 제134회 정보관리기술사 3교시: 실행 중인 애플리케이션의 배포 전략 및 테스트 전략
+- 제139회 정보관리기술사 1교시: 소프트웨어 무중단 배포 방식
 - Sam Newman, Building Microservices (2nd Edition), Deployment Strategies
 
 ## 연결 토픽

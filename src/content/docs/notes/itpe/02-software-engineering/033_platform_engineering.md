@@ -3,7 +3,7 @@ title: "플랫폼 엔지니어링(Platform Engineering)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -139,6 +139,7 @@ extra:
 ---
 
 ## 출제 이력과 검증 출처
+- [CNCF Platforms White Paper](https://tag-app-delivery.cncf.io/whitepapers/platforms/): 내부 플랫폼과 개발자 서비스의 역할
 
 - Gartner Top Strategic Technology Trends for 2024: Platform Engineering
 - Manuel Pais, Matthew Skelton, Team Topologies: Organizing Business and Technology Teams for Fast Flow

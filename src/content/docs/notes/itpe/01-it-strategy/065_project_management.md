@@ -1,7 +1,7 @@
 ---
 title: "프로젝트 관리 통합 체계"
 author: "OpenAI"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
@@ -79,7 +79,7 @@ Portfolio: 과제 선택·우선순위
 
 ## 2~4교시 예상문제 (25점)
 
-> 프로젝트 관리 통합 체계와 Portfolio·Programme·Project의 관계를 설명하고, 프로젝트 수행절차 및 문제점·대응책을 제시하시오. **(미출제 예상·25점)**
+> 프로젝트 관리 통합 체계와 Portfolio·Programme·Project의 관계를 설명하고, 프로젝트 수행절차 및 문제점·대응책을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -159,7 +159,7 @@ Portfolio: 과제 선택·우선순위
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [PMI, PMBOK Guide Eighth Edition](https://www.pmi.org/standards/pmbok)
 - [ISO, ISO 21500:2021 Context and concepts](https://committee.iso.org/sites/tc258/home/projects/published/iso-3.html)
 - [ISO, ISO 21502:2020 Guidance on project management](https://www.iso.org/standard/74947.html)

@@ -1,7 +1,7 @@
 ---
 title: "AI 생성 코드·오픈웨이트 라이선스 준수"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -143,7 +143,7 @@ AI 생성물의 법적 취급은 관할 법률·도구 계약·생성 내용에 
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문에서 확인한 직접 기출 없음
+- 제140회 정보관리기술사 2교시: AI 생성 코드·오픈웨이트 모델의 오픈소스 라이선스 위험과 컴플라이언스 점검
 - [Open Source Initiative, Open Source AI Definition 1.0](https://opensource.org/ai/open-source-ai-definition)
 - [Open Source Initiative, Open Weights](https://opensource.org/ai/open-weights)
 - [CycloneDX, Authoritative Guide to AI/ML-BOM](https://cyclonedx.org/guides/OWASP_CycloneDX-Authoritative-Guide-to-AI-ML-BOM-en.pdf)

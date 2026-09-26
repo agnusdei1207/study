@@ -127,6 +127,8 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
+제124회 출제 기록은 기존 노트의 표기이며 공식 문제 원문은 미확인.
+
 - 제124회 4교시 5번: 퍼블릭·프라이빗 블록체인의 차이 비교
 - [Ethereum, Introduction to Ethereum](https://ethereum.org/developers/docs/intro-to-ethereum/): 퍼블릭 네트워크 사례의 노드·거래·합의 구조 참고
 - 퍼블릭 접근성과 검증자 허가 여부는 동일 개념으로 단정하지 않고 네트워크별 설정으로 구분

@@ -74,7 +74,7 @@ EGDI는 세 구성 지수를 표준화한 뒤 같은 비중으로 평균한 종�
 
 ---
 
-국제연합(UN)은 매 2년마다 전체 회원국을 대상으로 전자정부 평가를 실시한다. 전자정부 평가의 산정 방식과 구성요소를 설명하고 한국의 발전방향을 기술하시오. *(제127회 2교시 1번 기출)*
+국제연합(UN) 전자정부 평가의 산정 방식과 구성요소를 설명하고 한국의 발전방향을 기술하시오. *(예상; 제127회 관련 문항의 공식 원문 미대조)*
 
 ---
 
@@ -137,7 +137,7 @@ EPI는 전자정보 제공, 온라인 협의, 의사결정 참여 등 정부의 
 
 ## 출제 이력과 검증 출처
 
-- 제127회 2교시 1번: 국제연합 전자정부 평가의 산정 방식, 구성요소, 한국의 발전방향
+- 이전 노트에 제127회 2교시 1번으로 기록되어 있으나 공식 문제지 원문은 대조하지 못했다. 위 문항은 예상문제로 취급한다.
 
 - [UN DESA, UN E-Government Survey 2024](https://desapublications.un.org/publications/un-e-government-survey-2024)
 - [UN E-Government Survey 2024 Technical Appendix](https://desapublications.un.org/sites/default/files/publications/2024-09/Technical%20Appendix%20%28Web%20version%29%201292024.pdf)

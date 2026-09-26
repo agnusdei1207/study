@@ -1,7 +1,7 @@
 ---
 title: "리팩토링(코드스멜)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -145,8 +145,9 @@ extra:
 ---
 
 ## 출제 이력과 검증 출처
+- [Martin Fowler, Definition of Refactoring](https://martinfowler.com/bliki/DefinitionOfRefactoring.html): 관찰 가능한 동작을 보존하는 구조 개선의 정의
 
-- 제139회 정보관리기술사 1교시: 코드스멜(Code Smell)과 리팩토링
+- 제139회 정보관리기술사 3교시: 불명확한 요구사항에 따른 품질 저하를 기술부채·코드스멜·리팩토링 관점에서 설명
 - Martin Fowler, Refactoring: Improving the Design of Existing Code (2nd Edition)
 - Robert C. Martin, Clean Code: A Handbook of Agile Software Craftsmanship
 

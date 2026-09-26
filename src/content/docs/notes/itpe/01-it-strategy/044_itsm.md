@@ -1,7 +1,7 @@
 ---
 title: "ITSM"
 author: "Codex"
-date: "2026-09-24"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -74,7 +74,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> ITSM의 개념과 ITIL 4·ISO/IEC 20000의 관계를 설명하고, Incident·Problem·Change·Release 관리의 연계 및 개선방안을 제시하시오. **(미출제 예상·25점)**
+> ITSM의 개념과 ITIL 4·ISO/IEC 20000의 관계를 설명하고, Incident·Problem·Change·Release 관리의 연계 및 개선방안을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -166,7 +166,7 @@ ITSM 서비스 관리체계
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [ISO/IEC 20000-1:2018 — Service management system requirements](https://www.iso.org/standard/70636.html)
 - [PeopleCert: ITIL 4 Foundation](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-foundation-2565)
 

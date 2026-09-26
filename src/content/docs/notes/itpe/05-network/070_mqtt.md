@@ -1,5 +1,5 @@
 ---
-title: "MQTT(Message Queue Telemetry Transport)"
+title: "MQTT(Message Queuing Telemetry Transport)"
 author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-network"]
@@ -23,7 +23,7 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **MQTT(Message Queue Telemetry Transport):** 발행·구독 방식으로 메시지를 교환하는 경량 프로토콜
+- **MQTT(Message Queuing Telemetry Transport):** 발행·구독 방식으로 메시지를 교환하는 경량 프로토콜
 - **브로커(Message Broker):** 연결된 클라이언트를 관리하고 토픽 구독에 따라 메시지를 전달하는 중계 서버
 - **토픽(Topic):** 발행 메시지와 구독을 연결하는 계층형 문자열 이름
 - **QoS(Quality of Service):** MQTT 메시지 전달 확인 수준
@@ -46,7 +46,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **MQTT(Message Queue Telemetry Transport)** 는 브로커를 통해 발행자와 구독자 간 메시지를 전달하는 경량 프로토콜 |
+| 정의 | **MQTT(Message Queuing Telemetry Transport)** 는 브로커를 통해 발행자와 구독자 간 메시지를 전달하는 경량 프로토콜 |
 | 목적 | 연결된 장치·응용 사이의 비동기 메시지 교환 지원 |
 
 ## Ⅱ. 발행·구독과 **QoS(Quality of Service)**
@@ -79,7 +79,7 @@ QoS 2: 정확히 한 번 전달 교환
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **MQTT(Message Queue Telemetry Transport)** 는 브로커를 통해 발행자와 구독자 간 메시지를 전달하는 경량 프로토콜 |
+| 정의 | **MQTT(Message Queuing Telemetry Transport)** 는 브로커를 통해 발행자와 구독자 간 메시지를 전달하는 경량 프로토콜 |
 | 목적 | 연결된 장치·응용 사이의 비동기 메시지 교환 지원 |
 
 ## Ⅱ. 구성과 메시지 흐름
@@ -145,6 +145,6 @@ QoS 보장은 MQTT 전달 교환의 의미이며, 업무 처리의 부작용까�
 
 ## 출제 이력과 검증 출처
 
-- 제108회 1교시: `MQTT(Message Queue Telemetry Transport) 프로토콜의 개요, QoS 레벨 및 주요 기능을 설명하시오.`
+- 제108회 1교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [OASIS MQTT Version 5.0 Specification](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html)
 - [OASIS MQTT Version 3.1.1 Specification](https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html)

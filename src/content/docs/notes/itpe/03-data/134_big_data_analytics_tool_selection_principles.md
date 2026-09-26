@@ -124,6 +124,8 @@ extra:
 
 ## 출제 이력과 검증 출처
 
+- [Apache Spark Structured Streaming](https://spark.apache.org/streaming/): 배치·스트림 API 통합과 체크포인트 등 처리 특성. 도구 선택 시 워크로드별 검증 근거
+
 - 분석도구의 성능은 제품 버전, 구성, 데이터, 워크로드에 따라 달라지므로 고정 지연시간·데이터 용량 기준은 제시하지 않음.
 
 ## 연결 토픽

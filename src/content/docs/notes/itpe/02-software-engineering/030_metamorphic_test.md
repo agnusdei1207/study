@@ -3,7 +3,7 @@ title: "메타모픽 테스트(Metamorphic Test)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -141,9 +141,10 @@ extra:
 ---
 
 ## 출제 이력과 검증 출처
+- [Chen 외, Metamorphic Testing 원 논문](https://www.cse.ust.hk/faculty/scc/publ/CS98-01-metamorphictesting.pdf): 변환 관계에 따른 후속 시험 사례 생성
 
-- 제135회 정보관리기술사 1교시: 메타모픽 테스팅(Metamorphic Testing)
-- 제140회 정보관리기술사 2교시: AI 소프트웨어 품질보증과 메타모픽 테스트 적용 방안
+- 제135회 정보관리기술사 4교시: 소프트웨어 테스트 기법 중 메타모픽 테스트
+- 제140회 정보관리기술사 3교시: AI 기반 시스템의 신뢰성 확보를 위한 메타모픽 테스트
 - T.Y. Chen et al., Metamorphic Testing: A New Approach for Generating Next Test Cases (1998)
 
 ## 연결 토픽

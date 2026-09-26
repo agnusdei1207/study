@@ -1,7 +1,7 @@
 ---
 title: "스택(Stack) 자료구조"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -141,9 +141,10 @@ Push(삽입) → Top ← Pop(반환)
 ---
 
 ## 출제 이력과 검증 출처
+- [OpenDSA Stacks](https://opendsa.cs.vt.edu/ODSA/Books/vt/cs5020/spring-2024/PROD_v2/html/ContentStacks.html): 후입선출 연산과 구현
 
-- 제132회 정보관리기술사 1교시: 스택(Stack)과 큐(Queue) 자료구조 비교
-- 제138회 정보관리기술사 1교시: 스택 자료구조와 시스템 호출 스택
+- 제132회 정보관리기술사 2교시: 스택·큐·리스트의 자료 입출력 원리
+- 제138회 정보관리기술사 2교시: 자료구조별 데이터 저장·인출 원리 중 스택
 - Thomas H. Cormen, Introduction to Algorithms (CLRS), Elementary Data Structures (Stacks and Queues)
 
 ## 연결 토픽

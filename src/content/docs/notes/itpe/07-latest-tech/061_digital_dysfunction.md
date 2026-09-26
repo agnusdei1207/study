@@ -138,6 +138,8 @@ extra:
 
 ## 출제 이력과 검증 출처
 
+제123·130회 출제 기록은 기존 노트의 표기이며 공식 문제 원문은 미확인.
+
 - 제123회 4교시, 제130회 1교시: 디지털 역기능 관련 기출 이력(원문 노트 표기).
 - W3C WAI, [접근성·사용성·포용](https://www.w3.org/WAI/fundamentals/accessibility-usability-inclusion/): 접근성·포용 설계의 관계 참고.
 - W3C WAI, [웹 접근성 소개](https://www.w3.org/WAI/fundamentals/accessibility-intro/): 접근성 원칙의 목적 참고.

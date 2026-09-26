@@ -128,5 +128,5 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
-- 원문 출제 이력 표기: 미출제
+- 확인한 제132~140회 공식 문제지에서 표제어 직접 출제 미확인. 그 밖의 회차는 원문 미대조
 - Microsoft, [GraphRAG 개요](https://microsoft.github.io/graphrag/) 및 [Query Overview](https://microsoft.github.io/graphrag/query/overview/): 그래프 인덱싱과 Local·Global 검색 방식 확인

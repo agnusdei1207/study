@@ -128,5 +128,8 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
+- [Q-Net 제140회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5274150&brdId=Q006&gSite=Q&id=cst00602) 1교시 2번: 다크팩토리.
+- [Siemens, Lights-out factory의 운영 방식과 조건](https://www.siemens.com/en-us/technology/lights-out-factory/).
+
 - 제140회 1교시 2번: 다크팩토리(Dark Factory)
 - 다크팩토리는 단일 국제 표준의 고정 분류보다 현장 무인·자동화 운영을 가리키는 산업 용례로 설명

@@ -136,6 +136,7 @@ flowchart TB
 ## 검증 출처
 
 - Abraham Silberschatz, Peter Baer Galvin, Greg Gagne, *Operating System Concepts*, Virtual Memory
+- [MIT OpenCourseWare, 가상 메모리와 스래싱](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c16/c16s1/).
 
 ## 연결 토픽
 

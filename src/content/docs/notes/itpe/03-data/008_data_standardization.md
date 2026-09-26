@@ -144,6 +144,10 @@ flowchart TB
 | 차이 관리 | 표준 사전과 실제 테이블·API의 매핑 및 차이를 변경 항목으로 등록 | 변경 영향과 호환성 검토 |
 | 신규 적용 | 승인된 표준을 데이터 모델·API 설계에 반영 | 인터페이스 시험과 표준 준수 결과 |
 
+## 검증 출처
+
+- [NIA, 공공데이터베이스 표준화 관리 매뉴얼](https://library.nia.or.kr/egentouch-asset/10110/contents/7058697).
+
 ## 연결 토픽
 
 - 연관 토픽: [데이터 거버넌스](./006_data_governance.md), [데이터 품질관리](./003_data_quality_management.md)

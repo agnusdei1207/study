@@ -126,6 +126,8 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
+제126·130회 출제 기록은 기존 노트의 표기이며 공식 문제 원문은 미확인.
+
 - 제126회 1교시: 엔트로피와 지니 지수 비교
 - 제130회 2교시: 의사결정나무의 분할 기준과 가지치기
 - [scikit-learn, Decision Trees](https://scikit-learn.org/stable/modules/tree.html): 분류·회귀 나무와 복잡도 제어 요소 확인

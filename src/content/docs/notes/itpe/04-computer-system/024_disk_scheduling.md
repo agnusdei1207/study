@@ -130,7 +130,7 @@ SSD에서 스케줄러 제거가 필수 조건은 아님. `none`은 선택지 �
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트의 제137회 문항 원문 미확인으로 예상문제 표기
+- 제137회 정보관리기술사 3교시 1번: CPU·디스크 스케줄링 개념과 SJF·SRT·SSTF·SLTF 설명(공식 Q-Net 문제지 대조). 아래 예상문제는 원문 문항과 구분
 - [Linux Kernel Documentation, Multi-Queue Block IO Queueing Mechanism](https://docs.kernel.org/block/blk-mq.html)
 - [Linux Kernel Documentation, Switching Scheduler](https://docs.kernel.org/6.6/block/switching-sched.html)
 

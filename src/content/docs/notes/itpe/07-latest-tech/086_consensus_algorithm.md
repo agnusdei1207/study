@@ -34,7 +34,7 @@ IT 분산시스템 → 복제 상태 합의 → 블록체인·분산원장 합�
 ---
 
 ## 1교시 예상문제 (10점)
-> 합의 알고리즘의 개념과 주요 방식의 차이를 설명하시오. (제122회 1교시 기출 주제)
+> 합의 알고리즘의 개념과 주요 방식의 차이를 설명하시오. (예상)
 
 ---
 
@@ -121,7 +121,7 @@ PoW·PoS의 구체적 완결 조건은 체인 프로토콜에 따라 다르다. 
 | 성능 수치만으로 합의 방식을 고르면 장애·공격 상황의 안전성과 확정 지연을 놓칠 수 있음 | 위협모델·참여 정책·확정 목표를 먼저 정하고, 장애 주입 시험으로 안전성·가용성·처리량을 함께 검증한다. |
 
 ## 출제 이력과 검증 출처
-- 원노트에 기록된 기출: 제122회 1교시, 블록체인 합의 알고리즘의 개념과 PoW·PoS·DPoS·PBFT 비교.
+- 기존 노트의 제122회 1교시 출제 기록: 블록체인 합의 알고리즘의 개념과 PoW·PoS·DPoS·PBFT 비교. 공식 문제 원문 미확인.
 - Nakamoto, [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin-paper).
 - Ethereum.org, [Proof-of-stake](https://ethereum.org/developers/docs/consensus-mechanisms/pos/) — 이더리움 PoS의 프로토콜별 예시.
 - Castro & Liskov, [Practical Byzantine Fault Tolerance](https://www.usenix.org/conference/osdi-99/presentation/practical-byzantine-fault-tolerance), OSDI 1999.

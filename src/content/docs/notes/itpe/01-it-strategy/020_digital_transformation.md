@@ -1,7 +1,7 @@
 ---
 title: "디지털 트랜스포메이션(DX)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -110,7 +110,7 @@ MVP 초기 수치만을 근거로 한 전사 확대 지양. 실제 운영 전환
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [OECD Going Digital Toolkit](https://goingdigital.oecd.org/)
 - [ISO 56002 — Innovation management system](https://www.iso.org/standard/68221.html)
 

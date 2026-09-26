@@ -121,5 +121,5 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제125회 4교시 2번: 정보이론과 샤논의 정리
+- 제125회 4교시 관련 문항은 공식 문제지 원문을 확보하지 못해 회차·문구를 검증하지 못함.
 - [Claude E. Shannon, A Mathematical Theory of Communication, Bell System Technical Journal (1948)](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf)

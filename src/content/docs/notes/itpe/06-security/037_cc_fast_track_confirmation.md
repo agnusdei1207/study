@@ -153,7 +153,7 @@ CC 평가는 평가 기준 자체와 인증 발급 주체를 구별하며, 신�
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트의 제136회·제129회 문항 번호는 공식 문제 원문을 대조하지 못해 출제 이력에서 제외.
+- 제136회 1교시 11번에 **CC(Common Criteria)**가 출제됨(Q-net 공식 문제지 전사본 대조). 기존 노트의 제129회 주장은 공식 원문 미확보로 확인하지 못함.
 - [KISIA 정보보호제품 신속확인제도 안내](https://www.ksecurity.or.kr/kisis/subIndex/552.do) — 제도 대상, 시험·심의 절차, 확인 유효기간.
 - [Common Criteria Portal: CC publications](https://www.commoncriteriaportal.org/cc/index.cfm) — CC:2022 자료와 개정판.
 - [Common Criteria Portal](https://www.commoncriteriaportal.org/index.cfm) — CC·CEM·인증체계의 관계.

@@ -31,7 +31,7 @@ IT 인공지능 → 데이터 표현 → 벡터 표현 → 임베딩
 ---
 
 ## 1교시 예상문제 (10점)
-> 임베딩의 개념과 벡터 표현의 기본 구조를 설명하시오. (제124회 1교시 기출 주제)
+> 임베딩의 개념과 벡터 표현의 기본 구조를 설명하시오. (예상)
 
 ---
 
@@ -120,7 +120,7 @@ CBOW와 Skip-gram은 서로 다른 입력·예측 구성을 사용해 벡터를 
 | 벡터 공간의 거리·유사도가 실제 과업의 의미 판단과 다를 수 있고 미등록 항목 처리가 어려움 | 과업별 평가셋으로 검색·분류 품질을 측정하고, 서브워드·문맥 표현 등 대안을 비교해 선택한다. |
 
 ## 출제 이력과 검증 출처
-- 원노트에 기록된 기출: 제124회 1교시, 임베딩의 개념·원-핫 대비 이점·Word2Vec의 CBOW와 Skip-gram.
+- 기존 노트의 제124회 1교시 출제 기록: 임베딩의 개념·원-핫 대비 이점·Word2Vec의 CBOW와 Skip-gram. 공식 문제 원문 미확인.
 - Mikolov et al., [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/abs/1301.3781), 2013.
 - Mikolov et al., [Distributed Representations of Words and Phrases and their Compositionality](https://arxiv.org/abs/1310.4546), 2013.
 

@@ -154,6 +154,6 @@ CAT는 법률이 모든 AI에 의무화한 국가 인증이 아니라, TTA가 �
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트는 제137회 1교시 8번을 CAT 문항으로 기록했으나 공식 기출 원문은 별도 대조하지 못함. 기본 문제는 표제어 자체를 묻는 예상문제로 구성.
+- [Q-Net 제137회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5242749&brdId=Q006&gSite=Q&id=cst00602) 1교시 8번의 문항은 “AI 신뢰성 검인증 제도(CAT)를 설명하시오”다. 기본 문제는 표제어 자체를 묻는 예상문제로 구성했다.
 - [TTA, 국제표준 기반 AI 신뢰성 검·인증(CAT) 고도화 및 CAT 2.0(2025-04-11)](https://ai.tta.or.kr/tta/selectBbsNttView.do?bbsNo=107&integrDeptCode=&key=76&nttNo=14058&pageIndex=4&searchCnd=all&searchCtgry=&searchKrwd=)
 - [TTA, CAT 2.0 운영·평가 대상 및 CAT 3.0 준비 현황(2025-06-11)](https://ai.tta.or.kr/tta/selectBbsNttView.do?bbsNo=107&integrDeptCode=&key=76&nttNo=14212&pageIndex=4&searchCnd=all&searchCtgry=&searchKrwd=)

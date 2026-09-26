@@ -1,7 +1,7 @@
 ---
 title: "형상관리(베이스라인)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -159,9 +159,10 @@ CCB 심의·판정
 ---
 
 ## 출제 이력과 검증 출처
+- [NASA Software Engineering Handbook, Configuration Management](https://swehb.nasa.gov/spaces/SWEHBVD/pages/140641227/A.08.01%2BSoftware%2BConfiguration%2BManagement): 형상 식별·변경 통제와 기준선 관리
 
 - 제134회 정보관리기술사 1교시: 형상관리의 개념 및 베이스라인 종류
-- 제140회 정보관리기술사 2교시: 소프트웨어 형상관리 4대 활동과 Git 기반 형상 통제 절차
+- 제140회 정보관리기술사 4교시: 소프트웨어 형상관리 정의·절차, 기준선과 도구
 - IEEE Std 828-2012 Standard for Configuration Management in Systems and Software Engineering
 
 ## 연결 토픽

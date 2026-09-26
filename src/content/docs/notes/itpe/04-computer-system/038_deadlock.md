@@ -138,6 +138,7 @@ flowchart TB
 ## 검증 출처
 
 - Abraham Silberschatz, Peter Baer Galvin, Greg Gagne, *Operating System Concepts*, Deadlocks
+- [MIT OpenCourseWare, 프로세스 동기화와 교착상태](https://live.ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c19/c19s1/).
 
 ## 연결 토픽
 

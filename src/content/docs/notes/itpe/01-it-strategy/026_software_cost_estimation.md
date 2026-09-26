@@ -1,7 +1,7 @@
 ---
 title: "SW사업 대가산정"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -168,7 +168,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [KOSA: SW사업 대가산정 가이드 2025년 개정판](https://www.sw.or.kr/site/sw/ex/board/View.do?bcIdx=63607&cbIdx=276)
 - [KOSA: 사업 유형에 따른 산정 방식·적용 범위 안내](https://www.sw.or.kr/site/sw/ex/board/View.do?bcIdx=57880&cbIdx=276)
 - [국가법령정보센터: 소프트웨어 진흥법 제46조 적정 대가 지급](https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031494133)

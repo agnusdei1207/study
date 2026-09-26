@@ -1,7 +1,7 @@
 ---
 title: "국가 AI 전략과 인공지능 행동계획"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -143,7 +143,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [국가법령정보센터: 인공지능 발전과 신뢰 기반 조성 등에 관한 기본법 제6조](https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1031810275)
 - [국가법령정보센터: 같은 법 제7조 국가인공지능전략위원회](https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031809535)
 - [국가법령정보센터: 같은 법 제35조 고영향 인공지능 영향평가](https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031810855)

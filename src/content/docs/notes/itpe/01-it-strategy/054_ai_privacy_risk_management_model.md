@@ -1,7 +1,7 @@
 ---
 title: "AI 프라이버시 리스크 관리 모델"
 author: "Codex"
-date: "2026-09-24"
+date: "2026-09-27T00:24:59+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
@@ -78,7 +78,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> AI 프라이버시 리스크 관리 모델의 개념과 절차를 설명하고, AI 생애주기별 위험 및 경감방안을 제시하시오. **(미출제 예상·25점)**
+> AI 프라이버시 리스크 관리 모델의 개념과 절차를 설명하고, AI 생애주기별 위험 및 경감방안을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -163,7 +163,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [개인정보보호위원회, AI 프라이버시 리스크 관리 모델](https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS212&mCode=C040020000&nttId=10888)
 - [개인정보보호위원회, 생성형 AI 개발·활용을 위한 개인정보 처리 안내서](https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=11410)
 

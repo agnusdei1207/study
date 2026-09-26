@@ -1,7 +1,7 @@
 ---
 title: "인스펙션(Inspection)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -151,7 +151,7 @@ IEEE 1028-2008은 위 다섯 유형의 검토·감사를 규정하며, 인스펙
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문에서 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [IEEE SA, IEEE 1028-2008: Software Reviews and Audits](https://standards.ieee.org/ieee/1028/4402/)
 - Michael E. Fagan, “Design and Code Inspections to Reduce Errors in Program Development,” *IBM Systems Journal*, 1976
 

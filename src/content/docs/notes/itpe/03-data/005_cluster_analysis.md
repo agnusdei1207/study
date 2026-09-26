@@ -158,6 +158,10 @@ sidebar:
 |---|---|
 | 군집의 내부 점수가 높아도 실제 업무에서 구분된 대응 효과가 없을 가능성 | 후보 군집 한 곳에만 차별화된 조치를 시범 적용하고 기존 방식 대비 업무 성과를 확인한 뒤 전체 활용 여부 결정 |
 
+## 검증 출처
+
+- [scikit-learn, Clustering 사용자 가이드](https://scikit-learn.org/stable/modules/clustering.html) — 군집 방법별 특성과 비교.
+
 ## 연결 토픽
 
 - 연관 토픽: [K-means](./029_k_means.md), [이상치](./010_outlier.md)

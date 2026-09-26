@@ -132,6 +132,8 @@ extra:
 
 ## 출제 이력과 검증 출처
 
+- [IBM IMS CRUD Matrix 문서](https://www.ibm.com/docs/en/raa/6.1?topic=pages-ims-crud-matrix): 프로그램과 데이터 대상별 생성·조회·수정·삭제 관계 표시
+
 - 정보관리기술사 제133회 1교시 7번: CRUD 매트릭스의 목적과 표현 방법
 - James Martin, *Information Engineering, Book II: Planning & Analysis*, Prentice Hall
 

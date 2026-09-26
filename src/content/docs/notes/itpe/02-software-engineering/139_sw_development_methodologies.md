@@ -8,7 +8,7 @@ tags:
   - "객체지향방법론"
   - "CBD"
   - "방법론테일러링"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -97,7 +97,7 @@ extra:
 
 | 비교축 | 구조적 방법론 | 정보공학 방법론 | 객체지향 방법론 | CBD 방법론 |
 |---|---|---|---|---|
-| **핵심 추상화 중심** | **기능 및 프로세스 (Function)** | **전사 데이터 (Data)** | **객체와 책임 (Object)** | **독립 실행 부품 (Component)** |
+| **핵심 추상화 중심** | **기능 및 프로세스 (Function)** | **데이터와 정보 구조 (Data)** | **객체와 책임 (Object)** | **계약을 가진 구성요소 (Component)** |
 | **접근 방식** | 기능 분해와 자료 흐름 분석 | 데이터 구조와 업무 기능 연계 | 객체의 책임·협력 모델링 | 계약 기반 부품 선택·조립 |
 | **대표 산출물** | DFD, 자료사전(DD), 소단위명세서 | 주제영역도, ERD, CRUD 매트릭스 | 유스케이스, 클래스도, 시퀀스도 | 컴포넌트 명세서, 인터페이스 정의서 |
 | **중점 판단** | 기능 간 입력·출력·변환 | 데이터 정의와 업무 간 일관성 | 책임 배분과 결합도 | 인터페이스·버전·의존성 호환 |
@@ -170,4 +170,7 @@ extra:
 - [CBD(Component Based Development)](./128_cbd.md)
 - [애자일 방법론](./119_agile_methodology.md)
 - [요구사항 추적표(RTM)](./102_requirement_traceability_matrix.md)
+
+## 검증 출처
+- [ISO/IEC/IEEE 12207:2017](https://committee.iso.org/sites/jtc1sc7/home/projects/flagship-standards/isoiecieee-122072017.html): 생명주기 프로세스와 방법론 적용 범위
 ---

@@ -138,7 +138,7 @@ Linux 스케줄러 변화: 과거 CFS의 가상 실행시간 방식에서 Linux 
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트의 제137회 문항 원문 미확인으로 예상문제 표기
+- 제137회 정보관리기술사 3교시 1번: CPU·디스크 스케줄링 개념과 SJF·SRT·SSTF·SLTF 설명(공식 Q-Net 문제지 대조). 아래 예상문제는 원문 문항과 구분
 - [Linux Kernel Documentation, CFS Scheduler](https://docs.kernel.org/scheduler/sched-design-CFS.html)
 - [Linux Kernel Documentation, EEVDF Scheduler](https://kernel.org/doc/html/latest/scheduler/sched-eevdf.html)
 

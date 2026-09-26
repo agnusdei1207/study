@@ -151,6 +151,10 @@ flowchart TB
 | 데이터 준비 | 문서 출처·권리·전처리·라벨 기준 기록 | 표본의 대표성과 전처리 오류 |
 | 결과 적용 | 대표 문서로 분석 결과를 검토하고 오류 유형별 보완 | 분류·검색 오류와 현업 수용성 |
 
+## 검증 출처
+
+- [scikit-learn 공식 문서, 텍스트 특징 추출](https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction) — 토큰화·빈도·가중치 처리의 구현 사례.
+
 ## 연결 토픽
 
 - 연관 토픽: [데이터 시각화](./016_data_visualization.md), [데이터 품질관리](./003_data_quality_management.md)

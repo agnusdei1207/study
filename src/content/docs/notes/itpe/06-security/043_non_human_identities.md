@@ -126,5 +126,5 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트의 제140회 1교시 11번은 공식 문제 원문을 확인하지 못해 출제 이력에서 제외.
+- 제140회 1교시 11번에 **비인간 신원(NHI)의 보안 취약점**이 출제됨(Q-net 공식 문제지 전사본 대조). 이 노트의 예상문항은 수명주기 통제를 더해 재구성한 것임.
 - [CISA: Identity and Access Management Recommended Best Practices](https://www.cisa.gov/sites/default/files/2023-12/ESF%20IDENTITY%20AND%20ACCESS%20MANAGEMENT%20RECOMMENDED%20BEST%20PRACTICES%20FOR%20ADMINISTRATORS_508C.pdf) — 계정·자격증명·접근권한 관리.

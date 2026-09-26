@@ -33,7 +33,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> 3-way handshake의 개념과 핵심 구조 또는 동작을 설명하시오. (예상)
+> TCP 3-way handshake의 개념과 SYN·SYN-ACK·ACK를 이용한 연결 수립 절차를 설명하시오. (예상)
 
 ---
 
@@ -64,7 +64,7 @@ ESTABLISHED                        ESTABLISHED
 
 ## 2~4교시 예상문제 (25점)
 
-> 3-way handshake의 구조와 동작을 설명하고, 주요 비교 또는 적용 시 문제와 대응책을 제시하시오. (예상)
+> TCP 3-way handshake의 순서 번호 교환과 상태 전이를 설명하고, 4-way handshake와 비교하여 연결 수립 시 주의할 점을 제시하시오. (예상)
 
 ---
 

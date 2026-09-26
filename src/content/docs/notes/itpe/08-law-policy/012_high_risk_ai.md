@@ -173,7 +173,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트는 제140회 3교시 6번을 기출로 기록했으나 공식 원문을 별도로 대조하지 못해 출제 문구는 재인용하지 않음. 본 답안용 문항은 예상문제.
+- [Q-Net 제140회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5274150&brdId=Q006&gSite=Q&id=cst00602) 3교시 6번은 고영향 인공지능의 정의·활용 영역·사업자의 안전성과 신뢰성 확보 활동을 요구한다. 본 답안용 문항은 기본 개념을 묻는 예상문제다.
 - [국가법령정보센터, 인공지능기본법 제33조(고영향 인공지능의 확인)](https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031810895)
 - [국가법령정보센터, 인공지능기본법 제34조(사업자의 책무)](https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031809501)
 - [국가법령정보센터, 인공지능기본법 제35조(고영향 인공지능 영향평가)](https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0035&lsiSeq=282791&urlMode=lsScJoRltInfoR)

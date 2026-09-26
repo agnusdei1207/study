@@ -152,6 +152,10 @@ flowchart TB
 | 운영 관측 | 질의별 접근 노드·통신량·복제 지연 기록 | 분산 실행 비용과 데이터 최신성 |
 | 장애·변경 시험 | 노드 장애와 데이터 재배치 시나리오 실행 | 서비스 연속성과 투명성의 예외·경계 |
 
+## 검증 출처
+
+- [Oracle 공식 문서, 분산 데이터베이스 투명성](https://docs.oracle.com/cd/A57673_01/DOC/server/doc/SCN73/ch21.htm) — 위치·조회·갱신 투명성의 구현 사례.
+
 ## 연결 토픽
 
 - 연관 토픽: [DB 파티셔닝·샤딩](./021_db_partitioning_sharding.md), [데이터 복제](./126_data_replication.md)

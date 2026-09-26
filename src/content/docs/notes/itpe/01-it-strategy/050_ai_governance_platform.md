@@ -1,7 +1,7 @@
 ---
 title: "AI 거버넌스 플랫폼"
 author: "Codex"
-date: "2026-09-24"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -79,7 +79,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> AI 거버넌스 플랫폼의 개념과 구성체계를 설명하고, AI 수명주기 통제 프로세스 및 운영상 문제점·대응책을 제시하시오. **(미출제 예상·25점)**
+> AI 거버넌스 플랫폼의 개념과 구성체계를 설명하고, AI 수명주기 통제 프로세스 및 운영상 문제점·대응책을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -158,7 +158,7 @@ ISO/IEC 42001:2023의 **AIMS**는 조직 관리체계의 요구사항, NIST AI R
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [ISO, ISO/IEC 42001:2023 AI management systems](https://www.iso.org/standard/42001)
 - [NIST, AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 - [European Commission, AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)

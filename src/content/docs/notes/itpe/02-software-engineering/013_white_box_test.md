@@ -1,7 +1,7 @@
 ---
 title: "화이트박스 테스트(White Box Test)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -150,8 +150,9 @@ extra:
 ---
 
 ## 출제 이력과 검증 출처
+- [ISTQB CTFL v4.0.1](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf): 구조 기반 테스트와 커버리지 기준
 
-- 제134회 정보관리기술사 1교시: 화이트박스 테스트 기법 및 제어 흐름 커버리지
+- 제134회 정보관리기술사 3교시: 블랙박스·화이트박스 테스트와 명세·구조·경험 기반 기법
 - ISO 26262 Road vehicles - Functional safety, Part 6: Software development
 - RTCA DO-178C Software Considerations in Airborne Systems and Equipment
 

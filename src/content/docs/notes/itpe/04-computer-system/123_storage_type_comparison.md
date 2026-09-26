@@ -55,7 +55,7 @@ extra:
 | 유형 | 접근 단위 | 대표 강점 | 대표 활용 |
 |---|---|---|---|
 | 블록 | Block Address·**LUN** | 저지연 임의 I/O | DB·VM |
-| 파일 | Directory·Path | 계층 관리·공유·**POSIX** | 협업·공유 파일 |
+| 파일 | Directory·Path | 계층 관리·공유·파일 API | 협업·공유 파일 |
 | 오브젝트 | Bucket·Key·**Object API**·Metadata | 대량 수평 확장 | 백업·Data Lake |
 
 제언: 워크로드의 접근·갱신·공유 요구에 따른 세 유형의 조합
@@ -80,7 +80,7 @@ extra:
 | 유형 | 논리 단위 | **Namespace** | 대표 업무 |
 |---|---|---|---|
 | **블록** | 고정 크기 블록 | 호스트 파일시스템 | DB·VM 디스크 |
-| **파일** | 파일·디렉터리 | 계층 경로·**POSIX** | 공동 작업·홈 디렉터리 |
+| **파일** | 파일·디렉터리 | 계층 경로 | 공동 작업·홈 디렉터리 |
 | **오브젝트** | Data·Metadata·ID | Bucket·Key | 백업·미디어·Data Lake |
 
 ## Ⅱ. 주소·메타데이터·갱신 구조
@@ -108,7 +108,7 @@ flowchart TD
 | 공유 | Cluster SW 필요 | 다중 Client 강점 | API 기반 분산 접근 |
 | 지연 | 저지연 임의 I/O 강점 | Metadata·공유 조정 | 대량 순차·병렬 접근 강점 |
 | 확장 | Array·Volume 구성 | Namespace·Metadata Server 병목 고려 | 대량 객체 수평 확장 강점 |
-| 적합 | DB·VM·Transaction | 협업·POSIX 도구 | 비정형·보관·분석 원천 |
+| 적합 | DB·VM·Transaction | 협업·경로 기반 도구; POSIX 의미는 제품별 확인 | 비정형·보관·분석 원천 |
 
 ## Ⅳ. 데이터 생명주기 배치와 통제
 

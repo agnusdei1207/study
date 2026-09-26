@@ -155,6 +155,10 @@ flowchart TB
 | 업무별 질의·갱신·복구 목표 확정 | 목표에 맞는 데이터 배치·일관성 정책 선택 |
 | 정상·장애 상황을 함께 검증 | 정상 부하와 노드 장애·복제 지연·재배치 중 결과 비교 |
 
+## 출제 이력과 검증 출처
+
+- [MongoDB 샤딩 공식 문서](https://www.mongodb.com/docs/manual/sharding/): 데이터 분산·라우팅·복제의 실제 구현과 운영 절충
+
 ## 연결 토픽
 
 - 연관 토픽: [분산 DB 투명성](./025_distributed_db_transparency.md), [DB 파티셔닝·샤딩](./021_db_partitioning_sharding.md)

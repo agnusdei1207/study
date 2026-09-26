@@ -147,7 +147,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 참고 문항: 제139회 정보관리기술사 관련 문항으로 기존 정리되어 있으나 공식 문제지 원문은 미확보, 직접 기출로 단정하지 않음
+- 제139회 정보관리기술사 3교시 2번: 이상치와 편향의 개념·분석 영향·처리 방안(공식 Q-Net 문제지 대조). 편향 단독 문항은 아님
 - [NIST AI Risk Management Framework 1.0](https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf) — AI 편향의 체계·통계·계산·인간 인지 요인과 위험관리
 - [IBM AI Fairness 360](https://aif360.res.ibm.com/) — 편향 측정·완화 도구의 예
 

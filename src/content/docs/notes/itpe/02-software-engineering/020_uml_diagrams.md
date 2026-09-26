@@ -3,7 +3,7 @@ title: "UML 다이어그램 체계(구조·행위, 활동 다이어그램)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -160,8 +160,9 @@ UML 다이어그램
 ---
 
 ## 출제 이력과 검증 출처
+- [OMG UML 2.5.1 Specification](https://www.omg.org/spec/UML/2.5.1/PDF): 다이어그램 종류와 모델 요소의 규범 정의
 
-- 제137회 정보관리기술사 1교시: UML 2.x 다이어그램 체계 및 활동 다이어그램
+- 제137회 정보관리기술사 4교시: UML 행위 다이어그램인 활동·상태·유스케이스 다이어그램
 - ISO/IEC 19505:2012 Information technology - OMG Unified Modeling Language (OMG UML)
 - Martin Fowler, UML Distilled: A Brief Guide to the Standard Object Modeling Language (3rd Edition)
 

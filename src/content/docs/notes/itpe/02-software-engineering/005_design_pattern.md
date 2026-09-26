@@ -1,7 +1,7 @@
 ---
 title: "디자인 패턴(프록시 패턴)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -146,6 +146,7 @@ Proxy → RealSubject.request() 위임
 ---
 
 ## 출제 이력과 검증 출처
+- [GoF 원저, Pearson 서지](https://www.pearson.com/en-us/subject-catalog/p/design-patterns-elements-of-reusable-object-oriented-software/P200000009480/9780201633610): 원저의 패턴 분류와 설계 목적
 
 - 제136회 정보관리기술사 1교시: GoF 디자인 패턴 중 프록시(Proxy) 패턴
 - Erich Gamma et al., Design Patterns: Elements of Reusable Object-Oriented Software (GoF)

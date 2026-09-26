@@ -1,7 +1,7 @@
 ---
 title: "ITSQF(IT Sectoral Qualifications Framework)"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -127,7 +127,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지로 확인한 직접 기출 없음. 위 문항은 예상문제다.
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인. 위 문항은 예상문제.
 - [한국인공지능·소프트웨어산업협회, 2026년 IT 분야·융합산업분야 SQF 직무기술서](https://www.sw.or.kr/site/kipa/ex/board/View.do?bcIdx=53300&cbIdx=308&gubun=G)
 - [한국인공지능·소프트웨어산업협회, ITSQF 기반 직무수준 진단체계](https://www.sw.or.kr/site/kipa/ex/board/View.do?bcIdx=64583&cbIdx=292&searchExt1=)
 

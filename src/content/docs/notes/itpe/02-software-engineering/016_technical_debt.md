@@ -3,7 +3,7 @@ title: "기술 부채(불명확한 요구사항과 품질 저하)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -150,7 +150,7 @@ extra:
 ## 출제 이력과 검증 출처
 
 - 제135회 정보관리기술사 1교시: 기술 부채(Technical Debt)의 개념 및 관리 방안
-- 제139회 정보관리기술사 2교시: 불명확한 요구사항으로 인한 기술 부채 누적과 해결 전략
+- 제139회 정보관리기술사 3교시: 불명확한 요구사항에 따른 품질 저하를 기술부채·코드스멜·리팩토링 관점에서 설명
 - Ward Cunningham, The WyCash Portfolio Management System (OOPSLA '92 Experience Report)
 - [Martin Fowler, Technical Debt Quadrant](https://martinfowler.com/bliki/TechnicalDebtQuadrant.html)
 - [SonarQube, Understanding measures and metrics](https://docs.sonarsource.com/sonarqube-server/2026.1/user-guide/code-metrics/metrics-definition/)

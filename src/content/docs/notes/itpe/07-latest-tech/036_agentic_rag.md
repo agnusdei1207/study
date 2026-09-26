@@ -132,6 +132,6 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
-- 원문 출제 이력 표기: 미출제
+- 확인한 제132~140회 공식 문제지에서 표제어 직접 출제 미확인. 그 밖의 회차는 원문 미대조
 - Yan et al., [Corrective Retrieval Augmented Generation](https://arxiv.org/abs/2401.15884): 검색 평가와 보정 동작을 포함하는 CRAG 연구 확인
 - CRAG는 특정 연구 접근이며 모든 에이전틱 RAG의 필수 구성으로 단정하지 않음

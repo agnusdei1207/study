@@ -3,7 +3,7 @@ title: "Open API(API 일반)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -142,8 +142,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제133회 정보관리기술사 1교시: Open API 개념 및 API Gateway
-- 제134회 정보관리기술사 2교시: 금융 마이데이터와 Open API 보안 대책
+- 제134회 정보관리기술사 4교시: 개방형 API(Open API)
 - OWASP API Security Top 10 (2023)
 - [RFC 6749 — The OAuth 2.0 Authorization Framework](https://www.rfc-editor.org/rfc/rfc6749.html)
 

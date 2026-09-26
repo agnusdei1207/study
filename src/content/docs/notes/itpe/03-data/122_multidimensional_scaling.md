@@ -118,6 +118,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
+- [scikit-learn 다차원척도법 예제](https://scikit-learn.org/stable/auto_examples/manifold/plot_mds.html): 거리·비유사도에 따른 metric·nonmetric MDS의 저차원 배치
+
 - 출제 이력: 다차원척도법의 개념·유형·적합도에 관한 기본 예상문제
 - 검증 출처: Kruskal & Wish, *Multidimensional Scaling*; Borg & Groenen, *Modern Multidimensional Scaling*
 

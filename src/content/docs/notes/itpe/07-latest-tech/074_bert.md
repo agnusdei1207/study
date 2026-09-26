@@ -30,7 +30,7 @@ IT 인공지능 → 자연어 처리 → 사전학습 언어모델 → BERT
 ---
 
 ## 1교시 예상문제 (10점)
-> BERT의 개념과 사전학습 기법을 설명하시오. (제123회 1교시 기출 주제)
+> BERT의 개념과 사전학습 기법을 설명하시오. (예상)
 
 ---
 
@@ -120,7 +120,7 @@ RoBERTa는 NSP를 제거하고 학습 조건을 바꾼 결과를 보고했다. �
 | BERT 계열을 텍스트 생성 요구가 있는 과업에도 그대로 선택할 수 있음 | 분류·토큰 분석은 인코더 구조를, 순차 텍스트 생성은 생성형 디코더 구조를 우선 비교하고 문항의 출력 요구에 맞춰 고른다. |
 
 ## 출제 이력과 검증 출처
-- 기출: 제123회 1교시, BERT의 개념과 사전학습 기법.
+- 기존 노트의 제123회 1교시 출제 기록: BERT의 개념과 사전학습 기법. 공식 문제 원문 미확인.
 - Devlin et al., [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805), 2018.
 - Liu et al., [RoBERTa: A Robustly Optimized BERT Pretraining Approach](https://arxiv.org/abs/1907.11692), 2019.
 

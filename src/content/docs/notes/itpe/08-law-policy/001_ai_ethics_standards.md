@@ -160,7 +160,8 @@ AI 거버넌스 → 윤리·책임 기준 → 인공지능 윤리기준
 
 ## 출제 이력과 검증 출처
 
-- 제136회 기출로 기록된 문항: 국내 AI 윤리기준과 생성형 AI 관련 주제(공식 문제지 원문 미대조)
+- 제136회 4교시 1번: 국내 AI 윤리기준의 3대 기본 원칙·10대 핵심요건과 생성형 AI의 역기능 요소(공식 문제지 확인).
+- [Q-Net, 제136회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5234951&brdId=Q006&gSite=Q&id=cst00602)
 - [과학기술정보통신부, 「인공지능(AI) 윤리기준」 마련](https://www.msit.go.kr/ssm/comm/bbsViewPrintPop.do%3Bjsessionid%3DOv9k7oDi3xBobGpQu-Swn_Ysw11KwBU50ieq5nsj.AP_msit_2?bbsSeqNo=94&nttSeqNo=3179742)
 - [국가법령정보센터, 인공지능기본법(2026-07-21 시행본)](https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=282791)
 

@@ -64,7 +64,7 @@ UN 전자정부 조사는 2년마다 실시되며, 2024년판이 현재 공개�
 ---
 
 ## 2~4교시 예상문제 (25점)
-> 제127회 2교시 1번: 국제연합(UN)은 매 2년마다 전체 회원국을 대상으로 전자정부 평가를 실시한다. 전자정부 평가에 대한 산정 방식, 구성요소, 한국의 발전방향을 설명하시오.
+> UN 전자정부 평가의 산정 방식과 구성요소, 한국의 발전방향을 설명하시오. (예상)
 
 ---
 
@@ -156,7 +156,7 @@ EPI는 국민의 온라인 참여 수준을 정보 제공, 협의, 의사결정 
 | 지표 변경을 고려하지 않아 연도 간 점수를 단순 비교 | 기술 부록에서 조사판의 지표 정의·가중·정규화 변경을 확인한다. |
 
 ## 출제 이력 및 검증 출처
-- 출제 이력: 원문 노트에 제127회 2교시 1번으로 기록되어 있다. 시험 원문은 별도 대조하지 못했다.
+- 출제 이력: 이전 노트의 제127회 2교시 1번 표기는 공식 원문을 대조하지 못했다. 위 문항은 예상문제로 취급한다.
 - [UN E-Government Survey 2024 및 기술 부록, UN DESA](https://desapublications.un.org/publications/un-e-government-survey-2024)
 - [2024 EGDI 방법론·정규화, UN DESA 기술 부록](https://desapublications.un.org/sites/default/files/publications/2024-09/Technical%20Appendix%20%28Web%20version%29%201292024.pdf)
 - [대한민국 2024년 EGDI 결과 발표, 행정안전부](https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=112482)

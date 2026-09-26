@@ -6,7 +6,7 @@ sidebar:
   badge:
     text: "기초"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -140,7 +140,7 @@ ATAM은 이해관계자가 중요하게 보는 품질 시나리오에 따라 위
 
 ## 출제 이력과 검증 출처
 
-- 제120회 정보관리기술사 1교시: 소프트웨어 아키텍처 모델 유형
+- 제120회 회차별 출제 서술은 공식 문제지 원문 미대조로 직접 기출로 단정하지 않음
 - Mary Shaw and David Garlan, *Software Architecture: Perspectives on an Emerging Discipline*
 - [ISO/IEC/IEEE 42010:2022, Architecture Description](https://www.iso.org/standard/74393.html)
 

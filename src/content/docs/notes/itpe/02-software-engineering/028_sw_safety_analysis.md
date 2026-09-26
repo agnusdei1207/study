@@ -3,7 +3,7 @@ title: "SW 안전성 분석(FTA·FMEA·HAZOP)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -146,9 +146,9 @@ SW 안전 분석
 ---
 
 ## 출제 이력과 검증 출처
+- [NASA Fault Tree Handbook](https://extapps.ksc.nasa.gov/reliability/Documents/Fault_Tree_Handbook_with_Aerospace_Applications_August_2002.pdf): 결함 나무 분석의 절차와 게이트 의미
 
-- 제123회 정보관리기술사 1교시: FTA, FMEA의 비교 및 위험도 평가
-- 제128회 정보관리기술사 2교시: 소프트웨어 안전성 분석 기법(HAZOP, STPA)
+- 제123회·제128회 회차별 출제 서술은 공식 문제지 원문 미대조로 직접 기출로 단정하지 않음
 - ISO 26262 Road vehicles - Functional safety
 - IEC 61508 Functional safety of electrical/electronic/programmable electronic safety-related systems
 

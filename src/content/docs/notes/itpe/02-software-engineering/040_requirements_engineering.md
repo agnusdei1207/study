@@ -6,7 +6,7 @@ sidebar:
   badge:
     text: "기초"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -124,9 +124,10 @@ extra:
 ---
 
 ## 출제 이력과 검증 출처
+- [ISO/IEC/IEEE 29148:2018](https://www.iso.org/standard/72089.html): 요구공학 과정과 요구사항 명세의 품질 기준
 
-- 제133회 정보관리기술사 3교시: 소프트웨어 요구공학(Requirement Engineering)의 개요 및 프로세스
-- 제130회 정보관리기술사 1교시: 요구사항명세서(SRS) 기술 항목 및 작성 기준
+- 제133회 정보관리기술사 3교시: 소프트웨어 요구공학의 정의·필요성, 절차와 요구사항 명세서
+- 제130회 회차별 출제 서술은 공식 문제지 원문 미대조로 직접 기출로 단정하지 않음
 - ISO/IEC/IEEE 29148 Systems and software engineering - Life cycle processes - Requirements engineering
 
 ## 연결 토픽

@@ -134,7 +134,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트의 제139회 문항 원문 미확인으로 예상문제 표기
+- 기존 노트의 제139회 가상 메모리 문항 주장은 공식 Q-Net 문제지에서 확인되지 않음. 아래 문항은 예상문제
 - [Linux Kernel Documentation, Page Tables](https://docs.kernel.org/mm/page_tables.html)
 - [Linux Kernel Documentation, Transparent Hugepage Support](https://docs.kernel.org/admin-guide/mm/transhuge.html)
 

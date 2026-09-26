@@ -31,7 +31,7 @@ IT 인공지능 → 분산 학습 → 데이터 분산형 학습 → 연합학�
 ---
 
 ## 1교시 예상문제 (10점)
-> 연합학습의 개념과 참여자 간 학습 구조, FedAvg의 기본 절차를 설명하시오. (제128회 1교시 기출 주제)
+> 연합학습의 개념과 참여자 간 학습 구조, FedAvg의 기본 절차를 설명하시오. (예상)
 
 ---
 
@@ -127,7 +127,7 @@ IT 인공지능 → 분산 학습 → 데이터 분산형 학습 → 연합학�
 | 데이터가 각 참여자 안에 있다는 이유만으로 연합학습을 개인정보 보호 수단으로 선택할 수 있음 | 먼저 데이터 이동이 필요한 이유와 참여자별 자료·계산 여건을 확인하고, 연합학습이 적합한 업무만 대상으로 선정한다. |
 
 ## 출제 이력과 검증 출처
-- 원노트에 기록된 기출: 제128회 1교시 연합학습의 개념·동작 절차·프라이버시 보호 기술.
+- 기존 노트의 제128회 1교시 출제 기록: 연합학습의 개념·동작 절차·프라이버시 보호 기술. 공식 문제 원문 미확인.
 - McMahan et al., [Communication-Efficient Learning of Deep Networks from Decentralized Data](https://arxiv.org/abs/1602.05629), FedAvg 원 논문.
 - NIST, [Protecting Model Updates in Privacy-Preserving Federated Learning](https://www.nist.gov/blogs/cybersecurity-insights/protecting-model-updates-privacy-preserving-federated-learning).
 

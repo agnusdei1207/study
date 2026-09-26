@@ -127,6 +127,10 @@ extra:
 ---
 ## 출제 이력과 검증 출처
 
+- [IBM 공식 문서, ModelOps의 모델 생애주기 운영](https://www.ibm.com/docs/en/ws-and-kc?topic=assets-managing-ai-lifecycle-modelops) — 특정 제품의 구현 예시이며 보편 인증 기준은 아님.
+
+제121·128회 출제 기록은 기존 노트의 표기이며 공식 문제 원문은 미확인.
+
 - 제121회 1교시: MLOps와 ModelOps의 개념 비교
 - 제128회 2교시: 엔터프라이즈 모델 생애주기 관리를 위한 ModelOps 프레임워크
 - 용어는 실무에서 범위가 달라질 수 있는 운영 접근으로 설명; MLOps와 ModelOps 사이의 단일 보편 경계나 인증 요건으로 단정하지 않음

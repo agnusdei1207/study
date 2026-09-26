@@ -149,6 +149,10 @@ flowchart TB
 | 구조 변경 | 중복·집계 데이터와 원본 데이터의 관계·갱신 책임 지정 | 갱신 누락·경합 점검 |
 | 효과 검증 | 실제 부하에서 조회 성능과 데이터 정합성 비교 | 효과가 없는 중복 구조의 재검토 |
 
+## 검증 출처
+
+- [IBM Db2 공식 문서, 정규화와 설계 선택](https://www.ibm.com/docs/en/i/7.4.0?topic=design-normalization) — 정규화 수준과 조회 성능의 균형.
+
 ## 연결 토픽
 
 - 연관 토픽: [정규화](./019_normalization.md), [DB 파티셔닝·샤딩](./021_db_partitioning_sharding.md)

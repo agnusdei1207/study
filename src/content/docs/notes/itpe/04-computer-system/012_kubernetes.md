@@ -132,7 +132,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력 참고: 기존 노트에는 제133회·제137회 언급이 있으나 원문 확인 미완료, 예상문제로 구분.
+- 제133회 정보관리기술사 1교시 12번: 쿠버네티스 설명. 제137회 4교시 3번: 개념·특징, 주요 컴포넌트, HPA 설명(공식 Q-Net 문제지 대조). 아래 예상문제는 원문 문항과 구분.
 - [Kubernetes 공식 문서, 클러스터 아키텍처](https://kubernetes.io/docs/concepts/architecture/)
 - [Kubernetes 공식 문서, Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - [Kubernetes 공식 문서, Horizontal Pod Autoscaling](https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/)

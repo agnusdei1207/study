@@ -1,7 +1,7 @@
 ---
 title: "DevOps"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -146,7 +146,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제136회 정보관리기술사 2교시: DevOps와 SRE, DevSecOps 연계 방안
+- 제136회 정보관리기술사 1교시: DevOps의 장점과 단점
 - DORA(DevOps Research and Assessment), State of DevOps Report
 - [DORA, Software delivery performance metrics](https://dora.dev/guides/dora-metrics/)
 - Google SRE Book, Site Reliability Engineering: How Google Runs Production Systems

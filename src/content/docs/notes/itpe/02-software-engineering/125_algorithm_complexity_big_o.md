@@ -8,7 +8,7 @@ tags:
   - "공간복잡도"
   - "점근표기법"
   - "알고리즘최적화"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Antigravity"
 sidebar:
   badge:
@@ -147,4 +147,7 @@ extra:
 - [퀵 정렬(Quick Sort)](./059_quick_sort.md)
 - [이진 탐색 트리(BST)](./001_bst.md)
 - [유한 오토마타 및 ReDoS](./114_finite_automata.md)
+
+## 검증 출처
+- [MIT OpenCourseWare, Asymptotic Complexity](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/ce8348ec64dce3841ced6a9d0c9e48f2_MIT6_006F11_rec01.pdf): O·Θ·Ω의 점근적 의미
 ---

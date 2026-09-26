@@ -159,6 +159,10 @@ sidebar:
 |---|---|
 | NoSQL 제품 선정 뒤 업무별 조회·정합성 요구가 달라 운영 기준이 흔들릴 위험 | 데이터 소유팀이 대표 조회·갱신과 허용 지연을 승인 기준으로 정하고 후보 제품의 부하·장애 시험 결과를 대조한 뒤 채택 |
 
+## 검증 출처
+
+- [MongoDB 공식 데이터 모델링 문서](https://www.mongodb.com/docs/manual/data-modeling/) — 문서형 NoSQL의 구조·접근 패턴 예시. NoSQL 전체에 동일한 보장을 적용하지 않는 비교 기준.
+
 ## 연결 토픽
 
 - 연관 토픽: [데이터 거버넌스](./006_data_governance.md), [DB 파티셔닝·샤딩](./021_db_partitioning_sharding.md)

@@ -152,7 +152,7 @@ extra:
 | **Microservice** | 1 | [Doc 2] |
 | **Spring** | 2 | [Doc 1, Doc 2] |
 
-- **전문 검색(Full-text Search) 원리**: 문서 전체를 순차 스캔하지 않고, B-Tree 계열의 사전(Term Dictionary)과 압축된 포스팅 리스트를 통해 "Spring" 검색 시 즉시 `[Doc 1, Doc 2]` 반환
+- **전문 검색(Full-text Search) 원리**: 문서 전체를 순차 스캔하지 않고, Lucene의 용어 사전과 포스팅 리스트에서 "Spring"이 포함된 문서 식별자를 탐색
 - **샤딩(Sharding) 및 고가용성**:
   - **Primary Shard**: 데이터 쓰기가 수행되는 원본 조각
   - **Replica Shard**: 장애 시 즉시 승격되는 복제본으로, 읽기 쿼리 부하 분산 지원
@@ -190,7 +190,7 @@ extra:
 
 | 장애 시나리오 | 발생 원인 | 엔지니어링 해결 대책 |
 |:---|:---|:---|
-| **클러스터 상태 Red & OOM** | 일자별 인덱스 남발로 노드당 수천 개의 샤드가 생성되어 마스터 힙 메모리 소진 | 샤드 크기를 20GB~50GB 단위로 통합 관리, 노드당 힙 1GB당 샤드 20개 이하로 제한 |
+| **과도한 샤드와 메모리 압박** | 작은 인덱스·샤드가 누적되어 메타데이터와 검색 자원 사용 증가 | 샤드 수·크기·검색 부하를 측정하고 rollover·보존 정책을 조정; 구형 `힙 1GB당 20샤드` 규칙은 적용하지 않음 |
 | **Logstash 백프레셔(Backpressure)** | 정규표현식 Grok 필터가 너무 복잡하여 CPU 100% 점유 및 데이터 지연 발생 | Dissect 필터(단순 구분자 분리) 우선 사용, Kafka를 전면에 배치하여 버퍼링 |
 | **무제한 와일드카드 검색 쿼리** | 사용자가 `*error*` 형태의 선행 와일드카드 쿼리를 날려 수억 개 역색인 풀스캔 | N-gram 인덱스 사전 구축, Kibana 쿼리 타임아웃 및 조회 기간 제한(최대 7일) 설정 |
 
@@ -207,7 +207,8 @@ extra:
 - **기출 이력**:
   - 제132회 정보관리 1교시: ELK(Elasticsearch/Logstash/Kibana) 스택
 - **검증 출처**:
-  - Elastic Official Documentation, "Elasticsearch Guide & Index Lifecycle Management"
+  - [Elastic, How many shards should I have in my Elasticsearch cluster?](https://www.elastic.co/blog/how-many-shards-should-i-have-in-my-elasticsearch-cluster)
+  - [Elastic, Index lifecycle management](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)
   - Clinton Gormley & Zachary Tong, "Elasticsearch: The Definitive Guide", O'Reilly
 ---
 

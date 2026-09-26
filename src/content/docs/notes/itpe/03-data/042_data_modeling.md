@@ -139,7 +139,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 참고 문항: 제133회·제128회 관련 문항으로 기존 정리되어 있으나 공식 문제지 원문 링크 미확인
+- 제133회 정보관리기술사 4교시 4번: RDBMS 적용을 위한 데이터 모델링의 개념·단계·고려사항(공식 Q-Net 문제지 대조). 제128회 언급은 공식 원문 미수집으로 미확인
 - [Oracle Database Concepts, Introduction to Oracle Database](https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/introduction-to-oracle-database.html)
 - [Data Modeling Essentials, Graeme Simsion and Graham Witt](https://www.sciencedirect.com/book/9780126445510/data-modeling-essentials)
 

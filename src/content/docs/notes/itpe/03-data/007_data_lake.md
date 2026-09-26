@@ -145,6 +145,10 @@ flowchart TB
 | 제공 통제 | 원본부터 제공 데이터까지 계보·접근 권한 연결 | 출처 추적과 승인된 접근 여부 |
 | 보존 재검토 | 이용 실적과 보존 의무를 함께 검토 | 미사용 데이터의 보존·폐기 근거 |
 
+## 검증 출처
+
+- [Apache Iceberg 공식 테이블 규격](https://iceberg.apache.org/spec/) — 데이터 레이크 위의 메타데이터·스냅샷 관리 구현 사례.
+
 ## 연결 토픽
 
 - 연관 토픽: [데이터 거버넌스](./006_data_governance.md), [데이터 품질관리](./003_data_quality_management.md)

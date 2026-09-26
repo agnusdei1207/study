@@ -139,7 +139,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 참고 문항: 제137회 관련 문항으로 기존 정리되어 있으나 공식 문제지 원문 링크 미확인
+- 제137회 정보관리기술사 4교시 2번: 벡터 데이터베이스 검색을 위한 HNSW·IVF 동작 원리(공식 Q-Net 문제지 대조)
 - [pgvector 공식 문서](https://github.com/pgvector/pgvector) — 정확·근사 검색, HNSW·IVFFlat의 구조와 성능 절충
 - [Malkov and Yashunin, Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs](https://arxiv.org/abs/1603.09320)
 - [Jégou et al., Product Quantization for Nearest Neighbor Search](https://inria.hal.science/inria-00514462/document)

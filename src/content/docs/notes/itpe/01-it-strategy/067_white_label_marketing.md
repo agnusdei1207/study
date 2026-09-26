@@ -1,7 +1,7 @@
 ---
 title: "화이트 레이블 마케팅"
 author: "OpenAI"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -146,7 +146,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제136회 정보관리기술사 1교시 1번: “화이트 레이블 마케팅(White Label Marketing)”
+- [Q-Net 제136회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5234951&brdId=Q006&gSite=Q&id=cst00602) 1교시 1번: “화이트 레이블 마케팅(White Label Marketing)”.
 
 ## 연결 토픽
 

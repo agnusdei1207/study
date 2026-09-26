@@ -75,7 +75,7 @@ extra:
 ---
 
 ## 2~4교시 예상문제 (25점)
-> 제132회 3교시 5번: APEC의 CBPR(Cross Border Privacy Rules)에 대하여 설명하시오.
+> 제132회 3교시 5번: APEC의 CBPR(Cross Border Privacy Rules)에 대하여 가. APEC 프라이버시 9원칙, 나. CBPR의 주요 인증기준을 설명하시오. (기출)
 
 ---
 
@@ -121,6 +121,20 @@ APEC CBPR에서 발전한 글로벌 CBPR은 글로벌 CBPR 포럼이 운영하�
 
 ## Ⅳ. 원칙과 인증 기준
 인증 기준은 통지·목적과 이용 제한·선택권·정보 정확성·보안·접근 및 정정·책임성 등 개인정보 보호 전 과정을 다룬다. 글로벌 CBPR 포럼은 2026년 기준을 개정해 민감정보·아동 정보 보호, 위험 평가와 완화, 침해 통지, 선택권 기록, 처리 활동 기록 등을 강화한다고 발표했다. 세부 심사에는 신청 시점의 최신 기준을 적용한다.
+
+제132회 기출의 가 항목인 **APEC 프라이버시 9원칙**은 다음과 같다. 현재 글로벌 CBPR의 세부 인증기준과 역사적 APEC 원칙을 구분한다.
+
+| 번호 | APEC 원칙 | 답안 핵심 |
+|---|---|---|
+| 1 | 피해 방지(Preventing Harm) | 오용으로 인한 피해 위험에 비례한 보호 |
+| 2 | 통지(Notice) | 수집·이용 목적과 처리 관행 고지 |
+| 3 | 수집 제한(Collection Limitation) | 목적에 필요한 범위에서 적법·공정하게 수집 |
+| 4 | 개인정보 이용(Uses of Personal Information) | 고지한 목적과 양립하는 범위의 이용 |
+| 5 | 선택(Choice) | 정보주체에게 이용·공개에 대한 선택 제공 |
+| 6 | 개인정보 무결성(Integrity of Personal Information) | 정확성·완전성·최신성 유지 |
+| 7 | 안전조치(Security Safeguards) | 위험에 맞는 보안조치 적용 |
+| 8 | 접근 및 정정(Access and Correction) | 본인 정보의 확인·정정 기회 제공 |
+| 9 | 책임성(Accountability) | 이전 후에도 보호 원칙 준수에 책임 |
 
 | 관리 영역 | 심사에서 확인할 내용 |
 |---|---|
@@ -193,10 +207,11 @@ APEC CBPR에서 발전한 글로벌 CBPR은 글로벌 CBPR 포럼이 운영하�
 | 갱신·침해 대응 책임이 약해짐 | 인증 유효기간, 책임자, 침해 통지·권리 처리 절차를 정기 점검한다. |
 
 ## 출제 이력 및 검증 출처
-- 출제 이력: 원문 노트에 제132회 3교시 5번으로 기록되어 있다. 시험 원문은 별도 대조하지 못했다.
+- 출제 이력: [Q-Net 제132회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5212856&brdId=Q006&gSite=Q&id=cst00602)의 3교시 5번 원문을 대조했다. 가·나의 두 요구를 모두 답한다.
 - [개인정보 보호법 제28조의8, 국가법령정보센터](https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029331899)
 - [개인정보 보호법 시행령 제29조의10, 국가법령정보센터](https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=182203)
 - [국경 간 개인정보 보호 규칙 인증제도의 운영에 관한 지침, 국가법령정보센터](https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000273990&chrClsCd=010201)
 - [글로벌 CBPR 인증기준 업데이트, 개인정보보호위원회](https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS105&mCode=D060030000&nttId=11973)
+- [APEC Privacy Framework 2015 원문](https://www.apec.org/docs/default-source/publications/2016/11/2016-cti-report-to-ministers/toc/appendix-17-updates-to-the-apec-privacy-framework.pdf): 제132회 기출의 9원칙 확인.
 - [인증 제공 국가와 체계, 글로벌 CBPR 포럼](https://www.globalcbpr.org/privacy-certifications/)
 - [CBPR 인증 심사기관 지정 공고, KISA](https://www.kisa.or.kr/401/form?page=1&postSeq=3707)

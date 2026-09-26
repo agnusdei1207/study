@@ -159,6 +159,11 @@ sidebar:
 |---|---|
 | 평가 당시의 수요·품질 가정이 바뀌어도 추정 금액만 유지될 위험 | 데이터 책임자가 실제 이용량과 품질 변화를 산정 가정에 대조하고, 차이가 큰 데이터부터 가치·관리 기준을 재검토 |
 
+## 검증 출처
+
+- [NIA, 데이터의 가치평가를 포함한 데이터 정책 보고서](https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?bcIdx=20891&cbIdx=90549).
+- [데이터 산업진흥 및 이용촉진에 관한 기본법 제14조, 국가법령정보센터](https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20251001&lsiSeq=277325&urlMode=lsInfoP) — 데이터 가치평가기관·신청의 법적 근거.
+
 ## 연결 토픽
 
 - 연관 토픽: [데이터 품질관리](./003_data_quality_management.md), [데이터 거버넌스](./006_data_governance.md)

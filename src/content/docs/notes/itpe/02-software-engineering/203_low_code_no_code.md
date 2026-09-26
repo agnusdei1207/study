@@ -6,7 +6,7 @@ tags:
   - "노코드"
   - "LCNC"
   - "시민개발자"
-date: "2026-09-24T15:57:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
@@ -162,3 +162,6 @@ extra:
 | 3. 확대 결정 | 실제 개선과 데이터·권한·이식성 통제가 확인된 경우에만 적용 범위 확대 |
 
 플랫폼 기능 목록보다 **시범 업무의 개발·변경 성과와 운영 가능성**을 기준으로 도입 범위를 결정.
+
+## 검증 출처
+- [Microsoft Power Platform, Security and governance considerations](https://learn.microsoft.com/en-us/power-platform/admin/governance-considerations): 로코드 플랫폼의 권한·데이터 정책과 운영 통제 사례

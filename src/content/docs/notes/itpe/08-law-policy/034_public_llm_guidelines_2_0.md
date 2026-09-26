@@ -171,7 +171,7 @@ RAG는 기관 지식의 검색 결과를 모델 응답의 문맥으로 사용하
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트에 제137회 2교시 4번 표기가 있으나 공식 원문 확인 전까지 본 문제는 예상문제로 구분.
+- [Q-Net 제137회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5242749&brdId=Q006&gSite=Q&id=cst00602) 2교시 4번은 초거대 AI 개념·구성요소, 기술요소, 도입절차를 요구한다. 기본 문항은 가이드라인 자체를 학습하는 예상문제로 구분한다.
 - [NIA, 공공부문 초거대 AI 도입·활용 가이드라인 2.0 (2025-04-16)](https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?bcIdx=27985&cbIdx=99953)
 - [NIA, 공공부문 AI 도입·활용 가이드 (2026년 5월 기준)](https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?bcIdx=29526&cbIdx=37989)
 - [국가법령정보센터, 인공지능 및 데이터 기반 행정 활성화에 관한 법률](https://www.law.go.kr/lsInfoP.do?lsiSeq=283735)

@@ -140,7 +140,7 @@ Mobilization   담당 조직의 개선 조치 실행
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트의 제139회 1교시 11번 문항을 공식 문제 원문과 대조하지 못해 출제 이력에서 제외.
+- 제139회 1교시 11번에 **CTEM(Continuous Threat Exposure Management)**이 출제됨(Q-net 공식 문제지 전사본 대조).
 - [Gartner: Strategic Roadmap for Continuous Threat Exposure Management](https://www.gartner.com/en/documents/6884566) — CTEM 5단계 모델의 원 출처. 공개 자료 접근 제한으로 세부 본문은 직접 재확인하지 못함.
 - [FIRST EPSS](https://www.first.org/epss/) — 30일 내 악용 관측 가능성의 의미.
 - [CISA Known Exploited Vulnerabilities Catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) — 실제 악용 확인 취약점 자료.

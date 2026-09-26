@@ -6,7 +6,7 @@ sidebar:
   badge:
     text: "기초"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -134,7 +134,7 @@ SOAP Envelope
 
 ## 출제 이력과 검증 출처
 
-- 제134회 정보관리기술사 2교시: 웹 서비스(SOAP)와 RESTful 아키텍처의 심층 비교
+- 제134회 정보관리기술사 4교시: 개방형 API 문항 중 SOAP 및 REST 구성요소
 - W3C SOAP Version 1.2 Specification
 - [W3C SOAP Version 1.2 Part 1: Messaging Framework](https://www.w3.org/TR/soap12/)
 - OASIS Web Services Security (WSS) TC Standard

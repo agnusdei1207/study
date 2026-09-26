@@ -6,7 +6,7 @@ sidebar:
   badge:
     text: "기초"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -157,7 +157,7 @@ SRS 항목·수락 기준
 
 ## 출제 이력과 검증 출처
 
-- 제130회 정보관리기술사 1교시: 요구사항 명세서에 기술할 항목
+- 제130회 회차별 출제 서술은 공식 문제지 원문 미대조로 직접 기출로 단정하지 않음
 - [ISO/IEC/IEEE 29148:2018, Requirements Engineering](https://committee.iso.org/standard/72089.html)
 - [IEEE Standards Association, IEEE 830-1998 status](https://standards.ieee.org/ieee/830/1222/)
 

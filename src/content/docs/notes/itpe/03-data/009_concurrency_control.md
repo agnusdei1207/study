@@ -155,6 +155,10 @@ flowchart TB
 | 제어 방식 선택 | 불변조건을 만족하는 격리 수준과 잠금·버전 방식을 결정 | 대기·충돌·교착 상황의 처리 |
 | 운영 검증 | 재시도와 오류 처리를 포함해 대표 부하 시험 | 정합성 유지와 처리량·응답시간 |
 
+## 검증 출처
+
+- [PostgreSQL 공식 문서, Concurrency Control](https://www.postgresql.org/docs/current/mvcc.html) — MVCC와 트랜잭션 격리의 구현 사례.
+
 ## 연결 토픽
 
 - 연관 토픽: [트랜잭션 격리 수준](./020_isolation_level.md), [무결성 제약조건](./013_integrity_constraint.md)

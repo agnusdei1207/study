@@ -1,7 +1,7 @@
 ---
 title: "소프트웨어 테스팅 7대 원리"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -144,7 +144,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문에서 확인한 직접 기출 없음
+- 제139회 정보관리기술사 3교시: 소프트웨어 테스트의 7대 원리와 화이트박스·블랙박스 테스트 비교
 - [ISTQB Certified Tester Foundation Level Syllabus v4.0.1](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf)
 
 ## 연결 토픽

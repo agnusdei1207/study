@@ -122,5 +122,7 @@ AI 통제 수준
 ---
 ## 출제 이력과 검증 출처
 
-- 원문 출제 이력 표기: 미출제
+- [영국 정부, Sovereign AI Unit의 컴퓨팅·데이터·산업 역량 정책](https://www.gov.uk/government/publications/ai-opportunities-action-plan-one-year-on/ai-opportunities-action-plan-one-year-on) — 국가별 통제·자립의 정책 사례이며 보편적 기술 표준 정의는 아님.
+
+- 확인한 제132~140회 공식 문제지에서 표제어 직접 출제 미확인. 그 밖의 회차는 원문 미대조
 - 참고: 소버린 AI는 통제 범위·자립 수준이 문맥에 따라 달라지는 전략 용례로 사용; 모든 계층의 완전한 자급을 뜻하는 고정 표준 정의로 단정하지 않음

@@ -30,7 +30,7 @@ IT 인공지능 → 앙상블 학습 → 단계적 예측 보정 → 부스팅
 ---
 
 ## 1교시 예상문제 (10점)
-> 부스팅의 개념과 단계별 예측 보정 원리를 설명하시오. (제126회 1교시 기출 주제)
+> 부스팅의 개념과 단계별 예측 보정 원리를 설명하시오. (예상)
 
 ---
 
@@ -69,7 +69,7 @@ IT 인공지능 → 앙상블 학습 → 단계적 예측 보정 → 부스팅
 ---
 
 ## 2~4교시 예상문제 (25점)
-> 부스팅의 순차 앙상블 원리와 그래디언트 부스팅의 손실 최적화 과정을 설명하고, AdaBoost·GBM 계열의 차이 및 일반화 성능 관리 방안을 제시하시오. (제126회 1교시를 확장한 예상문제)
+> 부스팅의 순차 앙상블 원리와 그래디언트 부스팅의 손실 최적화 과정을 설명하고, AdaBoost·GBM 계열의 차이 및 일반화 성능 관리 방안을 제시하시오. (예상)
 
 ---
 
@@ -136,7 +136,7 @@ IT 인공지능 → 앙상블 학습 → 단계적 예측 보정 → 부스팅
 | 모델 단계를 늘리면 검증 손실이 다시 커지거나 오류 라벨에 과적합할 수 있음 | 조기 종료·학습률·트리 깊이·정규화를 검증 자료로 조정하고, 데이터 품질과 업무 비용 기준으로 모델을 선택한다. |
 
 ## 출제 이력과 검증 출처
-- 제126회 1교시: 부스팅 관련 문항으로 기록. 제105회 앙상블 기법 문항에서도 배깅·부스팅을 다룸.
+- 기존 노트의 출제 기록: 제126회 1교시 부스팅, 제105회 앙상블 기법. 공식 문제 원문 미확인.
 - Friedman, [Greedy Function Approximation: A Gradient Boosting Machine](https://doi.org/10.1214/aos/1013203451), 그래디언트 부스팅의 함수 공간 최적화.
 - Chen & Guestrin, [XGBoost: A Scalable Tree Boosting System](https://arxiv.org/abs/1603.02754), XGBoost 설계.
 - Ke et al., [LightGBM: A Highly Efficient Gradient Boosting Decision Tree](https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html), LightGBM 설계.

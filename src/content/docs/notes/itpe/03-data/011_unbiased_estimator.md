@@ -151,6 +151,10 @@ flowchart TB
 | 불편성 | 반복 표집에서 추정량의 기댓값과 모수 비교 | 체계적 편향 여부 확인 |
 | 정밀도·대표성 | 분산·MSE와 표본 대표성 함께 검토 | 추정값의 불확실성과 적용 범위 판단 |
 
+## 검증 출처
+
+- [NIST 통계 핸드북, 표본분산과 불편추정](https://itl.nist.gov/div898/handbook/pmc/section3/pmc32.htm) — 불편성은 추정량의 기대값과 모수의 일치 여부로 판단.
+
 ## 연결 토픽
 
 - 연관 토픽: [중심극한정리](./014_central_limit_theorem.md), [표본추출](./032_sampling.md)

@@ -116,7 +116,9 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트에 기록된 출제 이력: 제133회 2교시 6번, 제136회 1교시 10번(공식 문제지 원문 미대조).
+- 제133회 2교시 6번: 데이터 안심구역의 정의·기능·지정요건. 제136회 1교시 10번: 개인정보 안심구역과 데이터안심구역 비교(공식 문제지 확인).
+- [Q-Net, 제133회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5213315&brdId=Q006&gSite=Q&id=cst00602)
+- [Q-Net, 제136회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5234951&brdId=Q006&gSite=Q&id=cst00602)
 - [데이터산업법 제11조 — 국가법령정보센터](https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1025556481)
 - [국가법령정보센터, 데이터안심구역 지정 및 운영 등에 관한 고시(2026-04-09 시행)](https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000277242)
 - [개인정보 안심구역 설명 — 개인정보보호위원회](https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=10303)

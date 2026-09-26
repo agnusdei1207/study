@@ -3,7 +3,7 @@ title: "SW 규모·비용 산정(FP·LOC·COCOMO)"
 tags:
   - "notes-software-engineering"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 sidebar:
   badge:
     text: "기초"
@@ -138,8 +138,8 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제132회 정보관리기술사 1교시: 기능점수(Function Point)의 데이터 및 트랜잭션 기능
-- 제137회 정보관리기술사 2교시: 소프트웨어 사업 대가산정 가이드 및 FP 단가법 적용 절차
+- 제132회 정보관리기술사 3교시: SW 운영단계 대가산정(2023년 개정판 기준)
+- 제137회 정보관리기술사 4교시: SW 사업 대가산정(2025년 개정판 기준)
 - 한국소프트웨어산업협회(KOSA), SW사업 대가산정 가이드(적용 연도 확인 필요)
 - [소프트웨어 진흥법 제50조 — 과업심의위원회](https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1031614471)
 

@@ -144,6 +144,8 @@ IT 운영·데이터 과학 → 머신러닝 시스템 개발·운영 → MLOps
 | 자동화 수준을 먼저 높이면 조직이 모델 변경을 검토할 역량과 책임 범위를 놓칠 수 있음 | 대표 모델 하나에 버전·검증·승인·복구 절차를 적용해 운영팀이 수행 가능한지 확인한 후 자동화 수준을 높인다. |
 
 ## 출제 이력과 검증 출처
+
+제130회 출제 기록은 기존 노트의 표기이며 공식 문제 원문은 미확인.
 - 기출 주제: 제130회 2교시 MLOps 개념·필요성·구성요소와 Google MLOps 성숙도 Level 0~2.
 - Google Cloud, [MLOps: Continuous delivery and automation pipelines in machine learning](https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning).
 

@@ -147,7 +147,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트에는 제121회 4교시 RFP 요구사항 상세화, 제132회 4교시 4번 소프트웨어 진흥법상 공공 SW 제도가 기록되어 있으나 공식 기출 원문은 별도 대조하지 못함.
+- [Q-Net 제132회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5212856&brdId=Q006&gSite=Q&id=cst00602) 4교시 4번은 「소프트웨어 진흥법」 제5조제2항 기본계획 포함사항과 제30조제2항 소프트웨어안전 확보 지침 포함사항을 요구한다. 이전 노트의 제121회 관련 기록은 공식 원문을 대조하지 못했다.
 - [국가법령정보센터, 소프트웨어 진흥법 제44조(요구사항 상세화)](https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1027884493)
 - [국가법령정보센터, 소프트웨어 진흥법 제50조(과업심의위원회)](https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031614467)
 - [국가법령정보센터, 법률 제21865호 및 시행일·적용례](https://law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010202&lsId=000751&lsRvsGubun=all)

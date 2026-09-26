@@ -1,7 +1,7 @@
 ---
 title: "애자일 대응 전략"
 author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -166,7 +166,7 @@ Review·Retrospective
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [Agile Manifesto](https://agilemanifesto.org/)
 - [The Scrum Guide 2020](https://scrumguides.org/scrum-guide.html)
 

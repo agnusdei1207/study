@@ -168,7 +168,7 @@ SLA 의무화 일정은 행정안전부 발표 계획과 현행 법령상 등급
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트는 제139회 2교시 5번을 정보시스템 등급제와 공공 SLA 표준 의무화 문항으로 기록했으나 공식 문제 원문은 별도 대조하지 못함. 기본 문항은 표제어 자체를 묻는 예상문제로 구성.
+- [Q-Net 제139회 정보관리기술사 공개 문제](https://www.q-net.or.kr/cst006.do?artlSeq=5263563&brdId=Q006&gSite=Q&id=cst00602) 2교시 5번은 공공 SLA의 개념·필요성, 정보시스템 등급 분류와 등급별 적용, 표준안의 가용률·장애조치 시간·위약금 체계 및 고려사항을 요구한다. 기본 문항은 표제어 자체를 묻는 예상문제다.
 - [국가법령정보센터, 전자정부법 시행령 제70조의3](https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=195595)
 - [행정안전부, SLA 표준안 및 시행 계획 발표](https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=120101)
 - [행정안전부, 공공 정보시스템 A1~A4 등급 재분류 결과](https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=129047)

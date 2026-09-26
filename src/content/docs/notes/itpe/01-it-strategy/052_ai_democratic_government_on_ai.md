@@ -1,7 +1,7 @@
 ---
 title: "AI 민주정부·온AI"
 author: "Codex"
-date: "2026-09-24"
+date: "2026-09-27T00:24:59+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -88,7 +88,7 @@ AI 검색·요약·초안
 
 ## 2~4교시 예상문제 (25점)
 
-> AI 민주정부의 개념과 구성체계를 설명하고, 공공부문 AI 서비스의 추진절차 및 문제점·대응책을 제시하시오. **(미출제 예상·25점)**
+> AI 민주정부의 개념과 구성체계를 설명하고, 공공부문 AI 서비스의 추진절차 및 문제점·대응책을 제시하시오. **(예상·25점)**
 
 ---
 
@@ -177,7 +177,7 @@ AI 검색·요약·초안
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문으로 확인한 직접 기출 없음
+- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
 - [행정안전부, AI 민주정부 실현 본격 추진](https://mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=128980)
 - [NIA, 공공부문 AI 도입·활용 가이드](https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?bcIdx=29526&cbIdx=37989)
 - [행정안전부, 온AI 모바일 서비스](https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=125600) (2026년 4월 개시 내용)

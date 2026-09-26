@@ -141,6 +141,9 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
+- [Python 자료구조 공식 문서](https://docs.python.org/3/tutorial/datastructures.html): 선형 스택·큐의 삽입·삭제 순서
+- [Python heapq 공식 문서](https://docs.python.org/3/library/heapq.html): 트리 기반 힙의 부모·자식 관계와 우선순위 처리
+
 - Thomas H. Cormen et al., *Introduction to Algorithms*, 4th ed., Chapters 10–12.
 - Ulrich Drepper, *What Every Programmer Should Know About Memory*, Red Hat.
 
