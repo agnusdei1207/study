@@ -121,3 +121,17 @@ test('a later standalone acronym still matches after an embedded occurrence', ()
   assert.deepEqual(triggers.map((trigger) => trigger.textContent), ['AI']);
   dom.window.close();
 });
+
+test('BRR in the investment answer opens the benefits realization explanation', () => {
+  const dom = new JSDOM(`<!doctype html><article class="sl-markdown-content">
+    <details><summary>핵심 용어</summary><ul><li><strong>BRR(Benefits Realization Review, 편익 실현 검토)</strong> : 가동 후 계획 편익과 실적을 검토한다</li></ul></details>
+    <h2>1교시 10점 답안</h2><table><tr><td>승인 당시 계획과 실제 편익의 차이(<strong>BRR</strong>)</td></tr></table>
+  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/016_it_investment_evaluation/', runScripts: 'outside-only' });
+  dom.window.eval(script);
+  dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+  const term = dom.window.document.querySelector('td strong');
+  term.click();
+  assert.equal(term.classList.contains('itpe-glossary-trigger'), true);
+  assert.match(dom.window.document.querySelector('.itpe-glossary-tooltip').textContent, /계획 편익과 실적/);
+  dom.window.close();
+});
