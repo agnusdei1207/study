@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "102. 상호연결망(Interconnection Network)"
+  order: 102
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **상호연결망(Interconnection Network)**: 병렬 시스템 구성요소 간 통신 경로를 제공하는 네트워크 구조
-- **토폴로지(Topology)**: 노드와 링크가 연결된 형태
-- **지름(Diameter)**: 네트워크에서 두 노드 사이 최단 경로 길이 중 최댓값
-- **이분 대역폭(Bisection Bandwidth)**: 노드를 두 집합으로 나누는 절단면을 통과할 수 있는 총 대역폭
-- **웜홀 라우팅(Wormhole Routing)**: 패킷을 플릿 단위로 전달해 경로 자원을 점유하는 라우팅 방식
+- **상호연결망(Interconnection Network)** : 병렬 시스템 구성요소 간 통신 경로를 제공하는 네트워크 구조
+- **토폴로지(Topology)** : 노드와 링크가 연결된 형태
+- **지름(Diameter)** : 네트워크에서 두 노드 사이 최단 경로 길이 중 최댓값
+- **이분 대역폭(Bisection Bandwidth)** : 노드를 두 집합으로 나누는 절단면을 통과할 수 있는 총 대역폭
+- **웜홀 라우팅(Wormhole Routing)** : 패킷을 플릿 단위로 전달해 경로 자원을 점유하는 라우팅 방식
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **상호연결망**은 병렬 시스템 구성요소 간 통신 경로를 제공하는 네트워크 구조 |
+| 정의 | **상호연결망은** 병렬 시스템 구성요소 간 통신 경로를 제공하는 네트워크 구조 |
 | 목적 | 노드 간 데이터 전달과 병렬 작업의 통신 지원 |
 
 ### Ⅱ. 구조와 지표
@@ -77,7 +83,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **상호연결망**은 병렬 시스템 구성요소 간 통신 경로를 제공하는 네트워크 구조 |
+| 정의 | **상호연결망은** 병렬 시스템 구성요소 간 통신 경로를 제공하는 네트워크 구조 |
 | 목적 | 노드 간 데이터 전달과 병렬 작업의 통신 지원 |
 
 ### Ⅱ. 구성 요소와 데이터 전달
@@ -126,7 +132,7 @@ flowchart TD
 |---|---|
 | 하나의 토폴로지가 모든 통신 패턴과 규모에 최선이 아님 | 업무의 통신행렬과 장애·비용 조건을 반영한 부하 시험으로 토폴로지를 선정 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Linux kernel interconnect overview](https://docs.kernel.org/driver-api/interconnect.html): 시스템 구성요소 간 상호연결 개념과 관리
 - [Open MPI documentation](https://docs.open-mpi.org/): 병렬 시스템 통신 구현 참고

@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "108. 클라우드 인프라 아키텍처(Cloud Infrastructure Architecture)"
+  order: 108
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **클라우드 인프라(Cloud Infrastructure)**: 클라우드 서비스의 컴퓨팅·저장·네트워크 자원과 관리 기능
-- **가상화(Virtualization)**: 물리 자원을 논리 자원으로 추상화·분할하는 기술
-- **SDDC (Software-Defined Data Center)**: 데이터센터 자원을 소프트웨어 기반으로 추상화·관리하는 아키텍처 접근
-- **CMP (Cloud Management Platform)**: 클라우드 자원 요청·관리·운영을 지원하는 관리 플랫폼
-- **오버레이 네트워크(Overlay Network)**: 기존 네트워크 위에 논리 네트워크를 구성하는 방식
+- **클라우드 인프라(Cloud Infrastructure)** : 클라우드 서비스의 컴퓨팅·저장·네트워크 자원과 관리 기능
+- **가상화(Virtualization)** : 물리 자원을 논리 자원으로 추상화·분할하는 기술
+- **SDDC (Software-Defined Data Center)** : 데이터센터 자원을 소프트웨어 기반으로 추상화·관리하는 아키텍처 접근
+- **CMP (Cloud Management Platform)** : 클라우드 자원 요청·관리·운영을 지원하는 관리 플랫폼
+- **오버레이 네트워크(Overlay Network)** : 기존 네트워크 위에 논리 네트워크를 구성하는 방식
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **클라우드 인프라 아키텍처**는 컴퓨팅·저장·네트워크 자원을 추상화해 온디맨드로 제공하는 구조 |
+| 정의 | **클라우드 인프라 아키텍처는** 컴퓨팅·저장·네트워크 자원을 추상화해 온디맨드로 제공하는 구조 |
 | 목적 | 자원 프로비저닝과 운영의 표준화·자동화 |
 
 ### Ⅱ. 계층 구조
@@ -79,7 +85,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **클라우드 인프라 아키텍처**는 컴퓨팅·저장·네트워크 자원을 추상화해 온디맨드로 제공하는 구조 |
+| 정의 | **클라우드 인프라 아키텍처는** 컴퓨팅·저장·네트워크 자원을 추상화해 온디맨드로 제공하는 구조 |
 | 목적 | 자원 프로비저닝과 운영의 표준화·자동화 |
 
 ### Ⅱ. 계층과 제어 흐름
@@ -131,7 +137,7 @@ flowchart TD
 |---|---|
 | 자동화만으로 격리·가용성·비용이 보장되지는 않음 | 프로비저닝·관측·회수까지 정책과 감사 추적을 일관 적용 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [NIST SP 800-145](https://csrc.nist.gov/pubs/sp/800/145/final): 클라우드 정의·특성
 - [OpenStack Architecture Design Guide](https://docs.openstack.org/arch-design/): 인프라 구성과 설계

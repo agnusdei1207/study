@@ -18,7 +18,7 @@ weight: 4
  규범·책임         신뢰 경계             연결·전송          지능·서비스 확장
 ```
 
-- 04 시스템은 **데이터를 실행하는 계산 자원과 운영 기반**을 설명하며, 네트워크·보안·AI 서비스가 올라가는 공통 하부 구조
+- 04 시스템은 **데이터를 실행하는 계산 자원과 운영 기반을** 설명하며, 네트워크·보안·AI 서비스가 올라가는 공통 하부 구조
 - 앞 과목 연결: SW의 실행 단위와 데이터의 저장 요구를 CPU·메모리·스토리지·OS가 구현
 - 뒤 과목 연결: 네트워크 연결, 보안 통제, AI 가속·클라우드 서비스의 성능·가용성 기반 제공
 
@@ -87,7 +87,7 @@ OS: Process → Scheduling → Synchronization → Virtual Memory
 
 ### 3. 가상화·클라우드
 
-- [가상화](./008_virtualization/), [하이퍼바이저](./061_hypervisor/), [가상머신](./085_virtual_machine/)
+- [하이퍼바이저](./061_hypervisor/), [가상머신](./085_virtual_machine/)
 - [컨테이너](./032_container/), [쿠버네티스](./012_kubernetes/), [서버리스](./003_serverless_computing/)
 - [클라우드 컴퓨팅](./013_cloud_computing/), [멀티 클라우드](./009_multi_cloud/), [서비스 모델](./109_cloud_computing_service_models/)
 

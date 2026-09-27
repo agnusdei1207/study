@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "107. 워크플로 스케줄링·백필"
+  order: 107
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,10 +27,10 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **DAG (Directed Acyclic Graph)**: 태스크 간 선후 관계를 순환 없이 표현한 방향 그래프
-- **워크플로 스케줄링(Workflow Scheduling)**: 의존성·자원·실행 조건에 따라 태스크를 배치하는 과정
-- **데이터 백필(Data Backfill)**: 과거 데이터 구간을 지정해 워크플로를 재실행하는 작업
-- **메이크스팬(Makespan)**: 워크플로 시작부터 최종 태스크 완료까지의 경과시간
+- **DAG (Directed Acyclic Graph)** : 태스크 간 선후 관계를 순환 없이 표현한 방향 그래프
+- **워크플로 스케줄링(Workflow Scheduling)** : 의존성·자원·실행 조건에 따라 태스크를 배치하는 과정
+- **데이터 백필(Data Backfill)** : 과거 데이터 구간을 지정해 워크플로를 재실행하는 작업
+- **메이크스팬(Makespan)** : 워크플로 시작부터 최종 태스크 완료까지의 경과시간
 
 </details>
 
@@ -40,7 +46,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **워크플로 스케줄링·데이터 백필**은 의존성에 따라 태스크를 배치하고 과거 데이터 구간을 재처리하는 기능 |
+| 정의 | **워크플로 스케줄링·데이터 백필은** 의존성에 따라 태스크를 배치하고 과거 데이터 구간을 재처리하는 기능 |
 | 목적 | 작업 흐름을 자동 실행하고 데이터 누락·변경을 보정 |
 
 ### Ⅱ. DAG 실행
@@ -75,7 +81,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **워크플로 스케줄링·데이터 백필**은 의존성에 따라 태스크를 배치하고 과거 데이터 구간을 재처리하는 기능 |
+| 정의 | **워크플로 스케줄링·데이터 백필은** 의존성에 따라 태스크를 배치하고 과거 데이터 구간을 재처리하는 기능 |
 | 목적 | 작업 흐름을 자동 실행하고 데이터 누락·변경을 보정 |
 
 ### Ⅱ. 의존성·실행
@@ -126,7 +132,7 @@ flowchart TD
 |---|---|
 | 재처리 완료만으로 업무 정합성이 보장되지 않음 | 재처리 전후 계보·건수·업무 지표를 검증 게이트로 설정 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Apache Airflow backfill](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/backfill.html): 과거 구간 워크플로 실행
 - [Apache Airflow DAG](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html): DAG 의존성 모델

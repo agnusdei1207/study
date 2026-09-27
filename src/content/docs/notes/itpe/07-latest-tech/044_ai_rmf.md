@@ -135,6 +135,7 @@ GOVERN은 다른 기능 전반을 뒷받침하며, MAP·MEASURE·MANAGE는 고�
 
 ---
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
 - 제138회 1교시 1번: NIST AI RMF의 개념·네 가지 기능·신뢰 가능한 AI 특성
 - NIST, [AI RMF Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/): 기능 간 관계와 비순차적 운영 특성 확인

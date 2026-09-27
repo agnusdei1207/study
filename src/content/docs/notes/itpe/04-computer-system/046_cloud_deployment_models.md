@@ -130,7 +130,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [NIST SP 800-145: The NIST Definition of Cloud Computing](https://csrc.nist.gov/pubs/sp/800/145/final)
 

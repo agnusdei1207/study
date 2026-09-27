@@ -3,7 +3,7 @@ sidebar:
   order: 38
   label: "038. 교착상태"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "교착상태(Deadlock)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 38
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "038"
 ---
 
@@ -135,7 +135,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - Abraham Silberschatz, Peter Baer Galvin, Greg Gagne, *Operating System Concepts*, Deadlocks
 - [MIT OpenCourseWare, 프로세스 동기화와 교착상태](https://live.ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c19/c19s1/).

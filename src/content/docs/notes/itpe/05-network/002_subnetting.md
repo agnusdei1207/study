@@ -147,7 +147,7 @@ IPv4 `/p`의 주소 수는 `2^(32-p)`. 일반적인 서브넷의 호스트 수�
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [RFC 4632: CIDR Address Assignment and Aggregation Plan](https://www.rfc-editor.org/info/rfc4632/)
 - [RFC 3021: Using 31-Bit Prefixes on IPv4 Point-to-Point Links](https://www.rfc-editor.org/info/rfc3021/)

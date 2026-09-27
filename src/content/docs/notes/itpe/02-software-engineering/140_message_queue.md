@@ -13,10 +13,10 @@ date: "2026-09-24T00:00:00+09:00"
 author: "Codex"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -29,22 +29,22 @@ extra:
 
 ## 30초 인출
 
-- 본질: **메시지 큐(Message Queue)**는 생산자와 소비자 사이에서 메시지를 중계·보관해 서로의 처리 시점을 분리하는 소프트웨어 구성요소
+- 본질: **메시지 큐(Message Queue)** 는 생산자와 소비자 사이에서 메시지를 중계·보관해 서로의 처리 시점을 분리하는 소프트웨어 구성요소
 - 메커니즘: 생산자 발행 → 브로커 보관·전달 → 소비자 처리 → 성공 확인 또는 실패 재처리·격리
 - 핵심 유의점: 전달 보장 수준과 중복 처리 가능성을 고려한 소비자 멱등성·재시도 정책
 
 <details>
 <summary>핵심 용어</summary>
 
-- **결합 분리(Decoupling)**: 생산자와 소비자가 서로의 IP 주소나 서버 상태를 알 필요 없이 오직 메시지 규격만을 매개로 독립적으로 동작하는 아키텍처적 특성
-- **피크 트래픽 완충(Traffic Leveling)**: 대규모 트래픽 유입 시 다운스트림 데이터베이스나 서버가 과부하로 쓰러지지 않도록 큐에 일시 보관하고 감당 가능한 속도로 꺼내 처리하는 버퍼링
-- **ACK(Acknowledgment)**: 소비자가 메시지 처리 결과를 브로커에 알리는 확인 응답
-- **DLQ(Dead Letter Queue)**: 정상 처리할 수 없는 메시지를 주 처리 경로에서 분리해 보관하는 큐
-- **At-least-once delivery**: 확인 응답이 없을 때 재전달될 수 있어 메시지 중복 가능성이 있는 전달 방식
-- **멱등성(Idempotency)**: 같은 메시지가 여러 번 처리돼도 업무 결과가 중복 반영되지 않도록 하는 성질
-- **CDC(Change Data Capture)**: 데이터베이스의 변경 사항을 읽어 외부 시스템에 전달하는 방식
-- **Transactional Outbox Pattern**: 업무 데이터와 발행할 이벤트를 같은 데이터베이스 트랜잭션에 기록한 뒤 별도 전달자가 메시지 브로커로 전달하는 패턴
-- **ACID(Atomicity, Consistency, Isolation, Durability)**: 데이터베이스 트랜잭션의 원자성·일관성·격리성·지속성 특성
+- **결합 분리(Decoupling)** : 생산자와 소비자가 서로의 IP 주소나 서버 상태를 알 필요 없이 오직 메시지 규격만을 매개로 독립적으로 동작하는 아키텍처적 특성
+- **피크 트래픽 완충(Traffic Leveling)** : 대규모 트래픽 유입 시 다운스트림 데이터베이스나 서버가 과부하로 쓰러지지 않도록 큐에 일시 보관하고 감당 가능한 속도로 꺼내 처리하는 버퍼링
+- **ACK(Acknowledgment)** : 소비자가 메시지 처리 결과를 브로커에 알리는 확인 응답
+- **DLQ(Dead Letter Queue)** : 정상 처리할 수 없는 메시지를 주 처리 경로에서 분리해 보관하는 큐
+- **At-least-once delivery** : 확인 응답이 없을 때 재전달될 수 있어 메시지 중복 가능성이 있는 전달 방식
+- **멱등성(Idempotency)** : 같은 메시지가 여러 번 처리돼도 업무 결과가 중복 반영되지 않도록 하는 성질
+- **CDC(Change Data Capture)** : 데이터베이스의 변경 사항을 읽어 외부 시스템에 전달하는 방식
+- **Transactional Outbox Pattern** : 업무 데이터와 발행할 이벤트를 같은 데이터베이스 트랜잭션에 기록한 뒤 별도 전달자가 메시지 브로커로 전달하는 패턴
+- **ACID(Atomicity, Consistency, Isolation, Durability)** : 데이터베이스 트랜잭션의 원자성·일관성·격리성·지속성 특성
 </details>
 
 ---
@@ -61,7 +61,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **메시지 큐**는 생산자와 소비자 사이에서 메시지를 중계·보관해 서로의 처리 시점을 분리하는 소프트웨어 구성요소 |
+| 정의 | **메시지 큐** 는 생산자와 소비자 사이에서 메시지를 중계·보관해 서로의 처리 시점을 분리하는 소프트웨어 구성요소 |
 | 목적 | 서비스 간 직접 연결을 줄이고 처리 부하·시간 차를 흡수 |
 
 ### Ⅱ. 발행·소비 관계
@@ -95,7 +95,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **메시지 큐**는 생산자와 소비자 사이에서 메시지를 중계·보관해 서로의 처리 시점을 분리하는 소프트웨어 구성요소 |
+| 정의 | **메시지 큐** 는 생산자와 소비자 사이에서 메시지를 중계·보관해 서로의 처리 시점을 분리하는 소프트웨어 구성요소 |
 | 목적 | 서비스 간 직접 연결을 줄이고 처리 부하·시간 차를 흡수 |
 
 ### 메시지 전달 방식의 구성 요소
@@ -171,3 +171,9 @@ extra:
 - [RabbitMQ, Consumer Acknowledgements and Publisher Confirms](https://www.rabbitmq.com/docs/confirms)
 - [Transactional Outbox Pattern](https://microservices.io/patterns/data/transactional-outbox)
 ---
+
+## 출제 이력과 검증 출처
+
+- **출제 상태:** 예상문제는 학습용 문항이며, 공식 기출 원문과 동일하다고 단정하지 않는다.
+- [검증 자료 1](https://www.rabbitmq.com/docs/confirms)
+- [검증 자료 2](https://microservices.io/patterns/data/transactional-outbox)

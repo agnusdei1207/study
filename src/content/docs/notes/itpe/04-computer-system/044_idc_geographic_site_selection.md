@@ -3,7 +3,7 @@ sidebar:
   order: 44
   label: "044. 데이터센터 입지 선정"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "데이터센터(IDC) 입지 선정"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 44
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "044"
 ---
 
@@ -134,7 +134,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [US DOE: Water and Energy Considerations During Data Center Consolidations](https://www.energy.gov/eere/femp/articles/guideline-water-and-energy-considerations-during-federal-data-center)
 - [NIST SP 800-34 Rev.1: Contingency Planning Guide](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final)

@@ -6,13 +6,13 @@ sidebar:
   order: 32
   label: "032. GraphRAG"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치

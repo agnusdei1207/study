@@ -3,7 +3,7 @@ sidebar:
   order: 36
   label: "036. SaaS"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "SaaS(Software as a Service)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 36
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "036"
 ---
 
@@ -132,7 +132,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [NIST CSRC: Software as a Service](https://csrc.nist.gov/glossary/term/Software_as_a_Service)
 - [NIST SP 800-145: The NIST Definition of Cloud Computing](https://csrc.nist.gov/pubs/sp/800/145/final)

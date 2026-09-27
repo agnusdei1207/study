@@ -18,26 +18,31 @@ extra:
   keyword_grade: "서브"
 ---
 
-> **로드맵 경로**: 소프트웨어공학 > 소프트웨어 아키텍처 및 구현 > 아키텍처 평가 > CBAM(Cost Benefit Analysis Method)
+
+## 지식 로드맵 내 현재 위치
+
+소프트웨어 공학 → 소프트웨어 개발·운영 → CBAM(Cost Benefit Analysis Method)
+
+> **로드맵 경로** : 소프트웨어공학 > 소프트웨어 아키텍처 및 구현 > 아키텍처 평가 > CBAM(Cost Benefit Analysis Method)
 
 ---
 
 ## 30초 인출
 
-- 본질: **CBAM(Cost Benefit Analysis Method)**은 아키텍처 대안의 비용·편익·불확실성을 비교해 투자 대안을 고르는 평가 방법
+- 본질: **CBAM(Cost Benefit Analysis Method)** 은 아키텍처 대안의 비용·편익·불확실성을 비교해 투자 대안을 고르는 평가 방법
 - 메커니즘: 품질 시나리오별 중요도와 유틸리티 변화로 편익을 추정 → 전략별 비용과 비교 → 예산 제약을 고려해 선택
 
 <details>
 <summary>핵심 용어</summary>
 
-- **CBAM(Cost Benefit Analysis Method)**: 아키텍처 전략들의 투입 비용 대비 비즈니스 효용을 정량화하여 ROI 기준 최적 대안을 도출하는 SEI 평가 기법
-- **SEI(Software Engineering Institute)**: CBAM 방법을 개발·발표한 카네기멜론대학교 소프트웨어공학 연구기관
-- **ATAM(Architecture Tradeoff Analysis Method)**: 아키텍처 품질속성 간의 상호작용과 위험·절충점을 분석하는 방법
-- **ROI(Return on Investment)**: 편익을 투자 비용과 비교해 투자 대안의 효율을 나타내는 비율
-- **SAAM(Software Architecture Analysis Method)**: 시나리오를 이용해 소프트웨어 아키텍처의 변경 영향 등을 분석하는 방법
-- **유틸리티 함수(Utility Function)**: 품질 속성 달성 수준(응답 시간, 가용성 등)에 대해 이해관계자가 느끼는 주관적 만족도를 0~100 점수로 환산한 값
-- **품질 속성 시나리오(Quality Attribute Scenario)**: 자극(Stimulus), 환경, 응답, 응답 척도(Response Measure)로 구성된 아키텍처 요구사항 구체화 도구
-- **FinOps(Cloud Financial Operations)**: 클라우드 인프라 아키텍처 변경에 따른 실시간 비용과 비즈니스 가치를 추적·최적화하는 재무 거버넌스
+- **CBAM(Cost Benefit Analysis Method)** : 아키텍처 전략들의 투입 비용 대비 비즈니스 효용을 정량화하여 ROI 기준 최적 대안을 도출하는 SEI 평가 기법
+- **SEI(Software Engineering Institute)** : CBAM 방법을 개발·발표한 카네기멜론대학교 소프트웨어공학 연구기관
+- **ATAM(Architecture Tradeoff Analysis Method)** : 아키텍처 품질속성 간의 상호작용과 위험·절충점을 분석하는 방법
+- **ROI(Return on Investment)** : 편익을 투자 비용과 비교해 투자 대안의 효율을 나타내는 비율
+- **SAAM(Software Architecture Analysis Method)** : 시나리오를 이용해 소프트웨어 아키텍처의 변경 영향 등을 분석하는 방법
+- **유틸리티 함수(Utility Function)** : 품질 속성 달성 수준(응답 시간, 가용성 등)에 대해 이해관계자가 느끼는 주관적 만족도를 0~100 점수로 환산한 값
+- **품질 속성 시나리오(Quality Attribute Scenario)** : 자극(Stimulus), 환경, 응답, 응답 척도(Response Measure)로 구성된 아키텍처 요구사항 구체화 도구
+- **FinOps(Cloud Financial Operations)** : 클라우드 인프라 아키텍처 변경에 따른 실시간 비용과 비즈니스 가치를 추적·최적화하는 재무 거버넌스
 
 </details>
 
@@ -64,7 +69,7 @@ extra:
 |---|---|
 | 시나리오 편익 | 중요도로 가중한 현재 유틸리티와 기대 유틸리티의 차이 |
 | 전략 편익 | 전략이 영향을 주는 시나리오별 편익의 합 |
-| ROI | 총 편익을 전략 도입 비용으로 나눈 값 |
+| 편익/비용 비율 | 추정 편익을 전략 도입 비용으로 나눈 값. 순편익 기반 ROI와 구분 |
 
 제언: 품질 목표와 기대 반응 수준, 비용 가정의 근거를 함께 기록
 ---
@@ -78,7 +83,7 @@ extra:
     ↓
 전략별 구현 비용 C 추정
     ↓
-CBAM 비교값: B / C
+편익/비용 비율: B / C
     ↓ 예산·일정 제약
 아키텍처 전략 우선순위 결정
 ```
@@ -112,18 +117,19 @@ CBAM 비교값: B / C
     ↓
 전략별 구현 비용 C 추정
     ↓
-CBAM 비교값: B / C
+편익/비용 비율: B / C
     ↓ 예산·일정 제약
 아키텍처 전략 우선순위 결정
 ```
 
 #### 2. CBAM 핵심 산출 수식 체계
-1. **아키텍처 전략 $S_i$의 총 편익 ($b_i$)**:
+1. **아키텍처 전략 $S_i$의 총 편익 ($b_i$)** :
    $$b_i = \sum_j \left( W_j \times (U_{ij} - U_{current, j}) \right)$$
    - $W_j$: 시나리오 $j$의 비즈니스 중요도 가중치.
    - $U_{ij} - U_{current, j}$: 전략 $S_i$ 적용 시 개선되는 유틸리티 증분 ($\Delta U$).
-2. **투자수익률 (ROI)**:
-   $$\text{ROI}_i = \frac{b_i}{C_i} \quad (C_i: \text{전략 } S_i \text{ 도입에 드는 총비용})$$
+2. **편익/비용 비율과 순편익 기반 ROI의 구분** :
+   $$\text{B/C}_i = \frac{b_i}{C_i},\qquad \text{ROI}_i = \frac{b_i-C_i}{C_i} \quad (C_i: \text{전략 } S_i \text{ 도입에 드는 총비용})$$
+   CBAM 원문에서 ROI를 정의하는 방식과 일반 재무적 ROI의 비용 포함 범위가 다를 수 있으므로, 실제 비교에서는 편익·비용의 산정 단위와 분모를 명시.
 
 #### 3. CBAM 수행 절차
 
@@ -166,7 +172,7 @@ CBAM 비교값: B / C
 | 이해관계자 판단과 비용·품질 추정에 불확실성이 있어 단일 ROI 값만으로 전략을 고르면 결과를 과신할 수 있음 | 전략별 추정 근거와 범위를 공개하고, 핵심 가정이 바뀔 때 순위가 어떻게 달라지는지 민감도 분석을 함께 제시 |
 ---
 
-## 참고 자료
+## 출제 이력과 검증 출처
 
 - [SEI, Using Economic Considerations to Choose Among Architecture Design Alternatives (CBAM)](https://insights.sei.cmu.edu/library/using-economic-considerations-to-choose-among-architecture-design-alternatives/)
 - [SEI, Making Architecture: The CBAM Steps and ROI Calculation](https://www.sei.cmu.edu/documents/696/2002_005_001_14084.pdf)

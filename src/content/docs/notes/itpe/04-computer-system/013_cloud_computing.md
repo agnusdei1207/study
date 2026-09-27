@@ -5,6 +5,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "013. 클라우드 컴퓨팅(Cloud Computing)"
+  order: 13
   badge:
     text: "기초"
 extra:

@@ -3,7 +3,7 @@ sidebar:
   order: 135
   label: "135. 빅데이터 플랫폼 아키텍처"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 135
 title: "빅데이터 플랫폼 아키텍처와 람다·카파·레이크하우스"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "135"
 ---
 
@@ -24,17 +24,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **빅데이터 플랫폼**은 대규모·다양한 데이터를 수집해 처리하고 업무에 제공하는 데이터 시스템
+- 본질: **빅데이터 플랫폼은** 대규모·다양한 데이터를 수집해 처리하고 업무에 제공하는 데이터 시스템
 - 메커니즘: 수집 → 저장 → 처리 → 서빙의 흐름을 공통 보안·품질·메타데이터 관리가 지원
 - 구분: Lambda·Kappa는 처리 파이프라인 설계, Lakehouse는 분석 저장·테이블 관리 구조
 
 <details>
 <summary>핵심 용어</summary>
 
-- **Lambda Architecture**: 배치 처리와 저지연 스트림 처리를 병행해 결과를 제공하는 구조
-- **Kappa Architecture**: 스트림 처리 경로를 중심으로 실시간 처리와 로그 재처리를 구성하는 구조
-- **Data Lakehouse**: 데이터 레이크의 유연한 저장과 분석용 테이블 관리 기능을 결합하려는 아키텍처 접근
-- **Change Data Capture (CDC)**: 원천 데이터베이스의 변경을 추적해 변경분을 다른 시스템으로 전달하는 방식
+- **Lambda Architecture** : 배치 처리와 저지연 스트림 처리를 병행해 결과를 제공하는 구조
+- **Kappa Architecture** : 스트림 처리 경로를 중심으로 실시간 처리와 로그 재처리를 구성하는 구조
+- **Data Lakehouse** : 데이터 레이크의 유연한 저장과 분석용 테이블 관리 기능을 결합하려는 아키텍처 접근
+- **Change Data Capture (CDC)** : 원천 데이터베이스의 변경을 추적해 변경분을 다른 시스템으로 전달하는 방식
 
 </details>
 
@@ -142,7 +142,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: KPC 기출검색 자료 기준 제126회 정보관리기술사 1교시의 빅데이터 플랫폼 계층·Lambda·Kappa 비교 문항. Q-net 원문은 확인하지 못한 상태.
+- 출제 이력: 제126회 정보관리기술사 1교시의 빅데이터 플랫폼 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
 - Michael Armbrust et al., [Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics](https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf), CIDR 2021.
 - Apache Iceberg 공식 문서, [Table Specification](https://iceberg.apache.org/spec/)
 

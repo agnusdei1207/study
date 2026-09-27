@@ -4,6 +4,8 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
+  label: "009. 멀티클라우드(Multi-Cloud)"
+  order: 9
   badge:
     text: "기초"
 extra:
@@ -18,9 +20,9 @@ extra:
 
 <div class="itpe-topic-path" aria-label="지식 경로"><span>클라우드 컴퓨팅</span><span>클라우드 운영전략</span><strong>멀티클라우드</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
-- 본질: **멀티클라우드**는 둘 이상의 클라우드 서비스를 업무 목적에 따라 선택·조합해 운영하는 전략
+- 본질: **멀티클라우드는** 둘 이상의 클라우드 서비스를 업무 목적에 따라 선택·조합해 운영하는 전략
 - 메커니즘: 워크로드 배치 원칙에 따라 공급자별 자원을 배치하고 공통 ID·정책·관측으로 관리
 - 주의: 복수 공급자 사용만으로 이식성이나 Active-Active가 보장되지 않으며, 연결·데이터 이동·운영 비용의 별도 관리 필요
 
@@ -152,7 +154,7 @@ flowchart TD
 |---|---|
 | 공급자별 ID·정책·데이터 운영이 달라지면 복잡성이 커지고, 이식 가능성도 실제 장애 상황에서 확인되지 않을 수 있음 | 공통 ID·정책·관측 기준을 적용하고, 중요 워크로드의 복구·이전 시험으로 필요한 이식 범위를 확인 |
 
-## 공식 검증 출처
+## 출제 이력과 검증 출처
 
 - [NIST SP 500-332 — Cloud Federation Reference Architecture](https://www.nist.gov/publications/nist-cloud-federation-reference-architecture-0)
 - 공식 기출 근거: 한국산업인력공단 Q-Net 정보관리기술사 135회 문제지
@@ -161,4 +163,4 @@ flowchart TD
 
 - [서버리스 컴퓨팅](./003_serverless_computing/)
 - [스토리지 유형 비교](./123_storage_type_comparison/)
-- [가상화](./008_virtualization/)
+- [하이퍼바이저](./061_hypervisor/)

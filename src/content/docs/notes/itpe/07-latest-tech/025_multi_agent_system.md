@@ -6,13 +6,13 @@ sidebar:
   order: 25
   label: "025. 멀티에이전트 시스템"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치

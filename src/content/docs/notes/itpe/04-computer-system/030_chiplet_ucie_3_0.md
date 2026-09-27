@@ -3,7 +3,7 @@ sidebar:
   order: 30
   label: "030. 칩렛과 UCIe 3.0"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 title: "칩렛과 UCIe 3.0"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 30
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "030"
 ---
 
@@ -145,7 +145,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [UCIe Consortium: Specifications](https://www.uciexpress.org/specifications)
 - [UCIe Consortium: 3.0 Specification](https://www.uciexpress.org/post/ucie-3-0-specification-redefining-chiplet-interconnects)

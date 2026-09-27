@@ -5,6 +5,8 @@ date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "011. 엣지 컴퓨팅(Edge Computing)"
+  order: 11
   badge:
     text: "기초"
 extra:

@@ -3,7 +3,7 @@ sidebar:
   order: 70
   label: "070. 랙스케일 AI 시스템"
   badge:
-    text: "응용"
+    text: "기초"
     variant: note
 title: "랙스케일 AI 시스템 (GB200 NVL72·Vera Rubin NVL72)"
 author: "GPT-6"
@@ -13,7 +13,7 @@ tags:
 weight: 70
 extra:
   model: "GPT-6"
-  keyword_grade: "응용"
+  keyword_grade: "기초"
   question_no: "070"
 ---
 
@@ -29,14 +29,14 @@ AI 인프라 → 가속기 시스템 → 랙스케일 통합 → NVLink 패브�
 <details>
 <summary>핵심 용어</summary>
 
-- **랙스케일 시스템 (Rack-Scale System)**: 서버·가속기·네트워크·전력·냉각을 랙 단위 시스템으로 설계·운영하는 방식
-- **GB200 NVL72**: NVIDIA의 72 Blackwell GPU·36 Grace CPU를 NVLink 도메인으로 연결하는 랙 규모 시스템
-- **Vera Rubin NVL72**: NVIDIA가 2026년 발표한 72 Rubin GPU·36 Vera CPU 기반 차세대 랙 시스템
-- **NVLink**: NVIDIA GPU 사이의 고속 스케일업 인터커넥트
-- **NVSwitch**: NVLink를 여러 GPU 사이에 스위칭하는 칩
-- **GPU (Graphics Processing Unit)**: 대규모 병렬 계산에 특화된 프로세서
-- **Scale-up / Scale-out**: 각각 한 시스템·랙 안에서 자원을 확장하는 방식과 여러 시스템·랙을 네트워크로 확장하는 방식
-- **D2C (Direct-to-Chip Cooling)**: 냉각판을 칩에 가까이 배치해 열을 액체 냉각 회로로 전달하는 방식
+- **랙스케일 시스템 (Rack-Scale System)** : 서버·가속기·네트워크·전력·냉각을 랙 단위 시스템으로 설계·운영하는 방식
+- **GB200 NVL72** : NVIDIA의 72 Blackwell GPU·36 Grace CPU를 NVLink 도메인으로 연결하는 랙 규모 시스템
+- **Vera Rubin NVL72** : NVIDIA가 2026년 발표한 72 Rubin GPU·36 Vera CPU 기반 차세대 랙 시스템
+- **NVLink** : NVIDIA GPU 사이의 고속 스케일업 인터커넥트
+- **NVSwitch** : NVLink를 여러 GPU 사이에 스위칭하는 칩
+- **GPU (Graphics Processing Unit)** : 대규모 병렬 계산에 특화된 프로세서
+- **Scale-up / Scale-out** : 각각 한 시스템·랙 안에서 자원을 확장하는 방식과 여러 시스템·랙을 네트워크로 확장하는 방식
+- **D2C (Direct-to-Chip Cooling)** : 냉각판을 칩에 가까이 배치해 열을 액체 냉각 회로로 전달하는 방식
 </details>
 
 ---
@@ -155,8 +155,8 @@ GB200 NVL72는 NVIDIA 자료 기준 72 Blackwell GPU·36 Grace CPU·9개 NVLink 
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**: 기출 확인 없음; 랙스케일 시스템 개념 중심 예상문제
-- **검증 출처**:
+- **기출 이력** : 기출 확인 없음; 랙스케일 시스템 개념 중심 예상문제
+- **검증 출처** :
   - [NVIDIA: DGX GB Rack Scale Systems User Guide](https://docs.nvidia.com/dgx/dgxgb200-user-guide/)
   - [NVIDIA: GB200 NVL72 specifications](https://www.nvidia.com/en-us/data-center/gb200-nvl72/)
   - [NVIDIA: Vera Rubin NVL72 announcement](https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Opens-Agentic-AI-Frontier/)

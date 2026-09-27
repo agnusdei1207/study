@@ -4,11 +4,13 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
+  label: "119. XaaS(Everything as a Service)"
+  order: 119
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치

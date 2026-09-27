@@ -3,7 +3,7 @@ sidebar:
   order: 159
   label: "159. 함수적 종속성(Functional Dependency)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "함수적 종속성 (Functional Dependency, FD)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 159
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "159"
 ---
 
@@ -35,14 +35,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **함수적 종속성 (Functional Dependency, FD)**: 릴레이션의 합법적 상태에서 $X$ 값이 $Y$ 값을 결정하는 속성 간 제약
-- **결정자 (Determinant)**: 종속 속성의 값을 결정하는 속성 집합 $X$
-- **종속자 (Dependent)**: 결정자 $X$에 의해 값이 정해지는 속성 집합 $Y$
-- **속성 폐포 (Attribute Closure, $X^+$)**: 함수 종속성 집합에 따라 $X$가 결정하는 모든 속성의 집합
-- **암스트롱 공리 (Armstrong's Axioms)**: 함수적 종속성을 추론하는 건전하고 완전한 기본 규칙 집합
-- **제2정규형 (Second Normal Form, 2NF)**: 후보키 일부에 종속하는 비주요 속성이 없는 정규형
-- **제3정규형 (Third Normal Form, 3NF)**: 모든 비자명 함수 종속성에서 결정자가 슈퍼키이거나 종속 속성이 주요 속성인 정규형
-- **보이스-코드 정규형 (Boyce–Codd Normal Form, BCNF)**: 모든 비자명 함수 종속성의 결정자가 슈퍼키인 정규형
+- **함수적 종속성 (Functional Dependency, FD)** : 릴레이션의 합법적 상태에서 $X$ 값이 $Y$ 값을 결정하는 속성 간 제약
+- **결정자 (Determinant)** : 종속 속성의 값을 결정하는 속성 집합 $X$
+- **종속자 (Dependent)** : 결정자 $X$에 의해 값이 정해지는 속성 집합 $Y$
+- **속성 폐포 (Attribute Closure, $X^+$)** : 함수 종속성 집합에 따라 $X$가 결정하는 모든 속성의 집합
+- **암스트롱 공리 (Armstrong's Axioms)** : 함수적 종속성을 추론하는 건전하고 완전한 기본 규칙 집합
+- **제2정규형 (Second Normal Form, 2NF)** : 후보키 일부에 종속하는 비주요 속성이 없는 정규형
+- **제3정규형 (Third Normal Form, 3NF)** : 모든 비자명 함수 종속성에서 결정자가 슈퍼키이거나 종속 속성이 주요 속성인 정규형
+- **보이스-코드 정규형 (Boyce–Codd Normal Form, BCNF)** : 모든 비자명 함수 종속성의 결정자가 슈퍼키인 정규형
 
 </details>
 
@@ -82,7 +82,7 @@ extra:
 - 제언: 업무 규칙에서 결정자와 종속자를 확인해 논리 모델에 기록
 ## 2~4교시 예상문제 (25점)
 
-> 함수적 종속성에 관하여 설명하시오. (예상·25점)
+> 함수적 종속성의 유형과 암스트롱 공리를 설명하고, 후보키 판정과 정규화에 적용하는 절차를 제시하시오. (예상·25점)
 
 ---
 
@@ -164,10 +164,10 @@ flowchart TD
 
 - [PostgreSQL 플래너 통계의 함수 종속성 설명](https://www.postgresql.org/docs/current/planner-stats.html): X 값이 Y 값을 결정한다는 함수 종속성의 정의와 추정 활용
 
-- **기출 이력**:
+- **기출 이력** :
   - 제84회 정보관리 1교시: 관계 데이터 모델에서 함수적 종속성(FD)의 개념, 유형(완전, 부분, 이행) 및 암스트롱의 공리
   - 제114회 컴퓨터시스템응용 1교시: 함수적 종속성과 제2정규형, 제3정규형의 관계
-- **검증 출처**:
+- **검증 출처** :
   - W.W. Armstrong, "Dependency Structures of Data Base Relationships", IFIP Congress, 1974
   - Abraham Silberschatz et al., "Database System Concepts 7th Edition", Chapter 14 Relational Database Design
   - C.J. Date, "An Introduction to Database Systems 8th Edition", Functional Dependencies
@@ -175,6 +175,6 @@ flowchart TD
 
 ## 연결 토픽
 
-- 상위 토픽: [03-024 정규화 종합](./024_normalization_overview.md)
+- 상위 토픽: [정규화](./019_normalization.md)
 - 선수 토픽: [03-157 키(Key)](./157_key.md)
-- 후속 토픽: [03-028 제2정규형(2NF)](./028_2nf.md), [03-029 제3정규형(3NF)](./029_3nf.md), [03-153 BCNF](./153_bcnf.md)
+- 후속 토픽: [BCNF](./153_bcnf.md), [4NF·5NF](./033_4nf_5nf.md)

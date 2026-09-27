@@ -4,6 +4,8 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
+  label: "122. 프로세스 동기화 기법(뮤텍스·세마포어·모니터)"
+  order: 122
   badge:
     text: "기초"
 extra:

@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "118. 안드로이드(Android)"
+  order: 118
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **Android**: Linux 커널 기반의 오픈소스 모바일 소프트웨어 플랫폼
-- **ART (Android Runtime)**: Android 앱 코드를 실행하는 런타임 환경
-- **HAL (Hardware Abstraction Layer)**: 하드웨어 기능을 상위 프레임워크에 표준 인터페이스로 제공하는 계층
-- **Binder IPC (Binder Interprocess Communication)**: Android 프로세스·서비스 사이의 프로세스 간 통신 메커니즘
-- **Zygote**: 앱 프로세스 생성에 활용되는 Android 시스템 프로세스
+- **Android** : Linux 커널 기반의 오픈소스 모바일 소프트웨어 플랫폼
+- **ART (Android Runtime)** : Android 앱 코드를 실행하는 런타임 환경
+- **HAL (Hardware Abstraction Layer)** : 하드웨어 기능을 상위 프레임워크에 표준 인터페이스로 제공하는 계층
+- **Binder IPC (Binder Interprocess Communication)** : Android 프로세스·서비스 사이의 프로세스 간 통신 메커니즘
+- **Zygote** : 앱 프로세스 생성에 활용되는 Android 시스템 프로세스
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Android**는 Linux 커널 기반의 오픈소스 모바일 소프트웨어 플랫폼 |
+| 정의 | **Android는** Linux 커널 기반의 오픈소스 모바일 소프트웨어 플랫폼 |
 | 목적 | 다양한 장치에서 앱 실행·시스템 서비스·하드웨어 접근 제공 |
 
 ### Ⅱ. 플랫폼 계층
@@ -79,7 +85,7 @@ Binder IPC는 앱·시스템 프로세스 사이 서비스 호출과 데이터 �
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Android**는 Linux 커널 기반의 오픈소스 모바일 소프트웨어 플랫폼 |
+| 정의 | **Android는** Linux 커널 기반의 오픈소스 모바일 소프트웨어 플랫폼 |
 | 목적 | 다양한 장치에서 앱 실행·시스템 서비스·하드웨어 접근 제공 |
 
 ### Ⅱ. 플랫폼 구성
@@ -132,7 +138,7 @@ flowchart TD
 |---|---|
 | 장치·OS 차이로 실제 동작과 성능이 달라질 수 있음 | 지원 장치 매트릭스와 프로세스 종료·IPC·권한 회귀시험을 유지 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Android platform architecture](https://developer.android.com/guide/platform): 플랫폼 계층·ART·HAL
 - [Android Binder overview](https://source.android.com/docs/core/architecture/ipc/binder-overview): Binder IPC

@@ -3,7 +3,7 @@ sidebar:
   order: 70
   label: "070. 참조 무결성"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "참조 무결성 (Referential Integrity) 및 외래키 연쇄 동작 (CASCADE, RESTRICT)"
 author: "Codex"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 70
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "070"
 ---
 
@@ -24,19 +24,19 @@ extra:
 
 ## 30초 인출
 
-- 본질: **참조 무결성(Referential Integrity)**은 외래키가 부모 테이블의 유효한 키를 참조하도록 유지하는 제약
+- 본질: **참조 무결성(Referential Integrity)은** 외래키가 부모 테이블의 유효한 키를 참조하도록 유지하는 제약
 - 메커니즘: 자식 데이터 입력·수정과 부모 데이터 삭제·수정 시 참조 관계를 검사하고, 정의한 연쇄 동작을 적용
 
 <details><summary>핵심 용어</summary>
 
-- **참조 무결성(Referential Integrity)**: 외래키 값이 참조 대상의 유효한 키를 가리키도록 보장하는 데이터 제약
-- **외래키(Foreign Key, FK)**: 다른 테이블의 기본키나 고유 키를 참조하는 열 또는 열의 조합
-- **기본키(Primary Key, PK)**: 테이블 행을 고유하게 식별하는 키
-- **참조 동작(Referential Action)**: 참조된 부모 키의 삭제·수정 시 자식 행을 처리하는 규칙
-- **고아 행(Orphan Row)**: 유효한 부모 행과 연결되지 않는 자식 행
-- **DDL (Data Definition Language)**: 데이터베이스 객체와 제약조건을 정의·변경하는 SQL 명령어 범주
-- **CASCADE**: 부모 키의 삭제·수정에 따라 참조 자식 행에도 지정 변경을 적용하는 참조 동작
-- **RESTRICT**: 참조 자식 행이 남아 있는 부모 키의 삭제·수정을 제한하는 참조 동작
+- **참조 무결성(Referential Integrity)** : 외래키 값이 참조 대상의 유효한 키를 가리키도록 보장하는 데이터 제약
+- **외래키(Foreign Key, FK)** : 다른 테이블의 기본키나 고유 키를 참조하는 열 또는 열의 조합
+- **기본키(Primary Key, PK)** : 테이블 행을 고유하게 식별하는 키
+- **참조 동작(Referential Action)** : 참조된 부모 키의 삭제·수정 시 자식 행을 처리하는 규칙
+- **고아 행(Orphan Row)** : 유효한 부모 행과 연결되지 않는 자식 행
+- **DDL (Data Definition Language)** : 데이터베이스 객체와 제약조건을 정의·변경하는 SQL 명령어 범주
+- **CASCADE** : 부모 키의 삭제·수정에 따라 참조 자식 행에도 지정 변경을 적용하는 참조 동작
+- **RESTRICT** : 참조 자식 행이 남아 있는 부모 키의 삭제·수정을 제한하는 참조 동작
 
 </details>
 

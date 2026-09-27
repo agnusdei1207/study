@@ -127,6 +127,7 @@ extra:
 
 ---
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
 - 제140회 1교시 13번: 프롬프트 엔지니어링과 하네스 엔지니어링 비교
 - OpenAI, [Harness Engineering](https://openai.com/index/harness-engineering/): 모델 실행 환경을 둘러싼 시스템 설계 개념 참고

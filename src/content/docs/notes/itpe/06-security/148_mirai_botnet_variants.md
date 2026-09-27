@@ -4,9 +4,19 @@ author: "OpenAI"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  label: "148. Mirai 봇넷"
+  badge:
+    text: "응용"
+    variant: note
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
+
+## 지식 로드맵 내 현재 위치
+
+정보보안 → 악성코드 → 봇넷
 
 ## 30초 인출
 
@@ -17,18 +27,18 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **Mirai 봇넷**: Mirai 악성코드에 감염되어 명령제어 서버의 지시를 받는 IoT 기기 집합.
-- **IoT(Internet of Things)**: 인터넷에 연결되어 데이터를 주고받는 기기와 서비스.
-- **봇(Bot)**: 공격자의 명령에 따라 자동으로 동작하는 감염 기기.
-- **C2(Command and Control)**: 감염 기기에 지시를 내리는 명령제어 체계.
-- **DDoS(Distributed Denial of Service)**: 다수의 기기에서 트래픽을 보내 대상 서비스의 이용을 방해하는 공격.
+- **Mirai 봇넷** : Mirai 악성코드에 감염되어 명령제어 서버의 지시를 받는 IoT 기기 집합.
+- **IoT(Internet of Things)** : 인터넷에 연결되어 데이터를 주고받는 기기와 서비스.
+- **봇(Bot)** : 공격자의 명령에 따라 자동으로 동작하는 감염 기기.
+- **C2(Command and Control)** : 감염 기기에 지시를 내리는 명령제어 체계.
+- **DDoS(Distributed Denial of Service)** : 다수의 기기에서 트래픽을 보내 대상 서비스의 이용을 방해하는 공격.
 </details>
 
 ---
 
 ## 1교시 예상문제 (10점)
 
-> Mirai 봇넷의 감염·제어 구조와 주요 대응 방안을 설명하시오. *(예상문제)*
+> Mirai 봇넷의 감염·제어 구조와 주요 대응 방안을 설명하시오. (예상·10점)
 
 ---
 
@@ -38,7 +48,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **Mirai 봇넷**은 취약한 IoT 기기를 감염·제어해 DDoS 등에 동원하는 기기 집합 |
+| 정의 | **Mirai 봇넷** 은 취약한 IoT 기기를 감염·제어해 DDoS 등에 동원하는 기기 집합 |
 | 목적 | 감염 경로와 제어 구조를 파악해 확산과 서비스 장애 예방 |
 
 ### Ⅱ. 감염·제어 구조
@@ -65,7 +75,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> Mirai 봇넷의 감염·제어 원리를 설명하고 IoT 기기와 네트워크 차원의 대응체계를 제시하시오. *(25점 예상문제)*
+> Mirai 봇넷의 감염·제어 원리를 설명하고 IoT 기기와 네트워크 차원의 대응체계를 제시하시오. (예상·25점)
 
 ---
 
@@ -75,7 +85,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **Mirai 봇넷**은 취약한 IoT 기기를 감염·제어해 DDoS 등에 동원하는 기기 집합 |
+| 정의 | **Mirai 봇넷** 은 취약한 IoT 기기를 감염·제어해 DDoS 등에 동원하는 기기 집합 |
 | 목적 | 감염 경로와 제어 구조를 파악해 확산과 서비스 장애 예방 |
 
 기본 자격증명과 외부로 열린 관리 인터페이스가 대표적인 초기 침투 조건. Mirai의 모든 후속 IoT 봇넷을 같은 변종으로 묶지 않는 구분 필요.
@@ -141,6 +151,6 @@ extra:
 
 ---
 
-## 참고자료
+## 출제 이력과 검증 출처
 
 - [USENIX Security 2017, Understanding the Mirai Botnet](https://www.usenix.org/system/files/conference/usenixsecurity17/sec17-antonakakis.pdf).

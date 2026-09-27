@@ -3,7 +3,7 @@ sidebar:
   order: 61
   label: "061. 시계열 실시간 이상 탐지"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "시계열 실시간 이상 탐지 (Time Series Real-time Anomaly Detection)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 61
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "061"
 ---
 
@@ -23,17 +23,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **시계열 이상 탐지**는 시간 순서와 맥락을 고려해 평소 패턴에서 벗어난 관측이나 구간을 찾는 분석
+- 본질: **시계열 이상 탐지는** 시간 순서와 맥락을 고려해 평소 패턴에서 벗어난 관측이나 구간을 찾는 분석
 - 메커니즘: 시간·업무 특성에 맞는 정상 기준을 만들고 새 관측을 비교해 이상 점수나 경보를 산출
 
 <details><summary>핵심 용어</summary>
 
-- **시계열 이상 탐지(Time Series Anomaly Detection)**: 시간 순서가 있는 데이터에서 정상 패턴과 다른 관측·구간을 찾는 분석
-- **포인트 이상(Point Anomaly)**: 개별 관측값이 주변 기준에서 벗어난 경우
-- **맥락 이상(Contextual Anomaly)**: 시간·상황 맥락을 고려할 때 비정상인 관측
-- **집단 이상(Collective Anomaly)**: 개별 값보다 관측값의 연속 패턴이 비정상인 구간
-- **지수 가중 이동 평균(Exponentially Weighted Moving Average, EWMA)**: 최근 관측에 더 큰 가중치를 주어 수준 변화를 추적하는 통계량
-- **워터마크(Watermark)**: 스트림 처리에서 이벤트 시간의 진행 정도를 나타내는 표시
+- **시계열 이상 탐지(Time Series Anomaly Detection)** : 시간 순서가 있는 데이터에서 정상 패턴과 다른 관측·구간을 찾는 분석
+- **포인트 이상(Point Anomaly)** : 개별 관측값이 주변 기준에서 벗어난 경우
+- **맥락 이상(Contextual Anomaly)** : 시간·상황 맥락을 고려할 때 비정상인 관측
+- **집단 이상(Collective Anomaly)** : 개별 값보다 관측값의 연속 패턴이 비정상인 구간
+- **지수 가중 이동 평균(Exponentially Weighted Moving Average, EWMA)** : 최근 관측에 더 큰 가중치를 주어 수준 변화를 추적하는 통계량
+- **워터마크(Watermark)** : 스트림 처리에서 이벤트 시간의 진행 정도를 나타내는 표시
 
 </details>
 

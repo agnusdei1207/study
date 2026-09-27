@@ -4,11 +4,13 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-network"]
 sidebar:
+  label: "056. FSO(Free Space Optics) 통신"
   badge:
-    text: "서브"
+    text: "응용"
+    variant: note
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -34,7 +36,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> FSO 통신의 개념과 기본 구조를 설명하시오. (예상)
+> FSO 통신의 개념과 기본 구조를 설명하시오. (예상·10점)
 
 ---
 
@@ -77,7 +79,7 @@ PAT(Pointing, Acquisition and Tracking)
 
 ## 2~4교시 예상문제 (25점)
 
-> FSO 통신의 구성과 동작을 설명하고, 모바일·단거리 백홀 적용 시 링크 설계 고려사항을 제시하시오. (예상)
+> FSO 통신의 구성과 동작을 설명하고, 모바일·단거리 백홀 적용 시 링크 설계 고려사항을 제시하시오. (예상·25점)
 
 ---
 

@@ -24,7 +24,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **t-검정**은 모집단 분산을 모를 때 표본 자료로 평균에 관한 가설을 검정하는 방법
+- 본질: **t-검정은** 모집단 분산을 모를 때 표본 자료로 평균에 관한 가설을 검정하는 방법
 - 메커니즘: 표본평균과 기준 평균의 차이를 표준오차로 나눈 t-통계량을 구하고, 자유도에 맞는 t-분포로 판단
 - 유형 구분: 기준값과 한 집단은 단일표본, 서로 다른 두 집단은 독립표본, 같은 대상의 짝지은 관측값은 대응표본 t-검정
 
@@ -158,8 +158,8 @@ flowchart TD
 ## 출제 이력과 검증 출처
 
 - 정보관리기술사 제132회 2교시 1번: 중심극한정리, t-검정, z-검정
-- 컴퓨터시스템응용기술사 제131회 1교시: 독립표본 t-검정과 대응표본 t-검정
-- 정보관리기술사 제121회 1교시: 가설검정의 오류와 t-검정
+- 컴퓨터시스템응용기술사 제131회 1교시: 독립표본 t-검정과 대응표본 t-검정 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
+- 정보관리기술사 제121회 1교시: 가설검정의 오류와 t-검정 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - [NIST/SEMATECH Engineering Statistics Handbook: Two-Sample t-Test](https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm)
 - [R stats 공식 문서: Student's t-Test](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html)
 - Gosset, W. S. (1908), “The Probable Error of a Mean,” *Biometrika*

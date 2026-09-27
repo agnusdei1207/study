@@ -4,9 +4,19 @@ author: "OpenAI"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  label: "162. 큐싱(QR Code Phishing)"
+  badge:
+    text: "서브"
+    variant: note
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
+
+## 지식 로드맵 내 현재 위치
+
+정보보안 → 사회공학 공격 → QR 피싱
 
 ## 30초 인출
 
@@ -17,18 +27,18 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **큐싱(QR Code Phishing)**: QR코드를 매개로 악성 주소에 접속하게 해 정보 입력·결제·앱 설치를 유도하는 피싱.
-- **QR(Quick Response) 코드**: 문자·주소 등을 기계가 읽을 수 있도록 2차원으로 표현한 코드.
-- **피싱(Phishing)**: 신뢰하는 기관·사람을 사칭해 정보를 빼내거나 위험한 행동을 유도하는 공격.
-- **세션 쿠키**: 웹 서비스가 로그인 상태를 식별하는 데 쓰는 값.
-- **MFA(Multi-Factor Authentication)**: 서로 다른 인증 요소를 둘 이상 사용하는 방식.
+- **큐싱(QR Code Phishing)** : QR코드를 매개로 악성 주소에 접속하게 해 정보 입력·결제·앱 설치를 유도하는 피싱.
+- **QR(Quick Response) 코드** : 문자·주소 등을 기계가 읽을 수 있도록 2차원으로 표현한 코드.
+- **피싱(Phishing)** : 신뢰하는 기관·사람을 사칭해 정보를 빼내거나 위험한 행동을 유도하는 공격.
+- **세션 쿠키** : 웹 서비스가 로그인 상태를 식별하는 데 쓰는 값.
+- **MFA(Multi-Factor Authentication)** : 서로 다른 인증 요소를 둘 이상 사용하는 방식.
 </details>
 
 ---
 
 ## 1교시 예상문제 (10점)
 
-> 큐싱의 공격 흐름과 예방·대응 방법을 설명하시오. *(예상문제)*
+> 큐싱의 공격 흐름과 예방·대응 방법을 설명하시오. (예상·10점)
 
 ---
 
@@ -38,7 +48,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **큐싱(QR Code Phishing)**은 악성 주소가 담긴 QR코드로 가짜 화면·앱에 접근하게 만드는 피싱 |
+| 정의 | **큐싱(QR Code Phishing)** 은 악성 주소가 담긴 QR코드로 가짜 화면·앱에 접근하게 만드는 피싱 |
 | 목적 | QR코드 출처와 이동 주소를 확인해 계정·결제정보 탈취 예방 |
 
 ### Ⅱ. 공격과 방어
@@ -63,7 +73,7 @@ QR코드 노출
 
 ## 2~4교시 예상문제 (25점)
 
-> 큐싱의 공격 경로와 일반 피싱과 다른 탐지 어려움을 설명하고 조직의 대응체계를 제시하시오. *(25점 예상문제)*
+> 큐싱의 공격 경로와 일반 피싱과 다른 탐지 어려움을 설명하고 조직의 대응체계를 제시하시오. (예상·25점)
 
 ---
 
@@ -73,7 +83,7 @@ QR코드 노출
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **큐싱(QR Code Phishing)**은 악성 주소가 담긴 QR코드로 가짜 화면·앱에 접근하게 만드는 피싱 |
+| 정의 | **큐싱(QR Code Phishing)** 은 악성 주소가 담긴 QR코드로 가짜 화면·앱에 접근하게 만드는 피싱 |
 | 목적 | QR코드 출처와 이동 주소를 확인해 계정·결제정보 탈취 예방 |
 
 QR코드는 주소를 육안으로 바로 읽기 어려워 이메일에서 휴대전화로 이동할 때 기존 URL 검사 경계가 달라질 수 있음.
@@ -135,7 +145,7 @@ QR 수신
 
 ---
 
-## 참고자료
+## 출제 이력과 검증 출처
 
 - [FBI, malicious QR code spearphishing alert](https://www.fbi.gov/file-repository/cyber-alerts/north-korean-kimsuky-actors-leverage-malicious-qr.pdf/view).
 - [FBI, QR code scam guidance](https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-building-a-digital-defense-against-qr-code-scams).

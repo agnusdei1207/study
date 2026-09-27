@@ -1,9 +1,10 @@
 ---
 title: "메타휴리스틱"
 sidebar:
+  label: "098. 메타휴리스틱"
   order: 98
   badge:
-    text: "서브"
+    text: "응용"
     variant: note
 author: "Gemini 3.8 Flash"
 date: "2026-09-24T00:00:00+09:00"
@@ -11,7 +12,7 @@ tags:
   - "notes-computer-system"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
   question_no: "098"
 
 ---
@@ -28,12 +29,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **메타휴리스틱(Metaheuristic)**: 탐색 방향과 후보 갱신을 안내하는 상위 탐색 전략
-- **휴리스틱(Heuristic)**: 문제 구조나 경험 규칙으로 해를 빠르게 구성·개선하는 방법
-- **탐색(Exploration)**: 해 공간의 새로운 영역을 조사하는 과정
-- **활용(Exploitation)**: 유망 후보 주변을 더 깊게 살피는 과정
-- **담금질 기법(Simulated Annealing)**: 매개변수에 따라 열등한 이웃해도 확률적으로 수용하는 기법
-- **유전 알고리즘(Genetic Algorithm)**: 후보 집단에 선택·교차·변이 연산을 적용하는 기법
+- **메타휴리스틱(Metaheuristic)** : 탐색 방향과 후보 갱신을 안내하는 상위 탐색 전략
+- **휴리스틱(Heuristic)** : 문제 구조나 경험 규칙으로 해를 빠르게 구성·개선하는 방법
+- **탐색(Exploration)** : 해 공간의 새로운 영역을 조사하는 과정
+- **활용(Exploitation)** : 유망 후보 주변을 더 깊게 살피는 과정
+- **담금질 기법(Simulated Annealing)** : 매개변수에 따라 열등한 이웃해도 확률적으로 수용하는 기법
+- **유전 알고리즘(Genetic Algorithm)** : 후보 집단에 선택·교차·변이 연산을 적용하는 기법
 
 </details>
 
@@ -49,7 +50,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **메타휴리스틱**은 여러 최적화 문제에서 후보해 탐색을 안내하는 상위 전략 |
+| 정의 | **메타휴리스틱은** 여러 최적화 문제에서 후보해 탐색을 안내하는 상위 전략 |
 | 목적 | 제한된 계산 자원 안에서 유용한 후보해를 찾도록 지원 |
 
 ### Ⅱ. 탐색 원리
@@ -86,7 +87,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **메타휴리스틱**은 여러 최적화 문제에서 후보해 탐색을 안내하는 상위 전략 |
+| 정의 | **메타휴리스틱은** 여러 최적화 문제에서 후보해 탐색을 안내하는 상위 전략 |
 | 목적 | 제한된 계산 자원 안에서 유용한 후보해를 찾도록 지원 |
 
 ### Ⅱ. 공통 탐색 구조
@@ -144,6 +145,6 @@ flowchart TD
 |---|---|
 | 알고리즘 이름만으로 업무의 해 품질을 보장할 수 없음 | 업무 제약과 데이터 규모를 반영한 기준 사례로 재현 가능한 비교시험 후 채택 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Wolpert·Macready, No Free Lunch Theorems for Optimization](https://www.cs.ubc.ca/~hutter/earg/papers07/00585893.pdf): 평균 성능 정리의 적용 전제

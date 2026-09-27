@@ -1,10 +1,16 @@
 ---
 title: "3-way handshake"
-author: "GPT-6"
+author: "Codex"
 date: "2026-09-24T21:25:00+09:00"
 tags:
   - "notes-network"
+sidebar:
+  label: "052. 3-way handshake"
+  badge:
+    text: "서브"
+    variant: note
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **TCP (Transmission Control Protocol)**: 양 끝점 간 연결 상태와 순서·재전송을 관리하는 전송 계층 프로토콜
-- **3-way handshake**: TCP 연결 개시 시 SYN·SYN-ACK·ACK를 교환하는 절차
-- **ISN (Initial Sequence Number)**: 각 TCP 끝점이 연결에서 시작하는 순서 번호
-- **SYN backlog**: 서버가 SYN을 받은 뒤 최종 ACK를 기다리는 미완료 연결 상태를 관리하는 큐
-- **SYN cookie**: SYN flood 상황에서 연결 정보를 큐에 저장하는 부담을 줄이도록 응답 순서 번호에 상태 일부를 부호화하는 기법
+- **TCP (Transmission Control Protocol)** : 양 끝점 간 연결 상태와 순서·재전송을 관리하는 전송 계층 프로토콜
+- **3-way handshake** : TCP 연결 개시 시 SYN·SYN-ACK·ACK를 교환하는 절차
+- **ISN (Initial Sequence Number)** : 각 TCP 끝점이 연결에서 시작하는 순서 번호
+- **SYN backlog** : 서버가 SYN을 받은 뒤 최종 ACK를 기다리는 미완료 연결 상태를 관리하는 큐
+- **SYN cookie** : SYN flood 상황에서 연결 정보를 큐에 저장하는 부담을 줄이도록 응답 순서 번호에 상태 일부를 부호화하는 기법
 
 </details>
 
@@ -33,7 +39,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> TCP 3-way handshake의 개념과 SYN·SYN-ACK·ACK를 이용한 연결 수립 절차를 설명하시오. (예상)
+> TCP 3-way handshake의 개념과 SYN·SYN-ACK·ACK를 이용한 연결 수립 절차를 설명하시오. (예상·10점)
 
 ---
 
@@ -64,7 +70,7 @@ ESTABLISHED                        ESTABLISHED
 
 ## 2~4교시 예상문제 (25점)
 
-> TCP 3-way handshake의 순서 번호 교환과 상태 전이를 설명하고, 4-way handshake와 비교하여 연결 수립 시 주의할 점을 제시하시오. (예상)
+> TCP 3-way handshake의 순서 번호 교환과 상태 전이를 설명하고, 4-way handshake와 비교하여 연결 수립 시 주의할 점을 제시하시오. (예상·25점)
 
 ---
 

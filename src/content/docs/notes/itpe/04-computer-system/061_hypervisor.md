@@ -29,13 +29,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **하이퍼바이저 (Hypervisor)**: 물리 자원을 가상 머신에 제공하고 게스트 실행을 격리·관리하는 소프트웨어 계층
-- **가상 머신 모니터 (Virtual Machine Monitor, VMM)**: 가상 CPU·메모리·장치의 실행을 관리하는 하이퍼바이저 구성 요소를 가리키는 명칭
-- **Type 1 하이퍼바이저**: 물리 하드웨어 위에서 게스트 VM을 관리하는 구조
-- **Type 2 하이퍼바이저**: 호스트 운영체제 위에서 VM을 응용 프로그램처럼 실행하는 구조
-- **하드웨어 지원 가상화**: CPU·메모리 관리 장치의 확장 기능으로 게스트 실행과 주소 변환을 돕는 프로세서 기능
-- **VM-Exit / VM-Entry**: 특정 조건에서 게스트 실행을 하이퍼바이저로 넘기고 다시 게스트로 돌리는 전환
-- **KVM (Kernel-based Virtual Machine)**: Linux 커널의 가상화 기능을 제공하며 사용자 공간의 가상 장치 에뮬레이터와 함께 VM을 구성하는 기술
+- **하이퍼바이저 (Hypervisor)** : 물리 자원을 가상 머신에 제공하고 게스트 실행을 격리·관리하는 소프트웨어 계층
+- **가상 머신 모니터 (Virtual Machine Monitor, VMM)** : 가상 CPU·메모리·장치의 실행을 관리하는 하이퍼바이저 구성 요소를 가리키는 명칭
+- **Type 1 하이퍼바이저** : 물리 하드웨어 위에서 게스트 VM을 관리하는 구조
+- **Type 2 하이퍼바이저** : 호스트 운영체제 위에서 VM을 응용 프로그램처럼 실행하는 구조
+- **하드웨어 지원 가상화** : CPU·메모리 관리 장치의 확장 기능으로 게스트 실행과 주소 변환을 돕는 프로세서 기능
+- **VM-Exit / VM-Entry** : 특정 조건에서 게스트 실행을 하이퍼바이저로 넘기고 다시 게스트로 돌리는 전환
+- **KVM (Kernel-based Virtual Machine)** : Linux 커널의 가상화 기능을 제공하며 사용자 공간의 가상 장치 에뮬레이터와 함께 VM을 구성하는 기술
 </details>
 
 ---
@@ -157,8 +157,8 @@ VM-Exit는 모든 특권 명령에서 발생하는 것이 아니라 설정된 �
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**: 제122회 1교시 하이퍼바이저 개념과 유형 출제
-- **검증 출처**:
+- **기출 이력** : 제122회 1교시 하이퍼바이저 개념과 유형 출제 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
+- **검증 출처** :
   - [Linux Kernel KVM documentation](https://docs.kernel.org/virt/kvm/index.html)
   - [Linux Kernel Hyper-V overview](https://docs.kernel.org/virt/hyperv/overview.html)
   - [NIST SP 800-125A Rev. 1, Security Recommendations for Server-based Hypervisor Platforms](https://csrc.nist.gov/pubs/sp/800/125/a/r1/final)

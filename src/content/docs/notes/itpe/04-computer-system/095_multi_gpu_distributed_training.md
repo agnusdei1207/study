@@ -1,6 +1,7 @@
 ---
 title: "멀티 GPU 분산학습"
 sidebar:
+  label: "095. 멀티 GPU 분산학습"
   order: 95
   badge:
     text: "서브"
@@ -28,13 +29,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **분산 학습(Distributed Training)**: 여러 처리 장치가 학습 계산을 나누어 수행하는 방식
-- **데이터 병렬화(Data Parallelism)**: 모델 복제본이 서로 다른 데이터를 처리하고 그래디언트를 동기화하는 방식
-- **텐서 병렬화(Tensor Parallelism)**: 계층 내 텐서 계산을 여러 장치에 나누는 방식
-- **파이프라인 병렬화(Pipeline Parallelism)**: 모델 계층을 장치별 구간으로 나누어 처리하는 방식
-- **DDP (Distributed Data Parallel)**: PyTorch 분산 데이터 병렬 인터페이스
-- **FSDP (Fully Sharded Data Parallel)**: 모델 상태를 작업자에 분할 저장하는 PyTorch 분산 방식
-- **All-Reduce**: 작업자별 값을 결합해 결과를 각 작업자에 전달하는 집단 통신
+- **분산 학습(Distributed Training)** : 여러 처리 장치가 학습 계산을 나누어 수행하는 방식
+- **데이터 병렬화(Data Parallelism)** : 모델 복제본이 서로 다른 데이터를 처리하고 그래디언트를 동기화하는 방식
+- **텐서 병렬화(Tensor Parallelism)** : 계층 내 텐서 계산을 여러 장치에 나누는 방식
+- **파이프라인 병렬화(Pipeline Parallelism)** : 모델 계층을 장치별 구간으로 나누어 처리하는 방식
+- **DDP (Distributed Data Parallel)** : PyTorch 분산 데이터 병렬 인터페이스
+- **FSDP (Fully Sharded Data Parallel)** : 모델 상태를 작업자에 분할 저장하는 PyTorch 분산 방식
+- **All-Reduce** : 작업자별 값을 결합해 결과를 각 작업자에 전달하는 집단 통신
 
 </details>
 
@@ -50,7 +51,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **멀티 GPU 분산학습**은 여러 GPU가 학습 계산을 나누고 필요한 값을 교환하는 방식 |
+| 정의 | **멀티 GPU 분산학습은** 여러 GPU가 학습 계산을 나누고 필요한 값을 교환하는 방식 |
 | 목적 | 단일 GPU의 메모리·연산 한계를 보완하고 학습 작업을 확장 |
 
 ### Ⅱ. 병렬화 방식
@@ -84,7 +85,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **멀티 GPU 분산학습**은 여러 GPU가 학습 계산을 나누고 필요한 값을 교환하는 방식 |
+| 정의 | **멀티 GPU 분산학습은** 여러 GPU가 학습 계산을 나누고 필요한 값을 교환하는 방식 |
 | 목적 | 단일 GPU의 메모리·연산 한계를 보완하고 학습 작업을 확장 |
 
 ### Ⅱ. 병렬화 구조
@@ -142,7 +143,7 @@ flowchart TD
 |---|---|
 | 한 병렬 방식이 모든 모델·환경에 적합하지 않음 | 상태 크기·통신 패턴·토폴로지를 소규모 시험으로 비교한 뒤 조합 결정 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [PyTorch FSDP 문서](https://docs.pytorch.org/docs/main/fsdp.html): 파라미터 샤딩 구조
 - [PyTorch FSDP 튜토리얼](https://docs.pytorch.org/tutorials/intermediate/FSDP1_tutorial.html): 샤드 수집과 학습 흐름

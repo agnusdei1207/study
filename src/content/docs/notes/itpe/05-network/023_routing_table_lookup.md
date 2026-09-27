@@ -3,7 +3,7 @@ sidebar:
   order: 23
   label: "023. 라우팅 테이블 탐색"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "라우팅 테이블 탐색"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 23
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "023"
 ---
 

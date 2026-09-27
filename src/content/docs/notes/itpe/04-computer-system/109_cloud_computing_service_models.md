@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "109. 클라우드 컴퓨팅 서비스 모델"
+  order: 109
+  badge:
+    text: "기초"
 extra:
+  keyword_grade: "기초"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **클라우드 서비스 모델(Cloud Service Model)**: 제공자와 이용자 사이의 자원·관리 책임을 구분하는 클라우드 제공 방식
-- **IaaS (Infrastructure as a Service)**: 가상 컴퓨팅·저장·네트워크 기반을 제공하는 서비스 모델
-- **PaaS (Platform as a Service)**: 응용 프로그램 개발·실행 플랫폼을 제공하는 서비스 모델
-- **SaaS (Software as a Service)**: 이용자가 응용 프로그램을 서비스로 사용하는 모델
-- **공동 책임 모델(Shared Responsibility Model)**: 보안·운영 책임을 제공자와 이용자 사이에 나누는 원칙
+- **클라우드 서비스 모델(Cloud Service Model)** : 제공자와 이용자 사이의 자원·관리 책임을 구분하는 클라우드 제공 방식
+- **IaaS (Infrastructure as a Service)** : 가상 컴퓨팅·저장·네트워크 기반을 제공하는 서비스 모델
+- **PaaS (Platform as a Service)** : 응용 프로그램 개발·실행 플랫폼을 제공하는 서비스 모델
+- **SaaS (Software as a Service)** : 이용자가 응용 프로그램을 서비스로 사용하는 모델
+- **공동 책임 모델(Shared Responsibility Model)** : 보안·운영 책임을 제공자와 이용자 사이에 나누는 원칙
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **클라우드 서비스 모델**은 제공자와 이용자 사이의 자원·관리 책임을 구분하는 제공 방식 |
+| 정의 | **클라우드 서비스 모델은** 제공자와 이용자 사이의 자원·관리 책임을 구분하는 제공 방식 |
 | 목적 | 필요한 기술 계층을 서비스로 이용하고 책임 범위를 명확히 함 |
 
 ### Ⅱ. 관리 책임
@@ -77,7 +83,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **클라우드 서비스 모델**은 제공자와 이용자 사이의 자원·관리 책임을 구분하는 제공 방식 |
+| 정의 | **클라우드 서비스 모델은** 제공자와 이용자 사이의 자원·관리 책임을 구분하는 제공 방식 |
 | 목적 | 필요한 기술 계층을 서비스로 이용하고 책임 범위를 명확히 함 |
 
 ### Ⅱ. 모델별 제공 범위
@@ -129,7 +135,7 @@ flowchart TD
 |---|---|
 | 서비스 편의와 통제·이식성 요구가 충돌 | 업무 중요도별 모델을 선택하고 책임 매트릭스·출구 조건을 계약과 설계에 반영 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [NIST SP 800-145](https://csrc.nist.gov/pubs/sp/800/145/final): 클라우드 서비스 모델 정의
 - [AWS Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/): 제공자·이용자 책임 예시

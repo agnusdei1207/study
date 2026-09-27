@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "112. 퍼듀 모델(Purdue Model)"
+  order: 112
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **퍼듀 참조 모델(Purdue Reference Model)**: 산업 제어·운영·기업 기능을 계층화해 설명하는 참조 구조
-- **OT (Operational Technology)**: 물리 공정·설비를 감시하거나 제어하는 운영 기술
-- **ICS (Industrial Control System)**: 산업 공정 제어·감시에 사용하는 시스템의 총칭
-- **IDMZ (Industrial Demilitarized Zone)**: OT와 기업망 사이의 통신을 중개·통제하도록 구성하는 산업 보안 구역
-- **ISA-95**: 기업 기능과 제조 운영 관리의 통합을 다루는 표준 계열
+- **퍼듀 참조 모델(Purdue Reference Model)** : 산업 제어·운영·기업 기능을 계층화해 설명하는 참조 구조
+- **OT (Operational Technology)** : 물리 공정·설비를 감시하거나 제어하는 운영 기술
+- **ICS (Industrial Control System)** : 산업 공정 제어·감시에 사용하는 시스템의 총칭
+- **IDMZ (Industrial Demilitarized Zone)** : OT와 기업망 사이의 통신을 중개·통제하도록 구성하는 산업 보안 구역
+- **ISA-95** : 기업 기능과 제조 운영 관리의 통합을 다루는 표준 계열
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **퍼듀 참조 모델**은 산업 운영과 기업 정보 기능을 계층으로 구분해 설명하는 구조 |
+| 정의 | **퍼듀 참조 모델은** 산업 운영과 기업 정보 기능을 계층으로 구분해 설명하는 구조 |
 | 목적 | 기능·통신 경계를 파악하고 산업망의 분할·보안 설계를 지원 |
 
 ### Ⅱ. 기능 계층
@@ -78,7 +84,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **퍼듀 참조 모델**은 산업 운영과 기업 정보 기능을 계층으로 구분해 설명하는 구조 |
+| 정의 | **퍼듀 참조 모델은** 산업 운영과 기업 정보 기능을 계층으로 구분해 설명하는 구조 |
 | 목적 | 기능·통신 경계를 파악하고 산업망의 분할·보안 설계를 지원 |
 
 ### Ⅱ. 계층과 기능
@@ -128,7 +134,7 @@ flowchart TD
 |---|---|
 | 퍼듀 계층만으로 현대 ICS·클라우드 연결의 보안을 완성하기 어려움 | ISA-95 기능모델과 위험기반 보안 구역·통신 통제를 함께 설계 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [ISA-95 Standard](https://www.isa.org/standards-and-publications/isa-standards/isa-95-standard): 기업·제조 기능 계층
 - [NIST SP 800-82 Rev.3](https://csrc.nist.gov/pubs/sp/800/82/r3/final): OT 보안·네트워크 분할

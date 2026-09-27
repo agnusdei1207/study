@@ -5,10 +5,12 @@ date: "2026-09-24T22:12:00+09:00"
 tags:
   - "notes-security"
 sidebar:
+  label: "028. CSAP(Cloud Security Assurance Program)"
   badge:
-    text: "응용"
+    text: "기초"
+    variant: note
 extra:
-  keyword_grade: "응용"
+  keyword_grade: "기초"
   model: "GPT-6"
 ---
 
@@ -35,7 +37,7 @@ extra:
 ---
 ## 1교시 예상문제 (10점)
 
-> CSAP의 개념과 목적, 기본 인증 절차를 설명하시오. *(10점 예상문제)*
+> CSAP의 개념과 목적, 기본 인증 절차를 설명하시오. (예상·10점)
 
 ---
 ## 1교시 10점 답안
@@ -72,7 +74,7 @@ extra:
 ---
 ## 2~4교시 예상문제 (25점)
 
-> CSAP의 도입 목적과 평가·인증 구조를 설명하고, 인증범위 및 이용기관 책임을 고려한 적용·운영방안을 제시하시오. *(25점 예상문제)*
+> CSAP의 도입 목적과 평가·인증 구조를 설명하고, 인증범위 및 이용기관 책임을 고려한 적용·운영방안을 제시하시오. (예상·25점)
 
 ---
 ## 2~4교시 25점 답안
@@ -130,7 +132,7 @@ extra:
 | 유형·기준·인증 서비스 범위가 바뀌면 오래된 점검표가 실제 요구와 어긋날 수 있음 | KISA 최신 안내·법령·인증서 상태를 도입 및 정기 재검토 절차에 연결 |
 
 ---
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - 국가법령정보센터, [클라우드컴퓨팅법 제23조의2 보안인증](https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029445391)
 - 국가법령정보센터, [클라우드컴퓨팅법 시행령 제15조의6 인증 절차](https://law.go.kr/lsLinkCommonInfo.do?lspttninfSeq=179587)

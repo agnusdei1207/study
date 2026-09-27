@@ -143,7 +143,7 @@ CRC 같은 검출 부호는 손상을 알아내는 수단이며, 자체적으로
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [RFC 3366: Advice to link designers on link ARQ](https://www.rfc-editor.org/rfc/rfc3366)
 - [RFC 6363: Forward Error Correction Framework](https://www.rfc-editor.org/rfc/rfc6363)

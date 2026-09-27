@@ -4,11 +4,13 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "085. 임베딩(Embedding)"
+  order: 85
   badge:
-    text: "기초"
+    text: "서브"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
 ---
 
 ## 지식 로드맵 내 현재 위치

@@ -24,17 +24,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **독립표본 t-검정**은 서로 다른 두 집단의 모평균 차이를 추론하는 방법
+- 본질: **독립표본 t-검정은** 서로 다른 두 집단의 모평균 차이를 추론하는 방법
 - 메커니즘: 평균 차이를 표준오차로 나누고 t 분포와 비교해 귀무가설을 평가
 - 선택: 등분산을 가정하면 합동분산 t, 가정하지 않으면 Welch t 적용
 
 <details>
 <summary>핵심 용어</summary>
 
-- **독립표본 t-검정(Independent Samples t-test)**: 서로 독립인 두 모집단의 평균 차이를 검정하는 방법
-- **Welch's t-test**: 두 모집단 분산을 같다고 두지 않고 평균 차이를 검정하는 방법
-- **합동분산(Pooled Variance)**: 등분산 가정 아래 두 표본분산을 자유도로 가중해 추정한 공통 분산
-- **Welch–Satterthwaite 근사**: Welch 검정의 자유도를 표본분산과 표본크기로 근사하는 방법
+- **독립표본 t-검정(Independent Samples t-test)** : 서로 독립인 두 모집단의 평균 차이를 검정하는 방법
+- **Welch's t-test** : 두 모집단 분산을 같다고 두지 않고 평균 차이를 검정하는 방법
+- **합동분산(Pooled Variance)** : 등분산 가정 아래 두 표본분산을 자유도로 가중해 추정한 공통 분산
+- **Welch–Satterthwaite 근사** : Welch 검정의 자유도를 표본분산과 표본크기로 근사하는 방법
 
 </details>
 
@@ -129,7 +129,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: KPC 기출검색 자료에서 제131회 정보관리기술사 2교시의 독립표본·대응표본 t-검정 비교 확인. Q-net 원문은 확인하지 못한 상태.
+- 출제 이력: 제131회 정보관리기술사 2교시의 두 t-검정 비교 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
 - NIST/SEMATECH, [Two-Sample t-Test for Equal Means](https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm)
 - NIST/SEMATECH, [Levene Test for Equality of Variances](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35a.htm)
 

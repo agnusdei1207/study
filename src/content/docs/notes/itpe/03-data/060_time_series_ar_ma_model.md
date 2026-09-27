@@ -3,7 +3,7 @@ sidebar:
   order: 60
   label: "060. 시계열 AR·MA 모형"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "시계열 AR·MA 모형 (자기회귀 및 이동평균 모형)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 60
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "060"
 ---
 
@@ -23,16 +23,16 @@ extra:
 
 ## 30초 인출
 
-- 본질: **자기회귀(Autoregressive, AR)**는 과거 관측값, **이동평균(Moving Average, MA)**은 현재와 과거의 오차항으로 현재값을 설명하는 시계열 모형
+- 본질: **자기회귀(Autoregressive, AR)는** 과거 관측값, **이동평균(Moving Average, MA)은** 현재와 과거의 오차항으로 현재값을 설명하는 시계열 모형
 - 메커니즘: 정상성을 살핀 뒤 자기상관함수와 편자기상관함수로 후보 차수를 찾고, 추정한 모형의 잔차를 진단
 
 <details><summary>핵심 용어</summary>
 
-- **자기회귀(Autoregressive, AR) 모형**: 과거 관측값의 선형결합으로 현재값을 설명하는 모형
-- **이동평균(Moving Average, MA) 모형**: 현재와 과거의 무작위 오차항 선형결합으로 현재값을 설명하는 모형
-- **자기상관함수(Autocorrelation Function, ACF)**: 시계열과 시차를 둔 자기 자신의 상관을 나타내는 함수
-- **편자기상관함수(Partial Autocorrelation Function, PACF)**: 중간 시차의 선형 영향을 제거한 뒤 두 시점의 관계를 나타내는 함수
-- **ARIMA(Autoregressive Integrated Moving Average)**: 차분으로 비정상성을 다루고 AR·MA 항을 결합한 모형
+- **자기회귀(Autoregressive, AR) 모형** : 과거 관측값의 선형결합으로 현재값을 설명하는 모형
+- **이동평균(Moving Average, MA) 모형** : 현재와 과거의 무작위 오차항 선형결합으로 현재값을 설명하는 모형
+- **자기상관함수(Autocorrelation Function, ACF)** : 시계열과 시차를 둔 자기 자신의 상관을 나타내는 함수
+- **편자기상관함수(Partial Autocorrelation Function, PACF)** : 중간 시차의 선형 영향을 제거한 뒤 두 시점의 관계를 나타내는 함수
+- **ARIMA(Autoregressive Integrated Moving Average)** : 차분으로 비정상성을 다루고 AR·MA 항을 결합한 모형
 
 </details>
 
@@ -87,7 +87,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | 시계열의 과거 관측값(AR)과 과거 오차항(MA)의 관계를 모형화하는 통계 모형 |
+| 정의 | 시계열의 과거 관측값(AR) 또는 현재·과거 오차항(MA)의 관계를 모형화하는 통계 모형 |
 | 목적 | 시간 의존성을 설명하고 시계열 예측의 기준 모형 제공 |
 
 ## Ⅱ. AR과 MA의 작동 차이

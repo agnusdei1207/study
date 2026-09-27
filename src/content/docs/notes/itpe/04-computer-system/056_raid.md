@@ -3,7 +3,7 @@ sidebar:
   order: 56
   label: "056. RAID"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "RAID(Redundant Array of Independent Disks)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 56
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "056"
 ---
 
@@ -141,7 +141,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [IBM Cloud Docs: About RAID](https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-bm-raid-levels)
 - [IBM: RAID level summary](https://www.ibm.com/docs/en/power6?topic=arrays-raid-level-summary)

@@ -12,11 +12,16 @@ date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
+
+
+## 지식 로드맵 내 현재 위치
+
+소프트웨어 공학 → 소프트웨어 개발·운영 → 기능점수(Function Point)
 
 ## 지식 위치
 
@@ -31,12 +36,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **ILF(Internal Logical File)**: 애플리케이션 내부에서 유지·관리되며 비즈니스 로직에 의해 지속적으로 등록, 수정, 삭제되는 논리적 데이터 그룹
-- **EIF(External Interface File)**: 타 시스템에서 유지·관리되지만, 현재 애플리케이션에서 오직 참조(Read-only) 목적으로 사용하는 외부 연계 데이터 그룹
-- **EI / EO / EQ**: 외부입력(EI, 내부 파일 갱신), 외부출력(EO, 파생 데이터 계산/통계 출력), 외부조회(EQ, 단순 데이터 검색 및 표시)
-- **DET(Data Element Type)**: 사용자가 식별할 수 있는 고유하고 반복되지 않는 필드(컬럼) 단위 데이터 항목
-- **RET(Record Element Type)**: ILF나 EIF 내부에서 사용자가 인식 가능한 하위 레코드 데이터 서브그룹(예: 마스터-디테일 테이블)
-- **FTR(File Type Referenced)**: 트랜잭션 기능(EI, EO, EQ)을 수행하는 과정에서 읽거나 갱신하는 ILF 또는 EIF의 개수
+- **ILF(Internal Logical File)** : 애플리케이션 내부에서 유지·관리되며 비즈니스 로직에 의해 지속적으로 등록, 수정, 삭제되는 논리적 데이터 그룹
+- **EIF(External Interface File)** : 타 시스템에서 유지·관리되지만, 현재 애플리케이션에서 오직 참조(Read-only) 목적으로 사용하는 외부 연계 데이터 그룹
+- **EI / EO / EQ** : 외부입력(EI, 외부에서 들어온 데이터·제어 정보로 ILF를 유지하거나 시스템 동작을 변경), 외부출력(EO, 파생 데이터 계산·출력 등 처리 논리 포함), 외부조회(EQ, 조회 결과를 보여 주는 기본 처리)
+- **DET(Data Element Type)** : 사용자가 식별할 수 있는 고유하고 반복되지 않는 필드(컬럼) 단위 데이터 항목
+- **RET(Record Element Type)** : ILF나 EIF 내부에서 사용자가 인식 가능한 하위 레코드 데이터 서브그룹(예: 마스터-디테일 테이블)
+- **FTR(File Type Referenced)** : 트랜잭션 기능(EI, EO, EQ)을 수행하는 과정에서 읽거나 갱신하는 ILF 또는 EIF의 개수
 </details>
 
 ---
@@ -114,10 +119,10 @@ extra:
 
 ### 기능점수 산정 공식 및 보정 체계
 
-1. **미조정 기능점수(UFP) 계산**:
+1. **미조정 기능점수(UFP) 계산** :
    $$UFP = \sum (\text{기능 유형별 개수} \times \text{복잡도 가중치})$$
-2. **산정 지침 반영**: 계약·대가 산정에 사용할 조정 항목과 기준은 적용 중인 공공 SW 대가산정 지침에서 확인
-3. **사업 대가 산정**: 기능점수 결과와 지침이 정한 공수·단가·보정 기준을 적용
+2. **산정 지침 반영** : 계약·대가 산정에 사용할 조정 항목과 기준은 적용 중인 공공 SW 대가산정 지침에서 확인
+3. **사업 대가 산정** : 기능점수 결과와 지침이 정한 공수·단가·보정 기준을 적용
 
 ## Ⅲ. 실무 적용 및 고려사항
 
@@ -162,3 +167,10 @@ ILF·EIF / EI·EO·EQ 식별·계수
 - [KOSA 2026 SW사업 대가산정 엑셀 템플릿 안내](https://www.sw.or.kr/site/sw/ex/board/View.do?bcIdx=65004&cbIdx=276)
 - [IFPUG, Function Point Analysis](https://ifpug.org/ifpug-standards/fpa)
 ---
+
+## 출제 이력과 검증 출처
+
+- **출제 상태:** 예상문제는 학습용 문항이며, 공식 기출 원문과 동일하다고 단정하지 않는다.
+- [검증 자료 1](https://www.sw.or.kr/site/sw/biz/cow_write1.do)
+- [검증 자료 2](https://www.sw.or.kr/site/sw/ex/board/View.do?bcIdx=65004&cbIdx=276)
+- [검증 자료 3](https://ifpug.org/ifpug-standards/fpa)

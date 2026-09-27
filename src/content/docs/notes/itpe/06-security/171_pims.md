@@ -4,10 +4,20 @@ author: "OpenAI"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  label: "171. PIMS(Personal Information Management System)"
+  badge:
+    text: "기초"
+    variant: note
 extra:
+  keyword_grade: "기초"
   model: "GPT-6"
 
 ---
+
+## 지식 로드맵 내 현재 위치
+
+정보보안 → 개인정보 보호 → 관리체계
 
 ## 30초 인출
 
@@ -16,16 +26,16 @@ extra:
 
 <details><summary>핵심 용어</summary>
 
-- **PIMS(Personal Information Management System)**: 개인정보 보호를 위해 조직이 정책·위험·처리단계별 보호조치를 관리하는 체계다. 국내 PIMS 인증제도는 ISMS-P로 통합됐다.
-- **ISMS-P**: 정보보호와 개인정보보호 관리체계가 인증기준에 적합한지 확인하는 국내 인증제도다.
-- **개인정보 처리단계 요구사항**: 개인정보의 수집, 보유·이용, 제공, 파기 및 정보주체 권리 보호를 다루는 인증 기준이다.
+- **PIMS(Personal Information Management System)** : 개인정보 보호를 위해 조직이 정책·위험·처리단계별 보호조치를 관리하는 체계다. 국내 PIMS 인증제도는 ISMS-P로 통합됐다.
+- **ISMS-P** : 정보보호와 개인정보보호 관리체계가 인증기준에 적합한지 확인하는 국내 인증제도다.
+- **개인정보 처리단계 요구사항** : 개인정보의 수집, 보유·이용, 제공, 파기 및 정보주체 권리 보호를 다루는 인증 기준이다.
 </details>
 
 ---
 
 ## 1교시 예상문제 (10점)
 
-> PIMS의 개념과 관리영역을 설명하고 현행 ISMS-P와의 관계를 설명하시오. (예상)
+> PIMS의 개념과 관리영역을 설명하고 현행 ISMS-P와의 관계를 설명하시오. (예상·10점)
 
 ---
 
@@ -35,7 +45,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **PIMS(Personal Information Management System)**는 개인정보 처리 위험과 보호조치를 관리하는 체계 |
+| 정의 | **PIMS(Personal Information Management System)** 는 개인정보 처리 위험과 보호조치를 관리하는 체계 |
 | 목적 | 개인정보 처리 전 과정의 안전성과 정보주체 권리 보호 |
 
 ### Ⅱ. 관리영역과 현행 제도
@@ -63,7 +73,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> PIMS의 관리영역과 개인정보 처리단계별 통제를 설명하고 ISMS-P 통합 이후 운영 시 유의사항을 제시하시오. (예상)
+> PIMS의 관리영역과 개인정보 처리단계별 통제를 설명하고 ISMS-P 통합 이후 운영 시 유의사항을 제시하시오. (예상·25점)
 
 ---
 
@@ -73,7 +83,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **PIMS(Personal Information Management System)**는 개인정보 처리 위험과 보호조치를 관리하는 체계 |
+| 정의 | **PIMS(Personal Information Management System)** 는 개인정보 처리 위험과 보호조치를 관리하는 체계 |
 | 목적 | 개인정보 처리 전 과정의 안전성과 정보주체 권리 보호 |
 
 | 구분 | 의미 |
@@ -126,7 +136,7 @@ extra:
 |---|---|
 | 인증 준비에서 모든 통제항목을 같은 깊이로 점검하면 처리 업무 변경에 따른 개인정보 위험을 먼저 찾지 못할 수 있다. | 신규 수집·제공·위탁처럼 처리 흐름을 바꾸는 변경을 우선 심사 대상으로 삼고, 변경 승인 시 ISMS-P 처리단계 요구사항과 영향받는 업무 소유자를 함께 확인한다. |
 
-## 출제 이력 및 참고자료
+## 출제 이력과 검증 출처
 
 - 본 문항은 주제에 맞춰 구성한 예상 문제이며, 특정 기출 문구를 인용하지 않았다.
 - KISA ISMS-P 인증기준: https://isms.kisa.or.kr/sysm/intro/selectSysmCertDetail.do

@@ -4,11 +4,13 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "088. AI 에이전트 오케스트레이션"
+  order: 88
   badge:
-    text: "서브"
+    text: "기초"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치

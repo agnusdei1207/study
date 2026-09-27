@@ -3,7 +3,7 @@ sidebar:
   order: 57
   label: "057. 메모리 인터리빙"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "메모리 인터리빙(Memory Interleaving)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 57
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "057"
 ---
 
@@ -132,7 +132,7 @@ NUMA 노드 간 인터리빙은 용량·대역폭 분산에 쓸 수 있지만 �
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Intel: Bank Interleaving](https://www.intel.com/content/www/us/en/docs/programmable/683216/22-3-2-6-1/bank-interleaving.html)
 - [Linux Kernel: NUMA Memory Policy](https://docs.kernel.org/6.11/admin-guide/mm/numa_memory_policy.html)

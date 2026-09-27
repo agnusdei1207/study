@@ -3,7 +3,7 @@ sidebar:
   order: 158
   label: "158. 프로세스 마이닝(Process Mining)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "프로세스 마이닝 (Process Mining)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 158
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "158"
 ---
 
@@ -29,13 +29,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **프로세스 마이닝 (Process Mining)**: 이벤트 데이터에서 업무 프로세스 모델을 발견·비교·향상하는 분석 방법
-- **이벤트 로그 (Event Log)**: 업무 실행 이벤트와 케이스·활동·시각 등 속성을 기록한 데이터
-- **케이스 식별자 (Case ID)**: 같은 업무 건에 속한 이벤트를 묶는 식별자
-- **프로세스 발견 (Process Discovery)**: 이벤트 로그에서 관측된 동작을 설명하는 프로세스 모델을 도출하는 작업
-- **적합도 검사 (Conformance Checking)**: 이벤트 로그의 동작과 참조 프로세스 모델의 동작을 비교하는 분석
-- **프로세스 향상 (Process Enhancement)**: 이벤트 데이터로 기존 프로세스 모델을 확장하거나 개선하는 작업
-- **직접 후행 그래프 (Directly-Follows Graph, DFG)**: 로그에서 활동 간 직접적인 선후 관계를 나타내는 그래프
+- **프로세스 마이닝 (Process Mining)** : 이벤트 데이터에서 업무 프로세스 모델을 발견·비교·향상하는 분석 방법
+- **이벤트 로그 (Event Log)** : 업무 실행 이벤트와 케이스·활동·시각 등 속성을 기록한 데이터
+- **케이스 식별자 (Case ID)** : 같은 업무 건에 속한 이벤트를 묶는 식별자
+- **프로세스 발견 (Process Discovery)** : 이벤트 로그에서 관측된 동작을 설명하는 프로세스 모델을 도출하는 작업
+- **적합도 검사 (Conformance Checking)** : 이벤트 로그의 동작과 참조 프로세스 모델의 동작을 비교하는 분석
+- **프로세스 향상 (Process Enhancement)** : 이벤트 데이터로 기존 프로세스 모델을 확장하거나 개선하는 작업
+- **직접 후행 그래프 (Directly-Follows Graph, DFG)** : 로그에서 활동 간 직접적인 선후 관계를 나타내는 그래프
 
 </details>
 
@@ -79,7 +79,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 프로세스 마이닝에 관하여 설명하시오. (예상·25점)
+> 프로세스 마이닝의 이벤트 로그와 발견·적합도·향상 분석을 설명하고, 업무 개선에 적용할 때의 유의점을 제시하시오. (예상·25점)
 
 ---
 
@@ -164,10 +164,10 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**:
+- **기출 이력** :
   - 제118회 정보관리 2교시: 정보시스템 이벤트 로그를 활용한 프로세스 마이닝의 개념, 3대 유형 및 프로세스 혁신 방안
-  - 제125회 컴퓨터시스템응용 1교시: 프로세스 마이닝의 적합도 검사(Conformance Checking)
-- **검증 출처**:
+  - 제125회 컴퓨터시스템응용 1교시: 프로세스 마이닝의 적합도 검사(Conformance Checking) (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
+- **검증 출처** :
   - Wil van der Aalst et al., ["Process Mining Manifesto"](https://www.tf-pm.org/resources/manifesto), IEEE Task Force on Process Mining
   - [RWTH Aachen Process Mining Overview](https://www.processmining.org/overview.html)
   - [RWTH Aachen: Process Discovery](https://www.processmining.org/process-discovery.html)
@@ -176,6 +176,6 @@ flowchart TD
 
 ## 연결 토픽
 
-- 상위 토픽: [탐색적 데이터 분석(EDA)](./080_eda.md)
+- 상위 토픽: [데이터 마이닝](./043_data_mining.md)
 - 선수 토픽: [BI](./154_bi.md)
-- 후속 토픽: [SNA](./155_sna.md), [BPM·워크플로우](../01-software-engineering/016_bpm.md)
+- 후속 토픽: [SNA](./155_sna.md)

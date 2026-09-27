@@ -5,6 +5,8 @@ date: "2026-09-24T20:54:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "023. 가상 메모리(Virtual Memory)"
+  order: 23
   badge:
     text: "기초"
 extra:

@@ -3,7 +3,7 @@ sidebar:
   order: 13
   label: "013. 6G 표준화"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 title: "6G 표준화와 IMT-2030"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 13
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "013"
 ---
 
@@ -91,7 +91,7 @@ ITU-R: IMT-2030 요구·평가 기준
 ITU-R: 무선 기술 평가·권고
 ```
 
-ITU-R의 **M.2160**은 기술 구현 완료 선언이 아니라 개발 방향을 정한 프레임워크. 3GPP의 릴리스 연구 항목도 최종 6G 규격 또는 서비스 성능 보장을 뜻하지 않음.
+ITU-R의 **M.2160** 은 기술 구현 완료 선언이 아니라 개발 방향을 정한 프레임워크. 3GPP의 릴리스 연구 항목도 최종 6G 규격 또는 서비스 성능 보장을 뜻하지 않음.
 
 ## Ⅲ. IMT-2030의 여섯 사용 시나리오
 
@@ -134,7 +134,7 @@ ITU-R의 **M.2160**은 기술 구현 완료 선언이 아니라 개발 방향을
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [ITU-R M.2160: IMT-2030 프레임워크](https://www.itu.int/rec/R-REC-M.2160-0-202311-I)
 - [ITU-R: IMT-2030 후보 기술 제출·평가 절차](https://www.itu.int/en/ITU-R/study-groups/rsg5/rwp5d/imt-2030/Pages/submission-eval.aspx)

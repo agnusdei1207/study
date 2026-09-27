@@ -6,13 +6,13 @@ sidebar:
   order: 16
   label: "016. 소버린 AI"
   badge:
-    text: "응용"
+    text: "기초"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "응용"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치

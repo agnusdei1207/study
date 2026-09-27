@@ -3,7 +3,7 @@ sidebar:
   order: 58
   label: "058. 세그먼테이션"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "세그먼테이션(Segmentation)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 58
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "058"
 ---
 
@@ -144,7 +144,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Intel 64 and IA-32 Software Developer's Manual, System Programming Guide](https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-system-programming-manual-325384.pdf)
 - [Linux Kernel: Using FS and GS Segments in User Space](https://docs.kernel.org/6.12/arch/x86/x86_64/fsgs.html)

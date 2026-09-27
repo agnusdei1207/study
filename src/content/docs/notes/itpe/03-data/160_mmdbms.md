@@ -3,7 +3,7 @@ sidebar:
   order: 160
   label: "160. 메인 메모리 DBMS"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "메인 메모리 DBMS(MMDBMS)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 160
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "160"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **메인 메모리 DBMS(MMDBMS)**는 주 데이터를 메모리에 상주시켜 질의·갱신하고, 장애 복구를 위해 영속 저장 경로를 함께 두는 DBMS
+- 본질: **메인 메모리 DBMS(MMDBMS)는** 주 데이터를 메모리에 상주시켜 질의·갱신하고, 장애 복구를 위해 영속 저장 경로를 함께 두는 DBMS
 - 메커니즘: 메모리에서 데이터 처리 → 커밋 내구성 정책에 따라 로그 기록 → 체크포인트·로그로 재시작 시 복구
 
 <details>
@@ -52,7 +52,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **메인 메모리 DBMS(MMDBMS)**는 주 데이터를 메모리에 상주시켜 질의·갱신하는 DBMS |
+| 정의 | **메인 메모리 DBMS(MMDBMS)는** 주 데이터를 메모리에 상주시켜 질의·갱신하는 DBMS |
 | 목적 | 저장장치 접근을 줄여 응답 지연을 낮추고 요구한 복구 수준 확보 |
 
 ### Ⅱ. 처리와 복구 구조
@@ -67,7 +67,7 @@ flowchart TB
     E --> F
 ```
 
-- **10점 제언**: 응답 지연뿐 아니라 커밋 후 장애 시 허용 손실과 복구 시간을 함께 시험.
+- **10점 제언** : 응답 지연뿐 아니라 커밋 후 장애 시 허용 손실과 복구 시간을 함께 시험.
 
 ---
 
@@ -83,7 +83,7 @@ flowchart TB
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **메인 메모리 DBMS(MMDBMS)**는 주 데이터를 메모리에 상주시켜 질의·갱신하는 DBMS |
+| 정의 | **메인 메모리 DBMS(MMDBMS)는** 주 데이터를 메모리에 상주시켜 질의·갱신하는 DBMS |
 | 목적 | 저장장치 접근을 줄여 응답 지연을 낮추고 요구한 복구 수준 확보 |
 
 ## Ⅱ. 데이터 처리와 영속 저장 구조
@@ -145,7 +145,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Oracle TimesTen: Durability Options](https://docs.oracle.com/en/database/other-databases/timesten/22.1/operations/durability-options.html)
 - [SAP HANA: Data and Log Volumes](https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/4a9a3970fb634a319f32bb76e1c59dd5.html)

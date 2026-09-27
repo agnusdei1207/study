@@ -6,10 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치

@@ -1,14 +1,14 @@
-﻿---
+---
 author: "Codex"
 category: "03-data"
 date: "2026-09-24T00:00:00+09:00"
 extra:
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   model: "GPT-6"
   question_no: "039"
 sidebar:
   badge:
-    text: "기초"
+    text: "서브"
     variant: "note"
   label: "039. OLAP"
   order: 39
@@ -24,21 +24,21 @@ weight: 39
 
 ## 30초 인출
 
-- 본질: **OLAP(Online Analytical Processing)**는 축적된 데이터를 여러 업무 차원으로 탐색·집계해 분석하는 처리 방식.
+- 본질: **OLAP(Online Analytical Processing)는** 축적된 데이터를 여러 업무 차원으로 탐색·집계해 분석하는 처리 방식.
 - 메커니즘: 분석 질의 → 차원·측정값 기준 집계와 탐색 → 표·보고서·시각화 결과.
 - 회상 단서: ROLAP는 관계형 데이터에, MOLAP는 다차원 구조에, HOLAP는 두 방식을 함께 사용.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **OLAP(Online Analytical Processing)**: 데이터의 차원별 분석과 집계를 대화형으로 수행하는 처리 방식.
-- **차원(Dimension)**: 시간·지역·제품처럼 측정값을 나누어 분석하는 관점.
-- **측정값(Measure)**: 매출액·수량처럼 집계하거나 비교하는 수치.
-- **롤업(Roll-up)**: 상세 수준의 값을 상위 차원 수준으로 요약하는 연산.
-- **드릴다운(Drill-down)**: 요약된 값을 하위 차원 수준으로 세분하는 연산.
-- **ROLAP(Relational OLAP)**: 관계형 데이터베이스의 테이블을 이용해 다차원 분석을 수행하는 방식.
-- **MOLAP(Multidimensional OLAP)**: 다차원 데이터 구조와 집계를 활용하는 분석 방식.
-- **HOLAP(Hybrid OLAP)**: 관계형 저장과 다차원 집계 구조를 함께 사용하는 방식.
+- **OLAP(Online Analytical Processing)** : 데이터의 차원별 분석과 집계를 대화형으로 수행하는 처리 방식.
+- **차원(Dimension)** : 시간·지역·제품처럼 측정값을 나누어 분석하는 관점.
+- **측정값(Measure)** : 매출액·수량처럼 집계하거나 비교하는 수치.
+- **롤업(Roll-up)** : 상세 수준의 값을 상위 차원 수준으로 요약하는 연산.
+- **드릴다운(Drill-down)** : 요약된 값을 하위 차원 수준으로 세분하는 연산.
+- **ROLAP(Relational OLAP)** : 관계형 데이터베이스의 테이블을 이용해 다차원 분석을 수행하는 방식.
+- **MOLAP(Multidimensional OLAP)** : 다차원 데이터 구조와 집계를 활용하는 분석 방식.
+- **HOLAP(Hybrid OLAP)** : 관계형 저장과 다차원 집계 구조를 함께 사용하는 방식.
 
 </details>
 
@@ -56,7 +56,7 @@ weight: 39
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **OLAP**는 축적된 데이터를 여러 차원으로 탐색·집계해 분석하는 처리 방식 |
+| 정의 | **OLAP는** 축적된 데이터를 여러 차원으로 탐색·집계해 분석하는 처리 방식 |
 | 목적 | 업무 현황·추세·구성의 다각도 분석과 의사결정 지원 |
 
 ### Ⅱ. 다차원 분석 연산
@@ -91,7 +91,7 @@ weight: 39
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **OLAP**는 축적된 데이터를 여러 차원으로 탐색·집계해 분석하는 처리 방식 |
+| 정의 | **OLAP는** 축적된 데이터를 여러 차원으로 탐색·집계해 분석하는 처리 방식 |
 | 목적 | 업무 현황·추세·구성의 다각도 분석과 의사결정 지원 |
 
 ## Ⅱ. 다차원 데이터 구조

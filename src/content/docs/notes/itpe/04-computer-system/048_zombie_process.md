@@ -3,7 +3,7 @@ sidebar:
   order: 48
   label: "048. 좀비 프로세스"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "좀비 프로세스(Zombie Process)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 48
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "048"
 ---
 
@@ -138,7 +138,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Linux man-pages: wait(2)](https://man7.org/linux/man-pages/man2/waitpid.2.html)
 - [Docker Docs: docker container run --init](https://docs.docker.com/reference/cli/docker/container/run)

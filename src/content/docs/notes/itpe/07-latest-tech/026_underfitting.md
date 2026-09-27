@@ -123,6 +123,7 @@ extra:
 
 ---
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
 - 제139회 1교시 8번: 과적합과 과소적합의 발생 원인 및 해결 방안
 - [scikit-learn, Underfitting vs. Overfitting](https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html): 훈련·검증 성능으로 적합 상태를 비교하는 원리 확인

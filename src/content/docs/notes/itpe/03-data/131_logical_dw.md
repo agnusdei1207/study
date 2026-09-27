@@ -3,7 +3,7 @@ sidebar:
   order: 131
   label: "131. 로지컬 DW (Logical Data Warehouse)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 131
 title: "로지컬 데이터 웨어하우스(Logical Data Warehouse)와 쿼리 푸시다운"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "131"
 ---
 
@@ -24,18 +24,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **로지컬 데이터 웨어하우스(Logical Data Warehouse, LDW)**는 여러 원천의 데이터를 논리적으로 통합해 이용하게 하는 분석 구조
+- 본질: **로지컬 데이터 웨어하우스(Logical Data Warehouse, LDW)는** 여러 원천의 데이터를 논리적으로 통합해 이용하게 하는 분석 구조
 - 메커니즘: 가상화·연합 질의 계층이 원천에 질의를 나누고 결과를 통합
 - 최적화: 원천이 지원하는 필터·집계 연산은 커넥터를 통해 원천 쪽에서 처리
 
 <details>
 <summary>핵심 용어</summary>
 
-- **Logical Data Warehouse (LDW)**: 분산된 원천 데이터에 논리적 통합 접근을 제공하는 분석 구조
-- **데이터 가상화(Data Virtualization)**: 데이터를 별도 적재하지 않고 논리 뷰와 질의 계층으로 여러 원천을 조회하는 방식
-- **연합 질의(Federated Query)**: 여러 데이터 원천에 질의를 실행하고 결과를 통합하는 처리
-- **쿼리 푸시다운(Query Pushdown)**: 질의의 일부 연산을 데이터 원천에 위임해 처리하는 최적화
-- **커넥터(Connector)**: 질의 엔진과 데이터 원천 사이의 연결·연산 위임 기능을 제공하는 구성요소
+- **Logical Data Warehouse (LDW)** : 분산된 원천 데이터에 논리적 통합 접근을 제공하는 분석 구조
+- **데이터 가상화(Data Virtualization)** : 데이터를 별도 적재하지 않고 논리 뷰와 질의 계층으로 여러 원천을 조회하는 방식
+- **연합 질의(Federated Query)** : 여러 데이터 원천에 질의를 실행하고 결과를 통합하는 처리
+- **쿼리 푸시다운(Query Pushdown)** : 질의의 일부 연산을 데이터 원천에 위임해 처리하는 최적화
+- **커넥터(Connector)** : 질의 엔진과 데이터 원천 사이의 연결·연산 위임 기능을 제공하는 구성요소
 
 </details>
 
@@ -133,7 +133,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: KPC 기출검색 자료 기준 제121회 정보관리기술사 2교시의 로지컬 데이터 웨어하우스 관련 문항. Q-net 원문은 확인하지 못한 상태.
+- 출제 이력: 제121회 정보관리기술사 2교시의 로지컬 데이터 웨어하우스 관련 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
 - Trino 공식 문서, [Pushdown](https://trino.io/docs/current/optimizer/pushdown.html)
 - Trino 공식 문서, [Connectors](https://trino.io/docs/current/develop/connectors.html)
 

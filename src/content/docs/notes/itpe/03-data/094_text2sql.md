@@ -3,7 +3,7 @@ sidebar:
   order: 94
   label: "094. TEXT2SQL"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "Text-to-SQL(NL2SQL) 아키텍처 및 LLM 기반 자연어 쿼리 변환 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 94
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "094"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **Text-to-SQL**은 자연어 질문을 데이터베이스 질의로 변환하는 방식
+- 본질: **Text-to-SQL은** 자연어 질문을 데이터베이스 질의로 변환하는 방식
 - 메커니즘: 질문 의도와 스키마를 연결해 SQL을 만들고, 구문·권한·자원 제한을 검증한 뒤 실행
 - 통제: 자연어 입력이나 생성 SQL을 신뢰하지 않고 최소 권한, 제한된 데이터 범위와 실행 한도를 적용
 

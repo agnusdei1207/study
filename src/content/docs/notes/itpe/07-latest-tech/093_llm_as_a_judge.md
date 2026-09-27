@@ -4,6 +4,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "093. LLM-as-a-Judge (AI 평가)"
+  order: 93
   badge:
     text: "서브"
 extra:

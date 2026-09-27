@@ -5,11 +5,13 @@ date: "2026-09-24T21:17:00+09:00"
 tags:
   - "notes-network"
 sidebar:
+  label: "046. Ultra Ethernet (UEC)"
   badge:
-    text: "응용"
+    text: "서브"
+    variant: note
 extra:
   model: "GPT-6"
-  keyword_grade: "응용"
+  keyword_grade: "서브"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -40,7 +42,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> Ultra Ethernet의 개념과 목적, 주요 구성 계층을 설명하시오. (예상)
+> Ultra Ethernet의 개념과 목적, 주요 구성 계층을 설명하시오. (예상·10점)
 
 ---
 
@@ -73,7 +75,7 @@ UEC는 Ethernet 기반 통신 스택의 상호운용성을 위한 규격을 정�
 
 ## 2~4교시 예상문제 (25점)
 
-> Ultra Ethernet의 등장 배경과 계층 구조를 설명하고, 기존 Ethernet 기반 AI·HPC 패브릭과 비교할 때의 고려사항을 제시하시오. (예상)
+> Ultra Ethernet의 등장 배경과 계층 구조를 설명하고, 기존 Ethernet 기반 AI·HPC 패브릭과 비교할 때의 고려사항을 제시하시오. (예상·25점)
 
 ---
 

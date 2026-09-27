@@ -29,13 +29,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **다중지역 동시 가동 재해복구 시스템 (Multi-Region Active-Active Disaster Recovery)**: 여러 지역의 서비스가 정상 시 요청을 처리하며 장애 시 잔여 지역에서 처리를 지속하도록 구성한 시스템
-- **GSLB (Global Server Load Balancing)**: 여러 지역의 서버 상태·정책을 바탕으로 요청 목적지를 선택하는 글로벌 트래픽 분산 기능
-- **DCI (Data Center Interconnect)**: 지역 간 데이터센터를 연결하는 네트워크 구성
-- **RTO (Recovery Time Objective)**: 장애 후 서비스를 복구하기까지 허용하는 목표 시간
-- **RPO (Recovery Point Objective)**: 장애 시 허용하는 데이터 복구 시점의 손실 범위
-- **장애 전환 (Failover)**: 장애가 발생한 서비스 처리를 정상 지역으로 옮기는 절차
-- **장애 복귀 (Failback)**: 복구된 지역을 검증한 뒤 서비스 처리에 다시 편입하는 절차
+- **다중지역 동시 가동 재해복구 시스템 (Multi-Region Active-Active Disaster Recovery)** : 여러 지역의 서비스가 정상 시 요청을 처리하며 장애 시 잔여 지역에서 처리를 지속하도록 구성한 시스템
+- **GSLB (Global Server Load Balancing)** : 여러 지역의 서버 상태·정책을 바탕으로 요청 목적지를 선택하는 글로벌 트래픽 분산 기능
+- **DCI (Data Center Interconnect)** : 지역 간 데이터센터를 연결하는 네트워크 구성
+- **RTO (Recovery Time Objective)** : 장애 후 서비스를 복구하기까지 허용하는 목표 시간
+- **RPO (Recovery Point Objective)** : 장애 시 허용하는 데이터 복구 시점의 손실 범위
+- **장애 전환 (Failover)** : 장애가 발생한 서비스 처리를 정상 지역으로 옮기는 절차
+- **장애 복귀 (Failback)** : 복구된 지역을 검증한 뒤 서비스 처리에 다시 편입하는 절차
 </details>
 
 ---
@@ -155,8 +155,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**: 제137회 정보관리기술사 3교시 다중지역 동시 가동 재해복구 시스템 출제
-- **검증 출처**:
+- **기출 이력** : 제137회 정보관리기술사 3교시 다중지역 동시 가동 재해복구 시스템 출제
+- **검증 출처** :
   - [Q-Net: 제137회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5242749&brdId=Q006&code=1203&gId=&gSite=Q&id=cst00602)
   - [Google Cloud: Multi-regional deployment archetype](https://docs.cloud.google.com/architecture/deployment-archetypes/multiregional)
   - [Google Cloud: Architecting disaster recovery](https://docs.cloud.google.com/architecture/disaster-recovery)

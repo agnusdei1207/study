@@ -3,7 +3,7 @@ sidebar:
   order: 39
   label: "039. 스래싱"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "스래싱(Thrashing)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 39
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "039"
 ---
 
@@ -133,7 +133,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - Abraham Silberschatz, Peter Baer Galvin, Greg Gagne, *Operating System Concepts*, Virtual Memory
 - [MIT OpenCourseWare, 가상 메모리와 스래싱](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c16/c16s1/).

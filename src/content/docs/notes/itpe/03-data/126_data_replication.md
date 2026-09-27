@@ -3,7 +3,7 @@ sidebar:
   order: 126
   label: "126. 데이터 복제"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 126
 title: "데이터 복제(Data Replication)의 구조와 동기화 방식"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "126"
 ---
 

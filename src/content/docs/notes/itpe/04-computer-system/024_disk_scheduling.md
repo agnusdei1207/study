@@ -5,6 +5,8 @@ date: "2026-09-24T20:54:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "024. 디스크 스케줄링(Disk Scheduling)"
+  order: 24
   badge:
     text: "기초"
 extra:
@@ -114,7 +116,7 @@ flowchart TD
 
 ## Ⅳ. 저장장치에 따른 선택 기준
 
-| 관점 | **HDD (Hard Disk Drive)** | **SSD (Solid-State Drive)**·**NVMe (Non-Volatile Memory Express)** |
+| 관점 | **HDD (Hard Disk Drive)** | **SSD (Solid-State Drive)** · **NVMe (Non-Volatile Memory Express)** |
 |---|---|---|
 | 주요 특성 | 헤드 이동·회전 지연 | 기계적 탐색 없음, 병렬 큐 활용 |
 | 정책 목표 | 이동 감소와 장기 대기 방지 | 요청 처리 비용·지연·공정성 균형 |

@@ -3,7 +3,7 @@ sidebar:
   order: 71
   label: "071. 추천 시스템 필터링"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "필터링 기법 (Filtering) 및 추천 시스템과 데이터 엔지니어링"
 author: "Codex"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 71
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "071"
 ---
 
@@ -24,16 +24,16 @@ extra:
 
 ## 30초 인출
 
-- 본질: **추천 시스템 필터링**은 사용자·항목 정보를 이용해 큰 항목 집합에서 사용자에게 맞는 후보를 고르는 과정
+- 본질: **추천 시스템 필터링은** 사용자·항목 정보를 이용해 큰 항목 집합에서 사용자에게 맞는 후보를 고르는 과정
 - 메커니즘: 협업 필터링은 사용자 행동의 유사성을, 콘텐츠 기반 필터링은 항목 속성의 유사성을 이용하고, 후보를 점수화해 노출 순위를 구성
 
 <details><summary>핵심 용어</summary>
 
-- **추천 시스템(Recommendation System)**: 사용자 맥락에 맞는 항목을 선별·정렬해 제안하는 정보 시스템
-- **협업 필터링(Collaborative Filtering, CF)**: 사용자와 항목의 상호작용 패턴을 이용해 선호 항목을 추천하는 방식
-- **콘텐츠 기반 필터링(Content-based Filtering, CBF)**: 항목 특성과 사용자 선호 프로필의 유사성을 이용하는 추천 방식
-- **후보 생성(Candidate Generation)**: 큰 항목 집합에서 후속 평가 대상의 작은 후보 집합을 만드는 단계
-- **재순위화(Re-ranking)**: 초기 순위를 다양성·신선도·정책 등 추가 조건에 맞춰 조정하는 단계
+- **추천 시스템(Recommendation System)** : 사용자 맥락에 맞는 항목을 선별·정렬해 제안하는 정보 시스템
+- **협업 필터링(Collaborative Filtering, CF)** : 사용자와 항목의 상호작용 패턴을 이용해 선호 항목을 추천하는 방식
+- **콘텐츠 기반 필터링(Content-based Filtering, CBF)** : 항목 특성과 사용자 선호 프로필의 유사성을 이용하는 추천 방식
+- **후보 생성(Candidate Generation)** : 큰 항목 집합에서 후속 평가 대상의 작은 후보 집합을 만드는 단계
+- **재순위화(Re-ranking)** : 초기 순위를 다양성·신선도·정책 등 추가 조건에 맞춰 조정하는 단계
 
 </details>
 

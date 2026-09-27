@@ -4,6 +4,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "094. LoRA / PEFT"
+  order: 94
   badge:
     text: "서브"
 extra:
@@ -24,9 +26,7 @@ IT 인공지능 → 거대 언어모델 적응 → 파라미터 효율적 미세
 - **PEFT(Parameter-Efficient Fine-Tuning):** 전체 모델 갱신을 줄이고 일부 파라미터를 학습해 사전학습 모델을 조정하는 방법군이다.
 - **LoRA(Low-Rank Adaptation):** 가중치 변경량을 저랭크 행렬의 곱으로 표현해 학습하는 PEFT 방식이다.
 - **QLoRA(Quantized LoRA):** 양자화한 베이스 모델에 LoRA 어댑터를 학습하는 방식이다.
-- **파라미터 효율 미세조정(PEFT):** 사전학습 모델의 일부 매개변수만 조정해 과업에 적응시키는 방법군이다.
 - **랭크(Rank, r):** LoRA 변경 행렬의 중간 차원이며, 파라미터 수와 표현 용량에 영향을 준다.
-- **QLoRA:** 양자화된 베이스 모델을 고정한 채 LoRA 어댑터를 학습하는 방법이다.
 </details>
 
 ---

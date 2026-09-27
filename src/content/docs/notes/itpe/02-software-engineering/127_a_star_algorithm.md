@@ -12,11 +12,16 @@ date: "2026-09-24T00:00:00+09:00"
 author: "Codex"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
+
+
+## 지식 로드맵 내 현재 위치
+
+소프트웨어 공학 → 소프트웨어 개발·운영 → A* 알고리즘
 
 ## 지식 위치
 
@@ -24,19 +29,19 @@ extra:
 
 ## 30초 인출
 
-- 본질: **A* (A-star)**는 시작점부터의 실제 비용과 목표까지의 휴리스틱 추정값을 함께 사용해 경로를 탐색하는 알고리즘
+- 본질: **A* (A-star)** 는 시작점부터의 실제 비용과 목표까지의 휴리스틱 추정값을 함께 사용해 경로를 탐색하는 알고리즘
 - 메커니즘: $f(n)=g(n)+h(n)$이 작은 후보 확장 → 더 낮은 경로 비용으로 도달하면 갱신 → 목표에 도달하면 경로 복원
 - 최적성 조건: 허용 가능한 휴리스틱과 그에 맞는 탐색 구현; 그래프 탐색에서 일관성은 닫힌 노드 재확장 방지에 도움
 
 <details>
 <summary>핵심 용어</summary>
 
-- **A*(A-star)**: 경로 비용과 목표까지의 휴리스틱 추정값을 합산해 확장할 후보를 고르는 탐색 알고리즘
-- **평가 함수 $f(n)=g(n)+h(n)$**: 시작점부터 현재 노드까지의 경로 비용 $g(n)$과 목표까지의 추정 비용 $h(n)$을 합친 후보 우선순위
-- **실제 비용 $g(n)$**: 시작점부터 현재 노드까지의 누적 경로 비용
-- **휴리스틱 $h(n)$**: 현재 노드에서 목표까지의 남은 비용 추정치
-- **허용성(Admissibility)**: 휴리스틱이 실제 잔여 비용을 과대평가하지 않는 성질
-- **일관성(Consistency)**: 각 간선 비용에 대해 $h(n)\le c(n,n')+h(n')$을 만족하는 성질; 일반적인 그래프 탐색에서 닫힌 노드 재확장의 필요를 줄임
+- **A*(A-star)** : 경로 비용과 목표까지의 휴리스틱 추정값을 합산해 확장할 후보를 고르는 탐색 알고리즘
+- **평가 함수 $f(n)=g(n)+h(n)$** : 시작점부터 현재 노드까지의 경로 비용 $g(n)$과 목표까지의 추정 비용 $h(n)$을 합친 후보 우선순위
+- **실제 비용 $g(n)$** : 시작점부터 현재 노드까지의 누적 경로 비용
+- **휴리스틱 $h(n)$** : 현재 노드에서 목표까지의 남은 비용 추정치
+- **허용성(Admissibility)** : 휴리스틱이 실제 잔여 비용을 과대평가하지 않는 성질
+- **일관성(Consistency)** : 각 간선 비용에 대해 $h(n)\le c(n,n')+h(n')$을 만족하는 성질; 일반적인 그래프 탐색에서 닫힌 노드 재확장의 필요를 줄임
 </details>
 
 ---
@@ -144,8 +149,7 @@ Open에서 f 최소 노드 선택
 - [탐욕(Greedy) 알고리즘](./196_greedy_algorithm.md)
 - [알고리즘 복잡도 Big-O](./125_algorithm_complexity_big_o.md)
 
-### 참고 자료
-
+## 출제 이력과 검증 출처
 - [Hart, Nilsson, Raphael, “A Formal Basis for the Heuristic Determination of Minimum Cost Paths” (1968)](https://people.stfx.ca/jdelamer/courses/csci-564/_downloads/b2220c66675ddde471ca1795147b8e86/A_Formal_Basis_for_the_Heuristic_Determination_of_Minimum_Cost_Paths.pdf)
 - [Stanford CS221: Search II](https://web.stanford.edu/class/archive/cs/cs221/cs221.1192/lectures/search2.pdf)
 ---

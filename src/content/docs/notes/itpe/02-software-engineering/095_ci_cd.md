@@ -6,10 +6,10 @@ tags:
   - "notes-software-engineering"
 sidebar:
   badge:
-    text: "기초"
+    text: "서브"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -18,17 +18,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **CI/CD(Continuous Integration/Continuous Delivery)**는 코드 변경을 자주 통합하고 자동 검증해 배포 가능한 소프트웨어를 지속적으로 전달하는 방식
+- 본질: **CI/CD(Continuous Integration/Continuous Delivery)** 는 코드 변경을 자주 통합하고 자동 검증해 배포 가능한 소프트웨어를 지속적으로 전달하는 방식
 - 메커니즘: 변경 통합 → 빌드·시험 → 배포 가능 상태 확인 → 승인 여부에 따라 릴리스 → 운영 결과 반영
 
 <details>
 <summary>핵심 용어</summary>
 
-- **CI/CD(Continuous Integration/Continuous Delivery)**: 코드 변경의 통합·검증과 배포 가능한 버전의 지속적 전달을 자동화하는 개발 방식
-- **지속적 제공(Continuous Delivery)**: 검증된 변경을 배포 가능한 상태로 유지하고, 실제 운영 반영은 필요에 따라 승인하는 방식
-- **지속적 배포(Continuous Deployment)**: 검증을 통과한 변경을 운영 환경에 자동 배포하는 방식
-- **파이프라인(Pipeline)**: 변경에 따라 빌드·시험·패키징·배포 작업을 순서대로 수행하는 자동화 절차
-- **품질 게이트(Quality Gate)**: 정한 품질 조건 충족 여부에 따라 다음 파이프라인 단계를 허용하는 기준
+- **CI/CD(Continuous Integration/Continuous Delivery)** : 코드 변경의 통합·검증과 배포 가능한 버전의 지속적 전달을 자동화하는 개발 방식
+- **지속적 제공(Continuous Delivery)** : 검증된 변경을 배포 가능한 상태로 유지하고, 실제 운영 반영은 필요에 따라 승인하는 방식
+- **지속적 배포(Continuous Deployment)** : 검증을 통과한 변경을 운영 환경에 자동 배포하는 방식
+- **파이프라인(Pipeline)** : 변경에 따라 빌드·시험·패키징·배포 작업을 순서대로 수행하는 자동화 절차
+- **품질 게이트(Quality Gate)** : 정한 품질 조건 충족 여부에 따라 다음 파이프라인 단계를 허용하는 기준
 
 </details>
 
@@ -46,7 +46,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **CI/CD(Continuous Integration/Continuous Delivery)**는 코드 변경의 통합·검증과 배포 가능한 버전의 지속적 전달을 자동화하는 개발 방식 |
+| 정의 | **CI/CD(Continuous Integration/Continuous Delivery)** 는 코드 변경의 통합·검증과 배포 가능한 버전의 지속적 전달을 자동화하는 개발 방식 |
 | 목적 | 통합 지연과 수작업 배포 위험을 줄이고 검증된 변경을 짧은 주기로 제공 |
 
 ### Ⅱ. 파이프라인
@@ -85,7 +85,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **CI/CD(Continuous Integration/Continuous Delivery)**는 코드 변경의 통합·검증과 배포 가능한 버전의 지속적 전달을 자동화하는 개발 방식 |
+| 정의 | **CI/CD(Continuous Integration/Continuous Delivery)** 는 코드 변경의 통합·검증과 배포 가능한 버전의 지속적 전달을 자동화하는 개발 방식 |
 | 목적 | 통합 지연과 수작업 배포 위험을 줄이고 검증된 변경을 짧은 주기로 제공 |
 
 ## Ⅱ. 파이프라인 작동

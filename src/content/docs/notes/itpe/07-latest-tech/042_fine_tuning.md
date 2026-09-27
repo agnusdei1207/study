@@ -6,13 +6,13 @@ sidebar:
   order: 42
   label: "042. 파인튜닝"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -135,6 +135,7 @@ extra:
 
 ---
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
 - 제139회 2교시 2번: 일반 파인튜닝 학습 파이프라인과 RAFT 기반 학습 파이프라인 비교
 - Zhang et al., [RAFT: Adapting Language Model to Domain Specific RAG](https://arxiv.org/abs/2403.10131): 검색 문맥 내 관련·방해 문서와 근거 활용 학습 확인

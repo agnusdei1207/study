@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "116. 하이브리드 컴퓨팅"
+  order: 116
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **하이브리드 컴퓨팅(Hybrid Computing)**: 서로 다른 연산 구조를 연계해 한 작업을 처리하는 컴퓨팅 방식
-- **CPU (Central Processing Unit)**: 범용 명령 실행·제어에 쓰이는 프로세서
-- **GPU (Graphics Processing Unit)**: 대량 병렬 계산을 지원하는 프로세서
-- **QPU (Quantum Processing Unit)**: 큐비트 연산을 수행하는 양자 처리 장치
-- **오프로드(Offload)**: 특정 계산을 호스트에서 가속기로 전달해 수행하는 과정
+- **하이브리드 컴퓨팅(Hybrid Computing)** : 서로 다른 연산 구조를 연계해 한 작업을 처리하는 컴퓨팅 방식
+- **CPU (Central Processing Unit)** : 범용 명령 실행·제어에 쓰이는 프로세서
+- **GPU (Graphics Processing Unit)** : 대량 병렬 계산을 지원하는 프로세서
+- **QPU (Quantum Processing Unit)** : 큐비트 연산을 수행하는 양자 처리 장치
+- **오프로드(Offload)** : 특정 계산을 호스트에서 가속기로 전달해 수행하는 과정
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **하이브리드 컴퓨팅**은 서로 다른 연산기를 하나의 작업 흐름에서 결합하는 방식 |
+| 정의 | **하이브리드 컴퓨팅은** 서로 다른 연산기를 하나의 작업 흐름에서 결합하는 방식 |
 | 목적 | 작업 특성에 맞는 연산 자원을 활용하고 연산 결과를 통합 |
 
 ### Ⅱ. 실행 흐름
@@ -72,7 +78,7 @@ CPU·GPU·QPU는 지원하는 연산과 비용이 다르며, 가속기 사용이
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **하이브리드 컴퓨팅**은 서로 다른 연산기를 하나의 작업 흐름에서 결합하는 방식 |
+| 정의 | **하이브리드 컴퓨팅은** 서로 다른 연산기를 하나의 작업 흐름에서 결합하는 방식 |
 | 목적 | 작업 특성에 맞는 연산 자원을 활용하고 연산 결과를 통합 |
 
 ### Ⅱ. 구성 요소
@@ -124,7 +130,7 @@ flowchart TD
 |---|---|
 | 연산기 처리량만 비교하면 전체 시스템 이득을 잘못 예측 | 전처리·전송·실행·통합 비용을 포함한 대표 업무 기준으로 도입 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [NVIDIA CUDA-Q overview](https://nvidia.github.io/cuda-quantum/latest/): 고전·양자 작업 흐름 연계
 - [IBM Qiskit Runtime](https://quantum.cloud.ibm.com/docs/en/guides/compute-resources): 고전 호스트와 양자 실행 연계 개념

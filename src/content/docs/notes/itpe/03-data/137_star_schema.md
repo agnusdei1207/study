@@ -3,7 +3,7 @@ sidebar:
   order: 137
   label: "137. 스타 스키마 (Star Schema)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 137
 title: "스타 스키마(Star Schema)의 차원 모델링과 최적화"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "137"
 ---
 
@@ -24,18 +24,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **스타 스키마**는 분석 사실을 중심에 두고 차원 테이블을 직접 연결하는 차원 모델
+- 본질: **스타 스키마는** 분석 사실을 중심에 두고 차원 테이블을 직접 연결하는 차원 모델
 - 메커니즘: 차원은 분석 맥락, 사실 테이블은 선언된 입도의 사건·측정값을 보유
 - 설계: 업무 프로세스와 입도를 먼저 정하고 차원·사실을 도출
 
 <details>
 <summary>핵심 용어</summary>
 
-- **스타 스키마(Star Schema)**: 사실 테이블과 관련 차원 테이블을 직접 연결하는 차원 모델
-- **사실 테이블(Fact Table)**: 선언한 입도의 업무 사건과 차원 키·측정값을 기록하는 테이블
-- **차원 테이블(Dimension Table)**: 사실을 분석·분류할 때 사용하는 업무 맥락과 속성을 담는 테이블
-- **입도(Grain)**: 사실 테이블의 한 행이 나타내는 업무 사건 수준
-- **느리게 변화하는 차원(Slowly Changing Dimension, SCD)**: 변경되는 차원 속성의 이력 보존 방식을 구분하는 기법
+- **스타 스키마(Star Schema)** : 사실 테이블과 관련 차원 테이블을 직접 연결하는 차원 모델
+- **사실 테이블(Fact Table)** : 선언한 입도의 업무 사건과 차원 키·측정값을 기록하는 테이블
+- **차원 테이블(Dimension Table)** : 사실을 분석·분류할 때 사용하는 업무 맥락과 속성을 담는 테이블
+- **입도(Grain)** : 사실 테이블의 한 행이 나타내는 업무 사건 수준
+- **느리게 변화하는 차원(Slowly Changing Dimension, SCD)** : 변경되는 차원 속성의 이력 보존 방식을 구분하는 기법
 
 </details>
 
@@ -145,7 +145,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: KPC 기출검색 자료 기준 제122회 정보관리기술사 1교시의 스타·스노우플레이크 스키마 비교 문항. Q-net 원문은 확인하지 못한 상태.
+- 출제 이력: 제122회 정보관리기술사 1교시의 스타·스노우플레이크 스키마 비교 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
 - Ralph Kimball, Margy Ross, *The Data Warehouse Toolkit*, 3rd ed., Wiley.
 - Oracle Database, [Data Warehousing Optimizations and Techniques: Star Transformation](https://docs.oracle.com/database/121/DWHSG/schemas.htm)
 

@@ -3,7 +3,7 @@ sidebar:
   order: 121
   label: "121. 다중회귀분석"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 121
 title: "다중회귀분석(Multiple Regression Analysis)의 모형과 진단"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "121"
 ---
 

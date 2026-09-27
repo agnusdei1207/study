@@ -3,7 +3,7 @@ sidebar:
   order: 63
   label: "063. 오픈소스 DBMS 전환"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "오픈소스 DBMS 전환 (Open Source DBMS Migration) 및 무중단 마이그레이션"
 author: "Codex"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 63
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "063"
 ---
 
@@ -24,16 +24,16 @@ extra:
 
 ## 30초 인출
 
-- 본질: **오픈소스 DBMS 전환**은 기존 데이터베이스의 데이터와 데이터베이스 기능을 목표 DBMS로 이전하고 검증하는 작업
+- 본질: **오픈소스 DBMS 전환은** 기존 데이터베이스의 데이터와 데이터베이스 기능을 목표 DBMS로 이전하고 검증하는 작업
 - 메커니즘: 호환성을 분석·변환하고 초기 데이터와 변경분을 옮긴 뒤, 정합성·성능을 확인해 서비스를 전환
 
 <details><summary>핵심 용어</summary>
 
-- **오픈소스 DBMS 전환(Open-source DBMS Migration)**: 기존 데이터베이스의 데이터·스키마·응용 연계를 대상 오픈소스 DBMS로 이전하고 운영을 전환하는 작업
-- **데이터베이스 관리 시스템(Database Management System, DBMS)**: 데이터의 저장·조회·변경을 관리하는 소프트웨어
-- **변경 데이터 캡처(Change Data Capture, CDC)**: 데이터 변경을 식별해 다른 시스템에 전달하는 방식
-- **컷오버(Cutover)**: 검증한 대상 시스템으로 운영 요청을 전환하는 단계
-- **데이터 정합성(Data Consistency)**: 원천과 대상 데이터가 정의된 규칙·시점에 맞게 일치하는 상태
+- **오픈소스 DBMS 전환(Open-source DBMS Migration)** : 기존 데이터베이스의 데이터·스키마·응용 연계를 대상 오픈소스 DBMS로 이전하고 운영을 전환하는 작업
+- **데이터베이스 관리 시스템(Database Management System, DBMS)** : 데이터의 저장·조회·변경을 관리하는 소프트웨어
+- **변경 데이터 캡처(Change Data Capture, CDC)** : 데이터 변경을 식별해 다른 시스템에 전달하는 방식
+- **컷오버(Cutover)** : 검증한 대상 시스템으로 운영 요청을 전환하는 단계
+- **데이터 정합성(Data Consistency)** : 원천과 대상 데이터가 정의된 규칙·시점에 맞게 일치하는 상태
 
 </details>
 

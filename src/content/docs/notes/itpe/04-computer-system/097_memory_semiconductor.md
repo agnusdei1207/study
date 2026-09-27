@@ -1,9 +1,10 @@
 ---
 title: "메모리 반도체"
 sidebar:
+  label: "097. 메모리 반도체"
   order: 97
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "Gemini 3.8 Flash"
 date: "2026-09-24T00:00:00+09:00"
@@ -11,7 +12,7 @@ tags:
   - "notes-computer-system"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "097"
 
 ---
@@ -28,12 +29,12 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **메모리 반도체(Memory Semiconductor)**: 전기적 상태를 이용해 데이터를 저장·판독하는 반도체 소자
-- **DRAM (Dynamic Random-Access Memory)**: 커패시터에 전하를 저장하고 주기적 리프레시가 필요한 휘발성 메모리
-- **SRAM (Static Random-Access Memory)**: 플립플롭 회로로 상태를 저장하는 휘발성 메모리
-- **NAND Flash**: 전원을 끊어도 데이터를 유지하는 비휘발성 플래시 메모리
-- **HBM (High Bandwidth Memory)**: DRAM 다이를 적층하고 넓은 인터페이스로 연결하는 고대역폭 메모리 규격 계열
-- **TSV (Through-Silicon Via)**: 실리콘 다이를 수직으로 연결하는 관통 전극 구조
+- **메모리 반도체(Memory Semiconductor)** : 전기적 상태를 이용해 데이터를 저장·판독하는 반도체 소자
+- **DRAM (Dynamic Random-Access Memory)** : 커패시터에 전하를 저장하고 주기적 리프레시가 필요한 휘발성 메모리
+- **SRAM (Static Random-Access Memory)** : 플립플롭 회로로 상태를 저장하는 휘발성 메모리
+- **NAND Flash** : 전원을 끊어도 데이터를 유지하는 비휘발성 플래시 메모리
+- **HBM (High Bandwidth Memory)** : DRAM 다이를 적층하고 넓은 인터페이스로 연결하는 고대역폭 메모리 규격 계열
+- **TSV (Through-Silicon Via)** : 실리콘 다이를 수직으로 연결하는 관통 전극 구조
 
 </details>
 
@@ -49,7 +50,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **메모리 반도체**는 전기적 상태를 이용해 데이터를 저장하고 판독하는 반도체 소자 |
+| 정의 | **메모리 반도체는** 전기적 상태를 이용해 데이터를 저장하고 판독하는 반도체 소자 |
 | 목적 | 시스템 요구에 맞춰 데이터 저장·접근 기능을 제공 |
 
 ### Ⅱ. 주요 유형
@@ -84,7 +85,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **메모리 반도체**는 전기적 상태를 이용해 데이터를 저장하고 판독하는 반도체 소자 |
+| 정의 | **메모리 반도체는** 전기적 상태를 이용해 데이터를 저장하고 판독하는 반도체 소자 |
 | 목적 | 시스템 요구에 맞춰 데이터 저장·접근 기능을 제공 |
 
 ### Ⅱ. 유형과 셀 특성
@@ -140,7 +141,7 @@ flowchart TD
 |---|---|
 | 단일 유형으로 용량·속도·보존 요구를 모두 충족하기 어려움 | 데이터 사용 주기와 접근 특성에 따라 계층을 구성하고 시스템 수준에서 검증 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [JEDEC 메모리 기술 분야](https://www.jedec.org/standards-documents/focus/memory): DDR SDRAM·HBM 등 표준 분야
 - [Micron 메모리 셀 소개](https://www.micron.com/content/dam/micron/educatorhub/intro-to-memory/micron-intro-to-memory-presentation.pdf): DRAM·NAND 셀 구조

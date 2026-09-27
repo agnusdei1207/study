@@ -143,7 +143,7 @@ extra:
 
 ---
 
-## 참고 자료
+## 출제 이력과 검증 출처
 
 - [ISTQB Glossary](https://glossary.istqb.org/)
 - [ISTQB Certified Tester Foundation Level Syllabus v4.0.1](https://istqb.org/certifications/certified-tester-foundation-level/)

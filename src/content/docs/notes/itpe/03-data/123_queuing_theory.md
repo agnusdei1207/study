@@ -3,7 +3,7 @@ sidebar:
   order: 123
   label: "123. 대기행렬이론"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 123
 title: "대기행렬이론(Queueing Theory)의 구조와 용량 분석"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "123"
 ---
 

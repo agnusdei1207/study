@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "114. 반도체 특화 인프라 (전력·용수)"
+  order: 114
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,10 +27,10 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **초순수(UPW, Ultrapure Water)**: 반도체 제조 공정에 사용하는 불순물 농도가 낮은 정제수
-- **유틸리티(Utility)**: 생산설비 가동에 필요한 전력·용수·가스·공조 등 기반 자원
-- **UPS (Uninterruptible Power Supply)**: 입력 전원이 끊길 때 중요 부하에 전력을 공급하도록 구성한 무정전 전원장치
-- **재이용수(Reclaimed Water)**: 처리한 폐수·방류수를 용도 기준에 따라 다시 사용하는 물
+- **초순수(UPW, Ultrapure Water)** : 반도체 제조 공정에 사용하는 불순물 농도가 낮은 정제수
+- **유틸리티(Utility)** : 생산설비 가동에 필요한 전력·용수·가스·공조 등 기반 자원
+- **UPS (Uninterruptible Power Supply)** : 입력 전원이 끊길 때 중요 부하에 전력을 공급하도록 구성한 무정전 전원장치
+- **재이용수(Reclaimed Water)** : 처리한 폐수·방류수를 용도 기준에 따라 다시 사용하는 물
 
 </details>
 
@@ -40,7 +46,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **반도체 생산 기반시설**은 팹 생산에 필요한 안정적 전력·용수·환경 제어를 제공하는 유틸리티 |
+| 정의 | **반도체 생산 기반시설은** 팹 생산에 필요한 안정적 전력·용수·환경 제어를 제공하는 유틸리티 |
 | 목적 | 공정의 연속성·품질·안전한 운영 지원 |
 
 ### Ⅱ. 주요 기반시설
@@ -78,7 +84,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **반도체 생산 기반시설**은 팹 생산에 필요한 안정적 전력·용수·환경 제어를 제공하는 유틸리티 |
+| 정의 | **반도체 생산 기반시설은** 팹 생산에 필요한 안정적 전력·용수·환경 제어를 제공하는 유틸리티 |
 | 목적 | 공정의 연속성·품질·안전한 운영 지원 |
 
 ### Ⅱ. 전력 기반
@@ -128,7 +134,7 @@ flowchart TD
 |---|---|
 | 전력·용수 설비의 개별 이중화가 생산 연속성을 보장하지 않음 | 공정별 필수 부하·필수 수질을 정의하고 유틸리티 장애 시나리오 통합 시험 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [SIA semiconductor manufacturing infrastructure report](https://www.semiconductors.org/wp-content/uploads/2021/04/4.5.21-SIA-supply-chain-submission.pdf): 안정적 전력·용수 필요성
 - [U.S. DOE Water Efficiency Guide](https://www1.eere.energy.gov/femp/pdfs/bp_water_508.pdf): UPW·공정수 재이용 사례

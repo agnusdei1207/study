@@ -4,6 +4,8 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
+  label: "123. 스토리지 유형 비교(블록·파일·오브젝트)"
+  order: 123
   badge:
     text: "기초"
 extra:
@@ -54,9 +56,9 @@ extra:
 
 | 유형 | 접근 단위 | 대표 강점 | 대표 활용 |
 |---|---|---|---|
-| 블록 | Block Address·**LUN** | 저지연 임의 I/O | DB·VM |
+| 블록 | Block Address· **LUN** | 저지연 임의 I/O | DB·VM |
 | 파일 | Directory·Path | 계층 관리·공유·파일 API | 협업·공유 파일 |
-| 오브젝트 | Bucket·Key·**Object API**·Metadata | 대량 수평 확장 | 백업·Data Lake |
+| 오브젝트 | Bucket·Key· **Object API** ·Metadata | 대량 수평 확장 | 백업·Data Lake |
 
 제언: 워크로드의 접근·갱신·공유 요구에 따른 세 유형의 조합
 
@@ -95,7 +97,7 @@ flowchart TD
     B -->|객체 Key·API 연산| E[오브젝트 스토리지]
 ```
 
-복제·Snapshot·RAID·**Erasure Coding(삭제 코딩)**·Versioning은 제품 구현 선택이므로 특정 스토리지 유형의 필수 속성으로 단정하지 않음
+복제·Snapshot·RAID· **Erasure Coding(삭제 코딩)** ·Versioning은 제품 구현 선택이므로 특정 스토리지 유형의 필수 속성으로 단정하지 않음
 
 ## Ⅲ. 워크로드 선택축 비교
 

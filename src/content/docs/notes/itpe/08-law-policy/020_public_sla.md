@@ -6,9 +6,9 @@ tags:
   - "notes-law-policy"
 sidebar:
   badge:
-    text: "기초"
+    text: "서브"
 extra:
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 
@@ -18,15 +18,15 @@ extra:
 
 ## 30초 인출
 
-- 본질: **공공 정보시스템 서비스수준협약(SLA)**은 제공할 서비스 품질과 측정·개선 방식을 합의하는 운영 약정
+- 본질: **공공 정보시스템 서비스수준협약(SLA)** 은 제공할 서비스 품질과 측정·개선 방식을 합의하는 운영 약정
 - 메커니즘: 서비스 중요도에 맞춰 목표와 측정 기준을 정하고, 관측값을 장애 예방·복구·개선에 연결
 
 <details><summary>핵심 용어</summary>
 
-- **공공 정보시스템 서비스수준협약(Service Level Agreement, SLA)**: 공공 정보시스템의 서비스 수준 목표, 측정 방법, 책임과 개선 절차를 정하는 약정.
-- **서비스 수준 목표(Service Level Objective, SLO)**: 서비스 제공자가 달성하도록 정한 측정 가능한 목표.
-- **RTO (Recovery Time Objective)**: 장애 후 서비스를 복구하기까지 허용하는 목표 시간.
-- **RPO (Recovery Point Objective)**: 장애 시 허용 가능한 데이터 복구 시점 간격.
+- **공공 정보시스템 서비스수준협약(Service Level Agreement, SLA)** : 공공 정보시스템의 서비스 수준 목표, 측정 방법, 책임과 개선 절차를 정하는 약정.
+- **서비스 수준 목표(Service Level Objective, SLO)** : 서비스 제공자가 달성하도록 정한 측정 가능한 목표.
+- **RTO (Recovery Time Objective)** : 장애 후 서비스를 복구하기까지 허용하는 목표 시간.
+- **RPO (Recovery Point Objective)** : 장애 시 허용 가능한 데이터 복구 시점 간격.
 </details>
 
 ---
@@ -43,7 +43,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **공공 정보시스템 서비스수준협약(Service Level Agreement, SLA)**은 제공할 서비스 품질 목표와 측정·개선 방식을 합의하는 운영 약정 |
+| 정의 | **공공 정보시스템 서비스수준협약(Service Level Agreement, SLA)** 은 제공할 서비스 품질 목표와 측정·개선 방식을 합의하는 운영 약정 |
 | 목적 | 국민에게 제공하는 공공서비스의 안정성과 운영 책임을 측정 가능한 기준으로 관리 |
 
 ### Ⅱ. 구성과 운영
@@ -83,7 +83,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **공공 정보시스템 서비스수준협약(Service Level Agreement, SLA)**은 제공할 서비스 품질 목표와 측정·개선 방식을 합의하는 운영 약정 |
+| 정의 | **공공 정보시스템 서비스수준협약(Service Level Agreement, SLA)** 은 제공할 서비스 품질 목표와 측정·개선 방식을 합의하는 운영 약정 |
 | 목적 | 국민에게 제공하는 공공서비스의 안정성과 운영 책임을 측정 가능한 기준으로 관리 |
 
 | 제도 근거 | 범위 |

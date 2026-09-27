@@ -135,7 +135,7 @@ MESI는 대표 모델이며 프로세서별 실제 프로토콜은 추가 상태
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Intel: Faster Core-to-Core Communications](https://www.intel.com/content/www/us/en/developer/articles/technical/fast-core-to-core-communications.html)
 - [Arm: Cache Coherency White Paper](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/CacheCoherencyWhitepaper_6June2011.pdf?revision=e5a82cb4-0f87-4f5c-91cf-52b33a5cd1da)

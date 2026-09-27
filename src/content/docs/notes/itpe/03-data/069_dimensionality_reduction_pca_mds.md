@@ -24,16 +24,16 @@ extra:
 
 ## 30초 인출
 
-- 본질: **차원 축소(Dimensionality Reduction)**는 자료를 더 적은 변수나 좌표로 표현하면서 분석에 필요한 정보를 보존하는 방법
+- 본질: **차원 축소(Dimensionality Reduction)는** 자료를 더 적은 변수나 좌표로 표현하면서 분석에 필요한 정보를 보존하는 방법
 - 메커니즘: PCA는 변동이 큰 직교 방향을 찾고, MDS는 개체 간 거리·비유사도 관계를 저차원 공간에 표현
 
 <details><summary>핵심 용어</summary>
 
-- **차원 축소(Dimensionality Reduction)**: 자료를 더 적은 좌표로 표현해 복잡도나 시각화 부담을 줄이는 방법
-- **주성분분석(Principal Component Analysis, PCA)**: 자료의 분산을 최대한 보존하는 직교 선형 축으로 투영하는 방법
-- **다차원척도법(Multidimensional Scaling, MDS)**: 개체 간 거리·비유사도를 저차원 좌표에 표현하는 방법
-- **설명분산(Explained Variance)**: 주성분이 원자료의 변동 중 설명하는 비율
-- **스트레스(Stress)**: MDS 저차원 배치가 입력 비유사도를 얼마나 왜곡하는지 나타내는 적합도 기준
+- **차원 축소(Dimensionality Reduction)** : 자료를 더 적은 좌표로 표현해 복잡도나 시각화 부담을 줄이는 방법
+- **주성분분석(Principal Component Analysis, PCA)** : 자료의 분산을 최대한 보존하는 직교 선형 축으로 투영하는 방법
+- **다차원척도법(Multidimensional Scaling, MDS)** : 개체 간 거리·비유사도를 저차원 좌표에 표현하는 방법
+- **설명분산(Explained Variance)** : 주성분이 원자료의 변동 중 설명하는 비율
+- **스트레스(Stress)** : MDS 저차원 배치가 입력 비유사도를 얼마나 왜곡하는지 나타내는 적합도 기준
 
 </details>
 

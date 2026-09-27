@@ -6,13 +6,13 @@ sidebar:
   order: 11
   label: "011. 프롬프트 엔지니어링"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -126,6 +126,7 @@ extra:
 
 ---
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
 - 제140회 1교시 13번: 프롬프트 엔지니어링과 하네스 엔지니어링 비교
 - 제135회 3교시 2번: 프롬프트 엔지니어링의 기술 요소와 활용 방안

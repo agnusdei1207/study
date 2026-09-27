@@ -29,11 +29,11 @@ AI 시스템 → 가속기 연결 → 스케일업 인터커넥트 → UALink
 <details>
 <summary>핵심 용어</summary>
 
-- **UALink (Ultra Accelerator Link)**: AI 가속기와 스위치 사이의 통신을 위한 개방형 인터커넥트 표준
-- **스케일업 (Scale-up)**: 한 시스템·파드 안에서 가속기 연결과 자원을 확장하는 방식
-- **로드·스토어 (Load/Store)**: 메모리 주소를 대상으로 값을 읽고 쓰는 명령 의미
-- **UALink 컨소시엄 (Ultra Accelerator Link Consortium)**: UALink 사양을 제정·관리하는 산업 표준화 단체
-- **InfiniBand**: 고성능 컴퓨팅·데이터센터의 패킷 기반 네트워크 인터커넥트 기술
+- **UALink (Ultra Accelerator Link)** : AI 가속기와 스위치 사이의 통신을 위한 개방형 인터커넥트 표준
+- **스케일업 (Scale-up)** : 한 시스템·파드 안에서 가속기 연결과 자원을 확장하는 방식
+- **로드·스토어 (Load/Store)** : 메모리 주소를 대상으로 값을 읽고 쓰는 명령 의미
+- **UALink 컨소시엄 (Ultra Accelerator Link Consortium)** : UALink 사양을 제정·관리하는 산업 표준화 단체
+- **InfiniBand** : 고성능 컴퓨팅·데이터센터의 패킷 기반 네트워크 인터커넥트 기술
 </details>
 
 ---
@@ -142,8 +142,8 @@ UALink 1.0은 가속기 간 직접 메모리 의미의 통신을 정의하며, �
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**: 정보관리기술사 기출 확인 없음; 표준 개념 중심 예상문제
-- **검증 출처**:
+- **기출 이력** : 정보관리기술사 기출 확인 없음; 표준 개념 중심 예상문제
+- **검증 출처** :
   - [UALink Consortium specifications](https://ualinkconsortium.org/specification/)
   - [UALink Consortium FAQ](https://ualinkconsortium.org/faq/)
   - [UALink 200G 1.0 Specification White Paper](https://ualinkconsortium.org/wp-content/uploads/2025/04/UALink-1.0-White_Paper_v3.pdf)

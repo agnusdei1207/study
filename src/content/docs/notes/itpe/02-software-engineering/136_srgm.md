@@ -12,10 +12,10 @@ date: "2026-09-27T00:24:59+09:00"
 author: "Codex"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -28,20 +28,20 @@ extra:
 
 ## 30초 인출
 
-- 본질: **소프트웨어 신뢰성 성장 모델(SRGM, Software Reliability Growth Model)**은 시험 중 관측한 고장 자료로 신뢰도 변화를 추정하는 통계 모델
+- 본질: **소프트웨어 신뢰성 성장 모델(SRGM, Software Reliability Growth Model)** 은 시험 중 관측한 고장 자료로 신뢰도 변화를 추정하는 통계 모델
 - 메커니즘: 시간별 고장 자료 수집 → 성장 곡선 모델 선택·적합 → 잔존 결함과 고장률 추정 → 가정·불확실성을 고려해 시험 및 출시 판단
 - 핵심 구분: Goel–Okumoto는 초기부터 발견율이 감소하는 형태, Yamada 지연 S자형은 학습에 따른 초기 지연을 표현하는 형태
 
 <details>
 <summary>핵심 용어</summary>
 
-- **SRGM(Software Reliability Growth Model)**: 시험 중 관측한 고장 자료에 따라 소프트웨어 신뢰도의 변화를 표현하는 모델
-- **NHPP(Nonhomogeneous Poisson Process)**: 발생 강도가 시간에 따라 달라지는 비동질 포아송 과정
-- **MLE(Maximum Likelihood Estimation)**: 관측 자료가 가장 그럴듯해지는 모수를 추정하는 최대우도법
-- **LSE(Least Squares Estimation)**: 관측값과 모델값의 제곱 오차 합을 최소화하는 최소제곱법
-- **MTTF(Mean Time To Failure)**: 수리 불가능한 대상으로 정의할 때 고장까지의 평균 시간
-- **Goel-Okumoto 모델**: 테스트 초기부터 결함이 빠르게 발견되다가 시간이 지날수록 발견율이 지수 함수적으로 감소하여 포화되는 오목(Concave) 지수형 모델
-- **Yamada S자형 모델**: 테스트 초기에는 테스터의 학습 및 환경 적응으로 결함 발견이 완만하다가, 적응 후 급증한 뒤 최종 포화되는 변곡점을 가진 지연 S자형(Delayed S-shaped) 모델
+- **SRGM(Software Reliability Growth Model)** : 시험 중 관측한 고장 자료에 따라 소프트웨어 신뢰도의 변화를 표현하는 모델
+- **NHPP(Nonhomogeneous Poisson Process)** : 발생 강도가 시간에 따라 달라지는 비동질 포아송 과정
+- **MLE(Maximum Likelihood Estimation)** : 관측 자료가 가장 그럴듯해지는 모수를 추정하는 최대우도법
+- **LSE(Least Squares Estimation)** : 관측값과 모델값의 제곱 오차 합을 최소화하는 최소제곱법
+- **MTTF(Mean Time To Failure)** : 수리 불가능한 대상으로 정의할 때 고장까지의 평균 시간
+- **Goel-Okumoto 모델** : 테스트 초기부터 결함이 빠르게 발견되다가 시간이 지날수록 발견율이 지수 함수적으로 감소하여 포화되는 오목(Concave) 지수형 모델
+- **Yamada S자형 모델** : 테스트 초기에는 테스터의 학습 및 환경 적응으로 결함 발견이 완만하다가, 적응 후 급증한 뒤 최종 포화되는 변곡점을 가진 지연 S자형(Delayed S-shaped) 모델
 </details>
 
 ---
@@ -58,7 +58,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **SRGM**은 시험 중 관측한 고장 자료로 소프트웨어 신뢰도 변화를 추정하는 통계 모델 |
+| 정의 | **SRGM** 은 시험 중 관측한 고장 자료로 소프트웨어 신뢰도 변화를 추정하는 통계 모델 |
 | 목적 | 잔존 결함과 고장 추세를 추정해 시험 지속 및 출시 판단을 지원 |
 
 ### Ⅱ. 대표 성장 곡선
@@ -83,11 +83,11 @@ extra:
 
 ## Ⅰ. 개요와 목적
 
-시험 중 관측한 고장 자료로 신뢰도 성장 추세와 잔존 결함을 추정하는 **SRGM**. 시험 종료나 출시를 단독 결정하는 값이 아니라 다른 품질·위험 기준과 함께 검토하는 근거.
+시험 중 관측한 고장 자료로 신뢰도 성장 추세와 잔존 결함을 추정하는 **SRGM** . 시험 종료나 출시를 단독 결정하는 값이 아니라 다른 품질·위험 기준과 함께 검토하는 근거.
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **SRGM**은 시험 중 관측한 고장 자료로 소프트웨어 신뢰도 변화를 추정하는 통계 모델 |
+| 정의 | **SRGM** 은 시험 중 관측한 고장 자료로 소프트웨어 신뢰도 변화를 추정하는 통계 모델 |
 | 목적 | 잔존 결함과 고장 추세를 추정해 시험 지속 및 출시 판단을 지원 |
 
 ### 대표 SRGM 모델 비교 (Goel-Okumoto vs Yamada)
@@ -172,3 +172,8 @@ extra:
 - [소프트웨어 안전성 진단 가이드라인](./137_sw_safety_diagnosis_guide.md)
 - [Yamada 등, S-Shaped Software Reliability Growth Models](https://doi.org/10.1109/TR.1984.5221826)
 ---
+
+## 출제 이력과 검증 출처
+
+- **출제 상태:** 예상문제는 학습용 문항이며, 공식 기출 원문과 동일하다고 단정하지 않는다.
+- [검증 자료 1](https://doi.org/10.1109/TR.1984.5221826)

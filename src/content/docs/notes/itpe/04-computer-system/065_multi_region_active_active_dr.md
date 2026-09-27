@@ -29,14 +29,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **다중 리전 Active-Active 재해복구 (Multi-Region Active-Active Disaster Recovery)**: 여러 리전이 정상 상태에서 서비스 요청을 처리하고 장애 시 잔여 리전으로 운영을 이어가는 복구 구조
-- **RTO (Recovery Time Objective)**: 장애 후 서비스를 복구하기까지 허용하는 목표 시간
-- **RPO (Recovery Point Objective)**: 장애 시 허용하는 데이터 복구 시점의 손실 범위
-- **동기 복제 (Synchronous Replication)**: 쓰기 완료 응답 전에 정한 복제 대상의 확인을 기다리는 방식
-- **비동기 복제 (Asynchronous Replication)**: 원본 쓰기를 먼저 완료하고 변경 사항을 뒤이어 복제하는 방식
-- **스플릿 브레인 (Split Brain)**: 통신 단절 등으로 둘 이상의 노드가 같은 데이터의 쓰기 주체라고 판단하는 상태
-- **쿼럼 (Quorum)**: 분산 노드가 합의·쓰기 결정을 내리는 데 필요한 정족수
-- **글로벌 트래픽 관리 (Global Traffic Management)**: 건강 상태·정책에 따라 사용자 요청을 여러 지역 엔드포인트로 분배하는 기능
+- **다중 리전 Active-Active 재해복구 (Multi-Region Active-Active Disaster Recovery)** : 여러 리전이 정상 상태에서 서비스 요청을 처리하고 장애 시 잔여 리전으로 운영을 이어가는 복구 구조
+- **RTO (Recovery Time Objective)** : 장애 후 서비스를 복구하기까지 허용하는 목표 시간
+- **RPO (Recovery Point Objective)** : 장애 시 허용하는 데이터 복구 시점의 손실 범위
+- **동기 복제 (Synchronous Replication)** : 쓰기 완료 응답 전에 정한 복제 대상의 확인을 기다리는 방식
+- **비동기 복제 (Asynchronous Replication)** : 원본 쓰기를 먼저 완료하고 변경 사항을 뒤이어 복제하는 방식
+- **스플릿 브레인 (Split Brain)** : 통신 단절 등으로 둘 이상의 노드가 같은 데이터의 쓰기 주체라고 판단하는 상태
+- **쿼럼 (Quorum)** : 분산 노드가 합의·쓰기 결정을 내리는 데 필요한 정족수
+- **글로벌 트래픽 관리 (Global Traffic Management)** : 건강 상태·정책에 따라 사용자 요청을 여러 지역 엔드포인트로 분배하는 기능
 </details>
 
 ---
@@ -158,8 +158,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**: 제137회 정보관리기술사 3교시 다중지역 동시 가동 재해복구 시스템 출제
-- **검증 출처**:
+- **기출 이력** : 제137회 정보관리기술사 3교시 다중지역 동시 가동 재해복구 시스템 출제
+- **검증 출처** :
   - [Google Cloud: Multi-regional deployment archetype](https://docs.cloud.google.com/architecture/deployment-archetypes/multiregional)
   - [Google Cloud: Architecting disaster recovery](https://docs.cloud.google.com/architecture/disaster-recovery)
   - [Google Cloud Storage: Availability and durability](https://cloud.google.com/storage/docs/availability-durability)

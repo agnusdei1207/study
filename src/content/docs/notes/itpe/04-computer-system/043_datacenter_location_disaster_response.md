@@ -135,7 +135,7 @@ RTO와 RPO는 업무에서 정한 목표이며 지리적 이격만으로 자동 
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [NIST SP 800-34 Rev.1: Contingency Planning Guide](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final)
 - [NIST SP 800-53 Rev.5: Alternate Storage Site Separation](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)

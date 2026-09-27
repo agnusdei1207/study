@@ -3,7 +3,7 @@ sidebar:
   order: 36
   label: "036. WebRTC"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "WebRTC(Web Real-Time Communication)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 36
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "036"
 ---
 

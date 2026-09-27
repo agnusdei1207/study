@@ -3,7 +3,7 @@ sidebar:
   order: 34
   label: "034. SCTP"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 title: "SCTP(Stream Control Transmission Protocol)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 34
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "034"
 ---
 

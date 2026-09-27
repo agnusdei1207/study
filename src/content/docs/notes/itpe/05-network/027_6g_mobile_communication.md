@@ -152,7 +152,7 @@ ITU는 제시된 값이 연구·조사를 위한 추정 목표이며 모든 역�
 
 ## 출제 이력과 검증 출처
 
-- 제130회 2교시: “6G 이동통신의 비전, 주요 성능 지표 및 핵심 기술요소를 설명하시오.”
+- 제130회 2교시 관련 출제 이력은 공식 문제지 원문 미확보로 회차·문구를 검증하지 못함. 위 문항은 학습용 예상문제.
 - [ITU-R Recommendation M.2160-0: IMT-2030 Framework and Overall Objectives](https://www.itu.int/rec/R-REC-M.2160-0-202311-I) — 시나리오·성능 역량 및 예시 목표, 연구 단계 명시
 - [ITU: IMT towards 2030 and beyond](https://www.itu.int/en/ITU-R/study-groups/rsg5/rwp5d/imt-2030/pages/default.aspx) — 현재 IMT-2030 표준화 경과
 

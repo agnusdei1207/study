@@ -1,10 +1,16 @@
 ---
 title: "4-way handshake"
-author: "Gemini 3.8 Flash"
+author: "Codex"
 date: "2026-09-24T21:25:00+09:00"
 tags:
   - "notes-network"
+sidebar:
+  label: "049. 4-way handshake"
+  badge:
+    text: "서브"
+    variant: note
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **TCP (Transmission Control Protocol)**: 양 끝점 간 연결 상태와 순서·재전송을 관리하는 전송 계층 프로토콜
-- **Half-Close**: 한 방향 송신만 끝난 상태로, 반대 방향 데이터의 수신은 계속 가능한 TCP 상태
-- **4-way handshake**: 양 끝점이 FIN과 ACK를 주고받아 TCP의 두 송신 방향을 각각 종료하는 절차
-- **TIME-WAIT**: 능동 종료 측이 최종 ACK 뒤 일정 시간 대기해 상대 FIN 재전송에 응답하고 이전 연결의 지연 세그먼트가 새 연결에 섞이는 일을 막는 상태
-- **MSL (Maximum Segment Lifetime)**: IP 네트워크에서 세그먼트가 유효할 수 있는 최대 시간
+- **TCP (Transmission Control Protocol)** : 양 끝점 간 연결 상태와 순서·재전송을 관리하는 전송 계층 프로토콜
+- **Half-Close** : 한 방향 송신만 끝난 상태로, 반대 방향 데이터의 수신은 계속 가능한 TCP 상태
+- **4-way handshake** : 양 끝점이 FIN과 ACK를 주고받아 TCP의 두 송신 방향을 각각 종료하는 절차
+- **TIME-WAIT** : 능동 종료 측이 최종 ACK 뒤 일정 시간 대기해 상대 FIN 재전송에 응답하고 이전 연결의 지연 세그먼트가 새 연결에 섞이는 일을 막는 상태
+- **MSL (Maximum Segment Lifetime)** : IP 네트워크에서 세그먼트가 유효할 수 있는 최대 시간
 
 </details>
 
@@ -33,7 +39,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> TCP 4-way handshake의 개념과 FIN·ACK를 이용한 연결 종료 절차를 설명하시오. (예상)
+> TCP 4-way handshake의 개념과 FIN·ACK를 이용한 연결 종료 절차를 설명하시오. (예상·10점)
 
 ---
 
@@ -71,7 +77,7 @@ CLOSED
 
 ## 2~4교시 예상문제 (25점)
 
-> TCP 4-way handshake의 FIN·ACK 교환과 종료 상태를 설명하고, 3-way handshake와 비교하여 운영 시 주의할 점을 제시하시오. (예상)
+> TCP 4-way handshake의 FIN·ACK 교환과 종료 상태를 설명하고, 3-way handshake와 비교하여 운영 시 주의할 점을 제시하시오. (예상·25점)
 
 ---
 

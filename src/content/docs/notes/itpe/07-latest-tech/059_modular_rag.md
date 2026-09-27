@@ -41,7 +41,7 @@ extra:
 
 ---
 
-Modular RAG의 개념과 모듈 조합 구조를 설명하시오. (예상)
+> Modular RAG의 개념과 모듈 조합 구조를 설명하시오. (예상·10점)
 
 ---
 
@@ -83,7 +83,7 @@ Modular RAG의 개념과 모듈 조합 구조를 설명하시오. (예상)
 
 ---
 
-Modular RAG의 개념과 모듈 구조를 설명하고, Advanced RAG와의 차이 및 설계·평가 기준을 제시하시오. (예상)
+> Modular RAG의 개념과 모듈 구조를 설명하고, Advanced RAG와의 차이 및 설계·평가 기준을 제시하시오. (예상·25점)
 
 ---
 
@@ -133,6 +133,7 @@ Modular RAG의 개념과 모듈 구조를 설명하고, Advanced RAG와의 차�
 ---
 
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
-- 제139회 1교시 3번: “Advanced RAG와 Modular RAG를 비교하시오.” 실제 기출 범위 보존.
+- 제139회 1교시 3번 비교 문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 - Gao et al., [Modular RAG: Transforming RAG Systems into LEGO-like Reconfigurable Frameworks](https://arxiv.org/abs/2407.21059): 모듈형 설계와 선형·조건부·분기·반복 경로 참고.

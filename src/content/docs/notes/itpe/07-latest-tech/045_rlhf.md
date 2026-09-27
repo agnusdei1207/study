@@ -126,6 +126,7 @@ extra:
 
 ---
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
 - 제139회 2교시 1번: AI 리스크 중 LLM 모델 정렬·안전성 확보 기술
 - Ouyang et al., [Training language models to follow instructions with human feedback](https://arxiv.org/abs/2203.02155): SFT·선호 자료·보상 모델·PPO 구성 확인

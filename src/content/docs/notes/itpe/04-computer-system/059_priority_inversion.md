@@ -3,7 +3,7 @@ sidebar:
   order: 59
   label: "059. 우선순위 역전"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "우선순위 역전(Priority Inversion)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 59
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "059"
 ---
 
@@ -135,7 +135,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Linux Kernel: RT-mutex implementation design](https://docs.kernel.org/locking/rt-mutex-design.html)
 - [Linux Kernel: RT-mutex subsystem with PI support](https://docs.kernel.org/6.5/locking/rt-mutex.html)

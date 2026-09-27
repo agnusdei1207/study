@@ -18,6 +18,11 @@ extra:
   keyword_grade: "응용"
 ---
 
+
+## 지식 로드맵 내 현재 위치
+
+소프트웨어 공학 → 소프트웨어 개발·운영 → 파이썬(Python)
+
 ## 지식 위치
 
 소프트웨어공학 > 프로그래밍 언어·런타임 > 파이썬
@@ -31,11 +36,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **CPython**: C 언어로 구현된 Python의 대표 구현체로, 소스 코드를 바이트코드로 컴파일한 뒤 인터프리터에서 실행
-- **PVM(Python Virtual Machine)**: 바이트코드를 명령어 단위로 해석 실행하는 스택 기반 가상머신
-- **GIL(Global Interpreter Lock)**: GIL이 활성화된 CPython 빌드에서 Python 객체 접근을 조정하는 전역 잠금. 기본 빌드는 한 번에 하나의 스레드만 Python 코드를 실행하며, 선택 가능한 free-threaded 빌드는 GIL을 비활성화
-- **동적 타이핑(Dynamic Typing)**: 변수의 데이터 타입을 코드 작성 시 선언하지 않고, 프로그램 런타임에 변수에 할당되는 객체의 타입에 따라 동적으로 결정되는 방식
-- **참조 카운팅(Reference Counting)**: 객체를 가리키는 포인터 수를 실시간 카운트하여 0이 되는 즉시 메모리를 즉시 해제하는 CPython의 기본 가비지 컬렉션 기법
+- **CPython** : C 언어로 구현된 Python의 대표 구현체로, 소스 코드를 바이트코드로 컴파일한 뒤 인터프리터에서 실행
+- **PVM(Python Virtual Machine)** : 바이트코드를 명령어 단위로 해석 실행하는 스택 기반 가상머신
+- **GIL(Global Interpreter Lock)** : GIL이 활성화된 CPython 빌드에서 Python 객체 접근을 조정하는 전역 잠금. 기본 빌드는 한 번에 하나의 스레드만 Python 코드를 실행하며, 선택 가능한 free-threaded 빌드는 GIL을 비활성화
+- **동적 타이핑(Dynamic Typing)** : 변수의 데이터 타입을 코드 작성 시 선언하지 않고, 프로그램 런타임에 변수에 할당되는 객체의 타입에 따라 동적으로 결정되는 방식
+- **참조 카운팅(Reference Counting)** : 객체를 가리키는 포인터 수를 실시간 카운트하여 0이 되는 즉시 메모리를 즉시 해제하는 CPython의 기본 가비지 컬렉션 기법
 </details>
 
 ---
@@ -159,3 +164,9 @@ CPython 런타임
 - [Python 3.14 Thread States and the Global Interpreter Lock](https://docs.python.org/3.14/c-api/threads.html)
 - [What's New in Python 3.14: Free-threaded Python](https://docs.python.org/3/whatsnew/3.14.html#free-threaded-python-is-officially-supported)
 ---
+
+## 출제 이력과 검증 출처
+
+- **출제 상태:** 예상문제는 학습용 문항이며, 공식 기출 원문과 동일하다고 단정하지 않는다.
+- [검증 자료 1](https://docs.python.org/3.14/c-api/threads.html)
+- [검증 자료 2](https://docs.python.org/3/whatsnew/3.14.html#free-threaded-python-is-officially-supported)

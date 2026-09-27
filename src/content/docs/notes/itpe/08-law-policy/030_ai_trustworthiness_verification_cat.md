@@ -6,9 +6,9 @@ tags:
   - "notes-law-policy"
 sidebar:
   badge:
-    text: "응용"
+    text: "서브"
 extra:
-  keyword_grade: "응용"
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 
@@ -18,17 +18,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **AI 신뢰성 검증 제도(CAT, Certification of AI Trustworthiness)**는 AI 시스템·사업자 등의 신뢰성 관리와 시스템 대응 능력을 기준에 따라 평가하는 TTA 민간자율 검·인증
+- 본질: **AI 신뢰성 검증 제도(CAT, Certification of AI Trustworthiness)** 는 AI 시스템·사업자 등의 신뢰성 관리와 시스템 대응 능력을 기준에 따라 평가하는 TTA 민간자율 검·인증
 - 메커니즘: 적용 표준·위험에 맞춰 관리체계를 심사하고 실제 운영 환경의 기능·성능 시험을 더해 결과를 검증·인증
 
 <details><summary>핵심 용어</summary>
 
-- **AI 신뢰성 검증 제도(CAT, Certification of AI Trustworthiness)**: 한국정보통신기술협회(TTA)가 운영하는 민간자율 AI 신뢰성 검·인증 제도.
-- **TTA (Telecommunications Technology Association)**: 한국정보통신기술협회. ICT 표준·시험·인증 전문기관.
-- **ISO/IEC 23894**: 인공지능 위험관리 지침을 제공하는 국제표준.
-- **ISO/IEC 42001**: 인공지능 경영시스템 요구사항을 정한 국제표준.
-- **ISO/IEC 38507**: 조직의 인공지능 활용 거버넌스에 관한 지침.
-- **기능·성능 시험**: 실제 운영 환경에서 AI 시스템의 위험 대응 능력을 시험 조건에 따라 확인하는 평가.
+- **AI 신뢰성 검증 제도(CAT, Certification of AI Trustworthiness)** : 한국정보통신기술협회(TTA)가 운영하는 민간자율 AI 신뢰성 검·인증 제도.
+- **TTA (Telecommunications Technology Association)** : 한국정보통신기술협회. ICT 표준·시험·인증 전문기관.
+- **ISO/IEC 23894** : 인공지능 위험관리 지침을 제공하는 국제표준.
+- **ISO/IEC 42001** : 인공지능 경영시스템 요구사항을 정한 국제표준.
+- **ISO/IEC 38507** : 조직의 인공지능 활용 거버넌스에 관한 지침.
+- **기능·성능 시험** : 실제 운영 환경에서 AI 시스템의 위험 대응 능력을 시험 조건에 따라 확인하는 평가.
 </details>
 
 ---
@@ -45,7 +45,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **AI 신뢰성 검증 제도(CAT, Certification of AI Trustworthiness)**는 AI 시스템·사업자 등의 신뢰성 관리와 시스템 대응 능력을 기준에 따라 평가하는 TTA 민간자율 검·인증 |
+| 정의 | **AI 신뢰성 검증 제도(CAT, Certification of AI Trustworthiness)** 는 AI 시스템·사업자 등의 신뢰성 관리와 시스템 대응 능력을 기준에 따라 평가하는 TTA 민간자율 검·인증 |
 | 목적 | 조직·제품이 정한 신뢰성 통제와 위험 대응 능력을 외부에 설명 가능한 평가 결과로 제시 |
 
 ### Ⅱ. 평가 구조
@@ -86,7 +86,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **AI 신뢰성 검증 제도(CAT, Certification of AI Trustworthiness)**는 AI 시스템·사업자 등의 신뢰성 관리와 시스템 대응 능력을 기준에 따라 평가하는 TTA 민간자율 검·인증 |
+| 정의 | **AI 신뢰성 검증 제도(CAT, Certification of AI Trustworthiness)** 는 AI 시스템·사업자 등의 신뢰성 관리와 시스템 대응 능력을 기준에 따라 평가하는 TTA 민간자율 검·인증 |
 | 목적 | 조직·제품이 정한 신뢰성 통제와 위험 대응 능력을 외부에 설명 가능한 평가 결과로 제시 |
 
 CAT는 법률이 모든 AI에 의무화한 국가 인증이 아니라, TTA가 제공하는 민간자율 검·인증 서비스. 법률상 준수 의무나 조직 자체의 위험관리를 대체하지 않음.

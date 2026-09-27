@@ -3,7 +3,7 @@ sidebar:
   order: 119
   label: "119. 공간 연산자"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 119
 title: "공간 연산자와 공간 인덱스 처리"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "119"
 ---
 

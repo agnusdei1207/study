@@ -4,6 +4,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "073. 멀티모달(Multimodal)"
+  order: 73
   badge:
     text: "기초"
 extra:

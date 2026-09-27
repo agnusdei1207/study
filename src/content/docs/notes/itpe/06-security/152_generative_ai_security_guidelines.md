@@ -4,9 +4,19 @@ author: "OpenAI"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  label: "152. 생성형 AI 보안 가이드라인"
+  badge:
+    text: "서브"
+    variant: note
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
+
+## 지식 로드맵 내 현재 위치
+
+정보보안 → 인공지능 보안 → 생성형 AI 보안 지침
 
 ## 30초 인출
 
@@ -17,18 +27,18 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **생성형 AI 보안 가이드라인**: 생성형 AI 시스템의 개발·배포·운영 과정에서 보안위험을 식별하고 통제를 정하는 기준.
-- **RAG(Retrieval-Augmented Generation)**: 검색한 자료를 모델의 응답 생성에 결합하는 방식.
-- **모델 오염**: 학습 데이터·모델 구성요소의 조작으로 출력이 왜곡되는 위험.
-- **프롬프트 인젝션(Prompt Injection)**: 신뢰할 수 없는 입력으로 모델의 지시나 행동을 바꾸려는 공격.
-- **AI RMF(Artificial Intelligence Risk Management Framework)**: AI 위험을 조직의 목적에 맞게 관리하도록 NIST가 제시한 자발적 프레임워크.
+- **생성형 AI 보안 가이드라인** : 생성형 AI 시스템의 개발·배포·운영 과정에서 보안위험을 식별하고 통제를 정하는 기준.
+- **RAG(Retrieval-Augmented Generation)** : 검색한 자료를 모델의 응답 생성에 결합하는 방식.
+- **모델 오염** : 학습 데이터·모델 구성요소의 조작으로 출력이 왜곡되는 위험.
+- **프롬프트 인젝션(Prompt Injection)** : 신뢰할 수 없는 입력으로 모델의 지시나 행동을 바꾸려는 공격.
+- **AI RMF(Artificial Intelligence Risk Management Framework)** : AI 위험을 조직의 목적에 맞게 관리하도록 NIST가 제시한 자발적 프레임워크.
 </details>
 
 ---
 
 ## 1교시 예상문제 (10점)
 
-> 생성형 AI 개발·운영 단계의 주요 보안 통제를 설명하시오. *(예상문제)*
+> 생성형 AI 개발·운영 단계의 주요 보안 통제를 설명하시오. (예상·10점)
 
 ---
 
@@ -38,7 +48,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **생성형 AI 보안 가이드라인**은 AI 시스템의 개발·배포·운영 단계별 보안위험과 통제 기준 |
+| 정의 | **생성형 AI 보안 가이드라인** 은 AI 시스템의 개발·배포·운영 단계별 보안위험과 통제 기준 |
 | 목적 | 오염·정보 유출·비인가 도구 실행을 줄이고 서비스 신뢰성 확보 |
 
 ### Ⅱ. 수명주기별 통제
@@ -65,7 +75,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 생성형 AI 서비스의 수명주기별 보안위험을 설명하고 개발·운영 통제체계를 제시하시오. *(25점 예상문제)*
+> 생성형 AI 서비스의 수명주기별 보안위험을 설명하고 개발·운영 통제체계를 제시하시오. (예상·25점)
 
 ---
 
@@ -75,7 +85,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **생성형 AI 보안 가이드라인**은 AI 시스템의 개발·배포·운영 단계별 보안위험과 통제 기준 |
+| 정의 | **생성형 AI 보안 가이드라인** 은 AI 시스템의 개발·배포·운영 단계별 보안위험과 통제 기준 |
 | 목적 | 오염·정보 유출·비인가 도구 실행을 줄이고 서비스 신뢰성 확보 |
 
 NIST AI RMF의 생성형 AI 프로파일은 자발적 위험관리 자료. 개별 기술을 모두 의무로 요구하는 규정과 구분.
@@ -143,7 +153,7 @@ NIST AI RMF의 생성형 AI 프로파일은 자발적 위험관리 자료. 개�
 
 ---
 
-## 참고자료
+## 출제 이력과 검증 출처
 
 - [NIST, Generative AI Profile (AI 600-1)](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence).
 - [OWASP, Top 10 for LLM Applications 2025](https://genai.owasp.org/llm-top-10/).

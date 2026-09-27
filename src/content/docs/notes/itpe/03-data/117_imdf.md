@@ -3,7 +3,7 @@ sidebar:
   order: 117
   label: "117. IMDF"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 117
 title: "IMDF(Indoor Mapping Data Format) 실내 지도 데이터 표준"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "117"
 ---
 

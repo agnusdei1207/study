@@ -3,7 +3,7 @@ sidebar:
   order: 42
   label: "042. 가용성 보장·HA"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 title: "가용성 보장과 고가용성(HA)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 42
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "042"
 ---
 
@@ -136,7 +136,7 @@ HA가 있어도 광역 장애나 데이터 손실의 RPO가 자동으로 0이 �
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [AWS Well-Architected: Availability](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html)
 - [AWS Well-Architected: DR Objectives](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/disaster-recovery-dr-objectives.html)

@@ -1,6 +1,7 @@
 ---
 title: "멀티 GPU"
 sidebar:
+  label: "094. 멀티 GPU"
   order: 94
   badge:
     text: "서브"
@@ -28,11 +29,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **멀티 GPU(Multi-GPU)**: 하나의 작업을 여러 GPU에 분산해 처리하는 시스템 구성
-- **GPU 상호연결(Interconnect)**: GPU 사이 데이터 이동을 담당하는 PCIe·NVLink 등의 연결 경로
-- **NVLink**: NVIDIA의 GPU·시스템 구성요소 간 연결 기술 계열
-- **GPU Direct RDMA (Remote Direct Memory Access)**: 지원되는 네트워크 장치가 GPU 메모리에 직접 접근해 CPU 메모리 복사를 줄이는 기술
-- **NCCL (NVIDIA Collective Communications Library)**: 다중 GPU·노드 집단 통신 연산 라이브러리
+- **멀티 GPU(Multi-GPU)** : 하나의 작업을 여러 GPU에 분산해 처리하는 시스템 구성
+- **GPU 상호연결(Interconnect)** : GPU 사이 데이터 이동을 담당하는 PCIe·NVLink 등의 연결 경로
+- **NVLink** : NVIDIA의 GPU·시스템 구성요소 간 연결 기술 계열
+- **GPU Direct RDMA (Remote Direct Memory Access)** : 지원되는 네트워크 장치가 GPU 메모리에 직접 접근해 CPU 메모리 복사를 줄이는 기술
+- **NCCL (NVIDIA Collective Communications Library)** : 다중 GPU·노드 집단 통신 연산 라이브러리
 
 </details>
 
@@ -48,7 +49,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **멀티 GPU**는 여러 GPU가 연산을 나누고 필요한 데이터를 교환하도록 구성한 병렬 시스템 |
+| 정의 | **멀티 GPU는** 여러 GPU가 연산을 나누고 필요한 데이터를 교환하도록 구성한 병렬 시스템 |
 | 목적 | 단일 GPU의 연산·메모리 한계를 보완하고 대규모 작업을 분할 처리 |
 
 ### Ⅱ. 구성과 통신
@@ -85,7 +86,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **멀티 GPU**는 여러 GPU가 연산을 나누고 필요한 데이터를 교환하도록 구성한 병렬 시스템 |
+| 정의 | **멀티 GPU는** 여러 GPU가 연산을 나누고 필요한 데이터를 교환하도록 구성한 병렬 시스템 |
 | 목적 | 단일 GPU의 연산·메모리 한계를 보완하고 대규모 작업을 분할 처리 |
 
 ### Ⅱ. 시스템 구성
@@ -139,7 +140,7 @@ flowchart TD
 |---|---|
 | GPU 증설만으로 성능 향상을 예측하기 어려움 | 분할 가능성·통신량·지연을 사전 시험해 증설 단계를 결정 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [NVIDIA NCCL 문서](https://docs.nvidia.com/deeplearning/nccl/): 집단 통신과 토폴로지 인식
 - [NVIDIA GPU Direct 문서](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/troubleshooting/gpu_troubleshooting.html): GPU 직접 통신의 조건

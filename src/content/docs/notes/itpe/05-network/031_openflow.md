@@ -149,7 +149,7 @@ Table-Miss는 반드시 Packet-In을 뜻하지 않으며 테이블 설정에 따
 
 ## 출제 이력과 검증 출처
 
-- 제127회 2교시: “SDN의 핵심 사우스바운드 프로토콜인 OpenFlow의 개념, 플로우 테이블 구조, 패킷 처리 파이프라인 및 메시지 유형을 설명하시오.”
+- 제127회 2교시 관련 출제 이력은 공식 문제지 원문 미확보로 회차·문구를 검증하지 못함. 위 문항은 학습용 예상문제.
 - [Open Networking Foundation: OpenFlow Switch Specification](https://opennetworking.org/sdn-resources/openflow-switch-specification/)
 - [OpenFlow Switch Specification 1.3.4](https://opennetworking.org/wp-content/uploads/2014/10/openflow-switch-v1.3.4.pdf)
 

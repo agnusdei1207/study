@@ -5,10 +5,12 @@ date: "2026-09-24T22:07:00+09:00"
 tags:
   - "notes-security"
 sidebar:
+  label: "023. 양자내성암호(Post-Quantum Cryptography)"
   badge:
-    text: "서브"
+    text: "기초"
+    variant: note
 extra:
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   model: "GPT-6"
 ---
 
@@ -40,7 +42,7 @@ extra:
 ---
 ## 1교시 예상문제 (10점)
 
-> 양자내성암호의 개념과 목적, 주요 표준의 용도를 설명하시오. *(10점 예상문제)*
+> 양자내성암호의 개념과 목적, 주요 표준의 용도를 설명하시오. (예상·10점)
 
 ---
 ## 1교시 10점 답안
@@ -65,7 +67,7 @@ extra:
 ---
 ## 2~4교시 예상문제 (25점)
 
-> 양자컴퓨터가 공개키 암호에 미치는 위협과 양자내성암호의 표준·전환 방안을 설명하고, 양자키분배와 비교하시오. *(25점 예상문제)*
+> 양자컴퓨터가 공개키 암호에 미치는 위협과 양자내성암호의 표준·전환 방안을 설명하고, 양자키분배와 비교하시오. (예상·25점)
 
 ---
 ## 2~4교시 25점 답안
@@ -134,7 +136,7 @@ KEM은 대칭 암호에 쓸 공유키 설정에 활용되며, 그 자체가 메�
 | 구현·프로토콜 지원이 달라 일괄 전환 시 호환·성능 위험 | 검증된 구현과 대상별 호환성 시험을 거친 뒤 단계 배포, 관련 NIST 정오표·지침 재확인 |
 
 ---
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - NIST, [FIPS 203: ML-KEM](https://csrc.nist.gov/pubs/fips/203/final) — NIST publication page includes potential update/errata notice
 - NIST, [FIPS 204: ML-DSA](https://csrc.nist.gov/pubs/fips/204/final)

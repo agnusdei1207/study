@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
-  keyword_grade: "서브"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -61,7 +61,7 @@ extra:
     ↓
 ② 확률분포·영향 모델링
     ↓
-③ 반복 시뮬레이션
+③ EMV·의사결정나무·시뮬레이션 등 기법별 분석
     ↓
 ④ 결과 분포 해석·예비비 산출
 ```
@@ -106,7 +106,7 @@ extra:
     ↓
 ② 확률분포·영향 모델링
     ↓
-③ 반복 시뮬레이션
+③ EMV·의사결정나무·시뮬레이션 등 기법별 분석
     ↓
 ④ 결과 분포 해석·예비비 산출
 ```

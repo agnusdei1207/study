@@ -3,8 +3,8 @@ sidebar:
   order: 4
   label: "004. 위성·공중·지상 통합망"
   badge:
-    text: "서브"
-    variant: tip
+    text: "기초"
+    variant: note
 title: "위성·공중·지상 통합망(SATIN)"
 author: "Codex"
 date: "2026-09-24T00:00:00+09:00"
@@ -13,7 +13,7 @@ tags:
 weight: 4
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "004"
 ---
 
@@ -149,7 +149,7 @@ SATIN은 연구 문헌에서 쓰는 약어이며 3GPP의 단일 표준 이름으
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [3GPP TR 38.811: NR to Support Non-Terrestrial Networks](https://www.3gpp.org/dynareport/38811.htm)
 - [3GPP TS 23.501: System Architecture for the 5G System](https://www.3gpp.org/dynareport/23501.htm)

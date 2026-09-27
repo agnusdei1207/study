@@ -24,17 +24,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **베르누이 분포**는 한 번의 시행에서 두 결과 중 하나가 나타나는 확률분포
+- 본질: **베르누이 분포는** 한 번의 시행에서 두 결과 중 하나가 나타나는 확률분포
 - 메커니즘: 성공 확률 $p$, 실패 확률 $1-p$를 두 결과에 배정
 - 연결: 독립 베르누이 관측의 음의 로그우도가 이진 분류의 교차 엔트로피 손실이 됨
 
 <details>
 <summary>핵심 용어</summary>
 
-- **베르누이 분포(Bernoulli Distribution)**: 0 또는 1의 값을 갖는 단일 이진 시행의 확률분포
-- **확률질량함수(Probability Mass Function, PMF)**: 이산 확률변수의 각 값에 확률을 대응하는 함수
-- **이진 교차 엔트로피(Binary Cross-Entropy, BCE)**: 이진 관측값과 예측 확률 사이의 음의 로그우도 손실
-- **최대우도추정(Maximum Likelihood Estimation, MLE)**: 관측 자료의 우도를 가장 크게 만드는 모수를 찾는 방법
+- **베르누이 분포(Bernoulli Distribution)** : 0 또는 1의 값을 갖는 단일 이진 시행의 확률분포
+- **확률질량함수(Probability Mass Function, PMF)** : 이산 확률변수의 각 값에 확률을 대응하는 함수
+- **이진 교차 엔트로피(Binary Cross-Entropy, BCE)** : 이진 관측값과 예측 확률 사이의 음의 로그우도 손실
+- **최대우도추정(Maximum Likelihood Estimation, MLE)** : 관측 자료의 우도를 가장 크게 만드는 모수를 찾는 방법
 
 </details>
 
@@ -121,7 +121,7 @@ BCE 최소화는 독립 베르누이 관측의 우도를 최대화하는 MLE와 
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: KPC 기출검색 자료 기준 제130회 정보관리기술사 1교시의 베르누이 시행·분포 문항. Q-net 원문은 확인하지 못한 상태.
+- 출제 이력: 제130회 정보관리기술사 1교시의 베르누이 시행·분포 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
 - Sheldon M. Ross, *A First Course in Probability*, 10th ed., Pearson.
 - Goodfellow, Bengio, Courville, *Deep Learning*, MIT Press, Chapter 3.
 - PyTorch, [BCEWithLogitsLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html)

@@ -4,6 +4,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "081. 역전파(Backpropagation)"
+  order: 81
   badge:
     text: "기초"
 extra:

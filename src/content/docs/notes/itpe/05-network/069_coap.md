@@ -4,11 +4,13 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-network"]
 sidebar:
+  label: "069. CoAP(Constrained Application Protocol)"
   badge:
-    text: "기초"
+    text: "응용"
+    variant: note
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -37,7 +39,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> CoAP의 개념과 메시지 구조·유형을 설명하시오. (예상)
+> CoAP의 개념과 메시지 구조·유형을 설명하시오. (예상·10점)
 
 ---
 
@@ -74,7 +76,7 @@ CoAP 메시지
 
 ## 2~4교시 예상문제 (25점)
 
-> CoAP의 메시지 구조와 요청·응답 및 확인 동작을 설명하고, 제약 장치 적용 시 신뢰성·보안·대용량 전송 고려사항을 제시하시오. (예상)
+> CoAP의 메시지 구조와 요청·응답 및 확인 동작을 설명하고, 제약 장치 적용 시 신뢰성·보안·대용량 전송 고려사항을 제시하시오. (예상·25점)
 
 ---
 

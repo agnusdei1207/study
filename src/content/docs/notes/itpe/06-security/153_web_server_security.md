@@ -4,9 +4,19 @@ author: "OpenAI"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  label: "153. 웹 서버 보안"
+  badge:
+    text: "응용"
+    variant: note
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
+
+## 지식 로드맵 내 현재 위치
+
+정보보안 → 애플리케이션 보안 → 웹 서버
 
 ## 30초 인출
 
@@ -17,18 +27,18 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **웹 서버 보안**: HTTP 요청을 처리하는 서버의 공개 자원·설정·통신·실행권한을 보호하는 통제.
-- **TLS(Transport Layer Security)**: 통신 상대 인증과 전송 데이터의 기밀성·무결성을 제공하는 프로토콜.
-- **HSTS(HTTP Strict Transport Security)**: 브라우저가 해당 사이트에 HTTPS 연결을 사용하도록 알리는 응답 정책.
-- **CSP(Content Security Policy)**: 브라우저에서 허용할 콘텐츠 출처를 제한하는 응답 정책.
-- **웹 루트**: 웹 서버가 외부에 제공할 파일을 찾는 기준 디렉터리.
+- **웹 서버 보안** : HTTP 요청을 처리하는 서버의 공개 자원·설정·통신·실행권한을 보호하는 통제.
+- **TLS(Transport Layer Security)** : 통신 상대 인증과 전송 데이터의 기밀성·무결성을 제공하는 프로토콜.
+- **HSTS(HTTP Strict Transport Security)** : 브라우저가 해당 사이트에 HTTPS 연결을 사용하도록 알리는 응답 정책.
+- **CSP(Content Security Policy)** : 브라우저에서 허용할 콘텐츠 출처를 제한하는 응답 정책.
+- **웹 루트** : 웹 서버가 외부에 제공할 파일을 찾는 기준 디렉터리.
 </details>
 
 ---
 
 ## 1교시 예상문제 (10점)
 
-> 웹 서버 보안의 주요 통제 영역과 설정 원칙을 설명하시오. *(예상문제)*
+> 웹 서버 보안의 주요 통제 영역과 설정 원칙을 설명하시오. (예상·10점)
 
 ---
 
@@ -38,7 +48,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **웹 서버 보안**은 외부 요청을 처리하는 서버의 공개 자원·설정·통신·권한을 보호하는 통제 |
+| 정의 | **웹 서버 보안** 은 외부 요청을 처리하는 서버의 공개 자원·설정·통신·권한을 보호하는 통제 |
 | 목적 | 비인가 접근·정보 노출·악성 파일 실행·서비스 장애 예방 |
 
 ### Ⅱ. 통제 영역
@@ -64,7 +74,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 웹 서버의 주요 보안위험을 설명하고 설정·운영 통제를 영역별로 제시하시오. *(25점 예상문제)*
+> 웹 서버의 주요 보안위험을 설명하고 설정·운영 통제를 영역별로 제시하시오. (예상·25점)
 
 ---
 
@@ -74,7 +84,7 @@ extra:
 
 | 구분 | 내용 |
 |---|---|
-| 정의 | **웹 서버 보안**은 외부 요청을 처리하는 서버의 공개 자원·설정·통신·권한을 보호하는 통제 |
+| 정의 | **웹 서버 보안** 은 외부 요청을 처리하는 서버의 공개 자원·설정·통신·권한을 보호하는 통제 |
 | 목적 | 비인가 접근·정보 노출·악성 파일 실행·서비스 장애 예방 |
 
 웹 서버 설정은 애플리케이션의 인증·인가·입력 검증과 함께 작동해야 하는 경계 통제.
@@ -141,7 +151,7 @@ TLS·헤더·경로 시험
 
 ---
 
-## 참고자료
+## 출제 이력과 검증 출처
 
 - [OWASP, File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
 - [OWASP, HTTP Security Response Headers Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html).

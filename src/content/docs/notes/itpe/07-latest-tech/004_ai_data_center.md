@@ -6,13 +6,13 @@ sidebar:
   order: 4
   label: "004. AI 데이터센터"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -115,6 +115,7 @@ PUE는 시설 전력 효율 지표이며 AI 연산 효율과 동일하지 않으
 | 냉각 방식의 적합성이 랙 밀도와 시설 조건에 따라 달라지는 문제 | 랙별 발열·전력과 수전·용수 조건을 비교해 공랭·D2C 적용 구역을 결정 |
 
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
 - 기존 노트의 출제 이력: 제134회 2교시 4번 대규모 AI 서비스용 데이터센터 구축 기술, 제140회 4교시 6번 AI 데이터센터.
 - [Open Compute Project — Direct-to-Chip Liquid Cooling for the AI Data Center](https://www.opencompute.org/events/past-events/ocp-educational-webinar-direct-to-chip-liquid-cooling-for-the-ai-data-center)

@@ -5,8 +5,10 @@ date: "2026-09-24T22:50:00+09:00"
 tags:
   - "notes-security"
 sidebar:
+  label: "052. DevSecOps"
   badge:
     text: "기초"
+    variant: note
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -18,20 +20,20 @@ extra:
 
 ## 30초 인출
 
-- **본질**: DevSecOps는 보안을 개발·운영 생애주기에 포함하고 팀이 함께 책임지는 소프트웨어 제공 방식.
-- **메커니즘**: 변경 → 자동 점검·위험 판정 → 수정 피드백 → 승인된 배포 → 운영 결과를 다음 변경에 반영.
-- **핵심**: 도구 설치보다 위험기반 기준, 실행 가능한 피드백, 예외 추적이 중요.
+- **본질** : DevSecOps는 보안을 개발·운영 생애주기에 포함하고 팀이 함께 책임지는 소프트웨어 제공 방식.
+- **메커니즘** : 변경 → 자동 점검·위험 판정 → 수정 피드백 → 승인된 배포 → 운영 결과를 다음 변경에 반영.
+- **핵심** : 도구 설치보다 위험기반 기준, 실행 가능한 피드백, 예외 추적이 중요.
 
 <details><summary>핵심 용어</summary>
 
-- **DevSecOps**: Development, Security, and Operations를 결합해 보안을 개발·배포·운영에 통합하는 방식.
-- **CI/CD(Continuous Integration/Continuous Delivery or Deployment)**: 코드 변경의 통합·검증과 전달 또는 배포를 자동화하는 개발 흐름.
-- **SAST(Static Application Security Testing)**: 프로그램을 실행하지 않고 소스·바이트코드를 분석하는 보안 시험.
-- **SCA(Software Composition Analysis)**: 소프트웨어 의존성의 구성·취약점·라이선스 위험을 분석하는 활동.
-- **DAST(Dynamic Application Security Testing)**: 실행 중인 애플리케이션에 요청을 보내 외부에서 드러나는 취약점을 시험하는 방식.
-- **IaC(Infrastructure as Code)**: 인프라 구성을 코드와 선언형 설정으로 관리하는 방식.
-- **SSDF(Secure Software Development Framework)**: NIST가 SDLC에 통합할 보안 개발 실천을 제시한 프레임워크.
-- **SBOM(Software Bill of Materials)**: 소프트웨어에 포함된 구성요소와 관계를 기록한 목록.
+- **DevSecOps** : Development, Security, and Operations를 결합해 보안을 개발·배포·운영에 통합하는 방식.
+- **CI/CD(Continuous Integration/Continuous Delivery or Deployment)** : 코드 변경의 통합·검증과 전달 또는 배포를 자동화하는 개발 흐름.
+- **SAST(Static Application Security Testing)** : 프로그램을 실행하지 않고 소스·바이트코드를 분석하는 보안 시험.
+- **SCA(Software Composition Analysis)** : 소프트웨어 의존성의 구성·취약점·라이선스 위험을 분석하는 활동.
+- **DAST(Dynamic Application Security Testing)** : 실행 중인 애플리케이션에 요청을 보내 외부에서 드러나는 취약점을 시험하는 방식.
+- **IaC(Infrastructure as Code)** : 인프라 구성을 코드와 선언형 설정으로 관리하는 방식.
+- **SSDF(Secure Software Development Framework)** : NIST가 SDLC에 통합할 보안 개발 실천을 제시한 프레임워크.
+- **SBOM(Software Bill of Materials)** : 소프트웨어에 포함된 구성요소와 관계를 기록한 목록.
 </details>
 
 ---
@@ -40,7 +42,7 @@ extra:
 
 ---
 
-> DevSecOps의 개념과 CI/CD에서 보안을 통합하는 기본 흐름을 설명하시오. (예상)
+> DevSecOps의 개념과 CI/CD에서 보안을 통합하는 기본 흐름을 설명하시오. (예상·10점)
 
 ---
 
@@ -50,7 +52,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **DevSecOps**는 보안을 개발·운영 생애주기에 포함하고 팀이 함께 책임지는 소프트웨어 제공 방식. |
+| 정의 | **DevSecOps** 는 보안을 개발·운영 생애주기에 포함하고 팀이 함께 책임지는 소프트웨어 제공 방식. |
 | 목적 | 변경 속도를 유지하면서 취약점을 조기에 발견·수정하고 안전한 배포 근거를 확보. |
 
 ### Ⅱ. CI/CD 보안 통합 흐름
@@ -76,7 +78,7 @@ extra:
 
 ---
 
-> CI/CD(Continuous Integration/Continuous Delivery or Continuous Deployment) 파이프라인에서 DevSecOps 적용방안에 대하여 설명하시오. (제135회 2교시 2번)
+> CI/CD(Continuous Integration/Continuous Delivery or Continuous Deployment) 파이프라인에서 DevSecOps 적용방안에 대하여 설명하시오. (제135회 2교시 2번) (예상·25점)
 
 ---
 
@@ -86,7 +88,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **DevSecOps**는 보안을 개발·운영 생애주기에 포함하고 팀이 함께 책임지는 소프트웨어 제공 방식. |
+| 정의 | **DevSecOps** 는 보안을 개발·운영 생애주기에 포함하고 팀이 함께 책임지는 소프트웨어 제공 방식. |
 | 목적 | 변경 속도를 유지하면서 취약점을 조기에 발견·수정하고 안전한 배포 근거를 확보. |
 
 ## Ⅱ. 파이프라인 통합 원리

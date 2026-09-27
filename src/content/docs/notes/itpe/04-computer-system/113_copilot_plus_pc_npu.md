@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "113. Copilot+ PC NPU"
+  order: 113
+  badge:
+    text: "기초"
 extra:
+  keyword_grade: "기초"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **NPU (Neural Processing Unit)**: 신경망 연산을 가속하도록 설계된 프로세서
-- **TOPS (Tera Operations Per Second)**: 초당 1조 회 연산을 뜻하는 처리량 단위
-- **Copilot+ PC**: 40+ TOPS NPU 등 정해진 하드웨어 요구를 갖춘 Windows PC 범주
-- **Windows ML**: ONNX Runtime 기반으로 Windows 기기의 CPU·GPU·NPU 실행 제공자를 사용하는 추론 프레임워크
-- **DirectML (Direct Machine Learning)**: Direct3D 12 기반의 기계학습 가속 API로, 지원되지만 신규 Windows ONNX 기능 개발은 Windows ML 중심
+- **NPU (Neural Processing Unit)** : 신경망 연산을 가속하도록 설계된 프로세서
+- **TOPS (Tera Operations Per Second)** : 초당 1조 회 연산을 뜻하는 처리량 단위
+- **Copilot+ PC** : 40+ TOPS NPU 등 정해진 하드웨어 요구를 갖춘 Windows PC 범주
+- **Windows ML** : ONNX Runtime 기반으로 Windows 기기의 CPU·GPU·NPU 실행 제공자를 사용하는 추론 프레임워크
+- **DirectML (Direct Machine Learning)** : Direct3D 12 기반의 기계학습 가속 API로, 지원되지만 신규 Windows ONNX 기능 개발은 Windows ML 중심
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Copilot+ PC NPU**는 Copilot+ PC 범주의 40+ TOPS 요구에 포함되는 신경망 연산 가속기 |
+| 정의 | **Copilot+ PC NPU는** Copilot+ PC 범주의 40+ TOPS 요구에 포함되는 신경망 연산 가속기 |
 | 목적 | 지원되는 AI 추론 작업을 기기에서 가속 |
 
 ### Ⅱ. 실행 경로
@@ -77,7 +83,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Copilot+ PC NPU**는 Copilot+ PC 범주의 40+ TOPS 요구에 포함되는 신경망 연산 가속기 |
+| 정의 | **Copilot+ PC NPU는** Copilot+ PC 범주의 40+ TOPS 요구에 포함되는 신경망 연산 가속기 |
 | 목적 | 지원되는 AI 추론 작업을 기기에서 가속 |
 
 ### Ⅱ. AI 추론 구조
@@ -133,7 +139,7 @@ flowchart TD
 |---|---|
 | TOPS 비교만으로 실제 업무 가치를 판정하기 어려움 | 실제 업무 모델로 품질·응답시간·전력·정보보호를 종합 검증 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Microsoft Copilot+ PC developer guide](https://learn.microsoft.com/ko-kr/windows/ai/npu-devices/): 40+ TOPS·장치 내 NPU 개발
 - [Microsoft Windows ML overview](https://learn.microsoft.com/windows/ai/new-windows-ml/overview): 최신 로컬 추론 프레임워크와 실행 제공자

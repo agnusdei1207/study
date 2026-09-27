@@ -3,7 +3,7 @@ sidebar:
   order: 89
   label: "089. inode"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "inode (Index Node)"
 author: "GPT-6"
@@ -12,7 +12,7 @@ tags:
   - "notes-computer-system"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "089"
 ---
 
@@ -22,17 +22,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **inode (Index Node)**는 Unix 계열 파일시스템에서 파일 객체의 메타데이터와 데이터 위치 정보를 관리하는 자료구조
+- 본질: **inode (Index Node)는** Unix 계열 파일시스템에서 파일 객체의 메타데이터와 데이터 위치 정보를 관리하는 자료구조
 - 메커니즘: 디렉터리 이름 → inode 번호 → inode 메타데이터·데이터 블록 참조
 
 <details>
 <summary>핵심 용어</summary>
 
-- **inode (Index Node)**: 파일의 유형·권한·소유자·크기·시간·데이터 블록 정보를 저장하는 파일시스템 자료구조
-- **디렉터리 엔트리 (Directory Entry)**: 파일 이름과 해당 파일시스템 내 inode 번호를 연결하는 디렉터리의 항목
-- **하드 링크 (Hard Link)**: 같은 inode를 가리키는 추가 디렉터리 엔트리
-- **심볼릭 링크 (Symbolic Link)**: 대상 경로명을 내용으로 저장하는 별도 파일 객체
-- **링크 수 (Link Count)**: inode를 참조하는 디렉터리 링크 수를 나타내는 메타데이터 값
+- **inode (Index Node)** : 파일의 유형·권한·소유자·크기·시간·데이터 블록 정보를 저장하는 파일시스템 자료구조
+- **디렉터리 엔트리 (Directory Entry)** : 파일 이름과 해당 파일시스템 내 inode 번호를 연결하는 디렉터리의 항목
+- **하드 링크 (Hard Link)** : 같은 inode를 가리키는 추가 디렉터리 엔트리
+- **심볼릭 링크 (Symbolic Link)** : 대상 경로명을 내용으로 저장하는 별도 파일 객체
+- **링크 수 (Link Count)** : inode를 참조하는 디렉터리 링크 수를 나타내는 메타데이터 값
 </details>
 
 ---
@@ -49,7 +49,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **inode (Index Node)**는 파일시스템에서 파일 객체의 메타데이터와 데이터 위치 정보를 관리하는 자료구조 |
+| 정의 | **inode (Index Node)는** 파일시스템에서 파일 객체의 메타데이터와 데이터 위치 정보를 관리하는 자료구조 |
 | 목적 | 파일 이름 공간과 파일 객체·데이터 저장 위치를 분리해 파일을 관리하는 것 |
 
 ### Ⅱ. 파일 탐색 구조
@@ -79,7 +79,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **inode (Index Node)**는 파일시스템에서 파일 객체의 메타데이터와 데이터 위치 정보를 관리하는 자료구조 |
+| 정의 | **inode (Index Node)는** 파일시스템에서 파일 객체의 메타데이터와 데이터 위치 정보를 관리하는 자료구조 |
 | 목적 | 파일 이름 공간과 파일 객체·데이터 저장 위치를 분리해 파일을 관리하는 것 |
 
 ### Ⅱ. inode 정보

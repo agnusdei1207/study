@@ -3,7 +3,7 @@ sidebar:
   order: 29
   label: "029. DiffServ"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "DiffServ"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 29
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "029"
 ---
 
@@ -149,7 +149,7 @@ DiffServ 코어가 완전히 상태를 보유하지 않는다는 뜻은 아님. 
 
 ## 출제 이력과 검증 출처
 
-- 제125회 1교시: “QoS 보장 기술인 IntServ와 DiffServ를 비교하여 설명하시오.”
+- 제125회 1교시 관련 출제 이력은 공식 문제지 원문 미확보로 회차·문구를 검증하지 못함. 위 문항은 학습용 예상문제.
 - [RFC 2475: An Architecture for Differentiated Services](https://www.rfc-editor.org/rfc/rfc2475)
 - [RFC 2474: Definition of the Differentiated Services Field](https://www.rfc-editor.org/rfc/rfc2474)
 - [RFC 3246: An Expedited Forwarding PHB](https://www.rfc-editor.org/rfc/rfc3246)

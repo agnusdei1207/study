@@ -3,7 +3,7 @@ sidebar:
   order: 68
   label: "068. 잭나이프·부트스트랩"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "재표본화 기법 (잭나이프 vs 부트스트랩) 및 비모수 신뢰구간 추정"
 author: "Codex"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 68
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "068"
 ---
 
@@ -24,16 +24,16 @@ extra:
 
 ## 30초 인출
 
-- 본질: **재표본화(Resampling)**는 관측 표본을 다시 구성해 통계량의 변동성을 추정하는 방법
+- 본질: **재표본화(Resampling)는** 관측 표본을 다시 구성해 통계량의 변동성을 추정하는 방법
 - 메커니즘: 잭나이프는 관측값을 하나씩 제외하고, 부트스트랩은 복원추출 표본을 반복 생성
 
 <details><summary>핵심 용어</summary>
 
-- **재표본화(Resampling)**: 관측한 표본에서 새 표본을 구성해 통계량의 표본 변동성을 평가하는 방법
-- **잭나이프(Jackknife)**: 관측값을 하나씩 제외한 표본들로 통계량을 다시 계산하는 재표본화 방법
-- **부트스트랩(Bootstrap)**: 경험적 표본분포에서 복원추출을 반복해 통계량의 변동성을 추정하는 방법
-- **복원추출(Sampling with Replacement)**: 선택한 관측값을 다시 추출 대상에 포함하는 표본 추출 방식
-- **신뢰구간(Confidence Interval)**: 정해진 절차로 반복 표본을 만들 때 모수를 포함하도록 설계된 구간 추정량
+- **재표본화(Resampling)** : 관측한 표본에서 새 표본을 구성해 통계량의 표본 변동성을 평가하는 방법
+- **잭나이프(Jackknife)** : 관측값을 하나씩 제외한 표본들로 통계량을 다시 계산하는 재표본화 방법
+- **부트스트랩(Bootstrap)** : 경험적 표본분포에서 복원추출을 반복해 통계량의 변동성을 추정하는 방법
+- **복원추출(Sampling with Replacement)** : 선택한 관측값을 다시 추출 대상에 포함하는 표본 추출 방식
+- **신뢰구간(Confidence Interval)** : 정해진 절차로 반복 표본을 만들 때 모수를 포함하도록 설계된 구간 추정량
 
 </details>
 

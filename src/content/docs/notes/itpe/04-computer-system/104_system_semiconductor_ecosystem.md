@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "104. 시스템 반도체 생태계"
+  order: 104
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **시스템 반도체 생태계(System Semiconductor Ecosystem)**: 시스템 반도체 설계·제조·패키징에 관여하는 기업과 기술의 협업 구조
-- **팹리스(Fabless)**: 반도체 제품을 설계하고 자체 웨이퍼 제조시설은 보유하지 않는 사업 형태
-- **디자인하우스(Design House)**: 설계가 특정 공정에서 구현되도록 설계·물리 구현을 지원하는 기업
-- **파운드리(Foundry)**: 고객 설계에 따라 웨이퍼를 제조하는 사업 형태
-- **OSAT (Outsourced Semiconductor Assembly and Test)**: 외부 위탁 조립·패키징·시험 서비스
+- **시스템 반도체 생태계(System Semiconductor Ecosystem)** : 시스템 반도체 설계·제조·패키징에 관여하는 기업과 기술의 협업 구조
+- **팹리스(Fabless)** : 반도체 제품을 설계하고 자체 웨이퍼 제조시설은 보유하지 않는 사업 형태
+- **디자인하우스(Design House)** : 설계가 특정 공정에서 구현되도록 설계·물리 구현을 지원하는 기업
+- **파운드리(Foundry)** : 고객 설계에 따라 웨이퍼를 제조하는 사업 형태
+- **OSAT (Outsourced Semiconductor Assembly and Test)** : 외부 위탁 조립·패키징·시험 서비스
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **시스템 반도체 생태계**는 설계·제조·패키징 역량이 여러 전문 주체에 나뉜 산업 구조 |
+| 정의 | **시스템 반도체 생태계는** 설계·제조·패키징 역량이 여러 전문 주체에 나뉜 산업 구조 |
 | 목적 | 전문 역량을 연결해 제품 개발과 공급을 지원 |
 
 ### Ⅱ. 구성과 역할
@@ -78,7 +84,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **시스템 반도체 생태계**는 설계·제조·패키징 역량이 여러 전문 주체에 나뉜 산업 구조 |
+| 정의 | **시스템 반도체 생태계는** 설계·제조·패키징 역량이 여러 전문 주체에 나뉜 산업 구조 |
 | 목적 | 전문 역량을 연결해 제품 개발과 공급을 지원 |
 
 ### Ⅱ. 가치사슬
@@ -130,7 +136,7 @@ flowchart TD
 |---|---|
 | 단일 기업 육성만으로 생태계 병목을 해소하기 어려움 | 가치사슬의 의존도를 지도화하고 공용기반·대체경로를 함께 지원 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [TSMC Open Innovation Platform](https://www.tsmc.com/english/dedicatedFoundry/technology/open_innovation): 설계 생태계 협업
 - [JEDEC](https://www.jedec.org/): 반도체 표준 활동

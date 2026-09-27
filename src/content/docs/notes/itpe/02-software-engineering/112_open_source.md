@@ -19,18 +19,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **오픈소스 거버넌스**는 조직의 오픈소스 사용을 라이선스와 보안 관점에서 관리하는 정책·절차
+- 본질: **오픈소스 거버넌스** 는 조직의 오픈소스 사용을 라이선스와 보안 관점에서 관리하는 정책·절차
 - 메커니즘: 구성요소 식별 → 라이선스·취약점 확인 → 사용 조건 이행 → 배포물·기록 관리
 - 핵심 관계: 구성요소와 버전 정보를 SBOM으로 추적해 영향 분석과 의무 이행에 활용
 
 <details>
 <summary>핵심 용어</summary>
 
-- **오픈소스 소프트웨어(OSS, Open Source Software)**: 라이선스가 소스 이용·수정·재배포 권리를 허용하는 소프트웨어
-- **오픈소스 거버넌스(Open Source Governance)**: 조직의 OSS 도입·사용·배포에서 정책, 검토, 책임을 정하는 관리 체계
-- **소프트웨어 구성 분석(SCA, Software Composition Analysis)**: 소프트웨어 구성요소와 관련 라이선스·취약점 정보를 식별하는 분석
-- **소프트웨어 자재명세서(SBOM, Software Bill of Materials)**: 소프트웨어를 구성하는 구성요소와 식별 정보를 기록한 목록
-- **SPDX(Software Package Data Exchange)**: 소프트웨어 구성요소·라이선스 정보를 교환하기 위한 형식 및 명세
+- **오픈소스 소프트웨어(OSS, Open Source Software)** : 라이선스가 소스 이용·수정·재배포 권리를 허용하는 소프트웨어
+- **오픈소스 거버넌스(Open Source Governance)** : 조직의 OSS 도입·사용·배포에서 정책, 검토, 책임을 정하는 관리 체계
+- **소프트웨어 구성 분석(SCA, Software Composition Analysis)** : 소프트웨어 구성요소와 관련 라이선스·취약점 정보를 식별하는 분석
+- **소프트웨어 자재명세서(SBOM, Software Bill of Materials)** : 소프트웨어를 구성하는 구성요소와 식별 정보를 기록한 목록
+- **SPDX(Software Package Data Exchange)** : 소프트웨어 구성요소·라이선스 정보를 교환하기 위한 형식 및 명세
 </details>
 
 ---

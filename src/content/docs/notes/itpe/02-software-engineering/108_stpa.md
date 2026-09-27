@@ -6,10 +6,10 @@ tags:
   - "notes-software-engineering"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -18,17 +18,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **STPA(System-Theoretic Process Analysis)**는 구성요소 상호작용에서 생기는 위험한 제어를 분석하는 시스템 이론 기반 기법
+- 본질: **STPA(System-Theoretic Process Analysis)** 는 구성요소 상호작용에서 생기는 위험한 제어를 분석하는 시스템 이론 기반 기법
 - 메커니즘: 손실·위험 정의 → 제어 구조 모델링 → 불안전 제어행위 식별 → 손실 시나리오와 안전 제약 도출
 
 <details>
 <summary>핵심 용어</summary>
 
-- **STPA(System-Theoretic Process Analysis)**: 제어 구조와 구성요소 상호작용을 분석해 손실을 예방하는 안전 분석 기법
-- **STAMP(System-Theoretic Accident Model and Processes)**: 사고를 시스템 제어·제약의 문제로 모델링하는 시스템 이론 기반 사고 모델
-- **불안전 제어행위(UCA, Unsafe Control Action)**: 제어행위의 제공 여부·시점·순서·지속이 안전하지 않은 상황
-- **손실 시나리오(Loss Scenario)**: 제어행위가 불안전해지는 요인과 그 결과 손실에 이르는 상황 설명
-- **안전 제약(Safety Constraint)**: 위험을 예방하기 위해 시스템이 지켜야 할 조건
+- **STPA(System-Theoretic Process Analysis)** : 제어 구조와 구성요소 상호작용을 분석해 손실을 예방하는 안전 분석 기법
+- **STAMP(System-Theoretic Accident Model and Processes)** : 사고를 시스템 제어·제약의 문제로 모델링하는 시스템 이론 기반 사고 모델
+- **불안전 제어행위(UCA, Unsafe Control Action)** : 제어행위의 제공 여부·시점·순서·지속이 안전하지 않은 상황
+- **손실 시나리오(Loss Scenario)** : 제어행위가 불안전해지는 요인과 그 결과 손실에 이르는 상황 설명
+- **안전 제약(Safety Constraint)** : 위험을 예방하기 위해 시스템이 지켜야 할 조건
 
 </details>
 
@@ -46,7 +46,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **STPA(System-Theoretic Process Analysis)**는 제어 구조와 구성요소 상호작용을 분석해 손실을 예방하는 안전 분석 기법 |
+| 정의 | **STPA(System-Theoretic Process Analysis)** 는 제어 구조와 구성요소 상호작용을 분석해 손실을 예방하는 안전 분석 기법 |
 | 목적 | 부품 고장만으로 설명하기 어려운 위험한 제어와 상호작용을 찾아 안전 제약으로 전환 |
 
 ### Ⅱ. 분석 절차
@@ -88,7 +88,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **STPA(System-Theoretic Process Analysis)**는 제어 구조와 구성요소 상호작용을 분석해 손실을 예방하는 안전 분석 기법 |
+| 정의 | **STPA(System-Theoretic Process Analysis)** 는 제어 구조와 구성요소 상호작용을 분석해 손실을 예방하는 안전 분석 기법 |
 | 목적 | 부품 고장만으로 설명하기 어려운 위험한 제어와 상호작용을 찾아 안전 제약으로 전환 |
 
 ## Ⅱ. 제어 구조 모델

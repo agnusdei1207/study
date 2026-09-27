@@ -28,18 +28,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **Service Worker(서비스 워커)**는 웹 페이지와 네트워크 사이에서 요청·응답을 다루는 이벤트 기반 스크립트
+- 본질: **Service Worker(서비스 워커)** 는 웹 페이지와 네트워크 사이에서 요청·응답을 다루는 이벤트 기반 스크립트
 - 메커니즘: 서비스 워커 스크립트 브라우저 등록(Register) $\rightarrow$ 정적 리소스 사전 캐싱 및 설치(Install) $\rightarrow$ 구버전 캐시 정리 및 활성화(Activate) $\rightarrow$ 런타임 네트워크 요청 가로채기(Fetch Intercept) 및 캐시 반환
 - 핵심 유의점: 이벤트가 없을 때 브라우저가 워커를 종료할 수 있으며, 백그라운드 API별 지원 여부 확인 필요
 
 <details>
 <summary>핵심 용어</summary>
 
-- **Service Worker(서비스 워커)**: 브라우저가 이벤트에 따라 실행하는 스크립트로, 페이지 요청을 처리하고 응답을 제어하는 워커
-- **Cache Storage API(Application Programming Interface)**: 요청·응답 쌍을 저장·조회하는 웹 저장소 인터페이스이며, 보존은 저장소 정책과 애플리케이션 관리에 따름
-- **App Shell 모델**: 웹 애플리케이션의 핵심 UI 골격(HTML, CSS, 기본 자바스크립트)을 로컬에 미리 캐싱해 두고, 동적 데이터만 네트워크를 통해 주입받는 아키텍처 패턴
-- **Workbox**: 구글에서 개발한 프로덕션급 서비스 워커 라이브러리로, 캐싱 전략·사전 캐싱·백그라운드 동기화를 선언적으로 구현할 수 있도록 표준화한 도구
-- **PWA(Progressive Web App)**: 설치·오프라인 지원 등 웹 플랫폼 기능으로 앱과 유사한 경험을 제공하는 웹 애플리케이션
+- **Service Worker(서비스 워커)** : 브라우저가 이벤트에 따라 실행하는 스크립트로, 페이지 요청을 처리하고 응답을 제어하는 워커
+- **Cache Storage API(Application Programming Interface)** : 요청·응답 쌍을 저장·조회하는 웹 저장소 인터페이스이며, 보존은 저장소 정책과 애플리케이션 관리에 따름
+- **App Shell 모델** : 웹 애플리케이션의 핵심 UI 골격(HTML, CSS, 기본 자바스크립트)을 로컬에 미리 캐싱해 두고, 동적 데이터만 네트워크를 통해 주입받는 아키텍처 패턴
+- **Workbox** : 구글에서 개발한 프로덕션급 서비스 워커 라이브러리로, 캐싱 전략·사전 캐싱·백그라운드 동기화를 선언적으로 구현할 수 있도록 표준화한 도구
+- **PWA(Progressive Web App)** : 설치·오프라인 지원 등 웹 플랫폼 기능으로 앱과 유사한 경험을 제공하는 웹 애플리케이션
 </details>
 
 ---
@@ -56,7 +56,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Service Worker**는 웹 페이지와 네트워크 사이에서 요청·응답을 다루는 이벤트 기반 스크립트 |
+| 정의 | **Service Worker** 는 웹 페이지와 네트워크 사이에서 요청·응답을 다루는 이벤트 기반 스크립트 |
 | 목적 | 네트워크 응답과 캐시를 제어해 오프라인·불안정 연결에서도 웹 기능을 제공 |
 
 ### Ⅱ. 요청 처리 관계
@@ -86,7 +86,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Service Worker**는 웹 페이지와 네트워크 사이에서 요청·응답을 다루는 이벤트 기반 스크립트 |
+| 정의 | **Service Worker** 는 웹 페이지와 네트워크 사이에서 요청·응답을 다루는 이벤트 기반 스크립트 |
 | 목적 | 네트워크 응답과 캐시를 제어해 오프라인·불안정 연결에서도 웹 기능을 제공 |
 
 ### 생명주기 이벤트
@@ -158,8 +158,7 @@ Background Synchronization API를 지원하는 브라우저에서는 오프라�
 - [CSS 스프라이트(Sprite) 기법](./158_sprite.md)
 - [반응형 웹(Responsive Web)](./110_responsive_web.md)
 
-### 참고 자료
-
+## 출제 이력과 검증 출처
 - [W3C Service Workers](https://www.w3.org/TR/service-workers/)
 - [MDN Background Synchronization API](https://developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API)
 ---

@@ -5,6 +5,8 @@ date: "2026-09-24T20:54:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "025. 오토스케일링(Auto Scaling)"
+  order: 25
   badge:
     text: "기초"
 extra:
@@ -105,7 +107,7 @@ flowchart TD
 
 | 방식 | 바뀌는 것 | 적합한 신호·주의점 |
 |---|---|---|
-| **HPA (Horizontal Pod Autoscaler)** | Pod 복제본 수 | **CPU (Central Processing Unit)**·메모리·사용자 지정 지표, 최소·최대 복제본 |
+| **HPA (Horizontal Pod Autoscaler)** | Pod 복제본 수 | **CPU (Central Processing Unit)** ·메모리·사용자 지정 지표, 최소·최대 복제본 |
 | **VPA (Vertical Pod Autoscaler)** | Pod 자원 요청·제한 | 사용량 기반 권고, 적용 방식에 따른 재생성 가능성 |
 | **KEDA (Kubernetes Event-Driven Autoscaling)** | 외부 사건에 따른 복제본 수 | 큐 길이 등 사건 원천, HPA와의 연계 확인 |
 

@@ -3,7 +3,7 @@ sidebar:
   order: 91
   label: "091. 옵티마이저 (RBO·CBO)"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "데이터베이스 옵티마이저(Optimizer) 아키텍처 및 RBO와 CBO 비교 분석"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 91
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "091"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **데이터베이스 옵티마이저**는 SQL 결과를 만들 실행 방법을 선택하는 DBMS 구성요소
+- 본질: **데이터베이스 옵티마이저는** SQL 결과를 만들 실행 방법을 선택하는 DBMS 구성요소
 - 메커니즘: 질의를 변환하고 통계·비용 추정에 따라 접근 경로와 조인 계획을 비교해 실행계획을 선택
 - 관리: 실행계획은 데이터 분포·통계·설정에 따라 달라질 수 있어 실제 부하와 실행 결과를 대조
 
@@ -142,7 +142,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 정보관리기술사 제127회 2교시: 데이터베이스 옵티마이저의 역할·구성요소·최적화 과정, RBO와 CBO
+- 정보관리기술사 제127회 2교시: 데이터베이스 옵티마이저의 역할·구성요소·최적화 과정, RBO와 CBO (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - Oracle, [Database SQL Tuning Guide: SQL Processing](https://docs.oracle.com/en/database/oracle/oracle-database/19/tgsql/sql-processing.html)
 - PostgreSQL, [Query Planning](https://www.postgresql.org/docs/current/planner-optimizer.html)
 - PostgreSQL, [Using EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html)

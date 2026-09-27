@@ -3,7 +3,7 @@ sidebar:
   order: 52
   label: "052. 메모리 누수"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "메모리 누수(Memory Leak)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 52
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "052"
 ---
 
@@ -137,7 +137,7 @@ C/C++은 누수 탐지 도구와 할당 스택, 관리형 언어는 힙 덤프·
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Microsoft Learn: C++ RAII](https://learn.microsoft.com/en-us/cpp/cpp/object-lifetime-and-resource-management-modern-cpp?view=msvc-170)
 - [Oracle Java: Troubleshoot Memory Leaks](https://docs.oracle.com/en/java/javase/15/troubleshoot/troubleshoot-memory-leaks.html)

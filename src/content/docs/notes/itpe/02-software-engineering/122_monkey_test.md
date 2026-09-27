@@ -12,17 +12,22 @@ date: "2026-09-27T00:24:59+09:00"
 author: "Antigravity"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
+
+
+## 지식 로드맵 내 현재 위치
+
+소프트웨어 공학 → 소프트웨어 시험·품질 → 몽키 테스트(Monkey Test)
 
 ## 지식 위치
 
 소프트웨어공학 > 동적 테스팅 기법 > 몽키 테스트
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 몽키 테스트는 무작위 입력과 이벤트를 주입해 예기치 않은 오류·비정상 동작을 찾는 테스트 기법
 - 메커니즘: 의사 난수 시드(Seed) 기반 이벤트 스트림 생성 → UI 컴포넌트 및 API 무작위 주입 → 크래시(Crash) 및 무응답(ANR) 감지 → 시드 기반 이벤트 리플레이를 통한 결함 재현 디버깅
@@ -31,10 +36,10 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **덤 몽키(Dumb Monkey)**: 대상 시스템의 내부 상태나 UI 구조에 대한 정보 없이 완전히 무작위로 클릭, 터치, 키 입력을 쏟아붓는 가장 단순한 형태의 무작위 테스팅
-- **스마트 몽키(Smart Monkey)**: 화면 구조나 앱 상태 정보를 이용해 유효 이벤트를 선택하는 구현 방식으로, 표준화된 단일 분류명은 아님
-- **재현성(Reproducibility)**: 무작위 테스트에서 결함이 터졌을 때 동일한 입력 순서를 재현할 수 있는 능력으로, 난수 발생기의 고정 시드(Seed) 관리가 핵심
-- **ANR(Application Not Responding)**: Android가 앱의 주 스레드가 사용자 입력에 응답하지 않는 상태로 판단해 표시하는 오류 상태
+- **덤 몽키(Dumb Monkey)** : 대상 시스템의 내부 상태나 UI 구조에 대한 정보 없이 완전히 무작위로 클릭, 터치, 키 입력을 쏟아붓는 가장 단순한 형태의 무작위 테스팅
+- **스마트 몽키(Smart Monkey)** : 화면 구조나 앱 상태 정보를 이용해 유효 이벤트를 선택하는 구현 방식으로, 표준화된 단일 분류명은 아님
+- **재현성(Reproducibility)** : 무작위 테스트에서 결함이 터졌을 때 동일한 입력 순서를 재현할 수 있는 능력으로, 난수 발생기의 고정 시드(Seed) 관리가 핵심
+- **ANR(Application Not Responding)** : Android가 앱의 주 스레드가 사용자 입력에 응답하지 않는 상태로 판단해 표시하는 오류 상태
 </details>
 
 ---
@@ -161,6 +166,6 @@ Crash·ANR·로그 감시
 - [카오스 테스트(Chaos Engineering)](./176_chaos_test.md)
 - [돌연변이 테스팅(Mutation Test)](./084_mutation_test.md)
 
-## 검증 출처
+## 출제 이력과 검증 출처
 - [Android Developers, UI/Application Exerciser Monkey](https://developer.android.com/studio/test/other-testing-tools/monkey): 의사 난수 이벤트·시드 재현과 충돌 탐지
 ---

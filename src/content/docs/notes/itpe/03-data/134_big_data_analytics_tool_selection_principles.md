@@ -3,7 +3,7 @@ sidebar:
   order: 134
   label: "134. 빅데이터 분석도구 선택 원칙"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 134
 title: "빅데이터 분석도구 선정 원칙"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "134"
 ---
 
@@ -24,16 +24,16 @@ extra:
 
 ## 30초 인출
 
-- 본질: **빅데이터 분석도구 선정**은 업무 요구에 맞는 수집·저장·처리·분석 도구를 고르는 의사결정
+- 본질: **빅데이터 분석도구 선정은** 업무 요구에 맞는 수집·저장·처리·분석 도구를 고르는 의사결정
 - 메커니즘: 데이터·처리특성·서비스 수준·운영역량을 요구사항과 대조하고 검증
 - 판단: 제품 이름이나 데이터 크기만으로 정하지 않고 대표 워크로드의 적합성·비용·운영성을 함께 비교
 
 <details>
 <summary>핵심 용어</summary>
 
-- **서비스 수준 목표(Service Level Objective, SLO)**: 서비스가 충족해야 할 측정 가능한 신뢰성·성능 목표
-- **총소유비용(Total Cost of Ownership, TCO)**: 도입·운영·인력·이관 등 수명주기 비용의 합
-- **개념검증(Proof of Concept, PoC)**: 핵심 기술 위험과 요구 적합성을 제한된 범위에서 검증하는 활동
+- **서비스 수준 목표(Service Level Objective, SLO)** : 서비스가 충족해야 할 측정 가능한 신뢰성·성능 목표
+- **총소유비용(Total Cost of Ownership, TCO)** : 도입·운영·인력·이관 등 수명주기 비용의 합
+- **개념검증(Proof of Concept, PoC)** : 핵심 기술 위험과 요구 적합성을 제한된 범위에서 검증하는 활동
 
 </details>
 

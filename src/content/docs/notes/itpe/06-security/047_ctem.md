@@ -5,11 +5,13 @@ date: "2026-09-24T22:41:00+09:00"
 tags:
   - "notes-security"
 sidebar:
+  label: "047. 지속적 위협 노출 관리(CTEM)"
   badge:
-    text: "서브"
+    text: "기초"
+    variant: note
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 
 ---
 
@@ -19,15 +21,15 @@ extra:
 
 ## 30초 인출
 
-- **본질**: CTEM은 중요한 업무에 영향을 줄 보안 노출을 찾아 검증하고 실제 조치로 연결하는 반복 운영 모델.
-- **메커니즘**: 범위 설정 → 노출 발견 → 우선순위 결정 → 검증 → 조치 동원.
+- **본질** : CTEM은 중요한 업무에 영향을 줄 보안 노출을 찾아 검증하고 실제 조치로 연결하는 반복 운영 모델.
+- **메커니즘** : 범위 설정 → 노출 발견 → 우선순위 결정 → 검증 → 조치 동원.
 
 <details><summary>핵심 용어</summary>
 
-- **지속적 위협 노출 관리(CTEM, Continuous Threat Exposure Management)**: Gartner가 제안한 노출 관리 프로그램으로, 다섯 단계의 반복 운영으로 공격 가능한 노출을 줄이는 방식.
-- **CVSS(Common Vulnerability Scoring System, 공통 취약점 평가 체계)**: 취약점의 기술적 심각도를 공통 기준으로 표현하는 점수 체계.
-- **EPSS(Exploit Prediction Scoring System, 악용 예측 점수 체계)**: 공개된 CVE의 향후 30일 내 실제 악용 관측 가능성을 추정하는 확률 모델.
-- **BAS(Breach and Attack Simulation, 침해·공격 시뮬레이션)**: 승인된 공격 시나리오로 보안통제의 탐지·차단 동작을 확인하는 방법.
+- **지속적 위협 노출 관리(CTEM, Continuous Threat Exposure Management)** : Gartner가 제안한 노출 관리 프로그램으로, 다섯 단계의 반복 운영으로 공격 가능한 노출을 줄이는 방식.
+- **CVSS(Common Vulnerability Scoring System, 공통 취약점 평가 체계)** : 취약점의 기술적 심각도를 공통 기준으로 표현하는 점수 체계.
+- **EPSS(Exploit Prediction Scoring System, 악용 예측 점수 체계)** : 공개된 CVE의 향후 30일 내 실제 악용 관측 가능성을 추정하는 확률 모델.
+- **BAS(Breach and Attack Simulation, 침해·공격 시뮬레이션)** : 승인된 공격 시나리오로 보안통제의 탐지·차단 동작을 확인하는 방법.
 
 </details>
 
@@ -35,7 +37,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> 지속적 위협 노출 관리(CTEM)의 개념과 5단계 운영 흐름을 설명하시오. (예상)
+> 지속적 위협 노출 관리(CTEM)의 개념과 5단계 운영 흐름을 설명하시오. (예상·10점)
 
 ---
 
@@ -45,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **지속적 위협 노출 관리(CTEM)**는 중요한 업무에 영향을 줄 보안 노출을 찾아 검증하고 실제 조치로 연결하는 반복 운영 모델. |
+| 정의 | **지속적 위협 노출 관리(CTEM)** 는 중요한 업무에 영향을 줄 보안 노출을 찾아 검증하고 실제 조치로 연결하는 반복 운영 모델. |
 | 목적 | 공격자가 이용할 수 있는 노출을 업무 영향에 따라 우선 줄임. |
 
 ### Ⅱ. 5단계 운영 흐름
@@ -73,7 +75,7 @@ Mobilization   담당 조직의 개선 조치 실행
 
 ## 2~4교시 예상문제 (25점)
 
-> 지속적 위협 노출 관리(CTEM)의 목적과 5단계별 활동을 설명하고, 취약점 관리·위험 우선순위화에 적용하는 방안을 제시하시오. (예상)
+> 지속적 위협 노출 관리(CTEM)의 목적과 5단계별 활동을 설명하고, 취약점 관리·위험 우선순위화에 적용하는 방안을 제시하시오. (예상·25점)
 
 ---
 
@@ -83,7 +85,7 @@ Mobilization   담당 조직의 개선 조치 실행
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **지속적 위협 노출 관리(CTEM)**는 중요한 업무에 영향을 줄 보안 노출을 찾아 검증하고 실제 조치로 연결하는 반복 운영 모델. |
+| 정의 | **지속적 위협 노출 관리(CTEM)** 는 중요한 업무에 영향을 줄 보안 노출을 찾아 검증하고 실제 조치로 연결하는 반복 운영 모델. |
 | 목적 | 공격자가 이용할 수 있는 노출을 업무 영향에 따라 우선 줄임. |
 
 ## Ⅱ. 적용 범위와 노출
@@ -140,7 +142,7 @@ Mobilization   담당 조직의 개선 조치 실행
 
 ## 출제 이력과 검증 출처
 
-- 제139회 1교시 11번에 **CTEM(Continuous Threat Exposure Management)**이 출제됨(Q-net 공식 문제지 전사본 대조).
+- 제139회 1교시 11번에 **CTEM(Continuous Threat Exposure Management)** 이 출제됨(Q-net 공식 문제지 전사본 대조).
 - [Gartner: Strategic Roadmap for Continuous Threat Exposure Management](https://www.gartner.com/en/documents/6884566) — CTEM 5단계 모델의 원 출처. 공개 자료 접근 제한으로 세부 본문은 직접 재확인하지 못함.
 - [FIRST EPSS](https://www.first.org/epss/) — 30일 내 악용 관측 가능성의 의미.
 - [CISA Known Exploited Vulnerabilities Catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) — 실제 악용 확인 취약점 자료.

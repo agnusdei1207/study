@@ -5,10 +5,12 @@ date: "2026-09-24T22:12:00+09:00"
 tags:
   - "notes-security"
 sidebar:
+  label: "030. 산업제어시스템(ICS)"
   badge:
-    text: "응용"
+    text: "기초"
+    variant: note
 extra:
-  keyword_grade: "응용"
+  keyword_grade: "기초"
   model: "GPT-6"
 ---
 
@@ -42,7 +44,7 @@ extra:
 ---
 ## 1교시 예상문제 (10점)
 
-> 산업제어시스템의 개념과 구성, IT 시스템과 구별되는 보안 고려사항을 설명하시오. *(10점 예상문제)*
+> 산업제어시스템의 개념과 구성, IT 시스템과 구별되는 보안 고려사항을 설명하시오. (예상·10점)
 
 ---
 ## 1교시 10점 답안
@@ -73,7 +75,7 @@ extra:
 ---
 ## 2~4교시 예상문제 (25점)
 
-> 산업제어시스템의 구성과 보안 요구사항을 설명하고, 주요 공격경로·위험에 대응하는 영역분리·운영 보호방안을 제시하시오. *(25점 예상문제)*
+> 산업제어시스템의 구성과 보안 요구사항을 설명하고, 주요 공격경로·위험에 대응하는 영역분리·운영 보호방안을 제시하시오. (예상·25점)
 
 ---
 ## 2~4교시 25점 답안
@@ -142,7 +144,7 @@ ISA/IEC 62443의 영역(zone)·통신경로(conduit) 개념은 위험을 기준�
 | 평면 네트워크와 상시 원격접속은 침해 시 제어영역까지 영향 확산 가능 | 업무흐름 기반 영역분리, 승인된 중계경로, 시간제한 계정·감사기록 적용 |
 
 ---
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - NIST, [SP 800-82 Rev. 3: Guide to Operational Technology Security](https://csrc.nist.gov/pubs/sp/800/82/r3/final) — 2023년 최종판. Rev. 4는 2026-09-21 공개 초안 상태
 - ISA, [ISA/IEC 62443 series of standards](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards) — 위험기반 영역·통신경로와 생애주기 보안 참고

@@ -20,22 +20,22 @@ extra:
 
 ## 30초 인출
 
-- **본질**: 임베디드 소프트웨어 테스트는 하드웨어와 맞물려 동작하는 제어 소프트웨어의 기능·시간·환경 반응을 확인하는 검증 활동
-- **메커니즘**: 모델·호스트 코드·타깃 프로세서·실제 제어기를 서로 다른 시험 환경에 연결해 단계별 검증
+- **본질** : 임베디드 소프트웨어 테스트는 하드웨어와 맞물려 동작하는 제어 소프트웨어의 기능·시간·환경 반응을 확인하는 검증 활동
+- **메커니즘** : 모델·호스트 코드·타깃 프로세서·실제 제어기를 서로 다른 시험 환경에 연결해 단계별 검증
 
 <details>
 <summary>핵심 용어</summary>
 
-- **임베디드 소프트웨어 테스트**: 하드웨어와 결합하는 소프트웨어의 기능과 실시간 동작을 확인하는 시험
-- **XiL(X-in-the-Loop)**: 제어 대상 모델·코드·프로세서·하드웨어를 시뮬레이션 환경에 연결해 검증하는 방식
-- **MIL(Model-in-the-Loop)**: 제어 알고리즘 모델을 시뮬레이션 환경에서 검증하는 방식
-- **SIL(Software-in-the-Loop)**: 호스트 환경에서 소프트웨어 코드를 실행해 검증하는 방식
-- **PIL(Processor-in-the-Loop)**: 타깃 프로세서에서 코드를 실행해 프로세서 의존 동작을 검증하는 방식
-- **HIL(Hardware-in-the-Loop)**: 실제 제어기를 실시간 플랜트 시뮬레이터와 연결해 검증하는 방식
-- **WCET(Worst-Case Execution Time)**: 지정된 태스크가 실행 조건에서 소요하는 최악 실행 시간의 상한
-- **FIT(Fault Injection Testing)**: 오류나 고장 조건을 의도적으로 주입해 시스템 반응을 확인하는 시험
-- **ISO 26262**: 도로 차량 전기·전자 시스템의 기능안전 표준 시리즈
-- **DO-178C(Software Considerations in Airborne Systems and Equipment Certification)**: 항공기 탑재 소프트웨어의 개발·검증 고려사항을 다루는 RTCA 문서
+- **임베디드 소프트웨어 테스트** : 하드웨어와 결합하는 소프트웨어의 기능과 실시간 동작을 확인하는 시험
+- **XiL(X-in-the-Loop)** : 제어 대상 모델·코드·프로세서·하드웨어를 시뮬레이션 환경에 연결해 검증하는 방식
+- **MIL(Model-in-the-Loop)** : 제어 알고리즘 모델을 시뮬레이션 환경에서 검증하는 방식
+- **SIL(Software-in-the-Loop)** : 호스트 환경에서 소프트웨어 코드를 실행해 검증하는 방식
+- **PIL(Processor-in-the-Loop)** : 타깃 프로세서에서 코드를 실행해 프로세서 의존 동작을 검증하는 방식
+- **HIL(Hardware-in-the-Loop)** : 실제 제어기를 실시간 플랜트 시뮬레이터와 연결해 검증하는 방식
+- **WCET(Worst-Case Execution Time)** : 지정된 태스크가 실행 조건에서 소요하는 최악 실행 시간의 상한
+- **FIT(Fault Injection Testing)** : 오류나 고장 조건을 의도적으로 주입해 시스템 반응을 확인하는 시험
+- **ISO 26262** : 도로 차량 전기·전자 시스템의 기능안전 표준 시리즈
+- **DO-178C(Software Considerations in Airborne Systems and Equipment Certification)** : 항공기 탑재 소프트웨어의 개발·검증 고려사항을 다루는 RTCA 문서
 
 </details>
 
@@ -127,7 +127,7 @@ extra:
 |---|---|
 | 시뮬레이션 결과만으로 실제 하드웨어 동작을 단정할 위험 | 요구·위험·장비 조건에 따라 시험 환경을 선택하고, 상위 환경에서 확인하지 못한 항목을 별도 검증으로 보완 |
 
-## 출처와 확인 자료
+## 출제 이력과 검증 출처
 
 - ISO, [ISO 26262-6:2018 — Product development at the software level](https://committee.iso.org/cms/live/live/en/sites/isoorg/contents/data/standard/06/83/68388.html?browse=ics)
 - FAA, [AC 20-115D — Airborne Software Development Assurance Using EUROCAE ED-12( ) and RTCA DO-178( )](https://www.faa.gov/airports/resources/advisory_circulars/index.cfm/go/document.information/documentNumber/20-115D). 이 문서는 해당 항공 규정 준수를 보이는 하나의 수용 가능한 수단이며, 규정 자체는 아님.

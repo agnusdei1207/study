@@ -6,13 +6,13 @@ sidebar:
   order: 67
   label: "067. TurboQuant"
   badge:
-    text: "응용"
+    text: "서브"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "응용"
+  keyword_grade: "서브"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -21,7 +21,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **TurboQuant**는 고차원 벡터의 저장량을 줄이고 내적 추정을 지원하는 온라인 양자화 방법
+- 본질: **TurboQuant** 는 고차원 벡터의 저장량을 줄이고 내적 추정을 지원하는 온라인 양자화 방법
 - 메커니즘: 무작위 회전 → 좌표별 스칼라 양자화 → 1비트 QJL 잔차로 내적 추정의 편향 보정
 
 <details>
@@ -41,7 +41,7 @@ extra:
 
 ---
 
-TurboQuant의 개념과 고차원 벡터 압축 원리를 설명하시오. (예상)
+> TurboQuant의 개념과 고차원 벡터 압축 원리를 설명하시오. (예상·10점)
 
 ---
 
@@ -51,7 +51,7 @@ TurboQuant의 개념과 고차원 벡터 압축 원리를 설명하시오. (예�
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **TurboQuant**는 고차원 벡터의 저장량을 줄이고 내적 추정을 지원하는 온라인 양자화 방법 |
+| 정의 | **TurboQuant** 는 고차원 벡터의 저장량을 줄이고 내적 추정을 지원하는 온라인 양자화 방법 |
 | 목적 | KV 캐시·벡터 검색에서 큰 벡터 표현의 메모리 부담 완화 |
 
 ### Ⅱ. 벡터 압축 흐름
@@ -83,7 +83,7 @@ TurboQuant의 개념과 고차원 벡터 압축 원리를 설명하시오. (예�
 
 ---
 
-TurboQuant의 개념과 처리 원리를 설명하고, KV 캐시·벡터 검색 적용 및 기존 양자화와 비교할 때의 평가 기준을 제시하시오. (예상)
+> TurboQuant의 개념과 처리 원리를 설명하고, KV 캐시·벡터 검색 적용 및 기존 양자화와 비교할 때의 평가 기준을 제시하시오. (예상·25점)
 
 ---
 
@@ -93,7 +93,7 @@ TurboQuant의 개념과 처리 원리를 설명하고, KV 캐시·벡터 검색 
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **TurboQuant**는 고차원 벡터의 저장량을 줄이고 내적 추정을 지원하는 온라인 양자화 방법 |
+| 정의 | **TurboQuant** 는 고차원 벡터의 저장량을 줄이고 내적 추정을 지원하는 온라인 양자화 방법 |
 | 목적 | KV 캐시·벡터 검색에서 큰 벡터 표현의 메모리 부담 완화 |
 
 ### Ⅱ. 압축·잔차 보정 원리
@@ -132,7 +132,8 @@ KV 캐시 압축과 모델 가중치 압축은 최적화 대상이 서로 다른
 ---
 
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
-- 제139회 2교시 4번: TurboQuant의 개념·특징·성능·기존 양자화와의 비교·기대 효과. 실제 출제 요구는 보존하고 기본 예상문제와 구분.
+- 제139회 2교시 4번 TurboQuant 문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다. 위 문항은 별도 예상문제다.
 - Google Research, [TurboQuant 소개(2026-03-24)](https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/): KV 캐시·벡터 검색 적용, PolarQuant·QJL 역할과 연구 결과 범위 참고.
 - Zandieh et al., [TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate](https://arxiv.org/abs/2504.19874): 무작위 회전·좌표별 양자화·1비트 QJL 잔차 단계를 확인.

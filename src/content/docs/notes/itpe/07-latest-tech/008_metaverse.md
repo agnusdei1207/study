@@ -6,13 +6,13 @@ sidebar:
   order: 8
   label: "008. 메타버스"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 
 ---
 
@@ -92,7 +92,7 @@ extra:
 |---|---|
 | 지속성 | 사용자가 접속하지 않아도 공간과 활동 상태가 이어짐 |
 | 상호작용 | 사용자·콘텐츠·환경이 실시간으로 반응 |
-| 몰입감 | **XR(Extended Reality)** 기기와 **공간 컴퓨팅(Spatial Computing)** 으로 3차원 경험을 제공 |
+| 몰입감 | **XR(Extended Reality)** 기기와 ** 공간 컴퓨팅(Spatial Computing)** 으로 3차원 경험을 제공 |
 
 ### Ⅱ. 상호작용 구조
 

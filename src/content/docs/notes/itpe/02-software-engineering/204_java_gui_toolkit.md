@@ -12,23 +12,24 @@ extra:
   keyword_grade: "응용"
 ---
 
-## 학습 위치
+
+## 지식 로드맵 내 현재 위치
 
 소프트웨어공학 → 사용자 인터페이스 → Java 데스크톱 GUI → **Java GUI 툴킷**
 
 ## 30초 인출
 
-- **본질**: Java GUI 툴킷은 윈도우·컨트롤·이벤트 처리 기능으로 데스크톱 사용자 인터페이스를 구성하는 라이브러리
-- **메커니즘**: 화면 컴포넌트 구성 → 이벤트 처리 → UI 스레드에서 화면 상태 갱신
+- **본질** : Java GUI 툴킷은 윈도우·컨트롤·이벤트 처리 기능으로 데스크톱 사용자 인터페이스를 구성하는 라이브러리
+- **메커니즘** : 화면 컴포넌트 구성 → 이벤트 처리 → UI 스레드에서 화면 상태 갱신
 
 <details>
 <summary>핵심 용어</summary>
 
-- **AWT(Abstract Window Toolkit)**: Java의 기본 GUI·이벤트·그래픽 기능을 제공하는 툴킷
-- **Swing**: AWT 기반으로 다양한 경량 GUI 컴포넌트를 제공하는 툴킷
-- **JavaFX**: Java 데스크톱·그래픽 애플리케이션을 위한 UI 플랫폼으로 OpenJFX로 제공
-- **이벤트 디스패치 스레드(Event Dispatch Thread, EDT)**: Swing 이벤트 처리와 UI 갱신을 담당하는 스레드
-- **JavaFX Application Thread**: JavaFX UI 이벤트와 장면 그래프 작업을 수행하는 스레드
+- **AWT(Abstract Window Toolkit)** : Java의 기본 GUI·이벤트·그래픽 기능을 제공하는 툴킷
+- **Swing** : AWT 기반으로 다양한 경량 GUI 컴포넌트를 제공하는 툴킷
+- **JavaFX** : Java 데스크톱·그래픽 애플리케이션을 위한 UI 플랫폼으로 OpenJFX로 제공
+- **이벤트 디스패치 스레드(Event Dispatch Thread, EDT)** : Swing 이벤트 처리와 UI 갱신을 담당하는 스레드
+- **JavaFX Application Thread** : JavaFX UI 이벤트와 장면 그래프 작업을 수행하는 스레드
 
 </details>
 
@@ -46,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Java GUI 툴킷**: Java 애플리케이션의 화면과 사용자 상호작용을 구성하는 GUI 라이브러리 |
+| 정의 | **Java GUI 툴킷** : Java 애플리케이션의 화면과 사용자 상호작용을 구성하는 GUI 라이브러리 |
 | 목적 | 데스크톱 UI 구성 요소와 이벤트 처리 기능 제공 |
 
 ### Ⅱ. 주요 툴킷 비교
@@ -66,7 +67,7 @@ extra:
                                └─ 결과를 UI 스레드에 전달
 ```
 
-**제언**: 화면 갱신은 UI 스레드에서 수행하고 오래 걸리는 작업은 분리해 반응성을 유지.
+**제언** : 화면 갱신은 UI 스레드에서 수행하고 오래 걸리는 작업은 분리해 반응성을 유지.
 
 ---
 
@@ -82,7 +83,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **Java GUI 툴킷**: Java 애플리케이션의 화면과 사용자 상호작용을 구성하는 GUI 라이브러리 |
+| 정의 | **Java GUI 툴킷** : Java 애플리케이션의 화면과 사용자 상호작용을 구성하는 GUI 라이브러리 |
 | 목적 | 데스크톱 UI 구성 요소와 이벤트 처리 기능 제공 |
 
 ## Ⅱ. 툴킷 구조와 계보
@@ -149,3 +150,9 @@ Swing 컴포넌트 접근은 일반적으로 EDT에서 수행하고, JavaFX 장�
 - [추상 클래스와 인터페이스](./205_abstract_class_and_interface.md)
 - [Enterprise Beans](./200_ejb.md)
 - [HTML5 표준 API](./186_html5.md)
+
+## 출제 이력과 검증 출처
+
+- **출제 상태:** 예상문제는 학습용 문항이며, 공식 기출 원문과 동일하다고 단정하지 않는다.
+- [검증 자료 1](https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html)
+- [검증 자료 2](https://openjfx.io/openjfx-docs/introduction)

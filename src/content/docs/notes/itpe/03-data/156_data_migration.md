@@ -3,7 +3,7 @@ sidebar:
   order: 156
   label: "156. 데이터 이관 (Data Migration)"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "대용량 데이터 이관(Data Migration) 및 무결성·정합성 검증 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 156
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "156"
 ---
 
@@ -21,7 +21,7 @@ extra:
 
 <div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>데이터베이스 운영·엔지니어링</span><span>마이그레이션</span><strong>데이터 이관(Data Migration)</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 ```mermaid
 flowchart TD
@@ -36,8 +36,8 @@ flowchart TD
 - 본질: **데이터 이관은 원천의 데이터를 목표 시스템으로 옮기고 변환 결과를 검증하는 활동으로, 계획·매핑·전환 방식과 데이터 대사를 정해 서비스 중단 및 정보 손실 위험을 관리**
 - 암기: `계-설-개-모-본` (5단계 절차: 계획, 설계, 개발, 모의이관, 본이관) / `추-변-적-검` (핵심 활동: 추출, 변환, 적재, 검증) / `건-합-해` (3단계 정합성 검증: 건수대사, 합계대사, 해시대사)
 - 판단축:
-  - **빅뱅(Big-Bang)**: 한 번에 전환하는 방식으로, 준비가 단순할 수 있으나 전환 위험과 중단 시간을 한 시점에 감당.
-  - **단계적(Phased)**: 기능·데이터 범위별로 나누어 전환하는 방식으로 위험을 분산할 수 있지만, 이행 중 신·구 데이터 정합과 운영 복잡성 관리가 필요.
+  - **빅뱅(Big-Bang)** : 한 번에 전환하는 방식으로, 준비가 단순할 수 있으나 전환 위험과 중단 시간을 한 시점에 감당.
+  - **단계적(Phased)** : 기능·데이터 범위별로 나누어 전환하는 방식으로 위험을 분산할 수 있지만, 이행 중 신·구 데이터 정합과 운영 복잡성 관리가 필요.
 - 주의: 리허설 횟수·허용 다운타임·롤백 기준은 서비스 요구와 계약·운영 조건에 따라 정하며, 일률적 횟수나 무중단·무손실을 보장하는 표현은 피함
 
 <details><summary>핵심 용어</summary>
@@ -87,9 +87,7 @@ flowchart TD
 
 ## 2~4교시 예상문제 (25점)
 
-> 데이터 이관의 정의와 목적, 주요 절차 및 전환 방식의 선택 기준을 설명하고, 대용량 이관의 적재·검증·컷오버 방안을 논하시오. (예상)
-
-> (25점, 예상)
+> 데이터 이관의 정의와 목적, 주요 절차 및 전환 방식의 선택 기준을 설명하고, 대용량 이관의 적재·검증·컷오버 방안을 논하시오. (예상·25점)
 
 ---
 
@@ -104,12 +102,12 @@ flowchart TD
 
 #### 한줄 요약: 이기종 환경 간 비즈니스 로직과 스키마 변경을 수용하며 원천 데이터를 목표 DB로 무결하게 이동·검증하는 전주기 방법론
 
-- **추진 배경**:
+- **추진 배경** :
   - 스키마와 코드 체계가 달라지는 전환에서 매핑·변환 오류와 데이터 누락을 통제할 필요
   - 규모·변경량·중단 허용도에 맞는 이관 전략과 검증 근거가 필요
-- **정의**:
+- **정의** :
   - 레거시 데이터베이스에 축적된 트랜잭션 및 마스터 데이터를 신규 정보시스템의 데이터 모델에 부합하도록 정제·변환하여 목표 데이터베이스에 적재하고 정합성을 입증하는 일련의 활동
-- **핵심 목표**:
+- **핵심 목표** :
   - 합의한 서비스 중단 시간과 데이터 손실 허용 기준 준수
   - 검증 가능한 데이터 대사와 결함 조치
   - 실패 시 복구·재전환 절차 확보
@@ -161,11 +159,11 @@ flowchart TD
     E -->|아니오| G[오류 분석·재처리 또는 롤백]
 ```
 
-1. **Oracle Direct-Path INSERT 활용 예**:
+1. **Oracle Direct-Path INSERT 활용 예** :
    - DB 버퍼 캐시를 거치지 않고 데이터 파일의 HWM(High Water Mark) 뒤에 직접 블록을 할당하여 쓰는 `/*+ APPEND */` 힌트 및 `NOLOGGING` 옵션 적용.
-2. **Oracle 병렬 DML (Parallel DML)**:
+2. **Oracle 병렬 DML (Parallel DML)** :
    - 서버 CPU 코어 수에 맞추어 `ALTER SESSION ENABLE PARALLEL DML;` 설정 후 파티션 단위 병렬 적재.
-3. **DBMS별 인덱스 및 제약조건 처리**:
+3. **DBMS별 인덱스 및 제약조건 처리** :
    - 적재 중에는 인덱스 갱신 부하를 없애기 위해 `UNUSABLE` 처리하고, 적재 완료 후 병렬로 일괄 `REBUILD` 수행.
    - Oracle의 `ENABLE NOVALIDATE`처럼 기존 데이터 검증과 신규 변경 검사를 분리하는 기능은 DBMS별 동작·제약을 확인해 적용.
 
@@ -195,7 +193,7 @@ flowchart TD
     F -->|아니오| H[기존 시스템 유지·원인 해소]
 ```
 
-- **동작 절차**:
+- **동작 절차** :
   1. 원천 DB가 정상 운영되는 동안 초기 풀 스냅샷(Full Snapshot)을 타겟 DB에 백그라운드로 적재.
   2. 캡처 대상으로 설정한 스냅샷 이후 변경분은 DB 로그 또는 커넥터가 지원하는 방식으로 읽어 전달 계층에 반영.
   3. 변경분을 타겟 DB에 반영하고 지연·오류·순서 보장을 감시.
@@ -212,10 +210,10 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**:
-  - 제128회 정보관리 2교시: 데이터 마이그레이션 절차 및 정합성 검증 방안
+- **기출 이력** :
+  - 제128회 정보관리 2교시: 데이터 마이그레이션 절차 및 정합성 검증 방안 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
   - 제105회, 제81회 정보관리 1교시: 데이터 이관 전략 및 컷오버 방안
-- **검증 출처**:
+- **검증 출처** :
   - 한국지능정보사회진흥원(NIA), "공공기관 정보시스템 데이터 이관 가이드라인"
   - AWS Database Migration Service (AWS DMS) Best Practices Guide
   - Oracle Corporation, "Database Migration and Large-Scale Data Loading Guide"
@@ -224,6 +222,6 @@ flowchart TD
 
 ## 연결 토픽
 
-- 상위 토픽: [03-063 오픈소스 DBMS 전환](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/063_opensource_dbms_migration.md)
-- 선수 토픽: [03-022 데이터 무결성](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/022_integrity.md), [03-088 데이터베이스 튜닝](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/088_database_tuning.md)
-- 후속 토픽: [03-126 데이터 복제](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/126_data_replication.md), [03-149 분산 데이터베이스](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/149_distributed_database.md)
+- 상위 토픽: [03-063 오픈소스 DBMS 전환](./063_opensource_dbms_migration.md)
+- 선수 토픽: [무결성 제약](./013_integrity_constraint.md), [03-088 데이터베이스 튜닝](./088_database_tuning.md)
+- 후속 토픽: [03-126 데이터 복제](./126_data_replication.md), [03-149 분산 데이터베이스](./149_distributed_database.md)

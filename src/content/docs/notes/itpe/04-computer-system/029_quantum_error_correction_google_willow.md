@@ -3,7 +3,7 @@ sidebar:
   order: 29
   label: "029. 양자 오류정정 임계값"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 title: "양자 오류정정 임계값과 Willow"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 29
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "029"
 ---
 
@@ -134,11 +134,11 @@ Willow 결과는 오류정정 양자 메모리의 진전. 임의의 대규모 �
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Google Quantum AI: Making quantum error correction work](https://research.google/blog/making-quantum-error-correction-work/)
 - [Nature: Quantum error correction below the surface code threshold](https://www.nature.com/articles/s41586-024-08449-y)
 
 ## 연결 토픽
 
-- 연관 토픽: [양자컴퓨팅](./072_quantum_computing.md), [위상 큐비트](./115_topological_qubit_majorana_1.md)
+- 연관 토픽: [양자기술](./072_quantum_technology_nia_iitp.md), [위상 큐비트](./115_topological_qubit_majorana_1.md)

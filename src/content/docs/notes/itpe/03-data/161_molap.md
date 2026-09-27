@@ -3,7 +3,7 @@ sidebar:
   order: 161
   label: "161. MOLAP(Multidimensional OLAP)"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "MOLAP (Multidimensional OLAP)"
 author: "Gemini 3.8 Flash"
@@ -13,9 +13,19 @@ tags:
 weight: 161
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "161"
 ---
+
+## 지식 로드맵 내 현재 위치
+
+데이터 분석 → 다차원 분석(OLAP) → 사전 집계 큐브 기반 MOLAP
+
+## 30초 인출
+
+- 본질: **MOLAP은** 분석 데이터를 다차원 큐브에 저장·집계해 질의하는 OLAP 방식이다.
+- 메커니즘: 차원·계층과 측정값 정의 → 필요한 집계값을 큐브에 구성 → Roll-up·Drill-down 등 다차원 질의 수행.
+- 선택 기준: 반복 질의의 응답과 큐브 저장량·갱신 비용을 함께 평가한다.
 
 <details>
 <summary>핵심 용어</summary>
@@ -61,7 +71,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> MOLAP (Multidimensional OLAP)의 개념과 목적을 설명하고, 핵심 메커니즘과 구성요소·절차, 적용 시 문제점과 대응 방안을 제시하시오. (25점, 예상)
+> MOLAP (Multidimensional OLAP)의 개념과 목적을 설명하고, 핵심 메커니즘과 구성요소·절차, 적용 시 문제점과 대응 방안을 제시하시오. (예상·25점)
 
 ---
 
@@ -122,5 +132,5 @@ flowchart TB
 
 - [IBM OLAP 개요](https://www.ibm.com/think/topics/olap): 다차원 큐브 기반 MOLAP과 관계형 테이블 기반 ROLAP의 구분
 
-- **기출 이력**: 기존 원문에 제114회 OLAP 유형 비교 문항이 기재되어 있으나, 공식 문항 원문과 배점은 별도 확인 필요
-- **검증 범위**: MOLAP의 다차원 큐브·사전 집계 및 OLAP 기본 연산에 한정. 제품별 저장 방식·성능은 구현과 설정에 따라 달라짐
+- **기출 이력** : 기존 원문에 제114회 OLAP 유형 비교 문항이 기재되어 있으나, 공식 문항 원문과 배점은 별도 확인 필요
+- **검증 범위** : MOLAP의 다차원 큐브·사전 집계 및 OLAP 기본 연산에 한정. 제품별 저장 방식·성능은 구현과 설정에 따라 달라짐

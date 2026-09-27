@@ -4,6 +4,8 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
+  label: "010. 스레드(Thread)"
+  order: 10
   badge:
     text: "기초"
 extra:
@@ -18,7 +20,7 @@ extra:
 
 <div class="itpe-topic-path" aria-label="지식 경로"><span>운영체제</span><span>실행 단위</span><strong>스레드</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **스레드(Thread)** 는 프로세스 안에서 스케줄되는 실행 흐름으로, 주소 공간의 자원을 공유하면서 실행 문맥은 각각 보유
 - 구조: 프로세스는 코드·데이터·힙·열린 파일을 공유하고 각 스레드는 식별자·프로그램 카운터·레지스터·스택을 별도 보유
@@ -147,7 +149,7 @@ stateDiagram-v2
 |---|---|
 | 공유 상태와 요청별 무제한 스레드 생성은 경쟁·교착 및 문맥 교환 부담을 키움 | 공유 상태를 줄이고 제한된 스레드 풀과 명시적 동기화·취소·종료 처리를 적용 |
 
-## 공식 검증 출처
+## 출제 이력과 검증 출처
 
 - [The Open Group POSIX Definitions — Thread·Thread-Safe](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html)
 - [The Open Group pthread.h](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/pthread.h.html)
@@ -155,5 +157,5 @@ stateDiagram-v2
 ## 연결 토픽
 
 - [컴퓨터 시스템 과목 지도](./)
-- [가상화](./008_virtualization/)
+- [가상머신](./085_virtual_machine/)
 - [NPU](./007_npu/)

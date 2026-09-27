@@ -4,10 +4,20 @@ author: "OpenAI"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-security"
+sidebar:
+  label: "073. 벨라파듈라 모델(BLP)"
+  badge:
+    text: "서브"
+    variant: note
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 
 ---
+
+## 지식 로드맵 내 현재 위치
+
+정보보안 → 접근 통제 → 기밀성 모델
 
 ## 30초 인출
 
@@ -27,15 +37,15 @@ extra:
 ---
 ## 1교시 예상문제 (10점)
 
-> Bell–LaPadula 모델의 목적과 단순 보안 속성·스타 속성, 주요 한계를 설명하시오.
+> Bell–LaPadula 모델의 목적과 단순 보안 속성·스타 속성, 주요 한계를 설명하시오. (예상·10점)
 
 ---
 ## 1교시 10점 답안
 
-### 1. 정의·목적
-
-- **정의:** BLP는 주체·객체의 보안 수준을 비교해 정보의 기밀성 흐름을 통제하는 접근통제 모델이다.
-- **목적:** 상위 기밀 정보가 낮은 등급으로 직접 유출되는 것을 접근 규칙으로 제한한다.
+| 구분 | 핵심 |
+|---|---|
+| 정의 | 보안 등급으로 정보의 기밀성 흐름을 통제하는 모델 |
+| 목적 | 상위 기밀 정보의 하위 등급 유출 제한 |
 
 ### 2. 핵심 접근 규칙
 
@@ -60,10 +70,15 @@ BLP는 기밀성 중심 모델이므로 무결성 정책과 은닉 채널 분석
 ---
 ## 2~4교시 예상문제 (25점)
 
-> KPC 제127회 「벨라파듈라(Bell-LaPadula) 모델과 비바(Biba) 모델의 원리 및 규칙 비교」의 기출 주제를 바탕으로, 두 모델의 보안 목표·접근 규칙과 적용 시 한계를 설명하시오. *(25점 예상문제)*
+> 벨라파듈라(Bell-LaPadula) 모델과 비바(Biba) 모델의 보안 목표·접근 규칙과 적용 시 한계를 비교하시오. (예상·25점)
 
 ---
 ## 2~4교시 25점 답안
+
+| 구분 | 핵심 |
+|---|---|
+| 정의 | 보안 등급으로 정보의 기밀성 흐름을 통제하는 모델 |
+| 목적 | 상위 기밀 정보의 하위 등급 유출 제한 |
 
 ### Ⅰ. BLP 모델의 목적과 보안 수준
 
@@ -120,9 +135,9 @@ BLP의 직접 접근 규칙은 공유 자원 사용 시간·상태 변화 등 �
 | 업무 협업을 위해 고등급 정보를 하향 공개 | 승인된 탈분류·신뢰 주체 절차를 명시하고 범위·근거·감사 기록 통제 |
 
 ---
-## 출제 이력 및 참고자료
+## 출제 이력과 검증 출처
 
-- **기출 이력:** KPC 제127회 「보안 모델 중 벨라파듈라(Bell-LaPadula) 모델과 비바(Biba) 모델의 원리 및 규칙 비교」.
+- 제127회 관련 출제 기록은 공식 원문 미확보로 회차·문구를 검증하지 못함. 위 문항은 학습용 예상문제.
 - Bell and LaPadula, [Secure Computer Systems: Mathematical Foundations (1973)](https://apps.dtic.mil/sti/pdfs/AD0770768.pdf) — 기밀성 모델의 형식적 기반.
 - Biba, [Integrity Considerations for Secure Computer Systems (1977)](https://www.cerias.purdue.edu/apps/reports_and_papers/view/2834) — 무결성 모델 원문 보고서 정보.
 - NIST, [7th DoD/NBS Computer Security Conference Proceedings](https://csrc.nist.gov/CSRC/media/Publications/conference-paper/1984/09/24/7th-dod-nbs-computer-security-conference/documents/1984-7th-conference-proceedings.pdf) — 보안 모델과 은닉 채널 관련 논의.

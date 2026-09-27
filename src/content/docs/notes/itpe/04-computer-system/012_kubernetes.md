@@ -5,6 +5,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "012. 쿠버네티스(Kubernetes)"
+  order: 12
   badge:
     text: "기초"
 extra:

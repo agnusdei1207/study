@@ -3,7 +3,7 @@ sidebar:
   order: 60
   label: "060. 페이징"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "페이징(Paging)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 60
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "060"
 ---
 
@@ -148,7 +148,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Linux Kernel: Page Tables](https://docs.kernel.org/mm/page_tables.html)
 - [Linux Kernel: HugeTLB Pages](https://docs.kernel.org/admin-guide/mm/hugetlbpage.html)

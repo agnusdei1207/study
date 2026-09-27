@@ -18,18 +18,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **REST(Representational State Transfer)**는 웹(Web)의 기존 HTTP 인프라와 표준을 그대로 활용하여 자원(Resource) 중심의 상태 전송을 정의하는 분산 하이퍼미디어 아키텍처 스타일
+- 본질: **REST(Representational State Transfer)** 는 웹(Web)의 기존 HTTP 인프라와 표준을 그대로 활용하여 자원(Resource) 중심의 상태 전송을 정의하는 분산 하이퍼미디어 아키텍처 스타일
 - 메커니즘: **자원(URI)** + **행위(HTTP Method)** + **표현(Representation, JSON/XML)** + **무상태(Stateless)**
 - 효과: 시스템 간 느슨한 결합(Loose Coupling) · 높은 확장성(Scalability) · 플랫폼 독립적 연계
 
 <details>
 <summary>핵심 용어</summary>
 
-- **REST(Representational State Transfer)**: Roy Fielding이 제안한 웹 아키텍처의 장점을 극대화하기 위한 네트워크 기반 소프트웨어 아키텍처 스타일
-- **Stateless(무상태성)**: 각 요청은 서버에 이전 요청의 컨텍스트를 저장하지 않고 독립적으로 처리되어야 한다는 제약
-- **Uniform Interface**: 자원 식별, 표현을 통한 자원 조작, 자기기술적 메시지, HATEOAS의 4대 인터페이스 규칙
-- **HATEOAS(Hypermedia As The Engine Of Application State)**: 응답 본문에 다음 가능한 상태 전이를 위한 하이퍼링크를 포함하는 원칙
-- **Idempotency(멱등성)**: 동일한 요청을 반복해도 서버에 의도한 효과가 한 번 수행한 것과 같은 성질(GET, PUT, DELETE 등)
+- **REST(Representational State Transfer)** : Roy Fielding이 제안한 웹 아키텍처의 장점을 극대화하기 위한 네트워크 기반 소프트웨어 아키텍처 스타일
+- **Stateless(무상태성)** : 각 요청은 서버에 이전 요청의 컨텍스트를 저장하지 않고 독립적으로 처리되어야 한다는 제약
+- **Uniform Interface** : 자원 식별, 표현을 통한 자원 조작, 자기기술적 메시지, HATEOAS의 4대 인터페이스 규칙
+- **HATEOAS(Hypermedia As The Engine Of Application State)** : 응답 본문에 다음 가능한 상태 전이를 위한 하이퍼링크를 포함하는 원칙
+- **Idempotency(멱등성)** : 동일한 요청을 반복해도 서버에 의도한 효과가 한 번 수행한 것과 같은 성질(GET, PUT, DELETE 등)
 
 </details>
 
@@ -62,8 +62,8 @@ extra:
 
 **메서드 의미와 요청 통제**
 
-- **멱등성(Idempotency)**: GET·PUT·DELETE의 반복 요청은 의도한 서버 상태 효과가 동일
-- **Stateless**: 각 요청 처리에 필요한 맥락을 요청에 포함하고 서버가 클라이언트 세션 맥락에 의존하지 않음
+- **멱등성(Idempotency)** : GET·PUT·DELETE의 반복 요청은 의도한 서버 상태 효과가 동일
+- **Stateless** : 각 요청 처리에 필요한 맥락을 요청에 포함하고 서버가 클라이언트 세션 맥락에 의존하지 않음
 
 - 한 줄 제언: 상태 변경 POST에는 요청 식별과 중복 처리 방지 절차 적용
 ---
@@ -78,7 +78,7 @@ extra:
 
 ## Ⅰ. REST의 개요
 
-> **REST**는 자원과 표현을 일관된 인터페이스로 다루는 분산 시스템 아키텍처 스타일.
+> **REST** 는 자원과 표현을 일관된 인터페이스로 다루는 분산 시스템 아키텍처 스타일.
 
 | 구분 | 핵심 |
 |---|---|
@@ -110,7 +110,7 @@ extra:
 
 ## Ⅲ. HTTP Method의 안전성(Safety)과 멱등성(Idempotency)
 
-> **멱등성**은 동일 요청을 여러 번 실행해도 의도한 서버 상태 변화가 한 번 실행한 것과 같은 성질.
+> **멱등성** 은 동일 요청을 여러 번 실행해도 의도한 서버 상태 변화가 한 번 실행한 것과 같은 성질.
 
 | HTTP Method | 주 목적 및 행위 | 안전성 (Safe) | 멱등성 (Idempotent) | 캐시 가능 (Cacheable) |
 |---|---|---|---|---|

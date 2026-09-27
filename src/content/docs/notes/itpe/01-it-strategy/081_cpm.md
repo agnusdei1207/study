@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "기초"
+    text: "응용"
 extra:
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 

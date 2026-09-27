@@ -3,7 +3,7 @@ sidebar:
   order: 114
   label: "114. DB 복제 유형 (Replication Types)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "데이터베이스 복제 유형(동기·비동기·반동기)과 고가용성 복제 아키텍처"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 114
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "114"
 ---
 
@@ -21,17 +21,17 @@ extra:
 
 <div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>분산 데이터베이스·고가용성</span><strong>DB 복제 유형</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 
 
 - 본질: **데이터베이스 복제는 원본의 변경을 다른 노드에 전달해 가용성·읽기 확장·복구를 지원하는 기법이며, 동기화 방식에 따라 응답 지연과 장애 시점의 데이터 손실 위험이 달라짐**
 - 암기: `동-비-반` (3대 동기화 방식: 동기, 비동기, 반동기 복제) / `마-슬 / 멀-마` (토폴로지: Master-Slave, Multi-Master) / `복-지-랙` (복제 지연 Replication Lag)
 - 판단축:
-- **동기 복제(Synchronous)**: 설정된 복제 대상의 확인을 커밋 조건에 포함해 손실 가능성을 줄이는 방식. 보장 범위는 확인 시점·저장 내구성·장애 모델에 따름
-  - **비동기 복제(Asynchronous)**: 초당 트랜잭션 수(TPS)가 최우선이고 미세 유실이 허용되는 대용량 로그 수집 및 SNS 피드 영역
-  - **반동기 복제(Semi-Synchronous)**: 설정한 수의 복제 노드에서 변경 수신 확인을 기다리는 방식. 확인 단계와 타임아웃 동작은 제품 설정에 따라 달라짐
-- 주의: 비동기 복제 환경에서 읽기/쓰기 분리(Read Replica)를 적용할 경우, 쓰기 직후 복제 지연(Replication Lag)으로 인해 사용자가 방금 작성한 글을 조회하지 못하는 **읽기 일관성(Read-your-writes) 불일치**가 발생하므로 세션 라우팅 대책이 필수적임
+- **동기 복제(Synchronous)** : 설정된 복제 대상의 확인을 커밋 조건에 포함해 손실 가능성을 줄이는 방식. 보장 범위는 확인 시점·저장 내구성·장애 모델에 따름
+  - **비동기 복제(Asynchronous)** : 초당 트랜잭션 수(TPS)가 최우선이고 미세 유실이 허용되는 대용량 로그 수집 및 SNS 피드 영역
+  - **반동기 복제(Semi-Synchronous)** : 설정한 수의 복제 노드에서 변경 수신 확인을 기다리는 방식. 확인 단계와 타임아웃 동작은 제품 설정에 따라 달라짐
+- 주의: 비동기 복제 환경에서 읽기/쓰기 분리(Read Replica)를 적용할 경우, 쓰기 직후 복제 지연(Replication Lag)으로 인해 사용자가 방금 작성한 글을 조회하지 못하는 **읽기 일관성(Read-your-writes) 불일치가** 발생하므로 세션 라우팅 대책이 필수적임
 <details><summary>핵심 용어</summary>
 
 - **데이터베이스 복제 (Database Replication)** : 원본 데이터 변경을 복제 노드에 전달·반영해 사본을 유지하는 기술.
@@ -94,9 +94,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 엔터프라이즈 데이터베이스의 고가용성과 확장성을 보장하기 위한 복제(Replication)의 동기화 3대 방식(동기, 비동기, 반동기)의 메커니즘과 장단점을 비교하고, 읽기 분산 환경에서 발생하는 복제 지연(Replication Lag)의 해결 방안과 스플릿 브레인(Split-Brain) 방어 체계를 서술하시오. (25점)
-
-> (25점, 예상)
+> 데이터베이스의 동기·비동기·반동기 복제 방식을 비교하고, 복제 지연과 장애 전환 시 데이터 정합성 관리 방안을 설명하시오. (예상·25점)
 
 ---
 
@@ -118,12 +116,12 @@ extra:
 
 #### 한줄 요약: 트랜잭션 로그를 네트워크를 통해 보조 노드에 동기화하여 서비스 가용성과 읽기 처리량을 극대화하는 기술
 
-- **배경**: 단일 DB 인스턴스 환경에서는 하드웨어 고장 시 전사 서비스 중단(SPOF)이 발생하며, 읽기 트래픽 폭증 시 CPU 및 I/O 고갈로 시스템 마비
-- **정의**: Primary(Master) 데이터베이스에서 발생한 모든 데이터 변경 이력(WAL/Redo Log/Binary Log)을 하나 이상의 Secondary(Replica/Slave) 노드로 지속 복제하여 데이터의 복사본을 동기화하는 기술
-- **3대 핵심 목적**:
-  1. **고가용성(HA) 및 무중단 페일오버**: Primary 장애 시 대기 노드를 즉시 승격(Failover)하여 서비스 지속
-  2. **읽기 트래픽 부하 분산(Read Scale-out)**: CUD(쓰기)는 Primary로, 대량의 SELECT(읽기)는 복제본으로 분산
-  3. **지리적 재해 복구(DR)**: 원격 데이터센터로 데이터를 실시간 복제하여 지진·화재 등 물리적 재난 방어
+- **배경** : 단일 DB 인스턴스 환경에서는 하드웨어 고장 시 전사 서비스 중단(SPOF)이 발생하며, 읽기 트래픽 폭증 시 CPU 및 I/O 고갈로 시스템 마비
+- **정의** : Primary(Master) 데이터베이스에서 발생한 모든 데이터 변경 이력(WAL/Redo Log/Binary Log)을 하나 이상의 Secondary(Replica/Slave) 노드로 지속 복제하여 데이터의 복사본을 동기화하는 기술
+- **3대 핵심 목적** :
+  1. **고가용성(HA) 및 무중단 페일오버** : Primary 장애 시 대기 노드를 즉시 승격(Failover)하여 서비스 지속
+  2. **읽기 트래픽 부하 분산(Read Scale-out)** : CUD(쓰기)는 Primary로, 대량의 SELECT(읽기)는 복제본으로 분산
+  3. **지리적 재해 복구(DR)** : 원격 데이터센터로 데이터를 실시간 복제하여 지진·화재 등 물리적 재난 방어
 
 ### Ⅱ. 복제 동기화 3대 방식 상세 비교
 
@@ -159,14 +157,14 @@ extra:
 
 #### 한줄 요약: Primary와 Replica 간의 시간차로 인한 데이터 불일치를 애플리케이션 레벨에서 라우팅하여 해결
 
-- **복제 지연(Replication Lag)의 발생 원인**:
+- **복제 지연(Replication Lag)의 발생 원인** :
   - 복제본의 로그 적용 병렬도와 트랜잭션 의존성에 따라 원본의 쓰기 속도를 따라가지 못하면 지연이 누적될 수 있음
   - 대량 배치 DML(예: 100만 건 `UPDATE`) 실행 시 Slave의 반영 병목 심화
-- **실무 장애 현상**: 사용자가 게시글을 작성하자마자 상세 페이지로 이동했을 때 글이 보이지 않거나 이전 데이터가 노출되는 '읽기 일관성 결여' 발생
-- **엔지니어링 극복 방안**:
-  1. **자신이 쓴 데이터 읽기 (Read-your-writes Consistency)**: 쓰기 후 같은 세션의 읽기를 원본 노드로 보내거나, 복제본이 해당 쓰기를 반영한 것을 확인한 뒤 읽음
-  2. **병렬 복제 적용**: DBMS가 지원하는 병렬 로그 적용 기능을 검토하고, 트랜잭션 의존성과 순서 보장을 함께 확인
-  3. **GTID(Global Transaction Identifier) 기반 동기화 확인**: 읽기 요청 시 클라이언트가 방금 커밋한 트랜잭션의 GTID를 복제본이 이미 반영했는지 확인 후 쿼리 수행
+- **실무 장애 현상** : 사용자가 게시글을 작성하자마자 상세 페이지로 이동했을 때 글이 보이지 않거나 이전 데이터가 노출되는 '읽기 일관성 결여' 발생
+- **엔지니어링 극복 방안** :
+  1. **자신이 쓴 데이터 읽기 (Read-your-writes Consistency)** : 쓰기 후 같은 세션의 읽기를 원본 노드로 보내거나, 복제본이 해당 쓰기를 반영한 것을 확인한 뒤 읽음
+  2. **병렬 복제 적용** : DBMS가 지원하는 병렬 로그 적용 기능을 검토하고, 트랜잭션 의존성과 순서 보장을 함께 확인
+  3. **GTID(Global Transaction Identifier) 기반 동기화 확인** : 읽기 요청 시 클라이언트가 방금 커밋한 트랜잭션의 GTID를 복제본이 이미 반영했는지 확인 후 쿼리 수행
 
 ### Ⅴ. 스플릿 브레인(Split-Brain) 방어 및 고가용성 오케스트레이션
 
@@ -176,13 +174,13 @@ extra:
 
 #### 한줄 요약: 네트워크 단절 시 복수의 노드가 마스터를 자처하는 뇌 분리 현상을 정족수(Quorum) 투표로 차단
 
-- **스플릿 브레인 (Split-Brain)**:
+- **스플릿 브레인 (Split-Brain)** :
   - Primary와 Secondary 간의 통신만 단절되고 양쪽 노드는 모두 정상 동작할 때, Secondary가 Primary의 장애로 오판하여 스스로 마스터로 승격
   - 두 노드가 서로 다른 쓰기를 수용하면 데이터가 분기하고 자동 병합이 어려울 수 있어, 업무별 충돌 해결·복구 절차가 필요
-- **방어 메커니즘**:
-  1. **정족수·펜싱**: 쓰기 권한을 결정하는 합의·감시자와 기존 리더의 쓰기 차단을 결합. 필요한 노드 수와 정족수는 구현·장애 모델에 따라 설계
-  2. **STONITH (Shoot The Other Node In The Head)**: 클러스터가 지원하는 노드 전원·접근 차단으로 기존 리더의 쓰기를 막고, 실패 시 수동 조치 경로도 준비
-  3. **오케스트레이터**: 승격 후보와 복제 상태를 확인하고, 쓰기 권한 분리와 재동기화가 검증된 절차로 장애조치 수행
+- **방어 메커니즘** :
+  1. **정족수·펜싱** : 쓰기 권한을 결정하는 합의·감시자와 기존 리더의 쓰기 차단을 결합. 필요한 노드 수와 정족수는 구현·장애 모델에 따라 설계
+  2. **STONITH (Shoot The Other Node In The Head)** : 클러스터가 지원하는 노드 전원·접근 차단으로 기존 리더의 쓰기를 막고, 실패 시 수동 조치 경로도 준비
+  3. **오케스트레이터** : 승격 후보와 복제 상태를 확인하고, 쓰기 권한 분리와 재동기화가 검증된 절차로 장애조치 수행
 
 ### Ⅵ. 실무 장애 사례 및 트러블슈팅 (Troubleshooting)
 
@@ -204,14 +202,14 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**:
+- **기출 이력** :
   - 기존 제120회 정보관리 2교시 표기는 Q-Net 공식 원문을 확보하지 못해 회차·문항·배점 미확인
-- **검증 출처**:
+- **검증 출처** :
   - [MySQL Reference Manual, Semisynchronous Replication](https://dev.mysql.com/doc/refman/8.4/en/replication-semisync.html)
   - PostgreSQL Documentation, "Chapter 27 High Availability, Load Balancing, and Replication"
 ---
 
 ## 연결 토픽
 
-- 상위 토픽: [051. 고가용성(HA) 아키텍처](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/051_ha_architecture.md)
-- 연관 토픽: [113. CAP·PACELC 이론](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/113_cap_pacelc.md), [126. 데이터 복제 (Data Replication)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/126_data_replication.md)
+- 상위 토픽: [051. 고가용성(HA) 아키텍처](./051_ha_architecture.md)
+- 연관 토픽: [113. CAP·PACELC 이론](./113_cap_pacelc.md), [126. 데이터 복제 (Data Replication)](./126_data_replication.md)

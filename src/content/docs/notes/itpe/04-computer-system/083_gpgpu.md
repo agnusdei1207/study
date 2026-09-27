@@ -3,7 +3,7 @@ sidebar:
   order: 83
   label: "083. GPGPU"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 title: "GPGPU (General-Purpose computing on Graphics Processing Units)"
 author: "GPT-6"
@@ -12,7 +12,7 @@ tags:
   - "notes-computer-system"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "083"
 ---
 
@@ -22,17 +22,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **GPGPU (General-Purpose computing on Graphics Processing Units)**는 그래픽 처리용 GPU를 데이터 병렬성이 높은 범용 계산에 활용하는 방식
+- 본질: **GPGPU (General-Purpose computing on Graphics Processing Units)는** 그래픽 처리용 GPU를 데이터 병렬성이 높은 범용 계산에 활용하는 방식
 - 메커니즘: CPU가 작업·데이터를 준비하고 GPU 커널을 실행하며, 다수 스레드가 데이터에 같은 연산을 적용
 
 <details>
 <summary>핵심 용어</summary>
 
-- **GPGPU (General-Purpose computing on Graphics Processing Units)**: 그래픽 외의 일반 계산을 GPU에서 수행하는 컴퓨팅 방식
-- **SIMT (Single Instruction, Multiple Threads)**: 여러 스레드를 묶어 동일한 명령을 여러 데이터에 적용하는 GPU 실행 모델
-- **커널 (Kernel)**: GPU에서 병렬 실행하도록 작성한 계산 함수
-- **워프 (Warp)**: NVIDIA GPU에서 함께 스케줄되는 스레드 묶음; 크기·세부 동작은 아키텍처별 확인 필요
-- **메모리 병합 접근 (Coalesced Memory Access)**: 스레드의 메모리 요청을 효율적인 데이터 전송으로 묶는 접근 패턴
+- **GPGPU (General-Purpose computing on Graphics Processing Units)** : 그래픽 외의 일반 계산을 GPU에서 수행하는 컴퓨팅 방식
+- **SIMT (Single Instruction, Multiple Threads)** : 여러 스레드를 묶어 동일한 명령을 여러 데이터에 적용하는 GPU 실행 모델
+- **커널 (Kernel)** : GPU에서 병렬 실행하도록 작성한 계산 함수
+- **워프 (Warp)** : NVIDIA GPU에서 함께 스케줄되는 스레드 묶음; 크기·세부 동작은 아키텍처별 확인 필요
+- **메모리 병합 접근 (Coalesced Memory Access)** : 스레드의 메모리 요청을 효율적인 데이터 전송으로 묶는 접근 패턴
 </details>
 
 ---
@@ -49,7 +49,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **GPGPU (General-Purpose computing on Graphics Processing Units)**는 GPU의 병렬 실행 자원을 그래픽 이외의 범용 계산에 이용하는 방식 |
+| 정의 | **GPGPU (General-Purpose computing on Graphics Processing Units)는** GPU의 병렬 실행 자원을 그래픽 이외의 범용 계산에 이용하는 방식 |
 | 목적 | 데이터 병렬 계산에서 처리량을 높이고 CPU와 이기종으로 작업을 수행하는 것 |
 
 ### Ⅱ. 이기종 실행 구조
@@ -78,7 +78,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **GPGPU (General-Purpose computing on Graphics Processing Units)**는 GPU의 병렬 실행 자원을 그래픽 이외의 범용 계산에 이용하는 방식 |
+| 정의 | **GPGPU (General-Purpose computing on Graphics Processing Units)는** GPU의 병렬 실행 자원을 그래픽 이외의 범용 계산에 이용하는 방식 |
 | 목적 | 데이터 병렬 계산에서 처리량을 높이고 CPU와 이기종으로 작업을 수행하는 것 |
 
 ### Ⅱ. 실행 구조
@@ -146,7 +146,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 제120회 1교시 12번 CPU와 GPGPU 비교 문항과 연계된 주제
+- 제120회 1교시 12번 CPU와 GPGPU 비교 문항과 연계된 주제 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - 검증 출처:
   - [NVIDIA CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-programming-guide/)
   - [NVIDIA CUDA Programming Guide: SIMT kernels](https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/writing-cuda-kernels.html)

@@ -3,7 +3,7 @@ sidebar:
   order: 109
   label: "109. 신뢰도와 타당도"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "신뢰도(Reliability)와 타당도(Validity)"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 109
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "109"
 ---
 
@@ -21,11 +21,11 @@ extra:
 
 <div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>통계 분석·연구방법론</span><strong>신뢰도와 타당도</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: **신뢰도와 타당도는 측정 결과의 일관성과 그 결과에 부여하는 해석의 적절성을 평가하는 기준**
 - 메커니즘: 측정 도구의 반복 결과를 비교해 무작위 오차를 살피고, 측정하려는 개념을 대표하는 증거를 모아 해석·사용의 타당성을 검토
-- 핵심 용어: **신뢰도(Reliability)**, **타당도(Validity)**, **측정 오차(Measurement Error)**
+- 핵심 용어: **신뢰도(Reliability)** , **타당도(Validity)** , **측정 오차(Measurement Error)**
 
 
 
@@ -115,8 +115,8 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**: 제123회 정보관리 2교시에서 통계적 데이터 분석의 신뢰도와 타당도를 다룬 문항
-- **검증 출처**:
+- **기출 이력** : 제123회 정보관리 2교시에서 통계적 데이터 분석의 신뢰도와 타당도를 다룬 문항 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
+- **검증 출처** :
   - [Standards for Educational and Psychological Testing (AERA, APA, NCME)](https://www.testingstandards.net/open-access-files.html)
   - [COSMIN methodology](https://www.cosmin.nl/)
 

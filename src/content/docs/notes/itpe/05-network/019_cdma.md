@@ -3,7 +3,7 @@ sidebar:
   order: 19
   label: "019. CDMA"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "CDMA"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 19
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "019"
 ---
 

@@ -3,7 +3,7 @@ sidebar:
   order: 41
   label: "041. AI 학습·추론 인프라"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 title: "AI 학습·추론 고성능 컴퓨팅 인프라"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 41
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "041"
 ---
 
@@ -138,7 +138,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [NVIDIA DGX SuperPOD Architecture](https://docs.nvidia.com/dgx-superpod/reference-architecture/scalable-infrastructure-h200/latest/dgx-superpod-architecture.html)
 - [NVIDIA DGX SuperPOD Components](https://docs.nvidia.com/dgx-superpod/reference-architecture/scalable-infrastructure-h200/latest/dgx-superpod-components.html)

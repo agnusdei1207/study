@@ -1,9 +1,10 @@
 ---
 title: "경쟁 상태(Race Condition)"
 sidebar:
+  label: "091. 경쟁 상태(Race Condition)"
   order: 91
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "Gemini 3.8 Flash"
 date: "2026-09-24T00:00:00+09:00"
@@ -11,7 +12,7 @@ tags:
   - "notes-computer-system"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "091"
 
 ---

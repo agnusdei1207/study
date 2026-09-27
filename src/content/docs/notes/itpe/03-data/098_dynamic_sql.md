@@ -3,7 +3,7 @@ sidebar:
   order: 98
   label: "098. 정적 SQL vs 동적 SQL"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL)의 비교 및 실행 메커니즘"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 98
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "098"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **정적 SQL과 동적 SQL**은 실행할 SQL 구조를 언제, 어떻게 결정하는지의 구분
+- 본질: **정적 SQL과 동적 SQL은** 실행할 SQL 구조를 언제, 어떻게 결정하는지의 구분
 - 메커니즘: 정적 SQL은 구조가 코드에 고정되고, 동적 SQL은 실행 중 조건에 따라 SQL 구조를 구성
 - 통제: 값은 바인드 변수로 전달하고, 동적으로 바뀌는 식별자·정렬 기준은 허용 목록으로 제한
 

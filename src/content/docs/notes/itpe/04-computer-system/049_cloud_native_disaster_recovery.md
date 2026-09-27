@@ -3,7 +3,7 @@ sidebar:
   order: 49
   label: "049. 클라우드 네이티브 재해복구"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "클라우드 네이티브 재해복구"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 49
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "049"
 ---
 
@@ -143,7 +143,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [AWS Well-Architected: Define recovery objectives](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html)
 - [AWS Well-Architected: Disaster recovery options](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)

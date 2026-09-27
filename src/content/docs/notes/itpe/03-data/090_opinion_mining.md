@@ -3,7 +3,7 @@ sidebar:
   order: 90
   label: "090. 오피니언 마이닝 (Opinion Mining)"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "오피니언 마이닝(Opinion Mining) 및 속성 기반 감성 분석(ABSA) 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 90
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "090"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **오피니언 마이닝**은 텍스트에 표현된 의견의 대상과 태도를 찾아 구조화하는 분석
+- 본질: **오피니언 마이닝은** 텍스트에 표현된 의견의 대상과 태도를 찾아 구조화하는 분석
 - 메커니즘: 의견 문서에서 개체·속성·극성과 문맥을 추출하고, 필요하면 작성자·시점 정보를 연결
 - 적용: 문서 전체 감성뿐 아니라 속성별 의견을 구분해 제품·서비스 개선 판단에 활용
 
@@ -145,7 +145,7 @@ flowchart TD
 
 - [IBM 감성 분석·오피니언 마이닝 개요](https://www.ibm.com/think/topics/sentiment-analysis): 텍스트의 의견·감성 분석과 규칙·학습 기반 처리
 
-- 정보관리기술사 제122회 2교시: 빅데이터 분석에서 오피니언 마이닝의 개념·절차·감성 분석 기법
+- 정보관리기술사 제122회 2교시: 빅데이터 분석에서 오피니언 마이닝의 개념·절차·감성 분석 기법 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - Bing Liu, *Sentiment Analysis and Opinion Mining*, Morgan & Claypool Publishers
 - Bing Liu, “Sentiment Analysis and Opinion Mining,” *Synthesis Lectures on Human Language Technologies*, 2012
 

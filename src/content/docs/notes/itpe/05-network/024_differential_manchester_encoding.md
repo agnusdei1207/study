@@ -3,7 +3,7 @@ sidebar:
   order: 24
   label: "024. 차동 맨체스터 부호화"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "차동 맨체스터 부호화"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 24
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "024"
 ---
 

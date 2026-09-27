@@ -5,11 +5,13 @@ date: "2026-09-24T20:47:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "018. 소버린 클라우드(Sovereign Cloud)"
+  order: 18
   badge:
-    text: "서브"
+    text: "기초"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치

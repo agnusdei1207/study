@@ -4,11 +4,13 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-network"]
 sidebar:
+  label: "070. MQTT(Message Queuing Telemetry Transport)"
   badge:
-    text: "기초"
+    text: "응용"
+    variant: note
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -36,7 +38,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> MQTT의 개념과 발행·구독 구조 및 전달 수준을 설명하시오. (예상)
+> MQTT의 개념과 발행·구독 구조 및 전달 수준을 설명하시오. (예상·10점)
 
 ---
 
@@ -69,7 +71,7 @@ QoS 2: 정확히 한 번 전달 교환
 
 ## 2~4교시 예상문제 (25점)
 
-> MQTT의 구성과 메시지 전달 절차를 설명하고, QoS·세션·보안 설정을 설계할 때의 고려사항을 제시하시오. (예상)
+> MQTT의 구성과 메시지 전달 절차를 설명하고, QoS·세션·보안 설정을 설계할 때의 고려사항을 제시하시오. (예상·25점)
 
 ---
 

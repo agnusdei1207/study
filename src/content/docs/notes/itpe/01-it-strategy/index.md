@@ -119,7 +119,7 @@ weight: 1
 | 01-069 | ISO 31000 | [보기](./069_iso_31000/) |
 | 01-071 | PLM(Product Lifecycle Management) | [보기](./071_plm/) |
 | 01-088 | 경영환경 분석(SWOT·3C·PEST) | [보기](./088_swot_3c_pest/) |
-| 01-087 | 소프트웨어 기술자 구분(등급제·IT직무제) | [보기](./087_it_job_competency_system/) |
+| 01-087 | ITSQF(IT 분야 산업별 역량체계) | [보기](./087_it_job_competency_system/) |
 | 01-089 | TAM-SAM-SOM(Total Addressable Market-Serviceable Addressable Market-Serviceable Obtainable Market) | [보기](./089_tam_sam_som/) |
 | 01-092 | 기술수용모델(Technology Acceptance Model) | [보기](./092_technology_acceptance_model/) |
 | 01-104 | 클라우드 전환사업 감리 | [보기](./104_cloud_migration_project_audit/) |
@@ -133,13 +133,13 @@ weight: 1
 | 01-082 | CoE(Center of Excellence) | [보기](./082_coe/) |
 | 01-086 | IT서비스 산업 특수성 | [보기](./086_it_service_industry_characteristics/) |
 | 01-091 | 과업심의(과업변경·사업기간 적정성) | [보기](./091_public_sw_cost_and_scope_change_criteria/) |
-| 01-097 | 소프트웨어산업진흥법 하도급 구조 | [보기](./097_software_industry_subcontracting_structure/) |
+| 01-097 | 공공 소프트웨어사업 하도급 제한 | [보기](./097_software_industry_subcontracting_structure/) |
 | 01-098 | 전문성의 민주화(Democratization of Expertise) | [보기](./098_democratization_of_expertise/) |
 | 01-102 | 지능정보기술 감리 실무 가이드 | [보기](./102_intelligent_information_technology_audit_guide/) |
 | 01-103 | 차세대 시스템 오픈 리스크 | [보기](./103_next_generation_system_open_risk/) |
 | 01-106 | 품질비용(COQ) | [보기](./106_cost_of_quality_coq/) |
 | 01-107 | EA/ITA(Enterprise Architecture/Information Technology Architecture) | [보기](./107_ea_ita/) |
-| 01-110 | 프로그래머블 머니 (AI 에이전트의 경제 주체화) | [보기](./110_programmable_money_ai_agents/) |
+| 01-110 | Programmable Money·AI Agent 결제 | [보기](./110_programmable_money_ai_agents/) |
 | 01-111 | 6시그마(Six Sigma) DMAIC | [보기](./111_six_sigma_dmaic/) |
 | 01-112 | CCPM(Critical Chain, TOC) | [보기](./112_critical_chain_toc/) |
 | 01-113 | 소프트웨어 비용 산정(Software Cost Estimation) | [보기](./113_software_cost_estimation/) |

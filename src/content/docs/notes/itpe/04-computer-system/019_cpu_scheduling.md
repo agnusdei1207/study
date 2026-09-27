@@ -5,6 +5,8 @@ date: "2026-09-24T20:47:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "019. CPU 스케줄링(CPU Scheduling)"
+  order: 19
   badge:
     text: "기초"
 extra:

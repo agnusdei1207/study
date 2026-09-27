@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "115. 위상 큐비트 (Microsoft Majorana 1)"
+  order: 115
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **마요라나 제로 모드(Majorana Zero Mode, MZM)**: 위상 초전도체의 경계·결함에서 나타날 수 있는 영에너지 준입자 모드
-- **위상 큐비트(Topological Qubit)**: 위상 상태·준입자 자유도에 정보를 부호화하는 양자 정보 단위
-- **페리티(Parity)**: 페르미온 점유의 짝·홀 상태를 구분하는 물리량
-- **브레이딩(Braiding)**: 비가환 애니온을 교환해 양자 상태에 연산을 구현하는 과정
-- **안드레예프 속박 상태(Andreev Bound State)**: 초전도체와 정상 전도체 경계 등에 형성될 수 있는 국소화 에너지 상태
+- **마요라나 제로 모드(Majorana Zero Mode, MZM)** : 위상 초전도체의 경계·결함에서 나타날 수 있는 영에너지 준입자 모드
+- **위상 큐비트(Topological Qubit)** : 위상 상태·준입자 자유도에 정보를 부호화하는 양자 정보 단위
+- **페리티(Parity)** : 페르미온 점유의 짝·홀 상태를 구분하는 물리량
+- **브레이딩(Braiding)** : 비가환 애니온을 교환해 양자 상태에 연산을 구현하는 과정
+- **안드레예프 속박 상태(Andreev Bound State)** : 초전도체와 정상 전도체 경계 등에 형성될 수 있는 국소화 에너지 상태
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **위상 큐비트**는 마요라나 제로 모드의 비국소 양자 상태에 정보를 부호화하려는 큐비트 구현 방식 |
+| 정의 | **위상 큐비트는** 마요라나 제로 모드의 비국소 양자 상태에 정보를 부호화하려는 큐비트 구현 방식 |
 | 목적 | 국소 잡음에 대한 민감도를 낮추는 오류 내성 양자정보 표현 연구 |
 
 ### Ⅱ. 부호화 개념
@@ -73,7 +79,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **위상 큐비트**는 마요라나 제로 모드의 비국소 양자 상태에 정보를 부호화하려는 큐비트 구현 방식 |
+| 정의 | **위상 큐비트는** 마요라나 제로 모드의 비국소 양자 상태에 정보를 부호화하려는 큐비트 구현 방식 |
 | 목적 | 국소 잡음에 대한 민감도를 낮추는 오류 내성 양자정보 표현 연구 |
 
 ### Ⅱ. 부호화 원리
@@ -122,7 +128,7 @@ flowchart TD
 |---|---|
 | 부품 수준의 측정 성과를 오류 내성 양자컴퓨터의 실증과 혼동할 수 있음 | 모드 검출·페리티 판독·브레이딩·논리 오류율을 단계별 검증 관문으로 관리 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Majorana zero modes and topological quantum computation](https://www.nature.com/articles/npjqi20151): 위상 부호화·브레이딩 개념과 검증 단계
 - [Interferometric single-shot parity measurement in InAs–Al hybrid devices](https://www.nature.com/articles/s41586-024-08445-2): 2025년 페리티 측정 결과와 편집자 주의

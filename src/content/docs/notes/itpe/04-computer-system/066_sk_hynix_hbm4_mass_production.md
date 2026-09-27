@@ -3,7 +3,7 @@ sidebar:
   order: 66
   label: "066. SK hynix HBM4"
   badge:
-    text: "응용"
+    text: "기초"
     variant: note
 title: "SK하이닉스 HBM4 양산"
 author: "GPT-6"
@@ -13,7 +13,7 @@ tags:
 weight: 66
 extra:
   model: "GPT-6"
-  keyword_grade: "응용"
+  keyword_grade: "기초"
   question_no: "066"
 ---
 
@@ -29,13 +29,13 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **HBM4 (High Bandwidth Memory 4)**: 적층 DRAM 다이와 베이스 다이를 결합한 4세대 고대역폭 메모리
-- **HBM (High Bandwidth Memory)**: 여러 DRAM 다이를 수직 적층해 가속기 가까이에 배치하는 메모리 제품군
-- **베이스 다이 (Base Die)**: 적층 메모리의 입출력·제어 기능을 담당하며 상위 DRAM 다이와 외부 시스템 사이에 위치한 하단 다이
-- **TSV (Through-Silicon Via)**: 실리콘 다이를 관통해 적층 다이 사이 전기 신호를 연결하는 수직 배선
-- **MR-MUF (Mass Reflow Molded Underfill)**: 적층 다이 사이에 보호 재료를 채우고 경화하는 패키징 공정
-- **I/O (Input/Output)**: 메모리와 외부 장치 사이 데이터 신호의 입력·출력 연결
-- **HBM4 양산 상태**: SK hynix가 2026년 2분기 실적 발표에서 HBM4 대량 출하 시작을 공시한 기업별 진행 현황
+- **HBM4 (High Bandwidth Memory 4)** : 적층 DRAM 다이와 베이스 다이를 결합한 4세대 고대역폭 메모리
+- **HBM (High Bandwidth Memory)** : 여러 DRAM 다이를 수직 적층해 가속기 가까이에 배치하는 메모리 제품군
+- **베이스 다이 (Base Die)** : 적층 메모리의 입출력·제어 기능을 담당하며 상위 DRAM 다이와 외부 시스템 사이에 위치한 하단 다이
+- **TSV (Through-Silicon Via)** : 실리콘 다이를 관통해 적층 다이 사이 전기 신호를 연결하는 수직 배선
+- **MR-MUF (Mass Reflow Molded Underfill)** : 적층 다이 사이에 보호 재료를 채우고 경화하는 패키징 공정
+- **I/O (Input/Output)** : 메모리와 외부 장치 사이 데이터 신호의 입력·출력 연결
+- **HBM4 양산 상태** : SK hynix가 2026년 2분기 실적 발표에서 HBM4 대량 출하 시작을 공시한 기업별 진행 현황
 </details>
 
 ---
@@ -148,8 +148,8 @@ SK hynix는 HBM4에 Advanced MR-MUF와 로직 파운드리 기반 베이스 다�
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**: 기출 확인 없음; HBM4 구조·시스템 적용 중심 예상문제
-- **검증 출처**:
+- **기출 이력** : 기출 확인 없음; HBM4 구조·시스템 적용 중심 예상문제
+- **검증 출처** :
   - [SK hynix: HBM4 development and mass production preparation, 2025-09-12](https://news.skhynix.com/en/sk-hynix-completes-worlds-first-hbm4-development-and-readies-mass-production/)
   - [SK hynix: 2Q 2026 financial results and HBM4 mass shipments](https://news.skhynix.com/en/q2-2026-business-results/)
   - [SK hynix: HBM4 architecture and future memory technologies](https://research-user.skhynix.com/research-areas/future-memory-technologies/evolutionary-memory)

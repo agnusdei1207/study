@@ -150,7 +150,7 @@ CUBIC은 혼잡제어 알고리즘의 한 예. TCP 자체를 CUBIC 하나로 정
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [RFC 5681: TCP Congestion Control](https://www.rfc-editor.org/info/rfc5681/)
 - [RFC 9438: CUBIC for Fast and Long-Distance Networks](https://www.rfc-editor.org/rfc/rfc9438.html)

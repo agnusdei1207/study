@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "103. 스래싱"
+  order: 103
+  badge:
+    text: "서브"
 extra:
+  keyword_grade: "서브"
   model: "GPT-6"
 
 ---
@@ -21,10 +27,10 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **스래싱(Thrashing)**: 페이지 부재와 페이징이 과도해 시스템 처리 효율이 급격히 낮아지는 상태
-- **워킹셋(Working Set)**: 일정 참조 구간 동안 프로세스가 사용한 페이지 집합
-- **다중 프로그래밍 정도(Multiprogramming Degree)**: 동시에 메모리에 적재되어 실행되는 작업 수의 정도
-- **PFF (Page-Fault Frequency)**: 페이지 부재 빈도를 관찰해 메모리 압박을 조정하는 접근
+- **스래싱(Thrashing)** : 페이지 부재와 페이징이 과도해 시스템 처리 효율이 급격히 낮아지는 상태
+- **워킹셋(Working Set)** : 일정 참조 구간 동안 프로세스가 사용한 페이지 집합
+- **다중 프로그래밍 정도(Multiprogramming Degree)** : 동시에 메모리에 적재되어 실행되는 작업 수의 정도
+- **PFF (Page-Fault Frequency)** : 페이지 부재 빈도를 관찰해 메모리 압박을 조정하는 접근
 
 </details>
 
@@ -40,7 +46,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **스래싱**은 과도한 페이지 부재·페이징으로 유효 실행보다 페이지 입출력에 시간을 쓰는 상태 |
+| 정의 | **스래싱은** 과도한 페이지 부재·페이징으로 유효 실행보다 페이지 입출력에 시간을 쓰는 상태 |
 | 목적 | 워킹셋·페이지 부재 추이를 활용해 메모리 압박을 조기에 파악 |
 
 ### Ⅱ. 발생 원리
@@ -74,7 +80,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **스래싱**은 과도한 페이지 부재·페이징으로 유효 실행보다 페이지 입출력에 시간을 쓰는 상태 |
+| 정의 | **스래싱은** 과도한 페이지 부재·페이징으로 유효 실행보다 페이지 입출력에 시간을 쓰는 상태 |
 | 목적 | 워킹셋·페이지 부재 추이를 활용해 메모리 압박을 조기에 파악 |
 
 ### Ⅱ. 발생 메커니즘
@@ -124,7 +130,7 @@ flowchart TD
 |---|---|
 | 장애 후 스왑 증가만으로 대응하면 성능 저하가 반복될 수 있음 | 페이지 부재와 처리량의 상관 임계치를 정하고 자동 경보·동시성 조정을 검증 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Linux kernel page reclaim documentation](https://docs.kernel.org/mm/page_reclaim.html): 페이지 회수·메모리 압박
 - [Linux PSI documentation](https://docs.kernel.org/accounting/psi.html): 메모리·I/O 압박 지표

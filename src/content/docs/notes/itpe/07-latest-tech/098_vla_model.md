@@ -4,11 +4,13 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "098. VLA (Vision-Language-Action) 모델"
+  order: 98
   badge:
-    text: "응용"
+    text: "서브"
 extra:
   model: "GPT-6"
-  keyword_grade: "응용"
+  keyword_grade: "서브"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -23,9 +25,7 @@ IT 인공지능 → 멀티모달 파운데이션 모델 → 물리 환경의 인
 
 - **VLA(Vision-Language-Action):** 시각·언어 입력에 조건화해 로봇 행동을 출력하는 모델이다.
 - **RT-2(Robotics Transformer 2):** 웹 데이터와 로봇 시연 자료를 활용해 시각·언어 입력을 로봇 동작 출력에 연결한 모델 계열이다.
-- **VLA:** 비전·언어 입력을 로봇 행동과 연결하도록 학습한 모델 계열이다.
 - **액션 토큰:** 연속 동작 값을 양자화하거나 구조화해 모델이 출력할 수 있는 토큰 표현이다.
-- **RT-2:** 웹 규모 비전-언어 데이터와 로봇 궤적 데이터를 함께 활용해 로봇 제어로 지식 전이를 연구한 VLA 모델이다.
 - **임바디드 AI:** 센서·구동기를 통해 물리 환경과 상호작용하는 인공지능이다.
 </details>
 

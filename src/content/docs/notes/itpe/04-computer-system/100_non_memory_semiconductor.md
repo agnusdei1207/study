@@ -4,7 +4,13 @@ author: "Gemini 3.8 Flash"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
+sidebar:
+  label: "100. 비메모리 반도체"
+  order: 100
+  badge:
+    text: "응용"
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **비메모리 반도체(Non-Memory Semiconductor)**: 데이터를 저장하기보다 연산·제어·신호 처리 기능을 수행하는 반도체의 통칭
-- **팹리스(Fabless)**: 반도체 설계와 판매에 집중하고 자체 웨이퍼 제조시설을 운영하지 않는 사업 형태
-- **파운드리(Foundry)**: 고객의 반도체 설계를 위탁받아 웨이퍼 제조를 수행하는 사업 형태
-- **디자인하우스(Design House)**: 설계를 특정 제조공정에 맞게 구현하도록 지원하는 기업·서비스
-- **OSAT (Outsourced Semiconductor Assembly and Test)**: 외부 위탁 방식의 반도체 조립·패키징·시험 서비스
+- **비메모리 반도체(Non-Memory Semiconductor)** : 데이터를 저장하기보다 연산·제어·신호 처리 기능을 수행하는 반도체의 통칭
+- **팹리스(Fabless)** : 반도체 설계와 판매에 집중하고 자체 웨이퍼 제조시설을 운영하지 않는 사업 형태
+- **파운드리(Foundry)** : 고객의 반도체 설계를 위탁받아 웨이퍼 제조를 수행하는 사업 형태
+- **디자인하우스(Design House)** : 설계를 특정 제조공정에 맞게 구현하도록 지원하는 기업·서비스
+- **OSAT (Outsourced Semiconductor Assembly and Test)** : 외부 위탁 방식의 반도체 조립·패키징·시험 서비스
 
 </details>
 
@@ -41,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **비메모리 반도체**는 데이터의 연산·제어·신호 처리를 수행하는 반도체 |
+| 정의 | **비메모리 반도체는** 데이터의 연산·제어·신호 처리를 수행하는 반도체 |
 | 목적 | 시스템의 계산·제어·입출력 요구를 전자회로로 구현 |
 
 ### Ⅱ. 주요 제품
@@ -76,7 +82,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **비메모리 반도체**는 데이터의 연산·제어·신호 처리를 수행하는 반도체 |
+| 정의 | **비메모리 반도체는** 데이터의 연산·제어·신호 처리를 수행하는 반도체 |
 | 목적 | 시스템의 계산·제어·입출력 요구를 전자회로로 구현 |
 
 ### Ⅱ. 기능별 분류
@@ -136,7 +142,7 @@ flowchart TD
 |---|---|
 | 설계 역량만으로 제품 공급 경쟁력을 확보하기 어려움 | 설계도구·공정·패키징·검증 데이터를 연결한 협업 생태계와 대체 조달 계획을 함께 구축 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [SIA: What is a semiconductor?](https://www.semiconductors.org/semiconductors-101/): 반도체 제품·산업 기초
 - [TSMC Open Innovation Platform](https://www.tsmc.com/english/dedicatedFoundry/technology/open_innovation): 설계 생태계 협업

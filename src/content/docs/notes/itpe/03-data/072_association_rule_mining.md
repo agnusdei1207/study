@@ -3,7 +3,7 @@ sidebar:
   order: 72
   label: "072. 연관규칙분석"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "연관규칙분석 (Association Rule Mining) 및 지지도·신뢰도·향상도"
 author: "Codex"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 72
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "072"
 ---
 
@@ -24,17 +24,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **연관규칙분석(Association Rule Mining)**은 거래 항목에서 함께 나타나는 항목 집합과 규칙을 찾는 분석
+- 본질: **연관규칙분석(Association Rule Mining)은** 거래 항목에서 함께 나타나는 항목 집합과 규칙을 찾는 분석
 - 메커니즘: 지지도는 전체 빈도, 신뢰도는 조건부 빈도, 향상도는 독립 발생 대비 결합 정도를 측정
 
 <details><summary>핵심 용어</summary>
 
-- **연관규칙분석(Association Rule Mining)**: 트랜잭션 자료에서 항목 간 동시 발생 관계를 찾는 분석
-- **지지도(Support)**: 전체 트랜잭션 중 규칙의 항목 집합이 함께 나타난 비율
-- **신뢰도(Confidence)**: 선행 항목이 나타난 트랜잭션 중 후행 항목도 나타난 비율
-- **향상도(Lift)**: 선행 항목이 주어졌을 때 후행 항목의 발생률을 독립성 기준 발생률과 비교한 값
-- **Apriori**: 빈발 항목 집합의 부분집합도 빈발해야 한다는 성질로 후보를 가지치기하는 알고리즘
-- **FP-Growth(Frequent Pattern Growth)**: FP-Tree에 빈발 패턴 정보를 압축해 후보 생성 부담을 줄이는 알고리즘
+- **연관규칙분석(Association Rule Mining)** : 트랜잭션 자료에서 항목 간 동시 발생 관계를 찾는 분석
+- **지지도(Support)** : 전체 트랜잭션 중 규칙의 항목 집합이 함께 나타난 비율
+- **신뢰도(Confidence)** : 선행 항목이 나타난 트랜잭션 중 후행 항목도 나타난 비율
+- **향상도(Lift)** : 선행 항목이 주어졌을 때 후행 항목의 발생률을 독립성 기준 발생률과 비교한 값
+- **Apriori** : 빈발 항목 집합의 부분집합도 빈발해야 한다는 성질로 후보를 가지치기하는 알고리즘
+- **FP-Growth(Frequent Pattern Growth)** : FP-Tree에 빈발 패턴 정보를 압축해 후보 생성 부담을 줄이는 알고리즘
 
 </details>
 

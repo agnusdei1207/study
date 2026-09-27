@@ -3,7 +3,7 @@ sidebar:
   order: 105
   label: "105. 데이터 프로파일링"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "데이터 프로파일링(Data Profiling) 분석 기법 및 데이터 품질 진단 체계"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 105
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "105"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **데이터 프로파일링**은 실제 데이터의 구조·내용·관계를 살펴 품질 특성을 파악하는 분석
+- 본질: **데이터 프로파일링은** 실제 데이터의 구조·내용·관계를 살펴 품질 특성을 파악하는 분석
 - 메커니즘: 컬럼 분포·테이블 내부 규칙·테이블 간 관계를 측정하고 정의·업무 규칙과 비교
 - 활용: 결함·이상 징후를 드러내 정제·모델링·이관 계획의 근거 제공
 
@@ -141,7 +141,7 @@ flowchart TD
 
 - [IBM 데이터 프로파일링 절차](https://www.ibm.com/docs/en/iis/11.5.0?topic=columns-data-profiling-process): 열·키·도메인 분석을 통한 구조·품질 점검
 
-- 정보관리기술사 제128회 2교시: 데이터 품질 관리를 위한 데이터 프로파일링 기법과 분석 단계
+- 정보관리기술사 제128회 2교시: 데이터 품질 관리를 위한 데이터 프로파일링 기법과 분석 단계 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - DAMA International, *DAMA-DMBOK: Data Management Body of Knowledge*, 2nd ed., Data Quality
 - 한국지능정보사회진흥원, *공공데이터 품질관리 매뉴얼*
 

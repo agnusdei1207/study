@@ -3,7 +3,7 @@ sidebar:
   order: 139
   label: "139. 인과관계 (Causation)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 139
 title: "인과관계(Causation)와 인과추론"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "139"
 ---
 
@@ -24,18 +24,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **인과관계**는 특정 원인·처치가 결과에 미치는 효과에 관한 관계
+- 본질: **인과관계는** 특정 원인·처치가 결과에 미치는 효과에 관한 관계
 - 메커니즘: 처치를 받은 경우와 받지 않은 경우의 결과를 비교하는 반사실 문제
 - 추론: 무작위 실험이나 가정을 명시한 관측자료 설계로 인과효과를 추정
 
 <details>
 <summary>핵심 용어</summary>
 
-- **인과관계(Causation)**: 처치·원인의 변화가 결과에 미치는 효과를 나타내는 관계
-- **인과추론(Causal Inference)**: 실험·관측 자료와 식별 가정으로 인과효과를 추정하는 방법
-- **반사실(Counterfactual)**: 같은 단위가 다른 처치 조건에 놓였을 때의 가상 결과
-- **평균처치효과(Average Treatment Effect, ATE)**: 처치 여부에 따른 잠재결과 차이의 모집단 평균
-- **무작위 대조시험(Randomized Controlled Trial, RCT)**: 처치를 무작위 배정해 처치군과 대조군 결과를 비교하는 실험
+- **인과관계(Causation)** : 처치·원인의 변화가 결과에 미치는 효과를 나타내는 관계
+- **인과추론(Causal Inference)** : 실험·관측 자료와 식별 가정으로 인과효과를 추정하는 방법
+- **반사실(Counterfactual)** : 같은 단위가 다른 처치 조건에 놓였을 때의 가상 결과
+- **평균처치효과(Average Treatment Effect, ATE)** : 처치 여부에 따른 잠재결과 차이의 모집단 평균
+- **무작위 대조시험(Randomized Controlled Trial, RCT)** : 처치를 무작위 배정해 처치군과 대조군 결과를 비교하는 실험
 
 </details>
 
@@ -133,4 +133,4 @@ flowchart TD
 
 ## 연결 토픽
 
-- 연관 토픽: [상관관계](./136_correlation.md), [실험설계](./108_experiment_design.md), [독립표본 t-검정](./130_independent_t_test.md)
+- 연관 토픽: [상관관계](./136_correlation.md), [독립표본 t-검정](./130_independent_t_test.md)

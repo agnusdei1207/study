@@ -137,7 +137,7 @@ PUE 개선 폭은 기존 설비·외기·운전 조건에 따라 달라지는 �
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [ASHRAE Handbook: Data Centers and Telecommunication Facilities](https://handbook.ashrae.org/Handbooks/A23/SI/A23_Ch20/a23_ch20_si.aspx)
 - [ASHRAE: Energy and Thermal Efficiency](https://www.ashrae.org/technical-resources/ai-data-center-framework/energy-and-thermal-efficiency)

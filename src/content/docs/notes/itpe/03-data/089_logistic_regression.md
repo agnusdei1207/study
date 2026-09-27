@@ -3,7 +3,7 @@ sidebar:
   order: 89
   label: "089. 로지스틱 회귀분석 (Logistic Regression)"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "로지스틱 회귀분석 (Logistic Regression) 및 오즈비와 시그모이드 수학적 유도"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 89
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "089"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **로지스틱 회귀**는 입력 특성으로 범주 사건의 확률을 추정하는 통계 모델
+- 본질: **로지스틱 회귀는** 입력 특성으로 범주 사건의 확률을 추정하는 통계 모델
 - 메커니즘: 입력의 선형 결합을 로짓으로 두고, 역로짓인 시그모이드로 확률을 계산
 - 해석: 계수는 다른 변수를 고정했을 때 로그 오즈 변화량이며, 지수화한 계수는 오즈비
 
@@ -134,8 +134,8 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 정보관리기술사 제124회 1교시: 로지스틱 회귀분석, 오즈비 및 시그모이드
-- 컴퓨터시스템응용기술사 제120회 2교시: 선형 분류 기법과 로지스틱 회귀분석
+- 정보관리기술사 제124회 1교시: 로지스틱 회귀분석, 오즈비 및 시그모이드 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
+- 컴퓨터시스템응용기술사 제120회 2교시: 선형 분류 기법과 로지스틱 회귀분석 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - Hosmer, Lemeshow & Sturdivant, *Applied Logistic Regression*, 3rd ed.
 - [Penn State STAT 504: Logistic Regression](https://online.stat.psu.edu/stat504/lesson/6)
 - [scikit-learn User Guide: Logistic Regression](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)

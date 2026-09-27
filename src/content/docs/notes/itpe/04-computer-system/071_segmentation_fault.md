@@ -3,7 +3,7 @@ sidebar:
   order: 71
   label: "071. 세그먼테이션 오류"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "세그먼테이션 오류 (Segmentation Fault)"
 author: "GPT-6"
@@ -12,7 +12,7 @@ tags:
   - "notes-computer-system"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "071"
 ---
 
@@ -22,17 +22,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **세그먼테이션 오류 (Segmentation Fault)**는 프로세스가 허용되지 않은 가상 메모리에 접근해 운영체제가 접근 실패를 알리는 오류
+- 본질: **세그먼테이션 오류 (Segmentation Fault)는** 프로세스가 허용되지 않은 가상 메모리에 접근해 운영체제가 접근 실패를 알리는 오류
 - 메커니즘: 잘못된 주소·권한 접근 → CPU 예외 → 커널의 주소 매핑 확인 → 미해결이면 `SIGSEGV` 전달
 
 <details>
 <summary>핵심 용어</summary>
 
-- **세그먼테이션 오류 (Segmentation Fault)**: 프로세스의 가상 메모리 접근이 유효하지 않아 발생하는 실행 오류
-- **MMU (Memory Management Unit)**: 가상 주소 변환과 접근 권한 확인을 수행하는 하드웨어 구성 요소
-- **VMA (Virtual Memory Area)**: Linux 프로세스의 가상 주소 구간과 접근 권한을 나타내는 커널 자료구조
-- **SIGSEGV (Segmentation Violation Signal)**: 잘못된 메모리 접근을 프로세스에 알리는 POSIX 시그널
-- **코어 덤프 (Core Dump)**: 비정상 종료 시점의 프로세스 상태를 분석하기 위해 저장하는 자료
+- **세그먼테이션 오류 (Segmentation Fault)** : 프로세스의 가상 메모리 접근이 유효하지 않아 발생하는 실행 오류
+- **MMU (Memory Management Unit)** : 가상 주소 변환과 접근 권한 확인을 수행하는 하드웨어 구성 요소
+- **VMA (Virtual Memory Area)** : Linux 프로세스의 가상 주소 구간과 접근 권한을 나타내는 커널 자료구조
+- **SIGSEGV (Segmentation Violation Signal)** : 잘못된 메모리 접근을 프로세스에 알리는 POSIX 시그널
+- **코어 덤프 (Core Dump)** : 비정상 종료 시점의 프로세스 상태를 분석하기 위해 저장하는 자료
 </details>
 
 ---
@@ -49,7 +49,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **세그먼테이션 오류 (Segmentation Fault)**는 프로세스의 가상 주소 접근이 매핑·권한 조건을 만족하지 못해 커널이 오류를 통지하는 현상 |
+| 정의 | **세그먼테이션 오류 (Segmentation Fault)는** 프로세스의 가상 주소 접근이 매핑·권한 조건을 만족하지 못해 커널이 오류를 통지하는 현상 |
 | 목적 | 잘못된 접근을 탐지하고 해당 프로세스의 오류를 격리해 다른 실행 영역의 손상을 줄이는 메모리 보호 기능 |
 
 ### Ⅱ. 발생과 처리
@@ -81,7 +81,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **세그먼테이션 오류 (Segmentation Fault)**는 프로세스의 가상 주소 접근이 매핑·권한 조건을 만족하지 못해 커널이 오류를 통지하는 현상 |
+| 정의 | **세그먼테이션 오류 (Segmentation Fault)는** 프로세스의 가상 주소 접근이 매핑·권한 조건을 만족하지 못해 커널이 오류를 통지하는 현상 |
 | 목적 | 잘못된 접근을 탐지하고 해당 프로세스의 오류를 격리해 다른 실행 영역의 손상을 줄이는 메모리 보호 기능 |
 
 ### Ⅱ. 발생 원인

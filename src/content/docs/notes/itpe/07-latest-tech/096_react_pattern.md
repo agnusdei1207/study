@@ -4,11 +4,13 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "096. ReAct 패턴"
+  order: 96
   badge:
-    text: "서브"
+    text: "기초"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +28,6 @@ IT 인공지능 → LLM 에이전트 → 추론과 도구 사용 결합 → ReAc
 - **Thought:** 현재 상태를 해석하고 다음 단계를 정하는 모델의 추론 내용이다.
 - **Action:** 도구 호출처럼 외부 환경에 요청하는 행동이다.
 - **Observation:** 외부 도구나 환경이 Action에 돌려준 결과다.
-- **ReAct:** 추론과 행동을 교차해 계획을 갱신하는 접근법이다.
 </details>
 
 ---

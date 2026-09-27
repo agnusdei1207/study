@@ -3,7 +3,7 @@ sidebar:
   order: 118
   label: "118. MongoDB"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 118
 title: "MongoDB 문서 데이터 모델과 샤딩 구조"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "118"
 ---
 

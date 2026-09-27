@@ -3,7 +3,7 @@ sidebar:
   order: 127
   label: "127. 데이터 커머스 (Data Commerce)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 127
 title: "데이터 커머스(Data Commerce)"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "127"
 ---
 
@@ -24,17 +24,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **데이터 커머스**는 데이터를 상품이나 서비스로 만들어 거래하고 활용하는 활동
+- 본질: **데이터 커머스는** 데이터를 상품이나 서비스로 만들어 거래하고 활용하는 활동
 - 메커니즘: 생산자 → 상품화·거래 → 이용자, 각 단계에서 이용 조건과 보호 조치 관리
 - 판단: 파일 제공, API 제공, 분석환경 제공 중 데이터 민감도와 이용 목적에 맞는 방식 선택
 
 <details>
 <summary>핵심 용어</summary>
 
-- **데이터 커머스(Data Commerce)**: 데이터를 상품·서비스로 구성해 거래하고 이용 조건을 관리하는 활동
-- **Data as a Service (DaaS)**: 데이터 자체 또는 데이터 처리 결과를 서비스 형태로 제공하는 방식
-- **데이터 안심구역**: 반출이 제한된 데이터와 분석환경을 제공해 안전한 데이터 활용을 지원하는 공간
-- **가명정보 결합**: 서로 다른 개인정보처리자의 가명정보를 법정 목적과 절차에 따라 전문기관이 결합하는 처리
+- **데이터 커머스(Data Commerce)** : 데이터를 상품·서비스로 구성해 거래하고 이용 조건을 관리하는 활동
+- **Data as a Service (DaaS)** : 데이터 자체 또는 데이터 처리 결과를 서비스 형태로 제공하는 방식
+- **데이터 안심구역** : 반출이 제한된 데이터와 분석환경을 제공해 안전한 데이터 활용을 지원하는 공간
+- **가명정보 결합** : 서로 다른 개인정보처리자의 가명정보를 법정 목적과 절차에 따라 전문기관이 결합하는 처리
 
 </details>
 
@@ -136,7 +136,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: KPC 기출검색 자료 기준 제127회 정보관리기술사 4교시 2번. Q-net 원문은 확인하지 못한 상태.
+- 출제 이력: 제127회 정보관리기술사 4교시 2번이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
 - 과학기술정보통신부, [데이터 표준계약서 및 활용안내서 배포](https://www.msit.go.kr/bbs/view.do?bbsSeqNo=67&mId=245&nttSeqNo=3139474)
 - 국가법령정보센터, [데이터 산업진흥 및 이용촉진에 관한 기본법](https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20251001&lsiSeq=277325&urlMode=lsInfoP)
 - 국가법령정보센터, [개인정보 보호법 제28조의2부터 제28조의5](https://law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1020398635)

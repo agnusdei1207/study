@@ -6,9 +6,9 @@ tags:
   - "notes-law-policy"
 sidebar:
   badge:
-    text: "응용"
+    text: "서브"
 extra:
-  keyword_grade: "응용"
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 
@@ -18,19 +18,19 @@ extra:
 
 ## 30초 인출
 
-- 본질: **디지털세(Digital Tax)**는 경제의 디지털화로 생긴 국제조세 공백을 다루는 OECD/G20의 2축 개혁 틀
+- 본질: **디지털세(Digital Tax)** 는 경제의 디지털화로 생긴 국제조세 공백을 다루는 OECD/G20의 2축 개혁 틀
 - 메커니즘: Pillar One은 대형 다국적기업 이익 일부를 시장국에 배분하고, Pillar Two는 적용대상 그룹의 국가별 실효세율을 계산해 최저한세를 보완
 
 <details><summary>핵심 용어</summary>
 
-- **디지털세(Digital Tax)**: 디지털화된 경제의 과세 공백을 다루는 국제조세 개혁 논의의 통칭.
-- **OECD (Organisation for Economic Co-operation and Development)**: 경제협력개발기구. 국제조세 다자 협의의 주요 주체.
-- **BEPS (Base Erosion and Profit Shifting)**: 다국적기업의 세원 잠식과 이익 이전을 다루는 OECD/G20 국제조세 프로젝트.
-- **Pillar One Amount A**: 일정 규모·수익성 기준을 충족한 다국적기업의 잔여이익 일부를 시장국에 배분하는 다자 합의안.
-- **Pillar Two GloBE (Global Anti-Base Erosion)**: 적용대상 다국적기업 그룹의 관할별 실효세율이 15% 미만일 때 추가 과세를 조정하는 규칙.
-- **IIR (Income Inclusion Rule)**: 저율과세 구성기업의 추가세액을 모기업 관할에서 부과하는 규칙.
-- **UTPR (Undertaxed Profits Rule)**: 다른 규칙으로 징수되지 않은 추가세액을 일정 기준에 따라 보완하는 규칙.
-- **QDMTT (Qualified Domestic Minimum Top-up Tax)**: 관할국이 자국 내 최저한세 미달액을 먼저 부과하는 적격 국내 추가세 제도.
+- **디지털세(Digital Tax)** : 디지털화된 경제의 과세 공백을 다루는 국제조세 개혁 논의의 통칭.
+- **OECD (Organisation for Economic Co-operation and Development)** : 경제협력개발기구. 국제조세 다자 협의의 주요 주체.
+- **BEPS (Base Erosion and Profit Shifting)** : 다국적기업의 세원 잠식과 이익 이전을 다루는 OECD/G20 국제조세 프로젝트.
+- **Pillar One Amount A** : 일정 규모·수익성 기준을 충족한 다국적기업의 잔여이익 일부를 시장국에 배분하는 다자 합의안.
+- **Pillar Two GloBE (Global Anti-Base Erosion)** : 적용대상 다국적기업 그룹의 관할별 실효세율이 15% 미만일 때 추가 과세를 조정하는 규칙.
+- **IIR (Income Inclusion Rule)** : 저율과세 구성기업의 추가세액을 모기업 관할에서 부과하는 규칙.
+- **UTPR (Undertaxed Profits Rule)** : 다른 규칙으로 징수되지 않은 추가세액을 일정 기준에 따라 보완하는 규칙.
+- **QDMTT (Qualified Domestic Minimum Top-up Tax)** : 관할국이 자국 내 최저한세 미달액을 먼저 부과하는 적격 국내 추가세 제도.
 </details>
 
 ---
@@ -47,7 +47,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **디지털세(Digital Tax)**는 경제의 디지털화로 생긴 국제조세 공백을 다루는 OECD/G20의 2축 개혁 틀 |
+| 정의 | **디지털세(Digital Tax)** 는 경제의 디지털화로 생긴 국제조세 공백을 다루는 OECD/G20의 2축 개혁 틀 |
 | 목적 | 다국적기업 이익의 과세권 배분과 국가별 최저 과세 수준을 국제적으로 조정 |
 
 ### Ⅱ. 두 축의 핵심
@@ -82,7 +82,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **디지털세(Digital Tax)**는 경제의 디지털화로 생긴 국제조세 공백을 다루는 OECD/G20의 2축 개혁 틀 |
+| 정의 | **디지털세(Digital Tax)** 는 경제의 디지털화로 생긴 국제조세 공백을 다루는 OECD/G20의 2축 개혁 틀 |
 | 목적 | 다국적기업 이익의 과세권 배분과 국가별 최저 과세 수준을 국제적으로 조정 |
 
 국제조세 개혁은 디지털 기업에만 한정되지 않으며 적용대상은 각 축의 별도 기준에 따라 판정.

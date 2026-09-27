@@ -6,13 +6,13 @@ sidebar:
   order: 30
   label: "030. 합성 데이터"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -128,6 +128,7 @@ extra:
 
 ---
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
 
 - 제140회 3교시 3번: 개인정보 보호 제약에 대응하는 합성 데이터의 배경·생성 기술·품질 평가·한계
 - NIST, [SP 800-226, Guidelines for Evaluating Differential Privacy Guarantees](https://csrc.nist.gov/pubs/sp/800/226/final): 비차등 프라이버시 합성 자료의 공격 위험과 유틸리티·편향 고려 확인

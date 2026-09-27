@@ -1,9 +1,10 @@
 ---
 title: "도커 스웜(Docker Swarm)"
 sidebar:
+  label: "092. 도커 스웜(Docker Swarm)"
   order: 92
   badge:
-    text: "서브"
+    text: "응용"
     variant: note
 author: "Gemini 3.8 Flash"
 date: "2026-09-24T00:00:00+09:00"
@@ -11,7 +12,7 @@ tags:
   - "notes-computer-system"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
   question_no: "092"
 
 ---

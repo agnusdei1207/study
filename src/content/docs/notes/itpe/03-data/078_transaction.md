@@ -3,7 +3,7 @@ sidebar:
   order: 78
   label: "078. 트랜잭션"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "트랜잭션 (Transaction) 및 ACID 특성과 상태 전이도"
 author: "Codex"
@@ -14,7 +14,7 @@ category: "03-data"
 weight: 78
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "078"
 ---
 
@@ -24,19 +24,19 @@ extra:
 
 ## 30초 인출
 
-- 본질: **트랜잭션(Transaction)**은 하나의 논리 작업을 함께 성공시키거나 취소하는 데이터베이스 작업 단위
+- 본질: **트랜잭션(Transaction)은** 하나의 논리 작업을 함께 성공시키거나 취소하는 데이터베이스 작업 단위
 - 메커니즘: 연산을 실행하고 커밋 또는 롤백하며, 원자성·일관성·격리성·영속성 원칙으로 데이터 상태를 관리
 
 <details><summary>핵심 용어</summary>
 
-- **트랜잭션(Transaction)**: 하나의 논리 작업을 성공 또는 취소 단위로 처리하는 데이터베이스 작업 묶음
-- **원자성(Atomicity)**: 트랜잭션의 변경이 모두 반영되거나 모두 취소되는 성질
-- **일관성(Consistency)**: 트랜잭션이 데이터베이스의 유효 조건을 지키도록 하는 성질
-- **격리성(Isolation)**: 동시에 수행되는 트랜잭션 간 간섭을 제어하는 성질
-- **영속성(Durability)**: 성공 처리된 변경을 장애 복구 후에도 보존하는 성질
-- **로그 선행 기록(Write-Ahead Logging, WAL)**: 데이터 페이지 변경보다 로그를 먼저 안정 저장해 복구에 활용하는 방식
-- **DBMS (Database Management System)**: 데이터베이스를 정의·저장·조회·관리하는 소프트웨어.
-- **MVCC (Multi-Version Concurrency Control)**: 데이터 버전을 유지해 트랜잭션 간 읽기·쓰기 간섭을 조정하는 동시성 제어 방식.
+- **트랜잭션(Transaction)** : 하나의 논리 작업을 성공 또는 취소 단위로 처리하는 데이터베이스 작업 묶음
+- **원자성(Atomicity)** : 트랜잭션의 변경이 모두 반영되거나 모두 취소되는 성질
+- **일관성(Consistency)** : 트랜잭션이 데이터베이스의 유효 조건을 지키도록 하는 성질
+- **격리성(Isolation)** : 동시에 수행되는 트랜잭션 간 간섭을 제어하는 성질
+- **영속성(Durability)** : 성공 처리된 변경을 장애 복구 후에도 보존하는 성질
+- **로그 선행 기록(Write-Ahead Logging, WAL)** : 데이터 페이지 변경보다 로그를 먼저 안정 저장해 복구에 활용하는 방식
+- **DBMS (Database Management System)** : 데이터베이스를 정의·저장·조회·관리하는 소프트웨어.
+- **MVCC (Multi-Version Concurrency Control)** : 데이터 버전을 유지해 트랜잭션 간 읽기·쓰기 간섭을 조정하는 동시성 제어 방식.
 
 </details>
 

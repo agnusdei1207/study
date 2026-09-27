@@ -3,7 +3,7 @@ sidebar:
   order: 138
   label: "138. 음성데이터 마이닝 (Voice Data Mining)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 138
 title: "음성데이터 마이닝(Voice Data Mining)과 컨택센터 분석"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "138"
 ---
 
@@ -24,18 +24,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **음성데이터 마이닝**은 음성 신호와 발화 내용을 분석해 업무에 필요한 정보를 추출하는 방법
+- 본질: **음성데이터 마이닝은** 음성 신호와 발화 내용을 분석해 업무에 필요한 정보를 추출하는 방법
 - 메커니즘: 음성 품질 처리 → 음성인식·화자·음향 분석 → 텍스트·음향 정보 결합
 - 활용: 상담 검색·요약·품질 점검에 적용하되 감정·의도 추정은 참고 신호로 검증
 
 <details>
 <summary>핵심 용어</summary>
 
-- **음성데이터 마이닝(Voice Data Mining)**: 음성 신호와 발화 내용을 분석해 업무 정보를 추출하는 활동
-- **자동 음성인식(Automatic Speech Recognition, ASR)**: 음성 신호를 인식해 문자 표현으로 변환하는 기술
-- **화자 분리(Diarization)**: 녹음에서 화자별 발화 구간을 식별하는 처리
-- **인공지능 컨택센터(AI Contact Center, AICC)**: 인공지능을 상담 업무와 고객 접점 운영에 활용하는 컨택센터
-- **단어 오류율(Word Error Rate, WER)**: 기준 전사와 인식 전사의 삽입·삭제·대치 오류를 단어 수로 정규화한 지표
+- **음성데이터 마이닝(Voice Data Mining)** : 음성 신호와 발화 내용을 분석해 업무 정보를 추출하는 활동
+- **자동 음성인식(Automatic Speech Recognition, ASR)** : 음성 신호를 인식해 문자 표현으로 변환하는 기술
+- **화자 분리(Diarization)** : 녹음에서 화자별 발화 구간을 식별하는 처리
+- **인공지능 컨택센터(AI Contact Center, AICC)** : 인공지능을 상담 업무와 고객 접점 운영에 활용하는 컨택센터
+- **단어 오류율(Word Error Rate, WER)** : 기준 전사와 인식 전사의 삽입·삭제·대치 오류를 단어 수로 정규화한 지표
 
 </details>
 
@@ -138,4 +138,4 @@ flowchart TD
 
 ## 연결 토픽
 
-- 연관 토픽: [텍스트 마이닝](./115_text_mining.md), [빅데이터 분석도구 선정 원칙](./134_big_data_analytics_tool_selection_principles.md)
+- 연관 토픽: [텍스트 마이닝](./015_text_mining.md), [빅데이터 분석도구 선정 원칙](./134_big_data_analytics_tool_selection_principles.md)

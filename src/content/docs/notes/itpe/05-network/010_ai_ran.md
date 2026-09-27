@@ -3,7 +3,7 @@ sidebar:
   order: 10
   label: "010. AI-RAN"
   badge:
-    text: "서브"
+    text: "기초"
     variant: note
 title: "AI-RAN"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 10
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   question_no: "010"
 ---
 
@@ -90,7 +90,7 @@ extra:
 | AI-and-RAN | AI·RAN 작업의 연산 기반 공유 | 가속기·메모리 할당, 성능 격리 |
 | AI-on-RAN | 무선망 엣지에서 AI 서비스 실행 | 추론 배치, 연결·지연 품질 |
 
-세 관점은 서로 대체하는 구축 유형이 아니라 적용 목적을 구분하는 축. 특히 **AI-on-RAN**은 무선망 신호 처리 알고리즘을 AI로 바꾼다는 뜻이 아님.
+세 관점은 서로 대체하는 구축 유형이 아니라 적용 목적을 구분하는 축. 특히 **AI-on-RAN** 은 무선망 신호 처리 알고리즘을 AI로 바꾼다는 뜻이 아님.
 
 ## Ⅲ. AI-for-RAN의 제어 흐름
 
@@ -136,7 +136,7 @@ extra:
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [AI-RAN Alliance: 설립 발표와 세 적용 영역](https://ai-ran.org/press-releases/alliance-formation)
 - [AI-RAN Alliance: Vision and Mission White Paper](https://ai-ran.org/wp-content/uploads/2024/12/AI-RAN_Alliance_Whitepaper.pdf)

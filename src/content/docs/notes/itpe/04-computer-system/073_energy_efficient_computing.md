@@ -3,7 +3,7 @@ sidebar:
   order: 73
   label: "073. 에너지 효율 컴퓨팅"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "에너지 효율 컴퓨팅"
 author: "GPT-6"
@@ -12,7 +12,7 @@ tags:
   - "notes-computer-system"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "073"
 ---
 
@@ -22,17 +22,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **에너지 효율 컴퓨팅 (Energy-Efficient Computing)**은 필요한 성능과 서비스 품질을 유지하면서 계산에 쓰이는 에너지를 줄이는 설계·운영 접근
+- 본질: **에너지 효율 컴퓨팅 (Energy-Efficient Computing)은** 필요한 성능과 서비스 품질을 유지하면서 계산에 쓰이는 에너지를 줄이는 설계·운영 접근
 - 메커니즘: 작업량·성능·에너지를 측정하고, 소프트웨어부터 장비·시설까지 병목이 있는 계층을 개선
 
 <details>
 <summary>핵심 용어</summary>
 
-- **에너지 효율 컴퓨팅 (Energy-Efficient Computing)**: 업무 결과와 서비스 품질을 고려해 계산 에너지 사용을 최적화하는 접근
-- **DVFS (Dynamic Voltage and Frequency Scaling)**: 부하와 성능 요구에 따라 프로세서 전압·주파수 동작점을 조절하는 기술
-- **성능/와트 (Performance per Watt)**: 사용 에너지 대비 처리 성능을 보는 지표
-- **PUE (Power Usage Effectiveness)**: 데이터센터 전체 에너지를 IT 장비 에너지로 나눈 시설 에너지 지표
-- **전력 관리 (Power Management)**: 장비의 동작 상태·전압·주파수 등을 조정해 전력 사용을 제어하는 기능
+- **에너지 효율 컴퓨팅 (Energy-Efficient Computing)** : 업무 결과와 서비스 품질을 고려해 계산 에너지 사용을 최적화하는 접근
+- **DVFS (Dynamic Voltage and Frequency Scaling)** : 부하와 성능 요구에 따라 프로세서 전압·주파수 동작점을 조절하는 기술
+- **성능/와트 (Performance per Watt)** : 사용 에너지 대비 처리 성능을 보는 지표
+- **PUE (Power Usage Effectiveness)** : 데이터센터 전체 에너지를 IT 장비 에너지로 나눈 시설 에너지 지표
+- **전력 관리 (Power Management)** : 장비의 동작 상태·전압·주파수 등을 조정해 전력 사용을 제어하는 기능
 </details>
 
 ---
@@ -49,7 +49,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **에너지 효율 컴퓨팅 (Energy-Efficient Computing)**은 필요한 처리 성능과 서비스 품질을 고려하면서 계산에 쓰이는 에너지를 줄이는 설계·운영 접근 |
+| 정의 | **에너지 효율 컴퓨팅 (Energy-Efficient Computing)은** 필요한 처리 성능과 서비스 품질을 고려하면서 계산에 쓰이는 에너지를 줄이는 설계·운영 접근 |
 | 목적 | 에너지 비용·전력 제약을 관리하면서 업무 요구 성능을 제공하는 것 |
 
 ### Ⅱ. 최적화 계층
@@ -80,7 +80,7 @@ flowchart TD
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **에너지 효율 컴퓨팅 (Energy-Efficient Computing)**은 필요한 처리 성능과 서비스 품질을 고려하면서 계산에 쓰이는 에너지를 줄이는 설계·운영 접근 |
+| 정의 | **에너지 효율 컴퓨팅 (Energy-Efficient Computing)은** 필요한 처리 성능과 서비스 품질을 고려하면서 계산에 쓰이는 에너지를 줄이는 설계·운영 접근 |
 | 목적 | 에너지 비용·전력 제약을 관리하면서 업무 요구 성능을 제공하는 것 |
 
 ### Ⅱ. 계층별 개선 구조

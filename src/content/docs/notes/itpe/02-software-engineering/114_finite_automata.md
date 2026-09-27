@@ -11,10 +11,10 @@ date: "2026-09-24T16:43:00+09:00"
 author: "Codex"
 sidebar:
   badge:
-    text: "기초"
+    text: "응용"
     variant: "note"
 extra:
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   model: "GPT-6"
 ---
 
@@ -24,18 +24,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **유한 오토마타**는 유한한 상태로 입력 문자열의 정규언어 소속 여부를 판정하는 계산 모델
+- 본질: **유한 오토마타** 는 유한한 상태로 입력 문자열의 정규언어 소속 여부를 판정하는 계산 모델
 - 메커니즘: 입력 기호마다 상태를 전이하고, 입력 종료 후 수용 상태에 도달했는지 확인
 - 핵심 관계: DFA는 다음 상태가 하나로 정해지고, NFA는 여러 가능 상태를 허용하지만 인식 언어는 같음
 
 <details>
 <summary>핵심 용어</summary>
 
-- **유한 오토마타(Finite Automaton)**: 유한한 상태와 입력 기호 전이로 문자열을 수용하거나 거부하는 계산 모델
-- **결정적 유한 오토마타(DFA, Deterministic Finite Automaton)**: 각 상태와 입력 기호의 조합에 다음 상태가 하나로 정해지는 오토마타
-- **비결정적 유한 오토마타(NFA, Nondeterministic Finite Automaton)**: 한 입력에서 복수의 다음 상태 가능성을 허용하며, 하나 이상의 경로가 수용하면 문자열을 수용하는 오토마타
-- **정규언어(Regular Language)**: 어떤 유한 오토마타가 인식할 수 있는 언어
-- **전이 함수(Transition Function)**: 현재 상태와 입력 기호를 다음 상태 또는 상태 집합에 대응시키는 함수
+- **유한 오토마타(Finite Automaton)** : 유한한 상태와 입력 기호 전이로 문자열을 수용하거나 거부하는 계산 모델
+- **결정적 유한 오토마타(DFA, Deterministic Finite Automaton)** : 각 상태와 입력 기호의 조합에 다음 상태가 하나로 정해지는 오토마타
+- **비결정적 유한 오토마타(NFA, Nondeterministic Finite Automaton)** : 한 입력에서 복수의 다음 상태 가능성을 허용하며, 하나 이상의 경로가 수용하면 문자열을 수용하는 오토마타
+- **정규언어(Regular Language)** : 어떤 유한 오토마타가 인식할 수 있는 언어
+- **전이 함수(Transition Function)** : 현재 상태와 입력 기호를 다음 상태 또는 상태 집합에 대응시키는 함수
 </details>
 
 ---

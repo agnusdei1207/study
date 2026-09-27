@@ -3,7 +3,7 @@ sidebar:
   order: 50
   label: "050. 프로세스 메모리 영역"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "프로세스 메모리 영역"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 50
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "050"
 ---
 
@@ -150,7 +150,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [GNU C Library: Memory Concepts](https://www.sourceware.org/glibc/manual/2.43/html_node/Memory-Concepts.html)
 - [Linux man-pages: proc_pid_maps(5)](https://www.man7.org/linux/man-pages/man5/proc_pid_maps.5.html)

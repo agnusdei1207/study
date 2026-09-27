@@ -3,7 +3,7 @@ sidebar:
   order: 17
   label: "017. OSI 7계층"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "OSI 7계층 참조 모델"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 17
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "017"
 ---
 
@@ -137,7 +137,7 @@ extra:
 | 네트워크 | IP 계층 | 경로·주소 역할 |
 | 데이터링크·물리 | 링크 기술 | 매체·프레임 방식별 차이 |
 
-**OSI**는 기능을 설명하는 참조 모델이며 인터넷 구현 전체가 OSI 규격을 그대로 따른다는 뜻은 아님.
+**OSI** 는 기능을 설명하는 참조 모델이며 인터넷 구현 전체가 OSI 규격을 그대로 따른다는 뜻은 아님.
 
 ## Ⅴ. 장애 범위 축소
 
@@ -158,7 +158,7 @@ extra:
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [ISO/IEC 7498-1: OSI 기본 참조 모델](https://www.iso.org/standard/20269.html)
 - [RFC 1122: 인터넷 호스트 통신 계층](https://www.rfc-editor.org/rfc/rfc1122)

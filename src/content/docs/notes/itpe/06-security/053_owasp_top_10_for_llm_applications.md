@@ -5,11 +5,13 @@ date: "2026-09-24T22:50:00+09:00"
 tags:
   - "notes-security"
 sidebar:
+  label: "053. OWASP Top 10 for LLM Applications"
   badge:
-    text: "서브"
+    text: "기초"
+    variant: note
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -18,19 +20,19 @@ AI 보안 → 생성형 AI 애플리케이션 위험 → OWASP LLM Top 10
 
 ## 30초 인출
 
-- **본질**: OWASP Top 10 for LLM Applications는 LLM 애플리케이션의 주요 위험을 분류해 설계·시험·운영에서 점검하도록 돕는 목록.
-- **메커니즘**: 입력·검색자료 → 모델 처리 → 출력·도구 사용 → 정보·권한·서비스 영향.
-- **핵심**: 프롬프트만으로 방어하지 않고 데이터 경계, 출력 검증, 최소 권한, 비용 한도를 애플리케이션 계층에 적용.
+- **본질** : OWASP Top 10 for LLM Applications는 LLM 애플리케이션의 주요 위험을 분류해 설계·시험·운영에서 점검하도록 돕는 목록.
+- **메커니즘** : 입력·검색자료 → 모델 처리 → 출력·도구 사용 → 정보·권한·서비스 영향.
+- **핵심** : 프롬프트만으로 방어하지 않고 데이터 경계, 출력 검증, 최소 권한, 비용 한도를 애플리케이션 계층에 적용.
 
 <details><summary>핵심 용어</summary>
 
-- **OWASP Top 10 for LLM Applications**: LLM·생성형 AI 애플리케이션의 주요 보안위험과 완화 방향을 분류한 OWASP 자료.
-- **OWASP(Open Worldwide Application Security Project)**: 소프트웨어·애플리케이션 보안 지식과 공개 프로젝트를 제공하는 비영리 재단.
-- **LLM(Large Language Model, 대규모 언어 모델)**: 대량의 언어 자료로 학습해 문맥에 따른 텍스트를 처리·생성하는 모델.
-- **Prompt Injection**: 신뢰할 수 없는 지시가 모델의 의도된 동작을 바꾸도록 유도하는 취약점.
-- **RAG(Retrieval-Augmented Generation)**: 외부 자료를 검색해 모델 문맥에 제공하고 응답을 생성하는 구조.
-- **Excessive Agency**: 모델 기반 애플리케이션에 과도한 기능·권한·자율성을 부여해 예상 밖 작업이 가능해지는 위험.
-- **Improper Output Handling**: 모델 출력을 충분히 검증·정제하지 않고 후속 기능에서 사용하는 취약점.
+- **OWASP Top 10 for LLM Applications** : LLM·생성형 AI 애플리케이션의 주요 보안위험과 완화 방향을 분류한 OWASP 자료.
+- **OWASP(Open Worldwide Application Security Project)** : 소프트웨어·애플리케이션 보안 지식과 공개 프로젝트를 제공하는 비영리 재단.
+- **LLM(Large Language Model, 대규모 언어 모델)** : 대량의 언어 자료로 학습해 문맥에 따른 텍스트를 처리·생성하는 모델.
+- **Prompt Injection** : 신뢰할 수 없는 지시가 모델의 의도된 동작을 바꾸도록 유도하는 취약점.
+- **RAG(Retrieval-Augmented Generation)** : 외부 자료를 검색해 모델 문맥에 제공하고 응답을 생성하는 구조.
+- **Excessive Agency** : 모델 기반 애플리케이션에 과도한 기능·권한·자율성을 부여해 예상 밖 작업이 가능해지는 위험.
+- **Improper Output Handling** : 모델 출력을 충분히 검증·정제하지 않고 후속 기능에서 사용하는 취약점.
 </details>
 
 ---
@@ -39,7 +41,7 @@ AI 보안 → 생성형 AI 애플리케이션 위험 → OWASP LLM Top 10
 
 ---
 
-> OWASP Top 10 for LLM Applications의 목적과 핵심 위험 및 기본 대응 원칙을 설명하시오. (예상)
+> OWASP Top 10 for LLM Applications의 목적과 핵심 위험 및 기본 대응 원칙을 설명하시오. (예상·10점)
 
 ---
 
@@ -49,7 +51,7 @@ AI 보안 → 생성형 AI 애플리케이션 위험 → OWASP LLM Top 10
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **OWASP Top 10 for LLM Applications**는 LLM 애플리케이션의 주요 위험과 완화 방향을 분류한 보안 안내 목록. |
+| 정의 | **OWASP Top 10 for LLM Applications** 는 LLM 애플리케이션의 주요 위험과 완화 방향을 분류한 보안 안내 목록. |
 | 목적 | 생성형 AI 애플리케이션의 설계·시험·운영에서 반복되는 위험을 체계적으로 검토. |
 
 ### Ⅱ. 위험이 실행으로 이어지는 경계
@@ -72,7 +74,7 @@ AI 보안 → 생성형 AI 애플리케이션 위험 → OWASP LLM Top 10
 
 ---
 
-> OWASP Top 10 for LLM Applications의 2025년 위험을 설명하고, RAG·외부 도구를 포함한 LLM 애플리케이션의 설계·운영 대책을 제시하시오. (제136회 4교시 5번 취지 반영)
+> OWASP Top 10 for LLM Applications의 2025년 위험을 설명하고, RAG·외부 도구를 포함한 LLM 애플리케이션의 설계·운영 대책을 제시하시오. (제136회 4교시 5번 취지 반영) (예상·25점)
 
 ---
 
@@ -82,7 +84,7 @@ AI 보안 → 생성형 AI 애플리케이션 위험 → OWASP LLM Top 10
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **OWASP Top 10 for LLM Applications**는 LLM 애플리케이션의 주요 위험과 완화 방향을 분류한 보안 안내 목록. |
+| 정의 | **OWASP Top 10 for LLM Applications** 는 LLM 애플리케이션의 주요 위험과 완화 방향을 분류한 보안 안내 목록. |
 | 목적 | 생성형 AI 애플리케이션의 설계·시험·운영에서 반복되는 위험을 체계적으로 검토. |
 
 ## Ⅱ. 2025년 주요 위험 분류

@@ -1,10 +1,16 @@
 ---
 title: "NOMA(Non-Orthogonal Multiple Access)"
-author: "GPT-6"
+author: "Codex"
 date: "2026-09-24T21:25:00+09:00"
 tags:
   - "notes-network"
+sidebar:
+  label: "054. NOMA(Non-Orthogonal Multiple Access)"
+  badge:
+    text: "응용"
+    variant: note
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,10 +27,10 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **NOMA (Non-Orthogonal Multiple Access)**: 일부 시간·주파수·코드 자원을 비직교 공유하는 다중접속 방식의 총칭
-- **Power-domain NOMA**: 같은 시간·주파수 자원에 사용자 신호를 서로 다른 전력으로 중첩하는 방식
-- **SIC (Successive Interference Cancellation)**: 신호를 순차 복호하고 재구성한 간섭 성분을 빼며 다음 신호를 복호하는 기법
-- **OMA (Orthogonal Multiple Access)**: 사용자별 자원을 직교 분할해 동일 차원에서 겹침을 줄이는 다중접속 방식
+- **NOMA (Non-Orthogonal Multiple Access)** : 일부 시간·주파수·코드 자원을 비직교 공유하는 다중접속 방식의 총칭
+- **Power-domain NOMA** : 같은 시간·주파수 자원에 사용자 신호를 서로 다른 전력으로 중첩하는 방식
+- **SIC (Successive Interference Cancellation)** : 신호를 순차 복호하고 재구성한 간섭 성분을 빼며 다음 신호를 복호하는 기법
+- **OMA (Orthogonal Multiple Access)** : 사용자별 자원을 직교 분할해 동일 차원에서 겹침을 줄이는 다중접속 방식
 
 </details>
 
@@ -32,7 +38,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> NOMA의 개념과 전력 도메인 신호 중첩·순차 간섭 제거 원리를 설명하시오. (예상)
+> NOMA의 개념과 전력 도메인 신호 중첩·순차 간섭 제거 원리를 설명하시오. (예상·10점)
 
 ---
 
@@ -61,7 +67,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> NOMA의 비직교 자원 공유와 SIC 동작을 설명하고, OMA와 비교하여 채널 추정·복호 오류의 한계와 대응책을 제시하시오. (예상)
+> NOMA의 비직교 자원 공유와 SIC 동작을 설명하고, OMA와 비교하여 채널 추정·복호 오류의 한계와 대응책을 제시하시오. (예상·25점)
 
 ---
 

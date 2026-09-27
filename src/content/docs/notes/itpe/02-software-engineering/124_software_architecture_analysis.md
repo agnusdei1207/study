@@ -13,17 +13,22 @@ date: "2026-09-24T00:00:00+09:00"
 author: "Antigravity"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
+
+
+## 지식 로드맵 내 현재 위치
+
+소프트웨어 공학 → 소프트웨어 아키텍처·설계 → 소프트웨어 아키텍처 분석(정방향/역방향)
 
 ## 지식 위치
 
 소프트웨어공학 > 아키텍처 설계·평가 > 정방향·역방향 분석
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 - 본질: 소프트웨어 아키텍처 분석은 요구·설계에서 구조를 평가하고 구현 코드에서 실제 구조를 복원해 비교하는 활동
 - 메커니즘: 정방향 품질 요구 분석 ↔ 역방향 코드 구조 복원 → 설계와 구현의 차이·위반 확인
@@ -32,10 +37,10 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **정방향 아키텍처 분석(Forward Analysis)**: 비즈니스 요구사항과 품질 속성(성능, 가용성, 보안 등)을 바탕으로 상위 아키텍처 스타일을 결정하고 구조적 타당성을 연역적으로 평가하는 기법
-- **역방향 아키텍처 분석(Reverse Analysis)**: 실제 구현된 소스코드와 바이너리를 정적 분석하여 시스템의 실제 구조, 패키지 간 의존 관계, 호출 경로를 귀납적으로 복원하는 기법
-- **아키텍처 침식(Architectural Erosion)**: 개발자가 편의를 위해 계층 원칙을 어기고 하위 레이어를 건너뛰거나 순환 참조를 만들어 시스템 구조가 점진적으로 붕괴되는 현상
-- **DSM(Design Structure Matrix)**: 모듈 간의 결합과 의존성을 N x N 정방형 매트릭스로 표현하여 순환 참조와 비정상 계층 침범을 가시화하는 분석 도구
+- **정방향 아키텍처 분석(Forward Analysis)** : 비즈니스 요구사항과 품질 속성(성능, 가용성, 보안 등)을 바탕으로 상위 아키텍처 스타일을 결정하고 구조적 타당성을 연역적으로 평가하는 기법
+- **역방향 아키텍처 분석(Reverse Analysis)** : 실제 구현된 소스코드와 바이너리를 정적 분석하여 시스템의 실제 구조, 패키지 간 의존 관계, 호출 경로를 귀납적으로 복원하는 기법
+- **아키텍처 침식(Architectural Erosion)** : 개발자가 편의를 위해 계층 원칙을 어기고 하위 레이어를 건너뛰거나 순환 참조를 만들어 시스템 구조가 점진적으로 붕괴되는 현상
+- **DSM(Design Structure Matrix)** : 모듈 간의 결합과 의존성을 N x N 정방형 매트릭스로 표현하여 순환 참조와 비정상 계층 침범을 가시화하는 분석 도구
 </details>
 
 ---
@@ -167,3 +172,8 @@ DSM 등으로 결합 관계 표시
 - [리팩토링(Refactoring) 및 코드 냄새](./006_refactoring.md)
 - [CMU SEI, Architecture Reconstruction Guidelines](https://www.sei.cmu.edu/library/architecture-reconstruction-guidelines/)
 ---
+
+## 출제 이력과 검증 출처
+
+- **출제 상태:** 예상문제는 학습용 문항이며, 공식 기출 원문과 동일하다고 단정하지 않는다.
+- [검증 자료 1](https://www.sei.cmu.edu/library/architecture-reconstruction-guidelines/)

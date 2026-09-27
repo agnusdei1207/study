@@ -4,6 +4,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "072. AI 디지털교과서(AIDT)"
+  order: 72
   badge:
     text: "서브"
 extra:
@@ -116,6 +118,8 @@ AI 디지털교과서는 AI 기능을 활용하는 디지털 학습자료를 도
 | 여러 교과·학년에 한꺼번에 도입하면 학습 효과와 교사 업무 영향을 구별하기 어려움 | 하나의 학습 목표와 학급을 정해 시범 적용하고, 학습 결과와 교사 활용성을 확인한 뒤 확대 여부를 결정한다. |
 
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
+
 - 기출: 제135회 2교시 6번, AI 디지털교과서의 도입 배경·필요성, 구성요소·기능, 현장 안착을 위한 기술·제도 고려사항.
 - 교육부, [2026년 주요업무 추진계획](https://www.moe.go.kr/upload/filedown/2026_business_plan_data.pdf).
 - 「초·중등교육법」 제29조·제29조의2, [국가법령정보센터](https://www.law.go.kr/LSW/lsInfoP.do?ancNo=21049&ancYd=20250916&ancYnChk=0&chrClsCd=010202&efGubun=Y&efYd=20260301&lsiSeq=273677&nwJoYnInfo=N), 2026년 3월 1일 시행.

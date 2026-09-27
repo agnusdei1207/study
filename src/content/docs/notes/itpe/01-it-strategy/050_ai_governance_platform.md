@@ -6,9 +6,9 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "응용"
+    text: "서브"
 extra:
-  keyword_grade: "응용"
+  keyword_grade: "서브"
   model: "GPT-6"
 ---
 
@@ -19,14 +19,14 @@ extra:
 
 ## 30초 인출
 
-- 본질: **AI 거버넌스 플랫폼**: AI 자산의 위험·책임·승인·감사기록을 개발부터 운영까지 관리하는 시스템.
-- 메커니즘: AI 자산 등록 → 위험평가 → 데이터 계보·편향 검증 → 배포 게이트 → 런타임 감시·**Human Oversight**.
+- 본질: **AI 거버넌스 플랫폼** : AI 자산의 위험·책임·승인·감사기록을 개발부터 운영까지 관리하는 시스템.
+- 메커니즘: AI 자산 등록 → 위험평가 → 데이터 계보·편향 검증 → 배포 게이트 → 런타임 감시·**Human Oversight** .
 - 판정 기준: 고위험 AI 데이터·모델 계보의 추적성과 드리프트 경보에 대한 사람의 개입기록.
 
 <details>
 <summary>핵심 용어</summary>
 
-- **AI 거버넌스 플랫폼**: 조직의 AI 정책과 위험통제를 자산·개발·배포·운영 절차에 연결하는 도구의 조합. ISO/IEC 42001의 AIMS와 동일한 표준·제품을 뜻하지 않는 구현 개념
+- **AI 거버넌스 플랫폼** : 조직의 AI 정책과 위험통제를 자산·개발·배포·운영 절차에 연결하는 도구의 조합. ISO/IEC 42001의 AIMS와 동일한 표준·제품을 뜻하지 않는 구현 개념
 - **AIMS(Artificial Intelligence Management System)** : 책임 있는 AI 개발·제공·활용을 위한 조직적 방침·목표·프로세스 경영시스템(ISO/IEC 42001)
 - **AI Inventory** : 조직 내 개발·도입·운영 중인 AI 시스템의 목적·책임자·위험등급을 관리하는 자산 목록
 - **System Card** : AI 시스템의 목적·성능·한계·위험 완화 조치를 표준 양식으로 기록한 공학적 설명서
@@ -36,7 +36,7 @@ extra:
 - **MLOps(Machine Learning Operations)** : 머신러닝 모델의 개발·테스트·배포·모니터링을 자동화하는 협업 운영 체계
 - **LLMOps(Large Language Model Operations)** : LLM 기반 서비스의 프롬프트·평가·가드레일·배포를 전문 관리하는 운영 프레임워크
 
-- **NIST AI RMF(National Institute of Standards and Technology AI Risk Management Framework)**: AI 위험을 Govern·Map·Measure·Manage 기능으로 관리하는 프레임워크. 특정 소프트웨어 플랫폼 규격은 아님
+- **NIST AI RMF(National Institute of Standards and Technology AI Risk Management Framework)** : AI 위험을 Govern·Map·Measure·Manage 기능으로 관리하는 프레임워크. 특정 소프트웨어 플랫폼 규격은 아님
 
 </details>
 
@@ -54,12 +54,12 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **AI 거버넌스 플랫폼**: 조직의 AI 정책·위험통제를 AI 자산·개발·배포·운영 과정에 연결하는 관리 도구 |
+| 정의 | **AI 거버넌스 플랫폼** : 조직의 AI 정책·위험통제를 AI 자산·개발·배포·운영 과정에 연결하는 관리 도구 |
 | 목적 | AI 사용현황 파악과 책임·위험·준수 증거의 추적 지원 |
 
 ### Ⅱ. 핵심 아키텍처 및 메커니즘
 
-- 핵심 메커니즘: AI 자산 등록(Inventory) → 위험도 분류 → 데이터/모델 리니지 검증 → 배포 게이트(**Policy-as-Code**) → 런타임 모니터링 및 **Human Oversight**
+- 핵심 메커니즘: AI 자산 등록(Inventory) → 위험도 분류 → 데이터/모델 리니지 검증 → 배포 게이트(**Policy-as-Code** ) → 런타임 모니터링 및 **Human Oversight**
 
 ```text
 ① 시스템·사용 맥락 등록
@@ -93,10 +93,10 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **AI 거버넌스 플랫폼**: 조직의 AI 정책·위험통제를 AI 자산·개발·배포·운영 과정에 연결하는 관리 도구 |
+| 정의 | **AI 거버넌스 플랫폼** : 조직의 AI 정책·위험통제를 AI 자산·개발·배포·운영 과정에 연결하는 관리 도구 |
 | 목적 | AI 사용현황 파악과 책임·위험·준수 증거의 추적 지원 |
 
-ISO/IEC 42001:2023의 **AIMS**는 조직 관리체계의 요구사항, NIST AI RMF는 위험관리 프레임워크이며, 플랫폼은 이를 지원하도록 선택·연계하는 도구의 구현 개념.
+ISO/IEC 42001:2023의 **AIMS** 는 조직 관리체계의 요구사항, NIST AI RMF는 위험관리 프레임워크이며, 플랫폼은 이를 지원하도록 선택·연계하는 도구의 구현 개념.
 
 ## Ⅱ. AI 거버넌스 플랫폼 구성체계
 
@@ -105,8 +105,8 @@ ISO/IEC 42001:2023의 **AIMS**는 조직 관리체계의 요구사항, NIST AI R
 | 계층 | 핵심 기능 | 주요 증적 |
 |---|---|---|
 | 관리체계 | 정책·역할·책임·위험기준·예외 | 정책·RACI·위험수용 기록 |
-| 통제평면 | AI 자산·위험평가·승인·변경관리 | **AI Inventory**·승인 이력 |
-| 수명주기 연계 | 데이터·모델·프롬프트·배포 Gate | **Lineage**·평가결과·**System Card** |
+| 통제평면 | AI 자산·위험평가·승인·변경관리 | **AI Inventory** ·승인 이력 |
+| 수명주기 연계 | 데이터·모델·프롬프트·배포 Gate | **Lineage** ·평가결과·**System Card** |
 | 운영통제 | 성능·편향·보안 감시·**Human Oversight** | 운영로그·경보·개입 기록 |
 | 증적관리 | 의무-통제-증적 매핑·감사·개선 | 통제목록·감사추적·개선조치 |
 
@@ -126,7 +126,7 @@ ISO/IEC 42001:2023의 **AIMS**는 조직 관리체계의 요구사항, NIST AI R
 중대한 변경·위험 증가 → 재평가
 ```
 
-## Ⅳ. Data Governance·**MLOps**·AI Governance 비교
+## Ⅳ. Data Governance·**MLOps** ·AI Governance 비교
 
 > 세 영역은 대체관계가 아니라 데이터 품질, 생산운영, 책임통제를 분담하는 결합관계임.
 

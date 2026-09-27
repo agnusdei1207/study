@@ -41,7 +41,7 @@ extra:
 
 ---
 
-가상발전소(VPP)의 개념과 AI 수요예측의 운영 활용 관계를 설명하시오. (예상)
+> 가상발전소(VPP)의 개념과 AI 수요예측의 운영 활용 관계를 설명하시오. (예상·10점)
 
 ---
 
@@ -88,7 +88,7 @@ extra:
 
 ---
 
-가상발전소(VPP)의 구성과 AI 수요예측의 활용 흐름을 설명하고, 자료·모델·운영 측면의 도입 고려사항을 제시하시오. (예상)
+> 가상발전소(VPP)의 구성과 AI 수요예측의 활용 흐름을 설명하고, 자료·모델·운영 측면의 도입 고려사항을 제시하시오. (예상·25점)
 
 ---
 
@@ -155,6 +155,6 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제139회 4교시 5번 기출 주제: “VPP(Virtual Power Plant) 가상발전소에서는 전력수요 예측을 위해 AI 기술을 사용하고 있다.” 원문 주제는 보존하고 본 노트의 기본 예상문제는 VPP와 예측의 핵심 관계를 직접 질문.
+- 제139회 4교시 5번 VPP·전력수요 예측 문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다. 본 노트의 예상문제는 VPP와 예측의 핵심 관계를 직접 묻는다.
 - 미국 에너지부, [Virtual Power Plants](https://www.energy.gov/edf/virtual-power-plants): 분산 에너지 자원의 연결·집합 개념 확인.
 - 미국 에너지부, [Virtual Power Plants: Demand Flexibility & Distributed Generation and Storage](https://www.energy.gov/sites/default/files/2024-04/2024%20The%20Future%20of%20Resource%20Adequacy%20Report.pdf): 유연 수요·분산 발전·저장의 계통 서비스 역할 확인.

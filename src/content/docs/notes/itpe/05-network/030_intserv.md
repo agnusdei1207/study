@@ -149,7 +149,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 제125회 1교시: “인터넷 QoS 보장 기술인 IntServ와 DiffServ를 비교 설명하시오.”
+- 제125회 1교시 관련 출제 이력은 공식 문제지 원문 미확보로 회차·문구를 검증하지 못함. 위 문항은 학습용 예상문제.
 - [RFC 2205: Resource ReSerVation Protocol (RSVP)](https://www.rfc-editor.org/rfc/rfc2205)
 - [RFC 2212: Specification of Guaranteed Quality of Service](https://www.rfc-editor.org/rfc/rfc2212)
 - [RFC 2211: Specification of the Controlled-Load Network Element Service](https://www.rfc-editor.org/rfc/rfc2211)

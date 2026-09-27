@@ -5,11 +5,13 @@ date: "2026-09-24T20:54:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
+  label: "026. CXL 4.0 / 메모리 풀링"
+  order: 26
   badge:
-    text: "서브"
+    text: "기초"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -113,7 +115,7 @@ flowchart TD
 | 풀링 | 호스트에 자원 배정 | 배정·재배정 정책 |
 | 공유 | 같은 영역에 다중 호스트 접근 | 동기화·일관성·접근 제어 |
 
-스위칭·메모리 풀링을 지원한 **CXL 2.0**, **GFAM (Global Fabric Attached Memory)** 등 다중 호스트 공유를 확장한 **CXL 3.0**. 장치의 CXL 지원만으로 모든 프로토콜·공유 기능이 보장되지는 않는 점.
+스위칭·메모리 풀링을 지원한 **CXL 2.0** , **GFAM (Global Fabric Attached Memory)** 등 다중 호스트 공유를 확장한 **CXL 3.0** . 장치의 CXL 지원만으로 모든 프로토콜·공유 기능이 보장되지는 않는 점.
 
 ## Ⅳ. CXL 4.0 변화와 적용 한계
 

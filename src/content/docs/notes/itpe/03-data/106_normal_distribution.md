@@ -3,7 +3,7 @@ sidebar:
   order: 106
   label: "106. 정규분포 (Normal Distribution)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "정규분포(Normal Distribution)와 표준정규분포(Z-분포)의 통계적 특성 및 활용"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 106
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "106"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **정규분포**는 평균 \(\mu\)와 표준편차 \(\sigma\)로 모양이 정해지는 연속 확률분포
+- 본질: **정규분포는** 평균 \(\mu\)와 표준편차 \(\sigma\)로 모양이 정해지는 연속 확률분포
 - 메커니즘: 평균을 중심으로 대칭이며, 표준화 \(Z=(X-\mu)/\sigma\)로 표준정규분포 \(N(0,1)\)에 대응
 - 활용: 확률·표본 통계량·통계적 추론을 다루며, 자료 자체와 표본평균의 분포를 구분
 
@@ -142,7 +142,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 정보관리기술사 제126회 2교시: 정규분포의 특성과 표준정규분포 변환 및 활용
+- 정보관리기술사 제126회 2교시: 정규분포의 특성과 표준정규분포 변환 및 활용 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - NIST, [Normal Probability Plot](https://www.itl.nist.gov/div898/handbook/eda/section3/normprpl.htm)
 - NIST, [Normal Distribution](https://csrc.nist.gov/glossary/term/Normal_Distribution)
 - Penn State, [The Central Limit Theorem](https://online.stat.psu.edu/stat414/Lesson27)

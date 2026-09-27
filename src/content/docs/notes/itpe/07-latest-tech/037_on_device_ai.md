@@ -6,13 +6,13 @@ sidebar:
   order: 37
   label: "037. 온디바이스 AI"
   badge:
-    text: "서브"
+    text: "응용"
     variant: note
 tags:
   - "notes-latest-tech"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치

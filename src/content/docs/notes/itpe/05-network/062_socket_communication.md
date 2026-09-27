@@ -4,11 +4,13 @@ author: "Codex"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-network"]
 sidebar:
+  label: "062. 소켓 통신(Socket Communication)"
   badge:
-    text: "기초"
+    text: "응용"
+    variant: note
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -35,7 +37,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> 소켓 통신의 개념과 기본 구조를 설명하시오. (예상)
+> 소켓 통신의 개념과 기본 구조를 설명하시오. (예상·10점)
 
 ---
 
@@ -73,7 +75,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 소켓 통신의 주소·연결·데이터 처리 구조를 설명하고, TCP와 UDP 및 동시 연결 처리 시 고려사항을 제시하시오. (예상)
+> 소켓 통신의 주소·연결·데이터 처리 구조를 설명하고, TCP와 UDP 및 동시 연결 처리 시 고려사항을 제시하시오. (예상·25점)
 
 ---
 

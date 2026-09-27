@@ -3,7 +3,7 @@ sidebar:
   order: 132
   label: "132. 로지컬 데이터웨어하우스 (LDW)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 132
 title: "로지컬 데이터웨어하우스(LDW)의 계층 구조와 데이터 패브릭"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "132"
 ---
 
@@ -24,17 +24,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **로지컬 데이터웨어하우스(Logical Data Warehouse, LDW)**는 여러 원천을 논리적으로 연결해 통합 분석을 지원하는 구조
+- 본질: **로지컬 데이터웨어하우스(Logical Data Warehouse, LDW)는** 여러 원천을 논리적으로 연결해 통합 분석을 지원하는 구조
 - 메커니즘: 데이터 원천, 가상화·통합 질의, 의미·접근 관리, 분석 이용자 계층의 연결
 - 구분: 데이터 패브릭은 메타데이터와 자동화 기능을 활용해 데이터 통합·관리 작업을 지원하는 아키텍처 접근
 
 <details>
 <summary>핵심 용어</summary>
 
-- **Logical Data Warehouse (LDW)**: 서로 다른 저장소의 데이터를 논리적으로 통합해 조회하는 데이터 관리 구조
-- **시맨틱 계층(Semantic Layer)**: 기술 스키마를 업무 용어·정의로 연결해 분석에 제공하는 계층
-- **데이터 패브릭(Data Fabric)**: 메타데이터와 자동화 기능을 활용해 다양한 환경의 데이터 관리·접근을 지원하는 아키텍처 접근
-- **활성 메타데이터(Active Metadata)**: 사용·운영 과정에서 관측한 메타데이터를 관리·자동화에 활용하는 방식
+- **Logical Data Warehouse (LDW)** : 서로 다른 저장소의 데이터를 논리적으로 통합해 조회하는 데이터 관리 구조
+- **시맨틱 계층(Semantic Layer)** : 기술 스키마를 업무 용어·정의로 연결해 분석에 제공하는 계층
+- **데이터 패브릭(Data Fabric)** : 메타데이터와 자동화 기능을 활용해 다양한 환경의 데이터 관리·접근을 지원하는 아키텍처 접근
+- **활성 메타데이터(Active Metadata)** : 사용·운영 과정에서 관측한 메타데이터를 관리·자동화에 활용하는 방식
 
 </details>
 
@@ -129,7 +129,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: KPC 기출검색 자료의 제121회 정보관리기술사 로지컬 DW 관련 문항. 상세 원문 및 Q-net 원문은 확인하지 못한 상태.
+- 출제 이력: 제121회 정보관리기술사 로지컬 DW 관련 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 세부 문항·배점 미확인.
 - Trino 공식 문서, [Pushdown](https://trino.io/docs/current/optimizer/pushdown.html)
 - W3C, [Data Catalog Vocabulary (DCAT) Version 3](https://www.w3.org/TR/vocab-dcat-3/)
 

@@ -5,8 +5,10 @@ date: "2026-09-24T22:50:00+09:00"
 tags:
   - "notes-security"
 sidebar:
+  label: "054. SIEM(Security Information and Event Management)"
   badge:
     text: "기초"
+    variant: note
 extra:
   model: "GPT-6"
   keyword_grade: "기초"
@@ -18,19 +20,19 @@ extra:
 
 ## 30초 인출
 
-- **본질**: SIEM은 여러 보안 로그를 중앙에서 모아 검색·분석하고 보안 이벤트 탐지와 조사를 지원하는 플랫폼.
-- **메커니즘**: 로그 생성·수집 → 정규화·저장 → 상관분석·경보 → 분석자 조사 → 대응 도구와 필요 시 연계.
-- **핵심**: 유효한 탐지는 로그 품질·탐지 규칙·관제 절차의 결합에 좌우.
+- **본질** : SIEM은 여러 보안 로그를 중앙에서 모아 검색·분석하고 보안 이벤트 탐지와 조사를 지원하는 플랫폼.
+- **메커니즘** : 로그 생성·수집 → 정규화·저장 → 상관분석·경보 → 분석자 조사 → 대응 도구와 필요 시 연계.
+- **핵심** : 유효한 탐지는 로그 품질·탐지 규칙·관제 절차의 결합에 좌우.
 
 <details><summary>핵심 용어</summary>
 
-- **SIEM(Security Information and Event Management)**: 다양한 로그를 중앙에 수집해 분석·경보하는 보안 정보·이벤트 관리 플랫폼.
-- **SOAR(Security Orchestration, Automation and Response)**: 보안 도구와 절차를 조정하고 반복 대응의 자동화를 지원하는 방식·플랫폼.
-- **SOC(Security Operations Center)**: 보안 경보를 감시·분석하고 사고 대응을 조정하는 조직·운영 기능.
-- **정규화(Normalization)**: 서로 다른 로그 필드와 표현을 분석에 사용할 공통 구조로 변환하는 처리.
-- **상관분석(Correlation Analysis)**: 여러 이벤트 사이의 시간·주체·대상 관계를 찾아 사건 후보를 식별하는 분석.
-- **UEBA(User and Entity Behavior Analytics)**: 사용자·시스템 개체의 행위 기준선과 변화를 분석하는 기능.
-- **NIST(National Institute of Standards and Technology)**: 미국 연방 기술표준 기관으로 로그관리 지침을 발간.
+- **SIEM(Security Information and Event Management)** : 다양한 로그를 중앙에 수집해 분석·경보하는 보안 정보·이벤트 관리 플랫폼.
+- **SOAR(Security Orchestration, Automation and Response)** : 보안 도구와 절차를 조정하고 반복 대응의 자동화를 지원하는 방식·플랫폼.
+- **SOC(Security Operations Center)** : 보안 경보를 감시·분석하고 사고 대응을 조정하는 조직·운영 기능.
+- **정규화(Normalization)** : 서로 다른 로그 필드와 표현을 분석에 사용할 공통 구조로 변환하는 처리.
+- **상관분석(Correlation Analysis)** : 여러 이벤트 사이의 시간·주체·대상 관계를 찾아 사건 후보를 식별하는 분석.
+- **UEBA(User and Entity Behavior Analytics)** : 사용자·시스템 개체의 행위 기준선과 변화를 분석하는 기능.
+- **NIST(National Institute of Standards and Technology)** : 미국 연방 기술표준 기관으로 로그관리 지침을 발간.
 </details>
 
 ---
@@ -39,7 +41,7 @@ extra:
 
 ---
 
-> SIEM의 개념과 로그 수집·분석 흐름, 관제 운영 시 고려사항을 설명하시오. (예상)
+> SIEM의 개념과 로그 수집·분석 흐름, 관제 운영 시 고려사항을 설명하시오. (예상·10점)
 
 ---
 
@@ -49,7 +51,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **SIEM(Security Information and Event Management)**은 다양한 로그를 중앙에 수집해 분석·경보하는 보안 정보·이벤트 관리 플랫폼. |
+| 정의 | **SIEM(Security Information and Event Management)** 은 다양한 로그를 중앙에 수집해 분석·경보하는 보안 정보·이벤트 관리 플랫폼. |
 | 목적 | 분산된 이벤트의 연관 분석과 침해사고 조사에 필요한 가시성·근거 제공. |
 
 ### Ⅱ. 로그 처리·분석 흐름
@@ -76,7 +78,7 @@ extra:
 
 ---
 
-> SIEM(Security Information and Event Management)과 SOAR(Security Orchestration, Automation and Response)를 비교하고, 침해 탐지·대응을 위한 연계방안을 설명하시오. (제135회 1교시 5번 취지 반영)
+> SIEM(Security Information and Event Management)과 SOAR(Security Orchestration, Automation and Response)를 비교하고, 침해 탐지·대응을 위한 연계방안을 설명하시오. (제135회 1교시 5번 취지 반영) (예상·25점)
 
 ---
 
@@ -86,7 +88,7 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **SIEM(Security Information and Event Management)**은 다양한 로그를 중앙에 수집해 분석·경보하는 보안 정보·이벤트 관리 플랫폼. |
+| 정의 | **SIEM(Security Information and Event Management)** 은 다양한 로그를 중앙에 수집해 분석·경보하는 보안 정보·이벤트 관리 플랫폼. |
 | 목적 | 분산된 이벤트의 연관 분석과 침해사고 조사에 필요한 가시성·근거 제공. |
 
 ## Ⅱ. 구성과 탐지 흐름

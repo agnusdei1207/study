@@ -3,7 +3,7 @@ sidebar:
   order: 128
   label: "128. 데이터베이스 (Database)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 128
 title: "데이터베이스(Database)의 특성·3단계 스키마·데이터 독립성"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "128"
 ---
 
@@ -24,17 +24,17 @@ extra:
 
 ## 30초 인출
 
-- 본질: **데이터베이스**는 조직의 업무에 필요한 데이터를 통합해 저장하고 함께 사용하는 데이터 집합
+- 본질: **데이터베이스는** 조직의 업무에 필요한 데이터를 통합해 저장하고 함께 사용하는 데이터 집합
 - 메커니즘: 외부·개념·내부 스키마와 사상으로 사용자 관점과 저장 구조를 분리
 - 판단: 개념 스키마 변경은 논리적 독립성, 내부 스키마 변경은 물리적 독립성의 대상
 
 <details>
 <summary>핵심 용어</summary>
 
-- **데이터베이스(Database)**: 여러 사용자가 함께 이용하도록 통합·저장·관리하는 운영 데이터의 집합
-- **ANSI/SPARC 3단계 스키마**: 외부·개념·내부 스키마를 분리하고 사상으로 연결하는 구조
-- **논리적 데이터 독립성**: 개념 스키마의 변경 영향을 외부 스키마에 미치지 않게 하는 성질
-- **물리적 데이터 독립성**: 내부 저장 구조의 변경 영향을 개념 스키마에 미치지 않게 하는 성질
+- **데이터베이스(Database)** : 여러 사용자가 함께 이용하도록 통합·저장·관리하는 운영 데이터의 집합
+- **ANSI/SPARC 3단계 스키마** : 외부·개념·내부 스키마를 분리하고 사상으로 연결하는 구조
+- **논리적 데이터 독립성** : 개념 스키마의 변경 영향을 외부 스키마에 미치지 않게 하는 성질
+- **물리적 데이터 독립성** : 내부 저장 구조의 변경 영향을 개념 스키마에 미치지 않게 하는 성질
 
 </details>
 
@@ -126,7 +126,7 @@ extra:
 
 - [IBM 데이터베이스 개요](https://www.ibm.com/think/topics/database): 데이터베이스와 DBMS의 역할 및 관계형·비관계형 저장 방식
 
-- 출제 이력: KPC 기출검색 자료 기준 제130회 정보관리기술사 2교시 관련 문항. Q-net 원문은 확인하지 못한 상태.
+- 출제 이력: 제130회 정보관리기술사 2교시 관련 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
 - A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed., McGraw-Hill.
 - R. Elmasri, S. Navathe, *Fundamentals of Database Systems*, 7th ed., Pearson.
 

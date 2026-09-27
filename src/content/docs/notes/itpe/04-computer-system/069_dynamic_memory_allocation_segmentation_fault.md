@@ -3,7 +3,7 @@ sidebar:
   order: 69
   label: "069. 동적 메모리·세그멘테이션 오류"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "동적 메모리 할당과 세그멘테이션 오류"
 author: "GPT-6"
@@ -13,7 +13,7 @@ tags:
 weight: 69
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "069"
 ---
 
@@ -29,14 +29,14 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **동적 메모리 할당 (Dynamic Memory Allocation)**: 프로그램 실행 중 필요한 크기의 메모리 영역을 요청하고 사용 후 반환하는 방식
-- **힙 (Heap)**: 실행 중 동적으로 생성한 객체의 저장에 쓰이는 프로세스 메모리 영역
-- **세그멘테이션 오류 (Segmentation Fault)**: 잘못된 메모리 참조에 대해 운영체제가 프로세스에 보내는 오류 신호 또는 그로 인한 실행 오류
-- **SIGSEGV (Segmentation Violation)**: Linux에서 잘못된 메모리 참조를 알리는 신호 이름
-- **MMU (Memory Management Unit)**: 가상 주소 변환과 메모리 접근 권한 확인을 수행하는 하드웨어 기능
-- **댕글링 포인터 (Dangling Pointer)**: 수명이 끝난 객체 또는 반환된 메모리를 계속 가리키는 포인터
-- **정의되지 않은 동작 (Undefined Behavior, UB)**: 언어 규칙에 맞지 않는 동작으로 결과를 보장할 수 없는 상태
-- **RAII (Resource Acquisition Is Initialization)**: C++에서 객체 수명과 자원 획득·해제를 연결하는 관리 관용구
+- **동적 메모리 할당 (Dynamic Memory Allocation)** : 프로그램 실행 중 필요한 크기의 메모리 영역을 요청하고 사용 후 반환하는 방식
+- **힙 (Heap)** : 실행 중 동적으로 생성한 객체의 저장에 쓰이는 프로세스 메모리 영역
+- **세그멘테이션 오류 (Segmentation Fault)** : 잘못된 메모리 참조에 대해 운영체제가 프로세스에 보내는 오류 신호 또는 그로 인한 실행 오류
+- **SIGSEGV (Segmentation Violation)** : Linux에서 잘못된 메모리 참조를 알리는 신호 이름
+- **MMU (Memory Management Unit)** : 가상 주소 변환과 메모리 접근 권한 확인을 수행하는 하드웨어 기능
+- **댕글링 포인터 (Dangling Pointer)** : 수명이 끝난 객체 또는 반환된 메모리를 계속 가리키는 포인터
+- **정의되지 않은 동작 (Undefined Behavior, UB)** : 언어 규칙에 맞지 않는 동작으로 결과를 보장할 수 없는 상태
+- **RAII (Resource Acquisition Is Initialization)** : C++에서 객체 수명과 자원 획득·해제를 연결하는 관리 관용구
 </details>
 
 ---
@@ -156,8 +156,8 @@ Linux 문서는 특정 하드웨어 예외가 어떤 신호로 전달되는지�
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**: 제136회 3교시 동적 메모리 할당 관련 문항
-- **검증 출처**:
+- **기출 이력** : 제136회 3교시 동적 메모리 할당 관련 문항
+- **검증 출처** :
   - [Linux Kernel: Page Tables and Page Faults](https://docs.kernel.org/mm/page_tables.html)
   - [Linux man-pages: signal(7)](https://man7.org/linux/man-pages/man7/signal.7.html)
   - [SEI CERT C: ARR30-C, Out-of-bounds pointers and subscripts](https://wiki.sei.cmu.edu/confluence/spaces/c/pages/87152322/ARR30-C.%2BDo%2Bnot%2Bform%2Bor%2Buse%2Bout-of-bounds%2Bpointers%2Bor%2Barray%2Bsubscripts)

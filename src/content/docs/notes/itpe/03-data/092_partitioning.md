@@ -3,7 +3,7 @@ sidebar:
   order: 92
   label: "092. 파티셔닝 (Partitioning)"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "데이터베이스 파티셔닝(Partitioning) 전략과 데이터 분할 아키텍처"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 92
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "092"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **테이블 파티셔닝**은 한 논리 테이블의 행을 키 기준에 따라 여러 물리 단위로 나누는 DBMS 기능
+- 본질: **테이블 파티셔닝은** 한 논리 테이블의 행을 키 기준에 따라 여러 물리 단위로 나누는 DBMS 기능
 - 메커니즘: 파티션 키로 행을 배치하고, 조건에 맞는 파티션만 읽도록 제거(pruning)하며 관리 단위를 분리
 - 선택: 범위·목록·해시 등은 키 분포와 질의 패턴에 맞춰 정하며, 실제 지원 범위는 DBMS별 확인
 
@@ -140,7 +140,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 정보관리기술사 제127회 2교시: 파티셔닝의 개념, 분할 방식 및 인덱스 파티션
+- 정보관리기술사 제127회 2교시: 파티셔닝의 개념, 분할 방식 및 인덱스 파티션 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - PostgreSQL, [Table Partitioning](https://www.postgresql.org/docs/current/ddl-partitioning.html)
 - Oracle, [VLDB and Partitioning Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/vldbg/)
 

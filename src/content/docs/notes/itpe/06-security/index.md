@@ -56,7 +56,7 @@ weight: 6
 ```text
 자산·업무 → 위협·취약점 → 위험 = 가능성 × 영향
                          │
-        Identify → Protect → Detect → Respond → Recover
+        Govern → Identify → Protect → Detect → Respond → Recover
                          │
    사람·프로세스·기술 + 관리적·물리적·기술적 통제
                          │

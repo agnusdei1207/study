@@ -6,10 +6,10 @@ tags:
   - "notes-it-strategy"
 sidebar:
   badge:
-    text: "서브"
+    text: "응용"
 extra:
   model: "GPT-6"
-  keyword_grade: "서브"
+  keyword_grade: "응용"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -27,7 +27,7 @@ extra:
 - **FP(Function Point)** : 사용자 요구에서 도출한 소프트웨어 기능 규모를 측정하는 단위
 - **ILF(Internal Logical File)** : 측정 대상 애플리케이션이 유지하는 사용자 인식 논리 데이터 그룹
 - **EIF(External Interface File)** : 다른 애플리케이션이 유지하고 측정 대상은 참조하는 사용자 인식 논리 데이터 그룹
-- **EI(External Input)** : 애플리케이션 경계 밖에서 데이터를 받아 내부 논리 데이터를 갱신하는 트랜잭션 기능
+- **EI(External Input)** : 애플리케이션 경계 밖에서 들어온 데이터·제어정보로 ILF를 유지하거나 시스템 동작을 변경하는 트랜잭션 기능
 - **EO(External Output)** : 계산·파생 처리 등을 거쳐 경계 밖으로 정보를 제공하는 트랜잭션 기능
 - **EQ(External Inquiry)** : 큰 파생 처리 없이 데이터를 조회해 경계 밖으로 제공하는 트랜잭션 기능
 - **COCOMO(Constructive Cost Model)** : 소프트웨어 규모와 프로젝트 특성을 입력해 개발 노력 등을 추정하는 모형

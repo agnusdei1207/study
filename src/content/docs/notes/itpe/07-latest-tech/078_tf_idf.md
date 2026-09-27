@@ -4,6 +4,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "078. TF-IDF(Term Frequency-Inverse Document Frequency)"
+  order: 78
   badge:
     text: "기초"
 extra:
@@ -128,12 +130,16 @@ TF-IDF는 문서 집합을 문서-단어 행렬로 나타낼 때 각 문서의 �
 
 문서 전체에 있는 단어는 고전식에서 `idf=0`이 되며, 스무딩식을 쓰면 값이 달라진다. 같은 문서에서 반복되는 단어는 TF 정의에 따라 가중치가 커질 수 있어 정규화 설정이 중요하다.
 
+예를 들어 문서 2개에서 `사과`가 첫 문서에 2번, 둘째 문서에는 없고 `과일`이 두 문서에 모두 1번씩 있다면, 원빈도 TF와 자연로그 IDF 기준 첫 문서의 `사과` 가중치는 `2×log(2/1)=2log2`, `과일` 가중치는 `1×log(2/2)=0`이다. 이 값은 설명용 예시이며 평활화·정규화를 적용하면 달라진다.
+
 ## Ⅳ. 기술사적 제언
 | 한계 | 해결 방안 |
 |---|---|
 | TF-IDF는 어휘 일치에 의존해 동의어·문맥·어순을 직접 반영하지 못하고, 설정 차이로 점수가 달라질 수 있음 | 형태소·토큰화와 TF/IDF·정규화 설정을 명시하고, 의미 기반 검색이 필요한 과업은 임베딩 검색과 결합해 검증한다. |
 
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
+
 - 기출: 제132회 2교시 3번, 주어진 문서별 단어 횟수로 TF-IDF를 계산하는 과정·결과와 IDF 계산식.
 - Salton et al., [A Theory of Term Importance in Automatic Text Analysis](https://asistdl.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/asi.4630260106), 1975.
 - scikit-learn, [TfidfVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) — 실무 설정에서 평활화·정규화 방식이 달라지는 사례.

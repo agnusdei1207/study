@@ -4,6 +4,8 @@ date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-latest-tech"
 sidebar:
+  label: "095. PR(Precision Recall) 곡선"
+  order: 95
   badge:
     text: "기초"
 extra:
@@ -130,6 +132,8 @@ AP는 정밀도와 재현율 순위 정보를 요약하는 한 방식이다. AUP
 | PR 곡선이나 AP 하나만으로 운영 임계값을 정하면 비용 차이를 놓칠 수 있음 | 검증 데이터에서 오탐·미탐 비용과 처리 용량을 반영해 임계값을 정하고, 기간별 양성 비율 변화에 맞춰 재평가한다. |
 
 ## 출제 이력과 검증 출처
+- 아래 회차·문항은 기존 노트의 기록이며 공식 문제지 원문과 대조하지 못했다.
+
 - 제135회 1교시 1번: “PR(Precision Recall) 곡선과 ROC(Receiver Operating Characteristic) 곡선 비교”.
 - Davis & Goadrich, [The Relationship Between Precision-Recall and ROC Curves](https://doi.org/10.1145/1143844.1143874), ICML 2006.
 - [scikit-learn: Precision-Recall](https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html), PR 곡선 및 AP 산출 예시.

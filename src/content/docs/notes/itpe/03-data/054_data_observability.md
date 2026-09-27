@@ -3,7 +3,7 @@ sidebar:
   order: 54
   label: "054. 데이터 관측가능성"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "데이터 관측가능성 (Data Observability)"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 54
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "054"
 ---
 
@@ -23,16 +23,16 @@ extra:
 
 ## 30초 인출
 
-- 본질: **데이터 관측가능성(Data Observability)**은 데이터 상태와 파이프라인 정보를 관찰해 품질 이상과 원인을 파악하는 능력
+- 본질: **데이터 관측가능성(Data Observability)은** 데이터 상태와 파이프라인 정보를 관찰해 품질 이상과 원인을 파악하는 능력
 - 메커니즘: 갱신 시점·건수·구조·값 분포·계보를 확인해 이상을 찾고 영향받는 데이터를 추적
 
 <details><summary>핵심 용어</summary>
 
-- **데이터 관측가능성(Data Observability)**: 메타데이터와 데이터 검사를 이용해 데이터 상태 및 이상 원인을 파악하는 운영 능력
-- **데이터 계보(Data Lineage)**: 데이터의 출처, 변환, 소비 관계를 기록한 정보
-- **신선도(Freshness)**: 데이터가 기대한 시점에 도착하거나 갱신됐는지를 나타내는 특성
-- **스키마 변화(Schema Change)**: 데이터 구조나 타입의 변경
-- **OpenLineage**: 작업·실행·데이터셋 관계를 기록하기 위한 오픈 계보 메타데이터 표준
+- **데이터 관측가능성(Data Observability)** : 메타데이터와 데이터 검사를 이용해 데이터 상태 및 이상 원인을 파악하는 운영 능력
+- **데이터 계보(Data Lineage)** : 데이터의 출처, 변환, 소비 관계를 기록한 정보
+- **신선도(Freshness)** : 데이터가 기대한 시점에 도착하거나 갱신됐는지를 나타내는 특성
+- **스키마 변화(Schema Change)** : 데이터 구조나 타입의 변경
+- **OpenLineage** : 작업·실행·데이터셋 관계를 기록하기 위한 오픈 계보 메타데이터 표준
 
 </details>
 
@@ -144,4 +144,4 @@ flowchart TD
 
 ## 연결 토픽
 
-- [데이터 품질관리](./003_data_quality_management/) · [데이터 거버넌스](./006_data_governance/) · [데이터 패브릭](./074_data_fabric/)
+- [데이터 품질관리](./003_data_quality_management/) · [데이터 거버넌스](./006_data_governance/)

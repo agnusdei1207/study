@@ -24,18 +24,18 @@ weight: 27
 
 ## 30초 인출
 
-- 본질: **BST(Binary Search Tree)**는 왼쪽 서브트리 키가 작고 오른쪽 서브트리 키가 큰 순서를 유지하는 이진 트리
+- 본질: **BST(Binary Search Tree)는** 왼쪽 서브트리 키가 작고 오른쪽 서브트리 키가 큰 순서를 유지하는 이진 트리
 - 메커니즘: 키 비교 → 좌·우 중 한 서브트리로 이동 → 원하는 키 또는 삽입 위치 확인, **중위 순회(In-order Traversal)** 시 오름차순 출력
 - 효과: 동적 키 탐색·갱신에 활용, 높이 제한이 필요하면 **자가 균형 트리(AVL·Red-Black Tree)** 검토
 
 <details>
 <summary>핵심 용어</summary>
 
-- **BST(Binary Search Tree)**: 각 노드에서 왼쪽 서브트리의 모든 키 < 부모 키 < 오른쪽 서브트리의 모든 키를 유지하는 이진 트리
-- **In-order Traversal(중위 순회)**: `Left → Root → Right` 순으로 노드를 방문하여 오름차순 키를 추출하는 기법
-- **Skewed Tree(편향 트리)**: 정렬된 데이터 연속 삽입으로 트리가 선형 리스트화되어 높이가 N이 된 상태
-- **AVL Tree**: 좌우 서브트리의 높이 차(Balance Factor)를 1 이하로 엄격히 제한하는 자가 균형 트리
-- **Red-Black Tree**: 노드 색상과 5가지 규칙으로 완화된 균형을 유지하며 O(log N)을 보장하는 트리
+- **BST(Binary Search Tree)** : 각 노드에서 왼쪽 서브트리의 모든 키 < 부모 키 < 오른쪽 서브트리의 모든 키를 유지하는 이진 트리
+- **In-order Traversal(중위 순회)** : `Left → Root → Right` 순으로 노드를 방문하여 오름차순 키를 추출하는 기법
+- **Skewed Tree(편향 트리)** : 정렬된 데이터 연속 삽입으로 트리가 선형 리스트화되어 높이가 N이 된 상태
+- **AVL Tree** : 좌우 서브트리의 높이 차(Balance Factor)를 1 이하로 엄격히 제한하는 자가 균형 트리
+- **Red-Black Tree** : 노드 색상과 5가지 규칙으로 완화된 균형을 유지하며 O(log N)을 보장하는 트리
 
 </details>
 
@@ -71,14 +71,14 @@ flowchart TB
 
 ### Ⅲ. 연산·균형 통제
 
-- **편향 방지**: 정렬 키 연속 유입 시 AVL 또는 **Red-Black Tree**의 균형 조정으로 높이를 제한
+- **편향 방지** : 정렬 키 연속 유입 시 AVL 또는 **Red-Black Tree의** 균형 조정으로 높이를 제한
 - 삭제 무결성: 자식 2개 노드 삭제 시 **In-order Successor** 승계로 불변식 보존
 - 한 줄 제언: 입력 순서에 따라 높이가 커질 수 있는 운영 인덱스에는 자가 균형 트리를 적용해 최악 탐색시간을 제한
 ---
 
 ## 2~4교시 예상문제 (25점)
 
-> 이진 탐색 트리(BST)의 순서 불변식과 탐색·삽입·삭제 메커니즘을 설명하고, 입력 순서가 트리 높이와 연산 성능에 미치는 영향을 제시하시오. (25점, 예상)
+> 이진 탐색 트리(BST)의 순서 불변식과 탐색·삽입·삭제 메커니즘을 설명하고, 입력 순서가 트리 높이와 연산 성능에 미치는 영향을 제시하시오. (예상·25점)
 
 ---
 
@@ -95,7 +95,7 @@ flowchart TB
 
 ## Ⅱ. BST 구조 및 주요 연산 메커니즘
 
-> 삽입·삭제 후에도 왼쪽·오른쪽 **전체 서브트리**의 순서 불변식이 보존되어야 하며, 자식 2개 노드 삭제 시의 대체자 선정이 핵심이다.
+> 삽입·삭제 후에도 왼쪽·오른쪽 **전체 서브트리의** 순서 불변식이 보존되어야 하며, 자식 2개 노드 삭제 시의 대체자 선정이 핵심이다.
 
 ```mermaid
 flowchart TB
@@ -112,7 +112,7 @@ flowchart TB
 |---|---|---|---|
 | **Search** | O(log N) | O(N) | 키 비교 연산 일관성 유지 |
 | **Insert** | O(log N) | O(N) | 중복 키 정책(불허/카운팅/덮어쓰기) |
-| **Delete** | O(log N) | O(N) | **In-order Successor**(우측 서브트리 최솟값) 대체 무결성 |
+| **Delete** | O(log N) | O(N) | **In-order Successor** (우측 서브트리 최솟값) 대체 무결성 |
 
 ## Ⅲ. BST, AVL Tree, Red-Black Tree의 비교
 
@@ -141,7 +141,7 @@ flowchart TB
 |---|---|
 | 입력 순서와 탐색·갱신 비율을 고려하지 않고 트리 구현을 일괄 선택함 | 입력 순서가 예측 가능하거나 최악 탐색시간 제한이 필요한 인덱스에는 자가 균형 트리 우선 검토, 소규모 정적 데이터에는 기본 BST와 비용 비교 |
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [MIT OpenCourseWare, Binary Search Trees](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/resources/lecture-5-binary-search-trees-bst-sort/).
 

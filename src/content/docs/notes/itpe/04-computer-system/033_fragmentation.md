@@ -133,7 +133,7 @@ flowchart TB
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [Linux Kernel: Memory Management Concepts](https://docs.kernel.org/admin-guide/mm/concepts.html)
 - [Linux Kernel: VM Sysctl Documentation](https://docs.kernel.org/admin-guide/sysctl/vm.html)

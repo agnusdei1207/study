@@ -68,7 +68,7 @@ extra:
 데이터 송신 → ACK 확인
 ```
 
-- **RTS/CTS**는 숨은 단말 문제에 사용할 수 있으나 모든 프레임의 필수 단계는 아님.
+- **RTS/CTS** 는 숨은 단말 문제에 사용할 수 있으나 모든 프레임의 필수 단계는 아님.
 - 제언: 충돌·재전송과 제어 프레임 부담을 함께 측정해 RTS/CTS 사용 범위를 결정.
 
 ---
@@ -136,7 +136,7 @@ extra:
 
 ---
 
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - [IEEE 802.11 DCF·CSMA/CA 설명 자료](https://www.ieee802.org/11/Documents/DocumentArchives/1995_docs/1195059_scan.pdf)
 - [IEEE 802.11 숨은 단말·RTS/CTS·NAV 튜토리얼](https://www.ieee802.org/11/Documents/DocumentArchives/1996_docs/1196049C_scan.pdf)

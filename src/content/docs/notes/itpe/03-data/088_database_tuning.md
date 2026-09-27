@@ -3,7 +3,7 @@ sidebar:
   order: 88
   label: "088. 데이터베이스 튜닝 (Database Tuning)"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "데이터베이스 튜닝 (Database Tuning) 및 3대 계층별 접근 전략"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 88
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "088"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 ## 30초 인출
 
-- 본질: **데이터베이스 튜닝**은 측정된 성능 병목을 찾아 데이터 구조·DBMS 자원·질의 접근을 개선하는 작업
+- 본질: **데이터베이스 튜닝은** 측정된 성능 병목을 찾아 데이터 구조·DBMS 자원·질의 접근을 개선하는 작업
 - 메커니즘: 기준 부하와 지표 측정 → 원인 분석 → 변경 → 동일 조건의 전후 검증
 - 접근 영역: 데이터 모델·DBMS 환경·SQL과 인덱스를 함께 살피되 병목 근거에 맞춰 조정
 
@@ -150,7 +150,7 @@ flowchart TD
 
 ## 출제 이력과 검증 출처
 
-- 정보관리기술사 제127회 1교시: 데이터베이스 튜닝의 영역과 절차
+- 정보관리기술사 제127회 1교시: 데이터베이스 튜닝의 영역과 절차 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
 - Oracle, [Database Performance Tuning Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/tgdba/)
 - PostgreSQL, [Using EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html)
 - PostgreSQL, [Indexes](https://www.postgresql.org/docs/current/indexes.html)

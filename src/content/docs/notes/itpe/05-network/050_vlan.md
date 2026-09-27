@@ -1,10 +1,16 @@
 ---
 title: "VLAN(Virtual LAN)"
-author: "GPT-6"
+author: "Codex"
 date: "2026-09-24T21:25:00+09:00"
 tags:
   - "notes-network"
+sidebar:
+  label: "050. VLAN(Virtual LAN)"
+  badge:
+    text: "응용"
+    variant: note
 extra:
+  keyword_grade: "응용"
   model: "GPT-6"
 
 ---
@@ -21,11 +27,11 @@ extra:
 <details>
 <summary>핵심 용어</summary>
 
-- **VLAN (Virtual Local Area Network)**: 브리지 네트워크를 논리적 브로드캐스트 도메인으로 나누는 기능
-- **Access port**: 단말 트래픽을 하나의 VLAN에 연결하는 스위치 포트
-- **Trunk port**: 여러 VLAN 프레임을 하나의 링크로 전달하며 VLAN 식별 정보를 유지하는 포트
-- **IEEE 802.1Q**: 브리지 네트워크에서 VLAN 식별을 포함한 태그 프레임 처리를 규정하는 표준
-- **Inter-VLAN routing**: 서로 다른 IP 서브넷/VLAN 사이의 패킷을 라우터나 L3 스위치가 전달하는 기능
+- **VLAN (Virtual Local Area Network)** : 브리지 네트워크를 논리적 브로드캐스트 도메인으로 나누는 기능
+- **Access port** : 단말 트래픽을 하나의 VLAN에 연결하는 스위치 포트
+- **Trunk port** : 여러 VLAN 프레임을 하나의 링크로 전달하며 VLAN 식별 정보를 유지하는 포트
+- **IEEE 802.1Q** : 브리지 네트워크에서 VLAN 식별을 포함한 태그 프레임 처리를 규정하는 표준
+- **Inter-VLAN routing** : 서로 다른 IP 서브넷/VLAN 사이의 패킷을 라우터나 L3 스위치가 전달하는 기능
 
 </details>
 
@@ -33,7 +39,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> VLAN의 개념과 브로드캐스트 도메인 분리 및 802.1Q 태그의 역할을 설명하시오. (예상)
+> VLAN의 개념과 브로드캐스트 도메인 분리 및 802.1Q 태그의 역할을 설명하시오. (예상·10점)
 
 ---
 
@@ -73,7 +79,7 @@ VLAN 20                         VLAN 20
 
 ## 2~4교시 예상문제 (25점)
 
-> VLAN의 논리 분할과 802.1Q 트렁크 동작을 설명하고, IP 서브넷과의 관계 및 구성 시 보안 한계를 제시하시오. (예상)
+> VLAN의 논리 분할과 802.1Q 트렁크 동작을 설명하고, IP 서브넷과의 관계 및 구성 시 보안 한계를 제시하시오. (예상·25점)
 
 ---
 

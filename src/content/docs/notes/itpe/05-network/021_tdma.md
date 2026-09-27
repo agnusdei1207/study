@@ -3,7 +3,7 @@ sidebar:
   order: 21
   label: "021. TDMA"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "TDMA"
 author: "Codex"
@@ -13,7 +13,7 @@ tags:
 weight: 21
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "021"
 ---
 

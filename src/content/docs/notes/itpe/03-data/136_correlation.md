@@ -3,7 +3,7 @@ sidebar:
   order: 136
   label: "136. 상관관계 (Correlation)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 author: "OpenAI Codex"
 category: "03-data"
@@ -14,7 +14,7 @@ weight: 136
 title: "상관관계(Correlation)의 의미와 피어슨·스피어만 계수"
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "136"
 ---
 
@@ -24,18 +24,18 @@ extra:
 
 ## 30초 인출
 
-- 본질: **상관관계**는 두 변수의 연관성 방향과 정도를 나타내는 통계적 개념
+- 본질: **상관관계는** 두 변수의 연관성 방향과 정도를 나타내는 통계적 개념
 - 메커니즘: Pearson은 원자료의 선형 연관성, Spearman은 순위의 단조 연관성을 측정
 - 주의: 상관은 인과를 입증하지 않으며 산점도·자료 생성 맥락 확인 필요
 
 <details>
 <summary>핵심 용어</summary>
 
-- **상관관계(Correlation)**: 두 변수의 변화가 함께 나타나는 통계적 연관성
-- **피어슨 상관계수(Pearson Correlation Coefficient)**: 원자료의 선형 연관성 방향과 강도를 나타내는 계수
-- **스피어만 순위상관계수(Spearman Rank Correlation Coefficient)**: 순위 사이의 단조 연관성을 나타내는 계수
-- **허위상관(Spurious Correlation)**: 인과가 확립되지 않은 두 변수 사이에 관측된 연관성
-- **편상관(Partial Correlation)**: 지정한 변수와의 선형 관계를 제거한 뒤 두 변수 간 선형 연관성을 측정하는 방법
+- **상관관계(Correlation)** : 두 변수의 변화가 함께 나타나는 통계적 연관성
+- **피어슨 상관계수(Pearson Correlation Coefficient)** : 원자료의 선형 연관성 방향과 강도를 나타내는 계수
+- **스피어만 순위상관계수(Spearman Rank Correlation Coefficient)** : 순위 사이의 단조 연관성을 나타내는 계수
+- **허위상관(Spurious Correlation)** : 인과가 확립되지 않은 두 변수 사이에 관측된 연관성
+- **편상관(Partial Correlation)** : 지정한 변수와의 선형 관계를 제거한 뒤 두 변수 간 선형 연관성을 측정하는 방법
 
 </details>
 
@@ -130,4 +130,4 @@ extra:
 
 ## 연결 토픽
 
-- 연관 토픽: [인과관계](./139_causation.md), [독립표본 t-검정](./130_independent_t_test.md), [회귀분석](./092_regression_analysis.md)
+- 연관 토픽: [인과관계](./139_causation.md), [독립표본 t-검정](./130_independent_t_test.md), [다중회귀분석](./121_multiple_regression_analysis.md)

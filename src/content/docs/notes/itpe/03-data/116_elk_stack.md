@@ -3,7 +3,7 @@ sidebar:
   order: 116
   label: "116. ELK 스택"
   badge:
-    text: "기초"
+    text: "서브"
     variant: note
 title: "ELK(Elasticsearch·Logstash·Kibana) 스택 기반 분산 로그 분석 및 관측성 플랫폼"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 116
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "서브"
   question_no: "116"
 ---
 
@@ -21,15 +21,15 @@ extra:
 
 <div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>빅데이터 플랫폼·검색엔진</span><strong>ELK 스택</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 
 
 - 본질: **Elastic Stack은 로그·이벤트를 수집·변환·색인·검색·시각화해 운영 상태를 분석하는 데이터 플랫폼**
 - 암기: `비-로그-엘-키` (Beats, Logstash, Elasticsearch, Kibana) / `인-샤-레-역` (인덱스, 샤드, 레플리카, 역색인) / `핫-웜-콜-프` (ILM: Hot, Warm, Cold, Frozen)
 - 판단축:
-  - **Beats vs Logstash**: 각 서버에는 CPU/메모리 오버헤드가 적은 경량 Go 에이전트(Filebeat)를 배포하고, 무거운 JVM 기반 Logstash는 중앙 집중 클러스터로 격리
-  - **로그 버퍼링 (Kafka 연계)**: 피크 시간대 대량 로그 유입 시 ES 클러스터의 OOM 장애를 차단하기 위해 Kafka 메시지 큐를 중간 버퍼로 배치
+  - **Beats vs Logstash** : 각 서버에는 CPU/메모리 오버헤드가 적은 경량 Go 에이전트(Filebeat)를 배포하고, 무거운 JVM 기반 Logstash는 중앙 집중 클러스터로 격리
+  - **로그 버퍼링 (Kafka 연계)** : 피크 시간대 대량 로그 유입 시 ES 클러스터의 OOM 장애를 차단하기 위해 Kafka 메시지 큐를 중간 버퍼로 배치
 - 주의: 샤드 수와 크기는 검색·색인 부하, 데이터 보존, 노드 자원을 고려해 설계하며, ILM은 인덱스 수명주기 요구가 있을 때 정책에 맞춰 구성
 <details><summary>핵심 용어</summary>
 
@@ -75,7 +75,7 @@ extra:
 | **4. 색인·저장** | 용어와 문서 간 역색인을 이용한 전문 검색 | Elasticsearch (Lucene) |
 | **5. 시각화** | 실시간 KQL 쿼리 및 대시보드 | Kibana |
 
-- **역색인(Inverted Index)**: 문서 전체 스캔 대신 단어(Term)를 키로 문서 ID 포스팅 리스트를 매핑하여 초고속 전문 검색 실현
+- **역색인(Inverted Index)** : 문서 전체 스캔 대신 단어(Term)를 키로 문서 ID 포스팅 리스트를 매핑하여 초고속 전문 검색 실현
 
 ### Ⅴ. 대용량 운영을 위한 인덱스 수명주기 관리(ILM)
 - Hot(NVMe, 활발한 쓰기) $\rightarrow$ Warm(읽기전용, 세그먼트 병합) $\rightarrow$ Cold(스냅샷 마운트) $\rightarrow$ Delete(보관주기 만료 삭제)
@@ -96,9 +96,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 마이크로서비스 아키텍처(MSA) 및 클라우드 환경에서 시스템 통합 모니터링을 위한 ELK(Elasticsearch, Logstash, Kibana) 스택의 개념과 아키텍처를 제시하고, Elasticsearch의 역색인(Inverted Index) 구조 및 대규모 로그 운영을 위한 인덱스 수명주기 관리(ILM) 방안을 설명하시오. (25점)
-
-> (25점, 예상)
+> 마이크로서비스 아키텍처(MSA) 및 클라우드 환경에서 시스템 통합 모니터링을 위한 ELK(Elasticsearch, Logstash, Kibana) 스택의 개념과 아키텍처를 제시하고, Elasticsearch의 역색인(Inverted Index) 구조 및 대규모 로그 운영을 위한 인덱스 수명주기 관리(ILM) 방안을 설명하시오. (예상·25점)
 
 ---
 
@@ -120,9 +118,9 @@ extra:
 
 #### 한줄 요약: 분산 환경 전반의 로그를 실시간 수집, 정제, 역색인 분산 검색, 시각화하는 오픈소스 기반 관측성 플랫폼
 
-- **배경**: 모놀리식에서 수백 개의 컨테이너 및 마이크로서비스(MSA)로 전환되면서, 서버별로 분산된 텍스트 로그를 개별 SSH 접속으로 추적하는 것이 불가능해짐
-- **정의**: 데이터를 수집하는 **Logstash/Beats**, 대규모 데이터를 역색인 구조로 저장·검색하는 **Elasticsearch**, 데이터를 탐색하고 시각화하는 **Kibana**로 구성된 통합 로그 분석 스택
-- **확장성**: 최근에는 단순 로그 분석을 넘어 APM(애플리케이션 성능 모니터링), SIEM(보안 정보 및 이벤트 관리)을 포괄하는 **통합 관측성(Observability) 플랫폼**으로 확장
+- **배경** : 모놀리식에서 수백 개의 컨테이너 및 마이크로서비스(MSA)로 전환되면서, 서버별로 분산된 텍스트 로그를 개별 SSH 접속으로 추적하는 것이 불가능해짐
+- **정의** : 데이터를 수집하는 **Logstash/Beats** , 대규모 데이터를 역색인 구조로 저장·검색하는 **Elasticsearch** , 데이터를 탐색하고 시각화하는 **Kibana로** 구성된 통합 로그 분석 스택
+- **확장성** : 최근에는 단순 로그 분석을 넘어 APM(애플리케이션 성능 모니터링), SIEM(보안 정보 및 이벤트 관리)을 포괄하는 **통합 관측성(Observability) 플랫폼으로** 확장
 
 ### Ⅱ. ELK 스택의 4대 핵심 구성요소 및 역할
 
@@ -139,7 +137,7 @@ extra:
 
 #### 한줄 요약: 용어에서 해당 용어가 포함된 문서 식별자로 연결하는 역색인으로 전문 검색을 지원
 
-- **원천 문서 vs 역색인 테이블 대조**:
+- **원천 문서 vs 역색인 테이블 대조** :
   - Doc 1: `"Spring Cloud Gateway Log"`
   - Doc 2: `"Spring Boot Microservice"`
 
@@ -152,10 +150,10 @@ extra:
 | **Microservice** | 1 | [Doc 2] |
 | **Spring** | 2 | [Doc 1, Doc 2] |
 
-- **전문 검색(Full-text Search) 원리**: 문서 전체를 순차 스캔하지 않고, Lucene의 용어 사전과 포스팅 리스트에서 "Spring"이 포함된 문서 식별자를 탐색
-- **샤딩(Sharding) 및 고가용성**:
-  - **Primary Shard**: 데이터 쓰기가 수행되는 원본 조각
-  - **Replica Shard**: 장애 시 즉시 승격되는 복제본으로, 읽기 쿼리 부하 분산 지원
+- **전문 검색(Full-text Search) 원리** : 문서 전체를 순차 스캔하지 않고, Lucene의 용어 사전과 포스팅 리스트에서 "Spring"이 포함된 문서 식별자를 탐색
+- **샤딩(Sharding) 및 고가용성** :
+  - **Primary Shard** : 데이터 쓰기가 수행되는 원본 조각
+  - **Replica Shard** : 장애 시 즉시 승격되는 복제본으로, 읽기 쿼리 부하 분산 지원
 
 ### Ⅳ. ELK 스택의 엔드투엔드 데이터 처리 파이프라인
 
@@ -167,11 +165,11 @@ extra:
 
 #### 한줄 요약: Input 수신 $\rightarrow$ Filter 구조화 $\rightarrow$ Output 색인 $\rightarrow$ Visual 표출의 4단계 라이프사이클
 
-1. **로그 수집 (Edge)**: 각 마이크로서비스 컨테이너의 stdout 로그를 `Filebeat`가 실시간 감지하여 Kafka 토픽으로 전송
-2. **버퍼링 및 디커플링 (Kafka)**: 갑작스러운 이벤트 트래픽 폭증 시 ES 클러스터 보호를 위한 완충 지대 역할
-3. **정제 및 정규화 (Logstash)**: Grok 필터로 비정형 로그 문자열을 JSON 키-값 구조로 파싱하고 타임스탬프 표준화
-4. **분산 색인 (Elasticsearch)**: 분산 노드의 메모리 인덱싱 버퍼에 적재 후 디스크 세그먼트로 Flush하여 불변 세그먼트 생성
-5. **표출 및 대응 (Kibana)**: 에러율 임계치 초과 시 Slack/이메일 Webhook 알림 자동 발송
+1. **로그 수집 (Edge)** : 각 마이크로서비스 컨테이너의 stdout 로그를 `Filebeat`가 실시간 감지하여 Kafka 토픽으로 전송
+2. **버퍼링 및 디커플링 (Kafka)** : 갑작스러운 이벤트 트래픽 폭증 시 ES 클러스터 보호를 위한 완충 지대 역할
+3. **정제 및 정규화 (Logstash)** : Grok 필터로 비정형 로그 문자열을 JSON 키-값 구조로 파싱하고 타임스탬프 표준화
+4. **분산 색인 (Elasticsearch)** : 분산 노드의 메모리 인덱싱 버퍼에 적재 후 디스크 세그먼트로 Flush하여 불변 세그먼트 생성
+5. **표출 및 대응 (Kibana)** : 에러율 임계치 초과 시 Slack/이메일 Webhook 알림 자동 발송
 
 ### Ⅴ. 대규모 엔터프라이즈 운영: 인덱스 수명주기 관리(ILM)
 
@@ -192,7 +190,7 @@ extra:
 |:---|:---|:---|
 | **과도한 샤드와 메모리 압박** | 작은 인덱스·샤드가 누적되어 메타데이터와 검색 자원 사용 증가 | 샤드 수·크기·검색 부하를 측정하고 rollover·보존 정책을 조정; 구형 `힙 1GB당 20샤드` 규칙은 적용하지 않음 |
 | **Logstash 백프레셔(Backpressure)** | 정규표현식 Grok 필터가 너무 복잡하여 CPU 100% 점유 및 데이터 지연 발생 | Dissect 필터(단순 구분자 분리) 우선 사용, Kafka를 전면에 배치하여 버퍼링 |
-| **무제한 와일드카드 검색 쿼리** | 사용자가 `*error*` 형태의 선행 와일드카드 쿼리를 날려 수억 개 역색인 풀스캔 | N-gram 인덱스 사전 구축, Kibana 쿼리 타임아웃 및 조회 기간 제한(최대 7일) 설정 |
+| **선행 와일드카드 검색 쿼리** | `*error*` 형태의 검색이 넓은 용어 집합을 탐색해 지연·자원 사용 증가 | 실제 질의 패턴에 맞는 색인 방식 검토, 쿼리 타임아웃과 조회 기간 제한 설정 |
 
 ### Ⅶ. 기술사적 제언
 
@@ -204,9 +202,9 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력**:
+- **기출 이력** :
   - 제132회 정보관리 1교시: ELK(Elasticsearch/Logstash/Kibana) 스택
-- **검증 출처**:
+- **검증 출처** :
   - [Elastic, How many shards should I have in my Elasticsearch cluster?](https://www.elastic.co/blog/how-many-shards-should-i-have-in-my-elasticsearch-cluster)
   - [Elastic, Index lifecycle management](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)
   - Clinton Gormley & Zachary Tong, "Elasticsearch: The Definitive Guide", O'Reilly
@@ -214,5 +212,5 @@ extra:
 
 ## 연결 토픽
 
-- 상위 토픽: [015. 텍스트 마이닝 (Text Mining)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/015_text_mining.md)
-- 연관 토픽: [054. 데이터 관측가능성 (Data Observability)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/054_data_observability.md), [045. 샤딩 (Sharding)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/045_sharding.md)
+- 상위 토픽: [015. 텍스트 마이닝 (Text Mining)](./015_text_mining.md)
+- 연관 토픽: [054. 데이터 관측가능성 (Data Observability)](./054_data_observability.md), [045. 샤딩 (Sharding)](./045_sharding.md)

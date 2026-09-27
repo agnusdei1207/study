@@ -5,10 +5,12 @@ date: "2026-09-24T22:07:00+09:00"
 tags:
   - "notes-security"
 sidebar:
+  label: "020. SOAR(Security Orchestration, Automation and Response)"
   badge:
-    text: "서브"
+    text: "기초"
+    variant: note
 extra:
-  keyword_grade: "서브"
+  keyword_grade: "기초"
   model: "GPT-6"
 ---
 
@@ -35,7 +37,7 @@ extra:
 ---
 ## 1교시 예상문제 (10점)
 
-> SOAR의 개념과 주요 기능, 경보 대응 흐름을 설명하시오. *(10점 예상문제)*
+> SOAR의 개념과 주요 기능, 경보 대응 흐름을 설명하시오. (예상·10점)
 
 ---
 ## 1교시 10점 답안
@@ -70,7 +72,7 @@ SOAR 플레이북: 정보 보강·분류
 ---
 ## 2~4교시 예상문제 (25점)
 
-> SOAR의 구성과 경보 처리 절차를 설명하고, SIEM과의 역할 차이 및 안전한 도입·운영 방안을 제시하시오. *(25점 예상문제)*
+> SOAR의 구성과 경보 처리 절차를 설명하고, SIEM과의 역할 차이 및 안전한 도입·운영 방안을 제시하시오. (예상·25점)
 
 ---
 ## 2~4교시 25점 답안
@@ -131,7 +133,7 @@ SOAR는 경보의 정확성이나 자동조치의 안전을 저절로 보장하�
 | 처리 건수나 시간 단축만으로 효과를 판단 | 오탐·재작업·서비스 영향·대응 품질을 함께 점검 |
 
 ---
-## 검증 출처
+## 출제 이력과 검증 출처
 
 - CISA, [Federal Government Cybersecurity Incident and Vulnerability Response Playbooks](https://www.cisa.gov/sites/default/files/publications/Cybersecurity_Incident_Vulnerability_Response_Playbooks_508C.pdf)
 - OASIS, [OpenC2 Technical Committee](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2)

@@ -3,7 +3,7 @@ sidebar:
   order: 112
   label: "112. 빅데이터 (Big Data)"
   badge:
-    text: "기초"
+    text: "응용"
     variant: note
 title: "빅데이터(Big Data) 5V 특성 및 엔드투엔드 분산 데이터 플랫폼 아키텍처"
 author: "Antigravity"
@@ -13,7 +13,7 @@ tags:
 weight: 112
 extra:
   model: "GPT-6"
-  keyword_grade: "기초"
+  keyword_grade: "응용"
   question_no: "112"
 ---
 
@@ -21,16 +21,16 @@ extra:
 
 <div class="itpe-topic-path" aria-label="지식 경로"><span>데이터베이스</span><span>빅데이터 플랫폼·인프라</span><strong>빅데이터 (Big Data)</strong></div>
 
-## 큰 그림과 30초 인출
+## 30초 인출
 
 
 
 - 본질: **빅데이터는 규모·생성 속도·형태가 기존 처리 방식의 한계를 넘는 데이터를 분산 기술과 적절한 분석 방법으로 다루는 접근**
 - 암기: `볼-벨-바-베-발` (5V: Volume, Velocity, Variety, Veracity, Value) / `수-저-처-분-서` (수집, 저장, 처리, 분석, 서빙) / `람-카` (람다 vs 카파 아키텍처)
 - 판단축:
-  - **Schema-on-Write (전통 DW)**: 데이터 적재 시점에 엄격한 정규화 스키마를 강제, 정합성 우수하나 비정형 수용 불가
-  - **Schema-on-Read (빅데이터 Lake)**: 원천 원형(Raw) 그대로 적재 후 분석 시점에 스키마를 동적으로 부여, 유연성 극대화
-- 주의: 데이터 카탈로그와 메타데이터 거버넌스 없이 원천 데이터를 무제한 적재할 경우, 데이터의 위치와 신뢰도를 아무도 알 수 없는 **데이터 늪(Data Swamp)**으로 전락하여 인프라 비용만 낭비됨
+  - **Schema-on-Write (전통 DW)** : 데이터 적재 시점에 엄격한 정규화 스키마를 강제, 정합성 우수하나 비정형 수용 불가
+  - **Schema-on-Read (빅데이터 Lake)** : 원천 원형(Raw) 그대로 적재 후 분석 시점에 스키마를 동적으로 부여, 유연성 극대화
+- 주의: 데이터 카탈로그와 메타데이터 거버넌스 없이 원천 데이터를 무제한 적재할 경우, 데이터의 위치와 신뢰도를 아무도 알 수 없는 **데이터 늪(Data Swamp)으로** 전락하여 인프라 비용만 낭비됨
 <details><summary>핵심 용어</summary>
 
 - **빅데이터 (Big Data)** : 기존 처리 방식으로 비용·시간·품질 요구를 충족하기 어려운 규모·속도·다양성의 데이터를 다루는 접근.
@@ -46,7 +46,7 @@ extra:
 
 ## 1교시 예상문제 (10점)
 
-> 빅데이터(Big Data) 5V 특성 및 엔드투엔드 분산 데이터 플랫폼 아키텍처의 정의와 목적, 핵심 구조와 작동 원리를 설명하시오. (예상)
+> 빅데이터의 개념과 5V 특성, 분산 처리의 필요성을 설명하시오. (예상·10점)
 
 ---
 
@@ -74,11 +74,11 @@ extra:
 | **Veracity (정확성)** | 데이터 노이즈 정제 및 품질 보장 | Great Expectations |
 | **Value (가치)** | 비즈니스 ROI 및 의사결정 창출 | AI/ML 모델링, Trino |
 
-- **4단 아키텍처**: 수집(Kafka/CDC) $\rightarrow$ 저장(S3/Iceberg) $\rightarrow$ 처리(Spark/Flink) $\rightarrow$ 서빙(Trino/BI)
+- **4단 아키텍처** : 수집(Kafka/CDC) $\rightarrow$ 저장(S3/Iceberg) $\rightarrow$ 처리(Spark/Flink) $\rightarrow$ 서빙(Trino/BI)
 
 ### Ⅴ. 스트리밍 아키텍처: Lambda vs Kappa
-- **Lambda**: Batch Layer와 Speed Layer를 이중 구축하여 정확성과 실시간성 동시 만족
-- **Kappa**: 단일 스트림 엔진(Flink)으로 일원화하고 Kafka 오프셋 Replay로 과거 데이터 재처리 통합
+- **Lambda** : Batch Layer와 Speed Layer를 이중 구축하여 정확성과 실시간성 동시 만족
+- **Kappa** : 단일 스트림 엔진(Flink)으로 일원화하고 Kafka 오프셋 Replay로 과거 데이터 재처리 통합
 ---
 
 ### Ⅵ. 핵심 관계
@@ -97,9 +97,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> 데이터 기반 의사결정의 핵심 기반인 빅데이터(Big Data)의 5V 특성을 설명하고, 수집-저장-처리-분석-서빙으로 이어지는 엔드투엔드 빅데이터 플랫폼의 참조 아키텍처 및 람다(Lambda)와 카파(Kappa) 아키텍처의 차이점을 기술하시오. (25점)
-
-> (25점, 예상)
+> 데이터 기반 의사결정의 핵심 기반인 빅데이터(Big Data)의 5V 특성을 설명하고, 수집-저장-처리-분석-서빙으로 이어지는 엔드투엔드 빅데이터 플랫폼의 참조 아키텍처 및 람다(Lambda)와 카파(Kappa) 아키텍처의 차이점을 기술하시오. (예상·25점)
 
 ---
 
@@ -121,9 +119,9 @@ extra:
 
 #### 한줄 요약: 업무 요구에 맞춰 다양한 데이터의 수집·저장·처리·분석 흐름을 구성하는 분산 데이터 접근
 
-- **배경**: 모바일, IoT, SNS, 로그 등 매일 테라바이트급 비정형 데이터가 쏟아져 나오며, 기존 고비용 유닉스 어플라이언스와 RDBMS 중심 아키텍처의 한계 노정
-- **정의**: 기존 도구와 처리 방식으로 비용·시간·품질 요구를 충족하기 어려운 대규모·고속·다양한 데이터를 분산 기술 등을 활용해 다루는 방법과 기반
-- **패러다임 전환**: 값비싼 스케일업 서버 $\rightarrow$ 저가 상용 x86 노드의 분산 클러스터링(Hadoop $\rightarrow$ Spark $\rightarrow$ Cloud Native Lakehouse)
+- **배경** : 모바일, IoT, SNS, 로그 등 매일 테라바이트급 비정형 데이터가 쏟아져 나오며, 기존 고비용 유닉스 어플라이언스와 RDBMS 중심 아키텍처의 한계 노정
+- **정의** : 기존 도구와 처리 방식으로 비용·시간·품질 요구를 충족하기 어려운 대규모·고속·다양한 데이터를 분산 기술 등을 활용해 다루는 방법과 기반
+- **패러다임 전환** : 값비싼 스케일업 서버 $\rightarrow$ 저가 상용 x86 노드의 분산 클러스터링(Hadoop $\rightarrow$ Spark $\rightarrow$ Cloud Native Lakehouse)
 
 ### Ⅱ. 빅데이터의 핵심 5V 특성
 
@@ -146,16 +144,16 @@ extra:
 
 #### 한줄 요약: 수집, 분산 저장, 연산 처리, 서빙 및 거버넌스의 유기적 파이프라인
 
-1. **수집 계층 (Ingestion)**:
+1. **수집 계층 (Ingestion)** :
    - 다양한 데이터 원천(DB 트랜잭션 로그, 애플리케이션 로그, IoT 센서, 외부 API)으로부터 배치 및 실시간 스트림 데이터 인제스천
    - Kafka(분산 큐), Debezium(CDC), Fluentd/Logstash 활용
-2. **저장 계층 (Storage)**:
+2. **저장 계층 (Storage)** :
    - 스키마에 구애받지 않고 원형(Raw) 데이터를 보관하는 저비용 대용량 객체 스토리지(S3)
    - ACID 트랜잭션을 지원하는 오픈 테이블 포맷(Apache Iceberg, Delta Lake) 결합
-3. **처리 및 분석 계층 (Processing & Analytics)**:
+3. **처리 및 분석 계층 (Processing & Analytics)** :
    - 인메모리 분산 연산 엔진(Apache Spark)을 통한 대용량 데이터 변환(ETL)
    - 실시간 저지연 스트림 프로세싱(Apache Flink)
-4. **서빙 및 활용 계층 (Serving & Visualization)**:
+4. **서빙 및 활용 계층 (Serving & Visualization)** :
    - 대화형 분산 SQL 쿼리 엔진(Trino)을 통한 고속 데이터 조회
    - Feature Store(Feast)를 통한 머신러닝 피처 서빙 및 BI 대시보드 표출
 
@@ -179,9 +177,9 @@ extra:
 |:---|:---|:---|
 | **데이터 형태** | 정형 데이터 위주 (RDBMS 테이블) | 정형, 반정형(JSON), 비정형(텍스트, 이미지) 모두 수용 |
 | **스키마 시점** | **Schema-on-Write** (적재 전 스키마 사전 정의) | **Schema-on-Read** (적재는 원형, 읽을 때 스키마 파싱) |
-| **스토리지 비용** | 고비용 전용 스토리지 어플라이언스 (Exadata) | 저비용 클라우드 객체 스토리지 (S3, GCS) |
-| **확장성** | 수직 확장(Scale-up) 중심 (확장 비용 고가) | 수평 확장(Scale-out) 중심 (무제한 선형 확장) |
-| **주요 사용자** | 경영진, 현업 비즈니스 분석가 (BI 리포트) | 데이터 엔지니어, 데이터 사이언티스트 (ML, AI) |
+| **스토리지 비용** | 제품·구성·보존 기간에 따라 달라지는 저장 비용 | 저장과 계산 분리 여부, 데이터 이동·질의 비용을 함께 고려 |
+| **확장성** | 병렬 DW와 클라우드 DW도 수평 확장 가능 | 분산 처리 가능하나 데이터 편향·네트워크·메타데이터가 확장 효율을 제한 |
+| **주요 사용자** | 정형 분석·보고 중심 사용자 | 원천 데이터 탐색·분석·학습 중심 사용자; 실제 사용자 범위는 겹칠 수 있음 |
 
 ### Ⅵ. 실무 운영 이슈 및 트러블슈팅 (Troubleshooting)
 
@@ -190,7 +188,7 @@ extra:
 | 장애 요인 | 근본 원인 | 실무 엔지니어링 극복 방안 |
 |:---|:---|:---|
 | **데이터 늪 (Data Swamp) 전락** | 메타데이터 관리와 카탈로그 없이 S3에 마구 적재하여 데이터 미아 발생 | DataHub, AWS Glue 카탈로그 강제, 데이터 소유권(Data Ownership) 명시 |
-| **작은 파일 문제 (Small Files Problem)** | 스트리밍 적재 시 수 KB짜리 파일 수백만 개가 생성되어 네임노드/S3 I/O 병목 | Apache Iceberg / Delta Lake의 `Compaction` 작업을 주기적 실행하여 128MB 단위 병합 |
+| **작은 파일 문제 (Small Files Problem)** | 작은 객체가 많아져 목록 조회·메타데이터·읽기 작업의 부담 증가 | 테이블 형식과 질의 특성에 맞춰 파일 크기와 병합 주기 조정 |
 | **데이터 편향 (Data Skew)** | 특정 파티션 키(예: 특정 국가 ID)에 데이터가 90% 몰려 Spark 태스크 1개만 지연 | Salting(임의의 난수 접미사 추가)을 통해 파티션을 재분산하여 병렬성 복원 |
 
 ### Ⅶ. 기술사적 제언
@@ -205,14 +203,13 @@ extra:
 
 - [IBM 빅데이터 개요](https://www.ibm.com/think/topics/big-data): 대용량·다양한 형식의 데이터와 분산 처리·분석 요구
 
-- **기출 이력**:
-  - 제113회, 제107회, 제101회, 제98회, 제96회 기출 (합숙·모의 14회 최빈출)
-- **검증 출처**:
+- **출제 이력** : 제113회·107회·101회·98회·96회 표기는 공식 문제지 원문을 확보하지 못해 회차·문항·배점을 확인하지 못한 상태
+- **검증 출처** :
   - Martin Kleppmann, "Designing Data-Intensive Applications", O'Reilly
   - Nathan Marz & James Warren, "Big Data: Principles and best practices of scalable realtime data systems", Manning
 ---
 
 ## 연결 토픽
 
-- 상위 토픽: [007. 데이터 레이크 (Data Lake)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/007_data_lake.md)
-- 연관 토픽: [116. ELK 스택 (Elasticsearch·Logstash·Kibana)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/116_elk_stack.md), [001. NoSQL (Not Only SQL)](file:///C:/workspace/study/src/content/docs/notes/itpe/03-data/001_nosql.md)
+- 상위 토픽: [007. 데이터 레이크 (Data Lake)](./007_data_lake.md)
+- 연관 토픽: [116. ELK 스택 (Elasticsearch·Logstash·Kibana)](./116_elk_stack.md), [001. NoSQL (Not Only SQL)](./001_nosql.md)
