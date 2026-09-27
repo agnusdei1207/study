@@ -61,6 +61,8 @@ def audit(path: Path) -> list[str]:
     overview = by_number.get("Ⅰ", ("", ""))
     if "개요" not in overview[0] or not all(f"| {word} |" in overview[1] for word in ("정의", "목적")):
         findings.append("25점 Ⅰ 개요·정의·목적 누락")
+    if re.search(r"^```(?:text|mermaid)\s*$", overview[1], re.M):
+        findings.append("25점 Ⅰ 중복 도해 남음")
     core = by_number.get("Ⅱ", ("", ""))[1]
     if not TEXT_DIAGRAM.search(core):
         findings.append("25점 Ⅱ text 도해 없음")
