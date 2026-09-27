@@ -25,6 +25,7 @@ AI 인프라 → 가속기 시스템 → 랙스케일 통합 → NVLink 패브�
 
 - 본질: **랙스케일 AI 시스템 (Rack-Scale AI System)** 은 여러 가속기·CPU·스위치와 전력·냉각 설비를 랙 단위로 통합한 AI 컴퓨팅 시스템
 - 메커니즘: 랙 내부 스케일업 패브릭으로 가속기 간 통신을 확장하고, Ethernet·InfiniBand 등으로 여러 랙을 연결
+- 통찰: 제품 카탈로그 구성만으로 현장 수용성을 알 수 없으므로 한 랙의 전력·냉각·패브릭 상태를 계측한 뒤 확장
 
 <details>
 <summary>핵심 용어</summary>
@@ -58,16 +59,16 @@ AI 인프라 → 가속기 시스템 → 랙스케일 통합 → NVLink 패브�
 
 ## Ⅱ. 랙 내부 연결 구조
 
-```mermaid
-flowchart TD
-    CPU[CPU·호스트] -->|제어·데이터 연계| GPU[GPU·AI 가속기들]
-    GPU -->|NVLink 스케일업 패브릭| SW[NVSwitch]
-    SW --> GPU
-    GPU -->|Ethernet·InfiniBand 스케일아웃| R[다른 랙의 가속기 시스템]
-    P[전력·냉각 설비] -->|운영 자원 제공| GPU
+```text
+CPU·호스트 → GPU들 ↔ NVLink·NVSwitch(랙 내부)
+                   │
+                   └→ Ethernet·InfiniBand → 다른 랙
+전력·냉각 설비 → GPU·패브릭의 가동 조건
 ```
 
-- 제언: 가속기 연결 규모를 기준으로 랙 전력·냉각·패브릭의 수용 능력을 함께 검토
+## Ⅲ. 제언
+
+제언: 제품 카탈로그 구성만으로 현장 수용성을 알 수 없으므로 한 랙의 전력·냉각·패브릭 상태를 계측한 뒤 확장
 
 ---
 
@@ -88,16 +89,11 @@ flowchart TD
 
 ## Ⅱ. 랙 내부 구성
 
-```mermaid
-flowchart TD
-    JOB[AI 학습·추론 작업] --> CPU[CPU·호스트 메모리]
-    JOB --> GPU[GPU·가속기 모듈]
-    GPU -->|스케일업 통신| FAB[NVLink·NVSwitch 패브릭]
-    FAB --> GPU
-    POW[전원 변환·분배] -->|전력| GPU
-    GPU -->|열 부하 전달| COOL[냉각 회로]
-    MGMT[관리·계측] --> CPU
-    MGMT --> FAB
+```text
+AI 작업 → CPU·호스트 → GPU들 ↔ NVLink·NVSwitch 패브릭
+                          ↑ 전력             │ 열 부하
+                    전원 분배             냉각 회로
+관리·계측 ← 연산·링크·전력·열 상태
 ```
 
 | 구성 | 역할 |
