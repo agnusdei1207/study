@@ -36,11 +36,13 @@ def audit(path: Path) -> list[str]:
     text = path.read_text(encoding="utf-8")
     findings = []
     recall = section(text, "## 30초 인출", "<details>")
+    recall_lines = [line for line in recall.splitlines() if re.match(r"^\s*-\s+", line)]
     recall_labels = {
         line.lstrip("- ").replace("**", "").split(":", 1)[0].strip()
-        for line in recall.splitlines()
-        if line.lstrip().startswith("-")
+        for line in recall_lines
     }
+    if len(recall_lines) != 3:
+        findings.append("30초 인출: 본질·메커니즘·통찰 3줄 아님")
     for label in INSIGHT_LABELS:
         if label not in recall_labels:
             findings.append(f"30초 인출: {label} 없음")
