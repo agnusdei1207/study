@@ -21,7 +21,7 @@ extra:
 
 - **본질** : Java GUI 툴킷은 윈도우·컨트롤·이벤트 처리 기능으로 데스크톱 사용자 인터페이스를 구성하는 라이브러리
 - **메커니즘** : 화면 컴포넌트 구성 → 이벤트 처리 → UI 스레드에서 화면 상태 갱신
-- 통찰: 오래 걸리는 작업을 UI 이벤트 스레드에서 수행하면 화면이 멈추므로 백그라운드로 분리하고 결과만 UI 스레드에 전달
+- 통찰: 한계: 오래 걸리는 작업을 UI 이벤트 스레드에서 수행하면 화면이 멈춤 → 방안: 백그라운드로 분리하고 결과만 UI 스레드에 전달
 
 <details>
 <summary>핵심 용어</summary>
@@ -33,43 +33,6 @@ extra:
 - **JavaFX Application Thread** : JavaFX UI 이벤트와 장면 그래프 작업을 수행하는 스레드
 
 </details>
-
----
-
-## 1교시 예상문제 (10점)
-
-> (예상) Java GUI 툴킷의 개념과 AWT·Swing·JavaFX의 특징을 설명하시오.
-
----
-
-## 1교시 10점 답안
-
-### Ⅰ. 개요
-
-| 구분 | 핵심 |
-|---|---|
-| 정의 | **Java GUI 툴킷** : Java 애플리케이션의 화면과 사용자 상호작용을 구성하는 GUI 라이브러리 |
-| 목적 | 데스크톱 UI 구성 요소와 이벤트 처리 기능 제공 |
-
-### Ⅱ. 주요 툴킷 비교
-
-```text
-Java 데스크톱 UI
- ├─ AWT → Swing: 컴포넌트 확장
- └─ JavaFX: 별도 장면 그래프
-사용자 이벤트 → UI 스레드 → 화면 갱신
-                     └→ 긴 작업은 별도 실행
-```
-
-| 툴킷 | 특징 |
-|---|---|
-| AWT | 기본 GUI 기능과 네이티브 연계 기반 |
-| Swing | AWT 위에서 다양한 경량 컴포넌트 제공 |
-| JavaFX | 장면 그래프 기반 UI·미디어·그래픽 기능; OpenJFX로 배포 |
-
-### Ⅲ. 제언
-
-- UI 이벤트 스레드에서 긴 작업을 실행하면 입력·그리기가 멈추므로 작업을 백그라운드로 보내고 결과 갱신만 UI 스레드에서 수행
 
 ---
 
@@ -88,7 +51,15 @@ Java 데스크톱 UI
 | 정의 | **Java GUI 툴킷** : Java 애플리케이션의 화면과 사용자 상호작용을 구성하는 GUI 라이브러리 |
 | 목적 | 데스크톱 UI 구성 요소와 이벤트 처리 기능 제공 |
 
-## Ⅱ. 툴킷 구조와 계보
+## Ⅱ. Java GUI 툴킷의 특징
+
+| 특징 | 의미 |
+|---|---|
+| 컴포넌트 기반 | 윈도우·컨트롤을 조합해 화면 구성 |
+| 이벤트 처리 | 입력 이벤트를 UI 전용 스레드에서 처리 |
+| 툴킷별 실행 제약 | AWT·Swing·JavaFX의 구성·배포 방식 차이 |
+
+## Ⅲ. 툴킷 계보와 이벤트 처리 체계
 
 ```text
 Java 데스크톱 UI 도구
@@ -99,15 +70,7 @@ Java 데스크톱 UI 도구
 
 AWT는 일부 컴포넌트에서 네이티브 피어를 사용하며, Swing은 AWT 기반의 경량 컴포넌트를 제공. AWT와 Swing은 혼합 사용을 전제로 한 예외·제약도 있으므로 무조건 혼합 금지로 단정하지 않음. JavaFX는 현재 JDK에 항상 포함된 것으로 간주하지 않고 배포 환경을 확인.
 
-## Ⅲ. 특성 비교
-
-| 관점 | AWT | Swing | JavaFX |
-|---|---|---|---|
-| 기반 | Java 기본 GUI API와 네이티브 연계 | AWT 기반 컴포넌트 라이브러리 | 별도 UI 플랫폼·장면 그래프 |
-| UI 구성 | 기본 컴포넌트 | 다양한 경량 컴포넌트·룩앤필 | UI 컨트롤·그래픽·미디어 기능 |
-| 적용 검토 | 기존 AWT 애플리케이션·기본 UI | Swing 유지보수·데스크톱 UI | JavaFX 의존성과 현대 UI 요구 |
-
-## Ⅳ. 이벤트·스레드 처리
+### 이벤트·스레드 처리
 
 ```text
 입력 이벤트 → UI 이벤트 큐
@@ -120,7 +83,15 @@ AWT는 일부 컴포넌트에서 네이티브 피어를 사용하며, Swing은 A
 
 Swing 컴포넌트 접근은 일반적으로 EDT에서 수행하고, JavaFX 장면 그래프 변경은 JavaFX Application Thread에서 처리. 긴 작업이 UI 이벤트 스레드를 점유하면 입력·화면 갱신이 지연되므로 백그라운드 작업과 안전한 결과 전달 필요.
 
-## Ⅴ. 선택 기준과 적용
+## Ⅳ. AWT·Swing·JavaFX 비교와 선택 기준
+
+| 관점 | AWT | Swing | JavaFX |
+|---|---|---|---|
+| 기반 | Java 기본 GUI API와 네이티브 연계 | AWT 기반 컴포넌트 라이브러리 | 별도 UI 플랫폼·장면 그래프 |
+| UI 구성 | 기본 컴포넌트 | 다양한 경량 컴포넌트·룩앤필 | UI 컨트롤·그래픽·미디어 기능 |
+| 적용 검토 | 기존 AWT 애플리케이션·기본 UI | Swing 유지보수·데스크톱 UI | JavaFX 의존성과 현대 UI 요구 |
+
+### 선택 기준과 적용
 
 | 기준 | 확인 내용 |
 |---|---|
@@ -129,32 +100,24 @@ Swing 컴포넌트 접근은 일반적으로 EDT에서 수행하고, JavaFX 장�
 | 운영 환경 | JDK·OpenJFX 버전, 설치·배포·지원 계획 |
 | 유지보수 | 개발 역량, 의존성, 테스트 자동화 가능성 |
 
-## Ⅵ. 한계와 대응
+## Ⅴ. 한계와 방안
 
-| 한계 | 해결 방안 |
+| 한계 | 방안 |
 |---|---|
 | UI 스레드에서 장시간 작업 수행 | 백그라운드 실행과 UI 스레드 결과 반영 분리 |
 | 서로 다른 컴포넌트 모델 혼합으로 표시 문제 | AWT·Swing 혼합 지점과 피어 동작을 시험 환경에서 검증 |
 | 런타임에 툴킷 의존성 누락 | JDK·JavaFX 런타임과 패키징 구성을 빌드·배포에서 검증 |
 
-## Ⅶ. 기술적 제언
+## Ⅵ. 제언
 
-| 구분 | 내용 |
-|---|---|
-| 한계 | 툴킷을 화면 기능만으로 고르면 배포·지원 런타임과 UI 스레드 모델이 후속 운영 위험으로 남을 수 있음 |
-| 해결 방안 | 선택 단계에서 화면 요구, 지원 런타임, 이벤트 스레드 규칙을 함께 검증하는 작은 배포 프로토타입을 구성 |
-
-## 참고 및 연계 학습
-
-- [Oracle Swing Concurrency Tutorial](https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html)
-- [OpenJFX Documentation](https://openjfx.io/openjfx-docs/introduction)
-- [스프링 부트](./159_spring_boot.md)
-- [추상 클래스와 인터페이스](./205_abstract_class_and_interface.md)
-- [Enterprise Beans](./200_ejb.md)
-- [HTML5 표준 API](./186_html5.md)
+우선 실행: 선택 단계에서 화면 요구, 지원 런타임, 이벤트 스레드 규칙을 함께 검증하는 작은 배포 프로토타입을 구성.
 
 ## 출제 이력과 검증 출처
 
 - **출제 상태:** 예상문제는 학습용 문항이며, 공식 기출 원문과 동일하다고 단정하지 않는다.
-- [검증 자료 1](https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html)
-- [검증 자료 2](https://openjfx.io/openjfx-docs/introduction)
+- [Oracle Swing Concurrency Tutorial](https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html)
+- [OpenJFX Documentation](https://openjfx.io/openjfx-docs/introduction)
+
+## 연결 토픽
+
+- [스프링 부트](./159_spring_boot.md), [추상 클래스와 인터페이스](./205_abstract_class_and_interface.md), [Enterprise Beans](./200_ejb.md), [HTML5](./186_html5.md)

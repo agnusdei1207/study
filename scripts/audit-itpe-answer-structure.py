@@ -77,7 +77,16 @@ def audit(path: Path) -> list[str]:
     limits = by_number.get("Ⅴ", ("", ""))
     if "한계" not in limits[0] or "방안" not in limits[0]:
         findings.append("25점 Ⅴ 한계와 방안 제목 없음")
-    if not re.search(r"^\|\s*한계\s*\|\s*방안\s*\|\s*$", limits[1], re.M):
+    limit_table = [line.strip() for line in limits[1].splitlines() if line.lstrip().startswith("|")]
+    required_header = re.compile(r"^\|\s*한계\s*\|\s*방안\s*\|$")
+    valid_limit_table = (
+        len(limit_table) >= 3
+        and required_header.fullmatch(limit_table[0])
+        and re.fullmatch(r"\|\s*:?-{3,}:?\s*\|\s*:?-{3,}:?\s*\|", limit_table[1])
+        and all(line.count("|") == 3 for line in limit_table[2:])
+        and not any(required_header.fullmatch(line) for line in limit_table[2:])
+    )
+    if not valid_limit_table:
         findings.append("25점 Ⅴ 한계·방안 대응 없음")
     proposal = by_number.get("Ⅵ", ("", ""))
     if "제언" not in proposal[0] or not proposal[1].strip():
