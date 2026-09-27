@@ -77,8 +77,7 @@ def audit(path: Path) -> list[str]:
     limits = by_number.get("Ⅴ", ("", ""))
     if "한계" not in limits[0] or "방안" not in limits[0]:
         findings.append("25점 Ⅴ 한계와 방안 제목 없음")
-    if not (re.search(r"\|\s*한계\s*\|\s*(?:해결\s*)?방안\s*\|", limits[1]) or
-            ("한계:" in limits[1] and "방안:" in limits[1])):
+    if not re.search(r"^\|\s*한계\s*\|\s*방안\s*\|\s*$", limits[1], re.M):
         findings.append("25점 Ⅴ 한계·방안 대응 없음")
     proposal = by_number.get("Ⅵ", ("", ""))
     if "제언" not in proposal[0] or not proposal[1].strip():
