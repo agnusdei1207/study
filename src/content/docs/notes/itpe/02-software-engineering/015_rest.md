@@ -20,7 +20,7 @@ extra:
 
 - 본질: **REST(Representational State Transfer)** 는 웹(Web)의 기존 HTTP 인프라와 표준을 그대로 활용하여 자원(Resource) 중심의 상태 전송을 정의하는 분산 하이퍼미디어 아키텍처 스타일
 - 메커니즘: **자원(URI)** + **행위(HTTP Method)** + **표현(Representation, JSON/XML)** + **무상태(Stateless)**
-- 효과: 시스템 간 느슨한 결합(Loose Coupling) · 높은 확장성(Scalability) · 플랫폼 독립적 연계
+- 통찰: 상태 변경 요청이 중복 전달되면 같은 작업이 반복될 수 있으므로 POST 처리에 요청 식별자와 중복 방지 정책을 적용
 
 <details>
 <summary>핵심 용어</summary>
@@ -65,7 +65,9 @@ extra:
 - **멱등성(Idempotency)** : GET·PUT·DELETE의 반복 요청은 의도한 서버 상태 효과가 동일
 - **Stateless** : 각 요청 처리에 필요한 맥락을 요청에 포함하고 서버가 클라이언트 세션 맥락에 의존하지 않음
 
-- 한 줄 제언: 상태 변경 POST에는 요청 식별과 중복 처리 방지 절차 적용
+### Ⅲ. 제언
+
+- POST 상태 변경이 재시도로 중복 실행될 수 있으므로 요청 식별자와 처리 결과 기록으로 중복 반영을 방지
 ---
 
 ## 2~4교시 예상문제 (25점)
