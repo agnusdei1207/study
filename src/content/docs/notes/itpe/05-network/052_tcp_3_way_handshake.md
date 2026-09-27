@@ -23,6 +23,7 @@ extra:
 
 - 본질: **3-way handshake** 는 TCP (Transmission Control Protocol) 양 끝점이 연결 요청과 순서 번호를 교환해 연결 상태를 수립하는 절차
 - 메커니즘: 클라이언트 SYN → 서버 SYN-ACK → 클라이언트 ACK 순으로 양쪽의 초기 순서 번호와 도달 가능성을 확인
+- 통찰: SYN-ACK까지만 보이면 서버의 연결 수립 완료를 단정할 수 없음 → 최종 ACK 도착과 양단 상태·backlog를 대조해 실패 구간을 찾음
 
 <details>
 <summary>핵심 용어</summary>
@@ -45,7 +46,7 @@ extra:
 
 ## 1교시 10점 답안
 
-### Ⅰ. 정의·목적
+### Ⅰ. 개요
 
 | 구분 | 핵심 |
 |---|---|
@@ -64,7 +65,9 @@ SYN-SENT                           SYN-RECEIVED
 ESTABLISHED                        ESTABLISHED
 ```
 
-제언: 방화벽·로드밸런서의 연결 상태와 서버 backlog 지표를 함께 점검
+### Ⅲ. 제언
+
+- SYN-ACK 송신만으로 연결 완료를 단정할 수 없으므로 최종 ACK와 방화벽·서버 상태, backlog 변화를 함께 확인.
 
 ---
 

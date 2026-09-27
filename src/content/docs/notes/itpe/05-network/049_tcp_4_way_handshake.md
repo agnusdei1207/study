@@ -23,6 +23,7 @@ extra:
 
 - 본질: **4-way handshake** 는 TCP (Transmission Control Protocol) 양방향 송신을 각각 종료하는 정상 연결 해제 절차
 - 메커니즘: 한쪽 FIN을 상대가 ACK하고, 상대도 송신을 마친 뒤 FIN을 보내면 첫 쪽이 ACK
+- 통찰: FIN 송신만 보고 연결이 닫혔다고 판단하면 상대의 남은 데이터와 TIME-WAIT를 놓침 → 양방향 FIN·ACK 상태와 재전송 로그를 함께 대조해 종료 지연을 진단
 
 <details>
 <summary>핵심 용어</summary>
@@ -45,7 +46,7 @@ extra:
 
 ## 1교시 10점 답안
 
-### Ⅰ. 정의·목적
+### Ⅰ. 개요
 
 | 구분 | 핵심 |
 |---|---|
@@ -71,7 +72,9 @@ TIME-WAIT                           LAST-ACK
 CLOSED
 ```
 
-제언: 능동·수동 종료 상태와 FIN/ACK 로그를 함께 대조해 연결 정리 지연을 진단
+### Ⅲ. 제언
+
+- 한쪽 FIN만으로는 상대 송신과 최종 ACK가 끝났는지 알 수 없으므로 양단 상태·FIN/ACK 로그를 대조해 연결 정리 지연을 진단.
 
 ---
 

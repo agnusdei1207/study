@@ -21,6 +21,7 @@ extra:
 
 - 본질: **VXLAN(Virtual eXtensible LAN)** 은 L3 네트워크 위에 가상 L2 세그먼트를 제공하는 캡슐화 방식
 - 메커니즘: VTEP가 내부 Ethernet 프레임을 VNI가 든 VXLAN 헤더와 UDP/IP로 캡슐화하고, 상대 VTEP가 이를 풀어 내부 프레임을 전달
+- 통찰: VNI만 일치해도 언더레이 VTEP 도달성이나 MTU가 부족하면 통신이 끊김 → VNI 매핑과 VTEP 경로·캡슐화 후 패킷 크기를 함께 검증
 
 <details>
 <summary>핵심 용어</summary>
@@ -72,7 +73,9 @@ extra:
 | VXLAN 헤더의 VNI | 오버레이 세그먼트 식별 |
 | 외부 UDP/IP | 언더레이가 VTEP 간 패킷을 전달할 주소·전송 정보 |
 
-제언: 오버레이 VNI와 언더레이 VTEP 주소·경로를 분리해 관리
+## Ⅲ. 제언
+
+- 오버레이 설정만 맞춰도 언더레이 경로나 MTU가 부족하면 프레임이 전달되지 않으므로 VNI·VTEP 도달성과 캡슐화 후 크기를 함께 시험.
 
 ---
 

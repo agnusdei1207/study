@@ -25,6 +25,7 @@ extra:
 
 - 본질: **WebRTC(Web Real-Time Communication)** : 브라우저·응용에서 실시간 오디오·영상·데이터 통신을 지원하는 웹 API와 프로토콜 체계
 - 메커니즘: 응용의 signaling으로 SDP 교환 → ICE로 통신 경로 확인 → DTLS-SRTP 미디어·SCTP 데이터 통신
+- 통찰: 시그널링 성공만 확인하면 대칭 NAT·방화벽에서 실제 미디어 경로 실패를 놓침 → ICE 후보 연결성과 TURN 중계 전환, 지연·품질을 망 조건별로 시험
 
 <details>
 <summary>핵심 용어</summary>
@@ -70,7 +71,9 @@ DTLS 키 협상
 SRTP 미디어 · SCTP 데이터 채널
 ```
 
-- 제언: signaling·ICE 경로 확인·보안 미디어 전송을 함께 설계.
+### Ⅲ. 제언
+
+- SDP 교환 성공만으로 미디어 연결을 보장할 수 없으므로 NAT·방화벽 조건에서 ICE·TURN 경로와 실제 전송 품질을 검증.
 
 ---
 
