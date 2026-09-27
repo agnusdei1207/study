@@ -11,8 +11,6 @@ import re
 
 
 ROOT = Path(__file__).resolve().parents[1] / "src/content/docs/notes/itpe"
-FIRST_ANSWER = "## 1교시 10점 답안"
-SECOND_QUESTION = "## 2~4교시 예상문제"
 SECOND_ANSWER = "## 2~4교시 25점 답안"
 INSIGHT_LABELS = ("본질", "메커니즘", "통찰")
 ROMAN_SECTION = re.compile(r"^#{2,3}\s+([ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ])\.\s*(.+)$", re.M)
@@ -46,30 +44,38 @@ def audit(path: Path) -> list[str]:
     for label in INSIGHT_LABELS:
         if label not in recall_labels:
             findings.append(f"30초 인출: {label} 없음")
+    insight = next((line for line in recall.splitlines() if re.match(r"-\s*(?:\*\*)?통찰", line)), "")
+    if insight and not re.search(r"한계\s*:.*→\s*방안\s*:", insight):
+        findings.append("30초 통찰: 한계→방안 표시 없음")
 
-    first = section(text, FIRST_ANSWER, SECOND_QUESTION)
-    if not first:
-        return findings + ["1교시 답안 없음"]
-    parts = roman_parts(first)
-    by_number = {number: (title, body) for number, title, body in parts}
-    for number in ("Ⅰ", "Ⅱ", "Ⅲ"):
-        if number not in by_number:
-            findings.append(f"1교시 {number} 절 없음")
-    if "Ⅰ" in by_number:
-        title, body = by_number["Ⅰ"]
-        if "개요" not in title or not all(f"| {word} |" in body for word in ("정의", "목적")):
-            findings.append("1교시 Ⅰ 개요·정의·목적 누락")
-    if "Ⅱ" in by_number and not TEXT_DIAGRAM.search(by_number["Ⅱ"][1]):
-        findings.append("1교시 Ⅱ text 도해 없음")
-    if "Ⅲ" in by_number and "제언" not in by_number["Ⅲ"][0]:
-        findings.append("1교시 Ⅲ 제언 아님")
-
+    if "## 1교시 예상문제" in text or "## 1교시 10점 답안" in text:
+        findings.append("1교시 중복 답안 남음")
     second = section(text, SECOND_ANSWER, "## 출제 이력")
-    if second:
-        second_parts = roman_parts(second)
-        core = next((body for number, _, body in second_parts if number == "Ⅱ"), "")
-        if not TEXT_DIAGRAM.search(core):
-            findings.append("25점 Ⅱ text 도해 없음")
+    if not second:
+        return findings + ["25점 답안 없음"]
+    second_parts = roman_parts(second)
+    ordered = [number for number, _, _ in second_parts]
+    if ordered != ["Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ"]:
+        findings.append("25점 Ⅰ→Ⅱ→Ⅲ→Ⅳ→Ⅴ 순서 아님")
+    by_number = {number: (title, body) for number, title, body in second_parts}
+    overview = by_number.get("Ⅰ", ("", ""))
+    if "개요" not in overview[0] or not all(f"| {word} |" in overview[1] for word in ("정의", "목적")):
+        findings.append("25점 Ⅰ 개요·정의·목적 누락")
+    core = by_number.get("Ⅱ", ("", ""))[1]
+    if not TEXT_DIAGRAM.search(core):
+        findings.append("25점 Ⅱ text 도해 없음")
+    extension = by_number.get("Ⅲ", ("", ""))[1]
+    if not (TEXT_DIAGRAM.search(extension) or re.search(r"^\|[^\n]+\|\s*$", extension, re.M)):
+        findings.append("25점 Ⅲ 표·도해 없음")
+    limits = by_number.get("Ⅳ", ("", ""))
+    if "한계" not in limits[0] or "방안" not in limits[0]:
+        findings.append("25점 Ⅳ 한계와 방안 제목 없음")
+    if not (re.search(r"\|\s*한계\s*\|\s*(?:해결\s*)?방안\s*\|", limits[1]) or
+            ("한계:" in limits[1] and "방안:" in limits[1])):
+        findings.append("25점 Ⅳ 한계·방안 대응 없음")
+    proposal = by_number.get("Ⅴ", ("", ""))
+    if "제언" not in proposal[0] or not proposal[1].strip():
+        findings.append("25점 Ⅴ 제언 없음")
     return findings
 
 
