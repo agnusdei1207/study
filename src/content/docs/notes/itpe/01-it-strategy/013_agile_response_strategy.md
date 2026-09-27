@@ -20,7 +20,6 @@ extra:
 
 - 본질: 애자일(Agile)은 일을 짧은 주기로 나눠 작동 결과를 자주 확인하고 사용자 의견에 따라 다음 작업을 조정하는 개발 방식
 - 메커니즘: **Product Backlog → Sprint Goal → Increment → Review·Retrospective → Feedback** 의 짧은 주기 순환
-- 판정 기준: **Definition of Done(DoD)** 충족 여부에 따른 완료 품질 확인과 가치 기반 범위 조정
 - 통찰: 한계: 반복 개발이 우선순위 없는 변경 누적으로 흐를 위험 → 방안: 사용자 피드백을 다음 반복의 우선순위·작업에 반영
 
 <details>
