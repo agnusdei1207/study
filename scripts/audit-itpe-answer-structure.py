@@ -55,29 +55,34 @@ def audit(path: Path) -> list[str]:
         return findings + ["25점 답안 없음"]
     second_parts = roman_parts(second)
     ordered = [number for number, _, _ in second_parts]
-    if ordered != ["Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ"]:
-        findings.append("25점 Ⅰ→Ⅱ→Ⅲ→Ⅳ→Ⅴ 순서 아님")
+    if ordered != ["Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ"]:
+        findings.append("25점 Ⅰ→Ⅱ→Ⅲ→Ⅳ→Ⅴ→Ⅵ 순서 아님")
     by_number = {number: (title, body) for number, title, body in second_parts}
     overview = by_number.get("Ⅰ", ("", ""))
     if "개요" not in overview[0] or not all(f"| {word} |" in overview[1] for word in ("정의", "목적")):
         findings.append("25점 Ⅰ 개요·정의·목적 누락")
     if re.search(r"^```(?:text|mermaid)\s*$", overview[1], re.M):
         findings.append("25점 Ⅰ 중복 도해 남음")
-    core = by_number.get("Ⅱ", ("", ""))[1]
+    characteristics = by_number.get("Ⅱ", ("", ""))
+    if "특징" not in characteristics[0] and "특성" not in characteristics[0]:
+        findings.append("25점 Ⅱ 특징 제목 없음")
+    if not characteristics[1].strip():
+        findings.append("25점 Ⅱ 특징 내용 없음")
+    core = by_number.get("Ⅲ", ("", ""))[1]
     if not TEXT_DIAGRAM.search(core):
-        findings.append("25점 Ⅱ text 도해 없음")
-    extension = by_number.get("Ⅲ", ("", ""))[1]
+        findings.append("25점 Ⅲ text 도해 없음")
+    extension = by_number.get("Ⅳ", ("", ""))[1]
     if not (TEXT_DIAGRAM.search(extension) or re.search(r"^\|[^\n]+\|\s*$", extension, re.M)):
-        findings.append("25점 Ⅲ 표·도해 없음")
-    limits = by_number.get("Ⅳ", ("", ""))
+        findings.append("25점 Ⅳ 표·도해 없음")
+    limits = by_number.get("Ⅴ", ("", ""))
     if "한계" not in limits[0] or "방안" not in limits[0]:
-        findings.append("25점 Ⅳ 한계와 방안 제목 없음")
+        findings.append("25점 Ⅴ 한계와 방안 제목 없음")
     if not (re.search(r"\|\s*한계\s*\|\s*(?:해결\s*)?방안\s*\|", limits[1]) or
             ("한계:" in limits[1] and "방안:" in limits[1])):
-        findings.append("25점 Ⅳ 한계·방안 대응 없음")
-    proposal = by_number.get("Ⅴ", ("", ""))
+        findings.append("25점 Ⅴ 한계·방안 대응 없음")
+    proposal = by_number.get("Ⅵ", ("", ""))
     if "제언" not in proposal[0] or not proposal[1].strip():
-        findings.append("25점 Ⅴ 제언 없음")
+        findings.append("25점 Ⅵ 제언 없음")
     return findings
 
 
