@@ -131,13 +131,13 @@ extra:
 
 ## Ⅵ. 제언
 
-클라우드 네이티브 MSA 환경에서는 서비스 간 강결합을 해소하기 위해 이벤트 기반 아키텍처(EDA)를 구축하고, OpenTelemetry 기반 분산 추적(Distributed Tracing)을 통해 메시지 전송 전 구간의 가시성을 확보할 것을 권장.
+클라우드 네이티브 MSA 환경에서는 서비스 간 강결합을 해소하기 위해 이벤트 기반 아키텍처(EDA)를 구축하고, OpenTelemetry 기반 분산 추적(Distributed Tracing)을 통해 메시지 전송 전 구간의 가시성을 확보 체계 구축.
 
 ```text
 [메시지 큐 통합 관측 및 복원력 파이프라인]
-  Producer (Trace ID 주입) → Message Broker (지연/적체 모니터링) → Consumer (Trace ID 전파 및 메트릭 수집)
-                                                                          │
-                                                                          └─ 장애 시 카나리 우회 및 DLQ 재처리
+  Producer (Trace ID) → Broker (적체 모니터링) → Consumer (Trace 전파)
+                                                        │
+                                                        └─ 장애 시 DLQ 격리
 ```
 
 | 검증 단계 | 전송 보증 설계 | 장애 복구 및 운영 거버넌스 |
@@ -147,15 +147,13 @@ extra:
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 129회 2교시: 분산 시스템에서 메시지 신뢰성 보장을 위한 Transactional Outbox 패턴 및 멱등성 설계 방안
+
 ## 연결 토픽
 
 - [이벤트 주도 아키텍처(EDA)](./078_event_driven_architecture.md)
 - [마이크로서비스 아키텍처(MSA)](./035_msa.md)
 - [OpenTelemetry 분산 추적](./096_opentelemetry.md)
 - [서킷 브레이커](./072_circuit_breaker.md)
-
-## 출제 이력과 검증 출처
-
-- 컴퓨터시스템응용기술사 124회 1교시: 메시지 큐(Message Queue)의 개념과 비동기 처리의 필요성
-- 정보관리기술사 129회 2교시: 분산 시스템에서 메시지 신뢰성 보장을 위한 Transactional Outbox 패턴 및 멱등성 설계 방안
----

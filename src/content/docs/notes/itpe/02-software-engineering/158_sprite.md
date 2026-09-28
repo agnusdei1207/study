@@ -93,7 +93,8 @@ HTTP/1.1 환경에서 도메인당 동시 연결 수(6개 내외) 제한을 극�
 [4. CSS 뷰포트 마스킹 및 화면 렌더링]
   - HTML: <i class="icon icon-search"></i>
   - CSS 적용:
-      .icon { background-image: url('sprite.png'); display: inline-block; width: 16px; height: 16px; }
+      .icon { background-image: url('sprite.png'); display: inline-block;
+        width: 16px; height: 16px; }
       .icon-search { background-position: 0 0; }
       .icon-cart   { background-position: 0 -16px; }
 ```
@@ -128,7 +129,7 @@ HTTP/1.1 환경에서 도메인당 동시 연결 수(6개 내외) 제한을 극�
 
 ## Ⅵ. 제언
 
-현대 웹 환경에서는 고해상도 디스플레이 대응과 다크 모드 등 동적 테마 지원이 필수적이므로 비트맵 스프라이트 대신 SVG Symbol 시스템을 도입하고, HTTP/2 멀티플렉싱 환경과의 성능 프로파일링을 통한 최적화 권장.
+현대 웹 환경에서는 고해상도 디스플레이 대응과 다크 모드 등 동적 테마 지원이 필수적이므로 비트맵 스프라이트 대신 SVG Symbol 시스템을 도입하고, HTTP/2 멀티플렉싱 환경과의 성능 프로파일링을 통한 최적화 필요.
 
 ```text
 [현대적 웹 에셋 최적화 아키텍처]
@@ -142,15 +143,13 @@ HTTP/1.1 환경에서 도메인당 동시 연결 수(6개 내외) 제한을 극�
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 114회 1교시: HTTP/1.1과 HTTP/2 프로토콜의 특성 및 프론트엔드 이미지 최적화 전략
+
 ## 연결 토픽
 
 - [웹 성능 최적화 기법](./164_web_performance_optimization.md)
 - [서비스 워커(Service Worker)](./147_service_worker.md)
 - [반응형 웹(Responsive Web)](./110_responsive_web.md)
 - [성능 요구사항](./149_performance_requirement.md)
-
-## 출제 이력과 검증 출처
-
-- 컴퓨터시스템응용기술사 108회 1교시: 웹 브라우저 렌더링 최적화를 위한 CSS 스프라이트 기법
-- 정보관리기술사 114회 1교시: HTTP/1.1과 HTTP/2 프로토콜의 특성 및 프론트엔드 이미지 최적화 전략
----

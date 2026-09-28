@@ -122,7 +122,7 @@ extra:
 
 ## Ⅵ. 제언
 
-프론트엔드 빌드 파이프라인(CI/CD)에 Lighthouse CI 및 성능 예산(Performance Budget)을 통합하여 임계치 초과 시 자동 빌드 실패 처리하고, 실시간 RUM 메트릭을 APM과 연동하는 지속적 성능 거버넌스 확립 권장.
+프론트엔드 빌드 파이프라인(CI/CD)에 Lighthouse CI 및 성능 예산(Performance Budget)을 통합하여 임계치 초과 시 자동 빌드 실패 처리하고, 실시간 RUM 메트릭을 APM과 연동하는 지속적 성능 거버넌스 확립 필요.
 
 ```text
 [지속적 웹 성능 엔지니어링 파이프라인]
@@ -136,15 +136,13 @@ extra:
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 121회 1교시: 웹 브라우저의 렌더링 과정(CRP)과 최적화 기법
+
 ## 연결 토픽
 
 - [서비스 워커(Service Worker)](./147_service_worker.md)
 - [CSS 스프라이트(Sprite) 기법](./158_sprite.md)
 - [성능 요구사항](./149_performance_requirement.md)
 - [반응형 웹(Responsive Web)](./110_responsive_web.md)
-
-## 출제 이력과 검증 출처
-
-- 정보관리기술사 121회 1교시: 웹 브라우저의 렌더링 과정(CRP)과 최적화 기법
-- 컴퓨터시스템응용기술사 132회 2교시: 구글 Core Web Vitals의 핵심 지표(LCP, INP, CLS)와 웹 프론트엔드 성능 개선 방안
----

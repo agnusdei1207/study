@@ -78,11 +78,11 @@ extra:
        │
        ▼ (Starter BOM 기반 라이브러리 및 전이 의존성 버전 자동 결정)
 [2. 스프링 부트 애플리케이션 기동]
-  @SpringBootApplication ( = @Configuration + @EnableAutoConfiguration + @ComponentScan )
+  @SpringBootApplication (@Configuration + @EnableAutoConfiguration + @ComponentScan)
        │
        ▼
 [3. Auto-Configuration 자동 설정 평가]
-  META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports 스캔
+  META-INF/spring/...AutoConfiguration.imports 스캔
   ┌────────────────────────────────────────────────────────┐
   │ 조건부 어노테이션 검사:                                │
   │ - @ConditionalOnClass (예: Servlet.class, Tomcat.class) │
@@ -127,7 +127,7 @@ extra:
 
 ## Ⅵ. 제언
 
-클라우드 네이티브 MSA 전환 시 12-Factor 원칙에 따라 설정을 환경변수로 분리하고, GraalVM 네이티브 빌드와 쿠버네티스 프로브를 결합한 탄력적 컨테이너 수명주기 거버넌스 확립 권장.
+클라우드 네이티브 MSA 전환 시 12-Factor 원칙에 따라 설정을 환경변수로 분리하고, GraalVM 네이티브 빌드와 쿠버네티스 프로브를 결합한 탄력적 컨테이너 수명주기 거버넌스 확립 필요.
 
 ```text
 [Spring Boot 클라우드 네이티브 배포 아키텍처]
@@ -141,15 +141,13 @@ extra:
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 127회 2교시: 마이크로서비스 환경에서 Spring Boot 기반 애플리케이션 구축 및 운영 관측성(Actuator) 확보 방안
+
 ## 연결 토픽
 
 - [서비스 지향 아키텍처(SOA)](./187_soa.md)
 - [CI/CD 지속적 통합 및 배포](./095_ci_cd.md)
 - [마이크로서비스 아키텍처(MSA)](./035_msa.md)
 - [API 게이트웨이(API Gateway)](./075_api_gateway.md)
-
-## 출제 이력과 검증 출처
-
-- 컴퓨터시스템응용기술사 119회 1교시: Spring Boot의 자동 구성(Auto-Configuration) 원리와 Starter의 개념
-- 정보관리기술사 127회 2교시: 마이크로서비스 환경에서 Spring Boot 기반 애플리케이션 구축 및 운영 관측성(Actuator) 확보 방안
----

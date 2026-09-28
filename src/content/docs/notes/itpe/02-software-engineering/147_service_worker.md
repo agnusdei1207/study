@@ -119,7 +119,7 @@ extra:
 
 ## Ⅵ. 제언
 
-클라우드 프론트엔드 배포 파이프라인에서 Workbox 도구를 빌드 체인(Vite/Webpack)에 내장하고, 버전별 캐시 정리 및 오프라인 대체 UI를 체계화한 PWA 아키텍처 확립 권장.
+클라우드 프론트엔드 배포 파이프라인에서 Workbox 도구를 빌드 체인(Vite/Webpack)에 내장하고, 버전별 캐시 정리 및 오프라인 대체 UI를 체계화한 PWA 아키텍처 확립 필요.
 
 ```text
 [PWA 서비스 워커 배포 아키텍처]
@@ -133,15 +133,13 @@ extra:
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 116회 1교시: Progressive Web App(PWA)의 개념과 Service Worker의 역할
+
 ## 연결 토픽
 
 - [웹 성능 최적화 기법](./164_web_performance_optimization.md)
 - [메시지 큐(Message Queue)](./140_message_queue.md)
 - [CSS 스프라이트(Sprite) 기법](./158_sprite.md)
 - [반응형 웹(Responsive Web)](./110_responsive_web.md)
-
-## 출제 이력과 검증 출처
-
-- 정보관리기술사 116회 1교시: Progressive Web App(PWA)의 개념과 Service Worker의 역할
-- 컴퓨터시스템응용기술사 122회 2교시: 모바일 웹 환경에서 웹 캐시 전략과 Service Worker 기반 오프라인 캐싱 아키텍처
----
