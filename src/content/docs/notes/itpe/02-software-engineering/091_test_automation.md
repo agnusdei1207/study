@@ -74,28 +74,25 @@ extra:
 테스트 피라미드(Test Pyramid) 계층 구조 및 CI/CD 파이프라인 연계 실행 체계.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    테스트 피라미드 및 CI/CD 자동화 파이프라인                             |
-+---------------------------------------------------------------------------------------------------------+
-                                                                                                           
-                     / \                                                                                   
-                    /   \                 [3] E2E / UI 테스트 (End-to-End)                                 
-                   / UI  \                - 실행 속도: 수 분 ~ 수십 분 (느림) / 비용: 높음                 
-                  /───────\               - 도구: Playwright, Cypress, Selenium                            
-                 /         \              - 비중: 10% 미만 (핵심 사용자 여정 검증)                         
-                /    API    \                                                                              
-               /  통합 테스트 \           [2] 서비스 / API 통합 테스트 (Integration)                       
-              /───────────────\           - 실행 속도: 수 초 ~ 수 분 / 비용: 중간                          
-             /                 \          - 도구: MockMvc, REST-Assured, Testcontainers                   
-            /    단위 테스트    \         - 비중: 20~30% (서비스 간 연계 및 비즈니스 규칙)                 
-           /     (Unit Test)     \                                                                         
-          /───────────────────────\       [1] 단위 테스트 (Unit Test)                                      
-                                          - 실행 속도: 밀리초(ms) 단위 (초고속) / 비용: 매우 낮음          
-                                          - 도구: JUnit 5, Mockito, Jest                                   
-                                          - 비중: 70% 이상 (독립 클래스/메서드 단위 로직)                  
-                                                                                                           
+[테스트 피라미드 및 CI/CD 자동화 파이프라인]
+/ \
+                    /   \                 [3] E2E / UI 테스트 (End-to-End)
+                   / UI  \                - 실행 속도: 수 분 ~ 수십 분 (느림) / 비용: 높음
+                  /───────\               - 도구: Playwright, Cypress, Selenium
+                 /         \              - 비중: 10% 미만 (핵심 사용자 여정 검증)
+                /    API    \
+               /  통합 테스트 \           [2] 서비스 / API 통합 테스트 (Integration)
+              /───────────────\           - 실행 속도: 수 초 ~ 수 분 / 비용: 중간
+             /                 \          - 도구: MockMvc, REST-Assured, Testcontainers
+            /    단위 테스트    \         - 비중: 20~30% (서비스 간 연계 및 비즈니스 규칙)
+           /     (Unit Test)     \
+          /───────────────────────\       [1] 단위 테스트 (Unit Test)
+                                          - 실행 속도: 밀리초(ms) 단위 (초고속) / 비용: 매우 낮음
+                                          - 도구: JUnit 5, Mockito, Jest
+                                          - 비중: 70% 이상 (독립 클래스/메서드 단위 로직)
+
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-  [CI 파이프라인]  Git Commit ──> 빌드 & 단위테스트 ──> API 통합테스트 ──> UI E2E ──> 자동 배포 (CD)     
+  [CI 파이프라인]  Git Commit ──> 빌드 & 단위테스트 ──> API 통합테스트 ──> UI E2E ──> 자동 배포 (CD)
 ```
 
 - **테스트 자동화 4단계 수립 프로세스**:
@@ -138,18 +135,12 @@ extra:
 | **플래키 테스트 통제** | Flaky 발생 테스트는 즉시 격리(Quarantine) 레인 이동 | 테스트 스위트 신뢰도(Flaky 발생률) 1% 미만 유지 |
 | **피드백 속도 최적화** | Docker 기반 빌드 캐싱 및 병렬 테스트 러너 가동 | PR 단위 전체 자동화 테스트 완료 시간 10분 이내 달성 |
 
----
-
-## 출제 이력
+## 출제 이력과 검증 출처
 
 - 제132회 정보관리기술사 2교시: 마틴 파울러의 테스트 피라미드(Test Pyramid)와 테스트 자동화 전략
-- 제126회 컴퓨터시스템응용기술사 1교시: 테스트 자동화 프레임워크의 종류(DDT, KDT, BDD)
 - 제120회 정보관리기술사 3교시: 지속적 통합(CI) 환경에서 플래키 테스트(Flaky Test)의 원인과 해결 방안
-
-## 참고 자료
-
-- Martin Fowler, "The Practical Test Pyramid"
-- Lisa Crispin, Janet Gregory, "Agile Testing: A Practical Guide for Testers and Agile Teams"
+- Martin Fowler, The Practical Test Pyramid
+- Lisa Crispin, Janet Gregory, Agile Testing: A Practical Guide for Testers and Agile Teams
 - Google Testing Blog: Flaky Tests at Google and How We Mitigate Them
 
 ## 연결 토픽

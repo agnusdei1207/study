@@ -74,29 +74,26 @@ extra:
 CI/CD 통합 파이프라인의 4단계 실행 체계 및 GitOps 배포 흐름도.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    CI/CD 파이프라인 및 GitOps 배포 체계                                 |
-+---------------------------------------------------------------------------------------------------------+
-                                                                                                           
-  [1] 소스 코드 작성            [2] 지속적 통합 (CI)             [3] 패키징 & 레지스트리                  
-  +─────────────────────+       +─────────────────────+       +─────────────────────+                      
-  | 개발자 Git Push     | ────> | GitHub Actions /    | ────> | Docker Image 빌드   |                      
-  | (Trunk-based PR)    |       | Jenkins 파이프라인  |       | 컨테이너 레지스트리 |                      
-  +─────────────────────+       | - 정적 분석 & Lint  |       | (Harbor / ECR 푸시) |                      
-                                | - 단위/통합 테스트  |       +──────────┬──────────+                      
-                                | - SonarQube 게이트  |                  │                                 
-                                +─────────────────────+                  ▼                                 
-                                                              [4] 지속적 제공 / 배포 (CD)                  
-                                                              +─────────────────────────────────────────+  
-                                                              | GitOps 배포 엔진 (ArgoCD)                |  
-                                                              | Manifest Git Repo 감시 및 동기화         |  
-                                                              +────────────────────┬────────────────────+  
-                                                                                   │                       
-                                ┌──────────────────────────────────────────────────┴────────────────────┐  
-                                ▼                                                                       ▼  
-                 [지속적 제공 (Continuous Delivery)]                     [지속적 배포 (Continuous Deployment)]     
-                 * 스테이징 배포 ──> [승인 버튼] ──> 프로덕션            * 테스트 통과 즉시 ──> 프로덕션 자동 배포 
-                 * 카나리 트래픽 5% ──> 검증 후 전면 전환                * 무인 자동 롤백 (SLO 위반 시)            
+[CI/CD 파이프라인 및 GitOps 배포 체계]
+[1] 소스 코드 작성            [2] 지속적 통합 (CI)             [3] 패키징 & 레지스트리
+  +─────────────────────+       +─────────────────────+       +─────────────────────+
+  | 개발자 Git Push     | ────> | GitHub Actions /    | ────> | Docker Image 빌드   |
+  | (Trunk-based PR)    |       | Jenkins 파이프라인  |       | 컨테이너 레지스트리 |
+  +─────────────────────+       | - 정적 분석 & Lint  |       | (Harbor / ECR 푸시) |
+                                | - 단위/통합 테스트  |       +──────────┬──────────+
+                                | - SonarQube 게이트  |                  │
+                                +─────────────────────+                  ▼
+                                                              [4] 지속적 제공 / 배포 (CD)
+                                                              +─────────────────────────────────────────+
+                                                              | GitOps 배포 엔진 (ArgoCD)                |
+                                                              | Manifest Git Repo 감시 및 동기화         |
+                                                              +────────────────────┬────────────────────+
+                                                                                   │
+                                ┌──────────────────────────────────────────────────┴────────────────────┐
+                                ▼                                                                       ▼
+                 [지속적 제공 (Continuous Delivery)]                     [지속적 배포 (Continuous Deployment)]
+                 * 스테이징 배포 ──> [승인 버튼] ──> 프로덕션            * 테스트 통과 즉시 ──> 프로덕션 자동 배포
+                 * 카나리 트래픽 5% ──> 검증 후 전면 전환                * 무인 자동 롤백 (SLO 위반 시)
 ```
 
 - **CI/CD 파이프라인 4단계 프로세스**:
@@ -149,19 +146,13 @@ CI/CD의 궁극적 목표는 배포 속도와 안정성의 동시 달성이므�
 | **서비스 복구 시간 (Time to Restore Service)** | 운영 장애 발생 시 정상 상태로 복구되는 데 걸리는 시간 (MTTR) | 1시간 이내 |
 | **변경 실패율 (Change Failure Rate)** | 배포 후 롤백, 핫픽스, 패치가 필요했던 배포의 비율 | 0~15% 이하 유지 |
 
----
-
-## 출제 이력
+## 출제 이력과 검증 출처
 
 - 제133회 정보관리기술사 2교시: DevOps의 핵심인 CI/CD 파이프라인 구축 단계 및 지속적 제공과 지속적 배포의 비교
-- 제128회 컴퓨터시스템응용기술사 3교시: DORA 4대 메트릭과 소프트웨어 배포 성숙도 평가
 - 제121회 정보관리기술사 1교시: Git 브랜치 전략 중 Trunk-Based Development의 개념 및 장점
-
-## 참고 자료
-
-- Nicole Forsgren, Jez Humble, Gene Kim, "Accelerate: The Science of Lean Software and DevOps"
-- Jez Humble, David Farley, "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation"
-- Martin Fowler, "Continuous Integration"
+- Nicole Forsgren, Jez Humble, Gene Kim, Accelerate: The Science of Lean Software and DevOps
+- Jez Humble, David Farley, Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation
+- Martin Fowler, Continuous Integration
 
 ## 연결 토픽
 

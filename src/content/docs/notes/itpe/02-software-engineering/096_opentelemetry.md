@@ -74,40 +74,37 @@ OpenTracing(추적)과 OpenCensus(지표)의 장점을 결합하여 완전한 �
 OpenTelemetry의 데이터 수집 파이프라인 및 분산 추적 문맥 전파 아키텍처.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    OpenTelemetry 아키텍처 및 파이프라인 체계                             |
-+---------------------------------------------------------------------------------------------------------+
-                                                                                                           
-  [1] 애플리케이션 계측 (Instrumentation)                                                                   
-  +───────────────────────────────────────────────────+                                                    
-  |  주문 서비스 (Service A)                          |                                                    
-  |  - OTel Java Agent (자동 계측: Traces/Metrics)    |                                                    
-  |  - TraceId: 4bf92f3577b34da6a3ce929d0e0e4736      |                                                    
-  +─────────────────────────┬─────────────────────────+                                                    
-                            │ HTTP POST (Header: traceparent: 00-4bf92f35...-01)                           
-                            ▼ (W3C Context Propagation)                                                    
-  +───────────────────────────────────────────────────+                                                    
-  |  결제 서비스 (Service B)                          |                                                    
-  |  - 동일 TraceId 상속, 신규 SpanId 생성            |                                                    
-  +─────────────────────────┬─────────────────────────+                                                    
-                            │                                                                              
-                            │ OTLP Protocol (gRPC : Port 4317)                                             
-                            ▼                                                                              
+[OpenTelemetry 아키텍처 및 파이프라인 체계]
+[1] 애플리케이션 계측 (Instrumentation)
+  +───────────────────────────────────────────────────+
+  |  주문 서비스 (Service A)                          |
+  |  - OTel Java Agent (자동 계측: Traces/Metrics)    |
+  |  - TraceId: 4bf92f3577b34da6a3ce929d0e0e4736      |
+  +─────────────────────────┬─────────────────────────+
+                            │ HTTP POST (Header: traceparent: 00-4bf92f35...-01)
+                            ▼ (W3C Context Propagation)
+  +───────────────────────────────────────────────────+
+  |  결제 서비스 (Service B)                          |
+  |  - 동일 TraceId 상속, 신규 SpanId 생성            |
+  +─────────────────────────┬─────────────────────────+
+                            │
+                            │ OTLP Protocol (gRPC : Port 4317)
+                            ▼
   ─────────────────────────────────────────────────────────────────────────────────────────────────────────
-  [2] OpenTelemetry Collector 파이프라인                                                                   
-  +─────────────────────────────────────────────────────────────────────────────────────────────────────+  
-  |   [ Receiver ]                 [ Processor ]                       [ Exporter ]                     |  
-  |   * otlp (gRPC/HTTP)   ───>    * memory_limiter (메모리 제어)  ───>  * otlp (Jaeger 전송)           |  
-  |   * prometheus                 * batch (배치 버퍼링)                 * prometheus (메트릭 노출)     |  
-  |   * filelog                    * transform (개인정보 마스킹)        * datadog (상용 클라우드 전송) |  
-  +───────────────────────────────────────────────────┬─────────────────────────────────────────────────+  
-                                                      │                                                    
-                                                      ▼                                                    
-  [3] 분산 관측성 백엔드 (Observability Backends)                                                          
-  +─────────────────────────+   +─────────────────────────+   +─────────────────────────+                  
-  |     Jaeger / Tempo      |   |   Prometheus / Mimir    |   |     Grafana Loki        |                  
-  |   (분산 추적 Trace 뷰)  |   |   (시스템 지표 Metric)  |   |   (구조화 로그 Log 뷰)  |                  
-  +─────────────────────────+   +─────────────────────────+   +─────────────────────────+                  
+  [2] OpenTelemetry Collector 파이프라인
+  +─────────────────────────────────────────────────────────────────────────────────────────────────────+
+  |   [ Receiver ]                 [ Processor ]                       [ Exporter ]                     |
+  |   * otlp (gRPC/HTTP)   ───>    * memory_limiter (메모리 제어)  ───>  * otlp (Jaeger 전송)           |
+  |   * prometheus                 * batch (배치 버퍼링)                 * prometheus (메트릭 노출)     |
+  |   * filelog                    * transform (개인정보 마스킹)        * datadog (상용 클라우드 전송) |
+  +───────────────────────────────────────────────────┬─────────────────────────────────────────────────+
+                                                      │
+                                                      ▼
+  [3] 분산 관측성 백엔드 (Observability Backends)
+  +─────────────────────────+   +─────────────────────────+   +─────────────────────────+
+  |     Jaeger / Tempo      |   |   Prometheus / Mimir    |   |     Grafana Loki        |
+  |   (분산 추적 Trace 뷰)  |   |   (시스템 지표 Metric)  |   |   (구조화 로그 Log 뷰)  |
+  +─────────────────────────+   +─────────────────────────+   +─────────────────────────+
 ```
 
 - **OTel 3단계 동작 프로세스**:
@@ -156,18 +153,12 @@ OpenTelemetry 도입 시 단순 모니터링 도구의 교체가 아닌 클라�
 | **비용 통제** | Tail-based Sampling Processor 가동 (성공 트랜잭션 샘플링 축소) | 텔레메트리 스토리지 인프라 비용 70% 절감 |
 | **장애 대응** | Prometheus 지표 알람 발생 시 해당 시점 Trace 링크 자동 연계 | 장애 원인 식별 시간(MTTD) 5분 이내 단축 |
 
----
-
-## 출제 이력
+## 출제 이력과 검증 출처
 
 - 제134회 정보관리기술사 1교시: OpenTelemetry(OTel)의 개념과 구성요소(API, SDK, Collector)
-- 제129회 컴퓨터시스템응용기술사 4교시: 마이크로서비스 관측성(Observability)의 3대 요소(M.E.L.T)와 분산 추적 기법
 - 제124회 정보관리기술사 2교시: 클라우드 네이티브 분산 추적을 위한 W3C TraceContext 표준 헤더 구조
-
-## 참고 자료
-
 - CNCF OpenTelemetry 공식 문서: opentelemetry.io Architecture and Concepts
-- Ted Young, Austin Parker, "Cloud Observability in Action with OpenTelemetry"
+- Ted Young, Austin Parker, Cloud Observability in Action with OpenTelemetry
 - W3C Recommendation: Trace Context Level 2 Specification
 
 ## 연결 토픽

@@ -75,31 +75,28 @@ extra:
 문자열 판정 프로세스 및 NFA의 DFA 변환(부분집합 구성법) 체계.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    유한 오토마타 문자열 판정 및 NFA-DFA 변환 체계                        |
-+---------------------------------------------------------------------------------------------------------+
-                                                                                                           
-  [1] DFA 문자열 "ab" 판정 흐름                                                                            
-                                                                                                           
-         (q0) 시작 ────────── 입력 'a' 소비 ──────────> (q1) ────────── 입력 'b' 소비 ──────────> ((q2))  
-                                                                                                   수용!   
-  * 판정: 입력 종료 시 최종 상태가 수용 상태 q2 ∈ F에 도달하였으므로 "Accept"                            
-                                                                                                           
+[유한 오토마타 문자열 판정 및 NFA-DFA 변환 체계]
+[1] DFA 문자열 "ab" 판정 흐름
+
+         (q0) 시작 ────────── 입력 'a' 소비 ──────────> (q1) ────────── 입력 'b' 소비 ──────────> ((q2))
+                                                                                                   수용!
+  * 판정: 입력 종료 시 최종 상태가 수용 상태 q2 ∈ F에 도달하였으므로 "Accept"
+
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-  [2] 부분집합 구성법 (Subset Construction : NFA ──> DFA 변환)                                            
-                                                                                                           
-  NFA의 다중 분기 상태들을 묶어 단일 DFA 상태로 합성                                                      
-                                                                                                           
-  [ NFA 상태 ]                   '0' 입력 전이                    [ DFA 합성 상태 ]                        
-  +─────────────────────+     ─────────────────────>             +─────────────────────────+              
-  | q0 ──0──> q0, q1    |                                        | State A = {q0, q1}      |              
-  +─────────────────────+                                        +─────────────────────────+              
-                                                                              │                            
-                                                                              │ '1' 입력 전이              
-                                                                              ▼                            
-                                                                 +─────────────────────────+              
+  [2] 부분집합 구성법 (Subset Construction : NFA ──> DFA 변환)
+
+  NFA의 다중 분기 상태들을 묶어 단일 DFA 상태로 합성
+
+  [ NFA 상태 ]                   '0' 입력 전이                    [ DFA 합성 상태 ]
+  +─────────────────────+     ─────────────────────>             +─────────────────────────+
+  | q0 ──0──> q0, q1    |                                        | State A = {q0, q1}      |
+  +─────────────────────+                                        +─────────────────────────+
+                                                                              │
+                                                                              │ '1' 입력 전이
+                                                                              ▼
+                                                                 +─────────────────────────+
                                                                  | State B = {q1, q2} (F)  | (수용 상태 포함)
-                                                                 +─────────────────────────+              
+                                                                 +─────────────────────────+
 ```
 
 - **부분집합 구성법(Subset Construction) 3단계 프로세스**:
@@ -143,19 +140,12 @@ extra:
 | **네트워크 보안** | Snort / Suricata IDS의 시그니처 패턴 매칭 엔진 | 기가비트 네트워크 패킷의 실시간 침입 탐지 |
 | **상태 머신 구현** | GoF State Pattern 및 Spring StateMachine 연계 | 비즈니스 도메인의 불법 상태 전이 원천 방지 |
 
----
+## 출제 이력과 검증 출처
 
-## 출제 이력
-
-- 제132회 컴퓨터시스템응용기술사 2교시: 유한 오토마타의 5-튜플 형식 정의 및 DFA와 NFA의 비교
 - 제125회 정보관리기술사 1교시: NFA를 DFA로 변환하는 부분집합 구성법(Subset Construction)의 개념 및 절차
-- 제118회 컴퓨터시스템응용기술사 4교시: 정규 표현식(Regular Expression)과 유한 오토마타의 관계 및 상태 최소화 기법
-
-## 참고 자료
-
-- John E. Hopcroft, Rajeev Motwani, Jeffrey D. Ullman, "Introduction to Automata Theory, Languages, and Computation (3rd Edition)"
-- Michael Sipser, "Introduction to the Theory of Computation (3rd Edition)"
-- Alfred V. Aho et al., "Compilers: Principles, Techniques, and Tools (Dragon Book)"
+- John E. Hopcroft, Rajeev Motwani, Jeffrey D. Ullman, Introduction to Automata Theory, Languages, and Computation (3rd Edition)
+- Michael Sipser, Introduction to the Theory of Computation (3rd Edition)
+- Alfred V. Aho et al., Compilers: Principles, Techniques, and Tools (Dragon Book)
 
 ## 연결 토픽
 

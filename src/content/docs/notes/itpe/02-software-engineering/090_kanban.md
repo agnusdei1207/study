@@ -77,21 +77,18 @@ extra:
 칸반 보드의 WIP Limit 제어 체계와 리틀의 법칙에 기반한 흐름 관리 구조.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    칸반 보드 WIP Limit 및 흐름 제어 아키텍처                             |
-+---------------------------------------------------------------------------------------------------------+
-                                                                                                           
-  [백로그]           [분석/설계]           [개발 진행]             [코드 리뷰]           [통합 QA]       [완료]
-   Backlog          Analysis (WIP: 2)     Dev (WIP: 3)          Review (WIP: 2)       QA (WIP: 2)       Done 
+[칸반 보드 WIP Limit 및 흐름 제어 아키텍처]
+[백로그]           [분석/설계]           [개발 진행]             [코드 리뷰]           [통합 QA]       [완료]
+   Backlog          Analysis (WIP: 2)     Dev (WIP: 3)          Review (WIP: 2)       QA (WIP: 2)       Done
   +─────────+       +───────────────+     +───────────────+     +───────────────+     +───────────+    +─────+
   | Task A  |       | [Task 1]      |     | [Task 3]      |     | [Task 5] (병목) |     | [Task 7]  |    | Fin |
   | Task B  | ────> | [Task 2]      | ──> | [Task 4]      | ──> | [Task 6] (병목) | ──> | [Task 8]  | ──>| ... |
   | Task C  |       |               |     | [빈 슬롯]     |     +───────────────+     +───────────+    +─────+
-  +─────────+       +───────────────+     +───────────────+             ▲                                  
-                                                  │                     │ WIP=2 포화 상태!                 
-                                                  └─────────────────────┘ (신규 진입 차단 & PUSH 금지)      
-                                                                                                           
-  * [스워밍(Swarming) 협업 규칙]                                                                           
+  +─────────+       +───────────────+     +───────────────+             ▲
+                                                  │                     │ WIP=2 포화 상태!
+                                                  └─────────────────────┘ (신규 진입 차단 & PUSH 금지)
+
+  * [스워밍(Swarming) 협업 규칙]
     리뷰 컬럼이 포화되면 개발자는 신규 작업을 시작하지 않고(Stop Starting), 리뷰 병목 해소에 동참(Start Finishing)
 ```
 
@@ -138,19 +135,13 @@ extra:
 | **흐름 모니터링** | CFD 밴드 폭의 평행성 유지 점검 (벌어지면 병목 발생 신호) | 평균 사이클 타임(Cycle Time) 3일 이내 단축 |
 | **배포 자동화** | 완료의 정의(DoD) 충족 시 즉각 배포되는 CI/CD 파이프라인 연계 | 배포 빈도(Deployment Frequency) 주 5회 이상 달성 |
 
----
+## 출제 이력과 검증 출처
 
-## 출제 이력
-
-- 제133회 컴퓨터시스템응용기술사 1교시: 칸반(Kanban)의 개념과 WIP(Work In Progress) 제한의 필요성
 - 제126회 정보관리기술사 2교시: 애자일 방법론에서 스크럼과 칸반의 비교 및 스크럼반(Scrumban) 적용 방안
 - 제119회 정보관리기술사 4교시: 린 소프트웨어 개발의 원칙과 누적 흐름도(CFD)를 활용한 병목 분석 기법
-
-## 참고 자료
-
-- David J. Anderson, "Kanban: Successful Evolutionary Change for Your Technology Business"
-- Henrik Kniberg, Mattias Skarin, "Kanban and Scrum - Making the Most of Both"
-- Mary Poppendieck, Tom Poppendieck, "Lean Software Development: An Agile Toolkit"
+- David J. Anderson, Kanban: Successful Evolutionary Change for Your Technology Business
+- Henrik Kniberg, Mattias Skarin, Kanban and Scrum - Making the Most of Both
+- Mary Poppendieck, Tom Poppendieck, Lean Software Development: An Agile Toolkit
 
 ## 연결 토픽
 
