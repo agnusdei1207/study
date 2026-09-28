@@ -1,39 +1,40 @@
 ---
 title: "CCPM·TOC"
-author: "OpenAI"
-date: "2026-09-24T00:00:00+09:00"
-tags: ["notes-it-strategy"]
+author: "Claude Code"
+date: "2026-09-28T15:23:00+09:00"
+tags:
+  - "notes-it-strategy"
 sidebar:
   badge:
     text: "응용"
 extra:
-  model: "GPT-6"
   keyword_grade: "응용"
+  model: "Claude Opus 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
-현재 위치: IT 전략·관리 → CCPM·TOC
 
+IT 전략·관리 → 프로젝트 일정 관리 → **CCPM·TOC**
 
 ## 30초 인출
 
-- 본질: TOC는 전체 성과를 제약하는 병목을 개선하는 관리 관점이며, CCPM은 자원 제약을 반영해 프로젝트 일정을 관리하는 적용 기법
-- 메커니즘: 자원 경합을 반영한 Critical Chain 도출과 프로젝트·피딩 버퍼를 통한 지연 위험 관리
-- 통찰: 한계: 작업별 여유만 보면 자원 충돌·전체 납기 위험을 놓침 → 방안: 자원 경합을 반영한 핵심 체인과 버퍼 소진으로 관리
+- 본질: CCPM(Critical Chain Project Management)은 제약이론(TOC)을 프로젝트 일정에 적용해 자원 경합까지 반영한 핵심 체인과 공동 버퍼로 납기를 지키는 일정관리 기법
+- 메커니즘: 작업별 안전여유를 걷어 체인 끝의 프로젝트 버퍼와 합류 지점의 피딩 버퍼로 모으고, 진척률 대비 버퍼 소진율로 대응 시점 판정
+- 통찰: 작업마다 둔 여유는 늦은 착수로 사라지므로 여유의 버퍼 통합과 소진 구간별 대응 기준 합의
 
 <details>
 <summary>핵심 용어</summary>
 
-- **CCPM·TOC** : 제약이론을 일정관리에 적용해 자원 제약과 작업 순서를 함께 다루는 관리 방식
-- **TOC(Theory of Constraints)** : 전체 시스템 성과를 제약하는 병목 요인을 식별·집중 개선하는 제약이론
-- **CCPM(Critical Chain Project Management)** : 작업 선후행과 자원 제약을 통합 반영하고 프로젝트 통합 버퍼로 공기를 통제하는 일정 관리 기법
-- **PB(Project Buffer)** : Critical Chain 맨 끝에 배치하여 전체 프로젝트 납기를 보호하는 프로젝트 버퍼
-- **FB(Feeding Buffer)** : 비임계 경로가 Critical Chain으로 합류하는 지점에 배치하여 지연 전이를 방지하는 공급 버퍼
-- **RB(Resource Buffer)** : Critical Chain 착수 전 제약 자원이 적시에 투입되도록 준비를 통보하는 자원 버퍼
-- **Fever Chart** : 체인 공정률과 버퍼 소진율을 3개 구역(녹·황·적)으로 시각화한 버퍼 통제 관리도
-- **CPM(Critical Path Method)** : 자원 제약을 배제하고 작업 선후행 의존성만을 기준으로 최장 경로를 도출하는 공정관리 기법
-- **WIP(Work in Progress)** : 비효율적 멀티태스킹을 방지하기 위해 제한하는 진행 중인 작업 수량
-- **EVM(Earned Value Management)** : 계획·획득가치와 실제원가를 결합해 프로젝트 성과를 측정하는 진도 관리 기법
+- **CCPM(Critical Chain Project Management)** : 작업 선후행과 자원 경합을 함께 반영한 핵심 체인과 통합 버퍼로 납기를 관리하는 일정관리 기법
+- **TOC(Theory of Constraints)** : 시스템 전체 성과를 묶는 하나의 제약을 찾아 그 제약에 집중해 개선하는 제약이론
+- **Critical Chain(핵심 체인)** : 작업 의존성과 자원 제약을 모두 반영했을 때 완료일을 결정하는 가장 긴 작업 연결
+- **PB(Project Buffer)** : 핵심 체인 끝에 두어 전체 납기를 보호하는 프로젝트 버퍼
+- **FB(Feeding Buffer)** : 비핵심 경로가 핵심 체인에 합류하는 지점에 두어 지연 전파를 막는 피딩 버퍼
+- **RB(Resource Buffer)** : 핵심 체인 작업 착수 전에 필요 자원의 준비를 알리는 자원 버퍼
+- **Fever Chart** : 핵심 체인 진척률과 버퍼 소진율을 녹색·황색·적색 구간으로 표시한 버퍼 관리도
+- **학생 증후군(Student Syndrome)** : 여유가 있으면 마감 직전까지 착수를 미루는 행동
+- **파킨슨 법칙(Parkinson's Law)** : 일이 주어진 기간을 모두 채울 때까지 늘어나는 현상
+- **CPM(Critical Path Method)** : 작업 선후행만으로 최장 경로와 작업별 여유를 계산하는 일정 분석 기법
 
 </details>
 
@@ -41,92 +42,123 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> CCPM·TOC의 개념·핵심 구조·적용 시 고려사항을 설명하시오. (예상·25점)
+> CCPM(Critical Chain Project Management)의 개념과 TOC 기반 일정관리 구조를 설명하고, 적용 시 한계와 방안을 제시하시오. (예상)
 
 ---
 
 ## 2~4교시 25점 답안
 
-## Ⅰ. CCPM 개요
+## Ⅰ. CCPM의 개요
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **CCPM(Critical Chain Project Management)** 은 **TOC(Theory of Constraints)** 를 프로젝트 일정에 적용해 작업 의존성과 자원 제약을 반영하고 버퍼로 납기를 관리하는 기법 |
-| 목적 | 자원 경합과 작업 지연의 전체 납기 영향 감소 |
+| 정의 | **CCPM(Critical Chain Project Management)** 은 TOC의 제약 집중 원리를 일정에 적용해 자원 경합을 반영한 핵심 체인과 통합 버퍼로 납기를 관리하는 일정관리 기법 |
+| 목적 | 자원 경합과 작업 여유 낭비로 인한 납기 지연의 감소 |
 
-## Ⅱ. CCPM의 특징
+## Ⅱ. CPM 일정관리와 구별되는 CCPM의 특징
 
 | 특징 | 의미 |
 |---|---|
-| 자원 제약 반영 | 작업 선후행과 공유 자원 경합을 함께 고려 |
-| 통합 버퍼 | 작업별 여유 대신 PB·FB로 납기와 합류 지점을 보호 |
-| 소진 기반 통제 | 진척률 대비 버퍼 소진으로 대응 시점 판단 |
+| 자원 제약 반영 | 작업 선후행과 공유 자원 경합을 함께 반영한 **Critical Chain** 도출 |
+| 여유의 통합 | 작업별 안전여유를 걷어 **PB** · **FB** 로 통합 |
+| 버퍼 소진 기반 통제 | 작업별 완료일 대신 진척률 대비 버퍼 소진율로 대응 판단 |
+| 행동 요인 억제 | **학생 증후군** · **파킨슨 법칙** 에 따른 여유 낭비와 멀티태스킹 억제 |
 
-## Ⅲ. Critical Chain 및 버퍼 관리 체계
+## Ⅲ. TOC 집중 5단계와 CCPM 버퍼 구조
 
-```text
-비임계 경로: 작업 → 피딩 버퍼(FB)
-                     ↓ 핵심 체인 합류 지점 보호
-핵심 체인: 작업 1 → 작업 2 → 작업 3
-                              ↓
-프로젝트 버퍼(PB) → 납기 목표 보호
-```
-
-| 요소 | 위치 | 역할 |
-|---|---|---|
-| **Critical Chain** | 선후행 관계와 자원 제약을 반영한 작업 연결 | 프로젝트 완료일을 좌우 |
-| PB | **Critical Chain** 끝 | 체인 전체의 지연을 흡수 |
-| FB | 비임계 경로가 **Critical Chain** 에 합류하는 지점 | 합류 작업으로 지연이 번지는 것을 완화 |
-| RB | 중요 자원 투입 전 알림 | 필요 자원의 적시 준비 지원 |
-
-Buffer 크기는 작업 불확실성·추정방식·위험 데이터를 반영해 정하며 일률적인 절반 규칙을 강제하지 않음.
-
-### CCPM 적용 절차
+### TOC 집중 5단계의 일정 적용
 
 ```text
-작업 의존성·자원 제약 분석
+① 제약 식별 ── 자원 경합을 반영한 핵심 체인 도출
     ↓
-핵심 체인 도출
+② 제약 최대 활용 ── 작업 여유 제거·멀티태스킹 억제
     ↓
-피딩·프로젝트 버퍼 설정
+③ 비제약의 종속 ── 비핵심 경로의 핵심 체인 종속
     ↓
-버퍼 소진량으로 납기 위험 통제
+④ 제약 향상 ── 핵심 자원 증원·작업 재배치
+    ↓
+⑤ 반복 ── 제약 이동 시 핵심 체인 재도출
 ```
 
-- 활동: 선후행 의존성 및 제약 자원 가용성·경합 식별 → 자원 평준화(Leveling)·다중작업 제거 후 최장 체인 확정 → PB·FB·RB 안전여유 통합 배치 → Fever Chart로 진척률 대비 소진율 모니터링 및 Red Zone 긴급 자원 집중
-- 산출: 자원제약 네트워크 → **Critical Chain** → Buffer 일정 → 통제 기록·긴급 조치
+### ①·③ 단계 확대: 핵심 체인과 버퍼 배치
 
-## Ⅳ. CPM·CCPM 비교
+```text
+핵심 체인: 작업 A → 작업 B → 작업 C
+    ↓
+프로젝트 버퍼(PB) → 납기
 
-| 기준 | CPM | CCPM |
+비핵심 경로: 작업 D
+    ↓
+피딩 버퍼(FB) → 작업 C 착수 전 합류
+```
+
+**RB** 는 일정 기간을 차지하지 않고 핵심 체인 작업 착수 전 자원 준비를 알리는 신호. 버퍼 크기는 작업 불확실성과 과거 실적으로 산정
+
+## Ⅳ. CPM과 CCPM의 비교
+
+| 구분 | **CPM** | CCPM |
 |---|---|---|
-| 제약 | 작업 선후행 중심 | 작업·자원 의존성 |
-| 여유 | 작업별 Float | PB·FB 통합 Buffer |
-| 진척 | 작업 일정·Critical Path | Chain 진척·Buffer 소진 |
-| 강점 | 논리적 일정 분석 | 자원경합·행동요인 통제 |
+| 최장 경로 기준 | 작업 선후행만 반영 | 선후행과 자원 경합 반영 |
+| 작업 기간 추정 | 안전여유를 포함한 추정 | 여유를 뺀 목표 기간 |
+| 여유 관리 | 작업별 여유(Float) | 체인 끝·합류 지점의 버퍼 |
+| 진척 통제 | 작업별 완료일 준수 | 버퍼 소진율 |
+| 적합 조건 | 자원 여유가 있고 작업이 독립적 | 핵심 자원을 여러 작업이 공유 |
 
-## Ⅴ. 한계와 방안
+## Ⅴ. CCPM 적용의 한계와 방안
 
 | 한계 | 방안 |
 |---|---|
-| 지나치게 공격적인 작업 기간 | 팀이 작업 추정 근거와 불확실성을 함께 검토 |
-| 버퍼 소진 원인 불명 | 소진 이유·복구조치를 기록해 지연 원인 추적 |
-| 공유 자원 경합 | 프로젝트별 착수 순서와 제약 자원의 가용성 조정 |
-| 신호 구간을 기계적으로 적용 | 남은 작업량·소진 추세·복구안을 함께 보고 대응 결정 |
+| 여유를 뺀 작업 기간을 개인 마감 압박으로 인식 | 작업 기간은 목표치로만 쓰고 개인별 완료일 평가 금지 |
+| 멀티태스킹으로 핵심 체인 작업 지연 | 핵심 자원의 동시 착수 제한과 선행 작업 완료 즉시 인계 |
+| 자원 경합이 적은 과제의 CCPM 도입 부담 | 자원 경합이 적은 과제는 CPM 유지, 핵심 자원 공유 과제만 CCPM 선택 |
+| 버퍼 크기의 일률적 설정 | 작업 불확실성과 과거 소진 실적 기반 버퍼 산정 |
+| 버퍼 소진 원인 미기록으로 같은 지연 반복 | 소진 사유·복구 조치의 기록과 다음 일정의 버퍼 산정 반영 |
 
-## Ⅵ. 제언 — 위험에 맞춘 버퍼·대응 기준
+## Ⅵ. 제언
 
-- 착수 전 작업기간의 불확실성과 의존관계로 버퍼를 산정하고 소진·복구 기준을 합의한 뒤 실제 소진 기록으로 다음 일정의 버퍼를 조정
+착수 전 버퍼 소진 구간별 대응 기준을 합의하고, 일정 대응은 진척률 대비 버퍼 소진율로만 결정
+
+### 버퍼 통제 책임 구조
+
+```text
+버퍼 통제
+    │
+    ├─ 프로젝트 관리자 ── 소진율 판정·복구 결정
+    │
+    ├─ 작업 담당자 ── 잔여 작업 기간 보고
+    │
+    └─ 자원 관리자 ── 핵심 체인 자원 우선 배정
+```
+
+### 프로젝트 관리자 역할 확대: 소진 구간별 대응
+
+```text
+진척률 대비 버퍼 소진율 확인 (Fever Chart)
+    ├─ 녹색 구간 → 계획대로 진행
+    ├─ 황색 구간 → 소진 원인 분석·복구 계획 수립
+    └─ 적색 구간 → 복구 계획 실행·자원 추가 투입
+```
+
+구간 경계는 과제 특성에 맞춰 착수 전 합의
+
+### 선택 근거: 작업별 완료일 관리와의 비교
+
+| 구분 | 작업별 완료일 관리 | 제언: 버퍼 소진율 관리 |
+|---|---|---|
+| 담당자 보고 | 작업 완료 여부 | 잔여 작업 기간 |
+| 대응 착수 시점 | 작업 지연 발생 후 | 소진율이 진척률을 앞설 때 |
+| 조기 완료 효과 | 다음 작업에 미전달 | 버퍼로 축적 |
+| 대응 기준 | 회의에서 사안별 결정 | 착수 전 합의한 구간별 대응 |
 
 ## 출제 이력과 검증 출처
 
-- 공식 문제지 원문 확인 전까지 직접 기출로 단정하지 않음
-- Eliyahu M. Goldratt, *Critical Chain*.
-- PMI, [Improving focus and predictability with critical chain project management](https://www.pmi.org/learning/library/critical-chain-project-management-5852).
-- PMI, [Analysis of resource buffer management in critical chain scheduling](https://www.pmi.org/learning/library/resource-buffer-management-critical-chain-scheduling-8027).
+- 제132~140회 공식 문제지에서 CCPM·TOC 단독 문항 미확인
+- Eliyahu M. Goldratt, *Critical Chain*, North River Press, 1997
+- PMI, [Improving focus and predictability with critical chain project management](https://www.pmi.org/learning/library/critical-chain-project-management-5852)
+- PMI, [Analysis of resource buffer management in critical chain scheduling](https://www.pmi.org/learning/library/resource-buffer-management-critical-chain-scheduling-8027)
 
 ## 연결 토픽
 
-- 이전: [111. Six Sigma DMAIC](./111_six_sigma_dmaic.md)
-- 관련: [081. CPM](./081_cpm.md) · [032. EVM](./032_evm.md)
-- 다음: [113. SW 비용 산정](./113_software_cost_estimation.md)
+- 이전 토픽: [Six Sigma DMAIC](./111_six_sigma_dmaic.md)
+- 연관 토픽: [CPM](./081_cpm.md), [EVM](./032_evm.md), [WBS](./007_wbs.md)
+- 다음 토픽: [소프트웨어 비용 산정](./113_software_cost_estimation.md)

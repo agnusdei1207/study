@@ -47,8 +47,8 @@ def audit(path: Path) -> list[str]:
         if label not in recall_labels:
             findings.append(f"30초 인출: {label} 없음")
     insight = next((line for line in recall.splitlines() if re.match(r"-\s*(?:\*\*)?통찰", line)), "")
-    if insight and not re.search(r"한계\s*:.*→\s*방안\s*:", insight):
-        findings.append("30초 통찰: 한계→방안 표시 없음")
+    if insight and re.search(r"한계\s*:|→|방안\s*:", insight):
+        findings.append("30초 통찰: 한 문장이 아닌 라벨·화살표 형식")
 
     if "## 1교시 예상문제" in text or "## 1교시 10점 답안" in text:
         findings.append("1교시 중복 답안 남음")

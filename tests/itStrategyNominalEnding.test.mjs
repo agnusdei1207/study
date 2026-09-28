@@ -4,11 +4,9 @@ import path from 'node:path';
 import test from 'node:test';
 
 const notesDir = 'src/content/docs/notes/itpe/01-it-strategy';
-// 현재 작성법으로 재작성을 마친 번호 범위. itStrategyVisual.test.mjs와 같은 값을 쓴다.
-const REWRITTEN_MAX_ID = 40;
 // 작업 중 특정 노트만 검사: ITPE_IDS=001,002 node --test ...
 const ONLY_IDS = process.env.ITPE_IDS?.split(",").map((value) => value.trim()).filter(Boolean);
-const inScope = (name) => Number(name.slice(0, 3)) <= REWRITTEN_MAX_ID && (!ONLY_IDS || ONLY_IDS.includes(name.slice(0, 3)));
+const inScope = (name) => !ONLY_IDS || ONLY_IDS.includes(name.slice(0, 3));
 
 function section(markdown, start, end) {
   const from = markdown.indexOf(start);

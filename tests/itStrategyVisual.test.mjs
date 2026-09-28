@@ -4,11 +4,9 @@ import path from 'node:path';
 import test from 'node:test';
 
 const notesDir = 'src/content/docs/notes/itpe/01-it-strategy';
-// 현재 작성법으로 재작성을 마친 번호 범위. 재작성이 진행되면 이 값을 올린다.
-const REWRITTEN_MAX_ID = 40;
 // 작업 중 특정 노트만 검사: ITPE_IDS=001,002 node --test ...
 const ONLY_IDS = process.env.ITPE_IDS?.split(",").map((value) => value.trim()).filter(Boolean);
-const inScope = (name) => Number(name.slice(0, 3)) <= REWRITTEN_MAX_ID && (!ONLY_IDS || ONLY_IDS.includes(name.slice(0, 3)));
+const inScope = (name) => !ONLY_IDS || ONLY_IDS.includes(name.slice(0, 3));
 
 async function targetNotes() {
   const names = await readdir(notesDir);
@@ -78,13 +76,14 @@ test('30초 인출은 본질·메커니즘을 중심으로 하고 추가 단서�
   }
 });
 
-test('rewritten notes keep three recall lines with an insight from limit to solution', async () => {
+test('recall keeps three lines with a one-sentence insight', async () => {
   for (const file of await rewrittenNotes()) {
     const note = await readFile(file, 'utf8');
     const summary = (sectionAfter(note, /^## 30초 인출\s*$/mu) ?? '').split(/<details\b/iu, 1)[0];
     const lines = summary.split(/\r?\n/u).map((line) => line.trim()).filter(Boolean);
     assert.equal(lines.length, 3, `${file}: 30초 인출은 본질·메커니즘·통찰 3줄이어야 합니다.`);
-    assert.match(lines[2], /^- 통찰: 한계: .+ → 방안: .+/u, `${file}: 통찰은 한계: … → 방안: … 형식이어야 합니다.`);
+    assert.match(lines[2], /^- 통찰: \S/u, `${file}: 셋째 줄은 통찰이어야 합니다.`);
+    assert.doesNotMatch(lines[2], /한계\s*:|→|방안\s*:/u, `${file}: 통찰은 라벨·화살표 없이 한계와 해결 방향을 잇는 한 문장이어야 합니다.`);
   }
 });
 
