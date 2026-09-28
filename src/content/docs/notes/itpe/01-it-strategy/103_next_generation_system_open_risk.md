@@ -147,7 +147,7 @@ PoNR 확정과 판정 시한 공지
 
 ## 출제 이력과 검증 출처
 
-- 132~140회 공식 문제지에서 직접 문항 미확인
+- 132~140회 공식 문제지에 직접 문항 없음
 - [AWS Prescriptive Guidance, Cutover stage](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-migration-cutover/cutover-stage.html): 원복 계획의 세 요소(사전 정의 기준에 따른 체크포인트, 데이터 처리를 포함한 원복 전략, 진행·원복 결정 담당자)와 신규 거래 발생 후 원복 시 데이터 복원 필요
 - [Microsoft Learn, Dynamics 365 implementation guide: Prepare go-live cutover strategy](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/prepare-go-live-cutover-strategy): 최종 결정권자의 go/no-go 결정과 판정 기준, 원복 계획
 - [NIST SP 800-34 Rev.1, Contingency Planning Guide for Federal Information Systems](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final)

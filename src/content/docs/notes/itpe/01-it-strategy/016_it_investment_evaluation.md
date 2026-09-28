@@ -155,7 +155,7 @@ IT 전략·관리 → 투자·포트폴리오 관리 → **IT 투자평가·투�
 
 ## 출제 이력과 검증 출처
 
-- 제132~140회 정보관리기술사 공식 문제지에서 IT 투자평가를 직접 묻는 문항 미확인
+- 제132~140회 정보관리기술사 공식 문제지에서 IT 투자평가를 직접 묻는 문항 없음
 - [ISACA Glossary: Val IT](https://www.isaca.org/resources/glossary)
 - [PMI, Benefits Realization Management Framework](https://www.pmi.org/learning/thought-leadership/series/benefits-realization/benefits-realization-management-framework)
 - [APM Glossary: Benefits realisation review](https://www.apm.org.uk/media/wazdsoab/apm-glossary-of-project-management-terms.pdf)

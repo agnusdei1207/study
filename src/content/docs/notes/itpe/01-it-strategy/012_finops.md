@@ -163,7 +163,7 @@ Operate: 조치 실행·정책 적용·결과 재측정
 
 ## 출제 이력과 검증 출처
 
-- 제132~140회 정보관리기술사 공식 문제지에서 FinOps를 직접 묻는 문항 미확인
+- 제132~140회 정보관리기술사 공식 문제지에서 FinOps를 직접 묻는 문항 없음
 - [FinOps Foundation, FinOps Framework](https://www.finops.org/framework/)
 - [FinOps Foundation, What is FinOps?](https://www.finops.org/introduction/what-is-finops/)
 

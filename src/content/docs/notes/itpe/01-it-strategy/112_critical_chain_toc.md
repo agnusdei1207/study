@@ -154,7 +154,7 @@ Goldratt 원문의 다섯 단계: Identify(식별)·Exploit(활용)·Subordinate
 
 ## 출제 이력과 검증 출처
 
-- 제132~140회 공식 문제지에서 CCPM·TOC 단독 문항 미확인
+- 제132~140회 공식 문제지에 CCPM·TOC 단독 문항 없음
 - Eliyahu M. Goldratt, *Critical Chain*, North River Press, 1997
 - PMI, [Improving focus and predictability with critical chain project management](https://www.pmi.org/learning/library/critical-chain-project-management-5852)
 - Tukel & Rom, [Analysis of resource buffer management in critical chain scheduling](https://www.pmi.org/learning/library/resource-buffer-management-critical-chain-scheduling-8027), PMI Research Conference, 2006: 프로젝트 버퍼(납기 보호)·피딩 버퍼(비핵심 체인 합류 지점)·자원 버퍼(자원 준비 경보, 기간 미포함) 정의

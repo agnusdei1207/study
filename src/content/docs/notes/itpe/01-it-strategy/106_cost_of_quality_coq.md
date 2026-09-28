@@ -147,7 +147,7 @@ IT 전략·관리 → 품질경영 → **품질비용(COQ)**
 
 ## 출제 이력과 검증 출처
 
-- 132~140회 공식 문제지에서 직접 문항 미확인
+- 132~140회 공식 문제지에 직접 문항 없음
 - [ASQ, Cost of Quality (COQ)](https://asq.org/quality-resources/cost-of-quality): COQ를 예방비용·평가비용·내부 실패비용·외부 실패비용으로 구분하고 내부·외부 실패비용을 COPQ로 정의. 내부 실패는 고객 인도 전, 외부 실패는 고객 인도 후 발견된 결함의 비용
 - PMI, 『A Guide to the Project Management Body of Knowledge(PMBOK Guide)』 6판, 2017, 8장 프로젝트 품질관리: 품질비용을 적합비용(Cost of Conformance: 예방·평가)과 부적합비용(Cost of Nonconformance: 내부·외부 실패)으로 구분
 

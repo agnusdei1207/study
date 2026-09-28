@@ -150,7 +150,7 @@ IT 전략·관리 → 디지털 혁신·전략 → **애자일 전환 전략**
 
 ## 출제 이력과 검증 출처
 
-- 제132~140회 정보관리기술사 공식 문제지에서 애자일 전환을 직접 묻는 문항 미확인
+- 제132~140회 정보관리기술사 공식 문제지에서 애자일 전환을 직접 묻는 문항 없음
 - [Manifesto for Agile Software Development](https://agilemanifesto.org/)
 - [SAFe, Lean Budgets](https://framework.scaledagile.com/lean-budgets)
 - [LeSS Framework](https://less.works/less/framework/index)

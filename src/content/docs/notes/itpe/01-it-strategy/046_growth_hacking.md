@@ -155,7 +155,7 @@ ICE 점수로 순서 결정
 
 ## 출제 이력과 검증 출처
 
-- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
+- 제132~140회 공식 문제지에 해당 문항 없음
 - [500 Global: Startup Metrics for Pirates](https://500.co/content/startup-metrics-for-pirates): AARRR 퍼널
 
 ## 연결 토픽
