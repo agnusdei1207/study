@@ -1,7 +1,7 @@
 ---
 title: "CCPM·TOC"
 author: "Claude Code"
-date: "2026-09-28T15:23:00+09:00"
+date: "2026-09-28T15:59:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -80,6 +80,8 @@ IT 전략·관리 → 프로젝트 일정 관리 → **CCPM·TOC**
 ⑤ 반복 ── 제약 이동 시 핵심 체인 재도출
 ```
 
+Goldratt 원문의 다섯 단계: Identify(식별)·Exploit(활용)·Subordinate(종속)·Elevate(향상), 제약이 해소되면 ①로 돌아가되 관성(inertia)이 새 제약이 되지 않도록 경계
+
 ### ①·③ 단계 확대: 핵심 체인과 버퍼 배치
 
 ```text
@@ -155,7 +157,8 @@ IT 전략·관리 → 프로젝트 일정 관리 → **CCPM·TOC**
 - 제132~140회 공식 문제지에서 CCPM·TOC 단독 문항 미확인
 - Eliyahu M. Goldratt, *Critical Chain*, North River Press, 1997
 - PMI, [Improving focus and predictability with critical chain project management](https://www.pmi.org/learning/library/critical-chain-project-management-5852)
-- PMI, [Analysis of resource buffer management in critical chain scheduling](https://www.pmi.org/learning/library/resource-buffer-management-critical-chain-scheduling-8027)
+- Tukel & Rom, [Analysis of resource buffer management in critical chain scheduling](https://www.pmi.org/learning/library/resource-buffer-management-critical-chain-scheduling-8027), PMI Research Conference, 2006: 프로젝트 버퍼(납기 보호)·피딩 버퍼(비핵심 체인 합류 지점)·자원 버퍼(자원 준비 경보, 기간 미포함) 정의
+- [Goldratt, The 5 Focusing Steps, North River Press](https://northriverpress.com/wp-content/uploads/2018/01/Free-download-5FS.pdf): 집중 5단계 원문 명칭
 
 ## 연결 토픽
 

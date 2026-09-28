@@ -1,7 +1,7 @@
 ---
 title: "Six Sigma DMAIC"
 author: "Claude Code"
-date: "2026-09-28T15:23:00+09:00"
+date: "2026-09-28T16:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -27,7 +27,7 @@ IT 전략·관리 → 품질경영·프로세스 개선 → **Six Sigma DMAIC**
 
 - **Six Sigma DMAIC** : 기존 프로세스의 결함·변동 원인을 데이터로 검증해 개선하고 유지하는 식스 시그마의 5단계 개선 방법
 - **DMAIC(Define, Measure, Analyze, Improve, Control)** : 정의·측정·분석·개선·관리로 이어지는 기존 프로세스 개선 절차
-- **DMADV(Define, Measure, Analyze, Design, Verify)** : 기존 프로세스로 목표를 달성할 수 없을 때 새 프로세스·제품을 설계·검증하는 식스 시그마 설계 절차
+- **DMADV(Define, Measure, Analyze, Design, Verify)** : 기존 프로세스로 목표를 달성할 수 없을 때 새 프로세스·제품을 설계·검증하는 식스 시그마 설계(DFSS) 절차. ASQ 블랙벨트 지식체계는 마지막 단계를 Validate로도 표기
 - **VOC(Voice of Customer)** : 설문·인터뷰·불만 등으로 수집한 고객의 요구
 - **CTQ(Critical to Quality)** : VOC에서 도출한, 측정 가능한 핵심 품질 특성과 허용 기준
 - **DPMO(Defects Per Million Opportunities)** : 결함 발생 기회 100만 건당 결함 수. 식스 시그마 수준은 장기 3.4 DPMO가 관례
@@ -148,8 +148,10 @@ Control ── 표준화·관리도 감시·이탈 대응
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에서 Six Sigma DMAIC 단독 문항 미확인
-- [ASQ, DMAIC Process: Define, Measure, Analyze, Improve, Control](https://asq.org/quality-resources/dmaic)
+- [ASQ, DMAIC Process: Define, Measure, Analyze, Improve, Control](https://asq.org/quality-resources/dmaic): 기존 프로세스 개선용 5단계, Measure의 측정체계 검증·기준선 확정, Control의 관리계획·통계적 공정관리
 - [ASQ, What Is Six Sigma?](https://asq.org/quality-resources/six-sigma)
+- [ASQ, Certified Six Sigma Green Belt Body of Knowledge, 2022](https://www.asq.org/cert/resource/pdf/certification/2022-SSGB-BoK.pdf): DFSS 로드맵으로서 DMADV(define, measure, analyze, design, verify)와 DMAIC의 대응
+- [ASQ, Certified Six Sigma Black Belt Body of Knowledge, 2022](https://www.asq.org/cert/resource/pdf/certification/2022-SSBB-BoK.pdf): DMADV의 마지막 단계를 validate로 표기
 - [ASQ, What Is 3.4 per Million?](https://asq.org/quality-progress/articles/what-is-34-per-million?id=d3d31b31c1da4f60b281025df9ccd057)
 
 ## 연결 토픽

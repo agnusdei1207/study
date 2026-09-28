@@ -1,7 +1,7 @@
 ---
 title: "품질비용(COQ)"
 author: "Claude Code"
-date: "2026-09-28T15:21:00+09:00"
+date: "2026-09-28T16:01:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -27,8 +27,8 @@ IT 전략·관리 → 품질경영 → **품질비용(COQ)**
 
 - **품질비용(COQ, Cost of Quality)** : 품질 확보 활동의 비용과 요구 품질 미달로 생긴 손실을 함께 분류·집계하는 관리 개념
 - **PAF(Prevention, Appraisal, Failure) 모델** : 품질비용을 예방·평가·실패(내부·외부)로 나누는 대표 분류 모델
-- **적합비용(Cost of Good Quality)** : 결함을 막거나 찾아내기 위해 계획적으로 쓰는 예방비용과 평가비용
-- **부적합비용(COPQ, Cost of Poor Quality)** : 결함이 생긴 뒤 발생하는 내부 실패비용과 외부 실패비용
+- **적합비용(Cost of Conformance)** : 결함을 막거나 찾아내기 위해 계획적으로 쓰는 예방비용과 평가비용. PMBOK Guide의 구분 용어
+- **부적합비용(COPQ, Cost of Poor Quality)** : 결함이 생긴 뒤 발생하는 내부 실패비용과 외부 실패비용. ASQ는 COPQ, PMBOK Guide는 Cost of Nonconformance로 표기
 - **내부 실패비용** : 인도·배포 전에 발견한 결함의 수정·재시험·재작업 비용
 - **외부 실패비용** : 인도·배포 후 발견한 결함의 장애 복구·보상·긴급 패치·신뢰 손실 비용
 
@@ -148,7 +148,8 @@ IT 전략·관리 → 품질경영 → **품질비용(COQ)**
 ## 출제 이력과 검증 출처
 
 - 132~140회 공식 문제지에서 직접 문항 미확인
-- [ASQ, Cost of Quality (COQ)](https://asq.org/quality-resources/cost-of-quality)
+- [ASQ, Cost of Quality (COQ)](https://asq.org/quality-resources/cost-of-quality): COQ를 예방비용·평가비용·내부 실패비용·외부 실패비용으로 구분하고 내부·외부 실패비용을 COPQ로 정의. 내부 실패는 고객 인도 전, 외부 실패는 고객 인도 후 발견된 결함의 비용
+- PMI, 『A Guide to the Project Management Body of Knowledge(PMBOK Guide)』 6판, 2017, 8장 프로젝트 품질관리: 품질비용을 적합비용(Cost of Conformance: 예방·평가)과 부적합비용(Cost of Nonconformance: 내부·외부 실패)으로 구분
 
 ## 연결 토픽
 

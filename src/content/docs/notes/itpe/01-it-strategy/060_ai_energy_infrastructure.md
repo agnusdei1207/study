@@ -1,7 +1,7 @@
 ---
 title: "AI 에너지 인프라"
 author: "Claude Code"
-date: "2026-09-28T15:19:00+09:00"
+date: "2026-09-28T15:52:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
@@ -60,6 +60,8 @@ IT 전략·관리 → 디지털 인프라 정책 → **AI 에너지 인프라**
 | 급변하는 부하 | 학습 작업 시작·종료에 따른 전력 사용량의 큰 변동 |
 | 전력·냉각 공동 제약 | 전력과 냉각 중 먼저 바닥나는 쪽이 증설 한계를 결정 |
 | 입지 의존 | 계통 접속 가능 시점·용수·기후가 설계 선택을 좌우 |
+
+수요 규모: 전 세계 데이터센터 전력 소비는 2024년 약 415TWh(전체의 약 1.5%)에서 2030년 약 945TWh(3% 미만)로 증가 전망. 연평균 약 15% 증가로 다른 부문 합계보다 4배 이상 빠른 속도(IEA 기준 시나리오)
 
 ## Ⅲ. 전력·냉각 구성 체계와 전력·열 흐름
 
@@ -153,7 +155,7 @@ GPU 랙 연산
 - 제140회 4교시 6번: AI 데이터센터의 정의·부상 배경, 기존 데이터센터와 비교, 구현 핵심 기술
 - 제134회 2교시 4번: 대규모 AI 서비스를 위한 데이터센터 구축 기술
 - 제139회 4교시 3번: 재난 대비 데이터센터의 지리적 위치 선정과 대응 전략. 입지 판단의 확장 범위
-- [IEA, Energy and AI](https://www.iea.org/reports/energy-and-ai)
+- [IEA, Energy and AI(2025) 보고서 PDF](https://iea.blob.core.windows.net/assets/ed0483fd-aab4-4cf9-b25a-5aa362b56a2f/EnergyandAI.pdf): 데이터센터 전력 소비 2024년 약 415TWh·2030년 약 945TWh(Base Case)
 - [U.S. DOE, Best Practices Guide for Energy-Efficient Data Center Design](https://www.energy.gov/cmei/femp/articles/best-practices-guide-energy-efficient-data-center-design)
 
 ## 연결 토픽

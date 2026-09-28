@@ -1,7 +1,7 @@
 ---
 title: "AI 고속도로"
 author: "Claude Code"
-date: "2026-09-28T15:18:00+09:00"
+date: "2026-09-28T15:52:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -78,6 +78,8 @@ AI 고속도로
 
 국가 AI 컴퓨팅센터는 전남 해남에 첨단 AI반도체 1만 5천 장 규모로 2028년 완공을 목표로 하며, 민관 합작 법인이 구축·운영
 
+확보 목표: 정부 구매·슈퍼컴퓨터 6호기·국가 AI 컴퓨팅센터를 통한 2028년까지 첨단 GPU 5만 2천 장 이상 확보. 2025년 1차 추경(1.46조 원 사업)으로 1만 3천 장(B200 10,080장·H200 3,056장)을 확보했고, 2026년 2.08조 원 규모의 클라우드 사업자 공모로 추가 확보 추진
+
 ### 배분 체계 확대: 정부 GPU 배분 절차
 
 ```text
@@ -149,7 +151,8 @@ GPU 배분 운영
 - 제132~140회 공식 문제지에서 AI 고속도로 직접 문항 미확인
 - 인접 문항: 제138회 2교시 3번 GPU와 TPU, 제134회 4교시 2번 멀티 GPU 기술
 - [대한민국 정책브리핑, 국가 AI컴퓨팅센터 구축 착공(2026.8)](https://www.korea.kr/news/policyNewsView.do?newsId=148969296)
-- [대한민국 정책브리핑, 정부 확보 GPU 1만 장 산·학·연 배분(2025.12)](https://www.korea.kr/news/policyNewsView.do?newsId=148956711)
+- [대한민국 정책브리핑, 정부 확보 GPU 1만 장 산·학·연 배분(2025.12.18)](https://www.korea.kr/news/policyNewsView.do?newsId=148956711): 2028년까지 5만 2천 장 이상 확보 목표, 1만 3천 장 구성
+- [과학기술정보통신부 보도자료, 인공지능 고속도로 구축 본격화(2026.3.12)](https://www.korea.kr/briefing/pressReleaseView.do?newsId=156748651): 2.08조 원 규모 GPU 확보 클라우드 사업자 공모
 - [대한민국 정책브리핑, AI 고속도로 네트워크 고도화(2025.12)](https://www.korea.kr/news/policyNewsView.do?newsId=148956736)
 - [과학기술정보통신부, 2026년도 고성능 컴퓨팅 지원 사용자 추가 모집 공고](https://msit.go.kr/bbs/view.do?bbsSeqNo=100&mId=311&mPid=121&nttSeqNo=3186760&sCode=user)
 

@@ -1,7 +1,7 @@
 ---
 title: "경영환경 분석(SWOT·3C·PEST)"
 author: "Claude Code"
-date: "2026-09-28T15:39:00+09:00"
+date: "2026-09-28T15:52:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -27,9 +27,9 @@ IT 전략·관리 → 환경·역량 분석 → **경영환경 분석(SWOT·3C·
 
 - **경영환경 분석** : 조직을 둘러싼 거시환경·시장과 조직 내부 역량을 살펴 전략 대안의 근거를 만드는 분석 활동
 - **PEST(Political, Economic, Social, Technological)** : 정치·경제·사회·기술 관점의 거시환경 분석 틀. 법(Legal)·환경(Environmental)을 더하면 PESTLE
-- **3C(Customer, Competitor, Company)** : 고객·경쟁사·자사를 함께 보고 시장에서의 성공 요인을 찾는 분석 틀
+- **3C(Customer, Competitor, Company)** : 고객·경쟁사·자사를 함께 보고 시장에서의 성공 요인을 찾는 분석 틀. Ohmae가 『The Mind of the Strategist』(1982)에서 전략 삼각형(strategic triangle)으로 제시
 - **SWOT(Strengths, Weaknesses, Opportunities, Threats)** : 내부 강점·약점과 외부 기회·위협을 구분해 전략 대안을 찾는 분석 틀
-- **TOWS 매트릭스** : SWOT 요인을 교차해 SO·ST·WO·WT 전략 대안을 만드는 조합표
+- **TOWS 매트릭스** : SWOT 요인을 교차해 SO·ST·WO·WT 전략 대안을 만드는 조합표. Weihrich(1982)가 상황 분석 도구로 제시
 - **핵심 성공 요인(KSF, Key Success Factor)** : 고객 요구를 경쟁사보다 잘 충족하기 위해 반드시 갖춰야 할 요인
 
 </details>
@@ -162,7 +162,9 @@ TOWS 대안 목록
 
 - 제133회 3교시 4번: 경영환경 분석 방법인 SWOT·3C·PEST 분석
 - CIPD, [PESTLE analysis](https://www.cipd.org/uk/knowledge/factsheets/pestle-analysis-factsheet/)
-- Kenichi Ohmae, [The strategic triangle: A new perspective on business unit strategy](https://www.sciencedirect.com/science/article/abs/pii/S0263237382800169)
+- Kenichi Ohmae, 『The Mind of the Strategist: The Art of Japanese Business』, McGraw-Hill, 1982: 고객·경쟁사·자사의 전략 삼각형
+- Kenichi Ohmae, [“The Strategic Triangle: A New Perspective on Business Unit Strategy,” European Management Journal, 1(1), 38–48, 1982](https://doi.org/10.1016/S0263-2373(82)80016-9)
+- Heinz Weihrich, [“The TOWS Matrix — A Tool for Situational Analysis,” Long Range Planning, 15(2), 54–66, 1982](https://doi.org/10.1016/0024-6301(82)90120-0): SO·ST·WO·WT 전략 조합
 - Harvard Business Review, [From SWOT to TOWS](https://hbr.org/2007/03/from-swot-to-tows-answering-a-readers-strategy-question)
 
 ## 연결 토픽

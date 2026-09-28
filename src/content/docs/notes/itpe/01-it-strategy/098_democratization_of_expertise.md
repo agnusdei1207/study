@@ -1,7 +1,7 @@
 ---
 title: "전문성의 민주화"
 author: "Claude Code"
-date: "2026-09-28T15:20:00+09:00"
+date: "2026-09-28T15:56:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -67,16 +67,16 @@ IT 전략·관리 → IT 조직·역량 운영 → **전문성의 민주화**
 ```text
 전문성의 민주화
     │
-    ├─ 데이터·분석 ── 셀프서비스 BI·시민 데이터 과학자
+    ├─ 데이터·분석 ── 데이터 과학 도구의 사용층 확대
     │
-    ├─ 개발 ── AI 보조 코드 생성, 개발자 생산성
+    ├─ 개발 ── 맞춤 개발 앱의 AI 도구 활용
     │
-    ├─ 설계 ── LCNC로 현업이 앱·자동화 제작
+    ├─ 설계 ── LCNC와 개발 기능 자동화로 시민 개발
     │
-    └─ 지식 ── 전문가 시스템의 비전문가 판단 보조
+    └─ 지식 ── 비IT 인력의 도구·전문가 시스템 활용
 ```
 
-Gartner(2020)가 제시한 네 영역 구분이며, 조직 도입에서 파급이 가장 큰 영역은 현업이 직접 운영 시스템을 만드는 설계 영역
+Gartner가 2019년 10월 발표한 2020 전략 기술 동향의 네 측면(democratization of data and analytics·development·design·knowledge)이며, 조직 도입에서 파급이 가장 큰 영역은 현업이 직접 운영 시스템을 만드는 설계 영역
 
 ### 설계 영역 확대: 시민 개발 앱의 운영 흐름
 
@@ -152,7 +152,7 @@ Gartner(2020)가 제시한 네 영역 구분이며, 조직 도입에서 파급�
 ## 출제 이력과 검증 출처
 
 - 제138회 3교시 2번: 로우코드 플랫폼의 주요 특징, 노코드와 로우코드 비교, 적용 시 한계점. 설계 영역의 LCNC를 다룬 확장 범위로 기본 답안과 구별
-- [Gartner Identifies the Top 10 Strategic Technology Trends for 2020 (보도 정리)](https://www.voicendata.com/gartner-identifies-top-10-strategic-technology-trends-2020/)
+- [Gartner 보도자료, “Gartner Identifies the Top 10 Strategic Technology Trends for 2020,” 2019.10.21](https://www.gartner.com/en/newsroom/press-releases/2019-10-21-gartner-identifies-the-top-10-strategic-technology-trends-for-2020) ([2019.11.12 보관본](http://web.archive.org/web/20191112093031/https://www.gartner.com/en/newsroom/press-releases/2019-10-21-gartner-identifies-the-top-10-strategic-technology-trends-for-2020)): Democratization of Expertise의 정의와 2023년까지 가속될 네 측면
 - [Microsoft Learn, Power Platform Center of Excellence](https://learn.microsoft.com/en-us/power-platform/guidance/adoption/coe)
 
 ## 연결 토픽

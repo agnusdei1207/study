@@ -1,7 +1,7 @@
 ---
 title: "기술수용모델(TAM)"
 author: "Claude Code"
-date: "2026-09-28T15:20:00+09:00"
+date: "2026-09-28T15:54:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -30,8 +30,8 @@ IT 전략·관리 → 정보시스템 도입·사용자 수용 → **기술수�
 - **PEOU(Perceived Ease of Use)** : 기술을 사용하는 데 노력이 많이 들지 않을 것이라고 사용자가 믿는 정도
 - **BI(Behavioral Intention)** : 기술을 사용하려는 사용자의 의향. 실제 사용의 직접 선행 변수
 - **외부 변수(External Variables)** : 시스템 특성·교육·조직 지원처럼 PU·PEOU 인식을 형성하는 요인
-- **TAM2** : 주관적 규범·직무 관련성·결과 품질 등 PU를 형성하는 사회적·인지적 요인을 추가한 확장 모델
-- **UTAUT(Unified Theory of Acceptance and Use of Technology)** : 성과 기대·노력 기대·사회적 영향·촉진 조건으로 기술 수용과 사용을 설명하는 통합 이론
+- **TAM2** : 사회적 영향 과정(주관적 규범·자발성·이미지)과 인지적 도구 과정(직무 관련성·산출물 품질·결과 입증성·PEOU)으로 PU와 사용 의도를 설명하는 Venkatesh·Davis(2000)의 확장 모델
+- **UTAUT(Unified Theory of Acceptance and Use of Technology)** : 성과 기대·노력 기대·사회적 영향·촉진 조건 네 요인과 성별·나이·경험·자발성 네 조절변수로 기술 수용과 사용을 설명하는 Venkatesh 등(2003)의 통합 이론
 
 </details>
 
@@ -79,28 +79,28 @@ BI(사용 의도)
 실제 사용
 ```
 
-PEOU는 태도에도 직접 영향을 주고 PU는 사용 의도에도 직접 영향을 주는 구조. Davis 등(1989)의 원형은 태도 변수를 포함하며, 이후 연구에서는 태도를 빼고 PU·PEOU가 사용 의도로 바로 이어지는 간소화 구조도 사용
+PEOU는 태도에도 직접 영향을 주고 PU는 사용 의도에도 직접 영향을 주는 구조. Davis·Bagozzi·Warshaw(1989)의 원형은 태도 변수를 포함하며, 이후 연구에서는 태도를 빼고 PU·PEOU가 사용 의도로 바로 이어지는 간소화 구조도 사용
 
 ### PU 형성 요인 확대: TAM2의 외부 변수
 
 ```text
 PU(지각된 유용성) 형성 요인
     │
-    ├─ 사회적 영향 ── 주관적 규범·이미지
+    ├─ 사회적 영향 과정 ── 주관적 규범·이미지
     │
-    ├─ 인지적 판단 ── 직무 관련성·결과 품질
-    │
-    └─ 결과 입증성 ── 성과가 눈에 보이는 정도
+    └─ 인지적 도구 과정
+          ├─ 직무 관련성·산출물 품질
+          └─ 결과 입증성·PEOU
 ```
 
-TAM2는 경험과 자발성 수준에 따라 주관적 규범의 영향이 달라지는 조절 관계도 포함
+TAM2의 조절 관계: 주관적 규범은 의무 사용 환경에서만 사용 의도에 직접 영향을 주고, 사용 경험이 쌓일수록 그 영향이 약화
 
 ## Ⅳ. TAM·TAM2·UTAUT의 비교
 
 | 구분 | TAM | TAM2 | UTAUT |
 |---|---|---|---|
 | 핵심 변수 | PU·PEOU | PU·PEOU와 PU 형성 요인 | 성과 기대·노력 기대·사회적 영향·촉진 조건 |
-| 추가 관점 | 개인 인식 | 사회적 규범·직무 적합성 | 조직 지원 환경과 조절 변수 |
+| 추가 관점 | 개인 인식 | 사회적 영향 과정·인지적 도구 과정 | 조직 지원 환경과 성별·나이·경험·자발성 조절 |
 | 적합한 상황 | 자발적 사용 기술의 수용 원인 파악 | 조직 내 도입에서 유용성 인식 원인 분석 | 의무 사용·인프라 제약이 큰 조직 도입 |
 | 강점 | 변수가 적어 측정 간결 | PU 저하 원인까지 진단 | 설명 범위가 넓음 |
 
@@ -112,7 +112,7 @@ TAM의 PU·PEOU는 UTAUT의 성과 기대·노력 기대에 대응하며, UTAUT�
 |---|---|
 | 높은 사용 의도에도 실제 사용 저조 | 설문 측정과 함께 접속·핵심 기능 사용 기록의 병행 측정 |
 | 의무 사용 환경에서 의도의 설명력 약화 | 자발성이 낮은 조직 도입이면 촉진 조건·사회적 영향을 포함한 UTAUT 선택 |
-| PU가 낮은 원인 미파악 | 원인 진단이 필요하면 직무 관련성·결과 품질을 묻는 TAM2 문항 추가 |
+| PU가 낮은 원인 미파악 | 원인 진단이 필요하면 직무 관련성·산출물 품질·결과 입증성을 묻는 TAM2 문항 추가 |
 | 도입 초기 한 번의 측정으로 판단 | 도입 직후와 정착 이후의 반복 측정으로 인식 변화 확인 |
 
 ## Ⅵ. 제언
@@ -136,7 +136,7 @@ TAM의 PU·PEOU는 UTAUT의 성과 기대·노력 기대에 대응하며, UTAUT�
 ```text
 인식·의도·행동 측정값 비교
     ├─ PEOU 낮음 → 화면·절차 단순화, 교육
-    ├─ PU 낮음 → 직무 관련 기능·결과 품질 보완
+    ├─ PU 낮음 → 직무 관련 기능·산출물 품질 보완
     └─ BI 높고 사용 낮음 → 권한·인프라 점검
           ↓
     재측정으로 개선 효과 확인
@@ -155,8 +155,10 @@ TAM의 PU·PEOU는 UTAUT의 성과 기대·노력 기대에 대응하며, UTAUT�
 
 - 제133회 1교시 6번: 기술수용모델(TAM)의 개념과 주요 구성요소
 - [Davis, F. D., Perceived Usefulness, Perceived Ease of Use, and User Acceptance of Information Technology, MIS Quarterly 13(3), 1989](https://aisel.aisnet.org/misq/vol13/iss3/6/)
-- Venkatesh, V. & Davis, F. D., A Theoretical Extension of the Technology Acceptance Model: Four Longitudinal Field Studies, Management Science 46(2), 2000
-- Venkatesh, V. et al., User Acceptance of Information Technology: Toward a Unified View, MIS Quarterly 27(3), 2003
+- [Venkatesh, V. & Davis, F. D., A Theoretical Extension of the Technology Acceptance Model: Four Longitudinal Field Studies, Management Science 46(2), 186–204, 2000](https://doi.org/10.1287/mnsc.46.2.186.11926): 초록에 사회적 영향 과정(주관적 규범·자발성·이미지)과 인지적 도구 과정(직무 관련성·산출물 품질·결과 입증성·PEOU) 명시
+- [Davis, F. D., Bagozzi, R. P. & Warshaw, P. R., User Acceptance of Computer Technology: A Comparison of Two Theoretical Models, Management Science 35(8), 982–1003, 1989](https://doi.org/10.1287/mnsc.35.8.982)
+- [Venkatesh, V., Morris, M. G., Davis, G. B. & Davis, F. D., User Acceptance of Information Technology: Toward a Unified View, MIS Quarterly 27(3), 425–478, 2003](https://doi.org/10.2307/30036540)
+- [Blut, Chong, Tsiga & Venkatesh, Meta-Analysis of the UTAUT, Journal of the Association for Information Systems 23(1), 13–95, 2022](https://doi.org/10.17705/1jais.00719): 원 모델의 네 예측변수와 네 조절변수(성별·나이·경험·자발성) 정리
 
 ## 연결 토픽
 

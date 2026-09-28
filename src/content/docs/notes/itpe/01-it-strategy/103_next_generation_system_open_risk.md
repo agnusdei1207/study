@@ -1,7 +1,7 @@
 ---
 title: "차세대 시스템 오픈 리스크"
 author: "Claude Code"
-date: "2026-09-28T15:21:00+09:00"
+date: "2026-09-28T15:57:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -29,7 +29,7 @@ IT 전략·관리 → 프로젝트 위험관리 → **차세대 시스템 오픈
 - **Cut-over(전환)** : 기존 시스템의 데이터·연계·이용자를 새 시스템으로 최종 이관하고 가동하는 절차
 - **Go/No-Go** : 사전 판정 기준에 따라 새 시스템의 개통 진행 또는 중단을 결정하는 의사결정 관문
 - **Rollback(원복)** : 전환 실패 시 시스템과 데이터를 전환 전의 정상 상태로 되돌리는 복구 절차
-- **PoNR(Point of No Return, 원복 한계시각)** : 이 시각 이후에는 새 시스템의 거래가 쌓여 원복이 사실상 불가능해지는 시점
+- **PoNR(Point of No Return, 원복 한계시각)** : 이 시각 이후에는 새 시스템의 거래가 쌓여 원복이 사실상 불가능해지는 시점. 표준 정의가 아닌 전환(cutover) 실무 용어로, AWS 전환 지침의 사전 정의 기준에 따른 원복 체크포인트와 대응
 - **리허설(모의 전환)** : 실제 전환과 같은 순서·규모로 이관·검증·원복을 미리 수행하는 시험
 
 </details>
@@ -148,7 +148,8 @@ PoNR 확정과 판정 시한 공지
 ## 출제 이력과 검증 출처
 
 - 132~140회 공식 문제지에서 직접 문항 미확인
-- [AWS Prescriptive Guidance, Cutover stage](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-migration-cutover/cutover-stage.html)
+- [AWS Prescriptive Guidance, Cutover stage](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-migration-cutover/cutover-stage.html): 원복 계획의 세 요소(사전 정의 기준에 따른 체크포인트, 데이터 처리를 포함한 원복 전략, 진행·원복 결정 담당자)와 신규 거래 발생 후 원복 시 데이터 복원 필요
+- [Microsoft Learn, Dynamics 365 implementation guide: Prepare go-live cutover strategy](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/prepare-go-live-cutover-strategy): 최종 결정권자의 go/no-go 결정과 판정 기준, 원복 계획
 - [NIST SP 800-34 Rev.1, Contingency Planning Guide for Federal Information Systems](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final)
 
 ## 연결 토픽
