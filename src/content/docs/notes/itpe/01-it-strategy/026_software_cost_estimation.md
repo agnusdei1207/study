@@ -1,7 +1,7 @@
 ---
 title: "SW사업 대가산정"
 author: "Claude Code"
-date: "2026-09-28T15:49:00+09:00"
+date: "2026-09-28T16:18:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -159,7 +159,7 @@ SW사업 대가산정
 - KOSA, 「SW사업 대가산정 가이드」 2025년 개정판: 기능점수당 단가 605,784원(표 3-21), 보정계수 5종(규모·연계복잡성·성능요구·운영환경 호환성·보안성), 요율제 유지관리 요율 = 10 + 5 × TMP/100(TMP 0~100점), SW 유지관리비 = SW개발비(현재가치) × 요율 + 직접경비
 - [KOSA: SW사업 대가산정 가이드 2025년 개정판](https://www.sw.or.kr/site/sw/ex/board/View.do?bcIdx=63607&cbIdx=276)
 - [KOSA: SW사업 대가산정 가이드 2023년 개정판](https://www.sw.or.kr/site/sw/ex/board/View.do?bcIdx=57880&cbIdx=276)
-- [국가법령정보센터: 소프트웨어 진흥법 제50조 과업심의위원회](https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031614467)
+- [국가법령정보센터: 소프트웨어 진흥법 제50조 과업심의위원회](https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031614467) — 법률 제20476호, 2025.4.23. 시행 기준
 
 ## 연결 토픽
 

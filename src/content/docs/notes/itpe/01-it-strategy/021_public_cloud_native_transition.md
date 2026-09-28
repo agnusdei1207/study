@@ -1,7 +1,7 @@
 ---
 title: "공공부문 클라우드 네이티브 전환"
 author: "Claude Code"
-date: "2026-09-28T12:42:00+09:00"
+date: "2026-09-28T16:19:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -32,7 +32,7 @@ IT 전략·관리 → 공공 디지털 혁신 → **공공부문 클라우드 �
 - **CI/CD(Continuous Integration/Continuous Delivery)** : 코드 변경의 빌드·시험·배포를 자동화해 자주 반영하는 방식
 - **관측성(Observability)** : 로그·지표·추적 자료로 서비스 내부 상태와 장애 원인을 파악하는 운영 역량
 - **Strangler Fig 패턴** : 기존 시스템을 유지한 채 기능을 하나씩 새 서비스로 옮기고 옛 기능을 걷어내는 점진 전환 방식
-- **CSAP(Cloud Security Assurance Program)** : 공공기관이 이용할 클라우드 서비스의 보안인증 기준 적합성을 평가·인증하는 제도
+- **CSAP(Cloud Security Assurance Program)** : 「클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률」 제23조의2에 따라 클라우드 서비스의 보안인증기준 적합성을 평가·인증하는 제도
 
 </details>
 
@@ -151,7 +151,7 @@ Refactor 시범 전환
 - 제134회 2교시: 공공부문 SaaS 이용 가이드라인의 위험관리·보안성 검토·서비스 수준 협약
 - [CNCF, Cloud Native Definition v1.1](https://github.com/cncf/toc/blob/main/DEFINITION.md)
 - [AWS Prescriptive Guidance, Migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html)
-- [국가법령정보센터: 클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률 제20조](https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1033532191)
+- [국가법령정보센터: 「클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률」 제20조](https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1033532191) — 국가기관등의 클라우드서비스 이용 노력(제1항)과 보안인증 서비스 우선 고려(제2항), 보안인증 근거는 제23조의2. 법률 제21066호, 2025.10.1. 시행
 - [KISA: 클라우드서비스 보안인증(CSAP)](https://www.kisa.or.kr/1050603)
 
 ## 연결 토픽

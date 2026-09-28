@@ -1,7 +1,7 @@
 ---
 title: "시스템 운영·유지보수 감리"
 author: "Claude Code"
-date: "2026-09-28T16:30:00+09:00"
+date: "2026-09-28T16:21:00+09:00"
 tags: ["notes-it-strategy"]
 sidebar:
   badge:
@@ -161,7 +161,7 @@ SLA 저하 구간 식별
 
 ## 출제 이력과 검증 출처
 
-- 제137회 2교시 2번: 시스템 운영·유지보수 감리의 개념, 운영 감리 점검분야, 유지보수 감리 점검분야
+- 제137회 3교시 2번: 시스템 운영·유지보수 감리의 개념, 운영 감리 점검분야, 유지보수 감리 점검분야
 - [NIA, 정보시스템 운영 및 유지보수 감리 점검 가이드(Ver.2.0)](https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=99860&bcIdx=19572) — 첨부 PDF 1~2쪽 점검 가이드 체계: 운영(OP) 16개·유지보수(MA) 34개 점검분야, 운영·유지보수 정의
 - [국가법령정보센터, 정보시스템 감리기준](https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000243290)
 
