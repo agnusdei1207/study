@@ -155,5 +155,5 @@ CSP 담당 항목 ── 계약·CSAP 인증 범위 대조
 ## 연결 토픽
 
 - 이전 토픽: [차세대 시스템 오픈 리스크](./103_next_generation_system_open_risk.md)
-- 연관 토픽: [정보시스템 감리](./008_it_audit.md), [공공부문 클라우드 네이티브 전환](./021_public_cloud_native_transition.md), [지능정보기술 감리 실무 가이드](./102_intelligent_information_technology_audit_guide.md)
+- 연관 토픽: [정보시스템 감리](./008_it_audit.md), [공공부문 클라우드 네이티브 전환](./021_public_cloud_native_transition.md)
 - 다음 토픽: [품질비용(COQ)](./106_cost_of_quality_coq.md)

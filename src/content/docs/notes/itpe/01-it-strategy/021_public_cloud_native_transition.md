@@ -158,4 +158,4 @@ Refactor 시범 전환
 
 - 이전 토픽: [디지털 트랜스포메이션(DX)](./020_digital_transformation.md)
 - 연관 토픽: [FinOps](./012_finops.md), [RTO·RPO](./018_rpo.md), [클라우드 전환 사업 감리](./104_cloud_migration_project_audit.md)
-- 다음 토픽: [국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성](./023_national_information_resources_service_fire.md)
+- 다음 토픽: [정보시스템 등급제](./023_information_system_grading.md)

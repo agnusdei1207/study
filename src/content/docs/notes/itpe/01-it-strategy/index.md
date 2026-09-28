@@ -77,13 +77,13 @@ weight: 1
 | 01-011 | ESG 경영 | [보기](./011_esg/) |
 | 01-016 | IT 투자평가·투자관리 | [보기](./016_it_investment_evaluation/) |
 | 01-012 | FinOps(FOCUS 포함) | [보기](./012_finops/) |
-| 01-013 | 애자일(Agile) 대응 전략 | [보기](./013_agile_response_strategy/) |
+| 01-013 | 애자일 전환 전략 | [보기](./013_agile_response_strategy/) |
 | 01-040 | 위험 대응 전략(위협·기회) | [보기](./040_negative_risk_response_strategy/) |
 | 01-017 | BSC(Balanced Score Card) | [보기](./017_bsc/) |
 | 01-018 | RTO·RPO | [보기](./018_rpo/) |
 | 01-020 | 디지털 트랜스포메이션(Digital Transformation) | [보기](./020_digital_transformation/) |
 | 01-021 | 공공부문 클라우드 네이티브 전환 | [보기](./021_public_cloud_native_transition/) |
-| 01-023 | 국가정보자원관리원 화재 | [보기](./023_national_information_resources_service_fire/) |
+| 01-023 | 정보시스템 등급제 | [보기](./023_information_system_grading/) |
 | 01-024 | 국가 AI 전략(AI 3대 강국·인공지능행동계획) | [보기](./024_korea_ai_action_plan/) |
 | 01-025 | 범정부 AI 공통기반 | [보기](./025_pan_government_ai_common_infrastructure/) |
 | 01-026 | 소프트웨어 사업 대가산정 | [보기](./026_software_cost_estimation/) |
@@ -92,7 +92,6 @@ weight: 1
 | 01-036 | NIST AI RMF(AI 600-1 생성형 AI 프로파일 포함) | [보기](./036_nist_ai_rmf/) |
 | 01-029 | A/B 테스트(A/B Test) | [보기](./029_ab_testing/) |
 | 01-030 | BCP(Business Continuity Planning) | [보기](./030_bcp/) |
-| 01-034 | SWOT 분석 | [보기](./034_swot_analysis/) |
 | 01-035 | 프로젝트 갈등관리 | [보기](./035_conflict_management/) |
 | 01-038 | POP(Point Of Production) | [보기](./038_pop/) |
 | 01-039 | 공공 SW 사업 발주·계약(단계별 발주, 업체 선정) | [보기](./039_public_sw_contract/) |
@@ -135,7 +134,6 @@ weight: 1
 | 01-091 | 과업심의(과업변경·사업기간 적정성) | [보기](./091_public_sw_cost_and_scope_change_criteria/) |
 | 01-097 | 공공 소프트웨어사업 하도급 제한 | [보기](./097_software_industry_subcontracting_structure/) |
 | 01-098 | 전문성의 민주화(Democratization of Expertise) | [보기](./098_democratization_of_expertise/) |
-| 01-102 | 지능정보기술 감리 실무 가이드 | [보기](./102_intelligent_information_technology_audit_guide/) |
 | 01-103 | 차세대 시스템 오픈 리스크 | [보기](./103_next_generation_system_open_risk/) |
 | 01-106 | 품질비용(COQ) | [보기](./106_cost_of_quality_coq/) |
 | 01-107 | EA/ITA(Enterprise Architecture/Information Technology Architecture) | [보기](./107_ea_ita/) |

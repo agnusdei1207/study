@@ -163,6 +163,6 @@ PM 주도 갈등 조정
 
 ## 연결 토픽
 
-- 이전 토픽: [SWOT 분석](./034_swot_analysis.md)
+- 이전 토픽: [IT 아웃소싱](./033_it_outsourcing.md)
 - 연관 토픽: [터크만 팀 발달 모델](./028_tuckman_team_development_model.md), [PMO](./004_pmo.md), [프로젝트 위험관리](./009_project_risk_management_negative.md)
 - 다음 토픽: [NIST AI RMF](./036_nist_ai_rmf.md)

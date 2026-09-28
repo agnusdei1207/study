@@ -158,6 +158,6 @@ IT 전략·관리 → 국가 디지털정책·거버넌스 → **국가 AI 전�
 
 ## 연결 토픽
 
-- 이전 토픽: [국가정보자원관리원 화재와 공공 디지털서비스 회복탄력성](./023_national_information_resources_service_fire.md)
+- 이전 토픽: [정보시스템 등급제](./023_information_system_grading.md)
 - 연관 토픽: [AI 거버넌스 플랫폼](./050_ai_governance_platform.md), [AI 고속도로](./051_ai_highway.md), [NIST AI RMF](./036_nist_ai_rmf.md)
 - 다음 토픽: [범정부 AI 공통기반](./025_pan_government_ai_common_infrastructure.md)

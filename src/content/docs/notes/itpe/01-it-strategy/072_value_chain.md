@@ -179,5 +179,5 @@ IT 전략·관리 → 경영 전략 분석 → **가치사슬(Value Chain)**
 ## 연결 토픽
 
 - 이전 토픽: [PLM](./071_plm.md)
-- 연관 토픽: [SCM](./005_scm.md), [ERP](./068_erp.md), [CRM](./031_crm.md), [SWOT 분석](./034_swot_analysis.md)
+- 연관 토픽: [SCM](./005_scm.md), [ERP](./068_erp.md), [CRM](./031_crm.md), [경영환경 분석(SWOT·3C·PEST)](./088_swot_3c_pest.md)
 - 다음 토픽: [정량적 위험분석](./073_quantitative_risk_analysis.md)

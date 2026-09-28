@@ -158,5 +158,5 @@ ME·CE 검증
 ## 연결 토픽
 
 - 이전 토픽: [ITSM](./044_itsm.md)
-- 연관 토픽: [WBS](./007_wbs.md), [SWOT 분석](./034_swot_analysis.md), [SWOT·3C·PEST](./088_swot_3c_pest.md)
+- 연관 토픽: [WBS](./007_wbs.md), [경영환경 분석(SWOT·3C·PEST)](./088_swot_3c_pest.md)
 - 다음 토픽: [그로스 해킹](./046_growth_hacking.md)

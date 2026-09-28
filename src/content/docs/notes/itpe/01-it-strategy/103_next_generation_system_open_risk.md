@@ -153,6 +153,6 @@ PoNR 확정과 판정 시한 공지
 
 ## 연결 토픽
 
-- 이전 토픽: [지능정보기술 감리 실무 가이드](./102_intelligent_information_technology_audit_guide.md)
+- 이전 토픽: [전문성의 민주화](./098_democratization_of_expertise.md)
 - 연관 토픽: [부정적 위험 대응 전략](./040_negative_risk_response_strategy.md), [RTO·RPO](./018_rpo.md)
 - 다음 토픽: [클라우드 전환사업 감리](./104_cloud_migration_project_audit.md)

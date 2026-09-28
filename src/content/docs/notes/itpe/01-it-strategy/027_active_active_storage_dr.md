@@ -176,5 +176,5 @@ RPO 기준 복제 방식 선택: 동기·비동기
 ## 연결 토픽
 
 - 이전 토픽: [SW사업 대가산정](./026_software_cost_estimation.md)
-- 연관 토픽: [RTO·RPO](./018_rpo.md), [DRS](./042_drs.md), [BCP](./030_bcp.md), [국가정보자원관리원 화재](./023_national_information_resources_service_fire.md)
+- 연관 토픽: [RTO·RPO](./018_rpo.md), [DRS](./042_drs.md), [BCP](./030_bcp.md), [정보시스템 등급제](./023_information_system_grading.md)
 - 다음 토픽: [터크만 팀 발달 모델](./028_tuckman_team_development_model.md)

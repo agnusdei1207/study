@@ -17,7 +17,7 @@ function section(markdown, start, end) {
 
 test('IT strategy authored explanations end as noun phrases', async () => {
   const names = (await readdir(notesDir)).filter((name) => /^\d{3}_.+\.md$/u.test(name));
-  assert.equal(names.length, 81);
+  assert.equal(names.length, 79);
   const violations = [];
   for (const name of names.filter(inScope)) {
     const markdown = await readFile(path.join(notesDir, name), 'utf8');

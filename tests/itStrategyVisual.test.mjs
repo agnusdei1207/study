@@ -52,7 +52,7 @@ function withoutCode(markdown) {
 
 test('All IT strategy notes use readable text diagrams or tables', async () => {
   const files = await targetNotes();
-  assert.equal(files.length, 81, '현재 카탈로그의 IT 전략 과목에는 81개 노트가 있어야 합니다.');
+  assert.equal(files.length, 79, '현재 카탈로그의 IT 전략 과목에는 79개 노트가 있어야 합니다.');
   for (const file of files) {
     const note = await readFile(file, 'utf8');
     assert.match(note, /\|---|```text/u, `${file}: 표 또는 텍스트 도해가 필요합니다.`);

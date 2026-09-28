@@ -166,4 +166,4 @@ IT 전략·관리 → IT 운영전략·소싱 거버넌스 → **IT 아웃소싱
 
 - 이전 토픽: [EVM](./032_evm.md)
 - 연관 토픽: [SLA](./006_sla.md), [ITSM](./044_itsm.md), [RFP](./049_rfp.md)
-- 다음 토픽: [SWOT 분석](./034_swot_analysis.md)
+- 다음 토픽: [갈등관리](./035_conflict_management.md)
