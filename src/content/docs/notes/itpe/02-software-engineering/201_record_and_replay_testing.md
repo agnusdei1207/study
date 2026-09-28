@@ -132,7 +132,7 @@ extra:
 
 ## Ⅵ. 제언
 
-레거시 차세대 전환이나 마이크로서비스 대규모 리팩토링 시, 카나리 배포 단계에서 Envoy 트래픽 섀도잉(Traffic Shadowing)을 적용하여 실제 사용자 영향 없이 백그라운드 무결성을 사전 검증하는 무장애 전환 체계 확립 권장.
+레거시 차세대 전환이나 마이크로서비스 대규모 리팩토링 시, 카나리 배포 단계에서 Envoy 트래픽 섀도잉(Traffic Shadowing)을 적용하여 실제 사용자 영향 없이 백그라운드 무결성을 사전 검증하는 무장애 전환 체계 확립 필요.
 
 ```text
 [안전한 섀도우 트래픽 검증 아키텍처]
@@ -147,15 +147,13 @@ extra:
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 130회 2교시: 클라우드 네이티브 MSA 환경에서 시스템 무중단 배포를 위한 트래픽 미러링(Traffic Shadowing) 및 회귀 테스트 전략
+
 ## 연결 토픽
 
 - [회귀 테스팅(Regression Test)](./061_regression_test.md)
 - [통합 테스트(Integration Test)](./179_integration_test.md)
 - [성능 테스트(Performance Test)](./191_performance_test.md)
 - [SW 유지보수 3R](./168_maintenance_and_3r.md)
-
-## 출제 이력과 검증 출처
-
-- 컴퓨터시스템응용기술사 116회 1교시: 테스트 자동화에서 기록·재생(Record & Replay) 방식의 개념과 한계점
-- 정보관리기술사 130회 2교시: 클라우드 네이티브 MSA 환경에서 시스템 무중단 배포를 위한 트래픽 미러링(Traffic Shadowing) 및 회귀 테스트 전략
----

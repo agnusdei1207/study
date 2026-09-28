@@ -148,9 +148,10 @@ extra:
 | 골격 추상 클래스 (Skeletal Class) | 중복 코드 제거 및 템플릿 제공 | 선택적 상속을 통한 개발 생산성 향상 |
 | 구체 구현 클래스 (Concrete Class) | 환경별 비즈니스 로직 완성 | 조합 및 전략 패턴 결합을 통한 확장성 극대화 |
 
+---
+
 ## 출제 이력과 검증 출처
 
-- **기출 이력:** 정보관리기술사 제114회 컴퓨터시스템응용기술사 제121회
 - **검증 출처:** Oracle Java Language Specification (JLS SE 21), Gang of Four Design Patterns, Effective Java 3rd Edition (Joshua Bloch)
 
 ## 연결 토픽

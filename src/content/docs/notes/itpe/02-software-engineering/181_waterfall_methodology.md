@@ -78,7 +78,7 @@ extra:
 [시스템 설계 (Design)]         ──► 아키텍처/상세설계서 확정   ──► [설계 기준선: Allocated Baseline]
          │ (공식 승인 후 진입)
          ▼
-[구현/코딩 (Implementation)]   ──► 소스코드 / 단위테스트 완료  ──► [개발 기준선: Development Baseline]
+[구현/코딩] ──► 소스코드/단위테스트 완료 ──► [개발 기준선]
          │ (빌드 검증 후 진입)
          ▼
 [통합/시험 (Verification)]     ──► 통합/시스템/인수테스트 통과 ──► [제품 기준선: Product Baseline]
@@ -118,11 +118,11 @@ extra:
 
 ## Ⅵ. 제언
 
-공공 및 엔터프라이즈 SI 프로젝트에서는 폭포수의 '계획·일정·예산 통제성'과 애자일의 '기민한 변화 적응력'을 결합한 하이브리드(Water-Scrum-Fall) 거버넌스 정착 권장.
+공공 및 엔터프라이즈 SI 프로젝트에서는 폭포수의 '계획·일정·예산 통제성'과 애자일의 '기민한 변화 적응력'을 결합한 하이브리드(Water-Scrum-Fall) 거버넌스 정착 필요.
 
 ```text
 [현대적 하이브리드 (Water-Scrum-Fall) 아키텍처]
-  [Upfront Waterfall]           [Agile Sprint Iterations]          [Downstream Waterfall]
+  [Upfront Waterfall]       [Agile Sprint Iterations]       [Downstream Waterfall]
   기획/예산/아키텍처 정의 ──► 2주 단위 스프린트 (구현/단위검증) ──► 통합 테스트/보안 감사/공식 인수
 ```
 
@@ -133,15 +133,13 @@ extra:
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 95회 1교시: 폭포수(Waterfall) 모델과 애자일(Agile) 모델의 비교
+
 ## 연결 토픽
 
 - [애자일 방법론](./119_agile_methodology.md)
 - [SW 개발방법론 비교](./139_sw_development_methodologies.md)
 - [요구사항 추적표(RTM)](./102_requirement_traceability_matrix.md)
 - [통합 테스트(Integration Test)](./179_integration_test.md)
-
-## 출제 이력과 검증 출처
-
-- 정보관리기술사 95회 1교시: 폭포수(Waterfall) 모델과 애자일(Agile) 모델의 비교
-- 컴퓨터시스템응용기술사 118회 2교시: 소프트웨어 생명주기 모델 중 폭포수 모델의 장단점 및 기준선(Baseline) 관리 방안
----

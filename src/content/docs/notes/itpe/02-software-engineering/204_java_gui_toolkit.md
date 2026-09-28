@@ -86,7 +86,7 @@ extra:
        │
        ▼ [하드웨어 가속 및 모던 웹 스타일]
 [3세대: JavaFX (Modern Client Platform)]
-  FXML(마크업) + CSS + 자바 컨트롤러 ──► 씬 그래프 (Scene Graph) ──► Prism 가속 엔진 (DirectX/OpenGL)
+  FXML + CSS + 컨트롤러 ──► 씬 그래프 (Scene Graph) ──► Prism 가속 엔진
 ```
 
 ```text
@@ -95,10 +95,10 @@ extra:
                                                      │
                                                      ▼ 이벤트 디스패치 스레드 (EDT)
                                         [긴 DB 작업이나 네트워크 호출 발생?]
-                                          ├─ [EDT에서 직접 수행] ──► 화면 멈춤(Freezing) 발생 (치명적)
+                                          ├─ [EDT 직접 수행] ──► 화면 멈춤 발생
                                           └─ [백그라운드 스레드 분리: SwingWorker]
                                                - doInBackground() 에서 무거운 작업 실행
-                                               - done() / SwingUtilities.invokeLater() 로
+                                               - done() / invokeLater() 로
                                                  EDT에 최종 결과 전달 및 UI 안전 갱신
 ```
 
@@ -133,11 +133,11 @@ AWT의 네이티브 종속에서 Swing의 자체 렌더링, JavaFX의 씬 그래
 
 ## Ⅵ. 제언
 
-신규 엔터프라이즈 데스크톱 솔루션 개발 시 AWT/Swing의 기술 부채를 지양하고, 선언적 FXML과 모던 반응형 바인딩을 제공하는 JavaFX를 채택하며, Electron/웹 기술과의 하이브리드 아키텍처 검토 권장.
+신규 엔터프라이즈 데스크톱 솔루션 개발 시 AWT/Swing의 기술 부채를 지양하고, 선언적 FXML과 모던 반응형 바인딩을 제공하는 JavaFX를 채택하며, Electron/웹 기술과의 하이브리드 아키텍처 검토 필요.
 
 ```text
 [현대적 JavaFX 데스크톱 아키텍처]
-  FXML (뷰) + CSS (스타일) ──► Controller (MVVM 바인딩) ──► 백그라운드 Service (비동기 HTTP/DB) ──► Prism 하드웨어 가속
+  FXML + CSS ──► Controller (바인딩) ──► 비동기 Service ──► Prism 하드웨어 가속
 ```
 
 | 검증 단계 | UI 설계 단계 | 런타임 동시성 검증 |
@@ -147,15 +147,13 @@ AWT의 네이티브 종속에서 Swing의 자체 렌더링, JavaFX의 씬 그래
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 101회 1교시: 자바 GUI 프로그래밍에서 이벤트 디스패치 스레드(EDT)의 역할과 멀티스레드 구현 방안
+
 ## 연결 토픽
 
 - [추상 클래스와 인터페이스](./205_abstract_class_and_interface.md)
 - [스프링 부트(Spring Boot)](./159_spring_boot.md)
 - [객체지향 프로그래밍(OOP) 4대 특징](./083_oop.md)
 - [SOLID 원칙](./082_solid.md)
-
-## 출제 이력과 검증 출처
-
-- 컴퓨터시스템응용기술사 92회 1교시: 자바 GUI 컴포넌트인 AWT와 Swing의 특징 및 차이점
-- 정보관리기술사 101회 1교시: 자바 GUI 프로그래밍에서 이벤트 디스패치 스레드(EDT)의 역할과 멀티스레드 구현 방안
----

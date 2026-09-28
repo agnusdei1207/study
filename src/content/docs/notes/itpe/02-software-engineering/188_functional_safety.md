@@ -132,11 +132,11 @@ $$ASIL = f(S, E, C) \quad \text{(S3, E4, C3 조합 시 최고 위험 등급인 A
 
 ## Ⅵ. 제언
 
-자율주행 및 SDV(Software Defined Vehicle) 시대로의 전환에 발맞추어, 기능안전(ISO 26262), 의도된 기능안전(SOTIF), 사이버보안(ISO/SAE 21434)을 통합한 삼위일체형 엔터프라이즈 안전 아키텍처 확립 권장.
+자율주행 및 SDV(Software Defined Vehicle) 시대로의 전환에 발맞추어, 기능안전(ISO 26262), 의도된 기능안전(SOTIF), 사이버보안(ISO/SAE 21434)을 통합한 삼위일체형 엔터프라이즈 안전 아키텍처 확립 필요.
 
 ```text
 [SDV 기능안전 및 사이버보안 융합 파이프라인]
-  위험 분석 (HARA + TARA) → 복합 안전/보안 요구사항 도출 → MISRA 시큐어 코딩 → MC/DC 커버리지 & 결함 주입 시험 → Safety Case
+  위험 분석 (HARA+TARA) → 안전 요구 도출 → MISRA 코딩 → MC/DC 검증 → Safety Case
 ```
 
 | 검증 영역 | 전통적 기능안전 (ISO 26262) | 미래형 자율주행 안전 거버넌스 |
@@ -146,15 +146,13 @@ $$ASIL = f(S, E, C) \quad \text{(S3, E4, C3 조합 시 최고 위험 등급인 A
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 126회 2교시: 소프트웨어 기능안전(Functional Safety)의 개념과 안전 케이스(Safety Case)의 구조 및 작성 방안
+
 ## 연결 토픽
 
 - [소프트웨어 안전성 분석](./028_sw_safety_analysis.md)
 - [SW 안전진단 가이드](./137_sw_safety_diagnosis_guide.md)
 - [화이트박스 테스트](./013_white_box_test.md)
 - [STPA](./108_stpa.md)
-
-## 출제 이력과 검증 출처
-
-- 컴퓨터시스템응용기술사 110회 2교시: 임베디드 시스템 기능안전 표준인 IEC 61508과 ISO 26262의 ASIL 산출 절차
-- 정보관리기술사 126회 2교시: 소프트웨어 기능안전(Functional Safety)의 개념과 안전 케이스(Safety Case)의 구조 및 작성 방안
----

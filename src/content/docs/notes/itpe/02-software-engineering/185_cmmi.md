@@ -124,7 +124,7 @@ Level 1: 초기 (Initial)
 
 ## Ⅵ. 제언
 
-외형적 레벨 인증 획득을 지양하고, CMMI 프레임워크를 개발 도구 파이프라인(DevSecOps)에 자동화된 룰셋(Policy-as-Code)으로 내재화하여 실질적인 생산성과 품질 혁신 달성 권장.
+외형적 레벨 인증 획득을 지양하고, CMMI 프레임워크를 개발 도구 파이프라인(DevSecOps)에 자동화된 룰셋(Policy-as-Code)으로 내재화하여 실질적인 생산성과 품질 혁신 달성 필요.
 
 ```text
 [현대적 CMMI 프로세스 자동화 파이프라인]
@@ -138,15 +138,13 @@ Level 1: 초기 (Initial)
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 96회 2교시: CMMI의 단계적 표현(Staged)과 연속적 표현(Continuous)의 개념 및 비교
+
 ## 연결 토픽
 
 - [방법론 테일러링(Methodology Tailoring)](./039_methodology_tailoring.md)
 - [SW 신뢰성 성장 모델(SRGM)](./136_srgm.md)
 - [소프트웨어 품질 비용(COQ)](./150_software_quality_cost.md)
 - [애자일 방법론](./119_agile_methodology.md)
-
-## 출제 이력과 검증 출처
-
-- 정보관리기술사 96회 2교시: CMMI의 단계적 표현(Staged)과 연속적 표현(Continuous)의 개념 및 비교
-- 컴퓨터시스템응용기술사 114회 1교시: CMMI 성숙도 5단계의 특징과 프로세스 개선 방안
----

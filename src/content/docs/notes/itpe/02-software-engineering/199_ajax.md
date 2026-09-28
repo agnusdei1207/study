@@ -77,7 +77,7 @@ extra:
 [전통적 동기식 웹 vs AJAX 비동기식 웹 통신 비교]
 
 [전통적 웹: 동기식 (Synchronous Request)]
-  사용자 클릭 ──► [HTTP Request] ──► 서버 처리 ──► [전체 HTML Response] ──► 브라우저 화면 백지화 후 전체 렌더링
+  사용자 클릭 ──► [HTTP Request] ──► 서버 처리 ──► [HTML 응답] ──► 전체 렌더링
   (요청 시 화면 멈춤 및 깜빡임 발생)
 
 [AJAX 웹: 비동기식 (Asynchronous Request)]
@@ -126,12 +126,12 @@ extra:
 
 ## Ⅵ. 제언
 
-프론트엔드 아키텍처에서는 단순 무분별한 Fetch 호출을 지양하고, React Query(TanStack Query)나 SWR과 같은 서버 상태 관리 라이브러리를 도입하여 캐싱, 중복 요청 제거, 백그라운드 재검증을 통합 자동화할 것을 권장.
+프론트엔드 아키텍처에서는 단순 무분별한 Fetch 호출을 지양하고, React Query(TanStack Query)나 SWR과 같은 서버 상태 관리 라이브러리를 도입하여 캐싱, 중복 요청 제거, 백그라운드 재검증을 통합 자동화할 것을 필요.
 
 ```text
 [현대적 비동기 데이터 페칭 아키텍처]
   컴포넌트 렌더링 → TanStack Query (캐시 조회) ──► 캐시 적중 시 즉각 표출 (Stale-While-Revalidate)
-                                              └──► Fetch API 백그라운드 통신 (AbortController 취소 관리)
+                                              └──► Fetch 통신 (AbortController 관리)
 ```
 
 | 검증 단계 | 네트워크 통신 단계 | 클라이언트 상태 관리 단계 |
@@ -141,15 +141,13 @@ extra:
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 112회 1교시: 동일 출처 정책(SOP)과 교차 출처 리소스 공유(CORS) 메커니즘
+
 ## 연결 토픽
 
 - [Web 2.0](./183_web_2_0.md)
 - [HTML5](./186_html5.md)
 - [RESTful 아키텍처 원칙](./015_rest.md)
 - [웹 성능 최적화 기법](./164_web_performance_optimization.md)
-
-## 출제 이력과 검증 출처
-
-- 컴퓨터시스템응용기술사 95회 1교시: AJAX의 개념과 동작 원리 및 비동기 통신의 장단점
-- 정보관리기술사 112회 1교시: 동일 출처 정책(SOP)과 교차 출처 리소스 공유(CORS) 메커니즘
----
