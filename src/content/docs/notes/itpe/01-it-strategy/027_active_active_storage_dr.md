@@ -170,8 +170,8 @@ RPO 기준 복제 방식 선택: 동기·비동기
 
 - 제137회 3교시: 다중지역 동시 가동방식(Multi-Region Active-Active) 재해복구시스템의 개념·특징과 주요 기술 요소
 - 제140회 3교시: 클라우드 네이티브 환경의 재해복구 전략으로서 RTO·RPO와 Active-Active·Active-Passive·Pilot Light
-- [AWS Whitepaper: Disaster Recovery of Workloads on AWS — Disaster recovery options in the cloud](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)
-- [NIST SP 800-34 Rev. 1: Contingency Planning Guide for Federal Information Systems](https://csrc.nist.gov/pubs/sp/800/34/r1/final)
+- AWS Whitepaper: Disaster Recovery of Workloads on AWS — Disaster recovery options in the cloud
+- NIST SP 800-34 Rev. 1: Contingency Planning Guide for Federal Information Systems
 
 ## 연결 토픽
 

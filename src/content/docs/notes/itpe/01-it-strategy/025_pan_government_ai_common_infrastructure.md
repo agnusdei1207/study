@@ -147,9 +147,9 @@ RAG: 법령·내부 자료 검색
 ## 출제 이력과 검증 출처
 
 - 제137회 2교시: 공공부문 초거대 AI 도입·활용 가이드라인 2.0의 초거대 AI 개념·구성요소·기술요소·도입절차
-- [행정안전부: 범정부 AI 공통기반 서비스 개시(2025.11.24)](https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=121943)
-- [행정안전부: 공무원이 직접 만든 AI 법령 비서 시범 개시(2026.7.13)](https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=127770)
-- [NIA: 공공부문 AI 도입·활용 가이드](https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?bcIdx=29526&cbIdx=37989)
+- 행정안전부: 범정부 AI 공통기반 서비스 개시(2025.11.24)
+- 행정안전부: 공무원이 직접 만든 AI 법령 비서 시범 개시(2026.7.13)
+- NIA: 공공부문 AI 도입·활용 가이드
 
 ## 연결 토픽
 

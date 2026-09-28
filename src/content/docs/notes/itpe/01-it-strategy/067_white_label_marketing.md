@@ -141,7 +141,7 @@ IT 전략·관리 → 경영 전략·마케팅 → **화이트 레이블 마케�
 ## 출제 이력과 검증 출처
 
 - 제136회 1교시 1번: 화이트 레이블 마케팅(White Label Marketing)
-- [Q-Net 제136회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5234951&brdId=Q006&gSite=Q&id=cst00602)
+- Q-Net 제136회 정보관리기술사 문제지
 
 ## 연결 토픽
 

@@ -148,11 +148,11 @@ Control ── 표준화·관리도 감시·이탈 대응
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 Six Sigma DMAIC 단독 문항 없음
-- [ASQ, DMAIC Process: Define, Measure, Analyze, Improve, Control](https://asq.org/quality-resources/dmaic): 기존 프로세스 개선용 5단계, Measure의 측정체계 검증·기준선 확정, Control의 관리계획·통계적 공정관리
-- [ASQ, What Is Six Sigma?](https://asq.org/quality-resources/six-sigma)
-- [ASQ, Certified Six Sigma Green Belt Body of Knowledge, 2022](https://www.asq.org/cert/resource/pdf/certification/2022-SSGB-BoK.pdf): DFSS 로드맵으로서 DMADV(define, measure, analyze, design, verify)와 DMAIC의 대응
-- [ASQ, Certified Six Sigma Black Belt Body of Knowledge, 2022](https://www.asq.org/cert/resource/pdf/certification/2022-SSBB-BoK.pdf): DMADV의 마지막 단계를 validate로 표기
-- [ASQ, What Is 3.4 per Million?](https://asq.org/quality-progress/articles/what-is-34-per-million?id=d3d31b31c1da4f60b281025df9ccd057)
+- ASQ, DMAIC Process: Define, Measure, Analyze, Improve, Control: 기존 프로세스 개선용 5단계, Measure의 측정체계 검증·기준선 확정, Control의 관리계획·통계적 공정관리
+- ASQ, What Is Six Sigma?
+- ASQ, Certified Six Sigma Green Belt Body of Knowledge, 2022: DFSS 로드맵으로서 DMADV(define, measure, analyze, design, verify)와 DMAIC의 대응
+- ASQ, Certified Six Sigma Black Belt Body of Knowledge, 2022: DMADV의 마지막 단계를 validate로 표기
+- ASQ, What Is 3.4 per Million?
 
 ## 연결 토픽
 

@@ -150,10 +150,10 @@ Business Case의 기대 편익과 대조
 ## 출제 이력과 검증 출처
 
 - 제135회 3교시 1번: IT 프로젝트 관리의 개념, 관리 프로세스, 프로젝트·프로그램·포트폴리오 관리의 비교
-- [ISO, ISO 21500:2021 Project, programme and portfolio management — Context and concepts](https://committee.iso.org/sites/tc258/home/projects/published/iso-3.html)
-- [ISO, ISO 21502:2020 Guidance on project management](https://www.iso.org/standard/74947.html)
-- [ISO, ISO 21503:2022 Guidance on programme management](https://committee.iso.org/sites/tc258/home/projects/published/iso-21503.html)
-- [ISO, ISO 21504:2022 Guidance on portfolio management](https://committee.iso.org/sites/tc258/home/projects/published/iso-21504.html)
+- ISO, ISO 21500:2021 Project, programme and portfolio management — Context and concepts
+- ISO, ISO 21502:2020 Guidance on project management
+- ISO, ISO 21503:2022 Guidance on programme management
+- ISO, ISO 21504:2022 Guidance on portfolio management
 
 ## 연결 토픽
 

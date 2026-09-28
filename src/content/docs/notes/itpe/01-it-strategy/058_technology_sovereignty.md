@@ -148,9 +148,9 @@ IT 전략·관리 → 디지털 정책·공급망 → **기술 주권**
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 해당 문항 없음
-- [OECD, Strategic autonomy and promotion of critical technologies](https://stip.oecd.org/stip/interactive-dashboards/themes/TH111)
-- [OECD, Science, Technology and Innovation Outlook 2023: policy in times of strategic competition](https://www.oecd.org/en/publications/oecd-science-technology-and-innovation-outlook-2023_0b55736e-en/full-report/component-6.html)
-- [OECD, Digital public goods: Enablers of digital sovereignty](https://www.oecd.org/en/publications/development-co-operation-report-2021_ce08832f-en/full-report/component-41.html)
+- OECD, Strategic autonomy and promotion of critical technologies
+- OECD, Science, Technology and Innovation Outlook 2023: policy in times of strategic competition
+- OECD, Digital public goods: Enablers of digital sovereignty
 
 ## 연결 토픽
 

@@ -159,8 +159,8 @@ COCOMO Ⅱ의 노력 산식은 PM = A × Size^E × ΠEM (A: 생산성 상수, Si
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 소프트웨어 비용 산정 기법 단독 문항 없음
-- ISO, [ISO/IEC 20926:2009 IFPUG functional size measurement method](https://www.iso.org/standard/51717.html)
-- Barry Boehm 외, [COCOMO II Model Definition Manual](https://www.cs.montana.edu/courses/spring2004/352/public/cocomo/modelman.pdf), University of Southern California
+- ISO, ISO/IEC 20926:2009 IFPUG functional size measurement method
+- Barry Boehm 외, COCOMO II Model Definition Manual, University of Southern California
 
 ## 연결 토픽
 

@@ -161,11 +161,11 @@ TOWS 대안 목록
 ## 출제 이력과 검증 출처
 
 - 제133회 3교시 4번: 경영환경 분석 방법인 SWOT·3C·PEST 분석
-- CIPD, [PESTLE analysis](https://www.cipd.org/uk/knowledge/factsheets/pestle-analysis-factsheet/)
+- CIPD, PESTLE analysis
 - Kenichi Ohmae, 『The Mind of the Strategist: The Art of Japanese Business』, McGraw-Hill, 1982: 고객·경쟁사·자사의 전략 삼각형
-- Kenichi Ohmae, [“The Strategic Triangle: A New Perspective on Business Unit Strategy,” European Management Journal, 1(1), 38–48, 1982](https://doi.org/10.1016/S0263-2373(82)80016-9)
-- Heinz Weihrich, [“The TOWS Matrix — A Tool for Situational Analysis,” Long Range Planning, 15(2), 54–66, 1982](https://doi.org/10.1016/0024-6301(82)90120-0): SO·ST·WO·WT 전략 조합
-- Harvard Business Review, [From SWOT to TOWS](https://hbr.org/2007/03/from-swot-to-tows-answering-a-readers-strategy-question)
+- Kenichi Ohmae, “The Strategic Triangle: A New Perspective on Business Unit Strategy,” European Management Journal, 1(1), 38–48, 1982
+- Heinz Weihrich, “The TOWS Matrix — A Tool for Situational Analysis,” Long Range Planning, 15(2), 54–66, 1982: SO·ST·WO·WT 전략 조합
+- Harvard Business Review, From SWOT to TOWS
 
 ## 연결 토픽
 

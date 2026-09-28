@@ -154,11 +154,11 @@ TAM의 PU·PEOU는 UTAUT의 성과 기대·노력 기대에 대응하며, UTAUT�
 ## 출제 이력과 검증 출처
 
 - 제133회 1교시 6번: 기술수용모델(TAM)의 개념과 주요 구성요소
-- [Davis, F. D., Perceived Usefulness, Perceived Ease of Use, and User Acceptance of Information Technology, MIS Quarterly 13(3), 1989](https://aisel.aisnet.org/misq/vol13/iss3/6/)
-- [Venkatesh, V. & Davis, F. D., A Theoretical Extension of the Technology Acceptance Model: Four Longitudinal Field Studies, Management Science 46(2), 186–204, 2000](https://doi.org/10.1287/mnsc.46.2.186.11926): 초록에 사회적 영향 과정(주관적 규범·자발성·이미지)과 인지적 도구 과정(직무 관련성·산출물 품질·결과 입증성·PEOU) 명시
-- [Davis, F. D., Bagozzi, R. P. & Warshaw, P. R., User Acceptance of Computer Technology: A Comparison of Two Theoretical Models, Management Science 35(8), 982–1003, 1989](https://doi.org/10.1287/mnsc.35.8.982)
-- [Venkatesh, V., Morris, M. G., Davis, G. B. & Davis, F. D., User Acceptance of Information Technology: Toward a Unified View, MIS Quarterly 27(3), 425–478, 2003](https://doi.org/10.2307/30036540)
-- [Blut, Chong, Tsiga & Venkatesh, Meta-Analysis of the UTAUT, Journal of the Association for Information Systems 23(1), 13–95, 2022](https://doi.org/10.17705/1jais.00719): 원 모델의 네 예측변수와 네 조절변수(성별·나이·경험·자발성) 정리
+- Davis, F. D., Perceived Usefulness, Perceived Ease of Use, and User Acceptance of Information Technology, MIS Quarterly 13(3), 1989
+- Venkatesh, V. & Davis, F. D., A Theoretical Extension of the Technology Acceptance Model: Four Longitudinal Field Studies, Management Science 46(2), 186–204, 2000: 초록에 사회적 영향 과정(주관적 규범·자발성·이미지)과 인지적 도구 과정(직무 관련성·산출물 품질·결과 입증성·PEOU) 명시
+- Davis, F. D., Bagozzi, R. P. & Warshaw, P. R., User Acceptance of Computer Technology: A Comparison of Two Theoretical Models, Management Science 35(8), 982–1003, 1989
+- Venkatesh, V., Morris, M. G., Davis, G. B. & Davis, F. D., User Acceptance of Information Technology: Toward a Unified View, MIS Quarterly 27(3), 425–478, 2003
+- Blut, Chong, Tsiga & Venkatesh, Meta-Analysis of the UTAUT, Journal of the Association for Information Systems 23(1), 13–95, 2022: 원 모델의 네 예측변수와 네 조절변수(성별·나이·경험·자발성) 정리
 
 ## 연결 토픽
 

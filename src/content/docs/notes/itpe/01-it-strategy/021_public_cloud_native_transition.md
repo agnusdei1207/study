@@ -149,10 +149,10 @@ Refactor 시범 전환
 - 제138회 2교시: 대국민 포털·업무 시스템·ERP의 클라우드 네이티브 전환 사업에서 TA와 AA의 역할 비교와 협업 방안
 - 제134회 4교시: 클라우드 전환 사업의 단계별 감리 방법과 검토 항목
 - 제134회 2교시: 공공부문 SaaS 이용 가이드라인의 위험관리·보안성 검토·서비스 수준 협약
-- [CNCF, Cloud Native Definition v1.1](https://github.com/cncf/toc/blob/main/DEFINITION.md)
-- [AWS Prescriptive Guidance, Migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html)
-- [국가법령정보센터: 「클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률」 제20조](https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1033532191) — 국가기관등의 클라우드서비스 이용 노력(제1항)과 보안인증 서비스 우선 고려(제2항), 보안인증 근거는 제23조의2. 법률 제21066호, 2025.10.1. 시행
-- [KISA: 클라우드서비스 보안인증(CSAP)](https://www.kisa.or.kr/1050603)
+- CNCF, Cloud Native Definition v1.1
+- AWS Prescriptive Guidance, Migration strategies
+- 「클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률」 제20조 — 국가기관등의 클라우드서비스 이용 노력(제1항)과 보안인증 서비스 우선 고려(제2항), 보안인증 근거는 제23조의2. 법률 제21066호, 2025.10.1. 시행
+- KISA: 클라우드서비스 보안인증(CSAP)
 
 ## 연결 토픽
 

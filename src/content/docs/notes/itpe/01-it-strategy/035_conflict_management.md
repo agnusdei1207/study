@@ -160,10 +160,10 @@ PM 주도 갈등 조정
 ## 출제 이력과 검증 출처
 
 - 제136회 3교시: IT 프로젝트 갈등과 성과의 관계, 갈등 요인과 해결 전략, 터크만 팀 발달 5단계 모델
-- [Kilmann Diagnostics, An Overview of the TKI Assessment Tool](https://kilmanndiagnostics.com/brief-overview-of-the-tki-assessment/): 자기주장성·협조성 두 축과 다섯 방식
-- [Jehn, “A Multimethod Examination of the Benefits and Detriments of Intragroup Conflict,” Administrative Science Quarterly, 40(2), 256–282, 1995](https://doi.org/10.2307/2393638): 과업·관계 갈등의 정의와 과업 유형별 성과 영향
-- [Jehn & Mannix, “The Dynamic Nature of Conflict,” Academy of Management Journal, 44(2), 238–251, 2001](https://doi.org/10.2307/3069453): 프로세스 갈등(Jehn, 1997)을 포함한 세 유형의 정의
-- [Harvard Program on Negotiation: Principled Negotiation](https://www.pon.harvard.edu/daily/negotiation-skills-daily/principled-negotiation-focus-interests-create-value/)
+- Kilmann Diagnostics, An Overview of the TKI Assessment Tool: 자기주장성·협조성 두 축과 다섯 방식
+- Jehn, “A Multimethod Examination of the Benefits and Detriments of Intragroup Conflict,” Administrative Science Quarterly, 40(2), 256–282, 1995: 과업·관계 갈등의 정의와 과업 유형별 성과 영향
+- Jehn & Mannix, “The Dynamic Nature of Conflict,” Academy of Management Journal, 44(2), 238–251, 2001: 프로세스 갈등(Jehn, 1997)을 포함한 세 유형의 정의
+- Harvard Program on Negotiation: Principled Negotiation
 
 ## 연결 토픽
 

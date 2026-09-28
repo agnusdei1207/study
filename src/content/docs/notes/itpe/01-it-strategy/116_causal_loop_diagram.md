@@ -155,8 +155,8 @@ B1 균형 루프 (음 링크 1개)
 
 - 제132~140회 공식 문제지에 인과루프다이어그램 단독 문항 없음
 - John D. Sterman, *Business Dynamics: Systems Thinking and Modeling for a Complex World*, McGraw-Hill, 2000
-- [MIT OpenCourseWare, ESD.36 System Project Management — Introduction to Project Dynamics](https://ocw.mit.edu/courses/esd-36-system-project-management-fall-2012/800ceb204ef03177b61e1288533446c1_MITESD_36F12_Lec06.pdf)
-- [MIT OpenCourseWare, ESD.00 Introduction to Engineering Systems — Causal Loop Diagrams](https://ocw.mit.edu/courses/esd-00-introduction-to-engineering-systems-spring-2011/816df198baedb3b544ab4148ce86927d_MITESD_00S11_lec02.pdf)
+- MIT OpenCourseWare, ESD.36 System Project Management — Introduction to Project Dynamics
+- MIT OpenCourseWare, ESD.00 Introduction to Engineering Systems — Causal Loop Diagrams
 
 ## 연결 토픽
 

@@ -162,10 +162,10 @@ MANAGE: 허용 수준 대비 판정
 ## 출제 이력과 검증 출처
 
 - 제138회 1교시 1번: AI RMF의 개념과 4가지 핵심구조, 7가지 신뢰 가능한 특성
-- [NIST AI 100-1: Artificial Intelligence Risk Management Framework (AI RMF 1.0)](https://doi.org/10.6028/NIST.AI.100-1), 2023
-- [NIST AIRC, AI RMF Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/)
-- [NIST AIRC, AI Risks and Trustworthiness](https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/)
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- NIST AI 100-1: Artificial Intelligence Risk Management Framework (AI RMF 1.0), 2023
+- NIST AIRC, AI RMF Core
+- NIST AIRC, AI Risks and Trustworthiness
+- NIST AI Risk Management Framework
 
 ## 연결 토픽
 

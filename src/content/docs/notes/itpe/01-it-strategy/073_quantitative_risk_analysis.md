@@ -168,8 +168,8 @@ S-Curve(누적확률곡선) 작성
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 정량적 위험분석 단독 문항 없음
-- Project Management Institute, [Risk by the Numbers: Quantitative Risk Analysis Approaches](https://www.pmi.org/learning/library/quantitative-risk-analysis-approaches-balance-2296)
-- ISO, [IEC 31010:2019 Risk management — Risk assessment techniques](https://www.iso.org/standard/72140.html)
+- Project Management Institute, Risk by the Numbers: Quantitative Risk Analysis Approaches
+- ISO, IEC 31010:2019 Risk management — Risk assessment techniques
 
 ## 연결 토픽
 

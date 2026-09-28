@@ -154,8 +154,8 @@ SRM 점검 ── 불일치 시 결과 폐기·원인 조사
 ## 출제 이력과 검증 출처
 
 - 제137회 1교시: A/B 테스팅
-- [Kohavi, Tang, Xu, *Trustworthy Online Controlled Experiments*, Cambridge University Press, 2020](https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/D97B26382EB0EB2DC2019A7A7B518F59)
-- [NIST/SEMATECH e-Handbook of Statistical Methods](https://www.itl.nist.gov/div898/handbook/)
+- Kohavi, Tang, Xu, *Trustworthy Online Controlled Experiments*, Cambridge University Press, 2020
+- NIST/SEMATECH e-Handbook of Statistical Methods
 
 ## 연결 토픽
 

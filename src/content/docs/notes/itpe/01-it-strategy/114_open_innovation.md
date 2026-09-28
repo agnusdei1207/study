@@ -159,8 +159,8 @@ PoC 결과 보고
 
 - 제132~140회 공식 문제지에 개방형 혁신 단독 문항 없음
 - Henry Chesbrough, *Open Innovation: The New Imperative for Creating and Profiting from Technology*, Harvard Business School Press, 2003
-- European Commission, [What is Open Innovation?](https://digital-strategy.ec.europa.eu/en/news/what-open-innovation)
-- OECD·Eurostat, [Oslo Manual 2018: Guidelines for Collecting, Reporting and Using Data on Innovation](https://ec.europa.eu/eurostat/documents/3859598/9718996/KS-01-18-852-EN-N.pdf/7817c566-ef37-498a-8786-a25c200318ae)
+- European Commission, What is Open Innovation?
+- OECD·Eurostat, Oslo Manual 2018: Guidelines for Collecting, Reporting and Using Data on Innovation
 
 ## 연결 토픽
 

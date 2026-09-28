@@ -159,9 +159,9 @@ Problem 기록
 ## 출제 이력과 검증 출처
 
 - 제133회 2교시 3번: ISO/IEC 20000 기준의 ITSM 개념과 서비스 설계·구축·전환 활동
-- [ISO/IEC 20000-1:2018 — Service management system requirements](https://www.iso.org/standard/70636.html)
-- [PeopleCert: ITIL 4 Foundation](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-foundation-2565) — 서비스 가치 시스템, 4가지 관점, 7개 지도 원칙
-- [PeopleCert: ITIL Foundation (Version 5)](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-5-foundation-version-50-4154), [ITIL (Version 5) 안내](https://www.peoplecert.org/news-and-announcements/itil-version-5-explained) — 단계적 공개, ITIL 4 자격 유지
+- ISO/IEC 20000-1:2018 — Service management system requirements
+- PeopleCert: ITIL 4 Foundation — 서비스 가치 시스템, 4가지 관점, 7개 지도 원칙
+- PeopleCert: ITIL Foundation (Version 5), ITIL (Version 5) 안내 — 단계적 공개, ITIL 4 자격 유지
 
 ## 연결 토픽
 

@@ -149,8 +149,8 @@ AI 상담 답변에 대한 국민 이의·재문의
 
 - 제132~140회 공식 문제지에 AI 민주정부·온AI 직접 문항 없음
 - 인접 문항: 제137회 2교시 4번 공공부문 초거대 AI 도입·활용 가이드라인 2.0, 제135회 2교시 5번 공공기관 거대 언어 모델 적용
-- [행정안전부, 세계 최고의 AI민주정부 실현 전략(2026.8.25)](https://mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=128980)
-- [행정안전부, 온AI 모바일 서비스 개시(2026.4.30)](https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=125600)
+- 행정안전부, 세계 최고의 AI민주정부 실현 전략(2026.8.25)
+- 행정안전부, 온AI 모바일 서비스 개시(2026.4.30)
 
 ## 연결 토픽
 

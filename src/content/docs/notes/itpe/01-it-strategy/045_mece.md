@@ -153,7 +153,7 @@ ME·CE 검증
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 해당 문항 없음
-- [PMI Practice Standard for Work Breakdown Structures](https://www.pmi.org/pmbok-guide-standards/framework/practice-standard-work-breakdown-structures-3rd-edition): 100% Rule
+- PMI Practice Standard for Work Breakdown Structures: 100% Rule
 
 ## 연결 토픽
 
