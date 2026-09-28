@@ -151,7 +151,6 @@ RFP 확정 전 요구사항 ID 단위의 RTM 연결 확인을 발주의 선행 �
 
 - 제138회 2교시: ISP의 정의·목적, ISP 수행방법론 체계와 절차, ISP·ISMP 비교
 - 한국지능정보사회진흥원(NIA), [ISP·ISMP 수립 공통가이드 제9판(2025.12 일부개정)](https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=99835&bcIdx=28088) — 42~44쪽 ISMP 기본 구성: 프로젝트 착수 및 참여자 결정·정보시스템 방향성 수립·업무 및 정보기술 요건 분석·정보시스템 구조 및 요건 정의·정보시스템 구축 사업 이행방안 수립
-- [정보시스템 마스터플랜 - 위키백과](https://ko.wikipedia.org/wiki/%EC%A0%95%EB%B3%B4%EC%8B%9C%EC%8A%A4%ED%85%9C_%EB%A7%88%EC%8A%A4%ED%84%B0%ED%94%8C%EB%9E%9C)
 
 ## 연결 토픽
 
