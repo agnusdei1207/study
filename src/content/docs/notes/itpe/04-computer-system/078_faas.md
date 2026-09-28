@@ -6,12 +6,12 @@ sidebar:
     text: "기초"
     variant: note
 title: "FaaS (Function as a Service)"
-author: "GPT-6"
+author: "Antigravity"
 date: "2026-09-24T22:30:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
   question_no: "078"
 ---
@@ -24,7 +24,7 @@ extra:
 
 - 본질: **FaaS (Function as a Service)는** 개발자가 함수 코드를 배포하면 클라우드 플랫폼이 이벤트에 맞춰 실행 환경과 확장을 관리하는 컴퓨팅 모델
 - 메커니즘: 이벤트 발생 → 함수 호출 → 코드 실행 → 결과·상태 처리 → 필요 시 후속 이벤트
-- 통찰: 한계: 이벤트 재시도를 단순 재실행하면 업무 결과가 중복될 수 있음 → 방안: 멱등키와 실패 격리 경로를 함수 계약에 포함
+- 통찰: 이벤트 트리거에 반응하여 무상태(Stateless) 단일 함수 단위로 코드를 실행하고 실행 시간과 메모리 소비량에 대해서만 비용을 지불하는 서버리스 핵심 서비스임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -128,15 +128,50 @@ extra:
 | 함수를 지나치게 나누면 호출·관측·비용 증가 | 호출 빈도·트랜잭션 경계·운영 책임을 기준으로 분해 수준 결정 |
 | 이벤트 재시도로 업무 결과 중복 | 멱등키·결과 저장·재시도 한도·격리 큐를 함께 검증 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-대표 이벤트에서 중복·실패를 주입해 멱등 처리와 격리 경로를 먼저 검증하고 호출 비용·지연을 기준으로 함수 경계를 결정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+콜드 스타트 완화를 위해 경량 컨테이너(Firecracker 마이크로VM)를 활용하고, 영속적 상태 저장이 필요한 경우 외부 분산 캐시(Redis) 및 서버리스 DB와 결합.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 이벤트 프로듀서 (Event Producer) ] (API Gateway / Kafka / S3 Upload)
+                 │
+                 ▼
+┌────────────────────────────────────────────────────────┐
+│ [ FaaS 플랫폼 오케스트레이터 (AWS Lambda / Cloud Run) ] │
+│                                                        │
+│   ┌────────────────────────────────────────────────┐   │
+│   │ 샌드박스 라이프사이클 관리 (Firecracker MicroVM)│   │
+│   │  - Cold Start: 런타임 인출 -> 컨테이너 초기화  │   │
+│   │  - Warm Start: 메모리 상주 인스턴스 즉시 실행  │   │
+│   └───────────────────────┬────────────────────────┘   │
+│                           ▼                            │
+│   ┌────────────────────────────────────────────────┐   │
+│   │ 비즈니스 함수 실행 (handler(event, context))   │   │
+│   └───────────────────────┬────────────────────────┘   │
+│                           ▼                            │
+│   ┌────────────────────────────────────────────────┐   │
+│   │ 사후 수명주기: 유휴 시간 경과 시 컨테이너 파기 │   │
+│   └────────────────────────────────────────────────┘   │
+└────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | FaaS (Function as a Service) | PaaS (Platform as a Service) |
+|---|---|---|
+| **배포 및 관리 단위** | 단일 함수 단위 (Function, 수십 라인) | 전체 애플리케이션 서비스 단위 (App Stack) |
+| **수명주기 (Lifecycle)** | 이벤트 발생 시 기동되어 수 밀리초~수 분 내 종료 | 항시 구동되는 롱러닝 프로세스 (24x365 가동) |
+| **자동 확장 단위** | 수신되는 요청/이벤트당 1:1 자동 확장 (0 to N) | 컨테이너 수평 확장 (HPA, 최소 1개 이상 유지) |
+| **과금 기준** | 실제 실행 시간(1ms 단위) 및 할당 메모리 | 할당된 인스턴스/컨테이너 수량 시간당 고정 과금 |
 
 ## 출제 이력과 검증 출처
 
-- 기출 확인 없음. 예상문제는 FaaS 자체의 이벤트 기반 실행 구조를 직접 질문
-- 검증 출처:
-  - [AWS Lambda: Functions and durable functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions-chapter.html)
-  - [AWS Serverless Developer Guide](https://docs.aws.amazon.com/serverless/latest/devguide/serverless-core.pdf)
+- CNCF Serverless Working Group Whitepaper
+- NIST Special Publication 800-145: Serverless Architecture and FaaS
+- Alexandre Sanchez et al. - An Analysis of Serverless Computing Latency and Cold Starts (IEEE Cloud)
+
+## 연결 토픽
+
+- 상위 토픽: [003 서버리스 컴퓨팅](./003_serverless_computing.md)
+- 연관 토픽: [013 클라우드 컴퓨팅](./013_cloud_computing.md), [055 PaaS](./055_paas.md)

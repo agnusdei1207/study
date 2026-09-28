@@ -1,6 +1,6 @@
 ---
 title: "성능 튜닝(Performance Tuning)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
   badge:
     text: "응용"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "응용"
 ---
 
@@ -21,7 +21,7 @@ extra:
 
 - 본질: 성능 튜닝은 측정 자료를 바탕으로 서비스 병목을 찾아 개선하는 반복 활동
 - 메커니즘: 기준선 계측→병목 가설→한 가지 변경→동일 부하 재측정의 폐루프를 반복
-- 통찰: 한계: 한 계층의 지표 개선이 전체 응답 개선을 보장하지 않음 → 방안: 요청 단위 지연·처리량·오류율을 함께 재측정한다.
+- 통찰: 시스템의 처리량(Throughput)을 극대화하고 응답 시간(Latency)을 단축하기 위해 하드웨어, OS 커널, 데이터베이스, 애플리케이션 전 계층의 병목을 진단하고 최적화함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -44,14 +44,14 @@ extra:
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 성능 튜닝의 개요
+## Ⅰ. 성능 튜닝의 개요
 
 | 구분 | 핵심 |
 |---|---|
 | 정의 | **성능 튜닝(Performance Tuning):** 측정 자료로 병목을 찾아 구성을 개선하고 결과를 검증하는 활동 |
 | 목적 | 정해진 서비스 목표를 만족하도록 응답 시간·처리량·자원 사용을 개선 |
 
-### Ⅱ. 성능 튜닝의 특징
+## Ⅱ. 성능 튜닝의 특징
 
 | 특징 | 의미 |
 |---|---|
@@ -59,7 +59,7 @@ extra:
 | 원인 기반 | 관측된 대기와 실제 병목을 구분해 변경 |
 | 반복 검증 | 같은 부하·데이터·환경에서 전후 차이를 확인 |
 
-### Ⅲ. 튜닝 체계·프로세스
+## Ⅲ. 튜닝 체계·프로세스
 
 **핵심 반복 프레임**
 
@@ -77,7 +77,7 @@ extra:
           → 원인 계층 변경 → 같은 요청 경로 재추적
 ```
 
-### Ⅳ. 계층별 관측·개선 비교
+## Ⅳ. 계층별 관측·개선 비교
 
 | 계층 | 관측 대상 | 개선 방향 예 |
 |---|---|---|
@@ -86,7 +86,7 @@ extra:
 | DB | 실행계획·잠금·I/O | 질의·인덱스·트랜잭션 범위 점검 |
 | OS·인프라 | CPU·메모리·디스크·네트워크 | 포화 원인과 용량 병목 구분 |
 
-### Ⅴ. 한계와 방안
+## Ⅴ. 한계와 방안
 
 | 한계 | 방안 |
 |---|---|
@@ -94,15 +94,41 @@ extra:
 | 부하 조건이 다르면 전후 비교가 왜곡 | 데이터·동시성·환경을 고정하고 기준선 기록 |
 | 한 계층 변경이 다른 계층의 병목을 유발 | 요청 추적과 자원 지표로 변경 후 병목 이동 확인 |
 
-### Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-단일 지표가 좋아졌다는 이유만으로 변경을 채택하면 다른 계층의 대기와 오류를 키울 수 있다. **업무 목표·대표 부하·롤백 기준을 먼저 고정**하고, 한 번에 한 변경을 적용해 종단 지연 분포와 오류율을 재측정하는 승인 절차를 운영해야 한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+브렌던 그레그의 USE(Utilization, Saturation, Errors) 방법론에 입각하여 병목 자원을 과학적으로 식별하고, 단일 파라미터 변경 후 전후 성능을 정량 대조 검증.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 엔드투엔드 시스템 계층별 성능 튜닝 및 진단 파이프라인 ]
+
+  [ 1. 애플리케이션 계층 ] ──> 알고리즘 복잡도 개선, 락 경합 완화, 비동기 논블로킹 I/O
+            │
+            ▼
+  [ 2. 미들웨어/DB 계층 ] ──> 인덱스 최적화, 쿼리 리팩토링, 커넥션 풀(DBCP) 사이징
+            │
+            ▼
+  [ 3. OS 및 커널 계층 ]  ──> TCP 버퍼 크기, 파일 디스크립터 한도, vm.swappiness 튜닝
+            │
+            ▼
+  [ 4. 하드웨어/인프라 ]  ──> CPU 거버너 고성능 설정, NUMA 인터리빙, All-NVMe 교체
+```
+
+### 3. 기술 유형 및 비교 평가
+| 성능 분석 방법론 | 창안자/원칙 | 핵심 진단 지표 | 적용 대상 |
+|---|---|---|---|
+| **USE 방법론** | Brendan Gregg | **이용률(Utilization), 포화도(Saturation), 오류(Errors)** | CPU, 메모리, 디스크 등 하드웨어 자원 분석 |
+| **RED 방법론** | Tom Wilkie | **요청율(Rate), 오류율(Errors), 지속시간(Duration)** | 마이크로서비스, 웹 API 요청 성능 분석 |
+| **Four Golden Signals** | Google SRE | **지연시간(Latency), 트래픽(Traffic), 오류(Errors), 포화도(Saturation)** | 대규모 분산 시스템 모니터링 표준 |
 
 ## 출제 이력과 검증 출처
 
-- 제81회 1교시: `소프트웨어 성능 튜닝의 개념 및 절차를 설명하시오.`
-- 제95회 2교시: `웹 애플리케이션 시스템(WAS)과 데이터베이스(DB) 환경에서의 병목 현상 원인과 계층별 튜닝 방안을 설명하시오.`
-- [OpenTelemetry Documentation — Signals](https://opentelemetry.io/docs/concepts/signals/)
-- [Linux kernel documentation — perf](https://docs.kernel.org/tools/perf/index.html)
-- [Oracle Java Flight Recorder](https://docs.oracle.com/en/java/javase/)
-- [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
+- Brendan Gregg - Systems Performance: Enterprise and the Cloud 2nd Edition (Addison-Wesley)
+- Google Site Reliability Engineering (SRE) Handbook: Monitoring Distributed Systems
+- Computer Systems: A Programmer's Perspective (CS:APP) - Optimizing Program Performance
+
+## 연결 토픽
+
+- 상위 토픽: [117 하드웨어 사이징](./117_hardware_sizing.md)
+- 연관 토픽: [076 CPU](./076_cpu.md), [024 디스크 스케줄링](./024_disk_scheduling.md)

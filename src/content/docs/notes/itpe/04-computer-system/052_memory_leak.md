@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "메모리 누수(Memory Leak)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 52
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "052"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **메모리 누수** : 더 이상 필요하지 않은 메모리가 반환되지 않아 프로그램의 점유가 불필요하게 남는 현상
 - 메커니즘: 수동 관리 언어의 해제 누락 또는 관리형 언어의 불필요한 참조 유지 → 점유 누적 → 할당 실패·성능 저하 가능
-- 통찰: 한계: 순간 사용량 증가만으로 누수를 단정하기 어려움 → 방안: 반복 작업 후 생존 객체·할당과 소유 경로를 추적
+- 통찰: 할당받은 동적 메모리를 참조 해제하지 않거나 포인터를 유실하여 가용 메모리가 점진적으로 고갈되고 시스템 OOM 다운을 초래하는 결함 현상임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -75,7 +75,7 @@ extra:
 
 GC는 도달 불가능한 객체를 회수하지만, 더 이상 쓰지 않아도 강한 참조로 연결된 객체는 살아 있다고 판단할 수 있음.
 
-같은 부하를 반복하며 메모리 추세를 관찰하고 할당·객체 프로파일에서 소유 포인터 또는 GC 루트를 추적한다. 원인을 수정한 뒤 같은 부하로 다시 검증한다. C/C++은 할당 스택과 누수 탐지 도구, 관리형 언어는 힙 덤프와 GC 후 생존 객체가 주요 단서다.
+동일 부하를 반복 인가하며 메모리 추세를 관찰하고 객체 프로파일러에서 소유 포인터 또는 GC 루트를 추적. C/C++은 할당 스택과 누수 탐지 도구, 관리형 언어는 힙 덤프와 GC 후 잔존 생존 객체 식별 분석.
 
 ## Ⅳ. 누수와 다른 메모리 현상 비교
 
@@ -97,18 +97,46 @@ GC는 도달 불가능한 객체를 회수하지만, 더 이상 쓰지 않아도
 | 장기 실행 스레드가 요청 객체 참조 유지 | 요청 종료 시 참조 정리 |
 | 사용량 그래프만으로 원인 추정 | 실제 할당·참조 경로 계측 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-장기 실행 경로의 할당 소유권을 우선 명시하고, 수정 전후 같은 작업을 반복해 생존 메모리 추세가 안정되는지 확인한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+C/C++에서는 RAII 패턴과 스마트 포인터(unique_ptr)를 강제하고, Java/JVM 환경에서는 static 컬렉션 잔존 참조를 방지하며 CI/CD 파이프라인에 정적 메모리 분석 도구 연동.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 메모리 누수 발생 및 OOM Killer 동작 시퀀스 ]
+
+ 1. 힙 메모리 할당 (malloc / new)
+       │
+ 2. 비즈니스 로직 수행 완료
+       │
+ 3. 메모리 해제 누락 (free 누락 / 정적 컬렉션 무한 참조)
+       │
+       ▼
+ [ 시간 경과에 따른 가용 물리 메모리 점진적 고갈 ]
+       │
+       ▼
+ [ OS 스왑 메모리까지 포화 및 극심한 스래싱 발생 ]
+       │
+       ▼
+ [ 리눅스 OOM Killer(Out of Memory Killer) 발동 ] ──> [ 핵심 비즈니스 프로세스 강제 강등 종료 ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 진단 및 예방 도구 | 동작 방식 | 적용 개발 언어 | 주요 특징 및 검출 대상 |
+|---|---|---|---|
+| **Valgrind (Memcheck)** | 가상화 런타임 기반 동적 분석 | C, C++ | 미해제 힙 블록, 초기화되지 않은 메모리 접근 |
+| **AddressSanitizer (ASan)** | 컴파일러 계측 기반 고속 검출 | C, C++, Rust | 런타임 오버헤드 2배 수준으로 CI 연계 가능 |
+| **Eclipse MAT / JProfiler** | JVM 힙 덤프 스냅샷 분석 | Java, Kotlin | GC되지 않는 GC Root 참조 체인 추적 |
+| **Pprof** | 프로파일링 샘플링 툴 | Go | 활성 할당 객체 및 고루틴 누수 추적 |
 
 ## 출제 이력과 검증 출처
 
-- [Microsoft Learn: C++ RAII](https://learn.microsoft.com/en-us/cpp/cpp/object-lifetime-and-resource-management-modern-cpp?view=msvc-170)
-- [Oracle Java: Troubleshoot Memory Leaks](https://docs.oracle.com/en/java/javase/15/troubleshoot/troubleshoot-memory-leaks.html)
-- [LLVM: LeakSanitizer](https://clang.llvm.org/docs/LeakSanitizer.html)
+- CWE-401: Improper Release of Memory Before Removing Last Reference ('Memory Leak')
+- Oracle JVM Garbage Collection Tuning and Memory Leak Troubleshooting Guide
+- Valgrind User Manual: Memcheck: A Memory Error Detector
 
 ## 연결 토픽
 
-- 연관 토픽: [프로세스 메모리 영역](./050_process_memory_layout.md), [메모리 단편화](./033_fragmentation.md)
+- 상위 토픽: [050 프로세스 메모리 구조](./050_process_memory_layout.md)
+- 연관 토픽: [039 스래싱](./039_thrashing.md), [071 세그멘테이션 폴트](./071_segmentation_fault.md)

@@ -1,6 +1,6 @@
 ---
 title: "빅엔디언(Big Endian)"
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
@@ -11,7 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
 
 ---
 
@@ -24,7 +24,7 @@ extra:
 - 본질: 빅엔디언은 다중 바이트 값의 최상위 바이트를 낮은 메모리 주소에 두는 바이트 순서
 - 메커니즘: 수신·송신 경계에서 상대 시스템의 바이트 순서와 맞추어 정수 필드를 해석
 
-- 통찰: 한계: 호스트 순서를 그대로 전송하면 다중 바이트 필드를 잘못 해석 → 방안: 필드 폭·바이트 순서를 고정하고 송수신 경계에서 변환 시험
+- 통찰: 데이터의 최상위 바이트(MSB)를 가장 낮은 메모리 주소부터 순서대로 배치하여 사람이 숫자를 읽는 직관성과 일치하며 TCP/IP 네트워크 전송 표준임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -91,11 +91,37 @@ extra:
 | 구조체를 그대로 전송하면 패딩·정렬 차이가 생김 | 필드 단위로 명시적 인코딩 |
 | CPU 내부 바이트 순서를 프로토콜 표현과 혼동 | 전송 형식과 호스트 표현을 분리해 이기종 상호운용 시험 |
 
-## Ⅵ. 제언 — 전송 필드의 표현부터 고정
+## Ⅵ. 도입/구축/운영 관점 제언
 
-프로토콜 필드별 크기·부호·바이트 순서를 명시하고, 빅·리틀 엔디언 호스트 간 왕복·경계값 시험으로 변환 코드를 검증한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+이종 아키텍처 간 소켓 통신 시 엔디안 불일치로 인한 데이터 변조를 차단하기 위해 송신 측에서 `htons`/`htonl`로 네트워크 표준으로 직렬화하고 수신 측에서 역변환.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 4바이트 정수값: 0x0A0B0C0D (MSB=0x0A, LSB=0x0D) ]
+
+  메모리 번지:    Addr 0       Addr 1       Addr 2       Addr 3
+                ┌────────────┬────────────┬────────────┬────────────┐
+  빅 엔디안   : │    0x0A    │    0x0B    │    0x0C    │    0x0D    │  (사람의 읽기 순서와 일치)
+                └────────────┴────────────┴────────────┴────────────┘
+                 (네트워크 바이트 순서 Network Byte Order 표준)
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 빅 엔디안 (Big-Endian) | 리틀 엔디안 (Little-Endian) |
+|---|---|---|
+| **저장 순서** | 최상위 바이트(MSB)를 최저 주소에 배치 | 최하위 바이트(LSB)를 최저 주소에 배치 |
+| **네트워크 표준** | **인터넷 표준 (RFC 791 Network Byte Order)** | 표준 아님 (호스트 바이트 순서) |
+| **디버깅 가독성**| 메모리 덤프 시 사람이 읽는 숫자 표기와 동일 | 메모리 덤프 시 바이트 순서가 역순으로 표시 |
+| **대표 시스템** | TCP/IP 헤더, IBM 메인프레임, SPARC, Java 가상머신 | Intel x86/x64, AMD64, ARM(리틀엔디안 모드) |
 
 ## 출제 이력과 검증 출처
 
-- [RFC 791](https://datatracker.ietf.org/doc/html/rfc791): IPv4 필드 표현
-- [The Open Group htonl/htons](https://pubs.opengroup.org/onlinepubs/000095399/functions/htonl.html): POSIX 호스트·네트워크 바이트 순서 API
+- IETF RFC 791: Internet Protocol Specification - Transmission Order
+- Danny Cohen - On Holy Wars and a Plea for Peace (IEN 137)
+- Computer Systems: A Programmer's Perspective (CS:APP) - Byte Ordering
+
+## 연결 토픽
+
+- 상위 토픽: [105 엔디안](./105_endian.md)
+- 연관 토픽: [093 리틀 엔디안](./093_little_endian.md), [076 CPU](./076_cpu.md)

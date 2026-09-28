@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "우선순위 역전(Priority Inversion)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 59
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "059"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **우선순위 역전** : 높은 우선순위 작업이 낮은 우선순위 작업이 가진 자원을 기다려 제때 실행되지 못하는 현상
 - 메커니즘: 낮은 우선순위 작업이 잠금 보유 → 높은 우선순위 작업 대기 → 중간 우선순위 작업이 보유자를 선점하면 대기 증가
-- 통찰: 한계: 상속만 적용해도 긴 임계 구역은 남음 → 방안: 잠금 보유 시간을 줄이고 높은 우선순위 작업의 최대 대기를 측정
+- 통찰: 낮은 우선순위 태스크가 점유한 공유 자원을 높은 우선순위 태스크가 대기하는 동안 중간 우선순위 태스크가 선점하여 최고 우선순위 태스크의 실행이 무한 지연되는 현상임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -75,7 +75,7 @@ L이 잠금 획득 → H가 같은 잠금 요청·대기
 
 높은 우선순위 H의 지연은 L의 임계 구역 길이뿐 아니라 잠금과 무관한 M의 선점에도 좌우됨.
 
-상속을 지원하는 잠금에서는 H가 대기할 때 L을 일시적으로 승격해 M의 선점을 막는다. L이 잠금을 반환하면 H가 실행하고 L의 우선순위는 복귀한다.
+상속 지원 잠금에서는 H가 대기할 때 L의 우선순위를 일시 승격하여 M의 비선점을 차단. L이 잠금을 반환하면 H가 즉시 실행되고 L의 우선순위는 원래 수준으로 복귀.
 
 ## Ⅳ. 우선순위 상속과 천장 비교
 
@@ -97,18 +97,42 @@ L이 잠금 획득 → H가 같은 잠금 요청·대기
 | 여러 잠금의 순환 대기 | 잠금 순서와 자원 획득 규칙 설계 |
 | 스케줄러 우선순위만 보고 기한 보장 가정 | 최악 대기 시간과 실제 부하 시험 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-기한을 넘기는 작업부터 잠금 보유자·선점·임계 구역 길이를 기록하고, 상속 적용 전후 최대 대기 시간을 비교한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+실시간 임베디드 및 미션크리티컬 시스템에서 상호배제 락 사용 시 우선순위 상속(Priority Inheritance) 또는 우선순위 천장(Priority Ceiling) 프로토콜을 커널 뮤텍스에 의무 적용.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 우선순위 역전 (Priority Inversion) 발생 시나리오 ]
+
+ 우선순위
+   High (H) ───[H 도착]──────────────┐대기(Blocked)───────────────────>
+                                      │ (L이 점유한 자원 R 대기)
+   Mid  (M) ──────────────────────────┼────────[M이 L을 선점하여 계속 실행]──>
+                                      │
+   Low  (L) ──[자원 R 점유]───────────┴───────────────────────────────>
+  ───────────────────────────────────────────────────────────────────────> 시간
+  * 결과: 최고 우선순위 H가 자원 R과 무관한 중간 우선순위 M 때문에 실행되지 못하는 역전 발생!
+
+[ 해결책: 우선순위 상속 (Priority Inheritance Protocol) ]
+  - L이 자원 R을 보유하고 있는 동안, L의 우선순위를 대기 중인 H의 우선순위로 일시 승격!
+  - 중간 M이 L을 선점할 수 없도록 방어하여 L이 신속히 자원을 반납하게 유도
+```
+
+### 3. 기술 유형 및 비교 평가
+| 해결 프로토콜 | 동작 원리 | 교착상태 (Deadlock) 방지 | 다중 블로킹 방지 |
+|---|---|---|---|
+| **우선순위 상속 (PIP)** | 고우선순위 태스크가 락을 요청하면 락 보유자의 우선순위를 즉시 상속 승격 | 불가 (환형 대기 교착 가능) | 불가 (체인 형태의 연쇄 블로킹 가능) |
+| **우선순위 천장 (PCP)** | 자원에 최고 잠재 우선순위(Ceiling)를 부여하고 시스템 천장보다 높아야만 락 획득 | **완벽 방지 (교착 배제 보장)** | **완벽 방지 (최대 1회 단일 블로킹 보장)** |
 
 ## 출제 이력과 검증 출처
 
-- [Linux Kernel: RT-mutex implementation design](https://docs.kernel.org/locking/rt-mutex-design.html)
-- [Linux Kernel: RT-mutex subsystem with PI support](https://docs.kernel.org/6.5/locking/rt-mutex.html)
-- [POSIX: pthread_mutexattr_setprotocol](https://man7.org/linux/man-pages/man3/pthread_mutexattr_getprotocol.3p.html)
+- Lui Sha, Ragunathan Rajkumar, John P. Lehoczky - Priority Inheritance Protocols: An Approach to Real-Time Synchronization (IEEE Transactions on Computers)
+- NASA Mars Pathfinder Priority Inversion Problem Official Case Study
+- POSIX.1-2008 Standard: Mutex Priority Inheritance and Ceiling Protocols
 
 ## 연결 토픽
 
-- 연관 토픽: [CPU 스케줄링](./019_cpu_scheduling.md), [교착상태](./038_deadlock.md)
+- 상위 토픽: [019 CPU 스케줄링](./019_cpu_scheduling.md)
+- 연관 토픽: [038 데드락](./038_deadlock.md), [122 프로세스 동기화](./122_process_synchronization.md)

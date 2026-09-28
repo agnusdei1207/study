@@ -6,12 +6,12 @@ sidebar:
     text: "기초"
     variant: note
 title: "유전 알고리즘 (Genetic Algorithm)"
-author: "GPT-6"
+author: "Antigravity"
 date: "2026-09-24T22:00:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
   question_no: "074"
 ---
@@ -24,7 +24,7 @@ extra:
 
 - 본질: **유전 알고리즘 (Genetic Algorithm, GA)은** 후보해 집단에 선택·교차·변이를 반복 적용해 좋은 해를 탐색하는 메타휴리스틱
 - 메커니즘: 표현·적합도 정의 → 부모 선택 → 자손 생성 → 평가·대치 → 종료 조건 확인
-- 통찰: 한계: 적합도 점수만 높이면 제약 위반 해가 남을 수 있음 → 방안: 후보 표현·제약 검사와 결과 재현성을 함께 검증
+- 통찰: 다윈의 자연선택과 적자생존 진화론을 모델링하여 선택, 교차, 변이 연산을 반복함으로써 복잡한 비선형 조합 최적화 문제의 전역 최적해를 탐색함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -112,15 +112,49 @@ extra:
 
 | 적합도가 높아도 업무 제약·재현성 부족 | 제약 통과 후보만 재평가하고 입력·매개변수·결과 기록 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-후보 표현과 업무 제약을 먼저 검증하고 동일 입력·매개변수의 반복 실행 결과를 비교한 뒤 운영 적용을 승인한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+조기 수렴(Premature Convergence)으로 인한 지역 최적점 고착을 방지하기 위해 세대 경과에 따라 변이율을 동적 조정하는 적응형 유전 알고리즘(AGA) 도입 권고.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 유전 알고리즘 (Genetic Algorithm) 실행 파이프라인 ]
+
+ 1. 초기 염색체 모집단 생성 (Random Initialization)
+            │
+            ▼
+ 2. 개체별 적합도 함수(Fitness Function) 평가
+            │
+            ▼
+ 3. 종료 조건 만족? (최적해 도달 또는 최대 세대수 초과) ──(Yes)──> [ 최적해 반환 ]
+            │ (No)
+            ▼
+ 4. 우수 유전자 선택 (Selection: 룰렛 휠, 토너먼트)
+            │
+            ▼
+ 5. 유전자 교차 (Crossover: 1점 교차, 2점 교차, 균등 교차)
+            │
+            ▼
+ 6. 유전자 돌연변이 (Mutation: 확률적 비트 반전으로 다양성 확보)
+            │
+            └───────────> [ 차세대 모집단 형성 후 2단계로 루프 ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 유전 연산자 | 주요 기법 | 핵심 역할 | 파라미터 영향도 |
+|---|---|---|---|
+| **선택 (Selection)** | 룰렛 휠(Roulette Wheel), 토너먼트(Tournament) | 적합도가 높은 우수 개체에게 더 높은 번식 기회 부여 | 선택압이 너무 높으면 조기 수렴 위험 |
+| **교차 (Crossover)** | 1점(Single-point), 다점(Multi-point), 균등(Uniform) | 부모 염색체의 우수 유전자 조합으로 우수한 자손 생성 | 교차율($P_c$ 보통 0.7~0.9)로 탐색 주도 |
+| **변이 (Mutation)** | 비트 반전(Bit-flip), 교환(Swap), 삽입(Insert) | 모집단의 유전적 다양성 유지 및 지역 최적점 탈출 | 변이율($P_m$ 보통 0.001~0.05) 과도 시 무작위 탐색화 |
 
 ## 출제 이력과 검증 출처
 
-- 제137회 4교시 5번: “유전 알고리즘 (Genetic Algorithm)에 대하여 설명하시오.” 출제 이력 유지
-- 출제문 원문을 바탕으로 기본 원리와 처리 절차에 초점을 맞춤
-- [Q-Net 제137회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5242749&brdId=Q006&gSite=Q&id=cst00602)
-- [MIT OpenCourseWare, Genetic Algorithm 절차](https://www.ocw.mit.edu/courses/ids-338j-multidisciplinary-system-design-optimization-spring-2010/f67f430da9d1bc6c018ce661c4a717b9_MITESD_77S10_rec06.pdf)
+- David E. Goldberg - Genetic Algorithms in Search, Optimization, and Machine Learning
+- John H. Holland - Adaptation in Natural and Artificial Systems (MIT Press)
+- IEEE Transactions on Evolutionary Computation: Genetic Algorithms and Optimization
+
+## 연결 토픽
+
+- 상위 토픽: [098 메타휴리스틱](./098_metaheuristics.md)
+- 연관 토픽: [107 워크플로우 스케줄링 백필](./107_workflow_scheduling_backfill.md), [019 CPU 스케줄링](./019_cpu_scheduling.md)

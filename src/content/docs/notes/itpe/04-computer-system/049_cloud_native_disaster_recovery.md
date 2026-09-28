@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "클라우드 네이티브 재해복구"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 49
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "049"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **클라우드 네이티브 재해복구** : 장애가 난 위치 밖에서 애플리케이션·데이터·접속 경로를 복원해 업무를 재개하는 체계
 - 메커니즘: 업무별 **RTO·RPO** 설정 후 배포 구성, 데이터 복제·백업, 트래픽 전환을 설계하고 실제 복구 시험으로 검증
-- 통찰: 한계: 컨테이너 재기동만으로 데이터·접속이 복구되지 않음 → 방안: 핵심 거래까지 수행해 RTO·RPO 실측
+- 통찰: 멀티 리전 분산 아키텍처와 선언적 GitOps 파이프라인을 결합하여 대규모 클라우드 장애 발생 시 인프라와 서비스를 신속하고 탄력적으로 자동 복구함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -79,7 +79,7 @@ extra:
 
 ### 복구 검증 순서
 
-장애를 선언한 뒤 복구 데이터 시점을 확인하고, 복구 사이트의 응용·용량을 준비해 접속 경로를 전환한다. 핵심 업무와 데이터 정합성을 확인한 후 RTO·RPO를 실측한다. 복구 시간의 시작·끝과 데이터 손실 기준 시점을 미리 정의해야 목표 달성 여부를 판정할 수 있다.
+장애 선언 후 복구 데이터 시점을 확인하고, 복구 사이트의 응용 및 컴퓨팅 자원을 준비하여 접속 경로를 전환. 핵심 업무와 데이터 정합성을 확인한 후 RTO와 RPO를 실측 검증. 복구 시간의 기점과 데이터 손실 기준 시점을 사전 정의하여 목표 달성 여부 판정 수립.
 
 ```text
 장애 선언 → 복구 데이터 시점 확인 → 응용·용량 준비
@@ -106,18 +106,42 @@ extra:
 | 복구 사이트도 동일 장애 원인에 노출 | 장애 범위와 복구 사이트의 독립성 검토 |
 | 복구 계획만 있고 전환 시험이 없음 | 정기적인 장애 전환·복귀 훈련으로 RTO·RPO 실측 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-복구 사이트에서 핵심 거래 한 건을 실제 수행하며 데이터 시점·응용 기동·접속 전환의 담당과 시간을 기록해 RTO·RPO를 판정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+인프라 형상 전체를 Git 리포지토리에 선언적 코드로 관리(IaC/GitOps)하고, 데이터 계층은 글로벌 분산 DB(CockroachDB/DynamoDB Global Table)를 적용하여 RPO 제로 달성.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+┌──────────────────────────────┐               ┌──────────────────────────────┐
+│ [ Cloud Region A (Primary) ] │               │ [ Cloud Region B (Secondary) ]│
+│  - EKS / GKE 클라우드 클러스터│               │  - EKS / GKE 클러스터 (대기) │
+│  - 글로벌 로드밸런서 (Route53)│<─────────────>│  - 글로벌 로드밸런서 (Route53)│
+└──────────────┬───────────────┘  GSLB 헬스체크 └──────────────┬───────────────┘
+               │                                              │
+               │ 실시간 비동기/준동기 데이터 복제             │
+               ▼                                              ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ [ GitOps 기반 지속적 복원 엔진 (ArgoCD / Flux) ]                            │
+│  - Git 형상 저장소(SSOT)로부터 장애 리전에 인프라 및 컨테이너 즉시 재프로비저닝│
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 클라우드 DR 전략 | 아키텍처 구성 방식 | 복구 목표 시간 (RTO) | 복구 시점 목표 (RPO) | 비용 효율성 |
+|---|---|---|---|---|
+| **백업 및 복원 (Backup & Restore)** | 스토리지 스냅샷 및 S3 복제 | 수 시간 ~ 수 일 | 수 시간 단위 | 최고 (유휴 비용 없음) |
+| **파일럿 라이트 (Pilot Light)** | 핵심 데이터 실시간 복제 + 최소 코어 가동| 수십 분 이내 | 수 초 ~ 수 분 | 높음 (컴퓨팅 비용 최소화) |
+| **웜 스탠바이 (Warm Standby)** | 축소된 규모의 보조 인프라 항시 구동 | 수 분 이내 | 실시간에 근접 | 중간 수준 |
+| **멀티 사이트 액티브-액티브** | 복수 리전 트래픽 분산 완전 동시 가동 | **즉시 (수 초 이내)** | **0 (Zero RPO)** | 최저 (완전 중복 비용) |
 
 ## 출제 이력과 검증 출처
 
-- [AWS Well-Architected: Define recovery objectives](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html)
-- [AWS Well-Architected: Disaster recovery options](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)
-- [AWS Well-Architected: Test disaster recovery implementation](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_planning_for_recovery_dr_tested.html)
+- AWS Disaster Recovery of Workloads on AWS: Cloud-Native DR Whitepaper
+- Google Cloud Architecture Center: Disaster Recovery Planning Guide
+- CNCF Disaster Recovery and High Availability Best Practices
 
 ## 연결 토픽
 
-- 연관 토픽: [고가용성](./042_ha_availability_assurance.md), [운영 전환](./047_system_failure_prevention_cutover.md)
+- 상위 토픽: [043 데이터센터 입지 및 재해대응](./043_datacenter_location_disaster_response.md)
+- 연관 토픽: [065 멀티 리전 액티브-액티브 DR](./065_multi_region_active_active_dr.md), [012 쿠버네티스](./012_kubernetes.md)

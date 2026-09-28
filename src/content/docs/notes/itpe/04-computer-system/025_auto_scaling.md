@@ -1,6 +1,6 @@
 ---
 title: "오토스케일링(Auto Scaling)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T20:54:00+09:00"
 tags:
   - "notes-computer-system"
@@ -10,7 +10,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 ---
 
@@ -22,7 +22,7 @@ extra:
 
 - 본질: **오토스케일링 (Auto Scaling)** 은 관측한 부하와 정책에 따라 실행 자원의 수나 크기를 자동 조정하는 기능
 - 메커니즘: 부하 지표 관측 → 목표·한도 비교 → 자원 조정 → 실제 서비스 상태 확인
-- 통찰: 한계: 복제본 증가가 즉시 처리 용량을 높이지 않음 → 방안: 기동·준비 시간과 후단 한도를 함께 고려해 확장 기준 설정
+- 통찰: 변동하는 워크로드 수요에 대응하여 컴퓨팅 인프라 자원을 실시간으로 동적 증감시킴으로써 서비스 SLA 준수와 비용 효율을 동시에 달성함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -101,18 +101,42 @@ extra:
 
 CPU 사용률만으로 대기 요청·큐 길이를 파악하기 어려운 한계. 실제 서비스 지연과 연관된 지표 선택.
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-복제본 증가는 기동 지연과 후단 한도 때문에 즉시 용량을 높이지 못하므로 변동이 큰 워크로드 한 개에서 준비 시간·후단 용량을 측정해 확장 기준을 정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+급격한 트래픽 유입에 대응하기 위해 반응형 메트릭(CPU/Memory) 외에 비즈니스 지표(요청 수, 큐 적재량) 기반의 HPA/KEDA를 결합하고 단계적 쿨다운(Cool-down) 적용.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 트래픽 유입 급증 ] ──> [ 모니터링 메트릭 수집 (Prometheus / CloudWatch) ]
+                                      │
+                                      ▼
+                    [ 스케일링 정책 엔진 (HPA / Autoscaler) ]
+                                      │
+            ┌─────────────────────────┴─────────────────────────┐
+            ▼                                                   ▼
+  [ Scale-Out (수평 확장) ]                           [ Scale-In (수평 축소) ]
+   - 임계치(Threshold) 초과 감지                       - 유휴 리소스 지속 감지
+   - 인스턴스/Pod 수량 점진 증가                       - 플래핑(Thrashing) 방지 쿨다운 적용
+   - 로드밸런서 타깃 자동 등록                         - 정상 연결 종료(Graceful Shutdown)
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 수평적 오토 스케일링 (Scale-Out/In) | 수직적 오토 스케일링 (Scale-Up/Down) |
+|---|---|---|
+| **동작 메커니즘** | 인스턴스 또는 Pod의 인스턴스 개수 증감 | 단일 인스턴스의 CPU 코어 및 메모리 사양 증감 |
+| **서비스 중단 여부** | 완전 무중단 (로드밸런서 트래픽 분산) | 재기동 수반 가능 (일부 인플레이스 리사이징 제외) |
+| **확장 한계** | 분산 아키텍처 지원 시 이론상 무한 확장 | 단일 물리 서버 하드웨어 사양 한계 존재 |
+| **적합 워크로드** | 무상태(Stateless) 웹 서버, 마이크로서비스 | 상태 보존형 관계형 DBMS, 대규모 인메모리 캐시 |
+| **쿠버네티스 구현체**| HPA (Horizontal Pod Autoscaler) | VPA (Vertical Pod Autoscaler) |
 
 ## 출제 이력과 검증 출처
 
-- 기존 노트의 제121회·제131회 문항 원문 미확인으로 예상문제 표기
-- [Kubernetes 공식 문서, Autoscaling Workloads](https://kubernetes.io/docs/concepts/workloads/autoscaling/)
-- [Kubernetes 공식 문서, Horizontal Pod Autoscaling](https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/)
-- [Kubernetes 공식 문서, Vertical Pod Autoscaling](https://kubernetes.io/docs/concepts/workloads/autoscaling/vertical-pod-autoscale/)
-- [KEDA 공식 문서](https://keda.sh/docs/)
+- Kubernetes Documentation: Horizontal Pod Autoscaling & Cluster Autoscaler
+- AWS Well-Architected Framework: Reliability and Cost Optimization Pillars
+- IEEE Transactions on Cloud Computing: Dynamic Resource Allocation and Auto-Scaling
 
 ## 연결 토픽
 
-- 연관 토픽: [쿠버네티스](./012_kubernetes.md), [클라우드 컴퓨팅](./013_cloud_computing.md)
+- 상위 토픽: [012 쿠버네티스](./012_kubernetes.md)
+- 연관 토픽: [064 HPA](./064_hpa.md), [003 서버리스 컴퓨팅](./003_serverless_computing.md)

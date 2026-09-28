@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "교착상태(Deadlock)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 38
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "038"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **교착상태** : 여러 프로세스가 서로 점유한 자원을 기다려 더 진행하지 못하는 상태
 - 메커니즘: 자원 점유·추가 요청이 원형 대기를 형성 → 어느 프로세스도 필요한 자원을 얻지 못함
-- 통찰: 한계: 반대 순서의 자원 획득이 원형 대기를 만듦 → 방안: 공유 자원 획득 순서를 통일하고 경합 시험
+- 통찰: 두 개 이상의 프로세스가 서로 상대방이 점유한 자원을 무한 대기하며 실행이 영구 중단되는 현상으로, 4대 필요조건 중 하나를 원천 무력화하여 대응함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -112,17 +112,42 @@ P2는 자원 1부터 대기 → 원형 대기 형성 차단
 | 최대 자원 요구량을 알기 어려워 회피 적용 곤란 | 탐지 주기와 회복 정책을 설계 |
 | 회복 시 작업 결과가 일부만 반영될 수 있음 | 롤백·재시도 가능 구간과 데이터 정합성 시험 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-반대 순서의 자원 획득이 원형 대기를 만들므로 잠금 순서를 우선 통일하고 예외 경로의 탐지·재시도 조건을 경합 시험으로 검증한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+환형 대기를 방지하기 위해 전사 모든 자원에 고유 순번을 부여하고 오름차순으로만 락을 획득하는 순서화 규칙을 수립하며, 락 타임아웃 및 교착 탐지 스레드 주기적 가동.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 교착상태 (Deadlock) 발생 4대 필요조건 동시 성립 구조 ]
+
+        [ 프로세스 P1 ] ──(자원 R2 요청 대기)──> [ 자원 R2 ]
+              ▲                                       │
+              │ (자원 R1 점유)                        │ (점유 중)
+              │                                       ▼
+          [ 자원 R1 ] <──(자원 R1 요청 대기)── [ 프로세스 P2 ]
+
+ 1. 상호 배제 (Mutual Exclusion) : 한 번에 한 프로세스만 자원 사용
+ 2. 점유 대기 (Hold and Wait)   : 자원을 보유한 채 다른 자원 추가 요청
+ 3. 비선점 (No Preemption)      : 다른 프로세스의 자원을 강제 강탈 불가
+ 4. 환형 대기 (Circular Wait)   : P1->R2->P2->R1->P1 형태의 순환 대기 고리 형성
+```
+
+### 3. 기술 유형 및 비교 평가
+| 교착상태 해결 전략 | 주요 기법 및 알고리즘 | 시스템 오버헤드 | 장점 | 주요 단점 및 제약 |
+|---|---|---|---|---|
+| **예방 (Prevention)** | 환형 대기 차단 (자원 순서화), 일괄 요청 | 낮음 | 교착 발생 가능성 0% | 자원 낭비 및 동시성 심각 저하 |
+| **회피 (Avoidance)** | 은행원 알고리즘, 자원 할당 그래프 검사 | 높음 (매 요청 검증) | 안전 상태에서만 할당 | 최대 자원 요구량 사전 선언 필수 |
+| **탐지 및 복구** | WFG(대기 그래프) 사이클 탐색, 희생자 선정 | 주기적 오버헤드 | 자원 자유 할당, 고이용률 | 프로세스 강제 종료 및 롤백 손실 |
+| **무시 (Ignore)** | 타조 알고리즘 (Ostrich) | 없음 | 구현 복잡도 0 | 재부팅 전까지 시스템 정지 위험 |
 
 ## 출제 이력과 검증 출처
 
-- Abraham Silberschatz, Peter Baer Galvin, Greg Gagne, *Operating System Concepts*, Deadlocks
-- [MIT OpenCourseWare, 프로세스 동기화와 교착상태](https://live.ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c19/c19s1/).
+- E.G. Coffman et al. - System Deadlocks (ACM Computing Surveys)
+- Abraham Silberschatz et al. - Operating System Concepts: Deadlocks
+- Andrew S. Tanenbaum - Modern Operating Systems: Deadlock Detection and Recovery
 
 ## 연결 토픽
 
-- 연관 토픽: [은행원 알고리즘](./002_bankers_algorithm.md), [프로세스 동기화](./122_process_synchronization.md)
+- 상위 토픽: [002 은행원 알고리즘](./002_bankers_algorithm.md)
+- 연관 토픽: [122 프로세스 동기화](./122_process_synchronization.md), [091 경쟁 조건](./091_race_condition.md)

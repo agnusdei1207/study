@@ -6,12 +6,12 @@ sidebar:
   badge:
     text: "서브"
     variant: note
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "095"
 
@@ -26,7 +26,7 @@ extra:
 - 본질: 분산학습은 여러 처리 장치가 학습 계산을 나누고 필요한 값을 교환하는 방식
 - 메커니즘: 분할 방식에 따라 메모리 사용과 통신 위치가 달라짐
 
-- 통찰: 한계: 분할 방식별 동기화 대상이 달라 통신 병목 발생 → 방안: 모델 상태·데이터 크기별 통신량을 측정해 병렬 방식 선택
+- 통찰: 단일 GPU 메모리에 적재할 수 없는 초대형 모델을 훈련하기 위해 데이터 병렬(DDP), 파이프라인 병렬(PP), 텐서 병렬(TP), 완전 샤딩(FSDP)을 혼합 적용 최적화.
 
 <details>
 <summary>핵심 용어</summary>
@@ -88,7 +88,7 @@ extra:
 | DDP | 모델 상태 복제 | 그래디언트 동기화 비용 |
 | FSDP | 파라미터·그래디언트·옵티마이저 상태 분할 | 연산 구간에서 파라미터 수집에 따른 통신 |
 
-FSDP는 분할한 상태를 보관하고 연산 구간에서 필요한 파라미터를 수집한 뒤 그래디언트를 다시 분할한다. 이 과정의 통신량은 DDP의 그래디언트 동기화와 구별해 측정한다.
+FSDP는 모델 상태를 샤딩 보관하고 순방향 연산 직전 All-Gather로 파라미터를 수집한 뒤 그래디언트를 다시 Reduce-Scatter 분할. 이 과정의 통신량은 표준 DDP의 All-Reduce 동기화와 구별 실측 필요.
 
 ## Ⅴ. 한계와 방안
 
@@ -99,12 +99,45 @@ FSDP는 분할한 상태를 보관하고 연산 구간에서 필요한 파라미
 | 파이프라인 구간별 처리량 불균형 | 구간별 계산량과 마이크로배치 흐름을 측정해 재조정 |
 | 한 병렬 방식이 모든 모델·환경에 적합하지 않음 | 상태 크기·통신 패턴·토폴로지를 소규모 시험으로 비교한 뒤 조합 결정 |
 
-## Ⅵ. 제언 — 메모리와 통신의 주 병목부터 판정
+## Ⅵ. 도입/구축/운영 관점 제언
 
-대표 모델을 DDP와 샤딩·모델 분할의 소규모 구성에서 시험해 GPU 메모리, 통신 대기, 학습 처리량을 비교하고 조합을 결정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+초대형 LLM 학습 시 통신 오버헤드를 줄이기 위해 노드 내부는 텐서 병렬화(Megatron-LM TP)를 적용하고, 노드 간에는 제로 버블 파이프라인 병렬화 및 FSDP를 결합한 3D 병렬화 채택.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│ [ LLM 분산 훈련을 위한 3D 병렬화 (3D Parallelism: TP + PP + DP) ]      │
+│                                                                        │
+│   1. 텐서 병렬화 (Tensor Parallelism: TP)                              │
+│      - 단일 Transformer 레이어 내부 행렬 곱셈을 복수 GPU에 분할       │
+│      - 노드 내부(NVLink 초고대역)에서만 구동 필수 (All-Reduce 통신)    │
+│                                                                        │
+│   2. 파이프라인 병렬화 (Pipeline Parallelism: PP)                      │
+│      - 모델 레이어들을 순차 그룹으로 나누어 다른 GPU 노드에 분적      │
+│      - 활성화 값(Activation)만 노드 간 전송하여 네트워크 부하 절감    │
+│                                                                        │
+│   3. 데이터 병렬화 (FSDP / ZeRO-3)                                     │
+│      - 파라미터, 그래디언트, 옵티마이저 상태 전체를 클러스터에 샤딩   │
+│      - 연산 직전에만 All-Gather로 복원하고 연산 후 즉시 메모리 해제    │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 분산 학습 병렬화 기법 | 분할 대상 | 통신 빈도 및 패턴 | 권장 네트워크 환경 | 주 적용 목적 |
+|---|---|---|---|---|
+| **DDP (Data Parallel)** | 배치 데이터 분할 (모델 복제) | 매 스텝 역방향 시 All-Reduce | InfiniBand / 100GbE | 단일 GPU에 모델이 완전히 올라갈 때 |
+| **ZeRO-3 / FSDP** | 파라미터, 그래디언트, 옵티마이저 | 순방향/역방향 매 레이어 All-Gather| RoCEv2 / InfiniBand | 거대 모델의 메모리 점유율을 1/N로 축소 |
+| **텐서 병렬화 (TP)** | 선형 가중치 행렬 ($W_Q, W_K, W_V$)| 매 연산자마다 All-Reduce | **NVLink 필수 (초고대역)** | 거대 레이어 단일 GPU VRAM 초과 시 |
+| **파이프라인 병렬 (PP)**| 수십 개의 전체 레이어 분할 | 스테이지 경계 간 P2P 통신 | 표준 노드 간 이더넷 가능 | 깊은 모델 분할 (버블 타임 제어 필요) |
 
 ## 출제 이력과 검증 출처
 
-- [PyTorch FSDP 문서](https://docs.pytorch.org/docs/main/fsdp.html): 파라미터 샤딩 구조
-- [PyTorch FSDP 튜토리얼](https://docs.pytorch.org/tutorials/intermediate/FSDP1_tutorial.html): 샤드 수집과 학습 흐름
-- [NVIDIA NCCL 문서](https://docs.nvidia.com/deeplearning/nccl/): 집단 통신
+- Samyam Rajbhandari et al. - ZeRO: Memory Optimizations Toward Training Trillion Parameter Models (DeepSpeed)
+- Mohammad Shoeybi et al. - Megatron-LM: Training Multi-Billion Parameter Language Models
+- PyTorch Documentation: Fully Sharded Data Parallel (FSDP) Architecture
+
+## 연결 토픽
+
+- 상위 토픽: [094 멀티 GPU](./094_multi_gpu.md)
+- 연관 토픽: [041 AI HPC 인프라](./041_ai_hpc_infrastructure.md), [020 GPU](./020_gpu.md)

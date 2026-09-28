@@ -1,6 +1,6 @@
 ---
 title: "워크플로 스케줄링·백필"
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
@@ -11,7 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
 
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 - 본질: 워크플로 스케줄링은 태스크 의존성과 자원 조건에 따라 실행 순서·시점을 정하는 기능
 - 메커니즘: DAG 선행조건 확인 → 자원·우선순위 배치 → 태스크 실행·상태 기록; 백필은 과거 논리 구간을 같은 흐름으로 재실행
-- 통찰: 한계: 과거 구간 재처리가 현행 작업과 자원을 경쟁하고 결과를 중복 반영할 수 있음 → 방안: 백필 실행 창·병렬도·멱등 쓰기와 검증 게이트 설정
+- 통찰: DAG 기반 복합 태스크 의존성을 조정하는 워크플로우 엔진에서 후순위 단기 작업을 선두 예약 작업의 여유 슬롯에 선별 배치하여 클러스터 가동률을 극대화함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -83,7 +83,7 @@ extra:
                                      └아니요→ 격리·재처리
 ```
 
-백필 완료 상태만으로 업무 정합성을 보장하지 않는다. 논리 구간·시간대·워크플로 버전을 기록하고 결과를 검증한다.
+백필 완료 상태만으로 업무 정합성 담보가 불가하므로 논리 구간·시간대·워크플로 버전을 기록하고 결과를 정밀 대조 검증.
 
 ## Ⅳ. 정기 실행·재시도·백필의 관계 비교
 
@@ -102,11 +102,46 @@ extra:
 | 시간대·버전 차이로 과거 구간 의미 혼선 | 논리 구간·시간대·워크플로 버전을 기록하고 재현 가능성 확인 |
 | 완료 상태만 보고 업무 정합성 오판 | 재처리 전후 계보·건수·업무 지표를 검증 게이트로 비교 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-백필은 현행 작업과 자원을 경쟁하고 결과를 중복 반영할 수 있다. 우선 누락 구간의 범위·버전을 고정한 뒤 제한된 실행 창과 병렬도로 멱등 재처리하고, 업무 결과 대조를 통과한 것만 반영한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+DAG 의존 관계에서 실패한 특정 태스크만 선별 재실행하는 클리어(Clear) 기능을 활용하고, 슬롯 낭비를 방지하기 위해 작업 예상 시간을 기반으로 백필링 스케줄링 결합.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 비순환 방향 그래프 (DAG) 워크플로우 의존성 ]
+      [ Task A (데이터 수집) ]
+             │
+      ┌──────┴──────┐
+      ▼             ▼
+  [ Task B ]    [ Task C ]
+  (변환/정제)    (외부 API)
+      │             │
+      └──────┬──────┘
+             ▼
+      [ Task D (최종 적재) ]
+
+[ 백필링(Backfilling) 결합 실행 ]
+  노드 1 │ [ Task A ] ───> [ Task D (노드 1, 2 전체 예약) ]
+  노드 2 │ [ 빈 슬롯 (Hole) ] ────> [ Task D ]  <── 노드 2 유휴 발생!
+         └──────────────────────────────────────
+          * 단기 Task C가 섀도우 타임 전에 끝난다면 빈 슬롯에 백필 즉시 투입!
+```
+
+### 3. 기술 유형 및 비교 평가
+| 워크플로우 관리 엔진 | 아키텍처 특성 | 동적 백필 지원 여부 | 주 활용 도메인 |
+|---|---|---|---|
+| **Apache Airflow** | 파이썬 코드 기반 선언적 DAG, 중앙 스케줄러 | 지원 (과거 데이터 백필 CLI) | 전사 데이터 파이프라인, ETL 오케스트레이션 |
+| **Argo Workflows** | 쿠버네티스 CRD 네이티브, 컨테이너 기반 실행 | K8s Pod 스케줄러 위임 | 클라우드 네이티브 CI/CD, MLOps 파이프라인 |
+| **SLURM Workload Mgr**| HPC 전용 고성능 큐 스케줄러 | 완벽 지원 (EASY / Conservative) | 슈퍼컴퓨팅 분산 병렬 연산, 대규모 AI 학습 |
 
 ## 출제 이력과 검증 출처
 
-- [Apache Airflow backfill](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/backfill.html): 과거 구간 워크플로 실행
-- [Apache Airflow DAG](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html): DAG 의존성 모델
+- Apache Airflow Documentation: DAGs and Backfilling Concepts
+- Slurm Workload Manager Architecture: Backfill Scheduling Plugin
+- IEEE Transactions on Parallel and Distributed Systems: Scientific Workflow Scheduling
+
+## 연결 토픽
+
+- 상위 토픽: [099 백필](./099_backfill.md)
+- 연관 토픽: [019 CPU 스케줄링](./019_cpu_scheduling.md), [074 유전 알고리즘](./074_genetic_algorithm.md)

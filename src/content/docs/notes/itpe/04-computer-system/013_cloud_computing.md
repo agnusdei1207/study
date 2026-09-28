@@ -1,6 +1,6 @@
 ---
 title: "클라우드 컴퓨팅(Cloud Computing)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
@@ -10,7 +10,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 ---
 
@@ -22,7 +22,7 @@ extra:
 
 - 본질: **클라우드 컴퓨팅 (Cloud Computing)** 은 공유 컴퓨팅 자원을 네트워크로 주문형 제공하고 신속히 할당·회수하는 모델
 - 메커니즘: 이용자 요청 → 공급자 자원 풀에서 할당 → 사용량 측정·관리
-- 통찰: 한계: 서비스 모델마다 보안·운영 책임이 달라 누락되기 쉬움 → 방안: 도입 시 계층별 책임을 정하고 변경 때마다 재확인
+- 통찰: 네트워크를 통해 가상화된 IT 자원을 온디맨드로 신속하게 프로비저닝하고 사용량 기반으로 과금하는 공유 풀 컴퓨팅 모델임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -112,16 +112,45 @@ extra:
 | 자원 사용량을 파악하지 못해 비용이 늘어남 | 자원 소유자·용도 태그와 사용량 보고를 연결하고 유휴 자원을 회수 |
 | 보안 책임을 공급자에게 모두 맡겼다고 오해함 | 서비스별 계약·관리 콘솔에서 공급자와 이용자의 통제 범위를 확인하고 접근권한을 점검 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-서비스 모델마다 운영·보안 책임이 달라 누락될 수 있으므로 첫 도입 때 계층별 책임표를 계약과 함께 승인하고 변경 때마다 갱신한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+NIST 5-4-3 참조 모델에 따라 CSP와의 공유 책임 모델(Shared Responsibility Model)을 식별하고, 클라우드 자원 거버넌스 및 장애 복구(DR) 체계를 초기 단계부터 수립 필요.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│ [ NIST 클라우드 컴퓨팅 5-4-3 참조 모델 구조 ]                          │
+│                                                                        │
+│ [ 5대 필수 특징 ]                                                      │
+│  1. 주문형 셀프서비스   2. 광대역 네트워크 접근  3. 리소스 풀링        │
+│  4. 신속한 탄력성       5. 측정 가능한 서비스(종량제)                  │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ 4대 배포 모델 ]                                                      │
+│  - 퍼블릭 (Public)    - 프라이빗 (Private)                             │
+│  - 하이브리드 (Hybrid) - 커뮤니티 (Community)                          │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ 3대 서비스 모델 및 공유 책임 모델 ]                                  │
+│  - IaaS : 하드웨어/가상화는 CSP 책임, OS/미들웨어/앱은 고객 책임       │
+│  - PaaS : 하드웨어/OS/런타임은 CSP 책임, 앱/데이터는 고객 책임        │
+│  - SaaS : 인프라/플랫폼/앱 전 계층 CSP 관리, 계정/데이터만 고객 책임  │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 클라우드 서비스 모델 | 고객 관리 영역 | CSP 관리 영역 | 주요 고객 가치 | 대표 서비스 사례 |
+|---|---|---|---|---|
+| **IaaS (Infrastructure)** | OS, 미들웨어, 런타임, 앱, 데이터 | 서버 하드웨어, 스토리지, 네트워크, 가상화 | 최대의 인프라 제어권 | AWS EC2, Azure VM |
+| **PaaS (Platform)** | 애플리케이션 코드, 비즈니스 데이터 | OS, 런타임, 웹서버, DB엔진, 하드웨어 | 개발 생산성 극대화 | Google App Engine, Heroku |
+| **SaaS (Software)** | 사용자 계정 관리, 접근 권한, 데이터 | 소프트웨어 전 계층 (코드, DB, 인프라) | 설치 없는 즉시 업무 활용 | Microsoft 365, Salesforce |
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력 참고: 기존 노트의 회차·문항 원문 확인 미완료, 예상문제로 구분.
-- [NIST SP 800-145, The NIST Definition of Cloud Computing](https://csrc.nist.gov/pubs/sp/800/145/final)
-- [NIST SP 800-210, General Access Control Guidance for Cloud Systems](https://csrc.nist.gov/pubs/sp/800/210/final)
+- NIST Special Publication 800-145: The NIST Definition of Cloud Computing
+- ISO/IEC 17788: Information technology - Cloud computing - Overview and vocabulary
+- CSA (Cloud Security Alliance) - Security Guidance for Critical Areas of Focus in Cloud Computing
 
 ## 연결 토픽
 
-- 연관 토픽: [쿠버네티스](./012_kubernetes.md), [소버린 클라우드](./018_sovereign_cloud.md)
+- 상위 토픽: [009 멀티 클라우드](./009_multi_cloud.md)
+- 연관 토픽: [054 IaaS](./054_iaas.md), [055 PaaS](./055_paas.md), [036 SaaS](./036_saas.md)

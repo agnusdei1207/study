@@ -1,6 +1,6 @@
 ---
 title: "스래싱"
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
@@ -11,7 +11,7 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
 
 ---
 
@@ -24,7 +24,7 @@ extra:
 - 본질: 스래싱은 메모리 부족으로 페이지 교체가 과도해져 유효한 실행보다 페이징에 시간을 쓰는 상태
 - 메커니즘: 작업의 메모리 요구가 가용 프레임을 넘으면 페이지 부재와 디스크 I/O가 늘어 처리량이 저하
 
-- 통찰: 한계: 스왑 증설만으로 작업 집합 초과를 해소할 수 없음 → 방안: 페이지 부재·I/O 대기·처리량을 함께 보고 동시 실행 수와 메모리 할당 조정
+- 통찰: 가용 물리 메모리가 부족하여 프로세스들이 지속적으로 페이지 폴트를 일으키고, CPU가 디스크 스왑 입출력 처리에 갇혀 시스템 처리율이 급감하는 현상임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -93,11 +93,46 @@ extra:
 | 컨테이너 메모리 정책이 노드 자원과 충돌할 수 있음 | cgroup·노드 메모리 지표와 워크로드 제한을 함께 조정 |
 | 장애 뒤 스왑 증설만 반복하면 성능 저하가 재발 | 페이지 부재·처리량 상관 임계치와 자동 경보·동시성 조정을 검증 |
 
-## Ⅵ. 제언 — 페이지 부재와 처리량을 함께 판정
+## Ⅵ. 도입/구축/운영 관점 제언
 
-우선 페이지 부재·메모리 압박·I/O 대기와 실제 처리량의 동시 변화를 확인하고, 지속 압박이면 작업 동시성·메모리 한도를 줄여 재측정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+스래싱 발생 시 스왑 공간을 무작정 늘리는 대신 다중 프로그래밍 정도(MPD)를 낮추고, 프로세스별 참조 국소성을 보호하는 워킹셋 윈도우 크기를 동적으로 최적화.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 스래싱(Thrashing) 발생 및 진단 제어 아키텍처 ]
+
+ [ 프로세스 집합의 총 메모리 요구량(Working Set 합) > 실제 물리 메모리 ]
+                               │
+                               ▼
+ [ 지속적인 페이지 부재 (Page Fault) 폭증 및 디스크 I/O 큐 포화 ]
+                               │
+                               ▼
+ [ CPU 이용률 급감 감지 (OS 스케줄러가 오판하여 프로세스 추가 투입 시 악화) ]
+                               │
+                               ▼
+ ┌────────────────────────────────────────────────────────┐
+ │ 스래싱 제어 서브시스템                                │
+ │  1. PFF (Page Fault Frequency) 모니터링                 │
+ │  2. 상한선 초과 프로세스에 추가 프레임 할당            │
+ │  3. 가용 프레임 부족 시 일부 프로세스를 스왑아웃 (MPD 감소) │
+ └────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 스래싱 완화 기법 | 제어 메커니즘 | 장점 | 주의점 |
+|---|---|---|---|
+| **워킹셋 (Working Set) 관리** | 최근 시간 $\Delta$ 동안 참조된 페이지 집합을 메모리에 상주 보장 | 지역성 충실 반영 | 적정 $\Delta$ 산출 알고리즘 오버헤드 |
+| **PFF (페이지 부재 빈도)** | 페이지 부재율 상한선/하한선 설정 기반 동적 프레임 할당 | 직관적인 프레임 조절 | 급격한 페이즈 전환 시 일시적 지연 |
+| **ZRAM / ZSWAP 메모리 압축** | 디스크 I/O 대신 메모리 내부에서 페이지 압축 보관 | 디스크 I/O 병목 원천 차단 | 압축/해제에 따른 경미한 CPU 부하 |
 
 ## 출제 이력과 검증 출처
 
-- [Linux kernel page reclaim documentation](https://docs.kernel.org/mm/page_reclaim.html): 페이지 회수·메모리 압박
-- [Linux PSI documentation](https://docs.kernel.org/accounting/psi.html): 메모리·I/O 압박 지표
+- Peter J. Denning - Working Sets Past and Present (IEEE Transactions on Software Engineering)
+- Abraham Silberschatz et al. - Operating System Concepts: Virtual Memory
+- Linux Kernel Documentation: Memory Management and vm.swappiness Tuning
+
+## 연결 토픽
+
+- 상위 토픽: [039 스래싱](./039_thrashing.md)
+- 연관 토픽: [023 가상 메모리](./023_virtual_memory.md), [060 페이징](./060_paging.md)

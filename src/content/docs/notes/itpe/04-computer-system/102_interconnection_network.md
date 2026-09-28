@@ -1,6 +1,6 @@
 ---
 title: "상호연결망(Interconnection Network)"
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
@@ -11,7 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
 
 ---
 
@@ -24,7 +24,7 @@ extra:
 - 본질: 상호연결망은 병렬 시스템의 노드·프로세서·메모리 사이 데이터 경로를 제공하는 구조
 - 메커니즘: 토폴로지와 스위칭·라우팅 방식이 경로 수, 지연, 확장 비용을 결정
 
-- 통찰: 한계: 노드 수만 늘리면 공유 링크·스위치의 경로 경쟁이 커짐 → 방안: 실제 통신행렬로 토폴로지별 지연·대역폭·비용을 측정
+- 통찰: 병렬 컴퓨터와 대규모 분산 클러스터에서 프로세서, 메모리, 스토리지 노드 간의 데이터 교환을 지원하는 내부 통신 토폴로지 및 스위칭 패브릭 기술임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -96,11 +96,40 @@ extra:
 | 라우팅 경로의 순환 의존·교착 가능성 | 라우팅 규칙·가상 채널·흐름제어를 검증 |
 | 단일 토폴로지가 모든 통신 패턴에 최적이지 않음 | 업무 통신행렬·장애·비용 조건을 반영한 부하 시험으로 선정 |
 
-## Ⅵ. 제언 — 실제 통신행렬을 먼저 수집
+## Ⅵ. 도입/구축/운영 관점 제언
 
-노드 간 전송량과 집중 구간을 측정해 후보 토폴로지의 지연·이분 대역폭·혼잡을 비교한 뒤 확장 비용을 결정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+대규모 AI 클러스터 구축 시 통신 직경(Diameter)과 바이섹션 대역폭(Bisection Bandwidth)을 최적화하기 위해 논블로킹 팻 트리(Fat-Tree) 또는 다차원 토러스 토폴로지 적용.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 주요 상호연결망 토폴로지 (Interconnection Network Topologies) ]
+
+  [ 1. 2차원 토러스 (2D Torus) ]         [ 2. 3단계 팻 트리 (Fat-Tree) ]
+      ○ ─── ○ ─── ○ ─── (순환 고리)          ┌─── Core Switches ───┐
+      │     │     │                          │                     │
+      ○ ─── ○ ─── ○                        Aggregation           Aggregation
+      │     │     │                          │                     │
+      ○ ─── ○ ─── ○                      Edge Switches         Edge Switches
+      (각 끝단이 반대편과 순환 연결)       ┌──┴──┐               ┌──┴──┐
+                                          Host  Host            Host  Host
+```
+
+### 3. 기술 유형 및 비교 평가
+| 토폴로지 구조 | 네트워크 직경 (Diameter) | 바이섹션 대역폭 | 노드당 차수 (Degree) | 확장성 및 적용 시스템 |
+|---|---|---|---|---|
+| **공유 버스 (Shared Bus)** | $O(1)$ | $O(1)$ (병목 발생) | 고정 (1개 버스 공유) | 소규모 SMP 멀티코어 내부 |
+| **크로스바 스위치 (Crossbar)**| $O(1)$ | $O(N)$ (논블로킹) | $O(N)$ (회로비용 $N^2$) | 중간 규모 스위치 패브릭 |
+| **2D / 3D 토러스 (Torus)** | $O(\sqrt[k]{N})$ | $O(N^{(k-1)/k})$ | 고정 ($2k$개 포트) | 구글 TPU v4/v5p 포드, 슈퍼컴퓨터 |
+| **팻 트리 (Fat-Tree)** | $O(\log N)$ | $O(N)$ (완전 논블로킹) | 고정 (상위 스위치 증설) | 엔비디아 슈퍼팟(SuperPOD), 대형 데이터센터 |
 
 ## 출제 이력과 검증 출처
 
-- [Linux kernel interconnect overview](https://docs.kernel.org/driver-api/interconnect.html): 시스템 구성요소 간 상호연결 개념과 관리
-- [Open MPI documentation](https://docs.open-mpi.org/): 병렬 시스템 통신 구현 참고
+- William J. Dally, Brian Towles - Principles and Practices of Interconnection Networks
+- IEEE Micro: Interconnection Networks for High-Performance Computing
+- Charles Clos - A Study of Non-Blocking Switching Networks (Bell System Technical Journal)
+
+## 연결 토픽
+
+- 상위 토픽: [041 AI HPC 인프라](./041_ai_hpc_infrastructure.md)
+- 연관 토픽: [111 토러스](./111_torus.md), [014 DCI](./014_dci.md)

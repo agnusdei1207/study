@@ -1,6 +1,6 @@
 ---
 title: "프로세스 동기화 기법(뮤텍스·세마포어·모니터)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 ---
 
@@ -21,7 +21,7 @@ extra:
 
 - 본질: 프로세스 동기화는 공유 상태의 동시 변경과 실행 순서를 통제하는 기법
 - 메커니즘: 공유 불변식을 기준으로 뮤텍스·세마포어·모니터가 진입과 조건 대기를 원자적으로 조정
-- 통찰: 한계: 잠금만 추가하면 교착·기아·조건 오류가 남음 → 방안: 전역 획득 순서와 조건 재검사·예외 반환을 함께 설계한다.
+- 통찰: 다중 프로세스/스레드가 공유 자원에 동시 접근할 때 상호배제, 진행, 유한대기 3대 조건을 만족시켜 데이터 일관성을 보장하는 동기화 이론임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -45,14 +45,14 @@ extra:
 
 ## 2~4교시 25점 답안
 
-### Ⅰ. 프로세스 동기화의 개요
+## Ⅰ. 프로세스 동기화의 개요
 
 | 구분 | 핵심 |
 |---|---|
 | 정의 | **프로세스 동기화(Process Synchronization):** 공유 상태의 동시 접근과 조건 대기를 조정하는 기법 |
 | 목적 | 경쟁 상태를 막고 공유 데이터의 불변식을 보존 |
 
-### Ⅱ. 프로세스 동기화의 특징
+## Ⅱ. 프로세스 동기화의 특징
 
 | 특징 | 의미 |
 |---|---|
@@ -60,7 +60,7 @@ extra:
 | 원자적 진입·해제 | 임계구역 접근 권한을 경쟁 없이 획득·반환 |
 | 조건 대기 | 자원 수·상태 조건이 충족될 때까지 안전하게 대기 |
 
-### Ⅲ. 임계구역 체계·동작 프로세스
+## Ⅲ. 임계구역 체계·동작 프로세스
 
 **핵심 동기화 프레임**
 
@@ -79,7 +79,7 @@ extra:
           → 상태 변경 → 신호 통지 → 잠금 해제
 ```
 
-### Ⅳ. 동기화 객체 비교
+## Ⅳ. 동기화 객체 비교
 
 | 객체 | 핵심 동작 | 적합한 상황 |
 |---|---|---|
@@ -87,7 +87,7 @@ extra:
 | 세마포어 | wait/signal로 허가증 수 관리 | N개 자원 수량·신호 조정 |
 | 모니터 | 상태·연산·조건 대기 캡슐화 | 복합 불변식과 조건 대기 |
 
-### Ⅴ. 한계와 방안
+## Ⅴ. 한계와 방안
 
 | 한계 | 방안 |
 |---|---|
@@ -96,19 +96,42 @@ extra:
 | 대기자가 오래 밀려 기아 발생 | 공정성 정책과 대기 시간 관측 |
 | 깨어난 뒤 조건이 바뀌어 잘못 실행 | 잠금 안에서 while 조건 재검사 |
 
-### Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-저수준 잠금 호출을 여러 코드 경로에 흩어 놓으면 획득 순서와 예외 반환을 검증하기 어렵다. **공유 불변식을 먼저 정의하고 이를 캡슐화하는 동기화 객체를 선택**하며, 전역 획득 순서·조건 재검사·구조적 반환을 코드 검토 기준으로 삼아야 한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+임계구역 설계 시 3대 조건(상호배제, 진행, 유한대기)을 충족하도록 뮤텍스 또는 세마포어를 적용하고, 동기화 오류를 방지하기 위해 언어 레벨 모니터(Monitor) 사용 권고.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 임계구역(Critical Section) 문제 해결 3대 필수 조건 ]
+
+ 1. 상호 배제 (Mutual Exclusion)
+    - 한 프로세스가 임계구역에서 실행 중이면 다른 어떤 프로세스도 진입 불가
+
+ 2. 진행 (Progress)
+    - 임계구역에 실행 중인 프로세스가 없을 때 진입하고자 하는 후보 프로세스들 중에서만
+      다음 진입자를 결정하며, 결정이 무한정 연기되지 않아야 함
+
+ 3. 유한 대기 (Bounded Waiting)
+    - 프로세스가 임계구역 진입을 요청한 후 허가될 때까지 다른 프로세스들의 진입 횟수에
+      상한선(Bound)이 존재하여 기아 상태(Starvation) 사전 방지 및 배제 보장
+```
+
+### 3. 기술 유형 및 비교 평가
+| 동기화 기법 | 동작 수준 | 핵심 메커니즘 | 장점 및 주의점 |
+|---|---|---|---|
+| **피터슨 알고리즘 (Peterson)** | 소프트웨어적 해결책 | `flag` 배열과 `turn` 변수 교차 확인 | 2개 프로세스에 한정, 현대 OoO CPU 메모리 배리어 필요 |
+| **Test-And-Set / CAS** | 하드웨어 명령어 지원 | 메모리 워드를 원자적으로 읽고 쓰는 단일 기계어 | 락-프리 자료구조의 기반, 바쁜 대기(Spinlock) 오버헤드 |
+| **세마포어 (Semaphore)** | OS 커널 서브시스템 | 정수 카운터 변수 $S$와 $P(wait), V(signal)$ 연산 | 범용 자원 풀 관리, 잘못된 시그널 호출 시 동기화 파괴 |
+| **모니터 (Monitor)** | 고급 프로그래밍 언어 | 클래스 내 동기화 캡슐화, 조건 변수(Condition Var)| 동기화 실수를 컴파일러가 차단, 가장 안전한 고수준 기법 |
 
 ## 출제 이력과 검증 출처
 
-- 제139회 정보관리기술사 4교시 2번: `운영체제의 프로세스 동기화 기법 중 뮤텍스(Mutex), 세마포어(Semaphore), 모니터(Monitor)에 대하여 설명하시오.`
-- [The Open Group Base Specifications Issue 8 — pthread_mutex_lock](https://pubs.opengroup.org/onlinepubs/9799919799/functions/pthread_mutex_lock.html)
-- [The Open Group Base Specifications Issue 8 — pthread_cond_wait](https://pubs.opengroup.org/onlinepubs/9799919799/functions/pthread_cond_wait.html)
-- [The Open Group Base Specifications Issue 8 — sem_wait](https://pubs.opengroup.org/onlinepubs/9799919799/functions/sem_wait.html)
-- [The Open Group Base Specifications Issue 8 — sem_post](https://pubs.opengroup.org/onlinepubs/9799919799/functions/sem_post.html)
-- [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
+- Edsger W. Dijkstra - Cooperating Sequential Processes: Semaphores
+- C.A.R. Hoare - Monitors: An Operating System Structuring Concept (CACM)
+- Abraham Silberschatz et al. - Operating System Concepts: Process Synchronization
 
 ## 연결 토픽
 
-- [교착상태](./038_deadlock/) · [우선순위 역전](./059_priority_inversion/) · [경쟁 상태](./091_race_condition/) · [IPC](./034_ipc/)
+- 상위 토픽: [091 경쟁 조건](./091_race_condition.md)
+- 연관 토픽: [038 데드락](./038_deadlock.md), [010 스레드](./010_thread.md)

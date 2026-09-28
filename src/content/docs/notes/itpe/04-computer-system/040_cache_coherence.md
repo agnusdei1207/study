@@ -6,13 +6,13 @@ sidebar:
     text: "기초"
     variant: note
 title: "캐시 일관성(Cache Coherence)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 40
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
   question_no: "040"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **캐시 일관성** : 여러 코어가 같은 메모리 위치를 캐시에 둬도 서로 모순된 값을 계속 사용하지 않게 하는 성질
 - 메커니즘: 한 코어의 쓰기 권한 획득 → 다른 캐시의 해당 라인 무효화·상태 변경 → 다음 읽기에서 최신 값 확보
-- 통찰: 한계: 다른 변수도 같은 캐시 라인을 쓰면 무효화가 반복됨 → 방안: 거짓 공유를 측정한 뒤 변수 배치를 조정
+- 통찰: 멀티코어 시스템에서 각 코어의 로컬 캐시가 동일 메모리 주소에 대해 서로 다른 사본을 보유할 때 데이터 일치성을 하드웨어적으로 유지하는 프로토콜임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -112,17 +112,42 @@ MESI는 대표 모델이며 프로세서별 실제 프로토콜은 추가 상태
 | 서로 다른 변수가 한 라인을 공유하는 거짓 공유 | 변수 배치·정렬 변경 전후 캐시 통신 측정 |
 | 캐시 일관성만으로 스레드 간 실행 순서 보장 불가 | 원자 연산·잠금·메모리 순서 규칙 사용 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-독립 변수도 같은 캐시 라인에 있으면 무효화가 반복되므로 라인별 쓰기·경합을 측정하고 거짓 공유가 확인된 자료만 배치를 조정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+소규모 SMP 멀티코어 환경에서는 버스 스누핑(MESI/MOESI)을 적용하고, 수십 개 이상의 대규모 NUMA/멀티소켓 서버에서는 인터커넥트 트래픽 확장을 위해 디렉터리 기반 프로토콜 채택.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│ [ MESI 4대 캐시 상태 전이 다이어그램 ]                                │
+│                                                                        │
+│       ┌───────────────┐                  ┌───────────────┐             │
+│       │ Modified (M)  │ ──(Bus Write)──> │  Invalid (I)  │             │
+│       │ (수정됨, 유일) │ <──(Pr Write)─── │ (무효, 갱신필요)│            │
+│       └───────┬───────┘                  └───────┬───────┘             │
+│               │ (Bus Read)                       │ (Pr Read)           │
+│               ▼                                  ▼                     │
+│       ┌───────────────┐                  ┌───────────────┐             │
+│       │  Shared (S)   │ <──(Pr Write)─── │ Exclusive (E) │             │
+│       │ (공유됨, 동일)│ ──(Bus RdX)────> │ (클린, 단독)  │             │
+│       └───────────────┘                  └───────────────┘             │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 일관성 유지 방식 | 제어 메커니즘 | 네트워크/버스 부하 | 시스템 확장성 (Scalability) | 주 적용 시스템 |
+|---|---|---|---|---|
+| **스누핑 (Snooping)** | 모든 코어가 공유 메모리 버스의 트래픽을 항상 감청 | 브로드캐스트 트래픽 급증 | 낮음 (최대 8~16개 코어 한계) | 소규모 데스크톱 CPU, SMP 서버 |
+| **디렉터리 (Directory)** | 중앙 디렉터리에 캐시 블록의 공유 상태 및 위치 추적 | 점대점(Point-to-Point) 메시지 | 매우 높음 (수백~수천 코어 확장) | 대규모 분산 메모리, NUMA 서버 |
 
 ## 출제 이력과 검증 출처
 
-- [Intel: Faster Core-to-Core Communications](https://www.intel.com/content/www/us/en/developer/articles/technical/fast-core-to-core-communications.html)
-- [Arm: Cache Coherency White Paper](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/CacheCoherencyWhitepaper_6June2011.pdf?revision=e5a82cb4-0f87-4f5c-91cf-52b33a5cd1da)
+- John L. Hennessy, David A. Patterson - Computer Architecture: A Quantitative Approach (Chapter 5: Thread-Level Parallelism)
+- Mark D. Hill - Multiprocessor Cache Coherence: A Primer on Memory Consistency and Cache Coherence
+- Intel / AMD Multi-Core Cache Architecture Whitepaper
 
 ## 연결 토픽
 
-- 연관 토픽: [CXL 메모리 풀링](./026_cxl_4_0_memory_pooling.md), [프로세스 동기화](./122_process_synchronization.md)
+- 상위 토픽: [051 캐시 메모리](./051_cache_memory.md)
+- 연관 토픽: [076 CPU](./076_cpu.md), [087 CMP](./087_cmp.md)

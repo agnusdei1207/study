@@ -1,6 +1,6 @@
 ---
 title: "백필(Backfill)"
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags:
   - "notes-computer-system"
@@ -11,7 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
 
 ---
 
@@ -24,7 +24,7 @@ extra:
 - 본질: 백필은 선두 예약 작업의 시작을 늦추지 않으면서 유휴 자원에 후속 작업을 배치하는 스케줄링 방식
 - 메커니즘: 후속 작업의 자원·실행시간을 대입해 보호 대상 작업의 예약 시작이 지연되는지 확인
 
-- 통찰: 한계: 부정확한 실행시간으로 백필하면 보호할 예약이 밀림 → 방안: Walltime 오차와 예약 준수·대기시간을 함께 측정해 배치 조건 조정
+- 통찰: HPC 클러스터에서 대규모 선두 작업의 예약 실행 시간을 지연시키지 않는 한도 내에서 큐 후순위의 작은 단기 작업을 유휴 노드에 끼워 넣어 가동률을 극대화함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -86,11 +86,38 @@ extra:
 | 자원 조각화로 적합 작업이 없을 수 있음 | 자원 형상과 큐별 작업 분포를 분석 |
 | 활용률만 높이면 예약 공정성·선두 작업 보장이 약화될 수 있음 | 예약 준수·대기시간 분포·자원 활용을 함께 목표로 조정 |
 
-## Ⅵ. 제언 — 예약 준수를 첫 운영 기준으로 둔다
+## Ⅵ. 도입/구축/운영 관점 제언
 
-선두 작업의 예약 시작이 실제로 지켜지는지 먼저 측정하고 Walltime 오차·대기시간 분포를 보정한 뒤 백필 허용 범위를 넓힌다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+작업의 정확한 월타임(Walltime) 추정치가 백필 성공의 핵심이므로 사용자 선언 실행 시간에 패널티를 부여하고 기계학습 기반 실행 시간 예측 모델 결합 권고.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 백필 스케줄링 (Backfill Scheduling) 실행 원리 ]
+
+ 시간 축 ──>
+ 노드 0 │ [ 실행 중인 작업 A ] ───> [ 대형 예약 작업 C (노드 0~3 전체 요구) ]
+ 노드 1 │ [ 실행 중인 작업 A ] ───> [ 대형 예약 작업 C ]
+ 노드 2 │ [ 빈 공간 (Hole) ] ────> [ 대형 예약 작업 C ]  <── 작업 C 시작 전까지 노드 2, 3 유휴!
+ 노드 3 │ [ 빈 공간 (Hole) ] ────> [ 대형 예약 작업 C ]
+        └─────────────────────────────────────────────────────────────
+         * 후순위 단기 작업 B가 노드 2개를 2시간만 사용한다면?
+           ──> 작업 C의 예약 시작 시점(Shadow Time) 전에 종료되므로 [빈 공간]에 백필 즉시 배치!
+```
+
+### 3. 기술 유형 및 비교 평가
+| 백필 기법 | 동작 기준 | 스케줄러 오버헤드 | 클러스터 이용률 |
+|---|---|---|---|
+| **EASY 백필 (Extensible Argonne)** | 오직 **가장 앞선 1순위 대형 작업의 시작 시간만 보장** | 낮음 (선두 1개 작업만 섀도우 타임 계산) | 매우 우수함 (현대 HPC 표준) |
+| **보수적 백필 (Conservative)** | 큐에 대기 중인 **모든 작업의 예약 시작 시간을 절대 지연시키지 않음** | 높음 (모든 대기 작업의 미래 타임라인 시뮬레이션)| 상대적으로 낮음 (끼워넣기 제약 엄격) |
 
 ## 출제 이력과 검증 출처
 
-- [Slurm backfill scheduling](https://slurm.schedmd.com/sched_config.html#backfill): 예약 기반 백필 설정과 정책
-- [Slurm job scheduling](https://slurm.schedmd.com/job_sched.html): 작업 우선순위·예약 설명
+- David Lifka - High-Performance Job Scheduling on the IBM SP2: The EASY Scheduler
+- Dror G. Feitelson - Workload Modeling for Computer Systems Performance Evaluation
+- Slurm Workload Manager Documentation: Backfill Scheduling Plugin
+
+## 연결 토픽
+
+- 상위 토픽: [107 워크플로우 스케줄링 백필](./107_workflow_scheduling_backfill.md)
+- 연관 토픽: [019 CPU 스케줄링](./019_cpu_scheduling.md), [035 SJF](./035_sjf.md)

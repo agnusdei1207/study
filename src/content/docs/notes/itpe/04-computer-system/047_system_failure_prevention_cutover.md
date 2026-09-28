@@ -6,13 +6,13 @@ sidebar:
     text: "기초"
     variant: note
 title: "정보시스템 장애 예방·운영 전환"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 47
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
   question_no: "047"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **운영 전환(Cutover)** : 신규 시스템으로 실제 업무와 이용자 트래픽을 옮기는 작업
 - 메커니즘: 전환 범위·중단 시간·검증 기준·복귀 시점을 먼저 정하고, 리허설 후 데이터 동기화·접속 경로 변경·업무 확인을 순서대로 실행
-- 통찰: 한계: 접속만 원복하면 신규 거래가 사라질 수 있음 → 방안: 복귀 시한과 거래 보존·반영 절차를 런북에서 검증
+- 통찰: 차세대 시스템 오픈 시 서비스 중단 리스크를 제로화하기 위해 단계별 전환 시나리오와 명확한 판정 기준의 Go/No-Go 의사결정 체계를 구축함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -117,17 +117,39 @@ flowchart TB
 | 기술 작업은 완료했지만 핵심 업무·대외 연계가 실패 | 업무 담당자와 외부 연계 담당자의 확인을 Go 조건에 포함 |
 | 복귀 결정이 늦어 허용 중단 시간 초과 | 복귀 소요 시간을 역산해 No-Go 판정 시한 지정 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-컷오버 리허설에서 핵심 거래·외부 연계·데이터 정합성으로 Go/No-Go를 판정하고, 새 거래가 생긴 뒤 복귀할 시한과 반영 절차를 미리 시험한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+오픈 리스크를 최소화하기 위해 전수 데이터 검증 툴과 롤백 절차를 사전 모의훈련하고, 컷오버 당일 시간대별 타임라인과 마일스톤별 판정 기준서 수립.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 컷오버(Cutover) 단계별 전환 및 Go/No-Go 의사결정 파이프라인 ]
+
+[ 1단계: 전환 사전 준비 ] ──> [ 2단계: 레거시 정지 & 백업 ] ──> [ 3단계: 신규 시스템 적재 ]
+ - 모의 훈련 (Dry-Run)       - 트랜잭션 차단 및 배치 종료    - DB 초기 적재 + CDC 반영
+ - 정합성 검증 스크립트      - 최종 콜드 백업 수행           - 인터페이스 연계 가동
+                                                                      │
+                                                                      ▼
+[ 최종 서비스 오픈 ] <── [ 5단계: 대고객 오픈 ] <── [ 4단계: 1차 Go/No-Go 판정 ]
+ (안정화 집중 모니터링)    (DNS / LB 트래픽 신규 전환)   - 정합성 100% 검증 확인
+                                                          - 미충족 시 즉시 롤백 선언
+```
+
+### 3. 기술 유형 및 비교 평가
+| 컷오버 방식 | 작업 특성 | 다운타임 | 리스크 수준 | 권장 적용 환경 |
+|---|---|---|---|---|
+| **빅뱅 컷오버 (Big Bang)** | 연휴 기간 중 일괄 전면 전환 | 수 시간 ~ 수십 시간 | 최고 (실패 시 복구 극난) | 연계 복잡도가 높은 코어뱅킹 |
+| **단계적 컷오버 (Phased)** | 업무 모듈별 순차 오픈 | 모듈별 부분 다운타임 | 중간 (데이터 동기화 오버헤드)| 독립 모듈 구성이 가능한 ERP/CRM |
+| **병행 가동 (Parallel)** | 구/신 시스템 동시 운영 대사 | 전무 (다운타임 없음) | 최저 (운영비 2배 소요) | 초고신뢰 국방/항공/원자력 |
 
 ## 출제 이력과 검증 출처
 
-- [AWS Prescriptive Guidance: Cutover stage](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-migration-cutover/cutover-stage.html)
-- [AWS Prescriptive Guidance: Completing the communication gates](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-governance-playbook/task-follow-communication-gates.html)
+- Project Management Institute (PMI) - Practice Standard for Project Risk Management
+- 한국정보화진흥원(NIA) 공공 정보시스템 전환 및 컷오버 이행 가이드
+- The Open Group TOGAF Standard: Implementation and Migration Transition Planning
 
 ## 연결 토픽
 
-- 연관 토픽: [고가용성](./042_ha_availability_assurance.md), [클라우드 네이티브 재해 복구](./049_cloud_native_disaster_recovery.md)
+- 상위 토픽: [021 HA](./021_ha.md)
+- 연관 토픽: [042 HA 가용성 보장](./042_ha_availability_assurance.md), [106 마이그레이션 장애관리](./106_migration_fault_management.md)

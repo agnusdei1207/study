@@ -6,12 +6,12 @@ sidebar:
   badge:
     text: "응용"
     variant: note
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "응용"
   question_no: "091"
 
@@ -25,7 +25,7 @@ extra:
 
 - 본질: 경쟁 상태는 여러 실행 흐름의 순서나 타이밍에 따라 결과가 달라지는 결함
 - 메커니즘: 공유 상태 접근의 원자성·순서를 보장하지 못하면 실행 간섭으로 결과 불일치 발생
-- 통찰: 한계: 간헐적 실행 간섭은 재현이 어려워 결과 불일치를 놓침 → 방안: 공유 상태의 불변식·갱신 경계를 정하고 동시 실행 시험
+- 통찰: 두 개 이상의 프로세스나 스레드가 동기화 없이 공유 메모리에 동시 접근할 때 실행 순서와 타이밍에 따라 최종 결과값이 달라지는 동시성 결함임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -99,11 +99,46 @@ extra:
 | 간헐적 동시성 결함은 부하와 타이밍에 따라 재현이 어려움 | 공유 상태의 불변식과 갱신 경계를 문서화하고, 동시 실행 테스트와 런타임 오류 감지를 배포 절차에 포함 |
 | 잠금만 넓히면 경합·교착 위험이 커짐 | 불변식에 필요한 최소 임계구역과 잠금 순서를 정의하고 경합 측정 |
 
-## Ⅵ. 제언 — 불변식의 갱신 경계부터 확인
+## Ⅵ. 도입/구축/운영 관점 제언
 
-공유 값이 언제 깨지는지 재현 가능한 동시 실행 시험을 만들고, 그 불변식에 필요한 원자 연산·잠금·트랜잭션 중 최소 범위를 적용한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+경쟁 조건을 원천 방지하기 위해 임계구역(Critical Section) 진입 시 상호배제(Mutex/Semaphore)를 적용하고, 락 프리 원자적 연산(CAS: Compare-And-Swap) 활용.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 경쟁 조건 (Race Condition) 발생 시나리오: count = 0 초기 상태 ]
+
+  [ 스레드 A (count++) ]                    [ 스레드 B (count++) ]
+            │                                         │
+  1. count(0) 로드 (RegA = 0)                         │
+            │                                2. count(0) 로드 (RegB = 0)
+  3. RegA + 1 = 1                                     │
+            │                                4. RegB + 1 = 1
+  5. count에 1 저장 (count = 1)                       │
+            │                                6. count에 1 저장 (count = 1)
+            ▼                                         ▼
+  * 정상 결과는 2여야 하나, 실행 타이밍 경합으로 최종 결과값이 1로 덮어써짐!
+
+[ 해결책: 뮤텍스 락(Mutex Lock)을 통한 상호 배제 보장 ]
+  스레드 A: Lock 획득 ──> [ 임계구역 실행: count++ ] ──> Lock 반환
+  스레드 B:              대기(Blocked) ─────────────────> Lock 획득 후 안전 실행
+```
+
+### 3. 기술 유형 및 비교 평가
+| 동기화 메커니즘 | 동작 원리 | 차단(Blocking) 방식 | 장점 및 주의점 |
+|---|---|---|---|
+| **뮤텍스 (Mutex)** | 단 하나의 스레드만 락을 소유 (이진 락) | 슬립 락 (Sleep Lock: 컨텍스트 스위칭) | 단순성 우수, 락 미반환 시 교착상태 위험 |
+| **스핀락 (Spinlock)** | 락을 획득할 때까지 CPU를 점유하며 루프 확인 | 바쁜 대기 (Busy Waiting) | 짧은 임계구역에서 문맥 교환 비용 절감, 장시간 대기 시 CPU 낭비 |
+| **세마포어 (Semaphore)**| 카운터 기반으로 N개의 스레드 동시 진입 허용 | 시그널링 (P/Wait, V/Signal) | 자원 풀 관리 최적, 잘못된 V 호출 시 동기화 파괴 |
+| **CAS (Atomic CAS)** | 하드웨어 지원 원자적 비교 및 교체 연산 | 락-프리 (Lock-Free 동시성) | 락 오버헤드 전무, ABA 문제 해결책 필요 |
 
 ## 출제 이력과 검증 출처
 
-- 회차·문항 원문은 공식 자료 대조 전 미확인
-- [Oracle Java Tutorials, 공유 변수에 대한 스레드 간 간섭 사례](https://docs.oracle.com/javase/tutorial/essential/concurrency/interfere.html)
+- Abraham Silberschatz et al. - Operating System Concepts: Process Synchronization
+- Maurice Herlihy, Nir Shavit - The Art of Multiprocessor Programming: Mutual Exclusion
+- CWE-362: Concurrent Execution using Shared Resource with Improper Synchronization
+
+## 연결 토픽
+
+- 상위 토픽: [122 프로세스 동기화](./122_process_synchronization.md)
+- 연관 토픽: [010 스레드](./010_thread.md), [038 데드락](./038_deadlock.md)

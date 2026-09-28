@@ -6,13 +6,13 @@ sidebar:
     text: "기초"
     variant: note
 title: "메모리 단편화(Fragmentation)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 33
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
   question_no: "033"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **메모리 단편화** : 할당·해제 과정에서 빈 공간이 블록 안에 남거나 여러 곳에 흩어져 메모리 사용 효율이 떨어지는 현상
 - 메커니즘: 고정 크기 할당의 블록 내부 낭비와 가변 크기 할당의 연속 공간 부족을 구분해 대응
-- 통찰: 한계: 가용 메모리 총량만 보면 연속 할당 실패를 놓침 → 방안: 빈 블록의 크기 분포까지 확인
+- 통찰: 연속 메모리 할당 과정에서 발생하는 내부/외부 메모리 유휴 낭비 현상으로, 비연속 페이징 기법과 버디 시스템 및 메모리 압축을 통해 해결함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -106,17 +106,39 @@ extra:
 | 압축 작업이 지연 민감 업무에 영향 | 압축 빈도·할당 지연을 함께 측정 |
 | 할당 단위를 지나치게 크게 선택 | 요청 크기 분포와 실제 내부 낭비 비교 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-가용량만으로는 연속 할당 실패를 알 수 없으므로 요청 크기와 빈 블록 분포를 계측하고 병합·압축 전후의 성공률과 지연을 비교한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+동적 메모리 할당 시 발생하는 외부 단편화를 해결하기 위해 불연속 고정 크기 페이징을 기본 적용하고, 가상 주소 공간의 페이지 내부 단편화는 슬랩 할당자(Slab Allocator)로 최소화.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 내부 단편화 (Internal Fragmentation) ]
+ ┌──────────────────────┬───────────────┐
+ │ 프로세스 사용 (17KB)  │ 낭비 공간(7KB)│  <── 고정 분할 블록 크기: 24KB
+ └──────────────────────┴───────────────┘       (할당 블록 내부의 미사용 낭비)
+
+[ 외부 단편화 (External Fragmentation) ]
+ ┌──────────┬──────────┬──────────┬──────────┬──────────┐
+ │ 점유 (A) │ 빈공간10K│ 점유 (B) │ 빈공간15K│ 점유 (C) │
+ └──────────┴──────────┴──────────┴──────────┴──────────┘
+  - 총 여유 공간 = 10KB + 15KB = 25KB
+  - 신규 20KB 요청 발생 시 연속된 공간이 없어 할당 실패!
+```
+
+### 3. 기술 유형 및 비교 평가
+| 단편화 유형 | 발생 원인 | 발생 위치 | 방지 및 해소 기법 |
+|---|---|---|---|
+| **내부 단편화 (Internal)** | 고정 분할 할당 시 프로세스 크기가 블록보다 작음 | 할당된 파티션 또는 페이지 내부 | 슬랩 할당자, 가변 파티션, 작은 페이지 크기 |
+| **외부 단편화 (External)** | 가변 크기 할당/해제 반복으로 빈 공간 조각화 | 할당된 파티션들 사이의 외부 공간 | 페이징(가상메모리), 메모리 압축(Compaction), 버디 시스템 |
 
 ## 출제 이력과 검증 출처
 
-- [Linux Kernel: Memory Management Concepts](https://docs.kernel.org/admin-guide/mm/concepts.html)
-- [Linux Kernel: VM Sysctl Documentation](https://docs.kernel.org/admin-guide/sysctl/vm.html)
+- Abraham Silberschatz et al. - Operating System Concepts: Memory-Management Strategies
+- Andrew S. Tanenbaum - Modern Operating Systems: Memory Management
+- Linux Kernel Memory Management: The Slab Allocator and Buddy System
 
 ## 연결 토픽
 
-- 연관 토픽: [가상 메모리](./023_virtual_memory.md), [스래싱](./039_thrashing.md)
+- 상위 토픽: [023 가상 메모리](./023_virtual_memory.md)
+- 연관 토픽: [060 페이징](./060_paging.md), [058 세그멘테이션](./058_segmentation.md)

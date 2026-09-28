@@ -6,12 +6,12 @@ sidebar:
   badge:
     text: "서브"
     variant: note
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "096"
 
@@ -26,7 +26,7 @@ extra:
 - 본질: 메모리 계층은 속도·용량·비용이 다른 저장 장치를 계층화한 구조
 - 메커니즘: 인터리빙은 주소·페이지를 복수 뱅크·노드에 분산해 접근을 겹칠 기회를 제공하는 배치 기법
 
-- 통찰: 한계: 뱅크 분산이 NUMA 원격 접근을 늘리면 지연이 악화될 수 있음 → 방안: 접근 패턴·지역성을 측정해 지역 배치와 인터리브를 선택
+- 통찰: 레지스터, 캐시, 메인 메모리, 스토리지로 이어지는 피라미드형 계층 구조와 뱅크 인터리빙을 결합하여 접근 비용을 낮추고 메모리 대역폭을 극대화함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -100,12 +100,39 @@ CPU → 캐시 → 주기억장치 → 보조기억장치
 | 인터리빙이 모든 작업의 지연을 줄이지는 않음 | 실제 접근과 노드별 지표를 측정해 지역 배치와 인터리브를 작업별로 선택 |
 | NUMA 원격 접근이 늘면 대역폭 이점보다 지연 손실이 클 수 있음 | CPU·스레드·페이지의 지역성과 원격 접근 비중을 함께 측정 |
 
-## Ⅵ. 제언 — 접근 패턴에 맞춰 배치 정책 선택
+## Ⅵ. 도입/구축/운영 관점 제언
 
-대표 작업의 지연·대역폭·원격 접근 비중을 지역 배치와 인터리브 배치에서 비교하고, 이득이 확인된 작업에만 분산 배치를 적용한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+메모리 참조 지역성(시간적/공간적)을 극대화하도록 소스코드를 루프 타일링(Loop Tiling)하고, 하드웨어 레벨에서는 메모리 컨트롤러의 채널 및 뱅크 인터리빙을 활성화.
 
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 메모리 피라미드 계층 구조 (Memory Hierarchy Pyramid) ]
+
+         ▲       [ 레지스터 (Registers) ]       : < 1ns, 수백 Byte
+        ╱ ╲      [ L1 / L2 / L3 SRAM 캐시 ]     : 1~10ns, 수십 MB
+       ╱   ╲     [ 메인 메모리 (DRAM) ]          : 50~100ns, 수십~수백 GB
+      ╱     ╲    [ 차세대 CXL / SCM 메모리 풀 ]  : 200~300ns, 수 TB
+     ╱       ╲   [ NVMe SSD 스토리지 ]           : 수십 $\mu s$, 수십 TB
+    ╱─────────╲  [ 네트워크 원격 스토리지 (NAS) ] : 수 $ms$, 페타바이트급
+```
+
+### 3. 기술 유형 및 비교 평가
+| 메모리 계층 | 주 소자 기술 | 평균 접근 지연 | 용량 범위 | 비트당 비용 | 휘발성 여부 |
+|---|---|---|---|---|---|
+| **CPU 레지스터** | 플립플롭 회로 | < 0.5 ns | 수백 바이트 | 최고가 | 휘발성 |
+| **SRAM 캐시 (L1~L3)**| 6T SRAM | 1 ~ 15 ns | 수십 KB ~ 수십 MB | 고가 | 휘발성 |
+| **메인 메모리 (DRAM)**| 1T1C DRAM | 50 ~ 80 ns | 16 GB ~ 수 TB | 보통 | 휘발성 |
+| **솔리드 스테이트 (NAND)**| 3D V-NAND 플래시 | 20 ~ 100 $\mu s$ | 512 GB ~ 수십 TB | 저렴 | 비휘발성 |
+| **광/마그네틱 테이프** | 자성 테이프 매체 | 수 초 ~ 수 분 | 페타바이트 (PB) | 최저가 | 비휘발성 |
 
 ## 출제 이력과 검증 출처
 
-- [Linux NUMA 개요](https://docs.kernel.org/mm/numa.html): NUMA 접근 비용과 지역성
-- [Linux NUMA 메모리 정책](https://docs.kernel.org/admin-guide/mm/numa_memory_policy.html): 노드 간 인터리브 방식
+- John L. Hennessy, David A. Patterson - Computer Architecture: A Quantitative Approach (Memory Hierarchy)
+- Computer Systems: A Programmer's Perspective (CS:APP) - The Memory Hierarchy
+- IEEE Transactions on Very Large Scale Integration (VLSI) Systems: Memory Interleaving
+
+## 연결 토픽
+
+- 상위 토픽: [051 캐시 메모리](./051_cache_memory.md)
+- 연관 토픽: [057 메모리 인터리빙](./057_memory_interleaving.md), [097 메모리 반도체](./097_memory_semiconductor.md)

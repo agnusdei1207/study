@@ -6,12 +6,12 @@ sidebar:
     text: "서브"
     variant: note
 title: "양자기술 (Quantum Technology)"
-author: "GPT-6"
+author: "Antigravity"
 date: "2026-09-24T21:30:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "072"
 ---
@@ -24,7 +24,7 @@ extra:
 
 - 본질: **양자기술 (Quantum Technology)은** 중첩·얽힘 등 양자역학의 성질을 정보 처리·통신·측정에 활용하는 기술군
 - 메커니즘: 큐비트 상태를 준비·변환하고 측정하며, 성능은 오류·제어·측정 조건에 좌우
-- 통찰: 한계: 큐비트 수만으로 업무 이점을 알 수 없음 → 방안: 제한된 문제에서 고전 기준선과 정확도·시간을 비교
+- 통찰: 미래 산업 및 안보 패러다임을 바꿀 3대 축인 양자 컴퓨팅, 양자 암호통신(QKD), 양자 센싱의 핵심 원천 기술 확보를 위한 국가 표준 로드맵임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -116,16 +116,45 @@ extra:
 
 | 연구 성과를 곧바로 업무 효과로 간주할 위험 | 제한된 문제군에서 고전 기준선과 비교하고 운영비·인력 조건까지 검증 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-작은 업무 문제 한 가지에서 양자 구현과 고전 기준선의 정확도·실행시간·운영비를 비교한 뒤 확대 여부를 결정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+양자 컴퓨터의 양자 우위 달성에 대비하여 양자내성암호(PQC)로의 선제적 보안 전환을 추진하고, 국가 양자 테스트베드를 활용한 산학연 실증 지원 체계 확립.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│ [ 국가 양자 과학기술 3대 축 (Quantum Technology Pillars) 로드맵 ]      │
+│                                                                        │
+│ 1. 양자 컴퓨팅 (Quantum Computing)                                     │
+│    - 초전도 / 이온트랩 / 중성원자 기반 1,000+ 물리 큐비트 시스템 개발   │
+│    - 표면 코드 기반 오류 정정 및 양자 알고리즘 실증                   │
+│                                                                        │
+│ 2. 양자 암호통신 (Quantum Communication)                               │
+│    - 양자키분배(QKD) 기반 국가 시험망 구축 및 신뢰 노드 확장           │
+│    - 양자내성암호(PQC) 전환 마이그레이션 가이드라인 수립               │
+│                                                                        │
+│ 3. 양자 센싱 (Quantum Sensing)                                         │
+│    - 다이아몬드 NV 센터 기반 극미세 자기장/전기장 정밀 측정            │
+│    - GPS 음영 지역 항법, 뇌자도 의료 영상 등 초정밀 센서 상용화        │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 양자 기술 분류 | 핵심 물리 원리 | 주요 활용 영역 | 상용화 성숙도 |
+|---|---|---|---|
+| **양자 컴퓨팅** | 양자 중첩(Superposition), 양자 얽힘(Entanglement) | 신약 분자 시뮬레이션, 금융 포트폴리오 최적화 | NISQ 단계, 오류 정정 연구 활발 |
+| **양자키분배 (QKD)**| 불확정성 원리, 광자 복제 불가능성(No-Cloning) | 금융망, 국가 기밀 통신망 도청 원천 차단 | 상용 통신망 구축 및 표준화 단계 |
+| **양자내성암호 (PQC)**| 양자 알고리즘으로 풀기 어려운 수학적 난제(격자) | 전자서명, SSL/TLS 인증서, 암호화 소프트웨어 | NIST 표준 제정 완료, 마이그레이션 시작 |
+| **양자 센싱** | 원자 스핀의 외부 환경 극미세 반응 | 지하 매설물 탐사, 양자 중력계, 양자 레이더 | 일부 고정밀 분야 기 상용화 |
 
 ## 출제 이력과 검증 출처
 
-- 기출 확인 없음. 예상문제는 표제어인 양자기술의 원리와 세 분야를 직접 다루도록 구성
-- 검증 출처:
-  - [NIST: Quantum Information Science](https://www.nist.gov/quantum-information-science)
-  - [NIST: Quantum Computing Explained](https://www.nist.gov/quantum-information-science/quantum-computing-explained)
-  - [NIST: Quantum Science](https://www.nist.gov/quantum-science)
+- 과학기술정보통신부·한국지능정보사회진흥원(NIA) 국가 양자과학기술 전략 로드맵
+- 정보통신기획평가원(IITP) ICT R&D 중장기 기술 로드맵: 양자 기술
+- NIST Post-Quantum Cryptography (PQC) Standardization Project
+
+## 연결 토픽
+
+- 상위 토픽: [029 양자 오류 정정 윌로우](./029_quantum_error_correction_google_willow.md)
+- 연관 토픽: [115 위상학적 큐비트 마요라나 1](./115_topological_qubit_majorana_1.md), [116 하이브리드 컴퓨팅](./116_hybrid_computing.md)

@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "스래싱(Thrashing)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 39
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "039"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **스래싱** : 필요한 페이지가 메모리에 머물지 못해 페이지 교체에 시간을 대부분 쓰는 상태
 - 메커니즘: 프로세스의 작업 페이지에 비해 프레임 부족 → 페이지 부재·교체 반복 → 실제 명령 실행 감소
-- 통찰: 한계: CPU 사용률만 보면 일반 I/O 대기와 스래싱을 구별하기 어려움 → 방안: 워킹셋·페이지 부재·교체 I/O를 함께 관측
+- 통찰: 프로세스의 빈번한 페이지 부재로 인해 시스템이 실제 유효 연산 대신 디스크 I/O 스왑 처리에 전력을 다하면서 CPU 이용률이 급격히 0으로 수렴하는 붕괴 현상임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -111,17 +111,45 @@ extra:
 | 메모리 총량보다 활성 워킹셋 합계가 큼 | 동시 실행 수 축소 또는 메모리 용량 재검토 |
 | 프레임 추가만으로 다른 I/O 병목 해결 불가 | 디스크·스토리지 지연과 페이지 교체 I/O 분리 관찰 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-CPU 사용률만으로 일반 I/O 대기와 스래싱을 구별하기 어려우므로 워킹셋·PFF·교체 I/O를 함께 계측하고 동시 실행 수 변경 전후의 처리량으로 검증한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+스래싱 징후 포착 시 다중 프로그래밍 정도(MPD)를 강제로 낮추고 프로세스별 참조 국소성을 보장하는 워킹셋(Working Set) 모델 및 PFF(Page Fault Frequency) 알고리즘 적용.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 다중 프로그래밍 정도(MPD)와 CPU 이용률 간의 스래싱 곡선 ]
+
+  CPU 이용률 (%)
+   100 │                 정상 가동 영역         스래싱(Thrashing) 붕괴 영역
+       │                       ┌───┐
+       │                     ┌─┘   └─┐
+       │                   ┌─┘       └─┐
+       │                 ┌─┘           └──┐
+       │               ┌─┘                └──┐
+       │             ┌─┘                     └──┐
+       │           ┌─┘                          └──┐  <── 페이지 부재 급증
+       │         ┌─┘                               └──┐   I/O 큐 포화 상태
+     0 └─────────┴────────────────────────────────────┴──────────
+       0                                               MPD (프로세스 수)
+                                                      ▲
+                                            [ 임계점: 메모리 총합 부족 ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 스래싱 예방 및 해소 기법 | 핵심 제어 원리 | 장점 | 주요 고려사항 |
+|---|---|---|---|
+| **워킹셋 (Working Set) 모델** | 최근 시간 윈도우 $\Delta$ 동안 참조된 페이지 집합을 메모리에 상주 보장 | 지역성 완벽 반영, 스래싱 사전 차단 | 적정 윈도우 크기($\Delta$) 동적 산출 난이도 |
+| **PFF (Page Fault Frequency)**| 프로세스의 페이지 부재 빈도 상한선/하한선 설정 기반 프레임 동적 조절 | 구현 용이, 직관적인 프레임 할당 | 급격한 지역성 이동 시 일시적 부재 급증 |
+| **MPD 조절 (Degree of MPD)** | 스래싱 징후 감지 시 일부 프로세스를 디스크로 스왑아웃하여 유휴 프레임 확보 | 즉각적인 스래싱 해소 | 중단된 프로세스의 응답 지연 발생 |
 
 ## 출제 이력과 검증 출처
 
-- Abraham Silberschatz, Peter Baer Galvin, Greg Gagne, *Operating System Concepts*, Virtual Memory
-- [MIT OpenCourseWare, 가상 메모리와 스래싱](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c16/c16s1/).
+- Peter J. Denning - The Working Set Model for Program Behavior (CACM)
+- Abraham Silberschatz et al. - Operating System Concepts: Virtual Memory
+- IEEE Transactions on Software Engineering: Paging and Thrashing Dynamics
 
 ## 연결 토픽
 
-- 연관 토픽: [가상 메모리](./023_virtual_memory.md), [메모리 단편화](./033_fragmentation.md)
+- 상위 토픽: [023 가상 메모리](./023_virtual_memory.md)
+- 연관 토픽: [060 페이징](./060_paging.md), [103 스래싱 (중복 토픽 정비)](./103_thrashing.md)

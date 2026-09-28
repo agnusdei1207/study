@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "세그먼테이션(Segmentation)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 58
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "058"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **세그먼테이션** : 코드·데이터·스택처럼 의미가 다른 주소 공간을 가변 크기 세그먼트로 나누어 관리하는 메모리 기법
 - 메커니즘: 논리 주소의 세그먼트 번호로 기준 주소·길이·권한을 찾고 변위를 검사한 뒤 주소 변환
-- 통찰: 한계: 가변 크기 세그먼트는 외부 단편화가 생길 수 있음 → 방안: 논리적 보호와 물리 할당을 구분해 페이징 결합 여부 결정
+- 통찰: 프로그램을 코드, 데이터, 스택, 서브루틴 등 의미론적 논리 단위(세그먼트)로 가변 분할하여 보호와 공유를 용이하게 하는 메모리 관리 기법임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -112,17 +112,47 @@ extra:
 | 세그먼트별 보호·공유 관리 복잡 | 필요한 논리 경계와 권한만 분리 |
 | 고전적 주소 변환을 현대 시스템에 그대로 대입 | 해당 CPU 모드와 운영체제의 실제 메모리 관리 방식 확인 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-대상 CPU 모드의 실제 주소 변환 방식을 먼저 확인하고, 논리적 권한 경계가 필요한 곳과 페이지 기반 물리 할당을 구분해 설명한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+가변 크기 할당으로 인한 심각한 외부 단편화를 해결하기 위해 순수 세그멘테이션 대신 세그먼트를 내부적으로 고정 크기 페이지로 재분할하는 세그멘테이션 페이징 혼용 기법 적용.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 세그멘테이션 논리 주소 (Logical Address) : < s (세그먼트 번호), d (변위 Offset) > ]
+                                               │
+                                               ▼
+                              ┌───────────────────────────────────┐
+                              │ [ 세그멘테이션 테이블 검색 ]       │
+                              │  Segment s: < Limit 한도, Base 기준 >│
+                              └─────────────────┬─────────────────┘
+                                                │
+                 ┌──────────────────────────────┴──────────────────────────────┐
+                 │ 변위 d < Limit 검증 성공                                    │ 변위 d >= Limit 위반
+                 ▼                                                             ▼
+┌─────────────────────────────────┐                          ┌───────────────────────────────────┐
+│ 물리 주소 = Base + d 즉시 산출  │                          │ 트랩 (Trap): 세그멘테이션 폴트     │
+└────────────────┬────────────────┘                          └───────────────────────────────────┘
+                 │
+                 ▼
+[ 실제 물리 메모리(DRAM) 접근 완료 ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 페이징 (Paging) | 세그멘테이션 (Segmentation) |
+|---|---|---|
+| **분할 기준** | 물리적 고정 크기 블록 (예: 4KB Page) | 프로그래머 관점의 논리적 가변 크기 단위 (함수, 객체) |
+| **주소 구조** | 1차원 선형 주소 (페이지 번호 + 오프셋) | 2차원 논리 주소 (세그먼트 이름/번호 + 오프셋) |
+| **단편화 문제** | 내부 단편화 발생 (마지막 페이지 여분 낭비) | **외부 단편화 발생** (메모리 홀 조각화 현상) |
+| **공유 및 보호** | 페이지 단위 일괄 적용 (세분화 어려움) | 세그먼트별 읽기/쓰기/실행 권한 부여 및 공유 용이 |
 
 ## 출제 이력과 검증 출처
 
-- [Intel 64 and IA-32 Software Developer's Manual, System Programming Guide](https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-system-programming-manual-325384.pdf)
-- [Linux Kernel: Using FS and GS Segments in User Space](https://docs.kernel.org/6.12/arch/x86/x86_64/fsgs.html)
+- Abraham Silberschatz et al. - Operating System Concepts: Memory-Management (Segmentation)
+- Andrew S. Tanenbaum - Modern Operating Systems: Segmentation
+- Intel 64 and IA-32 Architectures Software Developer's Manual, Volume 3A: System Programming Guide (Segmentation)
 
 ## 연결 토픽
 
-- 연관 토픽: [페이징](./060_paging.md), [프로세스 메모리 영역](./050_process_memory_layout.md)
+- 상위 토픽: [023 가상 메모리](./023_virtual_memory.md)
+- 연관 토픽: [060 페이징](./060_paging.md), [071 세그멘테이션 폴트](./071_segmentation_fault.md)

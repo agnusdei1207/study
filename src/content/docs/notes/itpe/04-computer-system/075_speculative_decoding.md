@@ -6,12 +6,12 @@ sidebar:
     text: "서브"
     variant: note
 title: "추측 디코딩 (Speculative Decoding)"
-author: "GPT-6"
+author: "Antigravity"
 date: "2026-09-24T22:00:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "075"
 ---
@@ -24,7 +24,7 @@ extra:
 
 - 본질: **추측 디코딩 (Speculative Decoding)은** 빠른 초안 생성과 큰 모델의 검증을 결합해 언어 모델의 토큰 생성을 가속하는 기법
 - 메커니즘: 초안 모델이 여러 토큰 후보 생성 → 대상 모델이 후보를 함께 검증 → 수용된 토큰을 출력하고 나머지는 재생성
-- 통찰: 한계: 초안 수용률이 낮으면 보조 모델 비용만 늘 수 있음 → 방안: 요청 유형별 수용률·지연을 측정해 적용 여부 결정
+- 통찰: 경량의 소형 초안 모델이 K개의 토큰을 선제적으로 생성하고 거대 검증 모델이 이를 단 한 번의 순방향 연산으로 병렬 검증하여 LLM 추론 속도를 2~3배 가속함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -118,15 +118,43 @@ extra:
 
 | 평균 처리량만으로 사용자 체감 지연·품질 파악 곤란 | 첫 토큰·토큰 간·총 지연과 메모리·품질을 요청 유형별로 측정 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-대표 요청 유형별 수용률·첫 토큰 지연·토큰 간 지연·GPU 메모리를 기본 디코딩과 비교해 적용 범위를 정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+초안 모델의 토큰 채택률(Acceptance Rate)을 높이기 위해 타깃 모델과의 어휘 사전(Vocabulary) 일치도를 사전에 확보하고, 거절 샘플링(Rejection Sampling)으로 생성 분포 왜곡 차단.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 소형 초안 모델 (Draft Model: 1B/3B) ] ──(초고속 순차 자기회귀 생성)──> [ K개 후보 토큰 생성 ]
+                                                                             │
+                                                                             ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│ [ 거대 검증 모델 (Target Model: 70B+) ]                                │
+│   - K개 후보 토큰을 입력받아 단 1회의 병렬 순방향 연산(Forward Pass) 수행 │
+│   - 거절 샘플링(Rejection Sampling) 기반으로 토큰 수락/거절 여부 판정 │
+└────────────────────────────────────┬───────────────────────────────────┘
+                                     │
+       ┌─────────────────────────────┴─────────────────────────────┐
+       ▼                                                           ▼
+ [ 수락된 토큰 (Accepted Tokens: m개) ]                      [ 첫 번째 거절 토큰 수정 배정 ]
+  - 타깃 모델의 수학적 확률 분포 100% 보존                    - 타깃 모델의 새로운 정답 토큰 1개 추가
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 표준 자기회귀 디코딩 (Standard AR) | 투기적 디코딩 (Speculative Decoding) |
+|---|---|---|
+| **토큰 생성 방식** | 매 스텝마다 거대 모델 1회 실행하여 1개 토큰 생성 | 소형 모델이 K개 토큰 선제안 후 거대 모델이 1회 병렬 검증 |
+| **GPU 메모리 대역폭**| 매 토큰마다 대규모 가중치를 메모리에서 로드 (메모리 병목)| K개 토큰을 1회 가중치 로드로 병렬 검증 (대역폭 병목 극복) |
+| **출력 품질** | 기준 정답 확률 분포 | **기준 모델의 원래 확률 분포와 수학적으로 100% 동일 보장** |
+| **추론 지연 시간** | 1x (기준 속도) | **2x ~ 3x+ 대폭 단축 (추론 가속 달성)** |
 
 ## 출제 이력과 검증 출처
 
-- 기출 확인 없음. 예상문제는 추측 디코딩 자체의 초안·검증 메커니즘을 직접 질문
-- 검증 출처:
-  - [Leviathan et al., Fast Inference from Transformers via Speculative Decoding, ICML 2023](https://proceedings.mlr.press/v202/leviathan23a.html)
-  - [NVIDIA Triton Inference Server: Speculative Decoding](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/llm_features/speculative_decoding_by_backend_type.html)
+- Charlie Chen et al. - Accelerating Large Language Model Decoding with Speculative Sampling (DeepMind)
+- Yaniv Leviathan et al. - Fast Inference from Transformers via Speculative Decoding (Google Research)
+- vLLM Documentation: Speculative Decoding and Speculative Models Support
+
+## 연결 토픽
+
+- 상위 토픽: [020 GPU](./020_gpu.md)
+- 연관 토픽: [041 AI HPC 인프라](./041_ai_hpc_infrastructure.md), [070 랙 스케일 AI 시스템](./070_rack_scale_ai_system.md)

@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "메모리 인터리빙(Memory Interleaving)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 57
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "057"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **메모리 인터리빙** : 연속된 메모리 접근을 여러 뱅크·채널 등에 분산해 대기 시간을 겹치고 처리량을 높이는 방식
 - 메커니즘: 주소를 분산 배치 → 한 뱅크가 접근 준비 중일 때 다른 뱅크에 요청 → 자원 사용 간격 축소
-- 통찰: 한계: 주소 패턴이 한 뱅크로 몰리면 병렬성이 사라짐 → 방안: 실제 매핑과 뱅크 충돌을 측정해 배치 조정
+- 통찰: 연속된 메모리 주소를 여러 개의 독립 메모리 뱅크에 교차 배치하여 메모리 접근을 동시 병렬 처리함으로써 시스템 버스 대역폭을 극대화함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -103,18 +103,44 @@ NUMA 노드 간 인터리빙은 용량·대역폭 분산에 쓸 수 있지만 �
 | NUMA 인터리빙으로 원격 접근 증가 | 스레드 배치·메모리 지역성과 실측 성능 비교 |
 | 무조건적 대역폭 증가 기대 | 실제 부하의 대역폭·지연·뱅크 충돌 측정 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-순차·스트라이드 부하에서 뱅크 충돌과 채널별 처리량을 먼저 측정한 뒤 주소 배치 또는 NUMA 배치를 조정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+연속 메모리 순회 시 단일 뱅크 충돌(Bank Conflict)을 원천 방지하기 위해 하위 비트 인터리빙을 채택하고, 멀티소켓 서버 환경에서는 NUMA 인터리빙 메모리 정책을 워크로드별 최적화.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 하위 비트 메모리 인터리빙 (Low-Order Interleaving: 4-Way Bank) ]
+
+  연속 물리 주소 스트림: 0, 1, 2, 3, 4, 5, 6, 7 ...
+                         │
+        ┌────────────────┼────────────────┬────────────────┐
+        ▼                ▼                ▼                ▼
+   [ Bank 0 ]       [ Bank 1 ]       [ Bank 2 ]       [ Bank 3 ]
+   ┌────────┐       ┌────────┐       ┌────────┐       ┌────────┐
+   │ Addr 0 │       │ Addr 1 │       │ Addr 2 │       │ Addr 3 │
+   │ Addr 4 │       │ Addr 5 │       │ Addr 6 │       │ Addr 7 │
+   └────────┘       └────────┘       └────────┘       └────────┘
+       ▲                ▲                ▲                ▲
+       └────────────────┴───────┬────────┴────────────────┘
+                                │
+                  [ 병렬 동시 데이터 읽기/쓰기 버스 ]
+                  (메모리 모듈 사이클 시간의 1/4로 접근 지연 단축)
+```
+
+### 3. 기술 유형 및 비교 평가
+| 인터리빙 방식 | 주소 비트 매핑 방식 | 메모리 뱅크 접근 패턴 | 연속 블록 전송 효율 | 주 활용 영역 |
+|---|---|---|---|---|
+| **하위 인터리빙 (Low-Order)** | 주소의 최하위 비트(LSB)로 뱅크 결정 | 연속된 주소가 서로 다른 뱅크에 분산 | **최고 (모든 뱅크 동시 가동)** | 고성능 CPU 메인 메모리, 캐시 라인 채움 |
+| **상위 인터리빙 (High-Order)**| 주소의 최상위 비트(MSB)로 뱅크 결정 | 한 뱅크가 완전히 찬 후 다음 뱅크 접근| 낮음 (한 시점에 1개 뱅크만 동작) | 메모리 뱅크 단위 모듈 확장, 결함 격리 |
 
 ## 출제 이력과 검증 출처
 
-- [Intel: Bank Interleaving](https://www.intel.com/content/www/us/en/docs/programmable/683216/22-3-2-6-1/bank-interleaving.html)
-- [Linux Kernel: NUMA Memory Policy](https://docs.kernel.org/6.11/admin-guide/mm/numa_memory_policy.html)
-- [IBM: Troubleshooting Memory Issues](https://www.ibm.com/support/pages/node/846800)
+- John L. Hennessy, David A. Patterson - Computer Architecture: A Quantitative Approach (Memory Hierarchy)
+- IEEE Transactions on Computers: Performance of Interleaved Memory Systems
+- JEDEC DDR4/DDR5 SDRAM Standard: Bank Architecture and Burst Operation
 
 ## 연결 토픽
 
-- 연관 토픽: [캐시 메모리](./051_cache_memory.md), [메모리 계층과 인터리빙](./096_memory_hierarchy_interleaving.md)
+- 상위 토픽: [096 메모리 계층 및 인터리빙](./096_memory_hierarchy_interleaving.md)
+- 연관 토픽: [051 캐시 메모리](./051_cache_memory.md), [023 가상 메모리](./023_virtual_memory.md)

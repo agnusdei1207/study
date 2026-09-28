@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "좀비 프로세스(Zombie Process)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 48
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "048"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **좀비 프로세스** : 자식 프로세스가 종료됐지만 부모가 종료 상태를 회수하지 않아 커널에 최소 정보가 남은 상태
 - 메커니즘: 자식 종료 → 부모의 `wait()` 미호출 → PID·종료 상태 보존. 부모가 `wait()` 계열 호출로 회수
-- 통찰: 한계: 종료한 자식에 `kill`을 반복해도 종료 정보가 남음 → 방안: 부모의 `wait()` 회수 경로와 PID 1 책임을 점검
+- 통찰: 자식 프로세스가 종료되었으나 부모 프로세스가 wait() 계열 시스템 콜로 종료 상태를 회수하지 않아 프로세스 테이블 엔트리를 점유하는 유령 프로세스임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -95,17 +95,42 @@ extra:
 | 컨테이너의 PID 1이 고아 자식을 수거하지 않음 | 자식 관리 책임 확인, 필요한 경우 작은 init 프로세스 사용 |
 | 종료한 좀비에 `kill`을 반복 | 좀비의 부모가 회수하도록 수정; 부모 종료 시 재부모화 경로 확인 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-프로세스 상태 `Z`와 부모 PID를 먼저 확인해 자식 생성 코드의 종료 알림·`wait()` 경로를 수정하고, 컨테이너 PID 1의 재부모화 자식 회수도 시험한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+좀비 프로세스의 누적으로 인한 PID 고갈을 방지하기 위해 SIGCHLD 시그널 핸들러에서 non-blocking waitpid()를 호출하고, 고아 프로세스는 init/systemd가 입양하도록 설계.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 정상 프로세스 수명주기 ]
+  부모 프로세스 ──(fork)──> 자식 프로세스 실행 ──(exit)──> [ Zombie 상태 ]
+         │                                                      │
+         └─────────────(wait() 시스템 콜 호출로 상태 회수)───────┘
+                                     │
+                                     ▼
+                     [ PCB 및 PID 자원 메모리 완전 해제 ]
+
+[ 좀비 프로세스 누적 메커니즘 ]
+  자식 프로세스 종료 (exit) ──> [ Zombie (State: Z) ] (PCB 잔존, PID 점유)
+                                      │
+  부모 프로세스가 wait() 호출 태만 ───┴──> 시스템 PID 풀 고갈 ──> 신규 프로세스 생성 실패!
+```
+
+### 3. 기술 유형 및 비교 평가
+| 구분 항목 | 좀비 프로세스 (Zombie Process) | 고아 프로세스 (Orphan Process) |
+|---|---|---|
+| **정의** | 실행은 종료되었으나 부모가 상태를 회수하지 않은 프로세스 | 부모 프로세스가 먼저 종료되어 홀로 남겨진 프로세스 |
+| **자원 점유** | CPU/메모리는 반환 완료, **PID 및 PCB 엔트리만 점유** | 정상적인 CPU 및 메모리 자원을 계속 점유하며 실행 중 |
+| **시스템 영향** | 누적 시 PID 고갈로 인한 신규 프로세스 생성 불가 (Fork Fail)| 시스템 자원 지속 소모 (의도치 않은 백그라운드 연산) |
+| **해결 방안** | 부모 프로세스 종료(init/systemd 입양 후 자동 회수) | init(PID 1) 프로세스가 입양하여 정상 수명주기 관리 |
 
 ## 출제 이력과 검증 출처
 
-- [Linux man-pages: wait(2)](https://man7.org/linux/man-pages/man2/waitpid.2.html)
-- [Docker Docs: docker container run --init](https://docs.docker.com/reference/cli/docker/container/run)
+- W. Richard Stevens, Stephen A. Rago - Advanced Programming in the UNIX Environment: Process Control
+- Abraham Silberschatz et al. - Operating System Concepts: Processes
+- Linux Programmer's Manual: wait(2), waitpid(2), fork(2), signal(7)
 
 ## 연결 토픽
 
-- 연관 토픽: [프로세스 메모리 배치](./050_process_memory_layout.md), [교착상태](./038_deadlock.md)
+- 상위 토픽: [050 프로세스 메모리 구조](./050_process_memory_layout.md)
+- 연관 토픽: [010 스레드](./010_thread.md), [076 CPU](./076_cpu.md)

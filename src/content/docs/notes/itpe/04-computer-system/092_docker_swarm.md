@@ -6,12 +6,12 @@ sidebar:
   badge:
     text: "응용"
     variant: note
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "응용"
   question_no: "092"
 
@@ -25,7 +25,7 @@ extra:
 
 - 본질: Docker Swarm은 여러 Docker Engine을 하나의 클러스터로 묶어 서비스를 배포·관리하는 컨테이너 오케스트레이션 기능
 - 메커니즘: 매니저가 Raft로 클러스터 상태를 합의하고, 스케줄러가 선언된 서비스를 노드의 태스크로 배치
-- 통찰: 한계: 서비스 선언만으로 쿼럼·데이터 연속성을 보장할 수 없음 → 방안: 매니저 합의·태스크 재배치·볼륨 복구를 장애 시험
+- 통찰: 별도 외부 도구 설치 없이 도커 엔진에 기본 내장되어 복수의 도커 호스트를 단일 가상 클러스터로 묶어 컨테이너 배포와 서비스를 오케스트레이션함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -93,10 +93,52 @@ extra:
 | 상태 저장형 워크로드는 태스크 재배치만으로 데이터 연속성을 보장하기 어려움 | 영속 볼륨의 위치·복제·복구 방식을 별도로 설계하고 장애 복구를 시험 |
 | 설치 편의만으로 운영 요구 적합성을 판단하기 어려움 | 필수 기능·운영 역량·복구 목표를 기준으로 대안과 비교 검증 |
 
-## Ⅵ. 제언 — 쿼럼과 상태 저장 복구를 먼저 시험
+## Ⅵ. 도입/구축/운영 관점 제언
 
-매니저 한 대와 워커 한 대의 장애를 각각 주입해 서비스 관리·태스크 재배치·데이터 복구 시간을 측정하고 적용 범위를 정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+매니저 노드의 과반 결손 시 클러스터 불능 상태를 방지하기 위해 Raft 합의 알고리즘에 맞추어 홀수(3대 또는 5대) 매니저 노드를 구성하고 자동 복구 구성.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│ [ 도커 스웜 (Docker Swarm) 클러스터 아키텍처 ]                         │
+│                                                                        │
+│   ┌────────────────────────────────────────────────────────────────┐   │
+│   │ 매니저 노드 쿼럼 (Manager Nodes: Raft 분산 합의)               │   │
+│   │  - Manager 1 (Leader) <───> Manager 2 <───> Manager 3          │   │
+│   │  - 클러스터 상태 유지, 서비스 스케줄링, 디스패칭                │   │
+│   └───────────────────────────────┬────────────────────────────────┘   │
+│                                   │ (인증된 mTLS 터널 통신)            │
+│       ┌───────────────────────────┴───────────────────────────┐        │
+│       ▼                                                       ▼        │
+│ ┌──────────────────────────────┐        ┌──────────────────────────────┐
+│ │ [ 워커 노드 1 (Worker Node) ]│        │ [ 워커 노드 2 (Worker Node) ]│
+│ │   - Docker Engine / SwarmKit │        │   - Docker Engine / SwarmKit │
+│ │   - Ingress Routing Mesh     │        │   - Ingress Routing Mesh     │
+│ │   ┌────────┐    ┌────────┐   │        │   ┌────────┐    ┌────────┐   │
+│ │   │ Task 1 │    │ Task 2 │   │        │   │ Task 3 │    │ Task 4 │   │
+│ │   └────────┘    └────────┘   │        │   └────────┘    └────────┘   │
+│ └──────────────────────────────┘        └──────────────────────────────┘
+│   │                                                               │    │
+│   └────── VXLAN 오버레이 네트워크 (Overlay Network: IPsec 암호화) ┴────┘
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 도커 스웜 (Docker Swarm) | 쿠버네티스 (Kubernetes) |
+|---|---|---|
+| **설치 및 복잡도** | 도커 엔진 자체 내장 (`docker swarm init`), 매우 단순 | 별도 마스터/워커 컴포넌트(etcd, API서버 등) 구성, 복잡도 극상 |
+| **학습 곡선** | 표준 Docker CLI 명령어 문법 그대로 활용 (학습 비용 최저)| 방대한 선언적 YAML 객체 및 개념 숙지 필요 (학습 곡선 가파름) |
+| **생태계 및 확장성** | 도커 단독 생태계, 수천 개 노드 이상의 초대형 클러스터 한계 | 사실상의 글로벌 클라우드 표준, CNCF 거대 에코시스템 지원 |
+| **자동 확장 및 복구** | 서비스 복제본 유지 및 롤링 업데이트 지원, HPA 미지원 | Pod/노드 자동 확장(HPA/VPA/CA) 및 고도화된 자가 치유 지원 |
 
 ## 출제 이력과 검증 출처
 
-- Swarm mode의 합의·정족수·매니저 동작: [Docker 공식 문서](https://docs.docker.com/engine/swarm/raft/), [관리 안내](https://docs.docker.com/engine/swarm/admin_guide/)
+- Docker Documentation: Swarm Mode Overview and Key Concepts
+- IEEE International Conference on Cloud Computing: Performance Comparison of Kubernetes and Docker Swarm
+- Adrian Mouat - Using Docker: Developing and Deploying Software with Containers (O'Reilly)
+
+## 연결 토픽
+
+- 상위 토픽: [032 컨테이너](./032_container.md)
+- 연관 토픽: [012 쿠버네티스](./012_kubernetes.md), [013 클라우드 컴퓨팅](./013_cloud_computing.md)

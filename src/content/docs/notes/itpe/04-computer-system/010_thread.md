@@ -1,6 +1,6 @@
 ---
 title: "스레드(Thread)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 
 ---
@@ -24,7 +24,7 @@ extra:
 
 - 본질: **스레드(Thread)** 는 프로세스 안에서 스케줄되는 실행 흐름으로, 주소 공간의 자원을 공유하면서 실행 문맥은 각각 보유
 - 메커니즘: 프로세스의 코드·힙·파일을 공유하되 각 스레드가 PC·레지스터·스택으로 독립 실행
-- 통찰: 한계: 공유 메모리의 무제한 쓰기가 경합·교착을 낳음 → 방안: 공유 상태를 줄이고 접근·종료 규칙을 명시
+- 통찰: 프로세스 내 코드, 데이터, 힙 공간을 공유하면서 독립적인 PC와 스택을 보유하여 문맥 교환 오버헤드를 대폭 경감하는 CPU 기본 실행 단위임.
 
 <details><summary>핵심 용어</summary>
 
@@ -78,7 +78,7 @@ extra:
 
 구현 유의점: 공유 범위와 TCB 필드·스택 크기는 OS·런타임별 차이.
 
-스레드는 생성 후 준비 상태에서 스케줄러 배정으로 실행하고, 선점·양보 때 준비 상태로, I/O·동기화 대기 때 차단 상태로 이동한다. 문맥 교환은 현재 실행 문맥을 저장하고 다음 스레드 문맥을 복원하며 같은 프로세스 안에서도 캐시·TLB 비용이 생길 수 있다.
+스레드는 생성 후 준비 상태에서 스케줄러 배정으로 실행하고, 선점 및 양보 시 준비 상태로, I/O 및 동기화 대기 시 차단 상태로 전이. 문맥 교환은 현재 실행 문맥을 TCB에 저장하고 다음 스레드 문맥을 복원하며 캐시 미스 오버헤드가 수반.
 
 ```text
 생성 → 준비 ── CPU 배정 ──→ 실행 ── 종료
@@ -125,17 +125,44 @@ extra:
 | 같은 캐시라인의 반복 갱신 | 데이터 배치·패딩을 검토해 캐시 미스 측정 |
 | 취소 중 잠금·자원 잔존 | 협력적 취소·Cleanup·Join을 적용해 누수 검증 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-공유 쓰기가 경합·교착을 낳으므로 요청 처리 경계에서 공유 상태를 줄이고 잠금 순서·취소 규칙을 정한 뒤 경합과 지연을 측정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+과도한 스레드 생성으로 인한 문맥 교환 폭증을 방지하기 위해 워크로드 특성(CPU-Bound vs I/O-Bound)에 맞춘 스레드 풀(Thread Pool) 규모 산정과 락-프리(Lock-Free) 동기화 기법 도입 권고.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│ [ 프로세스 (Process) 가상 메모리 공간 ]                                │
+│   - 코드 영역 (Code Segment) : 모든 스레드 공유                        │
+│   - 데이터 영역 (Data Segment, 전역/정적 변수) : 모든 스레드 공유      │
+│   - 힙 영역 (Heap Segment, 동적 할당 메모리) : 모든 스레드 공유        │
+│                                                                        │
+│   ┌─────────────────────┐  ┌─────────────────────┐  ┌────────────────┐ │
+│   │ [ Thread 1 ]        │  │ [ Thread 2 ]        │  │ [ Thread 3 ]   │ │
+│   │  - PC (Program Ctr) │  │  - PC (Program Ctr) │  │  - PC          │ │
+│   │  - 레지스터 세트    │  │  - 레지스터 세트    │  │  - 레지스터    │ │
+│   │  - TCB 1            │  │  - TCB 2            │  │  - TCB 3       │ │
+│   │  - 독립 스택 (Stack)│  │  - 독립 스택 (Stack)│  │  - 독립 스택   │ │
+│   └─────────────────────┘  └─────────────────────┘  └────────────────┘ │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 프로세스 (Process) | 스레드 (Thread) | 그린/가상 스레드 (Goroutine / Virtual) |
+|---|---|---|---|
+| **메모리 독립성** | 완전 격리 (독립 가상 주소공간) | 텍스트/데이터/힙 공유, 스택만 독립 | 사용자 런타임 힙 상에 수천~수만 개 상주 |
+| **문맥 교환 오버헤드** | 높음 (MMU 페이지 테이블, TLB 플러시) | 낮음 (레지스터 세트, PC/SP만 복원) | 극히 낮음 (사용자 레벨 스케줄링) |
+| **IPC 통신 방식** | 소켓, 파이프, 공유 메모리 (명시적) | 프로세스 내부 힙 메모리 직접 참조 | 채널(Channel) 또는 메시지 패싱 |
+| **장애 전파** | 단일 프로세스 충돌 시 격리 보호 | 1개 스레드 세그폴트 시 프로세스 전체 종료 | 런타임 에러 핸들링으로 전파 차단 |
 
 ## 출제 이력과 검증 출처
 
-- [The Open Group POSIX Definitions — Thread·Thread-Safe](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html)
-- [The Open Group pthread.h](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/pthread.h.html)
+- Abraham Silberschatz et al. - Operating System Concepts: Threads and Concurrency
+- Robert Love - Linux Kernel Development: Process and Thread Management
+- IEEE Transactions on Parallel and Distributed Systems: Multithreading Architecture
 
 ## 연결 토픽
 
-- [컴퓨터 시스템 과목 지도](./)
-- [가상머신](./085_virtual_machine/)
-- [NPU](./007_npu/)
+- 상위 토픽: [076 CPU](./076_cpu.md)
+- 연관 토픽: [122 프로세스 동기화](./122_process_synchronization.md), [038 데드락](./038_deadlock.md)

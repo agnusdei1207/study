@@ -6,12 +6,12 @@ sidebar:
   badge:
     text: "응용"
     variant: note
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "응용"
   question_no: "093"
 
@@ -25,7 +25,7 @@ extra:
 
 - 본질: 리틀 엔디언은 여러 바이트로 된 값을 저장할 때 최하위 바이트를 가장 낮은 메모리 주소에 두는 바이트 순서
 - 메커니즘: 바이트 순서를 정하는 규칙으로, 값의 수치나 바이트 자체는 바꾸지 않고 메모리 배치만 결정
-- 통찰: 한계: 다른 엔디언 시스템과 바이트를 교환하면 같은 값도 달리 해석됨 → 방안: 직렬화 경계에서 필드별 바이트 순서를 명시·변환
+- 통찰: 연속된 바이트 데이터의 최하위 바이트(LSB)를 가장 낮은 메모리 주소부터 순서대로 저장하는 방식으로, x86 및 최신 ARM 프로세서의 표준 바이트 순서임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -101,13 +101,42 @@ extra:
 | 저장 파일이나 프로토콜에 호스트의 구조체 표현을 그대로 기록하면 다른 플랫폼에서 해석이 달라질 수 있음 | 경계마다 표준 직렬화 형식과 필드 바이트 순서를 문서화하고, 서로 다른 엔디언 환경 간 호환 시험 수행 |
 | 숫자 필드의 호스트·네트워크 순서가 다르면 값이 바뀌어 해석됨 | 네트워크 필드는 플랫폼 API 또는 명시적 인코더·디코더로 변환 |
 
-## Ⅵ. 제언 — 필드 단위 직렬화 규약부터 고정
+## Ⅵ. 도입/구축/운영 관점 제언
 
-구조체 메모리의 직접 전송을 피하고 필드 크기·바이트 순서·버전을 명시한 뒤 서로 다른 엔디언 환경에서 왕복 시험한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+네트워크 패킷 송수신 시 빅 엔디안 표준인 네트워크 바이트 순서(Network Byte Order)와 호스트 순서 간의 변환 함수(`htonl`, `ntohl`)를 필수 호출하여 정합성 보장.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 4바이트 16진수 정수값: 0x12345678 (MSB=0x12, LSB=0x78) ]
+
+  메모리 주소:    0x1000       0x1001       0x1002       0x1003
+                ┌────────────┬────────────┬────────────┬────────────┐
+  리틀 엔디안 : │    0x78    │    0x56    │    0x34    │    0x12    │  (LSB가 최저 주소)
+                └────────────┴────────────┴────────────┴────────────┘
+                 (x86, x64, 최신 스마트폰 ARM 프로세서 표준)
+
+                ┌────────────┬────────────┬────────────┬────────────┐
+  빅 엔디안   : │    0x12    │    0x34    │    0x56    │    0x78    │  (MSB가 최저 주소)
+                └────────────┴────────────┴────────────┴────────────┘
+                 (인터넷 네트워크 TCP/IP 표준, 사람의 가독 순서와 일치)
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 리틀 엔디안 (Little-Endian) | 빅 엔디안 (Big-Endian) |
+|---|---|---|
+| **저장 순서** | 최하위 바이트(LSB)를 가장 낮은 주소에 저장 | 최상위 바이트(MSB)를 가장 낮은 주소에 저장 |
+| **산술 연산 장점** | 덧셈/올림수(Carry) 연산 시 하위 바이트부터 즉시 계산 가능| 부호(Sign) 판별 및 크기 대소 비교를 최상위 바이트로 즉시 판별 |
+| **타입 캐스팅** | 32비트 int를 16비트 short로 형변환 시 주소 변경 불필요 | 형변환 시 메모리 주소 오프셋 이동 연산 수반 |
+| **표준 적용 영역** | x86, AMD64, ARM(LE 모드), RISC-V | TCP/IP 네트워크 헤더, 메인프레임, IBM AIX |
 
 ## 출제 이력과 검증 출처
 
-- 회차·문항 원문은 공식 자료 대조 전 미확인
-- `htonl()`·`ntohl()`의 POSIX 규격: [The Open Group](https://pubs.opengroup.org/onlinepubs/000095399/functions/htonl.html)
-- ARM의 구현별 엔디언 지원: [Armv8-A Memory Model Guide](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Learn%20the%20Architecture/Armv8-A%20memory%20model%20guide.pdf?revision=58b1dd0a-3800-4218-b21a-f95a0332034c)
-- IP 규격 원문: [RFC 791](https://datatracker.ietf.org/doc/rfc791/)
+- Danny Cohen - On Holy Wars and a Plea for Peace (Internet Experiment Note 137: IEN 137)
+- IETF RFC 791: Internet Protocol (Specification of Network Byte Order)
+- Computer Systems: A Programmer's Perspective (CS:APP) - Data Sizes and Endianness
+
+## 연결 토픽
+
+- 상위 토픽: [105 엔디안](./105_endian.md)
+- 연관 토픽: [101 빅 엔디안](./101_big_endian.md), [076 CPU](./076_cpu.md)

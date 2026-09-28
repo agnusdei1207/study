@@ -6,13 +6,13 @@ sidebar:
     text: "기초"
     variant: note
 title: "컨테이너(Container)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 32
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
   question_no: "032"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **컨테이너** : 응용과 필요한 실행 환경을 묶어 격리된 프로세스로 실행하는 단위
 - 메커니즘: 이미지에서 실행 환경 생성 → 커널의 프로세스·파일·네트워크 가시성 분리 → 자원 사용량 제한
-- 통찰: 한계: 커널 공유로 격리만 믿으면 호스트 영향이 남음 → 방안: 최소 권한·자원 한도·저장 경계를 배포 명세로 검증
+- 통찰: 호스트 OS 커널을 공유하면서 리눅스 네임스페이스와 cgroups를 통해 프로세스를 논리적으로 격리하는 경량 가상화 실행 환경임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -114,18 +114,44 @@ extra:
 | 메모리·CPU 한도 부재 시 이웃 서비스에 영향 | 자원 요청·한도와 부하 시험 |
 | 컨테이너 삭제와 함께 쓰기 계층의 데이터가 소실될 수 있음 | 영속 데이터는 명시적 볼륨·외부 저장소에 분리 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-커널 공유와 쓰기 계층의 수명 때문에 호스트 영향·데이터 소실이 남으므로 대표 서비스의 최소 권한·자원 한도·영속 볼륨을 명세에 고정해 격리·재시작을 시험한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+호스트 커널 공유로 인한 보안 탈출(Escape) 취약점을 차단하기 위해 비루트(Non-Root) 실행과 seccomp/AppArmor 프로파일을 강제하고, 멀티스테이지 빌드로 경량 이미지 배포.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+┌─────────────────────────────────┐     ┌─────────────────────────────────┐
+│ [ App A ]      │ [ App B ]      │     │ [ App C ]      │ [ App D ]      │
+│ (User Process) │ (User Process) │     │ (User Process) │ (User Process) │
+├────────────────┴────────────────┤     ├────────────────┴────────────────┤
+│ [ 네임스페이스 격리 (Namespaces) ] │     │ [ cgroups 자원 한도 통제 ]       │
+│  - PID (독립 프로세스 트리)     │     │  - CPU 사용량 제한 (Quota/Shares)│
+│  - NET (독립 IP/라우팅 테이블)  │     │  - Memory OOM 한도 지정         │
+│  - MNT (독립 파일시스템 루트)   │     │  - 블록 I/O 및 디바이스 격리     │
+├─────────────────────────────────┴─────┴─────────────────────────────────┤
+│ [ 단일 공유 호스트 OS 커널 (Shared Host Linux Kernel) ]                 │
+├─────────────────────────────────────────────────────────────────────────┤
+│ [ 물리 서버 하드웨어 인프라 (CPU, Memory, NIC, Storage) ]                │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 컨테이너 (Container) | 가상 머신 (Virtual Machine) |
+|---|---|---|
+| **가상화 계층** | OS 레벨 가상화 (호스트 커널 공유) | 하드웨어 레벨 가상화 (하이퍼바이저 기반) |
+| **게스트 OS** | 미포함 (호스트 커널 직접 활용) | 독립 게스트 OS(커널 포함) 필수 설치 |
+| **기동 시간** | 수 밀리초 ~ 수 초 (프로세스 실행 속도) | 수십 초 ~ 수 분 (전체 OS 부팅 과정 필요) |
+| **자원 점유율** | 수십 MB 단위 경량 메모리/디스크 | 수 GB 단위 무거운 디스크 이미지 및 전용 메모리 할당 |
+| **격리 강도** | 소프트웨어 네임스페이스 격리 (보안 취약점 위험) | 하드웨어 VT-x/AMD-V 기반의 완전한 물리적 격리 |
 
 ## 출제 이력과 검증 출처
 
-- [Docker Docs: What is a container?](https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/)
-- [Docker Docs: Running containers](https://docs.docker.com/engine/containers/run/)
-- [Linux Kernel: Control Group v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)
+- Open Container Initiative (OCI) Runtime & Image Specification
+- IEEE Cloud Computing: Containers and Virtual Machines at Scale
+- NIST Special Publication 800-190: Application Container Security Guide
 
 ## 연결 토픽
 
-- 연관 토픽: [쿠버네티스](./012_kubernetes.md), [가상 메모리](./023_virtual_memory.md)
+- 상위 토픽: [012 쿠버네티스](./012_kubernetes.md)
+- 연관 토픽: [085 가상머신](./085_virtual_machine.md), [061 하이퍼바이저](./061_hypervisor.md)

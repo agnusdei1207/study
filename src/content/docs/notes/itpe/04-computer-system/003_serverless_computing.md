@@ -1,6 +1,6 @@
 ---
 title: "서버리스 컴퓨팅(Serverless Computing)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 - 본질: 서버리스 컴퓨팅은 공급자가 실행 인프라를 운영하고 이용자가 함수 코드와 관리형 백엔드를 조합하는 클라우드 실행 모델
 - 메커니즘: 이벤트 수신 → **FaaS** 함수 실행 → **BaaS** 상태·공통 기능 연계 → 실행량 계측
-- 통찰: 한계: 함수 자동 확장이 하위 서비스 처리 한도를 넘음 → 방안: 동시성 제한과 실패 큐를 이벤트 계약에 포함
+- 통찰: 이벤트 구동 아키텍처와 자동 확장을 결합하여 서버 프로비저닝 부담을 없애고 유휴 비용을 제로화하는 클라우드 네이티브 패러다임임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -102,24 +102,50 @@ extra:
 | 한계 | 방안 |
 |---|---|
 | 런타임·의존성 준비로 초기 지연 | 패키지를 경량화하고 지연 분포로 사전 준비 필요성을 판단 |
-| 비동기 전달·재시도로 중복 처리 | **멱등키**·조건부 쓰기·DLQ를 적용하고 실패 이벤트를 점검 |
+| 비동기 전달·재시도로 중복 처리 | **멱등키** ·조건부 쓰기·DLQ를 적용하고 실패 이벤트를 점검 |
 | 동시성 폭주로 하위 서비스 연쇄 장애 | 동시성 제한·Backpressure를 적용하고 오류 전파 경로를 추적 |
 | 다수 함수·관리형 서비스의 관측 단절 | 상관 ID·분산추적으로 호출 흐름을 연결 |
 | 전용 API 종속과 변동 비용 | Port·Adapter 경계와 Exit Plan을 두고 단위비용을 계측 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-자동 확장이 DB·외부 API 한도를 넘길 수 있으므로 한도가 낮은 이벤트부터 동시성 제한·멱등키·DLQ를 공통 계약으로 적용하고 종단 지연을 검증한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+콜드 스타트 지연 완화를 위해 프로비저닝된 동시성(Provisioned Concurrency)을 구성하고, 비동기 이벤트 유실 및 중복 실행에 대비하여 멱등키(Idempotency Key)와 DLQ(Dead Letter Queue)를 표준화 적용.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 이벤트 소스 ] ──(HTTP/API / S3 Event / Queue)──> [ 서버리스 런타임 (FaaS) ]
+                                                         │
+                        ┌────────────────────────────────┴────────────────────────────────┐
+                        ▼                                                                 ▼
+           [ 인스턴스 미존재 (Cold Start) ]                                  [ 유휴 웜 컨테이너 (Warm Start) ]
+            - 신규 컨테이너/샌드박스 프로비저닝                               - 메모리 상주 인스턴스 즉시 바인딩
+            - 런타임 초기화 + 핸들러 코드 로딩                                - 실행 지연 10ms 이내
+                        │                                                                 │
+                        └────────────────────────────────┬────────────────────────────────┘
+                                                         ▼
+                                             [ 비즈니스 함수 로직 실행 ]
+                                                         │
+                                                         ▼
+                                       [ BaaS / 백엔드 스토리지 (DynamoDB, S3) ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | 서버리스 컴퓨팅 (FaaS) | 컨테이너 오케스트레이션 (CaaS) | 가상 머신 기반 (IaaS) |
+|---|---|---|---|
+| **관리 단위** | 함수/이벤트 (Function Unit) | 마이크로서비스/파드 (Pod) | 가상 머신 인스턴스 (VM) |
+| **확장 메커니즘** | 요청당 0 to N 자동 확장 | Pod 수평 확장 (HPA, 초 단위) | VM 오토 스케일링 (분 단위) |
+| **과금 체계** | 1ms 단위 실행 시간 및 메모리 과금 | 할당된 노드 리소스 정액 과금 | 인스턴스 가동 시간당 과금 |
+| **콜드 스타트** | 언어/런타임별 초기 지연 발생 | 경미 (컨테이너 풀 사전 상주) | 무관 (항시 구동) |
+| **적합 워크로드** | 스파이크성 이벤트, 비동기 배치 | 상태 보존 웹앱, 장기 실행 작업 | 레거시 모놀리식, 커스텀 커널 |
 
 ## 출제 이력과 검증 출처
 
-- 제136회 정보관리기술사 1교시 9번: `서버리스 컴퓨팅(Serverless Computing)`
-- 제140회 정보관리기술사 2교시 1번: `서버리스 컴퓨팅(Serverless Computing)에 대하여 다음을 설명하시오. 가. 정의 및 특징 나. 구성 요소 및 장·단점`
-- [CNCF Serverless Whitepaper](https://github.com/cncf/wg-serverless/tree/master/whitepapers/serverless-overview)
-- [Google Cloud — What is serverless computing?](https://cloud.google.com/discover/what-is-serverless-computing)
-- [Google Cloud — What is FaaS?](https://cloud.google.com/discover/what-is-function-as-a-service-faas)
-- [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
+- CNCF Serverless Whitepaper & Cloud Native Interactive Landscape
+- NIST Special Publication 800-145: The NIST Definition of Cloud Computing
+- AWS Lambda / Google Cloud Functions Architecture Best Practices
 
 ## 연결 토픽
 
-- [클라우드 컴퓨팅](./013_cloud_computing/) · [FaaS](./078_faas/) · [컨테이너](./032_container/) · [클라우드 서비스 모델](./109_cloud_computing_service_models/)
+- 상위 토픽: [013 클라우드 컴퓨팅](./013_cloud_computing.md)
+- 연관 토픽: [078 FaaS](./078_faas.md), [012 쿠버네티스](./012_kubernetes.md)

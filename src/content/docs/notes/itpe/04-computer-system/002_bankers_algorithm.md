@@ -1,6 +1,6 @@
 ---
 title: "은행가 알고리즘(Banker's Algorithm)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T21:00:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 ---
 
@@ -23,7 +23,7 @@ extra:
 
 - 본질: 은행가 알고리즘은 자원 요청을 시험 할당해 교착 가능성을 회피하는 기법
 - 메커니즘: `Request ≤ Need·Available` 검사 → 시험 할당 → 안전 순서열 확인 → 승인 또는 원복
-- 통찰: 한계: 최대 요구량을 미리 정확히 알기 어려움 → 방안: 상한을 검증할 수 있는 자원 풀에 우선 적용
+- 통찰: 사전 선언된 최대 자원 요구량과 가용 매트릭스를 기반으로 안전 상태를 시뮬레이션하여 교착상태를 사전에 완벽히 회피함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -122,16 +122,50 @@ Work += Allocationᵢ, Finishᵢ = true → 다음 후보 반복
 | 요청마다 행렬을 반복 탐색해 판정 지연 | 한도를 검증할 수 있는 제한 자원 풀에 선택 적용 |
 | 불안전 요청을 반복 보류해 장기 대기 | 대기시간 기반 우선순위와 예약으로 기아를 완화 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-최대 요구량을 정확히 알기 어렵고 반복 보류가 생길 수 있으므로 Max를 검증할 수 있는 자원 풀부터 적용하고 선언 상한·대기시간을 함께 관찰한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+프로세스의 자원 할당 요청 시 즉시 할당하지 않고 임시 할당 상태의 안전 시퀀스(Safe Sequence) 존재 여부를 선행 검증하며, 동적 자원 환경에서는 기아 상태 방지를 위한 최대 대기 큐 병행 수립 필요.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 프로세스 Pi 자원 요청 Request_i ]
+                 │
+                 ▼
+  [ Request_i <= Need_i 검증 ] ──(No)──> [ 오류: 최대 요구량 초과 ]
+                 │ (Yes)
+                 ▼
+ [ Request_i <= Available 검증 ] ──(No)──> [ 프로세스 Pi 대기 (Wait) ]
+                 │ (Yes)
+                 ▼
+ [ 가상 자원 할당 시뮬레이션 ]
+   Available = Available - Request
+   Alloc_i   = Alloc_i + Request
+   Need_i    = Need_i - Request
+                 │
+                 ▼
+  [ 안전 상태 알고리즘 (Safety Algorithm) 수행 ]
+        │                               │
+   (안전 상태 Safe)             (불안전 상태 Unsafe)
+        ▼                               ▼
+ [ 실제 자원 할당 확정 ]          [ 가상 할당 롤백 및 Pi 대기 ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 교착상태 대응 기법 | 핵심 메커니즘 | 자원 이용률 | 시스템 오버헤드 | 주요 장단점 |
+|---|---|---|---|---|
+| **예방 (Prevention)** | 4대 조건(상호배제, 점유대기, 비선점, 환형대기) 중 1개 차단 | 매우 낮음 | 낮음 | 자원 낭비 심각, 구현 비현실적 |
+| **회피 (Avoidance)** | 은행원 알고리즘, 안전 상태 유지 | 보통 | 높음 (매 요청 검증) | 교착 배제 보장, 최대 요구량 사전인지 제약 |
+| **탐지 (Detection)** | 대기 그래프(WFG) 주기적 사이클 탐색 | 높음 | 주기적 부하 | 사후 복구 비용 발생 (프로세스 강제종료) |
+| **무시 (Ostrich)** | 교착 무시 및 시스템 재기동 | 최고 | 없음 | 단순성 최고, 금융/미션크리티컬 적용 불가 |
 
 ## 출제 이력과 검증 출처
 
-- 제138회 정보관리기술사 1교시 11번: `은행가 알고리즘(Banker's Algorithm)`
-- [Q-Net 정보관리기술사 출제문제](https://www.q-net.or.kr/cst006.do?id=cst00601&gSite=Q&gId=)
-- [University of Illinois Chicago — Operating Systems: Deadlocks, Banker's Algorithm](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/7_Deadlocks)
+- Edsger W. Dijkstra - Cooperating Sequential Processes: The Banker's Algorithm
+- Abraham Silberschatz et al. - Operating System Concepts 10th Edition: Deadlocks
+- Andrew S. Tanenbaum, Herbert Bos - Modern Operating Systems: Deadlock Avoidance
 
 ## 연결 토픽
 
-- [교착상태](./038_deadlock/) · [프로세스 동기화 기법](./122_process_synchronization/) · [우선순위 역전](./059_priority_inversion/)
+- 상위 토픽: [038 데드락](./038_deadlock.md)
+- 연관 토픽: [091 경쟁 조건](./091_race_condition.md), [122 프로세스 동기화](./122_process_synchronization.md)

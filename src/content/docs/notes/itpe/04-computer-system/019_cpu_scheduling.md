@@ -1,6 +1,6 @@
 ---
 title: "CPU 스케줄링(CPU Scheduling)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T20:47:00+09:00"
 tags:
   - "notes-computer-system"
@@ -10,7 +10,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 ---
 
@@ -22,7 +22,7 @@ extra:
 
 - 본질: **CPU 스케줄링 (CPU Scheduling)** 은 실행 가능한 작업 중 다음에 CPU를 사용할 작업을 선택하는 운영체제 기능
 - 메커니즘: 준비 큐에서 정책에 맞는 작업 선택 → 디스패처의 문맥 전환·CPU 할당 → I/O 완료·선점 뒤 준비 상태 복귀
-- 통찰: 한계: 우선순위만 높이면 낮은 우선순위 작업이 기아 상태에 빠짐 → 방안: 대기 시간을 관측해 에이징 기준 적용
+- 통찰: 다중 프로그래밍 환경에서 CPU 이용률을 극대화하고 프로세스 간 응답성과 공평성을 보장하기 위해 최적의 디스패칭 정책을 수행 필요.
 
 <details>
 <summary>핵심 용어</summary>
@@ -107,16 +107,49 @@ extra:
 
 Linux 스케줄러 변화: 과거 CFS의 가상 실행시간 방식에서 Linux 6.6부터 EEVDF로 전환 시작. 실제 정책은 커널 버전과 설정별 확인.
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-우선순위 편중은 일부 작업을 기아 상태로 만들 수 있으므로 대표 부하의 응답·대기시간을 측정하고 장기 대기 작업부터 에이징 기준을 적용한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+인터랙티브 프로세스의 신속한 응답과 배치 프로세스의 처리량을 동시에 충족하기 위해 다단계 피드백 큐(MLFQ)를 적용하고, 현대 리눅스 커널의 CFS(Completely Fair Scheduler) 가상 런타임 최적화.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 다단계 피드백 큐 (MLFQ: Multi-Level Feedback Queue) 구조 ]
+
+ [신규 프로세스 도착]
+         │
+         ▼
+  ┌──────────────┐   Time Quantum = 4ms (최고 우선순위)
+  │ Queue 0 (RR) │ ──(타임슬라이스 소진 시 강등)──┐
+  └──────┬───────┘                                 │
+         │ (I/O 블록 시 우선순위 유지)            ▼
+         │                                 ┌──────────────┐   Time Quantum = 8ms
+         │                                 │ Queue 1 (RR) │ ──(타임슬라이스 소진 시 강등)──┐
+         │                                 └──────┬───────┘                                 │
+         │                                        │                                         ▼
+         ▼                                        ▼                                  ┌──────────────┐
+  [ 빠른 대화형 I/O 작업 ]                   [ 중간 처리 작업 ]                      │ Queue 2(FCFS)│ (CPU-Bound 대용량 배치)
+  (짧은 CPU 버스트, 최고 응답성 보장)                                                └──────────────┘
+                                                                                            │
+  * 주기적 에이징(Priority Boost): 일정 시간 후 모든 프로세스를 Queue 0으로 승격시켜 기아 방지
+```
+
+### 3. 기술 유형 및 비교 평가
+| 스케줄링 알고리즘 | 선점 여부 | 스케줄링 기준 | 장점 | 주요 단점 및 한계 |
+|---|---|---|---|---|
+| **FCFS** | 비선점 | 도착 순서 (FIFO) | 단순하고 기아 상태 없음 | 콘보이 효과 (호위 효과)로 대기시간 급증 |
+| **SJF (Shortest Job First)** | 비선점 | 다음 CPU 버스트 시간 | 이론상 최소 평균 대기시간 | 다음 버스트 시간 예측 불가, 긴 작업 기아 |
+| **SRTF (Preemptive SJF)** | 선점 | 잔여 CPU 버스트 시간 | 최적의 대기시간 단축 | 잦은 문맥 교환 오버헤드, 긴 작업 기아 |
+| **Round Robin (RR)** | 선점 | 고정 타임 퀀텀 (Time Slice) | 대화형 응답성 보장, 공평 | 퀀텀 크기에 따라 FCFS화 또는 오버헤드 폭증 |
+| **MLFQ** | 선점 | 작업 이력 기반 동적 우선순위 | 적응형 성능 최적화, 기아 방지 | 파라미터 튜닝(큐 수, 퀀텀 크기) 복잡 |
 
 ## 출제 이력과 검증 출처
 
-- 제137회 정보관리기술사 3교시 1번: CPU·디스크 스케줄링 개념과 SJF·SRT·SSTF·SLTF 설명(공식 Q-Net 문제지 대조). 아래 예상문제는 원문 문항과 구분
-- [Linux Kernel Documentation, CFS Scheduler](https://docs.kernel.org/scheduler/sched-design-CFS.html)
-- [Linux Kernel Documentation, EEVDF Scheduler](https://kernel.org/doc/html/latest/scheduler/sched-eevdf.html)
+- Abraham Silberschatz et al. - Operating System Concepts: CPU Scheduling
+- Remzi H. Arpaci-Dusseau - Operating Systems: Three Easy Pieces (MLFQ & CFS)
+- Linux Kernel Documentation: CFS Scheduler Design and Latency Tuning
 
 ## 연결 토픽
 
-- 연관 토픽: [가상 메모리](./023_virtual_memory.md), [컨테이너](./032_container.md)
+- 상위 토픽: [076 CPU](./076_cpu.md)
+- 연관 토픽: [010 스레드](./010_thread.md), [035 SJF](./035_sjf.md)

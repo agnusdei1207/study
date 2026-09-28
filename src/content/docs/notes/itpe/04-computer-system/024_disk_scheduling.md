@@ -1,6 +1,6 @@
 ---
 title: "디스크 스케줄링(Disk Scheduling)"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T20:54:00+09:00"
 tags:
   - "notes-computer-system"
@@ -10,7 +10,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 ---
 
@@ -22,7 +22,7 @@ extra:
 
 - 본질: **디스크 스케줄링 (Disk Scheduling)** 은 대기 중인 저장장치 I/O 요청의 처리 순서를 정하는 운영체제 기능
 - 메커니즘: HDD의 헤드 이동·대기 시간과 SSD·NVMe의 병렬 큐·소프트웨어 처리 비용에 맞춘 요청 순서 결정
-- 통찰: 한계: 최대 처리량만 보면 장시간 대기·지연 편차가 가려짐 → 방안: 장치별 대표 부하에서 처리량·지연·공정성을 함께 측정
+- 통찰: 기계적 디스크 헤드의 이동 거리와 탐색 시간을 최소화하고 I/O 요청 큐를 재정렬하여 전체 스토리지 처리량을 극대화함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -114,16 +114,39 @@ SSD에서 스케줄러 제거가 필수 조건은 아님. `none`은 선택지 �
 | HDD 탐색 최적화를 SSD에도 일률 적용 | 장치 내부 병렬성과 소프트웨어 비용을 포함해 정책 비교 |
 | SSD에서 스케줄러 제거를 필수로 오인 | `none`과 다른 정책을 실제 지연·공정성 요구에 따라 시험 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-처리량만 보면 장기 대기와 지연 편차가 가려지므로 HDD·SSD 대표 부하를 나눠 처리량·꼬리 지연·공정성을 비교해 정책을 선택한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+HDD 환경에서는 헤드 암의 이동 방향성을 보장하는 C-LOOK 알고리즘을 채택하고, 회전 지연이 없는 NVMe SSD 스토리지 환경에서는 멀티 큐 기반의 None/Kyber 스케줄러 적용.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 디스크 실린더 요청 큐 : 98, 183, 37, 122, 14, 124, 65, 67 (초기 헤드 위치: 53) ]
+
+  0          14       37           53     65  67         98       122 124        183    199
+  ├──────────┼────────┼────────────┼──────┼───┼──────────┼─────────┼───┼──────────┼──────┤
+                                   [53] ──>───>──>────────>─────────>───>──────────> [183] (SCAN/LOOK 한 방향 전진)
+  [14] <─────<────────┤                                                                │
+   │                                                                                   │
+   └───────────────────────────────────(C-LOOK: 즉시 최저 실린더 복귀)─────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| 디스크 스케줄링 기법 | 이동 방식 | 장점 | 주요 단점 및 한계 |
+|---|---|---|---|
+| **FCFS** | 요청 도착 순서대로 처리 | 공평성 완벽, 기아 상태 없음 | 헤드의 불규칙 이동으로 탐색 시간 극대화 |
+| **SSTF (Shortest Seek Time First)** | 현재 헤드에서 가장 가까운 트랙 우선 | 탐색 시간 대폭 단축 | 안쪽/바깥쪽 트랙 요청의 극심한 기아 현상 |
+| **SCAN (엘리베이터)** | 끝까지 한 방향 이동 후 반대 방향 처리 | 기아 완화, 균일한 처리량 | 양 끝단 도달 오버헤드, 중간 트랙 선호 편향 |
+| **C-SCAN (Circular SCAN)** | 한 방향으로만 서비스하고 끝에서 즉시 복귀 | 대기 시간의 균등성 향상 | 반대 방향 복귀 시 낭비 발생 |
+| **LOOK / C-LOOK** | 마지막 요청까지만 이동 후 방향 전환/복귀 | 불필요한 디스크 끝단 이동 제거 | C-SCAN의 복귀 메커니즘 수반 |
 
 ## 출제 이력과 검증 출처
 
-- 제137회 정보관리기술사 3교시 1번: CPU·디스크 스케줄링 개념과 SJF·SRT·SSTF·SLTF 설명(공식 Q-Net 문제지 대조). 아래 예상문제는 원문 문항과 구분
-- [Linux Kernel Documentation, Multi-Queue Block IO Queueing Mechanism](https://docs.kernel.org/block/blk-mq.html)
-- [Linux Kernel Documentation, Switching Scheduler](https://docs.kernel.org/6.6/block/switching-sched.html)
+- Abraham Silberschatz et al. - Operating System Concepts: Mass-Storage Structure
+- Remzi H. Arpaci-Dusseau - Operating Systems: Three Easy Pieces (Hard Disk Drives)
+- Linux Kernel Documentation: Block Layer I/O Schedulers (mq-deadline, kyber, bfq)
 
 ## 연결 토픽
 
-- 연관 토픽: [CPU 스케줄링](./019_cpu_scheduling.md), [가상 메모리](./023_virtual_memory.md)
+- 상위 토픽: [056 RAID](./056_raid.md)
+- 연관 토픽: [080 NAS](./080_nas.md), [084 SAN](./084_san.md)

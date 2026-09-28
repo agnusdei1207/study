@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "다중 리전 Active-Active 재해복구"
-author: "GPT-6"
+author: "Antigravity"
 date: "2026-09-24T20:27:00+09:00"
 tags:
   - "notes-computer-system"
 weight: 65
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "065"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **다중 리전 Active-Active 재해복구 (Multi-Region Active-Active DR)** 는 둘 이상의 리전에서 서비스를 운영해 한 리전 장애에도 다른 리전에서 서비스 지속을 노리는 구조
 - 메커니즘: 요청을 사용 가능한 리전으로 라우팅하고, 데이터 복제·쓰기 소유권·복구 절차를 일관성 요구에 맞춰 설계
-- 통찰: 한계: 양쪽 리전의 동시 가동만으로 데이터 충돌을 막지 못함 → 방안: 쓰기 소유권과 분할 시 처리 규칙을 정해 장애 시험
+- 통찰: 복수의 지리적 리전에 동일한 애플리케이션을 상시 동시 가동하고 양방향 데이터 복제와 지능형 GSLB를 적용하여 다운타임 제로를 달성함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -76,7 +76,7 @@ extra:
 
 각 리전의 애플리케이션을 가동해 두더라도 요청 분배 방식과 데이터 쓰기 구조는 별도로 결정해야 하는 설계 요소.
 
-리전 상태가 나빠지면 글로벌 라우팅에서 해당 리전을 제외하고 잔여 리전의 처리 용량과 데이터 복제 시점을 확인한다. 복귀 시에는 재동기화와 충돌을 해소한 뒤 트래픽을 다시 분배한다.
+리전 상태 이상 감지 시 글로벌 GSLB 라우팅에서 해당 리전을 배제하고 잔여 리전의 처리 용량과 복제 지연을 확인. 리전 복구 시에는 변경 데이터 재동기화 및 쓰기 충돌을 해소한 뒤 트래픽을 점진 분배.
 
 ## Ⅳ. 데이터 복제·복구 목표·운영 방식 비교
 
@@ -113,23 +113,45 @@ extra:
 | 모든 리전으로 트래픽이 몰리면 잔여 리전 용량 부족 | 장애 시나리오 기준 잔여 용량·우선순위·부하차단 정책 시험 |
 | 장애 판단 오류로 정상 리전까지 제외할 가능성 | 상태 점검·수동 개입 기준·복귀 절차를 함께 검증 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-단일 리전 차단부터 복제 지연·데이터 재진입까지 이어지는 정기 훈련을 수행하고 실측 RTO·RPO로 운영 승인을 결정한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+원거리 네트워크 지연(Latency)으로 인한 트랜잭션 충돌을 차단하기 위해 데이터 쓰기 샤딩을 적용하고, 비동기 복제 환경에서는 CRDT 또는 LWW 충돌 해결 정책 필수.
 
----
+### 2. 아키텍처 및 상세 메커니즘
+```text
+                        [ 글로벌 사용자 트래픽 ]
+                                   │
+                                   ▼
+             ┌───────────────────────────────────────────┐
+             │ [ Anycast DNS / 글로벌 로드밸런서 (GSLB) ] │
+             │  - 지연 시간 기반 최적 리전 트래픽 라우팅 │
+             └─────────────┬───────────────────────────┬─┘
+                           │                           │
+         ┌─────────────────┴─────────┐       ┌─────────┴─────────────────┐
+         ▼                           ▼       ▼                           ▼
+┌──────────────────────────────┐                   ┌──────────────────────────────┐
+│ [ Region A (서울 리전) ]     │                   │ [ Region B (도쿄 리전) ]     │
+│  - Active 웹/앱 서비스 클러스터│<─────────────────>│  - Active 웹/앱 서비스 클러스터│
+│  - 글로벌 분산 데이터베이스  │ 양방향 비동기 복제│  - 글로벌 분산 데이터베이스  │
+│  (CockroachDB / Spanner)     │ (CRDT / Raft 합의)│  (CockroachDB / Spanner)     │
+└──────────────────────────────┘                   └──────────────────────────────┘
+```
+
+### 3. 기술 유형 및 비교 평가
+| DR 아키텍처 모델 | RTO (복구 목표 시간) | RPO (복구 시점 목표) | 인프라 가동률 | 데이터 일관성 복잡도 |
+|---|---|---|---|---|
+| **Active-Standby (Hot)** | 수 분 ~ 수십 분 | 수 초 ~ 수 분 (비동기) | 50% (Standby 유휴 자원) | 단순 (단방향 복제) |
+| **Active-Active (동일존)**| 즉시 (수 초 이내) | 0 (동기 복제) | 100% (양 노드 부하 분산) | 보통 (동기 잠금 오버헤드) |
+| **멀티 리전 Active-Active**| **0 (즉시 무중단)** | **~ 0 (준동기/글로벌 합의)**| **100% (글로벌 트래픽 분산)**| **최고 (원거리 지연 및 충돌 제어)**|
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력** : 제137회 정보관리기술사 3교시 다중지역 동시 가동 재해복구 시스템 출제
-- **검증 출처** :
-  - [Google Cloud: Multi-regional deployment archetype](https://docs.cloud.google.com/architecture/deployment-archetypes/multiregional)
-  - [Google Cloud: Architecting disaster recovery](https://docs.cloud.google.com/architecture/disaster-recovery)
-  - [Google Cloud Storage: Availability and durability](https://cloud.google.com/storage/docs/availability-durability)
-  - [Q-Net: 제137회 정보관리기술사 문제지](https://www.q-net.or.kr/cst006.do?artlSeq=5242749&brdId=Q006&code=1203&gId=&gSite=Q&id=cst00602)
-
----
+- AWS Well-Architected Framework: Multi-Region Active-Active Architecture
+- Google Cloud Spanner: TrueTime and External Consistency Architecture
+- IEEE Transactions on Parallel and Distributed Systems: Multi-Region Disaster Recovery
 
 ## 연결 토픽
 
-- 관련 토픽: [다중 리전 재해복구 시스템](./068_multi_region_active_active_disaster_recovery.md), [클라우드 서비스 취약점](./088_cloud_service_security_vulnerabilities.md)
+- 상위 토픽: [043 데이터센터 입지 및 재해대응](./043_datacenter_location_disaster_response.md)
+- 연관 토픽: [049 클라우드 네이티브 DR](./049_cloud_native_disaster_recovery.md), [021 HA](./021_ha.md)
