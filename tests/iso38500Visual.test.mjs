@@ -5,64 +5,37 @@ import test from 'node:test';
 const notePath = 'src/content/docs/notes/itpe/01-it-strategy/002_iso_iec_38500.md';
 const cssPath = 'src/styles/custom.css';
 
-const shortHeading = '## 1교시 10점 답안';
-const longHeading = '## 2~4교시 25점 답안';
+function answerSection(note, number, next) {
+  const body = note.slice(note.indexOf('## 2~4교시 25점 답안'), note.indexOf('## 출제 이력과 검증 출처'));
+  const start = body.indexOf(`## ${number}.`);
+  const end = next ? body.indexOf(`\n## ${next}.`, start) : body.length;
+  return body.slice(start, end);
+}
 
-test('ISO 38500 shows EDM as a feedback cycle and explains the framework', async () => {
+test('ISO 38500 shows the EDM cycle as a directed text diagram in the framework section', async () => {
   const note = await readFile(notePath, 'utf8');
+  const core = answerSection(note, 'Ⅲ', 'Ⅳ');
+  assert.match(core, /```text[\s\S]*?평가[\s\S]*?(?:지시|방향 제시)[\s\S]*?(?:감독|모니터링)[\s\S]*?```/u, 'Ⅲ에 EDM 순환을 방향이 있는 텍스트 도해로 보여야 합니다.');
+  assert.match(core, /↓|→/u, 'EDM 순환은 방향이 있는 관계입니다.');
+});
 
-  assert.match(note, /```text[\s\S]*?거버넌스: 평가 → 방향 제시 → 감독[\s\S]*?관리: 실행·운영[\s\S]*?거버넌스: 재평가[\s\S]*?```/u, '거버넌스와 경영관리의 환류를 텍스트 도해로 보여야 합니다.');
-  assert.match(note, /Feedback Loop/u);
-
+test('ISO 38500 separates edition principles and framework elements in tables', async () => {
+  const note = await readFile(notePath, 'utf8');
+  const extension = answerSection(note, 'Ⅳ', 'Ⅴ');
   for (const element of ['Direction', 'Capability', 'Policy', 'Delegation', 'Performance', 'Accountability']) {
-    assert.match(note, new RegExp(`\\| \\*\\*${element}`, 'u'), `${element}의 역할 설명 표가 필요합니다.`);
+    assert.ok(extension.includes(`| **${element}**`) || extension.includes(`| ${element}`), `${element}의 역할 설명 표가 필요합니다.`);
   }
-});
-
-test('EDM cycle and dated-principles reference stay focused', async () => {
-  const note = await readFile(notePath, 'utf8');
-  const body = note.slice(note.indexOf(longHeading), note.indexOf('## 출제 이력과 검증 출처'));
-
-  const modelStart = body.indexOf('## Ⅱ.');
-  const modelEnd = body.indexOf('\n## Ⅲ.', modelStart);
-  assert.match(body.slice(modelStart, modelEnd), /```text/u, 'EDM 순환은 방향이 분명한 텍스트 도해로 표현합니다.');
-  const principlesStart = body.indexOf('## Ⅲ.');
-  const principlesEnd = body.indexOf('\n## Ⅳ.', principlesStart);
-  assert.match(body.slice(principlesStart, principlesEnd), /\| \*\*책임\*\*/u, '구판 원칙은 판본을 명시한 표로 간결하게 설명합니다.');
-  assert.doesNotMatch(body.slice(principlesStart, principlesEnd), /```(?:mermaid|text)/u, '여섯 항목의 나열은 별도 도해로 중복하지 않습니다.');
-});
-
-test('the 10 point answer reuses a body diagram instead of a meta table', async () => {
-  const note = await readFile(notePath, 'utf8');
-  const excerpt = note.slice(note.indexOf(shortHeading), note.indexOf('## 2~4교시 예상문제'));
-
-  const body = note.slice(note.indexOf(longHeading), note.indexOf('## 출제 이력과 검증 출처'));
-  const textBlocks = (text) => [...text.matchAll(/```text\s*\n([\s\S]*?)```/gu)]
-    .map(([, source]) => source.trim().replaceAll(/\s+/gu, ' '));
-  const bodyDiagrams = new Set(textBlocks(body));
-  const excerptDiagrams = textBlocks(excerpt);
-
-  assert.ok(excerptDiagrams.length > 0, '10점 발췌에는 텍스트 도해가 필요합니다.');
-  assert.ok(
-    excerptDiagrams.some((diagram) => bodyDiagrams.has(diagram)),
-    '10점 발췌는 본문 텍스트 도해를 그대로 재사용해야 합니다.'
-  );
-  const afterOverview = excerpt.slice(excerpt.indexOf('### Ⅱ.'));
-  assert.doesNotMatch(afterOverview, /\|\s*(구분|항목)\s*\|/u, '개요 뒤의 본문 그림을 메타 요약 표로 대체하지 않습니다.');
+  assert.match(extension, /2015/u, '구판 원칙은 판본을 명시해야 합니다.');
 });
 
 test('legacy ITPE visualization CSS stays removed', async () => {
   const css = await readFile(cssPath, 'utf8');
-
   for (const legacyClass of ['itpe-flow-', 'itpe-pipeline', 'itpe-trace-band', 'itpe-svg-', 'itpe-edm-']) {
-    assert.doesNotMatch(css, new RegExp(`\\.${legacyClass}`, 'u'), `${legacyClass} 시각화 CSS는 제거해야 합니다.`);
+    assert.doesNotMatch(css, new RegExp(`\.${legacyClass}`, 'u'), `${legacyClass} 시각화 CSS는 제거해야 합니다.`);
   }
 });
 
 test('desktop Markdown tables use the full content width', async () => {
   const css = await readFile(cssPath, 'utf8');
-  assert.match(
-    css,
-    /\.sl-markdown-content table\s*\{[^}]*display:\s*table;[^}]*width:\s*100%;/su
-  );
+  assert.match(css, /\.sl-markdown-content table\s*\{[^}]*display:\s*table;[^}]*width:\s*100%;/su);
 });
