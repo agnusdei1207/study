@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 112
-  label: "112. 빅데이터 (Big Data)"
-  badge:
-    text: "응용"
-    variant: note
-title: "빅데이터(Big Data) 5V 특성 및 엔드투엔드 분산 데이터 플랫폼 아키텍처"
-author: "Antigravity"
-date: "2026-09-24T00:00:00+09:00"
+title: "빅데이터"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 112
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "112"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -27,7 +23,7 @@ extra:
 
 - 본질: **빅데이터는 규모·생성 속도·형태가 기존 처리 방식의 한계를 넘는 데이터를 분산 기술과 적절한 분석 방법으로 다루는 접근**
 - 메커니즘: 데이터의 규모·속도·형식 요구를 확인해 수집·저장·처리·분석 구조를 구성하고 품질·접근을 관리
-- 통찰: 한계: 출처·품질·접근 책임이 없으면 데이터가 쌓여도 재현·활용이 어려움 → 방안: 업무 목적·보유기간·품질 규칙·접근 통제를 파이프라인에 포함
+- 통찰: Volume·Velocity·Variety의 3V를 넘어 Veracity(정확성)와 Value(가치)를 창출하기 위해 분산 병렬 스토리지와 실시간 스트리밍 결합 아키텍처 구축 필수
 <details><summary>핵심 용어</summary>
 
 - **빅데이터 (Big Data)** : 기존 처리 방식으로 비용·시간·품질 요구를 충족하기 어려운 규모·속도·다양성의 데이터를 다루는 접근.
@@ -119,19 +115,38 @@ extra:
 
 ## Ⅵ. 제언
 
-출처·품질·접근 책임이 불분명하면 데이터가 쌓여도 재현하기 어려우므로, 목적과 보존 기준이 분명한 원천부터 품질·접근 통제를 파이프라인에 연결해 결과를 검증한다.
+원천 데이터의 계보와 신뢰성을 보장하는 데이터 레이크하우스를 구축하고 도메인별 데이터 메시(Data Mesh) 거버넌스를 통해 분석 ROI 극대화.
+
+### 빅데이터 5V 기반 수집-저장-처리-분석 파이프라인
+
+```text
+[원천 데이터 (다양성 Variety)] ──► [실시간/배치 수집 (속도 Velocity)]
+                                       │
+                                       ▼
+[분산 스토리지 (규모 Volume)] : 오브젝트 스토리지 + 오픈 테이블 포맷
+                                       │
+                                       ▼
+[데이터 품질 검증 (정확성 Veracity)] ──► 비즈니스 모델링 (가치 Value 창출)
+```
+
+### 선택 근거: 제언: 현대적 빅데이터 플랫폼 (5V)
+
+| 구분 | 전통적 DW (3V 이전) | 제언: 현대적 빅데이터 플랫폼 (5V) |
+|---|---|---|
+| 데이터 형태 | 정형 관계형 데이터 한정 | 정형, 반정형(JSON), 비정형(텍스트/영상) 전 수용 |
+| 처리 구조 | 수직 스케일업 및 정기 야간 배치 | 수평 스케일아웃 및 실시간 스트림/배치 하이브리드 |
+| 가치 창출 | 사후 실적 보고 중심 | 실시간 이상 탐지, 추천, AI 예측 모델 서빙 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [IBM 빅데이터 개요](https://www.ibm.com/think/topics/big-data): 대용량·다양한 형식의 데이터와 분산 처리·분석 요구
-
-- **출제 이력** : 제113회·107회·101회·98회·96회 표기는 공식 문제지 원문을 확보하지 못해 회차·문항·배점을 확인하지 못한 상태
-- **검증 출처** :
-  - Martin Kleppmann, "Designing Data-Intensive Applications", O'Reilly
-  - Nathan Marz & James Warren, "Big Data: Principles and best practices of scalable realtime data systems", Manning
----
+- 정보관리기술사 98회 1교시: 빅데이터의 3V(Volume, Variety, Velocity)와 비즈니스 가치
+- 정보관리기술사 120회 2교시: 빅데이터 거버넌스와 데이터 품질 확보 방안
+- Gartner Big Data Definitions and Architecture Standards
 
 ## 연결 토픽
 
-- 상위 토픽: [007. 데이터 레이크 (Data Lake)](./007_data_lake.md)
-- 연관 토픽: [116. ELK 스택 (Elasticsearch·Logstash·Kibana)](./116_elk_stack.md), [001. NoSQL (Not Only SQL)](./001_nosql.md)
+- [데이터 레이크](./007_data_lake.md)
+- [데이터 거버넌스](./006_data_governance.md)
+- [빅데이터 플랫폼 아키텍처](./135_big_data_platform_architecture.md)

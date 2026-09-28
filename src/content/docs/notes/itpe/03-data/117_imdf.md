@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 117
-  label: "117. IMDF"
-  badge:
-    text: "응용"
-    variant: note
-author: "Codex"
+title: "실내 매핑 데이터 포맷(IMDF)"
 category: "03-data"
-date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
-weight: 117
-title: "IMDF(Indoor Mapping Data Format) 실내 지도 데이터 표준"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "117"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **IMDF는 실내 공간의 위치·형태·명칭·연결 정보를 교환하기 위한 GeoJSON 기반 데이터 표준**
 - 메커니즘: 공간 객체를 정해진 Feature와 속성으로 표현하고, 식별자와 참조로 공간 간 관계를 전달
-- 통찰: 한계: 생산자별 속성·참조 오류가 있으면 실내 지도의 연결·검색 결과가 깨짐 → 방안: 스키마·참조 무결성 검사를 배포 과정에 넣고 실제 지도 시나리오로 확인
+- 통찰: GPS 음영 구역인 실내 공간 정보의 상호운용성을 확보하기 위해 OGC 표준에 기반한 GeoJSON 기반의 지향성 위상 모델과 계층적 공간 구조화 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -117,13 +112,40 @@ Feature의 참조는 대상 식별자와 유형을 함께 가리키므로, 공�
 
 ## Ⅵ. 제언
 
-Feature 참조나 층·통로 관계가 틀리면 길찾기가 끊기므로 배포 전 ID·유형·공간 관계를 자동 검사하고 실제 경로 탐색으로 확인한다.
+공항, 대형 쇼핑몰 등 복합 건물 내 장소(Venue), 층(Level), 단위 공간(Unit) 간의 포함 관계를 검증하고 비콘/Wi-Fi 기반 측위 시스템과의 실시간 연계 구축.
+
+### IMDF 핵심 계층 구조 모델
+
+```text
+[Venue (건물 단지 / 전체 부지)]
+  │
+  ▼
+[Building (개별 건물 동)]
+  │
+  ▼
+[Level (지상/지하 층수 구조)]
+  │
+  ├─ [Unit (독립 방, 복도, 화장실 공간)] ──► [Anchor (POI/매장 위치)]
+  └─ [Opening (문, 창문 등 출입 통로)]  ──► [Footpath (보행자 경로망)]
+```
+
+### 선택 근거: 제언: OGC IMDF 표준 모델
+
+| 구분 | 전통적 2D CAD/도면 | 제언: OGC IMDF 표준 모델 |
+|---|---|---|
+| 데이터 표준 | CAD 독점 포맷으로 웹 연계 곤란 | 표준 GeoJSON 기반 모바일/웹 완벽 호환 |
+| 위상 관계 | 단순 선과 면의 그래픽 표현 | 공간 간 연결성(Footpath)과 포함 관계 위상 모델링 |
+| 실내 내비게이션 | 경로 탐색 알고리즘 적용 불가 | A* 알고리즘 등 실내 최단 경로 내비게이션 즉시 지원 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: IMDF의 표준 구조와 실내 공간정보 활용에 관한 기본 예상문제
-- 검증 출처: [OGC IMDF 표준 안내](https://www.ogc.org/standards/indoor-mapping-data-format/), [OGC IMDF 1.0.0 Reference](https://docs.ogc.org/cs/20-094/Reference/index.html)
+- 정보관리기술사 125회 1교시: 실내 공간정보 표준화와 IMDF(Indoor Mapping Data Format)
+- OGC (Open Geospatial Consortium) IMDF Standard Specification
 
 ## 연결 토픽
 
-- 실내 공간정보의 모델링 및 공간정보 표준
+- [다차원 인덱스 구조](./052_multidimensional_index_structure.md)
+- [공간 연산자](./119_spatial_operator.md)
+- [데이터 표준화](./008_data_standardization.md)

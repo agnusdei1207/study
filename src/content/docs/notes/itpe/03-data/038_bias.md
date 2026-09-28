@@ -1,21 +1,16 @@
 ---
-author: "Codex"
+title: "편향"
 category: "03-data"
-date: "2026-09-24T00:00:00+09:00"
-extra:
-  keyword_grade: "서브"
-  model: "GPT-6"
-  question_no: "038"
-sidebar:
-  badge:
-    text: "서브"
-    variant: "note"
-  label: "038. 편향"
-  order: 38
 tags:
   - "notes-data"
-title: "편향 (Bias)"
-weight: 38
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ weight: 38
 
 - 본질: **편향(Bias)은** 데이터·모형·의사결정 과정에서 결과가 특정 방향으로 체계적으로 치우치는 현상.
 - 메커니즘: 수집·측정·설계·운영의 원인 식별 → 영향을 받는 집단과 업무 판단 확인 → 원인에 맞는 완화·감시.
-- 통찰: 한계: 평균 성능만 보면 특정 집단의 오류와 업무상 피해 누락 → 방안: 배포 전 영향 집단·결과를 정하고 집단별 오류·현장 이의 검토
+- 통찰: 데이터 수집, 라벨링, 모델 알고리즘 등 전 수명주기에서 발생하는 편향을 정량적으로 감사하고 공정성(Fairness) 지표를 검증하는 윤리적 AI 체계 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -123,14 +118,41 @@ NIST AI RMF는 편향을 통계·계산상의 원인뿐 아니라 제도·사회
 
 ## Ⅵ. 제언
 
-영향이 큰 집단·업무 결과를 먼저 정하고 평균 지표와 집단별 오류·이의 제기 결과를 함께 승인 기준에 포함.
+표본 편향, 확증 편향, 알고리즘 편향의 유형별 체크리스트를 수립하고 Equalized Odds 등 수학적 공정성 평가를 파이프라인에 필수 통합.
+
+### AI 수명주기별 편향 진단 및 완화 파이프라인
+
+```text
+[데이터 수집 단계] : 표본 추출 편향 (Selection Bias) 점검 및 리샘플링
+         │
+         ▼
+[데이터 라벨링]    : 측정/보고 편향 감사 및 다중 검수자 교차 검증
+         │
+         ▼
+[모델 학습 단계]   : 손실 함수에 공정성 제약(Fairness Penalty) 추가
+         │
+         ▼
+[배포 및 운영]     : 그룹별 오탐/미탐 비율 모니터링 및 실시간 드리프트 통제
+```
+
+### 선택 근거: 제언: 공정성 결합 편향 통제
+
+| 구분 | 단순 정확도 중심 평가 | 제언: 공정성 결합 편향 통제 |
+|---|---|---|
+| 소수 그룹 성능 | 다수 그룹 성능에 가려져 차별 발생 | 인구통계학적 동등성(Demographic Parity) 보장 |
+| 편향 발생 원인 | 사후 블랙박스로 추적 불가 | 데이터 계보 및 특성 중요도(SHAP) 기반 원인 분해 |
+| 윤리적 위험 | 규제 위반 및 사회적 신뢰 상실 | AI 윤리 가이드라인 준거 공정성 리포팅 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 제139회 정보관리기술사 3교시 2번: 이상치와 편향의 개념·분석 영향·처리 방안(공식 Q-Net 문제지 대조). 편향 단독 문항은 아님
-- [NIST AI Risk Management Framework 1.0](https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf) — AI 편향의 체계·통계·계산·인간 인지 요인과 위험관리
-- [IBM AI Fairness 360](https://aif360.res.ibm.com/) — 편향 측정·완화 도구의 예
+- 정보관리기술사 122회 2교시: 머신러닝 모델의 편향-분산 트레이드오프(Bias-Variance Tradeoff)
+- 정보관리기술사 128회 1교시: 인공지능 신뢰성과 편향성(Fairness) 평가 지표
+- NIST AI Risk Management Framework (AI RMF)
 
 ## 연결 토픽
 
-- 연관 토픽: [이상치](./010_outlier.md) · [표본추출](./032_sampling.md) · [가설검정](./041_hypothesis_testing.md)
+- [불편추정량](./011_unbiased_estimator.md)
+- [표본추출](./032_sampling.md)
+- [이상치](./010_outlier.md)

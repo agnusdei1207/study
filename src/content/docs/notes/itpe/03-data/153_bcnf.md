@@ -12,7 +12,7 @@ tags:
   - "notes-data"
 weight: 153
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "응용"
   question_no: "153"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **BCNF** 는 모든 비자명 함수적 종속성 $X \rightarrow Y$에서 결정자 $X$가 슈퍼키인 정규형
 - 메커니즘: 모든 비자명 X→Y에서 X의 슈퍼키 여부를 판정하고 위반 시 무손실 분해와 종속성 보존을 확인
-- 통찰: 한계: BCNF 분해는 무손실이어도 일부 함수 종속성의 국소 검사가 어려워짐 → 방안: 업무 제약의 보존 요구를 평가해 3NF·BCNF를 선택하고 분해 후 제약 검증 위치를 지정
+- 통찰: 모든 비자명 함수 종속성에서 결정자가 슈퍼키가 되도록 강제하여 3NF의 주속성 예외로 인한 갱신 이상을 원천 제거함.
 
 <details><summary>핵심 용어</summary>
 
@@ -65,7 +65,7 @@ extra:
 
 ### 1. BCNF의 수학적 정의
 - 릴레이션 $R$에 성립하는 모든 비자명한(Non-trivial) 함수적 종속성 $X \rightarrow Y$ ($Y \nsubseteq X$)에 대하여:
-  $$X \text{는 } R \text{의 슈퍼키(Super Key)이다.}$$
+  $$X \text{는 } R \text{의 슈퍼키(Super Key) 성립}$$
 
 ### 2. 주속성(Prime Attribute)과 비주속성(Non-prime Attribute)
 - **주속성** : 릴레이션의 어떤 후보키에라도 속하는 속성
@@ -136,22 +136,41 @@ R ── 교수→과목 기준 분해 ──┬─ R1(교수, 과목)
 | 한계 | 방안 |
 |---|---|
 | BCNF 분해는 무손실이어도 일부 함수 종속성의 국소 검사가 어려워짐 | 업무 제약의 보존 요구를 평가해 3NF·BCNF를 선택하고 분해 후 제약 검증 위치를 지정 |
+| 테이블 분해로 인한 다중 조인 발생 및 질의 성능 저하 | 빈번한 조인 질의에 대해 물리적 비정규화 또는 머티리얼라이즈드 뷰 적용 검토 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-업무 제약의 국소 검사가 필요한 테이블부터 3NF 유지와 BCNF 분해를 비교하고 분해 뒤 검증 책임을 먼저 확정.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+결정자가 슈퍼키가 아닌 복합 후보키 릴레이션에 대해 BCNF 분해를 우선 검토하되, 함수 종속성 보존 손실이 발생할 경우 3NF 유지 및 트리거 기반 제약 검증을 병행 수립.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+                 [ 릴레이션 R과 함수 종속성 집합 F ]
+                               │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+       [ 모든 X->Y의 X가 슈퍼키 ]     [ 일부 X->Y의 X가 슈퍼키 아님 ]
+               │                               │
+           [ BCNF 충족 ]             ┌─────────┴─────────┐
+                                     ▼                   ▼
+                               [ Y가 주속성 ]      [ Y가 비주속성 ]
+                                     │                   │
+                                [ 3NF 충족 ]        [ 3NF 위반 ]
+                                (BCNF 분해 검토)     (2NF/3NF 분해)
+```
+
+### 3. 기술 유형 및 비교 평가
+| 정규형 | 주요 판정 기준 | 주속성 예외 허용 | 무손실 조인 보장 | 종속성 보존 보장 | 잔존 이상 현상 |
+|---|---|---|---|---|---|
+| **2NF** | 부분 함수 종속성 제거 | 불가 | 항상 가능 | 항상 가능 | 이행적 함수 종속 이상 |
+| **3NF** | 이행적 함수 종속성 제거 | 허용 ($Y$가 주속성이면 허용) | 항상 가능 | 항상 가능 (합성 알고리즘) | 비후보키 결정자 갱신 이상 |
+| **BCNF** | 모든 비자명 FD의 결정자가 슈퍼키 | 불허 (주속성 예외 배제) | 항상 가능 (분해 알고리즘) | 손실 가능 (일부 보존 불가) | 다치 종속(MVD) 이상 |
 
 ## 출제 이력과 검증 출처
 
-- [IBM 데이터베이스 정규화 개요](https://www.ibm.com/think/topics/database-normalization): 결정자·후보키에 따른 BCNF와 조인 종속성의 구분
-
-- **기출 이력** :
-  - 기존 제105회 정보관리·제114회 컴퓨터시스템응용 기출 표기는 공식 Q-Net 원문 미수집으로 회차·문항·배점 미확인
-- **검증 출처** :
-  - R.F. Boyce, D.D. Chamberlin, M.M. Astrahan, "Specifying Queries as Relational Expressions", CACM
-  - Abraham Silberschatz et al., "Database System Concepts 7th Edition", Chapter 14 Relational Database Design
-  - C.J. Date, "An Introduction to Database Systems 8th Edition", Functional Dependencies and Normalization
----
+- Raymond F. Boyce, Donald D. Chamberlin - Using a Relational Model in High-level Query Languages
+- Abraham Silberschatz et al. - Database System Concepts (Chapter 14: Relational Database Design)
+- C.J. Date - An Introduction to Database Systems: Functional Dependencies and Normalization
 
 ## 연결 토픽
 

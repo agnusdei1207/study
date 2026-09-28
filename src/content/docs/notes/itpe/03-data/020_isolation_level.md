@@ -4,14 +4,12 @@ category: "03-data"
 tags:
   - "격리수준"
   - "트랜잭션"
-date: "2026-09-24T00:00:00+09:00"
-author: "Codex"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 sidebar:
-  label: "020. 트랜잭션 격리 수준"
-  order: 20
   badge:
     text: "기초"
 ---
@@ -24,7 +22,7 @@ sidebar:
 
 - 본질: **트랜잭션 격리 수준은** 동시에 실행되는 트랜잭션이 서로의 변경을 어느 정도 관찰할 수 있는지 정하는 기준
 - 메커니즘: 업무가 허용하지 않는 읽기·쓰기 이상현상 정의 → 격리 수준 선택 → DBMS의 실제 구현·재시도·성능 검증
-- 통찰: 한계: 격리 수준 이름만 보면 DBMS별 구현과 쓰기 충돌의 업무 영향 누락 → 방안: 허용 불가 동시 실행 결과를 정하고 실제 DBMS에서 재시도·부하 시험
+- 통찰: 모든 업무에 Serializable을 강제하면 동시 처리량이 급감하므로 비즈니스 정합성 허용치에 맞춰 적정 격리 수준을 차등 배정하는 정밀 튜닝 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -131,13 +129,41 @@ sidebar:
 
 ## Ⅵ. 제언
 
-업무 불변조건과 허용 불가 동시 실행 결과를 먼저 정하고 대상 DBMS에서 잠금·버전·재시도 동작을 부하 시험.
+오손 읽기(Dirty Read), 반복 불가능 읽기(Non-repeatable Read), 팬텀 읽기(Phantom Read) 위험도를 평가하여 Read Committed와 Repeatable Read(MVCC)를 최적 배분.
+
+### 격리 수준별 이상 현상 방어 및 트레이드오프
+
+```text
+[Read Uncommitted] ──► Dirty Read 발생 가능 (최대 동시성, 무결성 위험)
+         │
+         ▼ (Dirty Read 차단)
+[Read Committed]   ──► Non-repeatable Read 발생 가능 (엔터프라이즈 기본값)
+         │
+         ▼ (Non-repeatable Read 차단)
+[Repeatable Read]  ──► Phantom Read 발생 가능 (MySQL InnoDB는 MVCC로 방어)
+         │
+         ▼ (모든 동시성 이상 완벽 차단)
+[Serializable]     ──► 동시 처리량 최하, 완벽한 직렬 가능성 보장
+```
+
+### 선택 근거: 제언: 비즈니스별 격리수준 차등화
+
+| 구분 | Serializable 획일 적용 | 제언: 비즈니스별 격리수준 차등화 |
+|---|---|---|
+| 금융/결제 트랜잭션 | 동시성 저하로 타임아웃 빈발 | 비관적 잠금 결합한 Repeatable Read 적용 |
+| 대량 조회/통계 | 불필요한 락 대기로 처리 지연 | Read Committed 또는 MVCC 스냅샷 읽기 |
+| 시스템 자원 효율 | 데드락 빈발 및 쓰루풋 급감 | 업무 무결성 충족 최소 수준으로 처리량 극대화 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [PostgreSQL 공식 문서: Transaction Isolation](https://www.postgresql.org/docs/current/transaction-iso.html)
-- [Microsoft Learn: Transaction Isolation Levels](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/transaction-isolation-levels)
+- 정보관리기술사 115회 1교시: 트랜잭션 격리 수준 4단계와 동시성 이상 현상 3가지
+- 정보관리기술사 127회 2교시: MVCC 환경에서 팬텀 리드(Phantom Read) 해결 메커니즘
+- ANSI/ISO SQL-92 Transaction Isolation Level Standard
 
 ## 연결 토픽
 
-- 연관 토픽: [동시성 제어](./009_concurrency_control.md), [무결성 제약](./013_integrity_constraint.md)
+- [동시성 제어](./009_concurrency_control.md)
+- [무결성 제약](./013_integrity_constraint.md)
+- [NoSQL](./001_nosql.md)

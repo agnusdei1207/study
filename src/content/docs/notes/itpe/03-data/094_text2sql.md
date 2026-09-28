@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 94
-  label: "094. TEXT2SQL"
-  badge:
-    text: "서브"
-    variant: note
-title: "Text-to-SQL(NL2SQL) 아키텍처 및 LLM 기반 자연어 쿼리 변환 체계"
-author: "Antigravity"
-date: "2026-09-24T16:50:00+09:00"
+title: "Text2SQL"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 94
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "094"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **Text-to-SQL은** 자연어 질문을 데이터베이스 질의로 변환하는 방식
 - 메커니즘: 질문 의도와 스키마를 연결해 SQL을 만들고, 구문·권한·자원 제한을 검증한 뒤 실행
-- 통찰: 한계: 문법상 유효한 SQL도 모호한 업무 용어·스키마 설명 때문에 다른 데이터를 조회할 수 있음 → 방안: 카탈로그의 정의·관계를 보완하고 기준 질문·정답 결과로 생성·권한을 회귀 평가
+- 통찰: 자연어 질의를 정확한 SQL로 변환하기 위해 LLM 프롬프트에 스키마 메타데이터, Few-Shot 예제, 정적 SQL 구문 검증기를 결합한 에이전틱 파이프라인 구축 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -106,7 +102,7 @@ extra:
 | 입력 문장에 포함된 지시 조작 | 모델 지시와 데이터의 경계 설정, 도구 권한 분리, SQL을 신뢰 경계에서 독립 검증 |
 | 결과 오해·환각 설명 | SQL·필터·기간을 이용자에게 드러내고 결과 근거와 불확실성을 표시 |
 
-SELECT 문만 허용하는 정책이나 읽기 전용 계정은 단독 보안 보장이 아니다. 저장 함수·자원 소모 질의·민감 데이터 조회를 포함해 실제 DBMS 권한과 실행 경계를 검증한다.
+SELECT 전용 정책 외에도 저장 함수 악용, 자원 고갈형 질의, 민감 데이터 유출 차단을 위한 DBMS 차원의 세밀한 권한 및 실행 경계 검증 필수.
 
 ## Ⅴ. 한계와 방안
 
@@ -118,18 +114,45 @@ SELECT 문만 허용하는 정책이나 읽기 전용 계정은 단독 보안 �
 
 ## Ⅵ. 제언
 
-**제언:** 허용 뷰로 제한된 읽기 환경부터 시작해 기준 질문의 결과 정확도와 권한 차단율을 측정하고, 검증된 업무 도메인만 확장한다.
+스키마 링킹(Schema Linking)을 통해 테이블·컬럼 환각을 방지하고 DDL 실행 전 SQLGlot 기반 AST 파싱 및 읽기 전용(SELECT) 권한 통제 강제.
 
-## 출제 이력과 검증 출처
+### 에이전틱 Text2SQL 변환 및 검증 파이프라인
 
-- 정보관리기술사 제137회 2교시: Text-to-SQL
-- Pourreza et al., [DIN-SQL: Decomposed In-Context Learning of Text-to-SQL with Self-Correction](https://papers.neurips.cc/paper_files/paper/2023/file/72223cc66f63ca1aa59edaec1b3670e6-Paper-Conference.pdf)
-- OWASP, [LLM Prompt Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-- OWASP, [Database Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html)
+```text
+[자연어 질의 인입] ("지난달 VIP 고객별 총 구매액 조회해줘")
+         │
+         ▼
+[스키마 링킹 (Schema Linking)] : 관련 테이블/컬럼 및 비즈니스 용어 사전 검색
+         │
+         ▼
+[LLM SQL 생성 (Few-Shot Prompting)] ──► 생성된 Candidate SQL
+         │
+         ▼
+[정적 구문 검증 및 보안 검사 (SQLGlot)]
+  - 문법 오류 검증, DDL/DML 차단 (SELECT만 허용), 파티션 키 포함 확인
+         │
+         ▼
+[안전한 읽기 전용 복제본 DB 질의 실행] ──► [자연어 결과 요약 응답]
+```
+
+### 선택 근거: 제언: 에이전틱 Text2SQL 파이프라인
+
+| 구분 | 단순 LLM 프롬프트 생성 | 제언: 에이전틱 Text2SQL 파이프라인 |
+|---|---|---|
+| 스키마 환각 | 존재하지 않는 컬럼/조인 조건 날조 | 사전 벡터 검색 기반 관련 스키마만 주입 |
+| 보안 위험 | SQL Injection 및 무단 갱신 위험 | AST 검증기로 SELECT 외 구문 원천 차단 |
+| 실행 성공률 | 복잡한 중첩 쿼리 작성 실패 다발 | 자가 수정(Self-Correction) 에이전트 루프 결합 |
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 133회 2교시: LLM 기반 Text2SQL 기술의 원리와 엔터프라이즈 도입 전략
+- 정보관리기술사 136회 1교시: RAG와 결합한 자연어 데이터베이스 질의 인터페이스
+- Spider & BIRD Text-to-SQL Benchmark Papers
+
 ## 연결 토픽
 
-- [015. 텍스트 마이닝](./015_text_mining.md)
-- [098. 정적 SQL vs 동적 SQL](./098_dynamic_sql.md)
+- [동적 SQL](./098_dynamic_sql.md)
+- [벡터 데이터베이스](./044_vector_database.md)
+- [데이터 표준화](./008_data_standardization.md)

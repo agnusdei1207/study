@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 62
-  label: "062. 앙상블 학습"
-  badge:
-    text: "기초"
-    variant: note
-title: "앙상블 학습 (Ensemble Learning): 배깅과 부스팅"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "앙상블 배깅·부스팅"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 62
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "062"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **앙상블 학습(Ensemble Learning)은** 여러 예측기의 결과를 결합해 단일 예측기의 한계를 보완하는 학습 방법
 - 메커니즘: 배깅은 표본 변동을 이용해 독립 모델을 집계하고, 부스팅은 이전 단계의 오차에 초점을 두고 모델을 순차 결합
-- 통찰: 한계: 지표 하나만으로 복잡한 앙상블을 도입하면 실제 업무 손실과 운영 비용을 놓침 → 방안: 업무 손실 지표로 기준 모델과 후보의 예측·운영 비용을 같은 조건에서 비교
+- 통찰: 단일 모델의 한계를 극복하기 위해 분산을 줄이는 병렬 배깅(Random Forest)과 편향을 줄이는 순차 부스팅(LightGBM, XGBoost)의 수학적 특성에 따른 차등 적용 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -105,16 +100,38 @@ extra:
 
 ## Ⅵ. 제언
 
-업무 손실 지표와 운영 지연 한도를 먼저 정하고 동일 검증 자료에서 기준 모델 대비 앙상블의 순이득을 확인.
+노이즈가 많은 데이터는 배깅으로 과적합을 방지하고 고성능 예측이 요구되는 정형 데이터는 조기 종료(Early Stopping)를 결합한 그래디언트 부스팅 적용.
+
+### 배깅(Bagging)과 부스팅(Boosting) 학습 메커니즘
+
+```text
+[배깅 (Bagging): 병렬 분산 축소]
+  원천 데이터 ──► 부트스트랩 샘플링 ──► [개별 독립 모델 병렬 학습] ──► 투표/평균 집계
+                                           (Random Forest)
+
+[부스팅 (Boosting): 순차 편향 축소]
+  원천 데이터 ──► [약한 학습기 1] ──► [오답 가중치 부여] ──► [약한 학습기 2] ──► 최종 결합
+                                           (XGBoost / LightGBM)
+```
+
+### 선택 근거: 부스팅 (Boosting)
+
+| 구분 | 배깅 (Bagging) | 부스팅 (Boosting) |
+|---|---|---|
+| 학습 방식 | 독립적인 표본 기반 병렬 학습 | 이전 모델의 오차를 보완하는 순차적 학습 |
+| 오차 감소 | 분산(Variance) 감소 (과적합 완화) | 편향(Bias) 감소 (예측력 극대화) |
+| 노이즈 영향 | 노이즈 및 이상치에 상대적 강건 | 이상치에 가중치가 집중되어 과적합 위험 존재 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- Leo Breiman, “Bagging Predictors,” *Machine Learning*, 24, 123–140, 1996: https://doi.org/10.1007/BF00058655
-- scikit-learn User Guide, “Ensemble methods”: https://scikit-learn.org/stable/modules/ensemble.html
-- scikit-learn, “Single estimator versus bagging: bias-variance decomposition”: https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html
+- 정보관리기술사 114회 2교시: 머신러닝 앙상블 학습(Ensemble Learning)에서 배깅과 부스팅의 원리 비교
+- 정보관리기술사 126회 1교시: 그래디언트 부스팅(GBM) 알고리즘과 XGBoost, LightGBM 특징
+- The Elements of Statistical Learning Standard Reference
 
 ## 연결 토픽
 
-- [편향](./038_bias/) · [데이터마이닝](./043_data_mining/) · [잭나이프·부트스트랩](./068_jackknife_bootstrap/)
+- [편향](./038_bias.md)
+- [불편추정량](./011_unbiased_estimator.md)
+- [데이터 마이닝](./043_data_mining.md)

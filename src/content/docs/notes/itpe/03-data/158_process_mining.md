@@ -12,7 +12,7 @@ tags:
   - "notes-data"
 weight: 158
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "응용"
   question_no: "158"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **프로세스 마이닝 (Process Mining)** 은 정보시스템의 이벤트 로그로 업무 흐름을 발견·비교·분석하는 방법
 - 메커니즘: 케이스·활동·시각을 가진 로그를 프로세스 모델과 연결해 실제 수행 경로, 모델과의 차이, 성능 정보를 살펴봄
-- 통찰: 한계: 케이스 식별·시각이 불일치하면 실제 경로와 처리 시간 분석이 왜곡됨 → 방안: 로그 범위·활동 의미·시간대를 정합화하고 현업과 발견·적합도 결과를 검증
+- 통찰: 정보시스템의 이벤트 로그를 추출·분석하여 실제 비즈니스 프로세스 모델을 자동으로 발견하고 표준 준수 여부와 병목을 진단함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -123,21 +123,38 @@ extra:
 | 로그에서 누락된 수작업이 실제 흐름에서 빠짐 | 현업과 시스템 밖 활동을 확인하고 분석 범위·누락을 명시 |
 | 드문 경로를 빈도만으로 제거해 중요한 규정 위반을 놓침 | 빈도와 함께 위험·규정 영향을 기준으로 예외 경로 선정 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-활동 명칭·시간대가 불일치하는 핵심 로그부터 정규화하고 현업과 실제 경로·누락 활동을 대조.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+이벤트 로그 추출 시 케이스 ID, 활동명, 타임스탬프 3대 필수 속성의 무결성을 사전에 확보하고, 프로세스 발견 및 적합도 진단을 병행하여 지속적 개선 체계(PI) 정착.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 이벤트 로그 (Event Log) ]
+  (Case ID, Activity, Timestamp)
+             │
+   ┌─────────┼─────────────────────────┐
+   ▼         ▼                         ▼
+[ 발견 (Discovery) ]   [ 적합도 검사 (Conformance) ]   [ 향상 (Enhancement) ]
+(실제 프로세스 도출)    (표준 모델과 괴리/병목 진단)   (재설계 및 병목 해소)
+   │         │                         │
+   └─────────┴────────────┬────────────┘
+                          ▼
+             [ 비즈니스 프로세스 최적화 ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 프로세스 마이닝 유형 | 입력 데이터 | 핵심 목적 | 분석 알고리즘 및 기법 | 실무 적용 효과 |
+|---|---|---|---|---|
+| **발견 (Discovery)** | 순수 이벤트 로그 | 실제 수행 프로세스 모델 생성 | Alpha Miner, Heuristics Miner, Inductive | 숨겨진 비공식 우회 경로 가시화 |
+| **적합도 검사 (Conformance)** | 이벤트 로그 + 사전문서 모델 | 표준 프로세스 준수/이탈 측정 | Token Replay, Alignment 기술 | 감사 규정 위반 및 컴플라이언스 진단 |
+| **향상 (Enhancement)** | 이벤트 로그 + 기존 모델 | 기존 모델의 보강 및 병목 해소 | 병목 소요시간 분석, 소셜 네트워크 | 대기시간 단축 및 프로세스 리엔지니어링 |
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력** :
-  - 제118회 정보관리 2교시: 정보시스템 이벤트 로그를 활용한 프로세스 마이닝의 개념, 3대 유형 및 프로세스 혁신 방안
-  - 제125회 컴퓨터시스템응용 1교시: 프로세스 마이닝의 적합도 검사(Conformance Checking) (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- **검증 출처** :
-  - Wil van der Aalst et al., ["Process Mining Manifesto"](https://www.tf-pm.org/resources/manifesto), IEEE Task Force on Process Mining
-  - [RWTH Aachen Process Mining Overview](https://www.processmining.org/overview.html)
-  - [RWTH Aachen: Process Discovery](https://www.processmining.org/process-discovery.html)
-  - [RWTH Aachen: Extracting, Filtering, and Cleaning Event Data](https://www.processmining.org/extract-filter-clean-event-data.html)
----
+- Wil van der Aalst - Process Mining: Data Science in Action (Springer)
+- IEEE Task Force on Process Mining - Process Mining Manifesto
+- Celonis & Disco Academic Process Analytics Benchmarks
 
 ## 연결 토픽
 

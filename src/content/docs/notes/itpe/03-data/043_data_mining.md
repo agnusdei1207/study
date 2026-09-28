@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 43
-  label: "043. 데이터마이닝 (Data Mining)"
-  badge:
-    text: "기초"
-    variant: note
-title: "데이터마이닝 (Data Mining)"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "데이터 마이닝"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 43
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "043"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **데이터마이닝(Data Mining)은** 데이터에서 분석 목적에 유용한 패턴·관계를 찾는 분석 활동.
 - 메커니즘: 분석 목표 설정 → 데이터 준비 → 분석 기법 적용 → 결과 평가·활용.
-- 통찰: 한계: 검증 자료의 성능이 좋아도 운영 데이터·업무 조건 변화로 패턴 유용성 저하 → 방안: 실제 사용 조건의 검증 자료·수용 기준을 정하고 운영 입력·성능 변화 점검
+- 통찰: 단순 모델 학습에 매몰되지 않고 CRISP-DM 프로세스에 입각하여 비즈니스 이해부터 배포·가치 실현까지 포괄하는 엔드투엔드 지식 발견 체계 확립 필요
 
 <details>
 <summary>핵심 용어</summary>
@@ -103,14 +99,41 @@ extra:
 
 ## Ⅵ. 제언
 
-실제 사용 조건을 반영한 검증 자료와 업무 수용 기준을 먼저 확정하고 운영 입력·성능 변화를 추적.
+분류, 예측, 군집, 연관규칙 등 비즈니스 문제 유형에 적합한 기법을 매핑하고 MLOps 파이프라인과 결합하여 모델 성능 저하(Drift)를 지속 모니터링.
+
+### CRISP-DM 기반 데이터 마이닝 반복 사이클
+
+```text
+[비즈니스 이해] ◄──► [데이터 이해: EDA / 프로파일링]
+         │                               │
+         ▼                               ▼
+   [데이터 준비: 정제, 변환, 특성 공학 (Feature Engineering)]
+         │                               ▲
+         ▼                               │ (반복 개선)
+   [모델링: 분류, 군집, 연관규칙] ────────┘
+         │
+         ▼
+   [평가: 성능 평가 및 비즈니스 효익 검증] ──► [배포 및 MLOps 운영]
+```
+
+### 선택 근거: 제언: 비즈니스 중심 CRISP-DM
+
+| 구분 | 단순 알고리즘 중심 | 제언: 비즈니스 중심 CRISP-DM |
+|---|---|---|
+| 목표 설정 | 정확도 지표(Accuracy) 단독 추종 | 비즈니스 ROI 및 비용 절감 목표 연계 |
+| 전처리 비중 | 모델 튜닝에 과도한 시간 집중 | 데이터 정제/특성공학에 80% 자원 투입 |
+| 사후 운영 | 모델 배포 후 모니터링 부재 | 데이터/개념 드리프트 감지 및 지속적 재학습 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 참고 문항: 제129회 관련 문항으로 기존 정리되어 있으나 공식 문제지 원문 링크 미확인
-- [Han, Kamber and Pei, Data Mining: Concepts and Techniques](https://www.sciencedirect.com/book/9780123814791/data-mining-concepts-and-techniques)
-- [CRISP-DM 1.0: Step-by-step data mining guide](https://www.the-modeling-agency.com/crisp-dm.pdf)
+- 정보관리기술사 101회 1교시: 데이터 마이닝의 추진 절차(CRISP-DM 6단계)
+- 정보관리기술사 120회 2교시: 빅데이터 분석을 위한 기계학습 기반 데이터 마이닝 기법 비교
+- Data Mining: Practical Machine Learning Tools and Techniques
 
 ## 연결 토픽
 
-- 연관 토픽: [군집분석](./029_k_means.md) · [텍스트 마이닝](./015_text_mining.md) · [연관규칙분석](./072_association_rule_mining.md) · [차원 축소](./069_dimensionality_reduction_pca_mds.md)
+- [군집분석](./005_cluster_analysis.md)
+- [텍스트 마이닝](./015_text_mining.md)
+- [이상치](./010_outlier.md)

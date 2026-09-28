@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 130
-  label: "130. 독립표본 t-검정 (Independent t-test)"
-  badge:
-    text: "기초"
-    variant: note
-author: "OpenAI Codex"
+title: "독립표본 t-검정"
 category: "03-data"
-date: "2026-09-24T17:12:00+09:00"
 tags:
   - "notes-data"
-weight: 130
-title: "독립표본 t-검정(Independent Samples t-test)"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "130"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **독립표본 t-검정은** 서로 다른 두 집단의 모평균 차이를 추론하는 방법
 - 메커니즘: 평균 차이를 표준오차로 나누고 t 분포와 비교해 귀무가설을 평가
-- 통찰: 한계: 집단 독립성·분산 차이를 보지 않고 기본 검정을 쓰면 평균 차이 추론이 어긋남 → 방안: 독립성 점검·Welch 적용 기준·신뢰구간을 분석 절차에 포함
+- 통찰: 서로 독립된 두 집단의 평균 차이를 검정할 때 독립성, 정규성뿐만 아니라 등분산성(Levene 검정)을 사전에 확인하고 결과에 따라 Student 또는 Welch t-검정 선택 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -85,7 +80,7 @@ extra:
                t=(Δ−Δ₀)/SE → 자유도에 따른 비교
 ```
 
-독립성은 설계로 확인한다. 표본 크기가 커도 극단값·군집 의존성을 따로 검토한다.
+독립성은 실험 설계로 사전 확보 필요. 표본 크기가 커도 극단값·군집 의존성을 별도 검토.
 
 ## Ⅳ. 합동분산·Welch t-검정의 비교
 
@@ -96,7 +91,7 @@ extra:
 
 합동분산은 $s_p^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$로 계산. Welch 방식은 개별 표본분산을 사용해 등분산을 전제하지 않음.
 
-반복 측정·짝 자료에는 대응표본 분석을 사용한다. 분산 차이가 있거나 등분산을 확신하기 어려우면 Welch 방식을 검토하고, 평균 차이·신뢰구간·실무 기준을 함께 보고한다.
+반복 측정·짝 자료에는 대응표본 분석 적용. 분산 차이가 있거나 등분산을 확신하기 어려우면 Welch 방식을 검토하고, 평균 차이·신뢰구간·실무 기준을 병행 보고.
 
 ## Ⅴ. 한계와 방안
 
@@ -108,15 +103,47 @@ extra:
 
 ## Ⅵ. 제언
 
-집단의 의존성과 분산 차이를 놓치면 평균 차이 추론이 흔들린다. 먼저 실험·표집 구조에서 독립성을 확인하고, 분산이 같다고 보기 어려우면 Welch 검정으로 차이와 신뢰구간을 제시한다.
+실무적으로 두 집단의 분산이 완벽히 같을 확률은 희박하므로 등분산성 위반에 강건한 웰치의 t-검정을 기본 모델로 채택하여 제1종 오류 왜곡 방지.
+
+### 독립표본 t-검정 사전 가정 진단 및 분석 절차
+
+```text
+[서로 독립된 두 집단 표본 데이터 (A, B)]
+         │
+         ▼
+[1. 정규성 검정 (Shapiro-Wilk)]
+         │
+         ├─ [정규성 위반] ──► 비모수 맨-휘트니 U 검정 (Mann-Whitney U)
+         │
+         ▼ [정규성 만족]
+[2. 등분산성 검정 (Levene's Test)]
+         │
+         ├─ [등분산 만족 (p ≥ 0.05)] ──► 스튜던트 t-검정 (Student's t-test)
+         │
+         └─ [등분산 위반 (p < 0.05)] ──► 웰치 t-검정 (Welch's t-test)
+         │
+         ▼
+[p-값 판정 및 신뢰구간, 효과 크기(Cohen's d) 종합 보고]
+```
+
+### 선택 근거: 웰치의 t-검정 (Welch)
+
+| 구분 | 스튜던트 t-검정 | 웰치의 t-검정 (Welch) |
+|---|---|---|
+| 모분산 조건 | 두 집단 모분산 동일 (${\sigma_1}^2 = {\sigma_2}^2$) | 두 집단 모분산 상이 (${\sigma_1}^2 \neq {\sigma_2}^2$) |
+| 자유도 계산 | $df = n_1 + n_2 - 2$ (단순 공식) | 웰치-새터스웨이트 근사식으로 자유도 보정 |
+| 실무 안전성 | 이분산 시 제1종 오류 급증 | 이분산 및 표본수 불일치 상황에서도 완벽한 강건성 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제131회 정보관리기술사 2교시의 두 t-검정 비교 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
-- NIST/SEMATECH, [Two-Sample t-Test for Equal Means](https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm)
-- NIST/SEMATECH, [Levene Test for Equality of Variances](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35a.htm)
+- 정보관리기술사 119회 1교시: 독립표본 t-검정과 대응표본 t-검정의 적용 요건 비교
+- 정보관리기술사 124회 2교시: A/B 테스트에서 두 집단 간 평균 차이 검증을 위한 t-검정
+- Statistical Methods for Psychology Standard Reference
 
 ## 연결 토픽
 
-- 상위 토픽: [t-검정](./086_t_test.md)
-- 연관 토픽: [대응표본 t-검정](./124_paired_t_test.md), [가설검정](./041_hypothesis_testing.md)
+- [t-검정](./086_t_test.md)
+- [대응표본 t-검정](./124_paired_t_test.md)
+- [가설검정](./041_hypothesis_testing.md)

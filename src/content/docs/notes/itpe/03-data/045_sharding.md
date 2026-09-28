@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 45
-  label: "045. 데이터베이스 샤딩"
-  badge:
-    text: "서브"
-    variant: note
-title: "데이터베이스 샤딩 (Database Sharding)"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "샤딩"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 45
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "045"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **데이터베이스 샤딩(Database Sharding)은** 한 데이터 집합을 여러 노드에 나누어 저장·처리하는 수평 확장 방식.
 - 메커니즘: 샤드 키 결정 → 키 값으로 데이터 위치 지정 → 라우터가 질의를 해당 샤드 또는 여러 샤드로 전달.
-- 통찰: 한계: 처리량만 보고 샤드 키를 정하면 키 편중과 전체 샤드 질의 잔존 → 방안: 주요 읽기·쓰기 조건·키 분포를 비교하고 재분배 절차 시험
+- 통찰: 데이터 폭증에 대응하는 수평 확장을 위해 샤드 키 핫스팟과 재분배 비용을 최소화하는 일관된 해싱(Consistent Hashing) 기반 아키텍처 확립 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -112,13 +108,39 @@ extra:
 
 ## Ⅵ. 제언
 
-서비스의 대표 읽기·쓰기 질의와 키 분포를 먼저 측정하고 핫스폿·팬아웃이 적은 샤드 키를 선택.
+조회 조건에 샤드 키가 포함되도록 쿼리 패턴을 설계하여 브로드캐스트 스캔을 방지하고 가상 노드 기법을 통한 노드 증설 시 무중단 데이터 리밸런싱 달성.
+
+### 일관된 해싱(Consistent Hashing) 기반 샤딩 구조
+
+```text
+                   [샤드 해시 링 (0 ~ 2^32-1)]
+                       Shard A (Virtual Node A1, A2)
+                      /                             \
+                     /                               \
+    Shard C (Virtual C1, C2)                     Shard B (Virtual B1, B2)
+                     \                               /
+                      \                             /
+                       [Key k 해시값 매핑 → 시계방향 노드 할당]
+```
+
+### 선택 근거: 제언: 일관된 해싱 샤딩
+
+| 구분 | 모듈로(Modulo) 샤딩 | 제언: 일관된 해싱 샤딩 |
+|---|---|---|
+| 노드 증설 | 전체 데이터 전면 재배치 발생 | 인접 노드의 국소 데이터만 이전 (최소 이동) |
+| 부하 분산 | 노드 용량 차이 반영 불가 | 가상 노드(Virtual Node) 수 조절로 불균형 해소 |
+| 가용성 | 리밸런싱 중 서비스 중단 위험 | 점진적 데이터 마이그레이션 및 무중단 운영 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [MongoDB Manual, Sharding](https://www.mongodb.com/docs/manual/sharding/)
-- [MongoDB Manual, Choose a Shard Key](https://www.mongodb.com/docs/manual/core/sharding-choose-a-shard-key/)
+- 정보관리기술사 116회 2교시: 대용량 데이터베이스의 샤딩(Sharding) 기법과 샤드 키 선정 기준
+- 정보관리기술사 126회 1교시: 일관된 해싱(Consistent Hashing)의 원리와 분산 캐시 적용
+- Designing Data-Intensive Applications Standard Reference
 
 ## 연결 토픽
 
-- 연관 토픽: [데이터베이스 인덱스](./047_index.md) · [확장성 해싱](./050_extendible_hashing.md) · [고가용성 아키텍처](./051_ha_architecture.md)
+- [데이터베이스 분할·샤딩](./021_db_partitioning_sharding.md)
+- [분산 데이터베이스 투명성](./025_distributed_db_transparency.md)
+- [NoSQL](./001_nosql.md)

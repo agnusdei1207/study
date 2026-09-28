@@ -1,20 +1,16 @@
 ---
-sidebar:
-  label: "113. CAP 정리 및 PACELC 이론을 적용한 분산 데이터 저장소 아키텍처"
-  order: 113
-  badge:
-    text: "서브"
-    variant: note
-title: "CAP 정리 및 PACELC 이론을 적용한 분산 데이터 저장소 아키텍처"
-author: "Codex"
-date: "2026-09-27T17:10:00+09:00"
+title: "CAP·PACELC 정리"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 113
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "113"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **CAP** 은 네트워크 분할 시 선형화 가능한 일관성과 모든 정상 노드의 응답 가용성을 동시에 보장할 수 없다는 한계
 - 메커니즘: 분할 중 일관성·가용성 선택 → 정상 상태의 일관성·지연 선택 → API·복제 설정별 장애 실험
-- 통찰: 한계: 제품의 CP/AP 별칭만으로 업무별 읽기·쓰기 결과를 알 수 없음 → 방안: 핵심 API의 성공 응답·분할 중 결과를 정의하고 복제 설정별 장애 실험
+- 통찰: 네트워크 분할(P) 시 일관성(C)과 가용성(A)의 양자택일을 규정한 CAP의 한계를 극복하고 정상 상태의 지연시간(Latency)과 일관성(Consistency)을 함께 고려하는 PACELC 관점의 아키텍처 설계 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -124,16 +120,40 @@ $R+W>N$은 읽기·쓰기 집합이 중첩된다는 조건. 강한 일관성은 
 
 ## Ⅵ. 제언
 
-제품의 CP/AP 분류가 API별 결과를 가리므로 핵심 읽기·쓰기의 성공 조건을 먼저 정의하고 정상·분할 상태의 장애 시험으로 복제 설정을 선택한다.
+분할 시(PC vs PA)와 정상 시(EL vs EC)의 비즈니스 트레이드오프를 평가하여 결제는 PC/EC(RDBMS, Spanner), 소셜 피드는 PA/EL(DynamoDB, Cassandra)로 차등 구현.
+
+### PACELC 정리 의사결정 모델
+
+```text
+[분산 데이터베이스 상태]
+       │
+       ├─ [네트워크 분할 발생 시 (Partition P)]
+       │        ├─ [A: 가용성 우선] ──► PA (최종 일관성, DynamoDB)
+       │        └─ [C: 일관성 우선] ──► PC (트랜잭션 중단, HBase)
+       │
+       └─ [정상 운영 상태 시 (Else E)]
+                ├─ [L: 지연시간 최소] ──► EL (비동기 복제, Cassandra)
+                └─ [C: 일관성 우선]   ──► EC (동기 복제, Google Spanner)
+```
+
+### 선택 근거: 제언: PACELC 정리
+
+| 구분 | CAP 정리 | 제언: PACELC 정리 |
+|---|---|---|
+| 평가 관점 | 네트워크 장애(Partition) 상황만 평가 | 장애 상황(P/A/C)과 정상 운영 상황(E/L/C) 동시 평가 |
+| 정상 시 트레이드오프 | 정상 상태의 성능 특성 설명 불가 | 지연시간(Latency)과 일관성(Consistency) 절충 모델링 |
+| 실무 아키텍처 | 단순 CP vs AP 이분법 매핑 | PA/EL, PC/EC 등 업무별 정밀 데이터 저장소 선정 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 제126회 관련 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 회차·문항·배점 미확인
-- [Abadi, PACELC 원 논문](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf): 분할 시 A/C와 정상 시 L/C 절충
-- [Google Research, Spanner·TrueTime과 CAP](https://research.google/pubs/spanner-truetime-and-the-cap-theorem/): 강한 일관성과 높은 가용성의 관계를 장애 조건별로 설명
-- [AWS DynamoDB 읽기 일관성](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html): API·테이블 유형별 일관성 선택
+- 정보관리기술사 113회 1교시: 분산 시스템에서 CAP 정리의 한계와 PACELC 정리
+- 정보관리기술사 125회 2교시: 클라우드 분산 데이터베이스의 일관성 모델과 분할 내구성
+- Daniel Abadi, Consistency Tradeoffs in Modern Distributed Database System Design
 
 ## 연결 토픽
 
-- 선수 토픽: [NoSQL](./001_nosql.md), [분산 데이터베이스](./149_distributed_database.md)
-- 연관 토픽: [복제 유형](./114_db_replication_types.md), [고가용성 아키텍처](./051_ha_architecture.md)
+- [NoSQL](./001_nosql.md)
+- [분산 데이터베이스 투명성](./025_distributed_db_transparency.md)
+- [데이터베이스 분할·샤딩](./021_db_partitioning_sharding.md)

@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 106
-  label: "106. 정규분포 (Normal Distribution)"
-  badge:
-    text: "응용"
-    variant: note
-title: "정규분포(Normal Distribution)와 표준정규분포(Z-분포)의 통계적 특성 및 활용"
-author: "Antigravity"
-date: "2026-09-24T18:15:00+09:00"
+title: "정규분포"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 106
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "106"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **정규분포는** 평균 \(\mu\)와 표준편차 \(\sigma\)로 모양이 정해지는 연속 확률분포
 - 메커니즘: 평균을 중심으로 대칭이며, 표준화 \(Z=(X-\mu)/\sigma\)로 표준정규분포 \(N(0,1)\)에 대응
-- 통찰: 한계: 비대칭·다봉·두꺼운 꼬리 자료에 정규 모형을 그대로 쓰면 극단 확률을 잘못 추정함 → 방안: 분포·분위수·생성 과정을 확인하고 적합한 변환·강건 방법을 선택
+- 통찰: 자연 현상과 통계적 추론의 기저를 형성하는 정규분포(가우스 분포)의 대칭성과 68-95-99.7 경험적 규칙을 표준화(Z-변환)와 연계 적용 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -75,7 +71,7 @@ X ~ N(μ, σ²)
        Z ~ N(0,1)에서 같은 구간 확률 계산
 ```
 
-정규분포 \(X\sim N(\mu,\sigma^2)\)의 확률밀도함수는 다음과 같다.
+정규분포 \(X\sim N(\mu,\sigma^2)\)의 확률밀도함수 구조:
 
 \[
 f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
@@ -89,7 +85,7 @@ f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
 | 정규 모집단의 표본평균 | 표본 크기와 관계없이 정규분포, 퍼짐은 표준오차로 결정 |
 | 비정규 모집단의 표본평균 | 중심극한정리의 조건 아래 표본 크기가 커지면 정규분포로 근사 |
 
-정규 모집단에서는 표본평균의 분포가 표본 크기와 관계없이 정규분포다. 모집단 분포가 정규가 아니어도 중심극한정리는 조건을 만족하는 표본평균의 분포에 관한 근사 결과이며, 원자료 자체가 정규분포가 된다는 뜻은 아니다.
+정규 모집단의 표본평균은 항상 정규분포를 따르며, 비정규 모집단이라도 중심극한정리에 의해 표본 크기 증가 시 표본평균이 정규분포로 점근적 수렴하는 특성 보유.
 
 ### 경험적 법칙과 통계적 해석
 
@@ -99,7 +95,7 @@ f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
 | \(\mu\pm2\sigma\) | 95.45% | 두 표준편차 안의 값 |
 | \(\mu\pm3\sigma\) | 99.73% | 세 표준편차 안의 값 |
 
-이 비율은 정규분포를 따르는 개별 관측값의 구간 확률이다. 이를 표본평균의 신뢰구간이나 공정관리 한계와 동일시하지 않는다. 신뢰구간은 표본 설계와 추정량의 표준오차에 따라 별도로 산출한다.
+경험적 규칙(68-95-99.7)은 개별 관측값의 분포 확률이며, 표본평균의 신뢰구간 산출 시에는 표본 설계 및 표준오차(\\sigma/\\sqrt{n})를 기반으로 정밀 계산 적용.
 
 ## Ⅴ. 한계와 방안
 
@@ -111,19 +107,40 @@ f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
 
 ## Ⅵ. 제언
 
-**제언:** 극단값 판단이 중요한 자료는 먼저 분위수·꼬리 형태를 진단하고, 정규 가정이 맞는 경우에만 표준화 확률을 적용한다.
+데이터 분석 전 샤피로-윌크(Shapiro-Wilk) 검정으로 정규성을 확인하고 비정규 데이터는 Box-Cox 변환을 통해 모수적 통계 분석 적용.
 
-## 출제 이력과 검증 출처
+### 표준정규분포 Z-변환 및 경험적 규칙
 
-- 정보관리기술사 제126회 2교시: 정규분포의 특성과 표준정규분포 변환 및 활용 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- NIST, [Normal Probability Plot](https://www.itl.nist.gov/div898/handbook/eda/section3/normprpl.htm)
-- NIST, [Normal Distribution](https://csrc.nist.gov/glossary/term/Normal_Distribution)
-- Penn State, [The Central Limit Theorem](https://online.stat.psu.edu/stat414/Lesson27)
+```text
+        정규분포 X ~ N(μ, σ²)  ──► [Z-변환: Z = (X - μ) / σ] ──► 표준정규분포 Z ~ N(0, 1)
+
+                     [대칭 종형 곡선 (Bell Curve)]
+                                 │
+                            μ-1σ │ μ+1σ  (68.27% 구간)
+                          ┌──────┴──────┐
+                     μ-2σ │             │ μ+2σ (95.45% 구간)
+                   ┌──────┴─────────────┴──────┐
+              μ-3σ │                           │ μ+3σ (99.73% 구간)
+            ───────┴───────────────────────────┴───────
+```
+
+### 선택 근거: 제언: 정규분포 표준화 (Z-Score)
+
+| 구분 | 원시 데이터 직접 분석 | 제언: 정규분포 표준화 (Z-Score) |
+|---|---|---|
+| 단위 종속성 | 측정 단위(cm, kg)에 따라 왜곡 | 무차원 표준화 점수로 서로 다른 변수 직접 비교 |
+| 이상치 식별 | 임의 기준에 따른 이상치 판정 | |Z| > 3 명확한 확률적 기준에 따른 이상치 적발 |
+| 통계적 검정 | 비모수 검정만 적용 가능 | Z-검정, t-검정 등 강력한 모수적 추론 적용 |
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 111회 1교시: 정규분포의 성질과 표준정규분포의 68-95-99.7 규칙
+- Probability and Statistics for Engineers Standard Textbook
+
 ## 연결 토픽
 
-- [036. 기술통계 vs 추론통계](./036_descriptive_statistics.md)
-- [014. 중심극한정리](./014_central_limit_theorem.md)
-- [012. z-검정](./012_z_test.md)
+- [중심극한정리](./014_central_limit_theorem.md)
+- [z-검정](./012_z_test.md)
+- [불편추정량](./011_unbiased_estimator.md)

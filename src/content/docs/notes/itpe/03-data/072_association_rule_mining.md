@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 72
-  label: "072. 연관규칙분석"
-  badge:
-    text: "서브"
-    variant: note
-title: "연관규칙분석 (Association Rule Mining) 및 지지도·신뢰도·향상도"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "연관 규칙 마이닝"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 72
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "072"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **연관규칙분석(Association Rule Mining)은** 거래 항목에서 함께 나타나는 항목 집합과 규칙을 찾는 분석
 - 메커니즘: 지지도는 전체 빈도, 신뢰도는 조건부 빈도, 향상도는 독립 발생 대비 결합 정도를 측정
-- 통찰: 한계: 한 기간의 연관 규칙만으로는 재현성·업무 효과를 알 수 없음 → 방안: 다른 기간·집단에서 재검증하고 통제 실험으로 적용 효과 확인
+- 통찰: 지지도(Support), 신뢰도(Confidence), 향상도(Lift)의 3대 지표를 균형 있게 적용하고 Apriori의 반복 DB 스캔 한계를 극복하는 FP-Growth 트리 알고리즘 채택 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -115,18 +110,41 @@ extra:
 
 ## Ⅵ. 제언
 
-후보 규칙을 업무 가설로 두고 다른 기간·집단의 재현성 확인을 우선한 뒤 적용 효과를 통제 실험으로 검증.
+최소 지지도 임계치를 동적으로 설정하여 무의미한 규칙의 조합 폭발을 억제하고, 향상도(Lift > 1) 검증을 통해 실질적인 교차 판매 인사이트 도출.
+
+### FP-Growth 기반 빈발 항목 집합 마이닝 절차
+
+```text
+[트랜잭션 데이터베이스]
+         │
+         ▼ (1차 스캔: 빈발 1-항목 집합 식별 및 내림차순 정렬)
+[FP-Tree 구축 (단 2회의 DB 스캔으로 트리 압축)]
+         │
+         ▼ (조건부 패턴 베이스 도출 및 재귀적 분할)
+[빈발 패턴 마이닝 (후보 생성 없는 초고속 추출)]
+         │
+         ▼
+[연관 규칙 생성: 지지도 ≥ min_sup, 신뢰도 ≥ min_conf, 향상도 > 1]
+```
+
+### 선택 근거: FP-Growth 알고리즘
+
+| 구분 | Apriori 알고리즘 | FP-Growth 알고리즘 |
+|---|---|---|
+| DB 스캔 횟수 | 항목 집합 크기 $k$마다 반복 스캔 ($k$회) | 단 2회의 DB 스캔으로 완료 |
+| 후보 생성 | 대규모 후보 항목 집합($C_k$) 생성 오버헤드 | 후보 생성 없이 FP-Tree 구조에서 직접 추출 |
+| 실행 속도 | 대용량 데이터 환경에서 극도로 느림 | 메모리 트리 기반으로 수십~수백 배 고속 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- [IBM Db2 연관규칙 모델 문서](https://www.ibm.com/docs/en/db2/11.1?topic=steps-building-association-rule-models): 규칙의 선행·후행 항목과 지지도·신뢰도
-
-- Rakesh Agrawal and Ramakrishnan Srikant, “Fast Algorithms for Mining Association Rules,” *VLDB*, 1994.
-- Jiawei Han, Jian Pei, and Yiwen Yin, “Mining Frequent Patterns without Candidate Generation,” *ACM SIGMOD*, 2000.
-- Pang-Ning Tan, Michael Steinbach, and Vipin Kumar, *Introduction to Data Mining*, 2nd ed., Chapter 5.
+- 정보관리기술사 104회 1교시: 연관성 분석의 3대 평가 지표(지지도, 신뢰도, 향상도)
+- 정보관리기술사 119회 2교시: Apriori 알고리즘과 FP-Growth 알고리즘의 동작 원리 및 성능 비교
+- Jiawei Han, Mining Frequent Patterns without Candidate Generation
 
 ## 연결 토픽
 
-- [데이터마이닝](./043_data_mining/) · [추천 시스템 필터링](./071_filtering/) · [군집분석](./005_cluster_analysis/)
+- [데이터 마이닝](./043_data_mining.md)
+- [군집분석](./005_cluster_analysis.md)
+- [데이터 시각화](./016_data_visualization.md)

@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 133
-  label: "133. 베르누이 분포 (Bernoulli Distribution)"
-  badge:
-    text: "기초"
-    variant: note
-author: "OpenAI Codex"
+title: "베르누이·이항분포"
 category: "03-data"
-date: "2026-09-24T17:27:00+09:00"
 tags:
   - "notes-data"
-weight: 133
-title: "베르누이 분포(Bernoulli Distribution)와 이진 교차 엔트로피"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "133"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **베르누이 분포는** 한 번의 시행에서 두 결과 중 하나가 나타나는 확률분포
 - 메커니즘: 성공 확률 $p$, 실패 확률 $1-p$를 두 결과에 배정
-- 통찰: 한계: 이진 결과만 보고하면 예측확률의 보정과 오탐·미탐 비용을 놓침 → 방안: 확률 보정·혼동행렬 지표를 확인하고 업무 비용에 따라 임계값을 정함
+- 통찰: 성공과 실패라는 상호 배타적 이진 결과를 모형화하는 베르누이 분포와 독립 반복 시행을 결합한 이항분포의 수학적 성질을 이해하고 정규 근사 조건 명확화 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -99,7 +94,7 @@ Var(X)=E[X²]−E[X]²=p−p²=p(1−p)
 | 음의 로그우도 | $-\log L=-\sum_i[y_i\log\hat p_i+(1-y_i)\log(1-\hat p_i)]$ |
 | 평균 손실 | 위 식을 관측 수 $N$으로 나눈 BCE |
 
-BCE 최소화는 독립 베르누이 관측의 음의 로그우도를 최소화하는 것과 같다. 예측 확률의 보정과 업무상 분류 임계값은 손실 최소화와 별도로 평가한다.
+BCE 최소화는 독립 베르누이 관측의 음의 로그우도를 최소화하는 원리와 동일. 예측 확률의 보정과 업무상 분류 임계값은 손실 최소화와 별도로 평가 수립.
 
 ## Ⅴ. 한계와 방안
 
@@ -111,16 +106,38 @@ BCE 최소화는 독립 베르누이 관측의 음의 로그우도를 최소화�
 
 ## Ⅵ. 제언
 
-이진 결과만으로 운영 결정을 내리면 잘못된 확신과 오탐·미탐 비용을 놓친다. 먼저 사건의 0·1 정의와 예측확률 보정을 확인하고, 분류 임계값은 업무별 오탐·미탐 비용으로 정한다.
+시행 횟수 $n$과 성공 확률 $p$에 대해 $np \ge 5$ 및 $n(1-p) \ge 5$ 조건을 검증하여 정규 근사를 적용하고 불만족 시 포아송 또는 정확 이항 검정 채택.
+
+### 베르누이 시행에서 이항분포 및 정규 근사로의 확장
+
+```text
+[단일 베르누이 시행: 결과 X ∈ {0, 1}, 성공 확률 p]
+         │
+         ▼ (독립 동일 n회 반복 시행)
+[이항분포: B(n, p), P(X=k) = nCk * p^k * (1-p)^(n-k)]
+  - 평균 E(X) = np, 분산 Var(X) = np(1-p)
+         │
+         ▼ (시행 횟수 n 충분히 큼: np ≥ 5, n(1-p) ≥ 5)
+[드무아브르-라플라스 정리에 의한 정규분포 근사: N(np, np(1-p))]
+```
+
+### 선택 근거: 이항분포 (Binomial)
+
+| 구분 | 베르누이 분포 (Bernoulli) | 이항분포 (Binomial) |
+|---|---|---|
+| 시행 횟수 | 단 1회의 성공/실패 실험 ($n=1$) | 독립적인 베르누이 시행 $n$회 반복 |
+| 확률 변수 | 성공 여부 ($0$ 또는 $1$) | $n$회 시행 중 총 성공 횟수 ($0, 1, \dots, n$) |
+| 적용 예시 | 동전 1회 던지기, 단일 불량 여부 | A/B 테스트 클릭 수, 100개 제품 중 불량품 개수 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제130회 정보관리기술사 1교시의 베르누이 시행·분포 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
-- Sheldon M. Ross, *A First Course in Probability*, 10th ed., Pearson.
-- Goodfellow, Bengio, Courville, *Deep Learning*, MIT Press, Chapter 3.
-- PyTorch, [BCEWithLogitsLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html)
+- 정보관리기술사 111회 1교시: 이산확률분포 중 베르누이 분포와 이항분포의 정의 및 성질
+- Probability and Statistics for Data Science
 
 ## 연결 토픽
 
-- 상위 토픽: [정규분포](./106_normal_distribution.md)
-- 연관 토픽: [로지스틱 회귀분석](./089_logistic_regression.md), [베이즈 정리](./018_bayes_theorem.md)
+- [정규분포](./106_normal_distribution.md)
+- [중심극한정리](./014_central_limit_theorem.md)
+- [불편추정량](./011_unbiased_estimator.md)

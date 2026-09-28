@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 81
-  label: "081. CRUD 매트릭스 (CRUD Matrix)"
-  badge:
-    text: "기초"
-    variant: note
-title: "CRUD 매트릭스 (CRUD Matrix) 및 프로세스-데이터 정합성 검증"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "CRUD 매트릭스"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 81
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "081"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: CRUD 매트릭스는 업무 프로세스와 데이터 엔티티의 사용 관계를 교차표로 나타내는 분석 도구
 - 메커니즘: 행은 프로세스, 열은 엔티티, 셀은 생성·조회·수정·삭제 행위를 표시하여 누락과 불일치를 검토
-- 통찰: 한계: 요구 변경 뒤 매트릭스를 갱신하지 않으면 실제 설계와 조작 관계가 어긋남 → 방안: 요구사항·모델 변경 시 영향받는 행·열을 함께 갱신하고 검토 이력을 남김
+- 통찰: 비즈니스 프로세스와 데이터 엔터티 간의 누락과 고립을 방지하기 위해 생성(C)과 읽기(R)의 완결성을 2차원 교차 행렬로 전수 검증하는 모델링 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -108,17 +103,42 @@ extra:
 
 ## Ⅵ. 제언
 
-**제언:** 요구·엔티티 모델 변경 승인 시 영향받는 행·열을 먼저 재검토하고, C 책임 변경은 중복 생성·권한 규칙까지 확인한다.
+모든 엔터티에 최소 하나의 C(Create)와 R(Read)이 존재하는지 검증하고 복합 프로세스의 트랜잭션 경계를 도출하여 마이크로서비스 DB 분할에 활용.
+
+### CRUD 매트릭스 정합성 검증 원칙
+
+```text
+[비즈니스 기능 / 단위 프로세스] (행)
+         │
+         ▼ (교차 매트릭스 작성: C, R, U, D)
+[데이터 엔터티] (열)
+         │
+         ├─ [모든 엔터티 검증 규칙]
+         │        ├─ C(Create)가 없는 엔터티? ──► 유입 경로 누락 (오류)
+         │        ├─ R(Read)이 없는 엔터티?   ──► 낭비되는 더미 데이터 (오류)
+         │        └─ 복수 C가 존재하는 엔터티?──► 단일 책임 원칙(SRP) 위배
+         ▼
+[단위 시스템 및 서비스 바운디드 컨텍스트 경계 확정]
+```
+
+### 선택 근거: 제언: CRUD 매트릭스 교차 검증
+
+| 구분 | 단순 기능 목록 중심 | 제언: CRUD 매트릭스 교차 검증 |
+|---|---|---|
+| 누락 탐지 | 프로세스-데이터 불일치 방치 | 생성/조회 주체 누락 100% 사전 적발 |
+| 서비스 분할 | 임의적 마이크로서비스 분할 | CRUD 군집 분석(Affinity) 기반 서비스 경계 도출 |
+| 영향도 분석 | 엔터티 변경 시 파급력 예측 곤란 | 관련 프로세스 즉시 식별로 변경 영향 통제 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [IBM IMS CRUD Matrix 문서](https://www.ibm.com/docs/en/raa/6.1?topic=pages-ims-crud-matrix): 프로그램과 데이터 대상별 생성·조회·수정·삭제 관계 표시
-
-- 정보관리기술사 제133회 1교시 7번: CRUD 매트릭스의 목적과 표현 방법
-- James Martin, *Information Engineering, Book II: Planning & Analysis*, Prentice Hall
+- 정보관리기술사 95회 1교시: CRUD 매트릭스의 개념과 작성 목적 및 진단 규칙
+- 정보관리기술사 117회 1교시: 소프트웨어 설계에서 비즈니스 기능과 엔터티 간 상관분석
+- Information Engineering Methodology Standard Guide
 
 ## 연결 토픽
 
-- [042. 데이터 모델링 (Data Modeling)](./042_data_modeling.md)
-- [028. ERD (Entity Relationship Diagram)](./028_erd.md)
-- [070. 참조 무결성 (Referential Integrity)](./070_referential_integrity.md)
+- [개체-관계 다이어그램(ERD)](./028_erd.md)
+- [데이터 모델링](./042_data_modeling.md)
+- [정규화](./019_normalization.md)

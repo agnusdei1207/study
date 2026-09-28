@@ -5,7 +5,7 @@ sidebar:
   badge:
     text: "기초"
     variant: note
-author: "OpenAI Codex"
+author: "Antigravity"
 category: "03-data"
 date: "2026-09-24T18:12:00+09:00"
 tags:
@@ -13,7 +13,7 @@ tags:
 weight: 143
 title: "추론통계(Inferential Statistics)의 표본 기반 추정과 검정"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
   question_no: "143"
 ---
@@ -26,7 +26,7 @@ extra:
 
 - 본질: **추론통계는** 표본자료로 모집단의 특성을 추정하고 가설을 평가하는 통계 방법
 - 메커니즘: 표본 설계·확률모형에 따라 점추정·구간추정·가설검정을 수행
-- 통찰: 한계: p-value만으로 결론내리면 표본·모형 불확실성과 실제 효과가 가려짐 → 방안: 모집단·표집·가정을 명시하고 추정치·신뢰구간·효과 크기를 함께 보고
+- 통찰: 표본 통계량의 확률분포와 오차 한계를 기반으로 모집단 모수를 추정하고 가설검정을 수행하여 데이터 기반 의사결정의 과학적 타당성을 확보 수립.
 
 <details>
 <summary>핵심 용어</summary>
@@ -87,7 +87,7 @@ extra:
           두 경우 모두 효과 크기·가정·업무 기준 확인
 ```
 
-무작위 표집·중심극한정리만이 모든 추론의 전제는 아니다. 유효한 방법과 가정은 추정 대상·표본 설계·모형에 따라 달라진다.
+무작위 표집과 중심극한정리만이 모든 추론의 전제는 아님. 유효한 방법과 가정은 추정 대상, 표본 설계, 모형에 따라 차별화 수립 필요.
 
 ## Ⅳ. 점추정·구간추정·가설검정 비교
 
@@ -106,14 +106,39 @@ extra:
 | 모형 가정 위반으로 표준오차·구간 왜곡 | 독립성·분포·적합성을 점검하고 자료 구조에 맞는 추론법 적용 |
 | 반복 검정에서 우연한 유의성 증가 | 사전 가설과 다중검정 계획을 세우고 독립 자료에서 확인 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-p값만 보고하면 불확실성과 실제 효과가 가려진다. 의사결정 보고에는 모집단·표집·가정을 먼저 밝히고 추정치·신뢰구간·업무상 중요한 효과 크기를 같은 표에 제시한다.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+표본 추출 설계의 대표성을 우선 검증하고, 유의수준 $\alpha$와 통계적 검정력($1-\beta$)을 사전 정의하며 p-value 외에 효과 크기 및 신뢰구간을 종합 보고 체계화.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 연구 가설 수립 ] ──> [ 표본 추출 & 탐색 ] ──> [ 정규성/등분산성 검정 ]
+  (H0 vs H1)            (확률 표집, 데이터 정제)          │
+                                                  ┌───────┴───────┐
+                                                  ▼               ▼
+                                            [ 모수 검정 ]   [ 비모수 검정 ]
+                                            (t-test, ANOVA) (Wilcoxon, etc.)
+                                                  │               │
+                                                  └───────┬───────┘
+                                                          ▼
+[ 의사결정 및 사후검증 ] <── [ 효과크기/신뢰구간 ] <── [ p-value 판정 ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 분류 축 | 모수적 방법 (Parametric) | 비모수적 방법 (Non-parametric) |
+|---|---|---|
+| **모집단 분포 가정** | 정규분포, 등분산성 등 특정 분포 전제 | 특정 분포 무관 (Distribution-Free) |
+| **측정 척도** | 등간 척도, 비율 척도 (연속형 데이터) | 명목 척도, 서열 척도 (순위/범주형) |
+| **검정 통계량** | 모평균($\mu$), 모분산($\sigma^2$) 기반 ($t, F, z$) | 순위합, 부호, 빈도 기반 (순위 통계량) |
+| **검정력 (Power)** | 가정 충족 시 상대적으로 매우 높음 | 소표본 또는 이상치 존재 시 더 강건 |
+| **대표 기법** | Two-sample t-test, ANOVA, Pearson 상관 | Mann-Whitney U, Kruskal-Wallis, Spearman |
 
 ## 출제 이력과 검증 출처
 
-- National Institute of Standards and Technology (NIST), [What are confidence intervals?](https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm)
-- NIST, [Critical values and p-values](https://itl.nist.gov/div898/handbook/prc/section1/prc131.htm)
+- ISO 3534-2: Statistics - Vocabulary and symbols - Part 2: Applied statistics
+- NIST/SEMATECH e-Handbook of Statistical Methods: Inferential Statistics and Hypothesis Testing
+- David S. Moore et al. - Introduction to the Practice of Statistics
 
 ## 연결 토픽
 

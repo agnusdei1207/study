@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 118
-  label: "118. MongoDB"
-  badge:
-    text: "응용"
-    variant: note
-author: "Codex"
+title: "MongoDB"
 category: "03-data"
-date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
-weight: 118
-title: "MongoDB 문서 데이터 모델과 샤딩 구조"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "118"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **MongoDB는 BSON 문서를 컬렉션에 저장하고 문서 구조에 맞춰 조회·확장하는 문서형 데이터베이스**
 - 메커니즘: 임베딩·참조로 문서 관계를 모델링하고, 복제 세트로 가용성을 높이며 샤딩으로 데이터를 분산
-- 통찰: 한계: 초기 접근 패턴과 실제 질의·변경이 다르면 문서 재설계와 샤드 핫스팟이 생길 수 있음 → 방안: 대표 질의·변경을 부하 시험에 반영하고 샤드 분포·타깃 질의 비율을 확인
+- 통찰: 유연한 BSON 문서 모델과 복제셋(Replica Set)·샤딩을 활용하되 스키마 설계 시 Embedding과 Referencing 간의 트레이드오프를 명확히 판별 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -108,13 +103,41 @@ extra:
 
 ## Ⅵ. 제언
 
-샤드 키가 실제 질의 조건과 맞지 않으면 전체 샤드 조회와 핫스팟이 생기므로 대표 필터·쓰기 부하의 타깃 질의 비율과 샤드 분포를 측정해 키를 결정한다.
+1:1 또는 1:소량 관계는 임베딩(Embedding)으로 단일 I/O 조회를 달성하고 1:대량 관계는 참조(Referencing)로 분리하여 16MB 문서 한계 및 메모리 낭비 통제.
+
+### MongoDB 복제셋(Replica Set) 자동 페일오버 구조
+
+```text
+[클라이언트 드라이버]
+         │
+         ▼ (쓰기 요청: Write Concern w:majority)
+[Primary 노드] ──► OpLog (동기화 로그)
+         │
+         ├─ [비동기 OpLog 복제] ──► [Secondary 노드 1]
+         └─ [비동기 OpLog 복제] ──► [Secondary 노드 2]
+         │
+         ▼ (Primary 장애 감지 시 쿼럼 선출 투표)
+[새로운 Primary 자동 선출 승격 (서브초 단위 절체)]
+```
+
+### 선택 근거: 도큐먼트 참조 (Referencing)
+
+| 구분 | 도큐먼트 임베딩 (Embedding) | 도큐먼트 참조 (Referencing) |
+|---|---|---|
+| 조회 성능 | 단일 읽기로 하위 객체 일괄 조회 (극상) | 추가 쿼리 또는 $lookup 조인 필요 |
+| 문서 크기 | 16MB 제한 초과 위험 존재 | 문서 크기 제한에서 자유로움 |
+| 데이터 정합성 | 중복 데이터 발생 시 갱신 이상 가능 | 단일 참조 데이터만 수정하여 일관성 유지 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: MongoDB 문서 모델과 분산 구조의 기본 예상문제
-- 검증 출처: [MongoDB 데이터 모델링](https://www.mongodb.com/docs/manual/data-modeling/), [MongoDB 샤딩](https://www.mongodb.com/docs/manual/sharding/), [문서 크기 제한](https://www.mongodb.com/docs/manual/reference/limits/), [복제 동기화](https://www.mongodb.com/docs/manual/core/replica-set-sync)
+- 정보관리기술사 117회 1교시: NoSQL 문서 지향 데이터베이스(Document Store)와 MongoDB 특징
+- 정보관리기술사 128회 2교시: MongoDB의 복제셋(Replica Set) 선출 알고리즘과 샤딩 아키텍처
+- MongoDB Manual: Data Modeling Concepts
 
 ## 연결 토픽
 
-- 문서형 데이터베이스, 분산 데이터베이스, 데이터 복제
+- [NoSQL](./001_nosql.md)
+- [CAP·PACELC 정리](./113_cap_pacelc.md)
+- [데이터베이스 분할·샤딩](./021_db_partitioning_sharding.md)

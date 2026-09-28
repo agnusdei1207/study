@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 68
-  label: "068. 잭나이프·부트스트랩"
-  badge:
-    text: "서브"
-    variant: note
-title: "재표본화 기법 (잭나이프 vs 부트스트랩) 및 비모수 신뢰구간 추정"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "잭나이프·부트스트랩"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 68
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "068"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **재표본화(Resampling)는** 관측 표본을 다시 구성해 통계량의 변동성을 추정하는 방법
 - 메커니즘: 잭나이프는 관측값을 하나씩 제외하고, 부트스트랩은 복원추출 표본을 반복 생성
-- 통찰: 한계: 재표본 단위·반복 수·구간 산정법이 빠지면 신뢰구간 재현 곤란 → 방안: 표본 설계와 난수 재현 정보를 분석 산출물에 기록
+- 통찰: 모집단 분포를 알 수 없는 소표본 환경에서 모수의 신뢰구간과 표준오차를 추정하기 위해 복원 추출 기반의 부트스트랩과 체계적 1개 제외 잭나이프 결합 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -112,16 +107,37 @@ extra:
 
 ## Ⅵ. 제언
 
-분석 전 재표본 단위와 구간 방법을 표본 설계에 맞게 정하고 반복 수·난수 시드를 결과와 함께 기록.
+표본 크기와 계산 복잡도를 감안하여 일반적인 신뢰구간 추정에는 B=1000 이상의 부트스트랩을 채택하고 편향(Bias) 추정에는 결정론적 잭나이프를 적용.
+
+### 부트스트랩(Bootstrap)과 잭나이프(Jackknife) 리샘플링 절차
+
+```text
+[원래 표본 데이터 (크기 n)]
+         │
+         ├─ [부트스트랩: 복원 추출 (Replacement)]
+         │        ├─ 크기 n 표본 B회 반복 추출 ──► [추정량 B개 산출] ──► 신뢰구간 도출
+         │
+         └─ [잭나이프: 비복원 1개 제외 (Leave-One-Out)]
+                  ├─ 데이터 i번째 원소 제외 (n회) ──► [의사값(Pseudo-value)] ──► 편향 보정
+```
+
+### 선택 근거: 잭나이프 (Jackknife)
+
+| 구분 | 부트스트랩 (Bootstrap) | 잭나이프 (Jackknife) |
+|---|---|---|
+| 추출 메커니즘 | 확률적 복원 추출 (중복 허용) | 결정론적 1개 제외 비복원 추출 (총 n회) |
+| 적용 영역 | 복잡한 통계량의 신뢰구간 및 분포 추정 | 모수 추정량의 편향(Bias) 및 분산 추정 |
+| 계산 비용 | B회(보통 1,000회 이상) 시뮬레이션 | 표본 크기 n회만 계산 (비교적 경량) |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- Bradley Efron, “Bootstrap Methods: Another Look at the Jackknife,” *The Annals of Statistics*, 7(1), 1–26, 1979: https://doi.org/10.1214/aos/1176344552
-- Bradley Efron and Robert J. Tibshirani, *An Introduction to the Bootstrap*, Chapman & Hall, 1993.
-- R. G. Miller, *The Jackknife, the Bootstrap and Other Resampling Plans*, SIAM.
+- 정보관리기술사 115회 1교시: 데이터 통계 분석에서 리샘플링(부트스트랩, 잭나이프) 기법
+- An Introduction to the Bootstrap Standard Reference
 
 ## 연결 토픽
 
-- [표본추출](./032_sampling/) · [앙상블 학습](./062_ensemble_bagging_boosting/) · [기술통계](./036_descriptive_statistics/)
+- [표본추출](./032_sampling.md)
+- [불편추정량](./011_unbiased_estimator.md)
+- [앙상블 배깅·부스팅](./062_ensemble_bagging_boosting.md)

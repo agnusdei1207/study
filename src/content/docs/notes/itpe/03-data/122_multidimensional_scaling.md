@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 122
-  label: "122. 다차원척도법"
-  badge:
-    text: "기초"
-    variant: note
-author: "Codex"
+title: "다차원 척도법(MDS)"
 category: "03-data"
-date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
-weight: 122
-title: "다차원척도법(Multidimensional Scaling)의 개념과 적합도"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "122"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **다차원척도법은 대상 간 비유사도 정보를 저차원 좌표로 나타내 유사 관계를 시각적으로 살피는 분석법**
 - 메커니즘: 입력 거리·비유사도와 배치 좌표 간 불일치를 스트레스 등 적합도 기준으로 줄임
-- 통찰: 한계: MDS 배치도를 실제 공간축이나 확정된 군집으로 읽으면 비유사도 손실을 놓침 → 방안: 입력 거리·차원 수·Stress를 밝히고 여러 초기화에서 유지되는 관계만 해석
+- 통찰: 개체 간의 비유사도(거리)를 저차원 공간에 시각적으로 투영하기 위해 스트레스(Stress) 적합도 척도를 최소화하는 계량적/비계량적 MDS 선별 적용 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -85,7 +80,7 @@ extra:
                        └아니요→ 다른 좌표·시작값 검토
 ```
 
-여러 시작값과 차원 수를 비교하고 Stress와 관계 보존 정도를 함께 확인한다. 낮은 Stress만으로 좌표축의 실세계 의미나 군집 경계가 확정되지는 않는다.
+여러 시작값과 차원 수를 비교하고 Stress와 관계 보존 정도를 함께 확인 필요. 낮은 Stress만으로 좌표축의 실세계 의미나 군집 경계가 확정되지는 않음.
 
 ## Ⅳ. Metric·Nonmetric MDS의 보존 관계 비교
 
@@ -104,15 +99,47 @@ extra:
 
 ## Ⅵ. 제언
 
-저차원 그림은 원래 비유사도 정보를 일부 잃을 수 있다. 배치도를 공유할 때 입력 거리·차원·Stress를 함께 제시하고, 초기값을 바꿔도 유지되는 대상 간 관계만 설명한다.
+서열 척도 설문 데이터는 순서 보존 중심의 비계량적(Non-metric) MDS를 적용하고 스트레스 값 0.1 이하를 달성하여 2차원 포지셔닝 맵 신뢰성 확보.
+
+### 다차원 척도법(MDS) 좌표 도출 프로세스
+
+```text
+[개체 간 1:1 거리/비유사도 행렬 (N x N)]
+         │
+         ▼
+[계량적 vs 비계량적 MDS 접근법 선정]
+         │
+         ▼
+[저차원(2D/3D) 초기 좌표 임의 배치] ◀───────────────────┐
+         │                                              │
+         ▼                                              │
+[재구성된 유클리드 거리 d_ij 산출]                      │
+         │                                              │
+         ▼                                              │
+[스트레스(Stress) 값 계산: 실제 거리 vs 사상 거리 오차] │
+         │                                              │
+         ├─ [Stress > 0.1] ──► 경사하강법 좌표 조정 ────┘
+         │
+         └─ [Stress ≤ 0.05] ──► [최적 포지셔닝 맵 시각화 완료]
+```
+
+### 선택 근거: 비계량적 MDS (Non-metric)
+
+| 구분 | 계량적 MDS (Metric) | 비계량적 MDS (Non-metric) |
+|---|---|---|
+| 입력 데이터 | 구간 척도, 비율 척도 (실제 수치 거리) | 순서 척도 (선호도 서열, 유사도 랭킹) |
+| 거리 관계 | 원래 거리의 실제 크기 보존 | 개체 간 거리의 상대적 대소 순위만 보존 |
+| 적용 분야 | 물리적 좌표 복원, 센서 위치 추정 | 소비자 제품 인지도, 브랜드 이미지 지각도 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [scikit-learn 다차원척도법 예제](https://scikit-learn.org/stable/auto_examples/manifold/plot_mds.html): 거리·비유사도에 따른 metric·nonmetric MDS의 저차원 배치
-
-- 출제 이력: 다차원척도법의 개념·유형·적합도에 관한 기본 예상문제
-- 검증 출처: Kruskal & Wish, *Multidimensional Scaling*; Borg & Groenen, *Modern Multidimensional Scaling*
+- 정보관리기술사 124회 1교시: 다차원 척도법(MDS)의 개념과 스트레스(Stress) 평가 척도
+- Multidimensional Scaling: Theory and Applications
 
 ## 연결 토픽
 
-- 주성분분석, 군집분석, 다변량 시각화
+- [차원 축소(PCA·MDS)](./069_dimensionality_reduction_pca_mds.md)
+- [데이터 시각화](./016_data_visualization.md)
+- [군집분석](./005_cluster_analysis.md)

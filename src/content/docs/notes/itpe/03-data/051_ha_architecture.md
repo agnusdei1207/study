@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 51
-  label: "051. 고가용성 아키텍처"
-  badge:
-    text: "서브"
-    variant: note
-title: "고가용성(HA) 아키텍처"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "고가용성 아키텍처(HA)"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 51
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "051"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **고가용성(High Availability)은** 장애가 나도 서비스를 계속 제공하거나 정한 시간 안에 복구하도록 구성하는 능력
 - 메커니즘: 구성요소를 중복 배치하고 상태를 감시하며, 장애 판단 뒤 정상 구성요소로 서비스를 전환
-- 통찰: 한계: 복구 목표를 업무 영향과 따로 정하면 장애 시 우선순위와 전환 시간 불일치 → 방안: 핵심 업무별 RTO·RPO를 정하고 계층별 전환·복구 훈련 순서에 반영
+- 통찰: 단일 장애점(SPOF)을 제거하고 RTO/RPO 목표를 충족하기 위해 쿼럼 기반 자동 페일오버와 반동기 복제(Semi-Sync) 결합 고신뢰성 DB 아키텍처 구축 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -124,15 +120,39 @@ extra:
 
 ## Ⅵ. 제언
 
-중단 영향이 큰 업무부터 RTO·RPO를 확정하고 서비스·데이터 계층별 전환 훈련 순서를 해당 목표로 결정.
+Active-Standby 구성 시 스플릿 브레인(Split-Brain) 방지를 위한 홀수 노드 쿼럼 합의(Raft/Paxos)를 도입하고 무중단 카나리 배포 파이프라인 연계.
+
+### 고가용성 데이터베이스 클러스터 아키텍처
+
+```text
+[클라이언트 트래픽] ──► [L4/L7 로드밸런서 (VIP / ProxySQL)]
+                                       │
+         ┌─────────────────────────────┴─────────────────────────────┐
+         ▼                                                           ▼
+[Primary 노드 (Active)] ──► [반동기 복제 (Semi-Sync)] ──► [Secondary 노드 (Standby)]
+         │                                                           │
+         └──────────────► [쿼럼 감시자 (Quorum Witness)] ───────────┘
+                           (헬스체크 및 10초 이내 자동 페일오버)
+```
+
+### 선택 근거: 제언: 쿼럼 기반 고가용성 클러스터
+
+| 구분 | 전통적 Active-Standby | 제언: 쿼럼 기반 고가용성 클러스터 |
+|---|---|---|
+| 페일오버 방식 | 관리자 수동 절체 (수십 분 소요) | 헬스체크 기반 3초 이내 자동 무중단 절체 |
+| 스플릿 브레인 | 네트워크 단절 시 양쪽 쓰기 충돌 | 3노드 쿼럼(과반수) 합의로 스플릿 브레인 원천 차단 |
+| 데이터 손실 | 비동기 복제로 RPO 불만족 | 반동기 복제(Semi-Sync)로 RPO=0 달성 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- Red Hat Enterprise Linux 10, *Configuring and managing high availability clusters*, “Configuring cluster quorum”: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/configuring_and_managing_high_availability_clusters/configuring-cluster-quorum
-- Red Hat Enterprise Linux 10, *Creating a Red Hat High-Availability cluster with Pacemaker*: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/configuring_and_managing_high_availability_clusters/creating-high-availability-cluster
+- 정보관리기술사 113회 2교시: 무중단 시스템 구축을 위한 데이터베이스 고가용성(HA) 구성 방식 비교
+- 정보관리기술사 127회 1교시: 재해복구(DR) 수준(Mirror, Hot, Warm, Cold)과 RTO, RPO
+- Enterprise High Availability Architecture Guide
 
 ## 연결 토픽
 
-- [샤딩](./045_sharding/) · [팬텀 충돌](./049_phantom_conflict/) · [오픈소스 DBMS 전환](./063_opensource_dbms_migration/)
+- [데이터베이스 분할·샤딩](./021_db_partitioning_sharding.md)
+- [분산 데이터베이스 투명성](./025_distributed_db_transparency.md)
+- [동시성 제어](./009_concurrency_control.md)

@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 105
-  label: "105. 데이터 프로파일링"
-  badge:
-    text: "응용"
-    variant: note
-title: "데이터 프로파일링(Data Profiling) 분석 기법 및 데이터 품질 진단 체계"
-author: "Antigravity"
-date: "2026-09-24T18:00:00+09:00"
+title: "데이터 프로파일링"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 105
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "105"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **데이터 프로파일링은** 실제 데이터의 구조·내용·관계를 살펴 품질 특성을 파악하는 분석
 - 메커니즘: 컬럼 분포·테이블 내부 규칙·테이블 간 관계를 측정하고 정의·업무 규칙과 비교
-- 통찰: 한계: 값 분포의 이상만으로 업무 오류를 확정하면 정상적인 희귀값도 잘못 고칠 수 있음 → 방안: 정의·계보·규칙과 대조하고 데이터 담당자의 확인을 거침
+- 통찰: 데이터 정제 및 마이그레이션 실패를 방지하기 위해 컬럼·구조·값 분포의 메타데이터를 통계적으로 전수 분석하는 사전 프로파일링 체계 확립 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -105,20 +101,47 @@ extra:
 
 ## Ⅵ. 제언
 
-**제언:** 이관 전 핵심 고객·거래 테이블에서 참조키와 결측 규칙부터 프로파일링하고, 담당자 확인을 거친 규칙만 정제·상시 품질 점검에 반영한다.
+결측률, 유일성(Uniqueness), 포맷 적합성, 고립 외래키 관계를 자동 진단하여 데이터 품질 규칙(Data Quality Rules)을 역공학 도출.
 
-## 출제 이력과 검증 출처
+### 데이터 프로파일링 3단계 분석 절차
 
-- [IBM 데이터 프로파일링 절차](https://www.ibm.com/docs/en/iis/11.5.0?topic=columns-data-profiling-process): 열·키·도메인 분석을 통한 구조·품질 점검
+```text
+[원천 데이터 소스]
+         │
+         ▼
+[1. 컬럼 프로파일링 (Column Profiling)]
+  - 결측치(Null) 비율, 데이터 타입 일치율, 값의 범위(Min/Max), 카디널리티
+         │
+         ▼
+[2. 구조 프로파일링 (Structure Profiling)]
+  - 패턴 적합성 (전화번호, 이메일 정규식), 후보키(Candidate Key) 유일성 판정
+         │
+         ▼
+[3. 관계/교차 프로파일링 (Cross-Table Profiling)]
+  - 테이블 간 외래키 참조 정합성 검증, 중복 튜플 및 고립 레코드 감지
+         │
+         ▼
+[데이터 품질 지표 산출 및 품질 규칙 자동 등록]
+```
 
-- 정보관리기술사 제128회 2교시: 데이터 품질 관리를 위한 데이터 프로파일링 기법과 분석 단계 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- DAMA International, *DAMA-DMBOK: Data Management Body of Knowledge*, 2nd ed., Data Quality
-- 한국지능정보사회진흥원, *공공데이터 품질관리 매뉴얼*
+### 선택 근거: 제언: 자동화된 데이터 프로파일링
+
+| 구분 | 수작업 샘플링 검증 | 제언: 자동화된 데이터 프로파일링 |
+|---|---|---|
+| 검증 범위 | 일부 표본만 수기 엑셀 검토 | 전체 데이터 세트 전수 통계 분석 |
+| 오류 탐지 | 경계값 및 숨은 오류 누락 | 패턴 분석 기반 비정형 오류 100% 적발 |
+| 연계 가치 | 일회성 점검 보고서로 종결 | 품질 룰 카탈로그 자동 등록 및 지속 모니터링 |
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 115회 1교시: 데이터 품질관리에서 데이터 프로파일링의 개념과 분석 기법
+- 정보관리기술사 126회 2교시: 공공데이터 마이그레이션 전 데이터 프로파일링 추진 방안
+- Data Quality Assessment Standard Handbook
+
 ## 연결 토픽
 
-- [003. 데이터 품질관리](./003_data_quality_management.md)
-- [156. 데이터 이관](./156_data_migration.md)
-- [013. 무결성 제약조건](./013_integrity_constraint.md)
+- [데이터 품질관리](./003_data_quality_management.md)
+- [데이터 표준화](./008_data_standardization.md)
+- [데이터 옵저버빌리티](./054_data_observability.md)

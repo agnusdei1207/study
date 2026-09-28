@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 98
-  label: "098. 정적 SQL vs 동적 SQL"
-  badge:
-    text: "서브"
-    variant: note
-title: "정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL)의 비교 및 실행 메커니즘"
-author: "Antigravity"
-date: "2026-09-24T17:15:00+09:00"
+title: "동적 SQL"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 98
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "098"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **정적 SQL과 동적 SQL은** 실행할 SQL 구조를 언제, 어떻게 결정하는지의 구분
 - 메커니즘: 정적 SQL은 구조가 코드에 고정되고, 동적 SQL은 실행 중 조건에 따라 SQL 구조를 구성
-- 통찰: 한계: 동적 SQL에 입력 문자열을 직접 붙이면 구문 변경·권한 확대 위험이 생김 → 방안: 값은 바인딩하고 동적 식별자는 허용 목록으로 제한해 보안·실행계획을 시험
+- 통찰: 가변적인 다중 검색 조건 처리를 위해 동적 SQL을 채택하되 SQL 인젝션 취약점과 하드 파싱(Hard Parsing) 오버헤드를 원천 차단하는 바인드 변수 적용 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -93,7 +89,7 @@ extra:
 | 사용자 권한 | 필요한 테이블·행·열만 허용하는 최소 권한 계정 사용 |
 | 실행 결과 | 입력 변형 테스트, 오류·권한 로그와 비정상 질의 감시 |
 
-동적 SQL이라는 이유만으로 매번 하드 파싱이 발생하는 것은 아니다. 파싱·계획 캐시와 재사용 여부는 DBMS·드라이버·문장 텍스트·바인드 사용에 따라 달라진다.
+동적 SQL이라는 이유만으로 매번 하드 파싱이 발생하는 것은 아니다. 파싱·계획 캐시와 재사용 여부는 DBMS·드라이버·문장 텍스트·바인드 사용에 따라 차이 발생.
 
 ## Ⅴ. 한계와 방안
 
@@ -105,19 +101,45 @@ extra:
 
 ## Ⅵ. 제언
 
-**제언:** 동적 검색 화면부터 변경 가능한 열·정렬 목록을 코드로 제한하고, 값 바인딩과 대표 조건 조합의 계획 회귀 시험을 배포 기준으로 둔다.
+MyBatis의 `<if>`, `<where>` 태그 또는 Querydsl 등 Type-Safe 라이브러리를 활용하여 쿼리 정합성을 보장하고 `#` 파라미터 바인딩을 강제.
 
-## 출제 이력과 검증 출처
+### 안전한 동적 SQL 파싱 및 실행 흐름
 
-- 정보관리기술사 제134회 1교시: 정적 SQL과 동적 SQL 비교
-- Oracle, [Native Dynamic SQL](https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/native-dynamic-sql.html)
-- PostgreSQL, [PREPARE](https://www.postgresql.org/docs/current/sql-prepare.html)
-- OWASP, [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+```text
+[사용자 동적 조건 입력 (이름, 날짜, 상태)]
+         │
+         ▼
+[Type-Safe 동적 쿼리 빌더 (Querydsl / MyBatis)]
+  - 조건별 동적 WHERE 절 안전 조립
+  - 리터럴 문자열 치환($) 배제, 바인드 변수(#) 필수 매핑
+         │
+         ▼
+[DBMS 공유 풀 (Shared Pool) 진입]
+         │
+         ├─ [바인드 변수 기반 동일 SQL 구조 식별] ──► 소프트 파싱 (Soft Parsing, 고속)
+         │
+         ▼
+[사전 컴파일된 실행계획 재사용] ──► [SQL Injection 방어 및 즉각 실행]
+```
+
+### 선택 근거: 제언: 바인드 변수 동적 SQL (#)
+
+| 구분 | 문자열 접합 동적 SQL ($) | 제언: 바인드 변수 동적 SQL (#) |
+|---|---|---|
+| 보안성 | SQL Injection 공격에 완전 노출 | 바인드 파라미터 처리로 인젝션 원천 차단 |
+| 파싱 부하 | 조건값마다 매번 하드 파싱 발생 | SQL 문장 공유로 소프트 파싱 재사용 극대화 |
+| 타입 안정성 | 런타임 SQL 문법 에러 다발 | Querydsl 도입으로 컴파일 타임 오류 검출 |
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 108회 1교시: 정적 SQL(Static SQL)과 동적 SQL(Dynamic SQL)의 비교
+- 정보관리기술사 122회 2교시: 소프트 파싱과 하드 파싱의 차이점 및 바인드 변수의 중요성
+- Secure Coding Guidelines for SQL
+
 ## 연결 토픽
 
-- [088. 데이터베이스 튜닝](./088_database_tuning.md)
-- [091. 옵티마이저](./091_optimizer.md)
-- [094. Text-to-SQL](./094_text2sql.md)
+- [옵티마이저](./091_optimizer.md)
+- [데이터베이스 튜닝](./088_database_tuning.md)
+- [Text2SQL](./094_text2sql.md)

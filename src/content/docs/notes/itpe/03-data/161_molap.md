@@ -6,13 +6,13 @@ sidebar:
     text: "서브"
     variant: note
 title: "MOLAP (Multidimensional OLAP)"
-author: "Gemini 3.8 Flash"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 weight: 161
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "161"
 ---
@@ -23,9 +23,9 @@ extra:
 
 ## 30초 인출
 
-- 본질: **MOLAP은** 분석 데이터를 다차원 큐브에 저장·집계해 질의하는 OLAP 방식이다.
+- 본질: **MOLAP은** 분석 데이터를 다차원 큐브에 사전 저장·집계해 초고속 다차원 질의를 수행하는 OLAP 방식
 - 메커니즘: 차원·계층과 측정값 정의 → 필요한 집계값을 큐브에 구성 → Roll-up·Drill-down 등 다차원 질의 수행.
-- 통찰: 한계: 모든 차원 조합을 사전 집계하면 큐브 크기·갱신 비용이 급증 → 방안: 실제 질의 패턴과 갱신 주기로 집계 범위를 선택하고 저장량·응답을 함께 측정
+- 통찰: 다차원 배열 큐브에 사전 계산된 집계 데이터를 적재하여 고정된 다차원 질의에 대해 초고속 응답을 제공하는 분석 아키텍처임.
 
 <details>
 <summary>핵심 용어</summary>
@@ -111,13 +111,40 @@ extra:
 | 차원·계층 수와 집계 범위가 늘면 큐브의 저장량과 갱신 비용이 증가 | 자주 쓰는 집계를 우선 산정하고, 희소 데이터 처리·부분 집계·ROLAP 연계를 요구사항과 제품 기능에 맞춰 평가 |
 | 원천 변경 뒤 사전 집계가 갱신되기 전 값이 낡을 수 있음 | 업무의 허용 지연을 정하고 큐브 갱신 주기·대사 절차 설정 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-반복 조회가 많은 차원 조합부터 사전 집계하고 갱신 지연·저장량·응답시간을 같은 부하에서 측정.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+질의 응답 속도가 핵심인 정형 경영 리포팅에는 MOLAP 다차원 큐브를 활용하고, 차원 수가 많아 큐브 폭발(Cube Explosion)이 우려되는 대용량 데이터는 ROLAP/HOLAP으로 상호 보완.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+           [ 다차원 큐브 (3D Cube) ]
+              기간 (Time)
+               /
+              ┌─────────┐
+             /         /│
+            ┌─────────┐ │
+            │ 매출액  │ │ ──> [ Slicing ]: 2026년 단일 슬라이스 추출
+            │         │/      [ Dicing  ]: (서울, 스마트폰, 1Q) 부분 큐브
+            └─────────┘       [ Roll-up ]: 일별 -> 월별 -> 분기별 집계
+             지역 ─── 제품    [ Drill-down ]: 연도별 -> 월별 세분화
+```
+
+### 3. 기술 유형 및 비교 평가
+| 비교 축 | MOLAP (Multidimensional) | ROLAP (Relational) | HOLAP (Hybrid) |
+|---|---|---|---|
+| **데이터 저장 방식** | 전용 다차원 배열 큐브 (MDDB) | 관계형 테이블 (스타/눈꽃 스키마) | 요약은 MDDB, 세부는 RDBMS |
+| **질의 응답 속도** | 매우 빠름 (사전 집계 큐브 참조) | 보통~느림 (대량 조인 수행 필요) | 빠름 (계층별 분기 질의) |
+| **확장성 및 용량 한계**| 낮음 (희소 큐브, 용량 폭발 리스크) | 매우 높음 (테라바이트 이상 지원) | 우수 (절충형 설계) |
+| **초기 데이터 적재** | 사전 집계로 인한 긴 적재 시간 | 단순 적재로 적재 시간 빠름 | 중간 수준 |
+| **주요 사용 사례** | 고정 지표의 경영진 임원 대시보드 | 유연한 대규모 상세 트랜잭션 분석 | 대규모 전사 다차원 BI 분석 |
 
 ## 출제 이력과 검증 출처
 
-- [IBM OLAP 개요](https://www.ibm.com/think/topics/olap): 다차원 큐브 기반 MOLAP과 관계형 테이블 기반 ROLAP의 구분
+- E.F. Codd, S.B. Codd, C.T. Salley - Providing OLAP to User-Analysts: An IT Mandate
+- Ralph Kimball - The Data Warehouse Toolkit: Practical Techniques for Dimensional Modeling
+- Microsoft Analysis Services (SSAS) Multidimensional & Tabular Architecture Guide
 
-- **기출 이력** : 기존 원문에 제114회 OLAP 유형 비교 문항이 기재되어 있으나, 공식 문항 원문과 배점은 별도 확인 필요
-- **검증 범위** : MOLAP의 다차원 큐브·사전 집계 및 OLAP 기본 연산에 한정. 제품별 저장 방식·성능은 구현과 설정에 따라 달라짐
+## 연결 토픽
+
+- 상위 토픽: [데이터베이스 일반](./001_database.md)

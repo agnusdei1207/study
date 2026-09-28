@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 92
-  label: "092. 파티셔닝 (Partitioning)"
-  badge:
-    text: "서브"
-    variant: note
-title: "데이터베이스 파티셔닝(Partitioning) 전략과 데이터 분할 아키텍처"
-author: "Antigravity"
-date: "2026-09-24T16:40:00+09:00"
+title: "파티셔닝"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 92
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "092"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **테이블 파티셔닝은** 한 논리 테이블의 행을 키 기준에 따라 여러 물리 단위로 나누는 DBMS 기능
 - 메커니즘: 파티션 키로 행을 배치하고, 조건에 맞는 파티션만 읽도록 제거(pruning)하며 관리 단위를 분리
-- 통찰: 한계: 분할 키가 실제 질의 조건과 다르면 파티션을 나눠도 스캔량이 줄지 않음 → 방안: 질의 분포·증가·보관 주기로 키를 정하고 실행계획의 프루닝을 검증
+- 통찰: 대용량 테이블의 I/O 경합과 관리 비용을 최소화하기 위해 범위(Range), 리스트(List), 해시(Hash), 컴포지트 파티셔닝을 워크로드에 맞게 설계 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -78,7 +74,7 @@ extra:
 키 편중·보관 주기와 비교해 분할 규칙 조정
 ```
 
-파티션 키 조건으로 대상 구간을 좁히고 실제 실행계획에서 읽은 파티션 수를 확인한다.
+파티션 키 조건으로 대상 구간을 좁히고 실제 실행계획에서 읽은 파티션 수를 확인 필요.
 
 ## Ⅳ. 분할 방식과 인덱스 관계
 
@@ -107,18 +103,42 @@ extra:
 
 ## Ⅵ. 제언
 
-**제언:** 대표 질의의 필터 열과 삭제 주기가 겹치는 키를 먼저 후보로 정하고, 실제 계획의 프루닝·쓰기 편중·인덱스 유지 비용을 검증해 적용한다.
+조회 쿼리 조건절에 파티션 키를 포함시켜 파티션 프루닝(Partition Pruning)을 유도하고 이력성 로그 데이터는 슬라이딩 윈도우 기반 자동 보관/삭제 구현.
 
-## 출제 이력과 검증 출처
+### 파티션 프루닝(Partition Pruning) 메커니즘
 
-- 정보관리기술사 제127회 2교시: 파티셔닝의 개념, 분할 방식 및 인덱스 파티션 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- PostgreSQL, [Table Partitioning](https://www.postgresql.org/docs/current/ddl-partitioning.html)
-- Oracle, [VLDB and Partitioning Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/vldbg/)
+```text
+[사용자 쿼리: WHERE sale_date BETWEEN '2026-03-01' AND '2026-03-31']
+         │
+         ▼
+[옵티마이저 파티션 프루닝 판정]
+         │
+         ├─ [Partition 2026_01] ──► 스캔 스킵 (Pruned)
+         ├─ [Partition 2026_02] ──► 스캔 스킵 (Pruned)
+         ├─ [Partition 2026_03] ──► 대상 파티션만 직접 스캔 (Direct Access)
+         └─ [Partition 2026_04] ──► 스캔 스킵 (Pruned)
+         │
+         ▼ (불필요한 I/O 75% 절감 및 고속 반환)
+```
+
+### 선택 근거: 해시 파티셔닝 (Hash)
+
+| 구분 | 범위 파티셔닝 (Range) | 해시 파티셔닝 (Hash) |
+|---|---|---|
+| 분할 기준 | 날짜, 숫자 등 연속적인 범위 | 해시 함수 적용 결과값 |
+| 주요 목적 | 시계열 이력 데이터 관리 및 아카이빙 | 균등한 I/O 분산 및 경합 해소 |
+| 프루닝 지원 | 범위 질의 시 완벽한 프루닝 지원 | 동등(=) 조건 검색 시에만 프루닝 지원 |
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 116회 1교시: 테이블 파티셔닝의 유형(Range, List, Hash, Composite)
+- 정보관리기술사 128회 1교시: 파티션 프루닝(Partition Pruning)의 원리와 로컬/글로벌 인덱스
+- High Performance Database Partitioning Guide
+
 ## 연결 토픽
 
-- [021. DB 파티셔닝과 샤딩](./021_db_partitioning_sharding.md)
-- [045. 샤딩](./045_sharding.md)
-- [047. 인덱스](./047_index.md)
+- [데이터베이스 분할·샤딩](./021_db_partitioning_sharding.md)
+- [인덱스](./047_index.md)
+- [데이터베이스 튜닝](./088_database_tuning.md)

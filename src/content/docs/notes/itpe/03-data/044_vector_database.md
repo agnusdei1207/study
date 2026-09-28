@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 44
-  label: "044. 벡터 데이터베이스 (Vector Database)"
-  badge:
-    text: "기초"
-    variant: note
-title: "벡터 데이터베이스 (Vector Database) 및 HNSW·IVF"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "벡터 데이터베이스"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 44
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "044"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **벡터 데이터베이스(Vector Database)는** 벡터와 관련 데이터를 저장하고 벡터 유사도 검색을 지원하는 데이터 저장·검색 시스템.
 - 메커니즘: 임베딩 벡터 저장 → 거리·유사도 기준으로 이웃 검색 → 메타데이터와 함께 결과 반환.
-- 통찰: 한계: ANN 색인·필터 설정 변경으로 검색 재현율·지연·자원 비용 변동 → 방안: 권한·속성 필터가 있는 대표 질의로 정확 검색과 비교해 탐색 범위 조정
+- 통찰: LLM의 환각 완화와 대규모 고차원 임베딩 검색을 위해 HNSW 등 근사 최근접 이웃(ANN) 인덱스와 메타데이터 하이브리드 검색 아키텍처 구축 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -116,15 +112,42 @@ IVF : 질의 → 가까운 중심점 선택 → 선택된 리스트의 벡터 �
 
 ## Ⅵ. 제언
 
-권한·속성 필터를 포함한 대표 질의를 먼저 선정하고 정확 검색 기준의 재현율 하한에서 ANN 탐색 범위 결정.
+임베딩 차원 수와 QPS 요건에 따라 Milvus, Pinecone, pgvector 등 적합 엔진을 선정하고 역색인(BM25)과 벡터 유사도(Dense)를 결합한 하이브리드 RAG 구현.
+
+### 벡터 데이터베이스 RAG 하이브리드 검색 아키텍처
+
+```text
+[문서/비정형 데이터] ──► [청킹(Chunking) 및 임베딩 모델(Embedding)]
+                                       │
+                                       ▼
+[벡터 데이터베이스 적재 (HNSW / IVF-PQ 인덱싱)]
+                                       │
+[사용자 질의] ──► [질의 임베딩] ──────► [ANN 벡터 유사도 검색 (코사인/L2)]
+                                       │
+[키워드 질의] ────────────────────────► [BM25 역색인 검색]
+                                       │
+                                       ▼ (상호 순위 결합: RRF)
+                          [최적 검색 결과 도출 → LLM 프롬프트 주입]
+```
+
+### 선택 근거: 제언: 벡터 데이터베이스 (ANN)
+
+| 구분 | 전통적 관계형 DB | 제언: 벡터 데이터베이스 (ANN) |
+|---|---|---|
+| 검색 방식 | 정확한 키워드/범위 일치 검색 | 고차원 벡터 공간의 의미적 유사도 검색 |
+| 인덱싱 구조 | B-Tree, Hash Index | HNSW, IVF-PQ, ScaNN (Graph/Quantization) |
+| 주요 활용 | OLTP 트랜잭션, 정형 데이터 | 생성형 AI RAG, 이미지 검색, 추천 시스템 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 제137회 정보관리기술사 4교시 2번: 벡터 데이터베이스 검색을 위한 HNSW·IVF 동작 원리(공식 Q-Net 문제지 대조)
-- [pgvector 공식 문서](https://github.com/pgvector/pgvector) — 정확·근사 검색, HNSW·IVFFlat의 구조와 성능 절충
-- [Malkov and Yashunin, Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs](https://arxiv.org/abs/1603.09320)
-- [Jégou et al., Product Quantization for Nearest Neighbor Search](https://inria.hal.science/inria-00514462/document)
+- 정보관리기술사 132회 1교시: 생성형 AI 환경에서 벡터 데이터베이스의 개념과 주요 기능
+- 정보관리기술사 135회 2교시: 대규모 RAG(Retrieval-Augmented Generation) 시스템 아키텍처
+- Milvus & Pinecone Architecture Technical Guides
 
 ## 연결 토픽
 
-- 연관 토픽: [차원 축소](./069_dimensionality_reduction_pca_mds.md) · [데이터베이스 인덱스](./047_index.md) · [다차원 색인구조](./052_multidimensional_index_structure.md)
+- [텍스트 마이닝](./015_text_mining.md)
+- [인덱스](./047_index.md)
+- [NoSQL](./001_nosql.md)

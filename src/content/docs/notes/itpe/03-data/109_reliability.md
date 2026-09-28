@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 109
-  label: "109. 신뢰도와 타당도"
-  badge:
-    text: "응용"
-    variant: note
-title: "신뢰도(Reliability)와 타당도(Validity)"
-author: "Antigravity"
-date: "2026-09-24T00:00:00+09:00"
+title: "신뢰도"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 109
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "109"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **신뢰도와 타당도는 측정 결과의 일관성과 그 결과에 부여하는 해석의 적절성을 평가하는 기준**
 - 메커니즘: 측정 도구의 반복 결과를 비교해 무작위 오차를 살피고, 측정하려는 개념을 대표하는 증거를 모아 해석·사용의 타당성을 검토
-- 통찰: 한계: 점수가 반복해서 같아도 측정하려는 개념을 제대로 대표한다는 보장은 없음 → 방안: 사용 목적에 맞는 신뢰도와 내용·구조·외부 관계의 타당도 증거를 함께 검토
+- 통찰: 데이터 측정 및 통계 분석의 내적 일관성을 확보하기 위해 크론바흐 알파(Cronbach's α) 계수를 산출하고 재검사 및 반분 신뢰도 검증 병행 필수
 
 
 
@@ -72,7 +68,7 @@ extra:
                도구 재검토·새 표본 재평가
 ```
 
-일관성이 높아도 모든 문항이 같은 잘못된 개념을 묻는다면 해석은 타당하지 않다.
+측정 일관성(신뢰도)이 확보되더라도 문항이 측정 대상을 정확히 반영하지 못할 경우 타당도 저하 위험 존재.
 
 ## Ⅳ. 신뢰도 방법과 타당도 증거
 
@@ -110,16 +106,43 @@ extra:
 
 ## Ⅵ. 제언
 
-**제언:** 측정 도구를 의사결정에 쓰기 전에 사용 목적을 명시하고, 해당 집단의 반복 일관성과 개념 대표성 증거를 각각 확보한다.
+설문 및 정성 평가 문항 개발 시 요인 분석을 선행하여 단일 차원성을 검증하고 알파 계수 0.7 이상을 확보하여 측정 신뢰성 보장.
+
+### 측정 도구 신뢰도 및 타당도 검증 절차
+
+```text
+[측정 도구 / 설문 문항 설계]
+         │
+         ▼
+[1. 타당도 검증 (Validity)] : 내용 타당도, 구성 타당도 (요인 분석)
+         │
+         ▼
+[2. 신뢰도 검증 (Reliability)]
+  - 검사-재검사법 (안정성 측정)
+  - 반분법 (Splitting)
+  - 내적 일관성 평가 (크론바흐 알파 계수 α ≥ 0.7 검증)
+         │
+         ▼
+[신뢰도 저해 문항 제거 및 최종 측정 도구 확정]
+```
+
+### 선택 근거: 타당도 (Validity)
+
+| 구분 | 신뢰도 (Reliability) | 타당도 (Validity) |
+|---|---|---|
+| 개념 정의 | 동일 대상을 반복 측정했을 때의 일관성 | 측정하고자 하는 개념을 정확히 측정했는가 |
+| 평가 지표 | 크론바흐 알파(Cronbach's α), 상관계수 | 요인 분석(Factor Analysis), 상관 분석 |
+| 상호 관계 | 타당도가 높기 위한 필수 조건 | 신뢰도가 높아도 타당도가 낮을 수 있음 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력** : 제123회 정보관리 2교시에서 통계적 데이터 분석의 신뢰도와 타당도를 다룬 문항 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- **검증 출처** :
-  - [Standards for Educational and Psychological Testing (AERA, APA, NCME)](https://www.testingstandards.net/open-access-files.html)
-  - [COSMIN methodology](https://www.cosmin.nl/)
+- 정보관리기술사 113회 1교시: 데이터 신뢰도(Reliability)와 타당도(Validity)의 개념 및 평가 기법
+- Research Methodology Standard Reference
 
 ## 연결 토픽
 
-- 상위 토픽: [036. 기술통계 vs 추론통계 (Descriptive vs Inferential Statistics)](./036_descriptive_statistics.md)
-- 연관 토픽: [041. 가설검정 (Hypothesis Testing)](./041_hypothesis_testing.md)
+- [가설검정](./041_hypothesis_testing.md)
+- [편향](./038_bias.md)
+- [데이터 품질관리](./003_data_quality_management.md)

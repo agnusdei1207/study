@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 49
-  label: "049. 팬텀 현상과 충돌"
-  badge:
-    text: "기초"
-    variant: note
-title: "팬텀 충돌 (Phantom Conflict) 및 방지 기법 (Next-Key Lock, Predicate Lock)"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "팬텀 충돌"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 49
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "049"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **팬텀 읽기(Phantom Read)는** 같은 트랜잭션에서 같은 조건으로 다시 조회했을 때 다른 트랜잭션의 커밋으로 결과 행 집합이 달라지는 현상.
 - 메커니즘: 검색 조건이 정의하는 범위 안에 다른 트랜잭션이 행을 삽입·변경·삭제 → 같은 조건 재조회 시 집합 차이.
-- 통찰: 한계: 범위 잠금 이름만 믿으면 DBMS·질의계획별 팬텀 방지 차이 누락 → 방안: 업무 불변조건을 재현하는 동시 트랜잭션으로 결과·차단·재시도 시험
+- 통찰: 기존 레코드 잠금만으로 방어할 수 없는 신규 튜플 삽입(Phantom)을 차단하기 위해 넥스트 키 락(Next-Key Lock)과 MVCC 스냅샷 격리 결합 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -103,13 +99,36 @@ T1: 같은 조건 재조회 → 새 행 포함 시 팬텀 읽기
 
 ## Ⅵ. 제언
 
-금전·재고의 범위 불변조건부터 정하고 대상 DBMS에서 동시 삽입·갱신의 차단·취소·재시도 동작 검증.
+범위 검색 트랜잭션 충돌 시 Serializable 대신 Gap Lock 기반의 Repeatable Read를 채택하여 동시성 처리량을 유지하면서 팬텀 읽기를 완벽 차단.
+
+### 레코드 락 vs 갭 락 vs 넥스트 키 락 구조
+
+```text
+        인덱스 레코드 10                인덱스 레코드 20
+        ┌──────────────┐                ┌──────────────┐
+... ───►│ Record Lock  │───► Gap Lock ──►│ Record Lock  │───► ...
+        └──────────────┘ (신규삽입차단) └──────────────┘
+        [                       Next-Key Lock          ]
+```
+
+### 선택 근거: 제언: Next-Key Lock (Record+Gap)
+
+| 구분 | 전통적 레코드 잠금 | 제언: Next-Key Lock (Record+Gap) |
+|---|---|---|
+| 팬텀 방어 | 존재하지 않는 튜플 삽입 차단 불가 | 인덱스 간격(Gap) 선제 잠금으로 팬텀 원천 차단 |
+| 동시성 수준 | Serializable 강제로 처리량 급감 | Repeatable Read 레벨에서 안전한 동시 처리 |
+| 데드락 제어 | 잠금 순환 대기 가능성 | 인덱스 순서화 잠금 및 즉각 타임아웃 통제 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [MySQL 8.4 Reference Manual, Phantom Rows](https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html)
-- [PostgreSQL 18 Documentation, Transaction Isolation](https://www.postgresql.org/docs/current/transaction-iso.html)
+- 정보관리기술사 115회 1교시: 트랜잭션 동시성 이상 현상(Dirty Read, Non-repeatable, Phantom)
+- 정보관리기술사 127회 2교시: MySQL InnoDB의 Gap Lock과 Next-Key Lock 메커니즘
+- Database Systems: The Complete Book
 
 ## 연결 토픽
 
-- 연관 토픽: [트랜잭션](./078_transaction.md) · [데이터베이스 인덱스](./047_index.md)
+- [트랜잭션 격리 수준](./020_isolation_level.md)
+- [동시성 제어](./009_concurrency_control.md)
+- [무결성 제약](./013_integrity_constraint.md)

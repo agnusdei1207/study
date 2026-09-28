@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 47
-  label: "047. 데이터베이스 인덱스"
-  badge:
-    text: "기초"
-    variant: note
-title: "데이터베이스 인덱스 (Index) 및 클러스터드·논클러스터드 인덱스"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "인덱스"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 47
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "047"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **데이터베이스 인덱스(Database Index)는** 검색 조건에 맞는 행을 더 적은 탐색으로 찾도록 돕는 보조 자료구조.
 - 메커니즘: 검색 키를 인덱스에서 탐색 → 행 위치 또는 기본키 참조 → 테이블 자료 접근.
-- 통찰: 한계: 읽기 질의 하나만 보고 색인을 늘리면 쓰기·저장·다른 질의 비용 증가 → 방안: 대표 읽기·쓰기 실행 계획과 부하를 비교해 이득 있는 색인만 유지
+- 통찰: 조회 성능 향상과 DML 오버헤드 간의 트레이드오프를 정밀 계산하여 카디널리티가 높은 컬럼 중심의 복합 인덱스 설계 및 주기적 인덱스 재구성 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -102,14 +98,41 @@ extra:
 
 ## Ⅵ. 제언
 
-읽기·쓰기 대표 질의를 한 묶음으로 정하고 실행 계획과 전체 부하에서 순이득이 확인된 인덱스만 유지.
+인덱스 컬럼 가공을 금지하고 최좌측 접두사(Leftmost Prefix) 원칙을 준수하며 실행계획 분석을 통해 미사용 잉여 인덱스를 정기 정리하는 거버넌스 확립.
+
+### 인덱스 설계 및 실행계획 검증 프로세스
+
+```text
+[슬로우 쿼리 수집] ──► [실행계획(EXPLAIN) 분석: Full Table Scan 감지]
+                                │
+                                ▼
+[선택도(Selectivity) 평가] : 카디널리티 높은 선행 컬럼 식별
+                                │
+                                ▼
+[복합 인덱스 설계] : [동등 조건(=)] ──► [범위 조건(>, <, Between)]
+                                │
+                                ▼
+[커버링 인덱스(Covering Index) 검토] ──► 테이블 랜덤 액세스 원천 배제
+```
+
+### 선택 근거: 제언: 복합 커버링 인덱스 최적화
+
+| 구분 | 무분별한 단일 인덱스 다발 | 제언: 복합 커버링 인덱스 최적화 |
+|---|---|---|
+| DML 성능 | Insert/Update 시 인덱스 갱신 오버헤드 극대 | 필수 복합 인덱스 압축으로 쓰기 비용 최소화 |
+| 조회 성능 | 테이블 랜덤 I/O 다발 | 커버링 인덱스를 통한 테이블 미참조 고속 반환 |
+| 유지보수 | 중복/미사용 인덱스 방치 | DBMS 통계 기반 미사용 인덱스 정기 삭제 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [Microsoft Learn, Clustered and Nonclustered Indexes](https://learn.microsoft.com/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=azuresqldb-current)
-- [PostgreSQL Documentation, Indexes](https://www.postgresql.org/docs/current/indexes.html)
-- [PostgreSQL Documentation, CLUSTER](https://www.postgresql.org/docs/18/sql-cluster.html)
+- 정보관리기술사 103회 1교시: B-Tree 인덱스의 구조와 검색 메커니즘
+- 정보관리기술사 121회 2교시: 인덱스 스캔 방식(Index Range Scan, Full Scan, Skip Scan) 비교
+- SQL Antipatterns & High Performance MySQL
 
 ## 연결 토픽
 
-- 연관 토픽: [데이터베이스 샤딩](./045_sharding.md) · [참조 무결성](./070_referential_integrity.md) · [다차원 색인구조](./052_multidimensional_index_structure.md)
+- [이진 탐색 트리](./027_binary_search_tree.md)
+- [B-Tree](./111_b_tree.md)
+- [데이터베이스 튜닝](./088_database_tuning.md)

@@ -1,21 +1,16 @@
 ---
-author: "Codex"
+title: "K-평균 군집화(K-Means)"
 category: "03-data"
-date: "2026-09-24T00:00:00+09:00"
+tags:
+  - "notes-data"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  model: "GPT-6"
-  question_no: "029"
 sidebar:
   badge:
     text: "기초"
-    variant: "note"
-  label: "029. K-Means"
-  order: 29
-tags:
-  - "notes-data"
-title: "K-Means 군집화"
-weight: 29
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ weight: 29
 
 - 본질: **K-Means는** 미리 정한 k개 중심에 가까운 데이터를 배정하고 중심을 반복 갱신해 군집을 찾는 방법
 - 메커니즘: k·초기 중심 선택 → 가까운 중심에 배정 → 군집 평균으로 중심 갱신 → 배정·중심 변화가 작아질 때까지 반복
-- 통찰: 한계: k·초기 중심·이상치에 따라 군집 결과가 달라짐 → 방안: 척도·이상치를 확인하고 여러 k·초기값의 안정성과 업무적 의미 비교
+- 통찰: 초기 중심점 선택의 민감성과 구형 군집 가정의 한계를 극복하기 위해 K-Means++ 초기화와 엘보우/실루엣 지표 기반의 클러스터 타당성 검증 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -114,12 +109,45 @@ K-Means는 군집 내 거리 제곱합을 줄이지만 초기값에 따라 다�
 
 ## Ⅵ. 제언
 
-군집 활용 목적과 거리 척도를 먼저 정하고 여러 k·초기값의 결과 안정성과 업무 활용성을 함께 비교.
+대규모 고차원 데이터 처리 시 Mini-Batch K-Means 및 PCA 차원축소를 사전 결합하고 비구형 분포 데이터는 DBSCAN 등 밀도 기반 군집화로 우회.
+
+### K-Means++ 최적 군집화 프로세스
+
+```text
+[데이터 표준화 (Z-Score / MinMax)]
+         │
+         ▼
+[K-Means++ 초기 중심점 선정 (확률적 분산 배치)]
+         │
+         ▼
+[거리 계산 및 클러스터 할당] ◀─────────────────────────┐
+         │                                              │
+         ▼                                              │
+[새로운 군집 중심점(Centroid) 갱신]                     │
+         │                                              │
+         ├─ [중심점 이동 거리 > 임계값] ──► 반복 수행 ──┘
+         │
+         └─ [수렴 완료] ──► 실루엣 계수 평가 및 비즈니스 해석
+```
+
+### 선택 근거: 제언: K-Means++ 및 타당성 평가
+
+| 구분 | 전통적 K-Means (랜덤 초기화) | 제언: K-Means++ 및 타당성 평가 |
+|---|---|---|
+| 초기점 민감도 | 국소 최적해(Local Minima) 함정 | 데이터 간 거리 확률 기반 스마트 중심점 선정 |
+| 군집 수 K 결정 | 경험적 임의 추정 | 엘보우 기법(Elbow)과 실루엣 계수 교차 검증 |
+| 대규모 처리량 | 전체 데이터 반복 연산으로 지연 | Mini-Batch K-Means 도입으로 처리 속도 향상 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [scikit-learn 공식 문서, KMeans](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html) — 중심점 갱신과 초기화의 구현 사례.
+- 정보관리기술사 110회 2교시: K-Means 알고리즘의 동작 절차와 초기 중심점 선정 문제점
+- 정보관리기술사 122회 1교시: 군집 분석 타당성 평가(Silhouette Coefficient)
+- Data Mining: Concepts and Techniques
 
 ## 연결 토픽
 
-- 연관 토픽: [군집분석](./005_cluster_analysis.md), [이상치](./010_outlier.md)
+- [군집분석](./005_cluster_analysis.md)
+- [이상치](./010_outlier.md)
+- [데이터 시각화](./016_data_visualization.md)

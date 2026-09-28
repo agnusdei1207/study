@@ -1,3 +1,17 @@
+---
+title: "기술통계"
+category: "03-data"
+tags:
+  - "notes-data"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
+---
 ﻿---
 author: "Codex"
 category: "03-data"
@@ -26,7 +40,7 @@ weight: 36
 
 - 본질: **기술통계는** 관측한 데이터의 특징을 요약하고, **추론통계는** 표본에서 얻은 근거로 모집단에 관한 불확실성을 추정하는 방법.
 - 메커니즘: 관측값 요약 → 표본 설계와 변동성 검토 → 필요한 경우 모집단 모수 추정·가설 검정.
-- 통찰: 한계: 평균 하나로는 분포의 꼬리·이상치와 모집단 적용 가능성을 놓침 → 방안: 분포·강건한 요약량을 확인하고 모집단 결론에는 표본 설계·불확실성 병기
+- 통찰: 평균 중심의 단일 수치 요약에 왜곡되지 않도록 중위수, 왜도, 사분위수 범위를 함께 제시하여 데이터의 실제 분포 형태를 직관적으로 전달 필요
 
 <details>
 <summary>핵심 용어</summary>
@@ -110,13 +124,40 @@ weight: 36
 
 ## Ⅵ. 제언
 
-분포 시각화·중앙값 등 강건한 요약량부터 확인하고 모집단 결론에는 표본 설계·불확실성·효과 크기를 함께 기록.
+탐색적 데이터 분석(EDA) 단계에서 중심경향성, 산포도, 분포 형상 지표를 결합한 통계 대시보드를 구축하고 이상치 영향을 사전 격리.
+
+### 기술통계 3대 분석 차원 및 지표 체계
+
+```text
+[데이터 수집 및 전처리]
+         │
+         ├─ [중심 경향성 측정] : 평균 (Mean), 중위수 (Median), 최빈값 (Mode)
+         │
+         ├─ [산포도 측정]       : 분산 (Var), 표준편차 (SD), 사분위수 범위 (IQR)
+         │
+         └─ [분포 형상 측정]   : 왜도 (Skewness, 비대칭도), 첨도 (Kurtosis, 뾰족함)
+         │
+         ▼
+[박스플롯 및 히스토그램 시각화 결합 종합 프로파일링]
+```
+
+### 선택 근거: 제언: 5수치 요약 및 왜도 결합
+
+| 구분 | 산술평균 단독 요약 | 제언: 5수치 요약 및 왜도 결합 |
+|---|---|---|
+| 이상치 민감도 | 극단값에 의해 평균 왜곡 | 중위수와 IQR 병행으로 로버스트한 요약 제공 |
+| 분포 형상 파악 | 좌우 대칭성 파악 불가 | 왜도 측정을 통해 롱테일 분포 유무 판별 |
+| 의사결정 신뢰 | 대표성 상실 위험 | 박스플롯 기반의 전체 데이터 분포 가시화 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [OpenIntro Statistics](https://www.openintro.org/book/os/) — 기술통계, 표본분포, 추정·검정의 기초 개념
-- [American Statistical Association, Statement on Statistical Significance and P-Values](https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf)
+- 정보관리기술사 115회 1교시: 기술통계와 추론통계의 비교 및 주요 기술통계량
+- Practical Statistics for Data Scientists Standard Reference
 
 ## 연결 토픽
 
-- 연관 토픽: [표본추출](./032_sampling.md) · [가설검정](./041_hypothesis_testing.md) · [불편추정량](./011_unbiased_estimator.md)
+- [이상치](./010_outlier.md)
+- [데이터 시각화](./016_data_visualization.md)
+- [표본추출](./032_sampling.md)

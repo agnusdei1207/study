@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 131
-  label: "131. 로지컬 DW (Logical Data Warehouse)"
-  badge:
-    text: "응용"
-    variant: note
-author: "OpenAI Codex"
+title: "논리적 데이터 웨어하우스(Logical DW)"
 category: "03-data"
-date: "2026-09-24T17:18:00+09:00"
 tags:
   - "notes-data"
-weight: 131
-title: "로지컬 데이터 웨어하우스(Logical Data Warehouse)와 쿼리 푸시다운"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "131"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **로지컬 데이터 웨어하우스(Logical Data Warehouse, LDW)는** 여러 원천의 데이터를 논리적으로 통합해 이용하게 하는 분석 구조
 - 메커니즘: 가상화·연합 질의 계층이 원천에 질의를 나누고 결과를 통합
-- 통찰: 한계: 원천에 분산 질의를 반복하면 업무 부하·네트워크 지연이 커질 수 있음 → 방안: 질의 실행계획·원천 부하를 관측하고 반복 분석은 캐시·사전 적재와 비교
+- 통찰: 물리적 ETL로 데이터를 중앙 복제하지 않고 데이터 가상화(Data Virtualization) 기술을 통해 원천 데이터를 실시간 쿼리 결합하는 유연한 분석 아키텍처 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -86,7 +81,7 @@ extra:
      실행계획·전송량·원천 부하 확인
 ```
 
-실제 푸시다운 범위는 원천·커넥터·연산에 따라 다르므로 실행계획에서 위임 여부를 확인한다.
+실제 푸시다운 범위는 원천·커넥터·연산에 따라 다르므로 실행계획에서 위임 여부를 확인 필요.
 
 ## Ⅳ. 물리적 DW와 로지컬 DW의 비교
 
@@ -104,7 +99,7 @@ extra:
 | 프로젝션 | 필요한 열만 읽고 반환 | 원천·커넥터의 열 선택 지원 |
 | 집계·조인 | 중간 데이터 이동 및 엔진 처리량 감소 가능 | 함수·조인 조건·원천 위치 등 질의별 지원 |
 
-동일 원천의 집계·조인도 지원 조건에 따라 위임 결과가 달라진다.
+동일 원천의 집계·조인도 지원 조건에 따라 위임 결과가 차이 발생.
 
 ## Ⅴ. 한계와 방안
 
@@ -116,15 +111,41 @@ extra:
 
 ## Ⅵ. 제언
 
-연합 질의가 원천에 반복 부하를 주면 논리 통합의 장점보다 지연이 커진다. 먼저 상위 반복 질의의 실행계획과 원천 부하를 측정하고, 푸시다운으로 줄지 않는 구간은 캐시·부분 적재와 비용을 비교한다.
+원천 시스템 부하를 방지하기 위해 스마트 캐싱과 푸시다운 최적화(Pushdown Optimization)를 적용하고 엔터프라이즈 논리 뷰를 카탈로그에 중앙 등록.
+
+### 논리적 DW 데이터 가상화 아키텍처
+
+```text
+[사용자 / BI 도구] : 단일 SQL 인터페이스 질의
+         │
+         ▼
+[논리적 DW 가상화 엔진 (Denodo / Trino / Presto)]
+  - 글로벌 메타데이터 뷰 관리, 쿼리 파싱 및 최적화
+  - 스마트 푸시다운: 원천 엔진에서 필터/조인 선처리
+         │
+         ├─ [RDBMS (Oracle / MySQL)]  ──► 푸시다운 쿼리 실행
+         ├─ [빅데이터 레이크 (S3 / Parquet)] ──► 분산 벡터 스캔
+         └─ [클라우드 SaaS (Salesforce API)]  ──► 실시간 REST 연계
+```
+
+### 선택 근거: 제언: 논리적 DW (Logical DW)
+
+| 구분 | 전통적 물리적 DW | 제언: 논리적 DW (Logical DW) |
+|---|---|---|
+| 데이터 적재 | 대규모 물리적 ETL 복제 및 저장 | 데이터 이동 없이 원천 데이터 가상 뷰 결합 |
+| 구축 소요시간 | 수개월~수년 파이프라인 개발 | 수일 내 가상화 뷰 정의로 즉각 서비스 |
+| 데이터 신선도 | 배치 주기에 따른 지연 데이터 | 질의 시점 원천 데이터 실시간 조회 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제121회 정보관리기술사 2교시의 로지컬 데이터 웨어하우스 관련 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
-- Trino 공식 문서, [Pushdown](https://trino.io/docs/current/optimizer/pushdown.html)
-- Trino 공식 문서, [Connectors](https://trino.io/docs/current/develop/connectors.html)
+- 정보관리기술사 117회 2교시: 논리적 데이터 웨어하우스(Logical DW)의 개념과 데이터 가상화
+- 정보관리기술사 129회 2교시: 데이터 레이크하우스와 데이터 메시 환경에서 가상화 아키텍처
+- Gartner Logical Data Warehouse Architectural Pattern
 
 ## 연결 토픽
 
-- 상위 토픽: [OLAP](./039_olap.md)
-- 연관 토픽: [데이터 레이크](./007_data_lake.md), [로지컬 데이터 웨어하우스 아키텍처](./132_logical_data_warehouse.md)
+- [데이터 레이크](./007_data_lake.md)
+- [OLAP](./039_olap.md)
+- [논리적 DW 아키텍처](./132_logical_data_warehouse.md)

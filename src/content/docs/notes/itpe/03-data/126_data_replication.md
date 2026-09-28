@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 126
-  label: "126. 데이터 복제"
-  badge:
-    text: "응용"
-    variant: note
-author: "Codex"
+title: "데이터 복제"
 category: "03-data"
-date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
-weight: 126
-title: "데이터 복제(Data Replication)의 구조와 동기화 방식"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "126"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **데이터 복제는 한 데이터의 변경을 다른 노드나 저장소에 전달해 사본을 유지하는 기술**
 - 메커니즘: 복제 단위와 확인 시점을 정해 가용성·복구·읽기 확장 목표와 데이터 손실·지연의 균형을 설계
-- 통찰: 한계: 복제 성공을 재해 복구 성공으로 보면 실제 복구 시간·손실 목표를 놓침 → 방안: 업무별 RPO·RTO를 정하고 승격·복구 훈련으로 실제 결과를 비교
+- 통찰: 데이터 고가용성과 읽기 성능 분산을 달성하기 위해 복제 지연(Replication Lag)에 따른 불일치를 억제하고 스냅샷 분산 복제 거버넌스 구축 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -82,7 +77,7 @@ extra:
 복구된 옛 원본 → 쓰기 차단 확인 → 새 원본에서 재동기화
 ```
 
-복제 성공만으로 RTO가 충족되지는 않는다. 장애 범위·복제 지연·승격과 재동기화 시간을 실제 훈련으로 확인한다.
+복제 성공만으로 RTO가 충족되지는 않는다. 장애 범위·복제 지연·승격과 재동기화 시간을 실제 훈련으로 확인 필요.
 
 ## Ⅳ. 복제 계층과 동기화 방식의 비교
 
@@ -113,13 +108,41 @@ RPO는 허용 데이터 손실 시점, RTO는 서비스 복구 시간 목표; �
 
 ## Ⅵ. 제언
 
-복제본의 존재만으로 복구 목표 달성을 보장할 수 없다. 업무별 RPO·RTO를 먼저 정하고, 복제 지연·사본 승격·옛 원본 재동기화를 훈련해 실제 손실과 복구 시간을 목표와 비교한다.
+리드 레플리카(Read Replica) 운영 시 쓰기 직후 자신의 변경사항을 조회하는 Read-After-Write 일관성을 보장하기 위해 사용자 세션별 마스터 라우팅 적용.
+
+### 데이터베이스 읽기 복제 및 세션 일관성 라우팅
+
+```text
+[애플리케이션 클라이언트]
+         │
+         ▼
+[데이터베이스 프록시 / 라우터]
+         │
+         ├─ [쓰기 요청 (INSERT / UPDATE)] ──────────► [Master DB]
+         │                                               │
+         ├─ [쓰기 직후 본인 세션 읽기 (1초 이내)] ──┘   │ (비동기 복제)
+         │                                               ▼
+         └─ [일반 읽기 요청 (SELECT)] ──────────────► [Read Replica 1, 2]
+```
+
+### 선택 근거: 제언: 세션 일관성 보장 라우팅
+
+| 구분 | 단순 읽기 복제 라우팅 | 제언: 세션 일관성 보장 라우팅 |
+|---|---|---|
+| 복제 지연 영향 | 본인 작성 글이 즉시 안 보이는 오류 | 자신의 쓰기 직후 조회는 마스터 강제 라우팅 |
+| 부하 분산 | 모든 읽기를 복제본 분산 | 지연시간 허용 수준에 따라 마스터/슬레이브 동적 분기 |
+| 장애 격리 | 슬레이브 지연 시 전반적 쿼리 정체 | 지연 임계치 초과 슬레이브 풀 자동 퇴출(Eviction) |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제120회 정보관리 1교시 출제 이력으로 기록된 데이터 복제·재해복구 문항(원문 출처 확인 필요)
-- 검증 출처: [PostgreSQL 17 WAL 복제와 동기화](https://www.postgresql.org/docs/17/warm-standby.html), [MongoDB 복제 동기화](https://www.mongodb.com/docs/manual/core/replica-set-sync), [Debezium CDC 기능](https://debezium.io/documentation/reference/stable/features.html)
+- 정보관리기술사 114회 1교시: 데이터베이스 복제(Replication)의 동기, 비동기, 반동기 방식 비교
+- 정보관리기술사 127회 2교시: 고가용성 DB 클러스터에서 복제 지연(Replication Lag) 해결 방안
+- Enterprise Database Replication Best Practices
 
 ## 연결 토픽
 
-- 고가용성 아키텍처, 백업·복구, 분산 데이터베이스, CDC
+- [데이터베이스 복제 유형](./114_db_replication_types.md)
+- [고가용성 아키텍처(HA)](./051_ha_architecture.md)
+- [데이터베이스 분할·샤딩](./021_db_partitioning_sharding.md)

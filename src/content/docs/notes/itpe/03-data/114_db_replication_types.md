@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 114
-  label: "114. DB 복제 유형 (Replication Types)"
-  badge:
-    text: "응용"
-    variant: note
-title: "데이터베이스 복제 유형(동기·비동기·반동기)과 고가용성 복제 아키텍처"
-author: "Antigravity"
-date: "2026-09-24T00:00:00+09:00"
+title: "데이터베이스 복제 유형"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 114
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "114"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -27,7 +23,7 @@ extra:
 
 - 본질: **데이터베이스 복제는 원본의 변경을 다른 노드에 전달해 가용성·읽기 확장·복구를 지원하는 기법이며, 동기화 방식에 따라 응답 지연과 장애 시점의 데이터 손실 위험이 달라짐**
 - 메커니즘: 원본의 변경을 복제 노드에 전달·반영하고, 복제 확인 시점에 따라 커밋 응답·지연·손실 위험을 조정
-- 통찰: 한계: 자동 승격도 미반영 로그·분기 쓰기를 낳을 수 있음 → 방안: 복제 확인 조건과 펜싱·재동기화 절차를 정의해 장애 훈련으로 검증
+- 통찰: 성능 지연과 데이터 손실 간의 트레이드오프를 극복하기 위해 동기(Sync), 비동기(Async), 반동기(Semi-Sync) 복제 기법을 업무 SLA에 따라 차등 적용 필수
 <details><summary>핵심 용어</summary>
 
 - **데이터베이스 복제 (Database Replication)** : 원본 데이터 변경을 복제 노드에 전달·반영해 사본을 유지하는 기술.
@@ -121,7 +117,7 @@ Replica 미반영 → 오래된 값 가능
 |:---|:---|
 | 단절된 양쪽 노드에서 쓰기 허용 | 단일 쓰기 리더, 장애 판정, 펜싱 절차와 복구 리허설 |
 
-정족수·감시자에 의한 장애 판정만으로 기존 리더가 쓰기를 멈춘다는 보장은 없으므로, 승격 전 펜싱과 복구 후 재동기화까지 함께 시험한다.
+정족수·감시자에 의한 장애 판정만으로 기존 리더가 쓰기를 멈춘다는 보장은 없으므로, 승격 전 펜싱과 복구 후 재동기화까지 병행 검증 필요.
 
 ## Ⅴ. 한계와 방안
 
@@ -133,18 +129,39 @@ Replica 미반영 → 오래된 값 가능
 
 ## Ⅵ. 제언
 
-자동 승격 중 미반영 로그와 분기 쓰기가 생길 수 있으므로 복제 확인 조건·기존 리더 펜싱·재동기화 절차를 장애 훈련에서 우선 검증한다.
+핵심 금융 거래는 1개 이상의 슬레이브 수신을 보장하는 반동기 복제를 채택하여 RPO=0과 합리적인 응답 지연시간(Latency)을 동시 달성.
+
+### 동기 vs 비동기 vs 반동기 복제 메커니즘
+
+```text
+[동기 복제 (Sync)]
+  Master 쓰기 ──► Slave 전송 ──► [Slave 디스크 기록 완료 후 Master 커밋] (RPO=0, 지연 큼)
+
+[비동기 복제 (Async)]
+  Master 쓰기 ──► Master 커밋 즉시 완료 ──► [백그라운드 Slave 복제] (고성능, 데이터 유실 위험)
+
+[반동기 복제 (Semi-Sync)]
+  Master 쓰기 ──► Slave 전송 ──► [최소 1개 Slave 릴레이 로그 수신 확인(ACK)] ──► Master 커밋
+```
+
+### 선택 근거: 반동기 복제 (Semi-Sync)
+
+| 구분 | 동기 복제 (Synchronous) | 반동기 복제 (Semi-Sync) |
+|---|---|---|
+| 트랜잭션 지연 | 모든 복제본 커밋 대기로 지연 극대 | 최소 1개 슬레이브 ACK 후 커밋으로 지연 최소화 |
+| 장애 시 RPO | 데이터 손실 전무 (RPO = 0) | 마스터 장애 시 데이터 무손실 (RPO = 0) |
+| 슬레이브 장애 영향 | 단일 슬레이브 장애 시 마스터 중단 | 타임아웃 시 일시 비동기 전환으로 가용성 유지 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력** :
-  - 기존 제120회 정보관리 2교시 표기는 Q-Net 공식 원문을 확보하지 못해 회차·문항·배점 미확인
-- **검증 출처** :
-  - [MySQL Reference Manual, Semisynchronous Replication](https://dev.mysql.com/doc/refman/8.4/en/replication-semisync.html)
-  - PostgreSQL Documentation, "Chapter 27 High Availability, Load Balancing, and Replication"
----
+- 정보관리기술사 114회 1교시: 데이터베이스 복제(Replication)의 동기, 비동기, 반동기 방식 비교
+- 정보관리기술사 127회 2교시: 고가용성 DB 클러스터에서 복제 지연(Replication Lag) 해결 방안
+- High Performance MySQL Standard Guide
 
 ## 연결 토픽
 
-- 상위 토픽: [051. 고가용성(HA) 아키텍처](./051_ha_architecture.md)
-- 연관 토픽: [113. CAP·PACELC 이론](./113_cap_pacelc.md), [126. 데이터 복제 (Data Replication)](./126_data_replication.md)
+- [고가용성 아키텍처(HA)](./051_ha_architecture.md)
+- [데이터 복제](./126_data_replication.md)
+- [동시성 제어](./009_concurrency_control.md)

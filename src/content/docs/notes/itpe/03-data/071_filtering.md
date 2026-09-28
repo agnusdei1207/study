@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 71
-  label: "071. 추천 시스템 필터링"
-  badge:
-    text: "서브"
-    variant: note
-title: "필터링 기법 (Filtering) 및 추천 시스템과 데이터 엔지니어링"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "추천 시스템 필터링"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 71
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "071"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **추천 시스템 필터링은** 사용자·항목 정보를 이용해 큰 항목 집합에서 사용자에게 맞는 후보를 고르는 과정
 - 메커니즘: 협업 필터링은 사용자 행동의 유사성을, 콘텐츠 기반 필터링은 항목 속성의 유사성을 이용하고, 후보를 점수화해 노출 순위를 구성
-- 통찰: 한계: 클릭률만 보면 장기 이용 가치와 항목 편중을 놓침 → 방안: 클릭·장기 이용·다양성 지표를 정하고 후보 생성·순위화를 단계별 검증
+- 통찰: 협업 필터링의 콜드 스타트(Cold Start) 및 희소성 문제와 콘텐츠 기반 필터링의 과적합(오버스페셜라이제이션)을 극복하는 하이브리드 추천 아키텍처 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -116,17 +111,42 @@ extra:
 
 ## Ⅵ. 제언
 
-업무 목표에 맞는 장기 이용·다양성 기준을 먼저 정하고 후보 생성·순위화의 클릭 편향을 단계별로 측정.
+신규 사용자/아이템은 메타데이터 기반 콘텐츠 필터링을 적용하고 인터랙션 축적 후 행렬 분해(Matrix Factorization) 및 딥러닝 추천 모델로 동적 전환.
+
+### 하이브리드 추천 시스템 2단계 파이프라인
+
+```text
+[사용자 행동 로그 및 아이템 메타데이터]
+         │
+         ├─ [1단계 후보 생성 (Candidate Generation)]
+         │        ├─ 콘텐츠 기반 필터링 (TF-IDF / 임베딩 유사도)
+         │        └─ 협업 필터링 (Item-based CF / 행렬 분해)
+         │
+         ▼ (Top-K 후보 수백 개 추출)
+[2단계 정밀 랭킹 (Re-ranking / Deep Learning)]
+         │ : 딥러닝 랭킹 모델 (Wide & Deep / DLRM) 적용
+         ▼
+[개인화 추천 결과 서빙 (다양성/신선도 보정 필터)]
+```
+
+### 선택 근거: 콘텐츠 기반 필터링 (Content-based)
+
+| 구분 | 협업 필터링 (Collaborative) | 콘텐츠 기반 필터링 (Content-based) |
+|---|---|---|
+| 추천 원리 | 유사한 취향의 다른 사용자 행동 기반 | 사용자가 선호한 아이템의 속성 유사도 기반 |
+| 콜드 스타트 | 신규 사용자/아이템에 추천 불가 (치명적) | 아이템 속성만으로 신규 아이템 추천 가능 |
+| 추천 의외성 | 새로운 관심사 발견(Serendipity) 가능 | 이전 선호 범위에 갇히는 과적합 발생 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- Google for Developers, Machine Learning Recommendation Systems, “Recommendation systems overview”: https://developers.google.com/machine-learning/recommendation/overview/types
-- Google for Developers, “Candidate generation overview”: https://developers.google.com/machine-learning/recommendation/overview/candidate-generation
-- Google for Developers, “Collaborative filtering”: https://developers.google.com/machine-learning/recommendation/collaborative/basics
-- Google for Developers, “Scoring” and “Re-ranking”: https://developers.google.com/machine-learning/recommendation/dnn/scoring · https://developers.google.com/machine-learning/recommendation/dnn/re-ranking
+- 정보관리기술사 118회 2교시: 추천 시스템의 협업 필터링(CF)과 콘텐츠 기반 필터링(CBF) 비교
+- 정보관리기술사 129회 1교시: 대규모 추천 시스템을 위한 2단계(Retrieval, Ranking) 아키텍처
+- Recommender Systems Handbook Standard Reference
 
 ## 연결 토픽
 
-- [데이터마이닝](./043_data_mining/) · [앙상블 학습](./062_ensemble_bagging_boosting/) · [데이터 관측가능성](./054_data_observability/)
+- [군집분석](./005_cluster_analysis.md)
+- [텍스트 마이닝](./015_text_mining.md)
+- [벡터 데이터베이스](./044_vector_database.md)

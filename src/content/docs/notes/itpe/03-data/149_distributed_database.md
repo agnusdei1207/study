@@ -6,13 +6,13 @@ sidebar:
     text: "응용"
     variant: note
 title: "분산 데이터베이스"
-author: "Codex"
+author: "Antigravity"
 date: "2026-09-24T00:00:00+09:00"
 tags:
   - "notes-data"
 weight: 149
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "응용"
   question_no: "149"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **분산 데이터베이스는** 여러 노드에 나누거나 복제한 데이터를 함께 관리하고 질의·갱신을 처리하는 데이터베이스
 - 메커니즘: 데이터 배치·복제 정책 정의 → 질의를 해당 노드로 전달 → 결과·갱신 조정 → 장애·정합성 확인
-- 통찰: 한계: 분할 키 쏠림과 복제 지연으로 노드 확장이 성능·정합성을 보장하지 못함 → 방안: 업무별 질의·갱신·복구 목표에 맞춰 배치·일관성 정책을 정하고 장애 상황을 시험
+- 통찰: 네트워크로 연결된 복수의 노드에 데이터를 분할·복제 배치하고 투명성과 2PC 분산 트랜잭션을 적용하여 확장성과 고가용성을 동시에 달성함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -135,13 +135,37 @@ extra:
 | 샤드 간 질의가 많아 네트워크·병합 비용 증가 | 대표 조인·집계의 데이터 배치와 노드 간 통신량 측정 |
 | 일부 노드 장애에서 분산 갱신이 대기·실패 | 원자적 커밋 범위와 재시도·복구 절차를 장애 시험으로 확인 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-핵심 업무의 읽기 최신성·복구 목표를 먼저 정하고 노드 장애·복제 지연이 결과에 미치는 구간부터 재현.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+CAP 정리와 PACELC 이론에 따라 분산 노드의 일관성(C)과 가용성(A) 요구수준을 정의하고, 네트워크 단절 및 코디네이터 장애에 대비한 타임아웃과 보상 트랜잭션 수립.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+  [ 조정자 (Coordinator) ]              [ 참여자 1, 2 (Participants) ]
+             │                                        │
+             │─── 1. Prepare (준비 요청) ────────────>│
+             │<── 2. Prepared (준비 완료 응답) ───────│
+             │                                        │
+     [ 전원 준비 완료 확인 ]                          │
+             │                                        │
+             │─── 3. Global Commit (커밋 명령) ──────>│
+             │<── 4. Acknowledged (커밋 완료) ────────│
+```
+
+### 3. 기술 유형 및 비교 평가
+| 분산 트랜잭션 기법 | 코디네이터 블로킹 | 네트워크 왕복(RTT) | 복구 복잡도 | 확장성 수준 | 주 적용 영역 |
+|---|---|---|---|---|---|
+| **2단계 커밋 (2PC)** | 취약 (블로킹 발생 가능) | 2 RTT (Prepare + Commit) | 보통 (Redo Log 기반) | 낮음 (참여자 증가 시 지연) | 전통적 관계형 분산 DBMS |
+| **3단계 커밋 (3PC)** | 해결 (타임아웃 비블로킹) | 3 RTT (PreCommit 추가) | 높음 | 낮음 | 고신뢰 실시간 통신망 |
+| **Saga 패턴** | 없음 (비동기 이벤트) | N개 로컬 RTT | 높음 (보상 트랜잭션 필요)| 매우 높음 | MSA, 분산 마이크로서비스 |
+| **Raft / Paxos 합의** | 과반수 정족수 확보 시 해소 | 과반 노드 RTT | 보통 (로그 복제 메커니즘) | 높음 | 분산 메타데이터, 분산 NoSQL |
 
 ## 출제 이력과 검증 출처
 
-- [MongoDB 샤딩 공식 문서](https://www.mongodb.com/docs/manual/sharding/): 데이터 분산·라우팅·복제의 실제 구현과 운영 절충
+- M. Tamer Ozsu, Patrick Valduriez - Principles of Distributed Database Systems (Springer)
+- Jim Gray - Notes on Data Base Operating Systems: Commit Protocols
+- ISO/IEC 9075: Database Languages - SQL Part 4: Persistent Stored Modules & Transactions
 
 ## 연결 토픽
 

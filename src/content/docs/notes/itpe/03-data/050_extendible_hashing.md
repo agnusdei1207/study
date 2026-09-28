@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 50
-  label: "050. 확장 해싱"
-  badge:
-    text: "기초"
-    variant: note
-title: "확장 해싱 (Extendible Hashing)"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "확장성 해싱"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 50
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "050"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **확장 해싱은** 디렉터리와 버킷을 이용해 삽입이 집중된 버킷만 나누는 동적 해시 파일 구조
 - 메커니즘: 해시 비트로 디렉터리를 찾고, 버킷 오버플로우 때 로컬 깊이에 따라 버킷 또는 디렉터리를 확장
-- 통찰: 한계: 해시값 편중으로 특정 버킷의 반복 분할·디렉터리 팽창 → 방안: 키 분포에 맞는 해시 함수를 확인하고 버킷·디렉터리 사용량 함께 점검
+- 통찰: 데이터 증가 시 전체 재해싱(Rehashing) 오버헤드를 배제하기 위해 디렉터리 기반의 전역/지역 깊이(Depth) 제어로 점진적 버킷 분할 아키텍처 수립 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -98,17 +94,38 @@ extra:
 
 ## Ⅵ. 제언
 
-대표 키의 해시 분포를 먼저 측정하고 디렉터리 증가 대비 버킷 분할 효율을 확인한 뒤 적용.
+대규모 키-값 저장소 설계 시 디렉터리 크기 폭증(디렉터리 폭발)을 방지하도록 초기 깊이를 적정 설계하고 오버플로우 체이닝과의 하이브리드 결합 고려.
+
+### 확장성 해싱 디렉터리 및 버킷 분할 구조
+
+```text
+[전역 깊이 Global Depth = 2]
+디렉터리 00 ──► [버킷 A (지역 깊이 Local Depth = 2)] : 4, 8, 12
+디렉터리 01 ──► [버킷 B (지역 깊이 Local Depth = 1)] : 1, 5, 9, 13
+디렉터리 10 ──► [버킷 C (지역 깊이 Local Depth = 2)] : 2, 6, 10
+디렉터리 11 ──┘ (버킷 B 공유)
+       │
+       ▼ (버킷 B 오버플로우 발생 시 Local Depth=2로 분할 및 포인터 재배치)
+```
+
+### 선택 근거: 제언: 확장성 해싱 (Extendible)
+
+| 구분 | 전통적 정적 해싱 | 제언: 확장성 해싱 (Extendible) |
+|---|---|---|
+| 버킷 오버플로우 | 긴 오버플로우 체인으로 O(N) 퇴보 | 해당 버킷만 1:2 분할하여 점진적 수용 |
+| 재해싱 오버헤드 | 테이블 전체 레코드 재배치 발생 | 디렉터리 포인터만 갱신하여 무중단 확장 |
+| 메모리 효율 | 초기 고정 크기 낭비 발생 | 데이터 규모에 맞춰 선형적으로 저장소 증가 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- [Fagin 등, Extendible Hashing 원 논문](https://research.ibm.com/publications/extendible-hashinga-fast-access-method-for-dynamic-files): 디렉터리·버킷의 동적 확장과 탐색 구조
-
-- Ronald Fagin et al., “Extendible Hashing—A Fast Access Method for Dynamic Files,” *ACM Transactions on Database Systems*, 1979.
-- Abraham Silberschatz et al., *Database System Concepts*, 7th ed., Chapter 14.
+- 정보관리기술사 105회 1교시: 동적 해싱(Dynamic Hashing) 중 확장성 해싱의 원리와 깊이(Depth) 개념
+- Ronald Fagin, Extendible Hashing: A Fast Access Method for Dynamic Files
+- Fundamentals of Database Systems
 
 ## 연결 토픽
 
-- [인덱스](./047_index/) · [샤딩](./045_sharding/)
+- [인덱스](./047_index.md)
+- [NoSQL](./001_nosql.md)
+- [이진 탐색 트리](./027_binary_search_tree.md)

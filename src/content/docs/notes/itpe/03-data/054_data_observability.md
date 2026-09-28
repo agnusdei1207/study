@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 54
-  label: "054. 데이터 관측가능성"
-  badge:
-    text: "서브"
-    variant: note
-title: "데이터 관측가능성 (Data Observability)"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "데이터 옵저버빌리티"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 54
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "054"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **데이터 관측가능성(Data Observability)은** 데이터 상태와 파이프라인 정보를 관찰해 품질 이상과 원인을 파악하는 능력
 - 메커니즘: 갱신 시점·건수·구조·값 분포·계보를 확인해 이상을 찾고 영향받는 데이터를 추적
-- 통찰: 한계: 검사 결과와 소비 업무가 분리되면 이상 발생 후 영향 범위 파악 지연 → 방안: 핵심 데이터의 소유자·품질 규칙·계보를 연결하고 실제 장애로 추적 절차 점검
+- 통찰: 데이터 다운타임을 근절하기 위해 신선도·분포·볼륨·스키마·계보의 5대 핵심 기둥을 실시간 모니터링하고 원인 규명을 자동화하는 파이프라인 구축 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -104,16 +100,42 @@ extra:
 
 ## Ⅵ. 제언
 
-업무 영향이 큰 데이터 흐름부터 소유자·품질 규칙·계보를 연결하고 실제 장애의 영향 추적 시간을 검증.
+원천 수집부터 최종 BI 대시보드까지 전 구간 데이터 계보(Lineage)를 자동 추적하고 통계적 이상 탐지 알고리즘을 결합한 데이터 SLA 관리 체계 확립.
+
+### 데이터 옵저버빌리티 5대 핵심 기둥 모니터링
+
+```text
+[원천 데이터 유입] ──► [ETL/ELT 파이프라인] ──► [DW/레이크 적재] ──► [BI/AI 서빙]
+         │                     │                      │                    │
+         └─────────────────────┴──────────────────────┴────────────────────┘
+                                       │
+                                       ▼ (실시간 관측)
+             ┌───────────────────────────────────────────────────┐
+             │ 1. 신선도 (Freshness) : 데이터 갱신 지연 SLA 감시 │
+             │ 2. 분포 (Distribution) : 이상치 및 통계 드리프트 │
+             │ 3. 볼륨 (Volume)       : 데이터 유입량 이상 급감  │
+             │ 4. 스키마 (Schema)     : 비호환 DDL 변경 즉시 차단│
+             │ 5. 계보 (Lineage)      : 장애 원인 및 파급도 추적│
+             └───────────────────────────────────────────────────┘
+```
+
+### 선택 근거: 제언: 데이터 옵저버빌리티
+
+| 구분 | 전통적 시스템 모니터링 | 제언: 데이터 옵저버빌리티 |
+|---|---|---|
+| 관측 대상 | CPU, 메모리, 네트워크 인프라 상태 | 데이터 자체의 내용, 무결성, 통계적 분포 |
+| 이상 감지 | 파이프라인 크래시/중단만 탐지 | 정상 실행되었으나 빈 테이블 적재 등 조용한 오류 탐지 |
+| 장애 추적 | 로그 수동 검색 및 역추적 곤란 | End-to-End 계보 기반 즉각적인 영향 분석 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- OpenLineage, “About OpenLineage” 및 “Object Model”: https://openlineage.io/docs/next/ · https://openlineage.io/docs/spec/object-model/
-- OpenLineage, “Lineage Job Facet”: https://openlineage.io/docs/spec/facets/job-facets/lineage/
-- Barr Moses et al., *Data Quality Fundamentals*, O’Reilly, 2022.
+- 정보관리기술사 131회 1교시: 데이터 옵저버빌리티(Data Observability)의 5대 기둥과 구축 방안
+- Monte Carlo Data Observability Architecture Guide
 
 ## 연결 토픽
 
-- [데이터 품질관리](./003_data_quality_management/) · [데이터 거버넌스](./006_data_governance/)
+- [데이터 품질관리](./003_data_quality_management.md)
+- [데이터 거버넌스](./006_data_governance.md)
+- [데이터 레이크](./007_data_lake.md)

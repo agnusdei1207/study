@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 78
-  label: "078. 트랜잭션"
-  badge:
-    text: "서브"
-    variant: note
-title: "트랜잭션 (Transaction) 및 ACID 특성과 상태 전이도"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "트랜잭션(ACID)"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 78
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "078"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **트랜잭션(Transaction)은** 하나의 논리 작업을 함께 성공시키거나 취소하는 데이터베이스 작업 단위
 - 메커니즘: 연산을 실행하고 커밋 또는 롤백하며, 원자성·일관성·격리성·영속성 원칙으로 데이터 상태를 관리
-- 통찰: 한계: ACID 이름만 확인하면 업무 불변조건·동시성·복구 목표가 불명확 → 방안: 보존할 업무 상태를 먼저 정하고 트랜잭션 경계·격리·복구 시험
+- 통찰: 데이터베이스 무결성을 보장하기 위해 원자성(Undo 로그), 일관성(제약조건), 격리성(2PL/MVCC), 영속성(Redo 로그/WAL)의 ACID 메커니즘을 엔진 차원에서 완결 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -126,18 +121,41 @@ extra:
 
 ## Ⅵ. 제언
 
-업무 불변조건과 장애 시 보존 대상을 먼저 정의하고 그 기준으로 트랜잭션 경계·격리·복구 설정을 검증.
+원자성과 영속성을 보장하는 WAL(Write-Ahead Logging)을 최적화하고 격리성 수준을 비즈니스 허용 한도에 맞춰 튜닝하여 고속 트랜잭션 처리량 확보.
+
+### ACID 보장을 위한 DBMS 엔진 메커니즘
+
+```text
+[트랜잭션 시작] ──► [버퍼 풀(Buffer Pool) 데이터 변경]
+                          │
+         ┌────────────────┴────────────────┐
+         ▼                                 ▼
+[Undo Log (원자성 A)]             [Redo Log / WAL (영속성 D)]
+  - 롤백 시 이전 상태 복원          - 장애 발생 시 복구(Redo 재실행)
+         │                                 │
+         └────────────────┬────────────────┘
+                          ▼
+             [동시성 제어: MVCC/2PL (격리성 I)] ──► [커밋 완료 (일관성 C)]
+```
+
+### 선택 근거: BASE (분산 NoSQL)
+
+| 구분 | ACID (전통적 RDBMS) | BASE (분산 NoSQL) |
+|---|---|---|
+| 일관성 보장 | 강한 일관성 (Strict Consistency) | 최종 일관성 (Eventual Consistency) |
+| 가용성 수준 | 네트워크 분할 시 일관성 우선(CP) | 가용성 우선 타협(AP / Soft State) |
+| 적용 영역 | 금융, 결제, 재고 등 엄격한 트랜잭션 | 소셜 피드, IoT 로그, 대규모 분산 캐시 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- PostgreSQL 18 Documentation, “Write-Ahead Logging (WAL)”: https://www.postgresql.org/docs/18/wal-intro.html
-- PostgreSQL 18 Documentation, “Write Ahead Log configuration”: https://www.postgresql.org/docs/18/runtime-config-wal.html
-- PostgreSQL 18 Documentation, “COMMIT”: https://www.postgresql.org/docs/18/sql-commit.html
-- Jim Gray, “The Transaction Concept: Virtues and Limitations,” *VLDB*, 1981.
-- C. Mohan et al., “ARIES: A Transaction Recovery Method Supporting Fine-Granularity Locking,” *ACM Transactions on Database Systems*, 1992.
+- 정보관리기술사 101회 1교시: 트랜잭션의 4대 특징(ACID)과 구현 기술
+- 정보관리기술사 123회 1교시: WAL(Write-Ahead Logging)의 원리와 ARIES 회복 알고리즘
+- Jim Gray, Transaction Processing: Concepts and Techniques
 
 ## 연결 토픽
 
-- [트랜잭션 격리 수준](./020_isolation_level/) · [동시성 제어](./009_concurrency_control/) · [팬텀 충돌](./049_phantom_conflict/)
+- [동시성 제어](./009_concurrency_control.md)
+- [트랜잭션 격리 수준](./020_isolation_level.md)
+- [무결성 제약](./013_integrity_constraint.md)

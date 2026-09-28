@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 90
-  label: "090. 오피니언 마이닝 (Opinion Mining)"
-  badge:
-    text: "서브"
-    variant: note
-title: "오피니언 마이닝(Opinion Mining) 및 속성 기반 감성 분석(ABSA) 체계"
-author: "Antigravity"
-date: "2026-09-24T16:25:00+09:00"
+title: "오피니언 마이닝"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 90
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "090"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **오피니언 마이닝은** 텍스트에 표현된 의견의 대상과 태도를 찾아 구조화하는 분석
 - 메커니즘: 의견 문서에서 개체·속성·극성과 문맥을 추출하고, 필요하면 작성자·시점 정보를 연결
-- 통찰: 한계: 전체 평점만 보면 어느 기능을 고쳐야 하는지 구별하기 어려움 → 방안: 속성별 의견을 업무 분류에 연결하고 원문 표본으로 자동 판정을 확인
+- 통찰: 단순 긍정/부정 극성 분류를 넘어 속성 기반 감성 분석(ABSA)을 적용하여 특정 제품 기능 및 서비스 품질 단위의 구체적 고객 여론 진단 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -109,19 +105,44 @@ extra:
 
 ## Ⅵ. 제언
 
-**제언:** 장애·성능처럼 조치 가능한 속성부터 의견을 분리해 집계하고, 자동 판정과 원문 표본의 불일치를 확인한 뒤 개선 우선순위에 반영한다.
+도메인 특화 감성 사전을 구축하고 최신 사전학습 언어모델(LLM/KoBERT)을 파인튜닝하여 비꼬임(Sarcasm)과 다중 문맥을 정확히 판별하는 파이프라인 수립.
 
-## 출제 이력과 검증 출처
+### 속성 기반 감성 분석(ABSA) 엔드투엔드 파이프라인
 
-- [IBM 감성 분석·오피니언 마이닝 개요](https://www.ibm.com/think/topics/sentiment-analysis): 텍스트의 의견·감성 분석과 규칙·학습 기반 처리
+```text
+[고객 리뷰/VOC 텍스트 수집]
+         │
+         ▼
+[형태소 분석 및 구문 분석 (KoNLPy / Spacy)]
+         │
+         ▼
+[속성-의견 쌍 추출 (Aspect-Opinion Extraction)] : 예: [배송: 속도], [가격: 부담]
+         │
+         ▼
+[문맥 기반 감성 분류 (BERT/RoBERTa)] ──► 속성별 긍정/부정 점수 산출
+         │
+         ▼
+[VOC 대시보드 시각화 및 제품 개선 부서 자동 티켓팅]
+```
 
-- 정보관리기술사 제122회 2교시: 빅데이터 분석에서 오피니언 마이닝의 개념·절차·감성 분석 기법 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- Bing Liu, *Sentiment Analysis and Opinion Mining*, Morgan & Claypool Publishers
-- Bing Liu, “Sentiment Analysis and Opinion Mining,” *Synthesis Lectures on Human Language Technologies*, 2012
+### 선택 근거: 제언: 속성 기반 감성분석 (ABSA)
+
+| 구분 | 단순 문서 레벨 감성분석 | 제언: 속성 기반 감성분석 (ABSA) |
+|---|---|---|
+| 분석 정밀도 | 문서 전체를 긍/부정 단일 라벨링 | 제품 세부 속성(배송, 가격, 품질)별 다각 분석 |
+| 비즈니스 가치 | 단순 여론 추이만 파악 가능 | 구체적인 서비스 개선 타깃 즉각 도출 |
+| 문맥 해석 | 복합 감정 문장 해석 실패 | 속성별 극성 분리로 상반된 감정 완벽 수용 |
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 113회 1교시: 오피니언 마이닝(Opinion Mining)과 감성 분석(Sentiment Analysis)
+- 정보관리기술사 125회 2교시: 비정형 고객 피드백 분석을 위한 속성 기반 감성 분석 기법
+- Mining Text Data Standard Textbook
+
 ## 연결 토픽
 
-- [015. 텍스트 마이닝](./015_text_mining.md)
-- [043. 데이터 마이닝](./043_data_mining.md)
+- [텍스트 마이닝](./015_text_mining.md)
+- [데이터 시각화](./016_data_visualization.md)
+- [군집분석](./005_cluster_analysis.md)

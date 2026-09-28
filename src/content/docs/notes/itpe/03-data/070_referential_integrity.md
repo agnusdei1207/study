@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 70
-  label: "070. 참조 무결성"
-  badge:
-    text: "서브"
-    variant: note
-title: "참조 무결성 (Referential Integrity) 및 외래키 연쇄 동작 (CASCADE, RESTRICT)"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "참조 무결성"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 70
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "070"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **참조 무결성(Referential Integrity)은** 외래키가 부모 테이블의 유효한 키를 참조하도록 유지하는 제약
 - 메커니즘: 자식 데이터 입력·수정과 부모 데이터 삭제·수정 시 참조 관계를 검사하고, 정의한 연쇄 동작을 적용
-- 통찰: 한계: 외래키 동작이 업무 생명주기와 다르면 자식 정보가 지워지거나 참조 위반 → 방안: 변경 시나리오를 정의해 DDL 제약·통합 시험에 반영
+- 통찰: 고립 레코드(Orphan Data)와 외래키 참조 불일치를 방지하기 위해 DDL 수준의 외래키 제약조건과 애플리케이션 수준의 변경 이벤트 전파를 유기적으로 결합 필요
 
 <details><summary>핵심 용어</summary>
 
@@ -117,17 +112,40 @@ extra:
 
 ## Ⅵ. 제언
 
-부모·자식의 삭제·수정 생명주기를 먼저 정하고 RESTRICT·CASCADE 등 참조 동작을 DDL과 통합 시험에 일치시킬 것.
+부모 테이블 삭제 시 비즈니스 영향도에 따라 CASCADE 또는 RESTRICT 정책을 명확히 설정하고 대용량 배치 적재 시 외래키 인덱스를 필수 구성.
+
+### 참조 무결성 위반 방어 및 삭제 옵션
+
+```text
+[부모 테이블: Customer (PK: cust_id)]
+         │
+         ▼ (외래키 참조 관계: FK cust_id)
+[자식 테이블: Orders (FK: cust_id)]
+         │
+         ├─ [CASCADE]  ──► 부모 레코드 삭제 시 관련 주문 레코드 자동 연쇄 삭제
+         ├─ [RESTRICT] ──► 주문 레코드가 존재하면 부모 고객 삭제 원천 차단
+         ├─ [SET NULL] ──► 부모 삭제 시 자식의 외래키 값을 NULL로 자동 변경
+         └─ [NO ACTION]──► 트랜잭션 종료 시점까지 제약조건 지연 검증
+```
+
+### 선택 근거: 제언: 선언적 참조 무결성 강제
+
+| 구분 | 외래키(FK) 미설정 운영 | 제언: 선언적 참조 무결성 강제 |
+|---|---|---|
+| 데이터 정합성 | 고립된 유령 데이터(Orphan) 잔존 | DBMS 차원의 완벽한 부모-자식 일치 보장 |
+| 성능 오버헤드 | 쓰기 시 검사 비용 없음 | 외래키 컬럼 인덱스 생성으로 검증 성능 최적화 |
+| 트랜잭션 안전 | 수동 롤백 실패 시 불일치 발생 | 원자적 삭제/수정 무결성 100% 보장 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- PostgreSQL 18 Documentation, “Constraints”: https://www.postgresql.org/docs/18/ddl-constraints.html
-- PostgreSQL 18 Documentation, “CREATE TABLE”: https://www.postgresql.org/docs/18/sql-createtable.html
-- MySQL 8.0 Reference Manual, “FOREIGN KEY Constraints”: https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html
-- C. J. Date, *An Introduction to Database Systems*, relational integrity constraints.
+- 정보관리기술사 102회 1교시: 관계형 데이터베이스의 무결성 제약조건 중 참조 무결성
+- 정보관리기술사 120회 1교시: 외래키 제약조건의 옵션(CASCADE, RESTRICT, SET NULL)
+- Database Systems: The Complete Book
 
 ## 연결 토픽
 
-- [무결성 제약](./013_integrity_constraint/) · [데이터 모델링](./042_data_modeling/) · [ERD](./028_erd/)
+- [무결성 제약](./013_integrity_constraint.md)
+- [정규화](./019_normalization.md)
+- [개체-관계 다이어그램(ERD)](./028_erd.md)

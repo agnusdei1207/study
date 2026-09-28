@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 116
-  label: "116. ELK 스택"
-  badge:
-    text: "서브"
-    variant: note
-title: "ELK(Elasticsearch·Logstash·Kibana) 스택 기반 분산 로그 분석 및 관측성 플랫폼"
-author: "Antigravity"
-date: "2026-09-24T00:00:00+09:00"
+title: "ELK 스택"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 116
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "116"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -27,7 +23,7 @@ extra:
 
 - 본질: **Elastic Stack은 로그·이벤트를 수집·변환·색인·검색·시각화해 운영 상태를 분석하는 데이터 플랫폼**
 - 메커니즘: 로그 수집·변환 → Elasticsearch의 색인·검색 → Kibana의 탐색·시각화로 운영 데이터를 분석
-- 통찰: 한계: 로그 증가와 색인 분할은 자원·검색 비용을 키움 → 방안: 검색·보존 목표에 맞춰 샤드·수명주기 정책을 부하 시험 뒤 설정
+- 통찰: 대규모 분산 로그 수집·저장·시각화를 위해 Beats-Logstash 수집 파이프라인, Elasticsearch 역색인 검색, Kibana 대시보드의 유기적 연계 및 ILM 수명주기 관리 필수
 <details><summary>핵심 용어</summary>
 
 - **Elastic Stack** : 로그·이벤트의 수집, 변환, 검색·분석, 시각화를 지원하는 구성요소 묶음.
@@ -97,7 +93,7 @@ Spring → [Doc1, Doc2] / Cloud → [Doc1] / Boot → [Doc2]
 | **Cold** | 드문 조회 | 검색 허용 시간·보존 비용에 맞는 저장 방식 선택 |
 | **Delete** | 보존 기간 만료 | 법정·업무 보존 요구 확인 뒤 삭제 |
 
-계층 사용 여부와 이동 시점은 고정값이 아니며, 배포 환경·라이선스·조회 요구에 따라 정한다.
+계층 사용 여부와 이동 시점은 고정값이 아니며, 배포 환경·라이선스·조회 요구에 따라 결정.
 
 ## Ⅴ. 한계와 방안
 
@@ -109,19 +105,38 @@ Spring → [Doc1, Doc2] / Cloud → [Doc1] / Boot → [Doc2]
 
 ## Ⅵ. 제언
 
-로그 증가로 검색 지연과 저장 비용이 커지는 인덱스부터 대표 색인·검색 부하를 재현하고 샤드 수와 수명주기 정책을 조정한다.
+로그 급증 시 버퍼링을 위한 Kafka를 전진 배치하고 인덱스 생명주기 관리(ILM: Hot-Warm-Cold)를 적용하여 스토리지 비용 절감과 실시간 검색 성능 보장.
+
+### ELK 스택 엔터프라이즈 로깅 파이프라인
+
+```text
+[서버/앱 로그] ──► [Filebeat 경량 수집] ──► [Kafka 버퍼링]
+                                                     │
+                                                     ▼
+[Logstash: 필터링/파싱(Grok/JSON)] ──► [Elasticsearch: 분산 역색인 저장]
+                                                     │
+                                                     ▼
+                                     [Kibana: 실시간 시각화 / 알람]
+```
+
+### 선택 근거: 제언: ELK 기반 통합 옵저버빌리티
+
+| 구분 | 단순 파일 로그 적재 | 제언: ELK 기반 통합 옵저버빌리티 |
+|---|---|---|
+| 검색 성능 | Grep 기반 느린 순차 탐색 | 역색인(Inverted Index) 기반 밀리초 실시간 검색 |
+| 분석 확장성 | 서버별 로그 사일로화 | 전사 분산 클러스터 통합 및 샤딩 수평 확장 |
+| 수명주기 관리 | 수동 압축/삭제 운영 | ILM 기반 Hot-Warm-Cold 자동 티어링 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력** :
-  - 제132회 정보관리 1교시: ELK(Elasticsearch/Logstash/Kibana) 스택
-- **검증 출처** :
-  - [Elastic, How many shards should I have in my Elasticsearch cluster?](https://www.elastic.co/blog/how-many-shards-should-i-have-in-my-elasticsearch-cluster)
-  - [Elastic, Index lifecycle management](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)
-  - Clinton Gormley & Zachary Tong, "Elasticsearch: The Definitive Guide", O'Reilly
----
+- 정보관리기술사 116회 1교시: ELK(Elasticsearch, Logstash, Kibana) 스택의 구성요소와 특징
+- 정보관리기술사 126회 2교시: 클라우드 네이티브 환경에서 중앙 집중형 로그 관리 아키텍처
+- Elasticsearch: The Definitive Guide
 
 ## 연결 토픽
 
-- 상위 토픽: [015. 텍스트 마이닝 (Text Mining)](./015_text_mining.md)
-- 연관 토픽: [054. 데이터 관측가능성 (Data Observability)](./054_data_observability.md), [045. 샤딩 (Sharding)](./045_sharding.md)
+- [인덱스](./047_index.md)
+- [데이터 옵저버빌리티](./054_data_observability.md)
+- [데이터 시각화](./016_data_visualization.md)

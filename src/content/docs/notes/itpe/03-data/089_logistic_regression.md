@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 89
-  label: "089. 로지스틱 회귀분석 (Logistic Regression)"
-  badge:
-    text: "서브"
-    variant: note
-title: "로지스틱 회귀분석 (Logistic Regression) 및 오즈비와 시그모이드 수학적 유도"
-author: "Antigravity"
-date: "2026-09-24T16:20:00+09:00"
+title: "로지스틱 회귀"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 89
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "089"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **로지스틱 회귀는** 입력 특성으로 범주 사건의 확률을 추정하는 통계 모델
 - 메커니즘: 입력의 선형 결합을 로짓으로 두고, 역로짓인 시그모이드로 확률을 계산
-- 통찰: 한계: 확률을 분류로 바꾸는 임계값을 고정하면 업무별 오분류 비용이 반영되지 않음 → 방안: 확률·임계값 근거·비용과 재검토 조건을 변경 이력에 기록
+- 통찰: 이진 분류 확률을 모델링하기 위해 오즈비(Odds Ratio)에 로그를 취한 로짓 변환과 시그모이드 함수를 적용하고 교차 엔트로피 손실 함수로 최적화 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -93,7 +89,7 @@ xᵢ 한 단위 증가, 다른 변수 고정
 | \(e^{\beta_i}\) | 같은 조건에서 \(x_i\) 한 단위 증가 시 오즈에 곱해지는 비율 |
 | 분류 기준 | 추정 확률을 임계값과 비교해 클래스를 정하되, 임계값은 오분류 비용·목표에 따라 선택 |
 
-오즈비는 확률의 증가 배수나 인과 효과와 같지 않다. 관찰 자료에서 인과를 말하려면 별도의 연구 설계와 교란 통제가 필요하다. 이진 분류를 넘어선 다범주 결과에는 기준 범주를 둔 다항 로지스틱 회귀 등 확장을 검토한다.
+오즈비는 확률의 증가 배수나 인과 효과와 상이. 관찰 자료에서 인과 규명을 위해 별도의 연구 설계와 교란 변수 통제 필수. 다범주 결과의 경우 다항 로지스틱 회귀로 확장 적용.
 
 ## Ⅴ. 한계와 방안
 
@@ -105,20 +101,39 @@ xᵢ 한 단위 증가, 다른 변수 고정
 
 ## Ⅵ. 제언
 
-**제언:** 소수 클래스의 누락 비용이 큰 업무부터 정밀도·재현율과 확률 보정을 함께 검증하고, 선택한 임계값의 근거와 재검토 조건을 모델 버전에 기록한다.
+분류 임계값(Threshold)을 단순 0.5로 고정하지 않고 ROC-AUC 및 정밀도-재현율 트레이드오프를 고려하여 비즈니스 비용 최소화 임계값 선정.
 
-## 출제 이력과 검증 출처
+### 로지스틱 회귀 로짓 변환 및 시그모이드 매핑
 
-- 정보관리기술사 제124회 1교시: 로지스틱 회귀분석, 오즈비 및 시그모이드 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- 컴퓨터시스템응용기술사 제120회 2교시: 선형 분류 기법과 로지스틱 회귀분석 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- Hosmer, Lemeshow & Sturdivant, *Applied Logistic Regression*, 3rd ed.
-- [Penn State STAT 504: Logistic Regression](https://online.stat.psu.edu/stat504/lesson/6)
-- [scikit-learn User Guide: Logistic Regression](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)
+```text
+[선형 결합: z = W^T * X + b (-∞ ~ +∞)]
+         │
+         ▼ (로지스틱 시그모이드 함수 통과)
+[확률 매핑: p = σ(z) = 1 / (1 + e^(-z)) (0.0 ~ 1.0)]
+         │
+         ▼ (분류 임계치 판정: p ≥ Threshold ?)
+   ├─ [YES] ──► Class 1 (사기/이탈/양성)
+   └─ [NO]  ──► Class 0 (정상/유지/음성)
+```
+
+### 선택 근거: 로지스틱 회귀 (Logistic)
+
+| 구분 | 선형 회귀 (Linear) | 로지스틱 회귀 (Logistic) |
+|---|---|---|
+| 출력 범위 | 연속형 실수 값 ($-\infty \sim +\infty$) | 0과 1 사이의 사건 발생 확률 ($0 \sim 1$) |
+| 손실 함수 | 평균제곱오차 (MSE) | 이진 교차 엔트로피 (Binary Cross-Entropy) |
+| 해석 방식 | 독립변수 1단위 증가 시 종속변수 변화량 | 독립변수 1단위 증가 시 오즈비($e^{\beta}$)의 승수 효과 |
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 118회 1교시: 로지스틱 회귀분석의 원리와 오즈비(Odds Ratio)의 개념
+- 정보관리기술사 127회 2교시: 분류 모델 평가 지표(혼동행렬, ROC-AUC, F1-Score)
+- Applied Logistic Regression Standard Guide
+
 ## 연결 토픽
 
-- [036. 기술통계 vs 추론통계](./036_descriptive_statistics.md)
-- [043. 데이터마이닝](./043_data_mining.md)
-- [062. 앙상블: 배깅·부스팅](./062_ensemble_bagging_boosting.md)
+- [다중공선성](./004_multicollinearity.md)
+- [가설검정](./041_hypothesis_testing.md)
+- [데이터 마이닝](./043_data_mining.md)

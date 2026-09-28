@@ -12,7 +12,7 @@ tags:
   - "notes-data"
 weight: 156
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "서브"
   question_no: "156"
 ---
@@ -25,7 +25,7 @@ extra:
 
 - 본질: **데이터 이관은** 원천 자료를 목표 시스템의 구조·규칙으로 옮기고 정합성을 검증하는 활동
 - 메커니즘: 매핑·모의 이관 뒤 스냅샷과 CDC 변경분을 적재하고 대사 결과로 컷오버를 판정
-- 통찰: 한계: 초기 적재와 변경분 반영의 기준 시점이 어긋나면 누락·중복이 발생 → 방안: 스냅샷 시점과 로그 위치를 기록하고 재처리·대사·롤백을 포함한 절체를 검증
+- 통찰: 레거시 시스템의 데이터를 목표 아키텍처로 무중단 이행하기 위해 CDC 실시간 복제와 단계별 정합성 검증 및 롤백 체계를 확립함.
 
 <details><summary>핵심 용어</summary>
 
@@ -125,21 +125,34 @@ S 이후 변경 로그 위치 ── CDC ─→ 목표 변경분 반영
 | 건수·합계가 맞아도 개별 행의 값 오류가 남음 | 핵심 키·값의 행 단위 대사와 업무 규칙 검증 추가 |
 | 병렬 운영에서 신·구 결과 차이를 해결하지 못함 | 불일치 처리 책임·정정 기준·최종 쓰기 경계를 미리 합의 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-변경량이 큰 테이블부터 스냅샷·로그 기준점을 고정하고 행 단위 대사·재처리·복귀를 포함한 절체를 연습.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+대량 초기 적재 후 CDC 기반 실시간 변경 데이터 캡처를 동기화하고, 체크섬 기반 전수 대사 검증과 즉시 롤백 가능한 컷오버 시나리오를 사전에 모의 훈련.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 소스 레거시 DB ] ──> [ 1단계: 초기 대량 적재 (Initial Load) ] ──> [ 타깃 신규 DB ]
+       │                                                                  ▲
+       │ 2단계: 변경분 실시간 캡처 (CDC)                                  │
+       └──────────> [ 메시지 큐 (Kafka) ] ──> [ 실시간 동기화 엔진 ] ─────┘
+                                                      │
+                                                      ▼
+[ 3단계: 정합성 실시간 검증 (Hash/Checksum) & 컷오버 스위칭 (DNS/LB) ]
+```
+
+### 3. 기술 유형 및 비교 평가
+| 이행 방식 | 작업 프로세스 특성 | 다운타임 (Downtime) | 리스크 및 복구 용이성 | 권장 적용 시나리오 |
+|---|---|---|---|---|
+| **빅뱅 이행 (Big Bang)** | 일괄 정지 후 야간 단시간 전수 이행 | 장시간 정지 필수 | 이행 실패 시 롤백 극난 | 소규모 DB, 다운타임 허용 시스템 |
+| **단계적 이행 (Phased)** | 업무 모듈별 순차 이행 | 모듈별 부분 다운타임 | 연계 모듈 간 양방향 동기화 부담 | 대규모 모놀리식의 순차 전환 |
+| **무중단 CDC 이행** | 초기 적재 + 로그 기반 변경 실시간 복제 | 수 초~수 분 (스위칭 시) | 검증 완료 후 즉시 전환, 리스크 최소 | 24x365 금융·이커머스 미션크리티컬 |
 
 ## 출제 이력과 검증 출처
 
-- **기출 이력** :
-  - 제128회 정보관리 2교시: 데이터 마이그레이션 절차 및 정합성 검증 방안 (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-  - 제105회, 제81회 정보관리 1교시: 데이터 이관 전략 및 컷오버 방안
-- **검증 출처** :
-  - 한국지능정보사회진흥원(NIA), "공공기관 정보시스템 데이터 이관 가이드라인"
-  - AWS Database Migration Service (AWS DMS) Best Practices Guide
-  - Oracle Corporation, "Database Migration and Large-Scale Data Loading Guide"
-  - Oracle Database Administrator's Guide, [Managing Tables: Direct-Path INSERT](https://docs.oracle.com/en/database/oracle/oracle-database/26/admin/managing-tables.html)
----
+- The Open Group - TOGAF Series Guide: Data Architecture and Migration Planning
+- DAMA International - DAMA-DMBOK Chapter 10: Data Integration and Interoperability
+- Oracle Database 2-Day Data Migration Guide & GoldenGate Replication Best Practices
 
 ## 연결 토픽
 

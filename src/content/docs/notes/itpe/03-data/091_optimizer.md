@@ -1,20 +1,16 @@
 ---
-sidebar:
-  order: 91
-  label: "091. 옵티마이저 (RBO·CBO)"
-  badge:
-    text: "서브"
-    variant: note
-title: "데이터베이스 옵티마이저(Optimizer) 아키텍처 및 RBO와 CBO 비교 분석"
-author: "Antigravity"
-date: "2026-09-24T16:30:00+09:00"
+title: "옵티마이저(Optimizer)"
+category: "03-data"
 tags:
   - "notes-data"
-weight: 91
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "091"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -25,7 +21,7 @@ extra:
 
 - 본질: **데이터베이스 옵티마이저는** SQL 결과를 만들 실행 방법을 선택하는 DBMS 구성요소
 - 메커니즘: 질의를 변환하고 통계·비용 추정에 따라 접근 경로와 조인 계획을 비교해 실행계획을 선택
-- 통찰: 한계: 통계가 낡거나 분포를 놓치면 예상 행 수와 실제 행 수가 달라 부적절한 계획을 고를 수 있음 → 방안: 통계 수집 기준을 관리하고 계획 추정·실행 통계를 비교
+- 통찰: 규칙 기반(RBO)의 한계를 극복하고 데이터 분포 통계에 기반하여 최소 비용의 최적 실행계획을 수립하는 비용 기반 옵티마이저(CBO) 중심 튜닝 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -87,7 +83,7 @@ SQL 파싱·논리 질의
 | 데이터 변화 대응 | 데이터량·분포 변화를 직접 반영하기 어려움 | 통계 갱신을 통해 추정에 반영 가능 |
 | 유의점 | 특정 규칙의 우선이 실제 부하에 맞지 않을 수 있음 | 통계·추정 오차로 실제 실행이 예상과 다를 수 있음 |
 
-현대 상용·오픈소스 DBMS는 주로 비용 기반 최적화를 사용한다. 세부 단계와 기능은 제품별 구현에 따라 다르므로 RBO의 고정 순위 수나 적응형 계획 전환을 모든 DBMS의 공통 동작으로 단정하지 않는다.
+현대 DBMS는 비용 기반 최적화(CBO)를 채택. 세부 기능은 제품별 구현에 따라 상이하므로 RBO의 고정 순위가 아닌 DBMS별 CBO 특성에 맞춘 실행계획 분석 필요.
 
 ### 실행계획 품질과 운영 검증
 
@@ -108,19 +104,41 @@ SQL 파싱·논리 질의
 
 ## Ⅵ. 제언
 
-**제언:** 실행시간이 큰 대표 SQL에서 추정 행 수와 실제 행 수의 차이를 먼저 찾고, 통계·질의 수정 뒤 같은 데이터 분포의 계획과 실측 성능을 비교한다.
+옵티마이저가 최적의 결정을 내릴 수 있도록 DBMS 통계정보(Analyze/Histogram)를 주기적으로 갱신하고 극단적 편향 데이터는 바인드 변수 엿보기(Peeking) 통제.
 
-## 출제 이력과 검증 출처
+### 비용 기반 옵티마이저(CBO) 실행계획 생성 절차
 
-- 정보관리기술사 제127회 2교시: 데이터베이스 옵티마이저의 역할·구성요소·최적화 과정, RBO와 CBO (공식 문제지 원문 미대조; 회차·문항·배점 확인 필요)
-- Oracle, [Database SQL Tuning Guide: SQL Processing](https://docs.oracle.com/en/database/oracle/oracle-database/19/tgsql/sql-processing.html)
-- PostgreSQL, [Query Planning](https://www.postgresql.org/docs/current/planner-optimizer.html)
-- PostgreSQL, [Using EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html)
+```text
+[SQL 파싱 및 문법/권한 검증]
+         │
+         ▼
+[질의 변환기 (Query Transformer)] : 서브쿼리 언네스팅, 뷰 머징
+         │
+         ▼
+[대안 경로 생성기 (Plan Generator)] : 조인 순서, 조인 방식, 인덱스 스캔 대안 도출
+         │
+         ▼ (오브젝트 통계정보 + 히스토그램 + 시스템 CPU/IO 비용 계산)
+[비용 산정기 (Cost Estimator)] ──► 최저 Cost 실행계획 선택 ──► [실행 엔진 전달]
+```
+
+### 선택 근거: 비용 기반 옵티마이저 (CBO)
+
+| 구분 | 규칙 기반 옵티마이저 (RBO) | 비용 기반 옵티마이저 (CBO) |
+|---|---|---|
+| 경로 결정 | 사전 정의된 15개 우선순위 규칙 | 통계 기반 예상 I/O 및 CPU 소요 시간 계산 |
+| 데이터 반영 | 실제 테이블 크기/분포 무시 | 데이터 카디널리티 및 히스토그램 실시간 반영 |
+| 최적화 유연성 | 고정된 패턴으로 비효율 발생 | 인덱스 스캔 vs 풀스캔의 동적 최적 선택 |
 
 ---
 
+## 출제 이력과 검증 출처
+
+- 정보관리기술사 103회 1교시: 관계형 데이터베이스의 옵티마이저 유형(RBO, CBO) 비교
+- 정보관리기술사 121회 2교시: CBO 환경에서 옵티마이저 통계정보와 실행계획 왜곡 해결 방안
+- Cost-Based Oracle Fundamentals
+
 ## 연결 토픽
 
-- [088. 데이터베이스 튜닝](./088_database_tuning.md)
-- [047. 인덱스](./047_index.md)
-- [098. 정적 SQL vs 동적 SQL](./098_dynamic_sql.md)
+- [인덱스](./047_index.md)
+- [데이터베이스 튜닝](./088_database_tuning.md)
+- [동시성 제어](./009_concurrency_control.md)

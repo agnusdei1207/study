@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 69
-  label: "069. 차원 축소: PCA·MDS"
-  badge:
-    text: "기초"
-    variant: note
-title: "차원 축소 (Dimensionality Reduction) 및 PCA·다차원척도법(MDS)"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "차원 축소(PCA·MDS)"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 69
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
-  question_no: "069"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **차원 축소(Dimensionality Reduction)는** 자료를 더 적은 변수나 좌표로 표현하면서 분석에 필요한 정보를 보존하는 방법
 - 메커니즘: PCA는 변동이 큰 직교 방향을 찾고, MDS는 개체 간 거리·비유사도 관계를 저차원 공간에 표현
-- 통찰: 한계: 축소 그림만 보면 버려진 정보와 원자료의 업무 지표를 놓침 → 방안: 허용 정보 손실을 먼저 정하고 원자료 지표와 축소 결과를 병행 검토
+- 통찰: 차원의 저주와 다중공선성을 극복하기 위해 분산 보존 중심의 주성분 분석(PCA)과 객체 간 거리 유사도 보존 중심의 다차원 척도법(MDS)의 목적별 선별 적용 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -119,17 +114,41 @@ extra:
 
 ## Ⅵ. 제언
 
-업무별 허용 정보 손실을 먼저 정하고 PCA 설명분산·MDS 거리 왜곡을 원자료의 업무 지표와 함께 평가.
+설명 분산 비율(Explained Variance Ratio) 80% 이상을 만족하는 최소 주성분을 선택하고, 고차원 비선형 매니폴드 구조는 t-SNE 또는 UMAP으로 보완.
+
+### 주성분 분석(PCA) 4단계 수학적 파이프라인
+
+```text
+[고차원 데이터 정규화] (평균 0, 분산 1 표준화)
+         │
+         ▼
+[공분산 행렬(Covariance Matrix) 산출]
+         │
+         ▼
+[고유값 분해 (Eigenvalue Decomposition)] : 고유벡터(주성분 축) 및 고유값 산출
+         │
+         ▼
+[누적 설명 분산 비율 평가] ──► 최적 k개 주성분 투영 (고차원 → 저차원 변환)
+```
+
+### 선택 근거: 다차원 척도법 (MDS)
+
+| 구분 | 주성분 분석 (PCA) | 다차원 척도법 (MDS) |
+|---|---|---|
+| 목적 함수 | 데이터의 사상 분산(Variance) 극대화 | 개체 간 거리/비유사도(Dissimilarity) 보존 |
+| 입력 형태 | 변수 기반 수치형 데이터 행렬 | 개체 간 1:1 거리/근접도 행렬 |
+| 주요 활용 | 특성 추출, 다중공선성 제거, 압축 | 소비자 지각도, 시각화, 브랜드 포지셔닝 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- scikit-learn User Guide, “Decomposing signals in components”: https://scikit-learn.org/stable/modules/decomposition.html
-- scikit-learn User Guide, “Manifold learning / Multidimensional scaling”: https://scikit-learn.org/stable/modules/manifold.html
-- Ian T. Jolliffe, *Principal Component Analysis*, 2nd ed., Springer.
-- Joseph B. Kruskal, “Multidimensional scaling by optimizing goodness of fit to a nonmetric hypothesis,” *Psychometrika*, 1964.
+- 정보관리기술사 112회 2교시: 머신러닝 차원 축소 기법 중 PCA(주성분분석)의 수학적 원리
+- 정보관리기술사 124회 1교시: 다차원 척도법(MDS)의 개념과 스트레스(Stress) 지수
+- Pattern Recognition and Machine Learning
 
 ## 연결 토픽
 
-- [데이터마이닝](./043_data_mining/) · [군집분석](./005_cluster_analysis/) · [벡터 데이터베이스](./044_vector_database/)
+- [다중공선성](./004_multicollinearity.md)
+- [데이터 시각화](./016_data_visualization.md)
+- [군집분석](./005_cluster_analysis.md)

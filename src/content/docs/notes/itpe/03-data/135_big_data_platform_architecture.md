@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 135
-  label: "135. 빅데이터 플랫폼 아키텍처"
-  badge:
-    text: "응용"
-    variant: note
-author: "OpenAI Codex"
+title: "빅데이터 플랫폼 아키텍처"
 category: "03-data"
-date: "2026-09-24T17:42:00+09:00"
 tags:
   - "notes-data"
-weight: 135
-title: "빅데이터 플랫폼 아키텍처와 람다·카파·레이크하우스"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "응용"
-  question_no: "135"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **빅데이터 플랫폼은** 대규모·다양한 데이터를 수집해 처리하고 업무에 제공하는 데이터 시스템
 - 메커니즘: 수집 → 저장 → 처리 → 서빙의 흐름을 공통 보안·품질·메타데이터 관리가 지원
-- 통찰: 한계: 배치·스트림 경로를 나누면 로직 중복·결과 차이가, 단일 스트림에는 재처리 부담이 생길 수 있음 → 방안: 허용 지연·재처리 범위를 정하고 로그 보존·재생을 시험해 구조를 선택
+- 통찰: 람다 아키텍처의 이중 코드 유지보수 한계를 극복하고 실시간과 배치를 단일 스트림 계층으로 통합하는 카파 아키텍처 및 레이크하우스로의 진화 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -90,7 +85,7 @@ Kappa:  입력 → 보존 로그 → 스트림 처리 → 서빙 결과
                          ↑ 재처리 시 로그 재생 ┘
 ```
 
-두 경로의 성능과 결과 일치, 또는 단일 경로의 로그 보존·재처리 능력을 실제 부하로 검증한다.
+두 경로의 성능과 결과 일치, 또는 단일 경로의 로그 보존·재처리 능력을 실제 부하 환경에서 실증 검증.
 
 ## Ⅳ. Lambda·Kappa와 Lakehouse의 역할 비교
 
@@ -121,15 +116,38 @@ Kappa:  입력 → 보존 로그 → 스트림 처리 → 서빙 결과
 
 ## Ⅵ. 제언
 
-배치·스트림을 병행하면 결과 정합성이, 단일 스트림에는 재처리 용량이 한계가 된다. 대표 업무의 허용 지연과 재생 구간을 먼저 정하고 두 경로의 결과 일치 또는 로그 재생 시간을 시험해 처리 구조를 선택한다.
+원천 로그를 Kafka에 영속화하고 Apache Flink와 Iceberg를 결합하여 일관된 단일 처리 로직으로 실시간 대시보드와 대규모 배치 분석을 동시 충족.
+
+### 람다(Lambda) vs 카파(Kappa) 아키텍처 구조
+
+```text
+[람다 아키텍처 (Lambda)]
+  원천 데이터 ──┬─► [스피드 계층: Storm/Flink] ──► 실시간 뷰 ──┬─► [서빙 계층]
+                └─► [배치 계층: Hadoop/Spark]   ──► 배치 뷰   ──┘ (이중 로직 관리)
+
+[카파 아키텍처 (Kappa)]
+  원천 데이터 ──► [단일 이벤트 스트림 (Kafka)] ──► [단일 스트림 엔진 (Flink)] ──► [서빙 계층]
+                     (불변 로그 보존으로 필요 시 과거 데이터 스트림 재처리)
+```
+
+### 선택 근거: 카파 아키텍처 (Kappa)
+
+| 구분 | 람다 아키텍처 (Lambda) | 카파 아키텍처 (Kappa) |
+|---|---|---|
+| 파이프라인 | 배치 계층과 스피드 계층 2개 분리 | 단일 스트림 처리 계층 일원화 |
+| 코드 유지보수 | 배치(MapReduce)와 실시간(Storm) 코드 이중 작성 | 단일 스트림 처리 코드로 전천후 유지보수 |
+| 재처리 방식 | 배치 계층에서 원천 재수행 | 이벤트 로그 오프셋을 과거로 되돌려 재실행 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 출제 이력: 제126회 정보관리기술사 1교시의 빅데이터 플랫폼 문항이라는 이전 기록이 있으나 공식 문제지 원문 미확보로 문항·배점 미확인.
-- Michael Armbrust et al., [Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics](https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf), CIDR 2021.
-- Apache Iceberg 공식 문서, [Table Specification](https://iceberg.apache.org/spec/)
+- 정보관리기술사 115회 2교시: 실시간 빅데이터 처리를 위한 람다(Lambda) 아키텍처의 한계와 카파(Kappa) 아키텍처
+- 정보관리기술사 129회 2교시: 현대적 빅데이터 플랫폼의 레이크하우스 및 데이터 메시 전환 전략
+- Nathan Marz, Big Data: Principles and best practices of scalable realtime data systems
 
 ## 연결 토픽
 
-- 상위 토픽: [빅데이터](./112_big_data.md)
-- 연관 토픽: [데이터 레이크](./007_data_lake.md), [빅데이터 분석도구 선정 원칙](./134_big_data_analytics_tool_selection_principles.md)
+- [빅데이터](./112_big_data.md)
+- [데이터 레이크](./007_data_lake.md)
+- [빅데이터 분석 도구 선정 원칙](./134_big_data_analytics_tool_selection_principles.md)

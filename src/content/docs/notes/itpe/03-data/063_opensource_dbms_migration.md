@@ -1,21 +1,16 @@
 ---
-sidebar:
-  order: 63
-  label: "063. 오픈소스 DBMS 전환"
-  badge:
-    text: "서브"
-    variant: note
-title: "오픈소스 DBMS 전환 (Open Source DBMS Migration) 및 무중단 마이그레이션"
-author: "Codex"
-date: "2026-09-24T00:00:00+09:00"
+title: "오픈소스 DBMS 마이그레이션"
+category: "03-data"
 tags:
   - "notes-data"
-category: "03-data"
-weight: 63
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
-  keyword_grade: "서브"
-  question_no: "063"
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ extra:
 
 - 본질: **오픈소스 DBMS 전환은** 기존 데이터베이스의 데이터와 데이터베이스 기능을 목표 DBMS로 이전하고 검증하는 작업
 - 메커니즘: 호환성을 분석·변환하고 초기 데이터와 변경분을 옮긴 뒤, 정합성·성능을 확인해 서비스를 전환
-- 통찰: 한계: 스키마·데이터 이전만으로 성공을 선언하면 업무 기능·성능 누락 → 방안: 업무별 데이터·기능·성능 승인 기준을 먼저 정하고 리허설 결과로 전환 판단
+- 통찰: 상용 DBMS 종속(Lock-in)을 탈피하고 TCO를 절감하기 위해 SQL/PL 호환성 진단과 데이터 정합성 검증 도구를 연동한 단계적 전환 방법론 수립 필수
 
 <details><summary>핵심 용어</summary>
 
@@ -119,17 +114,44 @@ S 이후 원천 변경 로그 ── CDC ─────→ 대상 변경 적용
 
 ## Ⅵ. 제언
 
-핵심 업무의 데이터·기능·성능 승인 기준과 복귀 조건을 먼저 확정하고, 리허설 결과를 근거로 컷오버 여부를 결정.
+오라클 등 상용 DB에서 PostgreSQL/MySQL 전환 시 비호환 오브젝트(프로시저/패키지)의 변환 전략을 사전 수립하고 CDC 무중단 마이그레이션 적용.
+
+### 오픈소스 DBMS 마이그레이션 5단계 절차
+
+```text
+[1. 전환 타깃 선정 및 TCO 평가]
+         │
+         ▼
+[2. 스키마/오브젝트 호환성 진단: 자동 변환 도구(ora2pg) 적용]
+         │
+         ▼
+[3. 비호환 SQL 및 저장 프로시저 리팩토링 (애플리케이션 계층 이전)]
+         │
+         ▼
+[4. CDC 기반 무중단 데이터 복제 및 전수 정합성 검증 (Data Diff)]
+         │
+         ▼
+[5. 모의 절체(Dry-run) 검증 후 본 컷오버 및 안정화 운영]
+```
+
+### 선택 근거: 제언: CDC 기반 점진적 마이그레이션
+
+| 구분 | 빅뱅(Big-Bang) 일괄 전환 | 제언: CDC 기반 점진적 마이그레이션 |
+|---|---|---|
+| 다운타임 | 대규모 다운타임으로 비즈니스 마비 | CDC 실시간 복제로 수 분 이내 최소 컷오버 |
+| 리스크 관리 | 전환 실패 시 즉각적 롤백 불가 | 역방향 복제(Reverse CDC) 구성으로 즉시 롤백 |
+| 정합성 검증 | 표본 검증으로 잠재적 불일치 잔존 | 해시 체크섬 기반 데이터 전수 비교 검증 |
 
 ---
 
 ## 출제 이력과 검증 출처
 
-- AWS Prescriptive Guidance, “Heterogeneous database migration”: https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-oracle-database/heterogeneous-migration.html
-- AWS Database Migration Service User Guide, “Components of AWS DMS”: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.Components.html
-- AWS Database Migration Service User Guide, “Data validation”: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Validating.html
-- 기존 노트에 적힌 기술사 회차·문항은 공식 원문 링크를 확인하지 못해 출제 이력으로 단정하지 않음
+- 정보관리기술사 117회 1교시: 상용 DBMS에서 오픈소스 DBMS로의 전환 시 고려사항
+- 정보관리기술사 128회 2교시: 오픈소스 DBMS 마이그레이션 절차와 CDC를 활용한 무중단 전환 방안
+- AWS Database Migration Service Best Practices
 
 ## 연결 토픽
 
-- [고가용성 아키텍처](./051_ha_architecture/) · [인덱스](./047_index/) · [옵티마이저](./091_optimizer/)
+- [데이터베이스 튜닝](./088_database_tuning.md)
+- [고가용성 아키텍처(HA)](./051_ha_architecture.md)
+- [데이터베이스 분할·샤딩](./021_db_partitioning_sharding.md)

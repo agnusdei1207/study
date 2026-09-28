@@ -1,21 +1,16 @@
 ---
-author: "Codex"
+title: "OLAP"
 category: "03-data"
-date: "2026-09-24T00:00:00+09:00"
-extra:
-  keyword_grade: "서브"
-  model: "GPT-6"
-  question_no: "039"
-sidebar:
-  badge:
-    text: "서브"
-    variant: "note"
-  label: "039. OLAP"
-  order: 39
 tags:
   - "notes-data"
-title: "OLAP (Online Analytical Processing) 및 MOLAP·ROLAP·HOLAP"
-weight: 39
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -26,7 +21,7 @@ weight: 39
 
 - 본질: **OLAP(Online Analytical Processing)는** 축적된 데이터를 여러 업무 차원으로 탐색·집계해 분석하는 처리 방식.
 - 메커니즘: 분석 질의 → 차원·측정값 기준 집계와 탐색 → 표·보고서·시각화 결과.
-- 통찰: 한계: 한 질의의 응답만 빠르게 하려고 사전 집계를 늘리면 저장·갱신 비용 증가 → 방안: 실제 질의 빈도·갱신 주기로 집계를 선별하고 상세 조회 비용 시험
+- 통찰: 다차원 분석 성능을 극대화하기 위해 ROLAP의 유연성과 MOLAP의 초고속 연산 성능을 절충한 HOLAP 또는 클라우드 컬럼형 DW 아키텍처 채택 필요
 
 <details>
 <summary>핵심 용어</summary>
@@ -116,15 +111,42 @@ weight: 39
 
 ## Ⅵ. 제언
 
-가장 자주 쓰는 차원·측정값 질의부터 선정하고 사전 집계의 응답 개선과 갱신 비용을 같은 부하에서 비교.
+Roll-up, Drill-down, Slicing, Dicing의 다차원 연산을 지원하는 스타/스노우플레이크 스키마를 정립하고 인메모리 큐브 엔진 연동을 통한 실시간 응답 보장.
+
+### 다차원 큐브 분석 및 OLAP 아키텍처
+
+```text
+[원천 트랜잭션 DB (OLTP)]
+         │
+         ▼ (ETL 파이프라인 정제)
+[엔터프라이즈 DW (Star Schema / Fact & Dimension)]
+         │
+         ├─ [MOLAP] : 사전 집계 다차원 큐브 (초고속 집계 질의)
+         ├─ [ROLAP] : 관계형 테이블 직접 다차원 질의 (대용량 유연성)
+         └─ [HOLAP] : 상세 데이터는 ROLAP + 요약 집계는 MOLAP
+         │
+         ▼
+[사용자 대시보드 / BI 도구 (Roll-up, Drill-down, Slice & Dice)]
+```
+
+### 선택 근거: MOLAP (Multidimensional OLAP)
+
+| 구분 | ROLAP (Relational OLAP) | MOLAP (Multidimensional OLAP) |
+|---|---|---|
+| 저장 구조 | 관계형 DB 테이블 직접 활용 | 사전 구축된 다차원 배열 큐브(Cube) |
+| 질의 성능 | 대용량 조인 연산으로 지연 가능 | 사전 계산 집계로 즉각적인 응답 속도 |
+| 확장성 | 대규모 테라바이트급 데이터 수용 | 데이터 큐브 크기 폭증(큐브 폭발) 한계 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 참고 문항: 제122회 관련 문항으로 기존 정리되어 있으나 공식 문제지 원문은 미확보, 직접 기출로 단정하지 않음
-- [IBM, What is OLAP?](https://www.ibm.com/think/topics/olap)
-- [Microsoft Learn, Partition storage modes and processing](https://learn.microsoft.com/en-us/analysis-services/multidimensional-models-olap-logical-cube-objects/partitions-partition-storage-modes-and-processing?view=sql-analysis-services-2025)
-- [Kimball Group, The Data Warehouse Toolkit](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/data-warehouse-toolkit/)
+- 정보관리기술사 104회 1교시: OLAP의 주요 4대 연산(Roll-up, Drill-down, Slicing, Dicing)
+- 정보관리기술사 117회 2교시: ROLAP, MOLAP, HOLAP의 아키텍처 및 장단점 비교
+- The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling
 
 ## 연결 토픽
 
-- 연관 토픽: [스타 스키마](./137_star_schema.md) · [데이터 레이크](./007_data_lake.md) · [BI](./154_bi.md)
+- [데이터 레이크](./007_data_lake.md)
+- [데이터 시각화](./016_data_visualization.md)
+- [반정규화](./017_denormalization.md)

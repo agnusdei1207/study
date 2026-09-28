@@ -4,14 +4,12 @@ category: "03-data"
 tags:
   - "데이터레이크"
   - "데이터플랫폼"
-date: "2026-09-24T00:00:00+09:00"
-author: "Codex"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
 sidebar:
-  label: "007. 데이터 레이크"
-  order: 7
   badge:
     text: "기초"
 ---
@@ -24,7 +22,7 @@ sidebar:
 
 - 본질: **데이터 레이크는** 여러 원천의 정형·반정형·비정형 데이터를 원본에 가까운 형태로 모아 다양한 분석에 쓰는 저장·처리 환경
 - 메커니즘: 원천 수집·보존 → 메타데이터·권한 관리 → 목적에 맞는 정제·변환 → 분석·제공
-- 통찰: 한계: 원본만 쌓으면 데이터 의미·출처·이용 권한을 몰라 재사용 곤란 → 방안: 주요 데이터셋의 소유자·카탈로그·계보·접근 권한을 제공 데이터와 연결
+- 통찰: 데이터 늪으로의 전락을 방지하기 위해 Medallion 계층화 아키텍처와 통합 메타데이터 카탈로그 기반의 접근 통제 거버넌스 정립 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -111,12 +109,41 @@ sidebar:
 
 ## Ⅵ. 제언
 
-분석에 쓰일 주요 데이터셋부터 소유자·원천·품질 기준을 등록하고 제공 데이터의 계보·접근 권한을 확인.
+원천 불변 보존(Bronze), 정제·표준화(Silver), 비즈니스 마트(Gold)의 계층적 파이프라인을 구축하고 오픈 테이블 포맷(Iceberg 등)을 연동한 신뢰성 확보.
+
+### Medallion 기반 데이터 레이크하우스 아키텍처
+
+```text
+[다양한 원천 데이터] (RDBMS, IoT 로그, 비정형 문서)
+         │
+         ▼
+[Bronze 계층] : 원천 원형 보존 (Raw Data Ingestion)
+         │
+         ▼ (정제, 중복제거, 표준 스키마 적용)
+[Silver 계층] : 정제된 엔터프라이즈 데이터 (Cleansed / Filtered)
+         │
+         ▼ (집계, 비즈니스 도메인 지표 산출)
+[Gold 계층]   : 고성능 비즈니스 분석 마트 (Analytics / Feature Store)
+```
+
+### 선택 근거: 제언: 계층형 레이크하우스
+
+| 구분 | 단순 데이터 레이크 | 제언: 계층형 레이크하우스 |
+|---|---|---|
+| 데이터 품질 | 데이터 늪(Data Swamp) 위험 | 계층별 검증을 통한 신뢰성 보장 |
+| 트랜잭션 보장 | 원자적 갱신/ACID 부재 | 오픈 테이블 포맷 기반 ACID 지원 |
+| 카탈로그 연계 | 메타데이터 부재로 검색 곤란 | 통합 카탈로그 기반 계보/접근 제어 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- [Apache Iceberg 공식 테이블 규격](https://iceberg.apache.org/spec/) — 데이터 레이크 위의 메타데이터·스냅샷 관리 구현 사례.
+- 정보관리기술사 120회 1교시: 데이터 레이크와 데이터 웨어하우스(DW)의 비교
+- 정보관리기술사 129회 2교시: 빅데이터 아키텍처에서 데이터 레이크하우스 전환 방안
+- Databricks Medallion Architecture Technical Whitepaper
 
 ## 연결 토픽
 
-- 연관 토픽: [데이터 거버넌스](./006_data_governance.md), [데이터 품질관리](./003_data_quality_management.md)
+- [데이터 거버넌스](./006_data_governance.md)
+- [NoSQL](./001_nosql.md)
+- [데이터 품질관리](./003_data_quality_management.md)

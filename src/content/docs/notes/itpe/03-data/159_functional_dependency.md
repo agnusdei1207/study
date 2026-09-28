@@ -12,7 +12,7 @@ tags:
   - "notes-data"
 weight: 159
 extra:
-  model: "GPT-6"
+  model: "Gemini 3.8 Flash"
   keyword_grade: "응용"
   question_no: "159"
 ---
@@ -23,15 +23,9 @@ extra:
 
 ## 30초 인출
 
-| 회상 축 | 관계 |
-|:---|:---|
-| **완전 종속** | 복합키 전체가 종속자를 결정 |
-| **부분 종속** | 복합키의 일부가 종속자를 결정; 2NF 검토 대상 |
-| **이행 종속** | $X\rightarrow Y$, $Y\rightarrow Z$ 관계; 3NF 검토 대상 |
-
 - 본질: **함수적 종속성 (Functional Dependency, FD)** 은 한 속성 집합의 값이 다른 속성 집합의 값을 결정한다는 관계형 데이터의 제약
 - 메커니즘: 결정자 $X$가 종속자 $Y$를 결정하면 $X \rightarrow Y$로 표기하며, 업무 규칙을 후보키·정규화 검토에 활용
-- 통찰: 한계: 업무 규칙의 결정자를 누락하면 정규화 뒤에도 중복·갱신 이상이 남음 → 방안: 함수 종속성과 후보키를 검증해 분해하고 무손실·제약 보존을 확인
+- 통찰: 업무 규칙 기반의 함수 종속성을 체계적으로 식별하고 무손실 분해와 종속성 보존을 동시에 검증하여 정규화 품질을 극대화함.
 
 <details>
 <summary>핵심 용어</summary>
@@ -139,22 +133,37 @@ F에서 A→B의 A가 X+에 포함되면 B를 X+에 추가
 | 업무 규칙의 결정자를 누락하면 정규화 뒤에도 중복·갱신 이상이 남음 | 함수 종속성과 후보키를 검증해 분해하고 무손실·제약 보존을 확인 |
 | 현재 표본의 우연한 일치를 업무 FD로 오인 | 현업 규칙과 반례 가능한 업무 상태를 확인해 FD를 확정 |
 
-## Ⅵ. 제언
+## Ⅵ. 도입/구축/운영 관점 제언
 
-중복·갱신 이상이 큰 릴레이션부터 현업 규칙으로 FD·후보키를 확정하고 무손실·제약 보존을 확인한 뒤 분해.
+### 1. 실무 적용 가이드 및 핵심 고려사항
+엔터티 속성 간의 결정자-종속자 관계를 도출할 때 암스트롱 공리를 적용하여 최소 종속성 커버를 산출하고, 2NF~BCNF 정규화 과정에서 무손실 조인과 종속성 보존을 함께 관리.
+
+### 2. 아키텍처 및 상세 메커니즘
+```text
+[ 기본 공리군 (Sound & Complete) ]
+  1. 반사 규칙 (Reflexivity)  : Y ⊆ X  => X → Y
+  2. 첨가 규칙 (Augmentation)  : X → Y  => XZ → YZ
+  3. 이행 규칙 (Transitivity)  : X → Y & Y → Z => X → Z
+               │
+               ▼ (유도 공리군 확장)
+  4. 분해 규칙 (Decomposition): X → YZ => X → Y, X → Z
+  5. 결합 규칙 (Union)        : X → Y & X → Z => X → YZ
+  6. 의사이행 (Pseudo-trans)  : X → Y & WY → Z => WX → Z
+```
+
+### 3. 기술 유형 및 비교 평가
+| 함수 종속성 유형 | 관계 표현식 | 정의 및 특징 | 위배 시 발생하는 문제 | 대응 정규형 |
+|---|---|---|---|---|
+| **완전 함수 종속 (FFD)** | $X \rightarrow Y$ (어떤 $X' \subset X$도 $X' \rightarrow Y$ 불가) | 복합 기본키 전체에 의해서만 종속 | 일부 키 변경 시 데이터 불일치 | 2NF |
+| **부분 함수 종속 (PFD)** | $X \rightarrow Y$ ($X' \subset X$인 $X'$에 대해 $X' \rightarrow Y$ 성립) | 복합키의 일부 속성에 의해 종속 | 튜플 중복 적재 및 갱신 이상 | 2NF 분해 대상 |
+| **이행적 함수 종속 (TFD)** | $X \rightarrow Y \land Y \rightarrow Z \implies X \rightarrow Z$ | 비주요 속성을 거쳐 간접적으로 종속 | 변경 시 연쇄 갱신 누락 | 3NF 분해 대상 |
+| **결정자 함수 종속** | $X \rightarrow Y$ ($X$가 슈퍼키가 아님) | 비후보키가 다른 주속성을 결정 | 3NF 만족 후에도 중복 잔존 | BCNF 분해 대상 |
 
 ## 출제 이력과 검증 출처
 
-- [PostgreSQL 플래너 통계의 함수 종속성 설명](https://www.postgresql.org/docs/current/planner-stats.html): X 값이 Y 값을 결정한다는 함수 종속성의 정의와 추정 활용
-
-- **기출 이력** :
-  - 제84회 정보관리 1교시: 관계 데이터 모델에서 함수적 종속성(FD)의 개념, 유형(완전, 부분, 이행) 및 암스트롱의 공리
-  - 제114회 컴퓨터시스템응용 1교시: 함수적 종속성과 제2정규형, 제3정규형의 관계
-- **검증 출처** :
-  - W.W. Armstrong, "Dependency Structures of Data Base Relationships", IFIP Congress, 1974
-  - Abraham Silberschatz et al., "Database System Concepts 7th Edition", Chapter 14 Relational Database Design
-  - C.J. Date, "An Introduction to Database Systems 8th Edition", Functional Dependencies
----
+- William W. Armstrong - Dependency Structures of Data Base Relationships (IFIP Congress)
+- Abraham Silberschatz et al. - Database System Concepts: Functional Dependencies
+- C.J. Date - An Introduction to Database Systems: Relational Decomposition Algorithms
 
 ## 연결 토픽
 

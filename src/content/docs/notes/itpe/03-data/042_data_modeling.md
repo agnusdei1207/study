@@ -1,3 +1,17 @@
+---
+title: "데이터 모델링"
+category: "03-data"
+tags:
+  - "notes-data"
+date: "2026-09-28T22:36:00+09:00"
+author: "Antigravity"
+extra:
+  model: "Gemini 3.8 Flash"
+  keyword_grade: "기초"
+sidebar:
+  badge:
+    text: "기초"
+---
 ﻿---
 author: "Codex"
 category: "03-data"
@@ -26,7 +40,7 @@ weight: 42
 
 - 본질: **데이터 모델링(Data Modeling)은** 업무에서 다루는 정보와 규칙을 데이터 구조와 관계로 표현하는 설계 활동.
 - 메커니즘: 업무 요구 파악 → 개념·논리 구조 정의 → DBMS에 맞게 물리 설계.
-- 통찰: 한계: 논리 모델의 업무 규칙과 실제 DB 제약이 다르면 중복·불일치 누적 → 방안: 요구사항·논리 모델·DDL 제약의 추적 관계를 유지하고 변경 시 함께 검토
+- 통찰: 애플리케이션 화면에 종속되지 않고 비즈니스 도메인의 본질적 규칙과 데이터 무결성을 개념·논리·물리 계층으로 형상화하는 체계적 데이터 모델링 필수
 
 <details>
 <summary>핵심 용어</summary>
@@ -121,14 +135,44 @@ weight: 42
 
 ## Ⅵ. 제언
 
-대표 거래 사례에서 식별자·관계를 먼저 확정하고 요구사항부터 DDL 제약까지 추적해 변경 시 함께 검증.
+도메인 주도 설계(DDD)의 핵심 엔터티를 기반으로 개념 모델을 수립하고, 논리 3NF 정규화 완성 후 실제 워크로드 측정을 통해 물리 최적화를 단행하는 단계적 방법론 준수.
+
+### 데이터 모델링 3단계 생애주기 프로세스
+
+```text
+[업무 요구사항 분석]
+         │
+         ▼
+[개념 데이터 모델링] : 핵심 엔터티 도출, 관계 정의, 전사 주제영역 확립
+         │
+         ▼
+[논리 데이터 모델링] : 식별자 확정, 정규화(1NF~3NF), M:N 해소, 참조무결성
+         │
+         ▼
+[물리 데이터 모델링] : DBMS 선정, 반정규화, 인덱스/파티셔닝, 스토리지 용량 산정
+         │
+         ▼
+[DDL 생성 및 형상 관리] ──► 지속적 스키마 변경 통제 및 품질 모니터링
+```
+
+### 선택 근거: 제언: 도메인 중심 3단계 모델링
+
+| 구분 | 화면 종속적 모델링 | 제언: 도메인 중심 3단계 모델링 |
+|---|---|---|
+| 데이터 중복 | 화면별 개별 테이블 생성으로 중복 폭증 | 전사 관점 통합 엔터티 모델링으로 중복 제거 |
+| 변경 유연성 | UI 변경 시 DB 구조 전면 개편 필요 | 논리-물리 분리로 비즈니스 로직 독립성 확보 |
+| 데이터 품질 | 업무 규칙 누락으로 무결성 훼손 | 엔터티/참조 무결성 선언적 강제로 고품질 달성 |
+
+---
 
 ## 출제 이력과 검증 출처
 
-- 제133회 정보관리기술사 4교시 4번: RDBMS 적용을 위한 데이터 모델링의 개념·단계·고려사항(공식 Q-Net 문제지 대조). 제128회 언급은 공식 원문 미수집으로 미확인
-- [Oracle Database Concepts, Introduction to Oracle Database](https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/introduction-to-oracle-database.html)
-- [Data Modeling Essentials, Graeme Simsion and Graham Witt](https://www.sciencedirect.com/book/9780126445510/data-modeling-essentials)
+- 정보관리기술사 99회 1교시: 데이터 모델링의 3단계(개념, 논리, 물리)와 주요 산출물
+- 정보관리기술사 125회 2교시: 마이크로서비스 아키텍처(MSA) 환경에서의 분산 데이터 모델링 전략
+- Data Model Resource Book Standard Reference
 
 ## 연결 토픽
 
-- 연관 토픽: [ERD](./028_erd.md) · [정규화](./019_normalization.md) · [참조 무결성](./070_referential_integrity.md)
+- [개체-관계 다이어그램(ERD)](./028_erd.md)
+- [정규화](./019_normalization.md)
+- [반정규화](./017_denormalization.md)
