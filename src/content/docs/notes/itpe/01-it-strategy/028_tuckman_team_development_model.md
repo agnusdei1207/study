@@ -1,7 +1,7 @@
 ---
 title: "터크만 팀 발달 모델"
 author: "Claude Code"
-date: "2026-09-28T12:40:00+09:00"
+date: "2026-09-28T15:50:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -81,7 +81,7 @@ IT 전략·관리 → 프로젝트 관리·팀 역학 → **터크만 팀 발달
 구성원·목표 변경 → 이전 단계로 후퇴 가능
 ```
 
-1965년 논문의 네 단계와 Tuckman·Jensen의 1977년 검토에서 추가된 해산기
+1965년 논문의 네 단계(forming·storming·norming·performing)와 Tuckman·Jensen이 1977년 22개 연구 검토 후 추가한 다섯째 단계 해산기(adjourning)
 
 ### 폭풍기 확대: 갈등의 과업 중심 조정 절차
 
@@ -99,13 +99,13 @@ IT 전략·관리 → 프로젝트 관리·팀 역학 → **터크만 팀 발달
 
 | 단계 | 대인관계(집단 구조) | 과업 활동 | PM 개입 |
 |---|---|---|---|
-| **형성기** | 상호 탐색과 리더 의존 | 과업·목표 파악 | 목표·역할·의사결정 경로의 명확화 |
-| **폭풍기** | 구성원 간 갈등 | 과업 요구에 대한 감정적 반응 | 쟁점 조정과 합의 기준 제시 |
-| **규범기** | 응집력 형성 | 의견·해석의 공개적 교환 | 팀 규칙 지지와 권한의 점진적 확대 |
-| **성과기** | 기능적 역할 분담 | 해결책 도출과 과업 성과 | 장애 제거와 자율 실행 위임 |
+| **형성기** | 상호 탐색과 리더 의존(testing and dependence) | 과업·목표 파악(orientation to the task) | 목표·역할·의사결정 경로의 명확화 |
+| **폭풍기** | 구성원 간 갈등(intragroup conflict) | 과업 요구에 대한 감정적 반응(emotional response to task demands) | 쟁점 조정과 합의 기준 제시 |
+| **규범기** | 응집력 형성(development of group cohesion) | 의견·해석의 공개적 교환(open exchange of relevant interpretations) | 팀 규칙 지지와 권한의 점진적 확대 |
+| **성과기** | 기능적 역할 분담(functional role-relatedness) | 해결책 도출(emergence of solutions) | 장애 제거와 자율 실행 위임 |
 | **해산기** | 관계 정리 | 결과 정리·인계 | 교훈 정리와 구성원 재배치 지원 |
 
-대인관계·과업 활동 두 영역의 구분은 1965년 논문의 분석 틀
+1965년 논문의 두 영역: 구성원이 서로 관계 맺는 방식인 집단 구조(group structure)와 과업에 관한 상호작용 내용인 과업 활동(task activity). 괄호 안은 원문의 단계 명칭
 
 ## Ⅴ. 팀 발달 모델 적용의 한계와 방안
 
@@ -156,8 +156,9 @@ IT 전략·관리 → 프로젝트 관리·팀 역학 → **터크만 팀 발달
 
 - 제134회 1교시: 터크만 사다리 모델(Tuckman Ladder Model)의 팀 발달 단계별 특징
 - 제136회 3교시: IT 프로젝트 PM의 갈등관리 문항 하위 항목으로 터크만의 팀 발달 5단계 모델. 갈등관리 확장으로 기본 답안과 구별
-- [Tuckman, “Developmental Sequence in Small Groups,” Psychological Bulletin, 1965](https://doi.org/10.1037/h0022100)
-- [Tuckman & Jensen, “Stages of Small-Group Development Revisited,” Group & Organization Studies, 1977](https://journals.sagepub.com/doi/10.1177/105960117700200404)
+- [Tuckman, “Developmental Sequence in Small Groups,” Psychological Bulletin, 63(6), 384–399, 1965](https://doi.org/10.1037/h0022100)
+- [Tuckman & Jensen, “Stages of Small-Group Development Revisited,” Group & Organization Studies, 2(4), 419–427, 1977](https://doi.org/10.1177/105960117700200404): 22개 연구 검토 후 다섯째 단계 “adjourning” 추가
+- [Tuckman(1965) 원문 PDF, MIT 강의 자료실](https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Group_Dynamics/Tuckman_1965_Developmental_sequence_in_small_groups.pdf): group structure·task activity 두 영역과 영역별 네 단계 명칭
 
 ## 연결 토픽
 

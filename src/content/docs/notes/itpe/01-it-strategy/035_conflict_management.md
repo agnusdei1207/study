@@ -1,7 +1,7 @@
 ---
 title: "갈등관리"
 author: "Claude Code"
-date: "2026-09-28T12:41:00+09:00"
+date: "2026-09-28T15:51:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -26,7 +26,7 @@ IT 전략·관리 → 프로젝트 관리·이해관계자 → **갈등관리**
 <summary>핵심 용어</summary>
 
 - **갈등관리** : 이해관계자 사이의 쟁점을 진단·조정해 합의와 후속 조치로 해소하는 활동
-- **TKI(Thomas-Kilmann Conflict Mode Instrument)** : 자기주장성과 협조성 두 축으로 경쟁·협력·타협·회피·수용 다섯 대응 방식을 구분하는 도구
+- **TKI(Thomas-Kilmann Conflict Mode Instrument)** : 자기주장성과 협조성 두 축으로 경쟁(Competing)·협력(Collaborating)·타협(Compromising)·회피(Avoiding)·수용(Accommodating) 다섯 대응 방식을 구분하는 도구
 - **자기주장성(Assertiveness)** : 자기 관심사를 충족하려는 정도
 - **협조성(Cooperativeness)** : 상대방의 관심사를 충족하려는 정도
 - **원칙협상** : 사람과 문제를 분리하고 입장보다 이해관계와 객관적 기준에 초점을 두는 협상 방식
@@ -56,7 +56,7 @@ IT 전략·관리 → 프로젝트 관리·이해관계자 → **갈등관리**
 | 특징 | 의미 |
 |---|---|
 | 불가피성 | 목표·자원·역할이 다른 이해관계자 사이의 상시 발생 |
-| 성과와의 양면 관계 | 해법을 두고 벌이는 과업 갈등은 대안 탐색 촉진, 감정 대립인 관계 갈등은 협업 저하 |
+| 성과와의 양면 관계 | 관계 갈등은 만족·잔류 의향 저하, 과업 갈등은 일상 과업에서 성과 저하·비일상 과업에서 무해 또는 유익(Jehn, 1995) |
 | 원인별 대응 | 과업·관계·프로세스 원인에 따라 달라지는 조정 방식 |
 | 이행까지 포함 | 합의 이후 후속 조치의 이행 확인까지 관리 범위 |
 
@@ -96,9 +96,11 @@ IT 전략·관리 → 프로젝트 관리·이해관계자 → **갈등관리**
 
 | 유형 | 주요 원인 | 조정 초점 |
 |---|---|---|
-| 과업 갈등 | 기술 해법·우선순위·일정 판단의 차이 | 근거와 대안의 비교 |
-| 관계 갈등 | 신뢰 부족·감정 대립 | 사람과 문제의 분리 |
-| 프로세스 갈등 | 역할·승인 권한·업무 순서의 불명확 | 책임과 절차의 명시 |
+| 과업 갈등(task conflict) | 과업 내용에 대한 관점·아이디어·의견 차이 | 근거와 대안의 비교 |
+| 관계 갈등(relationship conflict) | 구성원 간 대인관계 부조화와 긴장·반감 | 사람과 문제의 분리 |
+| 프로세스 갈등(process conflict) | 업무 수행 방식, 즉 역할·자원 배분에 대한 이견 | 책임과 절차의 명시 |
+
+과업·관계 갈등은 Jehn(1995), 프로세스 갈등은 Jehn(1997)이 구분한 유형
 
 ### TKI 다섯 대응 방식
 
@@ -158,7 +160,9 @@ PM 주도 갈등 조정
 ## 출제 이력과 검증 출처
 
 - 제136회 3교시: IT 프로젝트 갈등과 성과의 관계, 갈등 요인과 해결 전략, 터크만 팀 발달 5단계 모델
-- [The Myers-Briggs Company: Thomas-Kilmann Conflict Mode Instrument](https://www.themyersbriggs.com/en-US/Products-and-Services/TKI)
+- [Kilmann Diagnostics, An Overview of the TKI Assessment Tool](https://kilmanndiagnostics.com/brief-overview-of-the-tki-assessment/): 자기주장성·협조성 두 축과 다섯 방식
+- [Jehn, “A Multimethod Examination of the Benefits and Detriments of Intragroup Conflict,” Administrative Science Quarterly, 40(2), 256–282, 1995](https://doi.org/10.2307/2393638): 과업·관계 갈등의 정의와 과업 유형별 성과 영향
+- [Jehn & Mannix, “The Dynamic Nature of Conflict,” Academy of Management Journal, 44(2), 238–251, 2001](https://doi.org/10.2307/3069453): 프로세스 갈등(Jehn, 1997)을 포함한 세 유형의 정의
 - [Harvard Program on Negotiation: Principled Negotiation](https://www.pon.harvard.edu/daily/negotiation-skills-daily/principled-negotiation-focus-interests-to-create-value/)
 
 ## 연결 토픽

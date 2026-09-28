@@ -1,7 +1,7 @@
 ---
 title: "ITSM"
 author: "Claude Code"
-date: "2026-09-28T15:26:00+09:00"
+date: "2026-09-28T16:02:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -106,11 +106,11 @@ Release·Deployment: 배포와 CMDB 갱신
 | 구분 | ITIL 4 | ISO/IEC 20000-1 |
 |---|---|---|
 | 성격 | 모범 실무 지침 | 인증용 요구사항 표준 |
-| 핵심 구조 | 서비스 가치 시스템·4가지 관점·실천 활동 | SMS의 계획·운영·성과 평가·개선 조항 |
+| 핵심 구조 | 서비스 가치 시스템(지도 원칙·거버넌스·서비스 가치 사슬·실천 활동·지속적 개선)과 4가지 관점(조직과 사람·정보와 기술·파트너와 공급자·가치 흐름과 프로세스) | SMS의 계획·운영·성과 평가·개선 조항 |
 | 적용 방식 | 조직에 맞춰 선택·조정 | 요구사항 충족 여부를 심사 |
 | 활용 | 운영 활동의 설계 방법 | 관리 체계의 적합성 입증 |
 
-ITIL 4는 활동을 어떻게 할지, ISO/IEC 20000-1은 무엇을 갖춰야 하는지를 제시하는 보완 관계
+ITIL 4는 활동을 어떻게 할지, ISO/IEC 20000-1은 무엇을 갖춰야 하는지를 제시하는 보완 관계. 2026년부터 ITIL(Version 5)이 Foundation부터 단계적으로 공개되고 ITIL 4 과정과 자격도 병행 유지
 
 ## Ⅴ. ITSM 운영의 한계와 방안
 
@@ -160,7 +160,8 @@ Problem 기록
 
 - 제133회 2교시 3번: ISO/IEC 20000 기준의 ITSM 개념과 서비스 설계·구축·전환 활동
 - [ISO/IEC 20000-1:2018 — Service management system requirements](https://www.iso.org/standard/70636.html)
-- [PeopleCert: ITIL 4 Foundation](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-foundation-2565)
+- [PeopleCert: ITIL 4 Foundation](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-foundation-2565) — 서비스 가치 시스템, 4가지 관점, 7개 지도 원칙
+- [PeopleCert: ITIL Foundation (Version 5)](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-5-foundation-version-50-4154), [ITIL (Version 5) 안내](https://www.peoplecert.org/news-and-announcements/itil-version-5-explained) — 단계적 공개, ITIL 4 자격 유지
 
 ## 연결 토픽
 
