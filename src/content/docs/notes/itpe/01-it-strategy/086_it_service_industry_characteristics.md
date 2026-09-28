@@ -153,8 +153,8 @@ SI 인수 완료
 ## 출제 이력과 검증 출처
 
 - 제132~140회 정보관리기술사 공식 문제지에서 IT서비스 산업 특수성 단독 문항 없음. 위 문항은 예상문제
-- ISO, ISO/IEC 20000-1:2018 Service management system requirements — 서비스 설계·전환·제공·개선 요구사항
-- IEEE Computer Society, SWEBOK Guide v4.0 — 소프트웨어 운영·유지관리 지식 영역
+- ISO/IEC 20000-1:2018 Service management system requirements
+- IEEE Computer Society, SWEBOK Guide v4.0
 
 ## 연결 토픽
 

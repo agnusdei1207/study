@@ -151,8 +151,6 @@ SOM 재계산
 ## 출제 이력과 검증 출처
 
 - 제134회 1교시 2번: 시장 규모 추정 방법인 TAM-SAM-SOM 프레임워크
-- Shopify, Market Size: How To Calculate Market Size for Your Product
-- Shopify, Serviceable Obtainable Market: How to Calculate Your SOM
 
 ## 연결 토픽
 

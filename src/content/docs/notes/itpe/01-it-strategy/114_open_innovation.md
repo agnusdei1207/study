@@ -158,9 +158,8 @@ PoC 결과 보고
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 개방형 혁신 단독 문항 없음
-- Henry Chesbrough, *Open Innovation: The New Imperative for Creating and Profiting from Technology*, Harvard Business School Press, 2003
-- European Commission, What is Open Innovation?
-- OECD·Eurostat, Oslo Manual 2018: Guidelines for Collecting, Reporting and Using Data on Innovation
+- Henry Chesbrough(2003), Open Innovation
+- OECD·Eurostat(2018), Oslo Manual 2018
 
 ## 연결 토픽
 

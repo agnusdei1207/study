@@ -154,8 +154,7 @@ DX 성과 책임 구조
 ## 출제 이력과 검증 출처
 
 - 제136회 3교시: AI를 활용한 디지털 전환(AX)의 중요성, 전략적 추진 절차와 고려사항, 장애 요인과 대응방안. DX의 AI 응용 범위로 기본 답안과 구별
-- George Westerman·Didier Bonnet·Andrew McAfee, The Nine Elements of Digital Transformation, MIT Sloan Management Review, 2014
-- OECD Going Digital Toolkit
+- Westerman·Bonnet·McAfee(2014), The Nine Elements of Digital Transformation
 
 ## 연결 토픽
 

@@ -152,8 +152,7 @@ Gartner가 2019년 10월 발표한 2020 전략 기술 동향의 네 측면(democ
 ## 출제 이력과 검증 출처
 
 - 제138회 3교시 2번: 로우코드 플랫폼의 주요 특징, 노코드와 로우코드 비교, 적용 시 한계점. 설계 영역의 LCNC를 다룬 확장 범위로 기본 답안과 구별
-- Gartner 보도자료, “Gartner Identifies the Top 10 Strategic Technology Trends for 2020,” 2019.10.21 (2019.11.12 보관본): Democratization of Expertise의 정의와 2023년까지 가속될 네 측면
-- Microsoft Learn, Power Platform Center of Excellence
+- Gartner(2019.10.21.), Top 10 Strategic Technology Trends for 2020: Democratization of Expertise
 
 ## 연결 토픽
 

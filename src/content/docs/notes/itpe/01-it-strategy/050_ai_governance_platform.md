@@ -151,9 +151,9 @@ AI 시스템 등록 ── 사용 맥락·책임자
 
 - 제137회 1교시 6번: AI 거버넌스(Artificial Intelligence Governance). 플랫폼의 상위 개념
 - 제140회 2교시 2번 다: AI 거버넌스 관점의 통합 컴플라이언스 프로세스 및 기술적 검증 도구. AI 생성 코드의 오픈소스 라이선스 대응으로 확장한 응용 범위
-- ISO, ISO/IEC 42001:2023 AI management systems
-- NIST, AI Risk Management Framework
-- European Commission, AI Act
+- ISO/IEC 42001:2023 AI management systems
+- NIST AI 100-1(2023), AI Risk Management Framework
+- EU AI Act
 
 ## 연결 토픽
 

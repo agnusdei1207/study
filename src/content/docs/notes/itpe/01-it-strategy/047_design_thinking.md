@@ -156,7 +156,7 @@ Stanford d.school의 5단계 구분이며, 단계는 고정 순서가 아니라 
 
 - 제132~140회 공식 문제지에 디자인 씽킹 직접 문항 없음
 - Stanford d.school, Design Thinking Bootleg
-- Eric Ries, The Lean Startup Methodology
+- Eric Ries(2011), The Lean Startup
 
 ## 연결 토픽
 

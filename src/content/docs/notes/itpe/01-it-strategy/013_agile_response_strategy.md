@@ -151,9 +151,9 @@ IT 전략·관리 → 디지털 혁신·전략 → **애자일 전환 전략**
 ## 출제 이력과 검증 출처
 
 - 제132~140회 정보관리기술사 공식 문제지에서 애자일 전환을 직접 묻는 문항 없음
-- Manifesto for Agile Software Development
-- SAFe, Lean Budgets
-- LeSS Framework
+- Manifesto for Agile Software Development(2001)
+- SAFe(Scaled Agile Framework) — Lean Budgets
+- LeSS(Large-Scale Scrum) Framework
 
 ## 연결 토픽
 

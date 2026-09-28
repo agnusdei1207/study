@@ -1,7 +1,7 @@
 ---
 title: "FinOps"
 author: "Claude Code"
-date: "2026-09-28T12:40:00+09:00"
+date: "2026-09-28T17:20:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -32,6 +32,7 @@ IT 전략·관리 → 클라우드 전략·재무 → **FinOps**
 - **단위 경제성(Unit Economics)** : 거래 1건·활성 사용자 1명처럼 사업 산출 단위당 기술 비용으로 효율을 판단하는 지표
 - **Rightsizing(규모 조정)** : 실제 부하에 맞춘 인스턴스 크기·사양의 조정
 - **약정 할인(Commitment-based Discount)** : 일정 기간 사용량이나 금액을 약정하고 단가를 낮추는 요금제. 예약 인스턴스·Savings Plans 등
+- **FOCUS(FinOps Open Cost & Usage Specification)** : FinOps Foundation이 관리하는 개방형 사양. 클라우드·SaaS·AI·데이터센터 등 공급자마다 다른 청구 데이터를 같은 형식으로 정규화해 Inform 단계의 비용 배부·비교를 가능하게 함
 - **ITFM(IT Financial Management)** : IT 예산·비용의 계획·집행·배부·보고를 담당하는 재무관리 활동
 
 </details>
@@ -90,7 +91,7 @@ Optimize: 사용량 절감·요금 할인 대안 선택
     ↓
 Operate: 조치 실행·정책 적용·결과 재측정
     ↓
-재측정 결과를 다음 Inform의 기준선으로 반영
+재측정 결과를 다음 Inform의 기준선으로 반영. 여러 공급자의 청구 데이터는 **FOCUS** 형식으로 정규화해 같은 기준으로 배부·비교
 ```
 
 ## Ⅳ. 최적화 대안 비교와 ITFM과의 관계
@@ -165,7 +166,6 @@ Operate: 조치 실행·정책 적용·결과 재측정
 
 - 제132~140회 정보관리기술사 공식 문제지에서 FinOps를 직접 묻는 문항 없음
 - FinOps Foundation, FinOps Framework
-- FinOps Foundation, What is FinOps?
 
 ## 연결 토픽
 

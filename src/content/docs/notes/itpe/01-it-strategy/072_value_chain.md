@@ -173,8 +173,7 @@ IT 전략·관리 → 경영 전략 분석 → **가치사슬(Value Chain)**
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 가치사슬 단독 문항 없음
-- Michael E. Porter, Competitive Advantage: Creating and Sustaining Superior Performance, Free Press, 1985
-- Harvard Business School Institute for Strategy and Competitiveness, The Value Chain
+- Michael E. Porter(1985), Competitive Advantage
 
 ## 연결 토픽
 

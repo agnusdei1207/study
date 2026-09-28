@@ -1,7 +1,7 @@
 ---
 title: "NIST AI RMF"
 author: "Claude Code"
-date: "2026-09-28T12:40:00+09:00"
+date: "2026-09-28T17:05:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -34,6 +34,7 @@ IT 전략·관리 → AI 거버넌스·신뢰성 → **NIST AI RMF**
 - **신뢰성 특성** : 유효성·신뢰성, 안전성, 보안성·회복탄력성, 책임성·투명성, 설명가능성·해석가능성, 프라이버시 강화, 유해 편향이 관리된 공정성의 7가지 속성
 - **위험 허용 수준(Risk Tolerance)** : 조직이 목표 달성을 위해 감수할 준비가 된 위험의 정도. 사용 맥락과 법·규제에 따라 달라지는 기준
 - **잔여위험(Residual Risk)** : 대응 조치 후에도 남아 있는 위험
+- **NIST AI 600-1(Generative Artificial Intelligence Profile)** : AI RMF를 생성형 AI에 적용하도록 2024년 7월 발행한 프로파일. 생성형 AI 고유·악화 위험 12개와 기능별 권장 조치를 제시
 
 </details>
 
@@ -123,6 +124,18 @@ GOVERN 체계가 갖춰진 뒤 대개 MAP에서 시작해 MEASURE·MANAGE로 진
 
 특성 간 상충의 존재. 해석가능성과 프라이버시, 예측 정확도와 해석가능성처럼 한 특성을 높이면 다른 특성이 낮아지는 관계로, 모든 특성의 동시 최대화가 아닌 사용 맥락에 따른 균형 판단의 대상
 
+### 생성형 AI 확장: NIST AI 600-1의 12개 위험
+
+**NIST AI 600-1** 은 AI RMF Core를 그대로 쓰면서 생성형 AI에서 새로 생기거나 커지는 위험을 MAP·MEASURE 대상으로 구체화한 프로파일
+
+| 구분 | 위험(원문 명칭) |
+|---|---|
+| 유해 정보·콘텐츠 | CBRN 정보·역량(CBRN Information or Capabilities), 위험·폭력·혐오 콘텐츠(Dangerous, Violent, or Hateful Content), 음란·모욕·학대 콘텐츠(Obscene, Degrading, and/or Abusive Content) |
+| 출력 신뢰성 | 작화(Confabulation), 정보 무결성(Information Integrity), 유해 편향·동질화(Harmful Bias or Homogenization) |
+| 데이터·권리 | 데이터 프라이버시(Data Privacy), 지식재산(Intellectual Property) |
+| 보안·공급망 | 정보보안(Information Security), 가치사슬·구성요소 통합(Value Chain and Component Integration) |
+| 인간·환경 | 인간-AI 구성(Human-AI Configuration), 환경 영향(Environmental Impacts) |
+
 ## Ⅴ. AI RMF 적용의 한계와 방안
 
 | 한계 | 방안 |
@@ -162,10 +175,8 @@ MANAGE: 허용 수준 대비 판정
 ## 출제 이력과 검증 출처
 
 - 제138회 1교시 1번: AI RMF의 개념과 4가지 핵심구조, 7가지 신뢰 가능한 특성
-- NIST AI 100-1: Artificial Intelligence Risk Management Framework (AI RMF 1.0), 2023
-- NIST AIRC, AI RMF Core
-- NIST AIRC, AI Risks and Trustworthiness
-- NIST AI Risk Management Framework
+- NIST AI 100-1(2023), Artificial Intelligence Risk Management Framework (AI RMF 1.0)
+- NIST AI 600-1(2024.7), Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile
 
 ## 연결 토픽
 

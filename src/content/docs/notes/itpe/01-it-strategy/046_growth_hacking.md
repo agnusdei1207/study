@@ -156,7 +156,7 @@ ICE 점수로 순서 결정
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 해당 문항 없음
-- Dave McClure, Startup Metrics for Pirates (저자 발표 자료): AARRR 퍼널
+- Dave McClure(2007), Startup Metrics for Pirates: AARRR
 
 ## 연결 토픽
 

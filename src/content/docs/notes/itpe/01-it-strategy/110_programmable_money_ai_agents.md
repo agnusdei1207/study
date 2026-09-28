@@ -152,10 +152,9 @@ ECB는 디지털 유로를 Programmable Money로 설계하지 않되 조건부 �
 
 - 제132~140회 공식 문제지에 Programmable Money·AI Agent 결제 단독 문항 없음
 - 제139회 3교시 1번: 다중 에이전트 시스템(MAS)의 정의·비교·고려사항. 에이전트 권한·책임을 다루는 인접 문항
-- European Central Bank, FAQs on the digital euro, Q20: Would the digital euro be programmable money?
-- Iñaki Aldasoro·Ajit Desai, AI agents for cash management in payment systems, BIS Working Papers No. 1310, 2025
+- European Central Bank, FAQs on the digital euro(Q20)
+- Aldasoro·Desai(2025), AI agents for cash management in payment systems, BIS Working Papers No. 1310
 - AP2(Agent Payments Protocol) Specification
-- Google Cloud, Announcing Agent Payments Protocol (AP2)
 
 ## 연결 토픽
 

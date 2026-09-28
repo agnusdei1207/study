@@ -154,9 +154,7 @@ B1 균형 루프 (음 링크 1개)
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 인과루프다이어그램 단독 문항 없음
-- John D. Sterman, *Business Dynamics: Systems Thinking and Modeling for a Complex World*, McGraw-Hill, 2000
-- MIT OpenCourseWare, ESD.36 System Project Management — Introduction to Project Dynamics
-- MIT OpenCourseWare, ESD.00 Introduction to Engineering Systems — Causal Loop Diagrams
+- John D. Sterman(2000), Business Dynamics
 
 ## 연결 토픽
 

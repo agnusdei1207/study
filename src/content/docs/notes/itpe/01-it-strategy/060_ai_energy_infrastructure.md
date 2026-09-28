@@ -155,8 +155,7 @@ GPU 랙 연산
 - 제140회 4교시 6번: AI 데이터센터의 정의·부상 배경, 기존 데이터센터와 비교, 구현 핵심 기술
 - 제134회 2교시 4번: 대규모 AI 서비스를 위한 데이터센터 구축 기술
 - 제139회 4교시 3번: 재난 대비 데이터센터의 지리적 위치 선정과 대응 전략. 입지 판단의 확장 범위
-- IEA, Energy and AI(2025) 보고서 PDF: 데이터센터 전력 소비 2024년 약 415TWh·2030년 약 945TWh(Base Case)
-- U.S. DOE, Best Practices Guide for Energy-Efficient Data Center Design
+- IEA(2025), Energy and AI: 데이터센터 전력 소비 2024년 약 415TWh, 2030년 약 945TWh(Base Case)
 
 ## 연결 토픽
 

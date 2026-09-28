@@ -150,9 +150,8 @@ Refactor 시범 전환
 - 제134회 4교시: 클라우드 전환 사업의 단계별 감리 방법과 검토 항목
 - 제134회 2교시: 공공부문 SaaS 이용 가이드라인의 위험관리·보안성 검토·서비스 수준 협약
 - CNCF, Cloud Native Definition v1.1
-- AWS Prescriptive Guidance, Migration strategies
-- 「클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률」 제20조 — 국가기관등의 클라우드서비스 이용 노력(제1항)과 보안인증 서비스 우선 고려(제2항), 보안인증 근거는 제23조의2. 법률 제21066호, 2025.10.1. 시행
-- KISA: 클라우드서비스 보안인증(CSAP)
+- AWS Prescriptive Guidance, Migration strategies — 전환 전략(Rs)
+- 「클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률」 제20조·제23조의2 — 법률 제21066호, 2025.10.1. 시행
 
 ## 연결 토픽
 

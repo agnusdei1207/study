@@ -161,11 +161,8 @@ TOWS 대안 목록
 ## 출제 이력과 검증 출처
 
 - 제133회 3교시 4번: 경영환경 분석 방법인 SWOT·3C·PEST 분석
-- CIPD, PESTLE analysis
-- Kenichi Ohmae, 『The Mind of the Strategist: The Art of Japanese Business』, McGraw-Hill, 1982: 고객·경쟁사·자사의 전략 삼각형
-- Kenichi Ohmae, “The Strategic Triangle: A New Perspective on Business Unit Strategy,” European Management Journal, 1(1), 38–48, 1982
-- Heinz Weihrich, “The TOWS Matrix — A Tool for Situational Analysis,” Long Range Planning, 15(2), 54–66, 1982: SO·ST·WO·WT 전략 조합
-- Harvard Business Review, From SWOT to TOWS
+- Kenichi Ohmae(1982), The Mind of the Strategist: 3C 전략 삼각형
+- Heinz Weihrich(1982), The TOWS Matrix — A Tool for Situational Analysis
 
 ## 연결 토픽
 

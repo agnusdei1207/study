@@ -147,9 +147,9 @@ CSP 담당 항목 ── 계약·CSAP 인증 범위 대조
 
 - 제134회 4교시: 클라우드 전환 사업의 단계별 감리 방법과 검토 항목
 - 제138회 2교시: 클라우드 네이티브 전환·구축 프로젝트의 TA·AA 역할 비교와 협업. 전환 사업의 설계 책임 확장 범위
-- 「정보시스템 감리기준」
-- NIA, 지능정보기술 감리 실무 가이드(2023.2)
-- AWS Prescriptive Guidance, Migration strategies
+- 정보시스템 감리기준 — 행정안전부고시 제2024-53호, 2024.6.27. 시행
+- NIA, 지능정보기술 감리 실무 가이드(2023)
+- AWS, Migration strategies
 - NIST SP 800-146, Cloud Computing Synopsis and Recommendations
 
 ## 연결 토픽

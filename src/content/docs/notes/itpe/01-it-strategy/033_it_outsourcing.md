@@ -160,7 +160,6 @@ IT 전략·관리 → IT 운영전략·소싱 거버넌스 → **IT 아웃소싱
 
 - 제132~140회 공식 문제지에 IT 아웃소싱 단독 문항 없음
 - ISO 37500:2014 Guidance on outsourcing
-- ISO/IEC 20000-1:2018 Service management system requirements
 
 ## 연결 토픽
 

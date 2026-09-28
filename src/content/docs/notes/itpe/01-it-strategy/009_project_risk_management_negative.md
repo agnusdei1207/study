@@ -158,9 +158,7 @@ IT 전략·관리 → 프로젝트 통제 → **프로젝트 위험관리**
 - 제138회 1교시: 프로젝트 위험관리
 - 제139회 1교시: IT 프로젝트에서 발생할 수 있는 부정적 위험(Negative Risk)과 대응 전략
 - 제134회 4교시: IT 프로젝트 관리의 리스크 대응 계획 수립 절차, 위협에 대한 대응 전략, 기회에 대한 대응 전략. 기회 대응은 이 문항이 별도로 요구한 확장 범위
-- PMI, A Guide to the Project Management Body of Knowledge 6th ed.(2017) 11.5 위험 대응 계획: 위협 전략 상향·회피·전가·완화·수용, 기회 전략 상향·활용·공유·증대·수용. 6판에서 상향(Escalate) 신설 — 교재 정리 Project Management 2nd ed. 10.5
-- PMI, The Standard for Risk Management in Portfolios, Programs, and Projects
-- PMI Lexicon of Project Management Terms
+- PMI, PMBOK Guide 제6판(2017) 11.5 위험 대응 계획
 
 ## 연결 토픽
 
