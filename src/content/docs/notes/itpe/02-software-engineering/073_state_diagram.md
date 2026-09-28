@@ -78,9 +78,7 @@ extra:
 주문 처리 시스템을 예시로 한 상태 전이 체계 및 모델링 절차.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    주문 객체 상태 머신 (Order FSM)                                       |
-+---------------------------------------------------------------------------------------------------------+
+[주문 객체 상태 머신 (Order FSM)]
                                                                                                            
   (●) 시작                                                                                                 
     │                                                                                                      
@@ -151,11 +149,16 @@ extra:
 
 ## Ⅵ. 제언
 
-도메인 설계 초기 단계부터 상태 전이표를 기반으로 허용/불가 전이를 전수 검증하고, 디자인 패턴과 상태 머신 엔진을 연계하여 모델-코드 일치성을 강화할 필요가 있음.
+도메인 설계 초기 단계부터 상태 전이표를 기반으로 허용·불가 전이를 전수 검증하고, State 패턴 및 상태 머신 프레임워크 연계를 통한 모델-코드 일치성 확보
 
 ```text
-[상태 다이어그램 설계] ──> [상태 전이 행렬 검증] ──> [상태 패턴/프레임워크 구현] ──> [전이 커버리지 테스트]
-     (UML FSM)              (허용/예외 전이 검증)       (Spring StateMachine 등)         (N-Switch Coverage)
+[상태 다이어그램 설계] (UML FSM)
+         ↓
+[상태 전이 행렬 검증] (허용/예외 전이 전수 확인)
+         ↓
+[상태 머신 구현] (State 패턴 / Spring StateMachine)
+         ↓
+[전이 커버리지 테스트] (N-Switch Coverage 달성)
 ```
 
 | 검증 및 구현 단계 | 수행 활동 | 핵심 관리 지표 |
@@ -164,22 +167,15 @@ extra:
 | **코드 연계** | GoF State Pattern 또는 상태 머신 엔진 기반 구현 | if-else 분기 제거 및 상태별 행위 캡슐화 달성 |
 | **테스트 검증** | 상태 전이 기반 테스트 설계(0-Switch, 1-Switch) | 상태 커버리지 및 유효/무효 전이 경로 전수 달성 |
 
----
-
-## 출제 이력
+## 출제 이력과 검증 출처
 
 - 제137회 정보관리기술사 4교시: UML 행위 다이어그램 중 상태 다이어그램
 - 제124회 정보관리기술사 1교시: 상태 전이 다이어그램(State Transition Diagram)
-- 제118회 컴퓨터시스템응용기술사 2교시: UML 상태 머신 다이어그램과 복합 상태 모델링
-
-## 참고 자료
-
 - OMG Unified Modeling Language (UML) Specification Version 2.5.1
-- Martin Fowler, "UML Distilled: A Brief Guide to the Standard Object Modeling Language"
-- Ian Sommerville, "Software Engineering (10th Edition)" - Behavioral Modeling
+- Martin Fowler, UML Distilled: A Brief Guide to the Standard Object Modeling Language
 
 ## 연결 토픽
 
-- [클래스 다이어그램](./045_class_diagram.md)
-- [소프트웨어 아키텍처](./056_software_architecture.md)
-- [이벤트 주도 아키텍처(EDA)](./078_event_driven_architecture.md)
+- 이전 토픽: [동적 테스트](./072_dynamic_testing.md)
+- 연관 토픽: [시퀀스 다이어그램](./111_sequence_diagram.md), [클래스 다이어그램](./045_class_diagram.md)
+- 다음 토픽: [AOP](./074_aop.md)

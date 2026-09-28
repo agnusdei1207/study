@@ -75,9 +75,7 @@ SOLID는 개별 독립 원칙이 아니며, 응집도 향상(SRP, ISP)과 추상
 SOLID 5대 원칙 간의 상호작용 체계 및 DIP 기반 아키텍처 의존 흐름.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    SOLID 5대 원칙 간 연계 체계 및 DIP 구조                               |
-+---------------------------------------------------------------------------------------------------------+
+[SOLID 5대 원칙 간 연계 체계 및 DIP 구조]
                                                                                                            
   [요구사항 변경 발생]                                                                                     
            │                                                                                               
@@ -134,11 +132,16 @@ SOLID 5대 원칙 간의 상호작용 체계 및 DIP 기반 아키텍처 의존 
 
 ## Ⅵ. 제언
 
-SOLID 원칙은 단순 코딩 규칙이 아닌 도메인 주도 설계(DDD) 및 클린/헥사고날 아키텍처의 근간이므로, 정적 코드 분석 도구를 CI/CD 파이프라인에 통합하여 지속적으로 아키텍처 무결성을 점검할 필요가 있음.
+도메인 코어 중심의 의존성 역전(DIP) 설계와 ArchUnit 정적 검증 파이프라인 통합을 통한 아키텍처 무결성 보장
 
 ```text
-[요구사항 분석] ──> [도메인 모델링 (DDD)] ──> [SOLID 원칙 코딩] ──> [정적 아키텍처 검증] ──> [CI/CD 자동 배포]
-                     (경계 설정 & 포트 도출)    (인터페이스 분리 & DI)   (ArchUnit / SonarQube)     (클린 코드 유지)
+[도메인 모델링 (DDD)] (경계 식별 및 포트 인터페이스 도출)
+         ↓
+[SOLID 기반 구현] (단일 책임, 개방 폐쇄, 인터페이스 분리, DIP)
+         ↓
+[정적 아키텍처 검증] (ArchUnit 기반 순환 참조 및 의존 방향 검증)
+         ↓
+[품질 메트릭 통제] (C&K 메트릭 및 SonarQube 게이트 통과)
 ```
 
 | 거버넌스 단계 | 적용 기술 및 방법 | 핵심 통제 지표 |
@@ -147,23 +150,15 @@ SOLID 원칙은 단순 코딩 규칙이 아닌 도메인 주도 설계(DDD) 및 
 | **정적 검증 자동화** | ArchUnit 기반 아키텍처 단위 테스트 및 SonarQube 정적 분석 | 결합도 지수(Afferent/Efferent Coupling) 및 순환 의존 제로 |
 | **품질 메트릭 관리** | C&K 메트릭(WMC, CBO, LCOM) 지속적 모니터링 | 모듈 응집도(LCOM) 낮음 유지 및 클래스당 메서드 수 제한 |
 
----
-
-## 출제 이력
+## 출제 이력과 검증 출처
 
 - 제134회 정보관리기술사 1교시: 객체지향 5대 설계 원칙(SOLID)의 개념 및 필요성
-- 제127회 컴퓨터시스템응용기술사 2교시: 의존성 역전 원칙(DIP)과 제어의 역전(IoC), 의존성 주입(DI)의 비교
 - 제120회 정보관리기술사 4교시: 객체지향 소프트웨어 설계에서 OCP와 LSP의 위반 사례 및 리팩토링 기법
-
-## 참고 자료
-
-- Robert C. Martin, "Clean Architecture: A Craftsman's Guide to Software Structure and Design"
-- Robert C. Martin, "Agile Software Development, Principles, Patterns, and Practices"
-- Martin Fowler, "Refactoring: Improving the Design of Existing Code (2nd Edition)"
+- Robert C. Martin, Clean Architecture: A Craftsman's Guide to Software Structure and Design
+- Martin Fowler, Refactoring: Improving the Design of Existing Code (2nd Edition)
 
 ## 연결 토픽
 
-- [객체지향 프로그래밍(OOP)](./083_oop.md)
-- [의존성 주입(DI)](./042_dependency_injection.md)
-- [디자인 패턴](./005_design_pattern.md)
-- [리팩토링](./006_refactoring.md)
+- 이전 토픽: [HCI](./081_hci.md)
+- 연관 토픽: [객체지향 프로그래밍(OOP)](./083_oop.md), [의존성 주입(DI)](./042_dependency_injection.md)
+- 다음 토픽: [OOP](./083_oop.md)

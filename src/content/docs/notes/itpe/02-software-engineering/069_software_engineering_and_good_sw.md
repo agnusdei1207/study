@@ -166,7 +166,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 소프트웨어 공학 총론 및 정보관리/컴퓨터시스템응용 공통 기초 영역
+- 소프트웨어 공학 총론 및 정보관리기술사 소프트웨어공학 기초 영역
 - Fred Brooks, No Silver Bullet: Essence and Accidents of Software Engineering (Computer, 1987)
 - Ian Sommerville, Software Engineering (10th Edition, Pearson)
 - IEEE Computer Society, Guide to the Software Engineering Body of Knowledge (SWEBOK v4)

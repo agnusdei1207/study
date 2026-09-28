@@ -178,7 +178,7 @@ CPU 캐시 친화적(Data-Oriented Design) 배열 구조와 링 버퍼(Ring Buff
 
 ## 출제 이력과 검증 출처
 
-- 컴퓨터시스템응용기술사 컴퓨터 시스템 및 알고리즘 기출 영역
+- 정보관리기술사 소프트웨어공학 자료구조(배열·연결리스트·스택·큐) 핵심 출제 영역
 - Thomas H. Cormen, Introduction to Algorithms (CLRS 4th Edition), Elementary Data Structures
 - Martin Thompson, LMAX Disruptor: High performance alternative to bounded queues
 - Open Data Structures (Pat Morin, Carleton University)

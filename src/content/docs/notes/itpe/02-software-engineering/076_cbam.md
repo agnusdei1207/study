@@ -74,9 +74,7 @@ extra:
 CBAM의 경제성 평가 흐름도 및 단계별 실행 체계.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    CBAM 9단계 아키텍처 평가 체계 프레임워크                             |
-+---------------------------------------------------------------------------------------------------------+
+[CBAM 9단계 아키텍처 평가 체계 프레임워크]
                                                                                                            
   [ATAM 결과물 인계] ──> (1) 시나리오 정리 (Collate Scenarios)                                            
                                   │                                                                        
@@ -138,11 +136,16 @@ CBAM의 경제성 평가 흐름도 및 단계별 실행 체계.
 
 ## Ⅵ. 제언
 
-CBAM 평가를 일회성 프로젝트로 끝내지 않고 ATAM 기술 검증과 FinOps 비용 거버넌스를 결합한 전사 아키텍처 투자 의사결정 파이프라인으로 체계화할 필요가 있음.
+ATAM 기술 리스크 검증과 FinOps 비용 거버넌스를 결합한 CBAM 기반 전사 아키텍처 투자 의사결정 체계화
 
 ```text
-[ATAM 기술 리스크 분석] ──> [CBAM 경제성 ROI 평가] ──> [FinOps TCO 실시간 검증] ──> [애자일 백로그 반영]
- (품질 상충/전략 도출)         (편익/비용 매트릭스 확정)       (클라우드 실측 비용 추적)       (우선순위 스프린트 실행)
+[ATAM 기술 리스크 분석] (품질 상충 분석 및 대안 전략 도출)
+         ↓
+[CBAM 경제성 평가] (시나리오별 유틸리티 산정 및 ROI 도출)
+         ↓
+[FinOps TCO 실시간 검증] (클라우드 인프라 실측 비용 추적)
+         ↓
+[애자일 백로그 반영] (우선순위 기반 스프린트 실행 계획 수립)
 ```
 
 | 관리 영역 | 실행 지침 | 목표 산출물 |
@@ -151,23 +154,15 @@ CBAM 평가를 일회성 프로젝트로 끝내지 않고 ATAM 기술 검증과 
 | **비용 거버넌스** | 개발 공수(FP/COCOMO)와 클라우드 인프라 예측 비용 동시 반영 | 3개년 아키텍처 TCO 시뮬레이션 표 |
 | **우선순위 실행** | ROI 순위와 기술적 선행 의존성을 매핑하여 애자일 백로그 편성 | 분기별 아키텍처 로드맵 및 실행 백로그 |
 
----
-
-## 출제 이력
+## 출제 이력과 검증 출처
 
 - 제125회 정보관리기술사 1교시: CBAM(Cost Benefit Analysis Method)의 개념 및 절차
-- 제114회 컴퓨터시스템응용기술사 2교시: 소프트웨어 아키텍처 평가 기법인 ATAM과 CBAM의 비교 및 경제성 분석
 - 제101회 정보관리기술사 4교시: 아키텍처 재설계 시 비용 편익 분석을 위한 CBAM 방법론
-
-## 참고 자료
-
-- Rick Kazman, Jai Asundi, Mark Klein, "Making Architecture: The CBAM Steps and ROI Calculation" (SEI Technical Report)
-- Len Bass, Paul Clements, Rick Kazman, "Software Architecture in Practice (4th Edition)"
-- Carnegie Mellon University SEI, Architecture Tradeoff and Cost-Benefit Analysis Method Series
+- Rick Kazman, Jai Asundi, Mark Klein, Making Architecture: The CBAM Steps and ROI Calculation (SEI Technical Report)
+- Len Bass, Paul Clements, Rick Kazman, Software Architecture in Practice (4th Edition)
 
 ## 연결 토픽
 
-- [소프트웨어 아키텍처](./056_software_architecture.md)
-- [아키텍처 스타일](./057_architecture_style.md)
-- [소프트웨어 비용 산정](./027_sw_cost_estimation.md)
-- [ATAM](./014_atam.md)
+- 이전 토픽: [API Gateway](./075_api_gateway.md)
+- 연관 토픽: [ATAM](./014_atam.md), [소프트웨어 아키텍처](./056_software_architecture.md), [소프트웨어 비용 산정](./027_sw_cost_estimation.md)
+- 다음 토픽: [이벤트 주도 아키텍처(EDA)](./078_event_driven_architecture.md)

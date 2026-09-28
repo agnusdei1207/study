@@ -176,7 +176,7 @@ C++ STL `std::sort`의 표준 구현체인 인트로소트(Introsort) 도입 및
 
 ## 출제 이력과 검증 출처
 
-- 컴퓨터시스템응용기술사 알고리즘 기출 영역 (퀵 정렬과 최악 시간 복잡도)
+- 정보관리기술사 알고리즘 기출 영역 (퀵 정렬과 최악 시간 복잡도)
 - C. A. R. Hoare, Quicksort (The Computer Journal, 1962)
 - David R. Musser, Introspective Sorting and Selection Algorithms (Software: Practice and Experience, 1997)
 - Thomas H. Cormen, Introduction to Algorithms (CLRS 4th Edition), Chapter 7: Quicksort

@@ -75,9 +75,7 @@ API Gateway는 외부 트래픽(North-South)의 진입 관문으로서 시스템
 API Gateway의 요청 파이프라인 처리 흐름 및 마이크로서비스 라우팅 아키텍처.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    API Gateway 요청 처리 및 라우팅 체계                                  |
-+---------------------------------------------------------------------------------------------------------+
+[API Gateway 요청 처리 및 라우팅 체계]
                                                                                                            
   [웹 브라우저]   [모바일 앱]   [외부 파트너]                                                              
         │             │             │                                                                      
@@ -153,11 +151,16 @@ API Gateway의 요청 파이프라인 처리 흐름 및 마이크로서비스 �
 
 ## Ⅵ. 제언
 
-API Gateway 구축 시 인프라 라우팅 책임을 게이트웨이에 국한하고, 화면 종속적 로직은 BFF로, 내부 서비스 간 보안/통신은 서비스 메시로 위임하는 3계층 관심사 분리 아키텍처 확립이 필요.
+API Gateway의 순수 인프라 라우팅 국한, BFF 계층의 화면 조합 전담, 서비스 메시의 내부 통신 통제 기반 3계층 분리 아키텍처 확립
 
 ```text
-[클라이언트 계층] ──> [API Gateway (North-South)] ──> [BFF 계층] ──> [Service Mesh (East-West)]
- (Web / Mobile)           (공통 보안 & 전사 라우팅)      (화면 조합)       (mTLS & 내부 추적성)
+[클라이언트 계층] (Web / Mobile)
+         ↓ HTTPS 요청 (North-South)
+[API Gateway 계층] (공통 보안·인증 & 전사 라우팅)
+         ↓ 서비스 호출
+[BFF 계층] (채널별 응답 데이터 조합·가공)
+         ↓ 내부 통신 (East-West)
+[Service Mesh 계층] (mTLS 상호인증 & 분산 추적)
 ```
 
 | 아키텍처 계층 | 권장 구축 기술 | 핵심 설계 원칙 |
@@ -166,23 +169,15 @@ API Gateway 구축 시 인프라 라우팅 책임을 게이트웨이에 국한�
 | **채널 연계** | Node.js BFF / GraphQL Gateway | 채널 맞춤형 Over-fetching 방지, API 오케스트레이션 |
 | **내부 통신** | Istio / Linkerd (Sidecar Proxy) | 제로 트러스트(Zero Trust) 상호 mTLS, 서비스 간 지연 최소화 |
 
----
-
-## 출제 이력
+## 출제 이력과 검증 출처
 
 - 제131회 정보관리기술사 2교시: 마이크로서비스 아키텍처에서 API Gateway의 기능과 BFF(Backend for Frontend) 패턴 비교
-- 제128회 컴퓨터시스템응용기술사 1교시: API 게이트웨이(API Gateway)의 개념 및 주요 기능
 - 제122회 정보관리기술사 3교시: MSA 환경에서의 인증/인가 아키텍처와 API Gateway의 역할
-
-## 참고 자료
-
-- Chris Richardson, "Microservices Patterns: With examples in Java"
-- Martin Fowler, "Microservice Architecture"
-- Microsoft Azure Architecture Center: API Gateway pattern
+- Chris Richardson, Microservices Patterns: With examples in Java
+- Martin Fowler, Microservice Architecture
 
 ## 연결 토픽
 
-- [마이크로서비스 아키텍처(MSA)](./035_msa.md)
-- [스크래핑(Scraping)](./071_scraping.md)
-- [이벤트 주도 아키텍처(EDA)](./078_event_driven_architecture.md)
-- [서비스 메시(Service Mesh)](./088_service_mesh.md)
+- 이전 토픽: [AOP](./074_aop.md)
+- 연관 토픽: [마이크로서비스 아키텍처(MSA)](./035_msa.md), [서비스 메시](./088_service_mesh.md)
+- 다음 토픽: [CBAM](./076_cbam.md)

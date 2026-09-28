@@ -74,9 +74,7 @@ extra:
 EDA의 2대 토폴로지(중재자 vs 브로커) 구조 및 이벤트 처리 파이프라인.
 
 ```text
-+---------------------------------------------------------------------------------------------------------+
-|                                    EDA 2대 토폴로지 아키텍처 체계                                        |
-+---------------------------------------------------------------------------------------------------------+
+[EDA 2대 토폴로지 아키텍처 체계]
                                                                                                            
   [1] 중재자 토폴로지 (Mediator Topology : 오케스트레이션 방식)                                           
                                                                                                            
@@ -140,11 +138,12 @@ EDA의 2대 토폴로지(중재자 vs 브로커) 구조 및 이벤트 처리 파
 
 ## Ⅵ. 제언
 
-비즈니스 트랜잭션의 엄격한 순서와 보상이 요구되는 코어 업무는 중재자(사가 오케스트레이션) 방식을, 서비스 간 느슨한 상태 동기화는 브로커(코레오그래피) 방식을 혼용하는 하이브리드 토폴로지 설계가 바람직함.
+코어 트랜잭션의 중재자(Orchestration Saga)와 부가 기능의 브로커(Choreography) 혼용 기반 하이브리드 EDA 토폴로지 구축
 
 ```text
-[코어 업무 트랜잭션] ──> [중재자 토폴로지 (Orchestrated Saga)] ──> [보상 트랜잭션 무결성]
-[부가 기능 연계]     ──> [브로커 토폴로지 (Choreography Pub/Sub)] ──> [독립적 스케일아웃]
+[비즈니스 요구 식별]
+      ├─ 코어 트랜잭션 ──→ [중재자 토폴로지 (Orchestrated Saga)] ──→ 보상 트랜잭션 무결성
+      └─ 부가 기능 연계 ──→ [브로커 토폴로지 (Choreography Pub/Sub)] ──→ 독립적 스케일아웃
 ```
 
 | 설계 영역 | 핵심 권장 기술 | 검증 및 거버넌스 방안 |
@@ -153,22 +152,15 @@ EDA의 2대 토폴로지(중재자 vs 브로커) 구조 및 이벤트 처리 파
 | **데이터 무결성** | Event-ID 기반 멱등 소비자(Idempotent Consumer) | Redis/RDB 멱등 키 검사로 중복 처리 완벽 방어 |
 | **전사 관측성** | OpenTelemetry Distributed Tracing | W3C TraceContext 헤더 주입을 통한 엔드투엔드 경로 추적 |
 
----
-
-## 출제 이력
+## 출제 이력과 검증 출처
 
 - 제128회 정보관리기술사 2교시: 이벤트 주도 아키텍처(EDA)의 토폴로지 및 분산 트랜잭션 처리(Saga 패턴)
-- 제121회 컴퓨터시스템응용기술사 3교시: 메시지 지향 미들웨어(MOM)와 이벤트 기반 아키텍처의 설계 고려사항
-
-## 참고 자료
-
-- Mark Richards, Neal Ford, "Fundamentals of Software Architecture"
-- Martin Kleppmann, "Designing Data-Intensive Applications"
-- Chris Richardson, "Microservices Patterns: With examples in Java"
+- Mark Richards, Neal Ford, Fundamentals of Software Architecture
+- Martin Kleppmann, Designing Data-Intensive Applications
+- Chris Richardson, Microservices Patterns: With examples in Java
 
 ## 연결 토픽
 
-- [마이크로서비스 아키텍처(MSA)](./035_msa.md)
-- [상태 다이어그램](./073_state_diagram.md)
-- [API Gateway](./075_api_gateway.md)
-- [메시지 큐(Message Queue)](./140_message_queue.md)
+- 이전 토픽: [CBAM](./076_cbam.md)
+- 연관 토픽: [마이크로서비스 아키텍처(MSA)](./035_msa.md), [메시지 큐](./140_message_queue.md)
+- 다음 토픽: [GS 인증](./080_good_software_certification.md)

@@ -172,7 +172,7 @@ extra:
 
 ## 출제 이력과 검증 출처
 
-- 컴퓨터시스템응용기술사 자료구조 및 알고리즘 기출 영역
+- 정보관리기술사 소프트웨어공학 자료구조(트리·그래프) 핵심 출제 영역
 - Thomas H. Cormen, Introduction to Algorithms (CLRS 4th Edition), Graph Algorithms
 - Robert Sedgewick, Algorithms (4th Edition), Graphs and Trees
 - Open Data Structures (Pat Morin, Carleton University)
