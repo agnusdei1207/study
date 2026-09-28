@@ -1,7 +1,7 @@
 ---
 title: "ITSM"
-author: "Codex"
-date: "2026-09-27T00:24:59+09:00"
+author: "Claude Code"
+date: "2026-09-28T15:26:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,33 +9,33 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "GPT-6"
+  model: "Claude Opus 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
 
-지식 위치: IT 전략·관리 → IT 서비스 관리·운영 거버넌스 → **ITSM**
-
+IT 전략·관리 → IT 서비스 관리·운영 거버넌스 → **ITSM**
 
 ## 30초 인출
 
-- 본질: **ITSM** : 고객에게 제공하는 IT 서비스의 설계·전환·운영·개선을 관리하는 방식.
-- 메커니즘: 서비스 데스크를 중심으로 한 인시던트 복구, 문제원인·**KEDB** , 변경·**CAB** , 릴리즈·**CMDB** 정보의 연계와 지속 개선.
-- 통찰: 한계: 장애 처리와 변경 관리가 따로 운영되면 재발 원인을 놓침 → 방안: 반복 장애 분석을 승인된 변경·릴리즈와 서비스 개선에 연결
+- 본질: ITSM(IT Service Management)은 IT를 장비가 아닌 고객이 쓰는 서비스 단위로 보고, 서비스의 설계·전환·운영·개선을 관리하는 체계
+- 메커니즘: 서비스 수준 합의를 기준으로 장애 복구(Incident) → 원인 제거(Problem) → 변경 승인(Change) → 배포(Release)를 기록으로 잇고 결과를 개선에 반영
+- 통찰: 원인 분석 없이 복구만 하면 장애가 반복되므로 반복 장애의 Problem 등록과 해결 변경 추적
 
 <details>
 <summary>핵심 용어</summary>
 
-- **ITSM(IT Service Management)** : 서비스 기획·설계·전환·운영·개선을 통해 비즈니스 가치를 공동 창출하는 IT 관리 체계
-- **ITIL(Information Technology Infrastructure Library)** : 서비스 가치 사슬과 실천 프랙티스를 제공하는 ITSM 모범 실무 프레임워크
-- **SMS(Service Management System)** : 서비스 관리 방침·목표·프로세스를 통합 통제하는 경영 시스템(ISO/IEC 20000 기반)
-- **SLA(Service Level Agreement)** : 서비스 제공자와 고객 간 합의한 정량적 서비스 수준과 측정·평가 기준
-- **KEDB(Known Error Database)** : 기인지된 오류의 근본원인과 임시 우회책(Workaround)을 관리하는 지식 저장소
-- **CAB(Change Advisory Board)** : 변경의 비즈니스 영향도와 위험을 평가하고 우선순위·승인을 심의하는 자문 기구
-- **RFC(Request for Change)** : 서비스 및 인프라의 구성 변경을 공식적으로 제안·신청하는 표준 절차 및 문서
-- **XLA(eXperience Level Agreement)** : 최종 사용자 체감 품질과 만족도 관점에서 서비스 수준을 정의한 경험 협약
-- **CMDB(Configuration Management Database)** : 서비스와 구성항목(CI)의 속성 및 상호 연관관계를 관리하는 통합 데이터베이스
-- **SVS(Service Value System)** : ITIL 4에서 비즈니스 수요와 기회를 실질적 가치로 전환하는 구성요소 프레임워크
+- **ITSM(IT Service Management)** : IT를 고객이 이용하는 서비스 단위로 설계·전환·운영·개선하는 관리 체계
+- **ITIL(Information Technology Infrastructure Library)** : 서비스 가치 시스템과 실천 활동(Practice)을 제시하는 ITSM 모범 실무 프레임워크
+- **ISO/IEC 20000-1** : 서비스 관리 시스템(SMS)의 수립·운영·유지·개선 요구사항을 정한 인증용 국제표준
+- **SMS(Service Management System)** : 서비스 관리의 방침·목표·프로세스를 통합해 운영하는 경영 시스템
+- **SLA(Service Level Agreement)** : 서비스 제공자와 고객이 합의한 서비스 수준과 측정·보고 기준
+- **Incident** : 서비스의 계획되지 않은 중단이나 품질 저하. 관리 목표는 신속한 서비스 복구
+- **Problem** : 하나 이상의 Incident를 일으키는 근본 원인. 관리 목표는 원인 제거와 재발 방지
+- **KEDB(Known Error Database)** : 원인이 밝혀진 오류와 임시 우회책(Workaround)을 기록한 지식 저장소
+- **Change** : 서비스에 영향을 주는 구성요소의 추가·수정·제거. 위험 평가 후 승인
+- **CAB(Change Advisory Board)** : 변경의 영향·위험을 검토해 승인 결정을 돕는 자문 기구
+- **CMDB(Configuration Management Database)** : 구성항목(CI)의 속성과 상호 관계를 관리하는 데이터베이스
 
 </details>
 
@@ -43,7 +43,7 @@ extra:
 
 ## 2~4교시 예상문제 (25점)
 
-> ITSM의 개념과 ITIL 4·ISO/IEC 20000의 관계를 설명하고, Incident·Problem·Change·Release 관리의 연계 및 개선방안을 제시하시오. **(예상·25점)**
+> ITSM(IT Service Management)의 개념과 운영 체계를 설명하고, 운영 시 한계와 방안을 제시하시오. (예상)
 
 ---
 
@@ -53,79 +53,112 @@ extra:
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **ITSM** : IT 서비스의 설계·전환·제공·개선을 관리하는 체계 |
-| 목적 | 서비스 요구 충족과 고객·조직 가치 제공 |
+| 정의 | **ITSM(IT Service Management)** 은 IT를 고객이 이용하는 서비스 단위로 설계·전환·운영·개선하는 관리 체계 |
+| 목적 | 합의한 서비스 수준의 안정적 제공과 반복 장애·변경 실패의 감소 |
 
-## Ⅱ. ITSM의 특징
+## Ⅱ. 기술 운영 관리와 구별되는 ITSM의 특징
 
-| 특징 | 관리 의미 |
+| 특징 | 의미 |
 |---|---|
-| 서비스 단위 관리 | 장비별 가동률보다 고객의 서비스 이용 결과 확인 |
-| 실천 활동의 연계 | 복구·원인 분석·변경·배포를 분리하되 기록 연결 |
-| 지속 개선 | SLA와 사용자 영향·재발 장애를 함께 검토 |
+| 서비스 단위 관리 | 장비 가동률보다 고객의 서비스 이용 결과를 기준으로 관리 |
+| 합의 기반 | **SLA** 로 약속한 수준을 운영·보고의 기준으로 사용 |
+| 활동 간 연계 | 복구·원인 분석·변경·배포를 분리하되 기록으로 연결 |
+| 생애주기 관리 | 설계·전환·운영·개선의 반복 |
 
-## Ⅲ. ITSM 구성과 운영 절차
+## Ⅲ. ITSM 운영 체계와 장애·변경 연계 흐름
 
-> 기준별 역할: **ITIL** 4의 서비스관리 지침, ISO/IEC 20000-1의 **SMS** 요구사항, **SLA** 의 고객 서비스수준 약속.
-
-```text
-ITSM 서비스 관리체계
-    ├─ ITIL 4: 실천 지침
-    ├─ ISO/IEC 20000-1: SMS 요구사항
-    ├─ SLA·XLA: 고객과 합의한 수준
-    └─ Service Desk·CMDB: 실행 도구
-```
-
-**핵심 Practice의 연계**
-
-> 운영관리의 구분: Incident 복구, Problem 원인분석·재발방지, Change·Release를 통한 개선 반영.
+### ITSM 운영 체계
 
 ```text
-서비스 중단 → Incident: 신속 복구
-반복·중대 장애 → Problem: 원인·재발 방지
-개선안 → Change: 위험 평가·승인
-승인된 변경 → Release·Deployment: 배포
-성과·장애 지표 → 지속적 서비스 개선
+ITSM
+    │
+    ├─ 기준 ── SLA: 고객과 합의한 서비스 수준
+    │
+    ├─ 관리 체계
+    │     ├─ ITIL 4 ── 실천 지침
+    │     └─ ISO/IEC 20000-1 ── SMS 요구사항
+    │
+    ├─ 운영 활동
+    │     ├─ 해결 ── Incident·Problem·서비스 요청
+    │     └─ 전환 ── Change·Release·Deployment
+    │
+    └─ 기반 ── Service Desk·CMDB·KEDB
 ```
 
-| Practice | 목표 | 핵심 활동 | 산출 |
-|---|---|---|---|
-| **Incident Management** | 서비스 신속복구 | 기록·분류·우선순위·복구 | Incident Record |
-| **Problem Management** | 재발 가능성·영향 감소 | 원인분석·Known Error·Workaround | Problem Record · KEDB |
-| **Change Enablement** | 변경 성공률 제고 | 위험평가·승인·일정조정 | Change Record |
-| **Release Management** | 변경 기능 사용 가능화 | 릴리즈 계획·검증·승인 | Release Package |
-| **Deployment Management** | 구성요소 운영환경 이동 | 배포·검증·복구 | 배포결과 · CMDB 갱신 |
+### 운영 활동 확대: 장애에서 개선까지의 흐름
 
-## Ⅳ. ITIL·ISO/IEC 20000·SLA의 역할 비교
+```text
+서비스 중단 발생
+    ↓
+Incident: 기록·우선순위·서비스 복구
+    ↓ 반복·중대 장애
+Problem: 근본 원인 분석·KEDB 등록
+    ↓ 해결책 확정
+Change: 영향·위험 평가 후 승인
+    ↓
+Release·Deployment: 배포와 CMDB 갱신
+    ↓
+재발 여부 확인 후 Problem 종료
+```
 
-| 체계 | 역할 | 적용 초점 |
+## Ⅳ. ITIL 4와 ISO/IEC 20000-1의 역할 비교
+
+| 구분 | ITIL 4 | ISO/IEC 20000-1 |
 |---|---|---|
-| **ITIL 4** | **SVS** ·4 Dimensions·Practices | 가치흐름·실천방법 |
-| **ISO/IEC 20000-1** | SMS 수립·운영·유지·개선 요구사항 | 적합성·관리체계 |
-| **SLA** | 서비스 수준·측정·보고·조치 합의 | 고객 약속 |
-| **도구체계** | Service Desk·**KEDB** ·**CMDB** ·자동화 | 실행·데이터·증적 |
+| 성격 | 모범 실무 지침 | 인증용 요구사항 표준 |
+| 핵심 구조 | 서비스 가치 시스템·4가지 관점·실천 활동 | SMS의 계획·운영·성과 평가·개선 조항 |
+| 적용 방식 | 조직에 맞춰 선택·조정 | 요구사항 충족 여부를 심사 |
+| 활용 | 운영 활동의 설계 방법 | 관리 체계의 적합성 입증 |
 
-## Ⅴ. 한계와 방안
+ITIL 4는 활동을 어떻게 할지, ISO/IEC 20000-1은 무엇을 갖춰야 하는지를 제시하는 보완 관계
 
-> 운영 설계의 균형축: 프로세스 통제와 자동화, 서비스 안정성과 변경속도.
+## Ⅴ. ITSM 운영의 한계와 방안
 
 | 한계 | 방안 |
 |---|---|
-| **Incident·Problem 혼재** | 복구 목표와 원인 제거 책임 분리 |
-| **변경 승인 병목** | 위험 기반 표준·일반·긴급 변경 분류 |
-| **CMDB 불일치** | 구성 변경·배포 기록과 CMDB 대조 |
-| **SLA 수박효과** | 사용자 여정·경험·성과지표 병행 |
+| 장애 복구 후 원인 분석 없이 종료되어 재발 반복 | 반복·중대 장애의 **Problem** 등록 기준과 원인 제거 책임자 지정 |
+| 원인 해결책이 변경으로 이어지지 않아 **KEDB** 에 머묾 | Problem 기록과 해결 **Change** 의 연결 및 재발 확인 후 종료 |
+| 모든 변경의 **CAB** 심의로 승인 병목 | 위험 기준의 표준·일반·긴급 변경 구분과 표준 변경 사전 승인 |
+| 배포 후 **CMDB** 미갱신으로 영향 분석 오류 | 배포 결과와 CMDB 대조를 배포 완료 조건으로 설정 |
 
 ## Ⅵ. 제언
 
-반복 장애와 사용자 중단 영향이 큰 서비스부터 책임자를 지정하고 장애·변경 기록으로 개선 우선순위를 결정.
+반복 장애를 Problem으로 등록해 원인 해결 변경까지 한 기록으로 추적하고, 재발이 확인되지 않을 때만 Problem을 종료하는 운영 기준 수립
 
-제안의 범위: ITSM 운영요구와 조직 성과관리의 연계. 특정 지표·조직구조의 표준 의무는 아님.
+### 장애 원인 추적 책임 구조
 
+```text
+Problem 기록
+    │
+    ├─ 서비스 데스크 ── 반복 장애의 연결·등록
+    │
+    ├─ Problem 담당자 ── 원인 분석과 해결책 확정
+    │
+    └─ 변경 관리자 ── 해결 변경의 승인·배포 확인
+```
+
+### Problem 담당자 확대: 종료 판정 절차
+
+```text
+해결 변경 배포 완료
+    ↓
+관찰 기간 동안 같은 유형 장애 발생 확인
+    ├─ 재발 → 원인 재분석
+    └─ 재발 없음 → KEDB 갱신 후 Problem 종료
+```
+
+### 선택 근거: 복구 중심 운영과의 비교
+
+| 구분 | 복구 중심 운영 | 제언: 원인 추적 연결 운영 |
+|---|---|---|
+| 성과 기준 | 장애 복구 시간 | 복구 시간과 재발 건수 |
+| 장애 종료 시점 | 서비스 복구 직후 | 원인 해결 변경의 재발 확인 후 |
+| 기록 연결 | Incident 단독 | Incident·Problem·Change 연결 |
+| 책임 | 운영팀 복구 | Problem 담당자의 원인 제거 |
 
 ## 출제 이력과 검증 출처
 
-- 확인한 제132~140회 공식 문제지에서 해당 문항 미확인
+- 제133회 2교시 3번: ISO/IEC 20000 기준의 ITSM 개념과 서비스 설계·구축·전환 활동
 - [ISO/IEC 20000-1:2018 — Service management system requirements](https://www.iso.org/standard/70636.html)
 - [PeopleCert: ITIL 4 Foundation](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-foundation-2565)
 
