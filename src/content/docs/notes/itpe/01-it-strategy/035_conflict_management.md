@@ -1,7 +1,7 @@
 ---
 title: "갈등관리"
 author: "Claude Code"
-date: "2026-09-28T15:51:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -58,6 +58,7 @@ IT 전략·관리 → 프로젝트 관리·이해관계자 → **갈등관리**
 | 불가피성 | 목표·자원·역할이 다른 이해관계자 사이의 상시 발생 |
 | 성과와의 양면 관계 | 관계 갈등은 만족·잔류 의향 저하, 과업 갈등은 일상 과업에서 성과 저하·비일상 과업에서 무해 또는 유익(Jehn, 1995) |
 | 원인별 대응 | 과업·관계·프로세스 원인에 따라 달라지는 조정 방식 |
+| 팀 발달 단계별 양상 | 터크만 모델의 폭풍기(Storming)에 갈등이 집중되고 규범기 이후 합의 규칙에 따라 완화 |
 | 이행까지 포함 | 합의 이후 후속 조치의 이행 확인까지 관리 범위 |
 
 ## Ⅲ. 갈등관리 절차와 대응 방식 선택
@@ -99,8 +100,6 @@ IT 전략·관리 → 프로젝트 관리·이해관계자 → **갈등관리**
 | 과업 갈등(task conflict) | 과업 내용에 대한 관점·아이디어·의견 차이 | 근거와 대안의 비교 |
 | 관계 갈등(relationship conflict) | 구성원 간 대인관계 부조화와 긴장·반감 | 사람과 문제의 분리 |
 | 프로세스 갈등(process conflict) | 업무 수행 방식, 즉 역할·자원 배분에 대한 이견 | 책임과 절차의 명시 |
-
-과업·관계 갈등은 Jehn(1995), 프로세스 갈등은 Jehn(1997)이 구분한 유형
 
 ### TKI 다섯 대응 방식
 
@@ -159,7 +158,7 @@ PM 주도 갈등 조정
 
 ## 출제 이력과 검증 출처
 
-- 제136회 3교시: IT 프로젝트 갈등과 성과의 관계, 갈등 요인과 해결 전략, 터크만 팀 발달 5단계 모델
+- 제136회 3교시: IT 프로젝트 갈등과 성과의 관계, 갈등 요인과 해결 전략, 터크만 팀 발달 5단계 모델. 5단계 모델의 단계별 답안은 터크만 팀 발달 모델 노트
 - Thomas·Kilmann, Thomas-Kilmann Conflict Mode Instrument(TKI)
 - Jehn(1995), A Multimethod Examination of the Benefits and Detriments of Intragroup Conflict
 - Jehn·Mannix(2001), The Dynamic Nature of Conflict

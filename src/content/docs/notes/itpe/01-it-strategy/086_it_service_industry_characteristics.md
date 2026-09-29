@@ -1,7 +1,7 @@
 ---
 title: "IT서비스 산업 특수성"
 author: "Claude Code"
-date: "2026-09-28T15:20:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -101,8 +101,6 @@ SM 운영: 서비스 수준 관리·변경
 | 계약 형태 | 과업 범위 기반 도급 | 운영 범위·SLA 기반 | 장기 서비스 계약 |
 | 두드러진 특수성 | 맞춤성·범위 변동 | 서비스 지속성 | 지식집약·공급자 의존 |
 
-SI의 인수 판단 기준과 SM의 성과 판단 기준이 서로 달라, 두 사업의 경계에서 품질·책임의 공백 발생
-
 ## Ⅴ. IT서비스 사업관리의 한계와 방안
 
 | 한계 | 방안 |
@@ -153,8 +151,6 @@ SI 인수 완료
 ## 출제 이력과 검증 출처
 
 - 제132~140회 정보관리기술사 공식 문제지에서 IT서비스 산업 특수성 단독 문항 없음. 위 문항은 예상문제
-- ISO/IEC 20000-1:2018 Service management system requirements
-- IEEE Computer Society, SWEBOK Guide v4.0
 
 ## 연결 토픽
 

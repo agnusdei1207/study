@@ -1,7 +1,7 @@
 ---
 title: "공공부문 클라우드 네이티브 전환"
 author: "Claude Code"
-date: "2026-09-29T11:55:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -142,7 +142,7 @@ Refactor 시범 전환
 
 ## 출제 이력과 검증 출처
 
-- 제138회 2교시: 대국민 포털·업무 시스템·ERP의 클라우드 네이티브 전환 사업에서 TA와 AA의 역할 비교와 협업 방안
+- 제138회 2교시: 대국민 포털·업무 시스템·ERP의 클라우드 네이티브 전환 사업에서 TA와 AA의 역할 비교와 협업 방안. 전환 사업의 설계 책임 확장 범위로 기본 답안과 구별
 - CNCF, Cloud Native Definition v1.1
 - AWS Prescriptive Guidance, Migration strategies — 이전 방식 분류의 원출처(벤더 문서)
 - 「클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률」 제20조·제23조의2 — 법률 제21066호, 2025.10.1. 시행

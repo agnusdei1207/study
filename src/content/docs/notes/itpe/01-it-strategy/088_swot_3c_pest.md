@@ -1,7 +1,7 @@
 ---
 title: "경영환경 분석(SWOT·3C·PEST)"
 author: "Claude Code"
-date: "2026-09-28T15:52:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -74,8 +74,6 @@ SWOT: 내부·외부 요인 분류
     ↓
 TOWS 교차: SO·ST·WO·WT 전략 대안
 ```
-
-PEST와 3C는 고정 순서의 단계가 아닌 서로 다른 분석 범위이며, 분석 목적에 따라 하나만 수행 가능
 
 ### SWOT 확대: 요인의 내부·외부 판정 분기
 

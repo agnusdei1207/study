@@ -1,7 +1,7 @@
 ---
 title: "그로스 해킹"
 author: "Claude Code"
-date: "2026-09-28T15:34:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -94,8 +94,6 @@ AARRR·코호트 분석으로 병목 단계 확인
 추천(Referral) ── 초대·추천 전환
     ↓ 새 유입
 ```
-
-단계 사이 전환율이 가장 크게 떨어지는 지점이 우선 실험 대상인 병목
 
 ## Ⅳ. 성장 지표의 종류 비교
 

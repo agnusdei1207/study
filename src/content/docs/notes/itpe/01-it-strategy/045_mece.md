@@ -1,7 +1,7 @@
 ---
 title: "MECE"
 author: "Claude Code"
-date: "2026-09-28T15:30:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -100,8 +100,6 @@ ME·CE 검증
 | 구성요소 | 구조·기능 | 시스템·조직 구조 분석 | 애플리케이션·데이터·인프라 |
 | 이해관계자 | 역할·대상 | 요구·영향이 대상별로 다른 경우 | 고객·운영자·규제기관 |
 | 검증된 프레임워크 | 이미 정의된 관점 | 외부 환경·전략 분석 | PEST·3C·SWOT |
-
-프로젝트 범위에 적용한 것이 **WBS** 의 100% Rule, 문제 분석에 적용한 것이 **Issue Tree**
 
 ## Ⅴ. MECE 적용의 한계와 방안
 

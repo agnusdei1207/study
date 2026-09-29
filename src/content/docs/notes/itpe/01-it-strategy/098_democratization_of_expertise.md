@@ -1,7 +1,7 @@
 ---
 title: "전문성의 민주화"
 author: "Claude Code"
-date: "2026-09-28T15:56:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -76,8 +76,6 @@ IT 전략·관리 → IT 조직·역량 운영 → **전문성의 민주화**
     └─ 지식 ── 비IT 인력의 도구·전문가 시스템 활용
 ```
 
-Gartner가 2019년 10월 발표한 2020 전략 기술 동향의 네 측면(democratization of data and analytics·development·design·knowledge)이며, 조직 도입에서 파급이 가장 큰 영역은 현업이 직접 운영 시스템을 만드는 설계 영역
-
 ### 설계 영역 확대: 시민 개발 앱의 운영 흐름
 
 ```text
@@ -100,8 +98,6 @@ Gartner가 2019년 10월 발표한 2020 전략 기술 동향의 네 측면(democ
 | 속도 | 가장 빠름 | 가장 느림 | 범위 안에서 빠름 |
 | 위험 | Shadow IT·데이터 유출 | 현업 요구 적체·우회 도입 | 기준 설계·운영 부담 |
 | 적합한 상황 | 민감 데이터가 없는 실험 단계 | 규제·보안 요구가 매우 높은 업무 | 대부분 조직의 확산 단계 |
-
-전면 개방과 중앙 통제의 중간에서 허용 범위를 미리 정하고 그 밖의 건만 검토하는 방식이 CoE 기반 가드레일
 
 ## Ⅴ. 전문성의 민주화 도입의 한계와 방안
 
@@ -151,7 +147,7 @@ Gartner가 2019년 10월 발표한 2020 전략 기술 동향의 네 측면(democ
 
 ## 출제 이력과 검증 출처
 
-- 제138회 3교시 2번: 로우코드 플랫폼의 주요 특징, 노코드와 로우코드 비교, 적용 시 한계점. 설계 영역의 LCNC를 다룬 확장 범위로 기본 답안과 구별
+- 제132~140회 정보관리기술사 공식 문제지에 전문성의 민주화 단독 문항 없음
 - Gartner(2019.10.21.), Top 10 Strategic Technology Trends for 2020: Democratization of Expertise
 
 ## 연결 토픽

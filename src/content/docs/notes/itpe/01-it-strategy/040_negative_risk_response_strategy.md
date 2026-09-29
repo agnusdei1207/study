@@ -1,7 +1,7 @@
 ---
 title: "부정적 위험 대응 전략"
 author: "Claude Code"
-date: "2026-09-28T15:52:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -83,8 +83,6 @@ IT 전략·관리 → 프로젝트 위험관리 → **부정적 위험 대응 �
     ↓ 아니오
 수용: 우발 계획 준비(적극적) 또는 감시(소극적)
 ```
-
-선택 후 공통으로 책임자 지정, 잔여·2차 위험 재평가, 위험 등록부 갱신
 
 ### 수용 전략 확대: 적극적 수용의 우발 계획 발동
 

@@ -1,7 +1,7 @@
 ---
 title: "정량적 위험분석"
 author: "Claude Code"
-date: "2026-09-28T15:29:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -95,8 +95,6 @@ S-Curve(누적확률곡선) 작성
     ↓
 목표 신뢰수준 값 − 기준 추정치 = 예비비
 ```
-
-예: 기준 추정치가 누적확률 30% 수준이고 조직 목표가 80%이면 두 값의 차이가 비상예비비 후보
 
 ## Ⅳ. 정성·정량 분석의 관계와 정량 기법 비교
 

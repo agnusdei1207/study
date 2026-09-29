@@ -1,7 +1,7 @@
 ---
 title: "Programmable Money·AI Agent 결제"
 author: "Claude Code"
-date: "2026-09-28T15:23:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -101,8 +101,6 @@ AI Agent 결제 구조
 | 화폐의 범용성 | 정한 범위 안에서만 사용 | 범용 화폐 유지, 실행 시점만 조건 |
 | AI Agent 결제와의 관계 | 해당 화폐를 받는 곳만 거래 가능 | 위임 한도·조건을 결제 지시 단계에서 적용 |
 
-ECB는 디지털 유로를 Programmable Money로 설계하지 않되 조건부 결제는 지원할 수 있다는 입장. AI Agent 결제의 한도·조건도 화폐가 아닌 결제 지시 단계의 통제이며, 조건 충족 여부를 누가 판정하는지가 새 관리 대상
-
 ## Ⅴ. AI Agent 결제의 한계와 방안
 
 | 한계 | 방안 |
@@ -151,7 +149,6 @@ ECB는 디지털 유로를 Programmable Money로 설계하지 않되 조건부 �
 ## 출제 이력과 검증 출처
 
 - 제132~140회 공식 문제지에 Programmable Money·AI Agent 결제 단독 문항 없음
-- 제139회 3교시 1번: 다중 에이전트 시스템(MAS)의 정의·비교·고려사항. 에이전트 권한·책임을 다루는 인접 문항
 - European Central Bank, FAQs on the digital euro(Q20)
 - Aldasoro·Desai(2025), AI agents for cash management in payment systems, BIS Working Papers No. 1310
 - AP2(Agent Payments Protocol) Specification

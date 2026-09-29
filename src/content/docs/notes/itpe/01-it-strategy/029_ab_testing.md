@@ -1,7 +1,7 @@
 ---
 title: "A/B 테스트"
 author: "Claude Code"
-date: "2026-09-28T12:40:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -82,8 +82,6 @@ IT 전략·관리 → 데이터 기반 의사결정·제품 실험 → **A/B 테
     ↓
 출시·보류·재설계 결정
 ```
-
-표본 크기는 **MDE** 와 **검정력** 에 따라 실험 전 산정
 
 ### 품질 점검 확대: SRM 판정 절차
 

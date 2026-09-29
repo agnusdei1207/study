@@ -1,7 +1,7 @@
 ---
 title: "FinOps"
 author: "Claude Code"
-date: "2026-09-28T17:20:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -79,8 +79,6 @@ FinOps ── 기술 사용의 사업 가치 극대화
     │
     └─ 반복 주기 ── Inform·Optimize·Operate
 ```
-
-FinOps Foundation은 적용 범위를 퍼블릭 클라우드에서 SaaS·데이터센터·AI 등 기술 비용 전반으로 확장
 
 ### 반복 주기 확대: Inform·Optimize·Operate
 

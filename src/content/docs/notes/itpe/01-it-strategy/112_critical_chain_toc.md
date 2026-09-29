@@ -1,7 +1,7 @@
 ---
 title: "CCPM·TOC"
 author: "Claude Code"
-date: "2026-09-28T15:59:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -79,8 +79,6 @@ IT 전략·관리 → 프로젝트 일정 관리 → **CCPM·TOC**
     ↓
 ⑤ 반복 ── 제약 이동 시 핵심 체인 재도출
 ```
-
-Goldratt 원문의 다섯 단계: Identify(식별)·Exploit(활용)·Subordinate(종속)·Elevate(향상), 제약이 해소되면 ①로 돌아가되 관성(inertia)이 새 제약이 되지 않도록 경계
 
 ### ①·③ 단계 확대: 핵심 체인과 버퍼 배치
 

@@ -1,7 +1,7 @@
 ---
 title: "ITSM"
 author: "Claude Code"
-date: "2026-09-28T16:02:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -110,7 +110,14 @@ Release·Deployment: 배포와 CMDB 갱신
 | 적용 방식 | 조직에 맞춰 선택·조정 | 요구사항 충족 여부를 심사 |
 | 활용 | 운영 활동의 설계 방법 | 관리 체계의 적합성 입증 |
 
-ITIL 4는 활동을 어떻게 할지, ISO/IEC 20000-1은 무엇을 갖춰야 하는지를 제시하는 보완 관계. 2026년부터 ITIL(Version 5)이 Foundation부터 단계적으로 공개되고 ITIL 4 과정과 자격도 병행 유지
+### ISO/IEC 20000-1의 서비스 설계·구축·전환 활동
+
+| 활동 | 내용 |
+|---|---|
+| 계획 | 신규·변경 서비스의 요구사항·자원·책임의 사전 계획 |
+| 설계·구축 | 서비스 요구사항을 충족하는 서비스 설계와 구축 |
+| 인수·전환 | 인수 기준에 따른 시험 후 운영 환경으로의 전환 |
+| 릴리스·배치 | 릴리스 승인과 운영 환경 배치, 서비스 영향 확인 |
 
 ## Ⅴ. ITSM 운영의 한계와 방안
 
@@ -161,7 +168,6 @@ Problem 기록
 - 제133회 2교시 3번: ISO/IEC 20000 기준의 ITSM 개념과 서비스 설계·구축·전환 활동
 - ISO/IEC 20000-1:2018 Service management system requirements
 - PeopleCert, ITIL 4 Foundation
-- PeopleCert, ITIL (Version 5)
 
 ## 연결 토픽
 

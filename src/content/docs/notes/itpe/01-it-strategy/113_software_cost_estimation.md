@@ -1,7 +1,7 @@
 ---
 title: "소프트웨어 비용 산정(Software Cost Estimation)"
 author: "Claude Code"
-date: "2026-09-28T15:23:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -105,7 +105,7 @@ IT 전략·관리 → 프로젝트 원가 관리 → **소프트웨어 비용 �
 | **유사 추정** (하향식) | 비슷한 과거 사업 실적 | 기획 단계 | 유사 사례가 없으면 불가 |
 | **WBS** 합산 (상향식) | 작업별 노력의 합계 | 설계 이후 | 작업 누락·중복 |
 | 기능점수(FP) | 사용자 기능 규모 | 요구 확정 후 | 성능·보안 등 비기능 요구 반영 한계 |
-| **COCOMO** | 규모와 비용 동인 | 규모 추정 후 | 조직 실적 보정 필요 |
+| **COCOMO** | 규모와 비용 동인. 기본 모형은 조직형(Organic)·반분리형(Semi-detached)·내장형(Embedded) 유형별 계수 | 규모 추정 후 | 조직 실적 보정 필요 |
 
 COCOMO Ⅱ의 노력 산식은 PM = A × Size^E × ΠEM (A: 생산성 상수, Size: 규모, E: 규모 경제를 반영하는 지수, EM: 비용 동인의 노력 승수). 국내 공공 SW사업의 대가 기준 적용은 별도 토픽인 SW사업 대가산정의 범위
 

@@ -1,7 +1,7 @@
 ---
 title: "IT 아웃소싱"
 author: "Claude Code"
-date: "2026-09-28T12:41:00+09:00"
+date: "2026-09-29T12:00:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Claude Opus 5.5"
+  model: "Claude Sonnet 5.5"
 ---
 
 ## 지식 로드맵 내 현재 위치
@@ -75,8 +75,6 @@ IT 전략·관리 → IT 운영전략·소싱 거버넌스 → **IT 아웃소싱
     ↓
 종료·재소싱: Exit Plan에 따른 이전
 ```
-
-앞의 네 단계는 ISO 37500의 아웃소싱 수명주기 구분, 마지막 단계는 계약 종료 시의 이전 활동
 
 ### 가치 제공 확대: 발주 조직과 공급자의 성과 관리 흐름
 
