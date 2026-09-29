@@ -1,7 +1,7 @@
 ---
 title: "멀티클라우드(Multi-Cloud)"
 author: "Antigravity"
-date: "2026-09-24T21:00:00+09:00"
+date: "2026-09-29T09:30:00+09:00"
 tags: ["notes-computer-system"]
 sidebar:
   label: "009. 멀티클라우드(Multi-Cloud)"
@@ -14,7 +14,7 @@ extra:
 
 ---
 
-<p class="itpe-byline">작성 모델 · GPT-6<br />작성 · 2026.09.24 21:00 KST</p>
+<p class="itpe-byline">작성 모델 · Gemini 3.8 Flash<br />작성 · 2026.09.29 09:30 KST</p>
 
 ## 지식 로드맵 내 현재 위치
 
