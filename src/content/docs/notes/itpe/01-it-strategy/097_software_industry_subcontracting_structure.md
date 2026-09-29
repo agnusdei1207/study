@@ -161,4 +161,4 @@ IT 전략·관리 → 공공 SW 사업 관리 → **공공 소프트웨어(SW) �
 ## 연결 토픽
 
 - 선행 토픽: [공공 SW 사업 발주·계약](./039_public_sw_contract.md)
-- 연관 토픽: [IT 서비스 산업의 특성](./086_it_service_industry_characteristics.md), [적정 사업기간·과업심의](./091_public_sw_cost_and_scope_change_criteria.md)
+- 연관 토픽: [IT서비스 산업 특수성](./086_it_service_industry_characteristics.md), [적정 사업기간·과업심의](./091_public_sw_cost_and_scope_change_criteria.md)

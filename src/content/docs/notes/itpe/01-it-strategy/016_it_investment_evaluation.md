@@ -162,6 +162,6 @@ IT 전략·관리 → 투자·포트폴리오 관리 → **IT 투자평가·투�
 
 ## 연결 토픽
 
-- 이전 토픽: [애자일 대응 전략](./013_agile_response_strategy.md)
+- 이전 토픽: [애자일 전환 전략](./013_agile_response_strategy.md)
 - 연관 토픽: [BSC](./017_bsc.md), [FinOps](./012_finops.md), [EVM](./032_evm.md)
 - 다음 토픽: [BSC](./017_bsc.md)

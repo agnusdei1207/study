@@ -155,4 +155,4 @@ DX 성과 책임 구조
 ## 연결 토픽
 
 - 이전 토픽: [RTO·RPO](./018_rpo.md)
-- 연관 토픽: [애자일 대응 전략](./013_agile_response_strategy.md), [공공부문 클라우드 네이티브 전환](./021_public_cloud_native_transition.md)
+- 연관 토픽: [애자일 전환 전략](./013_agile_response_strategy.md), [공공부문 클라우드 네이티브 전환](./021_public_cloud_native_transition.md)
