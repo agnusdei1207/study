@@ -1,7 +1,7 @@
 ---
 title: "NIST AI RMF"
 author: "Claude Code"
-date: "2026-09-29T12:00:00+09:00"
+date: "2026-09-29T13:36:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
@@ -18,23 +18,25 @@ IT 전략·관리 → AI 거버넌스·신뢰성 → **NIST AI RMF**
 
 ## 30초 인출
 
-- 본질: NIST AI RMF(AI Risk Management Framework)는 AI 시스템의 설계·개발·배포·사용 전반의 위험을 관리하도록 미국 NIST가 제시한 자발적 위험관리 프레임워크
-- 메커니즘: GOVERN이 정책·책임·위험 허용 수준을 전 기능에 공급하고, MAP의 맥락·위험 식별, MEASURE의 측정, MANAGE의 우선순위·대응이 반복
-- 통찰: 판정 기준 없는 측정은 배포 여부를 정하지 못하므로 위험 허용 수준·잔여위험 승인자의 사전 지정
+- 본질: NIST AI RMF(AI Risk Management Framework)는 AI 시스템의 위험을 관리하고 신뢰할 수 있는 AI의 개발·사용을 돕는 미국 NIST의 자율 적용 프레임워크
+- 메커니즘: GOVERN이 조직 전반을 관통하며 MAP(맥락·위험 식별) → MEASURE(분석·평가) → MANAGE(우선순위·대응)를 반복하고, 7가지 신뢰 가능한 특성으로 목표 수준을 판단
+- 통찰: 특성 간 상충이 있고 사용 맥락마다 중요도가 달라 전 항목 일괄 적용이 어려우므로 Current Profile과 Target Profile의 격차 순서로 MANAGE 대응 우선순위 결정
 
 <details>
 <summary>핵심 용어</summary>
 
-- **NIST AI RMF(AI Risk Management Framework)** : 미국 NIST가 AI 100-1로 발행한 자발적·비부문 특정 AI 위험관리 프레임워크. 핵심은 네 기능의 Core와 신뢰성 특성
-- **NIST(National Institute of Standards and Technology)** : 측정·표준·기술 지침을 개발하는 미국 상무부 산하 국립표준기술연구소
-- **GOVERN** : 위험관리 문화·정책·역할·책임을 정해 다른 세 기능 전반에 작용하는 횡단 기능
-- **MAP** : AI 시스템의 사용 목적·맥락·영향 대상을 파악해 위험을 식별하는 기능
-- **MEASURE** : 정량·정성 방법으로 AI 위험과 신뢰성 특성을 분석·평가·추적하는 기능
-- **MANAGE** : 측정된 위험에 자원을 배분하고 우선순위에 따라 대응·모니터링하는 기능
-- **신뢰성 특성** : 유효성·신뢰성, 안전성, 보안성·회복탄력성, 책임성·투명성, 설명가능성·해석가능성, 프라이버시 강화, 유해 편향이 관리된 공정성의 7가지 속성
-- **위험 허용 수준(Risk Tolerance)** : 조직이 목표 달성을 위해 감수할 준비가 된 위험의 정도. 사용 맥락과 법·규제에 따라 달라지는 기준
-- **잔여위험(Residual Risk)** : 대응 조치 후에도 남아 있는 위험
-- **NIST AI 600-1(Generative Artificial Intelligence Profile)** : AI RMF를 생성형 AI에 적용하도록 2024년 7월 발행한 프로파일. 생성형 AI 고유·악화 위험 12개와 기능별 권장 조치를 제시
+- **AI RMF(AI Risk Management Framework)** : NIST가 AI 시스템의 설계·개발·배포·사용 조직에 제공하는 자율 적용 위험관리 프레임워크. 2023년 1월 AI RMF 1.0(NIST AI 100-1) 발행
+- **NIST(National Institute of Standards and Technology)** : AI RMF를 발행한 미국 국립표준기술연구소
+- **AI actor** : AI 시스템 생애주기에서 AI를 배포·운영하는 조직과 개인을 포함해 능동적 역할을 하는 주체(OECD 정의 인용)
+- **Core** : GOVERN·MAP·MEASURE·MANAGE 네 기능과 그 아래 범주·하위 범주로 구성된 위험관리 결과·행동의 집합
+- **GOVERN** : 위험관리 문화와 정책·역할을 세우고 나머지 세 기능에 관통되는 기능
+- **MAP** : AI 시스템의 위험을 판단할 맥락을 세우는 기능
+- **MEASURE** : 정량·정성 도구로 AI 위험과 영향을 분석·평가·모니터링하는 기능
+- **MANAGE** : 식별·측정된 위험에 자원을 배분하고 대응·복구·소통 계획을 실행하는 기능
+- **Trustworthy AI 특성** : Valid and Reliable, Safe, Secure and Resilient, Accountable and Transparent, Explainable and Interpretable, Privacy-Enhanced, Fair with Harmful Bias Managed의 7가지
+- **Profile** : 특정 환경·용도에서 조직의 요구사항·위험 허용 수준·자원에 맞춰 Core를 구체화한 것. 현재 상태를 Current Profile, 목표 상태를 Target Profile로 기술
+- **Playbook** : AI RMF 결과를 달성하기 위한 실행 제안을 담은 NIST의 온라인 동반 자료
+- **Generative AI Profile(NIST AI 600-1)** : 생성형 AI의 위험을 AI RMF Core에 대응시킨 교차 산업 프로파일
 
 </details>
 
@@ -42,7 +44,7 @@ IT 전략·관리 → AI 거버넌스·신뢰성 → **NIST AI RMF**
 
 ## 2~4교시 예상문제 (25점)
 
-> NIST AI RMF의 개념과 4가지 핵심 기능, 신뢰할 수 있는 AI의 7가지 특성을 설명하시오. (예상)
+> NIST AI RMF(AI Risk Management Framework)의 개념과 핵심구조(Core), 신뢰 가능한 AI의 특성을 설명하고, 적용 시 한계와 방안을 제시하시오. (예상)
 
 ---
 
@@ -52,128 +54,106 @@ IT 전략·관리 → AI 거버넌스·신뢰성 → **NIST AI RMF**
 
 | 구분 | 핵심 |
 |---|---|
-| 정의 | **NIST AI RMF(AI Risk Management Framework)** 는 AI 시스템의 설계·개발·배포·사용 전반의 위험을 관리하도록 NIST가 제시한 자발적 위험관리 프레임워크 |
-| 목적 | AI 위험의 식별·측정·대응을 통한 신뢰할 수 있는 AI의 개발과 사용 |
+| 정의 | **NIST AI RMF(AI Risk Management Framework)** 는 AI 시스템의 설계·개발·배포·사용 단계에서 위험을 관리하는 미국 NIST의 자율 적용 프레임워크 |
+| 목적 | 신뢰할 수 있는 AI의 책임 있는 개발·사용 촉진 |
 
-## Ⅱ. 규정 준수 체크리스트와 구별되는 AI RMF의 특징
+## Ⅱ. 조직 규모와 산업을 가리지 않는 AI RMF의 특징
 
 | 특징 | 의미 |
 |---|---|
-| 자발적·비부문 특정 | 법적 의무가 아닌 지침. 산업·사용사례에 관계없이 적용 가능 |
-| 수명주기 전반 | 설계부터 배포·운영·폐기까지 위험의 지속 관리 |
-| 비순차 기능 | 네 기능의 수행 순서를 고정하지 않고 필요에 따라 반복 |
-| 맥락 의존 판단 | 사용 목적·영향 대상에 따라 **위험 허용 수준** 과 우선 특성이 달라지는 구조 |
+| 자율 적용(voluntary) | 법적 의무가 아닌 조직의 선택 적용 |
+| 산업·용도 중립 | 특정 산업이나 사용 사례에 한정하지 않는 non-sector-specific, use-case agnostic |
+| 생애주기 전반 | 위험관리를 AI 시스템 생애주기 전반에 걸쳐 지속·적시 수행 |
+| 위험의 정의 | 사건의 발생 확률과 결과 크기를 합친 복합 척도. 영향은 기회와 위협 모두 가능 |
+| 체크리스트 아님 | 행동은 정해진 순서의 단계가 아님. 조직이 범주·하위 범주를 선택 적용 |
 
-## Ⅲ. AI RMF Core의 기능 구조와 위험 처리 흐름
+## Ⅲ. AI RMF의 구조와 신뢰 가능한 AI의 특성
 
-### AI RMF Core 기능 구조
-
-```text
-AI RMF Core
-    │
-    ├─ GOVERN ── 정책·역할·책임·위험 허용 수준 (6개 범주)
-    │     └─ 나머지 세 기능 전반에 작용
-    │
-    ├─ MAP ── 사용 맥락·영향 대상·위험 식별 (5개 범주)
-    │
-    ├─ MEASURE ── 위험·신뢰성 특성의 측정·추적 (4개 범주)
-    │
-    └─ MANAGE ── 우선순위·대응·모니터링 (4개 범주)
-```
-
-### MAP·MEASURE·MANAGE 확대: 위험 처리 흐름
+### AI RMF Core의 4가지 기능
 
 ```text
-MAP: 사용 목적·맥락·영향 대상 파악과 위험 식별
-    ↓
-MEASURE: 식별 위험의 측정과 측정 불가 항목 기록
-    ↓
-MANAGE: 위험 허용 수준 대비 우선순위·대응 결정
-    ↓
-운영 중 모니터링
-    └─ 모델·데이터·사용 방식 변화 → MAP 재수행
+GOVERN ── 위험관리 문화·정책·역할 (MAP·MEASURE·MANAGE에 관통)
+   │
+   ├─ MAP ───────→ MEASURE ───────→ MANAGE
+   │  맥락 설정·      분석·평가·        우선순위·대응·
+   │  위험 식별       모니터링          복구·소통
+   │
+   └─ 실행 순서는 고정이 아니며 반복하며 서로 참조
 ```
 
-## Ⅳ. 신뢰할 수 있는 AI의 7가지 특성과 관계
+### 신뢰 가능한 AI의 7가지 특성 확대
 
 ```text
-유효성·신뢰성 ── 신뢰성의 필요조건이자 공통 기반
-    │
-    ├─ 안전성
-    ├─ 보안성·회복탄력성
-    ├─ 설명가능성·해석가능성
-    ├─ 프라이버시 강화
-    └─ 공정성(유해 편향 관리)
-
-책임성·투명성 ── 위 모든 특성에 걸친 횡단 특성
+Accountable and Transparent  ← 다른 모든 특성과 관련
+────────────────────────────────────────────
+Safe │ Secure and Resilient │ Explainable and Interpretable
+Privacy-Enhanced │ Fair with Harmful Bias Managed
+────────────────────────────────────────────
+Valid and Reliable  ← 신뢰성의 필요 조건, 기반
 ```
 
-| 특성 | 의미 |
-|---|---|
-| 유효성·신뢰성 | 의도한 용도의 요구 충족과 조건 변화에도 일관된 성능. 신뢰성의 필요조건 |
-| 안전성 | 정해진 조건에서 사람·재산·환경에 위해를 주지 않는 동작 |
-| 보안성·회복탄력성 | 공격 방어와 예기치 않은 사건 후 기능 유지·복구 |
-| 책임성·투명성 | 시스템과 결과에 대한 정보 제공과 책임 소재의 명확성 |
-| 설명가능성·해석가능성 | 작동 방식과 출력 의미의 사용자 이해 가능성 |
-| 프라이버시 강화 | 개인의 자율·정체성·존엄을 보호하는 데이터 처리 |
-| 공정성(유해 편향 관리) | 체계적·통계적·인지적 편향의 식별과 관리 |
+## Ⅳ. Core·Profile·Playbook의 층위 비교
 
-### 생성형 AI 확장: NIST AI 600-1의 12개 위험
+| 구분 | 무엇을 정함 | 사용 방식 |
+|---|---|---|
+| Core | GOVERN 6·MAP 5·MEASURE 4·MANAGE 4개 범주와 하위 범주의 결과·행동 | 조직이 필요한 범주·하위 범주 선택 |
+| Profile | 특정 환경·용도에 맞춘 Core 구현. Current·Target로 상태 구분 | 두 상태의 격차 파악 |
+| Playbook | Core 결과 달성을 위한 실행 제안 | 조직 맥락에 맞춰 골라 활용 |
+| Generative AI Profile(NIST AI 600-1) | 생성형 AI 고유·악화 위험 12개 범주와 Core 대응 행동 | 교차 산업 프로파일로 LLM 활용 등에 적용 |
 
-**NIST AI 600-1** 은 AI RMF Core를 그대로 쓰면서 생성형 AI에서 새로 생기거나 커지는 위험을 MAP·MEASURE 대상으로 구체화한 프로파일
-
-| 구분 | 위험(원문 명칭) |
-|---|---|
-| 유해 정보·콘텐츠 | CBRN 정보·역량(CBRN Information or Capabilities), 위험·폭력·혐오 콘텐츠(Dangerous, Violent, or Hateful Content), 음란·모욕·학대 콘텐츠(Obscene, Degrading, and/or Abusive Content) |
-| 출력 신뢰성 | 작화(Confabulation), 정보 무결성(Information Integrity), 유해 편향·동질화(Harmful Bias or Homogenization) |
-| 데이터·권리 | 데이터 프라이버시(Data Privacy), 지식재산(Intellectual Property) |
-| 보안·공급망 | 정보보안(Information Security), 가치사슬·구성요소 통합(Value Chain and Component Integration) |
-| 인간·환경 | 인간-AI 구성(Human-AI Configuration), 환경 영향(Environmental Impacts) |
-
-## Ⅴ. AI RMF 적용의 한계와 방안
+## Ⅴ. 한계와 방안
 
 | 한계 | 방안 |
 |---|---|
-| 합의된 위험 측정 방법 부족으로 MEASURE 결과의 불완전성 | 측정 방법·불확실성·측정 불가 항목의 기록과 MANAGE 판정 근거로의 명시 |
-| 위험 허용 수준 미정으로 측정 후 대응 판단 지연 | GOVERN 단계의 사용사례별 허용 수준과 잔여위험 승인자 지정 |
-| 신뢰성 특성 간 상충의 임의 해소 | 사용 맥락별 우선 특성과 상충 해소 근거의 기록·공개 |
-| 외부 모델·데이터 사용 시 공급자 정보 부족 | 공급자 변경 통지·사용 제한·대체 조건의 계약 명시와 MAP 단계 위험 등록 |
-| 실험 환경과 실제 운영 환경의 위험 차이 | 배포 후 모니터링 지표와 변화 시 MAP 재수행 조건 설정 |
+| 7가지 특성이 서로 상충(예: 해석 가능성과 프라이버시)해 모두 최대화 불가 | 조직의 위험 허용 수준으로 필요한 위험관리 수준 결정(GOVERN 1.3), 임계값은 사용 맥락의 판단으로 확정 |
+| 측정하기 어려운 위험이 낮은 위험으로 오인 | 측정하지 않거나 못 하는 위험·특성의 문서화(MEASURE 1.1) |
+| 자율 적용이라 어느 항목부터 적용할지 기준 부재 | Current Profile과 Target Profile의 격차를 대응 우선순위 기준으로 사용 |
+| 범용 프레임워크라 생성형 AI 고유 위험의 누락 | 생성형 AI 시스템에 Generative AI Profile의 위험 범주 병행 적용 |
 
 ## Ⅵ. 제언
 
-측정 확대보다 GOVERN 단계의 위험 허용 수준·잔여위험 승인자 지정을 먼저 수행해 MEASURE 결과가 배포·보완·중단 판정으로 이어지는 구조 확보
+특성별 목표 수준을 담은 Target Profile을 GOVERN에서 정하고, Current Profile과의 격차 순서로 MANAGE 대응을 실행
 
-### 허용 수준 기반 판정 구조
+### Profile 격차 기반 실행 구조
 
 ```text
-GOVERN: 사용사례별 위험 허용 수준·잔여위험 승인자 지정
+GOVERN: 위험 허용 수준 → 특성별 Target Profile
     ↓
-MEASURE: 위험 측정 결과와 측정 불가 항목 제출
+MAP·MEASURE: 현재 위험·측정 결과 → Current Profile
     ↓
-MANAGE: 허용 수준 대비 판정
-    ├─ 이내 → 승인자 서명 후 배포
-    ├─ 초과·보완 가능 → 대응 조치 후 재측정
-    └─ 초과·보완 불가 → 개발·배포 중단
+두 Profile의 격차 식별
+    ↓
+MANAGE: 격차 큰 위험 순으로 대응·잔여 위험 문서화
 ```
 
-### 선택 근거: 측정 중심 적용과의 비교
+### MANAGE 확대: 우선순위 위험의 대응 선택
 
-| 구분 | 측정 중심 적용 | 제언: 허용 수준 기반 판정 |
+```text
+우선순위 위험 (영향·발생 가능성·가용 자원 기준, MANAGE 1.2)
+    ├─ 완화(mitigating)
+    ├─ 전가(transferring)
+    ├─ 회피(avoiding)
+    └─ 수용(accepting)
+    ↓
+잔여 위험을 인수 조직·최종 사용자 기준으로 문서화(MANAGE 1.4)
+```
+
+### 선택 근거: 전 항목 일괄 적용과의 비교
+
+| 구분 | 전 범주 일괄 적용 | 제언: 격차 기반 적용 |
 |---|---|---|
-| 판정 기준 | 측정 지표 값 자체 | 사용사례별 사전 합의된 위험 허용 수준 |
-| 측정 불가 항목 처리 | 보고서 누락 또는 판정 보류 | 불확실성으로 기록하고 승인자가 판정 |
-| 잔여위험 책임 | 개발팀 암묵적 수용 | 지정된 승인자의 명시적 승인 |
-| 허용 수준 초과 시 | 추가 측정 반복 | 보완 후 재측정 또는 중단 |
+| 적용 기준 | 프레임워크 항목 전체 | 특성별 Target과 현재 상태의 차이 |
+| 특성 상충 처리 | 특성별 개별 최적화 | 맥락별 목표 수준 사전 결정 |
+| 미측정 위험 | 누락 가능 | 문서화 후 대응 판단 |
 
 ## 출제 이력과 검증 출처
 
 - 제138회 1교시 1번: AI RMF의 개념과 4가지 핵심구조, 7가지 신뢰 가능한 특성
-- NIST AI 100-1(2023), Artificial Intelligence Risk Management Framework (AI RMF 1.0)
-- NIST AI 600-1(2024.7), Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile
+- NIST AI 100-1, Artificial Intelligence Risk Management Framework (AI RMF 1.0), 2023.1
+- NIST AI 600-1, Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, 2024.7
 
 ## 연결 토픽
 
-- 이전 토픽: [갈등관리](./035_conflict_management.md)
-- 연관 토픽: [AI 거버넌스 플랫폼](./050_ai_governance_platform.md), [ISO 31000](./069_iso_31000.md)
-- 다음 토픽: [POP](./038_pop.md)
+- 이전 토픽: [IT 전략·관리 개요](./index.md)
+- 연관 토픽: [AI 거버넌스 플랫폼](./050_ai_governance_platform.md), [AI 프라이버시 리스크 관리 모델](./054_ai_privacy_risk_management_model.md), [ISO 31000](./069_iso_31000.md)
+- 다음 토픽: [부정적 위험 대응 전략](./040_negative_risk_response_strategy.md)

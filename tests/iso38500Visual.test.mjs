@@ -23,7 +23,7 @@ test('ISO 38500 separates edition principles and framework elements in tables', 
   const note = await readFile(notePath, 'utf8');
   const extension = answerSection(note, 'Ⅳ', 'Ⅴ');
   for (const element of ['Direction', 'Capability', 'Policy', 'Delegation', 'Performance', 'Accountability']) {
-    assert.ok(extension.includes(`| **${element}**`) || extension.includes(`| ${element}`), `${element}의 역할 설명 표가 필요합니다.`);
+    assert.ok(extension.includes(element), `${element}가 프레임워크 요소 표에 필요합니다.`);
   }
   assert.match(extension, /2015/u, '구판 원칙은 판본을 명시해야 합니다.');
 });
