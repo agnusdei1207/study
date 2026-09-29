@@ -117,14 +117,6 @@ setBalance(x) 노출
 deposit(amount) / withdraw(amount) 노출 (내부에서 검증)
 ```
 
-### 확대: 불변식 검증
-
-```text
-withdraw(amount)
-    ├─ 잔액 부족 → 예외 발생
-    └─ 충분 → 잔액 차감
-```
-
 ### 선택 근거: setter 노출과의 비교
 
 | 구분 | setter 노출 | 제언: 행위 메서드 |
