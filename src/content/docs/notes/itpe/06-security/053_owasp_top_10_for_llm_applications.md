@@ -1,145 +1,88 @@
 ---
 title: "OWASP Top 10 for LLM Applications"
 author: "Antigravity"
-date: "2026-03-31T00:00:00+09:00"
+date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"
 sidebar:
-  label: "053. OWASP Top 10 for LLM Applications"
   badge:
     text: "기초"
-    variant: note
 extra:
-  model: "Gemini 3.8 Flash"
   keyword_grade: "기초"
+  model: "Gemini 3.8 Flash"
 ---
 
-## 지식 로드맵 내 현재 위치
+## Ⅰ. OWASP Top 10 for LLM Applications의 개요
 
-AI 보안 → 생성형 AI 애플리케이션 위험 → OWASP LLM Top 10 보안 통제
+- **개념** : 오픈소스 웹 애플리케이션 보안 프로젝트(OWASP)가 대규모 언어 모델(LLM) 및 생성형 AI 애플리케이션의 개발, 배포, 운영 과정에서 가장 빈번하게 발생하고 영향도가 치명적인 10대 핵심 보안 취약점을 체계화한 글로벌 표준 가이드라인.
+- **배경 및 필요성** : 전통적인 웹 취약점(SQLi, XSS) 중심의 OWASP Top 10으로는 자연어를 입력받고 비결정론적으로 동작하는 생성형 AI 애플리케이션의 신종 위험을 방어할 수 없다는 요구에 따라 2023년 최초 제정 및 2025년 개정.
+- **핵심 목적** : LLM 아키텍처 상의 고유 보안 약점 가시화, 개발자 및 보안 아키텍트를 위한 실질적 완화 조치 제공, AI 서비스 보안 감사 표준 기준 확립.
 
-## 30초 인출
+## Ⅱ. OWASP Top 10 for LLM Applications의 핵심 아키텍처 및 동작 메커니즘
 
-- **본질:** LLM 및 생성형 AI 애플리케이션을 배포·운영할 때 발생하는 핵심 보안 취약점 10가지를 정의하고 아키텍처적 방어 지침을 제시하는 OWASP 보안 프레임워크
-- **메커니즘:** 입력 신뢰 경계(인젝션 필터) → 모델 계층(가중치/프롬프트 보호) → 검색 계층(RAG/벡터 무결성) → 도구 계층(최소권한/HITL) → 런타임 자원 제어
-- 통찰: 모델 자체의 안전성 정렬에만 의존하지 않고 RAG 검색 문서 및 외부 도구 호출 접점의 입력 검증, 출력 인코딩, 최소 권한 실행 환경이 결합된 애플리케이션 레벨의 제로 트러스트 방어 체계 필수
-
-<details><summary>핵심 용어</summary>
-
-- **OWASP GenAI Security Project:** 대규모 언어 모델(LLM) 생태계의 급격한 변화에 맞추어 2025년 개정된 애플리케이션 보안 가이드라인.
-- **LLM01 Prompt Injection:** 직접 탈옥(Jailbreak) 또는 웹문서/RAG를 통한 간접 프롬프트 주입으로 모델의 본래 제약을 우회하는 공격.
-- **LLM06 Excessive Agency:** 에이전트에 불필요하게 넓은 쓰기/삭제 권한이나 자율성을 부여하여 발생하는 의도치 않은 시스템 손상 취약점.
-- **LLM08 Vector and Embedding Weaknesses:** RAG 검색에 쓰이는 벡터 데이터베이스 오염, 임베딩 역추출, 비인가 청크 접근 취약점.
-- **LLM10 Unbounded Consumption:** 대량의 비정상 토큰 요청이나 DoS 공격으로 인해 클라우드 API 과금 폭탄 및 서비스 거부를 유발하는 위험.
-
-</details>
-
----
-
-## 2~4교시 예상문제 (25점)
-
-> 생성형 AI 및 대규모 언어 모델(LLM) 환경의 대표적 보안 취약점인 'OWASP Top 10 for LLM Applications (2025)'의 핵심 항목을 설명하고, RAG 및 에이전틱 도구 연계 시 발생하는 신뢰 경계 붕괴 극복을 위한 방어 아키텍처를 제시하시오. (기출·제136회 4교시 5번)
-
----
-
-## 2~4교시 25점 답안
-
-## Ⅰ. 개요
-
-| 구분 | 핵심 |
-|---|---|
-| 정의 | 대규모 언어 모델(LLM)을 활용하는 웹, API, 자율 에이전트 애플리케이션에서 가장 빈번하게 발생하는 상위 10대 보안 취약점 및 완화 표준 목록 |
-| 목적 | AI 개발자 및 보안 아키텍트에게 위협 모델링 기준을 제공하고, 데이터-모델-도구 연계 전주기에서 내재적 안전성 확보 |
-
-## Ⅱ. OWASP LLM Top 10의 주요 특징
-
-| 특징 | 세부 내용 | 구현 요소 |
-|---|---|---|
-| 자연어 기반 취약점 | 결정론적 코드가 아닌 확률적 자연어 입력(프롬프트) 자체가 공격 벡터로 작용 | 의미론적 분석기, 가드레일 |
-| 신뢰 경계의 모호성 | 사용자 입력과 RAG 검색 문서가 단일 컨텍스트 윈도우에 결합되어 명령어와 데이터 혼재 | 데이터-지시문 분리 파서 |
-| 2025년 최신 개정 반영 | 벡터 DB 취약점(LLM08), 시스템 프롬프트 유출(LLM07), 오정보(LLM09) 등 최신 동향 추가 | 에이전트 및 RAG 보안 특화 |
-| 공급망 및 자원 관리 | 오픈소스 사전학습 가중치 공급망(LLM03)과 토큰 과소비 DoS(LLM10) 통제 포함 | Safetensors, 토큰 쿼터제 |
-
-## Ⅲ. OWASP Top 10 for LLM (2025) 분류 체계 및 방어 아키텍처
+OWASP Top 10 for LLM은 프롬프트 주입(LLM01)부터 취약한 출력 처리, 공급망 침해, 서비스 거부(DoS)에 이르는 10가지 위협 벡터를 정의함.
 
 ```text
-[ 1. 사용자 / 외부 데이터 입력 ]
-         │ (사용자 프롬프트 / RAG 벡터 문서)
-         ▼
-┌────────────────────────────────────────────────────────┐
-│ [입력 계층 방어]                                       │
-│  - LLM01: Prompt Injection 차단 (NeMo Guardrails)       │
-│  - LLM07: System Prompt Leakage 방어 (접근 제어)        │
-│  - LLM08: Vector DB 오염 및 비인가 청크 격리          │
-└────────────────────────┬───────────────────────────────┘
-                         ▼
-┌────────────────────────────────────────────────────────┐
-│ [모델 및 공급망 계층]                                  │
-│  - LLM03: Supply Chain (Safetensors 포맷, 서명 검증)   │
-│  - LLM04: Data & Model Poisoning (학습 데이터 무결성)   │
-│  - LLM10: Unbounded Consumption (토큰 스로틀링/WAF)     │
-└────────────────────────┬───────────────────────────────┘
-                         ▼
-┌────────────────────────────────────────────────────────┐
-│ [출력 및 실행 계층]                                    │
-│  - LLM02: Sensitive Info Disclosure (개인정보 마스킹) │
-│  - LLM05: Improper Output Handling (출력 인코딩/검증)   │
-│  - LLM06: Excessive Agency (PEP 도구 통제 및 HITL 게이트)│
-│  - LLM09: Misinformation (환각 탐지 및 신뢰도 검증)   │
-└────────────────────────────────────────────────────────┘
+[ OWASP Top 10 for LLM 핵심 취약점 분류 및 매핑 ]
+
+  +-------------------------------------------------------------+
+  |            사용자 입력 계층 (Input Layer)                   |
+  |  ★ LLM01: Prompt Injection (직접/간접 프롬프트 주입, 탈옥)  |
+  +------------------------------┬------------------------------+
+                                 │
+         ┌───────────────────────┴───────────────────────┐
+         ▼                                               ▼
+  [ 모델 및 파이프라인 계층 ]                     [ 데이터 및 공급망 계층 ]
+  - LLM04: Model DoS (자원 고갈 공격)             - LLM03: Training Data Poisoning
+  - LLM09: Overreliance (환각 맹신)               - LLM05: Supply Chain Vulnerabilities
+  - LLM10: Model Theft (모델 추출/도난)           - LLM06: Sensitive Info Disclosure
+         │                                               │
+         └───────────────────────┬───────────────────────┘
+                                 │
+                                 ▼
+  +-------------------------------------------------------------+
+  |            모델 출력 및 도구 실행 계층 (Output & Tools)      |
+  |  - LLM02: Sensitive Info Disclosure (민감 데이터 유출)      |
+  |  - LLM07: System Prompt Leakage (시스템 프롬프트 노출)       |
+  |  - LLM08: Vector and Embedding Weaknesses (RAG 임베딩 오염) |
+  |  - (과도한 권한 대리 실행 / 비인가 도구 호출 취약점)         |
+  +-------------------------------------------------------------+
 ```
 
-| 취약점 코드 | 취약점 명칭 (2025) | 공격 메커니즘 및 방어 대책 |
-|---|---|---|
-| LLM01 | Prompt Injection | 직접 탈옥 및 웹 RAG를 통한 악성 지시 주입 / 듀얼 가드레일 및 구조화된 입력 분리 |
-| LLM02 | Sensitive Information Disclosure | 모델 응답을 통한 PII/내부 기밀 유출 / 출력단 정규식 마스킹 및 차분 프라이버시 |
-| LLM03 | Supply Chain | 악성 가중치(Pickle RCE) 및 오염된 라이브러리 도입 / AIBOM 검증, Safetensors 전환 |
-| LLM04 | Data and Model Poisoning | 파인튜닝/RAG 데이터 오염으로 백도어 주입 / 데이터 출처 검증 및 이상치 필터링 |
-| LLM05 | Improper Output Handling | 모델 출력이 검증 없이 SQL/셸 명령어로 직결 / 엄격한 스키마 검증 및 출력 인코딩 |
-| LLM06 | Excessive Agency | 에이전트에 과도한 쓰기/삭제 권한 부여 / 독립 PEP 인터셉터 및 고위험 HITL 승인 |
-| LLM07 | System Prompt Leakage | 비즈니스 로직이 담긴 시스템 프롬프트 탈취 / 메타 프롬프트 보호 및 프롬프트 난독화 |
-| LLM08 | Vector and Embedding Weaknesses | 벡터 DB 오염 및 임베딩 역추출 공격 / 벡터 저장소 RBAC 접근통제 및 서명 검증 |
-| LLM09 | Misinformation | 환각(Hallucination)에 의한 오정보 생성 / 사실 검증(Fact-Checking) 모델 및 출처 명시 |
-| LLM10 | Unbounded Consumption | 과도한 토큰 소비를 유발하는 DoS 공격 / 사용자별 토큰 쿼터제 및 Rate Limiting |
+- **LLM01: Prompt Injection** : 직접/간접 프롬프트 조작을 통해 모델의 안전 지침을 우회하고 의도치 않은 악성 행위를 유도하는 최우선 위협.
+- **LLM02: Sensitive Information Disclosure** : 독점 알고리즘, 개인정보, API 키가 모델 응답을 통해 비인가자에게 무단 유출.
+- **LLM03: Supply Chain Vulnerabilities** : 비신뢰 사전학습 모델, 취약한 파이썬 라이브러리(LangChain 등)를 통한 백도어 감염.
+- **LLM04: Data and Model Poisoning** : 학습 데이터셋이나 RAG 검색 풀을 오염시켜 모델의 예측 왜곡 및 특정 백도어 유발.
+- **LLM05: Improper Output Handling** : 모델 출력을 검증 없이 웹 브라우저나 DB 백엔드로 넘겨 발생하는 XSS 또는 원격 코드 실행(RCE).
+- **LLM06: Excessive Agency** : 에이전트에게 지나치게 넓은 권한(파일 삭제, 메일 전송 등)이 부여되어 프롬프트 조작 시 파괴적 실행.
 
-## Ⅳ. OWASP LLM 2023 버전 대비 2025 버전 주요 변경사항 비교
+## Ⅲ. OWASP Top 10 for LLM Applications의 세부 구성 요소 및 비교 분석
 
-| 구분 | OWASP LLM Top 10 (2023) | OWASP LLM Top 10 (2025) | 변경 사유 및 의미 |
-|---|---|---|---|
-| LLM07 | Insecure Plugin Design | System Prompt Leakage | 플러그인 위험을 LLM06으로 통합하고, 프롬프트 지식재산 탈취 위험을 독립 항목 승격 |
-| LLM08 | Insecure Output Handling (구 LLM02) | Vector and Embedding Weaknesses | RAG 아키텍처 확산에 따른 벡터 DB 및 임베딩 오염 위협을 신규 최우선 항목 반영 |
-| LLM09 | Overreliance (과도한 의존) | Misinformation (오정보) | 사용자 심리적 의존에서 벗어나 모델 자체의 허위 정보 생성 및 환각 피해에 집중 |
-| LLM10 | Model Theft (모델 도난) | Unbounded Consumption | 모델 추출보다 클라우드 API 자원 고갈 및 DoS 과금 공격이 실질적 운영 위험으로 대두 |
+| 순위 | 취약점 명칭 (2025 기준) | 위협 내용 | 엔지니어링 대응책 |
+| --- | --- | --- | --- |
+| LLM01 | Prompt Injection | 자연어 명령 주입으로 모델 제어권 탈취 | 입력 샌드박싱, 의미론적 가드레일 (NeMo) |
+| LLM02 | Sensitive Info Disclosure | 학습 데이터 내 개인정보/기밀 응답 노출 | 데이터 전처리 가명화, 출력 PII 마스킹 |
+| LLM03 | Supply Chain | 취약한 모델 가중치 및 오픈소스 종속성 | 모델 해시 서명 검증, AIBOM(CycloneDX) 관리 |
+| LLM04 | Data & Model Poisoning | 학습/RAG 데이터 오염을 통한 백도어 주입 | 데이터셋 출처 검증, 이상 임베딩 탐지 |
+| LLM05 | Improper Output Handling | 모델 출력을 신뢰하여 백엔드 해석 시 결함 | 출력값 HTML 인코딩, 파라미터화 쿼리 강제 |
+| LLM06 | Excessive Agency | 에이전트의 과도한 자율성 및 고권한 남용 | 최소 권한 원칙, 인간 승인(HITL) 체계 |
 
-## Ⅴ. LLM 애플리케이션 보안의 한계와 방안
+- OWASP Top 10 for LLM은 웹 보안의 기술적 접근법과 달리, 확률론적 생성 모델이 갖는 비결정론적 특성과 자율 에이전트의 권한 위임 문제를 집중적으로 조명함.
 
-| 한계 | 방안 |
-|---|---|
-| 자연어의 본질적 유연성으로 인해 우회 탈옥(DAN, Base64 난독화) 프롬프트 인젝션(LLM01)을 100% 탐지 차단 불가능 | 입력 프롬프트 분석 전용 소형 모델(Llama Guard) 배치와 출력단 인코딩 및 실행 권한 최소화(Least Privilege) 심층 방어 결합 |
-| RAG 검색 파이프라인에서 신뢰되지 않은 외부 웹 문서가 벡터 DB에 적재되어 간접 인젝션(LLM08) 유발 | 문서 임베딩 전 파싱 정제 파이프라인 구축 및 벡터 검색 결과에 대한 테넌트 격리 및 사용자 권한(RBAC) 필터링 강제 |
-| 에이전틱 도구(Function Calling) 호출 시 과도한 자율성(LLM06)으로 인한 비인가 DB 삭제 및 금융 거래 위험 | 모델과 백엔드 시스템 사이에 독립적인 정책 집행 지점(PEP)을 두고 비가역적 쓰기/삭제 작업에 대해 HITL(인간 승인) 강제 |
+## Ⅳ. OWASP Top 10 for LLM Applications의 주요 한계점 및 해결 방안
 
-## Ⅵ. 제언
+- **기존 웹 방화벽(WAF) 장비의 LLM 자연어 공격 페이로드 미탐** :
+  - **한계점** : 전통적 WAF는 SQL 특수문자나 스크립트 태그만 검사하므로, 자연어 문장으로 정교하게 작성된 프롬프트 인젝션 탐지 불가.
+  - **해결 방안** : LLM 전용 AI 방화벽(AI Gateway)을 도입하여 임베딩 기반 유사도 및 분류 전용 소형 모델을 통한 인라인 의미론적 검사 수행.
+- **모델 출력 처리 미흡으로 인한 2차 XSS 및 시스템 콜 실행** :
+  - **한계점** : LLM이 생성한 마크다운이나 자바스크립트 코드를 웹 프론트엔드에서 `innerHTML`이나 `eval()`로 무검증 렌더링하다가 클라이언트 장악.
+  - **해결 방안** : LLM 출력을 비신뢰 사용자 입력과 동일하게 취급하여 엄격한 컨텍스트별 이스케이프(DOMPurify) 적용 및 CSP 정책 강제.
+- **RAG 파이프라인의 벡터 임베딩 조작(Vector Embedding Weakness)** :
+  - **한계점** : 공격자가 벡터 공간에서 특정 질문과 가장 유사하게 매핑되도록 최적화된 적대적 문서를 RAG DB에 주입하여 오답 생성 유도.
+  - **해결 방안** : 문서 인덱싱 시 출처(Provenance) 기반 암호학적 서명 검증 및 검색된 문서 청크의 신뢰 점수(Relevance Threshold) 필터링.
 
-```text
-[ 단순 프롬프트 엔지니어링 ]           [ OWASP 2025 기반 제로 트러스트 AI ]
-모델 내부 지시에 의존 ──┐             ┌── 듀얼 가드레일 (입력/출력) 실시간 검증
-권한 분리 없는 실행 ──┼─→ [ 침해 취약 ] ─┼── RAG 벡터 DB 접근 제어 및 서명
-사후 대응 불가능 ──────┘             └── 마이크로 샌드박스 격리 및 HITL 게이트
-```
+## Ⅴ. OWASP Top 10 for LLM Applications 적용 및 발전을 위한 기술사적 제언
 
-| 평가 영역 | 초기 LLM 배포 체계 | OWASP 2025 준수 체계 | 향후 발전 방향 |
-|---|---|---|---|
-| 프롬프트 방어 | 정적 키워드 필터링 | 의미론적 가드레일 방어 | 강화학습 기반 능동적 레드팀(Red Teaming) |
-| 실행 안전성 | 시스템 셸 직접 호출 | 샌드박스 및 PEP 인터셉트 | eBPF 기반 에이전트 런타임 행위 격리 |
-| 규제 대응력 | 컴플라이언스 공백 | EU AI Act 요구사항 충족 | AI 거버넌스 자동 감사(AIBOM 연동) |
-
-OWASP Top 10 for LLM Applications (2025)는 생성형 AI가 단순 챗봇에서 자율 에이전트와 RAG 기반 업무 시스템으로 진화함에 따라 필수적으로 준수해야 하는 현대 AI 보안의 표준 아키텍처 나침반.
-
-## 출제 이력과 검증 출처
-
-- 정보관리기술사 제136회 4교시 5번 (생성형 AI 보안 위협 및 OWASP LLM 취약점)
-- 정보관리기술사 제134회 2교시 (생성형 AI 서비스 보안 가이드라인)
-- OWASP GenAI Security Project: Top 10 for LLM Applications (2025 Edition)
-- NIST AI Risk Management Framework: Generative AI Profile (NIST AI 600-1)
-- KISA 생성형 AI 서비스 보안 가이드라인
+- **사내 LLM 애플리케이션 보안 체크리스트 의무화** : 신규 생성형 AI 서비스 출시 전 OWASP LLM Top 10 기준 전수 진단 및 보안성 검토 회의 통과 의무화.
+- **AI 레드팀 모의침투 프레임워크(Garak, PyRIT) 연동** : 배포 전 자동화된 취약점 스캐너를 구동하여 10대 취약점 악용 가능성을 사전에 계측.
+- **플러그인 및 도구 호출의 최소 권한 인가 설계** : 에이전트가 호출하는 도구 API에 대해 시한부 세션 토큰과 엄격한 화이트리스트 파라미터 제약 부여.

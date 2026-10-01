@@ -1,163 +1,90 @@
 ---
 title: "LDAP(Lightweight Directory Access Protocol)"
 author: "Antigravity"
-date: "2026-03-31T00:00:00+09:00"
+date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"
 sidebar:
-  label: "139. LDAP(Lightweight Directory Access Protocol)"
   badge:
     text: "응용"
-    variant: note
 extra:
   keyword_grade: "응용"
   model: "Gemini 3.8 Flash"
 ---
 
-## 지식 로드맵 내 현재 위치
+## Ⅰ. LDAP(Lightweight Directory Access Protocol)의 개요
 
-지식 위치: 정보보안 → 디렉터리·접근통제 → **LDAP**
+- **개념** : 네트워크 상에 분산된 사용자, 그룹, 컴퓨터 자원, 조직 구조 등의 디렉터리 정보를 계층형 트리 구조(DIT)로 저장하고, TCP/IP 상에서 경량화된 방식으로 초고속 검색, 조회 및 중앙 집중 인증을 제공하는 개방형 표준 프로토콜(RFC 4510).
+- **배경 및 필요성** : 초기 OSI 7계층의 X.500 DAP(Directory Access Protocol)는 프로토콜 스택이 너무 무겁고 복잡하여 범용 유닉스 및 윈도우 네트워크 환경에서 작동하기 어려웠으며, 이를 TCP/IP 상에서 가볍게 구현할 프로토콜이 요구됨.
+- **핵심 목적** : 엔터프라이즈 전반의 사원 정보, 권한, 시스템 계정을 단일 디렉터리에 통합 관리하여 싱글 사인온(SSO)과 중앙 집중 접근 통제를 실현.
 
-## 30초 인출
+## Ⅱ. LDAP(Lightweight Directory Access Protocol)의 핵심 아키텍처 및 동작 메커니즘
 
-- **본질:** 복잡한 X.500 디렉터리 접근 프로토콜(DAP)을 TCP/IP 기반으로 경량화하여 사용자 계정, 조직도, 권한 정보를 트리 계층 구조(DIT)로 중앙 집중 관리하고 초고속 검색·인증을 제공하는 표준 프로토콜
-- **메커니즘:** 클라이언트 연결 $\rightarrow$ StartTLS/LDAPS 암호화 채널 수립 $\rightarrow$ DN 기반 Bind 인증 $\rightarrow$ Base DN 및 필터 검색 $\rightarrow$ 속성 반환 및 인가 연계
-- **통찰:** 평문 패스워드 스니핑은 LDAPS/StartTLS 강제로 방어하고 동적 검색 필터 조작에 의한 인증 우회는 철저한 입력 이스케이프와 파라미터화 쿼리로 해결 필수
-
-<details>
-<summary>핵심 용어</summary>
-
-- **LDAP (Lightweight Directory Access Protocol)** : RFC 4511에 정의된 분산 디렉터리 서비스 접속 프로토콜.
-- **DIT (Directory Information Tree)** : 조직, 부서, 사용자, 장비 엔트리가 배치되는 역트리 계층 구조.
-- **DN (Distinguished Name)** : 디렉터리 내에서 특정 객체를 유일하게 식별하는 전체 절대 경로.
-- **LDAP Injection** : 사용자 입력값 필터링 미흡으로 공격자가 임의의 검색 조건을 주입해 인증을 우회하는 웹 공격.
-
-</details>
-
-## 2~4교시 예상문제 (25점)
-
-> 디렉터리 서비스 프로토콜인 LDAP의 계층 데이터 모델(DIT, DN, RDN), 동작 메커니즘(Bind, Search)을 설명하고, LDAP Injection 및 평문 전송 취약점 등 엔지니어링 한계와 보안 하드닝 방안을 제시하시오. (예상·25점)
-
-## 2~4교시 25점 답안
-
-## Ⅰ. 개요
-
-| 구분 | 핵심 |
-|---|---|
-| 정의 | ITU-T X.500 DAP의 무거운 OSI 스택을 탈피하고 TCP/IP 환경에 최적화하여 조직의 사용자, 시스템, 네트워크 자원 정보를 계층적 트리 구조로 관리·검색하는 경량 디렉터리 접속 프로토콜 |
-| 목적 | 전사 임직원 계정, 인증 정보, 그룹 정책을 단일 중앙 디렉터리에 집중화하여 계정 관리 효율성을 극대화하고 사내 시스템 단일 로그인(SSO) 연동 기반 제공 |
-
-- 관계형 데이터베이스(RDBMS)와 달리 빈번한 데이터 갱신보다는 '초고속 읽기 및 계층형 검색(Read-heavy)' 작업에 극도로 최적화된 아키텍처 채택
-
-## Ⅱ. LDAP의 핵심 기술적 특성
-
-| 특성 항목 | 세부 내용 및 기술적 의미 | 엔지니어링 구현 가치 |
-|---|---|---|
-| 계층형 트리 모델 (DIT) | 국가(c), 조직(o), 부서(ou), 개인(cn)으로 이어지는 현실의 계층 구조를 직관적으로 표현 | 사내 인사 조직도 및 권한 위임 체계와 1:1 매핑 |
-| 초고속 검색 성능 (Read-Optimized) | 트랜잭션 롤백 및 복잡한 JOIN 연산을 배제하고 인덱스 기반 읽기 연산에 집중 | 수만 명 임직원의 로그인 및 속성 조회를 수 ms 내 응답 |
-| 표준 프로토콜 상호운용성 | OS(Linux, Windows), 네트워크 장비(VPN, 스위치), SaaS 등 이종 플랫폼 간 통합 인증 지원 | PAM, Active Directory, OpenLDAP 간 완벽한 연동 |
-| 고유 식별 체계 (DN) | 각 객체(엔트리)마다 고유한 절대 경로인 고유명(DN)을 부여하여 충돌 방지 | 이름이 중복되어도 소속 부서별 객체 완전 격리 |
-
-- 단순 인증(Bind)뿐 아니라 권한 판정에 필요한 이메일, 전화번호, 소속 그룹 속성(Attribute)을 한 번의 쿼리로 인출하는 특성 보유
-
-## Ⅲ. LDAP DIT 구조 및 인증·검색 프로세스
+LDAP은 계층형 디렉터리 정보 트리(DIT: Directory Information Tree), 고유 식별 명칭인 DN(Distinguished Name), 객체 클래스(objectClass), 속성(Attribute) 모델로 구성되며, 클라이언트-서버 모델로 동작함.
 
 ```text
-[LDAP 디렉터리 정보 트리(DIT) 및 인증·검색(Bind & Search) 프로세스]
+[ LDAP 디렉터리 정보 트리(DIT) 구조 및 바인드(인증) 메커니즘 ]
 
- [DIT 계층 구조]
-           dc=example, dc=com (도메인)
-                   │
-           ou=people, dc=example, dc=com (조직 단위)
-                   │
-           cn=홍길동, ou=people, dc=example, dc=com (개인 엔트리 DN)
+ [ 루트(dc) ] --------------> dc=example, dc=com
+                                   |
+         +-------------------------+-------------------------+
+         |                                                   |
+ [ 조직단위(ou) ]                                     [ 조직단위(ou) ]
+ ou=people (임직원 계정)                               ou=groups (보안 그룹)
+         |                                                   |
+         +-----------------------+                           +-------------------+
+         |                       |                           |                   |
+ [ 엔트리(uid) ]          [ 엔트리(uid) ]              [ 엔트리(cn) ]       [ 엔트리(cn) ]
+ uid=alice                uid=bob                     cn=developers        cn=admins
+ - mail: alice@corp.com   - mail: bob@corp.com        - member: alice      - member: bob
+ - userPassword: {SSHA}...- userPassword: ...
 
- [LDAP 인증 및 조회 시퀀스]
-  [웹 애플리케이션 / SSO]                      [LDAP 서버 (OpenLDAP / AD)]
-            │                                             │
-            │ 1. TCP 연결 (Port 389)                       │
-            ├────────────────────────────────────────────>│
-            │ 2. StartTLS 협상 (TLS 1.3 암호화 터널 수립)  │
-            │<===========================================>│
-            │                                             │
-            │ 3. 서비스 계정 바인드 (Service Bind)        │
-            ├────────────────────────────────────────────>│
-            │ 4. 사용자 DN 검색 (Search: uid=user01)       │
-            ├────────────────────────────────────────────>│
-            │ 5. 사용자 실제 DN 반환                      │
-            │<────────────────────────────────────────────┤
-            │                                             │
-            │ 6. 사용자 비밀번호 검증 (User Re-Bind)       │
-            │    (DN: cn=user01,ou=people... + Password)  │
-            ├────────────────────────────────────────────>│
-            │ 7. 바인드 성공 (Bind Success)               │
-            │<────────────────────────────────────────────┤
-            │                                             │
-            │ 8. 사용자 소속 그룹 및 권한 속성 인출       │
-            ├────────────────────────────────────────────>│
-            │ 9. 애플리케이션 최종 로그인 및 세션 인가     │
+ * Alice의 고유 명칭(DN): "uid=alice, ou=people, dc=example, dc=com"
+
+ [ 클라이언트 바인드(Bind) 인증 흐름 ]
+  [사용자 클라이언트] ---- (1) ID/PW 입력 ----> [ 사내 애플리케이션 (VPN, ERP) ]
+                                                       |
+                                                       | (2) LDAP 바인드 요청 (LDAPS 636)
+                                                       v
+                                            [ 중앙 LDAP / Active Directory ]
+                                            * DN 검색: (&(uid=alice)(mail=...))
+                                            * 비밀번호 해시 대조 검증
+                                                       |
+                                                       v
+  [사용자 로그인 승인] <--- (3) Auth Success <--------+
 ```
 
-| 동작 단계 | 핵심 메커니즘 | 통제 및 엔지니어링 요구 |
-|---|---|---|
-| 1. 연결 및 암호화 | TCP 389 연결 후 `StartTLS` 확장 명령어 호출 또는 포트 636(LDAPS) 직접 연결 | 전송 구간 도청 방지 및 기밀성 확보 |
-| 2. 검색 바인드 | 읽기 전용 서비스 계정으로 바인드하여 로그인 시도 사용자의 정확한 DN 위치 검색 | 익명 바인드(Anonymous Bind) 원천 차단 |
-| 3. 사용자 바인드 | 검색된 실제 사용자 DN과 사용자가 입력한 패스워드로 재바인드(Re-bind) 시도 | 비밀번호 해시(Argon2/PBKDF2) 일치 검증 |
-| 4. 인가 속성 반환 | 인증 성공 시 사용자의 `memberOf`, `role` 속성을 읽어와 앱 인가 정책에 전달 | 최소 속성 반환 원칙(Least Privilege) 적용 |
+- **디렉터리 정보 트리(DIT: Directory Information Tree)** : 국가(c), 조직(o), 조직단위(ou), 공통이름(cn), 사용자ID(uid) 등 현실 조직 구조를 반영한 계층적 트리 구조로 엔트리를 체계적 배치.
+- **식별 명칭(DN: Distinguished Name)** : 트리 상에서 엔트리의 절대적 위치를 나타내는 유일한 고유 키로, 상대 식별 명칭(RDN: Relative DN)들의 연속적 결합으로 표기.
+- **읽기 중심(Read-heavy) 아키텍처** : 쓰기(트랜잭션) 성능에 최적화된 RDBMS와 달리, 90% 이상이 검색 및 조회인 환경에 맞춰 고속 인덱싱과 캐싱을 제공.
+- **보안 바인드(Bind)와 LDAPS** : 익명 바인드, 단순 바인드(평문), SASL 기반 보안 바인드를 지원하며, 네트워크 도청 방지를 위해 TLS 암호화 채널(LDAPS 포트 636)이 필수적임.
 
-## Ⅳ. 디렉터리 서비스(LDAP) vs 관계형 데이터베이스(RDBMS) vs Active Directory
+## Ⅲ. LDAP(Lightweight Directory Access Protocol)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | LDAP (OpenLDAP 등) | RDBMS (MySQL, PostgreSQL) | Microsoft Active Directory (AD) |
-|---|---|---|---|
-| 데이터 모델 | 계층형 트리 구조 (DIT) | 2차원 테이블 관계형 모델 | LDAP 기반 분산 디렉터리 DB |
-| 최적화 관점 | 대규모 읽기 및 검색 (Read-heavy) | 복잡한 트랜잭션, 쓰기 및 수정 (OLTP) | 윈도우 도메인 통합 인증 및 정책 |
-| 표준 프로토콜 | LDAPv3 (RFC 4511), LDAPS | SQL (ANSI SQL), JDBC/ODBC | Kerberos + LDAP + DNS + RPC |
-| 트랜잭션 보장 | 제한적 트랜잭션 (ACID 미지원) | 완전한 ACID 트랜잭션 보장 | 디렉터리 복제 일관성 (다중 마스터) |
-| 주 용도 | 계정 중앙 집중 인증, 주소록, SSO | 비즈니스 거래 데이터, 원장, 결제 | 사내 윈도우 PC 및 서버 중앙 관리 |
+| 비교 항목 | LDAP (디렉터리 서비스) | 관계형 데이터베이스 (RDBMS) | Active Directory (AD) |
+| --- | --- | --- | --- |
+| 데이터 모델 | 계층형 트리 구조 (DIT) | 2차원 테이블 및 관계 (Relational) | 계층형 트리 (LDAP 표준 준수 구현체) |
+| 최적화 영역 | 읽기(Read/Search) 극대화, 쓰기 느림 | 트랜잭션 ACID, 빈번한 쓰기/수정 | Windows 도메인 인증, 정책(GPO) 배포 |
+| 조회 언어 | LDAP 필터 구문: (&(ou=it)(title=mgr)) | 정형 질의 언어 (SQL: SELECT ...) | LDAP 프로토콜 및 Kerberos v5 결합 |
+| 표준 여부 | IETF 오픈 표준 프로토콜 (OpenLDAP 등) | ANSI SQL 표준 및 벤더 독자 구현 | Microsoft 독자 엔터프라이즈 솔루션 |
+| 주요 용도 | 전사 주소록, SSO 인증 백엔드, 계정 통합 | ERP 원장, 전자상거래 주문/결제 데이터 | 기업 윈도우 PC 중앙 제어, 그룹 정책 관리 |
 
-## Ⅴ. LDAP 운용 시 엔지니어링 한계와 해결 방안
+- LDAP은 전사 자원의 단일 계정 저장소 역할을 수행하므로, 침해 시 전사 인프라 장악으로 직결되는 바 LDAPS와 인젝션 방어가 최우선 과제임.
 
-| 한계 | 방안 |
-|---|---|
-| 웹 로그인 폼에서 사용자 입력값을 검색 필터에 문자열로 직접 조작 결합 시 공격자가 와일드카드나 OR 연산 조건을 주입하여 패스워드 없이 로그인하는 LDAP Injection 취약점 | 사용자 입력값에 대한 화이트리스트 정규식 검증을 강제하고, LDAP 프레임워크가 제공하는 파라미터화된 쿼리(Prepared Statement)를 적용하며 특수문자(`(`, `)`, `*`, `\`, `&`, OR 기호 등) 철저한 RFC 4515 이스케이프 처리 |
-| 기본 TCP 389 포트 사용 시 바인드 패스워드가 네트워크상에 평문(Plaintext)으로 전송되어 중간자 공격(MitM) 스니핑에 완전 노출 | 평문 통신을 원천 차단하고 LDAPS(TCP 636) 전용 포트 강제 또는 연결 즉시 StartTLS 핸드셰이크를 의무화하며, 서버 공인 인증서 체인 및 호스트명(SAN) 엄격 검증 |
-| 트리 구조 특성상 쓰기(Write/Update) 트랜잭션 성능이 취약하여 대규모 사용자의 잦은 암호 변경이나 세션 상태 기록 시 락킹(Locking) 병목 | 쓰기 작업은 마스터 디렉터리 서버로 단일화하고, 읽기/인증 트래픽은 다수의 읽기 전용 복제 슬레이브(Read-only Replica) 및 로컬 Redis 캐시로 분산 |
-| 계정 디렉터리 내에 과도한 민감정보(주민등록번호, 인사고과 등)가 저장되어 단일 계정 침해 시 전사 개인정보 대량 유출 | 디렉터리 접근통제 목록(ACL)을 속성 단위로 세분화하여 일반 사용자는 본인 기본 속성 외 타인의 민감 속성 열람을 차단하고 저장 데이터 필드 암호화 적용 |
+## Ⅳ. LDAP(Lightweight Directory Access Protocol)의 주요 한계점 및 해결 방안
 
-## Ⅵ. 제로 트러스트 엔터프라이즈 디렉터리 보안 아키텍처 제언
+- **LDAP Injection을 통한 인증 우회 및 디렉터리 탈취** :
+  - **한계점** : 사용자 입력값을 검증 없이 LDAP 검색 필터 문자열에 직접 연결할 경우, 공격자가 특수문자(')(*)(|)(&)를 주입하여 비밀번호 없이 관리자 바인드 성공.
+  - **해결 방안** : 모든 사용자 입력값에 대해 LDAP 특수문자 이스케이프 함수를 적용하고, 프레임워크 수준의 매개변수화 바인딩 쿼리 강제화.
+- **기본 평문(389번 포트) 통신에 따른 자격증명 도청 위험** :
+  - **한계점** : 레거시 시스템이 표준 LDAP 389번 포트를 사용할 경우 네트워크 스니핑을 통해 사용자 ID와 패스워드가 평문으로 쉽게 노출.
+  - **해결 방안** : 389번 포트를 방화벽에서 전면 차단하고, TLS 1.3 기반의 LDAPS(636 포트) 또는 StartTLS 프로토콜 전환 의무화.
+- **클라우드 SaaS 애플리케이션과의 프로토콜 연동 한계** :
+  - **한계점** : 방화벽 외부의 현대적 SaaS(M365, Salesforce)는 사내 폐쇄망 LDAP 프로토콜을 직접 호출하기 어려움.
+  - **해결 방안** : SCIM(System for Cross-domain Identity Management) 및 SAML/OIDC 기반 ID 공급자(IdP)를 구축하여 클라우드 계정 자동 프로비저닝 연계.
 
-```text
-[엔터프라이즈 하드닝 LDAP / Active Directory 거버넌스 아키텍처]
+## Ⅴ. LDAP(Lightweight Directory Access Protocol) 적용 및 발전을 위한 기술사적 제언
 
- ┌─────────────────────────────────────────────────────────────┐
- │                 1. 네트워크 전송 보안 계층                   │
- │   - 포트 389 평문 접속 전면 폐기 (포트 636 LDAPS 전용화)   │
- │   - TLS 1.3 암호화 터널 및 클라이언트 mTLS 상호 인증      │
- └──────────────────────────────┬──────────────────────────────┘
-                                │
- ┌──────────────────────────────┴──────────────────────────────┐
- │              2. 애플리케이션 연동 보안 계층                 │
- │   - 익명 바인드(Anonymous Bind) 원천 비활성화               │
- │   - RFC 4515 입력 이스케이프 및 LDAP Injection 방어 라이브러리│
- └──────────────────────────────┬──────────────────────────────┘
-                                │
- ┌──────────────────────────────┴──────────────────────────────┐
- │                 3. 디렉터리 인프라 및 접근 제어 계층        │
- │   - Multi-Master / Read Replica 부하 분산 클러스터링        │
- │   - 속성 레벨 세밀한 ACL (민감 필드 암호화 및 열람 통제)   │
- └─────────────────────────────────────────────────────────────┘
-```
-
-| 관리 영역 | 핵심 엔지니어링 세부 과제 | 통제 목표치 |
-|---|---|---|
-| 전송 보안 | 전사 사내 시스템의 LDAPS(TCP 636) 암호화 통신 전환율 | 암호화 적용률 100% (평문 389 완전 차단) |
-| 주입 공격 방어 | 웹/애플리케이션 소스코드 정적 분석(SAST) 기반 LDAP Injection 제거 | LDAP 주입 취약점 0건 |
-| 가용성 보장 | 마스터-슬레이브 복제 구성 및 초고속 페일오버 구축 | 디렉터리 인증 가용성 SLA >= 99.99% |
-
-## 출제 이력과 검증 출처
-
-- 제124회 정보관리기술사 예상 연계 주제: 디렉터리 서비스(LDAP) 구조 및 인증 보안
-- IETF RFC 4511: Lightweight Directory Access Protocol (LDAP): The Protocol
-- IETF RFC 4513: Lightweight Directory Access Protocol (LDAP): Authentication Methods and Security Mechanisms
-- IETF RFC 4515: Lightweight Directory Access Protocol (LDAP): String Representation of Search Filters
-- OWASP Cheat Sheet Series: LDAP Injection Prevention Cheat Sheet
+- **현대적 IdP(Okta, Keycloak, Entra ID)로의 계정 브릿징 아키텍처 수립** : 온프레미스 레거시 LDAP을 직접 노출하지 않고 현대적 신원 연합 IdP를 전면에 두어 RESTful API 및 다중 인증(MFA) 결합.
+- **Active Directory Kerberos 인증과의 보안 연계 하드닝** : LDAP 단순 바인드 사용을 금지하고 티켓 기반의 강력한 Kerberos SASL 상호 인증을 적용하여 릴레이 공격 방어.
+- **디렉터리 접근 권한의 최소 권한(Least Privilege) ACL 적용** : 익명 읽기 권한을 기본 비활성화하고, 부서별/조직별 엔트리에 세분화된 접근 제어 목록(ACL)을 적용하여 기밀 속성(비밀번호 해시, 주민번호) 은닉.
