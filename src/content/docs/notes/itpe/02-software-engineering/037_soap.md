@@ -47,7 +47,19 @@ extra:
 | 오버헤드 및 성능 | 무거운 XML 파싱과 큰 메시지 크기로 성능 낮음 | 경량 JSON 직렬화로 빠르고 모바일/웹에 최적 |
 | 주 활용 분야 | 은행, 증권, 정부 행정전산망 등 고신뢰 금융/공공 연계 | 대규모 B2C 포털, 모바일 앱, 마이크로서비스(MSA) |
 
-## Ⅳ. 엔터프라이즈 시스템 연계 시 기술사적 제언
+## Ⅳ. SOAP의 주요 한계점 및 해결 방안
+
+- **XML 페이로드의 비대함으로 인한 네트워크 오버헤드 및 파싱 지연** :
+  - **한계점** : SOAP Envelope, Header, Body 구조와 XML 네임스페이스 선언의 극심한 장황성(Verbosity)으로 인해 직렬화/역직렬화 CPU 부하가 크고 대역폭 낭비 발생.
+  - **해결 방안** : 고빈도·대용량 트랜잭션 구간은 경량 REST/JSON 또는 바이너리 기반 gRPC/Protobuf로 전환하고, 기존 SOAP 서비스 유지 시 MTOM(Message Transmission Optimization Mechanism)을 통한 첨부파일 바이너리 최적화.
+- **복잡한 WS-* 표준 규격으로 인한 벤더 종속성 및 상호운용성 저하** :
+  - **한계점** : WS-Security, WS-ReliableMessaging 등 방대한 스펙이 라이브러리와 프레임워크 벤더마다 구현 차이를 보여 이기종 시스템 간 연동 시 런타임 파싱 오류 빈발.
+  - **해결 방안** : 상호운용성을 보장하는 WS-I Basic Profile 규격을 엄격히 준수하고, 엔터프라이즈 서비스 버스(ESB)나 API Gateway를 중간에 두어 프로토콜 변환(Mediation) 및 메시지 정규화 수행.
+- **모바일 및 모던 웹 브라우저 환경과의 직접 통합 불가** :
+  - **한계점** : 브라우저 JavaScript 환경에서 복잡한 WSDL 파싱과 XML SOAP 클라이언트 스텁 생성이 비효율적이어서 SPA나 모바일 앱과의 직접 연계 난제.
+  - **해결 방안** : 프론트엔드와 레거시 SOAP 백엔드 사이에 RESTful API Gateway 또는 BFF(Backend For Frontend) 계층을 배치하여 SOAP 메시지를 JSON으로 변환 중계하는 Facade 패턴 적용.
+
+## Ⅴ. 엔터프라이즈 시스템 연계 시 기술사적 제언
 
 - **레거시 연계(EAI/ESB)와 신규 MSA 간의 어댑터 전략** : 금융권 레거시 코어뱅킹의 핵심 트랜잭션은 여전히 SOAP 기반의 엄격한 트랜잭션 정합성을 요구하므로, 전면 폐기 대신 API Gateway나 ESB 레이어에서 SOAP-to-REST 변환 어댑터를 두는 점진적 현대화 추진.
 - **WS-Security의 정밀한 구성** : SOAP 환경에서는 메시지 레벨 암호화(XML-Encryption)와 전자서명(XML-Signature)을 지원하는 WS-Security를 종단 간(End-to-End) 구간에 명확히 적용하여 중간자 공격 방어.

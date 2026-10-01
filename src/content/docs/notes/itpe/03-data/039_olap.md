@@ -69,7 +69,21 @@ extra:
 
 ---
 
-## Ⅳ. 클라우드 시대 현대적 OLAP의 진화 및 제언
+## Ⅳ. OLAP 시스템 구축 및 운영의 주요 한계점 및 해결 방안
+
+- **다차원 큐브(Cube) 생성 시 데이터 폭발(Data Explosion) 및 스토리지 고갈** :
+  - **한계점** : MOLAP 환경에서 차원(Dimension)과 계층(Hierarchy)이 증가할수록 사전 집계 큐브의 희소 행렬(Sparsity)로 인해 저장 공간이 기하급수적으로 폭증.
+  - **해결 방안** : 자주 질의되는 상위 레벨만 선별 집계하는 부분 사전 집계(Partial Pre-aggregation) 적용, 컬럼나 스토리지(ClickHouse, DuckDB) 기반의 동적 질의 처리.
+- **배치 적재 지연으로 인한 실시간 분석(Real-time Analytics) 불가** :
+  - **한계점** : 전통적 OLAP은 야간 ETL 배치 주기에 의존하므로 최신 수 분~수 초 내의 트랜잭션 데이터를 즉시 분석 큐브에 반영하지 못하는 시차 발생.
+  - **해결 방안** : 람다/카파 아키텍처 도입, 실시간 OLAP 엔진(Apache Pinot, Apache Druid)을 통해 스트리밍 인입과 동시 다차원 슬라이스/다이스 질의 제공.
+- **복잡한 비정형 질의 시 ROLAP 엔진의 RDBMS 성능 저하** :
+  - **한계점** : 스타 스키마 기반 ROLAP 질의 시 수억 건의 팩트 테이블과 다차원 차원 테이블 간의 반복적 대규모 JOIN으로 DBMS I/O 병목 유발.
+  - **해결 방안** : 대화형 분석 전용 MPP(Massively Parallel Processing) 분산 쿼리 엔진(Trino, Snowflake) 채택, Z-Order 인덱싱 및 프로젝션 캐시 구축.
+
+---
+
+## Ⅴ. 클라우드 시대 현대적 OLAP의 진화 및 제언
 
 - **컬럼형 스토리지와 분산 쿼리 엔진으로의 수렴** : 기존의 복잡한 MOLAP 큐브 생성 방식은 데이터가 커질수록 배치 시간이 길어지는 한계가 있어, 현대 빅데이터 환경에서는 ClickHouse, DuckDB, Trino, Snowflake와 같은 **분산 컬럼 지향 DBMS** 기반 ROLAP으로 진화함.
 - **실시간 스트리밍 OLAP 도입** : 사후 일괄 배치 분석에서 벗어나 Apache Pinot, Apache Druid를 활용하여 Kafka 스트림 데이터를 인입 즉시 수초 이내에 실시간 다차원 OLAP 분석할 수 있는 체계를 갖출 것을 제언함.

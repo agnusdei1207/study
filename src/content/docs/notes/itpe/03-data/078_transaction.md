@@ -63,7 +63,19 @@ extra:
 
 ---
 
-## Ⅳ. 분산 환경에서의 트랜잭션 실무 제언
+## Ⅳ. 트랜잭션 관리의 주요 한계점 및 해결 방안
+
+- **분산 환경(MSA)에서 2단계 커밋(2PC)의 블로킹 및 성능 저하** :
+  - **한계점** : 코디네이터(Coordinator) 장애 시 참여 노드들이 락을 유지한 채 블로킹(Blocking)되어 전체 분산 시스템 가용성(Availability) 급감.
+  - **해결 방안** : 엄격한 2PC 대신 사가(Saga) 패턴(보상 트랜잭션 기반 최종 일관성) 채택, 아웃박스 패턴(Transactional Outbox)과 이벤트 브로커(Kafka) 결합 비동기 정합성 확보.
+- **높은 트랜잭션 격리 수준(Serializable)에 따른 동시성 저하 및 데드락** :
+  - **한계점** : 완벽한 격리성 보장을 위해 테이블 및 범위 락(Gap Lock, Next-Key Lock)이 광범위하게 발생하여 TPS 급락 및 락 타임아웃 빈발.
+  - **해결 방안** : 격리 수준을 Read Committed 또는 Repeatable Read로 하향 조정하고, 다중 버전 동시성 제어(MVCC) 및 낙관적 락(Optimistic Locking: Version Column) 기법 병행.
+- **WAL(Write-Ahead Logging) 플러시(fsync) 오버헤드 및 디스크 I/O 병목** :
+  - **한계점** : 트랜잭션 지속성(Durability) 보장을 위한 매 커밋 시점의 디스크 fsync 호출로 인해 고성능 쓰기 워크로드에서 스토리지 I/O 병목 유발.
+  - **해결 방안** : 그룹 커밋(Group Commit) 메커니즘을 통한 로그 버퍼 일괄 플러시, 고속 NVMe SSD 및 배터리 백업 캐시(BBU/NVDIMM) 기반 스토리지 도입.
+
+## Ⅴ. 분산 환경에서의 트랜잭션 실무 제언
 
 - **분산 환경에서의 BASE와 Saga 패턴 전환** : 마이크로서비스(MSA) 환경에서 네트워크를 가로지르는 글로벌 2PC(Two-Phase Commit)는 심각한 시스템 블로킹을 유발하므로, 엄격한 ACID를 서비스 내부로 국한하고 서비스 간에는 이벤트 기반 보상 트랜잭션(Compensating Transaction) 중심의 **Saga 패턴** 을 채택하여 최종 일관성을 달성해야 함.
 - **트랜잭션 바운더리 최소화 원칙** : 트랜잭션 블록(`@Transactional`) 내부에 이메일 발송, 결제 게이트웨이(PG) 외부 HTTP API 호출 등 네트워크 지연 요소를 절대 포함하지 말고, 순수한 DB DML 연산만 격리하여 커넥션 풀 고갈과 락 대기 시간을 방지할 것을 제언함.

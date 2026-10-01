@@ -46,7 +46,19 @@ extra:
 | 수행 시점 | 프로젝트 기획 및 초기 아키텍처 설계 단계 | 개발 중 주기적 코드 감사 또는 레거시 차세대 전환 직전 |
 | 대표 도구 | Enterprise Architect, PlantUML, Miro | ArchUnit, Structure101, SonarQube, Lattix |
 
-## Ⅳ. 지속 가능한 아키텍처 거버넌스를 위한 기술사적 제언
+## Ⅳ. 소프트웨어 아키텍처 분석의 주요 한계점 및 해결 방안
+
+- **구현 단계 진행에 따른 아키텍처 침식(Architectural Erosion)** :
+  - **한계점** : 일정 압박과 임기응변식 코딩으로 인해 설계 시 정의된 계층 구조와 모듈 경계가 붕괴되고 순환 의존성 발생.
+  - **해결 방안** : ArchUnit, SonarQube 등 아키텍처 피트니스 함수(Fitness Functions)를 CI 파이프라인에 통합하여 아키텍처 규칙 위반 시 빌드 자동 실패.
+- **역방향 아키텍처 분석(Reverse Engineering)의 동적 의존성 탐지 한계** :
+  - **한계점** : 소스코드 정적 분석만으로는 스프링 의존성 주입, 리플렉션, 분산 RPC 등 런타임에 동적으로 바인딩되는 아키텍처 관계 누락.
+  - **해결 방안** : 정적 AST 분석과 eBPF/APM 기반의 런타임 네트워크 트레이싱을 결합한 하이브리드 아키텍처 복원 도구 활용.
+- **품질 속성 평가의 정량화 부족 및 주관적 편향** :
+  - **한계점** : 변경용이성, 이식성 등 주요 비기능 품질 속성이 정성적으로 평가되어 아키텍처 개선 투자의 비즈니스 정당성 입증 곤란.
+  - **해결 방안** : 마틴 메트릭스(Martin Metrics: 불안정성 I, 추상화도 A, 주계열 거리 D), 코드 순환 복잡도 등 객관적 메트릭 수집 및 기술 부채 화폐 가치 환산 모델 도입.
+
+## Ⅴ. 지속 가능한 아키텍처 거버넌스를 위한 기술사적 제언
 
 - **ArchUnit 기반의 '테스트로서의 아키텍처(Architecture-as-Code)' 자동화** : 문서로만 존재하는 아키텍처 규칙은 반드시 무너지므로, `classes().that().resideInAPackage("..service..").should().onlyBeAccessedByClassesThat().resideInAnyPackage("..controller..")`와 같이 아키텍처 계층 규칙을 Java 단위 테스트 코드로 작성하여 CI 파이프라인에서 매 빌드마다 자동 검증 강제.
 - **의존성 구조 매트릭스(DSM, Dependency Structure Matrix) 기반 순환 참조 척결** : 역방향 분석을 통해 모듈 간의 순환 의존성(Circular Dependency)을 상삼각 행렬로 시각화하고, 순환 고리를 끊기 위해 의존성 역전 원칙(DIP)을 적용하는 체계적 리팩토링 추진 필수.

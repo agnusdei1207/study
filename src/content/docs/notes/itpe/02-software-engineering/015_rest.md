@@ -49,7 +49,19 @@ extra:
 | Level 2 | 자원에 맞는 HTTP 메서드(GET/POST/PUT 등)와 상태코드 적용 | HTTP 동사 및 규약의 올바른 활용 | GET /users/1, 200 OK / 201 Created |
 | Level 3 | HATEOAS 도입 (하이퍼미디어 링크 제공) | 진정한 의미의 완전한 RESTful API 달성 | 응답 내 "_links": { "self": "...", "cancel": "..." } |
 
-## Ⅳ. 대규모 마이크로서비스 환경에서의 기술사적 제언
+## Ⅳ. REST의 주요 한계점 및 해결 방안
+
+- **고정 엔드포인트 응답으로 인한 오버페칭(Over-fetching) 및 언더페칭(Under-fetching)** :
+  - **한계점** : 리소스 엔드포인트의 반환 스키마가 고정되어 있어 클라이언트에 불필요한 데이터까지 전송(Over-fetching)되거나, 연관 데이터를 조회하기 위해 N+1번의 다중 API 왕복 호출(Under-fetching) 발생.
+  - **해결 방안** : 필드 필터링(Sparse Fieldsets) 쿼리 파라미터를 지원하거나, 클라이언트 플랫폼별 전용 BFF(Backend For Frontend) 계층을 구축하고, 복잡한 클라이언트 주도형 쿼리 영역에는 GraphQL 혼용 검토.
+- **HATEOAS 및 자기서술적 메시지 구현의 현실적 난제** :
+  - **한계점** : REST 성숙도 모델(Richardson 성숙도 3단계)의 완전한 준수를 위한 HATEOAS(하이퍼미디어 링크 제공) 구현은 백엔드 개발 공수를 과도하게 증가시키나 클라이언트 소비 효용은 미미.
+  - **해결 방안** : 실용적 REST(Pragmatic REST) 가이드라인을 채택하여 HATEOAS 대신 OpenAPI 3.0 스펙을 기반으로 API 계약을 표준화하고, OpenAPI Generator를 통한 클라이언트 SDK 코드 자동 생성 파이프라인 구축.
+- **HTTP 표준 메서드의 한계와 복합 비즈니스 행위 표현 제약** :
+  - **한계점** : CRUD 중심의 4대 HTTP 동사(GET, POST, PUT, DELETE)만으로 '결제 승인', '주문 취소', '일괄 상태 전이' 등 상태 기계(State Machine) 기반 복합 도메인 행위를 직관적으로 URI에 표현하기 곤란.
+  - **해결 방안** : 컨트롤러 리소스 패턴(Sub-resource `/orders/{id}/cancel` 등)을 명문화하거나, 도메인 주도 설계(DDD) 기반의 명령-조회 분리(CQRS) 패턴 및 이벤트 주도 비동기 API 연계.
+
+## Ⅴ. 대규모 마이크로서비스 환경에서의 기술사적 제언
 
 - **실용적 REST(Pragmatic REST)와 gRPC 간의 적재적소 선택** : 외부 퍼블릭 클라이언트 연동에는 가독성과 범용성이 뛰어난 REST/JSON(Level 2 중심)을 표준으로 삼되, 마이크로서비스 간 내부 통신(East-West)에는 바이너리 프로토콜 기반의 고성능 gRPC(HTTP/2)를 혼용하는 하이브리드 아키텍처 권장.
 - **OpenAPI Specification(OAS) 기반 API 거버넌스 수립** : Swagger/OAS 문서를 자동 생성하고 API Gateway에서 인증, 트래픽 셰이핑, 계약 테스트(Pact)를 연계하여 API 파손 방지.

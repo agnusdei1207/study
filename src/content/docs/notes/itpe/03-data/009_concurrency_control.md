@@ -69,7 +69,21 @@ T2 (Read)  : Row A 요청 ---> T1의 락과 무관하게 이전 버전 V1(Undo S
 
 ---
 
-## Ⅳ. 고성능 동시성 제어 설계를 위한 실무 제언
+## Ⅳ. 동시성 제어 메커니즘의 주요 한계점 및 해결 방안
+
+- **비관적 락(Pessimistic Lock) 기반 직렬화의 교착상태(Deadlock) 및 병목** :
+  - **한계점** : 엄격한 2PL(Two-Phase Locking) 환경에서 트랜잭션 간 자원 점유 순서 불일치 시 데드락 빈발 및 락 에스컬레이션(Lock Escalation)으로 동시 처리량 급락.
+  - **해결 방안** : 자원 획득 순서의 전사적 표준화(글로벌 정렬 순서 준수), 락 타임아웃(Lock Timeout) 설정 및 Wait-Die / Wound-Wait 알고리즘 기반 교착상태 선제 예방.
+- **낙관적 동시성 제어(OCC)의 트래픽 폭증 시 Abort 폭포(Cascading Abort)** :
+  - **한계점** : 읽기 후 검증(Validation) 단계에서 충돌이 감지되면 트랜잭션을 롤백하므로, 핫스팟 데이터 경합 시 재시도(Retry) 루프로 인한 시스템 리소스 낭비 심화.
+  - **해결 방안** : 분산 카운터(Distributed Counter) 및 파티셔닝 기반 경합 분산, 지수 백오프(Exponential Backoff with Jitter) 재시도 전략 결합.
+- **MVCC 환경에서의 언두(Undo)/가비지 데이터 누적 및 성능 저하** :
+  - **한계점** : 장기 실행 트랜잭션(Long-running Query) 존재 시 이전 버전의 레코드가 정리되지 않아 PostgreSQL의 Table Bloat, Oracle의 ORA-01555(Snapshot Too Old) 발생.
+  - **해결 방안** : 트랜잭션 실행 시간 임계치 모니터링 및 자동 킬(Kill) 정책, 진보된 VACUUM 튜닝(PostgreSQL autovacuum worker 최적화) 및 Undo 세그먼트 동적 확장.
+
+---
+
+## Ⅴ. 고성능 동시성 제어 설계를 위한 실무 제언
 
 - **트랜잭션 격리 수준(Isolation Level)의 전략적 튜닝** : 기본값(Repeatable Read 또는 Read Committed)에 맹목적으로 의존하지 않고, 단순 집계나 통계 쿼리에는 더 낮은 격리 수준을 적용하거나 스냅샷 읽기를 강제하여 락 경합을 방지해야 함.
 - **트랜잭션 단위 최소화** : 트랜잭션 블록 내에 외부 API 호출, 파일 I/O, 무거운 연산 등 지연 요소를 일체 배제하여 락 유지 시간을 밀리초(ms) 단위 이하로 극단적으로 축소.

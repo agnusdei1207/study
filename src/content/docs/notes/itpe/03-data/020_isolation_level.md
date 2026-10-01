@@ -74,7 +74,21 @@ T2 (의사 B) : 대기 의사 수 조회 (2명 확인) ---> B 대기 해제 커�
 
 ---
 
-## Ⅳ. 엔터프라이즈 환경에서의 격리 수준 설정 실무 제언
+## Ⅳ. 트랜잭션 격리 수준 설정의 주요 한계점 및 해결 방안
+
+- **동시성(Throughput)과 일관성(Consistency) 간의 상충 트레이드오프** :
+  - **한계점** : 격리 수준을 최고 수준(Serializable)으로 설정 시 락 경합 및 트랜잭션 롤백 폭증으로 시스템 처리량이 붕괴되며, 낮추면 더티 리드/팬텀 리드 발생.
+  - **해결 방안** : 비즈니스 도메인별 차등 격리 수준 적용(금융 결제는 Serializable/Repeatable Read, 단순 로그/조회는 Read Committed), 낙관적 검증 기법 병행.
+- **스냅샷 격리(Snapshot Isolation) 환경에서의 쓰기 편향(Write Skew) 이상** :
+  - **한계점** : MVCC 기반 Snapshot Isolation(PostgreSQL/Oracle)은 팬텀 리드를 방지하지만 서로 다른 행을 수정하는 교차 트랜잭션 시 일관성 제약조건 위배 발생.
+  - **해결 방안** : 명시적 배타 락(`SELECT FOR UPDATE`)을 통한 직렬화 유도, 또는 직렬성 스냅샷 격리(SSI, Serializable Snapshot Isolation) 엔진 활성화.
+- **DBMS 벤더별 격리 수준 구현 메커니즘의 비표준적 파편화** :
+  - **한계점** : ANSI SQL 표준 정의와 달리 MySQL(InnoDB)은 갭 락(Gap Lock)으로 팬텀을 방지하고 Oracle은 Read Uncommitted를 지원하지 않는 등 이기종 DB 전환 시 버그 유발.
+  - **해결 방안** : 애플리케이션 프레임워크 차원에서 격리 수준 종속 로직을 추상화하고 이종 DBMS 마이그레이션 시 동시성 충돌 통합 테스트 케이스 의무화.
+
+---
+
+## Ⅴ. 엔터프라이즈 환경에서의 격리 수준 설정 실무 제언
 
 - **기본 격리 수준의 최적 선택** : 대다수 글로벌 OLTP 시스템은 동시성 처리량 확보를 위해 **READ COMMITTED** 를 표준으로 사용하고, 특정 중요 트랜잭션(잔액 차감 등)에 한해서만 비관적 락(`SELECT ... FOR UPDATE`)이나 원자적 조건 갱신(`UPDATE SET balance = balance - 100 WHERE balance >= 100`)을 결합하는 것이 정석임.
 - **분산 데이터베이스 격리 수준 검증** : 클라우드 네이티브 Spanner, CockroachDB 등 NewSQL 도입 시 글로벌 시계 동기화(TrueTime, HLC)를 기반으로 진정한 직렬성(Strict Serializable)을 제공하는지, 완화된 세션 일관성(Read-your-writes)인지 확인하고 아키텍처를 설계할 것을 제언함.

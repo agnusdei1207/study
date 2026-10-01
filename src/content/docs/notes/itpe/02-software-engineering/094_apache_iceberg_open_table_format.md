@@ -48,7 +48,19 @@ extra:
 | 최적 활용 워크로드 | 대규모 애드혹 분석 쿼리, 배치 분석 | Databricks 중심의 통합 레이크하우스 | 스트리밍 데이터 인제스천, 레코드 단위 고속 Upsert |
 | 삭제/업데이트 메커니즘 | Copy-on-Write (CoW) 및 Merge-on-Read (MoR) | Copy-on-Write 중심 | Merge-on-Read에 극도로 특화 |
 
-## Ⅳ. 엔터프라이즈 레이크하우스 구축 시 기술사적 제언
+## Ⅳ. Apache Iceberg의 주요 한계점 및 해결 방안
+
+- **소형 파일(Small Files) 폭증 및 메타데이터 비대화** :
+  - **한계점** : 스트리밍 인제스천 및 잦은 변경(Upsert) 작업 시 작은 Parquet 파일과 메타데이터 JSON/Avro 스냅샷이 누적되어 쿼리 계획 수립 지연.
+  - **해결 방안** : 정기적인 콤팩션(Compaction/RewriteDataFiles) 및 스냅샷 만료(ExpireSnapshots) 배치 잡 자동화 운영, 정렬 키(Sort Order) 최적화.
+- **동시 쓰기 시 낙관적 동시성 제어(OCC) 충돌로 인한 커밋 실패** :
+  - **한계점** : 다수의 분산 엔진(Spark, Flink, Trino)이 동일 파티션을 동시 수정할 경우 충돌이 발생하여 긴 트랜잭션이 롤백되고 리소스 낭비.
+  - **해결 방안** : 쓰기 볼륨이 큰 파이프라인에 메시지 큐 기반 순차 쓰기 버퍼 도입, 파티셔닝 전략 재설계(Hidden Partitioning 최적화)를 통한 충돌 도메인 분리.
+- **카탈로그 구현체 파편화에 따른 호환성 및 거버넌스 난제** :
+  - **한계점** : Hive Metastore, AWS Glue, JDBC, Nessie 등 다양한 카탈로그 간 메타데이터 연동 방식 차이로 멀티 클라우드 레이크하우스 구성 복잡.
+  - **해결 방안** : 표준 Iceberg REST Catalog 사양을 준수하는 엔터프라이즈 통합 카탈로그(Polaris, Unity Catalog 등) 도입으로 엔진 독립적 거버넌스 확립.
+
+## Ⅴ. 엔터프라이즈 레이크하우스 구축 시 기술사적 제언
 
 - **엔진 독립성을 통한 벤더 락인(Vendor Lock-in) 방지** : 특정 상용 클라우드 DW(Snowflake, BigQuery, Databricks)의 독점 포맷에 종속되지 않도록, 개방형 표준인 Apache Iceberg 포맷을 스토리지 표준으로 채택하여 이기종 쿼리 엔진(Trino + Spark)을 자유롭게 스위칭하는 유연한 데이터 아키텍처 구축.
 - **메타데이터 최적화 및 가비지 컬렉션(Compaction) 주기적 수행** : 빈번한 스트리밍 쓰기로 인해 작은 파일(Small Files)과 미사용 스냅샷 메타데이터가 누적되면 쿼리 성능이 급격히 저하되므로, 정기적인 파일 병합(Data Compaction) 및 스냅샷 만료(Expire Snapshots) 유지보수 자동화 필수.

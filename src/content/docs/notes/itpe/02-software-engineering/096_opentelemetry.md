@@ -52,7 +52,19 @@ extra:
 | 메트릭 (Metrics) | 시스템의 상태를 시간 경과에 따라 수치로 집계한 시계열 데이터 | 시스템 이상 징후 알람, CPU/메모리/TPS 추세 분석 | Prometheus, Datadog, InfluxDB |
 | 로그 (Logs) | 특정 시점에 발생한 사건에 대한 텍스트 기반의 상세 기록 | 장애 발생 시의 근본 원인(Root Cause) 상세 디버깅 | Elasticsearch, Grafana Loki, Fluentd |
 
-## Ⅳ. 엔터프라이즈 관측성(Observability) 구축을 위한 기술사적 제언
+## Ⅳ. OpenTelemetry의 주요 한계점 및 해결 방안
+
+- **원격 측정 데이터 대량 수집에 따른 네트워크·스토리지 비용 폭증** :
+  - **한계점** : 마이크로서비스 간 모든 트레이스, 메트릭, 로그를 전수 수집할 경우 네트워크 대역폭 포화 및 백엔드(APM, 시계열 DB) 스토리지 비용 기하급수적 증가.
+  - **해결 방안** : 테일 기반 샘플링(Tail-based Sampling) 도입으로 에러 및 고지연 트레이스 선별 수집, OTel Collector 필터링 프로세서를 통한 노이즈 데이터 사전 정제.
+- **OTel Collector 구성 복잡도 및 장애 시 텔레메트리 유실** :
+  - **한계점** : 수집기(Collector)의 리시버, 프로세서, 익스포터 파이프라인 설정이 복잡하며, 트래픽 스파이크 시 컬렉터 메모리 고갈로 관측 데이터 유실 발생.
+  - **해결 방안** : OTel Collector의 데몬셋(DaemonSet) 및 게이트웨이 2계층 클러스터링 구성, 메모리 제한기(Memory Limiter) 및 큐 기반 재시도(File Storage Extension) 설정.
+- **수동 계측(Instrumentation) 오버헤드 및 컨텍스트 전파 누락** :
+  - **한계점** : 비표준 비동기 스레드 풀이나 레거시 프로토콜 사용 시 Trace ID 등 컨텍스트가 단절되어 트레이스 파편화 현상 발생.
+  - **해결 방안** : 자바/Go 등 주요 언어별 자동 계측 에이전트(Auto-Instrumentation) 표준화, 사내 프레임워크 차원에서 W3C Trace Context 헤더 자동 주입 보일러플레이트 제공.
+
+## Ⅴ. 엔터프라이즈 관측성(Observability) 구축을 위한 기술사적 제언
 
 - **자동 계측(Auto-Instrumentation)과 수동 계측의 조화** : Java Agent 등을 활용하여 프레임워크 수준의 HTTP/DB 호출은 코드 수정 없이 자동 계측하되, 비즈니스 핵심 도메인 트랜잭션(주문 ID, 결제 금액 등)은 OTel 수동 API를 통해 스팬 태그(Attribute)로 명시하여 비즈니스 가시성 확보.
 - **샘플링(Sampling) 전략을 통한 네트워크 및 스토리지 비용 최적화** : 초당 수십만 건의 대규모 트래픽 환경에서 모든 트레이스를 100% 수집하면 막대한 네트워크 및 스토리지 비용이 발생하므로, 정상 응답은 1%만 샘플링하고 에러(HTTP 5xx)나 지연(Latency > 2초) 트랜잭션은 100% 수집하는 테일 기반 샘플링(Tail-based Sampling)을 OTel Collector에 필수 구성.

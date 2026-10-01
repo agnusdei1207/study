@@ -73,7 +73,21 @@ $$\text{Total Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Noise
 
 ---
 
-## Ⅳ. 편향 완화 및 AI 신뢰성 확보를 위한 실무 제언
+## Ⅳ. 머신러닝 편향 완화 및 제어 시 주요 한계점 및 해결 방안
+
+- **편향-분산 상충(Bias-Variance Trade-off)의 근본적 제약** :
+  - **한계점** : 모델의 편향을 줄여 훈련 데이터에 완벽히 맞추려 하면 분산이 증가하여 과적합(Overfitting)이 발생하고, 반대의 경우 과소적합 발생.
+  - **해결 방안** : 적정 복잡도의 앙상블 기법(Random Forest, Gradient Boosting) 채택, 교차 검증(K-Fold CV) 및 정규화(L1/L2 Regularization)를 통한 일반화 오차 최소화.
+- **역사적 데이터 자체에 내재된 사회적 편향(Historical Bias) 학습** :
+  - **한계점** : 채용, 대출 심사 등 과거의 편견이나 불평등이 반영된 학습 데이터를 사용할 경우 AI 모델이 차별적 패턴을 영속화하고 증폭하는 한계.
+  - **해결 방안** : 공정성(Fairness) 지표(Equal Opportunity, Demographic Parity) 모니터링, 재가중치 부여(Reweighting) 및 적대적 탈편향(Adversarial Debiasing) 알고리즘 적용.
+- **데이터 수집 파이프라인의 선택 편향 및 표본 왜곡** :
+  - **한계점** : 특정 디바이스 사용자, 특정 시간대 데이터만 과다 수집되어 실제 운영 환경의 전체 인구 통계학적 분포와 괴리가 발생하는 서베일런스 편향.
+  - **해결 방안** : 데이터 수집 단계의 층화 표본추출 준수, 도메인 적응(Domain Adaptation) 기법 및 중요도 가중치 표본 재추출(Importance Sampling) 수행.
+
+---
+
+## Ⅴ. 편향 완화 및 AI 신뢰성 확보를 위한 실무 제언
 
 - **데이터 수집 단계의 감사(Audit) 프로세스** : 수집된 데이터셋의 성별, 연령, 지역 등 보호 속성(Protected Attributes) 분포를 인구통계학적 기준과 대조하여 불균형 발생 시 재가중치(Reweighting) 또는 리샘플링 적용.
 - **공정성 메트릭(Fairness Metrics) 모니터링** : 균등 기회(Equal Opportunity), 인구통계학적 동등성(Demographic Parity) 등 정량적 공정성 지표를 ML 파이프라인의 배포 승인 게이트에 포함할 것을 제언함.
