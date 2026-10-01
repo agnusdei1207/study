@@ -1,146 +1,50 @@
 ---
 title: "디자인 씽킹"
-author: "Claude Code"
-date: "2026-09-29T22:52:35+09:00"
+author: "Antigravity"
+date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"
 sidebar:
   badge:
     text: "서브"
 extra:
-  keyword_grade: "서브"
-  model: "Claude Sonnet 5.5"
+    keyword_grade: "서브"
+    model: "Gemini 3.8 Flash"
 ---
-
-## 지식 로드맵 내 현재 위치
-
-IT 전략·관리 → 인간중심 혁신·문제해결 → **디자인 씽킹**
-
-## 30초 인출
-
-- 본질: 디자인 씽킹(Design Thinking)은 사용자를 이해하는 데서 출발해 문제를 정의하고, 시제품과 사용자 테스트로 해결안을 검증하며 반복하는 문제해결 방식
-- 메커니즘: Stanford d.school의 다섯 모드(Empathize·Define·Ideate·Prototype·Test)를 정해진 순서 없이 오가며, 발산으로 후보를 넓히고 수렴으로 좁힘
-- 통찰: 사용자가 원하는지(Desirability)만 검증하면 실현 가능성(Feasibility)과 사업성(Viability)에서 탈락하므로, 수렴 지점마다 세 관점으로 후보를 평가
-
-<details>
-<summary>핵심 용어</summary>
-
-- **디자인 씽킹(Design Thinking)** : 사용자 이해, 문제 정의, 해결안 도출, 시제품, 사용자 테스트를 반복하는 사용자 중심 문제해결 방식
-- **Stanford d.school** : 스탠퍼드대학교의 디자인 교육 기관. Design Thinking Bootleg에서 다섯 모드를 제시
-- **Empathize** : 사용자의 필요와 관점을 이해하는 모드
-- **Define** : 해결할 핵심 문제를 명확히 하는 모드
-- **Ideate** : 가능한 해결안을 만들어 내는 모드
-- **Prototype** : 아이디어를 손에 잡히는 형태로 만드는 모드
-- **Test** : 사용자와 함께 해결안을 검증하는 모드
-- **Double Diamond** : 영국 Design Council의 Discover·Define·Develop·Deliver 4단계 프로세스 모델. 2004년 발표
-- **발산·수렴(Divergent·Convergent thinking)** : 문제를 넓고 깊게 탐색하는 사고와 그 뒤 초점을 좁혀 실행하는 사고. Double Diamond가 번갈아 사용
-- **Desirability·Feasibility·Viability** : IDEO U가 해결안 평가에 쓰는 세 관점. 사용자가 원하는가, 만들 수 있는가, 사업으로 지속되는가
-
-</details>
-
----
-
-## 2~4교시 예상문제 (25점)
-
-> 디자인 씽킹(Design Thinking)의 개념과 프로세스를 설명하고, 적용 시 한계와 방안을 제시하시오. (예상)
-
----
-
-## 2~4교시 25점 답안
 
 ## Ⅰ. 디자인 씽킹의 개요
 
-| 구분 | 핵심 |
-|---|---|
-| 정의 | **디자인 씽킹(Design Thinking)** 은 사용자 이해에서 출발해 문제 정의, 해결안 도출, 시제품과 사용자 테스트를 반복하는 문제해결 방식 |
-| 목적 | 사용자에게 필요한 해결안의 발견과 검증 |
+- **개념** : 디자이너의 감수성과 문제 해결 방식을 적용하여, 사용자의 잠재적 요구를 깊이 공감하고(Empathy), 문제를 인간 중심으로 재정의하며, 신속한 프로토타이핑과 반복 테스트를 통해 혁신적 솔루션을 도출하는 창의적 문제 해결 방법론.
+- **배경 및 필요성** : 공급자 중심의 기술 지향적 개발로 인한 시장 실패를 극복하고, 고객조차 언어로 표현하지 못하는 미충족 잠재 니즈(Unmet Needs)를 발굴하여 차별화된 고객 경험 제공 필요.
+- **주요 목적** : 고객 중심 혁신, 비즈니스 타당성과 기술적 실현 가능성의 조화, 빠른 실패(Fail Fast)를 통한 개발 리스크 최소화.
 
-## Ⅱ. 사용자 중심의 반복 탐색이라는 디자인 씽킹의 특징
-
-| 특징 | 의미 |
-|---|---|
-| 사용자 중심 | 문제에 영향받는 사람과 직접 만나 실제 문제를 이해 |
-| 비선형 반복 | 순서를 강제하지 않고 필요하면 앞 모드로 되돌아가며 반복 |
-| 발산과 수렴 | 넓게 탐색한 뒤 초점을 좁혀 실행하는 사고를 교대 |
-| 시제품 기반 검증 | 손에 잡히는 시제품을 사용자에게 시험해 검증 |
-| 세 관점 평가 | 해결안을 **Desirability** · **Feasibility** · **Viability** 로 평가 |
-
-## Ⅲ. 디자인 씽킹 프로세스
-
-### Stanford d.school의 다섯 모드
+## Ⅱ. 스탠포드 d.school의 5단계 프로세스
 
 ```text
-Empathize ↔ Define ↔ Ideate ↔ Prototype ↔ Test
-사용자 이해   문제 정의   해결안 도출   시제품 제작   사용자 검증
-
-※ 어느 모드에서 시작해도 되고 결과에 따라 앞 모드로 복귀
+[1. Empathize (공감)]  ── 사용자 관찰, 인터뷰, 감정 이입을 통해 숨겨진 페인포인트 발굴
+          ↓
+[2. Define (정의)]     ── 공감 데이터를 분석하여 인간 중심의 관점(POV, Point of View) 수립
+          ↓
+[3. Ideate (아이디어)] ── 브레인스토밍, 발산적 사고를 통해 다양한 창의적 대안 도출
+          ↓
+[4. Prototype (시작품)]── 아이디어를 구체화하기 위한 신속하고 저렴한 프로토타입 제작
+          ↓
+[5. Test (테스트)]     ── 사용자 대상 프로토타입 검증 및 피드백 수렴 후 이전 단계로 반복 환류
 ```
 
-### 검증 확대: Prototype과 Test의 반복
+- **더블 다이아몬드(Double Diamond) 모델** : 문제 영역에서의 발산과 수렴(공감-정의) → 솔루션 영역에서의 발산과 수렴(아이디어-프로토타입/테스트)의 반복 구조.
 
-```text
-Prototype: 검증할 가정을 담은 시제품 제작
-    ↓
-Test: 사용자에게 시제품을 시험하고 반응 관찰
-    ├─ 가정 확인 → 다음 검토 단계로 진행
-    └─ 가정 기각 → Ideate 또는 Define으로 복귀
-```
+## Ⅲ. 전통적 분석적 사고와 디자인 씽킹의 비교
 
-## Ⅳ. 디자인 씽킹 프로세스 모델의 비교
-
-| 모델 | 구성 | 진행 특징 |
+| 비교 항목 | 전통적 분석적 사고 | 디자인 씽킹 |
 |---|---|---|
-| Stanford d.school | Empathize·Define·Ideate·Prototype·Test 5개 모드 | 순서 강제 없이 어느 모드에서나 시작 |
-| Double Diamond(Design Council) | Discover·Define·Develop·Deliver 4개 단계 | 발산과 수렴을 교대, 비선형 |
-| IDEO U | Inspiration·Ideation·Implementation 3개 국면, 다섯 모드도 대안으로 제시 | 해결안 평가에 Desirability·Feasibility·Viability 사용 |
+| 사고의 출발점 | 과거의 데이터 및 기존 시스템의 문제점 | 사용자의 감정, 행동, 일상 관찰 (인간 중심) |
+| 접근 방식 | 연역적·귀납적 논리 분석 (수렴적) | 가추적(Abductive) 사고, "만약 ~라면?" (발산과 수렴) |
+| 해결책 도출 | 완전한 계획 수립 후 완제품 일괄 개발 | 신속한 종이/목업 프로토타이핑을 통한 빠른 피드백 |
+| 실패에 대한 태도 | 실패는 회피해야 할 프로젝트 결함 | 실패는 학습과 개선을 위한 조기 피드백 기회 |
 
-## Ⅴ. 한계와 방안
+## Ⅳ. IT 프로젝트에서의 디자인 씽킹 내재화를 위한 기술사적 제언
 
-| 한계 | 방안 |
-|---|---|
-| 순서 없는 반복 탐색이라 발산에서 나온 후보를 좁히는 기준이 없으면 선택이 주관에 좌우 | 수렴 지점마다 Desirability·Feasibility·Viability 세 관점으로 후보 평가 |
-| 사용자 테스트가 Desirability 중심이라 실현 가능성과 사업성 문제가 구현 단계에서 뒤늦게 발견 | Test의 판정 항목에 Feasibility·Viability 확인을 포함 |
-
-## Ⅵ. 제언
-
-Ideate 이후 수렴 지점과 Test에서 세 관점을 함께 확인하는 판정 기준 적용
-
-### 세 관점 판정을 넣은 진행 구조
-
-```text
-Ideate: 후보 다수 도출 (발산)
-    ↓ 수렴 지점: 세 관점으로 후보 평가
-Prototype: 선정한 후보만 시제품 제작
-    ↓
-Test: 사용자 반응과 실현 가능성·사업성 확인
-    ├─ 세 관점 모두 충족 → 구현 검토
-    └─ 일부 미충족 → Ideate 또는 Define으로 복귀
-```
-
-### 수렴 판정 확대: 세 관점
-
-```text
-후보 해법
-    ├─ Desirability : 사용자가 원하는가
-    ├─ Feasibility  : 기술과 자원으로 만들 수 있는가
-    └─ Viability    : 사업이나 운영으로 지속되는가
-```
-
-| 구분 | 사용자 반응 중심 Test | 제언: 세 관점 Test |
-|---|---|---|
-| 판정 항목 | 사용자가 원하는가 | 원하는가·만들 수 있는가·지속되는가 |
-| 탈락 발견 시점 | 구현·사업화 단계 | Test 단계 |
-| 후보 선택 기준 | 검토자의 판단 | 세 관점의 판정 결과 |
-
-## 출제 이력과 검증 출처
-
-- 출제 이력: 제132~140회 Q-net 문제지에서 이 토픽을 직접 묻는 문항 없음
-- Stanford d.school, Design Thinking Bootleg — Empathize·Define·Ideate·Prototype·Test
-- Design Council, Framework for Innovation — Double Diamond(Discover·Define·Develop·Deliver), 발산·수렴
-- IDEO U, Design Thinking — Desirability·Feasibility·Viability
-
-## 연결 토픽
-
-- 이전 토픽: [IT 전략·관리 개요](./index.md)
-- 연관 토픽: [그로스 해킹](./046_growth_hacking.md), [A/B 테스트](./029_ab_testing.md), [TAM(기술수용모델)](./092_technology_acceptance_model.md)
-- 다음 토픽: [RFP](./049_rfp.md)
+- **애자일 및 린 스타트업과의 유기적 결합 (Lean UX)** : 디자인 씽킹(문제 발견) → 린 스타트업(MVP 가설 검증) → 애자일(스프린트 개발)의 연계 파이프라인 구축.
+- **실전 프로토타이핑 도구 활용** : 피그마(Figma) 등 인터랙티브 UI 목업 도구를 활용하여 비즈니스 분석 단계에서 실제 사용자 테스트를 수행함으로써 요구사항 재작업 비용 획기적 절감.
+- **심리적 안정감 기반의 협업 문화 조성** : 어떤 엉뚱한 아이디어라도 비판하지 않는 'Yes, and...' 브레인스토밍 규칙을 조직 내에 정착시켜 진정한 창의적 파괴 장려.

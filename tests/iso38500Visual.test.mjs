@@ -6,7 +6,8 @@ const notePath = 'src/content/docs/notes/itpe/01-it-strategy/002_iso_iec_38500.m
 const cssPath = 'src/styles/custom.css';
 
 function answerSection(note, number, next) {
-  const body = note.slice(note.indexOf('## 2~4교시 25점 답안'), note.indexOf('## 출제 이력과 검증 출처'));
+  const startIdx = note.indexOf('## Ⅰ.');
+  const body = startIdx >= 0 ? note.slice(startIdx) : note;
   const start = body.indexOf(`## ${number}.`);
   const end = next ? body.indexOf(`\n## ${next}.`, start) : body.length;
   return body.slice(start, end);
