@@ -1,7 +1,7 @@
 ---
 title: "REST"
-author: "Claude Code"
-date: "2026-09-29T13:53:00+09:00"
+author: "Antigravity"
+date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -9,141 +9,47 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Sonnet 5.5"
+  model: "Gemini 3.8 Flash"
 ---
 
-## 지식 로드맵 내 현재 위치
+## Ⅰ. REST(Representational State Transfer)의 개요
 
-소프트웨어 공학 → 인터페이스·API → **REST**
+- **개념** : 웹의 창시자 중 한 명인 로이 필딩(Roy Fielding)이 2000년 박사 학위 논문에서 제시한 아키텍처 스타일로, HTTP 고유의 특성을 최대한 활용하여 네트워크 상의 자원(Resource)을 명확히 식별하고 상태를 주고받는 분산 하이퍼미디어 시스템 아키텍처.
+- **배경 및 필요성** : 과거 복잡한 RPC(Remote Procedure Call)나 무거운 SOAP/XML 기반 통신의 복잡성을 극복하고, 플랫폼 독립적이며 단순하고 확장성 높은 웹 기반 API 연동 표준으로 자리매김.
+- **핵심 구성요소 3요소** : 자원(URI), 행위(HTTP Method: GET/POST/PUT/PATCH/DELETE), 표현(Representation: JSON/XML).
 
-## 30초 인출
-
-- 본질: REST는 자원을 URI로 식별하고 HTTP 메서드로 조작하는 웹 아키텍처 스타일
-- 메커니즘: 클라이언트가 자원 URI에 GET·POST·PUT·DELETE 요청을 보내면 서버가 상태를 저장하지 않고 자원의 표현(JSON 등)을 응답
-- 통찰: 네트워크 재시도로 POST 요청이 중복 처리될 수 있으므로 멱등 키로 중복 생성을 방지
-
-<details>
-<summary>핵심 용어</summary>
-
-- **REST(Representational State Transfer)** : Roy Fielding이 제안한 자원 중심의 웹 아키텍처 스타일
-- **REST API** : REST 제약을 따라 HTTP로 자원을 조작하도록 만든 API
-- **무상태성(Stateless)** : 각 요청이 필요한 정보를 모두 담고 서버가 클라이언트 상태를 저장하지 않는 성질
-- **균일한 인터페이스(Uniform Interface)** : 자원 식별·표현을 통한 조작·자기 서술 메시지·HATEOAS로 이루어진 통일된 인터페이스
-- **멱등성(Idempotency)** : 같은 요청을 여러 번 보내도 결과가 한 번 보낸 것과 같은 성질
-- **SOAP** : XML 메시지와 WSDL로 서비스를 정의하는 프로토콜 기반의 웹 서비스 방식
-
-</details>
-
----
-
-## 2~4교시 예상문제 (25점)
-
-> REST API에 대하여 설명하시오. (예상)
-
----
-
-## 2~4교시 25점 답안
-
-## Ⅰ. REST의 개요
-
-| 구분 | 핵심 |
-|---|---|
-| 정의 | **REST** 는 자원을 URI로 식별하고 HTTP 메서드로 조작하는 웹 아키텍처 스타일 |
-| 목적 | 단순한 표준 인터페이스에 의한 확장성과 서비스 간 연동성 확보 |
-
-## Ⅱ. REST의 특징
-
-| 특징 | 의미 |
-|---|---|
-| 자원 중심 | 기능이 아닌 자원을 URI로 식별 |
-| 무상태성 | 요청마다 필요한 정보를 포함해 서버 확장 용이 |
-| 표준 메서드 | HTTP 메서드로 자원 조작 |
-| 다양한 표현 | JSON·XML 등으로 자원 상태 전달 |
-
-## Ⅲ. REST 제약 조건과 요청 처리 흐름
-
-### REST의 아키텍처 제약
+## Ⅱ. REST 아키텍처의 6대 제약조건
 
 ```text
-REST 제약
-    ├─ 클라이언트-서버 ── 관심사 분리
-    ├─ 무상태 ── 요청 자체에 필요한 정보 포함
-    ├─ 캐시 가능 ── 응답의 캐시 여부 명시
-    ├─ 균일한 인터페이스 ── URI·표현·자기 서술·HATEOAS
-    ├─ 계층형 시스템 ── 중간 서버 투명 사용
-    └─ 코드 온 디맨드 ── 선택 사항
+   [ Client-Server ] ──── 사용자 인터페이스와 데이터 저장소의 관심사 분리
+          │
+   [ Stateless ] ──────── 서버가 클라이언트의 세션 상태를 보관하지 않음
+          │
+   [ Cacheable ] ──────── HTTP 캐싱 헤더(Cache-Control)를 통한 응답 캐싱
+          │
+   [ Layered System ] ─── 게이트웨이, 로드밸런서, 프록시 등 계층적 구조
+          │
+   [ Code-on-Demand ] ─── 자바스크립트 등 실행 코드를 동적으로 전송 (선택)
+          │
+   [ Uniform Interface ] ─ 자원 식별, 표현을 통한 조작, 자기서술적 메시지, HATEOAS
 ```
 
-### 확대: 요청 처리 흐름
+- **Uniform Interface 4대 원칙** :
+  - **자원의 식별 (Identification of Resources)** : URI를 통한 고유 자원 식별 (예: /orders/123).
+  - **표현을 통한 자원 조작 (Manipulation through Representations)** : 메시지 본문의 JSON 표현을 통한 생성 및 변경.
+  - **자기 서술적 메시지 (Self-descriptive Messages)** : Content-Type 헤더 등 메시지 자체만으로 온전히 해석 가능한 구조.
+  - **HATEOAS (Hypermedia As The Engine Of Application State)** : 응답 본문에 다음 상태로 전이할 수 있는 하이퍼링크를 포함.
 
-```text
-클라이언트: GET /orders/10
-    ↓
-서버: 자원 조회 (세션 상태 미사용)
-    ↓
-응답: 200 OK + 자원 표현(JSON)
-```
+## Ⅲ. Richardson 성숙도 모델(RMM) 4단계 분석
 
-## Ⅳ. HTTP 메서드와 SOAP와의 비교
-
-### HTTP 메서드
-
-| 메서드 | 동작 | 안전 | 멱등 |
+| 레벨 | 핵심 메커니즘 | HTTP 활용 수준 | 예시 |
 |---|---|---|---|
-| GET | 조회 | 예 | 예 |
-| POST | 생성 | 아니오 | 아니오 |
-| PUT | 전체 교체 | 아니오 | 예 |
-| PATCH | 부분 수정 | 아니오 | 일반적으로 아니오 |
-| DELETE | 삭제 | 아니오 | 예 |
+| Level 0 | 단일 URI와 단일 메서드(POST) 활용 | 단순 전송 터널로 활용 (RPC 스타일) | POST /endpoint (payload에 method 기재) |
+| Level 1 | 개별 자원마다 고유한 URI 부여 | 자원 개념 도입 | POST /users, POST /users/1/orders |
+| Level 2 | 자원에 맞는 HTTP 메서드(GET/POST/PUT 등)와 상태코드 적용 | HTTP 동사 및 규약의 올바른 활용 | GET /users/1, 200 OK / 201 Created |
+| Level 3 | HATEOAS 도입 (하이퍼미디어 링크 제공) | 진정한 의미의 완전한 RESTful API 달성 | 응답 내 "_links": { "self": "...", "cancel": "..." } |
 
-### REST와 SOAP의 구성요소 비교
+## Ⅳ. 대규모 마이크로서비스 환경에서의 기술사적 제언
 
-| 구분 | REST | SOAP |
-|---|---|---|
-| 성격 | 아키텍처 스타일 | 프로토콜 |
-| 메시지 | JSON·XML 등 자유 | XML 필수 |
-| 서비스 정의 | URI와 메서드 | WSDL |
-| 전송 | 주로 HTTP | HTTP 외 다른 전송도 가능 |
-| 상태 | 무상태 | 상태 유지 가능 |
-
-## Ⅴ. 한계와 방안
-
-| 한계 | 방안 |
-|---|---|
-| 네트워크 재시도로 POST 중복 처리 | 클라이언트가 보낸 멱등 키로 중복 요청 식별 |
-| 자원 이름·URI 설계 규칙 불일치로 API 혼란 | 명사 복수형·계층 구조 등 URI 설계 규칙 표준화 |
-| 응답 필드 과다 또는 부족 | 필드 선택·페이지네이션 파라미터 제공 |
-
-## Ⅵ. 제언
-
-상태를 바꾸는 POST 요청에는 멱등 키를 요구해 재시도 시 중복 생성을 방지
-
-### 멱등 키 처리 흐름
-
-```text
-클라이언트: POST + 멱등 키
-    ↓
-서버: 키 조회
-    ├─ 처음 → 처리 후 결과 저장
-    └─ 이미 처리됨 → 저장된 결과 반환
-```
-
-### 선택 근거: 멱등 키 없는 POST와의 비교
-
-| 구분 | 멱등 키 없음 | 제언: 멱등 키 사용 |
-|---|---|---|
-| 재시도 시 결과 | 중복 생성 위험 | 동일 결과 |
-| 클라이언트 부담 | 없음 | 키 생성 필요 |
-| 서버 부담 | 없음 | 키 저장·조회 |
-
-## 출제 이력과 검증 출처
-
-- 제133회 1교시 1번: REST API(REpresentational State Transfer Application Programming Interface)
-- 제134회 4교시 4번: 개방형 API의 정의·특징, SOAP 및 REST 구성요소, 취약점 및 대응 방안. Open API 범위로 기본 답안과 구별
-- Fielding(2000), Architectural Styles and the Design of Network-based Software Architectures
-
-## 연결 토픽
-
-- 이전 토픽: [ATAM](./014_atam.md)
-- 연관 토픽: [SOAP](./037_soap.md), [Open API](./022_open_api.md)
-- 다음 토픽: [기술 부채](./016_technical_debt.md)
+- **실용적 REST(Pragmatic REST)와 gRPC 간의 적재적소 선택** : 외부 퍼블릭 클라이언트 연동에는 가독성과 범용성이 뛰어난 REST/JSON(Level 2 중심)을 표준으로 삼되, 마이크로서비스 간 내부 통신(East-West)에는 바이너리 프로토콜 기반의 고성능 gRPC(HTTP/2)를 혼용하는 하이브리드 아키텍처 권장.
+- **OpenAPI Specification(OAS) 기반 API 거버넌스 수립** : Swagger/OAS 문서를 자동 생성하고 API Gateway에서 인증, 트래픽 셰이핑, 계약 테스트(Pact)를 연계하여 API 파손 방지.
