@@ -1,7 +1,7 @@
 ---
 title: "트랜잭션 격리 수준"
-author: "Claude Code"
-date: "2026-09-30T11:34:00+09:00"
+author: "Antigravity"
+date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -9,112 +9,72 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Sonnet 5.5"
+  model: "Antigravity Professional Engine"
 ---
 
-## 지식 로드맵 내 현재 위치
+## Ⅰ. 트랜잭션 동시성과 정합성의 균형, 격리 수준(Isolation Level) 개요
 
-자료처리·데이터 → 트랜잭션 동시성 → **트랜잭션 격리 수준**
+### 가. 트랜잭션 격리 수준의 정의
+- ANSI/ISO SQL 표준(SQL-92)에서 정의한 것으로, 동시에 실행 중인 여러 트랜잭션 간에 한 트랜잭션이 변경한 데이터를 다른 트랜잭션이 어느 수준까지 볼 수 있도록 허용할 것인가를 결정하는 제어 기준.
+- 격리성(Isolation)을 높이면 데이터 정합성이 완벽해지나 시스템 동시성(Throughput)이 급감하고, 격리성을 낮추면 성능은 향상되나 다양한 읽기 이상(Read Phenomena)이 발생함.
 
-## 30초 인출
-
-- 본질: 트랜잭션 격리 수준은 동시에 실행되는 트랜잭션이 서로의 변경을 어느 정도 볼 수 있는지 정하는 기준
-- 메커니즘: 업무가 허용하지 않는 이상현상(Dirty·Nonrepeatable·Phantom Read)을 정하고, 이를 막는 최소 수준(Read Uncommitted → Read Committed → Repeatable Read → Serializable)을 선택
-- 통찰: 수준이 높을수록 정합성은 강해지나 대기·충돌·재시도가 늘어 처리량이 낮아지므로, 업무별 허용 이상현상에 맞춰 수준을 차등 적용하고 실제 DBMS의 구현을 확인
-
-<details>
-<summary>핵심 용어</summary>
-
-- **격리 수준(Isolation Level)** : 동시 실행 시 트랜잭션 사이에 보이는 변경과 허용되는 이상현상의 범위
-- **Dirty Read** : 다른 트랜잭션의 미확정 변경을 읽는 현상
-- **Nonrepeatable Read** : 같은 행을 다시 읽었을 때 다른 트랜잭션의 확정 변경으로 값이 달라지는 현상
-- **Phantom Read** : 같은 조건으로 다시 조회할 때 행 집합이 달라지는 현상
-- **Serialization Anomaly** : 동시 실행 결과가 어떤 직렬 실행 결과와도 같지 않은 현상
-- **Read Committed** : 확정된 값만 읽도록 하는 수준
-- **Repeatable Read** : 이미 읽은 행의 반복 읽기를 보호하는 수준
-- **Serializable** : 동시 실행 결과가 어떤 직렬 실행과 동등하도록 하는 수준
-- **Snapshot Isolation** : 일정 시점의 데이터 버전을 읽는 격리 방식. 직렬가능성과는 구분
-
-</details>
-
----
-
-## 2~4교시 예상문제 (25점)
-
-> 트랜잭션 격리 수준과 관련하여 (가) 격리 수준 4가지, (나) 격리 수준에 따라 발생할 수 있는 이상 현상을 설명하시오. (예상)
-
----
-
-## 2~4교시 25점 답안
-
-## Ⅰ. 트랜잭션 격리 수준의 개요
-
-| 구분 | 핵심 |
-|---|---|
-| 정의 | **트랜잭션 격리 수준** 은 동시 실행 중 다른 트랜잭션의 변경을 어느 정도 볼 수 있는지 정하는 기준 |
-| 목적 | 허용할 수 없는 이상현상을 막으면서 필요한 동시 처리 성능 확보 |
-
-## Ⅱ. 특징
-
-| 특징 | 의미 |
-|---|---|
-| 관찰 범위 정의 | 다른 트랜잭션의 미확정·확정 변경을 볼 수 있는 범위 설정 |
-| 이상현상별 보호 | 더티·비반복·팬텀 읽기의 허용 범위 구분 |
-| 구현 차이 | 제품별 잠금·MVCC·재시도 방식 상이 |
-
-## Ⅲ. 이상 현상의 발생 순서
+### 나. 격리 수준 미비 시 발생하는 3대 전통적 읽기 이상 현상
 
 ```text
-Dirty Read          T1 갱신 → T2 읽기 → T1 롤백
-Nonrepeatable Read  T1 읽기 → T2 같은 행 갱신·커밋 → T1 재읽기(값 변경)
-Phantom Read        T1 범위 조회 → T2 범위 내 삽입·커밋 → T1 재조회(행 증가)
+[ 3대 전통 읽기 이상 현상 ]
+1. Dirty Read            : T1이 커밋하지 않은 미확정 변경 데이터를 T2가 읽음 (T1 롤백 시 유령 데이터가 됨)
+2. Non-Repeatable Read   : T1이 동일 데이터를 두 번 읽는 사이에 T2가 수정/삭제 후 커밋하여 값이 달라짐
+3. Phantom Read          : T1이 범위 조건을 두 번 조회하는 사이에 T2가 새 행을 삽입하여 없던 행이 나타남
 ```
 
-## Ⅳ. 격리 수준 4가지와 이상 현상
+---
 
-| 수준 | Dirty | Nonrepeatable | Phantom | 직렬화 이상 |
-|---|---|---|---|---|
-| Read Uncommitted | 허용 | 허용 | 허용 | 가능 |
-| Read Committed | 차단 | 허용 | 허용 | 가능 |
-| Repeatable Read | 차단 | 차단 | 표준상 허용 | 가능 |
-| Serializable | 차단 | 차단 | 차단 | 차단 |
+## Ⅱ. ANSI SQL 4대 트랜잭션 격리 수준 및 허용 이상 현상
 
-표는 표준의 **최소 보호 수준** 이며 제품은 더 강하게 구현할 수 있음.
-
-| 제품 구현 예 | 의미 |
-|---|---|
-| PostgreSQL의 Read Uncommitted | Read Committed처럼 동작 |
-| PostgreSQL의 Repeatable Read | 표준보다 강해 팬텀 읽기도 방지 |
-| Snapshot Isolation | 일관된 스냅샷을 읽어도 직렬화 이상 가능 |
-
-## Ⅴ. 한계와 방안
-
-| 한계 | 방안 |
-|---|---|
-| 표준 표를 모든 제품의 실제 동작으로 간주 | 사용 DBMS 문서와 동시 실행 시험으로 확인 |
-| 높은 수준만 설정하고 실패 재시도 누락 | 직렬화 실패·교착상태의 재시도 설계 |
-| 읽기 이상만 확인하고 업무 규칙 위반 방치 | 복수 행·범위 갱신 시나리오 검증 |
-
-## Ⅵ. 제언
-
-업무별로 허용할 수 없는 이상현상을 정의해 필요한 최소 수준을 적용하고, 실패 재시도를 함께 설계
+### 가. 4대 격리 수준 매트릭스 비교
 
 ```text
-허용 불가 이상현상 정의 → 최소 격리 수준 선택 → DBMS 구현 확인 → 부하·재시도 시험
+[ 격리 수준과 동시성/정합성 트레이드오프 ]
+격리 수준 높음 (정합성 극대화, 동시성 저하)
+    ^
+    |  [ SERIALIZABLE ]      : Dirty Read (X) | Non-Repeatable Read (X) | Phantom Read (X)
+    |  [ REPEATABLE READ ]   : Dirty Read (X) | Non-Repeatable Read (X) | Phantom Read (O*)
+    |  [ READ COMMITTED ]    : Dirty Read (X) | Non-Repeatable Read (O) | Phantom Read (O)
+    |  [ READ UNCOMMITTED ]  : Dirty Read (O) | Non-Repeatable Read (O) | Phantom Read (O)
+    v
+격리 수준 낮음 (동시성 극대화, 이상현상 노출)
 ```
 
-| 구분 | Serializable 일괄 적용 | 제언: 업무별 차등 적용 |
-|---|---|---|
-| 결제·재고 | 대기·타임아웃 증가 | 필요한 수준과 잠금 병행 |
-| 대량 조회·통계 | 불필요한 대기 | Read Committed·스냅샷 읽기 |
-| 처리량 | 낮음 | 정합성 충족 범위에서 확보 |
+| 격리 수준 (Isolation Level) | Dirty Read | Non-Repeatable Read | Phantom Read | 구현 메커니즘 (로킹 / MVCC) |
+| :--- | :--- | :--- | :--- | :--- |
+| **READ UNCOMMITTED** | **발생 가능** | **발생 가능** | **발생 가능** | 공유락(S-Lock) 없이 읽기 수행, 배타락(X-Lock) 데이터도 즉시 읽음 |
+| **READ COMMITTED** | 방지됨 | **발생 가능** | **발생 가능** | 커밋된 데이터만 읽기 허용. 읽기 시 S-Lock을 걸고 조회 완료 즉시 해제하거나, 쿼리 시작 시점의 MVCC 스냅샷 참조 (오라클, PG 기본값) |
+| **REPEATABLE READ** | 방지됨 | 방지됨 | **발생 가능** | 트랜잭션 종료 시까지 S-Lock 유지, 또는 트랜잭션 시작 시점의 MVCC 스냅샷을 트랜잭션 끝까지 고정 (MySQL InnoDB 기본값) |
+| **SERIALIZABLE** | 방지됨 | 방지됨 | 방지됨 | 완벽한 직렬 실행 보장. 넥스트 키 락(Next-Key Lock)으로 범위 잠금 또는 SSI(Serializable Snapshot Isolation) 적용 |
 
-## 출제 이력과 검증 출처
+*참고: MySQL InnoDB의 경우 REPEATABLE READ 수준에서도 MVCC Undo 로그 기반 스냅샷 읽기와 넥스트 키 락을 통해 일반적인 Phantom Read를 대부분 차단함.
 
-- 제134회 2교시 6번: 트랜잭션 격리 수준 4가지를 사례 중심으로 설명
-- 제137회 3교시 4번: 가. 격리 수준 4가지, 나. 격리 수준에 따라 발생할 수 있는 이상 현상
-- ISO/IEC 9075(SQL) 트랜잭션 격리 수준 규정, PostgreSQL 공식 문서
+---
 
-## 연결 토픽
+## Ⅲ. 현대 DBMS의 스냅샷 격리(Snapshot Isolation) 및 갱신 손실
 
-- 연관 토픽: [동시성 제어](./009_concurrency_control.md), [무결성 제약](./013_integrity_constraint.md), [NoSQL](./001_nosql.md)
+### 가. 스냅샷 격리(Snapshot Isolation, SI)의 특성
+- 트랜잭션 시작 시점의 일관된 데이터베이스 스냅샷 버전을 기반으로 읽기 수행 $\rightarrow$ 읽기 작업은 어떤 락도 요구하지 않음.
+- **First-Committer-Wins 원칙** : 두 트랜잭션이 동일 데이터 항목을 동시에 갱신하려 할 때, 먼저 커밋한 트랜잭션만 성공하고 나중 트랜잭션은 롤백(Abort)됨으로써 갱신 분실(Lost Update) 방지.
+
+### 나. 쓰기 편향(Write Skew) 이상 현상
+
+```text
+[ 쓰기 편향(Write Skew) 발생 메커니즘 ]
+조건: 의사는 최소 1명 이상 대기해야 함 (현재 A, B 2명 대기 중)
+T1 (의사 A) : 대기 의사 수 조회 (2명 확인) ---> A 대기 해제 커밋
+T2 (의사 B) : 대기 의사 수 조회 (2명 확인) ---> B 대기 해제 커밋
+결과: 대기 의사가 0명이 되어 제약조건 위반 발생! (스냅샷 격리에서도 SERIALIZABLE 없이는 방지 불가)
+```
+
+---
+
+## Ⅳ. 엔터프라이즈 환경에서의 격리 수준 설정 실무 제언
+
+- **기본 격리 수준의 최적 선택** : 대다수 글로벌 OLTP 시스템은 동시성 처리량 확보를 위해 **READ COMMITTED** 를 표준으로 사용하고, 특정 중요 트랜잭션(잔액 차감 등)에 한해서만 비관적 락(`SELECT ... FOR UPDATE`)이나 원자적 조건 갱신(`UPDATE SET balance = balance - 100 WHERE balance >= 100`)을 결합하는 것이 정석임.
+- **분산 데이터베이스 격리 수준 검증** : 클라우드 네이티브 Spanner, CockroachDB 등 NewSQL 도입 시 글로벌 시계 동기화(TrueTime, HLC)를 기반으로 진정한 직렬성(Strict Serializable)을 제공하는지, 완화된 세션 일관성(Read-your-writes)인지 확인하고 아키텍처를 설계할 것을 제언함.

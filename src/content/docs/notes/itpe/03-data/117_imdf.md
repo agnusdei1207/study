@@ -1,7 +1,7 @@
 ---
 title: "실내 매핑 데이터 포맷(IMDF)"
-author: "Claude Code"
-date: "2026-09-30T15:22:00+09:00"
+author: "Antigravity"
+date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"
 sidebar:
@@ -9,113 +9,69 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Sonnet 5.5"
+  model: "Antigravity Professional Engine"
 ---
 
-## 지식 로드맵 내 현재 위치
+## Ⅰ. 스마트 실내 공간 정보의 표준, IMDF의 개요
 
-자료처리·데이터 → 공간 데이터 → **실내 매핑 데이터 포맷(IMDF)**
+### 가. IMDF(Indoor Mapping Data Format)의 정의
+- 공항, 쇼핑몰, 병원, 대형 전시장 등 복잡한 실내 공간의 구조(층, 방, 통로, 출입구, 편의시설 등)를 디지털 지도로 모델링하고 모바일 및 웹 애플리케이션에서 상호 운용할 수 있도록 OGC(Open Geospatial Consortium)에서 커뮤니티 표준으로 제정한 GeoJSON 기반의 데이터 교환 포맷.
+- 애플(Apple)에 의해 초기 개발되어 실내 위치 추적(Indoor Positioning) 및 내비게이션의 산업 표준으로 안착함.
 
-## 30초 인출
-
-- 본질: IMDF는 실내 공간 정보를 GeoJSON 기반의 Feature로 표현하는 데이터 표준
-- 메커니즘: ZIP 전달물이 manifest.json(버전·언어 등)과 유형별 GeoJSON FeatureCollection으로 구성되고, 각 Feature는 id·feature_type·geometry·properties를 가지며 Level·Unit·Opening·Relationship 등이 식별자로 서로를 참조
-- 통찰: 참조 대상의 ID·유형이 어긋나면 실내 지도의 연결·검색이 깨지므로 스키마와 참조 무결성 검사를 배포 과정에 넣고, 실제 길찾기 시나리오로 층 전환과 통로 연결을 검증
-
-<details>
-<summary>핵심 용어</summary>
-
-- **IMDF(Indoor Mapping Data Format)** : 실내 지도를 GeoJSON Feature로 표현하는 데이터 포맷
-- **Manifest** : 전달물의 버전·언어 등 메타정보 파일
-- **FeatureCollection·Feature** : 같은 유형의 객체 묶음 / 형상·유형·속성·식별자를 가진 객체
-- **Venue·Building·Level** : 장소·건물·층
-- **Unit·Opening** : 구역·출입구(통로)
-- **Relationship** : Feature 사이의 의미 관계
-- **GeoJSON** : JSON으로 공간 형상을 표현하는 형식
-
-</details>
+### 나. 실외 GIS(GPS)와 실내 매핑(IMDF)의 핵심 차이
+- **실외 GIS** : 위도/경도 중심의 2D 평면 공간 모델링, GPS 위성 신호 직접 수신 기반.
+- **실내 IMDF** : 3차원 수직 층(Level/Floor), 출입 가능 여부(Pedestrian Walkway), 비콘(Beacon)/Wi-Fi 실내 측위 인프라 연계를 포함한 다층 계층형 모델링.
 
 ---
 
-## 2~4교시 예상문제 (25점)
+## Ⅱ. IMDF의 데이터 모델 및 핵심 객체 계층 구조
 
-> 실내 매핑 데이터 포맷(IMDF)의 구조와 Feature 유형, 품질관리 방법을 설명하시오. (예상)
-
----
-
-## 2~4교시 25점 답안
-
-## Ⅰ. IMDF의 개요
-
-| 구분 | 핵심 |
-|---|---|
-| 정의 | **IMDF** 는 실내 공간 정보를 GeoJSON 기반 Feature로 표현하는 데이터 표준 |
-| 목적 | 실내 지도의 제작·교환·해석을 위한 공통 데이터 모델 제공 |
-
-## Ⅱ. 특징과 전달물 구조
-
-| 구조 | 역할 |
-|---|---|
-| Manifest | 표준 버전·언어 등 메타정보 |
-| FeatureCollection | 같은 유형의 Feature 묶음 |
-| Feature | GeoJSON 형상·유형·속성·식별자 |
-
-## Ⅲ. 참조 구조와 검증
+### 가. IMDF의 계층적 피처(Feature) 모델
 
 ```text
-IMDF ZIP
- ├ manifest.json: 버전·언어 등
- └ 유형별 .geojson: 동종 FeatureCollection
-      ↓ 각 Feature의 id·feature_type·geometry·properties 확인
-Level ─ 참조 → Unit·Opening 등 / Relationship ─ 참조 → 관련 Feature
-      ↓ 참조 대상 ID·유형 존재, 형상·층 맥락 검사
-지도 표시·검색·길찾기 시나리오 검증
+[ IMDF 객체 계층도 ]
+[Venue (장소/경기장)]
+        |
+        v
+    [Building (개별 건물)]
+        |
+        v
+    [Footprint (건물 바닥 외곽선)]
+        |
+        v
+    [Level (층 단위 슬라이스: 1F, B1F)]
+        |
+        +---> [Unit (개별 방, 매장, 화장실 공간 폴리곤)]
+        +---> [Opening (출입문, 창문 등 경계)]
+        +---> [Anchor (POI 레이블 표시 중심점)]
+        +---> [Kiosk, Amenity, Occupant (편의시설, 입주자)]
 ```
 
-## Ⅳ. Feature 유형과 품질관리
+### 나. 핵심 피처 타입 상세 설명
 
-| 범주 | 대표 Feature | 역할 |
-|---|---|---|
-| 장소 맥락 | Venue, Building, Level | 장소·건물·층의 맥락 |
-| 공간·출입 | Unit, Footprint, Opening | 구역과 외곽·통로 |
-| 시설·위치 | Amenity, Anchor, Detail | 편의시설·기준점·선형 요소 |
-| 의미 연결 | Relationship | 객체 간 관계 |
+| 피처 유형 | 기하학적 형태 | 주요 역할 및 속성 |
+| :--- | :--- | :--- |
+| **Venue** | Polygon / MultiPolygon | 지리적으로 정의된 전체 사업장 또는 부지 경계 |
+| **Building** | Polygon | 단일 물리적 건축물의 외곽 구조 |
+| **Level** | (논리적 층 컨테이너) | `ordinal`(서열 정수), `short_name`("2F"), 고도 정보 포함 |
+| **Unit** | Polygon | 벽으로 둘러싸인 물리적 방, 복도, 엘리베이터 홀 등 최소 단위 공간 |
+| **Opening** | LineString | Unit 사이 또는 내외부를 연결하는 문(Door) 및 개방 구간 |
+| **Amenity** | Point | 소화기, AED, ATM, 장애인 경사로 등 편의·안전 시설 POI |
+| **Relationship** | 속성 참조 (JSON ID) | 층-방, 방-입주자 간의 포함 및 소속 관계를 명시적 ID 참조로 구성 |
 
-참조는 대상의 식별자와 유형을 함께 가리키며, 공간 계층과 의미 관계를 같은 계층으로 혼동하지 않는 것이 핵심.
+---
 
-| 점검 축 | 확인 내용 |
-|---|---|
-| 구조 적합성 | 필수 파일, Feature 유형·속성 형식 |
-| 참조 무결성 | 관계가 가리키는 Feature ID·유형의 유효성 |
-| 공간 품질 | 형상·좌표계·층 맥락의 일관성 |
-| 활용 연계 | 지도 표시·검색·길찾기 요구와 데이터 범위 |
+## Ⅲ. IMDF와 실내 측위 기술(IPS) 및 디지털 트윈의 융합
 
-## Ⅴ. 한계와 방안
+### 가. Wi-Fi RTT 및 BLE 비콘 연동
+- IMDF 지도 위에 BLE(Bluetooth Low Energy) 비콘 및 Wi-Fi AP의 물리적 설치 좌표를 Anchor 객체로 등록 $\rightarrow$ 스마트폰 센서와 핑거프린팅(Fingerprinting) 알고리즘을 결합하여 오차 1~2m 이내의 실내 길안내 구현.
 
-| 한계 | 방안 |
-|---|---|
-| 생산자별 속성·참조 오류로 연결·검색 결과 손상 | 스키마·참조 무결성 검사를 배포 과정에 포함, 실제 지도 시나리오로 확인 |
-| Feature ID 재발행으로 갱신 전후 참조 단절 | 객체 생애 동안 ID 유지, 전달물 간 참조 차이 검사 |
-| 형상·층 맥락이 실제 이동 경로와 다름 | 공간 검증과 길찾기 시나리오로 통로·층 전환 확인 |
+### 나. 스마트 빌딩 디지털 트윈(Digital Twin)의 기초 레이어
+- BIM(Building Information Modeling)의 복잡한 3D CAD 데이터를 경량화하여 웹 및 모바일에서 수 밀리초 만에 렌더링 가능한 IMDF 포맷으로 변환 후, IoT 온도·재실 센서 데이터를 실시간 오버레이.
 
-## Ⅵ. 제언
+---
 
-전달물 배포 전에 스키마·참조·공간 검증을 자동화하고 길찾기 시나리오로 최종 확인
+## Ⅳ. 공공 및 엔터프라이즈 실내 공간정보 구축 실무 제언
 
-```text
-제작 → 스키마 검사 → 참조 무결성 검사 → 공간 검증 → 길찾기 시나리오 → 배포
-```
-
-| 구분 | 육안 검토 | 제언: 자동 검증 |
-|---|---|---|
-| 참조 오류 | 누락 | 배포 전 차단 |
-| 갱신 | ID 단절 위험 | ID 유지·차이 검사 |
-
-## 출제 이력과 검증 출처
-
-- Q-net 기출 원문에서 직접 묻는 문항 없음
-- Apple, Indoor Mapping Data Format 명세
-
-## 연결 토픽
-
-- 연관 토픽: [공간 연산자](./119_spatial_operator.md), [다차원 인덱스 구조](./052_multidimensional_index_structure.md), [참조 무결성](./070_referential_integrity.md)
+- **BIM $\rightarrow$ IMDF 자동 변환 ETL 파이프라인 구축** : Revit이나 IFC 파일 등 건축 설계 도면을 수작업으로 다시 그리는 것은 막대한 공수가 소요되므로, FME(Feature Manipulation Engine) 등을 활용하여 BIM 파일에서 벽체와 룸 경계를 추출하여 IMDF GeoJSON으로 자동 정제·변환하는 파이프라인을 구축해야 함.
+- **OGC 표준 준수 및 유효성 검증(Validator) 의무화** : 모바일 OS(iOS/Android)의 지도 렌더러가 비정상 종료되는 것을 방지하기 위해, Unit 폴리곤 간의 비정상적인 겹침(Overlap)이나 Level 서열 누락을 사전에 스캔하는 자동화 검증 도구를 배포 프로세스에 필수 연계할 것을 제언함.
