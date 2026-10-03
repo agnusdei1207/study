@@ -20,7 +20,7 @@ extra:
 - **MA (이동평균)** : 과거에 발생한 무작위 백색잡음(오차항)들의 선형 결합으로 현재 값을 설명.
 
 ### 나. 시계열 정상성(Stationarity)의 전제 조건
-- AR 및 MA 모델을 적용하기 위해서는 시계열이 **약정상성(Weak Stationarity)** 을 만족해야 함:
+- AR 및 MA 모델을 적용하기 위해서는 시계열이 **약정상성** (Weak Stationarity)을 만족해야 함:
   1. 시간에 무관하게 **평균이 일정** ($E[X_t] = \mu$).
   2. 시간에 무관하게 **분산이 일정** ($Var(X_t) = \sigma^2$).
   3. 공분산은 시점 $t$가 아닌 오직 **시차(Lag, $k$)에만 의존** ($Cov(X_t, X_{t+k}) = \gamma_k$).
@@ -60,7 +60,7 @@ ARMA(p, q)        지수적 감소 (둘 다 절단 없음)    지수적 감소 (
 ## Ⅲ. 시계열 모델의 적합도 평가 및 진단
 
 ### 가. 잔차 진단 (Residual Diagnostics)
-- 모델 적합 후 잔차(Residual)는 어떠한 자기상관도 남아 있지 않은 **백색잡음(White Noise)** 이어야 함 $\rightarrow$ **융-박스 검정(Ljung-Box Test)** 을 통해 $p$-value $> 0.05$인지 검증.
+- 모델 적합 후 잔차(Residual)는 어떠한 자기상관도 남아 있지 않은 **백색잡음(White Noise)** 이어야 함 $\rightarrow$ **융-박스 검정** (Ljung-Box Test)을 통해 $p$-value $> 0.05$인지 검증.
 
 ### 나. 정보 기준(Information Criteria)을 통한 최적 모델 선택
 - **AIC (Akaike Information Criterion)** 및 **BIC (Bayesian Information Criterion)** : 모델의 설명력(가능도)에 파라미터 개수에 대한 페널티를 부과하여 과적합을 방지하고 가장 작은 AIC/BIC 값을 갖는 차수 조합을 채택.

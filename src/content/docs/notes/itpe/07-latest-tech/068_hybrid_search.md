@@ -75,7 +75,7 @@ extra:
   - 해결 방안 : **비동기 코루틴** (Asyncio / ThreadPool) 기반으로 두 검색기를 완전 병렬 실행하고 논블로킹 I/O로 결과를 취합하는 파이프라인 구현.
 - 후보 문서 전수 대상 Cross-Encoder 리랭킹 시 연산 병목 :
   - 한계점 : 1단계에서 추출된 수십 개의 후보 문서 전체에 대해 Cross-Encoder 리랭킹을 수행할 경우 GPU 연산 병목 및 지연 급증.
-  - 해결 방안 : RRF 상위 20개 내외로 후보군을 1차 필터링(Pruning)한 후 **Cross-Encoder** 를 투입하고, 경량 모델(bge-reranker-base) 적용.
+  - 해결 방안 : RRF 상위 20개 내외로 후보군을 1차 필터링(Pruning)한 후 **Cross-Encoder**를 투입하고, 경량 모델(bge-reranker-base) 적용.
 
 ## Ⅴ. 하이브리드 검색(Hybrid Search) 적용 및 발전을 위한 기술사적 제언
 

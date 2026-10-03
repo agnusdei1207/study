@@ -57,7 +57,7 @@ t7:  COMMIT;
 | :--- | :--- | :--- | :--- |
 | **술어 잠금 (Predicate Lock)** | 쿼리의 조건절(Predicate) 자체를 잠금 대상으로 설정하여 조건을 만족하는 모든 삽입을 원천 차단 | 이론적으로 완벽한 팬텀 방어 | 술어 간의 교집합 판별 연산이 극도로 복잡하여 실제 DBMS 상용 구현 불가 |
 | **인덱스 잠금 (Index-Range Lock)** | 검색 조건을 만족하는 인덱스 키 값들을 잠그고, 조건에 해당하는 인덱스 엔트리의 삽입을 차단 | 술어 잠금을 현실적인 B-Tree 인덱스 단위로 단순화 | 인덱스가 존재하지 않으면 전체 테이블 락으로 격상 |
-| **넥스트 키 락 (Next-Key Lock)** | **레코드 락(Record Lock)** 과 해당 레코드 바로 앞의 **갭 락(Gap Lock)** 을 결합하여 구간 전체를 잠금 | MySQL InnoDB의 기본 방어 기법, 팬텀 현상 완전 차단 | 불필요한 인접 키 삽입까지 대기하여 동시성 저하 |
+| **넥스트 키 락 (Next-Key Lock)** | **레코드 락** (Record Lock)과 해당 레코드 바로 앞의 **갭 락** (Gap Lock)을 결합하여 구간 전체를 잠금 | MySQL InnoDB의 기본 방어 기법, 팬텀 현상 완전 차단 | 불필요한 인접 키 삽입까지 대기하여 동시성 저하 |
 | **SSI (Serializable Snapshot Isolation)** | MVCC 스냅샷을 사용하되 트랜잭션 간의 rw-antidependency 사이클을 동적으로 추적하여 충돌 시 롤백 | 락 없는 고속 읽기 지원 (PostgreSQL 등) | 충돌 빈번 시 트랜잭션 Abort 비율 증가 |
 
 ### 나. MySQL InnoDB의 넥스트 키 락(Next-Key Lock) 동작

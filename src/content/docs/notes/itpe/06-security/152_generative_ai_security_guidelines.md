@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. 생성형 AI 보안 가이드라인의 핵심 아키텍처 및 동작 메커니즘
 
-글로벌 AI 보안 가이드라인은 **NIST AI RMF** 의 4대 핵심 기능(Govern, Map, Measure, Manage)과 **ISO/IEC 42001 AI 경영시스템** 표준의 PDCA 사이클을 양대 축으로 구성됨.
+글로벌 AI 보안 가이드라인은 **NIST AI RMF**의 4대 핵심 기능(Govern, Map, Measure, Manage)과 **ISO/IEC 42001 AI 경영시스템** 표준의 PDCA 사이클을 양대 축으로 구성됨.
 
 ```text
 [ 글로벌 생성형 AI 보안 거버넌스 프레임워크 (NIST AI RMF 기반) ]

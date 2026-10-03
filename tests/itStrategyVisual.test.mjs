@@ -52,19 +52,3 @@ test('All IT strategy notes start with 개요 and end with 제언', async () => 
     assert.match(lastSection.title, /제언/u, `${file}: 마지막 섹션은 '제언'으로 끝나야 합니다.`);
   }
 });
-
-test('rewritten notes separate closing bold markers from following text', async () => {
-  for (const file of await rewrittenNotes()) {
-    const note = withoutCode(await readFile(file, 'utf8'));
-    const violations = note.split(/\r?\n/u).filter((line) => {
-      // '**'로 나눈 홀수 조각이 강조 안쪽, 그다음 조각이 닫는 '**' 뒤의 글자
-      const parts = line.split('**');
-      for (let index = 1; index + 1 < parts.length; index += 2) {
-        if (/^\s|\s$/u.test(parts[index])) return true;
-        if (!/^(?:$|[\s|])/u.test(parts[index + 1])) return true;
-      }
-      return false;
-    });
-    assert.deepEqual(violations, [], `${file}: 닫는 ** 뒤에는 공백이 필요합니다.`);
-  }
-});

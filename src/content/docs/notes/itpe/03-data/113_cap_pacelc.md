@@ -19,7 +19,7 @@ extra:
 - 분산 데이터 시스템은 **일관성** (Consistency), **가용성** (Availability), **분할 내구성** (Partition Tolerance)의 3가지 특성을 모두 동시에 만족하는 것은 불가능하며, 반드시 2가지만을 선택 할 수밖에 없다는 이론.
 
 ### 나. PACELC 정리로의 확장 배경
-- CAP 정리는 오직 '**네트워크 분할** (Partition) 장애' 상황만을 다루며, 시스템이 정상적인 평상시(Else) 상태일 때 직면하는 **지연 시간** (Latency)과 일관성(Consistency) 간의 본질적 트레이드오프 를 설명하지 못하는 한계가 있어 다니엘 아바디(Daniel Abadi) 교수가 **PACELC** 로 확장함.
+- CAP 정리는 오직 '**네트워크 분할** (Partition) 장애' 상황만을 다루며, 시스템이 정상적인 평상시(Else) 상태일 때 직면하는 **지연 시간** (Latency)과 일관성(Consistency) 간의 본질적 트레이드오프 를 설명하지 못하는 한계가 있어 다니엘 아바디(Daniel Abadi) 교수가 **PACELC**로 확장함.
 
 ---
 

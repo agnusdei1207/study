@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. 가용성 보장과 고가용성(HA)의 핵심 아키텍처 및 동작 메커니즘
 
-가용성 공학은 **신뢰도(Reliability)** 와 **유지보수도(Maintainability)** 의 결합 공식인 `A = MTBF / (MTBF + MTTR)`에 기반하며, N+1/2N 중복성과 헬스체크 및 Fencing 아키텍처로 구현됨.
+가용성 공학은 **신뢰도** (Reliability)와 **유지보수도** (Maintainability)의 결합 공식인 `A = MTBF / (MTBF + MTTR)`에 기반하며, N+1/2N 중복성과 헬스체크 및 Fencing 아키텍처로 구현됨.
 
 ```text
 [ 시스템 가용성(Availability) 공학 메커니즘 ]

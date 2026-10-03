@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. 칩렛·UCIe 3.0의 개요
 
-- 개념 : **거대 단일 다이(Monolithic Die)** 제작의 **물리적 면적 한계(Reticle Limit)** 와 수율 저하를 극복하기 위해 기능별(CPU, GPU, I/O, SRAM)로 독립 제조된 다이(Die)를 첨단 2.5D/3D 패키징으로 연결하고, 이를 개방형 표준 인터커넥트 규격인 **UCIe(Universal Chiplet Interconnect Express)** 로 결합하는 차세대 모듈형 반도체 아키텍처.
+- 개념 : **거대 단일 다이(Monolithic Die)** 제작의 **물리적 면적 한계** (Reticle Limit)와 수율 저하를 극복하기 위해 기능별(CPU, GPU, I/O, SRAM)로 독립 제조된 다이(Die)를 첨단 2.5D/3D 패키징으로 연결하고, 이를 개방형 표준 인터커넥트 규격인 **UCIe** (Universal Chiplet Interconnect Express)로 결합하는 차세대 모듈형 반도체 아키텍처.
 - 배경 및 필요성 : **무어의 법칙(Moore's Law)** 둔화, 첨단 공정(2nm/3nm)의 천문학적 웨이퍼 비용 및 다이 면적 증가에 따른 지수함수적 수율 급락을 해결하기 위해 **이종 공정(Heterogeneous)** 결합 패러다임으로 전환됨.
 - 핵심 목적 : 칩 제조 수율 비약적 향상 및 원가 절감, 다이 크기 물리적 한계 돌파, 개방형 표준을 통한 벤더 간 칩렛 상호운용성(Interoperability) 확보.
 

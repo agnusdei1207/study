@@ -47,7 +47,7 @@ extra:
 ## Ⅲ. 생성형 AI 프로파일 (NIST AI 600-1)의 주요 위험 대응
 
 - 2024년 발표된 **NIST AI 600-1** (Generative AI Profile)은 생성형 AI 특화 12대 위험(환각, 유해 콘텐츠, 악의적 사용, 지식재산권 침해, 프라이버시 침해 등)을 규정.
-- **프롬프트 인젝션** (Prompt Injection) 방어, RAG 기반 환각 억제, **워터마킹** (Watermarking) 및 **출력 필터링** 을 필수 완화 조치로 제시.
+- **프롬프트 인젝션** (Prompt Injection) 방어, RAG 기반 환각 억제, **워터마킹** (Watermarking) 및 **출력 필터링**을 필수 완화 조치로 제시.
 
 ## Ⅳ. NIST AI RMF 적용 시 주요 한계점 및 해결 방안
 

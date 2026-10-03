@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. DBSCAN의 개요
 
-- 개념 : **Density-Based Spatial Clustering of Applications with Noise** 의 약어로, 데이터 공간에서 특정 **반경** (Epsilon, eps) 내에 **최소 샘플 수** (MinPts) 이상의 데이터가 밀집되어 있는 영역을 하나의 군집으로 지속 확장하며, 밀도가 낮은 영역의 데이터를 노이즈(이상치)로 자동 분류하는 **밀도 기반 비지도 군집화** (Clustering) 알고리즘.
+- 개념 : **Density-Based Spatial Clustering of Applications with Noise**의 약어로, 데이터 공간에서 특정 **반경** (Epsilon, eps) 내에 **최소 샘플 수** (MinPts) 이상의 데이터가 밀집되어 있는 영역을 하나의 군집으로 지속 확장하며, 밀도가 낮은 영역의 데이터를 노이즈(이상치)로 자동 분류하는 **밀도 기반 비지도 군집화** (Clustering) 알고리즘.
 - 배경 및 필요성 : 전통적인 **K-Means** 알고리즘은 사전에 군집 수(K)를 지정해야 하고, 구형(Spherical) 형태의 군집만 탐색 가능하며, 이상치에 극도로 취약한 치명적 한계가 존재하여 비선형 기하학적 형태의 복잡한 데이터 군집화를 위해 개발됨.
 - 핵심 목적 : 사전 군집 수 지정 없는 자율 군집 탐색, 초승달·도넛 등 임의의 복잡한 기하학적 형상 군집화, 이상치(Noise)의 수학적 분리 및 노이즈 필터링.
 
@@ -82,7 +82,7 @@ DBSCAN은 데이터 포인트를 핵심(Core), 경계(Border), 노이즈(Noise)�
   - 해결 방안 : PCA, UMAP, t-SNE 등을 통한 고차원 특징의 2~10차원 축소 후 적용 및 코사인 유사도 거리 척도 활용.
 - 대규모 데이터셋(N > 100,000) 처리 시 메모리 및 연산 병목 :
   - 한계점 : 공간 인덱스가 없으면 O(N^2) 거리 계산으로 인해 연산 속도가 급격히 저하됨.
-  - 해결 방안 : KD-Tree, Ball-Tree 등 **공간 분할 트리 색인** 을 필히 적용하고 분산 환경(Apache Spark GraphX) 기반 분산 DBSCAN 채택.
+  - 해결 방안 : KD-Tree, Ball-Tree 등 **공간 분할 트리 색인**을 필히 적용하고 분산 환경(Apache Spark GraphX) 기반 분산 DBSCAN 채택.
 
 ## Ⅴ. DBSCAN 적용 및 발전을 위한 기술사적 제언
 
