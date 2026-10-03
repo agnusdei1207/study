@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. OSPF(Open Shortest Path First)의 개요
 
-- **개념** : 대규모 자율 시스템(AS: Autonomous System) 내부에서 최적의 라우팅 경로를 결정하기 위해 다익스트라(Dijkstra)의 최단 경로 우선(SPF) 알고리즘을 사용하며, 링크 상태(Link-State) 정보를 모든 라우터에 플러딩하여 수렴(Convergence) 속도를 극대화한 IETF 표준 개방형 내부 게이트웨이 프로토콜(IGP).
-- **배경 및 필요성** : 기존 거리 벡터(Distance-Vector) 프로토콜인 RIP의 최대 15홉 제한, 느린 수렴 속도, 라우팅 루프 취약성 및 대역폭 미고려 단점을 극복하고 수백 대 이상의 대형 네트워크를 안정적으로 지원하기 위해 등장함.
-- **핵심 목적** : 루프 없는(Loop-free) 최단 경로 계산, 링크 변경 시 빠른 수렴, 계층적 영역(Area) 분할을 통한 대규모 엔터프라이즈 및 데이터센터 네트워크 확장성 보장.
+- 개념 : 대규모 **자율 시스템(AS: Autonomous System)** 내부에서 최적의 라우팅 경로를 결정하기 위해 다익스트라(Dijkstra)의 최단 경로 우선(SPF) 알고리즘을 사용하며, **링크 상태(Link-State)** 정보를 모든 라우터에 플러딩하여 수렴(Convergence) 속도를 극대화한 IETF 표준 개방형 내부 게이트웨이 프로토콜(IGP).
+- 배경 및 필요성 : 기존 거리 벡터(Distance-Vector) 프로토콜인 RIP의 최대 15홉 제한, 느린 수렴 속도, 라우팅 루프 취약성 및 대역폭 미고려 단점을 극복하고 수백 대 이상의 대형 네트워크를 안정적으로 지원하기 위해 등장함.
+- 핵심 목적 : 루프 없는(Loop-free) 최단 경로 계산, 링크 변경 시 빠른 수렴, 계층적 영역(Area) 분할을 통한 대규모 엔터프라이즈 및 데이터센터 네트워크 확장성 보장.
 
 ## Ⅱ. OSPF(Open Shortest Path First)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -56,29 +56,29 @@ Down -> Init -> 2-Way (DR/BDR 선출) -> ExStart -> Exchange -> Loading -> Full 
 
 | 비교 항목 | OSPF (Open Shortest Path First) | RIP (Routing Information Protocol) | BGP (Border Gateway Protocol) |
 |---|---|---|---|
-| **프로토콜 분류** | Link-State IGP (내부 게이트웨이) | Distance-Vector IGP | Path-Vector EGP (외부 게이트웨이) |
-| **경로 계산 메트릭**| 링크 코스트 (대역폭 역수 기반) | 홉 수 (Hop Count: 최대 15홉) | AS-Path, Local Pref 등 복합 속성 |
-| **알고리즘** | Dijkstra SPF 최단 경로 알고리즘 | Bellman-Ford 거리 벡터 | Best Path 선택 알고리즘 |
-| **수렴 속도** | 매우 빠름 (링크 변화 시 즉시 LSA) | 느림 (30초 주기 전체 테이블 전송)| 보통 ~ 느림 (글로벌 안정성 우선) |
-| **라우팅 루프** | 근본적 방지 (전체 토폴로지 인지) | 루프 취약 (Split-Horizon 필요) | AS-Path 기반 루프 원천 방지 |
-| **네트워크 규모** | 대규모 엔터프라이즈 및 데이터센터 | 소규모 단순 네트워크 (15홉 미만) | 전 세계 인터넷 백본 및 AS 간 연동 |
+| 프로토콜 분류 | Link-State IGP (내부 게이트웨이) | Distance-Vector IGP | Path-Vector EGP (외부 게이트웨이) |
+| 경로 계산 메트릭 | 링크 코스트 (대역폭 역수 기반) | 홉 수 (Hop Count: 최대 15홉) | AS-Path, Local Pref 등 복합 속성 |
+| 알고리즘 | Dijkstra SPF 최단 경로 알고리즘 | Bellman-Ford 거리 벡터 | Best Path 선택 알고리즘 |
+| 수렴 속도 | 매우 빠름 (링크 변화 시 즉시 LSA) | 느림 (30초 주기 전체 테이블 전송)| 보통 ~ 느림 (글로벌 안정성 우선) |
+| 라우팅 루프 | 근본적 방지 (전체 토폴로지 인지) | 루프 취약 (Split-Horizon 필요) | AS-Path 기반 루프 원천 방지 |
+| 네트워크 규모 | 대규모 엔터프라이즈 및 데이터센터 | 소규모 단순 네트워크 (15홉 미만) | 전 세계 인터넷 백본 및 AS 간 연동 |
 
 - OSPF는 링크 대역폭을 정밀 반영한 최단 경로 연산과 Area 분할을 통한 계층적 확장성을 바탕으로 현대 내부 기업망 및 데이터센터 언더레이(Underlay)의 절대적 표준으로 군림함.
 
 ## Ⅳ. OSPF(Open Shortest Path First)의 주요 한계점 및 해결 방안
 
-- **대규모 망에서 토폴로지 변경 시 LSA 플러딩 및 SPF 재연산 부하** :
-  - **한계점** : 링크 플래핑(Flapping) 발생 시마다 전체 라우터가 SPF 연산을 반복 수행하여 CPU 사용률 급증 및 패킷 포워딩 지연.
-  - **해결 방안** : LSA 수신 및 SPF 연산 지연 타이머(SPF Throttle Timer) 지수 백오프 적용, Area 분할 및 ABR 경로 집약(Route Summarization).
-- **브로드캐스트 네트워크에서 DR/BDR 선출 오버헤드 및 고정 Priority 문제** :
-  - **한계점** : DR 장애 시 BDR 승격 및 신규 BDR 선출 과정에서 수렴 지연 발생.
-  - **해결 방안** : 점대점(Point-to-Point) 링크 모드 강제 적용으로 DR/BDR 선출 절차 완전 생략, 양방향 포워딩 감지(BFD) 연동으로 밀리초 절체.
-- **Area 0 물리적 연속성 단절 시 라우팅 단절 위험** :
-  - **한계점** : 백본 영역이 두 개로 분할될 경우 Area 간 통신이 전면 마비되는 구조적 제약.
-  - **해결 방안** : OSPF Virtual-Link를 통한 논리적 백본 연결 임시 구성 및 이중화 백본 물리 토폴로지 구축.
+- 대규모 망에서 토폴로지 변경 시 LSA 플러딩 및 SPF 재연산 부하 :
+  - 한계점 : 링크 플래핑(Flapping) 발생 시마다 전체 라우터가 SPF 연산을 반복 수행하여 CPU 사용률 급증 및 패킷 포워딩 지연.
+  - 해결 방안 : LSA 수신 및 SPF 연산 지연 타이머(SPF Throttle Timer) 지수 백오프 적용, Area 분할 및 ABR 경로 집약(Route Summarization).
+- 브로드캐스트 네트워크에서 DR/BDR 선출 오버헤드 및 고정 Priority 문제 :
+  - 한계점 : DR 장애 시 BDR 승격 및 신규 BDR 선출 과정에서 수렴 지연 발생.
+  - 해결 방안 : 점대점(Point-to-Point) 링크 모드 강제 적용으로 DR/BDR 선출 절차 완전 생략, 양방향 포워딩 감지(BFD) 연동으로 밀리초 절체.
+- Area 0 물리적 연속성 단절 시 라우팅 단절 위험 :
+  - 한계점 : 백본 영역이 두 개로 분할될 경우 Area 간 통신이 전면 마비되는 구조적 제약.
+  - 해결 방안 : OSPF Virtual-Link를 통한 논리적 백본 연결 임시 구성 및 이중화 백본 물리 토폴로지 구축.
 
 ## Ⅴ. OSPF(Open Shortest Path First) 적용 및 발전을 위한 기술사적 제언
 
-- **데이터센터 Clos 스파인-리프(Spine-Leaf) 언더레이 설계 최적화** : BGP 오버레이(EVPN-VXLAN)와의 연동을 위해 모든 링크를 Point-to-Point로 설정하고 코스트를 통일하여 ECMP(Equal-Cost Multi-Path) 부하 분산 극대화.
-- **BFD(Bidirectional Forwarding Detection) 연동을 통한 서브세컨드 장애 복구** : OSPF Hello 타이머(기본 10초)의 느린 감지를 보완하기 위해 하드웨어 기반 BFD를 결합하여 50ms 이내 초고속 절체 달성 권장.
-- **OSPFv3 기반 IPv4/IPv6 통합 라우팅 단일화** : IPv6 이행 가속화에 대응하여 단일 OSPFv3 프로세스 내에서 Address Families(AF)를 활성화하여 프로토콜 운영 복잡도 경감.
+- 데이터센터 Clos 스파인-리프(Spine-Leaf) 언더레이 설계 최적화 : BGP 오버레이(EVPN-VXLAN)와의 연동을 위해 모든 링크를 Point-to-Point로 설정하고 코스트를 통일하여 ECMP(Equal-Cost Multi-Path) 부하 분산 극대화.
+- BFD(Bidirectional Forwarding Detection) 연동을 통한 서브세컨드 장애 복구 : OSPF Hello 타이머(기본 10초)의 느린 감지를 보완하기 위해 하드웨어 기반 BFD를 결합하여 50ms 이내 초고속 절체 달성 권장.
+- OSPFv3 기반 IPv4/IPv6 통합 라우팅 단일화 : IPv6 이행 가속화에 대응하여 단일 OSPFv3 프로세스 내에서 Address Families(AF)를 활성화하여 프로토콜 운영 복잡도 경감.

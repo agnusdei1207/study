@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 자연어 기반 데이터 질의의 혁신, Text2SQL 개요
 
 ### 가. Text2SQL의 정의
-- **Text2SQL**은 사용자가 일상적인 자연어(Natural Language)로 입력한 비즈니스 질문을 데이터베이스가 이해하고 실행할 수 있는 정형화된 SQL(Structured Query Language) 쿼리로 자동 변환하는 인공지능 기술.
+- **Text2SQL** : 사용자가 일상적인 자연어(Natural Language)로 입력한 비즈니스 질문을 데이터베이스가 이해하고 실행할 수 있는 정형화된 SQL(Structured Query Language) 쿼리로 자동 변환하는 인공지능 기술.
 - 복잡한 SQL 문법과 데이터베이스 스키마 구조를 모르는 비전문가도 데이터에 직접 접근하여 분석할 수 있도록 지원하는 데이터 민주화(Data Democratization)의 핵심 엔진.
 
 ---
@@ -61,11 +61,11 @@ extra:
 
 ### 나. 데이터 보안 및 쿼리 파괴 리스크
 - 자연어 입력을 통한 악의적 DDL(`DROP TABLE`), CUD 연산 또는 SQL Injection 위험.
-- **해법** : Text2SQL 전용 DB 계정에 대해 **엄격한 읽기 전용(`SELECT` Only) 권한만 부여** 하고, 생성된 SQL의 AST(추상구문트리)를 검사하여 DDL/DML 키워드를 원천 차단.
+- 해법 : Text2SQL 전용 DB 계정에 대해 엄격한 읽기 전용(`SELECT` Only) 권한만 부여 하고, 생성된 SQL의 AST(추상구문트리)를 검사하여 DDL/DML 키워드를 원천 차단.
 
 ---
 
 ## Ⅳ. 엔터프라이즈 Text2SQL 구축을 위한 실무 제언
 
-- **시맨틱 데이터 레이어(Semantic Layer)의 선행 구축** : LLM이 DB의 축약된 영문 컬럼명(`CUST_TP_CD`, `SL_AM`)을 오인하지 않도록, dbt 시맨틱 레이어 또는 Cube.js 등을 도입하여 각 컬럼의 한글 비즈니스 명칭, 계산 공식, 동의어 사전을 메타데이터로 사전 표준화해야 함.
-- **비용 폭탄 방지를 위한 실행 자원 상한선(Guardrail) 설정** : 잘못 생성된 SQL이 수억 건 테이블의 카테시안 곱(Cartesian Product)을 유발하여 DB CPU를 고갈시키는 사태를 방지하기 위해, 모든 생성 쿼리에 `LIMIT 1000`을 강제 주입하고 쿼리 실행 타임아웃을 5초 이내로 엄격히 제한할 것을 제언함.
+- 시맨틱 데이터 레이어(**Semantic** Layer)의 선행 구축 : LLM이 DB의 축약된 영문 컬럼명(`CUST_TP_CD`, `SL_AM`)을 오인하지 않도록, dbt 시맨틱 레이어 또는 Cube.js 등을 도입하여 각 컬럼의 한글 비즈니스 명칭, 계산 공식, 동의어 사전을 메타데이터로 사전 표준화해야 함.
+- 비용 폭탄 방지를 위한 실행 **자원 상한선(Guardrail)** 설정 : 잘못 생성된 SQL이 수억 건 테이블의 카테시안 곱(Cartesian Product)을 유발하여 DB CPU를 고갈시키는 사태를 방지하기 위해, 모든 생성 쿼리에 `LIMIT 1000`을 강제 주입하고 쿼리 실행 타임아웃을 5초 이내로 엄격히 제한할 것을 제언함.
