@@ -48,7 +48,7 @@ AI-native Network는 데이터 평면(L1 신경망 트랜시버), 제어 평면(
 ```
 
 - **신경망 에어 인터페이스(Neural Air Interface)** : 송수신기 물리 계층(L1)의 복잡한 신호 처리 파이프라인(채널 추정, 변복조, 피드백)을 종단 간 심층 신경망(End-to-End Deep Learning)으로 대체.
-- **폐쇄 루프 자율 제어(Closed-Loop Control)** : 상태 관측(Observe) $ightarrow$ 분석(Orient) $ightarrow$ 의사결정(Decide) $ightarrow$ 정책 실행(Act)의 루프가 인간 개입 없이 밀리초 단위로 자동 수행.
+- **폐쇄 루프 자율 제어(Closed-Loop Control)** : 상태 관측(Observe) $\rightarrow$ 분석(Orient) $\rightarrow$ 의사결정(Decide) $\rightarrow$ 정책 실행(Act)의 루프가 인간 개입 없이 밀리초 단위로 자동 수행.
 - **인밴드 텔레메트리(INT: In-band Network Telemetry)** : 실제 데이터 패킷 헤더에 라우터/스위치의 큐 지연, 패킷 드롭 정보를 실시간 기록하여 AI 학습 엔진으로 고속 피드백.
 - **디지털 트윈 네트워크(DTN)** : 물리 네트워크와 1:1로 동기화된 가상 시뮬레이션 환경을 구축하여 AI 제어 정책의 안전성을 사전에 정밀 검증.
 

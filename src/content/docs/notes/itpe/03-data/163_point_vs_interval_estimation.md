@@ -28,7 +28,7 @@ extra:
 [ 점추정 vs 구간추정 ]
 (A) 점추정 (Point Estimation)
     "우리 서비스 사용자의 평균 체류 시간은 정확히 15.4분이다."
-    - 단 하나의 숫자로 제시 (hat{	heta})
+    - 단 하나의 숫자로 제시 (theta-hat)
     - 표본오차를 반영하지 못하며, 실제 참값과 일치할 확률은 수학적으로 0
 
 (B) 구간추정 (Interval Estimation)

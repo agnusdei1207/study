@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 지리공간 데이터베이스의 핵심, 공간 연산자의 개요
 
 ### 가. 공간 연산자(Spatial Operator)의 정의
-- 2차원 또는 3차원 공간 상에 존재하는 기하학적 객체(점, 선, 면) 간의 위상적(Topological), 기하학적(Geometric), 방향적(Directional) 관계를 수학적으로 판별하고 조작하기 위해 OGC(Open Geospatial Consortium) 표준 및 SQL/MM 표준에 정의된 데이터베이스 연산 함수.
+- **공간 연산자**는 2차원 또는 3차원 공간 상에 존재하는 기하학적 객체(점, 선, 면) 간의 위상적(Topological), 기하학적(Geometric), 방향적(Directional) 관계를 수학적으로 판별하고 조작하기 위해 OGC(Open Geospatial Consortium) 표준 및 SQL/MM 표준에 정의된 데이터베이스 연산 함수.
 - 단순 수치 비교 연산자와 달리 공간 인덱스(R-Tree, GiST)와 결합하여 공간 질의를 초고속으로 필터링함.
 
 ---

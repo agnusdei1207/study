@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 다차원 배열 기반의 초고속 분석, MOLAP의 개요
 
 ### 가. MOLAP(Multidimensional OLAP)의 정의
-- 데이터 웨어하우스의 데이터를 관계형 테이블(RDBMS) 대신, 다차원 공간 데이터를 저장하기 위해 특별히 고안된 **다차원 데이터베이스(MDDB, Multidimensional Database)의 다차원 배열(Multidimensional Array) 큐브(Cube) 구조에 저장하고 사전 집계(Pre-aggregation)하여 초고속 분석을 제공하는 OLAP 기술**.
+- **MOLAP**은 데이터 웨어하우스의 데이터를 관계형 테이블(RDBMS) 대신, 다차원 공간 데이터를 저장하기 위해 특별히 고안된 **다차원 데이터베이스**(MDDB, Multidimensional Database)의 **다차원 배열**(Multidimensional Array) 큐브(Cube) 구조에 저장하고 사전 집계(Pre-aggregation)하여 초고속 분석을 제공하는 OLAP 기술.
 
 ---
 
@@ -49,7 +49,7 @@ extra:
 
 ---
 
-## Ⅲ. 큐브 폭발(Cube Explosion)과 희소성(Sparsity) 해결 기법
+## Ⅲ. MOLAP의 한계점·문제점(큐브 폭발·희소성) 및 해결 방안
 
 ### 가. 큐브 폭발(Cube Explosion)의 발생 원리
 - 차원의 수($D$)와 각 차원의 속성 카디널리티($C$)가 증가함에 따라 가능한 모든 집계 셀(Cell)의 수가 기하급수적으로 폭증:

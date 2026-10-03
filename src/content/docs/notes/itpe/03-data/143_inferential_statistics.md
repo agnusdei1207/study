@@ -31,7 +31,7 @@ extra:
          v                                                         v
    [1. 추정 (Estimation)]                                    [2. 가설검정 (Testing)]
    - 모수가 대략 얼마일 것인가?                              - 가설 주장이 참인가 거짓인가?
-   +---> 점추정 (Point): 단일 수치 (hat{mu} = ar{X})     +---> 귀무가설 H0 vs 대립가설 H1
+   +---> 점추정 (Point): 단일 수치 (mu-hat = X-bar)     +---> 귀무가설 H0 vs 대립가설 H1
    +---> 구간추정 (Interval): 신뢰구간 (95% CI)              +---> p-value vs 유의수준 alpha 판정
 ```
 

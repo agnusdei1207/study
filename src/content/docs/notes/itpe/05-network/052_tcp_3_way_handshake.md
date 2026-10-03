@@ -60,7 +60,7 @@ extra:
 
 - **TCP 백로그 큐 (Backlog Queue)** : 커널은 SYN_RCVD 상태의 미완결 연결을 담는 `SYN Queue`와 Handshake가 완료되어 `accept()`를 기다리는 `Accept Queue`를 이원화 관리.
 
-## Ⅳ. 주요 보안 위협 및 성능 병목 극복 방안
+## Ⅳ. TCP 3-Way Handshake의 한계점·문제점 및 해결 방안
 
 - **SYN Flooding 분산 서비스 거부(DDoS) 공격에 의한 백로그 큐 고갈** :
   - **한계점** : 공격자가 위조된 IP로 수많은 SYN 패킷만 전송하고 최종 ACK를 보내지 않아, 서버의 SYN Queue가 가득 차 신규 정상 접속 차단.

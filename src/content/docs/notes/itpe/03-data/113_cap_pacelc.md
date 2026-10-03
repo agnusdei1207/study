@@ -64,7 +64,7 @@ $$\mathbf{P} \text{ (Partition)} \rightarrow [\; \mathbf{A} \text{ (Availability
 | :--- | :--- | :--- | :--- | :--- |
 | **PC / EC** | **Google Spanner, CockroachDB** | 완벽한 동기 복제로 일관성 보장 (L 희생) | 분할 발생 시 정합성 위해 가용성 차단 (A 희생) | 금융 거래, 원장 관리, 글로벌 결제 정산 |
 | **PA / EL** | **Amazon DynamoDB, Apache Cassandra** | 비동기 복제로 극도의 초저지연 읽기/쓰기 (C 희생) | 분할 발생 시에도 모든 노드가 계속 서비스 (C 희생) | 소셜 미디어 피드, 장바구니, IoT 실시간 로그 |
-| **PC / EC** | **HBase, MongoDB (기본 설정)** | 강한 일관성 우선 | 프라이머리 선출 전까지 쓰기 차단 | 실시간 통계 분석, 마스터 기준 데이터 |
+| **PC / EC** (HBase), **PA / EC** (MongoDB) | **HBase, MongoDB (기본 설정)** | 강한 일관성 우선 | 프라이머리 선출 전까지 쓰기 차단 | 실시간 통계 분석, 마스터 기준 데이터 |
 
 ---
 

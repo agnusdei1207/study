@@ -29,7 +29,7 @@ Table               | Collection
 Row (튜플/레코드)   | Document (BSON 객체)
 Column (속성)       | Field (Key-Value)
 Primary Key         | _id (기본 자동 생성 ObjectId)
-JOIN 연산           | Embedded Document (포베딩) 또는 $lookup
+JOIN 연산           | Embedded Document (임베딩) 또는 $lookup
 ```
 
 ---

@@ -80,6 +80,6 @@ OSI 모델은 물리, 데이터링크, 네트워크, 전송, 세션, 표현, 응
 
 ## Ⅴ. OSI 7계층 참조 모델 적용 및 발전을 위한 기술사적 제언
 
-- **네트워크 장애 진단 시 계층적(Top-Down vs Bottom-Up) 트러블슈팅 정립** : 물리 케이블(L1) $ightarrow$ 링크 연결(L2) $ightarrow$ IP 통신(L3) $ightarrow$ 포트 연결(L4) $ightarrow$ 서비스 응답(L7)의 표준 장애 격리 절차 수립 권장.
+- **네트워크 장애 진단 시 계층적(Top-Down vs Bottom-Up) 트러블슈팅 정립** : 물리 케이블(L1) $\rightarrow$ 링크 연결(L2) $\rightarrow$ IP 통신(L3) $\rightarrow$ 포트 연결(L4) $\rightarrow$ 서비스 응답(L7)의 표준 장애 격리 절차 수립 권장.
 - **제로 트러스트 아키텍처 기반 다계층 심층 방어(Defense-in-Depth) 구현** : L2(802.1X), L3(IPsec/방화벽), L4(mTLS), L7(WAF, OAuth2/OIDC) 등 계층별 보안 통제를 유기적으로 결합.
 - **클라우드 서비스 메시(Service Mesh) 환경의 L4/L7 프록시 최적화** : Envoy, Istio 기반 인프라에서 L4 전송 프록시와 L7 인그레스 라우팅의 역할을 명확히 분리하여 사이드카 레이턴시 최소화.

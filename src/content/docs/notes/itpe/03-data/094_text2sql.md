@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 자연어 기반 데이터 질의의 혁신, Text2SQL 개요
 
 ### 가. Text2SQL의 정의
-- 사용자가 일상적인 자연어(Natural Language)로 입력한 비즈니스 질문을 데이터베이스가 이해하고 실행할 수 있는 정형화된 SQL(Structured Query Language) 쿼리로 자동 변환하는 인공지능 기술.
+- **Text2SQL**은 사용자가 일상적인 자연어(Natural Language)로 입력한 비즈니스 질문을 데이터베이스가 이해하고 실행할 수 있는 정형화된 SQL(Structured Query Language) 쿼리로 자동 변환하는 인공지능 기술.
 - 복잡한 SQL 문법과 데이터베이스 스키마 구조를 모르는 비전문가도 데이터에 직접 접근하여 분석할 수 있도록 지원하는 데이터 민주화(Data Democratization)의 핵심 엔진.
 
 ---
@@ -54,7 +54,7 @@ extra:
 
 ---
 
-## Ⅲ. Text2SQL 상용화의 3대 핵심 난제 및 해법
+## Ⅲ. Text2SQL 상용화의 한계점·문제점 및 해결 방안
 
 ### 가. 방대한 DB 스키마와 컨텍스트 창(Context Window) 한계
 - 전사 수천 개 테이블 스키마를 프롬프트에 모두 담을 수 없음 $\rightarrow$ **도메인별 스키마 서브셋 검색(Schema Pruning)** 을 통해 질문과 관련된 상위 5~10개 테이블 DDL만 동적 추출.

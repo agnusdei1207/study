@@ -36,7 +36,7 @@ extra:
 - AR(p) 모델 : X_t = c + phi_1 X_{t-1} + phi_2 X_{t-2} + ... + phi_p X_{t-p} + epsilon_t
   (현재 값은 과거 p개 시점의 자기 자신 값들과 백색잡음의 합)
 
-- MA(q) 모델 : X_t = mu + epsilon_t + 	heta_1 epsilon_{t-1} + 	heta_2 epsilon_{t-2} + ... + 	heta_q epsilon_{t-q}
+- MA(q) 모델 : X_t = mu + epsilon_t + theta_1 epsilon_{t-1} + theta_2 epsilon_{t-2} + ... + theta_q epsilon_{t-q}
   (현재 값은 과거 q개 시점에 발생한 예측 오차(Shock)들의 충격 흡수 합)
 ```
 
@@ -47,7 +47,7 @@ extra:
 모델 유형         ACF (자기상관함수)             PACF (편자기상관함수)
 ------------------------------------------------------------------------
 AR(p)             지수적 감소 또는 감쇠 진동      시차 p 이후 급격히 절단 (Cut-off at p)
-MA(q)             시차 q 이후 급격히 절단         지수적 감소 또는 감쇠 진동 (Cut-off at q)
+MA(q)             시차 q 이후 급격히 절단         지수적 감소 또는 감쇠 진동
 ARMA(p, q)        지수적 감소 (둘 다 절단 없음)    지수적 감소 (둘 다 절단 없음)
 ```
 

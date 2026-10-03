@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 통계적 추론에서의 불편추정량(Unbiased Estimator) 개요
 
 ### 가. 불편추정량의 정의
-- 모집단의 모수(Parameter) $\theta$를 추정하기 위해 표본으로부터 계산된 추정량(Estimator) $\hat{\theta}$의 기댓값이 모수 $\theta$와 정확히 일치하는 추정량.
+- **불편추정량**은 모집단의 모수(Parameter) $\theta$를 추정하기 위해 표본으로부터 계산된 추정량(Estimator) $\hat{\theta}$의 기댓값이 모수 $\theta$와 정확히 일치하는 추정량.
 - 즉, $E(\hat{\theta}) = \theta$를 만족하여, 추정 과정에서 체계적인 편향(Bias)이 0임을 수학적으로 보장하는 통계량.
 
 ### 나. 불편성의 수식적 정의와 편향(Bias)
@@ -31,9 +31,9 @@ extra:
 
 ```text
 [ 표본평균 vs 표본분산의 불편성 ]
-1. 표본평균 ar{X} : E(ar{X}) = mu  ---> 증명 없이도 자연스럽게 불편추정량 성립
-2. 모분산 추정 시  : S_n^2 = (1/n) sum (X_i - ar{X})^2  ---> E(S_n^2) = ((n-1)/n) sigma^2 (과소추정 발생)
-3. 불편 표본분산   : S^2   = (1/(n-1)) sum (X_i - ar{X})^2 ---> E(S^2) = sigma^2 (불편성 만족)
+1. 표본평균 X-bar : E(X-bar) = mu  ---> 증명 없이도 자연스럽게 불편추정량 성립
+2. 모분산 추정 시  : S_n^2 = (1/n) sum (X_i - X-bar)^2  ---> E(S_n^2) = ((n-1)/n) sigma^2 (과소추정 발생)
+3. 불편 표본분산   : S^2   = (1/(n-1)) sum (X_i - X-bar)^2 ---> E(S^2) = sigma^2 (불편성 만족)
 ```
 
 ### 나. 표본분산에서 분모가 $n$이 아닌 $n-1$인 이유 (자유도 손실)
@@ -54,10 +54,10 @@ extra:
 
 ```text
 [ 우수 추정량의 4대 조건 ]
-1. 불편성 (Unbiasedness)    : E(hat{	heta}) = 	heta (편향 없음)
-2. 효율성 (Efficiency)       : Var(hat{	heta})가 다른 추정량보다 최소 (분산 최소)
-3. 일치성 (Consistency)      : 표본 수 n -> infty 일 때 hat{	heta}가 	heta로 확률 수렴
-4. 충분성 (Sufficiency)      : hat{	heta}가 표본에 포함된 모수 	heta의 모든 정보를 내포
+1. 불편성 (Unbiasedness)    : E(theta-hat) = theta (편향 없음)
+2. 효율성 (Efficiency)       : Var(theta-hat)가 다른 추정량보다 최소 (분산 최소)
+3. 일치성 (Consistency)      : 표본 수 n -> infty 일 때 theta-hat가 theta로 확률 수렴
+4. 충분성 (Sufficiency)      : theta-hat가 표본에 포함된 모수 theta의 모든 정보를 내포
 ```
 
 ### 나. 최소분산 불편추정량(MVUE)과 크라메르-라오 하한(CRLB)

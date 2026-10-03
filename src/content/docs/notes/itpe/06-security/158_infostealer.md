@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. 인포스틸러(Infostealer)의 핵심 아키텍처 및 동작 메커니즘
 
-인포스틸러(RedLine, Vidar, Racoon, Lumma 등)는 불법 크랙 소프트웨어, 피싱 메일, 구글 광고(SEO 포이즈닝)를 통해 유포되며, 브라우저 SQLite DB를 복호화하여 데이터를 유출함.
+인포스틸러(RedLine, Vidar, Raccoon, Lumma 등)는 불법 크랙 소프트웨어, 피싱 메일, 구글 광고(SEO 포이즈닝)를 통해 유포되며, 브라우저 SQLite DB를 복호화하여 데이터를 유출함.
 
 ```text
 [ 인포스틸러의 자격증명 탈취 메커니즘 및 다크웹 유통 생태계 ]
@@ -59,7 +59,7 @@ extra:
 - **브라우저 DPAPI 복호화** : 크롬, 엣지 등 크로미움 기반 브라우저가 사용자 비밀번호로 보호하는 DPAPI(Data Protection API) 마스터 키를 메모리에서 훔쳐 저장된 비밀번호와 쿠키를 즉각 평문 복호화.
 - **세션 하이재킹(Pass-the-Cookie)** : 비밀번호를 몰라도 탈취한 세션 쿠키를 브라우저에 주입(Cookie Injection)하면 MFA 인증을 완벽히 우회하여 정상 사용자로 세션 즉시 장악.
 - **초기 침투 브로커(IAB: Initial Access Broker) 연계** : 인포스틸러 운영자는 탈취한 자격증명 로그를 랜섬웨어 갱단에게 판매하여 기업 내부망 침투의 발판을 제공하는 BaaS(Botnet-as-a-Service) 범죄 분업화.
-- **정보스틸러 주요 패밀리** : RedLine Stealer, Vidar, Raccoon, Lumma Stealer, Agent Tesla 등이 있으며 지속적인 난독화와 패커를 적용하여 시그니처 백신 탐지 회피.
+- **인포스틸러 주요 패밀리** : RedLine Stealer, Vidar, Raccoon, Lumma Stealer, Agent Tesla 등이 있으며 지속적인 난독화와 패커를 적용하여 시그니처 백신 탐지 회피.
 
 ## Ⅲ. 인포스틸러(Infostealer)의 세부 구성 요소 및 비교 분석
 

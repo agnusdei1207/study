@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 스마트 실내 공간 정보의 표준, IMDF의 개요
 
 ### 가. IMDF(Indoor Mapping Data Format)의 정의
-- 공항, 쇼핑몰, 병원, 대형 전시장 등 복잡한 실내 공간의 구조(층, 방, 통로, 출입구, 편의시설 등)를 디지털 지도로 모델링하고 모바일 및 웹 애플리케이션에서 상호 운용할 수 있도록 OGC(Open Geospatial Consortium)에서 커뮤니티 표준으로 제정한 GeoJSON 기반의 데이터 교환 포맷.
+- **IMDF**는 공항, 쇼핑몰, 병원, 대형 전시장 등 복잡한 실내 공간의 구조(층, 방, 통로, 출입구, 편의시설 등)를 디지털 지도로 모델링하고 모바일 및 웹 애플리케이션에서 상호 운용할 수 있도록 OGC(Open Geospatial Consortium)에서 커뮤니티 표준으로 제정한 GeoJSON 기반의 데이터 교환 포맷.
 - 애플(Apple)에 의해 초기 개발되어 실내 위치 추적(Indoor Positioning) 및 내비게이션의 산업 표준으로 안착함.
 
 ### 나. 실외 GIS(GPS)와 실내 매핑(IMDF)의 핵심 차이

@@ -25,7 +25,7 @@ extra:
 │ [ 엔터프라이즈 시스템 4대 계층 성능 튜닝 프레임워크 ]                  │
 │                                                                        │
 │   [ 1. 애플리케이션 계층 (Application Tier) ]                          │
-│    - 비효율적 알고리즘 개선 ($O(N^2) ightarrow O(N \log N)$)          │
+│    - 비효율적 알고리즘 개선 (O(N^2) -> O(N log N))          │
 │    - 캐싱(Redis/Local) 도입, 비동기 논블로킹(Event-Driven) I/O 전환    │
 │    - 불필요한 동기화 락 경합 제거, 연결 풀(Connection Pool) 최적화     │
 │                     │                                                  │

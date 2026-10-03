@@ -66,7 +66,7 @@ extra:
 
 - **L2 롤업 중앙화 시퀀서 다운 및 거래 검열(Censorship) 위험** :
   - **한계점** : L2 롤업의 중앙화된 시퀀서(Sequencer) 다운 시 전체 트랜잭션 중단 및 거래 검열(Censorship) 위험.
-  - **해결 방안** : Espressso, Astria 등 탈중앙 공유 시퀀서 네트워크 도입 및 L1 비상 강제 트랜잭션 제출(Escape Hatch) 보장.
+  - **해결 방안** : Espresso, Astria 등 탈중앙 공유 시퀀서 네트워크 도입 및 L1 비상 강제 트랜잭션 제출(Escape Hatch) 보장.
 - **원장 상태 팽창(State Bloat)으로 인한 일반 노드 검증 이탈** :
   - **한계점** : 원장 데이터 누적으로 인한 풀 노드 디스크 팽창(State Bloat)으로 일반 사용자의 검증 참여 불가.
   - **해결 방안** : EIP-4844 Blob 트랜잭션 기반의 18일 후 콜데이터 자동 폐기 및 히스토리 데이터 분산 저장(Portal Network) 적용.

@@ -88,5 +88,5 @@ extra:
 ## Ⅴ. 쿠버네티스(Kubernetes) 적용 및 발전을 위한 기술사적 제언
 
 - **플랫폼 엔지니어링(IDP: Internal Developer Platform) 연계** : 개발자가 복잡한 K8s 매니페스트를 직접 다루지 않도록 Backstage 기반의 셀프서비스 개발자 포털 구축 권장.
-- **KEDA 기반의 지능형 오토스케일링 고도화** : 전통적인 CPU/메모리 기반 HPA 한계를 벗어나 비동기 큐 랭크(Kafka Lag) 및 비즈니스 메트릭 기반 선제적 스케일링 체계 도입 필요.
+- **KEDA 기반의 지능형 오토스케일링 고도화** : 전통적인 CPU/메모리 기반 HPA 한계를 벗어나 비동기 큐 지연(Kafka Lag) 및 비즈니스 메트릭 기반 선제적 스케일링 체계 도입 필요.
 - **AI/ML 워크로드 지원을 위한 GPU 슬라이싱 스케줄링** : LLM 학습 및 서빙을 위해 NVIDIA MIG(Multi-Instance GPU) 및 vGPU 스케줄러를 결합하여 GPU 자원 가동률 극대화.

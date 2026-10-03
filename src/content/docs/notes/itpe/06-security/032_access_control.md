@@ -65,7 +65,7 @@ extra:
 | 1. 식별 | Who are you? | 사용자 계정명, 사번, API 클라이언트 ID | 계정 열거(Account Enumeration) |
 | 2. 인증 | Prove it! | 비밀번호, FIDO2, OTP, PKI 인증서 | 브루트포스, 크리덴셜 스터핑, 피싱 |
 | 3. 인가 | What can you do? | ACL, RBAC 역할, ABAC XACML 정책 | 권한 상승(Privilege Escalation), IDOR |
-| 4. 책임추적성 | What did you do? | Syslog, 감사 데몬(auditd), SIEM | 로그 삭제, 감사 기능 비활성화, 타임스톰프 |
+| 4. 책임추적성 | What did you do? | Syslog, 감사 데몬(auditd), SIEM | 로그 삭제, 감사 기능 비활성화, 타임스탬프 |
 
 - 어느 한 단계라도 결함이 존재하면 전체 접근통제 체인이 붕괴되므로(예: 인증은 성공했으나 권한 인가 체크 누락 시 타인 데이터 무단 조회 발생), 4개 단계가 유기적인 체인으로 결합되어야 함.
 

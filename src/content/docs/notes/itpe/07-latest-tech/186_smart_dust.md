@@ -43,7 +43,7 @@ extra:
                           [중앙 기지국 (Base Station)]
 ```
 
-- **센싱 부 (Sensor)** : MEMS 실리콘 센서, 마이크로 캐패시터 - 물리적 상태 변화를 미세 전전용량 또는 전압 변위로 변환 계측.
+- **센싱 부 (Sensor)** : MEMS 실리콘 센서, 마이크로 캐패시터 - 물리적 상태 변화를 미세 정전용량 또는 전압 변위로 변환 계측.
 - **연산 제어 부 (Processor)** : ARM Cortex-M0+, TinyOS, Contiki - 이벤트 구동 방식으로 유휴 시 Deep Sleep 유지 및 센서 인터럽트 처리.
 - **광학 통신 부 (Optical/CCR)** : Corner Cube Retroreflector, 거울 액추에이터 - 능동 발광체 없이 기지국 레이저 빔을 물리적으로 반사 온/오프 변조.
 - **전원 관리 부 (Power)** : MEMS 열전 소자, 박막 태양광 패널, PMIC - 외부 에너지를 나노와트 단위로 수집·축전하고 승압 회로로 동작 전압 제공.

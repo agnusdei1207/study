@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. AAIF (Agentic AI Foundation)·AGENTS.md의 핵심 아키텍처 및 동작 메커니즘
 
-AAIF은(는) 저장소 루트/하위 경로의 AGENTS.md 탐색 $\rightarrow$ 에이전트 컨텍스트 윈도우에 지침 주입 $\rightarrow$ 모델의 계획 수립 및 MCP(Model Context Protocol) 도구 호출 $\rightarrow$ 런타임 보안 샌드박스 정책 검증 $\rightarrow$ 격리 환경 내 코드 변경 집행 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+AAIF는 저장소 루트/하위 경로의 AGENTS.md 탐색 $\rightarrow$ 에이전트 컨텍스트 윈도우에 지침 주입 $\rightarrow$ 모델의 계획 수립 및 MCP(Model Context Protocol) 도구 호출 $\rightarrow$ 런타임 보안 샌드박스 정책 검증 $\rightarrow$ 격리 환경 내 코드 변경 집행 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 +-------------------------------------------------------------------------------------------------+
@@ -50,7 +50,7 @@ AAIF은(는) 저장소 루트/하위 경로의 AGENTS.md 탐색 $\rightarrow$ �
 | 범용 호환성 | 에이전트 엔진 독립적 (오픈 규격) | API 호출 클라이언트에 종속 | Cursor 생태계에 제한 | MCP 지원 에이전트에 호환 |
 | 표현 형식 | 순수 Markdown 문서 | 자연어 텍스트 / JSON | Markdown 또는 독자 DSL | JSON-RPC 2.0 구조화 데이터 |
 
-- AAIF은(는) 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
+- AAIF는 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
 
 ## Ⅳ. AAIF (Agentic AI Foundation)·AGENTS.md의 주요 한계점 및 해결 방안
 

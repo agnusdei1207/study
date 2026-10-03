@@ -84,4 +84,4 @@ extra:
 
 - **비즈니스 티어링에 입각한 엄격한 적용 대상 선정** : 모든 서비스를 Active-Active로 구축하는 과잉 엔지니어링을 지양하고, 초당 수억 원의 매출이 발생하는 결제/계좌 코어 서비스에만 선별 적용.
 - **정기적인 리전 카나리 차단(GameDay) 훈련 의무화** : 운영 환경에서 한 리전의 라우팅을 예고 없이 강제 단절시켜 잔여 리전이 완전 무중단으로 트래픽을 흡수하는지 실증 검증.
-- **구글 Spanner / AWS Aurora Global의 특성 이해 및 최적 선택** : 완벽한 외부 정밀도(External Consistency)가 필요하면 Spanner를, 높은 읽기 처리량과 비용 효율이 우선이면 Aurora Global DB를 채택하는 기술사적 판단 필수.
+- **구글 Spanner / AWS Aurora Global의 특성 이해 및 최적 선택** : 완벽한 외부 일관성(External Consistency)가 필요하면 Spanner를, 높은 읽기 처리량과 비용 효율이 우선이면 Aurora Global DB를 채택하는 기술사적 판단 필수.

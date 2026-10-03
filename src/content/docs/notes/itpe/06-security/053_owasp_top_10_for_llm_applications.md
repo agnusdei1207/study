@@ -33,9 +33,8 @@ OWASP Top 10 for LLM은 프롬프트 주입(LLM01)부터 취약한 출력 처리
          ┌───────────────────────┴───────────────────────┐
          ▼                                               ▼
   [ 모델 및 파이프라인 계층 ]                     [ 데이터 및 공급망 계층 ]
-  - LLM04: Model DoS (자원 고갈 공격)             - LLM03: Training Data Poisoning
-  - LLM09: Overreliance (환각 맹신)               - LLM05: Supply Chain Vulnerabilities
-  - LLM10: Model Theft (모델 추출/도난)           - LLM06: Sensitive Info Disclosure
+  - LLM10: Unbounded Consumption (자원 고갈, DoS)   - LLM03: Supply Chain
+  - LLM09: Misinformation (환각 맹신)             - LLM04: Data and Model Poisoning
          │                                               │
          └───────────────────────┬───────────────────────┘
                                  │
@@ -43,9 +42,10 @@ OWASP Top 10 for LLM은 프롬프트 주입(LLM01)부터 취약한 출력 처리
   +-------------------------------------------------------------+
   |            모델 출력 및 도구 실행 계층 (Output & Tools)      |
   |  - LLM02: Sensitive Info Disclosure (민감 데이터 유출)      |
+  |  - LLM05: Improper Output Handling (출력 무검증 처리)       |
+  |  - LLM06: Excessive Agency (과도한 권한 대리 실행)          |
   |  - LLM07: System Prompt Leakage (시스템 프롬프트 노출)       |
   |  - LLM08: Vector and Embedding Weaknesses (RAG 임베딩 오염) |
-  |  - (과도한 권한 대리 실행 / 비인가 도구 호출 취약점)         |
   +-------------------------------------------------------------+
 ```
 

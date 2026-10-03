@@ -30,7 +30,7 @@ extra:
 
 ```text
 [ 고차원 벡터 유사도 측정 방식 ]
-1. 코사인 유사도 (Cosine)     : cos(	heta) = (A cdot B) / (||A|| * ||B||) -> 방향성 일치 측정 (-1 ~ 1)
+1. 코사인 유사도 (Cosine)     : cos(theta) = (A cdot B) / (||A|| * ||B||) -> 방향성 일치 측정 (-1 ~ 1)
 2. 유클리디안 거리 (L2)       : d(A, B) = sqrt{sum (A_i - B_i)^2}         -> 절대적 직선 거리
 3. 내적 (Dot Product / IP)   : A cdot B = sum A_i * B_i                  -> 정규화 벡터 시 코사인과 동일
 ```

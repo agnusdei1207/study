@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. 딥러닝(Deep Learning)의 핵심 아키텍처 및 동작 메커니즘
 
-딥러닝은(는) 순전파(Feedforward) 연산으로 출력 및 손실(Loss) 계산 $\rightarrow$ 연쇄 법칙(Chain Rule) 기반 역전파(Backpropagation) 기울기 산출 $\rightarrow$ 옵티마이저(Adam, SGD 등)를 통한 가중치(Weight) 반복 갱신 $\rightarrow$ 최적 손실 수렴 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+딥러닝은 순전파(Feedforward) 연산으로 출력 및 손실(Loss) 계산 $\rightarrow$ 연쇄 법칙(Chain Rule) 기반 역전파(Backpropagation) 기울기 산출 $\rightarrow$ 옵티마이저(Adam, SGD 등)를 통한 가중치(Weight) 반복 갱신 $\rightarrow$ 최적 손실 수렴 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 +-------------------------------------------------------------------------------------------------+
@@ -56,7 +56,7 @@ extra:
 | 해석 가능성 (XAI) | 상대적으로 직관적 해석 가능 (의사결정나무 등) | 수천만~수천억 파라미터 기반 블랙박스(Black-box) |
 | 대표 알고리즘 | SVM, Random Forest, XGBoost, LightGBM | CNN, RNN/LSTM, Transformer, VAE, Diffusion |
 
-- 딥러닝은(는) 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
+- 딥러닝은 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
 
 ## Ⅳ. 딥러닝(Deep Learning)의 주요 한계점 및 해결 방안
 

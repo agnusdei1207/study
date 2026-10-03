@@ -23,7 +23,7 @@ extra:
 현대 클라우드 보안 아키텍처는 클라우드 네이티브 애플리케이션 보호 플랫폼(CNAPP)을 중심으로 CSPM, CWPP, CIEM이 통합된 단일 파이프라인으로 동작함.
 
 ```text
-[ 통합 클라우드 보안 플랫폼 (CNAPP: Cloud Native Protection Platform) ]
+[ 통합 클라우드 보안 플랫폼 (CNAPP: Cloud Native Application Protection Platform) ]
 
  +--------------------------------------------------------------------------+
  |                      CNAPP (통합 클라우드 네이티브 보안 플랫폼)          |

@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 비지도 학습 기반 군집분석(Cluster Analysis)의 개요
 
 ### 가. 군집분석의 정의
-- 레이블(Target Label)이 없는 다차원 데이터셋에서 개체 간의 유사도(Similarity) 또는 거리(Distance)를 측정하여, 유사한 속성을 가진 객체들을 동일 군집으로 묶고 상이한 객체들은 서로 다른 군집으로 분할하는 비지도 학습(Unsupervised Learning) 기법.
+- **군집분석**은 레이블(Target Label)이 없는 다차원 데이터셋에서 개체 간의 유사도(Similarity) 또는 거리(Distance)를 측정하여, 유사한 속성을 가진 객체들을 동일 군집으로 묶고 상이한 객체들은 서로 다른 군집으로 분할하는 비지도 학습(Unsupervised Learning) 기법.
 - 고객 세분화(Customer Segmentation), 이상치 탐지(Anomaly Detection), 문서 분류, 공간 데이터 분석 등 데이터 탐색 및 전처리의 핵심 수단.
 
 ### 나. 군집분석의 핵심 원칙

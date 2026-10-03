@@ -46,7 +46,7 @@ CDMA는 원시 데이터 신호에 높은 칩 레이트(Chip Rate)의 직교 코
 ```
 
 - **직접 확산 방식(DSSS)** : 원래 데이터 신호에 칩 속도가 훨씬 빠른 확산 부호를 직접 곱하여 신호 대역폭을 수십 배 이상 넓게 확산 전송.
-- **왈시 코드(Walsh Code)** : 순방향 링크(기지국 $ightarrow$ 단말)에서 상호 간섭을 완전히 배제하기 위해 사용되는 완벽한 수학적 직교(Orthogonal) 코드.
+- **왈시 코드(Walsh Code)** : 순방향 링크(기지국 $\rightarrow$ 단말)에서 상호 간섭을 완전히 배제하기 위해 사용되는 완벽한 수학적 직교(Orthogonal) 코드.
 - **PN 코드(Pseudo-Noise Code)** : 역방향 링크 및 기지국 식별에 사용되며, 백색 잡음과 유사한 통계적 성질을 가지는 의사 불규칙 부호.
 - **레이크 수신기(Rake Receiver)** : 이동통신 환경의 다중 경로 페이딩(Multipath Fading) 신호를 여러 핑거(Finger)로 독립 수신한 후 위상을 맞추어 합성(Maximal Ratio Combining)함으로써 다이버시티 이득 획득.
 - **고속 전력 제어(Fast Power Control)** : 원근 문제(Near-Far Problem)를 해결하기 위해 기지국이 초당 800회 이상 단말의 송신 전력을 밀리초 단위로 미세 조절.

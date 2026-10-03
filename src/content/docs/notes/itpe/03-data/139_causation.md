@@ -33,7 +33,7 @@ extra:
 개체(i)에 대하여:
   - Y_i(1) : 처치를 받았을 때(T=1) 나타날 잠재적 결과
   - Y_i(0) : 처치를 받지 않았을 때(T=0) 나타날 잠재적 결과
-  * 개별 인과 효과 (Individual Treatment Effect) : 	au_i = Y_i(1) - Y_i(0)
+  * 개별 인과 효과 (Individual Treatment Effect) : tau_i = Y_i(1) - Y_i(0)
 ```
 
 - **인과추론의 근본적 문제 (Fundamental Problem of Causal Inference)** : 현실 세계에서는 동일한 개체에 대해 $Y_i(1)$과 $Y_i(0)$ 중 오직 하나만 관측 가능하며, 다른 하나는 관측 불가능한 **반사실(Counterfactual)** 로 남음.
@@ -54,7 +54,7 @@ extra:
 
 ---
 
-## Ⅲ. 관측 데이터에서의 4대 준실험(Quasi-Experiment) 인과추론 기법
+## Ⅲ. 실험 및 준실험(Quasi-Experiment) 기반 4대 인과추론 기법
 
 | 방법론 | 핵심 작동 메커니즘 | 적용 조건 및 강점 | 한계 및 주의사항 |
 | :--- | :--- | :--- | :--- |

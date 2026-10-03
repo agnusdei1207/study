@@ -19,13 +19,13 @@ extra:
 - 독일의 수학자 카를 프리드리히 가우스의 이름을 따서 **가우스 분포(Gaussian Distribution)** 라고도 불림.
 
 ### 나. 확률밀도함수(PDF)의 수식적 정의
-$$f(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right) \quad (-infty < x < infty)$$
+$$f(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right) \quad (-\infty < x < \infty)$$
 
 ---
 
 ## Ⅱ. 정규분포의 핵심 수학적 특성 및 경험적 규칙
 
-### 가. 정규분포의 5대 기본 성질
+### 가. 정규분포의 4대 기본 성질
 1. **대칭성** : $x = \mu$를 축으로 완벽히 대칭이며, **평균 = 중앙값 = 최빈값** 이 일치함.
 2. **전체 면적** : 곡선 아래의 총 면적(전체 확률의 합)은 정확히 **$1$**.
 3. **변곡점** : 곡선의 변곡점은 $x = \mu - \sigma$와 $x = \mu + \sigma$에 위치함.

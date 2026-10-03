@@ -64,7 +64,7 @@ NFT 마켓플레이스 보안은 온체인(스마트 컨트랙트, 블록체인 
 
 - **과도한 지갑 승인 권한(SetApprovalForAll) 남용을 통한 전량 탈취** :
   - **한계점** : 사용자가 피싱 사이트나 마켓플레이스 UI에서 'SetApprovalForAll' 트랜잭션에 서명할 경우, 지갑 내 보유한 모든 NFT의 전송 권한이 해커에게 영구 위임되는 사고 빈발.
-  - **해결 방안** : EIP-2612 및 EIP-712 기반의 단일 NFT 지정 및 시간 제한형 승인(Time-bound Approval) 인터페이스를 강제하고, 트랜잭션 시뮬레이션(Blowfish, PocketUniverse) 도구 내재화.
+  - **해결 방안** : ERC-4494(NFT Permit) 및 EIP-712 기반의 단일 NFT 지정 및 시간 제한형 승인(Time-bound Approval) 인터페이스를 강제하고, 트랜잭션 시뮬레이션(Blowfish, PocketUniverse) 도구 내재화.
 - **중앙화 웹 서버 기반 TokenURI의 메타데이터 교체 사기(Rug Pull)** :
   - **한계점** : 스마트 컨트랙트의 `tokenURI`가 일반 HTTPS 웹 서버 URL을 가리킬 경우, 프로젝트 개발자가 서버의 이미지나 JSON을 저가 이미지로 임의 변경하거나 서버 폐쇄.
   - **해결 방안** : 콘텐츠 주소화(Content-Addressing)를 지원하는 IPFS CID(Content Identifier)를 온체인 컨트랙트에 변경 불가능(Immutable)하도록 고정하고 메타데이터 프리징 함수 강제.

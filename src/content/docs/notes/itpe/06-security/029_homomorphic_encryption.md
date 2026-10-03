@@ -45,7 +45,7 @@ extra:
 - **부분동형암호(PHE, Partially Homomorphic)** : 덧셈(Paillier) 또는 곱셈(RSA) 중 단 한 가지 연산만을 무제한 지원하는 초기 형태.
 - **중간동형암호(SHE, Somewhat Homomorphic)** : 덧셈과 곱셈을 모두 지원하지만 잡음 누적으로 인해 곱셈 횟수가 수 회로 엄격히 제한되는 형태.
 - **완전동형암호(FHE, Fully Homomorphic)** : 2009년 Craig Gentry가 제안하였으며, 부트스트래핑을 통해 잡음을 초기화하여 덧셈과 곱셈을 무제한 수행 가능.
-- **근사 동형암호(CKKS 스킴)** : 실수(Real Number) 벡터의 근사 연산을 고속으로 지원하여 혜안(HeaAn) 등 AI/머신러닝 신경망 추론에 최적화된 사실상의 표준 스킴.
+- **근사 동형암호(CKKS 스킴)** : 실수(Real Number) 벡터의 근사 연산을 고속으로 지원하여 혜안(HEaaN) 등 AI/머신러닝 신경망 추론에 최적화된 사실상의 표준 스킴.
 
 ## Ⅲ. 동형암호(Homomorphic Encryption)의 세부 구성 요소 및 비교 분석
 

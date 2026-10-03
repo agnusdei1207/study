@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 대규모 비정형 데이터 처리를 위한 NoSQL의 개요
 
 ### 가. NoSQL(Not Only SQL)의 정의
-- 관계형 데이터 모델(RDBMS)의 엄격한 ACID 트랜잭션 및 고정 스키마 한계를 극복하고, 수평적 확장성(Scale-Out)과 고성능 읽기·쓰기를 지원하는 비관계형 분산 데이터 저장소 기술.
+- **NoSQL**는 관계형 데이터 모델(RDBMS)의 엄격한 ACID 트랜잭션 및 고정 스키마 한계를 극복하고, 수평적 확장성(Scale-Out)과 고성능 읽기·쓰기를 지원하는 비관계형 분산 데이터 저장소 기술.
 - 웹 스케일 트래픽, 비정형/반정규화 데이터, 유연한 스키마 변경 요구를 수용하기 위해 CAP 정리 기반의 BASE(Basically Available, Soft-state, Eventually consistent) 특성을 채택함.
 
 ### 나. RDBMS 대비 NoSQL의 주요 패러다임 변화
