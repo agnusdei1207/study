@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. SBOM(Software Bill of Materials)의 개요
 
-- 개념 : 소프트웨어를 구성하는 모든 오픈소스 라이브러리, 상용 컴포넌트, 종속성 모듈, 라이선스, 버전 정보 및 패치 이력을 기계 판독 가능한 표준 형식으로 명세화한 소프트웨어 자재명세서.
-- 배경 및 필요성 : SolarWinds, Log4j(Log4Shell), XZ Utils 백도어 등 소프트웨어 공급망(Supply Chain)을 노린 침해사고가 급증함에 따라, 미 행정명령(EO 14028) 및 국내 SW 공급망 가이드라인을 통해 SBOM 제출이 의무화되는 추세.
-- 핵심 목적 : SW 공급망 전주기 투명성(Transparency) 확보, 컴포넌트 내 잠재 취약점(CVE)의 신속한 추적 및 식별, 오픈소스 라이선스 위반 법적 리스크 방지.
+- 개념 : 소프트웨어를 구성하는 모든 오픈소스 라이브러리, 상용 컴포넌트, 종속성 모듈, 라이선스, 버전 정보 및 패치 이력을 기계 판독 가능한 표준 형식으로 명세화한 **소프트웨어 자재명세서** (SBOM).
+- 배경 및 필요성 : SolarWinds, Log4j(Log4Shell), XZ Utils 백도어 등 **소프트웨어 공급망** (Supply Chain)을 노린 침해사고가 급증함에 따라, **미 행정명령** (EO 14028) 및 국내 SW 공급망 가이드라인을 통해 SBOM 제출이 의무화되는 추세.
+- 핵심 목적 : SW 공급망 전주기 **투명성** (Transparency) 확보, 컴포넌트 내 **잠재 취약점** (CVE)의 신속한 추적 및 식별, 오픈소스 라이선스 위반 법적 리스크 방지.
 
 ## Ⅱ. SBOM(Software Bill of Materials)의 핵심 아키텍처 및 동작 메커니즘
 
-SBOM은 소프트웨어 빌드 및 배포 파이프라인에서 자동으로 생성(Generate)되며, 취약점 데이터베이스와 매핑(Analyze)된 후 취약성 악용 가능성 정보(VEX)와 함께 지속 관리(Operate)됨.
+SBOM은 소프트웨어 빌드 및 배포 파이프라인에서 자동으로 생성(Generate)되며, 취약점 데이터베이스와 매핑(Analyze)된 후 **취약성 악용 가능성 정보** (VEX)와 함께 지속 관리(Operate)됨.
 
 ```text
 [ CI/CD 파이프라인 연계 SBOM 생성 및 수명주기 관리 ]
@@ -44,10 +44,10 @@ SBOM은 소프트웨어 빌드 및 배포 파이프라인에서 자동으로 생
   [ 런타임 클라우드 배포 (Kubernetes) ] -> [ 런타임 공급망 드리프트 감시 ]
 ```
 
-- **컴포넌트 식별(Component Identification)** : 패키지 URL(purl) 및 CPE(Common Platform Enumeration)를 사용하여 SW 부품의 명칭, 버전, 제조사, 해시값 식별.
-- **종속성 관계 그래프(Dependency Graph)** : 1차 직접 의존성뿐 아니라 2차, N차 전이적 종속성(Transitive Dependencies) 관계를 계층 트리로 구성.
+- **컴포넌트 식별** (Component Identification) : 패키지 URL(purl) 및 CPE(Common Platform Enumeration)를 사용하여 SW 부품의 명칭, 버전, 제조사, 해시값 식별.
+- **종속성 관계 그래프** (Dependency Graph) : 1차 직접 의존성뿐 아니라 2차, N차 전이적 종속성(Transitive Dependencies) 관계를 계층 트리로 구성.
 - **표준 포맷 직렬화** : SPDX(ISO/IEC 5962 표준) 또는 CycloneDX(OWASP 주도 클라우드 네이티브 표준) 기반의 JSON/XML 형식으로 출력.
-- **VEX(취약점 악용 정보) 연계** : CVE가 포함된 모듈이라도 실제 실행 경로에서 호출되지 않아 취약하지 않음을 증명(not_affected)하는 VEX 문서 결합 관리.
+- **VEX** (취약점 악용 정보) 연계 : CVE가 포함된 모듈이라도 실제 실행 경로에서 호출되지 않아 취약하지 않음을 증명(not_affected)하는 VEX 문서 결합 관리.
 
 ## Ⅲ. SBOM(Software Bill of Materials)의 세부 구성 요소 및 비교 분석
 
@@ -65,13 +65,13 @@ SBOM은 소프트웨어 빌드 및 배포 파이프라인에서 자동으로 생
 
 - 동적 런타임 종속성 및 C/C++ 정적 빌드 컴포넌트 누락 위험 :
   - 한계점 : 소스코드 패키지 매니저(Maven, npm)만 분석할 경우 런타임 플러그인 로딩이나 C/C++ 정적 링크 라이브러리가 SBOM 생성에서 누락되는 'BOM 블라인드 스팟' 발생.
-  - 해결 방안 : 소스 정적 분석과 함께 바이너리 역공학 스캐닝(Binary SCA) 및 eBPF 기반 런타임 동적 프로세스 로딩 추적을 결합하여 하이브리드 SBOM 추출.
+  - 해결 방안 : 소스 정적 분석과 함께 **바이너리 역공학 스캐닝** (Binary SCA) 및 **eBPF** 기반 런타임 동적 프로세스 로딩 추적을 결합하여 하이브리드 SBOM 추출.
 - 취약점 알림 폭증(False Positive)과 **보안 피로도** (Alert Fatigue) :
   - 한계점 : SBOM 분석 결과 다수의 CVE가 식별되지만 실제 코드에서 사용되지 않는 불감 취약점(Unreachable Code)으로 인해 개발자의 패치 업무 마비.
-  - 해결 방안 : VEX(Vulnerability Exploitability eXchange) 프레임워크를 의무화하여 도달 가능성 분석(Call Graph Reachability Analysis)을 통해 실제 침해 가능한 취약점만 우선 조치.
+  - 해결 방안 : VEX(Vulnerability Exploitability eXchange) 프레임워크를 의무화하여 **도달 가능성 분석** (Call Graph Reachability Analysis)을 통해 실제 침해 가능한 취약점만 우선 조치.
 - SBOM 자체의 위변조 및 공급망 역공격 위험 :
   - 한계점 : 공격자가 빌드 파이프라인을 해킹하여 악성코드를 삽입한 후 SBOM 문서는 정상 라이브러리만 기재하여 검증을 우회하는 위변조 위협 존재.
-  - 해결 방안 : Sigstore(Cosign) 및 In-Toto 프레임워크를 파이프라인에 통합하여 SBOM 파일에 개발사 디지털 서명을 부여하고, 불변 렛저(Rekor)에 투명성 로그 기록.
+  - 해결 방안 : **Sigstore** (Cosign) 및 **In-Toto** 프레임워크를 파이프라인에 통합하여 SBOM 파일에 개발사 디지털 서명을 부여하고, 불변 렛저(Rekor)에 투명성 로그 기록.
 
 ## Ⅴ. SBOM(Software Bill of Materials) 적용 및 발전을 위한 기술사적 제언
 

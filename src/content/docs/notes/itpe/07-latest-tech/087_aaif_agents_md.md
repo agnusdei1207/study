@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. AAIF (Agentic AI Foundation)·AGENTS.md의 개요
 
-- 개념 : 자율 AI 에이전트 생태계의 상호운용성을 위한 Linux Foundation 산하 재단(AAIF)과, 소프트웨어 저장소의 개발 맥락을 에이전트에 전달하는 표준 마크다운 규격(AGENTS.md)
-- 배경 및 필요성 : 단순 마크다운 선언문은 법적·물리적 강제력이 없어 간접 프롬프트 주입(Indirect Prompt Injection)에 취약하므로 OS 컨테이너 샌드박스 격리, RBAC 도구 실행 권한 통제, 정적 코드 분석 CI 게이트 병용 필수.
+- 개념 : 자율 AI 에이전트 생태계의 상호운용성을 위한 **Linux Foundation** 산하 재단(AAIF)과, 소프트웨어 저장소의 개발 맥락을 에이전트에 전달하는 **표준 마크다운 규격** (AGENTS.md)
+- 배경 및 필요성 : 단순 마크다운 선언문은 법적·물리적 강제력이 없어 **간접 프롬프트 주입** (Indirect Prompt Injection)에 취약하므로 OS 컨테이너 **샌드박스** 격리, **RBAC** 도구 실행 권한 통제, 정적 코드 분석 **CI 게이트** 병용 필수.
 - 핵심 목적 : 에이전트 벤더 종속(Lock-in) 탈피, 프로젝트별 컨텍스트 파편화 해소, AI 코딩 에이전트의 환각 방지 및 안전하고 일관된 코드 생성 보장
 
 ## Ⅱ. AAIF (Agentic AI Foundation)·AGENTS.md의 핵심 아키텍처 및 동작 메커니즘
@@ -38,7 +38,7 @@ AAIF는 저장소 루트/하위 경로의 AGENTS.md 탐색 $\rightarrow$ 에이�
 ```
 
 - **AGENTS.md** : OpenAI 주도 오픈소스 - 저장소의 아키텍처 지침, 코딩 컨벤션, 빌드/테스트 명령의 표준 마크다운 선언 규격
-- **MCP (Model Context Protocol)** : Anthropic 주도 오픈소스 - LLM과 로컬 개발 툴, IDE, 데이터베이스, GitHub API 간의 표준 클라이언트-서버 통신 규약
+- **MCP** (Model Context Protocol) : Anthropic 주도 오픈소스 - LLM과 로컬 개발 툴, IDE, 데이터베이스, GitHub API 간의 표준 클라이언트-서버 통신 규약
 - **Goose** : Block (Square) 기여 - 개발자의 로컬 머신에서 CLI/GUI로 구동되며 MCP를 지원하는 확장형 자율 코딩 에이전트 엔진
 
 ## Ⅲ. AAIF (Agentic AI Foundation)·AGENTS.md의 세부 구성 요소 및 비교 분석

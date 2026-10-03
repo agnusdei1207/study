@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 스프링 부트(Spring Boot)의 개요
 
-- 개념 : 방대한 XML 설정과 복잡한 환경 구성이 요구되던 기존 엔터프라이즈 스프링(Spring) 프레임워크의 진입 장벽을 낮추고, 단독 실행 가능한(Stand-alone) 프로덕션급 스프링 애플리케이션을 최소한의 설정(Opinionated Configuration)으로 신속히 개발할 수 있도록 피보탈(현 VMware)에서 개발한 차세대 스프링 프레임워크.
-- 배경 및 필요성 : 마이크로서비스 아키텍처(MSA) 확산에 따른 서비스 단위 경량화, 빠른 프로토타이핑 및 배포, 외장 WAS(WebLogic, Jeus, Tomcat) 설치 및 배포 복잡도 제거.
-- 3대 핵심 혁신 : 자동 구성(Auto-Configuration), 스타터 의존성(Starter POMs), 내장 웹 서버(Embedded Tomcat/Jetty).
+- 개념 : **스프링 부트** (Spring Boot) 란 방대한 XML 설정과 복잡한 환경 구성이 요구되던 기존 엔터프라이즈 스프링(Spring) 프레임워크의 진입 장벽을 낮추고, 단독 실행 가능한(Stand-alone) 프로덕션급 스프링 애플리케이션을 최소한의 설정(Opinionated Configuration)으로 신속히 개발할 수 있도록 피보탈(현 VMware)에서 개발한 차세대 스프링 프레임워크.
+- 배경 및 필요성 : **마이크로서비스 아키텍처** (MSA) 확산에 따른 서비스 단위 경량화, 빠른 프로토타이핑 및 배포, 외장 WAS(WebLogic, Jeus, Tomcat) 설치 및 배포 복잡도 제거.
+- 3대 핵심 혁신 : 자동 구성(Auto-Configuration), 스타터 의존성(Starter POMs), **내장 웹 서버** (Embedded Tomcat/Jetty)
 
 ## Ⅱ. 스프링 부트의 핵심 아키텍처 및 자동 구성 메커니즘
 
@@ -61,9 +61,9 @@ extra:
   - 해결 방안 : `debug=true` 설정을 통한 조건부 평가 보고서(ConditionEvaluationReport) 분석, 충돌 발생 시 `@SpringBootApplication(exclude=...)`로 불필요한 자동 설정 명시적 차단.
 - 무거운 JVM 런타임으로 인한 느린 시작 시간(Cold Start) 및 높은 메모리 점유 :
   - 한계점 : 서버리스(AWS Lambda) 환경이나 마이크로서비스 컨테이너 환경에서 수 초~수십 초의 기동 지연과 기본 수백 MB의 메모리 소비 발생.
-  - 해결 방안 : Spring Boot 3.x 기반 GraalVM 네이티브 이미지(AOT 컴파일) 빌드 도입, CDS(Class Data Sharing) 및 프로젝트 CRaC(Coordinated Restore at Checkpoint) 적용.
+  - 해결 방안 : Spring Boot 3.x 기반 **GraalVM 네이티브 이미지** (AOT 컴파일) 빌드 도입, CDS(Class Data Sharing) 및 프로젝트 **CRaC** (Coordinated Restore at Checkpoint) 적용.
 - 의존성 관리의 스타터(Starter) 비대화로 인한 공급망 보안 위험 :
-  - 한계점 : 편의성을 위한 스타터 패키지 사용 시 실제로 사용하지 않는 수많은 전이 의존성(Transitive Dependencies)이 유입되어 취약점 노출 표면 증가.
+  - 한계점 : 편의성을 위한 스타터 패키지 사용 시 실제로 사용하지 않는 수많은 **전이 의존성** (Transitive Dependencies)이 유입되어 취약점 노출 표면 증가.
   - 해결 방안 : Maven/Gradle 의존성 트리 정기 감사(`dependency:tree`), 취약점 스캐너(Snyk, OWASP Dependency-Check) 연동 및 불필요한 의존성 `exclude` 선별 제거.
 
 ## Ⅴ. 엔터프라이즈 클라우드 환경을 위한 기술사적 제언

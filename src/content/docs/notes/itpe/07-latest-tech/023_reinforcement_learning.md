@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 강화학습(Reinforcement Learning)의 개요
 
-- 개념 : 에이전트(Agent)가 동적인 환경(Environment) 내에서 명시적인 정답(Label) 없이 시행착오(Trial and Error)를 통해 상호작용하며, 주어진 상태(State)에서 미래에 획득할 누적 보상(Cumulative Return)을 최대화하는 최적의 행동 정책(Policy)을 학습하는 머신러닝 패러다임.
+- 개념 : **에이전트** (Agent)가 동적인 **환경** (Environment) 내에서 명시적인 정답(Label) 없이 시행착오(Trial and Error)를 통해 상호작용하며, 주어진 **상태** (State)에서 미래에 획득할 **누적 보상** (Cumulative Return)을 최대화하는 최적의 행동 **정책** (Policy)을 학습하는 머신러닝 패러다임.
 - 배경 및 필요성 : 지도학습처럼 대량의 정답 레이블을 구축하기 어렵거나, 체스/바둑, 자율주행, 로봇 제어, LLM 정렬처럼 일련의 연속된 의사결정(Sequential Decision Making)과 시간 지연된 보상이 지배하는 복합 환경을 해결하기 위해 발전함.
-- 핵심 목적 : 장기적 가치(Value)의 수학적 극대화, 마르코프 결정 과정(MDP) 기반의 최적 정책 도출, 미지의 환경 탐험(Exploration)과 기존 지식 활용(Exploitation) 간의 최적 균형 달성.
+- 핵심 목적 : 장기적 가치(Value)의 수학적 극대화, **마르코프 결정 과정** (MDP) 기반의 최적 정책 도출, 미지의 환경 탐험(Exploration)과 기존 지식 활용(Exploitation) 간의 최적 균형 달성.
 
 ## Ⅱ. 강화학습(Reinforcement Learning)의 핵심 아키텍처 및 동작 메커니즘
 
-강화학습은 에이전트와 환경 간의 상호작용 루프와 마르코프 결정 과정(MDP), 벨만 최적 방정식(Bellman Optimality Equation)을 기반으로 동작함.
+강화학습은 에이전트와 환경 간의 상호작용 루프와 마르코프 결정 과정(MDP), **벨만 최적 방정식** (Bellman Optimality Equation)을 기반으로 동작함.
 
 ```text
 [ 강화학습 에이전트-환경 상호작용 루프 ]
@@ -57,7 +57,7 @@ extra:
 | **액터-크리틱 (Actor-Critic)** | 정책을 학습하는 Actor와 가치 함수로 보상을 평가하는 Critic 결합 | 분산을 대폭 감소시키면서 안정적인 학습 및 고속 수렴 | 두 개의 신경망 동시 학습에 따른 튜닝 난이도 | A2C/A3C, PPO, SAC, DDPG |
 | **모델 기반 (Model-based)** | 환경의 전이 확률과 보상 모델 자체를 신경망으로 학습하여 가상 시뮬레이션 | 극도로 높은 샘플 효율성, 상상(Imagination) 기반 계획 | 월드 모델의 오류가 정책으로 전이(Model Exploitation) | MuZero, World Models, Dreamer |
 
-- 대규모 상용 환경 및 LLM 정렬에서는 안정성과 수렴성이 뛰어난 **PPO(Proximal Policy Optimization)** 가 사실상의 표준 알고리즘으로 안착함.
+- 대규모 상용 환경 및 LLM 정렬에서는 안정성과 수렴성이 뛰어난 **PPO** (Proximal Policy Optimization) 가 사실상의 표준 알고리즘으로 안착함.
 
 ## Ⅳ. 강화학습(Reinforcement Learning)의 주요 한계점 및 해결 방안
 

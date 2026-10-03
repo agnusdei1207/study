@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 임베딩(Embedding)의 개요
 
-- 개념 : 단어·문서·이미지 등의 이산 심볼을 의미적 유사도와 문맥 관계가 보존되는 고정 차원의 연속 실수 벡터(Dense Vector)로 변환하는 기술
-- 배경 및 필요성 : 정적 임베딩의 동음이의어 문맥 혼선과 미등록 어휘(OOV) 한계를 극복하기 위해 서브워드 토큰화(BPE) 및 양방향 문맥 임베딩(BERT), 멀티모달 임베딩(CLIP)으로 전환 필수.
-- 핵심 목적 : 고차원 희소성(Sparsity) 및 차원의 저주 해소, 단어 간 의미론적 거리(Semantic Distance) 측정, 딥러닝 모델의 수치 연산 입력 제공
+- 개념 : 단어·문서·이미지 등의 이산 심볼을 의미적 유사도와 문맥 관계가 보존되는 고정 차원의 **연속 실수 벡터** (Dense Vector)로 변환하는 기술
+- 배경 및 필요성 : 정적 임베딩의 동음이의어 문맥 혼선과 **미등록 어휘** (OOV) 한계를 극복하기 위해 **서브워드 토큰화** (BPE) 및 양방향 문맥 임베딩(BERT), **멀티모달 임베딩** (CLIP)으로 전환 필수.
+- 핵심 목적 : 고차원 희소성(Sparsity) 및 **차원의 저주** 해소, 단어 간 **의미론적 거리** (Semantic Distance) 측정, 딥러닝 모델의 수치 연산 입력 제공
 
 ## Ⅱ. 임베딩(Embedding)의 핵심 아키텍처 및 동작 메커니즘
 
-임베딩은 분포 가설(Distributional Hypothesis) 기반 문맥 모델링 $\rightarrow$ Word2Vec(CBOW/Skip-gram) 또는 트랜스포머 인코더 통과 $\rightarrow$ 잠재 의미 공간 내 밀집 벡터 투영 $\rightarrow$ 코사인 유사도 연산 및 벡터 연산($\vec{King} - \vec{Man} + \vec{Woman} \approx \vec{Queen}$) 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+임베딩은 **분포 가설** (Distributional Hypothesis) 기반 문맥 모델링 $\rightarrow$ **Word2Vec** (CBOW/Skip-gram) 또는 트랜스포머 인코더 통과 $\rightarrow$ 잠재 의미 공간 내 밀집 벡터 투영 $\rightarrow$ **코사인 유사도** 연산 및 벡터 연산($\vec{King} - \vec{Man} + \vec{Woman} \approx \vec{Queen}$) 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 +-------------------------------------------------------------------------------------------------+
@@ -37,10 +37,10 @@ extra:
              Target: w(t)                         Context: w(t-2), w(t-1), w(t+1), w(t+2)
 ```
 
-- **차원 축소 (Dimensionality)** : 어휘 수(수만~수십만) 크기의 희소 벡터를 128~1536 차원의 밀집 실수 벡터로 압축 - 신경망 선형 임베딩 룩업 행렬($W_{E} \in \mathbb{R}^{V \times D}$)
-- **의미론적 유사도 보존** : 의미가 유사한 대상일수록 벡터 공간 상에서 거리가 가깝고 각도가 작음 - 코사인 유사도($\cos \theta$) 및 유클리디안 거리 척도 활용
-- **벡터 대수 연산 가능** : 단어 벡터 간의 덧셈과 뺄셈을 통해 유추(Analogy) 추론 가능 - $\vec{King} - \vec{Man} + \vec{Woman} \approx \vec{Queen}$ 등 관계 표상
-- **전이 학습 (Transfer)** : 대규모 말뭉치에서 사전 학습(Pre-trained)된 임베딩을 다운스트림 과업에 재사용 - FastText, GloVe, Word2Vec 가중치 파인튜닝
+- **차원 축소** (Dimensionality) : 어휘 수(수만~수십만) 크기의 희소 벡터를 128~1536 차원의 밀집 실수 벡터로 압축 - 신경망 선형 임베딩 룩업 행렬($W_{E} \in \mathbb{R}^{V \times D}$)
+- 의미론적 유사도 보존 : 의미가 유사한 대상일수록 벡터 공간 상에서 거리가 가깝고 각도가 작음 - 코사인 유사도($\cos \theta$) 및 **유클리디안 거리** 척도 활용
+- 벡터 대수 연산 가능 : 단어 벡터 간의 덧셈과 뺄셈을 통해 유추(Analogy) 추론 가능 - $\vec{King} - \vec{Man} + \vec{Woman} \approx \vec{Queen}$ 등 관계 표상
+- **전이 학습** (Transfer) : 대규모 말뭉치에서 사전 학습(Pre-trained)된 임베딩을 다운스트림 과업에 재사용 - FastText, GloVe, Word2Vec 가중치 파인튜닝
 
 ## Ⅲ. 임베딩(Embedding)의 세부 구성 요소 및 비교 분석
 

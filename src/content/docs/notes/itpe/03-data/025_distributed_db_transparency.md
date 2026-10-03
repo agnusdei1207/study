@@ -19,7 +19,7 @@ extra:
 - 분산 시스템의 복잡성을 애플리케이션으로부터 완벽히 은닉(Hiding)하여 개발 생산성과 시스템 유지보수성을 극대화함.
 
 ### 나. 분산 데이터베이스 시스템의 기본 목표
-- 고가용성(High Availability), 지역 자율성(Local Autonomy), 수평적 확장성(Horizontal Scalability)을 확보하면서도 일관된 SQL 인터페이스 제공.
+- **고가용성** (High Availability), **지역 자율성** (Local Autonomy), **수평적 확장성** (Horizontal Scalability)을 확보하면서도 일관된 SQL 인터페이스 제공.
 
 ---
 

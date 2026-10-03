@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. SCTP(Stream Control Transmission Protocol)의 개요
 
-- 개념 : TCP의 신뢰성 있는 연결 지향 스트림 전송 특성과 UDP의 메시지 경계 보존(Message-oriented) 특성을 결합하고, **다중 홈(Multi-Homing)** 및 **다중 스트림(Multi-Streaming)** 기능을 지원하여 회선 장애 시 무중단 세션 유지와 헤드오브라인 블로킹(HoL Blocking)을 방지하는 전송 계층(L4) 프로토콜(RFC 4960).
-- 배경 및 필요성 : 통신 사업자망의 SS7 전화 신호(Signaling)를 IP 네트워크 상에서 무손실·무중단으로 전송(SIGTRAN)하기 위해 개발되었으며, 단일 IP 연결에 의존하는 TCP의 회선 단절 취약성과 단일 큐 블로킹 한계를 극복하기 위해 제정됨.
-- 핵심 목적 : 통신 회선 물리적 장애 시 무중단 페일오버(Fault-Tolerant Multi-Homing), 다중 스트림 분리를 통한 HoL 블로킹 제거, 4-Way 핸드셰이크 쿠키 메커니즘을 통한 SYN 플러딩 서비스 거부 공격(DoS) 원천 차단.
+- 개념 : TCP의 신뢰성 있는 연결 지향 스트림 전송 특성과 UDP의 메시지 경계 보존(Message-oriented) 특성을 결합하고, **다중 홈(Multi-Homing)** 및 **다중 스트림(Multi-Streaming)** 기능을 지원하여 회선 장애 시 무중단 세션 유지와 헤드오브라인 블로킹(HoL Blocking)을 방지하는 **전송 계층(L4)** 프로토콜(RFC 4960).
+- 배경 및 필요성 : 통신 사업자망의 **SS7** 전화 신호(Signaling)를 IP 네트워크 상에서 무손실·무중단으로 전송(SIGTRAN)하기 위해 개발되었으며, 단일 IP 연결에 의존하는 TCP의 회선 단절 취약성과 단일 큐 블로킹 한계를 극복하기 위해 제정됨.
+- 핵심 목적 : 통신 회선 물리적 장애 시 무중단 페일오버(Fault-Tolerant Multi-Homing), 다중 스트림 분리를 통한 HoL 블로킹 제거, 4-Way 핸드셰이크 쿠키 메커니즘을 통한 **SYN 플러딩** 서비스 거부 공격(DoS) 원천 차단.
 
 ## Ⅱ. SCTP(Stream Control Transmission Protocol)의 핵심 아키텍처 및 동작 메커니즘
 

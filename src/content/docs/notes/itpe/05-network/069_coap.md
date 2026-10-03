@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. CoAP(Constrained Application Protocol)의 개요
 
-- 개념 : 8비트 마이크로컨트롤러, 수 킬로바이트의 초저용량 RAM/플래시 메모리, 극심한 패킷 손실률을 가진 제약적 IoT 환경(Constrained Nodes and Networks)을 위해 IETF CoRE 워킹그룹에서 제정한 경량 웹 전송 프로토콜 (RFC 7252).
+- 개념 : 8비트 마이크로컨트롤러, 수 킬로바이트의 초저용량 RAM/플래시 메모리, 극심한 패킷 손실률을 가진 제약적 IoT 환경(Constrained Nodes and Networks)을 위해 **IETF CoRE** 워킹그룹에서 제정한 **경량 웹 전송 프로토콜** (RFC 7252).
 - 배경 및 필요성 : 전통적인 HTTP/TCP 스택은 3-Way Handshake, 장황한 텍스트 기반 헤더, 연결 유지 오버헤드로 인해 배터리 전원 기반의 초소형 센서 기기에 적용 불가.
-- 핵심 목적 : HTTP RESTful 아키텍처(GET, POST, PUT, DELETE) 모델을 그대로 계승하면서도 비연결형 UDP 기반 4바이트 고정 헤더를 채택하여 초경량화 및 웹 생태계와의 원활한 게이트웨이 상호 연동 달성.
+- 핵심 목적 : HTTP RESTful 아키텍처(GET, POST, PUT, DELETE) 모델을 그대로 계승하면서도 **비연결형 UDP** 기반 4바이트 고정 헤더를 채택하여 초경량화 및 웹 생태계와의 원활한 게이트웨이 상호 연동 달성.
 
 ## Ⅱ. CoAP의 핵심 아키텍처 및 동작 메커니즘
 
@@ -49,10 +49,10 @@ extra:
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **2계층 분리 구조** :
+- 2계층 분리 구조 :
   - **메시지 계층 (Messages Layer)** : UDP 상에서 패킷 재전송 및 중복 제거를 통해 신뢰성을 선택적으로 부여하는 기본 전송 계층.
   - **요청/응답 계층 (Request/Response Layer)** : 토큰(Token)을 매칭하여 REST 메서드(Request)와 상태 응답(Response)을 처리하는 계층.
-- **4가지 메시지 유형 (Message Types)** :
+- 4가지 메시지 유형 (Message Types) :
   - **CON (Confirmable)** : 반드시 상대방의 ACK 응답을 받아야 하는 신뢰성 메시지 (미수신 시 지수 백오프 재전송).
   - **NON (Non-Confirmable)** : 센서 주기 측정치처럼 ACK 응답을 요구하지 않는 전송 (유실 허용).
   - **ACK (Acknowledgement)** : CON 메시지 수신 성공 승인 (응답 데이터를 피기백(Piggybacked)하여 회신 가능).

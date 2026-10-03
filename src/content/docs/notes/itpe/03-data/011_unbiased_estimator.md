@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 통계적 추론에서의 불편추정량(Unbiased Estimator) 개요
 
 ### 가. 불편추정량의 정의
-- **불편추정량** : 모집단의 모수(Parameter) $\theta$를 추정하기 위해 표본으로부터 계산된 추정량(Estimator) $\hat{\theta}$의 기댓값이 모수 $\theta$와 정확히 일치하는 추정량.
-- 즉, $E(\hat{\theta}) = \theta$를 만족하여, 추정 과정에서 체계적인 편향(Bias)이 0임을 수학적으로 보장하는 통계량.
+- **불편추정량** : 모집단의 **모수** (Parameter) $\theta$를 추정하기 위해 표본으로부터 계산된 **추정량** (Estimator) $\hat{\theta}$의 기댓값이 모수 $\theta$와 정확히 일치하는 추정량.
+- 즉, $E(\hat{\theta}) = \theta$를 만족하여, 추정 과정에서 체계적인 **편향** (Bias)이 0임을 수학적으로 보장하는 통계량.
 
 ### 나. 불편성의 수식적 정의와 편향(Bias)
 - 편향의 정의 : $Bias(\hat{\theta}) = E(\hat{\theta}) - \theta$

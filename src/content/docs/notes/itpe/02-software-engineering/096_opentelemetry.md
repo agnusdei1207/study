@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. OpenTelemetry의 개요
 
-- 개념 : 클라우드 네이티브 컴퓨팅 재단(CNCF)에서 OpenTracing과 OpenCensus 프로젝트를 통합하여 표준화한 벤더 중립적 오픈소스 원격 측정(Telemetry) 프레임워크로, 분산 클라우드 환경에서 트레이스(Traces), 메트릭(Metrics), 로그(Logs)를 생성, 수집, 처리, 내보내기(Export)하기 위한 표준 API, SDK 및 도구 체계.
-- 배경 및 필요성 : 복잡한 마이크로서비스 및 분산 서버 환경에서 상용 APM(Datadog, New Relic) 도구마다 서로 다른 전용 에이전트와 수집 포맷을 사용하여 발생하는 벤더 락인과 유지보수 오버헤드를 극복하기 위해 제정.
-- 관측성의 3대 기둥 (MELT) : 메트릭(Metrics), 이벤트(Events), 로그(Logs), 트레이스(Traces).
+- 개념 : **OpenTelemetry** 란 클라우드 네이티브 컴퓨팅 재단(CNCF)에서 OpenTracing과 OpenCensus 프로젝트를 통합하여 표준화한 벤더 중립적 오픈소스 **원격 측정** (Telemetry) 프레임워크로, 분산 클라우드 환경에서 **트레이스** (Traces), **메트릭** (Metrics), **로그** (Logs)를 생성, 수집, 처리, 내보내기(Export)하기 위한 표준 API, SDK 및 도구 체계.
+- 배경 및 필요성 : 복잡한 마이크로서비스 및 분산 서버 환경에서 상용 APM(Datadog, New Relic) 도구마다 서로 다른 전용 에이전트와 수집 포맷을 사용하여 발생하는 **벤더 락인** 과 유지보수 오버헤드를 극복하기 위해 제정.
+- 관측성의 3대 기둥 (MELT) : **메트릭** (Metrics), **이벤트** (Events), **로그** (Logs), **트레이스** (Traces)
 
 ## Ⅱ. OpenTelemetry 아키텍처 및 원격 측정 수집 흐름
 
@@ -56,10 +56,10 @@ extra:
 
 - 원격 측정 데이터 대량 수집에 따른 네트워크·스토리지 비용 폭증 :
   - 한계점 : 마이크로서비스 간 모든 트레이스, 메트릭, 로그를 전수 수집할 경우 네트워크 대역폭 포화 및 백엔드(APM, 시계열 DB) 스토리지 비용 기하급수적 증가.
-  - 해결 방안 : 테일 기반 샘플링(Tail-based Sampling) 도입으로 에러 및 고지연 트레이스 선별 수집, OTel Collector 필터링 프로세서를 통한 노이즈 데이터 사전 정제.
+  - 해결 방안 : **테일 기반 샘플링** (Tail-based Sampling) 도입으로 에러 및 고지연 트레이스 선별 수집, OTel Collector 필터링 프로세서를 통한 노이즈 데이터 사전 정제.
 - OTel Collector 구성 복잡도 및 장애 시 텔레메트리 유실 :
   - 한계점 : 수집기(Collector)의 리시버, 프로세서, 익스포터 파이프라인 설정이 복잡하며, 트래픽 스파이크 시 컬렉터 메모리 고갈로 관측 데이터 유실 발생.
-  - 해결 방안 : OTel Collector의 데몬셋(DaemonSet) 및 게이트웨이 2계층 클러스터링 구성, 메모리 제한기(Memory Limiter) 및 큐 기반 재시도(File Storage Extension) 설정.
+  - 해결 방안 : OTel Collector의 **데몬셋** (DaemonSet) 및 게이트웨이 2계층 클러스터링 구성, 메모리 제한기(Memory Limiter) 및 큐 기반 재시도(File Storage Extension) 설정.
 - **수동 계측** (Instrumentation) 오버헤드 및 컨텍스트 전파 누락 :
   - 한계점 : 비표준 비동기 스레드 풀이나 레거시 프로토콜 사용 시 Trace ID 등 컨텍스트가 단절되어 트레이스 파편화 현상 발생.
   - 해결 방안 : 자바/Go 등 주요 언어별 자동 계측 에이전트(Auto-Instrumentation) 표준화, 사내 프레임워크 차원에서 W3C Trace Context 헤더 자동 주입 보일러플레이트 제공.

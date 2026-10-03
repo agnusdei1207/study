@@ -15,12 +15,12 @@ extra:
 ## Ⅰ. 메모리 누수(Memory Leak)의 개요
 
 - 개념 : 컴퓨터 프로그램이 동적으로 할당받은 메모리 영역(Heap 등)을 사용이 끝난 후에도 운영체제나 **가비지 컬렉터(GC)** 에 적절히 해제(Free/Delete)하지 않아, 프로세스가 점유한 사용 불가능한 메모리가 점진적으로 누적되는 소프트웨어 결함.
-- 배경 및 필요성 : 개발자의 포인터 관리 실수나 복잡한 객체 참조 그래프의 해제 누락으로 인해, 장기 가동되는 서버 애플리케이션의 메모리가 서서히 고갈되어 결국 OOM(Out of Memory) 크래시로 이어지는 문제를 방지하기 위해 다루어짐.
+- 배경 및 필요성 : 개발자의 포인터 관리 실수나 복잡한 객체 참조 그래프의 해제 누락으로 인해, 장기 가동되는 서버 애플리케이션의 메모리가 서서히 고갈되어 결국 **OOM(Out of Memory)** 크래시로 이어지는 문제를 방지하기 위해 다루어짐.
 - 핵심 목적 : 메모리 생명주기 관리의 무결성 확보, 런타임 메모리 팽창(Memory Bloat) 조기 탐지, 자동화된 분석 도구를 통한 누수 원인 지점 규명 및 예방.
 
 ## Ⅱ. 메모리 누수(Memory Leak)의 핵심 아키텍처 및 동작 메커니즘
 
-메모리 누수는 C/C++의 명시적 해제 누락(Dangling/Unreachable Memory)과 Java/C# 등 Managed 언어의 의도치 않은 GC Root 참조 유지(Unintentional Retention) 메커니즘으로 분류됨.
+메모리 누수는 C/C++의 **명시적 해제 누락(Dangling/Unreachable Memory)** 과 Java/C# 등 Managed 언어의 의도치 않은 **GC Root 참조 유지(Unintentional Retention)** 메커니즘으로 분류됨.
 
 ```text
 [ 메모리 누수 발생 메커니즘: C/C++ vs Java/Managed 언어 ]

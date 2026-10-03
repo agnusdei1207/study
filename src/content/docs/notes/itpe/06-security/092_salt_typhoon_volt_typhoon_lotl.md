@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. Salt Typhoon / Volt Typhoon (LotL)의 개요
 
-- 개념 : OS 내장 관리 도구(PowerShell, WMI, netsh 등)와 유효한 관리자 자격증명을 악용하여 악성 바이너리 없이 표적망에 장기 잠복하는 **LotL** 기반 국가 배후 APT 위협.
+- 개념 : **OS 내장 관리 도구** (PowerShell, WMI, netsh 등)와 유효한 관리자 자격증명을 악용하여 악성 바이너리 없이 표적망에 장기 잠복하는 **LotL** 기반 국가 배후 **APT** 위협.
 - 배경 및 필요성 : 국가 지원 해킹 그룹이 별도의 악성코드를 설치하지 않고 타깃 시스템에 기설치된 정상 관리 도구(PowerShell, WMI 등)를 악용하는 **Living-off-the-Land** (LotL) 기법으로 장기 잠복함에 따라, 행위 기반 심층 탐지의 필요성이 급증함.
 - 핵심 목적 : 전통적인 안티바이러스 및 파일 기반 EDR 탐지를 무력화하고, 중요 기반시설 파괴 준비(Volt) 및 통신 백본 도청(Salt)을 위한 은밀한 지속성(Persistence) 유지.
 

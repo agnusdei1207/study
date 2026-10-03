@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. STPA의 개요
 
-- 개념 : MIT의 낸시 레브슨(Nancy Leveson) 교수가 제안한 STAMP(System-Theoretic Accident Model and Processes) 이론에 기반한 차세대 위험원 분석 기법으로, 사고를 단순한 '부품의 물리적 고장'이 아니라 복잡한 시스템 내부 구성요소 간의 '부적절한 제어 및 상호작용(Control Problem)'의 결과로 파악하는 하향식 시스템 안전성 분석 방법론.
+- 개념 : **STPA** (System Theoretic Process Analysis) 란 MIT의 낸시 레브슨(Nancy Leveson) 교수가 제안한 **STAMP** (System-Theoretic Accident Model and Processes) 이론에 기반한 차세대 위험원 분석 기법으로, 사고를 단순한 '부품의 물리적 고장'이 아니라 복잡한 시스템 내부 구성요소 간의 '부적절한 제어 및 상호작용(Control Problem)'의 결과로 파악하는 하향식 시스템 안전성 분석 방법론.
 - 배경 및 필요성 : 전통적 FTA, FMEA는 개별 부품의 기계적 고장 분석에는 유용하나, 소프트웨어의 논리 결함, 센서-알고리즘-액추에이터 간의 타이밍 불일치, 운전자와 자율주행 SW 간의 상호작용 실패 등 현대 복잡 시스템(SoS)의 사고를 설명하지 못하는 한계 극복.
-- 핵심 통제 개념 : 계층적 제어 구조(Hierarchical Control Structure), 불안전 제어 행동(UCA, Unsafe Control Action).
+- 핵심 통제 개념 : **계층적 제어 구조** (Hierarchical Control Structure), **불안전 제어 행동** (UCA, Unsafe Control Action)
 
 ## Ⅱ. STPA 4단계 분석 프로세스 및 계층적 제어 루프
 

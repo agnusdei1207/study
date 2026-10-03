@@ -28,8 +28,8 @@ extra:
                            (All Green 확인)
 ```
 
-- **사전 테스트 케이스 확보** : 리팩토링 전 높은 테스트 커버리지(단위/통합 테스트)를 확보하여 기능 파손 여부를 즉각 판별하는 안전망(Safety Net) 구축.
-- **코드 스멜 탐지** : SonarQube, Checkstyle 등 정적 분석 도구와 코드 리뷰를 통해 비정상적 복잡도 탐지.
+- **사전 테스트 케이스 확보** : 리팩토링 전 높은 테스트 커버리지(단위/통합 테스트)를 확보하여 기능 파손 여부를 즉각 판별하는 **안전망** (Safety Net) 구축.
+- **코드 스멜 탐지** : SonarQube, Checkstyle 등 **정적 분석** 도구와 코드 리뷰를 통해 비정상적 복잡도 탐지.
 - **소규모 변경 및 즉시 검증** : 한 번에 거대한 수정을 피하고, 작은 단위 리팩토링 후 즉시 테스트를 실행하여 All Green 상태 유지.
 
 ## Ⅲ. 대표적인 코드 스멜 유형과 해결 리팩토링 기법
@@ -37,11 +37,11 @@ extra:
 | 코드 스멜 (Code Smell) | 문제점 | 해결 리팩토링 기법 |
 |---|---|---|
 | **긴 메서드** (Long Method) | 여러 책임이 혼재되어 파악이 어렵고 재사용 불가 | **메서드 추출** (Extract Method) |
-| **거대한 클래스** (Large Class) | 단일 책임 원칙 위반, 필드 및 결합도 과다 | 클래스 추출 (Extract Class), 서브클래스 분리 |
-| **기능 편애** (Feature Envy) | 다른 클래스의 메서드/데이터를 지나치게 탐색 | 메서드 이동 (Move Method) |
-| **긴 매개변수 목록** (Long Parameter List) | 매개변수 순서 혼동, 변경 시 영향 범위 확산 | 객체 보존 (Preserve Whole Object), 매개변수 객체화 |
-| **스위치 문 중복** (Repeated Switch) | 조건 추가 시 여러 파일 동시 수정 발생 | 조건절을 다형성으로 대체 (Replace Conditional with Polymorphism) |
-| **기본형 집착** (Primitive Obsession) | 도메인 검증 로직이 분산되고 타입 안전성 결여 | 기본형을 객체로 전환 (Replace Data Value with Object) |
+| **거대한 클래스** (Large Class) | 단일 책임 원칙 위반, 필드 및 결합도 과다 | **클래스 추출** (Extract Class), 서브클래스 분리 |
+| **기능 편애** (Feature Envy) | 다른 클래스의 메서드/데이터를 지나치게 탐색 | **메서드 이동** (Move Method) |
+| **긴 매개변수 목록** (Long Parameter List) | 매개변수 순서 혼동, 변경 시 영향 범위 확산 | **객체 보존** (Preserve Whole Object), 매개변수 객체화 |
+| **스위치 문 중복** (Repeated Switch) | 조건 추가 시 여러 파일 동시 수정 발생 | **조건절을 다형성으로 대체** (Replace Conditional with Polymorphism) |
+| **기본형 집착** (Primitive Obsession) | 도메인 검증 로직이 분산되고 타입 안전성 결여 | **기본형을 객체로 전환** (Replace Data Value with Object) |
 
 ## Ⅳ. 리팩토링의 주요 한계점 및 해결 방안
 

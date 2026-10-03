@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. CCPM·TOC의 개요
 
-- 개념 : 골드랫(Goldratt) 박사의 제약이론(TOC, Theory of Constraints)을 프로젝트 일정 관리에 적용한 기법으로, 작업 경로 간의 자원 제약(Resource Dependencies)을 고려하고, 개별 작업의 안전 여유(Safety Time)를 제거하여 프로젝트 말단과 합류 지점에 버퍼(Buffer)로 집중 관리하는 크리티컬 체인 프로젝트 관리(Critical Chain Project Management).
+- 개념 : 골드랫(Goldratt) 박사의 **제약이론** (TOC, Theory of Constraints)을 프로젝트 일정 관리에 적용한 기법으로, 작업 경로 간의 자원 제약(Resource Dependencies)을 고려하고, 개별 작업의 안전 여유(Safety Time)를 제거하여 프로젝트 말단과 합류 지점에 **버퍼** (Buffer)로 집중 관리하는 **크리티컬 체인 프로젝트 관리** (Critical Chain Project Management).
 - 배경 및 필요성 : 전통적 CPM/PERT 방식에서 개별 작업자마다 안전 시간을 부여함에도 불구하고 파킨슨의 법칙과 학생 증후군으로 인해 프로젝트가 항상 지연되는 모순을 극복하기 위해 창안.
 - 주요 목적 : 프로젝트 전체 납기 대폭 단축, 자원 충돌 방지, 버퍼 관리(Buffer Management)를 통한 조기 지연 경보.
 

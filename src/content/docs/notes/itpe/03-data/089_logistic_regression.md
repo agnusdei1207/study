@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 확률 기반 이진 분류의 초석, 로지스틱 회귀(Logistic Regression) 개요
 
 ### 가. 로지스틱 회귀의 정의
-- **로지스틱 회귀** : 독립변수들의 선형 결합을 바탕으로 특정 사건이 발생할 확률($0 \le P(Y=1|X) \le 1$)을 추정하고, 이를 사전에 정의된 임계값(Threshold, 통상 0.5)과 비교하여 이진 분류(Binary Classification)를 수행하는 통계적·머신러닝 알고리즘.
-- 선형 회귀(Linear Regression)의 종속변수가 $-\infty$에서 $+\infty$까지 발산하여 확률을 모델링할 수 없는 수학적 한계를 시그모이드(Sigmoid) 함수를 통해 극복함.
+- **로지스틱 회귀** : 독립변수들의 선형 결합을 바탕으로 특정 사건이 발생할 확률($0 \le P(Y=1|X) \le 1$)을 추정하고, 이를 사전에 정의된 임계값(Threshold, 통상 0.5)과 비교하여 **이진 분류** (Binary Classification)를 수행하는 통계적·머신러닝 알고리즘.
+- 선형 회귀(Linear Regression)의 종속변수가 $-\infty$에서 $+\infty$까지 발산하여 확률을 모델링할 수 없는 수학적 한계를 **시그모이드** (Sigmoid) 함수를 통해 극복함.
 
 ---
 
@@ -54,13 +54,13 @@ $$\sigma(z) = \frac{1}{1 + e^{-z}} \quad (z = w^T x + b)$$
 ## Ⅲ. 모델 학습 및 최적화: 교차 엔트로피 손실과 경사하강법
 
 ### 가. 이진 교차 엔트로피 손실 함수 (Binary Cross-Entropy Loss)
-- 선형 회귀의 평균제곱오차(MSE)를 로지스틱에 적용하면 비볼록(Non-convex) 함수가 되어 수많은 국소 최적점(Local Minima)에 갇힘 $\rightarrow$ **로그 우도(Log-Likelihood)를 극대화** 하는 볼록(Convex) 손실 함수 사용:
+- 선형 회귀의 평균제곱오차(MSE)를 로지스틱에 적용하면 비볼록(Non-convex) 함수가 되어 수많은 국소 최적점(Local Minima)에 갇힘 $\rightarrow$ **로그 우도** (Log-Likelihood)를 극대화 하는 볼록(Convex) 손실 함수 사용:
   $$\mathcal{L}(w) = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \ln(\hat{y}_i) + (1 - y_i) \ln(1 - \hat{y}_i) \right]$$
 
 ### 나. 승산비(Odds Ratio)의 비즈니스 해석력
-- 특정 독립변수 $X_j$가 1단위 증가할 때 성공 승산(Odds)이 몇 배 증가하는가를 나타내는 지표:
+- 특정 독립변수 $X_j$가 1단위 증가할 때 성공 **승산** (Odds)이 몇 배 증가하는가를 나타내는 지표:
   $$Odds\;Ratio = e^{w_j}$$
-- 금융 신용평가, 의료 질병 예측에서 "소득이 100만 원 증가할 때 대출 상환 성공 확률 승산이 $e^{0.3} = 1.35$배 증가한다"와 같은 강력한 설명력(Explainability) 제공.
+- 금융 신용평가, 의료 질병 예측에서 "소득이 100만 원 증가할 때 대출 상환 성공 확률 승산이 $e^{0.3} = 1.35$배 증가한다"와 같은 강력한 **설명력** (Explainability) 제공.
 
 ---
 

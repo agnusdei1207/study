@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. NIST AI RMF(AI Risk Management Framework)의 개요
 
-- 개념 : 미국 국립표준기술연구원(NIST)이 제정한 프레임워크(AI RMF 1.0)로, 조직이 인공지능(AI) 시스템의 설계, 개발, 배포 및 운영 전 생애주기 동안 발생할 수 있는 잠재적 위험을 체계적으로 식별, 분석, 측정 및 관리함으로써 신뢰할 수 있고 책임 있는 AI(Trustworthy AI)를 구현하도록 돕는 가이드라인.
+- 개념 : **미국 국립표준기술연구원** (NIST)이 제정한 프레임워크(AI RMF 1.0)로, 조직이 인공지능(AI) 시스템의 설계, 개발, 배포 및 운영 전 생애주기 동안 발생할 수 있는 잠재적 위험을 체계적으로 식별, 분석, 측정 및 관리함으로써 **신뢰할 수 있고 책임 있는 AI** (Trustworthy AI)를 구현하도록 돕는 가이드라인.
 - 배경 및 필요성 : AI 시스템의 비결정론적 특성으로 인한 예상치 못한 오작동, 알고리즘 편향, 프라이버시 침해, 환각 등 사회적 위험이 급증함에 따라, 법적 규제 도입 이전에도 조직이 자율적으로 채택하여 위험을 통제할 수 있는 글로벌 표준 위험관리 기준이 요구됨.
-- 핵심 목적 : AI 신뢰성 핵심 7대 특성 달성, 조직 차원의 위험 거버넌스 확립, 전 생애주기 위험 평가 프로세스 표준화 및 책임성(Accountability) 확보.
+- 핵심 목적 : AI 신뢰성 핵심 **7대 특성** 달성, 조직 차원의 위험 거버넌스 확립, 전 생애주기 위험 평가 프로세스 표준화 및 **책임성** (Accountability) 확보.
 
 ## Ⅱ. NIST AI RMF의 핵심 아키텍처 및 동작 메커니즘
 
-NIST AI RMF는 위험 관리 거버넌스를 다루는 4대 핵심 기능 축(Core Functions)과 신뢰할 수 있는 AI의 7대 특성(Trustworthy Characteristics)으로 구성됨.
+NIST AI RMF는 위험 관리 거버넌스를 다루는 **4대 핵심 기능 축** (Core Functions)과 신뢰할 수 있는 AI의 7대 특성(Trustworthy Characteristics)으로 구성됨.
 
 ```text
 [ NIST AI RMF 4대 핵심 기능 축 및 순환 구조 ]
@@ -65,7 +65,7 @@ NIST AI RMF는 위험 관리 거버넌스를 다루는 4대 핵심 기능 축(Co
 | **MEASURE (측정)** | 공정성(DI), 강건성, 설명가능성 정량 측정, 적대적 모의 평가 | TEVV 평가 리포트, 벤치마크 테스트 스코어카드 |
 | **MANAGE (관리)** | 위험 완화 우선순위 설정, 가드레일 배포, 비상 대응 계획 가동 | 위험 대응 계획서, 실시간 모니터링 대시보드 |
 
-- **7대 신뢰성 특성** : 유효성 및 신뢰성(Valid & Reliable), 안전성(Safe), 보안성 및 복원력(Secure & Resilient), 책임성 및 투명성(Accountable & Transparent), 설명가능성 및 해석가능성(Explainable & Interpretable), 프라이버시 보호(Privacy-Enhanced), 공정성 및 편향 관리(Fair with Harmful Bias Managed).
+- 7대 신뢰성 특성 : **유효성 및 신뢰성** (Valid & Reliable), **안전성** (Safe), **보안성 및 복원력** (Secure & Resilient), **책임성 및 투명성** (Accountable & Transparent), **설명가능성 및 해석가능성** (Explainable & Interpretable), **프라이버시 보호** (Privacy-Enhanced), **공정성 및 편향 관리** (Fair with Harmful Bias Managed).
 
 ## Ⅳ. NIST AI RMF의 주요 한계점 및 해결 방안
 

@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 생성형 AI 시대를 지탱하는 벡터 데이터베이스(Vector DB) 개요
 
 ### 가. 벡터 데이터베이스의 정의
-- 텍스트, 이미지, 음성 등 비정형 데이터를 AI 임베딩 모델(Embedding Model)을 통해 고차원 밀집 벡터(Dense Vector)로 변환한 후, 이를 효율적으로 저장하고 초고속으로 **근사 최근접 이웃(ANN, Approximate Nearest Neighbor)** 검색을 수행할 수 있도록 특화된 데이터베이스.
-- 거대언어모델(LLM)의 컨텍스트 창 한계와 환각(Hallucination) 현상을 극복하기 위한 검색 증강 생성(RAG)의 핵심 장기 기억(Long-term Memory) 인프라.
+- 텍스트, 이미지, 음성 등 비정형 데이터를 AI **임베딩 모델** (Embedding Model)을 통해 고차원 **밀집 벡터** (Dense Vector)로 변환한 후, 이를 효율적으로 저장하고 초고속으로 **근사 최근접 이웃(ANN, Approximate Nearest Neighbor)** 검색을 수행할 수 있도록 특화된 데이터베이스.
+- 거대언어모델(LLM)의 컨텍스트 창 한계와 환각(Hallucination) 현상을 극복하기 위한 **검색 증강 생성** (RAG)의 핵심 장기 기억(Long-term Memory) 인프라.
 
 ### 나. 전통적 RDBMS 인덱스 vs 벡터 데이터베이스 인덱스
 - **RDBMS (B-Tree)** : 단차원 스칼라 값의 정확한 일치(Exact Match) 또는 범위 검색($O(\log n)$).
@@ -63,7 +63,7 @@ extra:
 
 ### 나. 하이브리드 검색(Hybrid Search)의 필수성
 - 순수 벡터 검색은 '의미론적 맥락'은 잘 찾지만 고유명사, 제품 품번, 법조문 번호 등 **정확한 키워드 매칭(Exact Match)** 에 실패하는 취약점이 존재.
-- 해법 : 전통적 역색인(BM25) 키워드 검색과 밀집 벡터(Dense) 검색을 결합하고, RRF(Reciprocal Rank Fusion) 알고리즘으로 순위를 재조정하는 하이브리드 검색 구현.
+- 해법 : 전통적 **역색인** (BM25) 키워드 검색과 밀집 벡터(Dense) 검색을 결합하고, **RRF** (Reciprocal Rank Fusion) 알고리즘으로 순위를 재조정하는 하이브리드 검색 구현.
 
 ---
 

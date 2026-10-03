@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 술어 논리(Predicate Logic)의 개요
 
-- 개념 : 단순 명제의 참·거짓만을 다루는 명제 논리의 한계를 극복하여, 개체(Object), 속성(Property), 관계(Relation)를 변수와 **양화사** ($\forall, \exists$)를 통해 심층 표현하는 1차 수리 논리 체계.
-- 배경 및 필요성 : 반결정성(Semi-decidability) 한계가 있으므로 절(Clause) 표현을 호른 절(Horn Clause)로 제약하거나 기술 논리(Description Logic) 기반 서브셋 적용 필요.
-- 핵심 목적 : 지식 베이스(KB)의 의미론적 모호성 제거, 자동 정리 증명(Automated Theorem Proving) 및 전문가 시스템의 연역적 규칙 추론 수행.
+- 개념 : 단순 명제의 참·거짓만을 다루는 명제 논리의 한계를 극복하여, 개체(Object), 속성(Property), 관계(Relation)를 변수와 **양화사** ($\forall, \exists$)를 통해 심층 표현하는 **1차 수리 논리** 체계.
+- 배경 및 필요성 : **반결정성** (Semi-decidability) 한계가 있으므로 절(Clause) 표현을 **호른 절** (Horn Clause)로 제약하거나 **기술 논리** (Description Logic) 기반 서브셋 적용 필요.
+- 핵심 목적 : **지식 베이스** (KB)의 의미론적 모호성 제거, **자동 정리 증명** (Automated Theorem Proving) 및 전문가 시스템의 연역적 규칙 추론 수행.
 
 ## Ⅱ. 술어 논리(Predicate Logic)의 핵심 아키텍처 및 동작 메커니즘
 

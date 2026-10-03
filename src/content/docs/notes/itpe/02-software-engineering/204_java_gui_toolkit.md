@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. Java GUI 툴킷의 발전 개요
 
-- 개념 : 자바(Java) 언어로 데스크톱 그래픽 사용자 인터페이스(GUI) 애플리케이션을 개발하기 위해 표준 라이브러리로 제공되어 온 컴포넌트 프레임워크군으로, 초기 AWT(Abstract Window Toolkit)에서 시작하여 순수 자바 기반의 Swing을 거쳐 모던 멀티미디어 및 하드웨어 가속을 지원하는 JavaFX로 진화한 3대 GUI 툴킷 체계.
+- 개념 : 자바(Java) 언어로 데스크톱 그래픽 사용자 인터페이스(GUI) 애플리케이션을 개발하기 위해 표준 라이브러리로 제공되어 온 컴포넌트 프레임워크군으로, 초기 **AWT** (Abstract Window Toolkit)에서 시작하여 순수 자바 기반의 **Swing** 툴킷을 거쳐 모던 멀티미디어 및 하드웨어 가속을 지원하는 **JavaFX** 툴킷으로 진화한 3대 GUI 툴킷 체계.
 - 배경 및 필요성 : 자바의 핵심 슬로건인 'Write Once, Run Anywhere(WORA)'를 데스크톱 화면 UI 영역에서도 동일하게 구현하여, 윈도우, 맥, 리눅스에서 재컴파일 없이 동일하게 동작하는 크로스 플랫폼 데스크톱 소프트웨어 개발 지원.
 
 ## Ⅱ. 자바 GUI 3대 툴킷의 기술적 진화 계보
@@ -34,7 +34,7 @@ extra:
 
 | 비교 항목 | AWT (Abstract Window Toolkit) | Swing | JavaFX |
 |---|---|---|---|
-| 컴포넌트 성격 | 중량 컴포넌트 (Heavyweight Peer) | 경량 컴포넌트 (Lightweight) | 고성능 노드 기반 시그래프 (Scene Graph) |
+| 컴포넌트 성격 | **중량 컴포넌트** (Heavyweight Peer) | **경량 컴포넌트** (Lightweight) | 고성능 노드 기반 시그래프 (Scene Graph) |
 | 렌더링 방식 | OS 네이티브 윈도우 시스템이 직접 렌더링 | 자바 그래픽스 2D 엔진이 자체 페인팅 | Prism 렌더러를 통한 GPU 하드웨어 가속 |
 | 플랫폼 일관성 | OS마다 외형과 레이아웃이 다르게 깨짐 | 모든 OS에서 100% 동일한 외형 유지 | 모든 OS에서 고품질 벡터 렌더링 유지 |
 | UI/로직 분리 | 순수 자바 코드로 화면 배치 하드코딩 | 자바 코드로 MVC 구현 (분리 미흡) | FXML(XML 마크업)과 CSS로 UI 완전 분리 |
@@ -56,4 +56,4 @@ extra:
 ## Ⅴ. 데스크톱 클라이언트 아키텍처 관점의 기술사적 제언
 
 - JavaFX의 FXML 및 ReactiveX(RxJavaFX) 기반 모던 반응형 UI 구축 : 데스크톱 앱 개발 시 뷰(FXML)와 비즈니스 로직(Controller)을 완벽히 분리하고, 백엔드 API와의 비동기 데이터 바인딩을 리액티브 프로그래밍으로 결합하여 렌더링 스레드(JavaFX Application Thread) 멈춤 현상을 원천 방지해야 함.
-- 데스크톱 웹 기술(Electron)과의 현실적 비교 평가 : 최근 Slack, VS Code처럼 웹 기술(HTML/CSS/JS) 기반의 Electron 프레임워크가 데스크톱 시장의 주류를 이루고 있으므로, 고성능 로컬 하드웨어 제어나 JVM 생태계 재사용이 필수적인 전문 엔지니어링 툴이 아닌 일반 B2C 앱의 경우 Electron 또는 Flutter와의 TCO 비교 후 기술 스택 선정 권장.
+- 데스크톱 웹 기술(Electron)과의 현실적 비교 평가 : 최근 Slack, VS Code처럼 웹 기술(HTML/CSS/JS) 기반의 **Electron** 프레임워크가 데스크톱 시장의 주류를 이루고 있으므로, 고성능 로컬 하드웨어 제어나 JVM 생태계 재사용이 필수적인 전문 엔지니어링 툴이 아닌 일반 B2C 앱의 경우 Electron 또는 Flutter와의 TCO 비교 후 기술 스택 선정 권장.

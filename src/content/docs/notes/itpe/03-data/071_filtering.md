@@ -16,7 +16,7 @@ extra:
 
 ### 가. 추천 시스템 필터링(Recommendation Filtering)의 정의
 - **추천 시스템 필터링** : 방대한 아이템 풀(Item Pool) 중에서 사용자의 과거 행동 이력(클릭, 구매, 평점)과 선호도 프로필, 아이템의 속성 정보를 분석하여, 각 사용자에게 가장 관련성이 높고 구매 확률이 높은 아이템을 선별(Filtering)하여 제시하는 인공지능 알고리즘 기술.
-- 정보 과부하(Information Overload)를 해소하고 플랫폼의 체류 시간 및 전환율(CVR)을 극대화함.
+- **정보 과부하** (Information Overload)를 해소하고 플랫폼의 체류 시간 및 **전환율** (CVR)을 극대화함.
 
 ---
 
@@ -48,8 +48,8 @@ extra:
 ## Ⅲ. 협업 필터링의 한계점·문제점 및 해결 방안
 
 ### 가. 3대 고질적 난제
-1. 콜드 스타트 (Cold Start) : 신규 사용자나 신규 아이템은 과거 인터랙션 데이터가 전무하여 추천 불가.
-2. 희소성 문제 (Data Sparsity) : 사용자가 평가한 아이템은 전체 풀의 극히 일부이므로 행렬 대부분이 비어 있음.
+1. **콜드 스타트** (Cold Start) : 신규 사용자나 신규 아이템은 과거 인터랙션 데이터가 전무하여 추천 불가.
+2. **희소성 문제** (Data Sparsity) : 사용자가 평가한 아이템은 전체 풀의 극히 일부이므로 행렬 대부분이 비어 있음.
 3. 확장성 문제 (Scalability) : 수천만 사용자 $\times$ 수백만 아이템 환경에서 $O(M \times N)$ 유사도 연산 불가능.
 
 ### 나. 딥러닝 기반 현대 추천 아키텍처 (Two-Tower 모델)
@@ -65,7 +65,7 @@ extra:
 [Item Features (카테고리, 텍스트, 이미지)] -> [Item DNN Tower] ---> [Item Embedding Vector V]
 ```
 
-- Two-Tower Architecture : 사용자 타워와 아이템 타워를 분리 학습 $\rightarrow$ 아이템 벡터는 사전에 오프라인 색인 후, 서빙 시점에는 Vector DB(ANN)를 통해 수 밀리초 만에 수억 개 아이템 중 후보군 추출(Candidate Generation).
+- **Two-Tower Architecture** : 사용자 타워와 아이템 타워를 분리 학습 $\rightarrow$ 아이템 벡터는 사전에 오프라인 색인 후, 서빙 시점에는 Vector DB(ANN)를 통해 수 밀리초 만에 수억 개 아이템 중 후보군 추출(Candidate Generation).
 
 ---
 

@@ -16,10 +16,10 @@ extra:
 
 ### 가. CAP 정리(CAP Theorem)의 정의
 - 에릭 브루어(Eric Brewer) 교수가 제안하고 세스 길버트와 낸시 린치가 수학적으로 증명한 정리.
-- 분산 데이터 시스템은 **일관성(Consistency), 가용성(Availability), 분할 내구성(Partition Tolerance)** 의 3가지 특성을 모두 동시에 만족하는 것은 불가능하며, 반드시 2가지만을 선택 할 수밖에 없다는 이론.
+- 분산 데이터 시스템은 **일관성** (Consistency), **가용성** (Availability), **분할 내구성** (Partition Tolerance)의 3가지 특성을 모두 동시에 만족하는 것은 불가능하며, 반드시 2가지만을 선택 할 수밖에 없다는 이론.
 
 ### 나. PACELC 정리로의 확장 배경
-- CAP 정리는 오직 '네트워크 분할(Partition) 장애' 상황만을 다루며, 시스템이 정상적인 평상시(Else) 상태일 때 직면하는 지연 시간(Latency)과 일관성(Consistency) 간의 본질적 트레이드오프 를 설명하지 못하는 한계가 있어 다니엘 아바디(Daniel Abadi) 교수가 PACELC로 확장함.
+- CAP 정리는 오직 '**네트워크 분할** (Partition) 장애' 상황만을 다루며, 시스템이 정상적인 평상시(Else) 상태일 때 직면하는 **지연 시간** (Latency)과 일관성(Consistency) 간의 본질적 트레이드오프 를 설명하지 못하는 한계가 있어 다니엘 아바디(Daniel Abadi) 교수가 **PACELC** 로 확장함.
 
 ---
 
@@ -72,15 +72,15 @@ $$\mathbf{P} \text{ (Partition)} \rightarrow [\; \mathbf{A} \text{ (Availability
 
 - 평상시(Else)의 지연시간(Latency)과 일관성 트레이드오프 간과 :
   - 한계점 : 전통적 CAP 정리에 매몰되어 네트워크 분할이 없는 평상시 정상 가동 상태에서 동기식 복제로 인한 지연시간(Latency) 증가 문제를 설계 시 간과.
-  - 해결 방안 : PACELC 정리를 기준으로 시스템을 평가(예: MongoDB의 PA/EC, Cassandra의 PA/EL), 읽기/쓰기별 동적 일관성 레벨(Tunable Consistency: QUORUM, LOCAL_QUORUM) 설정.
-- **최종 일관성(Eventual Consistency)** 채택 시 비즈니스 정합성 훼손 :
+  - 해결 방안 : PACELC 정리를 기준으로 시스템을 평가(예: MongoDB의 PA/EC, Cassandra의 PA/EL), 읽기/쓰기별 **동적 일관성 레벨** (Tunable Consistency: QUORUM, LOCAL_QUORUM) 설정.
+- **최종 일관성** (Eventual Consistency) 채택 시 비즈니스 정합성 훼손 :
   - 한계점 : 고가용성(AP)을 위해 최종 일관성을 수용할 경우, 사용자가 자신의 쓰기를 즉시 읽지 못하는 일관성 위반(Read-Your-Writes 불만족) 및 금융 잔액 왜곡 발생.
-  - 해결 방안 : 세션 일관성(Session Consistency), 단조 읽기(Monotonic Read), 인과적 일관성(Causal Consistency) 등 클라이언트 관점의 보장 메커니즘을 서비스 성격에 맞게 선택적 적용.
+  - 해결 방안 : **세션 일관성** (Session Consistency), **단조 읽기** (Monotonic Read), **인과적 일관성** (Causal Consistency) 등 클라이언트 관점의 보장 메커니즘을 서비스 성격에 맞게 선택적 적용.
 - 정적 **CAP** 분류의 한계와 비즈니스 도메인별 세분화 부재 :
   - 한계점 : 전체 데이터베이스를 획일적으로 CP 또는 AP 시스템으로 규정하여 결제, 조회, 로깅 등 도메인별 상이한 요구사항을 유연하게 수용 실패.
-  - 해결 방안 : 폴리그랏 퍼시스턴스(Polyglot Persistence) 아키텍처 도입, CQRS(명령-조회 책임 분리)를 적용하여 쓰기는 CP(RDBMS), 조회는 AP(NoSQL/Search)로 이원화.
+  - 해결 방안 : **폴리그랏 퍼시스턴스** (Polyglot Persistence) 아키텍처 도입, **CQRS** (명령-조회 책임 분리)를 적용하여 쓰기는 CP(RDBMS), 조회는 AP(NoSQL/Search)로 이원화.
 
 ## Ⅴ. 분산 시스템 아키텍처 설계를 위한 실무 제언
 
-- 단일 분류의 **맹신 탈피 (조절 가능한 일관성 활용)** : Cassandra나 DynamoDB 등 현대 분산 DB는 고정된 AP/CP가 아니며, 클라이언트가 질의 시점에 읽기/쓰기 쿼럼($W+R > N$)을 설정하여 튜닝 가능한 일관성(Tunable Consistency)을 제공하므로 업무 중요도별로 일관성 수준을 동적 제어해야 함.
-- 분산 원장의 **최종 일관성(CRDT)** 도입 : AP 시스템에서 네트워크 분할 복구 후 서로 다르게 갱신된 노드 간 데이터 충돌을 사람의 개입 없이 수학적으로 자동 병합하기 위해, 충돌 없는 복제 데이터 타입(CRDT, Conflict-free Replicated Data Type)을 적극 검토할 것을 제언함.
+- 단일 분류의 맹신 탈피 (조절 가능한 일관성 활용) : Cassandra나 DynamoDB 등 현대 분산 DB는 고정된 AP/CP가 아니며, 클라이언트가 질의 시점에 읽기/쓰기 **쿼럼** ($W+R > N$)을 설정하여 튜닝 가능한 일관성(Tunable Consistency)을 제공하므로 업무 중요도별로 일관성 수준을 동적 제어해야 함.
+- 분산 원장의 최종 일관성(CRDT) 도입 : AP 시스템에서 네트워크 분할 복구 후 서로 다르게 갱신된 노드 간 데이터 충돌을 사람의 개입 없이 수학적으로 자동 병합하기 위해, **충돌 없는 복제 데이터 타입** (CRDT, Conflict-free Replicated Data Type)을 적극 검토할 것을 제언함.

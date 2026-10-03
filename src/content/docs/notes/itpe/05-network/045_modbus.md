@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. MODBUS의 개요
 
-- 개념 : 1979년 Modicon(현 Schneider Electric)이 PLC 간 통신을 위해 개발한 산업용 **마스터-슬레이브(Master-Slave / Client-Server)** 기반 응용 계층 통신 프로토콜.
-- 배경 및 필요성 : 스마트 공장 및 플랜트의 다양한 센서, 액추에이터, 계측기기, PLC 장비 간에 벤더 종속 없이 데이터를 모니터링하고 제어하기 위한 개방형 표준 프로토콜 요구 증대.
-- 핵심 목적 : 구조가 단순하고 구현이 용이한 산업 표준 제어 인터페이스 제공, 시리얼(RS-232/485) 및 산업용 이더넷 환경을 포괄하는 장비 제어 데이터 교환.
+- 개념 : 1979년 Modicon(현 Schneider Electric)이 **PLC** 간 통신을 위해 개발한 산업용 **마스터-슬레이브(Master-Slave / Client-Server)** 기반 **응용 계층** 통신 프로토콜.
+- 배경 및 필요성 : 스마트 공장 및 플랜트의 다양한 센서, 액추에이터, 계측기기, PLC 장비 간에 벤더 종속 없이 데이터를 모니터링하고 제어하기 위한 **개방형 표준 프로토콜** 요구 증대.
+- 핵심 목적 : 구조가 단순하고 구현이 용이한 산업 표준 제어 인터페이스 제공, 시리얼(RS-232/485) 및 **산업용 이더넷** 환경을 포괄하는 장비 제어 데이터 교환.
 
 ## Ⅱ. MODBUS의 핵심 아키텍처 및 동작 메커니즘
 
@@ -46,14 +46,14 @@ extra:
 ```
 
 - **마스터-슬레이브 통신 메커니즘** : 마스터(Client)만 요청(Request)을 시작할 수 있으며, 주소 지정된 슬레이브(Server)는 요청된 기능 코드를 수행 후 응답(Response) 반환 (단방향 질의-응답).
-- **4가지 메모리 모델 (레지스터 맵)** : 이산 입력(Discrete Inputs: 1비트 읽기전용), 코일(Coils: 1비트 읽기/쓰기), 입력 레지스터(Input Registers: 16비트 읽기전용), 유지 레지스터(Holding Registers: 16비트 읽기/쓰기).
+- 4가지 메모리 모델 (레지스터 맵) : 이산 입력(Discrete Inputs: 1비트 읽기전용), 코일(Coils: 1비트 읽기/쓰기), 입력 레지스터(Input Registers: 16비트 읽기전용), 유지 레지스터(Holding Registers: 16비트 읽기/쓰기).
 - **표준 기능 코드 (Function Code)** : 01(Read Coils), 03(Read Holding Registers), 05(Write Single Coil), 06(Write Single Register), 16(Write Multiple Registers).
 
 ## Ⅲ. MODBUS 전송 모드별 세부 비교 분석
 
 | 비교 항목 | MODBUS RTU | MODBUS ASCII | MODBUS TCP |
 |---|---|---|---|
-| **물리 계층** | RS-485 / RS-422 / RS-232 | RS-485 / RS-232 | Ethernet (IEEE 802.3) |
+| 물리 계층 | RS-485 / RS-422 / RS-232 | RS-485 / RS-232 | Ethernet (IEEE 802.3) |
 | 전송 계층 | 시리얼 통신 직접 | 시리얼 통신 직접 | TCP/IP (Port 502) |
 | 데이터 인코딩 | 8비트 바이너리 (Binary) | 2바이트 ASCII 문자열 | 8비트 바이너리 (Binary) |
 | 에러 검출 | CRC-16 (Cyclic Redundancy) | LRC (Longitudinal Redundancy) | TCP 체크섬 + 이더넷 FCS |

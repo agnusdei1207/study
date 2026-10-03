@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. BERT(Bidirectional Encoder Representations from Transformers)의 개요
 
-- 개념 : 트랜스포머(Transformer)의 인코더 블록을 기반으로 하여, 입력 문장의 좌우 양방향(Bidirectional) 문맥을 동시에 참조하여 사전학습(Pre-training)하는 언어 이해(NLU) 특화 딥러닝 모델
-- 배경 및 필요성 : 자기회귀 생성이 불가능하고 사전학습과 미세조정 간 마스크 불일치가 존재하므로 문서 이해 및 검색 리랭커 전담 배치와 RoBERTa 동적 마스킹 기법 결합 필수
-- 핵심 목적 : 단방향 언어 모델의 문맥 단절 한계 극복, 마스크 언어 모델(MLM)과 다음 문장 예측(NSP)을 통한 범용 언어 표현 학습 및 분류·개체명 인식·검색 등 다운스트림 태스크 성능 극대화
+- 개념 : **트랜스포머** (Transformer)의 인코더 블록을 기반으로 하여, 입력 문장의 좌우 **양방향** (Bidirectional) 문맥을 동시에 참조하여 **사전학습** (Pre-training)하는 언어 이해(NLU) 특화 딥러닝 모델
+- 배경 및 필요성 : 자기회귀 생성이 불가능하고 사전학습과 미세조정 간 마스크 불일치가 존재하므로 문서 이해 및 검색 리랭커 전담 배치와 **RoBERTa** 동적 마스킹 기법 결합 필수
+- 핵심 목적 : 단방향 언어 모델의 문맥 단절 한계 극복, **마스크 언어 모델** (MLM)과 **다음 문장 예측** (NSP)을 통한 범용 언어 표현 학습 및 분류·개체명 인식·검색 등 다운스트림 태스크 성능 극대화
 
 ## Ⅱ. BERT(Bidirectional Encoder Representations from Transformers)의 핵심 아키텍처 및 동작 메커니즘
 
-BERT는 3중 임베딩(Token+Segment+Position) 결합 → 마스크 언어 모델(MLM) 및 다음 문장 예측(NSP) 사전학습 → 하위 과업별 태스크 헤드 결합 미세조정(Fine-Tuning) 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+BERT는 3중 임베딩(Token+Segment+Position) 결합 → 마스크 언어 모델(MLM) 및 다음 문장 예측(NSP) 사전학습 → 하위 과업별 태스크 헤드 결합 **미세조정** (Fine-Tuning) 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -45,7 +45,7 @@ BERT는 3중 임베딩(Token+Segment+Position) 결합 → 마스크 언어 모�
 ```
 
 - 양방향 인코딩 : **진정한 양방향** (Deep Bidirectional) - 왼쪽에서 오른쪽으로만 읽는 단방향 한계를 넘어, 모든 레이어에서 좌우 문맥 토큰을 동시 참조
-- **사전학습 목표** : MLM과 NSP의 듀얼 목표 - 문맥 단어 맞히기(MLM)와 문장 간 논리적 인과성 판별(NSP)을 비지도 학습으로 동시 수행
+- 사전학습 목표 : MLM과 NSP의 듀얼 목표 - 문맥 단어 맞히기(MLM)와 문장 간 논리적 인과성 판별(NSP)을 비지도 학습으로 동시 수행
 - 입력 표현 구조 : **3중 임베딩** (Triple Embedding) - Token Embedding(WordPiece) + Segment Embedding(문장 구분) + Position Embedding(위치) 가산
 
 ## Ⅲ. BERT(Bidirectional Encoder Representations from Transformers)의 세부 구성 요소 및 비교 분석

@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 관계형 데이터베이스 설계의 근간인 정규화(Normalization) 개요
 
 ### 가. 정규화의 정의
-- **정규화** : 관계형 데이터베이스 설계에서 중복 데이터(Data Redundancy)를 최소화하고, 함수적 종속성(Functional Dependency)을 기반으로 테이블을 논리적으로 분해하여 데이터 이상 현상(Anomaly)을 원천 방지하는 프로세스.
-- 에드가 F. 커드(E.F. Codd)에 의해 제안된 무손실 분해(Lossless Decomposition)와 종속성 보존(Dependency Preservation)을 지향하는 이론적 체계.
+- **정규화** : 관계형 데이터베이스 설계에서 **중복 데이터** (Data Redundancy)를 최소화하고, **함수적 종속성** (Functional Dependency)을 기반으로 테이블을 논리적으로 분해하여 데이터 **이상 현상** (Anomaly)을 원천 방지하는 프로세스.
+- 에드가 F. 커드(E.F. Codd)에 의해 제안된 **무손실 분해** (Lossless Decomposition)와 **종속성 보존** (Dependency Preservation)을 지향하는 이론적 체계.
 
 ### 나. 정규화를 수행하지 않을 때 발생하는 3대 이상 현상(Anomaly)
 

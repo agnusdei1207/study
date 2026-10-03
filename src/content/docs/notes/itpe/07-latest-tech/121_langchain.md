@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 랭체인(LangChain)의 개요
 
-- 개념 : 거대 언어모델(LLM)을 중심으로 프롬프트, 외부 지식 베이스(Vector DB), API 도구 및 대화 이력 메모리를 레고 블록처럼 표준화된 인터페이스로 조립하는 엔드투엔드 AI 오케스트레이션 프레임워크
-- 배경 및 필요성 : 과도한 추상화 계층으로 인한 디버깅 난항과 프로덕션 환경의 복잡한 순환 분기 처리 한계가 존재하므로 상태 기반 워크플로우를 지원하는 랭그래프(LangGraph) 전환 및 랭스미스(LangSmith) 풀 트레이싱 구축 필수
-- 핵심 목적 : 폐쇄된 단일 LLM API 호출의 한계를 극복하고 최신 외부 지식 결합(RAG) 및 자율적 도구 실행 에이전트(Agentic AI)의 개발 생산성 극대화
+- 개념 : **거대 언어모델** (LLM)을 중심으로 프롬프트, 외부 지식 베이스(Vector DB), API 도구 및 대화 이력 메모리를 레고 블록처럼 표준화된 인터페이스로 조립하는 엔드투엔드 AI 오케스트레이션 프레임워크
+- 배경 및 필요성 : 과도한 추상화 계층으로 인한 디버깅 난항과 프로덕션 환경의 복잡한 순환 분기 처리 한계가 존재하므로 상태 기반 워크플로우를 지원하는 **랭그래프** (LangGraph) 전환 및 **랭스미스** (LangSmith) 풀 트레이싱 구축 필수
+- 핵심 목적 : 폐쇄된 단일 LLM API 호출의 한계를 극복하고 최신 외부 지식 결합(RAG) 및 **자율적 도구 실행 에이전트** (Agentic AI)의 개발 생산성 극대화
 
 ## Ⅱ. 랭체인(LangChain)의 핵심 아키텍처 및 동작 메커니즘
 
-랭체인은 LCEL(LangChain Expression Language)의 파이프 연산자(`|`)를 통해 프롬프트 ──> 모델 ──> 출력 파서(OutputParser)를 선언적 결합하고 비동기 스트리밍 및 배치 처리 수행 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+랭체인은 **LCEL** (LangChain Expression Language)의 파이프 연산자(`|`)를 통해 프롬프트 ──> 모델 ──> **출력 파서** (OutputParser)를 선언적 결합하고 비동기 스트리밍 및 배치 처리 수행 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -55,8 +55,8 @@ extra:
 ```
 
 - **Model I/O** : 다양한 LLM/ChatModel(OpenAI, Anthropic, Ollama)과 프롬프트 템플릿 통합 - 벤더 독립적 인터페이스 제공 및 구조화된 출력(Pydantic OutputParser) 강제
-- **Retrieval (RAG)** : Document Loader, Text Splitter, Embedding, Vector Store 연계 - 비정형 사내 문서를 청킹하여 시맨틱 검색 파이프라인을 단 수 줄로 구현
-- **Chains (LCEL)** : 병렬 처리(`RunnableParallel`) 및 스트리밍(`stream()`) 자동 최적화
+- **Retrieval** (RAG) : Document Loader, Text Splitter, Embedding, Vector Store 연계 - 비정형 사내 문서를 청킹하여 시맨틱 검색 파이프라인을 단 수 줄로 구현
+- **Chains** (LCEL) : 병렬 처리(`RunnableParallel`) 및 스트리밍(`stream()`) 자동 최적화
 - **Memory** : 대화 이력 보존(BufferMemory, SummaryMemory, VectorStoreMemory) - 상태가 없는(Stateless) REST LLM에 멀티턴 컨텍스트 지속성 부여
 - **Agents & Tools** : ReAct 패턴 기반 도구 선택 및 동적 실행기(AgentExecutor) - 구글 검색, 사내 SQL DB, 계산기 등 외부 시스템과의 양방향 인터페이싱
 

@@ -16,7 +16,7 @@ extra:
 
 ### 가. 동시성 제어(Concurrency Control)의 정의
 - **동시성 제어** : 다중 사용자(Multi-User) DBMS 환경에서 여러 트랜잭션이 데이터베이스를 동시에 공유하여 접근할 때, 데이터의 무결성(Integrity)과 일관성(Consistency)을 파괴하지 않으면서 트랜잭션을 병행 실행하도록 제어하는 기술.
-- 직렬 가능성(Serializability)을 보장하여 각 트랜잭션이 순차적으로 실행된 것과 동일한 결과를 생성하도록 보장함.
+- **직렬 가능성** (Serializability)을 보장하여 각 트랜잭션이 순차적으로 실행된 것과 동일한 결과를 생성하도록 보장함.
 
 ### 나. 동시성 제어 미비 시 발생하는 4대 데이터 이상 현상
 
@@ -55,8 +55,8 @@ extra:
 ## Ⅲ. 교착상태(Deadlock)의 해결 방안 및 MVCC 동작 원리
 
 ### 가. 교착상태 해결 전략
-- 예방 기법 (Prevention) : 타임스탬프 기반 Wait-Die(오래된 트랜잭션이 대기), Wound-Wait(오래된 트랜잭션이 선점 취소).
-- 회피 기법 (Avoidance) : 자원 할당 그래프(WFG)를 기반으로 사이클 발생 가능성 사전 차단(은행가 알고리즘).
+- 예방 기법 (Prevention) : 타임스탬프 기반 **Wait-Die** (오래된 트랜잭션이 대기), **Wound-Wait** (오래된 트랜잭션이 선점 취소).
+- 회피 기법 (Avoidance) : **자원 할당 그래프** (WFG)를 기반으로 사이클 발생 가능성 사전 차단(은행가 알고리즘).
 - 탐지 및 복구 (Detection & Recovery) : WFG 주기적 사이클 탐지 $\rightarrow$ 희생자(Victim) 선정 후 롤백.
 
 ### 나. MVCC(Multi-Version Concurrency Control)의 읽기 일관성 메커니즘

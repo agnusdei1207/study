@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. SOLID 원칙의 개요
 
-- 개념 : 로버트 C. 마틴(Uncle Bob)이 정립한 객체지향 소프트웨어 설계의 5대 핵심 원칙으로, 유지보수가 용이하고 유연하며 확장에 열려 있는 객체지향 시스템을 구축하기 위한 아키텍처 설계 가이드라인.
-- 배경 및 필요성 : 요구사항 변경에 취약한 소프트웨어의 4대 악취(경직성, 취약성, 부동성, 점착성)를 제거하고 지속 가능한 코드베이스를 확립.
+- 개념 : **로버트 C. 마틴** (Uncle Bob)이 정립한 객체지향 소프트웨어 설계의 5대 핵심 원칙으로, 유지보수가 용이하고 유연하며 확장에 열려 있는 객체지향 시스템을 구축하기 위한 아키텍처 설계 가이드라인.
+- 배경 및 필요성 : 요구사항 변경에 취약한 소프트웨어의 **4대 악취** (경직성, 취약성, 부동성, 점착성)를 제거하고 지속 가능한 코드베이스를 확립.
 - 5대 원칙 구성 : SRP, OCP, LSP, ISP, DIP.
 
 ## Ⅱ. SOLID 5대 설계 원칙 체계 및 상호 작용
@@ -39,9 +39,9 @@ extra:
 |---|---|---|---|
 | **SRP** (Single Responsibility) | 한 클래스는 하나의 책임만 담당 | User 엔티티가 인증, DB 저장, 이메일 발송까지 모두 처리 | UserService, UserRepository, EmailSender로 책임 분리 |
 | **OCP** (Open-Closed) | 기존 코드 수정 없이 새 기능 확장 | 결제 수단 추가 시 기존 결제 메서드 내부에 if-else 추가 | PaymentStrategy 인터페이스 정의 후 구현 클래스 추가 |
-| **LSP** (Liskov Substitution) | 부모의 계약(사전/사후조건) 준수 | 정사각형(Square)이 직사각형(Rectangle)을 상속받아 너비/높이 규칙 위배 | 상속 대신 별도 인터페이스 분리 또는 합성(Composition) |
+| **LSP** (Liskov Substitution) | 부모의 계약(사전/사후조건) 준수 | 정사각형(Square)이 직사각형(Rectangle)을 상속받아 너비/높이 규칙 위배 | 상속 대신 별도 인터페이스 분리 또는 **합성** (Composition) |
 | **ISP** (Interface Segregation) | 클라이언트 맞춤형 인터페이스 분리 | 복합기에 프린트만 필요한 클라이언트가 팩스/스캔 메서드까지 구현 강제 | Printable, Scannable, Faxable 인터페이스로 잘게 분리 |
-| DIP (Dependency Inversion) | 구체 클래스가 아닌 인터페이스에 의존 | OrderService가 new MariaDbRepository() 직접 생성 결합 | OrderService -> <<interface>> Repository <- MariaDbRepo |
+| **DIP** (Dependency Inversion) | 구체 클래스가 아닌 인터페이스에 의존 | OrderService가 new MariaDbRepository() 직접 생성 결합 | OrderService -> <<interface>> Repository <- MariaDbRepo |
 
 ## Ⅳ. SOLID 원칙의 주요 한계점 및 해결 방안
 

@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 퍼듀 모델(Purdue Model)의 개요
 
-- 개념 : 공장 자동화, 발전소, 정유 플랜트 등 산업제어시스템(ICS/SCADA) 및 운영기술(OT: Operational Technology) 환경을 물리적 현장 센서부터 상위 기업 경영 정보시스템(IT)까지 6개의 계층(Level 0 ~ Level 5)으로 구조화하고 계층 간 통신 경계를 정의한 글로벌 표준 산업 참조 모델(ISA-95 및 IEC 62443 기반).
-- 배경 및 필요성 : 과거 폐쇄망으로 운영되던 공장 OT 설비들이 스마트 팩토리, 산업용 사물인터넷(IIoT), 클라우드 AI 분석과 결합하면서 외부 인터넷과 연결됨에 따라 발생한 랜섬웨어 및 사이버 테러 위협을 체계적으로 방어하기 위해 필수화됨.
+- 개념 : 공장 자동화, 발전소, 정유 플랜트 등 **산업제어시스템** (ICS/SCADA) 및 **운영기술** (OT: Operational Technology) 환경을 물리적 현장 센서부터 상위 기업 경영 정보시스템(IT)까지 6개의 계층(Level 0 ~ Level 5)으로 구조화하고 계층 간 통신 경계를 정의한 글로벌 표준 산업 참조 모델(ISA-95 및 IEC 62443 기반).
+- 배경 및 필요성 : 과거 폐쇄망으로 운영되던 공장 OT 설비들이 스마트 팩토리, 산업용 사물인터넷(IIoT), 클라우드 AI 분석과 결합하면서 외부 인터넷과 연결됨에 따라 발생한 **랜섬웨어** 및 사이버 테러 위협을 체계적으로 방어하기 위해 필수화됨.
 - 핵심 목적 : OT 계층과 IT 계층 간의 명확한 보안 경계 수립, 산업용 DMZ(IDMZ: Level 3.5)를 통한 위험 격리, 실시간 제어 무결성 및 공정 가용성(Availability) 보장.
 
 ## Ⅱ. 퍼듀 모델의 6계층 구조 및 산업용 DMZ(IDMZ) 아키텍처
@@ -39,8 +39,8 @@ extra:
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **산업용 DMZ (IDMZ: Level 3.5)** : Level 4(IT망)와 Level 3(OT망) 사이에 위치하는 완충 지대로, 어떠한 IT 트래픽도 제어망(Level 0~3)으로 직접 인입되지 못하도록 양방향 차단 방화벽과 역방향 프록시를 배치.
-- **신뢰 경계선(Conduit & Zone)** : IEC 62443 표준에 따라 공정 기능별로 독립된 구역(Zone)을 분할하고, 구역 간 통신은 사전 정의된 채널(Conduit)만을 통해서만 통제.
+- **산업용 DMZ** (IDMZ: Level 3.5) : Level 4(IT망)와 Level 3(OT망) 사이에 위치하는 완충 지대로, 어떠한 IT 트래픽도 제어망(Level 0~3)으로 직접 인입되지 못하도록 양방향 차단 방화벽과 역방향 프록시를 배치.
+- **신뢰 경계선** (Conduit & Zone) : **IEC 62443** 표준에 따라 공정 기능별로 독립된 구역(Zone)을 분할하고, 구역 간 통신은 사전 정의된 채널(Conduit)만을 통해서만 통제.
 
 ## Ⅲ. 퍼듀 모델 계층별 역할 및 주요 프로토콜 비교 분석
 
@@ -50,7 +50,7 @@ extra:
 | **Level 3.5** | 산업용 완충 지대 (IDMZ) | 점프 호스트, 이중화 Historian 서버| 암호화 SSH, RDP, 복제 전용 포트|
 | **Level 3** | 제조 운영 관리 (MOM/MES)| MES, 전사 SCADA 서버, 도면 관리 | OPC-UA, SQL Net, Modbus-TCP |
 | **Level 2** | 감독 및 모니터링 제어 | 로컬 터치 HMI, 엔지니어링 랩톱 | OPC-DA, Modbus, Ethernet/IP |
-| **Level 1** | **실시간 제어 (Controller)** | PLC (Siemens, Rockwell), DCS | PROFINET, Modbus RTU, EtherCAT|
+| **Level 1** | **실시간 제어** (Controller) | PLC (Siemens, Rockwell), DCS | PROFINET, Modbus RTU, EtherCAT|
 | **Level 0** | 물리적 공정 (Field Device)| 유량계, 압력 센서, 공압 밸브 | 4-20mA 아날로그 신호, HART, IO-Link|
 
 ## Ⅳ. 현대 스마트 팩토리 환경에서 퍼듀 모델의 주요 한계점 및 해결 방안

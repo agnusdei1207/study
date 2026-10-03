@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. LDAP(Lightweight Directory Access Protocol)의 개요
 
-- 개념 : 네트워크 상에 분산된 사용자, 그룹, 컴퓨터 자원, 조직 구조 등의 디렉터리 정보를 계층형 트리 구조(DIT)로 저장하고, TCP/IP 상에서 경량화된 방식으로 초고속 검색, 조회 및 중앙 집중 인증을 제공하는 개방형 표준 프로토콜(RFC 4510).
-- 배경 및 필요성 : 초기 OSI 7계층의 X.500 DAP(Directory Access Protocol)는 프로토콜 스택이 너무 무겁고 복잡하여 범용 유닉스 및 윈도우 네트워크 환경에서 작동하기 어려웠으며, 이를 TCP/IP 상에서 가볍게 구현할 프로토콜이 요구됨.
-- 핵심 목적 : 엔터프라이즈 전반의 사원 정보, 권한, 시스템 계정을 단일 디렉터리에 통합 관리하여 싱글 사인온(SSO)과 중앙 집중 접근 통제를 실현.
+- 개념 : 네트워크 상에 분산된 사용자, 그룹, 컴퓨터 자원, 조직 구조 등의 디렉터리 정보를 **계층형 트리 구조** (DIT)로 저장하고, TCP/IP 상에서 경량화된 방식으로 초고속 검색, 조회 및 중앙 집중 인증을 제공하는 개방형 표준 프로토콜(RFC 4510).
+- 배경 및 필요성 : 초기 OSI 7계층의 **X.500 DAP** (Directory Access Protocol)는 프로토콜 스택이 너무 무겁고 복잡하여 범용 유닉스 및 윈도우 네트워크 환경에서 작동하기 어려웠으며, 이를 TCP/IP 상에서 가볍게 구현할 프로토콜이 요구됨.
+- 핵심 목적 : 엔터프라이즈 전반의 사원 정보, 권한, 시스템 계정을 단일 디렉터리에 통합 관리하여 **싱글 사인온** (SSO)과 중앙 집중 접근 통제를 실현.
 
 ## Ⅱ. LDAP(Lightweight Directory Access Protocol)의 핵심 아키텍처 및 동작 메커니즘
 
-LDAP은 계층형 디렉터리 정보 트리(DIT: Directory Information Tree), 고유 식별 명칭인 DN(Distinguished Name), 객체 클래스(objectClass), 속성(Attribute) 모델로 구성되며, 클라이언트-서버 모델로 동작함.
+LDAP은 계층형 디렉터리 정보 트리(DIT: Directory Information Tree), 고유 식별 명칭인 DN(Distinguished Name), **객체 클래스** (objectClass), **속성** (Attribute) 모델로 구성되며, 클라이언트-서버 모델로 동작함.
 
 ```text
 [ LDAP 디렉터리 정보 트리(DIT) 구조 및 바인드(인증) 메커니즘 ]

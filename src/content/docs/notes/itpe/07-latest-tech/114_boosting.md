@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 부스팅(Boosting)의 개요
 
-- 개념 : 오답에 가중치를 부여하거나 손실 함수의 음의 그래디언트(잔차)를 순차적으로 학습하는 약학습기들을 가중 선형 결합하여 강력한 예측 모델을 완성하는 직렬 앙상블 기법
-- 배경 및 필요성 : 순차적 오차 보정 특성상 훈련 데이터 내의 극단적 이상치나 라벨 노이즈에 과적합(Overfitting)되기 쉬우므로 조기 종료(Early Stopping)와 $L_1/L_2$ 정규화 및 서브샘플링 결합 통제 필수
+- 개념 : 오답에 가중치를 부여하거나 손실 함수의 **음의 그래디언트** (잔차)를 순차적으로 학습하는 약학습기들을 가중 선형 결합하여 강력한 예측 모델을 완성하는 **직렬 앙상블 기법**
+- 배경 및 필요성 : 순차적 오차 보정 특성상 훈련 데이터 내의 극단적 이상치나 라벨 노이즈에 과적합(Overfitting)되기 쉬우므로 **조기 종료** (Early Stopping)와 $L_1/L_2$ 정규화 및 서브샘플링 결합 통제 필수
 - 핵심 목적 : 단일 약학습기의 높은 편향(Bias)과 과소적합(Underfitting) 문제를 단계적 잔차 보정으로 극복하여 예측 정확도 극대화
 
 ## Ⅱ. 부스팅(Boosting)의 핵심 아키텍처 및 동작 메커니즘
 
-부스팅은 현재 앙상블 모델 $F_{m-1}(x)$의 손실 함수(Loss Function)에 대한 음의 그래디언트(Pseudo-Residual)를 계산하고, 새로운 약학습기 $h_m(x)$를 이에 적합(Fitting)시킨 뒤 수축률(Shrinkage) $\eta$를 곱하여 누적 가산 갱신 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+부스팅은 현재 앙상블 모델 $F_{m-1}(x)$의 **손실 함수** (Loss Function)에 대한 음의 그래디언트(Pseudo-Residual)를 계산하고, 새로운 약학습기 $h_m(x)$를 이에 적합(Fitting)시킨 뒤 **수축률** (Shrinkage) $\eta$를 곱하여 누적 가산 갱신 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -47,9 +47,9 @@ extra:
  [ 최종 완성된 강분류기 앙상블 모델: F_M(x) ]
 ```
 
-- **가법 모델 (Additive Model)** : $F_M(x) = \sum_{m=1}^M \eta \cdot h_m(x)$ - 이전 단계의 트리를 고정한 채 새로운 트리 $h_m(x)$를 덧셈 형태로 점진적 누적
-- **의사 잔차 (Pseudo-Residual)** : $r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1}}$ - 함수 공간에서의 경사하강법(Gradient Descent in Function Space) 구현
-- **손실 함수 2차 근사 (XGBoost)** : $\tilde{\mathcal{L}}^{(m)} \approx \sum_i [g_i f_m(x_i) + \frac{1}{2} h_i f_m^2(x_i)] + \Omega(f_m)$ - 1차 그래디언트($g_i$)와 2차 헤시안($h_i$)을 동시 활용하여 정확하고 빠른 최적 분할점 탐색
+- **가법 모델** (Additive Model) : $F_M(x) = \sum_{m=1}^M \eta \cdot h_m(x)$ - 이전 단계의 트리를 고정한 채 새로운 트리 $h_m(x)$를 덧셈 형태로 점진적 누적
+- **의사 잔차** (Pseudo-Residual) : $r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1}}$ - 함수 공간에서의 경사하강법(Gradient Descent in Function Space) 구현
+- **손실 함수 2차 근사** (XGBoost) : $\tilde{\mathcal{L}}^{(m)} \approx \sum_i [g_i f_m(x_i) + \frac{1}{2} h_i f_m^2(x_i)] + \Omega(f_m)$ - 1차 그래디언트($g_i$)와 2차 헤시안($h_i$)을 동시 활용하여 정확하고 빠른 최적 분할점 탐색
 
 ## Ⅲ. 부스팅(Boosting)의 세부 구성 요소 및 비교 분석
 

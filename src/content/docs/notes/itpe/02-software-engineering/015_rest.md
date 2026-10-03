@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. REST(Representational State Transfer)의 개요
 
-- 개념 : 웹의 창시자 중 한 명인 로이 필딩(Roy Fielding)이 2000년 박사 학위 논문에서 제시한 아키텍처 스타일로, HTTP 고유의 특성을 최대한 활용하여 네트워크 상의 자원(Resource)을 명확히 식별하고 상태를 주고받는 분산 하이퍼미디어 시스템 아키텍처.
-- 배경 및 필요성 : 과거 복잡한 RPC(Remote Procedure Call)나 무거운 SOAP/XML 기반 통신의 복잡성을 극복하고, 플랫폼 독립적이며 단순하고 확장성 높은 웹 기반 API 연동 표준으로 자리매김.
-- 핵심 구성요소 3요소 : 자원(URI), 행위(HTTP Method: GET/POST/PUT/PATCH/DELETE), 표현(Representation: JSON/XML).
+- 개념 : 웹의 창시자 중 한 명인 **로이 필딩** (Roy Fielding)이 2000년 박사 학위 논문에서 제시한 아키텍처 스타일로, HTTP 고유의 특성을 최대한 활용하여 네트워크 상의 자원(Resource)을 명확히 식별하고 상태를 주고받는 분산 하이퍼미디어 시스템 아키텍처.
+- 배경 및 필요성 : 과거 복잡한 **RPC** (Remote Procedure Call)나 무거운 SOAP/XML 기반 통신의 복잡성을 극복하고, 플랫폼 독립적이며 단순하고 확장성 높은 웹 기반 API 연동 표준으로 자리매김.
+- 핵심 구성요소 3요소 : **자원** (URI), **행위** (HTTP Method: GET/POST/PUT/PATCH/DELETE), **표현** (Representation: JSON/XML).
 
 ## Ⅱ. REST 아키텍처의 6대 제약조건
 
@@ -34,7 +34,7 @@ extra:
    [ Uniform Interface ] ─ 자원 식별, 표현을 통한 조작, 자기서술적 메시지, HATEOAS
 ```
 
-- Uniform Interface 4대 원칙 :
+- **Uniform Interface** 4대 원칙 :
   - **자원의 식별 (Identification of Resources)** : URI를 통한 고유 자원 식별 (예: /orders/123).
   - **표현을 통한 자원 조작 (Manipulation through Representations)** : 메시지 본문의 JSON 표현을 통한 생성 및 변경.
   - **자기 서술적 메시지 (Self-descriptive Messages)** : Content-Type 헤더 등 메시지 자체만으로 온전히 해석 가능한 구조.

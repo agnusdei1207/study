@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. CBAM의 개요
 
-- 개념 : SEI(Software Engineering Institute)에서 개발한 소프트웨어 아키텍처 경제성 평가 방법론으로, ATAM(Architecture Tradeoff Analysis Method)의 후속 단계로 적용되어 다양한 아키텍처 전략(전술) 대안들의 비용(Cost), 효용(Benefit), 불확실성을 정량적으로 분석하여 최적의 투자 우선순위를 결정하는 의사결정 프레임워크.
+- 개념 : **SEI** (Software Engineering Institute)에서 개발한 소프트웨어 아키텍처 경제성 평가 방법론으로, **ATAM** (Architecture Tradeoff Analysis Method)의 후속 단계로 적용되어 다양한 아키텍처 전략(전술) 대안들의 **비용** (Cost), **효용** (Benefit), 불확실성을 정량적으로 분석하여 최적의 투자 우선순위를 결정하는 의사결정 프레임워크.
 - 배경 및 필요성 : ATAM을 통해 아키텍처의 리스크와 절충점을 식별하더라도, 기업의 제한된 예산과 자원 속에서 어떤 아키텍처 개선 전략을 먼저 실행할 것인가에 대한 경제적 정량 기준이 부재했던 한계 극복.
 - 핵심 목표 : 아키텍처 전략의 **ROI** (투자수익률) 정량화, 비용 대비 효용 극대화, 비즈니스 목표 정렬.
 

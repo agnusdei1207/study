@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 생성형 AI(Generative AI)의 개요
 
-- 개념 : 입력 데이터의 클래스를 판별(Classification)하거나 수치를 예측(Regression)하는 전통적 판별 모델(Discriminative Model)과 달리, 데이터의 잠재 확률 분포(Latent Probability Distribution)를 학습하여 텍스트, 이미지, 오디오, 비디오, 소스코드 등 완전히 새로운 창작물을 자율 합성·생성하는 인공지능 기술.
-- 배경 및 필요성 : 트랜스포머(Transformer) 셀프 어텐션 아키텍처의 혁신, 초대규모 인터넷 데이터셋을 사전 학습한 **파운데이션 모델** (Foundation Model) 등장, 컴퓨팅 가속기 발전으로 지식 노동의 자동화와 창작 생산성 혁신이 가능해짐.
+- 개념 : 입력 데이터의 클래스를 판별(Classification)하거나 수치를 예측(Regression)하는 전통적 **판별 모델** (Discriminative Model)과 달리, 데이터의 **잠재 확률 분포** (Latent Probability Distribution)를 학습하여 텍스트, 이미지, 오디오, 비디오, 소스코드 등 완전히 새로운 창작물을 자율 합성·생성하는 인공지능 기술.
+- 배경 및 필요성 : **트랜스포머** (Transformer) 셀프 어텐션 아키텍처의 혁신, 초대규모 인터넷 데이터셋을 사전 학습한 **파운데이션 모델** (Foundation Model) 등장, 컴퓨팅 가속기 발전으로 지식 노동의 자동화와 창작 생산성 혁신이 가능해짐.
 - 핵심 목적 : 멀티모달 콘텐츠 생성 자동화, 지능형 업무 비서(Copilot) 구현, 신약 분자 설계 및 소프트웨어 개발 주기 단축.
 
 ## Ⅱ. 생성형 AI(Generative AI)의 핵심 아키텍처 및 동작 메커니즘
 
-생성형 AI는 방대한 원시 데이터를 통한 자기지도 사전학습(Pre-training), 인간 의도에 맞추는 정렬(Alignment), 효율적인 추론 최적화의 3단계 파이프라인으로 구동됨.
+생성형 AI는 방대한 원시 데이터를 통한 자기지도 사전학습(Pre-training), 인간 의도에 맞추는 **정렬** (Alignment), 효율적인 추론 최적화의 3단계 파이프라인으로 구동됨.
 
 ```text
 [ 생성형 AI 파운데이션 모델의 3단계 구축 파이프라인 ]
@@ -63,7 +63,7 @@ extra:
 | **적대적 생성 신경망 (GAN)** | 생성자(Generator)와 판별자(Discriminator)의 제로섬 경쟁을 통한 적대적 학습 | 매우 빠른 1스텝 추론 속도, 선명한 이미지 생성 | 모드 붕괴(Mode Collapse), 학습 불안정성 극심 | StyleGAN, CycleGAN |
 | **변분 오토인코더 (VAE)** | 입력을 연속적인 잠재 공간(Latent Space) 확률 분포로 인코딩 후 디코딩 | 수학적으로 안정적인 잠재 공간 표현, 빠른 생성 | 복원된 결과물이 흐릿함(Blurry) 발생 한계 | VQ-VAE, Stable Diffusion VAE |
 
-- 언어 및 복합 추론 분야는 트랜스포머가 사실상 표준으로 안착하였으며, 시각 미디어 생성 영역은 Diffusion 아키텍처에 트랜스포머 백본을 결합한 DiT(Diffusion Transformer) 구조로 수렴함.
+- 언어 및 복합 추론 분야는 트랜스포머가 사실상 표준으로 안착하였으며, 시각 미디어 생성 영역은 Diffusion 아키텍처에 트랜스포머 백본을 결합한 **DiT** (Diffusion Transformer) 구조로 수렴함.
 
 ## Ⅳ. 생성형 AI(Generative AI)의 주요 한계점 및 해결 방안
 

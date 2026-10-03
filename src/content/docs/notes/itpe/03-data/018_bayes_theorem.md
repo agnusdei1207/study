@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 확률적 추론의 핵심인 베이즈 정리(Bayes' Theorem) 개요
 
 ### 가. 베이즈 정리의 정의
-- **베이즈 정리** : 새로운 데이터나 증거(Evidence)가 관측되었을 때, 이를 바탕으로 특정 사건의 사전 확률(Prior Probability)을 사후 확률(Posterior Probability)로 갱신(Update)하는 조건부 확률 정리.
+- **베이즈 정리** : 새로운 데이터나 증거(Evidence)가 관측되었을 때, 이를 바탕으로 특정 사건의 **사전 확률** (Prior Probability)을 **사후 확률** (Posterior Probability)로 갱신(Update)하는 **조건부 확률** 정리.
 - 빈도주의(Frequentist) 관점의 '무한 반복 시행에서의 빈도'와 달리, 불확실성 하에서 증거에 기반하여 주관적 믿음의 정도(Degree of Belief)를 합리적으로 갱신해 나가는 베이지안 확률론의 수학적 토대.
 
 ### 나. 베이즈 정리의 수식적 구조

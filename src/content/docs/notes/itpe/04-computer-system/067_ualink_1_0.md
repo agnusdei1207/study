@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. UALink 1.0(Ultra Accelerator Link)의 개요
 
 - 개념 : 대규모 AI·고성능 컴퓨팅(HPC) 클러스터에서 단일 팟(Pod) 내 최대 1,024개의 AI 가속기(GPU/NPU/TPU) 및 스위치 간 초고대역폭·초저지연 메모리 통신을 위해 AMD, Intel, Google, Microsoft, Meta 등 빅테크 연합이 제정한 개방형 **스케일업(Scale-up)** 인터커넥트 표준.
-- 배경 및 필요성 : 엔비디아(NVIDIA) 독점의 NVLink/NVSwitch 생태계 종속을 탈피하고, 초거대 AI 모델 분산 학습 시 가속기 간 집단 통신(AllReduce, All-to-All) 병목을 해결하기 위한 개방형 고속 패브릭의 산업적 필요성 급증.
-- 핵심 목적 : 레인당 200Gbps PAM4 전송률 달성, 가속기 간 직접 로드·스토어(Load/Store) 및 원자적(Atomic) 메모리 연산 지원, 대규모 스케일업 가속기 풀링 아키텍처 표준화.
+- 배경 및 필요성 : 엔비디아(NVIDIA) 독점의 **NVLink/NVSwitch** 생태계 종속을 탈피하고, 초거대 AI 모델 분산 학습 시 가속기 간 집단 통신(AllReduce, All-to-All) 병목을 해결하기 위한 개방형 고속 패브릭의 산업적 필요성 급증.
+- 핵심 목적 : 레인당 200Gbps PAM4 전송률 달성, 가속기 간 직접 **로드·스토어(Load/Store)** 및 **원자적(Atomic) 메모리 연산** 지원, 대규모 스케일업 가속기 풀링 아키텍처 표준화.
 
 ## Ⅱ. UALink 1.0의 핵심 아키텍처 및 동작 메커니즘
 

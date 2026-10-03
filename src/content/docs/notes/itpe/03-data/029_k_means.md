@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 대표적 분할 군집화 알고리즘, K-Means의 개요
 
 ### 가. K-Means 군집화의 정의
-- **K-Means** : 주어진 $n$개의 다차원 데이터 포인트를 사전에 정의된 $K$개의 군집(Cluster)으로 분할하되, 각 군집의 중심점(Centroid)과 군집 내 데이터 포인트 간의 거리 제곱합(WCSS, Within-Cluster Sum of Squares)을 최소화하도록 반복적으로 수렴시키는 비지도 학습 알고리즘.
-- Lloyd(로이드) 알고리즘에 기반한 기댓값 최대화(EM, Expectation-Maximization)의 휴리스틱 변형.
+- **K-Means** : 주어진 $n$개의 다차원 데이터 포인트를 사전에 정의된 $K$개의 군집(Cluster)으로 분할하되, 각 군집의 **중심점** (Centroid)과 군집 내 데이터 포인트 간의 **거리 제곱합** (WCSS, Within-Cluster Sum of Squares)을 최소화하도록 반복적으로 수렴시키는 비지도 학습 알고리즘.
+- **Lloyd** (로이드) 알고리즘에 기반한 **기댓값 최대화** (EM, Expectation-Maximization)의 휴리스틱 변형.
 
 ### 나. 최적화 목적 함수 (Objective Function)
 $$J = \sum_{k=1}^K \sum_{x_i \in C_k} \| x_i - \mu_k \|^2$$

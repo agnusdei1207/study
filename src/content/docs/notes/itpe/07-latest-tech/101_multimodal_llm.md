@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 멀티모달 LLM의 개요
 
-- 개념 : 텍스트, 이미지, 음성, 비디오 등 다양한 양식(Modality)의 입력을 공통 표현 공간(Shared Latent Space)에 사상하여 교차 모달 이해 및 생성 추론을 수행하는 대형 신경망 아키텍처
-- 배경 및 필요성 : 이미지에 실재하지 않는 객체를 날조하는 시각적 환각(Visual Hallucination)과 고해상도 입력에 따른 토큰 폭증 병목이 심각하므로 시각 접지(Grounding) 검증과 동적 패치 압축 기법 구축 필수
-- 핵심 목적 : 텍스트 단일 모달의 물리적 세계 인식 한계를 극복하고 시각 문서 이해(VQA), 차트 분석, 비디오 추론 등 복합 현실 업무 자동화 달성
+- 개념 : 텍스트, 이미지, 음성, 비디오 등 다양한 양식(Modality)의 입력을 **공통 표현 공간** (Shared Latent Space)에 사상하여 교차 모달 이해 및 생성 추론을 수행하는 대형 신경망 아키텍처
+- 배경 및 필요성 : 이미지에 실재하지 않는 객체를 날조하는 **시각적 환각** (Visual Hallucination)과 고해상도 입력에 따른 토큰 폭증 병목이 심각하므로 **시각 접지** (Grounding) 검증과 동적 **패치 압축** 기법 구축 필수
+- 핵심 목적 : 텍스트 단일 모달의 물리적 세계 인식 한계를 극복하고 **시각 문서 이해** (VQA), 차트 분석, 비디오 추론 등 복합 현실 업무 자동화 달성
 
 ## Ⅱ. 멀티모달 LLM의 핵심 아키텍처 및 동작 메커니즘
 
@@ -58,8 +58,8 @@ extra:
 ```
 
 - **모달리티별 인코더** : ViT(이미지), Audio Spectrogram Transformer(음성) - 로우 데이터(Raw Data)로부터 고수준 의미적 표현 벡터 추출
-- **정렬 프로젝터 (Projector)** : Linear MLP 또는 Cross-Attention Q-Former - 시각 벡터를 언어모델의 단어 임베딩 차원(Hidden Dimension)으로 투영
-- **언어모델 백본 (LLM Backbone)** : Llama, Mistral 등 사전학습 디코더 트랜스포머 - 시각 가상 토큰(Visual Soft Tokens)을 텍스트 토큰과 동등하게 어텐션
+- **정렬 프로젝터** (Projector) : Linear MLP 또는 Cross-Attention Q-Former - 시각 벡터를 언어모델의 단어 임베딩 차원(Hidden Dimension)으로 투영
+- **언어모델 백본** (LLM Backbone) : Llama, Mistral 등 사전학습 디코더 트랜스포머 - 시각 가상 토큰(Visual Soft Tokens)을 텍스트 토큰과 동등하게 어텐션
 
 ## Ⅲ. 멀티모달 LLM의 세부 구성 요소 및 비교 분석
 

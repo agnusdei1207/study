@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 역전파(Backpropagation)의 개요
 
-- 개념 : 신경망의 예측 결과와 실제 정답 간의 오차(손실)를 출력층에서 입력층 방향으로 역전파하며 연쇄 법칙(Chain Rule)으로 각 가중치의 기울기를 계산하는 알고리즘
-- 배경 및 필요성 : 망의 깊이가 증가할수록 연쇄 곱 연산으로 인한 기울기 소실(Vanishing) 및 폭주(Exploding), 순전파 활성화 텐서 보관에 따른 메모리 병목이 발생하므로 활성화 함수 변경(ReLU), 잔차 연결, Activation Checkpointing 기법 병용 필수.
+- 개념 : 신경망의 예측 결과와 실제 정답 간의 오차(손실)를 출력층에서 입력층 방향으로 역전파하며 **연쇄 법칙** (Chain Rule)으로 각 가중치의 기울기를 계산하는 알고리즘
+- 배경 및 필요성 : 망의 깊이가 증가할수록 연쇄 곱 연산으로 인한 **기울기 소실** (Vanishing) 및 폭주(Exploding), 순전파 활성화 텐서 보관에 따른 메모리 병목이 발생하므로 활성화 함수 변경(ReLU), 잔차 연결, **Activation Checkpointing** 기법 병용 필수.
 - 핵심 목적 : 수치 미분의 제곱 규모 연산 복잡도 $O(N^2)$ 한계를 극복하고, 단 한 번의 역방향 패스($O(N)$)로 모든 파라미터의 편미분 벡터를 산출하여 효율적 가중치 갱신 달성
 
 ## Ⅱ. 역전파(Backpropagation)의 핵심 아키텍처 및 동작 메커니즘
 
-역전파는 순전파 연산으로 중간 활성화 텐서 캐싱 및 손실 계산 $\rightarrow$ 출력단 오차 미분 $\rightarrow$ 노드별 국소 기울기(Local Gradient)와 상위 유입 기울기의 곱 연산 $\rightarrow$ 연쇄 법칙 기반 모든 파라미터 기울기 계산 $\rightarrow$ 경사하강법 가중치 갱신 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+역전파는 순전파 연산으로 중간 활성화 텐서 캐싱 및 손실 계산 $\rightarrow$ 출력단 오차 미분 $\rightarrow$ 노드별 **국소 기울기** (Local Gradient)와 상위 유입 기울기의 곱 연산 $\rightarrow$ 연쇄 법칙 기반 모든 파라미터 기울기 계산 $\rightarrow$ **경사하강법** 가중치 갱신 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 +-------------------------------------------------------------------------------------------------+
@@ -37,10 +37,10 @@ extra:
                        +---> [dW = dz * (a_prev)^T] (Weight Gradient to Optimizer)
 ```
 
-- **선형 계산 복잡도** : 파라미터 수에 비례하는 $O(N)$ 복잡도로 전체 네트워크의 모든 편미분 계산 - 순전파 연산 그래프의 역방향 토폴로지 정렬(Reverse Topological Sort)
-- **연쇄 법칙 적용** : 합성함수의 미분을 각 연산 단위의 국소 미분(Local Gradient) 곱으로 단순화 - $\frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial x}$ 연산의 층별 전파
+- 선형 계산 복잡도 : 파라미터 수에 비례하는 $O(N)$ 복잡도로 전체 네트워크의 모든 편미분 계산 - 순전파 연산 그래프의 **역방향 토폴로지 정렬** (Reverse Topological Sort)
+- 연쇄 법칙 적용 : 합성함수의 미분을 각 연산 단위의 국소 미분(Local Gradient) 곱으로 단순화 - $\frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial x}$ 연산의 층별 전파
 - **메모리-연산 트레이드오프** : 역전파 계산을 위해 순전파 시 계산된 모든 은닉층 활성화 값(Activation)을 보관 - GPU VRAM 내 중간 텐서 캐싱 및 Activation Checkpointing
-- **최적화기와의 분리** : 역전파는 순수하게 기울기(Gradient)만 계산하며, 가중치 갱신은 Optimizer가 전담 - Autograd 엔진(PyTorch)과 Optimizer(AdamW, SGD)의 역할 분리
+- 최적화기와의 분리 : 역전파는 순수하게 기울기(Gradient)만 계산하며, 가중치 갱신은 Optimizer가 전담 - **Autograd** 엔진(PyTorch)과 **Optimizer** (AdamW, SGD)의 역할 분리
 
 ## Ⅲ. 역전파(Backpropagation)의 세부 구성 요소 및 비교 분석
 
