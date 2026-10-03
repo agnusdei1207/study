@@ -45,7 +45,7 @@ extra:
 
 - **초기 거점 확보** : 패치되지 않은 외곽 VPN 게이트웨이 취약점(CVE) 악용 또는 피싱 메일 매크로를 통해 내부망 침투.
 - **도메인 컨트롤러(DC) 장악** : Kerberoasting, Pass-the-Hash 공격을 통해 Active Directory 도메인 관리자 권한 획득 후 그룹 정책(GPO)으로 전사 감염 명령 배포.
-- **간헐적 암호화(Intermittent Encryption)** : 파일 전체를 암호화하지 않고 16바이트 단위로 건너뛰며 암호화하여 안티바이러스 I/O 탐지 우회 및 암호화 속도 10배 향상.
+- **간헐적 암호화(Intermittent Encryption)** : 파일 전체를 암호화하지 않고 일부 구간만 건너뛰며 암호화하여 안티바이러스 I/O 탐지 우회 및 암호화 속도 향상.
 - **안티 백업(Anti-Backup)** : 온라인 백업 볼륨 탐색 후 볼륨 섀도우 복사본(`vssadmin delete shadows /all /quiet`) 및 백업 에이전트를 강제 종료.
 
 ## Ⅲ. 랜섬웨어(Ransomware)의 세부 구성 요소 및 비교 분석

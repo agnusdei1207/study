@@ -82,5 +82,5 @@ extra:
 ## Ⅴ. 인증(Authentication) 적용 및 발전을 위한 기술사적 제언
 
 - **피싱 저항 FIDO2 패스키(Passkey) 기반 무암호화(Passwordless) 완성** : 취약한 비밀번호 정책을 전사 폐기하고 FIDO2 표준의 암호학적 비대칭키 사용자 인증으로 전면 마이그레이션.
-- **CAEP(Continuous Access Evaluation Protocol) 표준 연동** : 사용자 비밀번호가 변경되거나 기기가 감염되었을 때 IdP가 모든 SaaS(SP)에 웹훅을 즉시 발송하여 활성 세션을 1초 내에 강제 회수.
+- **CAEP(Continuous Access Evaluation Protocol) 표준 연동** : 사용자 비밀번호가 변경되거나 기기가 감염되었을 때 IdP가 모든 SaaS(SP)에 웹훅을 즉시 발송하여 활성 세션을 즉시 강제 회수.
 - **제로 트러스트 컨텍스트 기반 동적 인증 아키텍처 수립** : 사용자 신원뿐만 아니라 기기 무결성, 접속 위치, 시간대, IP 평판을 실시간 스코어링하여 고위험 상황에서만 선택적으로 추가 인증을 요구하는 지능형 통제 구현.

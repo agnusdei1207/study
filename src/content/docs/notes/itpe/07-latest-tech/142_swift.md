@@ -73,7 +73,7 @@ SWIFT 금융 메시징은 신뢰할 수 있는 데이터 파이프라인과 고�
   - **해결 방안** : SWIFT Transaction Manager(TM) 중앙 복원 메커니즘 활용 및 코어뱅킹의 네이티브 ISO 20022 데이터 모델 전면 도입.
 - **로컬 게이트웨이 침해를 통한 부정 송금 전문 승인 위험** :
   - **한계점** : SWIFT Alliance Access(SAA) 등 금융기관 로컬 게이트웨이 침해를 통한 부정 송금 전문 승인 위험 (방글라데시 중앙은행 사건).
-  - **해결 방안** : SWIFT CSP(Customer Security Programme) CSCF 필수 통제 100% 준수, 운영망 다단계 인증(MFA) 및 HSM 물리 격리.
+  - **해결 방안** : SWIFT CSP(Customer Security Programme) CSCF 필수 통제 준수, 운영망 다단계 인증(MFA) 및 HSM 물리 격리.
 - **국가별 규제 컴플라이언스 상이성에 따른 거래 지연** :
   - **한계점** : 각국 규제 기관별 상이한 컴플라이언스 규칙으로 인한 크로스보더 거래 검증 지연 및 반송 증가.
   - **해결 방안** : CBPR+ 및 PMPG(Payments Market Practice Group) 단일 마켓 프랙티스 표준 스키마 준수 및 사전 유효성 검사기 도입.

@@ -60,7 +60,7 @@ LLMOps는 데이터 준비, 프롬프트/RAG 관리, 지속적 평가, 고속 �
 
 - **Prompt-as-Code** : 프롬프트를 임의의 텍스트가 아닌 소스코드처럼 Git 저장소에서 브랜칭, 코드 리뷰, 버전 태깅하여 변경 이력 추적.
 - **LLM-as-a-Judge & Ragas** : 인간 평가의 비용 병목을 해소하기 위해 상위 프론티어 모델이 생성 답변의 충실도, 관련성을 정량 채점하는 자동 검증 파이프라인.
-- **고속 서빙 엔진(vLLM / TensorRT-LLM)** : PagedAttention 기술로 KV 캐시 메모리 단편화를 제거하여 단일 GPU당 동시 처리 토큰 처리량(Throughput) 4배 이상 향상.
+- **고속 서빙 엔진(vLLM / TensorRT-LLM)** : PagedAttention 기술로 KV 캐시 메모리 단편화를 제거하여 단일 GPU당 동시 처리 토큰 처리량(Throughput) 향상.
 - **LLM FinOps 대시보드** : 부서별, 프로젝트별 토큰 소비량과 API 비용을 실시간 집계하고 쿼터(Quota) 초과 시 자동 쓰로틀링(Throttling).
 
 ## Ⅲ. LLMOps(대규모 언어모델 운영 체계)의 세부 구성 요소 및 비교 분석

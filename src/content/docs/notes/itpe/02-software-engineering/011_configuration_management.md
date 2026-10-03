@@ -54,5 +54,5 @@ extra:
 
 ## Ⅴ. 현대 클라우드·DevOps 환경에서의 기술사적 제언
 
-- **Trunk-Based Development 및 단기 브랜치 전략 채택** : 전통적 Git Flow의 장기 브랜치는 대규모 머지 충돌을 유발하므로, 1~2일 내에 메인 트렁크로 병합하는 Trunk-Based 전략과 기능 플래그(Feature Flag)를 결합하여 지속적 통합 속도 극대화.
+- **Trunk-Based Development 및 단기 브랜치 전략 채택** : 전통적 Git Flow의 장기 브랜치는 대규모 머지 충돌을 유발하므로, 짧은 주기 내에 메인 트렁크로 병합하는 Trunk-Based 전략과 기능 플래그(Feature Flag)를 결합하여 지속적 통합 속도 극대화.
 - **코드 기반 형상(Everything as Code)의 형상관리 범위 확대** : 애플리케이션 소스뿐만 아니라 인프라(Terraform), 파이프라인(Jenkinsfile), 보안 정책(OPA)까지 형상 항목으로 통합 등록하여 완전한 재현성(Reproducibility) 확보 필요.

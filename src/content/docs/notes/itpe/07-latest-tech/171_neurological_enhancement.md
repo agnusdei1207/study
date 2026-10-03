@@ -40,7 +40,7 @@ extra:
                  │
                  ▼
   [ 3단계: 적응형 자극 파라미터 연산 (Optimal Stimulation Controller) ]
-   - 자극 부위(DLPFC 배외측 전전두피질), 전류 강도(1.5mA), 자극 시간(10분) 결정
+   - 자극 부위(DLPFC 배외측 전전두피질), 전류 강도, 자극 시간 결정
                  │
                  ▼ (안전 하드웨어 리미터 검증)
   [ 4단계: 경두개 미세 자극 인가 (tDCS / tACS Pulse Actuation) ]

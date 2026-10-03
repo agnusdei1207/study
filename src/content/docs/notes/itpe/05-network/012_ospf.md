@@ -68,7 +68,7 @@ Down -> Init -> 2-Way (DR/BDR 선출) -> ExStart -> Exchange -> Loading -> Full 
 ## Ⅳ. OSPF(Open Shortest Path First)의 주요 한계점 및 해결 방안
 
 - **대규모 망에서 토폴로지 변경 시 LSA 플러딩 및 SPF 재연산 부하** :
-  - **한계점** : 링크 플래핑(Flapping) 발생 시마다 전체 라우터가 SPF 연산을 반복 수행하여 CPU 사용률 100% 급증 및 패킷 포워딩 지연.
+  - **한계점** : 링크 플래핑(Flapping) 발생 시마다 전체 라우터가 SPF 연산을 반복 수행하여 CPU 사용률 급증 및 패킷 포워딩 지연.
   - **해결 방안** : LSA 수신 및 SPF 연산 지연 타이머(SPF Throttle Timer) 지수 백오프 적용, Area 분할 및 ABR 경로 집약(Route Summarization).
 - **브로드캐스트 네트워크에서 DR/BDR 선출 오버헤드 및 고정 Priority 문제** :
   - **한계점** : DR 장애 시 BDR 승격 및 신규 BDR 선출 과정에서 수렴 지연 발생.

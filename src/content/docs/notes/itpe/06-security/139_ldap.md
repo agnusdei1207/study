@@ -56,7 +56,7 @@ LDAP은 계층형 디렉터리 정보 트리(DIT: Directory Information Tree), �
 
 - **디렉터리 정보 트리(DIT: Directory Information Tree)** : 국가(c), 조직(o), 조직단위(ou), 공통이름(cn), 사용자ID(uid) 등 현실 조직 구조를 반영한 계층적 트리 구조로 엔트리를 체계적 배치.
 - **식별 명칭(DN: Distinguished Name)** : 트리 상에서 엔트리의 절대적 위치를 나타내는 유일한 고유 키로, 상대 식별 명칭(RDN: Relative DN)들의 연속적 결합으로 표기.
-- **읽기 중심(Read-heavy) 아키텍처** : 쓰기(트랜잭션) 성능에 최적화된 RDBMS와 달리, 90% 이상이 검색 및 조회인 환경에 맞춰 고속 인덱싱과 캐싱을 제공.
+- **읽기 중심(Read-heavy) 아키텍처** : 쓰기(트랜잭션) 성능에 최적화된 RDBMS와 달리, 대부분이 검색 및 조회인 환경에 맞춰 고속 인덱싱과 캐싱을 제공.
 - **보안 바인드(Bind)와 LDAPS** : 익명 바인드, 단순 바인드(평문), SASL 기반 보안 바인드를 지원하며, 네트워크 도청 방지를 위해 TLS 암호화 채널(LDAPS 포트 636)이 필수적임.
 
 ## Ⅲ. LDAP(Lightweight Directory Access Protocol)의 세부 구성 요소 및 비교 분석

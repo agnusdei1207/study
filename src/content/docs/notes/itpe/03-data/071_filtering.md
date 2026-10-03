@@ -49,7 +49,7 @@ extra:
 
 ### 가. 3대 고질적 난제
 1. **콜드 스타트 (Cold Start)** : 신규 사용자나 신규 아이템은 과거 인터랙션 데이터가 전무하여 추천 불가.
-2. **희소성 문제 (Data Sparsity)** : 사용자가 평가한 아이템은 전체 풀의 1% 미만이므로 행렬 대부분이 비어 있음.
+2. **희소성 문제 (Data Sparsity)** : 사용자가 평가한 아이템은 전체 풀의 극히 일부이므로 행렬 대부분이 비어 있음.
 3. **확장성 문제 (Scalability)** : 수천만 사용자 $\times$ 수백만 아이템 환경에서 $O(M \times N)$ 유사도 연산 불가능.
 
 ### 나. 딥러닝 기반 현대 추천 아키텍처 (Two-Tower 모델)
@@ -72,4 +72,4 @@ extra:
 ## Ⅳ. 추천 엔지니어링 실무 제언
 
 - **추천 파이프라인 2단계 분리 (Retrieval $\rightarrow$ Ranking)** : 수백만 아이템을 복잡한 딥러닝으로 한 번에 점수 매기는 것은 불가능하므로, 1단계 후보군 생성(Retrieval: Two-Tower/Vector Search로 수백 개 압축) 후 2단계 정밀 순위화(Ranking: DCN, DeepFM으로 실시간 점수화) 구조로 이원화해야 함.
-- **인기 편향(Popularity Bias)과 탐험-활용(Exploration-Exploitation) 균형** : 상위 1% 베스트셀러만 도배되는 현상을 막기 위해 톰슨 샘플링(Thompson Sampling)이나 $\epsilon$-Greedy 밴딧 알고리즘을 파이프라인에 결합하여 신규 아이템 노출 기회를 보장할 것을 제언함.
+- **인기 편향(Popularity Bias)과 탐험-활용(Exploration-Exploitation) 균형** : 일부 상위 베스트셀러만 도배되는 현상을 막기 위해 톰슨 샘플링(Thompson Sampling)이나 $\epsilon$-Greedy 밴딧 알고리즘을 파이프라인에 결합하여 신규 아이템 노출 기회를 보장할 것을 제언함.

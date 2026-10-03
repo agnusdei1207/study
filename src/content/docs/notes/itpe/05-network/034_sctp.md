@@ -64,7 +64,7 @@ SCTP는 호스트 간 논리적 연선인 '결합(Association)'을 수립하고,
 | **연결 수립 방식** | 3-Way Handshake (SYN 취약) | 핸드셰이크 없음 | 4-Way Handshake with State Cookie |
 | **오류 검출 부호** | 16-bit Checksum (단순 덧셈) | 16-bit Checksum (선택적) | 32-bit CRC-32c (강력한 다항식 검출)|
 
-- SCTP는 통신 캐리어급 고가용성(99.999%)을 목표로 탄생하여 멀티호밍과 보안 쿠키를 완벽히 구현했으며, 5G 코어망과 WebRTC의 핵심 전송 엔진으로 활약 중임.
+- SCTP는 통신 캐리어급 고가용성을 목표로 탄생하여 멀티호밍과 보안 쿠키를 완벽히 구현했으며, 5G 코어망과 WebRTC의 핵심 전송 엔진으로 활약 중임.
 
 ## Ⅳ. SCTP(Stream Control Transmission Protocol)의 주요 한계점 및 해결 방안
 

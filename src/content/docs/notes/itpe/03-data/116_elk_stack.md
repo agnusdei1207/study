@@ -84,4 +84,4 @@ Doc 3: "Index Tuning Concurrency"       "Database"     | Doc 1, Doc 2
 ## Ⅴ. 대규모 엔터프라이즈 ELK 운영을 위한 실무 제언
 
 - **로그 스파이크 방어를 위한 메시지 큐(Kafka) 완충 계층 배치** : 시스템 장애나 특정 이벤트로 초당 수십만 건의 로그가 폭증할 때 Logstash와 Elasticsearch가 감당하지 못하고 OOM 크래시가 발생하는 것을 막기 위해, Beats와 Logstash 사이에 **Apache Kafka를 완충 버퍼(Message Queue)** 로 필수 배치해야 함.
-- **인덱스 수명주기 관리(ILM, Index Lifecycle Management) 적용** : 로그 데이터는 시간이 지남에 따라 접근 빈도가 급감하므로, **Hot(고성능 NVMe SSD) $\rightarrow$ Warm(가상 샤드 축소) $\rightarrow$ Cold(저비용 스토리지) $\rightarrow$ Delete(30일 경과 후 자동 영구 삭제)** 파이프라인을 구축하여 클러스터 스토리지 비용을 70% 이상 절감할 것을 제언함.
+- **인덱스 수명주기 관리(ILM, Index Lifecycle Management) 적용** : 로그 데이터는 시간이 지남에 따라 접근 빈도가 급감하므로, **Hot(고성능 NVMe SSD) $\rightarrow$ Warm(가상 샤드 축소) $\rightarrow$ Cold(저비용 스토리지) $\rightarrow$ Delete(일정 기간 경과 후 자동 영구 삭제)** 파이프라인을 구축하여 클러스터 스토리지 비용을 크게 절감할 것을 제언함.

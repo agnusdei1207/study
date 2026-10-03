@@ -38,7 +38,7 @@ extra:
       │                                   (Cancelable Biometrics 변환 적용)
       ▼
  [ Step 4: 생체 인증 엔진 (1:N 매칭) ] ── 대규모 등록 템플릿 DB 내 유클리디안 거리 비교
-      │                                    (False Acceptance Rate < 0.0001% 판정)
+      │                                    (낮은 오수락률(FAR) 기준으로 판정)
       ▼
  [ Step 5: FIDO 토큰 발급 및 결제 승인 ] ─ 카드사/PG사로 일회용 가상 결제 토큰 전송
       │                                    (FDS 이상금융거래 탐지 시스템 병행)

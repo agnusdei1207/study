@@ -65,7 +65,7 @@ EDR 텔레메트리 / Sysmon / 네트워크 패킷 / 클라우드 감사 로그
 
 ## Ⅳ. TTPs(Tactics, Techniques and Procedures)의 주요 한계점 및 해결 방안
 
-- **한계점** : MITRE ATT&CK 매트릭스의 수백 개 기법을 단순히 엑셀로 체크하는 '체크리스트식 색칠'에 매몰되어 실제 데이터 수집 사각지대 간과.
+- **한계점** : MITRE ATT&CK 매트릭스의 다수 기법을 단순히 엑셀로 체크하는 '체크리스트식 색칠'에 매몰되어 실제 데이터 수집 사각지대 간과.
   - **해결 방안** : ATT&CK의 데이터 컴포넌트(Data Components)를 역추적하여 조직의 EDR/Sysmon 로그가 해당 기법을 감시할 수 있는지 데이터 가시성(Data Coverage) 우선 검증.
 - **한계점** : 공격자가 정상 운영체제 내장 도구(PowerShell, WMI, Certutil)를 악용하는 LOLBins(Living off the Land) 구사 시 정상 업무와 오탐 혼선.
   - **해결 방안** : 단일 명령어 매칭을 지양하고 부모-자식 프로세스 실행 계통 트리(Process Tree Context) 및 비정상 네트워크 아웃바운드 결합 상관분석 적용.

@@ -51,7 +51,7 @@ extra:
 - 한 번 다운로드된 데이터는 무한 복제 및 제3자 재유통이 가능하여 가치가 급락함 $\rightarrow$ **데이터 워터마킹(Digital Watermarking)** 과 블록체인 스마트 계약 기반의 소유권·이력 추적 시스템 결합.
 
 ### 나. 가치 평가의 불확실성(Information Asymmetry)
-- 구매 전에는 데이터의 품질을 알 수 없고, 내용을 확인하면 이미 구매할 필요가 없어지는 '애로우의 정보 역설(Arrow's Information Paradox)' 발생 $\rightarrow$ 무작위 1% 샘플링 데이터셋 제공 및 합성 데이터(Synthetic Data) 사전 테스트 환경 제공.
+- 구매 전에는 데이터의 품질을 알 수 없고, 내용을 확인하면 이미 구매할 필요가 없어지는 '애로우의 정보 역설(Arrow's Information Paradox)' 발생 $\rightarrow$ 무작위 일부 샘플링 데이터셋 제공 및 합성 데이터(Synthetic Data) 사전 테스트 환경 제공.
 
 ---
 

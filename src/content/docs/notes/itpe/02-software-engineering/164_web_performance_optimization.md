@@ -45,7 +45,7 @@ extra:
 | 최적화 계층 | 핵심 적용 기술 및 기법 | 구체적 효과 |
 |---|---|---|
 | 네트워크 계층 | CDN 엣지 캐싱, HTTP/2 및 HTTP/3(QUIC) 채택, DNS 사전 조회(`dns-prefetch`) | RTT 지연 단축, TCP 핸드셰이크 최소화 |
-| 자원 크기 계층 | Brotli/Gzip 텍스트 압축, WebP/AVIF 차세대 이미지 포맷, 트리쉐이킹(Tree Shaking) | 전송 페이로드 용량 60~80% 절감 |
+| 자원 크기 계층 | Brotli/Gzip 텍스트 압축, WebP/AVIF 차세대 이미지 포맷, 트리쉐이킹(Tree Shaking) | 전송 페이로드 용량 대폭 절감 |
 | 브라우저 파싱 계층 | JS 비동기 로딩(`defer` / `async`), CSS 상단 배치, 중요 CSS 인라인화(Critical CSS) | 렌더링 차단 리소스(Render-Blocking) 제거 |
 | 렌더링 실행 계층 | CSS `content-visibility: auto`, 레이아웃 스레싱 방지, GPU 가속(`transform`, `opacity`) | 리플로우(Reflow) 억제, 60fps 렌더링 유지 |
 

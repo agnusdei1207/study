@@ -46,7 +46,7 @@ SIEM은 데이터 수집 -> 정규화/파싱 -> 상관분석(Rule & ML) -> 경�
   [ 관제 대시보드 / SOC 분석가 ] ──> [ SOAR 연동 자동 차단 ]
 ```
 
-- **대용량 로그 수집 및 저장** : Syslog, Agent, API를 통해 분당 수십만 EPS(Events Per Second) 트래픽을 유실 없이 분산 저장(Elasticsearch, Splunk).
+- **대용량 로그 수집 및 저장** : Syslog, Agent, API를 통해 대량의 EPS(Events Per Second) 트래픽을 유실 없이 분산 저장(Elasticsearch, Splunk).
 - **로그 정규화(Normalization)** : 제조사마다 제각각인 로그 형식을 단일 공통 데이터 모델(예: OCSF, CEF)로 변환하여 통합 질의 가능.
 - **상관분석(Correlation Analysis)** : 서로 다른 장비에서 발생한 이벤트들을 시간, IP, 사용자 계정 축으로 결합하여 단일 로그로는 알 수 없는 공격 흐름 추적.
 - **위협 인텔리전스(CTI) 연동** : 수집된 IP, 해시값이 악성 평판(IoC)과 일치하는지 실시간 대조하여 경보 우선순위 자동 조정.

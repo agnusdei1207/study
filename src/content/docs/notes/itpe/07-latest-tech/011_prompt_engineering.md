@@ -47,7 +47,7 @@ extra:
 - **In-Context Learning** : 모델의 파라미터를 역전파로 갱신하지 않고도, 프롬프트 내부의 어텐션 메커니즘을 통해 즉각적인 태스크 적응 유도.
 - **Chain-of-Thought(CoT)** : 복잡한 산술 및 논리 추론 문제를 풀 때 중간 사고 과정을 명시적으로 토큰화하여 생성함으로써 최종 정답률 비약적 상승.
 - **ReAct(Reasoning + Acting)** : 추론 과정 중간에 계산기, DB 검색, 웹 크롤링 등 외부 도구(Tool)를 직접 실행하고 그 결과를 관찰하여 다음 결정을 내리는 에이전트 루프.
-- **구조화된 출력 강제(Structured Outputs)** : 정규표현식 제약 조건 및 문법 가이드(Grammar-based Decoding)를 통해 JSON 스키마를 100% 준수하는 출력 보장.
+- **구조화된 출력 강제(Structured Outputs)** : 정규표현식 제약 조건 및 문법 가이드(Grammar-based Decoding)를 통해 JSON 스키마를 준수하는 출력 보장.
 
 ## Ⅲ. 프롬프트 엔지니어링(Prompt Engineering)의 세부 구성 요소 및 비교 분석
 

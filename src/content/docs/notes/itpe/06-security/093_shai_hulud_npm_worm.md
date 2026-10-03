@@ -72,11 +72,11 @@ npm API 질의: npm access ls-packages (해당 토큰으로 쓰기 권한이 있
 - **한계점** : `--ignore-scripts` 옵션을 전역 적용할 경우 C/C++ 바인딩을 컴파일하는 네이티브 모듈(node-gyp 등)의 빌드 실패 발생.
   - **해결 방안** : 화이트리스트 기반 스크립트 허용 도구(`@lavamoat/allow-scripts` 등)를 도입하여 검증된 패키지만 선택적으로 스크립트 실행 허용.
 - **한계점** : npm 2단계 인증(2FA)을 적용하더라도 CLI 자동 배포용으로 생성된 Automation Token은 2FA를 우회하는 취약점.
-  - **해결 방안** : 장기 보존 API Automation Token 발급을 전면 금지하고 OIDC 기반 단기 신뢰 게시(Trusted Publishers)로 100% 강제 전환.
+  - **해결 방안** : 장기 보존 API Automation Token 발급을 전면 금지하고 OIDC 기반 단기 신뢰 게시(Trusted Publishers)로 전면 전환.
 - **한계점** : 패키지가 수십 개 이상의 서브 의존성(Transitive Dependencies)을 가질 때 심층 계층에 은닉된 웜 코드의 육안 식별 불가.
   - **해결 방안** : CI 단계에서 소켓(Socket.dev)이나 Snyk 등 AST(추상구문트리) 기반 의존성 행위 분석기를 연동하여 네트워크 호출 및 파일 접근 훅 실시간 차단.
 - **한계점** : 개발자 로컬 PC가 감염되었을 때 레지스트리에 이미 오염된 버전이 게시된 후 회수(Unpublish) 지연으로 인한 피해 확산.
-  - **해결 방안** : 패키지 게시 즉시 샌드박스 동적 분석을 거쳐 30분간 다운로드를 보류하는 카나리아 릴리즈(Canary Release) 정책 도입.
+  - **해결 방안** : 패키지 게시 즉시 샌드박스 동적 분석을 거쳐 일정 시간 다운로드를 보류하는 카나리아 릴리즈(Canary Release) 정책 도입.
 
 ## Ⅴ. Shai-Hulud npm 웜 적용 및 발전을 위한 기술사적 제언
 
