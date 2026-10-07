@@ -44,9 +44,9 @@ extra:
                              [새로운 블록 확정]
 ```
 
-- **저작 및 컴파일** : Solidity, Vyper, Solc, Hardhat - 고수준 로직 검증 및 EVM 호환 저수준 옵코드(Opcode) 변환.
+- **저작 및 컴파일** : Solidity, Vyper, Solc, Hardhat - 고수준 로직 검증 및 EVM(Ethereum Virtual Machine) 호환 저수준 옵코드(Opcode) 변환.
 - **인터페이스 정의** : **ABI** (Application Binary Interface) - DApp 프론트엔드가 컨트랙트 함수를 올바른 바이트스트림으로 인코딩/디코딩하도록 매핑.
-- **가상머신 실행** : EVM JIT/AOT 런타임, **Gas Metering** - 연산 단계마다 가스를 차감하고 가스 고갈 시 상태 롤백(Out-of-Gas Revert).
+- **가상머신 실행** : EVM JIT(Just-in-Time)/AOT 런타임, **Gas Metering** - 연산 단계마다 가스를 차감하고 가스 고갈 시 상태 롤백(Out-of-Gas Revert).
 - **상태 영구화** : Merkle Patricia Trie, LevelDB/RocksDB - 계정 상태(Nonce, Balance, StorageRoot, CodeHash)를 암호학적 해시 트리로 원장에 동기화.
 
 ## Ⅲ. 스마트 계약(Smart Contract)의 세부 구성 요소 및 비교 분석
@@ -57,7 +57,7 @@ extra:
 | **실행 모델** | 단순 스택 기반 조건식 평가 (Forth 유사) | 범용 가상머신(EVM) 기반 바이트코드 해석 |
 | **상태 관리 (State)** | 무상태(Stateless) UTXO 검증 모델 | 상태 기반(Stateful) 어카운트/스토리지 모델 |
 | **연산 제약 기법** | 연산자(Opcode) 수 및 스크립트 크기 제한 | 동적 가스(Gas) 소비 메커니즘을 통한 무한 루프 방지 |
-| **표현력 및 확장성** | 단순 멀티시그, 타임락 지출 조건에 국한 | 복잡한 금융 로직, 토큰 발행(ERC-20/721), DAO 구현 |
+| **표현력 및 확장성** | 단순 멀티시그, 타임락 지출 조건에 국한 | 복잡한 금융 로직, 토큰 발행(ERC(Ethereum Request for Comments)-20/721), DAO 구현 |
 | **보안 공격 표면** | 공격 표면 극소화 (논리적 단순성) | 복잡한 로직 및 재진입 취약점 등 높은 공격 표면 노출 |
 
 - 스마트 계약은 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
@@ -65,8 +65,8 @@ extra:
 ## Ⅳ. 스마트 계약(Smart Contract)의 주요 한계점 및 해결 방안
 
 - 오라클 문제(Oracle Problem)로 인한 외부 데이터 조작 :
-  - 한계점 : 금융 청산 및 스포츠 베팅 컨트랙트가 단일 API에 의존하여 가짜 데이터 주입 시 자산 탈취 위험.
-  - 해결 방안 : 탈중앙화 오라클 네트워크(DON: Chainlink) 구축 - 다수의 독립적인 오라클 노드가 데이터를 수집하고 이상치 제거 후 중앙값(Median) 합의 제공. - 영지식 증명(zk-Oracle) 및 하드웨어 보안 영역(SGX)을 결합하여 데이터 출처 무결성 보증.
+  - 한계점 : 금융 청산 및 스포츠 베팅 컨트랙트가 단일 API(Application Programming Interface)에 의존하여 가짜 데이터 주입 시 자산 탈취 위험.
+  - 해결 방안 : 탈중앙화 오라클 네트워크(DON: Chainlink) 구축 - 다수의 독립적인 오라클 노드가 데이터를 수집하고 이상치 제거 후 중앙값(Median) 합의 제공. - 영지식 증명(zk-Oracle) 및 하드웨어 보안 영역(SGX, Software Guard Extensions)을 결합하여 데이터 출처 무결성 보증.
 - 배포 후 코드 수정 불가로 인한 취약점 패치 한계 :
   - 한계점 : 릴리즈된 컨트랙트에 심각한 로직 버그 발견 시 소스코드 교체가 불가능하여 서비스 중단 위기.
   - 해결 방안 : 프록시 패턴(Proxy Pattern: ERC-1967) 업그레이드 체계 구현 - 사용자는 영구적인 프록시 컨트랙트(Proxy)를 호출하고, 프록시는 `delegatecall`로 로직 컨트랙트 위임 실행. - 로직 버그 발생 시 다중서명 거버넌스를 거쳐 프록시가 가리키는 구현체 주소만 안전 교체.

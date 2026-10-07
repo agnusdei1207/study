@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 스프링 부트(Spring Boot)의 개요
 
-- 개념 : **스프링 부트** (Spring Boot) 란 방대한 XML 설정과 복잡한 환경 구성이 요구되던 기존 엔터프라이즈 스프링(Spring) 프레임워크의 진입 장벽을 낮추고, 단독 실행 가능한(Stand-alone) 프로덕션급 스프링 애플리케이션을 최소한의 설정(Opinionated Configuration)으로 신속히 개발할 수 있도록 피보탈(현 VMware)에서 개발한 차세대 스프링 프레임워크.
-- 배경 및 필요성 : **마이크로서비스 아키텍처** (MSA) 확산에 따른 서비스 단위 경량화, 빠른 프로토타이핑 및 배포, 외장 WAS(WebLogic, Jeus, Tomcat) 설치 및 배포 복잡도 제거.
+- 개념 : **스프링 부트** (Spring Boot) 란 방대한 XML(Extensible Markup Language) 설정과 복잡한 환경 구성이 요구되던 기존 엔터프라이즈 스프링(Spring) 프레임워크의 진입 장벽을 낮추고, 단독 실행 가능한(Stand-alone) 프로덕션급 스프링 애플리케이션을 최소한의 설정(Opinionated Configuration)으로 신속히 개발할 수 있도록 피보탈(현 VMware)에서 개발한 차세대 스프링 프레임워크.
+- 배경 및 필요성 : **마이크로서비스 아키텍처** (MSA, Microservice Architecture) 확산에 따른 서비스 단위 경량화, 빠른 프로토타이핑 및 배포, 외장 WAS(WebLogic, Jeus, Tomcat) 설치 및 배포 복잡도 제거.
 - 3대 핵심 혁신 : 자동 구성(Auto-Configuration), 스타터 의존성(Starter POMs), **내장 웹 서버** (Embedded Tomcat/Jetty)
 
 ## Ⅱ. 스프링 부트의 핵심 아키텍처 및 자동 구성 메커니즘
@@ -42,7 +42,7 @@ extra:
 ```
 
 - **스타터 의존성** (Starters) : `spring-boot-starter-web`, `spring-boot-starter-data-jpa`처럼 관련된 라이브러리와 호환 버전들을 하나의 의존성 패키지로 묶어 버전 충돌(Jar Hell)을 원천 방지.
-- **스프링 부트 액추에이터** (Actuator) : 애플리케이션의 상태(Health), 메트릭(Metrics), 환경설정(Env), 스레드 덤프를 HTTP 엔드포인트(`/actuator/health`)로 노출하여 관측성(Observability) 기본 제공.
+- **스프링 부트 액추에이터** (Actuator) : 애플리케이션의 상태(Health), 메트릭(Metrics), 환경설정(Env), 스레드 덤프를 HTTP(Hypertext Transfer Protocol) 엔드포인트(`/actuator/health`)로 노출하여 관측성(Observability) 기본 제공.
 
 ## Ⅲ. 전통적 Spring MVC와 Spring Boot의 비교
 
@@ -51,8 +51,8 @@ extra:
 | 설정 방식 | 복잡한 XML 설정 또는 다수의 Java Config 명시 | 자동 구성(@EnableAutoConfiguration), 관례 기반 설정 |
 | 의존성 관리 | 개별 라이브러리 및 호환 버전을 수작업으로 pom.xml 기재 | 스타터(Starter) 의존성을 통한 일괄 버전 의존성 해결 |
 | 배포 형태 | 외장 WAS에 war 파일 형태로 패키징하여 빌드 및 배포 | 내장 톰캣이 포함된 실행 가능한 단일 fat/uber jar 배포 |
-| 인프라 관리 | 외장 WAS의 JVM 옵션, 스레드 풀 수작업 튜닝 | `application.yml` 단일 프로퍼티 파일로 내장 서버 튜닝 |
-| 운영 관측성 | 별도의 사외 APM 라이브러리 연동 및 개발 필요 | 내장된 Spring Boot Actuator를 통해 프로메테우스 메트릭 즉시 노출 |
+| 인프라 관리 | 외장 WAS의 JVM(Java Virtual Machine) 옵션, 스레드 풀 수작업 튜닝 | `application.yml` 단일 프로퍼티 파일로 내장 서버 튜닝 |
+| 운영 관측성 | 별도의 사외 APM(Application Performance Monitoring) 라이브러리 연동 및 개발 필요 | 내장된 Spring Boot Actuator를 통해 프로메테우스 메트릭 즉시 노출 |
 
 ## Ⅳ. 스프링 부트(Spring Boot)의 주요 한계점 및 해결 방안
 

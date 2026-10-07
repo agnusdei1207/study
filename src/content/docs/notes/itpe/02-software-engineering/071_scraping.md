@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 스크래핑의 개요
 
-- 개념 : 웹 사이트의 HTML 문서나 모바일 앱의 뷰 화면으로부터 필요한 특정 데이터(텍스트, 가격 정보, 이미지 등)를 프로그래밍 도구를 활용하여 자동으로 추출하고 가공하는 기술.
-- 배경 및 필요성 : 공식 Open API를 제공하지 않는 웹 서비스로부터 데이터를 수집하여 가격 비교, 마이데이터 서비스, 금융 스크린 스크래핑, 시장 동향 분석에 활용.
-- 핵심 기술 요소 : **HTTP 클라이언트** (Requests, Axios), **HTML 파서** (BeautifulSoup, Cheerio), **헤드리스 브라우저** (Puppeteer, Playwright, Selenium).
+- 개념 : 웹 사이트의 HTML(HyperText Markup Language) 문서나 모바일 앱의 뷰 화면으로부터 필요한 특정 데이터(텍스트, 가격 정보, 이미지 등)를 프로그래밍 도구를 활용하여 자동으로 추출하고 가공하는 기술.
+- 배경 및 필요성 : 공식 Open API(Application Programming Interface)를 제공하지 않는 웹 서비스로부터 데이터를 수집하여 가격 비교, 마이데이터 서비스, 금융 스크린 스크래핑, 시장 동향 분석에 활용.
+- 핵심 기술 요소 : **HTTP(Hypertext Transfer Protocol) 클라이언트** (Requests, Axios), **HTML 파서** (BeautifulSoup, Cheerio), **헤드리스 브라우저** (Puppeteer, Playwright, Selenium).
 
 ## Ⅱ. 스크래핑의 동작 프로세스 및 크롤링과의 비교
 
@@ -33,9 +33,9 @@ extra:
 
 | 스크래핑 방식 | 장점 | 단점 | 대표 도구 |
 |---|---|---|---|
-| 정적 HTML 파싱 | 초고속 처리, 메모리/CPU 자원 소비 극소 | 자바스크립트로 렌더링되는 SPA(React/Vue) 데이터 수집 불가 | BeautifulSoup, Scrapy, Cheerio |
+| 정적 HTML 파싱 | 초고속 처리, 메모리/CPU(Central Processing Unit) 자원 소비 극소 | 자바스크립트로 렌더링되는 SPA(React/Vue) 데이터 수집 불가 | BeautifulSoup, Scrapy, Cheerio |
 | 헤드리스 브라우저 조작 | 사용자 인터랙션(클릭, 스크롤, 로그인) 재현 가능 | 무거운 브라우저 렌더링으로 속도 느림, 자원 소모 극대화 | Puppeteer, Playwright, Selenium |
-| **비공식 백엔드 API 후킹** | 가공되지 않은 순수 JSON 데이터를 직접 고속 수집 | API 스펙 변경 시 즉각 오작동, 인증 토큰 만료 위험 | 네트워크 패킷 분석(DevTools, Charles) |
+| **비공식 백엔드 API 후킹** | 가공되지 않은 순수 JSON(JavaScript Object Notation) 데이터를 직접 고속 수집 | API 스펙 변경 시 즉각 오작동, 인증 토큰 만료 위험 | 네트워크 패킷 분석(DevTools, Charles) |
 
 - 법적 및 윤리적 리스크 :
   - **robots.txt** 규약 준수 : 검색 봇 및 스크래핑의 접근 허용/거부 범위 명시.
@@ -44,11 +44,11 @@ extra:
 
 ## Ⅳ. 스크래핑(Scraping)의 주요 한계점 및 해결 방안
 
-- 웹 UI 잦은 변경에 따른 파서 파손(Parser Fragility) :
-  - 한계점 : 대상 웹 사이트의 HTML 태그, CSS 클래스명, DOM 계층 구조가 변경될 때마다 하드코딩된 선택자(Selector)가 즉시 무효화되어 파이프라인 정지.
-  - 해결 방안 : 시맨틱 태그 및 텍스트 앵커 기반 유연한 파싱 로직 적용, LLM 기반 지능형 자가 치유 파서(Self-Healing Parser) 도입으로 DOM 변동 자동 대응.
-- 헤드리스 브라우저 자원 고갈 및 WAF 차단 :
-  - 한계점 : SPA 렌더링을 위해 Puppeteer/Playwright 실행 시 인스턴스당 메모리 점유율이 급증하고, Cloudflare/Akamai 등 WAF의 봇 탐지 솔루션에 의한 IP 차단 발생.
+- 웹 UI(User Interface) 잦은 변경에 따른 파서 파손(Parser Fragility) :
+  - 한계점 : 대상 웹 사이트의 HTML 태그, CSS(Cascading Style Sheets) 클래스명, DOM(Document Object Model) 계층 구조가 변경될 때마다 하드코딩된 선택자(Selector)가 즉시 무효화되어 파이프라인 정지.
+  - 해결 방안 : 시맨틱 태그 및 텍스트 앵커 기반 유연한 파싱 로직 적용, LLM(Large Language Model) 기반 지능형 자가 치유 파서(Self-Healing Parser) 도입으로 DOM 변동 자동 대응.
+- 헤드리스 브라우저 자원 고갈 및 WAF(Web Application Firewall) 차단 :
+  - 한계점 : SPA 렌더링을 위해 Puppeteer/Playwright 실행 시 인스턴스당 메모리 점유율이 급증하고, Cloudflare/Akamai 등 WAF의 봇 탐지 솔루션에 의한 IP(Internet Protocol) 차단 발생.
   - 해결 방안 : 헤드리스 브라우저 풀링(Resource Pooling) 및 경량 브라우저 컨테이너화, 주거용 프록시 풀(Residential Proxy Pool) 및 지능형 핑거프린트 우회 기술 적용.
 - 비공식 수집에 따른 법적 리스크 및 데이터 무결성 결여 :
   - 한계점 : robots.txt 무시, 저작권 침해, 부정경쟁방지법 위반 등 법적 분쟁 리스크 및 실시간 데이터 검증 체계 부재로 인한 결측치 발생.

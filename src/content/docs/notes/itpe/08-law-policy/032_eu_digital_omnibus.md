@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. EU 디지털 옴니버스 (AI Act 고위험 의무 연기)의 개요
 
-- 개념 : EU AI Act의 **고위험 AI 규정** 시행 일정과 적합성 평가 절차를 산업계 준비 수준에 맞춰 합리적으로 조정한 개정 규정.
+- 개념 : EU(European Union) AI(Artificial Intelligence) Act의 **고위험 AI 규정** 시행 일정과 적합성 평가 절차를 산업계 준비 수준에 맞춰 합리적으로 조정한 개정 규정.
 - 제정 배경 및 필요성 : EU AI Act 통과 이후 고영향 AI 관련 **조화 표준** (Harmonised Standards) 제정 지연과 중소기업의 과중한 컴플라이언스 부담을 해소하기 위해, 고위험 AI 규제 적용 시점을 탄력적으로 유예하는 **디지털 옴니버스** 개정안이 채택됨.
 - 핵심 목적 : 조화 표준 제정 지연 해소, 중소·스타트업의 규제 부담 완화 및 안전성 기준의 질서 있는 시장 연착륙 보장.
 
@@ -69,13 +69,13 @@ extra:
 
 - 고위험 규제 유예로 인해 국내 기업의 준비 중단 시 향후 인증 병목 사태 재발 우려 :
   - 한계점 : 고위험 규제 일정이 유예됨에 따라 국내 수출 기업들이 준비를 전면 중단하여 2027년 말에 인증 병목 사태 재발 우려.
-  - 해결 방안 : 연기된 기간을 활용하여 MLOps 기반 사전 적합성 셀프 진단 체계를 선제 구축하고 TTA CAT 인증과 연계 준비.
+  - 해결 방안 : 연기된 기간을 활용하여 MLOps(Machine Learning Operations) 기반 사전 적합성 셀프 진단 체계를 선제 구축하고 TTA(Telecommunications Technology Association) CAT 인증과 연계 준비.
 - EU 조화 표준의 세부 규격 발표 지연에 따른 기술 문서 작성 기준의 불확실성 상존 :
   - 한계점 : EU 조화 표준(Harmonised Standards)의 세부 규격 발표가 여전히 지연되어 기술 문서 작성 기준의 불확실성 상존.
-  - 해결 방안 : ISO/IEC 42001 및 NIST AI RMF 등 공인된 국제 표준을 프레임워크로 선반영하고 EU 발표 즉시 델타(Delta) 패치.
+  - 해결 방안 : ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 42001 및 NIST(National Institute of Standards and Technology) AI RMF(Risk Management Framework) 등 공인된 국제 표준을 프레임워크로 선반영하고 EU 발표 즉시 델타(Delta) 패치.
 
 ## Ⅴ. EU 디지털 옴니버스 (AI Act 고위험 의무 연기) 정착 및 실효성 확보를 위한 기술사적 제언
 
 - 유예 기간 동안 전사 AI 자산 목록(Registry)을 완성하고 적합성 셀프 진단 선제 구축 : 기존의 2027년 말 인증 심사 쇄도로 수출 중단 한계를 극복하기 위해 기술 문서 사전 완성 체계를 선제적으로 확립하여 엔터프라이즈 거버넌스를 완성해야 함.
-- ISO/IEC 42001 및 NIST AI RMF 국제 표준을 프레임워크로 선반영하여 델타 패치 준비 : 기존의 인증 직전 긴급 컨설팅으로 고비용 한계를 극복하기 위해 CI/CD 파이프라인 연계로 규제 비용 분산 체계를 선제적으로 확립하여 엔터프라이즈 거버넌스를 완성해야 함.
+- ISO/IEC 42001 및 NIST AI RMF 국제 표준을 프레임워크로 선반영하여 델타 패치 준비 : 기존의 인증 직전 긴급 컨설팅으로 고비용 한계를 극복하기 위해 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 연계로 규제 비용 분산 체계를 선제적으로 확립하여 엔터프라이즈 거버넌스를 완성해야 함.
 - 조항별 단계적 컴플라이언스 캘린더를 수립하여 이미 발효된 금지 대상 규제 즉시 준수 : 기존의 이미 시행된 금지 조항 위반 과징금 노출 한계를 극복하기 위해 기시행 항목 우선 차단으로 법적 리스크 제로화 체계를 선제적으로 확립하여 엔터프라이즈 거버넌스를 완성해야 함.

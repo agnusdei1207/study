@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 멀티에이전트 시스템(Multi-Agent System)의 개요
 
-- 개념 : 특정 환경(Environment) 내에서 **자율성** (Autonomy), **사회적 능력** (Social Ability), **반응성** (Reactivity), **능동성** (Proactiveness)을 갖춘 다수의 지능형 소프트웨어 에이전트들이 상호작용하며, 분산된 지식과 기능을 바탕으로 공동의 목표를 달성하거나 개별 목표를 최적화하기 위해 협력, 조정, 경쟁, 협상을 수행하는 **분산 인공지능** (DAI) 아키텍처.
-- 배경 및 필요성 : 단일 모놀리식 AI 시스템이 가지는 연산 복잡도, **단일 실패점** (SPOF), 거대 모델의 메모리 한계를 극복하고, 복잡한 실세계 문제를 기능별로 모듈화하여 병렬적이고 강건하게 해결하기 위해 대두됨.
+- 개념 : 특정 환경(Environment) 내에서 **자율성** (Autonomy), **사회적 능력** (Social Ability), **반응성** (Reactivity), **능동성** (Proactiveness)을 갖춘 다수의 지능형 소프트웨어 에이전트들이 상호작용하며, 분산된 지식과 기능을 바탕으로 공동의 목표를 달성하거나 개별 목표를 최적화하기 위해 협력, 조정, 경쟁, 협상을 수행하는 **분산 인공지능** (DAI, Distributed Artificial Intelligence) 아키텍처.
+- 배경 및 필요성 : 단일 모놀리식 AI(Artificial Intelligence) 시스템이 가지는 연산 복잡도, **단일 실패점** (SPOF, Single Point of Failure), 거대 모델의 메모리 한계를 극복하고, 복잡한 실세계 문제를 기능별로 모듈화하여 병렬적이고 강건하게 해결하기 위해 대두됨.
 - 핵심 목적 : 복잡계 문제 해결의 분산화, 시스템 **결함 허용성** (Fault Tolerance) 극대화, 전문화된 서브태스크 분업을 통한 전체 시스템 효율성 제고.
 
 ## Ⅱ. 멀티에이전트 시스템(Multi-Agent System)의 핵심 아키텍처 및 동작 메커니즘
@@ -48,7 +48,7 @@ extra:
 - **개별 에이전트 BDI 아키텍처** : 신념(Beliefs, 환경에 대한 지식), 소망(Desires, 달성 목표), 의도(Intentions, 선택된 실행 계획)를 기반으로 자율 판단.
 - **계약망 프로토콜(Contract Net Protocol)** : 매니저가 과업을 공고하면 적격 에이전트들이 입찰서를 제출하고 최적의 에이전트에게 하청 계약을 체결하는 분산 작업 할당 메커니즘.
 - **블랙보드 시스템(Blackboard System)** : 공유 메모리 공간에 에이전트들이 부분 해결책을 기록하고 타 에이전트가 이를 읽어 다음 단계로 발전시키는 간접 통신 기법.
-- **FIPA-ACL 통신 표준** : 에이전트 간에 의도(화행, Speech Act: Request, Inform, Propose, Refuse 등)를 명확히 구조화하여 메시지를 교환.
+- **FIPA(Foundation for Intelligent Physical Agents)-ACL(Agent Communication Language) 통신 표준** : 에이전트 간에 의도(화행, Speech Act: Request, Inform, Propose, Refuse 등)를 명확히 구조화하여 메시지를 교환.
 
 ## Ⅲ. 멀티에이전트 시스템(Multi-Agent System)의 세부 구성 요소 및 비교 분석
 
@@ -57,9 +57,9 @@ extra:
 | **계층형 구조 (Hierarchical)** | 상위 에이전트가 하위 에이전트들을 통제하고 최종 의사결정 | 명확한 책임 소재, 충돌 해결 단순 | 상위 노드의 병목 현상, 유연성 부족 | 군사 지휘 통제, 기업 경영 조직 워크플로우 |
 | **연합형 구조 (Federation)** | 중개자(Facilitator) 에이전트를 통해 메시지를 라우팅하고 조정 | 개별 에이전트의 자율성 보장, 시스템 확장 용이 | 중개자 장애 시 전체 통신 마비 위험 | 물류 배송 연합망, 분산 스마트 그리드 |
 | **시장형 구조 (Market-based)** | 가격, 경매, 입찰 등 시장 경제 원리를 적용하여 자원 배분 | 자원의 전역적 최적 분배, 동적 환경 적응력 우수 | 통신 오버헤드 큼, 담합 등 예상치 못한 교란 | 클라우드 컴퓨팅 자원 스케줄링, 전력 거래 |
-| **완전 분산형 (P2P Mesh)** | 모든 에이전트가 동등한 권한을 갖고 자율적 로컬 상호작용 | 단일 실패점 완전 제거, 극도의 내결함성 | 전역 합의 도달 시간 김, 교착 상태 위험 | 로봇 군집(Swarm Robotics), P2P 블록체인 |
+| **완전 분산형 (P2P Mesh)** | 모든 에이전트가 동등한 권한을 갖고 자율적 로컬 상호작용 | 단일 실패점 완전 제거, 극도의 내결함성 | 전역 합의 도달 시간 김, 교착 상태 위험 | 로봇 군집(Swarm Robotics), P2P(Peer-to-Peer) 블록체인 |
 
-- 시스템의 복잡도와 제어 요구사항에 따라 결정되며, 최근 LLM 기반 멀티에이전트(CrewAI, MetaGPT)는 계층형과 연합형 구조를 혼합하여 주로 적용함.
+- 시스템의 복잡도와 제어 요구사항에 따라 결정되며, 최근 LLM(Large Language Model) 기반 멀티에이전트(CrewAI, MetaGPT)는 계층형과 연합형 구조를 혼합하여 주로 적용함.
 
 ## Ⅳ. 멀티에이전트 시스템(Multi-Agent System)의 주요 한계점 및 해결 방안
 
@@ -68,13 +68,13 @@ extra:
   - 해결 방안 : **발행-구독** (Pub-Sub) 기반 메시지 브로커(Kafka), 토픽 기반 필터링 및 메시지 빈도 제한(Throttling).
 - 부분 관측성(Partial Observability)으로 인한 비효율적 경쟁 및 전역 최적해 달성 실패 :
   - 한계점 : 각 에이전트가 자신의 로컬 이익만 추구하여 전체 시스템 입장에서는 죄수의 딜레마나 자원 낭비 초래.
-  - 해결 방안 : 게임 이론 기반의 **메커니즘 디자인** (Mechanism Design), **중앙 집중식 학습-분산 실행** (CTDE) 멀티에이전트 강화학습(MAPPO).
+  - 해결 방안 : 게임 이론 기반의 **메커니즘 디자인** (Mechanism Design), **중앙 집중식 학습-분산 실행** (CTDE, Centralized Training with Decentralized Execution) 멀티에이전트 강화학습(MAPPO, Multi-Agent Proximal Policy Optimization).
 - 에이전트 간 순환 의존성으로 인한 교착 상태(Deadlock) 및 라이브락(Livelock) :
   - 한계점 : 에이전트 A는 B의 응답을 기다리고, B는 A의 응답을 기다려 전체 시스템이 멈추는 현상 발생.
   - 해결 방안 : 타임아웃 메커니즘, 분산 락(Distributed Lock) 회피 알고리즘 및 글로벌 **워치독** (Watchdog) 에이전트 배치.
 
 ## Ⅴ. 멀티에이전트 시스템(Multi-Agent System) 적용 및 발전을 위한 기술사적 제언
 
-- LLM 기반 에이전트 생태계를 위한 역할 기반 프롬프트 아키텍처(Role-Playing) 표준화 : 기획자, 개발자, 검토자 등 명확한 R&R 페르소나와 완료 조건(Definition of Done)을 시스템 프롬프트로 규격화.
+- LLM 기반 에이전트 생태계를 위한 역할 기반 프롬프트 아키텍처(Role-Playing) 표준화 : 기획자, 개발자, 검토자 등 명확한 R&R(Roles and Responsibilities) 페르소나와 완료 조건(Definition of Done)을 시스템 프롬프트로 규격화.
 - 분산 관제 및 디버깅을 위한 통합 트레이싱(Tracing) 인프라 구축 : 에이전트 간 오간 모든 메시지와 상태 전이를 단일 세션으로 묶어 시각화하는 OpenTelemetry 기반 추적 체계 필수.
-- 에이전트 오동작 방지를 위한 엄격한 가드레일 및 인간 개입(HITL) 설계 : 시스템의 핵심 자원 변경이나 비가역적 액션 실행 전 관리자 승인을 받도록 하는 안전 게이트웨이 내재화.
+- 에이전트 오동작 방지를 위한 엄격한 가드레일 및 인간 개입(HITL, Human in the Loop) 설계 : 시스템의 핵심 자원 변경이나 비가역적 액션 실행 전 관리자 승인을 받도록 하는 안전 게이트웨이 내재화.

@@ -38,10 +38,10 @@ extra:
 ```
 
 - **1. 이메일 및 웹** : 스피어 피싱, 악성 매크로 첨부파일, **워터링 홀** (Watering Hole) (악성코드 다운로드, 계정 탈취).
-- **2. 공개 서비스 결함** : 웹 취약점(SQLi, RCE), 미패치 CVE, 클라우드 설정 오류 (웹셸 업로드, 서버 권한 피탈).
-- **3. 인증 자격증명** : 다크웹 유출 계정 브루트포스, VPN/RDP 무차별 대입 (내부망 원격 침투 성공).
+- **2. 공개 서비스 결함** : 웹 취약점(SQLi(SQL Injection), RCE(Remote Code Execution)), 미패치 CVE(Common Vulnerabilities and Exposures), 클라우드 설정 오류 (웹셸 업로드, 서버 권한 피탈).
+- **3. 인증 자격증명** : 다크웹 유출 계정 브루트포스, VPN(Virtual Private Network)/RDP(Remote Desktop Protocol) 무차별 대입 (내부망 원격 침투 성공).
 - **4. 공급망 (Supply Chain)** : 오픈소스 라이브러리 의존성 오염, 벤더 소프트웨어 변조 (SolarWinds, Log4j 사태).
-- **5. 물리 및 이동매체** : 분실 USB를 통한 감염(배드USB), 비인가 물리 접근 (폐쇄망 악성코드 유입(Stuxnet)).
+- **5. 물리 및 이동매체** : 분실 USB(Universal Serial Bus)를 통한 감염(배드USB), 비인가 물리 접근 (폐쇄망 악성코드 유입(Stuxnet)).
 
 ## Ⅲ. 공격 벡터(Attack Vector)의 세부 구성 요소 및 비교 분석
 
@@ -49,23 +49,23 @@ extra:
 |---|---|---|---|
 | 개념적 정의 | 공격자가 접촉할 수 있는 모든 노출 접점의 총합 | 침투를 실행하기 위해 활용하는 구체적 수단/경로 | 초기 침투부터 최종 목표 자산까지의 연결 궤적 |
 | 공간적 관점 | **면적(Area) / 정적 상태** | **방향(Vector) / 침투 수단** | **선(Path) / 동적 연쇄 흐름** |
-| 표현 예시 | 오픈된 80/443 포트, 원격 VPN IP, 직원 이메일 | Log4j RCE 익스플로잇, 피싱 메일 발송 | 피싱 메일 → PC 장악 → Mimikatz → DC 점령 |
-| 통제 목표 | 불필요 자산 폐쇄로 면적 최소화 | 방화벽, 백신, WAF 등으로 진입 차단 | 마이크로 세그멘테이션으로 이동 차단 |
-| 분석 도구 | EASM, CAASM | EDR, WAF, 이메일 보안 게이트웨이 | BAS, 공격 경로 분석기(Attack Path Analysis) |
+| 표현 예시 | 오픈된 80/443 포트, 원격 VPN IP(Internet Protocol), 직원 이메일 | Log4j RCE 익스플로잇, 피싱 메일 발송 | 피싱 메일 → PC(Personal Computer) 장악 → Mimikatz → DC 점령 |
+| 통제 목표 | 불필요 자산 폐쇄로 면적 최소화 | 방화벽, 백신, WAF(Web Application Firewall) 등으로 진입 차단 | 마이크로 세그멘테이션으로 이동 차단 |
+| 분석 도구 | EASM, CAASM | EDR(Endpoint Detection and Response), WAF, 이메일 보안 게이트웨이 | BAS, 공격 경로 분석기(Attack Path Analysis) |
 
 - 공격 벡터(Attack Vector)은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
 
 ## Ⅳ. 공격 벡터(Attack Vector)의 주요 한계점 및 해결 방안
 
-- 한계점 : AI 딥페이크 음성/영상 사칭 및 정교한 **피싱 프록시** (AitM)로 인해 기존 SMS/OTP 및 임직원 보안 교육 중심 방어선 붕괴.
+- 한계점 : AI(Artificial Intelligence) 딥페이크 음성/영상 사칭 및 정교한 **피싱 프록시** (AitM)로 인해 기존 SMS(Short Message Service)/OTP(One-Time Password) 및 임직원 보안 교육 중심 방어선 붕괴.
   - 해결 방안 : 세션 하이재킹이 불가능한 **FIDO2/WebAuthn** 표준 기반 피싱 저항성 패스키를 의무화하고 이메일 수신단에 AI 기반 의미론적 문맥 분석 엔진 구축.
-- 한계점 : 공개 웹 애플리케이션 및 API에 대한 **제로데이** (0-Day) 익스플로잇 공격 시 정적 시그니처 기반 보안 장비(IPS/WAF)의 무력화.
-  - 해결 방안 : **애플리케이션 런타임 자가 방어** (RASP)를 탑재하여 실제 악성 행위 발생 시 시스템 콜 차단 및 **가상 패치** (Virtual Patching) 즉시 배포.
+- 한계점 : 공개 웹 애플리케이션 및 API(Application Programming Interface)에 대한 **제로데이** (0-Day) 익스플로잇 공격 시 정적 시그니처 기반 보안 장비(IPS(Intrusion Prevention System)/WAF)의 무력화.
+  - 해결 방안 : **애플리케이션 런타임 자가 방어** (RASP, Runtime Application Self-Protection)를 탑재하여 실제 악성 행위 발생 시 시스템 콜 차단 및 **가상 패치** (Virtual Patching) 즉시 배포.
 - 한계점 : 정상적인 원격 근무 계정(VPN/RDP) 탈취 후 정상 프로토콜을 타고 유입되는 공격 시 경계선 방화벽의 탐지 불가.
-  - 해결 방안 : 접속 기기의 무결성(EDR 상태, OS 보안 패치)과 접속 컨텍스트(위치, 시간, 행위)를 실시간 평가하여 인가를 동적 제어하는 ZTNA로 전면 전환.
+  - 해결 방안 : 접속 기기의 무결성(EDR 상태, OS(Operating System) 보안 패치)과 접속 컨텍스트(위치, 시간, 행위)를 실시간 평가하여 인가를 동적 제어하는 ZTNA(Zero Trust Network Access)로 전면 전환.
 
 ## Ⅴ. 공격 벡터(Attack Vector) 적용 및 발전을 위한 기술사적 제언
 
-- 이메일/웹 기반 보안 아키텍처 수립 : **CDR** 및 무해화 샌드박스을(를) 체계적으로 도입하여 통제 수준을 강화해야 함.
+- 이메일/웹 기반 보안 아키텍처 수립 : **CDR**(Content Disarm and Reconstruction) 및 무해화 샌드박스을(를) 체계적으로 도입하여 통제 수준을 강화해야 함.
 - 자격증명 기반 보안 아키텍처 수립 : **ZTNA** 기반 피싱 저항성 패스키을(를) 체계적으로 도입하여 통제 수준을 강화해야 함.
 - 엔드포인트 기반 보안 아키텍처 수립 : **EDR/XDR** 기반 횡적이동 실시간 격리을(를) 체계적으로 도입하여 통제 수준을 강화해야 함.

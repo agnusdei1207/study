@@ -41,7 +41,7 @@ extra:
    └────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **코드로서의 파이프라인** (Pipeline as Code) : Airflow DAG, dbt 모델 등을 소스코드 형태로 Git에 저장하고 CI/CD로 배포.
+- **코드로서의 파이프라인** (Pipeline as Code) : Airflow DAG(Directed Acyclic Graph), dbt 모델 등을 소스코드 형태로 Git에 저장하고 CI(Continuous Integration)/CD(Continuous Delivery)로 배포.
 - **지속적 데이터 테스팅** (Continuous Data Testing) : 데이터가 파이프라인을 통과할 때마다 스키마 불일치, 결측치(Null), 유효성 범위를 단위 테스트처럼 자동 검증.
 - **데이터 관측성** (Data Observability) : 신선도(Freshness), 분포(Distribution), 볼륨(Volume), 스키마(Schema), 계보(Lineage)의 5대 기둥 모니터링.
 
@@ -50,15 +50,15 @@ extra:
 | 비교 항목 | 데브옵스 (DevOps) | 데이터옵스 (DataOps) |
 |---|---|---|
 | 주요 관리 대상 | 소스코드 및 소프트웨어 바이너리 (Code) | 데이터 소스, 데이터 흐름, 분석 모델 (Code + Data) |
-| 핵심 성공 지표 | 배포 빈도, 변경 리드타임, MTTR (DORA 4대 지표) | 데이터 딜리버리 주기, 데이터 다운타임, 데이터 정확도 |
-| 실패의 형태 | 서버 다운, 애플리케이션 크래시, HTTP 500 에러 | 침묵의 실패 (서버는 정상이나 잘못된 데이터가 리포트에 반영) |
+| 핵심 성공 지표 | 배포 빈도, 변경 리드타임, MTTR (DORA(DevOps Research and Assessment) 4대 지표) | 데이터 딜리버리 주기, 데이터 다운타임, 데이터 정확도 |
+| 실패의 형태 | 서버 다운, 애플리케이션 크래시, HTTP(Hypertext Transfer Protocol) 500 에러 | 침묵의 실패 (서버는 정상이나 잘못된 데이터가 리포트에 반영) |
 | 테스트 대상 | 로직의 기능적 정확성, 코드 커버리지 | 비즈니스 로직 + 유입되는 데이터 자체의 통계적 분포 및 무결성 |
 | 대표 도구 | Jenkins, GitHub Actions, Docker, Kubernetes | Apache Airflow, dbt, Great Expectations, Monte Carlo |
 
 ## Ⅳ. 데이터옵스(DataOps)의 주요 한계점 및 해결 방안
 
 - 이종 데이터 소스 통합 및 파이프라인 복잡도 폭증 :
-  - 한계점 : 레거시 RDB, NoSQL, 외부 SaaS, 스트리밍 로그 등 파편화된 소스의 스키마 변경 시 다운스트림 파이프라인 연쇄 장애 유발.
+  - 한계점 : 레거시 RDB, NoSQL(Not Only SQL), 외부 SaaS, 스트리밍 로그 등 파편화된 소스의 스키마 변경 시 다운스트림 파이프라인 연쇄 장애 유발.
   - 해결 방안 : 메타데이터 중심 통합 카탈로그 구축, 스키마 레지스트리 기반 데이터 계약(Data Contracts) 체결 및 스키마 변경 CI 사전 검증.
 - **데이터 품질** (Data Quality) 결함의 런타임 사후 감지 한계 :
   - 한계점 : 데이터 파이프라인 자체는 정상 실행(Status: Success)되었으나 결측치, 이상치, 분포 왜곡이 발생하여 비즈니스 대시보드 오염.
@@ -69,5 +69,5 @@ extra:
 
 ## Ⅴ. 성공적인 DataOps 도입을 위한 기술사적 제언
 
-- **데이터 계약** (Data Contract)을 통한 데이터 생산자와 소비자 간 협약 제도화 : 백엔드 개발자가 사전 공지 없이 DB 스키마를 변경하여 데이터 파이프라인이 파손되는 사태를 방지하기 위해, JSON Schema 또는 Protobuf 기반의 데이터 계약을 체결하고 CI 단계에서 스키마 변경 호환성(Schema Compatibility) 자동 검증 강제.
-- **데이터 다운타임** (Data Downtime) 제로화를 위한 서킷 브레이커 구축 : 유입된 원천 데이터에 이상 결측치나 비정상적 값 폭증이 감지될 경우, 오염된 데이터가 다운스트림의 경영진 BI 대시보드나 AI 추론 모델로 파급되지 않도록 파이프라인을 즉각 일시 정지하고 경보를 발송하는 격리 아키텍처 수립 필수.
+- **데이터 계약** (Data Contract)을 통한 데이터 생산자와 소비자 간 협약 제도화 : 백엔드 개발자가 사전 공지 없이 DB(Database) 스키마를 변경하여 데이터 파이프라인이 파손되는 사태를 방지하기 위해, JSON(JavaScript Object Notation) Schema 또는 Protobuf 기반의 데이터 계약을 체결하고 CI 단계에서 스키마 변경 호환성(Schema Compatibility) 자동 검증 강제.
+- **데이터 다운타임** (Data Downtime) 제로화를 위한 서킷 브레이커 구축 : 유입된 원천 데이터에 이상 결측치나 비정상적 값 폭증이 감지될 경우, 오염된 데이터가 다운스트림의 경영진 BI(Business Intelligence) 대시보드나 AI(Artificial Intelligence) 추론 모델로 파급되지 않도록 파이프라인을 즉각 일시 정지하고 경보를 발송하는 격리 아키텍처 수립 필수.

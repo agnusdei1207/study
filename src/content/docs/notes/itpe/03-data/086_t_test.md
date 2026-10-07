@@ -19,7 +19,7 @@ extra:
 - 윌리엄 고셋(William Gosset, 필명 Student)이 1908년 기네스 양조장에서 소표본 품질 관리를 위해 고안한 Student's $t$-분포를 기반으로 함.
 
 ### 나. t-검정의 기본 가정 3가지
-1. **정규성 (Normality)** : 표본이 추출된 모집단이 정규분포를 따라야 함 (Shapiro-Wilk 검정으로 확인, $n \ge 30$이면 CLT 적용).
+1. **정규성 (Normality)** : 표본이 추출된 모집단이 정규분포를 따라야 함 (Shapiro-Wilk 검정으로 확인, $n \ge 30$이면 CLT(Central Limit Theorem) 적용).
 2. **독립성 (Independence)** : 표본 내 관측치들이 상호 독립적으로 추출되어야 함.
 3. **등분산성 (Homoscedasticity)** : 두 집단 비교 시 두 모집단의 분산이 동일해야 함 (Levene 검정으로 확인).
 
@@ -80,11 +80,11 @@ extra:
 - 대규모 표본(Big Data) 환경에서의 p-값 착시(p-value Fallacy) :
   - 한계점 : 빅데이터 환경(표본 수 수십만 건 이상)에서는 극히 사소하고 실질적 의미가 없는 차이조차도 p-값이 0에 가깝게 계산되어 통계적으로 유의하다고 오판.
   - 해결 방안 : 통계적 유의성(p-value)과 함께 실질적 유의성을 검증하는 효과 크기(Effect Size: Cohen's d) 지표 및 신뢰구간(Confidence Interval) 병행 산출 의무화.
-- 다중 검정(Multiple Testing) 수행 시 패밀리별 오류율(FWER) 폭증 :
+- 다중 검정(Multiple Testing) 수행 시 패밀리별 오류율(FWER, Family-Wise Error Rate) 폭증 :
   - 한계점 : 여러 지표나 여러 그룹에 대해 t-검정을 반복 수행할 경우 적어도 하나의 1종 오류가 발생할 확률이 급격히 증가.
-  - 해결 방안 : 본페로니 교정(Bonferroni Correction) 또는 거짓 발견율(FDR: Benjamini-Hochberg) 보정 기법을 적용하여 임계 유의수준 조정.
+  - 해결 방안 : 본페로니 교정(Bonferroni Correction) 또는 거짓 발견율(FDR, False Discovery Rate)을 제어하는 벤저미니-호크버그(Benjamini-Hochberg) 보정 기법을 적용하여 임계 유의수준 조정.
 
 ## Ⅴ. 데이터 분석 및 A/B 테스트 실무 제언
 
 - 등분산성 위반 시 Welch's t-검정의 표준 사용 : 실무의 두 집단 A/B 테스트에서 두 그룹의 분산이 완벽히 동일한 경우는 거의 없음. 전통적인 Student's t-검정 대신 등분산 가정이 필요 없는 **Welch's t-test** (웰치의 t-검정)를 기본 분석 도구로 채택할 것 (R의 t.test() 기본값이 Welch 방식).
-- 3개 이상 집단 비교 시 분산분석(ANOVA) 전환 : 3개 집단(A/B/C 테스트)을 비교할 때 t-검정을 3번 반복 수행하면 1종 오류($\alpha$)가 $1 - (1 - 0.05)^3 = 14.3\%$로 급격히 팽창하므로, 반드시 일원배치 분산분석(One-way ANOVA)과 사후검정(Tukey HSD)을 적용해야 함을 제언함.
+- 3개 이상 집단 비교 시 분산분석(ANOVA, Analysis of Variance) 전환 : 3개 집단(A/B/C 테스트)을 비교할 때 t-검정을 3번 반복 수행하면 1종 오류($\alpha$)가 $1 - (1 - 0.05)^3 = 14.3\%$로 급격히 팽창하므로, 반드시 일원배치 분산분석(One-way ANOVA)과 사후검정(Tukey HSD, Honestly Significant Difference)을 적용해야 함을 제언함.

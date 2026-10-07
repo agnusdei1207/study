@@ -16,7 +16,7 @@ extra:
 
 - 개념 : **기능안전** (Functional Safety) 이란 전기·전자·소프트웨어 기반 제어 시스템의 오작동, 내부 부품 결함 또는 예기치 못한 환경적 장애가 발생하더라도, 시스템이 이를 감지하여 **안전 상태** (Safe State)로 전이하거나 위험을 허용 가능한 **잔존 위험** (Tolerable Risk) 수준 이하로 억제하도록 보장하는 안전 공학 체계.
 - 배경 및 필요성 : 자율주행차, 원자력 발전소, 항공기 비행제어, 의료 로봇 등 복잡한 임베디드 제어 시스템의 소프트웨어 오류가 대형 인명 피해(사망, 상해)로 직결되는 참사를 방지.
-- 모태 및 도메인 표준 : 모태 표준 **IEC 61508** (전기/전자/프로그래밍 가능 전자 시스템의 기능안전) / 자동차 도메인 **ISO 26262** / 철도 **EN 50128** / 항공 **DO-178C**
+- 모태 및 도메인 표준 : 모태 표준 **IEC(International Electrotechnical Commission) 61508** (전기/전자/프로그래밍 가능 전자 시스템의 기능안전) / 자동차 도메인 **ISO(International Organization for Standardization) 26262** / 철도 **EN 50128** / 항공 **DO-178C**
 
 ## Ⅱ. 위험도 분석 및 안전 무결성 등급(ASIL / SIL) 결정 메커니즘
 
@@ -32,7 +32,7 @@ extra:
    - S3: 치명적 사망            - E4: 상시 주행
                                       │
                                       ▼
-             [ 자동차 안전 무결성 등급 확정: ASIL = S x E x C ]
+             [ 자동차 안전 무결성 등급 확정: ASIL(Automotive Safety Integrity Level) = S x E x C ]
               (QM -> ASIL A -> ASIL B -> ASIL C -> ASIL D: 최고 안전 요구)
 ```
 
@@ -44,18 +44,18 @@ extra:
 | 비교 항목 | 무작위 하드웨어 고장 (Random Hardware Failure) | 체계적 소프트웨어 결함 (Systematic Failure) |
 |---|---|---|
 | 발생 원인 | 물리적 마모, 열화, 방사선에 의한 비트 플립(Bit-Flip) | 요구사항 명세 오해, 코딩 논리 오류, 설계 결함 |
-| 예측 가능성 | 통계적 확률 분포(FIT, MTBF)로 고장률 정량 예측 가능 | 확률적 예측 불가 (동일 조건 입력 시 100% 동일 결함 재현) |
-| 대응 방안 | 하드웨어 이중화(듀얼 코어 락스텝), ECC 메모리, 워치독 | 엄격한 프로세스 준수(V-모델), MISRA-C 정적 분석, MC/DC 검증 |
-| 안전 메트릭 | SPFM(단일점 결함 메트릭), LFM(잠재 결함 메트릭) | 결함 밀도, 테스트 커버리지, 프로세스 성숙도(Automotive SPICE) |
+| 예측 가능성 | 통계적 확률 분포(FIT(Failures In Time), MTBF(Mean Time Between Failures))로 고장률 정량 예측 가능 | 확률적 예측 불가 (동일 조건 입력 시 100% 동일 결함 재현) |
+| 대응 방안 | 하드웨어 이중화(듀얼 코어 락스텝), ECC(Error-Correcting Code) 메모리, 워치독 | 엄격한 프로세스 준수(V-모델), MISRA-C 정적 분석, MC/DC 검증 |
+| 안전 메트릭 | SPFM(Single-Point Fault Metric, 단일점 결함 메트릭), LFM(Latent Fault Metric, 잠재 결함 메트릭) | 결함 밀도, 테스트 커버리지, 프로세스 성숙도(Automotive SPICE) |
 
 ## Ⅳ. 기능안전(Functional Safety)의 주요 한계점 및 해결 방안
 
 - 엄격한 기능안전 표준(ISO 26262, IEC 61508) 준수에 따른 개발 공수 폭증 :
   - 한계점 : ASIL/SIL 등급 달성을 위해 요구되는 정형 기법, MC/DC 테스트 커버리지, 안전 산출물 관리에 개발 일정의 상당 부분이 소모됨.
-  - 해결 방안 : **모델 기반 개발** (MBD, Simulink) 및 자동 코드 생성 도구(Qualified Code Generator) 도입으로 인적 코딩 오류 및 검증 공수 대폭 절감.
-- 자율주행·AI 등 비결정론적 기술 도입 시 안전 무결성 입증 불가 :
-  - 한계점 : 전통적 기능안전은 고장(Fault) 방지에 집중하므로, 하드웨어/SW 결함이 없음에도 환경 인지 한계로 사고가 발생하는 AI 시스템 검증 한계.
-  - 해결 방안 : 의도된 기능의 안전성(SOTIF, ISO 21448) 표준 융합, 섀도 모드(Shadow Mode) 주행 데이터 기반 시나리오 시뮬레이션 및 안전 방어선(Safety Barrier) 다중화.
+  - 해결 방안 : **모델 기반 개발** (MBD, Model-Based Development; Simulink 활용) 및 자동 코드 생성 도구(Qualified Code Generator) 도입으로 인적 코딩 오류 및 검증 공수 대폭 절감.
+- 자율주행·AI(Artificial Intelligence) 등 비결정론적 기술 도입 시 안전 무결성 입증 불가 :
+  - 한계점 : 전통적 기능안전은 고장(Fault) 방지에 집중하므로, 하드웨어/SW(Software) 결함이 없음에도 환경 인지 한계로 사고가 발생하는 AI 시스템 검증 한계.
+  - 해결 방안 : 의도된 기능의 안전성(SOTIF, Safety of the Intended Functionality; ISO 21448) 표준 융합, 섀도 모드(Shadow Mode) 주행 데이터 기반 시나리오 시뮬레이션 및 안전 방어선(Safety Barrier) 다중화.
 - 하드웨어 무작위 결함에 대응하는 이중화 비용 부담 :
   - 한계점 : 안전 목표 달성을 위한 듀얼 코어 록스텝(Lockstep), TMR(Triple Modular Redundancy) 등 하드웨어 중복 구성으로 제품 원가 상승.
   - 해결 방안 : 소프트웨어 기반 결함 탐지(Self-Test Library) 및 에러 정정 코드(ECC), 워치독 타이머를 활용한 하이브리드 장애 허용(Fault-Tolerant) 아키텍처 구축.

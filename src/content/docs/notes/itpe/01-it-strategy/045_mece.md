@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. MECE의 개요
 
-- 개념 : 어떤 대상을 전체적으로 분석하거나 문제를 해결할 때, 항목들이 '**상호 배타적** (Mutually Exclusive)'이면서 '전체적으로 **완전 포괄** (Collectively Exhaustive)'하도록 분류하는 맥킨지(McKinsey)의 전략적 사고 프레임워크.
-- 배경 및 필요성 : 복잡한 비즈니스 및 IT 문제를 분석할 때 사고의 **누락** (Omission)으로 인한 치명적 오류나 **중복** (Duplication)으로 인한 자원 낭비를 방지하기 위한 체계적 분석 기준 필요.
+- 개념 : 어떤 대상을 전체적으로 분석하거나 문제를 해결할 때, 항목들이 '**상호 배타적** (Mutually Exclusive)'이면서 '전체적으로 **완전 포괄** (Collectively Exhaustive)'하도록 분류하는 맥킨지(McKinsey)의 전략적 사고 프레임워크(MECE, Mutually Exclusive, Collectively Exhaustive).
+- 배경 및 필요성 : 복잡한 비즈니스 및 IT(Information Technology) 문제를 분석할 때 사고의 **누락** (Omission)으로 인한 치명적 오류나 **중복** (Duplication)으로 인한 자원 낭비를 방지하기 위한 체계적 분석 기준 필요.
 - 주요 목적 : 분석의 완전성 확보, 중복 검토 방지를 통한 효율성 극대화, 로직 트리(Logic Tree) 전개의 기본 원리 제공.
 
 ## Ⅱ. MECE의 4대 분류 상태 매트릭스
@@ -40,9 +40,9 @@ Exclusive)    │     [중복 발생]      │  [중복 및 누락 혼재]  │
 |---|---|---|
 | **3C 분석** | Customer(고객), Competitor(경쟁사), Company(자사) | 시장 환경 분석, 신규 사업 타당성 검토 |
 | **4P 믹스** | Product(제품), Price(가격), Place(유통), Promotion(판촉) | 마케팅 전략 수립 |
-| **WBS 100% Rule** | 단계별 인도물, 작업 패키지 전체의 합 | 프로젝트 전체 범위 정의 및 예산 산정 |
-| **SWOT 분석** | 내부(강점/약점) x 외부(기회/위협) 매트릭스 | 전사 경영 및 IT 전략 수립 |
-| **비즈니스 아키텍처** | 주활동(인바운드, 생산 등) vs 지원활동(인사, IT 등) | 가치사슬 분석, BPR 대상 프로세스 도출 |
+| **WBS(Work Breakdown Structure) 100% Rule** | 단계별 인도물, 작업 패키지 전체의 합 | 프로젝트 전체 범위 정의 및 예산 산정 |
+| **SWOT(Strengths, Weaknesses, Opportunities and Threats) 분석** | 내부(강점/약점) x 외부(기회/위협) 매트릭스 | 전사 경영 및 IT 전략 수립 |
+| **비즈니스 아키텍처** | 주활동(인바운드, 생산 등) vs 지원활동(인사, IT 등) | 가치사슬 분석, BPR(Business Process Reengineering) 대상 프로세스 도출 |
 
 ## Ⅳ. MECE 프레임워크 적용 시 주요 한계점 및 해결 방안
 

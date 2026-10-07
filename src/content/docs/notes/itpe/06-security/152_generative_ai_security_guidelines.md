@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 생성형 AI 보안 가이드라인의 개요
 
-- 개념 : 조직이 생성형 AI 모델과 기반 애플리케이션을 기획, 조달, 개발, 배포, 폐기하는 전 수명주기에 걸쳐 기술적 취약점, 데이터 프라이버시 침해, 윤리적 편향, 법적 규제 위험을 식별하고 통제하기 위한 종합적인 **보안 거버넌스** 및 프레임워크 체계 (NIST AI RMF, ISO/IEC 42001 등).
+- 개념 : 조직이 생성형 AI(Artificial Intelligence) 모델과 기반 애플리케이션을 기획, 조달, 개발, 배포, 폐기하는 전 수명주기에 걸쳐 기술적 취약점, 데이터 프라이버시 침해, 윤리적 편향, 법적 규제 위험을 식별하고 통제하기 위한 종합적인 **보안 거버넌스** 및 프레임워크 체계 (NIST(National Institute of Standards and Technology) AI RMF(Risk Management Framework), ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 42001 등).
 - 배경 및 필요성 : 생성형 AI의 급격한 확산은 전 세계적인 생산성 혁명을 가져왔으나, **환각** (Hallucination), 지적재산권 소송, **딥페이크** 악용, 적대적 공격 등 다차원적 리스크가 폭증함에 따라 글로벌 표준 기구들의 통합 보안 거버넌스 정립이 가속화됨.
-- 핵심 목적 : **신뢰할 수 있고 안전한 인공지능** (Trustworthy & Responsible AI)을 구현하고, 글로벌 규제(EU AI Act 등)에 선제적으로 대응하여 비즈니스 영속성과 컴플라이언스를 확보.
+- 핵심 목적 : **신뢰할 수 있고 안전한 인공지능** (Trustworthy & Responsible AI)을 구현하고, 글로벌 규제(EU(European Union) AI Act 등)에 선제적으로 대응하여 비즈니스 영속성과 컴플라이언스를 확보.
 
 ## Ⅱ. 생성형 AI 보안 가이드라인의 핵심 아키텍처 및 동작 메커니즘
 
-글로벌 AI 보안 가이드라인은 **NIST AI RMF**의 4대 핵심 기능(Govern, Map, Measure, Manage)과 **ISO/IEC 42001 AI 경영시스템** 표준의 PDCA 사이클을 양대 축으로 구성됨.
+글로벌 AI 보안 가이드라인은 **NIST AI RMF**의 4대 핵심 기능(Govern, Map, Measure, Manage)과 **ISO/IEC 42001 AI 경영시스템** 표준의 PDCA(Plan, Do, Check, Act) 사이클을 양대 축으로 구성됨.
 
 ```text
 [ 글로벌 생성형 AI 보안 거버넌스 프레임워크 (NIST AI RMF 기반) ]
@@ -58,7 +58,7 @@ extra:
 
 ## Ⅲ. 생성형 AI 보안 가이드라인의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | **NIST AI RMF 1.0** | **ISO/IEC 42001** | **EU 인공지능법** (AI Act) | **OWASP LLM Checklist** |
+| 비교 항목 | **NIST AI RMF 1.0** | **ISO/IEC 42001** | **EU 인공지능법** (AI Act) | **OWASP(Open Worldwide Application Security Project) LLM(Large Language Model) Checklist** |
 | --- | --- | --- | --- | --- |
 | 성격 | 미국 연방 자율 위험관리 프레임워크 | 국제 표준화 기구 인증 표준 | EU의 구속력 있는 법적 규제 | 오픈소스 보안 실무 체크리스트 |
 | 접근 방식 | Govern, Map, Measure, Manage | PDCA 기반 전사 경영시스템(AIMS) | 위험 등급별(허용불가, 고, 저) 금지/규제 | 개발자 중심 기술적 통제 항목 |
@@ -75,7 +75,7 @@ extra:
   - 해결 방안 : ISO/IEC 42001을 최상위 거버넌스로 수립하고 세부 통제 항목을 NIST 및 EU AI Act와 1:1 매핑하는 통합 GRC(거버넌스·위험·컴플라이언스) 플랫폼 도입.
 - 모델 파라미터 블랙박스 특성에 따른 정량적 측정 난제 :
   - 한계점 : 수천억 개 파라미터를 가진 거대 모델의 내부 의사결정 과정을 완벽히 해석(Explainability)할 수 없어 안전성을 수학적으로 완전 보증 불가.
-  - 해결 방안 : 설명 가능한 AI(XAI) 기법 및 입출력 행위 기반의 벤치마크 평가 도구(HELM, TrustLLM)를 활용한 지속적 경험적 검증.
+  - 해결 방안 : 설명 가능한 AI(XAI, Explainable Artificial Intelligence) 기법 및 입출력 행위 기반의 벤치마크 평가 도구(HELM, TrustLLM)를 활용한 지속적 경험적 검증.
 - 오픈소스 파운데이션 모델의 취약점 상속 및 공급망 위험 :
   - 한계점 : Hugging Face 등에서 다운로드한 오픈소스 모델에 악성 코드(Pickle 직렬화 취약점)나 데이터 백도어가 은닉되어 있을 경우 추적 불가능.
   - 해결 방안 : AI 공급망 자재명세서(AIBOM: AI Bill of Materials) 도입 의무화, 안전한 텐서 포맷(Safetensors) 사용 강제.

@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. LLM-as-a-Judge (AI 평가)의 개요
 
-- 개념 : 고성능 **LLM** (예: GPT-4, Claude)을 채점관으로 지정하여 다른 모델의 텍스트 출력을 구조화된 프롬프트와 **루브릭** 기준에 따라 자동 평가하는 프레임워크
+- 개념 : 고성능 **LLM(Large Language Model)** (예: GPT(Generative Pre-trained Transformer)-4, Claude)을 채점관으로 지정하여 다른 모델의 텍스트 출력을 구조화된 프롬프트와 **루브릭** 기준에 따라 자동 평가하는 프레임워크
 - 배경 및 필요성 : 판별 LLM 고유의 위치 편향(Position Bias)·**장황함 편향** (Verbosity Bias)·**자기 선호 편향** (Self-Preference Bias)이 존재하므로 후보군 순서 교체 검증과 다중 판별자 앙상블 및 **HITL** (Human-in-the-Loop) 감사 체계 구축 필수
 - 핵심 목적 : 사람 평가자(Human Annotator) 고용에 따른 막대한 시간·비용 병목 해소 및 대규모 비정형 벤치마크 평가의 확장성(Scalability) 확보
 
@@ -66,9 +66,9 @@ LLM-as-a-Judge는 질의와 생성 답변을 표준 평가 프롬프트 및 채�
 
 ## Ⅲ. LLM-as-a-Judge (AI 평가)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | 인간 전문가 평가 (Human Eval) | 전통적 정량 지표 (BLEU / ROUGE) | LLM-as-a-Judge (본 토픽) |
+| 비교 항목 | 인간 전문가 평가 (Human Eval) | 전통적 정량 지표 (BLEU, Bilingual Evaluation Understudy / ROUGE, Recall-Oriented Understudy for Gisting Evaluation) | LLM-as-a-Judge (본 토픽) |
 |---|---|---|---|
-| **평가 비용** | 건당 수달러 이상 (매우 고비용) | 계산 비용 전무 (무료) | API 토큰 비용 (인간 대비 1/100) |
+| **평가 비용** | 건당 수달러 이상 (매우 고비용) | 계산 비용 전무 (무료) | API(Application Programming Interface) 토큰 비용 (인간 대비 1/100) |
 | **평가 소요 시간** | 수일 ~ 수주일 소요 | 수초 ~ 수분 내 완결 | 수분 ~ 수시간 내 대규모 완료 |
 | **문맥 이해도** | 매우 높음 (미묘한 뉘앙스 파악) | 매우 낮음 (단순 n-gram 일치) | 높음 (심층 추론 및 맥락 파악) |
 | **재현성 (확정성)** | 낮음 (평가자 피로도 및 주관 개입) | 완전 확정적 (동일 결과) | 중간~높음 (Temperature=0 설정 시) |
@@ -85,7 +85,7 @@ LLM-as-a-Judge는 질의와 생성 답변을 표준 평가 프롬프트 및 채�
   - 해결 방안 : 후보군 순서를 뒤집은 쌍대 평가를 필수 병행하고 양방향 결과가 일치하지 않을 경우 무승부(Tie) 자동 부여.
 - 사실 확인 영역에서 판별 LLM 자체 환각으로 인한 오판정 위험 :
   - 한계점 : 사실 확인(Fact-Checking) 영역에서 판별 LLM 자체가 환각을 일으켜 오답을 정답으로 오판정하는 위험.
-  - 해결 방안 : 신뢰 가능한 외부 지식 베이스 검색(RAG)을 판별자 프롬프트에 결합하는 RAG-based Grounded Judge 구축.
+  - 해결 방안 : 신뢰 가능한 외부 지식 베이스 검색(RAG, Retrieval-Augmented Generation)을 판별자 프롬프트에 결합하는 RAG-based Grounded Judge 구축.
 
 ## Ⅴ. LLM-as-a-Judge (AI 평가) 적용 및 발전을 위한 기술사적 제언
 

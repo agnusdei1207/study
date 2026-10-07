@@ -14,18 +14,18 @@ extra:
 
 ## Ⅰ. AI 거버넌스 플랫폼의 개요
 
-- 개념 : 조직 내 AI 모델의 개발, 배포, 운영 등 전 생애주기에 걸쳐 AI 윤리 준수, 설명가능성(XAI), 공정성, 데이터 편향, 모델 드리프트(Drift), **규제 컴플라이언스**를 자동으로 모니터링하고 통제하는 **통합 거버넌스 시스템**
-- 배경 및 필요성 : 생성형 AI 도입 폭증에 따른 환각, 저작권 침해, 개인정보 유출, **EU AI Act** 및 글로벌 AI 안전 규제 강화로 인해 수동 관리의 한계 봉착.
+- 개념 : 조직 내 AI(Artificial Intelligence) 모델의 개발, 배포, 운영 등 전 생애주기에 걸쳐 AI 윤리 준수, 설명가능성(XAI, Explainable Artificial Intelligence), 공정성, 데이터 편향, 모델 드리프트(Drift), **규제 컴플라이언스**를 자동으로 모니터링하고 통제하는 **통합 거버넌스 시스템**
+- 배경 및 필요성 : 생성형 AI 도입 폭증에 따른 환각, 저작권 침해, 개인정보 유출, **EU(European Union) AI Act** 및 글로벌 AI 안전 규제 강화로 인해 수동 관리의 한계 봉착.
 - 주요 목적 : AI 위험의 사전 예방 및 지속 통제, 모델 투명성 및 감사 추적성 확보, 글로벌 법적 규제 준수, 신뢰성 있는 AI(Trustworthy AI) 구현.
 
 ## Ⅱ. AI 거버넌스 플랫폼 아키텍처
 
 ```text
-[비즈니스 및 규제 인터페이스] ── 거버넌스 대시보드, 규제 준수 보고서(EU AI Act, NIST AI RMF)
+[비즈니스 및 규제 인터페이스] ── 거버넌스 대시보드, 규제 준수 보고서(EU AI Act, NIST AI RMF, Artificial Intelligence Risk Management Framework)
           │
 [핵심 모니터링 및 통제 엔진]
   - 공정성/편향성 평가   ── 인구통계학적 패리티, 균등 기회 검증
-  - 설명가능성 (XAI)     ── SHAP, LIME 알고리즘 기반 변수 기여도 시각화
+  - 설명가능성 (XAI)     ── SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations) 알고리즘 기반 변수 기여도 시각화
   - 모델 드리프트 감지   ── 데이터 드리프트, 개념 드리프트 실시간 감시
   - AI 가드레일 (안전성) ── 독성(Toxicity) 필터링, 프롬프트 인젝션 방어, PII 차단
           │
@@ -33,9 +33,9 @@ extra:
 ```
 
 - **공정성/편향성 평가** : 인구통계학적 패리티, 균등 기회 검증.
-- **설명가능성 (XAI)** : SHAP, LIME 알고리즘 기반 변수 기여도 시각화.
+- **설명가능성 (XAI)** : SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations) 알고리즘 기반 변수 기여도 시각화.
 - **모델 드리프트 감지** : 데이터 드리프트, 개념 드리프트 실시간 감시.
-- **AI 가드레일** : 독성 필터링, 프롬프트 인젝션 방어, PII 차단.
+- **AI 가드레일** : 독성 필터링, 프롬프트 인젝션 방어, PII(Personally Identifiable Information) 차단.
 
 ## Ⅲ. AI 거버넌스 핵심 검증 영역
 
@@ -51,7 +51,7 @@ extra:
 - 동적 AI 모델의 블랙박스 특성으로 인한 설명가능성(XAI) 한계 :
   - 한계점 : 초거대 딥러닝 모델의 복잡한 가중치로 인해 의사결정 추론 과정을 직관적으로 역추적·설명하기 어려움.
   - 해결 방안 : SHAP, LIME 등 모델 해석 기법 플랫폼 내재화, 결정 근거에 대한 감사 로그(Audit Trail) 저장 의무화.
-- MLOps 파이프라인과의 연동 복잡성 및 성능 오버헤드 :
+- MLOps(Machine Learning Operations) 파이프라인과의 연동 복잡성 및 성능 오버헤드 :
   - 한계점 : 실시간 인퍼런스 트래픽마다 거버넌스 검증(편향, 유해성, 환각 필터링)을 거치며 서비스 레이턴시 급증.
   - 해결 방안 : 비동기 가드레일 검증 아키텍처 도입, 경량화된 보안 게이트웨이(Guardrails Gateway) 전진 배치.
 - 글로벌 AI 규제(EU AI Act 등)의 지속적 변경 대응 난제 :
@@ -60,6 +60,6 @@ extra:
 
 ## Ⅴ. AI 거버넌스 플랫폼 구축을 위한 기술사적 제언
 
-- MLOps 파이프라인과의 심리스(Seamless)한 통합 : 거버넌스를 사후 규제로 두지 않고, CI/CD 배포 파이프라인에 품질 게이트(Quality Gate)로 통합하여 거버넌스 미달 모델의 운영 배포 원천 차단.
+- MLOps 파이프라인과의 심리스(Seamless)한 통합 : 거버넌스를 사후 규제로 두지 않고, CI(Continuous Integration)/CD(Continuous Delivery) 배포 파이프라인에 품질 게이트(Quality Gate)로 통합하여 거버넌스 미달 모델의 운영 배포 원천 차단.
 - 위험 기반 등급제(Risk-based Classification) 적용 : 채용, 신용평가, 의료 등 고위험 AI에는 엄격한 설명가능성과 수동 개입(Human-in-the-Loop)을 강제하고, 단순 추천 등 저위험 AI는 경량 거버넌스 적용.
-- 동적 가드레일(Dynamic Guardrails) 체계 구축 : LLM 서비스 운영 시 입출력 단계에서 실시간으로 프롬프트 인젝션과 개인정보 유출을 방어하는 다계층 프록시 방어벽 구축.
+- 동적 가드레일(Dynamic Guardrails) 체계 구축 : LLM(Large Language Model) 서비스 운영 시 입출력 단계에서 실시간으로 프롬프트 인젝션과 개인정보 유출을 방어하는 다계층 프록시 방어벽 구축.

@@ -55,9 +55,9 @@ extra:
   [5. 보고서 작성]-> 법관이 이해할 수 있는 객관적 포렌식 결과 보고서 제출
 ```
 
-- **휘발성 순서(Order of Volatility)** : 전원 차단 시 즉시 소멸되는 메모리(RAM)를 디스크보다 먼저 덤프해야 하는 원칙(레지스터/캐시 -> 라우팅테이블/ARP/커널메모리 -> 프로세스 메모리 -> 임시파일 -> 디스크 -> 백업미디어).
+- **휘발성 순서(Order of Volatility)** : 전원 차단 시 즉시 소멸되는 메모리(RAM, Random-Access Memory)를 디스크보다 먼저 덤프해야 하는 원칙(레지스터/캐시 -> 라우팅테이블/ARP(Address Resolution Protocol)/커널메모리 -> 프로세스 메모리 -> 임시파일 -> 디스크 -> 백업미디어).
 - **연계보관성(Chain of Custody)** : 증거가 최초 수집된 순간부터 법정에 제출되는 순간까지 누가, 언제, 어디서, 왜, 어떻게 다루었는지를 입증하는 연속적인 기록 문서.
-- **쓰기 방지 장치(Hardware Write Blocker)** : 증거 디스크를 복제 PC에 연결할 때 운영체제가 디스크 메타데이터나 타임스탬프를 1비트라도 수정하지 못하도록 물리적으로 읽기 전용 모드를 강제하는 하드웨어 장비.
+- **쓰기 방지 장치(Hardware Write Blocker)** : 증거 디스크를 복제 PC(Personal Computer)에 연결할 때 운영체제가 디스크 메타데이터나 타임스탬프를 1비트라도 수정하지 못하도록 물리적으로 읽기 전용 모드를 강제하는 하드웨어 장비.
 - **라이브 포렌식(Live Forensics)** : 전체 디스크가 BitLocker 등으로 암호화되어 있어 전원을 끄면 복호화가 불가능한 시스템에서, 시스템 가동 상태에서 메모리 덤프와 활성 세션을 우선 추출하는 기법.
 
 ## Ⅲ. 컴퓨터 포렌식(Computer Forensics)의 세부 구성 요소 및 비교 분석
@@ -65,10 +65,10 @@ extra:
 | 비교 항목 | **라이브 포렌식** (Live Forensics) | **데드 포렌식** (Dead Forensics / Post-mortem) | **침해사고 대응** (Incident Response) |
 | --- | --- | --- | --- |
 | 대상 상태 | 시스템 가동 중 (전원 켜짐) | 시스템 종료 상태 (전원 차단 후 디스크 적출) | 가동 중 또는 로그 분석 |
-| 수집 데이터 | RAM 메모리, 실행 중 프로세스, 네트워크 연결 | 비휘발성 하드디스크, SSD, 파일 시스템 메타 | SIEM 로그, 네트워크 트래픽, 방화벽 차단 |
+| 수집 데이터 | RAM 메모리, 실행 중 프로세스, 네트워크 연결 | 비휘발성 하드디스크, SSD(Solid-State Drive), 파일 시스템 메타 | SIEM(Security Information and Event Management) 로그, 네트워크 트래픽, 방화벽 차단 |
 | 증거 오염 위험 | 있음 (명령어 실행 시 메모리 일부 변경) | 없음 (쓰기 방지 장치로 무결성 유지) | 시스템 복구 중 증거 일부 훼손 가능 |
 | 주요 목적 | 디스크 암호화 우회, 휘발성 악성코드 덤프 | 전통적 파일 복구, 슬랙 카빙, 타임라인 분석 | 피해 확산 차단 및 신속한 서비스 정상화 |
-| 핵심 도구 | LiME, FTK Imager Lite, Volatility | EnCase, Autopsy, 하드웨어 쓰기방지기 | XDR, SOAR, EDR 격리 콘솔 |
+| 핵심 도구 | LiME, FTK Imager Lite, Volatility | EnCase, Autopsy, 하드웨어 쓰기방지기 | XDR, SOAR(Security Orchestration, Automation and Response), EDR(Endpoint Detection and Response) 격리 콘솔 |
 
 - 컴퓨터 포렌식의 생명은 '증거 능력'에 있으므로, 아무리 결정적인 단서를 찾아냈더라도 적법 절차와 연계보관성을 1비트라도 위반하면 법정에서 증거로 채택될 수 없음.
 
@@ -78,14 +78,14 @@ extra:
   - 한계점 : 공격자가 타임스탬프 조작(Timestomp), 메모리 인젝션 기반 파일리스(Fileless) 공격, 데이터 영구 와이핑을 적용하여 증거 흔적을 지능적 소거.
   - 해결 방안 : 메모리 포렌식(Volatility) 정밀 분석, VSS(섀도 복사본) 복원, `$LogFile` 및 `$UsnJrnl` 저수준 저널링 트랜잭션 대조.
 - 클라우드 및 컨테이너 가상화 환경의 물리적 접근 불가 :
-  - 한계점 : AWS, Azure 등 클라우드 인프라에서는 물리 디스크를 직접 적출하거나 쓰기 방지 장치를 장착할 수 없는 구조적 한계.
-  - 해결 방안 : CSP의 스냅샷 API(EBS Snapshot)를 이용한 증거 보존, 가상화 환경 전용 에이전트 기반 원격 메모리 덤프 프로토콜 수립.
+  - 한계점 : AWS(Amazon Web Services), Azure 등 클라우드 인프라에서는 물리 디스크를 직접 적출하거나 쓰기 방지 장치를 장착할 수 없는 구조적 한계.
+  - 해결 방안 : CSP(Cloud Service Provider)의 스냅샷 API(EBS Snapshot)를 이용한 증거 보존, 가상화 환경 전용 에이전트 기반 원격 메모리 덤프 프로토콜 수립.
 - 종단간 디스크 전체 암호화(Full Disk Encryption) 적용 보편화 :
   - 한계점 : BitLocker, FileVault, LUKS 등으로 암호화된 디스크는 전원 차단 후 복호화 키 없이는 카빙이나 파일 복구 전면 불가능.
-  - 해결 방안 : 전원 차단 전 라이브 포렌식으로 메모리(RAM)를 우선 덤프하여 메모리에 상주하는 AES 암호화 키 추출(Passware/Volatility).
+  - 해결 방안 : 전원 차단 전 라이브 포렌식으로 메모리(RAM)를 우선 덤프하여 메모리에 상주하는 AES(Advanced Encryption Standard) 암호화 키 추출(Passware/Volatility).
 
 ## Ⅴ. 컴퓨터 포렌식(Computer Forensics) 적용 및 발전을 위한 기술사적 제언
 
-- 블록체인 분산 원장 기반 증거 무결성 공증 시스템 도입 : 증거 수집 즉시 계산된 원본 해시값(SHA-256)을 공인 블록체인에 타임스탬프 앵커링하여 사후 위변조가 없었음을 수학적으로 법정에 증명.
+- 블록체인 분산 원장 기반 증거 무결성 공증 시스템 도입 : 증거 수집 즉시 계산된 원본 해시값(SHA(Secure Hash Algorithm)-256)을 공인 블록체인에 타임스탬프 앵커링하여 사후 위변조가 없었음을 수학적으로 법정에 증명.
 - 기업 침해사고 대응팀(CERT)의 포렌식 레디니스(Forensic Readiness) 확립 : 사고 발생 후 허둥대지 않도록 평상시에 중앙 로깅(WEC), 감사 정책, 법률 자문 채널, 증거 보존 절차를 사전에 제도화.
-- 클라우드 포렌식 전용 자동화 오케스트레이션(Cloud Forensic SOAR) 구축 : 침해 감지 시 클라우드 API를 자동 호출하여 해당 EC2/VM을 즉시 격리(Security Group 격리)하고 디스크 스냅샷과 메모리를 즉시 자동 수집.
+- 클라우드 포렌식 전용 자동화 오케스트레이션(Cloud Forensic SOAR) 구축 : 침해 감지 시 클라우드 API를 자동 호출하여 해당 EC2/VM(Virtual Machine)을 즉시 격리(Security Group 격리)하고 디스크 스냅샷과 메모리를 즉시 자동 수집.

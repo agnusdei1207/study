@@ -42,8 +42,8 @@ extra:
 | :--- | :--- | :--- | :--- | :--- |
 | **분할적 (Partitioning)** | K-Means | 사전에 군집 수 $K$ 설정 후 중심점(Centroid)과의 거리 기반 반복 재할당 | 계산 복잡도 $O(tKn)$로 빠름, 대용량 처리에 적합 | 구형(Spherical) 군집만 탐색 가능, 이상치에 민감, $K$ 사전 지정 필요 |
 | **계층적 (Hierarchical)** | Agglomerative (병합형) | 각 개체에서 시작하여 거리(단일, 완전, 평균, 와드 연결법)에 따라 순차 병합 | 군집 수 사전 지정 불필요, 덴드로그램 시각화 제공 | 계산 복잡도 $O(n^3)$ 또는 $O(n^2)$로 대용량 데이터 적용 곤란 |
-| **밀도 기반 (Density-Based)** | DBSCAN | 반경($\epsilon$) 내 최소 데이터 수(MinPts) 이상의 고밀도 영역을 연결 | 비선형/기하학적 임의 형태 군집 탐색 가능, 노이즈(이상치) 자동 분류 | 데이터 밀도가 다양한 경우 성능 저하, 하이퍼파라미터 민감 |
-| **모델 기반 (Model-Based)** | GMM (가우시안 혼합) | 데이터가 여러 가우시안 확률 분포의 혼합체로 생성되었다고 가정 (EM 알고리즘) | 소프트 군집화(소속 확률 제공), 타원형 군집 표현 가능 | 국소 최적해(Local Minimum) 수렴 위험, 초기값 의존성 |
+| **밀도 기반 (Density-Based)** | DBSCAN(Density-Based Spatial Clustering of Applications with Noise) | 반경($\epsilon$) 내 최소 데이터 수(MinPts) 이상의 고밀도 영역을 연결 | 비선형/기하학적 임의 형태 군집 탐색 가능, 노이즈(이상치) 자동 분류 | 데이터 밀도가 다양한 경우 성능 저하, 하이퍼파라미터 민감 |
+| **모델 기반 (Model-Based)** | GMM(Gaussian Mixture Model, 가우시안 혼합) | 데이터가 여러 가우시안 확률 분포의 혼합체로 생성되었다고 가정 (EM(Expectation-Maximization) 알고리즘) | 소프트 군집화(소속 확률 제공), 타원형 군집 표현 가능 | 국소 최적해(Local Minimum) 수렴 위험, 초기값 의존성 |
 
 ### 나. 데이터 속성에 따른 거리/유사도 측정 척도
 - **연속형 수치 데이터** : **유클리디안 거리** (Euclidean), **맨해튼 거리** (Manhattan), **마할라노비스 거리** (공분산 반영).
@@ -68,7 +68,7 @@ extra:
 ### 나. 군집 타당성 평가 지표
 - **실루엣 계수(Silhouette Coefficient)** : 군집 내 응집도 $a(i)$와 최근접 타 군집 간 분리도 $b(i)$를 정규화하여 평가. 0.5 이상이면 타당한 구조로 판단.
 - **데이비스-볼딘 지수(Davies-Bouldin Index)** : 군집 간 거리 대비 군집 내 분산의 비율 합산. 값이 작을수록 우수한 군집화.
-- **칼린스키-하라바츠 지수(CH Index)** : 군집 간 분산과 군집 내 분산의 비율. 값이 클수록 명확히 분리됨.
+- **칼린스키-하라바츠 지수(CH, Calinski-Harabasz Index)** : 군집 간 분산과 군집 내 분산의 비율. 값이 클수록 명확히 분리됨.
 
 ---
 
@@ -76,13 +76,13 @@ extra:
 
 - 사전 군집 수($K$) 설정의 주관성 및 최적값 결정 난제 :
   - 한계점 : 엘보우(Elbow) 기법의 굴곡점 판정이 모호하고, 실루엣(Silhouette) 계수는 볼록한(Convex) 구형 군집 구조에만 편향되어 비선형 군집 평가 왜곡.
-  - 해결 방안 : Gap Statistic 통계량 및 갭 검정 적용, 또는 밀도 기반(DBSCAN, HDBSCAN) 및 계층적 클러스터링을 앙상블하여 군집 수 사전 지정을 자동화.
+  - 해결 방안 : Gap Statistic 통계량 및 갭 검정 적용, 또는 밀도 기반(DBSCAN, HDBSCAN(Hierarchical Density-Based Spatial Clustering of Applications with Noise)) 및 계층적 클러스터링을 앙상블하여 군집 수 사전 지정을 자동화.
 - 고차원의 저주(Curse of Dimensionality)로 인한 거리 척도 왜곡 :
   - 한계점 : 데이터 차원이 증가함에 따라 유클리드 공간 내 모든 관측치 간의 거리가 균일화되어 군집 간 경계가 붕괴되고 계산 복잡도 폭증.
-  - 해결 방안 : UMAP, t-SNE 또는 오토인코더(Autoencoder) 기반 비선형 매니폴드 차원 축소 선행 적용, 코사인 유사도 등 방향성 기반 척도 대체.
+  - 해결 방안 : UMAP(Uniform Manifold Approximation and Projection), t-SNE(t-distributed Stochastic Neighbor Embedding) 또는 오토인코더(Autoencoder) 기반 비선형 매니폴드 차원 축소 선행 적용, 코사인 유사도 등 방향성 기반 척도 대체.
 - 이상치 및 비구형(Non-spherical) 군집 형상 처리 한계 :
   - 한계점 : K-Means 등 중심 기반 알고리즘은 노이즈와 이상치에 의해 군집 중심이 과도하게 편향되며 복잡한 기하학적 형태(도넛형, 초승달형) 군집 식별 실패.
-  - 해결 방안 : 중앙값 기반 K-Medoids(PAM) 또는 가우시안 혼합 모델(GMM, EM 알고리즘), 스펙트럴 클러스터링(Spectral Clustering) 채택.
+  - 해결 방안 : 중앙값 기반 K-Medoids(PAM, Partitioning Around Medoids) 또는 가우시안 혼합 모델(GMM, EM 알고리즘), 스펙트럴 클러스터링(Spectral Clustering) 채택.
 
 ---
 

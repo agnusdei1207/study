@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 범용 AI(General-Purpose AI) 위험관리 프레임워크의 개요
 
-- 개념 : 특정되지 않은 다목적 하류 응용으로 인해 발생하는 **GPAI** 모델의 불확실성, 편향, 환각 및 시스템적 오용 위험을 조직적·기술적으로 완화하는 전 생애주기 관리 체계
-- 배경 및 필요성 : 모델 제공자(Provider)와 다운스트림 배포자(Deployer) 간의 책임 경계 모호성으로 규제 공백이 발생하므로 **모델 카드** 기반 정보 공유 의무화와 공급망 **RACI 매트릭스** 수립 필수
+- 개념 : 특정되지 않은 다목적 하류 응용으로 인해 발생하는 **GPAI**(General-Purpose Artificial Intelligence) 모델의 불확실성, 편향, 환각 및 시스템적 오용 위험을 조직적·기술적으로 완화하는 전 생애주기 관리 체계
+- 배경 및 필요성 : 모델 제공자(Provider)와 다운스트림 배포자(Deployer) 간의 책임 경계 모호성으로 규제 공백이 발생하므로 **모델 카드** 기반 정보 공유 의무화와 공급망 **RACI(Responsible, Accountable, Consulted, Informed) 매트릭스** 수립 필수
 - 핵심 목적 : 초거대 모델의 혁신성과 생산성을 확보함과 동시에 인권 침해, 프라이버시 유출 및 사회적 재난 위험을 사전 통제
 
 ## Ⅱ. 범용 AI(General-Purpose AI) 위험관리 프레임워크의 핵심 아키텍처 및 동작 메커니즘
 
-범용 AI는 **거버넌스** (Govern) 기반 하에 **비즈니스 맥락 분석** (Map) → **기술적 신뢰성 및 레드팀 계측** (Measure) → **위험 완화 및 지속 감시** (Manage)의 4대 순환 기능을 생애주기별로 전개 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+범용 AI(Artificial Intelligence)는 **거버넌스** (Govern) 기반 하에 **비즈니스 맥락 분석** (Map) → **기술적 신뢰성 및 레드팀 계측** (Measure) → **위험 완화 및 지속 감시** (Manage)의 4대 순환 기능을 생애주기별로 전개 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -46,18 +46,18 @@ extra:
 ```
 
 - GPAI 고유 위험 특성 : 다운스트림 위험 증폭 - 단일 베이스 모델의 취약점이나 편향이 수백 개의 하위 서비스로 연쇄 전파
-- **NIST AI RMF** 4대 기능 : Govern (거버넌스) - 전사 AI 윤리 원칙, 조직 구조, 책임 배분 및 위험 감내 수준(Risk Tolerance) 수립
+- **NIST(National Institute of Standards and Technology) AI RMF**(Risk Management Framework) 4대 기능 : Govern (거버넌스) - 전사 AI 윤리 원칙, 조직 구조, 책임 배분 및 위험 감내 수준(Risk Tolerance) 수립
 - **기획 및 수집** : 모델 사용 경계 정의 및 불법/유해 데이터 스크래핑 필터링 - 데이터 세부 명세서 (Data Sheets)
-- **사전학습 및 정렬** : 위험 역량(CBRN, 해킹) 발현 억제 및 적대적 레드팀 공격 시험 - 모델 아키텍처 카드 (Model Cards)
-- **다운스트림 통합** : 하류 배포자의 도메인 맞춤형 가드레일 및 허용 용도(AUP) 정책 바인딩 - API 서비스 이용 약관, RAG 검증서
+- **사전학습 및 정렬** : 위험 역량(CBRN, Chemical, Biological, Radiological and Nuclear; 해킹) 발현 억제 및 적대적 레드팀 공격 시험 - 모델 아키텍처 카드 (Model Cards)
+- **다운스트림 통합** : 하류 배포자의 도메인 맞춤형 가드레일 및 허용 용도(AUP, Acceptable Use Policy) 정책 바인딩 - API(Application Programming Interface) 서비스 이용 약관, RAG(Retrieval-Augmented Generation) 검증서
 
 ## Ⅲ. 범용 AI(General-Purpose AI) 위험관리 프레임워크의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | NIST AI RMF 1.0 (미국) | EU AI Act GPAI 규제 (유럽) | ISO/IEC 42001 (국제표준) |
+| 비교 항목 | NIST AI RMF 1.0 (미국) | EU(European Union) AI Act GPAI 규제 (유럽) | ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 42001 (국제표준) |
 |---|---|---|---|
 | **규범 성격** | 비구속적 자발적 가이드라인 | 강력한 법적 구속력 (과징금 부과) | 인공지능 경영시스템 인증 표준 |
-| **위험 분류 체계** | 맥락 중심 4대 기능 반복 적용 | 범용 AI vs 시스템적 위험 GPAI 모델 | PDCA 사이클 기반 전사적 통제 |
-| **시스템적 위험 기준** | 질적 평가 및 위해 시나리오 중심 | 누적 연산량 $\ge 10^{25}$ FLOPs 또는 고영향 | 조직 내 AI 위험 수용 기준 설정 |
+| **위험 분류 체계** | 맥락 중심 4대 기능 반복 적용 | 범용 AI vs 시스템적 위험 GPAI 모델 | PDCA(Plan, Do, Check, Act) 사이클 기반 전사적 통제 |
+| **시스템적 위험 기준** | 질적 평가 및 위해 시나리오 중심 | 누적 연산량 $\ge 10^{25}$ FLOPs(Floating Point Operations) 또는 고영향 | 조직 내 AI 위험 수용 기준 설정 |
 | **주요 의무 사항** | 신뢰성 지표 측정, 문서화 권고 | 기술 문서 제출, EU AI Office 보고 | AI 정책 수립, 내부 심사, 지속적 개선 |
 
 - 범용 AI는 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
@@ -69,10 +69,10 @@ extra:
   - 해결 방안 : 다단계 적대적 프롬프트 자동 인젝션 프레임워크를 도입하고 입력/출력 단계에 독립된 심층 안전 가드레일 프록시 상시 배치.
 - 파운데이션 모델 제공자와 하류 배포자 간의 법적 위험 책임 분계선 모호 :
   - 한계점 : 파운데이션 모델 제공자(빅테크)와 이를 활용해 서비스를 만드는 하류 배포자 간의 법적 위험 책임 분계선 모호.
-  - 해결 방안 : 모델 카드(Model Card)를 통한 기술적 제약 사항의 투명한 고지 강제화 및 서비스 계약서(SLA) 내 위험 공유 RACI 매트릭스 체결.
+  - 해결 방안 : 모델 카드(Model Card)를 통한 기술적 제약 사항의 투명한 고지 강제화 및 서비스 계약서(SLA, Service Level Agreement) 내 위험 공유 RACI 매트릭스 체결.
 - 오픈소스 가중치 파일에 대한 사후 악의적 미세조정(Malicious Fine-Tuning) :
   - 한계점 : 오픈소스 형태로 공개된 고성능 가중치(Weights) 파일에 대한 사후 악의적 미세조정(Malicious Fine-Tuning) 통제 불능.
-  - 해결 방안 : 모델 가중치에 표현 소거(Representation Engineering) 기법을 적용하여 위험 지식을 원천 제거하고 하드웨어 보안 모듈(TPM) 서명 배포.
+  - 해결 방안 : 모델 가중치에 표현 소거(Representation Engineering) 기법을 적용하여 위험 지식을 원천 제거하고 하드웨어 보안 모듈(TPM, Trusted Platform Module) 서명 배포.
 
 ## Ⅴ. 범용 AI(General-Purpose AI) 위험관리 프레임워크 적용 및 발전을 위한 기술사적 제언
 

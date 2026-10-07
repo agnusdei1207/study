@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 최단경로 알고리즘의 개요
 
 - 개념 : **최단경로 알고리즘** 이란 **가중치 그래프** (Weighted Graph)에서 두 정점(Vertex)을 연결하는 수많은 경로 중 간선(Edge)들의 가중치 합이 최소가 되는 최적의 경로를 찾아내는 그래프 알고리즘.
-- 배경 및 필요성 : 지도 내비게이션 길찾기, 인터넷 IP 라우팅 프로토콜(OSPF, RIP, BGP), 물류 운송 최적화, 게임 AI 이동 제어의 핵심 수학적 기반.
+- 배경 및 필요성 : 지도 내비게이션 길찾기, 인터넷 IP(Internet Protocol) 라우팅 프로토콜(OSPF(Open Shortest Path First), RIP(Routing Information Protocol), BGP(Border Gateway Protocol)), 물류 운송 최적화, 게임 AI(Artificial Intelligence) 이동 제어의 핵심 수학적 기반.
 - 문제 유형 3대 분류 : **단일 출발점 최단 경로** (One-to-All), **단일 쌍 최단 경로** (One-to-One), **모든 쌍 최단 경로** (All-to-All)
 
 ## Ⅱ. 최단경로 알고리즘의 핵심 메커니즘: 완화(Relaxation)

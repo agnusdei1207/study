@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 의사결정나무(Decision Tree)의 개요
 
 - 개념 : 입력 데이터의 특성(Feature)들을 특정 기준값으로 **반복 분할** (Recursive Binary Splitting)하여 나무(Tree) 형태의 계층적 규칙 구조를 형성함으로써, 최종 **리프 노드** (Leaf Node)에서 **분류** (Classification) 또는 **회귀** (Regression)를 수행하는 지도학습 알고리즘.
-- 배경 및 필요성 : 딥러닝이나 복잡한 앙상블 모델은 내부 동작을 알 수 없는 **블랙박스** (Black-box) 특성을 지니는 반면, 의사결정나무는 사람이 직관적으로 이해할 수 있는 IF-THEN 형태의 명확한 **화이트박스** (White-box) 규칙을 제공하므로 **설명가능성** (XAI)이 요구되는 도메인에서 필수적임.
-- 핵심 목적 : 데이터 분할에 따른 **불순도** (Impurity) 최소화, 인간이 해석 가능한 직관적 규칙 도출, **랜덤 포레스트** (Random Forest) 및 GBDT 등 고성능 앙상블 모델의 기본 학습기(Base Learner) 역할 수행.
+- 배경 및 필요성 : 딥러닝이나 복잡한 앙상블 모델은 내부 동작을 알 수 없는 **블랙박스** (Black-box) 특성을 지니는 반면, 의사결정나무는 사람이 직관적으로 이해할 수 있는 IF-THEN 형태의 명확한 **화이트박스** (White-box) 규칙을 제공하므로 **설명가능성** (XAI, Explainable Artificial Intelligence)이 요구되는 도메인에서 필수적임.
+- 핵심 목적 : 데이터 분할에 따른 **불순도** (Impurity) 최소화, 인간이 해석 가능한 직관적 규칙 도출, **랜덤 포레스트** (Random Forest) 및 GBDT(Gradient Boosting Decision Tree) 등 고성능 앙상블 모델의 기본 학습기(Base Learner) 역할 수행.
 
 ## Ⅱ. 의사결정나무(Decision Tree)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -46,17 +46,17 @@ YES│         NO│
 
 - 노드 유형 : 시작점인 **루트 노드** (Root Node), 중간 분기 조건인 **내부 노드** (Internal Node), 최종 예측 클래스나 수치가 결정되는 리프 노드(Leaf Node).
 - **정보 획득량(Information Gain)** : 부모 노드에서 자식 노드로 분할되었을 때 감소하는 불순도의 양을 측정하여 정보 획득량이 최대가 되는 분할점 선택.
-- **회귀 트리(Regression Tree)** : 분류에서의 불순도 대신 각 분할 영역 내 타깃 값의 평균제곱오차(MSE) 또는 분산(Variance) 감소를 기준으로 분할.
+- **회귀 트리(Regression Tree)** : 분류에서의 불순도 대신 각 분할 영역 내 타깃 값의 평균제곱오차(MSE, Mean Squared Error) 또는 분산(Variance) 감소를 기준으로 분할.
 - **가지치기(Pruning)** : 훈련 데이터의 노이즈까지 과도하게 분기하여 발생하는 오버피팅을 억제하기 위해 트리의 성장을 제한하거나 하위 노드를 잘라내는 최적화 기법.
 
 ## Ⅲ. 의사결정나무(Decision Tree)의 세부 구성 요소 및 비교 분석
 
 | 알고리즘 | 개발자 / 연대 | 분할 기준 (Criterion) | 분기 형태 | 특징 및 결측치 처리 |
 | --- | --- | --- | --- | --- |
-| **ID3** | Ross Quinlan (1986) | 엔트로피 기반 정보 획득량 (Information Gain) | 다지 분할 (Multi-way) | 범주형 변수만 처리 가능, 결측치 처리 불가 |
+| **ID3 (Iterative Dichotomiser 3)** | Ross Quinlan (1986) | 엔트로피 기반 정보 획득량 (Information Gain) | 다지 분할 (Multi-way) | 범주형 변수만 처리 가능, 결측치 처리 불가 |
 | **C4.5 / C5.0** | Ross Quinlan (1993) | 정보 획득률 (Gain Ratio, 다범주 편향 보정) | 다지 분할 (Multi-way) | 연속형 변수 지원, 결측치 가중치 분배 처리, 사후 가지치기 |
-| **CART** | Breiman et al. (1984) | 지니 계수 (분류) / 분산 감소량 MSE (회귀) | 항상 이진 분할 (Binary Split) | 회귀 트리 지원, Scikit-learn의 표준 구현 알고리즘 |
-| **CHAID** | Kass (1980) | 카이제곱 검정 (Chi-square test) | 다지 분할 (Multi-way) | 통계적 유의성 검정 기반, 마케팅 세분화에 다수 활용 |
+| **CART (Classification and Regression Trees)** | Breiman et al. (1984) | 지니 계수 (분류) / 분산 감소량 MSE (회귀) | 항상 이진 분할 (Binary Split) | 회귀 트리 지원, Scikit-learn의 표준 구현 알고리즘 |
+| **CHAID (Chi-squared Automatic Interaction Detection)** | Kass (1980) | 카이제곱 검정 (Chi-square test) | 다지 분할 (Multi-way) | 통계적 유의성 검정 기반, 마케팅 세분화에 다수 활용 |
 
 - CART 알고리즘은 연산이 빠르고 항상 2진 분기(Binary Split)를 수행하여 알고리즘 복잡도가 낮아 현대 머신러닝 라이브러리의 표준 백본으로 채택됨.
 
@@ -70,10 +70,10 @@ YES│         NO│
   - 해결 방안 : **배깅** (Bagging) 기반 랜덤 포레스트 (Random Forest) 및 부스팅(LightGBM, XGBoost) 앙상블 적용.
 - 축에 수직인 분할(Orthogonal Split) 한계로 인한 대각선 비선형 관계 학습 불가 :
   - 한계점 : `x1 + x2 > C`와 같은 대각선 선형 관계를 학습하려면 수많은 계단식 노드를 생성해야 하므로 비효율적임.
-  - 해결 방안 : 주성분 분석(PCA) 등을 통한 좌표축 사전 회전 또는 다변량 선형 결합 분할 기법 적용.
+  - 해결 방안 : 주성분 분석(PCA, Principal Component Analysis) 등을 통한 좌표축 사전 회전 또는 다변량 선형 결합 분할 기법 적용.
 
 ## Ⅴ. 의사결정나무(Decision Tree) 적용 및 발전을 위한 기술사적 제언
 
 - 금융 대출 심사 및 의료 진단 등 고규제 도메인의 대리 모델(Surrogate Model)로 활용 : 딥러닝 모델의 복잡한 추론을 설명하기 위해 동일한 입출력으로 얕은 트리를 학습시켜 규칙 시각화.
 - 정형 테이블 데이터(Tabular Data)에 대한 앙상블 모델 우선 도입 원칙 : 이미지/자연어를 제외한 대다수 정형 비즈니스 데이터는 신경망보다 트리 기반 앙상블(GBDT)이 성능과 속도 면에서 월등함.
-- MDI(불순도 기반) 피처 중요도의 다범주 편향 극복 : 트리가 카테고리 수가 많은 고카디널리티 변수를 과대평가하는 문제를 방지하기 위해 순열 기반 중요도(Permutation Importance) 및 SHAP 값 교차 검증 필수화.
+- MDI(Mean Decrease in Impurity, 불순도 기반) 피처 중요도의 다범주 편향 극복 : 트리가 카테고리 수가 많은 고카디널리티 변수를 과대평가하는 문제를 방지하기 위해 순열 기반 중요도(Permutation Importance) 및 SHAP(SHapley Additive exPlanations) 값 교차 검증 필수화.

@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 신경망(Neural Network)의 개요
 
 - 개념 : 인간 뇌의 신경세포 네트워크를 모방하여 다수의 **인공 뉴런** (노드)이 가중치(Weight)로 연결된 층(Layer) 구조를 이루고, 비선형 활성화 함수와 **역전파** 학습을 통해 입출력 간 복합 매핑을 근사하는 기계학습 모델.
-- 배경 및 필요성 : **기울기 소실** (Vanishing Gradient)과 과적합이 발생하므로 He 초기화, ReLU/GELU 활성화, **잔차 연결** (ResNet) 및 **배치/레이어 정규화** 결합 체계 구축 필요.
+- 배경 및 필요성 : **기울기 소실** (Vanishing Gradient)과 과적합이 발생하므로 He 초기화, ReLU(Rectified Linear Unit)/GELU(Gaussian Error Linear Unit) 활성화, **잔차 연결** (ResNet) 및 **배치/레이어 정규화** 결합 체계 구축 필요.
 - 핵심 목적 : 이미지 인식, 음성 처리, 자연어 이해 등 전통적 선형 알고리즘으로 해결 불가능한 고차원 비선형 문제의 특징 자동 추출 및 패턴 분류.
 
 ## Ⅱ. 신경망(Neural Network)의 핵심 아키텍처 및 동작 메커니즘
@@ -65,7 +65,7 @@ extra:
 | **도함수 최댓값**| $0.25$ ($z=0$일 때) | $1.0$ ($z > 0$일 때) | 연속적 미분 가능 곡선 |
 | **기울기 소실** | 심각함 (층이 깊어지면 미분값 소멸) | 양수 영역에서 기울기 1 유지로 극복 | 음수 영역에서도 미세 기울기 유지로 극복 |
 | **Dying 노드** | 없음 | 음수 입력 시 뉴런 완전 영구 사망 | 입력 확률에 따른 부드러운 통과로 해결 |
-| **대표 활용** | 로지스틱 회귀, 이진 분류 출력층 | CNN, 전통적 심층 신경망(ResNet) | BERT, GPT-4 등 트랜스포머/LLM 표준 |
+| **대표 활용** | 로지스틱 회귀, 이진 분류 출력층 | CNN(Convolutional Neural Network), 전통적 심층 신경망(ResNet) | BERT(Bidirectional Encoder Representations from Transformers), GPT(Generative Pre-trained Transformer)-4 등 트랜스포머/LLM(Large Language Model) 표준 |
 
 - 신경망은 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
 
@@ -79,7 +79,7 @@ extra:
   - 해결 방안 : 학습 도중 무작위로 뉴런을 비활성화하는 드롭아웃(Dropout $\approx 0.2\sim 0.5$) 적용, L2 가중치 감쇠 및 검증 손실 기준 조기 종료(Early Stopping) 결합.
 - 수억 개 가중치 비선형 연산에 따른 의사결정 블랙박스 문제 :
   - 한계점 : 수억 개 가중치 파라미터 간의 복잡한 비선형 상호작용으로 인해 인공신경망의 판단 근거를 사람이 역추적할 수 없는 블랙박스 문제.
-  - 해결 방안 : 특징 맵의 중요도를 시각화하는 Grad-CAM 적용 및 샤플리 값 기반 기여도 분석(SHAP/LIME) 설명가능 AI(XAI) 파이프라인 결합.
+  - 해결 방안 : 특징 맵의 중요도를 시각화하는 Grad-CAM 적용 및 샤플리 값 기반 기여도 분석(SHAP(SHapley Additive exPlanations)/LIME(Lightweight Interoperability of Model Explanations)) 설명가능 AI(XAI, Explainable Artificial Intelligence) 파이프라인 결합.
 
 ## Ⅴ. 신경망(Neural Network) 적용 및 발전을 위한 기술사적 제언
 

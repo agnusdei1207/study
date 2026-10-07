@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 비정형 텍스트 데이터의 가치 추출을 위한 텍스트 마이닝 개요
 
 ### 가. 텍스트 마이닝(Text Mining)의 정의
-- **텍스트 마이닝** : 자연어(Natural Language)로 작성된 대규모 비정형 텍스트 문서로부터 **자연어 처리** (NLP), **정보 검색** (IR), 통계 및 머신러닝 기법을 적용하여 의미 있는 패턴, 관계, 트렌드 등 고차원의 가치 있는 정보를 발굴하는 기술.
+- **텍스트 마이닝** : 자연어(Natural Language)로 작성된 대규모 비정형 텍스트 문서로부터 **자연어 처리** (NLP, Natural Language Processing), **정보 검색** (IR(Information Retrieval)), 통계 및 머신러닝 기법을 적용하여 의미 있는 패턴, 관계, 트렌드 등 고차원의 가치 있는 정보를 발굴하는 기술.
 - 단순한 키워드 검색을 넘어 문맥의 뉘앙스, 감정, 개체 간의 관계를 정량적 구조화 데이터로 변환함.
 
 ### 나. 텍스트 마이닝의 핵심 도전 과제
@@ -39,12 +39,12 @@ extra:
 
 | 단계 | 핵심 기술 | 구체적 알고리즘 및 메커니즘 | 주요 산출물 및 특징 |
 | :--- | :--- | :--- | :--- |
-| **형태소 분석 및 토큰화** | KoNLPy (Mecab, Okt), SentencePiece | 문장을 어절 및 형태소 단위로 분할, 품사(POS) 태깅, 서브워드(Subword) 분리 | 형태소 분석 결과, 불용어 제거된 핵심 명사/동사 토큰 |
-| **통계 기반 임베딩** | BoW, TF-IDF | 단어 빈도($TF$)와 역문서 빈도($IDF$)의 곱으로 희소 단어의 가중치 부여 | 희소 행렬(Sparse Matrix), 문서 간 코사인 유사도 계산에 활용 |
-| **분산 표상 (Dense Embedding)** | Word2Vec, FastText | 단어 주변 문맥을 예측(CBOW, Skip-Gram)하여 저차원 밀집 벡터로 변환 | 의미적 유사도($Vector('King') - Vector('Man') + Vector('Woman') \approx Vector('Queen')$) |
-| **문맥 기반 임베딩** | BERT, RoBERTa | 양방향(Bidirectional) 트랜스포머 인코더 기반 자기주의(Self-Attention) 메커니즘 | 문맥에 따라 동적으로 변화하는 고차원 토큰 임베딩 |
+| **형태소 분석 및 토큰화** | KoNLPy (Mecab, Okt), SentencePiece | 문장을 어절 및 형태소 단위로 분할, 품사(POS(Part of Speech)) 태깅, 서브워드(Subword) 분리 | 형태소 분석 결과, 불용어 제거된 핵심 명사/동사 토큰 |
+| **통계 기반 임베딩** | BoW(Bag of Words), TF(Term Frequency)-IDF(Inverse Document Frequency) | 단어 빈도($TF$)와 역문서 빈도($IDF$)의 곱으로 희소 단어의 가중치 부여 | 희소 행렬(Sparse Matrix), 문서 간 코사인 유사도 계산에 활용 |
+| **분산 표상 (Dense Embedding)** | Word2Vec, FastText | 단어 주변 문맥을 예측(CBOW, Continuous Bag of Words; Skip-Gram)하여 저차원 밀집 벡터로 변환 | 의미적 유사도($Vector('King') - Vector('Man') + Vector('Woman') \approx Vector('Queen')$) |
+| **문맥 기반 임베딩** | BERT(Bidirectional Encoder Representations from Transformers), RoBERTa | 양방향(Bidirectional) 트랜스포머 인코더 기반 자기주의(Self-Attention) 메커니즘 | 문맥에 따라 동적으로 변화하는 고차원 토큰 임베딩 |
 | **마이닝 태스크** | LDA (Latent Dirichlet Allocation) | 디리클레 분포를 가정한 확률적 생성 모델로 잠재 토픽 도출 | 문서별 토픽 비율, 토픽별 핵심 키워드 클러스터 |
-| **정보 추출** | NER (개체명 인식) | 문장 내 인명, 기관명, 지명, 날짜 등 사전 정의된 고유명사 엔티티 태깅 | 지식 그래프 노드 및 릴레이션 구축 데이터 |
+| **정보 추출** | NER (Named Entity Recognition, 개체명 인식) | 문장 내 인명, 기관명, 지명, 날짜 등 사전 정의된 고유명사 엔티티 태깅 | 지식 그래프 노드 및 릴레이션 구축 데이터 |
 
 ---
 
@@ -61,7 +61,7 @@ extra:
 ```
 
 ### 나. 검색 증강 생성(RAG) 기반 비정형 문서 지식화
-- 사내 방대한 규정, 매뉴얼, 계약서 텍스트를 **청킹** (Chunking) 후 벡터 데이터베이스에 색인 $\rightarrow$ 사용자 자연어 질문 시 유사 청크를 검색하여 LLM 프롬프트에 주입 $\rightarrow$ **환각** (Hallucination)을 억제한 고신뢰 텍스트 분석 결과 생성.
+- 사내 방대한 규정, 매뉴얼, 계약서 텍스트를 **청킹** (Chunking) 후 벡터 데이터베이스에 색인 $\rightarrow$ 사용자 자연어 질문 시 유사 청크를 검색하여 LLM(Large Language Model) 프롬프트에 주입 $\rightarrow$ **환각** (Hallucination)을 억제한 고신뢰 텍스트 분석 결과 생성.
 
 ---
 
@@ -71,15 +71,15 @@ extra:
   - 한계점 : 동음이의어, 풍자, 도메인 특화 약어에 대해 전통적 형태소 분석(BoW, TF-IDF)은 문맥 파악에 실패하여 차원 희소성(Sparsity) 및 분석 오류 유발.
   - 해결 방안 : 사전학습 트랜스포머 언어모델(BERT, RoBERTa) 및 도메인 특화 어휘집(Custom Vocabulary) 구축, 도메인 어댑테이션 미세조정(Fine-tuning) 수행.
 - 고차원 텍스트 임베딩으로 인한 연산 자원 및 서빙 지연 :
-  - 한계점 : 대규모 말뭉치에 대한 딥러닝 임베딩 및 유사도 검색 시 GPU 메모리 고갈 및 실시간 서빙 시 P99 레이턴시 급증.
-  - 해결 방안 : 모델 양자화(INT8/FP4 Quantization) 및 지식 증류(Knowledge Distillation), 벡터 DB의 근사 최근접 이웃(ANN) 인덱싱 적용.
+  - 한계점 : 대규모 말뭉치에 대한 딥러닝 임베딩 및 유사도 검색 시 GPU(Graphics Processing Unit) 메모리 고갈 및 실시간 서빙 시 P99 레이턴시 급증.
+  - 해결 방안 : 모델 양자화(INT8/FP4 Quantization) 및 지식 증류(Knowledge Distillation), 벡터 DB(Database)의 근사 최근접 이웃(ANN, Approximate Nearest Neighbor) 인덱싱 적용.
 - LLM 기반 정보 추출 시 할루시네이션(Hallucination) 및 보안 유출 :
   - 한계점 : 거대언어모델 연계 텍스트 마이닝 시 존재하지 않는 사실을 그럴듯하게 생성하거나 프롬프트 인젝션을 통한 기업 기밀 노출 위험.
-  - 해결 방안 : 지식 그래프(Knowledge Graph) 및 RAG(검색 증강 생성) 기반 사실 검증(Fact-checking) 파이프라인 구축, 가명처리 필터 사전 적용.
+  - 해결 방안 : 지식 그래프(Knowledge Graph) 및 RAG(Retrieval-Augmented Generation, 검색 증강 생성) 기반 사실 검증(Fact-checking) 파이프라인 구축, 가명처리 필터 사전 적용.
 
 ---
 
 ## Ⅴ. 텍스트 마이닝 구축 시 실무 제언
 
 - 도메인 특화 어휘집(User Dictionary) 구축의 중요성 : 최신 딥러닝 모델이라도 금융, 의료, 제조 등 전문 분야의 고유 약어나 전문 용어를 오인식할 수 있으므로, 형태소 분석기 및 토크나이저에 도메인 커스텀 사전을 지속 갱신해야 함.
-- 데이터 편향 및 독성(Toxicity) 필터링 : 웹 스크래핑된 비정형 텍스트에는 혐오 표현, 개인정보(PII), 편향된 데이터가 포함될 수 있으므로 전처리 단계에서 개인정보 비식별화 및 유해 표현 정제 모듈을 필수 적용할 것을 제언함.
+- 데이터 편향 및 독성(Toxicity) 필터링 : 웹 스크래핑된 비정형 텍스트에는 혐오 표현, 개인정보(PII, Personally Identifiable Information), 편향된 데이터가 포함될 수 있으므로 전처리 단계에서 개인정보 비식별화 및 유해 표현 정제 모듈을 필수 적용할 것을 제언함.

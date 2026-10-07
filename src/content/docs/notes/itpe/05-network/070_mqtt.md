@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. MQTT(Message Queuing Telemetry Transport)의 개요
 
-- 개념 : 대역폭이 제한적이고 지연이 크며 불안정한 네트워크 환경에서 경량 센서 기기 간에 메시지를 신뢰성 있게 교환하기 위해 IBM(Andy Stanford-Clark)과 Arcom이 개발한 **발행-구독(Publish-Subscribe)** 기반의 ISO 표준(ISO/IEC 20922) 메시징 프로토콜.
+- 개념 : 대역폭이 제한적이고 지연이 크며 불안정한 네트워크 환경에서 경량 센서 기기 간에 메시지를 신뢰성 있게 교환하기 위해 IBM(International Business Machines)과 Arcom이 개발한 **발행-구독(Publish-Subscribe)** 기반의 ISO(International Organization for Standardization) 표준(ISO/IEC(International Electrotechnical Commission) 20922) 메시징 프로토콜.
 - 배경 및 필요성 : 석유 파이프라인 원격 감시 등 위성 통신 구간의 극심한 대역폭 제약과 배터리 소모를 극복하고, 수백만 대의 동시 접속 디바이스에 데이터를 비동기 브로드캐스트할 아키텍처 필요.
-- 핵심 목적 : 최소 2바이트 고정 헤더를 통한 네트워크 오버헤드 극소화, 송수신자 간의 시간·공간적 결합 분리(Decoupling), 3단계 **QoS** 제어를 통한 데이터 전송 신뢰성 보장.
+- 핵심 목적 : 최소 2바이트 고정 헤더를 통한 네트워크 오버헤드 극소화, 송수신자 간의 시간·공간적 결합 분리(Decoupling), 3단계 **QoS**(Quality of Service) 제어를 통한 데이터 전송 신뢰성 보장.
 
 ## Ⅱ. MQTT의 핵심 아키텍처 및 동작 메커니즘
 
@@ -46,7 +46,7 @@ extra:
 ```
 
 - 발행-구독 (Pub/Sub) 3대 분리 특성 :
-  - **공간 분리 (Space Decoupling)** : 발행자와 구독자는 서로의 IP 주소나 포트를 알 필요 없이 오직 브로커만을 통해 소통.
+  - **공간 분리 (Space Decoupling)** : 발행자와 구독자는 서로의 IP(Internet Protocol) 주소나 포트를 알 필요 없이 오직 브로커만을 통해 소통.
   - **시간 분리 (Time Decoupling)** : 구독자가 오프라인 상태여도 브로커가 메시지를 보관했다가 재접속 시 전달 가능.
   - **동기화 분리 (Synchronization Decoupling)** : 발행자는 메시지 송출 후 즉시 다른 작업을 수행하는 비동기 통신.
 - **토픽 계층 및 와일드카드 (Topic Hierarchy)** : `/` 구분자로 계층 표현 (`home/livingroom/temperature`).
@@ -57,25 +57,25 @@ extra:
 
 | QoS 레벨 | 서비스 보장 수준 | 동작 메커니즘 (패킷 교환) | 네트워크 오버헤드 | 적합한 서비스 분야 |
 |---|---|---|---|---|
-| **QoS 0** | 최대 1회 전송 (At most once) | PUBLISH (단방향 1회 송신, ACK 없음, 유실 가능) | 최소 (Fire-and-Forget) | 고주기 주기적 센서 데이터 (온도, 조도) |
-| **QoS 1** | 최소 1회 전송 (At least once) | PUBLISH ──► PUBACK ◄── (수신 확인 시까지 재전송, 중복 가능)| 중간 (1 RTT) | 긴급 알람 상태 경보, 임계치 초과 이벤트 |
+| **QoS 0** | 최대 1회 전송 (At most once) | PUBLISH (단방향 1회 송신, ACK(Acknowledgment) 없음, 유실 가능) | 최소 (Fire-and-Forget) | 고주기 주기적 센서 데이터 (온도, 조도) |
+| **QoS 1** | 최소 1회 전송 (At least once) | PUBLISH ──► PUBACK ◄── (수신 확인 시까지 재전송, 중복 가능)| 중간 (1 RTT(Round-Trip Time)) | 긴급 알람 상태 경보, 임계치 초과 이벤트 |
 | **QoS 2** | 정확히 1회 전송 (Exactly once) | PUBLISH ──► PUBREC ◄── PUBREL ──► PUBCOMP ◄── (4-Step 완전 보장)| 높음 (2 RTT) | 결제 금융 트랜잭션, 원격 장비 셧다운 명령 |
 
 - **LWT (Last Will and Testament, 유언장)** : 클라이언트가 접속 시 브로커에 유언 메시지를 사전 등록하여, 단말이 비정상 단절(네트워크 장애 등)될 때 브로커가 대신 다른 구독자들에게 장애 사실을 통보.
 - **Retained Message (보관 메시지)** : 브로커가 특정 토픽의 최신 메시지를 영구 보관하여 신규 구독자가 접속하자마자 즉시 최신 상태를 수신하도록 보장.
-- **Keep Alive (생존 확인)** : PINGREQ와 PINGRESP를 교환하여 비활성 TCP 소켓의 단절 여부를 주기적으로 감시.
+- **Keep Alive (생존 확인)** : PINGREQ와 PINGRESP를 교환하여 비활성 TCP(Transmission Control Protocol) 소켓의 단절 여부를 주기적으로 감시.
 
 ## Ⅳ. MQTT의 주요 한계점 및 해결 방안
 
-- 중앙 브로커 병목 및 단일 장애점(SPOF) 리스크 :
-  - 한계점 : 수십만~수백만 대의 IoT 디바이스가 단일 브로커로 집중될 경우 브로커의 CPU 및 메모리가 고갈되어 전체 IoT 시스템 붕괴.
+- 중앙 브로커 병목 및 단일 장애점(SPOF, Single Point of Failure) 리스크 :
+  - 한계점 : 수십만~수백만 대의 IoT(Internet of Things) 디바이스가 단일 브로커로 집중될 경우 브로커의 CPU(Central Processing Unit) 및 메모리가 고갈되어 전체 IoT 시스템 붕괴.
   - 해결 방안 : EMQX, HiveMQ 등 분산 클러스터링을 지원하는 브로커 도입 및 로드밸런서(HAProxy) 연동 분산 배치.
 - TCP 기반 동작에 따른 모바일 무선망 핸드오버 오버헤드 :
-  - 한계점 : 단말 이동 시 기지국 핸드오버나 전파 음영으로 TCP 연결이 끊기면 매번 TCP Handshake와 TLS 재수립으로 배터리 낭비.
-  - 해결 방안 : MQTT v5.0 세션 만료 간격(Session Expiry Interval) 최적화 또는 비연결형 UDP 기반 `MQTT-SN (for Sensor Networks)` 프로토콜 채택.
+  - 한계점 : 단말 이동 시 기지국 핸드오버나 전파 음영으로 TCP 연결이 끊기면 매번 TCP Handshake와 TLS(Transport Layer Security) 재수립으로 배터리 낭비.
+  - 해결 방안 : MQTT(Message Queuing Telemetry Transport) v5.0 세션 만료 간격(Session Expiry Interval) 최적화 또는 비연결형 UDP(User Datagram Protocol) 기반 `MQTT-SN (for Sensor Networks)` 프로토콜 채택.
 
 ## Ⅴ. MQTT 적용 및 발전을 위한 기술사적 제언
 
 - MQTT 5.0 신규 기능의 전면적 도입 : 사용자 프로퍼티(User Properties)를 통한 커스텀 헤더 전달, 이유 코드(Reason Code)를 통한 세부 오류 디버깅, 공유 구독(Shared Subscription)을 통한 백엔드 컨슈머 로드밸런싱 구현.
-- Zero Trust 기반 IoT 엔드포인트 보안 강화 : MQTT 브로커 앞단에 mTLS 상호 인증, JWT 토큰 기반의 세분화된 토픽 접근 제어 목록(ACL), 데이터 페이로드 E2E 암호화 필수 적용.
+- Zero Trust 기반 IoT 엔드포인트 보안 강화 : MQTT 브로커 앞단에 mTLS 상호 인증, JWT(JSON Web Token) 토큰 기반의 세분화된 토픽 접근 제어 목록(ACL, Access Control List), 데이터 페이로드 E2E(End-to-End) 암호화 필수 적용.
 - 클라우드 데이터 플랫폼(Kafka)과의 연계 파이프라인 구축 : 현장 에지 레벨에서는 초경량 MQTT 브로커를 운용하고, 백엔드 데이터 허브로는 대규모 스트리밍 처리가 가능한 Apache Kafka와 브릿지(Bridge) 커넥터로 연동하는 2계층 데이터 파이프라인 설계.

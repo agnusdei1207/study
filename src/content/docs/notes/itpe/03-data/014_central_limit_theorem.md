@@ -49,7 +49,7 @@ extra:
 | :--- | :--- | :--- |
 | 핵심 질문 | 표본 크기 $n$이 무한대로 가면 $\bar{X}$는 어디로 향하는가? | 표본평균 $\bar{X}$가 모평균 주위에 어떤 모양의 확률분포 로 퍼지는가? |
 | 수학적 귀결 | $\bar{X} \xrightarrow{P} \mu$ (모평균 $\mu$로의 확률적 점 수렴) | $\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} N(0, 1)$ (정규분포로의 형상 수렴) |
-| 통계적 의의 | 추정의 **일치성** (Consistency) 보장 | **신뢰구간** (CI) 추정 및 가설검정의 이론적 근거 제공 |
+| 통계적 의의 | 추정의 **일치성** (Consistency) 보장 | **신뢰구간** (CI, Confidence Interval) 추정 및 가설검정의 이론적 근거 제공 |
 
 ---
 
@@ -57,7 +57,7 @@ extra:
 
 ### 가. 모수적 가설검정 및 신뢰구간 산출의 기반
 - 모분포를 전혀 모르는 블랙박스 데이터라도 $n \ge 30$인 충분한 표본만 확보되면, 모평균 $\mu$에 대한 95% 신뢰구간을 $\left[\bar{X} - 1.96 \frac{s}{\sqrt{n}}, \; \bar{X} + 1.96 \frac{s}{\sqrt{n}}\right]$으로 계산 가능.
-- z-검정, t-검정, ANOVA 등 다양한 통계 검정의 정규성 가정을 실무에서 대표본으로 충족시키는 근거.
+- z-검정, t-검정, ANOVA(Analysis of Variance) 등 다양한 통계 검정의 정규성 가정을 실무에서 대표본으로 충족시키는 근거.
 
 ### 나. 몬테카를로 시뮬레이션 및 데이터 샘플링 최적화
 - 복잡한 리스크 평가, 금융 파생상품 가격 책정 시 무작위 난수 시뮬레이션 결과의 평균이 안정적인 정규분포를 형성하므로, 시뮬레이션 반복 횟수 $n$을 설정하는 이론적 기준 제공.
@@ -68,13 +68,13 @@ extra:
 
 - 극단적 편포 및 두터운 꼬리(Fat-tailed) 분포에서의 수렴 지연 :
   - 한계점 : 파레토(Pareto), 코시(Cauchy) 분포 등 무한 분산을 갖거나 극단적으로 비대칭인 데이터에서는 표준적 표본 크기($n \ge 30$)로 정규분포에 수렴하지 않음.
-  - 해결 방안 : 로그/Box-Cox 변환을 통한 데이터 왜도 완화 선행, 또는 극단값 이론(EVT, Generalized Pareto Distribution) 기반의 특화 모델 적용.
+  - 해결 방안 : 로그/Box-Cox 변환을 통한 데이터 왜도 완화 선행, 또는 극단값 이론(EVT, Extreme Value Theory) 기반의 특화 모델 적용.
 - 독립항등분포(i.i.d.) 가정 위배(시계열 및 공간 자기상관) :
   - 한계점 : 금융 주가, 센서 로그 등 시간적/공간적 종속성(Autocorrelation)이 존재하는 데이터에 CLT를 맹신할 경우 표본평균의 분산이 과소 추정되어 추론 오류 발생.
-  - 해결 방안 : 블록 부트스트랩(Block Bootstrap) 기법 적용 또는 자기상관을 반영하는 시계열 모형(ARIMA, GARCH)의 점근적 정규성 정리 활용.
+  - 해결 방안 : 블록 부트스트랩(Block Bootstrap) 기법 적용 또는 자기상관을 반영하는 시계열 모형(ARIMA, Autoregressive Integrated Moving Average; GARCH, Generalized Autoregressive Conditional Heteroskedasticity)의 점근적 정규성 정리 활용.
 - 표본평균 중심성으로 인한 꼬리(Tail) 위험 과소평가 :
-  - 한계점 : CLT는 표본평균의 정규 근사만을 보장할 뿐 극단치(Black Swan) 발생 확률을 과소평가하여 금융 리스크(VaR) 및 시스템 신뢰도 한계 초래.
-  - 해결 방안 : 정규분포 기반 리스크 측정과 더불어 스트레스 테스팅(Stress Testing) 및 기대 손실(Expected Shortfall, CVaR) 병행 평가.
+  - 한계점 : CLT는 표본평균의 정규 근사만을 보장할 뿐 극단치(Black Swan) 발생 확률을 과소평가하여 금융 리스크(VaR, Value at Risk) 및 시스템 신뢰도 한계 초래.
+  - 해결 방안 : 정규분포 기반 리스크 측정과 더불어 스트레스 테스팅(Stress Testing) 및 기대 손실(Expected Shortfall, CVaR, Conditional Value at Risk) 병행 평가.
 
 ---
 

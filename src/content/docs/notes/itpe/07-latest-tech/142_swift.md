@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. SWIFT 금융 메시징의 개요
 
 - 개념 : 전 세계 금융기관 간의 외환 송금, 신용장, 유가증권 결제 등의 금융 거래 지시 전문을 기밀성과 무결성을 보장하여 중계하는 폐쇄형 고신뢰 **금융 통신망** (SWIFTNet).
-- 배경 및 필요성 : 기존 텍스트 기반 **MT** 전문에서 풍부한 XML 데이터 구조의 **ISO 20022 MX** (CBPR+) 전환 시 데이터 절단(Truncation) 및 레거시 코어뱅킹 매핑 왜곡이 발생하므로 변환 엔진 무결성 검증과 **SWIFT CSP** (고객보안프로그램) 준수 체계 구축 필요.
+- 배경 및 필요성 : 기존 텍스트 기반 **MT** 전문에서 풍부한 XML(Extensible Markup Language) 데이터 구조의 **ISO(International Organization for Standardization) 20022 MX** (CBPR(Cross-Border Privacy Rules)+) 전환 시 데이터 절단(Truncation) 및 레거시 코어뱅킹 매핑 왜곡이 발생하므로 변환 엔진 무결성 검증과 **SWIFT CSP** (Cloud Service Provider, 고객보안프로그램) 준수 체계 구축 필요.
 - 핵심 목적 : 국가 간 상이한 금융 시스템 간 상호운용성 확보, 국경 간 송금의 전산화·자동화(STP: Straight-Through Processing) 및 결제 위험 축소.
 
 ## Ⅱ. SWIFT 금융 메시징의 핵심 아키텍처 및 동작 메커니즘
@@ -49,7 +49,7 @@ SWIFT 금융 메시징은 신뢰할 수 있는 데이터 파이프라인과 고�
    - gpi Tracker 상태 전송          - 최종 고객 계좌 입금 완료 통보
 ```
 
-- **전통 세대 (Legacy MT)** : FIN MT (MT103, MT202 등 텍스트 전문) - 140자 내외의 고정 길이 텍스트, 비정형 필드로 인한 자금세탁방지(AML) 자동 스크리닝 한계.
+- **전통 세대 (Legacy MT)** : FIN MT (MT103, MT202 등 텍스트 전문) - 140자 내외의 고정 길이 텍스트, 비정형 필드로 인한 자금세탁방지(AML, Anti-Money Laundering) 자동 스크리닝 한계.
 - **차세대 (ISO 20022 CBPR+)** : XML 기반 MX 전문 (pacs.008, pacs.009 등) - 풍부한 데이터(Rich Data), 구조화된 송수취인 정보, 전 세계 실시간 총액결제(RTGS) 연동 표준.
 - **혁신 서비스 (SWIFT gpi)** : **UETR** 기반 클라우드 디렉터리 추적 - 수수료 투명 공개, 송금 전 구간 실시간 추적(Amazon 택배식 추적), 당일 결제 완료 보장.
 
@@ -57,7 +57,7 @@ SWIFT 금융 메시징은 신뢰할 수 있는 데이터 파이프라인과 고�
 
 | 비교 항목 | 전통 MT (FIN Message) | 차세대 ISO 20022 MX (CBPR+) |
 |---|---|---|
-| **데이터 포맷** | 슬래시(/) 기반 비정형 텍스트 | XML / JSON 스키마 기반 계층형 정형 데이터 |
+| **데이터 포맷** | 슬래시(/) 기반 비정형 텍스트 | XML / JSON(JavaScript Object Notation) 스키마 기반 계층형 정형 데이터 |
 | **데이터 용량** | 수백 바이트 단위 (극히 제한적) | 수십~수백 킬로바이트 (풍부한 결제 컨텍스트) |
 | **송수취인 주소** | 35자 4줄 비정형 텍스트 입력 | 도시, 거리, 우편번호, 국가 등 정밀 구조화 태그 |
 | **컴플라이언스 (AML)** | 오탐(False Positive) 비율 높음 (수기 확인 빈번) | 정밀 태그 매칭으로 AML/이상거래 실시간 자동 스크리닝 |
@@ -73,7 +73,7 @@ SWIFT 금융 메시징은 신뢰할 수 있는 데이터 파이프라인과 고�
   - 해결 방안 : SWIFT Transaction Manager(TM) 중앙 복원 메커니즘 활용 및 코어뱅킹의 네이티브 ISO 20022 데이터 모델 전면 도입.
 - 로컬 게이트웨이 침해를 통한 부정 송금 전문 승인 위험 :
   - 한계점 : SWIFT Alliance Access(SAA) 등 금융기관 로컬 게이트웨이 침해를 통한 부정 송금 전문 승인 위험 (방글라데시 중앙은행 사건).
-  - 해결 방안 : SWIFT CSP(Customer Security Programme) CSCF 필수 통제 준수, 운영망 다단계 인증(MFA) 및 HSM 물리 격리.
+  - 해결 방안 : SWIFT CSP(Customer Security Programme) CSCF 필수 통제 준수, 운영망 다단계 인증(MFA, Multi-Factor Authentication) 및 HSM(Hardware Security Module) 물리 격리.
 - 국가별 규제 컴플라이언스 상이성에 따른 거래 지연 :
   - 한계점 : 각국 규제 기관별 상이한 컴플라이언스 규칙으로 인한 크로스보더 거래 검증 지연 및 반송 증가.
   - 해결 방안 : CBPR+ 및 PMPG(Payments Market Practice Group) 단일 마켓 프랙티스 표준 스키마 준수 및 사전 유효성 검사기 도입.

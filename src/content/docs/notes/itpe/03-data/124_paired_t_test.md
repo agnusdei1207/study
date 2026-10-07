@@ -76,7 +76,7 @@ n      |        75         |         83         |              +8
   - 해결 방안 : 차이값에 대한 **샤피로-윌크** (Shapiro-Wilk) 검정 선행, 정규성 위반 시 비모수 검정인 **윌콕슨 부호순위 검정** (Wilcoxon Signed-Rank Test) 또는 순열 검정(Permutation Test) 수행.
 - **역사적 요인** (History Effect) 및 **성숙 효과** (Maturation Effect)의 외생 변수 혼입 :
   - 한계점 : 단일 그룹의 사전-사후 비교 시 개입 효과 외에 시간 경과에 따른 자연 학습, 시스템 외부 요인이 결과에 개입하여 순수 개선 효과 분리 불가.
-  - 해결 방안 : 무작위 대조군(Control Group)을 둔 **이중차분법** (DID: Difference-in-Differences) 설계 적용, A/B 테스트 환경으로 전환.
+  - 해결 방안 : 무작위 대조군(Control Group)을 둔 **이중차분법** (DID, Difference-in-Differences) 설계 적용, A/B 테스트 환경으로 전환.
 - 반복 측정에 따른 **시험 효과** (Testing Effect) 및 캐리오버(Carryover) 효과 :
   - 한계점 : 사용자가 동일 시스템을 반복 테스트하면서 인터페이스에 익숙해지는 학습 편향이 발생하여 측정된 성능 개선 수치가 과대평가.
   - 해결 방안 : 테스트 순서를 무작위화하는 **라틴 방격 설계** (Latin Square Design) 채택, 충분한 세척 기간(Washout Period) 부여.
@@ -84,4 +84,4 @@ n      |        75         |         83         |              +8
 ## Ⅴ. IT 시스템 성능 개선 및 UX 평가 실무 제언
 
 - 데이터베이스 쿼리 튜닝 전후 성능 검증 : 튜닝 전과 후의 응답 시간을 서로 다른 시간대에 독립 측정하면 서버의 백그라운드 트래픽 변동으로 인해 왜곡이 발생하므로, 동일한 100개의 쿼리 파라미터 셋에 대해 튜닝 전/후 응답 속도를 1:1 매칭하여 대응표본 t-검정으로 튜닝 효과를 통계적으로 입증해야 함.
-- 학습 효과(Carryover Effect) 통제 : UI/UX A/B 테스트에서 동일 사용자가 A안을 쓰고 바로 B안을 쓸 경우 앞선 경험이 영향을 미치는 이월 효과가 발생하므로, 사용자 절반은 A $\rightarrow$ B 순서로, 나머지 절반은 B $\rightarrow$ A 순서로 테스트하는 **교차 설계** (Crossover Design)를 병행할 것을 제언함.
+- 학습 효과(Carryover Effect) 통제 : UI(User Interface)/UX(User Experience) A/B 테스트에서 동일 사용자가 A안을 쓰고 바로 B안을 쓸 경우 앞선 경험이 영향을 미치는 이월 효과가 발생하므로, 사용자 절반은 A $\rightarrow$ B 순서로, 나머지 절반은 B $\rightarrow$ A 순서로 테스트하는 **교차 설계** (Crossover Design)를 병행할 것을 제언함.

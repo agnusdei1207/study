@@ -42,19 +42,19 @@ extra:
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **구문 (Syntax)** : 전송하고자 하는 데이터의 형식(Format), 비트 구성 순서, 부호화 방식, 필드 배치 구조를 명시 (예: IP 헤더 20바이트 필드 구조).
-- **의미 (Semantics)** : 각 비트 패턴이나 제어 필드가 무엇을 뜻하는지, 해당 메시지를 수신했을 때 시스템이 어떤 제어 조작을 수행해야 하는지 규정 (예: TCP SYN 플래그 수신 시 연결 수립 처리).
-- **타이밍 (Timing)** : 통신 개체 간의 전송 속도 일치, 송수신 순서(Ordering), 패킷 지연 및 시간 초과(Timeout) 발생 시의 재전송 규칙 정의 (예: RTO 타이머 만료 후 재전송).
+- **구문 (Syntax)** : 전송하고자 하는 데이터의 형식(Format), 비트 구성 순서, 부호화 방식, 필드 배치 구조를 명시 (예: IP(Internet Protocol) 헤더 20바이트 필드 구조).
+- **의미 (Semantics)** : 각 비트 패턴이나 제어 필드가 무엇을 뜻하는지, 해당 메시지를 수신했을 때 시스템이 어떤 제어 조작을 수행해야 하는지 규정 (예: TCP(Transmission Control Protocol) SYN(Synchronize) 플래그 수신 시 연결 수립 처리).
+- **타이밍 (Timing)** : 통신 개체 간의 전송 속도 일치, 송수신 순서(Ordering), 패킷 지연 및 시간 초과(Timeout) 발생 시의 재전송 규칙 정의 (예: RTO(Retransmission Timeout) 타이머 만료 후 재전송).
 
 ## Ⅲ. 통신 프로토콜 3대 요소의 세부 구성 항목 및 주요 프로토콜 매핑 분석
 
 | 기본 요소 | 세부 항목 | 기술적 기능 | 대표 프로토콜 적용 사례 |
 |---|---|---|---|
-| 구문 (Syntax) | 프레임/패킷 구조 | 데이터 및 헤더 필드의 길이, 순서, 경계 구분 | 이더넷 프레임(Preamble, MAC 주소, Type, FCS) |
-| | 부호화(Encoding) | 디지털 비트열의 전기적/광학적 신호 변환 | 맨체스터, NRZ, QAM, 64b/66b |
-| | 데이터 표현 형식 | 문자열, 바이너리, 압축 규격 정의 | JSON, XML, Protocol Buffers, ASN.1 |
-| 의미 (Semantics) | 제어 정보 | 접속 요청, 데이터 승인, 연결 해제 등 상태 전이 | TCP 플래그 (SYN, ACK, FIN, RST, PSH, URG) |
-| | 오류 제어 | 전송 중 비트 손상 감지 및 복구 | CRC-32 체크섬 계산, ARQ(Go-Back-N, SR) |
+| 구문 (Syntax) | 프레임/패킷 구조 | 데이터 및 헤더 필드의 길이, 순서, 경계 구분 | 이더넷 프레임(Preamble, MAC(Media Access Control) 주소, Type, FCS) |
+| | 부호화(Encoding) | 디지털 비트열의 전기적/광학적 신호 변환 | 맨체스터, NRZ, QAM(Quadrature Amplitude Modulation), 64b/66b |
+| | 데이터 표현 형식 | 문자열, 바이너리, 압축 규격 정의 | JSON(JavaScript Object Notation), XML(Extensible Markup Language), Protocol Buffers, ASN.1 |
+| 의미 (Semantics) | 제어 정보 | 접속 요청, 데이터 승인, 연결 해제 등 상태 전이 | TCP 플래그 (SYN, ACK(Acknowledgment), FIN, RST(Reset), PSH, URG) |
+| | 오류 제어 | 전송 중 비트 손상 감지 및 복구 | CRC(Cyclic Redundancy Check)-32 체크섬 계산, ARQ(Go-Back-N, SR) |
 | | 주소 지정 | 송수신 단말 및 프로세스 식별 | IP 주소(L3), MAC 주소(L2), 포트 번호(L4) |
 | 타이밍 (Timing) | 속도 정합 | 송신측과 수신측의 처리 속도 차이 극복 | 슬라이딩 윈도우(Sliding Window), 크레딧 흐름제어 |
 | | 순서 제어 | 패킷 역전 및 중복 수신 방지 | TCP 시퀀스 번호(Sequence Number) 정렬 |
@@ -65,14 +65,14 @@ extra:
 ## Ⅳ. 통신 프로토콜 설계·운영 시 주요 한계점 및 해결 방안
 
 - 프로토콜 명세의 모호성으로 인한 상호운용성 결함 :
-  - 한계점 : 자연어로 기술된 RFC 표준 명세 해석 차이로 인해 서로 다른 벤더 장비 간 통신 단절 및 예외 상황 처리 불일치 발생.
+  - 한계점 : 자연어로 기술된 RFC(Request for Comments) 표준 명세 해석 차이로 인해 서로 다른 벤더 장비 간 통신 단절 및 예외 상황 처리 불일치 발생.
   - 해결 방안 : 페트리넷(Petri-Net) 및 프로토콜 검증 언어(Promela/SPIN)를 활용한 수학적 정형 기법(Formal Verification) 적용 및 플러그페스트(Plugfest) 적합성 테스트 의무화.
 - 프로토콜 구문 파싱 취약점에 따른 보안 침해 (Protocol Fuzzing 공격) :
-  - 한계점 : 비정상적으로 조작된 패킷 헤더(비정상 길이, 부정 플래그 조합) 유입 시 버퍼 오버플로우나 서비스 거부(DoS) 유발.
+  - 한계점 : 비정상적으로 조작된 패킷 헤더(비정상 길이, 부정 플래그 조합) 유입 시 버퍼 오버플로우나 서비스 거부(DoS, Denial of Service) 유발.
   - 해결 방안 : 엄격한 입력값 검증 로직 강제, 메모리 안전 언어(Rust 등) 기반 프로토콜 스택 재작성 및 지속적 프로토콜 퍼징 테스팅 수행.
 
 ## Ⅴ. 통신 프로토콜 적용 및 발전을 위한 기술사적 제언
 
-- 클라우드 네이티브 환경의 경량 직렬화 프로토콜 도입 : 텍스트 기반 HTTP/1.1 REST의 구문 파싱 오버헤드를 타파하기 위해 바이너리 기반 gRPC(HTTP/2 + Protobuf) 및 QUIC 프로토콜로 백엔드 전면 개편.
-- 프로그래머블 데이터 플레인(P4) 기반 프로토콜 유연성 확보 : 하드웨어 ASIC 고정 기능을 탈피하고, P4 언어를 이용해 스위치 수준에서 사용자 정의 프로토콜 헤더를 즉시 파싱·포워딩하는 SDN 아키텍처 수용.
+- 클라우드 네이티브 환경의 경량 직렬화 프로토콜 도입 : 텍스트 기반 HTTP(Hypertext Transfer Protocol)/1.1 REST(Representational State Transfer)의 구문 파싱 오버헤드를 타파하기 위해 바이너리 기반 gRPC(HTTP/2 + Protobuf) 및 QUIC 프로토콜로 백엔드 전면 개편.
+- 프로그래머블 데이터 플레인(P4) 기반 프로토콜 유연성 확보 : 하드웨어 ASIC(Application-Specific Integrated Circuit) 고정 기능을 탈피하고, P4 언어를 이용해 스위치 수준에서 사용자 정의 프로토콜 헤더를 즉시 파싱·포워딩하는 SDN(Software-Defined Networking) 아키텍처 수용.
 - Zero Trust 보안 아키텍처와의 프로토콜 정렬 : 모든 프로토콜 트래픽에 대해 암묵적 신뢰를 배제하고, L4~L7 전 구간에 mTLS 상호 인증 및 지속적 행위 기반 이상 감지 체계 내재화.

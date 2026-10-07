@@ -15,12 +15,12 @@ extra:
 ## Ⅰ. 인증(Authentication)의 개요
 
 - 개념 : 정보 시스템 및 네트워크 통신에서 특정 자원에 접근하려는 **주체** (사용자, 프로세스, 시스템, 디바이스)의 신원이 주장하는 바와 일치하는지 신뢰할 수 있는 수단으로 확인·보증하고, 메시지의 출처 진본성을 입증하는 보안의 근간 메커니즘.
-- 배경 및 필요성 : 단순 로컬 시스템의 비밀번호 입력을 넘어, 클라우드, 마이크로서비스, 멀티 테넌트, 분산 API 생태계로 IT 인프라가 확장되면서 이종 도메인 간의 안전한 **연합 신원** (Federated Identity)과 **제로 트러스트** 검증의 필요성이 증대됨.
+- 배경 및 필요성 : 단순 로컬 시스템의 비밀번호 입력을 넘어, 클라우드, 마이크로서비스, 멀티 테넌트, 분산 API(Application Programming Interface) 생태계로 IT(Information Technology) 인프라가 확장되면서 이종 도메인 간의 안전한 **연합 신원** (Federated Identity)과 **제로 트러스트** 검증의 필요성이 증대됨.
 - 핵심 목적 : 비인가자의 자원 접근과 신원 사칭을 원천 차단하고, **접근 제어** (Authorization) 및 **감사 추적** (Accounting)의 정확한 신뢰 기반(AAA)을 제공.
 
 ## Ⅱ. 인증(Authentication)의 핵심 아키텍처 및 동작 메커니즘
 
-인증은 주체 인증(사용자/기기)과 메시지 출처 인증으로 나뉘며, 현대 아키텍처에서는 SAML 2.0, OAuth 2.0/OIDC를 통한 통합 연합 인증과 제로 트러스트 지속 검증으로 동작함.
+인증은 주체 인증(사용자/기기)과 메시지 출처 인증으로 나뉘며, 현대 아키텍처에서는 SAML(Security Assertion Markup Language) 2.0, OAuth(Open Authorization) 2.0/OIDC(OpenID Connect)를 통한 통합 연합 인증과 제로 트러스트 지속 검증으로 동작함.
 
 ```text
 [ 현대 엔터프라이즈 통합 인증(SSO/OIDC) 및 AAA 아키텍처 ]
@@ -50,7 +50,7 @@ extra:
   * Accounting     (감사) : "무엇을 했는가?" (불가역적 감사 로그 기록)
 ```
 
-- **주체 인증 vs 메시지 출처 인증** : 로그인을 시도하는 인간/기기의 신원을 검증하는 주체 인증과, 전송된 패킷/데이터가 진정한 송신자로부터 위변조 없이 왔음을 증명하는 메시지 인증(HMAC, 디지털 서명).
+- **주체 인증 vs 메시지 출처 인증** : 로그인을 시도하는 인간/기기의 신원을 검증하는 주체 인증과, 전송된 패킷/데이터가 진정한 송신자로부터 위변조 없이 왔음을 증명하는 메시지 인증(HMAC(Hash-based Message Authentication Code), 디지털 서명).
 - **연합 신원 관리(Federated Identity Management)** : 조직 간 또는 클라우드 서비스 간에 계정을 통합하여 단 한 번의 로그인으로 수십 개의 서비스를 이용하는 싱글 사인온(SSO: SAML, OpenID Connect).
 - **AAA 보안 프레임워크** : 인증(Authentication), 인가(Authorization: 권한 부여), 계정 관리/감사(Accounting: 사용자 행위 로그 기록 및 과금)의 유기적 결합 체계.
 - **지속적 적응형 인증(Continuous Adaptive Authentication)** : 로그인 시점의 1회성 검증에 그치지 않고 세션 유지 중에도 기기 보안 상태와 행위 프로파일을 지속 평가하여 위험 감지 시 세션 즉시 만료.
@@ -61,26 +61,26 @@ extra:
 | --- | --- | --- | --- |
 | 핵심 질문 | "당신은 누구인가?" (신원 증명) | "무엇을 할 수 있는가?" (접근 허용) | "무엇을 하였는가?" (활동 추적) |
 | 수행 시점 | 시스템 접속 및 세션 수립 최초 단계 | 인증 완료 후 개별 자원/API 호출 시 | 자원 사용 중 및 종료 후 상시 기록 |
-| 대표 기술 | 비밀번호, FIDO2, 생체인증, PKI, OTP | RBAC(역할기반), ABAC(속성기반), OAuth | Syslog, SIEM, 감사 추적 DB, 감사 로그 |
+| 대표 기술 | 비밀번호, FIDO2, 생체인증, PKI(Public Key Infrastructure), OTP(One-Time Password) | RBAC(Role-Based Access Control, 역할기반), ABAC(Attribute-Based Access Control, 속성기반), OAuth | Syslog, SIEM(Security Information and Event Management), 감사 추적 DB(Database), 감사 로그 |
 | 실패 시 결과 | 로그인 거부 (401 Unauthorized) | 접근 권한 거부 (403 Forbidden) | 감사 불가, 부인 방지 상실, 규제 위반 |
-| 프로토콜 예시 | OpenID Connect, SAML, Kerberos | OAuth 2.0 스코프, XACML, IAM 정책 | RADIUS Accounting, TACACS+, CloudTrail |
+| 프로토콜 예시 | OpenID Connect, SAML, Kerberos | OAuth 2.0 스코프, XACML, IAM(Identity and Access Management) 정책 | RADIUS Accounting, TACACS+, CloudTrail |
 
 - 인증은 모든 정보보호 통제의 출발점이므로, 정적 단일 요인을 전면 탈피하고 피싱 저항 다중 인증과 제로 트러스트 지속 검증 체계로의 전환이 필수적임.
 
 ## Ⅳ. 인증(Authentication)의 주요 한계점 및 해결 방안
 
 - 세션 하이재킹(Session Hijacking)을 통한 인증 무력화 :
-  - 한계점 : 강력한 인증을 통과했더라도 발급된 세션 쿠키나 토큰이 XSS나 네트워크 스니핑으로 탈취되면 공격자가 인증을 완전히 우회하여 로그인 상태 사칭.
+  - 한계점 : 강력한 인증을 통과했더라도 발급된 세션 쿠키나 토큰이 XSS(Cross-Site Scripting)나 네트워크 스니핑으로 탈취되면 공격자가 인증을 완전히 우회하여 로그인 상태 사칭.
   - 해결 방안 : 쿠키에 'HttpOnly', 'Secure', 'SameSite=Strict' 플래그 강제 및 mTLS 바인딩 또는 DPoP 토큰 기술 적용.
 - 크리덴셜 스터핑(Credential Stuffing) 자동화 봇 공격 :
   - 한계점 : 타 사이트에서 유출된 수억 건의 ID/PW 쌍을 크리덴셜 스터핑 봇넷으로 자동 대입하여 무차별 로그인 성공.
-  - 해결 방안 : 로그인 페이지에 CAPTCHA(reCAPTCHA v3) 적용, 동일 IP/서브넷 요청 속도 제한(Rate Limiting), 다중 인증(MFA) 강제.
-- 연합 신원(IdP)의 단일 실패점(SPOF) 리스크 :
-  - 한계점 : 중앙 IdP(Okta, Azure AD 등)에 장애가 발생하거나 침해당할 경우 기업의 수백 개 SaaS 및 내부 시스템 로그인이 전면 중단.
+  - 해결 방안 : 로그인 페이지에 CAPTCHA(reCAPTCHA v3) 적용, 동일 IP(Internet Protocol)/서브넷 요청 속도 제한(Rate Limiting), 다중 인증(MFA, Multi-Factor Authentication) 강제.
+- 연합 신원(IdP, Identity Provider)의 단일 실패점(SPOF, Single Point of Failure) 리스크 :
+  - 한계점 : 중앙 IdP(Okta, Azure AD(Active Directory) 등)에 장애가 발생하거나 침해당할 경우 기업의 수백 개 SaaS 및 내부 시스템 로그인이 전면 중단.
   - 해결 방안 : IdP의 멀티 리전 액티브-액티브 이중화, 비상 시 로컬 인증으로 우회 가능한 'Break-glass' 계정 엄격 관리.
 
 ## Ⅴ. 인증(Authentication) 적용 및 발전을 위한 기술사적 제언
 
 - 피싱 저항 FIDO2 패스키(Passkey) 기반 무암호화(Passwordless) 완성 : 취약한 비밀번호 정책을 전사 폐기하고 FIDO2 표준의 암호학적 비대칭키 사용자 인증으로 전면 마이그레이션.
-- CAEP(Continuous Access Evaluation Protocol) 표준 연동 : 사용자 비밀번호가 변경되거나 기기가 감염되었을 때 IdP가 모든 SaaS(SP)에 웹훅을 즉시 발송하여 활성 세션을 즉시 강제 회수.
+- CAEP(Continuous Access Evaluation Protocol) 표준 연동 : 사용자 비밀번호가 변경되거나 기기가 감염되었을 때 IdP가 모든 SaaS(SP, Service Provider)에 웹훅을 즉시 발송하여 활성 세션을 즉시 강제 회수.
 - 제로 트러스트 컨텍스트 기반 동적 인증 아키텍처 수립 : 사용자 신원뿐만 아니라 기기 무결성, 접속 위치, 시간대, IP 평판을 실시간 스코어링하여 고위험 상황에서만 선택적으로 추가 인증을 요구하는 지능형 통제 구현.

@@ -40,11 +40,11 @@ extra:
 
 ### 나. PCA vs MDS 기술 비교 매트릭스
 
-| 비교 항목 | 주성분 분석 (PCA) | 다차원 척도법 (MDS) |
+| 비교 항목 | 주성분 분석 (PCA, Principal Component Analysis) | 다차원 척도법 (MDS, Multidimensional Scaling) |
 | :--- | :--- | :--- |
 | 보존하려는 핵심 가치 | **데이터 전체의 분산 (Variance)** | **개체 간의 상대적 거리/유사도 (Pairwise Distance)** |
 | 입력 데이터 형태 | 관측치 $\times$ 변수 행렬 ($n \times p$ Data Matrix) | 개체 간 거리(비유사도) 행렬 ($n \times n$ Distance Matrix) |
-| 수학적 해법 | 공분산 행렬의 **고유값 분해(Eigendecomposition)** 또는 SVD | 계량적 MDS(고유값 분해) / 비계량적 MDS(순위 보존 최적화) |
+| 수학적 해법 | 공분산 행렬의 **고유값 분해(Eigendecomposition)** 또는 SVD(Singular Value Decomposition) | 계량적 MDS(고유값 분해) / 비계량적 MDS(순위 보존 최적화) |
 | 해석 가능성 | 각 주성분은 원래 변수들의 선형 결합 계수(Loading)로 해석 가능 | 축 자체의 물리적 의미는 없으며, 점들 간의 상대적 배치만 의미 |
 | 계산 복잡도 | $O(p^3 + p^2 n)$ (변수 수 $p$에 비례, 대규모에 유리) | $O(n^3)$ 또는 $O(n^2)$ (데이터 수 $n$에 비례, 대규모에 불리) |
 | 주요 활용 분야 | 머신러닝 전처리, 노이즈 제거, 피처 압축 | 브랜드 포지셔닝 맵, 인지도 조사, 지각도 시각화 |
@@ -79,11 +79,11 @@ extra:
 
 - 선형 차원 축소의 비선형 매니폴드(Non-linear Manifold) 구조 보존 실패 :
   - 한계점 : PCA와 고전적 MDS는 데이터의 전역적 선형 관계만을 반영하므로 스위스 롤(Swiss Roll)과 같은 복잡한 비선형 기하 구조를 저차원에 투영 시 정보 붕괴.
-  - 해결 방안 : 커널 PCA(Kernel PCA)를 도입하여 비선형 특성 공간으로 매핑하거나, 국소 기하 구조를 보존하는 t-SNE, UMAP, 오토인코더(Autoencoder) 활용.
+  - 해결 방안 : 커널 PCA(Kernel PCA)를 도입하여 비선형 특성 공간으로 매핑하거나, 국소 기하 구조를 보존하는 t-SNE(t-distributed Stochastic Neighbor Embedding), UMAP(Uniform Manifold Approximation and Projection), 오토인코더(Autoencoder) 활용.
 - 거리 행렬 계산 및 고유값 분해의 계산 복잡도($O(N^3)$) 한계 :
   - 한계점 : 데이터 샘플 수($N$)가 수십만 건 이상일 때 $N \times N$ 거리 행렬을 생성하는 MDS나 공분산 행렬의 고유값 분해는 메모리 고갈 및 연산 마비 유발.
   - 해결 방안 : 무작위 SVD(Randomized SVD) 및 점진적 PCA(Incremental PCA)를 통한 미니배치 처리, 랜드마크 MDS(Landmark MDS)를 통한 대표 샘플 기반 거리 근사.
-- 주성분(PC) 및 임베딩 좌표의 비즈니스 해석 가능성 상실 :
+- 주성분(PC, Principal Component) 및 임베딩 좌표의 비즈니스 해석 가능성 상실 :
   - 한계점 : 원래 변수들의 선형 결합으로 생성된 새로운 축은 도메인 관점에서 명확한 물리적 의미를 부여하기 어려워 현업 의사결정 보고 시 설득력 저하.
   - 해결 방안 : 희소 PCA(Sparse PCA)를 적용하여 주성분 가중치의 대다수를 0으로 유도함으로써 소수 핵심 변수 중심의 해석력 확보, 특성 기여도(Factor Loading) 시각화.
 

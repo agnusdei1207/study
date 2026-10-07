@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. MCP(Model Context Protocol) 보안 취약점의 개요
 
-- 개념 : Anthropic이 제정한 LLM 애플리케이션(Host/Client)과 로컬 파일시스템, 데이터베이스, 외부 API 도구(Server) 간의 통신 표준 프로토콜인 **MCP** 환경에서 신뢰 경계 붕괴, 비인가 도구 실행, 데이터 유출을 유발하는 보안 결함 및 공격 기법.
-- 배경 및 필요성 : LLM이 단순 텍스트 생성을 넘어 엔지니어의 로컬 터미널 명령을 실행하고 내부 DB를 쿼리하는 **에이전틱** (Agentic) 생태계로 진화함에 따라, 비신뢰 MCP 서버 연결을 통한 호스트 OS 침해 위협 급부상.
+- 개념 : Anthropic이 제정한 LLM(Large Language Model) 애플리케이션(Host/Client)과 로컬 파일시스템, 데이터베이스, 외부 API(Application Programming Interface) 도구(Server) 간의 통신 표준 프로토콜인 **MCP**(Model Context Protocol) 환경에서 신뢰 경계 붕괴, 비인가 도구 실행, 데이터 유출을 유발하는 보안 결함 및 공격 기법.
+- 배경 및 필요성 : LLM이 단순 텍스트 생성을 넘어 엔지니어의 로컬 터미널 명령을 실행하고 내부 DB(Database)를 쿼리하는 **에이전틱** (Agentic) 생태계로 진화함에 따라, 비신뢰 MCP 서버 연결을 통한 호스트 OS(Operating System) 침해 위협 급부상.
 - 핵심 목적 : MCP 프로토콜 상의 **신뢰 경계** (Trust Boundary) 명확화, 도구 실행 권한 최소화, 간접 프롬프트 주입 방어 및 안전한 에이전트 확장 생태계 확립.
 
 ## Ⅱ. MCP(Model Context Protocol) 보안 취약점의 핵심 아키텍처 및 동작 메커니즘
@@ -50,17 +50,17 @@ MCP 보안 위협은 공격자가 외부 데이터에 악성 프롬프트를 은
 - **간접 프롬프트 주입** (Indirect Prompt Injection) : MCP 서버를 통해 조회된 웹페이지나 문서 내에 삽입된 악성 프롬프트가 호스트 LLM의 시스템 지침을 오버라이드.
 - **혼동된 대리인** (Confused Deputy) : LLM이 사용자의 높은 호스트 OS 권한을 대리 행사하는 점을 악용하여, 권한이 없는 공격자가 위험한 도구(bash, rm)를 간접 실행.
 - **도구 오염 및 스푸핑** (Tool Poisoning) : 악성 MCP 서버가 도구 설명(Description)을 교묘하게 조작하여 민감한 작업 발생 시 자신의 악성 도구를 우선 호출하도록 유도.
-- **자격증명 및 API 키 유출** : MCP 서버 설정 파일(JSON)에 평문으로 저장된 GitHub, DB, 클라우드 API 토큰이 서버 침해 시 일괄 유출.
+- **자격증명 및 API 키 유출** : MCP 서버 설정 파일(JSON, JavaScript Object Notation)에 평문으로 저장된 GitHub, DB, 클라우드 API 토큰이 서버 침해 시 일괄 유출.
 
 ## Ⅲ. MCP(Model Context Protocol) 보안 취약점의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | 전통적 REST API 통신 | 웹훅(Webhook) 연동 | MCP (Model Context Protocol) |
+| 비교 항목 | 전통적 REST(Representational State Transfer) API 통신 | 웹훅(Webhook) 연동 | MCP (Model Context Protocol) |
 | --- | --- | --- | --- |
 | 호출 주체 | 개발자가 작성한 결정론적 코드 | 외부 이벤트 발생에 따른 서버 푸시 | 자율 LLM 에이전트의 확률론적 판단 |
-| 인터페이스 정의 | OpenAPI (Swagger) 명세 | JSON 페이로드 스키마 | JSON-RPC 기반 Tools/Resources/Prompts |
-| 신뢰 경계 | 인가된 API 키 기반 엄격한 통제 | 시크릿 서명(HMAC) 검증 | 자연어 기반 프롬프트와 데이터 혼재 |
+| 인터페이스 정의 | OpenAPI (Swagger) 명세 | JSON 페이로드 스키마 | JSON-RPC(Remote Procedure Call) 기반 Tools/Resources/Prompts |
+| 신뢰 경계 | 인가된 API 키 기반 엄격한 통제 | 시크릿 서명(HMAC, Hash-based Message Authentication Code) 검증 | 자연어 기반 프롬프트와 데이터 혼재 |
 | 공격 취약점 | 파라미터 변조, 인증 우회 | 재전송 공격, 스푸핑 | 간접 프롬프트 주입, 도구 오염, 탈옥 |
-| 격리 통제 | API 게이트웨이, WAF | 화이트리스트 IP 검증 | Wasm/컨테이너 샌드박싱, 인간 승인(HITL) |
+| 격리 통제 | API 게이트웨이, WAF(Web Application Firewall) | 화이트리스트 IP(Internet Protocol) 검증 | Wasm/컨테이너 샌드박싱, 인간 승인(HITL, Human in the Loop) |
 
 - 기존 API 연동은 정형화된 코드와 엄격한 인증으로 통제되지만, MCP는 확률론적인 LLM이 자연어 설명(Description)을 읽고 어떤 도구를 호출할지 자율 결정하므로 신뢰 경계 관리가 훨씬 까다로움.
 
@@ -80,4 +80,4 @@ MCP 보안 위협은 공격자가 외부 데이터에 악성 프롬프트를 은
 
 - 최소 권한 원칙의 읽기/쓰기 분리 MCP 서버 설계 : 파일 읽기 전용 서버와 쓰기 서버를 물리적으로 분리하고, 명령 실행 도구에는 화이트리스트 기반 **안전 인수** (Safe Argument)만 허용.
 - LLM 도구 호출 파이프라인의 **이중화** (Dual LLM) 가드레일 : 실행 명령을 생성하는 모델과 해당 명령의 안전성을 비판적으로 검증하는 보안 전용 Guard LLM을 분리 배치.
-- MCP 환경변수 및 시크릿의 **볼트** (Vault) 연동 : 설정 파일 내 API 키 하드코딩을 금지하고 OS 키체인이나 클라우드 KMS와 연동된 임시 세션 토큰 주입 체계 구축.
+- MCP 환경변수 및 시크릿의 **볼트** (Vault) 연동 : 설정 파일 내 API 키 하드코딩을 금지하고 OS 키체인이나 클라우드 KMS(Key Management Service)와 연동된 임시 세션 토큰 주입 체계 구축.

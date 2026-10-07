@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 유전 알고리즘(Genetic Algorithm)의 개요
 
 - 개념 : 찰스 다윈의 생물학적 **자연선택** (Natural Selection)과 유전학의 진화 원리(적자생존, 교차, 돌연변이)를 모방하여, 수학적으로 정형화된 최적해를 구하기 어려운 복잡한 탐색 공간에서 확률적·전역적으로 최적해(Near-Optimal Solution)를 찾아가는 대표적인 메타휴리스틱(Metaheuristics) 탐색 알고리즘.
-- 배경 및 필요성 : 외판원 순회 문제(TSP), 배낭 문제(Knapsack), VLSI 반도체 칩 배치 등 전통적인 결정론적 알고리즘으로 해결 불가능한 **NP-Hard 조합 최적화 문제** 해결을 위해 존 홀랜드(John Holland)에 의해 체계화됨.
+- 배경 및 필요성 : 외판원 순회 문제(TSP, Traveling Salesperson Problem), 배낭 문제(Knapsack), VLSI(Very Large Scale Integration) 반도체 칩 배치 등 전통적인 결정론적 알고리즘으로 해결 불가능한 **NP-Hard 조합 최적화 문제** 해결을 위해 존 홀랜드(John Holland)에 의해 체계화됨.
 - 핵심 목적 : 다점 병렬 탐색을 통한 **국소 최적해(Local Optimum)** 탈출, **탐색** (Exploration)과 **활용** (Exploitation)의 균형 달성, 비선형·비연속 다목적 최적화 문제의 효율적 해 도출.
 
 ## Ⅱ. 유전 알고리즘의 진화 프로세스 및 핵심 메커니즘
@@ -72,9 +72,9 @@ extra:
   - 해결 방안 : 도메인 지식 기반의 그레이 코드(Gray Code) 및 실수 인코딩 적용, 베이지안 최적화(AutoML)를 결합한 메타 파라미터 튜닝.
 - 대규모 실시간 제어 문제에서의 연산 지연 :
   - 한계점 : 세대마다 전체 모집단의 적합도를 평가하는 연산 부하로 인해 밀리초(ms) 단위의 실시간 반응 시스템 적용 한계.
-  - 해결 방안 : GPU/FPGA 기반 대규모 병렬 적합도 평가 파이프라인 구축 및 국소 탐색(Hill Climbing)을 결합한 멤틱 알고리즘(Memetic Algorithm) 적용.
+  - 해결 방안 : GPU(Graphics Processing Unit)/FPGA(Field-Programmable Gate Array) 기반 대규모 병렬 적합도 평가 파이프라인 구축 및 국소 탐색(Hill Climbing)을 결합한 멤틱 알고리즘(Memetic Algorithm) 적용.
 
 ## Ⅴ. 유전 알고리즘의 실무 적용을 위한 기술사적 제언
 
 - **하이브리드 메타휴리스틱(Memetic Computing)** 전략 : 유전 알고리즘은 전역 탐색(Exploration)에는 강력하나 수렴 지점 주변의 정밀 탐색(Exploitation) 속도가 느리므로, 탐색 후반부에 시뮬레이티드 어닐링(SA)이나 경사하강법(GD)을 결합하여 정밀 수렴 속도를 극대화해야 함.
-- AI/ML 하이퍼파라미터 및 신경망 구조 **탐색(NAS)** 활용 : 딥러닝 트랜스포머 모델의 레이어 구조, 어텐션 헤드 수, 양자화 비트 수 결정을 수작업에 의존하지 않고 유전 알고리즘 기반 자동 신경망 아키텍처 탐색(Genetic NAS) 기법으로 최적화할 것을 제언함.
+- AI(Artificial Intelligence)/ML(Machine Learning) 하이퍼파라미터 및 신경망 구조 **탐색(NAS, Neural Architecture Search)** 활용 : 딥러닝 트랜스포머 모델의 레이어 구조, 어텐션 헤드 수, 양자화 비트 수 결정을 수작업에 의존하지 않고 유전 알고리즘 기반 자동 신경망 아키텍처 탐색(Genetic NAS) 기법으로 최적화할 것을 제언함.

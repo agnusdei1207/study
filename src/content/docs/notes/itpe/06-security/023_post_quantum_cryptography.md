@@ -15,12 +15,12 @@ extra:
 ## Ⅰ. 양자내성암호(Post-Quantum Cryptography)의 개요
 
 - 개념 : 쇼어(Shor) 알고리즘을 구동하는 고성능 양자 컴퓨터로도 다항식 시간 내에 풀 수 없는 **수학적 난제** (격자, 다변수, 해시, 부호 기반)에 기반하여 설계된 차세대 공개키 암호 알고리즘 체계.
-- 배경 및 필요성 : 양자 컴퓨터가 실용화될 경우 현재 전 세계 인터넷 보안의 근간인 **RSA** (소인수분해)와 **ECC** (타원곡선 이산대수)가 완전히 붕괴되며, 공격자가 현재 암호화된 트래픽을 미리 수집해두고 미래에 복호화하는 '**Harvest Now, Decrypt Later** (HNDL)' 위협 대응 시급.
+- 배경 및 필요성 : 양자 컴퓨터가 실용화될 경우 현재 전 세계 인터넷 보안의 근간인 **RSA** (Rivest-Shamir-Adleman, 소인수분해)와 **ECC** (Elliptic Curve Cryptography, 타원곡선 이산대수)가 완전히 붕괴되며, 공격자가 현재 암호화된 트래픽을 미리 수집해두고 미래에 복호화하는 '**Harvest Now, Decrypt Later** (HNDL)' 위협 대응 시급.
 - 핵심 목적 : 양자 컴퓨팅 시대에도 기밀성과 전자서명 무결성을 보장하며, 기존 통신망 및 범용 프로세서 인프라의 전면 교체 없이 소프트웨어 수준에서 암호학적 안전성 유지.
 
 ## Ⅱ. 양자내성암호(Post-Quantum Cryptography)의 핵심 아키텍처 및 동작 메커니즘
 
-NIST는 8년에 걸친 표준화 과정을 거쳐 2024년 격자 기반 암호(ML-KEM, ML-DSA)와 **해시 기반 전자서명** (SLH-DSA)을 최초의 PQC 공식 표준(FIPS 203, 204, 205)으로 공표함.
+NIST(National Institute of Standards and Technology)는 8년에 걸친 표준화 과정을 거쳐 2024년 격자 기반 암호(ML-KEM(Module-Lattice-Based Key-Encapsulation Mechanism), ML-DSA(Module-Lattice-Based Digital Signature Algorithm))와 **해시 기반 전자서명** (SLH-DSA, Stateless Hash-Based Digital Signature Algorithm)을 최초의 PQC(Post-Quantum Cryptography) 공식 표준(FIPS(Federal Information Processing Standards) 203, 204, 205)으로 공표함.
 
 ```text
 [ PQC 4대 수학적 난제 계층 및 NIST 표준 알고리즘 매핑 ]
@@ -43,7 +43,7 @@ NIST는 8년에 걸친 표준화 과정을 거쳐 2024년 격자 기반 암호(M
 - **ML-KEM** (기존 CRYSTALS-Kyber, FIPS 203) : 모듈 격자 상의 **학습 난제** (MLWE)를 이용한 범용 **키 캡슐화 메커니즘** (KEM)으로 고속 연산과 비교적 작은 키 크기 제공.
 - **ML-DSA** (기존 CRYSTALS-Dilithium, FIPS 204) : 격자 기반의 전자서명 알고리즘으로 뛰어난 서명 검증 속도와 높은 안전성을 갖추어 인터넷 통신의 기본 서명 표준으로 채택.
 - **SLH-DSA** (기존 SPHINCS+, FIPS 205) : 오직 암호학적 해시 함수의 안전성만을 가정하는 상태 비보존형 해시 기반 전자서명으로 격자 수학 붕괴 시를 대비한 백업 표준.
-- **하이브리드 암호 전환** (Hybrid Migration) : 기존 고전 암호(ECDH/ECDSA)와 PQC(ML-KEM/ML-DSA)를 결합하여 두 알고리즘이 모두 깨지지 않는 한 안전성을 유지하는 과도기 전략.
+- **하이브리드 암호 전환** (Hybrid Migration) : 기존 고전 암호(ECDH/ECDSA(Elliptic Curve Digital Signature Algorithm))와 PQC(ML-KEM/ML-DSA)를 결합하여 두 알고리즘이 모두 깨지지 않는 한 안전성을 유지하는 과도기 전략.
 
 ## Ⅲ. 양자내성암호(Post-Quantum Cryptography)의 세부 구성 요소 및 비교 분석
 
@@ -60,7 +60,7 @@ NIST는 8년에 걸친 표준화 과정을 거쳐 2024년 격자 기반 암호(M
 ## Ⅳ. 양자내성암호(Post-Quantum Cryptography)의 주요 한계점 및 해결 방안
 
 - 키 크기 및 전자서명 데이터 증가로 인한 네트워크 패킷 단편화 :
-  - 한계점 : TLS 1.3 핸드셰이크 시 PQC 공개키와 서명이 1,500바이트 MTU를 초과하여 TCP 단편화(Fragmentation) 및 지연 발생.
+  - 한계점 : TLS(Transport Layer Security) 1.3 핸드셰이크 시 PQC 공개키와 서명이 1,500바이트 MTU를 초과하여 TCP(Transmission Control Protocol) 단편화(Fragmentation) 및 지연 발생.
   - 해결 방안 : 압축 기법 도입, KEM 중심의 핸드셰이크 최적화 및 프로토콜 계층 버퍼 튜닝, 서명 크기가 작은 **FALCON** (FN-DSA) 선별 채택.
 - **격자 기반 암호** 구현 시 하드웨어 **부채널** (Side-Channel) 및 결함 주입 공격 취약성 :
   - 한계점 : 알고리즘의 수학적 안전성과 별개로, 가우스 샘플링이나 다항식 곱셈 구현 시 실행 시간 차이 및 전력 소비 패턴을 통한 비밀키 누출.
@@ -72,5 +72,5 @@ NIST는 8년에 걸친 표준화 과정을 거쳐 2024년 격자 기반 암호(M
 ## Ⅴ. 양자내성암호(Post-Quantum Cryptography) 적용 및 발전을 위한 기술사적 제언
 
 - '**크립토 민첩성** (Crypto-Agility)' 아키텍처 조기 구축 : 특정 암호 알고리즘에 하드코딩되지 않고, 설정 및 라이브러리 교체만으로 암호 체계를 즉각 전환할 수 있는 유연한 설계 적용.
-- **전사 암호 자산 인벤토리** (CBOM, Cryptographic BOM) 식별 : 우리 기업의 모든 시스템, DB, 인증서에서 사용 중인 고전 암호 현황을 파악하는 PQC 전환 준비도 평가 착수.
-- 국가·공공 PQC 전환 마스터플랜 연계 전략 수립 : 국정원 및 KISA의 2035 양자내성암호 전환 종합계획에 맞추어 전자서명, VPN, 웹 보안 인증서부터 단계적 전환 로드맵 이행.
+- **전사 암호 자산 인벤토리** (CBOM, Cryptographic BOM) 식별 : 우리 기업의 모든 시스템, DB(Database), 인증서에서 사용 중인 고전 암호 현황을 파악하는 PQC 전환 준비도 평가 착수.
+- 국가·공공 PQC 전환 마스터플랜 연계 전략 수립 : 국정원 및 KISA(Korea Internet & Security Agency)의 2035 양자내성암호 전환 종합계획에 맞추어 전자서명, VPN(Virtual Private Network), 웹 보안 인증서부터 단계적 전환 로드맵 이행.

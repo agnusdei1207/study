@@ -48,7 +48,7 @@ extra:
 
 | 구성 모델 | 동작 메커니즘 | 장점 | 트레이드오프 및 한계 |
 | :--- | :--- | :--- | :--- |
-| **Active - Hot Standby** | Standby 노드가 가동 상태로 데이터를 실시간 동기화하며 대기 | 페일오버 시간(RTO) 수초 이내로 극히 짧음 | Standby 노드의 컴퓨팅 자원이 유휴 상태로 방치되어 비용 비효율 |
+| **Active - Hot Standby** | Standby 노드가 가동 상태로 데이터를 실시간 동기화하며 대기 | 페일오버 시간(RTO, Recovery Time Objective) 수초 이내로 극히 짧음 | Standby 노드의 컴퓨팅 자원이 유휴 상태로 방치되어 비용 비효율 |
 | **Active - Active** | 복수의 노드가 트래픽을 분산 처리하며 서로의 예비 노드 역할 수행 | 자원 활용률 100%, 전체 처리량(Throughput) 증대 | 노드 간 동기화 오버헤드, 한 노드 장애 시 남은 노드의 부하 2배 급증 |
 | **Active - Warm Standby** | Standby 노드가 켜져 있으나 애플리케이션은 비활성 상태 | Hot 대비 인프라 비용 절감 | 앱 기동 및 캐시 로딩에 수분가량의 RTO 소요 |
 
@@ -82,7 +82,7 @@ extra:
   - 해결 방안 : 쿼럼(Quorum, 과반수 합의) 메커니즘 필수 적용(홀수 노드 구성), 펜싱(STONITH / Shoot The Other Node In The Head) 하드웨어 차단 장치 연동.
 - 페일오버(Failover) 시점의 RPO/RTO 지연 및 세션 유실 :
   - 한계점 : 비동기 복제 환경에서 장애 발생 시 복제되지 못한 트랜잭션 유실(RPO > 0) 및 헬스체크 임계치 판정 및 승격 시간 동안 서비스 중단(RTO 지연).
-  - 해결 방안 : 동기식 복제(Sync Replication) 또는 Raft 기반 합의 엔진 적용, 자동 DNS/가상 IP(VIP) 스위칭 및 클라이언트 자동 재연결(Reconnection) 풀 구성.
+  - 해결 방안 : 동기식 복제(Sync Replication) 또는 Raft 기반 합의 엔진 적용, 자동 DNS(Domain Name System)/가상 IP(VIP(Virtual IP)) 스위칭 및 클라이언트 자동 재연결(Reconnection) 풀 구성.
 - 액티브-스탠바이(Active-Standby) 자원 유휴화 및 클라우드 비용 낭비 :
   - 한계점 : 정상 운영 시 스탠바이 서버가 아무런 트래픽도 처리하지 않고 대기하여 인프라 비용 효율성이 낮은 수준으로 급락.
   - 해결 방안 : 액티브-액티브(Active-Active) 멀티 리전 아키텍처로 전환, 읽기 전용 쿼리를 분산하는 세컨더리 복제본(Read Replica) 트래픽 분산 활용.
@@ -91,5 +91,5 @@ extra:
 
 ## Ⅴ. 클라우드 네이티브 HA 구축을 위한 실무 제언
 
-- 다중 가용영역(Multi-AZ) 액티브-액티브 배포 : 단일 데이터센터 장애에 대비하여 AWS, Azure 등 클라우드의 3개 이상 가용영역(AZ)에 상태 비저장(Stateless) 웹/앱 컨테이너를 분산 배치하고, DB는 Multi-AZ 자동 동기식 복제를 적용해야 함.
-- 카오스 엔지니어링(Chaos Engineering) 상시화 : 실제 장애 발생 시 HA 메커니즘이 정상 작동하는지 검증하기 위해 Chaos Mesh나 Chaos Monkey를 도입하여 운영 환경에서 무작위로 인스턴스를 강제 종료하는 카오스 테스트를 정례화할 것을 제언함.
+- 다중 가용영역(Multi-AZ, Availability Zone) 액티브-액티브 배포 : 단일 데이터센터 장애에 대비하여 AWS(Amazon Web Services), Azure 등 클라우드의 3개 이상 가용영역(AZ)에 상태 비저장(Stateless) 웹/앱 컨테이너를 분산 배치하고, DB(Database)는 Multi-AZ 자동 동기식 복제를 적용해야 함.
+- 카오스 엔지니어링(Chaos Engineering) 상시화 : 실제 장애 발생 시 HA(High Availability) 메커니즘이 정상 작동하는지 검증하기 위해 Chaos Mesh나 Chaos Monkey를 도입하여 운영 환경에서 무작위로 인스턴스를 강제 종료하는 카오스 테스트를 정례화할 것을 제언함.

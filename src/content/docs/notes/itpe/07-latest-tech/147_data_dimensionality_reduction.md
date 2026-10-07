@@ -48,9 +48,9 @@ extra:
 ```
 
 - **특성 선택 (Selection)** : Filter, Wrapper, Embedded - 원본 변수 자체를 선별하여 도메인 해석 가능성(Interpretability) 완전 보존.
-- **선형 특성 추출 (Linear)** : PCA (주성분 분석), LDA (선형 판별 분석) - **고유값 분해** (EVD) 또는 SVD 기반 직교 투영, 연산 효율 우수하나 비선형 왜곡 한계.
-- **비선형 매니폴드 (Non-linear)** : t-SNE, UMAP, Kernel PCA - 고차원 이웃 간 국소적/전역적 기하 거리를 저차원 확률 분포로 보존, 고차원 군집 시각화 특화.
-- **딥러닝 기반 추출** : 오토인코더 (Autoencoder), VAE - 인코더-디코더 병목 계층(Bottleneck)의 **잠재 벡터** (Latent Vector)를 통한 비선형 압축.
+- **선형 특성 추출 (Linear)** : PCA (Principal Component Analysis, 주성분 분석), LDA (선형 판별 분석) - **고유값 분해** (EVD) 또는 SVD 기반 직교 투영, 연산 효율 우수하나 비선형 왜곡 한계.
+- **비선형 매니폴드 (Non-linear)** : t-SNE(Stochastic Neighbor Embedding), UMAP(Uniform Manifold Approximation and Projection), Kernel PCA - 고차원 이웃 간 국소적/전역적 기하 거리를 저차원 확률 분포로 보존, 고차원 군집 시각화 특화.
+- **딥러닝 기반 추출** : 오토인코더 (Autoencoder), VAE(Variational Autoencoder) - 인코더-디코더 병목 계층(Bottleneck)의 **잠재 벡터** (Latent Vector)를 통한 비선형 압축.
 
 ## Ⅲ. 데이터 차원 축소의 세부 구성 요소 및 비교 분석
 
@@ -60,7 +60,7 @@ extra:
 | **연산 복잡도** | Filter는 낮음, Wrapper는 매우 높음 | $O(D^3)$ 또는 $O(D^2 N)$ 수준 | $O(N \log N)$ 내외로 대용량 시 부담 |
 | **비선형성 반영** | 상호작용 검증 시 모델에 따라 가능 | 불가능 (선형 초평면 투영만 가능) | 매우 우수 (곡면 구조 완벽 보존) |
 | **신규 데이터 투영** | 신규 데이터 즉시 필터링 가능 | 변환 행렬 곱으로 즉시 투영 ($Z=XW$) | t-SNE는 불가(재학습 필요), UMAP 가능 |
-| **주요 활용 목적** | 비즈니스 KPI 도출, 의사결정 모델 | 차원 축소 전처리, 다중공선성 해소 | 고차원 임베딩 벡터 시각화, 군집 탐색 |
+| **주요 활용 목적** | 비즈니스 KPI(Key Performance Indicator) 도출, 의사결정 모델 | 차원 축소 전처리, 다중공선성 해소 | 고차원 임베딩 벡터 시각화, 군집 탐색 |
 
 - 데이터 차원 축소는 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
 
@@ -74,7 +74,7 @@ extra:
   - 해결 방안 : 지도학습 기반의 LDA(Linear Discriminant Analysis)를 병용하거나 타깃 상관성을 반영하는 PLS(Partial Least Squares) 기법 적용.
 - 잠재 주성분의 비즈니스적 물리 의미 해석 난해성 :
   - 한계점 : 특성 추출로 생성된 잠재 주성분의 비즈니스적 물리 의미 해석 불가능으로 현업 적용 저항.
-  - 해결 방안 : L1 규제화 기반 Sparse PCA 도입 또는 SHAP/LIME 모델 해석 기법을 결합하여 원본 변수 기여도 역추적 체계 제공.
+  - 해결 방안 : L1 규제화 기반 Sparse PCA 도입 또는 SHAP(SHapley Additive exPlanations)/LIME(Lightweight Interoperability of Model Explanations) 모델 해석 기법을 결합하여 원본 변수 기여도 역추적 체계 제공.
 
 ## Ⅴ. 데이터 차원 축소 적용 및 발전을 위한 기술사적 제언
 

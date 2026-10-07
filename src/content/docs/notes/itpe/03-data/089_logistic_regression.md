@@ -54,7 +54,7 @@ $$\sigma(z) = \frac{1}{1 + e^{-z}} \quad (z = w^T x + b)$$
 ## Ⅲ. 모델 학습 및 최적화: 교차 엔트로피 손실과 경사하강법
 
 ### 가. 이진 교차 엔트로피 손실 함수 (Binary Cross-Entropy Loss)
-- 선형 회귀의 평균제곱오차(MSE)를 로지스틱에 적용하면 비볼록(Non-convex) 함수가 되어 수많은 국소 최적점(Local Minima)에 갇힘 $\rightarrow$ **로그 우도** (Log-Likelihood)를 극대화 하는 볼록(Convex) 손실 함수 사용:
+- 선형 회귀의 평균제곱오차(MSE, Mean Squared Error)를 로지스틱에 적용하면 비볼록(Non-convex) 함수가 되어 수많은 국소 최적점(Local Minima)에 갇힘 $\rightarrow$ **로그 우도** (Log-Likelihood)를 극대화 하는 볼록(Convex) 손실 함수 사용:
   $$\mathcal{L}(w) = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \ln(\hat{y}_i) + (1 - y_i) \ln(1 - \hat{y}_i) \right]$$
 
 ### 나. 승산비(Odds Ratio)의 비즈니스 해석력
@@ -67,16 +67,16 @@ $$\sigma(z) = \frac{1}{1 + e^{-z}} \quad (z = w^T x + b)$$
 ## Ⅳ. 로지스틱 회귀의 주요 한계점 및 해결 방안
 
 - 선형 결정 경계(Linear Decision Boundary)로 인한 비선형 관계 모델링 한계 :
-  - 한계점 : 독립변수와 로짓(Logit) 간의 선형 관계를 가정하므로 XOR 문제와 같은 비선형 피처 상호작용 및 복합 패턴 학습 불가.
+  - 한계점 : 독립변수와 로짓(Logit) 간의 선형 관계를 가정하므로 XOR(Exclusive OR) 문제와 같은 비선형 피처 상호작용 및 복합 패턴 학습 불가.
   - 해결 방안 : 다항 피처(Polynomial Features) 생성 및 상호작용 항 추가, 커널 트릭 적용, 트리 기반 앙상블(XGBoost, LightGBM) 또는 심층 신경망 모델과의 결합.
 - 다중공선성(Multicollinearity)에 따른 회귀계수 왜곡 및 과적합 :
   - 한계점 : 독립변수 간 강한 상관관계가 존재할 경우 계수 추정치의 분산이 급증하여 가중치 해석이 불가능해지고 모델 일반화 성능 저하.
-  - 해결 방안 : VIF(분산팽창지수) 10 이상 변수 제거, L1/L2 규제(Ridge, Lasso, ElasticNet)를 통한 가중치 수축(Shrinkage) 및 피처 선택 자동화.
+  - 해결 방안 : VIF(Variance Inflation Factor, 분산팽창지수) 10 이상 변수 제거, L1/L2 규제(Ridge, Lasso, ElasticNet)를 통한 가중치 수축(Shrinkage) 및 피처 선택 자동화.
 - 극심한 클래스 불균형(Class Imbalance) 환경에서의 다수 클래스 편향 :
-  - 한계점 : 사기 탐지(FDS)나 장애 예측 등 희귀 클래스(극소수) 데이터에서 다수 클래스로 편향 예측하여 재현율(Recall) 급락.
-  - 해결 방안 : 언더샘플링/오버샘플링(SMOTE), 비용 민감 학습(Cost-sensitive Learning: 손실함수 클래스 가중치 부여), 결정 임계치(Threshold Tuning) 최적화.
+  - 한계점 : 사기 탐지(FDS, Fraud Detection System)나 장애 예측 등 희귀 클래스(극소수) 데이터에서 다수 클래스로 편향 예측하여 재현율(Recall) 급락.
+  - 해결 방안 : 언더샘플링/오버샘플링(SMOTE, Synthetic Minority Over-sampling Technique), 비용 민감 학습(Cost-sensitive Learning: 손실함수 클래스 가중치 부여), 결정 임계치(Threshold Tuning) 최적화.
 
 ## Ⅴ. 엔터프라이즈 분류 모델링 관점의 실무 제언
 
 - 규제 회귀(L1/L2)를 통한 과적합 방지 : 고차원 희소 데이터(텍스트 분류, 원-핫 인코딩 피처)에서는 특정 가중치가 무한대로 발산할 수 있으므로, `penalty='l1'`(Lasso - 불필요 피처 자동 0 처리) 또는 `penalty='l2'`(Ridge - 가중치 분산 억제)를 필수 활성화해야 함.
-- 비즈니스 목적에 따른 임계값(Threshold) 튜닝 : 기본값 0.5에 안주하지 말고, 암 진단이나 금융 사기 탐지(FDS)와 같이 위음성(False Negative - 미탐)의 비용이 치명적인 도메인에서는 임계값을 0.2~0.3 수준으로 낮추어 재현율(Recall)을 극대화하는 ROC-PR 곡선 기반 최적화 수행을 제언함.
+- 비즈니스 목적에 따른 임계값(Threshold) 튜닝 : 기본값 0.5에 안주하지 말고, 암 진단이나 금융 사기 탐지(FDS)와 같이 위음성(False Negative - 미탐)의 비용이 치명적인 도메인에서는 임계값을 0.2~0.3 수준으로 낮추어 재현율(Recall)을 극대화하는 ROC(Receiver Operating Characteristic)-PR(Precision-Recall) 곡선 기반 최적화 수행을 제언함.

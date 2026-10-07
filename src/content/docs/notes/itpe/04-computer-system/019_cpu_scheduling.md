@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. CPU 스케줄링(CPU Scheduling)의 개요
 
-- 개념 : **다중 프로그래밍(Multiprogramming)** 환경에서 한정된 CPU 자원을 **준비 큐** (Ready Queue)에 대기 중인 프로세스나 스레드들에 공정하고 효율적으로 배분하기 위해 실행 순서와 시간 할당량을 결정하는 운영체제 커널의 핵심 기능.
+- 개념 : **다중 프로그래밍(Multiprogramming)** 환경에서 한정된 CPU(Central Processing Unit) 자원을 **준비 큐** (Ready Queue)에 대기 중인 프로세스나 스레드들에 공정하고 효율적으로 배분하기 위해 실행 순서와 시간 할당량을 결정하는 운영체제 커널의 핵심 기능.
 - 배경 및 필요성 : CPU 코어 수보다 실행 가능한 프로세스 수가 훨씬 많은 시분할(Time-sharing) 시스템에서, CPU 유휴 시간을 최소화하고 대화형 사용자의 체감 응답 시간을 최적화하기 위해 고안됨.
 - 핵심 목적 : **CPU 이용률(Utilization)** 및 **처리량(Throughput)** 극대화, **반환 시간(Turnaround)** 및 **대기 시간(Waiting Time)** 최소화, 기아 현상(Starvation) 방지를 통한 공정성 달성.
 
 ## Ⅱ. CPU 스케줄링(CPU Scheduling)의 핵심 아키텍처 및 동작 메커니즘
 
-CPU 스케줄러는 선점형(Preemptive)과 비선점형(Non-preemptive) 방식으로 대별되며, 현대 리눅스 OS는 가상 실행 시간(vruntime) 기반의 CFS(Completely Fair Scheduler) 알고리즘을 사용함.
+CPU 스케줄러는 선점형(Preemptive)과 비선점형(Non-preemptive) 방식으로 대별되며, 현대 리눅스 OS(Operating System)는 가상 실행 시간(vruntime) 기반의 CFS(Completely Fair Scheduler) 알고리즘을 사용함.
 
 ```text
 [ CPU 스케줄러 디스패칭 및 큐잉 모델 ]
@@ -53,7 +53,7 @@ CPU 스케줄러는 선점형(Preemptive)과 비선점형(Non-preemptive) 방식
    Waiting Queue (대기 큐) 또는 Ready Queue로 재진입
 ```
 
-- **선점형 스케줄링** : 높은 우선순위 프로세스 등장이나 타이머 인터럽트 발생 시 OS가 강제로 CPU를 회수(Round Robin, SRTF, MLFQ, CFS).
+- **선점형 스케줄링** : 높은 우선순위 프로세스 등장이나 타이머 인터럽트 발생 시 OS가 강제로 CPU를 회수(Round Robin, SRTF, Shortest Remaining Time First; MLFQ, Multilevel Feedback Queue; CFS, Completely Fair Scheduler).
 - **비선점형 스케줄링** : 프로세스가 자발적으로 I/O를 요청하거나 종료될 때까지 CPU를 독점 점유(FCFS, SJF, 비선점 Priority).
 - **디스패처(Dispatcher)** : 스케줄러가 선택한 프로세스에게 실제 CPU 제어권을 넘겨주는 컴포넌트로, 문맥 교환 지연시간(Dispatch Latency) 최소화가 핵심.
 - **리눅스 CFS (Completely Fair Scheduler)** : 우선순위(nice 값)에 따라 가중치를 부여하고, 가장 적게 실행된(vruntime이 최소인) 태스크를 레드-블랙 트리에서 `O(log N)`으로 선택.
@@ -79,12 +79,12 @@ CPU 스케줄러는 선점형(Preemptive)과 비선점형(Non-preemptive) 방식
 - 기아 **현상(Starvation)** 및 불공정 배분 :
   - 한계점 : 우선순위 기반 또는 최단 작업 우선 방식에서 짧은 작업이 지속 유입될 경우 긴 작업이 영구 대기 상태에 빠짐.
   - 해결 방안 : 대기 시간이 길어질수록 우선순위를 점진적으로 승격시키는 에이징(Aging) 메커니즘 필수 적용.
-- **이기종 멀티코어(big.LITTLE)** 및 NUMA 아키텍처 불균형 :
+- **이기종 멀티코어(big.LITTLE)** 및 NUMA(Non-Uniform Memory Access) 아키텍처 불균형 :
   - 한계점 : 성능 코어(P-Core)와 고효율 코어(E-Core) 간의 성능 격차 및 원격 메모리 접근 지연으로 인한 스케줄링 불균형.
   - 해결 방안 : 에너지 인지 스케줄링(EAS) 적용 및 NUMA 노드 로컬 메모리 인지형 스케줄러 튜닝.
 
 ## Ⅴ. CPU 스케줄링(CPU Scheduling) 적용 및 발전을 위한 기술사적 제언
 
 - 컨테이너 환경의 CFS Quota **스로틀링(Throttling)** 최적화 : 쿠버네티스 환경에서 CPU Limit 도달 시 발생하는 강제 스로틀링을 모니터링하고, 가급적 CPU Request 중심의 사이징 권장.
-- 초저지연 워크로드의 CPU 코어 **격리(Pinning)** : 통신 DPDK 및 고빈도 매매(HFT) 시스템에서는 `isolcpus` 설정을 통해 특정 코어를 OS 스케줄러 대상에서 제외하고 전용 스레드 바인딩 필수.
-- AI/HPC 클러스터의 혼합 스케줄링 체계 구축 : CPU와 GPU를 동시 제어할 수 있는 이기종 오케스트레이터(Slurm, Ray) 도입을 통한 대규모 분산 작업 최적화 필요.
+- 초저지연 워크로드의 CPU 코어 **격리(Pinning)** : 통신 DPDK(Data Plane Development Kit) 및 고빈도 매매(HFT) 시스템에서는 `isolcpus` 설정을 통해 특정 코어를 OS 스케줄러 대상에서 제외하고 전용 스레드 바인딩 필수.
+- AI(Artificial Intelligence)/HPC(High-Performance Computing) 클러스터의 혼합 스케줄링 체계 구축 : CPU와 GPU(Graphics Processing Unit)를 동시 제어할 수 있는 이기종 오케스트레이터(Slurm, Ray) 도입을 통한 대규모 분산 작업 최적화 필요.

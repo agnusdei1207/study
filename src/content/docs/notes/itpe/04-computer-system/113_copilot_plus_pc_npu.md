@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. Copilot+ PC NPU의 개요
 
-- 개념 : 마이크로소프트가 정의한 차세대 AI PC 표준(Copilot+ PC)의 핵심 요구조건으로서, 배터리 구동 클라이언트 환경에서 클라우드 연결 없이도 **40+ TOPS** (초당 40조 회 연산) 이상의 성능으로 거대 신경망 모델을 초저전력으로 실시간 가속하는 **신경망 처리 장치** (NPU: Neural Processing Unit) 하드웨어 및 런타임 플랫폼.
+- 개념 : 마이크로소프트가 정의한 차세대 AI(Artificial Intelligence) PC(Personal Computer) 표준(Copilot+ PC)의 핵심 요구조건으로서, 배터리 구동 클라이언트 환경에서 클라우드 연결 없이도 **40+ TOPS** (Trillions of Operations Per Second, 초당 40조 회 연산) 이상의 성능으로 거대 신경망 모델을 초저전력으로 실시간 가속하는 **신경망 처리 장치** (NPU: Neural Processing Unit) 하드웨어 및 런타임 플랫폼.
 - 배경 및 필요성 : AI 추론을 전적으로 클라우드에 의존할 때 발생하는 프라이버시 침해, 네트워크 레이턴시, 막대한 서버 인프라 운영 비용을 해결하고, PC 단말 내부에서 로컬 AI 기능을 완벽하게 실현하기 위해 등장.
-- 핵심 목적 : 최소 40 TOPS NPU 하드웨어 표준 충족, Windows Copilot 런타임(리콜, 코크리에이터, 라이브 캡션) 가속, 장시간 배터리 수명의 극대화된 전력 효율성(Performance-per-Watt) 달성.
+- 핵심 목적 : 최소 40 TOPS NPU(Neural Processing Unit) 하드웨어 표준 충족, Windows Copilot 런타임(리콜, 코크리에이터, 라이브 캡션) 가속, 장시간 배터리 수명의 극대화된 전력 효율성(Performance-per-Watt) 달성.
 
 ## Ⅱ. Copilot+ PC NPU 핵심 아키텍처 및 윈도우 AI 스택 메커니즘
 
@@ -33,7 +33,7 @@ extra:
 │   │  - 하드웨어 벤더 중립적 API 제공 (DirectX 12 기반)             │   │
 │   │  - 모델 그래프 최적화, INT8/FP16/INT4 가중치 양자화 파티셔닝   │   │
 │   └───────────────────────────────┬────────────────────────────────┘   │
-│                                   │ NPU Driver MCDM Execution         │
+│                                   │ NPU Driver Execution              │
 │                                   ▼                                    │
 │   ┌────────────────────────────────────────────────────────────────┐   │
 │   │ [ 온칩 NPU 하드웨어 아키텍처 (최소 40 ~ 45+ TOPS) ]            │   │
@@ -45,8 +45,8 @@ extra:
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **도메인 특화 2D 수축기 어레이** (Systolic Array) : **행렬 곱셈 누적** (MAC) 연산 데이터를 메모리로 되돌리지 않고 인접 **프로세싱 요소** (PE)끼리 파이프라인으로 직접 전달하여 메모리 대역폭 소모를 최소화.
-- **DirectML 및 ONNX Runtime 통합** : 벤더별 NPU 아키텍처(퀄컴 Hexagon, 인텔 NPU, AMD XDNA) 차이를 OS 레벨에서 추상화하여 개발자가 단일 **ONNX** 모델로 모든 NPU 하드웨어 가속을 효율적으로 활용.
+- **도메인 특화 2D 수축기 어레이** (Systolic Array) : **행렬 곱셈 누적** (MAC, Multiply-Accumulate) 연산 데이터를 메모리로 되돌리지 않고 인접 **프로세싱 요소** (PE)끼리 파이프라인으로 직접 전달하여 메모리 대역폭 소모를 최소화.
+- **DirectML 및 ONNX(Open Neural Network Exchange) Runtime 통합** : 벤더별 NPU 아키텍처(퀄컴 Hexagon, 인텔 NPU, AMD(Advanced Micro Devices) XDNA) 차이를 OS(Operating System) 레벨에서 추상화하여 개발자가 단일 **ONNX** 모델로 모든 NPU 하드웨어 가속을 효율적으로 활용.
 
 ## Ⅲ. 주요 Copilot+ PC 프로세서 NPU 사양 및 성능 비교 분석
 
@@ -54,8 +54,8 @@ extra:
 | :--- | :--- | :--- | :--- |
 | **NPU 아키텍처** | **Hexagon NPU** | Intel NPU 4 | AMD XDNA 2 |
 | **순수 NPU 연산 성능**| 45 TOPS (INT8) | 48 TOPS (INT8) | 50 ~ 55 TOPS (Block FP16)|
-| **전체 SoC 플랫폼 성능**| 75 TOPS (CPU + GPU + NPU) | 120 TOPS (GPU 67 + NPU 48) | 80+ TOPS |
-| **제조 공정** | TSMC 4nm | TSMC N3B (3nm 선단 공정) | TSMC 4nm FinFET |
+| **전체 SoC(System on a Chip) 플랫폼 성능**| 75 TOPS (CPU(Central Processing Unit) + GPU(Graphics Processing Unit) + NPU) | 120 TOPS (GPU 67 + NPU 48) | 80+ TOPS |
+| **제조 공정** | TSMC(Taiwan Semiconductor Manufacturing Company) 4nm | TSMC N3B (3nm 선단 공정) | TSMC 4nm FinFET |
 | **메모리 아키텍처** | LPDDR5X-8448 (대역폭 135 GB/s)| 메모리 온 패키지(MoP) 32GB LPDDR5X| LPDDR5X / DDR5 표준 지원 |
 | **주요 차별점** | ARM64 아키텍처 기반 긴 배터리 | x86 레거시 호환성 및 초저전력 | Block FP16 도입으로 16비트 정밀도 유지|
 
@@ -63,15 +63,15 @@ extra:
 
 - x86 소프트웨어 에뮬레이션 호환성 및 오버헤드 (ARM 기반 기기) :
   - 한계점 : 초기 스냅드래곤 기반 기기에서 레거시 x86/x64 소프트웨어 구동 시 프리즘(Prism) 에뮬레이터를 거쳐야 하므로 성능 저하 및 일부 드라이버 호환 불가.
-  - 해결 방안 : 마이크로소프트 Prism 에뮬레이션 엔진 고도화(JIT 캐싱), 주요 상용 SW의 ARM64 네이티브 포팅 확대, 인텔(x86) 기반 루나레이크 기기 선택권 제공.
+  - 해결 방안 : 마이크로소프트 Prism 에뮬레이션 엔진 고도화(JIT(Just-in-Time) 캐싱), 주요 상용 SW(Software)의 ARM64 네이티브 포팅 확대, 인텔(x86) 기반 루나레이크 기기 선택권 제공.
 - 온디바이스 AI 기능(Recall)의 개인정보 침해 및 보안 논란 :
-  - 한계점 : 화면을 수 초마다 스냅샷 캡처하여 로컬 DB에 저장하는 리콜(Recall) 기능으로 인해 악성코드 침투 시 스크린샷 일괄 유출 위험.
+  - 한계점 : 화면을 수 초마다 스냅샷 캡처하여 로컬 DB(Database)에 저장하는 리콜(Recall) 기능으로 인해 악성코드 침투 시 스크린샷 일괄 유출 위험.
   - 해결 방안 : 리콜 기능의 기본 비활성화(Opt-in) 전환, Windows Hello 생체 인증 필수 연동, VBS(가상화 기반 보안) 엔클레이브 내 스냅샷 암호화 보관.
-- NPU 독립 메모리 부재에 따른 시스템 통합 RAM 병목 :
-  - 한계점 : 전용 VRAM이 없어 3B~7B 대형 SLM을 NPU에 올릴 때 시스템 RAM(16GB/32GB)을 잠식하여 타 애플리케이션 가용 공간 부족.
-  - 해결 방안 : 모델 파라미터를 INT4/FP4로 극단적 압축 양자화, 공유 메모리 페이징 및 DirectStorage 기반 초고속 SSD 가중치 스트리밍.
+- NPU 독립 메모리 부재에 따른 시스템 통합 RAM(Random-Access Memory) 병목 :
+  - 한계점 : 전용 VRAM(Video Random-Access Memory)이 없어 3B~7B 대형 SLM(Small Language Model)을 NPU에 올릴 때 시스템 RAM(16GB/32GB)을 잠식하여 타 애플리케이션 가용 공간 부족.
+  - 해결 방안 : 모델 파라미터를 INT4/FP4로 극단적 압축 양자화, 공유 메모리 페이징 및 DirectStorage 기반 초고속 SSD(Solid-State Drive) 가중치 스트리밍.
 
 ## Ⅴ. 차세대 온디바이스 AI 컴퓨팅을 위한 기술사적 제언
 
-- 엔터프라이즈 업무 시스템의 'NPU-First' 개발 전략 수립 : 기업 사내 메신저, 화상회의, 문서 요약 도구를 개발할 때 고비용 클라우드 LLM API 호출을 지양하고, DirectML 기반의 로컬 NPU 가속 온디바이스 SLM(Phi-3, Gemma)을 우선 활용하는 하이브리드 AI 서빙 아키텍처를 구축해야 함.
+- 엔터프라이즈 업무 시스템의 'NPU-First' 개발 전략 수립 : 기업 사내 메신저, 화상회의, 문서 요약 도구를 개발할 때 고비용 클라우드 LLM(Large Language Model) API(Application Programming Interface) 호출을 지양하고, DirectML 기반의 로컬 NPU 가속 온디바이스 SLM(Phi-3, Gemma)을 우선 활용하는 하이브리드 AI 서빙 아키텍처를 구축해야 함.
 - 차세대 60+ TOPS 규격 대비 하드웨어 라이프사이클 관리 : 향후 멀티모달 로컬 모델 처리를 위해 NPU 최소 성능 요구치가 60~100 TOPS로 상향될 것이 확실시되므로, 기업 PC 자산 교체 주기 수립 시 단순 CPU 클록이 아닌 NPU TOPS 및 메모리 대역폭을 최우선 도입 지표로 책정할 것을 제언함.

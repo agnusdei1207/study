@@ -77,5 +77,5 @@ extra:
 
 ## Ⅴ. 안전한 동시성 프로그래밍을 위한 기술사적 제언
 
-- 고수준 모니터 및 락프리(Lock-Free) 원자적 연산 우선 채택 : 실무 개발에서 프로그래머의 실수로 데드락을 유발하기 쉬운 저수준 세마포어 직접 조작을 지양하고, 언어 차원의 모니터 구조(Java `ReentrantLock`, `ConcurrentHashMap`)나 하드웨어 CAS 명령어 기반의 원자적 변수(`AtomicInteger`)를 표준으로 채택해야 함.
+- 고수준 모니터 및 락프리(Lock-Free) 원자적 연산 우선 채택 : 실무 개발에서 프로그래머의 실수로 데드락을 유발하기 쉬운 저수준 세마포어 직접 조작을 지양하고, 언어 차원의 모니터 구조(Java `ReentrantLock`, `ConcurrentHashMap`)나 하드웨어 CAS(Compare and Swap) 명령어 기반의 원자적 변수(`AtomicInteger`)를 표준으로 채택해야 함.
 - 동시성 정적 검증 및 런타임 레이스 디텍터 필수화 : 코드 리뷰 단계에서 락 점유 범위를 최소화(Fine-Grained Locking)하고, 빌드 파이프라인에 ThreadSanitizer(TSan)를 연계하여 런타임 동기화 누락 및 데이터 레이스를 사전에 자동 검출할 것을 제언함.

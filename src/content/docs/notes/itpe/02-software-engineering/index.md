@@ -17,19 +17,19 @@ weight: 2
  규범·책임             Secure SDLC                연결·전송        지능·서비스
 ```
 
-- 02 SW 공학은 전략에서 정한 요구를 **검증 가능한 소프트웨어와 운영 서비스**로 전환하는 생명주기 과목
+- 02 SW(Software) 공학은 전략에서 정한 요구를 **검증 가능한 소프트웨어와 운영 서비스**로 전환하는 생명주기 과목
 - 데이터·시스템·네트워크·보안의 기술 요구를 아키텍처와 품질속성으로 통합하고, 테스트·배포·운영 피드백으로 검증
 
 ## 02 소프트웨어 생명주기 확대 지도
 
 ```text
 [조달·착수]
- RFI·RFP·계약·PMO
+ RFI(Request for Information)·RFP(Request for Proposal)·계약·PMO(Project Management Office)
       │
       ▼
 [요구공학] → [분석·아키텍처] → [설계·구현] → [테스트] → [릴리스·운영]
  도출·분석      품질속성·구조       패턴·코딩      V&V·자동화    CI/CD·DevOps
- 명세·검증      UML·ATAM            형상·리팩토링  단위~인수      관측·피드백
+ 명세·검증      UML(Unified Modeling Language)·ATAM(Architecture Tradeoff Analysis Method) 형상·리팩토링  단위~인수      관측·피드백
       │              │                   │             │             │
       └──────────────┴──────── 추적성·형상·품질 ───┴─────────────┘
                                       │

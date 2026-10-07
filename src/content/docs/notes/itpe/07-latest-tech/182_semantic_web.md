@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 시맨틱 웹(Semantic Web)의 개요
 
 - 개념 : 표준화된 의미(Semantic) 메타데이터를 부여하여 기계가 자율적으로 정보 처리, 연계, **논리적 추론**을 수행하도록 구축한 지능형 분산 웹.
-- 배경 및 필요성 : 수작업 **온톨로지** 구축 비용과 의미 충돌 병목을 극복하기 위해 **거대언어모델** (LLM) 기반의 **지식 그래프** 자동 추출과 **GraphRAG** 연동을 통한 하이브리드 추론 체계 구축 필수.
+- 배경 및 필요성 : 수작업 **온톨로지** 구축 비용과 의미 충돌 병목을 극복하기 위해 **거대언어모델** (LLM, Large Language Model) 기반의 **지식 그래프** 자동 추출과 **GraphRAG** 연동을 통한 하이브리드 추론 체계 구축 필수.
 - 핵심 목적 : 인간 중심의 텍스트 브라우징 한계 극복, 이종 시스템 간 데이터 상호운용성(Interoperability) 확보, 지능형 에이전트의 자동화된 의사결정 지원.
 
 ## Ⅱ. 시맨틱 웹(Semantic Web)의 핵심 아키텍처 및 동작 메커니즘
@@ -46,21 +46,21 @@ extra:
 +-------------------------------------------------------------------------------+
 ```
 
-- **URI / IRI** : RFC 3986, RFC 3987 - 웹 상의 모든 물리적/개념적 자원에 전역적으로 유일한 식별 주소 부여.
-- **RDF / JSON-LD** : W3C RDF 1.1, JSON-LD - 주어-술어-목적어로 구성된 방향성 그래프 모델링 및 웹 직렬화.
-- **RDFS / OWL** : RDF Schema, OWL 2 DL - 자원의 클래스 계층 구조, 프로퍼티 도메인/범위 지정 및 추론 규칙 명세.
+- **URI(Uniform Resource Identifier) / IRI** : RFC(Request for Comments) 3986, RFC 3987 - 웹 상의 모든 물리적/개념적 자원에 전역적으로 유일한 식별 주소 부여.
+- **RDF(Resource Description Framework) / JSON(JavaScript Object Notation)-LD** : W3C(World Wide Web Consortium) RDF 1.1, JSON-LD - 주어-술어-목적어로 구성된 방향성 그래프 모델링 및 웹 직렬화.
+- **RDFS / OWL**(Web Ontology Language) : RDF Schema, OWL 2 DL - 자원의 클래스 계층 구조, 프로퍼티 도메인/범위 지정 및 추론 규칙 명세.
 - **SPARQL** : SPARQL 1.1 Query/Update - 대규모 **트리플 저장소** (Triple Store) 대상의 정밀 그래프 패턴 매칭 질의 수행.
 - **Rule & Proof** : SWRL, RIF, Jena Rules - 온톨로지 공리만으로 표현하기 어려운 조건부 비즈니스 로직 연역 추론.
 
 ## Ⅲ. 시맨틱 웹(Semantic Web)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | 전통적 문서 웹 (HTML) | 시맨틱 웹 (RDF / OWL) |
+| 비교 항목 | 전통적 문서 웹 (HTML, HyperText Markup Language) | 시맨틱 웹 (RDF / OWL) |
 |---|---|---|
 | **데이터 단위** | 사람을 위한 문서(Document) 단위 | 기계를 위한 자원(Resource) 및 개체(Entity) 단위 |
 | **링크 메커니즘** | 단순 비방향 하이퍼링크 (`<a href>`) | 명확한 의미가 명시된 관계 간선 (Typed Relationship) |
 | **데이터 구조** | 비정형 또는 반정형 텍스트 | 정형화된 그래프(Knowledge Graph) 및 트리플 |
 | **검색 방식** | 단순 문자열 키워드 매칭 및 역색인 | 개념 식별자 기반 시맨틱 검색 및 논리적 추론 질의 |
-| **상호운용성** | 인간 브라우저 화면 해석 의존 | 기계 간 표준 API 및 SPARQL 엔드포인트 연계 |
+| **상호운용성** | 인간 브라우저 화면 해석 의존 | 기계 간 표준 API(Application Programming Interface) 및 SPARQL 엔드포인트 연계 |
 | **추론 가능 여부** | 불가능 (단순 텍스트 파싱) | 가능 (상속, 동치, 대칭, 역관계 등 자동 유추) |
 
 - 시맨틱 웹은 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
@@ -69,10 +69,10 @@ extra:
 
 - 수작업 온톨로지 구축의 높은 비용 및 확장성 한계 :
   - 한계점 : 도메인 전문가의 수작업 모델링으로 인해 지식베이스 구축 시간과 비용 폭증.
-  - 해결 방안 : LLM 기반 개체명 인식(NER) 및 트리플 자동 생성 - 생성형 AI 모델을 활용하여 비정형 문서에서 지식 트리플 자동 추출. - 추출된 트리플에 신뢰도 점수를 부여하고 휴먼 인 더 루프(HITL) 검증 결합.
+  - 해결 방안 : LLM 기반 개체명 인식(NER, Named Entity Recognition) 및 트리플 자동 생성 - 생성형 AI(Artificial Intelligence) 모델을 활용하여 비정형 문서에서 지식 트리플 자동 추출. - 추출된 트리플에 신뢰도 점수를 부여하고 휴먼 인 더 루프(HITL, Human in the Loop) 검증 결합.
 - 대규모 RDF 트리플 조인 연산 시 쿼리 성능 급락 :
   - 한계점 : 복잡한 다자간(N-way) 조인이 요구되는 SPARQL 쿼리 실행 시 Triple Store 메모리 병목.
-  - 해결 방안 : 속성 그래프(Property Graph) 및 분산 그래프 DB 전환 - RDF를 Neo4j, TigerGraph 등 레이블 기반 속성 그래프(LPG) 모델로 변환. - 빈번한 쿼리 경로에 대해 사전 인덱싱 및 그래프 파티셔닝 적용.
+  - 해결 방안 : 속성 그래프(Property Graph) 및 분산 그래프 DB(Database) 전환 - RDF를 Neo4j, TigerGraph 등 레이블 기반 속성 그래프(LPG) 모델로 변환. - 빈번한 쿼리 경로에 대해 사전 인덱싱 및 그래프 파티셔닝 적용.
 - 데이터 생성 기관별 어휘 불일치 및 스키마 충돌 :
   - 한계점 : 동일한 대상을 두고 기관마다 상이한 URI와 온톨로지 네임스페이스를 사용하여 연계 단절.
   - 해결 방안 : SKOS(Simple Knowledge Organization) 및 글로벌 LOD 정합 - `owl:sameAs` 또는 `skos:exactMatch`를 활용한 개체 정합(Entity Resolution) 자동화. - Wikidata, DBpedia 등 신뢰도 높은 공공 LOD 허브를 상위 개념으로 참조 매핑.

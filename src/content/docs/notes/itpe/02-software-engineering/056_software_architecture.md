@@ -16,7 +16,7 @@ extra:
 
 - 개념 : 소프트웨어 시스템의 기본 구조로서, 소프트웨어 **구성요소** (Elements), 구성요소 간의 **상호 관계** (Relationships), 구성요소들의 외부로 드러나는 **속성** (Properties), 그리고 시스템의 설계 및 진화에 적용되는 **원칙** (Principles)을 망라한 청사진.
 - 배경 및 필요성 : 복잡한 대규모 시스템 구축 시 이해관계자 간의 원활한 의사소통 기준을 제공하고, 초기 설계 결정의 실패로 인한 막대한 재작업 비용을 방지하며, **비기능 품질속성** (성능, 보안, 가용성, 유지보수성)을 달성하기 위해 필수.
-- 국제 표준 : **ISO/IEC/IEEE 42010** (시스템 및 소프트웨어 엔지니어링 - 아키텍처 기술 표준).
+- 국제 표준 : **ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission)/IEEE(Institute of Electrical and Electronics Engineers) 42010** (시스템 및 소프트웨어 엔지니어링 - 아키텍처 기술 표준).
 
 ## Ⅱ. 크루첸(Kruchten)의 4+1 뷰(View) 모델
 
@@ -52,14 +52,14 @@ extra:
 | **환경 (Environment)** | 시스템 개발 및 운영에 영향을 미치는 외부 환경적 요인(법규, 기술, 시장) |
 | **이해관계자 (Stakeholder)** | 시스템에 관심과 책임을 가진 개인 또는 그룹 (발주자, 사용자, 개발자, 운영자) |
 | **관심사 (Concern)** | 이해관계자가 중요하게 여기는 시스템의 핵심 요구 (비용, 성능, 보안, 납기) |
-| **아키텍처 기술서** (AD) | 시스템의 아키텍처를 공식적으로 문서화한 기록물 (SAD) |
+| **아키텍처 기술서** (AD, Architecture Description) | 시스템의 아키텍처를 공식적으로 문서화한 기록물 (SAD, Software Architecture Description) |
 | **아키텍처 뷰** (View) | 특정 관점(Viewpoint)에서 시스템의 관심사를 다룬 아키텍처 표현물 |
 
 ## Ⅳ. 소프트웨어 아키텍처의 주요 한계점 및 해결 방안
 
 - 개발 진행 중 아키텍처 침식(Architecture Erosion) 및 설계 붕괴 :
   - 한계점 : 초기 수립된 계층형 또는 헥사고날 아키텍처 원칙이 촉박한 개발 일정과 편법 핫픽스로 인해 무단 우회되면서 모듈 간 순환 참조가 발생하고 스파게티 코드로 퇴화.
-  - 해결 방안 : ArchUnit, SonarQube 등 아키텍처 피트니스 함수(Fitness Function)를 CI/CD 파이프라인에 통합하여 패키지 간 의존성 규칙 위반 발생 시 빌드를 자동 차단.
+  - 해결 방안 : ArchUnit, SonarQube 등 아키텍처 피트니스 함수(Fitness Function)를 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 통합하여 패키지 간 의존성 규칙 위반 발생 시 빌드를 자동 차단.
 - 상아탑 아키텍처(Ivory Tower Architecture)와 구현 현장 간의 괴리 :
   - 한계점 : 아키텍트가 실제 코딩과 유리된 채 비현실적인 추상 다이어그램과 이론 중심의 문서만을 양산하여 실제 개발팀의 외면과 불신을 초래.
   - 해결 방안 : 코딩하는 아키텍트(Hands-on Architect) 제도를 정착시켜 아키텍트가 직접 핵심 프레임워크 스파이크 코드를 작성하고, 실제 구현 난제를 함께 페어 프로그래밍으로 해결.
@@ -69,5 +69,5 @@ extra:
 
 ## Ⅴ. 엔터프라이즈 아키텍처 거버넌스를 위한 기술사적 제언
 
-- 품질속성 주도 설계(QADD, Quality Attribute-Driven Design) 체계화 : 아키텍처는 기능적 요구사항보다 비기능 품질속성(NFR)에 의해 결정되므로, SEI의 ADD 방법론을 적용하여 유틸리티 트리에서 도출된 핵심 품질 시나리오를 만족하는 아키텍처 전술(Tactics)을 체계적으로 도출해야 함.
-- 아키텍처 결정 기록(ADR, Architecture Decision Record) 도입 : 왜 특정 기술이나 아키텍처 스타일을 선택했고 대안은 무엇이었는지를 마크다운 기반의 짧은 문서(ADR)로 버전 관리하여, 장기적 시스템 진화 과정에서 아키텍처 부패(Architecture Erosion)를 방지하는 거버넌스 정착 필요.
+- 품질속성 주도 설계(QADD, Quality Attribute-Driven Design) 체계화 : 아키텍처는 기능적 요구사항보다 비기능 품질속성(NFR, Non-Functional Requirement)에 의해 결정되므로, SEI의 ADD 방법론을 적용하여 유틸리티 트리에서 도출된 핵심 품질 시나리오를 만족하는 아키텍처 전술(Tactics)을 체계적으로 도출해야 함.
+- 아키텍처 결정 기록(ADR, Architecture Decision Record) 도입 : 왜 특정 기술이나 아키텍처 스타일을 선택했고 대안은 무엇이었는지를 마크다운 기반의 짧은 문서(ADR, Architecture Decision Record)로 버전 관리하여, 장기적 시스템 진화 과정에서 아키텍처 부패(Architecture Erosion)를 방지하는 거버넌스 정착 필요.

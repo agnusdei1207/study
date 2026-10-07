@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 역전파(Backpropagation)의 개요
 
 - 개념 : 신경망의 예측 결과와 실제 정답 간의 오차(손실)를 출력층에서 입력층 방향으로 역전파하며 **연쇄 법칙** (Chain Rule)으로 각 가중치의 기울기를 계산하는 알고리즘
-- 배경 및 필요성 : 망의 깊이가 증가할수록 연쇄 곱 연산으로 인한 **기울기 소실** (Vanishing) 및 폭주(Exploding), 순전파 활성화 텐서 보관에 따른 메모리 병목이 발생하므로 활성화 함수 변경(ReLU), 잔차 연결, **Activation Checkpointing** 기법 병용 필수.
+- 배경 및 필요성 : 망의 깊이가 증가할수록 연쇄 곱 연산으로 인한 **기울기 소실** (Vanishing) 및 폭주(Exploding), 순전파 활성화 텐서 보관에 따른 메모리 병목이 발생하므로 활성화 함수 변경(ReLU, Rectified Linear Unit), 잔차 연결, **Activation Checkpointing** 기법 병용 필수.
 - 핵심 목적 : 수치 미분의 제곱 규모 연산 복잡도 $O(N^2)$ 한계를 극복하고, 단 한 번의 역방향 패스($O(N)$)로 모든 파라미터의 편미분 벡터를 산출하여 효율적 가중치 갱신 달성
 
 ## Ⅱ. 역전파(Backpropagation)의 핵심 아키텍처 및 동작 메커니즘
@@ -39,12 +39,12 @@ extra:
 
 - 선형 계산 복잡도 : 파라미터 수에 비례하는 $O(N)$ 복잡도로 전체 네트워크의 모든 편미분 계산 - 순전파 연산 그래프의 **역방향 토폴로지 정렬** (Reverse Topological Sort)
 - 연쇄 법칙 적용 : 합성함수의 미분을 각 연산 단위의 국소 미분(Local Gradient) 곱으로 단순화 - $\frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial x}$ 연산의 층별 전파
-- **메모리-연산 트레이드오프** : 역전파 계산을 위해 순전파 시 계산된 모든 은닉층 활성화 값(Activation)을 보관 - GPU VRAM 내 중간 텐서 캐싱 및 Activation Checkpointing
+- **메모리-연산 트레이드오프** : 역전파 계산을 위해 순전파 시 계산된 모든 은닉층 활성화 값(Activation)을 보관 - GPU(Graphics Processing Unit) VRAM(Video Random-Access Memory) 내 중간 텐서 캐싱 및 Activation Checkpointing
 - 최적화기와의 분리 : 역전파는 순수하게 기울기(Gradient)만 계산하며, 가중치 갱신은 Optimizer가 전담 - **Autograd** 엔진(PyTorch)과 **Optimizer** (AdamW, SGD)의 역할 분리
 
 ## Ⅲ. 역전파(Backpropagation)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | 수치 미분 (Numerical Diff) | 기호 미분 (Symbolic Diff) | 자동 미분 / 역전파 (Reverse-mode AD) |
+| 비교 항목 | 수치 미분 (Numerical Diff) | 기호 미분 (Symbolic Diff) | 자동 미분 / 역전파 (Reverse-mode AD, Automatic Differentiation) |
 |---|---|---|---|
 | 동작 방식 | $\frac{f(x+h)-f(x)}{h}$ 한계치 직접 계산 | 수식 자체를 대수학적 미분 규칙으로 전개 | 계산 그래프 기반 연쇄 법칙 수치 누적 |
 | 계산 복잡도 | $O(N \cdot M)$ (변수마다 순전파 재실행) | 수식 복잡도에 따라 지수적 수식 폭증 | $O(N)$ (단 1회 순전파 + 1회 역전파) |
@@ -57,7 +57,7 @@ extra:
 
 - 심층 신경망에서 연쇄 곱에 의한 기울기 소실(Vanishing Gradient) :
   - 한계점 : 깊은 신경망에서 연쇄 곱에 의해 앞쪽 은닉층 기울기가 0으로 수렴하는 기울기 소실(Vanishing Gradient).
-  - 해결 방안 : ReLU/GELU 등 불포화 활성화 함수 채택, 잔차 연결(Residual Connection), He 가중치 초기화 적용.
+  - 해결 방안 : ReLU/GELU(Gaussian Error Linear Unit) 등 불포화 활성화 함수 채택, 잔차 연결(Residual Connection), He 가중치 초기화 적용.
 - 순전파 활성화 텐서 보관에 따른 GPU VRAM 메모리 부족 병목 :
   - 한계점 : 순전파 시 모든 계층의 중간 활성화(Activation) 텐서를 메모리에 유지해야 하는 GPU VRAM 부족 병목.
   - 해결 방안 : 역전파 시 필요한 시점에 순전파를 부분 재연산하는 Activation Checkpointing 및 ZeRO 메모리 분할 기법 도입.

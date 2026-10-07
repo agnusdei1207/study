@@ -15,10 +15,10 @@ extra:
 ## Ⅰ. 문서 지향(Document-Oriented) NoSQL의 표준, MongoDB 개요
 
 ### 가. MongoDB의 정의
-- JSON 형태의 동적 스키마를 바이너리로 최적화한 **BSON** (Binary JSON) 문서 포맷으로 데이터를 저장하며, **수평적 확장** (Sharding)과 **고가용성** (Replica Set)을 기본 내장한 대표적인 오픈소스 분산 문서 지향 NoSQL 데이터베이스.
-- 관계형 테이블의 엄격한 DDL 제약에서 벗어나, 데이터 구조의 변경이 빈번하고 대규모 트래픽이 발생하는 현대 웹/앱 서비스에 최적화됨.
+- JSON(JavaScript Object Notation) 형태의 동적 스키마를 바이너리로 최적화한 **BSON** (Binary JSON) 문서 포맷으로 데이터를 저장하며, **수평적 확장** (Sharding)과 **고가용성** (Replica Set)을 기본 내장한 대표적인 오픈소스 분산 문서 지향 NoSQL(Not Only SQL) 데이터베이스.
+- 관계형 테이블의 엄격한 DDL(Data Definition Language) 제약에서 벗어나, 데이터 구조의 변경이 빈번하고 대규모 트래픽이 발생하는 현대 웹/앱 서비스에 최적화됨.
 
-### 나. RDBMS 대비 MongoDB의 개념 매핑
+### 나. RDBMS(Relational Database Management System) 대비 MongoDB의 개념 매핑
 
 ```text
 [ RDBMS vs MongoDB 용어 매핑 ]
@@ -91,9 +91,9 @@ JOIN 연산           | Embedded Document (임베딩) 또는 $lookup
   - 해결 방안 : 카디널리티가 높고 쓰기가 고르게 분산되는 **복합 샤드 키** (Compound Key) 또는 **해시 샤드 키** (Hashed Shard Key) 설계, 점보 청크(Jumbo Chunk) 방지 모니터링.
 - WiredTiger 스토리지 엔진의 체크포인트 및 캐시 압박에 따른 **쓰기 스톨** (Write Stall) :
   - 한계점 : 대량 쓰기 워크로드에서 더티 캐시(Dirty Cache) 비율이 20%를 초과할 경우 백그라운드 스레드가 애플리케이션 쓰기 스레드를 차단하여 급격한 레이턴시 스파이크 발생.
-  - 해결 방안 : WiredTiger 캐시 크기 최적화(`wiredTigerEngineRuntimeConfig`), **쓰기 관심사** (Write Concern: `w:1` vs `w:majority`) 워크로드별 분리, 고성능 NVMe SSD 적용.
+  - 해결 방안 : WiredTiger 캐시 크기 최적화(`wiredTigerEngineRuntimeConfig`), **쓰기 관심사** (Write Concern: `w:1` vs `w:majority`) 워크로드별 분리, 고성능 NVMe(Non-Volatile Memory Express) SSD(Solid-State Drive) 적용.
 
 ## Ⅴ. 엔터프라이즈 MongoDB 운영을 위한 실무 제언
 
-- **WiredTiger** 스토리지 엔진 메모리 튜닝 : MongoDB의 기본 WiredTiger 엔진은 가용 RAM의 약 50%를 자체 캐시로 점유하고 나머지는 OS 파일시스템 캐시로 활용하므로, 동일 서버에 타 프로세스를 함께 기동할 경우 OOM Killer로 인한 DB 비정상 종료를 방지하기 위해 `storage.wiredTiger.engineConfig.cacheSizeGB`를 명시적으로 고정해야 함.
+- **WiredTiger** 스토리지 엔진 메모리 튜닝 : MongoDB의 기본 WiredTiger 엔진은 가용 RAM(Random-Access Memory)의 약 50%를 자체 캐시로 점유하고 나머지는 OS(Operating System) 파일시스템 캐시로 활용하므로, 동일 서버에 타 프로세스를 함께 기동할 경우 OOM(Out of Memory) Killer로 인한 DB(Database) 비정상 종료를 방지하기 위해 `storage.wiredTiger.engineConfig.cacheSizeGB`를 명시적으로 고정해야 함.
 - **샤드 키** (Shard Key)의 카디널리티 및 단조 증가 방지 : 타임스탬프나 `ObjectId`처럼 단조 증가(Monotonically Increasing)하는 키를 샤드 키로 지정하면 최신 데이터가 무조건 마지막 단일 샤드로만 인입되는 **쓰기 핫스팟** (Write Hotspot)이 발생하므로, 반드시 복합 해시 샤드 키(Hashed Shard Key)를 채택할 것을 제언함.

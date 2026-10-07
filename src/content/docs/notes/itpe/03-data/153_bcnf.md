@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 제3정규형을 뛰어넘는 엄격한 정규형, BCNF의 개요
 
 ### 가. BCNF(Boyce-Codd Normal Form)의 정의
-- 제3정규형(3NF)을 만족하면서도 복수의 **후보키** (Candidate Key)가 존재하고 이들이 서로 중첩될 때 발생하는 잔여 이상 현상을 해결하기 위해, 릴레이션에 존재하는 모든 **결정자** (Determinant)가 반드시 후보키(Candidate Key)가 되도록 강제 하는 정규화 이론.
+- 제3정규형(3NF, Third Normal Form)을 만족하면서도 복수의 **후보키** (Candidate Key)가 존재하고 이들이 서로 중첩될 때 발생하는 잔여 이상 현상을 해결하기 위해, 릴레이션에 존재하는 모든 **결정자** (Determinant)가 반드시 후보키(Candidate Key)가 되도록 강제 하는 정규화 이론.
 - 레이먼드 보이스(Raymond Boyce)와 에드가 커드(E.F. Codd)에 의해 제안된 **강한 제3정규형** (Strong 3NF).
 
 ---
@@ -75,7 +75,7 @@ extra:
 
 ## Ⅳ. BCNF(보이스-코드 정규형)의 주요 한계점 및 해결 방안
 
-- BCNF 무손실 분해 시 함수적 **종속성 보존** (Dependency Preservation)의 실패 :
+- BCNF(Boyce-Codd Normal Form) 무손실 분해 시 함수적 **종속성 보존** (Dependency Preservation)의 실패 :
   - 한계점 : 3NF를 BCNF로 분해하는 과정에서 모든 결정자가 후보키가 되도록 쪼개면, 기존의 유효한 함수적 종속성($X \to Y$)이 보존되지 못하는 구조적 딜레마 발생.
   - 해결 방안 : 종속성 보존이 필수적인 비즈니스 규칙인 경우 3NF 상태를 유지하고 무결성은 데이터베이스 트리거나 애플리케이션 트랜잭션 로직에서 강제 보완.
 - 테이블 분할 증가에 따른 조인(Join) 오버헤드 및 쿼리 복잡성 증가 :

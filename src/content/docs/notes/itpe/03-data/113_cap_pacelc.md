@@ -60,10 +60,10 @@ $$\mathbf{P} \text{ (Partition)} \rightarrow [\; \mathbf{A} \text{ (Availability
 
 ### 나. 대표 분산 데이터베이스의 PACELC 분류 매트릭스
 
-| 분류 | 대표 DBMS | 평상시 동작 (Else) | 분할 시 동작 (Partition) | 적합한 업무 도메인 |
+| 분류 | 대표 DBMS(Database Management System) | 평상시 동작 (Else) | 분할 시 동작 (Partition) | 적합한 업무 도메인 |
 | :--- | :--- | :--- | :--- | :--- |
-| **PC / EC** | **Google Spanner, CockroachDB** | 완벽한 동기 복제로 일관성 보장 (L 희생) | 분할 발생 시 정합성 위해 가용성 차단 (A 희생) | 금융 거래, 원장 관리, 글로벌 결제 정산 |
-| **PA / EL** | **Amazon DynamoDB, Apache Cassandra** | 비동기 복제로 극도의 초저지연 읽기/쓰기 (C 희생) | 분할 발생 시에도 모든 노드가 계속 서비스 (C 희생) | 소셜 미디어 피드, 장바구니, IoT 실시간 로그 |
+| **PC(Partition: Consistency) / EC(Else: Consistency)** | **Google Spanner, CockroachDB** | 완벽한 동기 복제로 일관성 보장 (L 희생) | 분할 발생 시 정합성 위해 가용성 차단 (A 희생) | 금융 거래, 원장 관리, 글로벌 결제 정산 |
+| **PA / EL** | **Amazon DynamoDB, Apache Cassandra** | 비동기 복제로 극도의 초저지연 읽기/쓰기 (C 희생) | 분할 발생 시에도 모든 노드가 계속 서비스 (C 희생) | 소셜 미디어 피드, 장바구니, IoT(Internet of Things) 실시간 로그 |
 | **PC / EC** (HBase), **PA / EC** (MongoDB) | HBase, MongoDB (기본 설정) | 강한 일관성 우선 | 프라이머리 선출 전까지 쓰기 차단 | 실시간 통계 분석, 마스터 기준 데이터 |
 
 ---
@@ -78,9 +78,9 @@ $$\mathbf{P} \text{ (Partition)} \rightarrow [\; \mathbf{A} \text{ (Availability
   - 해결 방안 : **세션 일관성** (Session Consistency), **단조 읽기** (Monotonic Read), **인과적 일관성** (Causal Consistency) 등 클라이언트 관점의 보장 메커니즘을 서비스 성격에 맞게 선택적 적용.
 - 정적 **CAP** 분류의 한계와 비즈니스 도메인별 세분화 부재 :
   - 한계점 : 전체 데이터베이스를 획일적으로 CP 또는 AP 시스템으로 규정하여 결제, 조회, 로깅 등 도메인별 상이한 요구사항을 유연하게 수용 실패.
-  - 해결 방안 : **폴리그랏 퍼시스턴스** (Polyglot Persistence) 아키텍처 도입, **CQRS** (명령-조회 책임 분리)를 적용하여 쓰기는 CP(RDBMS), 조회는 AP(NoSQL/Search)로 이원화.
+  - 해결 방안 : **폴리그랏 퍼시스턴스** (Polyglot Persistence) 아키텍처 도입, **CQRS** (Command Query Responsibility Segregation, 명령-조회 책임 분리)를 적용하여 쓰기는 CP(RDBMS, Relational Database Management System), 조회는 AP(NoSQL/Search)로 이원화.
 
 ## Ⅴ. 분산 시스템 아키텍처 설계를 위한 실무 제언
 
-- 단일 분류의 맹신 탈피 (조절 가능한 일관성 활용) : Cassandra나 DynamoDB 등 현대 분산 DB는 고정된 AP/CP가 아니며, 클라이언트가 질의 시점에 읽기/쓰기 **쿼럼** ($W+R > N$)을 설정하여 튜닝 가능한 일관성(Tunable Consistency)을 제공하므로 업무 중요도별로 일관성 수준을 동적 제어해야 함.
-- 분산 원장의 최종 일관성(CRDT) 도입 : AP 시스템에서 네트워크 분할 복구 후 서로 다르게 갱신된 노드 간 데이터 충돌을 사람의 개입 없이 수학적으로 자동 병합하기 위해, **충돌 없는 복제 데이터 타입** (CRDT, Conflict-free Replicated Data Type)을 적극 검토할 것을 제언함.
+- 단일 분류의 맹신 탈피 (조절 가능한 일관성 활용) : Cassandra나 DynamoDB 등 현대 분산 DB(Database)는 고정된 AP/CP가 아니며, 클라이언트가 질의 시점에 읽기/쓰기 **쿼럼** ($W+R > N$)을 설정하여 튜닝 가능한 일관성(Tunable Consistency)을 제공하므로 업무 중요도별로 일관성 수준을 동적 제어해야 함.
+- 분산 원장의 최종 일관성(CRDT, Conflict-Free Replicated Data Type) 도입 : AP 시스템에서 네트워크 분할 복구 후 서로 다르게 갱신된 노드 간 데이터 충돌을 사람의 개입 없이 수학적으로 자동 병합하기 위해, **충돌 없는 복제 데이터 타입** (CRDT, Conflict-free Replicated Data Type)을 적극 검토할 것을 제언함.

@@ -23,24 +23,24 @@ extra:
 ```text
 [전통적 기능 조직] ────> [양손잡이 조직 (Bimodal)] ────> [전사적 확장 애자일]
 - 사일로화된 부서         - Core(워터폴) + Edge(애자일)   - 스쿼드/트라이브 매트릭스
-- 엄격한 승인 단계         - 실험적 서비스 우선 적용         - SAFe, LeSS 프레임워크
+- 엄격한 승인 단계         - 실험적 서비스 우선 적용         - SAFe(Scaled Agile Framework), LeSS(Large-Scale Scrum) 프레임워크
 ```
 
 | 전환 모델 | 핵심 전략 및 특징 |
 |---|---|
-| **Bimodal IT** (가트너) | 안정성이 중요한 기간계(Mode 1, 워터폴)와 민첩성이 중요한 대고객계(Mode 2, 애자일) 분리 운영 |
+| **Bimodal IT** (Bimodal Information Technology, 가트너) | 안정성이 중요한 기간계(Mode 1, 워터폴)와 민첩성이 중요한 대고객계(Mode 2, 애자일) 분리 운영 |
 | **파일럿 점진 전환** | 신규 디지털 서비스 중심 파일럿 팀 구축 후 성공 사례를 전사로 단계적 확산 |
 | **Spotify 모델** | 스쿼드(Squad, 자율 크로스펑셔널 팀), 챕터(Chapter, 직무 역량), 길드(Guild, 관심사 커뮤니티) 체계 |
-| **SAFe** (Scaled Agile) | 팀 레벨(Scrum/Kanban)부터 프로그램 레벨(ART), 포트폴리오 레벨까지 전사 정렬 지원 |
+| **SAFe** (Scaled Agile Framework) | 팀 레벨(Scrum/Kanban)부터 프로그램 레벨(ART(Agile Release Train)), 포트폴리오 레벨까지 전사 정렬 지원 |
 
 ## Ⅲ. 전통적 관리와 애자일 거버넌스의 비교
 
 | 관리 영역 | 전통적 프로젝트 관리 | 애자일 거버넌스 |
 |---|---|---|
 | **범위 관리** | 초기 고정 기준선(Baseline), 엄격한 변경 통제 | 유연한 백로그(Backlog), 우선순위 기반 지속 조정 |
-| **성과 측정** | 계획 대비 일정/원가 편차 (EVM 등) | 작동하는 소프트웨어 납품, 번다운 차트, 팀 속도(Velocity) |
-| **조직 구조** | PM 중심의 지시·보고 및 수직적 위계 | 제품책임자(PO), 스크럼 마스터, 자기조직화(Self-organizing) 팀 |
-| **배포 주기** | 프로젝트 종료 시점 빅뱅 릴리즈 | 스프린트 단위 점진적 릴리즈, 지속적 통합/배포(CI/CD) |
+| **성과 측정** | 계획 대비 일정/원가 편차 (EVM(Earned Value Management) 등) | 작동하는 소프트웨어 납품, 번다운 차트, 팀 속도(Velocity) |
+| **조직 구조** | PM 중심의 지시·보고 및 수직적 위계 | 제품책임자(PO, Product Owner), 스크럼 마스터, 자기조직화(Self-organizing) 팀 |
+| **배포 주기** | 프로젝트 종료 시점 빅뱅 릴리즈 | 스프린트 단위 점진적 릴리즈, 지속적 통합/배포(CI(Continuous Integration)/CD(Continuous Delivery)) |
 
 ## Ⅳ. 애자일 전환 시 주요 한계점 및 해결 방안
 
@@ -51,7 +51,7 @@ extra:
   - 한계점 : 단일 팀 단위 스크럼은 성공하나, 수십 개 팀이 협업하는 대규모 엔터프라이즈 환경에서 팀 간 의존성 충돌 및 아키텍처 불일치 발생.
   - 해결 방안 : SAFe(Scaled Agile Framework) 또는 LeSS 도입, PI(Program Increment) 플래닝을 통한 의존성 정렬 및 아키텍처 런웨이(Architectural Runway) 확보.
 - 문서화 부족으로 인한 유지보수성 저하 :
-  - 한계점 : '작동하는 소프트웨어'를 핑계로 아키텍처 설계서와 API 명세를 생략하여 프로젝트 후반 인수인계 및 운영 난항.
+  - 한계점 : '작동하는 소프트웨어'를 핑계로 아키텍처 설계서와 API(Application Programming Interface) 명세를 생략하여 프로젝트 후반 인수인계 및 운영 난항.
   - 해결 방안 : 코드 기반 자동 문서화(Swagger/OpenAPI), Definition of Done(완료 기준)에 기술 부채 해소 및 필수 문서 등록 조항 의무화.
 
 ## Ⅴ. 대규모 애자일 전환 성공을 위한 기술사적 제언

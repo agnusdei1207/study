@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 하이퍼바이저 (Hypervisor)의 개요
 
-- 개념 : 단일 물리 호스트 하드웨어 상에서 복수의 서로 다른 **운영체제** (Guest OS)와 가상머신(VM)을 동시에 안전하게 격리 실행할 수 있도록, CPU, 메모리, 스토리지, 네트워크 등 물리 자원을 추상화하고 중재하는 시스템 가상화 소프트웨어 계층(VMM: Virtual Machine Monitor).
-- 배경 및 필요성 : 전통적인 단일 서버-단일 OS 모델의 극심한 자원 유휴화(낮은 평균 CPU 이용률)와 서버 증설에 따른 상면/전력 TCO 폭증을 해결하고 클라우드 IaaS 컴퓨팅의 토대를 마련하기 위해 출현함.
+- 개념 : 단일 물리 호스트 하드웨어 상에서 복수의 서로 다른 **운영체제** (Guest OS)와 가상머신(VM, Virtual Machine)을 동시에 안전하게 격리 실행할 수 있도록, CPU(Central Processing Unit), 메모리, 스토리지, 네트워크 등 물리 자원을 추상화하고 중재하는 시스템 가상화 소프트웨어 계층(VMM: Virtual Machine Monitor).
+- 배경 및 필요성 : 전통적인 단일 서버-단일 OS(Operating System) 모델의 극심한 자원 유휴화(낮은 평균 CPU 이용률)와 서버 증설에 따른 상면/전력 TCO(Total Cost of Ownership) 폭증을 해결하고 클라우드 IaaS(Infrastructure as a Service) 컴퓨팅의 토대를 마련하기 위해 출현함.
 - 핵심 목적 : **서버 통합** (Server Consolidation)을 통한 하드웨어 활용률 제고, 완전한 하드웨어 레벨의 보안 격리, VM 스냅샷 및 무중단 **실시간 이전(Live Migration)** 실현.
 
 ## Ⅱ. 하이퍼바이저 (Hypervisor)의 핵심 아키텍처 및 동작 메커니즘
@@ -52,9 +52,9 @@ extra:
 
 - **Type 1 (Bare-Metal) 하이퍼바이저** : 호스트 OS 없이 하드웨어 위에 직접 설치되어 실행되므로 오버헤드가 극소화되고 성능과 보안이 최상(VMware ESXi, KVM, Xen).
 - **Type 2 (Hosted) 하이퍼바이저** : 기존 운영체제 위에서 일반 프로세스처럼 실행되며, 편리하지만 호스트 OS를 경유하므로 성능 손실 발생(VirtualBox, VMware Workstation).
-- **CPU 하드웨어 가상화 (VT-x / AMD-V)** : 게스트 OS의 특권 명령어 실행을 하드웨어 레벨에서 Trap-and-Emulate하여 바이너리 변환 오버헤드 제거.
-- **메모리 가상화 (EPT / NPT)** : 게스트 물리 주소를 호스트 물리 주소로 하드웨어가 2단계 고속 변환(Extended Page Tables).
-- **I/O 가상화 (SR-IOV / DPDK)** : 물리 NIC을 수십 개의 가상 기능(VF)으로 분할하여 가상머신이 하이퍼바이저 우회(Direct Pass-through)하여 네이티브 속도 통신.
+- **CPU 하드웨어 가상화 (VT-x / AMD(Advanced Micro Devices)-V)** : 게스트 OS의 특권 명령어 실행을 하드웨어 레벨에서 Trap-and-Emulate하여 바이너리 변환 오버헤드 제거.
+- **메모리 가상화 (EPT, Extended Page Tables / NPT, Nested Page Tables)** : 게스트 물리 주소를 호스트 물리 주소로 하드웨어가 2단계 고속 변환.
+- **I/O 가상화 (SR-IOV, Single Root I/O Virtualization / DPDK(Data Plane Development Kit))** : 물리 NIC(Network Interface Card)을 수십 개의 가상 기능(VF, Virtual Function)으로 분할하여 가상머신이 하이퍼바이저 우회(Direct Pass-through)하여 네이티브 속도 통신.
 
 ## Ⅲ. 하이퍼바이저 (Hypervisor)의 세부 구성 요소 및 비교 분석
 

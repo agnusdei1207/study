@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 분류 모델 성능지표(혼동행렬·PR/ROC 곡선)의 개요
 
-- 개념 : **지도학습** 분류 모델의 예측 결과와 실제 참값(Ground Truth) 간의 정합성을 2x2(또는 N x N) 매트릭스로 대조하여 TP, FP, FN, TN으로 세분화하고, 이를 바탕으로 정확도, 정밀도, 재현율, F1-Score 및 임계값 변화에 따른 **ROC/PR 곡선**을 도출하는 정량적 평가 체계.
+- 개념 : **지도학습** 분류 모델의 예측 결과와 실제 참값(Ground Truth) 간의 정합성을 2x2(또는 N x N) 매트릭스로 대조하여 TP(True Positive), FP(False Positive), FN(False Negative), TN(True Negative)으로 세분화하고, 이를 바탕으로 정확도, 정밀도, 재현율, F1-Score 및 임계값 변화에 따른 **ROC(Receiver Operating Characteristic)/PR(Precision-Recall) 곡선**을 도출하는 정량적 평가 체계.
 - 배경 및 필요성 : 단순 정확도(Accuracy) 지표는 **데이터 불균형** (예: 암 진단, 사기 탐지 99:1) 환경에서 모든 데이터를 다수 클래스로 예측해도 높은 수치를 나타내는 **정확도의 역설** (Accuracy Paradox) 현상을 야기하므로 다차원 평가 지표가 필수적임.
 - 핵심 목적 : 비즈니스 도메인별 오분류 비용(Type I vs Type II Error)을 고려한 최적의 **분류 임계값** (Threshold) 결정, 클래스 불균형에 강건한 모델 검증.
 
 ## Ⅱ. 분류 모델 성능지표(혼동행렬·PR/ROC 곡선)의 핵심 아키텍처 및 동작 메커니즘
 
-혼동행렬의 기본 4개 분할 요소를 기반으로 단일 수치 지표를 유도하고, 분류 임계값을 0에서 1까지 연속적으로 변동시켜 ROC 및 PR 곡선의 면적(AUC)을 계산함.
+혼동행렬의 기본 4개 분할 요소를 기반으로 단일 수치 지표를 유도하고, 분류 임계값을 0에서 1까지 연속적으로 변동시켜 ROC 및 PR 곡선의 면적(AUC, Area Under the Curve)을 계산함.
 
 ```text
 [ 혼동행렬(Confusion Matrix) 및 유도 지표 체계 ]
@@ -37,13 +37,13 @@ extra:
                          = TP / (TP + FN)              = TN / (TN + FP)
 
 [ 곡선 기반 종합 성능 평가 메커니즘 ]
-- ROC 곡선 : X축 FPR(1-특이도) 대비 Y축 TPR(재현율)의 궤적 ──► ROC-AUC 산출
+- ROC 곡선 : X축 FPR(False Positive Rate, 1-특이도) 대비 Y축 TPR(True Positive Rate, 재현율)의 궤적 ──► ROC-AUC 산출
 - PR 곡선  : X축 Recall(재현율) 대비 Y축 Precision(정밀도) ──► PR-AUC (Average Precision)
 ```
 
 - 혼동행렬 4대 요소 : **TP** (양성을 양성으로 정확 예측), **TN** (음성을 음성으로 정확 예측), **FP** (음성을 양성으로 잘못 예측, 1종 오류), **FN** (양성을 음성으로 잘못 예측, 2종 오류).
 - **F1-Score 및 F-beta** : 정밀도와 재현율 간의 트레이드오프를 조율하는 조화평균 지표로, 비즈니스 특성에 따라 beta 값을 조정하여 재현율 가중(F2) 또는 정밀도 가중(F0.5) 가능.
-- **ROC-AUC(Receiver Operating Characteristic)** : 모든 가능한 분류 임계값에서 FPR 대비 TPR의 성능을 나타내며, 0.5(무작위 추측)에서 1.0(완벽한 분류) 사이 값을 가짐.
+- **ROC-AUC(Receiver Operating Characteristic)** : 모든 가능한 분류 임계값에서 FPR(False Positive Rate) 대비 TPR(True Positive Rate)의 성능을 나타내며, 0.5(무작위 추측)에서 1.0(완벽한 분류) 사이 값을 가짐.
 - **PR-AUC(Precision-Recall AUC)** : 음성 데이터가 극단적으로 많은 환경에서 FP와 TP의 비율 변화를 민감하게 포착하는 고불균형 도메인 전용 곡선.
 
 ## Ⅲ. 분류 모델 성능지표(혼동행렬·PR/ROC 곡선)의 세부 구성 요소 및 비교 분석
@@ -53,7 +53,7 @@ extra:
 | **X축 / Y축 지표** | X: FPR (False Positive Rate) / Y: TPR (Recall) | X: Recall (재현율) / Y: Precision (정밀도) | 전체 샘플 중 맞춘 비율 ((TP+TN)/Total) |
 | **적합한 데이터 분포** | 클래스 비율이 비교적 균등하거나 완만한 분포 | 극단적 클래스 불균형 (양성 비율이 매우 낮은 경우) | 양성과 음성 클래스 비율이 50:50에 근접한 경우 |
 | **음성(TN) 영향도** | TN이 매우 클 경우 FPR이 0에 수렴하여 낙관적 왜곡 발생 | 계산 수식에 TN이 직접 포함되지 않아 불균형에 강건 | 다수 클래스인 TN에 의해 전체 성능이 과대평가됨 |
-| **핵심 활용 분야** | 일반 분류, 음성/양성 중요도가 대등한 벤치마크 | 금융 이상거래 탐지(FDS), 암 진단, 보안 침해 탐지 | 클래스 균형이 보장된 기초 이미지 분류 등 |
+| **핵심 활용 분야** | 일반 분류, 음성/양성 중요도가 대등한 벤치마크 | 금융 이상거래 탐지(FDS, Fraud Detection System), 암 진단, 보안 침해 탐지 | 클래스 균형이 보장된 기초 이미지 분류 등 |
 | **최적 임계값 결정** | Youden's J Index (TPR - FPR 최대화 지점) | F1-Score 최대화 또는 목표 정밀도 충족 지점 | 기본값 0.5 (확률 절반 기준 고정) |
 
 - ROC 곡선은 클래스 분포 변화에 불변(Invariance)하는 특성이 있으나, 극단적 불균형 데이터에서는 실제보다 모델이 우수해 보이는 착시를 유발하므로 PR 곡선과 상호 교차 검증해야 함.
@@ -72,6 +72,6 @@ extra:
 
 ## Ⅴ. 분류 모델 성능지표(혼동행렬·PR/ROC 곡선) 적용 및 발전을 위한 기술사적 제언
 
-- 비즈니스 KPI와 머신러닝 성능 지표 간의 수학적 정렬 체계 확립 : 엔지니어링 지표(AUC, F1)에 머무르지 않고, FP로 인한 사용자 이탈 비용과 FN으로 인한 사기 피해 금액을 수식화한 손실 함수 기반 평가 필수.
+- 비즈니스 KPI(Key Performance Indicator)와 머신러닝 성능 지표 간의 수학적 정렬 체계 확립 : 엔지니어링 지표(AUC, F1)에 머무르지 않고, FP로 인한 사용자 이탈 비용과 FN으로 인한 사기 피해 금액을 수식화한 손실 함수 기반 평가 필수.
 - 서빙 파이프라인 내 확률 보정(Probability Calibration) 도입 : 딥러닝 모델의 출력 로짓이 실제 사후 확률(Posterior Probability)을 반영하지 못하므로, Platt Scaling 또는 Isotonic Regression을 통한 확률 보정 수행 필요.
 - 실운영 배포 후 동적 임계값(Dynamic Thresholding) 제어 시스템 구축 : 트래픽 패턴이나 계절적 이상 징후에 따라 고정된 0.5 임계값을 탈피하고, 실시간 혼동행렬 추적 기반의 자동 임계값 보정 루프 설계.

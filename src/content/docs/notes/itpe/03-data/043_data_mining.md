@@ -58,10 +58,10 @@ extra:
 
 | 마이닝 태스크 | 분석 목적 | 대표 알고리즘 | 실제 비즈니스 적용 사례 |
 | :--- | :--- | :--- | :--- |
-| **분류 (Classification)** | 데이터를 사전에 정의된 이산적 클래스 레이블 중 하나로 할당 | 의사결정나무, XGBoost, 로지스틱 회귀 | 금융 대출 사기 탐지(FDS), 통신사 고객 해지 예측 |
+| **분류 (Classification)** | 데이터를 사전에 정의된 이산적 클래스 레이블 중 하나로 할당 | 의사결정나무, XGBoost, 로지스틱 회귀 | 금융 대출 사기 탐지(FDS, Fraud Detection System), 통신사 고객 해지 예측 |
 | **회귀 (Regression)** | 독립변수들을 기반으로 연속적인 수치형 타깃 값을 예측 | 다중선형회귀, 서포트 벡터 회귀(SVR) | 주택 실거래가 예측, 일별 전력 수요량 예측 |
 | **군집 (Clustering)** | 타깃 레이블 없이 데이터 간 유사도를 측정하여 자율적으로 그룹화 | K-Means, GMM, 밀도 기반 DBSCAN | 타깃 마케팅을 위한 VIP 고객 군집 세분화 |
-| **연관분석 (Association)** | 트랜잭션 내 아이템 간의 동시 발생 패턴($X \rightarrow Y$) 도출 | Apriori, FP-Growth, Eclat | 이커머스 장바구니 교차 판매(Cross-selling) 추천 |
+| **연관분석 (Association)** | 트랜잭션 내 아이템 간의 동시 발생 패턴($X \rightarrow Y$) 도출 | Apriori, FP(Frequent Pattern)-Growth, Eclat | 이커머스 장바구니 교차 판매(Cross-selling) 추천 |
 
 ---
 
@@ -100,11 +100,11 @@ extra:
   - 해결 방안 : 인과 추론(Causal Inference) 기법(Do-calculus, 성향점수)을 결합하여 단순 상관과 인과관계를 엄격히 구분하고 도메인 검증 관문 운영.
 - 데이터 분포 변화에 따른 모델 성능 저하(Data Drift / Concept Drift) :
   - 한계점 : 배포 초기 고성능을 보이던 마이닝 모델이 시장 환경, 계절성, 소비자 트렌드 변화에 따라 점진적으로 예측력이 붕괴되는 현상.
-  - 해결 방안 : 지속적 모니터링(MLOps) 파이프라인 구축, KS 검정 및 PSI(Population Stability Index) 기반 드리프트 감지 시 모델 자동 재학습(Retraining).
+  - 해결 방안 : 지속적 모니터링(MLOps, Machine Learning Operations) 파이프라인 구축, KS(Kolmogorov-Smirnov) 검정 및 PSI(Population Stability Index) 기반 드리프트 감지 시 모델 자동 재학습(Retraining).
 
 ---
 
 ## Ⅴ. 데이터 마이닝의 현대적 진화 및 실무 제언
 
-- 설명 가능한 AI(XAI)의 융합 : 복잡한 딥러닝이나 앙상블 모델이 산출한 마이닝 결과가 '블랙박스'로 남아 현업이 신뢰하지 못하는 문제를 해결하기 위해, SHAP(Shapley Additive Explanations) 및 LIME을 도입하여 개별 예측의 원인 기여도를 투명하게 제공해야 함.
-- DataOps 및 MLOps 파이프라인 통합 : 데이터 마이닝을 일회성 주피터 노트북 분석으로 끝내지 않고, 데이터 인입부터 모델 재학습, 서빙, 성능 모니터링까지 자동화된 End-to-End 파이프라인(Kubeflow, MLflow)을 구축할 것을 제언함.
+- 설명 가능한 AI(XAI, Explainable Artificial Intelligence)의 융합 : 복잡한 딥러닝이나 앙상블 모델이 산출한 마이닝 결과가 '블랙박스'로 남아 현업이 신뢰하지 못하는 문제를 해결하기 위해, SHAP(Shapley Additive Explanations) 및 LIME(Local Interpretable Model-agnostic Explanations)을 도입하여 개별 예측의 원인 기여도를 투명하게 제공해야 함.
+- DataOps 및 MLOps(Machine Learning Operations) 파이프라인 통합 : 데이터 마이닝을 일회성 주피터 노트북 분석으로 끝내지 않고, 데이터 인입부터 모델 재학습, 서빙, 성능 모니터링까지 자동화된 End-to-End 파이프라인(Kubeflow, MLflow)을 구축할 것을 제언함.

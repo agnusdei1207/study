@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 칩렛·UCIe 3.0의 개요
 
-- 개념 : **거대 단일 다이(Monolithic Die)** 제작의 **물리적 면적 한계** (Reticle Limit)와 수율 저하를 극복하기 위해 기능별(CPU, GPU, I/O, SRAM)로 독립 제조된 다이(Die)를 첨단 2.5D/3D 패키징으로 연결하고, 이를 개방형 표준 인터커넥트 규격인 **UCIe** (Universal Chiplet Interconnect Express)로 결합하는 차세대 모듈형 반도체 아키텍처.
+- 개념 : **거대 단일 다이(Monolithic Die)** 제작의 **물리적 면적 한계** (Reticle Limit)와 수율 저하를 극복하기 위해 기능별(CPU(Central Processing Unit), GPU(Graphics Processing Unit), I/O, SRAM(Static Random-Access Memory))로 독립 제조된 다이(Die)를 첨단 2.5D/3D 패키징으로 연결하고, 이를 개방형 표준 인터커넥트 규격인 **UCIe** (Universal Chiplet Interconnect Express)로 결합하는 차세대 모듈형 반도체 아키텍처.
 - 배경 및 필요성 : **무어의 법칙(Moore's Law)** 둔화, 첨단 공정(2nm/3nm)의 천문학적 웨이퍼 비용 및 다이 면적 증가에 따른 지수함수적 수율 급락을 해결하기 위해 **이종 공정(Heterogeneous)** 결합 패러다임으로 전환됨.
 - 핵심 목적 : 칩 제조 수율 비약적 향상 및 원가 절감, 다이 크기 물리적 한계 돌파, 개방형 표준을 통한 벤더 간 칩렛 상호운용성(Interoperability) 확보.
 
 ## Ⅱ. 칩렛·UCIe 3.0의 핵심 아키텍처 및 동작 메커니즘
 
-UCIe는 물리 계층(Physical Layer), 다이 간 어댑터(Die-to-Die Adapter), 그리고 프로토콜 계층(PCIe/CXL)의 3계층 아키텍처로 구성되며, 표준 패키지(Standard)와 첨단 패키지(Advanced: CoWoS 등)를 모두 지원함.
+UCIe는 물리 계층(Physical Layer), 다이 간 어댑터(Die-to-Die Adapter), 그리고 프로토콜 계층(PCIe(Peripheral Component Interconnect Express)/CXL(Compute Express Link))의 3계층 아키텍처로 구성되며, 표준 패키지(Standard)와 첨단 패키지(Advanced: CoWoS 등)를 모두 지원함.
 
 ```text
 [ UCIe 프로토콜 계층 및 칩렛 패키징 아키텍처 ]
@@ -51,7 +51,7 @@ UCIe는 물리 계층(Physical Layer), 다이 간 어댑터(Die-to-Die Adapter),
 ```
 
 - **물리 계층 (Physical Layer)** : 초미세 피치 범프 및 고속 직렬/병렬 SerDes 인터페이스를 구동하며 클록, 데이터 레인, 링크 트레이닝 수행.
-- **D2D 어댑터 계층** : 링크 신뢰성 보장을 위해 CRC 검증, 재전송 버퍼링, 그리고 프로토콜 프레임(Flit) 정렬 처리.
+- **D2D 어댑터 계층** : 링크 신뢰성 보장을 위해 CRC(Cyclic Redundancy Check) 검증, 재전송 버퍼링, 그리고 프로토콜 프레임(Flit) 정렬 처리.
 - **프로토콜 계층** : 검증된 산업 표준인 PCIe 및 CXL 프로토콜을 그대로 캡슐화하여 소프트웨어 호환성을 완벽히 유지.
 - **이종 공정 결합 (Heterogeneous Integration)** : 고성능 연산 코어는 최첨단 3nm 공정, I/O 및 아날로그 회로는 성숙된 14nm 레거시 공정으로 분리 제작 후 단일 칩렛 결합.
 
@@ -65,7 +65,7 @@ UCIe는 물리 계층(Physical Layer), 다이 간 어댑터(Die-to-Die Adapter),
 | **대역폭 밀도** | 최고 수준 (물리적 단일 실리콘) | 높음 (자체 설계 최적화) | 극대화 (첨단 2.5D/3D 패키징 기반) |
 | **설계 유연성** | 공정 전환 시 전체 재설계 필수 | 부분 모듈 재사용 가능 | 레고 블록식 모듈형 믹스앤매치 가능 |
 
-- UCIe 3.0은 인텔, AMD, TSMC, 삼성, ARM 등 반도체 생태계 전반이 참여한 오픈 표준으로, 폐쇄적 칩렛 시장을 개방형 '반도체 조립 시장'으로 전환하는 촉매제임.
+- UCIe 3.0은 인텔, AMD(Advanced Micro Devices), TSMC(Taiwan Semiconductor Manufacturing Company), 삼성, ARM 등 반도체 생태계 전반이 참여한 오픈 표준으로, 폐쇄적 칩렛 시장을 개방형 '반도체 조립 시장'으로 전환하는 촉매제임.
 
 ## Ⅳ. 칩렛·UCIe 3.0의 주요 한계점 및 해결 방안
 
@@ -81,6 +81,6 @@ UCIe는 물리 계층(Physical Layer), 다이 간 어댑터(Die-to-Die Adapter),
 
 ## Ⅴ. 칩렛·UCIe 3.0 적용 및 발전을 위한 기술사적 제언
 
-- 칩렛 기반 커스텀 AI 가속기 시장 대응 : 자체 NPU 연산 다이만 개발하고 범용 I/O 및 HBM 컨트롤러 칩렛은 상용 제품을 구매하여 패키징하는 팹리스 패러다임 전환 준비.
-- 첨단 **OSAT** (패키징·테스트) 인프라 투자 확대 : 실리콘 미세화의 대안이 패키징 기술로 이동함에 따라 국내 패키징 생태계(CoWoS급 2.5D 인프라) 구축을 위한 민관 협력 시급.
+- 칩렛 기반 커스텀 AI(Artificial Intelligence) 가속기 시장 대응 : 자체 NPU(Neural Processing Unit) 연산 다이만 개발하고 범용 I/O 및 HBM(High Bandwidth Memory) 컨트롤러 칩렛은 상용 제품을 구매하여 패키징하는 팹리스 패러다임 전환 준비.
+- 첨단 **OSAT** (Outsourced Semiconductor Assembly and Test, 패키징·테스트) 인프라 투자 확대 : 실리콘 미세화의 대안이 패키징 기술로 이동함에 따라 국내 패키징 생태계(CoWoS급 2.5D 인프라) 구축을 위한 민관 협력 시급.
 - **유리기판(Glass Substrate)** 선제적 기술 검증 : 칩렛 다이 수가 수십 개로 늘어나는 차세대 패키징의 핵심 병목인 기판 변형을 해결하기 위해 대면적 유리기판 R&D 로드맵 수립 필수.

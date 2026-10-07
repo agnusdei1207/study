@@ -38,7 +38,7 @@ extra:
 
 - **데이터 기밀성** : 암호화는 수신자의 공개키(Receiver's Public Key), 복호화는 수신자의 개인키(Receiver's Private Key)로 수행.
 - **전자서명 (인증)** : 서명 생성은 송신자의 개인키(Sender's Private Key), 검증은 송신자의 공개키(Sender's Public Key)로 수행.
-- **키 교환 (KEM/ECDH)** : 양측의 공개키 파라미터 교환 (각자의 개인키로 동일 공유 비밀 유도).
+- **키 교환 (KEM(Key Encapsulation Mechanism)/ECDH)** : 양측의 공개키 파라미터 교환 (각자의 개인키로 동일 공유 비밀 유도).
 
 ## Ⅲ. 비대칭키 암호화(Asymmetric Key Encryption)의 세부 구성 요소 및 비교 분석
 
@@ -48,26 +48,26 @@ extra:
 | 연산 속도 | 상대적으로 느림 (모듈러 멱승 연산) | 극도로 빠름 (비트 단위 치환/순열) |
 | 키 개수 ($N$명) | $2N$ 개 (선형적 확장) | $N(N-1)/2$ 개 (기하급수적 폭증) |
 | 키 배송 문제 | 해결 (공개키는 공개 채널로 배포) | 미해결 (사전 비밀 공유 경로 필요) |
-| 제공 기능 | 기밀성, 전자서명, 부인방지, 키 교환 | 기밀성, 무결성(AEAD) |
-| 주 용도 | TLS 키 교환, 인증서, 블록체인 서명 | 대용량 DB 암호화, 파일/디스크 암호화 |
+| 제공 기능 | 기밀성, 전자서명, 부인방지, 키 교환 | 기밀성, 무결성(AEAD, Authenticated Encryption with Associated Data) |
+| 주 용도 | TLS(Transport Layer Security) 키 교환, 인증서, 블록체인 서명 | 대용량 DB(Database) 암호화, 파일/디스크 암호화 |
 
-| 구분 | **RSA** | **타원곡선 암호** (ECC) | **디피-헬만** (DH) | **격자 기반 PQC** (ML-KEM) |
+| 구분 | **RSA**(Rivest-Shamir-Adleman) | **타원곡선 암호** (ECC, Elliptic Curve Cryptography) | **디피-헬만** (DH) | **격자 기반 PQC** (ML-KEM, Module-Lattice-Based Key-Encapsulation Mechanism) |
 |---|---|---|---|---|
-| 기반 난제 | 큰 합성수의 소인수분해 | 타원곡선 이산대수 (ECDLP) | 유한체 이산대수 (DLP) | 모듈 격자 상의 오류 학습 (MLWE) |
+| 기반 난제 | 큰 합성수의 소인수분해 | 타원곡선 이산대수 (ECDLP) | 유한체 이산대수 (DLP, Discrete Logarithm Problem) | 모듈 격자 상의 오류 학습 (MLWE) |
 | 키 크기 (128bit 보안)| 3072 비트 | 256 비트 | 3072 비트 | 공개키 약 1184 바이트 |
 | 특징 | 표준화 역사 오래됨, 검증됨 | 소형 키, 고속 연산, 저전력 | 키 교환 전용 알고리즘 | 양자컴퓨터 쇼어 알고리즘 내성 |
-| 대표 표준 | PKCS#1, FIPS 186-5 | secp256r1, Ed25519 | RFC 3526, RFC 7919 | FIPS 203 (Kyber) |
+| 대표 표준 | PKCS(Public Key Cryptography Standards)#1, FIPS(Federal Information Processing Standards) 186-5 | secp256r1, Ed25519 | RFC(Request for Comments) 3526, RFC 7919 | FIPS 203 (Kyber) |
 
 - 비대칭키 암호화(Asymmetric Key Encryption)은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
 
 ## Ⅳ. 비대칭키 암호화(Asymmetric Key Encryption)의 주요 한계점 및 해결 방안
 
 - 한계점 : 공개키가 공개 채널로 전달될 때 **중간자 공격** (MitM)에 의해 공격자의 가짜 공개키로 바꿔치기 당할 위험.
-  - 해결 방안 : **공인인증기관** (CA)이 소유자 신원과 공개키를 바인딩하여 서명한 **X.509 공개키기반구조** (PKI) 체계 수립.
-- 한계점 : 복잡한 고차원 수학 연산(모듈러 지수 연산)으로 인해 대용량 멀티미디어 및 데이터베이스 암호화 시 심각한 CPU 병목.
-  - 해결 방안 : 실제 대용량 데이터는 AES 대칭키로 암호화하고, 해당 대칭키만 수신자 공개키로 암호화하는 **하이브리드 암호화** (Hybrid Encryption) 적용.
+  - 해결 방안 : **공인인증기관** (CA, Certificate Authority)이 소유자 신원과 공개키를 바인딩하여 서명한 **X.509 공개키기반구조** (PKI, Public Key Infrastructure) 체계 수립.
+- 한계점 : 복잡한 고차원 수학 연산(모듈러 지수 연산)으로 인해 대용량 멀티미디어 및 데이터베이스 암호화 시 심각한 CPU(Central Processing Unit) 병목.
+  - 해결 방안 : 실제 대용량 데이터는 AES(Advanced Encryption Standard) 대칭키로 암호화하고, 해당 대칭키만 수신자 공개키로 암호화하는 **하이브리드 암호화** (Hybrid Encryption) 적용.
 - 한계점 : 대규모 범용 양자컴퓨터의 **쇼어** (Shor) 알고리즘 구동 시 소인수분해(RSA)와 이산대수(ECC) 기반 암호가 다항 시간 내에 완전 붕괴.
-  - 해결 방안 : 미국 NIST가 표준화한 격자 기반 **양자내성 암호** (ML-KEM, ML-DSA)를 도입하고 기존 공개키와 PQC를 결합한 하이브리드 **암호 민첩성** (Crypto-Agility) 구축.
+  - 해결 방안 : 미국 NIST(National Institute of Standards and Technology)가 표준화한 격자 기반 **양자내성 암호** (ML-KEM(Module-Lattice-Based Key-Encapsulation Mechanism), ML-DSA(Module-Lattice-Based Digital Signature Algorithm))를 도입하고 기존 공개키와 PQC를 결합한 하이브리드 **암호 민첩성** (Crypto-Agility) 구축.
 
 ## Ⅴ. 비대칭키 암호화(Asymmetric Key Encryption) 적용 및 발전을 위한 기술사적 제언
 

@@ -53,7 +53,7 @@ extra:
 ```
 
 - **식별** (Identification) : 시스템에 접근하고자 하는 주체가 자신이 누구인지를 알리는 단계(ID 입력).
-- **인증** (Authentication) : 주체가 주장하는 신원이 진실임을 **다요소 인증** (MFA)을 통해 암호학적 또는 물리적으로 검증하는 단계.
+- **인증** (Authentication) : 주체가 주장하는 신원이 진실임을 **다요소 인증** (MFA, Multi-Factor Authentication)을 통해 암호학적 또는 물리적으로 검증하는 단계.
 - **인가** (Authorization) : 인증된 주체에게 직무와 정책에 따라 특정 파일/기능에 대한 작업 권한(읽기/쓰기/실행)을 허용하는 단계.
 - **책임추적성** (Accountability) : 인가된 주체가 수행한 모든 명령어, 조회, 수정 이력을 타임스탬프와 함께 변경 불가능한 로그로 기록하는 단계.
 - 3대 기본 원칙 : **최소 권한의 원칙** (필요한 최소한만 부여), **직무 분리의 원칙** (단독 승인 방지), **알 필요성의 원칙** (Need-to-Know).
@@ -62,10 +62,10 @@ extra:
 
 | 단계 | 핵심 질문 | 주요 구현 기술 | 취약점 및 공격 위협 |
 | --- | --- | --- | --- |
-| 1. 식별 | Who are you? | 사용자 계정명, 사번, API 클라이언트 ID | 계정 열거(Account Enumeration) |
-| 2. 인증 | Prove it! | 비밀번호, FIDO2, OTP, PKI 인증서 | 브루트포스, 크리덴셜 스터핑, 피싱 |
-| 3. 인가 | What can you do? | ACL, RBAC 역할, ABAC XACML 정책 | 권한 상승(Privilege Escalation), IDOR |
-| 4. 책임추적성 | What did you do? | Syslog, 감사 데몬(auditd), SIEM | 로그 삭제, 감사 기능 비활성화, 타임스탬프 |
+| 1. 식별 | Who are you? | 사용자 계정명, 사번, API(Application Programming Interface) 클라이언트 ID | 계정 열거(Account Enumeration) |
+| 2. 인증 | Prove it! | 비밀번호, FIDO2, OTP(One-Time Password), PKI(Public Key Infrastructure) 인증서 | 브루트포스, 크리덴셜 스터핑, 피싱 |
+| 3. 인가 | What can you do? | ACL(Access Control List), RBAC(Role-Based Access Control) 역할, ABAC(Attribute-Based Access Control) XACML 정책 | 권한 상승(Privilege Escalation), IDOR |
+| 4. 책임추적성 | What did you do? | Syslog, 감사 데몬(auditd), SIEM(Security Information and Event Management) | 로그 삭제, 감사 기능 비활성화, 타임스탬프 |
 
 - 어느 한 단계라도 결함이 존재하면 전체 접근통제 체인이 붕괴되므로(예: 인증은 성공했으나 권한 인가 체크 누락 시 타인 데이터 무단 조회 발생), 4개 단계가 유기적인 체인으로 결합되어야 함.
 
@@ -73,13 +73,13 @@ extra:
 
 - 단일 인증 단계 통과 후 세션 유지 시간 동안의 권한 남용 :
   - 한계점 : 로그인 시점에 1회 인증된 이후 세션이 만료될 때까지 사용자의 환경 변화나 탈취 행위를 감지하지 못하는 정적 검증 한계.
-  - 해결 방안 : 지속적 **적응형 위험 및 신뢰 평가** (CARTA) 도입으로 IP 급변, 비정상 API 호출 시 **단계별 재인증** (Step-up MFA) 강제.
+  - 해결 방안 : 지속적 **적응형 위험 및 신뢰 평가** (CARTA) 도입으로 IP(Internet Protocol) 급변, 비정상 API 호출 시 **단계별 재인증** (Step-up MFA) 강제.
 - **특권 계정** (Root/Admin)의 권한 독점 및 감사 로그 무력화 :
   - 한계점 : 최고 관리자 계정을 탈취한 공격자가 접근통제 정책을 임의 변경하고 자신의 침해 흔적이 담긴 감사 로그를 영구 삭제.
-  - 해결 방안 : **특권 권한 관리** (PAM) 솔루션 도입으로 루트 비밀번호를 난수화 격리하고, 감사 로그는 실시간 WORM 불변 스토리지로 전송.
+  - 해결 방안 : **특권 권한 관리** (PAM, Privileged Access Management) 솔루션 도입으로 루트 비밀번호를 난수화 격리하고, 감사 로그는 실시간 WORM(Write Once Read Many) 불변 스토리지로 전송.
 - 조직 이동 및 퇴사자의 **잔존 휴면 계정** (Orphan Account) :
-  - 한계점 : 인사 발령이나 퇴사 시 IT 시스템에서 계정 권한이 즉시 회수되지 않아 전 직원에 의한 비인가 원격 접속 위험 잔존.
-  - 해결 방안 : 인사 DB와 전사 IAM/IdP를 API로 실시간 동기화하여 퇴사 처리 시 1분 이내 전 시스템 계정 비활성화 자동화.
+  - 한계점 : 인사 발령이나 퇴사 시 IT(Information Technology) 시스템에서 계정 권한이 즉시 회수되지 않아 전 직원에 의한 비인가 원격 접속 위험 잔존.
+  - 해결 방안 : 인사 DB(Database)와 전사 IAM(Identity and Access Management)/IdP(Identity Provider)를 API로 실시간 동기화하여 퇴사 처리 시 1분 이내 전 시스템 계정 비활성화 자동화.
 
 ## Ⅴ. 접근통제(Access Control) 적용 및 발전을 위한 기술사적 제언
 

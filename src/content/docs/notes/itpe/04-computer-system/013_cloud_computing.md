@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 클라우드 컴퓨팅(Cloud Computing)의 개요
 
-- 개념 : 컴퓨팅 파워, 스토리지, 데이터베이스, 네트워킹, 소프트웨어 등 정보기술(IT) 인프라 자원을 사용자가 직접 소유하지 않고, 인터넷 네트워크를 통해 **주문형** (On-Demand)으로 제공받아 사용량에 따라 비용을 지불(Pay-as-you-go)하는 유연한 분산 컴퓨팅 패러다임.
-- 배경 및 필요성 : 전통적 온프레미스 인프라의 막대한 초기 자본 지출(CAPEX), 긴 조달 주기(수 주~수 개월), 그리고 피크 트래픽 대비 유휴 자원의 낭비를 극복하고 디지털 트랜스포메이션의 민첩성을 확보하기 위해 탄생함.
-- 핵심 목적 : IT 자원의 신속한 **탄력적(Elastic)** 프로비저닝, **운영 비용(OPEX)** 모델 전환을 통한 재무 최적화, 글로벌 비즈니스 즉시 배포 역량 확보.
+- 개념 : 컴퓨팅 파워, 스토리지, 데이터베이스, 네트워킹, 소프트웨어 등 정보기술(IT, Information Technology) 인프라 자원을 사용자가 직접 소유하지 않고, 인터넷 네트워크를 통해 **주문형** (On-Demand)으로 제공받아 사용량에 따라 비용을 지불(Pay-as-you-go)하는 유연한 분산 컴퓨팅 패러다임.
+- 배경 및 필요성 : 전통적 온프레미스 인프라의 막대한 초기 자본 지출(CAPEX, Capital Expenditure), 긴 조달 주기(수 주~수 개월), 그리고 피크 트래픽 대비 유휴 자원의 낭비를 극복하고 디지털 트랜스포메이션의 민첩성을 확보하기 위해 탄생함.
+- 핵심 목적 : IT 자원의 신속한 **탄력적(Elastic)** 프로비저닝, **운영 비용(OPEX, Operating Expenditure)** 모델 전환을 통한 재무 최적화, 글로벌 비즈니스 즉시 배포 역량 확보.
 
 ## Ⅱ. 클라우드 컴퓨팅(Cloud Computing)의 핵심 아키텍처 및 동작 메커니즘
 
-클라우드 컴퓨팅은 **NIST** (미국 국립표준기술원)가 정의한 5대 필수 특성, 3대 서비스 모델(SPI), 4대 배포 모델을 핵심 아키텍처 축으로 구성됨.
+클라우드 컴퓨팅은 **NIST** (National Institute of Standards and Technology, 미국 국립표준기술원)가 정의한 5대 필수 특성, 3대 서비스 모델(SPI), 4대 배포 모델을 핵심 아키텍처 축으로 구성됨.
 
 ```text
 [ NIST 클라우드 컴퓨팅 참조 아키텍처 모델 ]
@@ -54,19 +54,19 @@ extra:
 +---------------------------------------------------------------+
 ```
 
-- **주문형 셀프서비스** : 인적 개입 없이 웹 콘솔이나 선언적 API를 통해 사용자가 필요한 자원을 실시간으로 직접 프로비저닝.
+- **주문형 셀프서비스** : 인적 개입 없이 웹 콘솔이나 선언적 API(Application Programming Interface)를 통해 사용자가 필요한 자원을 실시간으로 직접 프로비저닝.
 - **리소스 풀링** : 멀티테넌트 환경에서 가상화 계층(Hypervisor/Container)을 통해 물리 하드웨어를 추상화하여 동적으로 풀링 및 재할당.
 - **신속한 탄력성** : 워크로드의 급격한 변동에 대응하여 서버 인스턴스를 초~분 단위로 확장(Scale-out)하고 축소(Scale-in).
 - **측정 서비스** : vCPU 사용 시간, I/O 요청 수, 네트워크 Egress 전송량을 정밀 측정하여 투명한 종량제 요금 청구.
 
 ## Ⅲ. 클라우드 컴퓨팅(Cloud Computing)의 세부 구성 요소 및 비교 분석
 
-| 서비스 계층 | 고객 관리 범위 (Customer Managed) | CSP 관리 범위 (Provider Managed) | 대표 서비스 예시 |
+| 서비스 계층 | 고객 관리 범위 (Customer Managed) | CSP(Cloud Service Provider) 관리 범위 (Provider Managed) | 대표 서비스 예시 |
 |---|---|---|---|
-| **IaaS** | 애플리케이션, 데이터, 런타임, 미들웨어, OS | 가상화, 서버 하드웨어, 스토리지, 데이터센터 망 | AWS EC2, Azure VM |
+| **IaaS** | 애플리케이션, 데이터, 런타임, 미들웨어, OS(Operating System) | 가상화, 서버 하드웨어, 스토리지, 데이터센터 망 | AWS(Amazon Web Services) EC2, Azure VM(Virtual Machine) |
 | **PaaS** | 애플리케이션 코드, 비즈니스 데이터 | 런타임 환경, OS 패치, 미들웨어, 서버 하드웨어 | Heroku, Cloud Run |
 | **SaaS** | 사용자 계정 접근 제어, 데이터 입력/설정 | 애플리케이션 전체, 플랫폼, 인프라, 백업 전반 | Google Workspace, Slack |
-| **Serverless (FaaS)** | 개별 함수 코드, 트리거 이벤트 매핑 | 마이크로VM 인스턴스, 스케일링, 서버 전반 | AWS Lambda, Cloud Functions |
+| **Serverless (FaaS, Function as a Service)** | 개별 함수 코드, 트리거 이벤트 매핑 | 마이크로VM 인스턴스, 스케일링, 서버 전반 | AWS Lambda, Cloud Functions |
 
 - 클라우드 서비스 모델은 상위 계층으로 갈수록 관리 편의성과 민첩성이 증가하지만, 시스템 내부 통제권과 커스터마이징 유연성은 반비례하여 감소함.
 
@@ -76,8 +76,8 @@ extra:
   - 한계점 : 자원 프로비저닝의 용이성으로 인해 미사용 리소스 방치, 과도한 인스턴스 스펙 선정 시 온프레미스 대비 비용 대폭 초과.
   - 해결 방안 : FinOps 프레임워크 구축, 태깅(Tagging) 의무화, 예약 인스턴스(RI)/Savings Plans 약정 할인 및 스팟 인스턴스 결합.
 - 클라우드 책임 **공유 모델(Shared Responsibility)** 오인에 따른 보안 사고 :
-  - 한계점 : IaaS/PaaS 도입 시 CSP가 모든 보안을 책임진다고 착각하여 S3 버킷 공개, 미흡한 IAM 권한으로 데이터 유출 빈발.
-  - 해결 방안 : CSPM(클라우드 보안 태세 관리) 솔루션 도입, IAM 최소 권한 원칙(PoLP) 적용, CI/CD 파이프라인 내 코드 보안 검사 자동화.
+  - 한계점 : IaaS/PaaS 도입 시 CSP가 모든 보안을 책임진다고 착각하여 S3(Simple Storage Service) 버킷 공개, 미흡한 IAM(Identity and Access Management) 권한으로 데이터 유출 빈발.
+  - 해결 방안 : CSPM(Cloud Security Posture Management, 클라우드 보안 태세 관리) 솔루션 도입, IAM 최소 권한 원칙(PoLP, Principle of Least Privilege) 적용, CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내 코드 보안 검사 자동화.
 - 특정 **글로벌 CSP 종속(Vendor Lock-in)** 및 데이터 주권 이슈 :
   - 한계점 : 특화 독점 API 및 데이터베이스 사용으로 타 클라우드로의 전환 불가 및 국가 핵심 규제 요건 위반 리스크.
   - 해결 방안 : 오픈 표준 컨테이너(Docker/K8s) 기반 워크로드 패키징, 소버린 클라우드 아키텍처 및 멀티클라우드 전략 채택.
@@ -85,5 +85,5 @@ extra:
 ## Ⅴ. 클라우드 컴퓨팅(Cloud Computing) 적용 및 발전을 위한 기술사적 제언
 
 - 클라우드 **네이티브 현대화(Application Modernization)** : 단순 IaaS 리프트-앤-시프트(Lift-and-Shift) 이전을 지양하고 마이크로서비스, 컨테이너, CI/CD 파이프라인 중심의 네이티브 리팩토링 추진 필수.
-- **FinOps** 거버넌스 전사 내재화 : 엔지니어링 조직과 재무 조직이 실시간 비용 대시보드를 공유하고 단위 경제학(Unit Economics) 기반의 비용 최적화 KPI 운영 권장.
-- **재해복구(DR)** 다중 가용영역(Multi-AZ) 및 멀티 리전 수립 : 단일 리전 가동에 안주하지 않고 금융 및 미션 크리티컬 워크로드에 대한 Active-Active 다중 리전 DR 아키텍처 정립 필요.
+- **FinOps** 거버넌스 전사 내재화 : 엔지니어링 조직과 재무 조직이 실시간 비용 대시보드를 공유하고 단위 경제학(Unit Economics) 기반의 비용 최적화 KPI(Key Performance Indicator) 운영 권장.
+- **재해복구(DR, Disaster Recovery)** 다중 가용영역(Multi-AZ) 및 멀티 리전 수립 : 단일 리전 가동에 안주하지 않고 금융 및 미션 크리티컬 워크로드에 대한 Active-Active 다중 리전 DR 아키텍처 정립 필요.

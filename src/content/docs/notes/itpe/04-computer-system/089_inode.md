@@ -26,7 +26,7 @@ extra:
 │                                                                        │
 │   [ inode 자료구조 (Fixed 128/256 Bytes) ]                             │
 │   ├─ File Mode (권한: rwxr-xr-x, 타입: 정규파일/디렉터리/소켓)          │
-│   ├─ UID / GID (소유자 및 그룹 식별자)                                 │
+│   ├─ UID(User Identifier) / GID(Group Identifier) (소유자 및 그룹 식별자) │
 │   ├─ File Size (파일 크기: Bytes)                                      │
 │   ├─ Timestamps (atime: 접근, mtime: 수정, ctime: 메타변경)            │
 │   ├─ Link Count (하드 링크 참조 카운터)                                │
@@ -65,5 +65,5 @@ extra:
 
 ## Ⅴ. 고성능 파일시스템 운영을 위한 기술사적 제언
 
-- 워크로드 특성에 맞는 파일시스템 아키텍처 선정 : 대규모 파일과 고속 처리가 요구되는 AI 데이터 파이프라인이나 빅데이터 환경에서는 고정 inode 구조의 ext4 대신 동적 B-Tree 인덱싱 및 지연 할당(Delayed Allocation)을 완벽 지원하는 XFS를 표준 파일시스템으로 채택해야 함.
-- 메타데이터 전용 고속 **티어링(NVMe)** 분리 구성 : 파일시스템 설계 시 ZFS의 메타데이터 전용 스페셜 VDEV(Special Allocation Class)처럼, 데이터 본체는 고용량 HDD/SATA SSD에 저장하고 inode 및 디렉터리 메타데이터는 초고속 NVMe에 전용 배치하여 디렉터리 탐색 및 파일 조회 속도를 수십 배 향상시킬 것을 제언함.
+- 워크로드 특성에 맞는 파일시스템 아키텍처 선정 : 대규모 파일과 고속 처리가 요구되는 AI(Artificial Intelligence) 데이터 파이프라인이나 빅데이터 환경에서는 고정 inode 구조의 ext4 대신 동적 B-Tree 인덱싱 및 지연 할당(Delayed Allocation)을 완벽 지원하는 XFS를 표준 파일시스템으로 채택해야 함.
+- 메타데이터 전용 고속 **티어링(NVMe, Non-Volatile Memory Express)** 분리 구성 : 파일시스템 설계 시 ZFS의 메타데이터 전용 스페셜 VDEV(Special Allocation Class)처럼, 데이터 본체는 고용량 HDD(Hard Disk Drive)/SATA(Serial Advanced Technology Attachment) SSD(Solid-State Drive)에 저장하고 inode 및 디렉터리 메타데이터는 초고속 NVMe에 전용 배치하여 디렉터리 탐색 및 파일 조회 속도를 수십 배 향상시킬 것을 제언함.

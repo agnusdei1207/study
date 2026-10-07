@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. AI SW 품질보증 테스트의 개요
 
-- 개념 : **AI SW 품질보증 테스트** 란 머신러닝/딥러닝 알고리즘 및 대형 언어 모델(LLM)이 내재된 인공지능 기반 소프트웨어의 **비결정론적** (Non-deterministic) 특성을 검증하기 위해, 데이터 품질, 모델 성능, **강건성** (Robustness), **공정성** (Fairness), 안전성, 설명가능성을 체계적으로 검증하는 차세대 품질보증(QA) 엔지니어링 체계.
+- 개념 : **AI(Artificial Intelligence) SW(Software) 품질보증 테스트** 란 머신러닝/딥러닝 알고리즘 및 대형 언어 모델(LLM, Large Language Model)이 내재된 인공지능 기반 소프트웨어의 **비결정론적** (Non-deterministic) 특성을 검증하기 위해, 데이터 품질, 모델 성능, **강건성** (Robustness), **공정성** (Fairness), 안전성, 설명가능성을 체계적으로 검증하는 차세대 품질보증(QA, Quality Assurance) 엔지니어링 체계.
 - 배경 및 필요성 : 전통적 규칙 기반 코딩과 달리 AI는 데이터 학습에 의해 내부 가중치가 결정되므로, 기존의 코드 커버리지나 입출력 매칭 테스트로는 오작동, 적대적 공격 취약점, 데이터 편향을 검출할 수 없는 한계 극복.
-- 국제 표준 : **ISO/IEC 42001** (인공지능 경영시스템), **ISO/IEC 24029** (신경망 강건성 평가), **ISO/IEC 25059** (AI 시스템 품질 모델).
+- 국제 표준 : **ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 42001** (인공지능 경영시스템), **ISO/IEC 24029** (신경망 강건성 평가), **ISO/IEC 25059** (AI 시스템 품질 모델).
 
 ## Ⅱ. AI SW 테스트 계층 구조 및 뉴런 커버리지(Neuron Coverage) 메커니즘
 
@@ -38,7 +38,7 @@ extra:
 | 비교 항목 | 전통적 소프트웨어 테스팅 | AI 기반 소프트웨어 테스팅 |
 |---|---|---|
 | 프로그램 동작 특성 | 결정론적 (동일 입력 시 항상 동일 출력) | 확률적·비결정론적 (동일 입력에도 모델 상태에 따라 편차) |
-| 테스트 오라클 | 사전 정의된 명세서(SRS) 기반 정답 존재 | 정답 판별 난해 (테스트 오라클 문제 -> 메타모픽 기법 활용) |
+| 테스트 오라클 | 사전 정의된 명세서(SRS, Software Requirements Specification) 기반 정답 존재 | 정답 판별 난해 (테스트 오라클 문제 -> 메타모픽 기법 활용) |
 | 커버리지 지표 | 구문(Statement), 분기(Branch), MC/DC | 뉴런 커버리지, 코너 케이스 커버리지, 데이터 분포 커버리지 |
 | 결함의 주요 원인 | 논리적 코딩 오류, 요구사항 오해 | 학습 데이터 편향, 과적합(Overfitting), 데이터 드리프트 |
 | 핵심 검증 속성 | 기능 정확성, 시스템 자원 효율성 | 강건성(Robustness), 공정성(Fairness), 안전성, 환각 억제 |
@@ -53,7 +53,7 @@ extra:
   - 해결 방안 : K-Multisection 뉴런 커버리지, 뉴런 경계 커버리지(NBC) 등 세분화된 지표 도입, 심층 변이 테스팅(DeepMutation)을 통한 테스트 스위트 결함 검출력 평가.
 - 운영 환경 **데이터 드리프트** (Data Drift)로 인한 사후 품질 저하 :
   - 한계점 : 배포 시점에는 높은 정확도를 보였으나 시간 경과에 따라 현실 데이터 분포가 변화(Concept Drift)하여 추론 성능 급격 하락.
-  - 해결 방안 : MLOps 파이프라인 내 데이터 및 모델 모니터링(Evidently AI, Evidently Metrics) 연동, 성능 저하 감지 시 자동 재학습(Continuous Training) 트리거 체계 구축.
+  - 해결 방안 : MLOps(Machine Learning Operations) 파이프라인 내 데이터 및 모델 모니터링(Evidently AI, Evidently Metrics) 연동, 성능 저하 감지 시 자동 재학습(Continuous Training) 트리거 체계 구축.
 
 ## Ⅴ. 고신뢰성 AI 시스템 구축을 위한 기술사적 제언
 

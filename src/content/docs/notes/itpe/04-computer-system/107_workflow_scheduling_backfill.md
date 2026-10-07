@@ -57,16 +57,16 @@ extra:
 | 비교 항목 | Apache Airflow | Dagster | Prefect |
 | :--- | :--- | :--- | :--- |
 | **핵심 패러다임** | 태스크 중심 (Task-Centric DAG) | 자산 중심 (Software-Defined Assets)| 코드 중심 (Pythonic Functions) |
-| **백필 지원성** | CLI 명령어(`airflow dags backfill`) 강력 지원| 자산 파티셔닝 기반 정밀 백필 네이티브 지원| 파라미터 기반 플로우 재실행 지원 |
-| **상태 저장소** | RDBMS 필수 (PostgreSQL, MySQL) | RDBMS 지원 (PostgreSQL, SQLite) | 클라우드 서비스(SaaS) 또는 백엔드 DB |
+| **백필 지원성** | CLI(Command-Line Interface) 명령어(`airflow dags backfill`) 강력 지원| 자산 파티셔닝 기반 정밀 백필 네이티브 지원| 파라미터 기반 플로우 재실행 지원 |
+| **상태 저장소** | RDBMS(Relational Database Management System) 필수 (PostgreSQL, MySQL) | RDBMS 지원 (PostgreSQL, SQLite) | 클라우드 서비스(SaaS) 또는 백엔드 DB(Database) |
 | **데이터 전달 방식** | XCom 기반 (소용량 메타데이터 전용)| 네이티브 I/O 매니저 기반 데이터 전달| 결과 핸들러(Result Handlers) 기반 |
 | **생태계 성숙도** | 업계 사실상 표준 (De-facto Standard)| 빠르게 성장 중인 모던 데이터 스택| 파이썬 친화적 경량 워크플로 중심 |
 | **단점 및 한계점** | 스케줄러 루프 지연, 로컬 테스트 난이도 | 기존 Airflow 대비 학습 곡선 존재 | 대규모 엔터프라이즈 레거시 연동성 |
 
 ## Ⅳ. 워크플로 스케줄링 및 백필 시 주요 한계점 및 해결 방안
 
-- 원천 시스템(소스 DB/API) 과부하로 인한 장애 유발 :
-  - 한계점 : 수개월 치 데이터를 백필할 때 수십 개의 DAG 인스턴스가 동시 기동하여 원천 OLTP 데이터베이스 커넥션 고갈 및 슬로우 쿼리 유발.
+- 원천 시스템(소스 DB/API(Application Programming Interface)) 과부하로 인한 장애 유발 :
+  - 한계점 : 수개월 치 데이터를 백필할 때 수십 개의 DAG(Directed Acyclic Graph) 인스턴스가 동시 기동하여 원천 OLTP(Online Transaction Processing) 데이터베이스 커넥션 고갈 및 슬로우 쿼리 유발.
   - 해결 방안 : Airflow 풀(Pool) 기능을 활용한 동시 쿼리 수 제한, `max_active_runs` 파라미터 조절 및 주말/야간 유휴 시간 대역 한정 실행.
 - 태스크 비멱등성(Non-Idempotency)에 따른 데이터 중복 적재 :
   - 한계점 : 단순 `INSERT INTO`로 작성된 파이프라인을 백필할 경우 동일 날짜의 데이터가 두 배, 세 배로 중복되어 매출 집계 왜곡.
@@ -78,4 +78,4 @@ extra:
 ## Ⅴ. 엔터프라이즈 데이터 엔지니어링을 위한 기술사적 제언
 
 - 선언적 데이터 자산(Data Asset) 중심 아키텍처로의 전환 : "무슨 태스크를 언제 실행할 것인가(Task-Driven)"에서 탈피하여 "어떤 데이터 자산이 어떤 상위 자산에 의존하는가(Asset-Driven)"를 정의하는 현대적 프레임워크(Dagster, dbt)를 결합하여, 백필 시 필요한 상위/하위 의존 자산만 정확하게 역추적 계산하는 체계를 수립해야 함.
-- CI/CD 파이프라인과 통합된 백필 검증 테스트베드 구축 : 파이프라인 코드 변경 시 스테이징 환경에서 최근 7일 치 데이터를 대상으로 가상 백필을 자동 수행하고, 프로덕션 데이터와의 데이터 차이(Data Diff)를 리포팅하는 자동화된 데이터 품질 게이트를 구축할 것을 제언함.
+- CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인과 통합된 백필 검증 테스트베드 구축 : 파이프라인 코드 변경 시 스테이징 환경에서 최근 7일 치 데이터를 대상으로 가상 백필을 자동 수행하고, 프로덕션 데이터와의 데이터 차이(Data Diff)를 리포팅하는 자동화된 데이터 품질 게이트를 구축할 것을 제언함.

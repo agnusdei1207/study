@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 패스키(Passkey)의 개요
 
 - 개념 : 웹 브라우저 및 운영체제에 내장된 **FIDO2/WebAuthn** 표준 기반의 **비대칭 공개키 암호화** 기술로, 서버에는 공개키만 저장하고 단말에는 개인키를 안전하게 보관하여 비밀번호 없이 로그인하는 차세대 인증 기술.
-- 배경 및 필요성 : 기존 패스워드 체계의 크리덴셜 스터핑, 피싱 사이트를 통한 자격증명 탈취, 비밀번호 재사용 위험과 SMS/OTP 기반 2차 인증의 중간자(AitM) 우회 공격을 수학적으로 원천 차단하기 위해 FIDO2/WebAuthn 표준 기반으로 출현함.
-- 핵심 목적 : 비밀번호 유출, 크리덴셜 스터핑, 피싱 사이트 사칭 공격의 원천 차단 및 **사용자 로그인 경험** (UX) 극대화.
+- 배경 및 필요성 : 기존 패스워드 체계의 크리덴셜 스터핑, 피싱 사이트를 통한 자격증명 탈취, 비밀번호 재사용 위험과 SMS(Short Message Service)/OTP(One-Time Password) 기반 2차 인증의 중간자(AitM) 우회 공격을 수학적으로 원천 차단하기 위해 FIDO2/WebAuthn 표준 기반으로 출현함.
+- 핵심 목적 : 비밀번호 유출, 크리덴셜 스터핑, 피싱 사이트 사칭 공격의 원천 차단 및 **사용자 로그인 경험** (UX, User Experience) 극대화.
 
 ## Ⅱ. 패스키(Passkey)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -47,29 +47,29 @@ extra:
 - **1. 등록 요청** : 사용자 / 클라이언트 (패스키 등록 선택, navigator.credentials.create() 호출).
 - **2. 챌린지 발급** : RP (서비스 서버) (재전송 공격 방지를 위한 무작위 암호학적 난수 챌린지 생성).
 - **3. 로컬 사용자 확인** : 인증기 (Authenticator) (기기 내 생체인식(Touch ID/Windows Hello)으로 로컬 잠금 해제).
-- **4. 키 쌍 생성** : 인증기 TEE/SE (ECC P-256 비대칭 키 쌍 생성, 개인키는 보안 칩에 영구 격리).
+- **4. 키 쌍 생성** : 인증기 TEE(Trusted Execution Environment)/SE (ECC(Elliptic Curve Cryptography) P-256 비대칭 키 쌍 생성, 개인키는 보안 칩에 영구 격리).
 - **5. 인증 수행** : 브라우저 / RP (navigator.credentials.get() 호출, RP ID 검증 후 서명 생성 및 검증).
 
 ## Ⅲ. 패스키(Passkey)의 세부 구성 요소 및 비교 분석
 
-| 구분 | 전통적 패스워드 | 2차 인증 (SMS / TOTP) | 패스키 (Passkey) |
+| 구분 | 전통적 패스워드 | 2차 인증 (SMS / TOTP(Time-based One-Time Password)) | 패스키 (Passkey) |
 |---|---|---|---|
-| 인증 요소 | 지식 기반 (Something you know) | 소유 기반 결합 (MFA) | 소유(기기 보안칩) + 생체(고유특징) |
+| 인증 요소 | 지식 기반 (Something you know) | 소유 기반 결합 (MFA, Multi-Factor Authentication) | 소유(기기 보안칩) + 생체(고유특징) |
 | 피싱 공격 내성 | 취약 (가짜 사이트에 입력 시 유출) | 취약 (실시간 피싱 프록시 **AitM** 우회) | 완전 면역 (Origin 바인딩으로 원천 차단) |
 | 서버 침해 위험 | 해시 덤프 탈취 시 크래킹 위험 | SMS 인터셉트 및 **SIM 스와핑** 위험 | 공개키만 보관하므로 탈취 위험 전무 |
 | 사용자 편의성 | 복잡한 규칙 암기 및 변경 스트레스 | 코드 복사 및 입력 번거로움 | 생체인증 1회로 즉시 로그인 완료 |
-| 분실 복구 방식 | 이메일/문자 본인확인 재설정 | 백업 코드, 관리자 수동 초기화 | 클라우드 계정 E2EE 백업 동기화 |
+| 분실 복구 방식 | 이메일/문자 본인확인 재설정 | 백업 코드, 관리자 수동 초기화 | 클라우드 계정 E2EE(End-to-End Encryption) 백업 동기화 |
 
 - 패스키(Passkey)은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
 
 ## Ⅳ. 패스키(Passkey)의 주요 한계점 및 해결 방안
 
 - 한계점 : 애플(Apple), 구글(Google), MS 등 플랫폼 생태계 간 패스키 교차 전송 불가(Platform Lock-in)로 기기 변경 시 마이그레이션 장애.
-  - 해결 방안 : FIDO 얼라이언스의 **자격증명 교환 프로토콜** (CXP, Credential Exchange Protocol) 표준 채택 및 서드파티 비밀번호 관리자(1Password, Bitwarden) 연동.
-- 한계점 : 스마트폰 분실 및 동기화 클라우드 계정(Apple ID/Google 계정) 탈취 시 모든 패스키가 일괄 노출되는 단일 장애점(SPOF) 리스크.
+  - 해결 방안 : FIDO(Fast IDentity Online) 얼라이언스의 **자격증명 교환 프로토콜** (CXP, Credential Exchange Protocol) 표준 채택 및 서드파티 비밀번호 관리자(1Password, Bitwarden) 연동.
+- 한계점 : 스마트폰 분실 및 동기화 클라우드 계정(Apple ID/Google 계정) 탈취 시 모든 패스키가 일괄 노출되는 단일 장애점(SPOF, Single Point of Failure) 리스크.
   - 해결 방안 : 단일 기기 종속형 **하드웨어 보안키** (YubiKey)를 보조 패스키로 등록 권장 및 클라우드 복구 시 하드웨어 2단계 인증 강제.
-- 한계점 : 레거시 엔터프라이즈 사내 인트라넷 및 WebAuthn API를 지원하지 않는 노후 시스템에서의 도입 불가.
-  - 해결 방안 : 현대적 OIDC/SAML 기반 중앙 **IdP** (Identity Provider)를 전면에 배치하고 레거시 시스템은 페더레이션 SSO로 간접 수용.
+- 한계점 : 레거시 엔터프라이즈 사내 인트라넷 및 WebAuthn API(Application Programming Interface)를 지원하지 않는 노후 시스템에서의 도입 불가.
+  - 해결 방안 : 현대적 OIDC(OpenID Connect)/SAML(Security Assertion Markup Language) 기반 중앙 **IdP** (Identity Provider)를 전면에 배치하고 레거시 시스템은 페더레이션 SSO(Single Sign-On)로 간접 수용.
 
 ## Ⅴ. 패스키(Passkey) 적용 및 발전을 위한 기술사적 제언
 

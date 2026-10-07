@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 서브네팅·슈퍼네팅(CIDR·VLSM)의 개요
 
-- 개념 : **서브네팅** (Subnetting)은 호스트 비트를 차용하여 단일 네트워크를 다수의 논리적 서브네트워크로 분할하는 기법이며, **슈퍼네팅** (Supernetting/CIDR)은 복수의 연속된 네트워크 비트를 통합(Aggregation)하여 라우팅 엔트리를 축소하는 주소 관리 기술.
-- 배경 및 필요성 : 전통적 **클래스풀** (Classful: Class A, B, C) 주소 체계의 극심한 IPv4 주소 낭비와 전 세계 인터넷 백본 라우터의 BGP 라우팅 테이블 폭증(Prefix Explosion) 문제를 해결하기 위해 도입됨.
+- 개념 : **서브네팅** (Subnetting)은 호스트 비트를 차용하여 단일 네트워크를 다수의 논리적 서브네트워크로 분할하는 기법이며, **슈퍼네팅** (Supernetting/CIDR, Classless Inter-Domain Routing)은 복수의 연속된 네트워크 비트를 통합(Aggregation)하여 라우팅 엔트리를 축소하는 주소 관리 기술.
+- 배경 및 필요성 : 전통적 **클래스풀** (Classful: Class A, B, C) 주소 체계의 극심한 IPv4(Internet Protocol version 4) 주소 낭비와 전 세계 인터넷 백본 라우터의 BGP(Border Gateway Protocol) 라우팅 테이블 폭증(Prefix Explosion) 문제를 해결하기 위해 도입됨.
 - 핵심 목적 : 한정된 IPv4 주소 자원의 이용 효율 극대화, 브로드캐스트 도메인 분할을 통한 네트워크 보안 및 성능 향상, 계층적 라우팅 경로 집약을 통한 라우터 부하 경감.
 
 ## Ⅱ. 서브네팅·슈퍼네팅(CIDR·VLSM)의 핵심 아키텍처 및 동작 메커니즘
 
-서브네팅과 슈퍼네팅은 IP 주소의 32비트 구조에서 네트워크 ID와 호스트 ID의 경계를 비트 단위로 유연하게 이동시키는 **마스킹** (Masking) 연산을 통해 작동함.
+서브네팅과 슈퍼네팅은 IP(Internet Protocol) 주소의 32비트 구조에서 네트워크 ID(Identifier)와 호스트 ID의 경계를 비트 단위로 유연하게 이동시키는 **마스킹** (Masking) 연산을 통해 작동함.
 
 ```text
 [ 서브네팅과 슈퍼네팅의 비트 조작 메커니즘 ]
@@ -40,7 +40,7 @@ extra:
 ```
 
 - **서브넷 마스크(Subnet Mask)** : 연속된 1의 비트로 네트워크/서브넷 영역을 지정하고, 0의 비트로 호스트 영역을 지정하여 논리적 AND 연산으로 목적지 네트워크 식별.
-- **CIDR 표기법(Classless Inter-Domain Routing)** : IP 주소 뒤에 슬래시(/)와 프리픽스 길이(예: /22, /28)를 표기하여 비트 단위 임의 길이 마스킹 지원.
+- **CIDR(Classless Inter-Domain Routing) 표기법(Classless Inter-Domain Routing)** : IP 주소 뒤에 슬래시(/)와 프리픽스 길이(예: /22, /28)를 표기하여 비트 단위 임의 길이 마스킹 지원.
 - **VLSM(Variable Length Subnet Mask)** : 단일 주소 블록 내에서 부서나 링크 규모에 따라 서로 다른 프리픽스 길이의 서브넷 마스크를 계층적으로 적용.
 - **라우트 집약(Route Aggregation)** : 연속된 주소 블록들의 공통 상위 비트를 묶어 상위 라우터에 단일 슈퍼넷 프리픽스로 광고함으로써 라우팅 테이블 슬림화 달성.
 
@@ -50,8 +50,8 @@ extra:
 |---|---|---|---|
 | 비트 조작 방향 | 호스트 ID 비트 $\rightarrow$ 네트워크 비트로 할당 | 네트워크 ID 비트 $\rightarrow$ 호스트 방향으로 집약 | A/B/C 고정 경계 (8/16/24 비트) |
 | 주요 목적 | 주소 낭비 방지, 브로드캐스트 도메인 분할 | 글로벌 BGP 라우팅 테이블 크기 감축 | 초기 단순 네트워크 주소 할당 |
-| 적용 범위 | 사내망, 데이터센터 서브넷, 클라우드 VPC | 백본 라우터, ISP 간 BGP 연동, 대규모 AS | 레거시 네트워크 (현재 비표준) |
-| 요구 프로토콜 | Classless 프로토콜 (OSPF, RIPv2, BGP) | BGPv4, OSPFv3 등 CIDR 지원 라우터 | RIPv1, IGRP 등 마스크 미전송 프로토콜 |
+| 적용 범위 | 사내망, 데이터센터 서브넷, 클라우드 VPC(Virtual Private Cloud) | 백본 라우터, ISP(Internet Service Provider) 간 BGP 연동, 대규모 AS(Autonomous System) | 레거시 네트워크 (현재 비표준) |
+| 요구 프로토콜 | Classless 프로토콜 (OSPF(Open Shortest Path First), RIPv2, BGP) | BGPv4, OSPFv3 등 CIDR 지원 라우터 | RIPv1, IGRP 등 마스크 미전송 프로토콜 |
 | 오버헤드 | 서브넷별 네트워크/브로드캐스트 주소 낭비 | 집약 경로 내 홀(Hole/미할당 주소) 트래픽 흡수 위험 | 극심한 주소 고갈 (Class A/B 낭비) |
 
 - 서브네팅이 조직 내부의 트래픽 격리와 주소 최적화에 초점을 맞춘다면, 슈퍼네팅은 인터넷 전역의 라우팅 확장성과 수렴 속도 유지를 위한 필수 기술임.
@@ -60,16 +60,16 @@ extra:
 
 - 서브넷 분할 증가에 따른 네트워크/브로드캐스트 주소(2개/서브넷) 손실 :
   - 한계점 : /30 서브넷은 총 4개 주소 중 2개만 호스트로 사용 가능하여 Point-to-Point 링크에서 50%의 주소 낭비 발생.
-  - 해결 방안 : 점대점 링크에 RFC 3021 기반 /31 서브넷(네트워크/브로드캐스트 주소 없이 2개 호스트 직접 할당) 표준 전면 적용.
+  - 해결 방안 : 점대점 링크에 RFC(Request for Comments) 3021 기반 /31 서브넷(네트워크/브로드캐스트 주소 없이 2개 호스트 직접 할당) 표준 전면 적용.
 - 슈퍼네팅 집약 경로 내 블랙홀 라우팅(Blackhole Routing) 발생 :
   - 한계점 : 집약된 상위 슈퍼넷 프리픽스 범위 내에 실제 존재하지 않는 서브넷으로 전달된 패킷이 라우팅 루프를 돌며 대역폭 소모.
   - 해결 방안 : 라우터 상에 집약 경로와 동일한 Null0 가상 인터페이스 정적 폐기 경로(Static Null0 Route)를 구성하여 미할당 트래픽 즉시 드롭.
 - IPv4 32비트 체계 자체의 절대적 주소 고갈 :
-  - 한계점 : 고도화된 VLSM/CIDR 적용에도 불구하고 IoT, 5G 등 단말 폭증에 따른 IPv4 공인 주소 고갈 한계 봉착.
+  - 한계점 : 고도화된 VLSM/CIDR 적용에도 불구하고 IoT(Internet of Things), 5G 등 단말 폭증에 따른 IPv4 공인 주소 고갈 한계 봉착.
   - 해결 방안 : 사설 IP(RFC 1918)와 CGNAT(Carrier-Grade NAT) 병행 운영 및 128비트 IPv6(Dual-Stack, NAT64)로의 전면 전환 가속화.
 
 ## Ⅴ. 서브네팅·슈퍼네팅(CIDR·VLSM) 적용 및 발전을 위한 기술사적 제언
 
-- 엔터프라이즈 멀티 클라우드 환경의 IPAM(IP Address Management) 거버넌스 확립 : 온프레미스와 AWS, Azure 등 이종 VPC 간 서브넷 중복 충돌을 방지하기 위해 단일 중앙 IPAM 시스템 구축 필수.
+- 엔터프라이즈 멀티 클라우드 환경의 IPAM(IP Address Management) 거버넌스 확립 : 온프레미스와 AWS(Amazon Web Services), Azure 등 이종 VPC 간 서브넷 중복 충돌을 방지하기 위해 단일 중앙 IPAM 시스템 구축 필수.
 - 최장 일치 검색(LPM) 최적화를 고려한 계층적 주소 블록 설계 : 백본 라우터의 TCAM 및 메모리 부하를 줄이기 위해 지역, 센터, 기능 단위로 철저한 비트 블록 집약형 IP 플래닝 수립 권장.
-- 마이크로 세그멘테이션(Micro-segmentation) 연계 보안 정책 구성 : 물리적 IP 서브넷 경계에 의존하지 않고 제로 트러스트 기반 SDN 가상 방화벽 태그와 결합한 동적 격리 정책 병행 필요.
+- 마이크로 세그멘테이션(Micro-segmentation) 연계 보안 정책 구성 : 물리적 IP 서브넷 경계에 의존하지 않고 제로 트러스트 기반 SDN(Software-Defined Networking) 가상 방화벽 태그와 결합한 동적 격리 정책 병행 필요.

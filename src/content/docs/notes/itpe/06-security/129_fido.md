@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. FIDO 인증과 FIDO2의 핵심 아키텍처 및 동작 메커니즘
 
-**FIDO 1.0** (UAF/U2F)에서 웹 브라우저 표준을 수용한 **FIDO2** (W3C WebAuthn + CTAP)로 진화하였으며, 최근에는 다중 기기 간 동기화를 지원하는 **패스키** (Passkey)로 발전함.
+**FIDO(Fast IDentity Online) 1.0** (UAF/U2F)에서 웹 브라우저 표준을 수용한 **FIDO2** (W3C WebAuthn + CTAP)로 진화하였으며, 최근에는 다중 기기 간 동기화를 지원하는 **패스키** (Passkey)로 발전함.
 
 ```text
 [ FIDO2 인증 아키텍처 및 동작 메커니즘 ]
@@ -51,17 +51,17 @@ extra:
 
 - **공개키 암호화(Public Key Cryptography) 기반** : 단말 내부의 안전한 하드웨어(Secure Enclave/TEE)에서 개인키-공개키 쌍을 생성하고, 개인키는 단말 밖으로 절대 유출되지 않음.
 - **생체정보의 로컬 처리 원칙** : 사용자의 지문이나 얼굴 특징점은 단말 내부에서만 매칭되고 서버로 절대 전송되지 않으므로 서버 해킹 시에도 생체정보 유출 불가.
-- **피싱 저항성(Phishing-resistant)과 오리진 바인딩** : 브라우저의 WebAuthn API가 접속 중인 웹사이트의 실제 도메인(Origin)을 검증하여 서명하므로, 가짜 피싱 사이트에서는 인증 서명이 불가능.
-- **FIDO2 표준 프로토콜 구성** : 웹 브라우저와 웹 애플리케이션 간 통신을 정의하는 W3C WebAuthn과 브라우저와 외부 인증장치(보안키) 간 통신을 정의하는 FIDO CTAP(Client-to-Authenticator Protocol)으로 구성.
+- **피싱 저항성(Phishing-resistant)과 오리진 바인딩** : 브라우저의 WebAuthn API(Application Programming Interface)가 접속 중인 웹사이트의 실제 도메인(Origin)을 검증하여 서명하므로, 가짜 피싱 사이트에서는 인증 서명이 불가능.
+- **FIDO2 표준 프로토콜 구성** : 웹 브라우저와 웹 애플리케이션 간 통신을 정의하는 W3C(World Wide Web Consortium) WebAuthn과 브라우저와 외부 인증장치(보안키) 간 통신을 정의하는 FIDO CTAP(Client-to-Authenticator Protocol)으로 구성.
 
 ## Ⅲ. FIDO 인증과 FIDO2의 세부 구성 요소 및 비교 분석
 
 | 비교 항목 | **FIDO UAF** (1.0) | **FIDO U2F** (1.0) | **FIDO2** (WebAuthn/CTAP) | **동기화 패스키** (Passkey) |
 | --- | --- | --- | --- | --- |
 | 주요 목적 | 모바일 중심 패스워드 대체 | 패스워드 + 2단계 하드웨어 보안키 | 웹 표준 기반 패스워드리스 인증 | 다중 기기 클라우드 동기화 패스워드리스 |
-| 동작 환경 | 모바일 전용 앱 (SDK 필수) | PC 크롬 브라우저 + USB 토큰 | 모든 현대 웹 브라우저 및 OS 내장 | Apple 키체인, Google 비밀번호 관리자 연동 |
-| 인증 형태 | 단일 요인 (생체인증 단독) | 2차 요인 (ID/PW + USB 터치) | 다중 요인 (디바이스 소유 + 생체) | 다중 요인 (클라우드 계정 소유 + 생체) |
-| 단말 종속 | 특정 모바일 단말에 키 종속 | 특정 USB 보안키에 키 종속 | 특정 단말에 키 종속 (분실 위험) | 종속성 해소 (클라우드 E2EE 백업 동기화) |
+| 동작 환경 | 모바일 전용 앱 (SDK(Software Development Kit) 필수) | PC(Personal Computer) 크롬 브라우저 + USB(Universal Serial Bus) 토큰 | 모든 현대 웹 브라우저 및 OS(Operating System) 내장 | Apple 키체인, Google 비밀번호 관리자 연동 |
+| 인증 형태 | 단일 요인 (생체인증 단독) | 2차 요인 (ID(Identifier)/PW + USB 터치) | 다중 요인 (디바이스 소유 + 생체) | 다중 요인 (클라우드 계정 소유 + 생체) |
+| 단말 종속 | 특정 모바일 단말에 키 종속 | 특정 USB 보안키에 키 종속 | 특정 단말에 키 종속 (분실 위험) | 종속성 해소 (클라우드 E2EE(End-to-End Encryption) 백업 동기화) |
 | 사용자 경험 | 앱 전용으로 웹 사용 불편 | 별도 하드웨어 키 소지 불편 | 기기 변경 시 재등록 번거로움 | 새 폰에서도 즉시 로그인 (최상의 편의성) |
 
 - FIDO는 보안성과 사용 편의성을 동시에 달성한 표준 암호화 인증 기술이며, 패스키(Passkey)의 등장으로 전 산업계의 Passwordless 전환이 본격화됨.
@@ -75,11 +75,11 @@ extra:
   - 한계점 : 패스키가 각 플랫폼의 클라우드 계정에 동기화됨에 따라 사용자가 타 OS 생태계(iOS <-> Android)로 전환 시 패스키 이전이 어려운 락인(Lock-in) 발생.
   - 해결 방안 : FIDO 얼라이언스의 표준 자격증명 교환 포맷(CXP: Credential Exchange Protocol) 준수 의무화 및 서드파티 비밀번호 관리자 연동.
 - 레거시 엔터프라이즈 시스템 및 브라우저 호환성 제약 :
-  - 한계점 : 사내 구축형 레거시 ERP나 구형 브라우저는 WebAuthn API를 지원하지 않아 전사 단일 인증 체계 적용 곤란.
-  - 해결 방안 : OIDC/SAML 기반의 중앙 집중형 IdP(통합 인증 게이트웨이)를 전면에 배치하고, IdP 레벨에서 FIDO2 인증을 완결하는 브릿지 아키텍처 수립.
+  - 한계점 : 사내 구축형 레거시 ERP(Enterprise Resource Planning)나 구형 브라우저는 WebAuthn API를 지원하지 않아 전사 단일 인증 체계 적용 곤란.
+  - 해결 방안 : OIDC(OpenID Connect)/SAML(Security Assertion Markup Language) 기반의 중앙 집중형 IdP(Identity Provider, 통합 인증 게이트웨이)를 전면에 배치하고, IdP 레벨에서 FIDO2 인증을 완결하는 브릿지 아키텍처 수립.
 
 ## Ⅴ. FIDO 인증과 FIDO2 적용 및 발전을 위한 기술사적 제언
 
-- 공공·금융 서비스의 패스키(Passkey) 조건부 UI(Autofill) 선제 도입 : 기존 아이디/비밀번호 입력란에 브라우저 자동완성 팝업을 연계하여 사용자가 비밀번호를 입력하려 할 때 지문 한 번으로 즉시 로그인되도록 UX 혁신.
-- 제로 트러스트 사용자 인증 표준 수립 : 사내 업무망 접근 시 SMS나 이메일 OTP 등 피싱 취약 인증 수단을 전면 배제하고, FIDO2 하드웨어 보안키 및 생체인증만 필수 허용.
+- 공공·금융 서비스의 패스키(Passkey) 조건부 UI(Autofill) 선제 도입 : 기존 아이디/비밀번호 입력란에 브라우저 자동완성 팝업을 연계하여 사용자가 비밀번호를 입력하려 할 때 지문 한 번으로 즉시 로그인되도록 UX(User Experience) 혁신.
+- 제로 트러스트 사용자 인증 표준 수립 : 사내 업무망 접근 시 SMS(Short Message Service)나 이메일 OTP(One-Time Password) 등 피싱 취약 인증 수단을 전면 배제하고, FIDO2 하드웨어 보안키 및 생체인증만 필수 허용.
 - 기기 바인딩 패스키와 동기화 패스키의 업무 위험도별 분리 정책 : 일반 업무는 편의성 높은 동기화 패스키를 허용하되, 슈퍼 관리자나 코어 금융 원장 접근은 하드웨어 토큰(YubiKey) 바인딩 패스키를 강제.

@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 파이썬의 개요
 
-- 개념 : **파이썬** (Python) 이란 귀도 반 로섬(Guido van Rossum)이 1991년 발표한 인터프리터 방식의 고급 프로그래밍 언어로, 간결하고 인간 친화적인 문법, **동적 타이핑** (Dynamic Typing), 풍부한 서드파티 생태계를 바탕으로 AI, 머신러닝, 데이터 엔지니어링, 웹 백엔드, 클라우드 자동화 분야의 표준 언어로 확립된 다중 패러다임 언어.
+- 개념 : **파이썬** (Python) 이란 귀도 반 로섬(Guido van Rossum)이 1991년 발표한 인터프리터 방식의 고급 프로그래밍 언어로, 간결하고 인간 친화적인 문법, **동적 타이핑** (Dynamic Typing), 풍부한 서드파티 생태계를 바탕으로 AI(Artificial Intelligence), 머신러닝, 데이터 엔지니어링, 웹 백엔드, 클라우드 자동화 분야의 표준 언어로 확립된 다중 패러다임 언어.
 - 배경 및 필요성 : 개발 생산성(Time-to-Market) 극대화, 빠른 프로토타이핑, C/C++ 네이티브 바인딩을 통한 고성능 수치 계산 라이브러리(NumPy, PyTorch) 결합.
-- 핵심 특징 : 인터프리터 바이트코드 실행, GIL(Global Interpreter Lock), **덕 타이핑** (Duck Typing), 자동 가비지 컬렉션(GC).
+- 핵심 특징 : 인터프리터 바이트코드 실행, GIL(Global Interpreter Lock), **덕 타이핑** (Duck Typing), 자동 가비지 컬렉션(GC, Garbage Collection).
 
 ## Ⅱ. 파이썬 런타임 아키텍처 및 GIL(Global Interpreter Lock)
 
@@ -40,7 +40,7 @@ extra:
 ```
 
 - **GIL** (Global Interpreter Lock) : CPython 인터프리터에서 멀티스레드를 생성하더라도 메모리 관리(참조 카운팅)의 스레드 안전성을 위해 한 시점에 오직 하나의 스레드만 바이트코드를 실행하도록 강제하는 뮤텍스.
-- **I/O 바운드 vs CPU 바운드** :
+- **I/O 바운드 vs CPU(Central Processing Unit) 바운드** :
   - **I/O 바운드 작업** (네트워크, 파일 읽기) : 대기 시간 동안 GIL이 자동 해제되므로 멀티스레딩 또는 `asyncio` 비동기 코루틴으로 뛰어난 성능 발휘.
   - **CPU 바운드 작업** (복잡한 수학 연산, 영상 처리) : GIL 경합으로 인해 멀티스레드가 단일 스레드보다 느려질 수 있으므로, `multiprocessing` 모듈을 통해 독립 프로세스를 띄우거나 C 확장 모듈을 활용해야 함.
 
@@ -50,19 +50,19 @@ extra:
 |---|---|---|
 | 메모리 관리 (GC) | **참조 카운팅** (Reference Counting) + 순환 참조 감지 GC | 카운트가 0이 되면 즉시 메모리 해제, 순환 참조는 세대별(Generational) GC로 수거 |
 | 비동기 동시성 (asyncio) | 단일 스레드 이벤트 루프 기반 비동기 코루틴 (`async` / `await`) | 메모리 오버헤드 최소화, 수만 개의 동시 I/O 웹 커넥션 초고속 처리 |
-| 멀티프로세싱 | 별도의 독립된 Python 프로세스들을 포크(Fork)하여 실행 | 각 프로세스가 독립 GIL을 가져 멀티코어 CPU $100\%$ 활용, IPC 오버헤드 존재 |
+| 멀티프로세싱 | 별도의 독립된 Python 프로세스들을 포크(Fork)하여 실행 | 각 프로세스가 독립 GIL을 가져 멀티코어 CPU $100\%$ 활용, IPC(Inter-Process Communication) 오버헤드 존재 |
 
 ## Ⅳ. 파이썬(Python)의 주요 한계점 및 해결 방안
 
 - GIL(Global Interpreter Lock)로 인한 멀티코어 CPU 병렬 처리 한계 :
   - 한계점 : 단일 프로세스 내에서 하나의 바이트코드 스레드만 실행 가능하므로, 멀티코어 환경에서도 CPU 바운드 작업의 멀티스레딩 성능 향상 불가.
-  - 해결 방안 : `multiprocessing` 모듈을 통한 프로세스 분산, Celery 기반 분산 태스크 큐 활용, C-확장 모듈(NumPy) 내부 GIL 해제 및 차세대 No-GIL 파이썬(PEP 703) 도입 검토.
+  - 해결 방안 : `multiprocessing` 모듈을 통한 프로세스 분산, Celery 기반 분산 태스크 큐 활용, C-확장 모듈(NumPy) 내부 GIL 해제 및 차세대 No-GIL 파이썬(PEP(Python Enhancement Proposal) 703) 도입 검토.
 - 동적 타이핑(Dynamic Typing)에 따른 런타임 타입 오류 위험 :
   - 한계점 : 대규모 엔터프라이즈 코드베이스에서 컴파일 타임 검증이 없어 실행 시점에 `AttributeError`, `TypeError`가 발생하여 시스템 가용성 위협.
-  - 해결 방안 : 타입 힌트(Type Hints, PEP 484) 의무화 및 `mypy`, `pyright` 등 정적 타입 체커를 CI 품질 게이트웨이에 필수 연동.
+  - 해결 방안 : 타입 힌트(Type Hints, PEP 484) 의무화 및 `mypy`, `pyright` 등 정적 타입 체커를 CI(Continuous Integration) 품질 게이트웨이에 필수 연동.
 - 인터프리터 언어 특유의 느린 실행 속도 및 높은 메모리 사용량 :
   - 한계점 : C/Java 대비 연산 속도가 상대적으로 느리고 모든 원시 타입이 객체로 래핑되어 대규모 트래픽 처리 및 임베디드 적용 제약.
-  - 해결 방안 : 연산 집약 구간의 Cython/Rust 확장 모듈화, JIT 컴파일러 기반 PyPy 채택, `__slots__` 활용 및 제너레이터를 통한 메모리 점유 최적화.
+  - 해결 방안 : 연산 집약 구간의 Cython/Rust 확장 모듈화, JIT(Just-in-Time) 컴파일러 기반 PyPy 채택, `__slots__` 활용 및 제너레이터를 통한 메모리 점유 최적화.
 
 ## Ⅴ. 엔터프라이즈 및 AI 서비스 구축 시 기술사적 제언
 

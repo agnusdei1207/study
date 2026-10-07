@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. LLMOps(대규모 언어모델 운영 체계)의 개요
 
-- 개념 : **거대언어모델** (LLM)과 생성형 AI 기반 엔터프라이즈 애플리케이션의 개발, 프롬프트 엔지니어링, RAG 파이프라인, 파인튜닝, 모델 평가, 서빙 최적화, 런타임 가드레일, 비용(FinOps) 모니터링에 이르는 전 생애주기를 체계적으로 자동화하고 운영 안정성을 보장하는 MLOps의 확장된 운영 체계.
+- 개념 : **거대언어모델** (LLM, Large Language Model)과 생성형 AI(Artificial Intelligence) 기반 엔터프라이즈 애플리케이션의 개발, 프롬프트 엔지니어링, RAG(Retrieval-Augmented Generation) 파이프라인, 파인튜닝, 모델 평가, 서빙 최적화, 런타임 가드레일, 비용(FinOps) 모니터링에 이르는 전 생애주기를 체계적으로 자동화하고 운영 안정성을 보장하는 MLOps(Machine Learning Operations)의 확장된 운영 체계.
 - 배경 및 필요성 : 전통적 MLOps가 정형 데이터와 수치 예측 모델(Scikit-learn, XGBoost)의 학습 파이프라인에 국한되었다면, LLM은 비결정론적 자연어 입출력, 프롬프트 민감성, 파운데이션 모델의 잦은 업데이트, 막대한 토큰 비용, 환각 및 적대적 탈옥 위험이 상존하여 전용 운영 체계가 필수화됨.
-- 핵심 목적 : 생성형 AI 애플리케이션의 **시장 출시** (Time-to-Market) 단축, 정량적 프롬프트/모델 평가 자동화, 추론 비용(TCO) 최적화, 엔터프라이즈급 보안 및 거버넌스 확보.
+- 핵심 목적 : 생성형 AI 애플리케이션의 **시장 출시** (Time-to-Market) 단축, 정량적 프롬프트/모델 평가 자동화, 추론 비용(TCO, Total Cost of Ownership) 최적화, 엔터프라이즈급 보안 및 거버넌스 확보.
 
 ## Ⅱ. LLMOps(대규모 언어모델 운영 체계)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -27,7 +27,7 @@ LLMOps는 데이터 준비, 프롬프트/RAG 관리, 지속적 평가, 고속 �
 
 +-----------------------------------------------------------------+
 | 1. 데이터 및 지식 관리 계층 (Data & Knowledge Engine)           |
-|  - 비정형 문서 파싱/청킹, Vector DB 임베딩 동기화, PII 마스킹   |
+|  - 비정형 문서 파싱/청킹, Vector DB 임베딩 동기화, PII(Personally Identifiable Information) 마스킹 |
 +--------------------------------┬--------------------------------+
                                  │
                                  ▼
@@ -53,15 +53,15 @@ LLMOps는 데이터 준비, 프롬프트/RAG 관리, 지속적 평가, 고속 �
                                  ▼
 +-----------------------------------------------------------------+
 | 5. 옵저버빌리티 및 FinOps (Observability & Governance)           |
-|  - 실시간 토큰 사용량/비용 추적, 지연 시간(TTFT), 환각 모니터링|
+|  - 실시간 토큰 사용량/비용 추적, 지연 시간(TTFT, Time to First Token), 환각 모니터링|
 |  - NeMo Guardrails 입출력 인라인 차단, OpenTelemetry 트레이싱   |
 +-----------------------------------------------------------------+
 ```
 
 - **Prompt-as-Code** : 프롬프트를 임의의 텍스트가 아닌 소스코드처럼 Git 저장소에서 브랜칭, 코드 리뷰, 버전 태깅하여 변경 이력 추적.
 - **LLM-as-a-Judge & Ragas** : 인간 평가의 비용 병목을 해소하기 위해 상위 프론티어 모델이 생성 답변의 충실도, 관련성을 정량 채점하는 자동 검증 파이프라인.
-- **고속 서빙 엔진(vLLM / TensorRT-LLM)** : PagedAttention 기술로 KV 캐시 메모리 단편화를 제거하여 단일 GPU당 동시 처리 토큰 처리량(Throughput) 향상.
-- **LLM FinOps 대시보드** : 부서별, 프로젝트별 토큰 소비량과 API 비용을 실시간 집계하고 쿼터(Quota) 초과 시 자동 쓰로틀링(Throttling).
+- **고속 서빙 엔진(vLLM / TensorRT-LLM)** : PagedAttention 기술로 KV(Key-Value) 캐시 메모리 단편화를 제거하여 단일 GPU(Graphics Processing Unit)당 동시 처리 토큰 처리량(Throughput) 향상.
+- **LLM FinOps 대시보드** : 부서별, 프로젝트별 토큰 소비량과 API(Application Programming Interface) 비용을 실시간 집계하고 쿼터(Quota) 초과 시 자동 쓰로틀링(Throttling).
 
 ## Ⅲ. LLMOps(대규모 언어모델 운영 체계)의 세부 구성 요소 및 비교 분석
 
@@ -69,10 +69,10 @@ LLMOps는 데이터 준비, 프롬프트/RAG 관리, 지속적 평가, 고속 �
 | --- | --- | --- |
 | **핵심 작업 대상** | 모델 가중치 훈련 (Scikit, PyTorch 학습) | 프롬프트 엔지니어링, RAG 파이프라인, 파인튜닝 |
 | **데이터 특성** | 정형 테이블 데이터, 고정 차원 특징 벡터 | 대규모 비정형 텍스트, 멀티모달, 벡터 임베딩 |
-| **성능 평가 지표** | RMSE, Accuracy, F1-Score, ROC-AUC | 문맥 적합성, 환각률, 지시 준수율, 정답 유사도 |
+| **성능 평가 지표** | RMSE(Root Mean Squared Error), Accuracy, F1-Score, ROC(Receiver Operating Characteristic)-AUC | 문맥 적합성, 환각률, 지시 준수율, 정답 유사도 |
 | **주요 비용 동인** | 모델 학습 시의 일시적 GPU 연산 비용 | 24/365 추론 서빙 시의 지속적 토큰 호출 비용 |
 | **핵심 보안 위협** | 데이터 드리프트, 적대적 샘플 회피 | 프롬프트 인젝션, 탈옥, 기밀 유출, 간접 주입 |
-| **대표 도구** | MLflow, Kubeflow, Feast, DVC | Langfuse, Promptfoo, Ragas, vLLM, LiteLLM |
+| **대표 도구** | MLflow, Kubeflow, Feast, DVC(Data Version Control) | Langfuse, Promptfoo, Ragas, vLLM, LiteLLM |
 
 - MLOps가 '모델을 만드는 과정'에 집중했다면, LLMOps는 이미 만들어진 파운데이션 모델을 활용하여 '안전하고 경제적인 애플리케이션을 서빙하는 과정'에 집중함.
 
@@ -85,11 +85,11 @@ LLMOps는 데이터 준비, 프롬프트/RAG 관리, 지속적 평가, 고속 �
   - 한계점 : 동일하거나 유사한 질의가 반복 인입될 때 매번 거대 LLM을 호출하여 예산 조기 소진.
   - 해결 방안 : 코사인 유사도 0.95 기준의 **시맨틱 캐싱** (Semantic Caching) 전면 배치 및 도메인 sLM 라우팅.
 - 검색 증강 파이프라인(RAG)의 데이터 드리프트 및 동기화 실패 :
-  - 한계점 : 사내 문서가 수정되었으나 벡터 DB에 즉각 반영되지 않아 과거 정보를 인용하는 오류 발생.
+  - 한계점 : 사내 문서가 수정되었으나 벡터 DB(Database)에 즉각 반영되지 않아 과거 정보를 인용하는 오류 발생.
   - 해결 방안 : 소스 문서 변경 이벤트를 감지**CDC** (Change Data Capture) 하여 임베딩을 실시간 증분 업데이트하는 파이프라인 수립.
 
 ## Ⅴ. LLMOps(대규모 언어모델 운영 체계) 적용 및 발전을 위한 기술사적 제언
 
 - LLM 관제 표준 도구(Langfuse, Arize Phoenix) 도입을 통한 세션 트레이싱 내재화 : 사용자의 입력부터 RAG 검색 청크, 중간 사고 토큰, 최종 응답까지의 전 경로를 단일 Trace로 시각화.
 - FinOps 거버넌스 수립을 통한 모델 라우터(Router) 필수 배치 : 단순 텍스트 분류와 요약은 저비용 sLM(Llama 3 8B)으로 처리하고, 복합 추론만 최상위 모델로 분기하는 비용 통제 아키텍처 구현.
-- 사내 AI 안전 가드레일(NeMo Guardrails / Llama Guard) 인라인 의무화 : 모든 인바운드/아웃바운드 트래픽에 대해 악의적 프롬프트 주입과 민감정보(PII) 유출을 실시간 차단하는 보안 프록시 구축.
+- 사내 AI 안전 가드레일(NeMo Guardrails / Llama Guard) 인라인 의무화 : 모든 인바운드/아웃바운드 트래픽에 대해 악의적 프롬프트 주입과 민감정보(PII, Personally Identifiable Information) 유출을 실시간 차단하는 보안 프록시 구축.

@@ -16,7 +16,7 @@ extra:
 
 ### 가. 대기행렬이론(Queuing Theory)의 정의
 - **대기행렬이론** : 서버나 서비스 창구에 고객(또는 트랜잭션, 패킷)이 도착하여 **대기열** (Queue)을 형성하고 서비스를 받은 후 떠나는 일련의 대기 현상을 확률 모델로 수학적으로 분석하여, 시스템의 **평균 대기 시간, 대기열 길이, 자원 가동률**을 예측하는 **운영 연구** (Operations Research) 및 성능 공학 기법.
-- IT 시스템의 웹 서버 커넥션 풀 크기, 메시지 큐 용량 산정, 네트워크 라우터 버퍼 설계의 이론적 토대.
+- IT(Information Technology) 시스템의 웹 서버 커넥션 풀 크기, 메시지 큐 용량 산정, 네트워크 라우터 버퍼 설계의 이론적 토대.
 
 ---
 
@@ -83,11 +83,11 @@ $$L = \lambda W$$
   - 한계점 : 실제 IT 시스템 및 네트워크 트래픽은 **버스트** (Burst) 특성과 **헤비테일** (Self-similar / Pareto) 분포를 띠므로 $M/M/1$ 모형 적용 시 대기 시간 과소 추정.
   - 해결 방안 : 일반화된 분포를 수용하는 $G/G/1$ 또는 $M/G/1$ 모형(Pollaczek-Khinchine 공식) 적용, **이산 사건 시뮬레이션** (DES: Discrete Event Simulation) 도구 병행.
 - **시스템 활용률($\rho \to 1$)** 근접 시 대기열 길이와 지연 시간의 기하급수적 발산 :
-  - 한계점 : 자원 효율화를 위해 CPU나 서버 사용률을 지나치게 높게 유지하려 할 경우 리틀의 법칙에 의해 대기 시간이 무한대로 급증하여 서비스 장애(SLA 위반) 초래.
+  - 한계점 : 자원 효율화를 위해 CPU(Central Processing Unit)나 서버 사용률을 지나치게 높게 유지하려 할 경우 리틀의 법칙에 의해 대기 시간이 무한대로 급증하여 서비스 장애(SLA(Service Level Agreement) 위반) 초래.
   - 해결 방안 : 목표 활용률을 여유를 둔 수준으로 캡핑(Knee of Curve 제어), 오토스케일링 트리거를 선제적(Predictive Autoscaling)으로 설정하여 버퍼 용량 확보.
-- **다계층 마이크로서비스** (MSA) 및 **복합 큐 네트워크** (Queuing Network) 모델링 난제 :
-  - 한계점 : 프런트엔드-API 게이트웨이-MSA-DB로 이어지는 다단계 종속 서비스 환경에서는 단일 대기행렬 수식으로 병목 지점 및 연쇄 지연 예측 불가.
-  - 해결 방안 : **잭슨 네트워크** (Jackson Network) 이론 적용, eBPF 및 APM 분산 추적 데이터를 기반으로 실시간 대기행렬 지표(큐 깊이, 서비스 레이턴시)를 자동 모델링하는 AIOps 연계.
+- **다계층 마이크로서비스** (MSA, Microservice Architecture) 및 **복합 큐 네트워크** (Queuing Network) 모델링 난제 :
+  - 한계점 : 프런트엔드-API(Application Programming Interface) 게이트웨이-MSA-DB(Database)로 이어지는 다단계 종속 서비스 환경에서는 단일 대기행렬 수식으로 병목 지점 및 연쇄 지연 예측 불가.
+  - 해결 방안 : **잭슨 네트워크** (Jackson Network) 이론 적용, eBPF 및 APM(Application Performance Monitoring) 분산 추적 데이터를 기반으로 실시간 대기행렬 지표(큐 깊이, 서비스 레이턴시)를 자동 모델링하는 AIOps(Artificial Intelligence for IT Operations) 연계.
 
 ## Ⅴ. 클라우드 인프라 및 소프트웨어 아키텍처 실무 제언
 

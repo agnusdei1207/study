@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 생성형 AI 보안취약점의 개요
 
-- 개념 : **대형 언어 모델** (LLM) 및 생성형 AI 애플리케이션의 개발, 학습, 배포, 추론 전 생명주기에 걸쳐 발생하는 데이터 오염, 프롬프트 조작, 민감정보 탈취, 모델 탈취 등 인공지능 고유의 **구조적 보안 취약점** 총체 (OWASP Top 10 for LLM 기반).
-- 배경 및 필요성 : ChatGPT 등 LLM 기반 생성형 AI가 기업 업무와 대고객 서비스에 전면 통합되면서, 전통적인 소프트웨어 보안(SQLi, XSS)과는 완전히 다른 자연어 기반의 새로운 공격 벡터가 대두됨.
+- 개념 : **대형 언어 모델** (LLM, Large Language Model) 및 생성형 AI(Artificial Intelligence) 애플리케이션의 개발, 학습, 배포, 추론 전 생명주기에 걸쳐 발생하는 데이터 오염, 프롬프트 조작, 민감정보 탈취, 모델 탈취 등 인공지능 고유의 **구조적 보안 취약점** 총체 (OWASP(Open Worldwide Application Security Project) Top 10 for LLM 기반).
+- 배경 및 필요성 : ChatGPT 등 LLM 기반 생성형 AI가 기업 업무와 대고객 서비스에 전면 통합되면서, 전통적인 소프트웨어 보안(SQLi(SQL Injection), XSS(Cross-Site Scripting))과는 완전히 다른 자연어 기반의 새로운 공격 벡터가 대두됨.
 - 핵심 목적 : **비결정론적** (Non-deterministic) 특성을 가진 AI 파이프라인의 취약점을 체계적으로 식별하고, **가드레일** 및 방어 아키텍처를 수립하여 안전한 AI 비즈니스 환경 구축.
 
 ## Ⅱ. 생성형 AI 보안취약점의 핵심 아키텍처 및 동작 메커니즘
@@ -45,8 +45,8 @@ extra:
   * LLM08: 과도한 자율성 (Excessive Agency - 비인가 이메일 발송/DB 삭제)
 ```
 
-- **LLM01: 프롬프트 인젝션(Prompt Injection)** : 사용자 입력(Direct)이나 RAG 검색 문서(Indirect)에 악의적인 프롬프트를 주입하여 시스템 프롬프트 가드레일을 무력화하고 모델을 탈옥(Jailbreak)시키는 공격.
-- **LLM02: 불안전한 출력 처리(Insecure Output Handling)** : LLM이 생성한 텍스트를 검증 없이 백엔드 시스템 명령어나 브라우저 HTML 렌더링에 그대로 전달하여 원격 코드 실행(RCE)이나 XSS를 유발.
+- **LLM01: 프롬프트 인젝션(Prompt Injection)** : 사용자 입력(Direct)이나 RAG(Retrieval-Augmented Generation) 검색 문서(Indirect)에 악의적인 프롬프트를 주입하여 시스템 프롬프트 가드레일을 무력화하고 모델을 탈옥(Jailbreak)시키는 공격.
+- **LLM02: 불안전한 출력 처리(Insecure Output Handling)** : LLM이 생성한 텍스트를 검증 없이 백엔드 시스템 명령어나 브라우저 HTML(HyperText Markup Language) 렌더링에 그대로 전달하여 원격 코드 실행(RCE, Remote Code Execution)이나 XSS를 유발.
 - **LLM03: 학습 데이터 오염(Training Data Poisoning)** : 모델 사전 학습이나 파인튜닝 단계에서 공격자가 악의적으로 조작된 라벨링 데이터를 주입하여 특정 트리거 시 편향되거나 백도어가 작동하도록 변조.
 - **LLM06: 민감정보 유출(Sensitive Information Disclosure)** : 임직원이 기밀 소스코드나 고객 개인정보를 프롬프트로 입력하여 모델 가중치에 기억되거나, 타 사용자의 질문에 기밀이 답변으로 누출되는 위협.
 
@@ -69,13 +69,13 @@ extra:
   - 해결 방안 : 단순 키워드 차단을 지양하고, 입력 텍스트의 악의적 의도를 별도로 분류하는 경량 가드레일 모델(Llama Guard 등) 이중 배치.
 - RAG(검색증강생성) 아키텍처의 간접 프롬프트 인젝션 취약성 :
   - 한계점 : 사내 검색 대상 문서(공유 드라이브, 위키)에 악의적인 지시문이 포함되어 있을 경우 RAG가 이를 컨텍스트로 불러와 모델이 비인가 명령 실행.
-  - 해결 방안 : RAG 데이터 로딩 시 문서 메타데이터에 엄격한 접근 권한(ACL)을 적용하고, 문서 내용에서 지시형 문구를 제거하는 전처리 정제 엔진 도입.
+  - 해결 방안 : RAG 데이터 로딩 시 문서 메타데이터에 엄격한 접근 권한(ACL, Access Control List)을 적용하고, 문서 내용에서 지시형 문구를 제거하는 전처리 정제 엔진 도입.
 - AI Agent의 과도한 자율성(Excessive Agency)으로 인한 파괴적 결과 :
-  - 한계점 : LLM이 API를 직접 호출하여 데이터베이스 수정이나 이메일 발송을 수행할 때 프롬프트 조작으로 전사 DB 삭제 명령 등이 실행될 위험.
+  - 한계점 : LLM이 API(Application Programming Interface)를 직접 호출하여 데이터베이스 수정이나 이메일 발송을 수행할 때 프롬프트 조작으로 전사 DB(Database) 삭제 명령 등이 실행될 위험.
   - 해결 방안 : 중요 비즈니스 작업(금융 이체, 파일 삭제, 메일 발송)에 대해 반드시 인간의 최종 승인을 거치는 HITL(Human-in-the-Loop) 강제.
 
 ## Ⅴ. 생성형 AI 보안취약점 적용 및 발전을 위한 기술사적 제언
 
-- LLM 전용 방화벽 및 가드레일(NeMo Guardrails) 프레임워크 구축 : 사용자 입력과 LLM 응답 사이에 실시간 가드레일을 배치하여 유해 프롬프트, PII 개인정보, 환각(Hallucination)을 실시간 검열 차단.
+- LLM 전용 방화벽 및 가드레일(NeMo Guardrails) 프레임워크 구축 : 사용자 입력과 LLM 응답 사이에 실시간 가드레일을 배치하여 유해 프롬프트, PII(Personally Identifiable Information) 개인정보, 환각(Hallucination)을 실시간 검열 차단.
 - AI 레드팀(Red Teaming) 정례화를 통한 적대적 공격 시뮬레이션 : 전문 화이트해커 조직을 통해 최신 탈옥 기법, 데이터 역추출 공격을 정기적으로 수행하여 모델의 견고성을 지속 벤치마킹.
-- 기업 전용 AI 프록시 게이트웨이 및 DLP(데이터 유출 방지) 연동 : 임직원이 상용 AI(ChatGPT 등)를 활용할 때 사내 소스코드, 주민번호, 비밀번호가 프롬프트로 전송되지 못하도록 자동 마스킹 및 전송 차단.
+- 기업 전용 AI 프록시 게이트웨이 및 DLP(Data Loss Prevention, 데이터 유출 방지) 연동 : 임직원이 상용 AI(ChatGPT 등)를 활용할 때 사내 소스코드, 주민번호, 비밀번호가 프롬프트로 전송되지 못하도록 자동 마스킹 및 전송 차단.

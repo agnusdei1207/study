@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 적대적 공격(Adversarial Attack)의 개요
 
 - 개념 : 인공지능 및 딥러닝 모델의 취약점을 악용하여, 인간의 시각이나 청각으로는 감지할 수 없는 **미세한 노이즈** (적대적 섭동, Perturbation)를 정상 데이터에 의도적으로 주입함으로써 모델이 완전히 잘못된 예측이나 오분류를 내리도록 유도하는 사이버 공격.
-- 배경 및 필요성 : 자율주행차(표지판 인식 오류), 금융 이상탐지(FDS 사기 탐지 회피), 의료 AI(오진 유도), 공항 안면인식 시스템 등 미션 크리티컬한 AI 시스템이 실제 환경에 배포되면서 심각한 물리적·경제적 안전 위협으로 대두.
+- 배경 및 필요성 : 자율주행차(표지판 인식 오류), 금융 이상탐지(FDS(Fraud Detection System) 사기 탐지 회피), 의료 AI(Artificial Intelligence, 오진 유도), 공항 안면인식 시스템 등 미션 크리티컬한 AI 시스템이 실제 환경에 배포되면서 심각한 물리적·경제적 안전 위협으로 대두.
 - 핵심 목적 : 딥러닝 모델의 **결정 경계** (Decision Boundary) 취약성 이해, **모델 강건성** (Robustness) 평가 및 적대적 방어 기법을 통한 고신뢰 AI 구축.
 
 ## Ⅱ. 적대적 공격(Adversarial Attack)의 핵심 아키텍처 및 동작 메커니즘
@@ -64,11 +64,11 @@ extra:
   - 한계점 : 타깃 모델의 내부 구조를 몰라도 공격자가 자체 구축한 오픈소스 모델에서 생성한 적대적 예제가 다른 상용 AI 모델에서도 동일하게 오작동하는 취약성.
   - 해결 방안 : 입력 데이터에 무작위 리사이징, 패딩, JPEG 압축 등의 **랜덤 변환** (Random Transformation)을 적용하여 섭동의 구조적 전이성을 파괴.
 - 물리적 세계(Physical World)에서의 **패치 공격** (Adversarial Patch) :
-  - 한계점 : 정지 표지판에 특수 스티커를 부착하거나 티셔츠에 적대적 패턴을 인쇄하여 CCTV 및 자율주행 라이다/비전 센서를 물리적으로 기만.
-  - 해결 방안 : 카메라 입력 외에 라이다(LiDAR), 레이다(Radar), 초음파 센서를 융합하는 **다중 모달** (Multi-modal) 교차 검증 시스템 구현.
+  - 한계점 : 정지 표지판에 특수 스티커를 부착하거나 티셔츠에 적대적 패턴을 인쇄하여 CCTV(Closed-Circuit Television) 및 자율주행 라이다/비전 센서를 물리적으로 기만.
+  - 해결 방안 : 카메라 입력 외에 라이다(LiDAR, Light Detection and Ranging), 레이다(Radar), 초음파 센서를 융합하는 **다중 모달** (Multi-modal) 교차 검증 시스템 구현.
 
 ## Ⅴ. 적대적 공격(Adversarial Attack) 적용 및 발전을 위한 기술사적 제언
 
-- CI/CD 파이프라인 내 **적대적 강건성 자동 평가** (Robustness Testing) 내재화 : 모델 배포 전 Foolbox, **ART** (Adversarial Robustness Toolbox)를 통해 공격 저항성 점수를 측정하고 배포 게이트 설정.
+- CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내 **적대적 강건성 자동 평가** (Robustness Testing) 내재화 : 모델 배포 전 Foolbox, **ART** (Adversarial Robustness Toolbox)를 통해 공격 저항성 점수를 측정하고 배포 게이트 설정.
 - 적대적 훈련의 표준 학습 파이프라인 의무화 : 미션 크리티컬 도메인의 신경망 학습 시 PGD 적대적 샘플을 훈련 배치에 상당 비율 혼합 학습하도록 아키텍처 개선.
 - **입력 가드레일** (Input Guardrails) 레이어 전면 배치 : 모델 추론 직전에 비정상 고주파 노이즈를 필터링하는 **오토인코더** (Autoencoder) 기반 디노이징 전처리 모듈 구축.

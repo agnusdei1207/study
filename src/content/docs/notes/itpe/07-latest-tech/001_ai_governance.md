@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. AI 거버넌스(AI Governance)의 개요
 
-- 개념 : 조직이 AI 시스템의 기획, 데이터 수집, 모델 개발, 배포, 폐기에 이르는 **전 생애주기** 동안 윤리성, 투명성, 신뢰성, 안전성을 보장하고 법적·사회적 책무를 다하도록 의사결정 체계와 통제 절차를 구조화한 **전사적 관리 프레임워크** 임.
-- 배경 및 필요성 : 생성형 AI 확산에 따른 환각, 편향성, 저작권 침해, 딥페이크 악용 등 통제 불가능한 리스크 급증과 EU AI Act, NIST AI RMF, ISO/IEC 42001 등 글로벌 규제 준수 의무화에 대응하기 위해 필수적임.
+- 개념 : 조직이 AI(Artificial Intelligence) 시스템의 기획, 데이터 수집, 모델 개발, 배포, 폐기에 이르는 **전 생애주기** 동안 윤리성, 투명성, 신뢰성, 안전성을 보장하고 법적·사회적 책무를 다하도록 의사결정 체계와 통제 절차를 구조화한 **전사적 관리 프레임워크** 임.
+- 배경 및 필요성 : 생성형 AI 확산에 따른 환각, 편향성, 저작권 침해, 딥페이크 악용 등 통제 불가능한 리스크 급증과 EU(European Union) AI Act, NIST(National Institute of Standards and Technology) AI RMF(Risk Management Framework), ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 42001 등 글로벌 규제 준수 의무화에 대응하기 위해 필수적임.
 - 핵심 목적 : 비즈니스 가치 창출과 AI 리스크 통제의 최적 균형 달성, **섀도우 AI** 차단, 전사 **AI 인벤토리** 가시성 확보 및 사회적 수용성 제고.
 
 ## Ⅱ. AI 거버넌스(AI Governance)의 핵심 아키텍처 및 동작 메커니즘
 
-AI 거버넌스는 조직 거버넌스(R&R), 정책 및 윤리 가이드라인, 전주기 기술 통제(TEVV), 지속적 모니터링 및 감사가 상호 연동되는 **Closed-Loop** 체계로 동작함.
+AI 거버넌스는 조직 거버넌스(R&R, Roles and Responsibilities), 정책 및 윤리 가이드라인, 전주기 기술 통제(TEVV), 지속적 모니터링 및 감사가 상호 연동되는 **Closed-Loop** 체계로 동작함.
 
 ```text
 [ AI 거버넌스 전사 통합 아키텍처 ]
@@ -45,27 +45,27 @@ AI 거버넌스는 조직 거버넌스(R&R), 정책 및 윤리 가이드라인, 
 +-----------------------------------------------------------------+
 ```
 
-- **조직 및 거버넌스 체계** : 경영진, 법무, CISO, AI 엔지니어로 구성된 AI 거버넌스 위원회를 통해 정책 승인 및 고위험 AI 과제 사전 심의.
-- **ISO/IEC 42001(AIMS)** : AI 관리 시스템 국제 표준에 기반하여 위험 식별, 영향도 평가, 통제 목표 설정 및 지속적 사후 감사 수행.
+- **조직 및 거버넌스 체계** : 경영진, 법무, CISO(Chief Information Security Officer), AI 엔지니어로 구성된 AI 거버넌스 위원회를 통해 정책 승인 및 고위험 AI 과제 사전 심의.
+- **ISO/IEC 42001(AIMS, Artificial Intelligence Management System)** : AI 관리 시스템 국제 표준에 기반하여 위험 식별, 영향도 평가, 통제 목표 설정 및 지속적 사후 감사 수행.
 - **TEVV(Test, Evaluation, Verification, Validation)** : 데이터 라벨링 검증부터 모델의 공정성, 강건성, 안전성을 정량 평가하는 단계별 품질 게이트웨이.
 - **입출력 가드레일(Guardrails)** : 모델 추론 시점에 민감정보 유출, 프롬프트 인젝션, 유해 콘텐츠 생성을 실시간으로 가로채는 인라인 통제.
 
 ## Ⅲ. AI 거버넌스(AI Governance)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | 전통적 IT 거버넌스 (COBIT) | 데이터 거버넌스 (DAMA-DMBOK) | AI 거버넌스 (ISO 42001 / NIST RMF) |
+| 비교 항목 | 전통적 IT(Information Technology) 거버넌스 (COBIT, Control Objectives for Information and Related Technology) | 데이터 거버넌스 (DAMA(Data Management Association)-DMBOK(Data Management Body of Knowledge)) | AI 거버넌스 (ISO 42001 / NIST RMF) |
 | --- | --- | --- | --- |
 | **통제 대상** | IT 인프라, 비즈니스 정보시스템 | 데이터 라이프사이클, 정형 데이터 품질 | 비결정론적 AI 모델, 데이터셋, 에이전트 행동 |
 | **핵심 리스크** | 가용성 단절, 보안 침해, 예산 낭비 | 데이터 중복, 정합성 결여, 개인정보 유출 | 모델 환각, 알고리즘 편향, 책임 귀속 모호, 안전성 결여 |
-| **품질 평가** | SLA 달성률, 가동 시간, RTO/RPO | 완전성, 유효성, 정확성, 적시성 | 공정성, 설명가능성(XAI), 강건성, 윤리적 부합성 |
-| **규제 기준** | ISMS, SOX, 내부회계관리제도 | 개인정보보호법, GDPR, MyData | EU AI Act, NIST AI RMF, ISO/IEC 42001 |
-| **운영 방식** | 정적 정책 및 연례/정기 IT 감사 | 카탈로그 기반 변경 관리 및 DQM | ModelOps 실시간 텔레메트리 및 동적 가드레일 |
+| **품질 평가** | SLA(Service Level Agreement) 달성률, 가동 시간, RTO(Recovery Time Objective)/RPO(Recovery Point Objective) | 완전성, 유효성, 정확성, 적시성 | 공정성, 설명가능성(XAI, Explainable Artificial Intelligence), 강건성, 윤리적 부합성 |
+| **규제 기준** | ISMS(Information Security Management System), SOX(Sarbanes-Oxley Act), 내부회계관리제도 | 개인정보보호법, GDPR(General Data Protection Regulation), MyData | EU AI Act, NIST AI RMF, ISO/IEC 42001 |
+| **운영 방식** | 정적 정책 및 연례/정기 IT 감사 | 카탈로그 기반 변경 관리 및 DQM(Data Quality Management) | ModelOps 실시간 텔레메트리 및 동적 가드레일 |
 
 - AI 거버넌스는 전통적 IT·데이터 거버넌스를 포괄하면서도, 확률론적 모델의 불확실성과 사회적 영향력을 통제하기 위한 동적 엔지니어링 메커니즘을 내재화해야 함.
 
 ## Ⅳ. AI 거버넌스(AI Governance)의 주요 한계점 및 해결 방안
 
-- 현업 부서의 무인가 생성형 AI 및 외부 API 활용에 따른 섀도우 AI(Shadow AI) 만연 :
-  - 한계점 : 개발자와 현업이 보안 승인 없이 외부 퍼블릭 LLM을 업무에 사용하여 기업 기밀 코드 및 개인정보가 외부로 누출되는 통제 사각지대 발생.
+- 현업 부서의 무인가 생성형 AI 및 외부 API(Application Programming Interface) 활용에 따른 섀도우 AI(Shadow AI) 만연 :
+  - 한계점 : 개발자와 현업이 보안 승인 없이 외부 퍼블릭 LLM(Large Language Model)을 업무에 사용하여 기업 기밀 코드 및 개인정보가 외부로 누출되는 통제 사각지대 발생.
   - 해결 방안 : **CASB** (Cloud Access Security Broker) 및 전사 프록시 기반 LLM 트래픽 탐지, 사내 전용 프라이빗 LLM 포털 제공 및 '전사 AI 자산 등록부' 의무화.
 - 블랙박스 인공신경망의 비결정론적 출력으로 인한 사고 발생 시 법적 책임 소재 불명확 :
   - 한계점 : 환각이나 편향적 의사결정으로 손해가 발생했을 때 알고리즘 개발자, 데이터 제공자, 프롬프트 운영자 간 책임 분계선 모호.
@@ -77,5 +77,5 @@ AI 거버넌스는 조직 거버넌스(R&R), 정책 및 윤리 가이드라인, 
 ## Ⅴ. AI 거버넌스(AI Governance) 적용 및 발전을 위한 기술사적 제언
 
 - 전사 AI 관리시스템(ISO/IEC 42001) 인증 기반의 제도적 내재화 : 선언적 윤리 강령에 그치지 않고, 최고경영진 직속 위원회와 실무 R&R을 명문화하여 조직 전반의 실행력을 담보해야 함.
-- ModelOps 및 CI/CD 파이프라인 내 '거버넌스 게이트' 자동화 : 인간의 수작업 검토 한계를 극복하기 위해 데이터 무결성 검증, 편향도 측정, 취약점 스캔이 자동 통과되어야만 배포되는 DevSecOps형 통제 구축 필요.
+- ModelOps 및 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내 '거버넌스 게이트' 자동화 : 인간의 수작업 검토 한계를 극복하기 위해 데이터 무결성 검증, 편향도 측정, 취약점 스캔이 자동 통과되어야만 배포되는 DevSecOps형 통제 구축 필요.
 - 지속적 **AI 레드팀** (AI Red Teaming) 편성과 실전 모의 침투 정례화 : 탈옥(Jailbreak), 간접 프롬프트 주입 등 신종 적대적 공격을 사전에 탐지·차단하기 위한 상시 모의 공격 및 가드레일 업데이트 체계가 수립되어야 함.

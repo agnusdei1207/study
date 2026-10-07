@@ -59,7 +59,7 @@ extra:
 - 표본 크기 불균형(Unbalanced Sample Size)에 따른 통계적 검정력 저하 :
   - 한계점 : 실험군(A)과 대조군(B)의 트래픽 배분 비율이 극단적(예: 99:1)일 경우 전체 표본 수가 많더라도 실질적 유효 표본 크기가 작아져 2종 오류 발생.
   - 해결 방안 : **검정력 분석** (Power Analysis: G*Power)을 통한 사전 최소 표본 크기 및 최적 할당 비율 도출, 조기 종료 방지를 위한 **순차 검정** (Sequential Testing) 프레임워크 적용.
-- **네트워크 효과** (Network Effect) 및 사용자 간 간섭(**SUTVA** 위반) :
+- **네트워크 효과** (Network Effect) 및 사용자 간 간섭(**SUTVA, Stable Unit Treatment Value Assumption** 위반) :
   - 한계점 : 소셜 네트워크나 플랫폼 비즈니스에서 A그룹의 행동이 B그룹에 영향을 미쳐 개체 간 처리 간섭 금지(SUTVA) 가정이 무너져 A/B 결과 왜곡.
   - 해결 방안 : 사용자 단위 무작위화 대신 **클러스터 단위 무작위화** (Cluster Randomization: 지역 단위, 네트워크 서브그래프 단위 분할) 적용.
 

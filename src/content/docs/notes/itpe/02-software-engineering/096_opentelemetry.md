@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. OpenTelemetry의 개요
 
-- 개념 : **OpenTelemetry** 란 클라우드 네이티브 컴퓨팅 재단(CNCF)에서 OpenTracing과 OpenCensus 프로젝트를 통합하여 표준화한 벤더 중립적 오픈소스 **원격 측정** (Telemetry) 프레임워크로, 분산 클라우드 환경에서 **트레이스** (Traces), **메트릭** (Metrics), **로그** (Logs)를 생성, 수집, 처리, 내보내기(Export)하기 위한 표준 API, SDK 및 도구 체계.
+- 개념 : **OpenTelemetry** 란 클라우드 네이티브 컴퓨팅 재단(CNCF)에서 OpenTracing과 OpenCensus 프로젝트를 통합하여 표준화한 벤더 중립적 오픈소스 **원격 측정** (Telemetry) 프레임워크로, 분산 클라우드 환경에서 **트레이스** (Traces), **메트릭** (Metrics), **로그** (Logs)를 생성, 수집, 처리, 내보내기(Export)하기 위한 표준 API(Application Programming Interface), SDK(Software Development Kit) 및 도구 체계.
 - 배경 및 필요성 : 복잡한 마이크로서비스 및 분산 서버 환경에서 상용 APM(Datadog, New Relic) 도구마다 서로 다른 전용 에이전트와 수집 포맷을 사용하여 발생하는 **벤더 락인**과 유지보수 오버헤드를 극복하기 위해 제정.
 - 관측성의 3대 기둥 (MELT) : **메트릭** (Metrics), **이벤트** (Events), **로그** (Logs), **트레이스** (Traces)
 
@@ -42,20 +42,20 @@ extra:
 
 - **API와 SDK의 분리** : 비즈니스 코드는 벤더 중립적인 OTel API만을 호출하여 계측(Instrumentation)하고, 실제 데이터 전송 구현은 런타임에 주입되는 OTel SDK가 담당.
 - **OTel Collector** (수집기) : 데이터를 수신(Receiver)하여, 민감정보 마스킹 및 배치 처리(Processor)를 거친 후, 원하는 모니터링 백엔드로 전송(Exporter)하는 프록시 서비스.
-- **컨텍스트 전파** (Context Propagation) : W3C Trace Context 표준 HTTP 헤더(traceparent)를 서비스 간에 전달하여 단일 비즈니스 트랜잭션의 분산 호출 경로 추적.
+- **컨텍스트 전파** (Context Propagation) : W3C(World Wide Web Consortium) Trace Context 표준 HTTP(Hypertext Transfer Protocol) 헤더(traceparent)를 서비스 간에 전달하여 단일 비즈니스 트랜잭션의 분산 호출 경로 추적.
 
 ## Ⅲ. 관측성 3대 핵심 데이터(Traces, Metrics, Logs) 비교
 
 | 데이터 유형 | 정의 및 특징 | 주 검증 목적 및 장점 | 대표 시각화 도구 |
 |---|---|---|---|
 | 트레이스 (Traces) | 요청이 여러 서비스를 거쳐 처리되는 엔드투엔드 분산 호출 경로 | 병목 서비스 식별, 네트워크 지연 원인 파악, 서비스 간 의존성 파악 | Jaeger, Grafana Tempo, Zipkin |
-| 메트릭 (Metrics) | 시스템의 상태를 시간 경과에 따라 수치로 집계한 시계열 데이터 | 시스템 이상 징후 알람, CPU/메모리/TPS 추세 분석 | Prometheus, Datadog, InfluxDB |
+| 메트릭 (Metrics) | 시스템의 상태를 시간 경과에 따라 수치로 집계한 시계열 데이터 | 시스템 이상 징후 알람, CPU(Central Processing Unit)/메모리/TPS(Transactions Per Second) 추세 분석 | Prometheus, Datadog, InfluxDB |
 | 로그 (Logs) | 특정 시점에 발생한 사건에 대한 텍스트 기반의 상세 기록 | 장애 발생 시의 근본 원인(Root Cause) 상세 디버깅 | Elasticsearch, Grafana Loki, Fluentd |
 
 ## Ⅳ. OpenTelemetry의 주요 한계점 및 해결 방안
 
 - 원격 측정 데이터 대량 수집에 따른 네트워크·스토리지 비용 폭증 :
-  - 한계점 : 마이크로서비스 간 모든 트레이스, 메트릭, 로그를 전수 수집할 경우 네트워크 대역폭 포화 및 백엔드(APM, 시계열 DB) 스토리지 비용 기하급수적 증가.
+  - 한계점 : 마이크로서비스 간 모든 트레이스, 메트릭, 로그를 전수 수집할 경우 네트워크 대역폭 포화 및 백엔드(APM, 시계열 DB(Database)) 스토리지 비용 기하급수적 증가.
   - 해결 방안 : **테일 기반 샘플링** (Tail-based Sampling) 도입으로 에러 및 고지연 트레이스 선별 수집, OTel Collector 필터링 프로세서를 통한 노이즈 데이터 사전 정제.
 - OTel Collector 구성 복잡도 및 장애 시 텔레메트리 유실 :
   - 한계점 : 수집기(Collector)의 리시버, 프로세서, 익스포터 파이프라인 설정이 복잡하며, 트래픽 스파이크 시 컬렉터 메모리 고갈로 관측 데이터 유실 발생.

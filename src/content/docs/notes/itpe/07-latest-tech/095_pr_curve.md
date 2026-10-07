@@ -15,12 +15,12 @@ extra:
 ## Ⅰ. PR(Precision Recall) 곡선의 개요
 
 - 개념 : 이진 분류 알고리즘에서 결정 임계값의 연속적 변화에 따라 변화하는 **정밀도** (Precision)와 **재현율** (Recall)의 상충 관계를 2차원 평면에 시각화한 평가 모델
-- 배경 및 필요성 : 극심한 **클래스 불균형** (Class Imbalance) 환경에서 ROC 곡선의 **위양성 착시** (False Positive Illusion)를 배제할 수 있으나 유병률 변화에 민감하므로 비즈니스 오탐·미탐 비용 함수를 결합한 **최적 운영 임계값** 튜닝 필수
+- 배경 및 필요성 : 극심한 **클래스 불균형** (Class Imbalance) 환경에서 ROC(Receiver Operating Characteristic) 곡선의 **위양성 착시** (False Positive Illusion)를 배제할 수 있으나 유병률 변화에 민감하므로 비즈니스 오탐·미탐 비용 함수를 결합한 **최적 운영 임계값** 튜닝 필수
 - 핵심 목적 : 양성 클래스가 극히 희소한 불균형 데이터 환경에서 음성 클래스 과대평가 왜곡 없이 양성 탐지력과 오탐 부담을 정밀 측정
 
 ## Ⅱ. PR(Precision Recall) 곡선의 핵심 아키텍처 및 동작 메커니즘
 
-PR은 모델의 예측 확률값을 내림차순 정렬한 뒤 임계값을 순차 변경하며 **오차행렬** (Confusion Matrix)의 TP·FP·FN을 산출하여 재현율 축(X축) 대비 정밀도 축(Y축)에 매핑 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+PR(Precision-Recall)은 모델의 예측 확률값을 내림차순 정렬한 뒤 임계값을 순차 변경하며 **오차행렬** (Confusion Matrix)의 TP(True Positive)·FP(False Positive)·FN(False Negative)을 산출하여 재현율 축(X축) 대비 정밀도 축(Y축)에 매핑 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -47,7 +47,7 @@ PR은 모델의 예측 확률값을 내림차순 정렬한 뒤 임계값을 순�
  │                                                                      │
  │   Precision                                                          │
  │   1.0 ┌─────────\                                                    │
- │       │          \─── 우수 모델 (High AUPRC)                         │
+ │       │          \─── 우수 모델 (High AUPRC, Area Under the Precision-Recall Curve) │
  │       │              \                                               │
  │       │               \──────┐                                       │
  │       │                      \                                       │
@@ -65,11 +65,11 @@ PR은 모델의 예측 확률값을 내림차순 정렬한 뒤 임계값을 순�
 
 | 비교 항목 | ROC (Receiver Operating Characteristic) | PR (Precision-Recall) 곡선 (본 토픽) |
 |---|---|---|
-| **축 구성** | X축: FPR ($FP / (TN+FP)$), Y축: TPR ($TP / (TP+FN)$) | X축: Recall ($TP / (TP+FN)$), Y축: Precision ($TP / (TP+FP)$) |
-| **TN(참 음성) 반영 여부** | 반영됨 (FPR의 분모에 TN 포함) | 반영 안 됨 (혼동행렬에서 TN 완전 배제) |
+| **축 구성** | X축: FPR(False Positive Rate) ($FP / (TN+FP)$), Y축: TPR(True Positive Rate) ($TP / (TP+FN)$) | X축: Recall ($TP / (TP+FN)$), Y축: Precision ($TP / (TP+FP)$) |
+| **TN(True Negative, 참 음성) 반영 여부** | 반영됨 (FPR의 분모에 TN 포함) | 반영 안 됨 (혼동행렬에서 TN 완전 배제) |
 | **클래스 불균형 민감도** | 둔감함 (음성 다수 시 FP가 커져도 FPR 왜곡 미미) | 극도로 민감함 (FP 증가 시 정밀도 즉각 폭락) |
 | **무작위 분류 기저선** | 대각선 (AUC = 0.5 고정) | 데이터셋의 양성 비율 수평선 ($P / (P+N)$) |
-| **주요 적용 도메인** | 클래스 비율이 5:5에 근접한 일반 분류 문제 | 이상 탐지, 금융 사기(FDS), 희귀 질환 진단 (불균형 극심) |
+| **주요 적용 도메인** | 클래스 비율이 5:5에 근접한 일반 분류 문제 | 이상 탐지, 금융 사기(FDS, Fraud Detection System), 희귀 질환 진단 (불균형 극심) |
 
 - PR은 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
 

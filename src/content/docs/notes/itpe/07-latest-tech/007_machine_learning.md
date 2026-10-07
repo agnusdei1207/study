@@ -45,19 +45,19 @@ extra:
 +-----------------------------------------------------------------+
 ```
 
-- **특징 공학(Feature Engineering)** : 원시 데이터로부터 유의미한 수치적 특성을 추출, 결측치 보정, 원-핫 인코딩, 차원 축소(PCA)를 통해 모델 입력 벡터화.
+- **특징 공학(Feature Engineering)** : 원시 데이터로부터 유의미한 수치적 특성을 추출, 결측치 보정, 원-핫 인코딩, 차원 축소(PCA, Principal Component Analysis)를 통해 모델 입력 벡터화.
 - **가중치 최적화(Optimization)** : 경사 하강법(Gradient Descent) 계열 알고리즘(Adam, SGD)을 사용하여 예측값과 참값 간의 손실 함수(Loss Function)를 최소화하는 방향으로 파라미터 갱신.
 - **일반화 성능 검증** : 훈련, 검증, 테스트 세트의 엄격한 격리와 K-Fold 교차 검증을 통해 편향-분산 트레이드오프 조율.
-- **MLOps 기반 지속적 운영** : 모델 레지스트리, 피처 스토어, 실시간 성능 모니터링을 결합하여 개념 드리프트 발생 시 지속적 재학습(CT) 트리거.
+- **MLOps(Machine Learning Operations) 기반 지속적 운영** : 모델 레지스트리, 피처 스토어, 실시간 성능 모니터링을 결합하여 개념 드리프트 발생 시 지속적 재학습(CT, Continuous Training) 트리거.
 
 ## Ⅲ. 기계학습(Machine Learning)의 세부 구성 요소 및 비교 분석
 
 | 학습 패러다임 | 핵심 원리 및 데이터 형태 | 대표 알고리즘 | 주 활용 도메인 |
 | --- | --- | --- | --- |
-| **지도학습 (Supervised Learning)** | 레이블(정답)이 포함된 데이터를 학습하여 입력-출력 간 매핑 함수 도출 | 선형회귀, 로지스틱회귀, SVM, XGBoost, Random Forest, CNN | 주가 예측, 스팸 필터링, 질병 진단, 객체 인식 |
-| **비지도학습 (Unsupervised Learning)** | 정답 없이 입력 데이터 자체의 내재된 구조, 패턴 및 유사도를 스스로 군집화 | K-Means, DBSCAN, PCA, Autoencoder, t-SNE | 고객 세분화, 이상 거래 탐지(FDS), 차원 축소 |
-| **강화학습 (Reinforcement Learning)** | 환경(Environment)과 상호작용하며 보상(Reward)을 최대화하는 정책(Policy) 학습 | Q-Learning, DQN, PPO, SAC, Actor-Critic | 자율주행, 로봇 제어, 게임 AI(알파고), LLM RLHF |
-| **자기지도학습 (Self-Supervised)** | 데이터 자체에서 의사 라벨(Pseudo Label)을 생성하여 사전 학습 | Masked Autoencoder, BERT, SimCLR | 대규모 파운데이션 모델 사전 학습 |
+| **지도학습 (Supervised Learning)** | 레이블(정답)이 포함된 데이터를 학습하여 입력-출력 간 매핑 함수 도출 | 선형회귀, 로지스틱회귀, SVM(Support Vector Machine), XGBoost, Random Forest, CNN(Convolutional Neural Network) | 주가 예측, 스팸 필터링, 질병 진단, 객체 인식 |
+| **비지도학습 (Unsupervised Learning)** | 정답 없이 입력 데이터 자체의 내재된 구조, 패턴 및 유사도를 스스로 군집화 | K-Means, DBSCAN, PCA, Autoencoder, t-SNE(t-distributed Stochastic Neighbor Embedding) | 고객 세분화, 이상 거래 탐지(FDS, Fraud Detection System), 차원 축소 |
+| **강화학습 (Reinforcement Learning)** | 환경(Environment)과 상호작용하며 보상(Reward)을 최대화하는 정책(Policy) 학습 | Q-Learning, DQN(Deep Q-Network), PPO(Proximal Policy Optimization), SAC(Soft Actor-Critic), Actor-Critic | 자율주행, 로봇 제어, 게임 AI(Artificial Intelligence, 알파고), LLM(Large Language Model) RLHF(Reinforcement Learning from Human Feedback) |
+| **자기지도학습 (Self-Supervised)** | 데이터 자체에서 의사 라벨(Pseudo Label)을 생성하여 사전 학습 | Masked Autoencoder, BERT(Bidirectional Encoder Representations from Transformers), SimCLR | 대규모 파운데이션 모델 사전 학습 |
 
 - 산업 현장에서는 단일 패러다임에 국한되지 않고, 대규모 비지도/자기지도학습으로 표현을 학습한 후 소량의 지도학습 데이터로 미세조정(Fine-Tuning)하는 **복합 파이프라인** 이 주류임.
 
@@ -65,7 +65,7 @@ extra:
 
 - 블랙박스(Black-box) 특성으로 인한 신뢰성 결여 및 규제 컴플라이언스 한계 :
   - 한계점 : 딥러닝과 복잡한 앙상블 모델의 내부 추론 과정을 인간이 해석할 수 없어 금융, 의료 등 고위험 도메인 도입 거부.
-  - 해결 방안 : **XAI** (설명가능 AI) 기법인 SHAP, LIME 및 의사결정 트리 대리 모델(Surrogate Model)을 구축하여 피처별 기여도 정량 설명.
+  - 해결 방안 : **XAI**(Explainable Artificial Intelligence) (설명가능 AI) 기법인 SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations) 및 의사결정 트리 대리 모델(Surrogate Model)을 구축하여 피처별 기여도 정량 설명.
 - 시간 경과에 따른 데이터 드리프트(Data Drift) 및 개념 드리프트(Concept Drift) :
   - 한계점 : 운영 환경의 트렌드 변화(사용자 행동 변화, 거시 경제 충격)로 인해 배포 초기 우수했던 모델 성능이 점진적으로 급락.
   - 해결 방안 : 입력 데이터 분포의 통계적 거리(KL-Divergence, PSI)를 실시간 추적하고, 성능 저하 감지 시 **자동 재학습 파이프라인** (CT) 가동.
@@ -76,5 +76,5 @@ extra:
 ## Ⅴ. 기계학습(Machine Learning) 적용 및 발전을 위한 기술사적 제언
 
 - 모델 중심(Model-centric)에서 데이터 중심(Data-centric) AI로의 전환 : 코드나 알고리즘 튜닝보다 데이터의 일관성, 라벨링 노이즈 제거, 합성 데이터 증강을 체계화하는 엔지니어링 집중 필요.
-- MLOps 성숙도 모델(Level 0~2) 기반의 전사 플랫폼 내재화 : 수작업 스크립트 실행을 탈피하고 피처 스토어, CI/CD/CT 자동화, 모델 레지스트리를 표준화한 전사 MLOps 인프라 구축.
-- 비즈니스 가치(ROI) 직결형 메트릭 정의 : 단순 F1-Score, RMSE 등 엔지니어링 지표를 넘어 비용 절감액, 전환율, 사기 방지 금액 등 비즈니스 KPI와 직결된 손실 함수 설계.
+- MLOps 성숙도 모델(Level 0~2) 기반의 전사 플랫폼 내재화 : 수작업 스크립트 실행을 탈피하고 피처 스토어, CI(Continuous Integration)/CD(Continuous Delivery)/CT 자동화, 모델 레지스트리를 표준화한 전사 MLOps 인프라 구축.
+- 비즈니스 가치(ROI, Return on Investment) 직결형 메트릭 정의 : 단순 F1-Score, RMSE(Root Mean Squared Error) 등 엔지니어링 지표를 넘어 비용 절감액, 전환율, 사기 방지 금액 등 비즈니스 KPI(Key Performance Indicator)와 직결된 손실 함수 설계.

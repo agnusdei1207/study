@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 웹 성능 최적화의 개요
 
-- 개념 : **웹 성능 최적화** 란 웹 브라우저가 사용자의 요청에 따라 웹 페이지의 HTML, CSS, JavaScript, 이미지 등 리소스를 네트워크를 통해 다운로드하고, 파싱 및 렌더링 과정을 거쳐 사용자 화면에 완전히 표시될 때까지의 전 구간 지연시간을 최소화하는 프론트엔드 및 네트워크 엔지니어링 기법.
-- 배경 및 필요성 : 페이지 로딩이 1초 지연될 때마다 사용자 전환율 $7\%$ 감소, 이탈률 급증 등 비즈니스 매출과 직결되며, 구글 검색엔진 최적화(SEO)의 필수 랭킹 요소로 작용.
-- 핵심 표준 : 구글 Core Web Vitals (LCP, INP, CLS).
+- 개념 : **웹 성능 최적화** 란 웹 브라우저가 사용자의 요청에 따라 웹 페이지의 HTML(HyperText Markup Language), CSS(Cascading Style Sheets), JavaScript, 이미지 등 리소스를 네트워크를 통해 다운로드하고, 파싱 및 렌더링 과정을 거쳐 사용자 화면에 완전히 표시될 때까지의 전 구간 지연시간을 최소화하는 프론트엔드 및 네트워크 엔지니어링 기법.
+- 배경 및 필요성 : 페이지 로딩이 1초 지연될 때마다 사용자 전환율 $7\%$ 감소, 이탈률 급증 등 비즈니스 매출과 직결되며, 구글 검색엔진 최적화(SEO, Search Engine Optimization)의 필수 랭킹 요소로 작용.
+- 핵심 표준 : 구글 Core Web Vitals (LCP, Largest Contentful Paint; INP, Interaction to Next Paint; CLS, Cumulative Layout Shift).
 
 ## Ⅱ. 중요 렌더링 경로(Critical Rendering Path) 및 Core Web Vitals
 
@@ -44,22 +44,22 @@ extra:
 
 | 최적화 계층 | 핵심 적용 기술 및 기법 | 구체적 효과 |
 |---|---|---|
-| **네트워크 계층** | CDN 엣지 캐싱, HTTP/2 및 HTTP/3(QUIC) 채택, DNS 사전 조회(`dns-prefetch`) | RTT 지연 단축, TCP 핸드셰이크 최소화 |
+| **네트워크 계층** | CDN(Content Delivery Network) 엣지 캐싱, HTTP(Hypertext Transfer Protocol)/2 및 HTTP/3(QUIC) 채택, DNS(Domain Name System) 사전 조회(`dns-prefetch`) | RTT(Round-Trip Time) 지연 단축, TCP(Transmission Control Protocol) 핸드셰이크 최소화 |
 | **자원 크기 계층** | Brotli/Gzip 텍스트 압축, WebP/AVIF 차세대 이미지 포맷, 트리쉐이킹(Tree Shaking) | 전송 페이로드 용량 대폭 절감 |
-| **브라우저 파싱 계층** | JS 비동기 로딩(`defer` / `async`), CSS 상단 배치, 중요 CSS 인라인화(Critical CSS) | 렌더링 차단 리소스(Render-Blocking) 제거 |
-| **렌더링 실행 계층** | CSS `content-visibility: auto`, 레이아웃 스레싱 방지, GPU 가속(`transform`, `opacity`) | 리플로우(Reflow) 억제, 60fps 렌더링 유지 |
+| **브라우저 파싱 계층** | JS(JavaScript) 비동기 로딩(`defer` / `async`), CSS 상단 배치, 중요 CSS 인라인화(Critical CSS) | 렌더링 차단 리소스(Render-Blocking) 제거 |
+| **렌더링 실행 계층** | CSS `content-visibility: auto`, 레이아웃 스레싱 방지, GPU(Graphics Processing Unit) 가속(`transform`, `opacity`) | 리플로우(Reflow) 억제, 60fps 렌더링 유지 |
 
 ## Ⅳ. 웹 성능 최적화(WPO)의 주요 한계점 및 해결 방안
 
 - 최적화 기법 간의 상충 관계(Trade-Off) 제어 난제 :
   - 한계점 : 초기 번들 크기를 줄이기 위한 과도한 **코드 분할** (Code Splitting)은 네트워크 요청 수 급증을 유발하고, 프리패칭(Prefetching)은 불필요한 대역폭을 낭비하는 딜레마.
   - 해결 방안 : 사용자 여정(User Journey) 기반 중요 렌더링 경로(Critical Rendering Path) 우선순위화, 브라우저 유휴 시간(requestIdleCallback)을 활용한 점진적 리소스 로딩.
-- 지속적 배포(CI/CD) 환경에서의 **성능 회귀** (Performance Regression) 감지 한계 :
+- 지속적 배포(CI(Continuous Integration)/CD(Continuous Delivery)) 환경에서의 **성능 회귀** (Performance Regression) 감지 한계 :
   - 한계점 : 초기 릴리스 시 최적화를 완료했더라도, 일상적인 기능 추가와 무거운 서드파티 마케팅 스크립트 유입으로 코어 웹 바이탈 점수가 서서히 악화됨.
   - 해결 방안 : CI 빌드 파이프라인에 Lighthouse CI 및 성능 예산(Performance Budget) 자동화 게이트웨이를 구축하여 번들 크기나 지표 초과 시 빌드 자동 실패.
 - 클라이언트 렌더링(CSR) 환경의 복잡한 LCP 및 CLS 개선 한계 :
-  - 한계점 : 거대한 단일 페이지 애플리케이션(SPA)에서 데이터 패칭 지연으로 인한 LCP 늦어짐과 동적 광고/배너 삽입으로 인한 누적 레이아웃 이동(CLS) 빈발.
-  - 해결 방안 : **서버 사이드 렌더링** (SSR), **정적 사이트 생성** (SSG) 및 아일랜드 아키텍처(Astro) 하이브리드 도입, 스켈레톤 UI 및 명시적 이미지 종횡비(`aspect-ratio`) 속성 강제.
+  - 한계점 : 거대한 단일 페이지 애플리케이션(SPA, Single-Page Application)에서 데이터 패칭 지연으로 인한 LCP 늦어짐과 동적 광고/배너 삽입으로 인한 누적 레이아웃 이동(CLS) 빈발.
+  - 해결 방안 : **서버 사이드 렌더링** (SSR), **정적 사이트 생성** (SSG) 및 아일랜드 아키텍처(Astro) 하이브리드 도입, 스켈레톤 UI(User Interface) 및 명시적 이미지 종횡비(`aspect-ratio`) 속성 강제.
 
 ## Ⅴ. 지속 가능한 프론트엔드 성능 관리를 위한 기술사적 제언
 

@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. 생성형 AI(Generative AI)의 핵심 아키텍처 및 동작 메커니즘
 
-생성형 AI는 방대한 원시 데이터를 통한 자기지도 사전학습(Pre-training), 인간 의도에 맞추는 **정렬** (Alignment), 효율적인 추론 최적화의 3단계 파이프라인으로 구동됨.
+생성형 AI(Artificial Intelligence)는 방대한 원시 데이터를 통한 자기지도 사전학습(Pre-training), 인간 의도에 맞추는 **정렬** (Alignment), 효율적인 추론 최적화의 3단계 파이프라인으로 구동됨.
 
 ```text
 [ 생성형 AI 파운데이션 모델의 3단계 구축 파이프라인 ]
@@ -36,32 +36,32 @@ extra:
   +---------------------------------------------------------------+
   | 2. 인스트럭션 튜닝 및 인간 정렬 (Alignment & Post-training)   |
   |  - 지도 미세조정 (SFT, Supervised Fine-Tuning)                 |
-  |  - 인간 피드백 강화학습 (RLHF / PPO / DPO, Direct Preference) |
+  |  - 인간 피드백 강화학습 (RLHF, Reinforcement Learning from Human Feedback / PPO, Proximal Policy Optimization / DPO, Direct Preference Optimization) |
   |  - 유해성, 편향 차단 및 도움성(Helpfulness/Harmlessness) 확보 |
   +--------------------------------┬------------------------------+
                                    │ 정렬된 서빙 모델
                                    ▼
   +---------------------------------------------------------------+
   | 3. 추론 가속 및 서빙 계층 (Serving & Inference Acceleration)   |
-  |  - KV 캐시 최적화 (PagedAttention, vLLM)                       |
+  |  - KV(Key-Value) 캐시 최적화 (PagedAttention, vLLM)                       |
   |  - 모델 압축 및 경량화 (AWQ, GPTQ INT4/FP8 양자화)             |
   |  - 프레임워크 연계 (RAG, Tool Use, 자율 에이전틱 시스템)       |
   +---------------------------------------------------------------+
 ```
 
 - **자기지도 사전학습(Self-Supervised Learning)** : 레이블 없는 원시 텍스트에서 다음 토큰 확률 분포 `P(x_t | x_<t)`를 모델링하여 언어적 문맥과 상식적 지식 축적.
-- **인스트럭션 튜닝(SFT)** : 질문-답변 쌍 형태의 고품질 데이터셋을 통해 사용자 명령에 충실히 응답하는 대화형 모델로 변환.
-- **인간 선호도 정렬(RLHF & DPO)** : 리워드 모델(Reward Model) 또는 DPO 손실 함수를 적용하여 거짓 정보 생성, 혐오 표현, 위험 명령 거부 등 인간의 가치관과 안전 기준 준수.
-- **추론 서빙 최적화** : PagedAttention을 통한 메모리 단편화 방지 및 저정밀도 연산(FP8)을 통해 초당 생성 토큰 수(TPS) 극대화.
+- **인스트럭션 튜닝(SFT, Supervised Fine-Tuning)** : 질문-답변 쌍 형태의 고품질 데이터셋을 통해 사용자 명령에 충실히 응답하는 대화형 모델로 변환.
+- **인간 선호도 정렬(RLHF(Reinforcement Learning from Human Feedback) & DPO(Direct Preference Optimization))** : 리워드 모델(Reward Model) 또는 DPO 손실 함수를 적용하여 거짓 정보 생성, 혐오 표현, 위험 명령 거부 등 인간의 가치관과 안전 기준 준수.
+- **추론 서빙 최적화** : PagedAttention을 통한 메모리 단편화 방지 및 저정밀도 연산(FP8)을 통해 초당 생성 토큰 수(TPS, Tokens Per Second) 극대화.
 
 ## Ⅲ. 생성형 AI(Generative AI)의 세부 구성 요소 및 비교 분석
 
 | 생성 모델 패밀리 | 핵심 수학적 동작 원리 | 장점 및 특징 | 단점 및 병목 | 대표 모델 |
 | --- | --- | --- | --- | --- |
-| **오토리그레시브 트랜스포머 (Decoder-only)** | 이전 토큰들을 기반으로 다음 토큰의 조건부 확률을 순차 예측 | 긴 문맥 추론 탁월, 범용 언어/코드 생성 표준 | 토큰 순차 생성에 따른 추론 지연, KV 캐시 메모리 폭증 | GPT-4o, Llama 3, Claude 3.5 |
+| **오토리그레시브 트랜스포머 (Decoder-only)** | 이전 토큰들을 기반으로 다음 토큰의 조건부 확률을 순차 예측 | 긴 문맥 추론 탁월, 범용 언어/코드 생성 표준 | 토큰 순차 생성에 따른 추론 지연, KV(Key-Value) 캐시 메모리 폭증 | GPT(Generative Pre-trained Transformer)-4o, Llama 3, Claude 3.5 |
 | **확산 모델 (Diffusion Model)** | 데이터에 노이즈를 점진적으로 추가(Forward) 후 역으로 노이즈를 제거(Reverse) | 극도로 높은 이미지/비디오 디테일 및 다양성 | 다단계 역확산 스텝(20~50회) 필요로 추론 속도 느림 | Stable Diffusion, Midjourney, Sora |
-| **적대적 생성 신경망 (GAN)** | 생성자(Generator)와 판별자(Discriminator)의 제로섬 경쟁을 통한 적대적 학습 | 매우 빠른 1스텝 추론 속도, 선명한 이미지 생성 | 모드 붕괴(Mode Collapse), 학습 불안정성 극심 | StyleGAN, CycleGAN |
-| **변분 오토인코더 (VAE)** | 입력을 연속적인 잠재 공간(Latent Space) 확률 분포로 인코딩 후 디코딩 | 수학적으로 안정적인 잠재 공간 표현, 빠른 생성 | 복원된 결과물이 흐릿함(Blurry) 발생 한계 | VQ-VAE, Stable Diffusion VAE |
+| **적대적 생성 신경망 (GAN, Generative Adversarial Network)** | 생성자(Generator)와 판별자(Discriminator)의 제로섬 경쟁을 통한 적대적 학습 | 매우 빠른 1스텝 추론 속도, 선명한 이미지 생성 | 모드 붕괴(Mode Collapse), 학습 불안정성 극심 | StyleGAN, CycleGAN |
+| **변분 오토인코더 (VAE, Variational Autoencoder)** | 입력을 연속적인 잠재 공간(Latent Space) 확률 분포로 인코딩 후 디코딩 | 수학적으로 안정적인 잠재 공간 표현, 빠른 생성 | 복원된 결과물이 흐릿함(Blurry) 발생 한계 | VQ(Vector Quantization)-VAE, Stable Diffusion VAE |
 
 - 언어 및 복합 추론 분야는 트랜스포머가 사실상 표준으로 안착하였으며, 시각 미디어 생성 영역은 Diffusion 아키텍처에 트랜스포머 백본을 결합한 **DiT** (Diffusion Transformer) 구조로 수렴함.
 
@@ -69,16 +69,16 @@ extra:
 
 - 그럴듯한 허위 정보를 사실처럼 생성하는 환각(Hallucination) 현상 :
   - 한계점 : 모델은 진실 여부를 판단하는 것이 아니라 통계적 확률에 따라 가장 자연스러운 다음 토큰을 출력하므로 치명적 오정보 양산.
-  - 해결 방안 : **검색 증강 생성** (RAG) 결합, Chain-of-Thought(CoT) 단계별 추론 강제, 추론 검증 모델(LLM-as-a-Judge) 교차 검증.
+  - 해결 방안 : **검색 증강 생성** (RAG, Retrieval-Augmented Generation) 결합, Chain-of-Thought(CoT, Chain of Thought) 단계별 추론 강제, 추론 검증 모델(LLM-as-a-Judge) 교차 검증.
 - 대규모 모델 학습 및 추론 시 소요되는 천문학적 컴퓨팅 비용과 에너지 소모 :
-  - 한계점 : 수백억 개 이상의 파라미터 모델 서빙 시 GPU 인프라 비용(TCO) 폭증으로 상용 비즈니스 채산성 악화.
+  - 한계점 : 수백억 개 이상의 파라미터 모델 서빙 시 GPU(Graphics Processing Unit) 인프라 비용(TCO, Total Cost of Ownership) 폭증으로 상용 비즈니스 채산성 악화.
   - 해결 방안 : **MoE** (Mixture of Experts) 희소 활성화 기법, 지식 증류(Knowledge Distillation)를 통한 소형 언어 모델(sLM) 전환, INT4/FP8 양자화 서빙.
 - 학습 데이터 저작권 침해, 개인정보 유출 및 적대적 탈옥(Jailbreak) 취약성 :
   - 한계점 : 비인가 스크래핑 데이터로 인한 소송 리스크와 악의적 프롬프트 주입으로 모델의 안전 가이드라인 무력화.
-  - 해결 방안 : 데이터 수집 시 **C2PA** 메타데이터 및 클린 라이선스 검증, Llama Guard 등 입출력 가드레일 전면 배치 및 차분 프라이버시 적용.
+  - 해결 방안 : 데이터 수집 시 **C2PA**(Coalition for Content Provenance and Authenticity) 메타데이터 및 클린 라이선스 검증, Llama Guard 등 입출력 가드레일 전면 배치 및 차분 프라이버시 적용.
 
 ## Ⅴ. 생성형 AI(Generative AI) 적용 및 발전을 위한 기술사적 제언
 
-- 단일 거대 모델 만능주의 탈피 및 복합 아키텍처(Compound AI System) 채택 : 하나의 거대 LLM에 모든 것을 의존하지 않고, 특화 sLM, 검색 엔진, 외부 API 툴, 검증기가 유기적으로 협력하는 시스템 엔지니어링 지향.
+- 단일 거대 모델 만능주의 탈피 및 복합 아키텍처(Compound AI System) 채택 : 하나의 거대 LLM(Large Language Model)에 모든 것을 의존하지 않고, 특화 sLM, 검색 엔진, 외부 API(Application Programming Interface) 툴, 검증기가 유기적으로 협력하는 시스템 엔지니어링 지향.
 - 기업 맞춤형 AI 구축을 위한 프라이빗 RAG 및 도메인 파인튜닝 전략 수립 : 퍼블릭 API 호출에 따른 데이터 유출을 방지하기 위해 사내 온프레미스/프라이빗 클라우드 기반의 안전한 생성 파이프라인 확보.
-- ISO/IEC 42001(AI 관리시스템) 기반 생성형 AI 전주기 거버넌스 수립 : 기획, 학습, 서빙, 모니터링 단계별 위험 평가를 제도화하고 실시간 유해성 필터링 및 감사 로그 아카이빙 체계 구축.
+- ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 42001(AI 관리시스템) 기반 생성형 AI 전주기 거버넌스 수립 : 기획, 학습, 서빙, 모니터링 단계별 위험 평가를 제도화하고 실시간 유해성 필터링 및 감사 로그 아카이빙 체계 구축.

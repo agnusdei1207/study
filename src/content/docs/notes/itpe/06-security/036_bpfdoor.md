@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. BPFdoor(Berkeley Packet Filter door)의 개요
 
 - 개념 : 리눅스 및 유닉스 운영체제의 커널 패킷 필터링 기술인 **BPF** (Berkeley Packet Filter)와 **원시 소켓** (Raw Socket)을 악용하여, 시스템에 개방 포트(Listening Port)를 열지 않고 잠복하다가 사전에 정의된 특정 **매직 패킷** (Magic Packet)을 수신하면 원격 **리버스 셸** (Reverse Shell)을 활성화하는 고도화된 스텔스 백도어.
-- 배경 및 필요성 : 통신사, 금융망, 정부 공공 인프라를 표적으로 삼아 수년간 탐지되지 않고 은닉 잠복한 **고도 표적형** (APT) 악성코드로, 전통적인 포트 스캐닝 및 방화벽 통제를 완전히 무력화하며 등장.
+- 배경 및 필요성 : 통신사, 금융망, 정부 공공 인프라를 표적으로 삼아 수년간 탐지되지 않고 은닉 잠복한 **고도 표적형** (APT, Advanced Persistent Threat) 악성코드로, 전통적인 포트 스캐닝 및 방화벽 통제를 완전히 무력화하며 등장.
 - 핵심 목적 : 네트워크 경계 및 호스트 방화벽 우회 메커니즘 규명, 커널 시스템 콜 감시 체계 수립 및 eBPF 기반 스텔스 백도어 탐지 역량 확보.
 
 ## Ⅱ. BPFdoor(Berkeley Packet Filter door)의 핵심 아키텍처 및 동작 메커니즘
@@ -62,7 +62,7 @@ BPFdoor는 `AF_PACKET` 원시 소켓을 생성하고 BPF 바이트코드를 필�
 | 네트워크 감지 | 외부 포트 스캔(Nmap)으로 즉각 탐지 | 포트 스캔으로 감지 불가 | `setsockopt(SO_ATTACH_FILTER)` 시스템콜 추적 |
 | 방화벽 차단 | 호스트 인바운드 방화벽에 차단됨 | iptables 앞단에서 패킷 복제 | 경계 네트워크 NIDS에서 매직 패킷 시그니처 탐지 |
 | 프로세스 은닉 | 비정상 프로세스명 노출 빈번 | 정상 시스템 데몬으로 완벽 위장 | 실행 바이너리 경로(`/dev/shm`) 및 프로세스 환경 검사 |
-| 명령 제어 | C2와 지속적 TCP 세션 유지 (비콘) | 평시 무통신, 매직 패킷 수신 시만 동작 | 비정상 아웃바운드 리버스 셸 트래픽 모니터링 |
+| 명령 제어 | C2(Command and Control)와 지속적 TCP(Transmission Control Protocol) 세션 유지 (비콘) | 평시 무통신, 매직 패킷 수신 시만 동작 | 비정상 아웃바운드 리버스 셸 트래픽 모니터링 |
 
 - BPFdoor는 리눅스 커널의 네트워크 아키텍처 특성을 악용하여 전통적인 호스트 보안 진단 체계를 무력화한 지능형 악성코드로, 커널 이벤트 추적 없이는 탐지가 불가능함.
 
@@ -81,5 +81,5 @@ BPFdoor는 `AF_PACKET` 원시 소켓을 생성하고 BPF 바이트코드를 필�
 ## Ⅴ. BPFdoor(Berkeley Packet Filter door) 적용 및 발전을 위한 기술사적 제언
 
 - **eBPF** 기반 런타임 보안 도구(Tetragon, Falco) 도입 : BPFdoor가 호출하는 `socket(AF_PACKET)` 및 `setsockopt` 커널 시스템 콜 이벤트를 실시간 후킹하여 무인가 원시 소켓 생성 즉시 차단.
-- **아웃바운드 엄격 통제** (Egress Filtering) 강화 : 내부 서버에서 인터넷 C2로 나가는 비인가 아웃바운드 TCP/UDP 연결을 외곽 게이트웨이에서 기본 차단(Default Deny) 정책 수립.
+- **아웃바운드 엄격 통제** (Egress Filtering) 강화 : 내부 서버에서 인터넷 C2로 나가는 비인가 아웃바운드 TCP/UDP(User Datagram Protocol) 연결을 외곽 게이트웨이에서 기본 차단(Default Deny) 정책 수립.
 - **Linux 감사 데몬** (auditd) 룰셋 고도화 : 시스템 내 iptables 명령어 호출, 네트워크 네임스페이스 변경, 프로세스 명칭 변경 이벤트를 실시간 감사 로그로 영구 기록.

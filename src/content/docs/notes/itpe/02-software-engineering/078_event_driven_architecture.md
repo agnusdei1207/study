@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 이벤트 기반 아키텍처(EDA)의 개요
 
-- 개념 : 시스템 내부 또는 외부에서 발생한 유의미한 상태 변화인 '**이벤트** (Event)'를 감지, 생성(발행), 전달, 소비하는 비동기 분산 아키텍처 스타일.
-- 배경 및 필요성 : 동기식 REST/RPC 호출 방식의 서비스 간 강결합, 응답 대기로 인한 성능 저하, 한 서비스의 장애가 전체로 전파되는 **연쇄 장애** (Cascading Failure) 문제를 근본적으로 극복.
+- 개념 : 시스템 내부 또는 외부에서 발생한 유의미한 상태 변화인 '**이벤트** (Event)'를 감지, 생성(발행), 전달, 소비하는 비동기 분산 아키텍처 스타일 (EDA, Event-Driven Architecture).
+- 배경 및 필요성 : 동기식 REST(Representational State Transfer)/RPC(Remote Procedure Call) 호출 방식의 서비스 간 강결합, 응답 대기로 인한 성능 저하, 한 서비스의 장애가 전체로 전파되는 **연쇄 장애** (Cascading Failure) 문제를 근본적으로 극복.
 - 핵심 3요소 : **이벤트 생산자** (Event Producer), **이벤트 브로커** (Event Broker/Channel), **이벤트 소비자** (Event Consumer).
 
 ## Ⅱ. EDA 2대 토폴로지: 브로커(Broker)와 중재자(Mediator)
@@ -50,21 +50,21 @@ extra:
 | 결합도 | 극도로 낮음 (생산자는 소비자를 전혀 모름) | 중간 (중재자가 워크플로우 단계를 알고 있음) |
 | 확장성 및 성능 | 극도로 높음 (중앙 병목 없음) | 중재자 성능에 따라 제한될 수 있음 |
 | 트랜잭션 복잡도 | 전체 워크플로우 추적 및 에러 처리가 어려움 | 전체 흐름 가시성 우수, 롤백/보상 트랜잭션 용이 |
-| 대표 솔루션 | Apache Kafka, AWS SNS/SQS, RabbitMQ | Camunda, AWS Step Functions, Temporal |
+| 대표 솔루션 | Apache Kafka, AWS(Amazon Web Services) SNS(Simple Notification Service)/SQS, RabbitMQ | Camunda, AWS Step Functions, Temporal |
 
 ## Ⅳ. EDA(이벤트 기반 아키텍처)의 주요 한계점 및 해결 방안
 
 - 결과적 일관성(Eventual Consistency) 및 분산 트랜잭션 추적성 결여 :
-  - 한계점 : ACID 트랜잭션의 부재로 인해 시스템 전반의 최종 데이터 정합성 보장이 지연되며, 비동기 파이프라인 내 장애 발생 시 원인 추적이 극도로 난해.
-  - 해결 방안 : 사가 패턴(Saga Pattern, 코레오그래피/오케스트레이션) 적용 및 보상 트랜잭션 구현, W3C Trace Context 표준 기반 분산 추적(OpenTelemetry) 전파.
+  - 한계점 : ACID(Atomicity, Consistency, Isolation, Durability) 트랜잭션의 부재로 인해 시스템 전반의 최종 데이터 정합성 보장이 지연되며, 비동기 파이프라인 내 장애 발생 시 원인 추적이 극도로 난해.
+  - 해결 방안 : 사가 패턴(Saga Pattern, 코레오그래피/오케스트레이션) 적용 및 보상 트랜잭션 구현, W3C(World Wide Web Consortium) Trace Context 표준 기반 분산 추적(OpenTelemetry) 전파.
 - 이벤트 중복 발행 및 순서 역전(Out-of-Order Delivery) :
   - 한계점 : 분산 브로커의 At-Least-Once 전달 정책 및 파티션 간 네트워크 지연으로 인해 동일 이벤트 중복 처리 또는 이벤트 역순 수신 시 데이터 오염.
   - 해결 방안 : Transactional Outbox 및 Inbox 패턴 구현, 컨슈머 단 멱등성(Idempotency) 보장 키 설계, 동일 비즈니스 엔티티 단위의 파티션 키(Partition Key) 고정.
 - 이벤트 스키마 진화(Schema Evolution)에 따른 호환성 파손 :
   - 한계점 : 이벤트 생산자가 필드를 변경하거나 삭제할 때 이벤트를 구독하는 수많은 비동기 컨슈머 서비스에서 역직렬화 에러 발생.
-  - 해결 방안 : Schema Registry(Confluent/Apicurio)를 도입하여 Avro/Protobuf 스키마의 하위 및 양방향 호환성(Full Compatibility) 규칙을 CI/CD 파이프라인에서 강제 검증.
+  - 해결 방안 : Schema Registry(Confluent/Apicurio)를 도입하여 Avro/Protobuf 스키마의 하위 및 양방향 호환성(Full Compatibility) 규칙을 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에서 강제 검증.
 
 ## Ⅴ. EDA 구축 시 기술사적 제언
 
-- 최종 일관성(Eventual Consistency) 및 멱등성(Idempotency) 보장 : 분산 이벤트 환경에서는 네트워크 지연으로 인한 이벤트 중복 수신이나 순서 역전이 발생할 수 있으므로, 소비자는 고유 이벤트 ID(UUID) 기반의 중복 제거 테이블을 두고 멱등하게 처리하도록 설계 필수.
-- 트랜잭셔널 아웃박스 패턴(Transactional Outbox Pattern) 적용 : 로컬 DB 트랜잭션 커밋과 메시지 브로커 이벤트 발행 간의 원자성(Atomicity)을 보장하기 위해, DB의 Outbox 테이블에 이벤트를 먼저 기록하고 CDC(Debezium)를 통해 카프카로 비동기 발행하는 패턴 구현 권장.
+- 최종 일관성(Eventual Consistency) 및 멱등성(Idempotency) 보장 : 분산 이벤트 환경에서는 네트워크 지연으로 인한 이벤트 중복 수신이나 순서 역전이 발생할 수 있으므로, 소비자는 고유 이벤트 ID(UUID, Universally Unique Identifier) 기반의 중복 제거 테이블을 두고 멱등하게 처리하도록 설계 필수.
+- 트랜잭셔널 아웃박스 패턴(Transactional Outbox Pattern) 적용 : 로컬 DB(Database) 트랜잭션 커밋과 메시지 브로커 이벤트 발행 간의 원자성(Atomicity)을 보장하기 위해, DB의 Outbox 테이블에 이벤트를 먼저 기록하고 CDC(Debezium)를 통해 카프카로 비동기 발행하는 패턴 구현 권장.

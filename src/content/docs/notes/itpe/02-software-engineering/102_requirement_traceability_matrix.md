@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 요구사항 추적표(RTM)의 개요
 
-- 개념 : **요구사항 추적표** (RTM) 란 소프트웨어 생명주기(SDLC) 전반에 걸쳐 고객의 제안요청서(RFP) 및 비즈니스 요구사항으로부터 시작하여 시스템 요구명세서(SRS), 아키텍처 설계(SAD), 소스코드, 단위/통합/인수 테스트 케이스에 이르는 산출물 간의 연결 고리를 매트릭스 형태로 구조화하여 **양방향 추적성**을 제공하는 엔지니어링 관리 도구.
+- 개념 : **요구사항 추적표** (RTM, Requirements Traceability Matrix) 란 소프트웨어 생명주기(SDLC, Software Development Life Cycle) 전반에 걸쳐 고객의 제안요청서(RFP, Request for Proposal) 및 비즈니스 요구사항으로부터 시작하여 시스템 요구명세서(SRS, Software Requirements Specification), 아키텍처 설계(SAD, Software Architecture Description), 소스코드, 단위/통합/인수 테스트 케이스에 이르는 산출물 간의 연결 고리를 매트릭스 형태로 구조화하여 **양방향 추적성**을 제공하는 엔지니어링 관리 도구.
 - 배경 및 필요성 : 개발 과정에서 **요구사항 누락** (Omission), **Gold Plating** (승인되지 않은 임의 구현), 요구사항 변경 시 영향도 파악 불가로 인한 프로젝트 실패를 방지.
-- 표준 근거 : **ISO/IEC/IEEE 29148** (요구공학), **CMMI Requirements Management** (REQM)
+- 표준 근거 : **ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission)/IEEE(Institute of Electrical and Electronics Engineers) 29148** (요구공학), **CMMI(Capability Maturity Model Integration) Requirements Management** (REQM)
 
 ## Ⅱ. 양방향 추적성(Bidirectional Traceability) 구조
 
@@ -38,7 +38,7 @@ extra:
 |---|---|---|---|---|---|
 | REQ-001 | 실시간 간편 결제 승인 | SAD-ARC-03, DES-CLS-12 | OrderPayment.java | TC-PAY-01, TC-PAY-02 | Pass (검증 완료) |
 | REQ-002 | 결제 실패 시 자동 환불 | SAD-ARC-05, DES-SEQ-08 | RefundManager.java | TC-REF-01 | Pass (검증 완료) |
-| REQ-003 | 동시 1,000건 결제 처리 | SAD-NFR-PERF-01 | HikariCPConfig.java | TC-PERF-10 (부하시험) | Pass (1,200 TPS) |
+| REQ-003 | 동시 1,000건 결제 처리 | SAD-NFR(Non-Functional Requirement)-PERF-01 | HikariCPConfig.java | TC-PERF-10 (부하시험) | Pass (1,200 TPS(Transactions Per Second)) |
 
 - **변경 영향도 분석** (Change Impact Analysis) : 고객이 결제 요구사항(REQ-001)의 변경을 요청했을 때, RTM을 통해 즉각적으로 수정해야 할 설계서, 소스코드 클래스, 재실행해야 할 회귀 테스트 케이스를 1분 이내에 정확히 특정.
 
@@ -46,10 +46,10 @@ extra:
 
 - 수동 문서 관리로 인한 동기화 누락 및 **문서 진부화** (Document Rot) :
   - 한계점 : 엑셀 기반으로 RTM을 관리할 경우 개발 및 테스트 산출물의 잦은 변경을 실시간 반영하지 못해 문서와 실제 시스템 간 불일치 심화.
-  - 해결 방안 : Jira, Confluence, Git, TestRail 등 개발 파이프라인과 통합된 **ALM** 도구 기반 요구사항 추적 자동화(Traceability-as-Code) 체계 구축.
+  - 해결 방안 : Jira, Confluence, Git, TestRail 등 개발 파이프라인과 통합된 **ALM**(Application Lifecycle Management) 도구 기반 요구사항 추적 자동화(Traceability-as-Code) 체계 구축.
 - 애자일 개발 환경과의 방법론적 마찰 :
   - 한계점 : 요구사항이 스프린트마다 점진적으로 상세화되는 애자일 환경에서 폭포수식 전면적 추적표 작성은 과도한 관리 부하 초래.
-  - 해결 방안 : 에픽-사용자 스토리-태스크-테스트 케이스로 이어지는 계층형 추적 모델 적용 및 스프린트 백로그 완료 조건(DoD)과 연동.
+  - 해결 방안 : 에픽-사용자 스토리-태스크-테스트 케이스로 이어지는 계층형 추적 모델 적용 및 스프린트 백로그 완료 조건(DoD, Definition of Done)과 연동.
 - **요구사항 분할 수준** (Granularity) 불균형에 따른 추적 모호성 :
   - 한계점 : 요구사항이 지나치게 포괄적이거나 반대로 극도로 세분화되어 1:N, N:M 복합 매핑 시 영향도 분석(Impact Analysis)의 정확도 저하.
   - 해결 방안 : 요구사항 작성 표준 템플릿 (**EARS** 등) 준수, 기능/비기능 요건별 고유 식별자(ID) 체계화 및 단계별 베이스라인(Baseline) 동결 워크플로우 확립.

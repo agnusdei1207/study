@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 2026 상반기 침해사고 위협 점검의 개요
 
 - 개념 : 2026년 상반기 확인된 침해사고 및 공격 동향을 바탕으로 **공격 벡터**와 **위협 체인**을 분석하고 조직의 예방·탐지·대응 전략을 도출하는 보안 통제 활동.
-- 배경 및 필요성 : AI 기반 정밀 피싱, **Living-off-the-Land** (LotL) 은닉 공격, 오픈소스 소프트웨어 공급망 오염, **비인간 신원** (NHI) 탈취 등 고도화된 복합 위협에 대응하여 선제적 사이버 레질리언스를 확보하기 위해 추진됨.
-- 핵심 목적 : 고도화된 공급망 변조, 비인간 계정 오용, 정상 도구 은닉 공격에 대응하여 실효적 방어선 구축 및 비즈니스 연속성(BCP) 보장.
+- 배경 및 필요성 : AI(Artificial Intelligence) 기반 정밀 피싱, **Living-off-the-Land** (LotL) 은닉 공격, 오픈소스 소프트웨어 공급망 오염, **비인간 신원** (NHI) 탈취 등 고도화된 복합 위협에 대응하여 선제적 사이버 레질리언스를 확보하기 위해 추진됨.
+- 핵심 목적 : 고도화된 공급망 변조, 비인간 계정 오용, 정상 도구 은닉 공격에 대응하여 실효적 방어선 구축 및 비즈니스 연속성(BCP, Business Continuity Plan) 보장.
 
 ## Ⅱ. 2026 상반기 침해사고 위협 점검의 핵심 아키텍처 및 동작 메커니즘
 
@@ -50,17 +50,17 @@ extra:
 └── [목적 달성 방어]: WORM(Write Once Read Many) 불변 스토리지, DLP 유출 탐지, 에어갭 격리 백업
 ```
 
-- **소스코드 및 CI/CD** : 시크릿 스캐너, 서명 검증 (커밋 시 GitGuardian 차단, **Sigstore** 기반 아티팩트 서명 강제).
-- **엔드포인트/호스트** : EDR, 바이너리 통제 (WDAC 정책 기반 허용 바이너리 화이트리스팅, **BYOVD** 취약 드라이버 차단 목록 갱신).
-- **신원 및 계정(IAM)** : NHI 거버넌스, Just-In-Time (서비스 계정 단기 만료 주기 설정, Vault 기반 동적 자격증명(Dynamic Secret) 발급).
-- **데이터 및 복구** : 불변 백업, 랜섬웨어 방어 (AWS S3 Object Lock(WORM 모드) 적용, 물리적 **에어갭** (Air-gapped) 오프라인 백업 운영).
+- **소스코드 및 CI(Continuous Integration)/CD**(Continuous Delivery) : 시크릿 스캐너, 서명 검증 (커밋 시 GitGuardian 차단, **Sigstore** 기반 아티팩트 서명 강제).
+- **엔드포인트/호스트** : EDR(Endpoint Detection and Response), 바이너리 통제 (WDAC 정책 기반 허용 바이너리 화이트리스팅, **BYOVD** 취약 드라이버 차단 목록 갱신).
+- **신원 및 계정(IAM, Identity and Access Management)** : NHI 거버넌스, Just-In-Time (서비스 계정 단기 만료 주기 설정, Vault 기반 동적 자격증명(Dynamic Secret) 발급).
+- **데이터 및 복구** : 불변 백업, 랜섬웨어 방어 (AWS(Amazon Web Services) S3(Simple Storage Service) Object Lock(WORM(Write Once Read Many) 모드) 적용, 물리적 **에어갭** (Air-gapped) 오프라인 백업 운영).
 
 ## Ⅲ. 2026 상반기 침해사고 위협 점검의 세부 구성 요소 및 비교 분석
 
 | 위협 유형 | 주 공격 메커니즘 | 공격 탐지 난이도 | 주요 방어 엔지니어링 통제 |
 |---|---|---|---|
-| 비인간 신원(NHI) 탈취 | 소스코드/로그 내 노출된 영구 API 키 및 PAT 수집 | 상 (정상 세션으로 로그인하여 탐지 극난) | 시크릿 하드코딩 제거, 단기 자격증명(STS), Vault 중앙 관리 |
-| SW 공급망 오염 | 악성 커밋 기여, 유지관리자 계정 하이재킹, 의존성 변조 | 최상 (빌드 완료된 신뢰 바이너리에 은닉) | SLSA Level 3 달성, **SBOM** 생성 및 인-토토(in-toto) 검증 |
+| 비인간 신원(NHI) 탈취 | 소스코드/로그 내 노출된 영구 API(Application Programming Interface) 키 및 PAT 수집 | 상 (정상 세션으로 로그인하여 탐지 극난) | 시크릿 하드코딩 제거, 단기 자격증명(STS), Vault 중앙 관리 |
+| SW(Software) 공급망 오염 | 악성 커밋 기여, 유지관리자 계정 하이재킹, 의존성 변조 | 최상 (빌드 완료된 신뢰 바이너리에 은닉) | SLSA(Supply-chain Levels for Software Artifacts) Level 3 달성, **SBOM**(Software Bill of Materials) 생성 및 인-토토(in-toto) 검증 |
 | 정상 도구 악용(LotL) | 내장 관리 도구(PowerShell, WMI, BITS)를 통한 메모리 실행 | 상 (백신 파일 스캔 우회, 무파일 악성코드) | 파워셸 스크립트 블록 로깅, 비인가 명령 인자 행위 분석 |
 | 이중 갈취형 랜섬웨어 | 자격증명 획득 후 백업 카탈로그 삭제 및 클라우드 암호화 | 중 (대량 I/O 발생 및 네트워크 트래픽 증가) | **WORM** 불변 백업, Egress 트래픽 이상 임계치 모니터링 |
 
@@ -68,12 +68,12 @@ extra:
 
 ## Ⅳ. 2026 상반기 침해사고 위협 점검의 주요 한계점 및 해결 방안
 
-- 한계점 : OS 내장 도구(LotL) 악용 시 정상 관리자 명령과 악의적 행위의 구분이 모호하여 오탐 및 미탐 빈발.
+- 한계점 : OS(Operating System) 내장 도구(LotL) 악용 시 정상 관리자 명령과 악의적 행위의 구분이 모호하여 오탐 및 미탐 빈발.
   - 해결 방안 : 파워셸 스크립트 블록 로깅(Event ID 4104)을 활성화하고, 부모-자식 프로세스 트리(예: Word->cmd->powershell) 기반 행위 탐지 룰 강제 배포.
 - 한계점 : 서드파티 오픈소스 패키지의 심층 의존성(Transitive Dependencies) 변조 시 소스 검토만으로 악성 행위 적발 불가.
   - 해결 방안 : CI/CD 파이프라인 내에 **의존성 락파일** (package-lock.json 등) 해시 검증을 의무화하고 가상 샌드박스 동적 행위 분석(Dynamic Analysis) 단계 필수 결합.
 - 한계점 : 다수의 클라우드 마이크로서비스 계정 및 API 키 만료 주기가 관리되지 않아 사각지대 발생.
-  - 해결 방안 : NHI 전용 Discovery 솔루션을 도입하여 미사용/과다권한 키를 전수 매핑하고, 장기 지속 키를 영구 제거한 후 OIDC 기반 단기 토큰 발급으로 전면 전환.
+  - 해결 방안 : NHI 전용 Discovery 솔루션을 도입하여 미사용/과다권한 키를 전수 매핑하고, 장기 지속 키를 영구 제거한 후 OIDC(OpenID Connect) 기반 단기 토큰 발급으로 전면 전환.
 - 한계점 : 랜섬웨어 공격자가 백업 솔루션 관리자 계정까지 탈취하여 백업 스냅샷을 동시 삭제하는 사태 발생.
   - 해결 방안 : 백업 데이터 삭제 시 **멀티 유저 인가** (Multi-Party Approval)를 의무화하고, 논리적 삭제 불가(WORM Compliance Mode) 스토리지 적용.
 

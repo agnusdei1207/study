@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. 캐시 메모리(Cache Memory)의 개요
 
-- 개념 : 초고속으로 동작하는 CPU 코어의 연산 처리 속도와 상대적으로 느린 메인 메모리(DRAM)의 접근 속도 간에 발생하는 극심한 **속도 격차** (Memory Wall)를 완화하기 위해, CPU와 주메모리 사이에 배치되는 SRAM 기반의 초고속 소용량 버퍼 메모리.
+- 개념 : 초고속으로 동작하는 CPU(Central Processing Unit) 코어의 연산 처리 속도와 상대적으로 느린 메인 메모리(DRAM, Dynamic Random-Access Memory)의 접근 속도 간에 발생하는 극심한 **속도 격차** (Memory Wall)를 완화하기 위해, CPU와 주메모리 사이에 배치되는 SRAM(Static Random-Access Memory) 기반의 초고속 소용량 버퍼 메모리.
 - 배경 및 필요성 : CPU 클록 주파수는 수 GHz로 비약적 발전한 반면 DRAM의 접근 지연시간은 크게 개선되지 않아, 메모리 병목으로 인한 CPU 파이프라인 유휴 현상을 방지하기 위해 프로그램의 참조 국부성(Locality)을 바탕으로 도입됨.
 - 핵심 목적 : **평균 메모리 접근 시간** (AMAT: Average Memory Access Time)의 극소화, CPU 연산 유닛 가동률 극대화, 시스템 버스 대역폭 트래픽 부하 경감.
 
@@ -58,7 +58,7 @@ extra:
 
 - **참조 국부성 (Locality of Reference)** : 최근 참조된 주소를 다시 참조하는 '시간 국부성(Temporal Locality)'과, 인접한 주소를 연속 참조하는 '공간 국부성(Spatial Locality)'을 활용.
 - **캐시 사상 방식** : 직접 사상(Direct Mapped), 완전 연관(Fully Associative), 세트 연관(Set-Associative: 현대 표준)으로 주소 매핑.
-- **캐시 교체 알고리즘** : 캐시가 꽉 찼을 때 신규 블록을 적재하기 위해 LRU(Least Recently Used), LFU, FIFO, Pseudo-LRU 적용.
+- **캐시 교체 알고리즘** : 캐시가 꽉 찼을 때 신규 블록을 적재하기 위해 LRU(Least Recently Used), LFU(Least Frequently Used), FIFO(First In, First Out), Pseudo-LRU 적용.
 - **쓰기 정책 (Write Policy)** : 캐시와 메모리를 동시 갱신하는 Write-Through와, 캐시만 먼저 갱신하고 교체 시 메모리에 쓰는 Write-Back(Dirty Bit 활용).
 
 ## Ⅲ. 캐시 메모리(Cache Memory)의 세부 구성 요소 및 비교 분석
@@ -66,7 +66,7 @@ extra:
 | 캐시 사상 방식 | 구조 및 특징 | 하드웨어 복잡도 | 충돌 미스 (Conflict Miss) | 주 적용 영역 |
 |---|---|---|---|---|
 | **직접 사상 (Direct Mapped)** | 각 메모리 블록이 정확히 1개의 캐시 라인에만 매핑 | 매우 단순, 고속 | 매우 높음 (동일 인덱스 충돌) | 단순 L1 캐시 일부 |
-| **완전 연관 (Fully Associative)**| 메모리 블록이 캐시의 빈 라인 어디든 자유롭게 적재 | 매우 복잡 (모든 태그 동시 비교)| 0 (충돌 미스 없음) | 소규모 TLB 캐시 |
+| **완전 연관 (Fully Associative)**| 메모리 블록이 캐시의 빈 라인 어디든 자유롭게 적재 | 매우 복잡 (모든 태그 동시 비교)| 0 (충돌 미스 없음) | 소규모 TLB(Translation Lookaside Buffer) 캐시 |
 | **세트 연관 (Set-Associative)** | 캐시를 세트(Set)로 나누고 세트 내 N개 슬롯 중 배치 | 중간 수준 (타협점) | 적음 (N-way로 분산) | 현대 L1, L2, L3 캐시 표준 |
 
 - 현대 CPU는 8-way 또는 16-way 세트 연관 사상을 채택하여 하드웨어 복잡도와 충돌 미스 발생률 간의 최적 균형을 구현함.
@@ -87,4 +87,4 @@ extra:
 
 - 소프트웨어 개발자의 **캐시 친화적(Cache-Friendly)** 코딩 : 다차원 배열 접근 시 메모리 적재 순서(Row-Major)와 동일하게 행 우선 순회를 수행하여 공간 국부성을 극대화하는 알고리즘 최적화 필수.
 - 데이터 지향 **설계(DOD: Data-Oriented Design)** 도입 : 객체 지향의 객체 배열(AoS: Array of Structures)을 구조체 배열(SoA: Structure of Arrays)로 리팩토링하여 캐시 라인 낭비 제거 권장.
-- **NUMA** 노드 로컬 캐시 히트율 극대화 : 대규모 서버 환경에서 스레드가 원격 소켓의 L3 캐시나 메모리를 참조하지 않도록 프로세서 바인딩(`numactl`) 튜닝 적용.
+- **NUMA**(Non-Uniform Memory Access) 노드 로컬 캐시 히트율 극대화 : 대규모 서버 환경에서 스레드가 원격 소켓의 L3 캐시나 메모리를 참조하지 않도록 프로세서 바인딩(`numactl`) 튜닝 적용.

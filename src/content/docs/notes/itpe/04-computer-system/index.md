@@ -18,8 +18,8 @@ weight: 4
  규범·책임         신뢰 경계             연결·전송          지능·서비스 확장
 ```
 
-- 04 시스템은 **데이터를 실행하는 계산 자원과 운영 기반을** 설명하며, 네트워크·보안·AI 서비스가 올라가는 공통 하부 구조
-- 앞 과목 연결: SW의 실행 단위와 데이터의 저장 요구를 CPU·메모리·스토리지·OS가 구현
+- 04 시스템은 **데이터를 실행하는 계산 자원과 운영 기반을** 설명하며, 네트워크·보안·AI(Artificial Intelligence) 서비스가 올라가는 공통 하부 구조
+- 앞 과목 연결: SW(Software)의 실행 단위와 데이터의 저장 요구를 CPU(Central Processing Unit)·메모리·스토리지·OS(Operating System)가 구현
 - 뒤 과목 연결: 네트워크 연결, 보안 통제, AI 가속·클라우드 서비스의 성능·가용성 기반 제공
 
 ## 04 컴퓨터 시스템 확대 지도
@@ -77,13 +77,13 @@ OS: Process → Scheduling → Synchronization → Virtual Memory
 - [은행가 알고리즘](./002_bankers_algorithm/)
 - [프로세스 동기화 기법](./122_process_synchronization/)
 - [CPU 스케줄링](./019_cpu_scheduling/), [가상 메모리](./023_virtual_memory/), [디스크 스케줄링](./024_disk_scheduling/)
-- [교착상태](./038_deadlock/), [스레싱](./039_thrashing/), [IPC](./034_ipc/)
+- [교착상태](./038_deadlock/), [스레싱](./039_thrashing/), [IPC(Inter-Process Communication)](./034_ipc/)
 
 ### 2. 컴퓨터구조·가속기
 
-- [CPU](./076_cpu/), [GPU](./020_gpu/), [TPU](./022_tpu/), [NPU](./007_npu/)
+- [CPU](./076_cpu/), [GPU(Graphics Processing Unit)](./020_gpu/), [TPU(Tensor Processing Unit)](./022_tpu/), [NPU(Neural Processing Unit)](./007_npu/)
 - [캐시 메모리·일관성](./051_cache_memory/), [메모리 계층·인터리빙](./096_memory_hierarchy_interleaving/)
-- [HBM](./079_hbm/), [CXL](./063_cxl/), [칩렛·UCIe](./030_chiplet_ucie_3_0/)
+- [HBM(High Bandwidth Memory)](./079_hbm/), [CXL(Compute Express Link)](./063_cxl/), [칩렛·UCIe](./030_chiplet_ucie_3_0/)
 
 ### 3. 가상화·클라우드
 
@@ -94,12 +94,12 @@ OS: Process → Scheduling → Synchronization → Virtual Memory
 ### 4. 스토리지·가용성·재해복구
 
 - [스토리지 유형 비교](./123_storage_type_comparison/)
-- [HA·FTS](./042_ha_availability_assurance/), [RAID](./056_raid/)
-- [멀티 리전 Active-Active DR](./068_multi_region_active_active_disaster_recovery/)
+- [HA(High Availability)·FTS](./042_ha_availability_assurance/), [RAID(Redundant Array of Independent Disks)](./056_raid/)
+- [멀티 리전 Active-Active DR(Disaster Recovery)](./068_multi_region_active_active_disaster_recovery/)
 
 ### 5. 최신 AI 인프라
 
-- [AI HPC 인프라](./041_ai_hpc_infrastructure/), [랙 스케일 AI 시스템](./070_rack_scale_ai_system/)
+- [AI HPC(High-Performance Computing) 인프라](./041_ai_hpc_infrastructure/), [랙 스케일 AI 시스템](./070_rack_scale_ai_system/)
 - [액체냉각](./028_liquid_cooling/), [에너지 효율 컴퓨팅](./073_energy_efficient_computing/)
 - [하드웨어 규모산정](./117_hardware_sizing/), [성능 튜닝](./120_performance_tuning/)
 

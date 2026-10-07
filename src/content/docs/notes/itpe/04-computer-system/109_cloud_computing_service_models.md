@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 클라우드 컴퓨팅 서비스 모델의 개요
 
-- 개념 : **미국 국립표준기술연구원** (NIST SP 800-145)에서 정의한 클라우드 컴퓨팅의 표준 분류 체계로서, 사용자가 클라우드 인프라를 직접 제어하는 범위와 **클라우드 서비스 제공자** (CSP)가 관리하는 추상화 계층에 따라 IaaS, PaaS, SaaS의 3대 전통 모델과 최근의 FaaS/Serverless로 구분되는 서비스 제공 아키텍처.
-- 배경 및 필요성 : 과거에는 서버 하드웨어부터 OS, 미들웨어, 애플리케이션 전체를 기업이 직접 구축하고 유지보수했으나, 핵심 비즈니스 로직 개발에 집중하고 비핵심 인프라 관리 부담을 외주화하기 위해 서비스 모델이 발전.
+- 개념 : **미국 국립표준기술연구원** (NIST(National Institute of Standards and Technology) SP 800-145)에서 정의한 클라우드 컴퓨팅의 표준 분류 체계로서, 사용자가 클라우드 인프라를 직접 제어하는 범위와 **클라우드 서비스 제공자** (CSP, Cloud Service Provider)가 관리하는 추상화 계층에 따라 IaaS, PaaS, SaaS의 3대 전통 모델과 최근의 FaaS/Serverless로 구분되는 서비스 제공 아키텍처.
+- 배경 및 필요성 : 과거에는 서버 하드웨어부터 OS(Operating System), 미들웨어, 애플리케이션 전체를 기업이 직접 구축하고 유지보수했으나, 핵심 비즈니스 로직 개발에 집중하고 비핵심 인프라 관리 부담을 외주화하기 위해 서비스 모델이 발전.
 - 핵심 목적 : 관리 책임의 선택적 위임, 인프라 민첩성 확보, 초기 구축 비용(CapEx)의 운영 비용(OpEx) 전환 및 규모의 경제 달성.
 
 ## Ⅱ. 클라우드 서비스 모델별 스택 계층 및 공유 책임 분계선
@@ -51,18 +51,18 @@ extra:
 
 - **IaaS** (Infrastructure as a Service) : 서버 하드웨어, 스토리지, 가상화 계층만 CSP가 제공하고, 사용자는 OS 설치, 보안 패치, 미들웨어 구동을 전담하여 최대의 제어 자유도 확보.
 - **PaaS** (Platform as a Service) : OS와 개발 런타임(Node.js, Java, Python), 미들웨어를 CSP가 완전 관리하며 사용자는 오직 소스코드와 데이터만 배포.
-- **SaaS** (Software as a Service) : 완제품 소프트웨어를 웹 브라우저나 API로 즉시 이용하며, 최종 사용자는 설정과 데이터 접근 권한만 관리.
+- **SaaS** (Software as a Service) : 완제품 소프트웨어를 웹 브라우저나 API(Application Programming Interface)로 즉시 이용하며, 최종 사용자는 설정과 데이터 접근 권한만 관리.
 
 ## Ⅲ. 클라우드 3대 서비스 모델 비교 분석
 
 | 비교 항목 | IaaS (인프라 서비스) | PaaS (플랫폼 서비스) | SaaS (소프트웨어 서비스) |
 | :--- | :--- | :--- | :--- |
-| **제공 핵심 단위** | 가상 머신(VM), 가상 네트워크, 블록 볼륨| 개발 프레임워크, 관리형 DB, 컨테이너 플랫폼| 완성된 엔드유저 애플리케이션 |
+| **제공 핵심 단위** | 가상 머신(VM, Virtual Machine), 가상 네트워크, 블록 볼륨| 개발 프레임워크, 관리형 DB(Database), 컨테이너 플랫폼| 완성된 엔드유저 애플리케이션 |
 | **사용자 대상** | 시스템 엔지니어, 네트워크 관리자 | 애플리케이션 개발자, 데이터 엔지니어 | 일반 사용자, 현업 비즈니스 부서 |
-| **제어 유연성** | 최고 (커널 레벨 파라미터 제어 가능) | 중간 (런타임 환경 내 설정만 가능) | 최저 (UI/기능 설정 옵션만 가능) |
+| **제어 유연성** | 최고 (커널 레벨 파라미터 제어 가능) | 중간 (런타임 환경 내 설정만 가능) | 최저 (UI(User Interface)/기능 설정 옵션만 가능) |
 | **유지보수 부담**| 높음 (OS 패치, 미들웨어 튜닝 직접 수행)| 낮음 (코드 품질에만 집중) | 최저 (유지보수 전무) |
 | **벤더 종속성** | 낮음 (VM 이미지 다른 클라우드로 이관 용이)| 높음 (CSP 전용 PaaS API 의존 위험) | 최고 (데이터 추출 외 타 시스템 전환 어려움)|
-| **대표 서비스** | AWS EC2, Azure VM, GCP Compute Engine | AWS Elastic Beanstalk, Heroku, EKS | Microsoft 365, Salesforce, Google Workspace|
+| **대표 서비스** | AWS(Amazon Web Services) EC2, Azure VM, GCP(Google Cloud Platform) Compute Engine | AWS Elastic Beanstalk, Heroku, EKS | Microsoft 365, Salesforce, Google Workspace|
 
 ## Ⅳ. 서비스 모델 채택 시 주요 한계점 및 해결 방안
 
@@ -78,5 +78,5 @@ extra:
 
 ## Ⅴ. 엔터프라이즈 클라우드 전환을 위한 기술사적 제언
 
-- SaaS-First 및 PaaS 중심의 클라우드 네이티브 현대화 : 범용 지원 업무(이메일, ERP, CRM)는 SaaS 도입을 최우선으로 하여 개발 비용을 절감하고, 차별화된 핵심 비즈니스 코어 시스템은 컨테이너 기반 PaaS 위에서 MSA(마이크로서비스 아키텍처)로 구축해야 함.
-- FinOps 및 공유 책임 보안 거버넌스 프레임워크 수립 : IaaS 도입 시에는 OS 패치와 취약점 관리가 전적으로 내부 보안 팀의 책임임을 명확히 인식하고, CSPM(클라우드 보안 태세 관리) 도구를 통해 전사 IaaS/PaaS 인프라의 설정 오류를 실시간 감사할 것을 제언함.
+- SaaS-First 및 PaaS 중심의 클라우드 네이티브 현대화 : 범용 지원 업무(이메일, ERP(Enterprise Resource Planning), CRM(Customer Relationship Management))는 SaaS 도입을 최우선으로 하여 개발 비용을 절감하고, 차별화된 핵심 비즈니스 코어 시스템은 컨테이너 기반 PaaS 위에서 MSA(Microservice Architecture, 마이크로서비스 아키텍처)로 구축해야 함.
+- FinOps 및 공유 책임 보안 거버넌스 프레임워크 수립 : IaaS 도입 시에는 OS 패치와 취약점 관리가 전적으로 내부 보안 팀의 책임임을 명확히 인식하고, CSPM(Cloud Security Posture Management, 클라우드 보안 태세 관리) 도구를 통해 전사 IaaS/PaaS 인프라의 설정 오류를 실시간 감사할 것을 제언함.

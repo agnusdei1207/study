@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 소프트웨어 품질보증(SQA)의 개요
 
-- 개념 : 소프트웨어 제품이 사전에 정의된 품질 요구사항 및 표준 규격을 충족한다는 확신을 제공하기 위해, **소프트웨어 생명주기** (SDLC) 전반에 걸쳐 체계적인 프로세스 준수 여부를 계획, 감시, 평가, 개선하는 체계적인 공학 활동.
-- 배경 및 필요성 : 개발 완료 후의 **사후 테스트** (QC)만으로는 고품질 소프트웨어를 담보할 수 없으며, 프로세스의 오류를 조기에 차단하여 결함 유입을 원천 예방하는 **품질 관리** (QA) 체계 필수.
-- 품질 표준 : **ISO/IEC 25010** (시스템 및 SW 품질 모델), **CMMI** Process & Product Quality Assurance(PPQA).
+- 개념 : 소프트웨어 제품이 사전에 정의된 품질 요구사항 및 표준 규격을 충족한다는 확신을 제공하기 위해, **소프트웨어 생명주기** (SDLC, Software Development Life Cycle) 전반에 걸쳐 체계적인 프로세스 준수 여부를 계획, 감시, 평가, 개선하는 체계적인 공학 활동 (SQA, Software Quality Assurance).
+- 배경 및 필요성 : 개발 완료 후의 **사후 테스트** (QC, Quality Control)만으로는 고품질 소프트웨어를 담보할 수 없으며, 프로세스의 오류를 조기에 차단하여 결함 유입을 원천 예방하는 **품질 관리** (QA, Quality Assurance) 체계 필수.
+- 품질 표준 : **ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 25010** (시스템 및 SW(Software) 품질 모델), **CMMI**(Capability Maturity Model Integration) Process & Product Quality Assurance(PPQA).
 
 ## Ⅱ. SQA, QC, 테스팅의 개념적 계층 및 차이점
 
@@ -47,10 +47,10 @@ extra:
 | 품질 특성 | 하위 품질 요소 및 핵심 검증 기준 |
 |---|---|
 | **기능 적합성** (Functional Suitability) | 기능 완전성, 기능 정확성, 기능 적절성 |
-| **성능 효율성** (Performance Efficiency) | 시간 반응성(응답시간/처리량), 자원 활용성(CPU/메모리), 용량성 |
+| **성능 효율성** (Performance Efficiency) | 시간 반응성(응답시간/처리량), 자원 활용성(CPU(Central Processing Unit)/메모리), 용량성 |
 | **호환성** (Compatibility) | 공존성(Co-existence), 상호운용성(Interoperability) |
-| **사용성** (Usability) | 적합성 인지성, 학습 용이성, 조작 용이성, 사용자 오류 보호, UI 심미성 |
-| **신뢰성** (Reliability) | 성숙도, 무고장성, 가용성, 장애 허용성, 회복 용이성(MTBF/MTTR) |
+| **사용성** (Usability) | 적합성 인지성, 학습 용이성, 조작 용이성, 사용자 오류 보호, UI(User Interface) 심미성 |
+| **신뢰성** (Reliability) | 성숙도, 무고장성, 가용성, 장애 허용성, 회복 용이성(MTBF(Mean Time Between Failures)/MTTR(Mean Time to Repair)) |
 | **보안성** (Security) | 기밀성, 무결성, 부인방지, 책임추적성, 인증성 |
 | **유지보수성** (Maintainability) | 모듈성, 재사용성, 분석 용이성, 수정 용이성, 시험 용이성 |
 | **이식성** (Portability) | 적응성, 설치 용이성, 대체 용이성 |
@@ -59,13 +59,13 @@ extra:
 
 - 프로세스 통제 위주의 관료주의적 SQA 전락 :
   - 한계점 : SQA 활동이 제품의 실질적 코드 품질과 사용자 경험 개선보다는 표준 절차 체크리스트 준수 및 증빙 서류 징구에만 매몰되어 개발 생산성을 저해.
-  - 해결 방안 : 단순 감사형 QA에서 개발 엔지니어링을 직접 지원하는 QE(Quality Engineering)로 전환하고, CI/CD 파이프라인 내에 정적 분석 및 자동화 테스트 도구를 내재화하여 지원.
+  - 해결 방안 : 단순 감사형 QA에서 개발 엔지니어링을 직접 지원하는 QE(Quality Engineering)로 전환하고, CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내에 정적 분석 및 자동화 테스트 도구를 내재화하여 지원.
 - 시프트-레프트(Shift-Left) 부재로 인한 후반부 품질 병목 :
   - 한계점 : 요구사항 및 아키텍처 설계 단계의 품질 결함 예방 활동이 부재하여, 프로젝트 테스트 및 릴리스 직전 단계에서 중대 아키텍처 결함이 대거 발견되어 출시 일정 연기 초래.
-  - 해결 방안 : 요구사항 도출 및 아키텍처 리뷰 단계부터 SQA 인력이 주도적으로 참여하여 품질 속성을 검증하고, TDD/BDD 및 코드 리뷰 정량화를 조기 강제하는 단계별 품질 게이트(Quality Gate) 확립.
+  - 해결 방안 : 요구사항 도출 및 아키텍처 리뷰 단계부터 SQA 인력이 주도적으로 참여하여 품질 속성을 검증하고, TDD(Test-Driven Development)/BDD(Behavior-Driven Development) 및 코드 리뷰 정량화를 조기 강제하는 단계별 품질 게이트(Quality Gate) 확립.
 - 정량적 품질 지표의 실효성 및 비즈니스 성과 연계 부족 :
   - 한계점 : 단순 코드 라인 수, 테스트 케이스 실행 건수 등 형식적 지표만 수집하여 실제 시스템 장애율이나 비즈니스 전환율과의 인과관계를 입증하지 못함.
-  - 해결 방안 : 결함 제거 효율(DRE), 결함 밀도, MTBF/MTTR 등 신뢰성 지표를 표준화하고, DORA 핵심 지표 및 사용자 만족도와 연계된 전사 통합 엔지니어링 품질 대시보드 운영.
+  - 해결 방안 : 결함 제거 효율(DRE, Defect Removal Efficiency), 결함 밀도, MTBF/MTTR 등 신뢰성 지표를 표준화하고, DORA(DevOps Research and Assessment) 핵심 지표 및 사용자 만족도와 연계된 전사 통합 엔지니어링 품질 대시보드 운영.
 
 ## Ⅴ. 고도화된 SQA 정착을 위한 기술사적 제언
 

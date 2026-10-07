@@ -16,10 +16,10 @@ extra:
 
 ### 가. 데이터 옵저버빌리티(Data Observability)의 정의
 - **데이터 옵저버빌리티** : 전사 데이터 파이프라인 전반에 걸쳐 데이터의 상태, 품질, 신뢰성을 지속적으로 모니터링, 추적, 진단하여 **데이터 결함** (Data Downtime)이 발생했을 때 이를 사전에 감지하고 근본 원인을 신속하게 격리·해결할 수 있도록 지원하는 활동 및 기술 체계.
-- 소프트웨어 **APM** (애플리케이션 성능 모니터링) 개념을 데이터 파이프라인 및 데이터 자산으로 확장한 DataOps의 핵심 기둥.
+- 소프트웨어 **APM** (Application Performance Monitoring, 애플리케이션 성능 모니터링) 개념을 데이터 파이프라인 및 데이터 자산으로 확장한 DataOps의 핵심 기둥.
 
 ### 나. 기존 데이터 모니터링 vs 데이터 옵저버빌리티
-- **단순 모니터링** : "배치 잡(Airflow DAG)이 성공했는가 실패했는가?" (시스템 실행 여부 중심).
+- **단순 모니터링** : "배치 잡(Airflow DAG, Directed Acyclic Graph)이 성공했는가 실패했는가?" (시스템 실행 여부 중심).
 - **옵저버빌리티** : "배치는 성공했으나, 테이블에 들어온 데이터의 행 수가 평소보다 크게 급감하거나 컬럼 스키마가 깨지지 않았는가?" (데이터 내용 및 맥락 중심).
 
 ---
@@ -39,11 +39,11 @@ extra:
 
 | 5대 핵심 요소 | 구체적 모니터링 메커니즘 | 결함 발생 시 위험 시나리오 |
 | :--- | :--- | :--- |
-| **최신성 (Freshness)** | 테이블의 마지막 적재 타임스탬프와 SLA 간의 간격(Latency) 추적 | 실시간 대시보드가 어제 데이터를 보여주어 경영진의 잘못된 의사결정 초래 |
+| **최신성 (Freshness)** | 테이블의 마지막 적재 타임스탬프와 SLA(Service Level Agreement) 간의 간격(Latency) 추적 | 실시간 대시보드가 어제 데이터를 보여주어 경영진의 잘못된 의사결정 초래 |
 | **분포 (Distribution)** | 컬럼별 결측률(Null Rate), 평균, 백분위수, 유효값 범위 이상 탐지 | 가격 컬럼에 음수가 들어가거나 이탈율이 100%로 잘못 계산됨 |
-| **볼륨 (Volume)** | 적재된 레코드 수의 이상 급증/급감(Anomalous Row Count) 통계 검정 | 원천 API 장애로 인해 일부 결제 트랜잭션이 누락된 채 DW에 적재 |
-| **스키마 (Schema)** | DDL 변경, 컬럼 삭제, 데이터 타입 축소, 열 이름 변경 감지 | 다운스트림 BI 쿼리가 에러를 뿜으며 전사 리포트 전면 중단 |
-| **리니지 (Lineage)** | 데이터의 원천(Source)부터 변환, 최종 마트까지의 방향성 비순환 그래프(DAG) 추적 | 결함 발견 시 어떤 다운스트림 보고서가 오염되었는지 파악 불가 |
+| **볼륨 (Volume)** | 적재된 레코드 수의 이상 급증/급감(Anomalous Row Count) 통계 검정 | 원천 API(Application Programming Interface) 장애로 인해 일부 결제 트랜잭션이 누락된 채 DW(Data Warehouse)에 적재 |
+| **스키마 (Schema)** | DDL(Data Definition Language) 변경, 컬럼 삭제, 데이터 타입 축소, 열 이름 변경 감지 | 다운스트림 BI(Business Intelligence) 쿼리가 에러를 뿜으며 전사 리포트 전면 중단 |
+| **리니지 (Lineage)** | 데이터의 원천(Source)부터 변환, 최종 마트까지의 방향성 비순환 그래프(DAG, Directed Acyclic Graph) 추적 | 결함 발견 시 어떤 다운스트림 보고서가 오염되었는지 파악 불가 |
 
 ---
 
@@ -67,7 +67,7 @@ extra:
 ```
 
 ### 나. 대표 솔루션 생태계
-- 상용 플랫폼 : Monte Carlo, Databand(IBM), Bigeye.
+- 상용 플랫폼 : Monte Carlo, Databand(IBM, International Business Machines), Bigeye.
 - 오픈소스 생태계 : Elementary (dbt 기반), OpenLineage, Great Expectations, Soda Core.
 
 ---
@@ -82,11 +82,11 @@ extra:
   - 해결 방안 : 머신러닝 기반 시계열 이상탐지(Prophet, Isolation Forest)를 적용한 적응형 동적 임계치(Dynamic Threshold) 모델 운영.
 - 데이터 리니지(Lineage) 추적의 파편화 및 블랙박스 변환 :
   - 한계점 : dbt, Airflow, Spark, 복잡한 비즈니스 프로시저가 혼재된 파이프라인에서 엔드투엔드 컬럼 레벨 리니지 추적 단절 발생.
-  - 해결 방안 : 오픈 표준 규격(OpenLineage, Marquez) 채택, SQL 파서(SQLGlot) 기반의 자동 AST 분석을 통한 컬럼 레벨 리니지 전사 통합.
+  - 해결 방안 : 오픈 표준 규격(OpenLineage, Marquez) 채택, SQL(Structured Query Language) 파서(SQLGlot) 기반의 자동 AST(Abstract Syntax Tree) 분석을 통한 컬럼 레벨 리니지 전사 통합.
 
 ---
 
 ## Ⅴ. 데이터 다운타임 제로화를 위한 실무 제언
 
-- CI/CD 단계의 데이터 계약(Data Contract) 체결 : 원천 시스템 개발팀이 사전 통보 없이 DB 스키마를 변경하여 데이터 파이프라인이 깨지는 사고를 방지하기 위해, 소프트웨어 팀과 데이터 팀 간에 스키마 및 의미를 규정한 **데이터 계약** (Data Contract)을 체결하고 풀 리퀘스트 시 Linter로 검증해야 함.
+- CI(Continuous Integration)/CD(Continuous Delivery) 단계의 데이터 계약(Data Contract) 체결 : 원천 시스템 개발팀이 사전 통보 없이 DB(Database) 스키마를 변경하여 데이터 파이프라인이 깨지는 사고를 방지하기 위해, 소프트웨어 팀과 데이터 팀 간에 스키마 및 의미를 규정한 **데이터 계약** (Data Contract)을 체결하고 풀 리퀘스트 시 Linter로 검증해야 함.
 - 다운스트림 격리 자동화(Circuit Breaker) : 데이터 품질 게이트에서 볼륨이나 최신성 이상이 탐지되면, 오염된 데이터가 Gold 마트나 대시보드로 흘러가지 않도록 파이프라인을 자동 일시 중지(Circuit Breaking)하는 방어 로직을 구현할 것을 제언함.

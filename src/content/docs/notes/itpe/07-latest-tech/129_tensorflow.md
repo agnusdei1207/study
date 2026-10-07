@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 텐서플로우(TensorFlow)의 개요
 
-- 개념 : 다차원 배열인 **텐서** (Tensor)의 흐름(Flow)을 데이터 플로우 그래프로 표현하여 분산 **CPU/GPU/TPU** 환경에서 딥러닝 모델의 학습과 추론을 가속하는 엔드투엔드 머신러닝 플랫폼.
-- 배경 및 필요성 : 연구 단계의 파이썬 Eager 실행과 실운영 배포 시 정적 그래프/C++ 런타임 간의 **연산자** (Op) 호환성 및 수치 오차가 발생하므로 배포 타깃별 자동 빌드·**회귀 검증** (CI/CD) 파이프라인 연계 필수.
+- 개념 : 다차원 배열인 **텐서** (Tensor)의 흐름(Flow)을 데이터 플로우 그래프로 표현하여 분산 **CPU(Central Processing Unit)/GPU(Graphics Processing Unit)/TPU**(Tensor Processing Unit) 환경에서 딥러닝 모델의 학습과 추론을 가속하는 엔드투엔드 머신러닝 플랫폼.
+- 배경 및 필요성 : 연구 단계의 파이썬 Eager 실행과 실운영 배포 시 정적 그래프/C++ 런타임 간의 **연산자** (Op) 호환성 및 수치 오차가 발생하므로 배포 타깃별 자동 빌드·**회귀 검증** (CI(Continuous Integration)/CD(Continuous Delivery)) 파이프라인 연계 필수.
 - 핵심 목적 : 연구 및 대규모 산업 운영 환경 전반에 걸친 모델 설계, 분산 병렬 학습 가속화, **온디바이스/서버 통합 배포** 생태계 제공.
 
 ## Ⅱ. 텐서플로우(TensorFlow)의 핵심 아키텍처 및 동작 메커니즘
@@ -56,17 +56,17 @@ extra:
 - **하이브리드 실행 모드** : Eager Execution + Static Graph 융합 - 연구 시 직관적 디버깅(Eager), 배포 시 `tf.function` 정적 최적화 그래프 동시 지원.
 - **자동 미분** (Autodiff) : `tf.GradientTape` 기반 역전파 - 순전파 연산 테이프 기록 후 손실 함수에 대한 가중치 편미분 자동 연산.
 - **하드웨어 가속 최적화** : **XLA 컴파일러** 및 TPU 전용 가속 - **노드 융합** (Operator Fusion)을 통한 메모리 I/O 절감 및 구글 TPU 클러스터 최적화.
-- **엔터프라이즈 MLOps** : **TFX** (TensorFlow Extended) 생태계 - 데이터 검증(TFDV), 모델 변환(TFT), 지속적 서빙(TF Serving) 일원화.
+- **엔터프라이즈 MLOps**(Machine Learning Operations) : **TFX** (TensorFlow Extended) 생태계 - 데이터 검증(TFDV), 모델 변환(TFT), 지속적 서빙(TF Serving) 일원화.
 
 ## Ⅲ. 텐서플로우(TensorFlow)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | TensorFlow (TF 2.x) | PyTorch |
+| 비교 항목 | TensorFlow (TF, TensorFlow 2.x) | PyTorch |
 |---|---|---|
 | **계산 그래프 패러다임** | Define-by-Run(기본) + Define-and-Run(`@tf.function`) | Pure Define-by-Run (Dynamic Computation Graph) |
 | **자동 미분 엔진** | `tf.GradientTape` 콘텍스트 매니저 | `autograd` 텐서 내장 자동 추적 |
 | **프로그래밍 접근성** | Keras 고수준 추상화 중심 | Pythonic하고 직관적인 객체 지향 문법 |
-| **하드웨어 지원** | Google Cloud TPU에 최적화, CPU/GPU 다중 지원 | NVIDIA CUDA 계열 GPU에 최적화 |
-| **상용 배포 생태계** | TF Serving, TFX, LiteRT 등 프로덕션 완결성 우수 | TorchScript, TorchServe, ONNX 연계 중심 발전 |
+| **하드웨어 지원** | Google Cloud TPU에 최적화, CPU/GPU 다중 지원 | NVIDIA CUDA(Compute Unified Device Architecture) 계열 GPU에 최적화 |
+| **상용 배포 생태계** | TF Serving, TFX, LiteRT 등 프로덕션 완결성 우수 | TorchScript, TorchServe, ONNX(Open Neural Network Exchange) 연계 중심 발전 |
 | **주요 채택 분야** | 엔터프라이즈 산업계, 대규모 MLOps 운영 | 학계 연구(Research), 신규 논문 구현 및 모델 실험 |
 
 - 텐서플로우는 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
@@ -80,7 +80,7 @@ extra:
   - 한계점 : Keras/Python에서 정상 동작하던 특수 텐서 연산자가 LiteRT 변환 시 누락되어 추론 런타임 에러 발생.
   - 해결 방안 : LiteRT 호환 연산자(Select TF Ops) 명시적 활성화, 커스텀 C++ 커널 연산자 등록 또는 ONNX 변환 브릿지 적용.
 - 학계 연구 대비 신속한 구현 채택 지연 :
-  - 한계점 : 최신 AI 논문 연구 코드가 PyTorch 우선으로 공개되어 최신 SOTA 모델 신속 도입 시 병목.
+  - 한계점 : 최신 AI(Artificial Intelligence) 논문 연구 코드가 PyTorch 우선으로 공개되어 최신 SOTA(State of the Art) 모델 신속 도입 시 병목.
   - 해결 방안 : Torch-TensorFlow 상호 변환기(ONNX 중간 표현식 활용) 파이프라인 가동 및 사전 훈련 가중치 변환 툴체인 구축.
 
 ## Ⅴ. 텐서플로우(TensorFlow) 적용 및 발전을 위한 기술사적 제언

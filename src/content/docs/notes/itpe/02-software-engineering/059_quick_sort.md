@@ -58,4 +58,4 @@ extra:
 ## Ⅴ. 대규모 실무 시스템 적용 시 기술사적 제언
 
 - 최악의 $O(N^2)$ 성능 회피를 위한 피벗 선택 전략 고도화 : 맨 앞/뒤 원소를 피벗으로 잡는 소박한 방식을 지양하고, 배열의 처음·중간·끝 원소 중 중앙값을 선택하는 'Median-of-Three' 전략 또는 무작위 피벗(Randomized Pivot)을 반드시 적용.
-- 인트로소트(Introsort) 및 듀얼 피벗(Dual-Pivot) 퀵 정렬 도입 : C++ std::sort처럼 재귀 깊이가 일정 수준을 초과하면 힙 정렬로 전환하는 Introsort를 적용하여 최악의 경우에도 $O(N \log N)$을 보장하거나, Java 7 이후 채택된 2개의 피벗을 사용하는 Dual-Pivot 퀵 정렬을 활용하여 CPU 캐시 미스 최소화 권장.
+- 인트로소트(Introsort) 및 듀얼 피벗(Dual-Pivot) 퀵 정렬 도입 : C++ std::sort처럼 재귀 깊이가 일정 수준을 초과하면 힙 정렬로 전환하는 Introsort를 적용하여 최악의 경우에도 $O(N \log N)$을 보장하거나, Java 7 이후 채택된 2개의 피벗을 사용하는 Dual-Pivot 퀵 정렬을 활용하여 CPU(Central Processing Unit) 캐시 미스 최소화 권장.

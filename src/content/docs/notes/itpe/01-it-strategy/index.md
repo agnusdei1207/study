@@ -65,7 +65,7 @@ weight: 1
 | 번호 | 토픽 | 링크 |
 |---:|---|:---:|
 | 01-001 | ISMP(Information System Master Plan) | [보기](./001_ismp/) |
-| 01-002 | ISO/IEC 38500 | [보기](./002_iso_iec_38500/) |
+| 01-002 | ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 38500 | [보기](./002_iso_iec_38500/) |
 | 01-003 | ISP(Information Strategy Planning) | [보기](./003_isp/) |
 | 01-004 | PMO(PMC 비교 포함) | [보기](./004_pmo/) |
 | 01-005 | SCM(Supply Chain Management) | [보기](./005_scm/) |
@@ -74,27 +74,27 @@ weight: 1
 | 01-008 | 정보시스템 감리(상주·현장감리, 검사기준서) | [보기](./008_it_audit/) |
 | 01-009 | 프로젝트 위험관리 | [보기](./009_project_risk_management_negative/) |
 | 01-010 | BPR(Business Process Reengineering) | [보기](./010_bpr/) |
-| 01-011 | ESG 경영 | [보기](./011_esg/) |
-| 01-016 | IT 투자평가·투자관리 | [보기](./016_it_investment_evaluation/) |
+| 01-011 | ESG(Environmental, Social and Governance) 경영 | [보기](./011_esg/) |
+| 01-016 | IT(Information Technology) 투자평가·투자관리 | [보기](./016_it_investment_evaluation/) |
 | 01-012 | FinOps(FOCUS 포함) | [보기](./012_finops/) |
 | 01-013 | 애자일 전환 전략 | [보기](./013_agile_response_strategy/) |
 | 01-040 | 위험 대응 전략(위협·기회) | [보기](./040_negative_risk_response_strategy/) |
-| 01-017 | BSC(Balanced Score Card) | [보기](./017_bsc/) |
-| 01-018 | RTO·RPO | [보기](./018_rpo/) |
+| 01-017 | BSC(Balanced Scorecard) | [보기](./017_bsc/) |
+| 01-018 | RTO(Recovery Time Objective)·RPO(Recovery Point Objective) | [보기](./018_rpo/) |
 | 01-020 | 디지털 트랜스포메이션(Digital Transformation) | [보기](./020_digital_transformation/) |
 | 01-021 | 공공부문 클라우드 네이티브 전환 | [보기](./021_public_cloud_native_transition/) |
 | 01-023 | 정보시스템 등급제 | [보기](./023_information_system_grading/) |
-| 01-024 | 국가 AI 전략(AI 3대 강국·인공지능행동계획) | [보기](./024_korea_ai_action_plan/) |
+| 01-024 | 국가 AI(Artificial Intelligence) 전략(AI 3대 강국·인공지능행동계획) | [보기](./024_korea_ai_action_plan/) |
 | 01-025 | 범정부 AI 공통기반 | [보기](./025_pan_government_ai_common_infrastructure/) |
 | 01-026 | 소프트웨어 사업 대가산정 | [보기](./026_software_cost_estimation/) |
-| 01-027 | 액티브-액티브 이중화·스토리지 DR (국정자원 후속) | [보기](./027_active_active_storage_dr/) |
+| 01-027 | 액티브-액티브 이중화·스토리지 DR (Disaster Recovery, 국정자원 후속) | [보기](./027_active_active_storage_dr/) |
 | 01-028 | 터크만 팀 발달 모델 | [보기](./028_tuckman_team_development_model/) |
-| 01-036 | NIST AI RMF(AI 600-1 생성형 AI 프로파일 포함) | [보기](./036_nist_ai_rmf/) |
+| 01-036 | NIST(National Institute of Standards and Technology) AI RMF(Risk Management Framework)(AI 600-1 생성형 AI 프로파일 포함) | [보기](./036_nist_ai_rmf/) |
 | 01-029 | A/B 테스트(A/B Test) | [보기](./029_ab_testing/) |
 | 01-030 | BCP(Business Continuity Planning) | [보기](./030_bcp/) |
 | 01-035 | 프로젝트 갈등관리 | [보기](./035_conflict_management/) |
 | 01-038 | POP(Point Of Production) | [보기](./038_pop/) |
-| 01-039 | 공공 SW 사업 발주·계약(단계별 발주, 업체 선정) | [보기](./039_public_sw_contract/) |
+| 01-039 | 공공 SW(Software) 사업 발주·계약(단계별 발주, 업체 선정) | [보기](./039_public_sw_contract/) |
 | 01-042 | DRS(Disaster Recovery System) | [보기](./042_drs/) |
 | 01-044 | ITSM(IT Service Management) | [보기](./044_itsm/) |
 | 01-031 | CRM(Customer Relationship Management) | [보기](./031_crm/) |
@@ -105,7 +105,7 @@ weight: 1
 | 01-045 | MECE(Mutually Exclusive Collectively Exhaustive) | [보기](./045_mece/) |
 | 01-046 | 그로스 해킹(Growth Hacking) | [보기](./046_growth_hacking/) |
 | 01-047 | 디자인 씽킹 | [보기](./047_design_thinking/) |
-| 01-049 | 제안요청서(RFP) | [보기](./049_rfp/) |
+| 01-049 | 제안요청서(RFP, Request for Proposal) | [보기](./049_rfp/) |
 | 01-050 | AI 거버넌스 플랫폼 | [보기](./050_ai_governance_platform/) |
 | 01-051 | AI 고속도로(국가 AI컴퓨팅센터 포함) | [보기](./051_ai_highway/) |
 | 01-052 | AI 민주정부 / 온AI | [보기](./052_ai_democratic_government_on_ai/) |
@@ -117,7 +117,7 @@ weight: 1
 | 01-067 | 화이트 레이블 마케팅(White Label Marketing) | [보기](./067_white_label_marketing/) |
 | 01-069 | ISO 31000 | [보기](./069_iso_31000/) |
 | 01-071 | PLM(Product Lifecycle Management) | [보기](./071_plm/) |
-| 01-088 | 경영환경 분석(SWOT·3C·PEST) | [보기](./088_swot_3c_pest/) |
+| 01-088 | 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities and Threats)·3C·PEST) | [보기](./088_swot_3c_pest/) |
 | 01-087 | ITSQF(IT 분야 산업별 역량체계) | [보기](./087_it_job_competency_system/) |
 | 01-089 | TAM-SAM-SOM(Total Addressable Market-Serviceable Addressable Market-Serviceable Obtainable Market) | [보기](./089_tam_sam_som/) |
 | 01-092 | 기술수용모델(Technology Acceptance Model) | [보기](./092_technology_acceptance_model/) |

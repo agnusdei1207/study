@@ -15,12 +15,12 @@ extra:
 ## Ⅰ. 대용량 빅데이터 허브로서의 데이터 레이크(Data Lake) 개요
 
 ### 가. 데이터 레이크의 정의
-- **정형** (RDBMS 테이블), **반정형** (JSON, XML, 로그), **비정형** (이미지, 영상, 텍스트)을 포함한 대규모 원천 데이터를 변환 없이 원래의 포맷 그대로(Raw Format) 저렴한 대용량 객체 스토리지에 저장하는 중앙 집중식 저장소.
+- **정형** (RDBMS(Relational Database Management System) 테이블), **반정형** (JSON(JavaScript Object Notation), XML(Extensible Markup Language), 로그), **비정형** (이미지, 영상, 텍스트)을 포함한 대규모 원천 데이터를 변환 없이 원래의 포맷 그대로(Raw Format) 저렴한 대용량 객체 스토리지에 저장하는 중앙 집중식 저장소.
 - 저장 시점에 스키마를 강제하지 않고 데이터를 읽는 시점에 스키마를 적용하는 **Schema-on-Read** 패러다임을 핵심 특성으로 함.
 
 ### 나. 데이터 웨어하우스(DW)와 데이터 레이크의 패러다임 비교
-- **DW (Schema-on-Write)** : 정제 및 변환(ETL)된 고품질 정형 데이터를 엄격한 스키마 기반으로 적재하여 빠른 SQL 분석 제공.
-- **Data Lake (Schema-on-Read)** : 추출 후 원천 그대로 **선적재** (ELT), 데이터 과학자의 **탐색적 데이터 분석** (EDA) 및 머신러닝 파이프라인을 지원.
+- **DW(Data Warehouse, Schema-on-Write)** : 정제 및 변환(ETL, Extract, Transform, Load)된 고품질 정형 데이터를 엄격한 스키마 기반으로 적재하여 빠른 SQL(Structured Query Language) 분석 제공.
+- **Data Lake (Schema-on-Read)** : 추출 후 원천 그대로 **선적재** (ELT, Extract, Load, Transform), 데이터 과학자의 **탐색적 데이터 분석** (EDA, Exploratory Data Analysis) 및 머신러닝 파이프라인을 지원.
 
 ---
 
@@ -43,12 +43,12 @@ extra:
 | :--- | :--- | :--- | :--- |
 | **Bronze (Raw Zone)** | 외부 원천에서 수집된 비정제 데이터 원본 | Append-only 스트리밍/배치 적재, 원시 JSON/CSV/Parquet | 데이터 엔지니어 |
 | **Silver (Refined Zone)** | 중복 제거, 결측치 보정, 스키마 유효성 검증 완료 | 파케이(Parquet) 압축, 파티셔닝, 역정규화 테이블 | 데이터 엔지니어, 데이터 과학자 |
-| **Gold (Curated Zone)** | 도메인별 비즈니스 로직 및 집계 규칙이 반영된 데이터 | 차원 모델링(Fact/Dim), 고속 서빙 뷰 | BI 분석가, 비즈니스 현업, 임원 대시보드 |
+| **Gold (Curated Zone)** | 도메인별 비즈니스 로직 및 집계 규칙이 반영된 데이터 | 차원 모델링(Fact/Dim), 고속 서빙 뷰 | BI(Business Intelligence) 분석가, 비즈니스 현업, 임원 대시보드 |
 
 ### 나. 데이터 레이크를 지탱하는 핵심 기술 스택
-- **스토리지 계층** : AWS S3, Google Cloud Storage, Azure ADLS Gen2, Apache Ozone.
+- **스토리지 계층** : AWS(Amazon Web Services) S3(Simple Storage Service), Google Cloud Storage, Azure ADLS(Azure Data Lake Storage) Gen2, Apache Ozone.
 - **연산 및 처리 엔진** : Apache Spark, Trino(Presto), Flink, DuckDB.
-- **오픈 테이블 포맷 (Open Table Format)** : Apache Iceberg, Delta Lake, Apache Hudi (ACID 보장, 타임 트래블, 스키마 진화 지원).
+- **오픈 테이블 포맷 (Open Table Format)** : Apache Iceberg, Delta Lake, Apache Hudi (ACID(Atomicity, Consistency, Isolation, Durability) 보장, 타임 트래블, 스키마 진화 지원).
 
 ---
 
@@ -64,7 +64,7 @@ extra:
 
 ### 나. 데이터 늪 방지를 위한 거버넌스 통제 방안
 - **자동화된 메타데이터 등록** : 데이터 적재 파이프라인과 연계하여 스키마 정보 및 카탈로그 자동 등록(AWS Glue, Apache Atlas).
-- **데이터 라이프사이클 관리(ILM)** : 수집 후 90일 이상 미사용 원천 데이터는 아카이브 스토리지(Glacier 등)로 자동 티어링하거나 폐기.
+- **데이터 라이프사이클 관리(ILM, Information Lifecycle Management)** : 수집 후 90일 이상 미사용 원천 데이터는 아카이브 스토리지(Glacier 등)로 자동 티어링하거나 폐기.
 - **품질 게이트웨이 구축** : Silver 계층으로 승격 시 데이터 유효성 검증 테스트 통과 의무화.
 
 ---
@@ -72,11 +72,11 @@ extra:
 ## Ⅳ. 데이터 레이크 구축·운영 시 주요 한계점 및 해결 방안
 
 - 소형 파일(Small File Problem) 누적으로 인한 메타스토어 병목 :
-  - 한계점 : 실시간 스트리밍 인입 시 수 킬로바이트(KB) 단위의 파티션 파일이 수백만 개 양산되어 HDFS 네임노드 메모리 고갈 및 S3 리스팅/스캔 성능 급락.
+  - 한계점 : 실시간 스트리밍 인입 시 수 킬로바이트(KB) 단위의 파티션 파일이 수백만 개 양산되어 HDFS(Hadoop Distributed File System) 네임노드 메모리 고갈 및 S3 리스팅/스캔 성능 급락.
   - 해결 방안 : 파일 압축(Compaction) 자동화 데몬 운영, Apache Iceberg/Delta Lake의 자동 파일 병합(Auto-Optimize, Bin-packing) 파이프라인 적용.
 - 멀티 리더/라이터 환경에서의 ACID 트랜잭션 부재 및 정합성 붕괴 :
   - 한계점 : 객체 스토리지 기반 단순 파일 덤프 구조에서는 동시 쓰기 시 데이터 덮어쓰기(Overwrite) 충돌, 부분 실패(Partial Write) 시 불완전 파일 잔류.
-  - 해결 방안 : 트랜잭션 로그(WAL 기반)와 스냅샷 격리를 지원하는 오픈 테이블 포맷(Apache Iceberg, Delta Lake) 도입으로 ACID 보장 및 타임 트래블(Time Travel) 구현.
+  - 해결 방안 : 트랜잭션 로그(WAL(Write-Ahead Logging) 기반)와 스냅샷 격리를 지원하는 오픈 테이블 포맷(Apache Iceberg, Delta Lake) 도입으로 ACID 보장 및 타임 트래블(Time Travel) 구현.
 - 스토리지 비용의 기하급수적 증가 및 FinOps 통제 부재 :
   - 한계점 : 보관 주기 및 라이프사이클 정책 없는 무분별한 데이터 영구 보관으로 클라우드 스토리지 청구 비용 급증 및 미사용 콜드 데이터 방치.
   - 해결 방안 : 객체 스토리지 수명주기 규칙(Lifecycle Policy)을 통한 티어링(Standard -> Infrequent Access -> Glacier), Parquet/ORC 컬럼나 포맷 및 Snappy/ZSTD 압축 표준화.
@@ -86,5 +86,5 @@ extra:
 ## Ⅴ. 데이터 레이크의 발전 방향 및 실무 제언
 
 - 레이크하우스(Lakehouse)로의 아키텍처 수렴 : DW의 신뢰성(ACID 트랜잭션, 고성능 인덱싱)과 데이터 레이크의 유연성/경제성을 단일 플랫폼에 결합한 데이터 레이크하우스(Delta Lake, Iceberg 기반) 아키텍처 도입 가속.
-- 데이터 보안 및 세밀한 접근 통제 : 객체 단위가 아닌 행/열 수준(Row/Column-level) 및 태그 기반 접근 제어(PBAC) 체계를 수립(Apache Ranger, AWS Lake Formation)하여 컴플라이언스 위험을 선제 차단해야 함.
+- 데이터 보안 및 세밀한 접근 통제 : 객체 단위가 아닌 행/열 수준(Row/Column-level) 및 태그 기반 접근 제어(PBAC, Policy-Based Access Control) 체계를 수립(Apache Ranger, AWS Lake Formation)하여 컴플라이언스 위험을 선제 차단해야 함.
 - 비용 최적화(FinOps) 병행 : 무제한 확장이 가능한 클라우드 스토리지 특성상 Parquet 변환을 통한 높은 비율의 스토리지 압축, Z-Order 인덱싱을 통한 쿼리 스캔량 최소화 정책을 상시화할 것을 제언함.

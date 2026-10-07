@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. AI SOC 에이전트의 개요
 
-- 개념 : SIEM, EDR, NDR 등에서 쏟아지는 방대한 보안 경보를 **LLM 기반 추론 엔진** 이 맥락과 결합하여 심층 분석하고 대응을 보조·수행하는 자율 관제 체계.
-- 배경 및 필요성 : 다기종 보안 인프라에서 발생하는 초당 수만 건의 보안 경보로 인한 보안 분석가의 **경보 피로** (Alert Fatigue)를 해소하고, LLM 기반 자율 추론과 도구 연계를 통해 침해 대응 골든타임(MTTD/MTTR)을 단축하기 위해 도입됨.
+- 개념 : SIEM(Security Information and Event Management), EDR(Endpoint Detection and Response), NDR(Network Detection and Response) 등에서 쏟아지는 방대한 보안 경보를 **LLM(Large Language Model) 기반 추론 엔진** 이 맥락과 결합하여 심층 분석하고 대응을 보조·수행하는 자율 관제 체계.
+- 배경 및 필요성 : 다기종 보안 인프라에서 발생하는 초당 수만 건의 보안 경보로 인한 보안 분석가의 **경보 피로** (Alert Fatigue)를 해소하고, LLM 기반 자율 추론과 도구 연계를 통해 침해 대응 골든타임(MTTD/MTTR(Mean Time to Repair))을 단축하기 위해 도입됨.
 - 핵심 목적 : 보안 분석가의 경보 피로(Alert Fatigue) 해소, 침해사고 대응 골든타임 단축(MTTD/MTTR 혁신), 고도화된 타깃 공격의 맥락 기반 신속 규명.
 
 ## Ⅱ. AI SOC 에이전트의 핵심 아키텍처 및 동작 메커니즘
 
-AI SOC 에이전트은(는) 신뢰할 수 있는 보안 구조와 표준화된 절차를 기반으로 동작하며, 세부적인 아키텍처와 구성요소 간의 상호작용 메커니즘은 다음과 같음.
+AI(Artificial Intelligence) SOC(Security Operations Center) 에이전트은(는) 신뢰할 수 있는 보안 구조와 표준화된 절차를 기반으로 동작하며, 세부적인 아키텍처와 구성요소 간의 상호작용 메커니즘은 다음과 같음.
 
 ```text
 [ 다기종 보안 인프라 ]       [ AI SOC 에이전트 핵심 계층 ]                [ 대응 및 거버넌스 ]
@@ -51,17 +51,17 @@ AI SOC 에이전트은(는) 신뢰할 수 있는 보안 구조와 표준화된 �
 ```
 
 - **경보 수집 및 분류** : 실시간 스트리밍으로 유입되는 대량의 경보를 노이즈 필터링 및 공격 유형별 클러스터링 (Kafka, Flink, 임베딩 클러스터링).
-- **맥락 검색 (RAG)** : 공격 IP/도메인을 VirusTotal, MISP, 내부 CMDB 자산 정보와 실시간 연동하여 맥락 보강 (Vector DB(Milvus), GraphQL API).
+- **맥락 검색 (RAG, Retrieval-Augmented Generation)** : 공격 IP(Internet Protocol)/도메인을 VirusTotal, MISP, 내부 CMDB 자산 정보와 실시간 연동하여 맥락 보강 (Vector DB(Milvus), GraphQL API).
 - **다단계 추론 및 계획** : LLM이 공격자의 횡적 이동 경로와 권한 상승 가능성을 트리 형태로 탐색(Tree-of-Thought) (ReAct 패턴, LangGraph, AutoGen).
-- **가드레일 정책 검증** : 호출하려는 파괴적 명령(호스트 셧다운, 핵심 DB 격리 등)의 파라미터 유효성 검사 (NeMo Guardrails, OPA(Open Policy Agent)).
-- **조치 오케스트레이션** : 정해진 임계치 이하 저위험 조치는 자동화, 고위험 자산 통제는 분석가 승인 후 실행 (SOAR REST API, 슬랙/웹훅 승인 인터페이스).
+- **가드레일 정책 검증** : 호출하려는 파괴적 명령(호스트 셧다운, 핵심 DB(Database) 격리 등)의 파라미터 유효성 검사 (NeMo Guardrails, OPA(Open Policy Agent)).
+- **조치 오케스트레이션** : 정해진 임계치 이하 저위험 조치는 자동화, 고위험 자산 통제는 분석가 승인 후 실행 (SOAR(Security Orchestration, Automation and Response) REST(Representational State Transfer) API(Application Programming Interface), 슬랙/웹훅 승인 인터페이스).
 
 ## Ⅲ. AI SOC 에이전트의 세부 구성 요소 및 비교 분석
 
 | 구분 | **규칙 기반 SIEM** | **정적 플레이북 SOAR** | **AI SOC 에이전트** |
 |---|---|---|---|
 | 분석 패러다임 | 사전 정의된 상관분석 Rule 매칭 | 사전 정의된 If-Else 워크플로우 실행 | 자율 추론 기반 비정형 맥락 및 가설 검증 |
-| 미탐/변종 대응 | 규칙에 없는 신규 공격 탐지 불가 | 미정의 예외 상황 발생 시 프로세스 중단 | CTI 유사도 및 다단계 추론으로 변종 식별 |
+| 미탐/변종 대응 | 규칙에 없는 신규 공격 탐지 불가 | 미정의 예외 상황 발생 시 프로세스 중단 | CTI(Cyber Threat Intelligence) 유사도 및 다단계 추론으로 변종 식별 |
 | 맥락 이해력 | 로그 필드 간의 단순 일치 여부 비교 | 제한된 데이터 연동 스크립트 실행 | 공격자의 의도, 비즈니스 영향도 심층 이해 |
 | 분석 보고서 작성 | 분석가가 수작업으로 쿼리 실행 후 작성 | 템플릿 기반 단순 필드 채우기 | 자연어 기반 사고 경위, 타임라인 자동 생성 |
 | 유지보수 부담 | 대량의 룰 튜닝 및 오탐 제외 룰 추가 | API 변경 시마다 플레이북 전면 재수정 | 프롬프트 조정 및 지식 베이스 업데이트로 대응 |
@@ -70,13 +70,13 @@ AI SOC 에이전트은(는) 신뢰할 수 있는 보안 구조와 표준화된 �
 
 ## Ⅳ. AI SOC 에이전트의 주요 한계점 및 해결 방안
 
-- 한계점 : **LLM 환각** (Hallucination)으로 인해 정상 트래픽을 C2 통신으로 오판하여 핵심 서비스 차단 위험.
-  - 해결 방안 : 모든 추론 단계에 원천 로그 근거(Raw Evidence ID) 링크를 강제 표기하고, 핵심 프로덕션 자산은 **인간 승인** (HITL) 필수 적용.
+- 한계점 : **LLM 환각** (Hallucination)으로 인해 정상 트래픽을 C2(Command and Control) 통신으로 오판하여 핵심 서비스 차단 위험.
+  - 해결 방안 : 모든 추론 단계에 원천 로그 근거(Raw Evidence ID) 링크를 강제 표기하고, 핵심 프로덕션 자산은 **인간 승인** (HITL, Human in the Loop) 필수 적용.
 - 한계점 : 공격자가 로그나 웹 요청 헤더에 악의적 프롬프트를 은닉하는 **간접 프롬프트 인젝션** (Indirect Prompt Injection) 취약점.
   - 해결 방안 : 수집된 보안 로그 데이터를 입력 데이터 영역으로 완전 격리(Data-Instruction Separation)하고 LLM 가드레일 검증 레이어 배치.
 - 한계점 : 복합 멀티 홉 로그 분석 시 과도한 토큰 소모 및 API 지연으로 실시간 긴급 차단 골든타임 상실.
-  - 해결 방안 : 1차 필터링용 **경량 모델** (SLM)로 대부분의 단순 경보를 고속 처리하고, 심층 조사가 필요한 고난도 사건만 고성능 추론 LLM으로 라우팅.
-- 한계점 : 에이전트에 과도한 IAM 권한이 부여될 경우 탈취된 에이전트 키를 통한 전사 인프라 파괴 위험.
+  - 해결 방안 : 1차 필터링용 **경량 모델** (SLM, Small Language Model)로 대부분의 단순 경보를 고속 처리하고, 심층 조사가 필요한 고난도 사건만 고성능 추론 LLM으로 라우팅.
+- 한계점 : 에이전트에 과도한 IAM(Identity and Access Management) 권한이 부여될 경우 탈취된 에이전트 키를 통한 전사 인프라 파괴 위험.
   - 해결 방안 : 도구 호출 권한을 세분화(Least Privilege)하고 **임시 단기 토큰** (STS) 기반으로 감사 로그가 상시 기록되는 환경 구축.
 
 ## Ⅴ. AI SOC 에이전트 적용 및 발전을 위한 기술사적 제언

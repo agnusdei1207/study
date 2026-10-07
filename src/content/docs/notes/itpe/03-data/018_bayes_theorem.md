@@ -57,7 +57,7 @@ $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} = \frac{P(B|A) \cdot P(A)}{\sum_{i} P(
 
 ### 나. A/B 테스트 및 강화학습(MAB)
 - **베이지안 A/B 테스트** : 전통적인 $p$-value 검정의 고정 표본 크기 제약을 벗어나, 실험 진행 중에도 실시간으로 A안이 B안보다 우수할 사후 확률을 추적.
-- **톰슨 샘플링(Thompson Sampling)** : 멀티암드 밴딧(MAB) 문제에서 각 슬롯머신의 보상 확률 사후 분포로부터 샘플링하여 탐색(Exploration)과 활용(Exploitation)의 최적 균형 달성.
+- **톰슨 샘플링(Thompson Sampling)** : 멀티암드 밴딧(MAB, Multi-Armed Bandit) 문제에서 각 슬롯머신의 보상 확률 사후 분포로부터 샘플링하여 탐색(Exploration)과 활용(Exploitation)의 최적 균형 달성.
 
 ---
 
@@ -68,7 +68,7 @@ $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} = \frac{P(B|A) \cdot P(A)}{\sum_{i} P(
   - 해결 방안 : 대규모 역사적 데이터 기반의 실증적 베이즈(Empirical Bayes) 추정 도입, 사전분포 민감도 분석(Sensitivity Analysis)을 필수적으로 수행.
 - 고차원 복합 결합확률의 사후분포 해석적 적분 불가(Tractability) :
   - 한계점 : 변수가 증가할수록 정규화 상수인 주변우도(Marginal Likelihood) 계산을 위한 고차원 다중 적분이 해석적으로 불가능하여 계산 마비 발생.
-  - 해결 방안 : 마르코프 연쇄 몬테카를로(MCMC, Metropolis-Hastings, Gibbs Sampling) 알고리즘 또는 변분 추론(Variational Inference, VI) 기반 근사 기법 활용.
+  - 해결 방안 : 마르코프 연쇄 몬테카를로(MCMC, Markov Chain Monte Carlo; Metropolis-Hastings, Gibbs Sampling) 알고리즘 또는 변분 추론(Variational Inference, VI) 기반 근사 기법 활용.
 - 나이브 베이즈(Naive Bayes)의 조건부 독립 가정 위배 :
   - 한계점 : 모든 특징(Feature)이 클래스 조건부 독립이라는 강력한 비현실적 가정으로 인해 특징 간 강한 상관관계가 존재할 경우 사후확률이 과도하게 0 또는 1로 수렴.
   - 해결 방안 : 특징 간 상관성을 명시적 그래프 구조로 모델링하는 베이지안 네트워크(Bayesian Network) 도입 또는 라플라스 평활화(Laplace Smoothing) 적용.

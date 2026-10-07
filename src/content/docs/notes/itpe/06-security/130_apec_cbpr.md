@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. APEC CBPR의 핵심 아키텍처 및 동작 메커니즘
 
-APEC CBPR은 9대 원칙, 50개 기준의 세부 점검 항목, 각국 정부가 지정한 독립 인증기관(AA: Accountability Agent), 국경 간 규제 집행을 지원하는 CPEA(Cross-Border Privacy Enforcement Arrangement)로 구성됨.
+APEC CBPR(Cross-Border Privacy Rules)은 9대 원칙, 50개 기준의 세부 점검 항목, 각국 정부가 지정한 독립 인증기관(AA: Accountability Agent), 국경 간 규제 집행을 지원하는 CPEA(Cross-Border Privacy Enforcement Arrangement)로 구성됨.
 
 ```text
 [ APEC CBPR 거버넌스 프레임워크 및 데이터 이전 체계 ]
@@ -49,13 +49,13 @@ APEC CBPR은 9대 원칙, 50개 기준의 세부 점검 항목, 각국 정부가
 ```
 
 - **APEC 9대 프라이버시 원칙** : 피해 방지, 통지, 수집 제한, 개인정보의 이용, 선택권, 개인정보 무결성, 보안 대책, 접근 및 정정, 책임성(Accountability).
-- **책임성 대행기관(AA: Accountability Agent)** : 각 회원국 정부의 승인을 받아 기업의 프라이버시 정책과 기술적 조치가 CBPR 프로그램 요구사항에 부합하는지 독립 심사하고 인증을 부여(한국은 KISA가 수행).
+- **책임성 대행기관(AA: Accountability Agent)** : 각 회원국 정부의 승인을 받아 기업의 프라이버시 정책과 기술적 조치가 CBPR 프로그램 요구사항에 부합하는지 독립 심사하고 인증을 부여(한국은 KISA(Korea Internet & Security Agency)가 수행).
 - **CPEA(Cross-Border Privacy Enforcement Arrangement)** : 회원국 개인정보 감독기구(한국 개보위, 미국 FTC, 일본 PPC 등) 간에 국경 간 프라이버시 침해 사건 발생 시 증거 공유 및 공동 조사를 수행하는 법 집행 협력 네트워크.
 - **글로벌 CBPR 포럼으로의 확장** : 2022년 APEC 회원국을 넘어 전 세계 비APEC 국가(유럽, 중동 등)까지 참여할 수 있는 'Global CBPR 포럼' 출범으로 글로벌 표준으로 도약.
 
 ## Ⅲ. APEC CBPR의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | **APEC CBPR** | **EU GDPR 적정성 결정** (Adequacy) | **ISMS-P** (국내 인증) |
+| 비교 항목 | **APEC CBPR** | **EU(European Union) GDPR(General Data Protection Regulation) 적정성 결정** (Adequacy) | **ISMS(Information Security Management System)-P** (국내 인증) |
 | --- | --- | --- | --- |
 | 적용 성격 | 기업 단위의 자율적 글로벌 다자간 인증 | 국가 전체 법제에 대한 EU 집행위 승인 | 국내 기업 대상 법정 의무/자율 인증 |
 | 인증 대상 | 개인정보 처리 기업 (수탁사 포함) | 국가 또는 특정 산업 영역 전반 | 국내 정보통신서비스 제공자 및 기업 |
@@ -75,10 +75,10 @@ APEC CBPR은 9대 원칙, 50개 기준의 세부 점검 항목, 각국 정부가
   - 해결 방안 : 국내 ISMS-P 인증 취득 기업에 대해 CBPR 중복 심사 항목을 대폭 면제하고 컨설팅 비용 및 수수료 바우처 지원 확대.
 - 참여국의 법 집행 강제력 차이로 인한 보호 공백 :
   - 한계점 : 회원국마다 개인정보보호 전담 기구의 법적 권한과 과징금 수위가 상이하여 국경 간 침해 발생 시 실효성 있는 피해 구제 지연.
-  - 해결 방안 : CPEA 협약의 법적 구속력을 강화하고, 국경 간 분쟁 조정을 위한 표준 ADR(대체적 분쟁 해결) 프로토콜 의무화.
+  - 해결 방안 : CPEA 협약의 법적 구속력을 강화하고, 국경 간 분쟁 조정을 위한 표준 ADR(Architecture Decision Record, 대체적 분쟁 해결) 프로토콜 의무화.
 
 ## Ⅴ. APEC CBPR 적용 및 발전을 위한 기술사적 제언
 
 - 글로벌 SaaS 및 e커머스 기업의 CBPR 선제적 인증 획득 : 북미, 동남아 등 글로벌 시장에 진출하는 클라우드 및 플랫폼 기업은 현지 지사 설립 없이도 데이터 이전을 합법화하기 위해 CBPR 조기 취득.
 - ISMS-P와 CBPR의 통합 거버넌스 파이프라인 수립 : 사내 보안 및 개인정보 정책 수립 시 국내 개인정보보호법 통제 항목과 CBPR 50개 기준을 단일 매트릭스로 통합 관리하여 규제 중복 비용 최소화.
-- 개인정보 처리위탁자(PRP: Privacy Recognition for Processors) 인증 병행 : 클라우드 서비스 제공자(CSP, MSP)의 경우 데이터 처리자 대상 인증인 PRP를 함께 취득하여 수탁사로서의 글로벌 보안 신뢰도 입증.
+- 개인정보 처리위탁자(PRP: Privacy Recognition for Processors) 인증 병행 : 클라우드 서비스 제공자(CSP(Cloud Service Provider), MSP)의 경우 데이터 처리자 대상 인증인 PRP를 함께 취득하여 수탁사로서의 글로벌 보안 신뢰도 입증.

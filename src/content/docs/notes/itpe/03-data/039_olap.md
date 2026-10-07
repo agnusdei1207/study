@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 다차원 비즈니스 인텔리전스 분석 도구, OLAP의 개요
 
 ### 가. OLAP(On-Line Analytical Processing)의 정의
-- **OLAP** : 최종 사용자(경영진, 데이터 분석가)가 **다차원** (Multidimensional) 구조로 구성된 대규모 **데이터 웨어하우스** (DW)에 접근하여 대화식으로 신속하게 다양한 관점에서 비즈니스 데이터를 분석할 수 있도록 지원하는 소프트웨어 기술.
-- 단순 트랜잭션 처리를 위한 단건 중심의 **OLTP**와 대조적으로, 대규모 집계와 다차원 조회를 목적으로 함.
+- **OLAP**(Online Analytical Processing) : 최종 사용자(경영진, 데이터 분석가)가 **다차원** (Multidimensional) 구조로 구성된 대규모 **데이터 웨어하우스** (DW, Data Warehouse)에 접근하여 대화식으로 신속하게 다양한 관점에서 비즈니스 데이터를 분석할 수 있도록 지원하는 소프트웨어 기술.
+- 단순 트랜잭션 처리를 위한 단건 중심의 **OLTP**(Online Transaction Processing)와 대조적으로, 대규모 집계와 다차원 조회를 목적으로 함.
 
 ### 나. OLTP vs OLAP 핵심 비교
 
@@ -25,7 +25,7 @@ extra:
 | 시스템 목적 | 일상적 비즈니스 트랜잭션의 정확하고 신속한 처리 | 전략적 의사결정을 위한 다차원 분석 및 트렌드 파악 |
 | 데이터 모델 | 정규화된 3NF 모델 (무결성 중심, 중복 최소화) | 역정규화된 다차원 모델 (스타/스노우플레이크 스키마) |
 | 주요 쿼리 형태 | 소수 레코드 대상의 단건 INSERT, UPDATE, 키 기반 SELECT | 수백만 건 이상의 대규모 집계(SUM, AVG), 복합 조인 |
-| 트랜잭션 격리 | 엄격한 ACID 보장 필수 (동시성 제어 중요) | 읽기 위주(Read-Heavy), 주기적 일괄 배치 적재 |
+| 트랜잭션 격리 | 엄격한 ACID(Atomicity, Consistency, Isolation, Durability) 보장 필수 (동시성 제어 중요) | 읽기 위주(Read-Heavy), 주기적 일괄 배치 적재 |
 
 ---
 
@@ -62,7 +62,7 @@ extra:
 
 | 비교 항목 | ROLAP (Relational OLAP) | MOLAP (Multidimensional OLAP) | HOLAP (Hybrid OLAP) |
 | :--- | :--- | :--- | :--- |
-| 데이터 저장소 | 관계형 데이터베이스 (RDBMS) | 전용 다차원 배열 큐브 (MDBMS) | 상세는 RDBMS, 집계는 MDDB |
+| 데이터 저장소 | 관계형 데이터베이스 (RDBMS, Relational Database Management System) | 전용 다차원 배열 큐브 (MDBMS, Multidimensional Database Management System) | 상세는 RDBMS, 집계는 MDDB(Multidimensional Database) |
 | 사전 집계 수준 | 질의 시점에 동적 계산 위주 | 데이터 적재 시점에 사전 전면 집계 | 상위 집계만 사전 큐브화 |
 | 쿼리 응답 속도 | 중간 (인덱스 및 집계 테이블 튜닝 의존) | 극도로 빠름 ($O(1)$ 배열 인덱싱) | 집계는 빠르고 상세는 보통 |
 | 데이터 확장성 | 테라~페타바이트급 무제한 확장 | 큐브 폭발(Cube Explosion)로 용량 한계 | 대용량과 고속 성능의 절충 |
@@ -75,10 +75,10 @@ extra:
   - 한계점 : MOLAP 환경에서 차원(Dimension)과 계층(Hierarchy)이 증가할수록 사전 집계 큐브의 희소 행렬(Sparsity)로 인해 저장 공간이 기하급수적으로 폭증.
   - 해결 방안 : 자주 질의되는 상위 레벨만 선별 집계하는 부분 사전 집계(Partial Pre-aggregation) 적용, 컬럼나 스토리지(ClickHouse, DuckDB) 기반의 동적 질의 처리.
 - 배치 적재 지연으로 인한 실시간 분석(Real-time Analytics) 불가 :
-  - 한계점 : 전통적 OLAP은 야간 ETL 배치 주기에 의존하므로 최신 수 분~수 초 내의 트랜잭션 데이터를 즉시 분석 큐브에 반영하지 못하는 시차 발생.
+  - 한계점 : 전통적 OLAP은 야간 ETL(Extract, Transform, Load) 배치 주기에 의존하므로 최신 수 분~수 초 내의 트랜잭션 데이터를 즉시 분석 큐브에 반영하지 못하는 시차 발생.
   - 해결 방안 : 람다/카파 아키텍처 도입, 실시간 OLAP 엔진(Apache Pinot, Apache Druid)을 통해 스트리밍 인입과 동시 다차원 슬라이스/다이스 질의 제공.
 - 복잡한 비정형 질의 시 ROLAP 엔진의 RDBMS 성능 저하 :
-  - 한계점 : 스타 스키마 기반 ROLAP 질의 시 수억 건의 팩트 테이블과 다차원 차원 테이블 간의 반복적 대규모 JOIN으로 DBMS I/O 병목 유발.
+  - 한계점 : 스타 스키마 기반 ROLAP 질의 시 수억 건의 팩트 테이블과 다차원 차원 테이블 간의 반복적 대규모 JOIN으로 DBMS(Database Management System) I/O 병목 유발.
   - 해결 방안 : 대화형 분석 전용 MPP(Massively Parallel Processing) 분산 쿼리 엔진(Trino, Snowflake) 채택, Z-Order 인덱싱 및 프로젝션 캐시 구축.
 
 ---

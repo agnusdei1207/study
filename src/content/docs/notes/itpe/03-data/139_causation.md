@@ -58,10 +58,10 @@ extra:
 
 | 방법론 | 핵심 작동 메커니즘 | 적용 조건 및 강점 | 한계 및 주의사항 |
 | :--- | :--- | :--- | :--- |
-| **무작위 대조 시험 (RCT / A/B Test)** | 피험자를 무작위 배정하여 처치군과 대조군의 모든 교란변수($Z$)를 완벽히 균등화 | 인과추론의 골드 스탠다드 (가장 정확) | 윤리적·비용적 한계로 모든 분야에 적용 불가 |
-| **성향점수 매칭 (PSM)** | 관측된 공변량($X$)들을 바탕으로 처치를 받을 확률(성향점수)을 추정 후 유사 개체끼리 1:1 매칭 | 관측 데이터에서 교란변수의 불균형 해소 | 관측되지 않은 숨은 교란변수는 통제 불가 |
-| **이중차분법 (DID)** | 처치 전후의 변화량에서 대조군의 전후 변화량을 차감 ($(\Delta Y_{treat} - \Delta Y_{control})$) | 정책 효과 평가, 시간 경과에 따른 자연 증가분 통제 | **평행 추세 가정** (Parallel Trends) 만족 필수 |
-| **도구변수법 (IV)** | 처치($T$)에는 직접 영향을 미치지만, 오차항 및 결과($Y$)와는 독립인 외생적 도구변수($Z$) 활용 | 관측되지 않은 내생성(Endogeneity) 극복 가능 | 유효한 도구변수를 발굴하기가 극도로 어려움 |
+| **무작위 대조 시험 (RCT, Randomized Controlled Trial / A/B Test)** | 피험자를 무작위 배정하여 처치군과 대조군의 모든 교란변수($Z$)를 완벽히 균등화 | 인과추론의 골드 스탠다드 (가장 정확) | 윤리적·비용적 한계로 모든 분야에 적용 불가 |
+| **성향점수 매칭 (PSM, Propensity Score Matching)** | 관측된 공변량($X$)들을 바탕으로 처치를 받을 확률(성향점수)을 추정 후 유사 개체끼리 1:1 매칭 | 관측 데이터에서 교란변수의 불균형 해소 | 관측되지 않은 숨은 교란변수는 통제 불가 |
+| **이중차분법 (DID, Difference-in-Differences)** | 처치 전후의 변화량에서 대조군의 전후 변화량을 차감 ($(\Delta Y_{treat} - \Delta Y_{control})$) | 정책 효과 평가, 시간 경과에 따른 자연 증가분 통제 | **평행 추세 가정** (Parallel Trends) 만족 필수 |
+| **도구변수법 (IV, Instrumental Variable)** | 처치($T$)에는 직접 영향을 미치지만, 오차항 및 결과($Y$)와는 독립인 외생적 도구변수($Z$) 활용 | 관측되지 않은 내생성(Endogeneity) 극복 가능 | 유효한 도구변수를 발굴하기가 극도로 어려움 |
 
 ---
 
@@ -69,7 +69,7 @@ extra:
 
 - 관측 불가능한 교란 변수(Unobserved Confounder)로 인한 선택 편향 :
   - 한계점 : 무작위 통제 시험(RCT)이 불가능한 비즈니스 관측 데이터에서 잠재된 외생 변수를 완벽히 통제하지 못해 처리 효과(ATE)가 심각하게 왜곡.
-  - 해결 방안 : 도구변수(Instrumental Variables) 기법 적용, 성향점수 매칭(PSM) 및 **역확률 가중치** (IPW), **민감도 분석** (Sensitivity Analysis: Rosenbaum Bounds) 수행.
+  - 해결 방안 : 도구변수(Instrumental Variables) 기법 적용, 성향점수 매칭(PSM) 및 **역확률 가중치** (IPW, Inverse Probability Weighting), **민감도 분석** (Sensitivity Analysis: Rosenbaum Bounds) 수행.
 - 이중차분법(DID) 적용 시 평행 추세 가정(Parallel Trends Assumption) 위반 :
   - 한계점 : 정책 개입이나 프로모션 전 처리군과 통제군의 트렌드가 사전에 다르게 움직였을 경우 DID 추정치가 정책의 순수 효과를 반영하지 못함.
   - 해결 방안 : 사전 기간(Pre-treatment) **이벤트 연구** (Event Study) 플롯 검증, **합성 대조군** (Synthetic Control Method) 기법을 통한 최적 통제군 가중 결합.
@@ -80,4 +80,4 @@ extra:
 ## Ⅴ. 비즈니스 의사결정 및 데이터 사이언스 실무 제언
 
 - A/B 테스트 불가능 환경에서의 이중차분법(DID) 활용 : 전국 단위 가격 인상이나 법 개정처럼 대조군을 무작위 배정할 수 없는 비즈니스 의사결정에서는, 유사한 인접 국가나 경쟁 플랫폼을 대조군으로 삼아 평행 추세 검증을 거친 DID 모델을 적용해야 함.
-- 머신러닝과 Causal AI의 결합 (Uplift Modeling) : 단순히 이탈 확률이 높은 고객을 찾는 것이 아니라, "쿠폰을 주었기 때문에 이탈을 멈출 고객(Persuadables)"과 "쿠폰을 주지 않아도 남을 고객"을 구별하는 **업리프트 모델링** (Uplift Modeling)을 CRM 마케팅에 도입할 것을 제언함.
+- 머신러닝과 Causal AI(Artificial Intelligence)의 결합 (Uplift Modeling) : 단순히 이탈 확률이 높은 고객을 찾는 것이 아니라, "쿠폰을 주었기 때문에 이탈을 멈출 고객(Persuadables)"과 "쿠폰을 주지 않아도 남을 고객"을 구별하는 **업리프트 모델링** (Uplift Modeling)을 CRM(Customer Relationship Management) 마케팅에 도입할 것을 제언함.

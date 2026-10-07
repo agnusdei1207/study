@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. 측면 이동(Lateral Movement)의 개요
 
-- 개념 : 공격자가 최초 침투한 단말(피싱 감염 PC 등)에서 멈추지 않고, 네트워크 내부를 정찰하고 **자격증명**을 탈취하여 최종 목표인 핵심 서버(AD DC, 고객 DB)로 이동해 나가는 침해 확산 단계.
+- 개념 : 공격자가 최초 침투한 단말(피싱 감염 PC(Personal Computer) 등)에서 멈추지 않고, 네트워크 내부를 정찰하고 **자격증명**을 탈취하여 최종 목표인 핵심 서버(AD(Active Directory) DC(Domain Controller), 고객 DB(Database))로 이동해 나가는 침해 확산 단계.
 - 배경 및 필요성 : 경계 방화벽을 뚫고 내부망에 침투한 공격자가 로컬 관리자 **권한 상승** 및 **자격증명 탈취**를 통해 핵심 데이터베이스와 **도메인 컨트롤러** (DC)로 침투를 확대하는 전사 마비 피해를 조기에 격리·차단하기 위해 출현함.
 - 핵심 목적 : 초기 침투 지점의 격리 방어를 무력화하고, 전사 권한(도메인 관리자) 탈취 및 랜섬웨어 전사 배포를 위한 횡적 장악 거점 확보.
 
@@ -46,29 +46,29 @@ extra:
 - **1. 내부 정찰** : 네트워크 토폴로지, 활성 호스트, AD 도메인 신뢰 관계 탐색 (BloodHound, AdFind, net view).
 - **2. 자격증명 탈취** : 메모리 내 로그인 세션 정보 및 Kerberos 티켓 추출 (Mimikatz, Procdump, LSASS 프로세스).
 - **3. 자격증명 재사용** : 평문 복호화 없이 해시나 티켓으로 원격 시스템 인증 통과 (Pass-the-Hash, Golden/Silver Ticket).
-- **4. 원격 명령 실행** : 관리 프로토콜을 경유하여 타깃 시스템에 셸 및 악성코드 실행 (SMB (445), WMI (135), RDP (3389)).
+- **4. 원격 명령 실행** : 관리 프로토콜을 경유하여 타깃 시스템에 셸 및 악성코드 실행 (SMB (445), WMI (135), RDP (Remote Desktop Protocol, 3389)).
 - **5. 거점 영속화** : 대상 시스템에 서비스 등록 또는 작업 스케줄러 등록 (schtasks, sc create, 레지스트리 Run).
 
 ## Ⅲ. 측면 이동(Lateral Movement)의 세부 구성 요소 및 비교 분석
 
 | 구분 | **Pass-the-Hash** (PtH) | **Pass-the-Ticket** (PtT) | 원격 서비스 악용 (RDP / WMI) |
 |---|---|---|---|
-| 탈취 대상 자격증명 | NTLM 암호 해시 (NT Hash) | Kerberos TGT / TGS 티켓 | 탈취된 계정 ID / 평문 패스워드 |
-| 인증 프로토콜 | NTLM 인증 프로토콜 | Kerberos 인증 프로토콜 | RDP(3389), WMI/RPC(135), SMB(445) |
-| 공격 메커니즘 | 해시값을 NTLM Challenge-Response에 직접 주입 | 탈취한 티켓을 메모리에 삽입(Inject)하여 접근 | 정상 GUI/CLI 세션을 원격 생성하여 제어 |
+| 탈취 대상 자격증명 | NTLM 암호 해시 (NT Hash) | Kerberos TGT / TGS 티켓 | 탈취된 계정 ID(Identifier) / 평문 패스워드 |
+| 인증 프로토콜 | NTLM 인증 프로토콜 | Kerberos 인증 프로토콜 | RDP(3389), WMI/RPC(Remote Procedure Call, 135), SMB(445) |
+| 공격 메커니즘 | 해시값을 NTLM Challenge-Response에 직접 주입 | 탈취한 티켓을 메모리에 삽입(Inject)하여 접근 | 정상 GUI(Graphical User Interface)/CLI(Command-Line Interface) 세션을 원격 생성하여 제어 |
 | 탐지 지점 | 비정상 NTLM 인증 이벤트(ID 4624 Type 3) | 비정상 서비스 티켓 요청(이벤트 ID 4769) | 원격 로그인 로그, 비정상 원격 프로세스 트리 |
-| 대표 방어 기술 | NTLM v1 비활성화, Windows LAPS | Kerberos 보호(Protected Users), 짧은 TGT 수명 | 원격 포트 차단, Bastion Host, ZTNA |
+| 대표 방어 기술 | NTLM v1 비활성화, Windows LAPS | Kerberos 보호(Protected Users), 짧은 TGT 수명 | 원격 포트 차단, Bastion Host, ZTNA(Zero Trust Network Access) |
 
 - 측면 이동(Lateral Movement)은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
 
 ## Ⅳ. 측면 이동(Lateral Movement)의 주요 한계점 및 해결 방안
 
 - 한계점 : 내부 서브넷 간 통제가 없는 **평면 네트워크** (Flat Network) 환경으로 인해 1대 단말 감염 시 동일 대역 전체가 무방비 노출.
-  - 해결 방안 : **소프트웨어 정의 경계** (SDP) 및 하이퍼바이저 기반 마이크로 세그멘테이션(Micro-segmentation)을 적용하여 호스트 간(East-West) 통신 원천 격리.
+  - 해결 방안 : **소프트웨어 정의 경계** (SDP, Software-Defined Perimeter) 및 하이퍼바이저 기반 마이크로 세그멘테이션(Micro-segmentation)을 적용하여 호스트 간(East-West) 통신 원천 격리.
 - 한계점 : 도메인 내 다수 워크스테이션에 동일한 로컬 관리자(Administrator) 암호가 설정되어 있어 단 1회 덤프로 전사 장악.
   - 해결 방안 : Windows LAPS(Local Administrator Password Solution)를 의무 도입하여 엔드포인트별 고유 난수 암호 강제 부여 및 주기적 자동 회전.
-- 한계점 : WMI, PowerShell, RDP 등 정상 시스템 관리 도구(LOLBins)를 악용하므로 단순 포트 차단 시 사내 정상 IT 운영 마비 초래.
-  - 해결 방안 : EDR 기반 **부모-자식 프로세스 인과관계** (Parent-Child Tree) 행위 분석을 도입하고 시스템 관리 접속은 MFA가 강제된 전용 **점프 호스트** (Bastion)만 허용.
+- 한계점 : WMI, PowerShell, RDP 등 정상 시스템 관리 도구(LOLBins)를 악용하므로 단순 포트 차단 시 사내 정상 IT(Information Technology) 운영 마비 초래.
+  - 해결 방안 : EDR(Endpoint Detection and Response) 기반 **부모-자식 프로세스 인과관계** (Parent-Child Tree) 행위 분석을 도입하고 시스템 관리 접속은 MFA(Multi-Factor Authentication)가 강제된 전용 **점프 호스트** (Bastion)만 허용.
 
 ## Ⅴ. 측면 이동(Lateral Movement) 적용 및 발전을 위한 기술사적 제언
 

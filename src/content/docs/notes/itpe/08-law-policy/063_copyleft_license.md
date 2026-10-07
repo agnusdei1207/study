@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 카피레프트 라이선스(Copyleft License)의 개요
 
 - 개념 : 소프트웨어의 **사용·수정·배포의 자유**를 보장하는 동시에, 이를 기반으로 제작된 모든 **파생 저작물**에도 동일한 조건과 소스코드 공개를 강제하는 상호주의적 저작권 이용허락 규약.
-- 제정 배경 및 필요성 : 상용 상용화 제품에 **정적/동적 링크** 시 독점적 영업비밀(IP) 소스코드의 강제 공개 위험이 상존하므로 CI/CD 파이프라인 내 **SBOM** 기반 의존성 스캔과 프로세스 간 **IPC/REST 격리 아키텍처** 수립 필수.
+- 제정 배경 및 필요성 : 상용 상용화 제품에 **정적/동적 링크** 시 독점적 영업비밀(IP, Internet Protocol) 소스코드의 강제 공개 위험이 상존하므로 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내 **SBOM**(Software Bill of Materials) 기반 의존성 스캔과 프로세스 간 **IPC(Inter-Process Communication)/REST(Representational State Transfer) 격리 아키텍처** 수립 필수.
 - 핵심 목적 : 오픈소스 생태계의 사유화 방지, 지식 공유의 지속성 보장 및 자유 소프트웨어의 지속적인 생태계 선순환 유지.
 
 ## Ⅱ. 카피레프트 라이선스(Copyleft License)의 법제도 체계 및 핵심 메커니즘
@@ -58,12 +58,12 @@ extra:
 - **강력한 카피레프트** (Strong) : GPLv2, GPLv3 - 정적/동적 링크 불문하고 결합된 전체 파생 소프트웨어의 소스코드 공개 의무화.
 - **네트워크 카피레프트** (Network) : AGPLv3 - 바이너리 배포 없이 웹/클라우드 네트워크를 통해 원격 서비스(SaaS) 제공 시에도 소스 공개.
 - **약한 카피레프트** (Weak) : LGPLv2.1, LGPLv3 - 라이브러리 단순 동적 링크 시 독점 코드 보호 허용 (라이브러리 자체 수정 시만 공개).
-- **코드 분석** : 패키지 의존성 트리(Dependency Tree) 전수 스캔 - SBOM 명세서 (SPDX / CycloneDX 포맷).
+- **코드 분석** : 패키지 의존성 트리(Dependency Tree) 전수 스캔 - SBOM 명세서 (SPDX(Software Package Data Exchange) / CycloneDX 포맷).
 - **결합 검토** : 헤더 인클루드, 함수 직접 호출, 빌드 링크 방식 - 아키텍처 의존성 다이어그램, 링커 스크립트.
 
 ## Ⅲ. 카피레프트 라이선스(Copyleft License)의 세부 규정 및 국내외 제도 비교 분석
 
-| 비교 항목 | 강력한 카피레프트 (GPL/AGPL) | 약한 카피레프트 (LGPL/MPL) | 허용적 라이선스 (MIT/Apache) |
+| 비교 항목 | 강력한 카피레프트 (GPL(GNU General Public License)/AGPL(GNU Affero General Public License)) | 약한 카피레프트 (LGPL/MPL) | 허용적 라이선스 (MIT/Apache) |
 |---|---|---|---|
 | 철학적 목표 | 소프트웨어 자유 보장 (반독점) | 자유 보장과 상용화의 타협 | 제약 없는 자유로운 이용 및 확산 |
 | 전염성 범위 | 결합된 전체 파생 소프트웨어 | 동적 링크 시 라이브러리/파일 한정 | 전염성 전무 (독점 라이선스 허용) |
@@ -79,7 +79,7 @@ extra:
   - 한계점 : 개발자의 무단 카피레프트 라이브러리 임포트로 인해 기업의 핵심 독점 코드가 GPL에 오염(Contamination)되어 기업 가치 훼손.
   - 해결 방안 : CI/CD 파이프라인 상에 블랙덕(Black Duck) 등 오픈소스 라이선스 검사기를 연동하여 PR(Pull Request) 시 GPL/AGPL 자동 빌드 실패 처리.
 - SaaS 클라우드 환경에서 AGPL 컴포넌트 사용 시 백엔드 코드 공개 요구 :
-  - 한계점 : SaaS 클라우드 환경에서 AGPL 라이브러리 사용 시 원격 API 이용자에게도 백엔드 비즈니스 로직 소스코드 공개 요구 발생.
+  - 한계점 : SaaS 클라우드 환경에서 AGPL 라이브러리 사용 시 원격 API(Application Programming Interface) 이용자에게도 백엔드 비즈니스 로직 소스코드 공개 요구 발생.
   - 해결 방안 : AGPL 소프트웨어의 코드 레벨 직접 수정을 전면 금지하고, 표준 퍼블릭 API를 경유하는 완전 독립된 마이크로서비스(Sidecar 패턴)로 망 격리.
 - LGPL 동적 링크 시 라이브러리 교체 수단(Relink) 미제공 규약 위반 :
   - 한계점 : LGPL 라이브러리를 동적 링크하더라도 이용자가 해당 라이브러리를 교체하여 리링크(Relink)할 수 있는 수단 미제공 시 규약 위반.

@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. Salt Typhoon / Volt Typhoon (LotL)의 개요
 
-- 개념 : **OS 내장 관리 도구** (PowerShell, WMI, netsh 등)와 유효한 관리자 자격증명을 악용하여 악성 바이너리 없이 표적망에 장기 잠복하는 **LotL** 기반 국가 배후 **APT** 위협.
+- 개념 : **OS(Operating System) 내장 관리 도구** (PowerShell, WMI, netsh 등)와 유효한 관리자 자격증명을 악용하여 악성 바이너리 없이 표적망에 장기 잠복하는 **LotL** 기반 국가 배후 **APT**(Advanced Persistent Threat) 위협.
 - 배경 및 필요성 : 국가 지원 해킹 그룹이 별도의 악성코드를 설치하지 않고 타깃 시스템에 기설치된 정상 관리 도구(PowerShell, WMI 등)를 악용하는 **Living-off-the-Land** (LotL) 기법으로 장기 잠복함에 따라, 행위 기반 심층 탐지의 필요성이 급증함.
-- 핵심 목적 : 전통적인 안티바이러스 및 파일 기반 EDR 탐지를 무력화하고, 중요 기반시설 파괴 준비(Volt) 및 통신 백본 도청(Salt)을 위한 은밀한 지속성(Persistence) 유지.
+- 핵심 목적 : 전통적인 안티바이러스 및 파일 기반 EDR(Endpoint Detection and Response) 탐지를 무력화하고, 중요 기반시설 파괴 준비(Volt) 및 통신 백본 도청(Salt)을 위한 은밀한 지속성(Persistence) 유지.
 
 ## Ⅱ. Salt Typhoon / Volt Typhoon (LotL)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -45,8 +45,8 @@ LOLBins 실행: ntdsutil / comsvcs.dll 악용 ───────────�
 ```
 
 - **정찰 및 검색** : `whoami`, `net user`, `nltest /dclist` (도메인 컨트롤러 및 관리자 그룹 인벤토리 파악).
-- **자격증명 탈취** : `comsvcs.dll` (MiniDump로 LSASS 프로세스 메모리 덤프), `ntdsutil` (AD 데이터베이스 NTDS.dit 스냅샷으로 패스워드 해시 추출).
-- **트래픽 터널링** : `netsh interface portproxy` (외부 C2와 내부 호스트 간의 포트포워딩 경로 구축).
+- **자격증명 탈취** : `comsvcs.dll` (MiniDump로 LSASS 프로세스 메모리 덤프), `ntdsutil` (AD(Active Directory) 데이터베이스 NTDS.dit 스냅샷으로 패스워드 해시 추출).
+- **트래픽 터널링** : `netsh interface portproxy` (외부 C2(Command and Control)와 내부 호스트 간의 포트포워딩 경로 구축).
 - **원격 코드 실행** : `wmic process call create`, `WinRM` (도메인 관리자 계정으로 내부 워크스테이션 원격 실행).
 - **스크립트 실행** : `powershell.exe -enc <Base64>` (난독화된 인메모리 스크립트 실행).
 
@@ -55,9 +55,9 @@ LOLBins 실행: ntdsutil / comsvcs.dll 악용 ───────────�
 | 비교 항목 | 전통적 악성코드 공격 (Malware-based) | LotL 기반 은닉 공격 (Living-off-the-Land) |
 |---|---|---|
 | 페이로드 존재 | 디스크에 커스텀 악성 실행 파일(.exe/.dll) 생성 | 디스크 파일 미생성 (무파일/메모리 전용 실행) |
-| 탐지 기술 | 시그니처 해시(MD5/SHA256), YARA 룰, AV 엔진 | 프로세스 계층 트리, 부모-자식 관계, 실행 인자 행위 분석 |
+| 탐지 기술 | 시그니처 해시(MD5(Message Digest 5)/SHA256), YARA 룰, AV 엔진 | 프로세스 계층 트리, 부모-자식 관계, 실행 인자 행위 분석 |
 | 권한 및 계정 | 취약점을 통한 시스템 서비스 익스플로잇 | 탈취된 유효 관리자 계정(Valid Accounts) 사용 |
-| 네트워크 트래픽 | 비표준 포트를 통한 외부 C2 통신 (탐지 용이) | 80/443 정상 관리 프로토콜 및 VPN 세션 위장 |
+| 네트워크 트래픽 | 비표준 포트를 통한 외부 C2 통신 (탐지 용이) | 80/443 정상 관리 프로토콜 및 VPN(Virtual Private Network) 세션 위장 |
 | 방어자 대응 난이도 | 상대적으로 용이 (파일 격리 및 백신 업데이트) | 극도로 어려움 (정상 관리자 작업과 공격 행위의 모호성) |
 
 - Salt Typhoon / Volt Typhoon (LotL)은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
@@ -65,12 +65,12 @@ LOLBins 실행: ntdsutil / comsvcs.dll 악용 ───────────�
 ## Ⅳ. Salt Typhoon / Volt Typhoon (LotL)의 주요 한계점 및 해결 방안
 
 - 한계점 : 관리자의 정상적인 유지보수 스크립트와 공격자의 LotL 명령 인자가 거의 동일하여 대량의 오탐 발생.
-  - 해결 방안 : **사용자·엔티티 행위 분석** (UEBA)을 도입하여 비업무 시간(새벽 등), 비인가 IP 대역, 최초 실행된 명령 인자 조합에 대해서만 고위험 경보 발령.
+  - 해결 방안 : **사용자·엔티티 행위 분석** (UEBA, User and Entity Behavior Analytics)을 도입하여 비업무 시간(새벽 등), 비인가 IP(Internet Protocol) 대역, 최초 실행된 명령 인자 조합에 대해서만 고위험 경보 발령.
 - 한계점 : 펌웨어 기반의 통신사 라우터나 SOHO 엣지 장비는 상용 EDR 에이전트 설치 불가로 인한 감시 사각지대 존재.
   - 해결 방안 : 엣지 장비 대상 **NetFlow/IPFIX** 트래픽 메타데이터를 전수 수집하여 비인가 외부 포트포워딩 및 장기 유지 세션의 이상 흐름 감시.
 - 한계점 : 공격자가 증적을 남기지 않기 위해 메모리에서만 동작하고 이벤트 로그를 선별 삭제(wevtutil cl)하는 행위.
-  - 해결 방안 : 중앙 Syslog 서버로 이벤트를 실시간 원격 포워딩(WEC/WEF)하고 로그 저장소에 WORM 불변 설정을 적용하여 로컬 로그 삭제 무력화.
-- 한계점 : 탈취된 **유효 관리자 계정** (Valid Account)으로 로그인할 경우 다단계 인증(MFA) 우회 및 합법 세션으로 오인.
+  - 해결 방안 : 중앙 Syslog 서버로 이벤트를 실시간 원격 포워딩(WEC/WEF)하고 로그 저장소에 WORM(Write Once Read Many) 불변 설정을 적용하여 로컬 로그 삭제 무력화.
+- 한계점 : 탈취된 **유효 관리자 계정** (Valid Account)으로 로그인할 경우 다단계 인증(MFA, Multi-Factor Authentication) 우회 및 합법 세션으로 오인.
   - 해결 방안 : **FIDO2** 기반 피싱 저항 MFA(Hardware Passkey)를 전사 의무화하고 장치 상태(Device Compliance) 검증 없는 세션 즉시 차단.
 
 ## Ⅴ. Salt Typhoon / Volt Typhoon (LotL) 적용 및 발전을 위한 기술사적 제언

@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. DevSecOps(소프트웨어 개발보안 운영)의 개요
 
-- 개념 : 소프트웨어 개발(Dev)과 운영(Ops)이 결합된 애자일 **DevOps** 문화와 **CI/CD** 자동화 파이프라인 전반에 보안(Sec)을 핵심 요소로 내재화하여, **소프트웨어 개발 생명주기** (SDLC) 초기부터 지속적으로 취약점을 검증하고 수정하는 보안 협업 체계 및 엔지니어링 방법론.
+- 개념 : 소프트웨어 개발(Dev)과 운영(Ops)이 결합된 애자일 **DevOps** 문화와 **CI(Continuous Integration)/CD**(Continuous Delivery) 자동화 파이프라인 전반에 보안(Sec)을 핵심 요소로 내재화하여, **소프트웨어 개발 생명주기** (SDLC, Software Development Life Cycle) 초기부터 지속적으로 취약점을 검증하고 수정하는 보안 협업 체계 및 엔지니어링 방법론.
 - 배경 및 필요성 : 배포 속도가 일/시간 단위로 가속화되는 클라우드 네이티브 환경에서, 배포 직전 마지막 관문에서 수작업으로 보안 점검을 수행하던 전통적 방식은 릴리즈 병목을 초래하거나 보안 결함을 방치하는 결과로 이어져 출현.
 - 핵심 목적 : 보안의 좌측 이동(Shift-Left Security) 실현, 코드 수준 결함 및 공급망 취약점 조기 발견, 배포 지연 없는 자동화된 **보안 품질 게이트** (Quality Gate) 확립.
 
 ## Ⅱ. DevSecOps(소프트웨어 개발보안 운영)의 핵심 아키텍처 및 동작 메커니즘
 
-DevSecOps는 소스코드 작성(SAST), 오픈소스 라이브러리 검증(SCA), 컨테이너 빌드, 런타임 테스트(DAST/IAST), 배포 후 모니터링에 이르는 CI/CD 전 단계에 보안 도구를 파이프라인으로 체이닝함.
+DevSecOps는 소스코드 작성(SAST, Static Application Security Testing), 오픈소스 라이브러리 검증(SCA, Software Composition Analysis), 컨테이너 빌드, 런타임 테스트(DAST(Dynamic Application Security Testing)/IAST), 배포 후 모니터링에 이르는 CI/CD 전 단계에 보안 도구를 파이프라인으로 체이닝함.
 
 ```text
 [ DevSecOps CI/CD 파이프라인 및 보안 자동화 체인 ]
@@ -39,20 +39,20 @@ DevSecOps는 소스코드 작성(SAST), 오픈소스 라이브러리 검증(SCA)
                  [ 품질 게이트 (Critical 취약점 발생 시 빌드 자동 차단!) ]
 ```
 
-- **Shift-Left Security** (보안의 좌측 이동) : 운영 배포 단계에 몰려 있던 보안 검증을 개발자의 IDE 코딩 시점과 Git 커밋 단계로 앞당겨 수정 비용 대폭 절감.
-- **SAST** (정적 분석) : 소스코드를 컴파일 단계에서 파싱하여 SQL Injection, XSS 등 7대 보안약점 및 문법적 취약점 자동 검출.
-- **SCA** (소프트웨어 구성 분석) : 프로젝트가 참조하는 다수의 오픈소스 종속성을 스캔하여 알려진 취약점(CVE)과 라이선스 위반 여부 판별 및 SBOM 자동 생성.
-- **IaC 보안 및 컨테이너 이미지 스캔** : Dockerfile과 Kubernetes 매니페스트, Terraform 코드의 루트 권한 실행, 포트 개방 설정 오류를 배포 전 선제 차단.
+- **Shift-Left Security** (보안의 좌측 이동) : 운영 배포 단계에 몰려 있던 보안 검증을 개발자의 IDE(Integrated Development Environment) 코딩 시점과 Git 커밋 단계로 앞당겨 수정 비용 대폭 절감.
+- **SAST** (정적 분석) : 소스코드를 컴파일 단계에서 파싱하여 SQL(Structured Query Language) Injection, XSS(Cross-Site Scripting) 등 7대 보안약점 및 문법적 취약점 자동 검출.
+- **SCA** (소프트웨어 구성 분석) : 프로젝트가 참조하는 다수의 오픈소스 종속성을 스캔하여 알려진 취약점(CVE, Common Vulnerabilities and Exposures)과 라이선스 위반 여부 판별 및 SBOM(Software Bill of Materials) 자동 생성.
+- **IaC(Infrastructure as Code) 보안 및 컨테이너 이미지 스캔** : Dockerfile과 Kubernetes 매니페스트, Terraform 코드의 루트 권한 실행, 포트 개방 설정 오류를 배포 전 선제 차단.
 
 ## Ⅲ. DevSecOps(소프트웨어 개발보안 운영)의 세부 구성 요소 및 비교 분석
 
 | 파이프라인 단계 | 적용 보안 기술 / 도구 | 주요 검증 항목 | 실패 시 조치 (Gate) |
 | --- | --- | --- | --- |
-| 1. 코딩 (Pre-Commit) | TruffleHog, Gitleaks, IDE 플러그인 | AWS 키, API 토큰, 패스워드 하드코딩 여부 | Git Push 원천 차단 |
+| 1. 코딩 (Pre-Commit) | TruffleHog, Gitleaks, IDE 플러그인 | AWS(Amazon Web Services) 키, API(Application Programming Interface) 토큰, 패스워드 하드코딩 여부 | Git Push 원천 차단 |
 | 2. 빌드 (CI Build) | SonarQube, Checkmarx (SAST) | 시큐어 코딩 규칙 위반, 코드 품질 결함 | 빌드 실패 처리 (Build Break) |
-| 3. 종속성 (Dependency) | Snyk, Dependency-Track (SCA) | 오픈소스 취약점(CVE), 위험 라이선스(GPL) | Critical CVE 발견 시 중단 |
+| 3. 종속성 (Dependency) | Snyk, Dependency-Track (SCA) | 오픈소스 취약점(CVE), 위험 라이선스(GPL, GNU General Public License) | Critical CVE 발견 시 중단 |
 | 4. 배포 (CD Deploy) | Trivy, Grype, Checkov (IaC) | 베이스 이미지 취약점, K8s 보안 설정 오류 | 컨테이너 레지스트리 푸시 거부 |
-| 5. 런타임 (Run) | Falco, Datadog, RASP, CSPM | 런타임 침입, 역방향 셸, 비인가 파일 수정 | 파드 즉시 격리 및 경보 발송 |
+| 5. 런타임 (Run) | Falco, Datadog, RASP(Runtime Application Self-Protection), CSPM(Cloud Security Posture Management) | 런타임 침입, 역방향 셸, 비인가 파일 수정 | 파드 즉시 격리 및 경보 발송 |
 
 - DevSecOps의 본질은 보안 도구의 단순 나열이 아니라, '보안이 개발자의 민첩성을 방해하지 않도록 완전 자동화된 피드백 루프를 제공하는 조직 문화'에 있음.
 
@@ -66,10 +66,10 @@ DevSecOps는 소스코드 작성(SAST), 오픈소스 라이브러리 검증(SCA)
   - 해결 방안 : **도달 가능성 분석** (Reachability Analysis) 도구를 도입하여 실제 런타임에서 호출되지 않는 취약점은 빌드 차단에서 제외.
 - 보안 결함에 대한 개발팀의 수정 책임 방기 :
   - 한계점 : 보안팀이 대량의 결함 티켓만 던져주고 개발팀은 일정 압박으로 수정을 기피하는 사일로(Silo) 문화 지속.
-  - 해결 방안 : **보안 챔피언** (Security Champions) 제도를 개발팀 내에 운영하고, AI 기반 코드 자동 교정(Auto-Fix PR) 도구 도입.
+  - 해결 방안 : **보안 챔피언** (Security Champions) 제도를 개발팀 내에 운영하고, AI(Artificial Intelligence) 기반 코드 자동 교정(Auto-Fix PR) 도구 도입.
 
 ## Ⅴ. DevSecOps(소프트웨어 개발보안 운영) 적용 및 발전을 위한 기술사적 제언
 
 - '**Policy-as-Code** (코드형 정책)' 거버넌스 전면 확립 : OPA(Open Policy Agent) 또는 Kyverno를 적용하여 전사 보안 규정을 코드로 정의하고 K8s 클러스터에 강제 집행.
-- **SBOM 자동 생성** 및 실시간 VEX 파이프라인 연계 : 모든 배포 아티팩트마다 CycloneDX SBOM을 생성하고 취약점 악용 가능성을 증명하는 VEX를 자동 첨부.
-- 보안 지표의 DevOps 대시보드 통합 : 코드 취약점 수정 시간(MTTR)과 보안 게이트 통과율을 개발팀의 표준 DORA 지표와 함께 시각화하여 공유.
+- **SBOM 자동 생성** 및 실시간 VEX(Vulnerability Exploitability eXchange) 파이프라인 연계 : 모든 배포 아티팩트마다 CycloneDX SBOM을 생성하고 취약점 악용 가능성을 증명하는 VEX를 자동 첨부.
+- 보안 지표의 DevOps 대시보드 통합 : 코드 취약점 수정 시간(MTTR(Mean Time to Repair))과 보안 게이트 통과율을 개발팀의 표준 DORA(DevOps Research and Assessment) 지표와 함께 시각화하여 공유.

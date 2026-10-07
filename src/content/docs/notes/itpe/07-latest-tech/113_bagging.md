@@ -75,13 +75,13 @@ extra:
   - 해결 방안 : 분할 노드마다 전체 $p$개 특성 중 무작위로 $m \approx \sqrt{p}$개만 선택하여 트리의 다양성을 강제 확보하는 랜덤 포레스트(Random Forest)로 전환.
 - 수백 개 트리 앙상블로 인한 의사결정 경로의 시각적 설명가능성 상실 :
   - 한계점 : 수백 개의 결정트리를 앙상블함에 따라 단일 결정트리가 가지던 의사결정 경로의 시각적 설명가능성(Interpretability) 완전 상실.
-  - 해결 방안 : SHAP(Shapley Additive Explanations) 및 순열 특성 중요도(Permutation Feature Importance) 기법을 결합하여 설명가능성(XAI) 보완.
+  - 해결 방안 : SHAP(Shapley Additive Explanations) 및 순열 특성 중요도(Permutation Feature Importance) 기법을 결합하여 설명가능성(XAI, Explainable Artificial Intelligence) 보완.
 - 고차원 희소 데이터에서 복원 추출 시 분산 감소 효과 미미 및 메모리 급증 :
-  - 한계점 : 고차원 희소 데이터(텍스트 TF-IDF, 유전체 데이터)에서 복원 추출 시 분산 감소 효과가 미미하고 연산 메모리 급증.
+  - 한계점 : 고차원 희소 데이터(텍스트 TF(Term Frequency)-IDF(Inverse Document Frequency), 유전체 데이터)에서 복원 추출 시 분산 감소 효과가 미미하고 연산 메모리 급증.
   - 해결 방안 : 연속형 특징에 적합한 특성 서브스페이스 샘플링(Random Subspace Method) 병행 및 트리 깊이 사전 제한(Max Depth 규제) 적용.
 
 ## Ⅴ. 배깅(Bagging) 적용 및 발전을 위한 기술사적 제언
 
-- 학습 소요 시간 최적화 및 신뢰성 확보 방안 : 수십 분 소요 (단일 노드 CPU 병목)를 선제적으로 구현하여 GPU 텐서 코어로 수 초 내 훈련 완료를 체계적으로 달성하고 실무 운영 안정성을 완성해야 함.
+- 학습 소요 시간 최적화 및 신뢰성 확보 방안 : 수십 분 소요 (단일 노드 CPU(Central Processing Unit) 병목)를 선제적으로 구현하여 GPU(Graphics Processing Unit) 텐서 코어로 수 초 내 훈련 완료를 체계적으로 달성하고 실무 운영 안정성을 완성해야 함.
 - 트리 수 결정 최적화 및 신뢰성 확보 방안 : 휴리스틱으로 고정(예: 500개)를 선제적으로 구현하여 OOB 에러 곡선 실시간 감시로 최적 수 자동 결정을 체계적으로 달성하고 실무 운영 안정성을 완성해야 함.
 - 추론 레이턴시 최적화 및 신뢰성 확보 방안 : 트리 순회 연산으로 수 밀리초 지연을 선제적으로 구현하여 Treelite C-코드 컴파일로 마이크로초 달성을 체계적으로 달성하고 실무 운영 안정성을 완성해야 함.

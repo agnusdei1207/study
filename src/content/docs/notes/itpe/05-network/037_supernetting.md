@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 슈퍼네팅(Supernetting)의 개요
 
-- 개념 : 연속된 복수의 소규모 IP 네트워크 주소(주로 C 클래스)를 비트 연산을 통해 공통 접두사(Prefix)로 통합하여 단일 대형 네트워크로 병합하는 **CIDR** 기반 **경로 요약(Route Aggregation)** 기법.
-- 배경 및 필요성 : **클래스풀(Classful)** 어드레싱 체계의 심각한 IP 낭비 완화 및 인터넷 백본 BGP 라우터의 라우팅 테이블(Routing Table) 엔트리 폭증(Routing Table Explosion)을 억제하기 위해 도입.
+- 개념 : 연속된 복수의 소규모 IP(Internet Protocol) 네트워크 주소(주로 C 클래스)를 비트 연산을 통해 공통 접두사(Prefix)로 통합하여 단일 대형 네트워크로 병합하는 **CIDR**(Classless Inter-Domain Routing) 기반 **경로 요약(Route Aggregation)** 기법.
+- 배경 및 필요성 : **클래스풀(Classful)** 어드레싱 체계의 심각한 IP 낭비 완화 및 인터넷 백본 BGP(Border Gateway Protocol) 라우터의 라우팅 테이블(Routing Table) 엔트리 폭증(Routing Table Explosion)을 억제하기 위해 도입.
 - 핵심 목적 : 라우터 고속 포워딩 메모리(TCAM) 절감, 라우팅 테이블 크기 최소화, 하위 네트워크의 **링크 플래핑(Flapping)** 전파 차단 및 네트워크 관리 단순화.
 
 ## Ⅱ. 슈퍼네팅의 핵심 아키텍처 및 동작 메커니즘
@@ -46,7 +46,7 @@ extra:
 |---|---|---|
 | 마스크 조작 | 네트워크 비트 확장 (마스크 증가: /24 → /26) | 네트워크 비트 축약 (마스크 감소: /24 → /22) |
 | 적용 목적 | IP 주소 낭비 방지, 브로드캐스트 도메인 분할 | 라우팅 테이블 크기 축소, 백본 메모리 보존 |
-| 적용 계층/위치 | 조직 내부 캠퍼스망, 엔터프라이즈 LAN | ISP 경계 라우터(ABR/ASBR), 글로벌 BGP 백본 |
+| 적용 계층/위치 | 조직 내부 캠퍼스망, 엔터프라이즈 LAN(Local Area Network) | ISP(Internet Service Provider) 경계 라우터(ABR/ASBR), 글로벌 BGP 백본 |
 | 가용 호스트 수 | 분할된 서브넷당 가용 호스트 수 감소 | 병합된 슈퍼넷 전체 가용 호스트 수 대폭 증가 |
 | 플래핑 격리 | 개별 호스트/세그먼트 단위로 장애 전파 가능 | 내부 서브넷 링크 변동이 외부 백본으로 전파 차단 |
 
@@ -65,5 +65,5 @@ extra:
 ## Ⅴ. 슈퍼네팅 적용 및 발전을 위한 기술사적 제언
 
 - 계층적 IP 주소 할당 정책 준수 : 망 설계 초기부터 지역별, 기능별 블록을 $2^n$ 단위로 계획 배정하여 BGP 피어링 구간에서의 무손실·비충돌 경로 집약 환경 조성.
-- Null0 기반 방어 라우팅 표준화 : OSPF ABR(Area Border Router) 및 BGP ASBR 구성 시 요약과 동시에 `Discard Route(Null0)`가 자동 등록되도록 템플릿화하여 백본 루프 리스크 원천 차단.
-- IPv6 환경에서의 Prefix Aggregation 확장 : IPv6의 128비트 주소 체계에서도 /48, /32 단위의 계층적 라우트 집약을 통일 적용하여 글로벌 BGP FIB(Forwarding Information Base) 테이블 확장성 유지 필수.
+- Null0 기반 방어 라우팅 표준화 : OSPF(Open Shortest Path First) ABR(Area Border Router) 및 BGP ASBR 구성 시 요약과 동시에 `Discard Route(Null0)`가 자동 등록되도록 템플릿화하여 백본 루프 리스크 원천 차단.
+- IPv6(Internet Protocol version 6) 환경에서의 Prefix Aggregation 확장 : IPv6의 128비트 주소 체계에서도 /48, /32 단위의 계층적 라우트 집약을 통일 적용하여 글로벌 BGP FIB(Forwarding Information Base) 테이블 확장성 유지 필수.

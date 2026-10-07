@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. 상호연결망(Interconnection Network)의 개요
 
-- 개념 : 멀티코어 프로세서 내부의 코어 간 통신(NoC: Network-on-Chip)부터, 다중 프로세서 시스템(SMP/NUMA), 슈퍼컴퓨터 및 수만 대의 AI 가속기 클러스터 노드 간에 데이터와 제어 메시지를 고속·저지연으로 전달하기 위해 스위치, 라우터, 링크를 유기적으로 연결한 **네트워크 토폴로지** 및 통신 인프라.
+- 개념 : 멀티코어 프로세서 내부의 코어 간 통신(NoC: Network-on-Chip)부터, 다중 프로세서 시스템(SMP/NUMA(Non-Uniform Memory Access)), 슈퍼컴퓨터 및 수만 대의 AI(Artificial Intelligence) 가속기 클러스터 노드 간에 데이터와 제어 메시지를 고속·저지연으로 전달하기 위해 스위치, 라우터, 링크를 유기적으로 연결한 **네트워크 토폴로지** 및 통신 인프라.
 - 배경 및 필요성 : 분산 컴퓨팅 및 딥러닝 분산 학습의 규모가 수만 개 노드로 확장됨에 따라, 시스템 전체의 성능이 개별 프로세서의 연산 속도보다 노드 간 상호연결망의 대역폭과 지연 시간(Bisection Bandwidth, Latency)에 의해 결정되는 **네트워크 바운드** (Network-Bound) 현상 심화.
 - 핵심 목적 : **네트워크 직경** (Diameter) 최소화, **이등분 대역폭** (Bisection Bandwidth) 극대화, 링크 장애 시의 경로 우회 복원력(Fault-Tolerance) 확보.
 
@@ -53,7 +53,7 @@ extra:
 | :--- | :--- | :--- | :--- | :--- |
 | **크로스바 스위치** (Crossbar) | 1 (최단 지연) | $N$ (입출력 포트 수) | 최고 (논블로킹 완전 연결) | 소규모 SMP 서버 버스, NVSwitch |
 | **팻 트리** (Fat-Tree) | $2 \log_k (N/2)$ | 고정 스위치 라디스 | 논블로킹(Non-blocking) 보장 가능| 데이터센터 AI 클러스터 (InfiniBand) |
-| **2D / 3D 토러스** (Torus) | $k \cdot n / 2$ | $2n$ (고정 차수: 4 or 6) | 중간 ~ 높음 (랩어라운드 링크)| 슈퍼컴퓨터 (후가쿠 Tofu, IBM BlueGene)|
+| **2D / 3D 토러스** (Torus) | $k \cdot n / 2$ | $2n$ (고정 차수: 4 or 6) | 중간 ~ 높음 (랩어라운드 링크)| 슈퍼컴퓨터 (후가쿠 Tofu, IBM(International Business Machines) BlueGene)|
 | **하이퍼큐브** (Hypercube) | $\log_2 N$ | $\log_2 N$ (차수 가변) | 높음 | 초기 병렬 슈퍼컴퓨터 |
 | **2D 메시** (2D-Mesh) | $2(k - 1)$ | 2 ~ 4 (경계 노드 비대칭)| 낮음 (코너 노드 병목) | 칩 내부 통신 (Network-on-Chip: NoC) |
 
@@ -71,5 +71,5 @@ extra:
 
 ## Ⅴ. 초거대 AI 클러스터를 위한 기술사적 제언
 
-- 레일 최적화 팻 트리(Rail-Optimized Fat-Tree) 구축 : 수만 개 GPU를 연결하는 최신 분산학습 인프라에서는 동일한 서버 내 순번(GPU 0번들끼리, GPU 1번들끼리)을 독립된 스위치 레일로 묶어 리프-스파인 계층 간 트래픽 간섭을 배제하는 레일 최적화 아키텍처를 강제해야 함.
+- 레일 최적화 팻 트리(Rail-Optimized Fat-Tree) 구축 : 수만 개 GPU(Graphics Processing Unit)를 연결하는 최신 분산학습 인프라에서는 동일한 서버 내 순번(GPU 0번들끼리, GPU 1번들끼리)을 독립된 스위치 레일로 묶어 리프-스파인 계층 간 트래픽 간섭을 배제하는 레일 최적화 아키텍처를 강제해야 함.
 - 차세대 울트라 이더넷(Ultra Ethernet Consortium) 생태계 대비 : InfiniBand의 고비용 폐쇄성을 극복하기 위해 패킷 단위 스프레이(Packet Spraying), 링크 레벨 다중 경로 라우팅, 선제적 혼잡 제어를 지원하는 개방형 Ultra Ethernet 표준을 검토하고 단계적 도입 전략을 수립할 것을 제언함.

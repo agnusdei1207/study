@@ -58,10 +58,10 @@ extra:
          [후보군 생성 없이 빈발 패턴 직접 추출]
 ```
 
-| 비교 항목 | Apriori 알고리즘 | FP-Growth 알고리즘 |
+| 비교 항목 | Apriori 알고리즘 | FP(Frequent Pattern)-Growth 알고리즘 |
 | :--- | :--- | :--- |
 | **후보군(Candidate) 생성** | 각 단계별로 후보 항목집합을 대량 생성 | 후보군 생성을 일체 하지 않음 |
-| DB 스캔 횟수 | 최대 항목 크기 $K$에 비례하여 $K$회 반복 스캔 | 단 2회 스캔 으로 FP-Tree 구축 완료 |
+| DB(Database) 스캔 횟수 | 최대 항목 크기 $K$에 비례하여 $K$회 반복 스캔 | 단 2회 스캔 으로 FP-Tree 구축 완료 |
 | 수행 속도 | 느림 ($O(2^M)$ 공간 및 막대한 I/O) | Apriori 대비 수십~수백 배 고속 |
 | 메모리 요구량 | 적음 | FP-Tree를 메모리에 적재해야 하므로 메모리 필요 |
 
@@ -70,14 +70,14 @@ extra:
 ## Ⅳ. 연관 규칙 마이닝의 주요 한계점 및 해결 방안
 
 - 아이템 수 증가에 따른 지수적 탐색 공간 폭발(Combinatorial Explosion) :
-  - 한계점 : 분석 대상 품목(Item)이 수만~수십만 개로 증가할 경우 후보 항목 집합($2^k$)의 기하급수적 증가로 인한 메모리 고갈(OOM) 및 연산 병목 발생.
+  - 한계점 : 분석 대상 품목(Item)이 수만~수십만 개로 증가할 경우 후보 항목 집합($2^k$)의 기하급수적 증가로 인한 메모리 고갈(OOM, Out of Memory) 및 연산 병목 발생.
   - 해결 방안 : 최소 지지도(Min Support) 동적 가지치기, FP-Growth(FP-Tree) 기반 메모리 압축 구조 활용, Apache Spark 분산 FP-Growth 엔진 도입.
 - 희귀 유의미 규칙(Rare Item Problem) 발굴 한계 및 자명한 규칙 편중 :
   - 한계점 : 고정된 최소 지지도 적용 시 빈번한 대중적 상품만 검출되고, 마진율이 높은 롱테일 고가 상품 간의 희귀 연관 규칙 누락.
   - 해결 방안 : 차등 최소 지지도(MS-Apriori: Multiple Support Apriori) 적용, 지지도 대신 리프트(Lift) 및 레버리지(Leverage) 등 다차원 흥미도 측도 복합 필터링.
 - 정적 트랜잭션 기반 연관성 분석의 시간적 순서(Temporal Order) 간과 :
   - 한계점 : 단순 동시 구매(Co-occurrence)만 포착하여 A 구매 후 B 구매로 이어지는 인과적·시계열적 순차 패턴(Sequential Pattern) 반영 불가.
-  - 해결 방안 : 순차 패턴 마이닝(GSP, PrefixSpan) 알고리즘 결합, 세션 기반 Transformer 추천 모델(SASRec 등)로 전환.
+  - 해결 방안 : 순차 패턴 마이닝(GSP, Generalized Sequential Pattern; PrefixSpan) 알고리즘 결합, 세션 기반 Transformer 추천 모델(SASRec 등)로 전환.
 
 ## Ⅴ. 현대 이커머스 및 데이터 실무 관점의 제언
 

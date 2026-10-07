@@ -36,7 +36,7 @@ extra:
 4. 사용자 정의 무결성 (User) : 업무 규칙에 따른 비즈니스 제약 (Trigger, Assertion 등)
 ```
 
-| 무결성 종류 | 핵심 규칙 및 정의 | 데이터베이스 구현 기법 | 위반 시 DBMS 동작 |
+| 무결성 종류 | 핵심 규칙 및 정의 | 데이터베이스 구현 기법 | 위반 시 DBMS(Database Management System) 동작 |
 | :--- | :--- | :--- | :--- |
 | **개체 무결성 (Entity Integrity)** | 릴레이션의 기본키(Primary Key)를 구성하는 어떤 속성도 널(NULL) 값을 가질 수 없으며, 중복될 수 없음 | `PRIMARY KEY` 제약조건 선언 (내부적으로 Unique B-Tree 인덱스 생성) | ORA-00001 (Unique constraint violated), Not Null 위반 에러 발생 후 롤백 |
 | **참조 무결성 (Referential Integrity)** | 외래키(Foreign Key) 값은 참조하는 다른 릴레이션의 기본키 값과 일치하거나 널(NULL)이어야 함 | `FOREIGN KEY` 제약조건 선언 (`REFERENCES parent(pk)`) | 자식에 없는 부모값 삽입 차단, 자식이 참조 중인 부모 삭제 차단 |
@@ -63,23 +63,23 @@ extra:
 
 | 비교 항목 | 데이터베이스 계층 (FK, PK, Check) | 애플리케이션 계층 (Spring, Django, ORM) |
 | :--- | :--- | :--- |
-| **정합성 보장성** | 100% 보장 (어떤 경로로 직접 SQL을 실행해도 무결성 유지) | 다중 애플리케이션이나 직접 쿼리 수행 시 정합성 파괴 가능 |
-| **성능 및 쓰기 지연** | 외래키 검증을 위한 부모 테이블 추가 읽기 I/O 발생 | DB 락킹 및 I/O 최소화로 대규모 고성능 쓰기 지원 |
-| **분산 환경 지원** | 분산 DB 및 샤딩 환경에서 테이블 간 FK 제약 불가 | 서비스 경계를 넘는 데이터 정합성을 Saga 패턴 등으로 유연 제어 |
+| **정합성 보장성** | 100% 보장 (어떤 경로로 직접 SQL(Structured Query Language)을 실행해도 무결성 유지) | 다중 애플리케이션이나 직접 쿼리 수행 시 정합성 파괴 가능 |
+| **성능 및 쓰기 지연** | 외래키 검증을 위한 부모 테이블 추가 읽기 I/O 발생 | DB(Database) 락킹 및 I/O 최소화로 대규모 고성능 쓰기 지원 |
+| **분산 환경 지원** | 분산 DB 및 샤딩 환경에서 테이블 간 FK(Foreign Key) 제약 불가 | 서비스 경계를 넘는 데이터 정합성을 Saga 패턴 등으로 유연 제어 |
 
 ---
 
 ## Ⅳ. 무결성 제약조건 적용 시 주요 한계점 및 해결 방안
 
 - DBMS 제약조건(FK, Check) 적용에 따른 대용량 쓰기 성능 저하 :
-  - 한계점 : 대규모 INSERT/UPDATE 배치 시 매 건마다 부모 테이블 B+Tree 인덱스 탐색 및 락 획득으로 인해 I/O 병목 및 초당 트랜잭션 수(TPS) 급감.
+  - 한계점 : 대규모 INSERT/UPDATE 배치 시 매 건마다 부모 테이블 B+Tree 인덱스 탐색 및 락 획득으로 인해 I/O 병목 및 초당 트랜잭션 수(TPS, Transactions Per Second) 급감.
   - 해결 방안 : 대량 데이터 로더(Bulk Loader) 작업 시 제약조건을 일시 비활성화(Disable Novalidate) 후 작업 완료 후 병렬 활성화, 또는 애플리케이션 계층 유효성 검증 분담.
-- 마이크로서비스(MSA) 및 분산 DB 환경에서의 외래키(FK) 무결성 붕괴 :
+- 마이크로서비스(MSA, Microservice Architecture) 및 분산 DB 환경에서의 외래키(FK) 무결성 붕괴 :
   - 한계점 : 서비스별 DB 분리(Database per Service) 아키텍처에서는 물리적 외래키 제약 설정이 불가능하여 서비스 간 참조 무결성 단절 발생.
-  - 해결 방안 : 사가(Saga) 패턴 기반의 오케스트레이션 적용, 비동기 CDC(Debezium)와 Outbox 패턴을 활용한 최종적 참조 무결성(Eventual Referential Integrity) 보장.
+  - 해결 방안 : 사가(Saga) 패턴 기반의 오케스트레이션 적용, 비동기 CDC(Change Data Capture, Debezium)와 Outbox 패턴을 활용한 최종적 참조 무결성(Eventual Referential Integrity) 보장.
 - 복잡한 업무 규칙 표현의 한계 및 트리거 남용 시 디버깅 난제 :
   - 한계점 : 기본 SQL 무결성 제약(PK, FK, Check)만으로는 다중 행/테이블 간 복합 검증이 어려워 DB 트리거(Trigger)를 남용하게 되고 연쇄 동작으로 사이드 이펙트 추적 불가.
-  - 해결 방안 : 복합 도메인 무결성은 도메인 주도 설계(DDD)의 애그리게잇(Aggregate) 루트 내부 비즈니스 로직으로 캡슐화하고 데이터베이스는 기본 제약에 집중.
+  - 해결 방안 : 복합 도메인 무결성은 도메인 주도 설계(DDD, Domain-Driven Design)의 애그리게잇(Aggregate) 루트 내부 비즈니스 로직으로 캡슐화하고 데이터베이스는 기본 제약에 집중.
 
 ---
 

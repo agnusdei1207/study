@@ -19,8 +19,8 @@ weight: 6
 ```
 
 - 06 보안은 모든 과목의 자산·신원·데이터·서비스에 **신뢰 경계와 위험 통제**를 적용하는 횡단 과목
-- 앞 과목 연결: 전략의 위험수용 기준, SW의 Secure SDLC, 데이터의 개인정보·암호화, 시스템의 격리·가용성
-- 뒤 과목 연결: 네트워크의 구간 보호, AI의 모델·에이전트 위협, 법·정책의 보호조치·책임 준수
+- 앞 과목 연결: 전략의 위험수용 기준, SW(Software)의 Secure SDLC(Software Development Life Cycle), 데이터의 개인정보·암호화, 시스템의 격리·가용성
+- 뒤 과목 연결: 네트워크의 구간 보호, AI(Artificial Intelligence)의 모델·에이전트 위협, 법·정책의 보호조치·책임 준수
 
 ## 06 정보보안 확대 지도
 
@@ -77,34 +77,34 @@ weight: 6
 
 ### 1. 거버넌스·관리체계
 
-- [ISMS](./001_isms/), [ISMS-P](./011_isms_p/), [NIST CSF 2.0](./039_nist_csf_2_0_govern/)
-- [CISO](./027_ciso/), [정보보호 컴플라이언스](./067_information_security_compliance/)
+- [ISMS(Information Security Management System)](./001_isms/), [ISMS-P](./011_isms_p/), [NIST(National Institute of Standards and Technology) CSF 2.0](./039_nist_csf_2_0_govern/)
+- [CISO(Chief Information Security Officer)](./027_ciso/), [정보보호 컴플라이언스](./067_information_security_compliance/)
 
 ### 2. 암호·인증·접근통제
 
 - [해시 함수](./010_hash_function/), [대칭키 암호](./072_symmetric_key_encryption/), [비대칭키 암호](./075_asymmetric_key_encryption/)
-- [전자서명](./079_digital_signature/), [TLS 1.3](./094_tls_1_3/), [Passkey](./060_passkey/)
+- [전자서명](./079_digital_signature/), [TLS(Transport Layer Security) 1.3](./094_tls_1_3/), [Passkey](./060_passkey/)
 - [접근통제 모델](./024_access_control_models_dac_mac_rbac/), [Zero Trust](./009_zero_trust/)
 
 ### 3. 개발·공급망·클라우드
 
-- [시큐어 코딩](./022_secure_coding/), [DevSecOps](./052_devsecops/), [SBOM](./004_sbom/)
-- [공급망 보안](./097_supply_chain_security/), [클라우드 보안](./025_cloud_security/), [CSAP](./028_csap/)
+- [시큐어 코딩](./022_secure_coding/), [DevSecOps](./052_devsecops/), [SBOM(Software Bill of Materials)](./004_sbom/)
+- [공급망 보안](./097_supply_chain_security/), [클라우드 보안](./025_cloud_security/), [CSAP(Cloud Security Assurance Program)](./028_csap/)
 
 ### 4. 탐지·대응·포렌식
 
-- [SIEM](./054_siem/), [SOAR](./020_soar/), [TTPs](./061_ttps/)
+- [SIEM(Security Information and Event Management)](./054_siem/), [SOAR(Security Orchestration, Automation and Response)](./020_soar/), [TTPs](./061_ttps/)
 - [랜섬웨어](./007_ransomware/), [디지털 포렌식](./006_digital_forensics/), [아티팩트](./008_digital_artifacts/)
 
 ### 5. 개인정보·AI·융합 보안
 
-- [가명·익명·비식별 처리](./005_deidentification_techniques/), [PET](./013_pet/), [Privacy by Design](./071_privacy_by_design/)
-- [LLM 보안 위험](./002_llm_security_risks/), [프롬프트 인젝션](./033_prompt_injection/), [모델 전도 공격](./064_model_inversion_attack/)
-- [산업제어시스템 보안](./030_industrial_control_system_security/), [IEC 62443](./118_iec_62443/)
+- [가명·익명·비식별 처리](./005_deidentification_techniques/), [PET(Privacy-Enhancing Technology)](./013_pet/), [Privacy by Design](./071_privacy_by_design/)
+- [LLM(Large Language Model) 보안 위험](./002_llm_security_risks/), [프롬프트 인젝션](./033_prompt_injection/), [모델 전도 공격](./064_model_inversion_attack/)
+- [산업제어시스템 보안](./030_industrial_control_system_security/), [IEC(International Electrotechnical Commission) 62443](./118_iec_62443/)
 
 ## 레거시 교정 원칙
 
-- `ISO 17799`는 역사적 명칭으로만 설명하고, 현행 통제 지침은 **ISO/IEC 27002**, 관리체계 요구사항은 **ISO/IEC 27001**을 기준으로 작성한다.
-- `DES`는 발전사·취약 알고리즘 비교에만 두고, 현대 대칭키 암호의 중심은 **AES와 검증된 운용모드·키관리**로 설명한다.
+- `ISO 17799`는 역사적 명칭으로만 설명하고, 현행 통제 지침은 **ISO(International Organization for Standardization)/IEC 27002**, 관리체계 요구사항은 **ISO/IEC 27001**을 기준으로 작성한다.
+- `DES`는 발전사·취약 알고리즘 비교에만 두고, 현대 대칭키 암호의 중심은 **AES(Advanced Encryption Standard)와 검증된 운용모드·키관리**로 설명한다.
 - 경계형 보안만으로 답하지 않고, **Zero Trust·지속 검증·최소권한·마이크로세그멘테이션**을 현대 운영 기준에 포함한다.
 - 제품·사고 수치·표준 버전·법령은 작성 시점의 1차 출처를 재검증하고, 출제 빈도는 공식 확률로 표현하지 않는다.

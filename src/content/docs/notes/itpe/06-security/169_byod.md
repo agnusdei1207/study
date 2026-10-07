@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. BYOD(Bring Your Own Device)의 핵심 아키텍처 및 동작 메커니즘
 
-BYOD 보안은 전통적인 기기 전체 관리(MDM)에서 업무 영역만 격리하는 모바일 애플리케이션 관리(MAM) 및 컨테이너화(Containerization)로 진화함.
+BYOD 보안은 전통적인 기기 전체 관리(MDM(Mobile Device Management))에서 업무 영역만 격리하는 모바일 애플리케이션 관리(MAM) 및 컨테이너화(Containerization)로 진화함.
 
 ```text
 [ BYOD 컨테이너화(듀얼 페르소나) 아키텍처 및 선택적 삭제 ]
@@ -50,7 +50,7 @@ BYOD 보안은 전통적인 기기 전체 관리(MDM)에서 업무 영역만 격
 
 - **MDM (Mobile Device Management)** : 단말기 전체를 원격 제어하는 솔루션으로 카메라 차단, 암호 강제, 분실 시 원격 전체 초기화(Full Wipe)를 수행하나 개인 사생활 침해 논란 존재.
 - **MAM (Mobile Application Management)** : 기기 전체가 아닌 업무용 특정 앱(Mail, Messenger)만을 통제하는 방식으로, 개인 영역과 분리하여 기업 데이터의 화면 캡처 방지, 복사/붙여넣기 차단 구현.
-- **컨테이너화(Containerization / Dual Persona)** : 단말 OS 내에 하드웨어 암호화로 격리된 가상의 업무 전용 샌드박스(Samsung Knox, Android Work Profile, Apple User Enrollment)를 생성하여 완벽 분리.
+- **컨테이너화(Containerization / Dual Persona)** : 단말 OS(Operating System) 내에 하드웨어 암호화로 격리된 가상의 업무 전용 샌드박스(Samsung Knox, Android Work Profile, Apple User Enrollment)를 생성하여 완벽 분리.
 - **선택적 데이터 삭제(Selective Wipe)** : 직원 퇴사나 기기 분실 시 직원의 개인 사진이나 연락처는 그대로 보존하고 기업 업무 컨테이너 내부의 데이터만 원격으로 정밀 소거.
 
 ## Ⅲ. BYOD(Bring Your Own Device)의 세부 구성 요소 및 비교 분석
@@ -58,10 +58,10 @@ BYOD 보안은 전통적인 기기 전체 관리(MDM)에서 업무 영역만 격
 | 비교 항목 | **BYOD** (개인 소유) | **COPE** (회사 소유, 개인 허용) | **CYOD** (회사 선택 풀) | **COBO** (회사 소유, 업무 전용) |
 | --- | --- | --- | --- | --- |
 | 기기 소유권 | 직원 개인 소유 | 회사 소유 | 회사 소유 (직원이 모델 선택) | 회사 소유 |
-| 비용 부담 | 직원 구매 (회사 비용 절감) | 회사 전액 구매 (CAPEX 높음) | 회사 구매 (보조금 지원) | 회사 전액 구매 |
+| 비용 부담 | 직원 구매 (회사 비용 절감) | 회사 전액 구매 (CAPEX(Capital Expenditure) 높음) | 회사 구매 (보조금 지원) | 회사 전액 구매 |
 | 보안 통제력 | 중간 (사생활 침해 반발 존재) | 높음 (MDM 통제 용이) | 높음 (MDM 통제 용이) | 극상 (개인 앱 설치 전면 금지) |
 | 사생활 갈등 | 높음 (위치 추적, 통화 감시 우려) | 중간 (사생활 정책 명시) | 중간 | 없음 (순수 업무 전용) |
-| 핵심 솔루션 | MAM, 컨테이너화, ZTNA | MDM + MAM 통합 솔루션 | MDM + MAM | 강력한 단말 MDM, 키오스크 모드 |
+| 핵심 솔루션 | MAM, 컨테이너화, ZTNA(Zero Trust Network Access) | MDM + MAM 통합 솔루션 | MDM + MAM | 강력한 단말 MDM, 키오스크 모드 |
 
 - BYOD 환경에서는 기기 전체를 통제하려는 시도가 임직원의 반발을 부르므로, 컨테이너화 기반의 업무 영역 분리와 제로 트러스트(ZTNA) 조건부 접속이 실효적 해법임.
 
@@ -69,16 +69,16 @@ BYOD 보안은 전통적인 기기 전체 관리(MDM)에서 업무 영역만 격
 
 - 루팅(Rooting) 및 탈옥(Jailbreak) 단말의 보안 통제 무력화 :
   - 한계점 : 임직원이 OS 샌드박스를 해제한 탈옥 단말을 사용할 경우 컨테이너 경계가 붕괴되어 악성코드가 업무 메모리 직접 탈취.
-  - 해결 방안 : 루팅/탈옥 무결성 검증 SDK를 업무 앱에 필수 내장하여 위변조 탐지 시 앱 실행을 즉시 거부 및 관리자 통보.
+  - 해결 방안 : 루팅/탈옥 무결성 검증 SDK(Software Development Kit)를 업무 앱에 필수 내장하여 위변조 탐지 시 앱 실행을 즉시 거부 및 관리자 통보.
 - 기기 분실 시 전체 초기화(Full Wipe)로 인한 임직원 프라이버시 분쟁 :
   - 한계점 : 단말 분실 신고 시 회사가 기기를 원격 공장초기화하여 직원의 개인 소중한 가족 사진과 개인 데이터가 영구 손실되는 법적 분쟁.
   - 해결 방안 : 기기 전체 초기화 대신 기업 암호화 키만 원격 파기하여 업무 컨테이너만 무력화하는 선택적 삭제(Selective Wipe) 강제.
 - OS 파편화(Android 수천 종 기종)에 따른 모바일 보안 에이전트 호환성 결여 :
-  - 한계점 : 제조사 및 안드로이드 OS 버전별 보안 API 지원 편차가 심하여 구형 단말에서 정책 미적용 사각지대 발생.
+  - 한계점 : 제조사 및 안드로이드 OS 버전별 보안 API(Application Programming Interface) 지원 편차가 심하여 구형 단말에서 정책 미적용 사각지대 발생.
   - 해결 방안 : 접속 허용 단말의 OS 최소 버전(Android 12+, iOS 16+) 기준선(Baseline)을 엄격히 지정하고 미달 시 접속 차단.
 
 ## Ⅴ. BYOD(Bring Your Own Device) 적용 및 발전을 위한 기술사적 제언
 
-- 제로 트러스트 단말 상태 검역(Posture Check)과 ZTNA 결합 : 사내망 직접 VPN 연결을 차단하고, 디바이스 보안 상태(OS 최신 패치, 화면 잠금 여부)를 검증한 후에만 허용된 웹/SaaS만 접근시키는 SDP 구조 전환.
-- 명확한 BYOD 사용 협약서 및 사생활 보호 정책(SOP) 체결 : 모바일 에이전트가 수집하는 정보의 범위(기기 식별자, OS 버전만 수집, 개인 통화내역/GPS 수집 금지)를 명문화하고 직원 서약 징구.
-- 모바일 위협 방어(MTD: Mobile Threat Defense) 솔루션 도입 : 단순 기기 통제를 넘어 악성 Wi-Fi(스푸핑 AP) 연결, 피싱 프로파일 설치, 비인가 사이드로딩 악성 앱을 실시간 감시 차단.
+- 제로 트러스트 단말 상태 검역(Posture Check)과 ZTNA 결합 : 사내망 직접 VPN(Virtual Private Network) 연결을 차단하고, 디바이스 보안 상태(OS 최신 패치, 화면 잠금 여부)를 검증한 후에만 허용된 웹/SaaS만 접근시키는 SDP(Software-Defined Perimeter) 구조 전환.
+- 명확한 BYOD 사용 협약서 및 사생활 보호 정책(SOP, Standard Operating Procedure) 체결 : 모바일 에이전트가 수집하는 정보의 범위(기기 식별자, OS 버전만 수집, 개인 통화내역/GPS(Global Positioning System) 수집 금지)를 명문화하고 직원 서약 징구.
+- 모바일 위협 방어(MTD: Mobile Threat Defense) 솔루션 도입 : 단순 기기 통제를 넘어 악성 Wi-Fi(스푸핑 AP(Access Point)) 연결, 피싱 프로파일 설치, 비인가 사이드로딩 악성 앱을 실시간 감시 차단.

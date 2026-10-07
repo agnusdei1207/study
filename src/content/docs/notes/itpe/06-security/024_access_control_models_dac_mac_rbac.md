@@ -15,12 +15,12 @@ extra:
 ## Ⅰ. 접근통제 정책·모델(DAC·MAC·RBAC)의 개요
 
 - 개념 : 컴퓨팅 시스템 내의 정보 자산(객체, Object)에 대해 식별된 사용자(주체, Subject)가 허가된 작업(읽기, 쓰기, 실행)만을 수행할 수 있도록 규칙을 규정하고 강제하는 정보보안의 기본 통제 모델 체계.
-- 배경 및 필요성 : 다중 사용자 OS 환경과 대규모 기업 정보시스템에서 비인가자의 정보 유출, 무단 변조, 권한 오남용을 방지하기 위해 주체와 객체 간의 접근 권한을 체계화할 수학적·논리적 모델 수립 필요.
+- 배경 및 필요성 : 다중 사용자 OS(Operating System) 환경과 대규모 기업 정보시스템에서 비인가자의 정보 유출, 무단 변조, 권한 오남용을 방지하기 위해 주체와 객체 간의 접근 권한을 체계화할 수학적·논리적 모델 수립 필요.
 - 핵심 목적 : 기밀성 및 무결성 보장, **최소 권한 원칙** (Least Privilege) 실현, 권한 관리의 효율성 및 **감사 추적성** (Auditability) 확보.
 
 ## Ⅱ. 접근통제 정책·모델(DAC·MAC·RBAC)의 핵심 아키텍처 및 동작 메커니즘
 
-접근통제 모델은 권한 부여의 주도권과 규칙에 따라 DAC(소유자 재량), MAC(시스템 보안 등급 강제), RBAC(조직 내 직무 역할 매핑), 그리고 최신 ABAC(다차원 속성 기반)으로 진화함.
+접근통제 모델은 권한 부여의 주도권과 규칙에 따라 DAC(Discretionary Access Control, 소유자 재량), MAC(Mandatory Access Control, 시스템 보안 등급 강제), RBAC(Role-Based Access Control, 조직 내 직무 역할 매핑), 그리고 최신 ABAC(Attribute-Based Access Control, 다차원 속성 기반)으로 진화함.
 
 ```text
 [ 핵심 접근통제 모델의 통제 메커니즘 흐름 ]
@@ -40,20 +40,20 @@ extra:
      [ 주체: 보안팀 ] + [ 환경: 근무시간 + 회사IP ] + [ 객체: 민감도-중 ] ──> 동적 인가
 ```
 
-- **DAC** (Discretionary Access Control) : 자원의 소유자(Owner)가 자신의 판단에 따라 다른 주체에게 접근 권한을 부여(ACL, 유닉스 rwxr-xr-x). 유연하지만 권한 전파 통제 불가.
-- **MAC** (Mandatory Access Control) : 시스템이 주체와 객체에 **보안 레이블** (Secret, Top Secret 등)을 부여하고 관리자가 정의한 엄격한 보안 규칙을 강제. **BLP** (기밀성), **Biba** (무결성) 모델.
+- **DAC** (Discretionary Access Control) : 자원의 소유자(Owner)가 자신의 판단에 따라 다른 주체에게 접근 권한을 부여(ACL(Access Control List), 유닉스 rwxr-xr-x). 유연하지만 권한 전파 통제 불가.
+- **MAC** (Mandatory Access Control) : 시스템이 주체와 객체에 **보안 레이블** (Secret, Top Secret 등)을 부여하고 관리자가 정의한 엄격한 보안 규칙을 강제. **BLP** (Bell-LaPadula, 기밀성), **Biba** (무결성) 모델.
 - **RBAC** (Role-Based Access Control) : 사용자에게 직접 권한을 주지 않고 조직의 직무/역할(Role)에 권한을 매핑한 후 사용자를 역할에 배속. 관리 편의성과 직무 분리(SoD) 구현.
-- **ABAC** (Attribute-Based Access Control) : 주체 속성(부서, 직급), 객체 속성(분류 등급), 환경 속성(시간, 위치, 디바이스)을 **정책 언어** (XACML)로 실시간 동적 판별.
+- **ABAC** (Attribute-Based Access Control) : 주체 속성(부서, 직급), 객체 속성(분류 등급), 환경 속성(시간, 위치, 디바이스)을 **정책 언어** (XACML, eXtensible Access Control Markup Language)로 실시간 동적 판별.
 
 ## Ⅲ. 접근통제 정책·모델(DAC·MAC·RBAC)의 세부 구성 요소 및 비교 분석
 
 | 비교 항목 | DAC (임의적 접근통제) | MAC (강제적 접근통제) | RBAC (역할기반 접근통제) | ABAC (속성기반 접근통제) |
 | --- | --- | --- | --- | --- |
 | 권한 결정 주체 | 데이터 소유자 (자율 재량) | 중앙 보안 관리자 (시스템 정책) | 조직 직무 설계자 (역할 정의) | 중앙 정책 엔진 (다속성 규칙) |
-| 통제 기준 | 신원(ID) 및 접근제어목록(ACL) | 보안 레이블 (기밀 등급) | 사용자의 역할 (Role) | 주체·객체·환경 속성(Attributes) |
+| 통제 기준 | 신원(ID, Identifier) 및 접근제어목록(ACL) | 보안 레이블 (기밀 등급) | 사용자의 역할 (Role) | 주체·객체·환경 속성(Attributes) |
 | 보안 강도 | 낮음 (트로이목마로 권한 전파) | 최고 (군사/국방급 엄격성) | 우수 (최소 권한, 직무 분리) | 최고 수준의 정밀한 동적 통제 |
 | 관리 복잡도 | 사용자/파일 증가 시 기하급수 증가 | 초기 라벨링 및 정책 수립 고비용 | 역할 기반 단순화, 대규모 조직 최적 | 정책 작성 규칙 복잡도 증가 |
-| 대표 적용처 | Windows/Linux 일반 파일시스템 | SELinux, 군사 지휘통제망 | 엔터프라이즈 ERP, 포털 시스템 | 클라우드 IAM (AWS IAM), 제로트러스트 |
+| 대표 적용처 | Windows/Linux 일반 파일시스템 | SELinux, 군사 지휘통제망 | 엔터프라이즈 ERP(Enterprise Resource Planning), 포털 시스템 | 클라우드 IAM (AWS(Amazon Web Services) IAM), 제로트러스트 |
 
 - 조직의 요구사항에 따라 모델을 단독 사용하지 않으며, 클라우드 및 제로트러스트 환경에서는 RBAC으로 대분류 역할을 할당하고 세부 통제는 ABAC 정책으로 정밀 제어하는 RBAC+ABAC 융합 모델이 대세임.
 
@@ -71,6 +71,6 @@ extra:
 
 ## Ⅴ. 접근통제 정책·모델(DAC·MAC·RBAC) 적용 및 발전을 위한 기술사적 제언
 
-- 최신 제로트러스트 환경에 맞춘 **ABAC/PBAC** (Policy-Based) 도입 : 정적 신원 확인을 넘어 단말 위험도, 접속 위치, 이상 행위를 실시간 정책 엔진(PDP)에서 판별하는 동적 접근통제 구현.
+- 최신 제로트러스트 환경에 맞춘 **ABAC/PBAC** (Policy-Based Access Control) 도입 : 정적 신원 확인을 넘어 단말 위험도, 접속 위치, 이상 행위를 실시간 정책 엔진(PDP, Policy Decision Point)에서 판별하는 동적 접근통제 구현.
 - **직무 분리** (Separation of Duties, SoD) 자동 감사 체계 확립 : 결제 기안자와 승인자, 개발자와 배포자 역할이 단일 사용자에게 중복 부여되지 않도록 정기 권한 매트릭스 감사 필수.
 - **CIEM** (Cloud Infrastructure Entitlement Management) 구축 : 멀티 클라우드 환경에서 방치된 과다 권한 계정(Over-privileged Identity)을 탐지하고 사용하지 않는 권한을 자동 회수하는 최소 권한 자동화.

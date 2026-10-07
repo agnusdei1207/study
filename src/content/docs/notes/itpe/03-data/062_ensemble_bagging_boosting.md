@@ -54,7 +54,7 @@ extra:
 | 오차 감소 초점 | **분산(Variance) 감소** $\rightarrow$ 과적합 방지 | **편향(Bias) 감소** $\rightarrow$ 예측 정확도 극대화 |
 | 결합 방식 | 단순 투표(Voting, 분류) 또는 산술 평균(회귀) | 각 학습기의 성능에 비례한 가중합(Weighted Sum) 결합 |
 | 이상치 민감도 | 이상치에 강건(Robust)함 | 이상치에 민감(틀린 이상치에 가중치가 계속 폭증하여 과적합 위험) |
-| 대표 알고리즘 | **Random Forest** / Extra Trees | **AdaBoost** / **Gradient Boosting (GBM)** / **XGBoost** / **LightGBM** / **CatBoost** |
+| 대표 알고리즘 | **Random Forest** / Extra Trees | **AdaBoost** / **Gradient Boosting (GBM, Gradient Boosting Machine)** / **XGBoost** / **LightGBM** / **CatBoost** |
 
 ---
 
@@ -74,12 +74,12 @@ extra:
 - 부스팅의 순차 학습 구조로 인한 훈련 시간 지연 및 이상치 과적합 :
   - 한계점 : Gradient Boosting 계열은 이전 트리의 잔차(Residual)를 순차적으로 학습하므로 병렬 처리가 어렵고 노이즈와 이상치에 과도하게 가중치를 부여하여 과적합 위험.
   - 해결 방안 : 히스토그램 기반 분할 및 GOSS(Gradient-based One-Side Sampling)를 적용한 LightGBM 채택, 조기 종료(Early Stopping) 및 학습률(Shrinkage) 감쇠 튜닝.
-- 복잡한 앙상블 모델의 블랙박스화 및 설명 가능성(XAI) 부재 :
+- 복잡한 앙상블 모델의 블랙박스화 및 설명 가능성(XAI, Explainable Artificial Intelligence) 부재 :
   - 한계점 : 수백 개의 약분류기가 결합되어 개별 예측 결과에 대한 비즈니스 인과관계 규명 및 금융/의료 등 규제 산업에서의 컴플라이언스 대응 곤란.
-  - 해결 방안 : 샤플리 값 기반 SHAP(SHapley Additive exPlanations) 및 LIME 프레임워크를 연동하여 특성별 기여도 및 로컬/글로벌 설명력 확보.
+  - 해결 방안 : 샤플리 값 기반 SHAP(SHapley Additive exPlanations) 및 LIME(Local Interpretable Model-agnostic Explanations) 프레임워크를 연동하여 특성별 기여도 및 로컬/글로벌 설명력 확보.
 - 대규모 서빙 환경에서의 모델 복잡도로 인한 추론 레이턴시 증가 :
-  - 한계점 : 실시간 추천 및 이상거래 탐지(FDS)에서 수백 개의 트리 모델을 순회 추론 시 P99 응답시간이 수십 밀리초(ms)를 초과하여 SLA 위배.
-  - 해결 방안 : Treelite, ONNX Runtime 등 컴파일러 기반 추론 가속기 도입, 트리 앙상블을 단일 신경망이나 룩업 테이블로 증류(Knowledge Distillation)하여 서빙.
+  - 한계점 : 실시간 추천 및 이상거래 탐지(FDS, Fraud Detection System)에서 수백 개의 트리 모델을 순회 추론 시 P99 응답시간이 수십 밀리초(ms)를 초과하여 SLA(Service Level Agreement) 위배.
+  - 해결 방안 : Treelite, ONNX(Open Neural Network Exchange) Runtime 등 컴파일러 기반 추론 가속기 도입, 트리 앙상블을 단일 신경망이나 룩업 테이블로 증류(Knowledge Distillation)하여 서빙.
 
 ---
 

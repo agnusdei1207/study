@@ -16,7 +16,7 @@ extra:
 
 ### 가. 데이터 품질관리의 정의
 - **데이터 품질관리** : 조직의 비즈니스 목적을 달성하기 위해 데이터의 전 **수명주기** (생성, 저장, 가공, 유통, 폐기)에 걸쳐 데이터의 정확성, 완전성, 적시성, 일관성을 지속적으로 확보하고 개선하는 체계적인 관리 활동.
-- 데이터 기반 의사결정의 신뢰성을 보장하고 AI/ML 모델의 성능 저하(Garbage In, Garbage Out)를 방지하는 데이터 거버넌스의 핵심 기반.
+- 데이터 기반 의사결정의 신뢰성을 보장하고 AI(Artificial Intelligence)/ML(Machine Learning) 모델의 성능 저하(Garbage In, Garbage Out)를 방지하는 데이터 거버넌스의 핵심 기반.
 
 ### 나. 데이터 품질 저하의 주요 원인 및 비용 영향
 - 원인 : 입력 단계의 검증 부재, 레거시 시스템 간 연계 인터페이스 불일치, 스키마 변경 시 영향도 평가 누락.
@@ -58,9 +58,9 @@ extra:
 ## Ⅲ. 데이터 품질관리 절차 및 자동화 아키텍처
 
 ### 가. DQM 생애주기 프로세스 (PDCA 사이클)
-1. **Plan (계획)** : 핵심 데이터 요소(CDE, Critical Data Element) 식별, 데이터 표준 및 품질 SLA 정의.
+1. **Plan (계획)** : 핵심 데이터 요소(CDE, Critical Data Element) 식별, 데이터 표준 및 품질 SLA(Service Level Agreement) 정의.
 2. **Do (수행)** : **데이터 프로파일링** 실행, **업무 규칙** (Business Rules) 기반 자동 검증 로직 가동.
-3. **Check (측정 및 평가)** : 데이터 품질 지표(DQI) 산출, 결함 데이터 **원인 분석** (Root Cause Analysis).
+3. **Check (측정 및 평가)** : 데이터 품질 지표(DQI, Data Quality Index) 산출, 결함 데이터 **원인 분석** (Root Cause Analysis).
 4. **Act (정제 및 개선)** : 오류 데이터 수동/자동 **정제** (Cleansing), 원천 시스템 입력 인터페이스 및 파이프라인 결함 영구 조치.
 
 ### 나. 현대적 데이터 품질 자동화 아키텍처 (Data Observability 연계)
@@ -76,7 +76,7 @@ extra:
 ```
 
 - **Data Profiling Engine** : 컬럼별 최소/최대값, 분포도, 카디널리티, 결측률을 자동 통계 처리.
-- **Quality Gate** : ETL/ELT 파이프라인 중간에 위치하여 임계치 미달 시 다운스트림 적재를 차단하고 Data Quarantine Zone으로 격리.
+- **Quality Gate** : ETL(Extract, Transform, Load)/ELT(Extract, Load, Transform) 파이프라인 중간에 위치하여 임계치 미달 시 다운스트림 적재를 차단하고 Data Quarantine Zone으로 격리.
 
 ---
 
@@ -87,7 +87,7 @@ extra:
   - 해결 방안 : 데이터 파이프라인 인입 구간에 'Shift-Left' 품질 게이트웨이(Great Expectations, Soda) 구축, 사전 정의된 유효성 검증 실패 시 파이프라인 차단 및 DLQ(Dead Letter Queue) 격리.
 - 정적 업무 규칙 기반 탐지의 한계 및 비정형 이상치 감지 실패 :
   - 한계점 : 담당자의 주관적 Rule-base 검증에 의존하여 계절적 변동성, 추세 변화, 다변량 이상치 및 텍스트/이미지 등 비정형 데이터 품질 저하 탐지 불가.
-  - 해결 방안 : 통계적 공정 관리(SPC) 및 머신러닝 기반 데이터 옵저버빌리티(Data Observability) 엔진 도입, 동적 임계치(Dynamic Threshold) 자동 학습 및 이상 징후 조기 경보.
+  - 해결 방안 : 통계적 공정 관리(SPC, Statistical Process Control) 및 머신러닝 기반 데이터 옵저버빌리티(Data Observability) 엔진 도입, 동적 임계치(Dynamic Threshold) 자동 학습 및 이상 징후 조기 경보.
 - 조직 간 데이터 소유권(Data Ownership) 불명확으로 인한 조치 지연 :
   - 한계점 : 품질 오류가 발견되어도 시스템 운영팀, 현업 데이터 생산자, 분석가 간 책임 소재가 모호하여 오류 데이터의 근본 원인 해결(Root Cause Analysis) 지연.
   - 해결 방안 : 데이터 도메인별 Data Product Owner 및 Data Steward 명문화, 데이터 품질 SLA(Service Level Agreement) 체계 및 인센티브/페널티 거버넌스 수립.
@@ -96,6 +96,6 @@ extra:
 
 ## Ⅴ. 데이터 품질 관리체계의 정착을 위한 실무 제언
 
-- 데이터 오너십(Ownership) 부여 : 데이터 품질의 책임을 IT 개발 부서에만 국한하지 않고, 원천 데이터를 생성하는 현업 비즈니스 부서에 데이터 스튜어드(Data Steward) 역할을 명확히 지정해야 함.
-- DataOps 기반의 Continuous DQM : 일회성 감사가 아닌 CI/CD 파이프라인에 단위 테스트처럼 데이터 검증 도구(Great Expectations, Soda)를 통합하여 상시 감시 체계 구현.
-- 품질 지표와 KPI의 연계 : 데이터 품질 수준을 경영진 대시보드 및 담당자 성과 지표(KPI)와 직결시켜 전사적인 데이터 거버넌스 문화를 조성할 것을 제언함.
+- 데이터 오너십(Ownership) 부여 : 데이터 품질의 책임을 IT(Information Technology) 개발 부서에만 국한하지 않고, 원천 데이터를 생성하는 현업 비즈니스 부서에 데이터 스튜어드(Data Steward) 역할을 명확히 지정해야 함.
+- DataOps 기반의 Continuous DQM(Data Quality Management) : 일회성 감사가 아닌 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 단위 테스트처럼 데이터 검증 도구(Great Expectations, Soda)를 통합하여 상시 감시 체계 구현.
+- 품질 지표와 KPI(Key Performance Indicator)의 연계 : 데이터 품질 수준을 경영진 대시보드 및 담당자 성과 지표(KPI)와 직결시켜 전사적인 데이터 거버넌스 문화를 조성할 것을 제언함.

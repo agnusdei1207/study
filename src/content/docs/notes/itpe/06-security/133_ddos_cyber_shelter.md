@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. DDoS 사이버대피소의 개요
 
-- 개념 : 한국인터넷진흥원(KISA)이 자체적인 고비용 보안 장비나 스크러빙 센터를 구축하기 어려운 중소기업, 영세 사업자, 비영리단체를 대상으로 대규모 **분산 서비스 거부** (DDoS) 공격 발생 시 웹 트래픽을 긴급 우회시켜 공격 트래픽을 정화하고 정상 서비스 연속성을 무료로 보장하는 **국가 주도 방어 인프라** 서비스.
+- 개념 : 한국인터넷진흥원(KISA, Korea Internet & Security Agency)이 자체적인 고비용 보안 장비나 스크러빙 센터를 구축하기 어려운 중소기업, 영세 사업자, 비영리단체를 대상으로 대규모 **분산 서비스 거부** (DDoS, Distributed Denial of Service) 공격 발생 시 웹 트래픽을 긴급 우회시켜 공격 트래픽을 정화하고 정상 서비스 연속성을 무료로 보장하는 **국가 주도 방어 인프라** 서비스.
 - 배경 및 필요성 : DDoS 공격이 테라급 초대형 볼륨 공격으로 대형화되면서, 보안 예산과 전담 인력이 전무한 중소기업 웹 서버가 마비되어 막대한 영업 손실과 2차 피해가 발생함에 따라 공공 방어망 구축이 시급해짐.
 - 핵심 목적 : 중소기업의 웹 서비스 생존성 보장, 악성 트래픽이 상위 기간망으로 확산되는 것을 사전 차단하여 국가 전반의 인터넷 침해사고 방어력 강화.
 
 ## Ⅱ. DDoS 사이버대피소의 핵심 아키텍처 및 동작 메커니즘
 
-DDoS 사이버대피소는 DNS CNAME 변경을 통한 긴급 트래픽 우회(Redirection), 대규모 스크러빙 센터(Scrubbing Center)의 정밀 필터링, 그리고 원본 웹서버로의 **청정 트래픽** (Clean Traffic) 전달 메커니즘으로 동작함.
+DDoS 사이버대피소는 DNS(Domain Name System) CNAME 변경을 통한 긴급 트래픽 우회(Redirection), 대규모 스크러빙 센터(Scrubbing Center)의 정밀 필터링, 그리고 원본 웹서버로의 **청정 트래픽** (Clean Traffic) 전달 메커니즘으로 동작함.
 
 ```text
 [ KISA DDoS 사이버대피소 트래픽 우회 및 스크러빙 메커니즘 ]
@@ -54,17 +54,17 @@ DDoS 사이버대피소는 DNS CNAME 변경을 통한 긴급 트래픽 우회(Re
 ```
 
 - **DNS CNAME 우회 기법** : 공격 발생 시 피해 기업의 도메인 네임서버(DNS) 레코드를 KISA 대피소 도메인으로 변경하여 트래픽을 수 분 내로 대피소로 강제 라우팅.
-- **다계층 스크러빙(Scrubbing) 엔진** : L3/L4 계층의 대역폭 고갈 공격(UDP Flood, NTP 증폭)은 하드웨어 필터로 즉각 차단하고, L7 HTTP GET/POST Flood 공격은 행동 기반 분석 및 WAF를 통해 정밀 소거.
-- **SSL/TLS 트래픽 종단 및 복호화** : 암호화된 HTTPS 공격 패킷을 검사하기 위해 기업의 SSL 인증서를 대피소에 임시 위탁하여 복호화 검사 후 원본 서버로 안전하게 재전송.
+- **다계층 스크러빙(Scrubbing) 엔진** : L3/L4 계층의 대역폭 고갈 공격(UDP(User Datagram Protocol) Flood, NTP(Network Time Protocol) 증폭)은 하드웨어 필터로 즉각 차단하고, L7 HTTP(Hypertext Transfer Protocol) GET/POST Flood 공격은 행동 기반 분석 및 WAF(Web Application Firewall)를 통해 정밀 소거.
+- **SSL(Secure Sockets Layer)/TLS(Transport Layer Security) 트래픽 종단 및 복호화** : 암호화된 HTTPS(Hypertext Transfer Protocol Secure) 공격 패킷을 검사하기 위해 기업의 SSL 인증서를 대피소에 임시 위탁하여 복호화 검사 후 원본 서버로 안전하게 재전송.
 - **사전 등록제 및 상시 운영** : 공격 발생 후 신청하는 긴급 대피 외에도 영세 기업 대상의 연중 상시 대피소 연동 서비스를 제공하여 무중단 방어 체계 지원.
 
 ## Ⅲ. DDoS 사이버대피소의 세부 구성 요소 및 비교 분석
 
 | 비교 항목 | **KISA DDoS 사이버대피소** | **글로벌 상용 스크러빙** (Cloudflare/Akamai) | **온프레미스 안티 DDoS 장비** |
 | --- | --- | --- | --- |
-| 이용 비용 | 무료 (중소기업 대상 정부 지원) | 유료 (트래픽 대역폭 기반 고가 과금) | 고가 (장비 구매 CAPEX 및 회선 증설) |
+| 이용 비용 | 무료 (중소기업 대상 정부 지원) | 유료 (트래픽 대역폭 기반 고가 과금) | 고가 (장비 구매 CAPEX(Capital Expenditure) 및 회선 증설) |
 | 방어 대역폭 | 국내 대규모 인프라 보유 | 초대형 글로벌 Anycast 인프라 | 보유 인터넷 회선 대역폭으로 한정 |
-| 지원 프로토콜 | 주로 HTTP / HTTPS 웹 서비스 중심 | 웹, TCP/UDP, DNS, BGP 전 프로토콜 | L3~L7 인라인 전 프로토콜 |
+| 지원 프로토콜 | 주로 HTTP / HTTPS 웹 서비스 중심 | 웹, TCP(Transmission Control Protocol)/UDP, DNS, BGP(Border Gateway Protocol) 전 프로토콜 | L3~L7 인라인 전 프로토콜 |
 | 적용 속도 | DNS 전파 지연 발생 가능 | 상시 프록시 운영 시 지연 제로 | 인라인 즉시 차단 (지연 제로) |
 | 주요 대상 | 국내 중소기업, 영세 소상공인, 비영리 | 글로벌 대기업, 금융, 게임, e커머스 | 자체 데이터센터 및 폐쇄망 보유 대기업 |
 
@@ -73,12 +73,12 @@ DDoS 사이버대피소는 DNS CNAME 변경을 통한 긴급 트래픽 우회(Re
 ## Ⅳ. DDoS 사이버대피소의 주요 한계점 및 해결 방안
 
 - DNS 캐시 TTL(Time-To-Live) 지연에 따른 즉각적 전환 한계 :
-  - 한계점 : 공격 발생 후 DNS CNAME을 변경하더라도 로컬 ISP 캐시 서버의 TTL 만료 전까지는 공격 트래픽이 원본 서버로 계속 유입되어 서비스 중단 지속.
+  - 한계점 : 공격 발생 후 DNS CNAME을 변경하더라도 로컬 ISP(Internet Service Provider) 캐시 서버의 TTL 만료 전까지는 공격 트래픽이 원본 서버로 계속 유입되어 서비스 중단 지속.
   - 해결 방안 : 평상시 도메인의 DNS TTL을 짧게 단축 관리하고, 영세 기업의 경우 평시 상시 대피소 연동 모드 적용.
-- 원본 서버의 실제 공인 IP 노출 시 대피소 우회 직접 공격 :
+- 원본 서버의 실제 공인 IP(Internet Protocol) 노출 시 대피소 우회 직접 공격 :
   - 한계점 : 공격자가 과거 이력이나 메일 헤더, DNS 히스토리를 통해 원본 서버의 실제 공인 IP를 알아내어 대피소를 거치지 않고 직접 플루딩 공격 감행.
   - 해결 방안 : 원본 서버 앞단 방화벽에서 KISA 사이버대피소의 인가된 프록시 IP 대역 외의 모든 인바운드 트래픽을 완전 차단(Drop) 처리.
-- 웹(HTTP/HTTPS) 외 비웹 프로토콜(게임, VoIP, VPN) 방어 제약 :
+- 웹(HTTP/HTTPS) 외 비웹 프로토콜(게임, VoIP(Voice over Internet Protocol), VPN(Virtual Private Network)) 방어 제약 :
   - 한계점 : 사이버대피소는 역방향 웹 프록시 기반으로 최적화되어 있어 독자 TCP/UDP 포트를 사용하는 특수 애플리케이션 방어 지원 곤란.
   - 해결 방안 : BGP 라우팅 프로토콜 연동 기반의 L3/L4 BGP Flowspec 대피 인프라 확충 및 다변화된 프록시 파이프라인 개발.
 

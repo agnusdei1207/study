@@ -49,39 +49,39 @@ extra:
                                         (인증서 체인 검증)
 ```
 
-- **해시 생성** : 송신자가 원문 전체를 일방향 암호학적 해시 함수에 입력하여 고정 길이 다이제스트 도출 (SHA-256, SHA-3, BLAKE3 적용).
-- **서명 생성** : 서명자의 개인키(Private Key)로 다이제스트를 암호화하거나 서명 방정식 연산 수행 (RSA-PSS, Ed25519, ECDSA 서명 생성).
+- **해시 생성** : 송신자가 원문 전체를 일방향 암호학적 해시 함수에 입력하여 고정 길이 다이제스트 도출 (SHA(Secure Hash Algorithm)-256, SHA-3, BLAKE3 적용).
+- **서명 생성** : 서명자의 개인키(Private Key)로 다이제스트를 암호화하거나 서명 방정식 연산 수행 (RSA(Rivest-Shamir-Adleman)-PSS, Ed25519, ECDSA(Elliptic Curve Digital Signature Algorithm) 서명 생성).
 - **원문/서명 전송** : 원문 메시지와 전자서명값, 서명자의 인증서(X.509)를 패키징하여 수신자에게 전송 (CMS/PKCS#7, JSON Web Signature(JWS)).
-- **서명 검증** : 수신자가 송신자의 공인인증서 유효성(CRL/OCSP) 확인 후 공개키로 서명값 복호화/검증 (X.509 Path Validation, OCSP Stapling).
+- **서명 검증** : 수신자가 송신자의 공인인증서 유효성(CRL(Certificate Revocation List)/OCSP) 확인 후 공개키로 서명값 복호화/검증 (X.509 Path Validation, OCSP Stapling).
 - **무결성 대조** : 수신자가 원문을 직접 해시 연산한 값과 서명에서 복원된 해시값을 비트 단위로 대조 (불일치 시 패킷 즉시 폐기 및 감사 로그 기록).
 
 ## Ⅲ. 전자서명(Digital Signature)의 세부 구성 요소 및 비교 분석
 
-| 구분 | **RSA-PSS** | **ECDSA / EdDSA** | **ML-DSA** (CRYSTALS-Dilithium) |
+| 구분 | **RSA-PSS** | **ECDSA / EdDSA** | **ML-DSA(Module-Lattice-Based Digital Signature Algorithm)** (CRYSTALS-Dilithium) |
 |---|---|---|---|
 | 수학적 기반 | 대형 소수 곱의 소인수분해 난치성 | 타원곡선 이산대수 문제(ECDLP) | 격자 기반 학습오차(LWE/MLWE) 난치성 |
-| 표준 규격 | PKCS#1 v2.2, FIPS 186-5 | ANSI X9.62, RFC 8032 (Ed25519) | NIST FIPS 204 (PQC 디지털 서명) |
+| 표준 규격 | PKCS(Public Key Cryptography Standards)#1 v2.2, FIPS(Federal Information Processing Standards) 186-5 | ANSI X9.62, RFC(Request for Comments) 8032 (Ed25519) | NIST(National Institute of Standards and Technology) FIPS 204 (PQC(Post-Quantum Cryptography) 디지털 서명) |
 | 키 길이 (보안강도 128-bit) | 3,072 bits | 256 bits | 공개키 1,312 bytes / 개인키 2,528 bytes |
 | 서명 데이터 크기 | 384 bytes | 64 bytes | 2,420 bytes |
 | 연산 속도 | 서명 생성 보통, 서명 검증 매우 빠름 | 키 생성 및 서명 빠름, 검증 보통 | 격자 행렬 연산 기반 매우 빠른 서명/검증 |
 | 양자컴퓨터 저항성 | Shor 알고리즘에 의해 취약 | Shor 알고리즘에 의해 취약 | 양자 컴퓨팅 공격에 안전(양자 내성) |
-| 주 활용 분야 | 전통적 PKI, 레거시 웹/인증 체계 | FIDO2 Passkey, TLS 1.3, 블록체인 | 차세대 TLS 1.3, 국방/금융 차세대 인증 |
+| 주 활용 분야 | 전통적 PKI(Public Key Infrastructure), 레거시 웹/인증 체계 | FIDO2 Passkey, TLS(Transport Layer Security) 1.3, 블록체인 | 차세대 TLS 1.3, 국방/금융 차세대 인증 |
 
 - 전자서명(Digital Signature)은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
 
 ## Ⅳ. 전자서명(Digital Signature)의 주요 한계점 및 해결 방안
 
-- 한계점 : **Shor 알고리즘** 상용화 시 RSA/ECC 기반 서명의 일괄 위조 위협.
+- 한계점 : **Shor 알고리즘** 상용화 시 RSA/ECC(Elliptic Curve Cryptography) 기반 서명의 일괄 위조 위협.
   - 해결 방안 : NIST FIPS 204 표준 격자 기반 **ML-DSA** 및 FIPS 205 SLH-DSA를 점진 도입하고, **하이브리드 서명** (Ed25519+ML-DSA) 체계 구축 필수.
 - 한계점 : 엔드포인트 메모리 덤프 및 사이드채널 공격으로 서명 개인키 유출.
-  - 해결 방안 : FIPS 140-3 Level 3 이상 인증 HSM, TPM 2.0 또는 **Secure Enclave** 내에 개인키를 격리하고 추출 불가(Non-exportable) 정책 강제.
+  - 해결 방안 : FIPS 140-3 Level 3 이상 인증 HSM(Hardware Security Module), TPM(Trusted Platform Module) 2.0 또는 **Secure Enclave** 내에 개인키를 격리하고 추출 불가(Non-exportable) 정책 강제.
 - 한계점 : 서명 검증 성공 시에도 서명 시점 및 인증서 폐기 여부의 시차(Time Window) 취약점.
   - 해결 방안 : RFC 3161 기반 **공인 시점확인** (Timestamping Authority) 토큰 결합 및 **OCSP Stapling** 기반 실시간 폐기 검증 의무화.
-- 한계점 : 사물인터넷(IoT) 및 마이크로서비스 대량 서명 검증 시 CPU 부하 및 지연 급증.
+- 한계점 : 사물인터넷(IoT, Internet of Things) 및 마이크로서비스 대량 서명 검증 시 CPU(Central Processing Unit) 부하 및 지연 급증.
   - 해결 방안 : 서명 검증 가속 전용 하드웨어 가속기(Crypto Offloader) 탑재 및 Ed25519/BLS **배치 서명 검증** (Batch Verification) 기법 도입.
 
 ## Ⅴ. 전자서명(Digital Signature) 적용 및 발전을 위한 기술사적 제언
 
-- 키 보안 강화 중심의 거버넌스 및 실행 체계 구축 : HSM 내부 서명 연산 처리 및 **다자간 연산** (MPC) 기반 서명키 분할 보관을(를) 적극 추진하여, 단일 장애점(SPOF) 해소 및 키 유출 위험 원천 제거 효과를 극대화해야 함.
+- 키 보안 강화 중심의 거버넌스 및 실행 체계 구축 : HSM 내부 서명 연산 처리 및 **다자간 연산** (MPC, Multi-Party Computation) 기반 서명키 분할 보관을(를) 적극 추진하여, 단일 장애점(SPOF, Single Point of Failure) 해소 및 키 유출 위험 원천 제거 효과를 극대화해야 함.
 - 양자 내성 전환 중심의 거버넌스 및 실행 체계 구축 : FIPS 204 ML-DSA 알고리즘 표준 라이브러리 탑재 및 암호 민첩성(Crypto-Agility) 확보을(를) 적극 추진하여, 양자 컴퓨터 도래 시 인증 체계 전면 붕괴 방지 효과를 극대화해야 함.
-- 장기 검증성(LTV) 중심의 거버넌스 및 실행 체계 구축 : **PAdES/XAdES** 기반 전자서명 장기 보존 형식 및 주기적 타임스탬프 재갱신을(를) 적극 추진하여, 장기 보관 전자문서의 법적 증거력 영구 유지 효과를 극대화해야 함.
+- 장기 검증성(LTV, Lifetime Value) 중심의 거버넌스 및 실행 체계 구축 : **PAdES/XAdES** 기반 전자서명 장기 보존 형식 및 주기적 타임스탬프 재갱신을(를) 적극 추진하여, 장기 보관 전자문서의 법적 증거력 영구 유지 효과를 극대화해야 함.

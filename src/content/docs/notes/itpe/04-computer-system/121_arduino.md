@@ -14,11 +14,13 @@ extra:
 
 ## Ⅰ. 아두이노(Arduino)의 개요
 
-- 개념 : **마이크로컨트롤러** (MCU) 칩(AVR, ARM Cortex-M 등)을 탑재한 오픈소스 하드웨어 단일 보드(Single-Board)와, 이를 손쉽게 프로그래밍할 수 있는 **통합 개발 환경** (Arduino IDE) 및 표준 C/C++ 기반 와이어링(Wiring) 소프트웨어 라이브러리로 구성된 글로벌 대표 **피지컬 컴퓨팅** (Physical Computing) 및 임베디드 프로토타이핑 플랫폼.
-- 배경 및 필요성 : 과거 마이크로프로세서 개발에 요구되던 복잡한 어셈블리 코딩, 고가의 **하드웨어 프로그래머** (JTAG/ISP), 난해한 칩 레지스터 제어 진입 장벽을 허물고 누구나 센서와 액추에이터를 손쉽게 제어할 수 있도록 개발됨.
-- 핵심 목적 : 오픈소스 하드웨어 생태계 구축, 신속한 IoT/임베디드 시제품(PoC) 프로토타이핑, 표준 핀헤더 및 **쉴드** (Shield)를 통한 하드웨어 확장성 제공.
+- 개념 : **마이크로컨트롤러** (MCU, Microcontroller Unit) 칩(AVR, ARM Cortex-M 등)을 탑재한 오픈소스 하드웨어 단일 보드(Single-Board)와, 이를 손쉽게 프로그래밍할 수 있는 **통합 개발 환경** (Arduino IDE, Integrated Development Environment) 및 표준 C/C++ 기반 와이어링(Wiring) 소프트웨어 라이브러리로 구성된 글로벌 대표 **피지컬 컴퓨팅** (Physical Computing) 및 임베디드 프로토타이핑 플랫폼.
+- 배경 및 필요성 : 과거 마이크로프로세서 개발에 요구되던 복잡한 어셈블리 코딩, 고가의 **하드웨어 프로그래머** (JTAG, Joint Test Action Group/ISP, In-System Programming), 난해한 칩 레지스터 제어 진입 장벽을 허물고 누구나 센서와 액추에이터를 손쉽게 제어할 수 있도록 개발됨.
+- 핵심 목적 : 오픈소스 하드웨어 생태계 구축, 신속한 IoT(Internet of Things)/임베디드 시제품(PoC, Proof of Concept) 프로토타이핑, 표준 핀헤더 및 **쉴드** (Shield)를 통한 하드웨어 확장성 제공.
 
 ## Ⅱ. 아두이노(Uno 기준) 하드웨어 아키텍처 및 펌웨어 실행 메커니즘
+
+- 도식 약어: DTR(Data Terminal Ready), UART(Universal Asynchronous Receiver/Transmitter), SRAM(Static Random-Access Memory), EEPROM(Electrically Erasable Programmable Read-Only Memory), ADC(Analog-to-Digital Converter), GPIO(General-Purpose Input/Output), PWM(Pulse-Width Modulation).
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -53,8 +55,8 @@ extra:
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **부트로더(Bootloader) 메커니즘** : 외산 롬 라이터(ISP 장비) 없이도 칩 내부 플래시 메모리에 사전 적재된 소형 부트로더가 USB 시리얼 포트를 통해 신규 펌웨어 코드를 수 초 내에 자체 프로그래밍(Self-Programming).
-- **이중 루프 실행 모델** : 운영체제(OS) 없이 **베어메탈** (Bare-Metal)로 구동되며, 하드웨어 핀과 인터럽트를 1회 초기화하는 `setup()` 함수 실행 후, 메인 비즈니스 로직을 무한 반복 실행하는 `loop()` 함수 구조.
+- **부트로더(Bootloader) 메커니즘** : 외산 롬 라이터(ISP 장비) 없이도 칩 내부 플래시 메모리에 사전 적재된 소형 부트로더가 USB(Universal Serial Bus) 시리얼 포트를 통해 신규 펌웨어 코드를 수 초 내에 자체 프로그래밍(Self-Programming).
+- **이중 루프 실행 모델** : 운영체제(OS, Operating System) 없이 **베어메탈** (Bare-Metal)로 구동되며, 하드웨어 핀과 인터럽트를 1회 초기화하는 `setup()` 함수 실행 후, 메인 비즈니스 로직을 무한 반복 실행하는 `loop()` 함수 구조.
 
 ## Ⅲ. 아두이노와 라즈베리 파이(Raspberry Pi) 비교 분석
 
@@ -62,11 +64,11 @@ extra:
 | :--- | :--- | :--- |
 | **컴퓨팅 분류** | 마이크로컨트롤러 (MCU: Single-Chip Micro) | 싱글보드 컴퓨터 (SBC: Single-Board Computer) |
 | **운영체제 유무** | OS 없음 (베어메탈 펌웨어 단독 루프) | 풀스택 Linux OS (Raspberry Pi OS 등 탑재) |
-| **CPU 클록 및 코어**| 8비트/32비트, 16 MHz ~ 120 MHz (단일 코어) | 64비트 Quad-Core ARM, 1.5 GHz ~ 2.4 GHz |
-| **메모리(RAM) 용량**| 2 KB ~ 수십 KB (초소용량) | 2 GB ~ 8 GB LPDDR4 (대용량) |
+| **CPU(Central Processing Unit) 클록 및 코어**| 8비트/32비트, 16 MHz ~ 120 MHz (단일 코어) | 64비트 Quad-Core ARM, 1.5 GHz ~ 2.4 GHz |
+| **메모리(RAM, Random-Access Memory) 용량**| 2 KB ~ 수십 KB (초소용량) | 2 GB ~ 8 GB LPDDR4 (대용량) |
 | **전력 소모** | 수 밀리와트(mW) ~ 수백 mW (배터리 장기 구동)| 5W ~ 15W 이상 (전용 어댑터 전원 필수) |
 | **I/O 실시간 제어** | 마이크로초 단위의 완벽한 결정론적(Real-Time) 제어| 리눅스 OS 스케줄링으로 실시간(Hard Real-Time) 한계|
-| **최적 적용 분야** | 모터 PWM 정밀 제어, 단순 센서 수집, 도어락| 영상 처리, 웹 서버, AI 비전, 복잡한 네트워크 통신|
+| **최적 적용 분야** | 모터 PWM 정밀 제어, 단순 센서 수집, 도어락| 영상 처리, 웹 서버, AI(Artificial Intelligence) 비전, 복잡한 네트워크 통신|
 
 ## Ⅳ. 아두이노 플랫폼의 주요 한계점 및 해결 방안
 
@@ -77,10 +79,10 @@ extra:
   - 한계점 : `delay()` 함수 사용 시 CPU가 아무 작업도 못 하고 멈춰 있어 외부 센서 인터럽트나 통신 수신 패킷 유실.
   - 해결 방안 : 시스템 내장 타이머 함수(`millis()`) 기반의 비차단 상태 머신(Finite State Machine) 코딩 기법 적용.
 - 산업 현장(Industrial) 적용 시 전기적 노이즈 및 내구성 취약 :
-  - 한계점 : 보급형 아두이노 보드는 서지(Surge), 전자기파(EMI) 보호 회로가 없어 산업 현장 모터 노이즈에 즉각 오동작.
-  - 해결 방안 : 포토커플러(Optocoupler) 절연 회로 설계, 산업용 인증 아두이노(Arduino Pro, Portenta) 또는 PLC로 대체.
+  - 한계점 : 보급형 아두이노 보드는 서지(Surge), 전자기파(EMI, Electromagnetic Interference) 보호 회로가 없어 산업 현장 모터 노이즈에 즉각 오동작.
+  - 해결 방안 : 포토커플러(Optocoupler) 절연 회로 설계, 산업용 인증 아두이노(Arduino Pro, Portenta) 또는 PLC(Programmable Logic Controller)로 대체.
 
 ## Ⅴ. 미래 임베디드 IoT 환경을 위한 기술사적 제언
 
-- TinyML(초소형 머신러닝) 기반 엣지 인텔리전스 전환 : 32비트 ARM Cortex-M 코어를 탑재한 최신 아두이노(Arduino Nano 33 BLE 등) 환경에서 TensorFlow Lite for Microcontrollers를 결합하여, 클라우드 연결 없이 마이크로컨트롤러 단독으로 음성 키워드 인식, 진동 기반 모터 이상 감지를 실시간 수행하는 지능형 센서 노드로 진화시켜야 함.
+- TinyML(초소형 머신러닝) 기반 엣지 인텔리전스 전환 : 32비트 ARM Cortex-M 코어를 탑재한 최신 아두이노(Arduino Nano 33 BLE(Bluetooth Low Energy) 등) 환경에서 TensorFlow Lite for Microcontrollers를 결합하여, 클라우드 연결 없이 마이크로컨트롤러 단독으로 음성 키워드 인식, 진동 기반 모터 이상 감지를 실시간 수행하는 지능형 센서 노드로 진화시켜야 함.
 - 실시간 운영체제(FreeRTOS / Zephyr) 아키텍처 도입 : 단순 `loop()` 구조의 한계를 넘어, 복잡한 다중 태스크가 요구되는 상용 IoT 기기 개발 시에는 선점형 스케줄러를 지원하는 FreeRTOS를 아두이노 프레임워크 상에 포팅하여 태스크 간 우선순위 제어 및 세마포어 동기화를 구현할 것을 제언함.

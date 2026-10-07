@@ -44,12 +44,12 @@ extra:
 | 리프 노드의 내용 | 실제 데이터 페이지 (Data Row 그 자체) | 인덱스 키값 + 해당 행을 가리키는 포인터 (PK값 또는 ROWID) |
 | 생성 가능 개수 | 테이블당 오직 1개 (MySQL InnoDB는 PK가 자동 클러스터드) | 테이블당 여러 개 생성 가능 |
 | 범위 검색 성능 | 극도로 우수 (연속된 블록 I/O로 순차 스캔 가능) | 보통 (인덱스 스캔 후 랜덤 I/O로 실제 테이블 접근 필요) |
-| CUD 작업 비용 | 높음 (새 데이터 삽입 시 물리적 행 재배치 및 페이지 분할) | 상대적으로 낮음 (인덱스 페이지만 수정) |
+| CUD(Create, Update, Delete) 작업 비용 | 높음 (새 데이터 삽입 시 물리적 행 재배치 및 페이지 분할) | 상대적으로 낮음 (인덱스 페이지만 수정) |
 
 ### 나. 특수 목적 인덱스 유형
 - **결합 인덱스 (Composite Index)** : 두 개 이상의 컬럼을 조합하여 구성. **선행 컬럼이 조건절에 사용되어야만** 인덱스 스킵 없이 효율적 활용 가능.
 - **커버링 인덱스 (Covering Index)** : 쿼리가 요구하는 모든 컬럼이 인덱스 자체에 포함되어 있어, 실제 테이블 행을 방문하지 않고 인덱스만으로 쿼리를 완료하는 최적화 기법.
-- **비트맵 인덱스 (Bitmap Index)** : 성별, 지역 등 카디널리티(값의 종류)가 극히 낮은 컬럼에 대해 0과 1의 비트 열로 인덱스 구성 (OLAP DW에 적합).
+- **비트맵 인덱스 (Bitmap Index)** : 성별, 지역 등 카디널리티(값의 종류)가 극히 낮은 컬럼에 대해 0과 1의 비트 열로 인덱스 구성 (OLAP(Online Analytical Processing) DW(Data Warehouse)에 적합).
 
 ---
 
@@ -59,18 +59,18 @@ extra:
 - 모든 실제 데이터 포인터는 최하위 **리프 노드(Leaf Node)** 에만 저장되며, 리프 노드들은 양방향 연결 리스트(Doubly Linked List)로 연결되어 있어 범위 스캔(`BETWEEN`, `>`, `<`)에 최적화됨.
 
 ### 나. 페이지 분할(Page Split)의 부하 메커니즘
-- 인덱스 리프 페이지가 꽉 찬 상태에서 새로운 키가 중간에 삽입되면, DBMS는 새 페이지를 할당하고 기존 데이터의 50%를 이동시키는 **페이지 분할**을 수행 $\rightarrow$ 막대한 랜덤 I/O 및 Redo 로그 발생.
+- 인덱스 리프 페이지가 꽉 찬 상태에서 새로운 키가 중간에 삽입되면, DBMS(Database Management System)는 새 페이지를 할당하고 기존 데이터의 50%를 이동시키는 **페이지 분할**을 수행 $\rightarrow$ 막대한 랜덤 I/O 및 Redo 로그 발생.
 
 ---
 
 ## Ⅳ. 데이터베이스 인덱스 설계 및 운용의 주요 한계점 및 해결 방안
 
 - 과도한 인덱스 생성에 따른 CUD(쓰기) 성능 저하 및 공간 낭비 :
-  - 한계점 : 조회 쿼리마다 개별 인덱스를 무분별하게 추가할 경우 INSERT/UPDATE 시 B+Tree 페이지 분할(Page Split) 및 WAL 쓰기 오버헤드로 쓰기 TPS 급락.
+  - 한계점 : 조회 쿼리마다 개별 인덱스를 무분별하게 추가할 경우 INSERT/UPDATE 시 B+Tree 페이지 분할(Page Split) 및 WAL(Write-Ahead Logging) 쓰기 오버헤드로 쓰기 TPS(Transactions Per Second) 급락.
   - 해결 방안 : 인덱스 머지 및 복합 인덱스(Composite Index) 결합, 카디널리티(Cardinality)가 높은 컬럼을 선두에 배치하고 불필요한 미사용 인덱스 정기 삭제.
 - 데이터 스큐(Data Skew) 및 널(NULL) 값 분포 시 인덱스 효율성 급락 :
   - 한계점 : 특정 상태값 등 카디널리티가 낮은 컬럼이나 대량의 NULL 값이 포함된 경우 인덱스 풀 스캔 유발 및 옵티마이저의 Full Table Scan 오판.
-  - 해결 방안 : 조건부 인덱스인 부분 인덱스(Partial/Filtered Index) 생성, 함수 기반 인덱스(FBI) 활용 및 옵티마이저 통계정보(Histogram) 상시 수집.
+  - 해결 방안 : 조건부 인덱스인 부분 인덱스(Partial/Filtered Index) 생성, 함수 기반 인덱스(FBI, Function-Based Index) 활용 및 옵티마이저 통계정보(Histogram) 상시 수집.
 - 테이블 블로트(Table/Index Bloat) 및 단편화(Fragmentation) 심화 :
   - 한계점 : 빈번한 DELETE 및 UPDATE 작업으로 인해 B+Tree 리프 노드에 빈 공간이 누적되어 디스크 낭비 및 메모리 버퍼 캐시 적중률 저하.
   - 해결 방안 : 인덱스 온라인 재구성(REINDEX CONCURRENTLY, ALTER INDEX REBUILD ONLINE) 스케줄링 운영, Fill Factor 파라미터 튜닝을 통한 여유 공간 선제 확보.

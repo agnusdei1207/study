@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 우선순위 역전(Priority Inversion)의 개요
 
-- 개념 : **실시간 운영체제(RTOS)** 또는 선점형 우선순위 스케줄링 환경에서, 높은 우선순위를 가진 프로세스가 낮은 우선순위 프로세스가 점유한 공유 자원(뮤텍스/세마포어)을 대기하는 동안, 자원과 무관한 중간 우선순위 프로세스가 낮은 우선순위 프로세스를 선점하여 실행됨으로써 결과적으로 높은 우선순위 프로세스의 실행이 지연되는 비정상적 스케줄링 역전 현상.
+- 개념 : **실시간 운영체제(RTOS, Real-Time Operating System)** 또는 선점형 우선순위 스케줄링 환경에서, 높은 우선순위를 가진 프로세스가 낮은 우선순위 프로세스가 점유한 공유 자원(뮤텍스/세마포어)을 대기하는 동안, 자원과 무관한 중간 우선순위 프로세스가 낮은 우선순위 프로세스를 선점하여 실행됨으로써 결과적으로 높은 우선순위 프로세스의 실행이 지연되는 비정상적 스케줄링 역전 현상.
 - 배경 및 필요성 : 1997년 **화성 패스파인더(Mars Pathfinder)** 탐사선의 잦은 시스템 리셋 장애 원인으로 전 세계에 널리 알려졌으며, 엄격한 마감시간(Deadline) 준수가 필수적인 하드 리얼타임 임베디드 및 미션 크리티컬 제어 시스템에서 시스템 붕괴를 초래할 수 있어 연구됨.
-- 핵심 목적 : 실시간 태스크의 데드라인 준수 보장, 우선순위 상속(PIP) 및 우선순위 올림(PCP) 프로토콜을 통한 블로킹 지연 상한 통제.
+- 핵심 목적 : 실시간 태스크의 데드라인 준수 보장, 우선순위 상속(PIP, Priority Inheritance Protocol) 및 우선순위 올림(PCP, Priority Ceiling Protocol) 프로토콜을 통한 블로킹 지연 상한 통제.
 
 ## Ⅱ. 우선순위 역전(Priority Inversion)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -68,10 +68,10 @@ Task M ────────────────────────�
   - 해결 방안 : 상호 배제 목적의 동기화에는 소유자 스레드 ID가 명확한 뮤텍스(Mutex with Priority Inheritance)만 사용.
 - **임계 구역(Critical Section)** 장기 점유로 인한 스케줄링 지연 :
   - 한계점 : 저순위 태스크가 락을 잡은 상태에서 I/O를 수행하거나 긴 연산을 실행하여 상속을 적용해도 고순위 태스크 지연.
-  - 해결 방안 : 임계 구역 내 I/O 및 블로킹 시스템 콜 호출 엄격 금지, 락 프리(Lock-Free) 큐 및 RCU 도입.
+  - 해결 방안 : 임계 구역 내 I/O 및 블로킹 시스템 콜 호출 엄격 금지, 락 프리(Lock-Free) 큐 및 RCU(Read-Copy-Update) 도입.
 
 ## Ⅴ. 우선순위 역전(Priority Inversion) 적용 및 발전을 위한 기술사적 제언
 
-- 차량용 전장 **SW(AUTOSAR)** OS 스케줄링 표준 준수 : 자동차 기능안전성(ISO 26262) 충족을 위해 실시간 브레이크 및 조향 태스크의 리소스 락에 PCP(Priority Ceiling) 프로토콜 필수 적용.
+- 차량용 전장 **SW(AUTOSAR)** OS(Operating System) 스케줄링 표준 준수 : 자동차 기능안전성(ISO(International Organization for Standardization) 26262) 충족을 위해 실시간 브레이크 및 조향 태스크의 리소스 락에 PCP(Priority Ceiling) 프로토콜 필수 적용.
 - 자바 및 **POSIX** 멀티스레드 PTHREAD_PRIO_INHERIT 활성화 : 고성능 C/C++ 미션 크리티컬 애플리케이션 개발 시 `pthread_mutexattr_setprotocol(&attr, PTHREAD_PRIO_INHERIT)` 설정 점검.
 - 주기적 태스크 스케줄링 **분석(RMA: Rate Monotonic Analysis)** 수행 : 태스크 주기와 실행 시간을 수리 모델링하여 최악의 블로킹 시간(Worst-case Blocking Time)을 수학적으로 증명하는 엔지니어링 실증 권장.

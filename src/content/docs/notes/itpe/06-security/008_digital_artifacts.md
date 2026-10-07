@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 디지털 아티팩트(Digital Artifact)의 개요
 
-- 개념 : 운영체제(OS), 파일시스템, 애플리케이션의 정상적인 작동이나 사용자 행위의 결과로 시스템 내부 스토리지 및 메모리에 자동으로 생성·기록·보존되는 고유한 **디지털 흔적** (Digital Artifact).
-- 배경 및 필요성 : 사이버 침해사고 조사 및 법정 분쟁 시 공격자나 사용자가 과거에 수행한 프로그램 실행, 파일 접근, 네트워크 연결, USB 장치 연결 등의 행위를 시계열(Timeline)로 재구성하기 위한 핵심 객관적 증거.
+- 개념 : 운영체제(OS, Operating System), 파일시스템, 애플리케이션의 정상적인 작동이나 사용자 행위의 결과로 시스템 내부 스토리지 및 메모리에 자동으로 생성·기록·보존되는 고유한 **디지털 흔적** (Digital Artifact).
+- 배경 및 필요성 : 사이버 침해사고 조사 및 법정 분쟁 시 공격자나 사용자가 과거에 수행한 프로그램 실행, 파일 접근, 네트워크 연결, USB(Universal Serial Bus) 장치 연결 등의 행위를 시계열(Timeline)로 재구성하기 위한 핵심 객관적 증거.
 - 핵심 목적 : 침해사고 유입 경로 및 악성코드 실행 이력 규명, 데이터 유출 행위의 **반증 불가능성** (Non-repudiation) 입증, 침해 타임라인 복원.
 
 ## Ⅱ. 디지털 아티팩트(Digital Artifact)의 핵심 아키텍처 및 동작 메커니즘
@@ -46,7 +46,7 @@ extra:
 
 - **프리페치** (Prefetch) : 응용프로그램 로딩 속도 향상을 위한 캐시 파일로 실행 파일명, 실행 횟수, 최초/최종 실행 시간, 로딩된 DLL 목록 보존.
 - **심캐시** (Shimcache / AppCompatCache) : OS 호환성 유지를 위해 커널 캐시에 기록되며, 파일의 전체 경로, 수정 시간(Last Modified Time), 실행 여부 플래그 저장.
-- **암캐시** (Amcache.hve) : 응용프로그램 설치 및 실행 시점의 SHA-1 파일 해시, 드라이버 정보, PE 파일 컴파일 시간을 독립 하이브 파일에 보존.
+- **암캐시** (Amcache.hve) : 응용프로그램 설치 및 실행 시점의 SHA(Secure Hash Algorithm)-1 파일 해시, 드라이버 정보, PE 파일 컴파일 시간을 독립 하이브 파일에 보존.
 - **MFT** (Master File Table) 및 저널링 : NTFS 파일시스템의 $MFT 엔트리($STANDARD_INFORMATION, $FILE_NAME 타임스탬프)와 $UsnJrnl을 통해 파일 생성/이름변경/삭제 정밀 추적.
 
 ## Ⅲ. 디지털 아티팩트(Digital Artifact)의 세부 구성 요소 및 비교 분석
@@ -56,8 +56,8 @@ extra:
 | Prefetch | C:\Windows\Prefetch\*.pf | 실행 파일명, 실행 횟수, 최종 실행 시각 | 악성 프로그램 실행 여부 및 빈도 입증 |
 | Shimcache | SYSTEM 하이브 레지스트리 | 파일 경로, 크기, 수정 시각, 실행 플래그 | 삭제된 악성 파일의 과거 존재 증명 |
 | Amcache | C:\Windows\appcompat\Programs\Amcache.hve | 프로그램 SHA-1 해시, 컴파일 시각, 설치 경로 | 악성코드 변종 판별 및 원본 해시 획득 |
-| Shellbags | NTUSER.DAT / UsrClass.dat | 폴더 접근 기록, GUI 창 크기/위치, 폴더명 | 데이터 유출 시 특정 폴더 탐색 행위 증명 |
-| LNK / JumpLists | Recent 폴더 및 점프목록 경로 | 원본 파일의 볼륨 시리얼, MAC 어드레스 | 외장 USB에서 열어본 문서 파일 역추적 |
+| Shellbags | NTUSER.DAT / UsrClass.dat | 폴더 접근 기록, GUI(Graphical User Interface) 창 크기/위치, 폴더명 | 데이터 유출 시 특정 폴더 탐색 행위 증명 |
+| LNK / JumpLists | Recent 폴더 및 점프목록 경로 | 원본 파일의 볼륨 시리얼, MAC(Media Access Control) 어드레스 | 외장 USB에서 열어본 문서 파일 역추적 |
 
 - 단일 아티팩트는 조작될 수 있으나, 프리페치-심캐시-MFT-이벤트로그가 상호 교차하는 시계열 관계는 위변조가 불가능하므로 다차원 상관 분석이 필수적임.
 
@@ -66,7 +66,7 @@ extra:
 - 공격자의 **타임스톰프** (Timestomp)를 통한 MFT 타임스탬프 변조 :
   - 한계점 : 공격자가 악성 파일의 $STANDARD_INFORMATION 타임스탬프를 정상 시스템 파일(kernel32.dll 등)과 동일하게 조작하여 시계열 정렬 회피.
   - 해결 방안 : $STANDARD_INFORMATION과 $FILE_NAME 속성의 타임스탬프 간 불일치(Timestamp Inconsistency)를 탐지하고, $UsnJrnl 저널 로그를 대조하여 원본 시간 복원.
-- SSD의 **TRIM** 명령어 동작에 따른 비할당 영역 증거 영구 소멸 :
+- SSD(Solid-State Drive)의 **TRIM** 명령어 동작에 따른 비할당 영역 증거 영구 소멸 :
   - 한계점 : SSD 환경에서는 파일 삭제 즉시 TRIM 명령이 실행되어 플래시 메모리 셀이 0으로 초기화되므로 슬랙 공간 및 카빙(Carving) 복구 불가.
   - 해결 방안 : 파일 메타데이터가 잔존하는 $MFT 레코드 분석에 집중하고, VSS(볼륨 섀도우) 스냅샷 및 램(RAM) 잔류 메모리 아티팩트 선제 수집.
 - 메모리 상주형 **파일리스** 악성코드의 디스크 아티팩트 부재 :
@@ -75,6 +75,6 @@ extra:
 
 ## Ⅴ. 디지털 아티팩트(Digital Artifact) 적용 및 발전을 위한 기술사적 제언
 
-- 중앙 집중형 이벤트 아티팩트 수집(Windows Event Forwarding) 구축 : 단말의 로컬 이벤트 로그 삭제에 대비하여 중요 보안 이벤트(Sysmon, 4688 프로세스 생성)를 SIEM으로 실시간 포워딩.
+- 중앙 집중형 이벤트 아티팩트 수집(Windows Event Forwarding) 구축 : 단말의 로컬 이벤트 로그 삭제에 대비하여 중요 보안 이벤트(Sysmon, 4688 프로세스 생성)를 SIEM(Security Information and Event Management)으로 실시간 포워딩.
 - **Sysmon** (System Monitor)의 전사 표준 배포 : 기본 윈도우 로그의 한계를 극복하기 위해 프로세스 생성 해시, 네트워크 연결, 파일 생성 시각을 기록하는 Sysmon 텔레메트리 필수 구축.
-- 엔터프라이즈 타임라인 자동화 분석 파이프라인 도입 : 침해 발생 시 다수 단말의 아티팩트를 원격 수집하여 **Plaso/Timesketch** 엔진으로 단일 타임라인을 자동 생성하는 SOAR 체계 수립.
+- 엔터프라이즈 타임라인 자동화 분석 파이프라인 도입 : 침해 발생 시 다수 단말의 아티팩트를 원격 수집하여 **Plaso/Timesketch** 엔진으로 단일 타임라인을 자동 생성하는 SOAR(Security Orchestration, Automation and Response) 체계 수립.

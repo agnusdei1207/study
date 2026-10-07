@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. Constitutional AI (RLAIF)의 개요
 
-- 개념 : 인간 라벨러의 방대한 수작업 평가 대신, 사전에 정의된 명문화된 규범(헌법 원칙)을 프롬프트로 제공하여 AI가 **자기 비판** (Critique)과 **수정** (Revision), 선호도 평가를 자동 수행하도록 하는 **모델 정렬** 기술.
+- 개념 : 인간 라벨러의 방대한 수작업 평가 대신, 사전에 정의된 명문화된 규범(헌법 원칙)을 프롬프트로 제공하여 AI(Artificial Intelligence)가 **자기 비판** (Critique)과 **수정** (Revision), 선호도 평가를 자동 수행하도록 하는 **모델 정렬** 기술.
 - 배경 및 필요성 : **과잉 거절** (False Refusal)이 발생하므로 **다층 헌법 스코어링** 및 적응형 탈옥 방어 **레드팀 자동화** 체계 구축 필요.
 - 핵심 목적 : 인간 작업자의 트라우마(유해 콘텐츠 노출) 방지, 정렬 비용과 소요 시간의 획기적 절감, 명확하고 투명한 안전 가이드라인 거버넌스 확립.
 
@@ -60,13 +60,13 @@ Constitutional AI는 신뢰할 수 있는 데이터 파이프라인과 고도화
 
 ## Ⅲ. Constitutional AI (RLAIF)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | RLHF (인간 피드백 강화학습) | Constitutional AI (RLAIF) | DPO (직접 선호 최적화) |
+| 비교 항목 | RLHF (Reinforcement Learning from Human Feedback, 인간 피드백 강화학습) | Constitutional AI (RLAIF, Reinforcement Learning from AI Feedback) | DPO (Direct Preference Optimization, 직접 선호 최적화) |
 |---|---|---|---|
 | **선호 평가 주체** | 크라우드소싱 인간 라벨러 | 헌법 프롬프트를 수신한 AI 모델 | 인간 또는 AI 선호 데이터셋 |
 | **구축 비용 및 시간**| 막대한 비용, 장기간 소요 | 매우 저렴, 단기간 완료 | 별도 RM이 없어 연산 비용 절감 |
 | **일관성 및 투명성**| 평가자마다 주관적 편차 및 모순 큼 | 헌법 텍스트 기반 일관된 잣대 적용 | 선호 데이터 품질에 전적 의존 |
 | **인간 윤리 문제** | 작업자의 정신적 트라우마 심각 | 완전 자동화로 인간 심리 피해 없음 | 데이터 수집 방식에 따라 상이 |
-| **알고리즘 구조** | SFT $\rightarrow$ RM 학습 $\rightarrow$ PPO 정책 학습 | SL Critique $\rightarrow$ RM 학습 $\rightarrow$ PPO | 선호 데이터로 폐루프 없이 직접 Loss 최소화 |
+| **알고리즘 구조** | SFT(Supervised Fine-Tuning) $\rightarrow$ RM 학습 $\rightarrow$ PPO(Proximal Policy Optimization) 정책 학습 | SL Critique $\rightarrow$ RM 학습 $\rightarrow$ PPO | 선호 데이터로 폐루프 없이 직접 Loss 최소화 |
 
 - Constitutional AI는 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
 

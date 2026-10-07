@@ -16,11 +16,11 @@ extra:
 
 - 개념 : 텍스트, 이미지, 음성, 비디오 등 다양한 양식(Modality)의 입력을 **공통 표현 공간** (Shared Latent Space)에 사상하여 교차 모달 이해 및 생성 추론을 수행하는 대형 신경망 아키텍처
 - 배경 및 필요성 : 이미지에 실재하지 않는 객체를 날조하는 **시각적 환각** (Visual Hallucination)과 고해상도 입력에 따른 토큰 폭증 병목이 심각하므로 **시각 접지** (Grounding) 검증과 동적 **패치 압축** 기법 구축 필수
-- 핵심 목적 : 텍스트 단일 모달의 물리적 세계 인식 한계를 극복하고 **시각 문서 이해** (VQA), 차트 분석, 비디오 추론 등 복합 현실 업무 자동화 달성
+- 핵심 목적 : 텍스트 단일 모달의 물리적 세계 인식 한계를 극복하고 **시각 문서 이해** (VQA, Visual Question Answering), 차트 분석, 비디오 추론 등 복합 현실 업무 자동화 달성
 
 ## Ⅱ. 멀티모달 LLM의 핵심 아키텍처 및 동작 메커니즘
 
-멀티모달 LLM은 모달리티별 사전학습 인코더(ViT, Whisper 등)로 추출한 임베딩을 정렬 프로젝터(MLP/Q-Former)를 통해 LLM 토큰 임베딩 공간으로 투영한 후 단일 자기회귀 디코더에서 융합 생성 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+멀티모달 LLM(Large Language Model; MLLM, Multimodal Large Language Model)은 모달리티별 사전학습 인코더(ViT(Vision Transformer), Whisper 등)로 추출한 임베딩을 정렬 프로젝터(MLP/Q-Former)를 통해 LLM 토큰 임베딩 공간으로 투영한 후 단일 자기회귀 디코더에서 융합 생성 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -57,15 +57,15 @@ extra:
                 [ 최종 텍스트 답변 생성 (Multimodal Output) ]
 ```
 
-- **모달리티별 인코더** : ViT(이미지), Audio Spectrogram Transformer(음성) - 로우 데이터(Raw Data)로부터 고수준 의미적 표현 벡터 추출
-- **정렬 프로젝터** (Projector) : Linear MLP 또는 Cross-Attention Q-Former - 시각 벡터를 언어모델의 단어 임베딩 차원(Hidden Dimension)으로 투영
+- **모달리티별 인코더** : ViT(Vision Transformer, 이미지), Audio Spectrogram Transformer(음성) - 로우 데이터(Raw Data)로부터 고수준 의미적 표현 벡터 추출
+- **정렬 프로젝터** (Projector) : Linear MLP(Multilayer Perceptron) 또는 Cross-Attention Q-Former - 시각 벡터를 언어모델의 단어 임베딩 차원(Hidden Dimension)으로 투영
 - **언어모델 백본** (LLM Backbone) : Llama, Mistral 등 사전학습 디코더 트랜스포머 - 시각 가상 토큰(Visual Soft Tokens)을 텍스트 토큰과 동등하게 어텐션
 
 ## Ⅲ. 멀티모달 LLM의 세부 구성 요소 및 비교 분석
 
 | 비교 항목 | 파이프라인 연계형 (Pipeline) | 인코더-프로젝터 결합형 (LLaVA형) | 네이티브 옴니 통합형 (GPT-4o/Gemini) |
 |---|---|---|---|
-| **구조 형태** | OCR/Captioning + 텍스트 LLM | 독립 비전 인코더 + MLP + LLM | 처음부터 모든 모달리티 단일 사전학습 |
+| **구조 형태** | OCR(Optical Character Recognition)/Captioning + 텍스트 LLM | 독립 비전 인코더 + MLP + LLM | 처음부터 모든 모달리티 단일 사전학습 |
 | **시각 이해력** | 텍스트 변환 과정에서 공간 정보 소실 | 세부 물체 인식 및 공간 관계 파악 | 초정밀 공간 추론 및 음성 억양 파악 |
 | **추론 속도** | 앞단 모듈 직렬 실행으로 지연 누적 | 프로젝터 연산 오버헤드 미미 | 통합 토크나이저로 초저지연 실시간 처리 |
 | **개발 난이도** | 매우 낮음 (기존 모델 단순 조립) | 중간 (오픈소스 기반 튜닝 가능) | 극도로 높음 (막대한 데이터 및 컴퓨팅) |
@@ -76,7 +76,7 @@ extra:
 
 - 존재하지 않는 객체나 텍스트를 날조하는 시각적 환각(Visual Hallucination) :
   - 한계점 : 이미지 내에 존재하지 않는 객체나 텍스트를 그럴듯하게 날조하는 시각적 환각(Visual Hallucination) 발생.
-  - 해결 방안 : DPO 기반 시각 선호 정렬(RLAIF-V) 적용 및 세부 패치별 객체 바운딩 박스를 함께 출력시키는 Visual Grounding 강제.
+  - 해결 방안 : DPO(Direct Preference Optimization) 기반 시각 선호 정렬(RLAIF(Reinforcement Learning from AI Feedback)-V) 적용 및 세부 패치별 객체 바운딩 박스를 함께 출력시키는 Visual Grounding 강제.
 - 고해상도 이미지·영상 입력 시 시각 토큰 폭증 및 추론 지연 :
   - 한계점 : 4K/8K 고해상도 이미지 또는 긴 동영상 입력 시 시각 토큰 수가 수천 개로 폭증하여 컨텍스트 초과 및 추론 지연.
   - 해결 방안 : 유사한 시각 토큰을 병합하는 토큰 풀링(Token Pooling) 기법과 중요 영역만 고해상도로 보는 동적 고화질 패칭(Dynamic AnyRes) 적용.

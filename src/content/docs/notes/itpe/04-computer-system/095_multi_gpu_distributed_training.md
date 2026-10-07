@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 멀티 GPU 분산학습의 개요
 
-- 개념 : 단일 노드 또는 다중 노드에 분산된 수십~수만 개의 GPU를 고속 네트워크로 결합하여, 거대 **딥러닝** 모델의 파라미터와 방대한 데이터셋을 분할하고 병렬 협력 연산을 통해 학습 수렴 시간을 단축하는 **대규모 AI 엔지니어링** 기술.
-- 배경 및 필요성 : GPT, LLaMA 등 수천억 개의 파라미터를 갖는 **초거대 언어 모델** (LLM)은 단일 GPU의 메모리 용량(수십~수백 GB 수준)을 수십 배 이상 초과하므로, 모델과 데이터를 분할 처리하는 **분산 학습 아키텍처** 없이는 학습 자체가 불가능함.
+- 개념 : 단일 노드 또는 다중 노드에 분산된 수십~수만 개의 GPU(Graphics Processing Unit)를 고속 네트워크로 결합하여, 거대 **딥러닝** 모델의 파라미터와 방대한 데이터셋을 분할하고 병렬 협력 연산을 통해 학습 수렴 시간을 단축하는 **대규모 AI(Artificial Intelligence) 엔지니어링** 기술.
+- 배경 및 필요성 : GPT(Generative Pre-trained Transformer), LLaMA 등 수천억 개의 파라미터를 갖는 **초거대 언어 모델** (LLM, Large Language Model)은 단일 GPU의 메모리 용량(수십~수백 GB 수준)을 수십 배 이상 초과하므로, 모델과 데이터를 분할 처리하는 **분산 학습 아키텍처** 없이는 학습 자체가 불가능함.
 - 핵심 목적 : 모델 파라미터 및 배치 분할을 통한 **OOM** (Out of Memory) 극복, **집단 통신** 최적화를 통한 선형적 학습 가속(Linear Scalability) 달성.
 
 ## Ⅱ. 분산학습 4대 병렬화 아키텍처 및 텐서 연산 메커니즘
@@ -62,7 +62,7 @@ extra:
 
 - 대규모 AllReduce 통신에 따른 네트워크 병목 및 지연 :
   - 한계점 : 수천 개 GPU 클러스터로 확장 시 그래디언트 동기화 통신 시간이 실제 GPU 연산 시간보다 길어지는 통신 병목 현상.
-  - 해결 방안 : FP16/BF16 혼합 정밀도 학습, 그래디언트 축적(Gradient Accumulation) 및 RDMA 기반 RoCE v2/InfiniBand 패브릭 구축.
+  - 해결 방안 : FP16/BF16 혼합 정밀도 학습, 그래디언트 축적(Gradient Accumulation) 및 RDMA(Remote Direct Memory Access) 기반 RoCE(Remote Direct Memory Access over Converged Ethernet) v2/InfiniBand 패브릭 구축.
 - 파이프라인 병렬화의 버블(Idle Bubble) 현상 :
   - 한계점 : 앞선 GPU의 포워드/백워드 계산이 끝날 때까지 후속 GPU가 대기해야 하는 유휴 시간(Bubble)으로 인해 GPU 가동률 하락.
   - 해결 방안 : 1F1B(One Forward, One Backward) 인터리브드 스케줄링 적용으로 유휴 시간을 은폐하고 메모리 피크 사용량 억제.

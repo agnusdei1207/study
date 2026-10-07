@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. 컨테이너(Container)의 개요
 
-- 개념 : 호스트 운영체제(OS) 커널을 공유하면서, **리눅스 네임스페이스** (Namespaces)와 **제어 그룹** (cgroups)을 활용하여 애플리케이션의 코드, 런타임, 시스템 라이브러리 및 설정을 독립된 프로세스 격리 공간으로 패키징하여 어디서나 일관되게 실행할 수 있도록 지원하는 OS 레벨 가상화 기술.
-- 배경 및 필요성 : 전통적인 **하이퍼바이저** 기반 가상머신(VM)의 Guest OS 구동에 따른 자원 낭비, 비대한 이미지 크기(수십 GB), 느린 부팅 속도(수 분 소요)를 극복하고, **마이크로서비스 아키텍처**의 빠른 배포 주기를 수용하기 위해 등장함.
+- 개념 : 호스트 운영체제(OS, Operating System) 커널을 공유하면서, **리눅스 네임스페이스** (Namespaces)와 **제어 그룹** (cgroups)을 활용하여 애플리케이션의 코드, 런타임, 시스템 라이브러리 및 설정을 독립된 프로세스 격리 공간으로 패키징하여 어디서나 일관되게 실행할 수 있도록 지원하는 OS 레벨 가상화 기술.
+- 배경 및 필요성 : 전통적인 **하이퍼바이저** 기반 가상머신(VM, Virtual Machine)의 Guest OS 구동에 따른 자원 낭비, 비대한 이미지 크기(수십 GB), 느린 부팅 속도(수 분 소요)를 극복하고, **마이크로서비스 아키텍처**의 빠른 배포 주기를 수용하기 위해 등장함.
 - 핵심 목적 : 초단위 고속 기동성 확보, 호스트 커널 직접 활용을 통한 네이티브(Native) 수준 성능 달성, 개발-테스트-운영 환경 일치를 통한 배포 생산성 극대화.
 
 ## Ⅱ. 컨테이너(Container)의 핵심 아키텍처 및 동작 메커니즘
@@ -51,10 +51,10 @@ extra:
 +---------------------------------------------------------------+
 ```
 
-- **리눅스 네임스페이스 (Namespaces)** : 프로세스가 바라보는 시스템 자원 뷰(PID, Network, Mount, IPC, UTS, User)를 완벽히 격리.
-- **제어 그룹 (cgroups v1/v2)** : 프로세스 그룹이 소비할 수 있는 물리 자원(CPU 사용 시간, 메모리 상한, 디스크 IOPS, 네트워크 대역폭)을 하드웨어 레벨에서 강제 제어.
+- **리눅스 네임스페이스 (Namespaces)** : 프로세스가 바라보는 시스템 자원 뷰(PID, Process ID; Network, Mount, IPC, Inter-Process Communication; UTS, UNIX Time-Sharing System; User)를 완벽히 격리.
+- **제어 그룹 (cgroups v1/v2)** : 프로세스 그룹이 소비할 수 있는 물리 자원(CPU(Central Processing Unit) 사용 시간, 메모리 상한, 디스크 IOPS(Input/Output Operations Per Second), 네트워크 대역폭)을 하드웨어 레벨에서 강제 제어.
 - **오버레이 파일시스템 (OverlayFS)** : 불변(Read-Only)의 이미지 레이어들 위에 쓰기 가능한 얇은 컨테이너 레이어(UpperDir)를 결합하여 스토리지 낭비 방지.
-- **OCI 표준 준수** : OCI(Open Container Initiative) 규격에 따라 `image-spec`(이미지 포맷)과 `runtime-spec`(runc 컨테이너 실행기)으로 기술 표준화.
+- **OCI(Open Container Initiative) 표준 준수** : OCI(Open Container Initiative) 규격에 따라 `image-spec`(이미지 포맷)과 `runtime-spec`(runc 컨테이너 실행기)으로 기술 표준화.
 
 ## Ⅲ. 컨테이너(Container)의 세부 구성 요소 및 비교 분석
 
@@ -77,11 +77,11 @@ extra:
   - 한계점 : Copy-on-Write(CoW) 구조로 인해 대규모 파일 쓰기 및 데이터베이스 실행 시 I/O 병목 및 지연 발생.
   - 해결 방안 : I/O 집약적 워크로드는 볼륨 마운트(Direct Bind Mount / Persistent Volume)를 적용하여 호스트 파일시스템 직접 접근.
 - 컨테이너 이미지 비대화 및 취약 라이브러리 공급망 공격 :
-  - 한계점 : 불필요한 패키지 포함으로 수 GB 크기의 무거운 이미지 빌드 및 CVE 취약점 누적.
+  - 한계점 : 불필요한 패키지 포함으로 수 GB 크기의 무거운 이미지 빌드 및 CVE(Common Vulnerabilities and Exposures) 취약점 누적.
   - 해결 방안 : 멀티스테이지 빌드(Multi-stage Build) 적용, 최소 경량 베이스 이미지(Distroless/Alpine) 채택, Trivy 스캔 자동화.
 
 ## Ⅴ. 컨테이너(Container) 적용 및 발전을 위한 기술사적 제언
 
-- DevSecOps 파이프라인 내 이미지 무결성 **서명(Cosign)** 의무화 : CI/CD 빌드 시 SBOM(소프트웨어 자재명세서) 생성 및 디지털 서명을 수행하고 클러스터 배포 시 Admission Controller로 위변조 차단.
-- 컨테이너 자원 **Requests/Limits** 정밀 튜닝 : 메모리 Limit 초과 시 발생하는 OOM-Kill 장애를 방지하고 CPU 스로틀링을 모니터링하여 최적의 슬랙 자원 보장 권장.
-- **Cgroups v2** 전면 전환 : 최신 리눅스 커널의 cgroups v2를 적용하여 메모리 압력 감지(PSI) 및 완벽한 루트리스 멀티테넌시 자원 격리 달성 필요.
+- DevSecOps 파이프라인 내 이미지 무결성 **서명(Cosign)** 의무화 : CI(Continuous Integration)/CD(Continuous Delivery) 빌드 시 SBOM(Software Bill of Materials, 소프트웨어 자재명세서) 생성 및 디지털 서명을 수행하고 클러스터 배포 시 Admission Controller로 위변조 차단.
+- 컨테이너 자원 **Requests/Limits** 정밀 튜닝 : 메모리 Limit 초과 시 발생하는 OOM(Out of Memory)-Kill 장애를 방지하고 CPU 스로틀링을 모니터링하여 최적의 슬랙 자원 보장 권장.
+- **Cgroups v2** 전면 전환 : 최신 리눅스 커널의 cgroups v2를 적용하여 메모리 압력 감지(PSI, Pressure Stall Information) 및 완벽한 루트리스 멀티테넌시 자원 격리 달성 필요.

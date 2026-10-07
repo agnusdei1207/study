@@ -70,17 +70,17 @@ extra:
 
 - 빅데이터 환경에서 p-value의 과도한 민감성 및 p-해킹(p-hacking) :
   - 한계점 : 표본 수($n$)가 수십만 건 이상으로 커지면 표준오차가 극단적으로 작아져 비즈니스적으로 무의미한 미세한 차이도 $p < 0.05$로 판정되는 통계적 착시 발생.
-  - 해결 방안 : $p$-value 맹신 탈피, 효과 크기(Cohen's d, Relative Lift)와 신뢰구간(Confidence Interval)을 필수 병기하고 최소 감지 효과 크기(MDE) 사전 설정.
+  - 해결 방안 : $p$-value 맹신 탈피, 효과 크기(Cohen's d, Relative Lift)와 신뢰구간(Confidence Interval)을 필수 병기하고 최소 감지 효과 크기(MDE, Minimum Detectable Effect) 사전 설정.
 - 다중 가설 검정(Multiple Testing) 시 제1종 오류의 누적 팽창 :
-  - 한계점 : 수십 개의 지표나 A/B/C/D 다중 그룹을 동시 검정할 경우 패밀리별 오류율(FWER)이 급증하여 위양성(False Positive) 결론 채택 위험.
-  - 해결 방안 : 본페로니(Bonferroni) 교정 또는 허위발견율(FDR, Benjamini-Hochberg) 절차를 적용하여 유의수준 임계치를 보수적으로 재조정.
+  - 한계점 : 수십 개의 지표나 A/B/C/D 다중 그룹을 동시 검정할 경우 패밀리별 오류율(FWER, Family-Wise Error Rate)이 급증하여 위양성(False Positive) 결론 채택 위험.
+  - 해결 방안 : 본페로니(Bonferroni) 교정 또는 허위발견율(FDR, False Discovery Rate; Benjamini-Hochberg) 절차를 적용하여 유의수준 임계치를 보수적으로 재조정.
 - 조기 종료(Peeking Problem)로 인한 A/B 테스트 신뢰도 왜곡 :
   - 한계점 : 테스트 진행 중 실시간으로 결과를 반복 확인하며 유의한 순간 테스트를 조기 종료하면 실제보다 유의확률이 크게 왜곡되는 현상 발생.
-  - 해결 방안 : 고정 표본 크기 사전 산정 준수, 또는 순차적 검정(Sequential Testing, mSPRT) 및 멀티암드 밴딧(Multi-Armed Bandit) 알고리즘 도입.
+  - 해결 방안 : 고정 표본 크기 사전 산정 준수, 또는 순차적 검정(Sequential Testing, mSPRT, mixture Sequential Probability Ratio Test) 및 멀티암드 밴딧(Multi-Armed Bandit) 알고리즘 도입.
 
 ---
 
 ## Ⅴ. 데이터 사이언스 및 엔지니어링 실무 제언
 
-- $p$-value 해킹 및 오용 방지 : $p$-value는 가설이 참일 확률이 아니며, 표본 크기 $n$이 수십만 건 이상으로 극단적으로 커지면 비즈니스적으로 무의미한 극미한 차이도 $p < 0.001$로 유의하게 도출됨. 따라서 $p$-value 단독 판정을 지양하고 **효과 크기** (Effect Size, Cohen's d)와 신뢰구간(CI)을 반드시 병기해야 함.
+- $p$-value 해킹 및 오용 방지 : $p$-value는 가설이 참일 확률이 아니며, 표본 크기 $n$이 수십만 건 이상으로 극단적으로 커지면 비즈니스적으로 무의미한 극미한 차이도 $p < 0.001$로 유의하게 도출됨. 따라서 $p$-value 단독 판정을 지양하고 **효과 크기** (Effect Size, Cohen's d)와 신뢰구간(CI, Confidence Interval)을 반드시 병기해야 함.
 - 사전 검정력 분석(Power Analysis) 수행 : A/B 테스트 기획 시 실험을 무작정 시작하지 말고, 기대 최소 감지 효과(MDE), 유의수준 $\alpha=0.05$, 목표 검정력 80%를 충족하는 데 필요한 최소 표본 크기를 사전에 수학적으로 계산하여 자원 낭비를 방지할 것을 제언함.

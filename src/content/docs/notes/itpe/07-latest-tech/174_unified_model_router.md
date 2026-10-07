@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 통합 모델 라우터(Unified Model Router)의 개요
 
-- 개념 : 모든 사용자 요청을 단일 고비용 LLM(예: GPT-4o)으로 일괄 전송하지 않고, **프롬프트의 복잡도**와 의도, **SLA** 및 비용 정책을 분석하여 적절한 크기와 전문성을 지닌 모델(SLM/LLM)로 동적 분기하는 지능형 오케스트레이션 미들웨어.
+- 개념 : 모든 사용자 요청을 단일 고비용 LLM(예: GPT(Generative Pre-trained Transformer)-4o)으로 일괄 전송하지 않고, **프롬프트의 복잡도**와 의도, **SLA**(Service Level Agreement) 및 비용 정책을 분석하여 적절한 크기와 전문성을 지닌 모델(SLM(Small Language Model)/LLM)로 동적 분기하는 지능형 오케스트레이션 미들웨어.
 - 배경 및 필요성 : 라우팅 미스매치가 발생하므로 **답변 신뢰도 스코어링** 기반 상위 모델 **자동 에스컬레이션** 체계 구축 필요.
-- 핵심 목적 : 엔터프라이즈 생성형 AI API 토큰 비용 절감, 평균 추론 응답 시간 단축, **공급업체 종속성** (Lock-in) 해소 및 고가용성 확보.
+- 핵심 목적 : 엔터프라이즈 생성형 AI(Artificial Intelligence) API(Application Programming Interface) 토큰 비용 절감, 평균 추론 응답 시간 단축, **공급업체 종속성** (Lock-in) 해소 및 고가용성 확보.
 
 ## Ⅱ. 통합 모델 라우터(Unified Model Router)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -57,11 +57,11 @@ extra:
 
 - **복잡도 기반 (Complexity)** : 프롬프트 토큰 수, 추론 요구 단계, 코드/수학 포함 여부 - 단순 질의(인사, 사실 검색)는 소형 sLLM으로, 다단계 복합 추론은 최상위 플래그십 LLM으로 분기.
 - **비용 및 지연 (Cost & SLA)** : 실시간 토큰 단가, 현재 API 큐 대기 시간, 잔여 예산 - 실시간 챗봇은 초고속 스트리밍 모델(Claude Haiku 등), 배치 리포트는 심층 추론 모델 배정.
-- **보안 및 규제 (Compliance)** : 주민번호 등 **PII** 포함 여부, 사내 대외비 문서 등급 - 민감 데이터 포함 시 외부 퍼블릭 API 전송을 차단하고 온프레미스 격리 모델로 강제 라우팅.
+- **보안 및 규제 (Compliance)** : 주민번호 등 **PII**(Personally Identifiable Information) 포함 여부, 사내 대외비 문서 등급 - 민감 데이터 포함 시 외부 퍼블릭 API 전송을 차단하고 온프레미스 격리 모델로 강제 라우팅.
 
 ## Ⅲ. 통합 모델 라우터(Unified Model Router)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | 단일 범용 LLM (Monolithic) | 내부 MoE 아키텍처 (Mixture of Experts) | 통합 모델 라우터 (Unified Router) |
+| 비교 항목 | 단일 범용 LLM (Monolithic) | 내부 MoE(Mixture of Experts) 아키텍처 (Mixture of Experts) | 통합 모델 라우터 (Unified Router) |
 |---|---|---|---|
 | **라우팅 계층** | 라우팅 없음 (단일 모델 전담) | 단일 모델 가중치 내부 게이팅 네트워크 | 인프라 네트워크/애플리케이션 미들웨어 계층 |
 | **선택 단위** | 전체 트랜잭션 | 토큰(Token) 단위 내부 FFN 전문가 선택 | 요청(Request/Prompt) 단위 독립 모델 선택 |

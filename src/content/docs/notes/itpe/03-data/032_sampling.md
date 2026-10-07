@@ -48,7 +48,7 @@ extra:
 
 | 기법 | 추출 절차 및 메커니즘 | 군집/집단 내부 특성 | 집단 간 특성 | 장점 및 주의사항 |
 | :--- | :--- | :--- | :--- | :--- |
-| **단순 무작위 추출 (SRS)** | 난수표 또는 컴퓨터 난수 생성을 통해 모든 개체에 동일한 추출 확률 부여 | 동질적 모집단 | 구별 없음 | 가장 직관적, 편향 배제 / 모집단 목록(표본틀) 필수, 분산 큼 |
+| **단순 무작위 추출 (SRS, Simple Random Sampling)** | 난수표 또는 컴퓨터 난수 생성을 통해 모든 개체에 동일한 추출 확률 부여 | 동질적 모집단 | 구별 없음 | 가장 직관적, 편향 배제 / 모집단 목록(표본틀) 필수, 분산 큼 |
 | **계통 추출 (Systematic)** | 개체들을 일렬로 나열한 후 첫 번째를 무작위 선택하고 매 $k = N/n$ 번째 단위 추출 | 순서가 있는 목록 | 구별 없음 | 추출 절차 극도로 간편 / 데이터에 특정 주기성(Periodicity) 존재 시 심각한 편향 발생 |
 | **층화 추출 (Stratified)** | 모집단을 상이한 특성의 소집단(층)으로 나누고 각 층에서 무작위 추출 | **집단 내 동질적 (Homogeneous)** | **집단 간 이질적 (Heterogeneous)** | 모집단 특성 완벽 반영, 추정의 분산 최소화(가장 높은 정밀도) / 사전 정보 필요 |
 | **군집/집락 추출 (Cluster)** | 모집단을 소집단(군집)으로 나누고 군집 자체를 무작위 추출하여 전수 조사 | **집단 내 이질적 (Heterogeneous)** | **집단 간 동질적 (Homogeneous)** | 광범위한 지리적 조사 비용 대폭 절감 / 군집 간 이질성 존재 시 표본오차 급증 |
@@ -60,7 +60,7 @@ extra:
 ### 가. 클래스 불균형(Class Imbalance) 해소를 위한 샘플링
 - **언더샘플링(Undersampling)** : 다수 클래스(Majority)를 무작위 삭제 $\rightarrow$ 데이터 손실 위험(Tomek Links, Edited Nearest Neighbours로 보완).
 - **오버샘플링(Oversampling)** : 소수 클래스(Minority)를 복제하거나 가상 합성 $\rightarrow$ 과적합 위험.
-- **SMOTE(Synthetic Minority Over-sampling Technique)** : 소수 클래스 데이터의 KNN 이웃 간 보간(Interpolation)을 통해 새로운 합성 샘플 생성.
+- **SMOTE(Synthetic Minority Over-sampling Technique)** : 소수 클래스 데이터의 KNN(K-Nearest Neighbors) 이웃 간 보간(Interpolation)을 통해 새로운 합성 샘플 생성.
 
 ### 나. 교차 검증(Cross-Validation)에서의 층화 K-Fold
 - 분류 문제에서 각 폴드(Fold) 내의 타깃 레이블 비율이 전체 데이터셋의 클래스 비율과 정확히 일치하도록 강제하는 **Stratified K-Fold** 적용 필수.

@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. AI 생성 코드 및 오픈웨이트 라이선스 준수의 개요
 
-- 개념 : **대형 언어 모델** (LLM) 기반의 코딩 도우미가 생성한 소스코드와 LLaMA 등 **오픈웨이트** (Open-Weight) AI 모델을 기업 시스템에 도입할 때 발생하는 저작권 침해, 오픈소스 **카피레프트** 라이선스 전염, 모델 사용 조건 위반 리스크를 식별하고 법적·기술적 컴플라이언스를 확보하는 거버넌스 체계.
-- 배경 및 필요성 : AI 모델이 GPL/AGPL 등 엄격한 카피레프트 라이선스가 부여된 코드를 학습한 후 그대로 암기하여 출력(Ghostwriting)하거나, 상업적 사용이 제한된 오픈웨이트 모델을 무단 배포함으로써 발생할 수 있는 저작권 소송 및 기업 **지적재산권** (IP) 침해 위험 대두.
+- 개념 : **대형 언어 모델** (LLM, Large Language Model) 기반의 코딩 도우미가 생성한 소스코드와 LLaMA 등 **오픈웨이트** (Open-Weight) AI(Artificial Intelligence) 모델을 기업 시스템에 도입할 때 발생하는 저작권 침해, 오픈소스 **카피레프트** 라이선스 전염, 모델 사용 조건 위반 리스크를 식별하고 법적·기술적 컴플라이언스를 확보하는 거버넌스 체계.
+- 배경 및 필요성 : AI 모델이 GPL(GNU General Public License)/AGPL(GNU Affero General Public License) 등 엄격한 카피레프트 라이선스가 부여된 코드를 학습한 후 그대로 암기하여 출력(Ghostwriting)하거나, 상업적 사용이 제한된 오픈웨이트 모델을 무단 배포함으로써 발생할 수 있는 저작권 소송 및 기업 **지적재산권** (IP, Intellectual Property) 침해 위험 대두.
 - 핵심 통제 대상 : AI 생성 코드의 저작권 귀속 여부, 학습 데이터 내 라이선스 오염, 오픈웨이트 모델의 라이선스 제약(Community/Commercial Use 제약).
 
 ## Ⅱ. AI 생성 코드의 위험 전파 경로 및 컴플라이언스 파이프라인
@@ -28,7 +28,7 @@ extra:
                                                                        │
                                    ┌───────────────────────────────────┴───────────────────────────────────┐
                                    ▼                                                                       ▼
-                 [ 코드 유사도 및 스니펫 매칭 검사 ]                                      [ SAST 보안 약점 자동 진단 ]
+                 [ 코드 유사도 및 스니펫 매칭 검사 ]                                      [ SAST(Static Application Security Testing) 보안 약점 자동 진단 ]
                  - Black Duck, FOSSID, GitHub 필터링                                      - SonarQube, Snyk 보안 검사
                                    │                                                                       │
                                    ▼                                                                       ▼
@@ -52,15 +52,15 @@ extra:
 
 - AI 모델 학습 데이터의 블랙박스 특성으로 인한 저작권 침해 위험 :
   - 한계점 : LLM이 학습한 수십억 라인의 공개 코드 중 엄격한 카피레프트(GPL/AGPL) 코드가 포함되어 있어, AI가 생성한 코드가 원본을 거의 그대로 출력할 경우 기업 소스코드 공개 의무 등 법적 분쟁 초래.
-  - 해결 방안 : AI 코딩 도구 내 '공개 코드 일치 제안 차단(Block suggestions matching public code)' 설정을 강제 활성화하고, CI 파이프라인에 코드 유사도 검색 엔진(Black Duck, GitHub Copilot Scanner) 전수 스캔 연동.
+  - 해결 방안 : AI 코딩 도구 내 '공개 코드 일치 제안 차단(Block suggestions matching public code)' 설정을 강제 활성화하고, CI(Continuous Integration) 파이프라인에 코드 유사도 검색 엔진(Black Duck, GitHub Copilot Scanner) 전수 스캔 연동.
 - 오픈웨이트(Open-Weight) 모델의 특수 사용 제약 조건 위반 :
   - 한계점 : Llama, DeepSeek 등 오픈웨이트 모델 라이선스에 포함된 상업적 사용자 수 상한(월간 활성 사용자 7억 명 등), 타 모델 증류(Distillation) 학습 금지 등 특수 라이선스 조항을 간과하여 라이선스 위반 발생.
   - 해결 방안 : 기업 내 AI 거버넌스 위원회를 통해 도입 전 모델별 특수 라이선스 약관을 법률 검토하고, 사내 활용 목적(상용 서비스, 내부 도구, 파인튜닝)에 따른 허용 모델 화이트리스트 운영.
-- 소프트웨어 자재명세서(SBOM) 내 AI 생성 자산 추적성 누락 :
+- 소프트웨어 자재명세서(SBOM, Software Bill of Materials) 내 AI 생성 자산 추적성 누락 :
   - 한계점 : 개발자가 AI를 활용해 작성한 코드 스니펫, 프롬프트 엔지니어링 이력, 활용된 모델 버전이 기존 형상관리 및 SBOM에 기록되지 않아 향후 라이선스 감사 시 증빙 불가.
-  - 해결 방안 : AI 생성 코드에 대한 메타데이터 태깅(AIGC Tagging)을 의무화하고, AI-SBOM(AIBOM) 생성 파이프라인을 구축하여 프롬프트, LLM 버전, 생성 일자 및 의존성 계보(Provenance) 추적성 확보.
+  - 해결 방안 : AI 생성 코드에 대한 메타데이터 태깅(AIGC, AI-Generated Content Tagging)을 의무화하고, AI-SBOM(AIBOM, AI Bill of Materials) 생성 파이프라인을 구축하여 프롬프트, LLM 버전, 생성 일자 및 의존성 계보(Provenance) 추적성 확보.
 
 ## Ⅴ. 기업 AI 거버넌스 확립을 위한 기술사적 제언
 
-- 코드 스니펫 매칭 필터 활성화 및 SCA 도구 통합 : GitHub Copilot의 'Match public code' 차단 설정을 전사적으로 강제 활성화하고, 커밋 파이프라인에 Black Duck 등 스니펫 매칭 기능을 연동하여 무단 복제 코드의 유입 차단.
+- 코드 스니펫 매칭 필터 활성화 및 SCA(Software Composition Analysis) 도구 통합 : GitHub Copilot의 'Match public code' 차단 설정을 전사적으로 강제 활성화하고, 커밋 파이프라인에 Black Duck 등 스니펫 매칭 기능을 연동하여 무단 복제 코드의 유입 차단.
 - AI 활용 가이드라인 수립 및 인체 개입(Human-in-the-Loop) 원칙 제도화 : AI 생성 코드는 초안(Draft)으로만 취급하고, 반드시 숙련된 개발자가 직접 검토·수정 및 서명(Sign-off)하여 배포하도록 함으로써 저작권 인정 가능성을 확보하고 품질 결함에 대한 인간의 최종 책무성 확립.

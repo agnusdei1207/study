@@ -41,10 +41,10 @@ extra:
 암호화된 DEK (Encrypted DEK) ─────────────▶ 데이터와 함께 안전하게 보관/전송
 ```
 
-- **1. 데이터 암호화** : **데이터 암호화 키** (DEK)를 메모리에서 생성하여 대용량 평문 데이터를 **AES-256**으로 고속 암호화 (고속 블록 암호화, AEAD 인증 태그 생성).
-- **2. 키 암호화 (Wrapping)** : 안전한 하드웨어(HSM/KMS) 내에 보관된 **키 암호화 키** (KEK)로 DEK를 암호화 (**키 래핑** (Key Wrapping), 봉투 생성).
+- **1. 데이터 암호화** : **데이터 암호화 키** (DEK)를 메모리에서 생성하여 대용량 평문 데이터를 **AES(Advanced Encryption Standard)-256**으로 고속 암호화 (고속 블록 암호화, AEAD(Authenticated Encryption with Associated Data) 인증 태그 생성).
+- **2. 키 암호화 (Wrapping)** : 안전한 하드웨어(HSM(Hardware Security Module)/KMS(Key Management Service)) 내에 보관된 **키 암호화 키** (KEK)로 DEK를 암호화 (**키 래핑** (Key Wrapping), 봉투 생성).
 - **3. 평문 DEK 파기** : 암호화 완료 즉시 메모리 상의 평문 DEK를 완전 소거하여 메모리 덤프 공격 차단 (Zeroization, 메모리 보호).
-- **4. 데이터 복호화** : 암호화된 DEK를 KMS로 전송하여 KEK로 복호화한 후, 획득한 DEK로 원본 데이터 복호화 (KMS 권한 인가(IAM 정책)).
+- **4. 데이터 복호화** : 암호화된 DEK를 KMS로 전송하여 KEK로 복호화한 후, 획득한 DEK로 원본 데이터 복호화 (KMS 권한 인가(IAM(Identity and Access Management) 정책)).
 
 ## Ⅲ. 대칭키 암호화(Symmetric Key Encryption)의 세부 구성 요소 및 비교 분석
 
@@ -53,16 +53,16 @@ extra:
 | 키 구조 | 암·복호화 키가 동일 (비밀키 1개) | 암호화용 공개키(Public) + 복호화용 개인키(Private) 쌍 |
 | 연산 속도 | 매우 빠름 (초당 수 Gbps 이상 처리) | 상대적으로 매우 느림 (수학적 거듭제곱 연산) |
 | 키 관리 개수 | $N(N-1)/2$ 개 (참여자 증가 시 폭증) | $2N$ 개 (사용자당 공개키/개인키 1쌍) |
-| 주요 용도 | 대용량 파일 암호화, DB 암호화, TLS 데이터 전송 | 전자서명, 부인방지, 디지털 인증서, 세션 키 교환 |
+| 주요 용도 | 대용량 파일 암호화, DB(Database) 암호화, TLS(Transport Layer Security) 데이터 전송 | 전자서명, 부인방지, 디지털 인증서, 세션 키 교환 |
 | 한계점 | 안전한 초기 키 배송 난제, 부인방지 불가 | 연산 부하로 인한 대용량 데이터 암호화 부적합 |
-| 대표 알고리즘 | AES, ARIA, LEA, SEED, ChaCha20 | RSA, ECC, ECDSA, ElGamal, PQC(Kyber/Dilithium) |
+| 대표 알고리즘 | AES, ARIA, LEA, SEED, ChaCha20 | RSA(Rivest-Shamir-Adleman), ECC(Elliptic Curve Cryptography), ECDSA(Elliptic Curve Digital Signature Algorithm), ElGamal, PQC(Kyber/Dilithium) |
 
 | 구분 | **블록 암호** (Block Cipher) | **스트림 암호** (Stream Cipher) |
 |---|---|---|
 | 처리 단위 | 고정 크기 블록 (64비트, 128비트 등) | 비트(bit) 또는 바이트(byte) 연속 스트림 |
-| 핵심 원리 | 치환(S-Box)과 순열(P-Box)의 다중 라운드 반복 | 의사난수 발생기(PRNG)를 통한 키스트림 XOR |
-| 패딩 필요 여부 | 마지막 블록 정렬을 위해 패딩 필요 (PKCS#7) | 패딩 불필요 (평문 길이와 암호문 길이 동일) |
-| 대표 알고리즘 | AES, DES, ARIA, LEA | ChaCha20, Salsa20, RC4(폐기) |
+| 핵심 원리 | 치환(S-Box)과 순열(P-Box)의 다중 라운드 반복 | 의사난수 발생기(PRNG)를 통한 키스트림 XOR(Exclusive OR) |
+| 패딩 필요 여부 | 마지막 블록 정렬을 위해 패딩 필요 (PKCS(Public Key Cryptography Standards)#7) | 패딩 불필요 (평문 길이와 암호문 길이 동일) |
+| 대표 알고리즘 | AES, DES(Data Encryption Standard), ARIA, LEA | ChaCha20, Salsa20, RC4(폐기) |
 
 - 대칭키 암호화(Symmetric Key Encryption)은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
 
@@ -72,11 +72,11 @@ extra:
   - 해결 방안 : 공개키 기반의 **타원곡선 디피-헬만** (ECDH) 키 교환을 통해 통신 개시 시점에 임시 세션키를 동적으로 합의하거나 **Kerberos KDC** 도입.
 - 한계점 : 정적 마스터 대칭키를 소스코드, 환경변수, 설정 파일에 하드코딩하여 단일 침해 시 전사 데이터 복호화 위험 노출.
   - 해결 방안 : 클라우드 KMS 및 온프레미스 HSM을 연계한 2계층 봉투 암호화(Envelope Encryption) 적용 및 주기적 **키 자동 회전** (Key Rotation) 수립.
-- 한계점 : 단순 대칭키 암호화(CBC 등)는 데이터의 위변조(Bit-flipping)를 감지하지 못하여 기밀성은 유지되나 무결성 훼손 취약.
-  - 해결 방안 : 기밀성과 무결성(MAC)을 단일 패스로 동시에 검증하는 인증 암호화 표준인 AEAD(AES-GCM, ChaCha20-Poly1305) 전면 의무화.
+- 한계점 : 단순 대칭키 암호화(CBC(Cipher Block Chaining) 등)는 데이터의 위변조(Bit-flipping)를 감지하지 못하여 기밀성은 유지되나 무결성 훼손 취약.
+  - 해결 방안 : 기밀성과 무결성(MAC, Message Authentication Code)을 단일 패스로 동시에 검증하는 인증 암호화 표준인 AEAD(AES-GCM, ChaCha20-Poly1305) 전면 의무화.
 
 ## Ⅴ. 대칭키 암호화(Symmetric Key Encryption) 적용 및 발전을 위한 기술사적 제언
 
 - **클라우드 KMS / HSM 기반 중앙 키 수명주기** 체계 도입 : 클라우드 KMS / HSM 기반 중앙 키 수명주기 기술을 적극 적용하여 보안 취약점을 차단하고 시스템 신뢰성을 보장해야 함.
 - **봉투 암호화(DEK/KEK 계층 분리)** 체계 도입 : 봉투 암호화(DEK/KEK 계층 분리) 기술을 적극 적용하여 보안 취약점을 차단하고 시스템 신뢰성을 보장해야 함.
-- **AEAD (AES-GCM) 기반 기밀성·무결성 일체화** 체계 도입 : AEAD (AES-GCM) 기반 기밀성·무결성 일체화 기술을 적극 적용하여 보안 취약점을 차단하고 시스템 신뢰성을 보장해야 함.
+- **AEAD (AES-GCM(Galois/Counter Mode)) 기반 기밀성·무결성 일체화** 체계 도입 : AEAD (AES-GCM) 기반 기밀성·무결성 일체화 기술을 적극 적용하여 보안 취약점을 차단하고 시스템 신뢰성을 보장해야 함.

@@ -23,7 +23,7 @@ extra:
 ```text
    ┌────────────────────────────────────────────────────────┐
    │ [ AA의 영역: 비즈니스 및 애플리케이션 ]                │
-   │  - 도메인 모델링, 유스케이스 설계, DDD 바운디드 컨텍스트 │
+   │  - 도메인 모델링, 유스케이스 설계, DDD(Domain-Driven Design) 바운디드 컨텍스트 │
    │  - 서비스 인터페이스 정의, 공통 컴포넌트 프레임워크    │
    │  - 레이어드 아키텍처 (Controller -> Service -> Repo)   │
    └──────────────────────────┬─────────────────────────────┘
@@ -31,14 +31,14 @@ extra:
           [ 협업 접점 (Interface & Non-Functional) ]
           - 트랜잭션 격리수준, 분산 락, 캐싱 전략 협의
           - REST/gRPC 페이로드 규격, API Gateway 라우팅
-          - 성능 목표(TPS, Latency) 달성을 위한 튜닝
+          - 성능 목표(TPS, Transactions Per Second; Latency) 달성을 위한 튜닝
                               │
    ┌──────────────────────────▼─────────────────────────────┐
    │ [ TA의 영역: 기술 인프라 및 플랫폼 ]                   │
    │  - 하이브리드/멀티 클라우드, Kubernetes 클러스터 설계   │
-   │  - 네트워크 토폴로지, 보안(WAF, IPS, IAM), 스토리지   │
-   │  - CI/CD 파이프라인, 모니터링/관측성(APM, 로깅)        │
-   │  - 고가용성(HA), 재해복구(DR), 미들웨어 WAS/DB 구성    │
+   │  - 네트워크 토폴로지, 보안(WAF, Web Application Firewall; IPS, Intrusion Prevention System; IAM, Identity and Access Management), 스토리지 │
+   │  - CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인, 모니터링/관측성(APM, Application Performance Monitoring; 로깅) │
+   │  - 고가용성(HA, High Availability), 재해복구(DR, Disaster Recovery), 미들웨어 WAS(Web Application Server)/DB(Database) 구성 │
    └────────────────────────────────────────────────────────┘
 ```
 
@@ -46,11 +46,11 @@ extra:
 
 | 비교 항목 | 테크니컬 아키텍트 (TA) | 애플리케이션 아키텍트 (AA) |
 |---|---|---|
-| 주안점 | 시스템의 '실행 환경' 및 **비기능 품질** (NFR) | 비즈니스 '업무 로직' 및 **기능적 아키텍처** (FR) |
-| 관리 대상 | 서버, OS, 네트워크, K8s, WAS, DB, 클라우드 리소스 | 도메인 엔티티, 유스케이스, API 스펙, 공통 프레임워크 |
-| 핵심 산출물 | 시스템 구성도, 네트워크 망구성도, 용량 산정서, DR 계획서 | **애플리케이션 아키텍처 설계서** (SAD), 공통 컴포넌트 명세서 |
-| 기술 스택 | AWS/Azure, Docker, Linux, Kafka, Redis, Terraform | Java/Spring, Python, JPA/Hibernate, DDD, 디자인 패턴 |
-| 주요 KPI | 시스템 가용성(99.99%), 응답 지연(Latency), 보안 무결성 | 비즈니스 요구 충족률, 코드 재사용률, 결합도/응집도 |
+| 주안점 | 시스템의 '실행 환경' 및 **비기능 품질** (NFR, Non-Functional Requirement) | 비즈니스 '업무 로직' 및 **기능적 아키텍처** (FR, Functional Requirement) |
+| 관리 대상 | 서버, OS(Operating System), 네트워크, K8s, WAS(Web Application Server), DB(Database), 클라우드 리소스 | 도메인 엔티티, 유스케이스, API(Application Programming Interface) 스펙, 공통 프레임워크 |
+| 핵심 산출물 | 시스템 구성도, 네트워크 망구성도, 용량 산정서, DR(Disaster Recovery) 계획서 | **애플리케이션 아키텍처 설계서** (SAD, Software Architecture Description), 공통 컴포넌트 명세서 |
+| 기술 스택 | AWS(Amazon Web Services)/Azure, Docker, Linux, Kafka, Redis, Terraform | Java/Spring, Python, JPA(Java Persistence API)/Hibernate, DDD(Domain-Driven Design), 디자인 패턴 |
+| 주요 KPI(Key Performance Indicator) | 시스템 가용성(99.99%), 응답 지연(Latency), 보안 무결성 | 비즈니스 요구 충족률, 코드 재사용률, 결합도/응집도 |
 
 ## Ⅳ. TA와 AA 협업의 주요 한계점 및 해결 방안
 
@@ -59,12 +59,12 @@ extra:
   - 해결 방안 : 아키텍처 RACI(Responsible, Accountable, Consulted, Informed) 매트릭스를 수립하여 접점 영역(캐시, 배치, 메시징, 성능)의 오너십을 명확히 정의하고 정례 기술 협의체 운영.
 - 비즈니스 기능 요건(AA)과 인프라 안정성 제약(TA) 간의 관점 충돌 :
   - 한계점 : AA는 잦은 비즈니스 변경에 대응하기 위해 과도한 계층 분리와 유연성을 추구하고, TA는 시스템 리소스와 네트워크 레이턴시 제약을 이유로 이를 제한하며 아키텍처 갈등 심화.
-  - 해결 방안 : 아키텍처 검토 위원회(ARB: Architecture Review Board)를 상설 운영하고, 아키텍처 결정 레코드(ADR) 작성을 통해 기술-비즈니스 간 트레이드오프 합의 사항을 문서화하여 형상 관리.
+  - 해결 방안 : 아키텍처 검토 위원회(ARB: Architecture Review Board)를 상설 운영하고, 아키텍처 결정 레코드(ADR, Architecture Decision Record) 작성을 통해 기술-비즈니스 간 트레이드오프 합의 사항을 문서화하여 형상 관리.
 - 클라우드 네이티브(DevOps/IaC) 환경에서의 전통적 역할 재정의 혼선 :
-  - 한계점 : 인프라가 코드화(IaC)되고 컨테이너 기반으로 추상화되면서 물리 인프라 위주의 전통적 TA 업무가 축소되고 개발 프레임워크와 중첩되어 역할 혼선 발생.
+  - 한계점 : 인프라가 코드화(IaC, Infrastructure as Code)되고 컨테이너 기반으로 추상화되면서 물리 인프라 위주의 전통적 TA 업무가 축소되고 개발 프레임워크와 중첩되어 역할 혼선 발생.
   - 해결 방안 : TA는 내부 개발자 플랫폼(IDP)을 구축하는 플랫폼 엔지니어링 및 클라우드 거버넌스로 전환하고, AA는 도메인 주도 설계(DDD) 기반 마이크로서비스 경계 정의에 집중하는 현대적 역할 재편.
 
 ## Ⅴ. 성공적인 프로젝트 수행을 위한 기술사적 제언
 
-- 프로젝트 초기 비기능 요구사항(NFR) 공동 워크숍 정례화 : 성능(TPS), 복구목표(RTO/RPO), 동시성 제어 요건은 인프라(TA)와 로직(AA)의 긴밀한 타협이 필수적이므로, ATAM 기반의 공동 품질속성 워크숍을 통해 아키텍처 의사결정 기록(ADR)을 사전 도출해야 함.
+- 프로젝트 초기 비기능 요구사항(NFR) 공동 워크숍 정례화 : 성능(TPS, Transactions Per Second), 복구목표(RTO(Recovery Time Objective)/RPO(Recovery Point Objective)), 동시성 제어 요건은 인프라(TA)와 로직(AA)의 긴밀한 타협이 필수적이므로, ATAM(Architecture Tradeoff Analysis Method) 기반의 공동 품질속성 워크숍을 통해 아키텍처 의사결정 기록(ADR)을 사전 도출해야 함.
 - DA(Data Architect) 및 SA(Security Architect)와의 4자 거버넌스 협력체계 구축 : 데이터 모델과 쿼리 성능(DA), 컴플라이언스 및 인가 정책(SA)이 TA/AA의 설계와 분리될 경우 심각한 성능 병목과 보안 홀이 발생하므로, 주간 아키텍처 검토 회의(ARB, Architecture Review Board)를 운영하여 정기적인 구조적 정합성 검증 필수.

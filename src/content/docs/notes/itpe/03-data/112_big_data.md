@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 4차 산업혁명의 원유, 빅데이터(Big Data)의 개요
 
 ### 가. 빅데이터의 정의
-- **빅데이터** : 기존의 전통적인 데이터베이스 관리 도구(RDBMS)나 단일 컴퓨팅 인프라의 처리 용량을 초과하는 **대규모, 고속 생성, 다양한 형태** (정형, 반정형, 비정형)를 가진 데이터 집합 및 이를 수집, 저장, 관리, 분석하여 가치를 창출하는 제반 정보기술.
+- **빅데이터** : 기존의 전통적인 데이터베이스 관리 도구(RDBMS, Relational Database Management System)나 단일 컴퓨팅 인프라의 처리 용량을 초과하는 **대규모, 고속 생성, 다양한 형태** (정형, 반정형, 비정형)를 가진 데이터 집합 및 이를 수집, 저장, 관리, 분석하여 가치를 창출하는 제반 정보기술.
 
 ---
 
@@ -34,11 +34,11 @@ extra:
 
 | 특성 (Dimension) | 구체적 의미 | 주요 도전 과제 및 기술적 대응 |
 | :--- | :--- | :--- |
-| **규모 (Volume)** | 수 테라바이트(TB)에서 페타바이트(PB), 제타바이트(ZB)로 폭증하는 데이터 양 | 분산 분할 스토리지 (Hadoop HDFS, 객체 스토리지 AWS S3) |
+| **규모 (Volume)** | 수 테라바이트(TB)에서 페타바이트(PB), 제타바이트(ZB)로 폭증하는 데이터 양 | 분산 분할 스토리지 (Hadoop HDFS(Hadoop Distributed File System), 객체 스토리지 AWS(Amazon Web Services) S3(Simple Storage Service)) |
 | **속도 (Velocity)** | 센서, 금융 거래, 클릭스트림 등 밀리초 단위로 실시간 유입되는 속도 | 인메모리 분산 스트리밍 엔진 (Apache Kafka, Flink, Spark Streaming) |
-| **다양성 (Variety)** | RDBMS 테이블 외에 JSON, XML, 웹 로그, 음성, 비디오 등 비정형 데이터 폭증 | NoSQL(MongoDB), 비구조적 파일 포맷(Parquet, Avro), 데이터 레이크 |
-| **정확성 (Veracity)** | 데이터 내에 혼재된 노이즈, 결측치, 편향 속에서 진실된 품질 확보 | Data Quality 관리 체계, Data Observability, AI 기반 정제 |
-| **가치 (Value)** | 방대한 데이터를 처리하여 실제 비즈니스 ROI를 창출하는 궁극적 목표 | 머신러닝, 예측 모델링, 비즈니스 인텔리전스 대시보드 |
+| **다양성 (Variety)** | RDBMS 테이블 외에 JSON(JavaScript Object Notation), XML(Extensible Markup Language), 웹 로그, 음성, 비디오 등 비정형 데이터 폭증 | NoSQL(MongoDB), 비구조적 파일 포맷(Parquet, Avro), 데이터 레이크 |
+| **정확성 (Veracity)** | 데이터 내에 혼재된 노이즈, 결측치, 편향 속에서 진실된 품질 확보 | Data Quality 관리 체계, Data Observability, AI(Artificial Intelligence) 기반 정제 |
+| **가치 (Value)** | 방대한 데이터를 처리하여 실제 비즈니스 ROI(Return on Investment)를 창출하는 궁극적 목표 | 머신러닝, 예측 모델링, 비즈니스 인텔리전스 대시보드 |
 
 ---
 
@@ -75,15 +75,15 @@ extra:
 
 - 데이터 레이크의 관리 부실에 따른 **데이터 늪** (Data Swamp) 전락 :
   - 한계점 : 정제되지 않은 대용량 원천 데이터가 메타데이터 없이 무분별하게 적재되어 데이터의 유효성, 계보(Lineage), 소유권 파악 불가.
-  - 해결 방안 : **오픈 테이블 포맷** (Apache Iceberg, Delta Lake) 도입을 통한 ACID 트랜잭션 및 **스키마 강제** (Schema Enforcement), 카탈로그(Data Catalog) 자동화.
+  - 해결 방안 : **오픈 테이블 포맷** (Apache Iceberg, Delta Lake) 도입을 통한 ACID(Atomicity, Consistency, Isolation, Durability) 트랜잭션 및 **스키마 강제** (Schema Enforcement), 카탈로그(Data Catalog) 자동화.
 - **람다** (Lambda) 아키텍처의 배치/실시간 코드 이중화 및 유지보수 복잡성 :
   - 한계점 : 동일한 비즈니스 로직을 배치 레이어(Hadoop/Spark)와 실시간 서빙 레이어(Storm/Flink)에 중복 구현하여 로직 불일치 및 디버깅 난항.
   - 해결 방안 : 아파치 카프카(Kafka)와 아파치 플링크(Flink) 기반의 **카파** (Kappa) 아키텍처로 단일화, 또는 단일 엔진(Apache Spark Structured Streaming) 통합.
-- 클라우드 인프라 자원 비효율로 인한 빅데이터 **플랫폼 비용** (TCO) 폭증 :
+- 클라우드 인프라 자원 비효율로 인한 빅데이터 **플랫폼 비용** (TCO, Total Cost of Ownership) 폭증 :
   - 한계점 : 무제한 스케일아웃에 따른 유휴 클러스터 방치, 비효율적인 분산 셔플(Shuffle) 및 파티셔닝 전략 부재로 클라우드 컴퓨팅·스토리지 비용 통제 불능.
   - 해결 방안 : **컴퓨팅-스토리지 분리** (Disaggregated Architecture), 스팟 인스턴스 활용 오토스케일링, FinOps 관제 도구를 통한 쿼리별 비용 추적 체계 구축.
 
 ## Ⅴ. 엔터프라이즈 빅데이터 플랫폼 구축을 위한 실무 제언
 
 - 오픈 테이블 포맷(Open Table Format) 중심 **레이크하우스** 채택 : 전통적인 하둡(HDFS) 중심의 복잡한 인프라는 유지보수 비용이 과다하므로, 클라우드 객체 스토리지(S3) 위에 **Apache Iceberg** 또는 **Delta Lake**를 얹어 ACID 트랜잭션과 빠른 분석 성능을 동시에 달성해야 함.
-- 데이터 거버넌스와 보안 거버넌스의 동시 내재화 : 데이터가 폭증할수록 PII 개인정보 유출과 규제 위반 위험이 커지므로, Apache Ranger나 AWS Lake Formation을 통해 데이터 레이크 내부의 테이블, 행, 열 단위 세분화된 접근 제어를 초기 아키텍처 단계부터 구현할 것을 제언함.
+- 데이터 거버넌스와 보안 거버넌스의 동시 내재화 : 데이터가 폭증할수록 PII(Personally Identifiable Information) 개인정보 유출과 규제 위반 위험이 커지므로, Apache Ranger나 AWS Lake Formation을 통해 데이터 레이크 내부의 테이블, 행, 열 단위 세분화된 접근 제어를 초기 아키텍처 단계부터 구현할 것을 제언함.

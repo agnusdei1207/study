@@ -15,8 +15,8 @@ extra:
 ## Ⅰ. 지리공간 데이터베이스의 핵심, 공간 연산자의 개요
 
 ### 가. 공간 연산자(Spatial Operator)의 정의
-- **공간 연산자** : 2차원 또는 3차원 공간 상에 존재하는 기하학적 객체(점, 선, 면) 간의 **위상적** (Topological), **기하학적** (Geometric), **방향적** (Directional) 관계를 수학적으로 판별하고 조작하기 위해 **OGC** (Open Geospatial Consortium) 표준 및 **SQL/MM** 표준에 정의된 데이터베이스 연산 함수.
-- 단순 수치 비교 연산자와 달리 **공간 인덱스** (R-Tree, GiST)와 결합하여 공간 질의를 초고속으로 필터링함.
+- **공간 연산자** : 2차원 또는 3차원 공간 상에 존재하는 기하학적 객체(점, 선, 면) 간의 **위상적** (Topological), **기하학적** (Geometric), **방향적** (Directional) 관계를 수학적으로 판별하고 조작하기 위해 **OGC** (Open Geospatial Consortium) 표준 및 **SQL(Structured Query Language)/MM(Multimedia and Application Packages)** 표준에 정의된 데이터베이스 연산 함수.
+- 단순 수치 비교 연산자와 달리 **공간 인덱스** (R-Tree, GiST, Generalized Search Tree)와 결합하여 공간 질의를 초고속으로 필터링함.
 
 ---
 
@@ -73,14 +73,14 @@ extra:
 
 ## Ⅳ. 공간 연산자 및 공간 DBMS의 주요 한계점 및 해결 방안
 
-- 고차원 기하 객체의 공간 **조인** (Spatial Join) 연산 복잡도와 CPU/I/O 병목 :
+- 고차원 기하 객체의 공간 **조인** (Spatial Join) 연산 복잡도와 CPU(Central Processing Unit)/I/O 병목 :
   - 한계점 : 수천 개의 정점을 가진 다각형(Polygon) 간의 `ST_Intersects`, `ST_Contains` 등 DE-9IM 위상 연산 시 기하 연산 비용이 지수적으로 증가하여 시스템 성능 저하.
-  - 해결 방안 : **2단계 질의 처리** (Two-Step Query Processing) 표준화: 1단계 MBR(최소경계사각형) 기반 R-Tree 인덱스 필터링 후 2단계 실제 기하 정밀 연산 수행, 기하 단순화(`ST_Simplify`) 적용.
-- 공간 **참조 좌표계** (SRID) 불일치 및 투영 변환 오버헤드 :
+  - 해결 방안 : **2단계 질의 처리** (Two-Step Query Processing) 표준화: 1단계 MBR(Minimum Bounding Rectangle, 최소경계사각형) 기반 R-Tree 인덱스 필터링 후 2단계 실제 기하 정밀 연산 수행, 기하 단순화(`ST_Simplify`) 적용.
+- 공간 **참조 좌표계 식별자** (SRID, Spatial Reference System Identifier) 불일치 및 투영 변환 오버헤드 :
   - 한계점 : 경위도 좌표계(EPSG:4326)와 평면 직각 투영 좌표계(EPSG:5179/3857)가 혼재된 상태에서 대량 쿼리 시 실시간 좌표 변환(`ST_Transform`)으로 CPU 과부하 및 거리 왜곡 발생.
   - 해결 방안 : 데이터 적재 시점에 표준 투영 좌표계로 변환하여 영속화(Pre-transformation), 공간 인덱스 생성 컬럼과 쿼리 SRID의 완전 일치 강제.
 - 대용량 공간 데이터 갱신 시 공간 인덱스(R-Tree, GiST) 재구성 오버헤드 :
-  - 한계점 : 이동체(GPS 궤적 등)의 고빈도 위치 데이터 삽입 시 R-Tree의 노드 분할(Split) 및 MBR 재계산으로 쓰기 성능 급감.
+  - 한계점 : 이동체(GPS(Global Positioning System) 궤적 등)의 고빈도 위치 데이터 삽입 시 R-Tree의 노드 분할(Split) 및 MBR 재계산으로 쓰기 성능 급감.
   - 해결 방안 : **공간 그리드 인덱스** (Geohash, Uber H3, Google S2) 기반 분할 저장, 메모리 기반 공간 버퍼링 큐 및 청크 단위 일괄 인덱싱(Bulk Loading) 적용.
 
 ## Ⅴ. 고성능 공간 데이터베이스 구축을 위한 실무 제언

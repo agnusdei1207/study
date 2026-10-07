@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. RLHF(인간 피드백 강화학습)의 개요
 
-- 개념 : 대규모 사전 학습된 언어 모델(LLM)의 출력을 인간의 가치관, 의도, 윤리적 기준에 부합(Alignment)시키기 위해, **인간 평가자** (Human Annotator)의 선호도 피드백을 기반으로 보상 모델(Reward Model)을 학습시키고, 이를 환경의 보상 신호로 삼아 **강화학습** (PPO 알고리즘)을 통해 언어 모델의 가중치를 미세조정하는 핵심 정렬 기술.
-- 배경 및 필요성 : 인터넷의 원시 텍스트로만 학습된 기본 언어 모델은 유해 표현, 거짓 정보, 편향된 문장을 무작위로 생성하므로, 단순 지도 미세조정(SFT)을 넘어 인간이 선호하는 **유용하고** (Helpful), **정직하며** (Honest), **무해한** (Harmless) 답변을 생성하도록 유도하기 위해 필수적임.
+- 개념 : 대규모 사전 학습된 언어 모델(LLM, Large Language Model)의 출력을 인간의 가치관, 의도, 윤리적 기준에 부합(Alignment)시키기 위해, **인간 평가자** (Human Annotator)의 선호도 피드백을 기반으로 보상 모델(Reward Model)을 학습시키고, 이를 환경의 보상 신호로 삼아 **강화학습** (PPO(Proximal Policy Optimization) 알고리즘)을 통해 언어 모델의 가중치를 미세조정하는 핵심 정렬 기술.
+- 배경 및 필요성 : 인터넷의 원시 텍스트로만 학습된 기본 언어 모델은 유해 표현, 거짓 정보, 편향된 문장을 무작위로 생성하므로, 단순 지도 미세조정(SFT, Supervised Fine-Tuning)을 넘어 인간이 선호하는 **유용하고** (Helpful), **정직하며** (Honest), **무해한** (Harmless) 답변을 생성하도록 유도하기 위해 필수적임.
 - 핵심 목적 : 언어 모델의 **인간 가치 정렬** (Alignment), 환각 및 유해 콘텐츠 생성 억제, 모호한 질문에 대한 정중하고 유용한 답변 유도.
 
 ## Ⅱ. RLHF(인간 피드백 강화학습)의 핵심 아키텍처 및 동작 메커니즘
 
-RLHF는 지도 미세조정(SFT), 보상 모델(RM) 학습, PPO 기반 강화학습 정책 갱신의 3단계 파이프라인으로 동작함.
+RLHF(Reinforcement Learning from Human Feedback)는 지도 미세조정(SFT, Supervised Fine-Tuning), 보상 모델(RM, Reward Model) 학습, PPO 기반 강화학습 정책 갱신의 3단계 파이프라인으로 동작함.
 
 ```text
 [ RLHF 3단계 엔드투엔드 파이프라인 및 PPO 메커니즘 ]
@@ -57,11 +57,11 @@ RLHF는 지도 미세조정(SFT), 보상 모델(RM) 학습, PPO 기반 강화학
 
 ## Ⅲ. RLHF(인간 피드백 강화학습)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | RLHF (PPO 기반) | DPO (Direct Preference Optimization) | RLAIF (AI 피드백 강화학습) |
+| 비교 항목 | RLHF (PPO 기반) | DPO (Direct Preference Optimization) | RLAIF (AI(Artificial Intelligence) 피드백 강화학습) |
 | --- | --- | --- | --- |
 | **보상 모델 필요성** | 필수 (별도의 독립 신경망으로 보상 모델 학습) | 불필요 (선호도 손실 함수로 정책 모델 직접 갱신) | 필수 또는 DPO 결합 (인간 대신 LLM이 평가) |
 | **강화학습 알고리즘** | PPO (Actor, Critic, Reference, RM 동시 구동) | 비강화학습 (단순 분류 교차 엔트로피 손실) | PPO 또는 DPO 알고리즘 활용 |
-| **GPU VRAM 소모량** | 극도로 높음 (최소 4개 모델 동시 로드 필요) | 낮음 (Actor와 Reference 2개 모델만 로드) | PPO 사용 시 높음, DPO 사용 시 낮음 |
+| **GPU(Graphics Processing Unit) VRAM(Video Random-Access Memory) 소모량** | 극도로 높음 (최소 4개 모델 동시 로드 필요) | 낮음 (Actor와 Reference 2개 모델만 로드) | PPO 사용 시 높음, DPO 사용 시 낮음 |
 | **학습 안정성** | 불안정함 (하이퍼파라미터 민감, 훈련 발산 위험) | 매우 안정적 (수학적으로 닫힌 해 최적화) | 안정적 (인간 평가자의 피로도/편향 배제) |
 | **피드백 원천** | 인간 크라우드소싱 라벨러 | 인간 크라우드소싱 라벨러 | 프론티어 고성능 LLM (Constitutional AI) |
 
@@ -71,7 +71,7 @@ RLHF는 지도 미세조정(SFT), 보상 모델(RM) 학습, PPO 기반 강화학
 
 - 인간 평가자의 주관성, 편향성 및 막대한 라벨링 비용 :
   - 한계점 : 평가자의 문화적 배경과 편향이 모델에 그대로 주입되며, 고숙련 라벨러 채용에 막대한 비용과 시간 소요.
-  - 해결 방안 : AI 헌법(Constitution)을 기반으로 고성능 LLM이 스스로 피드백을 생성하고 평가하는 **RLAIF** 도입.
+  - 해결 방안 : AI 헌법(Constitution)을 기반으로 고성능 LLM이 스스로 피드백을 생성하고 평가하는 **RLAIF**(Reinforcement Learning from AI Feedback) 도입.
 - 보상 모델의 허점을 파고드는 보상 해킹(Reward Hacking) :
   - 한계점 : 언어 모델이 실제로는 무익하지만 보상 모델이 점수를 높게 주는 특정 어투나 장황한 문장을 반복 출력하는 현상.
   - 해결 방안 : 초기 SFT 모델과의 KL 발산 계수(`beta`) 정밀 튜닝 및 **다중 보상 모델** (Ensemble RM) 앙상블.

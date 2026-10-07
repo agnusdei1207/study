@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 디스크 스케줄링(Disk Scheduling)의 개요
 
-- 개념 : 기계식 하드디스크 드라이브(HDD) 또는 블록 저장장치에서 다중 I/O 요청이 인입되었을 때, 헤드의 기계적 이동 거리와 **탐색 시간(Seek Time)** 및 **회전 지연 시간** (Rotational Latency)을 최소화하여 디스크의 전체 처리량을 극대화하고 응답 시간을 단축하는 I/O 큐잉 정렬 알고리즘.
-- 배경 및 필요성 : CPU 연산 속도(나노초)와 전자적 메모리(DRAM)에 비해 기계식 디스크의 물리적 탐색 속도(밀리초)는 수십만 배 이상 느리므로, I/O 요청을 도착 순서대로 처리할 경우 심각한 **I/O 병목(I/O Bottleneck)** 이 발생하여 이를 해결하기 위해 고안됨.
+- 개념 : 기계식 하드디스크 드라이브(HDD, Hard Disk Drive) 또는 블록 저장장치에서 다중 I/O 요청이 인입되었을 때, 헤드의 기계적 이동 거리와 **탐색 시간(Seek Time)** 및 **회전 지연 시간** (Rotational Latency)을 최소화하여 디스크의 전체 처리량을 극대화하고 응답 시간을 단축하는 I/O 큐잉 정렬 알고리즘.
+- 배경 및 필요성 : CPU(Central Processing Unit) 연산 속도(나노초)와 전자적 메모리(DRAM, Dynamic Random-Access Memory)에 비해 기계식 디스크의 물리적 탐색 속도(밀리초)는 수십만 배 이상 느리므로, I/O 요청을 도착 순서대로 처리할 경우 심각한 **I/O 병목(I/O Bottleneck)** 이 발생하여 이를 해결하기 위해 고안됨.
 - 핵심 목적 : 헤드의 불필요한 왕복 이동 방지, 단위 시간당 I/O 처리량 극대화, 특정 요청의 무한 대기(기아 현상) 방지 및 공정성 확보.
 
 ## Ⅱ. 디스크 스케줄링(Disk Scheduling)의 핵심 아키텍처 및 동작 메커니즘
 
-디스크 스케줄링은 탐색 방향과 현재 헤드 위치를 기준으로 큐에 대기 중인 트랙 번호를 재정렬하며, 현대 리눅스 OS는 **다중 큐 블록 계층** (blk-mq)과 플래시 전용 스케줄러로 진화함.
+디스크 스케줄링은 탐색 방향과 현재 헤드 위치를 기준으로 큐에 대기 중인 트랙 번호를 재정렬하며, 현대 리눅스 OS(Operating System)는 **다중 큐 블록 계층** (blk-mq)과 플래시 전용 스케줄러로 진화함.
 
 ```text
 [ 디스크 헤드 이동 및 스케줄링 알고리즘 비교 ]
@@ -59,9 +59,9 @@ extra:
 | **SCAN** | 양방향 왕복 주사 | 높음 | 보통 (가장자리 지연) | 극히 낮음 |
 | **C-SCAN** | 단방향 주사 후 복귀 | 높음 | 매우 우수 (균등) | 없음 |
 | **LOOK / C-LOOK** | 요청 범위 내 주사 | 최적화됨 | 우수 | 없음 |
-| **None (No-op)** | 단순 FIFO 병합 (SSD) | 플래시 최적화 | 공정함 | 없음 |
+| **None (No-op)** | 단순 FIFO(First In, First Out) 병합 (SSD, Solid-State Drive) | 플래시 최적화 | 공정함 | 없음 |
 
-- 기계적 회전과 헤드 암(Arm)이 없는 NVMe SSD 환경에서는 전통적 탐색 스케줄링이 불필요하며, CPU 오버헤드를 없애는 None 또는 mq-deadline 스케줄러가 표준임.
+- 기계적 회전과 헤드 암(Arm)이 없는 NVMe(Non-Volatile Memory Express) SSD 환경에서는 전통적 탐색 스케줄링이 불필요하며, CPU 오버헤드를 없애는 None 또는 mq-deadline 스케줄러가 표준임.
 
 ## Ⅳ. 디스크 스케줄링(Disk Scheduling)의 주요 한계점 및 해결 방안
 
@@ -69,14 +69,14 @@ extra:
   - 한계점 : SSD는 물리적 헤드가 없어 탐색 시간(Seek Time)이 0에 수렴하므로 복잡한 SCAN 알고리즘 수행 시 불필요한 CPU 사이클만 낭비.
   - 해결 방안 : 리눅스 멀티 큐 블록 계층(blk-mq)에서 I/O 스케줄러를 `none`으로 설정하여 하드웨어 병렬 큐로 직접 바이패스.
 - 다중 테넌트 가상화 환경의 I/O 경합 및 **간섭(Noisy Neighbor)** :
-  - 한계점 : 단일 물리 디스크를 공유하는 다수 가상머신 간 I/O 요청 충돌로 인해 특정 VM의 디스크 대역폭 고갈.
-  - 해결 방안 : BFQ(Budget Fair Queueing) 스케줄러 또는 cgroups v2 `io.weight / io.max` 설정을 통한 테넌트별 IOPS 및 대역폭 엄격 보장.
+  - 한계점 : 단일 물리 디스크를 공유하는 다수 가상머신 간 I/O 요청 충돌로 인해 특정 VM(Virtual Machine)의 디스크 대역폭 고갈.
+  - 해결 방안 : BFQ(Budget Fair Queueing) 스케줄러 또는 cgroups v2 `io.weight / io.max` 설정을 통한 테넌트별 IOPS(Input/Output Operations Per Second) 및 대역폭 엄격 보장.
 - **SSTF** 및 탐색 우선 알고리즘의 데드라인 보장 한계 :
   - 한계점 : 데이터베이스 WAL(Write-Ahead Log) 등 실시간 보장이 필수적인 쓰기 작업이 읽기 요청에 밀려 커밋 지연 초래.
   - 해결 방안 : 요청별 만료 시간을 관리하는 Deadline / mq-deadline 스케줄러를 적용하여 기아 원천 차단.
 
 ## Ⅴ. 디스크 스케줄링(Disk Scheduling) 적용 및 발전을 위한 기술사적 제언
 
-- **차세대 ZNS(Zoned Namespaces)** SSD 스케줄링 대응 : 플래시의 쓰기 증폭(WA)을 줄이고 수명을 극대화하기 위해 순차 쓰기를 강제하는 ZNS 인지형 커널 I/O 스택 도입 권장.
+- **차세대 ZNS(Zoned Namespaces)** SSD 스케줄링 대응 : 플래시의 쓰기 증폭(WA, Write Amplification)을 줄이고 수명을 극대화하기 위해 순차 쓰기를 강제하는 ZNS 인지형 커널 I/O 스택 도입 권장.
 - 스토리지 티어링별 차등 스케줄러 프로파일링 : 고성능 NVMe는 `none`, 대용량 백업용 기계식 HDD 어레이는 `mq-deadline` 또는 `bfq`를 차등 적용하는 정책 수립 필요.
 - 비동기 고성능 **I/O 프레임워크(io_uring)** 결합 : 전통적 동기 블록 I/O의 시스템 콜 오버헤드를 극복하기 위해 제로 카피 링버퍼 기반 `io_uring` 파이프라인 전면 전환 제언.

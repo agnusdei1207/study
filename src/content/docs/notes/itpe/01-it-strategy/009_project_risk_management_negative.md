@@ -23,9 +23,9 @@ extra:
 ```text
 1. 위험 식별 ───── 브레인스토밍, 델파이 기법, 체크리스트, RBS(Risk Breakdown Structure)
        ↓
-2. 정성적 분석 ── 발생 확률(Probability)과 영향도(Impact) 평가, PI 매트릭스 우선순위화
+2. 정성적 분석 ── 발생 확률(Probability)과 영향도(Impact) 평가, PI(Probability-Impact) 매트릭스 우선순위화
        ↓
-3. 정량적 분석 ── EMV(기댓값), 민감도 분석(토네이도 차트), 몬테카를로 시뮬레이션
+3. 정량적 분석 ── EMV(Expected Monetary Value, 기댓값), 민감도 분석(토네이도 차트), 몬테카를로 시뮬레이션
        ↓
 4. 대응 계획 ──── 부정적 위험(회피, 완화, 전가, 수용), 긍정적 위험(활용, 공유, 증대, 수용)
        ↓
@@ -47,7 +47,7 @@ extra:
 
 - 위험 식별의 주관성 및 미지의 위험(Unknown Unknowns) 간과 :
   - 한계점 : 프로젝트 팀의 과거 경험에만 의존하여 체크리스트에 없는 신규 기술 위험이나 외부 거시 환경 리스크 식별 실패.
-  - 해결 방안 : 델파이 기법, SWOT 분석, 과거 유사 사업 레슨런(Lessons Learned) DB 자동 검색 및 프롬프트 기반 AI 위험 탐지 결합.
+  - 해결 방안 : 델파이 기법, SWOT(Strengths, Weaknesses, Opportunities and Threats) 분석, 과거 유사 사업 레슨런(Lessons Learned) DB(Database) 자동 검색 및 프롬프트 기반 AI(Artificial Intelligence) 위험 탐지 결합.
 - 정량적 위험 분석(Quantitative Analysis) 수행의 공수 부담 :
   - 한계점 : 몬테카를로 시뮬레이션 등 정량 분석 기법의 높은 수학적 복잡도와 데이터 부족으로 인해 형식적 정성 분석에만 안주.
   - 해결 방안 : 위험 매트릭스(PI Matrix) 기반 선별적 정량 분석 적용, 표준 시뮬레이션 자동화 툴킷을 통한 비용/일정 영향도 신속 산정.

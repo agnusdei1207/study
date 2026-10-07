@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. 네트워크 (IITP 2026 이슈)의 개요
 
-- 개념 : 정보통신기획평가원(IITP)이 2026년을 기점으로 제시한 차세대 네트워크 ICT R&D 핵심 기술 로드맵으로, 6G 선행 기술, 지능형 자율 네트워크, 양자 안전 통신, **개방형 무선망(Open RAN)** 및 초고성능 AI 데이터센터 패브릭을 아우르는 **국가 전략 기술** 프레임워크.
+- 개념 : 정보통신기획평가원(IITP)이 2026년을 기점으로 제시한 차세대 네트워크 ICT(Information and Communications Technology) R&D 핵심 기술 로드맵으로, 6G 선행 기술, 지능형 자율 네트워크, 양자 안전 통신, **개방형 무선망(Open RAN)** 및 초고성능 AI(Artificial Intelligence) 데이터센터 패브릭을 아우르는 **국가 전략 기술** 프레임워크.
 - 배경 및 필요성 : 글로벌 통신 패권 경쟁 심화, 생성형 AI 확산에 따른 데이터센터 트래픽 폭증, 사이버 안보 위협 고도화 및 2030년 6G 상용화 주도권 선점을 위한 중점 기술 확보 시급.
 - 핵심 목적 : 차세대 무선 통신 주파수 및 부품 자립화, AI 네이티브 네트워크 제어로 운용비 절감, **포스트 양자 암호** 기반 인프라 보안 확보 및 글로벌 통신 표준 주도.
 
@@ -47,22 +47,22 @@ extra:
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **6G 입체 무선 통신** : 테라헤르츠 대역 RF 프론트엔드 국산화 및 한국형 저궤도(K-LEO) 통신 위성 검증 시스템 구축.
+- **6G 입체 무선 통신** : 테라헤르츠 대역 RF(Radio Frequency) 프론트엔드 국산화 및 한국형 저궤도(K-LEO(Low Earth Orbit)) 통신 위성 검증 시스템 구축.
 - **AI-Native 자율 제어 (Autonomous Networking)** : 자연어 의도(Intent)를 입력하면 네트워크 정책을 자율 구성하고 장애를 사전 예측 조치하는 Closed-Loop 자동화 실현.
-- **Open RAN 소프트웨어화** : 특정 통신 장비 벤더 독점을 탈피하여 O-RAN 얼라이언스 규격 기반 개방형 기지국 및 RIC AI 앱(xApp/rApp) 개발.
+- **Open RAN(Radio Access Network) 소프트웨어화** : 특정 통신 장비 벤더 독점을 탈피하여 O-RAN 얼라이언스 규격 기반 개방형 기지국 및 RIC AI 앱(xApp/rApp) 개발.
 
 ## Ⅲ. IITP 2026 네트워크 핵심 기술 분야별 세부 분석
 
 | 핵심 전략 분야 | 핵심 기술 요소 | 기술적 목표 지표 | 국가 전략적 의의 |
 |---|---|---|---|
-| **6G 무선 인프라** | 서브 THz 트랜시버, E-MIMO, RIS | 초고속, 초저지연 무선 | 글로벌 6G 표준 특허 선점 |
-| **비지상 위성망 (NTN)** | 위성 탑재형 gNB, 광 위성간 링크(ISL)| 3차원 입체망, 전역 커버리지 | 해양·UAM 도심항공 통신 주권 |
-| **AI 네이티브 망** | 통신 디지털 트윈, 의도기반 네트워킹(IBN)| MTTR(평균복구시간) 대폭 단축 | 무인 자율 운영 및 OPEX 절감|
+| **6G 무선 인프라** | 서브 THz 트랜시버, E-MIMO(Multiple-Input Multiple-Output), RIS | 초고속, 초저지연 무선 | 글로벌 6G 표준 특허 선점 |
+| **비지상 위성망 (NTN, Non-Terrestrial Network)** | 위성 탑재형 gNB, 광 위성간 링크(ISL)| 3차원 입체망, 전역 커버리지 | 해양·UAM(Urban Air Mobility) 도심항공 통신 주권 |
+| **AI 네이티브 망** | 통신 디지털 트윈, 의도기반 네트워킹(IBN)| MTTR(Mean Time to Repair, 평균복구시간) 대폭 단축 | 무인 자율 운영 및 OPEX(Operating Expenditure) 절감|
 | **오픈랜 (Open RAN)** | O-RU/DU/CU 분리, Near-RT RIC xApp | 상호운용성 확보, vRAN 에너지 절감 | 중소 통신 장비 생태계 부흥 |
-| **AI 데이터센터** | Ultra Ethernet (UEC), CPO, RoCEv2 | 초고속 스위치, 패킷 드롭 최소화 | AI GPU 클러스터 통신 병목 해소 |
-| **양자 안전 통신** | QKD 전송망 + PQC 하이브리드 결합 | NIST 표준 PQC 전 계층 상용화 | 포스트 양자 사이버 안보 방벽 |
+| **AI 데이터센터** | Ultra Ethernet (UEC, Ultra Ethernet Consortium), CPO(Co-Packaged Optics), RoCEv2 | 초고속 스위치, 패킷 드롭 최소화 | AI GPU(Graphics Processing Unit) 클러스터 통신 병목 해소 |
+| **양자 안전 통신** | QKD(Quantum Key Distribution) 전송망 + PQC(Post-Quantum Cryptography) 하이브리드 결합 | NIST(National Institute of Standards and Technology) 표준 PQC 전 계층 상용화 | 포스트 양자 사이버 안보 방벽 |
 
-- **CPO (Co-Packaged Optics)** : 고속 신호 전송 시 구리선의 전기적 발열과 손실을 극복하기 위해 스위치 실리콘 ASIC과 광 트랜시버를 단일 기판 상에 원칩 패키징.
+- **CPO (Co-Packaged Optics)** : 고속 신호 전송 시 구리선의 전기적 발열과 손실을 극복하기 위해 스위치 실리콘 ASIC(Application-Specific Integrated Circuit)과 광 트랜시버를 단일 기판 상에 원칩 패키징.
 
 ## Ⅳ. IITP 2026 네트워크 기술 실현의 주요 한계점 및 해결 방안
 
@@ -70,11 +70,11 @@ extra:
   - 한계점 : 테라헤르츠 및 800G/1.6T 광스위칭 핵심 소자 팹과 화합물 반도체 설계 기술의 대미·대일 의존으로 공급망 위기 취약.
   - 해결 방안 : 국가 주도 국가 반도체 파운드리 연계 화합물 반도체 팹 라인 구축 및 산학연 CPO 실리콘 포토닉스 컨소시엄 집중 투자.
 - 통신사들의 투자 여력 감소 및 오픈랜 전환 수익성 불확실 :
-  - 한계점 : 5G 투자 회수 지연으로 통신 3사의 차세대 망 인프라 신규 CAPEX 집행 위축 및 레거시 벤더 장비와의 결합 마찰.
+  - 한계점 : 5G 투자 회수 지연으로 통신 3사의 차세대 망 인프라 신규 CAPEX(Capital Expenditure) 집행 위축 및 레거시 벤더 장비와의 결합 마찰.
   - 해결 방안 : 민관 매칭 펀드를 통한 6G/오픈랜 실증 단지 구축 및 통신사 망 구축 비용 세액 공제 등 제도적 지원 연계.
 
 ## Ⅴ. 네트워크 IITP 2026 이슈 대응을 위한 기술사적 제언
 
 - QKD-PQC 융합 하이브리드 보안 아키텍처 수립 : 백본 핵심 구간은 하드웨어 기반 양자키분배(QKD) 전용망으로 보호하고, 가입자 및 단말 구간은 알고리즘 기반 양자내성암호(PQC)를 적용하는 다계층 양자 안전 보안 체계 수립.
-- 소버린 AI 인프라를 뒷받침하는 Ultra Ethernet 표준화 주도 : 외산 인피니밴드 의존을 극복하기 위해 국내 슈퍼컴퓨팅 및 데이터센터 인프라에 UEC 표준을 선제 검증하고 국산 AI 가속기(NPU)와의 고속 연동 최적화.
-- 글로벌 통신 감지 융합(ISAC) 표준 특허 포트폴리오 확보 : 3GPP Rel-19/20 표준화 회의에서 전파 기반 재실 감지, 차량 충돌 방지 등 ISAC 원천 기술 특허를 조기 출원하여 기술 무역 장벽 극복.
+- 소버린 AI 인프라를 뒷받침하는 Ultra Ethernet 표준화 주도 : 외산 인피니밴드 의존을 극복하기 위해 국내 슈퍼컴퓨팅 및 데이터센터 인프라에 UEC 표준을 선제 검증하고 국산 AI 가속기(NPU, Neural Processing Unit)와의 고속 연동 최적화.
+- 글로벌 통신 감지 융합(ISAC, Integrated Sensing and Communication) 표준 특허 포트폴리오 확보 : 3GPP Rel-19/20 표준화 회의에서 전파 기반 재실 감지, 차량 충돌 방지 등 ISAC 원천 기술 특허를 조기 출원하여 기술 무역 장벽 극복.

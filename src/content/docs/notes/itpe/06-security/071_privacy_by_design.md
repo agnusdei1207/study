@@ -16,7 +16,7 @@ extra:
 
 - 개념 : 제품, 서비스, 인프라의 사후적 취약점 패치가 아닌 기획·설계 단계부터 개인정보 보호와 **프라이버시 통제**를 시스템 기본 속성으로 내장하는 공학적 설계 철학.
 - 배경 및 필요성 : 서비스 구축 완료 후 사후에 보안을 적용하는 기존 방식의 한계를 극복하고, 기획·설계·구현·폐기 등 시스템 생명주기 전 과정에 프라이버시 보호 기술과 **기본 비공개** (Default) 원칙을 내재화하기 위해 도입됨.
-- 핵심 목적 : 데이터 유출 사고의 사전 예방, 기본 설정(Default) 기반 정보주체 권리 보장, EU **GDPR** 제25조 및 국내 개인정보보호법상 법적 준거성 확보.
+- 핵심 목적 : 데이터 유출 사고의 사전 예방, 기본 설정(Default) 기반 정보주체 권리 보장, EU(European Union) **GDPR**(General Data Protection Regulation) 제25조 및 국내 개인정보보호법상 법적 준거성 확보.
 
 ## Ⅱ. 개인정보보호 중심 설계(Privacy by Design)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -41,7 +41,7 @@ extra:
 
 - 원칙 1 : **사전 예방, 사후 구제가 아님** (Proactive not Reactive) (사고 발생 전 프라이버시 위험을 예측하여 사전 방지 조치 설계).
 - 원칙 2 : **기본 설정으로서의 프라이버시** (Privacy as Default) (사용자 조작 없이도 초기 설정 자체가 최고 수준의 프라이버시 보장).
-- 원칙 3 : **설계에 내재화된 프라이버시** (Privacy Embedded into Design) (부가 기능이 아닌 핵심 IT 인프라 및 비즈니스 아키텍처의 필수 구성요소화).
+- 원칙 3 : **설계에 내재화된 프라이버시** (Privacy Embedded into Design) (부가 기능이 아닌 핵심 IT(Information Technology) 인프라 및 비즈니스 아키텍처의 필수 구성요소화).
 - 원칙 4 : **완전한 기능성 - 포지티브 섬** (Positive-Sum) (프라이버시 보호와 비즈니스 요구를 이분법적으로 보지 않고 동시 만족).
 - 원칙 5 : **종단 간 전주기 보안** (End-to-End Lifecycle Protection) (최초 수집부터 최종 파기까지 정보 생명주기 전 구간에 걸친 암호화).
 - 원칙 6 : **가시성과 투명성 보장** (Visibility and Transparency) (데이터 처리 프로세스와 보안 통제를 독립적으로 검증 가능하도록 공개).
@@ -49,11 +49,11 @@ extra:
 
 ## Ⅲ. 개인정보보호 중심 설계(Privacy by Design)의 세부 구성 요소 및 비교 분석
 
-| 생명주기 | 주요 위험 | PbD 기반 ICT 구현 기술 |
+| 생명주기 | 주요 위험 | PbD 기반 ICT(Information and Communications Technology) 구현 기술 |
 |---|---|---|
 | 1. 수집 (Collection) | 과도한 개인정보 수집, 다크 패턴 유도 | 입력 폼 최소화, 선택 항목 기본 체크 해제, 주민번호 수집 원천 차단 |
-| 2. 저장 (Storage) | DB 유출, 관리자 직접 열람 | 필드별 AES-256 암호화, KMS 기반 키 분리, 가명화/토큰화(Tokenization) |
-| 3. 이용 (Use) | 목적 외 이용, 내부자 오남용 | **차분 프라이버시** (DP) 통계 분석, **기밀 컴퓨팅** (TEE) 연산, WORM 감사 로그 |
+| 2. 저장 (Storage) | DB(Database) 유출, 관리자 직접 열람 | 필드별 AES(Advanced Encryption Standard)-256 암호화, KMS(Key Management Service) 기반 키 분리, 가명화/토큰화(Tokenization) |
+| 3. 이용 (Use) | 목적 외 이용, 내부자 오남용 | **차분 프라이버시** (DP, Differential Privacy) 통계 분석, **기밀 컴퓨팅** (TEE, Trusted Execution Environment) 연산, WORM(Write Once Read Many) 감사 로그 |
 | 4. 제공 (Sharing) | 제3자 제공 시 재식별화 위험 | 안전한 데이터 결합 전문기관 이용, **동형암호** (HE) 기반 암호문 상태 연계 |
 | 5. 파기 (Destruction) | 백업 데이터 잔존, 불완전 삭제 | 보유기간 도달 시 자동 스케줄러 삭제, 암호화 키 폐기(Crypto-shredding) |
 
@@ -63,13 +63,13 @@ extra:
 
 - 한계점 : 타깃 광고 및 빅데이터 분석 중심의 수익 모델과 프라이버시 보호 간의 제로섬(Zero-sum) 갈등으로 현업 개발 부서의 적용 기피.
   - 해결 방안 : 사용자 원본 데이터 직접 결합 대신 **연합학습** (Federated Learning) 및 **생성형 합성 데이터** (Synthetic Data)를 도입하여 비즈니스 효용과 프라이버시 동시 달성.
-- 한계점 : 복잡한 분산 클라우드 및 마이크로서비스(MSA) 환경에서 회원 탈퇴 시 다중 백업 스토리지 내 개인정보가 완전히 삭제되지 않고 잔존.
+- 한계점 : 복잡한 분산 클라우드 및 마이크로서비스(MSA, Microservice Architecture) 환경에서 회원 탈퇴 시 다중 백업 스토리지 내 개인정보가 완전히 삭제되지 않고 잔존.
   - 해결 방안 : 개별 레코드를 사용자 전용 키로 암호화하고 탈퇴 시 해당 암호키만을 영구 삭제하여 백업본까지 일괄 무력화하는 **암호화 파기** (Crypto-shredding) 자동화 파이프라인 구축.
-- 한계점 : UI/UX 설계 시 사용자 동의를 기만적으로 유도하는 **다크 패턴** (Dark Patterns: 교묘한 기본값 유도, 탈퇴 숨김) 만연.
+- 한계점 : UI(User Interface)/UX(User Experience) 설계 시 사용자 동의를 기만적으로 유도하는 **다크 패턴** (Dark Patterns: 교묘한 기본값 유도, 탈퇴 숨김) 만연.
   - 해결 방안 : Privacy by Default 원칙을 UI/UX 가이드라인에 강제 반영하고, 개인정보보호위원회 다크패턴 방지 가이드라인 준수 여부를 정기 검수.
 
 ## Ⅴ. 개인정보보호 중심 설계(Privacy by Design) 적용 및 발전을 위한 기술사적 제언
 
 - **기획 단계부터 DPIA 및 데이터 최소화** 체계 도입 : 기획 단계부터 DPIA 및 데이터 최소화 기술을 적극 적용하여 보안 취약점을 차단하고 시스템 신뢰성을 보장해야 함.
 - **Privacy by Default** (비공개 기본값) 체계 도입 : Privacy by Default (비공개 기본값) 기술을 적극 적용하여 보안 취약점을 차단하고 시스템 신뢰성을 보장해야 함.
-- **전주기 PET 적용 및 Crypto-shredding** 체계 도입 : 전주기 PET 적용 및 Crypto-shredding 기술을 적극 적용하여 보안 취약점을 차단하고 시스템 신뢰성을 보장해야 함.
+- **전주기 PET(Privacy-Enhancing Technology) 적용 및 Crypto-shredding** 체계 도입 : 전주기 PET 적용 및 Crypto-shredding 기술을 적극 적용하여 보안 취약점을 차단하고 시스템 신뢰성을 보장해야 함.

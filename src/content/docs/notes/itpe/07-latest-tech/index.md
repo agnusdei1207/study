@@ -32,7 +32,7 @@ weight: 7
                   규제·표준·책임·준거성
 ```
 
-- 현재 과목 역할: 앞선 과목의 기반기술을 AI·에이전트·산업 서비스로 조합하고 가치·위험·운영 모델까지 연결
+- 현재 과목 역할: 앞선 과목의 기반기술을 AI(Artificial Intelligence)·에이전트·산업 서비스로 조합하고 가치·위험·운영 모델까지 연결
 - 연계 축: `03 데이터 품질 → 07 모델 학습·평가 → 06 보안·신뢰 → 01 거버넌스 → 08 법·윤리`
 
 ## 07 최신기술 확대 지도
@@ -96,13 +96,13 @@ weight: 7
 | 2 | AI 학습용 데이터 품질 | [보기](./002_ai_training_data_quality_management/) |
 | 3 | 분류 모델 성능지표 | [보기](./003_confusion_matrix/) |
 | 4 | AI 데이터센터 | [보기](./004_ai_data_center/) |
-| 5 | RAG | [보기](./005_rag/) |
+| 5 | RAG(Retrieval-Augmented Generation) | [보기](./005_rag/) |
 | 6 | 기계학습 | [보기](./007_machine_learning/) |
 | 7 | 생성형 AI | [보기](./009_generative_ai/) |
 | 8 | 과적합·과소적합 | [보기](./010_overfitting/) |
 | 9 | AI 전환 | [보기](./012_ax/) |
 | 10 | AI 리스크 | [보기](./018_ai_risk/) |
-| 11 | LLM 도입 아키텍처 | [보기](./019_llm_adoption_architecture/) |
+| 11 | LLM(Large Language Model) 도입 아키텍처 | [보기](./019_llm_adoption_architecture/) |
 | 12 | 멀티에이전트 시스템 | [보기](./025_multi_agent_system/) |
 | 13 | 피지컬 AI | [보기](./029_physical_ai/) |
 | 14 | 에이전틱 AI | [보기](./035_agentic_ai/) |

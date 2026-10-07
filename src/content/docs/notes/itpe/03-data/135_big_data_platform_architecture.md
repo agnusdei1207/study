@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 전사 데이터 파이프라인의 총체, 빅데이터 플랫폼 아키텍처 개요
 
 ### 가. 빅데이터 플랫폼 아키텍처의 정의
-- **빅데이터 플랫폼 아키텍처** : 다양한 원천 시스템(RDBMS, IoT 센서, 로그, 외부 API 등)에서 발생하는 대규모 **정형·반정형·비정형** 데이터를 실시간 및 배치로 수집하여, 안전하게 저장·관리하고, 대용량 분산 병렬 엔진으로 처리·분석하여, 최종 비즈니스 애플리케이션 및 AI 모델에 전달하기 위한 엔드투엔드 하드웨어·소프트웨어 통합 기술 구조.
+- **빅데이터 플랫폼 아키텍처** : 다양한 원천 시스템(RDBMS(Relational Database Management System), IoT(Internet of Things) 센서, 로그, 외부 API(Application Programming Interface) 등)에서 발생하는 대규모 **정형·반정형·비정형** 데이터를 실시간 및 배치로 수집하여, 안전하게 저장·관리하고, 대용량 분산 병렬 엔진으로 처리·분석하여, 최종 비즈니스 애플리케이션 및 AI(Artificial Intelligence) 모델에 전달하기 위한 엔드투엔드 하드웨어·소프트웨어 통합 기술 구조.
 
 ---
 
@@ -45,9 +45,9 @@ extra:
 
 | 계층 (Layer) | 주요 기술 컴포넌트 | 핵심 기능 및 아키텍처 요구사항 |
 | :--- | :--- | :--- |
-| **1. 데이터 원천** | Oracle, PostgreSQL, 모바일 앱, 센서 | 다양한 이종 프로토콜(JDBC, HTTP, MQTT) 지원 |
-| **2. 수집 및 버퍼** | **Apache Kafka, Debezium, Vector** | 고속 트래픽 완충, 트랜잭션 CDC 무손실 추출, 프로듀서 역압(Backpressure) 제어 |
-| **3. 통합 스토리지** | **Apache Iceberg, AWS S3, Delta Lake** | 저비용 무제한 확장, Parquet 컬럼형 압축, ACID 트랜잭션 및 타임 트래블 보장 |
+| **1. 데이터 원천** | Oracle, PostgreSQL, 모바일 앱, 센서 | 다양한 이종 프로토콜(JDBC, HTTP(Hypertext Transfer Protocol), MQTT(Message Queuing Telemetry Transport)) 지원 |
+| **2. 수집 및 버퍼** | **Apache Kafka, Debezium, Vector** | 고속 트래픽 완충, 트랜잭션 CDC(Change Data Capture) 무손실 추출, 프로듀서 역압(Backpressure) 제어 |
+| **3. 통합 스토리지** | **Apache Iceberg, AWS(Amazon Web Services) S3(Simple Storage Service), Delta Lake** | 저비용 무제한 확장, Parquet 컬럼형 압축, ACID(Atomicity, Consistency, Isolation, Durability) 트랜잭션 및 타임 트래블 보장 |
 | **4. 연산 및 처리** | **Apache Spark, Apache Flink, Trino** | 인메모리 분산 병렬 연산, 마이크로배치 및 연속 스트림 통합 처리 |
 | **5. 분석 및 서빙** | **PostgreSQL, Redis, ClickHouse, Metabase** | 최종 사용자를 위한 서브세컨드(Sub-second) 고속 조회 및 API 제공 |
 
@@ -57,8 +57,8 @@ extra:
 
 ### 가. 메타데이터 및 거버넌스 횡단 계층
 - **데이터 카탈로그 (DataHub, Amundsen)** : 전사 테이블의 위치, 스키마, 소유자 및 비즈니스 용어 검색.
-- **데이터 계보 (OpenLineage, dbt)** : 원천 테이블부터 최종 마트 대시보드까지의 데이터 흐름 DAG 자동 시각화.
-- **보안 및 접근 제어 (Apache Ranger)** : 단일 지점에서 데이터 마스킹 및 RBAC 정책 일괄 배포.
+- **데이터 계보 (OpenLineage, dbt)** : 원천 테이블부터 최종 마트 대시보드까지의 데이터 흐름 DAG(Directed Acyclic Graph) 자동 시각화.
+- **보안 및 접근 제어 (Apache Ranger)** : 단일 지점에서 데이터 마스킹 및 RBAC(Role-Based Access Control) 정책 일괄 배포.
 
 ### 나. DataOps 파이프라인 오케스트레이션
 - **Apache Airflow / Dagster** : 의존성 기반의 워크플로우 스케줄링, 실패 시 자동 재시도 및 슬랙 알림.
@@ -79,5 +79,5 @@ extra:
 
 ## Ⅴ. 현대적 빅데이터 플랫폼 진화를 위한 실무 제언
 
-- **레이크하우스** (Lakehouse)로의 아키텍처 단일화 : 과거 DW와 데이터 레이크를 이원화하여 발생했던 데이터 중복과 정합성 불일치를 해소하기 위해, S3 위에 Apache Iceberg를 표준 스토리지 계층으로 선언하고 단일 스토리지 위에서 DW와 AI 워크로드를 모두 처리하는 레이크하우스로 수렴해야 함.
+- **레이크하우스** (Lakehouse)로의 아키텍처 단일화 : 과거 DW(Data Warehouse)와 데이터 레이크를 이원화하여 발생했던 데이터 중복과 정합성 불일치를 해소하기 위해, S3 위에 Apache Iceberg를 표준 스토리지 계층으로 선언하고 단일 스토리지 위에서 DW와 AI 워크로드를 모두 처리하는 레이크하우스로 수렴해야 함.
 - 도메인 중심 Data Mesh로의 조직 및 플랫폼 전환 : 중앙 데이터팀이 전사 수천 개 파이프라인의 병목이 되는 모놀리식 실패를 방지하기 위해, 플랫폼 엔지니어는 셀프서비스 데이터 인프라(Data Platform as a Service)만 제공하고 각 도메인 팀이 자체 파이프라인을 구축·소유하는 **Data Mesh** 아키텍처로 전환할 것을 제언함.

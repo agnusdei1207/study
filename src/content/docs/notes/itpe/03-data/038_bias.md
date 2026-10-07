@@ -45,7 +45,7 @@ extra:
 | **데이터 수집** | **선택 편향 (Selection Bias)** | 특정 특성을 가진 집단이 표본에 체계적으로 과소/과대 포함됨 (예: 인터넷 여론조사) | 전체 모집단의 의사를 대변하지 못하는 왜곡된 결론 도출 |
 | **데이터 수집** | **생존자 편향 (Survivorship Bias)** | 실패하거나 중도 탈락한 대상을 배제하고 생존한 데이터만을 분석 (예: 귀환 전투기 탄흔) | 성공 요인을 오판하여 치명적인 의사결정 오류 야기 |
 | **머신러닝** | **귀납적 편향 (Inductive Bias)** | 학습 알고리즘이 미래 데이터를 예측하기 위해 사전 전제하는 가설의 집합 (예: 선형성 가정) | 모델의 표현력 제한, 복잡한 비선형 관계 학습 불가 |
-| **머신러닝** | **알고리즘적 편향 (Algorithmic Bias)** | 채용 AI, 신용평가 모델이 특정 인종, 성별에 대해 차별적 결과를 지속 도출 | 기업의 법적 책임(AI 기본법 위반) 및 사회적 신뢰 실추 |
+| **머신러닝** | **알고리즘적 편향 (Algorithmic Bias)** | 채용 AI(Artificial Intelligence), 신용평가 모델이 특정 인종, 성별에 대해 차별적 결과를 지속 도출 | 기업의 법적 책임(AI 기본법 위반) 및 사회적 신뢰 실추 |
 
 ---
 
@@ -77,7 +77,7 @@ $$\text{Total Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Noise
 
 - 편향-분산 상충(Bias-Variance Trade-off)의 근본적 제약 :
   - 한계점 : 모델의 편향을 줄여 훈련 데이터에 완벽히 맞추려 하면 분산이 증가하여 과적합(Overfitting)이 발생하고, 반대의 경우 과소적합 발생.
-  - 해결 방안 : 적정 복잡도의 앙상블 기법(Random Forest, Gradient Boosting) 채택, 교차 검증(K-Fold CV) 및 정규화(L1/L2 Regularization)를 통한 일반화 오차 최소화.
+  - 해결 방안 : 적정 복잡도의 앙상블 기법(Random Forest, Gradient Boosting) 채택, 교차 검증(K-Fold CV, Cross-Validation) 및 정규화(L1/L2 Regularization)를 통한 일반화 오차 최소화.
 - 역사적 데이터 자체에 내재된 사회적 편향(Historical Bias) 학습 :
   - 한계점 : 채용, 대출 심사 등 과거의 편견이나 불평등이 반영된 학습 데이터를 사용할 경우 AI 모델이 차별적 패턴을 영속화하고 증폭하는 한계.
   - 해결 방안 : 공정성(Fairness) 지표(Equal Opportunity, Demographic Parity) 모니터링, 재가중치 부여(Reweighting) 및 적대적 탈편향(Adversarial Debiasing) 알고리즘 적용.
@@ -90,4 +90,4 @@ $$\text{Total Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Noise
 ## Ⅴ. 편향 완화 및 AI 신뢰성 확보를 위한 실무 제언
 
 - 데이터 수집 단계의 감사(Audit) 프로세스 : 수집된 데이터셋의 성별, 연령, 지역 등 보호 속성(Protected Attributes) 분포를 인구통계학적 기준과 대조하여 불균형 발생 시 재가중치(Reweighting) 또는 리샘플링 적용.
-- 공정성 메트릭(Fairness Metrics) 모니터링 : 균등 기회(Equal Opportunity), 인구통계학적 동등성(Demographic Parity) 등 정량적 공정성 지표를 ML 파이프라인의 배포 승인 게이트에 포함할 것을 제언함.
+- 공정성 메트릭(Fairness Metrics) 모니터링 : 균등 기회(Equal Opportunity), 인구통계학적 동등성(Demographic Parity) 등 정량적 공정성 지표를 ML(Machine Learning) 파이프라인의 배포 승인 게이트에 포함할 것을 제언함.

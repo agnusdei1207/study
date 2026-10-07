@@ -54,7 +54,7 @@ extra:
 
 - **코드 세그먼트 (Text/Code)** : 컴파일된 기계어 명령어가 적재되는 영역으로, 코드 변조를 막기 위해 읽기 전용(Read-Only) 및 실행 가능(R-X) 권한 부여.
 - **데이터 세그먼트 (Data)** : 프로그램 시작 시 초기값이 명시된 전역 변수와 static 변수 저장(초기화된 데이터).
-- **BSS 세그먼트 (Block Started by Symbol)** : 초기화되지 않은 전역/static 변수들이 위치하며, 파일 용량을 줄이기 위해 실행 파일에는 크기 정보만 있고 메모리 적재 시 OS가 0으로 자동 초기화.
+- **BSS 세그먼트 (Block Started by Symbol)** : 초기화되지 않은 전역/static 변수들이 위치하며, 파일 용량을 줄이기 위해 실행 파일에는 크기 정보만 있고 메모리 적재 시 OS(Operating System)가 0으로 자동 초기화.
 - **힙 세그먼트 (Heap)** : 프로그래머가 런타임에 동적으로 할당(`malloc()`, `new`)하는 공간으로 낮은 주소에서 높은 주소 방향으로 동적 성장.
 - **스택 세그먼트 (Stack)** : 함수 호출 시 생성되는 활성화 레코드(스택 프레임: 지역 변수, 복귀 주소)를 저장하며 높은 주소에서 낮은 주소로 역방향 성장.
 
@@ -65,8 +65,8 @@ extra:
 | **Text (Code)** | 프로세스 로드 시 | 프로세스 종료 시 | 고정 크기 | 실행 기계어 명령어, 리터럴 상수 |
 | **Data** | 프로세스 로드 시 | 프로세스 종료 시 | 고정 크기 | 초기화된 전역 변수, static 변수 |
 | **BSS** | 프로세스 로드 시 | 프로세스 종료 시 | 고정 크기 (0 초기화)| 초기값 없는 전역 변수, static 변수 |
-| **Heap** | 런타임 동적 할당 | 명시적 free() 또는 GC | 낮은 주소 -> 높은 주소 | 동적 생성 객체, 런타임 버퍼 |
-| **Stack** | 함수 호출 시 | 함수 반환(return) 시 | 높은 주소 -> 낮은 주소 | 지역 변수, 파라미터, 복귀 주소(EIP) |
+| **Heap** | 런타임 동적 할당 | 명시적 free() 또는 GC(Garbage Collection) | 낮은 주소 -> 높은 주소 | 동적 생성 객체, 런타임 버퍼 |
+| **Stack** | 함수 호출 시 | 함수 반환(return) 시 | 높은 주소 -> 낮은 주소 | 지역 변수, 파라미터, 복귀 주소(EIP, Extended Instruction Pointer) |
 
 - 스택과 힙은 서로 마주 보고 자라나므로 공간이 충돌하는 스택 오버플로우나 힙 오버플로우를 감지하기 위해 가드 페이지(Guard Page)가 중간에 배치됨.
 
@@ -74,16 +74,16 @@ extra:
 
 - 스택 기반 **버퍼 오버플로우(Buffer Overflow)** 공격 :
   - 한계점 : 스택 프레임 내의 배열 경계 검사 미흡 시 입력 데이터를 넘쳐 쓰게 하여 복귀 주소(Return Address)를 악성 쉘코드로 변조.
-  - 해결 방안 : 스택 카나리(Stack Canary: 복귀 주소 앞 무작위 값 검증), DEP/NX 비트(스택 영역 실행 권한 박탈), ASLR(주소 공간 무작위화) 활성화.
+  - 해결 방안 : 스택 카나리(Stack Canary: 복귀 주소 앞 무작위 값 검증), DEP(Data Execution Prevention)/NX(No-eXecute) 비트(스택 영역 실행 권한 박탈), ASLR(Address Space Layout Randomization, 주소 공간 무작위화) 활성화.
 - 힙 메모리 단편화 및 **메모리 누수(Memory Leak)** :
   - 한계점 : 동적 메모리 할당 후 `free()` 누락 시 힙 공간이 지속적으로 고갈되어 장기 운영 프로세스 크래시.
   - 해결 방안 : 스마트 포인터(`std::unique_ptr`, `shared_ptr`) 사용 강제, Valgrind 및 ASan(AddressSanitizer) 빌드 시 정적 검증.
 - 커널 공간 침범 취약점 (Meltdown / Spectre) :
-  - 한계점 : CPU의 비순차적 명령어 실행(Out-of-order) 및 투기적 실행(Speculative Execution) 취약점을 이용해 유저 모드에서 커널 메모리 캐시 데이터를 탈취.
+  - 한계점 : CPU(Central Processing Unit)의 비순차적 명령어 실행(Out-of-order) 및 투기적 실행(Speculative Execution) 취약점을 이용해 유저 모드에서 커널 메모리 캐시 데이터를 탈취.
   - 해결 방안 : 커널 페이지 테이블 격리(KPTI: Kernel Page Table Isolation) 적용 및 최신 마이크로코드 패치.
 
 ## Ⅴ. 프로세스 메모리 구조 적용 및 발전을 위한 기술사적 제언
 
 - 컴파일러 보안 강화 플래그 전사 의무화 : C/C++ 프로젝트 빌드 시 `-fstack-protector-strong`, `-D_FORTIFY_SOURCE=2`, `-Wl,-z,relro,-z,now` 플래그를 기본 적용하여 메모리 오염 공격 사전 봉쇄.
 - **ASLR(Address Space Layout Randomization)** 엔트로피 확인 : 서버 부팅 시 스택, 힙, 라이브러리 매핑 주소가 고도의 무작위성으로 배치되도록 OS 설정(`sysctl kernel.randomize_va_space=2`) 상시 점검.
-- Rust 등 **메모리 안전(Memory-safe)** 언어 도입 확대 : 미국 CISA 및 글로벌 사이버 안보 권고에 맞추어 포인터 오류와 데이터 레이스를 컴파일 타임에 원천 차단하는 Rust 언어로 코어 모듈 점진적 전환 추진.
+- Rust 등 **메모리 안전(Memory-safe)** 언어 도입 확대 : 미국 CISA(Cybersecurity and Infrastructure Security Agency) 및 글로벌 사이버 안보 권고에 맞추어 포인터 오류와 데이터 레이스를 컴파일 타임에 원천 차단하는 Rust 언어로 코어 모듈 점진적 전환 추진.

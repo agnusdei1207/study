@@ -60,12 +60,12 @@ extra:
   - 해결 방안 : 돌연변이 연산자 선별(Selective Mutation) 적용, 극단적 돌연변이(Extreme Mutation) 기법 및 바이트코드 레벨 인라인 테스트 최적화.
 - 등가 변이체(Equivalent Mutants) 판별의 난제 :
   - 한계점 : 코드 문법은 변형되었으나 원본 코드와 실질적으로 동일한 결과를 반환하는 등가 변이체로 인해 뮤테이션 점수 왜곡 및 수작업 분석 공수 낭비.
-  - 해결 방안 : 정적 분석 AST 기반 등가 패턴 사전 필터링 도구(PITest 등) 연동, 컴파일러 최적화 결과물 비교를 통한 자동 등가 변이체 식별.
-- CI/CD 파이프라인 통합 시 빌드 지연 발생 :
+  - 해결 방안 : 정적 분석 AST(Abstract Syntax Tree) 기반 등가 패턴 사전 필터링 도구(PITest 등) 연동, 컴파일러 최적화 결과물 비교를 통한 자동 등가 변이체 식별.
+- CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 통합 시 빌드 지연 발생 :
   - 한계점 : 커밋마다 뮤테이션 테스트를 전수 수행하면 지속적 통합의 핵심인 빠른 피드백 루프(10분 이내 빌드)가 붕괴됨.
-  - 해결 방안 : Git diff 기반 증분 뮤테이션 테스팅(Incremental Mutation Testing) 적용, PR 단계에서는 변경 코드만 검증하고 야간 배치(Nightly Build)로 전수 검증 이원화.
+  - 해결 방안 : Git diff 기반 증분 뮤테이션 테스팅(Incremental Mutation Testing) 적용, PR(Pull Request) 단계에서는 변경 코드만 검증하고 야간 배치(Nightly Build)로 전수 검증 이원화.
 
 ## Ⅴ. 고신뢰성 소프트웨어 검증을 위한 기술사적 제언
 
 - 피트(Pitest) 등 자동화 도구 기반의 CI 파이프라인 연계 : 자바 생태계의 대표적 뮤테이션 도구인 PITest를 활용하여 PR 검증 시 주요 비즈니스 도메인 모듈에 대해 뮤테이션 점수 목표 수준 이상을 품질 게이트로 설정.
-- 테스트 실행 시간 폭증(High Computational Cost) 완화 전략 : 수천 개의 변이체 생성 시 테스트 시간이 기하급수적으로 증가하므로, 바이트코드 레벨 변이 조작, 변경된 파일 대상의 점진적 변이(Incremental Mutation), 다중 CPU 코어 병렬 실행 기법을 결합하여 실행 효율성 확보 필수.
+- 테스트 실행 시간 폭증(High Computational Cost) 완화 전략 : 수천 개의 변이체 생성 시 테스트 시간이 기하급수적으로 증가하므로, 바이트코드 레벨 변이 조작, 변경된 파일 대상의 점진적 변이(Incremental Mutation), 다중 CPU(Central Processing Unit) 코어 병렬 실행 기법을 결합하여 실행 효율성 확보 필수.

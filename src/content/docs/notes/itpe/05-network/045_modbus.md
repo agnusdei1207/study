@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. MODBUS의 개요
 
-- 개념 : 1979년 Modicon(현 Schneider Electric)이 **PLC** 간 통신을 위해 개발한 산업용 **마스터-슬레이브(Master-Slave / Client-Server)** 기반 **응용 계층** 통신 프로토콜.
+- 개념 : 1979년 Modicon(현 Schneider Electric)이 **PLC**(Programmable Logic Controller) 간 통신을 위해 개발한 산업용 **마스터-슬레이브(Master-Slave / Client-Server)** 기반 **응용 계층** 통신 프로토콜.
 - 배경 및 필요성 : 스마트 공장 및 플랜트의 다양한 센서, 액추에이터, 계측기기, PLC 장비 간에 벤더 종속 없이 데이터를 모니터링하고 제어하기 위한 **개방형 표준 프로토콜** 요구 증대.
 - 핵심 목적 : 구조가 단순하고 구현이 용이한 산업 표준 제어 인터페이스 제공, 시리얼(RS-232/485) 및 **산업용 이더넷** 환경을 포괄하는 장비 제어 데이터 교환.
 
@@ -51,12 +51,12 @@ extra:
 
 ## Ⅲ. MODBUS 전송 모드별 세부 비교 분석
 
-| 비교 항목 | MODBUS RTU | MODBUS ASCII | MODBUS TCP |
+| 비교 항목 | MODBUS RTU | MODBUS ASCII | MODBUS TCP(Transmission Control Protocol) |
 |---|---|---|---|
-| 물리 계층 | RS-485 / RS-422 / RS-232 | RS-485 / RS-232 | Ethernet (IEEE 802.3) |
+| 물리 계층 | RS-485 / RS-422 / RS-232 | RS-485 / RS-232 | Ethernet (IEEE(Institute of Electrical and Electronics Engineers) 802.3) |
 | 전송 계층 | 시리얼 통신 직접 | 시리얼 통신 직접 | TCP/IP (Port 502) |
 | 데이터 인코딩 | 8비트 바이너리 (Binary) | 2바이트 ASCII 문자열 | 8비트 바이너리 (Binary) |
-| 에러 검출 | CRC-16 (Cyclic Redundancy) | LRC (Longitudinal Redundancy) | TCP 체크섬 + 이더넷 FCS |
+| 에러 검출 | CRC(Cyclic Redundancy Check)-16 (Cyclic Redundancy) | LRC (Longitudinal Redundancy Check) | TCP 체크섬 + 이더넷 FCS |
 | 프레임 구분 | 3.5 문자 시간의 무음(Silent) | 시작 콜론(`:`), 종료 CR/LF | MBAP 헤더의 길이 필드 |
 | 전송 효율 | 높음 (컴팩트 바이너리) | 낮음 (데이터량 2배) | 매우 높음 (고속 이더넷) |
 
@@ -66,13 +66,13 @@ extra:
 
 - 인증 및 암호화 부재로 인한 심각한 사이버 보안 취약성 :
   - 한계점 : 평문(Cleartext) 전송 및 접근 제어 부재로 스니핑, 비인가 레지스터 변조, 리플레이 공격, 스턱스넷(Stuxnet) 류의 제어 명령 위조에 완전 무방비.
-  - 해결 방안 : TLS 암호화 및 X.509 상호 인증이 결합된 Modbus TCP Security(포트 802) 표준 적용, OT 전용 산업용 방화벽 심층 패킷 검사(DPI) 도입.
+  - 해결 방안 : TLS(Transport Layer Security) 암호화 및 X.509 상호 인증이 결합된 Modbus TCP Security(포트 802) 표준 적용, OT(Operational Technology) 전용 산업용 방화벽 심층 패킷 검사(DPI, Deep Packet Inspection) 도입.
 - 슬레이브의 비동기적 긴급 이벤트 전송 불가 (Polling 한계) :
   - 한계점 : 마스터의 폴링 없이는 슬레이브에 알람이나 긴급 장애가 발생해도 마스터에 자발적 통보 불가로 실시간성 저하.
-  - 해결 방안 : 긴급 알람 감시가 필요한 계통에는 이벤트 기반 푸시가 가능한 MQTT, OPC-UA, CoAP 프로토콜로 점진적 전환 또는 게이트웨이 연계.
+  - 해결 방안 : 긴급 알람 감시가 필요한 계통에는 이벤트 기반 푸시가 가능한 MQTT(Message Queuing Telemetry Transport), OPC(Open Platform Communications)-UA(Unified Architecture), CoAP(Constrained Application Protocol) 프로토콜로 점진적 전환 또는 게이트웨이 연계.
 
 ## Ⅴ. MODBUS 적용 및 발전을 위한 기술사적 제언
 
 - 레거시 OT 망의 제로 트러스트(Zero Trust) 격리 : 현장에 기 설치된 수많은 레거시 MODBUS RTU/TCP 장비를 전면 교체하기 어려우므로, OT 마이크로 세그멘테이션 및 일방향 전송 장비(데이터 다이오드) 배치 의무화.
-- OPC-UA 기반의 스마트 제조 표준 통일 : 필드 레벨의 단순 I/O는 MODBUS를 유지하되, MES/SCADA 및 클라우드 연동 상위 레벨은 보안과 시맨틱 모델링이 우수한 OPC-UA로 캡슐화 변환.
-- 산업 안전 규격(IEC 62443) 준수 체계화 : MODBUS 통신 구간 전체에 대해 위험성 평가를 수행하고, 시스템 보안 수준(Security Level) 목표에 맞춘 암호화 터널링(IPsec/MACsec) 강제.
+- OPC-UA 기반의 스마트 제조 표준 통일 : 필드 레벨의 단순 I/O는 MODBUS를 유지하되, MES(Manufacturing Execution System)/SCADA(Supervisory Control and Data Acquisition) 및 클라우드 연동 상위 레벨은 보안과 시맨틱 모델링이 우수한 OPC-UA로 캡슐화 변환.
+- 산업 안전 규격(IEC(International Electrotechnical Commission) 62443) 준수 체계화 : MODBUS 통신 구간 전체에 대해 위험성 평가를 수행하고, 시스템 보안 수준(Security Level) 목표에 맞춘 암호화 터널링(IPsec/MACsec) 강제.

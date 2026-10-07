@@ -41,7 +41,7 @@ extra:
 | :--- | :--- | :--- |
 | **입력 척도 유형** | 구간 척도(Interval), 비율 척도(Ratio) | 순서 척도(Ordinal, 서열 데이터) |
 | **거리 적합 원리** | $d_{ij} \approx f(\delta_{ij})$ (선형 관계 적합) | $\delta_{ij} < \delta_{kl} \implies d_{ij} \le d_{kl}$ (단조 회귀) |
-| **수학적 해법** | B-행렬의 **고유값 분해** (Classical MDS / PCoA) | **크러스칼 스트레스** (Kruskal Stress) 최소화 **경사하강법** |
+| **수학적 해법** | B-행렬의 **고유값 분해** (Classical MDS / PCoA, Principal Coordinates Analysis) | **크러스칼 스트레스** (Kruskal Stress) 최소화 **경사하강법** |
 | **적용 사례** | 도시 간 실제 지리적 도로 주행 거리 데이터 | 소비자 설문조사의 스마트폰 브랜드 간 선호도 순위 |
 
 ---
@@ -68,7 +68,7 @@ $$Stress = \sqrt{\frac{\sum_{i < j} (d_{ij} - \hat{d}_{ij})^2}{\sum_{i < j} d_{i
 
 - 거리 행렬 계산 및 고유값 분해의 시간 복잡도($O(N^3)$ 또는 $O(N^2)$) :
   - 한계점 : 객체 수($N$)가 수만 건 이상으로 증가할 경우 개체 간 거리 행렬 연산과 스트레스(Stress) 함수 최적화에 필요한 메모리 및 연산량이 폭증하여 대규모 데이터 처리 불가.
-  - 해결 방안 : **랜드마크 MDS** (Landmark MDS: 대표 포인트 샘플링 후 근사 매핑) 적용, Barnes-Hut **t-SNE** 또는 **UMAP**과 같은 현대적 그래프 기반 고속 차원 축소 기법으로 대체.
+  - 해결 방안 : **랜드마크 MDS** (Landmark MDS: 대표 포인트 샘플링 후 근사 매핑) 적용, Barnes-Hut **t-SNE**(t-distributed Stochastic Neighbor Embedding) 또는 **UMAP**(Uniform Manifold Approximation and Projection)과 같은 현대적 그래프 기반 고속 차원 축소 기법으로 대체.
 - **국소 최적해** (Local Minima) 수렴 및 초기 배치 민감성 :
   - 한계점 : 비계량적 MDS(Non-metric MDS)의 경사하강법 최적화 과정에서 초기 점 배치에 따라 국소 최저점에 갇혀 실제 인지적 구조와 왜곡된 저차원 맵 생성.
   - 해결 방안 : 고전적 주성분 분석(Classical Scaling) 결과를 초기 좌표로 지정, 다중 무작위 시작(Multi-start) 및 **모의 담금질** (Simulated Annealing) 최적화 결합.

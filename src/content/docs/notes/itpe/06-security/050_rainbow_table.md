@@ -62,8 +62,8 @@ extra:
 
 - **암호학적 솔트** (Cryptographic Salt) 적용 시 테이블 완전 무력화 :
   - 한계점 : 비밀번호마다 128비트 이상의 무작위 난수(Salt)를 결합하여 해시하면, 공격자가 각 솔트값마다 별도의 레인보우 테이블을 새로 생성해야 하므로 사전 계산 불가능.
-  - 해결 방안 : 모든 패스워드 해싱 시 사용자별 고유한 **CSPRNG** (암호학적으로 안전한 의사난수) 기반 128비트 이상 Salt를 반드시 적용.
-- 단순 고속 해시(MD5, SHA-256)의 **GPU 클러스터 병렬 연산** 취약성 :
+  - 해결 방안 : 모든 패스워드 해싱 시 사용자별 고유한 **CSPRNG** (Cryptographically Secure Pseudorandom Number Generator, 암호학적으로 안전한 의사난수) 기반 128비트 이상 Salt를 반드시 적용.
+- 단순 고속 해시(MD5(Message Digest 5), SHA(Secure Hash Algorithm)-256)의 **GPU(Graphics Processing Unit) 클러스터 병렬 연산** 취약성 :
   - 한계점 : SHA-256 등 범용 해시는 하드웨어 연산에 최적화되어 있어, 고성능 GPU 클러스터로 초당 대량의 해시를 연산하여 실시간 전수 공격 가능.
   - 해결 방안 : **메모리 집약적** (Memory-Hard)이고 연산 비용이 높은 표준 KDF인 Argon2id, bcrypt, PBKDF2를 적용하여 GPU 가속 무력화.
 - **체인 병합** (Chain Collision / Merge)으로 인한 탐색 실패율 존재 :
@@ -72,6 +72,6 @@ extra:
 
 ## Ⅴ. 레인보우 테이블(Rainbow Table) 적용 및 발전을 위한 기술사적 제언
 
-- 레거시 단방향 해시 알고리즘 전면 교체 : DB 내에 MD5, SHA-1, 솔트 없는 SHA-256으로 저장된 비밀번호 컬럼을 탐지하여 Argon2id로 강제 마이그레이션.
+- 레거시 단방향 해시 알고리즘 전면 교체 : DB(Database) 내에 MD5, SHA-1, 솔트 없는 SHA-256으로 저장된 비밀번호 컬럼을 탐지하여 Argon2id로 강제 마이그레이션.
 - **키 스트레칭** (Key Stretching) 반복 횟수(Work Factor) 최적화 : PBKDF2 적용 시 충분히 높은 반복 횟수, bcrypt cost 파라미터도 충분히 높게 설정하여 연산 지연 유도.
-- 비밀번호 복잡도 정책 및 유출 크리덴셜 차단 : 8자리 단순 비밀번호를 금지하고, Have I Been Pwned API와 연계하여 이미 다크웹에 유출된 비밀번호 사용을 등록 시점에 차단.
+- 비밀번호 복잡도 정책 및 유출 크리덴셜 차단 : 8자리 단순 비밀번호를 금지하고, Have I Been Pwned API(Application Programming Interface)와 연계하여 이미 다크웹에 유출된 비밀번호 사용을 등록 시점에 차단.

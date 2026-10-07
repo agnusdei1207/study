@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. BERT(Bidirectional Encoder Representations from Transformers)의 개요
 
-- 개념 : **트랜스포머** (Transformer)의 인코더 블록을 기반으로 하여, 입력 문장의 좌우 **양방향** (Bidirectional) 문맥을 동시에 참조하여 **사전학습** (Pre-training)하는 언어 이해(NLU) 특화 딥러닝 모델
-- 배경 및 필요성 : 자기회귀 생성이 불가능하고 사전학습과 미세조정 간 마스크 불일치가 존재하므로 문서 이해 및 검색 리랭커 전담 배치와 **RoBERTa** 동적 마스킹 기법 결합 필수
-- 핵심 목적 : 단방향 언어 모델의 문맥 단절 한계 극복, **마스크 언어 모델** (MLM)과 **다음 문장 예측** (NSP)을 통한 범용 언어 표현 학습 및 분류·개체명 인식·검색 등 다운스트림 태스크 성능 극대화
+- 개념 : **트랜스포머** (Transformer)의 인코더 블록을 기반으로 하여, 입력 문장의 좌우 **양방향** (Bidirectional) 문맥을 동시에 참조하여 **사전학습** (Pre-training)하는 언어 이해(NLU, Natural Language Understanding) 특화 딥러닝 모델
+- 배경 및 필요성 : 자기회귀 생성이 불가능하고 사전학습과 미세조정 간 마스크 불일치가 존재하므로 문서 이해 및 검색 리랭커 전담 배치와 **RoBERTa**(Robustly Optimized BERT Pretraining Approach) 동적 마스킹 기법 결합 필수
+- 핵심 목적 : 단방향 언어 모델의 문맥 단절 한계 극복, **마스크 언어 모델** (MLM, Masked Language Model)과 **다음 문장 예측** (NSP, Next Sentence Prediction)을 통한 범용 언어 표현 학습 및 분류·개체명 인식·검색 등 다운스트림 태스크 성능 극대화
 
 ## Ⅱ. BERT(Bidirectional Encoder Representations from Transformers)의 핵심 아키텍처 및 동작 메커니즘
 
-BERT는 3중 임베딩(Token+Segment+Position) 결합 → 마스크 언어 모델(MLM) 및 다음 문장 예측(NSP) 사전학습 → 하위 과업별 태스크 헤드 결합 **미세조정** (Fine-Tuning) 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+BERT(Bidirectional Encoder Representations from Transformers)는 3중 임베딩(Token+Segment+Position) 결합 → 마스크 언어 모델(MLM) 및 다음 문장 예측(NSP) 사전학습 → 하위 과업별 태스크 헤드 결합 **미세조정** (Fine-Tuning) 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -74,6 +74,6 @@ BERT는 3중 임베딩(Token+Segment+Position) 결합 → 마스크 언어 모�
 
 ## Ⅴ. BERT(Bidirectional Encoder Representations from Transformers) 적용 및 발전을 위한 기술사적 제언
 
-- 의도 분류 지연 절감 및 최적화 체계 구축 : LLM 생성 호출로 인한 지연의 한계를 탈피하고, BERT 인코더 경량 추론으로 빠른 완료를 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.
-- 검색 리랭킹 비용 절감 및 최적화 체계 구축 : 토큰당 과금으로 높은 API 비용의 한계를 탈피하고, 사내 BERT 리랭커로 무비용 초고속 처리를 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.
+- 의도 분류 지연 절감 및 최적화 체계 구축 : LLM(Large Language Model) 생성 호출로 인한 지연의 한계를 탈피하고, BERT 인코더 경량 추론으로 빠른 완료를 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.
+- 검색 리랭킹 비용 절감 및 최적화 체계 구축 : 토큰당 과금으로 높은 API(Application Programming Interface) 비용의 한계를 탈피하고, 사내 BERT 리랭커로 무비용 초고속 처리를 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.
 - 시스템 신뢰도 강화 및 신뢰성 확보 방안 : 프롬프트 기반 분류 시 환각 위험의 한계를 탈피하고, 소프트맥스 정량 확률 기반 완벽한 제어를 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.

@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. SOLID 원칙의 개요
 
-- 개념 : **로버트 C. 마틴** (Uncle Bob)이 정립한 객체지향 소프트웨어 설계의 5대 핵심 원칙으로, 유지보수가 용이하고 유연하며 확장에 열려 있는 객체지향 시스템을 구축하기 위한 아키텍처 설계 가이드라인.
+- 개념 : **로버트 C. 마틴** (Uncle Bob)이 정립한 객체지향 소프트웨어 설계의 5대 핵심 원칙으로, 유지보수가 용이하고 유연하며 확장에 열려 있는 객체지향 시스템을 구축하기 위한 아키텍처 설계 가이드라인 (SOLID: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion).
 - 배경 및 필요성 : 요구사항 변경에 취약한 소프트웨어의 **4대 악취** (경직성, 취약성, 부동성, 점착성)를 제거하고 지속 가능한 코드베이스를 확립.
-- 5대 원칙 구성 : SRP, OCP, LSP, ISP, DIP.
+- 5대 원칙 구성 : SRP, OCP, LSP, ISP(Interface Segregation Principle), DIP.
 
 ## Ⅱ. SOLID 5대 설계 원칙 체계 및 상호 작용
 
@@ -37,7 +37,7 @@ extra:
 
 | 원칙 | 핵심 개념 | 위반 징후 및 문제점 | 올바른 해결 설계 |
 |---|---|---|---|
-| **SRP** (Single Responsibility) | 한 클래스는 하나의 책임만 담당 | User 엔티티가 인증, DB 저장, 이메일 발송까지 모두 처리 | UserService, UserRepository, EmailSender로 책임 분리 |
+| **SRP** (Single Responsibility) | 한 클래스는 하나의 책임만 담당 | User 엔티티가 인증, DB(Database) 저장, 이메일 발송까지 모두 처리 | UserService, UserRepository, EmailSender로 책임 분리 |
 | **OCP** (Open-Closed) | 기존 코드 수정 없이 새 기능 확장 | 결제 수단 추가 시 기존 결제 메서드 내부에 if-else 추가 | PaymentStrategy 인터페이스 정의 후 구현 클래스 추가 |
 | **LSP** (Liskov Substitution) | 부모의 계약(사전/사후조건) 준수 | 정사각형(Square)이 직사각형(Rectangle)을 상속받아 너비/높이 규칙 위배 | 상속 대신 별도 인터페이스 분리 또는 **합성** (Composition) |
 | **ISP** (Interface Segregation) | 클라이언트 맞춤형 인터페이스 분리 | 복합기에 프린트만 필요한 클라이언트가 팩스/스캔 메서드까지 구현 강제 | Printable, Scannable, Faxable 인터페이스로 잘게 분리 |
@@ -46,7 +46,7 @@ extra:
 ## Ⅳ. SOLID 원칙의 주요 한계점 및 해결 방안
 
 - 원칙의 교조적 적용으로 인한 과도한 엔지니어링(Over-Engineering) :
-  - 한계점 : 단순한 CRUD 시스템이나 변경 가능성이 희박한 도메인에 SOLID를 맹목적으로 적용하여 불필요한 계층과 인터페이스가 양산되고 코드 복잡도 급증.
+  - 한계점 : 단순한 CRUD(Create, Read, Update, Delete) 시스템이나 변경 가능성이 희박한 도메인에 SOLID를 맹목적으로 적용하여 불필요한 계층과 인터페이스가 양산되고 코드 복잡도 급증.
   - 해결 방안 : YAGNI(You Aren't Gonna Need It) 및 KISS 원칙과의 균형 유지, 핵심 비즈니스 도메인과 변경 빈도가 높은 영역에 한정하여 선별적 적용.
 - 레거시 모놀리식 시스템에서의 SOLID 리팩토링 리스크 :
   - 한계점 : 클래스 간 강결합 및 스파게티 코드로 얽힌 대규모 레거시 코드에 DIP나 OCP를 무리하게 적용할 경우 예기치 않은 사이드 이펙트 및 회귀 버그 유발.
@@ -57,5 +57,5 @@ extra:
 
 ## Ⅴ. 클린 코드 및 아키텍처 관점의 기술사적 제언
 
-- DIP를 통한 고수준 비즈니스 로직의 인프라 독립성 확보 : 헥사고날 아키텍처의 포트-어댑터 구조를 적용하여 핵심 도메인은 오직 추상화된 포트에만 의존하게 하고, DB나 외부 API 같은 하위 구현체는 어댑터로 주입받음으로써 기술 스택 변경 시 도메인 무영향 달성.
+- DIP를 통한 고수준 비즈니스 로직의 인프라 독립성 확보 : 헥사고날 아키텍처의 포트-어댑터 구조를 적용하여 핵심 도메인은 오직 추상화된 포트에만 의존하게 하고, DB나 외부 API(Application Programming Interface) 같은 하위 구현체는 어댑터로 주입받음으로써 기술 스택 변경 시 도메인 무영향 달성.
 - 원칙의 교조주의적 적용 경계 : SOLID 원칙을 극단적으로 적용하여 클래스와 인터페이스를 과도하게 잘게 쪼개면 시스템의 파일 수와 간접 참조 계층이 폭증하여 오히려 가독성을 해칠 수 있으므로, 시스템의 변경 빈도와 복잡도에 비례하여 균형 있게 적용하는 아키텍처적 유연성 유지.

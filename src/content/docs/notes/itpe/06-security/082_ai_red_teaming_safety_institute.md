@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. AI 레드티밍 / AI안전연구소의 개요
 
-- 개념 : 공격자의 시각에서 AI 모델, 가드레일, 애플리케이션 인터페이스 및 **도구 호출** 전 영역의 잠재적 취약점을 적대적으로 시뮬레이션하여 검증하는 보안 체계.
-- 배경 및 필요성 : 생성형 AI 및 LLM의 **탈옥** (Jailbreak), 프롬프트 인젝션, 민감 데이터 유출, 편향 및 유해 정보 생성 등 AI 고유의 적대적 위협을 사전에 식별·검증하고 국가적 안전 기준을 수립하기 위해 출현함.
+- 개념 : 공격자의 시각에서 AI(Artificial Intelligence) 모델, 가드레일, 애플리케이션 인터페이스 및 **도구 호출** 전 영역의 잠재적 취약점을 적대적으로 시뮬레이션하여 검증하는 보안 체계.
+- 배경 및 필요성 : 생성형 AI 및 LLM(Large Language Model)의 **탈옥** (Jailbreak), 프롬프트 인젝션, 민감 데이터 유출, 편향 및 유해 정보 생성 등 AI 고유의 적대적 위협을 사전에 식별·검증하고 국가적 안전 기준을 수립하기 위해 출현함.
 - 핵심 목적 : 탈옥, 데이터 유출, 시스템 오남용 등 고위험 결함을 사전 발굴하여 배포 전 리스크를 완화하고 국가적·글로벌 AI 안전 표준(**AISI** 가이드라인) 준수 달성.
 
 ## Ⅱ. AI 레드티밍 / AI안전연구소의 핵심 아키텍처 및 동작 메커니즘
@@ -40,20 +40,20 @@ AI 레드티밍 / AI안전연구소은(는) 신뢰할 수 있는 보안 구조�
 └── [민관 협력 거버넌스]: 빅테크 및 스타트업의 신규 모델 배포 전 독립적 제3자 레드팀 감사(Third-Party Audit) 수행
 ```
 
-- **범위 및 기준 설정** : 대상 모델, 도구 연동 범위, 테스트 제외 항목(DoS 등), 즉각 중단 조건(Kill-switch) 확정 (NIST AI RMF, OWASP Top 10 for LLM).
+- **범위 및 기준 설정** : 대상 모델, 도구 연동 범위, 테스트 제외 항목(DoS(Denial of Service) 등), 즉각 중단 조건(Kill-switch) 확정 (NIST AI RMF, OWASP Top 10 for LLM).
 - **적대적 공격 실행** : 롤플레잉, 토큰 조작, Base64/유니코드 인코딩, 다단계 다이얼로그 주입 등 공격 시도 (GCG(Greedy Coordinate Gradient), PyRIT, Garak).
 - **영향도 평가 및 로깅** : 성공한 프롬프트, 모델 출력, 도구 호출 파라미터, 시스템 영향도를 증적 데이터로 보존 (MLflow, Langfuse, 보안 감사 리포트).
-- **방어선 보강 및 회귀** : 입출력 가드레일 룰셋 추가, 시스템 프롬프트 네거티브 제약 강화, DPO/PPO 재정렬 (NeMo Guardrails, Llama Guard, Guardrails AI).
+- **방어선 보강 및 회귀** : 입출력 가드레일 룰셋 추가, 시스템 프롬프트 네거티브 제약 강화, DPO(Direct Preference Optimization)/PPO(Proximal Policy Optimization) 재정렬 (NeMo Guardrails, Llama Guard, Guardrails AI).
 
 ## Ⅲ. AI 레드티밍 / AI안전연구소의 세부 구성 요소 및 비교 분석
 
 | 구분 | **전통적 침투테스트** (Pen-Test) | **AI 레드티밍** (AI Red Teaming) |
 |---|---|---|
-| 주 공격 대상 | 네트워크 포트, 웹 취약점(SQLi, XSS), 서버 OS, 메모리 | LLM 자연어 추론 로직, 입출력 컨텍스트, 에이전트 도구 연동부 |
+| 주 공격 대상 | 네트워크 포트, 웹 취약점(SQLi(SQL Injection), XSS(Cross-Site Scripting)), 서버 OS(Operating System), 메모리 | LLM 자연어 추론 로직, 입출력 컨텍스트, 에이전트 도구 연동부 |
 | 공격 기법 | 취약 패킷 전송, 페이로드 주입, 버퍼 오버플로우 | 탈옥 프롬프트, 간접 프롬프트 인젝션, 환각 유도, 인코딩 난독화 |
 | 시스템 응답성 | 결정론적(Deterministic, 입력에 따른 취약점 결과 일정) | 비결정론적(Stochastic, 파라미터 및 컨텍스트에 따라 결과 변동) |
-| 피해 영향 | 시스템 셸 획득, 데이터베이스 탈취, 서비스 거부(DoS) | 유해 콘텐츠 생성, 내부 기밀 데이터 무단 브리핑, 승인 없는 API 실행 |
-| 평가 기준 규격 | CVE, CVSS, CWE, OWASP Top 10 | MITRE ATLAS, NIST AI RMF, OWASP LLM Top 10, AISI 벤치마크 |
+| 피해 영향 | 시스템 셸 획득, 데이터베이스 탈취, 서비스 거부(DoS) | 유해 콘텐츠 생성, 내부 기밀 데이터 무단 브리핑, 승인 없는 API(Application Programming Interface) 실행 |
+| 평가 기준 규격 | CVE(Common Vulnerabilities and Exposures), CVSS, CWE, OWASP(Open Worldwide Application Security Project) Top 10 | MITRE ATLAS, NIST(National Institute of Standards and Technology) AI RMF(Risk Management Framework), OWASP LLM Top 10, AISI 벤치마크 |
 
 - AI 레드티밍 / AI안전연구소은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
 
@@ -62,11 +62,11 @@ AI 레드티밍 / AI안전연구소은(는) 신뢰할 수 있는 보안 구조�
 - 한계점 : 모델의 **비결정론적** 특성으로 인해 동일한 공격 프롬프트가 매번 재현되지 않아 검증 신뢰성 저하.
   - 해결 방안 : 온도(Temperature) 파라미터를 0으로 고정한 기준선 테스트와 함께, 다회차(N>=30) 반복 통계적 신뢰구간 분석 기법 병행 도입.
 - 한계점 : 이미지·오디오 등 멀티모달 입력에 악의적 지시문(비가시적 노이즈/워터마크)을 은닉하는 탈옥 기법 차단 난항.
-  - 해결 방안 : 멀티모달 입력을 LLM에 주입하기 전 **광학 문자 인식** (OCR) 및 노이즈 제거 필터링을 수행하는 전처리 파이프라인 의무화.
+  - 해결 방안 : 멀티모달 입력을 LLM에 주입하기 전 **광학 문자 인식** (OCR, Optical Character Recognition) 및 노이즈 제거 필터링을 수행하는 전처리 파이프라인 의무화.
 - 한계점 : 안전 가드레일을 과도하게 강화할 경우 정상적인 업무 질의까지 거부하는 '정렬 세금(Alignment Tax)' 및 오탐 발생.
   - 해결 방안 : **유해성 판정 전용 경량 판별 모델** (Llama Guard 등)을 도입하고 **위험도 기반 적응형 정책** (Risk-Adaptive Guardrail) 구축.
-- 한계점 : 모델 재학습 및 지식베이스(RAG) 수시 업데이트 시 기존 가드레일이 무력화되는 **안전성 드리프트** 발생.
-  - 해결 방안 : CI/CD 배포 파이프라인에 자동화 AI 레드티밍 벤치마크(Promptfoo, Garak)를 통합하여 회귀 테스트 불통과 시 배포 자동 롤백.
+- 한계점 : 모델 재학습 및 지식베이스(RAG, Retrieval-Augmented Generation) 수시 업데이트 시 기존 가드레일이 무력화되는 **안전성 드리프트** 발생.
+  - 해결 방안 : CI(Continuous Integration)/CD(Continuous Delivery) 배포 파이프라인에 자동화 AI 레드티밍 벤치마크(Promptfoo, Garak)를 통합하여 회귀 테스트 불통과 시 배포 자동 롤백.
 
 ## Ⅴ. AI 레드티밍 / AI안전연구소 적용 및 발전을 위한 기술사적 제언
 

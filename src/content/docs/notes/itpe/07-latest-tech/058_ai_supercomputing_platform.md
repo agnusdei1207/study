@@ -14,8 +14,8 @@ extra:
 
 ## Ⅰ. AI 슈퍼컴퓨팅 플랫폼의 개요
 
-- 개념 : 거대언어모델(LLM)과 조 단위 파라미터 파운데이션 모델의 대규모 분산 학습 및 초저지연 서빙을 가속하기 위해, 수만 개의 고성능 **이기종 가속기** (GPU/NPU), **고대역폭 메모리** (HBM), 초저지연 무손실 **인터커넥트** (NVLink, InfiniBand), 고성능 분산 병렬 스토리지 및 컨테이너 오케스트레이션 소프트웨어 스택을 수직적으로 통합한 대규모 **고성능 컴퓨팅** (HPC) 인프라 플랫폼.
-- 배경 및 필요성 : 단일 서버의 물리적 용량 한계를 초과하는 거대 AI 모델의 등장으로 수천 대의 노드가 단일 컴퓨터처럼 협업해야 하며, 통신 지연으로 인해 GPU가 연산을 멈추는 **유휴** (Straggler) 현상을 제거하고 **MFU** (Model FLOPs Utilization)를 극대화하기 위해 발전함.
+- 개념 : 거대언어모델(LLM, Large Language Model)과 조 단위 파라미터 파운데이션 모델의 대규모 분산 학습 및 초저지연 서빙을 가속하기 위해, 수만 개의 고성능 **이기종 가속기** (GPU(Graphics Processing Unit)/NPU(Neural Processing Unit)), **고대역폭 메모리** (HBM, High Bandwidth Memory), 초저지연 무손실 **인터커넥트** (NVLink, InfiniBand), 고성능 분산 병렬 스토리지 및 컨테이너 오케스트레이션 소프트웨어 스택을 수직적으로 통합한 대규모 **고성능 컴퓨팅** (HPC, High-Performance Computing) 인프라 플랫폼.
+- 배경 및 필요성 : 단일 서버의 물리적 용량 한계를 초과하는 거대 AI(Artificial Intelligence) 모델의 등장으로 수천 대의 노드가 단일 컴퓨터처럼 협업해야 하며, 통신 지연으로 인해 GPU가 연산을 멈추는 **유휴** (Straggler) 현상을 제거하고 **MFU** (Model FLOPs Utilization)를 극대화하기 위해 발전함.
 - 핵심 목적 : 대규모 분산 학습의 **선형적 확장성** (Scaling Efficiency) 달성, 노드 간 통신 병목 제로화, 페타바이트급 체크포인팅 I/O 가속 및 무중단 **결함 복구** (Fault Tolerance) 보장.
 
 ## Ⅱ. AI 슈퍼컴퓨팅 플랫폼의 핵심 아키텍처 및 동작 메커니즘
@@ -27,7 +27,7 @@ AI 슈퍼컴퓨팅 플랫폼은 가속 컴퓨팅 계층, 무손실 네트워크 
 
 +-----------------------------------------------------------------+
 | 5. 분산 학습 및 서빙 프레임워크 (Distributed AI Frameworks)     |
-|  - 3D 병렬화: 데이터(DP/FSDP) + 텐서(TP) + 파이프라인(PP) 병렬 |
+|  - 3D 병렬화: 데이터(DP, Data Parallelism/FSDP, Fully Sharded Data Parallelism) + 텐서(TP, Tensor Parallelism) + 파이프라인(PP, Pipeline Parallelism) 병렬 |
 |  - DeepSpeed ZeRO-3, Megatron-LM, vLLM 분산 추론                |
 +--------------------------------┬--------------------------------+
                                  │ 자원 할당 및 잡 스케줄링
@@ -54,13 +54,13 @@ AI 슈퍼컴퓨팅 플랫폼은 가속 컴퓨팅 계층, 무손실 네트워크 
 +-----------------------------------------------------------------+
 | 1. 가속 컴퓨팅 및 랙 인프라 (Accelerated Compute & Power/Cooling) |
 |  - 랙당 40~100kW+ GPU 클러스터 (H100, B200, 국산 NPU), HBM3e/4  |
-|  - 직접 칩 액체 냉각 (DLC) 및 고전압 직류 (HVDC) 배전           |
+|  - 직접 칩 액체 냉각 (DLC, Direct Liquid Cooling) 및 고전압 직류 (HVDC, High Voltage Direct Current) 배전 |
 +-----------------------------------------------------------------+
 ```
 
 - **3D 병렬화(3D Parallelism)** : 모델이 단일 GPU에 들어가지 않을 때 레이어 내부 행렬을 쪼개는 텐서 병렬성(TP), 레이어들을 노드별로 분할하는 파이프라인 병렬성(PP), 데이터를 분할하는 데이터 병렬성(DP/ZeRO)을 결합하여 수만 개 GPU로 스케일아웃.
-- **NVLink 및 NVSwitch 패브릭** : 서버 랙 내부의 모든 GPU가 PCIe 버스를 거치지 않고 풀 메시(Full-mesh) 형태로 메모리를 상호 직접 공유(Shared Memory).
-- **GPUDirect Storage(GDS)** : CPU 메모리를 거치는 데이터 병목을 제거하고, NVMe 스토리지와 GPU HBM 간에 DMA(직접 메모리 접근) 전송을 수행하여 체크포인트 저장 시간을 분 단위에서 초 단위로 단축.
+- **NVLink 및 NVSwitch 패브릭** : 서버 랙 내부의 모든 GPU가 PCIe(Peripheral Component Interconnect Express) 버스를 거치지 않고 풀 메시(Full-mesh) 형태로 메모리를 상호 직접 공유(Shared Memory).
+- **GPUDirect Storage(GDS)** : CPU(Central Processing Unit) 메모리를 거치는 데이터 병목을 제거하고, NVMe(Non-Volatile Memory Express) 스토리지와 GPU HBM 간에 DMA(Direct Memory Access, 직접 메모리 접근) 전송을 수행하여 체크포인트 저장 시간을 분 단위에서 초 단위로 단축.
 - **Slurm 및 K8s 지능형 스케줄러** : 대규모 AI 학습 작업의 토폴로지 인지 스케줄링(Topology-Aware Scheduling)을 수행하여 물리적으로 가장 가까운 네트워크 스위치에 연결된 GPU들을 우선 할당.
 
 ## Ⅲ. AI 슈퍼컴퓨팅 플랫폼의 세부 구성 요소 및 비교 분석
@@ -79,17 +79,17 @@ AI 슈퍼컴퓨팅 플랫폼은 가속 컴퓨팅 계층, 무손실 네트워크 
 ## Ⅳ. AI 슈퍼컴퓨팅 플랫폼의 주요 한계점 및 해결 방안
 
 - 수천 개 노드 중 단 하나의 부품 고장으로 전체 학습이 정지되는 결함 취약성 :
-  - 한계점 : 수만 개의 GPU 클러스터에서는 평균 고장 간격(MTBF)이 수십 시간에 불과하여 학습이 수시로 다운됨.
+  - 한계점 : 수만 개의 GPU 클러스터에서는 평균 고장 간격(MTBF, Mean Time Between Failures)이 수십 시간에 불과하여 학습이 수시로 다운됨.
   - 해결 방안 : **인메모리 분산 비동기 체크포인팅** (In-Memory Checkpointing), 고장 노드 즉각 자동 격리 및 **핫스페어** (Hot-spare) 자동 대체.
 - 대규모 파라미터 올리듀스 통신 시 패킷 혼잡으로 인한 통신 병목 :
   - 한계점 : GPU 연산 속도에 비해 노드 간 네트워크 대역폭이 따라가지 못해 통신 대기 시간(Straggler) 급증.
   - 해결 방안 : 통신과 연산을 중첩(Overlap)하는 파이프라인 최적화 및 Ultra Ethernet Consortium(UEC) 무손실 패브릭 도입.
 - 기가와트(GW)급 전력 소비와 초고열 방출로 인한 인프라 한계 :
   - 한계점 : 랙당 100kW를 초과하는 고밀도 발열로 인해 전통적 공랭 시스템 전면 무력화.
-  - 해결 방안 : 직접 칩 액체 냉각(DLC) 및 2상 액침 냉각, SMR(소형 모듈 원자로) 연계 전력망 직결.
+  - 해결 방안 : 직접 칩 액체 냉각(DLC, Direct Liquid Cooling) 및 2상 액침 냉각, SMR(Small Modular Reactor, 소형 모듈 원자로) 연계 전력망 직결.
 
 ## Ⅴ. AI 슈퍼컴퓨팅 플랫폼 적용 및 발전을 위한 기술사적 제언
 
-- Ultra Ethernet 기반의 개방형 AI 패브릭 표준 선제 수용 : 독점적 인피니밴드 생태계 종속을 탈피하고, 비용 효율적인 개방형 표준 이더넷 기반의 초고속 RDMA 클러스터 구축 준비.
+- Ultra Ethernet 기반의 개방형 AI 패브릭 표준 선제 수용 : 독점적 인피니밴드 생태계 종속을 탈피하고, 비용 효율적인 개방형 표준 이더넷 기반의 초고속 RDMA(Remote Direct Memory Access) 클러스터 구축 준비.
 - 국산 NPU 가속기 클러스터의 소프트웨어 스택(SW Stack) 경쟁력 확보 : 하드웨어 성능뿐만 아니라 PyTorch, Megatron-LM과 완벽 호환되는 컴파일러 및 통신 라이브러리 생태계 집중 육성.
-- Green AI를 위한 지속 가능한 PUE 1.1 달성 인프라 설계 : 전력 변환 손실을 줄이는 48V/415V 직류(HVDC) 배전과 폐열을 지역 난방에 재활용하는 에너지 하베스팅 아키텍처 수립.
+- Green AI를 위한 지속 가능한 PUE(Power Usage Effectiveness) 1.1 달성 인프라 설계 : 전력 변환 손실을 줄이는 48V/415V 직류(HVDC) 배전과 폐열을 지역 난방에 재활용하는 에너지 하베스팅 아키텍처 수립.

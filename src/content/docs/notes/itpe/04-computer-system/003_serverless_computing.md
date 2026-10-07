@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 서버리스 컴퓨팅(Serverless Computing)의 개요
 
-- 개념 : 서버 프로비저닝, 패치, OS 관리, 오토스케일링 등 하부 인프라 운영 작업을 클라우드 제공업체가 전담하고, 사용자는 **이벤트 기반 코드** (FaaS)와 **관리형 백엔드(BaaS)** 만을 작성하여 실행 시간에 대해서만 종량 과금(Pay-per-use)하는 클라우드 네이티브 컴퓨팅 모델.
-- 배경 및 필요성 : 가상머신(IaaS) 및 컨테이너(CaaS)의 유휴 인프라 비용 낭비와 클러스터 운영 오버헤드를 극복하고, **마이크로서비스 아키텍처(MSA)** 환경에서 개발자의 비즈니스 로직 집중도를 극대화하기 위해 출현함.
-- 핵심 목적 : **Scale-to-Zero** (유휴 시 0으로 축소)를 통한 인프라 TCO 절감, 완전 자동화된 수평 확장성 확보, 개발 주기(Time-to-Market) 획기적 단축.
+- 개념 : 서버 프로비저닝, 패치, OS(Operating System) 관리, 오토스케일링 등 하부 인프라 운영 작업을 클라우드 제공업체가 전담하고, 사용자는 **이벤트 기반 코드** (FaaS, Function as a Service)와 **관리형 백엔드(BaaS, Backend as a Service)** 만을 작성하여 실행 시간에 대해서만 종량 과금(Pay-per-use)하는 클라우드 네이티브 컴퓨팅 모델.
+- 배경 및 필요성 : 가상머신(IaaS, Infrastructure as a Service) 및 컨테이너(CaaS, Container as a Service)의 유휴 인프라 비용 낭비와 클러스터 운영 오버헤드를 극복하고, **마이크로서비스 아키텍처(MSA, Microservice Architecture)** 환경에서 개발자의 비즈니스 로직 집중도를 극대화하기 위해 출현함.
+- 핵심 목적 : **Scale-to-Zero** (유휴 시 0으로 축소)를 통한 인프라 TCO(Total Cost of Ownership) 절감, 완전 자동화된 수평 확장성 확보, 개발 주기(Time-to-Market) 획기적 단축.
 
 ## Ⅱ. 서버리스 컴퓨팅(Serverless Computing)의 핵심 아키텍처 및 동작 메커니즘
 
-서버리스 아키텍처는 이벤트 소스, API 게이트웨이, 경량 격리 런타임(MicroVM), 그리고 상태를 외부화하는 BaaS 계층으로 분리되어 유기적으로 동작함.
+서버리스 아키텍처는 이벤트 소스, API(Application Programming Interface) 게이트웨이, 경량 격리 런타임(MicroVM), 그리고 상태를 외부화하는 BaaS 계층으로 분리되어 유기적으로 동작함.
 
 ```text
 [ 서버리스(FaaS) 이벤트 처리 및 라이프사이클 ]
@@ -44,19 +44,19 @@ extra:
 +---------------------------------------------+       +---------------------+
 ```
 
-- **이벤트 트리거링** : HTTP 요청, 메시지 큐 적재, 객체 스토리지 변경 등 다양한 이벤트를 표준 JSON 이벤트 버스로 수신.
+- **이벤트 트리거링** : HTTP(Hypertext Transfer Protocol) 요청, 메시지 큐 적재, 객체 스토리지 변경 등 다양한 이벤트를 표준 JSON(JavaScript Object Notation) 이벤트 버스로 수신.
 - **동적 인스턴스 프로비저닝** : 요청 수에 비례하여 마이크로VM(Firecracker 등) 또는 샌드박스 컨테이너를 밀리초(ms) 단위로 즉시 생성 및 라우팅.
-- **상태 비저장(Stateless) 실행** : 함수 인스턴스는 영속 상태를 내부에 유지하지 않으며, 모든 상태 데이터는 외부 BaaS(DB/캐시)에 위임하여 처리.
+- **상태 비저장(Stateless) 실행** : 함수 인스턴스는 영속 상태를 내부에 유지하지 않으며, 모든 상태 데이터는 외부 BaaS(DB(Database)/캐시)에 위임하여 처리.
 - **Scale-to-Zero 자원 반환** : 지정된 유휴 시간 동안 추가 요청이 인입되지 않으면 컨테이너를 완전히 회수하여 자원 소비율 0 유지.
 
 ## Ⅲ. 서버리스 컴퓨팅(Serverless Computing)의 세부 구성 요소 및 비교 분석
 
 | 비교 항목 | IaaS (가상머신) | CaaS / PaaS (컨테이너) | FaaS (서버리스) |
 |---|---|---|---|
-| **배포 단위** | 가상머신 이미지 (AMI 등) | OCI 컨테이너 이미지 | 단일 함수 단위 코드 (Function Artifact) |
-| **확장 메커니즘** | VM 오토스케일링 (수 분 소요) | 파드 HPA (수십 초 소요) | 동적 마이크로VM 프로비저닝 (수십~수백 ms) |
+| **배포 단위** | 가상머신 이미지 (AMI 등) | OCI(Open Container Initiative) 컨테이너 이미지 | 단일 함수 단위 코드 (Function Artifact) |
+| **확장 메커니즘** | VM 오토스케일링 (수 분 소요) | 파드 HPA (Horizontal Pod Autoscaler, 수십 초 소요) | 동적 마이크로VM 프로비저닝 (수십~수백 ms) |
 | **과금 체계** | 프로비저닝된 vCPU/GB 시간 과금 | 노드 클러스터 예약 자원 과금 | 실제 실행 시간(ms) 및 메모리 소비량 기반 과금 |
-| **운영 책임** | OS, 미들웨어, 런타임, 앱 전반 | 컨테이너 오케스트레이션, 노드 풀 | 비즈니스 로직 및 IAM 정책 설정만 담당 |
+| **운영 책임** | OS, 미들웨어, 런타임, 앱 전반 | 컨테이너 오케스트레이션, 노드 풀 | 비즈니스 로직 및 IAM(Identity and Access Management) 정책 설정만 담당 |
 | **상태 관리** | 로컬 디스크 및 메모리 상태 유지 가능 | 볼륨 마운트 기반 상태 유지 지원 | 원칙적 Stateless (BaaS 필수 연계) |
 
 - 서버리스는 운영 자동화와 비용 효율성에서 독보적이나, 장기 실행(Long-running) 배치나 고성능 저지연이 지속 요구되는 워크로드에는 부적합하므로 하이브리드 배포 전략이 필수적임.
@@ -67,14 +67,14 @@ extra:
   - 한계점 : 유휴 상태에서 최초 요청 인입 시 런타임 환경 부팅, 컨테이너 초기화, 의존성 라이브러리 적재로 인해 수백 ms에서 수초에 이르는 응답 지연 발생.
   - 해결 방안 : 프로비저닝된 동시성(Provisioned Concurrency) 사전 워밍업 설정, 경량 런타임(Go, Rust) 채택, 런타임 스냅샷 복원(AWS SnapStart) 기술 적용.
 - 특정 **클라우드 제공업체 종속(Vendor Lock-in)** :
-  - 한계점 : AWS Lambda, Google Cloud Functions, Azure Functions 간 이벤트 규격, 트리거 메커니즘, 바인딩 API가 상이하여 타 CSP로의 이식성 결여.
+  - 한계점 : AWS(Amazon Web Services) Lambda, Google Cloud Functions, Azure Functions 간 이벤트 규격, 트리거 메커니즘, 바인딩 API가 상이하여 타 CSP(Cloud Service Provider)로의 이식성 결여.
   - 해결 방안 : Knative, OpenFaaS 등 오픈소스 기반 서버리스 프레임워크 도입 및 CloudEvents 표준 스펙 준수를 통한 추상화 레이어 확보.
 - 분산 환경 디버깅 및 **가시성(Observability)** 한계 :
-  - 한계점 : 로컬 디스크 접근 불가, SSH 접속 차단, 수천 개로 파편화된 함수 인스턴스로 인해 장애 추적 및 분산 병목 분석 난이도 급상승.
+  - 한계점 : 로컬 디스크 접근 불가, SSH(Secure Shell) 접속 차단, 수천 개로 파편화된 함수 인스턴스로 인해 장애 추적 및 분산 병목 분석 난이도 급상승.
   - 해결 방안 : OpenTelemetry 기반의 분산 트레이싱(X-Ray, Jaeger) 체계 구축 및 중앙화된 로그 어그리게이션 파이프라인 연계.
 
 ## Ⅴ. 서버리스 컴퓨팅(Serverless Computing) 적용 및 발전을 위한 기술사적 제언
 
-- 비동기 이벤트 주도 **아키텍처(EDA)** 와의 결합 : FaaS의 진정한 성능은 이벤트 브로커(Kafka, SQS)와의 비동기 디커플링에서 발현되므로 안티패턴인 '동기식 함수 간 체이닝'을 배제해야 함.
+- 비동기 이벤트 주도 **아키텍처(EDA, Event-Driven Architecture)** 와의 결합 : FaaS의 진정한 성능은 이벤트 브로커(Kafka, SQS)와의 비동기 디커플링에서 발현되므로 안티패턴인 '동기식 함수 간 체이닝'을 배제해야 함.
 - **FinOps** 기반 비용 임계점 분석 : 트래픽이 24시간 일정 수준 이상으로 지속 발생하는 워크로드는 컨테이너(EKS, ECS) 운영 비용이 더 저렴하므로 워크로드 특성별 전환 기준 수립 권장.
-- 최소 권한 기반 함수 레벨 보안 거버넌스 : 개별 함수마다 전용 IAM 역할을 부여하고, Secret 관리 자동화 및 취약점 정적 분석을 CI/CD 파이프라인에 의무 내재화해야 함.
+- 최소 권한 기반 함수 레벨 보안 거버넌스 : 개별 함수마다 전용 IAM 역할을 부여하고, Secret 관리 자동화 및 취약점 정적 분석을 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 의무 내재화해야 함.

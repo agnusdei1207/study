@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 클라우드 서비스 보안의 개요
 
-- 개념 : 클라우드 서비스(IaaS, PaaS, SaaS) 도입 및 운영 시 데이터, 애플리케이션, 인프라를 외부 위협과 규제 위반으로부터 보호하기 위해 **클라우드 서비스 제공자** (CSP)와 이용자(CSC) 간의 책임 공유 모델(Shared Responsibility Model)에 기반하여 수립하는 통합 정보보호 체계.
-- 배경 및 필요성 : 기업의 디지털 전환(DX) 가속화로 대규모 온프레미스 워크로드가 멀티/하이브리드 클라우드로 이전되었으나, 복잡한 **설정 오류** (Misconfiguration)와 계정 권한 남용으로 인한 대규모 데이터 침해 사고가 빈발함.
+- 개념 : 클라우드 서비스(IaaS, Infrastructure as a Service; PaaS, Platform as a Service; SaaS, Software as a Service) 도입 및 운영 시 데이터, 애플리케이션, 인프라를 외부 위협과 규제 위반으로부터 보호하기 위해 **클라우드 서비스 제공자** (CSP, Cloud Service Provider)와 이용자(CSC, Cloud Service Customer) 간의 책임 공유 모델(Shared Responsibility Model)에 기반하여 수립하는 통합 정보보호 체계.
+- 배경 및 필요성 : 기업의 디지털 전환(DX, Digital Transformation) 가속화로 대규모 온프레미스 워크로드가 멀티/하이브리드 클라우드로 이전되었으나, 복잡한 **설정 오류** (Misconfiguration)와 계정 권한 남용으로 인한 대규모 데이터 침해 사고가 빈발함.
 - 핵심 목적 : 클라우드의 탄력성과 확장성을 유지하면서도 **데이터 주권** 확보, **멀티테넌시** 데이터 격리, 규제 컴플라이언스(CSAP, FedRAMP, ISMS-P)를 완벽히 준수.
 
 ## Ⅱ. 클라우드 서비스 보안의 핵심 아키텍처 및 동작 메커니즘
 
-클라우드 보안은 서비스 모델(IaaS/PaaS/SaaS)에 따라 보안 책임 영역이 달라지며, CSPM, CWPP, CIEM이 통합된 **CNAPP** (Cloud Native Application Protection Platform) 프레임워크로 진화함.
+클라우드 보안은 서비스 모델(IaaS/PaaS/SaaS)에 따라 보안 책임 영역이 달라지며, CSPM(Cloud Security Posture Management), CWPP(Cloud Workload Protection Platform), CIEM(Cloud Infrastructure Entitlement Management)이 통합된 **CNAPP** (Cloud Native Application Protection Platform) 프레임워크로 진화함.
 
 ```text
 [ 클라우드 서비스 계층별 책임 공유 모델 (Shared Responsibility Model) ]
@@ -48,8 +48,8 @@ extra:
  * CIEM: IAM 과잉 권한 지속 탐지 및 최소 권한 자동 조정
 ```
 
-- **책임 공유 모델(Shared Responsibility Model)** : 물리적 인프라와 하이퍼바이저는 CSP가 보호하되, 클라우드 내부의 데이터, OS 패치, 방화벽 설정, IAM 계정 관리는 이용자(CSC)가 전적으로 책임지는 원칙.
-- **CSPM(Cloud Security Posture Management)** : AWS, Azure 등 멀티 클라우드의 S3 버킷 퍼블릭 오픈, 보안 그룹(Security Group) 오류 등 설정 결함을 자동 탐지하고 자동 치료(Auto-remediation) 수행.
+- **책임 공유 모델(Shared Responsibility Model)** : 물리적 인프라와 하이퍼바이저는 CSP가 보호하되, 클라우드 내부의 데이터, OS(Operating System) 패치, 방화벽 설정, IAM(Identity and Access Management) 계정 관리는 이용자(CSC)가 전적으로 책임지는 원칙.
+- **CSPM(Cloud Security Posture Management)** : AWS(Amazon Web Services), Azure 등 멀티 클라우드의 S3(Simple Storage Service) 버킷 퍼블릭 오픈, 보안 그룹(Security Group) 오류 등 설정 결함을 자동 탐지하고 자동 치료(Auto-remediation) 수행.
 - **CWPP(Cloud Workload Protection Platform)** : 가상머신(EC2), 컨테이너(Docker/K8s), 서버리스(Lambda) 등 실행 중인 워크로드의 이상 행위 탐지, 취약점 스캐닝, 시스템 무결성 보호.
 - **CIEM(Cloud Infrastructure Entitlement Management)** : 클라우드 환경에서 사용되지 않는 과잉 권한(Excessive Permissions), 권한 상승 위험, 비활성 계정을 머신러닝으로 분석하여 최소 권한 적용.
 
@@ -57,28 +57,28 @@ extra:
 
 | 비교 항목 | **IaaS 보안** | **PaaS 보안** | **SaaS 보안** |
 | --- | --- | --- | --- |
-| 이용자 관리 범위 | OS 설치, 네트워크 서브넷, 보안 그룹, 데이터 | 애플리케이션 코드 배포, API 키, 데이터 | 사용자 계정 생성, 권한 부여, 데이터 관리 |
-| 핵심 보안 기술 | 가상 방화벽, 호스트 침입탐지(HIDS), EDR | 시큐어 코딩, API 게이트웨이 보안, WAF | CASB(클라우드접근보안중개), 데이터 DLP |
-| 주요 위협 요인 | OS 미패치 제로데이, 보안그룹 설정 오류 | 종속성 라이브러리 취약점, API 취약점 | 계정 탈취, 섀도우 IT, 데이터 비인가 반출 |
+| 이용자 관리 범위 | OS 설치, 네트워크 서브넷, 보안 그룹, 데이터 | 애플리케이션 코드 배포, API(Application Programming Interface) 키, 데이터 | 사용자 계정 생성, 권한 부여, 데이터 관리 |
+| 핵심 보안 기술 | 가상 방화벽, 호스트 침입탐지(HIDS), EDR(Endpoint Detection and Response) | 시큐어 코딩, API 게이트웨이 보안, WAF(Web Application Firewall) | CASB(Cloud Access Security Broker, 클라우드접근보안중개), 데이터 DLP(Data Loss Prevention) |
+| 주요 위협 요인 | OS 미패치 제로데이, 보안그룹 설정 오류 | 종속성 라이브러리 취약점, API 취약점 | 계정 탈취, 섀도우 IT(Information Technology), 데이터 비인가 반출 |
 | 가시성 수준 | 네트워크 패킷 및 OS 커널 레벨 제어 가능 | 런타임 로그 및 메트릭 수준 가시성 | 제공자가 제공하는 감사 로그(Audit)만 열람 |
-| 컴플라이언스 | OS 및 가상 인프라 전반의 직접 인증 필요 | 배포된 소프트웨어의 보안성 평가 | CSP의 SOC 2 / CSAP 인증서 검토 및 신뢰 |
+| 컴플라이언스 | OS 및 가상 인프라 전반의 직접 인증 필요 | 배포된 소프트웨어의 보안성 평가 | CSP의 SOC 2(System and Organization Controls 2) / CSAP(Cloud Security Assurance Program) 인증서 검토 및 신뢰 |
 
 - 클라우드 서비스 보안 사고의 대부분은 클라우드 자체 결함이 아닌 이용자의 설정 오류와 계정 관리 미흡에서 기인하므로, **코드형 보안** (Security as Code)의 내재화가 필수적임.
 
 ## Ⅳ. 클라우드 서비스 보안의 주요 한계점 및 해결 방안
 
 - 멀티 클라우드 확산에 따른 보안 가시성 파편화 :
-  - 한계점 : AWS, GCP, Azure 등 이종 CSP별로 보안 대시보드와 IAM 정책 포맷이 상이하여 전사 차원의 통합 모니터링 부재.
+  - 한계점 : AWS, GCP(Google Cloud Platform), Azure 등 이종 CSP별로 보안 대시보드와 IAM 정책 포맷이 상이하여 전사 차원의 통합 모니터링 부재.
   - 해결 방안 : 단일 콘솔에서 멀티 클라우드 자산을 통합 인벤토리화하고 단일 정책을 자동 배포하는 멀티 클라우드 CNAPP 솔루션 도입.
 - API 키 및 액세스 토큰의 소스코드 하드코딩 유출 :
-  - 한계점 : 개발자가 Git 레포지토리나 CI/CD 파이프라인에 클라우드 관리자 키를 평문 커밋하여 수 분 내에 봇에 의해 탐지 및 채굴 악용.
+  - 한계점 : 개발자가 Git 레포지토리나 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 클라우드 관리자 키를 평문 커밋하여 수 분 내에 봇에 의해 탐지 및 채굴 악용.
   - 해결 방안 : 비밀 관리 시스템(HashiCorp Vault, AWS Secrets Manager) 연동, Git 프리커밋 훅을 통한 시크릿 탐지 자동화.
 - 하이퍼바이저 탈출(Hypervisor Escape) 등 멀티테넌트 측면 위협 :
-  - 한계점 : 동일 물리 서버를 공유하는 타 테넌트의 악성 VM이 하이퍼바이저 취약점을 악용해 이웃 테넌트의 메모리나 데이터를 침범할 잠재 위험.
+  - 한계점 : 동일 물리 서버를 공유하는 타 테넌트의 악성 VM(Virtual Machine)이 하이퍼바이저 취약점을 악용해 이웃 테넌트의 메모리나 데이터를 침범할 잠재 위험.
   - 해결 방안 : 금융, 공공 등 핵심 기밀 워크로드에 대해 전용 테넌트(Dedicated Host) 배치 및 하드웨어 기반 기밀 컴퓨팅(Confidential VM) 적용.
 
 ## Ⅴ. 클라우드 서비스 보안 적용 및 발전을 위한 기술사적 제언
 
-- 데브섹옵스(DevSecOps) 기반 코드형 인프라(IaC) 정적 분석 : Terraform, CloudFormation 코드 배포 전에 Checkov, tfsec 도구를 파이프라인에 결합하여 설정 오류를 사전 차단(Shift-Left).
-- 제로 트러스트 기반 ID 중심(Identity-Centric) 경계 구축 : 물리적 IP 주소 기반 방화벽 정책을 탈피하고, IdP(Okta, Azure AD)와 연계된 조건부 접근 제어 및 단기 임시 자격증명(STS) 활용.
-- 클라우드 보안인증(CSAP) 및 정보보호 관리체계(ISMS-P) 상시 정렬 : 공공 클라우드 이전 시 상/중/하 등급별 CSAP 요구사항을 충족하고 정기적인 클라우드 전용 모의 침투 훈련 수행.
+- 데브섹옵스(DevSecOps) 기반 코드형 인프라(IaC, Infrastructure as Code) 정적 분석 : Terraform, CloudFormation 코드 배포 전에 Checkov, tfsec 도구를 파이프라인에 결합하여 설정 오류를 사전 차단(Shift-Left).
+- 제로 트러스트 기반 ID 중심(Identity-Centric) 경계 구축 : 물리적 IP(Internet Protocol) 주소 기반 방화벽 정책을 탈피하고, IdP(Okta, Azure AD)와 연계된 조건부 접근 제어 및 단기 임시 자격증명(STS) 활용.
+- 클라우드 보안인증(CSAP) 및 정보보호 관리체계(ISMS(Information Security Management System)-P) 상시 정렬 : 공공 클라우드 이전 시 상/중/하 등급별 CSAP 요구사항을 충족하고 정기적인 클라우드 전용 모의 침투 훈련 수행.

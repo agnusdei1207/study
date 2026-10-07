@@ -16,8 +16,8 @@ extra:
 
 ### 가. AR·MA 시계열 모델의 정의
 - 시간에 따라 순차적으로 관측된 시계열 데이터의 **자기상관성** (Autocorrelation)을 수학적으로 모델링하여 미래 값을 예측하는 고전 통계적 시계열 분석 기법.
-- **AR (자기회귀)** : 과거 자신의 관측값들의 선형 결합으로 현재 값을 설명.
-- **MA (이동평균)** : 과거에 발생한 무작위 백색잡음(오차항)들의 선형 결합으로 현재 값을 설명.
+- **AR (Autoregressive, 자기회귀)** : 과거 자신의 관측값들의 선형 결합으로 현재 값을 설명.
+- **MA (Moving Average, 이동평균)** : 과거에 발생한 무작위 백색잡음(오차항)들의 선형 결합으로 현재 값을 설명.
 
 ### 나. 시계열 정상성(Stationarity)의 전제 조건
 - AR 및 MA 모델을 적용하기 위해서는 시계열이 **약정상성** (Weak Stationarity)을 만족해야 함:
@@ -52,7 +52,7 @@ ARMA(p, q)        지수적 감소 (둘 다 절단 없음)    지수적 감소 (
 ```
 
 ### 다. ARIMA(p, d, q)로의 확장
-- 비정상(Non-stationary) 시계열을 $d$번 **차분(Differencing)** 하여 정상 시계열로 변환한 후, $ARMA(p, q)$ 모델을 적용하는 통합 모델:
+- 비정상(Non-stationary) 시계열을 $d$번 **차분(Differencing)** 하여 정상 시계열로 변환한 후, $ARMA(p, q)$ 모델을 적용하는 ARIMA(Autoregressive Integrated Moving Average) 통합 모델:
   $$\Phi(B)(1 - B)^d X_t = \Theta(B) \epsilon_t$$
 
 ---
@@ -71,10 +71,10 @@ ARMA(p, q)        지수적 감소 (둘 다 절단 없음)    지수적 감소 (
 
 - 엄격한 정상성(Stationarity) 가정 및 장기 추세·계절성 반영 한계 :
   - 한계점 : AR/MA 모델은 평균과 분산이 시간에 따라 일정한 약정상성을 전제하므로, 비정상 시계열에 바로 적용 시 허구적 회귀(Spurious Regression) 발생.
-  - 해결 방안 : 차분(Differencing) 및 로그 변환을 통한 ARIMA(p,d,q) 확장, 계절성을 명시적으로 모델링하는 SARIMA 또는 Prophet 모델 병행.
+  - 해결 방안 : 차분(Differencing) 및 로그 변환을 통한 ARIMA(p,d,q) 확장, 계절성을 명시적으로 모델링하는 SARIMA(Seasonal Autoregressive Integrated Moving Average) 또는 Prophet 모델 병행.
 - 선형 결합 전제로 인한 복잡한 비선형 패턴 및 외생 변수 학습 실패 :
   - 한계점 : 과거의 오차와 관측치의 단순 선형 가중합만 반영하므로 급격한 시장 변동, 날씨, 프로모션 등 다변량 외생 변수(Exogenous Variables)의 비선형 효과 수용 불가.
-  - 해결 방안 : 외생 변수를 포함하는 ARIMAX 모델로 확장하거나 딥러닝 기반 순환 신경망(LSTM, GRU, Temporal Fusion Transformer)과의 앙상블 구성.
+  - 해결 방안 : 외생 변수를 포함하는 ARIMAX(Autoregressive Integrated Moving Average with Exogenous Variables) 모델로 확장하거나 딥러닝 기반 순환 신경망(LSTM, Long Short-Term Memory; GRU, Gated Recurrent Unit; Temporal Fusion Transformer)과의 앙상블 구성.
 - 차수($p, q$) 결정의 휴리스틱 의존성 및 모델 과적합 :
   - 한계점 : ACF/PACF 플롯의 절단점/감소 패턴 판별이 주관적이며 파라미터가 증가할수록 잔차는 줄어드나 테스트 데이터에 대한 외삽(Out-of-sample) 예측력 급락.
   - 해결 방안 : AIC(Akaike Information Criterion), BIC 기반의 그리드 서치(Auto-ARIMA) 자동화 및 롤링 윈도우 시간 분할 교차 검증(Time-Series CV) 필수 적용.
@@ -83,5 +83,5 @@ ARMA(p, q)        지수적 감소 (둘 다 절단 없음)    지수적 감소 (
 
 ## Ⅴ. 데이터 사이언스 및 시스템 운영 실무 제언
 
-- 딥러닝 시계열 모델과의 앙상블 : 현대 시계열 예측에서 LSTM이나 PatchTST, TFT 등 복잡한 딥러닝 모델이 주목받고 있으나, 선형적 추세와 명확한 주기성을 가진 데이터에서는 ARIMA가 훨씬 가볍고 뛰어난 일반화 성능을 보이므로, ARIMA(선형 성분) + 딥러닝(비선형 잔차 학습) 하이브리드 파이프라인을 설계할 것.
-- 실시간 드리프트 대응 : 시계열 모델은 계절성 변화나 외부 충격(코로나, 금융 위기 등 구조적 변화)에 취약하므로, 고정된 모델을 영구 사용하지 말고 주기적으로 파라미터를 자동 재학습(Rolling-window Retraining)시키는 MLOps 파이프라인을 구축할 것을 제언함.
+- 딥러닝 시계열 모델과의 앙상블 : 현대 시계열 예측에서 LSTM(Long Short-Term Memory)이나 PatchTST, TFT 등 복잡한 딥러닝 모델이 주목받고 있으나, 선형적 추세와 명확한 주기성을 가진 데이터에서는 ARIMA가 훨씬 가볍고 뛰어난 일반화 성능을 보이므로, ARIMA(선형 성분) + 딥러닝(비선형 잔차 학습) 하이브리드 파이프라인을 설계할 것.
+- 실시간 드리프트 대응 : 시계열 모델은 계절성 변화나 외부 충격(코로나, 금융 위기 등 구조적 변화)에 취약하므로, 고정된 모델을 영구 사용하지 말고 주기적으로 파라미터를 자동 재학습(Rolling-window Retraining)시키는 MLOps(Machine Learning Operations) 파이프라인을 구축할 것을 제언함.

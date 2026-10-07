@@ -16,7 +16,7 @@ extra:
 
 ### 가. 파티셔닝(Partitioning)의 정의
 - **파티셔닝** : 하나의 거대한 논리적 데이터베이스 테이블이나 인덱스를 물리적으로 독립된 작은 단위의 **파티션** (Partition) 세그먼트로 분할하여 디스크에 저장하고 관리하는 기술.
-- 애플리케이션 관점에서는 기존 단일 테이블과 동일하게 SQL을 수행할 수 있도록 논리적 투명성을 유지하면서, **관리성** (Manageability), **성능** (Performance), **가용성** (Availability)을 극대화함.
+- 애플리케이션 관점에서는 기존 단일 테이블과 동일하게 SQL(Structured Query Language)을 수행할 수 있도록 논리적 투명성을 유지하면서, **관리성** (Manageability), **성능** (Performance), **가용성** (Availability)을 극대화함.
 
 ---
 
@@ -50,8 +50,8 @@ extra:
 | :--- | :--- | :--- |
 | **테이블과의 매핑 관계** | 테이블 파티션과 인덱스 파티션이 1:1 완벽 일치 | 테이블 파티션과 인덱스 파티션이 독립적 (N:M) |
 | **파티션 조작 독립성** | 특정 파티션 `DROP/TRUNCATE` 시 해당 로컬 인덱스만 삭제됨 (타 파티션 영향 없음) | 특정 파티션 변경 시 글로벌 인덱스 전체가 UNUSABLE 상태로 깨짐 |
-| **고유성(Unique) 보장** | 파티션 키가 인덱스 키에 반드시 포함되어야 PK 생성 가능 | 파티션 키와 무관하게 전역 유일성(Unique PK) 보장 가능 |
-| **실무 권장도** | OLTP 및 대용량 배치에 최우선 권장 | 전역 PK 강제가 불가피한 경우에 한해 제한적 사용 |
+| **고유성(Unique) 보장** | 파티션 키가 인덱스 키에 반드시 포함되어야 PK(Primary Key) 생성 가능 | 파티션 키와 무관하게 전역 유일성(Unique PK) 보장 가능 |
+| **실무 권장도** | OLTP(Online Transaction Processing) 및 대용량 배치에 최우선 권장 | 전역 PK 강제가 불가피한 경우에 한해 제한적 사용 |
 
 ---
 
@@ -79,5 +79,5 @@ extra:
 
 ## Ⅴ. 무중단 라이프사이클 관리를 위한 실무 제언
 
-- **파티션 익스체인지** (Partition Exchange)를 통한 초고속 데이터 적재 : 대량의 신규 데이터를 운영 파티션 테이블에 직접 INSERT하면 락 경합과 인덱스 갱신 부하가 발생하므로, 동일 구조의 임시 일반 테이블에 고속 벌크 로드(Direct Path) 및 인덱스 생성을 마친 후 `ALTER TABLE ... EXCHANGE PARTITION` DDL을 통해 수 밀리초 만에 포인터만 교체 적재할 것.
+- **파티션 익스체인지** (Partition Exchange)를 통한 초고속 데이터 적재 : 대량의 신규 데이터를 운영 파티션 테이블에 직접 INSERT하면 락 경합과 인덱스 갱신 부하가 발생하므로, 동일 구조의 임시 일반 테이블에 고속 벌크 로드(Direct Path) 및 인덱스 생성을 마친 후 `ALTER TABLE ... EXCHANGE PARTITION` DDL(Data Definition Language)을 통해 수 밀리초 만에 포인터만 교체 적재할 것.
 - 글로벌 인덱스 **무효화 방지** (UPDATE GLOBAL INDEXES) : 파티션 삭제(`DROP PARTITION`) 작업 시 반드시 `UPDATE GLOBAL INDEXES` 절을 함께 명시하여 인덱스가 비활성화되어 전체 트랜잭션이 중단되는 대형 운영 사고를 원천 방지할 것을 제언함.

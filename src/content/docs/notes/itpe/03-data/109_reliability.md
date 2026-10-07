@@ -42,9 +42,9 @@ extra:
 
 | 지표 명칭 | 약어 및 정의 | 수학적 계산 메커니즘 |
 | :--- | :--- | :--- |
-| **평균 무고장 시간 (MTBF)** | Mean Time Between Failures | 수리 가능한 시스템이 고장 발생 후 다음 고장까지 정상 작동한 평균 시간 |
-| **평균 고장 시간 (MTTF)** | Mean Time To Failure | 수리 불가능한 부품이 최초 가동부터 영구 고장날 때까지의 평균 수명 |
-| **평균 복구 시간 (MTTR)** | Mean Time To Repair | 고장 발생 시점부터 시스템을 수리하여 정상 가동 상태로 복귀시키는 평균 시간 |
+| **평균 무고장 시간 (MTBF, Mean Time Between Failures)** | Mean Time Between Failures | 수리 가능한 시스템이 고장 발생 후 다음 고장까지 정상 작동한 평균 시간 |
+| **평균 고장 시간 (MTTF, Mean Time to Failure)** | Mean Time To Failure | 수리 불가능한 부품이 최초 가동부터 영구 고장날 때까지의 평균 수명 |
+| **평균 복구 시간 (MTTR, Mean Time to Repair)** | Mean Time To Repair | 고장 발생 시점부터 시스템을 수리하여 정상 가동 상태로 복귀시키는 평균 시간 |
 
 ### 나. 하드웨어/소프트웨어 신뢰도 욕조 곡선 (Bathtub Curve)
 - **초기 고장기 (Burn-in)** : 제조 결함, 소프트웨어 버그로 초기에 고장률 높음 $\rightarrow$ 디버깅 및 에이징 테스트로 해소.
@@ -70,17 +70,17 @@ extra:
 
 ## Ⅳ. 시스템 및 데이터 신뢰도(Reliability)의 주요 한계점 및 해결 방안
 
-- 복합 **분산 마이크로서비스** (MSA) 환경에서 신뢰도 예측 및 욕조 곡선 적용 한계 :
+- 복합 **분산 마이크로서비스** (MSA, Microservice Architecture) 환경에서 신뢰도 예측 및 욕조 곡선 적용 한계 :
   - 한계점 : 하드웨어와 달리 소프트웨어 및 클라우드 인프라는 배포가 빈번하고 종속성이 동적으로 변화하여 고전적 MTBF/MTTR 기반 정적 신뢰도 모델링 무력화.
-  - 해결 방안 : **카오스 엔지니어링** (Chaos Engineering: Chaos Mesh, Gremlin)을 통한 선제적 결함 주입, 분산 추적(OpenTelemetry) 기반 실시간 신뢰도 지표(SLI/SLO) 동적 관리.
+  - 해결 방안 : **카오스 엔지니어링** (Chaos Engineering: Chaos Mesh, Gremlin)을 통한 선제적 결함 주입, 분산 추적(OpenTelemetry) 기반 실시간 신뢰도 지표(SLI, Service Level Indicator / SLO, Service Level Objective) 동적 관리.
 - 데이터 수집 측정 도구의 신뢰도(**크론바흐 알파** 등) 편향 및 문항 중복 :
   - 한계점 : 크론바흐 알파($\alpha$) 계수는 문항 수가 많아질수록 기계적으로 높아지는 경향이 있어 측정 도구의 실제 타당도(Validity)를 보장하지 못하는 착시 발생.
-  - 해결 방안 : 확인적 요인분석(CFA)을 통한 합성 신뢰도(Composite Reliability) 산출, 문항 반응 이론(IRT)을 결합한 다차원 신뢰도 검증 체계 운영.
+  - 해결 방안 : 확인적 요인분석(CFA, Confirmatory Factor Analysis)을 통한 합성 신뢰도(Composite Reliability) 산출, 문항 반응 이론(IRT, Item Response Theory)을 결합한 다차원 신뢰도 검증 체계 운영.
 - **연쇄 장애** (Cascading Failure) 전파 시 시스템 전체 가용 신뢰도 붕괴 :
   - 한계점 : 개별 컴포넌트의 신뢰도가 99.9%라 하더라도 직렬 연결 구조에서는 결합 신뢰도가 급감하고 단일 장애가 전사 서비스 다운으로 비화.
   - 해결 방안 : **서킷 브레이커** (Circuit Breaker), **벌크헤드** (Bulkhead), **속도 제한** (Rate Limiting) 등 복원력(Resilience) 아키텍처 패턴 전면 적용.
 
 ## Ⅴ. 엔터프라이즈 시스템 및 데이터 신뢰성 확보 실무 제언
 
-- 사이트 **신뢰성 엔지니어링** (SRE) 기반의 SLO 관리 : 신뢰도를 막연한 목표로 두지 않고, 구글 SRE 프레임워크에 따라 **서비스 수준 지표** (SLI: 가용률, 응답 지연)와 **서비스 수준 목표** (SLO: 99.95%)를 수립하고 **에러 예산** (Error Budget) 내에서 배포 속도를 통제해야 함.
-- 소프트웨어 신뢰도 **성장 모델** (SRGM) 도입 : 대형 공공/금융 차세대 시스템 오픈 전 통합 테스트 단계에서 발견되는 버그의 누적 추세를 **NHPP** (비동질적 포아송 과정) 기반 Goel-Okumoto 모델로 분석하여 잔존 버그 수를 예측하고 안정적 오픈 시점을 과학적으로 판정할 것을 제언함.
+- 사이트 **신뢰성 엔지니어링** (SRE, Site Reliability Engineering) 기반의 SLO 관리 : 신뢰도를 막연한 목표로 두지 않고, 구글 SRE 프레임워크에 따라 **서비스 수준 지표** (SLI: 가용률, 응답 지연)와 **서비스 수준 목표** (SLO: 99.95%)를 수립하고 **에러 예산** (Error Budget) 내에서 배포 속도를 통제해야 함.
+- 소프트웨어 신뢰도 **성장 모델** (SRGM, Software Reliability Growth Model) 도입 : 대형 공공/금융 차세대 시스템 오픈 전 통합 테스트 단계에서 발견되는 버그의 누적 추세를 **NHPP** (Non-Homogeneous Poisson Process, 비동질적 포아송 과정) 기반 Goel-Okumoto 모델로 분석하여 잔존 버그 수를 예측하고 안정적 오픈 시점을 과학적으로 판정할 것을 제언함.

@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. REST(Representational State Transfer)의 개요
 
-- 개념 : 웹의 창시자 중 한 명인 **로이 필딩** (Roy Fielding)이 2000년 박사 학위 논문에서 제시한 아키텍처 스타일로, HTTP 고유의 특성을 최대한 활용하여 네트워크 상의 자원(Resource)을 명확히 식별하고 상태를 주고받는 분산 하이퍼미디어 시스템 아키텍처.
-- 배경 및 필요성 : 과거 복잡한 **RPC** (Remote Procedure Call)나 무거운 SOAP/XML 기반 통신의 복잡성을 극복하고, 플랫폼 독립적이며 단순하고 확장성 높은 웹 기반 API 연동 표준으로 자리매김.
-- 핵심 구성요소 3요소 : **자원** (URI), **행위** (HTTP Method: GET/POST/PUT/PATCH/DELETE), **표현** (Representation: JSON/XML).
+- 개념 : 웹의 창시자 중 한 명인 **로이 필딩** (Roy Fielding)이 2000년 박사 학위 논문에서 제시한 아키텍처 스타일로, HTTP(Hypertext Transfer Protocol) 고유의 특성을 최대한 활용하여 네트워크 상의 자원(Resource)을 명확히 식별하고 상태를 주고받는 분산 하이퍼미디어 시스템 아키텍처 (REST, Representational State Transfer).
+- 배경 및 필요성 : 과거 복잡한 **RPC** (Remote Procedure Call)나 무거운 SOAP/XML(Extensible Markup Language) 기반 통신의 복잡성을 극복하고, 플랫폼 독립적이며 단순하고 확장성 높은 웹 기반 API(Application Programming Interface) 연동 표준으로 자리매김.
+- 핵심 구성요소 3요소 : **자원** (URI, Uniform Resource Identifier), **행위** (HTTP Method: GET/POST/PUT/PATCH/DELETE), **표현** (Representation: JSON/XML).
 
 ## Ⅱ. REST 아키텍처의 6대 제약조건
 
@@ -36,7 +36,7 @@ extra:
 
 - **Uniform Interface** 4대 원칙 :
   - **자원의 식별 (Identification of Resources)** : URI를 통한 고유 자원 식별 (예: /orders/123).
-  - **표현을 통한 자원 조작 (Manipulation through Representations)** : 메시지 본문의 JSON 표현을 통한 생성 및 변경.
+  - **표현을 통한 자원 조작 (Manipulation through Representations)** : 메시지 본문의 JSON(JavaScript Object Notation) 표현을 통한 생성 및 변경.
   - **자기 서술적 메시지 (Self-descriptive Messages)** : Content-Type 헤더 등 메시지 자체만으로 온전히 해석 가능한 구조.
   - **HATEOAS (Hypermedia As The Engine Of Application State)** : 응답 본문에 다음 상태로 전이할 수 있는 하이퍼링크를 포함.
 
@@ -55,11 +55,11 @@ extra:
   - 한계점 : 리소스 엔드포인트의 반환 스키마가 고정되어 있어 클라이언트에 불필요한 데이터까지 전송(Over-fetching)되거나, 연관 데이터를 조회하기 위해 N+1번의 다중 API 왕복 호출(Under-fetching) 발생.
   - 해결 방안 : 필드 필터링(Sparse Fieldsets) 쿼리 파라미터를 지원하거나, 클라이언트 플랫폼별 전용 BFF(Backend For Frontend) 계층을 구축하고, 복잡한 클라이언트 주도형 쿼리 영역에는 GraphQL 혼용 검토.
 - HATEOAS 및 자기서술적 메시지 구현의 현실적 난제 :
-  - 한계점 : REST 성숙도 모델(Richardson 성숙도 3단계)의 완전한 준수를 위한 HATEOAS(하이퍼미디어 링크 제공) 구현은 백엔드 개발 공수를 과도하게 증가시키나 클라이언트 소비 효용은 미미.
-  - 해결 방안 : 실용적 REST(Pragmatic REST) 가이드라인을 채택하여 HATEOAS 대신 OpenAPI 3.0 스펙을 기반으로 API 계약을 표준화하고, OpenAPI Generator를 통한 클라이언트 SDK 코드 자동 생성 파이프라인 구축.
+  - 한계점 : REST(Representational State Transfer) 성숙도 모델(Richardson 성숙도 3단계)의 완전한 준수를 위한 HATEOAS(하이퍼미디어 링크 제공) 구현은 백엔드 개발 공수를 과도하게 증가시키나 클라이언트 소비 효용은 미미.
+  - 해결 방안 : 실용적 REST(Pragmatic REST) 가이드라인을 채택하여 HATEOAS 대신 OpenAPI 3.0 스펙을 기반으로 API 계약을 표준화하고, OpenAPI Generator를 통한 클라이언트 SDK(Software Development Kit) 코드 자동 생성 파이프라인 구축.
 - HTTP 표준 메서드의 한계와 복합 비즈니스 행위 표현 제약 :
-  - 한계점 : CRUD 중심의 4대 HTTP 동사(GET, POST, PUT, DELETE)만으로 '결제 승인', '주문 취소', '일괄 상태 전이' 등 상태 기계(State Machine) 기반 복합 도메인 행위를 직관적으로 URI에 표현하기 곤란.
-  - 해결 방안 : 컨트롤러 리소스 패턴(Sub-resource `/orders/{id}/cancel` 등)을 명문화하거나, 도메인 주도 설계(DDD) 기반의 명령-조회 분리(CQRS) 패턴 및 이벤트 주도 비동기 API 연계.
+  - 한계점 : CRUD(Create, Read, Update, Delete) 중심의 4대 HTTP 동사(GET, POST, PUT, DELETE)만으로 '결제 승인', '주문 취소', '일괄 상태 전이' 등 상태 기계(State Machine) 기반 복합 도메인 행위를 직관적으로 URI에 표현하기 곤란.
+  - 해결 방안 : 컨트롤러 리소스 패턴(Sub-resource `/orders/{id}/cancel` 등)을 명문화하거나, 도메인 주도 설계(DDD, Domain-Driven Design) 기반의 명령-조회 분리(CQRS, Command Query Responsibility Segregation) 패턴 및 이벤트 주도 비동기 API 연계.
 
 ## Ⅴ. 대규모 마이크로서비스 환경에서의 기술사적 제언
 

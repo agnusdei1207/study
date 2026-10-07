@@ -42,37 +42,37 @@ extra:
   * 결과: m1 + m2 연산 결과와 수학적으로 완벽 일치!
 ```
 
-- **부분동형암호** (PHE, Partially Homomorphic) : 덧셈(Paillier) 또는 곱셈(RSA) 중 단 한 가지 연산만을 무제한 지원하는 초기 형태.
+- **부분동형암호** (PHE, Partially Homomorphic) : 덧셈(Paillier) 또는 곱셈(RSA, Rivest-Shamir-Adleman) 중 단 한 가지 연산만을 무제한 지원하는 초기 형태.
 - **중간동형암호** (SHE, Somewhat Homomorphic) : 덧셈과 곱셈을 모두 지원하지만 잡음 누적으로 인해 곱셈 횟수가 수 회로 엄격히 제한되는 형태.
 - **완전동형암호** (FHE, Fully Homomorphic) : 2009년 Craig Gentry가 제안하였으며, 부트스트래핑을 통해 잡음을 초기화하여 덧셈과 곱셈을 무제한 수행 가능.
-- **근사 동형암호** (CKKS 스킴) : 실수(Real Number) 벡터의 근사 연산을 고속으로 지원하여 혜안(HEaaN) 등 AI/머신러닝 신경망 추론에 최적화된 사실상의 표준 스킴.
+- **근사 동형암호** (CKKS 스킴) : 실수(Real Number) 벡터의 근사 연산을 고속으로 지원하여 혜안(HEaaN) 등 AI(Artificial Intelligence)/머신러닝 신경망 추론에 최적화된 사실상의 표준 스킴.
 
 ## Ⅲ. 동형암호(Homomorphic Encryption)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | 전통적 암호 (AES / RSA) | 동형암호 (FHE: BGV, CKKS) | 기밀 컴퓨팅 (TEE Enclave) |
+| 비교 항목 | 전통적 암호 (AES(Advanced Encryption Standard) / RSA) | 동형암호 (FHE: BGV, CKKS) | 기밀 컴퓨팅 (TEE Enclave) |
 | --- | --- | --- | --- |
 | 연산 중 데이터 상태 | 평문으로 복호화 필수 (노출 위험) | 암호문 상태 유지 연산 (완전 보호) | 하드웨어 칩 내부에서 평문 복호화 |
-| 보안 근거 | 수학적 난제 (소인수분해, 치환/확산) | 양자내성 격자 난제 (RLWE) | CPU 하드웨어 제조사 신뢰 (실리콘 격리) |
+| 보안 근거 | 수학적 난제 (소인수분해, 치환/확산) | 양자내성 격자 난제 (RLWE) | CPU(Central Processing Unit) 하드웨어 제조사 신뢰 (실리콘 격리) |
 | 연산 성능/지연 | 매우 빠름 (마이크로초 단위) | 매우 느림 (큰 오버헤드) | 네이티브급 고속 연산 (낮은 지연) |
-| 하드웨어 종속성 | 범용 하드웨어 지원 | 범용 CPU 가능 (FPGA 가속 권장) | 특정 CPU(Intel SGX, AMD SEV) 필수 |
+| 하드웨어 종속성 | 범용 하드웨어 지원 | 범용 CPU 가능 (FPGA(Field-Programmable Gate Array) 가속 권장) | 특정 CPU(Intel SGX, AMD SEV) 필수 |
 | 주요 용도 | 데이터 전송/저장 구간 보안 | 의료/금융 민감 데이터 결합, AI 추론 | 클라우드 가상머신 기밀 격리, 블록체인 |
 
-- 동형암호는 하드웨어에 대한 신뢰 없이 순수 수학적으로 완벽한 In-Use 기밀성을 제공하므로, 하드웨어 부채널 공격에 취약한 TEE의 근본적 대안으로 평가받음.
+- 동형암호는 하드웨어에 대한 신뢰 없이 순수 수학적으로 완벽한 In-Use 기밀성을 제공하므로, 하드웨어 부채널 공격에 취약한 TEE(Trusted Execution Environment)의 근본적 대안으로 평가받음.
 
 ## Ⅳ. 동형암호(Homomorphic Encryption)의 주요 한계점 및 해결 방안
 
 - **부트스트래핑** (Bootstrapping) 연산 비용으로 인한 막대한 성능 오버헤드 :
   - 한계점 : 곱셈 연산 시 암호문 잡음이 기하급수적으로 증가하여 잡음을 제거하는 부트스트래핑에 수 초~수 분이 소요되어 실시간 처리 불가.
-  - 해결 방안 : 연산 깊이를 사전에 고정하는 **Leveled-FHE** 구조 설계, FPGA 및 ASIC 전용 하드웨어 가속기(QPU/TPU 연동) 개발.
+  - 해결 방안 : 연산 깊이를 사전에 고정하는 **Leveled-FHE** 구조 설계, FPGA 및 ASIC(Application-Specific Integrated Circuit) 전용 하드웨어 가속기(QPU(Quantum Processing Unit)/TPU(Tensor Processing Unit) 연동) 개발.
 - **암호문 크기 팽창** (Ciphertext Expansion)에 따른 메모리 및 대역폭 폭증 :
   - 한계점 : 수 바이트의 평문이 수 킬로바이트 이상의 고차 다항식 암호문으로 팽창하여 수 기가바이트의 메모리와 네트워크 전송 병목 유발.
   - 해결 방안 : 단일 암호문에 다수의 평문 데이터를 압축 패킹하는 **SIMD** (Single Instruction Multiple Data) 배치 연산 기법 적용.
-- **비선형 함수** (ReLU, Sigmoid, 비교 연산) 구현의 수학적 제약 :
+- **비선형 함수** (ReLU(Rectified Linear Unit), Sigmoid, 비교 연산) 구현의 수학적 제약 :
   - 한계점 : 동형암호는 원리상 다항식(덧셈, 곱셈)만 지원하므로, 신경망의 핵심 활성화 함수인 조건문(if-else)이나 계단 함수 연산 불가.
   - 해결 방안 : **테일러 급수** (Taylor Series) 또는 체비쇼프 다항식을 이용한 고정밀 **다항식 근사화** (Polynomial Approximation) 적용.
 
 ## Ⅴ. 동형암호(Homomorphic Encryption) 적용 및 발전을 위한 기술사적 제언
 
 - 프라이버시 보존형 머신러닝(PPML) 서비스 상용화 : 민감한 환자 의료 영상이나 개인 신용 정보를 암호화된 채로 AI 모델에 입력하여 진단 결과를 도출하는 클라우드 MLaaS 구축.
-- 금융 이상거래탐지(FDS) 동형 연계망 실증 : 복수 은행 간에 고객 금융 거래 원본을 일체 공유하지 않고 암호문 상태로 사기 패턴을 공동 탐지하는 분산 연합 FDS 모델 구현.
-- **PQC** (양자내성암호)와의 알고리즘 통합 : 동형암호의 기반 난제인 RLWE가 양자내성을 기본 내포하므로, 전사 PQC 전환 마스터플랜에 FHE 기술을 통합 로드맵으로 수용.
+- 금융 이상거래탐지(FDS, Fraud Detection System) 동형 연계망 실증 : 복수 은행 간에 고객 금융 거래 원본을 일체 공유하지 않고 암호문 상태로 사기 패턴을 공동 탐지하는 분산 연합 FDS 모델 구현.
+- **PQC** (Post-Quantum Cryptography, 양자내성암호)와의 알고리즘 통합 : 동형암호의 기반 난제인 RLWE가 양자내성을 기본 내포하므로, 전사 PQC 전환 마스터플랜에 FHE 기술을 통합 로드맵으로 수용.

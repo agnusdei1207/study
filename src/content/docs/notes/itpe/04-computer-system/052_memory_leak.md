@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. 메모리 누수(Memory Leak)의 개요
 
-- 개념 : 컴퓨터 프로그램이 동적으로 할당받은 메모리 영역(Heap 등)을 사용이 끝난 후에도 운영체제나 **가비지 컬렉터** (GC)에 적절히 해제(Free/Delete)하지 않아, 프로세스가 점유한 사용 불가능한 메모리가 점진적으로 누적되는 소프트웨어 결함.
+- 개념 : 컴퓨터 프로그램이 동적으로 할당받은 메모리 영역(Heap 등)을 사용이 끝난 후에도 운영체제나 **가비지 컬렉터** (GC, Garbage Collection)에 적절히 해제(Free/Delete)하지 않아, 프로세스가 점유한 사용 불가능한 메모리가 점진적으로 누적되는 소프트웨어 결함.
 - 배경 및 필요성 : 개발자의 포인터 관리 실수나 복잡한 객체 참조 그래프의 해제 누락으로 인해, 장기 가동되는 서버 애플리케이션의 메모리가 서서히 고갈되어 결국 **OOM(Out of Memory)** 크래시로 이어지는 문제를 방지하기 위해 다루어짐.
 - 핵심 목적 : 메모리 생명주기 관리의 무결성 확보, 런타임 메모리 팽창(Memory Bloat) 조기 탐지, 자동화된 분석 도구를 통한 누수 원인 지점 규명 및 예방.
 
@@ -52,7 +52,7 @@ extra:
 - **포인터 유실 누수 (Unreachable)** : C/C++에서 메모리 주소를 담고 있던 유일한 포인터 변수가 스택을 벗어나거나 덮어쓰여져 주소를 잃어버려 해제가 불가능해진 상태.
 - **GC 참조 누수 (Reachable Leak)** : Java/C# 등 GC 환경에서 실제로는 사용되지 않는 객체가 Static 컬렉션, 스레드 로컬, 이벤트 리스너에 강하게 묶여 있어 GC가 살아있는 객체로 오판하여 수거하지 못함.
 - **메모리 팽창 (Memory Bloat)** : 누수는 아니지만 불필요하게 거대한 캐시를 메모리에 과도하게 오래 유지하여 시스템 자원을 고갈시키는 패턴.
-- **OOM Crash** : 힙 메모리가 상한에 도달하여 추가 할당 실패 시 OS 커널의 OOM-Killer가 프로세스를 강제 종료.
+- **OOM Crash** : 힙 메모리가 상한에 도달하여 추가 할당 실패 시 OS(Operating System) 커널의 OOM-Killer가 프로세스를 강제 종료.
 
 ## Ⅲ. 메모리 누수(Memory Leak)의 세부 구성 요소 및 비교 분석
 
@@ -60,9 +60,9 @@ extra:
 |---|---|---|
 | **메모리 관리 주체**| 개발자가 `malloc/free`, `new/delete` 직접 수행 | 런타임 가비지 컬렉터(GC)가 자동 회수 |
 | **누수 발생 원인** | 명시적 해제 코드 누락, 예외 경로 누락 | Static 컬렉션 미삭제, 미해제 리스너, ThreadLocal |
-| **탐지 메커니즘** | Valgrind, AddressSanitizer (ASan) | Heap Dump 분석 (MAT), APM 힙 모니터링 |
-| **해결 기법** | RAII 패턴, 스마트 포인터(`unique_ptr`) | 약한 참조(WeakReference), try-with-resources |
-| **장애 징후** | OS 물리 메모리 지속 증가 후 크래시 | Old 세대 메모리 증가 및 빈번한 Full GC STW |
+| **탐지 메커니즘** | Valgrind, AddressSanitizer (ASan) | Heap Dump 분석 (MAT, Memory Analyzer Tool), APM(Application Performance Monitoring) 힙 모니터링 |
+| **해결 기법** | RAII(Resource Acquisition Is Initialization) 패턴, 스마트 포인터(`unique_ptr`) | 약한 참조(WeakReference), try-with-resources |
+| **장애 징후** | OS 물리 메모리 지속 증가 후 크래시 | Old 세대 메모리 증가 및 빈번한 Full GC STW(Stop-the-World) |
 
 - 가비지 컬렉터를 사용하는 언어라도 '참조가 살아있는 객체'는 절대 회수할 수 없으므로, 메모리 라이프사이클 관리는 여전히 엔지니어의 핵심 책무임.
 
@@ -70,12 +70,12 @@ extra:
 
 - 장기 운영 시 서서히 나타나 사전 테스트 단계에서 미발견 :
   - 한계점 : 단위 테스트나 짧은 기능 테스트에서는 드러나지 않고 운영 환경에서 수일~수주 가동 후에야 OOM 발생.
-  - 해결 방안 : CI/CD 파이프라인 내에 장기 지속 부하 테스트(Longevity / Soak Testing) 파이프라인 필수 구축.
+  - 해결 방안 : CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내에 장기 지속 부하 테스트(Longevity / Soak Testing) 파이프라인 필수 구축.
 - 대용량 **힙 덤프(Heap Dump)** 생성 시 서비스 일시 정지 :
-  - 한계점 : 수십 GB 힙 덤프를 디스크에 쓰는 동안 JVM이 정지(STW)되어 실운영 트래픽 처리 장애 발생.
-  - 해결 방안 : 운영 트래픽을 차단한 격리 인스턴스에서 덤프 추출, eBPF 기반 메모리 할당 실시간 추적 도구 활용.
+  - 한계점 : 수십 GB 힙 덤프를 디스크에 쓰는 동안 JVM(Java Virtual Machine)이 정지(STW)되어 실운영 트래픽 처리 장애 발생.
+  - 해결 방안 : 운영 트래픽을 차단한 격리 인스턴스에서 덤프 추출, eBPF(extended Berkeley Packet Filter) 기반 메모리 할당 실시간 추적 도구 활용.
 - **ThreadLocal** 변수 미해제로 인한 스레드 풀 오염 :
-  - 한계점 : WAS 스레드 풀 환경에서 요청 완료 후 `ThreadLocal.remove()` 미호출 시 스레드가 재활용되며 이전 데이터 누적.
+  - 한계점 : WAS(Web Application Server) 스레드 풀 환경에서 요청 완료 후 `ThreadLocal.remove()` 미호출 시 스레드가 재활용되며 이전 데이터 누적.
   - 해결 방안 : 필터나 인터셉터의 `finally` 블록에서 `ThreadLocal.remove()` 호출을 강제하는 코딩 표준화.
 
 ## Ⅴ. 메모리 누수(Memory Leak) 적용 및 발전을 위한 기술사적 제언

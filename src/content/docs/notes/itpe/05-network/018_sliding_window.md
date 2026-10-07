@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 슬라이딩 윈도우(Sliding Window)의 개요
 
-- 개념 : 패킷 교환 네트워크에서 송신 측이 수신 측으로부터 매 패킷마다 개별 확인 응답(ACK)을 기다리지 않고, 수신 측의 버퍼 여유 공간(윈도우 크기)만큼 연속적으로 여러 패킷을 전송할 수 있도록 하여 전송 효율을 극대화하고 **흐름 제어** (Flow Control)를 달성하는 기법.
+- 개념 : 패킷 교환 네트워크에서 송신 측이 수신 측으로부터 매 패킷마다 개별 확인 응답(ACK, Acknowledgment)을 기다리지 않고, 수신 측의 버퍼 여유 공간(윈도우 크기)만큼 연속적으로 여러 패킷을 전송할 수 있도록 하여 전송 효율을 극대화하고 **흐름 제어** (Flow Control)를 달성하는 기법.
 - 배경 및 필요성 : 단순 1패킷 전송 후 대기하는 **정지-대기(Stop-and-Wait)** 방식은 대역폭 지연 곱(BDP)이 큰 장거리 고속 통신망에서 링크 대역폭의 대부분을 낭비하므로, **파이프라인** 전송과 수신단 **버퍼 오버플로우** 방지를 동시에 달성하기 위해 고안됨.
 - 핵심 목적 : 링크 대역폭 이용률(Utilization) 극대화, 수신 호스트 처리 능력을 초과하지 않는 능동적 흐름 제어, 패킷 순서 보장 및 누적 확인 응답(Cumulative ACK) 지원.
 
 ## Ⅱ. 슬라이딩 윈도우(Sliding Window)의 핵심 아키텍처 및 동작 메커니즘
 
-슬라이딩 윈도우는 송신 윈도우와 수신 윈도우가 ACK 수신에 따라 우측으로 이동(Sliding)하며, TCP 헤더의 **Window Size** 필드를 통해 수신단 버퍼 상태를 실시간 통지하여 윈도우 크기를 동적으로 조절함.
+슬라이딩 윈도우는 송신 윈도우와 수신 윈도우가 ACK 수신에 따라 우측으로 이동(Sliding)하며, TCP(Transmission Control Protocol) 헤더의 **Window Size** 필드를 통해 수신단 버퍼 상태를 실시간 통지하여 윈도우 크기를 동적으로 조절함.
 
 ```text
 [ TCP 슬라이딩 윈도우 전송 및 우측 슬라이딩 메커니즘 ]
@@ -56,7 +56,7 @@ extra:
 | 흐름 제어 방식 | 동적 바이트 윈도우 크기 피드백 | 수신 ACK 도착 여부로 간접 제어 | 버퍼 슬롯 크레딧 반환 기반 제어 |
 | 대역폭 이용률 | 매우 높음 (BDP에 비례하여 확장) | 극히 낮음 ($RTT$에 반비례) | 매우 높음 (고속 하드웨어 패브릭) |
 | 버퍼 요구량 | 송수신 양단 대용량 버퍼 필요 | 최소 버퍼만으로 구현 가능 | 하드웨어 큐별 고정 버퍼 필요 |
-| 주요 적용 프로토콜 | TCP, SCTP, 무선 L2 RLC | TFTP, 초기 ARQ, 센서 통신 | Fibre Channel, PCIe, Infiniband |
+| 주요 적용 프로토콜 | TCP, SCTP(Stream Control Transmission Protocol), 무선 L2 RLC | TFTP, 초기 ARQ(Automatic Repeat Request), 센서 통신 | Fibre Channel, PCIe(Peripheral Component Interconnect Express), Infiniband |
 
 - 슬라이딩 윈도우는 고속 광역망에서 링크 파이프라인을 가득 채우면서도 수신단의 수용 능력을 절대로 초과하지 않도록 보장하는 L4 전송의 핵심 제어 엔진임.
 
@@ -67,13 +67,13 @@ extra:
   - 해결 방안 : 송신 측 Nagle 알고리즘(MSS 크기 도달 시 전송) 및 수신 측 Clark 알고리즘 / Delayed ACK(버퍼가 일정 이상 비워질 때까지 통지 보류) 결합.
 - 16비트 Window Size 필드 한계(최대 64KB)로 인한 고속 대용량망 병목 :
   - 한계점 : 10Gbps 이상의 고대역폭-고지연(LFN) 네트워크에서 64KB 윈도우로는 링크 대역폭의 극히 일부만 사용.
-  - 해결 방안 : RFC 1323 TCP Window Scale 옵션을 적용하여 윈도우 크기를 최대 1GB까지 지수 승수 확장.
-- 네트워크 지연 변동 시 버퍼 블로트 및 RTT 추정 왜곡 :
+  - 해결 방안 : RFC(Request for Comments) 1323 TCP Window Scale 옵션을 적용하여 윈도우 크기를 최대 1GB까지 지수 승수 확장.
+- 네트워크 지연 변동 시 버퍼 블로트 및 RTT(Round-Trip Time) 추정 왜곡 :
   - 한계점 : 과도하게 큰 윈도우 설정 시 라우터 버퍼에 패킷이 적체되어 전송 지연 폭증.
   - 해결 방안 : 커널의 BDP 기반 동적 버퍼 자동 튜닝(Dynamic Right-Sizing) 활성화.
 
 ## Ⅴ. 슬라이딩 윈도우(Sliding Window) 적용 및 발전을 위한 기술사적 제언
 
 - 고속 데이터센터 및 클라우드 인터커넥트 TCP 윈도우 커널 파라미터 최적화 : 100G 회선 환경에서 `net.ipv4.tcp_wmem` 및 `tcp_rmem`의 최대 버퍼를 수십 MB 수준으로 증대하여 BDP 확보 필수.
-- HTTP/3(QUIC) 환경의 스트림별·연결별 이중 흐름 제어 정책 수립 : 단일 전송 연결 내에서 복수의 논리 스트림이 상호 블로킹되지 않도록 스트림 레벨과 연결 레벨의 윈도우 크기를 독립 튜닝 권장.
-- 지연 민감형 마이크로서비스를 위한 Nagle 알고리즘(TCP_NODELAY) 선별 해제 : RPC 및 API 통신 시 200ms 지연을 유발하는 Nagle 알고리즘과 Delayed ACK 간의 교착 상태를 방지하기 위해 TCP_NODELAY 소켓 옵션 적극 적용.
+- HTTP(Hypertext Transfer Protocol)/3(QUIC) 환경의 스트림별·연결별 이중 흐름 제어 정책 수립 : 단일 전송 연결 내에서 복수의 논리 스트림이 상호 블로킹되지 않도록 스트림 레벨과 연결 레벨의 윈도우 크기를 독립 튜닝 권장.
+- 지연 민감형 마이크로서비스를 위한 Nagle 알고리즘(TCP_NODELAY) 선별 해제 : RPC(Remote Procedure Call) 및 API(Application Programming Interface) 통신 시 200ms 지연을 유발하는 Nagle 알고리즘과 Delayed ACK 간의 교착 상태를 방지하기 위해 TCP_NODELAY 소켓 옵션 적극 적용.

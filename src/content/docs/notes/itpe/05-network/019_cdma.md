@@ -53,7 +53,7 @@ CDMA는 원시 데이터 신호에 높은 칩 레이트(Chip Rate)의 직교 코
 
 ## Ⅲ. CDMA의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | FDMA (1G) | TDMA (2G GSM) | CDMA (2G/3G) | OFDMA (4G/5G) |
+| 비교 항목 | FDMA (1G) | TDMA (2G GSM) | CDMA (2G/3G) | OFDMA(Orthogonal Frequency-Division Multiple Access) (4G/5G) |
 |---|---|---|---|---|
 | 다중 접속 분할 | 주파수(Frequency) 분할 | 시간(Time Slot) 분할 | 코드(Code) 분할 | 직교 부반송파 분할 |
 | 주파수 재사용 계수 | 1/7 또는 1/4 (인접 셀 간섭) | 1/7 또는 1/3 | 1 (모든 셀 동일 주파수) | 1 (모든 셀 동일 주파수) |
@@ -77,6 +77,6 @@ CDMA는 원시 데이터 신호에 높은 칩 레이트(Chip Rate)의 직교 코
 
 ## Ⅴ. CDMA 적용 및 발전을 위한 기술사적 제언
 
-- 군용 위성 통신 및 항법 시스템(GPS)의 핵심 Anti-Jamming 인프라로 계승 : 민간 이동통신은 OFDMA로 전환되었으나, GPS 및 군용 통신에서는 CDMA의 광대역 확산 및 비화(LPI/LPD) 특성을 극대화하여 재밍 방어망 유지.
+- 군용 위성 통신 및 항법 시스템(GPS, Global Positioning System)의 핵심 Anti-Jamming 인프라로 계승 : 민간 이동통신은 OFDMA로 전환되었으나, GPS 및 군용 통신에서는 CDMA의 광대역 확산 및 비화(LPI/LPD) 특성을 극대화하여 재밍 방어망 유지.
 - 소프트 핸드오버(Make-Before-Break) 개념의 현대 클라우드 네트워크 적용 : 기지국 전환 시 이전 연결을 유지한 채 새 연결을 맺는 CDMA 원리를 클라우드 컨테이너 무중단 롤링 배포 및 서비스 메시 트래픽 시프팅에 접목.
-- 다중 안테나(MIMO) 빔포밍과의 결합 모델 연구 : 레거시 대역 확산 코드 기술과 최신 공간 분할 다중 접속(SDMA)을 융합하여 특수 보안 시설의 무선 물리 계층 보안 강화 권장.
+- 다중 안테나(MIMO, Multiple-Input Multiple-Output) 빔포밍과의 결합 모델 연구 : 레거시 대역 확산 코드 기술과 최신 공간 분할 다중 접속(SDMA)을 융합하여 특수 보안 시설의 무선 물리 계층 보안 강화 권장.

@@ -16,7 +16,7 @@ extra:
 
 ### 가. 데이터 시각화의 정의
 - **데이터 시각화** : 복잡하고 방대한 정량적·정성적 데이터를 **시각적 요소** (점, 선, 면, 색상, 형태, 위치)를 활용하여 그래픽 형태로 변환함으로써, 데이터에 내재된 패턴, 경향성, 이상치를 인간의 인지 능력을 통해 직관적으로 전달하는 기술.
-- **탐색적 데이터 분석** (EDA) 단계의 가설 발굴과 **확증적 데이터 분석** (CDA) 단계의 의사결정 설득을 연결하는 인터페이스.
+- **탐색적 데이터 분석** (EDA, Exploratory Data Analysis) 단계의 가설 발굴과 **확증적 데이터 분석** (CDA, Confirmatory Data Analysis) 단계의 의사결정 설득을 연결하는 인터페이스.
 
 ### 나. 앤스컴 콰르텟(Anscombe's Quartet)의 교훈
 - 동일한 평균, 분산, 상관계수, 회귀선을 갖는 4개의 데이터셋이라도 시각화하면 완전히 상이한 패턴(선형, 곡선, 이상치 집중 등)을 보임 $\rightarrow$ 요약 통계량에만 의존해서는 데이터의 실체를 파악할 수 없음을 입증.
@@ -52,14 +52,14 @@ extra:
 ## Ⅲ. 현대적 대시보드 설계 원칙 및 시각화 엔지니어링
 
 ### 가. 효과적인 대시보드 UI/UX 원칙
-- **시각적 계층 구조(Visual Hierarchy)** : F-패턴 또는 Z-패턴을 고려하여 가장 중요한 핵심 KPI(매출, 전환율)를 좌상단에 배치하고 상세 차트는 하단에 배치.
+- **시각적 계층 구조(Visual Hierarchy)** : F-패턴 또는 Z-패턴을 고려하여 가장 중요한 핵심 KPI(Key Performance Indicator, 매출, 전환율)를 좌상단에 배치하고 상세 차트는 하단에 배치.
 - **데이터-잉크 비율(Data-Ink Ratio) 극대화 (에드워드 터프티)** :
   $$Data\text{-}Ink\;Ratio = \frac{\text{데이터 표시에 사용된 잉크 양}}{\text{전체 그래픽에 사용된 잉크 양}}$$
   불필요한 격자선(Grid), 3D 입체 효과, 과도한 배경색 등 **차트 정크** (Chartjunk)를 제거하여 핵심 데이터 집중도 제고.
 
 ### 나. 반응형 대화형 시각화(Interactive Visualization) 기술 스택
-- 웹 프론트엔드 라이브러리 : D3.js (세밀한 SVG/Canvas 제어), ECharts, Plotly.
-- **BI 솔루션** : Tableau, Power BI, Apache Superset, Metabase.
+- 웹 프론트엔드 라이브러리 : D3.js (세밀한 SVG(Scalable Vector Graphics)/Canvas 제어), ECharts, Plotly.
+- **BI(Business Intelligence) 솔루션** : Tableau, Power BI, Apache Superset, Metabase.
 - 데이터 과학 생태계 : Python (Matplotlib, Seaborn, Altair, Streamlit).
 
 ---
@@ -68,13 +68,13 @@ extra:
 
 - 대용량 데이터 시각화 시 브라우저 렌더링 병목 및 시각적 왜곡 :
   - 한계점 : 수백만 건의 원시 데이터를 SVG/Canvas로 직접 렌더링할 경우 브라우저 멈춤(DOM Bloat) 및 점들이 겹쳐 정보가 뭉개지는 오버플로팅(Overplotting) 발생.
-  - 해결 방안 : 백엔드 기반 사전 집계(Aggregation), 밀도 기반 히트맵(Heatmap) 변환, WebGL 가속 라이브러리(Deck.gl) 및 타일 기반 레벨별 렌더링(LOD) 적용.
+  - 해결 방안 : 백엔드 기반 사전 집계(Aggregation), 밀도 기반 히트맵(Heatmap) 변환, WebGL 가속 라이브러리(Deck.gl) 및 타일 기반 레벨별 렌더링(LOD, Level of Detail) 적용.
 - 차트 축 조작 및 인지 편향에 따른 데이터 오독 유도(Misleading Data) :
   - 한계점 : Y축 기준점 미설정(Truncated Graph), 3D 왜곡 효과, 부적절한 이중 축(Dual Axis) 사용으로 인해 데이터의 실제 추세를 심각하게 왜곡 전달.
   - 해결 방안 : 전사 표준 데이터 시각화 스타일 가이드(Tufte의 Data-Ink Ratio 준수) 제정, 차트 작성 시 Y축 원점(Zero-baseline) 의무화 및 자동 유효성 검증.
-- 반응형 UI 및 모바일/다기종 환경에서의 가독성 저하 :
+- 반응형 UI(User Interface) 및 모바일/다기종 환경에서의 가독성 저하 :
   - 한계점 : 고정 해상도 중심의 복잡한 멀티 패널 대시보드는 모바일 기기나 태블릿 환경에서 텍스트 잘림 및 레이아웃 붕괴 현상 발생.
-  - 해결 방안 : 반응형 그리드 시스템(CSS Flex/Grid) 적용, 화면 크기별 카드/요약 지표 중심의 적응형 레이아웃(Adaptive Dashboard) 설계.
+  - 해결 방안 : 반응형 그리드 시스템(CSS, Cascading Style Sheets; Flex/Grid) 적용, 화면 크기별 카드/요약 지표 중심의 적응형 레이아웃(Adaptive Dashboard) 설계.
 
 ---
 

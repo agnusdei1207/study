@@ -15,12 +15,12 @@ extra:
 ## Ⅰ. 데이터베이스 스토리지 엔진의 절대 표준, B-Tree와 B+Tree 개요
 
 ### 가. B-Tree·B+Tree의 정의
-- **B-Tree (Balanced Tree)** : 디스크 블록(Block / Page) I/O 횟수를 최소화하기 위해 하나의 노드가 여러 개의 키와 자식 포인터를 가질 수 있도록 **다원화** (Multi-way)된 자가 균형 탐색 트리.
-- **B+Tree** : B-Tree를 개량하여 모든 실제 데이터 포인터를 **리프 노드** (Leaf Node)에만 저장 하고, 리프 노드들을 **양방향 연결 리스트**로 연결하여 범위 검색(Range Scan) 성능을 극대화한 현대 관계형 DBMS 인덱스의 표준 자료구조.
+- **B-Tree** : 디스크 블록(Block / Page) I/O 횟수를 최소화하기 위해 하나의 노드가 여러 개의 키와 자식 포인터를 가질 수 있도록 **다원화** (Multi-way)된 자가 균형 탐색 트리.
+- **B+Tree** : B-Tree를 개량하여 모든 실제 데이터 포인터를 **리프 노드** (Leaf Node)에만 저장 하고, 리프 노드들을 **양방향 연결 리스트**로 연결하여 범위 검색(Range Scan) 성능을 극대화한 현대 관계형 DBMS(Database Management System) 인덱스의 표준 자료구조.
 
 ### 나. 이진 탐색 트리(BST) 대비 B-Tree의 우수성
 - 메모리 참조는 $O(\log_2 n)$ 높이여도 상관없으나, 디스크 I/O는 1회 접근당 수 밀리초가 소요됨.
-- B-Tree는 노드 크기를 OS 디스크 블록 크기(4KB~16KB)와 일치시켜 **차수** (M)를 수백 개로 확장함으로써, 수천만 건의 데이터도 트리 높이(Height)를 3~4 이내로 유지($O(\log_M n)$) 하여 디스크 I/O를 극소화함.
+- B-Tree는 노드 크기를 OS(Operating System) 디스크 블록 크기(4KB~16KB)와 일치시켜 **차수** (M)를 수백 개로 확장함으로써, 수천만 건의 데이터도 트리 높이(Height)를 3~4 이내로 유지($O(\log_M n)$) 하여 디스크 I/O를 극소화함.
 
 ---
 
@@ -69,10 +69,10 @@ extra:
 ## Ⅳ. B-Tree·B+Tree 인덱스의 주요 한계점 및 해결 방안
 
 - **랜덤 쓰기** (Random Write) 집중에 따른 디스크 I/O 증폭 및 페이지 분할 :
-  - 한계점 : 순차적이지 않은 무작위 키(UUID 등) 삽입 시 빈번한 노드 분할(Page Split)과 재균형 연산이 발생하여 내부 단편화 및 쓰기 성능 급락.
-  - 해결 방안 : **단조 증가 키** (Auto Increment, TSID, ULID) 설계 채택, 쓰기 집약적 워크로드에는 **LSM-Tree** (RocksDB 등) 스토리지 엔진 검토.
+  - 한계점 : 순차적이지 않은 무작위 키(UUID(Universally Unique Identifier) 등) 삽입 시 빈번한 노드 분할(Page Split)과 재균형 연산이 발생하여 내부 단편화 및 쓰기 성능 급락.
+  - 해결 방안 : **단조 증가 키** (Auto Increment, TSID, ULID) 설계 채택, 쓰기 집약적 워크로드에는 **LSM-Tree** (Log-Structured Merge-Tree, RocksDB 등) 스토리지 엔진 검토.
 - 고동시성 멀티스레드 환경에서 루트 노드 및 상위 인덱스 페이지의 래치 경합 :
-  - 한계점 : 모든 인덱스 탐색이 루트 노드를 거치므로 다수 트랜잭션이 동시 진입 시 페이지 래치(Page Latch) 락 경합으로 인한 CPU 스핀락(Spinlock) 오버헤드 폭증.
+  - 한계점 : 모든 인덱스 탐색이 루트 노드를 거치므로 다수 트랜잭션이 동시 진입 시 페이지 래치(Page Latch) 락 경합으로 인한 CPU(Central Processing Unit) 스핀락(Spinlock) 오버헤드 폭증.
   - 해결 방안 : 락 프리(Lock-free) 기법(B-link Tree 아키텍처, OLFIT: Optimistic Lock-Free Indexing), 캐시 라인 친화적 하드웨어 최적화 인덱스 적용.
 - 인덱스 비대화에 따른 **버퍼 풀** 메모리 점유율 과다 및 캐시 미스 :
   - 한계점 : 테이블 크기 증가와 함께 B+Tree의 깊이(Height)와 리프 노드 수가 비대해져 버퍼 캐시 적중률(Hit Ratio)이 저하되고 물리적 디스크 읽기 증가.
@@ -80,5 +80,5 @@ extra:
 
 ## Ⅴ. 고성능 인덱스 운용을 위한 실무 제언
 
-- 순차 **증가 기본키** (Auto-Increment) 사용의 우월성 : B+Tree 인덱스는 정렬 상태를 유지하므로, UUID 등 무작위 난수 키를 PK로 사용하면 데이터가 리프 노드의 중간에 무작위로 끼어들어 빈번한 **페이지 분할** (Page Split)과 I/O 병목이 발생함. 따라서 대용량 OLTP 테이블은 반드시 순차 증가 시퀀스나 타임스탬프 기반 키(TSID, ULID)를 PK로 채택해야 함.
+- 순차 **증가 기본키** (Auto-Increment) 사용의 우월성 : B+Tree 인덱스는 정렬 상태를 유지하므로, UUID 등 무작위 난수 키를 PK(Primary Key)로 사용하면 데이터가 리프 노드의 중간에 무작위로 끼어들어 빈번한 **페이지 분할** (Page Split)과 I/O 병목이 발생함. 따라서 대용량 OLTP(Online Transaction Processing) 테이블은 반드시 순차 증가 시퀀스나 타임스탬프 기반 키(TSID, ULID)를 PK로 채택해야 함.
 - 인덱스 **클러스터링 팩터** (Clustering Factor) 관리 : 보조 인덱스의 성능은 물리적 데이터 페이지가 인덱스 정렬 순서와 얼마나 일치하는지를 나타내는 클러스터링 팩터에 의해 결정되므로, 대규모 갱신 후 파편화가 심한 테이블은 정기적으로 테이블 및 인덱스 재빌드(`REORGANIZE / REBUILD`)를 수행할 것을 제언함.

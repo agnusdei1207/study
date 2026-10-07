@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 제로 트러스트 보안의 개요
 
-- 개념 : "결코 신뢰하지 않고, 항상 검증한다(Never Trust, Always Verify)"를 핵심 대원칙으로, 네트워크 내부와 외부의 경계를 구분하지 않고 모든 접속 요청(사용자, 디바이스, 트래픽, 애플리케이션)에 대해 신원 검증과 최소 권한을 지속적으로 강제하는 **차세대 엔터프라이즈 보안 아키텍처** (NIST SP 800-207 기반).
+- 개념 : "결코 신뢰하지 않고, 항상 검증한다(Never Trust, Always Verify)"를 핵심 대원칙으로, 네트워크 내부와 외부의 경계를 구분하지 않고 모든 접속 요청(사용자, 디바이스, 트래픽, 애플리케이션)에 대해 신원 검증과 최소 권한을 지속적으로 강제하는 **차세대 엔터프라이즈 보안 아키텍처** (NIST(National Institute of Standards and Technology) SP 800-207 기반).
 - 배경 및 필요성 : 클라우드 전환, 원격/재택근무 확산, 모바일 기기 증가로 전통적인 **성곽과 해자** (Castle-and-Moat) 방식의 네트워크 경계 보안이 붕괴되었으며, 일단 내부망에 침투한 해커가 아무런 제약 없이 **횡적 이동** (Lateral Movement)을 감행하는 한계에 직면함.
 - 핵심 목적 : 네트워크 위치에 기반한 **암묵적 신뢰** (Implicit Trust)를 완전히 제거하고, '이미 침해당했다(Assume Breach)'는 전제하에 공격의 **폭발 반경** (Blast Radius)을 최소화.
 
 ## Ⅱ. 제로 트러스트 보안의 핵심 아키텍처 및 동작 메커니즘
 
-제로 트러스트는 NIST SP 800-207 표준에 따라 정책 결정 지점(PDP: Policy Engine + Policy Administrator)과 정책 시행 지점(PEP), 그리고 3대 핵심 원칙(명시적 검증, 최소 권한, 침해 가정)을 기반으로 동작함.
+제로 트러스트는 NIST SP 800-207 표준에 따라 정책 결정 지점(PDP: Policy Engine + Policy Administrator)과 정책 시행 지점(PEP, Policy Enforcement Point), 그리고 3대 핵심 원칙(명시적 검증, 최소 권한, 침해 가정)을 기반으로 동작함.
 
 ```text
 [ NIST SP 800-207 제로 트러스트 아키텍처 논리적 프레임워크 ]
@@ -51,14 +51,14 @@ extra:
  * 단말 Posture 검증            * 암호화 세션 생성                     * 최소 권한 적용
 ```
 
-- **3대 기본 원칙 (NIST)** : 1) 명시적 검증(Always verify explicitly): 사용 가능한 모든 데이터(신원, 위치, 기기 상태, 서비스)를 상시 검증. 2) 최소 권한 원칙(Use least privilege): Just-In-Time(JIT) 및 Just-Enough-Access(JEA) 적용. 3) 침해 가정(Assume breach): 폭발 반경을 세그멘테이션으로 국소화하고 전송/저장 암호화 강제.
-- **정책 결정 지점(PDP)과 시행 지점(PEP)** : 신뢰 점수를 계산하여 접근 허용 여부를 결정하는 두뇌 역할의 PDP(Policy Decision Point)와 트래픽 경로 상에서 세션을 물리적으로 연결/차단하는 PEP(Policy Enforcement Point).
-- **소프트웨어 정의 경계(SDP: Software Defined Perimeter)** : 인터넷 상에서 서버의 IP와 포트를 완전히 은닉하고(Black Cloud), 선인증 후접속(Authenticate-First, Connect-Later) 방식으로 인가된 단말에게만 가상 터널 개방.
+- **3대 기본 원칙 (NIST)** : 1) 명시적 검증(Always verify explicitly): 사용 가능한 모든 데이터(신원, 위치, 기기 상태, 서비스)를 상시 검증. 2) 최소 권한 원칙(Use least privilege): Just-In-Time(JIT) 및 Just-Enough-Access(JEA, Just Enough Administration) 적용. 3) 침해 가정(Assume breach): 폭발 반경을 세그멘테이션으로 국소화하고 전송/저장 암호화 강제.
+- **정책 결정 지점(PDP, Policy Decision Point)과 시행 지점(PEP)** : 신뢰 점수를 계산하여 접근 허용 여부를 결정하는 두뇌 역할의 PDP(Policy Decision Point)와 트래픽 경로 상에서 세션을 물리적으로 연결/차단하는 PEP(Policy Enforcement Point).
+- **소프트웨어 정의 경계(SDP: Software Defined Perimeter)** : 인터넷 상에서 서버의 IP(Internet Protocol)와 포트를 완전히 은닉하고(Black Cloud), 선인증 후접속(Authenticate-First, Connect-Later) 방식으로 인가된 단말에게만 가상 터널 개방.
 - **마이크로 세그멘테이션(Micro-segmentation)** : 네트워크를 워크로드 단위, 컨테이너 단위로 극세분화하여 동일 서브넷 내에서도 인가되지 않은 측면 횡적이동(East-West Traffic)을 완벽히 차단.
 
 ## Ⅲ. 제로 트러스트 보안의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | **제로 트러스트 보안** (Zero Trust) | **전통적 경계 기반 보안** (Perimeter) | **VPN 기반 원격 접속** |
+| 비교 항목 | **제로 트러스트 보안** (Zero Trust) | **전통적 경계 기반 보안** (Perimeter) | **VPN(Virtual Private Network) 기반 원격 접속** |
 | --- | --- | --- | --- |
 | 신뢰 철학 | "결코 신뢰하지 않고, 항상 검증한다" | "내부는 안전하고 외부는 위험하다" | "로그인에 성공하면 내부망을 신뢰한다" |
 | 통제 중심 | 신원(Identity), 기기, 데이터, 워크로드 | 물리적 네트워크 경계선, IP 주소, 포트 | IP 터널링 기반 사내망 전체 접속 |
@@ -66,22 +66,22 @@ extra:
 | 접근 권한 | 특정 애플리케이션 단위 최소 권한 | 네트워크 대역 단위 광범위 허용 | 네트워크 대역 전체 연결 (과잉 권한) |
 | 네트워크 가시성 | 모든 자원이 기본 은닉 (Dark Cloud) | 오픈 포트 스캐닝에 상시 노출 | VPN 게이트웨이 IP 상시 노출 |
 
-- 제로 트러스트는 단일 보안 제품이 아닌 전사적 아키텍처 철학이며, CISA 성숙도 모델에 기반한 점진적·단계적 마이그레이션 전략이 성공의 핵심임.
+- 제로 트러스트는 단일 보안 제품이 아닌 전사적 아키텍처 철학이며, CISA(Cybersecurity and Infrastructure Security Agency) 성숙도 모델에 기반한 점진적·단계적 마이그레이션 전략이 성공의 핵심임.
 
 ## Ⅳ. 제로 트러스트 보안의 주요 한계점 및 해결 방안
 
 - 레거시(Legacy) 온프레미스 시스템의 제로 트러스트 전환 난제 :
-  - 한계점 : 현대적 신원 연합(OIDC, SAML)을 지원하지 않는 오래된 사내 C/S 프로그램이나 노후 제어 시스템은 ZTNA 연동 불가.
+  - 한계점 : 현대적 신원 연합(OIDC(OpenID Connect), SAML(Security Assertion Markup Language))을 지원하지 않는 오래된 사내 C/S 프로그램이나 노후 제어 시스템은 ZTNA(Zero Trust Network Access) 연동 불가.
   - 해결 방안 : 레거시 프로토콜을 ZTNA 표준 프로토콜로 변환해 주는 아이덴티티 인식 프록시(IAP: Identity-Aware Proxy) 게이트웨이 전진 배치.
-- 지속적 재인증 및 정밀 검역으로 인한 사용자 경험(UX) 저하 :
-  - 한계점 : 조금만 위치를 바꾸거나 단말 설정이 바뀌어도 빈번한 추가 MFA를 요구하여 임직원의 업무 생산성 저하 및 불만 폭증.
+- 지속적 재인증 및 정밀 검역으로 인한 사용자 경험(UX, User Experience) 저하 :
+  - 한계점 : 조금만 위치를 바꾸거나 단말 설정이 바뀌어도 빈번한 추가 MFA(Multi-Factor Authentication)를 요구하여 임직원의 업무 생산성 저하 및 불만 폭증.
   - 해결 방안 : 무감지(Passwordless) FIDO2 생체 인증과 백그라운드 단말 보안 텔레메트리 자동 수집을 결합한 원활한(Frictionless) 인증 UX 설계.
-- PDP 정책 엔진에 대한 단일 실패점(SPOF) 및 지연 시간 :
-  - 한계점 : 모든 API 요청마다 중앙 PDP에 접근 허용 여부를 질의할 경우 PDP 서버 장애 시 전사 업무 중단 및 네트워크 레이턴시 증가.
+- PDP 정책 엔진에 대한 단일 실패점(SPOF, Single Point of Failure) 및 지연 시간 :
+  - 한계점 : 모든 API(Application Programming Interface) 요청마다 중앙 PDP에 접근 허용 여부를 질의할 경우 PDP 서버 장애 시 전사 업무 중단 및 네트워크 레이턴시 증가.
   - 해결 방안 : PDP 결정을 에지(Edge) PEP 노드에 단기 캐싱하고 분산형 마이크로 PDP 아키텍처 구축.
 
 ## Ⅴ. 제로 트러스트 보안 적용 및 발전을 위한 기술사적 제언
 
 - CISA 제로 트러스트 성숙도 모델(ZTMM 2.0) 기반 로드맵 수립 : 신원, 기기, 네트워크, 애플리케이션, 데이터 5대 기둥(Pillars)별로 전통(Traditional) -> 초기(Initial) -> 발전(Advanced) -> 최적(Optimal) 단계로 체계적 승격 추진.
-- 기존 레거시 VPN의 단계적 퇴출 및 ZTNA 전면 전환 : 사내 네트워크 전체를 열어주는 취약한 SSL VPN 장비를 전면 철거하고 개별 애플리케이션 단위로만 연결하는 ZTNA 클라우드 에지 게이트웨이 도입.
-- SOAR 연동을 통한 실시간 위험 기반 정책 자동화 : EDR이나 NDR에서 엔드포인트 악성코드 감염이 탐지되는 즉시 PDP 정책 엔진이 해당 단말의 신뢰도를 0점으로 강등하여 즉시 모든 활성 세션을 자동 차단.
+- 기존 레거시 VPN의 단계적 퇴출 및 ZTNA 전면 전환 : 사내 네트워크 전체를 열어주는 취약한 SSL(Secure Sockets Layer) VPN 장비를 전면 철거하고 개별 애플리케이션 단위로만 연결하는 ZTNA 클라우드 에지 게이트웨이 도입.
+- SOAR(Security Orchestration, Automation and Response) 연동을 통한 실시간 위험 기반 정책 자동화 : EDR(Endpoint Detection and Response)이나 NDR(Network Detection and Response)에서 엔드포인트 악성코드 감염이 탐지되는 즉시 PDP 정책 엔진이 해당 단말의 신뢰도를 0점으로 강등하여 즉시 모든 활성 세션을 자동 차단.

@@ -14,11 +14,13 @@ extra:
 
 ## Ⅰ. 안드로이드(Android)의 개요
 
-- 개념 : 구글(Google)이 주도하는 **오픈 핸드셋 얼라이언스** (OHA)에서 개발한 오픈소스 모바일 및 임베디드 운영체제로서, 수정된 **리눅스 커널** (Linux Kernel)을 기반으로 **하드웨어 추상화 계층** (HAL), C/C++ 네이티브 라이브러리, 안드로이드 런타임(ART), 자바/코틀린 API 프레임워크 및 시스템 애플리케이션으로 구성된 풀스택 소프트웨어 플랫폼.
-- 배경 및 필요성 : 파편화되어 있던 모바일 기기 OS 생태계를 통합하고, 스마트폰, 태블릿, 스마트TV, 차량용 인포테인먼트(Automotive) 등 다양한 하드웨어 폼팩터에서 공통의 애플리케이션 실행 환경을 무상 오픈소스로 제공하기 위해 탄생.
+- 개념 : 구글(Google)이 주도하는 **오픈 핸드셋 얼라이언스** (OHA, Open Handset Alliance)에서 개발한 오픈소스 모바일 및 임베디드 운영체제로서, 수정된 **리눅스 커널** (Linux Kernel)을 기반으로 **하드웨어 추상화 계층** (HAL, Hardware Abstraction Layer), C/C++ 네이티브 라이브러리, 안드로이드 런타임(ART, Android Runtime), 자바/코틀린 API(Application Programming Interface) 프레임워크 및 시스템 애플리케이션으로 구성된 풀스택 소프트웨어 플랫폼.
+- 배경 및 필요성 : 파편화되어 있던 모바일 기기 OS(Operating System) 생태계를 통합하고, 스마트폰, 태블릿, 스마트TV, 차량용 인포테인먼트(Automotive) 등 다양한 하드웨어 폼팩터에서 공통의 애플리케이션 실행 환경을 무상 오픈소스로 제공하기 위해 탄생.
 - 핵심 목적 : 이기종 하드웨어 호환성 확보, **샌드박스** (Sandbox) 기반의 강력한 보안 격리, 최신 ART 런타임을 통한 고성능 앱 실행 및 방대한 글로벌 개발자 생태계 구축.
 
 ## Ⅱ. 안드로이드 시스템 아키텍처 및 5대 핵심 계층
+
+- 도식 약어: AOT(Ahead-of-Time), JIT(Just-in-Time).
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -53,24 +55,24 @@ extra:
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **안드로이드 런타임** (ART) : 과거 Dalvik VM의 순수 JIT 인터프리터 한계를 극복하고, 앱 설치 시 **사전 컴파일** (AOT)과 런타임 JIT, 그리고 기기 유휴 시 자주 쓰는 코드를 선별 컴파일하는 **프로파일 가이드 컴파일** (PGO: Profile-Guided Optimization) 메커니즘 채택.
-- **바인더(Binder) IPC** : 리눅스 기본 IPC(소켓, 파이프)의 다중 복사 오버헤드를 없애기 위해 공유 메모리 기반의 메모리 1회 복사(Single-Copy) 고속 프로세스 간 통신(IPC) 및 RPC 드라이버 제공.
+- **안드로이드 런타임** (ART) : 과거 Dalvik VM(Virtual Machine)의 순수 JIT(Just-in-Time) 인터프리터 한계를 극복하고, 앱 설치 시 **사전 컴파일** (AOT)과 런타임 JIT, 그리고 기기 유휴 시 자주 쓰는 코드를 선별 컴파일하는 **프로파일 가이드 컴파일** (PGO: Profile-Guided Optimization) 메커니즘 채택.
+- **바인더(Binder) IPC**(Inter-Process Communication) : 리눅스 기본 IPC(소켓, 파이프)의 다중 복사 오버헤드를 없애기 위해 공유 메모리 기반의 메모리 1회 복사(Single-Copy) 고속 프로세스 간 통신(IPC) 및 RPC(Remote Procedure Call) 드라이버 제공.
 
 ## Ⅲ. 안드로이드 핵심 컴포넌트 4대 요소 비교 분석
 
-| 컴포넌트 명칭 | 핵심 역할 및 기능 | 사용자 인터페이스(UI) 유무 | 컴포넌트 간 활성화 메커니즘 |
+| 컴포넌트 명칭 | 핵심 역할 및 기능 | 사용자 인터페이스(UI, User Interface) 유무 | 컴포넌트 간 활성화 메커니즘 |
 | :--- | :--- | :--- | :--- |
 | **Activity** (액티비티) | 사용자와 상호작용하는 단일 화면 UI 단위 | **UI 화면 제공** | `startActivity(Intent)` |
 | **Service** (서비스) | 백그라운드에서 오래 실행되는 작업 처리 | **UI 없음** (백그라운드) | `startService()`, `bindService()` |
 | **Broadcast Receiver** | 시스템 전역 이벤트(배터리 부족, 부팅) 수신 | UI 없음 (알림바 연계) | `sendBroadcast(Intent)` |
-| **Content Provider** | 앱 간의 데이터 공유 및 캡슐화된 DB 제공 | UI 없음 (데이터 인터페이스) | `ContentResolver.query()` URI 호출 |
+| **Content Provider** | 앱 간의 데이터 공유 및 캡슐화된 DB(Database) 제공 | UI 없음 (데이터 인터페이스) | `ContentResolver.query()` URI(Uniform Resource Identifier) 호출 |
 
 ## Ⅳ. 안드로이드 플랫폼의 주요 한계점 및 해결 방안
 
 - 기기 및 OS 버전 파편화(Fragmentation)에 따른 보안 패치 지연 :
   - 한계점 : 수천 종의 하드웨어 제조사별 커스텀 롬으로 인해 구글의 최신 보안 패치 및 OS 업데이트가 최종 사용자에게 수개월~수년 지연.
   - 해결 방안 : Project Treble(OS 프레임워크와 하드웨어 드라이버 HAL 분리) 및 Project Mainline(핵심 OS 모듈을 구글 플레이 스토어로 직접 업데이트) 도입.
-- 자바 가비지 컬렉션(GC) 일시정지로 인한 UI 끊김(Jank 현상) :
+- 자바 가비지 컬렉션(GC, Garbage Collection) 일시정지로 인한 UI 끊김(Jank 현상) :
   - 한계점 : 복잡한 리스트 스크롤 시 백그라운드 GC 가동으로 프레임 드롭(16.6ms 초과) 발생.
   - 해결 방안 : ART 세대별 GC(Generational GC) 도입, 동시성 모바일 최적화 GC 알고리즘 적용 및 코틀린 코루틴(Coroutines) 기반 비동기 처리.
 - 개방형 앱 마켓 생태계의 악성코드 및 사이드로드(Sideloading) 위협 :
@@ -80,4 +82,4 @@ extra:
 ## Ⅴ. 차세대 스마트 디바이스를 위한 기술사적 제언
 
 - 차세대 마이크로커널(Fuchsia / Zircon) 아키텍처 대비 : 모놀리식 리눅스 커널 기반 안드로이드의 보안 취약성과 코드 비대화를 해결하기 위해 구글이 개발 중인 초경량 마이크로커널 OS(Fuchsia) 기술의 동향을 모니터링하고, 크로스 플랫폼 프레임워크(Flutter) 기반 앱 설계를 표준화해야 함.
-- 온디바이스 생성형 AI와 AICore 프레임워크 통합 : 안드로이드 14+부터 탑재된 Android AICore 및 온디바이스 NPU 가속기(Gemini Nano)를 활용하여, 민감한 개인정보(사진, 문자, 음성)를 외부 클라우드로 전송하지 않고 기기 내부에서 실시간 요약·추론하는 프라이버시 중심 모바일 아키텍처를 구현할 것을 제언함.
+- 온디바이스 생성형 AI(Artificial Intelligence)와 AICore 프레임워크 통합 : 안드로이드 14+부터 탑재된 Android AICore 및 온디바이스 NPU(Neural Processing Unit) 가속기(Gemini Nano)를 활용하여, 민감한 개인정보(사진, 문자, 음성)를 외부 클라우드로 전송하지 않고 기기 내부에서 실시간 요약·추론하는 프라이버시 중심 모바일 아키텍처를 구현할 것을 제언함.

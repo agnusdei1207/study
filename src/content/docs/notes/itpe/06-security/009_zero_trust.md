@@ -20,7 +20,7 @@ extra:
 
 ## Ⅱ. 제로트러스트(Zero Trust)의 핵심 아키텍처 및 동작 메커니즘
 
-NIST SP 800-207에 정의된 제로트러스트 논리 아키텍처는 **정책 결정 지점** (PDP)과 **정책 집행 지점** (PEP)으로 분리되어 주체와 자원 간의 모든 세션을 동적으로 통제함.
+NIST(National Institute of Standards and Technology) SP 800-207에 정의된 제로트러스트 논리 아키텍처는 **정책 결정 지점** (PDP, Policy Decision Point)과 **정책 집행 지점** (PEP, Policy Enforcement Point)으로 분리되어 주체와 자원 간의 모든 세션을 동적으로 통제함.
 
 ```text
 [ NIST SP 800-207 제로트러스트 논리 아키텍처 ]
@@ -46,9 +46,9 @@ NIST SP 800-207에 정의된 제로트러스트 논리 아키텍처는 **정책 
      * 지속적 평가 요소 : 단말 상태(EDR), 사용자 신원(MFA), 위협 인텔리전스(CTI)
 ```
 
-- **모든 자원의 보호 및 명시적 검증** : 위치에 무관하게 모든 데이터, 컴퓨팅 자원, 서비스를 보호 대상에 포함하고 접근 시마다 **MFA** 및 단말 무결성 검증.
+- **모든 자원의 보호 및 명시적 검증** : 위치에 무관하게 모든 데이터, 컴퓨팅 자원, 서비스를 보호 대상에 포함하고 접근 시마다 **MFA**(Multi-Factor Authentication) 및 단말 무결성 검증.
 - **세션 단위 최소 권한** (Least Privilege) 부여 : 영구적인 네트워크 접속 권한을 배제하고, 요청된 특정 애플리케이션/기능에 대해서만 시한부(Just-in-Time) 접근 허용.
-- **지속적 신뢰 평가** (Continuous Adaptive Risk and Trust Assessment) : 세션 수립 후에도 **사용자 이상 행위** (UEBA)나 단말 보안 정책 위반 시 실시간으로 세션을 종료하거나 권한을 강등.
+- **지속적 신뢰 평가** (Continuous Adaptive Risk and Trust Assessment) : 세션 수립 후에도 **사용자 이상 행위** (UEBA, User and Entity Behavior Analytics)나 단말 보안 정책 위반 시 실시간으로 세션을 종료하거나 권한을 강등.
 - **마이크로세그멘테이션** (Micro-Segmentation) : 네트워크를 애플리케이션 및 워크로드 단위로 미세 격리하여 단일 파드/단말 침해 시 인접 시스템 전파 방지.
 
 ## Ⅲ. 제로트러스트(Zero Trust)의 세부 구성 요소 및 비교 분석
@@ -56,27 +56,27 @@ NIST SP 800-207에 정의된 제로트러스트 논리 아키텍처는 **정책 
 | 비교 항목 | 전통적 경계 보안 (Perimeter Security) | 제로트러스트 보안 (Zero Trust Architecture) | 구현 기술 |
 | --- | --- | --- | --- |
 | 신뢰 가정 | 내부망(Intranet)은 신뢰, 외부망은 비신뢰 | 모든 네트워크와 엔드포인트를 기본 비신뢰 | ZTNA (Zero Trust Network Access) |
-| 인증 시점 | 네트워크 진입 시 1회 인증 (VPN/방화벽) | 모든 트랜잭션 및 자원 접근 시마다 지속 인증 | MFA, FIDO2, Continuous Auth |
-| 네트워크 세그먼트 | 서브넷 기반 광범위한 VLAN/DMZ 구성 | 소프트웨어 정의 기반 호스트/앱 단위 격리 | 서비스 메시(mTLS), eBPF 마이크로세그먼트 |
-| 접근 범위 | 네트워크 레벨 접속 (전체 서브넷 IP 노출) | 특정 애플리케이션 레벨 접속 (인프라 은폐) | Dark Cloud 기술 (SPA, SDP) |
-| 통제 주체 | IP 주소, MAC 주소, 포트 번호 | 사용자 신원(Identity), 단말 상태, 컨텍스트 | IAM, 엔드포인트 EDR, 클라우드 PEP |
+| 인증 시점 | 네트워크 진입 시 1회 인증 (VPN(Virtual Private Network)/방화벽) | 모든 트랜잭션 및 자원 접근 시마다 지속 인증 | MFA, FIDO2, Continuous Auth |
+| 네트워크 세그먼트 | 서브넷 기반 광범위한 VLAN(Virtual Local Area Network)/DMZ(Demilitarized Zone) 구성 | 소프트웨어 정의 기반 호스트/앱 단위 격리 | 서비스 메시(mTLS), eBPF 마이크로세그먼트 |
+| 접근 범위 | 네트워크 레벨 접속 (전체 서브넷 IP(Internet Protocol) 노출) | 특정 애플리케이션 레벨 접속 (인프라 은폐) | Dark Cloud 기술 (SPA(Single Packet Authorization), SDP(Software-Defined Perimeter)) |
+| 통제 주체 | IP 주소, MAC(Media Access Control) 주소, 포트 번호 | 사용자 신원(Identity), 단말 상태, 컨텍스트 | IAM(Identity and Access Management), 엔드포인트 EDR(Endpoint Detection and Response), 클라우드 PEP |
 
 - 전통적 경계 보안이 성벽을 쌓고 성문만 지키는 구조라면, 제로트러스트는 성 내부의 모든 방마다 전자 도어락을 설치하고 사람의 신분과 행동을 지속 감시하는 체계임.
 
 ## Ⅳ. 제로트러스트(Zero Trust)의 주요 한계점 및 해결 방안
 
 - 레거시 프로토콜 및 온프레미스 시스템의 **ZTNA** 에이전트 연동 불가 :
-  - 한계점 : 메인프레임, SCADA 산업제어시스템, 레거시 ERP 등 최신 신원 기반 프록시나 ZTNA 에이전트를 지원하지 않는 구형 인프라 적용 난항.
+  - 한계점 : 메인프레임, SCADA(Supervisory Control and Data Acquisition) 산업제어시스템, 레거시 ERP(Enterprise Resource Planning) 등 최신 신원 기반 프록시나 ZTNA 에이전트를 지원하지 않는 구형 인프라 적용 난항.
   - 해결 방안 : 에이전트리스 방식의 리버스 프록시 게이트웨이 및 암호화 점프호스트(Bastion)를 배치하고, 네트워크 전면에 **소프트웨어 정의 경계** (SDP) 게이트웨이 연동.
-- 잦은 재인증 요구로 인한 사용자 업무 생산성 저하 및 UX 악화 :
+- 잦은 재인증 요구로 인한 사용자 업무 생산성 저하 및 UX(User Experience) 악화 :
   - 한계점 : 지속적 검증 원칙을 과도하게 엄격히 적용할 경우 수시로 MFA 팝업이 발생하여 임직원의 피로감과 업무 지연 초래.
   - 해결 방안 : 컨텍스트 기반 **무마찰 인증** (Passwordless FIDO2)과 머신러닝 이상 징후 탐지(UEBA)를 결합하여, 위험 점수가 상승할 때만 **단계별 인증** (Step-up Auth) 트리거.
-- **정책 결정 엔진** (PDP) 장애 시 전사 업무 마비(SPOF 위험) :
+- **정책 결정 엔진** (PDP) 장애 시 전사 업무 마비(SPOF(Single Point of Failure) 위험) :
   - 한계점 : 모든 접근 제어가 중앙 PDP에 의존하므로 PDP 컨트롤러가 다운되거나 네트워크 단절 시 전체 시스템 접근이 불가능해지는 가용성 병목.
   - 해결 방안 : 정책 캐싱(Local Caching)을 지원하는 분산 PEP 아키텍처 및 컨트롤러 다중 리전 액티브-액티브 고가용성 클러스터링 구축.
 
 ## Ⅴ. 제로트러스트(Zero Trust) 적용 및 발전을 위한 기술사적 제언
 
-- '신원(Identity)' 중심의 보안 아키텍처 재편 : IP 네트워크 중심 보안에서 벗어나 Entra ID/Okta 등 차세대 클라우드 IdP를 전사 단일 신뢰 소스(Single Source of Truth)로 확립.
+- '신원(Identity)' 중심의 보안 아키텍처 재편 : IP 네트워크 중심 보안에서 벗어나 Entra ID(Identifier)/Okta 등 차세대 클라우드 IdP(Identity Provider)를 전사 단일 신뢰 소스(Single Source of Truth)로 확립.
 - 국가 제로트러스트 가이드라인 2.0 기반 성숙도 로드맵 수립 : 기본 -> 발전 -> 고도화 3단계 성숙도 모델에 맞추어 식별자·단말·네트워크 3대 핵심부터 단계적 전환.
 - **데이터 보안 태세 관리** (DSPM)와의 결합 : 네트워크 통제에 머무르지 않고 데이터 자체의 민감도 분류와 암호화를 연계하여 엔드투엔드 데이터 제로트러스트 실현 필요.

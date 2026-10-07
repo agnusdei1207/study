@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. AI 보안(Artificial Intelligence Security)의 개요
 
-- 개념 : 인공지능(AI) 시스템 자체의 보안성을 확보하는 'Security of AI'(데이터 오염, 모델 탈취, 적대적 공격 방어)와, 사이버 보안 관제 및 위협 대응을 고도화하기 위해 AI 기술을 활용하는 'Security by AI'(AIOps, SOAR, 악성코드 자동 분석), 그리고 악의적인 AI 사이버 공격을 방어하는 'Security against AI'를 포괄하는 종합 보안 체계.
+- 개념 : 인공지능(AI, Artificial Intelligence) 시스템 자체의 보안성을 확보하는 'Security of AI'(데이터 오염, 모델 탈취, 적대적 공격 방어)와, 사이버 보안 관제 및 위협 대응을 고도화하기 위해 AI 기술을 활용하는 'Security by AI'(AIOps(Artificial Intelligence for IT Operations), SOAR(Security Orchestration, Automation and Response), 악성코드 자동 분석), 그리고 악의적인 AI 사이버 공격을 방어하는 'Security against AI'를 포괄하는 종합 보안 체계.
 - 배경 및 필요성 : AI가 전 산업의 핵심 인프라로 자리 잡으면서 AI 모델을 노린 적대적 공격과 데이터 유출 리스크가 급증하는 동시에, 사이버 공격자들 역시 생성형 AI를 이용해 자동화된 악성코드와 정교한 피싱을 제작함에 따라 출현.
 - 핵심 목적 : AI 모델 및 데이터의 **신뢰성·안전성·강건성** 확보, **사이버 보안 운영** (SecOps) 자동화 및 AI 기반 신종 공격에 대한 선제적 방어 체계 구현.
 
@@ -43,19 +43,19 @@ AI 보안은 '보안을 위한 AI(Securing with AI)'와 'AI 자체의 보안(Sec
 ```
 
 - **Security OF AI** (AI 시스템 보호) : 머신러닝 모델의 파라미터 무결성 보장, 학습 데이터 오염 검증, 추론 시 적대적 예제 및 프롬프트 인젝션 필터링.
-- **Security BY AI** (보안을 위한 AI) : 수억 건의 로그를 초 단위로 분석하는 보안 관제 AI, **행위 기반 이상 징후 탐지** (UEBA), 보안 분석가 업무를 보조하는 Security Copilot.
-- **Security AGAINST AI** (AI 악용 방어) : 생성형 AI로 제작된 정교한 피싱 메일, 딥페이크 음성/영상 사기(CEO 사칭), AI가 작성한 다형성 악성코드 탐지 기술.
+- **Security BY AI** (보안을 위한 AI) : 수억 건의 로그를 초 단위로 분석하는 보안 관제 AI, **행위 기반 이상 징후 탐지** (UEBA, User and Entity Behavior Analytics), 보안 분석가 업무를 보조하는 Security Copilot.
+- **Security AGAINST AI** (AI 악용 방어) : 생성형 AI로 제작된 정교한 피싱 메일, 딥페이크 음성/영상 사기(CEO(Chief Executive Officer) 사칭), AI가 작성한 다형성 악성코드 탐지 기술.
 - **AI TRiSM 프레임워크** : 가트너가 제시한 AI Trust, Risk and Security Management로서 설명가능성, 프라이버시, 거버넌스를 포괄하는 관리 체계.
 
 ## Ⅲ. AI 보안(Artificial Intelligence Security)의 세부 구성 요소 및 비교 분석
 
 | 구분 | 전통적 사이버 보안 | AI 보안 (Security of AI) | AI 활용 보안 (Security by AI) |
 | --- | --- | --- | --- |
-| 보호 대상 | 서버, 네트워크 패킷, 웹 애플리케이션 | 머신러닝 모델 가중치, 학습 데이터, 프롬프트 | 전사 IT 인프라 및 엔드포인트 전반 |
-| 공격 양상 | SQLi, 버퍼 오버플로, 포트 스캐닝 | 적대적 섭동, 데이터 중독, 탈옥, 모델 역공학 | 대규모 APT, 랜섬웨어 횡적 이동 |
+| 보호 대상 | 서버, 네트워크 패킷, 웹 애플리케이션 | 머신러닝 모델 가중치, 학습 데이터, 프롬프트 | 전사 IT(Information Technology) 인프라 및 엔드포인트 전반 |
+| 공격 양상 | SQLi(SQL Injection), 버퍼 오버플로, 포트 스캐닝 | 적대적 섭동, 데이터 중독, 탈옥, 모델 역공학 | 대규모 APT(Advanced Persistent Threat), 랜섬웨어 횡적 이동 |
 | 분석 로직 | 결정론적 시그니처 룰 매칭 (if-else) | 확률론적 통계 모델 및 신경망 잠재 공간 | 비지도/지도학습 기반 이상 패턴 탐지 |
 | 핵심 한계 | 알려지지 않은 제로데이 공격 탐지 불가 | 완전 방어의 수학적 불가능성, 블랙박스 특성 | AI 오탐(False Positive) 및 설명가능성 부족 |
-| 표준 프레임워크 | ISO 27001, ISMS-P, NIST CSF | NIST AI RMF, ISO/IEC 42001, MITRE ATLAS | MITRE ATT&CK, D3FEND, SOAR 플레이북 |
+| 표준 프레임워크 | ISO(International Organization for Standardization) 27001, ISMS(Information Security Management System)-P, NIST(National Institute of Standards and Technology) CSF | NIST AI RMF(Risk Management Framework), ISO/IEC(International Electrotechnical Commission) 42001, MITRE ATLAS | MITRE ATT&CK, D3FEND, SOAR 플레이북 |
 
 - AI 보안은 소프트웨어의 버그를 잡는 차원을 넘어, 확률론적 모델의 불확실성과 블랙박스 특성을 제어하는 고도의 통계학적·공학적 융합 분야임.
 
@@ -63,11 +63,11 @@ AI 보안은 '보안을 위한 AI(Securing with AI)'와 'AI 자체의 보안(Sec
 
 - 딥러닝 모델의 블랙박스 특성으로 인한 **설명가능성** (Explainability) 결여 :
   - 한계점 : AI가 왜 특정 입력을 악성으로 분류했는지 또는 왜 오작동했는지 설명하지 못해 규제 준수 및 디버깅 난항.
-  - 해결 방안 : **XAI** (설명 가능한 AI) 기술인 SHAP, LIME을 통합하고, 결정 트리를 결합한 하이브리드 화이트박스 검증 파이프라인 구축.
+  - 해결 방안 : **XAI**(Explainable Artificial Intelligence) (설명 가능한 AI) 기술인 SHAP(SHapley Additive exPlanations), LIME(Lightweight Interoperability of Model Explanations)을 통합하고, 결정 트리를 결합한 하이브리드 화이트박스 검증 파이프라인 구축.
 - 공격자의 AI 무기화에 따른 공격 속도와 변종 생성의 비대칭성 :
   - 한계점 : 공격자는 생성형 AI를 이용해 대량의 백신 우회 변종 악성코드를 자동 생성하여 전통 방어 체계 압도.
   - 해결 방안 : 방어자 역시 생성형 AI 기반의 역공학 분석 및 위협 인텔리전스 자동 생성 체계를 가동하는 'AI 대 AI(AI vs AI)' 실시간 교전 시스템 구축.
-- 학습 데이터셋 내 개인정보 포함 및 GDPR '잊힐 권리' 충돌 :
+- 학습 데이터셋 내 개인정보 포함 및 GDPR(General Data Protection Regulation) '잊힐 권리' 충돌 :
   - 한계점 : 한번 학습된 모델의 가중치에서 특정 개인의 데이터를 완벽히 삭제하는 것이 기술적으로 불가능하여 법적 규제 위반 위험.
   - 해결 방안 : **머신 언러닝** (Machine Unlearning) 기술 도입 및 데이터 학습 전 **차분 프라이버시** (Differential Privacy) 노이즈 주입.
 
@@ -75,4 +75,4 @@ AI 보안은 '보안을 위한 AI(Securing with AI)'와 'AI 자체의 보안(Sec
 
 - 국제 표준 **ISO/IEC 42001** (인공지능 경영시스템) 인증 획득 추진 : AI 개발 및 서비스 조직의 위험 관리, 투명성, 윤리 준수를 보증하는 글로벌 표준 프레임워크 수용.
 - **MITRE ATLAS** (Adversarial Threat Landscape for AI Systems) 기반 위협 모델링 : 사내 AI 서비스 기획 시 ATLAS 매트릭스를 활용하여 데이터 수집부터 추론까지의 적대적 공격 경로 선제 매핑.
-- SecOps 전반의 **AIOps** 및 보안 코파일럿(Copilot) 전면 도입 : 단순 반복적인 보안 경보 분석 업무를 LLM 기반 분석가 어시스턴트에 위임하여 관제 요원의 대응 역량 대폭 증대.
+- SecOps 전반의 **AIOps** 및 보안 코파일럿(Copilot) 전면 도입 : 단순 반복적인 보안 경보 분석 업무를 LLM(Large Language Model) 기반 분석가 어시스턴트에 위임하여 관제 요원의 대응 역량 대폭 증대.

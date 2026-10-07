@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. 랭체인(LangChain)의 개요
 
-- 개념 : **거대 언어모델** (LLM)을 중심으로 프롬프트, 외부 지식 베이스(Vector DB), API 도구 및 대화 이력 메모리를 레고 블록처럼 표준화된 인터페이스로 조립하는 엔드투엔드 AI 오케스트레이션 프레임워크
+- 개념 : **거대 언어모델** (LLM, Large Language Model)을 중심으로 프롬프트, 외부 지식 베이스(Vector DB), API(Application Programming Interface) 도구 및 대화 이력 메모리를 레고 블록처럼 표준화된 인터페이스로 조립하는 엔드투엔드 AI(Artificial Intelligence) 오케스트레이션 프레임워크
 - 배경 및 필요성 : 과도한 추상화 계층으로 인한 디버깅 난항과 프로덕션 환경의 복잡한 순환 분기 처리 한계가 존재하므로 상태 기반 워크플로우를 지원하는 **랭그래프** (LangGraph) 전환 및 **랭스미스** (LangSmith) 풀 트레이싱 구축 필수
-- 핵심 목적 : 폐쇄된 단일 LLM API 호출의 한계를 극복하고 최신 외부 지식 결합(RAG) 및 **자율적 도구 실행 에이전트** (Agentic AI)의 개발 생산성 극대화
+- 핵심 목적 : 폐쇄된 단일 LLM API 호출의 한계를 극복하고 최신 외부 지식 결합(RAG, Retrieval-Augmented Generation) 및 **자율적 도구 실행 에이전트** (Agentic AI)의 개발 생산성 극대화
 
 ## Ⅱ. 랭체인(LangChain)의 핵심 아키텍처 및 동작 메커니즘
 
@@ -57,8 +57,8 @@ extra:
 - **Model I/O** : 다양한 LLM/ChatModel(OpenAI, Anthropic, Ollama)과 프롬프트 템플릿 통합 - 벤더 독립적 인터페이스 제공 및 구조화된 출력(Pydantic OutputParser) 강제
 - **Retrieval** (RAG) : Document Loader, Text Splitter, Embedding, Vector Store 연계 - 비정형 사내 문서를 청킹하여 시맨틱 검색 파이프라인을 단 수 줄로 구현
 - **Chains** (LCEL) : 병렬 처리(`RunnableParallel`) 및 스트리밍(`stream()`) 자동 최적화
-- **Memory** : 대화 이력 보존(BufferMemory, SummaryMemory, VectorStoreMemory) - 상태가 없는(Stateless) REST LLM에 멀티턴 컨텍스트 지속성 부여
-- **Agents & Tools** : ReAct 패턴 기반 도구 선택 및 동적 실행기(AgentExecutor) - 구글 검색, 사내 SQL DB, 계산기 등 외부 시스템과의 양방향 인터페이싱
+- **Memory** : 대화 이력 보존(BufferMemory, SummaryMemory, VectorStoreMemory) - 상태가 없는(Stateless) REST(Representational State Transfer) LLM에 멀티턴 컨텍스트 지속성 부여
+- **Agents & Tools** : ReAct 패턴 기반 도구 선택 및 동적 실행기(AgentExecutor) - 구글 검색, 사내 SQL(Structured Query Language) DB(Database), 계산기 등 외부 시스템과의 양방향 인터페이싱
 
 ## Ⅲ. 랭체인(LangChain)의 세부 구성 요소 및 비교 분석
 
@@ -66,7 +66,7 @@ extra:
 |---|---|---|---|---|
 | **핵심 강점** | 범용성, 방대한 생태계, LangGraph 에이전트 | 고성능 RAG, 정교한 데이터 인덱싱 | 대화형 멀티 에이전트 시뮬레이션 | 역할 기반(Role-based) 협업 에이전트 |
 | **주요 적용처** | 엔터프라이즈 통합 AI 앱, 복합 에이전트 | 엔터프라이즈 지식 검색, 검색 특화 | 연구용 다자간 토론, 자율 코딩 | 실무 자동화 워크플로우 조립 |
-| **학습 곡선** | 중간~높음 (버전 업데이트 빈번) | 중간 | 다소 높음 (이벤트 기반 비동기) | 낮음 (직관적 YAML/Python) |
+| **학습 곡선** | 중간~높음 (버전 업데이트 빈번) | 중간 | 다소 높음 (이벤트 기반 비동기) | 낮음 (직관적 YAML(YAML Ain't Markup Language)/Python) |
 | **관측성 도구** | LangSmith (완벽 통합) | LlamaTrace | AutoGen Studio | AgentOps |
 
 - 랭체인은 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
@@ -75,7 +75,7 @@ extra:
 
 - 과도한 추상화 계층(Class Wrapper) 및 잦은 Deprecation으로 인한 유지보수 난항 :
   - 한계점 : 오픈소스의 과도한 추상화 계층(Class Wrapper)과 잦은 API 변경(Deprecation)으로 인한 코드 유지보수 난항.
-  - 해결 방안 : 단순 작업은 순수 Python SDK로 경량화하고 엔터프라이즈급 복합 흐름에만 검증된 LangChain Core 및 LCEL 표준 고정.
+  - 해결 방안 : 단순 작업은 순수 Python SDK(Software Development Kit)로 경량화하고 엔터프라이즈급 복합 흐름에만 검증된 LangChain Core 및 LCEL 표준 고정.
 - 도구 호출 중 런타임 예외 발생이나 무한 루프로 인한 서버 자원 낭비 :
   - 한계점 : 에이전트가 도구 호출 과정에서 런타임 예외를 일으키거나 무한 루프에 빠져 서버 자원과 API 토큰 낭비.
   - 해결 방안 : 최대 반복 횟수(Recursion Limit) 강제와 Pydantic 기반 인자 검증 및 예외 발생 시 전용 Fallback 체인 라우팅.
@@ -87,4 +87,4 @@ extra:
 
 - 제어 구조 중심 엔터프라이즈 고도화 : 단순 블랙박스 AgentExecutor 의존의 한계를 탈피하고, 상태 기반 화이트박스 그래프 제어를 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.
 - 오류 복구 중심 엔터프라이즈 고도화 : 중간 에러 시 전체 파이프라인 크래시의 한계를 탈피하고, 체크포인트 기반 특정 노드 롤백 재시도를 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.
-- 사람 개입 중심 엔터프라이즈 고도화 : 불가능 (자율 실행만 지원)의 한계를 탈피하고, 휴먼 인 더 루프(HITL) 중단점 지원을 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.
+- 사람 개입 중심 엔터프라이즈 고도화 : 불가능 (자율 실행만 지원)의 한계를 탈피하고, 휴먼 인 더 루프(HITL, Human in the Loop) 중단점 지원을 체계적으로 추진하여 실무 운영 효율성과 엔지니어링 신뢰성을 극대화해야 함.

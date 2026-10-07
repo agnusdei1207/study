@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. 공격표면관리(Attack Surface Management)의 개요
 
-- 개념 : 인터넷에 노출되어 공격자의 표적이 될 수 있는 조직의 모든 내·외부 디지털 자산(IP, 도메인, 서브도메인, 클라우드 인스턴스, 섀도우 IT, 오픈 포트, API 등)을 **해커의 시각** (Outside-in)에서 지속적으로 탐지·식별·분류하고 보안 위험을 완화하는 능동적 보안 관리 체계.
+- 개념 : 인터넷에 노출되어 공격자의 표적이 될 수 있는 조직의 모든 내·외부 디지털 자산(IP(Internet Protocol), 도메인, 서브도메인, 클라우드 인스턴스, 섀도우 IT(Information Technology), 오픈 포트, API(Application Programming Interface) 등)을 **해커의 시각** (Outside-in)에서 지속적으로 탐지·식별·분류하고 보안 위험을 완화하는 능동적 보안 관리 체계.
 - 배경 및 필요성 : 원격 근무와 멀티 클라우드 도입으로 IT 자산이 전 세계로 분산되면서, 보안팀이 파악하지 못한 채 방치된 **미관리 자산** (Shadow IT, 개발용 테스트 서버)이 공격자의 최초 침투 경로로 악용되는 사태 급증.
 - 핵심 목적 : 미지의 디지털 자산에 대한 완벽한 가시성 확보, 인터넷 노출 공격 표면의 선제적 축소, 외부 취약점 악용 이전의 신속한 조치 실현.
 
@@ -56,8 +56,8 @@ ASM은 자산 발견(Asset Discovery) -> 인벤토리 분류(Inventory) -> 위�
 ```
 
 - **에이전트리스 외부 탐지** (Agentless Outside-In) : 대상 서버에 프로그램을 설치하지 않고, 외부 인터넷에서 해커가 사용하는 **정찰** (Reconnaissance) 기법 그대로 자산 수집.
-- **인증서 투명성** (CT Log) 및 DNS 브루트포싱 : 신규 생성된 SSL 인증서 로그와 DNS 쿼리를 모니터링하여 개발팀이 임의로 생성한 비인가 서브도메인 실시간 탐지.
-- **자산 귀속성 판별** (Asset Attribution) : 발견된 자산이 실제 우리 조직의 자산인지 서드파티 협력사 자산인지 ASN, TLS 인증서 주체, WHOIS 정보로 정확히 연결.
+- **인증서 투명성** (CT Log) 및 DNS(Domain Name System) 브루트포싱 : 신규 생성된 SSL(Secure Sockets Layer) 인증서 로그와 DNS 쿼리를 모니터링하여 개발팀이 임의로 생성한 비인가 서브도메인 실시간 탐지.
+- **자산 귀속성 판별** (Asset Attribution) : 발견된 자산이 실제 우리 조직의 자산인지 서드파티 협력사 자산인지 ASN, TLS(Transport Layer Security) 인증서 주체, WHOIS 정보로 정확히 연결.
 - **지속적 노출 모니터링** : 일회성 모의해킹과 달리 연중무휴 24시간 자산의 변화(신규 포트 개방, SSL 만료, 제로데이 소프트웨어 버전)를 감시.
 
 ## Ⅲ. 공격표면관리(Attack Surface Management)의 세부 구성 요소 및 비교 분석
@@ -66,18 +66,18 @@ ASM은 자산 발견(Asset Discovery) -> 인벤토리 분류(Inventory) -> 위�
 | --- | --- | --- | --- |
 | 탐지 관점 | 내부망 중심 (Inside-out) | 외부 인터넷 중심 (Outside-in) | 내·외부 API 연동 통합 (Inside & Out) |
 | 자산 대상 | 사전에 알고 있는 등록된 IP/호스트 | 알려지지 않은 미지의 자산 (Shadow IT) | 클라우드, 엔드포인트, SaaS 전체 자산 |
-| 설치 방식 | 에이전트 설치 또는 내부 스캐너 배치 | 에이전트리스 (외부 스캐닝) | 기존 보안 도구(EDR, CSPM) API 결합 |
-| 핵심 가치 | 알려진 소프트웨어 취약점(CVE) 상세 진단 | 공격자에게 노출된 공격 표면의 신속한 발견 | 전사 IT 자산의 단일 인벤토리 가시성 확보 |
-| 대표적 침해 예방 | 내부 서버 패치 누락 침해 | 테스트용 방치 서버, 개방된 RDP 포트 침투 | 보안 에이전트가 누락된 단말 식별 |
+| 설치 방식 | 에이전트 설치 또는 내부 스캐너 배치 | 에이전트리스 (외부 스캐닝) | 기존 보안 도구(EDR(Endpoint Detection and Response), CSPM(Cloud Security Posture Management)) API 결합 |
+| 핵심 가치 | 알려진 소프트웨어 취약점(CVE, Common Vulnerabilities and Exposures) 상세 진단 | 공격자에게 노출된 공격 표면의 신속한 발견 | 전사 IT 자산의 단일 인벤토리 가시성 확보 |
+| 대표적 침해 예방 | 내부 서버 패치 누락 침해 | 테스트용 방치 서버, 개방된 RDP(Remote Desktop Protocol) 포트 침투 | 보안 에이전트가 누락된 단말 식별 |
 
 - ASM은 보안팀이 모르고 있던 '섀도우 IT(그림자 자산)'를 찾아내어 해커가 가장 먼저 두드리는 외곽 침투 경로를 사전에 봉쇄하는 선제적 보안의 핵심 도구임.
 
 ## Ⅳ. 공격표면관리(Attack Surface Management)의 주요 한계점 및 해결 방안
 
 - 동적 클라우드 환경에서의 IP 변경으로 인한 자산 귀속성 오류 :
-  - 한계점 : AWS 등 클라우드 탄력적 IP가 해제된 후 타 기업에 재할당되었을 때 자사 자산으로 오인하여 잘못된 스캔 및 법적 분쟁 위험.
-  - 해결 방안 : 클라우드 CSP API 계정과 연동하여 현재 조직이 소유한 유효한 리소스만을 실시간 동기화하여 귀속성 오차 제거.
-- CDN 및 웹 방화벽(WAF) 뒤에 은닉된 실제 **오리진** (Origin) IP 식별 한계 :
+  - 한계점 : AWS(Amazon Web Services) 등 클라우드 탄력적 IP가 해제된 후 타 기업에 재할당되었을 때 자사 자산으로 오인하여 잘못된 스캔 및 법적 분쟁 위험.
+  - 해결 방안 : 클라우드 CSP(Cloud Service Provider) API 계정과 연동하여 현재 조직이 소유한 유효한 리소스만을 실시간 동기화하여 귀속성 오차 제거.
+- CDN(Content Delivery Network) 및 웹 방화벽(WAF, Web Application Firewall) 뒤에 은닉된 실제 **오리진** (Origin) IP 식별 한계 :
   - 한계점 : Cloudflare 등 CDN을 경유하는 자산의 경우 실제 백엔드 서버 IP가 은폐되어 취약한 원본 서버의 노출 상태를 외부에서 진단 불가.
   - 해결 방안 : 내부 CAASM 및 DNS 히스토리 분석을 병행하여 유출된 오리진 IP를 역추적하고 오리진 서버의 외부 직접 접속을 방화벽으로 차단.
 - 발견된 수많은 외부 자산에 대한 후속 조치 프로세스 부재 :
@@ -87,5 +87,5 @@ ASM은 자산 발견(Asset Discovery) -> 인벤토리 분류(Inventory) -> 위�
 ## Ⅴ. 공격표면관리(Attack Surface Management) 적용 및 발전을 위한 기술사적 제언
 
 - **공격표면관리** (ASM)와 **지속적 위협 노출 관리** (CTEM)의 통합 : 외부에서 발견된 공격 표면을 CTEM 파이프라인의 2단계(Discovery) 입력값으로 자동 연계.
-- 다크웹 유출 자격증명 모니터링 연동 : 노출된 외부 로그인 포털(VPN, SSO)에 대해 다크웹에 유출된 사내 임직원 계정이 존재하는지 상시 교차 검증.
-- 인터넷 노출 자산의 **제로트러스트** (Dark Cloud) 전환 : 외부에서 검색 가능한 공개 IP/포트를 점진적으로 제거하고, SDP/ZTNA를 통해 인프라를 인터넷에서 은폐(Cloaking) 추진.
+- 다크웹 유출 자격증명 모니터링 연동 : 노출된 외부 로그인 포털(VPN(Virtual Private Network), SSO(Single Sign-On))에 대해 다크웹에 유출된 사내 임직원 계정이 존재하는지 상시 교차 검증.
+- 인터넷 노출 자산의 **제로트러스트** (Dark Cloud) 전환 : 외부에서 검색 가능한 공개 IP/포트를 점진적으로 제거하고, SDP(Software-Defined Perimeter)/ZTNA(Zero Trust Network Access)를 통해 인프라를 인터넷에서 은폐(Cloaking) 추진.

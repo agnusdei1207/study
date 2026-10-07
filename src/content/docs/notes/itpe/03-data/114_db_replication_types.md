@@ -45,16 +45,16 @@ extra:
 
 | 복제 토폴로지 | 구조 및 동작 메커니즘 | 장점 | 트레이드오프 및 주의사항 |
 | :--- | :--- | :--- | :--- |
-| **단일 리더 (Single-Leader / Master-Slave)** | 오직 1개의 마스터 노드만 쓰기(Write)를 전담하고, 슬레이브 노드들은 읽기 전용(Read-Only) 복제본으로 동작 | 충돌(Conflict)이 원천 배제됨, 구현 직관적 | 마스터 노드 장애 시 페일오버 시간(RTO) 소요, 쓰기 스케일아웃 불가 |
+| **단일 리더 (Single-Leader / Master-Slave)** | 오직 1개의 마스터 노드만 쓰기(Write)를 전담하고, 슬레이브 노드들은 읽기 전용(Read-Only) 복제본으로 동작 | 충돌(Conflict)이 원천 배제됨, 구현 직관적 | 마스터 노드 장애 시 페일오버 시간(RTO, Recovery Time Objective) 소요, 쓰기 스케일아웃 불가 |
 | **다중 리더 (Multi-Leader / Active-Active)** | 지리적으로 분산된 복수의 노드가 모두 읽기 및 쓰기를 동시에 처리하며 상호 복제 | 원격 데이터센터 간 쓰기 지연 단축, 마스터 장애 무영향 | 동일 레코드 동시 수정 시 쓰기 충돌(Write Conflict) 해결 필수 |
-| **리더리스 (Leaderless / Dynamo 스타일)** | 특정 리더 노드 없이 클라이언트가 여러 복제 노드에 직접 병렬 읽기/쓰기 요청 (Quorum) | 노드 장애에 극도로 강건함, 단일 장애점(SPOF) 부재 | 일관성 수준($W+R > N$) 엄격 관리 필요, 정합성 검증 오버헤드 |
+| **리더리스 (Leaderless / Dynamo 스타일)** | 특정 리더 노드 없이 클라이언트가 여러 복제 노드에 직접 병렬 읽기/쓰기 요청 (Quorum) | 노드 장애에 극도로 강건함, 단일 장애점(SPOF, Single Point of Failure) 부재 | 일관성 수준($W+R > N$) 엄격 관리 필요, 정합성 검증 오버헤드 |
 
 ---
 
 ## Ⅲ. 복제 데이터 전송 계층에 따른 기술적 구현 방식
 
 ### 가. 구문 기반 복제(Statement-Based) vs 행 기반 복제(Row-Based)
-- **Statement-Based Replication (SBR)** : Primary에서 실행된 SQL 문장 자체를 바이너리 로그로 전송 $\rightarrow$ 네트워크 대역폭 절감, 단 `NOW()`, `UUID()` 등 비결정론적 함수 실행 시 양 노드 간 데이터 불일치 발생.
+- **Statement-Based Replication (SBR)** : Primary에서 실행된 SQL(Structured Query Language) 문장 자체를 바이너리 로그로 전송 $\rightarrow$ 네트워크 대역폭 절감, 단 `NOW()`, `UUID()` 등 비결정론적 함수 실행 시 양 노드 간 데이터 불일치 발생.
 - **Row-Based Replication (RBR)** : 실제 디스크에서 변경된 행(Row)의 비트 변화 자체를 전송 $\rightarrow$ 완벽한 데이터 일관성 보장, 대량 갱신(`UPDATE 100만건`) 시 로그 크기 급증.
 - **Mixed Replication** : 평상시에는 SBR을 쓰다가 비결정적 함수 사용 시 RBR로 동적 전환.
 
@@ -64,13 +64,13 @@ extra:
 
 - **동기 복제** (Synchronous Replication)의 트랜잭션 지연 및 가용성 저하 :
   - 한계점 : 모든 복제본의 쓰기 완료 응답을 대기해야 하므로 네트워크 지연이나 슬레이브 노드 지연 시 마스터 노드의 트랜잭션 처리량 급감 및 행(Hang) 발생.
-  - 해결 방안 : **반동기 복제** (Semi-synchronous Replication: 최소 1개 노드 ACK 후 커밋) 도입, 정족수(Quorum) 기반 합의 알고리즘(Raft, Paxos) 적용.
+  - 해결 방안 : **반동기 복제** (Semi-synchronous Replication: 최소 1개 노드 ACK(Acknowledgment) 후 커밋) 도입, 정족수(Quorum) 기반 합의 알고리즘(Raft, Paxos) 적용.
 - **비동기 복제** (Asynchronous Replication) 시 마스터 장애에 따른 데이터 유실 :
-  - 한계점 : 마스터 커밋 후 복제본으로 바이너리 로그가 전송되기 전에 마스터 다운 시 페일오버 과정에서 최신 트랜잭션 유실(RPO > 0).
+  - 한계점 : 마스터 커밋 후 복제본으로 바이너리 로그가 전송되기 전에 마스터 다운 시 페일오버 과정에서 최신 트랜잭션 유실(RPO(Recovery Point Objective) > 0).
   - 해결 방안 : 무손실 반동기 복제(Lossless Semi-sync) 활성화, 스토리지 수준의 동기 미러링 또는 클라우드 공유 스토리지(Aurora Storage Engine) 아키텍처 활용.
 - **다중 마스터** (Multi-Master) 복제 환경의 쓰기 충돌 및 **스플릿 브레인** :
   - 한계점 : 여러 노드에서 동일 레코드가 동시 갱신될 경우 정합성 충돌 발생, 네트워크 단절 시 양쪽 마스터가 독립 승격되어 데이터 분기 오류 초래.
-  - 해결 방안 : 충돌 없는 복제 데이터 타입(CRDT) 적용, **펜싱** (Fencing/STONITH) 메커니즘을 통한 과반수 쿼럼 미달 노드의 쓰기 차단.
+  - 해결 방안 : 충돌 없는 복제 데이터 타입(CRDT, Conflict-Free Replicated Data Type) 적용, **펜싱** (Fencing/STONITH) 메커니즘을 통한 과반수 쿼럼 미달 노드의 쓰기 차단.
 
 ## Ⅴ. 고신뢰 복제 시스템 운영을 위한 실무 제언
 

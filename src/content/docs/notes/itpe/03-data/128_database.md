@@ -57,10 +57,10 @@ extra:
 
 | 세대 구분 | 패러다임 및 모델 | 대표 기술 | 핵심 설계 철학 |
 | :--- | :--- | :--- | :--- |
-| **1세대** | 계층형(IMS), 망형(CODASYL) | IBM IMS, IDMS | 포인터 기반 물리적 탐색, 구조 변경 극도로 경직 |
-| **2세대** | **관계형 (RDBMS)** | Oracle, MySQL, PostgreSQL | 에드가 커드의 관계 대수, SQL 선언적 질의, 엄격한 ACID |
-| **3세대** | **NoSQL & 빅데이터** | MongoDB, Cassandra, Redis | Schema-less, 수평 분산 확장(Scale-Out), BASE |
-| **4세대** | **NewSQL & Vector DB** | CockroachDB, Spanner, Milvus | 분산 확장성과 글로벌 ACID 결합, AI 고차원 임베딩 검색 |
+| **1세대** | 계층형(IMS), 망형(CODASYL) | IBM(International Business Machines) IMS, IDMS | 포인터 기반 물리적 탐색, 구조 변경 극도로 경직 |
+| **2세대** | **관계형 (RDBMS, Relational Database Management System)** | Oracle, MySQL, PostgreSQL | 에드가 커드의 관계 대수, SQL(Structured Query Language) 선언적 질의, 엄격한 ACID(Atomicity, Consistency, Isolation, Durability) |
+| **3세대** | **NoSQL(Not Only SQL) & 빅데이터** | MongoDB, Cassandra, Redis | Schema-less, 수평 분산 확장(Scale-Out), BASE(Basically Available, Soft State, Eventually Consistent) |
+| **4세대** | **NewSQL & Vector DB**(Database) | CockroachDB, Spanner, Milvus | 분산 확장성과 글로벌 ACID 결합, AI(Artificial Intelligence) 고차원 임베딩 검색 |
 
 ---
 
@@ -68,15 +68,15 @@ extra:
 
 - 관계형 데이터베이스(RDBMS)의 단일 노드 **수직적 확장** (Scale-up) 한계 :
   - 한계점 : 초대규모 트래픽 및 페타바이트급 데이터 환경에서 단일 서버 하드웨어 스펙 한계에 도달하며, 수직 증설 비용의 비선형적 폭증.
-  - 해결 방안 : 애플리케이션 레벨 **샤딩** (Sharding), **분산 SQL 데이터베이스** (NewSQL: Spanner, TiDB, CockroachDB)로의 전환, CQRS 기반 읽기/쓰기 분리.
+  - 해결 방안 : 애플리케이션 레벨 **샤딩** (Sharding), **분산 SQL 데이터베이스** (NewSQL: Spanner, TiDB, CockroachDB)로의 전환, CQRS(Command Query Responsibility Segregation) 기반 읽기/쓰기 분리.
 - **임피던스 불일치** (Object-Relational Impedance Mismatch)로 인한 생산성 저하 :
-  - 한계점 : 객체지향 프로그래밍 모델(상속, 다형성)과 관계형 데이터 모델(테이블, 조인) 간의 불일치로 복잡한 ORM 매핑 및 N+1 쿼리 병목 빈발.
-  - 해결 방안 : **도메인 주도 설계** (DDD) 기반 **바운디드 컨텍스트** 수립, 집합적 데이터는 도큐먼트 DB(MongoDB)나 키-값 저장소에 저장하는 폴리그랏 퍼시스턴스 적용.
+  - 한계점 : 객체지향 프로그래밍 모델(상속, 다형성)과 관계형 데이터 모델(테이블, 조인) 간의 불일치로 복잡한 ORM(Object-Relational Mapping) 매핑 및 N+1 쿼리 병목 빈발.
+  - 해결 방안 : **도메인 주도 설계** (DDD, Domain-Driven Design) 기반 **바운디드 컨텍스트** 수립, 집합적 데이터는 도큐먼트 DB(MongoDB)나 키-값 저장소에 저장하는 폴리그랏 퍼시스턴스 적용.
 - 기술 부채 누적으로 인한 데이터 딕셔너리 및 스키마 침식 :
   - 한계점 : 수년간의 빠른 서비스 출시로 비정규화, 하드코딩된 컬럼, 미사용 레거시 테이블이 방치되어 데이터 정합성 파괴 및 유지보수 비용 급증.
-  - 해결 방안 : 전사 **메타데이터 관리 시스템** (MDR) 및 **데이터 카탈로그** 정례화, 자동화된 데이터 계보(Lineage) 추적 도구 도입.
+  - 해결 방안 : 전사 **메타데이터 관리 시스템** (MDR, Metadata Repository) 및 **데이터 카탈로그** 정례화, 자동화된 데이터 계보(Lineage) 추적 도구 도입.
 
 ## Ⅴ. 현대 엔터프라이즈 데이터 아키텍처 관점의 실무 제언
 
 - **다중 저장소** (Polyglot Persistence) 전략의 기본화 : 모든 워크로드를 단일 RDBMS에 우겨넣으려는 아키텍처는 반드시 성능 병목을 유발하므로, 트랜잭션은 PostgreSQL, 고속 세션 캐싱은 Redis, 전문 검색은 Elasticsearch, AI 벡터는 Qdrant로 용도에 맞게 분리해야 함.
-- **클라우드 완전관리형** (PaaS) DB로의 전환 가속화 : 온프레미스 인스턴스 설치·운영에 소모되는 엔지니어링 리소스를 절감하고, 자동 백업, Multi-AZ 페일오버, 자동 스케일링을 제공하는 클라우드 네이티브 데이터베이스를 우선 검토할 것을 제언함.
+- **클라우드 완전관리형** (PaaS, Platform as a Service) DB로의 전환 가속화 : 온프레미스 인스턴스 설치·운영에 소모되는 엔지니어링 리소스를 절감하고, 자동 백업, Multi-AZ 페일오버, 자동 스케일링을 제공하는 클라우드 네이티브 데이터베이스를 우선 검토할 것을 제언함.

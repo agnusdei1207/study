@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 멀티 리전 Active-Active 재해복구의 개요
 
-- 개념 : 지리적으로 수백~수천 km 이상 격리된 둘 이상의 **클라우드 리전** (Region)에 동일한 애플리케이션 스택과 데이터베이스를 상시 가동하고, 모든 리전이 실제 대고객 트래픽을 동시에 분산 처리하며 한 리전의 전면 붕괴 시에도 다운타임 없이(RTO ≈ 0, RPO ≈ 0) 서비스를 지속하는 최고 등급의 재해복구(DR) 아키텍처.
-- 배경 및 필요성 : 글로벌 CSP 리전 전체가 정전이나 자연재해로 중단되는 블랙스완 사고 발생 시, 기존 **Active-Standby** 방식의 페일오버 지연(수십 분)과 데이터 손실을 원천 차단하기 위해 금융 및 글로벌 빅테크를 중심으로 발전함.
+- 개념 : 지리적으로 수백~수천 km 이상 격리된 둘 이상의 **클라우드 리전** (Region)에 동일한 애플리케이션 스택과 데이터베이스를 상시 가동하고, 모든 리전이 실제 대고객 트래픽을 동시에 분산 처리하며 한 리전의 전면 붕괴 시에도 다운타임 없이(RTO(Recovery Time Objective) ≈ 0, RPO(Recovery Point Objective) ≈ 0) 서비스를 지속하는 최고 등급의 재해복구(DR, Disaster Recovery) 아키텍처.
+- 배경 및 필요성 : 글로벌 CSP(Cloud Service Provider) 리전 전체가 정전이나 자연재해로 중단되는 블랙스완 사고 발생 시, 기존 **Active-Standby** 방식의 페일오버 지연(수십 분)과 데이터 손실을 원천 차단하기 위해 금융 및 글로벌 빅테크를 중심으로 발전함.
 - 핵심 목적 : **목표 복구 시간(RTO)** 0초(무중단 즉시 전환), **목표 복구 시점(RPO)** 0초(데이터 무손실), 리전 간 글로벌 부하 분산을 통한 사용자 체감 응답시간 극소화.
 
 ## Ⅱ. 멀티 리전 Active-Active 재해복구의 핵심 아키텍처 및 동작 메커니즘
 
-멀티 리전 Active-Active는 Anycast DNS/GSLB 트래픽 라우팅 계층, 셀(Cell) 기반 서비스 격리, 글로벌 분산 합의 DB(CockroachDB, Spanner, DynamoDB Global Tables), 그리고 분산 충돌 해결 엔진으로 구성됨.
+멀티 리전 Active-Active는 Anycast DNS(Domain Name System)/GSLB(Global Server Load Balancing) 트래픽 라우팅 계층, 셀(Cell) 기반 서비스 격리, 글로벌 분산 합의 DB(CockroachDB, Spanner, DynamoDB Global Tables), 그리고 분산 충돌 해결 엔진으로 구성됨.
 
 ```text
 [ 멀티 리전 Active-Active DR 및 분산 데이터 정합성 아키텍처 ]
@@ -51,10 +51,10 @@ extra:
   * 한 리전이 완전 침수/정전으로 소멸해도 반대편 리전이 100% 트래픽 무중단 연속 처리!
 ```
 
-- **Anycast 글로벌 라우팅** : 사용자와 가장 가까운 리전으로 트래픽을 자동 라우팅하며, 헬스체크 실패 리전은 BGP 경로 철회로 1초 내 자동 제외.
+- **Anycast 글로벌 라우팅** : 사용자와 가장 가까운 리전으로 트래픽을 자동 라우팅하며, 헬스체크 실패 리전은 BGP(Border Gateway Protocol) 경로 철회로 1초 내 자동 제외.
 - **분산 합의 기반 글로벌 DB** : Raft 또는 Paxos 합의 알고리즘을 크로스 리전으로 확장하여, 과반수 노드의 확인을 통해 원거리에서도 데이터 완전 무결성 보장.
-- **셀 기반 아키텍처 (Cell-Based Architecture)** : 리전 간 복잡한 종속성을 제거하기 위해 고객 ID(샤드 키) 단위로 홈 리전을 지정하여 원거리 쓰기 충돌 원천 억제.
-- **CRDT (무충돌 복제 데이터 타입)** : 최종 일관성(Eventual Consistency) 모델을 사용하는 NoSQL 환경에서 양 리전의 동시 수정 발생 시 수학적 알고리즘으로 자동 병합.
+- **셀 기반 아키텍처 (Cell-Based Architecture)** : 리전 간 복잡한 종속성을 제거하기 위해 고객 ID(Identifier, 샤드 키) 단위로 홈 리전을 지정하여 원거리 쓰기 충돌 원천 억제.
+- **CRDT (Conflict-Free Replicated Data Type, 무충돌 복제 데이터 타입)** : 최종 일관성(Eventual Consistency) 모델을 사용하는 NoSQL(Not Only SQL) 환경에서 양 리전의 동시 수정 발생 시 수학적 알고리즘으로 자동 병합.
 
 ## Ⅲ. 멀티 리전 Active-Active 재해복구의 세부 구성 요소 및 비교 분석
 
@@ -70,18 +70,18 @@ extra:
 
 ## Ⅳ. 멀티 리전 Active-Active 재해복구의 주요 한계점 및 해결 방안
 
-- 리전 간 물리적 거리에 따른 광속 **지연** (RTT)과 트랜잭션 성능 저하 :
-  - 한계점 : 서울-도쿄 간 왕복 30ms, 서울-미국 간 150ms의 물리적 지연으로 인해 모든 쓰기 트랜잭션에 동기 2PC 적용 시 사용자 응답 속도 마비.
+- 리전 간 물리적 거리에 따른 광속 **지연** (RTT, Round-Trip Time)과 트랜잭션 성능 저하 :
+  - 한계점 : 서울-도쿄 간 왕복 30ms, 서울-미국 간 150ms의 물리적 지연으로 인해 모든 쓰기 트랜잭션에 동기 2PC(Two-Phase Commit) 적용 시 사용자 응답 속도 마비.
   - 해결 방안 : 데이터 소유권 리전 분할(홈 리전 로컬 쓰기 + 비동기 글로벌 복제), 읽기 전용 로컬 복제본 활용.
 - 동일 데이터의 양 리전 동시 수정 시 **쓰기 충돌(Write Conflict)** :
   - 한계점 : 동일 레코드가 서울과 도쿄에서 동시에 수정될 경우 분기 발생 및 최종 일관성 수렴 실패.
-  - 해결 방안 : LWW(Last-Write-Wins with TrueTime/NTP 타임스탬프) 적용, 비즈니스 로직 레벨의 CRDT 데이터 구조 채택.
+  - 해결 방안 : LWW(Last-Write-Wins with TrueTime/NTP(Network Time Protocol) 타임스탬프) 적용, 비즈니스 로직 레벨의 CRDT 데이터 구조 채택.
 - 단일 리전 장애 시 잔여 리전의 100% 트래픽 집중으로 연쇄 붕괴 :
-  - 한계점 : Region A 다운 시 50% 여유 용량만 보유하던 Region B로 트래픽이 2배 몰려 CPU 100% 포화 및 연쇄 동반 다운.
+  - 한계점 : Region A 다운 시 50% 여유 용량만 보유하던 Region B로 트래픽이 2배 몰려 CPU(Central Processing Unit) 100% 포화 및 연쇄 동반 다운.
   - 해결 방안 : 서킷 브레이커를 통한 과부하 트래픽 차단, 사전 100% 트래픽 수용 능력을 갖춘 여유 용량(Headroom) 프로비저닝.
 
 ## Ⅴ. 멀티 리전 Active-Active 재해복구 적용 및 발전을 위한 기술사적 제언
 
 - 비즈니스 티어링에 입각한 엄격한 적용 대상 선정 : 모든 서비스를 Active-Active로 구축하는 과잉 엔지니어링을 지양하고, 초당 수억 원의 매출이 발생하는 결제/계좌 코어 서비스에만 선별 적용.
 - 정기적인 리전 카나리 **차단(GameDay)** 훈련 의무화 : 운영 환경에서 한 리전의 라우팅을 예고 없이 강제 단절시켜 잔여 리전이 완전 무중단으로 트래픽을 흡수하는지 실증 검증.
-- 구글 **Spanner** / AWS Aurora Global의 특성 이해 및 최적 선택 : 완벽한 외부 일관성(External Consistency)가 필요하면 Spanner를, 높은 읽기 처리량과 비용 효율이 우선이면 Aurora Global DB를 채택하는 기술사적 판단 필수.
+- 구글 **Spanner** / AWS(Amazon Web Services) Aurora Global의 특성 이해 및 최적 선택 : 완벽한 외부 일관성(External Consistency)가 필요하면 Spanner를, 높은 읽기 처리량과 비용 효율이 우선이면 Aurora Global DB를 채택하는 기술사적 판단 필수.

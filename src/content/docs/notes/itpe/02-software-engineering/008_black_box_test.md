@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. 블랙박스 테스트의 개요
 
-- 개념 : 소프트웨어의 내부 코드 구조를 들여다보지 않고, **요구사항 명세서** (SRS)와 입력/출력 사양을 바탕으로 시스템의 기능적 정확성을 검증하는 **명세 기반** (Specification-based) 테스트 기법.
+- 개념 : 소프트웨어의 내부 코드 구조를 들여다보지 않고, **요구사항 명세서** (SRS, Software Requirements Specification)와 입력/출력 사양을 바탕으로 시스템의 기능적 정확성을 검증하는 **명세 기반** (Specification-based) 테스트 기법.
 - 배경 및 필요성 : 코드 복잡성에 구애받지 않고 사용자 관점에서 요구사항 충족 여부 판별 가능, 단위·통합·시스템·인수 테스트 전 단계에 걸쳐 폭넓게 적용.
 - 핵심 목표 : **기능 누락** (Omission), 인터페이스 결함, 경계 영역 오류, 예외 처리 미흡 등 명세 불일치 결함 검출.
 
@@ -52,7 +52,7 @@ extra:
   - 해결 방안 : 대부분의 결함이 2개 인자의 상호작용에서 기인한다는 점에 착안한 페어와이즈(Pairwise / All-Pairs) 테스팅 및 직교 배열표(Orthogonal Array) 기법을 적용하여 테스트 케이스 최적 축소.
 - 요구사항 명세서(SRS)의 품질 종속성 :
   - 한계점 : 요구사항 명세가 모호하거나 누락, 잦은 변경이 발생하는 경우 테스트 설계 기준 자체가 흔들려 유효하지 않은 테스트 케이스가 양산됨.
-  - 해결 방안 : BDD(Behavior Driven Development) 기반 Given-When-Then 문법을 적용하여 실행 가능한 명세(Executable Specification)를 작성하고 요구사항 추적 매트릭스(RTM)를 통한 형상 연계 강화.
+  - 해결 방안 : BDD(Behavior Driven Development) 기반 Given-When-Then 문법을 적용하여 실행 가능한 명세(Executable Specification)를 작성하고 요구사항 추적 매트릭스(RTM, Requirements Traceability Matrix)를 통한 형상 연계 강화.
 
 ## Ⅴ. 블랙박스 테스트 효율화를 위한 기술사적 제언
 

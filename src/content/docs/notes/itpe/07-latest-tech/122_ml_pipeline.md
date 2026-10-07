@@ -14,13 +14,13 @@ extra:
 
 ## Ⅰ. 머신러닝 파이프라인(Machine Learning Pipeline)의 개요
 
-- 개념 : 원천 데이터의 수집·가공부터 모델 학습, 검증, 배포 및 사후 모니터링까지의 전주기 단계를 모듈화하여 **방향성 비순환 그래프** (DAG)로 연결하고 자동화하는 **MLOps** 실행 체계
+- 개념 : 원천 데이터의 수집·가공부터 모델 학습, 검증, 배포 및 사후 모니터링까지의 전주기 단계를 모듈화하여 **방향성 비순환 그래프** (DAG, Directed Acyclic Graph)로 연결하고 자동화하는 **MLOps**(Machine Learning Operations) 실행 체계
 - 배경 및 필요성 : 단순 코드 자동화만으로는 **훈련-서빙 불일치** (Skew)와 데이터 드리프트로 인한 성능 저하를 방어할 수 없으므로 **피처 계보** (Lineage) 추적과 통계적 드리프트 감시 기반 무중단 롤백 파이프라인 구축 필수
-- 핵심 목적 : 데이터 과학자의 수작업 반복 실험 병목 해소, **실험 재현성** (Reproducibility) 확보 및 **지속적 통합·배포·학습** (CI/CD/CT) 달성
+- 핵심 목적 : 데이터 과학자의 수작업 반복 실험 병목 해소, **실험 재현성** (Reproducibility) 확보 및 **지속적 통합·배포·학습** (CI(Continuous Integration)/CD(Continuous Delivery)/CT(Continuous Training)) 달성
 
 ## Ⅱ. 머신러닝 파이프라인(Machine Learning Pipeline)의 핵심 아키텍처 및 동작 메커니즘
 
-머신러닝 파이프라인은 **피처 스토어** (Feature Store) 및 데이터 버전 관리(DVC) → 분산 모델 학습 및 하이퍼파라미터 튜닝 → **모델 레지스트리** (Model Registry) 등록 및 **카나리 배포** → 실시간 드리프트 감지 시 재학습(CT) 자동 트리거 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
+머신러닝 파이프라인은 **피처 스토어** (Feature Store) 및 데이터 버전 관리(DVC, Data Version Control) → 분산 모델 학습 및 하이퍼파라미터 튜닝 → **모델 레지스트리** (Model Registry) 등록 및 **카나리 배포** → 실시간 드리프트 감지 시 재학습(CT) 자동 트리거 메커니즘을 기반으로 동작하며, 세부적인 아키텍처와 핵심 컴포넌트 간 상호작용 프로세스는 다음과 같음.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -61,7 +61,7 @@ extra:
 
 - **데이터 수집 및 검증** : 스키마 일치성, 결측치, 이상치 검증(Data Validation) - Great Expectations, TFDV
 - **피처 엔지니어링** : 정규화, 인코딩, 피처 스토어 등록 (온라인/오프라인 동기화) - Feast, Hopsworks
-- **분산 모델 학습** : GPU 분산 클러스터 기반 하이퍼파라미터 최적화(HPO) - Kubeflow, Ray, Optuna
+- **분산 모델 학습** : GPU(Graphics Processing Unit) 분산 클러스터 기반 하이퍼파라미터 최적화(HPO) - Kubeflow, Ray, Optuna
 - **모델 검증 및 등록** : 챔피언-챌린저 모델 성능 검증 및 모델 레지스트리 패키징 - MLflow, WandB, Triton
 - **지속적 배포** (CD) : 블루/그린, 카나리(Canary), 섀도우(Shadow) 무중단 배포 - Seldon Core, KServe, Argo
 
@@ -80,7 +80,7 @@ extra:
 
 - 학습 시점과 서빙 시점의 피처 추출 로직 불일치로 인한 훈련-서빙 스큐 :
   - 한계점 : 학습 시점의 피처 추출 로직(Python Pandas)과 서빙 시점의 로직(C++/Java) 차이로 인한 훈련-서빙 스큐(Skew) 발생.
-  - 해결 방안 : 온/오프라인 피처 저장소를 일원화하여 단일 소스 오브 트루스(SSOT)를 제공하는 중앙 피처 스토어(Feast) 강제화.
+  - 해결 방안 : 온/오프라인 피처 저장소를 일원화하여 단일 소스 오브 트루스(SSOT, Single Source of Truth)를 제공하는 중앙 피처 스토어(Feast) 강제화.
 - 외부 환경 변화로 인한 데이터 통계 분포 드리프트(Data Drift) :
   - 한계점 : 시장 트렌드나 외부 환경 변화로 인해 데이터의 통계적 분포가 서서히 변하는 데이터 드리프트(Data Drift) 발생.
   - 해결 방안 : Kolmogorov-Smirnov(KS) 검정 및 PSI(Population Stability Index) 지표를 상시 모니터링하여 임계치 초과 시 알림 및 재학습 연계.

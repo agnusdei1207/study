@@ -16,7 +16,7 @@ sidebar:
 [01 전략·관리] ── 기획·투자·거버넌스
        │
        ▼
-[02 SW공학] ── 요구→설계→구현→시험→운영
+[02 SW(Software)공학] ── 요구→설계→구현→시험→운영
        │                    │
        ├── [03 데이터]     ├── [05 네트워크]
        ├── [04 시스템]     └── [06 보안]
@@ -40,11 +40,11 @@ sidebar:
 
 ## 과목별 바로가기
 
-1. **[01. 정보 전략 및 관리](./01-it-strategy/)**: 정보화 전략(ISP/ISMP), IT 거버넌스, 감리, 프로젝트 관리, AI 윤리
+1. **[01. 정보 전략 및 관리](./01-it-strategy/)**: 정보화 전략(ISP(Information Strategy Planning)/ISMP(Information System Master Plan)), IT(Information Technology) 거버넌스, 감리, 프로젝트 관리, AI(Artificial Intelligence) 윤리
 2. **[02. 소프트웨어 공학](./02-software-engineering/)**: 개발 방법론, 애자일, 요구공학, 소프트웨어 아키텍처, 테스트, 품질
 3. **[03. 자료처리·데이터·통계](./03-data/)**: 자료구조, 데이터베이스 모델링, 동시성 제어, 빅데이터, 확률과 통계
 4. **[04. 컴퓨터 시스템](./04-computer-system/)**: 운영체제, 컴퓨터 구조, 메모리 계층, 가상화, 클라우드 인프라
-5. **[05. 정보통신](./05-network/)**: OSI 7계층, TCP/IP, 무선 통신, 오류/흐름 제어, 네트워크 보안
+5. **[05. 정보통신](./05-network/)**: OSI(Open Systems Interconnection) 7계층, TCP(Transmission Control Protocol)/IP(Internet Protocol), 무선 통신, 오류/흐름 제어, 네트워크 보안
 6. **[06. 정보보안](./06-security/)**: 암호 알고리즘, 접근 통제, 관리적·물리적·기술적 보안, 개인정보보호, AI 보안
-7. **[07. 최신 기술 동향](./07-latest-tech/)**: 인공지능, LLM/생성형 AI, MLOps, 분산 컴퓨팅, 블록체인
+7. **[07. 최신 기술 동향](./07-latest-tech/)**: 인공지능, LLM(Large Language Model)/생성형 AI, MLOps(Machine Learning Operations), 분산 컴퓨팅, 블록체인
 8. **[08. 법규 및 정책](./08-law-policy/)**: 전자정부법, 개인정보보호법, 소프트웨어진흥법, 공공데이터 정책

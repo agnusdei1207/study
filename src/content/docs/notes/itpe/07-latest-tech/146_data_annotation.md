@@ -16,7 +16,7 @@ extra:
 
 - 개념 : 텍스트, 이미지, 음성, 비디오 등 비정형 원천 데이터에 모델 학습 목적에 부합하는 클래스, 위치, 감성, 인과 관계 등의 **메타데이터** (Ground Truth)를 주석하는 정형화 작업.
 - 배경 및 필요성 : 작업자의 주관적 편차로 인한 라벨 노이즈가 모델의 일반화 성능을 저하시키므로 **골드 표준셋** 기반 **상호 일치도** (Fleiss' Kappa) 검증과 **능동 학습** (Active Learning) 파이프라인 구축 필요.
-- 핵심 목적 : 고품질 지도학습 및 정렬 데이터셋 구축을 통한 AI 모델 예측 정확도 향상, 환각(Hallucination) 감소 및 데이터 품질 거버넌스 확보.
+- 핵심 목적 : 고품질 지도학습 및 정렬 데이터셋 구축을 통한 AI(Artificial Intelligence) 모델 예측 정확도 향상, 환각(Hallucination) 감소 및 데이터 품질 거버넌스 확보.
 
 ## Ⅱ. 데이터 어노테이션의 핵심 아키텍처 및 동작 메커니즘
 
@@ -53,9 +53,9 @@ extra:
 ```
 
 - **컴퓨터 비전 (Vision)** : Bounding Box, Polygon, Semantic/Instance Segmentation, Keypoint - 자율주행(차량·보행자 객체 인식), 의료 영상(종양 영역 정밀 마스킹).
-- **자연어 처리 (NLP)** : **개체명 인식** (NER), 구문 분석, 감성 태깅, 의도(Intent) 분류 - 챗봇 대화 의도 파악, 금융 계약서 핵심 엔티티 추출, 감성 분석.
+- **자연어 처리 (NLP, Natural Language Processing)** : **개체명 인식** (NER, Named Entity Recognition), 구문 분석, 감성 태깅, 의도(Intent) 분류 - 챗봇 대화 의도 파악, 금융 계약서 핵심 엔티티 추출, 감성 분석.
 - **음성 및 오디오 (Audio)** : 음소 전사(STT Transcription), 화자 분리(Diarization), 소음 태깅 - 음성 인식 엔진 학습, 고객센터 콜센터 상담 화자별 음성 분리.
-- **생성형 AI 정렬 (LLM)** : **RLHF** 선호도 랭킹, 지시-응답 쌍(Instruction-Response Pair), 안전성 주석 - 초거대 언어모델의 인간 가치 정렬 및 유해성/환각 필터링.
+- **생성형 AI 정렬 (LLM, Large Language Model)** : **RLHF**(Reinforcement Learning from Human Feedback) 선호도 랭킹, 지시-응답 쌍(Instruction-Response Pair), 안전성 주석 - 초거대 언어모델의 인간 가치 정렬 및 유해성/환각 필터링.
 
 ## Ⅲ. 데이터 어노테이션의 세부 구성 요소 및 비교 분석
 
