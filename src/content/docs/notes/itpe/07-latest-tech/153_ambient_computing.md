@@ -62,7 +62,7 @@ extra:
 | **사용자 주의력** | 사용자의 완전한 집중 요구 | 화면과 알림에 주의 집중 분산 | 캄 테크 (배경에서 조용히 작동) |
 | **서비스 시점** | 명령 입력 후 반응적 실행 | 앱 실행 및 터치 후 실행 | 맥락 파악 후 선제적(Proactive) 실행 |
 | **하드웨어 경계** | 책상 위 단일 PC(Personal Computer) 본체 | 손 안의 단일 스마트폰 단말 | 공간 전체에 분산된 사물과 센서망 |
-| **핵심 기술** | OS (Windows/Linux), WIMP | 모바일 OS (iOS/Android), App | Matter, 엣지 AI(Artificial Intelligence), 초저전력 센서망 |
+| 핵심 기술 | OS (Windows/Linux), WIMP | 모바일 OS (iOS/Android), App | Matter, 엣지 AI(Artificial Intelligence), 초저전력 센서망 |
 
 - 앰비언트 컴퓨팅은 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.
 

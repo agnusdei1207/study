@@ -46,8 +46,8 @@ extra:
        v  (이행적 함수 종속성 제거: X -> Y, Y -> Z)
     [ 제3정규형 (3NF) ] : 기본키가 아닌 일반 속성에 종속되는 속성 분리
        |
-       v  (결정자이면서 후보키가 아닌 것 제거)
-    [ BCNF (보이스-코드) ] : 모든 결정자가 후보키(Candidate Key)여야 함
+       v  (비사소한 함수 종속의 결정자가 슈퍼키인지 확인)
+    [ BCNF (보이스-코드) ] : 모든 비사소한 함수 종속 X -> Y에서 X는 슈퍼키(Superkey)
 ```
 
 | 정규형 | 위반 조건 및 문제 구조 | 변환 규칙 및 조치 | 해결되는 이상 현상 |
@@ -55,7 +55,7 @@ extra:
 | **제1정규형 (1NF, First Normal Form)** | 컬럼이 다중값(Repeating Group) 또는 복합값을 가짐 | 반복 그룹 분리, 모든 도메인을 단일 원자값으로 재구성 | 다중값으로 인한 검색 및 조작 불가 해결 |
 | **제2정규형 (2NF, Second Normal Form)** | 복합 기본키(PK, Primary Key)의 일부분에 종속되는 속성 존재 (부분 함수 종속) | 부분 종속 컬럼들을 별도 릴레이션으로 분리 (완전 함수 종속화) | 복합키 중 일부만 알 때 발생하는 삽입/삭제 이상 |
 | **제3정규형 (3NF, Third Normal Form)** | 기본키가 아닌 일반 속성에 다른 일반 속성이 종속 ($X \rightarrow Y, Y \rightarrow Z$) | 이행 종속 속성($Y \rightarrow Z$)을 별도 릴레이션으로 분리 | 일반 속성 갱신 시 발생하는 수정 이상 |
-| **BCNF**(Boyce-Codd Normal Form) | 후보키가 아닌 속성이 결정자(Determinant)로 작용 | 후보키가 아닌 결정자를 포함하는 종속 관계를 분해 | 다수의 후보키가 중첩될 때 발생하는 잔여 이상 |
+| **BCNF**(Boyce-Codd Normal Form) | 비사소한 함수 종속의 결정자가 슈퍼키가 아님 | 슈퍼키가 아닌 결정자를 포함한 종속 관계를 무손실 분해 | 다수의 후보키가 중첩될 때 발생하는 잔여 이상 |
 
 ### 나. 고차 정규형 (4NF, 5NF)
 - **제4정규형 (4NF, Fourth Normal Form)** : 비사소한 다치 종속성(MVD, Multivalued Dependency $X \twoheadrightarrow Y$) 제거.

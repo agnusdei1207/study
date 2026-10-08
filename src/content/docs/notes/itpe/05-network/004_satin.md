@@ -1,5 +1,5 @@
 ---
-title: "위성·공중·지상 통합망(SATIN)"
+title: "위성·공중·지상 통합망(SATIN, Satellite-Air-Terrestrial Integrated Network)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

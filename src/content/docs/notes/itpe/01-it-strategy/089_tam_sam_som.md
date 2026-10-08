@@ -1,5 +1,5 @@
 ---
-title: "TAM·SAM·SOM"
+title: "TAM·SAM·SOM (TAM: Total Addressable Market; SAM: Serviceable Addressable Market; SOM: Serviceable Obtainable Market)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:
@@ -47,7 +47,7 @@ extra:
 |---|---|---|
 | **추정 원리** | 공신력 있는 시장 조사 기관의 거시 보고서에서 출발하여 비율을 곱해 추정 | 단가(Price) x 잠재 고객 수(Quantity)의 미시적 계산 합산 |
 | **신뢰도 및 객관성** | 거시적 통계에 의존하여 현실성이 떨어질 수 있음 | 실제 고객 접점과 가격 모델에 기반하므로 훨씬 높은 신뢰도 |
-| **적용 영역** | TAM(전체 시장) 추정에 적합 | SOM(수익 시장) 및 SAM(유효 시장) 추정에 적합 |
+| 적용 영역 | TAM(전체 시장) 추정에 적합 | SOM(수익 시장) 및 SAM(유효 시장) 추정에 적합 |
 | **투자자 관점** | "시장이 얼마나 큰가?"를 보여주는 용도 | "실제로 첫해에 얼마를 벌 수 있는가?"를 입증하는 용도 |
 
 ## Ⅳ. TAM-SAM-SOM 시장 규모 추정 시 주요 한계점 및 해결 방안

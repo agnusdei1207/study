@@ -1,5 +1,5 @@
 ---
-title: "SW 안전 (SW안전 확보 지침)"
+title: "SW 안전 (SW안전 확보 지침) (SW: Software)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

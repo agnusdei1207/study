@@ -1,5 +1,5 @@
 ---
-title: "AI 에이전트 IAM"
+title: "AI 에이전트 IAM (AI: Artificial Intelligence; IAM: Identity and Access Management)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

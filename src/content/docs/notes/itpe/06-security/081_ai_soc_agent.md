@@ -1,5 +1,5 @@
 ---
-title: "AI SOC 에이전트"
+title: "AI SOC 에이전트 (AI: Artificial Intelligence; SOC: Security Operations Center)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

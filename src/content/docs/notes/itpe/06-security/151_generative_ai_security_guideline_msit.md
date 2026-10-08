@@ -1,5 +1,5 @@
 ---
-title: "생성형 AI 활용 보안 가이드라인"
+title: "생성형 AI 활용 보안 가이드라인 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

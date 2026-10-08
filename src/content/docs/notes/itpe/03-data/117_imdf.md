@@ -1,5 +1,5 @@
 ---
-title: "실내 매핑 데이터 포맷(IMDF)"
+title: "실내 매핑 데이터 포맷(IMDF, Indoor Mapping Data Format)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:

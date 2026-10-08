@@ -1,5 +1,5 @@
 ---
-title: "Java GUI 툴킷(AWT, Swing, JavaFX)"
+title: "Java GUI 툴킷(AWT, Swing, JavaFX) (GUI: Graphical User Interface)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "NIST CSF 2.0 (Govern 기능)"
+title: "NIST CSF 2.0 (Govern 기능) (NIST: National Institute of Standards and Technology; CSF: Cybersecurity Framework)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "범정부 AI 공통기반"
+title: "범정부 AI 공통기반 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

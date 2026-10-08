@@ -36,7 +36,7 @@ extra:
 | [Schema & Query Layer] 스키마 구조: RDF Schema (RDFS) / 질의 언어: SPARQL      |
 +-------------------------------------------------------------------------------+
                                       ▲
-| [Data Model Layer]     자원 기술 프레임워크: RDF (Resource Description)       |
+| [Data Model Layer]     자원 기술 프레임워크: RDF (Resource Description Framework)       |
 +-------------------------------------------------------------------------------+
                                       ▲
 | [Syntax Layer]         문법 및 네임스페이스: XML, JSON-LD, Turtle              |
@@ -75,7 +75,7 @@ extra:
   - 해결 방안 : 속성 그래프(Property Graph) 및 분산 그래프 DB(Database) 전환 - RDF를 Neo4j, TigerGraph 등 레이블 기반 속성 그래프(LPG) 모델로 변환. - 빈번한 쿼리 경로에 대해 사전 인덱싱 및 그래프 파티셔닝 적용.
 - 데이터 생성 기관별 어휘 불일치 및 스키마 충돌 :
   - 한계점 : 동일한 대상을 두고 기관마다 상이한 URI와 온톨로지 네임스페이스를 사용하여 연계 단절.
-  - 해결 방안 : SKOS(Simple Knowledge Organization) 및 글로벌 LOD 정합 - `owl:sameAs` 또는 `skos:exactMatch`를 활용한 개체 정합(Entity Resolution) 자동화. - Wikidata, DBpedia 등 신뢰도 높은 공공 LOD 허브를 상위 개념으로 참조 매핑.
+  - 해결 방안 : SKOS(Simple Knowledge Organization System) 및 글로벌 LOD 정합 - `owl:sameAs` 또는 `skos:exactMatch`를 활용한 개체 정합(Entity Resolution) 자동화. - Wikidata, DBpedia 등 신뢰도 높은 공공 LOD 허브를 상위 개념으로 참조 매핑.
 
 ## Ⅴ. 시맨틱 웹(Semantic Web) 적용 및 발전을 위한 기술사적 제언
 

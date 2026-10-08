@@ -52,7 +52,7 @@ extra:
 
 ## Ⅲ. 데이터 변조(Modification)와 위조(Fabrication)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | **데이터 변조** (Modification) | **데이터 위조** (Fabrication) | **데이터 가로채기** (Interception) | **데이터 가로막기** (Interruption) |
+| 비교 항목 | 데이터 변조 (Modification) | 데이터 위조 (Fabrication) | **데이터 가로채기** (Interception) | **데이터 가로막기** (Interruption) |
 | --- | --- | --- | --- | --- |
 | 공격 성격 | 능동적 공격 (Active Attack) | 능동적 공격 (Active Attack) | 수동적 공격 (Passive Attack) | 능동적 공격 (Active Attack) |
 | 침해 속성 | 무결성 (Integrity) | 인증성 (Authenticity), 무결성 | 기밀성 (Confidentiality) | 가용성 (Availability) |

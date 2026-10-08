@@ -51,7 +51,7 @@ extra:
 | **현대 범용 프로세서** | 리틀 엔디언 (x86-64, ARM default) | ALU 가산기 자리올림수(Carry) 연산 최적화, 고속 주소 계산 |
 | **네트워크 프로토콜** | 빅 엔디언 (TCP/IP, UDP(User Datagram Protocol), IPv4(Internet Protocol version 4)/IPv6(Internet Protocol version 6)) | RFC(Request for Comments) 1700 표준 규정, 패킷 헤더 파싱 시 부호/크기 즉각 판정 |
 | **메인프레임 / 특수 서버**| 빅 엔디언 (IBM(International Business Machines) Z, 옛 SPARC) | 전통적 메인프레임 엔터프라이즈 레거시 호환성 유지 |
-| **이미지/오디오 파일 포맷**| BMP, WAV: **리틀 엔디언** <br>JPEG, PNG(Portable Network Graphics), AIFF: **빅 엔디언**| 파일 포맷을 최초 정의한 시스템(PC vs Mac/UNIX)에 종속 |
+| **이미지/오디오 파일 포맷**| BMP, WAV: 리틀 엔디언 <br>JPEG, PNG(Portable Network Graphics), AIFF: 빅 엔디언| 파일 포맷을 최초 정의한 시스템(PC vs Mac/UNIX)에 종속 |
 | **Java 가상머신** (JVM, Java Virtual Machine) | 빅 엔디언 (JVM 바이트코드 표준) | "Write Once, Run Anywhere" 철학에 따라 하부 OS(Operating System) 무관 통일 |
 
 ## Ⅳ. 엔디언 불일치로 인한 주요 문제점 및 해결 방안

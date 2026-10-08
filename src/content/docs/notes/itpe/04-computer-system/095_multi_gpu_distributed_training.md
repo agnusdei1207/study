@@ -1,5 +1,5 @@
 ---
-title: "멀티 GPU 분산학습"
+title: "멀티 GPU 분산학습 (GPU: Graphics Processing Unit)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

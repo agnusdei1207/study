@@ -1,5 +1,5 @@
 ---
-title: "FIDO 인증과 FIDO2"
+title: "FIDO 인증과 FIDO2 (FIDO: Fast IDentity Online)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -56,7 +56,7 @@ extra:
 
 ## Ⅲ. FIDO 인증과 FIDO2의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | **FIDO UAF** (1.0) | **FIDO U2F** (1.0) | **FIDO2** (WebAuthn/CTAP) | **동기화 패스키** (Passkey) |
+| 비교 항목 | **FIDO UAF** (1.0) | **FIDO U2F** (1.0) | FIDO2 (WebAuthn/CTAP) | **동기화 패스키** (Passkey) |
 | --- | --- | --- | --- | --- |
 | 주요 목적 | 모바일 중심 패스워드 대체 | 패스워드 + 2단계 하드웨어 보안키 | 웹 표준 기반 패스워드리스 인증 | 다중 기기 클라우드 동기화 패스워드리스 |
 | 동작 환경 | 모바일 전용 앱 (SDK(Software Development Kit) 필수) | PC(Personal Computer) 크롬 브라우저 + USB(Universal Serial Bus) 토큰 | 모든 현대 웹 브라우저 및 OS(Operating System) 내장 | Apple 키체인, Google 비밀번호 관리자 연동 |

@@ -16,7 +16,7 @@ extra:
 
 - 개념 : **OpenTelemetry** 란 클라우드 네이티브 컴퓨팅 재단(CNCF)에서 OpenTracing과 OpenCensus 프로젝트를 통합하여 표준화한 벤더 중립적 오픈소스 **원격 측정** (Telemetry) 프레임워크로, 분산 클라우드 환경에서 **트레이스** (Traces), **메트릭** (Metrics), **로그** (Logs)를 생성, 수집, 처리, 내보내기(Export)하기 위한 표준 API(Application Programming Interface), SDK(Software Development Kit) 및 도구 체계.
 - 배경 및 필요성 : 복잡한 마이크로서비스 및 분산 서버 환경에서 상용 APM(Datadog, New Relic) 도구마다 서로 다른 전용 에이전트와 수집 포맷을 사용하여 발생하는 **벤더 락인**과 유지보수 오버헤드를 극복하기 위해 제정.
-- 관측성의 3대 기둥 (MELT) : **메트릭** (Metrics), **이벤트** (Events), **로그** (Logs), **트레이스** (Traces)
+- 관측성의 3대 기둥 (MELT) : 메트릭 (Metrics), **이벤트** (Events), 로그 (Logs), 트레이스 (Traces)
 
 ## Ⅱ. OpenTelemetry 아키텍처 및 원격 측정 수집 흐름
 

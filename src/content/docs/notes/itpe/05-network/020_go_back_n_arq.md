@@ -1,5 +1,5 @@
 ---
-title: "Go-Back-N ARQ"
+title: "Go-Back-N ARQ (ARQ: Automatic Repeat Request)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

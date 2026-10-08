@@ -1,5 +1,5 @@
 ---
-title: "OWASP Top 10"
+title: "OWASP Top 10 (OWASP: Open Worldwide Application Security Project)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

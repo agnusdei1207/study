@@ -38,7 +38,7 @@ extra:
 |---|---|---|---|---|---|
 | REQ-001 | 실시간 간편 결제 승인 | SAD-ARC-03, DES-CLS-12 | OrderPayment.java | TC-PAY-01, TC-PAY-02 | Pass (검증 완료) |
 | REQ-002 | 결제 실패 시 자동 환불 | SAD-ARC-05, DES-SEQ-08 | RefundManager.java | TC-REF-01 | Pass (검증 완료) |
-| REQ-003 | 동시 1,000건 결제 처리 | SAD-NFR(Non-Functional Requirement)-PERF-01 | HikariCPConfig.java | TC-PERF-10 (부하시험) | Pass (1,200 TPS(Transactions Per Second)) |
+| REQ-003 | 동시 1,000건 결제 처리 | `SAD-NFR-PERF-01` | HikariCPConfig.java | TC-PERF-10 (부하시험) | Pass (1,200 TPS(Transactions Per Second)) |
 
 - **변경 영향도 분석** (Change Impact Analysis) : 고객이 결제 요구사항(REQ-001)의 변경을 요청했을 때, RTM을 통해 즉각적으로 수정해야 할 설계서, 소스코드 클래스, 재실행해야 할 회귀 테스트 케이스를 1분 이내에 정확히 특정.
 
@@ -56,5 +56,5 @@ extra:
 
 ## Ⅴ. 엔터프라이즈 프로젝트 거버넌스를 위한 기술사적 제언
 
-- 정적 스프레드시트 엑셀 관리의 한계 극복 및 **ALM** 도구 연계 : 수작업 엑셀로 RTM을 관리하면 개발 진행에 따라 동기화가 깨져 '죽은 문서'로 전락하므로, Jira, Confluence, Git Commit, TestRail을 웹훅(Webhook)으로 상호 연결하여 커밋 메시지에 요구사항 ID(예: `feat(REQ-001): implement payment`)를 입력하면 RTM이 실시간 자동 갱신되는 체계 구축 필수.
+- 정적 스프레드시트 엑셀 관리의 한계 극복 및 ALM 도구 연계 : 수작업 엑셀로 RTM을 관리하면 개발 진행에 따라 동기화가 깨져 '죽은 문서'로 전락하므로, Jira, Confluence, Git Commit, TestRail을 웹훅(Webhook)으로 상호 연결하여 커밋 메시지에 요구사항 ID(예: `feat(REQ-001): implement payment`)를 입력하면 RTM이 실시간 자동 갱신되는 체계 구축 필수.
 - 공공 정보시스템 감리 시 핵심 증적자료 활용 : 과업 대비 산출물의 이행 완결성을 입증하기 위해 감리 수검 시 RTM을 1차 검증 도구로 제시함으로써, 과업 미이행 판정에 따른 사업비 삭감 및 지체상금 리스크를 선제적으로 방어해야 함.

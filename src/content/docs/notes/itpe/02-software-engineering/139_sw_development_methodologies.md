@@ -1,5 +1,5 @@
 ---
-title: "SW 개발방법론 비교(구조적·정보공학·객체지향·CBD)"
+title: "SW 개발방법론 비교(구조적·정보공학·객체지향·CBD) (SW: Software; CBD: Component-Based Development)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

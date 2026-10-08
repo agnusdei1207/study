@@ -1,5 +1,5 @@
 ---
-title: "지속적 위협 노출 관리(CTEM)"
+title: "지속적 위협 노출 관리(CTEM, Continuous Threat Exposure Management)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

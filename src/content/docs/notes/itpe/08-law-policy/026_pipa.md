@@ -1,5 +1,5 @@
 ---
-title: "개인정보 보호법(PIPA)"
+title: "개인정보 보호법(PIPA, Personal Information Protection Act)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

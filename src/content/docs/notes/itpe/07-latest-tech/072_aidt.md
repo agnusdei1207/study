@@ -1,5 +1,5 @@
 ---
-title: "AI 디지털교과서(AIDT, AI Digital Textbook)"
+title: "AI 디지털교과서(AIDT, AI Digital Textbook) (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

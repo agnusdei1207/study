@@ -1,5 +1,5 @@
 ---
-title: "FinOps"
+title: "FinOps(Finance + DevOps)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:
@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. FinOps의 개요
 
-- 개념 : 엔지니어링, 재무 및 비즈니스 팀 간의 문화적 협업을 통해 **클라우드 비용**을 투명하게 가시화하고, 데이터 기반 의사결정으로 비즈니스 가치를 극대화하는 **클라우드 재무 관리 프레임워크** (FinOps, Financial Operations).
+- 개념 : 엔지니어링·재무·비즈니스 팀의 협업과 데이터 기반 의사결정으로 **기술 지출**의 가치를 높이는 **운영 프레임워크**이자 문화적 실천. FinOps는 Finance와 DevOps의 결합 명칭이며, 클라우드뿐 아니라 SaaS·소프트웨어 라이선스 등으로 적용 범위 확대.
 - 배경 및 필요성 : 온프레미스 **CapEx** (Capital Expenditure, 자본지출)에서 클라우드 **OpEx** (Operating Expenditure, 운영비용)로의 전환 후 자원 프로비저닝의 무분별한 남용으로 클라우드 비용 폭증 및 통제 불능 문제 발생.
 - 주요 목적 : 클라우드 지출 가시성 확보, 낭비 자원 최적화, 비즈니스 단위별 비용 할당 및 예측 가능성 제고.
 
@@ -46,6 +46,8 @@ extra:
 | **최적화 초점** | 조달 단가 인하 및 감가상각 관리 | 자원 사용 효율화(라이트사이징), 약정 포트폴리오 |
 | **핵심 지표** | 예산 대비 집행률 | 단위당 클라우드 비용(Unit Cost), 낭비율 |
 
+- 참고 : [FinOps Foundation의 정의·명칭 안내](https://www.finops.org/introduction/what-is-finops/), [FOCUS 공식 명칭](https://focus.finops.org/what-is-focus/).
+
 ## Ⅳ. FinOps 도입 및 운영 시 주요 한계점 및 해결 방안
 
 - 개발팀과 재무팀 간의 문화적 단절 및 R&R(Roles and Responsibilities) 갈등 :
@@ -53,7 +55,7 @@ extra:
   - 해결 방안 : 엔지니어링, 재무, 비즈니스가 융합된 중앙 전담 FinOps 조직(CoE, Center of Excellence) 신설, 공통 KPI(Key Performance Indicator, 단위 경제학 기반 마진율 등) 공유.
 - 멀티 클라우드 환경에서의 비용 가시성 부재 :
   - 한계점 : AWS(Amazon Web Services), Azure, GCP(Google Cloud Platform) 등 CSP(Cloud Service Provider)별로 상이한 청구 데이터 구조와 태그 누락으로 인해 서비스별 정확한 원가 배부 불가능.
-  - 해결 방안 : 표준 태깅(Tagging) 정책 강제화 및 미준수 자원 배포 자동 차단, 오픈소스 FOCUS(FinOps Open Cost and Usage Spec) 기반 데이터 통합.
+  - 해결 방안 : 표준 태깅(Tagging) 정책 강제화 및 미준수 자원 배포 자동 차단, 오픈소스 FOCUS(FinOps Open Cost and Usage Specification) 기반 데이터 통합.
 - 사후 비용 분석에 치중된 수동적 대응 :
   - 한계점 : 매월 말 청구서 확인 후 이상 비용을 인지하여 대규모 클라우드 비용 낭비를 사전에 예방하지 못함.
   - 해결 방안 : 실시간 비용 이상 탐지(Anomaly Detection) AI(Artificial Intelligence) 알람 구축, CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 상에서 인프라 코드(IaC, Infrastructure as Code) 배포 전 예상 비용 산출 체계(Infracost 등) 결합.

@@ -65,7 +65,7 @@ extra:
 | 비교 항목 | LangChain / LangGraph (본 토픽) | LlamaIndex | AutoGen (Microsoft) | CrewAI |
 |---|---|---|---|---|
 | **핵심 강점** | 범용성, 방대한 생태계, LangGraph 에이전트 | 고성능 RAG, 정교한 데이터 인덱싱 | 대화형 멀티 에이전트 시뮬레이션 | 역할 기반(Role-based) 협업 에이전트 |
-| **주요 적용처** | 엔터프라이즈 통합 AI 앱, 복합 에이전트 | 엔터프라이즈 지식 검색, 검색 특화 | 연구용 다자간 토론, 자율 코딩 | 실무 자동화 워크플로우 조립 |
+| 주요 적용처 | 엔터프라이즈 통합 AI 앱, 복합 에이전트 | 엔터프라이즈 지식 검색, 검색 특화 | 연구용 다자간 토론, 자율 코딩 | 실무 자동화 워크플로우 조립 |
 | **학습 곡선** | 중간~높음 (버전 업데이트 빈번) | 중간 | 다소 높음 (이벤트 기반 비동기) | 낮음 (직관적 YAML(YAML Ain't Markup Language)/Python) |
 | **관측성 도구** | LangSmith (완벽 통합) | LlamaTrace | AutoGen Studio | AgentOps |
 

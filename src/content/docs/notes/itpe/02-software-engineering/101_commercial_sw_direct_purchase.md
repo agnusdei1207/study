@@ -1,5 +1,5 @@
 ---
-title: "상용SW 직접구매 확대"
+title: "상용SW 직접구매 확대 (SW: Software)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

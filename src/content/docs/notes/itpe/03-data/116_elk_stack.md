@@ -1,5 +1,5 @@
 ---
-title: "ELK 스택"
+title: "ELK 스택 (ELK: Elasticsearch, Logstash, Kibana)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:
@@ -43,10 +43,10 @@ extra:
 
 | 구성 요소 | 역할 및 핵심 메커니즘 | 주요 특징 |
 | :--- | :--- | :--- |
-| **Beats** | 서버 에이전트에 설치되는 초경량 단일 목적 데이터 수집기 (Go 언어 기반) | CPU(Central Processing Unit)/메모리 오버헤드가 극소화되어 각 인스턴스에 안전하게 배포 |
-| **Logstash** | 다양한 원천에서 데이터를 수집하고 **그록** (Grok) 필터 등으로 정제·구조화하여 목적지로 전송 | 풍부한 플러그인 생태계 보유, 무거운 정규식 파싱 수행 시 JVM(Java Virtual Machine) 부하 발생 |
-| **Elasticsearch** | 루씬(Apache Lucene) 기반의 분산 RESTful 검색 및 실시간 분석 스토리지 엔진 | **역색인(Inverted Index)** 구조, 자동 분산 샤딩 및 복제본을 통한 고가용성 |
-| **Kibana** | Elasticsearch에 저장된 데이터를 실시간 탐색하고 대시보드 차트로 시각화 | 히스토그램, 시계열, 지도, APM(Application Performance Monitoring) 추적 그래프를 직관적인 UI(User Interface)로 제공 |
+| Beats | 서버 에이전트에 설치되는 초경량 단일 목적 데이터 수집기 (Go 언어 기반) | CPU(Central Processing Unit)/메모리 오버헤드가 극소화되어 각 인스턴스에 안전하게 배포 |
+| Logstash | 다양한 원천에서 데이터를 수집하고 **그록** (Grok) 필터 등으로 정제·구조화하여 목적지로 전송 | 풍부한 플러그인 생태계 보유, 무거운 정규식 파싱 수행 시 JVM(Java Virtual Machine) 부하 발생 |
+| Elasticsearch | 루씬(Apache Lucene) 기반의 분산 RESTful 검색 및 실시간 분석 스토리지 엔진 | **역색인(Inverted Index)** 구조, 자동 분산 샤딩 및 복제본을 통한 고가용성 |
+| Kibana | Elasticsearch에 저장된 데이터를 실시간 탐색하고 대시보드 차트로 시각화 | 히스토그램, 시계열, 지도, APM(Application Performance Monitoring) 추적 그래프를 직관적인 UI(User Interface)로 제공 |
 
 ---
 
@@ -71,7 +71,7 @@ Doc 3: "Index Tuning Concurrency"       "Database"     | Doc 1, Doc 2
 
 ## Ⅳ. ELK 스택의 주요 한계점 및 해결 방안
 
-- 대량 로그 인입 시 **Logstash** 및 Elasticsearch 인덱싱 병목 :
+- 대량 로그 인입 시 Logstash 및 Elasticsearch 인덱싱 병목 :
   - 한계점 : 피크 시간대 대규모 분산 로그 집중 시 Logstash 파싱 병목 및 ES(Elasticsearch) 샤드 락, 인덱싱 버퍼 고갈로 로그 유실 및 **백프레셔** (Backpressure) 장애 발생.
   - 해결 방안 : Logstash 전면에 Apache Kafka/Redis를 메시지 버퍼(Queue)로 배치, 경량 수집기(Filebeat/Fluent Bit) 직결 파이프라인 구성 및 벌크 인덱싱(Bulk API) 튜닝.
 - **샤드** (Shard) 수 과다(Over-sharding)로 인한 마스터 노드 메모리 고갈 및 클러스터 불안정 :

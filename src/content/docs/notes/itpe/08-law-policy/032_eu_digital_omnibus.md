@@ -1,5 +1,5 @@
 ---
-title: "EU 디지털 옴니버스 (AI Act 고위험 의무 연기)"
+title: "EU 디지털 옴니버스 (AI Act 고위험 의무 연기) (EU: European Union)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -59,7 +59,7 @@ extra:
 | 개정 추진 배경 | 포괄적 법안 통과 위주의 강력한 규제 일정 | 기술 표준(CEN/CENELEC) 제정 지연에 따른 현실적 유예 |
 | Annex III 적용일 | 2026년 8월 2일 | 2027년 12월 2일 (16개월 유예) |
 | Annex I 적용일 | 2027년 8월 2일 | 2028년 8월 2일 (12개월 유예) |
-| 규제 샌드박스 | 국가별 자율 설치 권고 | EU 통합 규제 샌드박스 운영 및 실증 기회 확대 |
+| 규제 샌드박스 | 회원국의 규제 샌드박스 설치 의무 | EU 통합 규제 샌드박스 운영 및 실증 기회 확대 |
 | 지원 대상 범위 | 마이크로 및 소기업(SME)에 한정 | 소형 중견기업까지 혜택 확장 |
 | 적합성 평가 부담 | 일률적인 사전 기술 문서 요구 | 단계적 조화 표준 발표에 맞춘 탄력적 심사 적용 |
 
@@ -69,7 +69,7 @@ extra:
 
 - 고위험 규제 유예로 인해 국내 기업의 준비 중단 시 향후 인증 병목 사태 재발 우려 :
   - 한계점 : 고위험 규제 일정이 유예됨에 따라 국내 수출 기업들이 준비를 전면 중단하여 2027년 말에 인증 병목 사태 재발 우려.
-  - 해결 방안 : 연기된 기간을 활용하여 MLOps(Machine Learning Operations) 기반 사전 적합성 셀프 진단 체계를 선제 구축하고 TTA(Telecommunications Technology Association) CAT 인증과 연계 준비.
+  - 해결 방안 : 연기된 기간을 활용하여 MLOps(Machine Learning Operations) 기반 사전 적합성 셀프 진단 체계를 선제 구축하고 TTA(Telecommunications Technology Association)의 CAT 인증 결과는 참고 증거로 활용하되 EU 법정 적합성 평가와 별도로 준비.
 - EU 조화 표준의 세부 규격 발표 지연에 따른 기술 문서 작성 기준의 불확실성 상존 :
   - 한계점 : EU 조화 표준(Harmonised Standards)의 세부 규격 발표가 여전히 지연되어 기술 문서 작성 기준의 불확실성 상존.
   - 해결 방안 : ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 42001 및 NIST(National Institute of Standards and Technology) AI RMF(Risk Management Framework) 등 공인된 국제 표준을 프레임워크로 선반영하고 EU 발표 즉시 델타(Delta) 패치.

@@ -1,5 +1,5 @@
 ---
-title: "버티컬 AI (Vertical AI)"
+title: "버티컬 AI (Vertical AI) (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -66,7 +66,7 @@ extra:
 | 비교 항목 | 호라이즌탈 AI (Horizontal AI) | 버티컬 AI (Vertical AI - 본 토픽) |
 |---|---|---|
 | **목표 시장** | 전 산업군, 일반 대중, 범용 직무 | 특정 산업 (의료, 법률, 금융, 건설 등) |
-| **핵심 기술** | 초대형 범용 파운데이션 모델 (GPT(Generative Pre-trained Transformer)-4) | 도메인 특화 경량 SLM + 전문 RAG |
+| 핵심 기술 | 초대형 범용 파운데이션 모델 (GPT(Generative Pre-trained Transformer)-4) | 도메인 특화 경량 SLM + 전문 RAG |
 | **데이터 원천** | 인터넷 공개 웹 문서, 공용 코퍼스 | 기업 내부 독점 데이터, 폐쇄형 전문 DB(Database) |
 | **비즈니스 해자** (Moat) | 막대한 자본력, 초거대 컴퓨팅 인프라 | 독점 데이터 파이프라인, 깊은 업무 락인 |
 | **규제 대응** | 일반적 안전 가이드라인 | HIPAA, 금융보안원 가이드 등 엄격 규제 준수 |

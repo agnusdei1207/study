@@ -1,5 +1,5 @@
 ---
-title: "서브네팅·슈퍼네팅(CIDR·VLSM)"
+title: "서브네팅·슈퍼네팅(CIDR·VLSM) (CIDR: Classless Inter-Domain Routing; VLSM: Variable Length Subnet Mask)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

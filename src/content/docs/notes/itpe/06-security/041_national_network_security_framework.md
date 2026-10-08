@@ -1,5 +1,5 @@
 ---
-title: "국가 망 보안체계(N2SF)"
+title: "국가 망 보안체계(N2SF, National Network Security Framework)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

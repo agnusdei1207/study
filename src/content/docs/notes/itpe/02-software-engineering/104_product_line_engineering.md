@@ -1,5 +1,5 @@
 ---
-title: "소프트웨어 제품라인(SPL)"
+title: "소프트웨어 제품라인(SPL, Software Product Line)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:
@@ -53,7 +53,7 @@ extra:
 
 ## Ⅳ. 소프트웨어 제품라인(SPL)의 주요 한계점 및 해결 방안
 
-- **핵심 자산** (Core Asset) 구축을 위한 막대한 초기 투자 비용 및 ROI(Return on Investment) 지연 :
+- 핵심 자산 (Core Asset) 구축을 위한 막대한 초기 투자 비용 및 ROI(Return on Investment) 지연 :
   - 한계점 : 개별 제품 개발 대비 도메인 공통성을 추출하고 재사용 가능한 프레임워크를 설계하는 데 높은 초기 비용과 긴 개발 기간 소요.
   - 해결 방안 : 파일럿 기반 경량 SPL(Lightweight SPL) 도입, 2~3개 제품군을 대상으로 검증 후 점진적으로 핵심 자산을 확대하는 단계적 접근.
 - 도메인 가변성(Variability) 관리 실패로 인한 **아키텍처 침식** :

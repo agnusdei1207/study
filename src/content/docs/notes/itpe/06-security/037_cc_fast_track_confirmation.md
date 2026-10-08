@@ -1,5 +1,5 @@
 ---
-title: "CC(공통평가기준)·정보보호제품 신속확인"
+title: "CC(공통평가기준)·정보보호제품 신속확인 (CC: Common Criteria)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

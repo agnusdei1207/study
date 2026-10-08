@@ -1,5 +1,5 @@
 ---
-title: "C2PA / 콘텐츠 자격증명"
+title: "C2PA / 콘텐츠 자격증명 (C2PA: Coalition for Content Provenance and Authenticity)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

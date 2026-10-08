@@ -1,5 +1,5 @@
 ---
-title: "XZ Utils 백도어 (CVE-2024-3094)"
+title: "XZ Utils 백도어(CVE-2024-3094, Common Vulnerabilities and Exposures)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "생성형 AI 개인정보보호"
+title: "생성형 AI 개인정보보호 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:

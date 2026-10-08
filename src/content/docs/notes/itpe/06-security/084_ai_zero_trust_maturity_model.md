@@ -1,5 +1,5 @@
 ---
-title: "AI 제로트러스트 성숙도 모델"
+title: "AI 제로트러스트 성숙도 모델 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

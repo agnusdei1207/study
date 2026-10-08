@@ -1,5 +1,5 @@
 ---
-title: "AI 에너지 인프라"
+title: "AI 에너지 인프라 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

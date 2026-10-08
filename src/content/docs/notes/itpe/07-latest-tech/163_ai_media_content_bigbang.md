@@ -1,5 +1,5 @@
 ---
-title: "AI 미디어·콘텐츠 빅뱅"
+title: "AI 미디어·콘텐츠 빅뱅 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

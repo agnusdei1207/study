@@ -1,5 +1,5 @@
 ---
-title: "임베디드 소프트웨어 테스트 및 X-in-the-Loop(MIL·SIL·PIL·HIL)"
+title: "임베디드 소프트웨어 테스트 및 X-in-the-Loop(MIL·SIL·PIL·HIL) (MIL: Model-in-the-Loop; SIL: Software-in-the-Loop; PIL: Processor-in-the-Loop; HIL: Hardware-in-the-Loop)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:
@@ -36,7 +36,7 @@ extra:
    [ 4. HIL (Hardware-in-the-Loop) ] ── 실제 완성된 ECU 하드웨어에 센서/액추에이터 실시간 시뮬레이터 결합
 ```
 
-- **MIL (Model-in-the-Loop)** : MATLAB/Simulink 환경에서 제어 알고리즘 모델과 가상 플랜트(차량 물리 모델)를 연결하여 알고리즘 논리의 타당성을 수학적으로 검증.
+- **MIL (Model-in-the-Loop)** : MATLAB/Simulink 환경에서 제어 알고리즘 모델과 가상 플랜트(차량 물리 모델)를 연결하여 모델 수준의 알고리즘 동작을 시험. 시뮬레이션 통과와 모든 입력에 대한 형식적 증명은 구분.
 - **SIL (Software-in-the-Loop)** : 모델로부터 자동 생성된 C/C++ 소스코드를 호스트 PC(Personal Computer)의 시뮬레이터에서 실행하여 코드 레벨 기능 검증.
 - **PIL (Processor-in-the-Loop)** : 실제 타깃 임베디드 프로세서/보드에 컴파일된 바이너리를 플래싱하여 컴파일러 최적화 오류, 레지스터, 실행 클록 타이밍 검증.
 - **HIL (Hardware-in-the-Loop)** : 실제 ECU 하드웨어에 전원, CAN/LIN 통신, 가상 센서 신호 발생기를 물리적으로 연결하여 극한 환경 및 **고장 주입** (Fault Injection) 테스트 수행.

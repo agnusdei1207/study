@@ -1,5 +1,5 @@
 ---
-title: "CRUD 매트릭스"
+title: "CRUD 매트릭스 (CRUD: Create, Read, Update, Delete)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "OLAP"
+title: "OLAP(Online Analytical Processing)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:

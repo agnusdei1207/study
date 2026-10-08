@@ -1,5 +1,5 @@
 ---
-title: "AI 보안 안내서 (과기정통부·KISA)"
+title: "AI 보안 안내서 (과기정통부·KISA) (AI: Artificial Intelligence; KISA: Korea Internet & Security Agency)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

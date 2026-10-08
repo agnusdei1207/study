@@ -56,7 +56,7 @@ extra:
 | 취약 요인 | 사고 당시 보안 결함 상태 | 원인 분석 | 재발 방지 엔지니어링 대책 |
 | --- | --- | --- | --- |
 | 서명키 관리 | 비밀 서명키가 소스/설정에 노출 | KMS 부재, 하드코딩된 정적 비밀키 사용 | AWS(Amazon Web Services) KMS / HSM(Hardware Security Module) 기반 키 격리 및 자동 회전 |
-| 토큰 검증 | 토큰 서명 검증만 통과하면 데이터 반환 | 토큰과 실제 접속 IP(Internet Protocol)/디바이스 문맥 미검증 | DPoP(인증서 바인딩 토큰), 세션 무효화 |
+| 토큰 검증 | 토큰 서명 검증만 통과하면 데이터 반환 | 토큰과 실제 접속 IP(Internet Protocol)/디바이스 문맥 미검증 | DPoP(Demonstrating Proof-of-Possession, 클라이언트 공개키에 결합하는 토큰 보호), 세션 무효화 |
 | API 트래픽 제어 | 대량 연속 조회 제한 없음 | Rate Limiting 및 WAF(Web Application Firewall) 임계치 미설정 | 토큰/IP별 초당 호출 수 제한(Token Bucket) |
 | 데이터 모니터링 | 대규모 유출 인지 실패 | 개인정보 조회 행위 기반 이상탐지 결여 | UEBA 연동, 대량 데이터 조회 시 자동 세션 차단 |
 

@@ -1,5 +1,5 @@
 ---
-title: "분류 모델 성능지표(혼동행렬·PR/ROC 곡선)"
+title: "분류 모델 성능지표(혼동행렬·PR/ROC 곡선) (PR: Precision-Recall; ROC: Receiver Operating Characteristic)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -38,13 +38,13 @@ extra:
 
 [ 곡선 기반 종합 성능 평가 메커니즘 ]
 - ROC 곡선 : X축 FPR(False Positive Rate, 1-특이도) 대비 Y축 TPR(True Positive Rate, 재현율)의 궤적 ──► ROC-AUC 산출
-- PR 곡선  : X축 Recall(재현율) 대비 Y축 Precision(정밀도) ──► PR-AUC (Average Precision)
+- PR 곡선  : X축 Recall(재현율) 대비 Y축 Precision(정밀도) ──► PR 곡선 면적(PR-AUC) 또는 평균 정밀도(AP, Average Precision): 적분 방식에 따라 다른 값
 ```
 
 - 혼동행렬 4대 요소 : **TP** (양성을 양성으로 정확 예측), **TN** (음성을 음성으로 정확 예측), **FP** (음성을 양성으로 잘못 예측, 1종 오류), **FN** (양성을 음성으로 잘못 예측, 2종 오류).
 - **F1-Score 및 F-beta** : 정밀도와 재현율 간의 트레이드오프를 조율하는 조화평균 지표로, 비즈니스 특성에 따라 beta 값을 조정하여 재현율 가중(F2) 또는 정밀도 가중(F0.5) 가능.
-- **ROC-AUC(Receiver Operating Characteristic)** : 모든 가능한 분류 임계값에서 FPR(False Positive Rate) 대비 TPR(True Positive Rate)의 성능을 나타내며, 0.5(무작위 추측)에서 1.0(완벽한 분류) 사이 값을 가짐.
-- **PR-AUC(Precision-Recall AUC)** : 음성 데이터가 극단적으로 많은 환경에서 FP와 TP의 비율 변화를 민감하게 포착하는 고불균형 도메인 전용 곡선.
+- **ROC-AUC**(Area Under the Receiver Operating Characteristic Curve) : 모든 가능한 분류 임계값에서 FPR(False Positive Rate) 대비 TPR(True Positive Rate)의 성능을 나타내며, 0부터 1 사이 값을 가지며 무작위 순위의 기대값은 0.5. 점수 방향이 반대이면 0.5 미만도 가능.
+- **PR-AUC**(Area Under the Precision-Recall Curve) : 음성 데이터가 극단적으로 많은 환경에서 FP와 TP의 비율 변화를 민감하게 포착하는 양성 예측의 정밀도·재현율을 평가하는 면적 지표. 불균형 문제에 유용하지만 해당 도메인 전용 지표는 아님.
 
 ## Ⅲ. 분류 모델 성능지표(혼동행렬·PR/ROC 곡선)의 세부 구성 요소 및 비교 분석
 
@@ -52,11 +52,13 @@ extra:
 | --- | --- | --- | --- |
 | **X축 / Y축 지표** | X: FPR (False Positive Rate) / Y: TPR (Recall) | X: Recall (재현율) / Y: Precision (정밀도) | 전체 샘플 중 맞춘 비율 ((TP+TN)/Total) |
 | **적합한 데이터 분포** | 클래스 비율이 비교적 균등하거나 완만한 분포 | 극단적 클래스 불균형 (양성 비율이 매우 낮은 경우) | 양성과 음성 클래스 비율이 50:50에 근접한 경우 |
-| **음성(TN) 영향도** | TN이 매우 클 경우 FPR이 0에 수렴하여 낙관적 왜곡 발생 | 계산 수식에 TN이 직접 포함되지 않아 불균형에 강건 | 다수 클래스인 TN에 의해 전체 성능이 과대평가됨 |
+| **음성(TN) 영향도** | 양성 예측의 정밀도와 오탐의 절대 수를 직접 표현하지 못함 | 계산 수식에 TN이 직접 포함되지 않아 불균형에 강건 | 다수 클래스인 TN에 의해 전체 성능이 과대평가됨 |
 | **핵심 활용 분야** | 일반 분류, 음성/양성 중요도가 대등한 벤치마크 | 금융 이상거래 탐지(FDS, Fraud Detection System), 암 진단, 보안 침해 탐지 | 클래스 균형이 보장된 기초 이미지 분류 등 |
 | **최적 임계값 결정** | Youden's J Index (TPR - FPR 최대화 지점) | F1-Score 최대화 또는 목표 정밀도 충족 지점 | 기본값 0.5 (확률 절반 기준 고정) |
 
-- ROC 곡선은 클래스 분포 변화에 불변(Invariance)하는 특성이 있으나, 극단적 불균형 데이터에서는 실제보다 모델이 우수해 보이는 착시를 유발하므로 PR 곡선과 상호 교차 검증해야 함.
+- ROC 곡선은 클래스별 점수 분포가 같다면 양성 비율 변화 자체에 영향을 받지 않지만, 극단적 불균형 데이터에서는 실제보다 모델이 우수해 보이는 착시를 유발하므로 PR 곡선과 상호 교차 검증해야 함.
+
+- AP는 재현율 증가량으로 정밀도를 가중한 값이며 PR 곡선을 사다리꼴 적분한 면적과 동일하지 않을 수 있음. 산정 방식을 명시하여 비교. [scikit-learn AP 정의](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html).
 
 ## Ⅳ. 분류 모델 성능지표(혼동행렬·PR/ROC 곡선)의 주요 한계점 및 해결 방안
 

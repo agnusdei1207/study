@@ -1,5 +1,5 @@
 ---
-title: "트랜잭션(ACID)"
+title: "트랜잭션(ACID, Atomicity, Consistency, Isolation, Durability)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:

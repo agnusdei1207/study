@@ -1,5 +1,5 @@
 ---
-title: "파일 vs DB vs 블록체인 저장"
+title: "파일 vs DB vs 블록체인 저장 (DB: Database)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

@@ -53,7 +53,7 @@ SOAR(Security Orchestration, Automation and Response)는 SIEM 등에서 유입�
 
 ## Ⅲ. SOAR(보안 오케스트레이션·자동화·대응)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | SIEM (Security Information & Event) | CTI (Cyber Threat Intelligence) | SOAR (Orchestration & Automation) |
+| 비교 항목 | SIEM (Security Information and Event Management) | CTI (Cyber Threat Intelligence) | SOAR (Security Orchestration, Automation and Response) |
 | --- | --- | --- | --- |
 | 주요 역할 | 전사 대용량 로그 수집 및 상관분석 탐지 | 외부 위협 정보(IoC, 공격자 TTPs) 제공 | 경보 분석, 도구 연계 오케스트레이션 및 대응 |
 | 핵심 산출물 | 상관분석 알람, 보안 대시보드 | 위협 지표 피드 (STIX/TAXII, IP/도메인 평판) | 자동 차단 정책 실행, 인시던트 티켓 종결 |

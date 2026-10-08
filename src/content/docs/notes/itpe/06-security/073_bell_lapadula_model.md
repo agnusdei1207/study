@@ -1,5 +1,5 @@
 ---
-title: "벨라파듈라 모델(BLP)"
+title: "벨라파듈라 모델(BLP, Bell-LaPadula)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "EMP 공격"
+title: "EMP 공격 (EMP: Electromagnetic Pulse)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

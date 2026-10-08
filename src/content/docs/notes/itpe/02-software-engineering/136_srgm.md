@@ -1,5 +1,5 @@
 ---
-title: "SW 신뢰성 성장 모델(SRGM)"
+title: "SW 신뢰성 성장 모델(SRGM, Software Reliability Growth Model) (SW: Software)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

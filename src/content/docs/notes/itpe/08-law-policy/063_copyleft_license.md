@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 카피레프트 라이선스(Copyleft License)의 개요
 
 - 개념 : 소프트웨어의 **사용·수정·배포의 자유**를 보장하는 동시에, 이를 기반으로 제작된 모든 **파생 저작물**에도 동일한 조건과 소스코드 공개를 강제하는 상호주의적 저작권 이용허락 규약.
-- 제정 배경 및 필요성 : 상용 상용화 제품에 **정적/동적 링크** 시 독점적 영업비밀(IP, Internet Protocol) 소스코드의 강제 공개 위험이 상존하므로 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내 **SBOM**(Software Bill of Materials) 기반 의존성 스캔과 프로세스 간 **IPC(Inter-Process Communication)/REST(Representational State Transfer) 격리 아키텍처** 수립 필수.
+- 제정 배경 및 필요성 : 상용 상용화 제품에 **정적/동적 링크** 시 독점적 영업비밀(IP, Intellectual Property) 소스코드의 강제 공개 위험이 상존하므로 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내 **SBOM**(Software Bill of Materials) 기반 의존성 스캔과 프로세스 간 **IPC(Inter-Process Communication)/REST(Representational State Transfer) 격리 아키텍처** 수립 필수.
 - 핵심 목적 : 오픈소스 생태계의 사유화 방지, 지식 공유의 지속성 보장 및 자유 소프트웨어의 지속적인 생태계 선순환 유지.
 
 ## Ⅱ. 카피레프트 라이선스(Copyleft License)의 법제도 체계 및 핵심 메커니즘

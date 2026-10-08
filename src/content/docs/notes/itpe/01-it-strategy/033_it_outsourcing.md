@@ -1,5 +1,5 @@
 ---
-title: "IT 아웃소싱"
+title: "IT 아웃소싱 (IT: Information Technology)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

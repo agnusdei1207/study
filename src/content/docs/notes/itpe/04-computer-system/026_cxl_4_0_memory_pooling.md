@@ -1,5 +1,5 @@
 ---
-title: "CXL 4.0 / 메모리 풀링"
+title: "CXL 4.0 / 메모리 풀링 (CXL: Compute Express Link)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "DSML 프로젝트"
+title: "DSML 프로젝트 (DSML: Data Science and Machine Learning)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

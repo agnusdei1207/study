@@ -1,5 +1,5 @@
 ---
-title: "요구사항 명세(SRS)"
+title: "요구사항 명세(SRS, Software Requirements Specification)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

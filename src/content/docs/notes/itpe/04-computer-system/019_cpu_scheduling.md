@@ -1,5 +1,5 @@
 ---
-title: "CPU 스케줄링(CPU Scheduling)"
+title: "CPU 스케줄링(CPU Scheduling) (CPU: Central Processing Unit)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

@@ -50,7 +50,7 @@ extra:
 | **READ UNCOMMITTED** | 발생 가능 | 발생 가능 | 발생 가능 | 공유락(S-Lock) 없이 읽기 수행, 배타락(X-Lock) 데이터도 즉시 읽음 |
 | **READ COMMITTED** | 방지됨 | 발생 가능 | 발생 가능 | 커밋된 데이터만 읽기 허용. 읽기 시 S-Lock을 걸고 조회 완료 즉시 해제하거나, 쿼리 시작 시점의 MVCC 스냅샷 참조 (오라클, PG 기본값) |
 | **REPEATABLE READ** | 방지됨 | 방지됨 | 발생 가능 | 트랜잭션 종료 시까지 S-Lock 유지, 또는 트랜잭션 시작 시점의 MVCC 스냅샷을 트랜잭션 끝까지 고정 (MySQL InnoDB 기본값) |
-| **SERIALIZABLE** | 방지됨 | 방지됨 | 방지됨 | 완벽한 직렬 실행 보장. 넥스트 키 락(Next-Key Lock)으로 범위 잠금 또는 SSI(Serializable Snapshot Isolation) 적용 |
+| **SERIALIZABLE** | 방지됨 | 방지됨 | 방지됨 | 성공한 트랜잭션의 결과가 어떤 직렬 실행과 동등함을 보장. 실제로 하나씩 순차 실행한다는 뜻은 아님. 넥스트 키 락(Next-Key Lock)으로 범위 잠금 또는 SSI(Serializable Snapshot Isolation) 적용 |
 
 ※ 참고: MySQL InnoDB의 경우 REPEATABLE READ 수준에서도 MVCC Undo 로그 기반 스냅샷 읽기와 넥스트 키 락을 통해 일반적인 Phantom Read를 대부분 차단함.
 

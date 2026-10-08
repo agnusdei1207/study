@@ -1,5 +1,5 @@
 ---
-title: "X+AI / AX 2.0"
+title: "X+AI / AX 2.0 (AI: Artificial Intelligence; AX: AI Transformation)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -62,7 +62,7 @@ X+AI / AX 2.0은 전통적 데이터 분석 보조(AX 1.0)를 넘어 도메인 �
 
 | 비교 항목 | DX (Digital Transformation) | AX 1.0 (AI Transformation) | AX 2.0 (현행 패러다임) |
 |---|---|---|---|
-| **핵심 기술** | Cloud, Web, 모바일, RDBMS(Relational Database Management System) | 지도학습 ML(Machine Learning), 룰 기반 챗봇 | Generative AI, LLM, Agentic AI |
+| 핵심 기술 | Cloud, Web, 모바일, RDBMS(Relational Database Management System) | 지도학습 ML(Machine Learning), 룰 기반 챗봇 | Generative AI, LLM, Agentic AI |
 | **데이터 활용** | 데이터 수집 및 정형화 저장 | 정형 데이터 기반 미래 예측 | 사내 비정형 문서 및 멀티모달 통합 |
 | **업무 수행 주체** | 인간이 시스템을 조작하여 수행 | AI가 예측 점수를 주고 인간이 판단 | AI 에이전트가 직접 실행하고 인간이 감수 |
 | **시스템 통합도** | 사일로별 분리된 DB(Database) 구축 | 특정 업무 전용 모델 독립 운영 | 전사 기간계(Legacy)와 양방향 API 통합 |

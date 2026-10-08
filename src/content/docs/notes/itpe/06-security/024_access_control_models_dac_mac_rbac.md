@@ -1,5 +1,5 @@
 ---
-title: "접근통제 정책·모델(DAC·MAC·RBAC)"
+title: "접근통제 정책·모델(DAC·MAC·RBAC) (DAC: Discretionary Access Control; MAC: Mandatory Access Control; RBAC: Role-Based Access Control)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

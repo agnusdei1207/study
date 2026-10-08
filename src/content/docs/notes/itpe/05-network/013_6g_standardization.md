@@ -1,5 +1,5 @@
 ---
-title: "6G 표준화와 IMT-2030"
+title: "6G 표준화와 IMT-2030(IMT: International Mobile Telecommunications)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

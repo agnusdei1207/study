@@ -1,5 +1,5 @@
 ---
-title: "AI 보안"
+title: "AI 보안 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -63,7 +63,7 @@ AI 보안은 '보안을 위한 AI(Securing with AI)'와 'AI 자체의 보안(Sec
 
 - 딥러닝 모델의 블랙박스 특성으로 인한 **설명가능성** (Explainability) 결여 :
   - 한계점 : AI가 왜 특정 입력을 악성으로 분류했는지 또는 왜 오작동했는지 설명하지 못해 규제 준수 및 디버깅 난항.
-  - 해결 방안 : **XAI**(Explainable Artificial Intelligence) (설명 가능한 AI) 기술인 SHAP(SHapley Additive exPlanations), LIME(Lightweight Interoperability of Model Explanations)을 통합하고, 결정 트리를 결합한 하이브리드 화이트박스 검증 파이프라인 구축.
+  - 해결 방안 : **XAI**(Explainable Artificial Intelligence) (설명 가능한 AI) 기술인 SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations)을 통합하고, 결정 트리를 결합한 하이브리드 화이트박스 검증 파이프라인 구축.
 - 공격자의 AI 무기화에 따른 공격 속도와 변종 생성의 비대칭성 :
   - 한계점 : 공격자는 생성형 AI를 이용해 대량의 백신 우회 변종 악성코드를 자동 생성하여 전통 방어 체계 압도.
   - 해결 방안 : 방어자 역시 생성형 AI 기반의 역공학 분석 및 위협 인텔리전스 자동 생성 체계를 가동하는 'AI 대 AI(AI vs AI)' 실시간 교전 시스템 구축.

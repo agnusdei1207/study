@@ -1,5 +1,5 @@
 ---
-title: "Programmable Money·AI Agent 결제"
+title: "Programmable Money·AI Agent 결제 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

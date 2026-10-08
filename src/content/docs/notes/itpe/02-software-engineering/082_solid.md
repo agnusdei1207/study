@@ -1,5 +1,5 @@
 ---
-title: "객체지향 설계원칙 SOLID(DIP 포함)"
+title: "객체지향 설계원칙 SOLID(DIP 포함) (SOLID: Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion; DIP: Dependency Inversion Principle)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

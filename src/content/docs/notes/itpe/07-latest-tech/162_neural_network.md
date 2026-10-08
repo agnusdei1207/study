@@ -63,7 +63,7 @@ extra:
 | **수학 공식** | $\sigma(z) = \frac{1}{1 + e^{-z}}$ | $f(z) = \max(0, z)$ | $f(z) = z \cdot \Phi(z) = z \cdot P(X \le z)$ |
 | **출력 범위** | $0.0 \sim 1.0$ (항상 양수) | $[0, \infty)$ (비음수) | 약 $[-0.17, \infty)$ (음수 영역 완만) |
 | **도함수 최댓값**| $0.25$ ($z=0$일 때) | $1.0$ ($z > 0$일 때) | 연속적 미분 가능 곡선 |
-| **기울기 소실** | 심각함 (층이 깊어지면 미분값 소멸) | 양수 영역에서 기울기 1 유지로 극복 | 음수 영역에서도 미세 기울기 유지로 극복 |
+| 기울기 소실 | 심각함 (층이 깊어지면 미분값 소멸) | 양수 영역에서 기울기 1 유지로 극복 | 음수 영역에서도 미세 기울기 유지로 극복 |
 | **Dying 노드** | 없음 | 음수 입력 시 뉴런 완전 영구 사망 | 입력 확률에 따른 부드러운 통과로 해결 |
 | **대표 활용** | 로지스틱 회귀, 이진 분류 출력층 | CNN(Convolutional Neural Network), 전통적 심층 신경망(ResNet) | BERT(Bidirectional Encoder Representations from Transformers), GPT(Generative Pre-trained Transformer)-4 등 트랜스포머/LLM(Large Language Model) 표준 |
 
@@ -79,7 +79,7 @@ extra:
   - 해결 방안 : 학습 도중 무작위로 뉴런을 비활성화하는 드롭아웃(Dropout $\approx 0.2\sim 0.5$) 적용, L2 가중치 감쇠 및 검증 손실 기준 조기 종료(Early Stopping) 결합.
 - 수억 개 가중치 비선형 연산에 따른 의사결정 블랙박스 문제 :
   - 한계점 : 수억 개 가중치 파라미터 간의 복잡한 비선형 상호작용으로 인해 인공신경망의 판단 근거를 사람이 역추적할 수 없는 블랙박스 문제.
-  - 해결 방안 : 특징 맵의 중요도를 시각화하는 Grad-CAM 적용 및 샤플리 값 기반 기여도 분석(SHAP(SHapley Additive exPlanations)/LIME(Lightweight Interoperability of Model Explanations)) 설명가능 AI(XAI, Explainable Artificial Intelligence) 파이프라인 결합.
+  - 해결 방안 : 특징 맵의 중요도를 시각화하는 Grad-CAM 적용 및 샤플리 값 기반 기여도 분석(SHAP(SHapley Additive exPlanations)/LIME(Local Interpretable Model-agnostic Explanations)) 설명가능 AI(XAI, Explainable Artificial Intelligence) 파이프라인 결합.
 
 ## Ⅴ. 신경망(Neural Network) 적용 및 발전을 위한 기술사적 제언
 

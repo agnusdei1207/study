@@ -1,5 +1,5 @@
 ---
-title: "AI 생성 코드·오픈웨이트 라이선스 준수"
+title: "AI 생성 코드·오픈웨이트 라이선스 준수 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:
@@ -58,7 +58,7 @@ extra:
   - 해결 방안 : 기업 내 AI 거버넌스 위원회를 통해 도입 전 모델별 특수 라이선스 약관을 법률 검토하고, 사내 활용 목적(상용 서비스, 내부 도구, 파인튜닝)에 따른 허용 모델 화이트리스트 운영.
 - 소프트웨어 자재명세서(SBOM, Software Bill of Materials) 내 AI 생성 자산 추적성 누락 :
   - 한계점 : 개발자가 AI를 활용해 작성한 코드 스니펫, 프롬프트 엔지니어링 이력, 활용된 모델 버전이 기존 형상관리 및 SBOM에 기록되지 않아 향후 라이선스 감사 시 증빙 불가.
-  - 해결 방안 : AI 생성 코드에 대한 메타데이터 태깅(AIGC, AI-Generated Content Tagging)을 의무화하고, AI-SBOM(AIBOM, AI Bill of Materials) 생성 파이프라인을 구축하여 프롬프트, LLM 버전, 생성 일자 및 의존성 계보(Provenance) 추적성 확보.
+  - 해결 방안 : AI 생성 코드에 대한 메타데이터 태깅을 의무화하고, AI 구성명세서(AIBOM, AI Bill of Materials) 생성 파이프라인을 구축하여 프롬프트, LLM 버전, 생성 일자 및 의존성 계보(Provenance) 추적성 확보.
 
 ## Ⅴ. 기업 AI 거버넌스 확립을 위한 기술사적 제언
 

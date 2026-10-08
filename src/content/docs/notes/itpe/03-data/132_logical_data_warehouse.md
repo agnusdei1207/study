@@ -1,5 +1,5 @@
 ---
-title: "논리적 DW 아키텍처"
+title: "논리적 DW 아키텍처 (DW: Data Warehouse)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:

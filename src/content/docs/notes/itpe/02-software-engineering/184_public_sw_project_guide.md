@@ -1,5 +1,5 @@
 ---
-title: "공공SW사업 법제도 가이드"
+title: "공공SW사업 법제도 가이드 (SW: Software)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "DiffServ"
+title: "DiffServ(Differentiated Services)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -45,7 +45,7 @@ DiffServ는 도메인 경계 라우터(Edge)에서 패킷을 분류(Classify), �
 +-----------------------------------------------------------------+
 ```
 
-- **DS 필드 및 DSCP(DS Codepoint)** : IP 헤더의 8비트 공간 중 상위 6비트를 사용하여 총 64개의 서비스 클래스를 정의(하위 2비트는 ECN(Explicit Congestion Notification) 혼잡 통지로 활용).
+- **DS 필드 및 DSCP(Differentiated Services Code Point)** : IP 헤더의 8비트 공간 중 상위 6비트를 사용하여 총 64개의 서비스 클래스를 정의(하위 2비트는 ECN(Explicit Congestion Notification) 혼잡 통지로 활용).
 - **에지 트래픽 컨디셔너(Traffic Conditioner)** : 경계 라우터에서 패킷을 분류하고 SLA(Service Level Agreement) 계약을 초과한 트래픽에 대해 마킹 강등(Remarking), 지연 버퍼링(Shaping), 또는 즉시 폐기(Policing) 수행.
 - **EF(Expedited Forwarding) PHB** : DSCP 값 46(101110)을 사용하며, 전용 대역폭 보장, 극저지연, 최소 손실을 제공하여 가상 전용선(Leased-line) 품질 구현(VoIP(Voice over Internet Protocol) 음성 전용).
 - **AF(Assured Forwarding) PHB** : 4개의 독립 클래스와 클래스별 3단계 드롭 우선순위(Drop Precedence)를 조합하여 총 12개 등급으로 세분화된 대역폭 보장(WRED 결합).

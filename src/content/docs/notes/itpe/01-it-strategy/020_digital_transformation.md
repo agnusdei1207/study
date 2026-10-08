@@ -1,5 +1,5 @@
 ---
-title: "디지털 트랜스포메이션(DX)"
+title: "디지털 트랜스포메이션(DX, Digital Transformation)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

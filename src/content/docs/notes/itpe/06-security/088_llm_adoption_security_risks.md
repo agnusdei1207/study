@@ -1,5 +1,5 @@
 ---
-title: "LLM 도입 보안 위험·대응"
+title: "LLM 도입 보안 위험·대응 (LLM: Large Language Model)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -16,7 +16,7 @@ extra:
 
 - 개념 : 기업 비즈니스 및 SW(Software) 개발 수명주기 전반에 **LLM**(Large Language Model)을 도입할 때 발생하는 데이터 유출, 적대적 프롬프트, 취약 코드 주입 위험을 식별하고 전주기 통제를 적용하는 보안 활동.
 - 배경 및 필요성 : 기업의 생성형 AI(Artificial Intelligence) 도입 가속화에 따라 사내 기밀 및 소스코드 누출, 비인가 **섀도우 AI** 사용, **환각** (Hallucination) 기반 업무 왜곡 등 새로운 보안 위협 표면이 급증하여 엔터프라이즈 통제 방안 수립이 시급해짐.
-- 핵심 목적 : 생성형 AI 기반 개발 생산성 및 비즈니스 혁신을 극대화하면서도 사내 핵심 지적재산권(IP, Internet Protocol) 보호, 안전한 코드 품질 확보, 시스템 무결성 유지.
+- 핵심 목적 : 생성형 AI 기반 개발 생산성 및 비즈니스 혁신을 극대화하면서도 사내 핵심 지적재산권(IP, Intellectual Property) 보호, 안전한 코드 품질 확보, 시스템 무결성 유지.
 
 ## Ⅱ. LLM 도입 보안 위험·대응의 핵심 아키텍처 및 동작 메커니즘
 

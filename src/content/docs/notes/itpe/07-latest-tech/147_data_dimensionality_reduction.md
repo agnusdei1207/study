@@ -49,7 +49,7 @@ extra:
 
 - **특성 선택 (Selection)** : Filter, Wrapper, Embedded - 원본 변수 자체를 선별하여 도메인 해석 가능성(Interpretability) 완전 보존.
 - **선형 특성 추출 (Linear)** : PCA (Principal Component Analysis, 주성분 분석), LDA (선형 판별 분석) - **고유값 분해** (EVD) 또는 SVD 기반 직교 투영, 연산 효율 우수하나 비선형 왜곡 한계.
-- **비선형 매니폴드 (Non-linear)** : t-SNE(Stochastic Neighbor Embedding), UMAP(Uniform Manifold Approximation and Projection), Kernel PCA - 고차원 이웃 간 국소적/전역적 기하 거리를 저차원 확률 분포로 보존, 고차원 군집 시각화 특화.
+- **비선형 매니폴드 (Non-linear)** : t-SNE(t-distributed Stochastic Neighbor Embedding), UMAP(Uniform Manifold Approximation and Projection), Kernel PCA - 고차원 이웃 간 국소적/전역적 기하 거리를 저차원 확률 분포로 보존, 고차원 군집 시각화 특화.
 - **딥러닝 기반 추출** : 오토인코더 (Autoencoder), VAE(Variational Autoencoder) - 인코더-디코더 병목 계층(Bottleneck)의 **잠재 벡터** (Latent Vector)를 통한 비선형 압축.
 
 ## Ⅲ. 데이터 차원 축소의 세부 구성 요소 및 비교 분석
@@ -74,7 +74,7 @@ extra:
   - 해결 방안 : 지도학습 기반의 LDA(Linear Discriminant Analysis)를 병용하거나 타깃 상관성을 반영하는 PLS(Partial Least Squares) 기법 적용.
 - 잠재 주성분의 비즈니스적 물리 의미 해석 난해성 :
   - 한계점 : 특성 추출로 생성된 잠재 주성분의 비즈니스적 물리 의미 해석 불가능으로 현업 적용 저항.
-  - 해결 방안 : L1 규제화 기반 Sparse PCA 도입 또는 SHAP(SHapley Additive exPlanations)/LIME(Lightweight Interoperability of Model Explanations) 모델 해석 기법을 결합하여 원본 변수 기여도 역추적 체계 제공.
+  - 해결 방안 : L1 규제화 기반 Sparse PCA 도입 또는 SHAP(SHapley Additive exPlanations)/LIME(Local Interpretable Model-agnostic Explanations) 모델 해석 기법을 결합하여 원본 변수 기여도 역추적 체계 제공.
 
 ## Ⅴ. 데이터 차원 축소 적용 및 발전을 위한 기술사적 제언
 

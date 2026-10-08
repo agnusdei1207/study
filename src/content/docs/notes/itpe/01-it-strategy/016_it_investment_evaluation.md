@@ -1,5 +1,5 @@
 ---
-title: "IT 투자평가·투자관리"
+title: "IT 투자평가·투자관리 (IT: Information Technology)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

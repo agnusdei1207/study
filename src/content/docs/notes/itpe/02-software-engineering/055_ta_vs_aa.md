@@ -1,5 +1,5 @@
 ---
-title: "TA와 AA 역할 비교 및 협업"
+title: "TA와 AA 역할 비교 및 협업 (TA: Technical Architect; AA: Application Architect)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

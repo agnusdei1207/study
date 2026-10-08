@@ -1,5 +1,5 @@
 ---
-title: "AI 거버넌스 플랫폼"
+title: "AI 거버넌스 플랫폼 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "섀도우 AI(Shadow AI)"
+title: "섀도우 AI(Shadow AI) (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -54,7 +54,7 @@ extra:
 
 ## Ⅲ. 섀도우 AI(Shadow AI)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | **전통적 섀도우 IT** (Shadow IT) | **섀도우 AI** (Shadow AI) |
+| 비교 항목 | **전통적 섀도우 IT** (Shadow IT) | 섀도우 AI (Shadow AI) |
 |---|---|---|
 | 사용 대상 | 웹하드(Dropbox), 개인 메일, 협업 메신저(Slack) | 생성형 AI 챗봇(ChatGPT), 코드 완성 툴, 이미지 생성 AI |
 | 주된 위험 | 단순 파일 저장 및 공유를 통한 데이터 유출 | 입력 데이터의 모델 학습 풀 흡수 및 비결정론적 정보 재생성 |

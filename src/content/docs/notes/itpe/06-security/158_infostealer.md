@@ -77,7 +77,7 @@ extra:
 
 - 유효한 정상 세션 쿠키 악용 시 서버 측 탐지 불가능 :
   - 한계점 : 공격자가 훔친 쿠키로 접속할 경우 서버 관점에서는 완벽하게 인증된 정상적인 HTTP(Hypertext Transfer Protocol) 세션 요청으로 보여 방화벽이나 WAF(Web Application Firewall)가 패스.
-  - 해결 방안 : 쿠키에 클라이언트 TLS(Transport Layer Security) 지문(JA3/JA4) 및 하드웨어 TPM(Trusted Platform Module) 키를 바인딩하는 DPoP(RFC(Request for Comments) 9449) 및 토큰 바인딩 표준 적용.
+  - 해결 방안 : OAuth 접근 토큰에 DPoP(Demonstrating Proof-of-Possession, RFC 9449)를 적용하여 클라이언트 키 소유 증명을 검증. JA3/JA4 지문이나 일반 세션 쿠키에 자동 적용되는 표준은 아니므로 쿠키 보호와 별도로 설계.
 - 임직원의 사내 PC(Personal Computer) 웹 브라우저 내 '비밀번호 저장' 관행 :
   - 한계점 : 편의를 위해 브라우저의 '비밀번호 저장' 팝업을 수락하여 수십 개의 업무 시스템 계정 자격증명이 단일 SQLite 파일에 평문 저장.
   - 해결 방안 : Active Directory 그룹 정책(GPO) 및 MDM(Mobile Device Management)을 통해 전사 PC 브라우저의 비밀번호 저장 및 자동완성 기능을 강제 비활성화.

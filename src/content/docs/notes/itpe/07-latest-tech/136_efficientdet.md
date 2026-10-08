@@ -63,7 +63,7 @@ EfficientDet는 신뢰할 수 있는 데이터 파이프라인과 고도화된 �
 
 ## Ⅲ. EfficientDet의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | 기존 FPN (Feature Pyramid) | PANet (Path Aggregation) | NAS(Neural Architecture Search)-FPN | BiFPN (EfficientDet) |
+| 비교 항목 | 기존 FPN (Feature Pyramid Network) | PANet (Path Aggregation Network) | NAS(Neural Architecture Search)-FPN | BiFPN (EfficientDet) |
 |---|---|---|---|---|
 | **연결 방향** | 단순 상하향(Top-down) 단방향 | 상하향 + 하상향 순차 연결 | 신경망 아키텍처 탐색(NAS) 불규칙 | 최적화된 양방향 정규 연결 |
 | **노드 처리** | 1개 입력 엣지 노드 단순 통과 | 단순 합(Sum) 연산 결합 | 복잡한 비대칭 노드 결합 | 정보 기여 적은 단일 입력 제거 |

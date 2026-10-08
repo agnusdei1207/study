@@ -16,7 +16,7 @@ extra:
 
 - 개념 : **Apache Iceberg** 란 대규모 분산 객체 스토리지(S3(Simple Storage Service), GCS, HDFS) 상에 저장된 대용량 페타바이트급 데이터 파일(Parquet, ORC)에 대해 RDBMS(Relational Database Management System) 수준의 **ACID**(Atomicity, Consistency, Isolation, Durability) 트랜잭션, 고성능 쿼리, **스키마 진화** (Schema Evolution), **타임 트래블** (Time Travel) 기능을 제공하는 고성능 오픈 소스 테이블 포맷.
 - 배경 및 필요성 : 전통적 데이터 레이크(Hive 메타스토어 방식)의 디렉터리 기반 파티셔닝 한계(느린 파일 리스팅, 원자성 부재, 일관성 결여)와 데이터 웨어하우스(DW, Data Warehouse)의 높은 스토리지 비용 문제를 동시에 해결하는 '**데이터 레이크하우스** (Data Lakehouse)'의 핵심 엔진으로 부상.
-- 대표 3대 오픈 테이블 포맷 : **Apache Iceberg** / **Delta Lake** / **Apache Hudi**
+- 대표 3대 오픈 테이블 포맷 : Apache Iceberg / **Delta Lake** / **Apache Hudi**
 
 ## Ⅱ. Apache Iceberg 계층형 메타데이터 아키텍처
 
@@ -36,7 +36,7 @@ extra:
    [ Data Files (.parquet) ] ── 실제 원천 데이터 블록 (스토리지에 저장)
 ```
 
-- **스냅샷 격리** (Snapshot Isolation) : 모든 읽기 작업은 격리된 특정 스냅샷을 기준으로 수행되어, 백그라운드에서 대량의 쓰기/삭제 작업이 진행 중이어도 읽기 쿼리는 완벽한 일관성(ACID) 보장.
+- **스냅샷 격리** (Snapshot Isolation) : 모든 읽기 작업은 격리된 특정 스냅샷을 기준으로 수행되어, 백그라운드에서 대량의 쓰기/삭제 작업이 진행 중이어도 읽기 쿼리는 해당 스냅샷의 일관된 데이터를 조회. 스냅샷 격리를 직렬화 가능성이나 시스템 전체의 모든 ACID 보장과 동일시하지 않도록 구분.
 - **숨겨진 파티셔닝** (Hidden Partitioning) : 사용자가 쿼리 시 복잡한 파티션 컬럼을 명시하지 않아도, 일자(day), 시(hour) 등 변환 파티션을 엔진이 내부적으로 자동 처리하여 쿼리 오류 방지.
 
 ## Ⅲ. 오픈 테이블 포맷 3대 기술 비교

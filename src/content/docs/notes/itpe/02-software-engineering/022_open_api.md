@@ -1,5 +1,5 @@
 ---
-title: "Open API(API 일반)"
+title: "Open API(API 일반) (API: Application Programming Interface)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

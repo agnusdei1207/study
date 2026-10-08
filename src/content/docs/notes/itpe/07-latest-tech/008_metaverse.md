@@ -14,16 +14,16 @@ extra:
 
 ## Ⅰ. 메타버스(Metaverse)의 개요
 
-- 개념 : 가상(Meta)과 우주(Universe)의 합성어로, **확장현실** (XR(Extended Reality): VR(Virtual Reality)·AR(Augmented Reality)·MR(Mixed Reality)), 고성능 클라우드, 인공지능(AI, Artificial Intelligence), 초고속 통신(5G/6G) 및 **블록체인** 인프라가 융합되어 물리적 현실과 가상 공간이 실시간으로 상호작용하며 사회·경제·문화적 활동을 영위할 수 있는 영속적인 3차원 디지털 생태계.
+- 개념 : 초월·넘어섬을 뜻하는 Meta와 Universe의 결합 명칭로, **확장현실** (XR(Extended Reality): VR(Virtual Reality)·AR(Augmented Reality)·MR(Mixed Reality)), 고성능 클라우드, 인공지능(AI, Artificial Intelligence), 통신 및 선택적으로 **블록체인** 기술 등을 활용하여 물리적 현실과 가상 공간이 실시간으로 상호작용하며 사회·경제·문화적 활동을 영위할 수 있는 영속적인 3차원 디지털 생태계.
 - 배경 및 필요성 : 비대면 협업 및 원격 작업의 일상화, **공간 컴퓨팅** (Spatial Computing) 하드웨어 상용화, 물리적 제조 환경을 가상화하는 산업용 **디지털 트윈** 수요, 웹3 기반 디지털 자산 소유권 확립 요구에 따라 진화함.
 - 핵심 목적 : 시공간 제약이 없는 몰입형 경험 제공, 산업 현장의 엔지니어링 생산성 극대화, 자율 경제 생태계(Creator Economy) 구현.
 
 ## Ⅱ. 메타버스(Metaverse)의 핵심 아키텍처 및 동작 메커니즘
 
-메타버스는 인프라 네트워크부터 공간 인터페이스, 실시간 시뮬레이션 엔진, 경제 생태계가 수직적으로 결합된 **5계층 아키텍처**로 동작함.
+메타버스는 인프라 네트워크부터 공간 인터페이스, 실시간 시뮬레이션 엔진, 경제 생태계가 수직적으로 결합된 다음과 같은 계층 모델로 설명할 수 있음. 아래는 설계 예시이며 모든 메타버스에 필수인 단일 표준 아키텍처가 아님.
 
 ```text
-[ 메타버스 5계층 기술 아키텍처 ]
+[ 메타버스 계층별 기술 구성 예시 ]
 
 +-----------------------------------------------------------------+
 | 5. 경험 및 서비스 계층 (Experience & Services)                  |
@@ -47,7 +47,7 @@ extra:
 | 2. 인간 인터페이스 계층 (Human Interface / Hardware)           |
 |  - XR HMD (비전프로, 퀘스트), 햅틱 글러브, 시선 추적, 모션 캡처|
 +--------------------------------┬--------------------------------+
-                                 │ 초저지연 패킷 전송 (RTT < 20ms)
+                                 │ 서비스별 지연 목표에 맞춘 전송
                                  ▼
 +-----------------------------------------------------------------+
 | 1. 인프라 및 네트워크 계층 (Infrastructure & Network)           |
@@ -58,7 +58,7 @@ extra:
 - **ASF(Acceleration Studies Foundation) 4대 분류 체계** : 증강현실(AR, Augmented Reality), 라이프로깅(Lifelogging), 거울세계(Mirror Worlds), 가상세계(Virtual Worlds)의 유기적 융합.
 - **공간 컴퓨팅 및 3D 엔진** : 언리얼(Unreal), 유니티(Unity) 엔진을 활용하여 현실 물리 법칙을 반영한 실시간 렌더링 및 디지털 트윈 시뮬레이션 구동.
 - **공간 인터페이스 하드웨어** : 센서 융합 및 컴퓨터 비전 기반 SLAM(Simultaneous Localization and Mapping, 동시적 위치추정 및 지도작성), Foveated Rendering을 통해 몰입감 극대화.
-- **웹3 기반 자율 경제** : 블록체인 분산원장과 DID(Decentralized Identifier)를 기반으로 가상 아이템과 아바타의 유일성 보장 및 플랫폼 간 상호운용 가능한 경제권 형성.
+- **웹3 기반 자율 경제** : 블록체인 분산원장과 DID(Decentralized Identifier)를 기반으로 자산 이력과 소유 관계를 기록할 수 있으나 콘텐츠 유일성과 플랫폼 간 호환성은 별도 규약·구현으로 확보.
 
 ## Ⅲ. 메타버스(Metaverse)의 세부 구성 요소 및 비교 분석
 
@@ -73,7 +73,7 @@ extra:
 
 ## Ⅳ. 메타버스(Metaverse)의 주요 한계점 및 해결 방안
 
-- 하드웨어 무게, 발열 및 디스플레이 지연(MTP, Motion-to-Photon > 20ms)으로 인한 사이버 멀미(Cyber Sickness) :
+- 하드웨어 무게, 발열 및 디스플레이 지연(MTP, Motion-to-Photon)으로 인한 사이버 멀미(Cyber Sickness) :
   - 한계점 : 시각적 움직임과 전정기관 감각 간의 불일치로 장시간 HMD(Head-Mounted Display) 착용 시 두통과 멀미를 유발하여 엔터프라이즈 업무 연속성 저해.
   - 해결 방안 : **모바일 에지 컴퓨팅** (MEC, Multi-access Edge Computing) 기반 분산 렌더링, 시선 추적 기반 **중심와 렌더링** (Foveated Rendering) 및 초경량 팬케이크 렌즈 도입.
 - 플랫폼 간 폐쇄적 데이터 사일로와 아바타/자산 상호운용성(Interoperability) 부재 :

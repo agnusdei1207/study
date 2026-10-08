@@ -1,5 +1,5 @@
 ---
-title: "생성형 AI(Generative AI)"
+title: "생성형 AI(Generative AI) (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -36,7 +36,7 @@ extra:
   +---------------------------------------------------------------+
   | 2. 인스트럭션 튜닝 및 인간 정렬 (Alignment & Post-training)   |
   |  - 지도 미세조정 (SFT, Supervised Fine-Tuning)                 |
-  |  - 인간 피드백 강화학습 (RLHF, Reinforcement Learning from Human Feedback / PPO, Proximal Policy Optimization / DPO, Direct Preference Optimization) |
+  |  - 선호 정렬: PPO(Proximal Policy Optimization) 기반 RLHF(Reinforcement Learning from Human Feedback) 또는 DPO(Direct Preference Optimization)의 직접 최적화 |
   |  - 유해성, 편향 차단 및 도움성(Helpfulness/Harmlessness) 확보 |
   +--------------------------------┬------------------------------+
                                    │ 정렬된 서빙 모델

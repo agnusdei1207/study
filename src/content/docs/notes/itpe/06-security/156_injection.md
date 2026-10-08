@@ -57,7 +57,7 @@ extra:
 
 ## Ⅲ. 인젝션(Injection) 공격의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | **OS Command Injection** | **SQL Injection** | **LDAP Injection** | **SSTI** (Template) |
+| 비교 항목 | OS Command Injection | **SQL Injection** | LDAP Injection | **SSTI** (Template) |
 | --- | --- | --- | --- | --- |
 | 대상 인터프리터 | OS 시스템 쉘 (/bin/sh, cmd.exe) | 데이터베이스 엔진 (Oracle, MySQL) | 디렉터리 서비스 (OpenLDAP, AD) | 웹 템플릿 엔진 (Jinja2, Velocity) |
 | 공격 영향 | 서버 OS 완전 장악 (RCE) | DB(Database) 전수 유출, 원장 변조, 관리자 우회 | 사내 계정 도용, 디렉터리 정보 유출 | 서버 메모리 접근 및 원격 쉘 탈취 |

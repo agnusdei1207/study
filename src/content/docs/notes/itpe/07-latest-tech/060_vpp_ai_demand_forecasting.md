@@ -1,5 +1,5 @@
 ---
-title: "가상발전소(VPP)와 AI 수요예측"
+title: "가상발전소(VPP, Virtual Power Plant)와 AI 수요예측 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

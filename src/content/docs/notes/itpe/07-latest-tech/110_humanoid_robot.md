@@ -1,5 +1,5 @@
 ---
-title: "휴머노이드 로봇 (피지컬 AI 국가 프로젝트)"
+title: "휴머노이드 로봇 (피지컬 AI 국가 프로젝트) (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

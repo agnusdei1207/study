@@ -57,7 +57,7 @@ extra:
 
 ## Ⅲ. 큐싱(Qshing)의 세부 구성 요소 및 비교 분석
 
-| 비교 항목 | **큐싱** (Qshing) | **피싱** (Phishing) | **스미싱** (Smishing) | **파밍** (Pharming) |
+| 비교 항목 | **큐싱** (Qshing) | 피싱 (Phishing) | **스미싱** (Smishing) | **파밍** (Pharming) |
 | --- | --- | --- | --- | --- |
 | 전달 매체 | QR 코드 이미지 (온/오프라인) | 이메일 내 텍스트 하이퍼링크 | SMS/MMS 문자 메시지 링크 | DNS(Domain Name System) 변조 및 감염 PC(Personal Computer) 호스트 파일 |
 | 시각적 식별 | 불가능 (기계 판독 전용 매트릭스) | 가능 (URL 도메인 육안 확인) | 가능 (단축 URL 등 링크 확인) | 불가능 (정상 URL 입력해도 가짜 사이트) |

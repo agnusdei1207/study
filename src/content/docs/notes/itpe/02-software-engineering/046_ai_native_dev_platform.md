@@ -1,5 +1,5 @@
 ---
-title: "AI 네이티브 개발 플랫폼"
+title: "AI 네이티브 개발 플랫폼 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

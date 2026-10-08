@@ -1,5 +1,5 @@
 ---
-title: "ISMP"
+title: "ISMP(Information System Master Plan)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "OWASP Top 10 for LLM Applications"
+title: "OWASP Top 10 for LLM Applications (OWASP: Open Worldwide Application Security Project; LLM: Large Language Model)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

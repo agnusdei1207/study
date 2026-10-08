@@ -1,5 +1,5 @@
 ---
-title: "데이터센터(IDC) 입지 선정"
+title: "데이터센터(IDC, Internet Data Center) 입지 선정"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -62,7 +62,7 @@ IDC(Internet Data Center) 지리적 입지 선정은 전력 인프라, 통신 �
 
 | 비교 항목 | 도심형 데이터센터 (Edge IDC) | 외곽 하이퍼스케일 IDC (Campus) |
 |---|---|---|
-| **주요 목적** | 초저지연 금융 트레이딩, 엣지 서비스 | 대규모 클라우드, LLM(Large Language Model) 파운데이션 모델 학습 |
+| 주요 목적 | 초저지연 금융 트레이딩, 엣지 서비스 | 대규모 클라우드, LLM(Large Language Model) 파운데이션 모델 학습 |
 | **전력 공급 규모** | 10 MW ~ 40 MW 수준 | 100 MW ~ 1 GW+ (초대용량) |
 | **토지 면적 및 형태**| 제한된 도심 빌딩형 (수직 고층화) | 광대한 부지의 캠퍼스형 (수평 저층화) |
 | **냉각 방식** | 고효율 공랭식 / 일부 D2C(Direct-to-Chip) 수랭 | 전면 액체냉각, 외기 프리쿨링, 수냉탑 |

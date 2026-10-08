@@ -1,5 +1,5 @@
 ---
-title: "네트워크 (IITP 2026 이슈)"
+title: "네트워크 (IITP 2026 이슈) (IITP: Institute of Information & Communications Technology Planning & Evaluation)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

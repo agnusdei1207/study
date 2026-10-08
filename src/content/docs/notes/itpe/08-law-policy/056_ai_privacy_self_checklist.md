@@ -1,5 +1,5 @@
 ---
-title: "인공지능(AI) 개인정보보호 자율점검표"
+title: "인공지능(AI, Artificial Intelligence) 개인정보보호 자율점검표"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -72,7 +72,7 @@ extra:
   - 해결 방안 : 학습 시 차분 프라이버시 확률적 경사하강법(DP(Differential Privacy)-SGD(Stochastic Gradient Descent)) 적용 및 추론 서빙 게이트웨이 상에 실시간 PII(이름·전화번호·계좌) 정규식 필터링 가드레일 배포.
 - 자동화된 결정 시 블랙박스 모델 특성으로 인한 설명 요구권 대응 곤란 :
   - 한계점 : 인공지능의 완전 자동화된 신용평가·채용 결정 시 블랙박스 모델 특성으로 인해 법정 설명 요구(제37조의2) 거부.
-  - 해결 방안 : SHAP(Shapley Additive exPlanations) 및 LIME(Lightweight Interoperability of Model Explanations) 등 설명가능 인공지능(XAI, Explainable Artificial Intelligence) 기술을 도입하여 개인별 판정에 기여한 핵심 변수 가중치를 리포트로 자동 생성.
+  - 해결 방안 : SHAP(Shapley Additive exPlanations) 및 LIME(Local Interpretable Model-agnostic Explanations) 등 설명가능 인공지능(XAI, Explainable Artificial Intelligence) 기술을 도입하여 개인별 판정에 기여한 핵심 변수 가중치를 리포트로 자동 생성.
 
 ## Ⅴ. 인공지능(AI) 개인정보보호 자율점검표 정착 및 실효성 확보를 위한 기술사적 제언
 

@@ -1,5 +1,5 @@
 ---
-title: "멀티모달 LLM"
+title: "멀티모달 LLM (LLM: Large Language Model)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

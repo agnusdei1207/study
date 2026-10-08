@@ -58,7 +58,7 @@ extra:
 | **SSTF** | 현재 위치 최단 거리 | 매우 높음 | 불공정 (중앙 집중) | 높음 (원거리 트랙) |
 | **SCAN** | 양방향 왕복 주사 | 높음 | 보통 (가장자리 지연) | 극히 낮음 |
 | **C-SCAN** | 단방향 주사 후 복귀 | 높음 | 매우 우수 (균등) | 없음 |
-| **LOOK / C-LOOK** | 요청 범위 내 주사 | 최적화됨 | 우수 | 없음 |
+| LOOK / C-LOOK | 요청 범위 내 주사 | 최적화됨 | 우수 | 없음 |
 | **None (No-op)** | 단순 FIFO(First In, First Out) 병합 (SSD, Solid-State Drive) | 플래시 최적화 | 공정함 | 없음 |
 
 - 기계적 회전과 헤드 암(Arm)이 없는 NVMe(Non-Volatile Memory Express) SSD 환경에서는 전통적 탐색 스케줄링이 불필요하며, CPU 오버헤드를 없애는 None 또는 mq-deadline 스케줄러가 표준임.
@@ -71,7 +71,7 @@ extra:
 - 다중 테넌트 가상화 환경의 I/O 경합 및 **간섭(Noisy Neighbor)** :
   - 한계점 : 단일 물리 디스크를 공유하는 다수 가상머신 간 I/O 요청 충돌로 인해 특정 VM(Virtual Machine)의 디스크 대역폭 고갈.
   - 해결 방안 : BFQ(Budget Fair Queueing) 스케줄러 또는 cgroups v2 `io.weight / io.max` 설정을 통한 테넌트별 IOPS(Input/Output Operations Per Second) 및 대역폭 엄격 보장.
-- **SSTF** 및 탐색 우선 알고리즘의 데드라인 보장 한계 :
+- SSTF 및 탐색 우선 알고리즘의 데드라인 보장 한계 :
   - 한계점 : 데이터베이스 WAL(Write-Ahead Log) 등 실시간 보장이 필수적인 쓰기 작업이 읽기 요청에 밀려 커밋 지연 초래.
   - 해결 방안 : 요청별 만료 시간을 관리하는 Deadline / mq-deadline 스케줄러를 적용하여 기아 원천 차단.
 

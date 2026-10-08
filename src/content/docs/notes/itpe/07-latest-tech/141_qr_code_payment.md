@@ -1,5 +1,5 @@
 ---
-title: "QR코드 결제"
+title: "QR코드 결제 (QR: Quick Response)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

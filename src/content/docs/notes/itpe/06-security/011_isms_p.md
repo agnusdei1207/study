@@ -1,5 +1,5 @@
 ---
-title: "ISMS-P"
+title: "ISMS-P(Information Security and Personal Information Management System)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -54,19 +54,21 @@ ISMS-P는 관리체계 수립 및 운영(16개), 보호대책 요구사항(64개
 
 | 비교 항목 | ISMS (정보보호 관리체계) | ISMS-P (통합 관리체계) | ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 27701 (개인정보 국제 표준) |
 | --- | --- | --- | --- |
-| 인증 기준 수 | 총 80개 기준 | ISMS 인증기준 + 개인정보 처리단계별 인증기준 | ISO 27001 확장 (통제항목 31개 추가) |
+| 인증 기준 수 | 총 80개 기준 | ISMS 인증기준 + 개인정보 처리단계별 인증기준 | ISO/IEC 27701:2025 독립 개인정보 관리체계 표준 |
 | 핵심 목적 | 기업 정보자산(IT(Information Technology) 인프라) 기밀/완전/가용성 | 정보자산 보호 + 개인정보 자기결정권 보장 | 글로벌 프라이버시(GDPR, General Data Protection Regulation) 대응 및 신뢰 입증 |
 | 주관 부처 | 과학기술정보통신부 | 개인정보보호위원회 / 과기정통부 공동 | ISO / IEC 국제표준화기구 |
-| 의무 대상 | 매출액/이용자수 충족 ISP(Internet Service Provider), IDC(Internet Data Center), 병원 등 | 대규모 개인정보(100만 명 이상 등) 보유 기업 | 국제 진출 기업 (자율 인증) |
-| 인증의 효력 | 국내 망법 상 법적 의무 이행 | 망법 및 개보법 동시 충족, 과징금 감경 | 글로벌 비즈니스 및 GDPR 컴플라이언스 증명 |
+| 의무 대상 | 매출액/이용자수 충족 ISP(Internet Service Provider), IDC(Internet Data Center), 병원 등 | 현행 의무와 2027년 7월 1일 시행 예정인 주요 처리자 의무화 구분 | 국제 진출 기업 (자율 인증) |
+| 인증의 효력 | 국내 망법 상 법적 의무 이행 | 인증 범위의 관리체계 확인, 법률 준수·감경 자동 보장 불가 | 글로벌 비즈니스 및 GDPR 컴플라이언스 증명 |
 
-- ISMS-P는 국내 최고 권위의 통합 인증 제도로서 인증 획득 시 정보통신망법상 ISMS 의무를 갈음하며, 대규모 개인정보 유출 사고 시 과징금 산정의 중요한 감경 사유로 참작됨.
+- ISMS-P는 국내 최고 권위의 통합 인증 제도로서 인증 획득 시 정보통신망법상 ISMS 의무를 갈음하며, 대규모 개인정보 유출 사고 시 과징금 산정의 보호 노력의 참고 증거로 활용될 수 있으나 감경 요건과 고의·중과실 여부는 별도 확인.
+
+- 일반 ISMS-P 인증기준은 관리체계 16개·보호대책 64개·개인정보 처리단계 21개로 총 101개. 인증 유효기간은 3년이며 정기 사후심사와 신규 취득을 구분. [개인정보 포털](https://www.privacy.go.kr/front/contents/cntntsView.do?contsNo=59), [2026년 개정 및 의무화 시행일](https://m.korea.kr/news/policyNewsView.do?newsId=148960564), [ISO/IEC 27701:2025](https://www.iso.org/standard/27701).
 
 ## Ⅳ. ISMS-P(정보보호 및 개인정보보호 관리체계)의 주요 한계점 및 해결 방안
 
 - 클라우드 SaaS 및 국외 이전 환경에서의 개인정보 국외 제3자 제공 통제 사각지대 :
   - 한계점 : 클라우드 네이티브 서비스 도입 시 해외 리전으로 데이터가 자동 복제되거나 국외 SaaS(Salesforce 등) 연동 시 국외 이전 법정 동의 누락 위험.
-  - 해결 방안 : 클라우드 서비스 제공자(CSP, Cloud Service Provider)와의 계약서 내 **표준계약조항** (SCC) 체결, **데이터 상주성** (Data Residency) 통제 및 DSPM 연계 국외 이전 흐름 자동 감사.
+  - 해결 방안 : 클라우드 서비스 제공자(CSP, Cloud Service Provider)와의 계약 및 개인정보 보호법상 국외 이전 근거 확인, **데이터 상주성** (Data Residency) 통제 및 DSPM 연계 국외 이전 흐름 자동 감사.
 - 가명정보 결합 및 AI(Artificial Intelligence) 학습 데이터 활용 시 재식별 위험 평가의 심사 기준 모호성 :
   - 한계점 : LLM(Large Language Model) 학습 및 빅데이터 분석을 위해 결합된 가명정보의 적정성 평가가 정량화되지 않아 심사 결함 판정 및 라이프사이클 통제 혼선 초래.
   - 해결 방안 : 개인정보 비식별 조치 가이드라인 기반 k-익명성, l-다양성 측정 자동화 도구를 구축하고, **AI 데이터 안심구역** 내 폐쇄형 분석 환경 운영 증적 제출.

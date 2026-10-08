@@ -1,5 +1,5 @@
 ---
-title: "EU CRA (사이버복원력법) 보고 의무"
+title: "EU CRA (사이버복원력법) 보고 의무 (EU: European Union; CRA: Cyber Resilience Act)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

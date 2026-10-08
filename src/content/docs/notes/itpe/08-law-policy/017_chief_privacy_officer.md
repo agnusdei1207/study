@@ -1,5 +1,5 @@
 ---
-title: "개인정보보호책임자(CPO)"
+title: "개인정보보호책임자(CPO, Chief Privacy Officer)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

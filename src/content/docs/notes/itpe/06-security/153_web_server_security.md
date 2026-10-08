@@ -57,7 +57,7 @@ extra:
 - **서버 배너 및 버전 정보 은닉** : HTTP 응답 헤더의 'Server' 및 'X-Powered-By' 필드에서 구체적인 웹 서버 종류와 버전 번호를 감추어 특정 버전 대상 익스플로잇 사전 차단.
 - **디렉토리 리스팅(Directory Listing) 차단** : 인덱스 파일이 없는 디렉토리 접근 시 파일 목록이 브라우저에 노출되는 브라우징 취약점을 설정(Options -Indexes)에서 원천 비활성화.
 - **업로드 디렉토리 실행 권한 제거** : 공격자가 웹쉘(jsp, php, asp)을 업로드하더라도 서버에서 스크립트로 파싱되어 실행되지 못하도록 업로드 폴더의 실행(Execute) 권한을 박탈하고 정적 파일로만 서빙.
-- **보안 헤더(HTTP Security Headers) 적용** : HSTS(Strict-Transport-Security), CSP(Content-Security-Policy), X-Frame-Options, X-Content-Type-Options를 강제 적용하여 브라우저 측면 공격 방어.
+- **보안 헤더(HTTP Security Headers) 적용** : HSTS(HTTP Strict Transport Security), CSP(Content-Security-Policy), X-Frame-Options, X-Content-Type-Options를 강제 적용하여 브라우저 측면 공격 방어.
 
 ## Ⅲ. 웹 서버 보안의 세부 구성 요소 및 비교 분석
 

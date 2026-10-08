@@ -1,5 +1,5 @@
 ---
-title: "OSI 7계층 참조 모델"
+title: "OSI 7계층 참조 모델 (OSI: Open Systems Interconnection)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

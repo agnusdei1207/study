@@ -1,5 +1,5 @@
 ---
-title: "SOAP"
+title: "SOAP(역사적 명칭: Simple Object Access Protocol)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:
@@ -17,6 +17,8 @@ extra:
 - 개념 : 분산 네트워크 환경에서 이기종 시스템 간에 구조화된 정보(XML(Extensible Markup Language) 메시지)를 교환하기 위해 W3C(World Wide Web Consortium)에서 표준화한 XML 기반의 **경량 프로토콜** (SOAP, Simple Object Access Protocol).
 - 배경 및 필요성 : 서로 다른 운영체제, 언어, 미들웨어 환경에서 **원격 프로시저 호출** (RPC, Remote Procedure Call)을 지원하고, 방화벽을 우회하기 위해 표준 웹 프로토콜인 HTTP(Hypertext Transfer Protocol)를 전송 계층으로 활용.
 - 웹 서비스 3대 표준 : **SOAP** (메시지 전송 프로토콜), **WSDL(Web Services Description Language)** (서비스 인터페이스 기술 언어), **UDDI(Universal Description, Discovery and Integration)** (서비스 등록 및 검색 레지스트리).
+
+- 명칭 : Simple Object Access Protocol은 SOAP의 역사적 명칭이며, W3C SOAP 1.2에서는 SOAP을 더 이상 약어로 정의하지 않음. [W3C SOAP 1.2](https://www.w3.org/TR/soap12/).
 
 ## Ⅱ. SOAP 메시지 구조 및 웹 서비스 아키텍처
 

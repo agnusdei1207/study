@@ -1,5 +1,5 @@
 ---
-title: "REST"
+title: "REST(Representational State Transfer)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

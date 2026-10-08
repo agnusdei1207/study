@@ -1,5 +1,5 @@
 ---
-title: "VXLAN(Virtual eXtensible LAN)"
+title: "VXLAN(Virtual Extensible Local Area Network) (VXLAN: Virtual Extensible LAN)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

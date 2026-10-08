@@ -78,5 +78,5 @@ extra:
 ## Ⅴ. 개인정보 전송요구권 정착 및 실효성 확보를 위한 기술사적 제언
 
 - 개인정보 전송 전 주기에 걸친 디지털 서명 영수증(Proof of Delivery) 체계 : 기존의 담당자 수동 쿼리 작성 (누락·유출 위험) 한계를 극복하기 위해 메타데이터 기반 파생 정보 자동 격리 및 차단 체계를 선제적으로 확립하여 엔터프라이즈 거버넌스를 완성해야 함.
-- 엔드투엔드 페이로드 암호화(JWE) 및 토큰 탈취 방지 DPoP/FAPI(Financial-grade API) 표준 강제 : 기존의 일반 OAuth(Open Authorization) 2.0 Bearer Token (탈취 취약) 한계를 극복하기 위해 FAPI 및 DPoP(Proof-of-Possession) 서명 토큰 체계를 선제적으로 확립하여 엔터프라이즈 거버넌스를 완성해야 함.
+- 엔드투엔드 페이로드 암호화(JWE) 및 토큰 탈취 방지 DPoP/FAPI(Financial-grade API) 표준 강제 : 기존의 일반 OAuth(Open Authorization) 2.0 Bearer Token (탈취 취약) 한계를 극복하기 위해 FAPI 및 DPoP(Demonstrating Proof-of-Possession) 서명 토큰 체계를 선제적으로 확립하여 엔터프라이즈 거버넌스를 완성해야 함.
 - 산업별 전송 대상 표준 데이터 사전 제정 및 파생 정보 경계 명확화 : 기존의 월별 사후 통지 메일 발송 한계를 극복하기 위해 실시간 모바일 디지털 데이터 영수증 발급 체계를 선제적으로 확립하여 엔터프라이즈 거버넌스를 완성해야 함.

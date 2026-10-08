@@ -42,7 +42,7 @@ extra:
 | 분류 | 대표 기법 | 핵심 판정 메커니즘 | 장점 및 적용 환경 | 단점 및 한계 |
 | :--- | :--- | :--- | :--- | :--- |
 | **단변량 통계** | **IQR(Interquartile Range) 기법** (Box-Plot) | $Q1 - 1.5 \times IQR$ 미만 또는 $Q3 + 1.5 \times IQR$ 초과 ($IQR = Q3 - Q1$) | 정규분포 가정 불필요, 비모수적 방식으로 직관적 | 다변량 간 상관관계 반영 불가 |
-| **단변량 통계** | **Z-Score / Modified Z** | $Z = \frac{x - \mu}{\sigma}$, $\|Z\| \ge 3$ 판정 (중위수 기반 MAD(Median Absolute Deviation) 활용 권장) | 계산 간편, 표준 정규분포 기반 | 이상치 자체가 $\mu, \sigma$를 왜곡(Masking Effect), 정규분포 가정 필수 |
+| 단변량 통계 | **Z-Score / Modified Z** | $Z = \frac{x - \mu}{\sigma}$, $\|Z\| \ge 3$ 판정 (중위수 기반 MAD(Median Absolute Deviation) 활용 권장) | 계산 간편, 표준 정규분포 기반 | 이상치 자체가 $\mu, \sigma$를 왜곡(Masking Effect), 정규분포 가정 필수 |
 | **다변량 통계** | **마할라노비스 거리** | $D_M(x) = \sqrt{(x-\mu)^T \Sigma^{-1} (x-\mu)}$ (공분산 행렬 $\Sigma$ 반영) | 변수 간 상관성을 고려한 다차원 공간 거리 측정 | 다변량 정규성 가정 필요, 고차원에서 역행렬 계산 불안정 |
 | **밀도 기반** | **LOF** (Local Outlier Factor) | 데이터 포인트 주변 $k$-최근접 이웃의 국소 밀도(Local Reachability Density) 비율 비교 | 밀도가 서로 다른 군집이 혼재된 복합 데이터셋에서 강력 | $O(n^2)$의 높은 연산 복잡도 |
 | **트리 기반** | **Isolation Forest** | 데이터를 무작위 속성과 분할점으로 격리하는 트리를 구성하여 고립 깊이(Path Length) 측정 | 평균 깊이가 짧을수록 이상치 판정, $O(n \log n)$ 고속, 대규모 고차원에 최적 | 하이퍼파라미터(트리 수, 샘플 크기) 튜닝 필요 |

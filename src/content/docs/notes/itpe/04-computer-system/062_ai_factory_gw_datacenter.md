@@ -1,5 +1,5 @@
 ---
-title: "AI 팩토리·기가와트급 AI 데이터센터"
+title: "AI 팩토리·기가와트급 AI 데이터센터 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

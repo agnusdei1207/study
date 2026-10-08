@@ -28,7 +28,7 @@ extra:
 [ 복제 동기화 메커니즘 비교 ]
 (A) 동기식 복제 (Synchronous)
     [Primary] ---Write---> [Standby] (ACK 대기) ---> [Client Commit 완료]
-    * RPO = 0 (완벽한 데이터 무결성 보장) / 네트워크 지연 시간만큼 쓰기 트랜잭션 대기
+    * 정상 동기 커밋한 쓰기의 무손실 목표(장애 범위·내구성 별도 검증) / 네트워크 지연 시간만큼 쓰기 트랜잭션 대기
 
 (B) 비동기식 복제 (Asynchronous)
     [Primary] ---Write---> [Client Commit 완료]
@@ -55,7 +55,7 @@ extra:
 
 ### 가. 구문 기반 복제(Statement-Based) vs 행 기반 복제(Row-Based)
 - **Statement-Based Replication (SBR)** : Primary에서 실행된 SQL(Structured Query Language) 문장 자체를 바이너리 로그로 전송 $\rightarrow$ 네트워크 대역폭 절감, 단 `NOW()`, `UUID()` 등 비결정론적 함수 실행 시 양 노드 간 데이터 불일치 발생.
-- **Row-Based Replication (RBR)** : 실제 디스크에서 변경된 행(Row)의 비트 변화 자체를 전송 $\rightarrow$ 완벽한 데이터 일관성 보장, 대량 갱신(`UPDATE 100만건`) 시 로그 크기 급증.
+- **Row-Based Replication (RBR)** : 변경된 행(Row)의 논리적 값을 로그로 전송 $\rightarrow$ 문장 재실행에 따른 비결정성 감소(물리 디스크 비트 복제가 아님), 대량 갱신(`UPDATE 100만건`) 시 로그 크기 급증.
 - **Mixed Replication** : 평상시에는 SBR을 쓰다가 비결정적 함수 사용 시 RBR로 동적 전환.
 
 ---

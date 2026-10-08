@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 연합학습(Federated Learning)의 개요
 
 - 개념 : 개별 디바이스나 기관이 보유한 **원시 데이터** (Raw Data)를 외부로 반출하지 않고, 로컬에서 학습한 가중치 파라미터만 교환하여 중앙 전역 모델을 최적화하는 **분산 기계학습** 체계
-- 배경 및 필요성 : 원본 데이터 비이동성에도 불구하고 **가중치 역추론 공격** (Inversion Attack)과 비IID(Non-Independent and Identically Distributed) 데이터 편향 및 통신 병목이 발생하므로 **차분 프라이버시** (DP, Differential Privacy), 비밀 분산 기반 보안 집계(SecAgg, Secure Aggregation), **FedProx** 최적화 결합 필수.
+- 배경 및 필요성 : 원본 데이터 비이동성에도 불구하고 **가중치 역추론 공격** (Inversion Attack)과 비독립·비동일분포(non-IID, non-Independent and Identically Distributed) 데이터 편향 및 통신 병목이 발생하므로 **차분 프라이버시** (DP, Differential Privacy), 비밀 분산 기반 보안 집계(SecAgg, Secure Aggregation), **FedProx** 최적화 결합 필수.
 - 핵심 목적 : GDPR(General Data Protection Regulation)·데이터 3법 등 개인정보 규제 준수, 민감 데이터 사일로(Silo) 문제 해결, 대용량 원시 데이터 전송 비용 절감 및 네트워크 대역폭 한계 극복
 
 ## Ⅱ. 연합학습(Federated Learning)의 핵심 아키텍처 및 동작 메커니즘

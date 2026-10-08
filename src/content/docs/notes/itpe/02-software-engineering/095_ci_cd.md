@@ -1,5 +1,5 @@
 ---
-title: "CI/CD(Continuous Integration/Continuous Delivery)"
+title: "CI/CD(Continuous Integration / Continuous Delivery / Continuous Deployment)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:
@@ -14,9 +14,9 @@ extra:
 
 ## Ⅰ. CI/CD의 개요
 
-- 개념 : **CI(Continuous Integration)/CD**(Continuous Delivery) 란 개발자가 작성한 소스코드를 공유 저장소에 빈번하게 병합하고(지속적 통합, CI), 빌드와 자동화 테스트를 거쳐 검증된 아티팩트를 스테이징 및 프로덕션 환경에 안전하고 신뢰성 있게 배포하는(지속적 전달/배포, CD) 현대 소프트웨어 공학의 핵심 자동화 파이프라인.
+- 개념 : **지속적 통합**(CI, Continuous Integration)과 지속적 전달·배포(CD, Continuous Delivery / Continuous Deployment) 란 개발자가 작성한 소스코드를 공유 저장소에 빈번하게 병합하고(지속적 통합, CI), 빌드와 자동화 테스트를 거쳐 검증된 아티팩트를 스테이징 및 프로덕션 환경에 안전하고 신뢰성 있게 배포하는(지속적 전달/배포, CD) 현대 소프트웨어 공학의 핵심 자동화 파이프라인.
 - 배경 및 필요성 : 개발 후반부에 발생하는 대규모 **병합 지옥** (Merge Hell) 현상을 방지하고, 수작업 배포에 따른 인적 오류(배포 사고)를 근절하여 비즈니스 가치를 사용자에게 신속하게 전달.
-- 핵심 구분 : **CI** (지속적 통합), **CDelivery** (수동 승인 배포), **CDeployment** (프로덕션 무인 자동 배포).
+- 핵심 구분 : CI(지속적 통합), **지속적 전달**(언제든 배포 가능한 상태 유지), **지속적 배포**(검증 통과 후 프로덕션 배포 자동화). CD는 뒤의 두 의미로 사용되므로 문맥에서 구분.
 
 ## Ⅱ. 엔드투엔드 CI/CD 파이프라인 흐름도
 
@@ -61,7 +61,7 @@ extra:
 
 - **소프트웨어 공급망 보안** (Software Supply Chain Security) 취약성 :
   - 한계점 : 파이프라인 스크립트 탈취, 비인가 의존성 주입(Dependency Confusion), 서명되지 않은 이미지 배포로 인한 보안 침해 사고 위험.
-  - 해결 방안 : **SLSA**(Supply-chain Levels for Software Artifacts) 프레임워크 준수, Cosign/Notary 기반 컨테이너 이미지 암호화 서명 검증, 빌드 시 **SBOM** (Software Bill of Materials) 자동 생성 및 SCA(Software Composition Analysis) 스캔 강제.
+  - 해결 방안 : **SLSA**(Supply-chain Levels for Software Artifacts) 프레임워크 준수, Cosign/Notary 기반 컨테이너 이미지 전자서명 검증, 빌드 시 **SBOM** (Software Bill of Materials) 자동 생성 및 SCA(Software Composition Analysis) 스캔 강제.
 - 파이프라인 실행 시간 증가에 따른 개발 피드백 루프 지연 :
   - 한계점 : 코드베이스 확장으로 빌드, 정적 분석, 테스트 단계가 비대해져 PR(Pull Request) 검증에 수십 분 이상 소요되고 개발자 생산성 저하.
   - 해결 방안 : 멀티 스테이지 도커 캐싱, 분산 빌드 캐시(Bazel, Gradle Enterprise) 도입, 코드 변경 영향도 기반 병렬 분산 테스트 실행.
@@ -72,4 +72,4 @@ extra:
 ## Ⅴ. 안정적인 CI/CD 정착을 위한 기술사적 제언
 
 - **시프트 레프트** (Shift-Left) 기반 DevSecOps 품질 게이트웨이 내재화 : 빠른 배포 속도로 인해 보안 구멍이 실서버로 유출되지 않도록, CI 단계에서 소스코드 보안약점 진단(SAST, Static Application Security Testing), 오픈소스 취약점 점검(SCA), 컨테이너 이미지 보안 스캔(Trivy)을 의무화하고 기준 미달 시 빌드를 차단하는 보안 게이트 구축.
-- 선언적 GitOps 및 카나리 점진적 롤아웃(Progressive Delivery) : ArgoCD와 Argo Rollouts를 결합하여 배포 후 오류율(HTTP 5xx)과 지연시간(Latency)을 프로메테우스 메트릭으로 실시간 분석하고, 이상 징후 발생 시 3초 이내에 자동 롤백되는 안전망 구축 필수.
+- 선언적 GitOps 및 카나리 점진적 롤아웃(Progressive Delivery) : ArgoCD와 Argo Rollouts를 결합하여 배포 후 오류율(HTTP 5xx)과 지연시간(Latency)을 프로메테우스 메트릭으로 실시간 분석하고, 이상 징후 발생 시 서비스의 복구 목표와 관측 조건에 맞춰 자동 롤백되는 안전망 구축 필수.

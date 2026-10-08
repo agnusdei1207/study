@@ -1,5 +1,5 @@
 ---
-title: "다차원 척도법(MDS)"
+title: "다차원 척도법(MDS, Multidimensional Scaling)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:

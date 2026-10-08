@@ -1,5 +1,5 @@
 ---
-title: "국가 AI 전략과 인공지능 행동계획"
+title: "국가 AI 전략과 인공지능 행동계획 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "AI 프라이버시 리스크 관리 모델"
+title: "AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

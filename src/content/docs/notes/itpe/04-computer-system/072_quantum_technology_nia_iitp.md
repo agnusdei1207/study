@@ -74,4 +74,4 @@ extra:
 ## Ⅴ. 국가 양자기술 육성을 위한 기술사적 제언
 
 - 하이브리드 양자-클래식 **컴퓨팅(HQC, Hybrid Quantum Computing)** 인프라 구축 : 실용적 양자 이득(Quantum Advantage) 달성을 위해 클래식 슈퍼컴퓨터(HPC, High-Performance Computing)와 양자 가속기(QPU, Quantum Processing Unit)를 밀결합하는 하이브리드 아키텍처(VQE, Variational Quantum Eigensolver; QAOA, Quantum Approximate Optimization Algorithm) 생태계를 공공 클라우드 기반으로 우선 보급해야 함.
-- 국가 차원의 **PQC** 및 QKD(Quantum Key Distribution) 융합 보안망 로드맵 수립 : 물리 계층은 QKD로 보호하고 상위 응용/네트워크 계층은 PQC를 적용하는 양자 안전 통신(Quantum-Safe Communication) 융합 표준을 수립하여 공공·금융·국방 전산망에 선제적으로 적용할 것을 제언함.
+- 국가 차원의 PQC 및 QKD(Quantum Key Distribution) 융합 보안망 로드맵 수립 : 물리 계층은 QKD로 보호하고 상위 응용/네트워크 계층은 PQC를 적용하는 양자 안전 통신(Quantum-Safe Communication) 융합 표준을 수립하여 공공·금융·국방 전산망에 선제적으로 적용할 것을 제언함.

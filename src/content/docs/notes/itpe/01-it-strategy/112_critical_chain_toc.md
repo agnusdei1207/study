@@ -1,5 +1,5 @@
 ---
-title: "CCPM·TOC"
+title: "CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

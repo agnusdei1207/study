@@ -1,5 +1,5 @@
 ---
-title: "산업제어시스템(ICS)"
+title: "산업제어시스템(ICS, Industrial Control System)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

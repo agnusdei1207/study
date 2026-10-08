@@ -1,5 +1,5 @@
 ---
-title: "에이전틱 AI 보안 감독"
+title: "에이전틱 AI 보안 감독 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:

@@ -49,9 +49,9 @@ extra:
 | :--- | :--- | :--- | :--- | :--- |
 | **셀 구성** | 6 Transistors | 1T - 1 Capacitor | 1 Floating Gate/CTF | 1T - 1 MTJ (자기터널접합) |
 | **접근 속도** | 1 ~ 5 ns (초고속) | 10 ~ 50 ns | 수십 ~ 수백 μs (느림) | 10 ~ 30 ns |
-| **휘발성 여부** | 휘발성 | 휘발성 | **비휘발성** | **비휘발성** |
+| **휘발성 여부** | 휘발성 | 휘발성 | **비휘발성** | 비휘발성 |
 | **집적도 및 비용**| 낮음 / 최고가 | 높음 / 중간 | 극도로 높음 / 최저가 | 중간 / 고가 |
-| **주요 적용처** | CPU(Central Processing Unit) L1/L2/L3 캐시 | 메인 메모리, HBM | SSD(Solid-State Drive), 스마트폰 UFS, USB(Universal Serial Bus) | 우주/항공, 자동차 NVM 캐시|
+| 주요 적용처 | CPU(Central Processing Unit) L1/L2/L3 캐시 | 메인 메모리, HBM | SSD(Solid-State Drive), 스마트폰 UFS, USB(Universal Serial Bus) | 우주/항공, 자동차 NVM 캐시|
 | **단위 셀 면적** | $50 \sim 100\ F^2$ | $6 \sim 8\ F^2$ | $4\ F^2$ (수직 적층 확장) | $6 \sim 20\ F^2$ |
 
 ## Ⅳ. 메모리 반도체의 주요 한계점 및 해결 방안

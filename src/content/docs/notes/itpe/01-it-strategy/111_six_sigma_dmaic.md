@@ -1,5 +1,5 @@
 ---
-title: "Six Sigma DMAIC"
+title: "Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "소프트웨어 품질보증(SQA)"
+title: "소프트웨어 품질보증(SQA, Software Quality Assurance)"
 author: "Antigravity"
 date: "2026-10-01T23:00:00+09:00"
 tags:

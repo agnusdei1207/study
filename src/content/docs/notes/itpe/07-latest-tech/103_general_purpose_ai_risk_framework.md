@@ -1,5 +1,5 @@
 ---
-title: "범용 AI(General-Purpose AI) 위험관리 프레임워크"
+title: "범용 AI(General-Purpose AI) 위험관리 프레임워크 (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -57,7 +57,7 @@ extra:
 |---|---|---|---|
 | **규범 성격** | 비구속적 자발적 가이드라인 | 강력한 법적 구속력 (과징금 부과) | 인공지능 경영시스템 인증 표준 |
 | **위험 분류 체계** | 맥락 중심 4대 기능 반복 적용 | 범용 AI vs 시스템적 위험 GPAI 모델 | PDCA(Plan, Do, Check, Act) 사이클 기반 전사적 통제 |
-| **시스템적 위험 기준** | 질적 평가 및 위해 시나리오 중심 | 누적 연산량 $\ge 10^{25}$ FLOPs(Floating Point Operations) 또는 고영향 | 조직 내 AI 위험 수용 기준 설정 |
+| **시스템적 위험 기준** | 질적 평가 및 위해 시나리오 중심 | 누적 연산량 $> 10^{25}$ FLOPs(Floating Point Operations) 또는 고영향 | 조직 내 AI 위험 수용 기준 설정 |
 | **주요 의무 사항** | 신뢰성 지표 측정, 문서화 권고 | 기술 문서 제출, EU AI Office 보고 | AI 정책 수립, 내부 심사, 지속적 개선 |
 
 - 범용 AI는 상기 비교 지표를 바탕으로 비즈니스 요구사항과 운영 인프라 환경을 고려한 최적의 아키텍처를 선정하고, 확장성과 안정성을 균형 있게 확보해야 함.

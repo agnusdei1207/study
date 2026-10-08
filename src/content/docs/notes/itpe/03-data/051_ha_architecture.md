@@ -1,5 +1,5 @@
 ---
-title: "고가용성 아키텍처(HA)"
+title: "고가용성 아키텍처(HA, High Availability)"
 author: "Antigravity"
 date: "2026-03-30T09:00:00+09:00"
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "데이터 (AI 학습·활용)"
+title: "데이터 (AI 학습·활용) (AI: Artificial Intelligence)"
 author: "Antigravity"
 date: "2026-10-01T23:50:00+09:00"
 tags:
@@ -58,7 +58,7 @@ extra:
 
 | 비교 항목 | 실세계 원천 데이터 (Raw Data) | 인간 라벨링 데이터 (Human Annotated) | AI(Artificial Intelligence) 생성 합성 데이터 (Synthetic Data) |
 |---|---|---|---|
-| **구축 비용** | 낮음 (대량 웹 스크래핑) | 매우 높음 (인건비 및 시간 소모) | 매우 낮음 (GPU(Graphics Processing Unit) 연산만 소모) |
+| 구축 비용 | 낮음 (대량 웹 스크래핑) | 매우 높음 (인건비 및 시간 소모) | 매우 낮음 (GPU(Graphics Processing Unit) 연산만 소모) |
 | **데이터 품질** | 낮음 (노이즈, 광고, 비속어 다수) | 매우 높음 (인간의 맥락 판정 반영) | 구조화 우수하나 모델 붕괴 위험 |
 | **확장성** | 인터넷 텍스트 고갈 위기 직면 | 인력 한계로 무한 확장 불가 | 사실상 무한대 생성 확장 가능 |
 | **주요 용도** | 파운데이션 모델 사전학습(Pre-train) | 지도학습 미세조정(SFT, Supervised Fine-Tuning), RLHF(Reinforcement Learning from Human Feedback) | 엣지 케이스 증강, 로봇 시뮬레이션 |
