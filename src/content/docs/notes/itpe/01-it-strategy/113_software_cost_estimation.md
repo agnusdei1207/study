@@ -56,8 +56,8 @@ extra:
   - 한계점 : 노력 조정 인자(Cost Drivers)가 조직의 개발 생산성, 도메인 복잡도, 개발팀 역량에 따라 크게 좌우되어 주관성 개입.
   - 해결 방안 : 조직 내 축적된 역사적 프로젝트 데이터(Historical Data) 기반의 사내 맞춤형 비용 산정 회귀 모델 구축.
 - 애자일 및 클라우드 네이티브 환경과의 패러다임 불일치 :
-  - 한계점 : 전통적 FP/코드 라인 수(SLOC) 기준은 지속적 배포(CI(Continuous Integration)/CD(Continuous Delivery))와 반복형 스토리에 기반한 개발 원가 산정에 부적합.
-  - 해결 방안 : 스토리 포인트(Story Point) 기반의 벨로시티(Velocity) 산정법 도입, 클라우드 운영비(Opex)를 포괄하는 TCO(Total Cost of Ownership) 산정 체계 구축.
+  - 한계점 : 전통적 FP/코드 라인 수(SLOC, Source Lines of Code) 기준은 지속적 배포(CI(Continuous Integration)/CD(Continuous Delivery))와 반복형 스토리에 기반한 개발 원가 산정에 부적합.
+  - 해결 방안 : 스토리 포인트(Story Point) 기반의 벨로시티(Velocity) 산정법 도입, 클라우드 운영비(Opex, Operating Expense)를 포괄하는 TCO(Total Cost of Ownership) 산정 체계 구축.
 
 ## Ⅴ. 과학적 비용 산정을 위한 기술사적 제언
 

@@ -56,7 +56,7 @@ extra:
   - 해결 방안 : AI 서비스 조달 및 공공 사업 제안 시 NIST AI RMF(Risk Management Framework) 준수 여부를 평가 지표에 연계, 내부 AI 규정 및 업무 감사에 반영.
 - 정량적 위험 측정 지표의 표준화 미비 :
   - 한계점 : 신뢰성, 공정성, 투명성 등 정성적 가치를 엔지니어링 수준에서 통과/실패(Pass/Fail)로 판정할 정량 기준 모호.
-  - 해결 방안 : 벤치마크 데이터셋(HELM 등)을 활용한 정량 평가 파이프라인 구축, 설명가능성(XAI, Explainable Artificial Intelligence) 및 편향 지표의 임계치 수치화.
+  - 해결 방안 : 벤치마크 데이터셋(HELM(Holistic Evaluation of Language Models) 등)을 활용한 정량 평가 파이프라인 구축, 설명가능성(XAI, Explainable Artificial Intelligence) 및 편향 지표의 임계치 수치화.
 - AI 생애주기 전반의 지속적 모니터링 공수 과다 :
   - 한계점 : 모델 배포 후에도 데이터 드리프트, 적대적 공격, 환각을 실시간 추적해야 하므로 MLOps(Machine Learning Operations) 운영 비용 급증.
   - 해결 방안 : 자동화된 AI 관측성(Observability) 솔루션 도입, CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 AI 거버넌스 가드레일 자동 검증 결합.

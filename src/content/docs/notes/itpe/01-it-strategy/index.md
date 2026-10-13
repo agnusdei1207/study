@@ -93,7 +93,7 @@ weight: 1
 | 01-029 | A/B 테스트(A/B Test) | [보기](./029_ab_testing/) |
 | 01-030 | BCP(Business Continuity Planning) | [보기](./030_bcp/) |
 | 01-035 | 프로젝트 갈등관리 | [보기](./035_conflict_management/) |
-| 01-038 | POP(Point Of Production) | [보기](./038_pop/) |
+| 01-038 | POP(Point of Production) | [보기](./038_pop/) |
 | 01-039 | 공공 SW(Software) 사업 발주·계약(단계별 발주, 업체 선정) | [보기](./039_public_sw_contract/) |
 | 01-042 | DRS(Disaster Recovery System) | [보기](./042_drs/) |
 | 01-044 | ITSM(IT Service Management) | [보기](./044_itsm/) |

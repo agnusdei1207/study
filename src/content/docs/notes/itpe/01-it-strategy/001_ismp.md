@@ -53,7 +53,7 @@ extra:
   - 해결 방안 : 상세 기능점수법과 시장 PoC(Proof of Concept) 기반 견적 복합 적용, 신기술 요소에 대한 기술 프리미엄 반영 및 예비비 편성 체계 도입.
 - 상용 SW 분리발주 인터페이스 통합 난제 :
   - 한계점 : 분리발주 의무화에 따라 다수 SW 공급자 간 인터페이스 충돌 시 책임 소재 불명확 및 납기 지연 리스크 상존.
-  - 해결 방안 : ISMP 단계에서 표준 연계 아키텍처 및 API(Application Programming Interface) 사전 확정, 주사업자와 분리발주자 간 통합 R&R(Role and Responsibility) 계약 기준 명문화.
+  - 해결 방안 : ISMP 단계에서 표준 연계 아키텍처 및 API(Application Programming Interface) 사전 확정, 주사업자와 분리발주자 간 통합 R&R(Roles and Responsibilities) 계약 기준 명문화.
 
 ## Ⅴ. ISMP 성공을 위한 기술사적 제언
 
