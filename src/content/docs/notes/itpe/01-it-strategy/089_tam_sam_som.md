@@ -1,5 +1,5 @@
 ---
-title: "TAM·SAM·SOM (TAM: Total Addressable Market; SAM: Serviceable Addressable Market; SOM: Serviceable Obtainable Market)"
+title: "TAM·SAM·SOM (TAM: Total Addressable Market; SAM: Serviceable Available Market; SOM: Serviceable Obtainable Market)"
 author: "Antigravity"
 date: "2026-10-01T22:50:00+09:00"
 tags:
@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. TAM·SAM·SOM의 개요
 
-- 개념 : 신규 비즈니스, 디지털 서비스 또는 신기술 제품의 시장 잠재력과 사업 타당성을 검증하기 위해 시장의 크기를 전체 시장(TAM, Total Addressable Market), 유효 시장(SAM, Serviceable Addressable Market), 수익 시장(SOM, Serviceable Obtainable Market)의 3단계로 세분화하여 추정하는 **시장 규모 산정 프레임워크**
+- 개념 : 신규 비즈니스, 디지털 서비스 또는 신기술 제품의 시장 잠재력과 사업 타당성을 검증하기 위해 시장의 크기를 전체 시장(TAM, Total Addressable Market), 유효 시장(SAM, Serviceable Available Market), 수익 시장(SOM, Serviceable Obtainable Market)의 3단계로 세분화하여 추정하는 **시장 규모 산정 프레임워크**
 - 배경 및 필요성 : 스타트업 투자 유치 및 기업의 신규 IT(Information Technology) 사업 투자 시 비현실적인 시장 규모 부풀리기를 방지하고, 현실적으로 획득 가능한 목표 시장을 논리적으로 입증 필요.
 - 주요 목적 : 현실적 시장 규모 추정, 사업 타당성 및 ROI(Return on Investment) 검증, 단계별 마케팅 및 영업 목표 설정.
 
