@@ -57,5 +57,5 @@ extra:
 ## Ⅴ. 현대적 EA의 실효적 발전을 위한 기술사적 제언
 
 - 정적 산출물 문서에서 살아있는 아키텍처(Living Architecture)로 전환 : 보고용 캐비닛 문서로 사장되는 과거 관행을 극복하기 위해 클라우드 리소스 및 API(Application Programming Interface)와 실시간 동기화되는 자동화된 메타데이터 카탈로그 구축.
-- 공공 디지털 플랫폼 정부(DPG, Digital Platform Government) 허브와의 연계 : 부처별 사일로를 타파하고 범정부 데이터 레이크 및 공통 서비스를 재사용할 수 있도록 서비스 지향 아키텍처(SOA, Service Oriented Architecture) 및 오픈 API 거버넌스 확립.
+- 공공 디지털 플랫폼 정부(DPG, Digital Platform Government) 허브와의 연계 : 부처별 사일로를 타파하고 범정부 데이터 레이크 및 공통 서비스를 재사용할 수 있도록 서비스 지향 아키텍처(SOA, Service-Oriented Architecture) 및 오픈 API 거버넌스 확립.
 - 클라우드 네이티브 및 마이크로서비스(MSA, Microservice Architecture) 아키텍처 수용 : 거대하고 경직된 전통적 EA 프레임워크를 탈피하여, 분산된 도메인별 자율성을 보장하면서 전사 보안 및 통신 표준만 통제하는 유연한 '가벼운 EA(Lightweight EA)' 지향.

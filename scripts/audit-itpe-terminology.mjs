@@ -22,7 +22,7 @@ export const names = {
   MECE: 'Mutually Exclusive, Collectively Exhaustive', RFP: 'Request for Proposal',
   PLM: 'Product Lifecycle Management', COQ: 'Cost of Quality', EA: 'Enterprise Architecture',
   ITA: 'Information Technology Architecture', CCPM: 'Critical Chain Project Management', TOC: 'Theory of Constraints',
-  TAM: 'Total Addressable Market', SAM: 'Serviceable Addressable Market', SOM: 'Serviceable Obtainable Market',
+  TAM: 'Total Addressable Market', SAM: 'Serviceable Available Market', SOM: 'Serviceable Obtainable Market',
   SWOT: 'Strengths, Weaknesses, Opportunities, Threats',
   '3C': 'Customer, Competitor, Company', PEST: 'Political, Economic, Social, Technological',
   DMAIC: 'Define, Measure, Analyze, Improve, Control',
