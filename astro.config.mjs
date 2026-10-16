@@ -15,8 +15,8 @@ export default defineConfig({
       autoTheme: true,
     }),
     starlight({
-      title: 'CS Notes',
-      description: '정보시스템 핵심 주제를 영역별로 정리한 학습 노트',
+      title: 'Tech Notes',
+      description: '정보관리기술사·컴퓨터시스템응용기술사 필기 대비 핵심 토픽 학습 노트',
       defaultLocale: 'root',
       locales: {
         root: {
@@ -32,6 +32,18 @@ export default defineConfig({
             {
               autogenerate: {
                 directory: 'notes/itpe',
+                collapsed: true,
+              },
+            },
+          ],
+        },
+        {
+          label: '컴퓨터시스템응용기술사 (CSAE)',
+          collapsed: false,
+          items: [
+            {
+              autogenerate: {
+                directory: 'notes/csae',
                 collapsed: true,
               },
             },

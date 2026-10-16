@@ -1,49 +1,26 @@
 ---
-title: "정보관리기술사(ITPE) 학습 노트"
-description: "정보관리기술사(ITPE) 필기 대비 8개 과목 핵심 토픽 학습 노트"
+title: "과목 선택"
+description: "정보관리기술사(ITPE)·컴퓨터시스템응용기술사(CSAE) 중 학습할 과목을 선택하세요"
 sidebar:
   order: 1
 ---
 
-정보관리기술사(ITPE) 필기시험 대비를 위한 체계적인 토픽 학습 노트입니다. 8개 전 과목 1,107개 키워드에 대한 실전 답안 프레임워크를 제공합니다.
+학습할 기술사 과목을 선택하세요.
 
----
+<div class="subject-grid">
+  <a class="subject-card" href="./itpe/">
+    <div class="subject-card-header"><span class="subject-card-code">ITPE</span><span class="subject-card-count">8과목 · 학습 가능</span></div>
+    <div class="subject-card-title">정보관리기술사</div>
+    <div class="subject-card-desc">ISP/ISMP, SDLC·애자일, DB·빅데이터, OS·클라우드, TCP/IP·5G, 제로 트러스트, 생성형 AI, 법규·정책</div>
+    <div class="subject-card-footer"><span>학습 시작하기 →</span></div>
+  </a>
+  <a class="subject-card" href="./csae/">
+    <div class="subject-card-header"><span class="subject-card-code">CSAE</span><span class="subject-card-count">8과목 · 59개 노트 + 717 키워드</span></div>
+    <div class="subject-card-title">컴퓨터시스템응용기술사</div>
+    <div class="subject-card-desc">기초이론·하드웨어·시스템SW·네트워크·보안·시스템평가·법규·최신기술 8개 영역 토픽 학습 노트</div>
+    <div class="subject-card-footer"><span>학습 시작하기 →</span></div>
+  </a>
+</div>
 
-## 🎯 8개 과목별 바로가기
-
-### [01. 정보 전략 및 관리](./itpe/01-it-strategy/)
-- **주요 영역**: ISP, ISMP, IT 거버넌스, 정보시스템 감리, 프로젝트 관리(PMBOK), IT 투자평가, ESG 경영
-- **특징**: 비즈니스와 IT의 전략적 정렬 및 공공·민간 프로젝트 관리 체계 중심
-
-### [02. 소프트웨어 공학](./itpe/02-software-engineering/)
-- **주요 영역**: 소프트웨어 수명주기(SDLC), 애자일(Scrum/DevOps), 요구공학, 소프트웨어 아키텍처, 디자인 패턴, 소프트웨어 테스트 및 품질(ISO/IEC 25010), 유지보수
-- **특징**: 고품질 소프트웨어 엔지니어링 및 최신 개발 방법론 중심
-
-### [03. 자료처리·데이터·통계](./itpe/03-data/)
-- **주요 영역**: 자료구조, 데이터베이스 모델링(정규화/반정규화), 트랜잭션, SQL 최적화, NoSQL/분산 DB, 데이터 파이프라인, MLOps, 데이터 거버넌스
-- **특징**: 대규모 데이터 엔지니어링 및 데이터 신뢰성 확보 방안 중심
-
-### [04. 컴퓨터 시스템](./itpe/04-computer-system/)
-- **주요 영역**: 컴퓨터 구조(CPU/메모리/캐시), 운영체제(프로세스/스레드/스케줄링/동기화), 가상화, 클라우드 네이티브(컨테이너/K8s/서버리스), 스토리지 DR
-- **특징**: 시스템 핵심 동작 메커니즘과 현대적 클라우드 인프라 아키텍처
-
-### [05. 정보통신](./itpe/05-network/)
-- **주요 영역**: OSI 7계층, TCP/IP, 라우팅 프로토콜, 무선통신(5G/Wi-Fi 7), SDN/NFV, 전송 제어, 네트워크 보안
-- **특징**: 초연결 통신 프로토콜 및 네트워크 가상화 인프라
-
-### [06. 정보보안](./itpe/06-security/)
-- **주요 영역**: 암호학, 제로 트러스트(ZTA), 클라우드 보안, AI 보안, 침해사고 대응, 개인정보보호법 및 기술적·관리적 보호조치
-- **특징**: 선제적 사이버 복원력 및 법제도 기반 보안 아키텍처
-
-### [07. 최신 기술 동향](./itpe/07-latest-tech/)
-- **주요 영역**: 생성형 AI(LLM/RAG/Fine-tuning/에이전트), MLOps, AI 인프라(GPU/NPU/온디바이스 AI), 블록체인/스마트 계약, 양자 컴퓨팅
-- **특징**: 산업 패러다임을 혁신하는 첨단 IT 융합 기술 트렌드
-
-### [08. 법규 및 정책](./itpe/08-law-policy/)
-- **주요 영역**: 전자정부법, 소프트웨어진흥법, 데이터기본법, 인공지능기본법, EU AI Act, 공공 SW 사업 대가산정 가이드
-- **특징**: 국가 IT 디지털 정책, 법률 개정안 및 공공 발주 제도
-
----
-
-> [!TIP] 학습 원칙
-> 모든 노트는 **답안 골격(세로 피시본) → 한 줄 본질 → 핵심 그림 → 핵심 통찰 → 문제·원인·대책 → 기출 원문 → 내 의견**의 일관된 프레임워크로 작성되어 실전 1교시 단답형 및 2~4교시 서술형 답안 작성에 최적화되어 있습니다.
+> [!TIP]
+> **정보관리기술사(ITPE)** 8과목 상세 노트와 **컴퓨터시스템응용기술사(CSAE)** 01과목 59개 상세 노트 + 전 과목 776개 키워드를 제공합니다.
