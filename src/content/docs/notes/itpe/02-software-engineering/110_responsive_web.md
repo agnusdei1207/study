@@ -21,14 +21,16 @@ extra:
 ## Ⅱ. 반응형 웹의 3대 핵심 기술 메커니즘
 
 ```text
-   [ 단일 HTML 문서 소스 ]
-              │
-              ├─> [ 1. 유동형 그리드 ] ── 고정 픽셀(px) 대신 백분율(%), vw, fr 단위 레이아웃
-              │
-              ├─> [ 2. 유연한 이미지 ] ── max-width: 100%, srcset, <picture> 태그로 뷰포트 최적화
-              │
-              └─> [ 3. 미디어 쿼리 ] ──── @media screen and (min-width: 768px) { ... }
-                                           화면 너비 임계점(Breakpoint)에 따른 CSS 동적 적용
+[ 단일 HTML 문서 소스 ]
+   ├─ 1. 유동형 그리드
+   │    - 픽셀(px) 대신 %, vw, fr 단위
+   ├─ 2. 유연한 이미지
+   │    - max-width: 100%, srcset,
+   │      <picture> 태그 뷰포트 최적화
+   └─ 3. 미디어 쿼리
+        - @media (min-width: 768px)
+        - 화면 임계점(Breakpoint)에
+          따른 CSS 동적 적용
 ```
 
 - **모바일 퍼스트** (Mobile-First) 전략 : 제약이 가장 많은 모바일 화면의 핵심 콘텐츠와 스타일을 먼저 작성(`min-width` 기준)하고, 화면이 넓어질수록 점진적으로 부가 콘텐츠와 다단 레이아웃을 확장(Progressive Enhancement).
@@ -47,7 +49,7 @@ extra:
 ## Ⅳ. 반응형 웹(Responsive Web)의 주요 한계점 및 해결 방안
 
 - 모바일 환경에서의 과도한 자원 다운로드 및 성능 저하 :
-  - 한계점 : 단일 코드베이스로 인해 모바일 기기에서도 데스크톱용 대용량 이미지, 무거운 자바스크립트 번들이 전송되어 초기 로딩(FCP/LCP) 지연.
+  - 한계점 : 단일 코드베이스로 인해 모바일 기기에서도 데스크톱용 대용량 이미지, 무거운 자바스크립트 번들이 전송되어 초기 로딩 FCP(First Contentful Paint) 및 LCP(Largest Contentful Paint) 지연.
   - 해결 방안 : `<picture>` 태그와 `srcset`을 통한 뷰포트별 차등 이미지 서빙, AVIF/WebP 모던 포맷 적용 및 클라우드 CDN(Content Delivery Network) 온더플라이 이미지 리사이징.
 - 복잡한 미디어 쿼리(Media Queries)로 인한 CSS 유지보수성 붕괴 :
   - 한계점 : 디바이스 해상도별 분기가 수십 개로 중첩되면서 CSS 코드가 비대해지고, 특정 뷰포트에서의 스타일 충돌 및 디버깅 난제 발생.
