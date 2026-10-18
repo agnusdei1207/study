@@ -21,20 +21,20 @@ extra:
 ## Ⅱ. V-모델 기반 테스트 레벨 체계도
 
 ```text
-   [ 요구사항 정의 ] ─────────────────────────> [ 인수 테스트 ] (Acceptance)
-          │                                           ▲
-          ▼                                           │
-   [ 시스템 설계 ] ────────────────────────> [ 시스템 테스트 ] (기능/비기능)
-          │                                           ▲
-          ▼                                           │
-   [ 상세 설계 ] ────────────────────────> [ 통합 테스트 ] (Big-Bang/점진적)
-          │                                           ▲
-          ▼                                           │
-   [ 모듈 코딩 ] ─────────────────────────> [ 단위 테스트 ] (화이트/블랙박스)
+[ 요구사항 정의 ] ────────> [ 인수 테스트 ]
+        │                        ▲
+        ▼                        │
+[ 시스템 설계 ] ──────────> [ 시스템 테스트 ]
+        │                        ▲
+        ▼                        │
+[ 상세 설계 ] ─────────────> [ 통합 테스트 ]
+        │                        ▲
+        ▼                        │
+[ 모듈 코딩 ] ─────────────> [ 단위 테스트 ]
 ```
 
-- **단위 테스트(Unit Test)** : 개별 모듈/함수 수준의 기능 정확성 검증 (JUnit, **Mock 객체** 활용).
-- **통합 테스트(Integration Test)** : 모듈 간 인터페이스, 데이터 교환, API(Application Programming Interface) 연동 검증 (상향식 스텁/하향식 드라이버).
+- **단위 테스트(Unit Test)** : 개별 모듈/함수 수준의 기능 정확성 검증 (화이트/블랙박스 기법, JUnit, **Mock 객체** 활용).
+- **통합 테스트(Integration Test)** : 모듈 간 인터페이스, 데이터 교환, API(Application Programming Interface) 연동 검증 (빅뱅/점진적 통합, 상향식 스텁, 하향식 드라이버).
 - **시스템 테스트(System Test)** : 완전한 통합 시스템 환경에서 전체 요구사항 충족 검증 (**기능 테스트** 및 성능/보안 테스트).
 - **인수 테스트(Acceptance Test)** : 발주자 및 최종 사용자가 비즈니스 요구사항 일치 여부를 판단하는 최종 검증 (알파/베타 테스트).
 
@@ -43,7 +43,7 @@ extra:
 | 테스트 종류 | 핵심 검증 대상 | 주요 기법 및 도구 |
 |---|---|---|
 | 기능 테스트 | 명세된 업무 기능 및 비즈니스 로직 충족 여부 | 동등 분할, 경계값 분석, 유스케이스 기반 테스팅 |
-| **신뢰성 테스트** | 장시간 구동 시 장애 발생률, 고장 간격, 복구 능력 | 결함 주입(Fault Injection), 스트레스/침수 테스트, MTBF(Mean Time Between Failures)/MTTR(Mean Time to Repair) 측정 |
+| **신뢰성 테스트** | 장시간 구동 시 장애 발생률, 고장 간격, 복구 능력 | 결함 주입(Fault Injection), 스트레스/장시간 연속(Soak) 테스트, MTBF(Mean Time Between Failures)/MTTR(Mean Time to Repair) 측정 |
 | **이식성 테스트** | 이기종 OS(Operating System), 브라우저, DB(Database), 클라우드 환경 적응력 | 다중 플랫폼 매트릭스 테스팅, 컨테이너 환경 호환성 검증 |
 | **성능 테스트** | 임계 부하 상황에서의 처리량, 응답시간, 자원 소진율 | 부하(Load), 스트레스(Stress), 스파이크(Spike) 테스트 (JMeter, nGrinder) |
 | **보안성 테스트** | 취약점 존재 여부 및 인가되지 않은 접근 차단 | 모의해킹(Pen-Testing), 소스코드 보안약점 진단, DAST(Dynamic Application Security Testing) |
@@ -55,10 +55,10 @@ extra:
   - 해결 방안 : 마이크 콘(Mike Cohn)의 테스트 피라미드(Test Pyramid) 모델을 적용하여 단위 테스트 비중을 크게 확대하고, CI(Continuous Integration) 단계에서 즉각적인 피드백 루프를 구축하며 E2E 테스트는 핵심 비즈니스 크리티컬 패스로 한정.
 - 마이크로서비스 환경에서 통합·시스템 테스트 종속성 격리 난제 :
   - 한계점 : 다수의 분산 마이크로서비스 및 서드파티 외부 API와의 연계 환경에서 통합 테스트 수행 시 테스트 환경 동기화 실패, 테스트 데이터 오염 및 외부 장애로 인한 테스트 중단 발생.
-  - 해결 방안 : Testcontainers 기반의 격리된 컨테이너 인프라 동적 프로비저닝, WireMock 기반 서비스 가상화(Service Virtualization), 소비자 주도 계약 테스트(Pact CDC: Consumer-Driven Contract Testing) 체계 도입.
+  - 해결 방안 : Testcontainers 기반의 격리된 컨테이너 인프라 동적 프로비저닝, WireMock 기반 서비스 가상화(Service Virtualization), 소비자 주도 계약 테스트(CDC: Consumer-Driven Contract Testing, Pact) 체계 도입.
 - 비기능 품질(신뢰성·이식성·성능) 검증의 시기적 지연 :
   - 한계점 : 기능적 요구사항 검증에 자원이 집중되어 신뢰도 성장 모델링(SRGM), 성능 부하, 이기종 플랫폼 이식성 테스트가 프로젝트 후반부로 밀려 구조적 결함 조기 발견 실패.
-  - 해결 방안 : 비기능 요구사항을 아키텍처 수립 단계부터 품질 속성 시나리오로 정의하고, 카오스 엔지니어링(Chaos Mesh) 및 CI/CD(Continuous Integration/Continuous Delivery) 파이프라인 연계 자동화 부하 테스트(k6/JMeter) 조기 지속 수행.
+  - 해결 방안 : 비기능 요구사항을 아키텍처 수립 단계부터 품질 속성 시나리오로 정의하고, 카오스 엔지니어링 도구(Chaos Mesh) 및 CI/CD(Continuous Integration/Continuous Delivery) 파이프라인 연계 자동화 부하 테스트(k6/JMeter) 조기 지속 수행.
 
 ## Ⅴ. 고품질 테스트 환경 구축을 위한 기술사적 제언
 

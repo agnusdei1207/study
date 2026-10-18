@@ -60,9 +60,9 @@ extra:
   - 해결 방안 : 최대 요구 용량을 사전 산정하여 초기 용량을 예약(Pre-allocation)하거나, 청크 단위 메모리 블록을 연결 리스트로 묶는 언롤드 연결 리스트(Unrolled Linked List) 스택 구조 채택.
 - 멀티스레드 환경에서 탑(Top) 포인터 락 경합 및 ABA 문제 :
   - 한계점 : 동시성 환경에서 단일 Top 포인터에 대한 락킹 또는 단순 CAS(Compare-And-Swap) 연산 시 스레드 충돌로 인한 재시도 루프 과부하 및 ABA 문제로 인한 메모리 오염 발생.
-  - 해결 방안 : 버전 카운터를 결합한 태그 포인터(Tagged Pointer / AtomicStampedReference)를 적용하여 ABA 문제를 방지하고, Elimination Backoff Stack 기법을 도입하여 충돌 스레드 간 쌍(Pair) 교환으로 락 경합 분산.
+  - 해결 방안 : 버전 카운터를 결합한 태그 포인터(Tagged Pointer, AtomicStampedReference)를 적용하여 ABA 문제를 방지하고, Elimination Backoff Stack 기법을 도입하여 충돌 스레드 간 쌍(Pair) 교환으로 락 경합 분산.
 
 ## Ⅴ. 대규모 시스템에서의 기술사적 제언
 
 - 재귀 호출에 따른 스택 오버플로우 방지 : 깊은 재귀 탐색(Deep Recursion) 수행 시 스레드 스택 한계를 초과하여 크래시가 발생하므로, 꼬리 재귀 최적화(Tail Call Optimization)를 적용하거나 힙 기반의 명시적 스택(Explicit Stack) 루프로 리팩토링 권장.
-- 멀티스레드 동시성 환경에서의 락 경합 완화 : 스택 최상단(Top) 포인터에 대한 동시 접근 시 성능 병목이 발생하므로, Compare-And-Swap(CAS) 원자적 연산을 활용한 Treiber의 락프리 스택(Lock-Free Stack) 기법 적용 고려.
+- 멀티스레드 동시성 환경에서의 락 경합 완화 : 스택 최상단(Top) 포인터에 대한 동시 접근 시 성능 병목이 발생하므로, CAS 원자적 연산을 활용한 Treiber의 락프리 스택(Lock-Free Stack) 기법 적용 고려.

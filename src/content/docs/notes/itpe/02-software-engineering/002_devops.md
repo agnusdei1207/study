@@ -15,16 +15,16 @@ extra:
 ## Ⅰ. DevOps의 개요
 
 - 개념 : **소프트웨어 개발** (Development)과 **IT(Information Technology) 운영** (Operations) 간의 장벽을 허물고, 조직 문화·협업 프로세스·자동화 도구체계를 통합하여 소프트웨어 납품 속도와 서비스 신뢰성을 극대화하는 엔지니어링 패러다임.
-- 배경 및 필요성 : **비즈니스 출시 주기 단축** (Time-to-Market), 마이크로서비스 확산으로 인한 **배포 빈도** 급증, 개발과 운영의 상충된 KPI(Key Performance Indicator)(신규 기능 출시 vs 시스템 안정성)로 발생하는 **사일로** (Silo) 문제 해결.
+- 배경 및 필요성 : **비즈니스 출시 주기 단축** (Time-to-Market), 마이크로서비스 확산으로 인한 **배포 빈도** 급증, 개발과 운영의 상충된 KPI(Key Performance Indicator, 신규 기능 출시 vs 시스템 안정성)로 발생하는 **사일로** (Silo) 문제 해결.
 - 핵심 목표 : 배포 빈도 향상(Deployment Frequency), **변경 리드타임** 단축(Lead Time for Changes), **변경 실패율** 감소(Change Failure Rate), **평균 복구 시간** 단축 (MTTR(Mean Time to Repair)).
 
 ## Ⅱ. DevOps의 무한 루프 생명주기 및 핵심 파이프라인
 
 ```text
-   [ Plan ] ──> [ Code ] ──> [ Build ] ──> [ Test ]
-      ▲                                       │
-      │              CI/CD Pipeline           ▼
-   [ Monitor ] <── [ Operate ] <── [ Deploy ] <── [ Release ]
+   [Plan] → [Code] → [Build] → [Test]
+      ▲                            │
+      │       CI/CD Pipeline       ▼
+   [Monitor] ← [Operate] ← [Deploy] ← [Release]
 ```
 
 - **계획 및 코딩(Plan & Code)** : Jira/GitHub를 통한 애자일 백로그 관리, Git Flow 기반 형상관리 및 브랜치 전략.
