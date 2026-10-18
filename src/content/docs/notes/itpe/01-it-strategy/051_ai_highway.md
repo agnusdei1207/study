@@ -31,7 +31,7 @@ extra:
           ▲
 [컴퓨팅 인프라 거점]
    첨단 GPU(H100/B200) 클러스터,
-   국산 저전력 NPU 팜 (K-클라우드)
+   국산 저전력 NPU 팜 및 국가 AI 컴퓨팅 센터
 ```
 
 | 핵심 계층 | 주요 구성요소 | 핵심 역할 |
@@ -64,5 +64,5 @@ extra:
 ## Ⅴ. 성공적인 AI 고속도로 구축을 위한 기술사적 제언
 
 - 국산 AI 반도체(NPU) 실증 및 소프트웨어 스택(SDK, Software Development Kit) 육성 : 외산 GPU(CUDA, Compute Unified Device Architecture) 독점을 탈피하기 위해 국가 AI 고속도로의 추론 인프라에 국산 NPU를 우선 탑재하고 컴파일러 등 SW(Software) 생태계 지원.
-- 데이터센터 전력망 및 그린 에너지(PUE, Power Usage Effectiveness) 대책 동반 : AI 연산에 소요되는 막대한 전력 수요를 감당하기 위해 분산형 전력망 구축, 액체 냉각 기술 적용 및 친환경 에너지 연계 필수.
+- 데이터센터 전력 효율(PUE, Power Usage Effectiveness) 및 그린 에너지 대책 동반 : AI 연산에 소요되는 막대한 전력 수요를 감당하기 위해 분산형 전력망 구축, 액체 냉각 기술 적용 및 친환경 에너지 연계 필수.
 - 국가 AI 데이터 고속도로의 보안 및 주권 확보 : 핵심 데이터 자산의 국외 유출을 방지하기 위한 국가 데이터 경계(Sovereign Data Boundary) 설정 및 양자내성암호(PQC, Post-Quantum Cryptography) 기반 전송망 구축.

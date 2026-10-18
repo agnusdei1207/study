@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. AI 에너지 인프라의 개요
 
 - 개념 : 초거대 AI(Artificial Intelligence) 모델의 학습과 추론에 소요되는 막대한 전력 소비와 발열 문제를 해결하기 위해 고효율 전력망, **액체 냉각** (Liquid Cooling), 신재생에너지 및 AI 기반 **에너지 관리 시스템** (BEMS, Building Energy Management System)을 결합한 **차세대 친환경 데이터센터 인프라**
-- 배경 및 필요성 : AI 가속기(GPU, Graphics Processing Unit)의 랙당 전력 밀도가 과거 10kW 수준에서 100kW 이상으로 급증함에 따라 기존 공랭식(Air Cooling) 냉각의 물리적 한계 봉착 및 **탄소중립** (RE100, Renewable Energy 100) 규제 강화.
+- 배경 및 필요성 : AI 가속기(GPU, Graphics Processing Unit)의 랙당 전력 밀도가 과거 10kW 수준에서 100kW 이상으로 급증함에 따라 기존 공랭식(Air Cooling) 냉각의 물리적 한계 봉착 및 **탄소중립**(Carbon Neutrality)·재생에너지 100%(RE100, Renewable Energy 100) 규제 강화.
 - 주요 목적 : 데이터센터 **전력효율지수** (PUE, Power Usage Effectiveness) 획기적 개선, 고집적 GPU 발열 해소, 친환경 신재생에너지 연계를 통한 지속가능한 AI 인프라 구현.
 
 ## Ⅱ. 차세대 냉각 기술 및 전력 효율화 아키텍처
@@ -32,9 +32,10 @@ extra:
 [액침 냉각 (Immersion Cooling)]
    - 절연유에 서버 직접 침적
    - 랙당 100kW+ 초고밀도, PUE 1.0x
-          │
-   [전력망 및 신재생에너지] - 전력 계통 분산화,
-   SMR(Small Modular Reactor, 소형모듈원전) 연계, 마이크로그리드
+          ↓
+[전력망 및 신재생에너지]
+   - 전력 계통 분산화, 마이크로그리드
+   - SMR(소형모듈원전) 연계
 ```
 
 - **직접 칩 냉각** (D2C, Direct-to-Chip) : 콜드플레이트 순환 방식.
@@ -59,7 +60,7 @@ extra:
   - 해결 방안 : 비전도성 유체를 사용하는 2단계 액침냉각(Immersion Cooling) 전면 전환, 폐열 회수 및 지역난방 연계.
 - 신재생에너지(RE100)의 간헐성(Intermittency) :
   - 한계점 : 태양광, 풍력의 기후 의존성으로 인해 24/7 무중단 가동이 필수적인 AI 데이터센터와의 전력 공급 불일치.
-  - 해결 방안 : SMR(소형 모듈 원자로) 연계 전력망 확보, 무탄소 에너지(CFE(Carbon-Free Energy) 24/7) 전환 및 스마트 그리드 결합.
+  - 해결 방안 : SMR 연계 전력망 확보, 24/7 무탄소 에너지(CFE, Carbon-Free Energy) 전환 및 스마트 그리드 결합.
 
 ## Ⅴ. AI 에너지 인프라 확충을 위한 기술사적 제언
 

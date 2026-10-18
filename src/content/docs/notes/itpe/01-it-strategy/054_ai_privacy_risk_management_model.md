@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. AI 프라이버시 리스크 관리 모델의 개요
 
 - 개념 : 인공지능 모델의 학습, 검증, 배포 및 운영 전 과정에서 발생할 수 있는 **개인정보 침해 위험**을 사전에 식별하고, 개인정보보호위원회의 개인정보 보호 원칙에 입각하여 법적·기술적 보호조치를 적용하는 **전주기 위험관리 프레임워크**
-- 배경 및 필요성 : 초거대 언어모델(LLM, Large Language Model)의 비정형 데이터 무단 학습, 모델 역공격을 통한 개인정보 복원(Membership Inference), 프롬프트 입력을 통한 민감 정보 유출 등 새로운 프라이버시 위협 급증.
+- 배경 및 필요성 : 초거대 언어모델(LLM, Large Language Model)의 비정형 데이터 무단 학습, 모델 역공격(Model Inversion)과 멤버십 추론(Membership Inference)을 통한 학습 데이터 복원·노출, 프롬프트 입력을 통한 민감 정보 유출 등 새로운 프라이버시 위협 급증.
 - 주요 목적 : 개인정보보호법 준수, 프라이버시 침해 사고 예방, 안전한 AI(Artificial Intelligence) 데이터 활용 생태계 조성, 이용자 신뢰 확보.
 
 ## Ⅱ. AI 생애주기별 프라이버시 위협 및 대응 체계
@@ -57,7 +57,7 @@ extra:
   - 해결 방안 : 멀티모달 특화 NER(Named Entity Recognition, 개체명 인식) 모델 고도화, 합성 데이터(Synthetic Data) 대체 활용 확대.
 - 모델 역공격(Model Inversion) 등 최신 추출 공격 대응 한계 :
   - 한계점 : 학습 데이터가 삭제되었더라도 훈련된 가중치에 대한 질의 패턴 분석을 통해 원본 민감 정보를 복원하는 공격 취약.
-  - 해결 방안 : 머신 언러닝(Machine Unlearning) 기법 적용, 차분 프라이버시(DP(Differential Privacy)-SGD(Stochastic Gradient Descent))를 통한 가중치 노이즈 주입.
+  - 해결 방안 : 머신 언러닝(Machine Unlearning) 기법 적용, 차분 프라이버시 기반 SGD(DP-SGD, Differentially Private Stochastic Gradient Descent)를 통한 가중치 노이즈 주입.
 - 동의권 중심 전통적 개인정보 규제와의 괴리 :
   - 한계점 : 웹 스케일 대규모 데이터 수집 시 사전 동의 획득이 원천적으로 불가능하여 법적 적법성 리스크 상존.
   - 해결 방안 : 공정이용(Fair Use) 및 정당한 이익 법리 확립, 옵트아웃(Opt-out) 권리 보장 및 안전구역(AI Sandbox) 실증 제도화.

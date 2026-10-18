@@ -23,15 +23,14 @@ extra:
 ```text
 [비즈니스 및 규제 인터페이스]
    거버넌스 대시보드
-   규제 준수 보고서(EU AI Act,
-   NIST AI RMF, Artificial Intelligence Risk Management Framework)
-          │
+   규제 준수 보고서 (EU AI Act, NIST AI RMF)
+          ↓
 [핵심 모니터링 및 통제 엔진]
    - 공정성/편향성 평가
    - 설명가능성 (XAI)
    - 모델 드리프트 감지
    - AI 가드레일 (안전성)
-          │
+          ↓
 [데이터 및 모델 레지스트리]
    학습 데이터 계보(Lineage), 모델 카드(Model Card), 감사 로그
 ```
@@ -45,7 +44,7 @@ extra:
 
 | 검증 영역 | 핵심 검증 내용 | 대표 알고리즘 및 기술 |
 |---|---|---|
-| **설명가능성** (Explainability) | 특정 예측이나 결과가 도출된 이유를 사람이 이해할 수 있게 설명 | SHAP (Shapley Additive exPlanations), LIME |
+| **설명가능성** (Explainability) | 특정 예측이나 결과가 도출된 이유를 사람이 이해할 수 있게 설명 | SHAP (SHapley Additive exPlanations), LIME |
 | **공정성** (Fairness) | 성별, 인종, 연령 등 민감 속성에 대한 부당한 차별 방지 | Disparate Impact 분석, Equalized Odds 지표 |
 | **견고성** (Robustness) | 적대적 공격(Adversarial Attack)이나 노이즈에 대한 내성 검증 | 적대적 섭동 테스트, 입력 정규화 |
 | **데이터 계보** (Lineage) | 모델 학습에 사용된 원천 데이터셋의 출처, 저작권, 가공 이력 추적 | 메타데이터 카탈로그, 불변 감사 로그 |
