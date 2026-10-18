@@ -26,9 +26,12 @@ extra:
    [상향식 산정 (Bottom-Up)]
    [수학적/모형적 산정 (Algorithmic)]
       기능점수 (FP, Function Point)
-      COCOMO / COCOMO II ── 시스템 규모 및 17개 노력 곱셈계수 기반 공수 산출
+      COCOMO / COCOMO II
+         시스템 규모 및 17개 노력 곱셈계수 기반
+         공수 산출
       Putnam 모형 (Rayleigh-Norden)
-         시간과 노력의 트레이드오프 관계(SLIM 도구)
+         시간과 노력의 트레이드오프 관계
+         (SLIM 도구)
 ```
 
 - **하향식 산정** (Top-Down) : 전문가 판단 기법, 델파이 기법.
@@ -39,7 +42,7 @@ extra:
 
 | 산정 모형 | 산정 기준 | 핵심 산식 및 특징 | 장단점 |
 |---|---|---|---|
-| **LOC** (Source Lines of Code) | 소스코드 라인 수 | 노력(Effort) = 라인 수 x 라인당 생산성 | 직관적이나 언어 및 개발자 역량에 따라 편차 극심 |
+| **LOC** (Lines of Code) | 소스코드 라인 수 | 노력(Effort) = 라인 수 x 라인당 생산성 | 직관적이나 언어 및 개발자 역량에 따라 편차 극심 |
 | **COCOMO II** | 소스 라인(KSLOC) 또는 객체점수 | Effort = A x (Size)^B x M (B: 규모의 경제/불경제 계수) | 프로젝트 특성(17개 비용 동인) 반영 우수하나 초기 코드라인 추정 어려움 |
 | 기능점수 (FP) | 사용자 요구 기능 (입출력, 파일) | 미조정 FP x 보정계수 x 단가 | 구현 기술에 독립적이며 기획 단계 적용 최적 (공공 표준) |
 | **Putnam 모형** | 소프트웨어 생명주기 곡선 | Man-Years = S^3 / (C^3 x T^4) (기간 단축 시 비용 기하급수 증가) | 대형 프로젝트의 일정-비용 트레이드오프 분석에 탁월 |
@@ -53,7 +56,7 @@ extra:
   - 한계점 : 노력 조정 인자(Cost Drivers)가 조직의 개발 생산성, 도메인 복잡도, 개발팀 역량에 따라 크게 좌우되어 주관성 개입.
   - 해결 방안 : 조직 내 축적된 역사적 프로젝트 데이터(Historical Data) 기반의 사내 맞춤형 비용 산정 회귀 모델 구축.
 - 애자일 및 클라우드 네이티브 환경과의 패러다임 불일치 :
-  - 한계점 : 전통적 FP/코드 라인 수(SLOC, Source Lines of Code) 기준은 지속적 배포(CI(Continuous Integration)/CD(Continuous Delivery))와 반복형 스토리에 기반한 개발 원가 산정에 부적합.
+  - 한계점 : 전통적 FP/코드 라인 수(SLOC, Source Lines of Code) 기준은 CI(Continuous Integration)/CD(Continuous Delivery) 등 지속적 배포 방식과 반복형 스토리에 기반한 개발 원가 산정에 부적합.
   - 해결 방안 : 스토리 포인트(Story Point) 기반의 벨로시티(Velocity) 산정법 도입, 클라우드 운영비(Opex, Operating Expense)를 포괄하는 TCO(Total Cost of Ownership) 산정 체계 구축.
 
 ## Ⅴ. 과학적 비용 산정을 위한 기술사적 제언

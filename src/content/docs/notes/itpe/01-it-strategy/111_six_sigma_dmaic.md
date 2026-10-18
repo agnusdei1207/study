@@ -14,7 +14,7 @@ extra:
 
 ## Ⅰ. Six Sigma DMAIC의 개요
 
-- 개념 : 프로세스에서 발생하는 결함을 100만 기회당 3.4개(3.4 DPMO, Defects Per Million Opportunities) 이하로 줄이기 위해, 데이터와 **통계적 기법**을 기반으로 문제를 과학적으로 정의(D), 측정(M), 분석(A), 개선(I), 통제(C)하는 **DMAIC(Define, Measure, Analyze, Improve, Control) 5단계 혁신 방법론**
+- 개념 : 프로세스에서 발생하는 결함을 100만 기회당 3.4개(3.4 DPMO, Defects Per Million Opportunities) 이하로 줄이기 위해, 데이터와 **통계적 기법**을 기반으로 문제를 과학적으로 정의(D), 측정(M), 분석(A), 개선(I), 통제(C)하는 **DMAIC 5단계 혁신 방법론**
 - 배경 및 필요성 : 단순한 주관적 경험이나 감에 의한 품질 관리의 한계를 극복하고, **프로세스 변동** (Variation)의 원인을 통계적으로 규명하여 제품 및 IT(Information Technology) 서비스 품질의 무결점 추구.
 - 주요 목적 : 공정 변동성 최소화, 결함률 획기적 감축, 고객 만족도 극대화 및 품질 원가 절감.
 
@@ -22,22 +22,29 @@ extra:
 
 ```text
 [1. Define (정의)]
-   핵심 품질 특성(CTQ, Critical to Quality) 정의, 프로젝트 헌장 작성,
-   프로세스 맵(SIPOC, Suppliers, Inputs, Process, Outputs, Customers)
+   핵심 품질 특성(CTQ, Critical to Quality),
+   프로젝트 헌장 작성,
+   프로세스 맵(SIPOC, Suppliers, Inputs,
+   Process, Outputs, Customers)
           ↓
 [2. Measure (측정)]
-   측정시스템 분석(Gage R&R), 데이터 수집, 공정능력지수(Cp, Cpk) 산출
+   측정시스템 분석(Gage R&R), 데이터 수집,
+   공정능력지수(Cp, Cpk) 산출
           ↓
 [3. Analyze (분석)]
-   근본 원인 분석, 특성요인도(Fishbone), 파레토 차트,
-   가설 검정(t-test, ANOVA, Analysis of Variance)
+   근본 원인 분석, 특성요인도(Fishbone),
+   파레토 차트, 가설 검정(t-test, ANOVA,
+   Analysis of Variance)
           ↓
 [4. Improve (개선)]
-   최적 솔루션 도출, 실험계획법(DOE, Design of Experiments), 파일럿 검증,
-   위험 방지(FMEA, Failure Mode and Effects Analysis)
+   최적 솔루션 도출,
+   실험계획법(DOE, Design of Experiments),
+   파일럿 검증, 위험 방지(FMEA,
+   Failure Mode and Effects Analysis)
           ↓
 [5. Control (통제)]
-   표준화 및 문서화, 통계적 공정관리(SPC, Statistical Process Control) 관리도,
+   표준화 및 문서화, 통계적 공정관리(SPC,
+   Statistical Process Control) 관리도,
    실수방지(Poka-Yoke)
 ```
 
@@ -59,7 +66,7 @@ extra:
 
 - 과도한 통계 분석으로 인한 의사결정 지연(Analysis Paralysis) :
   - 한계점 : Minitab 등 복잡한 통계 기법과 정규성 검정에 과도한 시간을 소모하여 긴급한 프로세스 개선 납기 지연.
-  - 해결 방안 : 신속한 개선을 우선하는 린(Lean) 기법과 결합한 린 식스 시그마(LSS, Lean Six Sigma) 추진, 가치 흐름 맵핑(VSM, Value Stream Mapping) 중심 단순화.
+  - 해결 방안 : 신속한 개선을 우선하는 린(Lean) 기법과 결합한 린 식스 시그마(LSS, Lean Six Sigma) 추진, 가치 흐름 매핑(VSM, Value Stream Mapping) 중심 단순화.
 - 소프트웨어 개발의 비정형성과의 충돌 :
   - 한계점 : 반복 제조업 공정과 달리 창의적이고 변동성이 큰 소프트웨어 개발 업무에 식스 시그마 통계 지표를 기계적으로 강제 시 실패.
   - 해결 방안 : 코드 결함률, 빌드 실패율 등 정량화가 명확한 엔지니어링 영역에 국한하여 적용하고 애자일 스프린트와 조화.
@@ -69,6 +76,6 @@ extra:
 
 ## Ⅴ. 소프트웨어 및 IT 서비스에서의 Six Sigma 적용을 위한 기술사적 제언
 
-- 린(Lean)과 식스 시그마의 결합 (Lean Six Sigma) : 통계적 엄격성으로 인해 속도가 느려질 수 있는 식스 시그마의 단점을 보완하여, 린의 낭비 제거(속도)와 식스 시그마의 결함 제거(품질)를 동시 달성.
+- 린과 식스 시그마의 결합(Lean Six Sigma) : 통계적 엄격성으로 인해 속도가 느려질 수 있는 식스 시그마의 단점을 보완하여, 린의 낭비 제거(속도)와 식스 시그마의 결함 제거(품질)를 동시 달성.
 - 소프트웨어 메트릭스의 측정시스템 분석(Gage R&R, Repeatability and Reproducibility) 철저화 : 개발 생산성이나 코드 결함 측정 시 도구와 평가자마다 주관적 편차가 발생하지 않도록 정적 분석 도구(SonarQube 등)를 통한 자동 측정 표준화.
 - 애자일 회고(Retrospective) 프로세스와의 융합 : 무거운 수개월 단위의 식스 시그마 프로젝트를 지양하고, 2주 단위 스프린트 회고에서 특성요인도와 5-Whys 기법을 활용하여 빠르게 병목을 해결하는 경량화 적용.
