@@ -21,13 +21,13 @@ extra:
 ## Ⅱ. 최단경로 알고리즘의 핵심 메커니즘: 완화(Relaxation)
 
 ```text
-   [ 간선 완화 (Edge Relaxation) 원리 ]
-    현재 알고리즘이 알고 있는 목적지 v까지의 최단거리 d[v]보다,
-    u를 거쳐서 v로 가는 거리 (d[u] + weight(u, v))가 더 짧다면 최단거리를 갱신한다!
+[ 간선 완화 (Edge Relaxation) 원리 ]
+ - 알고 있는 최단거리 d[v]보다 u를
+   거쳐 가는 거리가 더 짧으면 갱신
 
-   if (d[v] > d[u] + weight(u, v)) {
-       d[v] = d[u] + weight(u, v);
-   }
+ if (d[v] > d[u] + weight(u, v)) {
+     d[v] = d[u] + weight(u, v);
+ }
 ```
 
 ## Ⅲ. 3대 최단경로 알고리즘 비교 분석
