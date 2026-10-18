@@ -21,22 +21,30 @@ extra:
 ## Ⅱ. 전통적 웹 통신과 AJAX 비동기 통신의 흐름 비교
 
 ```text
-   [ 전통적 웹 통신: 동기식 (Synchronous) ]
-   [ 브라우저 ] ── HTTP POST 요청 ──> [ 웹 서버 ] ──> [ DB 처리 ]
-        │ (화면 멈춤, 흰 화면 깜빡임)                          │
-   [ 전체 페이지 재렌더링 ] <── 완전한 HTML 전체 페이지 반환 ──┘
+[ 전통적 웹 통신: 동기식 (Synchronous) ]
+[ 브라우저 ]
+   │ (HTTP POST 요청)
+   ▼
+[ 웹 서버 ] ──> [ DB 처리 ]
+   │ (완전한 HTML 전체 페이지 반환)
+   ▼
+[ 전체 페이지 재렌더링 ]
+ - 화면 멈춤, 흰 화면 깜빡임
 
-   [ AJAX 웹 통신: 비동기식 (Asynchronous) ]
-   [ 브라우저 UI ] ── 사용자 조작 계속 진행 (Non-blocking)
-        │
-        ▼ (백그라운드 통신)
-   [ Fetch / XHR ] ── 비동기 백그라운드 요청 ──> [ 백엔드 API ] ──> [ DB 처리 ]
-        ▲                                                               │
-        │ (순수 데이터만 수신: JSON)                                    │
-        └─────────────────────── { "status": "ok" } ──────────────────┘
-        │
-        ▼
-   [ 자바스크립트 DOM 조작 ] ── 변경된 UI 일부 영역만 즉각 동적 갱신
+[ AJAX 웹 통신: 비동기식 (Asynchronous) ]
+[ 브라우저 UI ]
+ - 사용자 조작 계속 진행 (Non-blocking)
+   │ (백그라운드 통신)
+   ▼
+[ Fetch / XHR ]
+   │ (비동기 백그라운드 요청)
+   ▼
+[ 백엔드 API ] ──> [ DB 처리 ]
+   │ (순수 데이터만 수신: JSON
+     { "status": "ok" })
+   ▼
+[ 자바스크립트 DOM 조작 ]
+ - UI 일부 영역만 즉각 동적 갱신
 ```
 
 ## Ⅲ. XMLHttpRequest와 모던 Fetch API 비교
@@ -53,7 +61,7 @@ extra:
 
 - 브라우저 히스토리(뒤로가기/앞으로가기) 및 북마크 파손 :
   - 한계점 : 페이지 전체 리로드 없이 화면 일부분만 비동기 갱신되므로, 브라우저 URL(Uniform Resource Locator)이 변경되지 않아 뒤로가기 버튼 클릭 시 이전 웹사이트로 이탈.
-  - 해결 방안 : HTML5 **History API** (`pushState`, `popState`)를 활용한 클라이언트 라우팅 구현, 가상 URL 맵핑을 통한 **딥링킹** (Deep Linking) 보장.
+  - 해결 방안 : HTML5 **History API** (`pushState`, `popstate`)를 활용한 클라이언트 라우팅 구현, 가상 URL 맵핑을 통한 **딥링킹** (Deep Linking) 보장.
 - 검색 엔진 크롤러 인덱싱(SEO, Search Engine Optimization) 한계 :
   - 한계점 : 초기 HTML(HyperText Markup Language)에 콘텐츠가 없고 AJAX 비동기 호출을 통해 렌더링되므로, 자바스크립트를 완벽히 해석하지 못하는 검색 엔진 봇에 빈 페이지 노출.
   - 해결 방안 : **서버 사이드 렌더링** (SSR) 병행, 사전 렌더링(Prerendering) 도구 활용 및 정적 HTML 스냅샷을 봇에게 서빙하는 **동적 렌더링** (Dynamic Rendering) 구성.
