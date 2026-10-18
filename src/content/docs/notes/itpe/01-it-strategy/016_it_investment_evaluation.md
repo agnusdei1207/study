@@ -54,10 +54,10 @@ extra:
   - 해결 방안 : 단계별 투자 포기, 확장, 지연 옵션을 가치로 환산하는 리얼옵션(Real Options) 분석 기법 병행.
 - 투자 후 사후 성과평가(Post-Audit)의 단절 :
   - 한계점 : 프로젝트 승인 단계에서만 장밋빛 편익을 제시하고, 구축 완료 후 실제 편익 달성 여부를 추적하지 않아 도덕적 해이 발생.
-  - 해결 방안 : BRM(편익실현관리, Benefits Realization Management) 체계 도입, 시스템 가동 후 1~2년간 실제 비즈니스 KPI(Key Performance Indicator) 달성률 측정 및 환류.
+  - 해결 방안 : 편익 실현 관리(BRM, Benefits Realization Management) 체계 도입, 시스템 가동 후 1~2년간 실제 비즈니스 KPI(Key Performance Indicator) 달성률 측정 및 환류.
 
 ## Ⅴ. IT 투자평가 실효성 제고를 위한 기술사적 제언
 
 - 비재무적 편익의 구체적 지표화 : 업무 시간 단축, 고객 대응 리드타임 감소, 데이터 정합성 향상 등 비재무적 성과를 측정 가능한 핵심성과지표(KPI)로 정의하고 정량화.
-- 가치 실현 관리(Benefits Realization Management) 체계 수립 : 시스템 구축 완료 시점에 평가를 종료하지 않고, 실제 운영 단계에서 비즈니스 편익이 실현되는지 지속 추적·환류.
+- 편익 실현 관리(BRM) 체계 수립 : 시스템 구축 완료 시점에 평가를 종료하지 않고, 실제 운영 단계에서 비즈니스 편익이 실현되는지 지속 추적·환류.
 - 포트폴리오 관점의 종합적 투자 관리 : 개별 단위 사업 중심 평가에서 탈피하여 런(Run the business), 그로우(Grow the business), 트랜스폼(Transform the business)으로 구분된 전사 IT 포트폴리오 최적화.

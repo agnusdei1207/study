@@ -31,7 +31,8 @@ extra:
       전자결재,
       CRM(Customer Relationship Management) 도입)
         ↓
-[Digital Transformation (비즈니스 및 문화의 전면 변혁)]
+[Digital Transformation]
+   ── 비즈니스 및 문화의 전면 변혁
    ── 데이터와 AI 기반의 비즈니스 모델 혁신
       및 조직 문화 혁신 (플랫폼화, 구독 모델)
 ```

@@ -64,4 +64,4 @@ extra:
 
 - 명확하고 엄격한 SLA/OLA(Operational Level Agreement) 거버넌스 확립 : 정량화된 서비스 수준 협약(SLA)과 성과 미달 시 페널티, 우수 시 인센티브 체계를 설계하여 서비스 품질 동기부여.
 - 지식 자산의 내부 귀속(Knowledge Retention) 보장 : 벤더 교체 시 서비스 공백을 방지하기 위해 형상관리, 설계 문서화, 정기적 지식 이전 워크숍을 계약서상 의무로 명시.
-- 멀티 벤더 환경에서의 통합 서비스 관리(SIAM, Service Integration and Management) : 다수의 클라우드 및 솔루션 벤더를 운영하는 복합 환경에서는 서비스 통합 및 관리(Service Integration and Management) 체계를 구축하여 단일 벤더 종속 탈피.
+- 멀티 벤더 환경에서의 통합 서비스 관리(SIAM, Service Integration and Management) : 다수의 클라우드 및 솔루션 벤더를 운영하는 복합 환경에서는 SIAM 체계를 구축하여 단일 벤더 종속 탈피.

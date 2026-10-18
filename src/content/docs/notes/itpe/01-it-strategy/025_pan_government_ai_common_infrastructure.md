@@ -22,8 +22,8 @@ extra:
 
 ```text
 [공공 서비스 계층]
-   ── 범정부 지능형 행정 지원, 대국민 정책 맞춤형 AI 서비스,
-      민원 자동화
+   ── 범정부 지능형 행정 지원
+   ── 대국민 정책 맞춤형 AI 서비스, 민원 자동화
    ── API(Application Programming Interface) 호출
         ↓
 [AI 공통 플랫폼 계층]
@@ -41,13 +41,13 @@ extra:
         ↓
 [컴퓨팅 인프라 계층]
    ── 국가정보자원관리원 공공 클라우드
-      고성능 GPU(Graphics Processing Unit) 팜
-      (NPU, Neural Processing Unit / GPU)
+      고성능 GPU(Graphics Processing Unit)
+      및 NPU(Neural Processing Unit) 팜
 ```
 
-- **AI 공통 플랫폼 계층** : 프롬프트 엔지니어링, 검색증강생성, MLOps(Machine Learning Operations), 보안·가드레일.
+- **AI 공통 플랫폼 계층** : 프롬프트 엔지니어링, 검색증강생성, MLOps, 보안·가드레일.
 - **파운데이션 모델 계층** : 민간 초거대 AI와 온프레미스 경량화 모델(sLLM).
-- **컴퓨팅 인프라 계층** : 국가정보자원관리원 공공 클라우드 고성능 GPU(Graphics Processing Unit) 팜.
+- **컴퓨팅 인프라 계층** : 국가정보자원관리원 공공 클라우드 고성능 가속기 팜.
 
 ## Ⅲ. 범정부 AI 공통기반의 핵심 기술 요소
 
@@ -73,5 +73,5 @@ extra:
 ## Ⅴ. 범정부 AI 공통기반의 안착을 위한 기술사적 제언
 
 - 망분리 환경과 LLM 연계 아키텍처 수립 : 공공 내부 업무망의 보안성을 유지하면서 안전하게 외부 클라우드 AI를 활용할 수 있도록 보안 프록시 및 프라이빗 sLLM 하이브리드 구성.
-- 공공 문서의 기계 판독성(Machine-Readability) 혁신 : 비정형 HWP 문서를 표준 마크다운(Markdown) 및 구조화된 JSON(JavaScript Object Notation) 데이터로 자동 변환하는 파이프라인 구축이 RAG 성능의 핵심 전제조건.
+- 공공 문서의 기계 판독성(Machine-Readability) 혁신 : 비정형 HWP(Hangul Word Processor) 문서를 표준 마크다운(Markdown) 및 구조화된 JSON(JavaScript Object Notation) 데이터로 자동 변환하는 파이프라인 구축이 RAG 성능의 핵심 전제조건.
 - 성과 측정 및 공공 서비스 품질 모니터링 : AI 행정 서비스의 응답 정확도, 환각 발생률, 사용자 만족도를 실시간 측정하고 지속 개선하는 환류 거버넌스 수립.
