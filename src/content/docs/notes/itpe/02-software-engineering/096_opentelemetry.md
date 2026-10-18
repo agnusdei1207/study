@@ -15,29 +15,26 @@ extra:
 ## Ⅰ. OpenTelemetry의 개요
 
 - 개념 : **OpenTelemetry** 란 클라우드 네이티브 컴퓨팅 재단(CNCF)에서 OpenTracing과 OpenCensus 프로젝트를 통합하여 표준화한 벤더 중립적 오픈소스 **원격 측정** (Telemetry) 프레임워크로, 분산 클라우드 환경에서 **트레이스** (Traces), **메트릭** (Metrics), **로그** (Logs)를 생성, 수집, 처리, 내보내기(Export)하기 위한 표준 API(Application Programming Interface), SDK(Software Development Kit) 및 도구 체계.
-- 배경 및 필요성 : 복잡한 마이크로서비스 및 분산 서버 환경에서 상용 APM(Datadog, New Relic) 도구마다 서로 다른 전용 에이전트와 수집 포맷을 사용하여 발생하는 **벤더 락인**과 유지보수 오버헤드를 극복하기 위해 제정.
+- 배경 및 필요성 : 복잡한 마이크로서비스 및 분산 서버 환경에서 상용 APM(Application Performance Monitoring) 도구(Datadog, New Relic)마다 서로 다른 전용 에이전트와 수집 포맷을 사용하여 발생하는 **벤더 락인**과 유지보수 오버헤드를 극복하기 위해 제정.
 - 관측성의 3대 기둥 (MELT) : 메트릭 (Metrics), **이벤트** (Events), 로그 (Logs), 트레이스 (Traces)
 
 ## Ⅱ. OpenTelemetry 아키텍처 및 원격 측정 수집 흐름
 
 ```text
-   [ 마이크로서비스 A ] ──────── (W3C Trace Context 전파) ────────> [ 마이크로서비스 B ]
-     (OTel SDK 계측)                                                   (OTel SDK 계측)
-          │ (OTLP 프로토콜 전송)                                            │
-          ▼                                                                 ▼
-   ┌────────────────────────────────────────────────────────────────────────────────┐
-   │ [ OpenTelemetry Collector ]                                                    │
-   │  ┌──────────────────┐       ┌──────────────────┐       ┌──────────────────┐    │
-   │  │ 1. Receivers     │ ────> │ 2. Processors    │ ────> │ 3. Exporters     │    │
-   │  │ (OTLP, Jaeger)   │       │ (배치, 마스킹)   │       │ (OTLP, 백엔드변환) │    │
-   │  └──────────────────┘       └──────────────────┘       └──────────────────┘    │
-   └───────────────────────────────────────┬────────────────────────────────────────┘
-                                           │
-                                           ▼
-   ┌────────────────────────────────────────────────────────────────────────────────┐
-   │ [ 스토리지 및 시각화 백엔드 ]                                                  │
-   │  - 트레이스: Jaeger, Tempo / 메트릭: Prometheus / 로그: Loki, Elasticsearch    │
-   └────────────────────────────────────────────────────────────────────────────────┘
+[ 마이크로서비스 A / B ]
+ - OTel SDK 계측, W3C Trace Context 전파
+   │ OTLP 프로토콜 전송
+   ▼
+[ OpenTelemetry Collector ]
+   ├─ 1. Receivers  (OTLP, Jaeger)
+   ├─ 2. Processors (배치, 마스킹)
+   └─ 3. Exporters  (OTLP, 백엔드 변환)
+   │
+   ▼
+[ 스토리지 및 시각화 백엔드 ]
+ - 트레이스: Jaeger, Tempo
+ - 메트릭: Prometheus
+ - 로그: Loki, Elasticsearch
 ```
 
 - **API와 SDK의 분리** : 비즈니스 코드는 벤더 중립적인 OTel API만을 호출하여 계측(Instrumentation)하고, 실제 데이터 전송 구현은 런타임에 주입되는 OTel SDK가 담당.

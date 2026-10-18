@@ -21,19 +21,24 @@ extra:
 ## Ⅱ. Apache Iceberg 계층형 메타데이터 아키텍처
 
 ```text
-   [ Iceberg Catalog ] ─────── 최신 테이블 메타데이터 포인터 관리
-          │
-          ▼
-   [ Table Metadata (v1, v2) ] ─ 스키마, 파티션 스펙, 스냅샷 히스토리 보유
-          │
-          ▼
-   [ Manifest List ] ───────── 스냅샷 시점의 Manifest 파일 목록 (파티션 통계)
-          │
-          ▼
-   [ Manifest Files ] ──────── 실제 Data File 목록 및 컬럼별 Min/Max 통계 메트릭
-          │
-          ▼
-   [ Data Files (.parquet) ] ── 실제 원천 데이터 블록 (스토리지에 저장)
+[ Iceberg Catalog ]
+ - 최신 테이블 메타데이터 포인터 관리
+   │
+   ▼
+[ Table Metadata (v1, v2) ]
+ - 스키마, 파티션 스펙, 스냅샷 히스토리
+   │
+   ▼
+[ Manifest List ]
+ - 스냅샷 시점의 Manifest 파일 목록
+   │
+   ▼
+[ Manifest Files ]
+ - Data File 목록, 컬럼별 Min/Max 통계
+   │
+   ▼
+[ Data Files (.parquet) ]
+ - 실제 원천 데이터 블록 (스토리지 저장)
 ```
 
 - **스냅샷 격리** (Snapshot Isolation) : 모든 읽기 작업은 격리된 특정 스냅샷을 기준으로 수행되어, 백그라운드에서 대량의 쓰기/삭제 작업이 진행 중이어도 읽기 쿼리는 해당 스냅샷의 일관된 데이터를 조회. 스냅샷 격리를 직렬화 가능성이나 시스템 전체의 모든 ACID 보장과 동일시하지 않도록 구분.
