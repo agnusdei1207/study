@@ -21,19 +21,26 @@ extra:
 ## Ⅱ. 위험도 분석 및 안전 무결성 등급(ASIL / SIL) 결정 메커니즘
 
 ```text
-   [ 위험원 분석 및 위험도 평가 (HARA: Hazard Analysis and Risk Assessment) ]
-                                      │
-         ┌────────────────────────────┼────────────────────────────┐
-         ▼                            ▼                            ▼
-   [ 심각도 (Severity, S) ]     [ 노출 확률 (Exposure, E) ]  [ 통제 가능성 (Controllability, C) ]
-   - S0: 무상해                 - E1: 극히 희박              - C1: 통제 용이 (99% 운전자 대처)
-   - S1: 경상/중상              - E2: 낮은 빈도              - C2: 보통 통제 (90% 대처)
-   - S2: 중상/생명 위협         - E3: 중간 빈도              - C3: 통제 극난 (사고 회피 불가)
-   - S3: 치명적 사망            - E4: 상시 주행
-                                      │
-                                      ▼
-             [ 자동차 안전 무결성 등급 확정: ASIL(Automotive Safety Integrity Level) = S x E x C ]
-              (QM -> ASIL A -> ASIL B -> ASIL C -> ASIL D: 최고 안전 요구)
+[ 위험원 분석 및 위험도 평가 (HARA) ]
+ * HARA(Hazard Analysis and Risk Assessment)
+
+[ 심각도 (Severity, S) ]
+ - S0: 무상해 / S1: 경상/중상
+ - S2: 중상/생명 위협 / S3: 치명적 사망
+
+[ 노출 확률 (Exposure, E) ]
+ - E1: 극히 희박 / E2: 낮은 빈도
+ - E3: 중간 빈도 / E4: 상시 주행
+
+[ 통제 가능성 (Controllability, C) ]
+ - C1: 통제 용이 (99% 운전자 대처)
+ - C2: 보통 통제 (90% 대처)
+ - C3: 통제 극난 (사고 회피 불가)
+
+[ ASIL 등급 확정 = S x E x C ]
+ - QM -> ASIL A -> B -> C -> D
+   (ASIL D: 최고 안전 요구)
+ * ASIL(Automotive Safety Integrity Level)
 ```
 
 - **SIL** (Safety Integrity Level - IEC 61508) : 1단계부터 4단계까지 정의되며, SIL 4는 시간당 고장 확률 $10^{-9}$ 이하의 최고 안전 무결성을 요구.
