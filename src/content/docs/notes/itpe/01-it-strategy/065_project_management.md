@@ -23,13 +23,13 @@ extra:
 ```text
 [가치 전달 시스템 (System for Value Delivery)]
    거버넌스, 조직 환경, 정보 흐름을 통한 가치 창출
-          │
-PMBOK 7판 8대 성과 영역 (Performance Domains)
-   1. 이해관계자 (Stakeholders)      2. 팀 (Team)
-   3. 개발 접근법 및 생애주기 (Dev Approach & Life Cycle)
-   4. 기획 (Planning)                5. 프로젝트 작업 (Project Work)
-   6. 납품 (Delivery)                7. 측정 (Measurement)
-   8. 불확실성 (Uncertainty)
+          ↓
+PMBOK 7판 8대 성과 영역
+   (Performance Domains)
+   1. 이해관계자   2. 팀
+   3. 개발 접근법 및 생애주기   4. 기획
+   5. 프로젝트 작업   6. 납품
+   7. 측정   8. 불확실성
 ```
 
 - **가치 전달 시스템** (System for Value Delivery) : 거버넌스, 조직 환경, 정보 흐름을 통한 가치 창출.

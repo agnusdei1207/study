@@ -22,16 +22,19 @@ extra:
 
 ```text
 [지원 활동 (Support Activities)]
-   - 기업 인프라 (Firm Infrastructure): 기획, 재무, 법무, 품질 관리
-   - 인적자원 관리 (Human Resource Management): 채용, 교육, 보상 평가
-   - 기술 개발 (Technology Development): R&D(Research and Development),
+   - 기업 인프라 : 기획, 재무, 법무, 품질 관리
+   - 인적자원 관리 : 채용, 교육, 보상 평가
+   - 기술 개발 : R&D(Research and Development),
      제품 설계, IT 인프라 개발
-   - 조달 활동 (Procurement): 원자재 구매, 공급업체 협상, 외주 용역 계약
-          │
+   - 조달 활동 : 원자재 구매, 공급업체 협상,
+     외주 용역 계약
+          ↓
 [주 활동 (Primary Activities)]
-   [물류 투입] ──> [운영/생산] ──> [물류 산출] ──> [마케팅/영업] ──> [서비스]
-    (Inbound)    (Operations)    (Outbound) (Marketing/Sales) (Customer Service)
-          │
+   물류 투입(Inbound) → 운영/생산(Operations)
+      → 물류 산출(Outbound)
+      → 마케팅/영업(Marketing & Sales)
+      → 서비스(Customer Service)
+          ↓
 [마진 (Margin)]
    기업의 최종 부가가치
 ```

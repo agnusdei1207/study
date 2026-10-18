@@ -23,12 +23,10 @@ extra:
 ```text
 [거시 환경: PEST 분석]
    정치(P), 경제(E), 사회(S), 기술(T) 메가트렌드 분석
-          │ (외부 기회와 위협 식별)
-          ▼
+          ↓ 외부 기회와 위협 식별
 [산업 환경: 3C 분석]
    고객(Customer), 경쟁사(Competitor), 자사(Company) 분석
-          │ (시장 위치 및 핵심 역량 파악)
-          ▼
+          ↓ 시장 위치 및 핵심 역량 파악
 [전략 도출: SWOT 분석]
    강점(S), 약점(W), 기회(O), 위협(T) 매트릭스를 통한
    4대 전략 도출
@@ -55,6 +53,6 @@ extra:
 
 ## Ⅴ. IT 전략 수립에서의 실무 적용을 위한 기술사적 제언
 
-- PEST 분석 시 신기술(T)과 규제(P)의 선제적 반영 : AI(Artificial Intelligence) 기본법, 클라우드 보안인증(CSAP, Cloud Security Assurance Program), 망분리 완화 등 IT 관련 법제도와 생성형 AI 기술 트렌드를 심층 분석하여 규제 리스크와 기술 기회 조기 포착.
+- PEST 분석 시 신기술(T)과 규제(P)의 선제적 반영 : 「인공지능 기본법」, 클라우드 보안 인증(CSAP, Cloud Service Security Assurance Program), 망분리 완화 등 IT 관련 법제도와 생성형 AI 기술 트렌드를 심층 분석하여 규제 리스크와 기술 기회 조기 포착.
 - 정량적 데이터 기반의 3C 분석 수행 : 주관적 관찰을 탈피하고, 고객의 실제 행동 로그 데이터, 경쟁사의 특허 및 채용 동향, 자사의 IT TCO(Total Cost of Ownership) 데이터를 바탕으로 객관적 3C 분석 수행.
 - SWOT 분석의 구체적 IT 과제 연계 : "보안 강화", "시스템 개선" 등 추상적 구호를 배제하고, "SO-1: 모바일 API(Application Programming Interface) 개방을 통한 신규 고객 유입", "WT-1: 노후 메인프레임의 클라우드 전환을 통한 운영 리스크 회피" 등 구체적 실행 과제(To-Be) 도출.
