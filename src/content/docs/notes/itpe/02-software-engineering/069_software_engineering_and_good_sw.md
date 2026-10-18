@@ -21,22 +21,22 @@ extra:
 ## Ⅱ. 소프트웨어 공학의 3대 핵심 축 및 생명주기 체계
 
 ```text
-                 [ 소프트웨어 공학 (Software Engineering) ]
-                                      │
-         ┌────────────────────────────┼────────────────────────────┐
-         ▼                            ▼                            ▼
-   [ 프로세스 (Process) ]       [ 방법론 (Methods) ]         [ 도구 (Tools) ]
-   - 계획, 분석, 설계,          - 구조적, 객체지향,          - CASE(Computer-Aided Software Engineering) 도구, IDE(Integrated Development Environment),
-     구현, 테스트, 유지보수       애자일, 컴포넌트 기반        CI/CD, 정적 분석기
-                                      │
-                                      ▼
-                        [ 좋은 소프트웨어의 구현 ]
-              (기능 적합성, 유지보수성, 신뢰성, 효율성, 사용성)
+[ 소프트웨어 공학 3대 축 ]
+ ├─ [ 프로세스 (Process) ] : 계획, 분석, 설계,
+ │    구현, 테스트, 유지보수의 공정 틀
+ ├─ [ 방법론 (Methods) ] : 구조적·객체지향
+ │    애자일, 컴포넌트 기반 기법
+ └─ [ 도구 (Tools) ] : CASE, IDE, CI/CD,
+      정적 분석기 등 자동화 지원
+   │
+   ▼
+[ 좋은 소프트웨어의 구현 ]
+ (기능 적합성, 유지보수성, 신뢰성, 효율성, 사용성)
 ```
 
 - **프로세스 (Process)** : 고품질 산출물을 예측 가능하게 생산하기 위한 공정의 틀(Framework).
 - **방법론 (Methods)** : 실제 소프트웨어를 분석, 설계, 코딩하는 구체적인 기술과 가이드라인.
-- **도구 (Tools)** : 프로세스와 방법론을 자동화하고 지원하는 **컴퓨터 지원 도구** (CASE, CI(Continuous Integration)/CD(Continuous Delivery)).
+- **도구 (Tools)** : 프로세스와 방법론을 자동화하고 지원하는 CASE(Computer-Aided Software Engineering) 도구, IDE(Integrated Development Environment), CI/CD(Continuous Integration/Continuous Delivery) 등 **컴퓨터 지원 도구**.
 
 ## Ⅲ. 좋은 소프트웨어의 4대 관점 및 핵심 조건 비교
 
