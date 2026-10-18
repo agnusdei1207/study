@@ -21,24 +21,27 @@ extra:
 ## Ⅱ. 스프링 부트의 핵심 아키텍처 및 자동 구성 메커니즘
 
 ```text
-   [ @SpringBootApplication ]
-               │
-   ┌───────────┴─────────────────────────────────────────┐
-   │ 1. @SpringBootConfiguration : 스프링 부트 설정 클래스│
-   │ 2. @ComponentScan           : 사용자 빈(Bean) 스캔  │
-   │ 3. @EnableAutoConfiguration : 자동 구성 엔진 구동   │
-   └───────────────────────┬─────────────────────────────┘
-                           │ (spring.factories / AutoConfiguration.imports)
-                           ▼
-   ┌─────────────────────────────────────────────────────┐
-   │ [ @Conditional 계열 어노테이션 평가 ]              │
-   │  - @ConditionalOnClass (H2, JPA 클래스 존재 시)     │
-   │  - @ConditionalOnMissingBean (사용자 정의 빈 부재 시)│
-   │  - @ConditionalOnProperty (설정 프로퍼티 활성 시)    │
-   └───────────────────────┬─────────────────────────────┘
-                           │ (조건 충족 시 기본 빈 자동 등록)
-                           ▼
-   [ 내장 Tomcat 구동 및 Spring ApplicationContext 완성 ]
+[ @SpringBootApplication ]
+   ├─ 1. @SpringBootConfiguration
+   │    - 스프링 부트 설정 클래스
+   ├─ 2. @ComponentScan
+   │    - 사용자 빈(Bean) 스캔
+   └─ 3. @EnableAutoConfiguration
+        - 자동 구성 엔진 구동
+   │ (spring.factories /
+   │  AutoConfiguration.imports)
+   ▼
+[ @Conditional 계열 어노테이션 평가 ]
+ - @ConditionalOnClass
+   (H2, JPA 클래스 존재 시)
+ - @ConditionalOnMissingBean
+   (사용자 정의 빈 부재 시)
+ - @ConditionalOnProperty
+   (설정 프로퍼티 활성 시)
+   │ (조건 충족 시 기본 빈 자동 등록)
+   ▼
+[ 내장 Tomcat 구동 및
+  Spring ApplicationContext 완성 ]
 ```
 
 - **스타터 의존성** (Starters) : `spring-boot-starter-web`, `spring-boot-starter-data-jpa`처럼 관련된 라이브러리와 호환 버전들을 하나의 의존성 패키지로 묶어 버전 충돌(Jar Hell)을 원천 방지.
