@@ -21,15 +21,20 @@ extra:
 ## Ⅱ. 메시지 큐 2대 통신 패턴 및 아키텍처
 
 ```text
-   [ 1. 점대점 패턴 (Point-to-Point : Queue) ]
-    [ Producer ] ──> [ Message Queue ] ──> [ Consumer A ] (단 하나의 소비자가 단일 메시지 독점 소비)
-                                       ──> [ Consumer B ] (작업 부하 분산: Worker Queue)
+[ 1. 점대점 (Point-to-Point : Queue) ]
+ [ Producer ] ─> [ Message Queue ]
+   ├─> [ Consumer A ] (독점 소비)
+   └─> [ Consumer B ] (부하 분산)
+```
 
-   [ 2. 발행-구독 패턴 (Publish-Subscribe : Topic) ]
-    [ Producer ] ──> [ Topic / Exchange ] ──┬──> [ Consumer A (주문 서비스) ]
-                                            ├──> [ Consumer B (결제 서비스) ]
-                                            └──> [ Consumer C (알림 서비스) ]
-                     (동일한 이벤트를 다수의 구독자가 독립적으로 복제 수신)
+```text
+[ 2. 발행-구독 (Publish-Subscribe : Topic) ]
+ [ Producer ] ─> [ Topic / Exchange ]
+   ├─> [ Consumer A (주문 서비스) ]
+   ├─> [ Consumer B (결제 서비스) ]
+   └─> [ Consumer C (알림 서비스) ]
+ - 동일 이벤트를 다수 구독자가
+   독립적으로 복제 수신
 ```
 
 - **점대점 패턴** (Point-to-Point) : 큐에 저장된 메시지는 여러 워커 프로세스 중 단 하나에 의해 수신 및 처리되고 즉시 큐에서 삭제 (작업 분산).
@@ -53,7 +58,7 @@ extra:
   - 해결 방안 : 컨슈머 측 **멱등성** (Idempotent Consumer) 패턴 구현, 메시지 고유 식별자(ID, Identifier) 기반 분산 락(Redis) 및 DB(Database) 유니크 인덱스 중복 체크 로직 적용.
 - 컨슈머 처리 지연에 따른 **큐 적체** (Backpressure) 및 브로커 리소스 고갈 :
   - 한계점 : 생산 속도가 소비 속도를 지속 초과할 경우 메시지가 큐에 누적되어 브로커의 메모리 및 디스크 용량 한계 도달 및 시스템 전체 다운.
-  - 해결 방안 : 컨슈머 수평 오토스케일링(KEDA, K8s Event-driven Autoscaling), 배압(Backpressure) 제어 메커니즘 및 디스크 임계치 초과 전 메시지 아카이빙.
+  - 해결 방안 : 컨슈머 수평 오토스케일링(KEDA, Kubernetes Event-driven Autoscaling), 배압(Backpressure) 제어 메커니즘 및 디스크 임계치 초과 전 메시지 아카이빙.
 - **독성 메시지** (Poison Pill)로 인한 컨슈머 파이프라인 블로킹 :
   - 한계점 : 역직렬화 오류나 비즈니스 예외를 유발하는 잘못된 포맷의 메시지가 지속적으로 재시도(Retry)되면서 후속 메시지 처리가 전면 중단됨.
   - 해결 방안 : **지수 백오프** (Exponential Backoff) 기반 최대 재시도 횟수 제한, 실패 메시지를 즉시 격리 분석하는 Dead Letter Queue(DLQ) 아키텍처 필수 구성.

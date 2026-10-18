@@ -21,25 +21,32 @@ extra:
 ## Ⅱ. 서비스 워커의 생명주기 및 네트워크 가로채기 메커니즘
 
 ```text
-   [ 등록 (Register) ] ──> [ 설치 (Install) ] ──> [ 활성화 (Activate) ] ──> [ 대기 및 유휴 (Idle) ]
-                                   │                       │                          │
-                                   ▼                       ▼                          ▼
-                           (핵심 정적 자원 캐싱)   (이전 구버전 캐시 정리)      (fetch 이벤트 수신)
+[ 등록 (Register) ]
+   │
+   ▼
+[ 설치 (Install) ]
+ - 핵심 정적 자원 캐싱
+   │
+   ▼
+[ 활성화 (Activate) ]
+ - 이전 구버전 캐시 정리
+   │
+   ▼
+[ 대기 및 유휴 (Idle) ]
+ - fetch 이벤트 수신
 ```
 
 ```text
-   [ 웹 애플리케이션 (DOM UI) ]
-                │
-                │ HTTP Fetch 요청
-                ▼
-   ┌────────────────────────────────────────────────────────┐
-   │ [ 서비스 워커 (Service Worker: 네트워크 프록시) ]      │
-   │  - onfetch 이벤트 핸들러 가로채기                      │
-   │                                                        │
-   │     ┌─── (캐시 히트) ───> [ Cache Storage (오프라인) ] │
-   │     │                                                  │
-   │     └─── (캐시 미스) ───> [ 인터넷 원격 서버 ]         │
-   └────────────────────────────────────────────────────────┘
+[ 웹 애플리케이션 (DOM UI) ]
+   │ HTTP Fetch 요청
+   ▼
+[ 서비스 워커 (Service Worker) ]
+ - 네트워크 프록시 역할
+ - onfetch 이벤트 핸들러 가로채기
+   ├─ (캐시 히트)
+   │    └─> [ Cache Storage (오프라인) ]
+   └─ (캐시 미스)
+        └─> [ 인터넷 원격 서버 ]
 ```
 
 - **설치 단계** (Install) : 서비스 워커가 처음 다운로드될 때 실행되며, HTML(HyperText Markup Language), CSS(Cascading Style Sheets), JS(JavaScript), 로고 등 오프라인에 필요한 필수 앱 셸(App Shell) 리소스를 Cache Storage에 사전 적재.
