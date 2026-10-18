@@ -21,9 +21,20 @@ extra:
 ## Ⅱ. 스크래핑의 동작 프로세스 및 크롤링과의 비교
 
 ```text
-   [ 타겟 URL 요청 ] ──> [ HTML 소스 획득 ] ──> [ DOM 파싱 및 탐색 ] ──> [ 정형 데이터 저장 ]
-    - HTTP GET / Headless  - SPA (JS 렌더링)     - XPath, CSS Selector     - RDB, NoSQL, CSV
-      브라우저 조작          동적 콘텐츠 대기      핵심 필드 추출            정제 및 적재
+[ 타겟 URL 요청 ]
+ - HTTP GET / 헤드리스 브라우저 조작
+   │
+   ▼
+[ HTML 소스 획득 ]
+ - SPA(JS 렌더링), 동적 콘텐츠 대기
+   │
+   ▼
+[ DOM 파싱 및 탐색 ]
+ - XPath, CSS Selector, 핵심 필드 추출
+   │
+   ▼
+[ 정형 데이터 저장 ]
+ - RDB, NoSQL, CSV 정제 및 적재
 ```
 
 - **스크래핑 (Scraping)** : 특정 웹 페이지 내에서 원하는 특정 타깃 데이터(상품 가격, 리뷰 등)만을 정밀하게 핀포인트로 추출하는 작업.

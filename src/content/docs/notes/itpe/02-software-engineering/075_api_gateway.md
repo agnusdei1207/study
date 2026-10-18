@@ -16,27 +16,24 @@ extra:
 
 - 개념 : **마이크로서비스 아키텍처** (MSA, Microservice Architecture) 및 분산 클라우드 환경에서 모든 외부 클라이언트(Web, Mobile, 3rd Party)의 요청을 **단일 진입점** (Single Point of Entry)으로 수용하여, 적절한 내부 백엔드 마이크로서비스로 라우팅하고 공통 횡단 관심사를 일괄 처리하는 **리버스 프록시** (Reverse Proxy) 기반 미들웨어 (API, Application Programming Interface).
 - 배경 및 필요성 : 수십~수백 개의 마이크로서비스 엔드포인트를 클라이언트가 직접 호출할 때 발생하는 네트워크 오버헤드, 복잡한 인증/보안 처리, 프로토콜 불일치 및 엔드포인트 노출 리스크를 원천 해결.
-- 대표 솔루션 : Spring Cloud Gateway, Kong, Apigee, AWS(Amazon Web Services) API(Application Programming Interface) Gateway, Envoy.
+- 대표 솔루션 : Spring Cloud Gateway, Kong, Apigee, AWS(Amazon Web Services) API Gateway, Envoy.
 
 ## Ⅱ. API Gateway의 아키텍처 및 핵심 기능 계층
 
 ```text
-   [ 클라이언트 (Web / Mobile App) ]
-                   │
-                   ▼
-   ┌────────────────────────────────────────────────────────┐
-   │                  [ API Gateway ]                       │
-   │  - 인증 및 인가 (JWT 검증, OAuth 2.0 Token 교환)       │
-   │  - 트래픽 제어 (Rate Limiting, Throttling)             │
-   │  - 장애 격리 (Circuit Breaker: Resilience4j)           │
-   │  - 라우팅 및 로드밸런싱 (동적 서비스 디스커버리 연동)  │
-   │  - 프로토콜 변환 (REST <-> gRPC) 및 응답 캐싱          │
-   └──────────┬───────────────────────────────┬─────────────┘
-              │ (내부 사설 네트워크 라우팅)    │
-              ▼                               ▼
-   ┌──────────────────────┐        ┌──────────────────────┐
-   │ [ Order Service ]    │        │ [ Payment Service ]  │
-   └──────────────────────┘        └──────────────────────┘
+[ 클라이언트 (Web / Mobile App) ]
+   │
+   ▼
+[ API Gateway : 단일 진입점 ]
+ - 인증 및 인가 (JWT 검증, OAuth 2.0)
+ - 트래픽 제어 (Rate Limiting, Throttling)
+ - 장애 격리 (Circuit Breaker: Resilience4j)
+ - 동적 라우팅 (서비스 디스커버리 연동)
+ - 프로토콜 변환 (REST <-> gRPC), 응답 캐싱
+   │
+   ├─────── 사설 네트워크 라우팅 ───────┐
+   ▼                                   ▼
+[ Order Service ]          [ Payment Service ]
 ```
 
 - **동적 라우팅 및 로드밸런싱** : Eureka, Consul, K8s DNS(Domain Name System)와 연동하여 백엔드 파드의 인스턴스 IP(Internet Protocol)를 동적으로 감지하고 트래픽 분산.
@@ -58,7 +55,7 @@ extra:
   - 해결 방안 : 다중 가용영역(Multi-AZ) 액티브-액티브 클러스터링 및 DNS 기반 GSLB(Global Server Load Balancing) 구성, eBPF 및 Envoy 기반 고성능 비동기 Non-blocking I/O 엔진 채택.
 - 게이트웨이 내 비즈니스 로직 침투로 인한 'Fat Gateway' 변질 :
   - 한계점 : 인증, 라우팅을 넘어 비즈니스 데이터 결합 및 변환 로직이 게이트웨이에 과도하게 구현되어 유지보수성과 배포 민첩성 저하.
-  - 해결 방안 : 게이트웨이는 인프라 횡단 관심사(TLS, Rate Limit, Auth)에 집중하고, 클라이언트별 화면 조합 로직은 BFF(Backend for Frontend) 패턴으로 분리.
+  - 해결 방안 : 게이트웨이는 인프라 횡단 관심사(TLS, Rate Limit, Auth)에 집중하고, 클라이언트별 화면 조합 로직은 BFF 패턴으로 분리.
 - 분산 환경에서의 인증 토큰 검증 병목 :
   - 한계점 : 대규모 초당 요청(TPS, Transactions Per Second) 발생 시 게이트웨이가 중앙 인증 서버로 매번 토큰 유효성을 동기 검증함으로써 인증 서버 부하 및 병목 유발.
   - 해결 방안 : 비대칭키 기반 자기 완비형 JWT(JSON Web Token) 도입으로 게이트웨이 로컬 공개키 캐싱 검증, Redis 기반 세션 블랙리스트 초고속 비동기 조회 체계 결합.

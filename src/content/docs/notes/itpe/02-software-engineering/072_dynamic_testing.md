@@ -21,12 +21,29 @@ extra:
 ## Ⅱ. 동적 테스트의 실행 프레임워크 및 프로세스
 
 ```text
-   [ 테스트 환경 구축 ] ──> [ 테스트 데이터 주입 ] ──> [ 소프트웨어 실행 ] ──> [ 런타임 결과 수집 ]
-    - Mock 서버 준비         - 경계값/동등분할          - 단위/통합/시스템        - 리턴값, 응답시간
-    - 테스트 DB 세팅          - 페이로드 전송             실제 프로세스 구동       - 메모리 프로파일링
-                                                                                   │
-                                                                                   ▼
-   [ 합격 판정 (Pass/Fail) ] <── [ 테스트 오라클 대조 ] <── [ 메모리/예외 분석 ] <──┘
+[ 테스트 환경 구축 ]
+ - Mock 서버, 테스트 DB 세팅
+   │
+   ▼
+[ 테스트 데이터 주입 ]
+ - 경계값/동등분할, 페이로드 전송
+   │
+   ▼
+[ 소프트웨어 실행 ]
+ - 단위/통합/시스템 프로세스 구동
+   │
+   ▼
+[ 런타임 결과 수집 ]
+ - 리턴값, 응답시간, 메모리 프로파일링
+   │
+   ▼
+[ 메모리/예외 분석 ]
+   │
+   ▼
+[ 테스트 오라클 대조 ]
+   │
+   ▼
+[ 합격 판정 (Pass/Fail) ]
 ```
 
 - 단위 테스트 수준의 동적 검증 : JUnit, PyTest 등을 통한 개별 메서드 실행 및 **어설션** (Assertion) 검증.
@@ -37,7 +54,7 @@ extra:
 | 비교 항목 | 정적 테스트 (Static Testing) | 동적 테스트 (Dynamic Testing) |
 |---|---|---|
 | 프로그램 실행 여부 | 코드 및 산출물을 실행하지 않고 검토 | 프로그램을 실제로 빌드하고 구동하여 검증 |
-| 주요 수행 기법 | 인스펙션, 워크스루, SAST(정적 분석), 린터 | 블랙박스(경계값/동등분할), 화이트박스(MC/DC), **부하 테스트** |
+| 주요 수행 기법 | 인스펙션, 워크스루, SAST(정적 분석), 린터 | 블랙박스(경계값/동등분할), 화이트박스 MC/DC(Modified Condition/Decision Coverage), **부하 테스트** |
 | 결함 발견 대상 | 코딩 표준 위반, 문법 오류, 논리 결함, 설계 모순 | 런타임 크래시, 메모리 누수, 인터페이스 불일치, 성능 저하 |
 | 수행 시점 | 요구분석, 설계, 코딩 등 개발 전 생명주기 | 코드가 빌드되어 실행 가능한 단위 이후 |
 | 결함 수정 비용 | 조기 발견으로 비용 극소 ($1x$) | 후반부 발견 시 수정 비용 급증 ($10x \sim 100x$) |
@@ -51,10 +68,10 @@ extra:
   - 한계점 : 네트워크 지연, 비동기 타이밍 이슈, 외부 시스템 불안정성으로 인해 코드 결함이 없음에도 간헐적으로 테스트가 실패하여 개발 피드백 루프 마비.
   - 해결 방안 : 비동기 폴링 유틸리티(Awaitility) 적용, 테스트 케이스 독립성 보장을 위한 DB(Database) 롤백 격리, Flaky 테스트 자동 탐지 및 격리(Quarantine) 파이프라인 운영.
 - 테스트 스위트 비대화에 따른 실행 시간 폭증 :
-  - 한계점 : 시스템 규모 확장에 따라 수만 개의 E2E(End-to-End) 및 통합 테스트 실행에 수 시간이 소요되어 CI(Continuous Integration)/CD(Continuous Delivery) 배포 속도를 심각하게 저해.
+  - 한계점 : 시스템 규모 확장에 따라 수만 개의 E2E(End-to-End) 및 통합 테스트 실행에 수 시간이 소요되어 CI/CD(Continuous Integration/Continuous Delivery) 배포 속도를 심각하게 저해.
   - 해결 방안 : 테스트 영향도 분석(TIA, Test Impact Analysis) 기반 변경 코드 연관 테스트 선별 실행, 클라우드 분산 테스트 러너(Runner)를 통한 대규모 병렬 분할 실행.
 
 ## Ⅴ. 엔터프라이즈 환경에서의 기술사적 제언
 
 - 정적 테스트와 동적 테스트의 유기적 결합(시프트 레프트) : 동적 테스트에만 전적으로 의존하면 디버깅 비용이 크게 증가하므로, 정적 분석(SAST)으로 기계적 결함을 사전에 최대한 제거한 후 비즈니스 로직과 복합 통합 시나리오에 동적 테스트 역량을 집중하는 2단계 검증 체계 구축.
-- 동적 애플리케이션 보안 테스팅(DAST, Dynamic Application Security Testing)의 파이프라인 연계 : 기능 검증에 국한되지 않고, 실운영과 동일한 스테이징 환경에서 OWASP(Open Worldwide Application Security Project) ZAP 등을 활용한 DAST를 자동 구동하여 SQL(Structured Query Language) 인젝션, XSS(Cross-Site Scripting), CSRF 등 런타임 웹 취약점을 선제 차단해야 함.
+- 동적 애플리케이션 보안 테스팅(DAST, Dynamic Application Security Testing)의 파이프라인 연계 : 기능 검증에 국한되지 않고, 실운영과 동일한 스테이징 환경에서 OWASP(Open Worldwide Application Security Project) ZAP 등을 활용한 DAST를 자동 구동하여 SQL(Structured Query Language) 인젝션, XSS(Cross-Site Scripting), CSRF(Cross-Site Request Forgery) 등 런타임 웹 취약점을 선제 차단해야 함.

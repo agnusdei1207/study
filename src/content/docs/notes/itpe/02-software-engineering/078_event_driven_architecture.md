@@ -21,18 +21,23 @@ extra:
 ## Ⅱ. EDA 2대 토폴로지: 브로커(Broker)와 중재자(Mediator)
 
 ```text
-   [ 1. 브로커 토폴로지 (Broker) ] ──────── 단순 이벤트 체인, 중앙 제어기 없음
-    [ Producer ] ──> [ Event Broker (Kafka) ] ──> [ Consumer A ] ──> [ Event Broker ] ──> [ Consumer B ]
-    (자율적 분산, 높은 반응성)
+[ 1. 브로커 토폴로지 (Broker) ]
+ - 단순 이벤트 체인, 중앙 제어기 없음
+[ Producer ] -> [ Event Broker (Kafka) ]
+   │
+   ▼ (Consumer A 소비 후 재발행)
+[ Event Broker ] -> [ Consumer B ]
+ (자율적 분산, 높은 반응성)
 
-   [ 2. 중재자 토폴로지 (Mediator) ] ────── 복잡한 다단계 워크플로우, 중앙 오케스트레이션
-    [ Producer ] ──> [ Initial Event ]
-                            │
-                            ▼
-                  [ Event Mediator (중재자) ]
-                  ┌─────────┼─────────┐
-                  ▼         ▼         ▼
-               [작업 1]   [작업 2]   [작업 3]
+[ 2. 중재자 토폴로지 (Mediator) ]
+ - 복잡한 다단계 워크플로우, 중앙 오케스트레이션
+[ Producer ] -> [ Initial Event ]
+   │
+   ▼
+[ Event Mediator (중재자) ]
+   ├─> [작업 1]
+   ├─> [작업 2]
+   └─> [작업 3] (단계별 실행 이벤트 지시)
 ```
 
 - **브로커 토폴로지 (Broker Topology)** :
@@ -62,9 +67,9 @@ extra:
   - 해결 방안 : Transactional Outbox 및 Inbox 패턴 구현, 컨슈머 단 멱등성(Idempotency) 보장 키 설계, 동일 비즈니스 엔티티 단위의 파티션 키(Partition Key) 고정.
 - 이벤트 스키마 진화(Schema Evolution)에 따른 호환성 파손 :
   - 한계점 : 이벤트 생산자가 필드를 변경하거나 삭제할 때 이벤트를 구독하는 수많은 비동기 컨슈머 서비스에서 역직렬화 에러 발생.
-  - 해결 방안 : Schema Registry(Confluent/Apicurio)를 도입하여 Avro/Protobuf 스키마의 하위 및 양방향 호환성(Full Compatibility) 규칙을 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에서 강제 검증.
+  - 해결 방안 : Schema Registry(Confluent/Apicurio)를 도입하여 Avro/Protobuf 스키마의 하위 및 양방향 호환성(Full Compatibility) 규칙을 CI/CD(Continuous Integration/Continuous Delivery) 파이프라인에서 강제 검증.
 
 ## Ⅴ. EDA 구축 시 기술사적 제언
 
 - 최종 일관성(Eventual Consistency) 및 멱등성(Idempotency) 보장 : 분산 이벤트 환경에서는 네트워크 지연으로 인한 이벤트 중복 수신이나 순서 역전이 발생할 수 있으므로, 소비자는 고유 이벤트 ID(UUID, Universally Unique Identifier) 기반의 중복 제거 테이블을 두고 멱등하게 처리하도록 설계 필수.
-- 트랜잭셔널 아웃박스 패턴(Transactional Outbox Pattern) 적용 : 로컬 DB(Database) 트랜잭션 커밋과 메시지 브로커 이벤트 발행 간의 원자성(Atomicity)을 보장하기 위해, DB의 Outbox 테이블에 이벤트를 먼저 기록하고 CDC(Debezium)를 통해 카프카로 비동기 발행하는 패턴 구현 권장.
+- 트랜잭셔널 아웃박스 패턴(Transactional Outbox Pattern) 적용 : 로컬 DB(Database) 트랜잭션 커밋과 메시지 브로커 이벤트 발행 간의 원자성(Atomicity)을 보장하기 위해, DB의 Outbox 테이블에 이벤트를 먼저 기록하고 Debezium 등 CDC(Change Data Capture) 도구를 통해 카프카로 비동기 발행하는 패턴 구현 권장.
