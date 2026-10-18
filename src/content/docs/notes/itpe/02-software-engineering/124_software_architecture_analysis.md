@@ -21,16 +21,25 @@ extra:
 ## Ⅱ. 정방향 및 역방향 아키텍처 분석의 순환 사이클
 
 ```text
-   [ 비즈니스 요구사항 ]
-            │
-            ▼ (정방향 분석: Forward Analysis)
-   [ 의도된 아키텍처 (Conceptual Architecture) ] ── (설계 표준 수립: 레이어드, 클린 아키텍처)
-            │                                             │
-            ▼                                             ▼ (아키텍처 적합성 검증: Conformance Checking)
-   [ 실제 구현 소스코드 (Source Code) ] <────────────── [ 구조적 차이 및 결합도 위반 식별 ]
-            │                                             ▲
-            ▼ (역방향 분석: Reverse Analysis)             │
-   [ 복원된 아키텍처 (As-Built Architecture) ] ───────────┘
+[ 비즈니스 요구사항 ]
+   │
+   ▼ (정방향 분석: Forward Analysis)
+[ 의도된 아키텍처 (Conceptual Architecture) ]
+ - 설계 표준 수립 (레이어드, 클린)
+   │
+   ▼
+[ 실제 구현 소스코드 (Source Code) ]
+   │
+   ▼ (역방향 분석: Reverse Analysis)
+[ 복원된 아키텍처 (As-Built Architecture) ]
+   │
+   ▼
+[ 구조적 차이 및 결합도 위반 식별 ]
+ - (아키텍처 적합성 검증:
+   Conformance Checking)
+   │
+   ▼ (결과를 설계 표준에 반영)
+(비즈니스 요구사항으로 회귀)
 ```
 
 - **정방향 아키텍처 분석** (Forward Analysis) : 비즈니스 목표와 품질 시나리오를 바탕으로 아키텍처 패턴을 선정하고 모듈 간의 허용된 의존성 규칙(Dependency Rules)을 수립하는 과정.
