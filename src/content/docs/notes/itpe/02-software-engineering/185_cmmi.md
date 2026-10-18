@@ -21,19 +21,30 @@ extra:
 ## Ⅱ. CMMI 5단계 성숙도 모델(Maturity Level) 계층 구조
 
 ```text
-   [ Level 5: 최적화 단계 (Optimizing) ] ── 통계적 프로세스 제어 기반의 지속적 혁신 및 결함 예방
-                       ▲
-                       │
-   [ Level 4: 정량적 관리 (Quantitatively Managed) ] ─ 프로세스와 제품 품질의 정량적 측정 및 통계적 통제
-                       ▲
-                       │
-   [ Level 3: 정의 단계 (Defined) ] ─────── 조직 차원의 전사 표준 프로세스 정립 및 테일러링
-                       ▲
-                       │
-   [ Level 2: 관리 단계 (Managed) ] ──────── 프로젝트 단위의 기본적 관리 (요구관리, 계획, 형상관리)
-                       ▲
-                       │
-   [ Level 1: 초기 단계 (Initial) ] ──────── 프로세스 부재, 혼돈(Chaos), 개인의 역량에 전적 의존
+[ Level 5: 최적화 단계 ]
+ - Optimizing
+ - 통계적 프로세스 제어 기반의
+   지속적 혁신 및 결함 예방
+   ▲
+[ Level 4: 정량적 관리 ]
+ - Quantitatively Managed
+ - 프로세스와 제품 품질의
+   정량적 측정 및 통계적 통제
+   ▲
+[ Level 3: 정의 단계 ]
+ - Defined
+ - 조직 차원의 전사 표준
+   프로세스 정립 및 테일러링
+   ▲
+[ Level 2: 관리 단계 ]
+ - Managed
+ - 프로젝트 단위의 기본적 관리
+   (요구관리, 계획, 형상관리)
+   ▲
+[ Level 1: 초기 단계 ]
+ - Initial
+ - 프로세스 부재, 혼돈(Chaos),
+   개인의 역량에 전적 의존
 ```
 
 ## Ⅲ. CMMI 핵심 프로세스 영역(PA) 및 단계별 활동
@@ -50,7 +61,7 @@ extra:
 
 - 인증 획득만을 위한 형식적 산출물 양산(Paperwork Overload) :
   - 한계점 : 심사 통과를 위해 실무 개발과 무관한 수많은 형식적 문서와 증빙 자료를 급조하여 조직 생산성 급감 및 구성원 피로도 누적.
-  - 해결 방안 : ALM(Application Lifecycle Management) 및 CI(Continuous Integration)/CD(Continuous Delivery) 도구에서 생성되는 실제 개발 산출물(커밋 로그, 코드 리뷰 이력, 빌드 보고서)을 CMMI 심사 증적 자료로 자동 대체.
+  - 해결 방안 : ALM(Application Lifecycle Management) 및 CI/CD(Continuous Integration/Continuous Delivery) 도구에서 생성되는 실제 개발 산출물(커밋 로그, 코드 리뷰 이력, 빌드 보고서)을 CMMI 심사 증적 자료로 자동 대체.
 - 빠른 피드백을 중시하는 애자일/DevOps 엔지니어링 문화와의 마찰 :
   - 한계점 : 전통적 CMMI의 엄격한 프로세스 통제와 단계별 승인 절차가 애자일의 자율적 팀 의사결정 및 신속한 릴리스 주기와 정면 충돌.
   - 해결 방안 : CMMI V2.0의 애자일/스크럼 통합 프랙티스 적극 수용, 가치 인도 속도를 저해하지 않는 경량화된 품질 프로세스 테일러링.
