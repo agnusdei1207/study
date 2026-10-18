@@ -21,18 +21,21 @@ extra:
 ## Ⅱ. 중요 렌더링 경로(Critical Rendering Path) 및 Core Web Vitals
 
 ```text
-   [ 1. HTML 파싱 ] ──> [ DOM 트리 생성 ]
-                               │
-                               ▼
-   [ 2. CSS 파싱 ]  ──> [ CSSOM 트리 생성 ] ──> [ 3. 렌더 트리 결합 (Render Tree) ]
-                                                            │
-                                                            ▼
-                                                [ 4. 레이아웃 (Layout / Reflow) ]
-                                                - 요소의 정확한 크기와 위치 계산
-                                                            │
-                                                            ▼
-                                                [ 5. 페인트 및 합성 (Paint / Composite) ]
-                                                - 픽셀 래스터화 및 GPU 레이어 합성
+[ 1. HTML 파싱 ] ─> [ DOM 트리 생성 ]
+   │
+   ▼
+[ 2. CSS 파싱 ] ─> [ CSSOM 트리 생성 ]
+   │
+   ▼
+[ 3. 렌더 트리 결합 (Render Tree) ]
+   │
+   ▼
+[ 4. 레이아웃 (Layout / Reflow) ]
+ - 요소의 정확한 크기와 위치 계산
+   │
+   ▼
+[ 5. 페인트 및 합성 (Paint / Composite) ]
+ - 픽셀 래스터화 및 GPU 레이어 합성
 ```
 
 - 구글 **Core Web Vitals** 3대 지표 :
@@ -54,7 +57,7 @@ extra:
 - 최적화 기법 간의 상충 관계(Trade-Off) 제어 난제 :
   - 한계점 : 초기 번들 크기를 줄이기 위한 과도한 **코드 분할** (Code Splitting)은 네트워크 요청 수 급증을 유발하고, 프리패칭(Prefetching)은 불필요한 대역폭을 낭비하는 딜레마.
   - 해결 방안 : 사용자 여정(User Journey) 기반 중요 렌더링 경로(Critical Rendering Path) 우선순위화, 브라우저 유휴 시간(requestIdleCallback)을 활용한 점진적 리소스 로딩.
-- 지속적 배포(CI(Continuous Integration)/CD(Continuous Delivery)) 환경에서의 **성능 회귀** (Performance Regression) 감지 한계 :
+- 지속적 배포(CI/CD(Continuous Integration/Continuous Delivery)) 환경에서의 **성능 회귀** (Performance Regression) 감지 한계 :
   - 한계점 : 초기 릴리스 시 최적화를 완료했더라도, 일상적인 기능 추가와 무거운 서드파티 마케팅 스크립트 유입으로 코어 웹 바이탈 점수가 서서히 악화됨.
   - 해결 방안 : CI 빌드 파이프라인에 Lighthouse CI 및 성능 예산(Performance Budget) 자동화 게이트웨이를 구축하여 번들 크기나 지표 초과 시 빌드 자동 실패.
 - 클라이언트 렌더링(CSR) 환경의 복잡한 LCP 및 CLS 개선 한계 :

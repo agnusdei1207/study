@@ -21,16 +21,25 @@ extra:
 ## Ⅱ. 유지보수 3R(역공학·재공학·재사용)의 순환 프로세스
 
 ```text
-   [ 레거시 시스템 (Legacy Source Code) ]
-                     │
-                     ▼ (1. 역공학: Reverse Engineering)
-   [ 고수준 아키텍처 및 설계 복원 (Design Recovery) ] ── 소스코드로부터 DFD(Data Flow Diagram), ERD(Entity-Relationship Diagram), 클래스 추출
-                     │
-                     ▼ (2. 재공학: Re-engineering)
-   [ 구조 개선 및 리팩토링 (Restructuring / Redesign) ] ─ 코드 스멜 제거, 클라우드 아키텍처 현대화
-                     │
-                     ▼ (3. 재사용: Reuse)
-   [ 고품질 재사용 컴포넌트 자산화 (Core Asset) ] ───── 신규 차세대 프로젝트에 조립 재사용
+[ 레거시 시스템 (Legacy Source Code) ]
+   │
+   ▼ (1. 역공학: Reverse Engineering)
+[ 고수준 아키텍처 및 설계 복원 ]
+ - Design Recovery
+ - 소스코드로부터 DFD(Data Flow
+   Diagram), ERD(Entity-Relationship
+   Diagram), 클래스 추출
+   │
+   ▼ (2. 재공학: Re-engineering)
+[ 구조 개선 및 리팩토링 ]
+ - Restructuring / Redesign
+ - 코드 스멜 제거, 클라우드
+   아키텍처 현대화
+   │
+   ▼ (3. 재사용: Reuse)
+[ 고품질 재사용 컴포넌트 자산화 ]
+ - Core Asset
+ - 신규 차세대 프로젝트 조립 재사용
 ```
 
 - **역공학** (Reverse Engineering) : 구현된 소스코드, 실행 파일, DB(Database) 스키마로부터 상위 수준의 분석/설계 명세서(문서)와 아키텍처를 복원하는 공학적 분석 기법.
