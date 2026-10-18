@@ -21,16 +21,21 @@ extra:
 ## Ⅱ. Open API 생태계 아키텍처 및 연동 흐름
 
 ```text
-   [ 외부 앱 / 파트너 ] ──> [ API Gateway ] ──────────> [ 내부 백엔드 서비스 ]
-          │                   │ (보안/인증/라우팅)            │ (MSA/DB)
-          │                   ▼                              │
-          └───────────> [ Developer Portal ] <───────────────┘
-                        - API 카탈로그 / 명세서(OAS)
-                        - API 키 발급 및 SDK 제공
-                        - 트래픽 모니터링 / 과금
+[ 외부 앱/파트너 ]
+   │ API 호출
+   ▼
+[ API Gateway ] (보안/인증/라우팅)
+   │ 백엔드 전달
+   ▼
+[ 내부 백엔드 서비스 ] (MSA/DB)
+
+[ Developer Portal ] (개발자 창구)
+   - API 카탈로그/명세서(OAS)
+   - API 키 발급 및 SDK 제공
+   - 트래픽 모니터링/과금
 ```
 
-- **Developer Portal** : 개발자가 API(Application Programming Interface) 명세를 확인(Swagger/OAS)하고, 테스트 샌드박스를 사용하며 API Key 발급 및 사용량을 확인하는 개발자 창구.
+- **Developer Portal** : 개발자가 API 명세를 확인(Swagger/OAS)하고, 테스트 샌드박스를 사용하며 API Key 발급 및 사용량을 확인하는 개발자 창구.
 - **API Gateway** : 모든 외부 요청의 진입점으로서 **OAuth(Open Authorization) 2.0** 기반 인증/인가, **Rate Limiting** (호출 제한), 트래픽 라우팅, SSL(Secure Sockets Layer) 종단, 캐싱 및 로깅 일괄 수행.
 - **API Management (APIM)** : 수명주기 관리(기획->발행->버전관리->폐기), 수익화 과금(Billing) 모델 지원.
 
@@ -54,7 +59,7 @@ extra:
   - 해결 방안 : URI(Uniform Resource Identifier) 경로(`/v1`, `/v2`) 또는 헤더 기반 명시적 API 버전 관리 정책을 수립하고, 구버전 필드는 즉시 삭제 대신 비권장(Deprecated) 처리 후 충분한 일몰(Sunset) 유예 기간 부여.
 - API 키 유출 및 객체 레벨 권한 취약점(BOLA/IDOR) :
   - 한계점 : 클라이언트 코드에 하드코딩된 API 키 탈취 또는 URL(Uniform Resource Locator) 리소스 ID(Identifier) 변조를 통해 타인의 데이터에 무단 접근하는 OWASP(Open Worldwide Application Security Project) API Top 10 1위 취약점(BOLA, Broken Object Level Authorization) 노출.
-  - 해결 방안 : OAuth 2.0 / OIDC(OpenID Connect) 기반의 단기 유효 JWT(JSON Web Token) 토큰 체계로 전환하고, API Gateway 및 백엔드 서비스 계층에서 호출자의 사용자 식별자와 리소스 소유권을 교차 검증하는 인가 로직(ABAC(Attribute-Based Access Control)/PBAC) 강제.
+  - 해결 방안 : OAuth 2.0 / OIDC(OpenID Connect) 기반의 단기 유효 JWT(JSON Web Token) 토큰 체계로 전환하고, API Gateway 및 백엔드 서비스 계층에서 호출자의 사용자 식별자와 리소스 소유권을 교차 검증하는 ABAC(Attribute-Based Access Control)/PBAC(Policy-Based Access Control) 인가 로직 강제.
 
 ## Ⅴ. Open API 보안 및 거버넌스를 위한 기술사적 제언
 

@@ -21,19 +21,20 @@ extra:
 ## Ⅱ. 3대 안전성 분석 기법의 메커니즘
 
 ```text
-[ FTA: 하향식(Deductive) ]     [ FMEA: 상향식(Inductive) ]      [ HAZOP: 가이드워드 기반 ]
-       [ Top Event: 화재 ]           [ 부품/단위 모듈 고장 ]          [ 프로세스 파라미터 (유량) ]
-              │                               │                               │
-         ┌────┴────┐                          ▼                               ▼
-      [AND]      [OR]                 [ 시스템 영향 분석 ]            [ 가이드워드 결합 (MORE) ]
-     ┌──┴──┐    ┌──┴──┐                       │                               │
-     A     B    C     D                       ▼                               ▼
-    (원인 결함 조합 탐색)            [ 위험우선순위(RPN, Risk Priority Number) 산출 ]       [ 이탈(Deviation) 원인/대책 ]
+[ FTA: 하향식(Deductive) ]
+   Top Event -> AND/OR 게이트 조합
+      -> 기본 사상 -> 최소 컷셋 도출
+[ FMEA: 상향식(Inductive) ]
+   부품/모듈 고장 -> 시스템 영향 분석
+      -> 위험우선순위(RPN) 산출
+[ HAZOP: 가이드워드 기반 ]
+   파라미터(유량) x 가이드워드(MORE)
+      -> 이탈(Deviation) 원인/대책 도출
 ```
 
-- **FTA (Fault Tree Analysis)** : 시스템의 최상위 사고(Top Event)에서 시작하여 **불 대수** (Boolean Logic: AND/OR 게이트)를 통해 **기본 사상** (Basic Event)과 최소 **컷셋** (Minimal Cut Set)을 도출하는 하향식 연역 분석.
-- **FMEA (Failure Mode and Effects Analysis)** : 개별 부품이나 소프트웨어 단위 모듈의 고장 모드를 나열하고, **심각도** (S), **발생빈도** (O), **검출난이도** (D)의 곱으로 **위험우선순위** (RPN = S x O x D)를 계산하는 상향식 귀납 분석.
-- **HAZOP (Hazard and Operability Study)** : 프로세스 변수(온도, 압력, 데이터 유입량 등)에 **가이드워드** (No, More, Less, As Well As, Reverse 등)를 결합하여 설계 의도에서 벗어난 **이탈** (Deviation)을 분석.
+- **FTA** : 시스템의 최상위 사고(Top Event)에서 시작하여 **불 대수** (Boolean Logic: AND/OR 게이트)를 통해 **기본 사상** (Basic Event)과 최소 **컷셋** (Minimal Cut Set)을 도출하는 하향식 연역 분석.
+- **FMEA** : 개별 부품이나 소프트웨어 단위 모듈의 고장 모드를 나열하고, **심각도** (S), **발생빈도** (O), **검출난이도** (D)의 곱으로 **위험우선순위** (RPN = S x O x D)를 계산하는 상향식 귀납 분석.
+- **HAZOP** : 프로세스 변수(온도, 압력, 데이터 유입량 등)에 **가이드워드** (No, More, Less, As Well As, Reverse 등)를 결합하여 설계 의도에서 벗어난 **이탈** (Deviation)을 분석.
 
 ## Ⅲ. FTA, FMEA, HAZOP의 비교 분석
 
@@ -49,7 +50,7 @@ extra:
 
 - 복잡 분산 시스템에서의 정적 분석 기법 적용 한계 :
   - 한계점 : 수백만 라인의 코드와 분산 통신 환경에서 하드웨어 중심의 고전적 기법(FTA, FMEA)만으로는 컴포넌트 간 상호작용 오류나 타이밍 이슈에 기인한 위험원 식별 불가.
-  - 해결 방안 : 시스템 이론 기반 사고 모델링(STAMP/STPA)을 도입하여 제어 루프 상의 안전 제약 조건 위반을 분석하고, 모델 기반 시스템 엔지니어링(MBSE) 도구와 연계한 위험원 분석 자동화.
+  - 해결 방안 : 시스템 이론 기반 사고 모델링(STAMP, System-Theoretic Accident Model and Processes)과 STPA(System-Theoretic Process Analysis)를 도입하여 제어 루프 상의 안전 제약 조건 위반을 분석하고, 모델 기반 시스템 엔지니어링(MBSE) 도구와 연계한 위험원 분석 자동화.
 - 소프트웨어의 체계적 결함(Systematic Fault) 특성과 고장률 추정 한계 :
   - 한계점 : 소프트웨어 결함은 부품 마모가 아닌 설계/구현 오류에 기인하므로, 하드웨어식 확률적 고장률($\lambda$) 기반 안전도 산출 공식이 성립하지 않음.
   - 해결 방안 : 정량적 고장률 계산 대신 기능안전 표준(ISO 26262, IEC 61508)의 ASIL(Automotive Safety Integrity Level)/SIL(Safety Integrity Level) 등급별 안전 무결성 프로세스(정적 분석, MC/DC 검증, 정형 기법) 준수 및 방어적 아키텍처(Fault-Tolerant, Fail-Safe) 설계.
@@ -59,5 +60,5 @@ extra:
 
 ## Ⅴ. 고신뢰성 SW 시스템 구축을 위한 기술사적 제언
 
-- STPA(시스템 이론 프로세스 분석)로의 확장 적용 : 구성요소의 단일 고장뿐만 아니라 구성요소 간 상호작용의 불일치 및 제어 루프 결함으로 발생하는 현대 복잡 시스템의 안전성 분석을 위해 STAMP 기반의 STPA 기법 병행 도입 권장.
+- STPA 기법으로의 확장 적용 : 구성요소의 단일 고장뿐만 아니라 구성요소 간 상호작용의 불일치 및 제어 루프 결함으로 발생하는 현대 복잡 시스템의 안전성 분석을 위해 STAMP 기반의 STPA 기법 병행 도입 권장.
 - 안전 무결성 기준(SIL / ASIL)과의 엄격한 연계 : 식별된 위험도에 따라 요구되는 안전 등급(ASIL A~D, SIL 1~4)을 확정하고, 이에 상응하는 아키텍처 이중화(Fail-Safe, Fault-Tolerant) 및 MC/DC 테스트 강제화 필요.

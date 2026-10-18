@@ -23,14 +23,21 @@ extra:
 ## Ⅱ. SOAP 메시지 구조 및 웹 서비스 아키텍처
 
 ```text
-   [ Service Requester ] ──(1. WSDL 검색)──> [ UDDI Registry ]
-           │                                          │
-           │ (2. WSDL 기반 바인딩)                    │
-           ▼                                          ▼
-   [ SOAP Envelope ] ─────────────────────────> [ Service Provider ]
-     - <SOAP-Header> : 보안(WS-Security), 트랜잭션 (선택)
-     - <SOAP-Body>   : 실제 호출 메서드 및 매개변수 (필수)
-       - <SOAP-Fault>: 오류 발생 시 상세 예외 정보
+[ Service Requester ]
+   │ (1) WSDL 검색
+   ▼
+[ UDDI Registry ]
+   │ (2) WSDL 기반 바인딩
+   ▼
+[ Service Provider ]
+   ▲
+   │ (3) SOAP Envelope 전송
+
+[ SOAP Envelope 구조 ]
+   - <SOAP-Header> : WS-Security, 트랜잭션
+     등 부가 정보 (선택)
+   - <SOAP-Body> : 호출 메서드·매개변수 (필수)
+   - <SOAP-Fault> : 오류 상세 예외 정보
 ```
 
 - **SOAP Envelope (봉투)** : XML 문서가 SOAP 메시지임을 선언하는 최상위 루트 엘리먼트.
