@@ -21,14 +21,18 @@ extra:
 ## Ⅱ. 기능점수 5대 기능 구성요소 및 계산 체계
 
 ```text
-                               [ 전체 기능점수 (FP) ]
-                                         │
-           ┌─────────────────────────────┴─────────────────────────────┐
-           ▼                                                           ▼
-   [ 데이터 기능 (Data Functions) ]                     [ 트랜잭션 기능 (Transaction Functions) ]
-   - 내부논리파일 (ILF, Internal Logical File)          - 외부입력 (EI, External Input)
-   - 외부연계파일 (EIF, External Interface File)        - 외부출력 (EO, External Output)
-                                                        - 외부조회 (EQ, External Inquiry)
+[ 전체 기능점수 (FP) ]
+   ├─ [ 데이터 기능 (Data Functions) ]
+   │    - 내부논리파일 (ILF)
+   │    - 외부연계파일 (EIF)
+   └─ [ 트랜잭션 기능 (Transaction Functions) ]
+        - 외부입력 (EI)
+        - 외부출력 (EO)
+        - 외부조회 (EQ)
+ * ILF(Internal Logical File),
+   EIF(External Interface File)
+ * EI(External Input), EO(External Output),
+   EQ(External Inquiry)
 ```
 
 - **데이터 기능 측정** (Data Functions) :
@@ -45,7 +49,7 @@ extra:
 |---|---|---|
 | 적용 시점 | 기획, 예산 수립, 발주 공고 단계 | 상세 분석 및 설계 완료 후 개발 단계 |
 | 데이터 수집 수준 | 기능 식별만 수행 (RET/DET/FTR(File Type Referenced) 미측정) | RET, DET, FTR의 개수를 전수 카운팅 |
-| 기능별 가중치 | 고정된 평균 가중치 적용 (ILF: 7.5, EIF: 5.4, EI: 4.6, EO: 5.2, EQ: 3.9) | 복잡도(Low, Average, High) 매트릭스에 따른 차등 가중치 적용 |
+| 기능별 가중치 | 고정된 평균 가중치 적용 (ILF: 7.5, EIF: 5.4, EI: 4.0, EO: 5.2, EQ: 3.9) | 복잡도(Low, Average, High) 매트릭스에 따른 차등 가중치 적용 |
 | 산정 소요 공수 | 매우 적음 (신속한 예산 견적 가능) | 많은 시간과 전문 인력 필요 (정밀 정산) |
 | 오차율 | $\pm 10\sim 15\%$ 수준 오차 존재 가능 | 오차 최소화 (가장 정확한 규모 확정) |
 
