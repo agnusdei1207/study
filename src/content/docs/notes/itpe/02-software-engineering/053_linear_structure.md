@@ -21,17 +21,18 @@ extra:
 ## Ⅱ. 선형 자료구조의 메모리 배치 및 동작 메커니즘
 
 ```text
-   [ 배열 (Array) ] ────────── 물리적 메모리 연속 할당
-     [ Index 0 ] [ Index 1 ] [ Index 2 ] [ Index 3 ] -> 인덱스 즉각 접근 O(1)
-          │
-   [ 연결 리스트 (Linked List) ] ─ 물리적 메모리 불연속, 포인터 연결
-     [ Data|Next ] ──> [ Data|Next ] ──> [ Data|Next ] -> 삽입/삭제 O(1)
-          │
-   [ 스택 (Stack) ] ────────── LIFO (Last In First Out)
-     Top -> [ D ] -> [ C ] -> [ B ] -> [ A ] (Bottom)
-          │
-   [ 큐 (Queue) ] ──────────── FIFO (First In First Out)
-     Rear(Enqueue) -> [ D ] [ C ] [ B ] [ A ] -> Front(Dequeue)
+[ 배열 (Array) ] : 물리적 메모리 연속 할당
+   [0] [1] [2] [3] -> 인덱스 즉각 접근 O(1)
+
+[ 연결 리스트 (Linked List) ] : 불연속, 포인터 연결
+   [Data|Next] ──> [Data|Next] ──> [Data|Next]
+   -> 중간 삽입/삭제 O(1)
+
+[ 스택 (Stack) ] : LIFO (Last In First Out)
+   Top -> [D] -> [C] -> [B] -> [A] (Bottom)
+
+[ 큐 (Queue) ] : FIFO (First In First Out)
+   Rear(삽입) -> [D] [C] [B] [A] -> Front(삭제)
 ```
 
 - **배열 (Array)** : 연속된 메모리 공간에 동일한 타입의 데이터를 순서대로 배치하여 인덱스를 통한 **직접 접근** (Random Access)이 $O(1)$로 매우 빠름.

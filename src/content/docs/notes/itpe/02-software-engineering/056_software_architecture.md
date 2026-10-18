@@ -21,21 +21,12 @@ extra:
 ## Ⅱ. 크루첸(Kruchten)의 4+1 뷰(View) 모델
 
 ```text
-                 [ 유스케이스 뷰 (Use Case View) ]
-                  (최종 사용자: 시스템 기능 요구 통합 검증)
-                                   │
-         ┌─────────────────────────┼─────────────────────────┐
-         ▼                         ▼                         ▼
-   [ 논리 뷰 (Logical) ]    [ 프로세스 뷰 (Process) ]  [ 구현 뷰 (Development) ]
-   - 설계자 관점            - 시스템 통합자 관점       - 프로그래머 관점
-   - 클래스, 인터페이스     - 스레드, 동시성, 성능    - 소스코드, 패키지, 빌드
-   - 기능적 요구사항 반영   - 비기능적 품질속성 반영   - 소프트웨어 모듈 관리
-                                   │
-                                   ▼
-                         [ 배포 뷰 (Physical) ]
-                         - 시스템 엔지니어 관점
-                         - 물리 노드, 네트워크, 클라우드
-                         - 하드웨어 매핑 및 가용성
+[ 유스케이스 뷰 (Use Case) ] : 중심 뷰 (+1)
+ - 최종 사용자 관점, 시나리오로 뷰 도출·검증
+   ├─ [ 논리 뷰 ] - 설계자, 클래스·객체 모델
+   ├─ [ 프로세스 뷰 ] - 통합자, 동시성·성능
+   ├─ [ 구현 뷰 ] - 프로그래머, 모듈·빌드
+   └─ [ 배포 뷰 ] - 엔지니어, 물리 노드 매핑
 ```
 
 - **유스케이스 뷰 (Use Case View, +1 View)** : 다른 4가지 뷰를 도출하고 검증하는 중심 뷰로, 최종 사용자 관점의 시나리오 제시.
@@ -59,7 +50,7 @@ extra:
 
 - 개발 진행 중 아키텍처 침식(Architecture Erosion) 및 설계 붕괴 :
   - 한계점 : 초기 수립된 계층형 또는 헥사고날 아키텍처 원칙이 촉박한 개발 일정과 편법 핫픽스로 인해 무단 우회되면서 모듈 간 순환 참조가 발생하고 스파게티 코드로 퇴화.
-  - 해결 방안 : ArchUnit, SonarQube 등 아키텍처 피트니스 함수(Fitness Function)를 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 통합하여 패키지 간 의존성 규칙 위반 발생 시 빌드를 자동 차단.
+  - 해결 방안 : ArchUnit, SonarQube 등 아키텍처 피트니스 함수(Fitness Function)를 CI/CD(Continuous Integration/Continuous Delivery) 파이프라인에 통합하여 패키지 간 의존성 규칙 위반 발생 시 빌드를 자동 차단.
 - 상아탑 아키텍처(Ivory Tower Architecture)와 구현 현장 간의 괴리 :
   - 한계점 : 아키텍트가 실제 코딩과 유리된 채 비현실적인 추상 다이어그램과 이론 중심의 문서만을 양산하여 실제 개발팀의 외면과 불신을 초래.
   - 해결 방안 : 코딩하는 아키텍트(Hands-on Architect) 제도를 정착시켜 아키텍트가 직접 핵심 프레임워크 스파이크 코드를 작성하고, 실제 구현 난제를 함께 페어 프로그래밍으로 해결.
@@ -69,5 +60,5 @@ extra:
 
 ## Ⅴ. 엔터프라이즈 아키텍처 거버넌스를 위한 기술사적 제언
 
-- 품질속성 주도 설계(QADD, Quality Attribute-Driven Design) 체계화 : 아키텍처는 기능적 요구사항보다 비기능 품질속성(NFR, Non-Functional Requirement)에 의해 결정되므로, SEI의 ADD 방법론을 적용하여 유틸리티 트리에서 도출된 핵심 품질 시나리오를 만족하는 아키텍처 전술(Tactics)을 체계적으로 도출해야 함.
-- 아키텍처 결정 기록(ADR, Architecture Decision Record) 도입 : 왜 특정 기술이나 아키텍처 스타일을 선택했고 대안은 무엇이었는지를 마크다운 기반의 짧은 문서(ADR, Architecture Decision Record)로 버전 관리하여, 장기적 시스템 진화 과정에서 아키텍처 부패(Architecture Erosion)를 방지하는 거버넌스 정착 필요.
+- 품질속성 주도 설계(ADD, Attribute-Driven Design) 체계화 : 아키텍처는 기능적 요구사항보다 비기능 품질속성(NFR, Non-Functional Requirement)에 의해 결정되므로, SEI(Software Engineering Institute)의 ADD 방법론을 적용하여 유틸리티 트리에서 도출된 핵심 품질 시나리오를 만족하는 아키텍처 전술(Tactics)을 체계적으로 도출해야 함.
+- 아키텍처 결정 기록(ADR, Architecture Decision Record) 도입 : 왜 특정 기술이나 아키텍처 스타일을 선택했고 대안은 무엇이었는지를 마크다운 기반의 짧은 문서(ADR)로 버전 관리하여, 장기적 시스템 진화 과정에서 아키텍처 부패(Architecture Erosion)를 방지하는 거버넌스 정착 필요.

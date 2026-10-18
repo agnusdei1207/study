@@ -21,25 +21,31 @@ extra:
 ## Ⅱ. TA와 AA의 시스템 계층별 역할 분담 구조
 
 ```text
-   ┌────────────────────────────────────────────────────────┐
-   │ [ AA의 영역: 비즈니스 및 애플리케이션 ]                │
-   │  - 도메인 모델링, 유스케이스 설계, DDD(Domain-Driven Design) 바운디드 컨텍스트 │
-   │  - 서비스 인터페이스 정의, 공통 컴포넌트 프레임워크    │
-   │  - 레이어드 아키텍처 (Controller -> Service -> Repo)   │
-   └──────────────────────────┬─────────────────────────────┘
-                              │
-          [ 협업 접점 (Interface & Non-Functional) ]
-          - 트랜잭션 격리수준, 분산 락, 캐싱 전략 협의
-          - REST/gRPC 페이로드 규격, API Gateway 라우팅
-          - 성능 목표(TPS, Transactions Per Second; Latency) 달성을 위한 튜닝
-                              │
-   ┌──────────────────────────▼─────────────────────────────┐
-   │ [ TA의 영역: 기술 인프라 및 플랫폼 ]                   │
-   │  - 하이브리드/멀티 클라우드, Kubernetes 클러스터 설계   │
-   │  - 네트워크 토폴로지, 보안(WAF, Web Application Firewall; IPS, Intrusion Prevention System; IAM, Identity and Access Management), 스토리지 │
-   │  - CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인, 모니터링/관측성(APM, Application Performance Monitoring; 로깅) │
-   │  - 고가용성(HA, High Availability), 재해복구(DR, Disaster Recovery), 미들웨어 WAS(Web Application Server)/DB(Database) 구성 │
-   └────────────────────────────────────────────────────────┘
+[ AA의 영역 : 비즈니스 및 애플리케이션 ]
+ - 도메인 모델링, 유스케이스 설계
+ - DDD 바운디드 컨텍스트
+ - 서비스 인터페이스, 공통 컴포넌트
+ - 레이어드 (Controller -> Service -> Repo)
+   │
+   ▼
+[ 협업 접점 (Interface & Non-Functional) ]
+ - 트랜잭션 격리수준, 분산 락 협의
+ - 캐싱 전략, TPS·Latency 목표 튜닝
+ - REST/gRPC 페이로드, API Gateway 라우팅
+   │
+   ▼
+[ TA의 영역 : 기술 인프라 및 플랫폼 ]
+ - 하이브리드/멀티 클라우드, Kubernetes
+ - 네트워크 토폴로지, 스토리지
+ - 보안(WAF, IPS, IAM) 정책
+ - CI/CD 파이프라인, 관측성(APM, 로깅)
+ - 고가용성(HA), 재해복구(DR), WAS/DB
+
+ * WAF(Web Application Firewall)
+ * IPS(Intrusion Prevention System)
+ * IAM(Identity and Access Management)
+ * APM(Application Performance Monitoring)
+ * CI/CD(Continuous Integration/Delivery)
 ```
 
 ## Ⅲ. TA와 AA의 핵심 직무 및 역량 비교
@@ -67,4 +73,4 @@ extra:
 ## Ⅴ. 성공적인 프로젝트 수행을 위한 기술사적 제언
 
 - 프로젝트 초기 비기능 요구사항(NFR) 공동 워크숍 정례화 : 성능(TPS, Transactions Per Second), 복구목표(RTO(Recovery Time Objective)/RPO(Recovery Point Objective)), 동시성 제어 요건은 인프라(TA)와 로직(AA)의 긴밀한 타협이 필수적이므로, ATAM(Architecture Tradeoff Analysis Method) 기반의 공동 품질속성 워크숍을 통해 아키텍처 의사결정 기록(ADR)을 사전 도출해야 함.
-- DA(Data Architect) 및 SA(Security Architect)와의 4자 거버넌스 협력체계 구축 : 데이터 모델과 쿼리 성능(DA), 컴플라이언스 및 인가 정책(SA)이 TA/AA의 설계와 분리될 경우 심각한 성능 병목과 보안 홀이 발생하므로, 주간 아키텍처 검토 회의(ARB, Architecture Review Board)를 운영하여 정기적인 구조적 정합성 검증 필수.
+- DA(Data Architect) 및 SA(Security Architect)와의 4자 거버넌스 협력체계 구축 : 데이터 모델과 쿼리 성능(DA), 컴플라이언스 및 인가 정책(SA)이 TA/AA의 설계와 분리될 경우 심각한 성능 병목과 보안 홀이 발생하므로, 주간 아키텍처 검토 회의(ARB)를 운영하여 정기적인 구조적 정합성 검증 필수.

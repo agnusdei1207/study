@@ -21,16 +21,20 @@ extra:
 ## Ⅱ. 주요 아키텍처 스타일의 구조 및 비교
 
 ```text
-[ 계층형 (Layered) ]        [ 이벤트 기반 (EDA, Event-Driven Architecture) ]       [ 마이크로커널 (Plugin) ]
- ┌────────────────┐         [ Producer ]                ┌──────────────────────┐
- │ Presentation   │              │ (이벤트 발행)         │   Core System        │
- ├────────────────┤              ▼                      └──────────┬───────────┘
- │ Business Logic │         [ Event Broker ]                       │ (플러그인 등록)
- ├────────────────┤         ┌────┴────┐                 ┌──────────┼───────────┐
- │ Persistence    │         ▼         ▼                 ▼          ▼           ▼
- ├────────────────┤    [Consumer] [Consumer]        [Plugin A] [Plugin B] [Plugin C]
- │ Database       │
- └────────────────┘
+[ 계층형 (Layered) ]
+ Presentation -> Business Logic
+    -> Persistence -> Database
+ (단방향 호출, 관심사의 분리)
+
+[ 이벤트 기반 (EDA, Event-Driven Architecture) ]
+ [ Producer ] --(이벤트 발행)--> [ Event Broker ]
+        ┌────────────┴────────────┐
+        ▼                         ▼
+   [ Consumer ]              [ Consumer ]
+
+[ 마이크로커널 (Plugin) ]
+ [ Core System ] --(플러그인 등록)-->
+      [Plugin A] [Plugin B] [Plugin C]
 ```
 
 - **계층형 아키텍처 (Layered)** : 가장 보편적인 구조로 각 계층이 명확한 책임을 가짐. 단방향 호출 원칙과 관심사의 분리를 달성하나, 단순 CRUD(Create, Read, Update, Delete) 작업 시에도 모든 계층을 관통하는 **싱크홀** (Sinkhole) 안티패턴 위험 존재.
@@ -43,7 +47,7 @@ extra:
 |---|---|---|---|---|---|
 | 계층형 (Layered) | 낮음 | 낮음 (모놀리식) | 보통 (계층 오버헤드) | 낮음 | 높음 (친숙함) |
 | 마이크로커널 (Plugin) | 높음 | 높음 (플러그인별) | 높음 | 낮음 | 높음 |
-| 이벤트 기반 (EDA, Event-Driven Architecture) | 높음 | 높음 | 높음 (비동기 처리) | 극도로 높음 | 복잡함 |
+| 이벤트 기반 (EDA) | 높음 | 높음 | 높음 (비동기 처리) | 극도로 높음 | 복잡함 |
 | **마이크로서비스 (MSA)** | 극도로 높음 | 극도로 높음 | 보통 (네트워크 홉) | 극도로 높음 | 복잡함 |
 | 공간 기반 (Space-Based) | 높음 | 높음 | 극도로 높음 (인메모리) | 극도로 높음 | 복잡함 |
 
