@@ -21,16 +21,26 @@ extra:
 ## Ⅱ. 요구공학의 4대 핵심 프로세스 및 피드백 루프
 
 ```text
-   [ 요구사항 도출 ] ──> [ 요구사항 분석 ] ──> [ 요구사항 명세 ] ──> [ 요구사항 검증 ]
-   (Elicitation)        (Analysis)           (Specification)      (Validation)
-    - 인터뷰, 워크숍     - 타당성, 충돌 해결   - SRS 작성           - 인스펙션, 리뷰
-    - 프로토타이핑       - DFD(Data Flow Diagram), UML(Unified Modeling Language) 모델링    - 정형/비정형 명세   - 인수 기준 정의
-          ▲                                                             │
-          └───────────────────── (변경 관리 및 피드백) ────────────────┘
+[ 요구사항 도출 ] (Elicitation)
+ - 인터뷰, 워크숍, 프로토타이핑
+   │
+   ▼
+[ 요구사항 분석 ] (Analysis)
+ - 타당성 검토, 충돌 해결, 모델링
+   │
+   ▼
+[ 요구사항 명세 ] (Specification)
+ - SRS 작성, 정형/비정형 명세
+   │
+   ▼
+[ 요구사항 검증 ] (Validation)
+ - 인스펙션, 리뷰, 인수 기준 정의
+   │
+   └─(변경 관리 및 피드백)─> 도출로 회귀
 ```
 
 - **요구사항 도출 (Elicitation)** : 고객, 사용자, 도메인 전문가 등 이해관계자로부터 잠재된 요구사항을 수집.
-- **요구사항 분석 (Analysis)** : 도출된 요구의 모호성, 중복성, 상충(Conflict)을 해결하고 기능적/비기능적 요구로 분류하여 모델링.
+- **요구사항 분석 (Analysis)** : 도출된 요구의 모호성, 중복성, 상충(Conflict)을 해결하고 기능적/비기능적 요구로 분류하여 DFD(Data Flow Diagram), UML(Unified Modeling Language) 등으로 모델링.
 - **요구사항 명세 (Specification)** : 정형화된 서식을 통해 구현자와 발주자가 오해 없이 합의할 수 있도록 SRS 작성.
 - **요구사항 검증 (Validation)** : 명세서가 사용자의 실제 의도를 반영하고 있는지, 완결성/일관성/검증가능성을 인스펙션을 통해 검토.
 - **요구사항 관리 (Management)** : 베이스라인 수립, **변경 통제** (CCB), **요구사항 추적성** (RTM, Requirements Traceability Matrix) 유지.

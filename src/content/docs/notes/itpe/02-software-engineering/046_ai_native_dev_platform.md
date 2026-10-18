@@ -14,32 +14,27 @@ extra:
 
 ## Ⅰ. AI 네이티브 개발 플랫폼의 개요
 
-- 개념 : **대형 언어 모델** (LLM, Large Language Model)과 **생성형 AI**(Artificial Intelligence) 기술을 소프트웨어 개발 전 주기(SDLC(Software Development Life Cycle): 요구분석, 설계, 코딩, 테스트, 배포, 유지보수)의 핵심 엔진으로 내재화하여 개발자의 생산성과 소프트웨어 품질을 혁신하는 차세대 통합 개발 플랫폼.
+- 개념 : **대형 언어 모델** (LLM, Large Language Model)과 **생성형 AI**(Artificial Intelligence) 기술을 소프트웨어 개발 전 주기(SDLC, Software Development Life Cycle : 요구분석, 설계, 코딩, 테스트, 배포, 유지보수)의 핵심 엔진으로 내재화하여 개발자의 생산성과 소프트웨어 품질을 혁신하는 차세대 통합 개발 플랫폼.
 - 배경 및 필요성 : 개발자 인력 부족, 복잡해지는 레거시 시스템 현대화의 어려움, 반복적인 **보일러플레이트 코드** 작성에 따른 피로도를 극복하고 개발 생산성을 극대화.
 - 대표적 솔루션/도구 : GitHub Copilot Workspace, Cursor, Claude Code, Amazon Q Developer, GitLab Duo.
 
 ## Ⅱ. AI 네이티브 개발 플랫폼의 아키텍처 및 작업 흐름
 
 ```text
-   [ 개발자 프롬프트 / 이슈 티켓 ]
-                  │
-                  ▼
-   ┌────────────────────────────────────────────────────────┐
-   │ [ AI 오케스트레이터 / Agent Loop ]                    │
-   │  - ReAct 프레임워크 기반 사고 및 도구 호출 계획        │
-   │  - 코드베이스 의미론적 검색 (RAG, Retrieval-Augmented Generation; AST, Abstract Syntax Tree; 심볼 인덱싱) │
-   └──────────┬───────────────────────────────┬─────────────┘
-              │ (코드 생성 및 리팩토링)       │ (테스트 자동 생성)
-              ▼                               ▼
-   ┌──────────────────────┐        ┌──────────────────────┐
-   │  [ 코드 편집 및 생성 ]│        │  [ 단위/회귀 테스트 ] │
-   │  - 다중 파일 동시 수정│        │  - 실패 시 자가 수정 │
-   └──────────┬───────────┘        └──────────▲───────────┘
-              │ (Git PR 생성)                 │ (테스트 피드백)
-              ▼                               │
-   ┌──────────────────────────────────────────┴─────────────┐
-   │ [ CI/CD 파이프라인 ] - SAST 보안 약점 진단, 품질 게이트 │
-   └────────────────────────────────────────────────────────┘
+[ 개발자 프롬프트 / 이슈 티켓 ]
+   │
+   ▼
+[ AI 오케스트레이터 / Agent Loop ]
+ - ReAct 기반 사고 및 도구 호출 계획
+ - 코드베이스 검색 : RAG, AST, 심볼 인덱싱
+   │ (코드 생성/리팩토링, 테스트 자동 생성)
+   ▼
+[ 코드 편집·생성 ]  [ 단위/회귀 테스트 ]
+ - 다중 파일 수정    - 실패 시 자가 수정
+   │ (Git PR 생성)      │ (테스트 피드백)
+   ▼                    │
+[ CI/CD 파이프라인 ] <──┘
+ - SAST 보안 약점 진단, 품질 게이트
 ```
 
 - **코드베이스 RAG(Retrieval-Augmented Generation) 및 지식 그래프** : 대규모 레포지토리의 소스코드를 파싱하여 **AST** (Abstract Syntax Tree, 추상 구문 트리)와 벡터 임베딩으로 인덱싱함으로써 정확한 컨텍스트 추출.
@@ -59,7 +54,7 @@ extra:
 
 - AI 생성 코드의 환각(Hallucination) 및 보안 취약점 전파 :
   - 한계점 : LLM이 존재하지 않는 가짜 오픈소스 패키지를 참조(Package Hallucination)하거나, SQL(Structured Query Language) 인젝션, 버퍼 오버플로우 등 보안 결함이 포함된 코드를 그럴듯하게 자동 생성하여 시스템 침투 위험 유발.
-  - 해결 방안 : CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 SAST(Static Application Security Testing)/DAST(Dynamic Application Security Testing) 및 소프트웨어 구성 분석(SCA, Software Composition Analysis) 도구를 필수 통합하고, RAG(검색 증강 생성) 기반으로 기업 내부 검증된 사내 라이브러리 컨텍스트만 주입하도록 프롬프트 파이프라인 제어.
+  - 해결 방안 : CI/CD(Continuous Integration/Continuous Delivery) 파이프라인에 SAST(Static Application Security Testing)/DAST(Dynamic Application Security Testing) 및 소프트웨어 구성 분석(SCA, Software Composition Analysis) 도구를 필수 통합하고, RAG(검색 증강 생성) 기반으로 기업 내부 검증된 사내 라이브러리 컨텍스트만 주입하도록 프롬프트 파이프라인 제어.
 - 기업 지적재산권(IP, Intellectual Property) 유출 및 라이선스 컴플라이언스 위반 :
   - 한계점 : 개발자가 사내 기밀 비즈니스 로직이나 민감 데이터를 외부 퍼블릭 AI 플랫폼 프롬프트로 전송하거나, 학습 데이터에 포함된 GPL(GNU General Public License) 등 카피레프트 코드가 복제되어 저작권 분쟁 초래.
   - 해결 방안 : 사내 전용 격리형 온프레미스/VPC(Virtual Private Cloud) 프라이빗 LLM 인스턴스를 구축하고, 데이터 비학습(Zero Data Retention) 계약 체결 및 생성 코드 대상 오픈소스 라이선스 스캐너 연동.
