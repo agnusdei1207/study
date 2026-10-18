@@ -21,19 +21,23 @@ extra:
 ## Ⅱ. X-in-the-Loop 4단계 진화 체계도
 
 ```text
-   [ 요구사항 / 제어 알고리즘 ]
-                │
-                ▼
-   [ 1. MIL (Model-in-the-Loop) ] ──── 알고리즘을 Simulink 수학적 모델로 시뮬레이션
-                │
-                ▼
-   [ 2. SIL (Software-in-the-Loop) ] ── 모델에서 자동 생성된 C 코드를 PC 가상 환경에서 검증
-                │
-                ▼
-   [ 3. PIL (Processor-in-the-Loop) ] ─ 실제 타깃 프로세서(MCU)에 바이너리를 올려 타이밍 검증
-                │
-                ▼
-   [ 4. HIL (Hardware-in-the-Loop) ] ── 실제 완성된 ECU 하드웨어에 센서/액추에이터 실시간 시뮬레이터 결합
+[ 요구사항 / 제어 알고리즘 ]
+   │
+   ▼
+[ 1. MIL (Model-in-the-Loop) ]
+ - 알고리즘을 Simulink 수학 모델로 시뮬레이션
+   │
+   ▼
+[ 2. SIL (Software-in-the-Loop) ]
+ - 생성된 C 코드를 PC 가상 환경에서 검증
+   │
+   ▼
+[ 3. PIL (Processor-in-the-Loop) ]
+ - 타깃 MCU에 바이너리 적재, 클록 타이밍 검증
+   │
+   ▼
+[ 4. HIL (Hardware-in-the-Loop) ]
+ - 완성된 ECU + 실시간 시뮬레이터 결합
 ```
 
 - **MIL (Model-in-the-Loop)** : MATLAB/Simulink 환경에서 제어 알고리즘 모델과 가상 플랜트(차량 물리 모델)를 연결하여 모델 수준의 알고리즘 동작을 시험. 시뮬레이션 통과와 모든 입력에 대한 형식적 증명은 구분.
@@ -54,12 +58,12 @@ extra:
 
 - HIL(Hardware-in-the-Loop) 장비 구축 비용 및 하드웨어 가용성 병목 :
   - 한계점 : 고가의 실물 계측기, 전원 공급기, 액추에이터 시뮬레이터 리그 구축 비용이 막대하며, HW(Hardware) 칩셋 공급 지연 시 테스트 전체가 블로킹됨.
-  - 해결 방안 : 시뮬레이션 선행(Shift-Left) 전략 적용, vECU(Virtual ECU) 기반 SIL(Software-in-the-Loop) 및 클라우드 가상 검증 환경 조기 구축.
+  - 해결 방안 : 시뮬레이션 선행(Shift-Left) 전략 적용, vECU(Virtual ECU) 기반 SIL 및 클라우드 가상 검증 환경 조기 구축.
 - 실시간성(Real-Time Constraints) 및 타이밍 결함 재현의 난이도 :
   - 한계점 : 마이크로초 단위의 인터럽트, 태스크 선점(Preemption), 지터(Jitter)로 인한 간헐적 레이스 컨디션 결함은 재현 및 원인 규명이 극도로 어려움.
   - 해결 방안 : 비침습적(Non-intrusive) 하드웨어 트레이서 및 로직 분석기 활용, 타이밍 분석 전용 정적 검증 도구(RapiTime 등) 연계 WCET(최악실행시간) 검증.
 - ISO 26262, DO-178C 등 기능안전 표준 준수를 위한 산출물 부담 :
-  - 한계점 : ASIL(Automotive Safety Integrity Level) 등급에 따른 요구사항-코드-테스트 간 양방향 추적성 및 MC/DC 커버리지 달성을 수작업으로 입증하는 데 막대한 개발 공수 소모.
+  - 한계점 : ASIL(Automotive Safety Integrity Level) 등급에 따른 요구사항-코드-테스트 간 양방향 추적성 및 MC/DC(Modified Condition/Decision Coverage) 커버리지 달성을 수작업으로 입증하는 데 막대한 개발 공수 소모.
   - 해결 방안 : ALM(Application Lifecycle Management) 도구와 테스트 자동화 도구(VectorCAST, LDRA)를 연동하여 추적성 매트릭스 및 인증 리포트 자동 생성.
 
 ## Ⅴ. 자동차 기능안전(ISO 26262) 관점의 기술사적 제언
