@@ -20,14 +20,26 @@ extra:
 ## Ⅱ. 자바 GUI 3대 툴킷의 기술적 진화 계보
 
 ```text
-   [ 1세대: AWT (1995) ] ────────── OS 네이티브 중량(Heavyweight) 컴포넌트 피어링
-            │                       (운영체제마다 외형과 동작 불일치, 최소 공통 컴포넌트만 지원)
-            ▼
-   [ 2세대: Swing (1998) ] ──────── 순수 자바로 픽셀을 직접 그리는 경량(Lightweight) 컴포넌트
-            │                       (Pluggable Look & Feel, 풍부한 MVC 컴포넌트, 다소 느린 렌더링)
-            ▼
-   [ 3세대: JavaFX (2008+) ] ────── 모던 웹 기술 결합 및 하드웨어 GPU 렌더링 가속
-                                    (FXML 마크업 + CSS 스타일링 + 3D/미디어 파이프라인)
+[ 1세대: AWT (1995) ]
+ - OS 네이티브 중량
+   (Heavyweight) 컴포넌트 피어링
+ - 운영체제마다 외형·동작 불일치,
+   최소 공통 컴포넌트만 지원
+   │
+   ▼
+[ 2세대: Swing (1998) ]
+ - 순수 자바로 픽셀을 직접
+   그리는 경량(Lightweight) 컴포넌트
+ - Pluggable Look & Feel,
+   풍부한 MVC 컴포넌트,
+   다소 느린 렌더링
+   │
+   ▼
+[ 3세대: JavaFX (2008+) ]
+ - 모던 웹 기술 결합 및
+   하드웨어 GPU 렌더링 가속
+ - FXML 마크업 + CSS 스타일링
+   + 3D/미디어 파이프라인
 ```
 
 ## Ⅲ. AWT, Swing, JavaFX의 핵심 특성 비교
@@ -37,7 +49,7 @@ extra:
 | 컴포넌트 성격 | **중량 컴포넌트** (Heavyweight Peer) | **경량 컴포넌트** (Lightweight) | 고성능 노드 기반 시그래프 (Scene Graph) |
 | 렌더링 방식 | OS(Operating System) 네이티브 윈도우 시스템이 직접 렌더링 | 자바 그래픽스 2D 엔진이 자체 페인팅 | Prism 렌더러를 통한 GPU(Graphics Processing Unit) 하드웨어 가속 |
 | 플랫폼 일관성 | OS마다 외형과 레이아웃이 다르게 깨짐 | 모든 OS에서 100% 동일한 외형 유지 | 모든 OS에서 고품질 벡터 렌더링 유지 |
-| UI/로직 분리 | 순수 자바 코드로 화면 배치 하드코딩 | 자바 코드로 MVC 구현 (분리 미흡) | FXML(XML(Extensible Markup Language) 마크업)과 CSS(Cascading Style Sheets)로 UI 완전 분리 |
+| UI/로직 분리 | 순수 자바 코드로 화면 배치 하드코딩 | 자바 코드로 MVC(Model-View-Controller) 구현 (분리 미흡) | XML(Extensible Markup Language) 기반 마크업인 FXML과 CSS(Cascading Style Sheets)로 UI 완전 분리 |
 | 디자인 유연성 | 극도로 제약됨 | Look and Feel 변경 가능하나 투박함 | CSS 웹 스타일링, 애니메이션, 차트 지원 |
 | 현재 위상 | 레거시, Swing의 기반 라이브러리 | 유지보수 상태 (금융권 인트라넷 유지) | 모던 Java 데스크톱 GUI의 표준 프레임워크 |
 

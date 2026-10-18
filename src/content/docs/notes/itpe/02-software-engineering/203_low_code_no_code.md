@@ -23,19 +23,26 @@ extra:
 ## Ⅱ. LCNC 플랫폼의 아키텍처 및 작업 흐름
 
 ```text
-   [ 시민 개발자 (No-Code) ]     [ 전문 개발자 (Low-Code) ]
-              │                               │
-              ▼                               ▼
-   ┌────────────────────────────────────────────────────────┐
-   │ [ LCNC 비주얼 개발 환경 ]                              │
-   │  - 드래그 앤 드롭 UI 빌더 (Visual Form Builder)         │
-   │  - 비주얼 비즈니스 로직 및 워크플로우 엔진 (BPMN)      │
-   │  - 원클릭 데이터 모델링 (Dataverse / RDB 자동 생성)     │
-   │  - 사전 구축된 커넥터 (Open API, SAP, Salesforce 연동) │
-   └──────────────────────────┬─────────────────────────────┘
-                              │
-                              ▼ (원클릭 자동 배포)
-   [ 완전 관리형 클라우드 런타임 (웹, iOS, Android 동시 서빙) ]
+[ 시민 개발자 (No-Code) ]
+[ 전문 개발자 (Low-Code) ]
+   │
+   ▼
+[ LCNC 비주얼 개발 환경 ]
+ - 드래그 앤 드롭 UI 빌더
+   (Visual Form Builder)
+ - 비주얼 비즈니스 로직 및
+   워크플로우 엔진 (BPMN)
+ - 원클릭 데이터 모델링
+   (Dataverse / RDB 자동 생성)
+ - 사전 구축된 커넥터
+   (Open API, SAP, Salesforce 연동)
+   │
+   ▼ (원클릭 자동 배포)
+[ 완전 관리형 클라우드 런타임 ]
+ - 웹, iOS, Android 동시 서빙
+
+ * BPMN(Business Process Model and Notation)
+ * RDB(Relational Database)
 ```
 
 ## Ⅲ. 전통적 코딩, 로우코드, 노코드의 비교
@@ -58,7 +65,7 @@ extra:
   - 해결 방안 : 전사 LCNC 거버넌스 프레임워크 수립, 배포 전 보안 취약점 점검 자동화, 사내 SSO(Single Sign-On) 연동 및 **시민 개발자** (Citizen Developer) 승인 프로세스 의무화.
 - 복잡한 비즈니스 로직 및 대규모 트래픽 처리 시 확장성 한계 :
   - 한계점 : 시각적 드래그 앤 드롭 빌더만으로는 고난도 알고리즘 구현이 불가능하며, 대규모 동시 요청 시 런타임 성능 병목 발생.
-  - 해결 방안 : 복잡한 계산 및 코어 도메인은 전문 개발자가 Pro-Code(REST(Representational State Transfer) API(Application Programming Interface))로 개발하고, LCNC는 UI/워크플로우 오케스트레이션에만 활용하는 2계층 하이브리드 아키텍처 적용.
+  - 해결 방안 : 복잡한 계산 및 코어 도메인은 전문 개발자가 REST(Representational State Transfer) API(Application Programming Interface) 등 Pro-Code로 개발하고, LCNC는 UI/워크플로우 오케스트레이션에만 활용하는 2계층 하이브리드 아키텍처 적용.
 
 ## Ⅴ. 엔터프라이즈 도입을 위한 기술사적 제언
 
