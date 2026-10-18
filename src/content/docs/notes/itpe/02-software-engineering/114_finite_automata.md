@@ -21,16 +21,20 @@ extra:
 ## Ⅱ. DFA와 NFA의 구조 및 톰슨(Thompson) 구성 알고리즘
 
 ```text
-   [ 정규 표현식 (Regex: (a|b)*c) ]
-                 │
-                 ▼ (톰슨 구성법: Thompson's Construction)
-   [ 비결정적 유한 오토마타 (NFA) ] ── 입실론(ε) 전이 허용, 단일 입력에 다중 상태 전이 가능
-                 │
-                 ▼ (부분집합 구성법: Subset Construction)
-   [ 결정적 유한 오토마타 (DFA) ] ──── 각 상태에서 특정 입력 기호당 정확히 하나의 전이만 존재
-                 │
-                 ▼ (홉크로프트 알고리즘: Hopcroft's Algorithm)
-   [ 최소화된 DFA (Minimized DFA) ] ── 상태 수를 최소화하여 고속 메모리 룩업 테이블 구현
+[ 정규 표현식 (Regex: (a|b)*c) ]
+   │
+   ▼ (톰슨 구성법: Thompson's Construction)
+[ 비결정적 유한 오토마타 (NFA) ]
+ - 입실론(ε) 전이 허용
+ - 단일 입력에 다중 상태 전이 가능
+   │
+   ▼ (부분집합 구성법: Subset Construction)
+[ 결정적 유한 오토마타 (DFA) ]
+ - 입력 기호당 정확히 하나의 전이
+   │
+   ▼ (홉크로프트: Hopcroft's Algorithm)
+[ 최소화된 DFA (Minimized DFA) ]
+ - 상태 수 최소화, 고속 룩업 테이블
 ```
 
 - **DFA 5-튜플 정의** : $M = (Q, \Sigma, \delta, q_0, F)$

@@ -21,26 +21,27 @@ extra:
 ## Ⅱ. 기업 오픈소스 거버넌스 프레임워크 및 OSPO 운영 체계
 
 ```text
-   ┌────────────────────────────────────────────────────────────────────────┐
-   │ [ 오픈소스 프로그램 오피스 (OSPO, Open Source Program Office) ]        │
-   │  - 오픈소스 전략 수립, 법무/보안/개발 부서 간 협업 조율, 정책 수립    │
-   └──────────────────┬──────────────────────────────────┬──────────────────┘
-                      │                                  │
-                      ▼                                  ▼
-   ┌──────────────────────────────────┐┌──────────────────────────────────┐
-   │ [ 1. 라이선스 컴플라이언스 ]     ││ [ 2. 공급망 보안 취약점 관리 ]   │
-   │  - 오픈소스 식별 및 자재명세서   ││  - CVE/NVD 취약점 실시간 매핑    │
-   │    (SBOM: SPDX, CycloneDX) 생성  ││  - 의존성 취약점 자동 패치(Snyk) │
-   │  - 의무사항(고지문, 소스공개)준수 ││  - 악성 패키지 유입 차단         │
-   └──────────────────────────────────┘└──────────────────────────────────┘
-                      │                                  │
-                      └────────────────┬─────────────────┘
-                                       │
-                                       ▼
-   ┌────────────────────────────────────────────────────────────────────────┐
-   │ [ DevSecOps CI/CD 파이프라인 자동화 (SCA 도구 연계) ]                  │
-   │  커밋/빌드 시 FOSSID, Black Duck, Dependabot을 통한 자동 검증 및 차단   │
-   └────────────────────────────────────────────────────────────────────────┘
+[ 오픈소스 프로그램 오피스 (OSPO) ]
+ - 오픈소스 전략 및 정책 수립
+ - 법무/보안/개발 부서 협업 조율
+   │
+   ▼
+[ 1. 라이선스 컴플라이언스 ]
+ - 식별 및 자재명세서(SBOM) 생성
+ - 고지문, 소스공개 의무 준수
+   │
+   ▼
+[ 2. 공급망 보안 취약점 관리 ]
+ - CVE/NVD 취약점 실시간 매핑
+ - 의존성 취약점 자동 패치(Snyk)
+   │
+   ▼
+[ DevSecOps CI/CD 파이프라인 (SCA 연계) ]
+ - FOSSID, Black Duck, Dependabot
+   커밋/빌드 시 자동 검증 및 차단
+ * OSPO(Open Source Program Office)
+ * SBOM(Software Bill of Materials)
+ * SCA(Software Composition Analysis)
 ```
 
 - **OSPO** (Open Source Program Office) : 기업의 오픈소스 사용, 배포, 기여 활동을 전담 지원하는 전문 조직.
@@ -58,7 +59,7 @@ extra:
 
 - **오픈소스 라이선스 컴플라이언스** (GPL 등) 위반 법적 리스크 :
   - 한계점 : 소스코드 공개 의무가 있는 카피레프트(Copyleft) 라이선스 컴포넌트가 의도치 않게 상용 독점 코드에 포함되어 지식재산권 침해 및 소송 위험.
-  - 해결 방안 : CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내 SCA(Software Composition Analysis) 도구(FOSSA, Black Duck) 연동, 라이선스 허용 목록(Whitelist) 정책 기반 자동 빌드 차단.
+  - 해결 방안 : CI/CD(Continuous Integration/Continuous Delivery) 파이프라인 내 SCA 도구(FOSSA, Black Duck) 연동, 라이선스 허용 목록(Whitelist) 정책 기반 자동 빌드 차단.
 - **공급망 공격** (Software Supply Chain Attack) 및 보안 취약점 :
   - 한계점 : 오픈소스 저장소의 **타이포스쿼팅** (Typosquatting), 악성코드 주입, Log4j 사태와 같은 제로데이 취약점으로 인한 전사 보안 침해 사고 위험.
   - 해결 방안 : 사내 보안 검증된 프라이빗 아티팩토리(Nexus, Artifactory) 미러링 운영, SPDX(Software Package Data Exchange)/CycloneDX 기반 SBOM 자동 생성 및 CVE 취약점 실시간 모니터링.

@@ -21,17 +21,23 @@ extra:
 ## Ⅱ. 순차 다이어그램 표기법 및 메시지 유형
 
 ```text
-   [ :Client ]                 [ :OrderService ]             [ :PaymentGateway ]
-        │                              │                              │
-        │─── 1. createOrder() ────────>│                              │ (동기 호출: 채워진 화살표)
-        │                              │                              │
-        │                              │─── 2. processPay() ─────────>│
-        │                              │                              │
-        │                              │< - - 3. return (success) - - │ (반환 메시지: 점선 화살표)
-        │                              │                              │
-        │                              │─── 4. sendKafkaEvent() ───>  │ (비동기 메시지: 열린 화살표)
-        │< - - 5. orderCreated - - - - │                              │
-        │                              │                              │
+[ :Client ]
+   │ 1. createOrder()
+   │    (동기 호출: 채워진 화살표)
+   ▼
+[ :OrderService ]
+   │ 2. processPay() (동기 호출)
+   ▼
+[ :PaymentGateway ]
+   │ 3. return (success)
+   │    (반환 메시지: 점선 화살표)
+   ▼ (호출 역순으로 반환)
+[ :OrderService ]
+   │ 4. sendKafkaEvent()
+   │    (비동기 메시지: 열린 화살표)
+   │ 5. orderCreated (반환)
+   ▼
+[ :Client ]
 ```
 
 - **생명선** (Lifeline) : 상호작용에 참여하는 객체를 나타내며, 위에서 아래로 흐르는 수직 점선으로 시간의 경과 표현.

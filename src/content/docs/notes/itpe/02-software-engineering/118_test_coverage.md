@@ -21,19 +21,20 @@ extra:
 ## Ⅱ. 제어 흐름 기반 화이트박스 커버리지 계층 구조
 
 ```text
-   [ 다중 조건 커버리지 (Multiple Condition: 2^N) ] ─ 조건식의 모든 진리표 조합 실행
-                       ▲
-                       │
-   [ MC/DC 커버리지 (Modified Condition/Decision) ] ─ 각 조건이 독립적으로 전체 결과 결정 (N+1)
-                       ▲
-                       │
-   [ 조건/결정 커버리지 (Condition/Decision) ] ───── 개별 조건 참/거짓 + 전체 결정 참/거짓
-                       ▲
-                       │
-   [ 분기/결정 커버리지 (Branch/Decision, L2) ] ──── 각 조건문의 True/False 분기 실행
-                       ▲
-                       │
-   [ 구문 커버리지 (Statement, L1) ] ────────────── 코드 내 모든 실행 가능 문장 1회 실행
+[ 다중 조건 커버리지 (Multiple Condition) ]
+ - 모든 진리표 조합 실행 (2^N)
+   ▲
+[ MC/DC 커버리지 ]
+ - 각 조건이 독립적으로 결과 결정 (N+1)
+   ▲
+[ 조건/결정 커버리지 (Condition/Decision) ]
+ - 개별 조건 + 전체 결정 참/거짓
+   ▲
+[ 분기/결정 커버리지 (Branch/Decision, L2) ]
+ - 각 조건문의 True/False 분기 실행
+   ▲
+[ 구문 커버리지 (Statement, L1) ]
+ - 코드 내 모든 실행 가능 문장 1회 실행
 ```
 
 - **구문 커버리지** (Statement Coverage) : 소스코드의 모든 문장이 최소 한 번 실행되었는지를 측정 ($실행된 문장 수 / 전체 문장 수 \times 100\%$).
@@ -65,4 +66,4 @@ extra:
 ## Ⅴ. 엔터프라이즈 품질 게이트웨이를 위한 기술사적 제언
 
 - '가짜 커버리지(Fake Coverage)'의 함정 경계 : 어설션(Assertion) 검증문이 하나도 없이 코드 라인만 단순히 호출하는 테스트도 구문 커버리지 100%를 달성할 수 있으므로, 단순 수치 달성에 안주하지 말고 결함 검출 능력을 실질적으로 검증하는 뮤테이션 테스트(Mutation Test)를 병행 도입해야 함.
-- CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 품질 게이트 연동 : SonarQube, JaCoCo를 활용하여 신규 추가/수정된 코드(New Code)에 대해 브랜치 커버리지 목표 수준을 만족하지 못하면 메인 브랜치 병합을 원천 차단하는 **커버리지 래칫** (Coverage Ratchet) 정책 정착 필수.
+- CI/CD(Continuous Integration/Continuous Delivery) 파이프라인 품질 게이트 연동 : SonarQube, JaCoCo를 활용하여 신규 추가/수정된 코드(New Code)에 대해 브랜치 커버리지 목표 수준을 만족하지 못하면 메인 브랜치 병합을 원천 차단하는 **커버리지 래칫** (Coverage Ratchet) 정책 정착 필수.
