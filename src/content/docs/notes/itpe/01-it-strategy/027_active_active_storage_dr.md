@@ -21,29 +21,27 @@ extra:
 ## Ⅱ. 액티브-액티브 스토리지 DR 아키텍처
 
 ```text
-       ┌────────── 센터 A (Active) ──────────┐      ┌────────── 센터 B (Active) ──────────┐
-       │   글로벌 서버 로드밸런서 (GSLB, Global Server Load Balancing) │ <--> │   글로벌 서버 로드밸런서 (GSLB)      │
-       │   웹/WAS(Web Application Server) 애플리케이션 클러스터      │      │   웹/WAS 애플리케이션 클러스터      │
-       │                 │                   │      │                 │                   │
-       │   스토리지 가상화 노드 (Mirror)     │ <──> │   스토리지 가상화 노드 (Mirror)     │
-       └─────────────────│───────────────────┘ 동기 └─────────────────│───────────────────┘
-                         │                     복제                   │
-                         └───────────────── 쿼럼(Quorum) ─────────────┘
-                                           (제3 센터)
+센터 A (Active) <── 동기 복제 ──> 센터 B (Active)
+   ── 공통 구성: GSLB(Global Server Load Balancing)
+   ── 웹/WAS(Web Application Server) 애플리케이션 클러스터
+   ── 스토리지 가상화 노드 (Mirror)
+        │
+        ↓
+   제3 센터 쿼럼(Quorum)
 ```
 
-- **동기식 복제 (Synchronous Mirroring)** : 스토리지 쓰기 요청 발생 시 양 센터 스토리지에 모두 커밋이 완료되어야 호스트에 응답을 반환하여 RPO=0 달성.
-- **제3 센터 쿼럼 (Quorum Witness)** : 양 센터 간 네트워크 단절 시 양쪽 모두 활성화되어 데이터가 오염되는 분할 뇌(Split-Brain) 현상을 방지하기 위해 중립적 제3 사이트에서 투표권 행사.
+- **동기식 복제** (Synchronous Mirroring) : 스토리지 쓰기 요청 발생 시 양 센터 스토리지에 모두 커밋이 완료되어야 호스트에 응답을 반환하여 RPO=0 달성.
+- **제3 센터 쿼럼** (Quorum Witness) : 양 센터 간 네트워크 단절 시 양쪽 모두 활성화되어 데이터가 오염되는 분할 뇌(Split-Brain) 현상을 방지하기 위해 중립적 제3 사이트에서 투표권 행사.
 
 ## Ⅲ. 액티브-스탠바이(Hot Site)와 액티브-액티브의 비교
 
 | 비교 항목 | 액티브-스탠바이 (Active-Standby) | 액티브-액티브 (Active-Active) |
 |---|---|---|
-| **서비스 처리 방식** | 주 센터 단독 처리, 대기 센터는 유휴 상태 | 양 센터가 동시에 부하 분산 처리 |
+| 서비스 처리 방식 | 주 센터 단독 처리, 대기 센터는 유휴 상태 | 양 센터가 동시에 부하 분산 처리 |
 | **RTO** (복구 시간) | 수십 분 ~ 수 시간 (장애 감지, DNS(Domain Name System) 전환, 기동) | 장애 탐지·라우팅·세션 복구 조건에 따라 결정 |
 | **RPO** (복구 시점) | 수 분 ~ 수 시간 (비동기 복제 시 손실 발생) | 정상 동기 커밋한 쓰기는 무손실을 목표로 하되 장애 범위 확인 |
-| **복잡도 및 구축비용** | 중간 수준 | 매우 높음 (스토리지 가상화, 전용 광선로, GSLB(Global Server Load Balancing)) |
-| **거리 제약** | 비동기 복제 적용 시 거리 제약 없음 | 네트워크 지연(RTT, Round-Trip Time < 5~10ms)으로 인해 통상 50~100km 이내 제약 |
+| 복잡도 및 구축비용 | 중간 수준 | 매우 높음 (스토리지 가상화, 전용 광선로, GSLB(Global Server Load Balancing)) |
+| 거리 제약 | 비동기 복제 적용 시 거리 제약 없음 | 네트워크 지연(RTT, Round-Trip Time < 5~10ms)으로 인해 통상 50~100km 이내 제약 |
 
 - 액티브-액티브 구성만으로 RTO/RPO가 자동으로 0이 되는 것은 아님. 장애 탐지, 쿼럼, 복제 방식 및 세션 전환을 함께 검증. [AWS 다중 사이트 재해복구 안내](https://aws.amazon.com/blogs/architecture/disaster-recovery-dr-architecture-on-aws-part-iv-multi-site-active-active/).
 

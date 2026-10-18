@@ -21,18 +21,29 @@ extra:
 ## Ⅱ. 위험관리 프로세스 및 위험 등록부(Risk Register)
 
 ```text
-1. 위험 식별 ───── 브레인스토밍, 델파이 기법, 체크리스트, RBS(Risk Breakdown Structure)
-       ↓
-2. 정성적 분석 ── 발생 확률(Probability)과 영향도(Impact) 평가, PI(Probability-Impact) 매트릭스 우선순위화
-       ↓
-3. 정량적 분석 ── EMV(Expected Monetary Value, 기댓값), 민감도 분석(토네이도 차트), 몬테카를로 시뮬레이션
-       ↓
-4. 대응 계획 ──── 부정적 위험(회피, 완화, 전가, 수용), 긍정적 위험(활용, 공유, 증대, 수용)
-       ↓
-5. 위험 감시 ──── 위험 재평가, 잔여 위험 및 2차 위험 추적, 위험 등록부 지속 갱신
+1. 위험 식별
+   ── 브레인스토밍, 델파이 기법, 체크리스트
+   ── RBS(Risk Breakdown Structure)
+        ↓
+2. 정성적 분석
+   ── 발생 확률(Probability)과 영향도(Impact) 평가
+   ── PI(Probability-Impact) 매트릭스 우선순위화
+        ↓
+3. 정량적 분석
+   ── EMV(Expected Monetary Value, 기댓값)
+   ── 민감도 분석(토네이도 차트)
+   ── 몬테카를로 시뮬레이션
+        ↓
+4. 대응 계획
+   ── 부정적 위험(회피, 완화, 전가, 수용)
+   ── 긍정적 위험(활용, 공유, 증대, 수용)
+        ↓
+5. 위험 감시
+   ── 위험 재평가, 잔여 위험 및 2차 위험 추적
+   ── 위험 등록부 지속 갱신
 ```
 
-- **위험 등록부 (Risk Register)** : 식별된 위험의 설명, 위험 유발자(Trigger), 소유자(Risk Owner), PI 등급, 대응 전략, 비상대책(Contingency Plan)을 통합 기록하는 핵심 문서.
+- **위험 등록부** (Risk Register) : 식별된 위험의 설명, 위험 유발자(Trigger), 소유자(Risk Owner), PI 등급, 대응 전략, 비상대책(Contingency Plan)을 통합 기록하는 핵심 문서.
 
 ## Ⅲ. 부정적 위험 대응 전략의 비교
 

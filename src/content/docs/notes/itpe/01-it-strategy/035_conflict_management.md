@@ -31,16 +31,18 @@ extra:
 ## Ⅲ. 토마스-킬만(Thomas-Kilmann) 갈등 해결 5대 모델
 
 ```text
-       높음 │ [경쟁 (Competing)]              [협력 (Collaborating)]
-            │  (내 주장 관철, Win-Lose)           (통합 솔루션 도출, Win-Win)
-  자기 주장  │
-  (Assertive)│                    [타협 (Compromising)]
-            │                     (상호 양보, Split)
-            │ [회피 (Avoiding)]                [수용 (Accommodating)]
-       낮음 │  (갈등 회피, Lose-Lose)             (상대방 의견 수용, Lose-Win)
-            └──────────────────────────────────────────────────────────
-              낮음                                                높음
-                             협조성 (Cooperative)
+                  자기 주장 (Assertive) 높음
+   [경쟁 (Competing)]           [협력 (Collaborating)]
+    (내 주장 관철, Win-Lose)     (통합 솔루션 도출, Win-Win)
+
+                 [타협 (Compromising)]
+                    (상호 양보, Split)
+
+   [회피 (Avoiding)]            [수용 (Accommodating)]
+    (갈등 회피, Lose-Lose)       (상대방 의견 수용, Lose-Win)
+                  자기 주장 (Assertive) 낮음
+
+   협조성 (Cooperative) : 낮음 ←──────────→ 높음
 ```
 
 | 해결 전략 | 핵심 특징 | 적합한 적용 상황 |

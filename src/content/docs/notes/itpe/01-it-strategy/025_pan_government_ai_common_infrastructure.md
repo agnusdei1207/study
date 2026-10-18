@@ -21,15 +21,28 @@ extra:
 ## Ⅱ. 범정부 AI 공통기반 아키텍처
 
 ```text
-[공공 서비스 계층]  ── 범정부 지능형 행정 지원, 대국민 정책 맞춤형 AI 서비스, 민원 자동화
-        │ (API, Application Programming Interface 호출)
-[AI 공통 플랫폼 계층] ─ 프롬프트 엔지니어링, RAG(Retrieval-Augmented Generation, 검색증강생성), MLOps(Machine Learning Operations), 보안/가드레일
-        │
-[파운데이션 모델 계층]─ 민간 초거대 AI (클로바X, 엑사원 등) + 온프레미스 경량화 모델(sLLM)
-        │
-[공통 데이터 계층]  ── 행정 지식 데이터베이스, 범정부 데이터 레이크, 공공 마이데이터
-        │
-[컴퓨팅 인프라 계층] ─ 국가정보자원관리원 공공 클라우드 고성능 GPU(Graphics Processing Unit) 팜 (NPU, Neural Processing Unit / GPU)
+[공공 서비스 계층]
+   ── 범정부 지능형 행정 지원, 대국민 정책 맞춤형 AI 서비스,
+      민원 자동화
+   ── API(Application Programming Interface) 호출
+        ↓
+[AI 공통 플랫폼 계층]
+   ── 프롬프트 엔지니어링,
+      RAG(Retrieval-Augmented Generation, 검색증강생성),
+      MLOps(Machine Learning Operations), 보안/가드레일
+        ↓
+[파운데이션 모델 계층]
+   ── 민간 초거대 AI (클로바X, 엑사원 등)
+      + 온프레미스 경량화 모델(sLLM)
+        ↓
+[공통 데이터 계층]
+   ── 행정 지식 데이터베이스, 범정부 데이터 레이크
+   ── 공공 마이데이터
+        ↓
+[컴퓨팅 인프라 계층]
+   ── 국가정보자원관리원 공공 클라우드
+      고성능 GPU(Graphics Processing Unit) 팜
+      (NPU, Neural Processing Unit / GPU)
 ```
 
 - **AI 공통 플랫폼 계층** : 프롬프트 엔지니어링, 검색증강생성, MLOps(Machine Learning Operations), 보안·가드레일.

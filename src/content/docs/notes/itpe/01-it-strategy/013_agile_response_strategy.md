@@ -21,9 +21,17 @@ extra:
 ## Ⅱ. 엔터프라이즈 애자일 전환 프레임워크 및 모델
 
 ```text
-[전통적 기능 조직] ────> [양손잡이 조직 (Bimodal)] ────> [전사적 확장 애자일]
-- 사일로화된 부서         - Core(워터폴) + Edge(애자일)   - 스쿼드/트라이브 매트릭스
-- 엄격한 승인 단계         - 실험적 서비스 우선 적용         - SAFe(Scaled Agile Framework), LeSS(Large-Scale Scrum) 프레임워크
+[전통적 기능 조직]
+   ── 사일로화된 부서, 엄격한 승인 단계
+        ↓
+[양손잡이 조직 (Bimodal)]
+   ── Core(워터폴) + Edge(애자일)
+   ── 실험적 서비스 우선 적용
+        ↓
+[전사적 확장 애자일]
+   ── 스쿼드/트라이브 매트릭스
+   ── SAFe(Scaled Agile Framework),
+      LeSS(Large-Scale Scrum) 프레임워크
 ```
 
 | 전환 모델 | 핵심 전략 및 특징 |
@@ -37,10 +45,10 @@ extra:
 
 | 관리 영역 | 전통적 프로젝트 관리 | 애자일 거버넌스 |
 |---|---|---|
-| **범위 관리** | 초기 고정 기준선(Baseline), 엄격한 변경 통제 | 유연한 백로그(Backlog), 우선순위 기반 지속 조정 |
-| **성과 측정** | 계획 대비 일정/원가 편차 (EVM(Earned Value Management) 등) | 작동하는 소프트웨어 납품, 번다운 차트, 팀 속도(Velocity) |
-| **조직 구조** | PM 중심의 지시·보고 및 수직적 위계 | 제품책임자(PO, Product Owner), 스크럼 마스터, 자기조직화(Self-organizing) 팀 |
-| **배포 주기** | 프로젝트 종료 시점 빅뱅 릴리즈 | 스프린트 단위 점진적 릴리즈, 지속적 통합/배포(CI(Continuous Integration)/CD(Continuous Delivery)) |
+| 범위 관리 | 초기 고정 기준선(Baseline), 엄격한 변경 통제 | 유연한 백로그(Backlog), 우선순위 기반 지속 조정 |
+| 성과 측정 | 계획 대비 일정/원가 편차 (EVM(Earned Value Management) 등) | 작동하는 소프트웨어 납품, 번다운 차트, 팀 속도(Velocity) |
+| 조직 구조 | PM 중심의 지시·보고 및 수직적 위계 | 제품책임자(PO, Product Owner), 스크럼 마스터, 자기조직화(Self-organizing) 팀 |
+| 배포 주기 | 프로젝트 종료 시점 빅뱅 릴리즈 | 스프린트 단위 점진적 릴리즈, 지속적 통합/배포(CI(Continuous Integration)/CD(Continuous Delivery)) |
 
 ## Ⅳ. 애자일 전환 시 주요 한계점 및 해결 방안
 

@@ -21,20 +21,19 @@ extra:
 ## Ⅱ. PMBOK 7판의 가치 전달 시스템 및 8대 성과 영역
 
 ```text
-[가치 전달 시스템 (System for Value Delivery)] ── 거버넌스, 조직 환경, 정보 흐름을 통한 가치 창출
-                      │
-┌─────────────────────┴─────────────────────┐
-│             PMBOK 7판 8대 성과 영역 (Performance Domains)             │
-│  1. 이해관계자 (Stakeholders)      2. 팀 (Team)                      │
-│  3. 개발 접근법 및 생애주기 (Dev Approach & Life Cycle)               │
-│  4. 기획 (Planning)                5. 프로젝트 작업 (Project Work)    │
-│  6. 납품 (Delivery)                7. 측정 (Measurement)             │
-│  8. 불확실성 (Uncertainty)                                           │
-└───────────────────────────────────────────────────────────────────┘
+[가치 전달 시스템 (System for Value Delivery)]
+   거버넌스, 조직 환경, 정보 흐름을 통한 가치 창출
+          │
+PMBOK 7판 8대 성과 영역 (Performance Domains)
+   1. 이해관계자 (Stakeholders)      2. 팀 (Team)
+   3. 개발 접근법 및 생애주기 (Dev Approach & Life Cycle)
+   4. 기획 (Planning)                5. 프로젝트 작업 (Project Work)
+   6. 납품 (Delivery)                7. 측정 (Measurement)
+   8. 불확실성 (Uncertainty)
 ```
 
-- **가치 전달 시스템 (System for Value Delivery)** : 거버넌스, 조직 환경, 정보 흐름을 통한 가치 창출.
-- **8대 성과 영역 (Performance Domains)** : 이해관계자, 팀, 개발 접근법 및 생애주기, 기획, 프로젝트 작업, 납품, 측정, 불확실성.
+- **가치 전달 시스템** (System for Value Delivery) : 거버넌스, 조직 환경, 정보 흐름을 통한 가치 창출.
+- **8대 성과 영역** (Performance Domains) : 이해관계자, 팀, 개발 접근법 및 생애주기, 기획, 프로젝트 작업, 납품, 측정, 불확실성.
 
 ## Ⅲ. PMBOK 6판과 7판의 패러다임 비교
 

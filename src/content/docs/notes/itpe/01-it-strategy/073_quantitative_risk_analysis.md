@@ -22,10 +22,14 @@ extra:
 
 ```text
 [정량적 위험분석 4대 기법]
-  1. 민감도 분석 (Sensitivity Analysis) ── 토네이도 다이어그램으로 가장 영향력 큰 변수 식별
-  2. 기댓값 분석 (EMV, Expected Monetary Value) ── 의사결정나무(Decision Tree)와 결합한 기댓값 산출
-  3. 몬테카를로 시뮬레이션 (Monte Carlo) ── 난수 생성을 통해 수천 번 반복 시뮬레이션 확률분포 도출
-  4. 영향 다이어그램 (Influence Diagram) ── 변수 간의 인과관계와 시간적 순서의 시각적 모델링
+   1. 민감도 분석 (Sensitivity Analysis)
+      토네이도 다이어그램으로 가장 영향력 큰 변수 식별
+   2. 기댓값 분석 (EMV, Expected Monetary Value)
+      의사결정나무(Decision Tree)와 결합한 기댓값 산출
+   3. 몬테카를로 시뮬레이션 (Monte Carlo)
+      난수 생성을 통해 수천 번 반복 시뮬레이션 확률분포 도출
+   4. 영향 다이어그램 (Influence Diagram)
+      변수 간의 인과관계와 시간적 순서의 시각적 모델링
 ```
 
 - **기댓값 분석** (EMV) : 의사결정나무(Decision Tree)와 결합한 기댓값 산출.

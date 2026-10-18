@@ -21,11 +21,16 @@ extra:
 ## Ⅱ. IT 투자평가의 3단계 생애주기 프레임워크
 
 ```text
-  [사전 평가 (Ex-Ante)]   ── 도입 타당성 검토, 비용/편익 분석, 우선순위 결정
-            │
-  [중간 평가 (Interim)]   ── 구축 과정 모니터링, 공정 및 예산 집행률, 위험 통제 (EVM, Earned Value Management)
-            │
-  [사후 평가 (Ex-Post)]   ── 목표 달성도, ROI(Return on Investment) 실현 여부, 사용자 만족도, 개선/폐기 판정
+[사전 평가 (Ex-Ante)]
+   ── 도입 타당성 검토, 비용/편익 분석, 우선순위 결정
+        ↓
+[중간 평가 (Interim)]
+   ── 구축 과정 모니터링, 공정 및 예산 집행률
+   ── 위험 통제(EVM, Earned Value Management)
+        ↓
+[사후 평가 (Ex-Post)]
+   ── 목표 달성도, ROI(Return on Investment) 실현 여부
+   ── 사용자 만족도, 개선/폐기 판정
 ```
 
 - 라이프사이클 연계 : 사전 평가의 편익 예측 기준선이 중간 평가를 거쳐 사후 평가의 실현 검증으로 이어지는 **추적성** (Traceability) 확보.
@@ -34,10 +39,10 @@ extra:
 
 | 평가 관점 | 주요 평가 기법 | 특징 및 한계점 |
 |---|---|---|
-| **전통적 재무 기법** | ROI(Return on Investment), NPV(Net Present Value), IRR(Internal Rate of Return), 회수기간법(PP, Payback Period) | 화폐 가치로 정량화 용이하나, 정성적 가치 및 미래 유연성 반영 불가 |
-| **총소유비용 관점** | TCO (Total Cost of Ownership) | 초기 구축비 외에 운영, 유지보수, 교육 등 숨겨진 비용 전과정 산출 |
-| **전략적·다차원 관점** | BSC(Balanced Scorecard), 정보화 투자평가 모델 | 재무 외에 고객, 내부 프로세스, 학습과 성장 관점을 결합한 균형 평가 |
-| **불확실성 대응 관점** | 실물 옵션 (Real Options) | 단계적 투자, 확장, 포기 등 미래 불확실성에 대한 경영 유연성 가치 평가 |
+| 전통적 재무 기법 | ROI(Return on Investment), NPV(Net Present Value), IRR(Internal Rate of Return), 회수기간법(PP, Payback Period) | 화폐 가치로 정량화 용이하나, 정성적 가치 및 미래 유연성 반영 불가 |
+| 총소유비용 관점 | TCO (Total Cost of Ownership) | 초기 구축비 외에 운영, 유지보수, 교육 등 숨겨진 비용 전과정 산출 |
+| 전략적·다차원 관점 | BSC(Balanced Scorecard), 정보화 투자평가 모델 | 재무 외에 고객, 내부 프로세스, 학습과 성장 관점을 결합한 균형 평가 |
+| 불확실성 대응 관점 | 실물 옵션 (Real Options) | 단계적 투자, 확장, 포기 등 미래 불확실성에 대한 경영 유연성 가치 평가 |
 
 ## Ⅳ. IT 투자평가 시 주요 한계점 및 해결 방안
 

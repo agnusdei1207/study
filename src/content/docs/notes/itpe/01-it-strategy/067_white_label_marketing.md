@@ -22,17 +22,15 @@ extra:
 
 ```text
 [화이트 레이블 공급사 (Tech Provider)]
-  - 핵심 플랫폼, 결제 엔진, 백엔드 API(Application Programming Interface), 보안 인프라 개발 및 유지보수
-  - 멀티 테넌트(Multi-tenant) 클라우드 아키텍처 제공
+   멀티 테넌트(Multi-tenant) 클라우드 아키텍처 제공
         │ (화이트 레이블 솔루션 공급: 테넌트별 테마/브랜딩 커스터마이징)
         ▼
 [화이트 레이블 고객사 (Brand Owner)]
-  - 자사 로고, UI(User Interface) 테마, 커스텀 도메인 적용 후 자사 서비스로 런칭
-  - 고객 획득 마케팅, 가격 정책 수립, 고객 응대(CS, Customer Service)
+   고객 획득 마케팅, 가격 정책 수립, 고객 응대(CS, Customer Service)
         │
         ▼
 [최종 소비자 (End User)]
-  - 고객사 브랜드의 완전한 고유 서비스로 인식하고 이용
+   고객사 브랜드의 완전한 고유 서비스로 인식하고 이용
 ```
 
 - **화이트 레이블 공급사** (Tech Provider) : 핵심 플랫폼, 결제 엔진, 백엔드 API(Application Programming Interface), 보안 인프라 개발 및 유지보수.

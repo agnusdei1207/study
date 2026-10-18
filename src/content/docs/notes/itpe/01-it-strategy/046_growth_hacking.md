@@ -21,22 +21,22 @@ extra:
 ## Ⅱ. AARRR 해적 지표 (Pirate Metrics) 퍼널 모델
 
 ```text
-[Acquisition (획득)]    ── 사용자가 우리 서비스를 어떻게 처음 접하고 유입되는가? (CAC, Customer Acquisition Cost; 방문자 수)
+[Acquisition (획득)]
           ↓
-[Activation (활성화)]   ── 사용자가 서비스의 핵심 가치(Aha Moment)를 경험했는가? (회원가입, 첫 구매)
+[Activation (활성화)]
           ↓
-[Retention (유지)]      ── 사용자가 서비스를 이탈하지 않고 지속적으로 재방문하는가? (재방문율, 코호트 분석)
+[Retention (유지)]
           ↓
-[Revenue (매출)]        ── 사용자가 실제 유료 결제를 통해 비즈니스 가치를 창출하는가? (ARPU, Average Revenue Per User; LTV)
+[Revenue (매출)]
           ↓
-[Referral (추천)]       ── 만족한 사용자가 자발적으로 다른 사용자에게 서비스를 추천하는가? (바이럴 계수)
+[Referral (추천)]
 ```
 
-- **Acquisition** : 사용자 유입 단계.
-- **Activation** : 핵심 가치(Aha Moment) 경험 단계.
-- **Retention** : 재방문 유지 단계.
-- **Revenue** : 유료 결제를 통한 수익 단계.
-- **Referral** : 자발적 추천 단계.
+- **Acquisition** (획득) : 사용자가 우리 서비스를 어떻게 처음 접하고 유입되는가? (CAC, Customer Acquisition Cost; 방문자 수).
+- **Activation** (활성화) : 사용자가 서비스의 핵심 가치(Aha Moment)를 경험했는가? (회원가입, 첫 구매).
+- **Retention** (유지) : 사용자가 서비스를 이탈하지 않고 지속적으로 재방문하는가? (재방문율, 코호트 분석).
+- **Revenue** (매출) : 사용자가 실제 유료 결제를 통해 비즈니스 가치를 창출하는가? (ARPU, Average Revenue Per User; LTV).
+- **Referral** (추천) : 만족한 사용자가 자발적으로 다른 사용자에게 서비스를 추천하는가? (바이럴 계수).
 
 ## Ⅲ. 전통적 마케팅과 그로스 해킹의 비교
 

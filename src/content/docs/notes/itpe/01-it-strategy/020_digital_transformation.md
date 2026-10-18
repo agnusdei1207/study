@@ -22,13 +22,18 @@ extra:
 
 ```text
 [Digitization (아날로그의 디지털화)]
-  - 아날로그 문서 및 데이터의 전자화 (페이퍼리스, 스캔, 단순 전산 입력)
+   ── 아날로그 문서 및 데이터의 전자화
+      (페이퍼리스, 스캔, 단순 전산 입력)
         ↓
 [Digitalization (업무 프로세스의 디지털화)]
-  - IT 기술을 활용한 기존 프로세스 효율화 (ERP, Enterprise Resource Planning; 전자결재; CRM, Customer Relationship Management 도입)
+   ── IT 기술을 활용한 기존 프로세스 효율화
+      (ERP(Enterprise Resource Planning),
+      전자결재,
+      CRM(Customer Relationship Management) 도입)
         ↓
 [Digital Transformation (비즈니스 및 문화의 전면 변혁)]
-  - 데이터와 AI 기반의 비즈니스 모델 혁신 및 조직 문화 혁신 (플랫폼화, 구독 모델)
+   ── 데이터와 AI 기반의 비즈니스 모델 혁신
+      및 조직 문화 혁신 (플랫폼화, 구독 모델)
 ```
 
 - **Digitization** : 아날로그 문서 및 데이터의 전자화 단계.
@@ -60,4 +65,4 @@ extra:
 
 - 기술 중심이 아닌 비즈니스 가치 중심의 추진 : 최신 IT 기술(AI, 클라우드) 도입 자체를 목적으로 삼지 않고, 고객 페인포인트(Pain Point) 해결과 수익 창출 목표를 명확히 수립.
 - 데이터 거버넌스와 클라우드 네이티브 인프라 선결 : 부서 간 데이터 사일로를 해소하는 데이터 카탈로그 및 레이크하우스 구축과 신속한 서비스 확장이 가능한 MSA(Microservice Architecture) 아키텍처 필수 도입.
-- 전사 변화 관리 및 탑다운(Top-down) 리더십 : 현업의 저항을 극복하고 디지털 전환을 지속하기 위해 최고경영자(CDO, Chief Digital Officer / CEO, Chief Executive Officer)의 강력한 지원과 전 임직원의 디지털 역량 내재화 지원.
+- 전사 변화 관리 및 탑다운(Top-down) 리더십 : 현업의 저항을 극복하고 디지털 전환을 지속하기 위해 최고디지털책임자(CDO, Chief Digital Officer) 및 최고경영자(CEO, Chief Executive Officer)의 강력한 지원과 전 임직원의 디지털 역량 내재화 지원.

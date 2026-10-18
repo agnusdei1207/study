@@ -21,19 +21,23 @@ extra:
 ## Ⅱ. AI 거버넌스 플랫폼 아키텍처
 
 ```text
-[비즈니스 및 규제 인터페이스] ── 거버넌스 대시보드, 규제 준수 보고서(EU AI Act, NIST AI RMF, Artificial Intelligence Risk Management Framework)
+[비즈니스 및 규제 인터페이스]
+   거버넌스 대시보드
+   규제 준수 보고서(EU AI Act,
+   NIST AI RMF, Artificial Intelligence Risk Management Framework)
           │
 [핵심 모니터링 및 통제 엔진]
-  - 공정성/편향성 평가   ── 인구통계학적 패리티, 균등 기회 검증
-  - 설명가능성 (XAI)     ── SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations) 알고리즘 기반 변수 기여도 시각화
-  - 모델 드리프트 감지   ── 데이터 드리프트, 개념 드리프트 실시간 감시
-  - AI 가드레일 (안전성) ── 독성(Toxicity) 필터링, 프롬프트 인젝션 방어, PII 차단
+   - 공정성/편향성 평가
+   - 설명가능성 (XAI)
+   - 모델 드리프트 감지
+   - AI 가드레일 (안전성)
           │
-[데이터 및 모델 레지스트리] ── 학습 데이터 계보(Lineage), 모델 카드(Model Card), 감사 로그
+[데이터 및 모델 레지스트리]
+   학습 데이터 계보(Lineage), 모델 카드(Model Card), 감사 로그
 ```
 
 - **공정성/편향성 평가** : 인구통계학적 패리티, 균등 기회 검증.
-- **설명가능성 (XAI)** : SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations) 알고리즘 기반 변수 기여도 시각화.
+- **설명가능성** (XAI) : SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations) 알고리즘 기반 변수 기여도 시각화.
 - **모델 드리프트 감지** : 데이터 드리프트, 개념 드리프트 실시간 감시.
 - **AI 가드레일** : 독성 필터링, 프롬프트 인젝션 방어, PII(Personally Identifiable Information) 차단.
 

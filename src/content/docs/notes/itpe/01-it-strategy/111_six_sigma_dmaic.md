@@ -21,15 +21,24 @@ extra:
 ## Ⅱ. DMAIC 5단계 로드맵 및 핵심 도구
 
 ```text
-[1. Define (정의)]   ── 핵심 품질 특성(CTQ, Critical to Quality) 정의, 프로젝트 헌장 작성, 프로세스 맵(SIPOC, Suppliers, Inputs, Process, Outputs, Customers)
+[1. Define (정의)]
+   핵심 품질 특성(CTQ, Critical to Quality) 정의, 프로젝트 헌장 작성,
+   프로세스 맵(SIPOC, Suppliers, Inputs, Process, Outputs, Customers)
           ↓
-[2. Measure (측정)]  ── 측정시스템 분석(Gage R&R), 데이터 수집, 공정능력지수(Cp, Cpk) 산출
+[2. Measure (측정)]
+   측정시스템 분석(Gage R&R), 데이터 수집, 공정능력지수(Cp, Cpk) 산출
           ↓
-[3. Analyze (분석)]  ── 근본 원인 분석, 특성요인도(Fishbone), 파레토 차트, 가설 검정(t-test, ANOVA, Analysis of Variance)
+[3. Analyze (분석)]
+   근본 원인 분석, 특성요인도(Fishbone), 파레토 차트,
+   가설 검정(t-test, ANOVA, Analysis of Variance)
           ↓
-[4. Improve (개선)]  ── 최적 솔루션 도출, 실험계획법(DOE, Design of Experiments), 파일럿 검증, 위험 방지(FMEA, Failure Mode and Effects Analysis)
+[4. Improve (개선)]
+   최적 솔루션 도출, 실험계획법(DOE, Design of Experiments), 파일럿 검증,
+   위험 방지(FMEA, Failure Mode and Effects Analysis)
           ↓
-[5. Control (통제)]  ── 표준화 및 문서화, 통계적 공정관리(SPC, Statistical Process Control 관리도), 실수방지(Poka-Yoke)
+[5. Control (통제)]
+   표준화 및 문서화, 통계적 공정관리(SPC, Statistical Process Control) 관리도,
+   실수방지(Poka-Yoke)
 ```
 
 - **CTQ** : Define 단계에서 정의하는 핵심 품질 특성.

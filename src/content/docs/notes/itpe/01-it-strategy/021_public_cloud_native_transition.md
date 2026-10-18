@@ -21,27 +21,29 @@ extra:
 ## Ⅱ. 클라우드 네이티브의 4대 핵심 기술 요소
 
 ```text
-       ┌──────────────────────── 클라우드 네이티브 ────────────────────────┐
-       │                                                                  │
-   [Microservices (MSA)]       ── 독립적 배포와 확장이 가능한 작은 단위 서비스 분할
-       │
-   [Containers & K8s(Kubernetes)]          ── 환경 일관성 및 경량 가상화를 위한 컨테이너 오케스트레이션
-       │
-   [CI/CD & DevOps]            ── 지속적 통합·배포 자동화 파이프라인 및 개발-운영 협업
-       │
-   [Declarative APIs & GitOps] ── 코드로 관리하는 인프라(IaC, Infrastructure as Code) 및 선언적 상태 동기화
-       └──────────────────────────────────────────────────────────────────┘
+클라우드 네이티브
+   [Microservices (MSA)]
+      ── 독립적 배포와 확장이 가능한 작은 단위 서비스 분할
+   [Containers & K8s(Kubernetes)]
+      ── 환경 일관성 및 경량 가상화를 위한
+         컨테이너 오케스트레이션
+   [CI/CD & DevOps]
+      ── 지속적 통합·배포 자동화 파이프라인
+      ── 개발-운영 협업
+   [Declarative APIs & GitOps]
+      ── 코드로 관리하는 인프라
+         (IaC, Infrastructure as Code) 및 선언적 상태 동기화
 ```
 
 ## Ⅲ. 단순 클라우드 이전(Lift & Shift)과 클라우드 네이티브의 비교
 
 | 비교 항목 | 단순 이전 (Lift & Shift, IaaS, Infrastructure as a Service) | 클라우드 네이티브 (Cloud Native, PaaS, Platform as a Service / CaaS, Containers as a Service) |
 |---|---|---|
-| **시스템 아키텍처** | 단일 모놀리식(Monolithic) 구조 유지 | 도메인 주도 설계(DDD, Domain-Driven Design) 기반 마이크로서비스(MSA) |
-| **배포 및 확장** | VM(Virtual Machine) 단위 수동/느린 확장, 정기 배포 시 서비스 중단 | 파드(Pod) 단위 초 단위 오토스케일링, 무중단 카나리 배포 |
-| **장애 영향도** | 한 모듈 장애 시 전체 시스템 다운 | 장애 격리(Fault Isolation), 서킷 브레이커 적용 |
-| **데이터베이스** | 단일 통합 대용량 RDBMS(Relational Database Management System) (SPOF(Single Point of Failure) 존재) | 서비스별 독립 DB (Database per Service), 분산 트랜잭션 |
-| **공공 조달 체계** | 기존 서버/스토리지 구매 규격 적용 | PaaS 기반 클라우드 서비스 이용료 계약 및 사용량 과금 |
+| 시스템 아키텍처 | 단일 모놀리식(Monolithic) 구조 유지 | 도메인 주도 설계(DDD, Domain-Driven Design) 기반 마이크로서비스(MSA) |
+| 배포 및 확장 | VM(Virtual Machine) 단위 수동/느린 확장, 정기 배포 시 서비스 중단 | 파드(Pod) 단위 초 단위 오토스케일링, 무중단 카나리 배포 |
+| 장애 영향도 | 한 모듈 장애 시 전체 시스템 다운 | 장애 격리(Fault Isolation), 서킷 브레이커 적용 |
+| 데이터베이스 | 단일 통합 대용량 RDBMS(Relational Database Management System) (SPOF(Single Point of Failure) 존재) | 서비스별 독립 DB (Database per Service), 분산 트랜잭션 |
+| 공공 조달 체계 | 기존 서버/스토리지 구매 규격 적용 | PaaS 기반 클라우드 서비스 이용료 계약 및 사용량 과금 |
 
 ## Ⅳ. 공공 클라우드 네이티브 전환 시 주요 한계점 및 해결 방안
 
