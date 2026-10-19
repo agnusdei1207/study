@@ -49,6 +49,18 @@ export default defineConfig({
             },
           ],
         },
+        {
+          label: '실험 노트 (Lab)',
+          collapsed: false,
+          items: [
+            {
+              autogenerate: {
+                directory: 'notes/lab',
+                collapsed: true,
+              },
+            },
+          ],
+        },
       ],
       social: [
         {
