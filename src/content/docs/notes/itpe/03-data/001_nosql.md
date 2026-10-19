@@ -15,7 +15,7 @@ extra:
 ## Ⅰ. 대규모 비정형 데이터 처리를 위한 NoSQL의 개요
 
 ### 가. NoSQL(Not Only SQL)의 정의
-- **NoSQL**(Not Only SQL) : 관계형 데이터 모델(RDBMS, Relational Database Management System)의 엄격한 **ACID**(Atomicity, Consistency, Isolation, Durability) 트랜잭션 및 고정 스키마 한계를 극복하고, **수평적 확장성** (Scale-Out)과 고성능 읽기·쓰기를 지원하는 비관계형 분산 데이터 저장소 기술.
+- **NoSQL**(Not Only SQL) : 관계형 데이터베이스 관리 시스템(RDBMS, Relational Database Management System)의 엄격한 **ACID**(Atomicity, Consistency, Isolation, Durability) 트랜잭션 및 고정 스키마 한계를 극복하고, **수평적 확장성** (Scale-Out)과 고성능 읽기·쓰기를 지원하는 비관계형 분산 데이터 저장소 기술.
 - 웹 스케일 트래픽, 비정형/반정규화 데이터, 유연한 스키마 변경 요구를 수용하기 위해 **CAP**(Consistency, Availability, Partition Tolerance) 정리 기반의 **BASE** (Basically Available, Soft-state, Eventually consistent) 특성을 채택함.
 
 ### 나. RDBMS 대비 NoSQL의 주요 패러다임 변화
@@ -29,20 +29,17 @@ extra:
 ### 가. 4대 데이터 모델 분류 및 특성
 
 ```text
-[ NoSQL 데이터 모델 분류 ]
-+---------------------+---------------------+---------------------+---------------------+
-| Key-Value Store     | Document Store      | Column-Family Store | Graph Store         |
-+---------------------+---------------------+---------------------+---------------------+
-| Key -> Raw Value    | Key -> JSON/BSON    | Row -> ColumnFamily | Node -> Edge -> Node|
-| Redis, Memcached    | MongoDB, Couchbase  | Cassandra, HBase    | Neo4j, Amazon Neptune
-| 단순 캐싱, 세션 저장 | 카탈로그, CMS       | 대용량 시계열, 로그 | 소셜그래프, 사기탐지 |
-+---------------------+---------------------+---------------------+---------------------+
+[ NoSQL 4대 데이터 모델 ]
+ ├─ Key-Value Store : Redis, Memcached
+ ├─ Document Store : MongoDB, Couchbase
+ ├─ Column-Family Store : Cassandra, HBase
+ └─ Graph Store : Neo4j, Amazon Neptune
 ```
 
 | 분류 | 데이터 구조 및 특성 | 대표 질의/인덱싱 방식 | 주요 적용 분야 | 대표 솔루션 |
 | :--- | :--- | :--- | :--- | :--- |
 | **Key-Value** | 유일 키(Key)에 임의의 바이너리/문자열 값 매핑 | O(1) 해시 테이블 기반 조회, 범위 질의 제한 | 캐싱 계층, 세션 저장, 장바구니 | Redis, AWS(Amazon Web Services) DynamoDB |
-| **Document** | 계층적 문서(JSON(JavaScript Object Notation), BSON(Binary JSON), XML(Extensible Markup Language)) 단위 저장 | 내부 필드 보조 인덱스(Secondary Index) 지원 | 콘텐츠 관리, 이커머스 상품 카탈로그 | MongoDB, CouchDB |
+| **Document** | JSON(JavaScript Object Notation), BSON(Binary JSON), XML(Extensible Markup Language) 등 계층적 문서 단위 저장 | 내부 필드 보조 인덱스(Secondary Index) 지원 | 콘텐츠 관리, 이커머스 상품 카탈로그 | MongoDB, CouchDB |
 | **Column-Family** | 행 키별로 가변적 컬럼 집합(Column Family) 관리 | SSTable(Sorted String Table), LSM-Tree(Log-Structured Merge-Tree) 기반 대규모 쓰기 최적화 | IoT(Internet of Things) 센서 시계열 데이터, 대규모 로그 | Apache Cassandra, HBase |
 | **Graph** | 노드(Node), 간선(Edge), 속성(Property) 관계 모델 | 포인터 기반 인접 노드 탐색(Index-free Adjacency) | 지식 그래프, 추천 시스템, FDS(Fraud Detection System) 탐지 | Neo4j, JanusGraph |
 
@@ -50,13 +47,13 @@ extra:
 
 ```text
 [ 분산 정합성 Quorum 모델 ]
-              N (전체 복제본 수)
-              /                 \
-     W (쓰기 성공 응답 수)       R (읽기 성공 응답 수)
-     
-  * 강한 일관성(Strong Consistency) 조건 : W + R > N
-  * 빠른 쓰기 최적화 조건             : W = 1, R = N
-  * 빠른 읽기 최적화 조건             : W = N, R = 1
+ N : 전체 복제본 수
+ ├─ W : 쓰기 성공 응답 수
+ └─ R : 읽기 성공 응답 수
+
+ * 강한 일관성 조건 : W + R > N
+ * 빠른 쓰기 최적화 : W = 1, R = N
+ * 빠른 읽기 최적화 : W = N, R = 1
 ```
 
 - **Basically Available** : 노드 장애 발생 시에도 시스템 전체 가용성을 유지하며, 특정 파티션 실패가 전체 다운으로 확산되지 않음.
@@ -69,7 +66,7 @@ extra:
 
 ### 가. RDBMS vs NoSQL 기술 비교
 
-| 비교 항목 | RDBMS (관계형 DBMS(Database Management System)) | NoSQL (비관계형 DBMS) |
+| 비교 항목 | RDBMS (관계형 데이터베이스 관리 시스템) | NoSQL (비관계형 DBMS) |
 | :--- | :--- | :--- |
 | **데이터 스키마** | 고정 스키마, 엄격한 DDL(Data Definition Language) 및 도메인 무결성 | Dynamic/Schema-less, 유연한 구조 변경 |
 | **트랜잭션 보장** | 엄격한 ACID (원자성, 일관성, 격리성, 영속성) | BASE (최종 일관성, 가용성 중심 트레이드오프) |

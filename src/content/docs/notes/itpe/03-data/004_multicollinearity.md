@@ -20,7 +20,7 @@ extra:
 
 ### 나. 다중공선성이 초래하는 문제점
 - 계수 추정의 분산 폭발 : 회귀계수의 **표준오차** (Standard Error)가 극단적으로 커져 $t$-통계량이 감소하고 통계적 유의성을 잃음.
-- **부호 역전(Sign Reversal)** : 상식적으로 양의 영향을 미쳐야 할 변수의 회귀계수가 음수로 추정되는 등 해석 왜곡 발생.
+- **부호 역전** (Sign Reversal) : 상식적으로 양의 영향을 미쳐야 할 변수의 회귀계수가 음수로 추정되는 등 해석 왜곡 발생.
 - 모델 불안정성 : 표본 데이터가 아주 미세하게 변경되어도 회귀계수 값이 극단적으로 변동함.
 
 ---
@@ -31,17 +31,17 @@ extra:
 
 ```text
 [ 다중공선성 진단 체계 ]
-1. 상관계수 행렬  ---> 상관계수 |r| >= 0.8 여부 스크리닝
-2. 분산팽창계수   ---> VIF = 1 / (1 - R_j^2) >= 10 (경고)
-3. 조건지수      ---> CI = sqrt(lambda_max / lambda_min) >= 30 (위험)
+ 1. 상관계수 행렬 : |r| >= 0.8 스크리닝
+ 2. 분산팽창계수(VIF) : 10 이상 경고
+ 3. 조건지수(CI) : 30 이상 위험
 ```
 
 | 진단 지표 | 산식 및 메커니즘 | 판단 기준 | 특성 및 한계 |
 | :--- | :--- | :--- | :--- |
-| **상관계수 (Correlation)** | $r_{xy} = \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^2\sum(y-\bar{y})^2}}$ | $\|r\| \ge 0.8$ 이상 | 두 변수 간의 단순 선형 관계만 탐지, 3개 이상 변수 간 복합 공선성 탐지 불가 |
-| **공차한계 (Tolerance)** | $TOL_j = 1 - R_j^2$ ($R_j^2$은 $X_j$를 나머지 독립변수로 회귀분석한 결정계수) | $TOL < 0.1$ 이하 시 공선성 의심 | 다른 독립변수들에 의해 해당 변수가 설명되는 잔여 독립성 측정 |
-| **분산팽창계수 (VIF, Variance Inflation Factor)** | $VIF_j = \frac{1}{1 - R_j^2} = \frac{1}{TOL_j}$ | $VIF \ge 10$ (엄격 기준 5) 초과 시 심각 | 가장 널리 쓰이는 표준 지표, 회귀계수 분산이 몇 배 팽창했는지 직관적 제시 |
-| **상태지수 / 조건지수 (CI, Condition Index)** | $CI = \sqrt{\frac{\lambda_{\max}}{\lambda_{\min}}}$ ($\lambda$는 $X^TX$의 고유값) | $CI \ge 30$ 이상 | 행렬의 조건수(Condition Number)를 통해 다차원 공간의 복합 공선성을 종합 평가 |
+| **상관계수** (Correlation) | $r_{xy} = \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^2\sum(y-\bar{y})^2}}$ | $\|r\| \ge 0.8$ 이상 | 두 변수 간의 단순 선형 관계만 탐지, 3개 이상 변수 간 복합 공선성 탐지 불가 |
+| **공차한계** (Tolerance) | $TOL_j = 1 - R_j^2$ ($R_j^2$은 $X_j$를 나머지 독립변수로 회귀분석한 결정계수) | $TOL < 0.1$ 이하 시 공선성 의심 | 다른 독립변수들에 의해 해당 변수가 설명되는 잔여 독립성 측정 |
+| **분산팽창계수** (VIF, Variance Inflation Factor) | $VIF_j = \frac{1}{1 - R_j^2} = \frac{1}{TOL_j}$ | $VIF \ge 10$ (엄격 기준 5) 초과 시 심각 | 가장 널리 쓰이는 표준 지표, 회귀계수 분산이 몇 배 팽창했는지 직관적 제시 |
+| **상태지수/조건지수** (CI, Condition Index) | $CI = \sqrt{\frac{\lambda_{\max}}{\lambda_{\min}}}$ ($\lambda$는 $X^TX$의 고유값) | $CI \ge 30$ 이상 | 행렬의 조건수(Condition Number)를 통해 다차원 공간의 복합 공선성을 종합 평가 |
 
 ---
 
@@ -51,21 +51,23 @@ extra:
 
 ```text
 [ 다중공선성 완화 프로세스 ]
-[공선성 탐지 (VIF >= 10)]
-       |
-       +---> [변수 제거] : 도메인 기반 불필요 변수, 전진/후진 변수선택법
-       |
-       +---> [변수 변환/결합] : PCA 주성분 추출, 변수 간 차분/비율 생성
-       |
-       +---> [규제 회귀분석] : Ridge (L2 규제), ElasticNet 적용
+ 공선성 탐지 (VIF >= 10)
+ ├─ 변수 제거
+ │   - 도메인 기반 불필요 변수
+ │   - 전진/후진 변수선택법
+ ├─ 변수 변환/결합
+ │   - PCA 주성분 추출
+ │   - 변수 간 차분/비율 생성
+ └─ 규제 회귀분석
+     - Ridge (L2 규제), ElasticNet
 ```
 
 | 해결 기법 | 구체적 작용 메커니즘 | 적용 시 장단점 |
 | :--- | :--- | :--- |
-| **변수 제거 (Feature Selection)** | 상관성이 높은 두 변수 중 정보량이 적거나 VIF가 큰 변수 제거 | 모델이 단순해지나 변수가 가진 유용한 정보 손실 위험 |
-| **차원 축소 (PCA, Principal Component Analysis)** | 직교하는 주성분(Principal Components)으로 변수 변환 | 공선성 완벽 제거($r=0$)되나 주성분의 비즈니스 해석 곤란 |
-| **릿지 회귀 (Ridge Regression)** | L2 정규화($\lambda \sum \beta_j^2$)를 통해 역행렬 계산 시 대각선에 편향($\lambda I$) 추가 | 분산을 대폭 축소하여 안정적 계수 산출, 계수를 0으로 만들지는 않음 |
-| **라쏘 회귀 (Lasso Regression)** | L1 정규화($\lambda \sum \|\beta_j\|$)를 통해 중요하지 않은 계수를 정확히 0으로 수축 | 변수 선택 효과 동시 달성, 상관 변수 중 임의의 하나만 선택하는 경향 |
+| **변수 제거** (Feature Selection) | 상관성이 높은 두 변수 중 정보량이 적거나 VIF가 큰 변수 제거 | 모델이 단순해지나 변수가 가진 유용한 정보 손실 위험 |
+| **차원 축소** (PCA, Principal Component Analysis) | 직교하는 주성분(Principal Components)으로 변수 변환 | 공선성 완벽 제거($r=0$)되나 주성분의 비즈니스 해석 곤란 |
+| **릿지 회귀** (Ridge Regression) | L2 정규화($\lambda \sum \beta_j^2$)를 통해 역행렬 계산 시 대각선에 편향($\lambda I$) 추가 | 분산을 대폭 축소하여 안정적 계수 산출, 계수를 0으로 만들지는 않음 |
+| **라쏘 회귀** (Lasso Regression) | L1 정규화($\lambda \sum \|\beta_j\|$)를 통해 중요하지 않은 계수를 정확히 0으로 수축 | 변수 선택 효과 동시 달성, 상관 변수 중 임의의 하나만 선택하는 경향 |
 
 ---
 
@@ -79,7 +81,7 @@ extra:
   - 해결 방안 : 도메인 지식 기반 변수 결합(비율, 차분 등 합성 지표 생성) 또는 부분 최소제곱 회귀(PLS, Partial Least Squares)를 도입하여 타깃 변수와의 연관성을 보존하며 차원 압축.
 - 다변량 비선형 공선성 및 고차원 데이터($p > n$)에서의 진단 실패 :
   - 한계점 : 분산팽창계수(VIF)와 피어슨 상관계수는 선형 관계만을 전제하므로 복잡한 비선형 종속성을 탐지하지 못하며 변수 수가 샘플 수를 초과할 때 계산 불가.
-  - 해결 방안 : 상호정보량(Mutual Information) 기반 비선형 의존성 평가 및 트리 기반 앙상블(GBDT, Gradient Boosting Decision Tree)의 특성 중요도(Feature Importance, SHAP) 분석 병행.
+  - 해결 방안 : 상호정보량(Mutual Information) 기반 비선형 의존성 평가 및 트리 기반 앙상블(GBDT, Gradient Boosting Decision Tree)의 특성 중요도(Feature Importance)와 SHAP(SHapley Additive exPlanations) 분석 병행.
 
 ---
 
