@@ -15,11 +15,11 @@ extra:
 ## Ⅰ. 대용량 빅데이터 허브로서의 데이터 레이크(Data Lake) 개요
 
 ### 가. 데이터 레이크의 정의
-- **정형** (RDBMS(Relational Database Management System) 테이블), **반정형** (JSON(JavaScript Object Notation), XML(Extensible Markup Language), 로그), **비정형** (이미지, 영상, 텍스트)을 포함한 대규모 원천 데이터를 변환 없이 원래의 포맷 그대로(Raw Format) 저렴한 대용량 객체 스토리지에 저장하는 중앙 집중식 저장소.
+- 정형은 RDBMS(Relational Database Management System) 테이블, 반정형은 JSON(JavaScript Object Notation)·XML(Extensible Markup Language)·로그, 비정형은 이미지·영상·텍스트 등을 포함한 대규모 원천 데이터를 변환 없이 원래의 포맷 그대로(Raw Format) 저렴한 대용량 객체 스토리지에 저장하는 중앙 집중식 저장소.
 - 저장 시점에 스키마를 강제하지 않고 데이터를 읽는 시점에 스키마를 적용하는 **Schema-on-Read** 패러다임을 핵심 특성으로 함.
 
 ### 나. 데이터 웨어하우스(DW)와 데이터 레이크의 패러다임 비교
-- **DW(Data Warehouse, Schema-on-Write)** : 정제 및 변환(ETL, Extract, Transform, Load)된 고품질 정형 데이터를 엄격한 스키마 기반으로 적재하여 빠른 SQL(Structured Query Language) 분석 제공.
+- **DW** (Data Warehouse, Schema-on-Write) : 정제 및 변환(ETL, Extract, Transform, Load)된 고품질 정형 데이터를 엄격한 스키마 기반으로 적재하여 빠른 SQL(Structured Query Language) 분석 제공.
 - **Data Lake (Schema-on-Read)** : 추출 후 원천 그대로 **선적재** (ELT, Extract, Load, Transform), 데이터 과학자의 **탐색적 데이터 분석** (EDA, Exploratory Data Analysis) 및 머신러닝 파이프라인을 지원.
 
 ---
@@ -29,14 +29,14 @@ extra:
 ### 가. 데이터 레이크 3단계 메달리온(Medallion) 아키텍처
 
 ```text
-[ 데이터 레이크 계층화 (Medallion Architecture) ]
-+-------------------+     +-------------------+     +-------------------+
-|  Bronze (Raw)     | --> |  Silver (Cleansed)| --> |  Gold (Curated)   |
-+-------------------+     +-------------------+     +-------------------+
-| - 원천 데이터 원본 |     | - 결측치 정제     |     | - 비즈니스 집계   |
-| - Append-only 적재 |   | - 데이터 표준화   |     | - 스타 스키마 모델|
-| - 감사 및 리니지  |     | - 준정규화 테이블 |     | - BI 대시보드 제공|
-+-------------------+     +-------------------+     +-------------------+
+[ 메달리온(Medallion) 아키텍처 ]
+ [ Bronze (Raw) ] - 원천 원본, 감사·리니지
+    │
+    ▼
+ [ Silver (Cleansed) ] - 결측치 정제, 표준화
+    │
+    ▼
+ [ Gold (Curated) ] - 비즈니스 집계·서빙
 ```
 
 | 계층 | 데이터 성격 | 처리 작업 및 스토리지 포맷 | 주요 사용자 |
@@ -57,14 +57,18 @@ extra:
 ### 가. 데이터 스웜프의 발생 원인과 위험성
 
 ```text
-[ 데이터 레이크가 데이터 늪(Data Swamp)으로 변질되는 경로 ]
-무분별한 적재 (No Governance) + 메타데이터 부재 + 접근 권한 통제 실패
-  ===> 데이터가 어디에 무엇이 있는지 알 수 없고 정합성이 무너져 사용 불가 상태 초래
+[ 데이터 늪(Data Swamp) 변질 경로 ]
+ 무분별한 적재 (No Governance)
+ + 메타데이터 부재
+ + 접근 권한 통제 실패
+   │
+   ▼
+ 데이터 위치·정합성 상실, 사용 불가
 ```
 
 ### 나. 데이터 늪 방지를 위한 거버넌스 통제 방안
 - **자동화된 메타데이터 등록** : 데이터 적재 파이프라인과 연계하여 스키마 정보 및 카탈로그 자동 등록(AWS Glue, Apache Atlas).
-- **데이터 라이프사이클 관리(ILM, Information Lifecycle Management)** : 수집 후 90일 이상 미사용 원천 데이터는 아카이브 스토리지(Glacier 등)로 자동 티어링하거나 폐기.
+- **데이터 라이프사이클 관리** (ILM, Information Lifecycle Management) : 수집 후 장기간 미사용 원천 데이터는 아카이브 스토리지(Glacier 등)로 자동 티어링하거나 폐기.
 - **품질 게이트웨이 구축** : Silver 계층으로 승격 시 데이터 유효성 검증 테스트 통과 의무화.
 
 ---
@@ -79,7 +83,7 @@ extra:
   - 해결 방안 : 트랜잭션 로그(WAL(Write-Ahead Logging) 기반)와 스냅샷 격리를 지원하는 오픈 테이블 포맷(Apache Iceberg, Delta Lake) 도입으로 ACID 보장 및 타임 트래블(Time Travel) 구현.
 - 스토리지 비용의 기하급수적 증가 및 FinOps 통제 부재 :
   - 한계점 : 보관 주기 및 라이프사이클 정책 없는 무분별한 데이터 영구 보관으로 클라우드 스토리지 청구 비용 급증 및 미사용 콜드 데이터 방치.
-  - 해결 방안 : 객체 스토리지 수명주기 규칙(Lifecycle Policy)을 통한 티어링(Standard -> Infrequent Access -> Glacier), Parquet/ORC 컬럼나 포맷 및 Snappy/ZSTD 압축 표준화.
+  - 해결 방안 : 객체 스토리지 수명주기 규칙(Lifecycle Policy)을 통한 티어링(Standard -> Infrequent Access -> Glacier), Parquet/ORC 등 컬럼 기반(columnar) 포맷 및 Snappy/ZSTD 압축 표준화.
 
 ---
 

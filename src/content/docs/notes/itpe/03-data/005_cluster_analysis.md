@@ -19,8 +19,8 @@ extra:
 - 고객 세분화(Customer Segmentation), 이상치 탐지(Anomaly Detection), 문서 분류, 공간 데이터 분석 등 데이터 탐색 및 전처리의 핵심 수단.
 
 ### 나. 군집분석의 핵심 원칙
-- **군집 내 응집도(Cohesion) 극대화** : 동일 군집에 속한 데이터 포인트 간 거리는 최소화.
-- **군집 간 분리도(Separation) 극대화** : 서로 다른 군집 간의 거리는 최대화.
+- **군집 내 응집도** (Cohesion) 극대화 : 동일 군집에 속한 데이터 포인트 간 거리는 최소화.
+- **군집 간 분리도** (Separation) 극대화 : 서로 다른 군집 간의 거리는 최대화.
 
 ---
 
@@ -29,21 +29,19 @@ extra:
 ### 가. 군집분석 4대 방법론
 
 ```text
-[ 군집분석 알고리즘 계통도 ]
-+---------------------+---------------------+---------------------+---------------------+
-| 분할적 (Partition)  | 계층적 (Hierarchical)| 밀도 기반 (Density) | 모델 기반 (Model)   |
-+---------------------+---------------------+---------------------+---------------------+
-| K-Means, K-Medoids  | 병합형(Agglomerative)| DBSCAN, OPTICS      | GMM (EM 알고리즘)   |
-| 대규모 구형 군집    | 덴드로그램 트리     | 임의 형상, 노이즈제거| 확률분포 기반 소프트|
-+---------------------+---------------------+---------------------+---------------------+
+[ 군집분석 4대 방법론 ]
+ ├─ 분할적(Partitioning) : K-Means, K-Medoids
+ ├─ 계층적(Hierarchical) : 병합형, 덴드로그램
+ ├─ 밀도 기반(Density) : DBSCAN, OPTICS
+ └─ 모델 기반(Model) : GMM (EM 알고리즘)
 ```
 
 | 분류 | 대표 알고리즘 | 동작 원리 및 거리 측정 | 장점 | 단점 및 한계 |
 | :--- | :--- | :--- | :--- | :--- |
-| **분할적 (Partitioning)** | K-Means | 사전에 군집 수 $K$ 설정 후 중심점(Centroid)과의 거리 기반 반복 재할당 | 계산 복잡도 $O(tKn)$로 빠름, 대용량 처리에 적합 | 구형(Spherical) 군집만 탐색 가능, 이상치에 민감, $K$ 사전 지정 필요 |
-| **계층적 (Hierarchical)** | Agglomerative (병합형) | 각 개체에서 시작하여 거리(단일, 완전, 평균, 와드 연결법)에 따라 순차 병합 | 군집 수 사전 지정 불필요, 덴드로그램 시각화 제공 | 계산 복잡도 $O(n^3)$ 또는 $O(n^2)$로 대용량 데이터 적용 곤란 |
-| **밀도 기반 (Density-Based)** | DBSCAN(Density-Based Spatial Clustering of Applications with Noise) | 반경($\epsilon$) 내 최소 데이터 수(MinPts) 이상의 고밀도 영역을 연결 | 비선형/기하학적 임의 형태 군집 탐색 가능, 노이즈(이상치) 자동 분류 | 데이터 밀도가 다양한 경우 성능 저하, 하이퍼파라미터 민감 |
-| **모델 기반 (Model-Based)** | GMM(Gaussian Mixture Model, 가우시안 혼합) | 데이터가 여러 가우시안 확률 분포의 혼합체로 생성되었다고 가정 (EM(Expectation-Maximization) 알고리즘) | 소프트 군집화(소속 확률 제공), 타원형 군집 표현 가능 | 국소 최적해(Local Minimum) 수렴 위험, 초기값 의존성 |
+| **분할적** (Partitioning) | K-Means | 사전에 군집 수 $K$ 설정 후 중심점(Centroid)과의 거리 기반 반복 재할당 | 계산 복잡도 $O(tKn)$로 빠름, 대용량 처리에 적합 | 구형(Spherical) 군집만 탐색 가능, 이상치에 민감, $K$ 사전 지정 필요 |
+| **계층적** (Hierarchical) | Agglomerative (병합형) | 각 개체에서 시작하여 거리(단일, 완전, 평균, 와드 연결법)에 따라 순차 병합 | 군집 수 사전 지정 불필요, 덴드로그램 시각화 제공 | 계산 복잡도 $O(n^3)$ 또는 $O(n^2)$로 대용량 데이터 적용 곤란 |
+| **밀도 기반** (Density-Based) | DBSCAN(Density-Based Spatial Clustering of Applications with Noise) | 반경($\epsilon$) 내 최소 데이터 수(MinPts) 이상의 고밀도 영역을 연결 | 비선형/기하학적 임의 형태 군집 탐색 가능, 노이즈(이상치) 자동 분류 | 데이터 밀도가 다양한 경우 성능 저하, 하이퍼파라미터 민감 |
+| **모델 기반** (Model-Based) | GMM(Gaussian Mixture Model, 가우시안 혼합) | 데이터가 여러 가우시안 확률 분포의 혼합체로 생성되었다고 가정하며 EM(Expectation-Maximization) 알고리즘으로 모수 추정 | 소프트 군집화(소속 확률 제공), 타원형 군집 표현 가능 | 국소 최적해(Local Minimum) 수렴 위험, 초기값 의존성 |
 
 ### 나. 데이터 속성에 따른 거리/유사도 측정 척도
 - **연속형 수치 데이터** : **유클리디안 거리** (Euclidean), **맨해튼 거리** (Manhattan), **마할라노비스 거리** (공분산 반영).
@@ -57,18 +55,24 @@ extra:
 ### 가. 최적 군집 수 결정 방법
 
 ```text
-[ 엘보우 기법 (Elbow Method) ]          [ 실루엣 분석 (Silhouette Analysis) ]
-  WSS (군집 내 제곱합)                     실루엣 계수 s(i) = (b(i) - a(i)) / max(a(i), b(i))
-   | \                                   - a(i): 동일 군집 내 평균 거리
-   |  \                                  - b(i): 가장 가까운 타 군집과의 평균 거리
-   |   \___  <-- 엘보우 포인트 (최적 K)     - 범위: -1 ~ +1 (1에 가까울수록 이상적)
-   +---------> K (군집 수)
+[ 엘보우 기법 (Elbow Method) ]
+ WSS (군집 내 제곱합)
+  | \
+  |  \
+  |   \___  <-- 엘보우 포인트 (최적 K)
+  +---------> K (군집 수)
+
+[ 실루엣 분석 (Silhouette Analysis) ]
+ s(i) = (b(i) - a(i)) / max(a(i), b(i))
+ - a(i): 동일 군집 내 평균 거리
+ - b(i): 가장 가까운 타 군집과의 평균 거리
+ - 범위: -1 ~ +1 (1에 가까울수록 이상적)
 ```
 
 ### 나. 군집 타당성 평가 지표
-- **실루엣 계수(Silhouette Coefficient)** : 군집 내 응집도 $a(i)$와 최근접 타 군집 간 분리도 $b(i)$를 정규화하여 평가. 0.5 이상이면 타당한 구조로 판단.
-- **데이비스-볼딘 지수(Davies-Bouldin Index)** : 군집 간 거리 대비 군집 내 분산의 비율 합산. 값이 작을수록 우수한 군집화.
-- **칼린스키-하라바츠 지수(CH, Calinski-Harabasz Index)** : 군집 간 분산과 군집 내 분산의 비율. 값이 클수록 명확히 분리됨.
+- **실루엣 계수** (Silhouette Coefficient) : 군집 내 응집도 $a(i)$와 최근접 타 군집 간 분리도 $b(i)$를 정규화하여 평가. 0.5 이상이면 타당한 구조로 판단.
+- **데이비스-볼딘 지수** (Davies-Bouldin Index) : 군집 간 거리 대비 군집 내 분산의 비율 합산. 값이 작을수록 우수한 군집화.
+- **칼린스키-하라바츠 지수** (CH, Calinski-Harabasz Index) : 군집 간 분산과 군집 내 분산의 비율. 값이 클수록 명확히 분리됨.
 
 ---
 
@@ -76,7 +80,7 @@ extra:
 
 - 사전 군집 수($K$) 설정의 주관성 및 최적값 결정 난제 :
   - 한계점 : 엘보우(Elbow) 기법의 굴곡점 판정이 모호하고, 실루엣(Silhouette) 계수는 볼록한(Convex) 구형 군집 구조에만 편향되어 비선형 군집 평가 왜곡.
-  - 해결 방안 : Gap Statistic 통계량 및 갭 검정 적용, 또는 밀도 기반(DBSCAN, HDBSCAN(Hierarchical Density-Based Spatial Clustering of Applications with Noise)) 및 계층적 클러스터링을 앙상블하여 군집 수 사전 지정을 자동화.
+  - 해결 방안 : Gap Statistic 통계량 및 갭 검정 적용, 또는 밀도 기반 계열인 DBSCAN과 HDBSCAN(Hierarchical Density-Based Spatial Clustering of Applications with Noise), 계층적 클러스터링을 앙상블하여 군집 수 사전 지정을 자동화.
 - 고차원의 저주(Curse of Dimensionality)로 인한 거리 척도 왜곡 :
   - 한계점 : 데이터 차원이 증가함에 따라 유클리드 공간 내 모든 관측치 간의 거리가 균일화되어 군집 간 경계가 붕괴되고 계산 복잡도 폭증.
   - 해결 방안 : UMAP(Uniform Manifold Approximation and Projection), t-SNE(t-distributed Stochastic Neighbor Embedding) 또는 오토인코더(Autoencoder) 기반 비선형 매니폴드 차원 축소 선행 적용, 코사인 유사도 등 방향성 기반 척도 대체.
@@ -89,5 +93,5 @@ extra:
 ## Ⅴ. 군집분석 도입 시 엔지니어링 고려사항 및 실무 제언
 
 - 특성 스케일링(Feature Scaling)의 절대성 : 유클리디안 기반 거리는 변수의 단위(Scale)에 극도로 취약하므로, 군집화 수행 전 반드시 표준화(StandardScaler) 또는 정규화(MinMaxScaler)를 선행해야 함.
-- 차원의 저주(Curse of Dimensionality) 극복 : 고차원 희소 데이터에서는 모든 포인트 간 거리가 균일화되는 현상이 발생하므로, t-SNE, UMAP 또는 AutoEncoder 기반의 사전 차원 축소를 결합할 것을 권장함.
+- 차원의 저주(Curse of Dimensionality) 극복 : 고차원 희소 데이터에서는 모든 포인트 간 거리가 균일화되는 현상이 발생하므로, t-SNE, UMAP 또는 Autoencoder 기반의 사전 차원 축소를 결합할 것을 권장함.
 - 비즈니스 실행 가능성(Actionability) 확보 : 수학적으로 분리된 군집이라도 현업이 타깃 마케팅이나 정책에 활용할 수 있는 도메인 해석이 불가능하면 무용하므로, 군집별 프로파일링 및 특성 해석 워크숍을 병행할 것을 제언함.
