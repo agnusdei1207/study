@@ -16,13 +16,13 @@ Status markers: [ ] pending, [~] in progress (background), [x] done+verified.
 - [x] batch7: 114, 116 (background)
 
 ## 02-software-engineering (128 files)
-- [~] batch1: 001-013 (background)
-- [~] batch2: 014-027 (background)
-- [~] batch3: 028-042 (background)
-- [ ] batch4: 043-058
-- [ ] batch5: 059-073
-- [ ] batch6: 074-088
-- [ ] batch7: 089-104
+- [x] batch1: 001-013
+- [x] batch2: 014-027
+- [x] batch3: 028-042
+- [~] batch4: 043-056
+- [~] batch5: 057-072
+- [~] batch6: 073-084
+- [~] batch7: 086-097
 - [ ] batch8: 105-120
 - [ ] batch9: 121-137
 - [ ] batch10: 138-152
