@@ -1,6 +1,6 @@
 ---
 title: "EDA(이벤트 기반 아키텍처)와 2대 토폴로지(브로커·중재자) (EDA: Event-Driven Architecture)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

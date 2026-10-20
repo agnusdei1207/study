@@ -1,6 +1,6 @@
 ---
 title: "추천 시스템 필터링"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

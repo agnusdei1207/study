@@ -1,6 +1,6 @@
 ---
 title: "해시 함수(Hash Function)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

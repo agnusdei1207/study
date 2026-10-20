@@ -1,6 +1,6 @@
 ---
 title: "CPU 스케줄링(CPU Scheduling) (CPU: Central Processing Unit)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

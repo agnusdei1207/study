@@ -1,6 +1,6 @@
 ---
 title: "공공부문 초거대 AI 도입·활용 가이드라인 2.0 (AI: Artificial Intelligence)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

@@ -1,6 +1,6 @@
 ---
 title: "추측 디코딩 (Speculative Decoding)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

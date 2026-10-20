@@ -1,6 +1,6 @@
 ---
 title: "EU 디지털 옴니버스 (AI Act 고위험 의무 연기) (EU: European Union)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

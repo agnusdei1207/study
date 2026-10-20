@@ -1,6 +1,6 @@
 ---
 title: "컨텍스트 엔지니어링 (Context Engineering)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

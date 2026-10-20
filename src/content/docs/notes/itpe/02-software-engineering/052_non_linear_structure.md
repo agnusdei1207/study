@@ -1,6 +1,6 @@
 ---
 title: "비선형 구조(Non-Linear Structure)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

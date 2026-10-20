@@ -1,6 +1,6 @@
 ---
 title: "선형 vs 비선형 자료구조"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

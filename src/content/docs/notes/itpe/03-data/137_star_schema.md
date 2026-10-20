@@ -1,6 +1,6 @@
 ---
 title: "스타 스키마(Star Schema)의 차원 모델링과 최적화"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

@@ -1,6 +1,6 @@
 ---
 title: "점추정(Point Estimation)과 구간추정(Interval Estimation)의 비교 및 신뢰구간 평가"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

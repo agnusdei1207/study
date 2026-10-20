@@ -1,6 +1,6 @@
 ---
 title: "시계열 이상치 탐지(Time Series Anomaly Detection)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

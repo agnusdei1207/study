@@ -1,6 +1,6 @@
 ---
 title: "Apache Iceberg / 오픈 테이블 포맷(레이크하우스)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

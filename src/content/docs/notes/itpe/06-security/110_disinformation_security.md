@@ -1,6 +1,6 @@
 ---
 title: "허위정보 위협 분석과 대응"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

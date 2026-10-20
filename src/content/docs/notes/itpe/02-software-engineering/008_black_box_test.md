@@ -1,6 +1,6 @@
 ---
 title: "블랙박스 테스트(명세 기반 기법: 동등 분할·경계값 분석)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

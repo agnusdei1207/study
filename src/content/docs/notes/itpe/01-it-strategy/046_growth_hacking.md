@@ -1,6 +1,6 @@
 ---
 title: "그로스 해킹"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

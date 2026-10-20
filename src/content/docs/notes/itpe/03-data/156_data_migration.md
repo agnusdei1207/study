@@ -1,6 +1,6 @@
 ---
 title: "대용량 데이터 이관(Data Migration) 및 무결성·정합성 검증 체계"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

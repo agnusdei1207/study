@@ -1,6 +1,6 @@
 ---
 title: "시계열 딥러닝(Time Series Deep Learning)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

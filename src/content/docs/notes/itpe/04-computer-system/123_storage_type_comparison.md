@@ -1,6 +1,6 @@
 ---
 title: "스토리지 유형 비교(블록·파일·오브젝트)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

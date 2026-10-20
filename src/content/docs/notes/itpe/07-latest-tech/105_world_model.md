@@ -1,6 +1,6 @@
 ---
 title: "월드 모델 / 월드 파운데이션 모델 (World Model)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

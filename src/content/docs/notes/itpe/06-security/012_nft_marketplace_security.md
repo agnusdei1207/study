@@ -1,6 +1,6 @@
 ---
 title: "NFT 마켓플레이스 보안 (NFT: Non-Fungible Token)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

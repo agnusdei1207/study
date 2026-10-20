@@ -1,6 +1,6 @@
 ---
 title: "디지털 출처증명과 C2PA (C2PA: Coalition for Content Provenance and Authenticity)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

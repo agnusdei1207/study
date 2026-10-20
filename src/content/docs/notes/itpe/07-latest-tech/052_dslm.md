@@ -1,6 +1,6 @@
 ---
 title: "도메인 특화 언어모델(DSLM, Domain-Specific Language Model)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

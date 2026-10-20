@@ -1,6 +1,6 @@
 ---
 title: "SGI서울보증 랜섬웨어 사고"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

@@ -1,6 +1,6 @@
 ---
 title: "공공 소프트웨어(SW, Software) 사업 하도급 제한"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

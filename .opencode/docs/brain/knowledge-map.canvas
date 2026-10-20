@@ -3,7 +3,7 @@
     {
       "id": "objective",
       "type": "text",
-      "text": "Objective\n작성법 보시고 2과목부터 8과목까지 재작성",
+      "text": "Objective\n전과목 재작성",
       "x": 0,
       "y": 0,
       "width": 360,
@@ -35,6 +35,24 @@
       "y": 260,
       "width": 360,
       "height": 180
+    },
+    {
+      "id": "event-1",
+      "type": "text",
+      "text": "mission_cancelled\nreplaced_by_new_task",
+      "x": 420,
+      "y": 260,
+      "width": 360,
+      "height": 180
+    },
+    {
+      "id": "event-2",
+      "type": "text",
+      "text": "mission_started\nMission loop started",
+      "x": 840,
+      "y": 260,
+      "width": 360,
+      "height": 180
     }
   ],
   "edges": [
@@ -54,6 +72,18 @@
       "id": "verification-event-0",
       "fromNode": "verification",
       "toNode": "event-0",
+      "label": "evidence"
+    },
+    {
+      "id": "verification-event-1",
+      "fromNode": "verification",
+      "toNode": "event-1",
+      "label": "evidence"
+    },
+    {
+      "id": "verification-event-2",
+      "fromNode": "verification",
+      "toNode": "event-2",
       "label": "evidence"
     }
   ]

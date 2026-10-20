@@ -1,6 +1,6 @@
 ---
 title: "스마트 계약(Smart Contract)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

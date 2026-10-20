@@ -1,6 +1,6 @@
 ---
 title: "조달청 협상에 의한 계약 제안서평가 세부기준"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어 비용 산정(Software Cost Estimation)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

@@ -1,6 +1,6 @@
 ---
 title: "AI 생성 코드·오픈웨이트 라이선스 준수 (AI: Artificial Intelligence)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

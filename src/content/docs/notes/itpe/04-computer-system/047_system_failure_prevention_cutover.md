@@ -1,6 +1,6 @@
 ---
 title: "정보시스템 장애 예방·운영 전환"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

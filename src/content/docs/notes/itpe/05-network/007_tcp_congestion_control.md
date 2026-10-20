@@ -1,6 +1,6 @@
 ---
 title: "TCP 혼잡제어(TCP Congestion Control) (TCP: Transmission Control Protocol)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-network"

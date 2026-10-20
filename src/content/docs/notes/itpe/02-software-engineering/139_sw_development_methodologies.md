@@ -1,6 +1,6 @@
 ---
 title: "SW 개발방법론 비교(구조적·정보공학·객체지향·CBD) (SW: Software; CBD: Component-Based Development)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

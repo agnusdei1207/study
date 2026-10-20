@@ -1,6 +1,6 @@
 ---
 title: "데이터센터(IDC, Internet Data Center) 입지 선정"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

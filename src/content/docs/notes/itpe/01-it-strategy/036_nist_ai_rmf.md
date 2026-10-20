@@ -1,6 +1,6 @@
 ---
 title: "NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

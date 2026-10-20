@@ -1,6 +1,6 @@
 ---
 title: "프로세스 동기화 기법(뮤텍스·세마포어·모니터)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

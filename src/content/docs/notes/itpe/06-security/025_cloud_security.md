@@ -1,6 +1,6 @@
 ---
 title: "클라우드 보안(CSAP·ISO/IEC 27017·CSP 리스크) (ISO: International Organization for Standardization; IEC: International Electrotechnical Commission; CSAP: Cloud Security Assurance Program; CSP: Cloud Service Provider)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

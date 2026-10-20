@@ -1,6 +1,6 @@
 ---
 title: "LLM-as-a-Judge(Large Language Model as a Judge, 인공지능 평가)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

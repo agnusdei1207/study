@@ -1,6 +1,6 @@
 ---
 title: "TAM·SAM·SOM (TAM: Total Addressable Market; SAM: Serviceable Available Market; SOM: Serviceable Obtainable Market)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

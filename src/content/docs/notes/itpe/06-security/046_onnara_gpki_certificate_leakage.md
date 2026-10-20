@@ -1,6 +1,6 @@
 ---
 title: "온나라시스템·GPKI 인증서 유출 (GPKI: Government Public Key Infrastructure)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

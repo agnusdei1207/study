@@ -1,6 +1,6 @@
 ---
 title: "메인 메모리 DBMS(MMDBMS, Main Memory Database Management System) (DBMS: Database Management System)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

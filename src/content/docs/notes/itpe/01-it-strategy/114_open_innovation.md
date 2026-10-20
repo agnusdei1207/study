@@ -1,6 +1,6 @@
 ---
 title: "개방형 혁신(Open Innovation)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

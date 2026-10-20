@@ -1,6 +1,6 @@
 ---
 title: "엔트로피 지수(Entropy Index)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

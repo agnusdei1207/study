@@ -1,6 +1,6 @@
 ---
 title: "알고리즘 복잡도(O-notation)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

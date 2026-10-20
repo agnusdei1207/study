@@ -1,6 +1,6 @@
 ---
 title: "경영환경 분석(SWOT·3C·PEST) (SWOT: Strengths, Weaknesses, Opportunities, Threats; 3C: Customer, Competitor, Company; PEST: Political, Economic, Social, Technological)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

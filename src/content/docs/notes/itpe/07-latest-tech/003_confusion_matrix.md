@@ -1,6 +1,6 @@
 ---
 title: "분류 모델 성능지표(혼동행렬·PR/ROC 곡선) (PR: Precision-Recall; ROC: Receiver Operating Characteristic)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

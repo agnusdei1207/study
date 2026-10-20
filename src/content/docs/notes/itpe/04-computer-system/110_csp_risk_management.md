@@ -1,6 +1,6 @@
 ---
 title: "클라우드서비스 제공자(CSP, Cloud Service Provider) 리스크 관리"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

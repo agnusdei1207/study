@@ -1,6 +1,6 @@
 ---
 title: "공격표면관리(Attack Surface Management)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

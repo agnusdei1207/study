@@ -1,6 +1,6 @@
 ---
 title: "쿠팡 개인정보 유출 사고와 보호대책"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

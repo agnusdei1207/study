@@ -1,6 +1,6 @@
 ---
 title: "오픈소스 DBMS 마이그레이션 (DBMS: Database Management System)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

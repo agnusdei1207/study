@@ -1,6 +1,6 @@
 ---
 title: "기능점수(Function Point)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

@@ -1,6 +1,6 @@
 ---
 title: "메모리 인터리빙(Memory Interleaving)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

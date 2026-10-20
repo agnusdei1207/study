@@ -1,6 +1,6 @@
 ---
 title: "FIDO 인증과 FIDO2 (FIDO: Fast IDentity Online)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

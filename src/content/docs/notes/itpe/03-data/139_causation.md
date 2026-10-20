@@ -1,6 +1,6 @@
 ---
 title: "인과관계(Causation)와 인과추론"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

@@ -1,6 +1,6 @@
 ---
 title: "다중지역 동시 가동 재해복구 시스템"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

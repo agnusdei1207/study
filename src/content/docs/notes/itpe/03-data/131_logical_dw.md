@@ -1,6 +1,6 @@
 ---
 title: "논리적 데이터 웨어하우스(Logical DW)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

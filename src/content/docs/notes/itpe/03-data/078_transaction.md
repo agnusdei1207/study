@@ -1,6 +1,6 @@
 ---
 title: "트랜잭션(ACID, Atomicity, Consistency, Isolation, Durability)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"

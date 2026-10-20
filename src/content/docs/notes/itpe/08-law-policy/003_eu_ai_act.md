@@ -1,6 +1,6 @@
 ---
 title: "EU 인공지능법(EU AI Act) (EU: European Union)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

@@ -1,6 +1,6 @@
 ---
 title: "고영향 인공지능"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

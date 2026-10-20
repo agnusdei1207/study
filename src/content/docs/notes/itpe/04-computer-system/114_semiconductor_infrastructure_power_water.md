@@ -1,6 +1,6 @@
 ---
 title: "반도체 특화 인프라 (전력·용수)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

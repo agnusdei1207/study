@@ -1,6 +1,6 @@
 ---
 title: "공직선거법 딥페이크 선거운동 금지"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

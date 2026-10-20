@@ -1,6 +1,6 @@
 ---
 title: "임베디드 소프트웨어 테스트 및 X-in-the-Loop(MIL·SIL·PIL·HIL) (MIL: Model-in-the-Loop; SIL: Software-in-the-Loop; PIL: Processor-in-the-Loop; HIL: Hardware-in-the-Loop)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

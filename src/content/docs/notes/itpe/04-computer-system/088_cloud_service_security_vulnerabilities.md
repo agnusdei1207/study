@@ -1,6 +1,6 @@
 ---
 title: "클라우드 서비스 보안 취약점과 대응"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

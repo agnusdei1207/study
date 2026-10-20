@@ -1,6 +1,6 @@
 ---
 title: "2025년 예스24 랜섬웨어와 서비스 복원력"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

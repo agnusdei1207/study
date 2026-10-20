@@ -1,6 +1,6 @@
 ---
 title: "2026 상반기 침해사고 위협 점검"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

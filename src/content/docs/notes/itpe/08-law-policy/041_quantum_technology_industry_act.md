@@ -1,6 +1,6 @@
 ---
 title: "양자기술산업법 / 제1차 양자종합계획"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

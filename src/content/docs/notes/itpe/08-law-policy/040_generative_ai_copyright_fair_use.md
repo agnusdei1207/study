@@ -1,6 +1,6 @@
 ---
 title: "생성형 AI 학습 공정이용 안내서 (AI 저작권) (AI: Artificial Intelligence)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

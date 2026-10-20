@@ -1,6 +1,6 @@
 ---
 title: "머신러닝 파이프라인(Machine Learning Pipeline)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

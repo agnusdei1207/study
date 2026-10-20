@@ -1,6 +1,6 @@
 ---
 title: "바이오정보(Biometric Information) 분산관리"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-security"

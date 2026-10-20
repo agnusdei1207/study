@@ -1,6 +1,6 @@
 ---
 title: "액티브-액티브 이중화와 스토리지 DR (DR: Disaster Recovery)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

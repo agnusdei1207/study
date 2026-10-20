@@ -1,6 +1,6 @@
 ---
 title: "테스트 타임 컴퓨트 (Test-time Compute / Inference Scaling)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

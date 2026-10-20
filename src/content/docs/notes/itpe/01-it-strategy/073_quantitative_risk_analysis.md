@@ -1,6 +1,6 @@
 ---
 title: "정량적 위험분석"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T22:50:00+09:00"
 tags:
   - "notes-it-strategy"

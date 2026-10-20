@@ -1,6 +1,6 @@
 ---
 title: "카피레프트 라이선스(Copyleft License)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-law-policy"

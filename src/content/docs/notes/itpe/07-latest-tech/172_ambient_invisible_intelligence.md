@@ -1,6 +1,6 @@
 ---
 title: "앰비언트 인비저블 인텔리전스"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

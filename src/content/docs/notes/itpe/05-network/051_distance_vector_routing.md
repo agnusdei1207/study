@@ -1,6 +1,6 @@
 ---
 title: "거리벡터 라우팅(Distance Vector Routing)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-network"

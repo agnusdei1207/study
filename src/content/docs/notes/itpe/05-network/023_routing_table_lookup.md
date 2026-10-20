@@ -1,6 +1,6 @@
 ---
 title: "라우팅 테이블 탐색"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-network"

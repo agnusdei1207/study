@@ -1,6 +1,6 @@
 ---
 title: "오픈소스 라이선스(Permissive·Copyleft)와 Source-Available 라이선스"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:00:00+09:00"
 tags:
   - "notes-software-engineering"

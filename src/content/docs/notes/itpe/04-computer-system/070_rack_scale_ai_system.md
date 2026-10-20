@@ -1,6 +1,6 @@
 ---
 title: "랙스케일 AI 시스템 (GB200 NVL72·Vera Rubin NVL72) (AI: Artificial Intelligence)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-computer-system"

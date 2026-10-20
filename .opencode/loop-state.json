@@ -2,8 +2,8 @@
   "active": true,
   "iteration": 1,
   "maxIterations": 1000000000,
-  "prompt": "작성법 보시고 2과목부터 8과목까지 재작성",
-  "objective": "작성법 보시고 2과목부터 8과목까지 재작성",
-  "sessionID": "ses_ea8decce2ffevnN3OyTFOrkKm6",
-  "startedAt": "2026-10-20T02:25:56.129Z"
+  "prompt": "전과목 재작성",
+  "objective": "전과목 재작성",
+  "sessionID": "ses_ea8f5019effeQTgVdVzRy7BybU",
+  "startedAt": "2026-10-20T02:34:18.907Z"
 }

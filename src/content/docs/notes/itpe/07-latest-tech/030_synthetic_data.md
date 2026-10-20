@@ -1,6 +1,6 @@
 ---
 title: "합성 데이터(Synthetic Data)"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-10-01T23:50:00+09:00"
 tags:
   - "notes-latest-tech"

@@ -1,6 +1,6 @@
 ---
 title: "빅데이터 플랫폼 아키텍처"
-author: "Antigravity"
+author: "agnusdei1207"
 date: "2026-03-30T09:00:00+09:00"
 tags:
   - "notes-data"
