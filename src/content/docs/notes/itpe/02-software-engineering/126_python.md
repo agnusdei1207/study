@@ -33,7 +33,7 @@ extra:
 - 핵심 요약 : 동적 타이핑과 인터프리터 실행, GIL, 풍부한 생태계를 특징으로 하는 다중 패러다임 언어.
 1. **동적 타이핑** (Dynamic Typing) : 변수 타입이 런타임에 결정.
 2. **덕 타이핑** (Duck Typing) : 객체의 타입보다 메서드·속성 존재 여부로 동작 결정.
-3. **인터프리터 바이트코드 실행** : 소스코드를 바이트코드로 컴파일 후 PVM에서 실행.
+3. **인터프리터 바이트코드 실행** : 소스코드를 바이트코드로 컴파일 후 PVM(Python Virtual Machine)에서 실행.
 4. **GIL** (Global Interpreter Lock) : CPython에서 한 시점에 하나의 스레드만 바이트코드 실행.
 5. **자동 가비지 컬렉션** (GC, Garbage Collection) : 참조 카운팅 + 세대별 GC.
 6. **풍부한 생태계** : NumPy, PyTorch, Django, FastAPI 등.

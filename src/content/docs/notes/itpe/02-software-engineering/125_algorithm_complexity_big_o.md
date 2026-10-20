@@ -72,7 +72,7 @@ extra:
 | $O(N)$ | 선형 시간 (Linear) | $1,000,000$회 | 배열의 순차 탐색, 카운팅 정렬 |
 | $O(N \log N)$ | 선형 로그 시간 (Linearithmic) | 약 $20,000,000$회 | 병합 정렬(Merge Sort), 힙 정렬, 퀵 정렬 평균 |
 | $O(N^2)$ | 2차 시간 (Quadratic) | $1,000,000,000,000$회 ($10^{12}$, 수초 지연) | 버블 정렬, 삽입 정렬, 이중 중첩 루프 |
-| $O(2^N)$ | 지수 시간 (Exponential) | 우주 수명 초과 (계산 불가) | 외판원 순회(TSP) 완전탐색, 하노이의 탑 |
+| $O(2^N)$ | 지수 시간 (Exponential) | 우주 수명 초과 (계산 불가) | 외판원 순회(TSP, Traveling Salesman Problem) 완전탐색, 하노이의 탑 |
 
 ## Ⅴ. 알고리즘 복잡도(O-notation)의 장점과 한계
 
@@ -83,7 +83,7 @@ extra:
   3. 알고리즘 선택의 객관적 근거.
 - 한계점 1 : 점근적 분석의 **상수 계수** (Constant Factor) 및 하위 항 무시
   - 한계점 : $O(N)$ 알고리즘이라도 내부 루프의 연산 오버헤드 상수($c$)가 매우 크다면, 실질적 입력 크기($N$) 범위 내에서 $O(N^2)$ 알고리즘보다 느릴 수 있음.
-  - 해결 방안 : 빅오 표기법과 함께 마이크로 벤치마킹 도구(JMH)를 활용한 실제 CPU(Central Processing Unit) 사이클 및 벽시계 시간(Wall-clock Time) 실측 병행.
+  - 해결 방안 : 빅오 표기법과 함께 마이크로 벤치마킹 도구(JMH, Java Microbenchmark Harness)를 활용한 실제 CPU(Central Processing Unit) 사이클 및 벽시계 시간(Wall-clock Time) 실측 병행.
 - 한계점 2 : 현대 CPU 캐시 계층 구조(Memory Hierarchy) 미반영
   - 한계점 : 알고리즘 복잡도는 메모리 접근 비용을 동일($O(1)$)하다고 가정하지만, 실제로는 L1/L2 캐시 적중률과 캐시 미스에 따라 성능이 수십 배 차이 발생.
   - 해결 방안 : 캐시 친화적 **데이터 지향 설계** (Data-Oriented Design) 적용, 연결 리스트 대신 메모리 연속 배열 구조(Vector) 우선 활용.
