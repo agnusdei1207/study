@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
     keyword_grade: "기초"
-    model: "Gemini 3.8 Flash"
+    model: "LongCat 2.5 Preview Free"
 ---
 
 ## Ⅰ. 인과루프다이어그램(Causal Loop Diagram)의 개요

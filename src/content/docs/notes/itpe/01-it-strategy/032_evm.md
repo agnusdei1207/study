@@ -9,7 +9,7 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Gemini 3.8 Flash"
+  model: "LongCat 2.5 Preview Free"
 ---
 
 ## 연관 키워드

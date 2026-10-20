@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
     keyword_grade: "기초"
-    model: "Gemini 3.8 Flash"
+    model: "LongCat 2.5 Preview Free"
 ---
 
 ## Ⅰ. 소프트웨어 비용 산정의 개요
