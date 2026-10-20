@@ -19,7 +19,7 @@ Status markers: [ ] pending, [~] in progress (background), [x] done+verified.
 - [x] batch1: 001-013
 - [x] batch2: 014-027
 - [x] batch3: 028-042
-- [~] batch4: 043-056
+- [x] batch4: 043-056
 - [~] batch5: 057-072
 - [~] batch6: 073-084
 - [~] batch7: 086-097
