@@ -12,7 +12,7 @@
     {
       "id": "runtime",
       "type": "text",
-      "text": "Runtime\nIteration 1/1000000000\nProgress unknown",
+      "text": "Runtime\nIteration 2/1000000000\nProgress [Verification ❌ FAILED] TODO: 0/0, Sync: clean\nFailures:\nTODO file not found at .opencode/todo.md",
       "x": 420,
       "y": 0,
       "width": 360,
@@ -21,7 +21,7 @@
     {
       "id": "verification",
       "type": "text",
-      "text": "Verification\nunknown",
+      "text": "Verification\n[Verification ❌ FAILED] TODO: 0/0, Sync: clean\nFailures:\nTODO file not found at .opencode/todo.md",
       "x": 840,
       "y": 0,
       "width": 360,
@@ -30,7 +30,7 @@
     {
       "id": "event-0",
       "type": "text",
-      "text": "mission_started\nMission loop started",
+      "text": "verification_failed\n[Verification ❌ FAILED] TODO: 0/0, Sync: clean\nFailures:\nTODO file not found at .opencode/todo.md",
       "x": 0,
       "y": 260,
       "width": 360,
@@ -39,7 +39,7 @@
     {
       "id": "event-1",
       "type": "text",
-      "text": "mission_cancelled\nreplaced_by_new_task",
+      "text": "continuation_scheduled\n[Verification ❌ FAILED] TODO: 0/0, Sync: clean\nFailures:\nTODO file not found at .opencode/todo.md",
       "x": 420,
       "y": 260,
       "width": 360,
@@ -48,7 +48,7 @@
     {
       "id": "event-2",
       "type": "text",
-      "text": "mission_started\nMission loop started",
+      "text": "prompt_injected\n[Verification ❌ FAILED] TODO: 0/0, Sync: clean\nFailures:\nTODO file not found at .opencode/todo.md",
       "x": 840,
       "y": 260,
       "width": 360,
