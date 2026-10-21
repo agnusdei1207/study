@@ -5,10 +5,10 @@
  */
 (function () {
   const PALETTES = [
-    { id: 'indigo', label: 'Slate Indigo' },
-    { id: 'cyan', label: 'Nordic Cyan' },
-    { id: 'blue', label: 'Zinc Blue' },
-    { id: 'sand', label: 'Warm Sand' },
+    { id: 'indigo', label: 'Soft Indigo' },
+    { id: 'cyan', label: 'Calm Teal' },
+    { id: 'blue', label: 'Mist Blue' },
+    { id: 'sand', label: 'Warm Paper' },
   ];
   const STORAGE_KEY = 'study:palette';
 

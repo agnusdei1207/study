@@ -41,14 +41,14 @@ test('All IT strategy notes use readable text diagrams or tables', async () => {
   }
 });
 
-test('All IT strategy notes follow 7-frame structure (개요→특징→구조→비교→장단점→제언→결론)', async () => {
+test('All IT strategy notes follow 7-frame structure (개요→특징·장점→구조→비교→한계·방안→제언→결론)', async () => {
   for (const file of await rewrittenNotes()) {
     const note = await readFile(file, 'utf8');
     const sections = romanSections(note);
     assert.ok(sections.length >= 7, `${file}: 7개 프레임(Ⅰ~Ⅶ) 섹션이 필요합니다. 현재 ${sections.length}개`);
     assert.equal(sections[0].number, 'Ⅰ', `${file}: 첫 번째 섹션 번호는 Ⅰ이어야 합니다.`);
     assert.match(sections[0].title, /개요/u, `${file}: 첫 번째 섹션은 '개요'를 포함해야 합니다.`);
-    // Check 7-frame order: Ⅰ개요 Ⅱ특징 Ⅲ구조 Ⅳ비교 Ⅴ장점/한계 Ⅵ제언 Ⅶ결론
+    // Check 7-frame order: Ⅰ개요 Ⅱ특징·장점 Ⅲ구조 Ⅳ비교 Ⅴ한계·방안 Ⅵ제언 Ⅶ결론
     const titles = sections.map(s => s.title);
     assert.match(titles[1], /특징/u, `${file}: Ⅱ번 섹션은 '특징'을 포함해야 합니다. (실제: ${titles[1]})`);
     assert.match(titles[2], /구조|흐름/u, `${file}: Ⅲ번 섹션은 '구조' 또는 '흐름'을 포함해야 합니다.`);

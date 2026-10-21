@@ -1,7 +1,7 @@
 @import 'katex/dist/katex.min.css';
 
 /* ============================================================
-   Semantic Palette System (Clean & Modern Design)
+   Semantic Palette System (Low-glare reading palettes)
    4 palettes × light/dark = 8 variants
    Palettes: indigo (default), cyan, blue, sand
    ============================================================ */
@@ -9,101 +9,101 @@
 /* ---------- 1. Palette definitions (Dark Mode Defaults) ---------- */
 :root[data-palette="indigo"],
 :root {
-  --palette-accent: #818cf8;
-  --palette-accent-deep: #4f46e5;
-  --palette-accent-glow: #c7d2fe;
-  --palette-bg: #0b0f17;
-  --palette-surface: #131b2e;
-  --palette-text: #f1f5f9;
-  --palette-muted: #94a3b8;
-  --palette-line: #243049;
-  --palette-code-bg: #151d30;
+  --palette-accent: #a7a9d3;
+  --palette-accent-deep: #7478a6;
+  --palette-accent-glow: #c9cae4;
+  --palette-bg: #12151b;
+  --palette-surface: #1b202a;
+  --palette-text: #dce1e8;
+  --palette-muted: #9aa4b2;
+  --palette-line: #303846;
+  --palette-code-bg: #1d2430;
 }
 
 :root[data-palette="cyan"] {
-  --palette-accent: #38bdf8;
-  --palette-accent-deep: #0284c7;
-  --palette-accent-glow: #bae6fd;
-  --palette-bg: #080d14;
-  --palette-surface: #0f1726;
-  --palette-text: #f0fdf4;
-  --palette-muted: #8da0b6;
-  --palette-line: #1e2d42;
-  --palette-code-bg: #121e30;
+  --palette-accent: #82bdb5;
+  --palette-accent-deep: #4f8f88;
+  --palette-accent-glow: #b9d9d4;
+  --palette-bg: #111715;
+  --palette-surface: #19231f;
+  --palette-text: #dce5e2;
+  --palette-muted: #98a8a3;
+  --palette-line: #30403b;
+  --palette-code-bg: #1c2925;
 }
 
 :root[data-palette="blue"] {
-  --palette-accent: #60a5fa;
-  --palette-accent-deep: #2563eb;
-  --palette-accent-glow: #bfdbfe;
-  --palette-bg: #121214;
-  --palette-surface: #1c1c20;
-  --palette-text: #fafafa;
-  --palette-muted: #a1a1aa;
-  --palette-line: #2c2c34;
-  --palette-code-bg: #19191d;
+  --palette-accent: #8eafd0;
+  --palette-accent-deep: #5f82a6;
+  --palette-accent-glow: #bfd0e0;
+  --palette-bg: #13171b;
+  --palette-surface: #1c2228;
+  --palette-text: #dde3e8;
+  --palette-muted: #9ca7b0;
+  --palette-line: #313b44;
+  --palette-code-bg: #1e2730;
 }
 
 :root[data-palette="sand"] {
-  --palette-accent: #fbbf24;
-  --palette-accent-deep: #d97706;
-  --palette-accent-glow: #fde68a;
-  --palette-bg: #161412;
-  --palette-surface: #211e1b;
-  --palette-text: #fbf8f3;
-  --palette-muted: #a89f91;
-  --palette-line: #3d3731;
-  --palette-code-bg: #23201d;
+  --palette-accent: #ceb486;
+  --palette-accent-deep: #9b7d4e;
+  --palette-accent-glow: #e2d1b2;
+  --palette-bg: #181611;
+  --palette-surface: #242119;
+  --palette-text: #e7e1d7;
+  --palette-muted: #aaa092;
+  --palette-line: #403a30;
+  --palette-code-bg: #29241b;
 }
 
 /* ---------- 2. Light mode overrides ---------- */
 :root[data-theme='light'],
 :root[data-palette="indigo"][data-theme='light'] {
-  --palette-accent: #4f46e5;
-  --palette-accent-deep: #3730a3;
-  --palette-accent-glow: #6366f1;
-  --palette-bg: #f8fafc;
-  --palette-surface: #ffffff;
-  --palette-text: #0f172a;
-  --palette-muted: #64748b;
-  --palette-line: #e2e8f0;
-  --palette-code-bg: #f1f5f9;
+  --palette-accent: #5d608f;
+  --palette-accent-deep: #46496f;
+  --palette-accent-glow: #4f527d;
+  --palette-bg: #f5f4f1;
+  --palette-surface: #fbfaf7;
+  --palette-text: #2c3038;
+  --palette-muted: #68717e;
+  --palette-line: #dddcd6;
+  --palette-code-bg: #eeede8;
 }
 
 :root[data-palette="cyan"][data-theme='light'] {
-  --palette-accent: #0284c7;
-  --palette-accent-deep: #0369a1;
-  --palette-accent-glow: #38bdf8;
-  --palette-bg: #f0f7ff;
-  --palette-surface: #ffffff;
-  --palette-text: #082f49;
-  --palette-muted: #526e85;
-  --palette-line: #d8e6f5;
-  --palette-code-bg: #e2effc;
+  --palette-accent: #39756f;
+  --palette-accent-deep: #285c57;
+  --palette-accent-glow: #306963;
+  --palette-bg: #f3f6f3;
+  --palette-surface: #fafbf8;
+  --palette-text: #263532;
+  --palette-muted: #61746f;
+  --palette-line: #d9e1dc;
+  --palette-code-bg: #e9efeb;
 }
 
 :root[data-palette="blue"][data-theme='light'] {
-  --palette-accent: #2563eb;
-  --palette-accent-deep: #1d4ed8;
-  --palette-accent-glow: #3b82f6;
-  --palette-bg: #fafafa;
-  --palette-surface: #ffffff;
-  --palette-text: #18181b;
-  --palette-muted: #71717a;
-  --palette-line: #e4e4e7;
-  --palette-code-bg: #f4f4f5;
+  --palette-accent: #476f96;
+  --palette-accent-deep: #345777;
+  --palette-accent-glow: #3d6386;
+  --palette-bg: #f3f5f6;
+  --palette-surface: #fafafa;
+  --palette-text: #29343e;
+  --palette-muted: #657480;
+  --palette-line: #d9dfe3;
+  --palette-code-bg: #e9edef;
 }
 
 :root[data-palette="sand"][data-theme='light'] {
-  --palette-accent: #b45309;
-  --palette-accent-deep: #92400e;
-  --palette-accent-glow: #d97706;
-  --palette-bg: #faf7f2;
-  --palette-surface: #ffffff;
-  --palette-text: #26201a;
-  --palette-muted: #786e65;
-  --palette-line: #e6dfd5;
-  --palette-code-bg: #f0e9df;
+  --palette-accent: #7a633f;
+  --palette-accent-deep: #5f4c30;
+  --palette-accent-glow: #6c5738;
+  --palette-bg: #f6f2e9;
+  --palette-surface: #fcfaf5;
+  --palette-text: #393129;
+  --palette-muted: #766c61;
+  --palette-line: #e1d9cc;
+  --palette-code-bg: #eee7dc;
 }
 
 /* ---------- 3. Palette values → semantic roles ---------- */
