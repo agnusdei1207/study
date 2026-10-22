@@ -12,54 +12,84 @@ extra:
   model: "Antigravity Professional Engine"
 ---
 
-## Ⅰ. 시스템 가용성과 부하 분산의 기반, 데이터 복제(Data Replication) 개요
+## 연관 키워드
 
-### 가. 데이터 복제의 정의
-- **데이터 복제** : 데이터베이스나 분산 스토리지 시스템에서 데이터의 손실을 방지하고 시스템의 **고가용성** (High Availability) 및 **장애 복구** (Disaster Recovery)를 보장하기 위해, 동일한 데이터의 사본을 물리적으로 분리된 둘 이상의 노드나 데이터센터에 지속적으로 동기화하여 유지하는 기술.
+**데이터 복제(Replication)**, **동기/비동기/반동기**, **단일/다중/리더리스**, **stale read**, **CRDT**, **GTID**, **RPO/RTO**
 
----
+## Ⅰ. 개요
 
-## Ⅱ. 데이터 복제의 핵심 아키텍처 및 메커니즘 분석
+- 핵심 요약 : **데이터 복제**는 데이터 사본을 분리 노드에 지속 동기화하여 가용성·DR을 보장하는 기술.
+- 목적 : 데이터 손실 방지, 고가용성, 부하 분산.
+- 배경 : 단일 DB 장애·부하 한계 → 복제본으로 가용성·확장성.
+- 특징 : 동기화 시점(동기/비동기/반동기), 토폴로지(단일/다중/리더리스).
 
-### 가. 3대 복제 토폴로지 비교
+## Ⅱ. 특징 및 장점
+
+- 핵심 요약 : **토폴로지·동기화 방식** 조합으로 가용성·확장성 확보.
+- **단일 리더** : 충돌 없음, 쓰기 스케일아웃 불가.
+- **다중 리더** : 쓰기 분산, 충돌 해결 필요.
+- **리더리스** : 강건, 정합성 관리 필요.
+- **동기식** : 무손실(RPO=0), 지연 증가.
+- **비동기식** : 빠른 응답, 유실 위험.
+
+## Ⅲ. 복제 메커니즘 흐름
+
+- 핵심 요약 : **동기/비동기/반동기** 동기화 시점 비교.
+- 정합성 보장 : Read-Your-Writes, Monotonic Reads, Consistent Prefix.
 
 ```text
-[ 데이터 복제 3대 아키텍처 ]
-(A) 단일 리더 (Single-Leader)      : 1개 Primary (Write/Read) + N개 Follower (Read-Only)
-(B) 다중 리더 (Multi-Leader)       : 복수의 Master 노드가 각자 Write 처리 후 상호 복제
-(C) 무리더 (Leaderless / Dynamo)   : 리더 없이 클라이언트가 Quorum(W + R > N)으로 복제 통제
+[ 복제 동기화 메커니즘 ]
+
+(A) 동기식 : Primary -> Standby (ACK) -> Client Commit
+   무손실 / 지연 증가
+
+(B) 비동기식 : Primary -> Client Commit
+   백그라운드 복제 -> Standby
+   빠른 응답 / 유실 위험 (RPO>0)
+
+(C) 반동기식 : 최소 1개 노드 ACK 후 커밋
+   균형
 ```
 
-| 복제 방식 | 동작 원리 | 핵심 장점 | 엔지니어링 고려사항 |
-| :--- | :--- | :--- | :--- |
-| **동기식 복제 (Synchronous)** | 모든 복제 노드에 기록이 완료된 후 트랜잭션 성공 응답 반환 | 데이터 손실 0건 보장 (RPO(Recovery Point Objective)=0) | 네트워크 지연으로 인한 쓰기 처리량 급감 |
-| **비동기식 복제 (Asynchronous)** | 마스터 노드에만 기록되면 즉시 커밋 완료 응답 반환 (배경 복제) | 초고속 쓰기 응답 시간 확보 | 마스터 노드 급작 장애 시 데이터 유실(RPO > 0) |
-| **반동기식 복제 (Semi-Sync)** | 전체가 아닌 최소 1개 이상의 복제 노드 수신 확인 시 커밋 | 동기식의 안전성과 비동기식의 성능 절충 | 여전히 최소 1회의 왕복 네트워크 RTT(Round-Trip Time) 발생 |
+```text
+[ 토폴로지 비교 ]
 
----
+단일 리더 : 충돌 없음, 쓰기 스케일아웃 불가
+다중 리더 : 쓰기 분산, 충돌 해결 필요
+리더리스 : 강건, 정합성 관리 필요
+```
 
-## Ⅲ. 복제 지연(Replication Lag)에 따른 정합성 보장 전략
+## Ⅳ. 토폴로지·동기화 비교
 
-### 가. 세 가지 핵심 일관성 보장 모델
-1. **자신이 쓴 내용 읽기 (Read-Your-Writes Consistency)** : 사용자가 프로필 수정 후 새로고침 시 자신이 수정한 최신 데이터를 즉시 볼 수 있음을 보장 (수정 후 일정 시간 동안은 Primary 노드로 읽기 강제).
-2. **단조 읽기 (Monotonic Reads)** : 사용자가 데이터를 반복 조회할 때 시간이 거꾸로 흐르는 현상(과거 사본을 읽는 현상) 방지 (동일 사용자는 항상 동일한 복제본 노드로 라우팅).
-3. **일관된 순서로 읽기 (Consistent Prefix Reads)** : 인과 관계가 있는 쓰기(질문과 답변)가 모든 복제본에서 동일한 인과 순서대로 관측됨을 보장.
+- 핵심 요약 : **충돌·스케일아웃·강건성·지연** 트레이드오프.
 
----
+| 항목 | 동기식 | 비동기식 | 반동기식 |
+|---|---|---|---|
+| RPO | 0 (무손실) | >0 (유실 위험) | 근접 0 |
+| 쓰기 지연 | 높음 | 낮음 | 중간 |
+| 처리량 | 낮음 | 높음 | 중간 |
 
-## Ⅳ. 데이터 복제(Data Replication)의 주요 한계점 및 해결 방안
+- 토폴로지 : 단일/다중/리더리스 × 동기화 방식 조합.
 
-- 비동기 복제 환경에서 복제 지연(Replication Lag)에 따른 **stale read** 발생 :
-  - 한계점 : 마스터에 쓰기 완료 후 슬레이브로 복제되기 전 사용자가 읽기를 시도할 경우 방금 작성한 데이터가 조회되지 않는 Read-Your-Writes 정합성 위반.
-  - 해결 방안 : 쓰기 직후 특정 세션의 읽기는 마스터로 라우팅하는 **지능형 프록시** (ProxySQL, AWS RDS Proxy) 적용, **GTID** (Global Transaction Identifier) 기반의 동기화 대기 읽기 구현.
-- 글로벌 멀티 리전 복제 시 대륙 간 네트워크 레이턴시 및 패킷 손실 :
-  - 한계점 : 물리적 광통신 지연(수십~수백 ms)으로 인해 동기 복제는 전면 불가능하며, WAN(Wide Area Network) 대역폭 제한으로 복제 트래픽 병목 및 백로그 누적 발생.
-  - 해결 방안 : 리전별 로컬 쓰기를 허용하는 **액티브-액티브** (Active-Active) 아키텍처 및 **CRDT** (Conflict-free Replicated Data Type) 적용, 압축 CDC(Change Data Capture) 파이프라인 운영.
-- 슬레이브의 **DDL**(Data Definition Language) 수행 시 복제 스레드 단일화에 따른 전체 복제 지연 폭증 :
-  - 한계점 : MySQL 등 전통적 RDBMS(Relational Database Management System)에서 대규모 테이블 DDL 시 슬레이브의 복제 SQL(Structured Query Language) 스레드가 블로킹되어 수 시간 동안 복제 정지 및 장애 발생.
-  - 해결 방안 : **멀티스레드 복제** (MTS: Multi-Threaded Slave) 엔진 활성화, **온라인 DDL 도구** (gh-ost, pt-online-schema-change)를 통한 무중단 스키마 마이그레이션 표준화.
+## Ⅴ. 한계와 방안
 
-## Ⅴ. 클라우드 및 글로벌 분산 복제 실무 제언
+- 핵심 요약 : **stale read·WAN 지연·DDL 복제 지연**을 프록시·CRDT·MTS로 대응.
 
-- 재해 복구(DR, Disaster Recovery) 사이트 간 **지리적 복제** (Cross-Region) : 단일 리전 재난에 대비하여 AWS(Amazon Web Services) 서울 리전과 도쿄 리전 간 복제를 구성할 때는 리전 간 물리적 레이턴시(30~50ms)를 고려하여 반드시 비동기식 스토리지 미러링 또는 글로벌 데이터베이스(Aurora Global DB) 아키텍처를 채택해야 함.
-- 다중 리더 **충돌 해결** (Conflict Resolution) 자동화 : 멀티 리더 환경에서 동일 레코드가 양쪽에서 동시 수정될 경우, **LWW** (Last-Write-Wins: 벽시계 동기화 오차로 위험)보다는 **버전 벡터** (Version Vector) 또는 비즈니스 로직 기반 자동 병합(CRDT) 규칙을 사전에 엄격히 수립할 것을 제언함.
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+|---|---|---|---|
+| stale read | 복제 지연으로 방금 쓴 데이터 미조회 | GTID 기반 Read-Your-Writes, 프록시 라우팅 | 복제 지연 |
+| WAN 지연 | 대륙 간 물리 지연으로 동기 복제 불가 | Active-Active, CRDT, 압축 CDC | 리전 간 레이턴시 |
+| DDL 복제 지연 | 대규모 DDL 시 슬레이브 복제 스레드 블로킹 | MTS 활성화, gh-ost/pt-osc 무중단 | DDL 소요 시간 |
+
+## Ⅵ. 기술사적 제언
+
+- 핵심 요약 : **지리적 복제·충돌 해결·GTID**로 고신뢰 복제.
+- Cross-Region : 비동기/글로벌 DB (Aurora Global DB).
+- 충돌 해결 : LWW 대신 버전 벡터·CRDT.
+- GTID 기반 동기화 대기 읽기.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : 데이터 복제는 **토폴로지·동기화 조합**으로 가용성·확장성 확보.
+- 답안에는 3대 토폴로지, 동기화 비교, stale read·충돌 대응을 연결.
+- 참고 : [PostgreSQL Replication](https://www.postgresql.org/docs/current/high-availability.html).
