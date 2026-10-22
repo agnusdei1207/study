@@ -68,17 +68,6 @@ extra:
 +-------------+
 ```
 
-**시각화 — AARRR 퍼널과 추천의 재유입**
-
-```mermaid
-flowchart TB
-    A["획득<br/>Acquisition"] --> B["활성화<br/>Activation · Aha Moment"]
-    B --> C["유지<br/>Retention"]
-    C --> D["매출<br/>Revenue"]
-    D --> E["추천<br/>Referral"]
-    E -->|"신규 사용자 유입"| A
-```
-
 ```text
 [ Compound Growth Loop ]
 
@@ -89,15 +78,6 @@ flowchart TB
     |                               v
     +------- Reinvestment <---------+
         (larger input per cycle)
-```
-
-**시각화 — 산출물 재투입에 따른 복리 성장**
-
-```mermaid
-flowchart LR
-    I["투입<br/>Input"] --> A["행동<br/>Action"]
-    A --> O["산출<br/>Output"]
-    O -->|"성과 재투입 · 다음 주기 투입 확대"| I
 ```
 
 - Acquisition (획득) : 사용자가 서비스를 어떻게 처음 접하고 유입되는가? (CAC, Customer Acquisition Cost; 방문자 수).
