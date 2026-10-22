@@ -14,13 +14,23 @@ extra:
 
 ## Ⅰ. IaaS(Infrastructure as a Service)의 개요
 
+- 핵심 요약 : **IaaS**는 서버·스토리지·네트워크 등 기본 컴퓨팅 자원을 API 기반으로 임대받아 OS 이상을 직접 제어하는 클라우드 서비스 모델.
 - 개념 : 사용자가 서버, 스토리지, 네트워크, 로드밸런서 등 기본 컴퓨팅 자원을 물리적으로 구매하지 않고, **클라우드 서비스 제공업체(CSP, Cloud Service Provider)** 로부터 인터넷을 통해 가상화된 형태로 임대받아 그 위에 운영체제(OS, Operating System), 미들웨어, 런타임, 애플리케이션을 직접 설치하고 제어하는 클라우드 서비스 모델.
 - 배경 및 필요성 : 전통적인 온프레미스 인프라 구축의 막대한 초기 자본 지출(CAPEX, Capital Expenditure), 수개월에 걸친 하드웨어 납기 지연, 공간 및 냉각 설비 유지보수 부담을 제거하기 위해 등장함.
 - 핵심 목적 : **온디맨드 인프라 프로비저닝**을 통한 민첩성 극대화, **종량 과금(OPEX, Operating Expenditure)** 모델 전환, 글로벌 리전 기반의 즉각적인 인프라 확장성 확보.
 
-## Ⅱ. IaaS(Infrastructure as a Service)의 핵심 아키텍처 및 동작 메커니즘
+## Ⅱ. IaaS(Infrastructure as a Service)의 특징 및 장점
 
-IaaS(Infrastructure as a Service)는 하이퍼바이저 기반 가상머신(Compute), 가상 프라이빗 클라우드(Network), 분산 블록/오브젝트 스토리지(Storage)의 3대 핵심 요소를 API(Application Programming Interface) 기반으로 제어하는 아키텍처로 동작함.
+- 핵심 요약 : **컴퓨팅 가상화·SDN·분산 스토리지·완전 루트 제어권**.
+1. **컴퓨팅 가상화 (Compute)** : 물리 서버를 하이퍼바이저(KVM, AWS(Amazon Web Services) Nitro 등)로 분할하여 vCPU, vRAM 기반의 가상머신(EC2, Azure VM)을 초 단위로 생성.
+2. **소프트웨어 정의 네트워킹 (SDN, Software-Defined Networking)** : 물리 스위치 조작 없이 논리적으로 격리된 가상 사설망(VPC, Virtual Private Cloud), 서브넷, 인터넷 게이트웨이, 라우팅 테이블을 API로 구성.
+3. **분산 스토리지 풀링** : 초고속 NVMe(Non-Volatile Memory Express) 기반 블록 스토리지(AWS EBS)와 무제한 확장성을 가진 분산 객체 스토리지(AWS S3(Simple Storage Service)) 제공.
+4. **완전한 루트(Root) 제어권** : 고객에게 OS 커널 파라미터 튜닝, 미들웨어 설치, 방화벽(보안그룹) 규칙 설정의 완전한 통제권 부여.
+
+## Ⅲ. IaaS(Infrastructure as a Service)의 구조 및 동작 메커니즘
+
+- 핵심 요약 : **API 제어 → 고객 관리 영역(OS/미들웨어/앱) + CSP 관리 영역(하이퍼바이저/하드웨어/SDN/스토리지)**.
+- IaaS(Infrastructure as a Service)는 하이퍼바이저 기반 가상머신(Compute), 가상 프라이빗 클라우드(Network), 분산 블록/오브젝트 스토리지(Storage)의 3대 핵심 요소를 API(Application Programming Interface) 기반으로 제어하는 아키텍처로 동작함.
 
 ```text
 [ IaaS 핵심 인프라 가상화 스택 및 제어 아키텍처 ]
@@ -54,24 +64,23 @@ IaaS(Infrastructure as a Service)는 하이퍼바이저 기반 가상머신(Comp
 +---------------------------------------------------------------+
 ```
 
-- **컴퓨팅 가상화 (Compute)** : 물리 서버를 하이퍼바이저(KVM, AWS(Amazon Web Services) Nitro 등)로 분할하여 vCPU, vRAM 기반의 가상머신(EC2, Azure VM)을 초 단위로 생성.
-- **소프트웨어 정의 네트워킹 (SDN, Software-Defined Networking)** : 물리 스위치 조작 없이 논리적으로 격리된 가상 사설망(VPC, Virtual Private Cloud), 서브넷, 인터넷 게이트웨이, 라우팅 테이블을 API로 구성.
-- **분산 스토리지 풀링** : 초고속 NVMe(Non-Volatile Memory Express) 기반 블록 스토리지(AWS EBS)와 무제한 확장성을 가진 분산 객체 스토리지(AWS S3(Simple Storage Service)) 제공.
-- **완전한 루트(Root) 제어권** : 고객에게 OS 커널 파라미터 튜닝, 미들웨어 설치, 방화벽(보안그룹) 규칙 설정의 완전한 통제권 부여.
+## Ⅳ. IaaS(Infrastructure as a Service)의 비교
 
-## Ⅲ. IaaS(Infrastructure as a Service)의 세부 구성 요소 및 비교 분석
+- 핵심 요약 : **온프레미스·IaaS·PaaS** 조달/패치/커스터마이징/책임/비용 비교.
 
 | 비교 항목 | 온프레미스 (On-Premise) | IaaS (인프라 서비스) | PaaS (Platform as a Service, 플랫폼 서비스) |
 |---|---|---|---|
-| **인프라 조달 기간** | 수 주 ~ 수 개월 | 수 분 이내 (즉시 프로비저닝) | 수 초 ~ 수 분 |
-| **OS 및 패치 관리** | 기업 IT(Information Technology) 운영팀 전담 | 고객사 전담 (보안 패치 필수)| CSP가 완전 자동 관리 |
-| **시스템 커스터마이징**| 완전 자유 (하드웨어 포함) | 높음 (OS 레벨 완벽 제어 가능)| 제한적 (플랫폼 런타임 제약) |
-| **책임 공유 모델** | 기업이 모든 책임 | OS 이상은 고객, 하부는 CSP | 애플리케이션/데이터만 고객 |
-| **비용 구조** | 막대한 CAPEX (초기 하드웨어 구입)| 순수 OPEX (사용한 만큼만 과금) | 순수 OPEX (관리 프리미엄 포함) |
+| 인프라 조달 기간 | 수 주 ~ 수 개월 | 수 분 이내 (즉시 프로비저닝) | 수 초 ~ 수 분 |
+| OS 및 패치 관리 | 기업 IT(Information Technology) 운영팀 전담 | 고객사 전담 (보안 패치 필수) | CSP가 완전 자동 관리 |
+| 시스템 커스터마이징 | 완전 자유 (하드웨어 포함) | 높음 (OS 레벨 완벽 제어 가능) | 제한적 (플랫폼 런타임 제약) |
+| 책임 공유 모델 | 기업이 모든 책임 | OS 이상은 고객, 하부는 CSP | 애플리케이션/데이터만 고객 |
+| 비용 구조 | 막대한 CAPEX (초기 하드웨어 구입) | 순수 OPEX (사용한 만큼만 과금) | 순수 OPEX (관리 프리미엄 포함) |
 
 - IaaS는 자유도가 가장 높아 기존 레거시 시스템을 수정 없이 그대로 클라우드로 이전(Lift-and-Shift)할 때 가장 적합한 모델임.
 
-## Ⅳ. IaaS(Infrastructure as a Service)의 주요 한계점 및 해결 방안
+## Ⅴ. IaaS(Infrastructure as a Service)의 한계와 방안
+
+- 핵심 요약 : **책임 공유 오판·과다 사이징·I/O 지연**을 CSPM·라이트사이징·Nitro/베어메탈로 대응.
 
 - 클라우드 책임 **공유 모델(Shared Responsibility)** 오판에 따른 보안 취약 :
   - 한계점 : 고객사가 OS 보안 패치, 포트 개방, 방화벽 설정을 소홀히 하여 악성코드 감염 및 데이터 유출 사고 빈발.
@@ -83,8 +92,15 @@ IaaS(Infrastructure as a Service)는 하이퍼바이저 기반 가상머신(Comp
   - 한계점 : 가상화 레이어를 경유하면서 고성능 DB(Database) 워크로드에서 물리 서버 대비 미세한 I/O 성능 저하 발생.
   - 해결 방안 : 하드웨어 오프로드 카드(AWS Nitro System) 탑재 인스턴스 채택 또는 베어메탈(Bare-Metal) IaaS 인스턴스 활용.
 
-## Ⅴ. IaaS(Infrastructure as a Service) 적용 및 발전을 위한 기술사적 제언
+## Ⅵ. IaaS(Infrastructure as a Service) 적용 제언
 
-- IaaS에서 클라우드 네이티브로의 **현대화(Modernization)** 로드맵 : 단순 가상머신 이전에 안주하지 않고 컨테이너(CaaS, Container as a Service) 및 서버리스(FaaS, Function as a Service)로 점진적 리팩토링 추진.
-- **약정 할인(RI / Savings Plans)** 및 스팟 인스턴스 포트폴리오 : 상시 가동 워크로드는 장기 약정으로 큰 폭 할인받고, 배치 워크로드는 스팟 인스턴스를 혼합하는 재무 최적화 필수.
-- **IaC** (Terraform)를 통한 IaaS 배포 완전 자동화 : 수동 콘솔 프로비저닝을 일체 금지하고 모든 IaaS 리소스(VPC, VM(Virtual Machine), 보안그룹)를 코드로 형상 관리하는 거버넌스 확립 권장.
+- 핵심 요약 : **네이티브 현대화·약정 할인·IaC 거버넌스**.
+- IaaS에서 클라우드 네이티브로의 현대화(Modernization) 로드맵 : Lift-and-Shift 지양, 컨테이너/서버리스 리팩토링.
+- 약정 할인(RI / Savings Plans) 및 스팟 인스턴스 포트폴리오 : 상시 가동은 약정 할인, 배치는 스팟.
+- IaC (Terraform)를 통한 IaaS 배포 완전 자동화 : 수동 콘솔 프로비저닝 금지, 코드 형상 관리.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : IaaS는 **기본 컴퓨팅 자원의 API 기반 임대**로 최고 자유도를 제공하나 책임 공유·과다 사이징·I/O 지연 리스크 관리가 필수.
+- IaaS는 서버·스토리지·네트워크 등 기본 자원을 API로 임대하여 최고의 자유도와 Lift-and-Shift 적합성을 제공하지만, 책임 공유 오판·과다 사이징·I/O 지연 리스크를 CSPM·라이트사이징·Nitro/베어메탈로 관리해야 함.
+- 답안에는 3대 핵심 요소, 온프레미스/IaaS/PaaS 비교, 한계·대응, 네이티브 현대화·약정 할인·IaC 거버넌스 제언을 연결.
