@@ -14,13 +14,23 @@ extra:
 
 ## Ⅰ. 메모리 누수(Memory Leak)의 개요
 
+- 핵심 요약 : **메모리 누수**는 할당된 메모리를 해제하지 않아 사용 불가능한 메모리가 누적되는 소프트웨어 결함.
 - 개념 : 컴퓨터 프로그램이 동적으로 할당받은 메모리 영역(Heap 등)을 사용이 끝난 후에도 운영체제나 **가비지 컬렉터** (GC, Garbage Collection)에 적절히 해제(Free/Delete)하지 않아, 프로세스가 점유한 사용 불가능한 메모리가 점진적으로 누적되는 소프트웨어 결함.
 - 배경 및 필요성 : 개발자의 포인터 관리 실수나 복잡한 객체 참조 그래프의 해제 누락으로 인해, 장기 가동되는 서버 애플리케이션의 메모리가 서서히 고갈되어 결국 **OOM(Out of Memory)** 크래시로 이어지는 문제를 방지하기 위해 다루어짐.
 - 핵심 목적 : 메모리 생명주기 관리의 무결성 확보, 런타임 메모리 팽창(Memory Bloat) 조기 탐지, 자동화된 분석 도구를 통한 누수 원인 지점 규명 및 예방.
 
-## Ⅱ. 메모리 누수(Memory Leak)의 핵심 아키텍처 및 동작 메커니즘
+## Ⅱ. 메모리 누수(Memory Leak)의 특징 및 장점
 
-메모리 누수는 C/C++의 **명시적 해제 누락** (Dangling/Unreachable Memory)과 Java/C# 등 Managed 언어의 의도치 않은 **GC Root 참조 유지(Unintentional Retention)** 메커니즘으로 분류됨.
+- 핵심 요약 : **명시적 해제 누락(C/C++)·GC 참조 유지(Managed)** 2대 메커니즘.
+1. **포인터 유실 누수 (Unreachable)** : C/C++에서 메모리 주소를 담고 있던 유일한 포인터 변수가 스택을 벗어나거나 덮어쓰여져 주소를 잃어버려 해제가 불가능해진 상태.
+2. **GC 참조 누수 (Reachable Leak)** : Java/C# 등 GC 환경에서 실제로는 사용되지 않는 객체가 Static 컬렉션, 스레드 로컬, 이벤트 리스너에 강하게 묶여 있어 GC가 살아있는 객체로 오판하여 수거하지 못함.
+3. **메모리 팽창 (Memory Bloat)** : 누수는 아니지만 불필요하게 거대한 캐시를 메모리에 과도하게 오래 유지하여 시스템 자원을 고갈시키는 패턴.
+4. **OOM Crash** : 힙 메모리가 상한에 도달하여 추가 할당 실패 시 OS(Operating System) 커널의 OOM-Killer가 프로세스를 강제 종료.
+
+## Ⅲ. 메모리 누수(Memory Leak)의 구조 및 동작 메커니즘
+
+- 핵심 요약 : **C/C++ 포인터 유실 vs Managed GC 참조 누수**.
+- 메모리 누수는 C/C++의 **명시적 해제 누락** (Dangling/Unreachable Memory)과 Java/C# 등 Managed 언어의 의도치 않은 **GC Root 참조 유지(Unintentional Retention)** 메커니즘으로 분류됨.
 
 ```text
 [ 메모리 누수 발생 메커니즘: C/C++ vs Java/Managed 언어 ]
@@ -49,24 +59,23 @@ extra:
    +-------------------------------------------------------------+
 ```
 
-- **포인터 유실 누수 (Unreachable)** : C/C++에서 메모리 주소를 담고 있던 유일한 포인터 변수가 스택을 벗어나거나 덮어쓰여져 주소를 잃어버려 해제가 불가능해진 상태.
-- **GC 참조 누수 (Reachable Leak)** : Java/C# 등 GC 환경에서 실제로는 사용되지 않는 객체가 Static 컬렉션, 스레드 로컬, 이벤트 리스너에 강하게 묶여 있어 GC가 살아있는 객체로 오판하여 수거하지 못함.
-- **메모리 팽창 (Memory Bloat)** : 누수는 아니지만 불필요하게 거대한 캐시를 메모리에 과도하게 오래 유지하여 시스템 자원을 고갈시키는 패턴.
-- **OOM Crash** : 힙 메모리가 상한에 도달하여 추가 할당 실패 시 OS(Operating System) 커널의 OOM-Killer가 프로세스를 강제 종료.
+## Ⅳ. 메모리 누수(Memory Leak)의 비교
 
-## Ⅲ. 메모리 누수(Memory Leak)의 세부 구성 요소 및 비교 분석
+- 핵심 요약 : **Unmanaged(C/C++) vs Managed(Java/C#)** 관리 주체·원인·탐지·해결·징후 비교.
 
 | 비교 항목 | Unmanaged 환경 (C/C++) | Managed 환경 (Java, C#) |
 |---|---|---|
-| **메모리 관리 주체**| 개발자가 `malloc/free`, `new/delete` 직접 수행 | 런타임 가비지 컬렉터(GC)가 자동 회수 |
-| **누수 발생 원인** | 명시적 해제 코드 누락, 예외 경로 누락 | Static 컬렉션 미삭제, 미해제 리스너, ThreadLocal |
-| **탐지 메커니즘** | Valgrind, AddressSanitizer (ASan) | Heap Dump 분석 (MAT, Memory Analyzer Tool), APM(Application Performance Monitoring) 힙 모니터링 |
-| **해결 기법** | RAII(Resource Acquisition Is Initialization) 패턴, 스마트 포인터(`unique_ptr`) | 약한 참조(WeakReference), try-with-resources |
-| **장애 징후** | OS 물리 메모리 지속 증가 후 크래시 | Old 세대 메모리 증가 및 빈번한 Full GC STW(Stop-the-World) |
+| 메모리 관리 주체 | 개발자가 `malloc/free`, `new/delete` 직접 수행 | 런타임 가비지 컬렉터(GC)가 자동 회수 |
+| 누수 발생 원인 | 명시적 해제 코드 누락, 예외 경로 누락 | Static 컬렉션 미삭제, 미해제 리스너, ThreadLocal |
+| 탐지 메커니즘 | Valgrind, AddressSanitizer (ASan) | Heap Dump 분석 (MAT, Memory Analyzer Tool), APM(Application Performance Monitoring) 힙 모니터링 |
+| 해결 기법 | RAII(Resource Acquisition Is Initialization) 패턴, 스마트 포인터(`unique_ptr`) | 약한 참조(WeakReference), try-with-resources |
+| 장애 징후 | OS 물리 메모리 지속 증가 후 크래시 | Old 세대 메모리 증가 및 빈번한 Full GC STW(Stop-the-World) |
 
 - 가비지 컬렉터를 사용하는 언어라도 '참조가 살아있는 객체'는 절대 회수할 수 없으므로, 메모리 라이프사이클 관리는 여전히 엔지니어의 핵심 책무임.
 
-## Ⅳ. 메모리 누수(Memory Leak)의 주요 한계점 및 해결 방안
+## Ⅴ. 메모리 누수(Memory Leak)의 한계와 방안
+
+- 핵심 요약 : **테스트 미발견·힙 덤프 STW·ThreadLocal 오염**을 Soak Test·eBPF·finally remove로 대응.
 
 - 장기 운영 시 서서히 나타나 사전 테스트 단계에서 미발견 :
   - 한계점 : 단위 테스트나 짧은 기능 테스트에서는 드러나지 않고 운영 환경에서 수일~수주 가동 후에야 OOM 발생.
@@ -78,8 +87,15 @@ extra:
   - 한계점 : WAS(Web Application Server) 스레드 풀 환경에서 요청 완료 후 `ThreadLocal.remove()` 미호출 시 스레드가 재활용되며 이전 데이터 누적.
   - 해결 방안 : 필터나 인터셉터의 `finally` 블록에서 `ThreadLocal.remove()` 호출을 강제하는 코딩 표준화.
 
-## Ⅴ. 메모리 누수(Memory Leak) 적용 및 발전을 위한 기술사적 제언
+## Ⅵ. 메모리 누수(Memory Leak) 적용 제언
 
-- **RAII(Resource Acquisition Is Initialization)** 패턴 전면 적용 : C++ 및 모던 언어에서 자원의 획득과 해제를 객체의 생성자/소멸자 스코프에 일치시켜 예외 발생 시에도 자동 누수 방지.
-- **APM** 기반 힙 메모리 우상향 트렌드 이상 감지 알람 연동 : Full GC 후에도 힙 베이스라인이 우상향하는 패턴을 머신러닝 이상 탐지로 조기 감지하여 선제 조치.
-- Rust **소유권(Ownership)** 모델 벤치마킹 : 컴파일 타임에 모든 동적 메모리의 해제 시점을 단 하나의 소유자 규칙으로 결정하여 런타임 누수와 댕글링 포인터를 원천 차단하는 언어 아키텍처 학습 필요.
+- 핵심 요약 : **RAII·APM 힙 트렌드·Rust 소유권**.
+- RAII 패턴 전면 적용 : 자원 획득과 해제를 객체 생성자/소멸자 스코프에 일치.
+- APM 기반 힙 메모리 우상향 트렌드 이상 감지 알람 연동.
+- Rust 소유권(Ownership) 모델 벤치마킹 : 컴파일 타임 메모리 해제 시점 결정.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : 메모리 누수는 **명시적 해제 누락·GC 참조 유지**로 발생하며 RAII·약한 참조·APM으로 관리해야 함.
+- 메모리 누수는 C/C++의 명시적 해제 누락과 Managed 언어의 GC 참조 유지로 발생하며, RAII·약한 참조·APM 힙 트렌드·Rust 소유권으로 관리해야 함.
+- 답안에는 C/C++ vs Managed 비교, 누수 메커니즘, 한계·대응, RAII·APM·Rust 제언을 연결.
