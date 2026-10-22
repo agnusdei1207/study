@@ -14,13 +14,23 @@ extra:
 
 ## Ⅰ. CPU 스케줄링(CPU Scheduling)의 개요
 
+- 핵심 요약 : **CPU 스케줄링**은 한정된 CPU를 준비 큐 프로세스에 공정·효율적으로 배분하여 이용률·처리량을 극대화하는 OS 커널 기능.
 - 개념 : **다중 프로그래밍(Multiprogramming)** 환경에서 한정된 CPU(Central Processing Unit) 자원을 **준비 큐** (Ready Queue)에 대기 중인 프로세스나 스레드들에 공정하고 효율적으로 배분하기 위해 실행 순서와 시간 할당량을 결정하는 운영체제 커널의 핵심 기능.
 - 배경 및 필요성 : CPU 코어 수보다 실행 가능한 프로세스 수가 훨씬 많은 시분할(Time-sharing) 시스템에서, CPU 유휴 시간을 최소화하고 대화형 사용자의 체감 응답 시간을 최적화하기 위해 고안됨.
 - 핵심 목적 : **CPU 이용률(Utilization)** 및 **처리량(Throughput)** 극대화, **반환 시간(Turnaround)** 및 **대기 시간(Waiting Time)** 최소화, 기아 현상(Starvation) 방지를 통한 공정성 달성.
 
-## Ⅱ. CPU 스케줄링(CPU Scheduling)의 핵심 아키텍처 및 동작 메커니즘
+## Ⅱ. CPU 스케줄링(CPU Scheduling)의 특징 및 장점
 
-CPU 스케줄러는 선점형(Preemptive)과 비선점형(Non-preemptive) 방식으로 대별되며, 현대 리눅스 OS(Operating System)는 가상 실행 시간(vruntime) 기반의 CFS(Completely Fair Scheduler) 알고리즘을 사용함.
+- 핵심 요약 : **선점/비선점·디스패처·CFS**로 공정·효율적 CPU 배분.
+1. **선점형 스케줄링** : 높은 우선순위 프로세스 등장이나 타이머 인터럽트 발생 시 OS가 강제로 CPU를 회수(Round Robin, SRTF, MLFQ, CFS).
+2. **비선점형 스케줄링** : 프로세스가 자발적으로 I/O를 요청하거나 종료될 때까지 CPU를 독점 점유(FCFS, SJF, 비선점 Priority).
+3. **디스패처(Dispatcher)** : 스케줄러가 선택한 프로세스에게 실제 CPU 제어권을 넘겨주는 컴포넌트로 문맥 교환 지연시간(Dispatch Latency) 최소화가 핵심.
+4. **리눅스 CFS (Completely Fair Scheduler)** : 우선순위(nice 값)에 따라 가중치를 부여하고, 가장 적게 실행된(vruntime이 최소인) 태스크를 레드-블랙 트리에서 `O(log N)`으로 선택.
+
+## Ⅲ. CPU 스케줄링(CPU Scheduling)의 구조 및 동작 메커니즘
+
+- 핵심 요약 : **Ready Queue → Scheduler → Dispatcher → CPU Core** 흐름.
+- CPU 스케줄러는 선점형(Preemptive)과 비선점형(Non-preemptive) 방식으로 대별되며, 현대 리눅스 OS(Operating System)는 가상 실행 시간(vruntime) 기반의 CFS(Completely Fair Scheduler) 알고리즘을 사용함.
 
 ```text
 [ CPU 스케줄러 디스패칭 및 큐잉 모델 ]
@@ -53,25 +63,24 @@ CPU 스케줄러는 선점형(Preemptive)과 비선점형(Non-preemptive) 방식
    Waiting Queue (대기 큐) 또는 Ready Queue로 재진입
 ```
 
-- **선점형 스케줄링** : 높은 우선순위 프로세스 등장이나 타이머 인터럽트 발생 시 OS가 강제로 CPU를 회수(Round Robin, SRTF, Shortest Remaining Time First; MLFQ, Multilevel Feedback Queue; CFS, Completely Fair Scheduler).
-- **비선점형 스케줄링** : 프로세스가 자발적으로 I/O를 요청하거나 종료될 때까지 CPU를 독점 점유(FCFS, SJF, 비선점 Priority).
-- **디스패처(Dispatcher)** : 스케줄러가 선택한 프로세스에게 실제 CPU 제어권을 넘겨주는 컴포넌트로, 문맥 교환 지연시간(Dispatch Latency) 최소화가 핵심.
-- **리눅스 CFS (Completely Fair Scheduler)** : 우선순위(nice 값)에 따라 가중치를 부여하고, 가장 적게 실행된(vruntime이 최소인) 태스크를 레드-블랙 트리에서 `O(log N)`으로 선택.
+## Ⅳ. CPU 스케줄링(CPU Scheduling)의 비교
 
-## Ⅲ. CPU 스케줄링(CPU Scheduling)의 세부 구성 요소 및 비교 분석
+- 핵심 요약 : **FCFS/SJF/SRTF/RR/MLFQ/CFS** 알고리즘 비교.
 
 | 스케줄링 알고리즘 | 선점 여부 | 핵심 메커니즘 및 특징 | 장점 및 단점 |
 |---|---|---|---|
-| **FCFS (First-Come, First-Served)** | 비선점 | 준비 큐에 도착한 순서대로 CPU 할당 | 단순하지만 긴 작업에 의한 호송 효과(Convoy Effect) 발생 |
-| **SJF (Shortest Job First)** | 비선점 | CPU 버스트 시간이 가장 짧은 프로세스 우선 | 평균 대기시간 최소화되나 긴 프로세스의 기아(Starvation) 유발 |
-| **SRTF (Shortest Remaining Time First)** | 선점형 | 남은 버스트 시간이 더 짧은 프로세스 도착 시 선점 | 반응성이 매우 높으나 잦은 문맥 교환 오버헤드 초래 |
-| **Round Robin (RR)** | 선점형 | 고정된 타임 퀀텀(Time Quantum) 동안 순환 실행 | 공정하고 대화형에 적합하나 퀀텀 크기 튜닝 필수 |
-| **MLFQ (Multilevel Feedback Queue)** | 선점형 | 다단계 큐 간 동적 이동 및 작업 특성(CPU/IO) 반영 | 사전 정보 없이도 적응형 최적화 가능하나 구현 복잡 |
-| **CFS (Completely Fair Scheduler)** | 선점형 | 레드-블랙 트리 기반 가상 실행 시간(vruntime) 추적 | 완벽한 CPU 공정성 제공 및 현대 리눅스 표준 채택 |
+| FCFS (First-Come, First-Served) | 비선점 | 준비 큐에 도착한 순서대로 CPU 할당 | 단순하지만 긴 작업에 의한 호송 효과(Convoy Effect) 발생 |
+| SJF (Shortest Job First) | 비선점 | CPU 버스트 시간이 가장 짧은 프로세스 우선 | 평균 대기시간 최소화되나 긴 프로세스의 기아(Starvation) 유발 |
+| SRTF (Shortest Remaining Time First) | 선점형 | 남은 버스트 시간이 더 짧은 프로세스 도착 시 선점 | 반응성이 매우 높으나 잦은 문맥 교환 오버헤드 초래 |
+| Round Robin (RR) | 선점형 | 고정된 타임 퀀텀(Time Quantum) 동안 순환 실행 | 공정하고 대화형에 적합하나 퀀텀 크기 튜닝 필수 |
+| MLFQ (Multilevel Feedback Queue) | 선점형 | 다단계 큐 간 동적 이동 및 작업 특성(CPU/IO) 반영 | 사전 정보 없이도 적응형 최적화 가능하나 구현 복잡 |
+| CFS (Completely Fair Scheduler) | 선점형 | 레드-블랙 트리 기반 가상 실행 시간(vruntime) 추적 | 완벽한 CPU 공정성 제공 및 현대 리눅스 표준 채택 |
 
 - 스케줄링 알고리즘은 단일 절대 해법이 없으며, 서버 워크로드(처리량 중시)와 데스크톱/모바일(응답시간 중시)에 따라 최적 튜닝이 요구됨.
 
-## Ⅳ. CPU 스케줄링(CPU Scheduling)의 주요 한계점 및 해결 방안
+## Ⅴ. CPU 스케줄링(CPU Scheduling)의 한계와 방안
+
+- 핵심 요약 : **타임 퀀텀 딜레마·기아·이기종 멀티코어**를 적응형·에이징·EAS로 대응.
 
 - 타임 퀀텀 설정 딜레마 및 문맥 교환 오버헤드 :
   - 한계점 : 타임 퀀텀이 너무 작으면 잦은 레지스터 저장과 캐시 무효화로 오버헤드 급증, 너무 크면 FCFS로 변질되어 대화형 응답성 마비.
@@ -83,8 +92,15 @@ CPU 스케줄러는 선점형(Preemptive)과 비선점형(Non-preemptive) 방식
   - 한계점 : 성능 코어(P-Core)와 고효율 코어(E-Core) 간의 성능 격차 및 원격 메모리 접근 지연으로 인한 스케줄링 불균형.
   - 해결 방안 : 에너지 인지 스케줄링(EAS) 적용 및 NUMA 노드 로컬 메모리 인지형 스케줄러 튜닝.
 
-## Ⅴ. CPU 스케줄링(CPU Scheduling) 적용 및 발전을 위한 기술사적 제언
+## Ⅵ. CPU 스케줄링(CPU Scheduling) 적용 제언
 
-- 컨테이너 환경의 CFS Quota **스로틀링(Throttling)** 최적화 : 쿠버네티스 환경에서 CPU Limit 도달 시 발생하는 강제 스로틀링을 모니터링하고, 가급적 CPU Request 중심의 사이징 권장.
-- 초저지연 워크로드의 CPU 코어 **격리(Pinning)** : 통신 DPDK(Data Plane Development Kit) 및 고빈도 매매(HFT) 시스템에서는 `isolcpus` 설정을 통해 특정 코어를 OS 스케줄러 대상에서 제외하고 전용 스레드 바인딩 필수.
-- AI(Artificial Intelligence)/HPC(High-Performance Computing) 클러스터의 혼합 스케줄링 체계 구축 : CPU와 GPU(Graphics Processing Unit)를 동시 제어할 수 있는 이기종 오케스트레이터(Slurm, Ray) 도입을 통한 대규모 분산 작업 최적화 필요.
+- 핵심 요약 : **CFS Quota·CPU Pinning·이기종 오케스트레이터**.
+- 컨테이너 환경 CFS Quota 스로틀링 최적화 : CPU Limit 도달 시 강제 스로틀링 모니터링, CPU Request 중심 사이징.
+- 초저지연 워크로드 CPU 코어 격리(Pinning) : DPDK/HFT에서 isolcpus + 전용 스레드 바인딩.
+- AI/HPC 클러스터 혼합 스케줄링 : Slurm/Ray 이기종 오케스트레이터.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : CPU 스케줄링은 **공정·효율적 CPU 배분**으로 이용률·처리량·응답시간 균형이 핵심.
+- CPU 스케줄링은 한정된 CPU를 준비 큐 프로세스에 공정·효율적으로 배분하여 이용률·처리량을 극대화하지만, 타임 퀀텀 딜레마·기아·이기종 멀티코어 리스크를 적응형·에이징·EAS로 관리해야 함.
+- 답안에는 FCFS/SJF/SRTF/RR/MLFQ/CFS 비교, 디스패처 흐름, 한계·대응, CFS Quota·Pinning 제언을 연결.
