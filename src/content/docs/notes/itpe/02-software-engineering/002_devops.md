@@ -24,16 +24,16 @@ extra:
 - 배경 및 필요성 : 비즈니스 출시 주기 단축(Time-to-Market) 요구, 마이크로서비스 확산에 따른 배포 빈도 급증, 개발과 운영의 상충된 KPI(Key Performance Indicator, 신규 기능 출시 대비 시스템 안정성)로 인한 사일로(Silo) 문제 해소 필요.
 - 주요 목적 : 배포 빈도(Deployment Frequency) 향상, 변경 리드타임(Lead Time for Changes) 단축, 변경 실패율(Change Failure Rate) 감소, 평균 복구 시간 MTTR(Mean Time to Repair) 단축.
 
-## Ⅱ. DevOps의 특징
+## Ⅱ. DevOps의 특징 및 장점
 
-- 핵심 요약 : 문화·프로세스·도구의 통합과 자동화 파이프라인, 코드 기반 인프라, 관측성 확보가 결합된 운영 체계.
+- 핵심 요약 : **협업 문화**와 **CI/CD**·**IaC**·관측성의 결합으로 출시 속도와 서비스 안정성을 함께 높이는 운영 체계.
 
-1. 개발·운영·테스트를 아우르는 크로스 펑셔널 팀(Cross-functional Team) 중심 조직 운영.
-2. 빌드부터 배포까지 자동화된 CI/CD(Continuous Integration/Continuous Delivery) 파이프라인.
-3. IaC(Infrastructure as Code)와 불변 인프라(Immutable Infrastructure) 기반 환경 관리.
-4. 메트릭·로그·트레이스로 구성되는 관측성(Observability) 통합.
-5. 카나리, 블루/그린 등 무중단 배포 전략과 자동 롤백.
-6. 테스트·보안의 조기 이동인 시프트 레프트(Shift-Left) 적용.
+1. **교차 기능팀** : 개발·운영·테스트의 공동 책임 → 인계 지연 축소와 장애 대응 속도 향상.
+2. **CI/CD(Continuous Integration/Continuous Delivery)** : 빌드·시험·배포 자동화 → 작은 변경의 잦은 릴리스와 결함 조기 발견.
+3. **IaC(Infrastructure as Code)**와 불변 인프라 : 환경을 코드로 재현 → 설정 편차와 수작업 오류 감소.
+4. **관측성(Observability)** : 메트릭·로그·트레이스 연계 → 장애 원인 탐색과 복구 시간 단축.
+5. 카나리·블루/그린 배포 : 변경을 단계적으로 노출하고 롤백 → 배포 실패의 영향 범위 축소.
+6. **시프트 레프트(Shift-Left)** : 테스트·보안을 개발 초기에 통합 → 늦은 수정 비용과 출시 병목 완화.
 
 ## Ⅲ. DevOps의 구조 (흐름)
 
@@ -70,22 +70,15 @@ extra:
 | 테스트 범위 | 릴리스 직전 일괄 QA(Quality Assurance) 및 인수 테스트 | 파이프라인 내 시프트 레프트(Shift-Left) 자동화 테스트 |
 | 장애 대응 | 장애 발생 시 부서 간 책임 전가 및 사후 분석 | 카오스 엔지니어링(Chaos Engineering), 무중단 자동 롤백 |
 
-## Ⅴ. DevOps의 장점과 한계
+## Ⅴ. DevOps의 한계와 방안
 
-- 핵심 요약 : 납품 속도·신뢰성·회복력 향상의 장점, 조직·툴체인·보안 측면의 성숙도 한계.
-- 장점
-  1. 배포 빈도 향상과 변경 리드타임 단축을 통한 Time-to-Market 경쟁력 확보.
-  2. 자동화 테스트와 관측성 기반의 조기 결함 발견 및 신속 복구.
-  3. 개발과 운영의 공동 책임 문화를 통한 품질·안정성 동시 확보.
-- 한계점 1 : 조직적 사일로(Silo) 잔존 및 이름뿐인 DevOps 변질
-  - 한계점 : 상충되는 KPI와 조직 장벽 미해소 상태에서 기존 인프라팀에 도구만 덧씌워 DevOps팀으로 명칭만 변경하는 안티패턴 발생.
-  - 해결 방안 : 제품 중심의 교차 기능팀(Cross-Functional Stream-Aligned Team)으로 조직 재편, DORA(DevOps Research and Assessment) 4대 핵심 지표의 통합 성과 지표 도입, 비난 없는 회고(Blameless Post-Mortem) 문화 정착.
-- 한계점 2 : 툴체인 파편화 및 개발자 인지 부하(Cognitive Load) 가중
-  - 한계점 : Git, Jenkins, ArgoCD, Terraform, Kubernetes, SonarQube 등 이기종 도구의 파편화로 인프라 관리 스크립트 난립 및 애플리케이션 개발자 인지 부하 극대화.
-  - 해결 방안 : 플랫폼 엔지니어링(Platform Engineering) 기반 내부 개발자 플랫폼(IDP, Internal Developer Platform) 구축, 셀프서비스 황금 경로(Golden Path) 템플릿 및 파이프라인-애즈-코드(Pipeline as Code) 표준 확립.
-- 한계점 3 : 보안 검증의 병목화 및 소프트웨어 공급망 취약점
-  - 한계점 : 전통적 보안 점검의 릴리스 직전 병목 작용, 서드파티 오픈소스 의존성 오염에 따른 공급망 침해(Supply Chain Attack) 위험 상존.
-  - 해결 방안 : DevSecOps 체계 전환, SAST(Static Application Security Testing), DAST(Dynamic Application Security Testing), SCA(Software Composition Analysis)의 CI(Continuous Integration) 파이프라인 시프트-레프트(Shift-Left) 통합, SBOM(Software Bill of Materials) 자동 생성 및 SLSA(Supply-chain Levels for Software Artifacts) 프레임워크 준수.
+- 핵심 요약 : 조직 장벽·도구 파편화·공급망 위험을 **공동 성과 지표**, **내부 개발자 플랫폼**, **DevSecOps**로 관리.
+
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+|---|---|---|---|
+| 조직 사일로 잔존 | 부서별 KPI가 상충하면 도구 도입 후에도 인계·책임 분리 지속 | 제품 중심 교차 기능팀, 비난 없는 회고, **DORA(DevOps Research and Assessment)** 지표 공동 관리 | 변경 리드타임, 복구 시간 |
+| 도구 파편화 | 다수 도구의 설정·운영 부담이 개발자 인지 부하로 전가 | **내부 개발자 플랫폼(IDP, Internal Developer Platform)**과 표준 셀프서비스 경로 구축 | 환경 준비 시간, 파이프라인 실패율 |
+| 보안 검증 병목 | 출시 직전 점검과 외부 의존성 취약점으로 배포 지연·공급망 위험 | **SAST(Static Application Security Testing)**·**SCA(Software Composition Analysis)**를 CI에 통합하고 **SBOM(Software Bill of Materials)** 관리 | 취약점 수정 시간, 미해결 취약점 |
 
 ## Ⅵ. DevOps에 대한 기술사적 제언
 
