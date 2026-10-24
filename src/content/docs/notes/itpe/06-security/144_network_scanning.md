@@ -1,7 +1,7 @@
 ---
 title: "네트워크 스캐닝(Network Scanning)"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T23:10:07+09:00"
 tags:
   - "notes-security"
 sidebar:
@@ -9,72 +9,100 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
 
-## Ⅰ. 네트워크 스캐닝(Network Scanning)의 개요
+## 연관 키워드
 
-- 개념 : 대상 네트워크 및 호스트 시스템을 대상으로 다양한 패킷(TCP(Transmission Control Protocol), UDP(User Datagram Protocol), ICMP)을 전송하고 수신되는 응답의 유형과 상태를 정밀 분석하여, **활성화된 호스트** (Host Discovery), **개방된 포트** (Port Scanning), 구동 중인 서비스 데몬 및 운영체제(OS Fingerprinting), 알려진 취약점을 능동적으로 식별하는 **정찰** (Reconnaissance) 기법.
-- 배경 및 필요성 : 사이버 킬 체인의 최우선 단계인 정찰(Reconnaissance)을 위해 공격자는 침투 가능한 접점을 찾아내야 하며, 방어자 역시 자산 식별과 **공격 표면 관리** (ASM)를 위해 동일한 스캐닝 기술을 필수적으로 활용함.
-- 핵심 목적 : **네트워크 공격 표면** (Attack Surface)을 전수 식별하고 불필요하게 외부에 열린 포트와 취약한 서비스 버전을 신속히 찾아내어 사전 차단 및 하드닝 조치 수행.
+- 네트워크 스캐닝(Network Scanning), 포트 스캐닝(Port Scanning), SYN 스캔, TCP Connect 스캔, 스텔스 스캔(Stealth Scan)
+- OS 핑거프린팅(OS Fingerprinting), 배너 그래빙(Banner Grabbing), 공격 표면 관리(ASM), EASM, 포트 노킹(Port Knocking), 허니팟(Honeypot)
 
-## Ⅱ. 네트워크 스캐닝(Network Scanning)의 핵심 아키텍처 및 동작 메커니즘
+## Ⅰ. 네트워크 스캐닝의 개요
 
-네트워크 스캐닝은 **호스트 탐색** (Ping Scan), **포트 스캐닝** (TCP Connect, SYN, Stealth, UDP), **서비스 배너 그래빙** (Banner Grabbing), OS(Operating System) 탐지 엔진의 계층적 파이프라인으로 구성됨.
+- 핵심 요약 : 대상 호스트의 패킷 응답을 분석해 활성 호스트, 열린 포트, 서비스, 운영체제를 식별하는 정찰 기법.
+- 개념 : 대상 네트워크와 호스트에 TCP(Transmission Control Protocol), UDP(User Datagram Protocol), ICMP(Internet Control Message Protocol) 패킷을 보내 응답의 유형과 상태를 분석하여, 활성 호스트, 개방 포트, 구동 서비스, 운영체제와 알려진 취약점을 식별하는 **정찰** (Reconnaissance) 기법.
+- 배경 및 필요성 : 사이버 킬 체인의 초기 단계인 정찰에서 공격자는 침투 접점을 찾아야 하며, 방어자도 자산 식별과 공격 표면 관리(ASM, Attack Surface Management)를 위해 같은 기술을 사용함.
+- 주요 목적 : 네트워크 공격 표면을 전수 식별하고, 불필요하게 외부에 열린 포트와 취약한 서비스 버전을 찾아 차단과 하드닝을 수행하는 것.
+
+## Ⅱ. 네트워크 스캐닝의 특징 및 장점
+
+- 핵심 요약 : 호스트 탐색, 포트 스캐닝, 배너 확인, OS 판별이 단계적으로 이어지는 파이프라인 구조.
+
+1. **호스트 탐색** (Host Discovery, Ping Scan) : ICMP 등으로 응답하는 호스트를 식별 → 스캔 대상을 줄여 점검 시간 단축.
+2. **포트 스캐닝** (Port Scanning) : TCP Connect, SYN, FIN·NULL·Xmas 등 방식으로 열린 포트를 판별 → 노출 서비스 목록 확보.
+3. **배너 그래빙** (Banner Grabbing) : 열린 포트에 접속해 서비스 종류와 버전 문자열을 수집 → 알려진 취약점과 대조.
+4. **OS 핑거프린팅** (OS Fingerprinting) : 초기 시퀀스 번호(ISN, Initial Sequence Number) 생성 방식, TTL(Time to Live), TCP 윈도우 크기, 옵션 값의 차이로 운영체제를 추정 → 공격 대상의 환경 파악.
 
 ```text
-[ 주요 포트 스캐닝 기법별 패킷 교환 메커니즘 ]
+[ TCP Connect 스캔 (완전 연결) ]
 
- 1. TCP Open (Connect) 스캔 : 완전한 3-Way Handshake (로그 남음)
-    [ 스캐너 ] ---- SYN 패킷 전송 ----> [ 대상 호스트 ]
-    [ 스캐너 ] <--- SYN/ACK 수신 ------ [ 대상 호스트 ] (포트 Open 판정!)
-    [ 스캐너 ] ---- ACK 패킷 전송 ----> [ 대상 호스트 ] (정상 세션 연결 수립)
-    [ 스캐너 ] ---- RST 전송 (종료) ---> [ 대상 호스트 ]
-
- 2. TCP SYN (Stealth / Half-Open) 스캔 : 비정상 종료 (로그 은닉)
-    [ 스캐너 ] ---- SYN 패킷 전송 ----> [ 대상 호스트 ]
-    [ 스캐너 ] <--- SYN/ACK 수신 ------ [ 대상 호스트 ] (포트 Open 판정!)
-    [ 스캐너 ] ---- RST 패킷 전송 ----> [ 대상 호스트 ] (세션 수립 전 즉시 강제 종료!)
-    * 대상 시스템 애플리케이션 계층에 접속 로그가 남지 않음!
-
- 3. TCP FIN / NULL / Xmas 스캔 : RFC 793 역발상 스캔 (방화벽 우회)
-    [ 스캐너 ] ---- 비정상 Flag 전송 --> [ 대상 호스트 ]
-    * Open 포트  : 응답 없음 (Silent Drop)
-    * Closed 포트: RST/ACK 패킷 응답 수신
-    (단, Windows OS는 RFC 미준수로 열림/닫힘 모두 RST 응답)
+스캐너 → 대상 : SYN
+대상 → 스캐너 : SYN/ACK (포트 열림)
+스캐너 → 대상 : ACK (연결 완료)
+스캐너 → 대상 : RST (종료, 로그 남음)
 ```
 
-- **TCP Connect 스캔(Open Scan)** : 운영체제의 표준 connect() 시스템 콜을 사용하여 3-Way Handshake를 완결하므로 권한 제약 없이 실행 가능하나 대상 서버 애플리케이션 로그에 접속 기록이 명확히 기록됨.
-- **TCP SYN(Synchronize) 스캔(Half-Open / Stealth Scan)** : SYN/ACK(Acknowledgment)를 수신한 직후 최종 ACK 대신 RST(Reset) 패킷을 전송하여 세션 수립 직전에 통신을 끊어버림으로써 서버 로그 생성을 회피(Raw Socket 생성용 root 권한 필요).
-- **스텔스 스캔(FIN, NULL, Xmas)** : TCP 플래그가 비정상인 패킷을 보낼 때 '포트가 닫혀 있으면 RST를 보내고, 열려 있으면 패킷을 무시한다'는 RFC(Request for Comments) 793 표준 동작을 이용한 은닉 스캔.
-- **OS 핑거프린팅(OS Fingerprinting)** : 초기 시퀀스 번호(ISN) 생성 알고리즘, IP(Internet Protocol) TTL(Time to Live) 값, TCP 윈도우 크기, 지원 옵션(MSS, SACK) 등 운영체제별 미세한 TCP/IP 스택 구현 차이를 분석하여 대상 OS를 정확히 판별.
+```text
+[ TCP SYN 스캔 (반개방) ]
 
-## Ⅲ. 네트워크 스캐닝(Network Scanning)의 세부 구성 요소 및 비교 분석
+스캐너 → 대상 : SYN
+대상 → 스캐너 : SYN/ACK (포트 열림)
+스캐너 → 대상 : RST (연결 수립 전 중단)
+→ 애플리케이션 로그에 기록되지 않는 경우가 많음
+```
 
-| 비교 항목 | **TCP Connect 스캔** | **TCP SYN 스캔** | **Xmas / NULL 스캔** | **UDP 스캔** |
+## Ⅲ. 네트워크 스캐닝의 구조 (흐름)
+
+- 핵심 요약 : 정상 연결 절차를 따르지 않는 비정상 플래그 기법들이 응답 유무의 차이로 포트 상태를 추정하는 구조.
+- **스텔스 스캔** (Stealth Scan) : 연결 수립 절차를 완료하지 않아 애플리케이션 계층의 기록을 줄이는 방식의 총칭.
+- **FIN·NULL·Xmas 스캔** : RFC(Request for Comments) 793의 응답 규칙을 이용하는 역발상 스캔으로, 닫힌 포트는 RST로 응답하고 열린 포트는 무응답으로 처리함. 다만 Windows 계열 구현은 열림과 닫힘 모두 RST로 응답하여 판별이 어려움.
+
+```text
+[ FIN·NULL·Xmas 스캔 흐름 ]
+
+스캐너 → 대상 : 비정상 플래그 패킷
+    ↓
+열린 포트 : 무응답 (Silent Drop)
+닫힌 포트 : RST/ACK 응답
+    ↓
+Windows 계열은 열림·닫힘 모두 RST 응답
+```
+
+## Ⅳ. 네트워크 스캐닝의 비교 분석
+
+- 핵심 요약 : 연결 수립 방식, 로그 흔적, 권한 요건, 방화벽 통과 특성에 따라 스캔 기법의 성격이 구분되는 구조.
+
+비교 대상은 **TCP Connect 스캔** (Open Scan)과 **TCP SYN 스캔** (Half-Open Scan)이며, 나머지 비정상 플래그 기법과 UDP 스캔을 함께 비교한다.
+
+| 비교 축 | TCP Connect | TCP SYN | FIN·NULL·Xmas | UDP |
 | --- | --- | --- | --- | --- |
-| 연결 수립 | 완전 수립 (3-Way 완료) | 반개방 (Half-Open, RST 종료) | 연결 없음 (비정상 플래그) | 비연결형 (UDP 전송) |
-| 서버 로그 | 애플리케이션 로그에 명확히 기록 | 대부분 로그 남지 않음 | 로그 남지 않음 | 로그 남지 않음 |
-| 실행 권한 | 일반 사용자 계정 가능 | 관리자(Root/Raw Socket) 필수 | 관리자(Root) 필수 | 관리자(Root) 권장 |
-| 방화벽 우회 | 방화벽에 쉽게 탐지/차단 | 단순 패킷 필터링 부분 우회 | 상태 비저장 방화벽 우회 가능 | 방화벽 통과 어려움 |
-| 스캔 속도 | 비교적 느림 (핸드셰이크 지연) | 극도로 빠름 (수천 포트 고속) | 중간 | 극도로 느림 (ICMP 응답 속도 제한) |
+| 연결 수립 | 3-Way Handshake 완료 | 반개방, RST로 종료 | 연결 없음 (비정상 플래그) | 비연결형 (UDP 전송) |
+| 서버 로그 | 애플리케이션 로그에 기록 | 대부분 남지 않음 | 남지 않음 | 남지 않음 |
+| 실행 권한 | 일반 사용자 가능 | 관리자 권한 필요 (Raw Socket) | 관리자 권한 필요 | 관리자 권한 권장 |
+| 방화벽 우회 | 쉽게 탐지되고 차단됨 | 단순 패킷 필터링 일부 우회 | 상태 비저장 방화벽 우회 가능 | 방화벽 통과가 어려움 |
+| 스캔 속도 | 상대적으로 느림 | 빠름 | 중간 | 매우 느림 (ICMP 응답 제한) |
 
-- 네트워크 스캐닝은 공격자에게는 침투용 지도를 제공하고 방어자에게는 취약점 조기 식별을 지원하는 양날의 검이므로, 지속적 공격 표면 관리(ASM)의 기반으로 활용되어야 함.
+- 선택 기준 : 기법마다 로그 흔적과 방화벽 통과 특성이 다르므로, 방어 측은 각 기법이 어떤 로그와 탐지 규칙에 남는지 기준선을 확인해 두는 것이 필요함.
 
-## Ⅳ. 네트워크 스캐닝(Network Scanning)의 주요 한계점 및 해결 방안
+## Ⅴ. 네트워크 스캐닝의 한계와 방안
 
-- 상태 추적 방화벽(Stateful Inspection) 및 IPS(Intrusion Prevention System)의 스캔 패턴 즉각 차단 :
-  - 한계점 : 최신 차세대 방화벽(NGFW)은 포트 스캔의 임계치(초당 패킷 수)를 실시간 감지하여 소스 IP를 자동으로 블랙리스트 격리.
-  - 해결 방안 : Nmap의 패킷 조각화(Fragmentation), 디코이(Decoy: 가짜 IP 수십 개 혼합) 스캔, 패킷 전송 간격을 수 분 단위로 늦추는 Slow Scan 기법 병행.
-- UDP 포트 스캔의 극단적인 속도 저하 및 신뢰성 한계 :
-  - 한계점 : UDP는 포트가 닫혀 있을 때만 ICMP Port Unreachable을 반환하며, RFC 표준에 따라 OS가 ICMP 생성 속도를 초당 1개 수준으로 제한(Rate Limiting).
-  - 해결 방안 : 상위 핵심 UDP 포트(DNS(Domain Name System) 53, SNMP 161, NTP(Network Time Protocol) 123) 위주로 스캔 대상을 축소하고 애플리케이션 페이로드를 직접 탑재하여 질의.
-- 클라우드 서비스 제공자(CSP, Cloud Service Provider)의 사전 비인가 스캐닝 차단 :
-  - 한계점 : AWS(Amazon Web Services), Azure 등 클라우드 인프라에서 사전 승인 없이 스캐닝을 수행할 경우 악의적 침해 공격으로 간주되어 계정이 영구 정지될 위험.
-  - 해결 방안 : CSP의 모의 침투 가이드라인을 사전 준수하고, 클라우드 네이티브 감사 도구(AWS Inspector 등)를 활용한 내부 에이전트 기반 감사 수행.
+- 핵심 요약 : 임계치 기반 자동 차단, UDP 응답 제한, 클라우드 사전 승인 요건이 점검의 한계를 만들므로, 점검 설계와 정책 준수로 대응하는 구조.
 
-## Ⅴ. 네트워크 스캐닝(Network Scanning) 적용 및 발전을 위한 기술사적 제언
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| **상태 추적 방화벽** (Stateful Inspection)과 IPS(Intrusion Prevention System)의 즉각 차단 | 차세대 방화벽(NGFW, Next-Generation Firewall)이 스캔 임계치를 감지해 출발지 IP를 자동 차단 → 정밀 점검이 중단됨 | 점검 일정과 출발지를 사전에 등록하여 보안 장비의 예외 정책으로 관리하고, 스캔 로그를 점검 기록과 대조 | 점검 중 차단 건수 |
+| UDP 스캔의 속도 저하와 신뢰성 한계 | 닫힌 포트에서만 ICMP Port Unreachable이 돌아오고, OS가 ICMP 응답 속도를 제한하여 결과가 불확실함 | DNS(Domain Name System) 53, SNMP(Simple Network Management Protocol) 161, NTP(Network Time Protocol) 123 등 핵심 포트로 대상을 좁히고 서비스별 프로토콜 질의 사용 | 스캔 소요 시간, 응답 누락률 |
+| 클라우드 사전 승인 없는 스캔 | CSP(Cloud Service Provider) 인프라에서 승인 없이 스캔하면 공격으로 간주되어 계정이 제한될 위험 | CSP의 모의 진단 정책을 사전에 확인·준수하고, AWS Inspector 같은 클라우드 네이티브 점검 도구로 에이전트 기반 점검 수행 | 승인 절차 준수율 |
 
-- 공격 표면 관리(EASM: External Attack Surface Management) 솔루션 도입 : 기업의 모든 외부 노출 자산(도메인, 서브도메인, 공인 IP)을 매일 자동 스캐닝하여 섀도우 IT(Information Technology) 및 미인가 오픈 포트를 상시 색출.
-- 포트 노킹(Port Knocking) 및 단일 패킷 권한부여(SPA, Single-Page Application) 적용 : SSH(Secure Shell), RDP(Remote Desktop Protocol) 등 관리 포트를 평상시에 완벽히 은닉(Closed 상태)해 두고, 사전에 암호화된 특수 패킷을 수신했을 때만 특정 IP에 방화벽 포트를 동적 개방.
-- 허니팟(Honeypot) 연동을 통한 능동적 스캐너 유인 및 역추적 : 사용하지 않는 빈 IP 및 포트에 가상 허니팟을 배치하여 사내외 스캐닝 행위를 즉시 트리거하고 공격 소스 IP를 관제 센터에 자동 공유.
+## Ⅵ. 네트워크 스캐닝의 기술사적 제언
+
+- 핵심 요약 : 외부 노출 자산을 상시 발견하고, 관리 포트를 은닉하며, 스캔 행위를 조기에 탐지하는 능동 방어 체계로 운영하는 방향.
+
+1. 기업의 외부 노출 자산(도메인, 서브도메인, 공인 IP)을 주기적으로 자동 탐색하는 **EASM** (External Attack Surface Management) 체계를 도입하여, 섀도 IT(Shadow IT)와 승인되지 않은 공개 포트를 정기적으로 찾아내는 것이 바람직하다.
+2. SSH(Secure Shell)나 RDP(Remote Desktop Protocol) 같은 관리 포트는 평상시 외부에서 닫아 두고, 사전에 인증된 단일 패킷을 받았을 때만 특정 출발지에 일시적으로 여는 **SPA** (Single Packet Authorization) 방식이나 포트 노킹(Port Knocking)을 검토할 필요가 있다.
+3. 사용하지 않는 IP 대역과 포트에 **허니팟** (Honeypot)을 배치하여 스캔 행위를 조기에 감지하고, 공격 원천 IP를 관제 체계에 자동 공유하여 대응 시간을 줄여야 한다.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : 네트워크 스캐닝은 공격자에게는 정찰 수단이고 방어자에게는 노출 자산을 식별하는 점검 수단인 양면적 기술.
+- 시사점 : 공격 표면을 상시 관리하는 ASM 체계의 기반으로 스캐닝을 운영하되, 승인된 범위 안에서 정기적으로 수행하는 것이 전제가 되어야 함.
