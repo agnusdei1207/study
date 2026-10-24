@@ -1,7 +1,7 @@
 ---
 title: "다중 리전 Active-Active 재해복구"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:33:35+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
@@ -9,96 +9,92 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
+
+## 연관 키워드
+
+- 멀티 리전 Active-Active(Multi-Region Active-Active), 재해복구(DR, Disaster Recovery), 리전(Region), RTO(Recovery Time Objective), RPO(Recovery Point Objective)
+- Anycast, 셀 기반 아키텍처(Cell-Based Architecture), 분산 합의(Consensus), CRDT(Conflict-Free Replicated Data Type)
+- RTT(Round-Trip Time), 쓰기 충돌(Write Conflict), 서킷 브레이커(Circuit Breaker), 웜 스탠바이(Warm Standby), 파일럿 라이트(Pilot Light)
 
 ## Ⅰ. 멀티 리전 Active-Active 재해복구의 개요
 
-- 핵심 요약 : **멀티 리전 Active-Active DR**은 복수 리전이 트래픽을 동시 처리하여 RTO/RPO를 최소화하는 최고 수준의 재해복구 아키텍처.
-- 개념 : 지리적으로 수백~수천 km 이상 격리된 둘 이상의 **클라우드 리전** (Region)에 동일한 애플리케이션 스택과 데이터베이스를 상시 가동하고, 모든 리전이 실제 대고객 트래픽을 동시에 분산 처리하며 한 리전의 전면 붕괴 시에도 복구시간목표(RTO, Recovery Time Objective)와 복구시점목표(RPO, Recovery Point Objective)를 최소화하도록 설계하는 재해복구(DR, Disaster Recovery) 아키텍처.
-- 배경 및 필요성 : 글로벌 CSP(Cloud Service Provider) 리전 전체가 정전이나 자연재해로 중단되는 블랙스완 사고 발생 시, 기존 **Active-Standby** 방식의 페일오버 지연(수십 분)과 데이터 손실을 원천 차단하기 위해 금융 및 글로벌 빅테크를 중심으로 발전함.
-- 핵심 목적 : **목표 복구 시간**과 **목표 복구 시점**의 최소화(장애 탐지·복제·전환 조건에 따라 결정), 리전 간 글로벌 부하 분산을 통한 사용자 체감 응답시간 극소화.
+- 핵심 요약 : 여러 리전이 실트래픽을 동시에 처리하여 한 리전이 무너져도 나머지가 서비스를 이어 가는 **멀티 리전 Active-Active** 방식의 재해복구(DR, Disaster Recovery) 구조.
+- 개념 : 지리적으로 멀리 떨어진 둘 이상의 클라우드 **리전** (Region)에 같은 애플리케이션과 데이터베이스를 상시 가동하고, 모든 리전이 대고객 트래픽을 나눠 처리하는 아키텍처. 리전 하나가 통째로 중단되어도 **RTO**(Recovery Time Objective, 목표 복구 시간)와 **RPO**(Recovery Point Objective, 목표 복구 시점)를 최소화하도록 설계함.
+- 배경 및 필요성 : 클라우드 리전 전체가 정전이나 재난으로 멈추는 사고는 드물지만 피해가 크므로, 평시에는 대기만 하는 리전을 두는 방식은 전환 중 중단 시간과 복제 지연에 따른 데이터 손실이라는 비용을 떠안게 됨. 금융과 글로벌 서비스는 이 비용을 줄이려고 모든 리전을 동시에 쓰는 구조를 택함.
+- 주요 목적 : RTO와 RPO의 최소화, 리전 간 부하 분산을 통한 사용자 체감 응답 시간 단축.
 
 ## Ⅱ. 멀티 리전 Active-Active 재해복구의 특징 및 장점
 
-- 핵심 요약 : **Anycast 라우팅·셀 기반 격리·분산 합의 DB·CRDT**.
-1. **Anycast 글로벌 라우팅** : 사용자와 가장 가까운 리전으로 트래픽을 자동 라우팅하며, 헬스체크 실패 리전은 BGP(Border Gateway Protocol) 경로 철회로 1초 내 자동 제외.
-2. **셀 기반 아키텍처 (Cell-Based Architecture)** : 리전 간 복잡한 종속성을 제거하기 위해 고객 ID(Identifier, 샤드 키) 단위로 홈 리전을 지정하여 원거리 쓰기 충돌 원천 억제.
-3. **분산 합의 기반 글로벌 DB** : Raft 또는 Paxos 합의 알고리즘을 크로스 리전으로 확장하여, 과반수 노드의 확인을 통해 원거리에서도 데이터 완전 무결성 보장.
-4. **CRDT (Conflict-Free Replicated Data Type, 무충돌 복제 데이터 타입)** : 최종 일관성(Eventual Consistency) 모델을 사용하는 NoSQL(Not Only SQL) 환경에서 양 리전의 동시 수정 발생 시 수학적 알고리즘으로 자동 병합.
+- 핵심 요약 : 사용자 근접 라우팅, 셀 단위 격리, 분산 합의 DB, 충돌 자동 병합을 결합해 여러 리전에서 동시에 쓰기가 일어나도 정합성을 유지하는 구조.
+
+1. **Anycast 라우팅** : 같은 주소를 여러 리전에서 광고하여 사용자를 가까운 리전으로 보내고, 헬스 체크에 실패한 리전은 BGP(Border Gateway Protocol) 경로 광고를 거두어 유입을 차단 → 장애 리전으로의 트래픽을 자동 제외.
+2. **셀 기반 아키텍처** (Cell-Based Architecture) : 고객 식별자(ID, Identifier) 같은 샤드 키 단위로 홈 리전을 정해 쓰기를 한 리전에 묶음 → 원거리 쓰기 충돌과 리전 간 의존성 감소.
+3. **분산 합의** (Consensus) 기반 글로벌 데이터베이스(DB, Database) : Raft나 Paxos 같은 합의 알고리즘을 리전 간으로 확장하여 과반수 노드 확인 후 커밋 → 정상 커밋된 쓰기의 무손실을 목표로 함.
+4. **CRDT**(Conflict-Free Replicated Data Type, 무충돌 복제 데이터 타입) : 최종 일관성 모델에서 복제본이 동시에 수정되어도 정해진 수학적 병합 규칙으로 자동 수렴 → 충돌 해결 로직을 애플리케이션이 떠맡지 않음.
 
 ## Ⅲ. 멀티 리전 Active-Active 재해복구의 구조 및 동작 메커니즘
 
-- 핵심 요약 : **Anycast GSLB → 리전 A/B 동시 처리 → 분산 합의 DB (Raft/Paxos)**.
-- 멀티 리전 Active-Active는 Anycast DNS(Domain Name System)/GSLB(Global Server Load Balancing) 트래픽 라우팅 계층, 셀(Cell) 기반 서비스 격리, 글로벌 분산 합의 DB(CockroachDB, Spanner, DynamoDB Global Tables), 그리고 분산 충돌 해결 엔진으로 구성됨.
+- 핵심 요약 : 요청은 글로벌 라우팅으로 리전에 나뉘고, 각 리전은 로컬에서 처리한 뒤 분산 DB의 합의나 비동기 복제로 데이터 정합성을 맞추는 구조.
 
 ```text
-[ 멀티 리전 Active-Active DR 및 분산 데이터 정합성 아키텍처 ]
+[ 요청 흐름 ]
 
-[글로벌 사용자: 한국, 미국, 유럽]
-              │
-              ▼
-+---------------------------------------------------------------+
-| Global Anycast DNS / AWS Route 53 / Cloudflare GSLB           |
-|   - 최단 레이턴시(Latency Routing) 및 상태 기반 동적 분산     |
-+---------------------------------------------------------------+
-        │ (50% 트래픽)                                  │ (50% 트래픽)
-        ▼                                               ▼
-+-------------------------------+               +-------------------------------+
-| Region A (서울 리전 - Active) |               | Region B (도쿄 리전 - Active) |
-| +---------------------------+ |               | +---------------------------+ |
-| | Global Ingress (ALB/Envoy)| |               | | Global Ingress (ALB/Envoy)| |
-| +---------------------------+ |               | +---------------------------+ |
-| | EKS Microservices Pods    | |               | | EKS Microservices Pods    | |
-| +---------------------------+ |               | +---------------------------+ |
-|               │               |               |               │               |
-|               ▼               |               |               ▼               |
-| +---------------------------+ |  양방향 동기  | +---------------------------+ |
-| | Distributed SQL / NoSQL   | | <───────────> | | Distributed SQL / NoSQL   | |
-| | (Spanner / CockroachDB)   | |  Cross-Region | | (Spanner / CockroachDB)   | |
-| +---------------------------+ |  Raft / Paxos | +---------------------------+ |
-+-------------------------------+               +-------------------------------+
-  * 한 리전이 완전 침수/정전으로 소멸해도 반대편 리전이 100% 트래픽 무중단 연속 처리!
+글로벌 사용자 (한국·미국·유럽)
+      ↓
+Anycast 라우팅 · 글로벌 로드 밸런서
+      ↓ 지연 시간 기반 분배
+리전 A (서울)      리전 B (도쿄)
+      ↓                  ↓
+리전별 서비스 처리 (로컬)
 ```
+
+```text
+[ 데이터 정합성 계층 ]
+
+리전 A 분산 DB
+      ↔ 합의(Raft/Paxos) 또는 비동기 복제
+리전 B 분산 DB
+      ↓ 쓰기 충돌이 생기면
+CRDT 병합 또는 타임스탬프 규칙
+```
+
+- 분산 SQL(Structured Query Language) 데이터베이스(예: Google Spanner, CockroachDB)는 리전 간 합의로 강한 정합성을 제공하지만, 그 왕복 지연이 쓰기 응답 시간에 그대로 더해짐.
 
 ## Ⅳ. 멀티 리전 Active-Active 재해복구의 비교
 
-- 핵심 요약 : **Active-Standby·Pilot Light·Active-Active** 트래픽·RTO·RPO·비용·복잡도 비교.
+- 핵심 요약 : 재해복구 전략은 평시 대기 자원의 양에 따라 복구 시간과 비용이 달라지며, 멀티 사이트 Active-Active는 모든 리전을 실가동하는 최상위 단계.
 
-| 비교 항목 | Active-Standby (Warm) | Pilot Light (클라우드) | 멀티 리전 Active-Active |
-|---|---|---|---|
-| 트래픽 처리 | 주 리전 100%, 부 리전 0% | 주 리전 100%, 부 리전 0% | 모든 리전이 실시간 트래픽 동시 처리 |
-| 목표 복구 시간(RTO) | 수 분 ~ 수십 분 (절체 필요) | 수십 분 ~ 수 시간 (프로비저닝) | 장애 탐지·라우팅·세션 복구 조건에 따라 결정 |
-| 목표 복구 시점(RPO) | 수 초 ~ 수 분 (비동기 복제차) | 수 분 ~ 수 시간 (스냅샷 차이) | 정상 동기 커밋한 쓰기의 무손실을 목표로 검증 |
-| 인프라 비용 효율 | 50% 자원 상시 유휴 낭비 | 스토리지 비용만 발생 (저렴) | 100% 자원 실가동 (단, 인프라 2배) |
-| 구현 및 운영 복잡도 | 보통 (검증된 방식) | 낮음 | 극도로 높음 (데이터 충돌 및 지연) |
+| 비교 항목 | **웜 스탠바이** (Warm Standby) | **파일럿 라이트** (Pilot Light) | 멀티 사이트 Active-Active |
+| --- | --- | --- | --- |
+| 평시 트래픽 | 주 리전 100%, 대기 리전은 축소 운영 | 주 리전 100%, 대기 리전은 데이터 복제만 유지 | 모든 리전이 실트래픽을 동시에 처리 |
+| RTO | 축소 자원을 확장해 절체하는 만큼 걸림 | 필수 구성을 기동하고 확장하는 만큼 걸림 | 장애 감지와 라우팅 전환 시간에 좌우 |
+| RPO | 비동기 복제 지연만큼 | 비동기 복제 지연만큼 | 동기 커밋된 쓰기는 손실이 없도록 검증 |
+| 인프라 비용 | 대기 자원 일부 상시 유지 | 최소 구성만 상시 유지 | 전 리전 상시 실가동으로 가장 높음 |
+| 구현·운영 복잡도 | 보통 | 낮음 | 매우 높음 (쓰기 충돌과 지연 관리) |
 
-- Active-Active는 무중단 가용성의 궁극적인 지향점이나 물리적 광속 한계로 인한 네트워크 레이턴시와 동시 쓰기 정합성 해결이 핵심 엔지니어링 과제임.
-- 다중 리전 서비스 운영과 다중 리전 동시 쓰기를 구분. Amazon Aurora Global Database는 기본적으로 하나의 primary 리전에서 쓰기를 수행하므로 다중 쓰기 분산 DB와 동일하게 분류하지 않도록 검토.
+- 다중 리전 서비스와 다중 리전 동시 쓰기는 구분해야 함. Amazon Aurora Global Database는 기본적으로 한 기본 리전에서 쓰기를 처리하므로, 다중 쓰기 분산 DB와 같은 부류로 보지 않음.
 
 ## Ⅴ. 멀티 리전 Active-Active 재해복구의 한계와 방안
 
-- 핵심 요약 : **RTT 지연·쓰기 충돌·연쇄 붕괴**를 홈 리전 분할·CRDT·여유 용량으로 대응.
+- 핵심 요약 : 리전 간 **RTT**(Round-Trip Time, 왕복 지연), 쓰기 충돌, 연쇄 붕괴를 홈 리전 분할, 병합 규칙, 여유 용량과 서킷 브레이커로 대응.
 
-- 리전 간 물리적 거리에 따른 광속 **지연** (RTT, Round-Trip Time)과 트랜잭션 성능 저하 :
-  - 한계점 : 리전 간 실제 네트워크 왕복 지연으로 인해 모든 쓰기 트랜잭션에 동기 2PC(Two-Phase Commit) 적용 시 사용자 응답 속도 마비.
-  - 해결 방안 : 데이터 소유권 리전 분할(홈 리전 로컬 쓰기 + 비동기 글로벌 복제), 읽기 전용 로컬 복제본 활용.
-- 동일 데이터의 양 리전 동시 수정 시 **쓰기 충돌(Write Conflict)** :
-  - 한계점 : 동일 레코드가 서울과 도쿄에서 동시에 수정될 경우 분기 발생 및 최종 일관성 수렴 실패.
-  - 해결 방안 : LWW(Last-Write-Wins with TrueTime/NTP(Network Time Protocol) 타임스탬프) 적용, 비즈니스 로직 레벨의 CRDT 데이터 구조 채택.
-- 단일 리전 장애 시 잔여 리전의 100% 트래픽 집중으로 연쇄 붕괴 :
-  - 한계점 : Region A 다운 시 50% 여유 용량만 보유하던 Region B로 트래픽이 2배 몰려 CPU(Central Processing Unit) 100% 포화 및 연쇄 동반 다운.
-  - 해결 방안 : 서킷 브레이커를 통한 과부하 트래픽 차단, 사전 100% 트래픽 수용 능력을 갖춘 여유 용량(Headroom) 프로비저닝.
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| 리전 간 왕복 지연 | 리전이 멀어 왕복 지연이 크므로, 모든 쓰기에 **2PC**(Two-Phase Commit, 2단계 커밋)를 적용하면 응답이 마비 수준으로 느려짐 | 데이터 소유권을 리전별로 나눠 홈 리전에서 로컬 쓰기하고 다른 리전에는 비동기 복제, 읽기 전용 로컬 복제본 활용 | 리전 간 복제 지연, 응답 시간 분포 |
+| **쓰기 충돌**(Write Conflict) | 같은 레코드가 두 리전에서 동시에 수정되면 분기가 생겨 최종 일관성 수렴이 실패 | 시계 오차를 감안하여 LWW(Last-Write-Wins, 최종 쓰기 우선) 규칙을 쓰고, 핵심 데이터는 CRDT 구조로 설계 | 충돌 감지 건수, 병합 실패율 |
+| 리전 장애 시 **연쇄 붕괴**(Cascading Failure) | 한 리전이 내려가면 남은 리전이 100% 트래픽을 떠안아 포화되고 함께 무너짐 | **서킷 브레이커**(Circuit Breaker)로 과부하 요청을 차단하고, 전환 트래픽을 감당할 **여유 용량**(Headroom)을 미리 확보 | 리전별 평균 가동률, 서킷 개방 횟수 |
 
-## Ⅵ. 멀티 리전 Active-Active 재해복구 적용 제언
+## Ⅵ. 멀티 리전 Active-Active 재해복구의 적용 제언
 
-- 핵심 요약 : **비즈니스 티어링·카나리 차단 훈련·Spanner/Aurora 선택**.
-- 비즈니스 티어링에 입각한 엄격한 적용 대상 선정 : 결제/계좌 코어 서비스에만 선별 적용, 과잉 엔지니어링 지양.
-- 정기적인 리전 카나리 차단(GameDay) 훈련 의무화 : 예고 없는 리전 라우팅 강제 단절 실증.
-- 구글 Spanner / AWS(Amazon Web Services) Aurora Global 특성 이해 : 외부 일관성 필요 시 Spanner, 읽기 처리량·비용 효율 우선 시 Aurora.
+- 핵심 요약 : 정합성이 핵심인 코어 업무에만 선별 적용하고, 리전 차단 훈련을 정기화하며, 요구 특성에 맞춰 분산 DB를 고르는 방향.
+
+1. 설계 조직은 모든 서비스를 Active-Active로 만들지 않고 결제와 계좌 같은 코어 업무에만 선별 적용하여, 중요도에 비해 과잉 설계되는 것을 피한다.
+2. 운영 조직은 **GameDay**(예고 없이 장애를 주입하는 실증 훈련)로 리전 하나를 라우팅에서 강제로 제외해 보는 훈련을 정기화하여, 전환 절차와 여유 용량을 실제로 검증한다.
+3. 데이터 아키텍처 조직은 외부 일관성이 필요하면 **Google Spanner**를, 읽기 처리량과 비용 효율이 우선이면 **Amazon Aurora Global Database**를 택하도록 요구 기준을 문서로 정리한다.
 
 ## Ⅶ. 결론
 
-- 핵심 요약 : 멀티 리전 Active-Active DR은 **Anycast·셀 기반·분산 합의 DB·CRDT**로 RTO/RPO를 최소화하나 RTT·쓰기 충돌·연쇄 붕괴 리스크 관리가 필수.
-- 멀티 리전 Active-Active DR은 Anycast 라우팅·셀 기반 격리·분산 합의 DB·CRDT로 RTO/RPO를 최소화하지만, RTT 지연·쓰기 충돌·연쇄 붕괴 리스크를 홈 리전 분할·CRDT·여유 용량으로 관리해야 함.
-- 답안에는 Anycast/셀/DB 구조, Active-Standby/Pilot Light/Active-Active 비교, 한계·대응, 비즈니스 티어링·카나리·Spanner/Aurora 제언을 연결.<|end|><|start|>write to=assistant<|channel|>analysis<|message|>Wrote file successfully: src/content/docs/notes/itpe/04-computer-system/065_multi_region_active_active_dr.md
+- 핵심 요약 : 멀티 리전 Active-Active 재해복구는 라우팅, 셀 격리, 분산 합의, CRDT로 RTO와 RPO를 최소화하는 최상위 구조이나, 왕복 지연과 쓰기 충돌, 연쇄 붕괴의 비용을 수반함.
+- 그래서 이 구조는 모든 시스템의 기본값이 아니라, 중단 비용이 복제와 운영 비용을 넘는 핵심 업무에만 정당화되는 설계 선택이다.
