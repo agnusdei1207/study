@@ -1,7 +1,7 @@
 ---
 title: "Clark and Wilson 모델"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T23:08:40+09:00"
 tags:
   - "notes-security"
 sidebar:
@@ -9,81 +9,87 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
+
+## 연관 키워드
+
+- Clark and Wilson 모델, 무결성 모델, 직무 분리(Separation of Duties), 변환 절차(TP)
+- 무결성 검증 절차(IVP), 제약 데이터(CDI), 비제약 데이터(UDI), 인증 규칙, 강제 규칙
+- Biba 모델, Bell-LaPadula 모델, 감사 추적, 상업적 무결성
 
 ## Ⅰ. Clark and Wilson 모델의 개요
 
-- 개념 : 금융, 회계, 공급망 등 상업적(Commercial) 환경에서 비인가자의 불법적인 데이터 수정 및 내부자의 권한 오남용을 방지하기 위해 **직무 분리** (Separation of Duties), **변환 절차** (TP), **무결성 검증 절차** (IVP)를 정의한 정형화된 보안 무결성 모델.
-- 배경 및 필요성 : 군사적 기밀성을 다루는 Bell-LaPadula(BLP) 모델이나 단순 계층적 무결성만 규정한 Biba 모델은 데이터 간의 논리적 일관성, 복식 부기 원칙, 감사 추적 등 상업용 비즈니스 시스템의 복잡한 무결성 요구사항을 설명하지 못함.
-- 핵심 목적 : 데이터를 직접 수정하지 못하게 차단하고 오직 사전에 검증된 프로그램을 통해서만 변경하도록 강제하며, 업무 처리 시 두 명 이상의 인가를 거치게 하여 사기(Fraud) 및 데이터 훼손 방지.
+- 핵심 요약 : 직무 분리와 검증된 프로그램을 통해서만 데이터를 바꾸도록 강제하는 상업용 무결성 모델.
+- 개념 : 금융, 회계, 공급망 등 상업 환경에서 비인가 변경과 내부자의 권한 오남용을 막기 위해 **직무 분리** (Separation of Duties), **변환 절차** (TP, Transformation Procedure), **무결성 검증 절차** (IVP, Integrity Verification Procedure)를 정의한 형식 무결성 모델.
+- 배경 및 필요성 : Bell-LaPadula 모델은 기밀성, Biba 모델은 계층적 무결성에 초점을 두어 복식 부기, 데이터 간 일관성, 감사 추적 같은 상업 시스템의 무결성 요구를 충분히 표현하지 못함.
+- 주요 목적 : 데이터를 직접 고치지 못하게 하고, 승인된 프로그램으로만 변경하게 하며, 업무 처리에 둘 이상의 주체를 거치게 하여 사기와 데이터 훼손을 방지.
 
-## Ⅱ. Clark and Wilson 모델의 핵심 아키텍처 및 동작 메커니즘
+## Ⅱ. Clark and Wilson 모델의 특징 및 장점
 
-Clark-Wilson 모델은 비제약 항목(UDI), 제약 항목(CDI), 무결성 검증 절차(IVP), 변환 절차(TP)의 4대 핵심 엔티티와 **인증 규칙** (Certification Rules), **강제 규칙** (Enforcement Rules)으로 통제를 구현함.
+- 핵심 요약 : 데이터 분류, 직무 분리, 감사 기록이 결합되어 부정과 오류를 구조적으로 차단하는 방식.
+
+1. 데이터 분리 : 보호 대상 **제약 데이터** (CDI, Constrained Data Item)와 검증 전 **비제약 데이터** (UDI, Unconstrained Data Item)를 구분 → UDI는 검증을 거쳐야만 CDI로 승격되어 무결성 경계가 명확해짐.
+2. 직무 분리 : 거래의 생성, 승인, 실행, 감사를 서로 다른 주체가 맡도록 강제 → 한 사람이 단독으로 부정 거래를 완결하기 어려움.
+3. 감사 추적 : 모든 TP 실행 내역을 추가 전용(Append-only) 로그로 기록 → 사후 부인 방지와 책임 추적이 가능.
+
+## Ⅲ. Clark and Wilson 모델의 구조 (흐름)
+
+- 핵심 요약 : 사용자가 승인된 TP만 실행하고, IVP가 CDI의 일관성을 상시 확인하는 3자 관계 구조.
+- **인증 규칙** (Certification Rules) : TP가 CDI를 유효한 상태에서 다른 유효한 상태로만 바꾸도록 보장하는 규칙.
+- **강제 규칙** (Enforcement Rules) : 사용자가 허가된 TP만 실행하도록 제한하는 규칙.
 
 ```text
-[ Clark-Wilson 무결성 모델 아키텍처 및 3자 접근 제어 관계 ]
+[ 사용자 - TP - 데이터 관계 ]
 
- +-----------------------+
- | 사용자 (Subject: User)|
- +-----------+-----------+
-             |
-             | (1) 실행 권한 (직무 분리 적용)
-             v
- +---------------------------------------------------------------+
- | 변환 절차 (TP: Transformation Procedure)                       |
- |  - 오직 승인된 프로그램만 CDI 수정 가능                         |
- |  - 트랜잭션 무결성 보장, 변경 감사 로그 자동 기록            |
- +-------------------------------+-------------------------------+
-             |                                   |
-             | (2) 검증된 변환                   | (3) 무결성 검증
-             v                                   v
- +-----------------------+           +-----------------------+
- | 제약 항목 (CDI)       | <-------- | 무결성 검증 절차 (IVP)|
- | - 핵심 금융 원장, 잔고|  일관성   | - 시스템 부팅 시 점검 |
- | - 상태 전이(State)보호|  검증     | - CDI 일관성 상시 입증|
- +-----------------------+           +-----------------------+
-             ^
-             | (유효성 검증을 거쳐 승격)
- +-----------+-----------+
- | 비제약 항목 (UDI)     |
- | - 외부 사용자 미검증  |
- |   원시 입력값         |
- +-----------------------+
+사용자 (직무에 따라 TP 실행 권한)
+   ↓
+변환 절차 (TP, 승인된 프로그램만)
+   ↓
+제약 데이터 (CDI) 변경
+   ↑
+무결성 검증 절차 (IVP, 일관성 점검)
 ```
 
-- **CDI(Constrained Data Item)와 UDI(Unconstrained Data Item)** : 엄격한 무결성 통제를 받는 보호 대상 데이터인 CDI와 외부에서 입력되어 검증되지 않은 원시 데이터인 UDI로 명확히 분리.
-- **TP(Transformation Procedure)와 IVP(Integrity Verification Procedure)** : CDI를 유효한 상태에서 다른 유효한 상태로만 변환시키는 프로그램인 TP와, 모든 CDI가 유효한 무결성 상태인지 상시 대조·검증하는 IVP.
-- **직무 분리(Separation of Duties)** : 부정 방지를 위해 거래 생성, 승인, 실행, 감사의 주체를 엄격히 분리하여 단독으로 CDI를 조작할 수 없도록 강제.
-- **감사 추적(Audit Logging) 및 최소 권한** : 모든 TP 실행 내역을 변경 불가능한 추가 전용(Append-only) 로그로 기록하여 사후 완벽한 부인 방지 및 감사성(Accountability) 제공.
+```text
+[ 데이터 승격 흐름 ]
 
-## Ⅲ. Clark and Wilson 모델의 세부 구성 요소 및 비교 분석
+외부 입력 (UDI, 미검증)
+   ↓
+TP 내부 검증 (입력값 확인)
+   ↓
+제약 데이터 (CDI) 승격
+```
 
-| 비교 항목 | **Clark-Wilson 모델** | **Biba 모델** | **Bell-LaPadula (BLP) 모델** |
+## Ⅳ. Clark and Wilson 모델과 주요 보안 모델의 비교
+
+- 핵심 요약 : Biba와 Bell-LaPadula가 단일 속성 규칙에 집중하는 데 비해, Clark and Wilson은 절차와 주체를 함께 통제하여 상업 업무에 맞음.
+
+| 비교 항목 | Clark and Wilson 모델 | Biba 모델 | Bell-LaPadula 모델 |
 | --- | --- | --- | --- |
-| 보안 목표 | 상업적 무결성 (Commercial Integrity) | 수학적/군사적 무결성 (Integrity) | 군사적 기밀성 (Confidentiality) |
-| 핵심 규칙 | 직무 분리, TP/IVP, 주체-TP-객체 삼원 바인딩 | Simple Integrity(No Read Down), *-Integrity(No Write Up) | Simple Security(No Read Up), *-Property(No Write Down) |
-| 데이터 변경 | 오직 검증된 TP 프로그램을 통해서만 가능 | 낮은 무결성 주체가 높은 객체 쓰기 금지 | 높은 기밀성 주체가 낮은 객체 쓰기 금지 |
-| 주요 적용 | 금융 회계 시스템, 전자상거래 원장, ERP(Enterprise Resource Planning) | 운영체제 무결성 레벨(Windows MIC) | 국방/군사 다단계 보안(MLS, Multi-Level Security) 시스템 |
-| 현실 적합성 | 극도로 높음 (상업적 업무 프로세스 반영) | 낮음 (단순 수학적 모델로 비즈니스 제약) | 기밀성 전용으로 무결성 보장 불가 |
+| 보안 목표 | 상업적 무결성 | 무결성 | 기밀성 |
+| 핵심 규칙 | 직무 분리, TP·IVP, 주체-TP-객체 바인딩 | Simple Integrity (No Read Down), *-Integrity (No Write Up) | Simple Security (No Read Up), *-Property (No Write Down) |
+| 데이터 변경 | 검증된 TP를 통해서만 가능 | 낮은 무결성 주체의 상위 객체 쓰기 금지 | 높은 등급 주체의 하위 객체 쓰기 금지 |
+| 주요 적용 | 회계 시스템, 원장, ERP | 운영체제 무결성 수준 (예: Windows MIC) | 다단계 보안 (MLS, Multi-Level Security) |
 
-- Clark-Wilson 모델은 '사용자-프로그램-데이터'의 3자 관계 접근 통제를 최초로 정립하여, 오늘날 트랜잭션 ACID(Atomicity, Consistency, Isolation, Durability) 원칙, ERP 내부통제, 스마트 컨트랙트 보안의 이론적 토대가 됨.
+## Ⅴ. Clark and Wilson 모델의 한계와 방안
 
-## Ⅳ. Clark and Wilson 모델의 주요 한계점 및 해결 방안
+- 핵심 요약 : 절차 복잡성, 직무 분리 병목, 입력 검증 결함을 모듈화, 비상 우회 절차, 정적 분석으로 통제.
 
-- 모든 비즈니스 로직을 정형화된 TP/IVP로 구현하는 복잡성 :
-  - 한계점 : 현대의 대규모 분산 마이크로서비스 환경에서 수천 개의 트랜잭션을 엄격한 TP 규칙으로 모델링하고 검증하는 데 막대한 개발 공수 소요.
-  - 해결 방안 : 도메인 주도 설계(DDD, Domain-Driven Design)의 애그리게이트(Aggregate) 패턴과 트랜잭션 사가(Saga) 패턴을 활용하여 TP를 모듈화 구현.
-- 동적 직무 분리(Dynamic Separation of Duties)의 운영 병목 :
-  - 한계점 : 소규모 조직이나 비상 장애 상황에서 기안자와 승인자가 분리되지 않으면 프로세스가 완전히 마비되는 가용성 저해.
-  - 해결 방안 : 비상 시 단독 실행을 허용하되 즉시 CISO(Chief Information Security Officer) 통보 및 감사 로그를 강제하는 'Break-Glass' 비상 우회 절차 수립.
-- UDI에서 CDI로의 변환 시 입력값 유효성 검증(Sanitization) 결함 :
-  - 한계점 : 사용자 입력(UDI)을 처리하는 TP에 인젝션 취약점이 존재할 경우 잘못된 데이터가 CDI로 승격되어 전체 무결성 오염.
-  - 해결 방안 : TP 진입점에 강력한 입력값 화이트리스트 검증 라이브러리를 배치하고 정적 분석(SAST, Static Application Security Testing)으로 검증 로직 강제 감사.
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| 모든 로직을 TP로 모델링하는 복잡성 | 분산 마이크로서비스 환경에서 TP 규칙 정의와 검증 공수가 큼 | 도메인 주도 설계(DDD)의 애그리게이트와 사가(Saga) 패턴으로 TP를 모듈화 | TP 검증 소요 시간 |
+| 직무 분리의 운영 병목 | 소규모 조직이나 장애 상황에서 분리가 유지되면 업무가 마비 | 비상 시 단독 실행을 허용하는 Break-Glass 절차와 즉시 감사 기록 | 비상 우회 건수 |
+| UDI에서 CDI로의 입력 검증 결함 | 인젝션 취약점이 있는 TP를 거치면 잘못된 데이터가 CDI로 승격 | TP 진입점의 입력값 화이트리스트 검증과 정적 분석(SAST) | 검증 누락 취약점 수 |
 
-## Ⅴ. Clark and Wilson 모델 적용 및 발전을 위한 기술사적 제언
+## Ⅵ. Clark and Wilson 모델에 대한 기술사적 제언
 
-- 블록체인 스마트 컨트랙트를 통한 Clark-Wilson TP 구현 : 변조 불가능한 블록체인 코드(Smart Contract)를 TP로 활용하고, 합의 알고리즘을 IVP로 작동시켜 중앙 관리자 없는 상업적 무결성 달성.
-- 금융 시스템의 SOX 및 내부회계관리제도 통제 설계 반영 : IT(Information Technology) 일반통제(ITGC) 감사 시 프로그램 변경 관리, 개발/운영 환경 분리, 배치 작업 승인 프로세스를 Clark-Wilson 모델 규칙과 1:1 매핑.
-- API(Application Programming Interface) 게이트웨이 레벨의 ABAC(Attribute-Based Access Control, 속성 기반 접근 제어)와 직무 분리 융합 : 사용자의 역할뿐만 아니라 요청 시간, 위치, 이전 트랜잭션 이력을 동적으로 평가하여 직무 분리 위반 트랜잭션을 API 단에서 즉각 차단.
+- 핵심 요약 : 모델의 규칙을 ITGC 통제와 접근 정책에 대응시켜 감사 가능한 형태로 운영하는 방향이 바람직함.
+- 회계 시스템을 운영하는 조직은 프로그램 변경 관리, 개발과 운영 환경 분리, 배치 작업 승인 절차를 Clark and Wilson의 TP·IVP 규칙과 1:1로 대응시켜 SOX(Sarbanes-Oxley Act) 내부통제 감사에 쓰는 것이 좋다.
+- API 게이트웨이에서는 역할뿐 아니라 요청 시간, 위치, 이전 거래 이력 같은 속성을 평가하는 ABAC(Attribute-Based Access Control)를 적용하여 직무 분리를 위반하는 거래를 호출 단계에서 차단하는 것이 바람직하다.
+- 블록체인 기반 기록은 변경 불가성을 제공하지만, 입력 검증과 승인 절차는 여전히 TP 설계로 보완해야 하므로 적용 범위를 신중히 정해야 한다.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : Clark and Wilson 모델은 사용자, 프로그램, 데이터의 3자 관계로 상업적 무결성을 정의한 모델.
+- 시사점 : 트랜잭션 무결성과 내부통제 설계의 참조 모델로 여전히 유효하며, 현대 환경에서는 속성 기반 통제와 결합해 쓰는 것이 현실적.
