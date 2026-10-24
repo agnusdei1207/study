@@ -1,7 +1,7 @@
 ---
 title: "4-way handshake"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:48:45+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -9,77 +9,101 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
+
+## 연관 키워드
+
+- TCP 4-Way Handshake, FIN, ACK, 반분 종료(Half-Close)
+- CLOSE_WAIT, TIME_WAIT, FIN_WAIT_2, LAST_ACK, 2MSL
+- 5-튜플(5-Tuple), 소켓 누수, 포트 고갈, 커넥션 드레이닝
 
 ## Ⅰ. TCP 4-Way Handshake의 개요
 
-- 개념 : TCP(Transmission Control Protocol)/IP(Internet Protocol) 네트워크에서 데이터 전송을 완료한 두 종단(Client와 Server) 간에 설정된 연결 세션을 안전하고 정상적으로 종료(Graceful Teardown)하기 위해 수행하는 4단계 제어 패킷 교환 절차.
-- 배경 및 필요성 : TCP는 **전이중(Full-Duplex)** 양방향 독립 연결을 지원하므로, 일방이 전송을 끝냈다고 즉시 세션을 강제 파기하면 반대 방향의 잔여 전송 데이터가 유실될 위험이 존재하여 독립적 **반분(Half-Close)** 종료 필요.
-- 핵심 목적 : 송수신 양방향 버퍼에 남아있는 데이터의 완전한 전달 보장, **지연 패킷(Ghost Packet)** 혼입 차단 및 운영체제 소켓 자원의 질서 정연한 반환.
+- 핵심 요약 : 양방향 연결을 방향별로 차례대로 닫아 잔여 데이터를 보존하고 소켓 자원을 반환하는 종료 절차.
+- 개념 : TCP(Transmission Control Protocol)/IP 연결에서 두 종단이 FIN(Finish)과 ACK(Acknowledgment) 제어 패킷을 네 번 교환해 세션을 정상 종료하는 절차(**TCP 4-Way Handshake**).
+- 배경 및 필요성 : TCP는 **전이중** (Full-Duplex) 양방향 독립 연결이므로, 한쪽이 보내기를 끝냈다고 세션을 즉시 파기하면 반대 방향의 잔여 데이터가 유실될 수 있어 **반분 종료** (Half-Close)가 필요함.
+- 주요 목적 : 양방향 버퍼의 잔여 데이터 전달 보장, 지연된 패킷의 혼입 차단, 운영체제 소켓 자원의 질서 있는 반환.
 
-## Ⅱ. TCP 4-Way Handshake의 핵심 아키텍처 및 동작 메커니즘
+## Ⅱ. TCP 4-Way Handshake의 특징 및 장점
+
+- 핵심 요약 : 종료를 방향별로 나누어 처리해 데이터 손실 없이 연결을 닫고, 종료 이후에도 흔적을 남겨 안전을 확보하는 구조.
+
+1. 방향별 종료 (Half-Close) : 한쪽의 FIN 이후에도 반대 방향 전송이 가능 → 잔여 응답 데이터 손실 방지.
+2. 2MSL (Maximum Segment Lifetime) 대기 : 종료 마지막 단계에서 TIME_WAIT 상태로 머무름 → 마지막 ACK 유실 시 재응답이 가능하고, 같은 5-튜플(출발지 IP, 목적지 IP, 출발지 포트, 목적지 포트, 프로토콜)로 맺어진 새 연결에 지연 패킷이 섞이는 것을 막음.
+3. 상태 기반 종료 : 각 단계가 상태 전이로 관리됨 → 소켓이 어느 단계에서 멈췄는지 추적할 수 있어 장애 분석이 쉬움.
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                   [ TCP 4-Way Handshake 세션 종료 절차 ]                │
-│                                                                        │
-│        Active Close (Client)                    Passive Close (Server) │
-│       [ ESTABLISHED ]                              [ ESTABLISHED ]     │
-│              │                                            │            │
-│              │  1. FIN (seq=u)                           │            │
-│              ├───────────────────────────────────────────►│            │
-│       [ FIN_WAIT_1 ]                                      │            │
-│              │                                            │            │
-│              │                               [ CLOSE_WAIT ]            │
-│              │  2. ACK (seq=v, ack=u+1)                   │ (잔여 전송)│
-│              │◄───────────────────────────────────────────┤            │
-│       [ FIN_WAIT_2 ]                                      │            │
-│              │                                            ▼            │
-│              │  3. FIN (seq=w, ack=u+1)                   │ (종료 완료)│
-│              │◄───────────────────────────────────────────┤            │
-│       [ TIME_WAIT ]                                  [ LAST_ACK ]      │
-│              │                                            │            │
-│              │  4. ACK (seq=u+1, ack=w+1)                 │            │
-│              ├───────────────────────────────────────────►│            │
-│              │                                      [ CLOSED ]         │
-│         2MSL 대기                                                      │
-│              ▼                                                         │
-│          [ CLOSED ]                                                    │
-└────────────────────────────────────────────────────────────────────────┘
+[ 4-Way Handshake 메시지 흐름 ]
+
+클라이언트 (능동 종료)
+  1. FIN 전송
+        ↓
+  2. ACK 수신 (서버 잔여 전송 중)
+        ↓
+  3. 서버 FIN 수신
+        ↓
+  4. 최종 ACK 전송 → TIME_WAIT
 ```
 
-- **Step 1 (FIN 송신)** : 연결 종료를 먼저 시작하는 주체(Active Closer)가 `close()` 또는 `shutdown()` 시스템 콜을 호출하여 FIN 플래그를 전송하고 FIN_WAIT_1 상태로 전이.
-- **Step 2 (ACK(Acknowledgment) 수신 및 Half-Close)** : 수신측(Passive Closer)은 FIN을 확인하고 ACK를 회신하며 CLOSE_WAIT 상태로 진입. 이 상태에서 상대방으로의 단방향 데이터 송신은 계속 가능.
-- **Step 3 (서버 FIN 송신)** : Passive Closer 역시 송신할 모든 잔여 데이터를 전송 완료한 후 소켓을 닫으며 FIN을 전송하고 LAST_ACK 상태로 전이.
-- **Step 4 (최종 ACK 및 TIME_WAIT)** : Active Closer는 서버의 FIN에 대한 최종 ACK를 전송하고 TIME_WAIT 상태로 대기하며, 서버는 ACK를 받고 즉시 CLOSED 상태로 종료.
+## Ⅲ. TCP 4-Way Handshake의 구조 (흐름)
 
-## Ⅲ. 세부 상태 머신 및 핵심 요소 분석
+- 핵심 요약 : 능동 종료 측은 FIN_WAIT 계열을, 수동 종료 측은 CLOSE_WAIT 계열을 거쳐 CLOSED로 수렴하는 상태 머신.
 
-| 상태 (State) | 주체 | 핵심 동작 및 의미 | 비정상 장기 잔류 시 위험 |
-|---|---|---|---|
-| **FIN_WAIT_1** | Active | 자신의 FIN을 보내고 상대방의 ACK를 기다리는 상태 | 네트워크 단절 시 소켓 자원 누수 |
-| **CLOSE_WAIT** | Passive | 상대의 종료를 인지했으나 애플리케이션이 소켓을 미닫은 상태 | 애플리케이션 로직 버그로 소켓 고갈 |
-| **FIN_WAIT_2** | Active | 자신의 종료 요청에 대한 ACK를 받고 상대방의 FIN을 대기 | 서버 미응답 시 좀비 소켓 잔류 |
-| **LAST_ACK** | Passive | 자신의 FIN을 송신하고 최종 ACK를 대기하는 상태 | 네트워크 유실 시 반복 재전송 유발 |
-| **TIME_WAIT** | Active | 최종 ACK를 전송한 후 지연 패킷 소멸을 위해 2MSL 동안 대기 | 고부하 서버의 로컬 포트 고갈 |
+```text
+[ 수동 종료 측 상태 전이 ]
 
-- TIME_WAIT의 2대 존재 목적 :
-  1. 수신측이 최종 ACK를 유실했을 경우, 재전송된 상대방의 FIN을 수신하여 올바른 재 ACK를 보내주기 위함.
-  2. 네트워크 내에 잔류하던 이전 연결의 지연 패킷(Stray Packet)이 향후 동일 5-Tuple로 새로 맺어진 연결에 혼입되는 데이터 오염 원천 차단.
-- **2MSL (Maximum Segment Lifetime)** : RFC(Request for Comments) 793 기준 패킷이 네트워크 상에 생존할 수 있는 최대 시간의 2배를 대기.
+ESTABLISHED
+     ↓  (상대 FIN 수신, ACK 회신)
+CLOSE_WAIT
+     ↓  (잔여 전송 후 FIN 전송)
+LAST_ACK
+     ↓  (최종 ACK 수신)
+CLOSED
+```
 
-## Ⅳ. 주요 장애 한계점 및 커널 엔지니어링 해결 방안
+| 상태 (State) | 주체 | 의미 | 장기 잔류 시 위험 |
+| --- | --- | --- | --- |
+| FIN_WAIT_1 | 능동 | 자신의 FIN을 보내고 상대의 ACK를 기다림 | 네트워크 단절 시 소켓 자원 누수 |
+| FIN_WAIT_2 | 능동 | 자신의 FIN에 대한 ACK를 받고 상대의 FIN을 기다림 | 상대가 FIN을 보내지 않으면 좀비 소켓으로 잔류 |
+| CLOSE_WAIT | 수동 | 상대의 종료를 알았으나 애플리케이션이 소켓을 아직 닫지 않음 | 애플리케이션 버그로 소켓 고갈 |
+| LAST_ACK | 수동 | 자신의 FIN을 보내고 최종 ACK를 기다림 | 최종 ACK 유실 시 재전송 반복 |
+| TIME_WAIT | 능동 | 최종 ACK 전송 후 2MSL 동안 대기 | 고부하 시 로컬 포트 고갈 |
 
-- CLOSE_WAIT 소켓 누수(Leak)로 인한 프로세스 파일 디스크립터 고갈 :
-  - 한계점 : 백엔드 애플리케이션에서 네트워크 예외 발생 시 `socket.close()`를 누락하여 CLOSE_WAIT 상태가 지속 누적되어 서비스 거부 발생.
-  - 해결 방안 : 애플리케이션 예외 블록 내 확실한 소켓 종료 보장, 커널 레벨 TCP Keepalive 설정 및 타임아웃 강제 회수 로직 구축.
-- 고빈도 단기 연결 환경에서의 TIME_WAIT 포트 고갈(Port Exhaustion) :
-  - 한계점 : 마이크로서비스 간 HTTP(Hypertext Transfer Protocol)/1.1 단발 호출 급증 시 단말/프록시 측에 수만 개의 TIME_WAIT 소켓이 누적되어 신규 아웃바운드 포트 바인딩 실패.
-  - 해결 방안 : `tcp_tw_reuse = 1` 활성화(안전한 타임스탬프 기반 재사용), 커널 로컬 포트 대역(`ip_local_port_range`) 확대, HTTP Keep-Alive 및 커넥션 풀링(Connection Pooling) 필수화.
+- TIME_WAIT의 존재 이유 :
+  1. 최종 ACK가 유실되었을 때 재전송된 FIN에 올바르게 재응답하기 위함.
+  2. 네트워크에 남아 있던 이전 연결의 지연 패킷이 같은 5-튜플의 새 연결에 섞이는 것을 막기 위함.
 
-## Ⅴ. TCP 4-Way Handshake 적용 및 발전을 위한 기술사적 제언
+## Ⅳ. TCP 4-Way Handshake와 강제 종료의 비교
 
-- 모던 네트워크의 전송 프로토콜 전환 검토 : 핸드셰이크 왕복 지연과 TIME_WAIT 오버헤드가 구조적으로 발생하는 TCP 대신, UDP(User Datagram Protocol) 기반으로 세션 식별자를 활용해 연결 수립/종료 오버헤드를 극소화한 HTTP/3(QUIC) 도입.
-- Zero-Downtime 배포 시의 커넥션 드레이닝(Draining) : 무중단 배포 시 구 인스턴스에 즉각적 RST(강제 종료)를 날리지 않고, 정상 4-Way Handshake를 거치도록 로드밸런서의 Deregistration Delay를 적정 시간(30~60초) 유지.
-- OS(Operating System) 커널 TCP 스택 튜닝의 거버넌스화 : 대규모 API(Application Programming Interface) 게이트웨이 및 리버스 프록시 서버에 대해 TIME_WAIT 재사용, 소켓 재활용 버퍼 크기, FIN 타임아웃(`tcp_fin_timeout = 15~30`) 표준 템플릿 운영.
+- 핵심 요약 : FIN 기반 정상 종료는 잔여 데이터를 보존하고, RST 기반 강제 종료는 즉시 해제하는 대신 데이터 유실 위험을 감수하는 방식.
+
+| 비교 축 | 정상 종료 (FIN, 4-Way) | 강제 종료 (RST, Reset) |
+| --- | --- | --- |
+| 교환 패킷 | FIN과 ACK 4회 | RST 1회 |
+| 잔여 데이터 | 양방향 전달 보장 | 버퍼의 미전송 데이터 폐기 |
+| 소켓 상태 | TIME_WAIT 등 일정 시간 잔류 | 즉시 해제 |
+| 적합한 상황 | 일반 요청·응답 종료, 무중단 배포 | 비정상 세션 정리, 보안 차단 |
+
+- 선택 기준 : 데이터 완결성이 중요하면 정상 종료를, 자원 회수 속도나 공격 세션 차단이 우선이면 강제 종료를 택함.
+
+## Ⅴ. TCP 4-Way Handshake의 한계와 방안
+
+- 핵심 요약 : 종료 상태의 잔류가 자원 고갈로 이어지므로, 애플리케이션 종료 보장과 커널 설정을 함께 관리.
+
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| CLOSE_WAIT 소켓 누수 | 예외 발생 시 애플리케이션이 소켓 종료를 누락 → 파일 디스크립터 고갈 | 예외 처리 블록에서 소켓 종료 보장, 유휴 연결 타임아웃 적용 | CLOSE_WAIT 소켓 수, 파일 디스크립터 사용률 |
+| TIME_WAIT 포트 고갈 | 단발성 HTTP(Hypertext Transfer Protocol)/1.1 호출 급증 → 신규 아웃바운드 포트 바인딩 실패 | 커넥션 풀링과 Keep-Alive로 연결 재사용, 로컬 포트 범위 확대, 아웃바운드에 한해 `tcp_tw_reuse` 검토 | TIME_WAIT 소켓 수, 포트 사용률 |
+| FIN_WAIT_2 잔류 | 상대가 FIN을 보내지 않아 소켓이 장기간 남음 | `tcp_fin_timeout` 등 커널 타임아웃 조정 | FIN_WAIT_2 소켓 수 |
+
+## Ⅵ. TCP 4-Way Handshake에 대한 기술사적 제언
+
+- 핵심 요약 : 무중단 운영과 커널 설정을 표준 절차로 관리해 종료 상태가 서비스 장애로 번지지 않도록 하는 방향.
+
+무중단 배포 시에는 구 인스턴스에 즉시 RST를 보내지 않고, 로드밸런서의 연결 드레이닝 기간을 두어 정상 4-Way 종료가 완료되도록 설계하는 것이 바람직하다. 대규모 API 게이트웨이와 리버스 프록시의 TCP 파라미터는 서버마다 임의로 바꾸지 않고 조직의 표준 템플릿으로 관리하며, 변경 이력과 상태별 소켓 지표를 함께 남기는 거버넌스를 갖추는 것이 필요하다. 연결 생성 비용이 구조적으로 큰 서비스는 연결 재사용을 기본값으로 삼고, 장기 과제로 UDP 기반 HTTP/3(QUIC) 같은 전송 구조 전환도 검토할 만하다.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : TCP 4-Way Handshake는 양방향 종료의 정확성을 보장하는 절차이며, 종료 상태의 잔류를 관리하지 않으면 자원 고갈로 이어지는 양면성을 가짐.
+- 시사점 : CLOSE_WAIT와 TIME_WAIT 소켓 수를 상시 관찰하는 것이 연결 안정성 운영의 출발점이다.

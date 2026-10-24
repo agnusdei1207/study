@@ -1,7 +1,7 @@
 ---
 title: "3-way handshake"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:48:45+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -9,68 +9,97 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
+
+## 연관 키워드
+
+- TCP 3-Way Handshake, SYN, ACK, 초기 시퀀스 번호(ISN)
+- SYN_SENT, SYN_RCVD, ESTABLISHED, 백로그 큐
+- SYN 플러딩, SYN 쿠키, TCP Fast Open, 윈도우 스케일, SACK, 타임스탬프
 
 ## Ⅰ. TCP 3-Way Handshake의 개요
 
-- 개념 : TCP(Transmission Control Protocol)/IP(Internet Protocol) 통신을 시작하기 전, 신뢰성 있는 가상 양방향 연결 회선을 수립하기 위해 클라이언트와 서버가 3단계에 걸쳐 제어 플래그(SYN(Synchronize), ACK(Acknowledgment))와 시퀀스 번호(ISN)를 상호 교환 및 동기화하는 절차.
-- 배경 및 필요성 : 비신뢰적이고 패킷 유실·역전이 상존하는 IP 네트워크 환경에서 패킷의 전송 순서를 복원하고, 중복 수신을 방지하며 전송률을 조절하기 위한 사전 상태 동기화 필수.
-- 핵심 목적 : 송수신 양단의 **초기 시퀀스 번호(ISN)** 안전 동기화, **수신 버퍼 윈도우 크기(Window Size)** 및 통신 옵션(MSS, SACK, 타임스탬프) 사전 협상.
+- 핵심 요약 : 세 번의 SYN·ACK 교환으로 초기 시퀀스 번호와 통신 옵션을 맞춰 신뢰성 있는 연결을 수립하는 절차.
+- 개념 : 데이터 전송 전에 클라이언트와 서버가 SYN(Synchronize)과 ACK(Acknowledgment) 플래그, **초기 시퀀스 번호** (ISN, Initial Sequence Number)를 세 단계로 교환해 연결을 수립하는 절차(**TCP 3-Way Handshake**).
+- 배경 및 필요성 : 패킷이 유실·지연·역전될 수 있는 IP(Internet Protocol) 네트워크에서 순서를 복원하고 중복 수신을 막으려면, 송수신 양단의 상태를 전송 전에 맞춰야 함.
+- 주요 목적 : 양단의 ISN 동기화, 수신 윈도우 크기와 MSS(Maximum Segment Size), SACK(Selective Acknowledgment), 타임스탬프 등 통신 옵션의 사전 협상.
 
-## Ⅱ. TCP 3-Way Handshake의 핵심 아키텍처 및 동작 메커니즘
+## Ⅱ. TCP 3-Way Handshake의 특징 및 장점
+
+- 핵심 요약 : 연결 전에 상태와 옵션을 합의해 이후 데이터 전송의 순서와 품질을 보장하는 구조.
+
+1. 시퀀스 동기화 : 양방향 ISN을 교환하고 상대의 값을 확인 → 패킷 순서 복원과 중복 제거의 기준 확보.
+2. 옵션 협상 : SYN에 MSS, 윈도우 스케일, SACK 허용, 타임스탬프를 실어 보냄 → 단말 능력에 맞는 전송 조건 확정.
+3. 세 번째 ACK의 데이터 탑재 : 마지막 ACK에 첫 데이터를 함께 실을 수 있음 → 첫 요청까지의 지연 단축.
+
+## Ⅲ. TCP 3-Way Handshake의 구조 (흐름)
+
+- 핵심 요약 : 클라이언트와 서버가 각각 SYN_SENT·SYN_RCVD를 거쳐 같은 시점에 ESTABLISHED로 수렴하는 흐름.
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                   [ TCP 3-Way Handshake 연결 수립 절차 ]               │
-│                                                                        │
-│        Client                                        Server            │
-│       [ CLOSED ]                                    [ LISTEN ]         │
-│           │                                              │             │
-│           │  1. SYN (seq = x, MSS, WScale, SACK-Perm)    │             │
-│           ├─────────────────────────────────────────────►│             │
-│    [ SYN_SENT ]                                          │             │
-│           │                                       [ SYN_RCVD ]         │
-│           │  2. SYN + ACK (seq = y, ack = x + 1)         │             │
-│           │◄─────────────────────────────────────────────┤             │
-│   [ ESTABLISHED ]                                        │             │
-│           │                                              │             │
-│           │  3. ACK (seq = x + 1, ack = y + 1)           │             │
-│           ├─────────────────────────────────────────────►│             │
-│           │     (3단계 ACK에 첫 데이터 피기백 가능)       │             │
-│           │                                       [ ESTABLISHED ]      │
-│           ▼                                              ▼             │
-│   [ 양방향 전이중 데이터 전송 시작 (Data Stream Read/Write) ]           │
-└────────────────────────────────────────────────────────────────────────┘
+[ 3-Way Handshake 메시지 흐름 ]
+
+1. 클라이언트 → 서버 : SYN (seq = x)
+          ↓
+2. 서버 → 클라이언트 : SYN+ACK
+   (seq = y, ack = x+1)
+          ↓
+3. 클라이언트 → 서버 : ACK (ack = y+1)
+          ↓
+연결 수립, 양방향 데이터 전송
 ```
 
-- **Step 1 (SYN 송신)** : 클라이언트가 무작위 의사 난수로 생성된 클라이언트 초기 시퀀스 번호(ISN_c = x)를 담은 SYN 세그먼트를 서버로 송신하고 SYN_SENT 상태로 전이.
-- **Step 2 (SYN+ACK 응답)** : 서버는 클라이언트의 ISN을 확인하고, 자신의 초기 시퀀스 번호(ISN_s = y)와 함께 클라이언트의 번호를 1 증가시킨 승인 번호(ACK = x + 1)를 회신하며 SYN_RCVD 상태 진입.
-- **Step 3 (ACK 최종 승인)** : 클라이언트는 서버의 ISN을 확인하고 1 증가시킨 승인 번호(ACK = y + 1)를 서버로 전송하며 ESTABLISHED 상태로 즉시 전이. 서버는 이 ACK를 수신하는 순간 ESTABLISHED로 전환.
+```text
+[ 상태 전이 ]
 
-## Ⅲ. 세부 협상 옵션 및 보안 파라미터 분석
+클라이언트          서버
+CLOSED              LISTEN
+   ↓ SYN 전송          ↓ SYN 수신
+SYN_SENT            SYN_RCVD
+   ↓ SYN+ACK 수신      ↓ ACK 수신
+ESTABLISHED         ESTABLISHED
+```
 
-| 핵심 파라미터 | RFC(Request for Comments) 표준 | 기능 및 역할 | 성능 및 보안 영향도 |
-|---|---|---|---|
-| **ISN (초기 일련번호)** | RFC 793, 6528 | 패킷 순서 정렬 및 중복 패킷 제거의 기준선 | 암호학적 의사난수 사용 (시퀀스 예측 공격 방어) |
-| **MSS (최대 세그먼트 크기)** | RFC 879 | IP 단편화(Fragmentation)를 막기 위한 L4 페이로드 크기 | MTU - 40바이트 (일반 이더넷 환경 1,460 Byte) |
-| **윈도우 스케일 (Window Scale)** | RFC 7323 | 기존 16비트(64KB) 수신 윈도우 한계를 최대 1GB로 확장 | BDP가 큰 고속 장거리 통신망 전송률 극대화 |
-| **SACK Permitted** | RFC 2018 | 유실된 특정 세그먼트만을 선택적으로 재전송 허용 | 불필요한 전체 재전송 방지 및 혼잡 완화 |
-| **타임스탬프 (Timestamps)** | RFC 7323 | RTT(Round-Trip Time) 정밀 측정 및 PAWS(시퀀스 랩어라운드 방지) | 기가비트급 고속망에서 시퀀스 재사용 오류 방지 |
+| 핵심 파라미터 | 표준 | 기능 및 역할 | 성능·보안 영향 |
+| --- | --- | --- | --- |
+| ISN (초기 시퀀스 번호) | RFC 793, RFC 6528 | 패킷 순서 정렬과 중복 제거의 기준선 | 예측 불가능한 값을 써야 시퀀스 예측 공격을 막을 수 있음 |
+| MSS (최대 세그먼트 크기) | RFC 879 | IP 단편화를 피하기 위한 TCP 페이로드 상한 | MTU에서 헤더를 뺀 값 (일반 이더넷 기준 1,460바이트) |
+| 윈도우 스케일 | RFC 7323 | 16비트 수신 윈도우의 한계를 확장 | 대역폭 지연 곱이 큰 장거리 고속망의 처리량 향상 |
+| SACK 허용 | RFC 2018 | 유실된 세그먼트만 선택적으로 재전송 | 불필요한 전체 재전송과 혼잡 완화 |
+| 타임스탬프 | RFC 7323 | RTT(Round-Trip Time) 측정과 시퀀스 번호 재사용 판별 | 고속망에서 오래된 세그먼트 오인 방지 |
 
-- **TCP 백로그 큐 (Backlog Queue)** : 커널은 SYN_RCVD 상태의 미완결 연결을 담는 `SYN Queue`와 Handshake가 완료되어 `accept()`를 기다리는 `Accept Queue`를 이원화 관리.
+- **백로그 큐** (Backlog Queue) : 커널은 SYN_RCVD 상태의 미완결 연결을 담는 SYN 큐와, 3-Way Handshake가 끝나 애플리케이션의 `accept()`를 기다리는 Accept 큐를 나누어 관리.
 
-## Ⅳ. TCP 3-Way Handshake의 한계점·문제점 및 해결 방안
+## Ⅳ. TCP 3-Way Handshake와 전송 방식의 비교
 
-- SYN Flooding 분산 서비스 거부(DDoS, Distributed Denial of Service) 공격에 의한 백로그 큐 고갈 :
-  - 한계점 : 공격자가 위조된 IP로 수많은 SYN 패킷만 전송하고 최종 ACK를 보내지 않아, 서버의 SYN Queue가 가득 차 신규 정상 접속 차단.
-  - 해결 방안 : `TCP SYN Cookie` 활성화(상태 저장 없이 ISN에 암호학적 해시를 인코딩하여 Step 3 수신 시 복원 검증), SYN 캐시 메모리 증설 및 방화벽 SYN Proxy 기능 적용.
-- 1 RTT 왕복 지연 시간 발생에 따른 단기 트랜잭션 성능 저하 :
-  - 한계점 : TLS(Transport Layer Security) 1.3 핸드셰이크까지 결합 시 최초 데이터 전송 전 수회의 RTT가 소요되어 모바일 웹 로딩 지연.
-  - 해결 방안 : `TCP Fast Open (TFO, RFC 7413)` 도입(이전 접속 시 발급받은 쿠키를 이용해 1단계 SYN 패킷에 HTTP(Hypertext Transfer Protocol) 요청 데이터를 직접 포함시켜 0-RTT 전송 달성).
+- 핵심 요약 : 최초 데이터 전송 시점을 앞당기는 방향으로 TFO와 QUIC이 발전했으며, 그만큼 상태 저장과 재전송 위험의 관리가 추가로 필요해짐.
 
-## Ⅴ. TCP 3-Way Handshake 적용 및 발전을 위한 기술사적 제언
+| 비교 축 | 일반 TCP 3-Way | TCP Fast Open (TFO, RFC 7413) | QUIC 프로토콜 |
+| --- | --- | --- | --- |
+| 첫 데이터 시점 | 연결 수립 후 1 RTT 이후 | 재접속 시 SYN에 데이터 포함 | 최초 접속 1 RTT, 재접속 0 RTT |
+| 재접속 조건 | 없음 | 이전 접속에서 받은 쿠키 보유 | 세션 재개 정보 보유 |
+| 주요 위험 | 연결 상태 고갈 공격 | SYN 데이터 재전송과 일부 중간 장비의 차단 | 0 RTT 데이터의 재전송 공격 |
+| 암호화 | 별도 TLS(Transport Layer Security) 핸드셰이크 필요 | 별도 TLS 핸드셰이크 필요 | 전송 계층과 암호화를 통합 |
 
-- 차세대 QUIC / HTTP/3 프로토콜로의 점진적 전환 : 연결 수립에 최소 1 RTT, TLS 암호화에 추가 RTT가 소모되는 TCP의 본질적 한계를 극복하기 위해, 최초 접속 시에도 1-RTT, 재접속 시 0-RTT로 연결과 암호화를 동시 완결하는 QUIC 도입 가속.
-- OS(Operating System) 커널 SYN 파라미터 최적화 가이드라인 : 대규모 트래픽을 수용하는 웹/WAS(Web Application Server) 서버의 경우 `net.ipv4.tcp_syncookies = 1`, `net.ipv4.tcp_max_syn_backlog = 8192 이상`, `net.core.somaxconn = 4096 이상`으로 튜닝 표준 수립.
-- 로드밸런서 레벨의 L4/L7 오프로딩 아키텍처 : 클라이언트와 백엔드 서버 간 직접 Handshake를 맺지 않고, 고성능 리버스 프록시/ADC 장비가 클라이언트 세션을 종단하고 백엔드와는 커넥션 풀을 영구 유지하여 백엔드 오버헤드 최소화.
+- 선택 기준 : 호환성이 최우선이면 일반 TCP를, 재접속이 잦은 모바일 웹이면 TFO를, 암호화와 지연을 함께 줄여야 하면 QUIC을 검토.
+
+## Ⅴ. TCP 3-Way Handshake의 한계와 방안
+
+- 핵심 요약 : 연결 상태를 공격자가 고갈시키는 구조와 연결 수립에 드는 왕복 지연이 핵심 한계이며, 상태를 줄이는 설계와 연결 재사용으로 대응.
+
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| **SYN 플러딩** (SYN Flooding) DDoS(Distributed Denial of Service) | 위조 IP로 SYN만 대량 전송 → SYN 큐가 차서 정상 접속 차단 | **SYN 쿠키** (SYN Cookie, 상태 저장 없이 ISN에 해시를 인코딩하고 3단계 ACK에서 검증), 백로그 튜닝, 방화벽 SYN 프록시 | SYN_RCVD 상태 수, 백로그 드롭 수 |
+| 연결 수립의 왕복 지연 | 연결 수립에 최소 1 RTT가 필요하고 TLS가 추가 왕복을 요구 → 짧은 요청의 응답 지연 | TCP Fast Open 적용, 커넥션 재사용, TLS 세션 재개, 장기적으로 QUIC 검토 | TTFB(Time To First Byte), 연결 재사용률 |
+
+## Ⅵ. TCP 3-Way Handshake에 대한 기술사적 제언
+
+- 핵심 요약 : 연결 수립 비용을 서버 상태가 아닌 프록시와 재사용 구조에서 흡수하고, 전송 프로토콜은 점진적으로 전환하는 방향.
+
+웹 서버와 WAS(Web Application Server)는 SYN 쿠키와 백로그 설정을 조직의 표준 템플릿으로 두되, 구체적인 값은 부하 시험으로 정하는 것이 바람직하다. 짧은 연결이 많은 서비스는 로드밸런서나 리버스 프록시가 클라이언트 연결을 종단하고 백엔드와는 커넥션 풀을 유지하는 오프로딩 구조를 택해 백엔드의 핸드셰이크 부담을 줄이는 것이 효과적이다. 장기적으로는 연결 수립과 암호화를 함께 끝내는 QUIC 전환을 점진적으로 검토하되, UDP를 차단하는 망이 남아 있으므로 TCP 경로를 함께 유지하는 이중 운영을 전제로 계획해야 한다.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : TCP 3-Way Handshake는 신뢰성 있는 연결의 출발점이지만, 연결 상태 자체가 공격 표면이 되는 양면성을 가짐.
+- 시사점 : SYN 쿠키처럼 서버 상태를 줄이는 설계와 연결 재사용이 성능과 보안을 함께 높이는 열쇠다.
