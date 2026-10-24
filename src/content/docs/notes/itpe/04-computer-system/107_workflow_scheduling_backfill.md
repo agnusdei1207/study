@@ -1,7 +1,7 @@
 ---
 title: "워크플로 스케줄링·백필"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:41:35+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
@@ -9,91 +9,89 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
+
+## 연관 키워드
+
+- 워크플로 스케줄링(Workflow Scheduling), DAG(Directed Acyclic Graph), 백필(Backfill)
+- 멱등성(Idempotency), 논리적 실행 시점(Logical Date), 데이터 구간(data_interval)
+- 파티션 원자적 교체, Upsert, 동시성 제어, Apache Airflow
+- Dagster, Prefect, 자산 중심(Software-Defined Assets), CI/CD 백필 테스트베드
 
 ## Ⅰ. 워크플로 스케줄링·백필의 개요
 
-- 핵심 요약 : **워크플로 스케줄링·백필**은 DAG 기반 태스크 의존성 관리와 과거 데이터 소급 재처리를 자동화하는 데이터 엔지니어링 기술.
-- 개념 : 데이터 파이프라인 및 대규모 배치 처리 환경에서 작업 간의 선후 의존 관계를 **방향성 비순환 그래프** (DAG: Directed Acyclic Graph)로 정의하여 자동 실행하는 **워크플로 스케줄링** (Workflow Scheduling) 과, 파이프라인 결함 수정이나 지연 도착 데이터(Late Data) 처리를 위해 과거 특정 기간의 데이터를 소급 재실행하는 **백필** (Backfill) 오케스트레이션 엔지니어링 기술.
-- 배경 및 필요성 : 단순 **cron** 기반 스케줄링은 태스크 간 의존성 관리 불가, 장애 발생 시 부분 재실행 곤란, 과거 데이터 재생성 시 극심한 수작업 오류를 유발하므로 대규모 엔터프라이즈 데이터 플랫폼에서 통합 워크플로 엔진이 필수화됨.
-- 핵심 목적 : 태스크 의존성(Dependency) 및 병렬성 최적화, 과거 특정 구간의 안전한 자동 백필, 파이프라인의 **멱등성** (Idempotency) 및 정합성 보장.
+- 핵심 요약 : 방향성 비순환 그래프로 작업 의존성을 관리하고, 과거 구간을 소급 재처리하는 것을 자동화하는 데이터 파이프라인 오케스트레이션 기술.
+- 개념 : 작업 간 선후 관계를 **DAG** (Directed Acyclic Graph, 방향성 비순환 그래프)로 정의해 자동 실행하는 **워크플로 스케줄링** (Workflow Scheduling)과, 결함 수정이나 지연 도착 데이터(Late Data) 처리를 위해 과거 특정 기간의 작업을 다시 실행하는 **백필** (Backfill).
+- 배경 및 필요성 : 단순 cron 스케줄링은 태스크 간 의존성을 표현하지 못하고, 장애 시 부분 재실행이 어려우며, 과거 데이터를 수작업으로 재생성하면 오류가 잦아지므로 통합 워크플로 엔진이 필요해짐.
+- 주요 목적 : 의존성과 병렬성의 최적화, 과거 구간의 안전한 자동 백필, 파이프라인의 **멱등성** (Idempotency, 같은 입력으로 여러 번 실행해도 결과가 같은 성질) 보장.
 
 ## Ⅱ. 워크플로 스케줄링·백필의 특징 및 장점
 
-- 핵심 요약 : **DAG 스케줄링·논리적 실행 시점·파티션 원자적 교체**.
-1. **논리적 실행 시점** (Logical Date / Execution Date) : 작업이 실제 실행되는 현재 물리적 시각이 아니라, 처리 대상 데이터가 속한 논리적 시간 윈도우(`data_interval_start`, `data_interval_end`)를 파라미터로 전달받아 실행.
-2. **파티션 원자적 교체** : 백필 도중 조회자가 불완전한 데이터를 읽지 않도록 임시 디렉터리에 데이터를 모두 쓴 뒤 메타스토어 포인터를 원자적(Atomic)으로 스왑.
+- 핵심 요약 : 실행 시점을 물리적 시각이 아닌 데이터 구간으로 고정하고, 결과를 파티션 단위로 원자적으로 교체해 백필을 안전하게 만드는 방식.
+
+1. **논리적 실행 시점** (Logical Date) : 작업이 실제로 도는 현재 시각이 아니라 처리 대상 데이터의 시간 구간(data_interval_start, data_interval_end)을 파라미터로 받아 실행 → 같은 구간을 언제 돌려도 같은 대상을 처리하므로 백필 결과가 재현됨.
+2. **파티션 원자적 교체** (Atomic Partition Swap) : 임시 위치에 결과를 모두 쓴 뒤 메타스토어 포인터를 한 번에 교체 → 백필 도중 조회자가 불완전한 데이터를 읽지 않음.
+3. **DAG 기반 재실행** : 실패한 태스크 이후만 다시 실행하고 선행 결과는 재사용 → 전체 파이프라인을 처음부터 돌리는 비용 절감.
 
 ## Ⅲ. 워크플로 스케줄링·백필의 구조 및 동작 메커니즘
 
-- 핵심 요약 : **DAG 정의 → 스케줄러/Executor → 워커 분배 → 파티션 원자적 교체**.
-- 워크플로 DAG 스케줄링 및 백필은 Airflow Scheduler/Executor가 DAG Run 인스턴스를 생성하고 워커 노드에 분배하여 파티션 원자적 교체로 수행함.
+- 핵심 요약 : DAG 정의에서 시작해 스케줄러가 실행 인스턴스를 만들고, 워커가 태스크를 나눠 맡아 파티션 단위로 결과를 덮어쓰는 흐름.
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│ [ 워크플로 DAG (Apache Airflow) 스케줄링 및 백필 실행 구조 ]           │
-│                                                                        │
-│   [ 워크플로 DAG 정의 ]                                                │
-│    (Task A: 데이터 추출) ──> (Task B: 정제 및 변환) ──> (Task C: 마트 적재)│
-│                                                                        │
-│   ─── [ 백필(Backfill) 명령 실행: 2026-01-01 ~ 2026-01-05 ] ────────── │
-│                                                                        │
-│   [ Airflow Scheduler & Executor ]                                     │
-│    - DAG Run 인스턴스 5개 동시 생성 (logical_date 기준)                 │
-│    - 동시성 제어: max_active_runs=2, max_active_tasks_per_dag=4        │
-│                     │                                                  │
-│                     ▼ Task Instance 분배                               │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │ [ 워커 노드 풀 (Celery / Kubernetes Workers) ]                 │   │
-│   │  [Worker 1] 2026-01-01 Run -> Task A -> Task B -> Task C       │   │
-│   │  [Worker 2] 2026-01-02 Run -> Task A -> Task B -> Task C       │   │
-│   └───────────────────────────────┬────────────────────────────────┘   │
-│                                   │ 원자적 파티션 덮어쓰기             │
-│                                   ▼                                    │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │ [ 타깃 데이터 스토리지 (Lakehouse / Data Warehouse) ]          │   │
-│   │  - PARTITION (date = '2026-01-01') ATOMIC OVERWRITE!           │   │
-│   │  - 타 날짜 데이터 간섭 없이 해당 파티션만 멱등하게 갱신       │   │
-│   └────────────────────────────────────────────────────────────────┘   │
-└────────────────────────────────────────────────────────────────────────┘
+[ 워크플로 DAG 정의 ]
+
+추출 (Task A)
+   ↓
+정제·변환 (Task B)
+   ↓
+마트 적재 (Task C)
 ```
+
+```text
+[ 백필 실행 흐름 ]
+
+백필 명령 (구간 지정)
+   ↓
+스케줄러가 구간별 DAG Run 생성
+   ↓
+워커 풀에 태스크 인스턴스 분배
+   ↓
+파티션 단위 원자적 덮어쓰기
+```
+
+- Apache Airflow는 스케줄러와 실행기(Executor)가 DAG Run 인스턴스를 만들고 워커 노드에 태스크를 분배하는 구조를 가지며, 결과 저장은 날짜 파티션 단위로 교체하는 방식으로 멱등성을 확보함.
 
 ## Ⅳ. 워크플로 스케줄링·백필의 비교
 
-- 핵심 요약 : **Airflow·Dagster·Prefect** 패러다임·백필·상태저장소·데이터 전달·성숙도·한계 비교.
+- 핵심 요약 : Airflow, Dagster, Prefect는 태스크 중심, 자산 중심, 코드 중심이라는 서로 다른 패러다임을 가지므로 팀의 데이터 처리 방식에 맞춰 선택.
 
 | 비교 항목 | Apache Airflow | Dagster | Prefect |
 | :--- | :--- | :--- | :--- |
-| 핵심 패러다임 | 태스크 중심 (Task-Centric DAG) | 자산 중심 (Software-Defined Assets) | 코드 중심 (Pythonic Functions) |
-| 백필 지원성 | CLI(Command-Line Interface) 명령어(`airflow dags backfill`) 강력 지원 | 자산 파티셔닝 기반 정밀 백필 네이티브 지원 | 파라미터 기반 플로우 재실행 지원 |
-| 상태 저장소 | RDBMS(Relational Database Management System) 필수 (PostgreSQL, MySQL) | RDBMS 지원 (PostgreSQL, SQLite) | 클라우드 서비스(SaaS) 또는 백엔드 DB(Database) |
-| 데이터 전달 방식 | XCom 기반 (소용량 메타데이터 전용) | 네이티브 I/O 매니저 기반 데이터 전달 | 결과 핸들러(Result Handlers) 기반 |
-| 생태계 성숙도 | 업계 사실상 표준 (De-facto Standard) | 빠르게 성장 중인 모던 데이터 스택 | 파이썬 친화적 경량 워크플로 중심 |
-| 단점 및 한계점 | 스케줄러 루프 지연, 로컬 테스트 난이도 | 기존 Airflow 대비 학습 곡선 존재 | 대규모 엔터프라이즈 레거시 연동성 |
+| 핵심 패러다임 | 태스크 중심 DAG | 자산 중심 (Software-Defined Assets) | 코드 중심 (Python 함수 기반 플로우) |
+| 백필 지원 | CLI 명령으로 구간 재실행 지원 | 자산 파티션 단위 백필을 기본 기능으로 제공 | 파라미터 기반 플로우 재실행 |
+| 상태 저장소 | RDBMS(Relational Database Management System) 필요 | RDBMS 기반 저장 | 관리형 클라우드 서비스 또는 백엔드 DB |
+| 데이터 전달 | XCom으로 소용량 메타데이터 전달 | I/O 매니저로 데이터 전달 | 결과 저장 설정으로 데이터 관리 |
+| 생태계 | 업계에서 널리 쓰이는 표준적 도구 | 최근 성장 중인 데이터 도구 | Python 친화적인 경량 워크플로 |
+| 주요 한계 | 스케줄러 지연, 로컬 테스트의 번거로움 | 기존 Airflow 대비 학습 곡선 | 대규모 레거시 연동 사례의 제약 |
 
 ## Ⅴ. 워크플로 스케줄링·백필의 한계와 방안
 
-- 핵심 요약 : **원천 시스템 과부하·비멱등성 중복 적재·Execution Date 혼선**을 동시성 제어·Upsert·data_interval로 대응.
+- 핵심 요약 : 원천 시스템 과부하, 비멱등 태스크에 의한 중복 적재, 실행 시점 해석 혼선을 동시성 제어, Upsert, 데이터 구간 변수로 통제.
 
-- 원천 시스템(소스 DB/API(Application Programming Interface)) 과부하로 인한 장애 유발 :
-  - 한계점 : 수개월 치 데이터를 백필할 때 수십 개의 DAG(Directed Acyclic Graph) 인스턴스가 동시 기동하여 원천 OLTP(Online Transaction Processing) 데이터베이스 커넥션 고갈 및 슬로우 쿼리 유발.
-  - 해결 방안 : Airflow 풀(Pool) 기능을 활용한 동시 쿼리 수 제한, `max_active_runs` 파라미터 조절 및 주말/야간 유휴 시간 대역 한정 실행.
-- 태스크 비멱등성(Non-Idempotency)에 따른 데이터 중복 적재 :
-  - 한계점 : 단순 `INSERT INTO`로 작성된 파이프라인을 백필할 경우 동일 날짜의 데이터가 두 배, 세 배로 중복되어 매출 집계 왜곡.
-  - 해결 방안 : 타깃 테이블의 `INSERT OVERWRITE` 또는 `MERGE INTO` (Upsert) 쿼리 강제, 파이프라인 코드 리뷰 시 멱등성 검증 체크리스트 의무화.
-- 시간 윈도우 파라미터 혼선(Execution Date Confusion) :
-  - 한계점 : Airflow의 전통적인 `execution_date`는 주기 시작 시점을 가리켜 실제 배치 실행 시점(주기 종료 시점)과 시차가 있어 개발자 실수 빈번.
-  - 해결 방안 : Airflow 2.2+의 `data_interval_start` 및 `data_interval_end` 표준 시간 윈도우 템플릿 변수로 전면 리팩토링.
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| :--- | :--- | :--- | :--- |
+| 원천 시스템 과부하 | 수개월 치 백필 시 다수 DAG Run이 동시에 기동 → 원천 OLTP(Online Transaction Processing) DB 커넥션 고갈과 슬로우 쿼리 | Airflow 풀(Pool)로 동시 쿼리 수 제한, 동시 실행 수 파라미터 조정, 유휴 시간대 한정 실행 | 원천 DB 커넥션 사용률, 백필 소요 시간 |
+| 비멱등 태스크에 의한 중복 적재 | 단순 INSERT INTO로 짠 파이프라인을 재실행하면 같은 날짜 데이터가 중복 적재되어 집계 왜곡 | INSERT OVERWRITE 또는 MERGE INTO(Upsert)로 작성 강제, 코드 리뷰에 멱등성 점검 항목 반영 | 중복 레코드 수 |
+| 실행 시점 해석 혼선 | 전통적 execution_date가 주기 시작을 가리켜 실제 실행 시점과 시차가 생기고 개발자 실수 발생 | Airflow 2.2 이상의 data_interval_start, data_interval_end 템플릿 변수로 전환 | 구간 오류로 인한 재처리 건수 |
 
-## Ⅵ. 워크플로 스케줄링·백필 적용 제언
+## Ⅵ. 워크플로 스케줄링·백필에 대한 기술사적 제언
 
-- 핵심 요약 : **자산 중심 아키텍처·CI/CD 백필 테스트베드**.
-- 선언적 데이터 자산(Data Asset) 중심 아키텍처로의 전환 : Task-Driven → Asset-Driven (Dagster, dbt), 백필 시 상위/하위 의존 자산 역추적.
-- CI/CD 파이프라인과 통합된 백필 검증 테스트베드 구축 : 스테이징에서 최근 7일 가상 백필 자동 수행, 데이터 차이(Data Diff) 리포팅.
+- 핵심 요약 : 태스크 중심 설계를 자산 중심으로 옮기고, 백필을 CI/CD 파이프라인 안에서 미리 검증하는 체계를 갖추는 방향.
+
+의존 관계를 태스크가 아닌 데이터 자산 단위로 선언하면, 백필이 필요한 하위 자산을 상위 변경에서 역추적하기 쉬워진다. CI/CD(Continuous Integration/Continuous Delivery) 배포 파이프라인에는 스테이징 환경에서 최근 구간을 가상으로 백필하는 검증 단계를 넣고, 결과 차이를 데이터 비교 리포트로 남기는 방식을 권한다. 이렇게 하면 운영 데이터를 건드리기 전에 멱등성과 구간 정합성을 확인할 수 있다.
 
 ## Ⅶ. 결론
 
-- 핵심 요약 : 워크플로 스케줄링·백필은 **DAG 의존성 관리와 소급 재처리**를 자동화하나 원천 시스템 과부하·비멱등성·시간 윈도우 혼선 리스크 관리가 필수.
-- 워크플로 스케줄링·백필은 DAG 의존성 관리와 소급 재처리를 자동화하지만, 원천 시스템 과부하·비멱등성 중복 적재·시간 윈도우 혼선 리스크를 동시성 제어·Upsert·data_interval로 관리해야 함.
-- 답안에는 DAG 스케줄링, Airflow/Dagster/Prefect 비교, 백필 메커니즘, 한계·대응, 자산 중심·CI/CD 테스트베드 제언을 연결. (Directed Acyclic Graph, DAG) (Logical Date / Execution Date) (data_interval_start, data_interval_end) (Atomic Overwrite) (Idempotency, Idempotent) (INSERT OVERWRITE, MERGE INTO, Upsert) (max_active_runs, max_active_tasks_per_dag) (Pool) (XCom) (Software-Defined Assets) (Pythonic Functions) (Result Handlers) (CLI, Command-Line Interface) (RDBMS, Relational Database Management System) (PostgreSQL, MySQL, SQLite) (SaaS, Software as a Service) (De-facto Standard) (modular data stack) (OLTP, Online Transaction Processing) (API, Application Programming Interface) (dbt, data build tool) (Data Diff) (CI, Continuous Integration) (CD, Continuous Delivery) (DAG, Directed Acyclic Graph) (Logical Date / Execution Date) (data_interval_start, data_interval_end) (Atomic Overwrite) (Idempotency, Idempotent) (INSERT OVERWRITE, MERGE INTO, Upsert) (max_active_runs, max_active_tasks_per_dag) (Pool) (XCom) (Software-Defined Assets) (Pythonic Functions) (Result Handlers) (CLI, Command-Line Interface) (RDBMS, Relational Database Management System) (PostgreSQL, MySQL, SQLite) (SaaS, Software as a Service) (De-facto Standard) (modular data stack) (OLTP, Online Transaction Processing) (API, Application Programming Interface) (dbt, data build tool) (Data Diff) (CI, Continuous Integration) (CD, Continuous Delivery)
+- 핵심 요약 : 워크플로 스케줄링·백필은 DAG 의존성 관리와 소급 재처리를 자동화하는 데이터 파이프라인의 핵심 운영 기술.
+- 시사점 : 자동화의 이점은 멱등성과 구간 정합성이 확보될 때만 유지되므로, 파이프라인 설계 단계에서 이 두 조건을 검증 대상으로 삼아야 함.
