@@ -1,7 +1,7 @@
 ---
 title: "공급망 보안(Supply Chain Security)"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T23:02:51+09:00"
 tags:
   - "notes-security"
 sidebar:
@@ -9,75 +9,97 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
+
+## 연관 키워드
+
+- 공급망 보안(Supply Chain Security), SBOM(Software Bill of Materials), SLSA(Supply-chain Levels for Software Artifacts)
+- 출처 증명(Attestation), in-toto, Sigstore, Cosign, VEX(Vulnerability Exploitability eXchange)
+- 밀폐형 빌드(Hermetic Build), OIDC(OpenID Connect), 어드미션 컨트롤러, NIST SSDF, 제로트러스트
 
 ## Ⅰ. 공급망 보안(Supply Chain Security)의 개요
 
-- 개념 : 소프트웨어 기획, 소스 개발, 서드파티 오픈소스 반입, 빌드·패키징, 배포 및 운영에 이르는 전 생애주기에서 발생 가능한 **위변조**와 **악성코드 주입**을 차단하는 보안 체계.
-- 배경 및 필요성 : 소프트웨어 개발부터 빌드, 패키징, 배포, 운영에 이르는 전 공급망 단계에서 서드파티 라이브러리 및 오픈소스 취약점을 악용한 오염 사고가 폭증함에 따라, **SBOM**(Software Bill of Materials) 및 무결성 서명 체계를 구축하기 위해 대두됨.
-- 핵심 목적 : 단일 오픈소스 컴포넌트 오염이나 CI(Continuous Integration)/CD(Continuous Delivery) 침해로 인해 수천 개의 다운스트림 고객사로 침해가 일괄 확산되는 공급망 파급 효과 차단 및 전주기 신뢰성 보장.
+- 핵심 요약 : 소프트웨어 전 생애주기에서 위변조와 악성코드 주입을 막아, 한 지점의 오염이 다수 고객사로 번지지 않도록 하는 보안 체계.
+- 개념 : 기획, 개발, 오픈소스 반입, 빌드, 배포, 운영의 모든 단계에서 **위변조**와 **악성코드 주입**을 차단하는 보안 체계.
+- 배경 및 필요성 : 서드파티 오픈소스 구성요소와 빌드 파이프라인이 공격 경로가 되면서, 구성요소 목록을 파악하고 산출물의 출처를 검증할 필요가 커짐 → **SBOM** (Software Bill of Materials, 소프트웨어 구성 요소 명세서)과 무결성 서명 체계가 요구됨.
+- 주요 목적 : 단일 구성요소 오염이나 CI(Continuous Integration)/CD(Continuous Delivery) 침해가 하위 고객사로 일괄 확산되는 파급 효과를 차단하고, 빌드부터 배포까지 신뢰를 검증.
 
-## Ⅱ. 공급망 보안(Supply Chain Security)의 핵심 아키텍처 및 동작 메커니즘
+## Ⅱ. 공급망 보안(Supply Chain Security)의 특징 및 장점
 
-공급망 보안(Supply Chain Security)은(는) 신뢰할 수 있는 보안 구조와 표준화된 절차를 기반으로 동작하며, 세부적인 아키텍처와 구성요소 간의 상호작용 메커니즘은 다음과 같음.
+- 핵심 요약 : 출처 증명과 서명 검증을 자동화해 산출물의 신뢰를 사람의 판단이 아닌 기계 검증으로 확보하는 점이 장점의 핵심.
+
+1. 암호학적 출처 증명 : 빌드 산출물마다 **출처 증명** (Attestation, 누가 어떤 소스로 어떤 환경에서 만들었는지에 대한 서명된 기록) 생성 → 산출물 출처를 자동 검증.
+2. 격리된 빌드 : 네트워크를 차단한 임시 환경에서 **밀폐형 빌드** (Hermetic Build, 허가된 입력만으로 수행되는 빌드) 실행 → 빌드 과정에서 악성 코드가 끼어들 경로 제거.
+3. 구성요소 가시화 : **SBOM**으로 간접 의존성까지 목록화 → 신규 취약점 발생 시 영향 자산을 신속히 식별.
+4. 배포 게이트 : 어드미션 컨트롤러가 서명과 출처 증명이 없는 이미지의 배포를 거부 → 미검증 산출물의 운영 유입 차단.
+
+## Ⅲ. 공급망 보안(Supply Chain Security)의 구조 (흐름)
+
+- 핵심 요약 : 소스 개발, 의존성 반입, 격리 빌드, 서명·SBOM 생성, 배포 판정의 다섯 단계가 순서대로 신뢰를 이어 가는 구조.
 
 ```text
-[ 1. 소스 개발 단계 ]
-개발자 커밋 ──▶ [ GPG / SSH 커밋 서명 ] ──▶ [ 시크릿 스캐닝 & SAST 검사 ]
-                                                    │
-                                                    ▼
-[ 2. 격리된 빌드 단계 (SLSA Level 3) ]
-[ 에펨럴 CI 빌드 러너 ] ◀── [ 무키(Keyless) OIDC 인증 ]
-  ├── 1. 허가된 소스코드만 체크아웃
-  ├── 2. 사내 미러 레지스트리 의존성만 격리 다운로드
-  └── 3. 재현 가능한 빌드(Hermetic Build) 수행
-                                                    │
-                                                    ▼
-[ 3. 아티팩트 서명 및 SBOM 생성 ]
-컴파일 완료 ──▶ [ SPDX / CycloneDX SBOM 자동 생성 ]
-              ──▶ [ in-toto 메타데이터 (출처 증명 Provenance) 기록 ]
-              ──▶ [ Sigstore (Cosign) 기반 아티팩트 서명 ]
-                                                    │
-                                                    ▼
-[ 4. 배포 및 런타임 수락 (Zero Trust Admission) ]
-쿠버네티스 클러스터 배포 요청 ──▶ [ OPA Gatekeeper / Kyverno Admission Controller ]
-                                 ├── 1. Sigstore 서명 유효성 검증
-                                 ├── 2. SLSA Level 3 출처 증명서 확인
-                                 └── 3. 미검증 이미지 배포 즉시 거부(Deny)
+[ 1. 소스 개발 ]
+  커밋 서명 · 브랜치 보호
+          ↓
+[ 2. 의존성 반입 ]
+  사내 미러 · 취약점 검증
+          ↓
+[ 3. 격리 빌드 ]
+  임시 러너 · 밀폐형 빌드
+          ↓
+[ 4. 서명 · SBOM 생성 ]
+  출처 증명 · 아티팩트 서명
+          ↓
+[ 5. 배포 판정 ]
+  어드미션 컨트롤러 검증
 ```
 
-- **소스 개발 (Code)** : 커밋 서명 강제, 깃허브 브랜치 보호 규칙, 2인 이상 코드 리뷰(PR, Pull Request) 필수 (Git GPG Signing, Branch Protection Rules).
-- **의존성 반입 (Dependencies)** : 사내 프라이빗 패키지 미러 운영, 라이선스 및 취약점 검증 후 반입 (Nexus, Artifactory, Socket.dev, Snyk SCA).
-- **빌드 실행 (Build)** : 독립된 임시 컨테이너에서 네트워크가 격리된 **밀폐형** (Hermetic) 빌드 수행 (Google Cloud Build, GitHub Hosted Runners (SLSA(Supply-chain Levels for Software Artifacts) L3)).
-- **패키징/증명 (Package)** : 빌드 완료 산출물에 대해 자동화된 **출처 증명서** (Attestation) 및 SBOM 생성 (CycloneDX, SPDX, in-toto, Cosign).
-- **배포/운영 (Deploy/Run)** : 쿠버네티스 어드미션 컨트롤러에서 서명 및 정책 미충족 컨테이너 배포 차단 (OPA(Open Policy Agent) Gatekeeper, Kyverno, **VEX**(Vulnerability Exploitability eXchange) 취약점 필터링).
+```text
+[ 배포 시점 검증 ]
 
-## Ⅲ. 공급망 보안(Supply Chain Security)의 세부 구성 요소 및 비교 분석
+쿠버네티스 배포 요청
+          ↓
+어드미션 컨트롤러 검사
+  ├ 서명 유효성 확인
+  ├ 출처 증명 확인
+  └ 미충족 시 배포 거부
+```
 
-| 비교 항목 | **SLSA** (Supply-chain Levels for Software Artifacts) | **NIST(National Institute of Standards and Technology) SSDF** (Secure Software Development Framework) |
-|---|---|---|
-| 주도 기관 | 구글, OpenSSF, 리눅스 재단 | 미국 국립표준기술원 (NIST SP 800-218) |
-| 프레임워크 성격 | 기술적·아키텍처적 무결성 체크리스트 (Level 1~3) | 전사적 소프트웨어 보안 개발 수명주기 프로세스 가이드라인 |
-| 중점 평가 영역 | 소스 무결성, 빌드 플랫폼 격리, 출처 증명(Provenance) 생성 | 조직 준비, 안전한 소프트웨어 보호, 취약점 대응 전반 |
-| 검증 방식 | 기계 판독형 **in-toto attestation**을 통한 자동화 암호학적 검증 | 감사 체크리스트, 자체 인증(Self-Attestation) 서약서 |
-| 규제 연계성 | 클라우드 네이티브 DevSecOps 파이프라인 표준 | 미국 백악관 행정명령(EO 14028) 연방정부 소프트웨어 납품 요건 |
+- 단계별 수단 : 커밋 서명(GPG, SSH)과 2인 이상 코드 리뷰, 사내 프라이빗 패키지 미러와 SCA(Software Composition Analysis) 검사, 임시 러너에서의 재현 가능한 빌드, Sigstore 기반 Cosign 서명이 각각 맡는다.
 
-- 공급망 보안(Supply Chain Security)은(는) 상기 핵심 비교 지표와 아키텍처 구성을 바탕으로 보안 위협에 대한 방어 효과성을 극대화하며, 기존 레거시 통제 기법 대비 우수한 신뢰성과 운영 효율성을 제공함.
+## Ⅳ. 공급망 보안(Supply Chain Security)의 비교
 
-## Ⅳ. 공급망 보안(Supply Chain Security)의 주요 한계점 및 해결 방안
+- 핵심 요약 : SLSA는 빌드 무결성 수준을 단계로 측정하고, NIST SSDF는 조직 전체의 보안 개발 프로세스를 규율하는 프레임워크로서 서로 보완하는 관계.
 
-- 한계점 : 대규모 레거시 프로젝트의 경우 수만 개의 간접 의존성으로 인해 SBOM 생성 시 취약점이 수천 건 도출되어 조치 불가능.
-  - 해결 방안 : 취약점의 실제 함수 호출 여부(Reachable Path)를 분석하는 VEX(Vulnerability Exploitability eXchange)를 연동하여 실제 위험한 결함만 압축 필터링.
-- 한계점 : 개발자 PC(Personal Computer) 및 빌드 러너 환경에 정적 배포 토큰이 노출되어 **자가 증식 웜** (Shai-Hulud 등)에 의한 탈취 위험.
-  - 해결 방안 : 장기 토큰을 전면 폐기하고 **OpenID Connect** (OIDC) 기반 단기 자격증명 발급(Sigstore Fulcio / GitHub OIDC) 체계 구축.
-- 한계점 : 오픈소스 프로젝트 소유자가 사망하거나 계정이 하이재킹되어 악성 업데이트가 정식 릴리스되는 공격.
-  - 해결 방안 : 주요 오픈소스에 대해 릴리스 즉시 사내 도입을 차단하고, 24~48시간의 **카나리아 격리** (Quarantine) 후 동적 행위 검증 거쳐 반입.
-- 한계점 : 빌드 환경(OS(Operating System), 컴파일러 버전, 타임스탬프) 차이로 인해 바이너리 바이트 일치성 검증(Reproducible Builds) 난항.
-  - 해결 방안 : 빌드 환경 전체를 도커 불변 이미지로 고정하고 **SOURCE_DATE_EPOCH** 표준 타임스탬프를 적용하여 결정론적 컴파일 보장.
+| 비교 항목 | SLSA(Supply-chain Levels for Software Artifacts) | NIST SSDF(Secure Software Development Framework) |
+| --- | --- | --- |
+| 주도 | 구글에서 출발해 OpenSSF 관리 | 미국 국립표준기술원, NIST SP 800-218 |
+| 성격 | 빌드 무결성 수준을 단계(Level 1~3)로 평가하는 기술 기준 | 소프트웨어 개발 수명주기 전반의 보안 실천 지침 |
+| 중점 영역 | 소스 무결성, 빌드 플랫폼 격리, 출처 증명 생성 | 조직 준비, 안전한 소프트웨어 보호, 취약점 대응 |
+| 검증 방식 | 기계 판독형 in-toto 증명으로 자동 검증 | 체크리스트 기반 점검과 자체 평가 |
+| 연계 | 클라우드 네이티브 DevSecOps 파이프라인 | 미국 행정명령 EO 14028 후속 연방 소프트웨어 조달 요건 |
 
-## Ⅴ. 공급망 보안(Supply Chain Security) 적용 및 발전을 위한 기술사적 제언
+## Ⅴ. 공급망 보안(Supply Chain Security)의 한계와 방안
 
-- 컴포넌트 거버넌스 중심의 거버넌스 및 실행 체계 구축 : CI 파이프라인 내 CycloneDX SBOM 생성 및 VEX 문서 실시간 게시 자동화을(를) 적극 추진하여, 신규 취약점(Log4j 등) 발생 시 영향 자산 식별 신속히 완료하는 효과를 극대화해야 함.
-- 빌드 신뢰성 중심의 거버넌스 및 실행 체계 구축 : SLSA 레벨 3 표준을 충족하는 완전 격리형 에펨럴(Ephemeral) 빌드 환경 구축을(를) 적극 추진하여, 빌드 시점의 악성 백도어 주입(SolarWinds형 공격) 원천 차단 효과를 극대화해야 함.
-- 런타임 제로트러스트 중심의 거버넌스 및 실행 체계 구축 : 배포 게이트웨이에서 **Cosign** 서명 및 출처 증명서가 없는 아티팩트 실행 전면 거부을(를) 적극 추진하여, 비인가/변조된 컨테이너 이미지의 프로덕션 배포 방어 효과를 극대화해야 함.
+- 핵심 요약 : 취약점 과다, 장기 토큰 노출, 계정 탈취, 재현 불가능한 빌드를 실제 호출 여부 판단, 단기 자격증명, 격리 검증, 빌드 환경 고정으로 통제.
+
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| 취약점 과다 보고 | 대규모 프로젝트의 수많은 간접 의존성 → 경보가 수천 건으로 늘어 조치 불가 | **VEX** (Vulnerability Exploitability eXchange, 취약점의 실제 악용 가능성을 알리는 문서)로 실제 호출 경로의 취약점만 선별 | 실행 가능 취약점 비율 |
+| 장기 배포 토큰 노출 | 개발자 PC와 러너에 정적 토큰이 상주 → 자가 증식 웜(Shai-Hulud 등)에 의한 탈취 | 장기 토큰 폐기, **OIDC** (OpenID Connect) 기반 단기 자격증명 발급 | 장기 토큰 잔존 건수 |
+| 오픈소스 계정 하이재킹 | 관리자 계정 탈취 후 악성 업데이트가 정식 릴리스되어 즉시 반입 시 피해 | 릴리스 직후 격리 기간을 두고 동적 행위 검증을 거친 뒤 반입 | 격리 통과율 |
+| 재현 불가능한 빌드 | OS, 컴파일러 버전, 타임스탬프 차이로 바이너리 일치 검증 난항 | 도커 불변 이미지로 빌드 환경 고정, SOURCE_DATE_EPOCH로 시간 값 통일 | 재현 빌드 일치율 |
+
+## Ⅵ. 공급망 보안(Supply Chain Security)에 대한 기술사적 제언
+
+- 핵심 요약 : 구성요소 가시화, 격리 빌드, 배포 게이트를 전사 공통 체계로 묶어 공급망 보안을 일회성 점검이 아닌 상시 운영 역량으로 정착.
+
+1. 컴포넌트 거버넌스 : 개발 조직은 CI 파이프라인에 SBOM 생성과 VEX 공개를 기본 단계로 넣어, 신규 취약점이 나왔을 때 영향 자산을 바로 찾을 수 있어야 한다.
+2. 빌드 신뢰 : 보안팀과 플랫폼팀이 SLSA 레벨 3 요건을 충족하는 격리 빌드 환경을 공통 인프라로 제공해, 빌드 단계의 백도어 주입 경로를 막아야 한다.
+3. 런타임 검증 : 운영 조직은 배포 게이트에서 서명과 출처 증명이 없는 아티팩트를 거부하는 정책을 전사 표준으로 두는 편이 바람직하다.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : 공급망 보안은 구성요소 목록, 출처 증명, 서명 검증을 엮어 산출물의 신뢰를 자동으로 판정하는 체계.
+- 시사점 : 검증을 빌드와 배포 과정에 내장해야 개발 속도를 늦추지 않고 오염 경로를 줄일 수 있으며, 그래서 SBOM과 출처 증명이 함께 요구된다.
