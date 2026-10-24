@@ -1,7 +1,7 @@
 ---
 title: "디지털 아티팩트(Digital Artifact)"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:53:05+09:00"
 tags:
   - "notes-security"
 sidebar:
@@ -9,72 +9,100 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
 
-## Ⅰ. 디지털 아티팩트(Digital Artifact)의 개요
+## 연관 키워드
 
-- 개념 : 운영체제(OS, Operating System), 파일시스템, 애플리케이션의 정상적인 작동이나 사용자 행위의 결과로 시스템 내부 스토리지 및 메모리에 자동으로 생성·기록·보존되는 고유한 **디지털 흔적** (Digital Artifact).
-- 배경 및 필요성 : 사이버 침해사고 조사 및 법정 분쟁 시 공격자나 사용자가 과거에 수행한 프로그램 실행, 파일 접근, 네트워크 연결, USB(Universal Serial Bus) 장치 연결 등의 행위를 시계열(Timeline)로 재구성하기 위한 핵심 객관적 증거.
-- 핵심 목적 : 침해사고 유입 경로 및 악성코드 실행 이력 규명, 데이터 유출 행위의 **반증 불가능성** (Non-repudiation) 입증, 침해 타임라인 복원.
+- 디지털 아티팩트(Digital Artifact), 포렌식(Forensics), 슈퍼 타임라인(Super Timeline)
+- Prefetch, Amcache, Shimcache, MFT, $UsnJrnl, 타임스톰프(Timestomp)
+- SSD TRIM, 파일리스 악성코드(Fileless Malware), 부인 방지(Non-repudiation), Sysmon
 
-## Ⅱ. 디지털 아티팩트(Digital Artifact)의 핵심 아키텍처 및 동작 메커니즘
+## Ⅰ. 디지털 아티팩트의 개요
 
-윈도우 및 리눅스 시스템은 성능 최적화, 캐싱, 사용자 편의를 위해 프리페치, 레지스트리, 저널 로그 등 다계층 아티팩트를 지속적으로 갱신함.
+- 핵심 요약 : 운영체제와 응용 프로그램이 정상 동작하며 남기는 흔적을 시간순으로 재구성해 침해사고를 입증하는 포렌식 증거 자원.
+- 개념 : 운영체제(OS, Operating System), 파일시스템, 응용 프로그램이 동작하는 과정에서 저장장치와 레지스트리에 자동으로 남는 흔적을 **디지털 아티팩트** (Digital Artifact)라 하며, 이를 수집·분석하는 활동이 포렌식(Forensics)임.
+- 배경 및 필요성 : 침해사고 조사와 법적 분쟁에서는 과거의 프로그램 실행, 파일 접근, USB(Universal Serial Bus) 장치 연결 순서를 재구성해야 하며, 사용자가 의도적으로 남기지 않은 흔적이 사실 확인의 근거가 됨.
+- 주요 목적 : 침해 유입 경로와 악성코드 실행 이력 규명, 데이터 유출 행위의 **부인 방지** (Non-repudiation, 행위 사실을 행위자가 부정하기 어렵게 하는 성질) 근거 확보, 침해 타임라인 복원.
+
+## Ⅱ. 디지털 아티팩트의 특징 및 장점
+
+- 핵심 요약 : 자동 기록이라는 생성 방식이 행위의 객관적 증거가 되고, 여러 계층의 기록을 교차하면 조작에 강한 재구성이 가능해지는 구조.
+
+1. 자동 생성 : 사용자가 의도하지 않아도 운영체제가 캐시와 저널에 기록 → 행위자가 남기지 않으려 한 흔적까지 확보 가능.
+2. 다계층 분산 저장 : 실행, 파일, 장치, 계정 기록이 서로 다른 위치에 남음 → 한 계층이 지워져도 다른 계층으로 행위를 재구성.
+3. 시계열 상관 분석 : 여러 아티팩트의 시각을 하나의 타임라인으로 정렬 → 침해 순서와 범위를 복원하고 개별 기록의 신뢰도를 보완.
+
+## Ⅲ. 디지털 아티팩트의 구조 (흐름)
+
+- 핵심 요약 : 행위가 여러 아티팩트 계층에 흩어져 기록되고, 이를 **슈퍼 타임라인** (Super Timeline)으로 통합해 분석하는 두 단계 구조.
+- **프리페치** (Prefetch) : 응용 프로그램 로딩 가속용 캐시 파일로 실행 파일명, 실행 횟수, 최초·최종 실행 시각을 보존.
+- **암캐시** (Amcache.hve) : 프로그램 설치와 실행 정보, 파일의 SHA(Secure Hash Algorithm)-1 해시를 별도 하이브 파일에 보존.
+- **심캐시** (Shimcache, AppCompatCache) : 호환성 유지를 위한 커널 캐시로 파일 경로와 수정 시각을 기록.
+- **MFT** (Master File Table) : NTFS(New Technology File System)의 파일 메타데이터 테이블로, $STANDARD_INFORMATION과 $FILE_NAME 두 종류의 타임스탬프를 보유.
+- **저널 로그** ($UsnJrnl) : 파일 생성, 이름 변경, 삭제 이력을 연속으로 기록하는 변경 저널.
 
 ```text
-[ 윈도우 핵심 디지털 아티팩트 계층 및 증거 매핑 ]
+[ 행위 → 아티팩트 계층 ]
 
-   [ 사용자 / 공격자 행위 ]
-             │
-   +---------┴---------------------------------------------------+
-   | 1. 프로그램 실행 흔적 : Prefetch (.pf), Amcache.hve,         |
-   |                         Shimcache(AppCompatCache), UserAssist|
-   +-------------------------------------------------------------+
-   | 2. 파일 접근 / 삭제  : $MFT, $LogFile, $UsnJrnl, Shellbags, |
-   |                         LNK 파일, Jump Lists, 휴지통($Recycle)|
-   +-------------------------------------------------------------+
-   | 3. 외부 장치 연결   : USBSTOR 레지스트리, setupapi.dev.log    |
-   +-------------------------------------------------------------+
-   | 4. 네트워크 / 계정  : Event Logs (Security 4624, 4625),       |
-   |                         SRUM (데이터 사용량), RDP 캐시       |
-   +-------------------------------------------------------------+
-             │
-             ▼
-   [ 슈퍼 타임라인(Super Timeline) 통합 분석 (Plaso / log2timeline) ]
+사용자·공격자 행위
+      ↓
+1. 실행 흔적: Prefetch, Amcache, Shimcache
+      ↓
+2. 파일 흔적: MFT, $UsnJrnl, LNK, Shellbags
+      ↓
+3. 장치·계정: USBSTOR, 보안 이벤트 로그
+      ↓
+슈퍼 타임라인 통합 (Plaso)
 ```
 
-- **프리페치** (Prefetch) : 응용프로그램 로딩 속도 향상을 위한 캐시 파일로 실행 파일명, 실행 횟수, 최초/최종 실행 시간, 로딩된 DLL 목록 보존.
-- **심캐시** (Shimcache / AppCompatCache) : OS 호환성 유지를 위해 커널 캐시에 기록되며, 파일의 전체 경로, 수정 시간(Last Modified Time), 실행 여부 플래그 저장.
-- **암캐시** (Amcache.hve) : 응용프로그램 설치 및 실행 시점의 SHA(Secure Hash Algorithm)-1 파일 해시, 드라이버 정보, PE 파일 컴파일 시간을 독립 하이브 파일에 보존.
-- **MFT** (Master File Table) 및 저널링 : NTFS 파일시스템의 $MFT 엔트리($STANDARD_INFORMATION, $FILE_NAME 타임스탬프)와 $UsnJrnl을 통해 파일 생성/이름변경/삭제 정밀 추적.
+```text
+[ 상관 분석 절차 ]
 
-## Ⅲ. 디지털 아티팩트(Digital Artifact)의 세부 구성 요소 및 비교 분석
+단일 아티팩트 확인
+      ↓
+다른 계층 기록과 시각 대조
+      ↓
+시계열 정렬 (슈퍼 타임라인)
+      ↓
+침해 순서 재구성
+```
 
-| 아티팩트 명칭 | 저장 위치 | 핵심 보존 정보 | 포렌식 분석 활용 목적 |
+## Ⅳ. 디지털 아티팩트의 비교
+
+- 핵심 요약 : 아티팩트마다 저장 위치와 보존 정보가 달라, 단일 기록만으로 결론을 내리지 않고 목적에 따라 대조하는 것이 원칙.
+
+| 아티팩트 | 저장 위치 | 보존 정보 | 분석 활용 목적 |
 | --- | --- | --- | --- |
-| Prefetch | C:\Windows\Prefetch\*.pf | 실행 파일명, 실행 횟수, 최종 실행 시각 | 악성 프로그램 실행 여부 및 빈도 입증 |
-| Shimcache | SYSTEM 하이브 레지스트리 | 파일 경로, 크기, 수정 시각, 실행 플래그 | 삭제된 악성 파일의 과거 존재 증명 |
-| Amcache | C:\Windows\appcompat\Programs\Amcache.hve | 프로그램 SHA-1 해시, 컴파일 시각, 설치 경로 | 악성코드 변종 판별 및 원본 해시 획득 |
-| Shellbags | NTUSER.DAT / UsrClass.dat | 폴더 접근 기록, GUI(Graphical User Interface) 창 크기/위치, 폴더명 | 데이터 유출 시 특정 폴더 탐색 행위 증명 |
-| LNK / JumpLists | Recent 폴더 및 점프목록 경로 | 원본 파일의 볼륨 시리얼, MAC(Media Access Control) 어드레스 | 외장 USB에서 열어본 문서 파일 역추적 |
+| Prefetch | C:\Windows\Prefetch | 실행 파일명, 실행 횟수, 실행 시각 | 악성 프로그램 실행 여부와 빈도 입증 |
+| Amcache | Amcache.hve | 파일 해시, 설치 경로, 컴파일 시각 | 악성코드 해시 확보와 변종 판별 |
+| Shimcache | SYSTEM 하이브 | 파일 경로, 수정 시각 | 삭제된 파일의 과거 존재 입증 |
+| Shellbags | NTUSER.DAT, UsrClass.dat | 폴더 탐색 기록 | 특정 폴더 탐색 행위 입증 |
+| LNK·점프 목록 | 최근 항목 폴더 | 원본 경로, 볼륨 일련번호 | 외장 장치에서 열어본 문서 역추적 |
 
-- 단일 아티팩트는 조작될 수 있으나, 프리페치-심캐시-MFT-이벤트로그가 상호 교차하는 시계열 관계는 위변조가 불가능하므로 다차원 상관 분석이 필수적임.
+- 선택 기준 : 단일 아티팩트는 위변조 가능성이 있으므로, 시각과 실행 기록을 교차 확인한 결과만 증거로 채택.
 
-## Ⅳ. 디지털 아티팩트(Digital Artifact)의 주요 한계점 및 해결 방안
+## Ⅴ. 디지털 아티팩트의 한계와 방안
 
-- 공격자의 **타임스톰프** (Timestomp)를 통한 MFT 타임스탬프 변조 :
-  - 한계점 : 공격자가 악성 파일의 $STANDARD_INFORMATION 타임스탬프를 정상 시스템 파일(kernel32.dll 등)과 동일하게 조작하여 시계열 정렬 회피.
-  - 해결 방안 : $STANDARD_INFORMATION과 $FILE_NAME 속성의 타임스탬프 간 불일치(Timestamp Inconsistency)를 탐지하고, $UsnJrnl 저널 로그를 대조하여 원본 시간 복원.
-- SSD(Solid-State Drive)의 **TRIM** 명령어 동작에 따른 비할당 영역 증거 영구 소멸 :
-  - 한계점 : SSD 환경에서는 파일 삭제 즉시 TRIM 명령이 실행되어 플래시 메모리 셀이 0으로 초기화되므로 슬랙 공간 및 카빙(Carving) 복구 불가.
-  - 해결 방안 : 파일 메타데이터가 잔존하는 $MFT 레코드 분석에 집중하고, VSS(볼륨 섀도우) 스냅샷 및 램(RAM) 잔류 메모리 아티팩트 선제 수집.
-- 메모리 상주형 **파일리스** 악성코드의 디스크 아티팩트 부재 :
-  - 한계점 : 디스크에 페이로드를 쓰지 않고 레지스트리나 WMI 스크립트를 통해 메모리 상에서만 실행되는 경우 디스크 기반 아티팩트 누락.
-  - 해결 방안 : **WMI 리포지토리** (OBJECTS.DATA) 파싱, **레지스트리 자동 실행 키** (ASEP) 심층 조사 및 라이브 메모리 덤프의 프로세스 **VAD** (Virtual Address Descriptor) 트리 분석 병행.
+- 핵심 요약 : 시각 조작, 저장 매체 특성에 따른 증거 소멸, 디스크 흔적이 없는 공격을 교차 분석과 선제 수집으로 보완.
 
-## Ⅴ. 디지털 아티팩트(Digital Artifact) 적용 및 발전을 위한 기술사적 제언
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| **타임스톰프** (Timestomp) 시각 조작 | 악성 파일의 MFT 시각을 정상 파일과 같게 바꿔 시계열 정렬 회피 | $STANDARD_INFORMATION과 $FILE_NAME 타임스탬프 불일치 탐지, $UsnJrnl과 대조 | 불일치 탐지 건수 |
+| SSD(Solid-State Drive)의 TRIM 명령에 따른 증거 소멸 | 삭제 후 TRIM으로 셀이 초기화되어 카빙 복구 가능성이 크게 낮아짐 | MFT 메타데이터 우선 분석, VSS(Volume Shadow Copy Service) 스냅샷과 메모리 덤프 선제 수집 | 증거 수집 소요 시간 |
+| **파일리스 악성코드** (Fileless Malware) | 디스크 기록 없이 WMI(Windows Management Instrumentation)나 레지스트리로 실행되어 디스크 아티팩트 부재 | WMI 리포지토리 분석, ASEP(Auto-Start Extensibility Point) 점검, 메모리의 VAD(Virtual Address Descriptor) 트리 분석 | 자동 실행 항목 변경 건수 |
 
-- 중앙 집중형 이벤트 아티팩트 수집(Windows Event Forwarding) 구축 : 단말의 로컬 이벤트 로그 삭제에 대비하여 중요 보안 이벤트(Sysmon, 4688 프로세스 생성)를 SIEM(Security Information and Event Management)으로 실시간 포워딩.
-- **Sysmon** (System Monitor)의 전사 표준 배포 : 기본 윈도우 로그의 한계를 극복하기 위해 프로세스 생성 해시, 네트워크 연결, 파일 생성 시각을 기록하는 Sysmon 텔레메트리 필수 구축.
-- 엔터프라이즈 타임라인 자동화 분석 파이프라인 도입 : 침해 발생 시 다수 단말의 아티팩트를 원격 수집하여 **Plaso/Timesketch** 엔진으로 단일 타임라인을 자동 생성하는 SOAR(Security Orchestration, Automation and Response) 체계 수립.
+## Ⅵ. 디지털 아티팩트에 대한 기술사적 제언
+
+- 핵심 요약 : 단말 로그 삭제와 분석 지연에 대비해 로그 중앙 전송, 표준 수집 도구, 자동화된 타임라인 절차를 갖추는 방향.
+
+단말의 로컬 로그가 공격자에 의해 삭제되더라도 증거가 남도록, 보안관제 조직은 보안 이벤트를 SIEM(Security Information and Event Management)으로 실시간 전송하는 구조를 기본으로 삼아야 한다.
+
+기업 단말 전체에 **Sysmon** (System Monitor)을 표준으로 배포해 프로세스 생성 해시, 네트워크 연결, 파일 생성 기록을 확보해 두는 것이 기본 준비다.
+
+사고 대응 절차에는 여러 단말의 아티팩트를 원격으로 수집해 Plaso와 Timesketch로 단일 타임라인을 만드는 과정을 SOAR(Security Orchestration, Automation and Response) 플레이북으로 정형화하면, 분석 인력의 수작업 의존을 줄이고 대응 속도를 높일 수 있다.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : 디지털 아티팩트는 자동으로 남는 흔적을 여러 계층에서 교차해 사실을 입증하는 포렌식의 기본 자원.
+- 시사점 : 개별 기록은 지워지거나 조작될 수 있으므로, 수집 범위를 넓히고 시간 정렬을 자동화하는 것이 증거 신뢰도를 지키는 방법임.
