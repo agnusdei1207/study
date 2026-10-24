@@ -78,6 +78,18 @@ SBOM 저장소·분석 (Dependency-Track)
 | 취약점 알림 과다 (Alert Fatigue) | 식별된 CVE 중 실제 호출되지 않는 취약점이 많아 개발자의 패치 업무가 마비 | VEX 문서화와 **도달 가능성 분석** (Call Graph Reachability Analysis, 호출 그래프로 취약 함수 도달 여부 판정) | 실제 악용 가능 취약점 비율, 패치 소요 시간 |
 | SBOM 자체의 위변조 | 빌드 파이프라인에 악성코드가 들어가도 SBOM에는 정상 구성만 기재되면 검증을 우회 | Sigstore(Cosign)로 개발사 서명, In-Toto로 공급망 단계 증명, 투명성 로그(Rekor) 기록 | 서명 검증 실패 건수 |
 
+```text
+[ SBOM 신뢰 확보 검증 흐름 ]
+
+SBOM 생성 (빌드 파이프라인)
+   ↓ 1. 개발사 서명
+Sigstore(Cosign) 서명 적용
+   ↓ 2. 공급망 단계 증명
+In-Toto 증명과 Rekor 투명성 로그 기록
+   ↓ 3. 취약점 판별
+도달 가능성 분석과 VEX로 악용 여부 판정
+```
+
 ## Ⅵ. SBOM(Software Bill of Materials)에 대한 기술사적 제언
 
 - 핵심 요약 : 조달 기준, 전사 관리 체계, AI 자재 확장을 묶어 SBOM을 일회성 제출물이 아닌 상시 관리 자산으로 운영하는 방향.
