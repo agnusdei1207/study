@@ -1,7 +1,7 @@
 ---
 title: "성능 튜닝(Performance Tuning)"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:40:52+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
@@ -9,72 +9,95 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
 
-## Ⅰ. 성능 튜닝(Performance Tuning)의 개요
+## 연관 키워드
 
-- 개념 : 정보시스템이 비즈니스 목표 성능(응답 시간: Response Time, 처리량: Throughput, 자원 이용률: Resource Utilization)을 충족할 수 있도록, 시스템 아키텍처의 하위 인프라(OS(Operating System), 네트워크, 하드웨어)부터 미들웨어(WAS(Web Application Server), JVM(Java Virtual Machine)), 데이터베이스(SQL(Structured Query Language), 인덱스), 애플리케이션 소스코드에 이르기까지 전 계층(Full-Stack)의 **병목** (Bottleneck) 요인을 과학적으로 측정하고 병목을 제거하여 성능을 극대화하는 종합 엔지니어링 최적화 활동.
-- 배경 및 필요성 : 트래픽 급증 시 무조건적인 하드웨어 증설(Scale-Up)은 막대한 비용을 유발함에도 **락** (Lock) 경합이나 비효율적 알고리즘으로 인해 선형적 성능 확장이 불가능한 **암달의 법칙** (Amdahl's Law) 한계에 직면함.
-- 핵심 목적 : 최소한의 하드웨어 자원으로 최대의 비즈니스 트랜잭션 처리, 병목 현상(Bottleneck) 근원 제거, 시스템 안정성 및 사용자 체감 응답 속도 극대화.
+- 성능 튜닝(Performance Tuning), 병목(Bottleneck), 응답 시간, 처리량, 자원 이용률
+- 암달의 법칙(Amdahl's Law), APM, 측정 우선(Measure-First), 엔드투엔드 모니터링
+- 실행 계획(Explain Plan), 복합 인덱스, 커넥션 풀, GC(Garbage Collection), 스레드 풀
+- 국소 최적화, 병목 전이, 성능 회귀 테스트, AIOps
 
-## Ⅱ. 시스템 전 계층 성능 튜닝 아키텍처 및 단계별 수행 절차
+## Ⅰ. 성능 튜닝의 개요
 
-- 도식 약어: GC(Garbage Collection), TCP(Transmission Control Protocol), IP(Internet Protocol), I/O(Input/Output).
+- 핵심 요약 : 측정으로 병목 계층을 찾아 제거하는 전 계층 최적화 활동이며, 하드웨어 증설 이전에 구조적 한계를 푸는 방법.
+- 개념 : 응답 시간, 처리량, 자원 이용률 목표를 맞추기 위해 운영체제(OS, Operating System), 네트워크, 미들웨어(WAS(Web Application Server)·JVM(Java Virtual Machine)), 데이터베이스, 애플리케이션의 전 계층에서 **병목** (Bottleneck) 요인을 측정하고 제거하는 **성능 튜닝** (Performance Tuning) 활동.
+- 배경 및 필요성 : 트래픽이 늘어날 때 무조건적인 증설은 비용이 크고, 락 경합이나 직렬화된 구간이 남아 있으면 **암달의 법칙** (Amdahl's Law)에 따라 증설 효과가 제한됨.
+- 주요 목적 : 최소 자원으로 비즈니스 트랜잭션 처리량을 극대화하고, 병목의 근원을 제거하며, 안정성과 사용자 체감 응답 속도를 개선하는 것.
+
+## Ⅱ. 성능 튜닝의 특징 및 장점
+
+- 핵심 요약 : 계층별 병목을 측정으로 찾고 지연이 집중된 계층부터 개선하는 방식이 적은 작업으로 큰 효과를 얻는 구조.
+
+1. 측정 우선 : **APM** (Application Performance Monitoring) 프로파일러로 지연 기여도를 수치화 → 추측에 의한 코드 수정을 막고 튜닝 효과를 검증.
+2. 병목 중심 개선 : 지연이 집중된 계층, 흔히 데이터베이스부터 손대는 방식 → 적은 작업으로 전체 지연을 크게 줄임.
+3. 계층 간 연계 : 애플리케이션, 런타임, 데이터베이스, 운영체제를 단계적으로 튜닝 → 한 계층의 개선이 다른 계층의 병목을 드러내는 현상을 관찰하며 대응.
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│ [ 엔터프라이즈 시스템 4대 계층 성능 튜닝 프레임워크 ]                  │
-│                                                                        │
-│   [ 1. 애플리케이션 계층 (Application Tier) ]                          │
-│    - 비효율적 알고리즘 개선 (O(N^2) -> O(N log N))          │
-│    - 캐싱(Redis/Local) 도입, 비동기 논블로킹(Event-Driven) I/O 전환    │
-│    - 불필요한 동기화 락 경합 제거, 연결 풀(Connection Pool) 최적화     │
-│                     │                                                  │
-│                     ▼                                                  │
-│   [ 2. 미들웨어 및 런타임 계층 (Middleware / WAS Tier) ]               │
-│    - JVM GC 튜닝: G1GC / ZGC 파라미터 최적화, Stop-the-World 최소화   │
-│    - 톰캣/Netty 스레드 풀(Thread Pool: Max/Min Threads) 사이징         │
-│                     │                                                  │
-│                     ▼                                                  │
-│   [ 3. 데이터베이스 계층 (Database Tier: 튜닝 효과 집중) ]      │
-│    - 비효율적 풀스캔 쿼리 튜닝, 실행 계획(Explain Plan) 분석           │
-│    - 복합 인덱스(Composite Index) 재설계, 카디널리티 고려 정렬       │
-│    - DB 버퍼 캐시 크기 증설, 락(Row/Table Lock) 대기 최소화           │
-│                     │                                                  │
-│                     ▼                                                  │
-│   [ 4. 운영체제 및 네트워크 계층 (OS & Network Tier) ]                 │
-│    - TCP/IP 커널 파라미터 튜닝: `somaxconn`, `tcp_tw_reuse`, 버퍼 크기  │
-│    - 파일 디스크립터(File Descriptor: ulimit) 상향, CPU 친화도 바인딩  │
-└────────────────────────────────────────────────────────────────────────┘
+[ 측정 기반 튜닝 절차 ]
+
+부하 측정 (APM·프로파일러)
+     ↓
+병목 계층 식별 (지연 기여도)
+     ↓
+개선 적용 (DB 우선 → WAS → OS)
+     ↓
+재측정과 회귀 검증
+     ↓ 목표 미달 시 반복
 ```
 
-- **성능 튜닝의 파레토 법칙** : 전체 시스템 성능 지연의 대부분은 데이터베이스(비효율적 SQL 및 인덱스 누락)에서 발생하므로, DB(Database) 튜닝을 최우선으로 수행하고 이후 WAS, OS 순으로 계층을 내려가며 튜닝.
-- **정량적 측정 기반 접근** (Measure-First) : 추측(Guesswork)에 의한 코드 수정을 엄격히 금지하고, **APM** (Application Performance Monitoring) 프로파일러를 통해 정확한 지연 시간 기여도(Latency Breakdown)를 수치화한 뒤 착수.
+## Ⅲ. 계층별 성능 튜닝의 구조
 
-## Ⅲ. 주요 계층별 성능 튜닝 핵심 대상 및 최적화 기법 비교
+- 핵심 요약 : 성능 문제는 전 계층에 걸쳐 있으며, 계층마다 고유한 병목 지점과 튜닝 대상이 있음.
 
-| 계층 구분 | 주요 성능 지연 병목 지점 | 핵심 튜닝 지표 및 파라미터 | 대표적 해결 기법 및 처방 |
+```text
+[ 계층별 튜닝 대상 ]
+
+애플리케이션 : 알고리즘, 캐시, 락 경합
+     ↓
+미들웨어·JVM : GC(Garbage Collection), 스레드 풀
+     ↓
+데이터베이스 : 실행 계획, 인덱스, 버퍼
+     ↓
+OS·네트워크 : 커널 파라미터, 파일 디스크립터
+```
+
+- 애플리케이션 계층 : 비효율 알고리즘을 개선하고, 캐싱과 비동기 I/O를 도입하며, 커넥션 풀과 동기화 범위를 조정함.
+- 데이터베이스 계층 : 풀스캔을 유발하는 쿼리를 실행 계획으로 분석하고, 복합 인덱스를 재설계하며, 버퍼 캐시와 락 대기를 줄임.
+
+## Ⅳ. 계층별 튜닝 대상과 기법의 비교 분석
+
+- 핵심 요약 : 계층마다 병목 증상과 측정 지표가 다르므로, 같은 증상이라도 원인 계층을 먼저 가려내야 튜닝 방향이 맞음.
+
+| 계층 | 주요 병목 지점 | 핵심 지표 | 대표 기법 |
 | :--- | :--- | :--- | :--- |
-| **애플리케이션** | N+1 조회 쿼리, 락 경합, 루프 내 I/O| 동기화 블로킹 시간, 응답시간 | 배치 페치(Batch Fetch), 로컬 캐시, 락프리 알고리즘 |
-| **JVM / WAS** | 빈번한 Full GC(Garbage Collection), 스레드 풀 고갈 | STW(Stop-the-World) 시간, 활성 스레드 수| ZGC/G1GC 채택, 힙 튜닝, 스레드 풀 큐 확장 |
-| **데이터베이스** | Full Table Scan, 잘못된 인덱스, 락 대기| Logical Reads, Buffer Cache Hit Ratio | 실행 계획(Explain) 분석, 커버링 인덱스, SQL 리팩토링|
-| **OS / 커널** | TCP(Transmission Control Protocol) 타임웨이트 소진, 컨텍스트 스위칭| CPU(Central Processing Unit) Steal, Context Switches, I/O Wait| `sysctl.conf` 네트워크 파라미터 최적화, epoll 전환|
-| **스토리지/망** | 디스크 I/O 병목, 네트워크 대역폭 포화| IOPS(Input/Output Operations Per Second), Average Queue Depth, RTT(Round-Trip Time) 지연 | NVMe(Non-Volatile Memory Express) SSD(Solid-State Drive) 교체, RAID(Redundant Array of Independent Disks) 재구성, 10GbE 전용망 분리|
+| 애플리케이션 | N+1 조회, 락 경합, 루프 내 I/O | 동기화 대기 시간, 응답 시간 | 배치 페치, 로컬 캐시, 락 범위 축소 |
+| JVM·WAS | 잦은 Full GC, 스레드 풀 고갈 | GC 일시정지 시간, 활성 스레드 수 | G1GC·ZGC 검토, 힙 튜닝, 스레드 풀 조정 |
+| 데이터베이스 | Full Table Scan, 부적절한 인덱스, 락 대기 | 논리 읽기 수, 버퍼 캐시 적중률 | 실행 계획 분석, 커버링 인덱스, SQL 재작성 |
+| OS·커널 | TIME_WAIT 소진, 컨텍스트 스위칭 과다 | 컨텍스트 스위치, I/O 대기 | 커널 네트워크 파라미터 조정, 이벤트 기반 I/O |
+| 스토리지·네트워크 | 디스크 I/O 포화, 대역폭 포화 | IOPS(Input/Output Operations Per Second), 평균 큐 깊이, RTT(Round-Trip Time) | NVMe(Non-Volatile Memory Express) SSD(Solid-State Drive) 전환, RAID(Redundant Array of Independent Disks) 재구성, 전용망 분리 |
 
-## Ⅳ. 성능 튜닝 프로젝트의 주요 한계점 및 해결 방안
+- 선택 기준 : 튜닝 대상은 측정된 지연 기여도가 가장 큰 계층으로 정하고, 기여도가 작은 계층은 나중으로 미룸.
 
-- 국소 최적화(Local Optimization)로 인한 타 계층 병목 전이 :
-  - 한계점 : 애플리케이션 코드를 튜닝하여 처리 속도를 높였더니 동시 쿼리가 폭증하여 하부 DB CPU가 100%로 뻗어버리는 병목 전이 현상.
-  - 해결 방안 : 시스템 전 계층을 아우르는 엔드투엔드(E2E, End-to-End) 모니터링 체계 하에서 단계적 부하 테스트 및 단계별 튜닝 적용.
-- 테스트 환경과 프로덕션 환경 간의 데이터/인프라 편차 :
-  - 한계점 : 개발 DB는 데이터가 수만 건에 불과하여 풀스캔도 빠르지만, 운영 DB는 수억 건이어서 동일 쿼리가 타임아웃 발생.
-  - 해결 방안 : 운영 데이터 볼륨과 통계 정보(Statistics)를 동일하게 복제한 성능 검증 전용 스테이징 환경 구축.
-- 과도한 인덱스 생성에 따른 DML(Data Manipulation Language, Insert/Update) 성능 저하 :
-  - 한계점 : 조회(Select) 성능을 위해 테이블 하나에 인덱스를 수십 개 생성하여 쓰기 작업 시 인덱스 재정렬 부하로 시스템 정체.
-  - 해결 방안 : 미사용 인덱스 정기 식별 및 삭제, 카디널리티가 높은 컬럼 중심의 결합 인덱스(Composite Index) 압축 설계.
+## Ⅴ. 성능 튜닝 프로젝트의 주요 한계와 방안
 
-## Ⅴ. 지속 가능한 고성능 시스템을 위한 기술사적 제언
+- 핵심 요약 : 국소 최적화에 따른 병목 전이, 테스트와 운영 환경의 데이터 편차, 과도한 인덱스가 주요 한계이며 엔드투엔드 측정, 운영 규모 검증 환경, 인덱스 정리로 대응.
 
-- CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인 내 성능 회귀 테스트(Performance Testing) 자동화 : 성능 튜닝을 프로젝트 말기에 수행하는 일회성 이벤트가 아니라, 코드 머지(PR, Pull Request) 단계마다 Locust/k6 기반의 자동화된 부하 테스트를 실행하여 응답 시간이 베이스라인보다 10% 이상 저하될 경우 배포를 즉각 차단해야 함.
-- AIOps(Artificial Intelligence for IT Operations) 기반의 실시간 자율 성능 이상 감지 체계 수립 : 고정 임계치(CPU 사용률) 기반 알람을 넘어, 시계열 머신러닝 알고리즘으로 평소 트래픽 패턴과 다른 미세한 지연 시간 이상 징후를 골든타임 내에 선제 감지하고 슬로우 쿼리를 자동 킬하는 지능형 운영 관제를 정착시킬 것을 제언함.
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| :--- | :--- | :--- | :--- |
+| 국소 최적화에 따른 병목 전이 | 애플리케이션 처리 속도를 높이자 동시 쿼리가 몰려 DB의 CPU(Central Processing Unit)가 포화 | 엔드투엔드 모니터링 아래 단계적 부하 테스트와 계층별 튜닝 | 계층별 자원 사용률, 병목 전이 발생 건수 |
+| 테스트와 운영 환경의 데이터 편차 | 개발 데이터가 적어 드러나지 않던 풀스캔과 타임아웃이 운영에서 발생 | 운영 데이터 볼륨과 통계 정보를 복제한 성능 검증 환경 구축 | 검증 환경과 운영 환경의 응답 차이 |
+| 과도한 인덱스에 따른 DML 저하 | 조회용 인덱스가 과다해 삽입과 갱신 때 재정렬 부하 발생 | 미사용 인덱스 정기 식별과 삭제, 카디널리티가 높은 컬럼 중심의 복합 인덱스 설계 | 쓰기 지연, 미사용 인덱스 수 |
+
+## Ⅵ. 지속 가능한 고성능 시스템을 위한 기술사적 제언
+
+- 핵심 요약 : 성능 관리는 프로젝트 말미의 일회성 이벤트가 아니라 배포 파이프라인과 운영 관제에 상시로 내장되어야 함.
+
+1. CI/CD(Continuous Integration/Continuous Delivery) 파이프라인에 성능 회귀 테스트를 자동화하여, 코드 병합 단계마다 부하 테스트를 실행하고 기준선 대비 응답 시간이 유의미하게 나빠지면 배포를 차단하는 체계를 두는 것이 바람직하다.
+2. 고정 임계치 알람을 넘어 시계열 분석으로 평소 패턴과 다른 지연 징후를 선제 감지하는 AIOps(Artificial Intelligence for IT Operations) 기반 운영 관제를 도입하여, 이상 구간의 원인 쿼리를 빠르게 식별하도록 해야 한다.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : 성능 튜닝은 측정으로 병목 계층을 찾아 제거하는 반복 공학 활동이며, 자동화된 회귀 검증이 그 효과를 지속시킴.
+- 시사점 : 증설보다 구조와 측정을 먼저 보는 습관이 비용 대비 성능을 높이는 가장 확실한 경로임.
