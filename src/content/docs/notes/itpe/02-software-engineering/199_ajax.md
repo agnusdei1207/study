@@ -1,7 +1,7 @@
 ---
 title: "AJAX(Asynchronous JavaScript and XML)"
 author: "agnusdei1207"
-date: "2026-10-01T23:00:00+09:00"
+date: "2026-10-25T00:07:34+09:00"
 tags:
   - "notes-software-engineering"
 sidebar:
@@ -9,7 +9,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -20,95 +20,78 @@ extra:
 
 ## Ⅰ. AJAX의 개요
 
-- 핵심 요약 : 전체 페이지 새로고침 없이 백그라운드 비동기 데이터 교환과 화면 일부 갱신을 구현하는 인터랙티브 웹 개발 기법.
-- 개념 : AJAX(Asynchronous JavaScript and XML)란 제시 제임스 개릿(Jesse James Garrett)이 2005년에 명명한 웹 프론트엔드 비동기 통신 기술로, 웹 브라우저에서 전체 웹 페이지를 새로고침(Reload)하지 않고 자바스크립트를 활용하여 백그라운드에서 웹 서버와 비동기적으로 소량의 데이터를 교환한 후 웹 페이지의 일부분만을 자바스크립트 DOM(Document Object Model) 조작으로 동적으로 갱신하는 인터랙티브 웹 개발 기법.
-- 배경 및 필요성 : 과거 웹의 동기식 요청-응답 모델에서 버튼 클릭 시마다 흰 화면이 깜빡거리며 전체 페이지가 다시 로딩되던 사용자 경험(UX, User Experience) 단절 해결 및 데스크톱 앱과 같은 매끄러운 반응성 제공.
-- 핵심 기술 스택 : XMLHttpRequest/Fetch API(Application Programming Interface), 자바스크립트 DOM 조작, JSON(JavaScript Object Notation)/XML(Extensible Markup Language) 데이터 직렬화, CSS(Cascading Style Sheets) 비동기 UI(User Interface) 제어.
+- 핵심 요약 : 전체 페이지를 새로고침하지 않고 백그라운드에서 데이터를 주고받아 화면 일부만 갱신하는 웹 개발 기법.
+- 개념 : **AJAX** (Asynchronous JavaScript and XML)는 2005년 제시 제임스 개릿(Jesse James Garrett)이 명명한 기법으로, 브라우저가 전체 페이지를 다시 읽지 않고 자바스크립트로 서버와 비동기 통신하여 받은 데이터로 **DOM** (Document Object Model) 일부를 동적으로 갱신하는 인터랙티브 웹 개발 방식.
+- 배경 및 필요성 : 기존 웹은 요청마다 전체 페이지가 다시 로딩되어 화면이 깜빡이고 사용자 흐름이 끊겨, 데스크톱 앱 같은 반응성이 필요해짐.
+- 핵심 기술 조합 : **XMLHttpRequest** (XHR)와 **Fetch API** (Application Programming Interface) 같은 비동기 호출 수단, 자바스크립트 DOM 조작, **JSON** (JavaScript Object Notation)이나 XML 기반 데이터 교환.
 
-## Ⅱ. AJAX의 특징
+## Ⅱ. AJAX의 특징 및 장점
 
-- 핵심 요약 : 논블로킹 통신과 부분 갱신, 경량 데이터 교환의 결합 체계.
+- 핵심 요약 : 논블로킹 통신, 부분 갱신, 경량 데이터 교환이 결합되어 반응성과 대역폭 효율을 함께 얻는 구조.
 
-1. 비동기(Non-blocking) 통신 : 응답 대기 중에도 사용자 조작 지속 가능.
-2. 부분 갱신 : DOM 조작 기반 화면 일부 영역만 동적 갱신.
-3. 경량 데이터 교환 : 전체 HTML(HyperText Markup Language)이 아닌 순수 데이터(JSON/XML)만 송수신.
-4. 핵심 기술 융합 : XMLHttpRequest/Fetch API, 자바스크립트, DOM, JSON/XML, CSS의 조합.
-5. SPA(Single Page Application) 등장의 기폭제.
+1. 비동기(Non-blocking) 통신 : 응답을 기다리는 동안에도 사용자 조작이 계속됨 → 화면 멈춤이 없어 체감 반응성 향상.
+2. 부분 갱신 : 필요한 영역만 DOM을 바꿈 → 화면 깜빡임이 사라지고 작업 흐름이 유지됨.
+3. 경량 데이터 교환 : 완전한 HTML(HyperText Markup Language) 대신 JSON 같은 순수 데이터만 송수신 → 전송량과 서버 렌더링 부담 감소.
+4. 기술 융합 : 비동기 호출, 자바스크립트, DOM, 데이터 포맷이 결합 → 웹 앱의 상호작용 수준을 끌어올림.
+5. 발전의 기반 : 화면 전환을 클라이언트가 맡는 **SPA** (Single Page Application) 등장의 기술적 토대가 됨.
 
 ## Ⅲ. AJAX의 구조 (흐름)
 
-- 핵심 요약 : 동기식 전체 재렌더링 모델과 비동기 부분 갱신 모델의 대비 구조.
-- 전통적 웹 통신 : HTTP(Hypertext Transfer Protocol) 동기식(Synchronous) 요청-응답 흐름.
+- 핵심 요약 : 요청마다 전체 페이지를 받아 다시 그리는 동기식 흐름과, 데이터만 받아 일부를 고치는 비동기식 흐름의 대비.
 
 ```text
-[ 전통적 웹 통신 : 동기식 (Synchronous) ]
-[ 브라우저 ]
-   │ (HTTP POST 요청)
-   ▼
-[ 웹 서버 ] ──> [ DB 처리 ]
-   │ (완전한 HTML 전체 페이지 반환)
-   ▼
+[ 전통적 웹 : 동기식 (Synchronous) ]
+[ 브라우저 ] 요청 (HTTP POST)
+          ↓
+[ 웹 서버 + DB 처리 ]
+          ↓ 완전한 HTML 전체 반환
 [ 전체 페이지 재렌더링 ]
- - 화면 멈춤, 흰 화면 깜빡임
+ 화면 멈춤, 깜빡임 발생
 ```
-
-- AJAX 비동기 통신 : 백그라운드 요청과 DB(Database) 처리의 분리, 비동기식(Asynchronous) 부분 갱신 흐름.
 
 ```text
-[ AJAX 웹 통신 : 비동기식 (Asynchronous) ]
-[ 브라우저 UI ]
- - 사용자 조작 계속 진행 (Non-blocking)
-   │ (백그라운드 통신)
-   ▼
-[ Fetch / XHR ]
-   │ (비동기 백그라운드 요청)
-   ▼
-[ 백엔드 API ] ──> [ DB 처리 ]
-   │ (순수 데이터만 수신 : JSON)
-   ▼
+[ AJAX : 비동기식 (Asynchronous) ]
+[ 브라우저 UI ] 사용자 조작 계속 진행
+          ↓ 백그라운드 요청 (XHR / Fetch)
+[ 백엔드 API + DB 처리 ]
+          ↓ 순수 데이터만 수신 (JSON)
 [ 자바스크립트 DOM 조작 ]
- - UI 일부 영역만 즉각 동적 갱신
+ UI 일부 영역만 즉시 갱신
 ```
 
-## Ⅳ. XMLHttpRequest와 모던 Fetch API 비교
+## Ⅳ. XMLHttpRequest와 모던 Fetch API의 비교
 
-- 핵심 요약 : 콜백 기반 레거시 XHR과 프로미스 기반 Fetch API의 프로그래밍 모델 차이.
+- 핵심 요약 : 이벤트 리스너 기반의 레거시 XHR과 프로미스 기반의 Fetch API는 같은 비동기 통신을 다른 프로그래밍 모델로 제공.
 
 | 비교 항목 | 레거시 XMLHttpRequest (XHR) | 모던 Fetch API |
-|---|---|---|
-| 프로그래밍 모델 | 복잡한 이벤트 리스너 기반 (`onreadystatechange`) | 모던 프로미스(Promise) 및 `async` / `await` 기반 |
-| 콜백 지옥 (Callback Hell) | 중첩된 콜백으로 가독성 및 에러 처리 취약 | 체이닝(`.then()`) 및 간결한 비동기 제어 |
-| 스트리밍 지원 | 응답 완료 후 전체 텍스트 수신 | ReadableStream을 통한 점진적 데이터 스트리밍 지원 |
-| 기본 쿠키 전송 | 동일 출처 요청 시 쿠키 자동 전송 | 기본적으로 쿠키 미포함 (`credentials: 'include'` 명시 필요) |
-| HTTP 에러 처리 | HTTP 404, 500 에러도 정상 resolve 처리됨 | 동일하게 resolve 처리 (`response.ok` 확인 필요) |
+| --- | --- | --- |
+| 프로그래밍 모델 | 이벤트 리스너 기반 (`onreadystatechange`) | 프로미스(Promise)와 `async` / `await` 기반 |
+| 중첩 콜백 | 콜백이 깊어지면 가독성과 오류 처리가 취약 | 체이닝과 `async` / `await`로 흐름이 단순함 |
+| 스트리밍 | 응답 완료 후 전체 데이터를 받는 방식이 기본 | ReadableStream으로 점진적 수신 가능 |
+| 쿠키 전송 | 같은 출처 요청에 쿠키 자동 포함 | 같은 출처에는 자동 포함, 교차 출처는 `credentials` 옵션 명시 필요 |
+| HTTP 오류 처리 | 404, 500도 요청 완료로 처리되어 상태 코드 직접 확인 | 404, 500도 resolve되므로 `response.ok` 확인 필요 |
 
-## Ⅴ. AJAX의 장점과 한계
+- 선택 기준 : 신규 코드는 Fetch API로 작성하고, 레거시 시스템 유지보수 구간에서만 XHR을 다룸.
 
-- 핵심 요약 : 매끄러운 UX·대역폭 절감의 장점과 히스토리 파손·SEO 취약·서버 부하의 한계 공존.
+## Ⅴ. AJAX의 한계와 방안
 
-- 장점
-  1. 화면 깜빡임 없는 매끄러운 사용자 경험(UX) 향상.
-  2. 소량 데이터 송수신을 통한 네트워크 대역폭 및 서버 자원 절감.
-  3. 사용자 조작과 서버 통신의 병행을 통한 애플리케이션 반응성 향상.
+- 핵심 요약 : 히스토리 파손, 검색 엔진 인덱싱 한계, 과도한 요청에 따른 서버 부하가 주요 한계이며 클라이언트 라우팅, 서버 렌더링, 요청 제어로 통제.
 
-- 한계점 1 : 브라우저 히스토리(뒤로가기/앞으로가기) 및 북마크 파손
-  - 한계점 : 페이지 전체 리로드 없이 화면 일부분만 비동기 갱신되므로, 브라우저 URL(Uniform Resource Locator)이 변경되지 않아 뒤로가기 버튼 클릭 시 이전 웹사이트로 이탈.
-  - 해결 방안 : HTML5 History API(`pushState`, `popstate`)를 활용한 클라이언트 라우팅 구현, 가상 URL 맵핑을 통한 딥링킹(Deep Linking) 보장.
-- 한계점 2 : 검색 엔진 크롤러 인덱싱(SEO, Search Engine Optimization) 한계
-  - 한계점 : 초기 HTML에 콘텐츠가 없고 AJAX 비동기 호출을 통해 렌더링되므로, 자바스크립트를 완벽히 해석하지 못하는 검색 엔진 봇에 빈 페이지 노출.
-  - 해결 방안 : 서버 사이드 렌더링(SSR, Server-Side Rendering) 병행, 사전 렌더링(Prerendering) 도구 활용 및 정적 HTML 스냅샷을 봇에게 서빙하는 동적 렌더링(Dynamic Rendering) 구성.
-- 한계점 3 : 잦은 비동기 API 요청으로 인한 서버 연결 풀(Pool) 고갈
-  - 한계점 : 실시간 검색어 자동완성 등 사용자 타이핑마다 비동기 요청을 무차별 전송하여 백엔드 API 게이트웨이 및 DB 커넥션 풀 마비.
-  - 해결 방안 : 클라이언트 단 디바운싱(Debouncing) 및 쓰로틀링(Throttling) 패턴 적용, 중복 요청 취소(AbortController) 및 HTTP 응답 캐싱(ETag) 적극 도입.
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| 브라우저 히스토리·북마크 파손 | URL이 바뀌지 않아 뒤로 가기 시 이전 사이트로 이탈 | HTML5 History API(`pushState`, `popstate`) 기반 클라이언트 라우팅과 URL별 딥링크 보장 | 뒤로 가기 이탈률, 북마크 복원 성공률 |
+| 검색 엔진 인덱싱 한계 | 초기 HTML에 콘텐츠가 없어 자바스크립트를 완전히 해석하지 못하는 크롤러에 빈 페이지 노출 | 서버 사이드 렌더링(SSR, Server-Side Rendering) 병행, 사전 렌더링(Prerendering) 활용 | 색인 페이지 수, 크롤링 오류율 |
+| 잦은 요청에 따른 서버 자원 고갈 | 입력마다 요청을 보내 API 게이트웨이와 DB(Database) 커넥션 풀에 부담 집중 | 디바운싱과 쓰로틀링 적용, `AbortController`로 중복 요청 취소, ETag 기반 응답 캐싱 | 초당 요청 수, 커넥션 풀 사용률 |
 
-## Ⅵ. 싱글 페이지 애플리케이션(SPA) 및 모던 웹을 위한 기술사적 제언
+- 장점 : 화면 깜빡임 없는 사용자 경험, 소량 데이터 송수신에 따른 대역폭과 서버 자원 절감, 통신과 조작의 병행으로 반응성 향상.
 
-- 핵심 요약 : CORS 보안 정책의 선제 통제와 RESTful JSON 기반 페이로드 최적화.
-- CORS(Cross-Origin Resource Sharing, 교차 출처 리소스 공유) 보안 정책의 선제적 통제 : 브라우저의 동일 출처 정책(SOP, Same-Origin Policy)에 따라 다른 도메인의 API를 AJAX로 호출할 때 발생하는 CORS 차단을 방지하기 위해, 백엔드 API Gateway에서 `Access-Control-Allow-Origin`, 프리플라이트(Preflight OPTIONS) 캐싱을 엄격하고 안전하게 설정.
-- RESTful JSON 기반의 페이로드 최적화 : 과거 무거운 XML 파싱 오버헤드를 탈피한 직관적인 경량 JSON 포맷의 표준 채택, 모바일 네트워크 대역폭 절감을 위한 Gzip/Brotli 압축 및 클라이언트 측 상태 관리(TanStack Query/SWR)를 결합한 자동 캐싱·중복 요청 제거 아키텍처 구축 권장.
+## Ⅵ. SPA 및 모던 웹을 위한 기술사적 제언
+
+- 핵심 요약 : 다른 출처의 API 호출을 위한 CORS(Cross-Origin Resource Sharing) 정책을 설계 단계에서 통제하고, JSON 기반 전송을 캐싱과 압축으로 최적화하는 방향.
+- CORS 정책의 선제 설계 : 브라우저의 **동일 출처 정책** (SOP, Same-Origin Policy)에 따라 다른 도메인 API를 호출할 때 차단되지 않도록, API 게이트웨이에서 허용 출처와 프리플라이트 응답 캐싱을 엄격하게 설정하는 것이 바람직하다.
+- 데이터 전송 최적화 : 개발 조직은 JSON 포맷을 표준으로 쓰고 Gzip이나 Brotli 압축을 적용하며, 클라이언트 측 데이터 캐시 라이브러리로 중복 요청을 줄이는 구조를 갖추는 것이 좋다.
 
 ## Ⅶ. 결론
 
-- 핵심 요약 : AJAX는 비동기 부분 갱신을 통한 인터랙티브 웹 구현의 근간 기술.
-- 요약 : XMLHttpRequest/Fetch 기반 비동기 통신과 DOM 부분 갱신으로 동기식 웹의 UX 단절 해소.
-- 시사점 : 히스토리 관리, SSR 대응, 요청 제어(디바운싱·캐싱), CORS 정책 설계가 모던 웹 품질 확보의 핵심.
+- 핵심 요약 : AJAX는 비동기 부분 갱신으로 인터랙티브 웹을 구현한 기반 기술.
+- 시사점 : 히스토리 관리, 서버 렌더링 병행, 요청 제어, CORS 정책이 함께 설계되어야 현대 웹의 품질이 확보됨.
