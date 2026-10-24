@@ -1,7 +1,7 @@
 ---
 title: "MODBUS"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:49:07+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -9,70 +9,99 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
+
+## 연관 키워드
+
+- MODBUS, PLC(Programmable Logic Controller), 마스터-슬레이브(Master-Slave), 기능 코드(Function Code)
+- 레지스터 맵, Modbus RTU, Modbus ASCII, Modbus TCP, MBAP 헤더
+- CRC-16, LRC, Modbus TCP Security, OPC UA, MQTT
+- 데이터 다이오드, 제로 트러스트(Zero Trust), IEC 62443
 
 ## Ⅰ. MODBUS의 개요
 
-- 개념 : 1979년 Modicon(현 Schneider Electric)이 **PLC**(Programmable Logic Controller) 간 통신을 위해 개발한 산업용 **마스터-슬레이브(Master-Slave / Client-Server)** 기반 **응용 계층** 통신 프로토콜.
-- 배경 및 필요성 : 스마트 공장 및 플랜트의 다양한 센서, 액추에이터, 계측기기, PLC 장비 간에 벤더 종속 없이 데이터를 모니터링하고 제어하기 위한 **개방형 표준 프로토콜** 요구 증대.
-- 핵심 목적 : 구조가 단순하고 구현이 용이한 산업 표준 제어 인터페이스 제공, 시리얼(RS-232/485) 및 **산업용 이더넷** 환경을 포괄하는 장비 제어 데이터 교환.
+- 핵심 요약 : 제어기와 현장 장비를 벤더와 무관하게 연결하기 위해 만들어진 산업용 응용 계층 통신 프로토콜.
+- 개념 : 1979년 Modicon(현 Schneider Electric)이 **PLC** (Programmable Logic Controller) 간 통신을 위해 개발한 **마스터-슬레이브** (Master-Slave) 구조의 산업용 응용 계층 프로토콜.
+- 배경 및 필요성 : 스마트 공장과 플랜트에는 센서, 구동기, 계측기, PLC가 서로 다른 벤더 제품으로 섞여 있어, 벤더에 종속되지 않고 데이터를 읽고 제어할 공통 규약이 필요함.
+- 주요 목적 :
+  1. 구조가 단순하고 구현이 쉬운 장비 제어 인터페이스 제공
+  2. 시리얼(RS-232, RS-485) 및 산업용 이더넷 환경에서 같은 데이터 모델 사용
+  3. 개방형 표준으로 장비 간 데이터 교환 보장
 
-## Ⅱ. MODBUS의 핵심 아키텍처 및 동작 메커니즘
+## Ⅱ. MODBUS의 특징 및 장점
+
+- 핵심 요약 : 단순한 질의-응답 구조와 표준화된 레지스터 모델이 구현 비용을 낮추고 장비 호환성을 높이는 방식.
+
+1. 마스터-슬레이브 질의 응답 : 마스터만 요청을 시작하고 슬레이브는 응답만 반환 → 통신 충돌이 적고 장비 측 구현이 단순함.
+2. **레지스터 모델** : 이산 입력, 코일, 입력 레지스터, 유지 레지스터의 4가지 메모리 영역으로 데이터를 주소 단위로 접근 → 장비별 데이터 구조를 같은 방식으로 다룸.
+3. **표준 기능 코드** : 01(Read Coils), 03(Read Holding Registers), 05, 06, 16 등 표준 코드 사용 → 벤더가 달라도 읽기와 쓰기 명령을 공통으로 처리.
+4. 이중 전송 방식 : 시리얼 기반 RTU와 이더넷 기반 TCP를 같은 데이터 모델로 지원 → 기존 장비와 신규 이더넷 장비의 공존.
+
+## Ⅲ. MODBUS의 구조 (흐름)
+
+- 핵심 요약 : 기능 코드와 데이터를 공통 프로토콜 데이터 단위(PDU, Protocol Data Unit)로 두고, 전송 방식에 따라 주소, 오류 검출, 헤더를 덧붙이는 프레임 구조.
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                   [ MODBUS 프레임 구조 및 전송 모드 ]                  │
-│                                                                        │
-│   [ 일반 프로토콜 데이터 단위 (PDU) ]                                  │
-│   ┌────────────────────────┬───────────────────────────────────────┐   │
-│   │ 기능 코드 (Function Code)│             데이터 (Data)             │   │
-│   │         1 Byte         │               N Bytes                 │   │
-│   └────────────────────────┴───────────────────────────────────────┘   │
-│                                                                        │
-│   [ MODBUS RTU 프레임 (Serial: RS-485/232) ]                           │
-│   ┌──────────┬──────────────┬──────────────────┬───────────────────┐   │
-│   │ 슬레이브 │  기능 코드   │      데이터      │     CRC-16        │   │
-│   │ 주소 1B  │    1 Byte    │     N Bytes      │     2 Bytes       │   │
-│   └──────────┴──────────────┴──────────────────┴───────────────────┘   │
-│   (프레임 간격: 최소 3.5 문자 전송 시간의 Idle 침묵 구간으로 구분)     │
-│                                                                        │
-│   [ MODBUS TCP 프레임 (Ethernet Port 502) ]                            │
-│   ┌─────────────────────────┬──────────────┬───────────────────────┐   │
-│   │     MBAP 헤더 (7 Byte)   │  기능 코드   │        데이터         │   │
-│   │ 트랜잭션ID/프로토콜/길이│    1 Byte    │       N Bytes         │   │
-│   └─────────────────────────┴──────────────┴───────────────────────┘   │
-└────────────────────────────────────────────────────────────────────────┘
+[ MODBUS RTU 프레임 ]
+
+슬레이브 주소 (1B)
+        ↓
+기능 코드 (1B)
+        ↓
+데이터 (NB)
+        ↓
+CRC-16 (2B)
 ```
 
-- **마스터-슬레이브 통신 메커니즘** : 마스터(Client)만 요청(Request)을 시작할 수 있으며, 주소 지정된 슬레이브(Server)는 요청된 기능 코드를 수행 후 응답(Response) 반환 (단방향 질의-응답).
-- 4가지 메모리 모델 (레지스터 맵) : 이산 입력(Discrete Inputs: 1비트 읽기전용), 코일(Coils: 1비트 읽기/쓰기), 입력 레지스터(Input Registers: 16비트 읽기전용), 유지 레지스터(Holding Registers: 16비트 읽기/쓰기).
-- **표준 기능 코드 (Function Code)** : 01(Read Coils), 03(Read Holding Registers), 05(Write Single Coil), 06(Write Single Register), 16(Write Multiple Registers).
+```text
+[ MODBUS TCP 프레임 ]
 
-## Ⅲ. MODBUS 전송 모드별 세부 비교 분석
+MBAP 헤더 (7B)
+트랜잭션 ID·프로토콜 ID·길이·유닛 ID
+        ↓
+기능 코드 (1B)
+        ↓
+데이터 (NB)
+```
 
-| 비교 항목 | MODBUS RTU | MODBUS ASCII | MODBUS TCP(Transmission Control Protocol) |
-|---|---|---|---|
-| 물리 계층 | RS-485 / RS-422 / RS-232 | RS-485 / RS-232 | Ethernet (IEEE(Institute of Electrical and Electronics Engineers) 802.3) |
-| 전송 계층 | 시리얼 통신 직접 | 시리얼 통신 직접 | TCP/IP (Port 502) |
-| 데이터 인코딩 | 8비트 바이너리 (Binary) | 2바이트 ASCII 문자열 | 8비트 바이너리 (Binary) |
-| 에러 검출 | CRC(Cyclic Redundancy Check)-16 (Cyclic Redundancy) | LRC (Longitudinal Redundancy Check) | TCP 체크섬 + 이더넷 FCS |
-| 프레임 구분 | 3.5 문자 시간의 무음(Silent) | 시작 콜론(`:`), 종료 CR/LF | MBAP 헤더의 길이 필드 |
-| 전송 효율 | 높음 (컴팩트 바이너리) | 낮음 (데이터량 2배) | 매우 높음 (고속 이더넷) |
+- **CRC** (Cyclic Redundancy Check) : RTU 프레임 끝에 붙여 전송 중 비트 오류를 검출하는 16비트 값.
+- **MBAP 헤더** (Modbus Application Protocol Header) : TCP 프레임 앞에 붙는 7바이트 헤더로, 트랜잭션 식별자와 길이 정보를 담아 요청과 응답을 짝지음.
+- 마스터가 요청하면 주소가 지정된 슬레이브가 기능 코드를 수행하고 응답을 돌려주는 단방향 질의-응답 구조.
 
-- **MBAP (Modbus Application Protocol) 헤더** : 트랜잭션 식별자(2B), 프로토콜 식별자(2B: 0=Modbus), 길이(2B), 유닛 식별자(1B)로 구성되어 세션 동기화 보장.
+## Ⅳ. MODBUS 전송 모드의 비교
 
-## Ⅳ. MODBUS의 주요 한계점 및 보안 해결 방안
+- 핵심 요약 : 시리얼 모드는 프레임 구분과 오류 검출 방식이 다르고, TCP 모드는 이더넷 계층의 오류 검출과 세션 관리에 기댐.
 
-- 인증 및 암호화 부재로 인한 심각한 사이버 보안 취약성 :
-  - 한계점 : 평문(Cleartext) 전송 및 접근 제어 부재로 스니핑, 비인가 레지스터 변조, 리플레이 공격, 스턱스넷(Stuxnet) 류의 제어 명령 위조에 완전 무방비.
-  - 해결 방안 : TLS(Transport Layer Security) 암호화 및 X.509 상호 인증이 결합된 Modbus TCP Security(포트 802) 표준 적용, OT(Operational Technology) 전용 산업용 방화벽 심층 패킷 검사(DPI, Deep Packet Inspection) 도입.
-- 슬레이브의 비동기적 긴급 이벤트 전송 불가 (Polling 한계) :
-  - 한계점 : 마스터의 폴링 없이는 슬레이브에 알람이나 긴급 장애가 발생해도 마스터에 자발적 통보 불가로 실시간성 저하.
-  - 해결 방안 : 긴급 알람 감시가 필요한 계통에는 이벤트 기반 푸시가 가능한 MQTT(Message Queuing Telemetry Transport), OPC(Open Platform Communications)-UA(Unified Architecture), CoAP(Constrained Application Protocol) 프로토콜로 점진적 전환 또는 게이트웨이 연계.
+| 비교 항목 | MODBUS RTU | MODBUS ASCII | MODBUS TCP |
+| --- | --- | --- | --- |
+| 물리 계층 | RS-485, RS-232 | RS-485, RS-232 | 이더넷 (IEEE(Institute of Electrical and Electronics Engineers) 802.3) |
+| 전송 계층 | 시리얼 직접 | 시리얼 직접 | TCP/IP (Transmission Control Protocol/Internet Protocol), 포트 502 |
+| 데이터 인코딩 | 8비트 이진 | 2바이트 ASCII 문자 | 8비트 이진 |
+| 오류 검출 | CRC-16 | LRC (Longitudinal Redundancy Check) | TCP 체크섬과 이더넷 프레임 검사 |
+| 프레임 구분 | 3.5 문자 시간의 무음 구간 | 시작 콜론과 종료 CR/LF | MBAP 헤더의 길이 필드 |
+| 전송 효율 | 높음 | 낮음 (데이터량 약 2배) | 매우 높음 |
 
-## Ⅴ. MODBUS 적용 및 발전을 위한 기술사적 제언
+- 선택 기준 : 기존 시리얼 장비는 RTU가 표준이고, 디버깅이 중요한 저속 구간에는 ASCII가 쓰이며, 신규 이더넷 구간은 TCP를 사용.
 
-- 레거시 OT 망의 제로 트러스트(Zero Trust) 격리 : 현장에 기 설치된 수많은 레거시 MODBUS RTU/TCP 장비를 전면 교체하기 어려우므로, OT 마이크로 세그멘테이션 및 일방향 전송 장비(데이터 다이오드) 배치 의무화.
-- OPC-UA 기반의 스마트 제조 표준 통일 : 필드 레벨의 단순 I/O는 MODBUS를 유지하되, MES(Manufacturing Execution System)/SCADA(Supervisory Control and Data Acquisition) 및 클라우드 연동 상위 레벨은 보안과 시맨틱 모델링이 우수한 OPC-UA로 캡슐화 변환.
-- 산업 안전 규격(IEC(International Electrotechnical Commission) 62443) 준수 체계화 : MODBUS 통신 구간 전체에 대해 위험성 평가를 수행하고, 시스템 보안 수준(Security Level) 목표에 맞춘 암호화 터널링(IPsec/MACsec) 강제.
+## Ⅴ. MODBUS의 한계와 방안
+
+- 핵심 요약 : 인증과 암호화가 없는 평문 구조가 가장 큰 한계이며, 보안 전송 계층과 산업용 침입 탐지로 통제하고, 폴링 한계는 이벤트 기반 프로토콜로 보완.
+
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| 인증·암호화 부재 | 평문 전송과 접근 제어 부재로 도청, 레지스터 변조, 리플레이 공격에 노출 | TLS(Transport Layer Security)와 상호 인증을 결합한 Modbus/TCP Security(포트 802) 적용, 산업용 방화벽의 심층 패킷 검사(DPI, Deep Packet Inspection) | 비인가 쓰기 명령 탐지 건수 |
+| 폴링 방식의 이벤트 지연 | 마스터가 물어보기 전에는 슬레이브가 알람을 전달할 수 없어 긴급 상황 인지가 늦음 | MQTT(Message Queuing Telemetry Transport), OPC UA(Open Platform Communications Unified Architecture), CoAP(Constrained Application Protocol) 기반 게이트웨이 연계 | 알람 전달 지연 시간 |
+
+## Ⅵ. MODBUS에 대한 기술사적 제언
+
+- 핵심 요약 : 현장 장비는 Modbus를 유지하고 상위 계층은 보안과 의미 모델이 있는 표준으로 옮기되, 레거시 구간은 제로 트러스트 관점으로 격리하는 방향.
+
+1. 레거시 구간의 격리 : 교체가 어려운 Modbus RTU와 TCP 장비가 많은 운영 기술(OT, Operational Technology) 구간에 제로 트러스트 원칙을 적용해 마이크로 세그멘테이션을 두고, 외부 방향으로는 데이터 다이오드를 배치할 필요가 있음.
+2. 상위 계층 표준 전환 : 현장 I/O는 Modbus를 그대로 두고, MES(Manufacturing Execution System), SCADA(Supervisory Control and Data Acquisition), 클라우드 연동 구간은 OPC UA로 변환하는 구조를 설계해야 함.
+3. 산업 보안 기준 준수 : IEC(International Electrotechnical Commission) 62443 기준으로 Modbus 통신 구간의 위험 평가를 수행하고, 목표 보안 수준에 맞춰 IPsec(Internet Protocol Security)이나 MACsec(Media Access Control Security) 같은 암호화 터널을 적용할 필요가 있음.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : MODBUS는 단순하고 널리 보급된 현장 제어 프로토콜이지만, 보안 설계가 없어 망 구조에서 보완해야 하는 프로토콜.
+- 시사점 : 현장 장비의 수명과 보안 요구를 함께 고려해 격리와 표준 전환을 병행하는 것이 산업 제어망 운영의 현실적 방향.
