@@ -1,7 +1,7 @@
 ---
 title: "스래싱"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:34:23+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
@@ -9,104 +9,91 @@ sidebar:
     text: "서브"
 extra:
   keyword_grade: "서브"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
 
-## Ⅰ. 스래싱(Thrashing)의 개요
+## 연관 키워드
 
-- 핵심 요약 : **스래싱**은 DoM 과도 증가로 페이지 부재가 폭증하여 CPU 이용률이 급락하는 시스템 마비 현상.
-- 개념 : **가상 메모리 페이징** (Paging) 시스템에서 시스템의 **다중 프로그래밍 정도** (Degree of Multiprogramming)가 과도하게 증가하여, 운영체제가 실제 유용한 CPU(Central Processing Unit) 연산 명령어를 실행하는 시간보다 프로세스 간 **페이지 부재** (Page Fault)를 해결하기 위해 페이지를 디스크 스왑 영역과 메모리 간에 교체(Page Swap In/Out)하는 입출력 시간이 훨씬 더 많아지는 비정상적 시스템 성능 고갈 상태.
-- 배경 및 필요성 : 한정된 물리 메모리 크기를 극복하고 시스템 처리량을 높이기 위해 동시에 여러 프로세스를 실행하지만, 활성 프로세스들의 **작업 집합** (Working Set) 총합이 물리 메모리 가용량을 초과할 때 급격한 붕괴가 발생함.
-- 핵심 목적 : 스래싱 발생 임계점 사전 감지, CPU 이용률 급락 방지, 적정 다중 프로그래밍 정도(DOM, Degree of Multiprogramming) 통제를 통한 시스템 수율 회복.
+- 스래싱(Thrashing), 다중 프로그래밍 정도(DoM, Degree of Multiprogramming), 페이지 부재(Page Fault), 작업 집합(Working Set)
+- 지역성(Locality), 페이지 부재 빈도(PFF, Page Fault Frequency), 전역 교체(Global Replacement), 지역 교체(Local Replacement)
+- PSI(Pressure Stall Information), zRAM, cgroups v2, OOM(Out of Memory) Killer, 스왑 공간(Swap Space)(Swap Space)
 
-## Ⅱ. 스래싱(Thrashing)의 특징 및 장점
+## Ⅰ. 스래싱의 개요
 
-- 핵심 요약 : **DoM 임계점 초과·워킹셋·PFF**로 스래싱 제어.
-1. **임계 프레임 미달** : 프로세스가 원활히 실행되기 위한 최소한의 지역성 페이지 수(지역 세트)를 보장받지 못해 명령어를 단 한 줄 실행할 때마다 페이지 부재 발생.
-2. **워킹셋(Working Set) 모델** : 프로세스가 특정 시점에 원활히 수행되기 위해 반드시 메모리에 유지되어야 하는 페이지들의 집합으로, 지역성(Locality)에 기반함.
-3. **페이지 부재 빈도(PFF) 알고리즘** : 프로세스의 페이지 부재 비율을 지속 측정하여 상한선(Upper Bound)을 넘으면 프레임을 더 주고, 하한선(Lower Bound) 밑으로 떨어지면 프레임을 회수.
+- 핵심 요약 : **스래싱** (Thrashing)은 동시 실행 프로세스가 과도해져 페이지 교체가 폭증하고 CPU 이용률이 급락하는 시스템 마비 현상.
+- 개념 : 가상 메모리 페이징 시스템에서 **다중 프로그래밍 정도** (DoM, Degree of Multiprogramming)가 지나치게 커져, CPU(Central Processing Unit)가 실제 명령을 수행하는 시간보다 **페이지 부재** (Page Fault)를 처리하며 페이지를 메모리와 디스크 사이에 교체하는 시간이 더 많아지는 성능 붕괴 상태.
+- 배경 및 필요성 : 한정된 물리 메모리에서 처리량을 높이려고 다중 프로그래밍을 늘리지만, 활성 프로세스들의 **작업 집합** (Working Set) 합계가 물리 메모리를 넘는 순간 급격한 붕괴가 발생함.
+- 주요 목적 : 임계점을 사전에 감지하고 적정 다중 프로그래밍 정도를 유지해 CPU 이용률과 처리량을 지키는 것.
 
-## Ⅲ. 스래싱(Thrashing)의 구조 및 동작 메커니즘
+## Ⅱ. 스래싱의 특징 및 장점
 
-- 핵심 요약 : **DoM 증가 → 페이지 부재 폭증 → CPU 이용률 0** 악순환.
-- 스래싱은 'DoM 증가 -> 프로세스당 프레임 감소 -> 페이지 부재 폭증 -> 디스크 큐 포화 및 CPU 대기 -> OS가 프로세스 추가 투입'이라는 치명적 피드백 루프로 전개됨.
+- 핵심 요약 : 지역성 기반 프레임 추정, 작업 집합 기준의 사전 예방, 부재 빈도 기반의 사후 조정이 결합되어 스래싱을 제어함.
+
+1. **지역성** (Locality) : 프로세스는 최근 참조한 페이지 주변을 집중 참조하는 성질이 있어, 이를 근거로 필요한 최소 프레임 수를 추정 → 프레임 낭비와 과다 교체를 줄임.
+2. 작업 집합 (Working Set) : 원활한 수행을 위해 메모리에 유지해야 할 최근 참조 페이지의 집합으로 정의 → 집합 합계가 물리 메모리를 넘으면 프로세스를 중단시키는 사전 예방 기준이 됨.
+3. **페이지 부재 빈도** (PFF, Page Fault Frequency) : 프로세스별 부재율을 측정해 상한을 넘으면 프레임을 추가하고 하한 아래로 떨어지면 회수 → 실시간 피드백으로 과다 할당과 부족을 함께 조정.
+
+## Ⅲ. 스래싱의 구조 (흐름)
+
+- 핵심 요약 : DoM 증가가 프로세스당 프레임 부족과 페이지 부재 폭증을 부르고, 이 과정이 CPU 대기와 추가 투입으로 이어지는 악순환 구조.
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│ [ 다중 프로그래밍 정도 (DOM) 증가에 따른 스래싱 발생 곡선 및 악순환 ] │
-│                                                                        │
-│   CPU 이용률 (%)                                                       │
-│     ▲                                                                  │
-│     │              임계점 (Thrashing Threshold)                        │
-│     │                 ┌───┐                                            │
-│     │                /     \                                           │
-│     │               /       \ ──> 급격한 성능 붕괴 (Thrashing 발생!)    │
-│     │              /         \                                         │
-│     │             /           \                                        │
-│     │            /             \                                       │
-│     └───────────┴───────────────┴─────────────────────────────> DOM     │
-│             [정상 가동 영역]   [스래싱 영역: I/O 포화, CPU 저조]   │
-│                                                                        │
-│   ─── [ 스래싱의 자기 증폭 악순환 루프 (Vicious Cycle) ] ───────────   │
-│                                                                        │
-│   (1) 프로세스 증가 -> 각 프로세스당 할당 프레임 수 부족               │
-│         │                                                              │
-│         ▼                                                              │
-│   (2) 빈번한 페이지 폴트(Page Fault) 발생 -> 스왑 디바이스 대기 큐 폭증 │
-│         │                                                              │
-│         ▼                                                              │
-│   (3) 모든 프로세스가 I/O 대기 상태 진입 -> CPU 이용률(Utilization) 급락│
-│         │                                                              │
-│         ▼                                                              │
-│   (4) OS 스케줄러가 CPU가 논다고 오판! -> 다중 프로그래밍 정도(DOM) 증가│
-│         │                                                              │
-│         └────── 더 많은 프로세스 적재! ──────> (1)로 회귀 (시스템 마비)│
-└────────────────────────────────────────────────────────────────────────┘
+[ 스래싱 악순환 루프 ]
+
+DoM 증가 (프로세스 추가 투입)
+      ↓
+프로세스당 프레임 부족
+      ↓
+페이지 부재 폭증 → 디스크 큐 포화
+      ↓
+CPU 이용률 급락 (모든 프로세스 I/O 대기)
+      ↓
+OS가 CPU 유휴로 오판 → DoM 추가 증가
 ```
 
-- OS(Operating System)의 잘못된 판단 메커니즘 : 전통적 CPU 스케줄러는 CPU 이용률이 낮아지면 시스템 자원이 유휴 상태인 것으로 판단하여, 처리량을 올리기 위해 메모리에 새로운 프로세스를 추가 투입함으로써 페이지 부재를 더욱 가속화하는 치명적 **피드백 루프** 형성.
+```text
+[ 임계점 도달 과정 ]
 
-## Ⅳ. 스래싱(Thrashing)의 비교
+DoM 증가 → CPU 이용률 상승
+      ↓
+작업 집합 합 > 물리 메모리
+      ↓
+임계점 통과
+      ↓
+DoM이 더 늘면 CPU 이용률 급락
+```
 
-- 핵심 요약 : **워킹셋 모델 vs PFF** 제어 메커니즘·프레임 할당·장단점·OS 적용 비교.
+- 오판 메커니즘 : 전통적인 CPU 스케줄러는 CPU 이용률이 낮아지면 자원이 유휴 상태라고 판단해 프로세스를 더 올리므로, 페이지 부재를 가속하는 피드백 루프가 형성됨.
 
-| 비교 항목 | 워킹셋 모델 (Working Set Model) | 페이지 부재 빈도 기법 (PFF: Page Fault Frequency) |
-| :--- | :--- | :--- |
-| 제안자 및 개념 | 피터 데닝(Peter Denning) 제안, 최근 $\Delta$ 시간 동안 참조된 페이지 집합 | 프로세스의 실제 발생 페이지 부재율을 측정하여 동적 조절 |
-| 동작 메커니즘 | $WSS_i(t, \Delta)$의 합 $\sum WSS_i > \text{총 메모리}$ 일 때 프로세스 스왑아웃 | 부재율이 상한(Upper Bound) 초과 시 프레임 추가 할당, 하한(Lower Bound) 미만 시 잉여 프레임 회수 |
-| 통제 방식 | **사전 예방적** (Proactive) 통제 | **사후 반응적** (Reactive) 피드백 제어 |
-| 장점 | 지역성 이론에 충실하며 이상적인 메모리 할당 보장 | 알고리즘 구현이 단순하며 오버헤드가 적음 |
-| 단점 및 한계 | 윈도우 크기($\Delta$) 최적값 선정이 어렵고 추적 부하 큼 | 페이지 폴트 발생 시점에만 반응하므로 순간 스래싱 발생 가능 |
-| OS 적용 | 개념적 이론 모델 (근사 기법 활용) | 리눅스 등 가변 프레임 할당에 활용 |
+## Ⅳ. 스래싱의 비교
 
-## Ⅴ. 스래싱(Thrashing)의 한계와 방안
+- 핵심 요약 : 작업 집합 모델은 사전 예방적으로, PFF는 부재 발생 후 사후 반응적으로 프레임을 조절하는 점이 핵심 차이.
 
-- 핵심 요약 : **식별 혼선·전역 교체 연쇄·HDD 병목**을 PSI·Local Replacement·zRAM/NVMe로 대응.
+| 비교 항목 | 작업 집합 모델 (Working Set Model) | 페이지 부재 빈도 기법 (PFF) |
+| --- | --- | --- |
+| 제안과 개념 | 데닝(Peter Denning)이 제안, 최근 일정 시간 동안 참조된 페이지 집합 | 실제 발생한 페이지 부재율을 측정해 프레임을 동적으로 조절 |
+| 동작 메커니즘 | 작업 집합 합계가 물리 메모리를 넘으면 프로세스 일부를 중단 | 부재율이 상한을 넘으면 프레임 추가, 하한 아래면 회수 |
+| 통제 방식 | 사전 예방적 (Proactive) | 사후 반응적 (Reactive) 피드백 |
+| 장점 | 지역성 이론에 충실해 이상적인 할당에 가까움 | 구현이 단순하고 오버헤드가 작음 |
+| 단점 및 한계 | 윈도우 크기 선정이 어렵고 참조 추적 부하가 큼 | 부재가 발생한 뒤 반응하므로 순간적 스래싱을 막기 어려움 |
 
-- 단순 고부하 CPU 사용과 스래싱 간의 식별 혼선 :
-  - 한계점 : 시스템 응답 지연 시 top/vmstat 모니터링에서 원인이 CPU 바운드 연산인지 메모리 스래싱인지 즉각 식별 난항.
-  - 해결 방안 : 리눅스 PSI(Pressure Stall Information) 지표 도입, `some` 및 `full` 메모리 스톨 지연율이 임계치를 초과하는지 실시간 감시.
-- 전역 페이지 교체(Global Replacement) 정책의 연쇄 희생양 문제 :
-  - 한계점 : 한 프로세스가 페이지 폴트를 일으켜 다른 정상 프로세스의 핵심 워킹셋 프레임을 빼앗아 전체 프로세스로 스래싱 전이.
-  - 해결 방안 : 자기 프로세스에 할당된 프레임 풀 내에서만 교체하는 지역 페이지 교체(Local Replacement) 정책 적용.
-- 스왑 디스크(HDD(Hard Disk Drive)/SATA(Serial Advanced Technology Attachment) SSD(Solid-State Drive))의 I/O 병목에 따른 시스템 완전 정지 :
-  - 한계점 : 느린 디스크로 스왑 I/O가 폭주할 때 커널 I/O 락이 걸려 SSH(Secure Shell) 접속 및 관리자 로그인조차 불가능.
-  - 해결 방안 : RAM(Random-Access Memory)의 일부를 압축하여 빠른 스왑으로 사용하는 zRAM/zswap 기술 필수 활성화, 초고속 NVMe(Non-Volatile Memory Express) 전용 스왑 파티션 분리.
+## Ⅴ. 스래싱의 한계와 방안
 
-## Ⅵ. 스래싱(Thrashing) 적용 제언
+- 핵심 요약 : 식별 혼선, 전역 교체의 연쇄 피해, 느린 스왑 장치의 병목을 스톨 지표 감시, 지역 교체, 압축 메모리와 고속 스왑으로 대응.
 
-- 핵심 요약 : **OOM Killer/cgroups v2·K8s Eviction/HPA**.
-- Linux OOM(Out of Memory) Killer 및 cgroups v2 메모리 보호 정책 최적화 : memory.high 스로틀링, memory.max 강제, 우선순위 낮은 배치 작업 OOM Killer 희생.
-- 쿠버네티스 노드 Eviction 및 HPA(Horizontal Pod Autoscaler) 연동 거버넌스 수립 : 노드 메모리 임계치 도달 시 Pod Eviction, 스왑 비활성화(swapoff).
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| 고부하 CPU 연산과 스래싱의 식별 혼선 | 응답이 느려질 때 CPU 바운드인지 메모리 스래싱인지 구분이 어려워 잘못된 조치 발생 | PSI(Pressure Stall Information) 지표의 `some`, `full` 메모리 스톨 비율을 실시간 감시 | 메모리 스톨 비율 |
+| 전역 교체의 연쇄 피해 | 한 프로세스의 부재가 다른 정상 프로세스의 프레임을 빼앗아 전체 스래싱으로 전파 | 프로세스별 프레임 풀 안에서만 교체하는 **지역 교체** (Local Replacement) 정책 적용 | 프로세스별 부재율 편차 |
+| 느린 스왑 장치의 I/O 병목 | 스왑 I/O가 몰리면 커널 I/O 대기가 길어져 관리자 접속까지 지연 | zRAM으로 메모리를 압축해 빠른 스왑으로 쓰고, 고속 NVMe(Non-Volatile Memory Express) 장치에 스왑 공간을 분리 | 스왑 I/O 대기 시간, 스왑 사용량 |
+
+## Ⅵ. 스래싱의 적용 제언
+
+- 핵심 요약 : 운영체제의 메모리 상한 정책과 컨테이너 오케스트레이터의 축출 정책을 함께 설계해, 스래싱이 노드 전체로 번지기 전에 워크로드를 격리하는 것이 바람직함.
+- 메모리 상한 설정 : 리눅스 cgroups v2의 memory.high로 과도한 사용을 스로틀링하고 memory.max로 상한을 강제하며, 우선순위가 낮은 배치 작업을 OOM(Out of Memory) Killer의 우선 희생 대상으로 지정함.
+- 노드 수준 운영 : 쿠버네티스에서는 노드 메모리 임계치에 도달하면 파드를 축출(Eviction)하고, 수평 파드 자동 확장(HPA, Horizontal Pod Autoscaler)과 연계해 부하를 분산하며, 스왑 사용 원칙을 명문화하는 것이 바람직함.
 
 ## Ⅶ. 결론
 
-- 핵심 요약 : 스래싱은 **DoM 과도 증가**로 인한 시스템 마비 현상으로 워킹셋·PFF로 제어하나 식별 혼선·연쇄 희생양·HDD 병목 리스크 관리가 필수.
-- 스래싱은 다중 프로그래밍 정도가 과도해져 페이지 부재가 폭증하고 CPU 이용률이 0으로 곤두박질치는 현상으로, 워킹셋·PFF로 제어하지만 식별 혼선·연쇄 희생양·HDD 병목 리스크를 PSI·Local Replacement·zRAM/NVMe로 관리해야 함.
-- 답안에는 DoM 임계점, 워킹셋/PFF 비교, 스래싱 악순환, 한계·대응, OOM Killer·K8s Eviction 제언을 연결. (Degree of Multiprogramming, DoM) (Working Set, WSS) (Page Fault Frequency, PFF) (PSI, Pressure Stall Information) (OOM Killer) (Local Replacement) (zRAM, zswap) (Swap Space) (Virtual Memory Paging) (Thrashing Threshold) (Vicious Cycle) (Feedback Loop) (Page Swap In/Out) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (SwapSpace) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (SwapSpace) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (SwapSpace) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (Swap Space) (SwapSpace) ... [truncated]
-```
-
-The old 102_interconnection_network.md is very long and the tool call got truncated. But I already have the content from the earlier read (lines 1-75). Let me write a concise version based on what I read earlier. I'll compose it now without re-reading.
-
-Actually I already read it fully earlier (75 lines). Let me write the rewritten version concisely.<|end|><|start|>start<|channel|>assistant to=write<|channel|>analysis <|constrain|>xml<|message|><rfl:parameter name="path">
-C:\workspace\study\src\content\docs\notes\itpe\04-computer-system\102_interconnection_network.md
+- 핵심 요약 : 스래싱은 다중 프로그래밍 정도가 과도해져 페이지 교체가 CPU를 잠식하는 시스템 마비 현상임.
+- 시사점 : 작업 집합 기반의 예방과 지역 교체, 스왑 장치 분리를 함께 적용해야 스래싱이 처리량 붕괴로 이어지는 것을 막을 수 있음.
