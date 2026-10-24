@@ -1,7 +1,7 @@
 ---
 title: "MQTT(Message Queuing Telemetry Transport)"
 author: "agnusdei1207"
-date: "2026-10-01T23:50:00+09:00"
+date: "2026-10-24T22:50:25+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -9,73 +9,90 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Gemini 3.8 Flash"
+  model: "Claude Haiku 5.5"
 ---
 
-## Ⅰ. MQTT(Message Queuing Telemetry Transport)의 개요
+## 연관 키워드
 
-- 개념 : 대역폭이 제한적이고 지연이 크며 불안정한 네트워크 환경에서 경량 센서 기기 간에 메시지를 신뢰성 있게 교환하기 위해 IBM(International Business Machines)과 Arcom이 개발한 **발행-구독(Publish-Subscribe)** 기반의 ISO(International Organization for Standardization) 표준(ISO/IEC(International Electrotechnical Commission) 20922) 메시징 프로토콜.
-- 배경 및 필요성 : 석유 파이프라인 원격 감시 등 위성 통신 구간의 극심한 대역폭 제약과 배터리 소모를 극복하고, 수백만 대의 동시 접속 디바이스에 데이터를 비동기 브로드캐스트할 아키텍처 필요.
-- 핵심 목적 : 최소 2바이트 고정 헤더를 통한 네트워크 오버헤드 극소화, 송수신자 간의 시간·공간적 결합 분리(Decoupling), 3단계 **QoS**(Quality of Service) 제어를 통한 데이터 전송 신뢰성 보장.
+- MQTT(Message Queuing Telemetry Transport), 발행-구독(Publish-Subscribe), 브로커(Broker), 토픽(Topic)
+- QoS(Quality of Service), LWT(Last Will and Testament), Retained Message, Keep Alive
+- 와일드카드(+, #), 공유 구독(Shared Subscription), MQTT-SN, 세션 만료 간격(Session Expiry Interval)
+- 단일 장애점(SPOF, Single Point of Failure), mTLS, ACL(Access Control List), Apache Kafka
 
-## Ⅱ. MQTT의 핵심 아키텍처 및 동작 메커니즘
+## Ⅰ. MQTT의 개요
+
+- 핵심 요약 : 대역폭이 좁고 불안정한 망에서 경량 기기가 **발행-구독** 방식으로 메시지를 주고받는 ISO 표준 프로토콜.
+- 개념 : IBM과 Arcom이 개발하고 ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 20922로 표준화된 **발행-구독** (Publish-Subscribe) 기반의 경량 메시징 프로토콜 (MQTT, Message Queuing Telemetry Transport).
+- 배경 및 필요성 : 원격지의 센서가 위성 등 대역이 제한된 구간을 거쳐 데이터를 보내야 할 때, 기존 요청과 응답 방식은 장치마다 연결을 유지해야 해서 배터리와 대역을 낭비했다. 수많은 장치가 데이터를 발행하고 여러 시스템이 필요한 데이터만 받는 구조가 필요해졌다.
+- 핵심 목적 : 최소 2바이트 고정 헤더로 오버헤드를 줄이고, 송신자와 수신자를 시간과 공간 측면에서 분리하며, 3단계 **서비스 품질 수준** (QoS, Quality of Service)으로 전달 신뢰성을 선택.
+
+## Ⅱ. MQTT의 특징 및 장점
+
+- 핵심 요약 : 중앙 브로커를 통한 분리 구조와 가벼운 헤더, 상태 유지 기능이 결합되어 대규모 단말 운영을 쉽게 하는 방식.
+
+1. 발행-구독 분리 : 발행자와 구독자는 서로의 주소를 몰라도 되고, 브로커가 토픽 기준으로 전달 → 단말 수가 늘어도 연결 구조가 복잡해지지 않음.
+2. 시간 분리 : 구독자가 오프라인이어도 지속 세션을 쓰면 브로커가 메시지를 보관 → 단말이 잠시 끊겨도 데이터 유실이 줄어듦.
+3. 경량 헤더 : 최소 2바이트 고정 헤더 → 대역이 좁은 망에서도 메시지 오버헤드가 작음.
+4. 단계별 신뢰성 : QoS 0, 1, 2 중에서 메시지 중요도에 맞춰 선택 → 전력과 대역을 아끼거나 정확한 전달을 보장.
+5. 상태 감시 기능 : **유언 메시지** (LWT, Last Will and Testament, 비정상 단절 시 브로커가 대신 알리는 메시지), 보관 메시지, Keep Alive → 장애 감지와 최신 상태 제공.
+
+## Ⅲ. MQTT의 구조 (흐름)
+
+- 핵심 요약 : 발행자가 토픽에 메시지를 올리면 브로커가 와일드카드 규칙으로 구독자에게 전달하는 구조.
+- **토픽** (Topic) : 슬래시로 계층을 나눈 주제 이름이다. `+`는 한 단계, `#`는 하위 전체와 매칭되는 **와일드카드** (Wildcard)이다.
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                   [ MQTT 발행-구독 아키텍처 및 토픽 계층 구조 ]        │
-│                                                                        │
-│   [ 발행자 (Publisher) ]                                               │
-│   - 스마트 공장 온도 센서 ──────┐                                      │
-│                                │ PUBLISH "factory/line1/temp" = 28.5℃ │
-│                                ▼                                       │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │                 MQTT 메시지 브로커 (Broker)                    │   │
-│   │  - 세션 및 연결 관리 (Keep-Alive, PINGREQ/PINGRESP)            │   │
-│   │  - 토픽 필터링 및 매칭 (Wildcard: +, #)                        │   │
-│   │  - QoS 메시지 재전송 버퍼링 및 유언장(LWT) 실행                │   │
-│   │  - 지속 세션 (Clean Session = 0) 및 보관 메시지 (Retain)       │   │
-│   └───────────────┬────────────────────────────────┬───────────────┘   │
-│                   │                                │                   │
-│   구독자 A        │                                │ 구독자 B          │
-│   SUBSCRIBE       ▼                                ▼ SUBSCRIBE         │
-│   "factory/+/temp"                                 "factory/#"         │
-│   ┌───────────────────────────┐        ┌───────────────────────────┐   │
-│   │   현장 설비 관제 모니터   │        │   중앙 클라우드 빅데이터   │   │
-│   └───────────────────────────┘        └───────────────────────────┘   │
-└────────────────────────────────────────────────────────────────────────┘
+[ 발행-구독 흐름 ]
+
+온도 센서 (발행자)
+   ↓ PUBLISH factory/line1/temp = 28.5
+MQTT 브로커
+   ↓ 토픽 필터 매칭
+구독자 A : factory/+/temp  (설비 관제)
+구독자 B : factory/#       (클라우드 수집)
 ```
 
-- 발행-구독 (Pub/Sub) 3대 분리 특성 :
-  - **공간 분리 (Space Decoupling)** : 발행자와 구독자는 서로의 IP(Internet Protocol) 주소나 포트를 알 필요 없이 오직 브로커만을 통해 소통.
-  - **시간 분리 (Time Decoupling)** : 구독자가 오프라인 상태여도 브로커가 메시지를 보관했다가 재접속 시 전달 가능.
-  - **동기화 분리 (Synchronization Decoupling)** : 발행자는 메시지 송출 후 즉시 다른 작업을 수행하는 비동기 통신.
-- **토픽 계층 및 와일드카드 (Topic Hierarchy)** : `/` 구분자로 계층 표현 (`home/livingroom/temperature`).
-  - `+` (단일 레벨 와일드카드) : `home/+/temperature`는 `home/bedroom/temperature`와 매칭.
-  - `#` (다중 레벨 와일드카드) : `home/#`는 `home` 하위의 모든 서브 토픽과 매칭.
+```text
+[ QoS 2 교환 흐름 ]
 
-## Ⅲ. MQTT 세부 구성 요소 및 3단계 QoS 레벨 비교 분석
+발행자 → 브로커 : PUBLISH
+발행자 ← 브로커 : PUBREC (수신 기록)
+발행자 → 브로커 : PUBREL (해제 요청)
+발행자 ← 브로커 : PUBCOMP (완료)
+```
 
-| QoS 레벨 | 서비스 보장 수준 | 동작 메커니즘 (패킷 교환) | 네트워크 오버헤드 | 적합한 서비스 분야 |
-|---|---|---|---|---|
-| **QoS 0** | 최대 1회 전송 (At most once) | PUBLISH (단방향 1회 송신, ACK(Acknowledgment) 없음, 유실 가능) | 최소 (Fire-and-Forget) | 고주기 주기적 센서 데이터 (온도, 조도) |
-| **QoS 1** | 최소 1회 전송 (At least once) | PUBLISH ──► PUBACK ◄── (수신 확인 시까지 재전송, 중복 가능)| 중간 (1 RTT(Round-Trip Time)) | 긴급 알람 상태 경보, 임계치 초과 이벤트 |
-| **QoS 2** | 정확히 1회 전송 (Exactly once) | PUBLISH ──► PUBREC ◄── PUBREL ──► PUBCOMP ◄── (4-Step 완전 보장)| 높음 (2 RTT) | 결제 금융 트랜잭션, 원격 장비 셧다운 명령 |
+- 발행자 → 브로커 → 구독자 사이의 메시지 저장과 재전송은 브로커가 맡는다. 지속 세션을 쓰는 구독자가 재접속하면 브로커가 세션 상태에 따라 대기 중인 메시지를 전달한다.
 
-- **LWT (Last Will and Testament, 유언장)** : 클라이언트가 접속 시 브로커에 유언 메시지를 사전 등록하여, 단말이 비정상 단절(네트워크 장애 등)될 때 브로커가 대신 다른 구독자들에게 장애 사실을 통보.
-- **Retained Message (보관 메시지)** : 브로커가 특정 토픽의 최신 메시지를 영구 보관하여 신규 구독자가 접속하자마자 즉시 최신 상태를 수신하도록 보장.
-- **Keep Alive (생존 확인)** : PINGREQ와 PINGRESP를 교환하여 비활성 TCP(Transmission Control Protocol) 소켓의 단절 여부를 주기적으로 감시.
+## Ⅳ. MQTT QoS 레벨의 비교
 
-## Ⅳ. MQTT의 주요 한계점 및 해결 방안
+- 핵심 요약 : QoS는 전달 보장 수준과 교환 횟수가 함께 늘어나므로, 메시지 중요도와 망의 여건에 따라 고른다.
 
-- 중앙 브로커 병목 및 단일 장애점(SPOF, Single Point of Failure) 리스크 :
-  - 한계점 : 수십만~수백만 대의 IoT(Internet of Things) 디바이스가 단일 브로커로 집중될 경우 브로커의 CPU(Central Processing Unit) 및 메모리가 고갈되어 전체 IoT 시스템 붕괴.
-  - 해결 방안 : EMQX, HiveMQ 등 분산 클러스터링을 지원하는 브로커 도입 및 로드밸런서(HAProxy) 연동 분산 배치.
-- TCP 기반 동작에 따른 모바일 무선망 핸드오버 오버헤드 :
-  - 한계점 : 단말 이동 시 기지국 핸드오버나 전파 음영으로 TCP 연결이 끊기면 매번 TCP Handshake와 TLS(Transport Layer Security) 재수립으로 배터리 낭비.
-  - 해결 방안 : MQTT(Message Queuing Telemetry Transport) v5.0 세션 만료 간격(Session Expiry Interval) 최적화 또는 비연결형 UDP(User Datagram Protocol) 기반 `MQTT-SN (for Sensor Networks)` 프로토콜 채택.
+| QoS 레벨 | 보장 수준 | 패킷 교환 | 네트워크 오버헤드 | 적합 분야 |
+| --- | --- | --- | --- | --- |
+| QoS 0 | 최대 1회 (At most once) | PUBLISH 한 번, 확인 없음 | 최소 | 주기적인 온도, 조도 등 센서 데이터 |
+| QoS 1 | 최소 1회 (At least once) | PUBLISH 후 PUBACK 응답까지 재전송 | 중간 (왕복 1회) | 임계치 초과 같은 경보 이벤트 |
+| QoS 2 | 정확히 1회 (Exactly once) | PUBLISH, PUBREC, PUBREL, PUBCOMP | 높음 (왕복 2회) | 결제 거래, 원격 장비 정지 명령 |
 
-## Ⅴ. MQTT 적용 및 발전을 위한 기술사적 제언
+- 선택 기준 : 중복 수신이 허용되는지와 유실이 허용되는지를 먼저 정하고, 중복과 유실이 모두 허용되지 않을 때 QoS 2를 쓴다.
 
-- MQTT 5.0 신규 기능의 전면적 도입 : 사용자 프로퍼티(User Properties)를 통한 커스텀 헤더 전달, 이유 코드(Reason Code)를 통한 세부 오류 디버깅, 공유 구독(Shared Subscription)을 통한 백엔드 컨슈머 로드밸런싱 구현.
-- Zero Trust 기반 IoT 엔드포인트 보안 강화 : MQTT 브로커 앞단에 mTLS 상호 인증, JWT(JSON Web Token) 토큰 기반의 세분화된 토픽 접근 제어 목록(ACL, Access Control List), 데이터 페이로드 E2E(End-to-End) 암호화 필수 적용.
-- 클라우드 데이터 플랫폼(Kafka)과의 연계 파이프라인 구축 : 현장 에지 레벨에서는 초경량 MQTT 브로커를 운용하고, 백엔드 데이터 허브로는 대규모 스트리밍 처리가 가능한 Apache Kafka와 브릿지(Bridge) 커넥터로 연동하는 2계층 데이터 파이프라인 설계.
+## Ⅴ. MQTT의 한계와 방안
+
+- 핵심 요약 : 중앙 브로커 집중과 TCP 재연결 비용이 핵심 한계이며, 브로커 클러스터링과 세션 관리 기능으로 대응.
+
+| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| --- | --- | --- | --- |
+| 중앙 브로커 병목과 단일 장애점 (SPOF, Single Point of Failure) | 대규모 단말이 한 브로커에 몰리면 CPU와 메모리가 고갈되어 시스템 전체가 중단 | 클러스터링을 지원하는 브로커 (EMQX, HiveMQ 등)를 도입하고 로드밸런서로 분산 배치 | 연결 수, 브로커 자원 사용률 |
+| TCP 재연결 비용 | 이동 중 단말이 연결을 잃으면 TCP 연결과 TLS 재수립이 반복되어 배터리가 소모 | MQTT 5.0의 세션 만료 간격을 조정하거나, UDP 기반 MQTT-SN (MQTT for Sensor Networks) 채택 | 재연결 횟수, 재연결 소요 시간 |
+
+## Ⅵ. MQTT 적용 및 발전을 위한 기술사적 제언
+
+- 핵심 요약 : MQTT 5.0 기능 활용, 제로 트러스트 보안, 에지-클라우드 2계층 파이프라인 구축 방향.
+
+1. 운영 조직은 MQTT 5.0의 공유 구독으로 후단 소비자의 부하를 나누고, 이유 코드로 오류 원인을 빠르게 진단할 수 있게 해야 한다.
+2. 보안 조직은 브로커 앞단에 상호 TLS (mTLS)를 적용하고, JWT (JSON Web Token) 기반으로 토픽별 접근 제어 목록 (ACL)을 관리하며, 페이로드 종단 간 암호화를 기본값으로 두어야 한다. 이는 제로 트러스트 원칙을 단말 영역까지 넓히는 방법이다.
+3. 현장 에지에는 경량 브로커를 두고, 백엔드에는 Apache Kafka 같은 스트리밍 플랫폼을 브리지로 연결하는 2계층 파이프라인이 바람직하다.
+
+## Ⅶ. 결론
+
+- 핵심 요약 : MQTT는 발행-구독 분리와 QoS 선택으로 제약 망에서 대규모 단말 데이터를 안정적으로 모으는 표준 프로토콜.
+- 시사점 : 브로커가 시스템의 중심이므로, 브로커의 가용성과 접근 통제를 설계하는 일이 MQTT 도입의 성패를 가른다.
