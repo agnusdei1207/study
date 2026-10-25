@@ -1,15 +1,14 @@
 ---
-title: "모듈성(결합도·응집도)"
-author: "agnusdei1207"
-date: "2026-10-25T00:07:34+09:00"
+title: "모듈성(Modularity)과 결합도·응집도"
+description: "6단계 결합도·7단계 응집도, 고응집·저결합 원칙, 과도한 세분화·순환 의존·경계 침식 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -42,32 +41,32 @@ extra:
 ```text
 [ 결합도 : 낮을수록 바람직 ]
  자료 결합도 (Data Coupling)
-          ↓ 파라미터로 단순 값만 교환
+       ↓ 파라미터로 단순 값만 교환
  스탬프 결합도 (Stamp Coupling)
-          ↓ 데이터 구조 전체 전달
+       ↓ 데이터 구조 전체 전달
  제어 결합도 (Control Coupling)
-          ↓ 제어 플래그로 내부 흐름 지시
+       ↓ 제어 플래그로 내부 흐름 지시
  외부 결합도 (External Coupling)
-          ↓ 공통 프로토콜과 파일 형식 공유
+       ↓ 공통 프로토콜과 파일 형식 공유
  공통 결합도 (Common Coupling)
-          ↓ 전역 변수 공유
+       ↓ 전역 변수 공유
  내용 결합도 (Content Coupling)
 ```
 
 ```text
 [ 응집도 : 높을수록 바람직 ]
  기능적 응집도 (Functional)
-          ↓ 하나의 명확한 기능만 수행
+       ↓ 하나의 명확한 기능만 수행
  순차적 응집도 (Sequential)
-          ↓ 출력이 다음 요소의 입력으로 연결
+       ↓ 출력이 다음 요소의 입력으로 연결
  통신적 응집도 (Communicational)
-          ↓ 같은 데이터를 대상으로 작업
+       ↓ 같은 데이터를 대상으로 작업
  절차적 응집도 (Procedural)
-          ↓ 실행 순서에 따라 묶임
+       ↓ 실행 순서에 따라 묶임
  시간적 응집도 (Temporal)
-          ↓ 같은 시점에 실행되는 작업의 모임
+       ↓ 같은 시점에 실행되는 작업의 모임
  논리적 응집도 (Logical)
-          ↓ 성격만 비슷한 기능의 모임
+       ↓ 성격만 비슷한 기능의 모임
  우연적 응집도 (Coincidental)
 ```
 

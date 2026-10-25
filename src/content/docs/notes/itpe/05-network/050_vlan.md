@@ -1,7 +1,7 @@
 ---
 title: "VLAN(Virtual Local Area Network)"
 author: "agnusdei1207"
-date: "2026-10-24T22:48:45+09:00"
+date: "2026-10-25T14:20:00+09:00"
 tags:
   - "notes-network"
 sidebar:
@@ -9,98 +9,93 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
-  model: "Claude Haiku 5.5"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 연관 키워드
 
-- VLAN, IEEE 802.1Q, 브로드캐스트 도메인, 액세스 포트, 트렁크 포트
-- 인터 VLAN 라우팅, 사설 VLAN(PVLAN), Isolated·Community·Promiscuous 포트
-- VXLAN, Geneve, STP, MC-LAG, 802.1X, NAC
+- VLAN(Virtual Local Area Network), IEEE 802.1Q, 브로드캐스트 도메인
+- 액세스 포트, 트렁크 포트, 인터 VLAN 라우팅, 사설 VLAN(PVLAN)
+- VXLAN, 802.1X 인증, 마이크로 세그멘테이션
 
 ## Ⅰ. VLAN의 개요
 
-- 핵심 요약 : 물리 배선과 무관하게 스위치 안에서 브로드캐스트 도메인을 논리적으로 나누는 격리 기술.
-- 개념 : 물리적 토폴로지와 무관하게 스위치의 포트나 트래픽 특성을 기준으로 브로드캐스트 도메인을 논리적으로 분할·격리하는 **VLAN** (Virtual Local Area Network, 가상 근거리 통신망)이며, 표준은 IEEE(Institute of Electrical and Electronics Engineers) 802.1Q다.
-- 배경 및 필요성 : 하나의 L2 스위칭 영역에서 ARP(Address Resolution Protocol), DHCP(Dynamic Host Configuration Protocol) 같은 **브로드캐스트** 트래픽이 모든 노드로 전파되어 대역폭을 낭비하고, 부서나 보안 등급별 접근 통제도 어려워짐.
-- 주요 목적 : 브로드캐스트 도메인 격리로 성능 향상, 배선 변경 없는 유연한 재구성, **접근 제어 목록** (ACL, Access Control List) 연계로 보안 강화.
+- 핵심 요약 : 물리 배선과 무관하게 하나의 스위칭 영역을 논리 방 단위로 나누는 L2 격리 기술.
+- 개념 : 스위치의 포트와 프레임 태그를 기준으로 **브로드캐스트 도메인** (Broadcast Domain)을 논리적으로 분할하는 가상 근거리 통신망(**VLAN**, Virtual Local Area Network)이며, 프레임 형식 표준은 IEEE(Institute of Electrical and Electronics Engineers) 802.1Q다.
+- 배경 및 필요성 : 단일 L2 영역에서 ARP(Address Resolution Protocol) 같은 브로드캐스트 프레임이 전 단말로 확산되어 대역폭을 소모하고, 부서·보안 등급별 분리가 물리 배치에 종속되는 문제가 있었음.
+- 주요 목적 : 브로드캐스트 영역 격리를 통한 성능 확보, 배선 변경 없는 조직 단위 재구성, 보안 구역의 논리 분리.
 
 ## Ⅱ. VLAN의 특징 및 장점
 
-- 핵심 요약 : 프레임에 소속 태그를 붙여 하나의 물리 링크로 여러 논리 망을 나르고, 포트 역할에 따라 태그를 붙이거나 떼는 구조.
+- 핵심 요약 : 프레임 태그와 포트 역할의 조합이 하나의 물리 링크로 여러 논리 망을 나르는 구조와 운영 효율을 만드는 방식.
 
-1. 태그 기반 다중화 : 이더넷 프레임에 4바이트 **802.1Q 태그** (TPID(Tag Protocol Identifier)와 TCI(Tag Control Information)로 구성)를 삽입 → 하나의 링크로 여러 VLAN 트래픽을 전달해 배선 수 절감.
-2. 포트 역할 분리 : 액세스 포트는 단일 VLAN에 속하고 단말 쪽 프레임은 태그가 없으며, 트렁크 포트는 여러 VLAN 태그를 유지 → 단말은 VLAN을 의식하지 않고 스위치가 분류.
-3. 논리적 격리 : 브로드캐스트 도메인이 나뉘어 한 망의 폭풍이 다른 망으로 번지지 않음 → 성능 저하와 장애의 확산을 함께 차단.
-
-```text
-[ 802.1Q 태그 삽입 ]
-
-DMAC · SMAC · Type · Data · FCS
-              ↓ SMAC 뒤 4바이트 삽입
-DMAC · SMAC · TPID · TCI
-· Type · Data · FCS
-```
-
-```text
-[ TCI 2바이트 구성 ]
-
-PCP 3비트  : QoS 우선순위
-DEI 1비트  : 폐기 적격 표시
-VID 12비트 : VLAN ID (0~4095)
-```
+1. 태그 기반 식별 : 이더넷 프레임에 4바이트 **802.1Q 태그** (VLAN 소속 식별 정보)를 삽입 → 하나의 링크로 다중 VLAN 운반이 가능한 다중화 효과.
+2. 포트 역할 분리 : 단말 접속용 **액세스 포트** (Access Port)는 단일 VLAN으로 태그를 부착·제거하고, 스위치 간 **트렁크 포트** (Trunk Port)는 여러 VLAN 태그를 그대로 운반 → 단말이 VLAN을 의식하지 않는 운영 효율.
+3. 논리 격리 : VLAN 식별자가 다르면 L2 포워딩이 차단 → 브로드캐스트 폭풍과 장애의 확산 방지 효과.
+4. 정책 단위 제공 : VLAN 단위 필터링·품질 정책 적용 → 보안 경계와 서비스 기준의 관리 단위 확보 효과.
 
 ## Ⅲ. VLAN의 구조 (흐름)
 
-- 핵심 요약 : 같은 VLAN 안의 통신은 스위치가 처리하고, 서로 다른 VLAN 간 통신은 L3(네트워크 계층) 중계를 거치는 구조.
-- **인터 VLAN 라우팅** (Inter-VLAN Routing) : 논리적으로 분할된 VLAN 사이의 통신은 L2 스위치만으로 불가능하므로, L3 스위치의 SVI(Switch Virtual Interface)나 라우터(Router-on-a-Stick)에서 포워딩.
+- 핵심 요약 : 동일 VLAN 통신은 스위치가 태그로 완결하고, VLAN 간 통신은 L3 라우팅을 거치는 이중 구조.
 
 ```text
-[ VLAN 10 → VLAN 20 통신 ]
+[ 동일 VLAN 통신 ]
 
 단말 A (VLAN 10)
-      ↓ 액세스 포트 (태그 부착)
-L2 스위치 → 트렁크 링크
-      ↓
-L3 스위치 (SVI 라우팅)
-      ↓ 대상 VLAN 20으로 전달
+   ↓ 액세스 포트에서 태그 판별
+스위치 포워딩 (동일 VLAN)
+   ↓ 액세스 포트로 태그 제거 출력
+단말 B (VLAN 10)
+```
+
+```text
+[ VLAN 간 통신 ]
+
+단말 A (VLAN 10)
+   ↓ 트렁크 링크 경유
+L3 스위치 SVI 라우팅
+   ↓ VLAN 20으로 재전송
 단말 B (VLAN 20)
 ```
 
+- VLAN 간 전달 : 논리 분할로 직접 통신이 막힌 VLAN 사이를 잇는 **인터 VLAN 라우팅** (Inter-VLAN Routing)은 L3 스위치의 SVI(Switch Virtual Interface)나 라우터 서브인터페이스가 수행하는 구조.
+
 ## Ⅳ. VLAN 구성 방식의 비교
 
-- 핵심 요약 : 할당 기준이 물리 포트에서 단말 식별자, IP 대역으로 옮겨갈수록 이동성은 좋아지고 위조 위험은 커지는 구조.
+- 핵심 요약 : 할당 기준이 포트에서 단말·서브넷·포트 역할로 이동할수록 유연성은 커지고 설정 복잡도도 함께 커지는 구조.
 
-| 구분 | 포트 기반 VLAN | MAC 기반 VLAN | 서브넷 기반 VLAN | 사설 VLAN (PVLAN) |
+| 비교 축 | 포트 기반 | MAC 주소 기반 | 서브넷 기반 | 사설 VLAN |
 | --- | --- | --- | --- | --- |
-| 할당 기준 | 스위치의 물리 포트 번호 | 접속 단말의 MAC 주소 | 패킷의 L3 IP 서브넷 대역 | 동일 VLAN 내 포트 역할 |
-| 단말 이동 | 포트를 옮기면 재설정 필요 | 단말을 따라 VLAN 유지 | 단말 IP에 따라 자동 매핑 | 포트 역할에 따라 고정 |
-| 운영 복잡도 | 가장 단순, 널리 사용 | 단말 MAC 사전 등록 부담 | L3 헤더 검사로 오버헤드 | Primary·Secondary 매핑 필요 |
-| 보안성 | 물리 포트 탈취 시 취약 | MAC 스푸핑 위험 | IP 변조 위험 | 같은 VLAN 안에서도 통신 제한 |
+| 할당 기준 | 스위치 물리 포트 | 단말 MAC 주소 | 단말 IP 서브넷 | 동일 VLAN 내 포트 역할 |
+| 단말 이동 | 포트 재설정 필요 | 단말을 따라 유지 | IP에 따라 자동 | 역할에 따라 고정 |
+| 운영 부담 | 가장 단순 | MAC 사전 등록 | L3 검사 부담 | Primary·Secondary 매핑 |
+| 보안 특성 | 포트 탈취에 취약 | MAC 위조 위험 | IP 변조 위험 | 동일 VLAN 내 차단 |
 
-- **사설 VLAN** (PVLAN, Private VLAN) : 하나의 VLAN 안에서 포트 간 통신을 한 번 더 격리하는 방식.
-  - Isolated 포트 : Promiscuous 포트(게이트웨이)하고만 통신하고, 다른 Isolated 포트와는 차단.
-  - Community 포트 : 같은 커뮤니티끼리만 통신하고, 다른 커뮤니티와는 차단.
-  - Promiscuous 포트 : 모든 Isolated·Community 포트와 통신하는 상위 포트.
-- 선택 기준 : 관리 단순성이 우선이면 포트 기반, 단말 이동이 잦으면 MAC 기반, 같은 서브넷 내 단말 간 차단이 필요하면 사설 VLAN을 택함.
+- **사설 VLAN** (PVLAN, Private VLAN) : 하나의 VLAN 안에서 포트 역할로 통신을 한 번 더 제한하는 보조 구조.
+  1. Promiscuous 포트 : 게이트웨이처럼 모든 포트와 통신하는 상위 포트.
+  2. Isolated 포트 : 상위 포트하고만 통신하고 동급 포트와는 차단.
+  3. Community 포트 : 같은 커뮤니티 내에서만 상호 통신을 허용.
+- 선택 기준 : 관리 단순성이 우선이면 포트 기반, 단말 이동이 잦으면 MAC 주소 기반, 동일 서브넷 내 단말 간 차단이 필요하면 사설 VLAN을 택함.
 
 ## Ⅴ. VLAN의 한계와 방안
 
-- 핵심 요약 : VLAN ID 공간의 한계, 루프와 대역 낭비, 포트 기반 인증의 취약점을 오버레이와 인증 연계로 보완.
+- 핵심 요약 : 식별자 공간 한계와 루프 차단의 대역 낭비, 무단 접속을 오버레이·인증 연계로 보완.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| VLAN ID 공간 부족 | VLAN ID가 12비트라 4,096개 중 0과 4095를 뺀 4,094개만 사용 가능 → 대규모 테넌트 격리 불가 | 24비트 VNI(VXLAN Network Identifier) 기반 **VXLAN** (Virtual eXtensible LAN) 또는 Geneve로 L3 위에 L2 오버레이 구성 | 테넌트 수 대비 세그먼트 사용률 |
-| STP 루프와 대역 낭비 | 트렁크 확장 시 STP(Spanning Tree Protocol)가 중복 링크를 블로킹 → 다중 링크 대역 사용 저하 | MC-LAG(Multi-Chassis Link Aggregation) 또는 L3 기반 리프-스파인 구조 | 블로킹 포트 수, 링크 활용률 |
-| 포트 기반 인증 부재 | 물리 포트에 접속하면 신원 확인 없이 VLAN이 배정되어 무단 접속 위험 | 802.1X 인증과 NAC(Network Access Control) 연동 | 인증 실패율, 미인가 단말 차단 건수 |
+| 식별자 공간 한계 | VLAN ID가 12비트라 사용 가능 개수가 4,094개로 제한 → 대규모 테넌트 격리 불가 | 24비트 VNI(VXLAN Network Identifier)의 **VXLAN** (Virtual eXtensible LAN) 오버레이 전환 | 세그먼트 사용률 |
+| 루프 차단의 대역 낭비 | 이중화 링크가 STP(Spanning Tree Protocol)에 의해 차단 → 링크 활용률 저하 | MC-LAG(Multi-chassis Link Aggregation) 또는 L3 패브릭 구조 | 링크 활용률 |
+| 무단 접속과 위조 | 포트 접속만으로 VLAN 배정 → 미인가 단말의 내부 자원 접근 | 802.1X 인증과 NAC(Network Access Control) 연동 동적 배정 | 인증 실패율, 차단 건수 |
 
 ## Ⅵ. VLAN에 대한 기술사적 제언
 
-- 핵심 요약 : VLAN을 보안 경계의 전부로 보지 않고, 인증 기반 정책과 워크로드 단위 격리로 확장하는 방향.
+- 핵심 요약 : VLAN 격리를 보안 경계의 끝이 아니라 정책 세분화와 클라우드 연계, 설정 거버넌스의 출발점으로 삼는 방향.
 
-VLAN은 서브넷 단위의 거친 분리에 그치므로, 호스트 방화벽과 워크로드 단위 정책을 결합한 마이크로 세그멘테이션으로 점차 옮겨 가는 것이 바람직하다. 온프레미스 VLAN과 퍼블릭 클라우드의 VPC(Virtual Private Cloud)는 전용 회선이나 IPsec(Internet Protocol Security) VPN으로 연결하고, 두 환경의 보안 정책을 한 체계에서 관리하는 것이 필요하다. 포트 인증 결과에 따라 VLAN을 동적으로 배정하는 구조는 배선 변경 없이 사용자 권한과 단말 상태를 반영하는 기반이 된다.
+1. 보안 아키텍처 조직은 호스트·워크로드 단위의 **마이크로 세그멘테이션** (Micro-Segmentation)을 단계 도입해 VLAN의 거친 분리를 보완.
+2. 네트워크 운영 조직은 온프레미스 VLAN과 클라우드 VPC(Virtual Private Cloud) 구간을 전용선·IPsec(Internet Protocol Security) VPN으로 연결해 정책을 한 체계로 관리.
+3. 운영 거버넌스 조직은 VLAN 설정 변경을 자동화 도구와 설정 감사 절차로 통제해 설정 불일치를 방지.
 
 ## Ⅶ. 결론
 
-- 핵심 요약 : VLAN은 물리망 위에서 브로드캐스트 도메인과 접근 정책을 논리적으로 나누는 기본 격리 수단.
-- 시사점 : 규모가 커지면 VLAN ID 한계와 STP 문제가 드러나므로, 오버레이 기술과 인증 기반 정책으로 점진적으로 확장하는 것이 현실적이다.
+- 핵심 요약 : VLAN은 물리망 위에서 방 단위 논리 격리를 제공하는 네트워크 설계의 기본 단위.
+- 물리 배치와 무관한 논리 설계라는 특성이 조직 변화에 유연한 네트워크 운영의 기반이 되는 점이 함의.

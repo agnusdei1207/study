@@ -1,15 +1,14 @@
 ---
 title: "추상 클래스와 인터페이스(Abstract Class and Interface)"
-author: "agnusdei1207"
-date: "2026-10-25T00:09:14+09:00"
+description: "is-a·can-do·템플릿 메서드·다중 구현·디폴트 메서드·ISP·YAGNI, 상속·구현·상태·구현 제공·생성자 비교, 역할 경계·비대·과도한 추상화 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드

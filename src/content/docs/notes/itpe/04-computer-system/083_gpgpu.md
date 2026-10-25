@@ -1,7 +1,7 @@
 ---
 title: "GPGPU (General-Purpose computing on Graphics Processing Units)"
 author: "agnusdei1207"
-date: "2026-10-24T22:33:37+09:00"
+date: "2026-10-25T14:20:00+09:00"
 tags:
   - "notes-computer-system"
 sidebar:
@@ -9,91 +9,97 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
+  model: "GLM-5.3-Flash"
 ---
 
 ## 연관 키워드
 
-- GPGPU(General-Purpose computing on GPU), GPU(Graphics Processing Unit), CUDA
-- SIMT(Single Instruction, Multiple Threads), 워프(Warp), SM(Streaming Multiprocessor)
-- 지연 은폐, 공유 메모리, 텐서 코어, 데이터 병렬성
-- 워프 다이버전스, 메모리 결합(Memory Coalescing), PCIe 병목
+- GPGPU(General-Purpose computing on GPU), CUDA(Compute Unified Device Architecture)
+- SIMT(Single Instruction, Multiple Threads), 워프(Warp), 커널(Kernel)
+- 그리드·블록·스레드 계층, 지연 은폐(Latency Hiding), 공유 메모리(Shared Memory)
+- 워프 다이버전스(Warp Divergence), 메모리 결합(Memory Coalescing), 통합 메모리(Unified Memory)
+- PCIe, ROCm(Radeon Open Compute), SYCL
 
-## Ⅰ. GPGPU(General-Purpose computing on GPU)의 개요
+## Ⅰ. GPGPU의 개요
 
 - 핵심 요약 : **GPGPU** (General-Purpose computing on GPU)는 GPU의 대규모 병렬 연산 구조를 그래픽 외 범용 수치 계산에 활용하는 컴퓨팅 방식.
-- 개념 : 3차원 그래픽 처리를 위해 발전한 GPU(Graphics Processing Unit)의 병렬 연산 구조를 과학 계산, 암호 해독, 빅데이터 분석, 딥러닝 등 범용 수치 계산에 활용하는 방식과 그 프로그래밍 모델.
-- 배경 및 필요성 : 적은 수의 강력한 코어로 지연 시간을 줄이는 CPU(Central Processing Unit)만으로는 대규모 행렬 연산이 필요한 AI(Artificial Intelligence) 모델을 감당하기 어려워, 많은 연산 코어를 집적한 GPU의 병렬 처리 능력이 활용됨.
-- 주요 목적 : 데이터 병렬성에 기반한 높은 연산 처리량 확보와 와트당 연산 효율 향상.
+- 개념 : 그래픽 처리용으로 발전한 GPU(Graphics Processing Unit)의 다수 연산 코어를 과학 기술 계산, 딥러닝, 영상 분석 등 범용 연산에 활용하는 방식과 그 프로그래밍 모델.
+- 배경 및 필요성 : 소수의 고성능 코어로 지연 시간을 줄이는 CPU(Central Processing Unit)만으로 대규모 행렬 연산 중심의 AI(Artificial Intelligence) 워크로드를 감당하기 어려움.
+- 주요 목적 : 데이터 병렬성에 기반한 연산 처리량 극대화와 와트당 연산 효율 향상.
 
-## Ⅱ. GPGPU(General-Purpose computing on GPU)의 특징 및 장점
+## Ⅱ. GPGPU의 특징 및 장점
 
-- 핵심 요약 : 워프 단위 동시 실행, 지연 은폐, 온칩 공유 메모리가 결합되어 대량의 데이터를 동시에 처리하는 구조.
+- 핵심 요약 : SIMT 실행 모델과 지연 은폐, 공유 메모리, 계층적 프로그래밍 모델이 대량 데이터의 동시 처리를 실현하는 구조.
 
-1. **SIMT** (Single Instruction, Multiple Threads) 실행 모델 : 32개의 스레드를 **워프** (Warp) 단위로 묶어 같은 명령어를 여러 데이터에 동시에 적용 → 명령 발행 비용을 다수 스레드가 나눠 부담하여 처리량 증가.
-2. 지연 은폐 (Latency Hiding) : 메모리 접근으로 대기가 생긴 워프를 스케줄러가 연산 준비가 끝난 다른 워프로 교체 → 연산 유닛의 유휴 시간 감소.
-3. **공유 메모리** (Shared Memory) : 같은 SM(Streaming Multiprocessor) 안의 스레드 블록이 데이터를 함께 쓰는 프로그래머블 온칩 메모리 → 글로벌 메모리의 반복 접근 감소.
+1. **SIMT** (Single Instruction, Multiple Threads) 실행 모델 : 32개의 스레드를 **워프** (Warp) 단위로 묶어 한 명령을 여러 데이터에 동시 적용 → 명령 발행 비용을 다수 스레드가 분담하는 처리량 증가 효과.
+2. **지연 은폐** (Latency Hiding) : 메모리 접근으로 대기 중인 워프를 준비된 다른 워프로 즉시 교체 → 연산 유닛 가동률 유지 효과.
+3. **공유 메모리** (Shared Memory) : 같은 블록 내 스레드가 온칩 메모리에 데이터를 공유 → 글로벌 메모리의 반복 접근 감소 효과.
+4. 계층적 프로그래밍 모델 : **CUDA** (Compute Unified Device Architecture)가 **커널** (Kernel)을 그리드·블록·스레드 계층으로 구성 → 소프트웨어 계층과 하드웨어 계층의 대응에 따른 최적화 효과.
 
-## Ⅲ. GPGPU(General-Purpose computing on GPU)의 구조 및 동작 메커니즘
+## Ⅲ. GPGPU의 구조 (흐름)
 
-- 핵심 요약 : SM 안의 워프 스케줄러와 연산 코어, 온칩 메모리가 기본 실행 단위를 이루고 글로벌 메모리가 이를 뒷받침하는 계층 구조.
-- SM (Streaming Multiprocessor) : 워프 스케줄러, 연산 코어 어레이, 온칩 메모리를 묶은 GPU 내부의 기본 실행 단위.
+- 핵심 요약 : 커널 호출이 그리드→블록→워프→스레드 계층으로 분배되어 SM(Streaming Multiprocessor)에서 실행되는 구조.
+- SM : 워프 스케줄러와 연산 코어 어레이, 온칩 메모리를 묶은 GPU 내부의 기본 실행 단위.
 
 ```text
-[ GPU 실행 계층 ]
+[ CUDA 실행 계층 ]
 
-GPU 칩
-   ↓
-SM (Streaming Multiprocessor) 복수 배치
-   ↓
-워프 스케줄러 → 명령 발행 (워프 단위)
-   ↓
-연산 코어 어레이 (FP32, INT32, 텐서 코어)
-   ↓
-공유 메모리 / L1 캐시 (SM 내부)
+호스트(CPU)의 커널 호출
+      ↓
+그리드 (전체 스레드 집합)
+      ↓
+블록 (SM에 할당되는 단위)
+      ↓
+워프 (32스레드, 명령 발행 단위)
+      ↓
+스레드 (최소 연산 단위)
 ```
 
 ```text
 [ 메모리 계층 접근 경로 ]
 
-공유 메모리 · 레지스터 (SM 내부, 저지연)
-   ↓ 캐시 미스 시
-L2 캐시 (GPU 칩 공유)
-   ↓
-글로벌 메모리 (GDDR 또는 HBM)
+레지스터 · 공유 메모리 (블록 내부)
+      ↓ 캐시 미스 시
+L2 캐시 (GPU 칩 전체 공유)
+      ↓
+글로벌 메모리 (HBM(High Bandwidth Memory))
 ```
 
-## Ⅳ. GPGPU(General-Purpose computing on GPU)의 비교
+## Ⅳ. CUDA와 개방형 프로그래밍 모델의 비교
 
-- 핵심 요약 : CPU는 지연 시간 최소화를, GPGPU는 처리량 극대화를 목표로 설계되어 워크로드 성격에 따라 갈림.
+- 핵심 요약 : CUDA의 성숙한 단일 벤더 생태계와 ROCm·SYCL의 벤더 중립성·이식성이 각각 다른 요구에 대응하는 선택지.
 
-| 비교 항목 | CPU (Central Processing Unit) | GPGPU (General-Purpose GPU) |
-| :--- | :--- | :--- |
-| 설계 철학 | 지연 시간 최소화 (Latency-Oriented) | 처리량 극대화 (Throughput-Oriented) |
-| 코어 구성 | 소수의 복잡한 대형 코어 | 수천 개 이상의 단순한 연산 코어 |
-| 제어 로직 | 분기 예측과 비순차 실행 회로에 큰 면적 할당 | 단순한 제어 유닛, 면적 대부분을 연산에 배분 |
-| 캐시 메모리 | 대용량 다단계 캐시로 메모리 지연 완화 | 상대적으로 작은 캐시, 워프 전환으로 지연 은폐 |
-| 병렬 처리 단위 | 태스크 병렬성, 멀티스레딩 | 데이터 병렬성, SIMT |
-| 최적 워크로드 | 복잡한 제어 흐름, 순차 트랜잭션, OS 커널 | 대규모 행렬 연산, 영상 처리, 딥러닝 텐서 연산 |
+| 비교 축 | CUDA | ROCm | SYCL |
+| :--- | :--- | :--- | :--- |
+| 성격 | NVIDIA 자사 표준 생태계 | AMD 개방형 소프트웨어 스택 | Khronos 표준 단일 소스 모델 |
+| 대상 하드웨어 | NVIDIA GPU 계열 | AMD GPU | 다종 GPU·CPU·가속기 |
+| 생태계 성숙도 | 라이브러리와 프레임워크 최다 | 성장 단계 | 성장 단계 |
+| 이식성 | NVIDIA 계열에 한정 | CUDA 코드의 이식 도구 제공 | 이기종 백엔드 대응 |
 
-## Ⅴ. GPGPU(General-Purpose computing on GPU)의 한계와 방안
+- 선택 기준 :
+  1. 검증된 라이브러리와 즉시 성능이 우선이면 CUDA
+  2. AMD 하드웨어 자산의 활용이 전제이면 ROCm
+  3. 벤더 종속 완화와 장기 이식성이 목표이면 SYCL
 
-- 핵심 요약 : 워프 내 분기, 호스트와 디바이스 사이 전송, 비연속 메모리 접근을 각각 코드 구조와 메모리 설계로 통제.
+## Ⅴ. GPGPU의 한계와 방안
+
+- 핵심 요약 : 분기 분산, 전송 병목, 비연속 메모리 접근을 코드 구조와 메모리 배치 설계로 통제하는 체계.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | :--- | :--- | :--- | :--- |
-| **워프 다이버전스** (Warp Divergence) | 워프 내 스레드가 서로 다른 분기 경로를 타면 경로를 순차 실행하며 나머지 스레드가 대기 → 처리량 급락 | 분기 최소화, 조건문을 산술 마스킹으로 치환, 같은 경로를 타는 스레드끼리 재배치 | 워프 실행 효율 |
-| **PCIe** (Peripheral Component Interconnect Express) 전송 병목 | 호스트 메모리에서 GPU 메모리로의 복사가 연산보다 느려 대기 발생 | Unified Memory(통합 가상 메모리) 활용, 비동기 스트림으로 복사와 연산을 겹치는 파이프라이닝 | 호스트-디바이스 전송 대기 시간 |
-| **메모리 결합** (Memory Coalescing) 실패 | 워프 스레드가 흩어진 주소를 읽으면 한 번에 묶어 처리하지 못해 메모리 트랜잭션이 크게 늘어남 | AoS(Array of Structures)를 SoA(Structure of Arrays)로 재설계하여 연속 주소 접근 보장 | 메모리 대역폭 활용률 |
+| **워프 다이버전스** (Warp Divergence) | 워프 내 스레드의 분기 경로 분리 시 경로별 순차 실행 → 유휴 스레드 대기로 처리량 급락 | 조건문 최소화, 같은 경로의 스레드 재배치로 분기 통일 | 워프 실행 효율 |
+| **PCIe** (Peripheral Component Interconnect Express) 전송 병목 | 호스트 메모리와 GPU 메모리 간 복사가 연산보다 느림 → 대기 발생 | 통합 메모리(Unified Memory)와 비동기 스트림으로 복사·연산의 중첩 | 전송 대기 시간 |
+| **메모리 결합** (Memory Coalescing) 실패 | 워프 스레드의 흩어진 주소 접근으로 트랜잭션 급증 → 대역폭 낭비 | SoA(Structure of Arrays) 재설계로 연속 주소 접근 보장 | 대역폭 활용률 |
 
-## Ⅵ. GPGPU(General-Purpose computing on GPU)에 대한 기술사적 제언
+## Ⅵ. GPGPU에 대한 기술사적 제언
 
-- 핵심 요약 : 단일 벤더 생태계 의존을 줄이는 개방형 개발 환경과 저정밀도 연산 최적화를 병행하는 방향.
+- 핵심 요약 : 벤더 종속의 완화와 성능 엔지니어링 역량의 조직적 내재화가 필요.
 
-1. 특정 벤더의 CUDA 중심 생태계에 대한 의존 위험을 줄이기 위해, 조직의 개발 표준에 ROCm, oneAPI, SYCL 같은 개방형 프로그래밍 모델을 함께 포함하고 벤더 중립적인 커널 계층을 설계.
-2. 딥러닝 워크로드에서 텐서 코어가 지원하는 혼합 정밀도 연산은 같은 전력으로 더 많은 연산을 처리하게 하므로, 모델 정밀도 요구 수준을 먼저 검증한 뒤 저정밀도 연산을 적용하는 절차를 수립.
+1. 플랫폼 개발 조직은 커널 호출부를 추상화한 공용 라이브러리로 가속기 의존 코드를 한 지점에 격리하는 개발 표준 수립.
+2. 성능 엔지니어링 조직은 워크로드의 정밀도 요구 검증 후 텐서 코어의 혼합 정밀도(mixed precision) 연산을 적용하는 절차 표준화.
+3. 품질 보증 조직은 프로파일링 지표 점검 항목을 코드 리뷰 체크리스트에 포함하는 품질 관리 체계 운영.
 
 ## Ⅶ. 결론
 
-- 핵심 요약 : GPGPU는 SIMT 기반 대규모 병렬 처리로 CPU 대비 처리량을 크게 끌어올리지만, 워프 다이버전스·전송 병목·메모리 결합 실패를 함께 관리해야 하는 구조.
-- 시사점 : 데이터 병렬성이 큰 워크로드에서 효과가 두드러지며, 알고리즘과 메모리 배치를 GPU 구조에 맞게 설계하는 것이 성능의 전제가 됨.
+- 핵심 요약 : GPGPU는 SIMT 기반의 대규모 데이터 병렬 처리로 범용 연산 처리량을 끌어올리는 컴퓨팅 방식.
+- 시사점 : 실행 모델과 메모리 계층에 맞춘 알고리즘 설계가 성능의 전제이며, 프로그래밍 모델 선택은 생태계 성숙도와 이식성의 균형으로 결정.

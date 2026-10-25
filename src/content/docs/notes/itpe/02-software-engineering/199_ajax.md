@@ -1,15 +1,14 @@
 ---
 title: "AJAX(Asynchronous JavaScript and XML)"
-author: "agnusdei1207"
-date: "2026-10-25T00:07:34+09:00"
+description: "비동기 통신·XMLHttpRequest·Fetch API·DOM·JSON·SPA·SSR·CORS, 히스토리·인덱싱·서버 부하 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -42,9 +41,9 @@ extra:
 ```text
 [ 전통적 웹 : 동기식 (Synchronous) ]
 [ 브라우저 ] 요청 (HTTP POST)
-          ↓
+      ↓
 [ 웹 서버 + DB 처리 ]
-          ↓ 완전한 HTML 전체 반환
+      ↓ 완전한 HTML 전체 반환
 [ 전체 페이지 재렌더링 ]
  화면 멈춤, 깜빡임 발생
 ```
@@ -52,9 +51,9 @@ extra:
 ```text
 [ AJAX : 비동기식 (Asynchronous) ]
 [ 브라우저 UI ] 사용자 조작 계속 진행
-          ↓ 백그라운드 요청 (XHR / Fetch)
+      ↓ 백그라운드 요청 (XHR / Fetch)
 [ 백엔드 API + DB 처리 ]
-          ↓ 순수 데이터만 수신 (JSON)
+      ↓ 순수 데이터만 수신 (JSON)
 [ 자바스크립트 DOM 조작 ]
  UI 일부 영역만 즉시 갱신
 ```

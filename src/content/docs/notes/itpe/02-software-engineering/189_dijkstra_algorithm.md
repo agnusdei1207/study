@@ -1,15 +1,14 @@
 ---
 title: "다익스트라 알고리즘(Dijkstra Algorithm)"
-author: "agnusdei1207"
-date: "2026-10-25T00:07:34+09:00"
+description: "탐욕법·간선 완화·우선순위 큐·OSPF, 배열·이진 힙·피보나치 힙 비교, 음수 간선·큐 병목·A*·양방향 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -41,12 +40,12 @@ extra:
 ```text
 [ 1. 초기화 ]
  시작 노드 거리 0, 나머지 무한대
-          ↓
+      ↓
 [ 2. 우선순위 큐에 (0, 시작 노드) 삽입 ]
-          ↓
+      ↓
 [ 3. 큐가 빌 때까지 반복 ]
  a. 최소 거리 노드 u 추출
-          ↓
+      ↓
  b. 인접 노드 v에 간선 완화 적용
 ```
 
@@ -54,7 +53,7 @@ extra:
 [ 간선 완화 조건 ]
  d[v] > d[u] + weight(u, v) 이면
  d[v] = d[u] + weight(u, v) 로 갱신
-          ↓
+      ↓
  갱신된 (d[v], v)를 큐에 재삽입
 ```
 

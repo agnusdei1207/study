@@ -1,15 +1,14 @@
 ---
 title: "로우코드·노코드(LCNC, Low-Code/No-Code)"
-author: "agnusdei1207"
-date: "2026-10-25T00:09:14+09:00"
+description: "시민 개발자·드래그 앤 드롭·워크플로우 엔진·BPMN, 2-스피드 IT·벤더 락인·섀도우 IT·확장성 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드

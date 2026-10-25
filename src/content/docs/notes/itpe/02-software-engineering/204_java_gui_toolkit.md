@@ -1,15 +1,14 @@
 ---
 title: "Java GUI 툴킷(AWT, Swing, JavaFX) (GUI: Graphical User Interface)"
-author: "agnusdei1207"
-date: "2026-10-25T00:09:14+09:00"
+description: "AWT·Swing·JavaFX 3세대, 중량·경량·씬 그래프, EDT·FXML·CSS·jpackage, 블로킹·룩앤필·배포 부담 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -42,11 +41,11 @@ extra:
 [ 1세대 : AWT (1995) ]
  - OS 네이티브 중량 컴포넌트
  - 운영체제마다 외형과 동작 불일치
-      ↓
+     ↓
 [ 2세대 : Swing (1998) ]
  - 순수 자바 경량 컴포넌트
  - Pluggable Look and Feel
-      ↓
+     ↓
 [ 3세대 : JavaFX (2008 이후) ]
  - GPU 가속 렌더링
  - FXML 마크업과 CSS 스타일링
@@ -56,11 +55,11 @@ extra:
 [ UI 스레드 ]
  - EDT 또는 JavaFX Application Thread
  - 화면 그리기와 이벤트 처리
-      ↓ 장기 실행 작업 위임
+     ↓ 장기 실행 작업 위임
 [ 백그라운드 작업 ]
  - SwingWorker (Swing)
  - Task / Service (JavaFX)
-      ↓ 결과만 UI 스레드에 전달
+     ↓ 결과만 UI 스레드에 전달
 [ 화면 갱신 ]
 ```
 

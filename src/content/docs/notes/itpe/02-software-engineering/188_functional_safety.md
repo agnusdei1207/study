@@ -1,15 +1,14 @@
 ---
 title: "기능안전(Functional Safety)"
-author: "agnusdei1207"
-date: "2026-10-25T00:07:34+09:00"
+description: "IEC 61508·ISO 26262·HARA·ASIL·SIL·SOTIF, 고장 유형별 대응, AI 검증·이중화 원가·페일 오퍼레이셔널 제언"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -41,11 +40,11 @@ extra:
 
 ```text
 [ 위험원 분석 (HARA) ]
-          ↓
+      ↓
 [ 심각도 S0 ~ S3 ]
 [ 노출 빈도 E1 ~ E4 ]
 [ 통제 가능성 C1 ~ C3 ]
-          ↓ 매트릭스 조합
+      ↓ 매트릭스 조합
 [ ASIL 등급 : QM, A, B, C, D ]
 ```
 
@@ -53,9 +52,10 @@ extra:
 - **ASIL** (Automotive Safety Integrity Level, ISO 26262) : 심각도(S), 노출 빈도(E), 운전자 통제 가능성(C)의 조합으로 QM(Quality Management)부터 ASIL A, B, C, D까지 등급을 부여하며 ASIL D가 가장 엄격함.
 
 ```text
-[ 고장 원인 ]
-          ↓
+[ 고장 원인 분류 ]
+      ↓
 [ 무작위 하드웨어 고장 ] → 확률로 예측 → 하드웨어 이중화
+      ↓
 [ 체계적 소프트웨어 결함 ] → 입력 조건에 재현 → 프로세스 준수
 ```
 
@@ -85,9 +85,8 @@ extra:
 ## Ⅵ. 고신뢰성 제어 소프트웨어 구축을 위한 기술사적 제언
 
 - 핵심 요약 : 페일 세이프에서 페일 오퍼레이셔널 구조로 아키텍처를 진화시키고, 프로세스 성숙도를 전사 개발 체계에 내재화하는 방향.
-
-1. 아키텍처 진화 : 자율주행 시스템은 제어기 고장 시 전원을 끊는 페일 세이프(Fail-Safe) 방식만으로는 부족하므로, 보조 제어기가 **페일 오퍼레이셔널** (Fail-Operational) 방식으로 필수 기능을 유지하고 안전하게 정차하는 구조를 갖추는 것이 바람직하다.
-2. 프로세스 내재화 : 정보시스템 부서와 품질 조직은 **Automotive SPICE** (Automotive Software Process Improvement and Capability Determination) 기준으로 요구사항 추적성과 변경 영향도 분석을 개발 표준에 포함해야 한다.
+- 아키텍처 진화 : 자율주행 시스템은 제어기 고장 시 전원을 끊는 페일 세이프(Fail-Safe) 방식만으로는 부족하므로, 보조 제어기가 **페일 오퍼레이셔널** (Fail-Operational) 방식으로 필수 기능을 유지하고 안전하게 정차하는 구조를 갖추는 것이 바람직하다.
+- 프로세스 내재화 : 정보시스템 부서와 품질 조직은 **Automotive SPICE** (Automotive Software Process Improvement and Capability Determination) 기준으로 요구사항 추적성과 변경 영향도 분석을 개발 표준에 포함해야 한다.
 
 ## Ⅶ. 결론
 
