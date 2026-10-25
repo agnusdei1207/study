@@ -1,15 +1,14 @@
 ---
 title: "TA와 AA 역할 비교 및 협업 (TA: Technical Architect; AA: Application Architect)"
-author: "agnusdei1207"
-date: "2026-10-24T23:57:08+09:00"
+description: "NFR·FR 분리, 협업 접점·거버넌스, 클라우드 네이티브 역할 재편, RACI·ARB·ADR·플랫폼 엔지니어링 제언"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -40,10 +39,10 @@ extra:
 ```text
 [ AA 영역 : 애플리케이션 ]
   도메인 모델링, 서비스 인터페이스
-        ↓
+      ↓
 [ 협업 접점 : 비기능 요구 ]
   격리수준, 캐싱, 목표 지연 시간
-        ↓
+      ↓
 [ TA 영역 : 인프라와 플랫폼 ]
   클라우드, 네트워크, 보안, 고가용성
 ```
@@ -52,12 +51,12 @@ extra:
 [ 협업 거버넌스 흐름 ]
 
 비즈니스 요건 정의 (AA)
-        ↔ NFR 목표 정의 (TA)
-        ↓ 공동 품질속성 워크숍
+      ↔ NFR 목표 정의 (TA)
+      ↓ 공동 품질속성 워크숍
 ARB 검토 (아키텍처 검토 위원회)
-        ↓
+      ↓
 ADR 기록 (아키텍처 결정 기록)
-        ↓
+      ↓
 설계·구현 후 ATAM으로 트레이드오프 평가
 ```
 
@@ -88,9 +87,8 @@ ADR 기록 (아키텍처 결정 기록)
 ## Ⅵ. 성공적인 프로젝트 수행을 위한 기술사적 제언
 
 - 핵심 요약 : 프로젝트 초기에 NFR을 함께 확정하는 워크숍을 정례화하고, 데이터·보안 아키텍트까지 포함한 협력 체계를 세울 것.
-
-1. 프로젝트 초기의 NFR 공동 워크숍 : 처리량, 복구 목표(RTO(Recovery Time Objective), RPO(Recovery Point Objective)), 동시성 제어 요건은 인프라와 로직이 함께 타협해야 하므로, 초기 단계에 ATAM(Architecture Tradeoff Analysis Method) 기반의 품질속성 워크숍을 열고 그 결과를 ADR로 먼저 남긴다.
-2. 4자 협력 체계 : 데이터 아키텍트(DA, Data Architect)와 보안 아키텍트(SA, Security Architect)가 TA, AA와 분리되어 움직이면 쿼리 성능 병목과 보안 취약점이 생기므로, 정기 ARB 회의에 네 역할이 함께 참여해 구조적 정합성을 점검한다.
+- 프로젝트 초기의 NFR 공동 워크숍 : 처리량, 복구 목표(RTO(Recovery Time Objective), RPO(Recovery Point Objective)), 동시성 제어 요건은 인프라와 로직이 함께 타협해야 하므로, 초기 단계에 ATAM(Architecture Tradeoff Analysis Method) 기반의 품질속성 워크숍을 열고 그 결과를 ADR로 먼저 남긴다.
+- 4자 협력 체계 : 데이터 아키텍트(DA, Data Architect)와 보안 아키텍트(SA, Security Architect)가 TA, AA와 분리되어 움직이면 쿼리 성능 병목과 보안 취약점이 생기므로, 정기 ARB 회의에 네 역할이 함께 참여해 구조적 정합성을 점검한다.
 
 ## Ⅶ. 결론
 

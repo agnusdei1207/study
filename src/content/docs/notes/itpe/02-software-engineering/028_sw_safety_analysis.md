@@ -1,15 +1,14 @@
 ---
-title: "SW 안전성 분석(FTA·FMEA·HAZOP) (SW: Software; FTA: Fault Tree Analysis; FMEA: Failure Mode and Effects Analysis; HAZOP: Hazard and Operability Study)"
-author: "agnusdei1207"
-date: "2026-10-24T23:56:38+09:00"
+title: "SW 안전성 분석(FTA·FMEA·HAZOP)"
+description: "결함수·고장모드·위험운전성 분석, 기능안전 표준 연계, STPA 보완, 등급 기반 설계 제언"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -84,10 +83,9 @@ OR 게이트
 ## Ⅵ. 고신뢰성 SW 시스템 구축을 위한 기술사적 제언
 
 - 핵심 요약 : STPA의 병행 도입, 안전 무결성 등급과 설계의 연계, 분석의 생애주기 편입이라는 세 방향으로 안전성 분석을 상시 체계화.
-
-1. STPA의 병행 적용 : 구성요소의 단일 고장뿐 아니라 구성요소 간 상호작용의 불일치와 제어 루프 결함까지 다루기 위해, FTA·FMEA와 함께 STPA를 병행하는 것이 바람직하다.
-2. 등급 기반 설계 연계 : 위험도 평가 결과로 ASIL A~D 또는 SIL 1~4 등급을 확정하고, 그 등급에 맞춘 이중화 아키텍처와 MC/DC 검증을 의무화해야 한다.
-3. 안전 분석의 생애주기 편입 : 안전 분석을 인증 직전의 문서 작업이 아니라 아키텍처 설계 회의의 상시 의사결정 절차로 편입해 사후 끼워맞추기를 막는 거버넌스를 갖춰야 한다.
+- STPA의 병행 적용 : 구성요소의 단일 고장뿐 아니라 구성요소 간 상호작용의 불일치와 제어 루프 결함까지 다루기 위해, FTA·FMEA와 함께 STPA를 병행하는 것이 바람직하다.
+- 등급 기반 설계 연계 : 위험도 평가 결과로 ASIL A~D 또는 SIL 1~4 등급을 확정하고, 그 등급에 맞춘 이중화 아키텍처와 MC/DC 검증을 의무화해야 한다.
+- 안전 분석의 생애주기 편입 : 안전 분석을 인증 직전의 문서 작업이 아니라 아키텍처 설계 회의의 상시 의사결정 절차로 편입해 사후 끼워맞추기를 막는 거버넌스를 갖춰야 한다.
 
 ## Ⅶ. 결론
 

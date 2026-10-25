@@ -1,15 +1,14 @@
 ---
 title: "스프링 부트(Spring Boot)"
-author: "agnusdei1207"
-date: "2026-10-25T00:05:29+09:00"
+description: "자동 구성·스타터·내장 서버·액추에이터, 전통적 Spring 비교, 블랙박스·기동 지연·공급망 위험 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -44,15 +43,15 @@ extra:
   - @SpringBootConfiguration
   - @ComponentScan (사용자 빈 스캔)
   - @EnableAutoConfiguration
-          ↓
+      ↓
 [ 자동 구성 후보 목록 로드 ]
   - AutoConfiguration.imports
-          ↓
+      ↓
 [ @Conditional 계열 조건 평가 ]
   - @ConditionalOnClass
   - @ConditionalOnMissingBean
   - @ConditionalOnProperty
-          ↓
+      ↓
 [ 조건 충족 시 기본 빈 등록 ]
 ```
 
@@ -81,7 +80,7 @@ extra:
 | 서버 튜닝 | 외장 WAS의 JVM과 스레드 풀 수작업 조정 | 설정 파일에서 내장 서버 값 지정 |
 | 운영 관측성 | 별도 APM(Application Performance Monitoring) 연동 필요 | 액추에이터로 메트릭 기본 노출 |
 
-## Ⅴ. 스프링 부트의 장점과 한계
+## Ⅴ. 스프링 부트의 한계와 방안
 
 - 핵심 요약 : 개발 생산성과 배포 효율이라는 장점, 자동 구성의 블랙박스화와 JVM 기동 비용, 의존성 보안이라는 한계.
 
@@ -94,7 +93,6 @@ extra:
 ## Ⅵ. 엔터프라이즈 클라우드 환경을 위한 기술사적 제언
 
 - 핵심 요약 : AOT 네이티브 컴파일 기반 기동 최적화와 액추에이터 엔드포인트 보안 통제의 병행.
-
 - 오토스케일링과 서버리스 환경을 운영하는 플랫폼 팀은 Spring AOT 엔진과 GraalVM 네이티브 이미지 빌드를 선택 적용해 JVM 워밍업 시간을 줄이는 방향을 검토해야 한다. 기동 특성이 중요한 서비스부터 적용하는 것이 현실적이다.
 - 보안 담당 조직은 액추에이터 엔드포인트에서 환경 변수나 힙 덤프처럼 민감한 정보가 노출되지 않도록 관리 전용 포트를 분리하고, 스프링 시큐리티(Spring Security) 기반 인가 정책을 강제해야 한다.
 

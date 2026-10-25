@@ -1,15 +1,14 @@
 ---
 title: "객체지향 설계원칙 SOLID(DIP 포함) (SOLID: Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion; DIP: Dependency Inversion Principle)"
-author: "agnusdei1207"
-date: "2026-10-24T23:59:33+09:00"
+description: "5대 원칙, 의존성 방향 역전, 위반 사례 비교, 교조적 적용·레거시·성능 한계와 방안, 헥사고날 아키텍처 제언"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -73,7 +72,6 @@ extra:
 ## Ⅴ. SOLID 원칙의 한계와 방안
 
 - 핵심 요약 : 유연성과 테스트 용이성의 이점, 교조적 적용과 레거시 리스크, 간접 참조 비용의 한계.
-- 장점 : 낮은 결합도와 높은 응집도에 따른 변경 영향 최소화, 인터페이스 기반의 단위 테스트와 모킹 용이, 확장 지향 구조를 통한 신규 기능 추가 비용 안정화.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |

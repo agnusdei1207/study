@@ -1,15 +1,14 @@
 ---
-title: "요구사항 명세(SRS, Software Requirements Specification)"
-author: "agnusdei1207"
-date: "2026-10-24T23:57:08+09:00"
+title: "요구사항 명세서(SRS, Software Requirements Specification)"
+description: "IEEE 830·ISO/IEC/IEEE 29148, 8대 품질 특성, 3단 구성·추적 흐름, 문서 박제화·과잉 명세·모호성 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -45,10 +44,10 @@ extra:
 ```text
 [ 1. 소개 (Introduction) ]
   목적, 범위, 용어 정의, 참조 문서
-        ↓
+      ↓
 [ 2. 전체 설명 (Overall Description) ]
   제품 조망, 사용자 특성, 제약 조건
-        ↓
+      ↓
 [ 3. 구체적 요구사항 (Specific Req.) ]
   인터페이스, 기능, 비기능, 품질속성
 ```
@@ -57,11 +56,11 @@ extra:
 [ 요구사항 추적 흐름 (Traceability) ]
 
 RFP (제안요청서)
-        ↓
+      ↓
 SRS (요구사항 명세서)
-        ↓
+      ↓
 설계 명세 / 소스코드 / 테스트 케이스
-        ↓
+      ↓
 양방향 매핑으로 누락과 변경 영향 검증
 ```
 
@@ -89,9 +88,8 @@ SRS (요구사항 명세서)
 ## Ⅵ. 현대 애자일 및 클라우드 환경에서의 기술사적 제언
 
 - 핵심 요약 : 무거운 전통 문서 대신 사용자 스토리와 실행 가능한 명세를 쓰고, 요구 기준선은 ALM 도구에서 관리.
-
-1. 사용자 스토리와 인수 기준의 결합 : 수백 쪽짜리 SRS 대신 'As a [사용자], I want to [행위], So that [가치]' 형식의 사용자 스토리에 Gherkin(Given-When-Then) 인수 기준을 붙여, 명세가 곧 테스트가 되는 살아있는 문서로 관리한다. 이 방식은 BDD(Behavior-Driven Development)와 맞물린다.
-2. ALM 도구 기반의 요구 기준선 관리 : 요구사항 변경 이력, 변경통제위원회(CCB, Change Control Board)의 승인 기록, 테스트 케이스 연결을 Jira, Confluence, Polarion 같은 ALM(Application Lifecycle Management) 도구에 모아 두어 감리와 형상 관리 때 추적 근거를 바로 제시할 수 있게 한다.
+- 사용자 스토리와 인수 기준의 결합 : 수백 쪽짜리 SRS 대신 'As a [사용자], I want to [행위], So that [가치]' 형식의 사용자 스토리에 Gherkin(Given-When-Then) 인수 기준을 붙여, 명세가 곧 테스트가 되는 살아있는 문서로 관리한다. 이 방식은 BDD(Behavior-Driven Development)와 맞물린다.
+- ALM 도구 기반의 요구 기준선 관리 : 요구사항 변경 이력, 변경통제위원회(CCB, Change Control Board)의 승인 기록, 테스트 케이스 연결을 Jira, Confluence, Polarion 같은 ALM(Application Lifecycle Management) 도구에 모아 두어 감리와 형상 관리 때 추적 근거를 바로 제시할 수 있게 한다.
 
 ## Ⅶ. 결론
 

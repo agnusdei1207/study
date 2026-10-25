@@ -1,15 +1,14 @@
 ---
 title: "소프트웨어 품질인증 및 GS(Good Software) 인증"
-author: "agnusdei1207"
-date: "2026-10-24T23:59:33+09:00"
+description: "소프트웨어진흥법 근거, ISO 25010 8대 특성, 인증 절차, 공공 조달 혜택, 심사 기간·환경 괴리·지속 배포 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -24,7 +23,7 @@ extra:
 - 법적 근거 : 소프트웨어진흥법 제20조에 근거한 소프트웨어 품질인증 제도이며, 세부 운영은 관계 고시로 정해진다.
 - 국제 표준 기반 : 국제표준화기구(ISO, International Organization for Standardization)와 국제전기기술위원회(IEC, International Electrotechnical Commission)의 **ISO/IEC 25010** 품질 모델을 기준으로 하고, ISO/IEC 25023은 품질 측정 기준, ISO/IEC 25051은 제품 요구사항 기준으로 참조한다.
 
-## Ⅱ. GS 인증의 특징
+## Ⅱ. GS 인증의 특징 및 장점
 
 - 핵심 요약 : 품질 모델의 8대 특성을 종합 시험하고 산출물 심사를 결합해 등급을 부여하는 평가 구조.
 
@@ -81,7 +80,6 @@ extra:
 ## Ⅴ. GS 인증의 한계와 방안
 
 - 핵심 요약 : 공공 판로와 품질 신뢰성의 이점, 심사 기간과 시험 환경 괴리, 인증 이후 변경 관리의 한계.
-- 장점 : 국가 보증 품질 표식을 통한 신뢰와 브랜드 경쟁력 향상, 공공 조달 판로 개척, 시험 결함 보고서를 통한 품질 개선 계기 확보.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |

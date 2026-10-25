@@ -1,15 +1,14 @@
 ---
 title: "기능점수(Function Point)"
-author: "agnusdei1207"
-date: "2026-10-25T00:03:01+09:00"
+description: "ILF·EIF·EI·EO·EQ 5대 구성, 간이·정규법 비교, 측정자 주관성·비기능·분산 아키텍처 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -64,11 +63,11 @@ extra:
 [ 기능점수 산정 흐름 ]
 
 기능 식별 (ILF, EIF, EI, EO, EQ 분류)
-        ↓
+      ↓
 복잡도 판정 (RET, DET, FTR 개수 집계)
-        ↓
+      ↓
 가중치 적용 (간이법은 평균, 정규법은 매트릭스)
-        ↓
+      ↓
 기능점수 합산 → 총 규모 및 대가 산정
 ```
 
@@ -87,7 +86,6 @@ extra:
 ## Ⅴ. 기능점수(Function Point)의 한계와 방안
 
 - 핵심 요약 : 언어 중립성과 사전 산정이라는 장점 이면에 측정자 주관성, 비기능·분산 아키텍처 미반영, 초기 요구사항 불명확에 따른 예산 괴리의 한계가 존재.
-- 장점 : 기술 스택과 무관한 객관적 규모 측정, 기획 단계의 예산 사전 산정, 국제 표준에 따른 대가 협의의 공정성 확보.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |

@@ -8,20 +8,27 @@ sidebar:
   badge:
     text: "기초"
 extra:
-    keyword_grade: "기초"
-    model: "Claude Haiku 5.5"
+  keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
 
-- AI 프라이버시 리스크, Privacy by Design, 차분 프라이버시(Differential Privacy), 연합학습(Federated Learning), 머신 언러닝(Machine Unlearning)
-- 모델 역공격(Model Inversion), 멤버십 추론(Membership Inference), PII(Personally Identifiable Information), 합성 데이터(Synthetic Data)
+- AI 프라이버시 리스크
+- Privacy by Design
+- 차분 프라이버시, Differential Privacy
+- 연합학습, Federated Learning
+- 머신 언러닝, Machine Unlearning
+- 모델 역공격, Model Inversion
+- 멤버십 추론, Membership Inference
+- PII, Personally Identifiable Information
+- 합성 데이터, Synthetic Data
 
 ## Ⅰ. AI 프라이버시 리스크 관리 모델의 개요
 
 - 핵심 요약 : AI 생애주기 전반의 개인정보 침해 위험을 식별하고 법적·기술적 보호조치를 적용하는 전주기 위험관리 프레임워크.
 - 개념 : 인공지능 모델의 학습, 검증, 배포, 운영 전 과정에서 발생하는 개인정보 침해 위험을 사전에 식별하고, 개인정보 보호 원칙에 따라 법적·기술적 보호조치를 적용하는 **AI 프라이버시 리스크 관리 모델**.
-- 배경 및 필요성 : 초거대 언어 모델(LLM, Large Language Model)이 비정형 데이터를 학습하면서, **모델 역공격**(Model Inversion)과 **멤버십 추론**(Membership Inference)으로 학습 데이터가 복원되거나 노출되는 위협이 새로 생겼다. 프롬프트 입력을 통한 민감 정보 유출도 함께 늘었다.
+- 배경 및 필요성 : 초거대 언어 모델(LLM, Large Language Model)이 비정형 데이터를 학습하면서, **모델 역공격** (Model Inversion)과 **멤버십 추론** (Membership Inference)으로 학습 데이터가 복원되거나 노출되는 위협이 새로 생겼다. 프롬프트 입력을 통한 민감 정보 유출도 함께 늘었다.
 - 주요 목적 : 개인정보 보호법 준수, 프라이버시 침해 사고 예방, 안전한 AI 데이터 활용 생태계 조성, 이용자 신뢰 확보.
 
 ## Ⅱ. AI 프라이버시 리스크 관리 모델의 특징 및 장점
@@ -69,7 +76,7 @@ extra:
 | --- | --- | --- |
 | 모델 역공격 | 모델의 출력값과 확률을 분석하여 학습에 쓰인 민감 정보를 복원 | 차분 프라이버시 노이즈 주입, 출력 확률값 제한 |
 | 멤버십 추론 | 특정인의 데이터가 학습셋에 포함되었는지 판정 | 정규화(Regularization), 드롭아웃(Dropout) 적용 |
-| 데이터 추출 공격 | 특정 프롬프트로 학습 데이터 내 개인 식별 정보(PII, Personally Identifiable Information) 출력을 유도 | PII 탐지와 마스킹 가드레일, 시스템 프롬프트 보안 강화 |
+| 데이터 추출 공격 | 특정 프롬프트로 학습 데이터 내 **개인 식별 정보** (PII, Personally Identifiable Information) 출력을 유도 | PII 탐지와 마스킹 가드레일, 시스템 프롬프트 보안 강화 |
 
 ## Ⅴ. AI 프라이버시 리스크 관리 모델 적용의 한계와 방안
 
@@ -86,10 +93,10 @@ extra:
 - 핵심 요약 : 보호 원칙을 개발 절차에 편입하고, 머신 언러닝과 합성 데이터를 권리 대응과 학습 원천 차단의 기술로 키워야 한다.
 
 1. 개인정보 보호 원칙인 적법성, 안전성, 투명성을 AI 개발 절차의 점검 항목으로 고정하는 것이 필요하다. 이 점검표는 개발 부서가 작성하고 개인정보 보호 책임자가 승인하는 구조가 바람직하다.
-2. 정보주체의 삭제 요구에 전체 모델을 다시 학습하지 않고 특정인의 기여분만 줄이는 **머신 언러닝**(Machine Unlearning) 연구를 지원해야 한다. 아직 상용 성숙도가 낮으므로 중장기 과제로 두고 평가 지표를 함께 마련해야 한다.
-3. 학습 목적에 통계적 특성만 필요한 경우에는 실제 개인정보 대신 **합성 데이터**(Synthetic Data)를 우선 검토하는 것이 원천적 차단에 가깝다. 다만 합성 데이터도 원본을 재구성할 수 없는지 검증해야 한다.
+2. 정보주체의 삭제 요구에 전체 모델을 다시 학습하지 않고 특정인의 기여분만 줄이는 **머신 언러닝** (Machine Unlearning) 연구를 지원해야 한다. 아직 상용 성숙도가 낮으므로 중장기 과제로 두고 평가 지표를 함께 마련해야 한다.
+3. 학습 목적에 통계적 특성만 필요한 경우에는 실제 개인정보 대신 **합성 데이터** (Synthetic Data)를 우선 검토하는 것이 원천적 차단에 가깝다. 다만 합성 데이터도 원본을 재구성할 수 없는지 검증해야 한다.
 
 ## Ⅶ. 결론
 
 - 핵심 요약 : AI 프라이버시 리스크 관리 모델은 안전한 AI 데이터 활용을 위한 전주기 보호 체계.
-- 시사점 : 비정형 개인정보 식별과 모델 공격 방어가 실효성을 좌우하므로, 기술 보호와 법적 처리 근거를 함께 관리해야 한다.
+- 비정형 개인정보 식별과 모델 공격 방어가 실효성을 좌우하므로, 기술 보호와 법적 처리 근거를 함께 관리해야 한다.

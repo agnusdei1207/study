@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "기초"
 extra:
-    keyword_grade: "기초"
-    model: "Claude Haiku 5.5"
+  keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -40,25 +40,25 @@ extra:
 ## Ⅲ. Six Sigma DMAIC의 구조 (흐름)
 
 - 핵심 요약 : 정의에서 통제까지 5단계가 순서대로 진행되고, 단계마다 전용 도구가 대응하는 구조.
-- SIPOC(Suppliers, Inputs, Process, Outputs, Customers) : 공급자, 입력, 프로세스, 출력, 고객의 범위를 한눈에 보여주는 프로세스 맵.
+- **SIPOC** (Suppliers, Inputs, Process, Outputs, Customers) : 공급자, 입력, 프로세스, 출력, 고객의 범위를 한눈에 보여주는 프로세스 맵.
 
 ```text
 [1. Define 정의]
   CTQ 선정, 프로젝트 헌장,
   SIPOC 프로세스 맵 작성
-          ↓
+      ↓
 [2. Measure 측정]
   측정시스템 분석, 데이터 수집,
   공정능력지수 산출
-          ↓
+      ↓
 [3. Analyze 분석]
   특성요인도, 파레토 차트,
   가설 검정으로 근본 원인 확정
-          ↓
+      ↓
 [4. Improve 개선]
   실험계획법, 파일럿 검증,
   고장 위험 분석
-          ↓
+      ↓
 [5. Control 통제]
   표준화, 관리도 감시,
   실수방지 장치 적용
@@ -68,7 +68,7 @@ extra:
 - **SPC** (Statistical Process Control, 통계적 공정관리) : 관리도로 공정 산포를 감시해 이상 신호를 조기에 잡는 Control 단계 도구.
 - **Poka-Yoke** (실수방지) : 작업자 실수가 결함으로 이어지지 않도록 공정을 설계하는 장치.
 - 공정능력지수(Cp, Cpk, Process Capability Index) : 규격 대비 공정 산포의 여유를 나타내는 지수.
-- FMEA(Failure Mode and Effects Analysis, 고장 모드 영향 분석) : 실패 가능성과 영향을 미리 평가해 개선 우선순위를 정하는 위험 분석 기법.
+- **FMEA** (Failure Mode and Effects Analysis, 고장 모드 영향 분석) : 실패 가능성과 영향을 미리 평가해 개선 우선순위를 정하는 위험 분석 기법.
 
 ```text
 [식스 시그마 성과 측정 체계]
@@ -111,4 +111,4 @@ extra:
 ## Ⅶ. 결론
 
 - 핵심 요약 : DMAIC는 데이터와 통계로 결함 원인을 제거하는 5단계 품질 방법론이며, 소프트웨어 적용의 관건은 경량화와 측정 신뢰도 확보.
-- 결함 수치를 맞추기보다 고객이 체감하는 품질 특성을 측정 가능하게 정의하고 지속 관리하는 체계로 이해할 필요가 있다.
+- 시사점 : 결함 수치를 맞추기보다 고객이 체감하는 품질 특성을 측정 가능하게 정의하고 지속 관리하는 체계로 이해할 필요가 있다.

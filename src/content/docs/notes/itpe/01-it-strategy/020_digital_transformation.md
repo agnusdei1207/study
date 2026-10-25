@@ -59,7 +59,7 @@ IT 기반 업무 프로세스 효율화
         ↓
 운영 프로세스
         ↓
-고객 경험 (CX)
+고객 경험 (CX, Customer Experience)
         ↓
 조직 및 문화
         ↓ (성과 피드백)
@@ -74,8 +74,8 @@ IT 기반 업무 프로세스 효율화
 | --- | --- | --- |
 | 비즈니스 모델 | 플랫폼 전환, 구독형 서비스(XaaS, Anything as a Service), 데이터 기반 신수익원 창출 | 오픈 API(Application Programming Interface) 생태계, 디지털 트윈 |
 | 운영 프로세스 | 엔드투엔드 프로세스 자동화, 공급망 가시성 확보, 데이터 주도 의사결정 | 프로세스 마이닝, RPA(Robotic Process Automation), 생성형 AI |
-| 고객 경험 (CX) | 맞춤형 서비스 제공, 옴니채널 고객 접점 통합 | 고객 데이터 플랫폼(CDP, Customer Data Platform), 대화형 AI |
-| 조직 및 문화 | 애자일 방식의 업무 문화, 실험을 허용하는 조직 분위기, 디지털 역량 강화 | 크로스펑셔널 스쿼드, DevOps 문화 |
+| 고객 경험 (CX, Customer Experience) | 맞춤형 서비스 제공, 옴니채널 고객 접점 통합 | 고객 데이터 플랫폼(CDP, Customer Data Platform), 대화형 AI |
+| 조직 및 문화 | 애자일 방식의 업무 문화, 실험을 허용하는 조직 분위기, 디지털 역량 강화 | 크로스펑셔널 스쿼드, DevOps(Development and Operations, 개발과 운영) 문화 |
 
 ## Ⅴ. 디지털 전환(DX)의 한계와 방안
 

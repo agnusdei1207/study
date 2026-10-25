@@ -8,19 +8,27 @@ sidebar:
   badge:
     text: "기초"
 extra:
-    keyword_grade: "기초"
-    model: "Claude Haiku 5.5"
+  keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
 
-- 기술 주권(Technology Sovereignty), 소버린 AI(Sovereign AI), 소버린 클라우드(Sovereign Cloud), 데이터 주권(Data Sovereignty), 데이터 국지화(Data Localization)
-- CLOUD Act, sLLM(Small Language Model), 오픈소스, CMEK(Customer-Managed Encryption Keys), NPU(Neural Processing Unit)
+- 기술 주권, Technology Sovereignty
+- 소버린 AI, Sovereign AI
+- 소버린 클라우드, Sovereign Cloud
+- 데이터 주권, Data Sovereignty
+- 데이터 국지화, Data Localization
+- CLOUD Act
+- sLLM, Small Language Model
+- 오픈소스
+- CMEK, Customer-Managed Encryption Keys
+- NPU, Neural Processing Unit
 
 ## Ⅰ. 기술 주권의 개요
 
 - 핵심 요약 : 핵심 디지털 기술과 데이터를 외부 세력에 종속되지 않고 자율적으로 통제하는 전략적 자립 상태.
-- 개념 : 국가 또는 기업이 외부 세력이나 글로벌 기업에 종속되지 않고, AI, 반도체, 운영체제, 클라우드 같은 핵심 디지털 기술과 데이터를 자율적으로 통제하며 독자 역량을 확보한 상태를 **기술 주권**(Technology Sovereignty)이라 한다.
+- 개념 : 국가 또는 기업이 외부 세력이나 글로벌 기업에 종속되지 않고, AI, 반도체, 운영체제, 클라우드 같은 핵심 디지털 기술과 데이터를 자율적으로 통제하며 독자 역량을 확보한 상태를 **기술 주권** (Technology Sovereignty)이라 한다.
 - 배경 및 필요성 : 미·중 기술 경쟁이 심화되고 반도체와 AI 공급망이 외교·통상 수단으로 쓰이면서, 외산 클라우드와 소프트웨어 종속이 안보와 경제의 취약점으로 부각되었다.
 - 주요 목적 : 핵심 기술 공급망의 자립화, 국가 중요 데이터의 주권 보호, 비상시 기술 통제권 유지, 디지털 경제 주도권 확보.
 - 추진 현황 : 과학기술정보통신부는 국산 AI 모델을 개발하는 독자 AI 파운데이션 모델 사업에서 컴퓨팅 인프라를 집중 지원하며, 보도 기준 15개 컨소시엄 가운데 최대 5개 팀을 선발하는 계획을 밝혔다.
@@ -68,9 +76,9 @@ extra:
 
 | 영역 | 종속 시의 주요 리스크 | 기술 주권 확보 대응 전략 |
 | --- | --- | --- |
-| AI 모델 | 문화와 가치관 편향, 서비스 중단 시 국가 서비스 마비 | 한국어 특화 파운데이션 모델과 공공 sLLM(Small Language Model) 구축 |
-| 데이터 | 국민 개인정보의 국외 이전, 미국 CLOUD Act(Clarifying Lawful Overseas Use of Data Act) 적용 | 데이터 국지화, 주권 보장형 클라우드 영역 운영 |
-| 인프라(SW·HW) | 수출 통제에 따른 장비 수급 차단, 라이선스 비용 증가 | 오픈소스 생태계 기여와 내재화, 국산 NPU(Neural Processing Unit) 실증 지원 |
+| AI 모델 | 문화와 가치관 편향, 서비스 중단 시 국가 서비스 마비 | 한국어 특화 파운데이션 모델과 공공 **소형 언어 모델** (sLLM, Small Language Model) 구축 |
+| 데이터 | 국민 개인정보의 국외 이전, 미국 **CLOUD Act** (Clarifying Lawful Overseas Use of Data Act) 적용 | 데이터 국지화, 주권 보장형 클라우드 영역 운영 |
+| 인프라(SW·HW) | 수출 통제에 따른 장비 수급 차단, 라이선스 비용 증가 | 오픈소스 생태계 기여와 내재화, 국산 **신경망 처리 장치** (NPU, Neural Processing Unit) 실증 지원 |
 
 ## Ⅴ. 기술 주권 추진의 한계와 방안
 
@@ -88,9 +96,9 @@ extra:
 
 1. 국가 차원의 연구기관과 기업은 리눅스, 쿠버네티스, 오픈소스 LLM 커뮤니티에 코드 수준으로 참여해야 한다. 기여 경험이 쌓여야 외부 기술의 중단 상황에서도 직접 유지보수할 수 있는 역량이 생긴다.
 2. 국산 NPU가 실제 서비스에 쓰이려면 반도체, 시스템 소프트웨어, AI 모델을 하나의 체계로 묶는 풀스택 협력 구조가 필요하다. 이를 주관하는 부처는 개별 기업 과제가 아닌 공동 검증 환경을 설계해야 한다.
-3. 글로벌 클라우드를 쓰더라도 고객 관리형 암호 키(CMEK, Customer-Managed Encryption Keys)를 국내에서 보관하면 외국의 강제 열람 요구를 실질적으로 막을 수 있다. 이 원칙은 제로 트러스트 보안 기준과 함께 법제화하는 것이 바람직하다.
+3. 글로벌 클라우드를 쓰더라도 **고객 관리형 암호 키** (CMEK, Customer-Managed Encryption Keys)를 국내에서 보관하면 외국의 강제 열람 요구를 실질적으로 막을 수 있다. 이 원칙은 제로 트러스트 보안 기준과 함께 법제화하는 것이 바람직하다.
 
 ## Ⅶ. 결론
 
 - 핵심 요약 : 기술 주권은 핵심 디지털 기술과 데이터를 자율적으로 통제하는 전략적 자립.
-- 시사점 : 모든 것을 자체 개발하기보다 선별 자립, 오픈소스 참여, 공급망 협력의 균형이 기술 주권의 성패를 좌우한다.
+- 모든 것을 자체 개발하기보다 선별 자립, 오픈소스 참여, 공급망 협력의 균형이 기술 주권의 성패를 좌우한다.

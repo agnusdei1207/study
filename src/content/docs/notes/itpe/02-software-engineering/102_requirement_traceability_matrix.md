@@ -1,26 +1,25 @@
 ---
-title: "요구사항 추적표(Requirement Traceability Matrix)"
-author: "agnusdei1207"
-date: "2026-10-25T00:01:17+09:00"
+title: "요구사항 추적표(RTM, Requirements Traceability Matrix)"
+description: "양방향 추적성·전방/후방·변경 영향도·ALM 자동화, 문서 부패·애자일 부하·분할 불균형 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
 
-1. 요구사항 추적표(RTM, Requirements Traceability Matrix)
-2. 양방향 추적성(Bidirectional Traceability)
-3. 전방·후방 추적성
-4. 변경 영향도 분석(Change Impact Analysis)
-5. 제안요청서(RFP, Request for Proposal)
-6. ALM(Application Lifecycle Management)
-7. ISO/IEC/IEEE 29148
+- 요구사항 추적표(RTM, Requirements Traceability Matrix)
+- 양방향 추적성(Bidirectional Traceability)
+- 전방·후방 추적성
+- 변경 영향도 분석(Change Impact Analysis)
+- 제안요청서(RFP, Request for Proposal)
+- ALM(Application Lifecycle Management)
+- ISO/IEC/IEEE 29148
 
 ## Ⅰ. 요구사항 추적표(RTM)의 개요
 
@@ -46,24 +45,24 @@ extra:
 ```text
 [ 전방 추적 (누락 방지) ]
 [ RFP 요구사항 ] REQ-001
-          ↓
+      ↓
 [ SRS 명세 ] SPEC-101
-          ↓
+      ↓
 [ 설계서 ] PaymentModule
-          ↓
+      ↓
 [ 소스코드 ] Payment.java
-          ↓
+      ↓
 [ 테스트 케이스 ] TC-501
 ```
 
 ```text
 [ 후방 추적 (근거 검증) ]
 [ TC-501 테스트 결과 ]
-          ↓ 근거 역추적
+      ↓ 근거 역추적
 [ Payment.java ]
-          ↓
+      ↓
 [ PaymentModule ]
-          ↓
+      ↓
 [ SPEC-101 ] → [ REQ-001 ]
 ```
 
@@ -87,13 +86,9 @@ extra:
 | 변경 영향도 분석 | 수동 대조로 지연과 누락 발생 | 요구사항 항목에서 연결된 설계, 코드, 테스트를 한 번에 조회 |
 | 애자일 대응 | 전체 추적표 작성과 유지 부담이 큼 | 에픽, 사용자 스토리, 태스크, 테스트 케이스의 계층 추적과 완료 정의(DoD, Definition of Done) 연동 |
 
-## Ⅴ. 요구사항 추적표(RTM)의 장점과 한계
+## Ⅴ. 요구사항 추적표(RTM)의 한계와 방안
 
 - 핵심 요약 : 요구사항 완결성 보증과 감리 증적이라는 장점에 비해, 문서 관리 부하와 개발 방법론과의 마찰이 한계로 따른다.
-
-1. 요구사항 누락과 Gold Plating을 체계적으로 막음.
-2. 요구사항 변경 시 수정 대상과 회귀 테스트 범위를 빠르게 특정함.
-3. 공공 정보시스템 감리에서 과업 이행 완결성을 입증하는 1차 증적이 됨.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
@@ -104,9 +99,8 @@ extra:
 ## Ⅵ. 기술사적 제언
 
 - 핵심 요약 : ALM 연계 추적 자동화와 감리 증적으로서의 RTM 활용을 제도로 정착시키는 방향.
-
-1. 엑셀 관리의 동기화 붕괴를 막기 위해 이슈 관리, 소스 저장소, 테스트 도구를 웹훅으로 연결하고, 커밋 메시지에 요구사항 ID(예: `feat(REQ-001): implement payment`)를 적으면 RTM이 자동 갱신되는 체계를 기본으로 삼아야 한다.
-2. 공공 정보시스템 감리에 대비하여 RTM을 과업 이행 완결성을 보이는 1차 증적으로 제출할 수 있도록 상시 관리해야 하며, 이를 통해 과업 미이행 판정에 따른 사업비 삭감 위험을 사전에 줄여야 한다.
+- 엑셀 관리의 동기화 붕괴를 막기 위해 이슈 관리, 소스 저장소, 테스트 도구를 웹훅으로 연결하고, 커밋 메시지에 요구사항 ID(예: `feat(REQ-001): implement payment`)를 적으면 RTM이 자동 갱신되는 체계를 기본으로 삼아야 한다.
+- 공공 정보시스템 감리에 대비하여 RTM을 과업 이행 완결성을 보이는 1차 증적으로 제출할 수 있도록 상시 관리해야 하며, 이를 통해 과업 미이행 판정에 따른 사업비 삭감 위험을 사전에 줄여야 한다.
 
 ## Ⅶ. 결론
 

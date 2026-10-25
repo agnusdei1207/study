@@ -1,15 +1,14 @@
 ---
-title: "API Gateway (API: Application Programming Interface)"
-author: "agnusdei1207"
-date: "2026-10-24T23:59:33+09:00"
+title: "API Gateway (Application Programming Interface)"
+description: "단일 진입점·리버스 프록시, 인증·Rate Limiting·서킷 브레이커, 솔루션 비교, SPOF·Fat Gateway 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -70,7 +69,6 @@ extra:
 ## Ⅴ. API Gateway의 한계와 방안
 
 - 핵심 요약 : 엔드포인트 은닉과 공통 정책 일원화의 이점, 단일 장애점과 Fat Gateway 변질의 한계.
-- 장점 : 백엔드 엔드포인트 은닉으로 공격 표면 축소, 인증과 트래픽 제어와 로깅의 단일 지점 적용, 프로토콜 불일치 흡수와 클라이언트별 응답 최적화의 동시 달성.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
@@ -84,6 +82,8 @@ extra:
 - 게이트웨이는 단일 인스턴스가 아니라 여러 가용 영역에 걸친 이중화 집단으로 운영하고, 앞단에 L4/L7(Layer 4/Layer 7) 로드밸런서를 두는 구성을 기본 설계로 삼는다.
 
 ```text
+[ 고가용성 게이트웨이 구성 ]
+
 [ 클라이언트 ]
    ↓
 [ DNS / GSLB 라우팅 ]

@@ -1,15 +1,14 @@
 ---
 title: "임베디드 소프트웨어 테스트 및 X-in-the-Loop(MIL·SIL·PIL·HIL) (MIL: Model-in-the-Loop; SIL: Software-in-the-Loop; PIL: Processor-in-the-Loop; HIL: Hardware-in-the-Loop)"
-author: "agnusdei1207"
-date: "2026-10-25T00:00:03+09:00"
+description: "MBD·XiL 단계별 검증, MIL→SIL→PIL→HIL, 고장 주입·vECU·ISO 26262·MC/DC, 비용·타이밍·추적성 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -24,7 +23,7 @@ extra:
 - 배경 및 필요성 : 차량 제어기 **ECU** (Electronic Control Unit)의 결함을 실차와 하드웨어 제작 후 발견하면 리콜 비용과 인명 사고 위험이 커지므로, 모델 기반 개발 **MBD** (Model-Based Development) 단계부터 시프트 레프트(Shift-Left) 검증이 필요함.
 - 표준 근거 : 자동차 기능안전 표준 ISO(International Organization for Standardization) 26262, 항공 소프트웨어 표준 DO-178C.
 
-## Ⅱ. X-in-the-Loop의 특징
+## Ⅱ. X-in-the-Loop의 특징 및 장점
 
 - 핵심 요약 : 모델에서 코드, 프로세서, 하드웨어로 검증 대상을 단계적으로 실물화하는 시프트 레프트 검증 체계.
 
@@ -73,10 +72,9 @@ extra:
 | PIL | 실제 타깃 MCU(Microcontroller Unit) 보드 | 타깃 보드와 가상 플랜트 | 타깃 아키텍처 종속성과 클록 타이밍 | 중간 |
 | HIL | 최종 제작된 ECU 장치 | HIL 시뮬레이터 장비 | 전기적 특성, 네트워크 통신, 극한 장애 안전성 | 높음 (전용 장비 필요) |
 
-## Ⅴ. 임베디드 SW 테스트의 장점과 한계
+## Ⅴ. 임베디드 SW 테스트의 한계와 방안
 
 - 핵심 요약 : 하드웨어 병목 해소와 조기 결함 차단의 장점 아래, 장비 비용, 실시간 재현 난도, 표준 산출물 부담이라는 한계가 존재.
-- 장점 : 실물 완성 전 결함 검출로 리콜 비용과 안전 사고 예방, HIL 환경의 극한 조건 재현, 자동 코드 생성과 시뮬레이션 연계로 MBD 생산성 확보.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
@@ -87,9 +85,8 @@ extra:
 ## Ⅵ. 자동차 기능안전 관점의 기술사적 제언
 
 - 핵심 요약 : 고장 주입 기반의 Fail-Safe 검증과 가상 ECU 기반 클라우드 CI 확장을 병행하는 방향.
-
-1. 실차에서 위험하여 인위적으로 재현하기 어려운 센서 단선, 접지 쇼트, 전압 급강하 같은 고장은 HIL 환경에서 모의 주입하고, ECU가 규정된 안전 상태(Safe State)로 정상 전이하는지 검증하는 절차를 필수로 두어야 한다.
-2. 가상 ECU(vECU, Virtual ECU)를 컨테이너화하여 클라우드 CI(Continuous Integration) 파이프라인에서 수많은 시나리오를 병렬로 자동 실행하면 물리 HIL 장비의 병목을 완화할 수 있으므로, AUTOSAR(AUTomotive Open System ARchitecture) 기반 vECU의 조기 도입을 검토할 필요가 있다.
+- 실차에서 위험하여 인위적으로 재현하기 어려운 센서 단선, 접지 쇼트, 전압 급강하 같은 고장은 HIL 환경에서 모의 주입하고, ECU가 규정된 안전 상태(Safe State)로 정상 전이하는지 검증하는 절차를 필수로 두어야 한다.
+- 가상 ECU(vECU, Virtual ECU)를 컨테이너화하여 클라우드 CI(Continuous Integration) 파이프라인에서 수많은 시나리오를 병렬로 자동 실행하면 물리 HIL 장비의 병목을 완화할 수 있으므로, AUTOSAR(AUTomotive Open System ARchitecture) 기반 vECU의 조기 도입을 검토할 필요가 있다.
 
 ## Ⅶ. 결론
 

@@ -1,15 +1,14 @@
 ---
-title: "SOAP(역사적 명칭: Simple Object Access Protocol)"
-author: "agnusdei1207"
-date: "2026-10-24T23:56:38+09:00"
+title: "SOAP(Simple Object Access Protocol)"
+description: "W3C 표준 XML 프로토콜, 웹 서비스 3대 표준, REST 비교, WS-* 복잡성 한계와 어댑터 제언"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -80,14 +79,9 @@ Envelope (최상위 루트, 필수)
 | 오버헤드 및 성능 | XML 파싱과 큰 메시지 크기로 상대적으로 무거움 | JSON 기반으로 가볍고 웹·모바일 환경에 적합 |
 | 주 활용 분야 | 은행, 증권, 공공 기관 간 고신뢰 연계 | 대규모 B2C(Business-to-Consumer) 포털, 모바일 앱, 마이크로서비스(MSA, Microservice Architecture) |
 
-## Ⅴ. SOAP의 장점과 한계
+## Ⅴ. SOAP의 한계와 방안
 
 - 핵심 요약 : 메시지 수준 보안과 엄격한 계약이라는 장점이 있으나, XML 장황성과 WS-* 복잡성, 최신 클라이언트와의 불일치가 한계.
-
-1. WS-Security 기반의 메시지 수준 암호화(XML-Encryption)와 전자서명(XML-Signature).
-2. WSDL의 엄격한 스키마 계약에 따른 높은 신뢰성.
-3. 다중 전송 프로토콜 바인딩의 유연성.
-4. WS-AtomicTransaction 등 트랜잭션 표준 지원.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
@@ -98,10 +92,9 @@ Envelope (최상위 루트, 필수)
 ## Ⅵ. 엔터프라이즈 시스템 연계 시 기술사적 제언
 
 - 핵심 요약 : 기존 SOAP 자산은 전면 교체 대신 어댑터로 점진 현대화하고, 보안과 서비스 포트폴리오를 체계적으로 관리하는 것이 필요.
-
-1. 레거시 연계 어댑터 전략 : 금융권 코어 시스템의 핵심 트랜잭션은 SOAP 기반의 정합성을 유지하는 경우가 많으므로, EAI(Enterprise Application Integration)나 ESB 계층에 SOAP-to-REST 변환 어댑터를 두고 단계적으로 현대화하는 것이 현실적이다.
-2. WS-Security의 정밀한 구성 : 메시지 수준의 암호화와 전자서명을 종단 간 구간에 명확히 적용해, 중간 노드를 거치는 동안의 위·변조와 도청을 막아야 한다.
-3. 서비스 포트폴리오 관리 : 신규 서비스는 REST나 gRPC로 설계하고, 기존 SOAP 서비스는 목록과 의존 관계를 관리하여 전환 우선순위를 정하는 체계를 갖춰야 한다.
+- 레거시 연계 어댑터 전략 : 금융권 코어 시스템의 핵심 트랜잭션은 SOAP 기반의 정합성을 유지하는 경우가 많으므로, EAI(Enterprise Application Integration)나 ESB 계층에 SOAP-to-REST 변환 어댑터를 두고 단계적으로 현대화하는 것이 현실적이다.
+- WS-Security의 정밀한 구성 : 메시지 수준의 암호화와 전자서명을 종단 간 구간에 명확히 적용해, 중간 노드를 거치는 동안의 위·변조와 도청을 막아야 한다.
+- 서비스 포트폴리오 관리 : 신규 서비스는 REST나 gRPC로 설계하고, 기존 SOAP 서비스는 목록과 의존 관계를 관리하여 전환 우선순위를 정하는 체계를 갖춰야 한다.
 
 ## Ⅶ. 결론
 

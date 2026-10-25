@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. NIST AI RMF의 개요
 
 - 핵심 요약 : 인공지능 위험관리 프레임워크(AI RMF, Artificial Intelligence Risk Management Framework)로, 4대 기능을 통해 신뢰할 수 있는 AI 거버넌스를 세우는 자발적 지침.
-- 개념 : 미국 국립표준기술연구소(NIST, National Institute of Standards and Technology)가 2023년 공개한 **인공지능 위험관리 프레임워크** (AI RMF 1.0)로, 신뢰할 수 있는 AI 시스템을 설계·개발·배포하기 위한 자발적 지침.
+- 개념 : 미국 국립표준기술연구소(NIST, National Institute of Standards and Technology)가 2023년 공개한 **인공지능 위험관리 프레임워크** (AI RMF, Artificial Intelligence Risk Management Framework) 1.0으로, 신뢰할 수 있는 AI 시스템을 설계·개발·배포하기 위한 자발적 지침.
 - 배경 및 필요성 : 환각, 편향, 프라이버시 침해, 보안 취약점 같은 AI 고유 위험을 기존 소프트웨어 통제로 다루면 사고 비용이 배포 후에야 드러나므로, 설계 단계부터 위험을 관리하는 공통 기준이 필요함.
 - 주요 목적 : 위험의 조기 식별과 완화, 유효성·안전성·공정성·투명성 등 신뢰성 특성의 내재화, 책임 있는 AI 거버넌스 확립.
 

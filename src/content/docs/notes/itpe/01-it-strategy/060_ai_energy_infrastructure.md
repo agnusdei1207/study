@@ -8,28 +8,36 @@ sidebar:
   badge:
     text: "기초"
 extra:
-    keyword_grade: "기초"
-    model: "Claude Haiku 5.5"
+  keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
 
-- AI 에너지 인프라, 액체 냉각(Liquid Cooling), 직접 칩 냉각(D2C, Direct-to-Chip), 액침 냉각(Immersion Cooling), PUE(Power Usage Effectiveness)
-- 탄소중립(Carbon Neutrality), BEMS(Building Energy Management System), BESS(Battery Energy Storage System), SMR(Small Modular Reactor), CRAC(Computer Room Air Conditioner)
+- AI 에너지 인프라
+- 액체 냉각, Liquid Cooling
+- 직접 칩 냉각, D2C, Direct-to-Chip
+- 액침 냉각, Immersion Cooling
+- PUE, Power Usage Effectiveness, 전력효율지수
+- 탄소중립, Carbon Neutrality
+- BEMS, Building Energy Management System, 건물 에너지 관리 시스템
+- BESS, Battery Energy Storage System, 배터리 에너지 저장 시스템
+- SMR, Small Modular Reactor, 소형 모듈 원자로
+- CRAC, Computer Room Air Conditioner, 컴퓨터실 공조기
 
 ## Ⅰ. AI 에너지 인프라의 개요
 
 - 핵심 요약 : 초거대 AI 연산의 전력 소비와 발열을 해결하기 위해 고효율 전력망, 액체 냉각, 신재생에너지, 에너지 관리 시스템을 결합한 친환경 데이터센터 인프라.
-- 개념 : 초거대 AI 모델의 학습과 추론에 드는 막대한 전력과 발열을 해결하기 위해 고효율 전력망, **액체 냉각**(Liquid Cooling), 신재생에너지, 건물 에너지 관리 시스템(BEMS, Building Energy Management System)을 결합한 **AI 에너지 인프라**.
+- 개념 : 초거대 AI 모델의 학습과 추론에 드는 막대한 전력과 발열을 해결하기 위해 고효율 전력망, **액체 냉각** (Liquid Cooling), 신재생에너지, **건물 에너지 관리 시스템** (BEMS, Building Energy Management System)을 결합한 **AI 에너지 인프라**.
 - 배경 및 필요성 : AI 가속기의 전력 밀도가 기존 데이터센터 설계 기준을 크게 넘어서면서 공랭식 냉각의 물리적 한계가 드러났고, 탄소중립과 재생에너지 사용 요구가 강화되고 있다.
-- 주요 목적 : 데이터센터의 **전력효율지수**(PUE, Power Usage Effectiveness) 개선, 고집적 GPU 발열 해소, 재생에너지 연계를 통한 지속 가능한 AI 인프라 구현.
+- 주요 목적 : 데이터센터의 **전력효율지수** (PUE, Power Usage Effectiveness) 개선, 고집적 GPU 발열 해소, 재생에너지 연계를 통한 지속 가능한 AI 인프라 구현.
 
 ## Ⅱ. AI 에너지 인프라의 특징 및 장점
 
 - 핵심 요약 : 직접 칩 냉각, 액침 냉각, 전력과 냉각의 통합 설계, 에너지 관리, 폐열 활용이 결합되어 전력 효율과 고밀도 수용을 함께 높이는 특성.
 
-1. **직접 칩 냉각**(D2C, Direct-to-Chip) : 발열 칩에 냉각 유체를 직접 전달 → 기존 서버 구조를 살리면서 고밀도 랙의 열을 제거.
-2. **액침 냉각**(Immersion Cooling) : 서버를 절연 유체에 담가 냉각 → 팬을 없애 소음과 팬 전력을 줄이고 초고밀도 수용 가능.
+1. **직접 칩 냉각** (D2C, Direct-to-Chip) : 발열 칩에 냉각 유체를 직접 전달 → 기존 서버 구조를 살리면서 고밀도 랙의 열을 제거.
+2. **액침 냉각** (Immersion Cooling) : 서버를 절연 유체에 담가 냉각 → 팬을 없애 소음과 팬 전력을 줄이고 초고밀도 수용 가능.
 3. 전력·냉각 통합 설계 : GPU 부하와 시설 용량을 함께 산정 → 전력 피크를 미리 관리.
 4. 에너지 관리 시스템 : 사용량, 온도, 부하를 관찰해 냉각 운영을 조정 → 불필요한 냉각 에너지 감소.
 5. 폐열 활용 : 회수 가능한 열을 재사용 → 전체 에너지 효율 향상.
@@ -52,9 +60,9 @@ extra:
 ```
 
 ```text
-신재생·SMR(Small Modular Reactor) 발전
+신재생·소형 모듈 원자로 (SMR, Small Modular Reactor) 발전
    ↓
-BESS 저장
+배터리 에너지 저장 시스템 (BESS) 저장
    ↓
 데이터센터 전력 공급
    ↓
@@ -71,7 +79,7 @@ AI 연산 부하
 
 | 냉각 방식 | 메커니즘 | 수용 가능 밀도 | 장단점 |
 | --- | --- | --- | --- |
-| 공랭식 (Air Cooling) | CRAC(Computer Room Air Conditioner)로 냉기 순환 | 고밀도 AI 랙 수용 한계 | 구축이 쉬우나 전력 낭비가 큼 |
+| 공랭식 (Air Cooling) | **컴퓨터실 공조기** (CRAC, Computer Room Air Conditioner)로 냉기 순환 | 고밀도 AI 랙 수용 한계 | 구축이 쉬우나 전력 낭비가 큼 |
 | 직접 칩 냉각 (D2C) | 발열 칩셋 위 냉각수 블록 순환 | 고밀도 AI 랙 수용 가능 | 기존 서버 구조 활용, 냉각수 누수 위험 |
 | 액침 냉각 (Immersion Cooling) | 비전도성 절연유 탱크에 서버 침적 | 최고 수준의 고밀도 수용 | 팬 제거로 무소음, 유지보수 작업이 복잡 |
 
@@ -96,4 +104,4 @@ AI 연산 부하
 ## Ⅶ. 결론
 
 - 핵심 요약 : AI 에너지 인프라는 지속 가능한 AI 연산을 위한 차세대 친환경 데이터센터 인프라.
-- 시사점 : 냉각 기술의 발전만으로는 한계가 있으며, 전력 피크와 수자원, 재생에너지 간헐성을 함께 관리하는 체계가 성패를 좌우한다.
+- 냉각 기술의 발전만으로는 한계가 있으며, 전력 피크와 수자원, 재생에너지 간헐성을 함께 관리하는 체계가 성패를 좌우한다.

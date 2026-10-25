@@ -1,15 +1,14 @@
 ---
 title: "파이썬(Python)"
-author: "agnusdei1207"
-date: "2026-10-25T00:03:01+09:00"
+description: "GIL·덕 타이핑·asyncio·멀티프로세싱, 타입 힌트·mypy·Free-threaded·Rust 가속, 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -72,10 +71,9 @@ extra:
 | 비동기 동시성 (asyncio) | 단일 스레드 이벤트 루프 기반의 코루틴(`async` / `await`) | 메모리 오버헤드가 작아 대량의 동시 I/O 연결 처리에 유리 |
 | 멀티프로세싱 | 독립된 Python 프로세스를 여러 개 생성하여 실행 | 프로세스마다 GIL을 가져 멀티코어 활용 가능, 프로세스 간 통신(IPC, Inter-Process Communication) 비용 존재 |
 
-## Ⅴ. 파이썬(Python)의 장점과 한계
+## Ⅴ. 파이썬(Python)의 한계와 방안
 
 - 핵심 요약 : 생산성과 생태계라는 장점 이면에 GIL, 런타임 타입 오류, 실행 속도의 한계가 존재.
-- 장점 : 간결한 문법으로 개발 생산성 극대화, 분야별 생태계 활용, C/C++ 바인딩을 통한 수치 연산 결합, 빠른 프로토타이핑.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |

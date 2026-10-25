@@ -1,15 +1,14 @@
 ---
-title: "소프트웨어 아키텍처 분석(정방향/역방향)"
-author: "agnusdei1207"
-date: "2026-10-25T00:03:01+09:00"
+title: "소프트웨어 아키텍처 분석(정방향/역방향) (Software Architecture Analysis)"
+description: "정방향·역방향·ArchUnit·피트니스 함수·DSM·마틴 메트릭스, 침식·동적 의존성·주관성 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -82,7 +81,6 @@ extra:
 ## Ⅴ. 소프트웨어 아키텍처 분석의 한계와 방안
 
 - 핵심 요약 : 구조 가시화와 침식 통제라는 장점 이면에 침식 진행, 동적 의존성 누락, 품질 평가의 주관성이라는 한계가 존재.
-- 장점 : 설계와 구현의 간극 해소, 구조 가시화에 따른 유지보수성 향상, 레거시 현대화 청사진 확보, CI 연동에 따른 자동 검증.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |

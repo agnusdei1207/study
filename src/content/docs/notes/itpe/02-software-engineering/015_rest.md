@@ -1,15 +1,14 @@
 ---
 title: "REST(Representational State Transfer)"
-author: "agnusdei1207"
-date: "2026-10-24T23:54:03+09:00"
+description: "REST 6대 제약조건, Richardson 성숙도 모델, 실용적 REST, 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -47,9 +46,9 @@ extra:
 [ REST 3대 구성요소 ]
 
 자원 (Resource) : URI로 식별 (/orders/123)
-          ↓
+      ↓
 행위 (Verb) : HTTP 메서드 (GET, POST 등)
-          ↓
+      ↓
 표현 (Representation) : JSON, XML 본문
 ```
 
@@ -57,11 +56,11 @@ extra:
 [ 요청-응답 흐름 ]
 
 클라이언트
-          ↓ HTTP 요청
+      ↓ HTTP 요청
 프록시 / 게이트웨이 (계층화)
-          ↓
+      ↓
 서버 (세션 상태 미보관, 무상태)
-          ↓
+      ↓
 응답 : 자원 표현 + 상태 전이 링크
 ```
 
@@ -80,7 +79,7 @@ extra:
 
 - 업계 관행 : 대다수 API가 Level 2에 머물며 Level 3 완전 준수 사례는 제한적.
 
-## Ⅴ. REST의 장점과 한계
+## Ⅴ. REST의 한계와 방안
 
 - 핵심 요약 : 범용성과 확장성이라는 장점과 달리, 응답 과부하, 링크 구현 부담, 복합 행위 표현의 어려움이 한계.
 
@@ -93,10 +92,9 @@ extra:
 ## Ⅵ. 마이크로서비스 환경에서의 기술사적 제언
 
 - 핵심 요약 : 외부는 REST, 내부는 gRPC로 나누어 쓰고 OpenAPI 명세로 API 거버넌스를 세우는 방향.
-
-1. 외부와 내부 통신의 분리 : 외부 공개 API는 가독성과 범용성이 높은 REST/JSON을 기준으로 하고, 서비스 간 내부 통신에는 HTTP/2 기반 gRPC를 적용한다.
-2. 명세 중심의 API 거버넌스 : 조직 차원에서 OpenAPI 명세를 설계 산출물로 삼고, 게이트웨이의 인증과 트래픽 제어, 계약 테스트를 함께 운영한다.
-3. 리소스 설계 표준 : URI 명명 규칙, 상태 코드 사용법, 버전 관리 방식을 조직 가이드로 정해 API 간 일관성을 확보한다.
+- 외부와 내부 통신의 분리 : 외부 공개 API는 가독성과 범용성이 높은 REST/JSON을 기준으로 하고, 서비스 간 내부 통신에는 HTTP/2 기반 gRPC를 적용한다.
+- 명세 중심의 API 거버넌스 : 조직 차원에서 OpenAPI 명세를 설계 산출물로 삼고, 게이트웨이의 인증과 트래픽 제어, 계약 테스트를 함께 운영한다.
+- 리소스 설계 표준 : URI 명명 규칙, 상태 코드 사용법, 버전 관리 방식을 조직 가이드로 정해 API 간 일관성을 확보한다.
 
 ## Ⅶ. 결론
 

@@ -8,8 +8,8 @@ sidebar:
   badge:
     text: "기초"
 extra:
-    keyword_grade: "기초"
-    model: "Claude Haiku 5.5"
+  keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드

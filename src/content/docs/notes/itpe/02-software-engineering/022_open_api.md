@@ -1,15 +1,14 @@
 ---
-title: "Open API(API 일반) (API: Application Programming Interface)"
-author: "agnusdei1207"
-date: "2026-10-24T23:54:03+09:00"
+title: "Open API(Application Programming Interface)"
+description: "개방형 API 생태계, 3계층 구조, 프로토콜 비교, 보안·호환성·거버넌스, 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -42,9 +41,9 @@ extra:
 [ Open API 3계층 구조 ]
 
 외부 앱 / 파트너
-          ↓ ① API 호출
+      ↓ ① API 호출
 API Gateway (인증, 호출 제한, 라우팅)
-          ↓ ② 백엔드 전달
+      ↓ ② 백엔드 전달
 내부 백엔드 서비스
 
 Developer Portal (개발자 창구)
@@ -55,14 +54,14 @@ Developer Portal (개발자 창구)
 [ API Gateway 요청 처리 순서 ]
 
 클라이언트 요청
-          ↓ 인증·인가 (OAuth 2.0, 토큰 검증)
-          ↓ 호출 제한 (Rate Limiting)
-          ↓ 라우팅과 종단 암호화
-          ↓ 캐싱과 로깅
+      ↓ 인증·인가 (OAuth 2.0, 토큰 검증)
+      ↓ 호출 제한 (Rate Limiting)
+      ↓ 라우팅과 종단 암호화
+      ↓ 캐싱과 로깅
 백엔드 서비스 → 응답
 ```
 
-- Developer Portal : 명세(OpenAPI Specification, OAS)를 확인하고 샌드박스에서 테스트하며 API 키를 발급받고 사용량을 보는 개발자 창구.
+- **Developer Portal** : 명세(OpenAPI Specification, OAS)를 확인하고 샌드박스에서 테스트하며 API 키를 발급받고 사용량을 보는 개발자 창구.
 - **API Gateway** : 모든 외부 요청의 진입점으로서 인증·인가, 호출 제한, 라우팅, 로깅을 일괄 수행.
 - **API Management** (APIM) : 기획, 발행, 버전 관리, 폐기까지의 수명주기와 과금 모델을 관리.
 
@@ -90,10 +89,9 @@ Developer Portal (개발자 창구)
 ## Ⅵ. Open API 보안과 거버넌스에 대한 기술사적 제언
 
 - 핵심 요약 : 개방 범위에 맞춘 보안 통제와, 명세 중심의 생애주기 관리를 조직 차원에서 수립.
-
-1. 보안 기준의 체계화 : OWASP(Open Worldwide Application Security Project) API Security Top 10을 점검 기준으로 삼아, 객체 수준 인가 검증을 게이트웨이와 백엔드에 함께 두고 보안 점검을 배포 절차에 넣는다.
-2. 버전 정책의 공지 체계 : 주 버전 번호로 호환성 단위를 나누고, 폐기 일정을 개발자 포털에 미리 공지해 파트너가 전환할 시간을 확보한다.
-3. 공개 범위에 따른 프로토콜 선택 : 외부 공개 영역은 REST를, 내부 고성능 통신은 gRPC를 쓰는 식으로 목적별 기준을 문서화한다.
+- 보안 기준의 체계화 : OWASP(Open Worldwide Application Security Project) API Security Top 10을 점검 기준으로 삼아, 객체 수준 인가 검증을 게이트웨이와 백엔드에 함께 두고 보안 점검을 배포 절차에 넣는다.
+- 버전 정책의 공지 체계 : 주 버전 번호로 호환성 단위를 나누고, 폐기 일정을 개발자 포털에 미리 공지해 파트너가 전환할 시간을 확보한다.
+- 공개 범위에 따른 프로토콜 선택 : 외부 공개 영역은 REST를, 내부 고성능 통신은 gRPC를 쓰는 식으로 목적별 기준을 문서화한다.
 
 ## Ⅶ. 결론
 

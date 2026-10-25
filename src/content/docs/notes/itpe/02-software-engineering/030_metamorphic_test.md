@@ -1,15 +1,14 @@
 ---
-title: "메타모픽 테스트(Metamorphic Test)"
-author: "agnusdei1207"
-date: "2026-10-24T23:56:38+09:00"
+title: "메타모픽 테스트(Metamorphic Testing)"
+description: "테스트 오라클 문제 해결, MR·소스/후속 입력, 속성 기반 테스팅, SBFL·퍼징 연계, 한계와 방안"
 tags:
   - "notes-software-engineering"
+  - "notes-itpe"
 sidebar:
   badge:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
 ---
 
 ## 연관 키워드
@@ -94,9 +93,8 @@ MR의 구체적 예시는 다음과 같다.
 ## Ⅵ. AI 시스템 테스팅 관점에서의 기술사적 제언
 
 - 핵심 요약 : 도메인 전문가와 함께 MR을 체계적으로 정형화하고, 퍼징과 연결된 자동화 파이프라인을 구축하는 방향이 필요.
-
-1. 도메인 특화 MR의 체계적 정형화 : 테스트의 성패가 올바른 MR 발굴에 달려 있으므로, 도메인 전문가와 협업해 대칭성, 불변성, 가법성, 단조성 같은 관계 유형을 기준으로 MR 목록을 체계화해야 한다.
-2. 자동화 파이프라인 구축 : **퍼징** (Fuzzing) 도구의 변이 엔진으로 후속 입력을 대량 생성하고 MR 위반을 지속 모니터링하는 MLOps(Machine Learning Operations) 품질 게이트를 두는 것이 바람직하다.
+- 도메인 특화 MR의 체계적 정형화 : 테스트의 성패가 올바른 MR 발굴에 달려 있으므로, 도메인 전문가와 협업해 대칭성, 불변성, 가법성, 단조성 같은 관계 유형을 기준으로 MR 목록을 체계화해야 한다.
+- 자동화 파이프라인 구축 : **퍼징** (Fuzzing) 도구의 변이 엔진으로 후속 입력을 대량 생성하고 MR 위반을 지속 모니터링하는 MLOps(Machine Learning Operations) 품질 게이트를 두는 것이 바람직하다.
 
 ## Ⅶ. 결론
 
