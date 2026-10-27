@@ -1,3 +1,18 @@
+---
+title: "TAM·SAM·SOM"
+author: "agnusdei1207"
+date: "2026-10-24T23:46:02+09:00"
+tags:
+  - "notes-it-strategy"
+sidebar:
+  badge:
+    text: "서브"
+extra:
+  number: 89
+  keyword_grade: "서브"
+  model: "Claude Haiku 5.5"
+---
+
 ## 연관 키워드
 
 - TAM (Total Addressable Market, 전체 시장), SAM (Serviceable Available Market, 유효 시장), SOM (Serviceable Obtainable Market, 수익 시장)

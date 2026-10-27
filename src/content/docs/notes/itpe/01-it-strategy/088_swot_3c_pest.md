@@ -1,3 +1,18 @@
+---
+title: "경영환경 분석(SWOT·3C·PEST)"
+author: "agnusdei1207"
+date: "2026-10-24T23:46:02+09:00"
+tags:
+  - "notes-it-strategy"
+sidebar:
+  badge:
+    text: "서브"
+extra:
+  number: 88
+  keyword_grade: "서브"
+  model: "Claude Haiku 5.5"
+---
+
 ## 연관 키워드
 
 - SWOT (Strengths, Weaknesses, Opportunities, Threats), 3C (Customer, Competitor, Company), PEST (Political, Economic, Social, Technological)

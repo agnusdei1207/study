@@ -1,3 +1,18 @@
+---
+title: "ITSQF(IT Sectoral Qualifications Framework)"
+author: "agnusdei1207"
+date: "2026-10-24T23:46:02+09:00"
+tags:
+  - "notes-it-strategy"
+sidebar:
+  badge:
+    text: "서브"
+extra:
+  number: 87
+  keyword_grade: "서브"
+  model: "Claude Haiku 5.5"
+---
+
 ## 연관 키워드
 
 - ITSQF (IT Sectoral Qualifications Framework, IT 직무 역량체계)

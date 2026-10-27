@@ -1,3 +1,18 @@
+---
+title: "IT서비스 산업 특수성"
+author: "agnusdei1207"
+date: "2026-10-24T23:46:02+09:00"
+tags:
+  - "notes-it-strategy"
+sidebar:
+  badge:
+    text: "서브"
+extra:
+  number: 86
+  keyword_grade: "서브"
+  model: "Claude Haiku 5.5"
+---
+
 ## 연관 키워드
 
 - IT서비스 산업 (IT Service Industry), 지식기반 산업

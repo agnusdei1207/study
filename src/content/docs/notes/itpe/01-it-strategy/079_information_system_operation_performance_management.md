@@ -1,3 +1,18 @@
+---
+title: "정보시스템 운영 성과관리 (Information System Operation Performance Management)"
+author: "agnusdei1207"
+date: "2026-10-24T23:46:02+09:00"
+tags:
+  - "notes-it-strategy"
+sidebar:
+  badge:
+    text: "서브"
+extra:
+  number: 79
+  keyword_grade: "서브"
+  model: "Claude Haiku 5.5"
+---
+
 ## 연관 키워드
 
 - 정보시스템 운영 성과관리 (Information System Operation Performance Management)
