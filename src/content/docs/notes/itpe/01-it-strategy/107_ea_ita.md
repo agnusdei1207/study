@@ -8,7 +8,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
-  number: 107
+  question_no: "107"
   keyword_grade: "기초"
   model: "Claude Haiku 5.5"
 ---
