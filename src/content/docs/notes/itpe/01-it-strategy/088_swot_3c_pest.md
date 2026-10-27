@@ -1,5 +1,5 @@
 ---
-title: "경영환경 분석(SWOT·3C·PEST)"
+title: "경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities, Threats)·3C(Customer, Competitor, Company)·PEST(Political, Economic, Social, Technological))"
 author: "agnusdei1207"
 date: "2026-10-24T23:46:02+09:00"
 tags:

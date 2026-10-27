@@ -1,5 +1,5 @@
 ---
-title: "공공 SW 사업 적정 사업기간·과업심의"
+title: "공공 SW(Software) 사업 적정 사업기간·과업심의"
 author: "agnusdei1207"
 date: "2026-10-24T23:52:31+09:00"
 tags:

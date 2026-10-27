@@ -1,5 +1,5 @@
 ---
-title: "TAM·SAM·SOM"
+title: "TAM(Total Addressable Market)·SAM(Serviceable Available Market)·SOM(Serviceable Obtainable Market)"
 author: "agnusdei1207"
 date: "2026-10-24T23:46:02+09:00"
 tags:

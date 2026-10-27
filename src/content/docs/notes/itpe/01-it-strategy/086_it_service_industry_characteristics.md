@@ -1,5 +1,5 @@
 ---
-title: "IT서비스 산업 특수성"
+title: "IT(Information Technology)서비스 산업 특수성"
 author: "agnusdei1207"
 date: "2026-10-24T23:46:02+09:00"
 tags:
