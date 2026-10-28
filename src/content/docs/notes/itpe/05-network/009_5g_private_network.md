@@ -8,6 +8,7 @@ sidebar:
   badge:
     text: "기초"
 extra:
+  question_no: "009"
   keyword_grade: "기초"
   model: "GLM-5.3-Flash"
 ---

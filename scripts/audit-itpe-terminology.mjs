@@ -165,8 +165,8 @@ export function namesForFile(file) {
   const context = { ...names };
   if (file.includes('technology_acceptance_model')) context.TAM = 'Technology Acceptance Model';
   if (file.includes('118_som')) context.SOM = 'Self-Organizing Map';
-  if (file.includes('083_oop')) context.POP = 'Procedure-Oriented Programming';
-  if (file.includes('111_mac')) context.MAC = 'Message Authentication Code';
+  if (file.includes('059_oop')) context.POP = 'Procedure-Oriented Programming';
+  if (file.includes('110_mac')) context.MAC = 'Message Authentication Code';
   if (file.includes('053_ips')) context.IPS = 'Indoor Positioning System';
   if (file.includes('184_augmented_reality')) context.AR = 'Augmented Reality';
   return context;

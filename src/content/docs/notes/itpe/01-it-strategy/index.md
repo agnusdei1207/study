@@ -75,74 +75,74 @@ weight: 1
 | 01-009 | 프로젝트 위험관리 | [보기](./009_project_risk_management_negative/) |
 | 01-010 | BPR(Business Process Reengineering) | [보기](./010_bpr/) |
 | 01-011 | ESG(Environmental, Social and Governance) 경영 | [보기](./011_esg/) |
-| 01-016 | IT(Information Technology) 투자평가·투자관리 | [보기](./016_it_investment_evaluation/) |
+| 01-014 | IT(Information Technology) 투자평가·투자관리 | [보기](./014_it_investment_evaluation/) |
 | 01-012 | FinOps(FOCUS 포함) | [보기](./012_finops/) |
 | 01-013 | 애자일 전환 전략 | [보기](./013_agile_response_strategy/) |
-| 01-040 | 위험 대응 전략(위협·기회) | [보기](./040_negative_risk_response_strategy/) |
-| 01-017 | BSC(Balanced Scorecard) | [보기](./017_bsc/) |
-| 01-018 | RTO(Recovery Time Objective)·RPO(Recovery Point Objective) | [보기](./018_rpo/) |
-| 01-020 | 디지털 트랜스포메이션(Digital Transformation) | [보기](./020_digital_transformation/) |
-| 01-021 | 공공부문 클라우드 네이티브 전환 | [보기](./021_public_cloud_native_transition/) |
-| 01-023 | 정보시스템 등급제 | [보기](./023_information_system_grading/) |
-| 01-024 | 국가 AI(Artificial Intelligence) 전략(AI 3대 강국·인공지능행동계획) | [보기](./024_korea_ai_action_plan/) |
-| 01-025 | 범정부 AI 공통기반 | [보기](./025_pan_government_ai_common_infrastructure/) |
-| 01-026 | 소프트웨어 사업 대가산정 | [보기](./026_software_cost_estimation/) |
-| 01-027 | 액티브-액티브 이중화·스토리지 DR (Disaster Recovery, 국정자원 후속) | [보기](./027_active_active_storage_dr/) |
-| 01-028 | 터크만 팀 발달 모델 | [보기](./028_tuckman_team_development_model/) |
-| 01-036 | NIST(National Institute of Standards and Technology) AI RMF(Risk Management Framework)(AI 600-1 생성형 AI 프로파일 포함) | [보기](./036_nist_ai_rmf/) |
-| 01-029 | A/B 테스트(A/B Test) | [보기](./029_ab_testing/) |
-| 01-030 | BCP(Business Continuity Planning) | [보기](./030_bcp/) |
-| 01-035 | 프로젝트 갈등관리 | [보기](./035_conflict_management/) |
-| 01-038 | POP(Point of Production) | [보기](./038_pop/) |
-| 01-039 | 공공 SW(Software) 사업 발주·계약(단계별 발주, 업체 선정) | [보기](./039_public_sw_contract/) |
-| 01-042 | DRS(Disaster Recovery System) | [보기](./042_drs/) |
-| 01-044 | ITSM(IT Service Management) | [보기](./044_itsm/) |
-| 01-031 | CRM(Customer Relationship Management) | [보기](./031_crm/) |
-| 01-032 | EVM(Earned Value Management) | [보기](./032_evm/) |
-| 01-033 | IT 아웃소싱(IT Outsourcing) | [보기](./033_it_outsourcing/) |
-| 01-065 | 프로젝트·프로그램·포트폴리오 관리 | [보기](./065_project_management/) |
-| 01-043 | ISO 21500 | [보기](./043_iso_21500/) |
-| 01-045 | MECE(Mutually Exclusive Collectively Exhaustive) | [보기](./045_mece/) |
-| 01-046 | 그로스 해킹(Growth Hacking) | [보기](./046_growth_hacking/) |
-| 01-047 | 디자인 씽킹 | [보기](./047_design_thinking/) |
-| 01-049 | 제안요청서(RFP, Request for Proposal) | [보기](./049_rfp/) |
-| 01-050 | AI 거버넌스 플랫폼 | [보기](./050_ai_governance_platform/) |
-| 01-051 | AI 고속도로(국가 AI컴퓨팅센터 포함) | [보기](./051_ai_highway/) |
-| 01-052 | AI 민주정부 / 온AI | [보기](./052_ai_democratic_government_on_ai/) |
-| 01-054 | AI 프라이버시 리스크 관리 모델 | [보기](./054_ai_privacy_risk_management_model/) |
-| 01-058 | 기술 주권 (자국 기술 주권 확보) | [보기](./058_technology_sovereignty/) |
-| 01-059 | 시스템 운영·유지보수 감리 | [보기](./059_system_operation_audit/) |
-| 01-060 | 에너지 인프라 (AI 전력) | [보기](./060_ai_energy_infrastructure/) |
-| 01-066 | 협상에 의한 계약 제안서평가 세부기준 | [보기](./066_negotiated_contract_proposal_evaluation/) |
-| 01-067 | 화이트 레이블 마케팅(White Label Marketing) | [보기](./067_white_label_marketing/) |
-| 01-069 | ISO 31000 | [보기](./069_iso_31000/) |
-| 01-071 | PLM(Product Lifecycle Management) | [보기](./071_plm/) |
-| 01-088 | 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities and Threats)·3C·PEST) | [보기](./088_swot_3c_pest/) |
-| 01-087 | ITSQF(IT 분야 산업별 역량체계) | [보기](./087_it_job_competency_system/) |
-| 01-089 | TAM-SAM-SOM(Total Addressable Market-Serviceable Addressable Market-Serviceable Obtainable Market) | [보기](./089_tam_sam_som/) |
-| 01-092 | 기술수용모델(Technology Acceptance Model) | [보기](./092_technology_acceptance_model/) |
-| 01-104 | 클라우드 전환사업 감리 | [보기](./104_cloud_migration_project_audit/) |
-| 01-068 | ERP(Enterprise Resource Planning) | [보기](./068_erp/) |
-| 01-072 | 가치사슬(Value Chain) | [보기](./072_value_chain/) |
-| 01-073 | 정량적 위험분석 | [보기](./073_quantitative_risk_analysis/) |
-| 01-075 | AHP(Analytic Hierarchy Process) | [보기](./075_ahp/) |
-| 01-078 | SEM(Strategic Enterprise Management) | [보기](./078_sem/) |
-| 01-079 | 정보시스템 운영 성과관리 | [보기](./079_information_system_operation_performance_management/) |
-| 01-081 | CPM(Critical Path Method) | [보기](./081_cpm/) |
-| 01-082 | CoE(Center of Excellence) | [보기](./082_coe/) |
-| 01-086 | IT서비스 산업 특수성 | [보기](./086_it_service_industry_characteristics/) |
-| 01-091 | 과업심의(과업변경·사업기간 적정성) | [보기](./091_public_sw_cost_and_scope_change_criteria/) |
-| 01-097 | 공공 소프트웨어사업 하도급 제한 | [보기](./097_software_industry_subcontracting_structure/) |
-| 01-098 | 전문성의 민주화(Democratization of Expertise) | [보기](./098_democratization_of_expertise/) |
-| 01-103 | 차세대 시스템 오픈 리스크 | [보기](./103_next_generation_system_open_risk/) |
-| 01-106 | 품질비용(COQ) | [보기](./106_cost_of_quality_coq/) |
-| 01-107 | EA/ITA(Enterprise Architecture/Information Technology Architecture) | [보기](./107_ea_ita/) |
-| 01-110 | Programmable Money·AI Agent 결제 | [보기](./110_programmable_money_ai_agents/) |
-| 01-111 | 6시그마(Six Sigma) DMAIC | [보기](./111_six_sigma_dmaic/) |
-| 01-112 | CCPM(Critical Chain, TOC) | [보기](./112_critical_chain_toc/) |
-| 01-113 | 소프트웨어 비용 산정(Software Cost Estimation) | [보기](./113_software_cost_estimation/) |
-| 01-114 | 개방형 혁신(Open Innovation) | [보기](./114_open_innovation/) |
-| 01-116 | 인과루프다이어그램(Causal Loop Diagram) | [보기](./116_causal_loop_diagram/) |
+| 01-034 | 위험 대응 전략(위협·기회) | [보기](./034_negative_risk_response_strategy/) |
+| 01-015 | BSC(Balanced Scorecard) | [보기](./015_bsc/) |
+| 01-016 | RTO(Recovery Time Objective)·RPO(Recovery Point Objective) | [보기](./016_rpo/) |
+| 01-017 | 디지털 트랜스포메이션(Digital Transformation) | [보기](./017_digital_transformation/) |
+| 01-018 | 공공부문 클라우드 네이티브 전환 | [보기](./018_public_cloud_native_transition/) |
+| 01-019 | 정보시스템 등급제 | [보기](./019_information_system_grading/) |
+| 01-020 | 국가 AI(Artificial Intelligence) 전략(AI 3대 강국·인공지능행동계획) | [보기](./020_korea_ai_action_plan/) |
+| 01-021 | 범정부 AI 공통기반 | [보기](./021_pan_government_ai_common_infrastructure/) |
+| 01-022 | 소프트웨어 사업 대가산정 | [보기](./022_software_cost_estimation/) |
+| 01-023 | 액티브-액티브 이중화·스토리지 DR (Disaster Recovery, 국정자원 후속) | [보기](./023_active_active_storage_dr/) |
+| 01-024 | 터크만 팀 발달 모델 | [보기](./024_tuckman_team_development_model/) |
+| 01-031 | NIST(National Institute of Standards and Technology) AI RMF(Risk Management Framework)(AI 600-1 생성형 AI 프로파일 포함) | [보기](./031_nist_ai_rmf/) |
+| 01-025 | A/B 테스트(A/B Test) | [보기](./025_ab_testing/) |
+| 01-026 | BCP(Business Continuity Planning) | [보기](./026_bcp/) |
+| 01-030 | 프로젝트 갈등관리 | [보기](./030_conflict_management/) |
+| 01-032 | POP(Point of Production) | [보기](./032_pop/) |
+| 01-033 | 공공 SW(Software) 사업 발주·계약(단계별 발주, 업체 선정) | [보기](./033_public_sw_contract/) |
+| 01-035 | DRS(Disaster Recovery System) | [보기](./035_drs/) |
+| 01-037 | ITSM(IT Service Management) | [보기](./037_itsm/) |
+| 01-027 | CRM(Customer Relationship Management) | [보기](./027_crm/) |
+| 01-028 | EVM(Earned Value Management) | [보기](./028_evm/) |
+| 01-029 | IT 아웃소싱(IT Outsourcing) | [보기](./029_it_outsourcing/) |
+| 01-049 | 프로젝트·프로그램·포트폴리오 관리 | [보기](./049_project_management/) |
+| 01-036 | ISO 21500 | [보기](./036_iso_21500/) |
+| 01-038 | MECE(Mutually Exclusive Collectively Exhaustive) | [보기](./038_mece/) |
+| 01-039 | 그로스 해킹(Growth Hacking) | [보기](./039_growth_hacking/) |
+| 01-040 | 디자인 씽킹 | [보기](./040_design_thinking/) |
+| 01-041 | 제안요청서(RFP, Request for Proposal) | [보기](./041_rfp/) |
+| 01-042 | AI 거버넌스 플랫폼 | [보기](./042_ai_governance_platform/) |
+| 01-043 | AI 고속도로(국가 AI컴퓨팅센터 포함) | [보기](./043_ai_highway/) |
+| 01-044 | AI 민주정부 / 온AI | [보기](./044_ai_democratic_government_on_ai/) |
+| 01-045 | AI 프라이버시 리스크 관리 모델 | [보기](./045_ai_privacy_risk_management_model/) |
+| 01-046 | 기술 주권 (자국 기술 주권 확보) | [보기](./046_technology_sovereignty/) |
+| 01-047 | 시스템 운영·유지보수 감리 | [보기](./047_system_operation_audit/) |
+| 01-048 | 에너지 인프라 (AI 전력) | [보기](./048_ai_energy_infrastructure/) |
+| 01-050 | 협상에 의한 계약 제안서평가 세부기준 | [보기](./050_negotiated_contract_proposal_evaluation/) |
+| 01-051 | 화이트 레이블 마케팅(White Label Marketing) | [보기](./051_white_label_marketing/) |
+| 01-053 | ISO 31000 | [보기](./053_iso_31000/) |
+| 01-054 | PLM(Product Lifecycle Management) | [보기](./054_plm/) |
+| 01-064 | 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities and Threats)·3C·PEST) | [보기](./064_swot_3c_pest/) |
+| 01-063 | ITSQF(IT 분야 산업별 역량체계) | [보기](./063_it_job_competency_system/) |
+| 01-065 | TAM-SAM-SOM(Total Addressable Market-Serviceable Addressable Market-Serviceable Obtainable Market) | [보기](./065_tam_sam_som/) |
+| 01-067 | 기술수용모델(Technology Acceptance Model) | [보기](./067_technology_acceptance_model/) |
+| 01-071 | 클라우드 전환사업 감리 | [보기](./071_cloud_migration_project_audit/) |
+| 01-052 | ERP(Enterprise Resource Planning) | [보기](./052_erp/) |
+| 01-055 | 가치사슬(Value Chain) | [보기](./055_value_chain/) |
+| 01-056 | 정량적 위험분석 | [보기](./056_quantitative_risk_analysis/) |
+| 01-057 | AHP(Analytic Hierarchy Process) | [보기](./057_ahp/) |
+| 01-058 | SEM(Strategic Enterprise Management) | [보기](./058_sem/) |
+| 01-059 | 정보시스템 운영 성과관리 | [보기](./059_information_system_operation_performance_management/) |
+| 01-060 | CPM(Critical Path Method) | [보기](./060_cpm/) |
+| 01-061 | CoE(Center of Excellence) | [보기](./061_coe/) |
+| 01-062 | IT서비스 산업 특수성 | [보기](./062_it_service_industry_characteristics/) |
+| 01-066 | 과업심의(과업변경·사업기간 적정성) | [보기](./066_public_sw_cost_and_scope_change_criteria/) |
+| 01-068 | 공공 소프트웨어사업 하도급 제한 | [보기](./068_software_industry_subcontracting_structure/) |
+| 01-069 | 전문성의 민주화(Democratization of Expertise) | [보기](./069_democratization_of_expertise/) |
+| 01-070 | 차세대 시스템 오픈 리스크 | [보기](./070_next_generation_system_open_risk/) |
+| 01-072 | 품질비용(COQ) | [보기](./072_cost_of_quality_coq/) |
+| 01-073 | EA/ITA(Enterprise Architecture/Information Technology Architecture) | [보기](./073_ea_ita/) |
+| 01-074 | Programmable Money·AI Agent 결제 | [보기](./074_programmable_money_ai_agents/) |
+| 01-075 | 6시그마(Six Sigma) DMAIC | [보기](./075_six_sigma_dmaic/) |
+| 01-076 | CCPM(Critical Chain, TOC) | [보기](./076_critical_chain_toc/) |
+| 01-077 | 소프트웨어 비용 산정(Software Cost Estimation) | [보기](./077_software_cost_estimation/) |
+| 01-078 | 개방형 혁신(Open Innovation) | [보기](./078_open_innovation/) |
+| 01-079 | 인과루프다이어그램(Causal Loop Diagram) | [보기](./079_causal_loop_diagram/) |
 
 ## 일반 학습 원칙
 

@@ -8,6 +8,7 @@ sidebar:
   badge:
     text: "서브"
 extra:
+  question_no: "056"
   keyword_grade: "서브"
   model: "Claude Haiku 5.5"
 ---

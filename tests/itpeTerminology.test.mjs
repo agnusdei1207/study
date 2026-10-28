@@ -12,10 +12,10 @@ test('audits every ITPE subject and note for known terminology regressions', () 
 });
 
 test('keeps title meanings contextual and product identifiers unexpanded', () => {
-  assert.equal(namesForFile('092_technology_acceptance_model.md').TAM, 'Technology Acceptance Model');
-  assert.equal(namesForFile('089_tam_sam_som.md').TAM, 'Total Addressable Market');
+  assert.equal(namesForFile('067_technology_acceptance_model.md').TAM, 'Technology Acceptance Model');
+  assert.equal(namesForFile('065_tam_sam_som.md').TAM, 'Total Addressable Market');
   assert.equal(namesForFile('118_som.md').SOM, 'Self-Organizing Map');
-  assert.equal(namesForFile('111_mac.md').MAC, 'Message Authentication Code');
+  assert.equal(namesForFile('110_mac.md').MAC, 'Message Authentication Code');
   assert.deepEqual(titleIssues('rack_scale.md', 'GB200 NVL72'), []);
   assert.deepEqual(titleIssues('011_csma_ca.md', 'CSMA/CA(Carrier Sense Multiple Access with Collision Avoidance)'), []);
   assert.ok(titleIssues('001_ismp.md', 'ISMP').length > 0);
@@ -29,8 +29,8 @@ test('rejects invented expansions without rejecting real meanings in other field
 });
 
 test('distinguishes signature validation from customer lifetime value', () => {
-  const signature = fs.readFileSync(path.join(root, '06-security/079_digital_signature.md'), 'utf8');
-  const crm = fs.readFileSync(path.join(root, '01-it-strategy/031_crm.md'), 'utf8');
+  const signature = fs.readFileSync(path.join(root, '06-security/078_digital_signature.md'), 'utf8');
+  const crm = fs.readFileSync(path.join(root, '01-it-strategy/027_crm.md'), 'utf8');
   assert.match(signature, /LTV, Long-Term Validation/);
   assert.match(crm, /CLV\(Customer Lifetime Value\)/);
   assert.match(crm, /LTV\(Lifetime Value\)/);

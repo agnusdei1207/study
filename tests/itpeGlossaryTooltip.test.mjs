@@ -9,7 +9,7 @@ test('glossary tooltips work in software engineering notes', () => {
   const dom = new JSDOM(`<!doctype html><article class="sl-markdown-content">
     <details><summary>핵심 용어</summary><ul><li><strong>EIP(Enterprise Integration Patterns)</strong> : 메시지 기반 통합 설계 패턴</li></ul></details>
     <h2>1교시 10점 답안</h2><p><strong>EIP</strong>의 역할을 설명한다.</p>
-  </article>`, { url: 'https://example.com/study/notes/itpe/02-software-engineering/182_eip/', runScripts: 'outside-only' });
+  </article>`, { url: 'https://example.com/study/notes/itpe/02-software-engineering/110_eip/', runScripts: 'outside-only' });
   dom.window.eval(script);
   dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
   const term = dom.window.document.querySelector('p strong');
@@ -52,7 +52,7 @@ test('plain first mentions of selected glossary terms receive the same tooltip i
     <h2>1교시 10점 답안</h2><h3>Ⅰ. 개요</h3><p>TAM은 사용 의도를 설명한다.</p>
     <h2>2~4교시 예상문제</h2><h2>2~4교시 25점 답안</h2><h2>Ⅰ. 개요</h2><p>기술수용모델은 수용 요인을 다룬다.</p>
     <h2>출제 이력과 검증 출처</h2>
-  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/092_technology_acceptance_model/', runScripts: 'outside-only' });
+  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/067_technology_acceptance_model/', runScripts: 'outside-only' });
   dom.window.eval(script);
   dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
   const triggers = [...dom.window.document.querySelectorAll('p .itpe-glossary-trigger')];
@@ -114,7 +114,7 @@ test('a later standalone acronym still matches after an embedded occurrence', ()
     <details><summary>핵심 용어</summary><ul><li><strong>AI(Artificial Intelligence)</strong> : 인공지능</li></ul></details>
     <h2>1교시 10점 답안</h2><p>OpenAI 기반 AI 서비스</p>
     <h2>출제 이력과 검증 출처</h2>
-  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/050_ai_governance_platform/', runScripts: 'outside-only' });
+  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/042_ai_governance_platform/', runScripts: 'outside-only' });
   dom.window.eval(script);
   dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
   const triggers = [...dom.window.document.querySelectorAll('p .itpe-glossary-trigger')];
@@ -126,7 +126,7 @@ test('BRR in the investment answer opens the benefits realization explanation', 
   const dom = new JSDOM(`<!doctype html><article class="sl-markdown-content">
     <details><summary>핵심 용어</summary><ul><li><strong>BRR(Benefits Realization Review, 편익 실현 검토)</strong> : 가동 후 계획 편익과 실적을 검토한다</li></ul></details>
     <h2>1교시 10점 답안</h2><table><tr><td>승인 당시 계획과 실제 편익의 차이(<strong>BRR</strong>)</td></tr></table>
-  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/016_it_investment_evaluation/', runScripts: 'outside-only' });
+  </article>`, { url: 'https://example.com/study/notes/itpe/01-it-strategy/014_it_investment_evaluation/', runScripts: 'outside-only' });
   dom.window.eval(script);
   dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
   const term = dom.window.document.querySelector('td strong');

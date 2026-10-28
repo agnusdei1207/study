@@ -18,8 +18,8 @@ test('derives a three-digit note number from the route and preserves the full ke
 
 test('uses an explicit numbered label without duplicating the number', () => {
   assert.deepEqual(
-    getNoteLabel('023. 국가 AI 전략', '/study/notes/itpe/01-it-strategy/023_korea_ai_action_plan/'),
-    { number: '023', keyword: '국가 AI 전략' }
+    getNoteLabel('020. 국가 AI 전략', '/study/notes/itpe/01-it-strategy/020_korea_ai_action_plan/'),
+    { number: '020', keyword: '국가 AI 전략' }
   );
 });
 

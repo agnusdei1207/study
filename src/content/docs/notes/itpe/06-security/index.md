@@ -78,18 +78,18 @@ weight: 6
 ### 1. 거버넌스·관리체계
 
 - [ISMS(Information Security Management System)](./001_isms/), [ISMS-P](./011_isms_p/), [NIST(National Institute of Standards and Technology) CSF 2.0](./039_nist_csf_2_0_govern/)
-- [CISO(Chief Information Security Officer)](./027_ciso/), [정보보호 컴플라이언스](./067_information_security_compliance/)
+- [CISO(Chief Information Security Officer)](./027_ciso/), [정보보호 컴플라이언스](./066_information_security_compliance/)
 
 ### 2. 암호·인증·접근통제
 
-- [해시 함수](./010_hash_function/), [대칭키 암호](./072_symmetric_key_encryption/), [비대칭키 암호](./075_asymmetric_key_encryption/)
-- [전자서명](./079_digital_signature/), [TLS(Transport Layer Security) 1.3](./094_tls_1_3/), [Passkey](./060_passkey/)
+- [해시 함수](./010_hash_function/), [대칭키 암호](./071_symmetric_key_encryption/), [비대칭키 암호](./074_asymmetric_key_encryption/)
+- [전자서명](./078_digital_signature/), [TLS(Transport Layer Security) 1.3](./093_tls_1_3/), [Passkey](./060_passkey/)
 - [접근통제 모델](./024_access_control_models_dac_mac_rbac/), [Zero Trust](./009_zero_trust/)
 
 ### 3. 개발·공급망·클라우드
 
 - [시큐어 코딩](./022_secure_coding/), [DevSecOps](./052_devsecops/), [SBOM(Software Bill of Materials)](./004_sbom/)
-- [공급망 보안](./097_supply_chain_security/), [클라우드 보안](./025_cloud_security/), [CSAP(Cloud Security Assurance Program)](./028_csap/)
+- [공급망 보안](./096_supply_chain_security/), [클라우드 보안](./025_cloud_security/), [CSAP(Cloud Security Assurance Program)](./028_csap/)
 
 ### 4. 탐지·대응·포렌식
 
@@ -98,9 +98,9 @@ weight: 6
 
 ### 5. 개인정보·AI·융합 보안
 
-- [가명·익명·비식별 처리](./005_deidentification_techniques/), [PET(Privacy-Enhancing Technology)](./013_pet/), [Privacy by Design](./071_privacy_by_design/)
-- [LLM(Large Language Model) 보안 위험](./002_llm_security_risks/), [프롬프트 인젝션](./033_prompt_injection/), [모델 전도 공격](./064_model_inversion_attack/)
-- [산업제어시스템 보안](./030_industrial_control_system_security/), [IEC(International Electrotechnical Commission) 62443](./118_iec_62443/)
+- [가명·익명·비식별 처리](./005_deidentification_techniques/), [PET(Privacy-Enhancing Technology)](./013_pet/), [Privacy by Design](./070_privacy_by_design/)
+- [LLM(Large Language Model) 보안 위험](./002_llm_security_risks/), [프롬프트 인젝션](./033_prompt_injection/), [모델 전도 공격](./063_model_inversion_attack/)
+- [산업제어시스템 보안](./030_industrial_control_system_security/), [IEC(International Electrotechnical Commission) 62443](./117_iec_62443/)
 
 ## 레거시 교정 원칙
 

@@ -8,6 +8,7 @@ sidebar:
   badge:
     text: "응용"
 extra:
+  question_no: "044"
   keyword_grade: "응용"
   model: "Claude Haiku 5.5"
 ---

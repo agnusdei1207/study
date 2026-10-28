@@ -74,34 +74,34 @@ OS: Process → Scheduling → Synchronization → Virtual Memory
 
 ### 1. 운영체제 자원관리
 
-- [은행가 알고리즘](./002_bankers_algorithm/)
-- [프로세스 동기화 기법](./122_process_synchronization/)
-- [CPU 스케줄링](./019_cpu_scheduling/), [가상 메모리](./023_virtual_memory/), [디스크 스케줄링](./024_disk_scheduling/)
-- [교착상태](./038_deadlock/), [스레싱](./039_thrashing/), [IPC(Inter-Process Communication)](./034_ipc/)
+- [은행가 알고리즘](./001_bankers_algorithm/)
+- [프로세스 동기화 기법](./113_process_synchronization/)
+- [CPU 스케줄링](./011_cpu_scheduling/), [가상 메모리](./015_virtual_memory/), [디스크 스케줄링](./016_disk_scheduling/)
+- [교착상태](./030_deadlock/), [스레싱](./031_thrashing/), [IPC(Inter-Process Communication)](./026_ipc/)
 
 ### 2. 컴퓨터구조·가속기
 
-- [CPU](./076_cpu/), [GPU(Graphics Processing Unit)](./020_gpu/), [TPU(Tensor Processing Unit)](./022_tpu/), [NPU(Neural Processing Unit)](./007_npu/)
-- [캐시 메모리·일관성](./051_cache_memory/), [메모리 계층·인터리빙](./096_memory_hierarchy_interleaving/)
-- [HBM(High Bandwidth Memory)](./079_hbm/), [CXL(Compute Express Link)](./063_cxl/), [칩렛·UCIe](./030_chiplet_ucie_3_0/)
+- [CPU](./067_cpu/), [GPU(Graphics Processing Unit)](./012_gpu/), [TPU(Tensor Processing Unit)](./014_tpu/), [NPU(Neural Processing Unit)](./003_npu/)
+- [캐시 메모리·일관성](./042_cache_memory/), [메모리 계층·인터리빙](./087_memory_hierarchy_interleaving/)
+- [HBM(High Bandwidth Memory)](./070_hbm/), [CXL(Compute Express Link)](./054_cxl/), [칩렛·UCIe](./022_chiplet_ucie_3_0/)
 
 ### 3. 가상화·클라우드
 
-- [하이퍼바이저](./061_hypervisor/), [가상머신](./085_virtual_machine/)
-- [컨테이너](./032_container/), [쿠버네티스](./012_kubernetes/), [서버리스](./003_serverless_computing/)
-- [클라우드 컴퓨팅](./013_cloud_computing/), [멀티 클라우드](./009_multi_cloud/), [서비스 모델](./109_cloud_computing_service_models/)
+- [하이퍼바이저](./052_hypervisor/), [가상머신](./076_virtual_machine/)
+- [컨테이너](./024_container/), [쿠버네티스](./007_kubernetes/), [서버리스](./002_serverless_computing/)
+- [클라우드 컴퓨팅](./008_cloud_computing/), [멀티 클라우드](./004_multi_cloud/), [서비스 모델](./100_cloud_computing_service_models/)
 
 ### 4. 스토리지·가용성·재해복구
 
-- [스토리지 유형 비교](./123_storage_type_comparison/)
-- [HA(High Availability)·FTS](./042_ha_availability_assurance/), [RAID(Redundant Array of Independent Disks)](./056_raid/)
-- [멀티 리전 Active-Active DR(Disaster Recovery)](./068_multi_region_active_active_disaster_recovery/)
+- [스토리지 유형 비교](./114_storage_type_comparison/)
+- [HA(High Availability)·FTS](./034_ha_availability_assurance/), [RAID(Redundant Array of Independent Disks)](./047_raid/)
+- [멀티 리전 Active-Active DR(Disaster Recovery)](./059_multi_region_active_active_disaster_recovery/)
 
 ### 5. 최신 AI 인프라
 
-- [AI HPC(High-Performance Computing) 인프라](./041_ai_hpc_infrastructure/), [랙 스케일 AI 시스템](./070_rack_scale_ai_system/)
-- [액체냉각](./028_liquid_cooling/), [에너지 효율 컴퓨팅](./073_energy_efficient_computing/)
-- [하드웨어 규모산정](./117_hardware_sizing/), [성능 튜닝](./120_performance_tuning/)
+- [AI HPC(High-Performance Computing) 인프라](./033_ai_hpc_infrastructure/), [랙 스케일 AI 시스템](./061_rack_scale_ai_system/)
+- [액체냉각](./020_liquid_cooling/), [에너지 효율 컴퓨팅](./064_energy_efficient_computing/)
+- [하드웨어 규모산정](./108_hardware_sizing/), [성능 튜닝](./111_performance_tuning/)
 
 ## 일반 학습 원칙
 

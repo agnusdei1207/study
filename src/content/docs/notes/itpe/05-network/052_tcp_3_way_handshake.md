@@ -8,6 +8,7 @@ sidebar:
   badge:
     text: "서브"
 extra:
+  question_no: "052"
   keyword_grade: "서브"
   model: "GLM-5.3-Flash"
 ---
