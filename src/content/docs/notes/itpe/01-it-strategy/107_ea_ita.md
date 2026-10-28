@@ -13,73 +13,78 @@ extra:
   model: "Claude Haiku 5.5"
 ---
 
+
+
 ## 연관 키워드
 
 - EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획
-- EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)
-- EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)
 
-## Ⅰ. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)의 개요
+## Ⅰ. EA·ITA의 개요
 
-- 핵심 요약 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)의 개념·배경·필요성·목적을 정리하는 개요.
-- 개념 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)은(는) EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획를 중심으로 EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) 등을 다루는 주제.
-- 배경 및 필요성 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) 관련 문제와 변화 요구가 증가.
-- 주요 목적 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)를 통해 핵심 가치와 성과 달성.
+- 핵심 요약 : EA·ITA는 업무·데이터·응용·기술 구조와 목표상태·전환경로를 모델링해 관리하는 아키텍처 활동.
+- 개념 : EA·ITA는 업무·데이터·응용·기술 구조와 목표상태·전환경로를 모델링해 관리하는 아키텍처 활동.
+- 배경 및 필요성 : 조직의 업무·데이터·응용·기술 구조가 분산되어 중복투자와 전략-IT 불일치가 발생.
+- 주요 목적 : 업무·데이터·응용·기술 아키텍처를 연결해 목표구조와 이행투자 정합성 확보.
 
-## Ⅱ. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)의 특징 및 장점
+## Ⅱ. EA·ITA의 특징 및 장점
 
-- 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
+- 핵심 요약 : 중복·복잡성 가시화; 투자정합성; 표준·상호운용성.
 
-1. EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획 중심 구조 : EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획를 중심으로 구성 → 이해와 적용 용이.
-2. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) 연계 운영 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)를 연계해 운영 → 효율과 일관성 향상.
-3. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) 고려 설계 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)를 고려한 설계 → 위험과 비용 절감.
+1. 특징 : 업무·데이터·응용·기술 관점 연결 → 전사 구조와 의존성 가시화.
+2. 특징 : 현황-목표-차이-이행계획 관리 → 투자·사업의 전략정합성 강화.
+3. 특징 : 표준·예외·참조모델 운영 → 상호운용성과 구조 일관성 확보.
 
-## Ⅲ. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)의 구조 (흐름)
+## Ⅲ. EA·ITA의 구조 (흐름)
 
-- 핵심 요약 : 구성요소와 처리 흐름을 단계로 정리.
+- 핵심 요약 : 전략·업무 분석 → 현황·참조모델 작성 → 목표구조·원칙 설계 → 차이·이행계획 → 사업 적용·갱신.
 
 ```text
-EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획
-  ↓
-EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)
-  ↓
-EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)
+전략·업무 분석
+   ↓
+현황·참조모델 작성
+   ↓
+목표구조·원칙 설계
+   ↓
+차이·이행계획
+   ↓
+사업 적용·갱신
 ```
 
 ```text
-입력 확인
-  ↓
-처리·분석
-  ↓
-결과 산출
+업무·데이터·응용·기술 관점 연결
+   ↓
+현황-목표-차이-이행계획 관리
+   ↓
+표준·예외·참조모델 운영
 ```
 
-## Ⅳ. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)의 비교
+## Ⅳ. EA·ITA의 비교
 
-- 핵심 요약 : 유사 개념과의 차이를 비교한 결과.
+- 핵심 요약 : 업무 참조모델은 기능, 데이터모델은 정보자산, 응용모델은 서비스, 기술모델은 기반표준 관점.
 
-| 비교 기준 | EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) | 대안·유사 개념 |
+| 개념·방법 | 주요 특성 | 적합한 선택기준 |
 | --- | --- | --- |
-| 초점 | EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획 | EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) |
-| 효과 | 이해·적용 용이 | 별도 검토 필요 |
+| 업무 참조모델 | 업무기능·서비스 분류 | 조직 기능·업무 관점 |
+| 데이터 참조모델 | 핵심 데이터·표준·흐름 | 정보자산·데이터 공유 관점 |
+| 서비스·응용 참조모델 | 응용기능·서비스 구성 | 시스템·서비스 재사용 관점 |
+| 기술 참조모델 | 기반기술·표준·인프라 | 기술 호환·표준화 관점 |
 
-## Ⅴ. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)의 한계와 방안
+## Ⅴ. EA·ITA의 한계와 방안
 
-- 핵심 요약 : 주요 한계와 대응 방안을 정리.
+- 핵심 요약 : 문서 사문화는 투자·설계심의 연계로, 현황 노후화는 변경관리·메타데이터 자동수집으로 완화.
 
-| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| 위험 | 원인·영향 | 대응통제 | 확인지표 |
 | --- | --- | --- | --- |
-| 범위 모호 | 정의 부족 | 기준과 산출물 명확화 | 정의 완료율 |
-| 운영 부담 | 자원 제약 | 자동화·표준화 | 처리 시간 |
+| EA 현행화 지연 | 의사결정이 실제 자산구성과 어긋남 | 변경·투자심의와 모델 갱신 연결 | 현행성, 미연계 자산 |
+| 표준 예외 누적 | 중복·복잡성과 기술부채 확대 | 예외 근거·유효기간·철회조건 심의 | 유효 예외 수, 중복 시스템 |
 
-## Ⅵ. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)에 대한 기술사적 제언
+## Ⅵ. EA·ITA 적용에 대한 기술사적 제언
 
-- 핵심 요약 : 도입·확산·거버넌스 방향 제시.
+- 핵심 요약 : 원칙·표준과 예외승인 절차를 사업 생애주기에 적용하고 아키텍처를 지속 갱신.
 
-1. 조직 : 책임자 지정과 검토 주기 운영.
-2. 제도 : 기준과 절차의 문서화.
+1. EA 책임자는 기준·참조모델·예외유효기간을 운영하고 사업투자·설계심의에서 목표 아키텍처와 이행계획을 확인.
 
-## Ⅶ. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)의 결론
+## Ⅶ. 결론
 
-- 핵심 요약 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)는 EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획를 중심으로 가치를 창출하는 주제.
-- 시사점 : 지속적인 개선과 검증이 필요.
+- 핵심 요약 : EA·ITA는 업무·데이터·응용·기술 구조와 목표상태·전환경로를 모델링해 관리하는 아키텍처 활동.
+- 시사점 : EA·ITA는 투자와 설계결정에 활용되고 변경에 맞춰 유지되어야 실효성.

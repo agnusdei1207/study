@@ -13,73 +13,74 @@ extra:
   model: "Claude Haiku 5.5"
 ---
 
+
 ## 연관 키워드
 
 - NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI
-- NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)
-- NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)
 
-## Ⅰ. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)의 개요
+## Ⅰ. NIST AI RMF의 개요
 
-- 핵심 요약 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)의 개념·배경·필요성·목적을 정리하는 개요.
-- 개념 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)은(는) NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI를 중심으로 NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) 등을 다루는 주제.
-- 배경 및 필요성 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) 관련 문제와 변화 요구가 증가.
-- 주요 목적 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)를 통해 핵심 가치와 성과 달성.
+- 핵심 요약 : NIST AI RMF(AI Risk Management Framework)는 AI 시스템의 신뢰성과 위험관리를 지원하는 자발적 프레임워크.
+- 개념 : NIST AI RMF(AI Risk Management Framework)는 AI 시스템의 신뢰성과 위험관리를 지원하는 자발적 프레임워크.
+- 배경 및 필요성 : AI 위험은 데이터·모델뿐 아니라 사용 맥락·영향받는 집단·배포 후 변화에서 발생.
+- 주요 목적 : 설계·개발·배포·사용 전 과정의 신뢰성 특성과 위험 대응 강화.
 
-## Ⅱ. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)의 특징 및 장점
+## Ⅱ. NIST AI RMF의 특징 및 장점
 
-- 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
+- 핵심 요약 : Govern, Map, Measure, Manage 네 기능; Govern은 전 과정에 걸친 조직 거버넌스.
 
-1. NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI 중심 구조 : NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI를 중심으로 구성 → 이해와 적용 용이.
-2. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) 연계 운영 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)를 연계해 운영 → 효율과 일관성 향상.
-3. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) 고려 설계 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)를 고려한 설계 → 위험과 비용 절감.
+1. Govern, Map, Measure, Manage 네 기능; Govern은 전 과정에 걸친 조직 거버넌스 → 설계·개발·배포·사용 전 과정의 신뢰성 특성과 위험 대응 강화.
+2. NIST AI RMF 1.0은 Govern·Map·Measure·Manage 기능으로 AI 위험관리 활동을 조직화하며, 현재 개정이 진행 중인 프레임워크 ([NIST AI RMF Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/)).
+3. AI 책임자는 Govern 정책·역할을 정하고 제품팀·위험관리·영향받는 이해관계자가 Map–Measure–Manage 증거를 함께 검토.
 
-## Ⅲ. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)의 구조 (흐름)
+## Ⅲ. NIST AI RMF의 구조 (흐름)
 
-- 핵심 요약 : 구성요소와 처리 흐름을 단계로 정리.
+- 핵심 요약 : 거버넌스 수립 → 맥락·영향 파악(Map) → 위험 측정·평가(Measure) → 우선순위·대응(Manage) → 반복 개선.
 
 ```text
-NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI
+거버넌스 수립
   ↓
-NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)
+맥락·영향 파악(Map)
   ↓
-NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)
+위험 측정·평가(Measure)
+  ↓
+우선순위·대응(Manage)
+  ↓
+반복 개선
 ```
+
+- 핵심 구조 : Govern, Map, Measure, Manage 네 기능; Govern은 전 과정에 걸친 조직 거버넌스.
 
 ```text
-입력 확인
-  ↓
-처리·분석
-  ↓
-결과 산출
+Govern(전 과정) + Map → Measure → Manage
 ```
 
-## Ⅳ. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)의 비교
+## Ⅳ. 유사 개념과의 비교
 
-- 핵심 요약 : 유사 개념과의 차이를 비교한 결과.
+- 핵심 요약 : 전통적 모델 검증 — 기술 성능·정확도 중심 점검; NIST AI RMF — 조직·사회 맥락과 신뢰성 특성을 포함한 수명주기 위험관리.
 
-| 비교 기준 | NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) | 대안·유사 개념 |
+| 비교 기준 | 전통적 모델 검증 | NIST AI RMF |
 | --- | --- | --- |
-| 초점 | NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI | NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) |
-| 효과 | 이해·적용 용이 | 별도 검토 필요 |
+| 위험범위 | 기술 성능·정확도 중심 점검 | 조직·사회 맥락과 신뢰성 특성을 포함한 수명주기 위험관리 |
 
-## Ⅴ. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)의 한계와 방안
+## Ⅴ. NIST AI RMF의 한계와 방안
 
-- 핵심 요약 : 주요 한계와 대응 방안을 정리.
+- 핵심 요약 : 주요 한계는 맥락 누락·측정 불충분·대응 미연계이며, 원인별 대응과 관리지표의 연계가 필요.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 범위 모호 | 정의 부족 | 기준과 산출물 명확화 | 정의 완료율 |
-| 운영 부담 | 자원 제약 | 자동화·표준화 | 처리 시간 |
+| 맥락 누락 | 사용목적·영향집단 불명확 | Map에서 사용맥락·영향·한계 문서화 | 미식별 영향 |
+| 측정 불충분 | 정확도만 평가·분포 변화 미검토 | Measure에서 성능·편향·보안·불확실성 평가 | 집단별 성능격차 |
+| 대응 미연계 | 측정결과가 운영결정에 반영되지 않음 | Manage에서 우선순위·완화·모니터링·중단조건 지정 | 미조치 고위험 |
 
-## Ⅵ. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)에 대한 기술사적 제언
+## Ⅵ. NIST AI RMF에 대한 제언
 
-- 핵심 요약 : 도입·확산·거버넌스 방향 제시.
+- 핵심 요약 : AI 책임자는 Govern 정책·역할을 정하고 제품팀·위험관리·영향받는 이해관계자가 Map–Measure–Manage 증거를 함께 검토.
 
-1. 조직 : 책임자 지정과 검토 주기 운영.
-2. 제도 : 기준과 절차의 문서화.
+1. 핵심 통제 : Map에서 사용맥락·영향·한계 문서화.
+2. 운영 점검 : 미식별 영향·집단별 성능격차·미조치 고위험 지표를 정기 검토하고 미달 원인·시정조치·잔여위험 기록.
 
-## Ⅶ. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)의 결론
+## Ⅶ. NIST AI RMF의 결론
 
-- 핵심 요약 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)는 NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI를 중심으로 가치를 창출하는 주제.
-- 시사점 : 지속적인 개선과 검증이 필요.
+- 핵심 요약 : NIST AI RMF(AI Risk Management Framework)는 AI 시스템의 신뢰성과 위험관리를 지원하는 자발적 프레임워크.
+- 시사점 : NIST AI RMF 1.0은 Govern·Map·Measure·Manage 기능으로 AI 위험관리 활동을 조직화하며, 현재 개정이 진행 중인 프레임워크 ([NIST AI RMF Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/)).

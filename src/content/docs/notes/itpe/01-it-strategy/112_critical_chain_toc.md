@@ -13,73 +13,72 @@ extra:
   model: "Claude Haiku 5.5"
 ---
 
+
+
 ## 연관 키워드
 
 - TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer)
-- CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)
-- CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)
 
-## Ⅰ. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)의 개요
+## Ⅰ. CCPM·TOC의 개요
 
-- 핵심 요약 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)의 개념·배경·필요성·목적을 정리하는 개요.
-- 개념 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)은(는) TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer)를 중심으로 CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) 등을 다루는 주제.
-- 배경 및 필요성 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) 관련 문제와 변화 요구가 증가.
-- 주요 목적 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)를 통해 핵심 가치와 성과 달성.
+- 핵심 요약 : TOC는 시스템 제약을 개선하는 관리사고이며 CCPM은 자원제약과 버퍼로 프로젝트 일정을 관리하는 기법.
+- 개념 : TOC는 시스템 제약을 개선하는 관리사고이며 CCPM은 자원제약과 버퍼로 프로젝트 일정을 관리하는 기법.
+- 배경 및 필요성 : 여러 작업의 자원경합과 불확실성을 개별 일정여유로 처리하면 작업 지연과 다중작업 확대.
+- 주요 목적 : 자원제약을 관리하고 버퍼로 불확실성을 흡수해 프로젝트 흐름·완료시점 개선.
 
-## Ⅱ. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)의 특징 및 장점
+## Ⅱ. CCPM·TOC의 특징 및 장점
 
-- 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
+- 핵심 요약 : 병목 중심 개선; 다중작업 감소; 일정 불확실성 통합관리.
 
-1. TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer) 중심 구조 : TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer)를 중심으로 구성 → 이해와 적용 용이.
-2. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) 연계 운영 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)를 연계해 운영 → 효율과 일관성 향상.
-3. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) 고려 설계 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)를 고려한 설계 → 위험과 비용 절감.
+1. 특징 : 제약자원 식별·최적화 → 시스템 처리량 개선.
+2. 특징 : 비제약 작업을 제약에 종속 → 병목의 과부하·대기 감소.
+3. 특징 : 프로젝트·공급 버퍼 감시 → 완료일 위험 조기경보.
 
-## Ⅲ. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)의 구조 (흐름)
+## Ⅲ. CCPM·TOC의 구조 (흐름)
 
-- 핵심 요약 : 구성요소와 처리 흐름을 단계로 정리.
+- 핵심 요약 : 제약식별·활용 → 비제약 작업 정렬 → 제약능력 개선 반복; 일정은 자원평준화 후 버퍼관리.
 
 ```text
-TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer)
-  ↓
-CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)
-  ↓
-CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)
+제약식별·활용
+   ↓
+비제약 작업 정렬
+   ↓
+제약능력 개선 반복; 일정은 자원평준화 후 버퍼관리
 ```
 
 ```text
-입력 확인
-  ↓
-처리·분석
-  ↓
-결과 산출
+제약자원 식별·최적화
+   ↓
+비제약 작업을 제약에 종속
+   ↓
+프로젝트·공급 버퍼 감시
 ```
 
-## Ⅳ. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)의 비교
+## Ⅳ. CCPM·TOC의 비교
 
-- 핵심 요약 : 유사 개념과의 차이를 비교한 결과.
+- 핵심 요약 : CPM은 논리관계·기간, CCPM은 자원제약과 프로젝트·공급 버퍼를 중점 고려.
 
-| 비교 기준 | CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) | 대안·유사 개념 |
+| 개념·방법 | 주요 특성 | 적합한 선택기준 |
 | --- | --- | --- |
-| 초점 | TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer) | CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) |
-| 효과 | 이해·적용 용이 | 별도 검토 필요 |
+| CPM | 작업 논리·기간 기반 임계경로 | 자원제약이 상대적으로 낮은 일정분석 |
+| CCPM | 자원제약·프로젝트 버퍼·공급 버퍼 | 공유자원 경합과 작업기간 불확실성이 큰 일정관리 |
 
-## Ⅴ. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)의 한계와 방안
+## Ⅴ. CCPM·TOC의 한계와 방안
 
-- 핵심 요약 : 주요 한계와 대응 방안을 정리.
+- 핵심 요약 : 버퍼 오설정은 실적자료로 조정; 다중작업은 우선순위·완료기준 관리로 줄임.
 
-| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
+| 위험 | 원인·영향 | 대응통제 | 확인지표 |
 | --- | --- | --- | --- |
-| 범위 모호 | 정의 부족 | 기준과 산출물 명확화 | 정의 완료율 |
-| 운영 부담 | 자원 제약 | 자동화·표준화 | 처리 시간 |
+| 버퍼 산정 부정확 | 일정 위험 은폐 또는 과잉 여유 | 실적기반 추정·버퍼 소모 추세 조정 | 버퍼 소모율, 완료일 편차 |
+| 다중작업·문화 저항 | 작업 전환과 개인별 여유 은폐 | 우선순위·작업완료 규칙·경영진 후원 | 동시작업 수, 대기시간 |
 
-## Ⅵ. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)에 대한 기술사적 제언
+## Ⅵ. CCPM·TOC 적용에 대한 기술사적 제언
 
-- 핵심 요약 : 도입·확산·거버넌스 방향 제시.
+- 핵심 요약 : 버퍼소모를 조기경보로 쓰고 개인 압박 대신 시스템 병목 개선에 집중.
 
-1. 조직 : 책임자 지정과 검토 주기 운영.
-2. 제도 : 기준과 절차의 문서화.
+1. 프로젝트 책임자는 자원 가용성을 반영해 계획하고 버퍼 소모를 경보로 활용하며, 다중작업보다 제약공정의 흐름·처리량을 개선.
 
-## Ⅶ. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)의 결론
+## Ⅶ. 결론
 
-- 핵심 요약 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)는 TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer)를 중심으로 가치를 창출하는 주제.
-- 시사점 : 지속적인 개선과 검증이 필요.
+- 핵심 요약 : TOC는 시스템 제약을 개선하는 관리사고이며 CCPM은 자원제약과 버퍼로 프로젝트 일정을 관리하는 기법.
+- 시사점 : CCPM은 개인별 일정압박보다 시스템 병목과 버퍼소모 관리가 핵심.
