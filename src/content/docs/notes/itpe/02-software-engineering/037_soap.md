@@ -12,91 +12,56 @@ extra:
 ---
 
 ## 연관 키워드
-
-- SOAP(Simple Object Access Protocol), WSDL(Web Services Description Language), UDDI(Universal Description, Discovery and Integration)
-- SOAP Envelope, WS-Security, 웹 서비스(Web Services) 3대 표준, WS-I Basic Profile, MTOM, ESB(Enterprise Service Bus), REST(Representational State Transfer)
+- SOAP, XML, Envelope, WSDL, WS-Security, Fault, REST
 
 ## Ⅰ. SOAP의 개요
-
-- 핵심 요약 : 이기종 시스템 간 XML 메시지 교환을 위해 W3C(World Wide Web Consortium)가 표준화한 XML 기반 프로토콜.
-- 개념 : 분산 환경에서 이기종 시스템끼리 구조화된 정보를 교환하도록 XML(Extensible Markup Language) 메시지 형식을 정의한 프로토콜(**SOAP**, 역사적으로 Simple Object Access Protocol로 불림).
-- 배경 및 필요성 : 운영체제, 언어, 미들웨어가 서로 다른 환경에서 **원격 프로시저 호출** (RPC, Remote Procedure Call)을 지원해야 하고, 방화벽 통과를 위해 표준 웹 프로토콜인 HTTP(Hypertext Transfer Protocol)를 전송 수단으로 활용할 필요가 있음.
-- 주요 목적 : 플랫폼과 언어에 상관없는 서비스 호출과 엔터프라이즈 수준의 보안·트랜잭션 확장 제공.
-- 웹 서비스 3대 표준 :
-  1. **WSDL** (Web Services Description Language, 서비스 인터페이스 기술 언어).
-  2. **UDDI** (Universal Description, Discovery and Integration, 서비스 등록·검색 레지스트리).
-  3. SOAP (메시지 전송 프로토콜).
-- 명칭 : Simple Object Access Protocol은 역사적 명칭이며, W3C SOAP 1.2 명세에서는 SOAP을 더 이상 약어로 정의하지 않음([W3C SOAP 1.2](https://www.w3.org/TR/soap12/)).
+- 핵심 요약 : SOAP은 XML 메시지의 구조와 교환 규칙을 정의해 이기종 시스템 간 서비스 통신을 지원하는 프로토콜.
+- 개념 : SOAP Envelope 안에 Header와 Body를 담아 요청·응답·Fault를 전달하며 다양한 전송 바인딩과 결합 가능.
+- 필요성 : 기관·플랫폼 간 계약·보안·메시지 처리의 명확한 표준이 필요.
+- 목적 : 구조화된 메시지 교환과 WS-* 확장 기반 상호운용 제공.
 
 ## Ⅱ. SOAP의 특징 및 장점
+- 핵심 요약 : 명시적 XML 봉투·스키마·오류형식과 WS-* 표준이 강한 계약·보안 요구에 적합.
+1. 메시지 구조 : Envelope·Header·Body·Fault → 확장 메타데이터·오류 표현.
+2. 계약 기반 : WSDL로 서비스·메시지·바인딩 기술 → 생성형 클라이언트·상호운용 지원.
+3. 확장 표준 : WS-Security·WS-ReliableMessaging 등 → 기업간 보안·신뢰성 요구 대응.
 
-- 핵심 요약 : XML 기반, 전송 프로토콜 독립성, WS-* 엔터프라이즈 확장으로 이루어진 프로토콜 체계.
-
-1. XML 기반 구조화 : 메시지 형식을 XML 스키마로 엄격히 정의 → 송수신 측의 해석 차이 최소화.
-2. 전송 프로토콜 독립성 : HTTP, HTTPS(Hypertext Transfer Protocol Secure), SMTP(Simple Mail Transfer Protocol), JMS(Java Message Service) 등 다양한 바인딩 지원 → 환경에 맞는 전송 수단 선택 가능.
-3. 플랫폼·언어 중립 RPC : 서로 다른 기술 스택 간 메서드 호출을 표준 형식으로 수행 → 이기종 연계 비용 절감.
-4. **WS-Security** 등 WS-* 확장 : 메시지 보안, 트랜잭션 등 엔터프라이즈 요구를 표준 규격으로 보완 → 기업 간 신뢰 연계 기반 확보.
-5. 웹 서비스 3대 표준과의 연계 : WSDL로 계약을 정의하고 UDDI로 검색하는 전 과정을 한 체계로 운영 → 서비스 자동 연동 기반 마련.
-
-## Ⅲ. SOAP의 구조 (흐름)
-
-- 핵심 요약 : UDDI 검색과 WSDL 바인딩을 거쳐 Envelope 형식의 SOAP 메시지를 교환하는 구조.
-- **SOAP Envelope** (봉투) : XML 문서가 SOAP 메시지임을 선언하는 최상위 루트 엘리먼트.
-- **SOAP Header** (헤더) : 인증, 암호화, 라우팅, 트랜잭션 등 비기능적 부가 정보를 담는 선택 영역.
-- **SOAP Body** (본문) : 실제 비즈니스 데이터와 RPC 호출 정보를 담는 필수 영역.
-- **SOAP Fault** (오류) : 요청 처리 실패 시 오류 코드, 원인, 발생 지점을 표준 포맷으로 반환.
-
+## Ⅲ. SOAP 메시지 구조와 호출
+- 핵심 요약 : WSDL 계약에 맞는 SOAP Envelope를 생성하고 서비스가 Body 처리 결과나 Fault 반환.
 ```text
-[ 웹 서비스 아키텍처 ]
-
-[ 서비스 요청자 (Service Requester) ]
-   ↓ (1) WSDL 검색
-[ UDDI 레지스트리 ]
-   ↓ (2) WSDL 기반 바인딩
-[ 서비스 제공자 (Service Provider) ]
-   ↕ (3) SOAP 메시지 교환
+SOAP Envelope
+├─ Header: 보안 토큰·라우팅·트랜잭션 메타데이터
+└─ Body: 요청/응답 데이터 또는 Fault
 ```
-
 ```text
-[ SOAP Envelope 구조 ]
-
-Envelope (최상위 루트, 필수)
-  - Header : 인증·트랜잭션 등 부가 정보 (선택)
-  - Body : 호출 메서드와 매개변수 (필수)
-  - Fault : 오류 상세 정보 (오류 발생 시)
+서비스 계약(WSDL) → 요청 XML 생성 → HTTP 등 전송 바인딩
+     → Header 검증·Body 처리 → SOAP 응답 또는 Fault
 ```
+- 웹서비스 표준 조합 예 : SOAP 메시지, WSDL 서비스 기술, UDDI 서비스 등록·탐색.
 
-## Ⅳ. SOAP과 RESTful 웹 서비스의 비교
+## Ⅳ. SOAP과 REST 비교
+- 핵심 요약 : SOAP은 명세·확장표준 중심 메시징, REST는 자원·HTTP 제약을 이용하는 아키텍처 스타일.
+| 기준 | SOAP | REST |
+|---|---|---|
+| 메시지 | XML Envelope·Header·Body | JSON 등 자원 표현, HTTP 메서드·상태코드 |
+| 계약 | WSDL로 강한 서비스 계약 | OpenAPI 등 별도 계약 활용 가능 |
+| 확장 | WS-Security·신뢰성·트랜잭션 표준 | 웹 캐시·프록시·HTTP 인프라 활용 |
+| 선택 | 엄격한 기업간 계약·WS-* 요구 | 웹·모바일 API의 단순성·캐시성 |
 
-- 핵심 요약 : 엄격한 프로토콜 규약을 따르는 SOAP과 HTTP 자원을 중심에 둔 경량 아키텍처 스타일 REST의 목적과 환경이 다름.
+## Ⅴ. SOAP의 한계와 대응
+- 핵심 요약 : XML·WS-* 구현 복잡성과 메시지 크기를 계약·게이트웨이·상호운용 시험으로 통제.
+| 한계 | 영향 | 대응 |
+|---|---|---|
+| XML·확장 규약 복잡 | 개발·디버깅·성능 부담 | 필요한 WS-*만 선택하고 스키마 검증 자동화 |
+| 상호운용 차이 | 구현체별 해석 불일치 | WSDL·정책 프로파일·계약시험 공유 |
+| 취약한 XML 처리 | XXE·과대 메시지 등 공격 | 외부엔티티 비활성화·크기 제한·서명 검증 |
 
-| 비교 항목 | SOAP | REST(Representational State Transfer) |
-| --- | --- | --- |
-| 프로토콜 성격 | 독립적인 엄격한 통신 프로토콜 규약 | HTTP 표준을 활용하는 아키텍처 스타일 |
-| 메시지 포맷 | XML만 지원 (WSDL로 엄격한 스키마 정의) | JSON, XML 등 다양하며 주로 JSON 사용 |
-| 전송 프로토콜 | HTTP, HTTPS, SMTP, JMS 등 다중 바인딩 | 주로 HTTP, HTTPS에 결합 |
-| 보안 및 표준 | WS-Security, WS-AtomicTransaction 등 엔터프라이즈 표준 | HTTPS 전송 암호화, JWT(JSON Web Token), OAuth(Open Authorization) 2.0 |
-| 오버헤드 및 성능 | XML 파싱과 큰 메시지 크기로 상대적으로 무거움 | JSON 기반으로 가볍고 웹·모바일 환경에 적합 |
-| 주 활용 분야 | 은행, 증권, 공공 기관 간 고신뢰 연계 | 대규모 B2C(Business-to-Consumer) 포털, 모바일 앱, 마이크로서비스(MSA, Microservice Architecture) |
-
-## Ⅴ. SOAP의 한계와 방안
-
-- 핵심 요약 : 메시지 수준 보안과 엄격한 계약이라는 장점이 있으나, XML 장황성과 WS-* 복잡성, 최신 클라이언트와의 불일치가 한계.
-
-| 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
-| --- | --- | --- | --- |
-| XML 메시지의 장황성 | Envelope, Header, Body 구조와 네임스페이스 선언이 길어 직렬화·역직렬화 CPU 부하와 대역폭 낭비 발생 | 고빈도·대용량 구간은 경량 REST/JSON 또는 gRPC(Protobuf)로 전환하고, 유지되는 SOAP 구간은 **MTOM** (Message Transmission Optimization Mechanism)으로 첨부파일을 바이너리 최적화 | 구간별 응답 시간, 메시지 크기 |
-| WS-* 규격의 복잡성과 벤더 종속 | 방대한 WS-* 스펙을 벤더마다 다르게 구현해 이기종 연동 시 파싱 오류가 빈발 | WS-I(Web Services Interoperability) Basic Profile을 준수하고, ESB(Enterprise Service Bus)나 API(Application Programming Interface) Gateway에서 프로토콜 변환과 메시지 정규화 수행 | 연동 오류율 |
-| 브라우저·모바일 직접 연동 불가 | 브라우저 JavaScript에서 WSDL 파싱과 XML 클라이언트 스텁 생성이 비효율적이라 SPA(Single-Page Application)나 모바일 앱과 직접 연계가 어려움 | 프론트엔드와 SOAP 백엔드 사이에 BFF(Backend For Frontend) 계층을 두고 SOAP 메시지를 JSON으로 변환하는 퍼사드(Facade) 패턴 적용 | 변환 계층 지연 시간 |
-
-## Ⅵ. 엔터프라이즈 시스템 연계 시 기술사적 제언
-
-- 핵심 요약 : 기존 SOAP 자산은 전면 교체 대신 어댑터로 점진 현대화하고, 보안과 서비스 포트폴리오를 체계적으로 관리하는 것이 필요.
-- 레거시 연계 어댑터 전략 : 금융권 코어 시스템의 핵심 트랜잭션은 SOAP 기반의 정합성을 유지하는 경우가 많으므로, EAI(Enterprise Application Integration)나 ESB 계층에 SOAP-to-REST 변환 어댑터를 두고 단계적으로 현대화하는 것이 현실적이다.
-- WS-Security의 정밀한 구성 : 메시지 수준의 암호화와 전자서명을 종단 간 구간에 명확히 적용해, 중간 노드를 거치는 동안의 위·변조와 도청을 막아야 한다.
-- 서비스 포트폴리오 관리 : 신규 서비스는 REST나 gRPC로 설계하고, 기존 SOAP 서비스는 목록과 의존 관계를 관리하여 전환 우선순위를 정하는 체계를 갖춰야 한다.
+## Ⅵ. SOAP 적용 제언
+- 핵심 요약 : 통합 아키텍트는 메시지 계약·전송바인딩·보안정책을 기준화하고 기존 소비자를 보호.
+1. 서비스 오너는 WSDL·XSD·오류코드·버전 호환 정책을 저장소에서 관리.
+2. 보안팀은 WS-Security 토큰·서명·암호화·재전송 방어를 위협모델과 함께 검토.
+3. API 게이트웨이·어댑터로 SOAP과 현대 API를 중계하되 변환 손실·오류 의미 보존 시험.
 
 ## Ⅶ. 결론
-
-- 핵심 요약 : SOAP은 고신뢰 엔터프라이즈 연계의 표준 프로토콜이며, 어댑터 기반 점진적 현대화가 현실적인 전략.
-- 시사점 : 경량 REST·gRPC 전환과 API Gateway·ESB 기반 어댑터를 병행하는 방식이 기존 자산의 가치를 지키면서 전환 비용을 낮추는 길임.
+- 핵심 요약 : SOAP은 XML 메시지 계약과 표준 확장으로 기업간 서비스 통신을 구조화하는 프로토콜.
+- 시사점 : 강한 표준화의 편익이 구현·운영 복잡도보다 큰 통합 요구에서 선택.
