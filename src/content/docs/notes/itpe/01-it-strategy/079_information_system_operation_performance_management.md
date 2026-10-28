@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : 운영 성과관리, SLA, 가용성·응답시간, 사용자 경험, KPI, 지속개선 중심 구조 → 이해와 적용 용이.
-2. 특징 : 정보시스템 운영 성과관리 (Information System Operation Performance Management) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : 정보시스템 운영 성과관리 (Information System Operation Performance Management) 고려 설계 → 위험과 비용 절감.
+1. 운영 성과관리, SLA, 가용성·응답시간, 사용자 경험, KPI, 지속개선 중심 구조 : 운영 성과관리, SLA, 가용성·응답시간, 사용자 경험, KPI, 지속개선를 중심으로 구성 → 이해와 적용 용이.
+2. 정보시스템 운영 성과관리 (Information System Operation Performance Management) 연계 운영 : 정보시스템 운영 성과관리 (Information System Operation Performance Management)를 연계해 운영 → 효율과 일관성 향상.
+3. 정보시스템 운영 성과관리 (Information System Operation Performance Management) 고려 설계 : 정보시스템 운영 성과관리 (Information System Operation Performance Management)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. 정보시스템 운영 성과관리 (Information System Operation Performance Management)의 구조 (흐름)
 

@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : MECE, 상호배타성, 전체포괄성, 문제분해, 누락·중복 중심 구조 → 이해와 적용 용이.
-2. 특징 : MECE(Mutually Exclusive, Collectively Exhaustive) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : MECE(Mutually Exclusive, Collectively Exhaustive) 고려 설계 → 위험과 비용 절감.
+1. MECE, 상호배타성, 전체포괄성, 문제분해, 누락·중복 중심 구조 : MECE, 상호배타성, 전체포괄성, 문제분해, 누락·중복를 중심으로 구성 → 이해와 적용 용이.
+2. MECE(Mutually Exclusive, Collectively Exhaustive) 연계 운영 : MECE(Mutually Exclusive, Collectively Exhaustive)를 연계해 운영 → 효율과 일관성 향상.
+3. MECE(Mutually Exclusive, Collectively Exhaustive) 고려 설계 : MECE(Mutually Exclusive, Collectively Exhaustive)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. MECE(Mutually Exclusive, Collectively Exhaustive)의 구조 (흐름)
 

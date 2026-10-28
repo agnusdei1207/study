@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : 범정부 AI 공통기반, GPU·NPU 공동활용, 정부 클라우드, AI 개발·운영 플랫폼, 테넌트 격리, 기관별 책임성 중심 구조 → 이해와 적용 용이.
-2. 특징 : 범정부 AI 공통기반 (AI: Artificial Intelligence) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : 범정부 AI 공통기반 (AI: Artificial Intelligence) 고려 설계 → 위험과 비용 절감.
+1. 범정부 AI 공통기반, GPU·NPU 공동활용, 정부 클라우드, AI 개발·운영 플랫폼, 테넌트 격리, 기관별 책임성 중심 구조 : 범정부 AI 공통기반, GPU·NPU 공동활용, 정부 클라우드, AI 개발·운영 플랫폼, 테넌트 격리, 기관별 책임성를 중심으로 구성 → 이해와 적용 용이.
+2. 범정부 AI 공통기반 (AI: Artificial Intelligence) 연계 운영 : 범정부 AI 공통기반 (AI: Artificial Intelligence)를 연계해 운영 → 효율과 일관성 향상.
+3. 범정부 AI 공통기반 (AI: Artificial Intelligence) 고려 설계 : 범정부 AI 공통기반 (AI: Artificial Intelligence)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. 범정부 AI 공통기반 (AI: Artificial Intelligence)의 구조 (흐름)
 

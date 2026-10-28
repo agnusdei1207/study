@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : Programmable Money, AI Agent, 위임·한도, 인증·승인, 지급결제, 감사·분쟁 중심 구조 → 이해와 적용 용이.
-2. 특징 : Programmable Money·AI Agent 결제 (AI: Artificial Intelligence) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : Programmable Money·AI Agent 결제 (AI: Artificial Intelligence) 고려 설계 → 위험과 비용 절감.
+1. Programmable Money, AI Agent, 위임·한도, 인증·승인, 지급결제, 감사·분쟁 중심 구조 : Programmable Money, AI Agent, 위임·한도, 인증·승인, 지급결제, 감사·분쟁를 중심으로 구성 → 이해와 적용 용이.
+2. Programmable Money·AI Agent 결제 (AI: Artificial Intelligence) 연계 운영 : Programmable Money·AI Agent 결제 (AI: Artificial Intelligence)를 연계해 운영 → 효율과 일관성 향상.
+3. Programmable Money·AI Agent 결제 (AI: Artificial Intelligence) 고려 설계 : Programmable Money·AI Agent 결제 (AI: Artificial Intelligence)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. Programmable Money·AI Agent 결제 (AI: Artificial Intelligence)의 구조 (흐름)
 

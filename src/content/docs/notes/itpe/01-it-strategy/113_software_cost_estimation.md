@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : 소프트웨어 비용산정, 기능점수, 투입공수, COCOMO, 유사실적, 산정가정 중심 구조 → 이해와 적용 용이.
-2. 특징 : 소프트웨어 비용 산정(Software Cost Estimation) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : 소프트웨어 비용 산정(Software Cost Estimation) 고려 설계 → 위험과 비용 절감.
+1. 소프트웨어 비용산정, 기능점수, 투입공수, COCOMO, 유사실적, 산정가정 중심 구조 : 소프트웨어 비용산정, 기능점수, 투입공수, COCOMO, 유사실적, 산정가정를 중심으로 구성 → 이해와 적용 용이.
+2. 소프트웨어 비용 산정(Software Cost Estimation) 연계 운영 : 소프트웨어 비용 산정(Software Cost Estimation)를 연계해 운영 → 효율과 일관성 향상.
+3. 소프트웨어 비용 산정(Software Cost Estimation) 고려 설계 : 소프트웨어 비용 산정(Software Cost Estimation)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. 소프트웨어 비용 산정(Software Cost Estimation)의 구조 (흐름)
 

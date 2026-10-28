@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI 중심 구조 → 이해와 적용 용이.
-2. 특징 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) 고려 설계 → 위험과 비용 절감.
+1. NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI 중심 구조 : NIST AI RMF, Govern, Map, Measure, Manage, 신뢰할 수 있는 AI를 중심으로 구성 → 이해와 적용 용이.
+2. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) 연계 운영 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)를 연계해 운영 → 효율과 일관성 향상.
+3. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework) 고려 설계 : NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. NIST AI RMF (AI: Artificial Intelligence; NIST: National Institute of Standards and Technology; RMF: Risk Management Framework)의 구조 (흐름)
 

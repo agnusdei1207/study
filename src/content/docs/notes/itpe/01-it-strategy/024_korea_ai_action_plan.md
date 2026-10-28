@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : 국가 AI 전략, 인공지능 행동계획, 컴퓨팅·인재·활용·신뢰 중심 구조 → 이해와 적용 용이.
-2. 특징 : 국가 AI 전략과 인공지능 행동계획 (AI: Artificial Intelligence) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : 국가 AI 전략과 인공지능 행동계획 (AI: Artificial Intelligence) 고려 설계 → 위험과 비용 절감.
+1. 국가 AI 전략, 인공지능 행동계획, 컴퓨팅·인재·활용·신뢰 중심 구조 : 국가 AI 전략, 인공지능 행동계획, 컴퓨팅·인재·활용·신뢰를 중심으로 구성 → 이해와 적용 용이.
+2. 국가 AI 전략과 인공지능 행동계획 (AI: Artificial Intelligence) 연계 운영 : 국가 AI 전략과 인공지능 행동계획 (AI: Artificial Intelligence)를 연계해 운영 → 효율과 일관성 향상.
+3. 국가 AI 전략과 인공지능 행동계획 (AI: Artificial Intelligence) 고려 설계 : 국가 AI 전략과 인공지능 행동계획 (AI: Artificial Intelligence)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. 국가 AI 전략과 인공지능 행동계획 (AI: Artificial Intelligence)의 구조 (흐름)
 

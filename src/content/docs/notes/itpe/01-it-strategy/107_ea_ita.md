@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획 중심 구조 → 이해와 적용 용이.
-2. 특징 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) 고려 설계 → 위험과 비용 절감.
+1. EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획 중심 구조 : EA·ITA, 업무·데이터·응용·기술 아키텍처, 참조모델, 목표구조, 이행계획를 중심으로 구성 → 이해와 적용 용이.
+2. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) 연계 운영 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)를 연계해 운영 → 효율과 일관성 향상.
+3. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture) 고려 설계 : EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. EA·ITA (EA: Enterprise Architecture; ITA: Information Technology Architecture)의 구조 (흐름)
 

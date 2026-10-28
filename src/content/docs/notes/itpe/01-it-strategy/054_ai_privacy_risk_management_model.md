@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : AI 프라이버시, 개인정보 영향평가, 데이터 최소화, 재식별·추론 위험, 운영 통제 중심 구조 → 이해와 적용 용이.
-2. 특징 : AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence) 고려 설계 → 위험과 비용 절감.
+1. AI 프라이버시, 개인정보 영향평가, 데이터 최소화, 재식별·추론 위험, 운영 통제 중심 구조 : AI 프라이버시, 개인정보 영향평가, 데이터 최소화, 재식별·추론 위험, 운영 통제를 중심으로 구성 → 이해와 적용 용이.
+2. AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence) 연계 운영 : AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence)를 연계해 운영 → 효율과 일관성 향상.
+3. AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence) 고려 설계 : AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence)의 구조 (흐름)
 

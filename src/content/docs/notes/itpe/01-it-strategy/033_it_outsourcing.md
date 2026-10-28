@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : IT 아웃소싱, 소싱전략, SLA, 공급자 관리, 종료계획 중심 구조 → 이해와 적용 용이.
-2. 특징 : IT 아웃소싱 (IT: Information Technology) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : IT 아웃소싱 (IT: Information Technology) 고려 설계 → 위험과 비용 절감.
+1. IT 아웃소싱, 소싱전략, SLA, 공급자 관리, 종료계획 중심 구조 : IT 아웃소싱, 소싱전략, SLA, 공급자 관리, 종료계획를 중심으로 구성 → 이해와 적용 용이.
+2. IT 아웃소싱 (IT: Information Technology) 연계 운영 : IT 아웃소싱 (IT: Information Technology)를 연계해 운영 → 효율과 일관성 향상.
+3. IT 아웃소싱 (IT: Information Technology) 고려 설계 : IT 아웃소싱 (IT: Information Technology)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. IT 아웃소싱 (IT: Information Technology)의 구조 (흐름)
 

@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : AI 고속도로, 국가 AI 컴퓨팅센터, GPU(Graphics Processing Unit), NPU(Neural Processing Unit) 중심 구조 → 이해와 적용 용이.
-2. 특징 : AI 컴퓨팅 자원 공동활용, 산·학·연 접근성, 데이터센터 전력·냉각, 국산 AI 반도체 실증 연계 운영 → 효율과 일관성 향상.
-3. 특징 : AI 고속도로 (AI: Artificial Intelligence) 고려 설계 → 위험과 비용 절감.
+1. AI 고속도로, 국가 AI 컴퓨팅센터, GPU(Graphics Processing Unit), NPU(Neural Processing Unit) 중심 구조 : AI 고속도로, 국가 AI 컴퓨팅센터, GPU(Graphics Processing Unit), NPU(Neural Processing Unit)를 중심으로 구성 → 이해와 적용 용이.
+2. AI 컴퓨팅 자원 공동활용, 산·학·연 접근성, 데이터센터 전력·냉각, 국산 AI 반도체 실증 연계 운영 : AI 컴퓨팅 자원 공동활용, 산·학·연 접근성, 데이터센터 전력·냉각, 국산 AI 반도체 실증를 연계해 운영 → 효율과 일관성 향상.
+3. AI 고속도로 (AI: Artificial Intelligence) 고려 설계 : AI 고속도로 (AI: Artificial Intelligence)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. AI 고속도로 (AI: Artificial Intelligence)의 구조 (흐름)
 

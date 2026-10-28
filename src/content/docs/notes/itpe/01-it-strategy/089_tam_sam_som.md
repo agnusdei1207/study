@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : TAM·SAM·SOM, 전체시장, 유효시장, 목표시장, 상향식 추정, 시장가정 중심 구조 → 이해와 적용 용이.
-2. 특징 : TAM(Total Addressable Market)·SAM(Serviceable Available Market)·SOM(Serviceable Obtainable Market) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : TAM(Total Addressable Market)·SAM(Serviceable Available Market)·SOM(Serviceable Obtainable Market) 고려 설계 → 위험과 비용 절감.
+1. TAM·SAM·SOM, 전체시장, 유효시장, 목표시장, 상향식 추정, 시장가정 중심 구조 : TAM·SAM·SOM, 전체시장, 유효시장, 목표시장, 상향식 추정, 시장가정를 중심으로 구성 → 이해와 적용 용이.
+2. TAM(Total Addressable Market)·SAM(Serviceable Available Market)·SOM(Serviceable Obtainable Market) 연계 운영 : TAM(Total Addressable Market)·SAM(Serviceable Available Market)·SOM(Serviceable Obtainable Market)를 연계해 운영 → 효율과 일관성 향상.
+3. TAM(Total Addressable Market)·SAM(Serviceable Available Market)·SOM(Serviceable Obtainable Market) 고려 설계 : TAM(Total Addressable Market)·SAM(Serviceable Available Market)·SOM(Serviceable Obtainable Market)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. TAM(Total Addressable Market)·SAM(Serviceable Available Market)·SOM(Serviceable Obtainable Market)의 구조 (흐름)
 

@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer) 중심 구조 → 이해와 적용 용이.
-2. 특징 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) 고려 설계 → 위험과 비용 절감.
+1. TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer) 중심 구조 : TOC, 제약이론, CCPM, 자원제약, 프로젝트 버퍼, 공급 버퍼(Feeding Buffer)를 중심으로 구성 → 이해와 적용 용이.
+2. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) 연계 운영 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)를 연계해 운영 → 효율과 일관성 향상.
+3. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints) 고려 설계 : CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. CCPM·TOC (CCPM: Critical Chain Project Management; TOC: Theory of Constraints)의 구조 (흐름)
 

@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : Six Sigma, DMAIC, CTQ, 측정시스템, 원인분석, 통제계획 중심 구조 → 이해와 적용 용이.
-2. 특징 : Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control) 고려 설계 → 위험과 비용 절감.
+1. Six Sigma, DMAIC, CTQ, 측정시스템, 원인분석, 통제계획 중심 구조 : Six Sigma, DMAIC, CTQ, 측정시스템, 원인분석, 통제계획를 중심으로 구성 → 이해와 적용 용이.
+2. Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control) 연계 운영 : Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control)를 연계해 운영 → 효율과 일관성 향상.
+3. Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control) 고려 설계 : Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control)의 구조 (흐름)
 

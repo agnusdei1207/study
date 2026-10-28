@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : 액티브-액티브, 스토리지 복제, 펜싱, RTO·RPO, 재해복구 중심 구조 → 이해와 적용 용이.
-2. 특징 : 액티브-액티브 이중화와 스토리지 DR (DR: Disaster Recovery) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : 액티브-액티브 이중화와 스토리지 DR (DR: Disaster Recovery) 고려 설계 → 위험과 비용 절감.
+1. 액티브-액티브, 스토리지 복제, 펜싱, RTO·RPO, 재해복구 중심 구조 : 액티브-액티브, 스토리지 복제, 펜싱, RTO·RPO, 재해복구를 중심으로 구성 → 이해와 적용 용이.
+2. 액티브-액티브 이중화와 스토리지 DR (DR: Disaster Recovery) 연계 운영 : 액티브-액티브 이중화와 스토리지 DR (DR: Disaster Recovery)를 연계해 운영 → 효율과 일관성 향상.
+3. 액티브-액티브 이중화와 스토리지 DR (DR: Disaster Recovery) 고려 설계 : 액티브-액티브 이중화와 스토리지 DR (DR: Disaster Recovery)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. 액티브-액티브 이중화와 스토리지 DR (DR: Disaster Recovery)의 구조 (흐름)
 

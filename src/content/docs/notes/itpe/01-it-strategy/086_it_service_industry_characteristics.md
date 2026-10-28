@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : IT서비스 산업, 무형성, 동시성, 고객 공동생산, 지식집약, 서비스 품질 중심 구조 → 이해와 적용 용이.
-2. 특징 : IT(Information Technology)서비스 산업 특수성 연계 운영 → 효율과 일관성 향상.
-3. 특징 : IT(Information Technology)서비스 산업 특수성 고려 설계 → 위험과 비용 절감.
+1. IT서비스 산업, 무형성, 동시성, 고객 공동생산, 지식집약, 서비스 품질 중심 구조 : IT서비스 산업, 무형성, 동시성, 고객 공동생산, 지식집약, 서비스 품질를 중심으로 구성 → 이해와 적용 용이.
+2. IT(Information Technology)서비스 산업 특수성 연계 운영 : IT(Information Technology)서비스 산업 특수성를 연계해 운영 → 효율과 일관성 향상.
+3. IT(Information Technology)서비스 산업 특수성 고려 설계 : IT(Information Technology)서비스 산업 특수성를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. IT(Information Technology)서비스 산업 특수성의 구조 (흐름)
 

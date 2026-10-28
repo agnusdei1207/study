@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : SWOT, 3C, PEST, 내부·외부 환경, 경쟁우위, 전략과제 중심 구조 → 이해와 적용 용이.
-2. 특징 : 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities, Threats)·3C(Customer, Competitor, Company)·PEST(Political, Economic, Social, Technological)) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities, Threats)·3C(Customer, Competitor, Company)·PEST(Political, Economic, Social, Technological)) 고려 설계 → 위험과 비용 절감.
+1. SWOT, 3C, PEST, 내부·외부 환경, 경쟁우위, 전략과제 중심 구조 : SWOT, 3C, PEST, 내부·외부 환경, 경쟁우위, 전략과제를 중심으로 구성 → 이해와 적용 용이.
+2. 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities, Threats)·3C(Customer, Competitor, Company)·PEST(Political, Economic, Social, Technological)) 연계 운영 : 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities, Threats)·3C(Customer, Competitor, Company)·PEST(Political, Economic, Social, Technological))를 연계해 운영 → 효율과 일관성 향상.
+3. 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities, Threats)·3C(Customer, Competitor, Company)·PEST(Political, Economic, Social, Technological)) 고려 설계 : 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities, Threats)·3C(Customer, Competitor, Company)·PEST(Political, Economic, Social, Technological))를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. 경영환경 분석(SWOT(Strengths, Weaknesses, Opportunities, Threats)·3C(Customer, Competitor, Company)·PEST(Political, Economic, Social, Technological))의 구조 (흐름)
 

@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : Tuckman, Forming, Storming, Norming, Performing, Adjourning, 팀 발달 중심 구조 → 이해와 적용 용이.
-2. 특징 : 터크만 팀 발달 모델 연계 운영 → 효율과 일관성 향상.
-3. 특징 : 터크만 팀 발달 모델 고려 설계 → 위험과 비용 절감.
+1. Tuckman, Forming, Storming, Norming, Performing, Adjourning, 팀 발달 중심 구조 : Tuckman, Forming, Storming, Norming, Performing, Adjourning, 팀 발달를 중심으로 구성 → 이해와 적용 용이.
+2. 터크만 팀 발달 모델 연계 운영 : 터크만 팀 발달 모델를 연계해 운영 → 효율과 일관성 향상.
+3. 터크만 팀 발달 모델 고려 설계 : 터크만 팀 발달 모델를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. 터크만 팀 발달 모델의 구조 (흐름)
 

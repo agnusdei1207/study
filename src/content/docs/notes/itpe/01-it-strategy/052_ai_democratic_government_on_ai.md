@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : AI 민주정부, 온AI, 국민중심 서비스, 정책참여, 공공 AI 책임성 중심 구조 → 이해와 적용 용이.
-2. 특징 : AI 민주정부·온AI (AI: Artificial Intelligence) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : AI 민주정부·온AI (AI: Artificial Intelligence) 고려 설계 → 위험과 비용 절감.
+1. AI 민주정부, 온AI, 국민중심 서비스, 정책참여, 공공 AI 책임성 중심 구조 : AI 민주정부, 온AI, 국민중심 서비스, 정책참여, 공공 AI 책임성를 중심으로 구성 → 이해와 적용 용이.
+2. AI 민주정부·온AI (AI: Artificial Intelligence) 연계 운영 : AI 민주정부·온AI (AI: Artificial Intelligence)를 연계해 운영 → 효율과 일관성 향상.
+3. AI 민주정부·온AI (AI: Artificial Intelligence) 고려 설계 : AI 민주정부·온AI (AI: Artificial Intelligence)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. AI 민주정부·온AI (AI: Artificial Intelligence)의 구조 (흐름)
 

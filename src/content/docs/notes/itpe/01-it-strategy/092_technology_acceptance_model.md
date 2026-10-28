@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : TAM, 지각된 유용성, 지각된 사용용이성, 사용의도, 실제 사용, UTAUT 비교 중심 구조 → 이해와 적용 용이.
-2. 특징 : 기술수용모델(TAM, Technology Acceptance Model) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : 기술수용모델(TAM, Technology Acceptance Model) 고려 설계 → 위험과 비용 절감.
+1. TAM, 지각된 유용성, 지각된 사용용이성, 사용의도, 실제 사용, UTAUT 비교 중심 구조 : TAM, 지각된 유용성, 지각된 사용용이성, 사용의도, 실제 사용, UTAUT 비교를 중심으로 구성 → 이해와 적용 용이.
+2. 기술수용모델(TAM, Technology Acceptance Model) 연계 운영 : 기술수용모델(TAM, Technology Acceptance Model)를 연계해 운영 → 효율과 일관성 향상.
+3. 기술수용모델(TAM, Technology Acceptance Model) 고려 설계 : 기술수용모델(TAM, Technology Acceptance Model)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. 기술수용모델(TAM, Technology Acceptance Model)의 구조 (흐름)
 

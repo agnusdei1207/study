@@ -30,9 +30,9 @@ extra:
 
 - 핵심 요약 : 핵심 속성과 장점을 연결한 특징 정리.
 
-1. 특징 : ITSQF, 직무·역량 기준, 숙련수준, 교육·자격 연계, 경력개발, 산업수요 중심 구조 → 이해와 적용 용이.
-2. 특징 : ITSQF(IT Sectoral Qualifications Framework) 연계 운영 → 효율과 일관성 향상.
-3. 특징 : ITSQF(IT Sectoral Qualifications Framework) 고려 설계 → 위험과 비용 절감.
+1. ITSQF, 직무·역량 기준, 숙련수준, 교육·자격 연계, 경력개발, 산업수요 중심 구조 : ITSQF, 직무·역량 기준, 숙련수준, 교육·자격 연계, 경력개발, 산업수요를 중심으로 구성 → 이해와 적용 용이.
+2. ITSQF(IT Sectoral Qualifications Framework) 연계 운영 : ITSQF(IT Sectoral Qualifications Framework)를 연계해 운영 → 효율과 일관성 향상.
+3. ITSQF(IT Sectoral Qualifications Framework) 고려 설계 : ITSQF(IT Sectoral Qualifications Framework)를 고려한 설계 → 위험과 비용 절감.
 
 ## Ⅲ. ITSQF(IT Sectoral Qualifications Framework)의 구조 (흐름)
 
