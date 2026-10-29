@@ -75,7 +75,7 @@ export default defineConfig({
         Sidebar: './src/components/Sidebar.astro',
       },
       lastUpdated: true,
-      pagefind: false,
+      pagefind: true,
       head: [
         { tag: 'script', attrs: { src: '/study/palette-app.js', defer: true } },
         { tag: 'script', attrs: { src: '/study/itpe-glossary-tooltips.js?v=20260926-brr', defer: true } },
