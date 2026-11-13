@@ -1,4 +1,4 @@
-﻿---
+---
 title: "정보윤리(Information Ethics)"
 author: "agnusdei1207"
 date: "2026-10-24T23:41:37+09:00"

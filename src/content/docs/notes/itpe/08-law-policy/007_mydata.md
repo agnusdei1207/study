@@ -1,4 +1,4 @@
-﻿---
+---
 title: "마이데이터(MyData)"
 author: "agnusdei1207"
 date: "2026-10-24T23:49:17+09:00"

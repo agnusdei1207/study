@@ -1,4 +1,4 @@
-﻿---
+---
 title: "데이터 주권(Data Sovereignty)"
 author: "agnusdei1207"
 date: "2026-10-24T23:34:59+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "웹 접근성(Web Accessibility)"
 author: "agnusdei1207"
 date: "2026-10-24T23:49:17+09:00"

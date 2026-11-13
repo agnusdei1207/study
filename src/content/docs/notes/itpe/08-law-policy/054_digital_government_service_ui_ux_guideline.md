@@ -1,4 +1,4 @@
-﻿---
+---
 title: "디지털 정부서비스 UI/UX 가이드라인 (UI: User Interface; UX: User Experience)"
 author: "agnusdei1207"
 date: "2026-10-24T23:40:55+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "카피레프트 라이선스(Copyleft License)"
 author: "agnusdei1207"
 date: "2026-10-24T23:41:37+09:00"

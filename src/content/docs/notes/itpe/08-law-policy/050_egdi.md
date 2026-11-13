@@ -1,4 +1,4 @@
-﻿---
+---
 title: "전자정부 발전지수(E-Government Development Index)"
 author: "agnusdei1207"
 date: "2026-10-24T23:39:01+09:00"

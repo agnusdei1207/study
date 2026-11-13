@@ -1,4 +1,4 @@
-﻿---
+---
 title: "CBPR(Cross-Border Privacy Rules)"
 author: "agnusdei1207"
 date: "2026-10-24T23:39:01+09:00"

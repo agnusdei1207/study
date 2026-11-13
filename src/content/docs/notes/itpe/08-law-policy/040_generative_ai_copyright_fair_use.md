@@ -1,4 +1,4 @@
-﻿---
+---
 title: "생성형 AI 학습 공정이용 안내서 (AI 저작권) (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:36:47+09:00"

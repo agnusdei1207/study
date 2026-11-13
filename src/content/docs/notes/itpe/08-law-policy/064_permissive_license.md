@@ -1,4 +1,4 @@
-﻿---
+---
 title: "허용적 라이선스(Permissive License)"
 author: "agnusdei1207"
 date: "2026-10-24T23:41:37+09:00"

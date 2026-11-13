@@ -1,4 +1,4 @@
-﻿---
+---
 title: "개인정보 보호법(PIPA, Personal Information Protection Act)"
 author: "agnusdei1207"
 date: "2026-10-24T23:34:59+09:00"
