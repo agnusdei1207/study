@@ -17,7 +17,7 @@ extra:
 
 - AI 보안, Security OF AI, Security BY AI, Security AGAINST AI
 - 적대적 공격, 데이터 중독, 프롬프트 인젝션, 모델 역공학
-- AI TRiSM, 설명가능성, 머신 언러닝, 차분 프라이버시
+- AI TRiSM (AI Trust, Risk and Security Management), 설명가능성, 머신 언러닝, 차분 프라이버시
 - ISO/IEC 42001, MITRE ATLAS, NIST AI RMF, UEBA, AIOps, SOAR
 
 ## Ⅰ. AI 보안의 개요
@@ -34,7 +34,7 @@ extra:
 1. 대상의 이중성 : AI가 보호 대상이면서 동시에 방어 수단이 됨 → 두 역할을 한 체계에서 관리해 운영 중복을 줄임.
 2. 확률론적 판단 : 규칙 기반이 아니라 학습된 통계 모델로 이상 징후를 판단 → 알려지지 않은 변종 공격에도 대응 범위가 넓어짐.
 3. 수명주기 통제 : 데이터 수집, 학습, 배포, 추론, 모니터링 단계마다 점검 지점을 둠 → 오염이나 우회가 한 단계에서 누적되지 않게 함.
-4. 거버넌스 연계 : **AI TRiSM** (AI Trust, Risk and Security Management)과 국제 표준을 따르면 설명 책임과 위험 관리를 조직 차원에서 증명할 수 있음.
+4. 거버넌스 연계 : **AI TRiSM (AI Trust, Risk and Security Management)** (AI Trust, Risk and Security Management)과 국제 표준을 따르면 설명 책임과 위험 관리를 조직 차원에서 증명할 수 있음.
 
 ## Ⅲ. AI 보안의 구조 (흐름)
 

@@ -16,14 +16,14 @@ extra:
 ## 연관 키워드
 
 - 블록 암호(Block Cipher), 대칭키 암호, 라운드 함수, Feistel 구조, SPN 구조
-- AES, ARIA, LEA, DES, 3DES, 운용 모드(Mode of Operation)
+- AES, ARIA, LEA, DES (레거시, 현재는 사용 지양), 3DES (레거시, 현재는 사용 지양), 운용 모드(Mode of Operation)
 - ECB, CBC, CTR, GCM, AEAD, 패딩 오라클, Nonce 재사용, Sweet32, 키 회전
 
 ## Ⅰ. 블록 암호(Block Cipher)의 개요
 
 - 핵심 요약 : 고정 크기 블록을 다중 라운드로 변환하는 대칭키 암호이며, 운용 모드 선택이 실제 안전성을 좌우하는 방식.
 - 개념 : 평문을 64비트, 128비트 같은 고정 길이 블록으로 나누고, 비밀키에서 유도한 라운드 키로 여러 라운드를 반복해 같은 길이의 암호문 블록을 만드는 **블록 암호** (Block Cipher).
-- 배경 및 필요성 : 대용량 데이터를 빠르게 암호화해야 하는 저장·전송 환경에서 기밀성을 확보할 기반 기술이 필요하며, 이 요구에 맞춰 Feistel 구조와 SPN 구조가 표준 설계 계열로 정착함. 대표 예는 고급 암호화 표준(AES, Advanced Encryption Standard)과 데이터 암호화 표준(DES, Data Encryption Standard)이다.
+- 배경 및 필요성 : 대용량 데이터를 빠르게 암호화해야 하는 저장·전송 환경에서 기밀성을 확보할 기반 기술이 필요하며, 이 요구에 맞춰 Feistel 구조와 SPN 구조가 표준 설계 계열로 정착함. 대표 예는 고급 암호화 표준(AES, Advanced Encryption Standard)과 데이터 암호화 표준(DES (레거시, 현재는 사용 지양), Data Encryption Standard)이다.
 - 주요 목적 : 대용량 데이터의 고속 기밀성 확보, 그리고 **AEAD** (Authenticated Encryption with Associated Data) 운용으로 무결성과 인증을 함께 달성.
 
 ## Ⅱ. 블록 암호(Block Cipher)의 특징 및 장점
@@ -71,7 +71,7 @@ R → 라운드 함수 F(R, Ki)
 
 | 비교 축 | Feistel 구조 | SPN 구조 |
 | --- | --- | --- |
-| 대표 알고리즘 | DES, SEED | AES, ARIA, LEA(Lightweight Encryption Algorithm) |
+| 대표 알고리즘 | DES (레거시, 현재는 사용 지양), SEED | AES, ARIA, LEA(Lightweight Encryption Algorithm) |
 | 설계 복잡도 | 역함수가 불필요해 하드웨어 설계가 단순 | 각 연산의 역변환 회로가 추가로 필요 |
 | 처리 속도 | 매 라운드 블록의 절반만 갱신되어 상대적으로 느림 | 블록 전체를 병렬 처리해 고속 암호화에 유리 |
 | 확산 방식 | 전역 확산까지 더 많은 라운드 필요 | 라운드 내에서 전역 확산이 빠르게 진행 |

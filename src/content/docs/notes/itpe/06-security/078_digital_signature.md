@@ -1,6 +1,6 @@
 ---
 title: "전자서명(Digital Signature)"
-author: "Codex"
+author: "agnusdei1207"
 date: "2026-10-24T23:02:20+09:00"
 tags:
   - "notes-security"
