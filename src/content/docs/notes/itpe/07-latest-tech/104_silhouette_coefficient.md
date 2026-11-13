@@ -1,4 +1,4 @@
-﻿---
+---
 title: "실루엣 계수(Silhouette Coefficient)"
 author: "agnusdei1207"
 date: "2026-10-24T23:26:41+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "오픈뱅킹(Open Banking)"
 author: "agnusdei1207"
 date: "2026-10-24T23:30:08+09:00"

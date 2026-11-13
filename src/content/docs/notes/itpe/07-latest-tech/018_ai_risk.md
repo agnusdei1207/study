@@ -1,4 +1,4 @@
-﻿---
+---
 title: "AI 리스크 (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:15:44+09:00"

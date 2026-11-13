@@ -1,4 +1,4 @@
-﻿---
+---
 title: "범용 AI(General-Purpose AI) 위험관리 프레임워크 (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:26:41+09:00"

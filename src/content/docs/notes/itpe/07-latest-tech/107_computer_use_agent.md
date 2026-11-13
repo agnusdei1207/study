@@ -1,4 +1,4 @@
-﻿---
+---
 title: "컴퓨터 유즈 에이전트 (Computer Use)"
 author: "agnusdei1207"
 date: "2026-10-24T23:26:29+09:00"

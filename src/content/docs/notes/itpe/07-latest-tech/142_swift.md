@@ -1,4 +1,4 @@
-﻿---
+---
 title: "SWIFT 금융 메시징 (SWIFT: Society for Worldwide Interbank Financial Telecommunication)"
 author: "agnusdei1207"
 date: "2026-10-24T23:30:03+09:00"

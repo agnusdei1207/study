@@ -1,4 +1,4 @@
-﻿---
+---
 title: "메타버스(Metaverse)"
 author: "agnusdei1207"
 date: "2026-10-24T23:15:09+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "데이터 라벨링(Data Labeling)"
 author: "agnusdei1207"
 date: "2026-10-24T23:28:46+09:00"

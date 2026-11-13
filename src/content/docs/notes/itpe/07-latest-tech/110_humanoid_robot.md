@@ -1,4 +1,4 @@
-﻿---
+---
 title: "휴머노이드 로봇 (피지컬 AI 국가 프로젝트) (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:26:29+09:00"

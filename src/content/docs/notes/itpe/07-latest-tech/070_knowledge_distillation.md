@@ -1,4 +1,4 @@
-﻿---
+---
 title: "지식 증류(Knowledge Distillation)"
 author: "agnusdei1207"
 date: "2026-10-24T23:23:43+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "X+AI / AX 2.0 (AI: Artificial Intelligence; AX: AI Transformation)"
 author: "agnusdei1207"
 date: "2026-10-24T23:26:41+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "버티컬 AI (Vertical AI) (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:26:41+09:00"

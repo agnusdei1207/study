@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Self-RAG(Self-Reflective Retrieval-Augmented Generation)"
 author: "Codex"
 date: "2026-10-24T23:25:26+09:00"

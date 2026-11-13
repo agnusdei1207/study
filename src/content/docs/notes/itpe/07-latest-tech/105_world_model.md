@@ -1,4 +1,4 @@
-﻿---
+---
 title: "월드 모델 / 월드 파운데이션 모델 (World Model)"
 author: "agnusdei1207"
 date: "2026-10-24T23:26:41+09:00"
