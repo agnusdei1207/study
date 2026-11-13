@@ -1,4 +1,4 @@
----
+﻿---
 title: "핀테크(FinTech)"
 author: "agnusdei1207"
 date: "2026-10-24T23:15:44+09:00"
@@ -91,7 +91,7 @@ extra:
 | --- | --- | --- | --- |
 | 비대면 사기 확산 (보이스피싱, 명의도용, 크레덴셜 스터핑) | 간편 인증을 악용한 악성 앱 감염과 계정 탈취 피해 빈발 | 3D 라이브니스(Liveness) 검증, 단말기 이상 행위 실시간 감지, 공동 FDS 정보 공유 | 사기 탐지율, 피해 건수 |
 | 망분리 규제와 클라우드·생성형 AI 도입 충돌 | 개발망과 운영망 분리로 SaaS(Software as a Service)와 외부 LLM(Large Language Model) API 활용이 제약됨 | **금융 규제 샌드박스**의 적극 활용, 개인신용정보 가명·익명 처리 게이트웨이 구축 | 샌드박스 과제 수 |
-| 대안신용평가의 설명 불가능성 | 대출 거절 사유를 고객에게 소명하지 못하면 금융소비자보호 위반 위험 | **XAI**(Explainable Artificial Intelligence) 기법인 SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations)을 파이프라인에 통합해 거절 사유 리포트 자동 생성 | 소명 리포트 제공률 |
+| 대안신용평가의 설명 불가능성 | 대출 거절 사유를 고객에게 소명하지 못하면 금융소비자보호 위반 위험 | **XAI** (Explainable Artificial Intelligence) 기법인 SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations)을 파이프라인에 통합해 거절 사유 리포트 자동 생성 | 소명 리포트 제공률 |
 
 ## Ⅵ. 핀테크에 대한 기술사적 제언
 

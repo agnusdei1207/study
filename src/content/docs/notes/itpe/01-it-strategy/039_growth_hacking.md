@@ -1,5 +1,5 @@
 ---
-title: "그로스 해킹"
+title: "그로스해킹"
 author: "agnusdei1207"
 date: "2026-10-24T22:21:55+09:00"
 tags:

@@ -1,4 +1,4 @@
----
+﻿---
 title: "칩렛과 UCIe 3.0 (UCIe: Universal Chiplet Interconnect Express)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -18,7 +18,7 @@ extra:
 
 ## Ⅰ. 칩렛과 UCIe의 개요
 - 핵심 요약 : 칩렛은 기능별 다이를 한 패키지에 통합하고 UCIe는 다이 간 상호운용을 위한 개방형 인터페이스 표준.
-- 개념 : **UCIe**(Universal Chiplet Interconnect Express)는 패키지 내 die-to-die PHY, 프로토콜 계층, 소프트웨어 모델을 규정하는 표준.
+- 개념 : **UCIe** (Universal Chiplet Interconnect Express)는 패키지 내 die-to-die PHY, 프로토콜 계층, 소프트웨어 모델을 규정하는 표준.
 - 배경 및 필요성 : 단일 대형 다이의 수율·비용 한계와 다양한 공정 최적화 요구.
 - 목적 : 모듈형 반도체 통합과 다중 공급자 칩렛 생태계 기반 마련.
 

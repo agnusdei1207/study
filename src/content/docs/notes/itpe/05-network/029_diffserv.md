@@ -1,4 +1,4 @@
----
+﻿---
 title: "DiffServ(Differentiated Services)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. DiffServ의 개요
 
 - 핵심 요약 : 경계에서 등급 표시를 부여하고 도메인 내 각 라우터가 표시에 정해진 홉별 행동으로 응답하는 클래스 기반 품질 구조.
-- 개념 : IP 헤더의 **DS 필드**(Differentiated Services Field)에 기록된 **DSCP**(Differentiated Services Code Point, 서비스 등급 코드)에 따라 같은 등급의 트래픽 집합인 **클래스**(Class) 단위로 차등 처리를 적용하는 **차등 서비스** (DiffServ, Differentiated Services) 모델. IETF(Internet Engineering Task Force)의 RFC 2474·2475로 표준화.
+- 개념 : IP 헤더의 **DS 필드** (Differentiated Services Field)에 기록된 **DSCP** (Differentiated Services Code Point, 서비스 등급 코드)에 따라 같은 등급의 트래픽 집합인 **클래스** (Class) 단위로 차등 처리를 적용하는 **차등 서비스** (DiffServ, Differentiated Services) 모델. IETF(Internet Engineering Task Force)의 RFC 2474·2475로 표준화.
 - 배경 및 필요성 : 흐름마다 경로 전체에 상태를 유지하는 예약 기반 모델은 백본 규모에서 라우터 상태가 흐름 수에 비례해 폭증하는 확장성 한계 → 상태를 유지하지 않는 집약 처리의 필요.
 - 주요 목적 : 대규모 망에서 확장 가능한 품질 차등, 코어 고속 포워딩의 유지, 사업자 간 품질 계약의 실행 수단 확보.
 
@@ -30,10 +30,10 @@ extra:
 - 핵심 요약 : 에지의 분류·마킹과 코어의 단순 실행으로 역할을 나누어, 상태 부담 없이 확장되는 차등 품질 구조.
 
 1. DSCP 마킹 : DS 필드 상위 6비트로 64개의 코드 표현 → 분류 결과를 패킷에 기록 → 이후 홉은 헤더만 판독해 처리.
-2. 홉별 행동 : **PHB**(Per-Hop Behavior, 같은 DSCP에 대해 노드가 수행하는 관측 가능한 전달 행동)를 도메인 단위로 일관 정의 → 도메인 내 동일 등급의 균일한 품질.
-3. 역할 분담 : 복잡한 분류·계량·조절은 **경계 라우터**(Edge Router)가 담당, 코어는 DSCP 기반 큐잉만 수행 → 코어 부하가 흐름 수와 무관한 확장성.
-4. 계약 기반 조절 : SLA(Service Level Agreement)로 합의한 프로파일을 **트래픽 조절**(Traffic Conditioning, 계량·재표시·폐기의 집합)로 집행 → 품질 계약의 근거 확보.
-5. 표준 PHB 집합 : 저지연 전용 **EF**(Expedited Forwarding)와 4개 클래스×3단계 폐기 우선순위의 **AF**(Assured Forwarding), 규정 없는 트래픽의 **Default** 처리 → 음성·중요 데이터·일반 트래픽의 등급 운영.
+2. 홉별 행동 : **PHB** (Per-Hop Behavior, 같은 DSCP에 대해 노드가 수행하는 관측 가능한 전달 행동)를 도메인 단위로 일관 정의 → 도메인 내 동일 등급의 균일한 품질.
+3. 역할 분담 : 복잡한 분류·계량·조절은 **경계 라우터** (Edge Router)가 담당, 코어는 DSCP 기반 큐잉만 수행 → 코어 부하가 흐름 수와 무관한 확장성.
+4. 계약 기반 조절 : SLA(Service Level Agreement)로 합의한 프로파일을 **트래픽 조절** (Traffic Conditioning, 계량·재표시·폐기의 집합)로 집행 → 품질 계약의 근거 확보.
+5. 표준 PHB 집합 : 저지연 전용 **EF** (Expedited Forwarding)와 4개 클래스×3단계 폐기 우선순위의 **AF** (Assured Forwarding), 규정 없는 트래픽의 **Default** 처리 → 음성·중요 데이터·일반 트래픽의 등급 운영.
 
 ## Ⅲ. DiffServ의 구조 (흐름)
 

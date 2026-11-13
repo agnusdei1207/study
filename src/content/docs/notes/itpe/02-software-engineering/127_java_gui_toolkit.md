@@ -1,4 +1,4 @@
----
+﻿---
 title: "Java GUI(Graphical User Interface) 툴킷(AWT: Abstract Window Toolkit, Swing, JavaFX)"
 description: "AWT·Swing·JavaFX 3세대, 중량·경량·씬 그래프, EDT·FXML·CSS·jpackage, 블로킹·룩앤필·배포 부담 한계와 방안"
 tags:
@@ -19,7 +19,7 @@ extra:
 
 ## Ⅰ. 자바 GUI 툴킷의 개요
 
-- 핵심 요약 : 자바 **GUI**(Graphical User Interface, 그래픽 사용자 인터페이스) 툴킷은 Java 응용의 창·위젯·이벤트·렌더링을 플랫폼 독립적으로 구현하는 UI 라이브러리 체계.
+- 핵심 요약 : 자바 **GUI** (Graphical User Interface, 그래픽 사용자 인터페이스) 툴킷은 Java 응용의 창·위젯·이벤트·렌더링을 플랫폼 독립적으로 구현하는 UI 라이브러리 체계.
 - 개념 : Java 데스크톱 응용의 인터페이스 구성·이벤트 처리·화면 렌더링을 담당하며 AWT·Swing·JavaFX의 세대별 계열이 대표.
 - 배경 및 필요성 : 운영체제마다 다른 창 시스템·입력 처리의 추상화 없이는 플랫폼별 재구현 필요 → 이식성 있는 UI 구현 수단 필요.
 - 주요 목적 : 플랫폼 독립적 데스크톱 UI 구현과 일관된 이벤트 상호 작용 제공.
@@ -28,9 +28,9 @@ extra:
 
 - 핵심 요약 : 세대별 툴킷이 렌더링 모델을 발전시키며 이식성·표현력을 확대.
 
-1. **AWT**(Abstract Window Toolkit, 운영체제 네이티브 위젯을 감싼 최초의 Java GUI 라이브러리) : 네이티브 peer 기반 중량 컴포넌트 → OS 위젯과의 통합 표현·위젯 종류 제한.
-2. **Swing**(위젯을 Java 코드로 직접 그리는 경량 컴포넌트 집합) : Java 자체 렌더링·Pluggable Look and Feel(외관 교체) → 플랫폼 무관 일관성·풍부한 위젯.
-3. **JavaFX**(현대적 표현을 지향하는 Java UI 플랫폼) : **씬 그래프**(Scene Graph, UI를 노드 트리로 구성·렌더링하는 모델) 기반의 CSS(Cascading Style Sheets)·FXML·속성 바인딩 → 표현력·애니메이션·미디어 지원.
+1. **AWT** (Abstract Window Toolkit, 운영체제 네이티브 위젯을 감싼 최초의 Java GUI 라이브러리) : 네이티브 peer 기반 중량 컴포넌트 → OS 위젯과의 통합 표현·위젯 종류 제한.
+2. **Swing** (위젯을 Java 코드로 직접 그리는 경량 컴포넌트 집합) : Java 자체 렌더링·Pluggable Look and Feel(외관 교체) → 플랫폼 무관 일관성·풍부한 위젯.
+3. **JavaFX** (현대적 표현을 지향하는 Java UI 플랫폼) : **씬 그래프** (Scene Graph, UI를 노드 트리로 구성·렌더링하는 모델) 기반의 CSS(Cascading Style Sheets)·FXML·속성 바인딩 → 표현력·애니메이션·미디어 지원.
 4. 이벤트 기반 상호 작용 : 이벤트 리스너·핸들러 구조의 입력 처리 → 툴킷에 공통인 상호 작용 구현 모델.
 
 ## Ⅲ. 자바 GUI 툴킷의 구조 (흐름)
@@ -51,7 +51,7 @@ extra:
 레이아웃 계산·화면 렌더링
 ```
 
-- 스레드 규칙 : **이벤트 디스패치 스레드**(Event Dispatch Thread, EDT, Swing의 이벤트 처리·UI 갱신을 전담하는 단일 스레드)에서 UI를 변경하고 장시간 작업은 별도 작업 스레드로 분리(JavaFX는 JavaFX Application Thread가 동일 역할) → 응답성 유지.
+- 스레드 규칙 : **이벤트 디스패치 스레드** (Event Dispatch Thread, EDT, Swing의 이벤트 처리·UI 갱신을 전담하는 단일 스레드)에서 UI를 변경하고 장시간 작업은 별도 작업 스레드로 분리(JavaFX는 JavaFX Application Thread가 동일 역할) → 응답성 유지.
 
 ```text
 [ Java GUI 툴킷 세대 ]

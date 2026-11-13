@@ -1,4 +1,4 @@
----
+﻿---
 title: "웹 접근성(Web Accessibility)"
 author: "agnusdei1207"
 date: "2026-10-24T23:49:17+09:00"
@@ -21,14 +21,14 @@ extra:
 
 ## Ⅰ. 웹 접근성의 개요
 
-- 핵심 요약 : 장애 여부나 사용 환경에 관계없이 **웹 접근성**(Web Accessibility)을 확보해 웹의 정보와 기능을 인식·조작·이해할 수 있도록 설계하는 품질 특성.
+- 핵심 요약 : 장애 여부나 사용 환경에 관계없이 **웹 접근성** (Web Accessibility)을 확보해 웹의 정보와 기능을 인식·조작·이해할 수 있도록 설계하는 품질 특성.
 - 개념 : 시각·청각·운동·인지적 제약을 고려해 콘텐츠와 인터페이스의 이용 장벽을 제거하는 설계·개발·평가 활동.
 - 배경 및 필요성 : 웹 서비스가 생활 필수 수단이 되면서 장애인과 고령자 등의 정보 접근권을 보장할 필요가 커짐. 국내에서는 지능정보화 기본법이 웹 접근성 보장을 규정하고 있음.
 - 주요 목적 : 동등한 과업 수행, 정보 격차 완화, 이용성과 법·표준 대응 수준 향상.
 
 ## Ⅱ. 웹 접근성의 특징 및 장점
 
-- 핵심 요약 : **POUR**(Perceivable, Operable, Understandable, Robust) 4대 원칙을 구현 요소에 연결해 장애인뿐 아니라 다양한 기기·환경 이용자의 경험을 개선.
+- 핵심 요약 : **POUR** (Perceivable, Operable, Understandable, Robust) 4대 원칙을 구현 요소에 연결해 장애인뿐 아니라 다양한 기기·환경 이용자의 경험을 개선.
 
 1. 인식 가능(Perceivable) : 이미지 **대체 텍스트**와 자막을 제공 → 감각 수단이 달라도 정보 획득 가능.
 2. 운용 가능(Operable) : **키보드 접근성**과 명확한 초점 표시 제공 → 마우스 사용이 어려운 이용자의 기능 수행 지원.
@@ -69,7 +69,7 @@ extra:
 
 ## Ⅳ. KWCAG 2.2와 WCAG 2.2의 비교
 
-- 핵심 요약 : 국가표준 **KWCAG 2.2**(한국형 웹 콘텐츠 접근성 지침, Korean Web Content Accessibility Guidelines)와 WCAG 2.2(Web Content Accessibility Guidelines)는 같은 접근성 원칙을 공유하지만 제정 주체와 적용 문맥이 달라 기준을 구분해야 함.
+- 핵심 요약 : 국가표준 **KWCAG 2.2** (한국형 웹 콘텐츠 접근성 지침, Korean Web Content Accessibility Guidelines)와 WCAG 2.2(Web Content Accessibility Guidelines)는 같은 접근성 원칙을 공유하지만 제정 주체와 적용 문맥이 달라 기준을 구분해야 함.
 
 | 비교 항목 | KWCAG 2.2 | WCAG 2.2 |
 | --- | --- | --- |

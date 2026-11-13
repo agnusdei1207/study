@@ -1,4 +1,4 @@
----
+﻿---
 title: "정보윤리(Information Ethics)"
 author: "agnusdei1207"
 date: "2026-10-24T23:41:37+09:00"
@@ -22,15 +22,15 @@ extra:
 ## Ⅰ. 정보윤리(Information Ethics)의 개요
 
 - 핵심 요약 : 정보의 생산부터 소비까지 기술 전문가와 이용자가 지켜야 할 도덕 판단 기준이며, 개발 생명주기 안에 실행 장치로 넣어야 실효가 있음.
-- 개념 : 정보의 생산·처리·유통·소비 전 과정에서 정보기술 종사자와 이용자가 지켜야 할 **정보윤리**(Information Ethics)로, 사회적 행동 규범이자 도덕 판단 기준.
-- 배경 및 필요성 : 윤리 원칙이 선언에 머물면 수익성과 납기 압박 속에서 배제되므로, 소프트웨어 개발 생명주기 전반에 **윤리적 설계**(Ethics by Design) 점검 지점을 두어야 함.
+- 개념 : 정보의 생산·처리·유통·소비 전 과정에서 정보기술 종사자와 이용자가 지켜야 할 **정보윤리** (Information Ethics)로, 사회적 행동 규범이자 도덕 판단 기준.
+- 배경 및 필요성 : 윤리 원칙이 선언에 머물면 수익성과 납기 압박 속에서 배제되므로, 소프트웨어 개발 생명주기 전반에 **윤리적 설계** (Ethics by Design) 점검 지점을 두어야 함.
 - 주요 목적 : 프라이버시 침해, 허위정보 확산, 저작권 침해, 디지털 격차 같은 정보사회의 역기능 예방.
 
 ## Ⅱ. 정보윤리(Information Ethics)의 특징 및 장점
 
 - 핵심 요약 : 네 가지 원리로 역기능을 사전에 식별하고, 그 결과를 설계 단계에 반영하여 사후 피해를 줄이는 방식.
 
-1. **PAPA**(Privacy, Accuracy, Property, Accessibility) : 리처드 메이슨(Richard O. Mason)이 제시한 네 축, 즉 프라이버시·정확성·재산권·접근성 → 역기능 유형을 체계적으로 식별.
+1. **PAPA** (Privacy, Accuracy, Property, Accessibility) : 리처드 메이슨(Richard O. Mason)이 제시한 네 축, 즉 프라이버시·정확성·재산권·접근성 → 역기능 유형을 체계적으로 식별.
 2. 프라이버시(Privacy) : 개인정보 자기결정권 보장 → 목적 외 이용 금지와 비식별화로 감시 사회화 방지.
 3. 정확성(Accuracy) : 정보의 진실성과 무결성 확보 → 데이터 정제와 오류 정정 책임으로 허위정보 확산 억제.
 4. 재산권(Property)과 접근성(Accessibility) : 지적재산 존중과 정보 접근권 보장 → 저작권 침해와 정보 격차를 함께 축소.
@@ -85,8 +85,8 @@ AI 윤리
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | 윤리 검증의 형식화 | 일정과 수익성 우선으로 체크리스트만 작성 | CI/CD(Continuous Integration/Continuous Delivery) 파이프라인에 윤리 점검 자동화, 미통과 시 배포 차단 | 윤리 점검 미통과 건수 |
-| 생성형 AI 기반 딥페이크와 허위정보 | 위조 콘텐츠 확산으로 사회적 신뢰 저하 | **C2PA**(Coalition for Content Provenance and Authenticity) 기반 출처 표시 | 출처 표시 적용률 |
-| 알고리즘 편향과 차별 | 추천·채용·신용평가에서 특정 집단 불이익 | 학습 데이터 재가중과 **설명가능 인공지능**(XAI, Explainable Artificial Intelligence) 적용 | 집단별 오류율 격차 |
+| 생성형 AI 기반 딥페이크와 허위정보 | 위조 콘텐츠 확산으로 사회적 신뢰 저하 | **C2PA** (Coalition for Content Provenance and Authenticity) 기반 출처 표시 | 출처 표시 적용률 |
+| 알고리즘 편향과 차별 | 추천·채용·신용평가에서 특정 집단 불이익 | 학습 데이터 재가중과 **설명가능 인공지능** (XAI, Explainable Artificial Intelligence) 적용 | 집단별 오류율 격차 |
 
 ## Ⅵ. 정보윤리(Information Ethics) 정착을 위한 기술사적 제언
 

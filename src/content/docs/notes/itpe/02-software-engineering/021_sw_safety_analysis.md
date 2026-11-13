@@ -1,4 +1,4 @@
----
+﻿---
 title: "SW(Software) 안전성 분석(FTA: Fault Tree Analysis, FMEA: Failure Mode and Effects Analysis, HAZOP: Hazard and Operability Study, STPA: System-Theoretic Process Analysis)"
 description: "결함수·고장모드·위험운전성 분석, 기능안전 표준 연계, STPA 보완, 등급 기반 설계 제언"
 tags:
@@ -20,18 +20,18 @@ extra:
 ## Ⅰ. 소프트웨어 안전성 분석의 개요
 
 - 핵심 요약 : 소프트웨어 안전성 분석은 고장·위험 상태를 사전에 식별해 안전 요구사항과 검증 증거로 연결하는 체계적 활동.
-- 개념 : 시스템과 소프트웨어의 고장·오동작이 인명·자산에 미칠 위험을 개발 초기부터 식별·평가하고 **안전 요구사항**(safety requirement, 위험 통제를 위한 요구)으로 전환하는 분석 활동(**소프트웨어 안전성 분석**, Software Safety Analysis). FTA·FMEA·HAZOP·STPA가 대표 기법.
-- 배경 및 필요성 : SW가 자동차·의료·원전 등 안전필수 시스템의 제어를 담당하면서 SW 결함이 인명·자산 피해로 직결되고, **기능안전 표준**(functional safety standard, IEC 61508·ISO 26262)이 위험 분석과 안전 요구 할당을 요구.
+- 개념 : 시스템과 소프트웨어의 고장·오동작이 인명·자산에 미칠 위험을 개발 초기부터 식별·평가하고 **안전 요구사항** (safety requirement, 위험 통제를 위한 요구)으로 전환하는 분석 활동(**소프트웨어 안전성 분석**, Software Safety Analysis). FTA·FMEA·HAZOP·STPA가 대표 기법.
+- 배경 및 필요성 : SW가 자동차·의료·원전 등 안전필수 시스템의 제어를 담당하면서 SW 결함이 인명·자산 피해로 직결되고, **기능안전 표준** (functional safety standard, IEC 61508·ISO 26262)이 위험 분석과 안전 요구 할당을 요구.
 - 주요 목적 : 위험의 조기 식별·통제와 잔여 위험을 허용 수준 이하로 유지하는 안전 보증.
 
 ## Ⅱ. 소프트웨어 안전성 분석기법의 특징 및 장점
 
 - 핵심 요약 : 연역·귀납·편차 탐색·제어 관점 등 서로 다른 방향의 위험 접근이 상호 보완.
 
-1. **FTA**(Fault Tree Analysis, 결함수 트리 분석) : 상위 사고(Top Event)를 논리 게이트(AND·OR)로 분해하는 연역적 하향 분석 → **최소 절단집합**(minimal cut set, 사고를 유발하는 최소 원인 조합) 도출로 위험 조합 식별.
-2. **FMEA**(Failure Mode and Effects Analysis, 고장 양상·영향 분석) : 구성요소·기능별 고장 양상을 하나씩 검토하는 귀납적 상향 분석 → 심각도·발생도·검출도로 **위험 우선순위 수치**(RPN, Risk Priority Number) 산정과 예방 우선순위 확보.
-3. **HAZOP**(Hazard and Operability Study, 위험·가동성 분석) : **가이드워드**(guide word, 과다·과소·역방향 등 편차 유도 단어)로 설계 의도와 공정 변수의 이탈 탐색 → 운전·제어 시나리오의 위험·가동성 문제 조기 발견.
-4. **STPA**(System-Theoretic Process Analysis, 시스템 이론적 프로세스 분석) : 제어 구조상 **안전하지 않은 제어 행동**(unsafe control action, 위험한 상태로 이끄는 제어 동작)을 식별하는 제어 관점 분석 → 부품 고장이 없어도 발생하는 상호작용·제어 논리 위험까지 검토.
+1. **FTA** (Fault Tree Analysis, 결함수 트리 분석) : 상위 사고(Top Event)를 논리 게이트(AND·OR)로 분해하는 연역적 하향 분석 → **최소 절단집합** (minimal cut set, 사고를 유발하는 최소 원인 조합) 도출로 위험 조합 식별.
+2. **FMEA** (Failure Mode and Effects Analysis, 고장 양상·영향 분석) : 구성요소·기능별 고장 양상을 하나씩 검토하는 귀납적 상향 분석 → 심각도·발생도·검출도로 **위험 우선순위 수치** (RPN, Risk Priority Number) 산정과 예방 우선순위 확보.
+3. **HAZOP** (Hazard and Operability Study, 위험·가동성 분석) : **가이드워드** (guide word, 과다·과소·역방향 등 편차 유도 단어)로 설계 의도와 공정 변수의 이탈 탐색 → 운전·제어 시나리오의 위험·가동성 문제 조기 발견.
+4. **STPA** (System-Theoretic Process Analysis, 시스템 이론적 프로세스 분석) : 제어 구조상 **안전하지 않은 제어 행동** (unsafe control action, 위험한 상태로 이끄는 제어 동작)을 식별하는 제어 관점 분석 → 부품 고장이 없어도 발생하는 상호작용·제어 논리 위험까지 검토.
 
 ## Ⅲ. 소프트웨어 안전성 분석의 구조 (흐름)
 

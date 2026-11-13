@@ -1,4 +1,4 @@
----
+﻿---
 title: "Ultra Ethernet (UEC) (UEC: Ultra Ethernet Consortium)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -24,10 +24,10 @@ extra:
 
 - 핵심 요약 : AI 학습과 고성능 컴퓨팅 클러스터의 통신 부하를 개방형 이더넷으로 처리하기 위한 차세대 고성능 이더넷 규격.
 - 개념 : 리눅스 재단 산하 개방형 컨소시엄인 **Ultra Ethernet Consortium** (UEC)이 정의하는 고성능 이더넷 전송 규격, 2025년 표준 1.0 공개.
-- 배경 및 필요성 : 대규모 언어 모델(LLM, Large Language Model) 학습에서는 수만 개의 GPU(Graphics Processing Unit)가 **올투올**(All-to-All, 모든 노드가 서로 통신하는 패턴) 통신을 수행하고 데이터센터 내부의 **이스트-웨스트 트래픽**(East-West Traffic, 서버·가속기 간 수평 방향 트래픽)이 폭증, 단일 생태계 의존의 InfiniBand는 비용 부담, RoCEv2(RDMA over Converged Ethernet v2)는 혼잡 제어·무손실 설정의 한계.
+- 배경 및 필요성 : 대규모 언어 모델(LLM, Large Language Model) 학습에서는 수만 개의 GPU(Graphics Processing Unit)가 **올투올** (All-to-All, 모든 노드가 서로 통신하는 패턴) 통신을 수행하고 데이터센터 내부의 **이스트-웨스트 트래픽** (East-West Traffic, 서버·가속기 간 수평 방향 트래픽)이 폭증, 단일 생태계 의존의 InfiniBand는 비용 부담, RoCEv2(RDMA over Converged Ethernet v2)는 혼잡 제어·무손실 설정의 한계.
 - 주요 목적 :
   1. 개방형 이더넷 기반의 초고대역폭·초저지연 전송
-  2. **인캐스트**(Incast, 다수 송신자가 한 수신자로 몰리는 현상) 혼잡 붕괴 방지
+  2. **인캐스트** (Incast, 다수 송신자가 한 수신자로 몰리는 현상) 혼잡 붕괴 방지
   3. 패킷 단위 분산 전송으로 경로 활용률 향상
 
 ## Ⅱ. Ultra Ethernet의 특징 및 장점
@@ -44,7 +44,7 @@ extra:
 ## Ⅲ. Ultra Ethernet의 구조 (흐름)
 
 - 핵심 요약 : 응용 라이브러리가 UET 전송 계층의 분산·혼잡 제어를 호출하고 이더넷 계층이 운반하는 계층 구조.
-- **UET**(Ultra Ethernet Transport) : 패킷 스프레잉·크레딧·혼잡 제어를 담당하는 UEC의 전송 계층 기능.
+- **UET** (Ultra Ethernet Transport) : 패킷 스프레잉·크레딧·혼잡 제어를 담당하는 UEC의 전송 계층 기능.
 - 응용 연계 : PyTorch 같은 학습 프레임워크와 MPI(Message Passing Interface) 등 병렬 런타임이 응용 프로그래밍 인터페이스(API, Application Programming Interface)를 통해 UET를 호출.
 
 ```text

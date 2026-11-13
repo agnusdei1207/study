@@ -1,4 +1,4 @@
----
+﻿---
 sidebar:
   order: 0
 title: "정보통신"
@@ -74,7 +74,7 @@ weight: 5
 ```
 
 - 설계 기준: 주소·경로·대역폭·지연·손실·가용성·보안·관측 가능성을 함께 판단
-- 현대화 기준: Classful IPv4(Internet Protocol version 4)는 역사적 한계 설명에만 사용하고, 주소 설계는 **CIDR(Classless Inter-Domain Routing)/VLSM(Variable Length Subnet Mask)·IPv6**(Internet Protocol version 6)를 기준으로 기술
+- 현대화 기준: Classful IPv4(Internet Protocol version 4)는 역사적 한계 설명에만 사용하고, 주소 설계는 **CIDR(Classless Inter-Domain Routing)/VLSM(Variable Length Subnet Mask)·IPv6** (Internet Protocol version 6)를 기준으로 기술
 
 ## 영역별 로드맵
 

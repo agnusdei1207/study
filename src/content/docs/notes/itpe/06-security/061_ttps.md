@@ -1,4 +1,4 @@
----
+﻿---
 title: "TTPs(Tactics, Techniques and Procedures)"
 author: "agnusdei1207"
 date: "2026-10-24T23:03:57+09:00"
@@ -23,7 +23,7 @@ extra:
 
 - 핵심 요약 : 공격자의 전략, 기법, 실행 절차를 묶은 행동 패턴으로 공격을 식별하는 방어 관점의 위협 분석 체계.
 - 개념 : 공격자가 목표를 달성하기 위해 쓰는 **TTPs** (Tactics, Techniques, and Procedures)로, 전술(목적), 기법(수단), 절차(실행 도구와 명령 패턴)로 구성된 행동 체계.
-- 배경 및 필요성 : IP 주소, 도메인, 파일 해시 같은 **침해지표** (IoC, Indicators of Compromise)는 공격자가 손쉽게 바꿀 수 있어 보안 장비의 차단 효과가 짧음 → 공격자의 행동 패턴을 **MITRE ATT&CK**(Adversarial Tactics, Techniques, and Common Knowledge) 체계로 분류하여 **지능형 지속 위협** (APT, Advanced Persistent Threat)에 선제 대응하는 방식이 요구됨.
+- 배경 및 필요성 : IP 주소, 도메인, 파일 해시 같은 **침해지표** (IoC, Indicators of Compromise)는 공격자가 손쉽게 바꿀 수 있어 보안 장비의 차단 효과가 짧음 → 공격자의 행동 패턴을 **MITRE ATT&CK** (Adversarial Tactics, Techniques, and Common Knowledge) 체계로 분류하여 **지능형 지속 위협** (APT, Advanced Persistent Threat)에 선제 대응하는 방식이 요구됨.
 - 주요 목적 : 쉽게 변조되는 단편 지표를 넘어 공격 행위 패턴을 식별·차단하여, 공격자의 침투 비용을 높이고 사전 예방 역량을 확보.
 
 ## Ⅱ. TTPs의 특징 및 장점

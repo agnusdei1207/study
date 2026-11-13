@@ -1,4 +1,4 @@
----
+﻿---
 title: "AI 리스크 (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:15:44+09:00"
@@ -24,7 +24,7 @@ extra:
 
 - 핵심 요약 : AI 시스템의 전 생애주기에 걸쳐 안전, 프라이버시, 공정성, 사회적 신뢰를 해치는 위험 요인의 총체.
 - 개념 : 인공지능(AI, Artificial Intelligence) 시스템의 데이터 수집, 설계, 학습, 평가, 배포, 운영 전 과정에서 내재하거나 외부로부터 발생하여 사람과 사회에 부정적 영향을 주는 기술적·관리적·윤리적 위험 요인 (**AI 리스크**).
-- 배경 및 필요성 : 생성형 AI의 확산으로 **환각**(Hallucination), 탈옥, 딥페이크 사기 같은 위험이 현실화되었고, EU AI Act와 NIST AI RMF(AI Risk Management Framework) 같은 규제·지침이 감시와 의무를 강화함. 국내에서도 AI 기본법이 2026년 1월 22일 시행되어 고영향 AI와 생성물 고지 의무가 적용되는 상황임.
+- 배경 및 필요성 : 생성형 AI의 확산으로 **환각** (Hallucination), 탈옥, 딥페이크 사기 같은 위험이 현실화되었고, EU AI Act와 NIST AI RMF(AI Risk Management Framework) 같은 규제·지침이 감시와 의무를 강화함. 국내에서도 AI 기본법이 2026년 1월 22일 시행되어 고영향 AI와 생성물 고지 의무가 적용되는 상황임.
 - 핵심 목적 : AI의 오작동과 안전사고 예방, 규제 준수, 기업 신뢰 보호, **신뢰할 수 있는 인공지능** (Trustworthy AI) 실현.
 
 ## Ⅱ. AI 리스크의 특징 및 장점

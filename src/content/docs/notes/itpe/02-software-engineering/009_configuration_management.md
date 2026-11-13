@@ -1,4 +1,4 @@
----
+﻿---
 title: "형상관리(Configuration Management)와 베이스라인(Baseline)"
 description: "형상관리의 4대 활동, 4계층 베이스라인, CCB, 트렁크 기반 개발·GitOps·IaC 연계"
 tags:
@@ -65,7 +65,7 @@ CCB 심의(승인·거절)
 기준선 갱신·상태 기록
 ```
 
-- 현대적 적용 : **GitOps**(Git 저장소의 선언형 상태를 배포 기준으로 삼는 운영 방식)와 **코드형 인프라** (IaC, Infrastructure as Code)를 기준선 체계에 연결한 구성 통제.
+- 현대적 적용 : **GitOps** (Git 저장소의 선언형 상태를 배포 기준으로 삼는 운영 방식)와 **코드형 인프라** (IaC, Infrastructure as Code)를 기준선 체계에 연결한 구성 통제.
 
 ## Ⅳ. 형상관리와 변경 관리의 비교
 

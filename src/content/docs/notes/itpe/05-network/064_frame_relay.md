@@ -1,4 +1,4 @@
----
+﻿---
 title: "프레임릴레이(Frame Relay)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -23,18 +23,18 @@ extra:
 ## Ⅰ. 프레임릴레이의 개요
 
 - 핵심 요약 : 종단 중심의 오류 제어로 중간 노드의 부담을 줄인 데이터 링크 계층 기반의 고속 패킷 교환 광역망 기술.
-- 개념 : 신뢰성 높은 디지털 회선 위에서 프레임 단위로 데이터를 교환하는 **프레임릴레이**(Frame Relay) WAN(Wide Area Network) 프로토콜이며, ITU-T(International Telecommunication Union Telecommunication Standardization Sector)의 I.122와 Q.922 권고에 근거.
-- 배경 및 필요성 : 선행 기술 X.25는 잡음이 많던 아날로그 회선을 전제로 노드마다 **홉 바이 홉**(구간마다 오류를 확인하고 재전송하는 방식, Hop-by-Hop) 오류 제어를 수행해 지연이 누적되었고, 디지털 전송 품질이 좋아진 환경에서는 노드별 오류 제어가 과잉 기능이 됨.
+- 개념 : 신뢰성 높은 디지털 회선 위에서 프레임 단위로 데이터를 교환하는 **프레임릴레이** (Frame Relay) WAN(Wide Area Network) 프로토콜이며, ITU-T(International Telecommunication Union Telecommunication Standardization Sector)의 I.122와 Q.922 권고에 근거.
+- 배경 및 필요성 : 선행 기술 X.25는 잡음이 많던 아날로그 회선을 전제로 노드마다 **홉 바이 홉** (구간마다 오류를 확인하고 재전송하는 방식, Hop-by-Hop) 오류 제어를 수행해 지연이 누적되었고, 디지털 전송 품질이 좋아진 환경에서는 노드별 오류 제어가 과잉 기능이 됨.
 - 주요 목적 : 광역 전송의 오버헤드 최소화, 단일 물리 회선에 여러 가상 회선의 다중화, 지사 간 저비용 망 구축.
 
 ## Ⅱ. 프레임릴레이의 특징 및 장점
 
 - 핵심 요약 : 헤더 기반 가상 회선 다중화와 명시적 혼잡 통보가 회선 절감과 핵심 트래픽 보호로 이어지는 구조.
 
-1. 가상 회선 다중화 : **DLCI**(10비트 가상 회선 식별자, Data Link Connection Identifier)로 인터페이스당 다수의 **PVC**(영구 가상 회선, Permanent Virtual Circuit)와 **SVC**(교환 가상 회선, Switched Virtual Circuit)를 수용 → 지사별 물리 회선 수 절감.
+1. 가상 회선 다중화 : **DLCI** (10비트 가상 회선 식별자, Data Link Connection Identifier)로 인터페이스당 다수의 **PVC** (영구 가상 회선, Permanent Virtual Circuit)와 **SVC** (교환 가상 회선, Switched Virtual Circuit)를 수용 → 지사별 물리 회선 수 절감.
 2. 종단 오류 제어 : 스위치는 손상 프레임의 폐기만 수행하고 복구와 흐름 제어는 종단의 TCP(Transmission Control Protocol)가 담당 → 노드 처리 지연 감소.
-3. 명시적 혼잡 통보 : **FECN**(순방향 혼잡 통보 비트, Forward Explicit Congestion Notification)과 **BECN**(역방향 혼잡 통보 비트, Backward Explicit Congestion Notification)으로 혼잡을 알림 → 송신률 조절의 근거 제공.
-4. 대역 보장과 초과 허용 : **CIR**(보장 정보율, Committed Information Rate)과 **EIR**(초과 정보율, Excess Information Rate)의 이원화 → 보장 대역 기준의 비용 예측성과 여유 시 버스트 유연성 확보.
+3. 명시적 혼잡 통보 : **FECN** (순방향 혼잡 통보 비트, Forward Explicit Congestion Notification)과 **BECN** (역방향 혼잡 통보 비트, Backward Explicit Congestion Notification)으로 혼잡을 알림 → 송신률 조절의 근거 제공.
+4. 대역 보장과 초과 허용 : **CIR** (보장 정보율, Committed Information Rate)과 **EIR** (초과 정보율, Excess Information Rate)의 이원화 → 보장 대역 기준의 비용 예측성과 여유 시 버스트 유연성 확보.
 
 ## Ⅲ. 프레임릴레이의 구조 (흐름)
 

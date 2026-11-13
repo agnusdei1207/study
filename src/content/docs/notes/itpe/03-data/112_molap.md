@@ -1,4 +1,4 @@
----
+﻿---
 title: "MOLAP (Multidimensional OLAP) (MOLAP: Multidimensional Online Analytical Processing)"
 author: "agnusdei1207"
 date: "2026-10-25T00:20:30+09:00"
@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. MOLAP의 개요
 
 - 핵심 요약 : 다차원 배열 큐브에 데이터를 미리 집계해 두어 분석 질의에 즉시 응답하는 OLAP 기술.
-- 개념 : 데이터를 다차원 배열 구조의 큐브에 저장하고 차원 조합별 집계를 미리 계산해 두는 **MOLAP**(Multidimensional Online Analytical Processing, 다차원 온라인 분석 처리).
+- 개념 : 데이터를 다차원 배열 구조의 큐브에 저장하고 차원 조합별 집계를 미리 계산해 두는 **MOLAP** (Multidimensional Online Analytical Processing, 다차원 온라인 분석 처리).
 - 배경 및 필요성 : 관계형 OLAP(ROLAP, Relational Online Analytical Processing)은 구조적 질의 언어(SQL, Structured Query Language)로 집계를 실행 시점에 계산하므로, 대용량 집계에서 응답 지연이 커져 사전 집계 방식이 필요해짐.
 - 주요 목적 : 여러 차원에 걸친 분석 질의를 배열 접근 수준(O(1))으로 빠르게 응답.
 
@@ -29,11 +29,11 @@ extra:
 
 - 핵심 요약 : 다차원 배열, 사전 집계, 조인 배제가 맞물려 조회 속도를 높이고, 희소성 압축으로 메모리 효율을 보완.
 
-1. **다차원 큐브**(OLAP Cube, 차원 축으로 이루어진 집계 데이터 공간) : 시간, 지역, 상품 같은 차원을 배열 인덱스로 사용 → 좌표 계산만으로 셀에 직접 접근.
-2. **사전 집계**(Pre-aggregation, 적재 시점에 차원 조합별 합계를 미리 계산) : 질의 시점의 계산을 없애 응답 시간을 일정하게 유지.
+1. **다차원 큐브** (OLAP Cube, 차원 축으로 이루어진 집계 데이터 공간) : 시간, 지역, 상품 같은 차원을 배열 인덱스로 사용 → 좌표 계산만으로 셀에 직접 접근.
+2. **사전 집계** (Pre-aggregation, 적재 시점에 차원 조합별 합계를 미리 계산) : 질의 시점의 계산을 없애 응답 시간을 일정하게 유지.
 3. 조인 배제 : 여러 테이블을 조인하지 않고 배열 오프셋으로 값을 찾아 조인 비용을 제거.
-4. **희소성 압축**(Sparsity Compression, 값이 없는 셀을 제외하고 저장) : CSR(Compressed Sparse Row)과 CSC(Compressed Sparse Column) 같은 희소 행렬 형식을 적용 → 빈 셀의 저장 공간 절감.
-5. **HOLAP**(Hybrid Online Analytical Processing, 요약 큐브와 상세 관계형 데이터를 결합한 방식) : 인메모리 MOLAP과 ROLAP을 연계 → 요약 분석의 속도와 상세 추적을 함께 확보.
+4. **희소성 압축** (Sparsity Compression, 값이 없는 셀을 제외하고 저장) : CSR(Compressed Sparse Row)과 CSC(Compressed Sparse Column) 같은 희소 행렬 형식을 적용 → 빈 셀의 저장 공간 절감.
+5. **HOLAP** (Hybrid Online Analytical Processing, 요약 큐브와 상세 관계형 데이터를 결합한 방식) : 인메모리 MOLAP과 ROLAP을 연계 → 요약 분석의 속도와 상세 추적을 함께 확보.
 
 ## Ⅲ. 큐브 구조와 처리 흐름
 

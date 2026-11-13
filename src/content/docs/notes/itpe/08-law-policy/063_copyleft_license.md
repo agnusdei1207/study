@@ -1,4 +1,4 @@
----
+﻿---
 title: "카피레프트 라이선스(Copyleft License)"
 author: "agnusdei1207"
 date: "2026-10-24T23:41:37+09:00"
@@ -22,8 +22,8 @@ extra:
 ## Ⅰ. 카피레프트 라이선스(Copyleft License)의 개요
 
 - 핵심 요약 : 소프트웨어의 자유를 보장하는 대가로 파생 저작물에도 같은 조건의 소스코드 공개를 요구하는 상호주의 라이선스.
-- 개념 : 소프트웨어의 사용·수정·배포 자유를 보장하면서, 이를 기반으로 만든 파생 저작물에도 같은 조건을 이어 주도록 강제하는 **카피레프트 라이선스**(Copyleft License).
-- 배경 및 필요성 : 오픈소스를 상용 제품에 결합하거나 SaaS(Software as a Service)로 제공할 때 **전염성**으로 인해 독점 소스코드가 공개될 위험이 있음. 따라서 **소프트웨어 자재명세서**(SBOM, Software Bill of Materials)로 의존성을 파악하고, 독점 모듈을 IPC(Inter-Process Communication)나 REST API로 분리하는 설계를 개발 초기에 해야 함.
+- 개념 : 소프트웨어의 사용·수정·배포 자유를 보장하면서, 이를 기반으로 만든 파생 저작물에도 같은 조건을 이어 주도록 강제하는 **카피레프트 라이선스** (Copyleft License).
+- 배경 및 필요성 : 오픈소스를 상용 제품에 결합하거나 SaaS(Software as a Service)로 제공할 때 **전염성**으로 인해 독점 소스코드가 공개될 위험이 있음. 따라서 **소프트웨어 자재명세서** (SBOM, Software Bill of Materials)로 의존성을 파악하고, 독점 모듈을 IPC(Inter-Process Communication)나 REST API로 분리하는 설계를 개발 초기에 해야 함.
 - 주요 목적 : 오픈소스 생태계가 사유화되지 않도록 막고, 공유된 지식이 지속적으로 순환하도록 보장.
 
 ## Ⅱ. 카피레프트 라이선스(Copyleft License)의 특징 및 장점

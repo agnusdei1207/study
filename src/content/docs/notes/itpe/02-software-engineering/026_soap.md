@@ -1,4 +1,4 @@
----
+﻿---
 title: "SOAP(Simple Object Access Protocol)"
 description: "W3C 표준 XML 프로토콜, 웹 서비스 3대 표준, REST 비교, WS-* 복잡성 한계와 어댑터 제언"
 tags:
@@ -19,7 +19,7 @@ extra:
 ## Ⅰ. SOAP의 개요
 
 - 핵심 요약 : SOAP은 XML 기반 봉투 메시지의 구조와 교환 규칙을 표준화해 이기종 시스템 간 서비스 호출을 지원하는 프로토콜.
-- 개념 : W3C(World Wide Web Consortium) 표준인 **SOAP**(Simple Object Access Protocol)은 **XML**(Extensible Markup Language) 메시지를 **봉투**(Envelope) 구조로 감싸 교환하는 웹 서비스 메시징 프로토콜.
+- 개념 : W3C(World Wide Web Consortium) 표준인 **SOAP** (Simple Object Access Protocol)은 **XML** (Extensible Markup Language) 메시지를 **봉투** (Envelope) 구조로 감싸 교환하는 웹 서비스 메시징 프로토콜.
 - 배경 및 필요성 : 플랫폼·언어가 다른 기관 간 연계에서 메시지 형식·오류 처리·보안의 공통 표준 부재로 상호운용 비용 증가.
 - 주요 목적 : 구조화된 메시지 교환 표준으로 이기종 시스템의 상호운용성과 웹 서비스 생태계 결합 확보.
 
@@ -29,9 +29,9 @@ extra:
 
 1. 봉투 기반 메시지 : Envelope 안의 Header(메타데이터)와 Body(본문) 분리 → 보안·트랜잭션 정보의 표준 자리 확보.
 2. 전송 독립성 : HTTP·SMTP 등 다양한 프로토콜 바인딩 → 전송 수단 교체에도 메시지 계약 유지.
-3. 계약 기반 개발 : **WSDL**(Web Services Description Language)이 연산·메시지·바인딩을 기술 → 클라이언트 코드 자동 생성·상호운용 지원.
-4. 표준 확장 체계 : **WS-Security**(Web Services Security) 등 WS-* 표준군으로 메시지 서명·암호화·신뢰 전달 → 기업 간 보안 요구 대응.
-5. 표준 오류 형식 : **Fault**(오류 보고 요소)가 오류 코드·사유를 구조화 → 구현체에 무관한 예외 처리.
+3. 계약 기반 개발 : **WSDL** (Web Services Description Language)이 연산·메시지·바인딩을 기술 → 클라이언트 코드 자동 생성·상호운용 지원.
+4. 표준 확장 체계 : **WS-Security** (Web Services Security) 등 WS-* 표준군으로 메시지 서명·암호화·신뢰 전달 → 기업 간 보안 요구 대응.
+5. 표준 오류 형식 : **Fault** (오류 보고 요소)가 오류 코드·사유를 구조화 → 구현체에 무관한 예외 처리.
 
 ## Ⅲ. SOAP의 구조 (흐름)
 
@@ -57,12 +57,12 @@ SOAP 요청 전송 → Body 처리
 SOAP 응답 또는 Fault 반환
 ```
 
-- 웹 서비스 3요소 : SOAP(메시지 교환), WSDL(서비스 기술), **UDDI**(Universal Description, Discovery and Integration, 등록·탐색).
+- 웹 서비스 3요소 : SOAP(메시지 교환), WSDL(서비스 기술), **UDDI** (Universal Description, Discovery and Integration, 등록·탐색).
 
 ## Ⅳ. SOAP과 REST의 비교
 
 - 핵심 요약 : SOAP은 표준 명세 중심의 메시징 프로토콜, REST는 HTTP 제약을 활용하는 자원 중심 아키텍처 스타일.
-- 비교 개요 : **REST**(Representational State Transfer)는 자원과 HTTP 메서드 중심의 아키텍처 스타일로 웹 API 설계의 대표 대안.
+- 비교 개요 : **REST** (Representational State Transfer)는 자원과 HTTP 메서드 중심의 아키텍처 스타일로 웹 API 설계의 대표 대안.
 
 | 비교 축 | SOAP | REST |
 |---|---|---|

@@ -1,4 +1,4 @@
----
+﻿---
 title: "VXLAN(Virtual Extensible Local Area Network) (VXLAN: Virtual Extensible LAN)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. VXLAN의 개요
 
 - 핵심 요약 : L3 IP망 위에서 UDP 캡슐화로 논리 L2 구간을 만들어 대규모 멀티테넌트 네트워크를 구현하는 오버레이 표준.
-- 개념 : 이더넷 프레임을 UDP(User Datagram Protocol) 패킷으로 감싸 L3 IP망 위에 논리 L2 구간을 형성하는 **VXLAN**(Virtual eXtensible Local Area Network, RFC 7348) 프로토콜이며, 논리망이 물리망 위에 겹쳐지는 **오버레이**(Overlay) 구조가 핵심.
+- 개념 : 이더넷 프레임을 UDP(User Datagram Protocol) 패킷으로 감싸 L3 IP망 위에 논리 L2 구간을 형성하는 **VXLAN** (Virtual eXtensible Local Area Network, RFC 7348) 프로토콜이며, 논리망이 물리망 위에 겹쳐지는 **오버레이** (Overlay) 구조가 핵심.
 - 배경 및 필요성 : 클라우드 데이터센터에서 가상머신(VM, Virtual Machine) 수와 테넌트 수가 기존 세그먼트 식별 체계의 용량을 초과했고, 루프 방지를 위한 링크 차단 구조와 가상머신 이동 시의 논리 L2 연속성 요구가 겹치면서 물리망과 독립된 논리망 기술이 필요해짐.
 - 주요 목적 : 24비트 식별자로 테넌트 세그먼트를 대규모로 분리하고, 표준 IP 라우팅망을 그대로 활용하며, 데이터센터 전역의 논리 L2 연결성 보장.
 
@@ -31,10 +31,10 @@ extra:
 
 - 핵심 요약 : 캡슐화로 논리망과 물리망을 분리하고 24비트 식별과 컨트롤 플레인 제어로 확장성과 안정성을 함께 확보.
 
-1. MAC-in-UDP 캡슐화 : **VTEP**(캡슐화·역캡슐화를 수행하는 터널 종단점, VXLAN Tunnel End Point)이 원본 프레임을 외부 IP·UDP 헤더로 감싸고 수신 VTEP에서 복원 → 표준 IP 라우팅망 위에서 L2 연결성 제공.
-2. 24비트 세그먼트 식별 : **VNI**(VXLAN 세그먼트 식별자, VXLAN Network Identifier)가 약 1,677만 개의 논리 세그먼트를 구분 → 대규모 멀티테넌트 격리 확보.
+1. MAC-in-UDP 캡슐화 : **VTEP** (캡슐화·역캡슐화를 수행하는 터널 종단점, VXLAN Tunnel End Point)이 원본 프레임을 외부 IP·UDP 헤더로 감싸고 수신 VTEP에서 복원 → 표준 IP 라우팅망 위에서 L2 연결성 제공.
+2. 24비트 세그먼트 식별 : **VNI** (VXLAN 세그먼트 식별자, VXLAN Network Identifier)가 약 1,677만 개의 논리 세그먼트를 구분 → 대규모 멀티테넌트 격리 확보.
 3. 해시 기반 경로 분산 : 내부 프레임 해시값을 외부 UDP 소스 포트에 반영 → 언더레이 라우터의 ECMP(Equal-Cost Multi-Path)로 전 경로 동시 활용.
-4. 컨트롤 플레인 제어 : **BGP EVPN**(경로 배포 기반 이더넷 VPN 제어, Ethernet VPN)이 VTEP 간 MAC·IP 도달 정보를 사전 배포 → 불필요한 플러딩 제거와 안정적 수렴.
+4. 컨트롤 플레인 제어 : **BGP EVPN** (경로 배포 기반 이더넷 VPN 제어, Ethernet VPN)이 VTEP 간 MAC·IP 도달 정보를 사전 배포 → 불필요한 플러딩 제거와 안정적 수렴.
 
 ## Ⅲ. VXLAN의 구조 (흐름)
 
@@ -75,7 +75,7 @@ VM → 리프 스위치 (VTEP)
 | 비교 축 | 플러드 앤 러닝 (멀티캐스트 기반) | BGP EVPN (컨트롤 플레인 기반) |
 | --- | --- | --- |
 | 도달 정보 습득 | 데이터 평면에서 실시간 학습 | MAC·IP 경로의 사전 배포 |
-| **BUM 트래픽**(브로드캐스트·미지 유니캐스트·멀티캐스트) 처리 | 언더레이 멀티캐스트 라우팅 의존 | 인그레스 복제(Ingress Replication) 유니캐스트 |
+| **BUM 트래픽** (브로드캐스트·미지 유니캐스트·멀티캐스트) 처리 | 언더레이 멀티캐스트 라우팅 의존 | 인그레스 복제(Ingress Replication) 유니캐스트 |
 | ARP(Address Resolution Protocol) 처리 | 전 구간 플러딩 | 경로 기반 응답으로 플러딩 억제 |
 | 언더레이 요건 | 멀티캐스트 라우팅 설계 필요 | 순수 유니캐스트 라우팅만 요구 |
 | 확장성 | 그룹 수 증가 시 복잡도 상승 | 경로 수 기반의 예측 가능한 확장 |

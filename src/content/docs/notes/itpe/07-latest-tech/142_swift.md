@@ -1,4 +1,4 @@
----
+﻿---
 title: "SWIFT 금융 메시징 (SWIFT: Society for Worldwide Interbank Financial Telecommunication)"
 author: "agnusdei1207"
 date: "2026-10-24T23:30:03+09:00"
@@ -31,7 +31,7 @@ extra:
 - 핵심 요약 : 메시지 표준화와 거래 추적 식별자, 암호화 통제가 결합되어 송금의 투명성과 보안을 함께 확보하는 구조.
 
 1. 구조화된 정형 메시지 : ISO 20022 XML 전문에 송수취인 정보를 태그 단위로 담음 → 자금세탁방지(AML) 자동 스크리닝의 정밀도 향상.
-2. **UETR** (Unique End-to-end Transaction Reference) 기반 추적 : 거래마다 고유 식별자를 부여해 **SWIFT gpi**(global payments innovation)가 구간별 처리 상태를 추적 → 송금 진행 상황과 수수료의 투명성 확보.
+2. **UETR** (Unique End-to-end Transaction Reference) 기반 추적 : 거래마다 고유 식별자를 부여해 **SWIFT gpi** (global payments innovation)가 구간별 처리 상태를 추적 → 송금 진행 상황과 수수료의 투명성 확보.
 3. 보안 통제 : 공개키 기반 구조(PKI)의 상호인증과 **HSM** (Hardware Security Module, 하드웨어 보안 모듈) 기반 암호화 → 전문의 위조와 변조 차단.
 
 ## Ⅲ. SWIFT 금융 메시징의 구조 (흐름)

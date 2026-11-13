@@ -1,4 +1,4 @@
----
+﻿---
 title: "OSPF(Open Shortest Path First)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -30,11 +30,11 @@ extra:
 
 - 핵심 요약 : 동일 토폴로지 동기화, 최단 경로 계산, 영역 계층화, 대표 라우터 선출이 빠른 수렴과 확장성을 함께 만드는 구조.
 
-1. 링크 상태 플러딩 : 각 라우터가 인터페이스·코스트·이웃 정보를 **LSA**(Link-State Advertisement)로 만들어 전파 → 영역 내 모든 라우터가 동일한 **LSDB**(Link-State Database)를 보유하는 루프 없는 계산의 전제.
-2. 최단 경로 계산 : 다익스트라 기반의 **SPF**(Shortest Path First) 알고리즘으로 링크 코스트 합이 최소인 경로 트리 생성 → 대역폭을 반영한 경로 선택.
-3. 계층적 영역 설계 : 일반 영역을 **백본 영역**(Area 0, 전체 영역을 관통하는 중심 영역)에 직접 연결하고 **ABR**(Area Border Router, 영역 경계 라우터)이 영역 간 경로를 요약 전달 → 라우팅 정보 집약과 연산 범위 축소.
-4. 대표 라우터 선출 : 브로드캐스트 구간에서 **DR/BDR**(Designated Router/Backup Designated Router)을 선출해 인접 관계의 폭증 억제 → 수렴 부하 감소.
-5. Hello 기반 이웃 관리 : **Hello 패킷**(이웃 발견·유지용 주기 메시지)의 교환으로 이웃 발견과 장애 감지를 수행하고 인증을 결합 → 안정적인 인접 유지.
+1. 링크 상태 플러딩 : 각 라우터가 인터페이스·코스트·이웃 정보를 **LSA** (Link-State Advertisement)로 만들어 전파 → 영역 내 모든 라우터가 동일한 **LSDB** (Link-State Database)를 보유하는 루프 없는 계산의 전제.
+2. 최단 경로 계산 : 다익스트라 기반의 **SPF** (Shortest Path First) 알고리즘으로 링크 코스트 합이 최소인 경로 트리 생성 → 대역폭을 반영한 경로 선택.
+3. 계층적 영역 설계 : 일반 영역을 **백본 영역** (Area 0, 전체 영역을 관통하는 중심 영역)에 직접 연결하고 **ABR** (Area Border Router, 영역 경계 라우터)이 영역 간 경로를 요약 전달 → 라우팅 정보 집약과 연산 범위 축소.
+4. 대표 라우터 선출 : 브로드캐스트 구간에서 **DR/BDR** (Designated Router/Backup Designated Router)을 선출해 인접 관계의 폭증 억제 → 수렴 부하 감소.
+5. Hello 기반 이웃 관리 : **Hello 패킷** (이웃 발견·유지용 주기 메시지)의 교환으로 이웃 발견과 장애 감지를 수행하고 인증을 결합 → 안정적인 인접 유지.
 
 ## Ⅲ. OSPF의 구조 (흐름)
 
@@ -61,12 +61,12 @@ Full (완전 인접)
 ```
 
 - 수렴 절차 : Hello로 이웃을 발견하고 LSA 교환으로 LSDB를 맞춘 뒤 SPF 계산으로 라우팅 테이블을 구성하는 순서의 수렴 과정.
-- **ASBR**(Autonomous System Boundary Router, 외부 경로를 연동하는 경계 라우터) : 외부 자율 시스템의 경로를 OSPF 영역으로 가져오는 구성요소.
+- **ASBR** (Autonomous System Boundary Router, 외부 경로를 연동하는 경계 라우터) : 외부 자율 시스템의 경로를 OSPF 영역으로 가져오는 구성요소.
 
 ## Ⅳ. OSPF와 RIP·BGP의 비교
 
 - 핵심 요약 : 내부 최단 경로는 OSPF, 소규모 단순 망은 RIP, 자율 시스템 간 정책 라우팅은 BGP가 담당하는 역할 분담.
-- 비교 대상 : 링크 상태형 IGP인 OSPF, 거리 벡터형 IGP인 RIP, 경로 벡터형 외부 게이트웨이 프로토콜인 **BGP**(Border Gateway Protocol).
+- 비교 대상 : 링크 상태형 IGP인 OSPF, 거리 벡터형 IGP인 RIP, 경로 벡터형 외부 게이트웨이 프로토콜인 **BGP** (Border Gateway Protocol).
 
 | 비교 축 | OSPF | RIP | BGP |
 | --- | --- | --- | --- |

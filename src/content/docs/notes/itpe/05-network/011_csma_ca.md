@@ -1,4 +1,4 @@
----
+﻿---
 title: "CSMA/CA(Carrier Sense Multiple Access with Collision Avoidance)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -29,8 +29,8 @@ extra:
 
 - 핵심 요약 : 이중 감지, 차등 간격, 난수 대기, 제어 프레임 교환이 겹쳐 충돌을 줄이는 분산형 접근 구조.
 
-1. 이중 반송파 감지 : 물리 계층의 에너지 감지(CCA, Clear Channel Assessment)와 **NAV**(Network Allocation Vector, 프레임 Duration 값으로 설정하는 가상 채널 점유 타이머)를 함께 사용 → 채널 상태 판단의 정확도 향상.
-2. 차등 프레임 간격 : **IFS**(Inter-Frame Space)를 용도별로 SIFS(Short IFS)·DIFS(DCF IFS) 등으로 구분 적용 → 응답 프레임의 송신 우선권 확보.
+1. 이중 반송파 감지 : 물리 계층의 에너지 감지(CCA, Clear Channel Assessment)와 **NAV** (Network Allocation Vector, 프레임 Duration 값으로 설정하는 가상 채널 점유 타이머)를 함께 사용 → 채널 상태 판단의 정확도 향상.
+2. 차등 프레임 간격 : **IFS** (Inter-Frame Space)를 용도별로 SIFS(Short IFS)·DIFS(DCF IFS) 등으로 구분 적용 → 응답 프레임의 송신 우선권 확보.
 3. 랜덤 백오프 : 경쟁 창(CW, Contention Window) 범위에서 난수를 뽑아 대기하고, 충돌 시 CW를 지수적으로 확장 → 다수 단말 송신 시점의 분산 효과.
 4. 제어 프레임 교환 : 데이터 전송 전 **RTS/CTS** (Request to Send / Clear to Send) 교환으로 수신 측 AP(Access Point)와 주변 노드에 NAV를 설정하고, 완료는 ACK(Acknowledgment)로 통보 → 숨은 노드 충돌의 사전 차단.
 
@@ -65,7 +65,7 @@ AP → A : ACK 반환
 ```
 
 - 백오프 카운터 : CW 범위의 난수로 시작해 유휴 슬롯마다 감소하는 대기 계수기.
-- **노출 노드**(Exposed Node, 전송이 가능한데도 타 노드의 통신을 감지해 불필요하게 대기하는 상황) : 숨은 노드와 대비되는 가시성 문제.
+- **노출 노드** (Exposed Node, 전송이 가능한데도 타 노드의 통신을 감지해 불필요하게 대기하는 상황) : 숨은 노드와 대비되는 가시성 문제.
 
 ## Ⅳ. CSMA/CA와 CSMA/CD·ALOHA의 비교
 

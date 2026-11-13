@@ -1,4 +1,4 @@
----
+﻿---
 title: "공공 정보시스템 서비스수준협약(SLA, Service Level Agreement)"
 author: "Codex"
 date: "2026-10-24T23:34:59+09:00"
@@ -37,9 +37,9 @@ extra:
 ## Ⅲ. 공공 SLA의 구조 (흐름)
 
 - 핵심 요약 : 지표, 목표, 약정의 3계층 구분 위에서 요구 분석부터 개선까지 순환하는 운영 구조.
-- **서비스수준지표**(SLI, Service Level Indicator) : 실제 서비스 품질을 나타내는 측정값.
-- **서비스수준목표**(SLO, Service Level Objective) : 특정 기간에 달성할 지표 목표값.
-- **복구시간목표**(RTO, Recovery Time Objective)와 **복구시점목표**(RPO, Recovery Point Objective) : 장애 후 복구 소요 한계와 데이터 손실 허용 한계.
+- **서비스수준지표** (SLI, Service Level Indicator) : 실제 서비스 품질을 나타내는 측정값.
+- **서비스수준목표** (SLO, Service Level Objective) : 특정 기간에 달성할 지표 목표값.
+- **복구시간목표** (RTO, Recovery Time Objective)와 **복구시점목표** (RPO, Recovery Point Objective) : 장애 후 복구 소요 한계와 데이터 손실 허용 한계.
 
 ```text
 [ 지표 → 목표 → 약정 ]

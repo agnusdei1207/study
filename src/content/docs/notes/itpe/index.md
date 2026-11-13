@@ -1,4 +1,4 @@
----
+﻿---
 title: "정보관리기술사 (ITPE)"
 description: "정보 전략·소프트웨어 공학·자료처리·컴퓨터 시스템·정보통신·정보보안·최신 기술·법규 핵심 토픽 노트"
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
 정보관리기술사(ITPE) 필기시험에서 직접 따라 쓰며 답안을 완성하는 8과목 서브노트입니다.
 
 ## 답안 작성법
-- **[ITPE 답안 작성법 (Answer Writing Guide)](./answer-writing-guide/)**: 7프레임(개요-특징 및 장점-구조-비교-한계와 방안-제언-결론) 표준 뼈대와 작성 규칙.
+- **[ITPE 답안 작성법 (Answer Writing Guide)]** (./answer-writing-guide/): 7프레임(개요-특징 및 장점-구조-비교-한계와 방안-제언-결론) 표준 뼈대와 작성 규칙.
 
 ## 8과목 전체 로드맵
 
@@ -43,11 +43,11 @@ sidebar:
 
 ## 과목별 바로가기
 
-1. **[01. 정보 전략 및 관리](./01-it-strategy/)**: 정보화 전략(ISP(Information Strategy Planning)/ISMP(Information System Master Plan)), IT(Information Technology) 거버넌스, 감리, 프로젝트 관리, AI(Artificial Intelligence) 윤리
-2. **[02. 소프트웨어 공학](./02-software-engineering/)**: 개발 방법론, 애자일, 요구공학, 소프트웨어 아키텍처, 테스트, 품질
-3. **[03. 자료처리·데이터·통계](./03-data/)**: 자료구조, 데이터베이스 모델링, 동시성 제어, 빅데이터, 확률과 통계
-4. **[04. 컴퓨터 시스템](./04-computer-system/)**: 운영체제, 컴퓨터 구조, 메모리 계층, 가상화, 클라우드 인프라
-5. **[05. 정보통신](./05-network/)**: OSI(Open Systems Interconnection) 7계층, TCP(Transmission Control Protocol)/IP(Internet Protocol), 무선 통신, 오류/흐름 제어, 네트워크 보안
-6. **[06. 정보보안](./06-security/)**: 암호 알고리즘, 접근 통제, 관리적·물리적·기술적 보안, 개인정보보호, AI 보안
-7. **[07. 최신 기술 동향](./07-latest-tech/)**: 인공지능, LLM(Large Language Model)/생성형 AI, MLOps(Machine Learning Operations), 분산 컴퓨팅, 블록체인
-8. **[08. 법규 및 정책](./08-law-policy/)**: 전자정부법, 개인정보보호법, 소프트웨어진흥법, 공공데이터 정책
+1. **[01. 정보 전략 및 관리]** (./01-it-strategy/): 정보화 전략(ISP(Information Strategy Planning)/ISMP(Information System Master Plan)), IT(Information Technology) 거버넌스, 감리, 프로젝트 관리, AI(Artificial Intelligence) 윤리
+2. **[02. 소프트웨어 공학]** (./02-software-engineering/): 개발 방법론, 애자일, 요구공학, 소프트웨어 아키텍처, 테스트, 품질
+3. **[03. 자료처리·데이터·통계]** (./03-data/): 자료구조, 데이터베이스 모델링, 동시성 제어, 빅데이터, 확률과 통계
+4. **[04. 컴퓨터 시스템]** (./04-computer-system/): 운영체제, 컴퓨터 구조, 메모리 계층, 가상화, 클라우드 인프라
+5. **[05. 정보통신]** (./05-network/): OSI(Open Systems Interconnection) 7계층, TCP(Transmission Control Protocol)/IP(Internet Protocol), 무선 통신, 오류/흐름 제어, 네트워크 보안
+6. **[06. 정보보안]** (./06-security/): 암호 알고리즘, 접근 통제, 관리적·물리적·기술적 보안, 개인정보보호, AI 보안
+7. **[07. 최신 기술 동향]** (./07-latest-tech/): 인공지능, LLM(Large Language Model)/생성형 AI, MLOps(Machine Learning Operations), 분산 컴퓨팅, 블록체인
+8. **[08. 법규 및 정책]** (./08-law-policy/): 전자정부법, 개인정보보호법, 소프트웨어진흥법, 공공데이터 정책

@@ -1,4 +1,4 @@
----
+﻿---
 title: "객체지향 설계원칙 SOLID(Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion; DIP: Dependency Inversion Principle)"
 description: "5대 원칙, 의존성 방향 역전, 위반 사례 비교, 교조적 적용·레거시·성능 한계와 방안, 헥사고날 아키텍처 제언"
 tags:
@@ -20,7 +20,7 @@ extra:
 ## Ⅰ. 객체지향 설계원칙 SOLID의 개요
 
 - 핵심 요약 : SOLID는 변경과 의존성을 관리하기 위해 책임·확장·치환·인터페이스·의존 방향을 다루는 객체지향 설계의 다섯 원칙.
-- 개념 : 책임·확장·치환·인터페이스·의존 방향의 다섯 원칙을 묶은 객체지향 설계 원칙 집합이 **SOLID**(Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion)임.
+- 개념 : 책임·확장·치환·인터페이스·의존 방향의 다섯 원칙을 묶은 객체지향 설계 원칙 집합이 **SOLID** (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion)임.
 - 배경 및 필요성 : 여러 책임이 한 클래스에 모이고 구현체에 직접 의존하는 구조는 작은 변경도 전체로 퍼지게 하는 문제.
 - 주요 목적 : 변경 영향의 국소화와 확장 가능한 구조 확보를 통한 유지보수성·테스트 용이성 향상.
 
@@ -28,11 +28,11 @@ extra:
 
 - 핵심 요약 : 다섯 원칙이 경계 분리 → 치환 보장 → 확장 구조 → 의존 방향 고정의 상호 보완으로 변경에 강한 설계를 만듦.
 
-1. 단일 책임 원칙 : **단일 책임 원칙**(SRP, Single Responsibility Principle)은 클래스가 하나의 변경 이유만 가지도록 책임을 분리 → 변경 영향의 국소화.
-2. 개방-폐쇄 원칙 : **개방-폐쇄 원칙**(OCP, Open-Closed Principle)은 기존 코드의 수정 없이 추상화·다형성으로 새 기능을 추가 → 확장 작업의 안전성 확보.
-3. 리스코프 치환 원칙 : **리스코프 치환 원칙**(LSP, Liskov Substitution Principle)은 하위 타입이 기반 타입의 계약(사전·사후 조건)을 유지하게 함 → 다형적 치환의 신뢰성 확보.
-4. 인터페이스 분리 원칙 : **인터페이스 분리 원칙**(ISP, Interface Segregation Principle)은 클라이언트가 사용하지 않는 메서드에 의존하지 않도록 역할 단위로 나눔 → 불필요한 결합 감소.
-5. 의존성 역전 원칙 : **의존성 역전 원칙**(DIP, Dependency Inversion Principle)은 고수준 정책이 저수준 구현이 아닌 추상에 의존하게 함 → 구현 교체와 **테스트 대역**(test double, 실제 구현을 대신하는 시험용 객체) 주입 용이.
+1. 단일 책임 원칙 : **단일 책임 원칙** (SRP, Single Responsibility Principle)은 클래스가 하나의 변경 이유만 가지도록 책임을 분리 → 변경 영향의 국소화.
+2. 개방-폐쇄 원칙 : **개방-폐쇄 원칙** (OCP, Open-Closed Principle)은 기존 코드의 수정 없이 추상화·다형성으로 새 기능을 추가 → 확장 작업의 안전성 확보.
+3. 리스코프 치환 원칙 : **리스코프 치환 원칙** (LSP, Liskov Substitution Principle)은 하위 타입이 기반 타입의 계약(사전·사후 조건)을 유지하게 함 → 다형적 치환의 신뢰성 확보.
+4. 인터페이스 분리 원칙 : **인터페이스 분리 원칙** (ISP, Interface Segregation Principle)은 클라이언트가 사용하지 않는 메서드에 의존하지 않도록 역할 단위로 나눔 → 불필요한 결합 감소.
+5. 의존성 역전 원칙 : **의존성 역전 원칙** (DIP, Dependency Inversion Principle)은 고수준 정책이 저수준 구현이 아닌 추상에 의존하게 함 → 구현 교체와 **테스트 대역** (test double, 실제 구현을 대신하는 시험용 객체) 주입 용이.
 
 ## Ⅲ. 객체지향 설계원칙 SOLID의 구조 (흐름)
 
@@ -83,7 +83,7 @@ DIP : 구현이 아닌 추상에 의존하는 방향 고정
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | 교조적 적용 | 모든 클래스에 인터페이스·계층 생성 → 인지 부담·추적 비용 증가 | 실제 변경 압력·대체 요구가 있는 지점 위주 적용 | 추상화 비율, 변경 소요 시간 |
-| 취약한 상속 | LSP 위반 하위 타입의 계약 파괴 → 기반 클래스 변경의 광범위 파급 | 계약 문서화, 상속보다 **합성**(composition) 우선 검토 | 치환 실패 결함, 하위 영향 범위 |
+| 취약한 상속 | LSP 위반 하위 타입의 계약 파괴 → 기반 클래스 변경의 광범위 파급 | 계약 문서화, 상속보다 **합성** (composition) 우선 검토 | 치환 실패 결함, 하위 영향 범위 |
 | 과잉 추상화 | 불필요한 간접 계층 → 실행 비용·코드 복잡도 증가 | 핵심 경로 성능 측정, 단순 구조 우선 원칙 | 응답 지연, 순환 의존 수 |
 | 레거시 적용 한계 | 기존 코드의 일괄 재설계 불가 → 원칙 적용 중단 | 경계 단위 점진 리팩토링, 회귀 시험 병행 | 리팩토링 대상 커버리지 |
 

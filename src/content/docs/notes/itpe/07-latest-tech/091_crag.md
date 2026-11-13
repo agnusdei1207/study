@@ -1,4 +1,4 @@
----
+﻿---
 title: "CRAG(Corrective Retrieval-Augmented Generation)"
 author: "agnusdei1207"
 date: "2026-10-24T23:25:26+09:00"
@@ -20,17 +20,17 @@ extra:
 ## Ⅰ. CRAG의 개요
 
 - 핵심 요약 : 검색된 문서의 적합도를 평가해 정제하거나 외부 검색으로 보완한 뒤 생성하는 교정형 RAG.
-- 개념 : 검색 문서의 질을 경량 **검색 평가자**(Retrieval Evaluator)가 판정하고, 그 결과에 따라 문서를 정제하거나 웹 검색으로 보완한 뒤 생성기에 주입하는 **교정형 RAG** (CRAG, Corrective Retrieval-Augmented Generation).
-- 배경 및 필요성 : 기존 RAG(Retrieval-Augmented Generation)는 검색 문서의 품질을 따지지 않고 생성기에 그대로 넘기므로, 무관한 문서가 섞이면 답변이 흐려지거나 **환각**(Hallucination)이 생길 수 있다. 내부 문서에 근거가 없을 때 외부 경로로 보완하는 절차가 필요해졌다.
+- 개념 : 검색 문서의 질을 경량 **검색 평가자** (Retrieval Evaluator)가 판정하고, 그 결과에 따라 문서를 정제하거나 웹 검색으로 보완한 뒤 생성기에 주입하는 **교정형 RAG** (CRAG, Corrective Retrieval-Augmented Generation).
+- 배경 및 필요성 : 기존 RAG(Retrieval-Augmented Generation)는 검색 문서의 품질을 따지지 않고 생성기에 그대로 넘기므로, 무관한 문서가 섞이면 답변이 흐려지거나 **환각** (Hallucination)이 생길 수 있다. 내부 문서에 근거가 없을 때 외부 경로로 보완하는 절차가 필요해졌다.
 - 주요 목적 : 검색 결과의 신뢰도를 평가해 잘못된 문맥이 생성으로 전파되는 것을 막고 답변의 근거 품질을 높이는 것.
 
 ## Ⅱ. CRAG의 특징 및 장점
 
 - 핵심 요약 : 검색 결과를 세 단계로 판정해 상황별 교정 경로를 나누므로, 정확도와 자원 효율을 함께 얻는 구조.
 
-1. 3단계 판정(Correct·Ambiguous·Incorrect) : 평가 점수를 상한·하한 **임계값**(Threshold)과 비교해 분기 → 상황에 맞는 교정만 수행해 불필요한 외부 검색 감소.
-2. **지식 스트립**(Knowledge Strip) 정제 : 문서를 의미 단위 조각으로 나눠 관련 조각만 남김 → 생성기 입력의 잡음과 토큰 사용량 감소.
-3. **웹 검색 폴백**(Web Search Fallback) : 내부 문서가 부적합하다고 판정되면 질의를 재작성해 외부 검색으로 대체 → 내부 자료에 없는 근거 확보.
+1. 3단계 판정(Correct·Ambiguous·Incorrect) : 평가 점수를 상한·하한 **임계값** (Threshold)과 비교해 분기 → 상황에 맞는 교정만 수행해 불필요한 외부 검색 감소.
+2. **지식 스트립** (Knowledge Strip) 정제 : 문서를 의미 단위 조각으로 나눠 관련 조각만 남김 → 생성기 입력의 잡음과 토큰 사용량 감소.
+3. **웹 검색 폴백** (Web Search Fallback) : 내부 문서가 부적합하다고 판정되면 질의를 재작성해 외부 검색으로 대체 → 내부 자료에 없는 근거 확보.
 
 ```text
 [ 사용자 질의 ]

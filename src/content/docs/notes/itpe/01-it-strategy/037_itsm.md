@@ -1,4 +1,4 @@
----
+﻿---
 title: "ITSM(IT Service Management)"
 author: "agnusdei1207"
 date: "2026-10-24T23:46:02+09:00"
@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. ITSM의 개요
 
 - 핵심 요약 : IT를 기술 자산이 아닌 고객 가치를 지닌 서비스로 보고 전 생애주기를 프로세스로 관리하는 체계.
-- 개념 : IT를 서비스로서 계획·설계·전환·운영·개선하는 프로세스와 역할 중심의 관리 체계인 **ITSM**(IT Service Management, IT 서비스 관리).
+- 개념 : IT를 서비스로서 계획·설계·전환·운영·개선하는 프로세스와 역할 중심의 관리 체계인 **ITSM** (IT Service Management, IT 서비스 관리).
 - 배경 및 필요성 : 장비·시스템 중심 운영에서는 장애 처리가 담당자 개인 역량에 의존하고 비용·품질이 파편화되어, 서비스 품질을 제도화할 표준 실천 모형 필요.
 - 주요 목적 : 비즈니스 요구에 맞는 서비스 품질·비용·위험 수준의 안정적 제공과 지속 개선.
 
@@ -30,10 +30,10 @@ extra:
 - 핵심 요약 : 라이프사이클 순환, 표준 실천 모형, 수준 관리, 장애·원인·변경의 분리가 품질 관리의 골격을 이룸.
 
 1. 서비스 라이프사이클 : 전략→설계→전환→운영→지속 개선의 순환 구조 → 서비스 품질의 체계적 관리.
-2. 표준 실천 모형의 적용 : 영국 정부에서 시작된 **ITIL**(Information Technology Infrastructure Library, IT 서비스 관리 모범 사례 집합)의 검증된 실천 모형 활용, 국제표준 **ISO/IEC 20000**(IT서비스관리 요구사항 표준)으로 제도화 → 도입 시행착오 감소.
-3. 서비스 수준 관리 : **SLA**(Service Level Agreement, 서비스 수준 계약)로 목표를 정의하고 **SLM**(Service Level Management, 서비스 수준 관리)으로 측정·보고 → 고객 기대와 IT 성과의 정렬.
-4. 장애·원인·변경의 분리 관리 : **인시던트**(Incident, 서비스 중단·저하 사건)의 신속 복구, **문제 관리**(Problem Management, 근본 원인 제거), **변경 관리**(Change Management, 변경의 승인·통제)의 분리 운영 → 반복 장애·변경 사고 감소.
-5. 구성·접점 관리 : **CMDB**(Configuration Management Database, 구성항목과 관계를 기록하는 데이터베이스)로 영향도 분석, **서비스 데스크**(Service Desk, 요청·장애의 단일 접점)로 접수·추적 → 투명성·추적성 향상.
+2. 표준 실천 모형의 적용 : 영국 정부에서 시작된 **ITIL** (Information Technology Infrastructure Library, IT 서비스 관리 모범 사례 집합)의 검증된 실천 모형 활용, 국제표준 **ISO/IEC 20000** (IT서비스관리 요구사항 표준)으로 제도화 → 도입 시행착오 감소.
+3. 서비스 수준 관리 : **SLA** (Service Level Agreement, 서비스 수준 계약)로 목표를 정의하고 **SLM** (Service Level Management, 서비스 수준 관리)으로 측정·보고 → 고객 기대와 IT 성과의 정렬.
+4. 장애·원인·변경의 분리 관리 : **인시던트** (Incident, 서비스 중단·저하 사건)의 신속 복구, **문제 관리** (Problem Management, 근본 원인 제거), **변경 관리** (Change Management, 변경의 승인·통제)의 분리 운영 → 반복 장애·변경 사고 감소.
+5. 구성·접점 관리 : **CMDB** (Configuration Management Database, 구성항목과 관계를 기록하는 데이터베이스)로 영향도 분석, **서비스 데스크** (Service Desk, 요청·장애의 단일 접점)로 접수·추적 → 투명성·추적성 향상.
 
 ## Ⅲ. ITSM의 구조 (흐름)
 

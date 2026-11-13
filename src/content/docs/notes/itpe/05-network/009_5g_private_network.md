@@ -1,4 +1,4 @@
----
+﻿---
 title: "5G 특화망(이음5G)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. 5G 특화망(이음5G)의 개요
 
 - 핵심 요약 : 기업이 전용 주파수와 자체 5G 코어로 구축해 현장 트래픽을 외부망 경유 없이 처리하는 독립형 사설 5G 인프라.
-- 개념 : 통신사 공용망과 분리된 **전용 주파수**(이음5G 전용으로 분배된 주파수 대역) 위에 기지국과 5G 코어를 직접 구축·운영하는 **5G 특화망** (Private 5G) 인프라이며, 국내 서비스명은 이음5G.
+- 개념 : 통신사 공용망과 분리된 **전용 주파수** (이음5G 전용으로 분배된 주파수 대역) 위에 기지국과 5G 코어를 직접 구축·운영하는 **5G 특화망** (Private 5G) 인프라이며, 국내 서비스명은 이음5G.
 - 배경 및 필요성 : 제조·물류·항만 현장에서 공용망은 혼잡에 따른 지연 변동과 핵심 데이터의 외부 경유 위험이 있고, 무선랜은 단말 이동 시 연결 끊김이 발생해 현장 제어용 전용 무선망의 수요가 확대됨.
 - 주요 목적 : 현장 무선 구간의 지연 안정화, **데이터 주권** (Data Sovereignty, 데이터의 저장·처리 권한을 기업이 직접 관리), 현장 워크로드별 서비스 품질(QoS, Quality of Service) 보장.
 
@@ -30,9 +30,9 @@ extra:
 - 핵심 요약 : 전용 주파수·자체 코어·로컬 데이터 분기·개방형 장비의 결합이 통제력과 지연 안정성이라는 장점으로 이어지는 구조.
 
 1. 전용 무선 자원 : 공용망과 간섭하지 않는 전용 대역의 현장 독점 사용 → 품질의 예측 가능성과 트래픽 격리 효과.
-2. **사설 5G 코어**(기업 구역에 두는 5G 핵심망 기능) : **AMF**(Access and Mobility Management Function)와 **SMF**(Session Management Function)가 단말 인증·세션 관리를 자체 처리 → 외부 장애의 영향 범위 축소.
-3. 로컬 데이터 분기 : **Local UPF** (User Plane Function, 사용자 데이터 전송 기능)가 현장 트래픽을 **MEC**(Multi-access Edge Computing, 복수 접속 에지 컴퓨팅)와 사내 LAN으로 직접 분기 → 외부 노출 축소와 지연 특성 개선.
-4. 개방형 장비 구성 : **O-RAN**(Open Radio Access Network, 개방형 무선 접속망) 기준으로 기지국을 RU(Radio Unit)·DU(Distributed Unit)·CU(Centralized Unit)로 분리 → 멀티벤더 장비 선택권 확보.
+2. **사설 5G 코어** (기업 구역에 두는 5G 핵심망 기능) : **AMF** (Access and Mobility Management Function)와 **SMF** (Session Management Function)가 단말 인증·세션 관리를 자체 처리 → 외부 장애의 영향 범위 축소.
+3. 로컬 데이터 분기 : **Local UPF** (User Plane Function, 사용자 데이터 전송 기능)가 현장 트래픽을 **MEC** (Multi-access Edge Computing, 복수 접속 에지 컴퓨팅)와 사내 LAN으로 직접 분기 → 외부 노출 축소와 지연 특성 개선.
+4. 개방형 장비 구성 : **O-RAN** (Open Radio Access Network, 개방형 무선 접속망) 기준으로 기지국을 RU(Radio Unit)·DU(Distributed Unit)·CU(Centralized Unit)로 분리 → 멀티벤더 장비 선택권 확보.
 
 ## Ⅲ. 5G 특화망(이음5G)의 구조 (흐름)
 
@@ -61,7 +61,7 @@ extra:
    ↓  코어는 클라우드, UPF만 현장 배치
 ```
 
-- **NaaS**(Network as a Service, 서비스형 네트워크) : 코어·관제를 서비스 형태로 이용하는 운영 모델로 도입 장벽을 낮춤.
+- **NaaS** (Network as a Service, 서비스형 네트워크) : 코어·관제를 서비스 형태로 이용하는 운영 모델로 도입 장벽을 낮춤.
 
 ## Ⅳ. 5G 특화망(이음5G)과 공용망·무선랜의 비교
 
@@ -73,7 +73,7 @@ extra:
 | 트래픽 격리 | 사내 구성으로 외부망 단절 | 공용 백본 경유의 논리 분리 | 사내 구성 시 가능 |
 | 이동성 | 현장 내 핸드오버 중심 | 광역 이동성 우수 | AP 간 이동 시 끊김 가능 |
 | 품질 보장 | 자체 자원으로 보장 | 이용량에 따라 변동 | 대역 간섭의 영향 |
-| 비용 구조 | 초기 **CAPEX**(Capital Expenditure) 집중 | 이용 기반 **OPEX**(Operating Expenditure) 과금 | 초기 구축 비용 낮음 |
+| 비용 구조 | 초기 **CAPEX** (Capital Expenditure) 집중 | 이용 기반 **OPEX** (Operating Expenditure) 과금 | 초기 구축 비용 낮음 |
 
 - 선택 기준 : 광역 커버리지와 통신사 연동이 중심이면 공용망, 격리와 지연 안정성이 핵심이면 이음5G, 저비용 설치가 우선이면 무선랜이 적합.
 
@@ -85,12 +85,12 @@ extra:
 | --- | --- | --- | --- |
 | 초기 투자와 운영 인력 부족 | 기지국·코어 자체 운영의 기술 장벽 → 도입 지연 | 코어는 클라우드에 두고 UPF만 현장에 두는 NaaS형 구축 | 운영 인력 투입 시간 |
 | 28GHz 대역의 전파 음영 | mmWave(millimeter wave)의 직진성 → 설비 그늘에서 단절 | 4.7GHz 기본 커버리지와 28GHz 국소 배치의 조합 | 구역별 수신 세기 |
-| 산업 이더넷 연동 부담 | 기존 공장 프로토콜과의 상호 접속 난이도 | 3GPP 표준의 5G-**TSN**(Time-Sensitive Networking) 브리지 적용 | 지연 편차(지터) |
+| 산업 이더넷 연동 부담 | 기존 공장 프로토콜과의 상호 접속 난이도 | 3GPP 표준의 5G-**TSN** (Time-Sensitive Networking) 브리지 적용 | 지연 편차(지터) |
 
 ## Ⅵ. 5G 특화망(이음5G)에 대한 기술사적 제언
 
 - 핵심 요약 : 제어 정밀도 확보, 중소 현장 확산, 보안 거버넌스 전환을 표준·정책 차원에서 함께 설계하는 접근 필요.
-- 제어 정밀도 : 공장 자동화 조직은 5G-TSN 연계에 **IEEE**(Institute of Electrical and Electronics Engineers) 802.1AS 시간 동기 프로파일을 결합해 제어 루프의 시간 정확도를 확보하는 설계 권장.
+- 제어 정밀도 : 공장 자동화 조직은 5G-TSN 연계에 **IEEE** (Institute of Electrical and Electronics Engineers) 802.1AS 시간 동기 프로파일을 결합해 제어 루프의 시간 정확도를 확보하는 설계 권장.
 - 확산 정책 : 정부는 공공 실증 사업과 국산 단말·모듈 생태계 육성을 연계해 단말 가격 하락의 선순환을 만드는 정책 설계 필요.
 - 보안 거버넌스 : 보안 조직은 SIM(Subscriber Identity Module)·eSIM(embedded SIM) 기반 상호 인증과 내부 세그멘테이션을 결합한 **제로 트러스트** (Zero Trust) 거버넌스 전환 권장.
 

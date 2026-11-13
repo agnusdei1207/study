@@ -1,4 +1,4 @@
----
+﻿---
 title: "LLM-as-a-Judge(Large Language Model as a Judge, 인공지능 평가)"
 author: "agnusdei1207"
 date: "2026-10-24T23:25:26+09:00"
@@ -20,8 +20,8 @@ extra:
 ## Ⅰ. LLM-as-a-Judge의 개요
 
 - 핵심 요약 : 고성능 LLM을 채점관으로 세워 루브릭 기준에 따라 다른 모델의 출력을 자동 평가하는 방식.
-- 개념 : 고성능 LLM(Large Language Model)을 채점관으로 지정하여 생성 결과를 **루브릭**(Rubric, 채점 기준표)에 따라 평가하는 **LLM-as-a-Judge** 프레임워크.
-- 배경 및 필요성 : 사람 평가자는 비용과 시간이 커서 대규모 평가에 한계가 있다. 그러나 판정 모델에도 **위치 편향**(Position Bias), **장황함 편향**(Verbosity Bias), **자기 선호 편향**(Self-Preference Bias)이 존재하므로 순서 교체 검증, 다중 판정, HITL(Human-in-the-Loop) 감사 절차가 함께 필요하다.
+- 개념 : 고성능 LLM(Large Language Model)을 채점관으로 지정하여 생성 결과를 **루브릭** (Rubric, 채점 기준표)에 따라 평가하는 **LLM-as-a-Judge** 프레임워크.
+- 배경 및 필요성 : 사람 평가자는 비용과 시간이 커서 대규모 평가에 한계가 있다. 그러나 판정 모델에도 **위치 편향** (Position Bias), **장황함 편향** (Verbosity Bias), **자기 선호 편향** (Self-Preference Bias)이 존재하므로 순서 교체 검증, 다중 판정, HITL(Human-in-the-Loop) 감사 절차가 함께 필요하다.
 - 주요 목적 : 사람 평가의 비용과 시간 병목을 줄이고, 비정형 출력을 일관된 기준으로 대량 평가할 확장성 확보.
 
 ## Ⅱ. LLM-as-a-Judge의 특징 및 장점
@@ -30,7 +30,7 @@ extra:
 
 1. 루브릭 기반 채점 : 사실성·관련성·안전성 같은 명시 기준과 예시 판정(Few-shot)을 프롬프트에 주입 → 점수 드리프트와 판정 환각 감소.
 2. CoT(Chain-of-Thought) 추론 : 점수를 내기 전에 판정 근거를 먼저 쓰게 함 → 블랙박스 채점을 피하고 사유를 사람이 검토 가능.
-3. **블라인드 테스트**(Blind Test) 쌍대 평가 : 모델 식별자를 가리고 (A, B)와 (B, A) 순서로 두 번 비교 → 순서에 따른 편향을 상쇄해 일관된 승패 판정 확보.
+3. **블라인드 테스트** (Blind Test) 쌍대 평가 : 모델 식별자를 가리고 (A, B)와 (B, A) 순서로 두 번 비교 → 순서에 따른 편향을 상쇄해 일관된 승패 판정 확보.
 
 ## Ⅲ. LLM-as-a-Judge의 구조 (흐름)
 

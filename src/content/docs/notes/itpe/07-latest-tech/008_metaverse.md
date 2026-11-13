@@ -1,4 +1,4 @@
----
+﻿---
 title: "메타버스(Metaverse)"
 author: "agnusdei1207"
 date: "2026-10-24T23:15:09+09:00"
@@ -85,7 +85,7 @@ extra:
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | 사이버 멀미 | 디스플레이 지연 MTP(Motion-to-Photon)와 감각 불일치로 장시간 HMD 사용 시 두통·멀미 발생 | **MEC** (Multi-access Edge Computing) 기반 분산 렌더링, 시선 추적 기반 중심와 렌더링 | MTP 지연 시간, 세션 이탈률 |
-| 플랫폼 간 상호운용성 부재 | 플랫폼별 자산과 아바타가 호환되지 않아 생태계 단편화 | **OpenUSD**(Universal Scene Description)와 Khronos glTF 같은 3D 표준 채택, 블록체인 기반 NFT 표준 연계 | 자산 이식 성공률 |
+| 플랫폼 간 상호운용성 부재 | 플랫폼별 자산과 아바타가 호환되지 않아 생태계 단편화 | **OpenUSD** (Universal Scene Description)와 Khronos glTF 같은 3D 표준 채택, 블록체인 기반 NFT 표준 연계 | 자산 이식 성공률 |
 | 신종 디지털 범죄와 프라이버시 침해 | 시선·모션·생체 데이터의 무단 수집, 가상 범죄의 관할권 모호 | 아바타 간 안전 거리(Safe Zone) 기술 강제, 가상공간 이상 행위 모니터링, 관련 법제 정비 | 신고 건수, 민감 데이터 수집 범위 |
 
 ## Ⅵ. 메타버스(Metaverse)에 대한 기술사적 제언

@@ -1,4 +1,4 @@
----
+﻿---
 title: "생성형 AI 보안취약점 (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:09:32+09:00"
@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. 생성형 AI 보안취약점의 개요
 
 - 핵심 요약 : 자연어로 동작하는 생성형 AI 파이프라인 전 단계에서 생기는 기존 소프트웨어와 다른 구조적 취약점.
-- 개념 : **대형 언어 모델** (LLM, Large Language Model)과 이를 쓰는 애플리케이션의 학습, 배포, 추론 과정에서 발생하는 프롬프트 조작, 데이터 오염, 민감정보 노출, 과도한 권한 부여 등의 취약점 총체. 국제 프로젝트 **OWASP** (Open Worldwide Application Security Project)의 **LLM 상위 10대 위험**(OWASP Top 10 for LLM Applications)이 대표적인 분류다.
+- 개념 : **대형 언어 모델** (LLM, Large Language Model)과 이를 쓰는 애플리케이션의 학습, 배포, 추론 과정에서 발생하는 프롬프트 조작, 데이터 오염, 민감정보 노출, 과도한 권한 부여 등의 취약점 총체. 국제 프로젝트 **OWASP** (Open Worldwide Application Security Project)의 **LLM 상위 10대 위험** (OWASP Top 10 for LLM Applications)이 대표적인 분류다.
 - 배경 및 필요성 : 생성형 AI가 기업 업무와 고객 서비스에 깊이 들어오면서, SQL 삽입이나 **XSS** (Cross-Site Scripting) 같은 전통적 공격과 달리 자연어 입력 자체가 공격 벡터가 되었다.
 - 주요 목적 : 결정론적이지 않은 AI 파이프라인의 취약점을 체계적으로 식별하고, **가드레일** (Guardrail) 같은 다층 방어를 세워 안전하게 운영하는 것.
 

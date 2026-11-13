@@ -1,4 +1,4 @@
----
+﻿---
 title: "드론 통신·항법 보안"
 author: "agnusdei1207"
 date: "2026-10-24T23:07:02+09:00"
@@ -32,8 +32,8 @@ extra:
 
 1. **MAVLink 2 서명** (MAVLink 2 Message Signing) : 공유 비밀키 기반 해시의 일부와 타임스탬프를 명령마다 붙여 검증 → 위조 명령과 재생 공격 차단.
 2. **DTLS** (Datagram Transport Layer Security) 기반 링크 암호화 : 제어 명령과 영상 스트림을 전 구간 암호화 → 정찰 영상과 텔레메트리 도청 방지.
-3. **센서 융합 항법** : 위성항법, 관성항법, 비전 정보를 **확장 칼만 필터**(EKF, Extended Kalman Filter)로 결합 → 한 신호가 위조되어도 불일치를 감지.
-4. **하드웨어 신뢰점** (RoT, Root of Trust) : 보안 부팅과 **TPM**(Trusted Platform Module)으로 키를 격리 → 펌웨어 변조와 키 추출 방지.
+3. **센서 융합 항법** : 위성항법, 관성항법, 비전 정보를 **확장 칼만 필터** (EKF, Extended Kalman Filter)로 결합 → 한 신호가 위조되어도 불일치를 감지.
+4. **하드웨어 신뢰점** (RoT, Root of Trust) : 보안 부팅과 **TPM** (Trusted Platform Module)으로 키를 격리 → 펌웨어 변조와 키 추출 방지.
 5. **자율 Fail-safe** : 링크가 끊기면 관성 정보만으로 안전 귀환 또는 착륙 → 통신 공격을 받아도 추락 피해 최소화.
 
 ## Ⅲ. 드론 통신·항법 보안의 구조 (흐름)

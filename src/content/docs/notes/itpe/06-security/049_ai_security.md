@@ -1,4 +1,4 @@
----
+﻿---
 title: "AI 보안 (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T22:58:23+09:00"
@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. AI 보안의 개요
 
 - 핵심 요약 : AI 시스템 자체를 지키는 일과 AI로 보안을 높이는 일, AI가 만든 공격에 대응하는 일을 함께 다루는 종합 보안 체계.
-- 개념 : 인공지능(AI, Artificial Intelligence) 시스템의 안전성을 확보하는 **Security OF AI**(AI 시스템 보호), 보안 관제와 위협 대응에 AI를 쓰는 **Security BY AI**(AI를 활용한 보안), AI로 만들어진 공격을 막는 **Security AGAINST AI**(AI 악용 공격 대응)로 구성되는 체계.
+- 개념 : 인공지능(AI, Artificial Intelligence) 시스템의 안전성을 확보하는 **Security OF AI** (AI 시스템 보호), 보안 관제와 위협 대응에 AI를 쓰는 **Security BY AI** (AI를 활용한 보안), AI로 만들어진 공격을 막는 **Security AGAINST AI** (AI 악용 공격 대응)로 구성되는 체계.
 - 배경 및 필요성 : AI가 산업의 핵심 인프라가 되면서 모델을 노린 공격과 데이터 유출 위험이 커졌고, 공격자도 생성형 AI로 악성코드와 피싱을 자동화하면서 방어 부담이 함께 늘어남.
 - 핵심 목적 : AI 모델과 데이터의 신뢰성·안전성·강건성 확보, 보안 운영의 자동화, AI 기반 신종 공격에 대한 선제적 방어 체계 구현.
 
@@ -34,7 +34,7 @@ extra:
 1. 대상의 이중성 : AI가 보호 대상이면서 동시에 방어 수단이 됨 → 두 역할을 한 체계에서 관리해 운영 중복을 줄임.
 2. 확률론적 판단 : 규칙 기반이 아니라 학습된 통계 모델로 이상 징후를 판단 → 알려지지 않은 변종 공격에도 대응 범위가 넓어짐.
 3. 수명주기 통제 : 데이터 수집, 학습, 배포, 추론, 모니터링 단계마다 점검 지점을 둠 → 오염이나 우회가 한 단계에서 누적되지 않게 함.
-4. 거버넌스 연계 : **AI TRiSM**(AI Trust, Risk and Security Management)과 국제 표준을 따르면 설명 책임과 위험 관리를 조직 차원에서 증명할 수 있음.
+4. 거버넌스 연계 : **AI TRiSM** (AI Trust, Risk and Security Management)과 국제 표준을 따르면 설명 책임과 위험 관리를 조직 차원에서 증명할 수 있음.
 
 ## Ⅲ. AI 보안의 구조 (흐름)
 
@@ -67,10 +67,10 @@ AI 보안 (AI Security)
 모니터링 (이상 징후 탐지)
 ```
 
-- **적대적 공격**(Adversarial Attack) : 입력에 사람이 알아채기 어려운 변형을 가해 모델의 판단을 뒤집는 공격.
-- **데이터 중독**(Data Poisoning) : 학습 데이터에 조작된 샘플을 섞어 모델 동작을 왜곡하는 공격.
-- **프롬프트 인젝션**(Prompt Injection) : 악성 지시를 입력에 숨겨 모델이 허용되지 않은 동작을 하게 만드는 공격.
-- **UEBA**(User and Entity Behavior Analytics) : 사용자와 장비의 행위 기준선을 학습해 이상 징후를 찾는 탐지 기법.
+- **적대적 공격** (Adversarial Attack) : 입력에 사람이 알아채기 어려운 변형을 가해 모델의 판단을 뒤집는 공격.
+- **데이터 중독** (Data Poisoning) : 학습 데이터에 조작된 샘플을 섞어 모델 동작을 왜곡하는 공격.
+- **프롬프트 인젝션** (Prompt Injection) : 악성 지시를 입력에 숨겨 모델이 허용되지 않은 동작을 하게 만드는 공격.
+- **UEBA** (User and Entity Behavior Analytics) : 사용자와 장비의 행위 기준선을 학습해 이상 징후를 찾는 탐지 기법.
 
 ## Ⅳ. AI 보안의 비교
 
@@ -92,16 +92,16 @@ AI 보안 (AI Security)
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| **설명가능성**(Explainability) 결여 | 블랙박스 판단으로 오분류 원인 규명과 규제 대응 곤란 | **XAI**(Explainable Artificial Intelligence) 기법인 SHAP, LIME을 적용해 판단 근거를 검증 | 판단 근거 제공률 |
+| **설명가능성** (Explainability) 결여 | 블랙박스 판단으로 오분류 원인 규명과 규제 대응 곤란 | **XAI** (Explainable Artificial Intelligence) 기법인 SHAP, LIME을 적용해 판단 근거를 검증 | 판단 근거 제공률 |
 | 공격의 비대칭성 | 생성형 AI로 변종 공격이 대량 생산되어 전통 시그니처 방어 한계 | 방어 측도 AI 기반 역공학과 위협 인텔리전스 자동화 도입 | 변종 탐지 리드타임 |
-| 학습 데이터 내 개인정보와 삭제 요구 충돌 | 학습된 가중치에서 특정 개인 정보를 완전히 지우기 어려움 | **머신 언러닝**(Machine Unlearning) 도입, 학습 전 **차분 프라이버시**(Differential Privacy) 노이즈 적용 | 삭제 요청 처리 기간 |
+| 학습 데이터 내 개인정보와 삭제 요구 충돌 | 학습된 가중치에서 특정 개인 정보를 완전히 지우기 어려움 | **머신 언러닝** (Machine Unlearning) 도입, 학습 전 **차분 프라이버시** (Differential Privacy) 노이즈 적용 | 삭제 요청 처리 기간 |
 
 ## Ⅵ. AI 보안에 대한 기술사적 제언
 
 - 핵심 요약 : 국제 표준 기반의 관리 체계와 위협 모델링을 AI 서비스 기획 단계부터 내재화.
 
-1. AI 서비스를 운영하는 조직은 **ISO/IEC 42001**(인공지능 경영시스템)을 기준으로 위험 관리와 투명성 체계를 세워야 한다. 이는 AI 제품 출시 이전에 점검표로 적용할 수 있다.
-2. 사내 AI 서비스를 기획할 때 **MITRE ATLAS**(Adversarial Threat Landscape for Artificial-Intelligence Systems)로 데이터 수집부터 추론까지의 공격 경로를 미리 매핑해야 한다.
+1. AI 서비스를 운영하는 조직은 **ISO/IEC 42001** (인공지능 경영시스템)을 기준으로 위험 관리와 투명성 체계를 세워야 한다. 이는 AI 제품 출시 이전에 점검표로 적용할 수 있다.
+2. 사내 AI 서비스를 기획할 때 **MITRE ATLAS** (Adversarial Threat Landscape for Artificial-Intelligence Systems)로 데이터 수집부터 추론까지의 공격 경로를 미리 매핑해야 한다.
 3. 보안 관제 조직은 반복적인 경보 분석을 LLM 기반 어시스턴트에 맡기고, 분석가는 판단과 대응에 집중하는 운영 방식으로 전환하는 것이 바람직하다. 이때 AIOps 도구의 판단 근거를 검증하는 절차가 함께 있어야 한다.
 
 ## Ⅶ. 결론

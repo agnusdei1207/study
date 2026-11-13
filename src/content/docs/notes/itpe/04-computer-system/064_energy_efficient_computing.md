@@ -1,4 +1,4 @@
----
+﻿---
 title: "에너지 효율 컴퓨팅"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"
@@ -32,7 +32,7 @@ extra:
 
 1. **DVFS** (Dynamic Voltage and Frequency Scaling) : 동적 전력이 전압 제곱과 주파수에 비례하는 관계를 이용해 저부하 시 전압·주파수를 함께 낮춤 → 부하에 맞춘 전력 절감.
 2. **이종 멀티프로세싱** (HMP, Heterogeneous Multi-Processing) : 경량 작업은 고효율 저전력 코어에 배정하고 고부하 작업만 고성능 코어에 배정 → 고성능 코어 가동 시간 축소.
-3. 유휴 상태·회로 차단 : 코어를 **C-State**(단계별 절전 유휴 상태)로 진입시키고 쓰지 않는 회로 블록에 **파워 게이팅** (Power Gating)과 **클록 게이팅** (Clock Gating)을 적용 → 대기 전력과 누설 전류 감소.
+3. 유휴 상태·회로 차단 : 코어를 **C-State** (단계별 절전 유휴 상태)로 진입시키고 쓰지 않는 회로 블록에 **파워 게이팅** (Power Gating)과 **클록 게이팅** (Clock Gating)을 적용 → 대기 전력과 누설 전류 감소.
 4. 전용 가속기 위임 : 행렬 연산 같은 반복 연산을 NPU(Neural Processing Unit)로 위임 → 범용 코어 대비 연산당 전력 절감.
 5. 냉각 계층 최적화 : **직접 칩 액체 냉각** (Direct-to-Chip Liquid Cooling)으로 팬 전력과 냉각 설비 부담 축소 → PUE 개선.
 
