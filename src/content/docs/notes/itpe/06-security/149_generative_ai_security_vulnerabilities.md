@@ -1,4 +1,4 @@
-﻿---
+---
 title: "생성형 AI 보안취약점 (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:09:32+09:00"

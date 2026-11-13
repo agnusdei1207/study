@@ -1,4 +1,4 @@
-﻿---
+---
 title: "개방형 혁신(Open Innovation)"
 author: "agnusdei1207"
 date: "2026-10-24T23:52:29+09:00"

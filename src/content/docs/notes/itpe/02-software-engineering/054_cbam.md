@@ -1,4 +1,4 @@
-﻿---
+---
 title: "CBAM(Cost Benefit Analysis Method)"
 description: "ATAM 후속 연계, 효용 곡선·ROI·AHP, 주관성·상호작용·진부화 한계와 방안, 기술 부채·MAUT 제언"
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "정보시스템 등급제"
-author: "Codex"
+author: "agnusdei1207"
 date: "2026-10-24T23:34:59+09:00"
 tags:
   - "notes-law-policy"

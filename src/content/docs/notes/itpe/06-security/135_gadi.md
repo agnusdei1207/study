@@ -1,6 +1,6 @@
 ---
 title: "GADI(Global Architecture for Digital Identity)"
-author: "Codex"
+author: "agnusdei1207"
 date: "2026-10-24T23:08:40+09:00"
 tags:
   - "notes-security"

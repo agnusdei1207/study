@@ -1,4 +1,4 @@
-﻿---
+---
 title: "B-트리(B-Tree)"
 description: "균형 트리, B-트리, B+ 트리, 인덱스, 검색 효율, 디스크 입출력"
 tags:

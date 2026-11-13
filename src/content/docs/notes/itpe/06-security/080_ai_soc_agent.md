@@ -1,4 +1,4 @@
-﻿---
+---
 title: "AI SOC 에이전트 (AI: Artificial Intelligence; SOC: Security Operations Center)"
 author: "agnusdei1207"
 date: "2026-10-24T23:02:42+09:00"

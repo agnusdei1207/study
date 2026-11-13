@@ -1,4 +1,4 @@
-﻿---
+---
 title: "사용성 평가 및 사용성 테스트(Usability Testing)"
 description: "싱크 얼라우드·형성적/총괄적·휴리스틱·인지적 워크스루·SUS, 관찰자 효과·주관성·공수 한계와 방안"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "디지털 트랜스포메이션(DX, Digital Transformation)"
 author: "agnusdei1207"
 date: "2026-10-24T23:43:51+09:00"

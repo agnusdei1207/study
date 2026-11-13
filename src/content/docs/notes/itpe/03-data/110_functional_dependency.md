@@ -1,4 +1,4 @@
-﻿---
+---
 title: "함수적 종속성(Functional Dependency, FD)"
 description: "결정자, 종속자, 완전 함수 종속, 부분 함수 종속, 이행 함수 종속, 완전 함수 종속성, Armstrong 공리"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "공공 SW 사업 발주·계약 (SW: Software)"
 author: "agnusdei1207"
 date: "2026-10-24T23:46:02+09:00"

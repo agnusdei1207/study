@@ -1,4 +1,4 @@
-﻿---
+---
 title: "옵티마이저(Optimizer)"
 description: "통계정보 기반으로 최적 실행 계획을 만드는 DBMS 핵심 엔진"
 tags:

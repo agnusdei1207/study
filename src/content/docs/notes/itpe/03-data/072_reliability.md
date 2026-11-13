@@ -1,4 +1,4 @@
-﻿---
+---
 title: "신뢰도(Reliability)"
 description: "평균 무고장 시간(MTBF), 평균 복구 시간(MTTR), 가용성(Availability), 고장률(Failure Rate), Bathtub Curve(Bathtub Curve)"
 tags:

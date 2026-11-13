@@ -1,4 +1,4 @@
-﻿---
+---
 title: "요구공학(Requirements Engineering)"
 description: "4대 프로세스·변경 관리·RTM·CCB, 기능·비기능 비교, 모호성·변동·추적 단절 한계와 방안"
 tags:

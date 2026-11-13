@@ -1,4 +1,4 @@
-﻿---
+---
 title: "소프트웨어 품질보증(SQA, Software Quality Assurance)"
 description: "예방 중심 생명주기 활동, SQA·QC·테스팅 계층, ISO 25010 품질 모델, Shift-Left·DRE·QE 제언"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "SECaaS(Security as a Service)"
 author: "agnusdei1207"
 date: "2026-10-24T23:07:02+09:00"

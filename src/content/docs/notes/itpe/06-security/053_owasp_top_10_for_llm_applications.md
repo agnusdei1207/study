@@ -1,4 +1,4 @@
-﻿---
+---
 title: "OWASP Top 10 for LLM Applications (OWASP: Open Worldwide Application Security Project; LLM: Large Language Model)"
 author: "agnusdei1207"
 date: "2026-10-24T23:00:13+09:00"

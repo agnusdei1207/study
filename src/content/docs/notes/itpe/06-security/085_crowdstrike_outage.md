@@ -1,4 +1,4 @@
-﻿---
+---
 title: "CrowdStrike 대규모 장애"
 author: "agnusdei1207"
 date: "2026-10-24T23:02:42+09:00"

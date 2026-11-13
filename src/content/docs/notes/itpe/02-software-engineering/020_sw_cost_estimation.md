@@ -1,4 +1,4 @@
-﻿---
+---
 title: "SW(Software) 규모·비용 산정(Function Point·LOC·COCOMO)"
 description: "하향식·상향식·수학적 모델·기능 기반 4대 기법, 프로젝트 유형별 계수, 간이법·정규법·True-up, 제언"
 tags:

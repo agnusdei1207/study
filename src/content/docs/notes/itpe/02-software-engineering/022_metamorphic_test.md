@@ -1,4 +1,4 @@
-﻿---
+---
 title: "메타모픽 테스트(Metamorphic Testing)"
 description: "테스트 오라클 문제 해결, MR·소스/후속 입력, 속성 기반 테스팅, SBFL·퍼징 연계, 한계와 방안"
 tags:

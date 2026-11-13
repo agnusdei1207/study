@@ -1,4 +1,4 @@
-﻿---
+---
 title: "점추정(Point Estimation)과 구간추정(Interval Estimation)의 비교 및 신뢰구간 평가"
 author: "agnusdei1207"
 date: "2026-10-25T00:20:30+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "유한 오토마타(Finite Automata)"
 description: "5-튜플·DFA/NFA·톰슨·홉크로프트, 상태 최소화, 상태 폭발·표현력·ReDoS 한계와 방안"
 tags:

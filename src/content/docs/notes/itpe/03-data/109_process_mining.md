@@ -1,4 +1,4 @@
-﻿---
+---
 title: "프로세스 마이닝(Process Mining)"
 description: "이벤트 로그, 프로세스 발견, 적합성 검사, 성능 분석, 변동 분석"
 tags:

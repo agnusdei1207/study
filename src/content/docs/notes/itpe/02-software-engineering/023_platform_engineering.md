@@ -1,4 +1,4 @@
-﻿---
+---
 title: "플랫폼 엔지니어링(Platform Engineering)"
 description: "IDP·셀프서비스·황금 경로, 전통적 DevOps 비교, 사일로·경직성·복잡도 한계와 방안, 제언"
 tags:

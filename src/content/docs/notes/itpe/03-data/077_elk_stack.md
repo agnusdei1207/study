@@ -1,4 +1,4 @@
-﻿---
+---
 title: "ELK 스택(Elasticsearch, Logstash, Kibana)"
 description: "로그 수집, 검색, 시각화, 오픈소스 로그 분석 플랫폼"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "EDA(이벤트 기반 아키텍처)와 2대 토폴로지(브로커·중재자) (EDA: Event-Driven Architecture)"
 description: "비동기 메시징·브로커·중재자 토폴로지, 사가·Outbox·멱등성·스키마 레지스트리, 정합성·중복·호환성 한계와 방안"
 tags:

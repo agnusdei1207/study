@@ -1,4 +1,4 @@
-﻿---
+---
 title: "개인정보 비식별화(De-identification)"
 author: "agnusdei1207"
 date: "2026-10-24T23:01:09+09:00"

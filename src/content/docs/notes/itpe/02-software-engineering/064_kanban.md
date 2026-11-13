@@ -1,4 +1,4 @@
-﻿---
+---
 title: "칸반(Kanban)"
 description: "WIP 제한·풀 시스템·누적 흐름도·리드타임, 스크럼 비교, WIP 미준수·DoD·팀 간 의존성 한계와 방안"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Java GUI(Graphical User Interface) 툴킷(AWT: Abstract Window Toolkit, Swing, JavaFX)"
 description: "AWT·Swing·JavaFX 3세대, 중량·경량·씬 그래프, EDT·FXML·CSS·jpackage, 블로킹·룩앤필·배포 부담 한계와 방안"
 tags:

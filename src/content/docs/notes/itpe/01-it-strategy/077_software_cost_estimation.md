@@ -1,4 +1,4 @@
-﻿---
+---
 title: "소프트웨어 비용 산정(Software Cost Estimation)"
 author: "agnusdei1207"
 date: "2026-10-24T23:52:29+09:00"

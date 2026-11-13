@@ -1,4 +1,4 @@
-﻿---
+---
 title: "연관 규칙 마이닝"
 description: "연관 규칙, 지지도, 신뢰도, 향상도, Apriori, FP-Growth"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "객체지향 설계원칙 SOLID(Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion; DIP: Dependency Inversion Principle)"
 description: "5대 원칙, 의존성 방향 역전, 위반 사례 비교, 교조적 적용·레거시·성능 한계와 방안, 헥사고날 아키텍처 제언"
 tags:

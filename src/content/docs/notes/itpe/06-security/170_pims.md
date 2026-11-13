@@ -1,6 +1,6 @@
 ---
 title: "PIMS(Personal Information Management System)"
-author: "Codex"
+author: "agnusdei1207"
 date: "2026-10-24T23:12:46+09:00"
 tags:
   - "notes-security"

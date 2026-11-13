@@ -1,4 +1,4 @@
-﻿---
+---
 title: "STPA(System Theoretic Process Analysis)"
 description: "STAMP·UCA·계층적 제어 구조, FTA/FMEA 비교, 학습 곡선·UCA 폭증·설계 단절 한계와 방안"
 tags:

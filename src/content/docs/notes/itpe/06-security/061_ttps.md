@@ -1,4 +1,4 @@
-﻿---
+---
 title: "TTPs(Tactics, Techniques and Procedures)"
 author: "agnusdei1207"
 date: "2026-10-24T23:03:57+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "파이썬(Python)"
 description: "GIL·덕 타이핑·asyncio·멀티프로세싱, 타입 힌트·mypy·Free-threaded·Rust 가속, 한계와 방안"
 tags:

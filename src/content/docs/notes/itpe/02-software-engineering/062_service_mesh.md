@@ -1,4 +1,4 @@
-﻿---
+---
 title: "서비스 메시(Service Mesh)"
 description: "사이드카·데이터/컨트롤 플레인·mTLS·East-West, API Gateway 비교, 오버헤드·복잡성·조기 도입 한계와 방안"
 tags:

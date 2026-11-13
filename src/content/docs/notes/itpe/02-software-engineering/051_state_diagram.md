@@ -1,4 +1,4 @@
-﻿---
+---
 title: "상태 다이어그램(State Diagram)"
 description: "UML 동적 행위, 이벤트·가드·entry/do/exit, Harel 상태차트·사가·상태 패턴, 상태 폭발·불일치 한계와 방안"
 tags:

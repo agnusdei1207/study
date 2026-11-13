@@ -1,4 +1,4 @@
-﻿---
+---
 title: "오픈소스 DBMS(Database Management System) 마이그레이션"
 description: "마이그레이션 전략, 스키마 변환, 데이터 검증, 성능 테스트, 다운타임 최소화, 벤더 종속"
 tags:

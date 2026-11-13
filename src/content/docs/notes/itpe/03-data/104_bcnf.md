@@ -1,4 +1,4 @@
-﻿---
+---
 title: "BCNF (Boyce-Codd Normal Form)"
 description: "BCNF 정의, 3NF와의 차이, 다중값 종속, 조인 종속, 무손실 분해, 정규화 단계"
 tags:

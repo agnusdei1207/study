@@ -1,4 +1,4 @@
-﻿---
+---
 title: "동적 테스트(Dynamic Testing)"
 description: "실행 기반 검증, 3대 기법·런타임 분석, 정적 테스트 비교, 환경 구축·Flaky·스위트 비대화 한계와 방안"
 tags:

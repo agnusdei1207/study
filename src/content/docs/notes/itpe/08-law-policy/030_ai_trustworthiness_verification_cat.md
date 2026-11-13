@@ -1,6 +1,6 @@
 ---
 title: "인공지능 신뢰성 검·인증(CAT, Certification of AI Trustworthiness)"
-author: "Codex"
+author: "agnusdei1207"
 date: "2026-10-24T23:36:46+09:00"
 tags:
   - "notes-law-policy"

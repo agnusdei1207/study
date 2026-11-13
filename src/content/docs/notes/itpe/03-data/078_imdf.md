@@ -1,4 +1,4 @@
-﻿---
+---
 title: "실내 매핑 데이터 포맷(IMDF, Indoor Mapping Data Format)"
 description: "실내 지도 데이터, OGC 표준, 공간 데이터, 실내 위치 서비스, 애플"
 tags:

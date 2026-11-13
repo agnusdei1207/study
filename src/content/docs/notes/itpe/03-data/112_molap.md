@@ -1,4 +1,4 @@
-﻿---
+---
 title: "MOLAP (Multidimensional OLAP) (MOLAP: Multidimensional Online Analytical Processing)"
 author: "agnusdei1207"
 date: "2026-10-25T00:20:30+09:00"

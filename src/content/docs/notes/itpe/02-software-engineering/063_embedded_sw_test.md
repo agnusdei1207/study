@@ -1,4 +1,4 @@
-﻿---
+---
 title: "임베디드 소프트웨어 테스트 및 X-in-the-Loop(MIL: Model-in-the-Loop, SIL: Software-in-the-Loop, PIL: Processor-in-the-Loop, HIL: Hardware-in-the-Loop)"
 description: "MBD·XiL 단계별 검증, MIL→SIL→PIL→HIL, 고장 주입·vECU·ISO 26262·MC/DC, 비용·타이밍·추적성 한계와 방안"
 tags:

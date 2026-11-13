@@ -1,4 +1,4 @@
-﻿---
+---
 title: "앙상블 배깅·부스팅"
 description: " bagging, 부스팅, 랜덤 포레스트, 그레이디언트 부스팅, 오버핏팅, 편향-분산 트레이드오프 (bias–variance tradeoff)"
 tags:

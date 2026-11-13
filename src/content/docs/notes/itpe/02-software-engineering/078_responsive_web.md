@@ -1,4 +1,4 @@
-﻿---
+---
 title: "반응형 웹(Responsive Web)"
 description: "유동형 그리드·미디어 쿼리·모바일 퍼스트, 적응형 웹 비교, 모바일 성능·CSS 복잡도·파편화 한계와 방안"
 tags:

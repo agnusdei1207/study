@@ -1,4 +1,4 @@
-﻿---
+---
 title: "가상 메모리(Virtual Memory)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"

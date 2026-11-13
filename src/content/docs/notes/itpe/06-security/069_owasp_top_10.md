@@ -1,4 +1,4 @@
-﻿---
+---
 title: "OWASP Top 10 (OWASP: Open Worldwide Application Security Project)"
 author: "agnusdei1207"
 date: "2026-10-24T23:01:31+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "AI 프라이버시 리스크 관리 모델 (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:46:49+09:00"

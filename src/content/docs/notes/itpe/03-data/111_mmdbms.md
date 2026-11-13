@@ -1,4 +1,4 @@
-﻿---
+---
 title: "메인 메모리 DBMS(MMDBMS, Main Memory Database Management System) (DBMS: Database Management System)"
 author: "agnusdei1207"
 date: "2026-10-25T00:20:30+09:00"

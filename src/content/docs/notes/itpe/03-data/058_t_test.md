@@ -1,4 +1,4 @@
-﻿---
+---
 title: "t-검정"
 description: "독립표본 t-검정, 대응표본 t-검정, Welch t-검정, 정규성·등분산성 가정, 검정력, p-값"
 tags:

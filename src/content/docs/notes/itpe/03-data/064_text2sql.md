@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Text2SQL (Text to SQL)"
 description: "자연어 질의, SQL 쿼리, 스키마 링킹, Few-Shot, 자가 교정, 시맨틱 레이어, 데이터 민주화, LLM, RAG"
 tags:

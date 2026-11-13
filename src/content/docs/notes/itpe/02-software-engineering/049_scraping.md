@@ -1,4 +1,4 @@
-﻿---
+---
 title: "스크래핑(Scraping)"
 description: "HTTP·파싱·헤드리스 브라우저, 크롤링 비교, robots.txt·법적 제약, 파서 파손·자원 고갈·법적 리스크 한계와 방안"
 tags:

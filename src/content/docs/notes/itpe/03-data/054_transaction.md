@@ -1,4 +1,4 @@
-﻿---
+---
 title: "트랜잭션(ACID, Atomicity, Consistency, Isolation, Durability)"
 description: "트랜잭션, ACID, 원자성, 일관성, 격리성, 지속성, 커밋·롤백"
 tags:

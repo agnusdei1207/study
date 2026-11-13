@@ -1,4 +1,4 @@
-﻿---
+---
 title: "샤논의 정리(Shannon's Theorem)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"

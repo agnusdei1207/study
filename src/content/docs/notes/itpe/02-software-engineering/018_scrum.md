@@ -1,4 +1,4 @@
-﻿---
+---
 title: "스크럼(Scrum)"
 description: "3-5-3 체계, 스프린트 흐름, DEEP·INVEST·DoD, 지표 오용·PO 병목·행사 형식화 한계와 방안"
 tags:

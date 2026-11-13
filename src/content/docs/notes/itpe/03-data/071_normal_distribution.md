@@ -1,4 +1,4 @@
-﻿---
+---
 title: "정규 분포(Normal Distribution)"
 description: "정규 분포, 정규 분포의 성질, 중심 극한 정리, 표준 정규 분포, 표준 편차, 평균, 정규 분포의 활용"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "개발방법론 테일러링(Methodology Tailoring)"
 description: "ISO/IEC 12207·CMMI 기반, 4단계 절차·매트릭스·심의 승인, 라이프사이클 비교, 자산 환류 제언"
 tags:

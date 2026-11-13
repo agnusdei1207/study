@@ -1,4 +1,4 @@
-﻿---
+---
 title: "CPU 스케줄링(CPU Scheduling) (CPU: Central Processing Unit)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"

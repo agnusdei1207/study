@@ -1,4 +1,4 @@
-﻿---
+---
 title: "개인정보보호(Personal Information Protection)"
 author: "agnusdei1207"
 date: "2026-10-24T23:13:04+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "AI 민주정부·온AI (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:46:49+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "파일카빙(File Carving)"
 author: "agnusdei1207"
 date: "2026-10-24T23:13:04+09:00"

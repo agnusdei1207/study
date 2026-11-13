@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Six Sigma DMAIC (DMAIC: Define, Measure, Analyze, Improve, Control)"
 author: "agnusdei1207"
 date: "2026-10-24T23:52:29+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "추론통계(Inferential Statistics)"
 description: "표본 추출, 점추정, 구간추정, 가설검정, p-값, 신뢰구간"
 tags:

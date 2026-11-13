@@ -1,4 +1,4 @@
-﻿---
+---
 title: "SW(Software) 안전성 분석(FTA: Fault Tree Analysis, FMEA: Failure Mode and Effects Analysis, HAZOP: Hazard and Operability Study, STPA: System-Theoretic Process Analysis)"
 description: "결함수·고장모드·위험운전성 분석, 기능안전 표준 연계, STPA 보완, 등급 기반 설계 제언"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "고가용성 아키텍처(HA, High Availability)"
 description: "장애도메인, 이중화, 장애조치, RTO, RPO, quorum"
 tags:

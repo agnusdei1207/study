@@ -1,4 +1,4 @@
-﻿---
+---
 title: "McCabe 순환복잡도(Cyclomatic Complexity)"
 description: "CFG·기본 경로·3가지 계산식, 인지 복잡도 비교, 품질 게이트·CI 연동, 한계와 방안, 제언"
 tags:

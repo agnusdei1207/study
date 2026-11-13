@@ -1,4 +1,4 @@
-﻿---
+---
 title: "정보시스템 운영 성과관리 (Information System Operation Performance Management)"
 author: "agnusdei1207"
 date: "2026-10-24T23:46:02+09:00"

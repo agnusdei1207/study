@@ -1,4 +1,4 @@
-﻿---
+---
 title: "API Gateway (Application Programming Interface)"
 description: "단일 진입점·리버스 프록시, 인증·Rate Limiting·서킷 브레이커, 솔루션 비교, SPOF·Fat Gateway 한계와 방안"
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "프론티어 AI 안전 의무와 연산 임계치 (AI: Artificial Intelligence)"
-author: "Codex"
+author: "agnusdei1207"
 date: "2026-10-24T23:36:46+09:00"
 tags:
   - "notes-law-policy"

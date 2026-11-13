@@ -1,4 +1,4 @@
-﻿---
+---
 sidebar:
   order: 0
 title: "정보통신"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "아키텍처 스타일(Architecture Style)"
 description: "계층형·EDA·마이크로커널·MSA·공간 기반, 품질속성 트레이드오프, 유행 추종·대가 간과·일괄 전환 한계와 방안"
 tags:

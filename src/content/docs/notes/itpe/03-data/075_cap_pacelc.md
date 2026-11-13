@@ -1,4 +1,4 @@
-﻿---
+---
 title: "CAP(Consistency, Availability, Partition Tolerance) 정리(CAP Theorem)"
 description: "일관성(Consistency), 가용성(Availability), 분할 내성(Partition Tolerance), PACELC 정리, 분산 시스템 설계"
 tags:

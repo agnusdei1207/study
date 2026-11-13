@@ -1,4 +1,4 @@
-﻿---
+---
 title: "추상 클래스와 인터페이스(Abstract Class and Interface)"
 description: "is-a·can-do·템플릿 메서드·다중 구현·디폴트 메서드·ISP·YAGNI, 상속·구현·상태·구현 제공·생성자 비교, 역할 경계·비대·과도한 추상화 한계와 방안"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Open API(Application Programming Interface)"
 description: "개방형 API 생태계, 3계층 구조, 프로토콜 비교, 보안·호환성·거버넌스, 한계와 방안, 제언"
 tags:

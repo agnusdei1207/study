@@ -1,4 +1,4 @@
-﻿---
+---
 title: "FinOps(Finance + DevOps)"
 author: "agnusdei1207"
 date: "2026-10-24T23:43:23+09:00"

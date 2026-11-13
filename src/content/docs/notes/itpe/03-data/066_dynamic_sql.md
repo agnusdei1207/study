@@ -1,4 +1,4 @@
-﻿---
+---
 title: "동적 SQL (SQL: Structured Query Language)"
 description: "런타임에 동적으로 SQL 문을 생성하여 실행하는 기법"
 tags:

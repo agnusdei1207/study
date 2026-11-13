@@ -1,4 +1,4 @@
-﻿---
+---
 title: "AJAX(Asynchronous JavaScript and XML)"
 description: "비동기 통신·XMLHttpRequest·Fetch API·DOM·JSON·SPA·SSR·CORS, 히스토리·인덱싱·서버 부하 한계와 방안"
 tags:

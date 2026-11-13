@@ -1,4 +1,4 @@
-﻿---
+---
 title: "K-평균 군집화(K-Means)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"

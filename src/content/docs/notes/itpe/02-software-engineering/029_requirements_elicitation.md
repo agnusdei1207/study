@@ -1,4 +1,4 @@
-﻿---
+---
 title: "요구사항 도출 기법(Requirements Elicitation)"
 description: "전통·협업·시각화·관찰 4계열, JAD·프로토타이핑·MoSCoW, 하이브리드 파이프라인, 제언"
 tags:

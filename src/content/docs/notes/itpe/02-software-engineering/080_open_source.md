@@ -1,4 +1,4 @@
-﻿---
+---
 title: "오픈소스 소프트웨어(OSS, Open Source Software) 및 거버넌스"
 description: "OSPO·SBOM·SCA·VEX, 라이선스·공급망·기여 3대 영역, 카피레프트·공급망 공격·유지보수 중단 한계와 방안"
 tags:

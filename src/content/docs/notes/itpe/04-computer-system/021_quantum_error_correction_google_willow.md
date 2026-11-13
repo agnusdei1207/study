@@ -1,4 +1,4 @@
-﻿---
+---
 title: "양자 오류정정 임계값과 Willow"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"

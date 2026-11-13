@@ -1,4 +1,4 @@
-﻿---
+---
 title: "시계열 AR·MA 모델 (AR: Autoregressive; MA: Moving Average)"
 description: "자동회귀·이동평균 모델, AR·MA·ARMA 차이, 정상성·최적 차수 선택·잔차 진단, 과적합·비정상성·인과추론 한계와 방안"
 tags:

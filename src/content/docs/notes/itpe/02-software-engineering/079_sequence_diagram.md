@@ -1,4 +1,4 @@
-﻿---
+---
 title: "순차 다이어그램(Sequence Diagram)"
 description: "생명선·활성 객체·메시지·복합 단편, 클래스 다이어그램 비교, 비동기·문서 진부화·MSA 조망 한계와 방안"
 tags:

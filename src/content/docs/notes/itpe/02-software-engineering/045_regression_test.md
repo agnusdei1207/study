@@ -1,4 +1,4 @@
-﻿---
+---
 title: "회귀테스트(Regression Test)"
 description: "사이드 이펙트 방지, 3대 선정 전략, RTS·우선순위화·Flaky·TIA, 한계와 방안, CD 환경 제언"
 tags:

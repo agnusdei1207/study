@@ -1,4 +1,4 @@
-﻿---
+---
 title: "형상관리(Configuration Management)와 베이스라인(Baseline)"
 description: "형상관리의 4대 활동, 4계층 베이스라인, CCB, 트렁크 기반 개발·GitOps·IaC 연계"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "차원 축소(PCA·MDS) (PCA: Principal Component Analysis; MDS: Multidimensional Scaling)"
 description: "주성분 분석, 다차원 척도법, 차원 축소, 희소성, 곡선, 재구성 오차, 한계와 방안"
 tags:

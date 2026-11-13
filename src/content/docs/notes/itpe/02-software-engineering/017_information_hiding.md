@@ -1,4 +1,4 @@
-﻿---
+---
 title: "정보은닉(Information Hiding)"
 description: "파나스 원리, 캡슐화와의 관계, 변경 파급 효과 비교, 한계와 방안, 아키텍처 경계 확장 제언"
 tags:

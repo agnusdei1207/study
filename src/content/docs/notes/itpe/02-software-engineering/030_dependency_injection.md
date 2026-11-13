@@ -1,4 +1,4 @@
-﻿---
+---
 title: "의존성 주입(Dependency Injection)"
 description: "IoC 구현, 3가지 주입 방식, DIP 실천, 생성자 주입 표준화, 도메인 계층 독립성 제언"
 tags:

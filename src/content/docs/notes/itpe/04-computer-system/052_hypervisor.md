@@ -1,4 +1,4 @@
-﻿---
+---
 title: "하이퍼바이저 (Hypervisor)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "ITPE 답안 작성법 (Answer Writing Guide)"
 description: "정보관리기술사 답안의 표준 뼈대 구조(7프레임)와 작성 규칙"
 tags:

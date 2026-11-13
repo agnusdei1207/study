@@ -1,4 +1,4 @@
-﻿---
+---
 title: "상용SW 직접구매 확대 (SW: Software)"
 description: "소프트웨어진흥법·SI 일괄 발주·과업심의위원회·GS 인증·직접구매 원칙·예외 심의·통합 비용·SaaS 확장"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "DevSecOps"
 author: "agnusdei1207"
 date: "2026-10-24T22:59:44+09:00"

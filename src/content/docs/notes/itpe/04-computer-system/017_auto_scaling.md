@@ -1,4 +1,4 @@
-﻿---
+---
 title: "오토스케일링(Auto Scaling)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"

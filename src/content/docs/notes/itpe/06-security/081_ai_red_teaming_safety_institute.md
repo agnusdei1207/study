@@ -1,4 +1,4 @@
-﻿---
+---
 title: "AI 레드티밍 / AI안전연구소 (AI: Artificial Intelligence)"
 author: "agnusdei1207"
 date: "2026-10-24T23:02:42+09:00"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "SIEM(Security Information and Event Management)"
 author: "agnusdei1207"
 date: "2026-10-24T23:00:40+09:00"

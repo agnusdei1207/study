@@ -1,4 +1,4 @@
-﻿---
+---
 title: "CRUD 매트릭스 (CRUD: Create, Read, Update, Delete)"
 description: "업무기능, 데이터 엔터티, 생성·조회·수정·삭제, 추적성"
 tags:

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "칩렛과 UCIe 3.0 (UCIe: Universal Chiplet Interconnect Express)"
 author: "agnusdei1207"
 date: "2026-10-25T14:20:00+09:00"

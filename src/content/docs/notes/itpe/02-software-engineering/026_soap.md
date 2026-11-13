@@ -1,4 +1,4 @@
-﻿---
+---
 title: "SOAP(Simple Object Access Protocol)"
 description: "W3C 표준 XML 프로토콜, 웹 서비스 3대 표준, REST 비교, WS-* 복잡성 한계와 어댑터 제언"
 tags:
