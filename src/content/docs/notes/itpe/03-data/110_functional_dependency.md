@@ -48,6 +48,16 @@ extra:
 무손실 분해 검증
 ```
 
+```text
+[ Armstrong 공리 ]
+
+반사 (Reflexivity)
+   ↓
+증가 (Augmentation)
+   ↓
+이행 (Transitivity)
+```
+
 ## Ⅳ. 함수적 종속성의 유형 비교
 
 - 핵심 요약 : 완전 함수 종속, 부분 함수 종속, 이행 함수 종속의 특징과 적용 사례 비교.
