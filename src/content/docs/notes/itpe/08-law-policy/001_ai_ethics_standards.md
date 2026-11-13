@@ -3,15 +3,13 @@ title: "인공지능 윤리기준의 구조 및 실효성 확보를 위한 기�
 author: "Gemma 4 E2B"
 date: "2026-10-29"
 tags:
-  - "ITPE"
-  - "AIethics"
-  - "기술사"
+  - "notes-law-policy"
 sidebar:
   badge:
-    text: "최종 분석 완료"
+    text: "기초"
 extra:
   question_no: "001"
-  keyword_grade: "기술사"
+  keyword_grade: "기초"
   model: "Gemma 4"
 ---
 
