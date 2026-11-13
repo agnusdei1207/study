@@ -1,6 +1,6 @@
 ﻿---
 title: "신뢰도(Reliability)"
-description: "평균 무고장 시간(MTBF), 평균 복구 시간(MTTR), 가용성(Availability), 고장률(Failure Rate), 배뜨게 곡선(Bathtub Curve)"
+description: "평균 무고장 시간(MTBF), 평균 복구 시간(MTTR), 가용성(Availability), 고장률(Failure Rate), Bathtub Curve(Bathtub Curve)"
 tags:
   - "notes-data"
   - "notes-itpe"
@@ -13,7 +13,7 @@ extra:
 ---
 
 ## 연관 키워드
-- 신뢰도, 평균 무고장 시간(MTBF), 평균 복구 시간(MTTR), 가용성(Availability), 고장률(Failure Rate), 배뜨게 곡선(Bathtub Curve)
+- 신뢰도, 평균 무고장 시간(MTBF), 평균 복구 시간(MTTR), 가용성(Availability), 고장률(Failure Rate), Bathtub Curve(Bathtub Curve)
 
 ## Ⅰ. 신뢰도(Reliability)의 개요
 

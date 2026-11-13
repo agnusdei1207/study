@@ -1,6 +1,6 @@
 ﻿---
 title: "앙상블 배깅·부스팅"
-description: " bagging, 부스팅, 랜덤 포레스트, 그레이디언트 부스팅, 오버핏팅, 변량 편향"
+description: " bagging, 부스팅, 랜덤 포레스트, 그레이디언트 부스팅, 오버핏팅, 편향-분산 트레이드오프 (bias–variance tradeoff)"
 tags:
   - "notes-data"
   - "notes-itpe"
@@ -13,7 +13,7 @@ extra:
 ---
 
 ## 연관 키워드
-- 앙상블, 배깅, 부스트, 랜덤 포레스트, 그레이디언트 부스팅, 오버핏팅, 변량 편향
+- 앙상블, 배깅, 부스트, 랜덤 포레스트, 그레이디언트 부스팅, 오버핏팅, 편향-분산 트레이드오프 (bias–variance tradeoff)
 
 ## Ⅰ. 앙상블 배깅·부스팅의 개요
 
