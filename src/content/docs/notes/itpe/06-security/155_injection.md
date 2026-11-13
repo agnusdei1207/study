@@ -23,7 +23,7 @@ extra:
 
 - 핵심 요약 : 신뢰할 수 없는 입력이 명령이나 쿼리의 일부로 해석되어 실행되는 취약점 공격군.
 - 개념 : 외부 입력값이 애플리케이션의 **인터프리터** (Interpreter)나 **파서** (Parser)에 의해 문법적 명령의 일부로 오해되어 그대로 실행됨으로써, 데이터베이스를 탈취하거나 OS 쉘 명령을 실행하게 되는 취약점 공격군이며 OWASP(Open Worldwide Application Security Project) Top 10에 꼽히는 대표 위협.
-- 배경 및 필요성 : 사용자 입력을 순수한 데이터로 다루지 않고 명령 문자열에 그대로 결합하는 구현 관행 때문에 제어 흐름이 공격자의 의도대로 바뀌는 결함이 반복해서 발생한다.
+- 배경 및 필요성 : 사용자 입력을 순수한 데이터로 다루지 않고 명령 문자열에 그대로 결합하는 구현 관행 때문에 제어 흐름이 공격자의 의도대로 바뀌는 결함이 반복해서 발생.
 - 주요 목적 : 공격자가 인증을 우회하고, 데이터베이스를 빼내고, 서버 파일을 조작하며, 궁극적으로 **임의 코드 실행** (RCE, Remote Code Execution)으로 서버 전체를 장악하는 것.
 
 ## Ⅱ. 인젝션(Injection) 공격의 특징 및 장점
@@ -34,7 +34,7 @@ extra:
 2. 인터프리터별 분화 : 대상 해석기의 문법에 맞춘 페이로드 작성 → SQL, OS 명령, LDAP, 템플릿 등 여러 영역으로 공격 확장.
 3. 연쇄 피해 : 인증 우회 후 데이터 유출, 쉘 획득으로 이어짐 → 단일 입력 지점의 결함이 서버 전체 장악으로 확대.
 
-분류는 대상 인터프리터에 따라 **SQL 인젝션** (SQL Injection), **OS 명령 인젝션** (OS Command Injection), **LDAP 인젝션** (LDAP Injection), XPath/XQuery 인젝션, **SSTI** (Server-Side Template Injection, 서버 측 템플릿 인젝션) 등으로 나뉜다.
+분류는 대상 인터프리터에 따라 **SQL 인젝션** (SQL Injection), **OS 명령 인젝션** (OS Command Injection), **LDAP 인젝션** (LDAP Injection), XPath/XQuery 인젝션, **SSTI** (Server-Side Template Injection, 서버 측 템플릿 인젝션) 등으로 구분.
 
 ## Ⅲ. 인젝션(Injection) 공격의 구조 (흐름)
 
@@ -100,11 +100,11 @@ SSTI : {{7*7}} 입력
 
 - 핵심 요약 : 개발 파이프라인의 자동 검사, 최소 권한 실행 환경, 다층 방어를 결합해 인젝션을 설계 단계부터 차단하는 체계로 정착.
 
-1. 개발 조직은 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 SAST와 DAST(Dynamic Application Security Testing)를 연결해, 인젝션 취약점이 배포 전에 걸러지도록 해야 한다.
-2. 운영 조직은 웹 프로세스를 일반 권한으로 구동하고 셸 바이너리가 없는 경량 컨테이너 이미지를 사용해, 명령 주입이 성공해도 시스템 영향이 제한되도록 하는 것이 바람직하다.
-3. 보안 조직은 웹 애플리케이션 방화벽(WAF, Web Application Firewall)과 RASP(Runtime Application Self-Protection)를 함께 두어, 네트워크 경계와 애플리케이션 실행 시점이라는 두 지점에서 인젝션을 막는 다층 방어를 구성해야 한다.
+1. 개발 조직은 CI(Continuous Integration)/CD(Continuous Delivery) 파이프라인에 SAST와 DAST(Dynamic Application Security Testing)를 연결해, 인젝션 취약점이 배포 전에 걸러지도록 .
+2. 운영 조직은 웹 프로세스를 일반 권한으로 구동하고 셸 바이너리가 없는 경량 컨테이너 이미지를 사용해, 명령 주입이 성공해도 시스템 영향이 제한되도록 하는 것이 바람직.
+3. 보안 조직은 웹 애플리케이션 방화벽(WAF, Web Application Firewall)과 RASP(Runtime Application Self-Protection)를 함께 두어, 네트워크 경계와 애플리케이션 실행 시점이라는 두 지점에서 인젝션을 막는 다층 방어를 구성.
 
 ## Ⅶ. 결론
 
-- 핵심 요약 : 인젝션은 데이터와 명령의 경계가 무너져 생기는 고전적 취약점이며, 문법 분리 원칙으로 원천 차단이 가능한 결함.
-- 시사점 : 탐지 도구보다 바인딩과 API 설계 같은 구현 원칙이 방어의 핵심이므로, 이를 개발 표준으로 고정하는 것이 전제다.
+- 핵심 요약 : 인젝션은 데이터와 명령의 경계가 무너져 생기는 고전적 취약점이며, 문법 분리 원칙으로 원천 차단이 가능한 결.
+- 시사점 : 탐지 도구보다 바인딩과 API 설계 같은 구현 원칙이 방어의 핵심이므로, 이를 개발 표준으로 고정하는 것이 전제.

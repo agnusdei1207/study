@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. 제로 트러스트 보안의 개요
 
 - 핵심 요약 : 네트워크 위치를 믿지 않고 모든 접속 요청을 신원과 상태로 지속 검증하는 보안 아키텍처.
-- 개념 : "결코 신뢰하지 않고, 항상 검증한다(Never Trust, Always Verify)"를 대원칙으로, 내부와 외부의 경계를 구분하지 않고 사용자, 디바이스, 트래픽, 애플리케이션의 모든 접속에 대해 신원 검증과 최소 권한을 지속적으로 강제하는 **제로 트러스트** (Zero Trust) 아키텍처. NIST(National Institute of Standards and Technology)의 SP 800-207 문서가 기준으로 쓰인다.
-- 배경 및 필요성 : 클라우드 전환, 원격 근무, 모바일 기기 확산으로 성곽과 해자(Castle-and-Moat)형 경계 보안이 무너졌고, 내부망에 한 번 침투하면 제약 없이 **횡적 이동** (Lateral Movement)이 가능해지는 문제가 커졌다.
-- 핵심 목적 : 네트워크 위치에 기반한 **암묵적 신뢰** (Implicit Trust)를 제거하고, 이미 침해되었다고 가정하여 공격이 미치는 **폭발 반경** (Blast Radius)을 최소화하는 것.
+- 개념 : "결코 신뢰하지 않고, 항상 검증한다(Never Trust, Always Verify)"를 대원칙으로, 내부와 외부의 경계를 구분하지 않고 사용자, 디바이스, 트래픽, 애플리케이션의 모든 접속에 대해 신원 검증과 최소 권한을 지속적으로 강제하는 **제로 트러스트** (Zero Trust) 아키텍처. NIST SP 800-207 문서를 기준으로 사용.
+- 배경 및 필요성 : 클라우드 전환, 원격 근무, 모바일 기기 확산으로 성곽과 해자(Castle-and-Moat)형 경계 보안이 무너졌고, 내부망에 한 번 침투하면 제약 없이 **횡적 이동** (Lateral Movement)이 가능해지는 문제가 증가.
+- 주요 목적 : 네트워크 위치에 기반한 **암묵적 신뢰** (Implicit Trust)를 제거하고, 이미 침해되었다고 가정하여 공격이 미치는 **폭발 반경** (Blast Radius)을 최소화하는 것.
 
 ## Ⅱ. 제로 트러스트 보안의 특징 및 장점
 
@@ -33,12 +33,12 @@ extra:
 1. 신원 중심 통제 : 네트워크 위치 대신 신원과 단말 상태로 접근을 판단 → 사내망에 들어왔다는 사실만으로 신뢰받는 구조 제거.
 2. 최소 권한 접근 : 개별 애플리케이션 단위로만 연결 → 계정이 탈취되어도 피해가 연결된 자원으로 한정.
 3. 지속 검증 : 세션 중에도 위치, 기기, 행위를 재평가 → 탈취된 세션을 중간에 차단.
-4. 자원 은닉 : 서버의 IP와 포트를 외부에 노출하지 않음 → 외부 스캐닝 단계에서 얻을 정보가 줄어듦.
+4. 자원 은닉 : 서버의 IP와 포트를 외부에 노출하지 않음 → 외부 스캐닝 단계에서 얻을 정보가 감소.
 
 ## Ⅲ. 제로 트러스트 보안의 구조 (흐름)
 
 - 핵심 요약 : 정책을 판단하는 제어 평면과 실제 트래픽을 통과시키는 데이터 평면을 분리하고, 판단 결과에 따라 세션을 여는 구조.
-- 용어 : 정책 결정 지점(PDP, Policy Decision Point)은 정책 엔진(PE, Policy Engine)과 정책 관리자(PA, Policy Administrator)로 구성되고, 정책 시행 지점(PEP, Policy Enforcement Point)은 트래픽 경로에서 세션을 연결하거나 차단한다.
+- 용어 : 정책 결정 지점(PDP, Policy Decision Point)은 정책 엔진(PE, Policy Engine)과 정책 관리자(PA, Policy Administrator)로 구성되고, 정책 시행 지점(PEP, Policy Enforcement Point)은 트래픽 경로에서 세션을 연결하거나 차단.
 
 ```text
 [ 제어 평면 : 정책 결정 지점 (PDP) ]
@@ -65,9 +65,9 @@ PDP가 신뢰도를 계산해 허용 여부 결정
 PEP가 세션을 열거나 차단
 ```
 
-- 3대 원칙 : NIST SP 800-207의 원칙을 요약하면 명시적 검증(모든 데이터를 상시 검증), 최소 권한(Just-In-Time 접근과 Just-Enough-Access), 침해 가정(폭발 반경을 세그멘테이션으로 국소화하고 전송·저장 구간을 암호화)으로 정리된다.
-- **SDP** (Software Defined Perimeter, 소프트웨어 정의 경계) : 서버의 IP와 포트를 Black Cloud 뒤에 숨기고, 선인증 후접속(Authenticate-First, Connect-Later) 방식으로 인가된 단말에만 가상 터널을 연다.
-- **마이크로 세그멘테이션** (Micro-segmentation) : 네트워크를 워크로드나 컨테이너 단위로 세분화하여, 같은 서브넷 안에서도 인가되지 않은 동서 방향 트래픽(East-West Traffic)을 차단한다.
+- 3대 원칙 : NIST SP 800-207의 원칙을 요약하면 명시적 검증(모든 데이터를 상시 검증), 최소 권한(Just-In-Time 접근과 Just-Enough-Access), 침해 가정(폭발 반경을 세그멘테이션으로 국소화하고 전송·저장 구간을 암호화)으로 정리된.
+- **SDP** (Software Defined Perimeter, 소프트웨어 정의 경계) : 서버의 IP와 포트를 Black Cloud 뒤에 숨기고, 선인증 후접속(Authenticate-First, Connect-Later) 방식으로 인가된 단말에만 가상 터널을 연결.
+- **마이크로 세그멘테이션** (Micro-segmentation) : 네트워크를 워크로드나 컨테이너 단위로 세분화하여, 같은 서브넷 안에서도 인가되지 않은 동서 방향 트래픽(East-West Traffic)을 차단.
 
 ## Ⅳ. 제로 트러스트와 경계 기반 보안의 비교
 
@@ -97,11 +97,11 @@ PEP가 세션을 열거나 차단
 
 - 핵심 요약 : 성숙도 모델 기반 로드맵, 레거시 VPN의 단계적 퇴출, 위험 신호 기반 자동 차단을 결합해 제로 트러스트를 상시 운영 체계로 정착.
 
-1. 보안 조직은 CISA ZTMM(Zero Trust Maturity Model) 2.0을 기준으로 신원, 기기, 네트워크, 애플리케이션, 데이터의 다섯 기둥별 현재 수준을 진단하고, 전통 단계에서 최적 단계로 오르는 로드맵을 단계별로 수립해야 한다.
-2. 네트워크 조직은 사내 전체 대역을 열어 주는 기존 SSL(Secure Sockets Layer) VPN을 점진적으로 퇴출하고, 애플리케이션 단위로만 연결하는 ZTNA 체계로 전환하는 것이 바람직하다.
-3. 보안관제 조직은 SOAR(Security Orchestration, Automation and Response)를 EDR(Endpoint Detection and Response), NDR(Network Detection and Response) 신호와 연동해, 감염된 단말의 신뢰도를 즉시 낮추고 활성 세션을 자동 차단하는 실시간 정책 자동화 체계를 갖춰야 한다.
+1. 보안 조직은 CISA ZTMM(Zero Trust Maturity Model) 2.0을 기준으로 신원, 기기, 네트워크, 애플리케이션, 데이터의 다섯 기둥별 현재 수준을 진단하고, 전통 단계에서 최적 단계로 오르는 로드맵을 단계별로 수립.
+2. 네트워크 조직은 사내 전체 대역을 열어 주는 기존 SSL(Secure Sockets Layer) VPN을 점진적으로 퇴출하고, 애플리케이션 단위로만 연결하는 ZTNA 체계로 전환하는 것이 바람직.
+3. 보안관제 조직은 SOAR(Security Orchestration, Automation and Response)를 EDR(Endpoint Detection and Response), NDR(Network Detection and Response) 신호와 연동해, 감염된 단말의 신뢰도를 즉시 낮추고 활성 세션을 자동 차단하는 실시간 정책 자동화 체계를 갖춰야 한.
 
 ## Ⅶ. 결론
 
 - 핵심 요약 : 제로 트러스트는 네트워크 위치 대신 신원과 상태를 매번 검증하여 침해의 확산을 막는 아키텍처 철학.
-- 시사점 : 검증 체계가 전사에 걸쳐 일관되게 작동해야 효과가 나오므로, 기술 도입보다 신원과 정책의 통합 관리가 전제가 된다.
+- 시사점 : 검증 체계가 전사에 걸쳐 일관되게 작동해야 효과가 나오므로, 기술 도입보다 신원과 정책의 통합 관리가 전제.
