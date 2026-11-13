@@ -1,5 +1,5 @@
 ﻿---
-title: "AI 생성 코드·오픈웨이트 라이선스 준수 (AI: Artificial Intelligence)"
+title: "AI 생성 코드·오픈웨이트 라이선스 준수 AI (Artificial Intelligence)"
 description: "저작권 귀속·학습 데이터 오염·모델 사용 조건 3중 통제, Ghostwriting·AIBOM, 전통적 오픈소스 비교"
 tags:
   - "notes-software-engineering"

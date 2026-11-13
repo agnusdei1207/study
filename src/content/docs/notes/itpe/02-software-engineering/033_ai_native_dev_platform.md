@@ -1,5 +1,5 @@
 ---
-title: "AI 네이티브 개발 플랫폼(AI: Artificial Intelligence)"
+title: "AI 네이티브 개발 플랫폼AI (Artificial Intelligence)"
 description: "LLM·RAG·에이전틱 루프, SDLC 전 주기 지원, 전통적 개발 비교, 환각·라이선스·검증 능력 한계와 방안"
 tags:
   - "notes-software-engineering"
