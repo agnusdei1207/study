@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 기본 계정을 쓰는 IoT 기기를 대규모로 감염시켜 대규모 DDoS 공격을 일으킨 봇넷.
 - 개념 : 취약한 **기본 계정** (Default Credentials)을 쓰는 IoT(Internet of Things) 기기를 텔넷(Telnet) 프로토콜로 감염시키고, C2(Command and Control) 서버의 명령에 따라 대규모 **분산 서비스 거부** (DDoS, Distributed Denial of Service) 공격을 수행하는 봇넷.
 - 배경 및 필요성 : 2016년경 IP 카메라, 디지털 비디오 레코더(DVR, Digital Video Recorder), 가정용 라우터 같은 저가 IoT 기기가 보안 고려 없이 대량 보급되었고, 출하 시 기본 패스워드가 바뀌지 않은 채 인터넷에 노출되면서 확산.
-- 주요 목적: 보안 패치가 어려운 대량의 IoT 기기를 좀비로 만들어 도메인 네임 시스템(DNS, Domain Name System) 서비스와 호스팅 기업을 마비시키는 대규모 증폭 공격을 수행하는 것.
+- 주요 목적 : 보안 패치가 어려운 대량의 IoT 기기를 좀비로 만들어 도메인 네임 시스템(DNS, Domain Name System) 서비스와 호스팅 기업을 마비시키는 대규모 증폭 공격을 수행하는 것.
 
 ## Ⅱ. 미라이 봇넷(Mirai Botnet)의 특징 및 장점
 

@@ -27,7 +27,7 @@ extra:
 - 핵심 요약 : 사람이 알아채기 어려운 미세 노이즈로 AI 모델의 판단을 빗나가게 만드는 공격.
 - 개념 : 입력 데이터에 사람이 거의 인지하지 못하는 **적대적 섭동** (Perturbation, 미세 노이즈)을 의도적으로 더해 인공지능(AI, Artificial Intelligence) 모델이 오분류하도록 유도하는 사이버 공격 (**적대적 공격**, Adversarial Attack).
 - 배경 및 필요성 : 자율주행의 표지판 인식, 금융 이상거래 탐지(FDS, Fraud Detection System), 의료 영상 판독, 안면 인식 등 AI가 실제 환경에 배포되면서 오판이 곧 물리적·경제적 피해로 이어지는 위험이 커짐.
-- 주요 목적: 딥러닝 모델의 **결정 경계** (Decision Boundary) 취약성을 이해하고, **모델 강건성** (Robustness)을 평가해 방어 체계를 갖추는 것.
+- 주요 목적 : 딥러닝 모델의 **결정 경계** (Decision Boundary) 취약성을 이해하고, **모델 강건성** (Robustness)을 평가해 방어 체계를 갖추는 것.
 
 ## Ⅱ. 적대적 공격(Adversarial Attack)의 특징 및 장점
 
@@ -98,7 +98,7 @@ x_adv = x + ε · sign(∇x J(θ, x, y))
 
 - 핵심 요약 : 강건성 평가의 배포 게이트 내재화, 적대적 훈련 표준화, 입력 정제 계층 도입을 AI 보안 체계의 기본으로 제시.
 
-1. **적대적 강건성 평가** (Robustness Testing) 내재화 : CI(Continuous Integration)·CD(Continuous Delivery) 파이프라인에 ART(Adversarial Robustness Toolbox) 같은 도구로 공격 저항성을 측정하고, 기준에 미달하면 배포를 막는 게이트를 두는 것이 바람직하다.
+1. **적대적 강건성 평가** (Robustness Testing) 내재화 : CI(Continuous Integration)·CD(Continuous Delivery) 파이프라인에 ART(Adversarial Robustness Toolbox) 같은 도구로 공격 저항성을 측정하고, 기준에 미달하면 배포를 막는 게이트를 두는 것이 바람직.
 2. 적대적 훈련 표준화 : 미션 크리티컬 분야의 학습에는 PGD로 만든 적대적 샘플을 일정 비율 섞어 학습하는 절차를 기준으로 삼는 것이 필요하다.
 3. 입력 정제 계층 : 추론 직전에 비정상 고주파 노이즈를 걸러내는 **오토인코더** (Autoencoder) 기반 전처리 계층을 두는 방안을 검토하는 것이 좋다.
 

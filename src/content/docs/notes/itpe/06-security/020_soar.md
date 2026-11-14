@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 이기종 보안 도구의 경보를 하나의 워크플로우로 묶어 침해사고 대응을 자동화하는 보안 관제 플랫폼.
 - 개념 : SIEM(Security Information and Event Management), EDR(Endpoint Detection and Response), 방화벽, CTI(Cyber Threat Intelligence) 등 이기종 보안 솔루션을 하나의 흐름으로 잇는 **보안 오케스트레이션** (Security Orchestration)과, 사전에 정의된 **플레이북** (Playbook)에 따라 사고를 분석·차단·대응하는 **자동 대응** (Automated Response)을 결합한 관제 플랫폼.
 - 배경 및 필요성 : 하루 대량의 보안 경보로 인한 보안관제센터(SOC, Security Operations Center)의 경보 피로, 보안 인력 부족, 수작업 대응 지연이 겹쳐 평균 탐지 시간(MTTD, Mean Time to Detect)과 평균 복구 시간(MTTR, Mean Time to Repair)이 길어지므로 도입이 요구됨.
-- 주요 목적: 보안 운영 효율을 높이고, 탐지부터 격리까지 걸리는 시간을 줄이며, 관제 업무를 표준화해 대응 품질을 일정하게 유지하는 것.
+- 주요 목적 : 보안 운영 효율을 높이고, 탐지부터 격리까지 걸리는 시간을 줄이며, 관제 업무를 표준화해 대응 품질을 일정하게 유지하는 것.
 
 ## Ⅱ. SOAR(보안 오케스트레이션·자동화·대응)의 특징 및 장점
 
@@ -93,7 +93,7 @@ extra:
 
 - 핵심 요약 : 생성형 AI 보조, 대응 지표 관리, 노출 자산 연동을 SOAR 고도화의 방향으로 제시.
 
-1. 생성형 AI 보조 도입 : 경보 분석 때 LLM(Large Language Model) 에이전트가 공격 요약과 플레이북 초안을 만들고 분석가가 검증하는 방식으로 도입하는 것이 바람직하다.
+1. 생성형 AI 보조 도입 : 경보 분석 때 LLM(Large Language Model) 에이전트가 공격 요약과 플레이북 초안을 만들고 분석가가 검증하는 방식으로 도입하는 것이 바람직.
 2. 대응 지표 관리 : 탐지부터 격리까지의 MTTR 감소와 단순 경보의 무인 처리 비율을 핵심 **KPI** (Key Performance Indicator, 핵심 성과 지표)로 관리하는 것이 필요하다.
 3. 노출 자산 연동 : **ASM** (Attack Surface Management, 공격표면 관리)에서 발견된 외부 노출 취약점을 플레이북이 받아 임시 방화벽 정책을 적용하고, 가상 패치 배포까지 잇는 폐루프 체계를 구축하는 것이 좋다.
 

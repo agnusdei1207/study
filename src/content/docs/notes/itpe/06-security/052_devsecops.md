@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 개발과 운영 자동화 파이프라인 전 단계에 보안 검증을 내재화해, 배포 속도를 늦추지 않으면서 취약점을 조기에 제거하는 방법론.
 - 개념 : **DevOps** (Development and Operations) 문화와 **CI/CD** (Continuous Integration/Continuous Delivery) 자동화에 보안(Sec)을 핵심 요소로 결합하여, **소프트웨어 개발 생명주기** (SDLC, Software Development Life Cycle) 전반에서 취약점을 지속적으로 검증하는 협업 체계.
 - 배경 및 필요성 : 클라우드 네이티브 환경에서 배포가 잦아지면서, 배포 직전에 수작업으로 보안을 점검하던 방식은 릴리즈 병목을 만들거나 결함을 그대로 내보내는 결과가 됨.
-- 주요 목적: **Shift-Left Security** (보안의 좌측 이동)를 실현해 결함을 앞 단계에서 발견하고, 배포를 멈추지 않는 자동화된 **보안 품질 게이트** (Quality Gate)를 세우는 것.
+- 주요 목적 : **Shift-Left Security** (보안의 좌측 이동)를 실현해 결함을 앞 단계에서 발견하고, 배포를 멈추지 않는 자동화된 **보안 품질 게이트** (Quality Gate)를 세우는 것.
 
 ## Ⅱ. DevSecOps의 특징 및 장점
 

@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 데이터 분석, 모델링, 운영 자동화를 하나의 반복 생애주기로 묶어 비즈니스 가치를 지속적으로 만드는 엔지니어링 체계.
 - 개념 : 정형·비정형 데이터를 분석하고 가설을 세워 머신러닝 모델을 만든 뒤, 배포와 재학습까지 운영하는 **DSML 프로젝트** (DSML, Data Science and Machine Learning 기반의 개발·운영 생애주기). 운영 단계는 **MLOps** (Machine Learning Operations, 모델 개발과 운영을 자동화·표준화하는 실천 체계)가 담당함.
 - 배경 및 필요성 : 실험 환경에서 정확도만 높이는 데 머물면 운영 단계에서 서빙 장애와 기술 부채가 커짐. 그래서 **PoC** (Proof of Concept, 개념 검증) 이후 실제 서비스로 넘어가려면 **피처 스토어** (Feature Store, 학습과 서빙이 같은 입력 변수를 공유하도록 관리하는 저장소)와 **CI/CD/CT** (Continuous Integration, Continuous Delivery, Continuous Training)에 기반한 자동화 파이프라인이 필수임.
-- 주요 목적: 데이터 기반 의사결정 자동화, 수작업 프로세스의 지능화, 투자 대비 효과인 **ROI** (Return on Investment) 입증.
+- 주요 목적 : 데이터 기반 의사결정 자동화, 수작업 프로세스의 지능화, 투자 대비 효과인 **ROI** (Return on Investment) 입증.
 
 ## Ⅱ. DSML(Data Science and Machine Learning) 프로젝트의 특징 및 장점
 

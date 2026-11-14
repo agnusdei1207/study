@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 전 세계 금융기관이 국경 간 송금 지시를 표준 전문으로 주고받는 폐쇄형 금융 메시징망이며, 전문 체계가 ISO 20022로 옮겨가는 중임.
 - 개념 : 외환 송금과 신용장 등 금융 거래 지시를 기밀성과 무결성을 갖춰 중계하는 **금융 메시징** (Financial Messaging) 네트워크로, SWIFT(Society for Worldwide Interbank Financial Telecommunication)가 운영하는 망(SWIFTNet)이 대표적임.
 - 배경 및 필요성 : 기존 **MT** (Message Type) 전문은 고정 필드 기반 텍스트라 데이터 표현력에 한계가 있어, 구조화된 XML 기반 **ISO 20022** (International Organization for Standardization 20022) MX 전문으로의 전환이 진행됨. SWIFT 발표 기준 MT와 MX의 공존 기간은 2025년 11월 22일에 끝났으며, 전환 과정에서는 데이터 절단과 레거시 매핑 오류를 막는 변환 검증이 필요함.
-- 주요 목적: 국가별로 다른 금융 시스템 간 상호운용성 확보, 송금 처리의 자동화(STP, Straight-Through Processing), 결제 위험 축소.
+- 주요 목적 : 국가별로 다른 금융 시스템 간 상호운용성 확보, 송금 처리의 자동화(STP, Straight-Through Processing), 결제 위험 축소.
 
 ## Ⅱ. SWIFT 금융 메시징의 특징 및 장점
 

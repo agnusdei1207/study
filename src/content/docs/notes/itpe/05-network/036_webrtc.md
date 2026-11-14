@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 플러그인 없이 브라우저끼리 음성·영상·데이터를 직접 교환하는 개방형 실시간 통신 표준.
 - 개념 : W3C(World Wide Web Consortium)의 자바스크립트 API와 IETF(Internet Engineering Task Force)의 전송 프로토콜을 결합해, 별도 설치 없이 브라우저·앱 간에 실시간 미디어와 데이터를 주고받는 **WebRTC** (Web Real-Time Communication) 기술.
 - 배경 및 필요성 : 과거 웹 화상 통신은 전용 플러그인에 의존해 보안 취약점과 호환성 문제가 컸고, HTTP(Hypertext Transfer Protocol) 스트리밍 방식의 수 초 지연으로 양방향 상호작용 구현이 어려웠음.
-- 주요 목적: 초저지연 양방향 통신의 구현과, 전 구간 암호화에 기반한 통신 보안 확보.
+- 주요 목적 : 초저지연 양방향 통신의 구현과, 전 구간 암호화에 기반한 통신 보안 확보.
 
 ## Ⅱ. WebRTC의 특징 및 장점
 

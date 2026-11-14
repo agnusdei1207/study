@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 클라우드 서비스 제공자와 이용자가 보안 책임을 나누어 맡는 전제 위에서, 데이터와 인프라를 보호하는 통합 정보보호 체계.
 - 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service) 도입과 운영에서 데이터, 애플리케이션, 인프라를 위협과 규제 위반으로부터 보호하기 위해, **클라우드 서비스 제공자** (CSP, Cloud Service Provider)와 이용자(CSC, Cloud Service Customer)가 책임을 나누는 **책임 공유 모델** (Shared Responsibility Model)에 기반하여 수립하는 보안 체계.
 - 배경 및 필요성 : 기업의 디지털 전환(DX, Digital Transformation)으로 워크로드가 멀티·하이브리드 클라우드로 옮겨갔으나, 설정 오류와 계정 권한 남용에 따른 데이터 침해가 빈발.
-- 주요 목적: 클라우드의 탄력성을 유지하면서 데이터 주권을 확보하고, 멀티 테넌시 환경의 데이터 격리와 CSAP(Cloud Security Assurance Program), FedRAMP(Federal Risk and Authorization Management Program), ISMS-P(정보보호 및 개인정보보호 관리체계) 같은 규제 준수를 충족하는 것.
+- 주요 목적 : 클라우드의 탄력성을 유지하면서 데이터 주권을 확보하고, 멀티 테넌시 환경의 데이터 격리와 CSAP(Cloud Security Assurance Program), FedRAMP(Federal Risk and Authorization Management Program), ISMS-P(정보보호 및 개인정보보호 관리체계) 같은 규제 준수를 충족하는 것.
 
 ## Ⅱ. 클라우드 서비스 보안의 특징 및 장점
 

@@ -98,7 +98,7 @@ RASP · 취약점 수집과 피드백
 - 핵심 요약 : 개발 문화, 파이프라인 자동화, 운영 피드백을 하나의 순환으로 묶어야 보안 품질이 릴리스마다 유지됨.
 
 1. 개발 문화 : 조직은 개발자 IDE에 보안 린터를 기본 탑재하고 시큐어 코딩 교육을 정기화해, 코드 작성 단계에서 결함이 줄어들게 해야 한다.
-2. 파이프라인 자동화 : CI(Continuous Integration)와 CD(Continuous Delivery) 각 단계에 품질 게이트를 두고, 심각한 취약점이 발견되면 배포가 자동으로 멈추도록 하는 것이 바람직하다.
+2. 파이프라인 자동화 : CI(Continuous Integration)와 CD(Continuous Delivery) 각 단계에 품질 게이트를 두고, 심각한 취약점이 발견되면 배포가 자동으로 멈추도록 하는 것이 바람직.
 3. 운영 피드백 : 운영 환경의 RASP와 SIEM(Security Information and Event Management) 탐지 결과를 다음 스프린트의 보안 요구사항으로 연결해, 같은 유형의 결함이 반복되지 않도록 해야 한다.
 
 ## Ⅶ. 결론

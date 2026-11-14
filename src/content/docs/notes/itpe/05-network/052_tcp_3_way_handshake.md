@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 세 번의 SYN·ACK 교환으로 양단의 시퀀스 기준과 전송 조건을 맞추는 TCP 연결 수립 절차.
 - 개념 : 데이터 전송에 앞서 두 종단이 SYN(Synchronize)과 ACK(Acknowledgment)를 세 단계로 교환해 **초기 시퀀스 번호** (ISN, Initial Sequence Number)를 동기화하는 절차(**TCP 3-Way Handshake**).
 - 배경 및 필요성 : IP(Internet Protocol) 네트워크에서는 패킷의 유실·지연·순서 역전이 발생하므로, 수신측이 정상 데이터를 판별할 순서 기준이 전송 전에 필요.
-- 주요 목적: 양방향 시퀀스 기준선의 일치, MSS(Maximum Segment Size) 등 전송 옵션의 사전 협상, 양단 연결 상태의 일치.
+- 주요 목적 : 양방향 시퀀스 기준선의 일치, MSS(Maximum Segment Size) 등 전송 옵션의 사전 협상, 양단 연결 상태의 일치.
 
 ## Ⅱ. TCP 3-Way Handshake의 특징 및 장점
 

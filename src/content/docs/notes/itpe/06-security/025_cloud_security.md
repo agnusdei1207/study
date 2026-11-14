@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 클라우드 환경의 설정 오류와 자격증명 유출을 막고 국내외 인증 기준을 충족하도록 책임을 나누어 관리하는 보안 체계.
 - 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service) 등 클라우드 서비스에서 발생하는 데이터 유출, 설정 오류, API(Application Programming Interface) 침해를 방어하기 위해 **책임 공유 모델** (Shared Responsibility Model)에 따라 보안 책임을 나누는 체계.
 - 배경 및 필요성 : 온프레미스에서 클라우드로 전환하면서 물리적 경계가 사라지고, **CSP** (Cloud Service Provider, 클라우드 서비스 제공자)의 인프라 장애와 고객의 설정 오류가 모두 사고 원인이 되므로, 두 주체의 책임을 명확히 할 필요가 생김.
-- 주요 목적: 클라우드 데이터 기밀성 유지, 안전한 워크로드 운영, 공공과 기업의 규제 준수를 위한 **CSAP** (Cloud Security Assurance Program, 클라우드 보안인증제) 및 ISO/IEC 27017 대응.
+- 주요 목적 : 클라우드 데이터 기밀성 유지, 안전한 워크로드 운영, 공공과 기업의 규제 준수를 위한 **CSAP** (Cloud Security Assurance Program, 클라우드 보안인증제) 및 ISO/IEC 27017 대응.
 
 ## Ⅱ. 클라우드 보안(CSAP·ISO/IEC 27017)의 특징 및 장점
 

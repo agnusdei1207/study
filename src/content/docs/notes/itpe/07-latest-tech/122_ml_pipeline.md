@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 데이터 수집부터 배포와 모니터링까지를 자동화된 그래프로 묶어 재현성과 반복 배포를 보장하는 실행 체계.
 - 개념 : 원천 데이터의 수집과 가공, 모델 학습, 검증, 배포, 사후 모니터링 단계를 모듈화해 **방향성 비순환 그래프** (DAG, Directed Acyclic Graph, 순환 없이 단계 간 의존성을 표현한 구조)로 연결한 **머신러닝 파이프라인** (Machine Learning Pipeline). 이를 운영 전반에 적용하는 방식을 **MLOps** (Machine Learning Operations, 모델 개발과 운영을 연결하는 실행 체계)라고 한다.
 - 배경 및 필요성 : 코드만 자동화해서는 학습 때와 서빙 때 피처 계산이 어긋나는 **훈련-서빙 스큐** (Training-Serving Skew)나, 시간이 지나며 입력 분포가 바뀌는 **데이터 드리프트** (Data Drift)로 인한 성능 저하를 막을 수 없다. 따라서 피처의 출처를 추적하는 계보(Lineage) 관리와 분포 변화를 감시하는 체계를 함께 갖춰야 한다.
-- 주요 목적: 데이터 과학자의 수작업 반복 실험을 줄이고, **실험 재현성** (Reproducibility, 같은 조건이면 같은 결과를 얻는 성질)을 확보하며, **지속적 통합·배포·학습** (CI(Continuous Integration)/CD(Continuous Delivery)/CT(Continuous Training))을 달성하는 것.
+- 주요 목적 : 데이터 과학자의 수작업 반복 실험을 줄이고, **실험 재현성** (Reproducibility, 같은 조건이면 같은 결과를 얻는 성질)을 확보하며, **지속적 통합·배포·학습** (CI(Continuous Integration)/CD(Continuous Delivery)/CT(Continuous Training))을 달성하는 것.
 
 ## Ⅱ. 머신러닝 파이프라인의 특징 및 장점
 

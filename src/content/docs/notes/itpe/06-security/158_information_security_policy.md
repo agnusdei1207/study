@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 최고경영진의 의지를 담은 정보보호 원칙을 정책, 지침, 절차로 체계화한 최상위 보안 거버넌스 규범.
 - 개념 : 조직의 핵심 정보자산을 내외부 사이버 위협으로부터 보호하기 위해, 최고경영진의 보안 철학을 반영하여 수립한 원칙, 표준, 지침, 절차의 체계로서 **보안 거버넌스**의 최상위 규범.
 - 배경 및 필요성 : 정보보호가 IT 기술 부서의 실무를 넘어 비즈니스 연속성과 법적 책임을 좌우하는 리스크가 되었고, 체계적인 기준이 없으면 개별 보안 솔루션이 파편화되어 무력화되기 쉬워 전사 기준이 필요.
-- 주요 목적: 전사 보안 기준을 일관되게 세우고, 임직원의 보안 준수 책무를 명확히 하며, 개인정보 보호법, ISMS(Information Security Management System)-P 인증, ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 27001 등 법과 표준의 **법적 규제 준수** (Compliance)를 보장하는 것.
+- 주요 목적 : 전사 보안 기준을 일관되게 세우고, 임직원의 보안 준수 책무를 명확히 하며, 개인정보 보호법, ISMS(Information Security Management System)-P 인증, ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 27001 등 법과 표준의 **법적 규제 준수** (Compliance)를 보장하는 것.
 
 ## Ⅱ. 정보보호 정책의 특징 및 장점
 

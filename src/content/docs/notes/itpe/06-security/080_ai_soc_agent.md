@@ -23,7 +23,7 @@ extra:
 - 핵심 요약 : 방대한 보안 경보를 LLM 추론으로 맥락화해 분석과 대응을 보조하는 자율 관제 체계.
 - 개념 : SIEM(Security Information and Event Management), EDR(Endpoint Detection and Response) 등에서 나온 경보를 LLM(Large Language Model) 기반 추론 엔진이 맥락과 결합해 심층 분석하고 대응을 보조·수행하는 관제 체계 (**AI SOC 에이전트**, AI SOC Agent).
 - 배경 및 필요성 : 다기종 보안 인프라에서 대량의 경보가 발생하면서 **경보 피로** (Alert Fatigue)로 중요 경보가 묻히므로, 분석 부담을 줄이는 자동화가 필요해짐.
-- 주요 목적: 분석가의 경보 피로 완화와 탐지·대응 시간인 MTTD(Mean Time to Detect), MTTR(Mean Time to Respond) 단축.
+- 주요 목적 : 분석가의 경보 피로 완화와 탐지·대응 시간인 MTTD(Mean Time to Detect), MTTR(Mean Time to Respond) 단축.
 
 ## Ⅱ. AI SOC 에이전트의 특징 및 장점
 

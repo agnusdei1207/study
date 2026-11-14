@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 소스코드 공개 이후 **IoT** (Internet of Things) 기기를 감염시키는 봇넷이 변종을 거듭하며 중앙 차단이 어려운 구조로 진화한 현상.
 - 개념 : 2016년 **Mirai** 악성코드의 소스코드가 공개된 뒤 여러 행위자가 파생시킨 IoT 봇넷 계열. 감염 대상 CPU 아키텍처의 확대, 새로운 **RCE** (Remote Code Execution) 취약점 결합, **P2P** (Peer-to-Peer) 기반 명령 체계 도입이 특징계열.
 - 배경 및 필요성 : 소스코드 공개로 제작 진입 장벽이 낮아졌고, 공격자들은 기본 계정 대입에 더해 라우터, 카메라, NAS(Network-Attached Storage) 같은 장비의 웹 취약점을 결합하여 감염 범위를 넓혔.
-- 주요 목적: 중앙 **C2** (Command and Control) 서버 차단을 피하고 기업 네트워크 장비까지 공격 표면을 넓혀, **DDoS** (Distributed Denial of Service) 공격과 악성코드 유포 인프라를 유지하는 것.
+- 주요 목적 : 중앙 **C2** (Command and Control) 서버 차단을 피하고 기업 네트워크 장비까지 공격 표면을 넓혀, **DDoS** (Distributed Denial of Service) 공격과 악성코드 유포 인프라를 유지하는 것.
 
 ## Ⅱ. Mirai 봇넷의 특징 및 장점
 

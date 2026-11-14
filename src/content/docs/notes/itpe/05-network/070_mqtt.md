@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 대역이 좁고 불안정한 망에서 다수 기기의 메시지를 중개 서버 경유로 주고받는 국제 표준 프로토콜.
 - 개념 : OASIS(Organization for the Advancement of Structured Information Standards) 표준이자 ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 20922로 제정된 **발행-구독** (Publish-Subscribe, 송신자와 수신자가 주제를 통해 간접 연결되는 메시징 모델) 기반 경량 메시징 프로토콜 (MQTT, Message Queuing Telemetry Transport)로, 발행자와 구독자를 **브로커** (Broker, 메시지를 중개하는 중앙 서버)가 중개.
 - 배경 및 필요성 : 요청-응답 방식은 장치마다 상대 주소와 연결을 유지해야 해서 단말 수가 늘수록 배터리와 대역 낭비가 커짐. 다수 장치가 데이터를 올리고 필요한 시스템만 받는 구조가 필요.
-- 주요 목적: 최소 2바이트 헤더의 전송 효율, 송수신자의 시간·공간 분리, 3단계 **QoS** (Quality of Service, 서비스 품질 수준) 선택을 통한 전달 신뢰성 확보.
+- 주요 목적 : 최소 2바이트 헤더의 전송 효율, 송수신자의 시간·공간 분리, 3단계 **QoS** (Quality of Service, 서비스 품질 수준) 선택을 통한 전달 신뢰성 확보.
 
 ## Ⅱ. MQTT의 특징 및 장점
 

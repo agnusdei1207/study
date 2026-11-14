@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 공정의 안전성과 가용성을 최우선으로 두고 제어 설비를 사이버 위협으로부터 보호하는 보안 체계.
 - 개념 : 발전, 전력, 상수도, 석유화학 등 국가 기반시설의 물리 공정을 감시하고 제어하는 **ICS** (Industrial Control System, 산업제어시스템)의 사이버 위협을 방어하는 체계. 주요 구성 장비는 SCADA(Supervisory Control and Data Acquisition, 감시제어 및 데이터 수집), DCS(Distributed Control System, 분산제어시스템), PLC(Programmable Logic Controller, 프로그램 가능 논리 제어기), RTU(Remote Terminal Unit, 원격 단말 장치).
 - 배경 및 필요성 : 폐쇄망으로 운영되던 공정 제어망이 스마트화와 원격 유지보수를 위해 IT망과 인터넷에 연결되면서, Stuxnet(2010), Industroyer(2016), 콜로니얼 파이프라인 랜섬웨어(2021) 등 사이버 공격이 실제 물리 피해로 이어짐이 확인되어 보안 체계가 필요해짐.
-- 주요 목적: 기반시설의 가용성(Availability)과 안전성(Safety) 최우선 보장, 제어 명령의 위변조 차단, IT와 OT(Operational Technology, 운영기술) 경계의 격리.
+- 주요 목적 : 기반시설의 가용성(Availability)과 안전성(Safety) 최우선 보장, 제어 명령의 위변조 차단, IT와 OT(Operational Technology, 운영기술) 경계의 격리.
 
 ## Ⅱ. 산업제어시스템(ICS) 보안의 특징 및 장점
 

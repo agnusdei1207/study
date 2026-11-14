@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 생성형 AI의 기획부터 폐기까지 기술 취약점과 법적 위험을 통제하는 국제 거버넌스 프레임워크.
 - 개념 : 조직이 생성형 AI 모델(**LLM** (Large Language Model) 포함)과 응용 서비스를 기획, 조달, 개발, 배포, 폐기하는 전 수명주기에서 기술 취약점, 개인정보 침해, 편향, 법적 규제 위험을 식별하고 통제하기 위한 **보안 거버넌스** 체계. 대표적으로 **NIST AI RMF** (NIST, National Institute of Standards and Technology, AI Risk Management Framework)와 **ISO/IEC 42001** (ISO, International Organization for Standardization / IEC, International Electrotechnical Commission 42001)이 있.
 - 배경 및 필요성 : 생성형 AI의 확산으로 생산성은 높아졌지만, **환각** (Hallucination), 저작권 소송, **딥페이크** (Deepfake) 악용, 적대적 공격 등 여러 위험이 함께 커져 국가와 국제 기구의 통합 기준 정립이 빨라졌.
-- 주요 목적: 신뢰할 수 있는 AI를 구현하고, EU AI Act(EU 인공지능법) 같은 규제에 선제 대응하여 사업 지속성과 규제 준수를 확보하는 것.
+- 주요 목적 : 신뢰할 수 있는 AI를 구현하고, EU AI Act(EU 인공지능법) 같은 규제에 선제 대응하여 사업 지속성과 규제 준수를 확보하는 것.
 
 ## Ⅱ. 생성형 AI 보안 가이드라인의 특징 및 장점
 

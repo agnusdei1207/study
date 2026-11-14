@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 에너지 효율 컴퓨팅은 칩부터 데이터센터 설비까지 전 계층을 함께 최적화해 와트당 성능을 높이는 공학 체계.
 - 개념 : 단위 전력당 연산 성능인 **와트당 성능** (Performance per Watt)을 높이기 위해 반도체 소자, 프로세서 구조, 시스템 소프트웨어, 데이터센터 전력·냉각 설비를 통합 최적화하는 **에너지 효율 컴퓨팅** (Energy-efficient Computing) 체계.
 - 배경 및 필요성 : AI(Artificial Intelligence) 워크로드 급증으로 데이터센터 전력 수요가 빠르게 늘고, 집적도 상승으로 칩 전체를 동시에 동작시킬 수 없는 **다크 실리콘** (Dark Silicon) 한계와 탄소 중립 규제가 겹치면서 전력 사용 자체가 관리 대상이 됨.
-- 주요 목적: 같은 전력으로 더 많은 연산 수행, 데이터센터 효율 지표 PUE(Power Usage Effectiveness) 개선, 열 설계 전력(TDP, Thermal Design Power) 한계 내 성능 유지.
+- 주요 목적 : 같은 전력으로 더 많은 연산 수행, 데이터센터 효율 지표 PUE(Power Usage Effectiveness) 개선, 열 설계 전력(TDP, Thermal Design Power) 한계 내 성능 유지.
 
 ## Ⅱ. 에너지 효율 컴퓨팅의 특징 및 장점
 

@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 웹의 REST 모델을 UDP 위의 4바이트 헤더로 옮겨 제약 환경 단말에 적용한 경량 응용 프로토콜.
 - 개념 : IETF(Internet Engineering Task Force)의 CoRE(Constrained RESTful Environments) 워킹그룹이 RFC 7252로 표준화한 제약 노드용 **경량 응용 프로토콜** (CoAP, Constrained Application Protocol).
 - 배경 및 필요성 : HTTP(Hypertext Transfer Protocol)와 TCP(Transmission Control Protocol) 스택은 연결 설정과 텍스트 헤더, 연결 유지 비용이 커서 배터리 동작 소형 센서의 전력 예산을 초과. 웹과 같은 설계 모델을 유지하면서 전송 비용만 줄이는 수단이 필요.
-- 주요 목적: REST 인터페이스의 재사용, 최소 전력 송신, 웹 서비스와의 게이트웨이 연동.
+- 주요 목적 : REST 인터페이스의 재사용, 최소 전력 송신, 웹 서비스와의 게이트웨이 연동.
 
 ## Ⅱ. CoAP의 특징 및 장점
 

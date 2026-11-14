@@ -23,7 +23,7 @@ extra:
 - 개념 : 국산 소프트웨어의 품질을 공인 시험기관이 종합 시험·평가하여 등급으로 공식 보증하는 국가 품질인증 제도 (**GS 인증**, Good Software Certification).
 - 법적 근거 : **소프트웨어진흥법**의 소프트웨어 품질인증 제도 규정.
 - 시험기관 : **TTA** (한국정보통신기술협회, Telecommunications Technology Association)와 **KTL** (한국산업기술시험원, Korea Testing Laboratory)의 시험·심사 수행.
-- 주요 목적: 국산 소프트웨어의 품질 신뢰성 제고와 공공 조달 판로의 지원.
+- 주요 목적 : 국산 소프트웨어의 품질 신뢰성 제고와 공공 조달 판로의 지원.
 
 ## Ⅱ. GS 인증의 특징 및 장점
 
