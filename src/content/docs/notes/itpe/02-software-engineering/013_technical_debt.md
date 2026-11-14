@@ -36,8 +36,8 @@ extra:
 ## Ⅲ. 기술 부채의 구조 (흐름)
 
 - 핵심 요약 : 식별→추정→우선순위→상환·수용→재평가의 순환과 4분면별 대응으로 운영.
-- **SQALE** (Software Quality Assessment based on Lifecycle Expectations) : 소스 코드 품질을 생애주기 비용 관점에서 정량 평가하는 방법론.
-- **품질 게이트** (Quality Gate) : 정해진 품질 기준 통과를 다음 단계 진행 조건으로 두는 차단 기준.
+- SQALE (Software Quality Assessment based on Lifecycle Expectations) : 소스 코드 품질을 생애주기 비용 관점에서 정량 평가하는 방법론.
+- 품질 게이트 (Quality Gate) : 정해진 품질 기준 통과를 다음 단계 진행 조건으로 두는 차단 기준.
 
 ```text
 [ 기술 부채 관리 흐름 ]

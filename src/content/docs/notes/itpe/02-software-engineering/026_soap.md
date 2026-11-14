@@ -19,7 +19,7 @@ extra:
 ## Ⅰ. SOAP의 개요
 
 - 핵심 요약 : SOAP은 XML 기반 봉투 메시지의 구조와 교환 규칙을 표준화해 이기종 시스템 간 서비스 호출을 지원하는 프로토콜.
-- 개념 : W3C(World Wide Web Consortium) 표준인 **SOAP** (Simple Object Access Protocol)은 **XML** (Extensible Markup Language) 메시지를 **봉투** (Envelope) 구조로 감싸 교환하는 웹 서비스 메시징 프로토콜.
+- 개념 : W3C(World Wide Web Consortium) 표준인 SOAP (Simple Object Access Protocol)은 XML (Extensible Markup Language) 메시지를 봉투 (Envelope) 구조로 감싸 교환하는 웹 서비스 메시징 프로토콜.
 - 배경 및 필요성 : 플랫폼·언어가 다른 기관 간 연계에서 메시지 형식·오류 처리·보안의 공통 표준 부재로 상호운용 비용 증가.
 - 주요 목적 : 구조화된 메시지 교환 표준으로 이기종 시스템의 상호운용성과 웹 서비스 생태계 결합 확보.
 
@@ -27,11 +27,11 @@ extra:
 
 - 핵심 요약 : 봉투 구조·전송 독립성·계약 기반·표준 확장이 기업 간 연계의 신뢰성·감사 요구를 충족.
 
-1. 봉투 기반 메시지 : Envelope 안의 Header(메타데이터)와 Body(본문) 분리 → 보안·트랜잭션 정보의 표준 자리 확보.
+1. 봉투 기반 메시지 : Envelope 안의 Header (메타데이터)와 Body (본문) 분리 → 보안·트랜잭션 정보의 표준 자리 확보.
 2. 전송 독립성 : HTTP·SMTP 등 다양한 프로토콜 바인딩 → 전송 수단 교체에도 메시지 계약 유지.
-3. 계약 기반 개발 : **WSDL** (Web Services Description Language)이 연산·메시지·바인딩을 기술 → 클라이언트 코드 자동 생성·상호운용 지원.
-4. 표준 확장 체계 : **WS-Security** (Web Services Security) 등 WS-* 표준군으로 메시지 서명·암호화·신뢰 전달 → 기업 간 보안 요구 대응.
-5. 표준 오류 형식 : **Fault** (오류 보고 요소)가 오류 코드·사유를 구조화 → 구현체에 무관한 예외 처리.
+3. 계약 기반 개발 : WSDL (Web Services Description Language)이 연산·메시지·바인딩을 기술 → 클라이언트 코드 자동 생성·상호운용 지원.
+4. 표준 확장 체계 : WS-Security (Web Services Security) 등 WS-* 표준군으로 메시지 서명·암호화·신뢰 전달 → 기업 간 보안 요구 대응.
+5. 표준 오류 형식 : Fault (오류 보고 요소)가 오류 코드·사유를 구조화 → 구현체에 무관한 예외 처리.
 
 ## Ⅲ. SOAP의 구조 (흐름)
 
