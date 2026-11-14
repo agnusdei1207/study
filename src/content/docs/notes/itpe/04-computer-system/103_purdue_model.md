@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 현장 물리 공정부터 기업 비즈니스망까지 여섯 계층으로 나누고 계층 사이 통신 경계를 정의한 산업 제어 참조 모델.
 - 개념 : 공장 자동화, 발전, 정유 등 **산업제어시스템** (ICS, Industrial Control System) 환경을 Level 0부터 Level 5까지 구조화하고 계층 간 신뢰 경계를 정의하는 **퍼듀 모델** (Purdue Model)로, ISA-95의 기업·제조 통합 체계를 기반으로 함.
 - 배경 및 필요성 : 폐쇄망으로 운영되던 제어 설비가 스마트 팩토리, 산업용 사물인터넷(IIoT, Industrial Internet of Things), 클라우드 분석과 연결되며 외부 위협에 노출되어 계층적 방어 기준이 필요.
-- 주요 목적 : 제어망(OT, Operational Technology)과 업무망(IT, Information Technology) 사이 경계 수립, 산업용 DMZ를 통한 위험 격리, 실시간 제어의 무결성과 공정 가용성 보장.
+- 주요 목적: 제어망(OT, Operational Technology)과 업무망(IT, Information Technology) 사이 경계 수립, 산업용 DMZ를 통한 위험 격리, 실시간 제어의 무결성과 공정 가용성 보장.
 
 ## Ⅱ. 퍼듀 모델의 특징 및 장점
 

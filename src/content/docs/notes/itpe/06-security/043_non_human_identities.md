@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 사람이 아닌 서비스와 머신이 쓰는 자격 정보를 발견, 보호, 폐기하는 수명주기 관리 체계.
 - 개념 : 사람 사용자가 아닌 머신, 애플리케이션, 서비스 계정, API(Application Programming Interface) 키, OAuth(Open Authorization) 토큰, 비밀키, CI(Continuous Integration)/CD(Continuous Delivery) 러너 등 시스템 간 통신과 자원 접근을 위해 발급되는 **머신 신원** (Machine Identity).
 - 배경 및 필요성 : 클라우드 네이티브와 MSA(Microservice Architecture), 자동화 파이프라인이 늘면서 비인간 신원의 수가 사람 계정을 크게 웃돌고, MFA(Multi-Factor Authentication)를 적용하기 어려운 데다 수명주기 관리가 부재해 주요 공격 표면으로 떠오름.
-- 주요 목적 : 머신 계정의 가시성 확보, 과도한 권한 회수, 정적 비밀키 제거와 신원 수명주기 자동화.
+- 주요 목적: 머신 계정의 가시성 확보, 과도한 권한 회수, 정적 비밀키 제거와 신원 수명주기 자동화.
 
 ## Ⅱ. 비인간 신원(NHI, Non-Human Identities)의 특징 및 장점
 

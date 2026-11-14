@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 자율 시스템 내부에서 링크 상태를 전파해 동일한 지도를 만들고 최단 경로를 계산하는 대규모 내부망용 라우팅 프로토콜.
 - 개념 : 하나의 자율 시스템(AS, Autonomous System) 내에서 링크 상태 정보를 플러딩하고 다익스트라 알고리즘으로 최단 경로를 계산하는 **OSPF** (Open Shortest Path First) 라우팅 프로토콜이며, IETF(Internet Engineering Task Force) 표준의 내부 게이트웨이 프로토콜(IGP, Interior Gateway Protocol)로 RFC 2328에 정의됨.
 - 배경 및 필요성 : 거리 벡터(Distance-Vector) 방식의 RIP(Routing Information Protocol)는 최대 15홉 제한, 느린 수렴, 대역폭 무시의 한계로 수백 대 이상의 대형 망을 감당하기 어려움.
-- 주요 목적 : 루프 없는 최단 경로 계산, 링크 변화 시의 빠른 재수렴, 영역 분할 기반의 확장성 확보.
+- 주요 목적: 루프 없는 최단 경로 계산, 링크 변화 시의 빠른 재수렴, 영역 분할 기반의 확장성 확보.
 
 ## Ⅱ. OSPF의 특징 및 장점
 

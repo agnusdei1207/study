@@ -26,7 +26,7 @@ extra:
 - 핵심 요약 : **GPGPU** (General-Purpose computing on GPU)는 GPU의 대규모 병렬 연산 구조를 그래픽 외 범용 수치 계산에 활용하는 컴퓨팅 방식.
 - 개념 : 그래픽 처리용으로 발전한 GPU(Graphics Processing Unit)의 다수 연산 코어를 과학 기술 계산, 딥러닝, 영상 분석 등 범용 연산에 활용하는 방식과 그 프로그래밍 모델.
 - 배경 및 필요성 : 소수의 고성능 코어로 지연 시간을 줄이는 CPU(Central Processing Unit)만으로 대규모 행렬 연산 중심의 AI(Artificial Intelligence) 워크로드를 감당하기 어려움.
-- 주요 목적 : 데이터 병렬성에 기반한 연산 처리량 극대화와 와트당 연산 효율 향상.
+- 주요 목적: 데이터 병렬성에 기반한 연산 처리량 극대화와 와트당 연산 효율 향상.
 
 ## Ⅱ. GPGPU의 특징 및 장점
 

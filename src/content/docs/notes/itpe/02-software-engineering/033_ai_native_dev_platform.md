@@ -21,7 +21,7 @@ extra:
 - 핵심 요약 : AI 네이티브 개발 플랫폼은 AI 코딩 어시스턴트·에이전틱 개발 환경을 개발 생명주기 전 단계에 통합해 생산성과 품질·통제를 함께 확보하는 개발 체계.
 - 개념 : 코드 작성을 지원하는 **AI 코딩 어시스턴트** (AI Coding Assistant)와 작업 계획·도구 호출·자체 검증을 반복하는 **에이전틱 개발 환경** (agentic development environment)에 인공지능(AI, Artificial Intelligence) 모델인 대규모 언어 모델(LLM, Large Language Model)과 도구·데이터를 결합해 소프트웨어 개발생명주기(SDLC, Software Development Life Cycle) 전 주기를 지원하는 개발 체계가 **AI 네이티브 개발 플랫폼** (AI-Native Development Platform)임.
 - 배경 및 필요성 : 통합 개발 환경(IDE, Integrated Development Environment)의 코드 완성 수준 도구만 부분 도입하면 검증·통합·보안·비용 통제가 개인 설정에 의존하는 상태가 되고, 조직 차원의 품질 기준 유지가 어려움.
-- 주요 목적 : 개발 생산성 향상과 소프트웨어 품질·보안·비용 통제의 동시 실현을 통한 조직 수준의 개발 공정 혁신.
+- 주요 목적: 개발 생산성 향상과 소프트웨어 품질·보안·비용 통제의 동시 실현을 통한 조직 수준의 개발 공정 혁신.
 
 ## Ⅱ. AI 네이티브 개발 플랫폼의 특징 및 장점
 

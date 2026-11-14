@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 상용 5G의 한계를 AI 무선 제어와 경량 단말, 위성 연동으로 보완하는 3GPP 고도화 단계.
 - 개념 : 3GPP(3rd Generation Partnership Project) Release 18부터 시작되는 5G 규격의 고도화 단계인 **5G-Advanced**. Release 18·19를 거치며 6G로 이어지는 가교 역할을 수행함.
 - 배경 및 필요성 : 초기 5G는 상향 용량 부족, 저가 IoT(Internet of Things) 단말의 대량 수용 한계, 기지국 전력 부담이 드러났고, XR(Extended Reality)과 지능형 공장 같은 신규 서비스의 규격적 뒷받침이 요구됨.
-- 주요 목적 :
+- 주요 목적:
   1. 무선 인터페이스의 지능화
   2. 경량 IoT 생태계의 확장
   3. 위성을 포함한 커버리지 확장

@@ -23,7 +23,7 @@ extra:
 - 핵심 요약 : 충돌 검출이 불가능한 무선 매체에서 송신 전 감지와 임의 대기로 충돌을 사전에 회피하는 무선랜 접근 제어 방식.
 - 개념 : 데이터 전송 전 채널을 감지하고 대기 시간을 두어 충돌을 피하는 **CSMA/CA** (Carrier Sense Multiple Access with Collision Avoidance) 방식으로, 무선랜(IEEE(Institute of Electrical and Electronics Engineers) 802.11)의 매체 접근 제어(MAC, Medium Access Control) 계층의 동작 방식.
 - 배경 및 필요성 : 유선 이더넷의 **CSMA/CD** (Carrier Sense Multiple Access with Collision Detection)는 송신 신호와 수신 신호의 비교로 충돌을 즉시 검출하지만, 무선에서는 자기 송신 신호가 수신 신호보다 훨씬 강해 검출이 사실상 불가능함.
-- 주요 목적 : 공유 무선 채널의 충돌 확률 최소화, **숨은 노드** (Hidden Node, 서로를 감지하지 못하는 단말 간 충돌) 문제 완화, 다수 단말의 공정한 접속 기회 보장.
+- 주요 목적: 공유 무선 채널의 충돌 확률 최소화, **숨은 노드** (Hidden Node, 서로를 감지하지 못하는 단말 간 충돌) 문제 완화, 다수 단말의 공정한 접속 기회 보장.
 
 ## Ⅱ. CSMA/CA의 특징 및 장점
 

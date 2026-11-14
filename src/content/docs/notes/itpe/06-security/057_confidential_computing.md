@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 메모리에서 연산 중인 데이터를 하드웨어 기반 신뢰 실행 환경에 격리해 운영자도 평문을 볼 수 없게 하는 컴퓨팅 기술.
 - 개념 : 데이터가 CPU(Central Processing Unit)에서 연산되는 **사용 중 데이터** (In-Use Data) 상태를 하드웨어 기반 **신뢰 실행 환경** (TEE, Trusted Execution Environment)에 격리·암호화하여, 클라우드 운영자와 호스트 OS(Operating System) 관리자도 평문에 접근하지 못하게 하는 기술 (**기밀 컴퓨팅**, Confidential Computing).
 - 배경 및 필요성 : 저장 데이터와 전송 데이터는 TLS(Transport Layer Security)와 AES(Advanced Encryption Standard)로 보호되지만, 연산을 위해 평문으로 메모리에 올라가는 구간은 관리자 권한 탈취나 콜드부트 공격에 노출되는 보안 공백으로 남음 → 이 공백을 하드웨어로 메우기 위해 등장.
-- 주요 목적 : 연산 중 데이터의 하드웨어 수준 기밀성과 무결성을 보장하고, 제3자 퍼블릭 클라우드를 **제로트러스트** (Zero Trust) 환경으로 운용.
+- 주요 목적: 연산 중 데이터의 하드웨어 수준 기밀성과 무결성을 보장하고, 제3자 퍼블릭 클라우드를 **제로트러스트** (Zero Trust) 환경으로 운용.
 
 ## Ⅱ. 기밀 컴퓨팅의 특징 및 장점
 

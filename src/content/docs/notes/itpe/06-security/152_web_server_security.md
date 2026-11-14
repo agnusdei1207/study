@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 인터넷에 노출된 웹 서버의 설정과 실행 환경을 강화해 공격 표면을 줄이는 계층형 보안 체계.
 - 개념 : 인터넷에서 HTTP(Hypertext Transfer Protocol)·HTTPS(Hypertext Transfer Protocol Secure) 요청을 가장 먼저 처리하는 웹 서버(Apache, Nginx, IIS 등)의 운영체제, 서버 데몬, 프록시 계층을 **서버 하드닝** (Server Hardening, 불필요한 기능을 걷어내고 기본 설정을 강화하는 작업)과 접근 통제로 보호하는 체계(**웹 서버 보안**).
 - 배경 및 필요성 : 웹 서버는 80·443 포트를 상시 개방해야 하므로 외부 공격 표면을 없앨 수 없고, 이 표면을 통한 침해는 **웹쉘** (Web Shell) 업로드, 권한 상승, 서비스 중단으로 이어져 피해가 크다. 그래서 서버 데몬부터 방화벽까지 계층마다 공격 면을 줄이는 방어가 필요.
-- 주요 목적 : 불필요한 서비스와 공격 표면을 제거하고, 웹쉘 실행과 권한 상승을 차단하며, 웹 방화벽(WAF, Web Application Firewall)으로 SQL 인젝션(SQLi, SQL Injection)과 XSS(Cross-Site Scripting)를 걸러내어 웹 서비스의 기밀성·무결성·가용성을 확보.
+- 주요 목적: 불필요한 서비스와 공격 표면을 제거하고, 웹쉘 실행과 권한 상승을 차단하며, 웹 방화벽(WAF, Web Application Firewall)으로 SQL 인젝션(SQLi, SQL Injection)과 XSS(Cross-Site Scripting)를 걸러내어 웹 서비스의 기밀성·무결성·가용성을 확보.
 
 ## Ⅱ. 웹 서버 보안의 특징 및 장점
 

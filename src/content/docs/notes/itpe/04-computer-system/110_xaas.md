@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 클라우드의 서비스형 모델을 IT 전 영역과 산업 자산으로 확장해, 소유 대신 구독으로 제공하는 체계.
 - 개념 : 인프라·플랫폼·소프트웨어의 서비스화 모델을 출발점으로, 모든 정보기술 자원과 산업 자산을 구독형 서비스로 제공하는 **XaaS** (Everything as a Service, 모든 것의 서비스화) 체계.
 - 배경 및 필요성 : 하드웨어 구축의 **초기 자본 지출** (CapEx, Capital Expenditure) 부담, 기술 교체 주기 단축, 소유보다 활용을 중시하는 구독 경제 확산.
-- 주요 목적 : 비용 구조의 운영 지출 전환, API(Application Programming Interface) 조합을 통한 서비스 출시 속도 향상.
+- 주요 목적: 비용 구조의 운영 지출 전환, API(Application Programming Interface) 조합을 통한 서비스 출시 속도 향상.
 
 ## Ⅱ. XaaS의 특징 및 장점
 

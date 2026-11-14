@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 클라우드 의존 없이 PC 안에서 신경망 추론을 실행하기 위해 일정 성능 이상의 NPU 탑재를 요구하는 온디바이스 AI PC 표준.
 - 개념 : 마이크로소프트가 정의한 AI PC 규격인 **Copilot+ PC**의 핵심 요건으로, 신경망 연산 전용 가속기인 **NPU** (Neural Processing Unit)의 성능이 **TOPS** (Trillions of Operations Per Second, 초당 조 단위 연산 횟수) 40 이상일 것을 요구하는 하드웨어 기준.
 - 배경 및 필요성 : AI 기능을 클라우드에만 두면 개인정보 전송, 네트워크 지연, 서버 운영 비용이 상시 부담이 되므로 단말 안에서 추론을 끝내는 **온디바이스 AI** (On-device AI)가 필요.
-- 주요 목적 : 배터리 환경에서의 성능 대비 전력 효율(Performance-per-Watt) 확보, Windows AI 기능의 로컬 가속, 데이터 단말 밖 반출의 최소화.
+- 주요 목적: 배터리 환경에서의 성능 대비 전력 효율(Performance-per-Watt) 확보, Windows AI 기능의 로컬 가속, 데이터 단말 밖 반출의 최소화.
 
 ## Ⅱ. Copilot+ PC NPU의 특징 및 장점
 

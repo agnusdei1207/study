@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 생성형 AI 트래픽의 감시와 통제를 한 아키텍처로 묶은 AI 보안 통합 계층.
 - 개념 : 조직이 사용하는 AI 모델과 거대언어모델(LLM, Large Language Model) 환경을 보호하기 위해 프롬프트 필터링, 데이터 유출 방지(DLP, Data Loss Prevention), 모델 통제 정책, AI 자산 관리, 위협 모니터링을 단일 구조로 제공하는 **AI 보안 플랫폼** (AI Security Platform).
 - 배경 및 필요성 : 외부 상용 모델, 사내 오픈소스 LLM, 비인가 SaaS AI가 혼재해 정책과 가시성이 파편화되므로, 가트너(Gartner)가 제시한 **AI TRiSM** (AI Trust, Risk and Security Management)을 실제 기술로 구현할 플랫폼이 필요해짐.
-- 주요 목적 : AI 트래픽에 대한 **가시성** (Visibility) 확보, 기밀 데이터의 외부 유출 차단, 악성 프롬프트의 실시간 필터링, 전사 AI 거버넌스 체계화.
+- 주요 목적: AI 트래픽에 대한 **가시성** (Visibility) 확보, 기밀 데이터의 외부 유출 차단, 악성 프롬프트의 실시간 필터링, 전사 AI 거버넌스 체계화.
 
 ## Ⅱ. AI 보안 플랫폼 (AI Security Platform)의 특징 및 장점
 

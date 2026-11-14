@@ -23,7 +23,7 @@ extra:
 - 핵심 요약 : 사용자·그룹·자원 정보를 계층형 디렉터리에 모아 조회와 중앙 집중 인증을 제공하는 개방형 프로토콜.
 - 개념 : 네트워크에 분산된 사용자, 그룹, 컴퓨터 자원, 조직 구조 등의 디렉터리 정보를 계층형 트리로 저장하고, TCP(Transmission Control Protocol)/IP(Internet Protocol) 위에서 검색·조회와 인증을 제공하는 **경량 디렉터리 접근 프로토콜** (LDAP, Lightweight Directory Access Protocol)로, RFC(Request for Comments) 4510에 정의된 개방형 표준.
 - 배경 및 필요성 : OSI(Open Systems Interconnection) 7계층 기반의 X.500 DAP(Directory Access Protocol)는 프로토콜 스택이 무거워 일반 유닉스와 윈도우 네트워크에서 운용하기 어려웠으므로, TCP/IP 위에서 가볍게 구현할 프로토콜이 요구.
-- 주요 목적 : 사원 정보, 권한, 시스템 계정을 단일 디렉터리에 통합하여 **싱글 사인온** (SSO, Single Sign-On)과 중앙 집중 접근 통제를 실현.
+- 주요 목적: 사원 정보, 권한, 시스템 계정을 단일 디렉터리에 통합하여 **싱글 사인온** (SSO, Single Sign-On)과 중앙 집중 접근 통제를 실현.
 
 ## Ⅱ. LDAP의 특징 및 장점
 

@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 클라우드 서비스 제공자에 대한 의존에서 비롯되는 운영·기술·법적·재무 위험을 제3자 리스크 관리 방식으로 통제하는 거버넌스 활동.
 - 개념 : **CSP** (Cloud Service Provider, 클라우드 서비스 제공자)의 장애, 보안 사고, 정책·단가 일방 변경, 서비스 종료 같은 제3자 의존 위험을 식별·평가·완화·감시하는 활동으로 제3자 리스크 관리인 **TPRM** (Third-Party Risk Management)의 클라우드 특화 영역.
 - 배경 및 필요성 : 소수 대형 CSP로 업무가 집중되며 단일 CSP 장애가 산업 전반으로 번지는 집중 위험이 커지고, 유럽의 DORA(Digital Operational Resilience Act) 같은 디지털 운영 복원력 규제와 국외 데이터 법 집행 이슈가 동시에 대두.
-- 주요 목적 : 공급망 종속의 가시화, **벤더 락인** (Vendor Lock-in) 전환 비용의 사전 산정, 비즈니스 연속성 계획(BCP, Business Continuity Plan)과 출구 가능성의 상시 확보.
+- 주요 목적: 공급망 종속의 가시화, **벤더 락인** (Vendor Lock-in) 전환 비용의 사전 산정, 비즈니스 연속성 계획(BCP, Business Continuity Plan)과 출구 가능성의 상시 확보.
 
 ## Ⅱ. CSP 리스크 관리의 특징 및 장점
 

@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 이기종 보안 도구의 경보를 하나의 워크플로우로 묶어 침해사고 대응을 자동화하는 보안 관제 플랫폼.
 - 개념 : SIEM(Security Information and Event Management), EDR(Endpoint Detection and Response), 방화벽, CTI(Cyber Threat Intelligence) 등 이기종 보안 솔루션을 하나의 흐름으로 잇는 **보안 오케스트레이션** (Security Orchestration)과, 사전에 정의된 **플레이북** (Playbook)에 따라 사고를 분석·차단·대응하는 **자동 대응** (Automated Response)을 결합한 관제 플랫폼.
 - 배경 및 필요성 : 하루 대량의 보안 경보로 인한 보안관제센터(SOC, Security Operations Center)의 경보 피로, 보안 인력 부족, 수작업 대응 지연이 겹쳐 평균 탐지 시간(MTTD, Mean Time to Detect)과 평균 복구 시간(MTTR, Mean Time to Repair)이 길어지므로 도입이 요구됨.
-- 주요 목적 : 보안 운영 효율을 높이고, 탐지부터 격리까지 걸리는 시간을 줄이며, 관제 업무를 표준화해 대응 품질을 일정하게 유지하는 것.
+- 주요 목적: 보안 운영 효율을 높이고, 탐지부터 격리까지 걸리는 시간을 줄이며, 관제 업무를 표준화해 대응 품질을 일정하게 유지하는 것.
 
 ## Ⅱ. SOAR(보안 오케스트레이션·자동화·대응)의 특징 및 장점
 

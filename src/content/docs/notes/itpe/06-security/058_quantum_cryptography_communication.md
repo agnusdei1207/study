@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 양자역학의 물리 법칙으로 도청을 탐지하고 안전한 비밀키를 분배하는 차세대 통신 보안 기술.
 - 개념 : 단일 광자의 양자 상태와 측정 특성 등 양자역학의 물리 법칙을 활용해, 통신 채널에서 도청 흔적을 드러내고 송수신자 사이에 비밀키를 분배·전송하는 보안 통신 기술 (**양자암호통신**, Quantum Cryptography Communication).
 - 배경 및 필요성 : 양자 컴퓨팅의 발전으로 RSA(Rivest-Shamir-Adleman)와 ECC(Elliptic Curve Cryptography) 같은 **공개키 암호** (Public-Key Cryptography)가 위협받을 가능성이 커짐에 따라, 수학적 난제가 아닌 물리 법칙에 근거한 통신 보안 기반의 필요성 대두.
-- 주요 목적 : 도청 시도의 탐지 가능성 확보, 국가 백본망과 금융 핵심 전송망의 장기 기밀성 확보, 이를 통한 **정보이론적 안전성** (Information-Theoretic Security) 실현.
+- 주요 목적: 도청 시도의 탐지 가능성 확보, 국가 백본망과 금융 핵심 전송망의 장기 기밀성 확보, 이를 통한 **정보이론적 안전성** (Information-Theoretic Security) 실현.
 
 ## Ⅱ. 양자암호통신의 특징 및 장점
 

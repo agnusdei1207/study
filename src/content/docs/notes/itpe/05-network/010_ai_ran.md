@@ -23,7 +23,7 @@ extra:
 - 핵심 요약 : 무선 접속망의 신호 처리·스케줄링·자원 제어에 AI를 적용하고 기지국 컴퓨팅을 범용 AI 인프라와 통합하는 구조.
 - 개념 : 무선 접속망(RAN, Radio Access Network)의 물리 계층 신호 처리와 무선 자원 제어에 인공지능(AI, Artificial Intelligence)과 머신러닝(ML, Machine Learning)을 내장하고, 기지국을 범용 AI 컴퓨팅 플랫폼과 통합한 **AI-RAN** (Artificial Intelligence-RAN) 아키텍처.
 - 배경 및 필요성 : 대규모 안테나(Massive MIMO, Multiple-Input Multiple-Output)와 다중 빔포밍으로 무선 파라미터가 폭증해 고정 알고리즘의 최적화 한계가 드러났고, 통신 전용으로 쓰이던 기지국 자원의 유휴 손실도 문제로 부상됨.
-- 주요 목적 : 주파수 효율 향상, 기지국 에너지 소비 절감, 가상화 무선 접속망(vRAN, virtualized RAN)과의 인프라 공유를 통한 총소유비용(**TCO**, Total Cost of Ownership) 절감.
+- 주요 목적: 주파수 효율 향상, 기지국 에너지 소비 절감, 가상화 무선 접속망(vRAN, virtualized RAN)과의 인프라 공유를 통한 총소유비용(**TCO**, Total Cost of Ownership) 절감.
 
 ## Ⅱ. AI-RAN의 특징 및 장점
 

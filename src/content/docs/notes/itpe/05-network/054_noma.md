@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 같은 시간·주파수 자원을 전력이나 코드의 차이로 겹쳐 쓰게 하여 주파수 효율과 접속 밀도를 높이는 다중 접속 방식.
 - 개념 : 동일 시간·주파수 자원 위에 복수 사용자의 신호를 비직교로 중첩 전송하고 수신단에서 분리하는 **비직교 다중 접속** (NOMA, Non-Orthogonal Multiple Access). 다중화 축은 전력 도메인과 코드 도메인으로 나뉨.
 - 배경 및 필요성 : OFDMA(Orthogonal Frequency Division Multiple Access) 같은 **직교 다중 접속** (OMA, Orthogonal Multiple Access)은 자원 분할로 간섭을 제거하는 구조라 주파수 효율이 샤논 한계(Shannon Limit)에 근접하고 접속 밀도 확장에 한계가 나타남.
-- 주요 목적 : 대역폭 확장 없는 주파수 효율 향상, 대규모 사물 접속(mMTC, massive Machine Type Communication) 수용, 셀 가장자리 사용자의 전송 기회 보장.
+- 주요 목적: 대역폭 확장 없는 주파수 효율 향상, 대규모 사물 접속(mMTC, massive Machine Type Communication) 수용, 셀 가장자리 사용자의 전송 기회 보장.
 
 ## Ⅱ. NOMA의 특징 및 장점
 

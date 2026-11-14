@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 열린 포트 없이 커널 패킷 필터를 엿보다가 특정 패킷을 받으면 원격 셸을 여는 스텔스 백도어.
 - 개념 : 리눅스 커널의 패킷 필터인 **BPF** (Berkeley Packet Filter)와 **원시 소켓** (Raw Socket)을 악용하여, 평소 리스닝 포트를 열지 않고 잠복하다가 사전에 정의된 **매직 패킷** (Magic Packet)을 수신하면 **리버스 셸** (Reverse Shell)을 여는 리눅스 백도어 (BPFdoor).
 - 배경 및 필요성 : 통신, 금융, 공공 인프라를 노린 **고도 표적 공격** (APT, Advanced Persistent Threat)에 쓰인 것으로 보고되었고, 포트 스캔과 방화벽 점검을 우회해 장기간 잠복하는 사례가 있어 탐지 역량이 필요해짐.
-- 주요 목적 : 방화벽 우회 메커니즘을 이해하고, 커널 수준의 감시 체계와 eBPF(extended Berkeley Packet Filter) 기반 탐지 역량을 확보.
+- 주요 목적: 방화벽 우회 메커니즘을 이해하고, 커널 수준의 감시 체계와 eBPF(extended Berkeley Packet Filter) 기반 탐지 역량을 확보.
 
 ## Ⅱ. BPFdoor의 특징 및 장점
 

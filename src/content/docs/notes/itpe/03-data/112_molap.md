@@ -23,7 +23,7 @@ extra:
 - 핵심 요약 : 다차원 배열 큐브에 데이터를 미리 집계해 두어 분석 질의에 즉시 응답하는 OLAP 기술.
 - 개념 : 데이터를 다차원 배열 구조의 큐브에 저장하고 차원 조합별 집계를 미리 계산해 두는 **MOLAP** (Multidimensional Online Analytical Processing, 다차원 온라인 분석 처리).
 - 배경 및 필요성 : 관계형 OLAP(ROLAP, Relational Online Analytical Processing)은 구조적 질의 언어(SQL, Structured Query Language)로 집계를 실행 시점에 계산하므로, 대용량 집계에서 응답 지연이 커져 사전 집계 방식이 필요해짐.
-- 주요 목적 : 여러 차원에 걸친 분석 질의를 배열 접근 수준(O(1))으로 빠르게 응답.
+- 주요 목적: 여러 차원에 걸친 분석 질의를 배열 접근 수준(O(1))으로 빠르게 응답.
 
 ## Ⅱ. MOLAP의 특징 및 장점
 

@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 학습부터 추론, 에이전트 도구 실행까지 이어지는 전 주기에서 생기는 적대적 입력과 비결정적 출력이 만드는 새로운 공격 표면.
 - 개념 : **LLM 보안 위험** (대규모 언어 모델과 **생성형 AI** (Generative AI, 입력에 따라 텍스트·코드 등을 만들어 내는 AI) 애플리케이션의 학습·파인튜닝·추론·도구 실행 전 주기에서 발생하는 적대적 공격, 데이터 침해, 모델 탈취, 비결정적 이상 출력의 총칭).
 - 배경 및 필요성 : 기업 서비스에 **RAG** (Retrieval-Augmented Generation, 외부 문서를 검색해 답변 근거로 덧붙이는 기법)와 자율 에이전트 도입이 늘면서, 방화벽·WAF(Web Application Firewall)·정적 분석 같은 전통적 통제로는 막기 어려운 새 **공격 표면** (Attack Surface)이 생김.
-- 주요 목적 : OWASP(Open Worldwide Application Security Project)의 **OWASP Top 10 for LLM**과 AI 시스템 대상 적대적 위협 지식 체계인 **MITRE ATLAS** (Adversarial Threat Landscape for Artificial-Intelligence Systems)를 기준으로 취약점을 식별하고, 비신뢰 입력을 격리하며, 민감 정보 유출을 막는 것.
+- 주요 목적: OWASP(Open Worldwide Application Security Project)의 **OWASP Top 10 for LLM**과 AI 시스템 대상 적대적 위협 지식 체계인 **MITRE ATLAS** (Adversarial Threat Landscape for Artificial-Intelligence Systems)를 기준으로 취약점을 식별하고, 비신뢰 입력을 격리하며, 민감 정보 유출을 막는 것.
 
 ## Ⅱ. LLM(Large Language Model) 보안 위험의 특징 및 장점
 

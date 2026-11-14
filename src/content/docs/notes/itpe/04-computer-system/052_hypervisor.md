@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 물리 하드웨어를 추상화하여 여러 운영체제(OS, Operating System)를 **가상머신** (VM, Virtual Machine)에 나누어 격리 실행하는 **하이퍼바이저** (Hypervisor) 계층.
 - 개념 : 하나의 물리 호스트에서 CPU(Central Processing Unit)·메모리·스토리지·네트워크를 추상화하고 중재하여, 서로 다른 게스트 OS(Guest OS)를 가상머신 단위로 동시 구동하는 시스템 가상화 소프트웨어. 가상머신 모니터(VMM, Virtual Machine Monitor)라는 명칭도 함께 사용됨.
 - 배경 및 필요성 : 단일 서버·단일 운영체제 구조는 낮은 자원 이용률과 서버 증설에 따른 공간·전력 비용을 수반. 이 비용을 줄이는 하드웨어 공유 계층이 필요하며, 서비스형 인프라(IaaS, Infrastructure as a Service)의 토대가 되는 기술.
-- 주요 목적 : **서버 통합** (Server Consolidation)을 통한 하드웨어 활용률 향상, 가상머신 간 격리 확보, 스냅샷과 **실시간 이전** (Live Migration) 같은 운영 기능의 실현.
+- 주요 목적: **서버 통합** (Server Consolidation)을 통한 하드웨어 활용률 향상, 가상머신 간 격리 확보, 스냅샷과 **실시간 이전** (Live Migration) 같은 운영 기능의 실현.
 
 ## Ⅱ. 하이퍼바이저의 특징 및 장점
 

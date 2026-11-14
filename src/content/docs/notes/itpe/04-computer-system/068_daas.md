@@ -23,7 +23,7 @@ extra:
 - 핵심 요약 : 클라우드 제공자가 구독형 가상 데스크톱을 대신 구축·운영해 주는 관리형 서비스.
 - 개념 : 클라우드 서비스 제공자(CSP, Cloud Service Provider)가 호스트 서버 위의 사용자별 가상 데스크톱을 운영하고 단말은 화면 전송만 받는 **서비스형 데스크톱** (DaaS, Desktop as a Service).
 - 배경 및 필요성 : 원격 근무와 BYOD(Bring Your Own Device) 확산으로 단말이 분산되면서 업무 데이터가 단말에 남는 유출 위험이 커짐. 데스크톱 환경을 중앙의 클라우드에 두고 화면만 내려보내는 구독형 모델이 대안으로 부상.
-- 주요 목적 : 초기 설비 투자인 **자본 지출** (CapEx, Capital Expenditure)을 사용량 기반 **운영 지출** (OpEx, Operating Expenditure)로 전환하고, 데이터를 중앙에 보관해 단말 분실·유출 위험을 낮추는 것.
+- 주요 목적: 초기 설비 투자인 **자본 지출** (CapEx, Capital Expenditure)을 사용량 기반 **운영 지출** (OpEx, Operating Expenditure)로 전환하고, 데이터를 중앙에 보관해 단말 분실·유출 위험을 낮추는 것.
 
 ## Ⅱ. DaaS의 특징 및 장점
 

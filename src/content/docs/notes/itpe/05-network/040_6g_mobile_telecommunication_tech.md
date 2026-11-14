@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 통신에 인공지능·감지·위성 연동을 결합한 2030년대 차세대 이동통신 기술.
 - 개념 : 지상 중심 통신을 넘어 인공지능 운영과 환경 감지, 지상·공중·우주를 잇는 **비지상망** (NTN, Non-Terrestrial Network) 환경을 수용하는 차세대 이동통신 기술인 **6G** (6th Generation)으로, ITU(International Telecommunication Union)의 **IMT-2030** (International Mobile Telecommunications-2030) 프레임워크가 국제 기준임.
 - 배경 및 필요성 : 5G(IMT-2020, International Mobile Telecommunications-2020)는 지상 기지국 중심의 커버리지와 수십 밀리초 실효 지연, 망 운영의 외부 AI 의존이라는 한계가 제기됨. 초실감 서비스와 디지털 트윈, 도심항공교통(UAM, Urban Air Mobility) 같은 2030년대 수요에 대응이 필요함.
-- 주요 목적 :
+- 주요 목적:
   1. 초대용량·초저지연 전송 성능의 확보
   2. 통신 신호 기반 감지 기능의 제공
   3. 3차원 무음영 커버리지의 실현

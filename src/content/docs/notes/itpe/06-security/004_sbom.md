@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 빌드에 포함된 구성 요소와 버전, 라이선스를 기계 판독 가능한 목록으로 명세해 공급망의 투명성을 확보하는 문서.
 - 개념 : 소프트웨어를 이루는 오픈소스 라이브러리, 상용 컴포넌트, 종속 모듈, 라이선스, 버전 정보를 표준 형식으로 적은 **소프트웨어 자재명세서** (SBOM, Software Bill of Materials).
 - 배경 및 필요성 : SolarWinds 사고, Log4j 취약점(Log4Shell), XZ Utils 백도어 사건처럼 **소프트웨어 공급망** (Supply Chain, 외부 구성 요소와 빌드·배포 과정 전체)을 노린 침해가 잇따르면서, 미국 행정명령 EO 14028이 연방 조달 소프트웨어에 SBOM 제출을 요구하는 등 제출 의무화 흐름이 확산됨.
-- 주요 목적 : 공급망 전 과정의 투명성 확보, 구성 요소 안의 **CVE** (Common Vulnerabilities and Exposures, 공개된 취약점 식별자)를 신속히 추적, 오픈소스 라이선스 위반 리스크 방지.
+- 주요 목적: 공급망 전 과정의 투명성 확보, 구성 요소 안의 **CVE** (Common Vulnerabilities and Exposures, 공개된 취약점 식별자)를 신속히 추적, 오픈소스 라이선스 위반 리스크 방지.
 
 ## Ⅱ. SBOM(Software Bill of Materials)의 특징 및 장점
 

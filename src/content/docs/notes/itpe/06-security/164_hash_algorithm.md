@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 임의 길이 입력을 고정 길이 값으로 바꾸며, 되돌리기와 충돌 찾기가 어려운 일방향 암호 함수.
 - 개념 : 가변 길이 데이터를 고정 길이의 비트열인 **해시값** (Digest)으로 변환하며, 역연산과 충돌 생성이 계산적으로 불가능하도록 설계된 **일방향 암호 해시 함수** (One-Way Cryptographic Hash Function). 대표 계열은 MD5(Message Digest 5)와 SHA(Secure Hash Algorithm) 계열계열.
 - 배경 및 필요성 : 원본을 노출하지 않고 무결성을 빠르게 확인해야 하는 요구에서 출발하여, 파일 검증, 전자서명, 비밀번호 저장, 블록체인 연결 구조의 기반으로 사용.
-- 주요 목적 : 입력의 1비트 변경이 출력 전체를 바꾸는 특성으로 데이터 무결성을 보증하고, **HMAC** (Hash-based Message Authentication Code)과 전자서명의 기반을 제공.
+- 주요 목적: 입력의 1비트 변경이 출력 전체를 바꾸는 특성으로 데이터 무결성을 보증하고, **HMAC** (Hash-based Message Authentication Code)과 전자서명의 기반을 제공.
 
 ## Ⅱ. 해시 알고리즘(Hash Algorithm)의 특징 및 장점
 

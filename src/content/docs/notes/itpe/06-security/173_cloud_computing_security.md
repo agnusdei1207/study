@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 클라우드의 민첩성을 해치지 않으면서 인프라, 워크로드, 권한, 데이터를 자동화된 통제로 보호하는 보안 체계.
 - 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service)와 하이브리드·멀티 클라우드 환경에서 가상화 인프라, 컨테이너, 서버리스 워크로드와 데이터를 위협으로부터 지키는 **클라우드 보안** (Cloud Security) 아키텍처와 거버넌스.
 - 배경 및 필요성 : 온프레미스에서 멀티 클라우드로 전환되며 네트워크 경계가 사라졌고, 코드형 인프라(IaC, Infrastructure as Code) 배포 오류와 과도한 IAM(Identity and Access Management) 권한 부여로 인한 대규모 데이터 침해가 빈발.
-- 주요 목적 : 멀티 테넌트 환경의 자원 격리와 규제 준수를 확보하고, 코드형 보안(Security as Code)으로 **제로 트러스트** (Zero Trust, 모든 접근을 매번 검증하는 보안 원칙)를 실현.
+- 주요 목적: 멀티 테넌트 환경의 자원 격리와 규제 준수를 확보하고, 코드형 보안(Security as Code)으로 **제로 트러스트** (Zero Trust, 모든 접근을 매번 검증하는 보안 원칙)를 실현.
 
 ## Ⅱ. 클라우드 컴퓨팅 보안의 특징 및 장점
 

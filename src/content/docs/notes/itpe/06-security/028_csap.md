@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 공공기관이 민간 클라우드를 안전하게 쓰도록 보안 수준을 검증하는 법정 인증 제도로, 시스템 중요도에 따라 통제 강도를 등급별로 달리하는 체계.
 - 개념 : 국가·공공기관에 신뢰성이 검증된 민간 클라우드 서비스(IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service))를 공급하기 위해, 과학기술정보통신부와 KISA(Korea Internet & Security Agency, 한국인터넷진흥원)가 보안 기준 충족 여부를 평가·인증하는 **CSAP** (Cloud Security Assurance Program, 클라우드 보안인증제).
 - 배경 및 필요성 : 공공부문의 클라우드 도입을 활성화하면서도 국가 중요 정보의 유출을 막기 위해 2016년 도입되었고, 이후 상·중·하 3등급 체계로 개편되어 등급에 따라 요건을 달리 적용하게 됨.
-- 주요 목적 : 공공 데이터의 안전성 확보, **CSP** (Cloud Service Provider, 클라우드 서비스 제공자)의 보안 수준 공인 검증, 등급별 차등 통제를 통한 공공 클라우드 시장 육성.
+- 주요 목적: 공공 데이터의 안전성 확보, **CSP** (Cloud Service Provider, 클라우드 서비스 제공자)의 보안 수준 공인 검증, 등급별 차등 통제를 통한 공공 클라우드 시장 육성.
 
 ## Ⅱ. CSAP(클라우드 보안인증제)의 특징 및 장점
 

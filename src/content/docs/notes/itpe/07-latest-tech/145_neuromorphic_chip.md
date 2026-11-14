@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 뇌의 스파이크 방식을 하드웨어로 옮겨 폰 노이만 병목과 전력 소모를 줄이는 비 폰 노이만 AI 프로세서.
 - 개념 : 연산과 기억을 한 곳에서 처리하고 **스파이크** (Spike, 임계값을 넘을 때만 발생하는 신호) 기반으로 동작하도록 CMOS 공정이나 멤리스터 소자로 구현한 **뉴로모픽 칩** (Neuromorphic Chip)으로, 폰 노이만 구조와 다른 비 폰 노이만(Non-von Neumann) 아키텍처를 따름.
 - 배경 및 필요성 : 스파이크 신호는 계단 형태로 비연속적이어서 표준 **역전파** (Backpropagation)를 바로 적용하기 어려워, **대리 기울기** (Surrogate Gradient) 학습과 ANN(Artificial Neural Network)-to-SNN(Spiking Neural Network) 변환 도구가 필요함.
-- 주요 목적 : **폰 노이만 병목** (Von Neumann Bottleneck)을 완화해 데이터 이동 지연과 에너지 소모를 낮추고, 자율주행·로보틱스·IoT(Internet of Things) 같은 에지 AI를 저전력으로 구동.
+- 주요 목적: **폰 노이만 병목** (Von Neumann Bottleneck)을 완화해 데이터 이동 지연과 에너지 소모를 낮추고, 자율주행·로보틱스·IoT(Internet of Things) 같은 에지 AI를 저전력으로 구동.
 - 참고 : Intel은 2024년 4월 발표에서 Loihi 2 칩 1,152개를 묶은 연구용 시스템 Hala Point를 공개했으며, 발표 기준 뉴런 약 11.5억 개, 최대 소비 전력 약 2,600W 규모임.
 
 ## Ⅱ. 뉴로모픽 칩의 특징 및 장점

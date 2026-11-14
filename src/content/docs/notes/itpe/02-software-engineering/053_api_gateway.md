@@ -22,7 +22,7 @@ extra:
 - 핵심 요약 : 외부의 모든 서비스 요청을 한 계층에서 수용해 공통 정책을 집행하는 진입 계층.
 - 개념 : 외부 클라이언트의 모든 API(Application Programming Interface) 요청을 수용해 백엔드 서비스로 전달하는 **리버스 프록시** (Reverse Proxy) 기반 중간 계층 (**API Gateway**).
 - 배경 및 필요성 : 마이크로서비스 아키텍처(**MSA**, Microservice Architecture)에서 클라이언트가 각 서비스를 직접 호출하면 인증의 중복 구현, 내부 엔드포인트의 노출, 호출 경로의 복잡화가 발생하는 상황.
-- 주요 목적 : **단일 진입점** (Single Point of Entry)의 확보를 통한 공통 정책 집행과 내부 구조 은닉.
+- 주요 목적: **단일 진입점** (Single Point of Entry)의 확보를 통한 공통 정책 집행과 내부 구조 은닉.
 
 ## Ⅱ. API Gateway의 특징 및 장점
 

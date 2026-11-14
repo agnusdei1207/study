@@ -25,7 +25,7 @@ extra:
 - 핵심 요약 : 디지털 기술의 확산이 낳는 정보 과부하, 조작, 격차, 기만 설계가 개인의 건강과 사회 신뢰를 훼손하는 부작용의 총체.
 - 개념 : 정보통신기술(ICT, Information and Communications Technology)과 스마트폰, 소셜 미디어, 인공지능(AI, Artificial Intelligence)의 확산에 따라 나타나는 **디지털 역기능** (Digital Dysfunction), 즉 과몰입, 사생활 침해, 허위 정보, 디지털 격차, 기만적 UI 등 사회적 폐해의 총칭.
 - 배경 및 필요성 : 디지털 전환(DX, Digital Transformation)의 생산성 효과 이면에 보상 체계를 악용한 플랫폼 중독 설계, 사이버 범죄, 고령층의 키오스크 소외가 함께 커져, 기술적 통제와 사회적 안전망이 동시에 필요해짐.
-- 주요 목적 : 병폐 요인의 사전 예방, **디지털 웰빙** (Digital Wellbeing) 회복, **디지털 포용** (Digital Inclusion)을 통한 불평등 완화.
+- 주요 목적: 병폐 요인의 사전 예방, **디지털 웰빙** (Digital Wellbeing) 회복, **디지털 포용** (Digital Inclusion)을 통한 불평등 완화.
 
 ## Ⅱ. 디지털 역기능의 특징 및 장점
 

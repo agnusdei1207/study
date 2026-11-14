@@ -24,7 +24,7 @@ extra:
 - 핵심 요약 : 자연어 명령을 조작해 LLM 애플리케이션의 안전 규칙과 시스템 프롬프트를 우회하는 적대적 공격.
 - 개념 : 대규모 언어 모델(LLM, Large Language Model) 애플리케이션에 악의적 지시문을 주입하여, 개발자가 설정한 **시스템 프롬프트** (System Prompt)과 안전 규칙을 우회하고 공격자 의도대로 출력이나 도구 실행을 유도하는 공격인 **프롬프트 인젝션** (Prompt Injection).
 - 배경 및 필요성 : 챗봇, 검색 증강 생성(RAG, Retrieval-Augmented Generation) 서비스, 자율 에이전트가 확산되면서 OWASP(Open Worldwide Application Security Project)의 LLM 애플리케이션 위험 목록에서 최상위로 꼽힐 만큼 빈번한 공격 표면이 됨.
-- 주요 목적 : 자연어 입력의 신뢰 경계를 규명하고, 입력 경로별 공격을 차단하는 **가드레일** (Guardrails) 체계를 구축하여 AI 애플리케이션을 보호.
+- 주요 목적: 자연어 입력의 신뢰 경계를 규명하고, 입력 경로별 공격을 차단하는 **가드레일** (Guardrails) 체계를 구축하여 AI 애플리케이션을 보호.
 
 ## Ⅱ. 프롬프트 인젝션(Prompt Injection)의 특징 및 장점
 

@@ -24,7 +24,7 @@ extra:
 - 개념 : 거대언어모델(LLM, Large Language Model) 학습과 추론을 위해 GPU(Graphics Processing Unit)·NPU(Neural Processing Unit) 가속기 클러스터, 무손실 고속 네트워크, 액체 냉각 설비, 고밀도 전력 인프라를 통합한 **AI 데이터센터** (AI Data Center).
 - 배경 및 필요성 : 공랭 중심의 기존 데이터센터는 고밀도 가속기의 발열과 전력 수요를 감당하기 어려워, 칩 직접 냉각과 분산 학습용 무손실 네트워크 같은 전용 인프라가 필요해짐.
 - 최근 동향 : Ultra Ethernet Consortium 발표 기준, AI·HPC용 개방형 이더넷 사양인 **UEC** (Ultra Ethernet Consortium) 1.0 사양이 2025년 6월 11일 공개되었고 이후 1.0.x 개정판이 발간됨.
-- 주요 목적 : 가속기 활용률(MFU, Model FLOPs Utilization)을 높이고, 무손실 전송으로 GPU 유휴 시간을 줄이며, 전력효율(PUE, Power Usage Effectiveness)을 개선하는 것.
+- 주요 목적: 가속기 활용률(MFU, Model FLOPs Utilization)을 높이고, 무손실 전송으로 GPU 유휴 시간을 줄이며, 전력효율(PUE, Power Usage Effectiveness)을 개선하는 것.
 
 ## Ⅱ. AI 데이터센터의 특징 및 장점
 
