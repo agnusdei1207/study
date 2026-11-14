@@ -20,9 +20,9 @@ extra:
 ## Ⅰ. 소프트웨어 공학과 좋은 소프트웨어의 개요
 
 - 핵심 요약 : 소프트웨어 공학은 체계적·규율적·정량적 접근으로 좋은 소프트웨어를 경제적으로 만드는 학문이자 실천 체계.
-- 개념 : 소프트웨어의 개발·운영·유지보수 전반에 체계적이고 규율 있으며 정량화 가능한 접근을 적용하는 학문이자 실천 체계(**소프트웨어 공학**, Software Engineering)로, IEEE(Institute of Electrical and Electronics Engineers) 표준 용어집의 정의가 널리 인용됨.
-- 배경 및 필요성 : 1968년 NATO(North Atlantic Treaty Organization) 소프트웨어 공학 회의에서 **소프트웨어 위기** (software crisis, 개발 비용·일정의 초과와 품질 저하가 구조화된 상태)가 공식 제기되며 개인 기량 의존 개발의 한계가 드러남.
-- 주요 목적 : 요구 충족과 함께 **유지보수성** (maintainability, 수정·확장의 용이성), **신뢰성** (reliability, 주어진 조건에서 정상 동작을 유지하는 능력), **효율성** (efficiency, 자원 대비 성능), **사용성** (usability, 학습·사용의 용이성)을 균형 있게 갖춘 **좋은 소프트웨어** (good software)의 생산.
+- 개념 : 소프트웨어의 개발·운영·유지보수 전반에 체계적이고 규율 있으며 정량화 가능한 접근을 적용하는 학문이자 실천 체계(소프트웨어 공학, Software Engineering)로, IEEE(Institute of Electrical and Electronics Engineers) 표준 용어집의 정의가 널리 인용됨.
+- 배경 및 필요성 : 1968년 NATO 소프트웨어 공학 회의에서 소프트웨어 위기 (software crisis, 개발 비용·일정의 초과와 품질 저하가 구조화된 상태)가 공식 제기되며 개인 기량 의존 개발의 한계가 드러남.
+- 주요 목적 : 요구 충족과 함께 유지보수성 (maintainability, 수정·확장의 용이성), 신뢰성 (reliability, 주어진 조건에서 정상 동작을 유지하는 능력), 효율성 (efficiency, 자원 대비 성능), 사용성 (usability, 학습·사용의 용이성)을 균형 있게 갖춘 좋은 소프트웨어 (good software)의 생산.
 
 ## Ⅱ. 소프트웨어 공학의 특징 및 장점
 

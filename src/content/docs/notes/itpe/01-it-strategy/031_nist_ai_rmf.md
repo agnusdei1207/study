@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. NIST AI RMF의 개요
 
 - 핵심 요약 : AI 수명주기 전반의 위험을 관리해 AI의 신뢰성을 확보하도록 지원하는 자발적 위험관리 프레임워크.
-- 개념 : 미국 국립표준기술연구소(NIST, National Institute of Standards and Technology)가 2023년 1월 발간한 **NIST AI RMF** (AI Risk Management Framework)는 AI 시스템의 설계·개발·배포·사용 전 과정에서 위험을 관리하고 **신뢰할 수 있는 AI** (trustworthy AI) 구현을 지원하는 자발적 프레임워크.
+- 개념 : 미국 국립표준기술연구소(NIST, National Institute of Standards and Technology)가 2023년 1월 발간한 NIST AI RMF (AI Risk Management Framework)는 AI 시스템의 설계·개발·배포·사용 전 과정에서 위험을 관리하고 신뢰할 수 있는 AI (trustworthy AI) 구현을 지원하는 자발적 프레임워크.
 - 배경 및 필요성 : AI의 사회 확산과 함께 편향·프라이버시·보안·투명성 위험이 조직과 사회 전반으로 확대되었고, 학습 기반 시스템의 불확실성은 전통적 소프트웨어 품질 관리만으로는 통제가 곤란.
 - 주요 목적 : AI 수명주기 전반의 위험관리 체계화를 통한 신뢰 확보, 혁신과 안전의 균형 속 AI의 책임 있는 개발·이용.
 
@@ -52,7 +52,7 @@ Measure (측정·평가)
 Manage (우선순위·대응·감시)
 ```
 
-- 프로파일 체계 : 2024년 7월 발간된 **NIST AI 600-1** (Generative AI Profile, 생성형 AI 프로파일)은 AI RMF의 4대 기능 구조를 유지하면서 생성형 AI 고유·증폭 위험 12종(예: **허구 생성** (confabulation, 사실처럼 확신에 차서 서술하는 오류·거짓 콘텐츠 생성), 정보 무결성, 정보보안, 지식재산, 밸류체인 의존)을 정의하고 기능·하위범주별 제안 행동을 제시.
+- 프로파일 체계 : 2024년 7월 발간된 NIST AI 600-1 (Generative AI Profile, 생성형 AI 프로파일)은 AI RMF의 4대 기능 구조를 유지하면서 생성형 AI 고유·증폭 위험 12종(예: 허구 생성 (confabulation, 사실처럼 확신에 차서 서술하는 오류·거짓 콘텐츠 생성), 정보 무결성, 정보보안, 지식재산, 밸류체인 의존)을 정의하고 기능·하위범주별 제안 행동을 제시.
 
 ```text
 [ NIST AI 600-1 구성 ]
