@@ -21,8 +21,8 @@ extra:
 ## Ⅰ. DBSCAN의 개요
 
 - 핵심 요약 : 밀도가 충분한 영역을 군집으로 넓혀 가고 희박한 점을 노이즈로 분리하는 밀도 기반 비지도 군집화.
-- 개념 : 반경(eps) 안에 최소 샘플 수(MinPts) 이상의 점이 모인 영역을 군집으로 확장하고, 어느 군집에도 속하지 못한 점을 노이즈로 분류하는 **밀도 기반 군집화** (DBSCAN, Density-Based Spatial Clustering of Applications with Noise) 알고리즘.
-- 배경 및 필요성 : 대표적인 **K-Means**는 군집 수 K를 미리 지정해야 하고, 구형 군집만 잘 찾으며, 이상치에 취약하므로 복잡한 형태의 데이터에 맞지 않음.
+- 개념 : 반경(eps) 안에 최소 샘플 수(MinPts) 이상의 점이 모인 영역을 군집으로 확장하고, 어느 군집에도 속하지 못한 점을 노이즈로 분류하는 밀도 기반 군집화 (DBSCAN, Density-Based Spatial Clustering of Applications with Noise) 알고리즘.
+- 배경 및 필요성 : 대표적인 K-Means는 군집 수 K를 미리 지정해야 하고, 구형 군집만 잘 찾으며, 이상치에 취약하므로 복잡한 형태의 데이터에 맞지 않음.
 - 주요 목적 : 군집 수를 미리 정하지 않는 자율 탐색, 임의 형태의 군집 탐지, 이상치의 분리와 제거.
 
 ## Ⅱ. DBSCAN의 특징 및 장점
@@ -61,7 +61,7 @@ Noise (어떤 Core에도 도달 불가)
 5. 모든 점 방문 후 군집과 노이즈 확정
 ```
 
-- **밀도 도달 가능성** (Density-Reachability) : Core 점 체인을 따라 다른 점에 도달할 수 있으면 같은 군집으로 묶음.
+- 밀도 도달 가능성 (Density-Reachability) : Core 점 체인을 따라 다른 점에 도달할 수 있으면 같은 군집으로 묶음.
 
 ## Ⅳ. DBSCAN의 비교
 
@@ -83,9 +83,9 @@ Noise (어떤 Core에도 도달 불가)
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 밀도가 서로 다른 군집의 혼재 | 단일 eps를 전체에 적용하면 성긴 군집은 노이즈, 밀집 군집은 병합 | **HDBSCAN** (Hierarchical DBSCAN) 또는 **OPTICS** (Ordering Points To Identify the Clustering Structure) 적용 | 노이즈 비율, 군집 안정성 |
+| 밀도가 서로 다른 군집의 혼재 | 단일 eps를 전체에 적용하면 성긴 군집은 노이즈, 밀집 군집은 병합 | HDBSCAN (Hierarchical DBSCAN) 또는 OPTICS (Ordering Points To Identify the Clustering Structure) 적용 | 노이즈 비율, 군집 안정성 |
 | 고차원에서의 거리 집중 | 차원이 커지면 점 간 거리가 비슷해져 밀도 차이가 사라짐 | PCA, UMAP 등으로 차원 축소 후 적용, 코사인 거리 활용 | 차원 축소 후 노이즈 비율 |
-| 대규모 데이터의 연산 병목 | 공간 색인이 없으면 거리 계산이 전체 쌍으로 늘어남 | KD-Tree, Ball-Tree 같은 **공간 분할 트리** 색인 적용, 분산 구현 검토 | 군집화 소요 시간 |
+| 대규모 데이터의 연산 병목 | 공간 색인이 없으면 거리 계산이 전체 쌍으로 늘어남 | KD-Tree, Ball-Tree 같은 공간 분할 트리 색인 적용, 분산 구현 검토 | 군집화 소요 시간 |
 
 ## Ⅵ. DBSCAN에 대한 기술사적 제언
 

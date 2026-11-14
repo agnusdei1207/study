@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 6G 이동통신기술의 개요
 
 - 핵심 요약 : 통신에 인공지능·감지·위성 연동을 결합한 2030년대 차세대 이동통신 기술.
-- 개념 : 지상 중심 통신을 넘어 인공지능 운영과 환경 감지, 지상·공중·우주를 잇는 **비지상망** (NTN, Non-Terrestrial Network) 환경을 수용하는 차세대 이동통신 기술인 **6G** (6th Generation)으로, ITU(International Telecommunication Union)의 **IMT-2030** (International Mobile Telecommunications-2030) 프레임워크가 국제 기준임.
+- 개념 : 지상 중심 통신을 넘어 인공지능 운영과 환경 감지, 지상·공중·우주를 잇는 비지상망 (NTN, Non-Terrestrial Network) 환경을 수용하는 차세대 이동통신 기술인 6G (6th Generation)으로, ITU(International Telecommunication Union)의 IMT-2030 (International Mobile Telecommunications-2030) 프레임워크가 국제 기준임.
 - 배경 및 필요성 : 5G(IMT-2020, International Mobile Telecommunications-2020)는 지상 기지국 중심의 커버리지와 수십 밀리초 실효 지연, 망 운영의 외부 AI 의존이라는 한계가 제기됨. 초실감 서비스와 디지털 트윈, 도심항공교통(UAM, Urban Air Mobility) 같은 2030년대 수요에 대응이 필요함.
 - 주요 목적 :
   1. 초대용량·초저지연 전송 성능의 확보
@@ -34,17 +34,17 @@ extra:
 
 - 핵심 요약 : 주파수 확장과 지능형 제어, 3차원 망 구성이 용량·커버리지·자율성의 동시 향상으로 이어지는 구조.
 
-1. **테라헤르츠** (THz, Terahertz) 대역 활용 : 100GHz 이상의 광대역 자원 사용 → 초대용량 전송과 고해상도 감지의 가능성 확보.
-2. **지능형 반사 표면** (RIS, Reconfigurable Intelligent Surface) : 반사체의 위상을 능동 제어해 전파 경로를 조정 → 음영 지역 커버리지 보완.
-3. **극대규모 안테나** (ELAA, Extremely Large Aperture Array) : 수천 소자 규모의 안테나 배열로 좁은 빔 형성 → 고주파 경로 손실의 보상.
-4. **AI 네이티브 네트워크** : 무선 제어와 망 운영 전 계층에 학습 기능 내재화 → 자원 배분·장애 대응의 자율성 향상.
-5. **통신-감지 일체화** (ISAC, Integrated Sensing and Communication) : 하나의 신호로 통신과 객체 감지를 동시 수행 → 하드웨어 중복 감소와 환경 인지 기능 획득.
-6. 보안 강화 기술 : **양자 암호키 분배** (QKD, Quantum Key Distribution)와 **포스트 양자 암호** (PQC, Post-Quantum Cryptography) 적용 연구 → 양자컴퓨터 시대의 장기 보안성 확보.
+1. 테라헤르츠 (THz, Terahertz) 대역 활용 : 100GHz 이상의 광대역 자원 사용 → 초대용량 전송과 고해상도 감지의 가능성 확보.
+2. 지능형 반사 표면 (RIS, Reconfigurable Intelligent Surface) : 반사체의 위상을 능동 제어해 전파 경로를 조정 → 음영 지역 커버리지 보완.
+3. 극대규모 안테나 (ELAA, Extremely Large Aperture Array) : 수천 소자 규모의 안테나 배열로 좁은 빔 형성 → 고주파 경로 손실의 보상.
+4. AI 네이티브 네트워크 : 무선 제어와 망 운영 전 계층에 학습 기능 내재화 → 자원 배분·장애 대응의 자율성 향상.
+5. 통신-감지 일체화 (ISAC, Integrated Sensing and Communication) : 하나의 신호로 통신과 객체 감지를 동시 수행 → 하드웨어 중복 감소와 환경 인지 기능 획득.
+6. 보안 강화 기술 : 양자 암호키 분배 (QKD, Quantum Key Distribution)와 포스트 양자 암호 (PQC, Post-Quantum Cryptography) 적용 연구 → 양자컴퓨터 시대의 장기 보안성 확보.
 
 ## Ⅲ. 6G의 구조 (흐름)
 
 - 핵심 요약 : AI 제어 계층이 개방형 무선망과 지상·비지상 링크를 통합 조정하는 계층 구조.
-- **오픈 RAN** (O-RAN, Open Radio Access Network) : 무선 장비의 하드웨어·소프트웨어 분리와 지능형 제어기(RIC, RAN Intelligent Controller)를 통한 개방형 무선망 구조.
+- 오픈 RAN (O-RAN, Open Radio Access Network) : 무선 장비의 하드웨어·소프트웨어 분리와 지능형 제어기(RIC, RAN Intelligent Controller)를 통한 개방형 무선망 구조.
 
 ```text
 [ 6G 네트워크 계층 구조 ]

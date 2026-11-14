@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 스토리지 접속 유형(DAS·NAS·SAN)의 개요
 
 - 핵심 요약 : 서버와 저장소의 연결 구조와 전송 단위에 따라 성능·공유성·비용이 갈리는 3대 스토리지 아키텍처.
-- 개념 : 서버와 저장 장치를 연결하는 방식에 따라 스토리지 환경을 분류하는 체계로, 직결형 **DAS** (Direct-Attached Storage), 파일 공유형 **NAS** (Network-Attached Storage), 전용 네트워크형 **SAN** (Storage Area Network)으로 구분.
+- 개념 : 서버와 저장 장치를 연결하는 방식에 따라 스토리지 환경을 분류하는 체계로, 직결형 DAS (Direct-Attached Storage), 파일 공유형 NAS (Network-Attached Storage), 전용 네트워크형 SAN (Storage Area Network)으로 구분.
 - 배경 및 필요성 : 데이터 급증과 서버 가상화 확산으로 서버 내장 디스크만으로 용량·공유·가용성 수요를 감당하기 곤란.
 - 주요 목적 : 업무 특성에 맞는 접속 구조 선택으로 성능·확장성·총소유비용의 균형 확보.
 
@@ -59,8 +59,8 @@ SAN 스위치 (파이버 패브릭)
 ```
 
 - DAS 구성요소 : 서버의 기본 저장 인터페이스와 직결 케이블, 외장 디스크 인클로저의 단순 구성.
-- NAS 구성요소 : 파일 서비스를 전담하는 NAS 헤드, 디스크 어레이, **NFS** (Network File System)·**SMB** (Server Message Block) 파일 프로토콜 스택.
-- SAN 구성요소 : 서버 측 **HBA** (Host Bus Adapter, 스토리지 전용 어댑터), SAN 스위치, **FC** (Fibre Channel)·**iSCSI** (Internet Small Computer Systems Interface) 전송 프로토콜, **LUN** (Logical Unit Number, 어레이를 논리 분할한 볼륨 단위) 매핑 체계.
+- NAS 구성요소 : 파일 서비스를 전담하는 NAS 헤드, 디스크 어레이, NFS (Network File System)·SMB (Server Message Block) 파일 프로토콜 스택.
+- SAN 구성요소 : 서버 측 HBA (Host Bus Adapter, 스토리지 전용 어댑터), SAN 스위치, FC (Fibre Channel)·iSCSI (Internet Small Computer Systems Interface) 전송 프로토콜, LUN (Logical Unit Number, 어레이를 논리 분할한 볼륨 단위) 매핑 체계.
 
 ## Ⅳ. DAS·NAS·SAN의 비교
 

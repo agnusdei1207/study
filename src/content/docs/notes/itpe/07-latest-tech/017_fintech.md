@@ -23,15 +23,15 @@ extra:
 ## Ⅰ. 핀테크의 개요
 
 - 핵심 요약 : 금융과 IT의 융합으로 금융 서비스 프로세스 전반을 재구성하는 디지털 금융 기술 패러다임.
-- 개념 : 금융(Finance)과 정보기술(Technology)의 융합으로, 인공지능(AI, Artificial Intelligence), 클라우드, 빅데이터, 오픈 API(Application Programming Interface), 분산원장 같은 기술을 금융 프로세스에 적용해 기존 서비스를 재구성하는 패러다임 (**핀테크**, FinTech).
-- 배경 및 필요성 : 스마트폰 보급으로 비대면 채널이 늘고, **마이데이터** 제도화로 금융 데이터 독점이 완화되며, 전통 금융의 오프라인 비용과 레거시 시스템의 한계가 드러나면서 등장함.
+- 개념 : 금융(Finance)과 정보기술(Technology)의 융합으로, 인공지능(AI, Artificial Intelligence), 클라우드, 빅데이터, 오픈 API(Application Programming Interface), 분산원장 같은 기술을 금융 프로세스에 적용해 기존 서비스를 재구성하는 패러다임 (핀테크, FinTech).
+- 배경 및 필요성 : 스마트폰 보급으로 비대면 채널이 늘고, 마이데이터 제도화로 금융 데이터 독점이 완화되며, 전통 금융의 오프라인 비용과 레거시 시스템의 한계가 드러나면서 등장함.
 - 핵심 목적 : 거래 비용 절감, 금융 포용성 확대, 실시간 초개인화 자산관리 제공, 금융 서비스의 민첩성 향상.
 
 ## Ⅱ. 핀테크의 특징 및 장점
 
 - 핵심 요약 : 개방형 API와 데이터 연계, 이상거래 탐지, 비금융 데이터 신용평가가 비용 절감과 보안, 포용성 향상으로 이어지는 방식.
 
-1. **오픈뱅킹** (Open Banking) : 계좌 조회, 이체, 결제를 표준 API로 개방 → 제3자 핀테크 기업도 금융 서비스 구현 가능.
+1. 오픈뱅킹 (Open Banking) : 계좌 조회, 이체, 결제를 표준 API로 개방 → 제3자 핀테크 기업도 금융 서비스 구현 가능.
 2. 마이데이터 : 고객 동의 아래 흩어진 금융 자산과 거래 내역을 통합 수집 → 맞춤형 자산관리와 비교 서비스 제공.
 3. AI 기반 이상거래탐지(FDS, Fraud Detection System) : 접속 IP, 단말기 정보, 결제 패턴을 실시간 점수화 → 부정 결제를 즉시 차단.
 4. 대안신용평가(Alternative CSS, Credit Scoring System) : 통신료 납부 등 비금융 데이터로 금융 이력이 적은 씬파일러를 평가 → 금융 포용성 확대.
@@ -90,8 +90,8 @@ extra:
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | 비대면 사기 확산 (보이스피싱, 명의도용, 크레덴셜 스터핑) | 간편 인증을 악용한 악성 앱 감염과 계정 탈취 피해 빈발 | 3D 라이브니스(Liveness) 검증, 단말기 이상 행위 실시간 감지, 공동 FDS 정보 공유 | 사기 탐지율, 피해 건수 |
-| 망분리 규제와 클라우드·생성형 AI 도입 충돌 | 개발망과 운영망 분리로 SaaS(Software as a Service)와 외부 LLM(Large Language Model) API 활용이 제약됨 | **금융 규제 샌드박스**의 적극 활용, 개인신용정보 가명·익명 처리 게이트웨이 구축 | 샌드박스 과제 수 |
-| 대안신용평가의 설명 불가능성 | 대출 거절 사유를 고객에게 소명하지 못하면 금융소비자보호 위반 위험 | **XAI** (Explainable Artificial Intelligence) 기법인 SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations)을 파이프라인에 통합해 거절 사유 리포트 자동 생성 | 소명 리포트 제공률 |
+| 망분리 규제와 클라우드·생성형 AI 도입 충돌 | 개발망과 운영망 분리로 SaaS(Software as a Service)와 외부 LLM(Large Language Model) API 활용이 제약됨 | 금융 규제 샌드박스의 적극 활용, 개인신용정보 가명·익명 처리 게이트웨이 구축 | 샌드박스 과제 수 |
+| 대안신용평가의 설명 불가능성 | 대출 거절 사유를 고객에게 소명하지 못하면 금융소비자보호 위반 위험 | XAI (Explainable Artificial Intelligence) 기법인 SHAP(SHapley Additive exPlanations), LIME(Local Interpretable Model-agnostic Explanations)을 파이프라인에 통합해 거절 사유 리포트 자동 생성 | 소명 리포트 제공률 |
 
 ## Ⅵ. 핀테크에 대한 기술사적 제언
 

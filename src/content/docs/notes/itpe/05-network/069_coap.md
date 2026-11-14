@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. CoAP의 개요
 
 - 핵심 요약 : 웹의 REST 모델을 UDP 위의 4바이트 헤더로 옮겨 제약 환경 단말에 적용한 경량 응용 프로토콜.
-- 개념 : IETF(Internet Engineering Task Force)의 CoRE(Constrained RESTful Environments) 워킹그룹이 RFC 7252로 표준화한 제약 노드용 **경량 응용 프로토콜** (CoAP, Constrained Application Protocol).
+- 개념 : IETF(Internet Engineering Task Force)의 CoRE(Constrained RESTful Environments) 워킹그룹이 RFC 7252로 표준화한 제약 노드용 경량 응용 프로토콜 (CoAP, Constrained Application Protocol).
 - 배경 및 필요성 : HTTP(Hypertext Transfer Protocol)와 TCP(Transmission Control Protocol) 스택은 연결 설정과 텍스트 헤더, 연결 유지 비용이 커서 배터리 동작 소형 센서의 전력 예산을 초과. 웹과 같은 설계 모델을 유지하면서 전송 비용만 줄이는 수단이 필요.
 - 주요 목적 : REST 인터페이스의 재사용, 최소 전력 송신, 웹 서비스와의 게이트웨이 연동.
 
@@ -30,11 +30,11 @@ extra:
 
 - 핵심 요약 : REST 모델 계승과 UDP 기반 경량 전송, 선택적 신뢰성이 전력 절감과 웹 연동 효율로 이어지는 구조.
 
-1. REST 모델 계승 : URI(Uniform Resource Identifier) 자원에 GET·POST·PUT·DELETE를 적용하는 **REST** (Representational State Transfer, 자원과 메서드 중심의 웹 아키텍처 스타일) 구조 → HTTP와의 변환·연동이 단순.
-2. 경량 전송 : 4바이트 고정 헤더와 **UDP** (User Datagram Protocol, 비연결형 전송 프로토콜) 사용 → 연결 설정 없이 짧은 패킷의 저전력 송신.
-3. 선택적 신뢰성 : **확인형 메시지** (CON, Confirmable)는 수신 확인 응답을 받을 때까지 재전송하고 **비확인형 메시지** (NON, Non-confirmable)는 유실을 허용 → 명령·측정치의 중요도별 전송 구분.
-4. 자원 관찰 : **Observe 옵션** (RFC 7641, 자원 상태 변경 시 구독자에게 알리는 확장) → 주기적 폴링 축소로 트래픽·전력 절감.
-5. 대용량 분할 : **블록 전송** (Blockwise Transfer, RFC 7959, 큰 데이터를 블록 단위로 나누는 확장) → 펌웨어 배포 같은 대용량 데이터의 안정적 전달.
+1. REST 모델 계승 : URI(Uniform Resource Identifier) 자원에 GET·POST·PUT·DELETE를 적용하는 REST (Representational State Transfer, 자원과 메서드 중심의 웹 아키텍처 스타일) 구조 → HTTP와의 변환·연동이 단순.
+2. 경량 전송 : 4바이트 고정 헤더와 UDP (User Datagram Protocol, 비연결형 전송 프로토콜) 사용 → 연결 설정 없이 짧은 패킷의 저전력 송신.
+3. 선택적 신뢰성 : 확인형 메시지 (CON, Confirmable)는 수신 확인 응답을 받을 때까지 재전송하고 비확인형 메시지 (NON, Non-confirmable)는 유실을 허용 → 명령·측정치의 중요도별 전송 구분.
+4. 자원 관찰 : Observe 옵션 (RFC 7641, 자원 상태 변경 시 구독자에게 알리는 확장) → 주기적 폴링 축소로 트래픽·전력 절감.
+5. 대용량 분할 : 블록 전송 (Blockwise Transfer, RFC 7959, 큰 데이터를 블록 단위로 나누는 확장) → 펌웨어 배포 같은 대용량 데이터의 안정적 전달.
 
 ## Ⅲ. CoAP의 구조 (흐름)
 
@@ -95,7 +95,7 @@ Separate : 빈 ACK 후 CON 응답 별도 전달
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | NAT(Network Address Translation) 매핑 소실 | 무활동 UDP 세션의 주소 매핑이 짧은 주기로 삭제 → 외부 접속 불가 | 단말의 주기적 Keep-Alive 신호, 프록시(Proxy) 경유 구조 | 매핑 유지 성공률, 접속 실패 건수 |
-| DTLS 핸드셰이크 부담 | 인증서 교환으로 패킷 팽창과 단편화 → 소형 단말 메모리 부족 | 응용 계층 종단 간 암호화인 **OSCORE** (Object Security for Constrained RESTful Environments, RFC 8613) 적용 | 핸드셰이크 실패율, 메모리 사용량 |
+| DTLS 핸드셰이크 부담 | 인증서 교환으로 패킷 팽창과 단편화 → 소형 단말 메모리 부족 | 응용 계층 종단 간 암호화인 OSCORE (Object Security for Constrained RESTful Environments, RFC 8613) 적용 | 핸드셰이크 실패율, 메모리 사용량 |
 | 멀티캐스트 혼잡 제어 부재 | 비확인형 다수 전송 시 응답 폭주 가능 | RFC 7390 그룹 통신 프로파일과 전송률 제한 적용 | 응답 폭주 발생 건수 |
 
 ## Ⅵ. CoAP에 대한 기술사적 제언
@@ -103,7 +103,7 @@ Separate : 빈 ACK 후 CON 응답 별도 전달
 - 핵심 요약 : 스마트홈 표준 연계, 단말 관리 표준 채택, 변환 게이트웨이 표준화로 생태계 확대 제안.
 
 1. 단말 제조사는 Thread 기반 무선 메시 위에서 동작하는 Matter 생태계의 연동 규격을 준수하여 스마트홈 기기 간 상호운용 비용을 낮춰야 한다.
-2. 플랫폼 운영기관은 OMA(Open Mobile Alliance)의 경량 단말 관리 표준인 **LwM2M** (Lightweight M2M)을 채택하여 CoAP 기반의 펌웨어 업데이트·원격 관리를 표준 절차로 운영해야 한다.
+2. 플랫폼 운영기관은 OMA(Open Mobile Alliance)의 경량 단말 관리 표준인 LwM2M (Lightweight M2M)을 채택하여 CoAP 기반의 펌웨어 업데이트·원격 관리를 표준 절차로 운영해야 한다.
 3. 통신사는 HTTP와 CoAP 사이의 교차 프록시 동작을 RFC 8075 규격에 맞춰 게이트웨이로 표준화하여 웹 개발 자산의 재사용을 확보해야 한다.
 
 ## Ⅶ. 결론

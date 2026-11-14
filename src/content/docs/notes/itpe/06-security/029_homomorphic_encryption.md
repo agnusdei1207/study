@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. 동형암호(Homomorphic Encryption)의 개요
 
 - 핵심 요약 : 데이터를 복호화하지 않고 암호문 상태 그대로 연산하여, 연산 중에도 기밀성을 유지하는 암호 기술.
-- 개념 : 암호화된 데이터(암호문)를 평문으로 되돌리지 않고 덧셈, 곱셈 등 연산을 직접 수행할 수 있는 암호 기술인 **동형암호** (Homomorphic Encryption).
+- 개념 : 암호화된 데이터(암호문)를 평문으로 되돌리지 않고 덧셈, 곱셈 등 연산을 직접 수행할 수 있는 암호 기술인 동형암호 (Homomorphic Encryption).
 - 배경 및 필요성 : 클라우드와 빅데이터 분석에서 데이터는 전송과 저장 구간에서는 암호화되지만, 연산 중에는 평문으로 복호화되어야 해서 클라우드 운영자나 공격자에게 노출되는 보안 공백이 생김.
-- 주요 목적 : 데이터 사용 중의 기밀성 보호, 신뢰할 수 없는 클라우드 환경에서의 안전한 외주 연산 실현, **PPML** (Privacy-Preserving Machine Learning, 프라이버시 보존형 머신러닝) 지원.
+- 주요 목적 : 데이터 사용 중의 기밀성 보호, 신뢰할 수 없는 클라우드 환경에서의 안전한 외주 연산 실현, PPML (Privacy-Preserving Machine Learning, 프라이버시 보존형 머신러닝) 지원.
 
 ## Ⅱ. 동형암호(Homomorphic Encryption)의 특징 및 장점
 
@@ -33,7 +33,7 @@ extra:
 1. 암호문 연산 : 복호화 없이 덧셈과 곱셈을 수행 → 클라우드 서버가 평문을 알지 못한 채 분석을 맡길 수 있음.
 2. 연산 중 기밀성 (In-Use Confidentiality) : 전송, 저장, 연산의 모든 구간을 보호 → 데이터 활용 과정의 보안 공백 해소.
 3. 결과 일치성 : 복호화한 결과가 평문 연산 결과와 수학적으로 일치 → 외주 분석 결과를 신뢰할 수 있음.
-4. **부트스트래핑** (Bootstrapping, 누적된 잡음을 제거하여 연산을 이어 가게 하는 기법) : 연산마다 커지는 잡음을 초기화 → 연산 횟수 제약을 줄임.
+4. 부트스트래핑 (Bootstrapping, 누적된 잡음을 제거하여 연산을 이어 가게 하는 기법) : 연산마다 커지는 잡음을 초기화 → 연산 횟수 제약을 줄임.
 
 ```text
 [ 동형암호 외주 연산 흐름 ]
@@ -49,10 +49,10 @@ extra:
 
 - 핵심 요약 : 연산 지원 범위에 따라 PHE, SHE, FHE로 발전하며, 잡음 관리 방식이 유형을 가르는 기준이 되는 구조.
 
-- **PHE** (Partially Homomorphic Encryption, 부분 동형암호) : 덧셈(Paillier) 또는 곱셈(RSA) 중 한 가지 연산만 무제한 지원하는 초기 형태.
-- **SHE** (Somewhat Homomorphic Encryption, 중간 동형암호) : 덧셈과 곱셈을 모두 지원하지만 잡음 누적으로 곱셈 횟수가 제한되는 형태.
-- **FHE** (Fully Homomorphic Encryption, 완전 동형암호) : 2009년 Craig Gentry가 제안하였으며, 부트스트래핑으로 잡음을 초기화해 덧셈과 곱셈 횟수 제한을 없앤 형태.
-- **CKKS** (Cheon-Kim-Kim-Song, 근사 동형암호 스킴) : 실수 벡터의 근사 연산을 고속으로 지원하여 AI 추론과 신경망 연산에 널리 쓰이는 스킴.
+- PHE (Partially Homomorphic Encryption, 부분 동형암호) : 덧셈(Paillier) 또는 곱셈(RSA) 중 한 가지 연산만 무제한 지원하는 초기 형태.
+- SHE (Somewhat Homomorphic Encryption, 중간 동형암호) : 덧셈과 곱셈을 모두 지원하지만 잡음 누적으로 곱셈 횟수가 제한되는 형태.
+- FHE (Fully Homomorphic Encryption, 완전 동형암호) : 2009년 Craig Gentry가 제안하였으며, 부트스트래핑으로 잡음을 초기화해 덧셈과 곱셈 횟수 제한을 없앤 형태.
+- CKKS (Cheon-Kim-Kim-Song, 근사 동형암호 스킴) : 실수 벡터의 근사 연산을 고속으로 지원하여 AI 추론과 신경망 연산에 널리 쓰이는 스킴.
 
 ```text
 [ 연산 지원 범위에 따른 유형 ]
@@ -84,9 +84,9 @@ FHE (덧셈과 곱셈 횟수 제한 없음)
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| **부트스트래핑** 연산 비용 | 곱셈이 누적되면 잡음이 커져 재암호화 과정이 필요하고, 이 연산이 무거워 실시간 처리가 어려움 | 연산 깊이를 미리 고정하는 Leveled FHE 방식 설계와 FPGA, ASIC(Application-Specific Integrated Circuit) 가속기 적용 | 연산당 지연 시간, 처리량 |
-| **암호문 크기 팽창** (Ciphertext Expansion) | 짧은 평문이 훨씬 큰 암호문으로 바뀌어 메모리와 전송 대역폭 부담 증가 | 여러 평문을 하나의 암호문에 묶어 처리하는 **SIMD** (Single Instruction Multiple Data) 배치 연산 적용 | 평문 대비 암호문 크기 비율 |
-| **비선형 함수** 구현 제약 | 연산이 덧셈과 곱셈 같은 다항식으로 제한되어 ReLU(Rectified Linear Unit) 같은 조건 연산을 직접 구현하기 어려움 | 테일러 급수 등을 이용한 **다항식 근사** (Polynomial Approximation) 적용 | 모델 정확도 손실률 |
+| 부트스트래핑 연산 비용 | 곱셈이 누적되면 잡음이 커져 재암호화 과정이 필요하고, 이 연산이 무거워 실시간 처리가 어려움 | 연산 깊이를 미리 고정하는 Leveled FHE 방식 설계와 FPGA, ASIC(Application-Specific Integrated Circuit) 가속기 적용 | 연산당 지연 시간, 처리량 |
+| 암호문 크기 팽창 (Ciphertext Expansion) | 짧은 평문이 훨씬 큰 암호문으로 바뀌어 메모리와 전송 대역폭 부담 증가 | 여러 평문을 하나의 암호문에 묶어 처리하는 SIMD (Single Instruction Multiple Data) 배치 연산 적용 | 평문 대비 암호문 크기 비율 |
+| 비선형 함수 구현 제약 | 연산이 덧셈과 곱셈 같은 다항식으로 제한되어 ReLU(Rectified Linear Unit) 같은 조건 연산을 직접 구현하기 어려움 | 테일러 급수 등을 이용한 다항식 근사 (Polynomial Approximation) 적용 | 모델 정확도 손실률 |
 
 ## Ⅵ. 동형암호(Homomorphic Encryption)에 대한 기술사적 제언
 
@@ -94,7 +94,7 @@ FHE (덧셈과 곱셈 횟수 제한 없음)
 
 1. PPML 서비스 실증 : 의료 영상이나 신용 정보처럼 민감한 데이터를 암호문 상태로 AI 모델에 입력해 결과만 받는 서비스를 실증하는 것이 필요.
 2. 기관 간 공동 분석 : 금융 기관끼리 원본 거래 데이터를 공유하지 않고 암호문 상태로 사기 패턴을 공동 탐지하는 FDS(Fraud Detection System, 이상거래탐지 시스템) 연계 모델을 시험하는 것이 필요.
-3. 양자 대응 로드맵 통합 : 격자 기반 구조인 FHE를 **PQC** (Post-Quantum Cryptography, 양자내성암호) 전환 계획과 함께 검토하여 중복 투자를 줄이는 것이 필요.
+3. 양자 대응 로드맵 통합 : 격자 기반 구조인 FHE를 PQC (Post-Quantum Cryptography, 양자내성암호) 전환 계획과 함께 검토하여 중복 투자를 줄이는 것이 필요.
 
 ## Ⅶ. 결론
 

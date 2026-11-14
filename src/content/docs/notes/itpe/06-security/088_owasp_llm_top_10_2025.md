@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. OWASP LLM Top 10(2025)의 개요
 
 - 핵심 요약 : 대규모 언어 모델 기반 애플리케이션의 대표 보안 위험 10개를 정리한 공통 기준.
-- 개념 : 대규모 언어 모델(LLM, Large Language Model) 기반 애플리케이션의 대표 보안 위험 10개를 정리한 **OWASP LLM Top 10** (OWASP(Open Worldwide Application Security Project)가 발간한 목록).
+- 개념 : 대규모 언어 모델(LLM, Large Language Model) 기반 애플리케이션의 대표 보안 위험 10개를 정리한 OWASP LLM Top 10 (OWASP(Open Worldwide Application Security Project)가 발간한 목록).
 - 배경 및 필요성 : 생성형 AI 서비스가 확산되면서 전통적 웹 취약점 목록만으로는 조작된 입력, 학습 데이터 오염, 모델 출력 오남용 같은 위험을 다루기 어려워 별도 기준이 필요해짐.
 - 주요 목적 : 기존 웹 보안 통제에 더해 확률적으로 응답하는 모델과 도구 실행 환경의 보안 공백을 줄이는 것.
 
@@ -32,7 +32,7 @@ extra:
 
 1. 계층 분류 : 입력, 모델·데이터, 도구 실행, 출력 계층으로 위험을 나눠 점검 → 위험이 발생하는 위치를 특정해 통제 지점을 정하기 쉬움.
 2. 실무 중심 : 위험마다 공격 예시와 완화 방안을 함께 정리 → 개발팀이 설계 단계에서 바로 반영 가능.
-3. 에이전트 권한 별도 관리 : **과도한 대행** (에이전트가 업무에 필요한 범위를 넘는 도구 권한을 갖는 위험)을 독립 항목으로 둬 도구 호출 권한을 다른 위험과 분리하여 관리 → 자율 도구 사용 시스템의 통제 범위가 명확해짐.
+3. 에이전트 권한 별도 관리 : 과도한 대행 (에이전트가 업무에 필요한 범위를 넘는 도구 권한을 갖는 위험)을 독립 항목으로 둬 도구 호출 권한을 다른 위험과 분리하여 관리 → 자율 도구 사용 시스템의 통제 범위가 명확해짐.
 
 ## Ⅲ. OWASP LLM Top 10(2025)의 구조 (흐름)
 
@@ -65,16 +65,16 @@ extra:
 비인가 데이터 외부 전송 (LLM02)
 ```
 
-1. **프롬프트 인젝션** (Prompt Injection) : 조작된 입력으로 시스템 지시와 안전 정책을 무력화하는 공격.
-2. **민감정보 노출** (Sensitive Information Disclosure) : 개인정보, 인증 정보, 사내 기밀이 응답에 포함되는 위험.
-3. **공급망 취약점** (Supply Chain Vulnerabilities) : 외부 모델, 플러그인, 라이브러리에 섞인 악성 요소가 유입되는 위험.
-4. **데이터 및 모델 중독** (Data and Model Poisoning) : 학습·미세조정 데이터에 백도어 트리거를 심는 위험.
-5. **부적절한 출력 처리** (Improper Output Handling) : 검증 없이 모델 출력을 웹 화면이나 질의문으로 실행하는 위험.
+1. 프롬프트 인젝션 (Prompt Injection) : 조작된 입력으로 시스템 지시와 안전 정책을 무력화하는 공격.
+2. 민감정보 노출 (Sensitive Information Disclosure) : 개인정보, 인증 정보, 사내 기밀이 응답에 포함되는 위험.
+3. 공급망 취약점 (Supply Chain Vulnerabilities) : 외부 모델, 플러그인, 라이브러리에 섞인 악성 요소가 유입되는 위험.
+4. 데이터 및 모델 중독 (Data and Model Poisoning) : 학습·미세조정 데이터에 백도어 트리거를 심는 위험.
+5. 부적절한 출력 처리 (Improper Output Handling) : 검증 없이 모델 출력을 웹 화면이나 질의문으로 실행하는 위험.
 6. 과도한 대행 (Excessive Agency) : 에이전트에 부여된 도구 권한이 과해 파괴적 작업이 실행되는 위험.
-7. **시스템 프롬프트 노출** (System Prompt Leakage) : 비공개 지시문이 추출되어 방어 로직이 드러나는 위험.
-8. **벡터 및 임베딩 취약점** (Vector and Embedding Weaknesses) : 검색 증강 생성(RAG, Retrieval-Augmented Generation) 저장소의 접근 통제 실패로 타 사용자 문서가 검색되는 위험.
-9. **오정보** (Misinformation) : 모델이 사실처럼 그럴듯한 허위 내용을 생성해 의사결정 오류를 낳는 위험.
-10. **무제한 자원 소비** (Unbounded Consumption) : 대량·장문 질의로 연산 자원과 비용이 고갈되는 위험.
+7. 시스템 프롬프트 노출 (System Prompt Leakage) : 비공개 지시문이 추출되어 방어 로직이 드러나는 위험.
+8. 벡터 및 임베딩 취약점 (Vector and Embedding Weaknesses) : 검색 증강 생성(RAG, Retrieval-Augmented Generation) 저장소의 접근 통제 실패로 타 사용자 문서가 검색되는 위험.
+9. 오정보 (Misinformation) : 모델이 사실처럼 그럴듯한 허위 내용을 생성해 의사결정 오류를 낳는 위험.
+10. 무제한 자원 소비 (Unbounded Consumption) : 대량·장문 질의로 연산 자원과 비용이 고갈되는 위험.
 
 ## Ⅳ. OWASP LLM Top 10(2025)과 초기판의 비교
 

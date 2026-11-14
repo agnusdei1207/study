@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. SCTP의 개요
 
 - 핵심 요약 : 신뢰성과 메시지 경계를 함께 갖추고 다중 경로·다중 스트림을 지원하는 전송 계층 프로토콜.
-- 개념 : TCP(Transmission Control Protocol)의 신뢰성과 UDP(User Datagram Protocol)의 메시지 지향성을 결합하고, 하나의 세션에 복수의 IP 경로와 복수의 스트림을 두는 **전송 계층** 프로토콜인 **SCTP** (Stream Control Transmission Protocol, RFC 4960).
+- 개념 : TCP(Transmission Control Protocol)의 신뢰성과 UDP(User Datagram Protocol)의 메시지 지향성을 결합하고, 하나의 세션에 복수의 IP 경로와 복수의 스트림을 두는 전송 계층 프로토콜인 SCTP (Stream Control Transmission Protocol, RFC 4960).
 - 배경 및 필요성 : 통신 사업자망의 SS7(Signaling System No. 7) 호 신호를 IP 망에서 무손실로 전송하는 SIGTRAN(Signaling Transport) 요구에서 출발함. 단일 경로와 바이트 스트림에 의존하는 TCP는 회선 단절에 취약하고 손실 하나가 전송 전체를 막는 한계가 있었음.
 - 주요 목적 : 무중단 경로 전환과 스트림 단위의 지연 격리를 구현하고, 연결 설정 단계의 자원 고갈 공격을 방어.
 
@@ -30,17 +30,17 @@ extra:
 
 - 핵심 요약 : 다중 경로, 독립 스트림, 메시지 경계, 쿠키 기반 설정이 무중단성과 공격 저항성으로 이어지는 구조.
 
-1. **멀티호밍** (Multi-Homing) : 한 단말의 여러 IP 주소를 하나의 세션에 등록하고 HEARTBEAT 청크로 경로를 상시 점검 → 주 경로 단절 시 백업 경로로 무손실 전환.
-2. **멀티스트리밍** (Multi-Streaming) : 세션 안에 독립된 스트림 ID와 순서 번호를 두어 스트림별로만 순서를 보장 → 한 스트림의 손실이 다른 스트림의 수신을 막지 않음.
+1. 멀티호밍 (Multi-Homing) : 한 단말의 여러 IP 주소를 하나의 세션에 등록하고 HEARTBEAT 청크로 경로를 상시 점검 → 주 경로 단절 시 백업 경로로 무손실 전환.
+2. 멀티스트리밍 (Multi-Streaming) : 세션 안에 독립된 스트림 ID와 순서 번호를 두어 스트림별로만 순서를 보장 → 한 스트림의 손실이 다른 스트림의 수신을 막지 않음.
 3. 메시지 경계 보존 : 응용 계층이 보낸 메시지 단위를 그대로 유지하는 메시지 지향 전송 → 수신 측의 별도 프레이밍 처리가 불필요.
-4. **상태 쿠키** (State Cookie) : 4-Way 핸드셰이크에서 서버가 연결 상태를 메모리에 두지 않고 서명된 쿠키로 되돌려 보냄 → 쿠키 반환을 확인한 뒤에만 자원을 할당해 SYN 플러딩형 자원 고갈 공격을 무력화.
+4. 상태 쿠키 (State Cookie) : 4-Way 핸드셰이크에서 서버가 연결 상태를 메모리에 두지 않고 서명된 쿠키로 되돌려 보냄 → 쿠키 반환을 확인한 뒤에만 자원을 할당해 SYN 플러딩형 자원 고갈 공격을 무력화.
 
 ## Ⅲ. SCTP의 구조 (흐름)
 
 - 핵심 요약 : 공통 헤더 아래 여러 청크를 묶은 패킷 구조 위에서 결합 단위로 다중 경로와 다중 스트림이 동작하는 구조.
-- **결합** (Association) : 양단의 IP 주소 집합 사이에 맺어지는 포괄적 세션으로, 개별 링크가 끊겨도 세션 자체는 유지됨.
-- **청크** (Chunk) : 제어 정보와 데이터를 담는 공통 단위로, 하나의 패킷에 여러 청크를 묶어 전송함.
-- 신뢰성 제어 : 데이터 청크에 부여한 **TSN** (Transmission Sequence Number)으로 전송 순서를 관리하고, SACK(Selective Acknowledgment)으로 수신 확인과 재전송 대상을 판단하며, 오류 검출은 CRC(Cyclic Redundancy Check)-32c 체크섬으로 수행함.
+- 결합 (Association) : 양단의 IP 주소 집합 사이에 맺어지는 포괄적 세션으로, 개별 링크가 끊겨도 세션 자체는 유지됨.
+- 청크 (Chunk) : 제어 정보와 데이터를 담는 공통 단위로, 하나의 패킷에 여러 청크를 묶어 전송함.
+- 신뢰성 제어 : 데이터 청크에 부여한 TSN (Transmission Sequence Number)으로 전송 순서를 관리하고, SACK(Selective Acknowledgment)으로 수신 확인과 재전송 대상을 판단하며, 오류 검출은 CRC(Cyclic Redundancy Check)-32c 체크섬으로 수행함.
 
 ```text
 [ SCTP 패킷 구조 ]
@@ -64,7 +64,7 @@ extra:
 서버의 COOKIE-ACK 후 결합 수립
 ```
 
-- **헤드오브라인 블로킹** (HoL Blocking, Head-of-Line Blocking) : 앞선 데이터의 손실이 뒤따르는 전송 전체를 지연시키는 현상으로, 멀티스트리밍 구조가 이를 스트림 단위로 국한함.
+- 헤드오브라인 블로킹 (HoL Blocking, Head-of-Line Blocking) : 앞선 데이터의 손실이 뒤따르는 전송 전체를 지연시키는 현상으로, 멀티스트리밍 구조가 이를 스트림 단위로 국한함.
 
 ## Ⅳ. SCTP와 TCP·UDP의 비교
 

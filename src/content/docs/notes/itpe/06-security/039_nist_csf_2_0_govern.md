@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. NIST CSF 2.0 및 거버넌스(Govern) 기능의 개요
 
 - 핵심 요약 : 기존 5대 기능 위에 전사 의사결정과 정책을 총괄하는 거버넌스 기능을 최상위 축으로 추가한 사이버 위험 관리 표준.
-- 개념 : 미국 **국립표준기술원** (NIST, National Institute of Standards and Technology)이 제정한 **사이버보안 프레임워크** (CSF, Cybersecurity Framework)의 2.0 버전으로, 기존 5대 기능에 **거버넌스** (Govern, GV) 기능을 최상위 축으로 신설한 개정 체계.
+- 개념 : 미국 국립표준기술원 (NIST, National Institute of Standards and Technology)이 제정한 사이버보안 프레임워크 (CSF, Cybersecurity Framework)의 2.0 버전으로, 기존 5대 기능에 거버넌스 (Govern, GV) 기능을 최상위 축으로 신설한 개정 체계.
 - 배경 및 필요성 : 보안이 IT(Information Technology) 실무의 기술적 방어에 머무르면 경영진의 의사결정 및 비즈니스 리스크와 괴리되므로, 공급망 위험과 이사회 수준의 책임을 체계에 반영할 필요가 생김.
-- 주요 목적 : 비즈니스 전략과 사이버 위험 관리를 일체화하고, 이사회와 경영진 수준의 거버넌스를 확립하며, 6대 기능으로 **사이버 회복탄력성** (Cyber Resilience)을 구축.
+- 주요 목적 : 비즈니스 전략과 사이버 위험 관리를 일체화하고, 이사회와 경영진 수준의 거버넌스를 확립하며, 6대 기능으로 사이버 회복탄력성 (Cyber Resilience)을 구축.
 
 ## Ⅱ. NIST CSF 2.0 및 거버넌스(Govern) 기능의 특징 및 장점
 
@@ -32,10 +32,10 @@ extra:
 
 1. 거버넌스 (GV, Govern) : 조직 맥락과 위험 선호도(Risk Appetite)를 정하고 역할, 정책, 공급망 위험을 관리 → 기술 기능의 방향과 예산을 통제.
 2. 식별 (ID, Identify) : 자산, 공급망 파트너, 위험과 취약점을 전사 차원에서 가시화 → 보호 대상의 범위 확정.
-3. 보호 (PR, Protect) : **신원 및 접근 관리** (IAM, Identity and Access Management)와 데이터 보안으로 공격 표면 축소.
-4. 탐지 (DE, Detect) : **보안 정보 및 이벤트 관리** (SIEM, Security Information and Event Management)과 EDR(Endpoint Detection and Response)로 비인가 접근을 실시간 감지.
+3. 보호 (PR, Protect) : 신원 및 접근 관리 (IAM, Identity and Access Management)와 데이터 보안으로 공격 표면 축소.
+4. 탐지 (DE, Detect) : 보안 정보 및 이벤트 관리 (SIEM, Security Information and Event Management)과 EDR(Endpoint Detection and Response)로 비인가 접근을 실시간 감지.
 5. 대응 (RS, Respond) : 침해 시 통제된 절차에 따라 시스템을 격리하고 피해 확산을 차단하며 이해관계자와 소통.
-6. 복구 (RC, Recover) : **비즈니스 연속성 계획** (BCP, Business Continuity Plan)에 따라 정상 상태로 회복하고 교훈을 반영.
+6. 복구 (RC, Recover) : 비즈니스 연속성 계획 (BCP, Business Continuity Plan)에 따라 정상 상태로 회복하고 교훈을 반영.
 
 ## Ⅲ. NIST CSF 2.0 및 거버넌스(Govern) 기능의 구조 (흐름)
 

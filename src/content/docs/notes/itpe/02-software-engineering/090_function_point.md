@@ -28,17 +28,17 @@ extra:
 
 - 핵심 요약 : 5개 기능 유형의 식별과 복잡도 가중 합산이 기술 독립적 규모 측정으로 이어짐.
 
-1. 데이터 기능 : 시스템이 유지 관리하는 **ILF** (Internal Logical File)와 타 시스템 데이터를 참조하는 **EIF** (External Interface File) 식별 → 논리 데이터 규모 반영.
-2. 트랜잭션 기능 : 데이터 변경의 **EI** (External Input), 처리 결과 전달의 **EO** (External Output), 단순 검색·회신의 **EQ** (External Inquiry) 식별 → 화면·인터페이스 기능 규모 반영.
-3. 복잡도 가중 : 기능별 **DET** (Data Element Type, 데이터 요소 수)·**RET** (Record Element Type, 레코드 유형 수)·**FTR** (File Type Referenced, 참조 파일 유형 수) 판정 → 낮음·보통·높음 등급의 가중치 합산으로 규모 반영.
+1. 데이터 기능 : 시스템이 유지 관리하는 ILF (Internal Logical File)와 타 시스템 데이터를 참조하는 EIF (External Interface File) 식별 → 논리 데이터 규모 반영.
+2. 트랜잭션 기능 : 데이터 변경의 EI (External Input), 처리 결과 전달의 EO (External Output), 단순 검색·회신의 EQ (External Inquiry) 식별 → 화면·인터페이스 기능 규모 반영.
+3. 복잡도 가중 : 기능별 DET (Data Element Type, 데이터 요소 수)·RET (Record Element Type, 레코드 유형 수)·FTR (File Type Referenced, 참조 파일 유형 수) 판정 → 낮음·보통·높음 등급의 가중치 합산으로 규모 반영.
 4. 기술 독립성 : 구현 언어·도구와 무관한 측정 → 대안 비교·수행사 선정·계약 산정의 공정성 확보.
 
 ## Ⅲ. 기능점수의 산출 절차 (흐름)
 
 - 핵심 요약 : 경계 정의 → 기능 식별 → 복잡도 판정 → 미조정 FP → 조정 계수 적용의 절차로 산출.
-- 표준 절차 : **IFPUG** (International Function Point Users Group)의 측정 표준을 기준으로 수행.
-- 미조정 기능점수 (**UFP**, Unadjusted Function Point) : 5개 유형별 가중 합산의 조정 전 규모 값.
-- 조정 계수 (**VAF**, Value Adjustment Factor) : 14개 일반 시스템 특성(GSC, General System Characteristics)의 점수를 반영해 UFP에 곱하는 계수.
+- 표준 절차 : IFPUG (International Function Point Users Group)의 측정 표준을 기준으로 수행.
+- 미조정 기능점수 (UFP, Unadjusted Function Point) : 5개 유형별 가중 합산의 조정 전 규모 값.
+- 조정 계수 (VAF, Value Adjustment Factor) : 14개 일반 시스템 특성(GSC, General System Characteristics)의 점수를 반영해 UFP에 곱하는 계수.
 
 ```text
 [ FP 산출 절차 ]

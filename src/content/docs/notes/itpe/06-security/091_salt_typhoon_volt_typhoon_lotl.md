@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. Salt Typhoon / Volt Typhoon (LotL)의 개요
 
 - 핵심 요약 : 정상 관리 도구와 유효 계정을 악용해 파일을 남기지 않고 장기 잠복하는 국가 배후 공격 양상.
-- 개념 : 중국 국가 배후로 분류되는 Volt Typhoon은 **Living-off-the-Land** (LotL, 악성 실행 파일 없이 시스템에 기본 설치된 도구로 공격하는 기법)을 써서 중요 기반시설 네트워크에 잠복하고, Salt Typhoon은 통신 사업자 장비를 노려 도청 기반을 마련한 것으로 보도된 국가 배후 고급 지속 위협(APT, Advanced Persistent Threat)임.
+- 개념 : 중국 국가 배후로 분류되는 Volt Typhoon은 Living-off-the-Land (LotL, 악성 실행 파일 없이 시스템에 기본 설치된 도구로 공격하는 기법)을 써서 중요 기반시설 네트워크에 잠복하고, Salt Typhoon은 통신 사업자 장비를 노려 도청 기반을 마련한 것으로 보도된 국가 배후 고급 지속 위협(APT, Advanced Persistent Threat)임.
 - 배경 및 필요성 : 공격자가 별도의 악성코드를 설치하지 않고 기본 관리 도구로 활동하면서 시그니처 기반 탐지가 무력화되어, 행위와 맥락을 보는 탐지의 필요성이 커짐. 미국 CISA와 NSA 등은 2024년 2월 공동 권고(AA23-144A)를 통해 이 기법의 식별과 완화 지침을 제시함.
 - 주요 목적 : 평시에 기반시설 네트워크에 발판을 확보해 두고, 필요할 때 교란이나 정보 수집을 수행할 수 있는 은밀한 지속성을 유지하는 것.
 
@@ -29,7 +29,7 @@ extra:
 
 - 핵심 요약 : 파일 없이 정상 도구와 계정을 쓰는 은닉성이 탐지 회피와 장기 지속성으로 이어지는 공격 방식.
 
-1. **파일리스** (Fileless, 디스크에 악성 파일을 남기지 않고 메모리에서만 실행하는 방식) 실행 : 파일 기반 백신과 해시 탐지를 우회 → 잠복 기간이 길어짐.
+1. 파일리스 (Fileless, 디스크에 악성 파일을 남기지 않고 메모리에서만 실행하는 방식) 실행 : 파일 기반 백신과 해시 탐지를 우회 → 잠복 기간이 길어짐.
 2. 정상 도구 악용 : 운영체제 내장 도구인 LOLBins(Living-off-the-Land Binaries)를 사용 → 관리자 작업과 구분이 어려워 대응 시점이 늦어짐.
 3. 유효 계정 활용 : 탈취한 관리자 계정으로 진입 → 정상 세션처럼 보여 경계 통제를 쉽게 통과함.
 
@@ -63,8 +63,8 @@ extra:
 분석 계층 : 프로세스 트리, 스크립트 블록 로그
 ```
 
-1. **정찰** (Reconnaissance) : `whoami`, `net user`, `nltest /dclist` 명령으로 관리자 그룹과 도메인 컨트롤러 목록을 파악.
-2. **자격증명 탈취** (Credential Dumping) : `comsvcs.dll`의 MiniDump 기능으로 LSASS(Local Security Authority Subsystem Service) 메모리를 덤프하고, `ntdsutil`로 AD(Active Directory) 데이터베이스인 NTDS.dit에서 패스워드 해시를 추출.
+1. 정찰 (Reconnaissance) : `whoami`, `net user`, `nltest /dclist` 명령으로 관리자 그룹과 도메인 컨트롤러 목록을 파악.
+2. 자격증명 탈취 (Credential Dumping) : `comsvcs.dll`의 MiniDump 기능으로 LSASS(Local Security Authority Subsystem Service) 메모리를 덤프하고, `ntdsutil`로 AD(Active Directory) 데이터베이스인 NTDS.dit에서 패스워드 해시를 추출.
 3. 트래픽 터널링 : `netsh interface portproxy`로 외부 명령 서버와 내부 호스트 사이의 포트 포워딩 경로를 구축.
 4. 원격 실행 : `wmic`과 WinRM을 통해 탈취한 도메인 관리자 계정으로 내부 단말을 원격 실행.
 5. 인메모리 스크립트 : `powershell.exe -enc`로 Base64 인코딩된 스크립트를 디스크 기록 없이 실행.
@@ -97,7 +97,7 @@ extra:
 - 핵심 요약 : 노출면 축소, 실행 통제, 행위 가시성을 순서대로 갖춰 파일 없는 침해를 조기에 드러내야 함.
 
 1. 노출면 최소화 : 방화벽과 VPN의 관리 콘솔을 사설망에서만 접근하도록 제한하고, 제조사 지원이 끝난 노후 엣지 장비를 주기적으로 교체하는 정책 필요.
-2. 실행 통제 : 불필요한 내장 도구의 실행을 **Windows Defender Application Control** (WDAC)로 차단하는 방식을 기본 설정으로 적용하는 방향 필요.
+2. 실행 통제 : 불필요한 내장 도구의 실행을 Windows Defender Application Control (WDAC)로 차단하는 방식을 기본 설정으로 적용하는 방향 필요.
 3. 행위 가시성 : PowerShell 스크립트 블록 로깅과 Sysmon의 프로세스 기록을 중앙에서 상관분석하는 체계 필요.
 
 ## Ⅶ. 결론

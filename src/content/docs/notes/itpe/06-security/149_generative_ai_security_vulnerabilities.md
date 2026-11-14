@@ -23,18 +23,18 @@ extra:
 ## Ⅰ. 생성형 AI 보안취약점의 개요
 
 - 핵심 요약 : 자연어로 동작하는 생성형 AI 파이프라인 전 단계에서 생기는 기존 소프트웨어와 다른 구조적 취약점.
-- 개념 : **대형 언어 모델** (LLM, Large Language Model)과 이를 쓰는 애플리케이션의 학습, 배포, 추론 과정에서 발생하는 프롬프트 조작, 데이터 오염, 민감정보 노출, 과도한 권한 부여 등의 취약점 총체. 국제 프로젝트 **OWASP** (Open Worldwide Application Security Project)의 **LLM 상위 10대 위험** (OWASP Top 10 for LLM Applications)이 대표적인 분류.
-- 배경 및 필요성 : 생성형 AI가 기업 업무와 고객 서비스에 깊이 들어오면서, SQL 삽입이나 **XSS** (Cross-Site Scripting) 같은 전통적 공격과 달리 자연어 입력 자체가 공격 벡터가 되었.
-- 주요 목적 : 결정론적이지 않은 AI 파이프라인의 취약점을 체계적으로 식별하고, **가드레일** (Guardrail) 같은 다층 방어를 세워 안전하게 운영하는 것.
+- 개념 : 대형 언어 모델 (LLM, Large Language Model)과 이를 쓰는 애플리케이션의 학습, 배포, 추론 과정에서 발생하는 프롬프트 조작, 데이터 오염, 민감정보 노출, 과도한 권한 부여 등의 취약점 총체. 국제 프로젝트 OWASP (Open Worldwide Application Security Project)의 LLM 상위 10대 위험 (OWASP Top 10 for LLM Applications)이 대표적인 분류.
+- 배경 및 필요성 : 생성형 AI가 기업 업무와 고객 서비스에 깊이 들어오면서, SQL 삽입이나 XSS (Cross-Site Scripting) 같은 전통적 공격과 달리 자연어 입력 자체가 공격 벡터가 되었.
+- 주요 목적 : 결정론적이지 않은 AI 파이프라인의 취약점을 체계적으로 식별하고, 가드레일 (Guardrail) 같은 다층 방어를 세워 안전하게 운영하는 것.
 
 ## Ⅱ. 생성형 AI 보안취약점의 특징 및 장점
 
 - 핵심 요약 : 취약점이 입력, 데이터, 출력, 에이전트 실행의 네 지점에 걸쳐 있어 단계별 통제를 설계해야 하는 특징.
 
 1. 자연어 입력 공격 : 공격자가 지시문을 문장으로 입력하거나 문서에 숨겨 두면 모델이 이를 명령으로 해석 → 입력 필터만으로는 우회가 쉬움.
-2. 데이터 의존성 : 학습 데이터와 **RAG** (Retrieval-Augmented Generation)가 검색한 문서가 모델의 행동을 바꾸므로 **학습 데이터 오염** (Training Data Poisoning)이 장기 백도어로 이어질 수 있음.
-3. 출력의 실행성 : 모델 응답이 브라우저나 데이터베이스 명령으로 전달되면 **불안전한 출력 처리** (Insecure Output Handling)가 곧 원격 코드 실행으로 이어짐.
-4. 에이전트 권한 : 모델이 **API** (Application Programming Interface)를 직접 호출하면 **과도한 자율성** (Excessive Agency)으로 파괴적 작업이 일어날 수 있음 → 권한 최소화가 필요.
+2. 데이터 의존성 : 학습 데이터와 RAG (Retrieval-Augmented Generation)가 검색한 문서가 모델의 행동을 바꾸므로 학습 데이터 오염 (Training Data Poisoning)이 장기 백도어로 이어질 수 있음.
+3. 출력의 실행성 : 모델 응답이 브라우저나 데이터베이스 명령으로 전달되면 불안전한 출력 처리 (Insecure Output Handling)가 곧 원격 코드 실행으로 이어짐.
+4. 에이전트 권한 : 모델이 API (Application Programming Interface)를 직접 호출하면 과도한 자율성 (Excessive Agency)으로 파괴적 작업이 일어날 수 있음 → 권한 최소화가 필요.
 
 ## Ⅲ. 생성형 AI 보안취약점의 구조 (흐름)
 

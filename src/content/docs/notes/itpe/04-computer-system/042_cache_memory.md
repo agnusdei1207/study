@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. 캐시 메모리의 개요
 
 - 핵심 요약 : 중앙 처리 장치와 주기억장치 사이의 속도 격차를 소용량 고속 버퍼 계층으로 메워 평균 접근 시간을 낮추는 메모리.
-- 개념 : **중앙 처리 장치** (CPU, Central Processing Unit)와 주기억장치인 DRAM(Dynamic Random-Access Memory) 사이에 두는 SRAM(Static Random-Access Memory) 기반의 소용량 고속 버퍼 메모리(**캐시 메모리**, Cache Memory).
+- 개념 : 중앙 처리 장치 (CPU, Central Processing Unit)와 주기억장치인 DRAM(Dynamic Random-Access Memory) 사이에 두는 SRAM(Static Random-Access Memory) 기반의 소용량 고속 버퍼 메모리(캐시 메모리, Cache Memory).
 - 배경 및 필요성 : 프로세서 연산 속도 대비 주기억장치 접근 지연의 격차가 커지면서 접근 대기 동안 연산 유닛이 유휴 상태가 되는 비용이 증가하여, 프로그램의 접근 패턴을 활용하는 중간 계층이 필요해짐.
 - 주요 목적 : 평균 메모리 접근 시간의 최소화, 연산 유닛 가동률의 유지, 주기억장치 버스 트래픽의 감소.
 
@@ -29,17 +29,17 @@ extra:
 
 - 핵심 요약 : 참조 국부성을 전제로 계층 구조, 사상 방식, 교체 알고리즘, 쓰기 정책이 맞물려 적중률을 높이는 구조.
 
-1. **참조 국부성** (Locality of Reference) : 최근 참조 데이터의 재참조 성질인 시간 국부성(Temporal Locality)과 인접 주소의 연속 참조 성질인 공간 국부성(Spatial Locality) → 소용량 캐시로도 높은 적중률 확보.
-2. **계층 구조** (Hierarchy) : 코어에 가까울수록 작고 빠른 캐시, 바깥쪽에 크고 느린 캐시의 단계 배치 → 속도와 용량, 비용의 균형.
-3. **캐시 사상 방식** (Cache Mapping) : 주소 블록을 캐시 라인에 배치하는 규칙으로 **직접 사상** (Direct Mapping), **완전 연관** (Fully Associative), **세트 연관** (Set-Associative)의 세 방식 → 하드웨어 비용과 충돌 미스의 균형 조정.
-4. **교체 알고리즘** (Replacement Algorithm) : 세트가 만원 상태일 때 축출 블록을 고르는 규칙으로 LRU(Least Recently Used) 등이 사용됨 → 재사용 가능성이 높은 블록의 유지.
-5. **쓰기 정책** (Write Policy) : **Write-Through**는 캐시와 주기억장치를 동시에 갱신하고, **Write-Back**은 캐시만 갱신한 뒤 **더티 비트** (Dirty Bit, 변경 여부 표시 비트)가 설정된 블록만 교체 시 기록 → 쓰기 트래픽 절감과 일관성 유지의 균형.
+1. 참조 국부성 (Locality of Reference) : 최근 참조 데이터의 재참조 성질인 시간 국부성(Temporal Locality)과 인접 주소의 연속 참조 성질인 공간 국부성(Spatial Locality) → 소용량 캐시로도 높은 적중률 확보.
+2. 계층 구조 (Hierarchy) : 코어에 가까울수록 작고 빠른 캐시, 바깥쪽에 크고 느린 캐시의 단계 배치 → 속도와 용량, 비용의 균형.
+3. 캐시 사상 방식 (Cache Mapping) : 주소 블록을 캐시 라인에 배치하는 규칙으로 직접 사상 (Direct Mapping), 완전 연관 (Fully Associative), 세트 연관 (Set-Associative)의 세 방식 → 하드웨어 비용과 충돌 미스의 균형 조정.
+4. 교체 알고리즘 (Replacement Algorithm) : 세트가 만원 상태일 때 축출 블록을 고르는 규칙으로 LRU(Least Recently Used) 등이 사용됨 → 재사용 가능성이 높은 블록의 유지.
+5. 쓰기 정책 (Write Policy) : Write-Through는 캐시와 주기억장치를 동시에 갱신하고, Write-Back은 캐시만 갱신한 뒤 더티 비트 (Dirty Bit, 변경 여부 표시 비트)가 설정된 블록만 교체 시 기록 → 쓰기 트래픽 절감과 일관성 유지의 균형.
 
 ## Ⅲ. 캐시 메모리의 구조 (흐름)
 
 - 핵심 요약 : L1부터 L3까지의 계층 탐색으로 적중 여부를 판정하고, 주소를 태그·인덱스·오프셋으로 분해하여 대상 라인을 찾는 구조.
-- 계층 구성 : 코어 전용 L1(명령어용·데이터용 분리), 코어 전용 L2, 코어 간 공유 L3의 순서로 배치하며, L3를 **LLC** (Last Level Cache, 마지막 수준 캐시)라 부름.
-- 성능 지표 : 평균 메모리 접근 시간인 **AMAT** (Average Memory Access Time)는 "적중 시간 + 실패율 × 실패 페널티"로 계산함.
+- 계층 구성 : 코어 전용 L1(명령어용·데이터용 분리), 코어 전용 L2, 코어 간 공유 L3의 순서로 배치하며, L3를 LLC (Last Level Cache, 마지막 수준 캐시)라 부름.
+- 성능 지표 : 평균 메모리 접근 시간인 AMAT (Average Memory Access Time)는 "적중 시간 + 실패율 × 실패 페널티"로 계산함.
 
 ```text
 [ 계층 구조와 탐색 순서 ]
@@ -87,7 +87,7 @@ L3 캐시 (코어 간 공유)
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| **3C 미스** (Compulsory, Capacity, Conflict Miss, 최초 참조·용량 부족·충돌에 의한 실패) | 세 가지 원인의 미스 → 연산 대기 증가 | 하드웨어 **프리페치** (Prefetch, 미스 전에 인접 블록을 미리 적재하는 기법), 연관도 확대, 루프 타일링 | 계층별 적중률, 미스 유형별 비율 |
+| 3C 미스 (Compulsory, Capacity, Conflict Miss, 최초 참조·용량 부족·충돌에 의한 실패) | 세 가지 원인의 미스 → 연산 대기 증가 | 하드웨어 프리페치 (Prefetch, 미스 전에 인접 블록을 미리 적재하는 기법), 연관도 확대, 루프 타일링 | 계층별 적중률, 미스 유형별 비율 |
 | 더티 블록 축출 지연 | Write-Back 교체 시 기록 완료까지 후속 접근 대기 | 쓰기 버퍼(Write Buffer)로 기록의 비동기 처리 | 쓰기 버퍼 포화율, 읽기 대기 시간 |
 | 지역성 저하 코드 | 큰 보폭(Stride) 순회, 캐시 크기 초과 자료구조 → 적중률 하락 | 행 우선 순회 등 캐시 친화적 접근 패턴으로 재설계 | 실행 구간별 AMAT |
 

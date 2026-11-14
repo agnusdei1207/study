@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. ISMS-P의 개요
 
 - 핵심 요약 : 정보보호 관리체계와 개인정보보호 관리체계를 하나의 인증 체계로 묶어 국내 인증기준에 따라 심사하는 제도.
-- 개념 : 정보보호 관리체계(ISMS, Information Security Management System)와 개인정보보호 관리체계(PIMS, Personal Information Management System)를 통합한 **ISMS-P** (정보보호 및 개인정보보호 관리체계)는, 과학기술정보통신부와 개인정보보호위원회가 공동 고시한 인증기준에 따라 조직을 심사하는 국내 인증 제도.
+- 개념 : 정보보호 관리체계(ISMS, Information Security Management System)와 개인정보보호 관리체계(PIMS, Personal Information Management System)를 통합한 ISMS-P (정보보호 및 개인정보보호 관리체계)는, 과학기술정보통신부와 개인정보보호위원회가 공동 고시한 인증기준에 따라 조직을 심사하는 국내 인증 제도.
 - 배경 및 필요성 : 정보통신망법에 따른 ISMS와 개인정보 보호법에 따른 개인정보 관리 요구가 따로 운영되면서 기업의 중복 인증 비용과 심사 부담이 커져, 정보자산 보안과 개인정보 생명주기 통제를 함께 점검할 필요가 생김.
 - 주요 목적 : 정보보호와 개인정보보호 관리 수준 향상, 개인정보 유출 사고의 사전 예방, 법령 준수 체계의 통합, 이용자 신뢰 확보.
 
@@ -63,7 +63,7 @@ ISMS-P 인증기준 (총 101개)
 ## Ⅳ. ISMS-P의 비교
 
 - 핵심 요약 : ISMS는 정보자산 보호, ISMS-P는 개인정보 처리 단계를 더한 국내 통합 인증이며, 국제 표준 인증은 자율 인증이라는 점에서 차이가 있음.
-- 국제 표준으로는 **ISO/IEC 27701** (ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 27701, 개인정보 관리체계 확장 표준)이 있으며, 국내 인증과 달리 자율 인증 성격이 강함.
+- 국제 표준으로는 ISO/IEC 27701 (ISO(International Organization for Standardization)/IEC(International Electrotechnical Commission) 27701, 개인정보 관리체계 확장 표준)이 있으며, 국내 인증과 달리 자율 인증 성격이 강함.
 
 | 비교 항목 | ISMS | ISMS-P | ISO/IEC 27701 |
 | --- | --- | --- | --- |
@@ -80,19 +80,19 @@ ISMS-P 인증기준 (총 101개)
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 국외 이전 통제 사각지대 | 클라우드 리전 자동 복제나 해외 SaaS(Software as a Service) 연동 시 국외 이전 근거 누락 | 계약과 이전 근거 확인, **데이터 상주성** (Data Residency) 통제, 데이터 흐름 자동 점검 | 국외 이전 흐름 점검 건수 |
+| 국외 이전 통제 사각지대 | 클라우드 리전 자동 복제나 해외 SaaS(Software as a Service) 연동 시 국외 이전 근거 누락 | 계약과 이전 근거 확인, 데이터 상주성 (Data Residency) 통제, 데이터 흐름 자동 점검 | 국외 이전 흐름 점검 건수 |
 | 가명정보 재식별 평가 기준 모호성 | AI(Artificial Intelligence) 학습과 빅데이터 분석에 쓰인 결합 데이터의 적정성 평가가 정량화되지 않음 | 비식별 조치 가이드라인에 따른 정량 지표(k-익명성, k-Anonymity 등) 정의, 폐쇄된 분석 환경 운영 증적 확보 | 재식별 위험 평가 결과 |
-| CISO와 CPO 책임 분절 | 보안 인프라와 서비스 편의, 동의 관리의 우선순위가 달라 운영이 비효율적이 됨 | 통합 위원회 정례화, **CISO-CPO 공동 승인** 절차 | 공동 승인 누락 건수 |
+| CISO와 CPO 책임 분절 | 보안 인프라와 서비스 편의, 동의 관리의 우선순위가 달라 운영이 비효율적이 됨 | 통합 위원회 정례화, CISO-CPO 공동 승인 절차 | 공동 승인 누락 건수 |
 
 ## Ⅵ. ISMS-P에 대한 기술사적 제언
 
 - 핵심 요약 : 설계 단계의 프라이버시 내재화, 정보주체 전송요구권 대응 API 표준화, 상시 점검 체계를 통해 인증을 실질적 보호 수준으로 연결하는 방향.
 
-서비스 기획 단계부터 개인정보 흐름을 모델링하고, 암호화와 보관기간 설정을 배포 파이프라인에서 자동 검증하는 **Privacy by Design** (설계 단계 프라이버시 보호) 방식을 기본으로 삼는 것이 바람직.
+서비스 기획 단계부터 개인정보 흐름을 모델링하고, 암호화와 보관기간 설정을 배포 파이프라인에서 자동 검증하는 Privacy by Design (설계 단계 프라이버시 보호) 방식을 기본으로 삼는 것이 바람직.
 
-정보주체의 **개인정보 전송요구권** (마이데이터 등)에 대응하려면 상호 TLS(mTLS, mutual Transport Layer Security)와 OAuth(Open Authorization) 2.0 기반의 보안 API를 표준으로 정하고, 접근 권한 검사를 API 계층에서 일관되게 적용해야 한다.
+정보주체의 개인정보 전송요구권 (마이데이터 등)에 대응하려면 상호 TLS(mTLS, mutual Transport Layer Security)와 OAuth(Open Authorization) 2.0 기반의 보안 API를 표준으로 정하고, 접근 권한 검사를 API 계층에서 일관되게 적용해야 한다.
 
-심사 주기 사이의 공백을 메우기 위해, 데이터베이스 접근 기록과 암호키 변경 이력을 정기적으로 분석하는 **상시 감사** (Continuous Audit) 체계를 두는 것이 보호 수준 유지의 현실적 방법이다.
+심사 주기 사이의 공백을 메우기 위해, 데이터베이스 접근 기록과 암호키 변경 이력을 정기적으로 분석하는 상시 감사 (Continuous Audit) 체계를 두는 것이 보호 수준 유지의 현실적 방법이다.
 
 ## Ⅶ. 결론
 

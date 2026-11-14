@@ -22,8 +22,8 @@ extra:
 ## Ⅰ. 공격표면관리의 개요
 
 - 핵심 요약 : 외부에 노출된 디지털 자산을 공격자 시각에서 지속적으로 찾아 줄이는 능동적 보안 관리 체계.
-- 개념 : 조직의 인터넷 노출 자산(IP(Internet Protocol), 도메인, 서브도메인, 클라우드 인스턴스, 오픈 포트, API(Application Programming Interface) 등)을 공격자 관점(Outside-in)에서 지속 탐지·식별·분류하고 위험을 완화하는 체계 (**공격표면관리** (ASM, Attack Surface Management)).
-- 배경 및 필요성 : 원격 근무와 멀티 클라우드 확산으로 정보기술(IT, Information Technology) 자산이 분산되면서, 보안팀이 파악하지 못한 채 방치된 **섀도우 IT** (Shadow IT, 승인 없이 운영되어 관리 대상에서 빠진 자산)이 공격자의 최초 침투 경로로 악용될 가능성 증가.
+- 개념 : 조직의 인터넷 노출 자산(IP(Internet Protocol), 도메인, 서브도메인, 클라우드 인스턴스, 오픈 포트, API(Application Programming Interface) 등)을 공격자 관점(Outside-in)에서 지속 탐지·식별·분류하고 위험을 완화하는 체계 (공격표면관리 (ASM, Attack Surface Management)).
+- 배경 및 필요성 : 원격 근무와 멀티 클라우드 확산으로 정보기술(IT, Information Technology) 자산이 분산되면서, 보안팀이 파악하지 못한 채 방치된 섀도우 IT (Shadow IT, 승인 없이 운영되어 관리 대상에서 빠진 자산)이 공격자의 최초 침투 경로로 악용될 가능성 증가.
 - 주요 목적 : 미지의 디지털 자산에 대한 가시성 확보, 인터넷 노출 공격 표면의 선제적 축소, 외부 취약점이 악용되기 전 조치.
 
 ## Ⅱ. 공격표면관리의 특징 및 장점
@@ -31,10 +31,10 @@ extra:
 - 핵심 요약 : 에이전트 없이 외부 관점에서 지속 탐지하는 방식이 미지의 자산 가시성 확보와 선제 조치로 이어지는 구조.
 
 1. 외부 관점 탐지 (Outside-in) : 대상 서버에 프로그램을 설치하지 않고 공격자가 쓰는 정찰 기법으로 자산 수집 → 등록되지 않은 자산까지 설치 부담 없이 발견.
-2. **자산 귀속성** (Asset Attribution) 판별 : 인증서 주체, DNS(Domain Name System) 등록 정보, ASN(Autonomous System Number)으로 자사 소유와 협력사 자산을 구분 → 책임 주체가 불명확한 자산의 오탐과 방치 감소.
-3. **인증서 투명성 로그** (CT, Certificate Transparency) 모니터링 : 신규 발급된 인증서 기록을 감시 → 개발팀이 임의로 만든 비인가 서브도메인을 실시간 탐지.
+2. 자산 귀속성 (Asset Attribution) 판별 : 인증서 주체, DNS(Domain Name System) 등록 정보, ASN(Autonomous System Number)으로 자사 소유와 협력사 자산을 구분 → 책임 주체가 불명확한 자산의 오탐과 방치 감소.
+3. 인증서 투명성 로그 (CT, Certificate Transparency) 모니터링 : 신규 발급된 인증서 기록을 감시 → 개발팀이 임의로 만든 비인가 서브도메인을 실시간 탐지.
 4. 지속적 노출 모니터링 : 일회성 모의해킹과 달리 포트 개방, 인증서 만료, 소프트웨어 버전 변화를 상시 감시 → 노출 상태의 장기 방치 방지.
-5. 우선순위화 : 외부 노출 취약점(CVE, Common Vulnerabilities and Exposures)을 **EPSS** (Exploit Prediction Scoring System, 실제 악용 가능성 예측 점수)로 정렬 → 한정된 조치 인력의 효율 향상.
+5. 우선순위화 : 외부 노출 취약점(CVE, Common Vulnerabilities and Exposures)을 EPSS (Exploit Prediction Scoring System, 실제 악용 가능성 예측 점수)로 정렬 → 한정된 조치 인력의 효율 향상.
 
 ## Ⅲ. 공격표면관리의 구조 (흐름)
 
@@ -91,16 +91,16 @@ extra:
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | 자산 귀속성 오류 | 클라우드 탄력적 IP가 해제 후 타 기업에 재할당 → 타사 자산 오인 스캔과 법적 분쟁 위험 | CSP(Cloud Service Provider) API와 연동해 현재 소유한 리소스만 실시간 동기화 | 귀속 오탐 건수 |
-| **오리진 IP** 은닉 | CDN(Content Delivery Network)·WAF(Web Application Firewall) 뒤 실제 서버 IP가 가려져 외부 진단 불가 | DNS 이력 분석으로 오리진 IP를 역추적하고 원본 서버의 직접 접속을 방화벽으로 차단 | 원본 직접 접근 차단 건수 |
-| 후속 조치 단절 | 노출 자산의 담당자를 찾지 못해 장기간 방치 | **CMDB** (구성관리 데이터베이스, Configuration Management Database)와 결합해 발견 즉시 담당 부서에 티켓 자동 할당 | 평균 조치 소요 기간 |
+| 오리진 IP 은닉 | CDN(Content Delivery Network)·WAF(Web Application Firewall) 뒤 실제 서버 IP가 가려져 외부 진단 불가 | DNS 이력 분석으로 오리진 IP를 역추적하고 원본 서버의 직접 접속을 방화벽으로 차단 | 원본 직접 접근 차단 건수 |
+| 후속 조치 단절 | 노출 자산의 담당자를 찾지 못해 장기간 방치 | CMDB (구성관리 데이터베이스, Configuration Management Database)와 결합해 발견 즉시 담당 부서에 티켓 자동 할당 | 평균 조치 소요 기간 |
 
 ## Ⅵ. 공격표면관리에 대한 기술사적 제언
 
 - 핵심 요약 : 공격표면관리를 점검 도구가 아닌 위협 노출 관리 체계의 입력 단계로 편입하고, 인터넷 노출 자체를 줄이는 방향으로 운영.
 
-1. 정보보안 조직은 외부 노출 자산의 발견 결과를 **지속적 위협 노출 관리** (CTEM, Continuous Threat Exposure Management)의 발견 단계 입력으로 자동 연결하는 체계를 마련할 필요가 있음.
+1. 정보보안 조직은 외부 노출 자산의 발견 결과를 지속적 위협 노출 관리 (CTEM, Continuous Threat Exposure Management)의 발견 단계 입력으로 자동 연결하는 체계를 마련할 필요가 있음.
 2. 다크웹에 유출된 임직원 계정을 VPN(Virtual Private Network)과 SSO(Single Sign-On) 같은 외부 로그인 포털과 상시 교차 검증하는 절차 운영이 바람직함.
-3. 장기적으로는 공개 IP와 포트를 줄이고 SDP(Software-Defined Perimeter)나 ZTNA(Zero Trust Network Access)로 내부 자원을 인터넷에서 보이지 않게 하는 **제로트러스트** 전환을 단계적으로 추진할 필요가 있음.
+3. 장기적으로는 공개 IP와 포트를 줄이고 SDP(Software-Defined Perimeter)나 ZTNA(Zero Trust Network Access)로 내부 자원을 인터넷에서 보이지 않게 하는 제로트러스트 전환을 단계적으로 추진할 필요가 있음.
 
 ## Ⅶ. 결론
 

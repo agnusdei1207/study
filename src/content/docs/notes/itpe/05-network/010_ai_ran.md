@@ -21,24 +21,24 @@ extra:
 ## Ⅰ. AI-RAN의 개요
 
 - 핵심 요약 : 무선 접속망의 신호 처리·스케줄링·자원 제어에 AI를 적용하고 기지국 컴퓨팅을 범용 AI 인프라와 통합하는 구조.
-- 개념 : 무선 접속망(RAN, Radio Access Network)의 물리 계층 신호 처리와 무선 자원 제어에 인공지능(AI, Artificial Intelligence)과 머신러닝(ML, Machine Learning)을 내장하고, 기지국을 범용 AI 컴퓨팅 플랫폼과 통합한 **AI-RAN** (Artificial Intelligence-RAN) 아키텍처.
+- 개념 : 무선 접속망(RAN, Radio Access Network)의 물리 계층 신호 처리와 무선 자원 제어에 인공지능(AI, Artificial Intelligence)과 머신러닝(ML, Machine Learning)을 내장하고, 기지국을 범용 AI 컴퓨팅 플랫폼과 통합한 AI-RAN (Artificial Intelligence-RAN) 아키텍처.
 - 배경 및 필요성 : 대규모 안테나(Massive MIMO, Multiple-Input Multiple-Output)와 다중 빔포밍으로 무선 파라미터가 폭증해 고정 알고리즘의 최적화 한계가 드러났고, 통신 전용으로 쓰이던 기지국 자원의 유휴 손실도 문제로 부상됨.
-- 주요 목적 : 주파수 효율 향상, 기지국 에너지 소비 절감, 가상화 무선 접속망(vRAN, virtualized RAN)과의 인프라 공유를 통한 총소유비용(**TCO**, Total Cost of Ownership) 절감.
+- 주요 목적 : 주파수 효율 향상, 기지국 에너지 소비 절감, 가상화 무선 접속망(vRAN, virtualized RAN)과의 인프라 공유를 통한 총소유비용(TCO, Total Cost of Ownership) 절감.
 
 ## Ⅱ. AI-RAN의 특징 및 장점
 
 - 핵심 요약 : 학습 기반 제어가 수신·스케줄링·절전·인프라 공유에 적용되어 품질과 비용 효율을 동시에 끌어올리는 방식.
 
-1. **신경망 수신기** (Neural Receiver, 무선 신호 처리를 신경망으로 수행하는 기법) : 채널 추정·등화·심볼 검출을 일괄 수행 → 비선형 왜곡 환경에서의 링크 품질 향상.
+1. 신경망 수신기 (Neural Receiver, 무선 신호 처리를 신경망으로 수행하는 기법) : 채널 추정·등화·심볼 검출을 일괄 수행 → 비선형 왜곡 환경에서의 링크 품질 향상.
 2. 학습 기반 스케줄링 : 강화학습 에이전트가 채널·버퍼·서비스 품질 상태를 입력으로 자원 배분을 결정 → 지연·처리율 개선.
-3. 링크 부합 예측 : **링크 부합** (Link Adaptation, 채널 상태에 따른 변조·부호화율 선택)을 수신 품질 예측 기반으로 수행 → 재전송 감소와 효율 향상.
+3. 링크 부합 예측 : 링크 부합 (Link Adaptation, 채널 상태에 따른 변조·부호화율 선택)을 수신 품질 예측 기반으로 수행 → 재전송 감소와 효율 향상.
 4. 트래픽 예측 절전 : 통신 수요 예측 기반의 셀 온오프·저전력 제어 → 기지국 전력 소비 절감.
 5. 인프라 공유 운영 : 동일 가속 서버에서 vRAN 워크로드와 AI 연산의 동적 배분 → 설비 가동률과 투자 효율 향상.
 
 ## Ⅲ. AI-RAN의 구조 (흐름)
 
 - 핵심 요약 : 계층별 AI 적용 범위와 학습·배포·추론의 순환 구조로 무선 자원 제어를 표현하는 구조.
-- AI-RAN Alliance의 적용 축 : **AI-for-RAN** (무선 기능 자체의 AI화), **AI-and-RAN** (같은 인프라의 vRAN·AI 워크로드 공유), **AI-on-RAN** (유휴 자원의 에지 AI 서비스화) 구분.
+- AI-RAN Alliance의 적용 축 : AI-for-RAN (무선 기능 자체의 AI화), AI-and-RAN (같은 인프라의 vRAN·AI 워크로드 공유), AI-on-RAN (유휴 자원의 에지 AI 서비스화) 구분.
 
 ```text
 [ 계층별 AI 적용 ]
@@ -62,7 +62,7 @@ extra:
 데이터 수집으로 회귀
 ```
 
-- **RIC** (RAN Intelligent Controller) : O-RAN(Open Radio Access Network, 개방형 무선 접속망)의 무선 제어 플랫폼으로 모델 배포와 정책 제어의 경로 제공.
+- RIC (RAN Intelligent Controller) : O-RAN(Open Radio Access Network, 개방형 무선 접속망)의 무선 제어 플랫폼으로 모델 배포와 정책 제어의 경로 제공.
 
 ## Ⅳ. AI-RAN과 기존 무선 접속망의 비교
 

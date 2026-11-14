@@ -23,8 +23,8 @@ extra:
 ## Ⅰ. 신경망(Neural Network)의 개요
 
 - 핵심 요약 : 가중치로 연결된 뉴런 층이 비선형 활성화와 역전파 학습을 거쳐 입력과 출력의 복합 관계를 근사하는 기계학습 모델.
-- 개념 : 생물 신경망을 단순화한 **인공 뉴런** (Artificial Neuron)이 여러 층으로 연결되고, 각 연결의 **가중치** (Weight)와 비선형 **활성화 함수** (Activation Function)를 통해 입력과 출력 사이의 관계를 학습하는 모델.
-- 배경 및 필요성 : 층이 깊어지면 **기울기 소실** (Vanishing Gradient)이 생겨 입력층 쪽 학습이 멈추고, 파라미터가 많아 과적합이 쉽게 발생하므로, 활성화 함수 선택, 초기화, 잔차 연결, 정규화를 함께 설계할 필요가 있음.
+- 개념 : 생물 신경망을 단순화한 인공 뉴런 (Artificial Neuron)이 여러 층으로 연결되고, 각 연결의 가중치 (Weight)와 비선형 활성화 함수 (Activation Function)를 통해 입력과 출력 사이의 관계를 학습하는 모델.
+- 배경 및 필요성 : 층이 깊어지면 기울기 소실 (Vanishing Gradient)이 생겨 입력층 쪽 학습이 멈추고, 파라미터가 많아 과적합이 쉽게 발생하므로, 활성화 함수 선택, 초기화, 잔차 연결, 정규화를 함께 설계할 필요가 있음.
 - 주요 목적 : 이미지, 음성, 언어처럼 전통적 선형 모델로 풀기 어려운 고차원 비선형 문제에서 특징을 자동으로 추출하고 분류·예측하는 것.
 
 ## Ⅱ. 신경망(Neural Network)의 특징 및 장점
@@ -64,7 +64,7 @@ extra:
         ↑ 기울기 역전파 (연쇄 법칙)
 ```
 
-- 파라미터 갱신 : 계산된 기울기에 학습률을 곱해 가중치를 빼는 **경사하강법** (Gradient Descent) 방식으로 갱신하며, 실제로는 모멘텀과 적응형 학습률을 쓰는 옵티마이저를 사용한다.
+- 파라미터 갱신 : 계산된 기울기에 학습률을 곱해 가중치를 빼는 경사하강법 (Gradient Descent) 방식으로 갱신하며, 실제로는 모멘텀과 적응형 학습률을 쓰는 옵티마이저를 사용한다.
 
 ## Ⅳ. 신경망(Neural Network)의 비교
 
@@ -87,9 +87,9 @@ extra:
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 기울기 소실 | 시그모이드 미분값이 층마다 곱해져 입력층 기울기가 0에 가까워짐 | 렐루·젤루 활성화, He·Xavier 초기화, **잔차 연결** (Residual Connection)으로 입력을 출력에 직접 전달 | 층별 기울기 크기 |
-| 과적합 | 깊고 큰 모델이 훈련 데이터의 잡음까지 암기 | **드롭아웃** (Dropout)으로 뉴런을 무작위로 끄고, L2 가중치 감쇠와 검증 손실 기준 **조기 종료** (Early Stopping) 적용 | 훈련과 검증 손실의 격차 |
-| 블랙박스 문제 | 수많은 비선형 가중치 때문에 판단 근거를 사람이 역추적하기 어려움 | **Grad-CAM**으로 주목 영역을 시각화하고, 설명 가능 AI(XAI, Explainable Artificial Intelligence) 기법으로 SHAP(SHapley Additive exPlanations)과 SHAP(SHapley Additive exPlanations)과 LIME(Local Interpretable Model-agnostic Explanations)으로 입력별 기여도 분석 | 설명 기법 적용률, 설명 검토 건수 |
+| 기울기 소실 | 시그모이드 미분값이 층마다 곱해져 입력층 기울기가 0에 가까워짐 | 렐루·젤루 활성화, He·Xavier 초기화, 잔차 연결 (Residual Connection)으로 입력을 출력에 직접 전달 | 층별 기울기 크기 |
+| 과적합 | 깊고 큰 모델이 훈련 데이터의 잡음까지 암기 | 드롭아웃 (Dropout)으로 뉴런을 무작위로 끄고, L2 가중치 감쇠와 검증 손실 기준 조기 종료 (Early Stopping) 적용 | 훈련과 검증 손실의 격차 |
+| 블랙박스 문제 | 수많은 비선형 가중치 때문에 판단 근거를 사람이 역추적하기 어려움 | Grad-CAM으로 주목 영역을 시각화하고, 설명 가능 AI(XAI, Explainable Artificial Intelligence) 기법으로 SHAP(SHapley Additive exPlanations)과 SHAP(SHapley Additive exPlanations)과 LIME(Local Interpretable Model-agnostic Explanations)으로 입력별 기여도 분석 | 설명 기법 적용률, 설명 검토 건수 |
 
 ## Ⅵ. 신경망(Neural Network)에 대한 기술사적 제언
 

@@ -23,7 +23,7 @@ extra:
 
 ## Ⅰ. GPGPU의 개요
 
-- 핵심 요약 : **GPGPU** (General-Purpose computing on GPU)는 GPU의 대규모 병렬 연산 구조를 그래픽 외 범용 수치 계산에 활용하는 컴퓨팅 방식.
+- 핵심 요약 : GPGPU (General-Purpose computing on GPU)는 GPU의 대규모 병렬 연산 구조를 그래픽 외 범용 수치 계산에 활용하는 컴퓨팅 방식.
 - 개념 : 그래픽 처리용으로 발전한 GPU(Graphics Processing Unit)의 다수 연산 코어를 과학 기술 계산, 딥러닝, 영상 분석 등 범용 연산에 활용하는 방식과 그 프로그래밍 모델.
 - 배경 및 필요성 : 소수의 고성능 코어로 지연 시간을 줄이는 CPU(Central Processing Unit)만으로 대규모 행렬 연산 중심의 AI(Artificial Intelligence) 워크로드를 감당하기 어려움.
 - 주요 목적 : 데이터 병렬성에 기반한 연산 처리량 극대화와 와트당 연산 효율 향상.
@@ -32,10 +32,10 @@ extra:
 
 - 핵심 요약 : SIMT 실행 모델과 지연 은폐, 공유 메모리, 계층적 프로그래밍 모델이 대량 데이터의 동시 처리를 실현하는 구조.
 
-1. **SIMT** (Single Instruction, Multiple Threads) 실행 모델 : 32개의 스레드를 **워프** (Warp) 단위로 묶어 한 명령을 여러 데이터에 동시 적용 → 명령 발행 비용을 다수 스레드가 분담하는 처리량 증가 효과.
-2. **지연 은폐** (Latency Hiding) : 메모리 접근으로 대기 중인 워프를 준비된 다른 워프로 즉시 교체 → 연산 유닛 가동률 유지 효과.
-3. **공유 메모리** (Shared Memory) : 같은 블록 내 스레드가 온칩 메모리에 데이터를 공유 → 글로벌 메모리의 반복 접근 감소 효과.
-4. 계층적 프로그래밍 모델 : **CUDA** (Compute Unified Device Architecture)가 **커널** (Kernel)을 그리드·블록·스레드 계층으로 구성 → 소프트웨어 계층과 하드웨어 계층의 대응에 따른 최적화 효과.
+1. SIMT (Single Instruction, Multiple Threads) 실행 모델 : 32개의 스레드를 워프 (Warp) 단위로 묶어 한 명령을 여러 데이터에 동시 적용 → 명령 발행 비용을 다수 스레드가 분담하는 처리량 증가 효과.
+2. 지연 은폐 (Latency Hiding) : 메모리 접근으로 대기 중인 워프를 준비된 다른 워프로 즉시 교체 → 연산 유닛 가동률 유지 효과.
+3. 공유 메모리 (Shared Memory) : 같은 블록 내 스레드가 온칩 메모리에 데이터를 공유 → 글로벌 메모리의 반복 접근 감소 효과.
+4. 계층적 프로그래밍 모델 : CUDA (Compute Unified Device Architecture)가 커널 (Kernel)을 그리드·블록·스레드 계층으로 구성 → 소프트웨어 계층과 하드웨어 계층의 대응에 따른 최적화 효과.
 
 ## Ⅲ. GPGPU의 구조 (흐름)
 
@@ -88,9 +88,9 @@ L2 캐시 (GPU 칩 전체 공유)
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | :--- | :--- | :--- | :--- |
-| **워프 다이버전스** (Warp Divergence) | 워프 내 스레드의 분기 경로 분리 시 경로별 순차 실행 → 유휴 스레드 대기로 처리량 급락 | 조건문 최소화, 같은 경로의 스레드 재배치로 분기 통일 | 워프 실행 효율 |
-| **PCIe** (Peripheral Component Interconnect Express) 전송 병목 | 호스트 메모리와 GPU 메모리 간 복사가 연산보다 느림 → 대기 발생 | 통합 메모리(Unified Memory)와 비동기 스트림으로 복사·연산의 중첩 | 전송 대기 시간 |
-| **메모리 결합** (Memory Coalescing) 실패 | 워프 스레드의 흩어진 주소 접근으로 트랜잭션 급증 → 대역폭 낭비 | SoA(Structure of Arrays) 재설계로 연속 주소 접근 보장 | 대역폭 활용률 |
+| 워프 다이버전스 (Warp Divergence) | 워프 내 스레드의 분기 경로 분리 시 경로별 순차 실행 → 유휴 스레드 대기로 처리량 급락 | 조건문 최소화, 같은 경로의 스레드 재배치로 분기 통일 | 워프 실행 효율 |
+| PCIe (Peripheral Component Interconnect Express) 전송 병목 | 호스트 메모리와 GPU 메모리 간 복사가 연산보다 느림 → 대기 발생 | 통합 메모리(Unified Memory)와 비동기 스트림으로 복사·연산의 중첩 | 전송 대기 시간 |
+| 메모리 결합 (Memory Coalescing) 실패 | 워프 스레드의 흩어진 주소 접근으로 트랜잭션 급증 → 대역폭 낭비 | SoA(Structure of Arrays) 재설계로 연속 주소 접근 보장 | 대역폭 활용률 |
 
 ## Ⅵ. GPGPU에 대한 기술사적 제언
 

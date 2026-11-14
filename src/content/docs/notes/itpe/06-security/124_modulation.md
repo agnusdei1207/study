@@ -22,17 +22,17 @@ extra:
 ## Ⅰ. 데이터 변조(Modification)와 위조(Fabrication)의 개요
 
 - 핵심 요약 : 변조는 정상 데이터를 불법 수정하는 무결성 침해이고, 위조는 허위 주체와 데이터를 새로 만드는 진본성 침해.
-- 개념 : **데이터 변조** (Modification)는 전송 중이거나 저장된 정상 데이터를 제3자가 수정·삭제·추가하는 무결성 침해이며, **데이터 위조** (Fabrication)는 허위 메시지나 자원을 정당한 송신자가 보낸 것처럼 만들어 주입하는 인증 및 진본성 침해.
+- 개념 : 데이터 변조 (Modification)는 전송 중이거나 저장된 정상 데이터를 제3자가 수정·삭제·추가하는 무결성 침해이며, 데이터 위조 (Fabrication)는 허위 메시지나 자원을 정당한 송신자가 보낸 것처럼 만들어 주입하는 인증 및 진본성 침해.
 - 배경 및 필요성 : 초기 인터넷 프로토콜인 IP(Internet Protocol), TCP(Transmission Control Protocol), ARP(Address Resolution Protocol), DNS(Domain Name System)는 상대방을 검증하는 암호학적 인증 없이 설계되어, 중간자 공격과 스푸핑, 세션 하이재킹이 일상적으로 나타남.
-- 주요 목적 : 3대 보안 목표인 무결성, 인증, **부인 방지** (Non-repudiation)를 깨뜨리는 공격 메커니즘을 규명하고, 암호학적 수단으로 원본의 진본성을 보장하는 것.
+- 주요 목적 : 3대 보안 목표인 무결성, 인증, 부인 방지 (Non-repudiation)를 깨뜨리는 공격 메커니즘을 규명하고, 암호학적 수단으로 원본의 진본성을 보장하는 것.
 
 ## Ⅱ. 데이터 변조(Modification)와 위조(Fabrication)의 특징 및 장점
 
 - 핵심 요약 : 두 공격은 대상 속성이 다르므로 방어 수단도 달라지며, 암호학적 키가 결합된 인증이 두 공격을 모두 막는 기반이 .
 
-1. 변조의 특징 : 전송 패킷의 필드 값을 바꾸거나 데이터베이스 질의어 SQL(Structured Query Language)에 악성 구문을 넣는 **SQL 삽입** (SQL Injection)으로 수정 → 무결성이 깨져 잘못된 결제나 데이터 훼손이 발생.
+1. 변조의 특징 : 전송 패킷의 필드 값을 바꾸거나 데이터베이스 질의어 SQL(Structured Query Language)에 악성 구문을 넣는 SQL 삽입 (SQL Injection)으로 수정 → 무결성이 깨져 잘못된 결제나 데이터 훼손이 발생.
 2. 위조의 특징 : 발신 IP나 MAC(Media Access Control) 주소를 도용해 ARP 응답(Reply)을 뿌리거나 허위 DNS 응답을 먼저 보냄 → 가짜 서버로 유도되어 진본성이 깨짐.
-3. 키 기반 인증 : 단순 체크섬(CRC, Cyclic Redundancy Check)은 재계산이 가능해 방어가 어렵고, **HMAC** (Hash-based Message Authentication Code, 비밀키 기반 메시지 인증 코드)과 **디지털 서명** (Digital Signature)을 쓰면 위변조가 드러남.
+3. 키 기반 인증 : 단순 체크섬(CRC, Cyclic Redundancy Check)은 재계산이 가능해 방어가 어렵고, HMAC (Hash-based Message Authentication Code, 비밀키 기반 메시지 인증 코드)과 디지털 서명 (Digital Signature)을 쓰면 위변조가 드러남.
 
 ## Ⅲ. 데이터 변조(Modification)와 위조(Fabrication)의 구조 (흐름)
 

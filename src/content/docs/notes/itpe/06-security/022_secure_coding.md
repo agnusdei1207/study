@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. 시큐어 코딩(Secure Coding)의 개요
 
 - 핵심 요약 : 설계와 구현 단계에서 보안약점을 원천 배제하는 안전한 코딩 규칙 준수 기법.
-- 개념 : **소프트웨어 개발 생명주기** (SDLC, Software Development Life Cycle)의 설계와 구현 단계에서 **보안약점** (CWE, Common Weakness Enumeration)이 생기지 않도록 안전한 코딩 규칙과 표준을 지키며 프로그래밍하는 소프트웨어 개발보안 기법.
+- 개념 : 소프트웨어 개발 생명주기 (SDLC, Software Development Life Cycle)의 설계와 구현 단계에서 보안약점 (CWE, Common Weakness Enumeration)이 생기지 않도록 안전한 코딩 규칙과 표준을 지키며 프로그래밍하는 소프트웨어 개발보안 기법.
 - 배경 및 필요성 : 배포 후 방화벽, 침입 방지 시스템(IPS, Intrusion Prevention System) 같은 외부 솔루션으로 애플리케이션 취약점을 막는 방식은 비용이 크고 근본적 한계가 있어, 행정안전부가 'SW 개발보안 가이드'로 개발 단계의 보안 기준을 제시함.
 - 주요 목적 : 소프트웨어 결함과 제로데이 공격을 예방하고, 사후 패치 비용을 줄이며(Shift-Left), 컴플라이언스를 준수하는 것.
 
@@ -42,7 +42,7 @@ extra:
 ## Ⅲ. 시큐어 코딩(Secure Coding)의 구조 (흐름)
 
 - 핵심 요약 : 설계 단계의 위협 모델링에서 시작해, 구현 규칙과 자동 진단 게이트를 거쳐 배포로 이어지는 흐름.
-- **정적 분석** (SAST, Static Application Security Testing)은 소스코드를 실행하지 않고 검사하고, **동적 분석** (DAST, Dynamic Application Security Testing)은 실행 중인 애플리케이션을 외부에서 공격해 검사한다.
+- 정적 분석 (SAST, Static Application Security Testing)은 소스코드를 실행하지 않고 검사하고, 동적 분석 (DAST, Dynamic Application Security Testing)은 실행 중인 애플리케이션을 외부에서 공격해 검사한다.
 
 ```text
 [ 시큐어 코딩 적용 흐름 ]
@@ -79,7 +79,7 @@ DAST 동적 진단 (모의 침투)
 | 장점 | 모든 코드 경로 검사, 수정 위치 명확 | 실제 악용 가능성 검증, 설정 오류 탐지 | 오탐이 적고 코드와 실행 흐름을 함께 추적 |
 | 단점 | 오탐(False Positive)이 많고 비즈니스 로직 결함 탐지 난항 | 코드 내부 위치 식별 불가, 스캔 시간 소요 | 특정 언어에 종속, 런타임 성능 부담 |
 
-- SAST는 코딩 시점에 즉각적인 수정을 유도하는 Shift-Left의 핵심이고, DAST는 운영 환경 구성 오류를 찾으므로 두 방식과 **SCA** (Software Composition Analysis, 오픈소스 구성요소 분석)를 함께 운영하는 것이 일반적이다.
+- SAST는 코딩 시점에 즉각적인 수정을 유도하는 Shift-Left의 핵심이고, DAST는 운영 환경 구성 오류를 찾으므로 두 방식과 SCA (Software Composition Analysis, 오픈소스 구성요소 분석)를 함께 운영하는 것이 일반적이다.
 
 ## Ⅴ. 시큐어 코딩(Secure Coding)의 한계와 방안
 
@@ -87,15 +87,15 @@ DAST 동적 진단 (모의 침투)
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| SAST 도구의 경고 과다 | 실행되지 않는 경로까지 경고를 쏟아내 개발자가 도구 신뢰를 잃음 | **도달 가능성 분석** (Reachability Analysis)으로 실제 실행 경로에 있는 경고를 우선 표시 | 오탐 비율, 경고 처리 시간 |
-| 생성형 인공지능(AI, Artificial Intelligence) 코드의 취약점 유입 | AI 추천 코드에 구형 라이브러리, 버퍼 오버플로, 입력 검증 누락이 섞여 들어옴 | IDE 단계에서 생성 코드를 실시간 진단하는 **시큐어 코딩 린터** (Linter)와 자동 교정 도구 도입 | 생성 코드의 진단 경고 건수 |
-| **비즈니스 로직 결함** (Broken Access Control) | 권한 검사 우회(IDOR, Insecure Direct Object Reference)나 금액 조작은 정적 분석이 놓침 | 개발 초기에 **위협 모델링** (STRIDE, Spoofing·Tampering·Repudiation·Information Disclosure·Denial of Service·Elevation of Privilege)을 수행하고 시나리오 기반 보안 테스트 작성 | 로직 결함 테스트 커버리지 |
+| SAST 도구의 경고 과다 | 실행되지 않는 경로까지 경고를 쏟아내 개발자가 도구 신뢰를 잃음 | 도달 가능성 분석 (Reachability Analysis)으로 실제 실행 경로에 있는 경고를 우선 표시 | 오탐 비율, 경고 처리 시간 |
+| 생성형 인공지능(AI, Artificial Intelligence) 코드의 취약점 유입 | AI 추천 코드에 구형 라이브러리, 버퍼 오버플로, 입력 검증 누락이 섞여 들어옴 | IDE 단계에서 생성 코드를 실시간 진단하는 시큐어 코딩 린터 (Linter)와 자동 교정 도구 도입 | 생성 코드의 진단 경고 건수 |
+| 비즈니스 로직 결함 (Broken Access Control) | 권한 검사 우회(IDOR, Insecure Direct Object Reference)나 금액 조작은 정적 분석이 놓침 | 개발 초기에 위협 모델링 (STRIDE, Spoofing·Tampering·Repudiation·Information Disclosure·Denial of Service·Elevation of Privilege)을 수행하고 시나리오 기반 보안 테스트 작성 | 로직 결함 테스트 커버리지 |
 
 ## Ⅵ. 시큐어 코딩(Secure Coding)에 대한 기술사적 제언
 
 - 핵심 요약 : 보안 품질 게이트, 개발 환경 내 실시간 피드백, 감리 기준 정합성을 시큐어 코딩 체계의 기본으로 제시.
 
-1. **보안 품질 게이트** (Quality Gate) : CI/CD 파이프라인에 두어 높은 등급의 취약점이 남아 있으면 빌드와 배포를 자동으로 막는 정책을 세우는 것이 바람직.
+1. 보안 품질 게이트 (Quality Gate) : CI/CD 파이프라인에 두어 높은 등급의 취약점이 남아 있으면 빌드와 배포를 자동으로 막는 정책을 세우는 것이 바람직.
 2. 개발 환경 실시간 피드백 : 배포 직전에 감사하는 대신 IDE(Integrated Development Environment, 통합 개발 환경)에서 코딩하는 순간 약점을 알려주는 체계를 두는 것이 필요하다.
 3. 감리 기준 정합성 : 행정안전부 SW 개발보안 가이드의 보안약점 진단 기준을 사내 코딩 표준으로 수용하고, 정기 진단 보고서를 자동 생성하는 체계를 두는 것이 좋다.
 

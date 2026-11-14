@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. 디지털 아티팩트의 개요
 
 - 핵심 요약 : 운영체제와 응용 프로그램이 정상 동작하며 남기는 흔적을 시간순으로 재구성해 침해사고를 입증하는 포렌식 증거 자원.
-- 개념 : 운영체제(OS, Operating System), 파일시스템, 응용 프로그램이 동작하는 과정에서 저장장치와 레지스트리에 자동으로 남는 흔적을 **디지털 아티팩트** (Digital Artifact)라 하며, 이를 수집·분석하는 활동이 포렌식(Forensics)임.
+- 개념 : 운영체제(OS, Operating System), 파일시스템, 응용 프로그램이 동작하는 과정에서 저장장치와 레지스트리에 자동으로 남는 흔적을 디지털 아티팩트 (Digital Artifact)라 하며, 이를 수집·분석하는 활동이 포렌식(Forensics)임.
 - 배경 및 필요성 : 침해사고 조사와 법적 분쟁에서는 과거의 프로그램 실행, 파일 접근, USB(Universal Serial Bus) 장치 연결 순서를 재구성해야 하며, 사용자가 의도적으로 남기지 않은 흔적이 사실 확인의 근거가 됨.
-- 주요 목적 : 침해 유입 경로와 악성코드 실행 이력 규명, 데이터 유출 행위의 **부인 방지** (Non-repudiation, 행위 사실을 행위자가 부정하기 어렵게 하는 성질) 근거 확보, 침해 타임라인 복원.
+- 주요 목적 : 침해 유입 경로와 악성코드 실행 이력 규명, 데이터 유출 행위의 부인 방지 (Non-repudiation, 행위 사실을 행위자가 부정하기 어렵게 하는 성질) 근거 확보, 침해 타임라인 복원.
 
 ## Ⅱ. 디지털 아티팩트의 특징 및 장점
 
@@ -36,12 +36,12 @@ extra:
 
 ## Ⅲ. 디지털 아티팩트의 구조 (흐름)
 
-- 핵심 요약 : 행위가 여러 아티팩트 계층에 흩어져 기록되고, 이를 **슈퍼 타임라인** (Super Timeline)으로 통합해 분석하는 두 단계 구조.
-- **프리페치** (Prefetch) : 응용 프로그램 로딩 가속용 캐시 파일로 실행 파일명, 실행 횟수, 최초·최종 실행 시각을 보존.
-- **암캐시** (Amcache.hve) : 프로그램 설치와 실행 정보, 파일의 SHA(Secure Hash Algorithm)-1 해시를 별도 하이브 파일에 보존.
-- **심캐시** (Shimcache, AppCompatCache) : 호환성 유지를 위한 커널 캐시로 파일 경로와 수정 시각을 기록.
-- **MFT** (Master File Table) : NTFS(New Technology File System)의 파일 메타데이터 테이블로, $STANDARD_INFORMATION과 $FILE_NAME 두 종류의 타임스탬프를 보유.
-- **저널 로그** ($UsnJrnl) : 파일 생성, 이름 변경, 삭제 이력을 연속으로 기록하는 변경 저널.
+- 핵심 요약 : 행위가 여러 아티팩트 계층에 흩어져 기록되고, 이를 슈퍼 타임라인 (Super Timeline)으로 통합해 분석하는 두 단계 구조.
+- 프리페치 (Prefetch) : 응용 프로그램 로딩 가속용 캐시 파일로 실행 파일명, 실행 횟수, 최초·최종 실행 시각을 보존.
+- 암캐시 (Amcache.hve) : 프로그램 설치와 실행 정보, 파일의 SHA(Secure Hash Algorithm)-1 해시를 별도 하이브 파일에 보존.
+- 심캐시 (Shimcache, AppCompatCache) : 호환성 유지를 위한 커널 캐시로 파일 경로와 수정 시각을 기록.
+- MFT (Master File Table) : NTFS(New Technology File System)의 파일 메타데이터 테이블로, $STANDARD_INFORMATION과 $FILE_NAME 두 종류의 타임스탬프를 보유.
+- 저널 로그 ($UsnJrnl) : 파일 생성, 이름 변경, 삭제 이력을 연속으로 기록하는 변경 저널.
 
 ```text
 [ 행위 → 아티팩트 계층 ]
@@ -89,9 +89,9 @@ extra:
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| **타임스톰프** (Timestomp) 시각 조작 | 악성 파일의 MFT 시각을 정상 파일과 같게 바꿔 시계열 정렬 회피 | $STANDARD_INFORMATION과 $FILE_NAME 타임스탬프 불일치 탐지, $UsnJrnl과 대조 | 불일치 탐지 건수 |
+| 타임스톰프 (Timestomp) 시각 조작 | 악성 파일의 MFT 시각을 정상 파일과 같게 바꿔 시계열 정렬 회피 | $STANDARD_INFORMATION과 $FILE_NAME 타임스탬프 불일치 탐지, $UsnJrnl과 대조 | 불일치 탐지 건수 |
 | SSD(Solid-State Drive)의 TRIM 명령에 따른 증거 소멸 | 삭제 후 TRIM으로 셀이 초기화되어 카빙 복구 가능성이 크게 낮아짐 | MFT 메타데이터 우선 분석, VSS(Volume Shadow Copy Service) 스냅샷과 메모리 덤프 선제 수집 | 증거 수집 소요 시간 |
-| **파일리스 악성코드** (Fileless Malware) | 디스크 기록 없이 WMI(Windows Management Instrumentation)나 레지스트리로 실행되어 디스크 아티팩트 부재 | WMI 리포지토리 분석, ASEP(Auto-Start Extensibility Point) 점검, 메모리의 VAD(Virtual Address Descriptor) 트리 분석 | 자동 실행 항목 변경 건수 |
+| 파일리스 악성코드 (Fileless Malware) | 디스크 기록 없이 WMI(Windows Management Instrumentation)나 레지스트리로 실행되어 디스크 아티팩트 부재 | WMI 리포지토리 분석, ASEP(Auto-Start Extensibility Point) 점검, 메모리의 VAD(Virtual Address Descriptor) 트리 분석 | 자동 실행 항목 변경 건수 |
 
 ## Ⅵ. 디지털 아티팩트에 대한 기술사적 제언
 
@@ -99,7 +99,7 @@ extra:
 
 단말의 로컬 로그가 공격자에 의해 삭제되더라도 증거가 남도록, 보안관제 조직은 보안 이벤트를 SIEM(Security Information and Event Management)으로 실시간 전송하는 구조를 기본으로 삼아야 한다.
 
-기업 단말 전체에 **Sysmon** (System Monitor)을 표준으로 배포해 프로세스 생성 해시, 네트워크 연결, 파일 생성 기록을 확보해 두는 것이 기본 준비다.
+기업 단말 전체에 Sysmon (System Monitor)을 표준으로 배포해 프로세스 생성 해시, 네트워크 연결, 파일 생성 기록을 확보해 두는 것이 기본 준비다.
 
 사고 대응 절차에는 여러 단말의 아티팩트를 원격으로 수집해 Plaso와 Timesketch로 단일 타임라인을 만드는 과정을 SOAR(Security Orchestration, Automation and Response) 플레이북으로 정형화하면, 분석 인력의 수작업 의존을 줄이고 대응 속도를 높일 수 있다.
 

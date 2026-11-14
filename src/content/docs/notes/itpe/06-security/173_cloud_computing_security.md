@@ -22,23 +22,23 @@ extra:
 ## Ⅰ. 클라우드 컴퓨팅 보안의 개요
 
 - 핵심 요약 : 클라우드의 민첩성을 해치지 않으면서 인프라, 워크로드, 권한, 데이터를 자동화된 통제로 보호하는 보안 체계.
-- 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service)와 하이브리드·멀티 클라우드 환경에서 가상화 인프라, 컨테이너, 서버리스 워크로드와 데이터를 위협으로부터 지키는 **클라우드 보안** (Cloud Security) 아키텍처와 거버넌스.
+- 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service)와 하이브리드·멀티 클라우드 환경에서 가상화 인프라, 컨테이너, 서버리스 워크로드와 데이터를 위협으로부터 지키는 클라우드 보안 (Cloud Security) 아키텍처와 거버넌스.
 - 배경 및 필요성 : 온프레미스에서 멀티 클라우드로 전환되며 네트워크 경계가 사라졌고, 코드형 인프라(IaC, Infrastructure as Code) 배포 오류와 과도한 IAM(Identity and Access Management) 권한 부여로 인한 대규모 데이터 침해가 빈발.
-- 주요 목적 : 멀티 테넌트 환경의 자원 격리와 규제 준수를 확보하고, 코드형 보안(Security as Code)으로 **제로 트러스트** (Zero Trust, 모든 접근을 매번 검증하는 보안 원칙)를 실현.
+- 주요 목적 : 멀티 테넌트 환경의 자원 격리와 규제 준수를 확보하고, 코드형 보안(Security as Code)으로 제로 트러스트 (Zero Trust, 모든 접근을 매번 검증하는 보안 원칙)를 실현.
 
 ## Ⅱ. 클라우드 컴퓨팅 보안의 특징 및 장점
 
 - 핵심 요약 : 보안 설정을 코드로 관리하고 네 영역을 하나의 플랫폼에서 보므로, 설정 오류와 권한 과잉을 배포 전후 모두에서 잡을 수 있음.
 
-1. **CSPM** (Cloud Security Posture Management, 클라우드 설정 상태를 상시 감사하는 자세 관리) : 공개된 스토리지나 개방된 보안 그룹을 탐지 → 설정 오류로 인한 노출 기간 단축.
-2. **CIEM** (Cloud Infrastructure Entitlement Management, 클라우드 권한을 식별하고 회수하는 관리) : 미사용 권한과 권한 상승 경로를 제거 → 과잉 권한 악용 차단.
-3. **CWPP** (Cloud Workload Protection Platform, 가상머신·컨테이너 등 실행 중 워크로드 보호) : 런타임 행위와 파일 무결성을 감시 → 익스플로잇과 랜섬웨어 조기 차단.
-4. **Shift-Left** (배포 전 단계로 보안 점검을 앞당기는 방식) : Terraform과 매니페스트를 빌드 단계에서 정적 검사 → 결함 수정 비용 절감.
+1. CSPM (Cloud Security Posture Management, 클라우드 설정 상태를 상시 감사하는 자세 관리) : 공개된 스토리지나 개방된 보안 그룹을 탐지 → 설정 오류로 인한 노출 기간 단축.
+2. CIEM (Cloud Infrastructure Entitlement Management, 클라우드 권한을 식별하고 회수하는 관리) : 미사용 권한과 권한 상승 경로를 제거 → 과잉 권한 악용 차단.
+3. CWPP (Cloud Workload Protection Platform, 가상머신·컨테이너 등 실행 중 워크로드 보호) : 런타임 행위와 파일 무결성을 감시 → 익스플로잇과 랜섬웨어 조기 차단.
+4. Shift-Left (배포 전 단계로 보안 점검을 앞당기는 방식) : Terraform과 매니페스트를 빌드 단계에서 정적 검사 → 결함 수정 비용 절감.
 
 ## Ⅲ. 클라우드 컴퓨팅 보안의 구조 (흐름)
 
-- 핵심 요약 : 개발 단계의 코드 검사와 런타임의 자세, 권한, 워크로드 감시가 **CNAPP** 한 플랫폼에서 이어지는 전주기 구조.
-- **CNAPP** (Cloud Native Application Protection Platform, CSPM, CWPP, CIEM, IaC 스캐닝을 단일 플랫폼으로 통합한 보안 도구) : 파편화된 도구를 하나의 가시성으로 묶음.
+- 핵심 요약 : 개발 단계의 코드 검사와 런타임의 자세, 권한, 워크로드 감시가 CNAPP 한 플랫폼에서 이어지는 전주기 구조.
+- CNAPP (Cloud Native Application Protection Platform, CSPM, CWPP, CIEM, IaC 스캐닝을 단일 플랫폼으로 통합한 보안 도구) : 파편화된 도구를 하나의 가시성으로 묶음.
 
 ```text
 [ 개발 단계 ]
@@ -93,9 +93,9 @@ extra:
 ## Ⅵ. 클라우드 컴퓨팅 보안에 대한 기술사적 제언
 
 - 핵심 요약 : 배포 후 점검에서 벗어나 코드 단계의 자동 검사, 임시 자격증명, 데이터 사용 중 보호를 결합한 체계로 전환.
-- Terraform 코드와 Dockerfile을 빌드 파이프라인에서 자동 검사하여, 배포 후에 발견되는 결함을 줄이는 **DevSecOps** (개발, 보안, 운영을 한 흐름에서 통합하는 방식) 문화를 정착시켜야 한.
+- Terraform 코드와 Dockerfile을 빌드 파이프라인에서 자동 검사하여, 배포 후에 발견되는 결함을 줄이는 DevSecOps (개발, 보안, 운영을 한 흐름에서 통합하는 방식) 문화를 정착시켜야 한.
 - 소스코드나 서버에 고정된 영구 액세스 키 사용을 금지하고, 수명이 짧은 임시 자격증명(STS, Security Token Service)만 사용하도록 IAM 역할 체계를 정비.
-- 메모리에서 데이터가 처리되는 동안에도 보호하기 위해 **기밀 컴퓨팅** (Confidential Computing, 하드웨어 기반 신뢰 실행 환경에서 데이터를 처리하는 기술)을 민감 워크로드에 적용하면 클라우드 사업자 내부자의 접근을 줄일 수 있.
+- 메모리에서 데이터가 처리되는 동안에도 보호하기 위해 기밀 컴퓨팅 (Confidential Computing, 하드웨어 기반 신뢰 실행 환경에서 데이터를 처리하는 기술)을 민감 워크로드에 적용하면 클라우드 사업자 내부자의 접근을 줄일 수 있.
 
 ## Ⅶ. 결론
 

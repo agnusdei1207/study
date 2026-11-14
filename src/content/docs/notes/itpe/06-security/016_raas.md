@@ -22,18 +22,18 @@ extra:
 ## Ⅰ. RaaS(서비스형 랜섬웨어)의 개요
 
 - 핵심 요약 : 악성코드 제작과 공격 실행을 나눠 맡고 수익을 배분하는 구독형 랜섬웨어 범죄 모델.
-- 개념 : 운영자(Operator)가 악성코드, C2(Command and Control) 서버, 결제·협상 포털을 플랫폼으로 제공하고, **제휴 파트너** (Affiliate)가 이를 빌려 공격한 뒤 몸값을 나누는 사이버 범죄 비즈니스 모델 (**서비스형 랜섬웨어**, RaaS, Ransomware as a Service).
+- 개념 : 운영자(Operator)가 악성코드, C2(Command and Control) 서버, 결제·협상 포털을 플랫폼으로 제공하고, 제휴 파트너 (Affiliate)가 이를 빌려 공격한 뒤 몸값을 나누는 사이버 범죄 비즈니스 모델 (서비스형 랜섬웨어, RaaS, Ransomware as a Service).
 - 배경 및 필요성 : 서비스 구독형 사업 모델의 분업화가 다크웹 범죄 생태계로 옮겨가면서, 고도의 코딩 지식이 없는 공격자도 기업을 겨냥한 공격을 실행할 수 있게 되어 진입 장벽이 낮아짐.
-- 주요 목적 : 분업 구조(침투, 배포, 협상, 자금 세탁)를 이해해 공격 표면을 줄이고, **CTI** (Cyber Threat Intelligence, 사이버 위협 인텔리전스)로 조기 탐지하여 침해 확산을 막는 것.
+- 주요 목적 : 분업 구조(침투, 배포, 협상, 자금 세탁)를 이해해 공격 표면을 줄이고, CTI (Cyber Threat Intelligence, 사이버 위협 인텔리전스)로 조기 탐지하여 침해 확산을 막는 것.
 
 ## Ⅱ. RaaS(서비스형 랜섬웨어)의 특징 및 장점
 
 - 핵심 요약 : 역할 분담형 플랫폼이 공격자의 진입 장벽을 낮추고 공격 효율을 높이는 구조.
 
 1. 역할 분담 구조 : 개발과 운영은 운영자가, 침투와 실행은 파트너가 맡음 → 파트너가 정찰과 권한 상승에만 집중해 공격 효율 상승.
-2. **초기 침투 브로커** (IAB, Initial Access Broker) 거래 : 탈취한 VPN(Virtual Private Network)·RDP(Remote Desktop Protocol) 접속 권한을 사고팔아 → 내부망 침투까지 걸리는 시간 단축.
+2. 초기 침투 브로커 (IAB, Initial Access Broker) 거래 : 탈취한 VPN(Virtual Private Network)·RDP(Remote Desktop Protocol) 접속 권한을 사고팔아 → 내부망 침투까지 걸리는 시간 단축.
 3. 맞춤형 빌더 : 파트너가 관리 화면에서 대상별 C2 주소와 회피 옵션을 골라 악성코드를 컴파일 → 공격 대상마다 변종을 빠르게 만듦.
-4. **다중 협박** (Multi-extortion) 기능 : 암호화와 함께 탈취 데이터를 공개 사이트에 올리는 네임앤셰임 기능을 기본 제공 → 백업이 있어도 몸값 압박 유지.
+4. 다중 협박 (Multi-extortion) 기능 : 암호화와 함께 탈취 데이터를 공개 사이트에 올리는 네임앤셰임 기능을 기본 제공 → 백업이 있어도 몸값 압박 유지.
 5. 협상·세탁 일체화 : 피해자 협상 채팅과 암호화폐 세탁을 플랫폼이 함께 제공 → 수익 회수 절차가 표준화.
 
 ## Ⅲ. RaaS(서비스형 랜섬웨어)의 구조 (흐름)
@@ -90,17 +90,17 @@ extra:
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 정상 계정 로그인 탐지 한계 | 구매한 임직원 계정으로 VPN에 정상 접속해 경계 탐지 우회 | 피싱에 강한 **MFA** (Multi-Factor Authentication, 다중 인증) 전사 적용, **UEBA** (User and Entity Behavior Analytics, 사용자·개체 행위 분석)로 비정상 시간·위치 접속 격리 | MFA 적용률, 비정상 접속 탐지 건수 |
-| 조직 이름 교체 재출현 | 운영자 검거 후에도 파트너가 코드를 들고 새 이름으로 재등장해 명칭 기반 차단 무력화 | **TTPs** (Tactics, Techniques, and Procedures, 전술·기법·절차) 중심으로 **MITRE ATT&CK** (Adversarial Tactics, Techniques, and Common Knowledge) 기법에 맞춘 탐지 체계 운영 | 기법 단위 탐지 커버리지 |
-| **이중 협박** (Double Extortion) | 백업이 있어도 기밀 유출 협박으로 몸값 지불 압박을 받아 복구만으로는 대응 불가 | 핵심 데이터의 저장·전송·사용 중 암호화, 대량 외부 전송을 **DLP** (Data Loss Prevention, 데이터 유출 방지)로 자동 차단 | 외부 전송 차단 건수, 암호화 적용률 |
+| 정상 계정 로그인 탐지 한계 | 구매한 임직원 계정으로 VPN에 정상 접속해 경계 탐지 우회 | 피싱에 강한 MFA (Multi-Factor Authentication, 다중 인증) 전사 적용, UEBA (User and Entity Behavior Analytics, 사용자·개체 행위 분석)로 비정상 시간·위치 접속 격리 | MFA 적용률, 비정상 접속 탐지 건수 |
+| 조직 이름 교체 재출현 | 운영자 검거 후에도 파트너가 코드를 들고 새 이름으로 재등장해 명칭 기반 차단 무력화 | TTPs (Tactics, Techniques, and Procedures, 전술·기법·절차) 중심으로 MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) 기법에 맞춘 탐지 체계 운영 | 기법 단위 탐지 커버리지 |
+| 이중 협박 (Double Extortion) | 백업이 있어도 기밀 유출 협박으로 몸값 지불 압박을 받아 복구만으로는 대응 불가 | 핵심 데이터의 저장·전송·사용 중 암호화, 대량 외부 전송을 DLP (Data Loss Prevention, 데이터 유출 방지)로 자동 차단 | 외부 전송 차단 건수, 암호화 적용률 |
 
 ## Ⅵ. RaaS(서비스형 랜섬웨어)에 대한 기술사적 제언
 
 - 핵심 요약 : 위협 인텔리전스 상시 감시, 침해 대응 절차 자동화, 제로트러스트 접근 통제를 기업 보안의 기본 체계로 정착.
 
 1. 위협 인텔리전스 상시 구독 : 자사 계정과 접속 권한이 포럼에 매물로 올라오는지 CTI 서비스로 상시 감시하는 체계를 두는 것이 바람직.
-2. 침해 대응 절차 자동화 : **CSIRT** (Computer Security Incident Response Team, 컴퓨터 보안 사고 대응팀)가 감염 호스트 격리, 계정 일괄 재설정, 포렌식 증적 보존을 스크립트로 묶어 대응 시간을 줄이는 것이 필요하다.
-3. 외부 접근 통제 : 외주 유지보수 업체의 원격 접속은 **ZTNA** (Zero Trust Network Access, 제로 트러스트 네트워크 접근)로 최소 권한과 세션 녹화를 적용하는 것이 바람직.
+2. 침해 대응 절차 자동화 : CSIRT (Computer Security Incident Response Team, 컴퓨터 보안 사고 대응팀)가 감염 호스트 격리, 계정 일괄 재설정, 포렌식 증적 보존을 스크립트로 묶어 대응 시간을 줄이는 것이 필요하다.
+3. 외부 접근 통제 : 외주 유지보수 업체의 원격 접속은 ZTNA (Zero Trust Network Access, 제로 트러스트 네트워크 접근)로 최소 권한과 세션 녹화를 적용하는 것이 바람직.
 
 ## Ⅶ. 결론
 

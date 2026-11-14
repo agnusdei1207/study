@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. UN 전자정부 평가의 개요
 
 - 핵심 요약 : 193개 회원국의 공공 정보화 수준을 2년 주기로 비교하는 글로벌 디지털 정부 벤치마크.
-- 개념 : 유엔(UN, United Nations)의 경제사회국(DESA, Department of Economic and Social Affairs)이 회원국의 공공부문 정보화 수준과 디지털 포용성을 2년 주기로 비교·분석하는 **전자정부 평가** (E-Government Survey).
+- 개념 : 유엔(UN, United Nations)의 경제사회국(DESA, Department of Economic and Social Affairs)이 회원국의 공공부문 정보화 수준과 디지털 포용성을 2년 주기로 비교·분석하는 전자정부 평가 (E-Government Survey).
 - 배경 및 필요성 : 국제 순위를 행정 성과로 여기는 흐름이 굳어지면 포털 구축 자체가 목적이 되어, 국민이 민원을 끝내기까지 드는 비용과 중앙·지방 간 서비스 격차가 줄지 않는다. 따라서 평가 결과는 순위보다 비대면 과업 완결성과 격차 해소 정도로 읽어야 한다.
 - 주요 목적 : 회원국의 전자정부 발전 수준 진단, 지속가능발전목표(SDGs, Sustainable Development Goals) 이행 지원, 디지털 격차 해소를 위한 정책 지침 제공.
 
@@ -30,8 +30,8 @@ extra:
 
 - 핵심 요약 : 국가·참여·지방의 세 층위를 나눠 측정하여, 종합 순위와 세부 진단을 함께 얻는 다층 평가 체계.
 
-1. 다층 지수 체계 : **전자정부 발전지수** (EGDI, E-Government Development Index), **온라인 참여지수** (EPI, E-Participation Index), **지자체 온라인 서비스 지수** (LOSI, Local Online Service Index)로 나누어 측정 → 국가별 강점과 약점의 위치를 층위별로 파악.
-2. 동일 가중 종합지수 : EGDI는 **온라인 서비스 지수** (OSI, Online Service Index), **통신 인프라 지수** (TII, Telecommunication Infrastructure Index), **인적 자본 지수** (HCI, Human Capital Index)의 산술평균 → 한 영역에만 쏠린 투자가 점수로 드러남.
+1. 다층 지수 체계 : 전자정부 발전지수 (EGDI, E-Government Development Index), 온라인 참여지수 (EPI, E-Participation Index), 지자체 온라인 서비스 지수 (LOSI, Local Online Service Index)로 나누어 측정 → 국가별 강점과 약점의 위치를 층위별로 파악.
+2. 동일 가중 종합지수 : EGDI는 온라인 서비스 지수 (OSI, Online Service Index), 통신 인프라 지수 (TII, Telecommunication Infrastructure Index), 인적 자본 지수 (HCI, Human Capital Index)의 산술평균 → 한 영역에만 쏠린 투자가 점수로 드러남.
 3. 정량·정성 복합 조사 : 웹사이트 점검과 설문을 국제전기통신연합(ITU, International Telecommunication Union)의 통신 통계와 결합 → 보고된 수치와 실제 서비스 상태를 교차 확인.
 4. 2년 주기 반복 비교 : 같은 틀로 시계열 변화를 추적 → 정책 투입 이후의 효과를 국가 간에 비교 가능.
 

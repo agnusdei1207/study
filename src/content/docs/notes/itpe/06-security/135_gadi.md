@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. GADI의 개요
 
 - 핵심 요약 : 서로 다른 디지털 신원 체계를 신뢰 있게 연결하기 위해 DID Alliance가 제시한 아키텍처 구상.
-- 개념 : **GADI** (Global Architecture for Digital Identity)는 DID Alliance가 디지털 신원 체계 간 상호운용성과 신뢰 연결을 위해 제안한 아키텍처 구상.
+- 개념 : GADI (Global Architecture for Digital Identity)는 DID Alliance가 디지털 신원 체계 간 상호운용성과 신뢰 연결을 위해 제안한 아키텍처 구상.
 - 배경 및 필요성 : 국가, 기관, 서비스마다 신원 체계가 분절되어 중복 인증과 이용자 통제권 부재가 문제로 제기되었으며, DID Alliance는 2019년 10월 출범 발표에서 이 문제의 해결을 목표로 제시.
 - 주요 목적 : 신원 체계 간 신뢰 관계를 관리하고, 이용자가 자신의 신원 정보를 더 잘 통제하며 디지털 신원 이용의 포용성을 높이는 것.
 - 지위 : 발표 자료에 따라 Global Architecture 또는 Global Association으로 표기되기도 함. 산업 연합의 구상이며 W3C나 ITU 등의 표준과 구분해야 하고, 법적 통용이나 구현 완료를 의미하지 않음. 최근 공개 자료에서 구현 현황은 확인되지 않음.
@@ -38,8 +38,8 @@ extra:
 ## Ⅲ. GADI의 구조 (흐름)
 
 - 핵심 요약 : 발급, 자격증명 제시, 검증으로 이어지는 신뢰 흐름에서 각 단계의 신뢰 근거를 구분해 확인해야 하는 구조.
-- **DID** (Decentralized Identifier) : 식별자와 검증 방법을 연결하는 W3C 표준이며, 블록체인을 요구하지 않음.
-- **VC** (Verifiable Credential) : 발급자, 보유자, 검증자 사이에서 자격 정보를 표현하는 모델.
+- DID (Decentralized Identifier) : 식별자와 검증 방법을 연결하는 W3C 표준이며, 블록체인을 요구하지 않음.
+- VC (Verifiable Credential) : 발급자, 보유자, 검증자 사이에서 자격 정보를 표현하는 모델.
 
 ```text
 [ 신원 연결 흐름 ]

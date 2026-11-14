@@ -51,7 +51,7 @@ Operate (정책·운영 내재화)
 다음 주기로 순환
 ```
 
-- **FOCUS** (FinOps Open Cost and Usage Specification)은 클라우드 비용·사용량 데이터의 형식을 표준화한 개방형 사양 → 멀티클라우드 비교·분석의 공통 기반.
+- FOCUS (FinOps Open Cost and Usage Specification)은 클라우드 비용·사용량 데이터의 형식을 표준화한 개방형 사양 → 멀티클라우드 비교·분석의 공통 기반.
 
 ```text
 클라우드 사업자별 청구 데이터

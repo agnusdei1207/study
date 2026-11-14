@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 인공지능 신뢰성 검·인증의 개요
 
 - 핵심 요약 : 개발·운영 과정의 신뢰성 확보 활동을 제3자가 검토해 확인하는 민간 자율 인증 제도.
-- 개념 : 한국정보통신기술협회(TTA, Telecommunications Technology Association)가 운영하는 **인공지능 신뢰성 검·인증** (CAT, Certification of AI Trustworthiness)은 인공지능(AI, Artificial Intelligence) 시스템의 신뢰성 확보 노력을 평가하는 민간 자율 제도다.
+- 개념 : 한국정보통신기술협회(TTA, Telecommunications Technology Association)가 운영하는 인공지능 신뢰성 검·인증 (CAT, Certification of AI Trustworthiness)은 인공지능(AI, Artificial Intelligence) 시스템의 신뢰성 확보 노력을 평가하는 민간 자율 제도다.
 - 주요 목적 : 위험 식별, 대응 조치, 시험 증거를 제3자가 검토해 신청 시스템의 신뢰성 확보 활동을 확인하는 데 있다.
 - 범위 : 인증이 모든 인공지능 서비스의 법적 의무 이행이나 모든 상황에서의 무결함을 보증하지는 않는다.
 
@@ -30,7 +30,7 @@ extra:
 
 - 핵심 요약 : 위험관리 국제 표준을 근거로 대상의 위험과 대응을 점검하고, 시험 증거로 입증하는 절차.
 
-1. **위험관리** (ISO/IEC 23894 인공지능 위험관리 지침과 ISO/IEC TR 24028 신뢰성 개념 참조) : 대상·맥락·위험과 대응 활동을 검토 → 평가의 출발점 확보.
+1. 위험관리 (ISO/IEC 23894 인공지능 위험관리 지침과 ISO/IEC TR 24028 신뢰성 개념 참조) : 대상·맥락·위험과 대응 활동을 검토 → 평가의 출발점 확보.
 2. 상담·시험·인증심의 : 신청 제품의 적용 범위와 자료를 확인하고 보완을 거쳐 인증 여부를 심의 → 적용 범위의 명확화.
 3. 시험 증거 : 개발·운영 기록, 위험 평가, 조치 결과, 대상에 맞는 시험 결과로 신뢰성 활동을 입증 → 결과의 재현 가능성 확보.
 
@@ -64,7 +64,7 @@ extra:
 | 다른 규제와의 관계 | 규제 대응의 참고 자료로 활용 가능 | 조직의 관리 역량을 입증하는 자료로 활용 가능 |
 
 - 공정성, 설명가능성, 견고성 시험은 시스템 목적과 위험에 따라 선정한다. 모든 대상에 같은 편향성 비율이나 같은 차단율을 기준으로 적용한다고 볼 근거는 없다.
-- CAT 취득과 **유럽연합 인공지능법** (EU AI Act)에 따른 적합성 평가는 구분된다. CAT 인증만으로 해당 법률의 모든 의무를 대체하지 않는다.
+- CAT 취득과 유럽연합 인공지능법 (EU AI Act)에 따른 적합성 평가는 구분된다. CAT 인증만으로 해당 법률의 모든 의무를 대체하지 않는다.
 - 참고 : [TTA의 CAT 명칭 및 민간 자율 제도 안내](https://ai.tta.or.kr/tta/selectBbsNttView.do?bbsNo=107&integrDeptCode=&key=76&nttNo=14136&pageIndex=3&searchCnd=all&searchCtgry=&searchKrwd=), [TTA 인공지능 신뢰성 검·인증 교육 안내](https://edu.tta.or.kr/edu/educationWebView.do?key=19&prgNo=1399).
 
 ## Ⅴ. 신뢰성 검·인증의 한계와 방안

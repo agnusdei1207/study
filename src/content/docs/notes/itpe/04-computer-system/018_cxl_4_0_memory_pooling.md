@@ -18,7 +18,7 @@ extra:
 
 ## Ⅰ. CXL 4.0 메모리 풀링의 개요
 - 핵심 요약 : CXL은 CPU와 가속기·메모리 장치를 캐시 일관성 있는 링크로 연결하며 메모리 풀링은 용량을 공유하는 구성.
-- 개념 : **CXL** (Compute Express Link)은 PCIe 물리 계층을 기반으로 CXL.io, CXL.cache, CXL.mem 프로토콜을 제공하는 상호연결 규격.
+- 개념 : CXL (Compute Express Link)은 PCIe 물리 계층을 기반으로 CXL.io, CXL.cache, CXL.mem 프로토콜을 제공하는 상호연결 규격.
 - 배경 및 필요성 : 서버별 메모리 불균형으로 일부 노드는 부족, 일부는 유휴인 비효율.
 - 주요 목적 : 메모리 자원을 유연하게 배치해 활용률과 워크로드 수용량 개선.
 

@@ -23,18 +23,18 @@ extra:
 
 - 핵심 요약 : 6G 표준화 개시, AI 기반 망 자율 운영, 양자 안전 통신을 축으로 하는 차세대 네트워크 R&D 이슈 동향.
 - 개념 : 정부 출연 정보통신 연구를 기획·평가하는 정보통신기획평가원(IITP, Institute of Information & Communications Technology Planning & Evaluation)의 기획 방향과 국제 표준화 진행을 결합해 정리한 차세대 네트워크 R&D 이슈 체계.
-- 배경 및 필요성 : ITU(International Telecommunication Union) 무선전기통신부문(ITU-R)이 2030년경 상용화를 전망하는 **IMT-2030** (6G 프레임워크 국제 권고, ITU-R M.2160) 논의가 본격화되는 가운데, 생성형 AI 확산으로 데이터센터 내부 통신과 망 자동 운영 수요가 함께 증가. 주파수·부품의 외부 의존이 공급망 위험으로 이어질 수 있어 기술 자립 과제가 병행됨.
+- 배경 및 필요성 : ITU(International Telecommunication Union) 무선전기통신부문(ITU-R)이 2030년경 상용화를 전망하는 IMT-2030 (6G 프레임워크 국제 권고, ITU-R M.2160) 논의가 본격화되는 가운데, 생성형 AI 확산으로 데이터센터 내부 통신과 망 자동 운영 수요가 함께 증가. 주파수·부품의 외부 의존이 공급망 위험으로 이어질 수 있어 기술 자립 과제가 병행됨.
 - 주요 목적 : 차세대 무선 표준 선점, 망 운영 자동화를 통한 운영 비용 절감, AI 클러스터 통신 병목 해소, 양자 시대 대비 보안 전환.
 
 ## Ⅱ. 5대 이슈 축의 특징 및 장점
 
 - 핵심 요약 : 무선, 제어, 개방, 연산 연결, 보안의 다섯 축이 표준 선점과 운영 효율로 연결되는 구조.
 
-1. 6G·비지상망 : 3GPP(3rd Generation Partnership Project)가 Release 20에서 6G 연구를 개시하고, Release 17부터 표준화된 **NTN** (Non-Terrestrial Network, 위성·고고도 플랫폼을 이동통신망에 포함하는 기술)을 계승 → 해상·항공을 포함한 전역 커버리지.
-2. AI 네이티브 네트워크 : 3GPP Release 18의 AI/ML 데이터 수집 프레임워크와 O-RAN(Open Radio Access Network)의 **RIC** (RAN Intelligent Controller, 무선망 지능 제어기)로 정책 자동화와 장애 예측 → 운영 인력 부담과 복구 시간 감소.
+1. 6G·비지상망 : 3GPP(3rd Generation Partnership Project)가 Release 20에서 6G 연구를 개시하고, Release 17부터 표준화된 NTN (Non-Terrestrial Network, 위성·고고도 플랫폼을 이동통신망에 포함하는 기술)을 계승 → 해상·항공을 포함한 전역 커버리지.
+2. AI 네이티브 네트워크 : 3GPP Release 18의 AI/ML 데이터 수집 프레임워크와 O-RAN(Open Radio Access Network)의 RIC (RAN Intelligent Controller, 무선망 지능 제어기)로 정책 자동화와 장애 예측 → 운영 인력 부담과 복구 시간 감소.
 3. 개방형 무선망 : 기지국 기능을 O-CU·O-DU·O-RU로 분리하고 A1·E2·O1 같은 공개 인터페이스로 상호 연결 → 벤더 종속 완화와 중소 생태계 참여 확대.
-4. AI 데이터센터 패브릭 : Ultra Ethernet Consortium(UEC)의 고속 이더넷 명세와 IEEE(Institute of Electrical and Electronics Engineers) 802.3 고속 인터페이스, **CPO** (Co-Packaged Optics, 스위치 칩과 광 트랜시버를 한 기판에 함께 패키징하는 기술)의 결합 → GPU 클러스터 간 패킷 손실과 지연 축소.
-5. 양자 안전 통신 : NIST(National Institute of Standards and Technology)의 **PQC** (Post-Quantum Cryptography, 양자 내성 암호) 표준 알고리즘과 **QKD** (Quantum Key Distribution, 양자 키 분배) 전송망의 결합 → 장기 보관 데이터의 기밀성 유지.
+4. AI 데이터센터 패브릭 : Ultra Ethernet Consortium(UEC)의 고속 이더넷 명세와 IEEE(Institute of Electrical and Electronics Engineers) 802.3 고속 인터페이스, CPO (Co-Packaged Optics, 스위치 칩과 광 트랜시버를 한 기판에 함께 패키징하는 기술)의 결합 → GPU 클러스터 간 패킷 손실과 지연 축소.
+5. 양자 안전 통신 : NIST(National Institute of Standards and Technology)의 PQC (Post-Quantum Cryptography, 양자 내성 암호) 표준 알고리즘과 QKD (Quantum Key Distribution, 양자 키 분배) 전송망의 결합 → 장기 보관 데이터의 기밀성 유지.
 
 ## Ⅲ. 5대 이슈 축의 구조 (흐름)
 

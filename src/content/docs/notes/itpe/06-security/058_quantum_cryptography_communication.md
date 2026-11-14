@@ -22,16 +22,16 @@ extra:
 ## Ⅰ. 양자암호통신의 개요
 
 - 핵심 요약 : 양자역학의 물리 법칙으로 도청을 탐지하고 안전한 비밀키를 분배하는 차세대 통신 보안 기술.
-- 개념 : 단일 광자의 양자 상태와 측정 특성 등 양자역학의 물리 법칙을 활용해, 통신 채널에서 도청 흔적을 드러내고 송수신자 사이에 비밀키를 분배·전송하는 보안 통신 기술 (**양자암호통신**, Quantum Cryptography Communication).
-- 배경 및 필요성 : 양자 컴퓨팅의 발전으로 RSA(Rivest-Shamir-Adleman)와 ECC(Elliptic Curve Cryptography) 같은 **공개키 암호** (Public-Key Cryptography)가 위협받을 가능성이 커짐에 따라, 수학적 난제가 아닌 물리 법칙에 근거한 통신 보안 기반의 필요성 대두.
-- 주요 목적 : 도청 시도의 탐지 가능성 확보, 국가 백본망과 금융 핵심 전송망의 장기 기밀성 확보, 이를 통한 **정보이론적 안전성** (Information-Theoretic Security) 실현.
+- 개념 : 단일 광자의 양자 상태와 측정 특성 등 양자역학의 물리 법칙을 활용해, 통신 채널에서 도청 흔적을 드러내고 송수신자 사이에 비밀키를 분배·전송하는 보안 통신 기술 (양자암호통신, Quantum Cryptography Communication).
+- 배경 및 필요성 : 양자 컴퓨팅의 발전으로 RSA(Rivest-Shamir-Adleman)와 ECC(Elliptic Curve Cryptography) 같은 공개키 암호 (Public-Key Cryptography)가 위협받을 가능성이 커짐에 따라, 수학적 난제가 아닌 물리 법칙에 근거한 통신 보안 기반의 필요성 대두.
+- 주요 목적 : 도청 시도의 탐지 가능성 확보, 국가 백본망과 금융 핵심 전송망의 장기 기밀성 확보, 이를 통한 정보이론적 안전성 (Information-Theoretic Security) 실현.
 
 ## Ⅱ. 양자암호통신의 특징 및 장점
 
 - 핵심 요약 : 도청 시 상태가 변하는 양자 성질과 복제 불가 원리가 결합되어, 계산 능력과 무관하게 도청 흔적을 드러내는 방식.
 
 1. 도청 탐지 원리 : 측정 과정에서 양자 상태가 교란되는 성질을 이용 → 도청 흔적이 키 불일치로 드러나 해당 키를 폐기.
-2. **양자 복제 불가 정리** (No-Cloning Theorem) : 미지의 양자 상태는 임의로 복제할 수 없음 → 도청자가 전송 중인 키를 몰래 복사하지 못함.
+2. 양자 복제 불가 정리 (No-Cloning Theorem) : 미지의 양자 상태는 임의로 복제할 수 없음 → 도청자가 전송 중인 키를 몰래 복사하지 못함.
 3. 계산 능력 독립성 : 안전성의 근거가 수학적 계산 난이도가 아닌 물리 법칙 → 컴퓨팅 성능이 향상되어도 키 분배 안전성이 흔들리지 않음.
 4. 기존 암호와의 결합 : 분배된 양자키를 AES(Advanced Encryption Standard) 같은 대칭키 암호에 공급 → 기존 암호 장비의 구조를 유지한 채 키 체계만 강화.
 
@@ -39,10 +39,10 @@ extra:
 
 - 핵심 요약 : 양자 난수 생성, 양자 키 분배, 키 관리, 고속 암호화의 4계층이 순서대로 키를 공급하는 연계 구조.
 
-1. **양자 난수 생성기** (QRNG, Quantum Random Number Generator) : 양자 현상을 측정해 예측 불가능한 진성 난수를 생성 → 키 생성의 시드(seed) 확보.
-2. **양자 키 분배** (QKD, Quantum Key Distribution) : 단일 광자의 편광 상태를 이용해 송수신자가 대칭키를 나눠 가짐 → 도청 시 키 불일치로 탐지.
+1. 양자 난수 생성기 (QRNG, Quantum Random Number Generator) : 양자 현상을 측정해 예측 불가능한 진성 난수를 생성 → 키 생성의 시드(seed) 확보.
+2. 양자 키 분배 (QKD, Quantum Key Distribution) : 단일 광자의 편광 상태를 이용해 송수신자가 대칭키를 나눠 가짐 → 도청 시 키 불일치로 탐지.
 3. 양자 키 관리 시스템 (Q-KMS) : 생성된 양자키를 저장·라우팅하고 표준 인터페이스로 상위 장비에 공급 → 양쪽 키 동기화 유지.
-4. 고속 암호 장비 연동 : IPsec(Internet Protocol Security)이나 **MACsec** (Media Access Control Security) 장비가 공급받은 키로 대용량 트래픽을 암호화 → 전송 구간 기밀성 확보.
+4. 고속 암호 장비 연동 : IPsec(Internet Protocol Security)이나 MACsec (Media Access Control Security) 장비가 공급받은 키로 대용량 트래픽을 암호화 → 전송 구간 기밀성 확보.
 
 ```text
 [ 양자 키 공급 흐름 ]
@@ -89,9 +89,9 @@ extra:
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 전송 거리 제한과 **신뢰 노드** (Trusted Node) 취약성 | 광 신호를 증폭할 수 없어 중간 노드에서 키를 복호화 후 재전송 → 노드 물리 탈취 시 키 노출 | 신뢰 노드에 FIPS(Federal Information Processing Standards) 140-3 기준의 변조 방지 하드웨어 적용, 장기적으로 양자 중계 기술 연구 | 신뢰 노드 물리 점검 주기 |
-| **다크 파이버** (Dark Fiber) 구축 비용 | 양자 전용 광섬유를 전국망으로 구축해야 하여 사회적 비용 과다 | **파장분할다중화** (WDM, Wavelength Division Multiplexing)으로 일반 데이터와 양자 신호를 한 케이블에 공존 | 공존 채널 전환율 |
-| 송수신 장치에 대한 하드웨어 공격 | 송신 레이저에 빛을 쏘아 내부 상태를 읽는 공격과 수신 검출기를 무력화하는 공격 | 광 아이솔레이터 다중 배치, **MDI-QKD** (Measurement-Device-Independent QKD, 측정 장치 독립형 QKD) 도입 | 장치별 이상 신호 탐지 건수 |
+| 전송 거리 제한과 신뢰 노드 (Trusted Node) 취약성 | 광 신호를 증폭할 수 없어 중간 노드에서 키를 복호화 후 재전송 → 노드 물리 탈취 시 키 노출 | 신뢰 노드에 FIPS(Federal Information Processing Standards) 140-3 기준의 변조 방지 하드웨어 적용, 장기적으로 양자 중계 기술 연구 | 신뢰 노드 물리 점검 주기 |
+| 다크 파이버 (Dark Fiber) 구축 비용 | 양자 전용 광섬유를 전국망으로 구축해야 하여 사회적 비용 과다 | 파장분할다중화 (WDM, Wavelength Division Multiplexing)으로 일반 데이터와 양자 신호를 한 케이블에 공존 | 공존 채널 전환율 |
+| 송수신 장치에 대한 하드웨어 공격 | 송신 레이저에 빛을 쏘아 내부 상태를 읽는 공격과 수신 검출기를 무력화하는 공격 | 광 아이솔레이터 다중 배치, MDI-QKD (Measurement-Device-Independent QKD, 측정 장치 독립형 QKD) 도입 | 장치별 이상 신호 탐지 건수 |
 
 ## Ⅵ. 양자암호통신에 대한 기술사적 제언
 

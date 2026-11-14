@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. 공공 정보시스템 서비스수준협약의 개요
 
 - 핵심 요약 : 공공 서비스의 품질 목표와 책임, 미달 시 조치를 측정 가능한 약정으로 묶어 운영 성과를 평가하는 장치.
-- 개념 : 발주기관과 운영 사업자가 서비스 품질, 측정 방식, 책임, 미달 시 조치를 정한 약정 **서비스수준협약** (SLA, Service Level Agreement).
+- 개념 : 발주기관과 운영 사업자가 서비스 품질, 측정 방식, 책임, 미달 시 조치를 정한 약정 서비스수준협약 (SLA, Service Level Agreement).
 - 배경 및 필요성 : 서버가 가동 중이어도 이용자의 민원 처리가 실패할 수 있어, 서버 상태가 아닌 업무 단위의 측정 기준이 필요함.
 - 주요 목적 : 가용성·응답 성능·복구 목표를 실제 이용 서비스와 연결해 운영 성과와 책임을 가릴 수 있게 함.
 
@@ -37,9 +37,9 @@ extra:
 ## Ⅲ. 공공 SLA의 구조 (흐름)
 
 - 핵심 요약 : 지표, 목표, 약정의 3계층 구분 위에서 요구 분석부터 개선까지 순환하는 운영 구조.
-- **서비스수준지표** (SLI, Service Level Indicator) : 실제 서비스 품질을 나타내는 측정값.
-- **서비스수준목표** (SLO, Service Level Objective) : 특정 기간에 달성할 지표 목표값.
-- **복구시간목표** (RTO, Recovery Time Objective)와 **복구시점목표** (RPO, Recovery Point Objective) : 장애 후 복구 소요 한계와 데이터 손실 허용 한계.
+- 서비스수준지표 (SLI, Service Level Indicator) : 실제 서비스 품질을 나타내는 측정값.
+- 서비스수준목표 (SLO, Service Level Objective) : 특정 기간에 달성할 지표 목표값.
+- 복구시간목표 (RTO, Recovery Time Objective)와 복구시점목표 (RPO, Recovery Point Objective) : 장애 후 복구 소요 한계와 데이터 손실 허용 한계.
 
 ```text
 [ 지표 → 목표 → 약정 ]

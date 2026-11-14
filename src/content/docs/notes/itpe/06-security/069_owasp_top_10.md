@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. OWASP Top 10의 개요
 
 - 핵심 요약 : 웹 애플리케이션에서 가장 빈발하고 피해가 큰 보안 위험 열 가지를 정리한 공통 기준.
-- 개념 : 웹 애플리케이션과 API에서 빈발하고 피해가 큰 보안 위험 열 가지를 집계한 **OWASP Top 10** (Open Worldwide Application Security Project가 발간하는 상위 10대 위험 목록).
-- 배경 및 필요성 : 취약점 사례를 통계로 집계해, 개발자와 보안 관리자가 위험의 우선순위를 같은 기준으로 논의할 필요가 생김. 이에 따라 **시큐어 코딩** (Secure Coding)과 소프트웨어 개발 생명주기(SDLC, Software Development Life Cycle) 전 단계의 대응 기준으로 활용.
-- 주요 목적 : 공통 위험 언어 제공과 **안전한 소프트웨어 개발 생명주기** (S-SDLC, Secure Software Development Life Cycle) 내재화를 통한 침해 사고 예방.
+- 개념 : 웹 애플리케이션과 API에서 빈발하고 피해가 큰 보안 위험 열 가지를 집계한 OWASP Top 10 (Open Worldwide Application Security Project가 발간하는 상위 10대 위험 목록).
+- 배경 및 필요성 : 취약점 사례를 통계로 집계해, 개발자와 보안 관리자가 위험의 우선순위를 같은 기준으로 논의할 필요가 생김. 이에 따라 시큐어 코딩 (Secure Coding)과 소프트웨어 개발 생명주기(SDLC, Software Development Life Cycle) 전 단계의 대응 기준으로 활용.
+- 주요 목적 : 공통 위험 언어 제공과 안전한 소프트웨어 개발 생명주기 (S-SDLC, Secure Software Development Life Cycle) 내재화를 통한 침해 사고 예방.
 
 ## Ⅱ. OWASP Top 10의 특징 및 장점
 
@@ -58,16 +58,16 @@ extra:
   A09 로깅·경보 실패
 ```
 
-- A01 : **Broken Access Control** (비인가 리소스 접근, BOLA(Broken Object Level Authorization), IDOR(Insecure Direct Object Reference), SSRF(Server-Side Request Forgery)).
-- A02 : **Security Misconfiguration** (기본 계정 방치, 불필요 기능 개방, 클라우드 설정 오류).
-- A03 : **Software Supply Chain Failures** (오픈소스 의존성 오염, CI/CD(Continuous Integration/Continuous Delivery) 빌드 파이프라인 변조).
-- A04 : **Cryptographic Failures** (취약한 알고리즘 사용, 평문 전송, 키 하드코딩).
-- A05 : **Injection** (SQL Injection, NoSQL Injection, OS Command Injection).
-- A06 : **Insecure Design** (위협 모델링 부재, 설계 단계 통제 결여).
-- A07 : **Authentication Failures** (무차별 대입, 크리덴셜 스터핑, 취약한 세션 관리).
-- A08 : **Software or Data Integrity Failures** (서명되지 않은 플러그인, 안전하지 않은 역직렬화).
-- A09 : **Security Logging and Alerting Failures** (침해 흔적 미기록, 경보 지연에 따른 사고 은닉).
-- A10 : **Mishandling of Exceptional Conditions** (오류 시 Fail-Open 전환, 상세 스택 트레이스 노출).
+- A01 : Broken Access Control (비인가 리소스 접근, BOLA(Broken Object Level Authorization), IDOR(Insecure Direct Object Reference), SSRF(Server-Side Request Forgery)).
+- A02 : Security Misconfiguration (기본 계정 방치, 불필요 기능 개방, 클라우드 설정 오류).
+- A03 : Software Supply Chain Failures (오픈소스 의존성 오염, CI/CD(Continuous Integration/Continuous Delivery) 빌드 파이프라인 변조).
+- A04 : Cryptographic Failures (취약한 알고리즘 사용, 평문 전송, 키 하드코딩).
+- A05 : Injection (SQL Injection, NoSQL Injection, OS Command Injection).
+- A06 : Insecure Design (위협 모델링 부재, 설계 단계 통제 결여).
+- A07 : Authentication Failures (무차별 대입, 크리덴셜 스터핑, 취약한 세션 관리).
+- A08 : Software or Data Integrity Failures (서명되지 않은 플러그인, 안전하지 않은 역직렬화).
+- A09 : Security Logging and Alerting Failures (침해 흔적 미기록, 경보 지연에 따른 사고 은닉).
+- A10 : Mishandling of Exceptional Conditions (오류 시 Fail-Open 전환, 상세 스택 트레이스 노출).
 
 ## Ⅳ. OWASP Top 10의 비교
 

@@ -22,16 +22,16 @@ extra:
 ## Ⅰ. SKT 유심 정보 유출 사고의 개요
 
 - 핵심 요약 : 통신 코어망 인증 DB에 키를 평문으로 둔 구조가 복제 유심과 심 스와핑 금융 사기 위험으로 이어진 이동통신 보안 사고.
-- 개념 : 2025년 4월 공개된 SK텔레콤 해킹 사고로, **지능형 지속 위협** (APT, Advanced Persistent Threat) 조직이 통신 코어망의 가입자 인증 데이터베이스인 **HSS** (Home Subscriber Server)에 침투해 가입자 식별자 IMSI(International Mobile Subscriber Identity)와 인증 관련 키가 유출된 사건.
-- 배경 및 필요성 : 이동통신 상호 인증의 근간인 **가입자 인증키** (Ki)가 함께 유출되면 **복제 유심** (Clone SIM)과 **심 스와핑** (SIM Swapping)을 통한 금융 사기 우려가 커짐. 단순 개인정보 유출과 달리 인증 체계 자체가 흔들리는 위협임.
-- 주요 목적 : 인증 정보 평문 보관 결함 규명, **HSM** (Hardware Security Module) 기반 키 격리 체계로의 전환, 통신·금융 이상거래 연계 차단.
+- 개념 : 2025년 4월 공개된 SK텔레콤 해킹 사고로, 지능형 지속 위협 (APT, Advanced Persistent Threat) 조직이 통신 코어망의 가입자 인증 데이터베이스인 HSS (Home Subscriber Server)에 침투해 가입자 식별자 IMSI(International Mobile Subscriber Identity)와 인증 관련 키가 유출된 사건.
+- 배경 및 필요성 : 이동통신 상호 인증의 근간인 가입자 인증키 (Ki)가 함께 유출되면 복제 유심 (Clone SIM)과 심 스와핑 (SIM Swapping)을 통한 금융 사기 우려가 커짐. 단순 개인정보 유출과 달리 인증 체계 자체가 흔들리는 위협임.
+- 주요 목적 : 인증 정보 평문 보관 결함 규명, HSM (Hardware Security Module) 기반 키 격리 체계로의 전환, 통신·금융 이상거래 연계 차단.
 
 ## Ⅱ. SKT 유심 정보 유출 사고의 특징 및 영향
 
 - 핵심 요약 : 협력사 경로를 통한 내부 침투와 인증키 평문 보관이 결합되어, 통신 인증 신뢰가 금융 피해로 전이됨.
 
 1. 평문 키 보관 : 가입자 인증키 Ki와 사업자 인증 파라미터 OPc를 암호화 없이 저장 → 데이터 탈취만으로 복제 유심 제작 조건 성립.
-2. **AKA** (Authentication and Key Agreement) 상호 인증 : 단말과 망이 Ki 기반 응답을 주고받는 구조 → Ki를 아는 공격자가 정품과 같은 응답을 계산.
+2. AKA (Authentication and Key Agreement) 상호 인증 : 단말과 망이 Ki 기반 응답을 주고받는 구조 → Ki를 아는 공격자가 정품과 같은 응답을 계산.
 3. 협력사 경로 침투 : 외주 원격 접속 계정을 거쳐 망분리 경계 내부로 이동 → 외곽 통제만으로 내부 자산을 지키지 못함.
 4. 금융 연쇄 피해 : 복제 유심 단말이 문자 인증과 통화를 수신 → 통신 침해가 금융 거래 피해로 확산.
 

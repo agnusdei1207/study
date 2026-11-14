@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. 클라우드 서비스 보안의 개요
 
 - 핵심 요약 : 클라우드 서비스 제공자와 이용자가 보안 책임을 나누어 맡는 전제 위에서, 데이터와 인프라를 보호하는 통합 정보보호 체계.
-- 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service) 도입과 운영에서 데이터, 애플리케이션, 인프라를 위협과 규제 위반으로부터 보호하기 위해, **클라우드 서비스 제공자** (CSP, Cloud Service Provider)와 이용자(CSC, Cloud Service Customer)가 책임을 나누는 **책임 공유 모델** (Shared Responsibility Model)에 기반하여 수립하는 보안 체계.
+- 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service) 도입과 운영에서 데이터, 애플리케이션, 인프라를 위협과 규제 위반으로부터 보호하기 위해, 클라우드 서비스 제공자 (CSP, Cloud Service Provider)와 이용자(CSC, Cloud Service Customer)가 책임을 나누는 책임 공유 모델 (Shared Responsibility Model)에 기반하여 수립하는 보안 체계.
 - 배경 및 필요성 : 기업의 디지털 전환(DX, Digital Transformation)으로 워크로드가 멀티·하이브리드 클라우드로 옮겨갔으나, 설정 오류와 계정 권한 남용에 따른 데이터 침해가 빈발.
 - 주요 목적 : 클라우드의 탄력성을 유지하면서 데이터 주권을 확보하고, 멀티 테넌시 환경의 데이터 격리와 CSAP(Cloud Security Assurance Program), FedRAMP(Federal Risk and Authorization Management Program), ISMS-P(정보보호 및 개인정보보호 관리체계) 같은 규제 준수를 충족하는 것.
 
@@ -32,9 +32,9 @@ extra:
 - 핵심 요약 : 책임 경계를 명확히 나누고 설정과 권한을 상시 점검하는 도구가 결합되어, 클라우드 확장성과 보안 통제를 동시에 얻는 구조.
 
 1. 책임 공유 : 물리 인프라와 하이퍼바이저는 CSP가, 데이터와 운영체제(OS, Operating System) 패치, 접근 권한은 CSC가 맡음 → 책임 공백에 따른 방치를 줄.
-2. **CSPM** (Cloud Security Posture Management, 클라우드 설정 상태 상시 점검) : 공개 저장소와 보안 그룹 설정 오류를 자동 탐지하고 치료 → 설정 오류에 따른 침해 가능성 축소.
-3. **CWPP** (Cloud Workload Protection Platform, 가상 머신(VM, Virtual Machine)·컨테이너·서버리스 보호) : 실행 중 워크로드의 이상 행위와 취약점을 점검 → 런타임 공격의 조기 탐지.
-4. **CIEM** (Cloud Infrastructure Entitlement Management, 클라우드 권한 관리) : 과잉 권한과 비활성 계정을 분석해 최소 권한을 적용 → 권한 상승 경로 차단.
+2. CSPM (Cloud Security Posture Management, 클라우드 설정 상태 상시 점검) : 공개 저장소와 보안 그룹 설정 오류를 자동 탐지하고 치료 → 설정 오류에 따른 침해 가능성 축소.
+3. CWPP (Cloud Workload Protection Platform, 가상 머신(VM, Virtual Machine)·컨테이너·서버리스 보호) : 실행 중 워크로드의 이상 행위와 취약점을 점검 → 런타임 공격의 조기 탐지.
+4. CIEM (Cloud Infrastructure Entitlement Management, 클라우드 권한 관리) : 과잉 권한과 비활성 계정을 분석해 최소 권한을 적용 → 권한 상승 경로 차단.
 
 ## Ⅲ. 클라우드 서비스 보안의 구조 (흐름)
 

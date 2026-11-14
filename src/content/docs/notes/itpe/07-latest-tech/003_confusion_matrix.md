@@ -21,17 +21,17 @@ extra:
 ## Ⅰ. 분류 모델 성능지표의 개요
 
 - 핵심 요약 : 혼동행렬의 네 셀에서 정밀도와 재현율을 유도하고, 임계값 변화에 따른 ROC·PR 곡선으로 분류 모델을 다각도로 평가하는 체계.
-- 개념 : 지도학습 분류 모델의 예측값과 실제 참값(Ground Truth)을 대조한 표인 **혼동행렬** (Confusion Matrix)을 바탕으로, 정확도·정밀도·재현율·F1-Score와 임계값에 따른 **ROC 곡선** (Receiver Operating Characteristic Curve), **PR 곡선** (Precision-Recall Curve)을 도출하는 정량 평가 체계.
-- 배경 및 필요성 : 양성 사례가 극소수인 **데이터 불균형** (Data Imbalance) 환경에서는 정확도만 보면 다수 클래스만 예측해도 높은 수치가 나오는 **정확도의 역설** (Accuracy Paradox)이 생기므로 다차원 지표가 필요함.
-- 주요 목적 : 업무별 오분류 비용을 반영한 **분류 임계값** (Threshold)을 정하고, 클래스 불균형에 강건한 모델 검증.
+- 개념 : 지도학습 분류 모델의 예측값과 실제 참값(Ground Truth)을 대조한 표인 혼동행렬 (Confusion Matrix)을 바탕으로, 정확도·정밀도·재현율·F1-Score와 임계값에 따른 ROC 곡선 (Receiver Operating Characteristic Curve), PR 곡선 (Precision-Recall Curve)을 도출하는 정량 평가 체계.
+- 배경 및 필요성 : 양성 사례가 극소수인 데이터 불균형 (Data Imbalance) 환경에서는 정확도만 보면 다수 클래스만 예측해도 높은 수치가 나오는 정확도의 역설 (Accuracy Paradox)이 생기므로 다차원 지표가 필요함.
+- 주요 목적 : 업무별 오분류 비용을 반영한 분류 임계값 (Threshold)을 정하고, 클래스 불균형에 강건한 모델 검증.
 
 ## Ⅱ. 분류 모델 성능지표의 특징 및 장점
 
 - 핵심 요약 : 네 셀로 오류 유형을 분리해 업무 비용에 맞는 지표를 고르고, 임계값 전 구간을 훑어 모델을 비교하는 방식.
 
-1. 오류 유형 분해 : **TP** (True Positive, 진양성), **TN** (True Negative, 진음성), **FP** (False Positive, 위양성), **FN** (False Negative, 위음성)으로 셀을 나눔 → FP(1종 오류)와 FN(2종 오류)의 비용을 따로 계산 가능.
-2. 조화 지표 : **F1-Score** (정밀도와 재현율의 조화평균)가 두 값의 트레이드오프를 하나로 요약 → F2(재현율 가중)나 F0.5(정밀도 가중)로 업무에 맞게 조정.
-3. 임계값 곡선 : **ROC-AUC** (Area Under the ROC Curve)와 **PR-AUC** (Area Under the Precision-Recall Curve)가 임계값 전 구간 성능을 면적 하나로 요약 → 임계값을 고정하지 않고 모델끼리 비교 가능.
+1. 오류 유형 분해 : TP (True Positive, 진양성), TN (True Negative, 진음성), FP (False Positive, 위양성), FN (False Negative, 위음성)으로 셀을 나눔 → FP(1종 오류)와 FN(2종 오류)의 비용을 따로 계산 가능.
+2. 조화 지표 : F1-Score (정밀도와 재현율의 조화평균)가 두 값의 트레이드오프를 하나로 요약 → F2(재현율 가중)나 F0.5(정밀도 가중)로 업무에 맞게 조정.
+3. 임계값 곡선 : ROC-AUC (Area Under the ROC Curve)와 PR-AUC (Area Under the Precision-Recall Curve)가 임계값 전 구간 성능을 면적 하나로 요약 → 임계값을 고정하지 않고 모델끼리 비교 가능.
 4. 불균형 대응 : PR 곡선은 계산식에 TN이 없어 양성이 희소할 때 TP와 FP의 변화를 민감하게 드러냄 → 다수 클래스에 묻힌 오탐을 포착.
 
 ## Ⅲ. 분류 모델 성능지표의 구조 (흐름)
@@ -82,15 +82,15 @@ extra:
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | ROC-AUC의 과대평가 | 방대한 TN에 FP가 희석되어 FPR이 낮게 유지 → 모델이 실제보다 우수하게 보임 | 불균형 도메인에서 PR-AUC, Balanced Accuracy를 주 지표로 지정 | PR-AUC, 양성 재현율 |
-| 비대칭 오분류 비용 미반영 | FN(진단 누락)과 FP(재검사)의 비용이 다른데 동일하게 취급 | 비용 매트릭스를 정의하고 **비용 민감 학습** (Cost-Sensitive Learning) 적용 | 기대 손실 |
+| 비대칭 오분류 비용 미반영 | FN(진단 누락)과 FP(재검사)의 비용이 다른데 동일하게 취급 | 비용 매트릭스를 정의하고 비용 민감 학습 (Cost-Sensitive Learning) 적용 | 기대 손실 |
 | 다중 클래스 평균 왜곡 | Micro 평균은 다수 클래스에, Macro 평균은 소수 클래스 노이즈에 민감 | 클래스별 샘플 수를 가중한 Weighted F1을 병용하고 클래스별 혼동행렬 히트맵 점검 | 클래스별 F1 |
 
 ## Ⅵ. 분류 모델 성능지표에 대한 기술사적 제언
 
 - 핵심 요약 : 엔지니어링 지표를 업무 손익과 연결하고, 확률 보정과 동적 임계값으로 운영 중에도 지표가 실제 의사결정을 반영하도록 관리.
 - 손익 정렬 : AUC나 F1에 머무르지 않고, 오탐에 따른 이탈 비용과 누락에 따른 사기 피해액을 함께 손실 함수로 수식화하는 평가 체계 필요.
-- 확률 보정 : 딥러닝 출력 점수는 실제 사후 확률과 다를 수 있으므로, Platt Scaling 또는 Isotonic Regression 기반의 **확률 보정** (Probability Calibration)을 서빙 파이프라인에 포함해야 함.
-- 동적 임계값 : 고정된 0.5 임계값 대신 실시간 혼동행렬 추적으로 임계값을 조정하는 **동적 임계값** (Dynamic Thresholding) 루프를 운영 단계에 설계.
+- 확률 보정 : 딥러닝 출력 점수는 실제 사후 확률과 다를 수 있으므로, Platt Scaling 또는 Isotonic Regression 기반의 확률 보정 (Probability Calibration)을 서빙 파이프라인에 포함해야 함.
+- 동적 임계값 : 고정된 0.5 임계값 대신 실시간 혼동행렬 추적으로 임계값을 조정하는 동적 임계값 (Dynamic Thresholding) 루프를 운영 단계에 설계.
 
 ## Ⅶ. 결론
 

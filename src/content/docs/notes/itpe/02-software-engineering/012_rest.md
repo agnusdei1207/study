@@ -37,8 +37,8 @@ extra:
 ## Ⅲ. REST의 구조 (흐름)
 
 - 핵심 요약 : 클라이언트가 자원을 요청하고 서버가 표현과 다음 상태로의 링크를 응답하는 순환 구조.
-- **HATEOAS** (Hypermedia as the Engine of Application State) : 응답에 포함된 하이퍼링크가 다음 상태 전이를 안내하는 균일 인터페이스의 하위 제약.
-- **Richardson 성숙도 모델** (Richardson Maturity Model) : REST 제약의 반영 수준을 4단계로 구분한 성숙도 기준.
+- HATEOAS (Hypermedia as the Engine of Application State) : 응답에 포함된 하이퍼링크가 다음 상태 전이를 안내하는 균일 인터페이스의 하위 제약.
+- Richardson 성숙도 모델 (Richardson Maturity Model) : REST 제약의 반영 수준을 4단계로 구분한 성숙도 기준.
 
 ```text
 [ 자원 요청·응답 흐름 ]
@@ -65,7 +65,7 @@ Level 3: 하이퍼미디어 제어(HATEOAS)
 ## Ⅳ. REST와 SOAP의 비교
 
 - 핵심 요약 : REST는 제약 기반의 자원 지향 스타일, SOAP는 엄격한 규격의 메시지 프로토콜.
-- **SOAP** (Simple Object Access Protocol) : XML 봉투 기반 메시징과 서비스 계약으로 웹 서비스를 구성하는 프로토콜.
+- SOAP (Simple Object Access Protocol) : XML 봉투 기반 메시징과 서비스 계약으로 웹 서비스를 구성하는 프로토콜.
 
 | 비교 축 | REST | SOAP |
 | --- | --- | --- |

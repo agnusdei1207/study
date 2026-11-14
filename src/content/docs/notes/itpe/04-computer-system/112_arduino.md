@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. 아두이노의 개요
 
 - 핵심 요약 : 마이크로컨트롤러 보드와 단순한 개발 환경으로 센서·액추에이터 제어의 진입 장벽을 낮춘 오픈소스 피지컬 컴퓨팅 플랫폼.
-- 개념 : **마이크로컨트롤러** (MCU, Microcontroller Unit) 칩을 탑재한 오픈소스 하드웨어 보드와 통합 개발 환경(IDE, Integrated Development Environment)·C/C++ 라이브러리로 구성된 **아두이노** (Arduino) 플랫폼으로, 실세계의 센서 입력과 장치 출력을 다루는 **피지컬 컴퓨팅** (Physical Computing)의 대표 시제품 도구.
+- 개념 : 마이크로컨트롤러 (MCU, Microcontroller Unit) 칩을 탑재한 오픈소스 하드웨어 보드와 통합 개발 환경(IDE, Integrated Development Environment)·C/C++ 라이브러리로 구성된 아두이노 (Arduino) 플랫폼으로, 실세계의 센서 입력과 장치 출력을 다루는 피지컬 컴퓨팅 (Physical Computing)의 대표 시제품 도구.
 - 배경 및 필요성 : 과거 임베디드 개발은 어셈블리 코딩, 레지스터 직접 제어, 고가 프로그래밍 장비를 요구해 진입 장벽이 높았음.
 - 주요 목적 : 시제품 개발의 대중화, 사물인터넷(IoT, Internet of Things) 기기의 신속 검증, 오픈소스 하드웨어 생태계 확보.
 
@@ -31,9 +31,9 @@ extra:
 
 - 핵심 요약 : 부트로더 기반 업로드와 베어메탈 실행, 표준 핀 확장이 빠른 시제품 개발을 가능하게 하는 구조.
 
-1. 부트로더 기반 업로드 : **부트로더** (Bootloader, 플래시 최상단에 상주해 펌웨어 기록을 담당하는 소형 프로그램)가 USB(Universal Serial Bus) 시리얼로 새 펌웨어를 수신 → 전용 프로그래머 없이 펌웨어 교체.
-2. 베어메탈 실행 : **베어메탈** (Bare-Metal, 운영체제 없이 하드웨어를 직접 제어하는 방식)으로 `setup()` 초기화 후 `loop()` 무한 반복 → 단순 구조와 예측 가능한 응답.
-3. 표준 핀 확장 : 표준 핀헤더와 **쉴드** (Shield, 보드 위에 겹쳐 끼우는 확장 기판)로 센서·모터 모듈 결합 → 하드웨어 연결·검증 시간 단축.
+1. 부트로더 기반 업로드 : 부트로더 (Bootloader, 플래시 최상단에 상주해 펌웨어 기록을 담당하는 소형 프로그램)가 USB(Universal Serial Bus) 시리얼로 새 펌웨어를 수신 → 전용 프로그래머 없이 펌웨어 교체.
+2. 베어메탈 실행 : 베어메탈 (Bare-Metal, 운영체제 없이 하드웨어를 직접 제어하는 방식)으로 `setup()` 초기화 후 `loop()` 무한 반복 → 단순 구조와 예측 가능한 응답.
+3. 표준 핀 확장 : 표준 핀헤더와 쉴드 (Shield, 보드 위에 겹쳐 끼우는 확장 기판)로 센서·모터 모듈 결합 → 하드웨어 연결·검증 시간 단축.
 4. 오픈소스 생태계 : 회로도·소프트웨어 공개와 방대한 라이브러리 → 교육·융합 프로젝트로의 확산.
 
 ## Ⅲ. 아두이노의 구조 (흐름)
@@ -63,8 +63,8 @@ loop() : 무한 반복 실행
   센서 읽기 → 판단 → 출력 제어
 ```
 
-- 메모리 구성 : 아두이노 우노 기준 프로그램 코드용 플래시 32KB, 실행 변수용 **SRAM** (Static Random-Access Memory) 2KB, 전원 차단 후에도 유지되는 **EEPROM** (Electrically Erasable Programmable Read-Only Memory) 1KB로 구성. (데이터시트 기준)
-- 주변장치 : 10비트 **ADC** (Analog-to-Digital Converter) 6채널, 디지털 **GPIO** (General-Purpose Input/Output) 14핀 중 6핀의 **PWM** (Pulse-Width Modulation) 출력, 외부 인터럽트 제공. (데이터시트 기준)
+- 메모리 구성 : 아두이노 우노 기준 프로그램 코드용 플래시 32KB, 실행 변수용 SRAM (Static Random-Access Memory) 2KB, 전원 차단 후에도 유지되는 EEPROM (Electrically Erasable Programmable Read-Only Memory) 1KB로 구성. (데이터시트 기준)
+- 주변장치 : 10비트 ADC (Analog-to-Digital Converter) 6채널, 디지털 GPIO (General-Purpose Input/Output) 14핀 중 6핀의 PWM (Pulse-Width Modulation) 출력, 외부 인터럽트 제공. (데이터시트 기준)
 
 ## Ⅳ. 아두이노와 라즈베리 파이의 비교
 
@@ -89,7 +89,7 @@ loop() : 무한 반복 실행
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | :--- | :--- | :--- | :--- |
 | 극한 메모리 제약 | 문자열·큰 버퍼로 힙과 스택 충돌 → 예측 불가 재부팅 | 동적 할당 최소화, 정적 문자열의 플래시 상주 | 재부팅 횟수, 스택 여유 |
-| 블로킹 대기의 반응성 상실 | `delay()` 대기 중 센서 입력 놓침 → 제어 지연 | `millis()` 기반 **비차단 상태 머신** (FSM, Finite State Machine) 구현 | 입력 처리 지연, 유실률 |
+| 블로킹 대기의 반응성 상실 | `delay()` 대기 중 센서 입력 놓침 → 제어 지연 | `millis()` 기반 비차단 상태 머신 (FSM, Finite State Machine) 구현 | 입력 처리 지연, 유실률 |
 | 산업 노이즈 취약 | 서지·EMI(Electromagnetic Interference) 보호 회로 부재 → 오동작 | 포토커플러 절연 설계, 산업용 보드·PLC(Programmable Logic Controller) 전환 | 오동작 건수, 절연 시험 결과 |
 
 ## Ⅵ. 아두이노에 대한 기술사적 제언

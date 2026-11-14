@@ -57,12 +57,12 @@ SOAP 요청 전송 → Body 처리
 SOAP 응답 또는 Fault 반환
 ```
 
-- 웹 서비스 3요소 : SOAP(메시지 교환), WSDL(서비스 기술), **UDDI** (Universal Description, Discovery and Integration, 등록·탐색).
+- 웹 서비스 3요소 : SOAP(메시지 교환), WSDL(서비스 기술), UDDI (Universal Description, Discovery and Integration, 등록·탐색).
 
 ## Ⅳ. SOAP과 REST의 비교
 
 - 핵심 요약 : SOAP은 표준 명세 중심의 메시징 프로토콜, REST는 HTTP 제약을 활용하는 자원 중심 아키텍처 스타일.
-- 비교 개요 : **REST** (Representational State Transfer)는 자원과 HTTP 메서드 중심의 아키텍처 스타일로 웹 API 설계의 대표 대안.
+- 비교 개요 : REST (Representational State Transfer)는 자원과 HTTP 메서드 중심의 아키텍처 스타일로 웹 API 설계의 대표 대안.
 
 | 비교 축 | SOAP | REST |
 |---|---|---|

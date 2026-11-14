@@ -23,18 +23,18 @@ extra:
 ## Ⅰ. TCP 혼잡제어의 개요
 
 - 핵심 요약 : 라우터 버퍼 과부하를 막기 위해 송신단이 전송량을 동적으로 조절하는 전송 계층의 종단 간 제어 기법.
-- 개념 : 전송 제어 프로토콜인 TCP(Transmission Control Protocol)의 송신단이 네트워크 혼잡 신호에 따라 **혼잡 윈도우** (CWND, Congestion Window) 크기를 조절해 망에 주입하는 트래픽 양을 통제하는 기법 (**TCP 혼잡제어**, TCP Congestion Control).
-- 배경 및 필요성 : 1986년 인터넷에서 손실 패킷의 무분별한 재전송으로 망 전체 처리량이 급락하는 **혼잡 붕괴** (Congestion Collapse) 사례가 보고되었고, 자원의 안정적 배분을 위한 제어가 필수가 됨.
-- 주요 목적 : 가용 대역폭의 최대 활용, 연결 간 **공평성** (Fairness) 보장, 큐 적체로 인한 **버퍼블로트** (Bufferbloat, 과대 버퍼가 만드는 지연 증가) 억제.
+- 개념 : 전송 제어 프로토콜인 TCP(Transmission Control Protocol)의 송신단이 네트워크 혼잡 신호에 따라 혼잡 윈도우 (CWND, Congestion Window) 크기를 조절해 망에 주입하는 트래픽 양을 통제하는 기법 (TCP 혼잡제어, TCP Congestion Control).
+- 배경 및 필요성 : 1986년 인터넷에서 손실 패킷의 무분별한 재전송으로 망 전체 처리량이 급락하는 혼잡 붕괴 (Congestion Collapse) 사례가 보고되었고, 자원의 안정적 배분을 위한 제어가 필수가 됨.
+- 주요 목적 : 가용 대역폭의 최대 활용, 연결 간 공평성 (Fairness) 보장, 큐 적체로 인한 버퍼블로트 (Bufferbloat, 과대 버퍼가 만드는 지연 증가) 억제.
 
 ## Ⅱ. TCP 혼잡제어의 특징 및 장점
 
 - 핵심 요약 : 손실과 지연 신호에 따라 윈도우를 조절하는 원리가 망의 안정성과 연결 간 공평성으로 이어지는 구조.
 
-1. **AIMD** (Additive Increase Multiplicative Decrease, 가산 증가·승법 감소) : 정상 상태에서 왕복 시간마다 완만히 늘리고 손실 시 절반으로 줄임 → 여러 연결이 대역을 공평하게 나누며 안정 수렴.
-2. **슬로우 스타트** (Slow Start) : 연결 초기나 타임아웃 이후 CWND를 작은 값에서 왕복 시간마다 두 배로 키움 → 비어 있는 대역을 짧은 시간에 탐색.
-3. **혼잡 회피** (Congestion Avoidance) : CWND가 혼잡 임계치에 도달하면 선형 증가로 전환 → 과부하 직전에서 속도를 완만하게 유지.
-4. **빠른 재전송** (Fast Retransmit)과 **빠른 복구** (Fast Recovery) : 확인 응답이 중복 3회 도착하면 손실로 보고 즉시 재전송하며 윈도우를 절반으로 낮춰 전송 지속 → 타임아웃 대기로 인한 처리량 급락 방지.
+1. AIMD (Additive Increase Multiplicative Decrease, 가산 증가·승법 감소) : 정상 상태에서 왕복 시간마다 완만히 늘리고 손실 시 절반으로 줄임 → 여러 연결이 대역을 공평하게 나누며 안정 수렴.
+2. 슬로우 스타트 (Slow Start) : 연결 초기나 타임아웃 이후 CWND를 작은 값에서 왕복 시간마다 두 배로 키움 → 비어 있는 대역을 짧은 시간에 탐색.
+3. 혼잡 회피 (Congestion Avoidance) : CWND가 혼잡 임계치에 도달하면 선형 증가로 전환 → 과부하 직전에서 속도를 완만하게 유지.
+4. 빠른 재전송 (Fast Retransmit)과 빠른 복구 (Fast Recovery) : 확인 응답이 중복 3회 도착하면 손실로 보고 즉시 재전송하며 윈도우를 절반으로 낮춰 전송 지속 → 타임아웃 대기로 인한 처리량 급락 방지.
 
 ## Ⅲ. TCP 혼잡제어의 구조 (흐름)
 
@@ -71,7 +71,7 @@ ACK 지연·중복 ACK 수신
 ## Ⅳ. TCP 혼잡제어 알고리즘의 비교
 
 - 핵심 요약 : 혼잡 신호가 패킷 손실에서 대역폭·지연 측정과 큐 표시로 옮겨 가며 알고리즘이 다변화됨.
-- 비교 대상 : 손실 기반의 TCP Reno와 **CUBIC** (리눅스 기본 알고리즘으로 시간 기준 3차 함수형 윈도우 증가를 쓰는 알고리즘), 측정 기반의 **BBR** (Bottleneck Bandwidth and Round-trip propagation time), 큐 표시 기반의 **DCTCP** (Data Center TCP).
+- 비교 대상 : 손실 기반의 TCP Reno와 CUBIC (리눅스 기본 알고리즘으로 시간 기준 3차 함수형 윈도우 증가를 쓰는 알고리즘), 측정 기반의 BBR (Bottleneck Bandwidth and Round-trip propagation time), 큐 표시 기반의 DCTCP (Data Center TCP).
 
 | 비교 축 | TCP Reno | CUBIC | BBR | DCTCP |
 | --- | --- | --- | --- | --- |
@@ -81,13 +81,13 @@ ACK 지연·중복 ACK 수신
 | 버퍼블로트 내성 | 취약 | 취약 | 큐 적체를 줄이는 편 | 우수 |
 | 주요 사용 환경 | 레거시·교육용 기준 | 리눅스 계열의 기본값 | 대형 웹·영상 서비스 | 사설 데이터센터 내부망 |
 
-- 용어 : **ECN** (Explicit Congestion Notification, 명시적 혼잡 통지)은 스위치가 큐 임계치 초과 시 패킷에 표시를 남겨 손실 이전에 송신단에 혼잡을 알리는 방식임.
-- 선택 기준 : **대역폭 지연 곱** (BDP, Bandwidth-Delay Product)이 큰 환경은 Reno 대신 CUBIC·BBR이 유리하고, 낮은 지연과 급격한 버스트가 공존하는 데이터센터 내부는 DCTCP가 적합함.
+- 용어 : ECN (Explicit Congestion Notification, 명시적 혼잡 통지)은 스위치가 큐 임계치 초과 시 패킷에 표시를 남겨 손실 이전에 송신단에 혼잡을 알리는 방식임.
+- 선택 기준 : 대역폭 지연 곱 (BDP, Bandwidth-Delay Product)이 큰 환경은 Reno 대신 CUBIC·BBR이 유리하고, 낮은 지연과 급격한 버스트가 공존하는 데이터센터 내부는 DCTCP가 적합함.
 
 ## Ⅴ. TCP 혼잡제어의 한계와 방안
 
 - 핵심 요약 : 큐 적체 지연, 무선 구간의 오판, 고속 장거리망의 느린 회복을 큐 관리와 알고리즘 전환, 측정 기반 모델로 통제.
-- 대응 기법 : **AQM** (Active Queue Management, 능동 큐 관리)을 라우터에 두면 큐 지연을 송신단 알고리즘과 별개로 줄일 수 있음.
+- 대응 기법 : AQM (Active Queue Management, 능동 큐 관리)을 라우터에 두면 큐 지연을 송신단 알고리즘과 별개로 줄일 수 있음.
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |

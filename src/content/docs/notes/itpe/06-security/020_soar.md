@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. SOAR(보안 오케스트레이션·자동화·대응)의 개요
 
 - 핵심 요약 : 이기종 보안 도구의 경보를 하나의 워크플로우로 묶어 침해사고 대응을 자동화하는 보안 관제 플랫폼.
-- 개념 : SIEM(Security Information and Event Management), EDR(Endpoint Detection and Response), 방화벽, CTI(Cyber Threat Intelligence) 등 이기종 보안 솔루션을 하나의 흐름으로 잇는 **보안 오케스트레이션** (Security Orchestration)과, 사전에 정의된 **플레이북** (Playbook)에 따라 사고를 분석·차단·대응하는 **자동 대응** (Automated Response)을 결합한 관제 플랫폼.
+- 개념 : SIEM(Security Information and Event Management), EDR(Endpoint Detection and Response), 방화벽, CTI(Cyber Threat Intelligence) 등 이기종 보안 솔루션을 하나의 흐름으로 잇는 보안 오케스트레이션 (Security Orchestration)과, 사전에 정의된 플레이북 (Playbook)에 따라 사고를 분석·차단·대응하는 자동 대응 (Automated Response)을 결합한 관제 플랫폼.
 - 배경 및 필요성 : 하루 대량의 보안 경보로 인한 보안관제센터(SOC, Security Operations Center)의 경보 피로, 보안 인력 부족, 수작업 대응 지연이 겹쳐 평균 탐지 시간(MTTD, Mean Time to Detect)과 평균 복구 시간(MTTR, Mean Time to Repair)이 길어지므로 도입이 요구됨.
 - 주요 목적 : 보안 운영 효율을 높이고, 탐지부터 격리까지 걸리는 시간을 줄이며, 관제 업무를 표준화해 대응 품질을 일정하게 유지하는 것.
 
@@ -32,9 +32,9 @@ extra:
 - 핵심 요약 : 연계, 표준화, 자동 차단, 증적 집중이 결합되어 반복 관제 업무의 처리 속도와 일관성을 높이는 구조.
 
 1. 도구 연계 : API(Application Programming Interface), 웹훅, CLI(Command-Line Interface)로 방화벽, 메일 서버, EDR, 액티브 디렉터리를 하나의 파이프라인으로 연결 → 도구 간 수작업 전달 제거.
-2. 절차 표준화 : 피싱 메일, 악성코드 감염, 랜섬웨어 확산 등 사고 유형별 **표준운영절차** (SOP, Standard Operating Procedure)를 워크플로우로 구현 → 담당자에 따른 대응 편차 감소.
-3. 자동 차단 : **위협 지표** (IoC, Indicator of Compromise)의 평판이 임계치를 넘으면 사람의 개입 없이 방화벽 정책을 추가하고 감염 단말을 격리 → 확산 전 초기 차단.
-4. **케이스 관리** (Case Management) : 수집 증적, 대응 이력, 담당자 메모를 단일 케이스에 모아 법적 증적과 감사 이력을 보존 → 사후 분석 근거 확보.
+2. 절차 표준화 : 피싱 메일, 악성코드 감염, 랜섬웨어 확산 등 사고 유형별 표준운영절차 (SOP, Standard Operating Procedure)를 워크플로우로 구현 → 담당자에 따른 대응 편차 감소.
+3. 자동 차단 : 위협 지표 (IoC, Indicator of Compromise)의 평판이 임계치를 넘으면 사람의 개입 없이 방화벽 정책을 추가하고 감염 단말을 격리 → 확산 전 초기 차단.
+4. 케이스 관리 (Case Management) : 수집 증적, 대응 이력, 담당자 메모를 단일 케이스에 모아 법적 증적과 감사 이력을 보존 → 사후 분석 근거 확보.
 
 ## Ⅲ. SOAR(보안 오케스트레이션·자동화·대응)의 구조 (흐름)
 
@@ -85,17 +85,17 @@ extra:
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 오탐에 따른 과잉 자동 차단 | 정상 결제 게이트웨이나 협력사 IP가 오탐으로 차단되어 서비스 장애 유발 | 핵심 인프라를 화이트리스트에 등록하고, 차단 전 **HITL** (Human in the Loop) 분석가 승인 단계를 플레이북 분기로 구성 | 오탐 차단 건수, 승인 대기 시간 |
-| 연동 API 변경 | 상용 방화벽과 EDR 업그레이드로 API 스펙이 바뀌면 플레이북 커넥터가 중단됨 | **STIX** (Structured Threat Information eXpression)·**TAXII** (Trusted Automated eXchange of Intelligence Information) 등 표준 규격을 채택하고 커넥터를 모듈화 | 커넥터 장애 건수, 플레이북 중단 시간 |
-| 표준 절차 부재 | 사고 대응 절차가 문서화되지 않거나 담당자마다 달라 코드로 옮기지 못하고 프로젝트가 중단됨 | NIST(National Institute of Standards and Technology)의 **SP 800-61** 침해사고 대응 가이드를 기준으로 전사 SOP를 표준화하고, 반복이 많은 피싱 메일 분석부터 자동화 범위 확대 | 플레이북 적용 사고 유형 수, 수작업 비율 |
+| 오탐에 따른 과잉 자동 차단 | 정상 결제 게이트웨이나 협력사 IP가 오탐으로 차단되어 서비스 장애 유발 | 핵심 인프라를 화이트리스트에 등록하고, 차단 전 HITL (Human in the Loop) 분석가 승인 단계를 플레이북 분기로 구성 | 오탐 차단 건수, 승인 대기 시간 |
+| 연동 API 변경 | 상용 방화벽과 EDR 업그레이드로 API 스펙이 바뀌면 플레이북 커넥터가 중단됨 | STIX (Structured Threat Information eXpression)·TAXII (Trusted Automated eXchange of Intelligence Information) 등 표준 규격을 채택하고 커넥터를 모듈화 | 커넥터 장애 건수, 플레이북 중단 시간 |
+| 표준 절차 부재 | 사고 대응 절차가 문서화되지 않거나 담당자마다 달라 코드로 옮기지 못하고 프로젝트가 중단됨 | NIST(National Institute of Standards and Technology)의 SP 800-61 침해사고 대응 가이드를 기준으로 전사 SOP를 표준화하고, 반복이 많은 피싱 메일 분석부터 자동화 범위 확대 | 플레이북 적용 사고 유형 수, 수작업 비율 |
 
 ## Ⅵ. SOAR(보안 오케스트레이션·자동화·대응)에 대한 기술사적 제언
 
 - 핵심 요약 : 생성형 AI 보조, 대응 지표 관리, 노출 자산 연동을 SOAR 고도화의 방향으로 제시.
 
 1. 생성형 AI 보조 도입 : 경보 분석 때 LLM(Large Language Model) 에이전트가 공격 요약과 플레이북 초안을 만들고 분석가가 검증하는 방식으로 도입하는 것이 바람직.
-2. 대응 지표 관리 : 탐지부터 격리까지의 MTTR 감소와 단순 경보의 무인 처리 비율을 핵심 **KPI** (Key Performance Indicator, 핵심 성과 지표)로 관리하는 것이 필요하다.
-3. 노출 자산 연동 : **ASM** (Attack Surface Management, 공격표면 관리)에서 발견된 외부 노출 취약점을 플레이북이 받아 임시 방화벽 정책을 적용하고, 가상 패치 배포까지 잇는 폐루프 체계를 구축하는 것이 좋다.
+2. 대응 지표 관리 : 탐지부터 격리까지의 MTTR 감소와 단순 경보의 무인 처리 비율을 핵심 KPI (Key Performance Indicator, 핵심 성과 지표)로 관리하는 것이 필요하다.
+3. 노출 자산 연동 : ASM (Attack Surface Management, 공격표면 관리)에서 발견된 외부 노출 취약점을 플레이북이 받아 임시 방화벽 정책을 적용하고, 가상 패치 배포까지 잇는 폐루프 체계를 구축하는 것이 좋다.
 
 ## Ⅶ. 결론
 

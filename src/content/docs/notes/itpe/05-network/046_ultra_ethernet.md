@@ -23,28 +23,28 @@ extra:
 ## Ⅰ. Ultra Ethernet의 개요
 
 - 핵심 요약 : AI 학습과 고성능 컴퓨팅 클러스터의 통신 부하를 개방형 이더넷으로 처리하기 위한 차세대 고성능 이더넷 규격.
-- 개념 : 리눅스 재단 산하 개방형 컨소시엄인 **Ultra Ethernet Consortium** (UEC)이 정의하는 고성능 이더넷 전송 규격, 2025년 표준 1.0 공개.
-- 배경 및 필요성 : 대규모 언어 모델(LLM, Large Language Model) 학습에서는 수만 개의 GPU(Graphics Processing Unit)가 **올투올** (All-to-All, 모든 노드가 서로 통신하는 패턴) 통신을 수행하고 데이터센터 내부의 **이스트-웨스트 트래픽** (East-West Traffic, 서버·가속기 간 수평 방향 트래픽)이 폭증, 단일 생태계 의존의 InfiniBand는 비용 부담, RoCEv2(RDMA over Converged Ethernet v2)는 혼잡 제어·무손실 설정의 한계.
+- 개념 : 리눅스 재단 산하 개방형 컨소시엄인 Ultra Ethernet Consortium (UEC)이 정의하는 고성능 이더넷 전송 규격, 2025년 표준 1.0 공개.
+- 배경 및 필요성 : 대규모 언어 모델(LLM, Large Language Model) 학습에서는 수만 개의 GPU(Graphics Processing Unit)가 올투올 (All-to-All, 모든 노드가 서로 통신하는 패턴) 통신을 수행하고 데이터센터 내부의 이스트-웨스트 트래픽 (East-West Traffic, 서버·가속기 간 수평 방향 트래픽)이 폭증, 단일 생태계 의존의 InfiniBand는 비용 부담, RoCEv2(RDMA over Converged Ethernet v2)는 혼잡 제어·무손실 설정의 한계.
 - 주요 목적 :
   1. 개방형 이더넷 기반의 초고대역폭·초저지연 전송
-  2. **인캐스트** (Incast, 다수 송신자가 한 수신자로 몰리는 현상) 혼잡 붕괴 방지
+  2. 인캐스트 (Incast, 다수 송신자가 한 수신자로 몰리는 현상) 혼잡 붕괴 방지
   3. 패킷 단위 분산 전송으로 경로 활용률 향상
 
 ## Ⅱ. Ultra Ethernet의 특징 및 장점
 
 - 핵심 요약 : 패킷을 여러 경로로 흩어 보내고 수신 측이 순서와 전송량을 통제하는 구조가 혼잡 제어와 경로 활용을 함께 높이는 방식.
 
-1. **패킷 스프레잉** (Packet Spraying) : 하나의 플로우를 패킷 단위로 나눠 ECMP(Equal-Cost Multi-Path) 경로에 분산 → 특정 링크 쏠림과 혼잡 감소.
+1. 패킷 스프레잉 (Packet Spraying) : 하나의 플로우를 패킷 단위로 나눠 ECMP(Equal-Cost Multi-Path) 경로에 분산 → 특정 링크 쏠림과 혼잡 감소.
 2. 비순서 전달과 수신단 재정렬 : 패킷이 서로 다른 경로로 도착해도 수신 NIC(Network Interface Card)가 순서를 복원 → 스위치는 단순 전달만 수행.
-3. **패킷 트림** (Packet Trimming) : 혼잡 시 패킷 전체 폐기 대신 페이로드를 잘라 헤더만 송신단에 통보 → 빠른 혼잡 신호 확보와 재전송 절약.
-4. **수신자 주도 크레딧 흐름 제어** (Receiver-Driven Credit Flow Control) : 수신 측이 버퍼 여유만큼 송신 권한 부여 → 인캐스트 버퍼 과부하 방지.
+3. 패킷 트림 (Packet Trimming) : 혼잡 시 패킷 전체 폐기 대신 페이로드를 잘라 헤더만 송신단에 통보 → 빠른 혼잡 신호 확보와 재전송 절약.
+4. 수신자 주도 크레딧 흐름 제어 (Receiver-Driven Credit Flow Control) : 수신 측이 버퍼 여유만큼 송신 권한 부여 → 인캐스트 버퍼 과부하 방지.
 5. 저지연 전방 오류정정 (LL-FEC, Low-Latency Forward Error Correction) : 물리 계층 오류를 수신 측에서 즉시 정정 → 재전송 지연 회피.
 6. 이더넷 운영 모델 계승 : 기존 이더넷의 관리·진단 도구와 호환 유지 → 운영 조직의 재학습 부담 감소.
 
 ## Ⅲ. Ultra Ethernet의 구조 (흐름)
 
 - 핵심 요약 : 응용 라이브러리가 UET 전송 계층의 분산·혼잡 제어를 호출하고 이더넷 계층이 운반하는 계층 구조.
-- **UET** (Ultra Ethernet Transport) : 패킷 스프레잉·크레딧·혼잡 제어를 담당하는 UEC의 전송 계층 기능.
+- UET (Ultra Ethernet Transport) : 패킷 스프레잉·크레딧·혼잡 제어를 담당하는 UEC의 전송 계층 기능.
 - 응용 연계 : PyTorch 같은 학습 프레임워크와 MPI(Message Passing Interface) 등 병렬 런타임이 응용 프로그래밍 인터페이스(API, Application Programming Interface)를 통해 UET를 호출.
 
 ```text

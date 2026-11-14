@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. OWASP Top 10 for Agentic Applications 2026의 개요
 
 - 핵심 요약 : 자율적으로 계획하고 도구를 실행하는 에이전트의 보안 위험을 10개 항목으로 분류한 OWASP(Open Worldwide Application Security Project) 목록.
-- 개념 : 자율적으로 계획하고 도구를 실행하는 인공지능(AI, Artificial Intelligence) 애플리케이션, 즉 **에이전틱 AI** (Agentic AI)의 보안 위험 10개를 분류한 목록으로, OWASP GenAI Security Project가 2025년 12월에 공개함.
+- 개념 : 자율적으로 계획하고 도구를 실행하는 인공지능(AI, Artificial Intelligence) 애플리케이션, 즉 에이전틱 AI (Agentic AI)의 보안 위험 10개를 분류한 목록으로, OWASP GenAI Security Project가 2025년 12월에 공개함.
 - 배경 및 필요성 : 단순 응답 생성을 넘어 외부 시스템의 상태를 바꾸는 에이전트가 늘면서, 도구 오용과 에이전트 간 신뢰 붕괴처럼 기존 목록이 다루지 않던 위험에 대한 기준이 필요해짐.
 - 주요 목적 : 외부 시스템과 인프라를 직접 제어하는 에이전트의 침해와 연쇄 장애를 설계 단계에서 선제적으로 통제하는 것.
 
@@ -70,16 +70,16 @@ extra:
 외부 도구            데이터 저장소
 ```
 
-1. **목표 탈취** (Agent Goal Hijack) : 에이전트가 읽은 문서 속 지시로 목표가 바뀌어 악의적 행동을 수행하는 위험.
-2. **도구 오용** (Tool Misuse and Exploitation) : 허용된 도구를 공격자가 원하는 방식으로 호출하게 만드는 위험.
-3. **신원 및 권한 남용** (Identity and Privilege Abuse) : 과도하게 부여된 자격증명과 권한이 악용되는 위험.
-4. **에이전트 공급망 취약점** (Agentic Supply Chain Vulnerabilities) : 변조된 플러그인이나 모델 컨텍스트 프로토콜(MCP, Model Context Protocol) 서버 등 신뢰하며 가져온 외부 구성요소의 위험.
-5. **예기치 않은 코드 실행** (Unexpected Code Execution) : 에이전트가 생성한 코드를 격리 없이 호스트에서 실행하는 위험.
-6. **메모리 및 컨텍스트 오염** (Memory and Context Poisoning) : 악성 입력이 장기 메모리에 저장되어 이후 세션의 판단을 오염시키는 위험.
-7. **에이전트 간 통신 취약점** (Insecure Inter-Agent Communication) : 에이전트 사이의 메시지가 도청되거나 위조되는 위험.
-8. **연쇄 장애** (Cascading Failures) : 한 에이전트의 오류가 다른 에이전트의 연속 호출과 무한 루프로 번지는 위험.
-9. **인간-에이전트 신뢰 악용** (Human-Agent Trust Exploitation) : 설득력 있는 에이전트 출력을 사람이 검증 없이 승인하게 만드는 위험.
-10. **탈주 에이전트** (Rogue Agents) : 정책을 우회해 비인가 자원에 접근하거나 스스로 복제를 시도하는 위험.
+1. 목표 탈취 (Agent Goal Hijack) : 에이전트가 읽은 문서 속 지시로 목표가 바뀌어 악의적 행동을 수행하는 위험.
+2. 도구 오용 (Tool Misuse and Exploitation) : 허용된 도구를 공격자가 원하는 방식으로 호출하게 만드는 위험.
+3. 신원 및 권한 남용 (Identity and Privilege Abuse) : 과도하게 부여된 자격증명과 권한이 악용되는 위험.
+4. 에이전트 공급망 취약점 (Agentic Supply Chain Vulnerabilities) : 변조된 플러그인이나 모델 컨텍스트 프로토콜(MCP, Model Context Protocol) 서버 등 신뢰하며 가져온 외부 구성요소의 위험.
+5. 예기치 않은 코드 실행 (Unexpected Code Execution) : 에이전트가 생성한 코드를 격리 없이 호스트에서 실행하는 위험.
+6. 메모리 및 컨텍스트 오염 (Memory and Context Poisoning) : 악성 입력이 장기 메모리에 저장되어 이후 세션의 판단을 오염시키는 위험.
+7. 에이전트 간 통신 취약점 (Insecure Inter-Agent Communication) : 에이전트 사이의 메시지가 도청되거나 위조되는 위험.
+8. 연쇄 장애 (Cascading Failures) : 한 에이전트의 오류가 다른 에이전트의 연속 호출과 무한 루프로 번지는 위험.
+9. 인간-에이전트 신뢰 악용 (Human-Agent Trust Exploitation) : 설득력 있는 에이전트 출력을 사람이 검증 없이 승인하게 만드는 위험.
+10. 탈주 에이전트 (Rogue Agents) : 정책을 우회해 비인가 자원에 접근하거나 스스로 복제를 시도하는 위험.
 
 ## Ⅳ. OWASP Top 10 for Agentic Applications 2026과 LLM Top 10의 비교
 

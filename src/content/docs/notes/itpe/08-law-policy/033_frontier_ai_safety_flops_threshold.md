@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 프론티어 인공지능의 연산 임계치와 안전 의무 개요
 
 - 핵심 요약 : 학습에 쓰인 연산량이 일정 수준을 넘는 범용 모델에 시스템적 위험 관련 추가 의무를 부과하는 구조.
-- 개념 : 유럽연합(EU, European Union) 인공지능(AI, Artificial Intelligence)법은 **범용 인공지능 모델** (GPAI, General-Purpose Artificial Intelligence) 가운데 고영향 역량을 가진 모델을 **시스템적 위험** (Systemic Risk) 모델로 분류한다.
+- 개념 : 유럽연합(EU, European Union) 인공지능(AI, Artificial Intelligence)법은 범용 인공지능 모델 (GPAI, General-Purpose Artificial Intelligence) 가운데 고영향 역량을 가진 모델을 시스템적 위험 (Systemic Risk) 모델로 분류한다.
 - 정량 기준 : 학습에 사용된 누적 부동소수점 연산(FLOPs, Floating Point Operations)이 $10^{25}$를 넘으면 고영향 역량을 가진 것으로 추정한다. 모든 국가가 공유하는 단일 법정 임계치가 아니라 EU 법의 기준이다.
 - 보완 기준 : 임계치 미만이라도 법률이 정한 기준과 절차에 따라 집행위원회(European Commission)가 시스템적 위험 모델로 지정할 수 있다.
 

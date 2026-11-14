@@ -22,18 +22,18 @@ extra:
 ## Ⅰ. 스마트팩토리(Smart Factory) 보안의 개요
 
 - 핵심 요약 : 제조 현장의 설비, 네트워크, 데이터를 사이버 공격과 생산 차질로부터 지키는 융합 보안 체계.
-- 개념 : 사물인터넷(IoT, Internet of Things), 인공지능(AI, Artificial Intelligence), 클라우드 기술이 결합된 제조 현장에서 **CPS** (Cyber-Physical System, 사이버물리시스템)와 엣지 디바이스, 공정 네트워크, 제조 데이터를 보호하는 융합 보안 체계.
+- 개념 : 사물인터넷(IoT, Internet of Things), 인공지능(AI, Artificial Intelligence), 클라우드 기술이 결합된 제조 현장에서 CPS (Cyber-Physical System, 사이버물리시스템)와 엣지 디바이스, 공정 네트워크, 제조 데이터를 보호하는 융합 보안 체계.
 - 배경 및 필요성 : 폐쇄망이던 제조 라인이 외부 공급망, ERP(Enterprise Resource Planning, 전사적 자원 관리), 클라우드와 실시간으로 연동되면서 랜섬웨어 감염, 생산 공정 기밀 유출, 설비 오작동 위험이 커짐.
-- 핵심 목적 : 생산 라인의 무중단 연속성(가용성) 보장, **제조 지적재산권** (IP, Intellectual Property) 보호, 작업자 안전 확보, 공급망 전반의 보안 신뢰성 확보.
+- 핵심 목적 : 생산 라인의 무중단 연속성(가용성) 보장, 제조 지적재산권 (IP, Intellectual Property) 보호, 작업자 안전 확보, 공급망 전반의 보안 신뢰성 확보.
 
 ## Ⅱ. 스마트팩토리(Smart Factory) 보안의 특징 및 장점
 
 - 핵심 요약 : 설비 신뢰, 통신 보호, 현장 이상 탐지, 도면 보호를 계층별로 결합하여 생산 연속성과 기밀성을 함께 확보하는 구조.
 
-1. 하드웨어 신뢰 기반 : 센서와 로봇에 TPM(Trusted Platform Module) 또는 PUF(Physically Unclonable Function) 칩을 내장 → **안전한 부팅** (Secure Boot, 부팅 단계마다 서명을 검증하는 방식)으로 펌웨어 변조를 차단.
+1. 하드웨어 신뢰 기반 : 센서와 로봇에 TPM(Trusted Platform Module) 또는 PUF(Physically Unclonable Function) 칩을 내장 → 안전한 부팅 (Secure Boot, 부팅 단계마다 서명을 검증하는 방식)으로 펌웨어 변조를 차단.
 2. 통신 보호 : 실시간 제조 통신인 TSN(Time-Sensitive Networking)과 OPC UA(OPC Unified Architecture)에 암호화와 상호 인증을 적용 → 지연을 늘리지 않고 위변조를 방지. 비인가 기기는 NAC(Network Access Control, 네트워크 접근 통제)로 차단.
-3. **엣지 AI 기반 이상 탐지** : 진동, 전류, 온도 데이터를 현장 엣지에서 분석 → 평소 생산 패턴과 다른 설비 조작을 즉시 감지.
-4. **DRM** (Digital Rights Management, 디지털 저작권 관리) 적용 : 매체 제어, 화면 워터마크와 결합 → 첨단 제조 도면(CAD, Computer-Aided Design)의 유출 경로를 줄임.
+3. 엣지 AI 기반 이상 탐지 : 진동, 전류, 온도 데이터를 현장 엣지에서 분석 → 평소 생산 패턴과 다른 설비 조작을 즉시 감지.
+4. DRM (Digital Rights Management, 디지털 저작권 관리) 적용 : 매체 제어, 화면 워터마크와 결합 → 첨단 제조 도면(CAD, Computer-Aided Design)의 유출 경로를 줄임.
 
 ## Ⅲ. 스마트팩토리(Smart Factory) 보안의 구조 (흐름)
 
@@ -85,8 +85,8 @@ extra:
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 무선망 전파 스푸핑과 방해 | 이음5G나 산업용 Wi-Fi로 AMR을 관제할 때 비인가 전파 방해나 감청이 가능해 물류 충돌 위험 | 이음5G 전용 SIM 기반 상호 인증 강제, 5G SA(Standalone) 네트워크 슬라이싱으로 물류 제어망 격리, **WIPS** (Wireless Intrusion Prevention System, 무선 침입 방지 시스템) 전역 배치 | 비인가 전파 탐지 건수, 무선 인증 실패 건수 |
-| 저사양 센서의 암호 처리 부하 | 저전력 MCU(Microcontroller Unit)는 공개키 암호나 TLS(Transport Layer Security)를 처리하기 어려워 평문 전송이 불가피 | **경량 암호** (Lightweight Cryptography, 저사양 기기용 암호) 알고리즘 적용과 산업용 보안 엣지 게이트웨이의 구간 암호화 대리 수행 | 평문 전송 구간 비율 |
+| 무선망 전파 스푸핑과 방해 | 이음5G나 산업용 Wi-Fi로 AMR을 관제할 때 비인가 전파 방해나 감청이 가능해 물류 충돌 위험 | 이음5G 전용 SIM 기반 상호 인증 강제, 5G SA(Standalone) 네트워크 슬라이싱으로 물류 제어망 격리, WIPS (Wireless Intrusion Prevention System, 무선 침입 방지 시스템) 전역 배치 | 비인가 전파 탐지 건수, 무선 인증 실패 건수 |
+| 저사양 센서의 암호 처리 부하 | 저전력 MCU(Microcontroller Unit)는 공개키 암호나 TLS(Transport Layer Security)를 처리하기 어려워 평문 전송이 불가피 | 경량 암호 (Lightweight Cryptography, 저사양 기기용 암호) 알고리즘 적용과 산업용 보안 엣지 게이트웨이의 구간 암호화 대리 수행 | 평문 전송 구간 비율 |
 | 협력사 원격 유지보수의 백도어화 | 제조사 엔지니어가 원격 제어 도구를 임의로 설치하면 제어망에 백도어가 생김 | 비인가 원격 접속 프로토콜을 네트워크 단에서 차단하고, 세션 녹화와 시간 제한 승인이 결합된 원격 접속 전용 솔루션 강제 | 승인 외 원격 접속 시도 건수 |
 
 ## Ⅵ. 스마트팩토리(Smart Factory) 보안에 대한 기술사적 제언
@@ -94,8 +94,8 @@ extra:
 - 핵심 요약 : 보안 점검을 지원 사업의 평가 기준으로 삼고, 가상 공장 훈련과 통합 관제를 결합하여 생산 연속성과 보안을 함께 관리.
 
 1. 지원 사업 연계 점검 : 스마트공장 구축을 지원하는 정부 사업에서 보안 점검 결과를 선정 평가 항목으로 두어, 보안 투자가 기업의 자율에만 맡겨지지 않도록 하는 것이 필요.
-2. 가상 공장 훈련 : 가동 중인 공장 대신 **디지털 트윈** (Digital Twin, 현실 설비를 가상으로 복제한 모델) 환경에서 랜섬웨어 침투 시나리오를 검증하고 복구 절차를 훈련하는 체계를 마련하는 것이 필요.
-3. 통합 관제 : **SOC** (Security Operations Center, 보안관제센터)를 스마트팩토리 전용으로 구축하여 IT 트래픽과 OT 공정 이상 데이터를 한 화면에서 연관 분석하는 융합 관제 체계를 운영하는 것이 필요.
+2. 가상 공장 훈련 : 가동 중인 공장 대신 디지털 트윈 (Digital Twin, 현실 설비를 가상으로 복제한 모델) 환경에서 랜섬웨어 침투 시나리오를 검증하고 복구 절차를 훈련하는 체계를 마련하는 것이 필요.
+3. 통합 관제 : SOC (Security Operations Center, 보안관제센터)를 스마트팩토리 전용으로 구축하여 IT 트래픽과 OT 공정 이상 데이터를 한 화면에서 연관 분석하는 융합 관제 체계를 운영하는 것이 필요.
 
 ## Ⅶ. 결론
 

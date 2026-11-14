@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. 6G 표준화와 IMT-2030의 개요
 
 - 핵심 요약 : ITU-R의 프레임워크와 3GPP의 로드맵에 따라 시나리오·요구사항·주파수를 순차 확정하는 2030년대 이동통신 표준화.
-- 개념 : ITU-R(ITU Radiocommunication Sector) 권고 M.2160이 제시한 **IMT-2030** (International Mobile Telecommunications-2030) 프레임워크를 기준으로 3GPP(3rd Generation Partnership Project)가 무선·코어 사양을 개발하는 6세대(6G) 이동통신 표준화 체계.
+- 개념 : ITU-R(ITU Radiocommunication Sector) 권고 M.2160이 제시한 IMT-2030 (International Mobile Telecommunications-2030) 프레임워크를 기준으로 3GPP(3rd Generation Partnership Project)가 무선·코어 사양을 개발하는 6세대(6G) 이동통신 표준화 체계.
 - 배경 및 필요성 : 초몰입형 확장현실(XR, eXtended Reality)·도심항공교통(UAM, Urban Air Mobility) 같은 서비스 요구가 지상망 용량을 넘어서고, 국가별 표준 주도권 경쟁이 본격화되어 국제 공통 프레임워크의 조기 확정 필요.
 - 주요 목적 : 사용 시나리오·능력 요구사항의 국제 표준화, 주파수 대역의 국제 확보, 2030년대 상용화 대비 사양의 통일.
 
@@ -30,12 +30,12 @@ extra:
 - 핵심 요약 : 여섯 사용 시나리오와 설계 원칙이 표준 요구사항의 뼈대가 되어 서비스별 요구를 하나의 국제 프레임워크로 수렴시키는 구조.
 - 요구 뼈대 : ITU-R M.2160이 사용 시나리오 6종, 능력 15항목, 설계 원칙 4가지를 IMT-2030의 요구 구조로 정의.
 
-1. **몰입형 통신** (Immersive Communication) : XR급 대역폭·지연 요구의 표준 반영 → 초실감 서비스의 표준적 수용.
-2. **초신뢰 저지연 통신** (HRLLC, Hyper Reliable and Low-Latency Communication) : 결정론적 지연 보장 요구 → 미션 크리티컬 제어의 기반.
-3. **대규모 통신** (Massive Communication) : 밀집 기기 연결 요구 → 대규모 센서망의 수용.
-4. **유비쿼터스 연결** (Ubiquitous Connectivity) : 비지상망(NTN, Non-Terrestrial Network) 포함 연결 요구 → 음영 지역의 연결 확대.
-5. **AI와 통신** (AI and Communication) : AI 자원과의 연계 요구 → 지능형 서비스의 표준 기반.
-6. **통신·센싱 통합** (ISAC, Integrated Sensing and Communication) : 통신 신호의 환경 감지 활용 → 망의 인지 기능 내장.
+1. 몰입형 통신 (Immersive Communication) : XR급 대역폭·지연 요구의 표준 반영 → 초실감 서비스의 표준적 수용.
+2. 초신뢰 저지연 통신 (HRLLC, Hyper Reliable and Low-Latency Communication) : 결정론적 지연 보장 요구 → 미션 크리티컬 제어의 기반.
+3. 대규모 통신 (Massive Communication) : 밀집 기기 연결 요구 → 대규모 센서망의 수용.
+4. 유비쿼터스 연결 (Ubiquitous Connectivity) : 비지상망(NTN, Non-Terrestrial Network) 포함 연결 요구 → 음영 지역의 연결 확대.
+5. AI와 통신 (AI and Communication) : AI 자원과의 연계 요구 → 지능형 서비스의 표준 기반.
+6. 통신·센싱 통합 (ISAC, Integrated Sensing and Communication) : 통신 신호의 환경 감지 활용 → 망의 인지 기능 내장.
 
 - 설계 원칙 : 표준 전 단계에 부여되는 네 가지 공통 원칙.
   1. 지속가능성 (Sustainability)

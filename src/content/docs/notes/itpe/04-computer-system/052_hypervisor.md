@@ -22,20 +22,20 @@ extra:
 
 ## Ⅰ. 하이퍼바이저의 개요
 
-- 핵심 요약 : 물리 하드웨어를 추상화하여 여러 운영체제(OS, Operating System)를 **가상머신** (VM, Virtual Machine)에 나누어 격리 실행하는 **하이퍼바이저** (Hypervisor) 계층.
+- 핵심 요약 : 물리 하드웨어를 추상화하여 여러 운영체제(OS, Operating System)를 가상머신 (VM, Virtual Machine)에 나누어 격리 실행하는 하이퍼바이저 (Hypervisor) 계층.
 - 개념 : 하나의 물리 호스트에서 CPU(Central Processing Unit)·메모리·스토리지·네트워크를 추상화하고 중재하여, 서로 다른 게스트 OS(Guest OS)를 가상머신 단위로 동시 구동하는 시스템 가상화 소프트웨어. 가상머신 모니터(VMM, Virtual Machine Monitor)라는 명칭도 함께 사용됨.
 - 배경 및 필요성 : 단일 서버·단일 운영체제 구조는 낮은 자원 이용률과 서버 증설에 따른 공간·전력 비용을 수반. 이 비용을 줄이는 하드웨어 공유 계층이 필요하며, 서비스형 인프라(IaaS, Infrastructure as a Service)의 토대가 되는 기술.
-- 주요 목적 : **서버 통합** (Server Consolidation)을 통한 하드웨어 활용률 향상, 가상머신 간 격리 확보, 스냅샷과 **실시간 이전** (Live Migration) 같은 운영 기능의 실현.
+- 주요 목적 : 서버 통합 (Server Consolidation)을 통한 하드웨어 활용률 향상, 가상머신 간 격리 확보, 스냅샷과 실시간 이전 (Live Migration) 같은 운영 기능의 실현.
 
 ## Ⅱ. 하이퍼바이저의 특징 및 장점
 
 - 핵심 요약 : 설치 위치(Type 1·Type 2)의 선택과 CPU·메모리·입출력의 하드웨어 가상화 지원이 성능·격리·효율을 함께 끌어올리는 구조.
 
-1. **Type 1 하이퍼바이저** (베어메탈형) : 하드웨어 위에 직접 상주 → 중간 계층이 없어 오버헤드가 작고 격리가 강함 (VMware ESXi, **KVM** (Kernel-based Virtual Machine), Xen, Hyper-V).
-2. **Type 2 하이퍼바이저** (호스트형) : 운영체제 위의 응용 프로그램으로 실행 → 설치가 간편하나 호스트 OS를 경유하는 성능 손실 (VirtualBox, VMware Workstation).
-3. CPU 가상화 : **VT-x** (Intel Virtualization Technology)와 **AMD-V** (AMD Virtualization)가 게스트의 특권 명령을 하드웨어가 가로채 하이퍼바이저에 전달 → 소프트웨어 번역 우회 비용 감소.
-4. 메모리 가상화 : **EPT** (Extended Page Tables, Intel)·NPT(Nested Page Tables, AMD)가 게스트 물리 주소→호스트 물리 주소의 2단 변환을 하드웨어가 처리 → 소프트웨어 중계 지연 제거.
-5. 입출력(I/O, Input/Output) 가상화 : **SR-IOV** (Single Root I/O Virtualization)가 물리 네트워크 카드를 여러 가상 기능(VF, Virtual Function)으로 분할 → 가상머신의 하이퍼바이저 우회 접근으로 네이티브 수준 성능.
+1. Type 1 하이퍼바이저 (베어메탈형) : 하드웨어 위에 직접 상주 → 중간 계층이 없어 오버헤드가 작고 격리가 강함 (VMware ESXi, KVM (Kernel-based Virtual Machine), Xen, Hyper-V).
+2. Type 2 하이퍼바이저 (호스트형) : 운영체제 위의 응용 프로그램으로 실행 → 설치가 간편하나 호스트 OS를 경유하는 성능 손실 (VirtualBox, VMware Workstation).
+3. CPU 가상화 : VT-x (Intel Virtualization Technology)와 AMD-V (AMD Virtualization)가 게스트의 특권 명령을 하드웨어가 가로채 하이퍼바이저에 전달 → 소프트웨어 번역 우회 비용 감소.
+4. 메모리 가상화 : EPT (Extended Page Tables, Intel)·NPT(Nested Page Tables, AMD)가 게스트 물리 주소→호스트 물리 주소의 2단 변환을 하드웨어가 처리 → 소프트웨어 중계 지연 제거.
+5. 입출력(I/O, Input/Output) 가상화 : SR-IOV (Single Root I/O Virtualization)가 물리 네트워크 카드를 여러 가상 기능(VF, Virtual Function)으로 분할 → 가상머신의 하이퍼바이저 우회 접근으로 네이티브 수준 성능.
 
 ## Ⅲ. 하이퍼바이저의 구조 (흐름)
 
@@ -86,17 +86,17 @@ Type 2 하이퍼바이저
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 메모리 중복 적재 | 가상머신마다 독립 커널·시스템 프로세스 적재로 동일 페이지 낭비 | **KSM** (Kernel Samepage Merging)으로 동일 내용 페이지 병합 | 호스트 메모리 사용률, 병합 페이지 수 |
-| **노이지 네이버** (Noisy Neighbor) | 특정 가상머신의 CPU 과점유로 타 가상머신 스케줄 지연·스틸 타임(Steal Time) 증가 | vCPU 고정(Pinning)과 쿼터·Shares 기반 자원 배분 정책 | 스틸 타임 비율 |
+| 메모리 중복 적재 | 가상머신마다 독립 커널·시스템 프로세스 적재로 동일 페이지 낭비 | KSM (Kernel Samepage Merging)으로 동일 내용 페이지 병합 | 호스트 메모리 사용률, 병합 페이지 수 |
+| 노이지 네이버 (Noisy Neighbor) | 특정 가상머신의 CPU 과점유로 타 가상머신 스케줄 지연·스틸 타임(Steal Time) 증가 | vCPU 고정(Pinning)과 쿼터·Shares 기반 자원 배분 정책 | 스틸 타임 비율 |
 | 벤더 종속과 라이선스 비용 | 상용 하이퍼바이저의 구독 정책 변화로 총소유비용(TCO, Total Cost of Ownership) 상승 | 오픈소스 KVM 기반 전환과 단계적 전환 로드맵 수행 | 라이선스 비용 추이 |
 
 ## Ⅵ. 하이퍼바이저에 대한 기술사적 제언
 
 - 핵심 요약 : 컨테이너와 가상머신의 통합 제어면, 경량 가상머신의 서버리스 적용, 하드웨어 오프로드로 가상화 비용을 낮추는 방향.
 
-1. 플랫폼 운영 조직은 **KubeVirt** (쿠버네티스 위에서 가상머신을 실행하는 확장)를 도입하여 컨테이너와 가상머신을 한 제어면에서 배포·관리하는 체계로 레거시 자산의 이전 부담을 낮춘다.
-2. 서버리스·다중 테넌트 서비스 조직은 **MicroVM** (경량 가상머신, 예: Firecracker)으로 함수 실행 단위를 가상머신 경계로 감싸 격리와 기동 속도를 함께 확보한다.
-3. 데이터센터 인프라 조직은 **DPU** (Data Processing Unit)로 가상 스위치·스토리지 처리를 호스트 CPU에서 분리하는 오프로드 구조를 표준 참조 설계에 반영한다.
+1. 플랫폼 운영 조직은 KubeVirt (쿠버네티스 위에서 가상머신을 실행하는 확장)를 도입하여 컨테이너와 가상머신을 한 제어면에서 배포·관리하는 체계로 레거시 자산의 이전 부담을 낮춘다.
+2. 서버리스·다중 테넌트 서비스 조직은 MicroVM (경량 가상머신, 예: Firecracker)으로 함수 실행 단위를 가상머신 경계로 감싸 격리와 기동 속도를 함께 확보한다.
+3. 데이터센터 인프라 조직은 DPU (Data Processing Unit)로 가상 스위치·스토리지 처리를 호스트 CPU에서 분리하는 오프로드 구조를 표준 참조 설계에 반영한다.
 
 ## Ⅶ. 결론
 

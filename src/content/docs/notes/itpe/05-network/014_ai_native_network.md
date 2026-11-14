@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. AI 네이티브 네트워크의 개요
 
 - 핵심 요약 : 관측·분석·판단·실행의 운영 루프에 AI를 내재화해 설정·최적화·장애 대응의 자동화를 목표로 하는 자율 네트워크 구조.
-- 개념 : 인공지능(AI, Artificial Intelligence)과 머신러닝(ML, Machine Learning)을 망 운영의 제어 구조 안에 내재화해 사람의 개입을 최소화하는 **AI 네이티브 네트워크** (AI-native Network) 설계 방향.
+- 개념 : 인공지능(AI, Artificial Intelligence)과 머신러닝(ML, Machine Learning)을 망 운영의 제어 구조 안에 내재화해 사람의 개입을 최소화하는 AI 네이티브 네트워크 (AI-native Network) 설계 방향.
 - 배경 및 필요성 : 네트워크 슬라이싱·빔·토폴로지의 복잡도가 수동 운영과 규칙 기반(Rule-based) 제어의 처리 한계를 넘어서고, 장애 대응의 인력 의존이 품질 병목으로 작동함.
-- 주요 목적 : **제로 터치 운영** (Zero-Touch Operations, 사람 개입 없는 설정·변경·복구), 장애의 선제 감지와 자가 치유(Self-Healing), 운영 품질의 균일화.
+- 주요 목적 : 제로 터치 운영 (Zero-Touch Operations, 사람 개입 없는 설정·변경·복구), 장애의 선제 감지와 자가 치유(Self-Healing), 운영 품질의 균일화.
 
 ## Ⅱ. AI 네이티브 네트워크의 특징 및 장점
 
@@ -63,9 +63,9 @@ L2~L3 : 부분·조건부 자율 운영
 L4~L5 : 고도·완전 자율 (제로 터치)
 ```
 
-- **AIOps** (AI for IT Operations) : 관제 데이터를 AI로 분석·예측하는 운영 기반 기술.
-- **ETSI ZSM** (Zero-touch Service Management) : 서비스 관리의 무인화 프레임워크를 정의한 ETSI 표준 그룹.
-- **RIC** (RAN Intelligent Controller) : 무선 구간을 지능형 제어 루프에 연결하는 O-RAN(Open Radio Access Network) 플랫폼으로 지능형 무선 운영의 실행 수단.
+- AIOps (AI for IT Operations) : 관제 데이터를 AI로 분석·예측하는 운영 기반 기술.
+- ETSI ZSM (Zero-touch Service Management) : 서비스 관리의 무인화 프레임워크를 정의한 ETSI 표준 그룹.
+- RIC (RAN Intelligent Controller) : 무선 구간을 지능형 제어 루프에 연결하는 O-RAN(Open Radio Access Network) 플랫폼으로 지능형 무선 운영의 실행 수단.
 
 ## Ⅳ. AI 네이티브 네트워크와 기존 운영 방식의 비교
 
@@ -88,7 +88,7 @@ L4~L5 : 고도·완전 자율 (제로 터치)
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 블랙박스 판단의 신뢰 부족 | 학습 모델의 결정 사유 미공개 → 장애 원인 추적 곤란 | **XAI** (Explainable AI) 결합과 제약 가드레일 설정 | 정책 변경 사유 기록률 |
+| 블랙박스 판단의 신뢰 부족 | 학습 모델의 결정 사유 미공개 → 장애 원인 추적 곤란 | XAI (Explainable AI) 결합과 제약 가드레일 설정 | 정책 변경 사유 기록률 |
 | 데이터 형식 파편화 | 멀티벤더 장비의 상태 형식 불일치 → 학습 편향 | 표준 데이터 모델과 이벤트 기반 텔레메트리 통일 | 표준 모델 적용률 |
 | AI 대상 공격 표면 | 적대적 섭동(Adversarial Perturbation)·모델 오염 → 오제어 위험 | 입력 검증·모델 무결성 점검의 사이버 레질리언스 체계 | 이상 추론 탐지 건수 |
 

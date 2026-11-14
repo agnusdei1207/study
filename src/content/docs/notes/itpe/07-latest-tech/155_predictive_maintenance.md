@@ -23,16 +23,16 @@ extra:
 ## Ⅰ. 예지정비(Predictive Maintenance)의 개요
 
 - 핵심 요약 : 설비 상태 데이터를 AI로 분석해 고장 시점을 미리 추정하고, 최적 시점에 정비하는 설비 자산 관리 방식.
-- 개념 : 진동·온도·전류·음향 같은 설비 상태 데이터를 IoT(Internet of Things) 센서로 상시 수집하고, 머신러닝과 물리 모델로 이상 징후를 조기에 찾아 고장 전에 정비를 수행하는 **예지정비** (PdM, Predictive Maintenance).
-- 배경 및 필요성 : 정상 가동 데이터는 대부분이고 고장 데이터는 극히 적어 학습 데이터가 심하게 불균형하므로, 정상 패턴만으로 학습하는 비지도 이상 탐지와 **디지털 트윈** 기반 데이터 보강 체계가 필요해짐.
-- 주요 목적 : **비계획 정지** (Unplanned Downtime)를 줄이고, 부품 수명을 충분히 쓰면서 정비 비용과 설비 사고 위험을 낮추는 것.
+- 개념 : 진동·온도·전류·음향 같은 설비 상태 데이터를 IoT(Internet of Things) 센서로 상시 수집하고, 머신러닝과 물리 모델로 이상 징후를 조기에 찾아 고장 전에 정비를 수행하는 예지정비 (PdM, Predictive Maintenance).
+- 배경 및 필요성 : 정상 가동 데이터는 대부분이고 고장 데이터는 극히 적어 학습 데이터가 심하게 불균형하므로, 정상 패턴만으로 학습하는 비지도 이상 탐지와 디지털 트윈 기반 데이터 보강 체계가 필요해짐.
+- 주요 목적 : 비계획 정지 (Unplanned Downtime)를 줄이고, 부품 수명을 충분히 쓰면서 정비 비용과 설비 사고 위험을 낮추는 것.
 
 ## Ⅱ. 예지정비(Predictive Maintenance)의 특징 및 장점
 
 - 핵심 요약 : 센서 신호의 열화 추세를 학습해 계획 정비를 가능하게 하여, 돌발 정지와 조기 교체를 함께 줄이는 방식.
 
 1. 상태 기반 열화 탐지 : 센서 신호를 특징값으로 바꿔 정상 기준선에서 벗어나는 추세를 포착 → 고장 전 징후를 미리 알고 계획 정비 가능.
-2. 잔여 수명 추정 : **잔여 수명** (RUL, Remaining Useful Life, 고장까지 남은 사용 기간)을 확률로 산출 → 부품을 한계 가까이까지 활용해 조기 교체 축소.
+2. 잔여 수명 추정 : 잔여 수명 (RUL, Remaining Useful Life, 고장까지 남은 사용 기간)을 확률로 산출 → 부품을 한계 가까이까지 활용해 조기 교체 축소.
 3. 작업 시스템 연계 : 진단 결과를 EAM(Enterprise Asset Management)과 CMMS(Computerized Maintenance Management System)의 작업 지시로 연결 → 정비 대기 시간과 재고 누락 감소.
 
 - 열화 추세를 이용한 판단 흐름은 다음과 같다.
@@ -50,7 +50,7 @@ extra:
 ## Ⅲ. 예지정비(Predictive Maintenance)의 구조 (흐름)
 
 - 핵심 요약 : 센서 수집, 특징 추출, 이상 탐지, 수명 예측, 작업 연계로 이어지는 5단계 파이프라인.
-- 구성 요소 : 엣지에서 신호를 전처리하고 **특징 공학** (Feature Engineering)으로 시간 영역 지표(RMS, 첨도)와 주파수 영역 지표(FFT(Fast Fourier Transform), 웨이블릿 변환)를 만든다. 이상 탐지에는 오토인코더 재구성 오차나 Isolation Forest 같은 비지도 기법을 쓰고, 베어링 결함은 BPFO·BPFI 같은 결함 주파수와 대조한다.
+- 구성 요소 : 엣지에서 신호를 전처리하고 특징 공학 (Feature Engineering)으로 시간 영역 지표(RMS, 첨도)와 주파수 영역 지표(FFT(Fast Fourier Transform), 웨이블릿 변환)를 만든다. 이상 탐지에는 오토인코더 재구성 오차나 Isolation Forest 같은 비지도 기법을 쓰고, 베어링 결함은 BPFO·BPFI 같은 결함 주파수와 대조한다.
 
 ```text
 [ 1. 센서 신호 수집 ]
@@ -73,7 +73,7 @@ extra:
 ## Ⅳ. 예지정비(Predictive Maintenance)의 비교
 
 - 핵심 요약 : 사후 정비에서 예지 정비로 갈수록 정비 시점이 최적에 가까워지지만, 데이터와 인프라 투자 비용은 함께 커짐.
-- 정비 방식 : **사후 정비** (BM, Breakdown Maintenance), **예방 정비** (PM, Preventive Maintenance), **상태 기반 정비** (CBM, Condition-Based Maintenance), 예지 정비(PdM)를 비교한다.
+- 정비 방식 : 사후 정비 (BM, Breakdown Maintenance), 예방 정비 (PM, Preventive Maintenance), 상태 기반 정비 (CBM, Condition-Based Maintenance), 예지 정비(PdM)를 비교한다.
 
 | 비교 축 | 사후 정비 (BM) | 예방 정비 (PM) | 상태 기반 정비 (CBM) | 예지 정비 (PdM) |
 | --- | --- | --- | --- | --- |

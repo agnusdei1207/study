@@ -20,23 +20,23 @@ extra:
 ## Ⅰ. DevOps의 개요
 
 - 핵심 요약 : 개발과 운영의 책임·도구·피드백을 하나의 수명주기로 묶어 빠르고 안정적인 서비스 전달을 만드는 문화·실천 체계.
-- 개념 : 개발(Dev)과 운영(Ops)의 역할을 계획부터 운영까지 하나의 흐름으로 통합하고 자동화·측정·공유를 상시 반복하는 문화와 실천 체계가 **DevOps** (Development and Operations).
+- 개념 : 개발(Dev)과 운영(Ops)의 역할을 계획부터 운영까지 하나의 흐름으로 통합하고 자동화·측정·공유를 상시 반복하는 문화와 실천 체계가 DevOps (Development and Operations).
 - 배경 및 필요성 : 개발 조직은 빠른 변경, 운영 조직은 안정 유지를 담당하는 분리 구조에서 인계 지연·배포 오류·책임 전가가 반복되어 개발·운영 일원화가 조직·기술 양면에서 요구.
 - 주요 목적 : 배포 가능한 상태의 상시 유지와 짧은 피드백 주기로 변경 속도와 서비스 안정성의 동시 달성.
 
 ## Ⅱ. DevOps의 특징 및 장점
 
-- 핵심 요약 : **CALMS** (Culture, Automation, Lean, Measurement, Sharing)의 다섯 축이 배포 속도와 운영 안정성의 동시 향상으로 연결.
+- 핵심 요약 : CALMS (Culture, Automation, Lean, Measurement, Sharing)의 다섯 축이 배포 속도와 운영 안정성의 동시 향상으로 연결.
 
 1. 문화(Culture) : 개발·운영이 서비스 성과를 공동 소유 → 부서 간 인계 지연과 책임 공백 감소.
-2. 자동화(Automation) : **CI/CD** (Continuous Integration / Continuous Delivery) 파이프라인과 **IaC** (Infrastructure as Code)로 빌드·시험·배포·환경 구성의 코드화 → 변경의 재현성·추적성 확보.
+2. 자동화(Automation) : CI/CD (Continuous Integration / Continuous Delivery) 파이프라인과 IaC (Infrastructure as Code)로 빌드·시험·배포·환경 구성의 코드화 → 변경의 재현성·추적성 확보.
 3. 린(Lean) : 작은 배치 단위의 잦은 릴리스 → 변경 실패 시 원인 특정 범위 축소.
 4. 측정(Measurement) : 배포 빈도·변경 실패율·복구 시간 등 흐름 지표의 상시 수집 → 개선 우선순위의 근거 확보.
-5. 공유(Sharing) : 장애 정보·도구·지식의 조직 내 개방 → **관측성** (Observability) 기반 운영 지식의 개발 환류.
+5. 공유(Sharing) : 장애 정보·도구·지식의 조직 내 개방 → 관측성 (Observability) 기반 운영 지식의 개발 환류.
 
 ## Ⅲ. DevOps의 구조 (흐름)
 
-- 핵심 요약 : 계획부터 운영·관측까지 이어지는 자동화 파이프라인이 **지속 피드백** (Continuous Feedback)으로 닫히는 순환 구조.
+- 핵심 요약 : 계획부터 운영·관측까지 이어지는 자동화 파이프라인이 지속 피드백 (Continuous Feedback)으로 닫히는 순환 구조.
 
 ```text
 계획
@@ -84,7 +84,7 @@ extra:
 | --- | --- | --- | --- |
 | 도구 도입만 진행 | 조직·평가 체계는 구조 유지 → 사일로 존속 | 공동 성과지표·합동 회고의 제도화 | 부서 간 수동 인계 건수 |
 | 오류 변경의 빠른 확산 | 시험 미비 변경도 빠르게 배포되는 상태 → 장애 확산 | 자동 시험 충실화·단계적 배포·자동 롤백 | 변경 실패율 |
-| 보안 검증 후행 | 배포 속도와 취약점 관리의 충돌 | 보안 검사의 파이프라인 내장, 즉 **DevSecOps** (Development, Security and Operations) 체계 적용 | 배포 전 취약점 차단 건수 |
+| 보안 검증 후행 | 배포 속도와 취약점 관리의 충돌 | 보안 검사의 파이프라인 내장, 즉 DevSecOps (Development, Security and Operations) 체계 적용 | 배포 전 취약점 차단 건수 |
 | 관측 체계 미비 | 장애 원인 파악 지연 | 로그·메트릭·분산 추적 표준화 | 평균 복구 시간 |
 
 ## Ⅵ. DevOps에 대한 제언

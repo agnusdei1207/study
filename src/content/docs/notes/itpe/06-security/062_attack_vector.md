@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 공격 벡터의 개요
 
 - 핵심 요약 : 공격자가 보안 통제를 우회해 시스템에 발을 들이는 구체적인 침투 수단과 진입 경로.
-- 개념 : 공격자가 목표 시스템의 보안 통제를 우회하여 **초기 접근** (Initial Access) 지점을 확보하거나 악성 페이로드를 전달하기 위해 악용하는 구체적인 침투 수단 및 진입 경로.
+- 개념 : 공격자가 목표 시스템의 보안 통제를 우회하여 초기 접근 (Initial Access) 지점을 확보하거나 악성 페이로드를 전달하기 위해 악용하는 구체적인 침투 수단 및 진입 경로.
 - 배경 및 필요성 : 클라우드 전환, 원격 근무 확산, 서드파티 공급망 연계로 경계 기반 보안이 약해지면서 침투 경로가 다변화됨 → 진입 표면을 입체적으로 파악하고 벡터별 방어선을 설계하는 체계적 식별 체계가 필요해짐.
 - 주요 목적 : 침투 벡터별 선제 방어 통제를 수립하고, 침투 시도 단계에서 조기 차단하여 내부 인프라로의 확산을 막음.
 
@@ -38,7 +38,7 @@ extra:
 
 - 핵심 요약 : 4종의 진입 벡터가 각기 다른 입구로 침투한 뒤, 초기 접근 이후에는 권한 상승과 횡적 이동의 공통 흐름을 따르는 구조.
 
-1. **피싱 프록시** (AitM, Adversary-in-the-Middle) 및 이메일·웹 : 스피어 피싱, 악성 매크로 첨부파일, **워터링 홀** (Watering Hole) 공격으로 악성코드 다운로드와 계정 탈취.
+1. 피싱 프록시 (AitM, Adversary-in-the-Middle) 및 이메일·웹 : 스피어 피싱, 악성 매크로 첨부파일, 워터링 홀 (Watering Hole) 공격으로 악성코드 다운로드와 계정 탈취.
 2. 공개 서비스 결함 : SQL 삽입(SQLi, SQL Injection), 원격 코드 실행(RCE, Remote Code Execution), 미패치 CVE(Common Vulnerabilities and Exposures), 클라우드 설정 오류로 웹셸 업로드와 서버 권한 탈취.
 3. 인증 자격증명 : 유출 계정 대입, VPN(Virtual Private Network)과 RDP(Remote Desktop Protocol) 무차별 대입으로 내부망 원격 침투.
 4. 공급망 : 오픈소스 라이브러리 의존성 오염, 벤더 소프트웨어 변조 (SolarWinds, Log4j 사태가 대표 사례).
@@ -82,8 +82,8 @@ extra:
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | AI(Artificial Intelligence) 기반 사칭과 피싱 프록시 (AitM) | 딥페이크 음성과 영상으로 SMS·OTP와 교육 중심 방어가 약화 | 세션 탈취에 강한 FIDO2/WebAuthn 기반 패스키 의무화, 이메일 수신단의 문맥 분석 도입 | 피싱 저항 인증 적용률 |
-| **제로데이** (0-Day) 익스플로잇 | 정적 시그니처 기반 IPS(Intrusion Prevention System)와 WAF가 알려지지 않은 공격을 막지 못함 | **RASP** (Runtime Application Self-Protection)를 탑재해 악성 행위 시 시스템 호출 차단, **가상 패치** (Virtual Patching) 즉시 배포 | 가상 패치 적용 소요 시간 |
-| 정상 계정과 정상 프로토콜의 악용 | 탈취된 VPN·RDP 계정이 정상 경로로 유입되어 경계 방화벽이 탐지하지 못함 | 기기 무결성과 접속 맥락(위치, 시간, 행위)을 실시간 평가하는 **ZTNA** (Zero Trust Network Access) 전환 | 맥락 기반 차단 건수 |
+| 제로데이 (0-Day) 익스플로잇 | 정적 시그니처 기반 IPS(Intrusion Prevention System)와 WAF가 알려지지 않은 공격을 막지 못함 | RASP (Runtime Application Self-Protection)를 탑재해 악성 행위 시 시스템 호출 차단, 가상 패치 (Virtual Patching) 즉시 배포 | 가상 패치 적용 소요 시간 |
+| 정상 계정과 정상 프로토콜의 악용 | 탈취된 VPN·RDP 계정이 정상 경로로 유입되어 경계 방화벽이 탐지하지 못함 | 기기 무결성과 접속 맥락(위치, 시간, 행위)을 실시간 평가하는 ZTNA (Zero Trust Network Access) 전환 | 맥락 기반 차단 건수 |
 
 ## Ⅵ. 공격 벡터에 대한 기술사적 제언
 

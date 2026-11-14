@@ -22,18 +22,18 @@ extra:
 ## Ⅰ. AI 보안 플랫폼 (AI Security Platform)의 개요
 
 - 핵심 요약 : 생성형 AI 트래픽의 감시와 통제를 한 아키텍처로 묶은 AI 보안 통합 계층.
-- 개념 : 조직이 사용하는 AI 모델과 거대언어모델(LLM, Large Language Model) 환경을 보호하기 위해 프롬프트 필터링, 데이터 유출 방지(DLP, Data Loss Prevention), 모델 통제 정책, AI 자산 관리, 위협 모니터링을 단일 구조로 제공하는 **AI 보안 플랫폼** (AI Security Platform).
-- 배경 및 필요성 : 외부 상용 모델, 사내 오픈소스 LLM, 비인가 SaaS AI가 혼재해 정책과 가시성이 파편화되므로, 가트너(Gartner)가 제시한 **AI TRiSM** (AI Trust, Risk and Security Management)을 실제 기술로 구현할 플랫폼이 필요해짐.
-- 주요 목적 : AI 트래픽에 대한 **가시성** (Visibility) 확보, 기밀 데이터의 외부 유출 차단, 악성 프롬프트의 실시간 필터링, 전사 AI 거버넌스 체계화.
+- 개념 : 조직이 사용하는 AI 모델과 거대언어모델(LLM, Large Language Model) 환경을 보호하기 위해 프롬프트 필터링, 데이터 유출 방지(DLP, Data Loss Prevention), 모델 통제 정책, AI 자산 관리, 위협 모니터링을 단일 구조로 제공하는 AI 보안 플랫폼 (AI Security Platform).
+- 배경 및 필요성 : 외부 상용 모델, 사내 오픈소스 LLM, 비인가 SaaS AI가 혼재해 정책과 가시성이 파편화되므로, 가트너(Gartner)가 제시한 AI TRiSM (AI Trust, Risk and Security Management)을 실제 기술로 구현할 플랫폼이 필요해짐.
+- 주요 목적 : AI 트래픽에 대한 가시성 (Visibility) 확보, 기밀 데이터의 외부 유출 차단, 악성 프롬프트의 실시간 필터링, 전사 AI 거버넌스 체계화.
 
 ## Ⅱ. AI 보안 플랫폼 (AI Security Platform)의 특징 및 장점
 
 - 핵심 요약 : 모든 AI 호출을 하나의 게이트웨이로 모아 입력과 출력 양쪽에서 정책을 집행하는 구조.
 
-1. **AI 게이트웨이** (AI Firewall/Gateway) : 모든 AI 호출의 단일 진입점으로 작동 → 비인가 모델 접속 차단과 중앙 통제.
+1. AI 게이트웨이 (AI Firewall/Gateway) : 모든 AI 호출의 단일 진입점으로 작동 → 비인가 모델 접속 차단과 중앙 통제.
 2. 실시간 PII(Personally Identifiable Information) 마스킹 : 주민번호, 전화번호, 클라우드 시크릿 키를 감지해 가상 토큰으로 치환하여 전송하고, 응답 수신 시 원문을 복원 → 원본 노출 없이 AI 활용.
-3. **가드레일** (Guardrails) : 의미 유사도 검사와 분류기로 시스템 프롬프트 탈취와 유해 질의를 인라인에서 차단 → 키워드 필터의 우회 한계 보완.
-4. **섀도우 AI** (Shadow AI) 탐지 : 허가되지 않은 AI 도구를 네트워크 트래픽 분석으로 식별해 위험 점수를 부여 → 통제 밖 AI 사용의 가시화.
+3. 가드레일 (Guardrails) : 의미 유사도 검사와 분류기로 시스템 프롬프트 탈취와 유해 질의를 인라인에서 차단 → 키워드 필터의 우회 한계 보완.
+4. 섀도우 AI (Shadow AI) 탐지 : 허가되지 않은 AI 도구를 네트워크 트래픽 분석으로 식별해 위험 점수를 부여 → 통제 밖 AI 사용의 가시화.
 
 ## Ⅲ. AI 보안 플랫폼 (AI Security Platform)의 구조 (흐름)
 

@@ -22,8 +22,8 @@ extra:
 ## Ⅰ. 범용 AI 위험관리 프레임워크의 개요
 
 - 핵심 요약 : 범용 AI 모델의 불확실성, 편향, 환각, 오용 위험을 개발부터 운영까지 생애주기에 걸쳐 통제하는 관리 체계.
-- 개념 : 특정하지 않은 다목적 하류 응용을 지원하는 **GPAI** (General-Purpose Artificial Intelligence) 모델의 위험을 조직적·기술적으로 완화하는 전 생애주기 관리 체계.
-- 배경 및 필요성 : 모델을 만드는 제공자(Provider)와 이를 가져다 서비스하는 배포자(Deployer) 사이에 책임 경계가 모호하여 규제 공백이 생긴다. 그래서 **모델 카드** (Model Card)로 기술 정보를 공유하도록 의무화하고, 공급망 전체의 책임을 **RACI 매트릭스** (Responsible, Accountable, Consulted, Informed)로 정리하는 것이 필요하다.
+- 개념 : 특정하지 않은 다목적 하류 응용을 지원하는 GPAI (General-Purpose Artificial Intelligence) 모델의 위험을 조직적·기술적으로 완화하는 전 생애주기 관리 체계.
+- 배경 및 필요성 : 모델을 만드는 제공자(Provider)와 이를 가져다 서비스하는 배포자(Deployer) 사이에 책임 경계가 모호하여 규제 공백이 생긴다. 그래서 모델 카드 (Model Card)로 기술 정보를 공유하도록 의무화하고, 공급망 전체의 책임을 RACI 매트릭스 (Responsible, Accountable, Consulted, Informed)로 정리하는 것이 필요하다.
 - 주요 목적 : 초거대 모델의 혁신성과 생산성을 살리면서, 인권 침해, 개인정보 유출, 사회적 피해를 사전에 통제하는 것.
 
 ## Ⅱ. 범용 AI 위험관리 프레임워크의 특징 및 장점
@@ -48,8 +48,8 @@ extra:
 ## Ⅲ. 범용 AI 위험관리 프레임워크의 구조 (흐름)
 
 - 핵심 요약 : 거버넌스 아래에서 위험을 매핑하고, 측정하고, 완화하는 순환이 모델 생애주기의 다섯 단계에 걸쳐 전개되는 구조.
-- **NIST AI RMF** (Risk Management Framework) : 미국 국립표준기술연구소가 발표한 자발적 위험관리 프레임워크로 Govern, Map, Measure, Manage의 네 가지 기능으로 구성된다.
-- **정렬** (Alignment) : 모델의 출력을 사람의 의도와 안전 기준에 맞추는 학습 단계. DPO(Direct Preference Optimization)나 RLHF(Reinforcement Learning from Human Feedback) 같은 기법이 쓰인다.
+- NIST AI RMF (Risk Management Framework) : 미국 국립표준기술연구소가 발표한 자발적 위험관리 프레임워크로 Govern, Map, Measure, Manage의 네 가지 기능으로 구성된다.
+- 정렬 (Alignment) : 모델의 출력을 사람의 의도와 안전 기준에 맞추는 학습 단계. DPO(Direct Preference Optimization)나 RLHF(Reinforcement Learning from Human Feedback) 같은 기법이 쓰인다.
 
 ```text
 [ GOVERN: 전사 위험 거버넌스 ]

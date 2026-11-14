@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. Clark and Wilson 모델의 개요
 
 - 핵심 요약 : 직무 분리와 검증된 프로그램을 통해서만 데이터를 바꾸도록 강제하는 상업용 무결성 모델.
-- 개념 : 금융, 회계, 공급망 등 상업 환경에서 비인가 변경과 내부자의 권한 오남용을 막기 위해 **직무 분리** (Separation of Duties), **변환 절차** (TP, Transformation Procedure), **무결성 검증 절차** (IVP, Integrity Verification Procedure)를 정의한 형식 무결성 모델.
+- 개념 : 금융, 회계, 공급망 등 상업 환경에서 비인가 변경과 내부자의 권한 오남용을 막기 위해 직무 분리 (Separation of Duties), 변환 절차 (TP, Transformation Procedure), 무결성 검증 절차 (IVP, Integrity Verification Procedure)를 정의한 형식 무결성 모델.
 - 배경 및 필요성 : Bell-LaPadula 모델은 기밀성, Biba 모델은 계층적 무결성에 초점을 두어 복식 부기, 데이터 간 일관성, 감사 추적 같은 상업 시스템의 무결성 요구를 충분히 표현하지 못.
 - 주요 목적 : 데이터를 직접 고치지 못하게 하고, 승인된 프로그램으로만 변경하게 하며, 업무 처리에 둘 이상의 주체를 거치게 하여 사기와 데이터 훼손을 방지.
 
@@ -30,15 +30,15 @@ extra:
 
 - 핵심 요약 : 데이터 분류, 직무 분리, 감사 기록이 결합되어 부정과 오류를 구조적으로 차단하는 방식.
 
-1. 데이터 분리 : 보호 대상 **제약 데이터** (CDI, Constrained Data Item)와 검증 전 **비제약 데이터** (UDI, Unconstrained Data Item)를 구분 → UDI는 검증을 거쳐야만 CDI로 승격되어 무결성 경계가 명확해짐.
+1. 데이터 분리 : 보호 대상 제약 데이터 (CDI, Constrained Data Item)와 검증 전 비제약 데이터 (UDI, Unconstrained Data Item)를 구분 → UDI는 검증을 거쳐야만 CDI로 승격되어 무결성 경계가 명확해짐.
 2. 직무 분리 : 거래의 생성, 승인, 실행, 감사를 서로 다른 주체가 맡도록 강제 → 한 사람이 단독으로 부정 거래를 완결하기 어려움.
 3. 감사 추적 : 모든 TP 실행 내역을 추가 전용(Append-only) 로그로 기록 → 사후 부인 방지와 책임 추적이 가능.
 
 ## Ⅲ. Clark and Wilson 모델의 구조 (흐름)
 
 - 핵심 요약 : 사용자가 승인된 TP만 실행하고, IVP가 CDI의 일관성을 상시 확인하는 3자 관계 구조.
-- **인증 규칙** (Certification Rules) : TP가 CDI를 유효한 상태에서 다른 유효한 상태로만 바꾸도록 보장하는 규칙.
-- **강제 규칙** (Enforcement Rules) : 사용자가 허가된 TP만 실행하도록 제한하는 규칙.
+- 인증 규칙 (Certification Rules) : TP가 CDI를 유효한 상태에서 다른 유효한 상태로만 바꾸도록 보장하는 규칙.
+- 강제 규칙 (Enforcement Rules) : 사용자가 허가된 TP만 실행하도록 제한하는 규칙.
 
 ```text
 [ 사용자 - TP - 데이터 관계 ]

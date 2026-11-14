@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. 개인정보보호 중심 설계(Privacy by Design)의 개요
 
 - 핵심 요약 : 사후 패치가 아니라 기획 단계부터 프라이버시 통제를 시스템의 기본 속성으로 내장하는 설계 원칙.
-- 개념 : 제품, 서비스, 인프라의 기획과 설계 단계부터 프라이버시 보호를 기본 속성으로 내장하는 공학적 설계 철학인 **개인정보보호 중심 설계** (Privacy by Design).
+- 개념 : 제품, 서비스, 인프라의 기획과 설계 단계부터 프라이버시 보호를 기본 속성으로 내장하는 공학적 설계 철학인 개인정보보호 중심 설계 (Privacy by Design).
 - 배경 및 필요성 : 구축을 마친 뒤 보안을 덧붙이는 방식으로는 대규모 유출과 규제 위반을 막기 어려워, 생명주기 전 단계에 보호 기술과 기본 비공개 설정을 넣는 방식이 요구됨.
 - 주요 목적 : 유출 사고의 사전 예방, 기본 설정에 따른 정보주체 권리 보장, GDPR(General Data Protection Regulation) 제25조와 국내 개인정보 보호법상 준거성 확보.
 
@@ -31,19 +31,19 @@ extra:
 
 - 핵심 요약 : 일곱 가지 원칙이 사전 예방과 기본 비공개를 출발점으로 프라이버시와 사업 기능을 함께 달성하는 구조.
 
-1. **사전 예방** (Proactive not Reactive) : 위험을 사고 전에 예측해 설계에 반영 → 사후 대응 비용과 피해 축소.
-2. **기본 설정으로서의 프라이버시** (Privacy as Default) : 이용자가 조작하지 않아도 초기 설정이 최고 수준의 보호를 제공 → 권리 행사의 실효성 확보.
-3. **설계 내재화** (Privacy Embedded into Design) : 부가 기능이 아닌 아키텍처의 필수 요소로 편입 → 사후 보완 비용 감소.
-4. **포지티브 섬** (Positive-Sum) : 프라이버시와 사업 목표를 이분법으로 보지 않고 함께 충족 → 현업의 적용 저항 완화.
-5. **종단 간 전주기 보호** (End-to-End Lifecycle Protection) : 수집부터 파기까지 전 구간을 보호 → 생명주기 중간의 보호 공백 제거.
-6. **가시성과 투명성** (Visibility and Transparency) : 처리 과정과 통제를 독립적으로 검증할 수 있도록 공개 → 이용자 신뢰 확보.
-7. **정보주체 존중** (Respect for User Privacy) : 직관적인 동의 인터페이스와 권리 행사 수단 제공 → 동의의 실질화.
+1. 사전 예방 (Proactive not Reactive) : 위험을 사고 전에 예측해 설계에 반영 → 사후 대응 비용과 피해 축소.
+2. 기본 설정으로서의 프라이버시 (Privacy as Default) : 이용자가 조작하지 않아도 초기 설정이 최고 수준의 보호를 제공 → 권리 행사의 실효성 확보.
+3. 설계 내재화 (Privacy Embedded into Design) : 부가 기능이 아닌 아키텍처의 필수 요소로 편입 → 사후 보완 비용 감소.
+4. 포지티브 섬 (Positive-Sum) : 프라이버시와 사업 목표를 이분법으로 보지 않고 함께 충족 → 현업의 적용 저항 완화.
+5. 종단 간 전주기 보호 (End-to-End Lifecycle Protection) : 수집부터 파기까지 전 구간을 보호 → 생명주기 중간의 보호 공백 제거.
+6. 가시성과 투명성 (Visibility and Transparency) : 처리 과정과 통제를 독립적으로 검증할 수 있도록 공개 → 이용자 신뢰 확보.
+7. 정보주체 존중 (Respect for User Privacy) : 직관적인 동의 인터페이스와 권리 행사 수단 제공 → 동의의 실질화.
 
 ## Ⅲ. 개인정보보호 중심 설계(Privacy by Design)의 구조 (흐름)
 
 - 핵심 요약 : 기획부터 사후 관리까지 다섯 단계에 프라이버시 통제를 순서대로 배치하고, 그 중심에 영향평가를 두는 구조.
 - 설계 게이트 : 기획 단계에서 개인정보 영향평가(DPIA, Data Protection Impact Assessment)를 선행해 수집 범위와 위험을 확정.
-- **프라이버시 강화 기술** (PET, Privacy-Enhancing Technology) : 가명화와 토큰화, 차분 프라이버시(DP, Differential Privacy), 기밀 컴퓨팅(TEE, Trusted Execution Environment), 동형암호(HE, Homomorphic Encryption) 등 데이터를 노출하지 않고 쓰는 기술 묶음.
+- 프라이버시 강화 기술 (PET, Privacy-Enhancing Technology) : 가명화와 토큰화, 차분 프라이버시(DP, Differential Privacy), 기밀 컴퓨팅(TEE, Trusted Execution Environment), 동형암호(HE, Homomorphic Encryption) 등 데이터를 노출하지 않고 쓰는 기술 묶음.
 
 ```text
 [ 1. 기획·요구 분석 ]

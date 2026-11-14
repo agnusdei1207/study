@@ -22,18 +22,18 @@ extra:
 ## Ⅰ. 암호 해독 공격 모델의 개요
 
 - 핵심 요약 : 공격자가 얻을 수 있는 정보와 오라클 질의 권한을 단계별로 정의해 암호의 안전성 기준을 세우는 분류 체계.
-- 개념 : 암호 분석에서 공격자가 관찰할 수 있는 데이터와 **복호화 오라클** (Decryption Oracle, 암·복호화 시스템에 질의해 응답을 얻는 권한)의 수준을 정의한 공격 분류 체계.
+- 개념 : 암호 분석에서 공격자가 관찰할 수 있는 데이터와 복호화 오라클 (Decryption Oracle, 암·복호화 시스템에 질의해 응답을 얻는 권한)의 수준을 정의한 공격 분류 체계.
 - 배경 및 필요성 : 공격자가 가진 정보의 수준(암호문만, 기지 평문, 선택 평문, 선택 암호문)에 따라 공격 가능성이 달라지므로, 암호 알고리즘을 최악의 조건에서 평가할 기준이 필요함.
-- 주요 목적 : 공격자 능력을 과소평가하지 않고, 적대적 환경에서도 기밀성을 보장하는 **IND-CPA** 및 **IND-CCA2** 안전성 척도를 세우는 것.
+- 주요 목적 : 공격자 능력을 과소평가하지 않고, 적대적 환경에서도 기밀성을 보장하는 IND-CPA 및 IND-CCA2 안전성 척도를 세우는 것.
 
 ## Ⅱ. 암호 해독 공격 모델의 특징 및 장점
 
 - 핵심 요약 : 공격자 권한이 수동 도청에서 복호화 오라클 질의로 커질수록 요구되는 안전성 수준도 높아지는 계층 구조.
 
-1. **COA** (Ciphertext-Only Attack) : 도청으로 암호문만 획득한 수동적 공격자 → 통계적 무작위성 요구.
-2. **KPA** (Known-Plaintext Attack) : 헤더나 고정 문자열 등으로 평문-암호문 쌍을 획득한 공격자 → 일방향성 요구.
-3. **CPA** (Chosen-Plaintext Attack) : 암호화 연산에 임의 평문을 넣을 수 있는 공격자 → IND-CPA 요구.
-4. **CCA** (Chosen-Ciphertext Attack) : 복호화 오라클에 임의 암호문을 질의할 수 있는 공격자 → IND-CCA2 요구.
+1. COA (Ciphertext-Only Attack) : 도청으로 암호문만 획득한 수동적 공격자 → 통계적 무작위성 요구.
+2. KPA (Known-Plaintext Attack) : 헤더나 고정 문자열 등으로 평문-암호문 쌍을 획득한 공격자 → 일방향성 요구.
+3. CPA (Chosen-Plaintext Attack) : 암호화 연산에 임의 평문을 넣을 수 있는 공격자 → IND-CPA 요구.
+4. CCA (Chosen-Ciphertext Attack) : 복호화 오라클에 임의 암호문을 질의할 수 있는 공격자 → IND-CCA2 요구.
 
 ```text
 [ 공격자 권한의 확장 ]
@@ -86,10 +86,10 @@ extra:
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 패딩 오라클 | 패딩 오류와 MAC 불일치 오류를 구분해 응답 → 복호화 오라클로 기능 | **AEAD** (Authenticated Encryption with Associated Data) 모드 전환, 오류 응답 단일화 | 오류 응답 종류 수 |
+| 패딩 오라클 | 패딩 오류와 MAC 불일치 오류를 구분해 응답 → 복호화 오라클로 기능 | AEAD (Authenticated Encryption with Associated Data) 모드 전환, 오류 응답 단일화 | 오류 응답 종류 수 |
 | 사이드채널 누출 | 데이터 값에 따른 실행 시간과 전력 차이로 비밀 정보 추론 | 상수 시간 연산 구현을 라이브러리로 강제 | 연산 시간 편차 측정 결과 |
-| 결정론적 암호화 | 같은 평문이 항상 같은 암호문 → 사전 대조 공격 취약 | 난수(Salt, Seed)를 결합한 **RSA-OAEP** 등 확률적 암호화 적용 | 결정론적 암호 사용 건수 |
-| IV·논스 재사용 | 고정되거나 재사용된 IV로 평문 XOR 패턴 노출 | **CSPRNG** (Cryptographically Secure Pseudorandom Number Generator) 기반 고유 IV 생성 | IV 중복 검출 건수 |
+| 결정론적 암호화 | 같은 평문이 항상 같은 암호문 → 사전 대조 공격 취약 | 난수(Salt, Seed)를 결합한 RSA-OAEP 등 확률적 암호화 적용 | 결정론적 암호 사용 건수 |
+| IV·논스 재사용 | 고정되거나 재사용된 IV로 평문 XOR 패턴 노출 | CSPRNG (Cryptographically Secure Pseudorandom Number Generator) 기반 고유 IV 생성 | IV 중복 검출 건수 |
 
 ## Ⅵ. 공격 모델 적용을 위한 기술사적 제언
 

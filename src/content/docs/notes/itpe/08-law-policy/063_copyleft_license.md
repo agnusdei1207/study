@@ -22,17 +22,17 @@ extra:
 ## Ⅰ. 카피레프트 라이선스(Copyleft License)의 개요
 
 - 핵심 요약 : 소프트웨어의 자유를 보장하는 대가로 파생 저작물에도 같은 조건의 소스코드 공개를 요구하는 상호주의 라이선스.
-- 개념 : 소프트웨어의 사용·수정·배포 자유를 보장하면서, 이를 기반으로 만든 파생 저작물에도 같은 조건을 이어 주도록 강제하는 **카피레프트 라이선스** (Copyleft License).
-- 배경 및 필요성 : 오픈소스를 상용 제품에 결합하거나 SaaS(Software as a Service)로 제공할 때 **전염성**으로 인해 독점 소스코드가 공개될 위험이 있음. 따라서 **소프트웨어 자재명세서** (SBOM, Software Bill of Materials)로 의존성을 파악하고, 독점 모듈을 IPC(Inter-Process Communication)나 REST API로 분리하는 설계를 개발 초기에 해야 함.
+- 개념 : 소프트웨어의 사용·수정·배포 자유를 보장하면서, 이를 기반으로 만든 파생 저작물에도 같은 조건을 이어 주도록 강제하는 카피레프트 라이선스 (Copyleft License).
+- 배경 및 필요성 : 오픈소스를 상용 제품에 결합하거나 SaaS(Software as a Service)로 제공할 때 전염성으로 인해 독점 소스코드가 공개될 위험이 있음. 따라서 소프트웨어 자재명세서 (SBOM, Software Bill of Materials)로 의존성을 파악하고, 독점 모듈을 IPC(Inter-Process Communication)나 REST API로 분리하는 설계를 개발 초기에 해야 함.
 - 주요 목적 : 오픈소스 생태계가 사유화되지 않도록 막고, 공유된 지식이 지속적으로 순환하도록 보장.
 
 ## Ⅱ. 카피레프트 라이선스(Copyleft License)의 특징 및 장점
 
 - 핵심 요약 : 전염성의 강도와 발동 조건에 따라 세 유형으로 나뉘며, 공개 범위를 통제할 수 있다는 점이 특징.
 
-1. **강한 카피레프트** (GPL, GNU General Public License) : 결합된 전체 파생 소프트웨어의 소스코드 공개 의무 → 자유 전파를 가장 강하게 보장.
-2. **네트워크 카피레프트** (AGPL, GNU Affero General Public License) : 바이너리 배포가 없어도 네트워크 사용자에게 서비스하면 소스 공개 의무 발생 → 클라우드 환경의 무임승차 방지.
-3. **약한 카피레프트** (LGPL, GNU Lesser General Public License 및 MPL, Mozilla Public License) : 라이브러리나 파일 단위로만 공개 범위가 한정 → 독점 코드와의 분리 설계를 전제로 상용화와 공존.
+1. 강한 카피레프트 (GPL, GNU General Public License) : 결합된 전체 파생 소프트웨어의 소스코드 공개 의무 → 자유 전파를 가장 강하게 보장.
+2. 네트워크 카피레프트 (AGPL, GNU Affero General Public License) : 바이너리 배포가 없어도 네트워크 사용자에게 서비스하면 소스 공개 의무 발생 → 클라우드 환경의 무임승차 방지.
+3. 약한 카피레프트 (LGPL, GNU Lesser General Public License 및 MPL, Mozilla Public License) : 라이브러리나 파일 단위로만 공개 범위가 한정 → 독점 코드와의 분리 설계를 전제로 상용화와 공존.
 
 ## Ⅲ. 카피레프트 라이선스(Copyleft License)의 구조 (흐름)
 

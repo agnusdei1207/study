@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 지속적 위협 노출 관리(CTEM)의 개요
 
 - 핵심 요약 : 취약점을 찾는 데서 그치지 않고 실제 악용 가능성과 비즈니스 영향을 검증해 우선순위를 정하고 상시 줄이는 순환형 보안 관리 프레임워크.
-- 개념 : 공격 표면 전반의 취약점, 설정 오류, 자격증명 노출 등을 식별하고, 공격자의 실제 **악용 가능성** (Exploitability)과 비즈니스 영향도를 검증하여 우선순위화하고 지속적으로 완화하는 5단계 순환형 프레임워크인 **지속적 위협 노출 관리** (CTEM, Continuous Threat Exposure Management).
+- 개념 : 공격 표면 전반의 취약점, 설정 오류, 자격증명 노출 등을 식별하고, 공격자의 실제 악용 가능성 (Exploitability)과 비즈니스 영향도를 검증하여 우선순위화하고 지속적으로 완화하는 5단계 순환형 프레임워크인 지속적 위협 노출 관리 (CTEM, Continuous Threat Exposure Management).
 - 배경 및 필요성 : 매년 수많은 CVE(Common Vulnerabilities and Exposures) 취약점이 공개되어 모든 결함을 패치할 수 없으므로, 실제로 침투 가능한 경로만 집중 대응해야 한다는 요구에서 등장. 가트너(Gartner)가 핵심 보안 트렌드로 제시함.
 - 주요 목적 : 취약점 조치의 우선순위 최적화, 보안 경보 피로(Alert Fatigue) 해소, 공격 노출 수준의 지속적 축소.
 
@@ -31,8 +31,8 @@ extra:
 - 핵심 요약 : 발견과 검증을 분리해 실제로 악용 가능한 소수의 경로에 조치를 모으므로, 제한된 자원으로 위험을 더 크게 줄임.
 
 1. 범위 기반 관리 : 모든 자산 대신 비즈니스 가치가 높은 인프라, SaaS(Software as a Service), 공급망 파트너를 관리 범위로 설정 → 관리 부담을 핵심 영역에 집중.
-2. 악용 가능성 중심 우선순위 : **EPSS** (Exploit Prediction Scoring System)와 CTI(Cyber Threat Intelligence)를 CVSS(Common Vulnerability Scoring System) 점수와 결합 → 실제 공격이 예상되는 취약점이 먼저 처리됨.
-3. 실증 기반 검증 : **침해·공격 시뮬레이션** (BAS, Breach and Attack Simulation)으로 공격 경로가 실제로 뚫리는지 확인 → 추측이 아닌 근거에 따른 조치.
+2. 악용 가능성 중심 우선순위 : EPSS (Exploit Prediction Scoring System)와 CTI(Cyber Threat Intelligence)를 CVSS(Common Vulnerability Scoring System) 점수와 결합 → 실제 공격이 예상되는 취약점이 먼저 처리됨.
+3. 실증 기반 검증 : 침해·공격 시뮬레이션 (BAS, Breach and Attack Simulation)으로 공격 경로가 실제로 뚫리는지 확인 → 추측이 아닌 근거에 따른 조치.
 4. 폐루프 반복 : 조치 결과를 다시 발견 단계로 환류 → 노출 수준이 시간에 따라 줄어듦.
 
 ```text

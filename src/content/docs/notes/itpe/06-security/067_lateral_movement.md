@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 측면 이동(Lateral Movement)의 개요
 
 - 핵심 요약 : 최초 침투 이후 내부망에서 자격증명을 빼앗아 핵심 서버로 확산하는 침해 단계.
-- 개념 : 공격자가 최초 침투 단말에 머무르지 않고 내부망을 정찰하며 자격증명을 탈취해 핵심 서버로 옮겨 가는 **측면 이동** (Lateral Movement).
+- 개념 : 공격자가 최초 침투 단말에 머무르지 않고 내부망을 정찰하며 자격증명을 탈취해 핵심 서버로 옮겨 가는 측면 이동 (Lateral Movement).
 - 배경 및 필요성 : 경계 방화벽을 통과한 공격자가 로컬 관리자 권한을 얻고 Active Directory(AD) 도메인 컨트롤러(DC, Domain Controller)와 고객 데이터베이스까지 도달하면 전사 업무가 마비되므로, 내부 확산을 조기에 차단하는 방안이 필요해짐.
 - 주요 목적 : 확산 경로 차단, 도메인 관리자 권한 탈취 방지, 침해 탐지 시간 단축.
 
@@ -38,11 +38,11 @@ extra:
 ## Ⅲ. 측면 이동(Lateral Movement)의 구조 (흐름)
 
 - 핵심 요약 : 정찰, 자격증명 탈취, 재사용, 원격 실행, 영속화로 이어지는 다섯 단계 흐름.
-- **내부 정찰** (Discovery) : 네트워크 구조, 활성 호스트, AD 신뢰 관계 탐색 (BloodHound 등 분석 도구 활용).
-- **자격증명 탈취** (Credential Access) : LSASS(Local Security Authority Subsystem Service) 메모리 덤프와 Mimikatz 같은 도구로 로그인 세션과 티켓 추출.
-- **자격증명 재사용** (Credential Reuse) : 복호화 없이 해시나 티켓을 제시해 원격 시스템 인증 통과.
-- **원격 명령 실행** : SMB(Server Message Block, 445), WMI(Windows Management Instrumentation, 135), RDP(Remote Desktop Protocol, 3389)로 악성 코드 실행.
-- **거점 영속화** : 서비스 등록, 작업 스케줄러, 레지스트리 Run 키 등록.
+- 내부 정찰 (Discovery) : 네트워크 구조, 활성 호스트, AD 신뢰 관계 탐색 (BloodHound 등 분석 도구 활용).
+- 자격증명 탈취 (Credential Access) : LSASS(Local Security Authority Subsystem Service) 메모리 덤프와 Mimikatz 같은 도구로 로그인 세션과 티켓 추출.
+- 자격증명 재사용 (Credential Reuse) : 복호화 없이 해시나 티켓을 제시해 원격 시스템 인증 통과.
+- 원격 명령 실행 : SMB(Server Message Block, 445), WMI(Windows Management Instrumentation, 135), RDP(Remote Desktop Protocol, 3389)로 악성 코드 실행.
+- 거점 영속화 : 서비스 등록, 작업 스케줄러, 레지스트리 Run 키 등록.
 
 ```text
 [ 측면 이동 흐름 ]

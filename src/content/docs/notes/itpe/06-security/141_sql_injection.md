@@ -21,8 +21,8 @@ extra:
 ## Ⅰ. SQL 인젝션의 개요
 
 - 핵심 요약 : 입력값 검증이 부실한 웹 애플리케이션을 통해 악성 SQL(Structured Query Language) 구문을 주입해 데이터베이스를 조작하는 대표적 인젝션 공격.
-- 개념 : 웹 애플리케이션의 입력값 검증 부실을 악용해 악의적인 **SQL 인젝션** (SQL Injection) 구문을 삽입·실행하여, 데이터 무단 열람, 원장 변조, 관리자 권한 획득, 나아가 운영체제 명령 실행까지 가능하게 하는 공격.
-- 배경 및 필요성 : 동적 웹 애플리케이션이 확산되면서 사용자 입력을 **문자열 결합** (String Concatenation) 방식으로 쿼리에 그대로 넣는 개발 관행이 지속되었고, 이 때문에 OWASP(Open Worldwide Application Security Project) Top 10에서 오랫동안 주요 취약점으로 꼽힘.
+- 개념 : 웹 애플리케이션의 입력값 검증 부실을 악용해 악의적인 SQL 인젝션 (SQL Injection) 구문을 삽입·실행하여, 데이터 무단 열람, 원장 변조, 관리자 권한 획득, 나아가 운영체제 명령 실행까지 가능하게 하는 공격.
+- 배경 및 필요성 : 동적 웹 애플리케이션이 확산되면서 사용자 입력을 문자열 결합 (String Concatenation) 방식으로 쿼리에 그대로 넣는 개발 관행이 지속되었고, 이 때문에 OWASP(Open Worldwide Application Security Project) Top 10에서 오랫동안 주요 취약점으로 꼽힘.
 - 공격 목적 : 개인정보와 금융 데이터를 대량 유출하고, 인증 절차를 우회하며, DB 서버의 확장 저장 프로시저를 호출해 서버 제어권을 장악하는 것.
 
 ## Ⅱ. SQL 인젝션의 특징 및 장점
@@ -47,10 +47,10 @@ extra:
 ## Ⅲ. SQL 인젝션의 구조 (흐름)
 
 - 핵심 요약 : 결과를 확인하는 채널에 따라 인밴드, 블라인드, 아웃오브밴드로 나뉘고, 2차 인젝션은 실행 시점이 지연되는 공격.
-- **인밴드 SQL 인젝션** (In-band) : 요청과 같은 채널로 결과를 확인하며, UNION 연산자로 타 테이블을 결합하는 Union-based와 에러 메시지로 정보를 노출시키는 Error-based로 나뉨.
-- **블라인드 SQL 인젝션** (Blind) : 결과가 화면에 나오지 않을 때 참·거짓에 따른 응답 차이(Boolean-based)나 지연 시간(Time-based)을 측정해 값을 한 글자씩 추론.
-- **아웃오브밴드 SQL 인젝션** (Out-of-band, OOB) : DB의 DNS(Domain Name System) 질의나 HTTP 요청 기능을 이용해 외부 서버로 데이터를 송신.
-- **2차 SQL 인젝션** (Second-Order) : 입력 시점에는 악성 값이 안전하게 저장되었다가, 이후 다른 쿼리에서 호출될 때 실행되는 지연형 공격.
+- 인밴드 SQL 인젝션 (In-band) : 요청과 같은 채널로 결과를 확인하며, UNION 연산자로 타 테이블을 결합하는 Union-based와 에러 메시지로 정보를 노출시키는 Error-based로 나뉨.
+- 블라인드 SQL 인젝션 (Blind) : 결과가 화면에 나오지 않을 때 참·거짓에 따른 응답 차이(Boolean-based)나 지연 시간(Time-based)을 측정해 값을 한 글자씩 추론.
+- 아웃오브밴드 SQL 인젝션 (Out-of-band, OOB) : DB의 DNS(Domain Name System) 질의나 HTTP 요청 기능을 이용해 외부 서버로 데이터를 송신.
+- 2차 SQL 인젝션 (Second-Order) : 입력 시점에는 악성 값이 안전하게 저장되었다가, 이후 다른 쿼리에서 호출될 때 실행되는 지연형 공격.
 
 ```text
 [ 2차 인젝션의 시점 분리 ]
@@ -84,9 +84,9 @@ extra:
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| **블랙리스트 필터** 우회 | 주석 치환, 인코딩 변형, 대소문자 혼합 등으로 정규식 필터가 무력화 | 블랙리스트를 폐기하고 SQL 구문과 데이터를 분리하는 **매개변수화 쿼리** (Parameterized Query) 및 ORM(Object-Relational Mapping) 도입 | 필터 우회 시도 탐지 건수 |
+| 블랙리스트 필터 우회 | 주석 치환, 인코딩 변형, 대소문자 혼합 등으로 정규식 필터가 무력화 | 블랙리스트를 폐기하고 SQL 구문과 데이터를 분리하는 매개변수화 쿼리 (Parameterized Query) 및 ORM(Object-Relational Mapping) 도입 | 필터 우회 시도 탐지 건수 |
 | 동적 식별자와 정렬 구문의 바인딩 불가 | Prepared Statement는 값만 바인딩할 수 있어 컬럼명이나 ORDER BY 구문에서 문자열 결합 유혹 발생 | 허용 목록(화이트리스트)에 든 필드명만 매핑하고, 불일치 시 기본 정렬로 치환 | 비허용 입력 차단 건수 |
-| 대규모 레거시 코드의 수정 부담 | 수백만 라인에 흩어진 문자열 결합 DAO(Data Access Object) 코드를 전수 점검하기 어려움 | **SAST** (Static Application Security Testing)로 취약 지점을 찾고, 수정 전까지 WAF 가상 패치(Virtual Patching)와 **RASP** (Runtime Application Self-Protection)을 과도기적으로 적용 | 취약 지점 잔존 건수 |
+| 대규모 레거시 코드의 수정 부담 | 수백만 라인에 흩어진 문자열 결합 DAO(Data Access Object) 코드를 전수 점검하기 어려움 | SAST (Static Application Security Testing)로 취약 지점을 찾고, 수정 전까지 WAF 가상 패치(Virtual Patching)와 RASP (Runtime Application Self-Protection)을 과도기적으로 적용 | 취약 지점 잔존 건수 |
 
 ## Ⅵ. SQL 인젝션의 기술사적 제언
 

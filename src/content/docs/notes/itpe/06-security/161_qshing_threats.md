@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 큐싱(QR Code Phishing)의 개요
 
 - 핵심 요약 : QR 코드에 피싱 주소나 악성 앱 링크를 숨겨 스마트폰 스캔으로 계정과 금융 정보를 빼내는 피싱 공격.
-- 개념 : 공격자가 **QR 코드** (QR, Quick Response Code)에 피싱 사이트 URL(Uniform Resource Locator)이나 악성 앱 다운로드 링크를 넣어 안내판, 주차 정산기, 이메일 등에 배치하고, 이를 스캔한 피해자의 계정 정보와 금융 정보를 탈취하는 **큐싱** (Qshing, QR Code Phishing).
+- 개념 : 공격자가 QR 코드 (QR, Quick Response Code)에 피싱 사이트 URL(Uniform Resource Locator)이나 악성 앱 다운로드 링크를 넣어 안내판, 주차 정산기, 이메일 등에 배치하고, 이를 스캔한 피해자의 계정 정보와 금융 정보를 탈취하는 큐싱 (Qshing, QR Code Phishing).
 - 배경 및 필요성 : 비접촉 결제, 공유 모빌리티 등에서 QR 스캔이 일상화되었지만, 사용자는 스캔 전에 QR 내부의 목적지를 육안으로 확인할 수 없어 공격에 노출.
 - 주요 목적 : 텍스트 기반 URL 필터를 우회하고 모바일 단말을 감염시켜 OTP(One-Time Password) 탈취, 소액 결제, 사내 계정 도용을 실행.
 - 국내 동향 : 과학기술정보통신부, 경찰청 등 관련 부처가 큐싱 피해에 주의를 당부하였고, 한국인터넷진흥원(KISA, Korea Internet & Security Agency)은 QR 링크를 사전에 판별하는 확인 서비스를 준비한다고 2024년 12월 발표.
@@ -32,16 +32,16 @@ extra:
 - 핵심 요약 : 물리적 부착과 이메일 이미지 첨부, 모바일 전환이 결합되어 기존 보안망을 우회하는 공격 구조.
 
 1. 물리적 덧붙이기 (Overstickering) : 공유 킥보드, 자전거, 식당 주문대 등 공공장소의 정상 QR 위에 악성 스티커를 덧붙임 → 불특정 다수가 무심코 스캔.
-2. 이메일 필터 우회 : 본문에 텍스트 링크가 없고 QR 이미지만 첨부 → **이메일 보안 게이트웨이** (SEG, Secure Email Gateway)의 링크 기반 필터를 통과하고, 사용자가 모바일로 전환하여 PC 보안망 밖에서 열람.
+2. 이메일 필터 우회 : 본문에 텍스트 링크가 없고 QR 이미지만 첨부 → 이메일 보안 게이트웨이 (SEG, Secure Email Gateway)의 링크 기반 필터를 통과하고, 사용자가 모바일로 전환하여 PC 보안망 밖에서 열람.
 3. 동적 리다이렉션 : 정상 주소로 먼저 접속시킨 뒤 모바일 환경에서만 피싱 페이지로 이동 → 자동 분석 도구의 탐지를 회피.
-4. 악성 앱 유포 : 금융, 공공 안내 앱으로 위장한 **악성 APK** (APK, Android Package Kit)를 설치하게 하여 문자(SMS, Short Message Service) 수신 권한과 통화 권한을 장악.
+4. 악성 앱 유포 : 금융, 공공 안내 앱으로 위장한 악성 APK (APK, Android Package Kit)를 설치하게 하여 문자(SMS, Short Message Service) 수신 권한과 통화 권한을 장악.
 
 ## Ⅲ. 큐싱(QR Code Phishing)의 구조 (흐름)
 
 - 핵심 요약 : 공격 벡터가 물리 환경과 디지털 환경에서 시작되어 모바일 단말과 C2 서버로 이어지는 흐름.
 - 물리 벡터 : 공공장소의 QR 위에 악성 스티커를 덧붙여 노출.
 - 디지털 벡터 : 이메일 본문에 QR 이미지를 넣어 "계정 잠김 예고" 같은 긴급 문구로 스캔 유도.
-- 모바일 단계 : **도메인 위장** (Typosquatting)으로 만든 가짜 로그인 창에 계정과 2차 인증번호를 입력하거나 악성 APK를 다운로드.
+- 모바일 단계 : 도메인 위장 (Typosquatting)으로 만든 가짜 로그인 창에 계정과 2차 인증번호를 입력하거나 악성 APK를 다운로드.
 - C2(Command and Control) 서버 : 탈취한 SSO 계정이나 OTP로 무단 이체와 내부망 침투 실행.
 
 ```text
@@ -68,7 +68,7 @@ extra:
 | 보안 장치 우회 | 텍스트 기반 URL 검사 우회 | 스팸 필터, URL 평판 분석에 탐지 가능 | 문자 필터와 키워드 차단에 탐지 가능 |
 | 핵심 대응 | 광학 문자 인식(OCR, Optical Character Recognition) 기반 QR 검사, 모바일 EDR(Endpoint Detection and Response) | DMARC(Domain-based Message Authentication, Reporting and Conformance), SPF(Sender Policy Framework) 검증, 피싱 도메인 차단 | 발신 번호 인증, 번호 도용 차단 |
 
-- 선택 기준 : 기업은 PC 중심의 메일 보안과 **모바일 단말 관리** (MDM, Mobile Device Management)를 포함한 모바일 보안을 함께 설계해야 하며, 공공장소 노출 여부에 따라 물리적 점검 주기를 달리.
+- 선택 기준 : 기업은 PC 중심의 메일 보안과 모바일 단말 관리 (MDM, Mobile Device Management)를 포함한 모바일 보안을 함께 설계해야 하며, 공공장소 노출 여부에 따라 물리적 점검 주기를 달리.
 
 ```text
 [ 텍스트 기반 메일 검사 ]

@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. RLHF의 개요
 
 - 핵심 요약 : 인간의 선호 피드백으로 학습한 보상 신호를 써서 언어 모델을 사람의 의도와 가치에 맞추는 정렬 기술.
-- 개념 : 사전학습된 거대언어모델(LLM, Large Language Model)의 응답을 인간 선호에 맞추기 위해, 선호 데이터로 보상 모델을 학습하고 그 보상으로 모델 가중치를 강화학습하는 방법 (**RLHF** (Reinforcement Learning from Human Feedback, 인간 피드백 강화학습)).
+- 개념 : 사전학습된 거대언어모델(LLM, Large Language Model)의 응답을 인간 선호에 맞추기 위해, 선호 데이터로 보상 모델을 학습하고 그 보상으로 모델 가중치를 강화학습하는 방법 (RLHF (Reinforcement Learning from Human Feedback, 인간 피드백 강화학습)).
 - 배경 및 필요성 : 원시 텍스트만으로 학습한 모델은 유해하거나 거짓된 응답을 생성하므로, 지도 미세조정(SFT, Supervised Fine-Tuning)만으로는 유용하고 정직하며 무해한 응답을 확보하기 어려움.
 - 주요 목적 : 모델의 인간 가치 정렬, 환각과 유해 응답 억제, 모호한 질문에 정중하고 유용하게 답하도록 유도.
 
@@ -31,8 +31,8 @@ extra:
 - 핵심 요약 : 인간 선호를 학습 가능한 보상으로 바꾸고 KL 제약으로 원래 모델의 능력을 지키는 구조가 정렬 효과와 학습 안정성으로 이어짐.
 
 1. 선호 기반 라벨링 : 절대 점수 대신 응답 간 순위를 매김 → 평가 기준을 일관되게 유지하기 쉬움.
-2. **보상 모델** (Reward Model) 분리 : 선호를 스칼라 보상 값으로 압축 → 대량의 응답 평가에 재사용 가능.
-3. **KL 발산** (Kullback-Leibler divergence) 제약 : 초기 모델과의 출력 분포 차이에 벌점을 부과 → 언어 능력이 무너지는 현상 방지.
+2. 보상 모델 (Reward Model) 분리 : 선호를 스칼라 보상 값으로 압축 → 대량의 응답 평가에 재사용 가능.
+3. KL 발산 (Kullback-Leibler divergence) 제약 : 초기 모델과의 출력 분포 차이에 벌점을 부과 → 언어 능력이 무너지는 현상 방지.
 
 ## Ⅲ. RLHF의 구조 (흐름)
 
@@ -52,7 +52,7 @@ extra:
 
 - 1단계 : 프롬프트에 대한 모범 답변으로 모델을 튜닝해 기본적인 지시 준수 능력을 확보.
 - 2단계 : 같은 프롬프트에 대한 여러 응답을 사람이 순위로 정렬하고, 쌍별 비교 모델로 스칼라 보상을 출력하도록 학습.
-- 3단계 : **PPO** (Proximal Policy Optimization, 근접 정책 최적화)로 보상을 최대화하되, 초기 모델과의 차이를 KL 벌점으로 제한.
+- 3단계 : PPO (Proximal Policy Optimization, 근접 정책 최적화)로 보상을 최대화하되, 초기 모델과의 차이를 KL 벌점으로 제한.
 
 ```text
 [ 3단계 PPO 루프 ]
@@ -71,7 +71,7 @@ R이 커지도록 정책 가중치 갱신
 ## Ⅳ. RLHF와 DPO, RLAIF의 비교
 
 - 핵심 요약 : 복잡한 PPO 파이프라인을 단순화한 DPO와, 사람 대신 AI가 피드백을 주는 RLAIF가 실무 대안으로 부상.
-- 실무에서는 PPO의 4개 모델 동시 구동 부담을 피하려고 **DPO** (Direct Preference Optimization, 직접 선호 최적화)를 많이 쓴다.
+- 실무에서는 PPO의 4개 모델 동시 구동 부담을 피하려고 DPO (Direct Preference Optimization, 직접 선호 최적화)를 많이 쓴다.
 - AI 피드백 강화학습(RLAIF, Reinforcement Learning from AI Feedback)은 고성능 LLM이 헌법 같은 원칙에 따라 선호를 생성하는 방식이다.
 
 | 비교 축 | RLHF (PPO 기반) | DPO | RLAIF |

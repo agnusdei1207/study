@@ -22,15 +22,15 @@ extra:
 ## Ⅰ. EfficientDet의 개요
 
 - 핵심 요약 : EfficientNet 백본과 양방향 피처 피라미드, 복합 스케일링을 결합해 객체 탐지의 정확도와 연산 효율을 함께 높인 1단계 탐지기.
-- 개념 : **EfficientDet**은 EfficientNet을 백본으로 쓰고, **가중 양방향 피처 피라미드** (BiFPN, Bidirectional Feature Pyramid Network, 여러 해상도의 특징을 양방향으로 가중 융합하는 구조)를 더한 **1단계 객체 탐지** (One-stage Object Detection, 위치 후보 선정과 분류를 한 번의 네트워크 통과로 수행하는 방식) 모델.
-- 배경 및 필요성 : 이론상 연산량 (FLOPs, Floating Point Operations, 부동소수점 연산 횟수)이 줄어도 BiFPN의 잦은 텐서 결합이 NPU(Neural Processing Unit) 같은 가속기에서 메모리 대역폭 병목을 만들 수 있음. 그래서 목표 하드웨어에 맞춘 컴파일과 **연산 융합** (Operator Fusion, 여러 연산을 하나의 커널로 묶어 메모리 왕복을 줄이는 최적화)이 함께 필요함.
-- 주요 목적 : 연산 복잡도와 메모리 사용량을 줄이면서, 크기가 서로 다른 물체를 고르게 검출하는 **mAP** (mean Average Precision, 클래스별 평균 정밀도의 평균) 정확도를 함께 높이는 것.
+- 개념 : EfficientDet은 EfficientNet을 백본으로 쓰고, 가중 양방향 피처 피라미드 (BiFPN, Bidirectional Feature Pyramid Network, 여러 해상도의 특징을 양방향으로 가중 융합하는 구조)를 더한 1단계 객체 탐지 (One-stage Object Detection, 위치 후보 선정과 분류를 한 번의 네트워크 통과로 수행하는 방식) 모델.
+- 배경 및 필요성 : 이론상 연산량 (FLOPs, Floating Point Operations, 부동소수점 연산 횟수)이 줄어도 BiFPN의 잦은 텐서 결합이 NPU(Neural Processing Unit) 같은 가속기에서 메모리 대역폭 병목을 만들 수 있음. 그래서 목표 하드웨어에 맞춘 컴파일과 연산 융합 (Operator Fusion, 여러 연산을 하나의 커널로 묶어 메모리 왕복을 줄이는 최적화)이 함께 필요함.
+- 주요 목적 : 연산 복잡도와 메모리 사용량을 줄이면서, 크기가 서로 다른 물체를 고르게 검출하는 mAP (mean Average Precision, 클래스별 평균 정밀도의 평균) 정확도를 함께 높이는 것.
 
 ## Ⅱ. EfficientDet의 특징 및 장점
 
 - 핵심 요약 : 복합 스케일링, 양방향 융합, 가중 정규화가 맞물려 적은 연산으로 여러 크기의 객체를 탐지하는 구조.
 
-1. **복합 스케일링** (Compound Scaling, 백본, 피라미드, 예측 헤드, 입력 해상도를 계수 하나로 함께 키우는 방법) : 자원 예산에 맞춰 D0부터 D7까지 일관된 비율로 선택 → 모델 크기와 정확도의 균형을 예측 가능하게 조정.
+1. 복합 스케일링 (Compound Scaling, 백본, 피라미드, 예측 헤드, 입력 해상도를 계수 하나로 함께 키우는 방법) : 자원 예산에 맞춰 D0부터 D7까지 일관된 비율로 선택 → 모델 크기와 정확도의 균형을 예측 가능하게 조정.
 2. 반복 양방향 융합 : 복합 계수 φ에 따라 BiFPN 블록을 3+φ회 반복하며 상향과 하향 경로를 번갈아 결합하고, 기여가 적은 노드를 제거 → 다중 해상도 정보를 적은 비용으로 혼합.
 3. 고속 가중 정규화 : Fast Normalized Fusion 방식으로 입력 가중치를 합으로 나누어 정규화 → 지수 연산을 피해 융합 지연 감소.
 4. 공유 예측 헤드 : 분류 네트워크와 박스 회귀 네트워크를 모든 피라미드 레벨에서 공유 → 파라미터 수와 연산량 감소.
@@ -63,7 +63,7 @@ P3 → P7 : 상향 (세부 정보 전달)
 ## Ⅳ. EfficientDet의 피라미드 구조 비교
 
 - 핵심 요약 : 단방향 FPN에서 양방향 BiFPN으로 발전하며 연결을 정규화하고 불필요한 노드를 제거하는 방향으로 진화.
-- 비교 대상 : 상향 특징을 하향으로 전달하는 **FPN** (Feature Pyramid Network, 다중 해상도 특징을 피라미드로 결합하는 구조)을 기준으로, PANet (Path Aggregation Network), NAS-FPN (NAS로 탐색한 FPN), BiFPN을 비교함.
+- 비교 대상 : 상향 특징을 하향으로 전달하는 FPN (Feature Pyramid Network, 다중 해상도 특징을 피라미드로 결합하는 구조)을 기준으로, PANet (Path Aggregation Network), NAS-FPN (NAS로 탐색한 FPN), BiFPN을 비교함.
 
 | 비교 항목 | FPN (Feature Pyramid Network) | PANet (Path Aggregation Network) | NAS-FPN | BiFPN (EfficientDet) |
 | --- | --- | --- | --- | --- |

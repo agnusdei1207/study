@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. TCP 3-Way Handshake의 개요
 
 - 핵심 요약 : 세 번의 SYN·ACK 교환으로 양단의 시퀀스 기준과 전송 조건을 맞추는 TCP 연결 수립 절차.
-- 개념 : 데이터 전송에 앞서 두 종단이 SYN(Synchronize)과 ACK(Acknowledgment)를 세 단계로 교환해 **초기 시퀀스 번호** (ISN, Initial Sequence Number)를 동기화하는 절차(**TCP 3-Way Handshake**).
+- 개념 : 데이터 전송에 앞서 두 종단이 SYN(Synchronize)과 ACK(Acknowledgment)를 세 단계로 교환해 초기 시퀀스 번호 (ISN, Initial Sequence Number)를 동기화하는 절차(TCP 3-Way Handshake).
 - 배경 및 필요성 : IP(Internet Protocol) 네트워크에서는 패킷의 유실·지연·순서 역전이 발생하므로, 수신측이 정상 데이터를 판별할 순서 기준이 전송 전에 필요.
 - 주요 목적 : 양방향 시퀀스 기준선의 일치, MSS(Maximum Segment Size) 등 전송 옵션의 사전 협상, 양단 연결 상태의 일치.
 
@@ -71,7 +71,7 @@ SYN_RCVD
 ESTABLISHED
 ```
 
-- **백로그 큐** (Backlog Queue) : 커널이 SYN_RCVD 상태의 미완결 연결을 담는 큐와 수립 완료 후 애플리케이션 수용 대기 큐로 구분해 관리하는 구조.
+- 백로그 큐 (Backlog Queue) : 커널이 SYN_RCVD 상태의 미완결 연결을 담는 큐와 수립 완료 후 애플리케이션 수용 대기 큐로 구분해 관리하는 구조.
 
 ## Ⅳ. TCP 3-Way Handshake와 4-Way Handshake의 비교
 
@@ -92,7 +92,7 @@ ESTABLISHED
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| **SYN 플러딩** (SYN Flooding) | 위조 발신지로 SYN만 대량 전송 → 미완결 연결 큐 포화와 정상 접속 거부 | **SYN 쿠키** (SYN Cookie, 연결 상태 저장 없이 ISN에 검증값을 넣고 최종 ACK에서 확인), SYN 프록시 | SYN_RCVD 수, 큐 드롭 수 |
+| SYN 플러딩 (SYN Flooding) | 위조 발신지로 SYN만 대량 전송 → 미완결 연결 큐 포화와 정상 접속 거부 | SYN 쿠키 (SYN Cookie, 연결 상태 저장 없이 ISN에 검증값을 넣고 최종 ACK에서 확인), SYN 프록시 | SYN_RCVD 수, 큐 드롭 수 |
 | 수립 왕복 지연 | 최소 1 RTT(Round-Trip Time)에 TLS(Transport Layer Security) 왕복이 추가 → 짧은 트랜잭션의 응답 지연 | 커넥션 풀과 Keep-Alive 재사용, TLS 세션 재개 | 연결 재사용률, TTFB(Time To First Byte) |
 
 ## Ⅵ. TCP 3-Way Handshake에 대한 기술사적 제언

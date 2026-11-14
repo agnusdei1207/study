@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. 기밀 컴퓨팅의 개요
 
 - 핵심 요약 : 메모리에서 연산 중인 데이터를 하드웨어 기반 신뢰 실행 환경에 격리해 운영자도 평문을 볼 수 없게 하는 컴퓨팅 기술.
-- 개념 : 데이터가 CPU(Central Processing Unit)에서 연산되는 **사용 중 데이터** (In-Use Data) 상태를 하드웨어 기반 **신뢰 실행 환경** (TEE, Trusted Execution Environment)에 격리·암호화하여, 클라우드 운영자와 호스트 OS(Operating System) 관리자도 평문에 접근하지 못하게 하는 기술 (**기밀 컴퓨팅**, Confidential Computing).
+- 개념 : 데이터가 CPU(Central Processing Unit)에서 연산되는 사용 중 데이터 (In-Use Data) 상태를 하드웨어 기반 신뢰 실행 환경 (TEE, Trusted Execution Environment)에 격리·암호화하여, 클라우드 운영자와 호스트 OS(Operating System) 관리자도 평문에 접근하지 못하게 하는 기술 (기밀 컴퓨팅, Confidential Computing).
 - 배경 및 필요성 : 저장 데이터와 전송 데이터는 TLS(Transport Layer Security)와 AES(Advanced Encryption Standard)로 보호되지만, 연산을 위해 평문으로 메모리에 올라가는 구간은 관리자 권한 탈취나 콜드부트 공격에 노출되는 보안 공백으로 남음 → 이 공백을 하드웨어로 메우기 위해 등장.
-- 주요 목적 : 연산 중 데이터의 하드웨어 수준 기밀성과 무결성을 보장하고, 제3자 퍼블릭 클라우드를 **제로트러스트** (Zero Trust) 환경으로 운용.
+- 주요 목적 : 연산 중 데이터의 하드웨어 수준 기밀성과 무결성을 보장하고, 제3자 퍼블릭 클라우드를 제로트러스트 (Zero Trust) 환경으로 운용.
 
 ## Ⅱ. 기밀 컴퓨팅의 특징 및 장점
 
@@ -32,7 +32,7 @@ extra:
 
 1. 하드웨어 기반 격리 (TEE) : CPU 칩 안에 보호된 실행 구역을 두어 호스트 OS와 하이퍼바이저의 접근을 차단 → 클라우드 관리자 권한이 탈취되어도 평문 노출 감소.
 2. 실시간 메모리 암호화 : CPU와 물리 메모리 사이의 데이터를 하드웨어 암호화 엔진이 즉시 암호화 → 메모리 덤프와 콜드부트 공격에서 평문 노출 차단.
-3. **원격 증명** (Remote Attestation) : 하드웨어 서명 보고서로 자신의 코드가 정품 TEE에서 변조 없이 실행됨을 외부 사용자가 검증 → 위탁 연산에 대한 신뢰 근거 확보.
+3. 원격 증명 (Remote Attestation) : 하드웨어 서명 보고서로 자신의 코드가 정품 TEE에서 변조 없이 실행됨을 외부 사용자가 검증 → 위탁 연산에 대한 신뢰 근거 확보.
 4. 기밀 가상머신 (기밀 VM) : VM 전체를 기밀 영역으로 감싸 애플리케이션 수정을 최소화 → 레거시 워크로드의 클라우드 이전 비용 절감.
 
 ## Ⅲ. 기밀 컴퓨팅의 구조 (흐름)
@@ -61,8 +61,8 @@ TEE 하드웨어 (실행 상태 서명)
 무결성 확인 후 비밀 데이터 전달
 ```
 
-- **엔클레이브** (Enclave) : 프로세스 단위로 격리된 보호 영역이며, Intel SGX(Software Guard Extensions)가 대표적인 방식.
-- **기밀 VM** : 가상머신 단위로 격리하는 방식이며 Intel TDX(Trust Domain Extensions), AMD SEV-SNP(Secure Encrypted Virtualization-Secure Nested Paging)가 대표적.
+- 엔클레이브 (Enclave) : 프로세스 단위로 격리된 보호 영역이며, Intel SGX(Software Guard Extensions)가 대표적인 방식.
+- 기밀 VM : 가상머신 단위로 격리하는 방식이며 Intel TDX(Trust Domain Extensions), AMD SEV-SNP(Secure Encrypted Virtualization-Secure Nested Paging)가 대표적.
 - 모바일·임베디드 영역 : ARM TrustZone과 Arm CCA(Confidential Compute Architecture)로 구현.
 
 ## Ⅳ. 기밀 컴퓨팅과 대안 기술의 비교

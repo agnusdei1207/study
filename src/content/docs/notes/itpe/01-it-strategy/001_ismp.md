@@ -51,7 +51,7 @@ extra:
 
 ## Ⅳ. ISMP와 ISP의 비교
 
-- 핵심 요약 : **ISP** (Information Strategy Planning)는 전사의 중장기 정보화 방향을 정하는 반면 ISMP는 선정된 개별 사업의 실행 기준을 확정.
+- 핵심 요약 : ISP (Information Strategy Planning)는 전사의 중장기 정보화 방향을 정하는 반면 ISMP는 선정된 개별 사업의 실행 기준을 확정.
 
 | 비교 축 | ISP | ISMP |
 | --- | --- | --- |

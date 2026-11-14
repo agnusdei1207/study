@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 대칭키 암호화(Symmetric Key Encryption)의 개요
 
 - 핵심 요약 : 암·복호화에 같은 비밀키를 쓰는 방식으로, 고속 기밀성의 기반이며 키 배송과 관리가 핵심 과제인 기술.
-- 개념 : 평문의 암호화와 암호문의 복호화에 동일한 단일 **비밀키** (Secret Key)를 사용하는 **대칭키 암호화** (Symmetric Key Encryption) 방식.
+- 개념 : 평문의 암호화와 암호문의 복호화에 동일한 단일 비밀키 (Secret Key)를 사용하는 대칭키 암호화 (Symmetric Key Encryption) 방식.
 - 배경 및 필요성 : 대용량 네트워크와 스토리지에서 공개키 암호의 연산 부담을 피하면서 고속 암·복호화를 달성해야 하므로, 대칭키 암호가 기저 보안 기술로 쓰임.
 - 주요 목적 : 대용량 데이터베이스, 파일, 네트워크 트래픽의 고속 기밀성 확보와 연산 자원 소모 최소화.
 
@@ -31,7 +31,7 @@ extra:
 - 핵심 요약 : 단일 키의 연산 효율이 고속 처리로 이어지고, 봉투 암호화로 키를 계층화해 관리하는 구조.
 
 1. 고속 처리 : AES(Advanced Encryption Standard)-256 같은 대칭 알고리즘으로 대용량 데이터를 빠르게 암호화 → 대용량 암호화 비용 축소.
-2. **봉투 암호화** (Envelope Encryption) : 데이터 암호화 키(DEK, Data Encryption Key)로 데이터를 암호화하고, 키 암호화 키(KEK, Key Encryption Key)로 DEK를 보호 → 데이터 키가 노출되어도 마스터 키는 보호.
+2. 봉투 암호화 (Envelope Encryption) : 데이터 암호화 키(DEK, Data Encryption Key)로 데이터를 암호화하고, 키 암호화 키(KEK, Key Encryption Key)로 DEK를 보호 → 데이터 키가 노출되어도 마스터 키는 보호.
 3. 중앙 키 관리 : KMS(Key Management Service)와 HSM(Hardware Security Module)에 키를 보관하고 IAM(Identity and Access Management) 정책으로 접근 통제 → 키 유출 경로를 한곳으로 모아 감시.
 4. 자동 키 회전 : 주기적으로 키를 교체 → 키가 노출되어도 피해 기간 제한.
 
@@ -61,7 +61,7 @@ DEK를 KEK로 래핑 (KMS 내부)
 ```
 
 - 데이터 암호화 : 메모리에서 DEK를 생성해 대용량 평문을 암호화하고, 인증 태그를 함께 만듦.
-- **키 래핑** (Key Wrapping) : HSM이나 KMS 내부의 KEK로 DEK를 암호화해 봉투를 만드는 과정.
+- 키 래핑 (Key Wrapping) : HSM이나 KMS 내부의 KEK로 DEK를 암호화해 봉투를 만드는 과정.
 - 평문 DEK 제로화 (Zeroization) : 암호화가 끝나면 메모리의 평문 DEK를 즉시 지워 메모리 덤프 공격을 차단.
 - 데이터 복호화 : 암호화된 DEK를 KMS에 보내 KEK로 풀고, 얻은 DEK로 원본을 복원하며 이때 IAM 권한을 확인.
 

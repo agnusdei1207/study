@@ -22,18 +22,18 @@ extra:
 ## Ⅰ. DevSecOps의 개요
 
 - 핵심 요약 : 개발과 운영 자동화 파이프라인 전 단계에 보안 검증을 내재화해, 배포 속도를 늦추지 않으면서 취약점을 조기에 제거하는 방법론.
-- 개념 : **DevOps** (Development and Operations) 문화와 **CI/CD** (Continuous Integration/Continuous Delivery) 자동화에 보안(Sec)을 핵심 요소로 결합하여, **소프트웨어 개발 생명주기** (SDLC, Software Development Life Cycle) 전반에서 취약점을 지속적으로 검증하는 협업 체계.
+- 개념 : DevOps (Development and Operations) 문화와 CI/CD (Continuous Integration/Continuous Delivery) 자동화에 보안(Sec)을 핵심 요소로 결합하여, 소프트웨어 개발 생명주기 (SDLC, Software Development Life Cycle) 전반에서 취약점을 지속적으로 검증하는 협업 체계.
 - 배경 및 필요성 : 클라우드 네이티브 환경에서 배포가 잦아지면서, 배포 직전에 수작업으로 보안을 점검하던 방식은 릴리즈 병목을 만들거나 결함을 그대로 내보내는 결과가 됨.
-- 주요 목적 : **Shift-Left Security** (보안의 좌측 이동)를 실현해 결함을 앞 단계에서 발견하고, 배포를 멈추지 않는 자동화된 **보안 품질 게이트** (Quality Gate)를 세우는 것.
+- 주요 목적 : Shift-Left Security (보안의 좌측 이동)를 실현해 결함을 앞 단계에서 발견하고, 배포를 멈추지 않는 자동화된 보안 품질 게이트 (Quality Gate)를 세우는 것.
 
 ## Ⅱ. DevSecOps의 특징 및 장점
 
 - 핵심 요약 : 보안 도구를 파이프라인에 연결하는 자동화가 검증 시점을 앞당겨 수정 비용을 낮추고, 배포 속도와 보안 수준을 함께 유지하는 구조.
 
 1. 조기 검증 : 코딩과 커밋 단계에서 결함을 찾음 → 운영 단계에서 발견할 때보다 수정 비용과 영향 범위가 작아짐.
-2. 정적 분석 : **SAST** (Static Application Security Testing)가 소스코드를 분석해 인젝션, 크로스 사이트 스크립팅 같은 결함을 검출 → 실행 전에 코드 수준 결함을 제거.
-3. 공급망 분석 : **SCA** (Software Composition Analysis)가 오픈소스 종속성의 알려진 취약점과 라이선스를 점검하고 **SBOM** (Software Bill of Materials, 소프트웨어 구성 명세서)을 생성 → 외부 라이브러리 위험을 가시화.
-4. 동적·운영 검증 : **DAST** (Dynamic Application Security Testing)와 **IAST** (Interactive Application Security Testing)로 실행 중 취약점을 확인하고, **RASP** (Runtime Application Self-Protection)과 **CSPM** (Cloud Security Posture Management)으로 운영 중 공격과 클라우드 설정 오류를 감시.
+2. 정적 분석 : SAST (Static Application Security Testing)가 소스코드를 분석해 인젝션, 크로스 사이트 스크립팅 같은 결함을 검출 → 실행 전에 코드 수준 결함을 제거.
+3. 공급망 분석 : SCA (Software Composition Analysis)가 오픈소스 종속성의 알려진 취약점과 라이선스를 점검하고 SBOM (Software Bill of Materials, 소프트웨어 구성 명세서)을 생성 → 외부 라이브러리 위험을 가시화.
+4. 동적·운영 검증 : DAST (Dynamic Application Security Testing)와 IAST (Interactive Application Security Testing)로 실행 중 취약점을 확인하고, RASP (Runtime Application Self-Protection)과 CSPM (Cloud Security Posture Management)으로 운영 중 공격과 클라우드 설정 오류를 감시.
 5. 인프라 코드 검사 : IaC(Infrastructure as Code) 템플릿의 포트 개방과 과도한 권한 설정을 배포 전에 차단 → 설정 오류로 인한 노출을 줄임.
 
 ## Ⅲ. DevSecOps의 구조 (흐름)
@@ -95,16 +95,16 @@ Critical 결함이 있는가
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 검사 지연으로 인한 게이트 우회 | 전체 스캔이 길어 개발팀이 검증 옵션을 건너뜀 | 전수 검사는 야간 배치로, 풀 요청 시점에는 변경분만 검사하는 **차분 분석** (Delta Scan) 적용 | 평균 검사 시간, 게이트 우회 건수 |
-| 오탐으로 인한 빌드 차단 충돌 | 실제 호출되지 않는 라이브러리 결함이 긴급 배포를 막음 | **도달 가능성 분석** (Reachability Analysis)으로 실제 실행 경로에 있는 취약점만 차단 기준에 포함 | 오탐 비율 |
-| 보안 결함 수정 책임의 방기 | 보안팀이 티켓만 전달하고 개발팀은 일정 압박으로 수정을 미룸 | 개발팀 내 **보안 챔피언** (Security Champions) 제도 운영, 자동 수정 제안 도구 활용 | 결함 평균 수정 소요 시간 |
+| 검사 지연으로 인한 게이트 우회 | 전체 스캔이 길어 개발팀이 검증 옵션을 건너뜀 | 전수 검사는 야간 배치로, 풀 요청 시점에는 변경분만 검사하는 차분 분석 (Delta Scan) 적용 | 평균 검사 시간, 게이트 우회 건수 |
+| 오탐으로 인한 빌드 차단 충돌 | 실제 호출되지 않는 라이브러리 결함이 긴급 배포를 막음 | 도달 가능성 분석 (Reachability Analysis)으로 실제 실행 경로에 있는 취약점만 차단 기준에 포함 | 오탐 비율 |
+| 보안 결함 수정 책임의 방기 | 보안팀이 티켓만 전달하고 개발팀은 일정 압박으로 수정을 미룸 | 개발팀 내 보안 챔피언 (Security Champions) 제도 운영, 자동 수정 제안 도구 활용 | 결함 평균 수정 소요 시간 |
 
 ## Ⅵ. DevSecOps에 대한 기술사적 제언
 
 - 핵심 요약 : 보안 규정을 코드로 관리하고, 공급망 증빙과 보안 지표를 개발 지표와 함께 보는 운영 체계로 내재화하는 것이 핵심.
 
-1. 전사 보안 규정은 문서가 아니라 **Policy-as-Code** (코드형 정책)로 정의하고, OPA나 Kyverno 같은 정책 엔진을 통해 쿠버네티스 클러스터에서 자동으로 집행해야 한다.
-2. 모든 배포 산출물에 SBOM을 함께 생성하고, 취약점이 실제로 악용 가능한지를 **VEX** (Vulnerability Exploitability eXchange) 문서로 연결하는 절차를 두어야 한다.
+1. 전사 보안 규정은 문서가 아니라 Policy-as-Code (코드형 정책)로 정의하고, OPA나 Kyverno 같은 정책 엔진을 통해 쿠버네티스 클러스터에서 자동으로 집행해야 한다.
+2. 모든 배포 산출물에 SBOM을 함께 생성하고, 취약점이 실제로 악용 가능한지를 VEX (Vulnerability Exploitability eXchange) 문서로 연결하는 절차를 두어야 한다.
 3. 보안 지표를 DORA 지표와 나란히 대시보드에 두면, 보안이 개발 속도의 장애물이 아니라 품질 지표의 일부로 인식되어 개선 동력이 생긴다.
 
 ## Ⅶ. 결론

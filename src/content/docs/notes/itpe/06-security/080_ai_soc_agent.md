@@ -21,17 +21,17 @@ extra:
 ## Ⅰ. AI SOC 에이전트의 개요
 
 - 핵심 요약 : 방대한 보안 경보를 LLM 추론으로 맥락화해 분석과 대응을 보조하는 자율 관제 체계.
-- 개념 : SIEM(Security Information and Event Management), EDR(Endpoint Detection and Response) 등에서 나온 경보를 LLM(Large Language Model) 기반 추론 엔진이 맥락과 결합해 심층 분석하고 대응을 보조·수행하는 관제 체계 (**AI SOC 에이전트**, AI SOC Agent).
-- 배경 및 필요성 : 다기종 보안 인프라에서 대량의 경보가 발생하면서 **경보 피로** (Alert Fatigue)로 중요 경보가 묻히므로, 분석 부담을 줄이는 자동화가 필요해짐.
+- 개념 : SIEM(Security Information and Event Management), EDR(Endpoint Detection and Response) 등에서 나온 경보를 LLM(Large Language Model) 기반 추론 엔진이 맥락과 결합해 심층 분석하고 대응을 보조·수행하는 관제 체계 (AI SOC 에이전트, AI SOC Agent).
+- 배경 및 필요성 : 다기종 보안 인프라에서 대량의 경보가 발생하면서 경보 피로 (Alert Fatigue)로 중요 경보가 묻히므로, 분석 부담을 줄이는 자동화가 필요해짐.
 - 주요 목적 : 분석가의 경보 피로 완화와 탐지·대응 시간인 MTTD(Mean Time to Detect), MTTR(Mean Time to Respond) 단축.
 
 ## Ⅱ. AI SOC 에이전트의 특징 및 장점
 
 - 핵심 요약 : 경보 맥락화와 자율 추론이 결합되어 분석 속도와 변종 탐지력을 높이는 구조.
 
-1. 맥락 결합 : 경보를 **RAG** (Retrieval-Augmented Generation, 외부 지식을 검색해 생성 결과에 근거를 더하는 기법) 방식으로 위협 인텔리전스와 자산 정보에 연결 → 단독 경보보다 정확한 위험 판단.
-2. 자율 추론 : 공격 행위를 **MITRE ATT&CK** 전술·기법에 매핑하고 가설을 검증 → 규칙에 없는 변종 공격에 대한 대응력 확보.
-3. 단계적 자율화 : 저위험 조치는 자동 실행하고 고위험 조치는 **휴먼 인 더 루프** (HITL, Human in the Loop) 승인을 거침 → 오차단 위험 감소.
+1. 맥락 결합 : 경보를 RAG (Retrieval-Augmented Generation, 외부 지식을 검색해 생성 결과에 근거를 더하는 기법) 방식으로 위협 인텔리전스와 자산 정보에 연결 → 단독 경보보다 정확한 위험 판단.
+2. 자율 추론 : 공격 행위를 MITRE ATT&CK 전술·기법에 매핑하고 가설을 검증 → 규칙에 없는 변종 공격에 대한 대응력 확보.
+3. 단계적 자율화 : 저위험 조치는 자동 실행하고 고위험 조치는 휴먼 인 더 루프 (HITL, Human in the Loop) 승인을 거침 → 오차단 위험 감소.
 4. 자연어 보고 : 사고 경위와 타임라인을 자동으로 작성 → 보고서 작성 시간 단축.
 
 ## Ⅲ. AI SOC 에이전트의 구조 (흐름)
@@ -40,7 +40,7 @@ extra:
 - 경보 분류 : 실시간 스트리밍으로 들어온 경보를 정규화하고 중복을 제거해 우선순위를 부여.
 - 맥락 검색 : 공격 IP·도메인을 위협 인텔리전스와 자산 중요도 정보에 연결해 근거를 보강.
 - 다단계 추론 : 공격자의 횡적 이동과 권한 상승 가능성을 가설로 세우고 검증.
-- 정책 검증 : 파괴적 명령의 파라미터를 가드레일 정책으로 검사한 뒤 **SOAR** (Security Orchestration, Automation and Response) 플레이북으로 실행.
+- 정책 검증 : 파괴적 명령의 파라미터를 가드레일 정책으로 검사한 뒤 SOAR (Security Orchestration, Automation and Response) 플레이북으로 실행.
 
 ```text
 [ 다기종 보안 경보 ]
@@ -87,9 +87,9 @@ Tier-3 : 분석가 주도 대응
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | LLM 환각 | 정상 트래픽을 C2(Command and Control) 통신으로 오판 → 핵심 서비스 차단 | 추론 단계마다 원천 로그 근거 ID를 표기하고 핵심 자산은 HITL 승인 적용 | 오차단율, 근거 연결률 |
-| **간접 프롬프트 인젝션** (Indirect Prompt Injection) | 로그나 요청 헤더에 숨긴 악성 지시문이 에이전트를 조작 | 로그를 데이터 영역으로 격리하고 가드레일 검증 계층 배치 | 인젝션 차단 건수 |
-| 토큰 소모와 응답 지연 | 다단계 로그 분석으로 긴급 차단 시점 상실 | 단순 경보는 **SLM** (Small Language Model) 처리, 고난도 사건만 상위 모델로 라우팅 | 평균 응답 시간 |
-| 과도한 권한 | 탈취된 에이전트 키로 인프라 변경 가능 | **최소 권한** (Least Privilege) 원칙과 단기 임시 토큰, 상시 감사 로그 | 권한 과다 부여 건수 |
+| 간접 프롬프트 인젝션 (Indirect Prompt Injection) | 로그나 요청 헤더에 숨긴 악성 지시문이 에이전트를 조작 | 로그를 데이터 영역으로 격리하고 가드레일 검증 계층 배치 | 인젝션 차단 건수 |
+| 토큰 소모와 응답 지연 | 다단계 로그 분석으로 긴급 차단 시점 상실 | 단순 경보는 SLM (Small Language Model) 처리, 고난도 사건만 상위 모델로 라우팅 | 평균 응답 시간 |
+| 과도한 권한 | 탈취된 에이전트 키로 인프라 변경 가능 | 최소 권한 (Least Privilege) 원칙과 단기 임시 토큰, 상시 감사 로그 | 권한 과다 부여 건수 |
 
 ## Ⅵ. AI SOC 에이전트의 기술사적 제언
 

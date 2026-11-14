@@ -23,17 +23,17 @@ extra:
 ## Ⅰ. Copilot+ PC NPU의 개요
 
 - 핵심 요약 : 클라우드 의존 없이 PC 안에서 신경망 추론을 실행하기 위해 일정 성능 이상의 NPU 탑재를 요구하는 온디바이스 AI PC 표준.
-- 개념 : 마이크로소프트가 정의한 AI PC 규격인 **Copilot+ PC**의 핵심 요건으로, 신경망 연산 전용 가속기인 **NPU** (Neural Processing Unit)의 성능이 **TOPS** (Trillions of Operations Per Second, 초당 조 단위 연산 횟수) 40 이상일 것을 요구하는 하드웨어 기준.
-- 배경 및 필요성 : AI 기능을 클라우드에만 두면 개인정보 전송, 네트워크 지연, 서버 운영 비용이 상시 부담이 되므로 단말 안에서 추론을 끝내는 **온디바이스 AI** (On-device AI)가 필요.
+- 개념 : 마이크로소프트가 정의한 AI PC 규격인 Copilot+ PC의 핵심 요건으로, 신경망 연산 전용 가속기인 NPU (Neural Processing Unit)의 성능이 TOPS (Trillions of Operations Per Second, 초당 조 단위 연산 횟수) 40 이상일 것을 요구하는 하드웨어 기준.
+- 배경 및 필요성 : AI 기능을 클라우드에만 두면 개인정보 전송, 네트워크 지연, 서버 운영 비용이 상시 부담이 되므로 단말 안에서 추론을 끝내는 온디바이스 AI (On-device AI)가 필요.
 - 주요 목적 : 배터리 환경에서의 성능 대비 전력 효율(Performance-per-Watt) 확보, Windows AI 기능의 로컬 가속, 데이터 단말 밖 반출의 최소화.
 
 ## Ⅱ. Copilot+ PC NPU의 특징 및 장점
 
 - 핵심 요약 : 행렬 연산 특화 하드웨어와 OS 수준 추론 런타임의 결합이 전력 효율과 이식성을 함께 제공하는 원리.
 
-1. **수축기 어레이** (Systolic Array) : 행렬 곱·누적 연산인 **MAC** (Multiply-Accumulate) 결과를 인접 처리 요소로 파이프라인 전달 → 메모리 접근 축소로 전력 효율 향상 효과.
+1. 수축기 어레이 (Systolic Array) : 행렬 곱·누적 연산인 MAC (Multiply-Accumulate) 결과를 인접 처리 요소로 파이프라인 전달 → 메모리 접근 축소로 전력 효율 향상 효과.
 2. 연산 장치 역할 분담 : NPU가 저전력 상시 추론을 담당하고 CPU(Central Processing Unit)와 GPU(Graphics Processing Unit)는 범용 연산·그래픽 처리에 집중 → 작업별 최적 가속으로 배터리 사용 시간 확보 효과.
-3. 추상화 런타임 : **DirectML**과 ONNX(Open Neural Network Exchange) Runtime이 벤더별 NPU 차이를 흡수 → 하나의 모델로 여러 하드웨어를 지원하는 이식성 효과.
+3. 추상화 런타임 : DirectML과 ONNX(Open Neural Network Exchange) Runtime이 벤더별 NPU 차이를 흡수 → 하나의 모델로 여러 하드웨어를 지원하는 이식성 효과.
 4. OS 통합 : Windows Copilot Runtime이 소형 모델과 추론 API(Application Programming Interface)를 OS에 포함 → 애플리케이션이 NPU를 쉽게 호출하는 생태계 효과.
 
 ## Ⅲ. Copilot+ PC NPU의 구조 (흐름)
@@ -96,7 +96,7 @@ MAC 어레이의 곱셈·누산 수행
 | :--- | :--- | :--- | :--- |
 | x86 앱 에뮬레이션 부담 | ARM64 기기에서 명령 변환 수행 → 성능 저하와 일부 드라이버 미호환 | Prism 에뮬레이션 고도화와 주요 소프트웨어의 ARM64 네이티브 전환 | 에뮬레이션 실행 앱 비율 |
 | 리콜(Recall) 프라이버시 위험 | 화면을 주기 캡처해 로컬 저장 → 유출 시 민감 정보 일괄 노출 | 기본 비활성화(옵트인), Windows Hello 연동 인증, 암호화 보관 | 기능 활성화율 |
-| 시스템 메모리 경합 | 전용 메모리 부재로 대형 **SLM** (Small Language Model) 적재 시 RAM(Random-Access Memory) 점유 | INT4 등 저정밀 양자화와 고속 SSD(Solid-State Drive) 기반 가중치 스트리밍 | 메모리 사용률, 로딩 시간 |
+| 시스템 메모리 경합 | 전용 메모리 부재로 대형 SLM (Small Language Model) 적재 시 RAM(Random-Access Memory) 점유 | INT4 등 저정밀 양자화와 고속 SSD(Solid-State Drive) 기반 가중치 스트리밍 | 메모리 사용률, 로딩 시간 |
 
 ## Ⅵ. Copilot+ PC NPU에 대한 기술사적 제언
 

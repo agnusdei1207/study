@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 미라이 봇넷(Mirai Botnet)의 개요
 
 - 핵심 요약 : 기본 계정을 쓰는 IoT 기기를 대규모로 감염시켜 대규모 DDoS 공격을 일으킨 봇넷.
-- 개념 : 취약한 **기본 계정** (Default Credentials)을 쓰는 IoT(Internet of Things) 기기를 텔넷(Telnet) 프로토콜로 감염시키고, C2(Command and Control) 서버의 명령에 따라 대규모 **분산 서비스 거부** (DDoS, Distributed Denial of Service) 공격을 수행하는 봇넷.
+- 개념 : 취약한 기본 계정 (Default Credentials)을 쓰는 IoT(Internet of Things) 기기를 텔넷(Telnet) 프로토콜로 감염시키고, C2(Command and Control) 서버의 명령에 따라 대규모 분산 서비스 거부 (DDoS, Distributed Denial of Service) 공격을 수행하는 봇넷.
 - 배경 및 필요성 : 2016년경 IP 카메라, 디지털 비디오 레코더(DVR, Digital Video Recorder), 가정용 라우터 같은 저가 IoT 기기가 보안 고려 없이 대량 보급되었고, 출하 시 기본 패스워드가 바뀌지 않은 채 인터넷에 노출되면서 확산.
 - 주요 목적 : 보안 패치가 어려운 대량의 IoT 기기를 좀비로 만들어 도메인 네임 시스템(DNS, Domain Name System) 서비스와 호스팅 기업을 마비시키는 대규모 증폭 공격을 수행하는 것.
 
@@ -30,16 +30,16 @@ extra:
 
 - 핵심 요약 : 기본 계정 무차별 대입과 다중 아키텍처 감염이 결합되어, 정교한 취약점 없이도 대규모 감염을 만드는 구조.
 
-1. **사전 대입 공격** (Dictionary Attack) : 하드코딩된 소수의 제조사 기본 계정 목록으로 무차별 침투 → 몇 시간 안에 대량 장악이 가능.
+1. 사전 대입 공격 (Dictionary Attack) : 하드코딩된 소수의 제조사 기본 계정 목록으로 무차별 침투 → 몇 시간 안에 대량 장악이 가능.
 2. 크로스 컴파일 : MIPS, ARM, x86 등 이종 아키텍처별 바이너리를 준비 → 다양한 기종의 IoT 기기를 감염 대상으로 삼음.
 3. 경쟁 악성코드 제거 : 장악 직후 다른 악성 프로세스를 종료하고 Telnet 포트를 막음 → 독점적 제어권을 유지.
-4. **메모리 상주** (Memory-only Execution) : 디스크에 흔적을 남기지 않고 RAM(Random-Access Memory)에서만 동작 → 재부팅 시 제거되지만 네트워크에 연결된 채로 재감염.
+4. 메모리 상주 (Memory-only Execution) : 디스크에 흔적을 남기지 않고 RAM(Random-Access Memory)에서만 동작 → 재부팅 시 제거되지만 네트워크에 연결된 채로 재감염.
 
 ## Ⅲ. 미라이 봇넷(Mirai Botnet)의 구조 (흐름)
 
 - 핵심 요약 : 스캔, 침투, 보고, 적재로 이어지는 감염 수명주기와, C2의 명령으로 피해자에게 트래픽을 집중시키는 공격 구조.
-- **로더** (Loader) : 취약 기기 정보를 받아 기기 CPU 아키텍처에 맞는 바이너리를 내려받아 실행하는 서버 구성 요소.
-- **C2** (Command and Control) : 감염된 봇에 공격 대상과 방식을 내리는 제어 서버.
+- 로더 (Loader) : 취약 기기 정보를 받아 기기 CPU 아키텍처에 맞는 바이너리를 내려받아 실행하는 서버 구성 요소.
+- C2 (Command and Control) : 감염된 봇에 공격 대상과 방식을 내리는 제어 서버.
 
 ```text
 [ 미라이 감염 수명주기 ]

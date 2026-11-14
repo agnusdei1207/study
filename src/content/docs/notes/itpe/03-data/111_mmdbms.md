@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 메인 메모리 DBMS의 개요
 
 - 핵심 요약 : 데이터를 주기억장치(RAM, Random Access Memory)에 상주시켜 디스크 입출력 없이 질의를 처리하는 초고속 데이터베이스 관리 시스템.
-- 개념 : 데이터 전체 또는 대부분을 주기억장치에 상주시켜 질의를 처리하는 **메인 메모리 DBMS** (MMDBMS, Main Memory Database Management System).
+- 개념 : 데이터 전체 또는 대부분을 주기억장치에 상주시켜 질의를 처리하는 메인 메모리 DBMS (MMDBMS, Main Memory Database Management System).
 - 배경 및 필요성 : 디스크 기반 DBMS는 버퍼 관리와 디스크 입출력이 지연의 주된 요인이 되므로, 실시간 응답이 필요한 거래와 통신 처리에는 메모리 상주형 구조가 필요해짐.
 - 주요 목적 : 디스크 입출력 병목을 구조적으로 제거해 마이크로초 단위 응답을 확보하고, 메모리 휘발성은 로그 기반 영속화와 체크포인팅으로 보완.
 
@@ -30,11 +30,11 @@ extra:
 
 - 핵심 요약 : 직접 포인터, T-Tree, 로그 기록이 결합되어 입출력 없는 초고속 처리와 데이터 영속성을 함께 확보.
 
-1. **직접 포인터** (Direct Pointer) : 인덱스가 레코드의 메모리 주소를 직접 가리킴 → ROWID 변환 없이 한 번의 참조로 접근.
-2. **T-Tree** (메모리 상주 데이터용 인덱스 구조) : AVL 트리의 균형 구조와 B-Tree처럼 노드마다 여러 키를 담는 방식을 결합 → 메모리에서 빠른 탐색과 낮은 갱신 비용.
-3. **WAL** (Write-Ahead Logging, 변경 내용을 데이터 반영 전에 로그로 먼저 기록하는 방식) : 변경분을 Redo 로그로 디스크에 순차 기록 → 정전 시 복구의 근거 확보.
-4. **체크포인팅** (Checkpointing) : 메모리 상태를 주기적으로 디스크에 스냅샷으로 저장 → 복구 시 재적용할 로그 양 축소.
-5. **비휘발성 메모리** (NVRAM, Non-Volatile Random Access Memory) : 전원이 끊겨도 내용을 유지하는 메모리 또는 정전 시 데이터를 보존하는 장치(예: NVDIMM(Non-Volatile Dual In-line Memory Module)) → 휘발성 유실 위험 완화.
+1. 직접 포인터 (Direct Pointer) : 인덱스가 레코드의 메모리 주소를 직접 가리킴 → ROWID 변환 없이 한 번의 참조로 접근.
+2. T-Tree (메모리 상주 데이터용 인덱스 구조) : AVL 트리의 균형 구조와 B-Tree처럼 노드마다 여러 키를 담는 방식을 결합 → 메모리에서 빠른 탐색과 낮은 갱신 비용.
+3. WAL (Write-Ahead Logging, 변경 내용을 데이터 반영 전에 로그로 먼저 기록하는 방식) : 변경분을 Redo 로그로 디스크에 순차 기록 → 정전 시 복구의 근거 확보.
+4. 체크포인팅 (Checkpointing) : 메모리 상태를 주기적으로 디스크에 스냅샷으로 저장 → 복구 시 재적용할 로그 양 축소.
+5. 비휘발성 메모리 (NVRAM, Non-Volatile Random Access Memory) : 전원이 끊겨도 내용을 유지하는 메모리 또는 정전 시 데이터를 보존하는 장치(예: NVDIMM(Non-Volatile Dual In-line Memory Module)) → 휘발성 유실 위험 완화.
 
 ## Ⅲ. 아키텍처 흐름
 

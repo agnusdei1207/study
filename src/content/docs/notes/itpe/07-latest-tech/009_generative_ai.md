@@ -21,8 +21,8 @@ extra:
 ## Ⅰ. 생성형 AI(Generative AI)의 개요
 
 - 핵심 요약 : 데이터의 잠재 확률 분포를 학습해 텍스트·이미지·코드 같은 새로운 창작물을 합성하는 인공지능 기술.
-- 개념 : 입력을 분류하거나 수치를 예측하는 **판별 모델** (Discriminative Model)과 달리, 데이터의 **잠재 확률 분포** (Latent Probability Distribution)를 학습해 새로운 창작물을 생성하는 **생성형 AI** (Generative AI).
-- 배경 및 필요성 : **트랜스포머** (Transformer)의 셀프 어텐션 구조, 대규모 데이터로 사전 학습한 **파운데이션 모델** (Foundation Model), 가속기 발전이 맞물려 지식 노동의 자동화가 현실화됨.
+- 개념 : 입력을 분류하거나 수치를 예측하는 판별 모델 (Discriminative Model)과 달리, 데이터의 잠재 확률 분포 (Latent Probability Distribution)를 학습해 새로운 창작물을 생성하는 생성형 AI (Generative AI).
+- 배경 및 필요성 : 트랜스포머 (Transformer)의 셀프 어텐션 구조, 대규모 데이터로 사전 학습한 파운데이션 모델 (Foundation Model), 가속기 발전이 맞물려 지식 노동의 자동화가 현실화됨.
 - 주요 목적 : 멀티모달 콘텐츠 생성 자동화, 업무 보조 에이전트 구현, 소프트웨어 개발 주기 단축.
 
 ## Ⅱ. 생성형 AI(Generative AI)의 특징 및 장점
@@ -30,14 +30,14 @@ extra:
 - 핵심 요약 : 사전 학습으로 얻은 범용성, 정렬로 확보한 안전성, 서빙 최적화로 낮아진 추론 비용이 결합된 구조.
 
 1. 범용성 : 자기지도 사전 학습으로 언어와 상식을 폭넓게 축적 → 하나의 모델을 번역, 요약, 코드 작성 등 여러 작업에 재사용.
-2. 인간 정렬 : **RLHF** (Reinforcement Learning from Human Feedback)나 **DPO** (Direct Preference Optimization)로 선호를 반영 → 유해 응답과 위험 명령을 거부하는 안전성 확보.
-3. 추론 최적화 : **PagedAttention**과 저정밀도 연산으로 KV 캐시 메모리 단편화를 줄이고 생성 처리량을 높임 → 서빙 단가 절감.
+2. 인간 정렬 : RLHF (Reinforcement Learning from Human Feedback)나 DPO (Direct Preference Optimization)로 선호를 반영 → 유해 응답과 위험 명령을 거부하는 안전성 확보.
+3. 추론 최적화 : PagedAttention과 저정밀도 연산으로 KV 캐시 메모리 단편화를 줄이고 생성 처리량을 높임 → 서빙 단가 절감.
 
 ## Ⅲ. 생성형 AI(Generative AI)의 구조 (흐름)
 
 - 핵심 요약 : 사전 학습, 정렬, 서빙의 세 단계를 거쳐 파운데이션 모델이 실제 서비스로 전환되는 구조.
-- **자기지도 사전 학습** (Self-Supervised Pre-training) : 레이블 없는 텍스트에서 다음 토큰의 확률 분포를 모델링해 언어 구조를 학습.
-- **지도 미세조정** (SFT, Supervised Fine-Tuning) : 질문과 답변 쌍으로 명령에 충실히 응답하는 대화형 모델로 전환.
+- 자기지도 사전 학습 (Self-Supervised Pre-training) : 레이블 없는 텍스트에서 다음 토큰의 확률 분포를 모델링해 언어 구조를 학습.
+- 지도 미세조정 (SFT, Supervised Fine-Tuning) : 질문과 답변 쌍으로 명령에 충실히 응답하는 대화형 모델로 전환.
 
 ```text
 [ 생성형 AI 파운데이션 모델 구축 흐름 ]
@@ -86,16 +86,16 @@ RAG, 도구 호출, 에이전트 시스템과 연동
 
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
-| 환각 (Hallucination) | 진실이 아닌 통계적 확률로 토큰을 고르기 때문에 그럴듯한 허위 정보 생성 | **RAG** (Retrieval-Augmented Generation) 결합, CoT(Chain-of-Thought) 단계별 추론, LLM-as-a-Judge 교차 검증 | 사실성 평가 점수, 근거 인용률 |
-| 컴퓨팅 비용과 에너지 | 파라미터 증가에 따라 GPU 인프라 비용(TCO, Total Cost of Ownership) 급증 | **MoE** (Mixture of Experts) 희소 활성화, **지식 증류** (Knowledge Distillation)를 통한 소형 언어 모델 전환, INT4·FP8 양자화 | 토큰당 비용, 추론 지연 |
+| 환각 (Hallucination) | 진실이 아닌 통계적 확률로 토큰을 고르기 때문에 그럴듯한 허위 정보 생성 | RAG (Retrieval-Augmented Generation) 결합, CoT(Chain-of-Thought) 단계별 추론, LLM-as-a-Judge 교차 검증 | 사실성 평가 점수, 근거 인용률 |
+| 컴퓨팅 비용과 에너지 | 파라미터 증가에 따라 GPU 인프라 비용(TCO, Total Cost of Ownership) 급증 | MoE (Mixture of Experts) 희소 활성화, 지식 증류 (Knowledge Distillation)를 통한 소형 언어 모델 전환, INT4·FP8 양자화 | 토큰당 비용, 추론 지연 |
 | 저작권·개인정보 침해와 탈옥 | 무단 수집 데이터의 소송 위험, 악의적 프롬프트로 안전 장치 무력화 | 콘텐츠 출처를 표시하는 C2PA 메타데이터, 라이선스 검증, 입출력 가드레일(Llama Guard 등), 차분 프라이버시 | 위반 탐지율, 라이선스 준수율 |
 
 ## Ⅵ. 생성형 AI(Generative AI)에 대한 기술사적 제언
 
 - 핵심 요약 : 단일 거대 모델 의존에서 벗어나 복합 시스템으로 설계하고, 데이터 보호와 전주기 거버넌스를 함께 세우는 방향.
-- 복합 아키텍처 : 하나의 거대 모델이 모든 역할을 맡기보다 특화된 소형 모델, 검색, 외부 도구, 검증기가 협력하는 **복합 AI 시스템** (Compound AI System) 구조를 지향하는 것이 효율적임.
+- 복합 아키텍처 : 하나의 거대 모델이 모든 역할을 맡기보다 특화된 소형 모델, 검색, 외부 도구, 검증기가 협력하는 복합 AI 시스템 (Compound AI System) 구조를 지향하는 것이 효율적임.
 - 데이터 보호 : 퍼블릭 API에 기밀 데이터를 보내는 대신 사내 또는 프라이빗 클라우드에서 도는 RAG와 도메인 미세조정 파이프라인을 구성해 유출 경로를 차단해야 함.
-- 거버넌스 : **ISO/IEC 42001** (AI 관리시스템) 국제표준을 기준으로 기획, 학습, 서빙, 모니터링 단계별 위험 평가를 제도화하고 감사 로그를 보존하는 체계 필요.
+- 거버넌스 : ISO/IEC 42001 (AI 관리시스템) 국제표준을 기준으로 기획, 학습, 서빙, 모니터링 단계별 위험 평가를 제도화하고 감사 로그를 보존하는 체계 필요.
 
 ## Ⅶ. 결론
 

@@ -22,10 +22,10 @@ extra:
 ## Ⅰ. PIMS의 개요
 
 - 핵심 요약 : 국내에서 PIMS는 개인정보 보호 활동과 위험관리 체계를 함께 평가하던 인증제도이며, 현재는 ISMS-P로 통합되어 운영.
-- 개념 : 개인정보의 수집·보유·이용·제공·파기 전 과정을 조직 차원에서 관리하는 체계를 인증으로 평가하는 제도 (**PIMS** (Personal Information Management System)).
-- 배경 및 필요성 : 개인정보 침해 사고가 잦아지고 클라우드·위탁 처리가 늘면서 기술 보호조치와 처리 절차를 함께 점검할 기준이 필요해짐. 이에 정보보호 관리체계(**ISMS**, Information Security Management System)와 통합되어 2018년 **ISMS-P** (Information Security and Personal Information Management System) 인증으로 발전.
+- 개념 : 개인정보의 수집·보유·이용·제공·파기 전 과정을 조직 차원에서 관리하는 체계를 인증으로 평가하는 제도 (PIMS (Personal Information Management System)).
+- 배경 및 필요성 : 개인정보 침해 사고가 잦아지고 클라우드·위탁 처리가 늘면서 기술 보호조치와 처리 절차를 함께 점검할 기준이 필요해짐. 이에 정보보호 관리체계(ISMS, Information Security Management System)와 통합되어 2018년 ISMS-P (Information Security and Personal Information Management System) 인증으로 발전.
 - 주요 목적 : 개인정보 처리 단계별 보호 활동과 조직의 위험관리 체계를 함께 검증하여 개인정보 침해 위험을 줄.
-- 명칭 구분 : 국제표준 **ISO/IEC 27701**의 PIMS는 Privacy Information Management System을 뜻하며, 국내 구 PIMS 인증과는 별개의 체계.
+- 명칭 구분 : 국제표준 ISO/IEC 27701의 PIMS는 Privacy Information Management System을 뜻하며, 국내 구 PIMS 인증과는 별개의 체계.
 
 ## Ⅱ. PIMS(ISMS-P)의 특징 및 장점
 

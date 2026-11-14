@@ -23,7 +23,7 @@ extra:
 ## Ⅰ. MODBUS의 개요
 
 - 핵심 요약 : 제어기와 현장 장비를 벤더와 무관하게 연결하기 위해 만들어진 산업용 응용 계층 통신 프로토콜.
-- 개념 : 1979년 Modicon(현 Schneider Electric)이 **PLC** (Programmable Logic Controller) 간 통신용으로 개발한 **마스터-슬레이브** (Master-Slave) 구조의 응용 계층 프로토콜.
+- 개념 : 1979년 Modicon(현 Schneider Electric)이 PLC (Programmable Logic Controller) 간 통신용으로 개발한 마스터-슬레이브 (Master-Slave) 구조의 응용 계층 프로토콜.
 - 배경 및 필요성 : 플랜트와 스마트 팩토리에 센서·구동기·계측기·PLC가 벤더별로 혼재, 벤더 종속 없이 데이터를 읽고 쓰는 공통 규약의 필요.
 - 주요 목적 :
   1. 단순 구조의 장비 제어 인터페이스 제공
@@ -42,8 +42,8 @@ extra:
 ## Ⅲ. MODBUS의 구조 (흐름)
 
 - 핵심 요약 : 기능 코드와 데이터를 공통 PDU로 정의하고, 전송 모드에 따라 주소·오류 검출·헤더를 덧붙인 ADU로 운반하는 구조.
-- **PDU** (Protocol Data Unit) : 기능 코드와 데이터로 구성되는 전송 모드 독립 부분.
-- **ADU** (Application Data Unit) : 주소와 오류 검출 필드 등을 덧붙인 전송 모드 종속 프레임.
+- PDU (Protocol Data Unit) : 기능 코드와 데이터로 구성되는 전송 모드 독립 부분.
+- ADU (Application Data Unit) : 주소와 오류 검출 필드 등을 덧붙인 전송 모드 종속 프레임.
 
 ```text
 [ MODBUS RTU 프레임 (ADU) ]
@@ -65,8 +65,8 @@ PDU : 기능 코드 + 데이터
 TCP 포트 502 전송
 ```
 
-- **MBAP 헤더** (Modbus Application Protocol Header) : 트랜잭션 식별자·프로토콜 식별자·길이·유닛 식별자를 담아 요청과 응답을 짝짓는 헤더.
-- **CRC** (Cyclic Redundancy Check) : RTU 프레임 끝에 붙는 16비트 오류 검출 값.
+- MBAP 헤더 (Modbus Application Protocol Header) : 트랜잭션 식별자·프로토콜 식별자·길이·유닛 식별자를 담아 요청과 응답을 짝짓는 헤더.
+- CRC (Cyclic Redundancy Check) : RTU 프레임 끝에 붙는 16비트 오류 검출 값.
 
 ## Ⅳ. MODBUS 전송 모드의 비교
 

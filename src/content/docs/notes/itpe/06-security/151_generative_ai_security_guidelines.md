@@ -22,8 +22,8 @@ extra:
 ## Ⅰ. 생성형 AI 보안 가이드라인의 개요
 
 - 핵심 요약 : 생성형 AI의 기획부터 폐기까지 기술 취약점과 법적 위험을 통제하는 국제 거버넌스 프레임워크.
-- 개념 : 조직이 생성형 AI 모델(**LLM** (Large Language Model) 포함)과 응용 서비스를 기획, 조달, 개발, 배포, 폐기하는 전 수명주기에서 기술 취약점, 개인정보 침해, 편향, 법적 규제 위험을 식별하고 통제하기 위한 **보안 거버넌스** 체계. 대표적으로 **NIST AI RMF** (NIST, National Institute of Standards and Technology, AI Risk Management Framework)와 **ISO/IEC 42001** (ISO, International Organization for Standardization / IEC, International Electrotechnical Commission 42001)이 있.
-- 배경 및 필요성 : 생성형 AI의 확산으로 생산성은 높아졌지만, **환각** (Hallucination), 저작권 소송, **딥페이크** (Deepfake) 악용, 적대적 공격 등 여러 위험이 함께 커져 국가와 국제 기구의 통합 기준 정립이 빨라졌.
+- 개념 : 조직이 생성형 AI 모델(LLM (Large Language Model) 포함)과 응용 서비스를 기획, 조달, 개발, 배포, 폐기하는 전 수명주기에서 기술 취약점, 개인정보 침해, 편향, 법적 규제 위험을 식별하고 통제하기 위한 보안 거버넌스 체계. 대표적으로 NIST AI RMF (NIST, National Institute of Standards and Technology, AI Risk Management Framework)와 ISO/IEC 42001 (ISO, International Organization for Standardization / IEC, International Electrotechnical Commission 42001)이 있.
+- 배경 및 필요성 : 생성형 AI의 확산으로 생산성은 높아졌지만, 환각 (Hallucination), 저작권 소송, 딥페이크 (Deepfake) 악용, 적대적 공격 등 여러 위험이 함께 커져 국가와 국제 기구의 통합 기준 정립이 빨라졌.
 - 주요 목적 : 신뢰할 수 있는 AI를 구현하고, EU AI Act(EU 인공지능법) 같은 규제에 선제 대응하여 사업 지속성과 규제 준수를 확보하는 것.
 
 ## Ⅱ. 생성형 AI 보안 가이드라인의 특징 및 장점
@@ -31,9 +31,9 @@ extra:
 - 핵심 요약 : 위험 관리 프레임워크와 경영 시스템 표준을 결합해, 기술 통제와 조직 책임을 한 체계로 묶는 구조.
 
 1. 4대 기능의 순환 : NIST AI RMF의 Govern, Map, Measure, Manage 기능이 순환하며 위험을 다룸 → 사전 식별부터 사후 대응까지 빈틈이 감소.
-2. 경영 시스템 인증 : **ISO/IEC 42001** (AI 경영시스템, AIMS, AI Management System)의 PDCA(Plan, Do, Check, Act) 순환을 따르면 AI 수명주기 관리를 제3자 인증으로 입증할 수 있음 → 대외 신뢰도 확보.
+2. 경영 시스템 인증 : ISO/IEC 42001 (AI 경영시스템, AIMS, AI Management System)의 PDCA(Plan, Do, Check, Act) 순환을 따르면 AI 수명주기 관리를 제3자 인증으로 입증할 수 있음 → 대외 신뢰도 확보.
 3. 위험 등급별 차등 통제 : 고위험 응용과 저위험 응용에 다른 통제를 적용 → 규제 비용을 위험에 비례하게 배분.
-4. 실무 점검 기준 : **OWASP** (Open Worldwide Application Security Project)의 LLM 체크리스트는 개발자가 바로 적용할 수 있는 기술 항목을 제공함 → 정책과 구현의 간격을 좁힘.
+4. 실무 점검 기준 : OWASP (Open Worldwide Application Security Project)의 LLM 체크리스트는 개발자가 바로 적용할 수 있는 기술 항목을 제공함 → 정책과 구현의 간격을 좁힘.
 
 ## Ⅲ. 생성형 AI 보안 가이드라인의 구조 (흐름)
 

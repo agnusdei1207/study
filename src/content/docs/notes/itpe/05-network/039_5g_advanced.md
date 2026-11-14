@@ -22,7 +22,7 @@ extra:
 ## Ⅰ. 5G-Advanced의 개요
 
 - 핵심 요약 : 상용 5G의 한계를 AI 무선 제어와 경량 단말, 위성 연동으로 보완하는 3GPP 고도화 단계.
-- 개념 : 3GPP(3rd Generation Partnership Project) Release 18부터 시작되는 5G 규격의 고도화 단계인 **5G-Advanced**. Release 18·19를 거치며 6G로 이어지는 가교 역할을 수행함.
+- 개념 : 3GPP(3rd Generation Partnership Project) Release 18부터 시작되는 5G 규격의 고도화 단계인 5G-Advanced. Release 18·19를 거치며 6G로 이어지는 가교 역할을 수행함.
 - 배경 및 필요성 : 초기 5G는 상향 용량 부족, 저가 IoT(Internet of Things) 단말의 대량 수용 한계, 기지국 전력 부담이 드러났고, XR(Extended Reality)과 지능형 공장 같은 신규 서비스의 규격적 뒷받침이 요구됨.
 - 주요 목적 :
   1. 무선 인터페이스의 지능화
@@ -34,11 +34,11 @@ extra:
 
 - 핵심 요약 : AI 기반 무선 제어와 서비스 맞춤형 기능이 효율과 실시간성을 동시에 높이는 구조.
 
-1. **AI/ML 네이티브 무선 인터페이스** : 채널 상태 정보(CSI, Channel State Information) 피드백과 빔 관리·측위에 학습 모델을 적용 → 피드백 부담 감소와 빔 선택 정확도 향상.
+1. AI/ML 네이티브 무선 인터페이스 : 채널 상태 정보(CSI, Channel State Information) 피드백과 빔 관리·측위에 학습 모델을 적용 → 피드백 부담 감소와 빔 선택 정확도 향상.
 2. XR 인지 스케줄링 : 프레임 주기와 트래픽 크기 특성을 스케줄러에 반영 → XR 트래픽의 지터 억제와 안정적 화질 유지.
-3. **RedCap** (Reduced Capability) : 대역폭·안테나 수를 줄인 경량 단말 규격 → IoT 단말의 원가와 전력 소모 절감.
-4. **NTN** (Non-Terrestrial Network) 고도화 : 위성·고고도 플랫폼과의 연동 규격 강화 → 지상망 음영 지역의 커버리지 보완.
-5. **NES** (Network Energy Savings) : 트래픽 부하에 따른 기지국 절전 동작 → 운영 전력비 절감.
+3. RedCap (Reduced Capability) : 대역폭·안테나 수를 줄인 경량 단말 규격 → IoT 단말의 원가와 전력 소모 절감.
+4. NTN (Non-Terrestrial Network) 고도화 : 위성·고고도 플랫폼과의 연동 규격 강화 → 지상망 음영 지역의 커버리지 보완.
+5. NES (Network Energy Savings) : 트래픽 부하에 따른 기지국 절전 동작 → 운영 전력비 절감.
 6. 사이드링크(Sidelink) 발전 : 단말 간 직접 통신 기능의 강화 → 차량 협력 주행과 무인 이동체 통신의 지연 단축.
 
 ## Ⅲ. 5G-Advanced의 구조 (흐름)

@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. DSML(Data Science and Machine Learning) 프로젝트의 개요
 
 - 핵심 요약 : 데이터 분석, 모델링, 운영 자동화를 하나의 반복 생애주기로 묶어 비즈니스 가치를 지속적으로 만드는 엔지니어링 체계.
-- 개념 : 정형·비정형 데이터를 분석하고 가설을 세워 머신러닝 모델을 만든 뒤, 배포와 재학습까지 운영하는 **DSML 프로젝트** (DSML, Data Science and Machine Learning 기반의 개발·운영 생애주기). 운영 단계는 **MLOps** (Machine Learning Operations, 모델 개발과 운영을 자동화·표준화하는 실천 체계)가 담당함.
-- 배경 및 필요성 : 실험 환경에서 정확도만 높이는 데 머물면 운영 단계에서 서빙 장애와 기술 부채가 커짐. 그래서 **PoC** (Proof of Concept, 개념 검증) 이후 실제 서비스로 넘어가려면 **피처 스토어** (Feature Store, 학습과 서빙이 같은 입력 변수를 공유하도록 관리하는 저장소)와 **CI/CD/CT** (Continuous Integration, Continuous Delivery, Continuous Training)에 기반한 자동화 파이프라인이 필수임.
-- 주요 목적 : 데이터 기반 의사결정 자동화, 수작업 프로세스의 지능화, 투자 대비 효과인 **ROI** (Return on Investment) 입증.
+- 개념 : 정형·비정형 데이터를 분석하고 가설을 세워 머신러닝 모델을 만든 뒤, 배포와 재학습까지 운영하는 DSML 프로젝트 (DSML, Data Science and Machine Learning 기반의 개발·운영 생애주기). 운영 단계는 MLOps (Machine Learning Operations, 모델 개발과 운영을 자동화·표준화하는 실천 체계)가 담당함.
+- 배경 및 필요성 : 실험 환경에서 정확도만 높이는 데 머물면 운영 단계에서 서빙 장애와 기술 부채가 커짐. 그래서 PoC (Proof of Concept, 개념 검증) 이후 실제 서비스로 넘어가려면 피처 스토어 (Feature Store, 학습과 서빙이 같은 입력 변수를 공유하도록 관리하는 저장소)와 CI/CD/CT (Continuous Integration, Continuous Delivery, Continuous Training)에 기반한 자동화 파이프라인이 필수임.
+- 주요 목적 : 데이터 기반 의사결정 자동화, 수작업 프로세스의 지능화, 투자 대비 효과인 ROI (Return on Investment) 입증.
 
 ## Ⅱ. DSML(Data Science and Machine Learning) 프로젝트의 특징 및 장점
 
@@ -33,14 +33,14 @@ extra:
 1. 가설 기반 반복 : 고정된 요구 명세 대신 실험 결과로 목표를 갱신 → 성능이 점진적으로 수렴.
 2. 데이터 종속성 관리 : 결측, 이상치, 클래스 불균형을 상시 통제 → 입력 품질에 따른 성능 편차 감소.
 3. 다학제 협업 : 현업 도메인 전문가, 데이터 과학자, 머신러닝 엔지니어, 데이터 엔지니어가 공동 수행 → 실험에서 운영으로 넘어가는 인계 지연 감소.
-4. 3원 거버넌스 : 코드, 데이터, 모델을 함께 버전 관리하는 **데이터 버전 관리** (DVC, Data Version Control, 데이터셋의 변경 이력을 추적하는 도구) → 실험 결과를 되짚어 재현 가능.
+4. 3원 거버넌스 : 코드, 데이터, 모델을 함께 버전 관리하는 데이터 버전 관리 (DVC, Data Version Control, 데이터셋의 변경 이력을 추적하는 도구) → 실험 결과를 되짚어 재현 가능.
 
 ## Ⅲ. DSML(Data Science and Machine Learning) 프로젝트의 구조 (흐름)
 
 - 핵심 요약 : 비즈니스 정의에서 운영 감시까지 4단계가 이어지고, 운영 중 드리프트가 재학습을 촉발하는 순환 구조.
-- 1단계 : 정량적 KPI를 정하고, 예측 시점과 추론 지연 한계인 **SLA** (Service Level Agreement, 서비스 수준 협약)를 정의함.
-- 2단계 : **탐색적 데이터 분석** (EDA, Exploratory Data Analysis, 분포, 결측, 이상치를 시각화와 통계로 살피는 단계)을 거친 뒤 수집, 정제, 인코딩, 스케일링으로 피처를 만들고 온라인과 오프라인에 함께 등록함.
-- 3단계 : 복수 알고리즘을 비교하고, 실험 파라미터와 지표를 **실험 추적** (Experiment Tracking, 실험의 설정과 결과를 자동 기록하는 활동)으로 남긴 뒤 독립 테스트 셋으로 평가함.
+- 1단계 : 정량적 KPI를 정하고, 예측 시점과 추론 지연 한계인 SLA (Service Level Agreement, 서비스 수준 협약)를 정의함.
+- 2단계 : 탐색적 데이터 분석 (EDA, Exploratory Data Analysis, 분포, 결측, 이상치를 시각화와 통계로 살피는 단계)을 거친 뒤 수집, 정제, 인코딩, 스케일링으로 피처를 만들고 온라인과 오프라인에 함께 등록함.
+- 3단계 : 복수 알고리즘을 비교하고, 실험 파라미터와 지표를 실험 추적 (Experiment Tracking, 실험의 설정과 결과를 자동 기록하는 활동)으로 남긴 뒤 독립 테스트 셋으로 평가함.
 - 4단계 : 점진 배포로 실무 트래픽을 검증하고, 드리프트를 감시하며, 임계치를 넘으면 재학습을 실행함.
 
 ```text
@@ -67,8 +67,8 @@ extra:
 검증 통과 시 모델 레지스트리 갱신
 ```
 
-- **데이터 드리프트** (Data Drift, 입력 데이터 분포의 변화)와 **개념 드리프트** (Concept Drift, 입력과 정답의 관계 변화)을 구분해 감시함.
-- **모델 레지스트리** (Model Registry, 학습된 모델의 버전과 승인 상태를 관리하는 저장소)에 등록된 모델만 배포 대상으로 삼음.
+- 데이터 드리프트 (Data Drift, 입력 데이터 분포의 변화)와 개념 드리프트 (Concept Drift, 입력과 정답의 관계 변화)을 구분해 감시함.
+- 모델 레지스트리 (Model Registry, 학습된 모델의 버전과 승인 상태를 관리하는 저장소)에 등록된 모델만 배포 대상으로 삼음.
 
 ## Ⅳ. DSML(Data Science and Machine Learning) 프로젝트와 전통 소프트웨어 개발의 비교
 

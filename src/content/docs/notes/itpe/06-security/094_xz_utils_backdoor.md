@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. XZ Utils 백도어(CVE-2024-3094)의 개요
 
 - 핵심 요약 : 리눅스 압축 라이브러리의 배포 아카이브 안에 숨겨져 SSH 인증을 우회하려 한 공급망 백도어.
-- 개념 : 리눅스 배포판에 널리 쓰이는 압축 라이브러리 liblzma(XZ Utils)의 공식 배포 tarball에 은닉된 **공급망 백도어** (Supply Chain Backdoor, 빌드와 배포 과정에 심어진 악성 코드)로, OpenSSH 서버(sshd)를 하이재킹해 인증 없이 원격 코드 실행(RCE, Remote Code Execution)을 가능하게 하려 한 사건. 취약점 식별 번호는 CVE(Common Vulnerabilities and Exposures) CVE-2024-3094임.
+- 개념 : 리눅스 배포판에 널리 쓰이는 압축 라이브러리 liblzma(XZ Utils)의 공식 배포 tarball에 은닉된 공급망 백도어 (Supply Chain Backdoor, 빌드와 배포 과정에 심어진 악성 코드)로, OpenSSH 서버(sshd)를 하이재킹해 인증 없이 원격 코드 실행(RCE, Remote Code Execution)을 가능하게 하려 한 사건. 취약점 식별 번호는 CVE(Common Vulnerabilities and Exposures) CVE-2024-3094임.
 - 배경 및 필요성 : 2024년 3월 말 SSH 접속 지연을 추적하던 개발자가 이상을 발견해 정식 배포판으로 확산되기 전에 차단됨. 리눅스 핵심 라이브러리의 빌드 과정에 수년간 정교하게 침투한 사례로, 오픈소스 기여 거버넌스와 배포물 무결성 검증의 중요성을 드러냄.
 - 주요 목적 : 원격 접속의 관문인 SSH 데몬에 은밀한 통로를 만들어 임의 시스템의 제어권을 확보하는 것.
 
@@ -59,8 +59,8 @@ RSA_public_decrypt를 공격자 루틴으로 교체
 서명된 인증 요청에만 명령 셸 제공
 ```
 
-1. **IFUNC** (GNU Indirect Functions, 동적 링커가 심볼 해석 시점에 구현 함수를 선택하는 기능) 후킹 : 실행 초기에 함수 주소 결정 과정을 가로채 임의 코드를 실행.
-2. **GOT** (Global Offset Table, 동적 링크된 함수 주소를 담는 전역 테이블) 변조 : sshd의 인증 확인 함수인 RSA_public_decrypt의 주소를 백도어 루틴으로 교체.
+1. IFUNC (GNU Indirect Functions, 동적 링커가 심볼 해석 시점에 구현 함수를 선택하는 기능) 후킹 : 실행 초기에 함수 주소 결정 과정을 가로채 임의 코드를 실행.
+2. GOT (Global Offset Table, 동적 링크된 함수 주소를 담는 전역 테이블) 변조 : sshd의 인증 확인 함수인 RSA_public_decrypt의 주소를 백도어 루틴으로 교체.
 3. 페이로드 은닉 : 테스트 디렉터리의 정상처럼 보이는 파일에서 `sed`와 `tr` 명령으로 바이너리를 복원.
 4. 서명 기반 실행 : 공격자의 Ed448 개인키로 서명된 인증 패킷에만 명령 셸을 제공하는 비대칭 서명 방식.
 

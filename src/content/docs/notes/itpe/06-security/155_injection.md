@@ -22,9 +22,9 @@ extra:
 ## Ⅰ. 인젝션(Injection) 공격의 개요
 
 - 핵심 요약 : 신뢰할 수 없는 입력이 명령이나 쿼리의 일부로 해석되어 실행되는 취약점 공격군.
-- 개념 : 외부 입력값이 애플리케이션의 **인터프리터** (Interpreter)나 **파서** (Parser)에 의해 문법적 명령의 일부로 오해되어 그대로 실행됨으로써, 데이터베이스를 탈취하거나 OS 쉘 명령을 실행하게 되는 취약점 공격군이며 OWASP(Open Worldwide Application Security Project) Top 10에 꼽히는 대표 위협.
+- 개념 : 외부 입력값이 애플리케이션의 인터프리터 (Interpreter)나 파서 (Parser)에 의해 문법적 명령의 일부로 오해되어 그대로 실행됨으로써, 데이터베이스를 탈취하거나 OS 쉘 명령을 실행하게 되는 취약점 공격군이며 OWASP(Open Worldwide Application Security Project) Top 10에 꼽히는 대표 위협.
 - 배경 및 필요성 : 사용자 입력을 순수한 데이터로 다루지 않고 명령 문자열에 그대로 결합하는 구현 관행 때문에 제어 흐름이 공격자의 의도대로 바뀌는 결함이 반복해서 발생.
-- 주요 목적 : 공격자가 인증을 우회하고, 데이터베이스를 빼내고, 서버 파일을 조작하며, 궁극적으로 **임의 코드 실행** (RCE, Remote Code Execution)으로 서버 전체를 장악하는 것.
+- 주요 목적 : 공격자가 인증을 우회하고, 데이터베이스를 빼내고, 서버 파일을 조작하며, 궁극적으로 임의 코드 실행 (RCE, Remote Code Execution)으로 서버 전체를 장악하는 것.
 
 ## Ⅱ. 인젝션(Injection) 공격의 특징 및 장점
 
@@ -34,7 +34,7 @@ extra:
 2. 인터프리터별 분화 : 대상 해석기의 문법에 맞춘 페이로드 작성 → SQL, OS 명령, LDAP, 템플릿 등 여러 영역으로 공격 확장.
 3. 연쇄 피해 : 인증 우회 후 데이터 유출, 쉘 획득으로 이어짐 → 단일 입력 지점의 결함이 서버 전체 장악으로 확대.
 
-분류는 대상 인터프리터에 따라 **SQL 인젝션** (SQL Injection), **OS 명령 인젝션** (OS Command Injection), **LDAP 인젝션** (LDAP Injection), XPath/XQuery 인젝션, **SSTI** (Server-Side Template Injection, 서버 측 템플릿 인젝션) 등으로 구분.
+분류는 대상 인터프리터에 따라 SQL 인젝션 (SQL Injection), OS 명령 인젝션 (OS Command Injection), LDAP 인젝션 (LDAP Injection), XPath/XQuery 인젝션, SSTI (Server-Side Template Injection, 서버 측 템플릿 인젝션) 등으로 구분.
 
 ## Ⅲ. 인젝션(Injection) 공격의 구조 (흐름)
 

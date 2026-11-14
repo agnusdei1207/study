@@ -21,8 +21,8 @@ extra:
 ## Ⅰ. 경계 기반 보안(Perimeter Security)의 개요
 
 - 핵심 요약 : 내부망과 외부망의 경계에 방화벽과 VPN을 세워 외부 위협의 진입을 막는 전통적 보안 접근법.
-- 개념 : 외부 인터넷과 사내망의 경계 지점에 방화벽, 침입방지시스템(IPS, Intrusion Prevention System), VPN(Virtual Private Network)을 배치해 외부 위협의 진입을 통제하는 **경계 기반 보안** (Perimeter Security, 내부망을 신뢰하고 경계에서 위협을 차단하는 접근법).
-- 배경 및 필요성 : 신뢰하는 내부망과 신뢰하지 않는 외부망을 나누는 모델로 오랫동안 쓰였으나, 클라우드와 원격근무가 확산되면서 내부와 외부의 경계가 흐려져 **제로트러스트 아키텍처** (ZTA, Zero Trust Architecture, 네트워크 위치와 무관하게 모든 접근을 검증하는 보안 모델)로 발전하는 중임.
+- 개념 : 외부 인터넷과 사내망의 경계 지점에 방화벽, 침입방지시스템(IPS, Intrusion Prevention System), VPN(Virtual Private Network)을 배치해 외부 위협의 진입을 통제하는 경계 기반 보안 (Perimeter Security, 내부망을 신뢰하고 경계에서 위협을 차단하는 접근법).
+- 배경 및 필요성 : 신뢰하는 내부망과 신뢰하지 않는 외부망을 나누는 모델로 오랫동안 쓰였으나, 클라우드와 원격근무가 확산되면서 내부와 외부의 경계가 흐려져 제로트러스트 아키텍처 (ZTA, Zero Trust Architecture, 네트워크 위치와 무관하게 모든 접근을 검증하는 보안 모델)로 발전하는 중임.
 - 주요 목적 : 경계 지점에서 트래픽을 중앙 집중 검사하고, 비무장지대(DMZ, Demilitarized Zone) 같은 구역으로 내부 자산을 물리적·논리적으로 보호하는 것.
 
 ## Ⅱ. 경계 기반 보안(Perimeter Security)의 특징 및 장점
@@ -65,7 +65,7 @@ extra:
 
 1. 신원 (Identity) : 1회성 VPN 로그인에서 피싱 저항성 다단계 인증(FIDO2)과 위험 기반 연속 인증(CARTA, Continuous Adaptive Risk and Trust Assessment)으로 전환.
 2. 기기 (Device) : 자산 등록 여부와 EDR 기반 무결성 상태를 접속 시점마다 평가.
-3. **마이크로세그멘테이션** (Microsegmentation, 워크로드 사이의 통신을 세밀하게 나눠 허용된 흐름만 통과시키는 기법) : 내부 서버 사이를 개별 정책으로 격리.
+3. 마이크로세그멘테이션 (Microsegmentation, 워크로드 사이의 통신을 세밀하게 나눠 허용된 흐름만 통과시키는 기법) : 내부 서버 사이를 개별 정책으로 격리.
 4. 워크로드 (Workload) : 서비스 메시의 상호 TLS(mTLS, mutual TLS)로 서비스 간 신원을 확인.
 5. 데이터 (Data) : 데이터 분류에 따른 암호화와 DLP(Data Loss Prevention) 적용으로 데이터 자체에 통제를 부여.
 
@@ -90,7 +90,7 @@ extra:
 | --- | --- | --- | --- |
 | 원격 근무 트래픽 집중 | VPN 장비로 트래픽이 몰려 대역폭 병목과 가용성 저하 발생 | 사용자와 가까운 지점에서 검사하는 보안 서비스 엣지(SSE, Security Service Edge)와 보안 접근 서비스 엣지(SASE, Secure Access Service Edge) 도입 | 원격 접속 지연 시간 |
 | 내부 횡적 통신 무통제 | 경계 통과 후 내부 호스트 간 접근 통제와 모니터링 부재 | 호스트 방화벽과 eBPF(Extended Berkeley Packet Filter) 기반 마이크로세그멘테이션 솔루션(예: Cilium)으로 프로세스 단위 통신 제한 | 차단된 횡적 통신 건수 |
-| 탈취된 자격증명의 정상 행세 | 정상 계정으로 접속하면 경계 장비가 악의를 구분하지 못함 | **사용자 및 엔티티 행위 분석** (UEBA, User and Entity Behavior Analytics)으로 평소와 다른 자원 접근, 대량 다운로드를 탐지해 세션 강제 종료 | 이상 행위 탐지 건수 |
+| 탈취된 자격증명의 정상 행세 | 정상 계정으로 접속하면 경계 장비가 악의를 구분하지 못함 | 사용자 및 엔티티 행위 분석 (UEBA, User and Entity Behavior Analytics)으로 평소와 다른 자원 접근, 대량 다운로드를 탐지해 세션 강제 종료 | 이상 행위 탐지 건수 |
 | 레거시 시스템의 에이전트 설치 불가 | 구형 프로토콜 기간계 시스템에 ZTNA 에이전트를 설치할 수 없음 | 레거시 자산 앞에 역방향 프록시(Reverse Proxy)나 점프 호스트(Bastion)를 배치하고, 시간 제한 단기 토큰으로 접근 중계 | 점프 호스트 경유 접속 비율 |
 
 ## Ⅵ. 경계 기반 보안(Perimeter Security)에 대한 기술사적 제언

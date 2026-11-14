@@ -22,18 +22,18 @@ extra:
 ## Ⅰ. 클라우드 보안(CSAP·ISO/IEC 27017)의 개요
 
 - 핵심 요약 : 클라우드 환경의 설정 오류와 자격증명 유출을 막고 국내외 인증 기준을 충족하도록 책임을 나누어 관리하는 보안 체계.
-- 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service) 등 클라우드 서비스에서 발생하는 데이터 유출, 설정 오류, API(Application Programming Interface) 침해를 방어하기 위해 **책임 공유 모델** (Shared Responsibility Model)에 따라 보안 책임을 나누는 체계.
-- 배경 및 필요성 : 온프레미스에서 클라우드로 전환하면서 물리적 경계가 사라지고, **CSP** (Cloud Service Provider, 클라우드 서비스 제공자)의 인프라 장애와 고객의 설정 오류가 모두 사고 원인이 되므로, 두 주체의 책임을 명확히 할 필요가 생김.
-- 주요 목적 : 클라우드 데이터 기밀성 유지, 안전한 워크로드 운영, 공공과 기업의 규제 준수를 위한 **CSAP** (Cloud Security Assurance Program, 클라우드 보안인증제) 및 ISO/IEC 27017 대응.
+- 개념 : IaaS(Infrastructure as a Service), PaaS(Platform as a Service), SaaS(Software as a Service) 등 클라우드 서비스에서 발생하는 데이터 유출, 설정 오류, API(Application Programming Interface) 침해를 방어하기 위해 책임 공유 모델 (Shared Responsibility Model)에 따라 보안 책임을 나누는 체계.
+- 배경 및 필요성 : 온프레미스에서 클라우드로 전환하면서 물리적 경계가 사라지고, CSP (Cloud Service Provider, 클라우드 서비스 제공자)의 인프라 장애와 고객의 설정 오류가 모두 사고 원인이 되므로, 두 주체의 책임을 명확히 할 필요가 생김.
+- 주요 목적 : 클라우드 데이터 기밀성 유지, 안전한 워크로드 운영, 공공과 기업의 규제 준수를 위한 CSAP (Cloud Security Assurance Program, 클라우드 보안인증제) 및 ISO/IEC 27017 대응.
 
 ## Ⅱ. 클라우드 보안(CSAP·ISO/IEC 27017)의 특징 및 장점
 
 - 핵심 요약 : 책임 경계의 명시, 설정 상태의 상시 점검, 워크로드 런타임 보호가 결합되어 클라우드 설정 오류를 조기에 찾고 관리 범위를 단일화하는 구조.
 
-1. **책임 공유 모델** (Shared Responsibility Model, 인프라는 CSP가, 데이터와 설정은 고객이 맡는 책임 분담 원칙) : 책임 분계점이 서비스 모델별로 정해져 보안 책임 누락을 줄임.
-2. **CSPM** (Cloud Security Posture Management, 클라우드 설정 상태 점검 관리) : 클라우드 API로 자산 설정을 주기적으로 점검 → 공개 설정과 과다 권한의 조기 탐지.
-3. **CWPP** (Cloud Workload Protection Platform, 클라우드 워크로드 보호 플랫폼) : 컨테이너와 VM(Virtual Machine) 등 실행 중인 워크로드를 보호 → 런타임 위협의 즉시 차단.
-4. **CNAPP** (Cloud-Native Application Protection Platform, 클라우드 네이티브 애플리케이션 보호 플랫폼) : CSPM과 CWPP 등 기능을 통합 → 멀티 클라우드를 단일 화면에서 관리.
+1. 책임 공유 모델 (Shared Responsibility Model, 인프라는 CSP가, 데이터와 설정은 고객이 맡는 책임 분담 원칙) : 책임 분계점이 서비스 모델별로 정해져 보안 책임 누락을 줄임.
+2. CSPM (Cloud Security Posture Management, 클라우드 설정 상태 점검 관리) : 클라우드 API로 자산 설정을 주기적으로 점검 → 공개 설정과 과다 권한의 조기 탐지.
+3. CWPP (Cloud Workload Protection Platform, 클라우드 워크로드 보호 플랫폼) : 컨테이너와 VM(Virtual Machine) 등 실행 중인 워크로드를 보호 → 런타임 위협의 즉시 차단.
+4. CNAPP (Cloud-Native Application Protection Platform, 클라우드 네이티브 애플리케이션 보호 플랫폼) : CSPM과 CWPP 등 기능을 통합 → 멀티 클라우드를 단일 화면에서 관리.
 
 ## Ⅲ. 클라우드 보안(CSAP·ISO/IEC 27017)의 구조 (흐름)
 
@@ -73,8 +73,8 @@ CWPP (컨테이너·VM 보호)
 CNAPP (멀티 클라우드 관리)
 ```
 
-- **CSAP** (Cloud Security Assurance Program, 클라우드 보안인증제) : 공공기관에 민간 클라우드를 공급하기 위해 과학기술정보통신부와 KISA(Korea Internet & Security Agency, 한국인터넷진흥원)가 주관하는 인증 제도로, 시스템 중요도에 따른 상·중·하 등급으로 운영.
-- **ISO/IEC 27017** (클라우드 서비스 정보보호 국제 표준) : ISO/IEC 27002를 바탕으로 클라우드 환경에 특화된 추가 통제 7개를 규정한 국제 표준.
+- CSAP (Cloud Security Assurance Program, 클라우드 보안인증제) : 공공기관에 민간 클라우드를 공급하기 위해 과학기술정보통신부와 KISA(Korea Internet & Security Agency, 한국인터넷진흥원)가 주관하는 인증 제도로, 시스템 중요도에 따른 상·중·하 등급으로 운영.
+- ISO/IEC 27017 (클라우드 서비스 정보보호 국제 표준) : ISO/IEC 27002를 바탕으로 클라우드 환경에 특화된 추가 통제 7개를 규정한 국제 표준.
 
 ## Ⅳ. 온프레미스 보안과 클라우드 보안의 비교
 

@@ -21,7 +21,7 @@ extra:
 ## Ⅰ. 전자정부 발전지수(E-Government Development Index)의 개요
 
 - 핵심 요약 : 유엔이 회원국의 전자정부 역량을 세 가지 지수의 평균으로 비교하는 국제 평가 지표.
-- 개념 : **유엔 경제사회국** (UN DESA, United Nations Department of Economic and Social Affairs)이 193개 회원국을 대상으로 조사하는 **전자정부 발전지수** (EGDI).
+- 개념 : 유엔 경제사회국 (UN DESA, United Nations Department of Economic and Social Affairs)이 193개 회원국을 대상으로 조사하는 전자정부 발전지수 (EGDI).
 - 배경 및 필요성 : 온라인 서비스 구축 수준과 통신 보급은 높아도 인적 역량과 서비스 체감도가 뒤처지는 경우가 있어, 종합 지표로 국가 간 격차를 진단할 필요가 생김.
 - 주요 목적 : 국가별 디지털 정부 발전 격차 진단, 공공 서비스 혁신 방향 제시.
 - 국내 현황 : 한국은 2010·2012·2014년 1위였고, 2022년 3위를 거쳐 2024년 평가에서 4위(EGDI 0.9679)를 기록함.
@@ -37,8 +37,8 @@ extra:
 ## Ⅲ. 전자정부 발전지수(E-Government Development Index)의 구조 (흐름)
 
 - 핵심 요약 : 세 지수를 각각 산출한 뒤 평균으로 합치고, 그 결과로 국가 순위와 등급을 정하는 단계형 산출 구조.
-- **온라인 서비스 지수** (OSI, Online Service Index) : 정부 포털과 주요 공공 서비스의 제공 수준을 평가하는 지수.
-- **인적 자본 지수** (HCI, Human Capital Index) : 교육 수준과 문해 역량을 측정하는 지수.
+- 온라인 서비스 지수 (OSI, Online Service Index) : 정부 포털과 주요 공공 서비스의 제공 수준을 평가하는 지수.
+- 인적 자본 지수 (HCI, Human Capital Index) : 교육 수준과 문해 역량을 측정하는 지수.
 
 ```text
 [ 1. 3대 지수 산출 ]

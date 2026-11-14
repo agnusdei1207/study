@@ -22,8 +22,8 @@ extra:
 ## Ⅰ. SWIFT 금융 메시징의 개요
 
 - 핵심 요약 : 전 세계 금융기관이 국경 간 송금 지시를 표준 전문으로 주고받는 폐쇄형 금융 메시징망이며, 전문 체계가 ISO 20022로 옮겨가는 중임.
-- 개념 : 외환 송금과 신용장 등 금융 거래 지시를 기밀성과 무결성을 갖춰 중계하는 **금융 메시징** (Financial Messaging) 네트워크로, SWIFT(Society for Worldwide Interbank Financial Telecommunication)가 운영하는 망(SWIFTNet)이 대표적임.
-- 배경 및 필요성 : 기존 **MT** (Message Type) 전문은 고정 필드 기반 텍스트라 데이터 표현력에 한계가 있어, 구조화된 XML 기반 **ISO 20022** (International Organization for Standardization 20022) MX 전문으로의 전환이 진행됨. SWIFT 발표 기준 MT와 MX의 공존 기간은 2025년 11월 22일에 끝났으며, 전환 과정에서는 데이터 절단과 레거시 매핑 오류를 막는 변환 검증이 필요함.
+- 개념 : 외환 송금과 신용장 등 금융 거래 지시를 기밀성과 무결성을 갖춰 중계하는 금융 메시징 (Financial Messaging) 네트워크로, SWIFT(Society for Worldwide Interbank Financial Telecommunication)가 운영하는 망(SWIFTNet)이 대표적임.
+- 배경 및 필요성 : 기존 MT (Message Type) 전문은 고정 필드 기반 텍스트라 데이터 표현력에 한계가 있어, 구조화된 XML 기반 ISO 20022 (International Organization for Standardization 20022) MX 전문으로의 전환이 진행됨. SWIFT 발표 기준 MT와 MX의 공존 기간은 2025년 11월 22일에 끝났으며, 전환 과정에서는 데이터 절단과 레거시 매핑 오류를 막는 변환 검증이 필요함.
 - 주요 목적 : 국가별로 다른 금융 시스템 간 상호운용성 확보, 송금 처리의 자동화(STP, Straight-Through Processing), 결제 위험 축소.
 
 ## Ⅱ. SWIFT 금융 메시징의 특징 및 장점
@@ -31,13 +31,13 @@ extra:
 - 핵심 요약 : 메시지 표준화와 거래 추적 식별자, 암호화 통제가 결합되어 송금의 투명성과 보안을 함께 확보하는 구조.
 
 1. 구조화된 정형 메시지 : ISO 20022 XML 전문에 송수취인 정보를 태그 단위로 담음 → 자금세탁방지(AML) 자동 스크리닝의 정밀도 향상.
-2. **UETR** (Unique End-to-end Transaction Reference) 기반 추적 : 거래마다 고유 식별자를 부여해 **SWIFT gpi** (global payments innovation)가 구간별 처리 상태를 추적 → 송금 진행 상황과 수수료의 투명성 확보.
-3. 보안 통제 : 공개키 기반 구조(PKI)의 상호인증과 **HSM** (Hardware Security Module, 하드웨어 보안 모듈) 기반 암호화 → 전문의 위조와 변조 차단.
+2. UETR (Unique End-to-end Transaction Reference) 기반 추적 : 거래마다 고유 식별자를 부여해 SWIFT gpi (global payments innovation)가 구간별 처리 상태를 추적 → 송금 진행 상황과 수수료의 투명성 확보.
+3. 보안 통제 : 공개키 기반 구조(PKI)의 상호인증과 HSM (Hardware Security Module, 하드웨어 보안 모듈) 기반 암호화 → 전문의 위조와 변조 차단.
 
 ## Ⅲ. SWIFT 금융 메시징의 구조 (흐름)
 
 - 핵심 요약 : 송신 은행의 pacs.008 전문이 SWIFT 메시징망과 gpi 추적 체계를 거쳐 수신 은행까지 전달되는 흐름.
-- **중계 은행** (Correspondent Bank) : 국가 간 외환 정산에서 전문을 릴레이하는 은행.
+- 중계 은행 (Correspondent Bank) : 국가 간 외환 정산에서 전문을 릴레이하는 은행.
 
 ```text
 [ 국경 간 송금 전문 흐름 ]
@@ -83,8 +83,8 @@ gpi 엔드투엔드 추적
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | MT-MX 변환 중 데이터 절단 | 인라인 변환에서 구조화 필드가 잘려 감사 추적이 불완전해짐 | SWIFT Transaction Manager를 통한 변환 데이터 복원, 코어뱅킹의 네이티브 ISO 20022 모델 전환 | 변환 오류 건수 |
-| 로컬 게이트웨이 침해 | 2016년 방글라데시 중앙은행 사건처럼 금융기관 로컬 시스템이 뚫려 위조 전문이 승인될 위험 | **CSP** (Customer Security Programme) 통제 준수, MFA(Multi-Factor Authentication) 다단계 인증, HSM 물리 격리 | 비정상 전문 탐지 건수 |
-| 국가별 규제 차이에 따른 지연 | 기관마다 다른 검증 규칙으로 반송과 거래 지연 발생 | **CBPR+** (Cross-Border Payments and Reporting Plus) 및 **PMPG** (Payments Market Practice Group) 표준 스키마 준수, 사전 유효성 검사기 도입 | 반송률 |
+| 로컬 게이트웨이 침해 | 2016년 방글라데시 중앙은행 사건처럼 금융기관 로컬 시스템이 뚫려 위조 전문이 승인될 위험 | CSP (Customer Security Programme) 통제 준수, MFA(Multi-Factor Authentication) 다단계 인증, HSM 물리 격리 | 비정상 전문 탐지 건수 |
+| 국가별 규제 차이에 따른 지연 | 기관마다 다른 검증 규칙으로 반송과 거래 지연 발생 | CBPR+ (Cross-Border Payments and Reporting Plus) 및 PMPG (Payments Market Practice Group) 표준 스키마 준수, 사전 유효성 검사기 도입 | 반송률 |
 
 ## Ⅵ. SWIFT 금융 메시징에 대한 기술사적 제언
 

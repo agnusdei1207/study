@@ -22,8 +22,8 @@ extra:
 ## Ⅰ. TTPs의 개요
 
 - 핵심 요약 : 공격자의 전략, 기법, 실행 절차를 묶은 행동 패턴으로 공격을 식별하는 방어 관점의 위협 분석 체계.
-- 개념 : 공격자가 목표를 달성하기 위해 쓰는 **TTPs** (Tactics, Techniques, and Procedures)로, 전술(목적), 기법(수단), 절차(실행 도구와 명령 패턴)로 구성된 행동 체계.
-- 배경 및 필요성 : IP 주소, 도메인, 파일 해시 같은 **침해지표** (IoC, Indicators of Compromise)는 공격자가 손쉽게 바꿀 수 있어 보안 장비의 차단 효과가 짧음 → 공격자의 행동 패턴을 **MITRE ATT&CK** (Adversarial Tactics, Techniques, and Common Knowledge) 체계로 분류하여 **지능형 지속 위협** (APT, Advanced Persistent Threat)에 선제 대응하는 방식이 요구됨.
+- 개념 : 공격자가 목표를 달성하기 위해 쓰는 TTPs (Tactics, Techniques, and Procedures)로, 전술(목적), 기법(수단), 절차(실행 도구와 명령 패턴)로 구성된 행동 체계.
+- 배경 및 필요성 : IP 주소, 도메인, 파일 해시 같은 침해지표 (IoC, Indicators of Compromise)는 공격자가 손쉽게 바꿀 수 있어 보안 장비의 차단 효과가 짧음 → 공격자의 행동 패턴을 MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) 체계로 분류하여 지능형 지속 위협 (APT, Advanced Persistent Threat)에 선제 대응하는 방식이 요구됨.
 - 주요 목적 : 쉽게 변조되는 단편 지표를 넘어 공격 행위 패턴을 식별·차단하여, 공격자의 침투 비용을 높이고 사전 예방 역량을 확보.
 
 ## Ⅱ. TTPs의 특징 및 장점
@@ -32,7 +32,7 @@ extra:
 
 1. 행위 중심 탐지 : 파일 해시가 바뀌어도 공격 행위의 순서와 관계는 유지됨 → 변종 악성코드와 제로데이 공격의 탐지 가능.
 2. 공통 분류 체계 : ATT&CK 기법 ID를 공통 언어로 사용 → 기관과 조직 간 위협 정보 공유와 탐지 범위 비교 용이.
-3. 검증 가능성 : **BAS** (Breach and Attack Simulation, 침해 공격 시뮬레이션)로 탐지 통제가 실제 기법을 잡는지 측정 → 방어 체계의 실효성 근거 확보.
+3. 검증 가능성 : BAS (Breach and Attack Simulation, 침해 공격 시뮬레이션)로 탐지 통제가 실제 기법을 잡는지 측정 → 방어 체계의 실효성 근거 확보.
 4. 공격자 비용 상승 : 침투 전략과 개발 도구를 바꿔야 대응이 우회되므로 → 공격자의 재구축 부담 증가.
 
 ## Ⅲ. TTPs의 구조 (흐름)
@@ -87,7 +87,7 @@ ATT&CK 매핑 (전술 → 기법 → 절차)
 | 한계 | 원인·영향 | 대응 방안 | 관리 지표 |
 | --- | --- | --- | --- |
 | 체크리스트식 ATT&CK 매핑 | 기법을 표에 채우는 데 그쳐 실제 로그 사각지대를 간과 | ATT&CK의 데이터 컴포넌트 기준으로 EDR과 Sysmon 로그의 감시 가능 여부 검증 | 데이터 소스 커버리지 비율 |
-| **LOLBins** (Living off the Land Binaries) 악용 | PowerShell, WMI, Certutil 같은 정상 내장 도구 사용으로 정상 업무와 오탐 혼선 | 단일 명령 매칭을 피하고 부모-자식 프로세스 계통과 비정상 외부 연결을 결합한 상관분석 | 오탐률 |
+| LOLBins (Living off the Land Binaries) 악용 | PowerShell, WMI, Certutil 같은 정상 내장 도구 사용으로 정상 업무와 오탐 혼선 | 단일 명령 매칭을 피하고 부모-자식 프로세스 계통과 비정상 외부 연결을 결합한 상관분석 | 오탐률 |
 | 절차 변형에 의한 룰 우회 | 같은 기법 번호라도 도구 옵션과 스크립트를 바꿔 정적 룰 회피 | Atomic Red Team과 Caldera 기반 자동 회귀 테스트 상시 운영 | 변종 탐지율 |
 
 ## Ⅵ. TTPs에 대한 기술사적 제언

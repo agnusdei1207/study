@@ -21,9 +21,9 @@ extra:
 ## Ⅰ. AI 데이터센터의 개요
 
 - 핵심 요약 : 대규모 AI 학습과 추론을 위해 가속기, 무손실 네트워크, 액체 냉각, 고밀도 전력을 하나의 대형 시스템으로 묶은 전용 데이터센터.
-- 개념 : 거대언어모델(LLM, Large Language Model) 학습과 추론을 위해 GPU(Graphics Processing Unit)·NPU(Neural Processing Unit) 가속기 클러스터, 무손실 고속 네트워크, 액체 냉각 설비, 고밀도 전력 인프라를 통합한 **AI 데이터센터** (AI Data Center).
+- 개념 : 거대언어모델(LLM, Large Language Model) 학습과 추론을 위해 GPU(Graphics Processing Unit)·NPU(Neural Processing Unit) 가속기 클러스터, 무손실 고속 네트워크, 액체 냉각 설비, 고밀도 전력 인프라를 통합한 AI 데이터센터 (AI Data Center).
 - 배경 및 필요성 : 공랭 중심의 기존 데이터센터는 고밀도 가속기의 발열과 전력 수요를 감당하기 어려워, 칩 직접 냉각과 분산 학습용 무손실 네트워크 같은 전용 인프라가 필요해짐.
-- 최근 동향 : Ultra Ethernet Consortium 발표 기준, AI·HPC용 개방형 이더넷 사양인 **UEC** (Ultra Ethernet Consortium) 1.0 사양이 2025년 6월 11일 공개되었고 이후 1.0.x 개정판이 발간됨.
+- 최근 동향 : Ultra Ethernet Consortium 발표 기준, AI·HPC용 개방형 이더넷 사양인 UEC (Ultra Ethernet Consortium) 1.0 사양이 2025년 6월 11일 공개되었고 이후 1.0.x 개정판이 발간됨.
 - 주요 목적 : 가속기 활용률(MFU, Model FLOPs Utilization)을 높이고, 무손실 전송으로 GPU 유휴 시간을 줄이며, 전력효율(PUE, Power Usage Effectiveness)을 개선하는 것.
 
 ## Ⅱ. AI 데이터센터의 특징 및 장점
@@ -31,14 +31,14 @@ extra:
 - 핵심 요약 : 고밀도 가속, 무손실 네트워크, 직접 칩 냉각, 전력 직결 구조가 학습 효율과 운영 안정성을 함께 높이는 방식.
 
 1. 고밀도 가속 컴퓨팅 : HBM(High Bandwidth Memory) 탑재 가속기를 높은 밀도로 묶어 칩 단위 연산 효율을 확보 → 같은 설치 면적에서 학습 처리량 증대.
-2. **무손실 네트워크** : **RDMA** (Remote Direct Memory Access) 전송으로 커널을 우회하고, **PFC** (Priority Flow Control, 우선순위 흐름 제어)와 **ECN** (Explicit Congestion Notification, 명시적 혼잡 통지)으로 패킷 드롭을 억제 → 올리듀스(All-Reduce) 동기화 지연 최소화.
-3. **직접 칩 액체 냉각** (DLC, Direct Liquid Cooling) : 냉각수를 칩 히트싱크에 직접 순환시켜 공랭으로는 어려운 고밀도 발열을 제거 → 칩 스로틀링 방지와 설비 밀도 향상.
-4. **고전압 직류 배전** (HVDC, High Voltage Direct Current) : 전력 변환 단계를 줄여 손실을 낮추고 변전 설비와 직결 → 대용량 전력의 운영 효율과 안정성 향상.
+2. 무손실 네트워크 : RDMA (Remote Direct Memory Access) 전송으로 커널을 우회하고, PFC (Priority Flow Control, 우선순위 흐름 제어)와 ECN (Explicit Congestion Notification, 명시적 혼잡 통지)으로 패킷 드롭을 억제 → 올리듀스(All-Reduce) 동기화 지연 최소화.
+3. 직접 칩 액체 냉각 (DLC, Direct Liquid Cooling) : 냉각수를 칩 히트싱크에 직접 순환시켜 공랭으로는 어려운 고밀도 발열을 제거 → 칩 스로틀링 방지와 설비 밀도 향상.
+4. 고전압 직류 배전 (HVDC, High Voltage Direct Current) : 전력 변환 단계를 줄여 손실을 낮추고 변전 설비와 직결 → 대용량 전력의 운영 효율과 안정성 향상.
 
 ## Ⅲ. AI 데이터센터의 구조 (흐름)
 
 - 핵심 요약 : 네트워크, 가속 컴퓨팅, 냉각, 전력이 하나의 슈퍼컴퓨터처럼 맞물리는 4계층 구조와, 그 위에서 도는 학습 동기화 흐름.
-- **InfiniBand**와 **RoCEv2** (RDMA over Converged Ethernet)는 무손실 패브릭을 구성하는 대표 방식이며, 개방형 이더넷 진영은 UEC 사양으로 이를 표준화하는 중.
+- InfiniBand와 RoCEv2 (RDMA over Converged Ethernet)는 무손실 패브릭을 구성하는 대표 방식이며, 개방형 이더넷 진영은 UEC 사양으로 이를 표준화하는 중.
 
 ```text
 [ AI 데이터센터 4계층 구조 ]
@@ -99,7 +99,7 @@ All-Reduce 집계 (네트워크 패브릭)
 - 조달 정책 : 벤더 종속을 줄이는 개방형 네트워크 전략을 설비 조달 기준에 반영하여 기존 InfiniBand 자산과의 전환 경로를 단계적으로 설계.
 - 설비 운영 : CFD(Computational Fluid Dynamics, 전산유체역학) 기반 디지털 트윈으로 열 분포를 사전 시뮬레이션하고, IoT(Internet of Things) 센서 데이터를 연동해 냉각 제어를 선제 조정하는 체계 필요.
 - 저장 경로 : 대규모 체크포인트 입출력 병목은 GPUDirect Storage처럼 CPU와 시스템 메모리를 우회하는 경로를 기본 설계로 두어 해소.
-- 전력 다변화 : 재생에너지 직접 계약과 **소형 모듈 원자로** (SMR, Small Modular Reactor) 연계를 정책 과제로 검토.
+- 전력 다변화 : 재생에너지 직접 계약과 소형 모듈 원자로 (SMR, Small Modular Reactor) 연계를 정책 과제로 검토.
 
 ## Ⅶ. 결론
 

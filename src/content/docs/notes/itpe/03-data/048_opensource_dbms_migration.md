@@ -18,7 +18,7 @@ extra:
 ## Ⅰ. 오픈소스 DBMS 마이그레이션의 개요
 
 - 핵심 요약 : 상용 데이터베이스에서 오픈소스 데이터베이스로 데이터, 스키마, 애플리케이션을 이전하는 과정.
-- 개념 : 기존 상용 데이터베이스에서 오픈소스 데이터베이스로 데이터, 스키마, 애플리케이션을 이전하는 기술(**오픈소스 DBMS 마이그레이션**, Open Source DBMS Migration).
+- 개념 : 기존 상용 데이터베이스에서 오픈소스 데이터베이스로 데이터, 스키마, 애플리케이션을 이전하는 기술(오픈소스 DBMS 마이그레이션, Open Source DBMS Migration).
 - 배경 및 필요성 : 라이선스 비용 절감, 벤더 종속 탈피, 오픈 소스 생태계 활용을 위해 상용 DB에서 오픈소스 DB로 이전하는 수요가 증가함.
 - 주요 목적 : 데이터 무결성 보장, 다운타임 최소화, 성능 저하 방지.
 
@@ -71,10 +71,10 @@ extra:
 
 ## Ⅵ. 데이터 마이그레이션에 대한 기술사적 제언
 
-- 핵심 요약 : 빅뱅 지양, **CDC** (Change Data Capture, 변경 데이터 캡처) 기반 증분 동기화의 전사 표준화, 자동화 검증 게이트와 전담 거버넌스 조직 운영 방향.
-- 빅뱅 방식 지양, Debezium 같은 오픈소스 CDC 도구나 **AWS DMS** (AWS Database Migration Service), Azure Database Migration Service 같은 클라우드 관리형 서비스 활용 트리클 또는 하이브리드 패턴의 전사 표준 채택.
+- 핵심 요약 : 빅뱅 지양, CDC (Change Data Capture, 변경 데이터 캡처) 기반 증분 동기화의 전사 표준화, 자동화 검증 게이트와 전담 거버넌스 조직 운영 방향.
+- 빅뱅 방식 지양, Debezium 같은 오픈소스 CDC 도구나 AWS DMS (AWS Database Migration Service), Azure Database Migration Service 같은 클라우드 관리형 서비스 활용 트리클 또는 하이브리드 패턴의 전사 표준 채택.
 - 행 수, 체크섬, 샘플링, 비즈니스 룰 검증의 파이프라인 단계별 게이트 자동화, 검증 통과 데이터만 운영 환경 반영.
-- 아키텍트, **DBA** (Database Administrator), 도메인 전문가, **QA** (Quality Assurance)로 구성된 전담 조직의 평가~안정화 운영, 이슈 에스컬레이션과 롤백 판단 권한 부여.
+- 아키텍트, DBA (Database Administrator), 도메인 전문가, QA (Quality Assurance)로 구성된 전담 조직의 평가~안정화 운영, 이슈 에스컬레이션과 롤백 판단 권한 부여.
 
 ## Ⅶ. 결론
 

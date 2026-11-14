@@ -19,7 +19,7 @@ extra:
 ## Ⅰ. AI 네이티브 개발 플랫폼의 개요
 
 - 핵심 요약 : AI 네이티브 개발 플랫폼은 AI 코딩 어시스턴트·에이전틱 개발 환경을 개발 생명주기 전 단계에 통합해 생산성과 품질·통제를 함께 확보하는 개발 체계.
-- 개념 : 코드 작성을 지원하는 **AI 코딩 어시스턴트** (AI Coding Assistant)와 작업 계획·도구 호출·자체 검증을 반복하는 **에이전틱 개발 환경** (agentic development environment)에 인공지능(AI, Artificial Intelligence) 모델인 대규모 언어 모델(LLM, Large Language Model)과 도구·데이터를 결합해 소프트웨어 개발생명주기(SDLC, Software Development Life Cycle) 전 주기를 지원하는 개발 체계가 **AI 네이티브 개발 플랫폼** (AI-Native Development Platform)임.
+- 개념 : 코드 작성을 지원하는 AI 코딩 어시스턴트 (AI Coding Assistant)와 작업 계획·도구 호출·자체 검증을 반복하는 에이전틱 개발 환경 (agentic development environment)에 인공지능(AI, Artificial Intelligence) 모델인 대규모 언어 모델(LLM, Large Language Model)과 도구·데이터를 결합해 소프트웨어 개발생명주기(SDLC, Software Development Life Cycle) 전 주기를 지원하는 개발 체계가 AI 네이티브 개발 플랫폼 (AI-Native Development Platform)임.
 - 배경 및 필요성 : 통합 개발 환경(IDE, Integrated Development Environment)의 코드 완성 수준 도구만 부분 도입하면 검증·통합·보안·비용 통제가 개인 설정에 의존하는 상태가 되고, 조직 차원의 품질 기준 유지가 어려움.
 - 주요 목적 : 개발 생산성 향상과 소프트웨어 품질·보안·비용 통제의 동시 실현을 통한 조직 수준의 개발 공정 혁신.
 
@@ -27,10 +27,10 @@ extra:
 
 - 핵심 요약 : 컨텍스트 공급·에이전트 자동화·검증 게이트·모델 게이트웨이가 생산성과 통제력을 동시에 높임.
 
-1. 컨텍스트 공급 : 저장소·문서·이슈 지식을 **검색 증강 생성** (RAG, Retrieval-Augmented Generation) 방식으로 모델 입력에 제공 → 프로젝트 맥락에 맞는 결과 생성과 **환각** (Hallucination, 사실이 아닌 내용의 그럴듯한 생성) 감소 효과.
+1. 컨텍스트 공급 : 저장소·문서·이슈 지식을 검색 증강 생성 (RAG, Retrieval-Augmented Generation) 방식으로 모델 입력에 제공 → 프로젝트 맥락에 맞는 결과 생성과 환각 (Hallucination, 사실이 아닌 내용의 그럴듯한 생성) 감소 효과.
 2. 에이전트 자동화 : 계획·실행·검증을 반복하는 에이전트가 다중 단계 개발 작업을 수행 → 반복 작업의 자동화와 개발 소요 기간 단축 효과.
 3. 검증 게이트 : 생성 코드에 정적 분석·자동화 시험·보안 점검·사람 검토를 지속적 통합·배포(CI/CD, Continuous Integration/Continuous Delivery) 파이프라인의 통과 조건으로 배치 → 생성물 신뢰성 확보.
-4. 모델 게이트웨이 : 모델 호출·권한·비용·로그를 단일 경로로 관리하는 **모델 게이트웨이** (Model Gateway)에 정책을 일괄 적용 → 모델 교체 유연성과 감사 대응력 확보.
+4. 모델 게이트웨이 : 모델 호출·권한·비용·로그를 단일 경로로 관리하는 모델 게이트웨이 (Model Gateway)에 정책을 일괄 적용 → 모델 교체 유연성과 감사 대응력 확보.
 
 ## Ⅲ. AI 네이티브 개발 플랫폼의 구조 (흐름)
 
