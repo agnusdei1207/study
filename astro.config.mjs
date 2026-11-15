@@ -73,6 +73,7 @@ export default defineConfig({
       components: {
         PageTitle: './src/components/PageTitle.astro',
         Sidebar: './src/components/Sidebar.astro',
+        ThemeSelect: './src/components/ThemeSelect.astro',
       },
       lastUpdated: true,
       pagefind: true,

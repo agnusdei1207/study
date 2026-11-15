@@ -1,0 +1,74 @@
+---
+---
+<starlight-theme-select>
+  <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" title="테마 전환">
+    <span class="theme-icon theme-icon-moon" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </span>
+    <span class="theme-icon theme-icon-sun" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </span>
+  </button>
+</starlight-theme-select>
+
+<script is:inline>
+  (function () {
+    var key = 'starlight-theme';
+    function getStored() {
+      try { return localStorage.getItem(key); } catch (e) { return null; }
+    }
+    function preferred() {
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    function current() {
+      var s = getStored();
+      return s === 'light' || s === 'dark' ? s : preferred();
+    }
+    function apply(theme, persist) {
+      document.documentElement.dataset.theme = theme;
+      if (persist) {
+        try { localStorage.setItem(key, theme); } catch (e) {}
+      }
+      document.querySelectorAll('starlight-theme-select [data-theme-toggle]').forEach(function (btn) {
+        var next = theme === 'dark' ? '라이트' : '다크';
+        btn.setAttribute('aria-label', next + ' 모드로 전환');
+        btn.setAttribute('title', next + ' 모드로 전환');
+      });
+    }
+    apply(current(), false);
+    document.querySelectorAll('starlight-theme-select [data-theme-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        apply(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true);
+      });
+    });
+    var mql = window.matchMedia('(prefers-color-scheme: light)');
+    if (mql.addEventListener) {
+      mql.addEventListener('change', function () {
+        if (!getStored()) apply(preferred(), false);
+      });
+    }
+  })();
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--sl-color-gray-1);
+    cursor: pointer;
+  }
+  .theme-toggle:hover {
+    color: var(--sl-color-white);
+    background: var(--sl-color-gray-6, transparent);
+  }
+  .theme-icon { display: none; }
+  :global(:root[data-theme='light']) .theme-icon-moon { display: inline-flex; }
+  :global(:root[data-theme='dark']) .theme-icon-sun { display: inline-flex; }
+</style>
