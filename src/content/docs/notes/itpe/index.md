@@ -3,6 +3,8 @@ title: "정보관리기술사 (ITPE)"
 description: "정보 전략·소프트웨어 공학·자료처리·컴퓨터 시스템·정보통신·정보보안·최신 기술·법규 핵심 토픽 노트"
 sidebar:
   order: 1
+extra:
+  model: "solar mini 4 free"
 ---
 
 정보관리기술사(ITPE) 필기시험에서 직접 따라 쓰며 답안을 완성하는 8과목 서브노트입니다.
