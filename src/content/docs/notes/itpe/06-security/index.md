@@ -4,6 +4,8 @@ sidebar:
 title: "정보보안"
 description: "8과목 지도에서 정보보안의 위치와 암호·식별·보호·탐지·대응·복구의 학습 로드맵"
 weight: 6
+extra:
+  model: "solar mini 4 free"
 ---
 
 ## 과목 큰 그림
