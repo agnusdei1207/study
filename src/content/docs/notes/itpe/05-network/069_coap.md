@@ -10,7 +10,7 @@ sidebar:
 extra:
   question_no: "069"
   keyword_grade: "응용"
-  model: "GLM-5.3-Flash"
+  model: "solar mini 4 free"
 ---
 
 ## 연관 키워드

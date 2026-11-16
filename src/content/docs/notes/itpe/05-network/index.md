@@ -4,6 +4,8 @@ sidebar:
 title: "정보통신"
 description: "네트워크 기본에서 지능형·융합 네트워크까지 이어지는 학습 로드맵"
 weight: 5
+extra:
+  model: "solar mini 4 free"
 ---
 
 ## 과목 큰 그림
