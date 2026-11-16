@@ -510,7 +510,9 @@ a:not([class]):hover {
 }
 
 .header .right-group .social-icons {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .mobile-preferences starlight-theme-select {
