@@ -10,7 +10,7 @@ sidebar:
 extra:
   question_no: "064"
   keyword_grade: "서브"
-  model: "Claude Haiku 5.5"
+  model: "solar mini 4 free"
 ---
 
 ## 연관 키워드

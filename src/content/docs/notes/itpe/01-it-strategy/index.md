@@ -4,6 +4,8 @@ sidebar:
 title: "01 정보 전략 및 관리"
 description: "정보관리기술사 01과목 학습 로드맵: 전략·경영정보·거버넌스·감리·프로젝트 관리·신기술 거버넌스"
 weight: 1
+extra:
+  model: "solar mini 4 free"
 ---
 
 # 01과목: 정보 전략 및 관리 (IT Strategy & Management)
