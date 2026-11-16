@@ -1,5 +1,7 @@
 ---
 title: "SOAP(Simple Object Access Protocol)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "W3C 표준 XML 프로토콜, 웹 서비스 3대 표준, REST 비교, WS-* 복잡성 한계와 어댑터 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "026"
 ---
 

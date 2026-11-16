@@ -1,5 +1,7 @@
 ---
 title: "정규 분포(Normal Distribution)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "정규 분포, 정규 분포의 성질, 중심 극한 정리, 표준 정규 분포, 표준 편차, 평균, 정규 분포의 활용"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "071"
 ---
 

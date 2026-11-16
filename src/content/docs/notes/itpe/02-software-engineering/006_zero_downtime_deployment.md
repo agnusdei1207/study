@@ -1,5 +1,7 @@
 ---
 title: "무중단 배포(Zero-Downtime Deployment)와 배포 전략"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "롤링·블루·그린·카나리 배포, 확장 및 축소 패턴, 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "006"
 ---
 

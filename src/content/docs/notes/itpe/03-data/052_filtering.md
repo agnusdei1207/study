@@ -1,5 +1,7 @@
 ---
 title: "필터링"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "데이터 필터링, 쿼리 최적화, 인덱스 선택도, 프레디케이트 푸시다운, 데이터 스케일링"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "052"
 ---
 

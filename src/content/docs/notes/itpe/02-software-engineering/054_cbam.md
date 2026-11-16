@@ -1,5 +1,7 @@
 ---
 title: "CBAM(Cost Benefit Analysis Method)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "ATAM 후속 연계, 효용 곡선·ROI·AHP, 주관성·상호작용·진부화 한계와 방안, 기술 부채·MAUT 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "054"
 ---
 

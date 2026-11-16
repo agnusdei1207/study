@@ -1,5 +1,7 @@
 ---
 title: "퀵 정렬(Quick Sort)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "분할 정복·피벗·제자리 정렬, 최적화 기법 비교, 피벗 편향·중복 키·불안정성 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "043"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Apache Iceberg / 오픈 테이블 포맷(레이크하우스)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "계층형 메타데이터·스냅샷 격리·숨겨진 파티셔닝, Delta Lake·Hudi 비교, 소형 파일·동시 쓰기·카탈로그 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "067"
 ---
 

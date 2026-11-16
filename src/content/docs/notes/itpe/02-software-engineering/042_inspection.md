@@ -1,5 +1,7 @@
 ---
 title: "인스펙션(Inspection)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "페이건 6단계·4대 역할, 정적 검토 기법 비교, 요식 행위·심리적 안전성·일정 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "042"
 ---
 

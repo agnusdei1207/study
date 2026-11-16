@@ -1,5 +1,7 @@
 ---
 title: "소프트웨어 품질보증(SQA, Software Quality Assurance)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "예방 중심 생명주기 활동, SQA·QC·테스팅 계층, ISO 25010 품질 모델, Shift-Left·DRE·QE 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "044"
 ---
 

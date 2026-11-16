@@ -1,5 +1,7 @@
 ---
 title: "SW(Software) 안전성 분석(FTA: Fault Tree Analysis, FMEA: Failure Mode and Effects Analysis, HAZOP: Hazard and Operability Study, STPA: System-Theoretic Process Analysis)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "결함수·고장모드·위험운전성 분석, 기능안전 표준 연계, STPA 보완, 등급 기반 설계 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "021"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "DevOps(Development and Operations)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "DevOps의 개념, 특징, 구조, 전통적 SDLC와의 비교, 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "002"
 ---
 

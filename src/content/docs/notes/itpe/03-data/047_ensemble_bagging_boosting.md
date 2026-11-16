@@ -1,5 +1,7 @@
 ---
 title: "앙상블 배깅·부스팅"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: " bagging, 부스팅, 랜덤 포레스트, 그레이디언트 부스팅, 오버핏팅, 편향-분산 트레이드오프 (bias–variance tradeoff)"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "047"
 ---
 

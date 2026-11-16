@@ -1,5 +1,7 @@
 ---
 title: "정렬 알고리즘(삽입 정렬·트리 정렬)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "시간복잡도·안정성·제자리성 비교, 하이브리드 Timsort, 트리 정렬 포인터 오버헤드 한계, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "031"
 ---
 

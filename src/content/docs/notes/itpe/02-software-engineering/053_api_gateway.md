@@ -1,5 +1,7 @@
 ---
 title: "API Gateway (Application Programming Interface)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "단일 진입점·리버스 프록시, 인증·Rate Limiting·서킷 브레이커, 솔루션 비교, SPOF·Fat Gateway 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "053"
 ---
 

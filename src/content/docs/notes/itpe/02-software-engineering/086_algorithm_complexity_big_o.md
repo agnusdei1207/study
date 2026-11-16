@@ -1,5 +1,7 @@
 ---
 title: "알고리즘 복잡도(O-notation)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "Big-O/Ω/Θ·분할상환 분석, 등급별 대표 알고리즘, 상수·캐시·최악 괴리 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "086"
 ---
 

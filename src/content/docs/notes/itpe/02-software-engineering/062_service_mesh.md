@@ -1,5 +1,7 @@
 ---
 title: "서비스 메시(Service Mesh)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "사이드카·데이터/컨트롤 플레인·mTLS·East-West, API Gateway 비교, 오버헤드·복잡성·조기 도입 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "062"
 ---
 

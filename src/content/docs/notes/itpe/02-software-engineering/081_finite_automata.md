@@ -1,5 +1,7 @@
 ---
 title: "유한 오토마타(Finite Automata)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "5-튜플·DFA/NFA·톰슨·홉크로프트, 상태 최소화, 상태 폭발·표현력·ReDoS 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "081"
 ---
 

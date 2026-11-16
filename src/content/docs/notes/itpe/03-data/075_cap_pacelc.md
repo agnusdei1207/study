@@ -1,5 +1,7 @@
 ---
 title: "CAP(Consistency, Availability, Partition Tolerance) 정리(CAP Theorem)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "일관성(Consistency), 가용성(Availability), 분할 내성(Partition Tolerance), PACELC 정리, 분산 시스템 설계"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "075"
 ---
 

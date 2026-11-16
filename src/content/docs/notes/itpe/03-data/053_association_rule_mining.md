@@ -1,5 +1,7 @@
 ---
 title: "연관 규칙 마이닝"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "연관 규칙, 지지도, 신뢰도, 향상도, Apriori, FP-Growth"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "053"
 ---
 

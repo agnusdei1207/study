@@ -1,5 +1,7 @@
 ---
 title: "정보은닉(Information Hiding)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "파나스 원리, 캡슐화와의 관계, 변경 파급 효과 비교, 한계와 방안, 아키텍처 경계 확장 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "017"
 ---
 

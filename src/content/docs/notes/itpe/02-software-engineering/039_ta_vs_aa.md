@@ -1,5 +1,7 @@
 ---
 title: "TA(Technical Architect)와 AA(Application Architect) 역할 구분 및 협업"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "NFR·FR 분리, 협업 접점·거버넌스, 클라우드 네이티브 역할 재편, RACI·ARB·ADR·플랫폼 엔지니어링 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "039"
 ---
 

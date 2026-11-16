@@ -1,5 +1,7 @@
 ---
 title: "탐욕 알고리즘(Greedy Algorithm)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "국소적/전체 최적해·탐욕적 선택·최적 부분 구조, DP 비교, 국소 함정·정렬 비용·제약 변경 한계와 방안, 교환 논법·근사 알고리즘 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "121"
 ---
 

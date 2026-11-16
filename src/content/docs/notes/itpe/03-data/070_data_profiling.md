@@ -1,5 +1,7 @@
 ---
 title: "데이터 프로파일링"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "데이터 품질, 데이터 프로파일링, 데이터 속성, 데이터 품질 규칙, 데이터 품질 검증, 데이터 품질 개선"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "070"
 ---
 

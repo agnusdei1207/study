@@ -1,5 +1,7 @@
 ---
 title: "잭나이프·부트스트랩"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "재표집, 동일 데이터 복원추출, 표준오차 추정, 편향 보정, 신뢰구간, 계산 비용, 모델 가정 위반, 모델 선택 한계와 방안"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "049"
 ---
 

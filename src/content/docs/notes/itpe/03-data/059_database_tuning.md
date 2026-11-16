@@ -1,5 +1,7 @@
 ---
 title: "데이터베이스 튜닝"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "실행계획, 인덱스, 통계정보, 버퍼풀, 잠금, 성능기준선"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "059"
 ---
 

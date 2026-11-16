@@ -1,5 +1,7 @@
 ---
 title: "아키텍처 스타일(Architecture Style)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "계층형·EDA·마이크로커널·MSA·공간 기반, 품질속성 트레이드오프, 유행 추종·대가 간과·일괄 전환 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "041"
 ---
 

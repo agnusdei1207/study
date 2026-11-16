@@ -1,5 +1,7 @@
 ---
 title: "SW 안전 진단 가이드 (SW: Software)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "4대 진단 영역·FMEA·FTA·SPOF·SAST·장애 주입, 진단원 역량·레거시 산출물·이행 부진 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "093"
 ---
 

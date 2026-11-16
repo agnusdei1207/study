@@ -1,5 +1,7 @@
 ---
 title: "블랙박스 테스트(Black-Box Test)와 명세 기반 기법"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "동등 분할·경계값 분석·의사결정표·상태 전이·유스케이스 테스팅, 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "007"
 ---
 

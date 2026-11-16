@@ -1,5 +1,7 @@
 ---
 title: "선형·비선형 자료구조"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "배열·연결 리스트·스택·큐·덱, 트리·그래프·힙, 구조·연산 요구 비교, 잘못된 구조선택·메모리·캐시·경계·동시성 오류 한계와 방안"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "044"
 ---
 

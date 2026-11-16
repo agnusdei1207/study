@@ -1,5 +1,7 @@
 ---
 title: "사용성 평가 및 사용성 테스트(Usability Testing)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "싱크 얼라우드·형성적/총괄적·휴리스틱·인지적 워크스루·SUS, 관찰자 효과·주관성·공수 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "061"
 ---
 

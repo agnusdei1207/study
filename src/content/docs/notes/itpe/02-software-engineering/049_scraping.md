@@ -1,5 +1,7 @@
 ---
 title: "스크래핑(Scraping)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "HTTP·파싱·헤드리스 브라우저, 크롤링 비교, robots.txt·법적 제약, 파서 파손·자원 고갈·법적 리스크 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "049"
 ---
 

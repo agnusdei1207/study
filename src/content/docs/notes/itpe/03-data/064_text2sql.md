@@ -1,5 +1,7 @@
 ---
 title: "Text2SQL (Text to SQL)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "자연어 질의, SQL 쿼리, 스키마 링킹, Few-Shot, 자가 교정, 시맨틱 레이어, 데이터 민주화, LLM, RAG"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "064"
 ---
 

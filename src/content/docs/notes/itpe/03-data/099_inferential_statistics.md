@@ -1,5 +1,7 @@
 ---
 title: "추론통계(Inferential Statistics)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "표본 추출, 점추정, 구간추정, 가설검정, p-값, 신뢰구간"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "099"
 ---
 

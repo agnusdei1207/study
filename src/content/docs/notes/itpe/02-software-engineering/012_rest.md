@@ -1,5 +1,7 @@
 ---
 title: "REST(Representational State Transfer)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "REST 6대 제약조건, Richardson 성숙도 모델, 실용적 REST, 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "012"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "t-검정"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "독립표본 t-검정, 대응표본 t-검정, Welch t-검정, 정규성·등분산성 가정, 검정력, p-값"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "058"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "데이터베이스 복제 유형"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "동기식 복제, 비동기식 복제, 반동기식 복제, 단일 리더 복제, 다중 리더 복제, 리더리스 복제"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "076"
 ---
 

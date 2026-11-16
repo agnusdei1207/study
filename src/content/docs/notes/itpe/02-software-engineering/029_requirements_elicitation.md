@@ -1,5 +1,7 @@
 ---
 title: "요구사항 도출 기법(Requirements Elicitation)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "전통·협업·시각화·관찰 4계열, JAD·프로토타이핑·MoSCoW, 하이브리드 파이프라인, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "029"
 ---
 

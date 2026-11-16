@@ -1,5 +1,7 @@
 ---
 title: "인과 관계(Causation)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "인과 관계, 상관관계, 반사실 추론, 도구 변수, 다중 회귀 분석, 잠재 결과 모형"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "097"
 ---
 

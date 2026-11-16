@@ -1,5 +1,7 @@
 ---
 title: "ATAM(Architecture Tradeoff Analysis Method)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "SEI 표준 아키텍처 평가, 유틸리티 트리, 민감점·절충점·리스크, CBAM 연계"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "011"
 ---
 

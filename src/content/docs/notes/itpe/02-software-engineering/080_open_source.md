@@ -1,5 +1,7 @@
 ---
 title: "오픈소스 소프트웨어(OSS, Open Source Software) 및 거버넌스"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "OSPO·SBOM·SCA·VEX, 라이선스·공급망·기여 3대 영역, 카피레프트·공급망 공격·유지보수 중단 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "080"
 ---
 

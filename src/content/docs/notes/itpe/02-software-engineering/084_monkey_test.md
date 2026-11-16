@@ -1,5 +1,7 @@
 ---
 title: "몽키 테스트(Monkey Test)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "덤/스마트 몽키·랜덤 테스트·퍼징, 크래시·ANR·메모리 릭, 재현성·얕은 탐색·오라클 부재 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "084"
 ---
 

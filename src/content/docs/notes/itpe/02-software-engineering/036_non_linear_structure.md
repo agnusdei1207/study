@@ -1,5 +1,7 @@
 ---
 title: "비선형 구조(Non-Linear Structure)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "트리·그래프·DFS/BFS, 자가 균형·B+Tree·트라이, 탐색 폭증·캐시·순환 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "036"
 ---
 

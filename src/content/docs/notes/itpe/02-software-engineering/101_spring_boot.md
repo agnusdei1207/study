@@ -1,5 +1,7 @@
 ---
 title: "스프링 부트(Spring Boot)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "자동 구성·스타터·내장 서버·액추에이터, 전통적 Spring 비교, 블랙박스·기동 지연·공급망 위험 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "101"
 ---
 

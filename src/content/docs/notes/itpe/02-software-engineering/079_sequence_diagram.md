@@ -1,5 +1,7 @@
 ---
 title: "순차 다이어그램(Sequence Diagram)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "생명선·활성 객체·메시지·복합 단편, 클래스 다이어그램 비교, 비동기·문서 진부화·MSA 조망 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "079"
 ---
 

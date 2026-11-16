@@ -1,5 +1,7 @@
 ---
 title: "빅데이터(Big Data)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "5V(볼륨, 속도, 다양성, 정확성, 가치), 분산 컴퓨팅, 맵리듀스, 스파크, 하둡, 데이터 레이크"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "074"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "요구사항 명세서(SRS, Software Requirements Specification)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "IEEE 830·ISO/IEC/IEEE 29148, 8대 품질 특성, 3단 구성·추적 흐름, 문서 박제화·과잉 명세·모호성 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "038"
 ---
 

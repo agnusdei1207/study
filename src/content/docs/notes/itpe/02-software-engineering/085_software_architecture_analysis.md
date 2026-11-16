@@ -1,5 +1,7 @@
 ---
 title: "소프트웨어 아키텍처 분석(정방향/역방향)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "정방향·역방향·ArchUnit·피트니스 함수·DSM·마틴 메트릭스, 침식·동적 의존성·주관성 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "085"
 ---
 

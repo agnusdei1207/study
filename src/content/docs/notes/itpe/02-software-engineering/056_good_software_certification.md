@@ -1,5 +1,7 @@
 ---
 title: "소프트웨어 품질인증 및 GS(Good Software) 인증"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "소프트웨어진흥법 근거, ISO 25010 8대 특성, 인증 절차, 공공 조달 혜택, 심사 기간·환경 괴리·지속 배포 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "056"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "CMMI(Capability Maturity Model Integration)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "성숙도 레벨 1~5·PA·단계적/연속적 표현, V3.0·ALM·애자일 마찰, 형식 산출물·비용·릴리스 리드타임 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "113"
 ---
 

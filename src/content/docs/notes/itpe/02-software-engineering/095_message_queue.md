@@ -1,5 +1,7 @@
 ---
 title: "메시지 큐(Message Queue)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "MOM·비동기·결합도 완화·점대점·발행-구독, RabbitMQ·Kafka·SQS 비교, 중복·적체·독성 메시지 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "095"
 ---
 

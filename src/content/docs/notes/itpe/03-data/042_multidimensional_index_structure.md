@@ -1,5 +1,7 @@
 ---
 title: "다차원 인덱스 구조"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "다차원 인덱스, 공간 데이터, R-tree, k-d 트리, 범위검색, 최근접검색"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "042"
 ---
 

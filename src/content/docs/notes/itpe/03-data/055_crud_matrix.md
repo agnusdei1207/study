@@ -1,5 +1,7 @@
 ---
 title: "CRUD 매트릭스 (CRUD: Create, Read, Update, Delete)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "업무기능, 데이터 엔터티, 생성·조회·수정·삭제, 추적성"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "055"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "시계열 AR·MA 모델 (AR: Autoregressive; MA: Moving Average)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "자동회귀·이동평균 모델, AR·MA·ARMA 차이, 정상성·최적 차수 선택·잔차 진단, 과적합·비정상성·인과추론 한계와 방안"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "045"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "다익스트라 알고리즘(Dijkstra Algorithm)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "탐욕법·간선 완화·우선 순위 큐·OSPF, 배열·이진 힙·피보나치 힙 비교, 음수 간선·큐 병목·A*·양방향 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "117"
 ---
 

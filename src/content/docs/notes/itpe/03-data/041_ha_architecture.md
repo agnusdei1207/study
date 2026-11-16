@@ -1,5 +1,7 @@
 ---
 title: "고가용성 아키텍처(HA, High Availability)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "장애도메인, 이중화, 장애조치, RTO, RPO, quorum"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "041"
 ---
 

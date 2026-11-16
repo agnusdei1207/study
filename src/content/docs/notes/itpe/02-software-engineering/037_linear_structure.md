@@ -1,5 +1,7 @@
 ---
 title: "선형 구조(Linear Structure)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "배열·연결 리스트·스택·큐·덱, 연산별 시간복잡도, 원형·락프리·캐시 지역성 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "037"
 ---
 

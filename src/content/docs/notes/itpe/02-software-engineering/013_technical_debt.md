@@ -1,5 +1,7 @@
 ---
 title: "기술 부채(Technical Debt)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "원금·이자 구조, 4분면 분류, 생명주기, 유형별 비교, SQALE·품질 게이트·부채 등록부"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "013"
 ---
 

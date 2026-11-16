@@ -1,5 +1,7 @@
 ---
 title: "폭포수 개발 방법론(Waterfall Model)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "단계 순차성·공식 검토·베이스라인·V-모델·CCB, 애자일 비교, 빅뱅·경직성·문서 과잉 한계와 방안, Stacey 매트릭스·하이브리드 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "109"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "함수적 종속성(Functional Dependency, FD)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "결정자, 종속자, 완전 함수 종속, 부분 함수 종속, 이행 함수 종속, 완전 함수 종속성, Armstrong 공리"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "110"
 ---
 

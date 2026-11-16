@@ -1,5 +1,7 @@
 ---
 title: "분산 데이터베이스"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "분산 데이터베이스, 분할, 복제, 일관성, 가용성, 분할 내성, CAP 정리, 일관성 모델"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "102"
 ---
 

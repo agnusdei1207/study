@@ -1,5 +1,7 @@
 ---
 title: "McCabe 순환복잡도(Cyclomatic Complexity)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "CFG·기본 경로·3가지 계산식, 인지 복잡도 비교, 품질 게이트·CI 연동, 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "025"
 ---
 

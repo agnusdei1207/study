@@ -1,5 +1,7 @@
 ---
 title: "애자일(Agile) 방법론"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "경험주의·스크럼·XP·칸반·린·FDD, 폭포수 비교, 기술 부채·좀비 애자일·계약 제도 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "083"
 ---
 

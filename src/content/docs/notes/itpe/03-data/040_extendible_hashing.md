@@ -1,5 +1,7 @@
 ---
 title: "확장성 해싱"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "디렉터리·전역 깊이·지역 깊이·버킷 분할·해시 인덱스, 정적 해싱 비교, 디렉터리 메모리·버킷 편향·범위검색 취약 한계와 방안"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "040"
 ---
 

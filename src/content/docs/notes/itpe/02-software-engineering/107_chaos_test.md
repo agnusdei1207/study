@@ -1,5 +1,7 @@
 ---
 title: "카오스 테스트(Chaos Test)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "정상 상태·가설·장애 주입·데드맨 스위치, DR 테스트 비교, 연쇄 장애·관측성·조직 저항 한계와 방안, GameDay·SRE 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "107"
 ---
 

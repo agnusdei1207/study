@@ -1,5 +1,7 @@
 ---
 title: "차원 축소(PCA·MDS) (PCA: Principal Component Analysis; MDS: Multidimensional Scaling)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "주성분 분석, 다차원 척도법, 차원 축소, 희소성, 곡선, 재구성 오차, 한계와 방안"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "050"
 ---
 

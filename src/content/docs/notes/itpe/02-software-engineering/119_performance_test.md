@@ -1,5 +1,7 @@
 ---
 title: "성능 테스트(Performance Test)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "부하·스트레스·스파이크·내구성 테스트, TPS·응답시간·CPU·메모리·DB 풀, 환경 격차·부하 발생기·캐시 왜곡 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "119"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "기록·재생 테스트(Record and Replay Testing)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "UI·네트워크 기록·재생, 트래픽 미러링·결정론적 재현, 선택자·타이밍·단언 한계와 방안, POM·민감정보 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "124"
 ---
 

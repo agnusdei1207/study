@@ -1,5 +1,7 @@
 ---
 title: "실내 매핑 데이터 포맷(IMDF, Indoor Mapping Data Format)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "실내 지도 데이터, OGC 표준, 공간 데이터, 실내 위치 서비스, 애플"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "078"
 ---
 

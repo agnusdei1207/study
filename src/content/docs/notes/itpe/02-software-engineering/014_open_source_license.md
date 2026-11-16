@@ -1,5 +1,7 @@
 ---
 title: "오픈소스 라이선스(Permissive·Copyleft)와 Source-Available 라이선스"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "허용적·카피레프트·Source-Available 분류, 의무 비교, SBOM·SCA 자동 통제, OSPO 거버넌스"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "014"
 ---
 

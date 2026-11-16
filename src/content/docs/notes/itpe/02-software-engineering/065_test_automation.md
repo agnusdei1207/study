@@ -1,5 +1,7 @@
 ---
 title: "테스트 자동화(Test Automation)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "테스트 피라미드·단위/API/E2E, 아이스크림 콘 안티패턴, 데이터 격리·POM·ROI, 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "065"
 ---
 

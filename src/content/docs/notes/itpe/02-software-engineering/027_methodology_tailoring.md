@@ -1,5 +1,7 @@
 ---
 title: "개발방법론 테일러링(Methodology Tailoring)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "ISO/IEC 12207·CMMI 기반, 4단계 절차·매트릭스·심의 승인, 라이프사이클 비교, 자산 환류 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "027"
 ---
 

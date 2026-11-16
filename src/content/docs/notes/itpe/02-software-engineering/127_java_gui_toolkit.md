@@ -1,5 +1,7 @@
 ---
 title: "Java GUI(Graphical User Interface) 툴킷(AWT: Abstract Window Toolkit, Swing, JavaFX)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "AWT·Swing·JavaFX 3세대, 중량·경량·씬 그래프, EDT·FXML·CSS·jpackage, 블로킹·룩앤필·배포 부담 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "127"
 ---
 

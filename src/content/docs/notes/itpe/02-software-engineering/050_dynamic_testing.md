@@ -1,5 +1,7 @@
 ---
 title: "동적 테스트(Dynamic Testing)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "실행 기반 검증, 3대 기법·런타임 분석, 정적 테스트 비교, 환경 구축·Flaky·스위트 비대화 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "050"
 ---
 

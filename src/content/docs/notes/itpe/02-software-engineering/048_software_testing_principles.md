@@ -1,5 +1,7 @@
 ---
 title: "소프트웨어 테스팅 7대 원리"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "ISTQB 7대 원리, 시프트 레프트·라이트, 위험 기반·뮤테이션·카오스·퍼징 보완, 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "048"
 ---
 

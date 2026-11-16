@@ -1,5 +1,7 @@
 ---
 title: "힙(Heap)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "최소 힙, 최대 힙, 힙 정렬, 힙 연산, 우선순위 큐, 힙 속성, 힙 성질"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "101"
 ---
 

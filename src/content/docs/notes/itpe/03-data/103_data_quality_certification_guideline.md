@@ -1,5 +1,7 @@
 ---
 title: "데이터 품질 인증 가이드라인"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "데이터 품질 인증의 개념, 필요성, 평가 기준, 인증 절차, 데이터 품질 관리 모범 사례"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "103"
 ---
 

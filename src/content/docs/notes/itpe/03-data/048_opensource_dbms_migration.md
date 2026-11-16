@@ -1,5 +1,7 @@
 ---
 title: "오픈소스 DBMS(Database Management System) 마이그레이션"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "마이그레이션 전략, 스키마 변환, 데이터 검증, 성능 테스트, 다운타임 최소화, 벤더 종속"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "048"
 ---
 

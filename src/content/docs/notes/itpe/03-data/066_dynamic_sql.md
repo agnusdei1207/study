@@ -1,5 +1,7 @@
 ---
 title: "동적 SQL (SQL: Structured Query Language)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "런타임에 동적으로 SQL 문을 생성하여 실행하는 기법"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "066"
 ---
 

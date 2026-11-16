@@ -1,5 +1,7 @@
 ---
 title: "EDA(이벤트 기반 아키텍처)와 2대 토폴로지(브로커·중재자) (EDA: Event-Driven Architecture)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "비동기 메시징·브로커·중재자 토폴로지, 사가·Outbox·멱등성·스키마 레지스트리, 정합성·중복·호환성 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "055"
 ---
 

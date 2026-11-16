@@ -1,5 +1,7 @@
 ---
 title: "데이터옵스(DataOps)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "파이프라인 애즈 코드·지속적 데이터 테스팅·관측성·데이터 계약, DevOps 비교, 소스 이질성·사후 감지·사일로 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "077"
 ---
 

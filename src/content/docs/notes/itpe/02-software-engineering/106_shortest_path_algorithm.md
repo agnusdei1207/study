@@ -1,5 +1,7 @@
 ---
 title: "최단 경로 알고리즘(Shortest Path Algorithm)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "간선 완화·다익스트라·벨만-포드·플로이드-워셜, 음수 가중치·우선 순위 큐·축약 계층, 대규모 탐색·동적 가중치·음수 사이클 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "106"
 ---
 

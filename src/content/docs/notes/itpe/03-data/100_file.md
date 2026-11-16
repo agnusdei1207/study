@@ -1,5 +1,7 @@
 ---
 title: "파일(File)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "파일 시스템, 파일 메타데이터, 파일 접근 제어, 파일 시스템 유형, 파일 시스템 최적화"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "100"
 ---
 

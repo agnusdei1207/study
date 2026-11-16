@@ -1,5 +1,7 @@
 ---
 title: "SW(Software) 유지보수 3R(역공학·재공학·재사용)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "ISO/IEC 14764 4대 유형·스트랭글러 피그·LLM·DDD, 역공학·재공학·재사용 순환 흐름, 암묵지·빅뱅·결합도 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "105"
 ---
 

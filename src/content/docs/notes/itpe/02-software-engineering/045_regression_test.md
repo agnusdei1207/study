@@ -1,5 +1,7 @@
 ---
 title: "회귀테스트(Regression Test)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "사이드 이펙트 방지, 3대 선정 전략, RTS·우선순위화·Flaky·TIA, 한계와 방안, CD 환경 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "045"
 ---
 

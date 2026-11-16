@@ -1,5 +1,7 @@
 ---
 title: "칸반(Kanban)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "WIP 제한·풀 시스템·누적 흐름도·리드타임, 스크럼 비교, WIP 미준수·DoD·팀 간 의존성 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "064"
 ---
 

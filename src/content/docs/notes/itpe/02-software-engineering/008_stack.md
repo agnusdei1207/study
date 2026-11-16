@@ -1,5 +1,7 @@
 ---
 title: "스택(Stack) 자료구조"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "LIFO 구조, 연산, 구현 방식, 응용, 오버플로우·동시성 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "008"
 ---
 

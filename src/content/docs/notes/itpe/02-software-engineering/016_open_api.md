@@ -1,5 +1,7 @@
 ---
 title: "Open API(Application Programming Interface)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "개방형 API 생태계, 3계층 구조, 프로토콜 비교, 보안·호환성·거버넌스, 한계와 방안, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "016"
 ---
 

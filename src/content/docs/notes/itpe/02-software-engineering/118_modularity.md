@@ -1,5 +1,7 @@
 ---
 title: "모듈성(Modularity)과 결합도·응집도"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "6단계 결합도·7단계 응집도, 고응집·저결합 원칙, 과도한 세분화·순환 의존·경계 침식 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "118"
 ---
 

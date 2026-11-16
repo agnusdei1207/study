@@ -1,5 +1,7 @@
 ---
 title: "신뢰도(Reliability)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "평균 무고장 시간(MTBF), 평균 복구 시간(MTTR), 가용성(Availability), 고장률(Failure Rate), Bathtub Curve(Bathtub Curve)"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "072"
 ---
 

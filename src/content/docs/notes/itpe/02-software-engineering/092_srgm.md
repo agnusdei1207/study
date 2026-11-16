@@ -1,5 +1,7 @@
 ---
 title: "SW 신뢰성 성장 모델(SRGM, Software Reliability Growth Model)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "NHPP·MTBF·Goel-Okumoto·Yamada, 불완전 디버깅·실행 시간 모델, 가설·환경 괴리·데이터 결측 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "092"
 ---
 

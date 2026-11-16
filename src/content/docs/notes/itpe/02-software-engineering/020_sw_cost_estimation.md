@@ -1,5 +1,7 @@
 ---
 title: "SW(Software) 규모·비용 산정(Function Point·LOC·COCOMO)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "하향식·상향식·수학적 모델·기능 기반 4대 기법, 프로젝트 유형별 계수, 간이법·정규법·True-up, 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "020"
 ---
 

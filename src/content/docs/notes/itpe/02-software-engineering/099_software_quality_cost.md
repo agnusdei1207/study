@@ -1,5 +1,7 @@
 ---
 title: "소프트웨어 품질 비용(COQ, Cost of Quality)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "PAF 모델·예방/평가/실패 비용·1:10:100 법칙, 적합·부적합 비용 비교, 데이터 부재·간접 실패·단기 ROI 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "099"
 ---
 

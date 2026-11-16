@@ -1,5 +1,7 @@
 ---
 title: "반응형 웹(Responsive Web)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "유동형 그리드·미디어 쿼리·모바일 퍼스트, 적응형 웹 비교, 모바일 성능·CSS 복잡도·파편화 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "078"
 ---
 

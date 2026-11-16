@@ -1,5 +1,7 @@
 ---
 title: "공공SW사업 법제도 가이드 (SW: Software)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "소프트웨어진흥법·과업심의위원회·적정 사업기간·상용SW 직접구매·원격지 개발·하도급 제한·ISMP·RFP·하자담보"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "112"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "통합 테스트(Integration Test)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "4대 결합 전략·스텁·드라이버·V-모델, 빅뱅·하향식·상향식·샌드위치 비교, 외부 의존·E2E·데이터 경합 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "108"
 ---
 

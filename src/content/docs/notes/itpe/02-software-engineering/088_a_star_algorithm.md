@@ -1,5 +1,7 @@
 ---
 title: "A* 알고리즘"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "f(n)=g(n)+h(n)·휴리스틱·허용성·일관성, 다익스트라·탐욕 비교, 메모리·휴리스틱·동적 환경 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "088"
 ---
 

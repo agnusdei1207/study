@@ -1,5 +1,7 @@
 ---
 title: "서비스 워커(Service Worker)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "PWA·네트워크 프록시·캐시 스토리지·백그라운드 동기화, 5대 캐싱 전략, 오래된 자원·수명주기·입력 유실 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "097"
 ---
 

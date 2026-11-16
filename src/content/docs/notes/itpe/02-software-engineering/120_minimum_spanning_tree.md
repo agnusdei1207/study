@@ -1,5 +1,7 @@
 ---
 title: "최소 신장 트리(Minimum Spanning Tree)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "MST·크루스칼·프림·유니온 파인드·STP, 밀집·희소 그래프 비교, 정렬 비용·동적 네트워크·연산 오버헤드 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "120"
 ---
 

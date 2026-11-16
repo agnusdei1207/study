@@ -1,5 +1,7 @@
 ---
 title: "OpenTelemetry(관측성 표준)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "API·SDK·Collector·OTLP·W3C Trace Context, 3대 데이터 비교, 데이터 비용·수집기 복잡도·계측 누락 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "069"
 ---
 

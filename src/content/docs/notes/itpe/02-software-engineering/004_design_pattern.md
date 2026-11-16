@@ -1,5 +1,7 @@
 ---
 title: "디자인 패턴과 프록시 패턴(Proxy Pattern)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "GoF 디자인 패턴 분류, 프록시 패턴의 개념·특징·구조·유형 비교·한계와 방안·제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "004"
 ---
 

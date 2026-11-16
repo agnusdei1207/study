@@ -1,5 +1,7 @@
 ---
 title: "ELK 스택(Elasticsearch, Logstash, Kibana)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "로그 수집, 검색, 시각화, 오픈소스 로그 분석 플랫폼"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "077"
 ---
 

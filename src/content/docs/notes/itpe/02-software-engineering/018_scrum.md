@@ -1,5 +1,7 @@
 ---
 title: "스크럼(Scrum)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "3-5-3 체계, 스프린트 흐름, DEEP·INVEST·DoD, 지표 오용·PO 병목·행사 형식화 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "018"
 ---
 

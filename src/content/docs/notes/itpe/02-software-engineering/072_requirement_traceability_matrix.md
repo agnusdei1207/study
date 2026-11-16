@@ -1,5 +1,7 @@
 ---
 title: "요구사항 추적표(Requirements Traceability Matrix)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "양방향 추적성·전방/후방·변경 영향도·ALM 자동화, 문서 부패·애자일 부하·분할 불균형 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "072"
 ---
 

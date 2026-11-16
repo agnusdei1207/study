@@ -1,5 +1,7 @@
 ---
 title: "요구공학(Requirements Engineering)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "4대 프로세스·변경 관리·RTM·CCB, 기능·비기능 비교, 모호성·변동·추적 단절 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "028"
 ---
 

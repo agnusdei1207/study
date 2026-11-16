@@ -1,5 +1,7 @@
 ---
 title: "데이터 마이그레이션"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "데이터 이관, 데이터 변환, 데이터 검증, 데이터 정합성, 마이그레이션 전략"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "107"
 ---
 

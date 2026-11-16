@@ -1,5 +1,7 @@
 ---
 title: "성능 요구사항(Performance Requirement)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "응답시간·처리량·자원 사용률·턴어라운드, SLA/SLO/SLI·부하 테스트, 모호·비현실·늦은 검증 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "098"
 ---
 

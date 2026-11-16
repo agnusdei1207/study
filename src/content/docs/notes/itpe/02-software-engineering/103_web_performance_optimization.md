@@ -1,5 +1,7 @@
 ---
 title: "웹 성능 최적화(Web Performance Optimization)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "Core Web Vitals·중요 렌더링 경로·계층별 최적화, LCP/INP/CLS·CDN·Critical CSS·SSR, 기법 상충·회귀·CSR 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "103"
 ---
 

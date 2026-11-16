@@ -1,5 +1,7 @@
 ---
 title: "AI SW 품질보증 테스트(뉴런 커버리지 포함) (AI: Artificial Intelligence; SW: Software)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "데이터·모델·강건성·공정성·안전성·설명 가능성, 뉴런·K-Multisection·메타모픽, 적대적 공격·드리프트 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "066"
 ---
 

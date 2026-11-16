@@ -1,5 +1,7 @@
 ---
 title: "데이터 옵저버빌리티"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "로그·메타데이터·계보·품질지표를 활용해 데이터 파이프라인과 데이터셋의 상태·이상·영향을 관측하는 운영 역량"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "043"
 ---
 

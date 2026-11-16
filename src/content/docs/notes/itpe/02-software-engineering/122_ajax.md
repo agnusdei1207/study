@@ -1,5 +1,7 @@
 ---
 title: "AJAX(Asynchronous JavaScript and XML)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "비동기 통신·XMLHttpRequest·Fetch API·DOM·JSON·SPA·SSR·CORS, 히스토리·인덱싱·서버 부하 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "122"
 ---
 

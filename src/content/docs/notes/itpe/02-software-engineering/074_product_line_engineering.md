@@ -1,5 +1,7 @@
 ---
 title: "소프트웨어 제품 라인(SPL, Software Product Line)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "도메인·응용 공학·핵심 자산·피처 모델링·바인딩 시점, 개별 개발 비교, 초기 투자·가변성·사일로 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "074"
 ---
 

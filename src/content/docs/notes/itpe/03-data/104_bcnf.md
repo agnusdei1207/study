@@ -1,5 +1,7 @@
 ---
 title: "BCNF (Boyce-Codd Normal Form)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "BCNF 정의, 3NF와의 차이, 다중값 종속, 조인 종속, 무손실 분해, 정규화 단계"
 tags:
   - "notes-data"
@@ -9,6 +11,7 @@ sidebar:
     text: "응용"
 extra:
   keyword_grade: "응용"
+  model: "Claude Haiku 5.5"
   question_no: "104"
 ---
 

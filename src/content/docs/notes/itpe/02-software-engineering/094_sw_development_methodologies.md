@@ -1,5 +1,7 @@
 ---
 title: "SW(Software) 개발 방법론 비교(구조적·정보 공학·객체 지향·CBD: Component-Based Development)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "프로세스·데이터·객체·컴포넌트 중심 비교, DFD·UML·컴포넌트 명세, 테일러링·Docs-as-Code·DevOps 융합 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "094"
 ---
 

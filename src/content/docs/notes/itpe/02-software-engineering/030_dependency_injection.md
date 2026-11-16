@@ -1,5 +1,7 @@
 ---
 title: "의존성 주입(Dependency Injection)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "IoC 구현, 3가지 주입 방식, DIP 실천, 생성자 주입 표준화, 도메인 계층 독립성 제언"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "030"
 ---
 

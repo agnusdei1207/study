@@ -1,5 +1,7 @@
 ---
 title: "상용SW 직접구매 확대 (SW: Software)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "소프트웨어진흥법·SI 일괄 발주·과업심의위원회·GS 인증·직접구매 원칙·예외 심의·통합 비용·SaaS 확장"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "071"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "원격지 개발(Remote Development)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "소프트웨어진흥법·VDI·VPN·스마트워크센터, 상주 파견 비교, 유출·커뮤니케이션·불신 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "073"
 ---
 

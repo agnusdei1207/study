@@ -1,5 +1,7 @@
 ---
 title: "웹 크롤링(Web Crawling)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "URL 프론티어·로봇.txt·예의 정책·블룸 필터·SimHash, 크롤링 vs 스크래핑, 스파이더 트랩·과부하·노이즈 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "104"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "SW(Software) 안전(SW 안전 확보 지침)"
+author: "agnusdei1207"
+date: "2026-11-16T21:52:02+09:00"
 description: "소프트웨어진흥법 근거, 등급·위험원·페일 세이프·생명주기, 일반 품질 비교, 형식적 점검·산업 규격·레거시 한계와 방안"
 tags:
   - "notes-software-engineering"
@@ -9,6 +11,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
+  model: "Claude Haiku 5.5"
   question_no: "070"
 ---
 
