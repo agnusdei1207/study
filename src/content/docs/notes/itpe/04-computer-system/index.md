@@ -4,6 +4,8 @@ sidebar:
 title: "컴퓨터 시스템"
 description: "컴퓨터구조·운영체제에서 가상화·클라우드·AI 인프라까지 이어지는 과목 학습 로드맵"
 weight: 4
+extra:
+  model: "solar mini 4 free"
 ---
 
 ## 과목 큰 그림
