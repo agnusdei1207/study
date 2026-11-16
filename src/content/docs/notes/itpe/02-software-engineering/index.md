@@ -4,6 +4,8 @@ sidebar:
 title: "소프트웨어 공학"
 description: "8과목 지도에서 소프트웨어 공학의 위치와 요구·설계·구현·테스트·운영의 생명주기 학습 로드맵"
 weight: 2
+extra:
+  model: "solar mini 4 free"
 ---
 
 ## 과목 큰 그림
