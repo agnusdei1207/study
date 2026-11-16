@@ -4,6 +4,8 @@ sidebar:
 title: "최신 기술 동향"
 description: "AI 기초에서 거버넌스·에이전트·디지털 융합까지 이어지는 학습 로드맵"
 weight: 7
+extra:
+  model: "solar mini 4 free"
 ---
 
 ## 과목 큰 그림
