@@ -509,10 +509,12 @@ a:not([class]):hover {
   gap: 0.65rem;
 }
 
-.header .right-group .social-icons {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+@media (min-width: 49.9375rem) {
+  .header .right-group .social-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .mobile-preferences starlight-theme-select {
