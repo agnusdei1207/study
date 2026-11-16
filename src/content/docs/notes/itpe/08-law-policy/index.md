@@ -4,6 +4,8 @@ sidebar:
 title: "법규 및 정책"
 description: "권리·의무·기술통제를 연결하는 IT 법규·정책 과목 로드맵"
 weight: 8
+extra:
+  model: "solar mini 4 free"
 ---
 
 ## 과목 큰 그림
