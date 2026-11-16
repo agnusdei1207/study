@@ -4,6 +4,8 @@ sidebar:
 title: "자료처리·데이터·통계"
 description: "데이터 요구에서 활용·의사결정까지의 생명주기와 자료구조·DB·플랫폼·통계 학습 로드맵"
 weight: 3
+extra:
+  model: "solar mini 4 free"
 ---
 
 ## 과목 큰 그림

@@ -10,7 +10,7 @@ sidebar:
     text: "기초"
 extra:
   keyword_grade: "기초"
-  model: "Claude Haiku 5.5"
+  model: "solar mini 4 free"
   question_no: "013"
 ---
 
